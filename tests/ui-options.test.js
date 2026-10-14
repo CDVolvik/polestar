@@ -121,6 +121,37 @@ test('old page keys open the page and tab that hold their settings now', () => {
 	});
 });
 
+test('in a translated client, old page keys and the English page names still open their page and tab', () => {
+	const [out] = runAddon({
+		stubs: ['stub_ui.lua'],
+		addons: [{ name: 'Polestar', files: ['Core/Core.xml', '../../tests/fixtures/locale/xxXX.lua', 'Theme/Theme.xml', 'Quests/Quests.xml', 'Gear/Gear.xml', 'Maps/Maps.xml', 'QoL/QoL.xml',
+			'Lookup/Lookup.xml', 'Dungeons/Dungeons.xml', 'UI/UI.xml', 'Rares/Rares.xml'] }],
+		script: `uistub.install()\nstub.login()\nlocal UI, O = Polestar.UI, Polestar.UI.Options
+		local out = {}
+		for _, k in ipairs({ "guidewindow", "nav", "automation", "appearance", "map", "recorder", "quests", "gear", "lookup", "qol", "guide", "guidepacks" }) do
+			UI.ShowOptions(k)
+			local tab
+			for name, v in pairs(O.page.views) do if v == O.view then tab = name end end
+			out[k] = PolestarOptions.Title:GetText() .. " > " .. (tab or "")
+		end
+		emit(out)`,
+	}).emitted;
+	assert.deepEqual(out, {
+		guidewindow: 'xx Guide > xx Window',
+		nav: 'xx Guide > xx Arrow & routes',
+		automation: 'xx Guide > xx Automation',
+		appearance: 'xx Appearance > Colour & type',
+		map: 'xx Map > Guide & quests',
+		recorder: 'xx Recorder > ',
+		quests: 'xx Questing > xx Quests',
+		gear: 'xx Questing > xx Rewards & gear',
+		lookup: 'xx Discovery > xx Lookup',
+		qol: 'xx Quality of Life > Travel',
+		guide: 'xx Guide > xx Window',
+		guidepacks: 'xx Guide packs > ',
+	});
+});
+
 test('registered controls read and write settings; disabled functions follow other settings', () => {
 	const [out] = run(`
 		UI.ShowOptions("quests")

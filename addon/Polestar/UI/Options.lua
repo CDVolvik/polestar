@@ -594,14 +594,18 @@ add({ page = REC, icon = "record", order = 90, subtitle = L["The data recorder f
 add({ page = ABOUT, icon = "info", order = 100, subtitle = L["Why Polestar exists, its commands and its credits."], custom = buildAbout }, true)
 
 -- Page keys from before the pages were regrouped (and older section names)
--- reach the page, and the tab, that holds those settings now.
+-- reach the page, and the tab, that holds those settings now. They name the
+-- page as shown, and the built-in pages' English keys are here too, so
+-- /polestar options quests works whatever language the client is in.
 local ALIASES = {
-	guidewindow = { "guide", L["Window"] }, general = { "guide", L["Window"] }, window = { "guide", L["Window"] },
-	navigation = { "guide", L["Arrow & routes"] }, nav = { "guide", L["Arrow & routes"] }, arrow = { "guide", L["Arrow & routes"] },
-	automation = { "guide", L["Automation"] }, behavior = { "guide", L["Automation"] }, behaviour = { "guide", L["Automation"] },
-	quests = { "questing", L["Quests"] }, gear = { "questing", L["Rewards & gear"] },
-	lookup = { "discovery", L["Lookup"] }, dungeons = { "discovery", L["Dungeons"] }, rares = { "discovery", L["Rares"] },
-	look = { "appearance" }, qol = { "qualityoflife" },
+	guidewindow = { GUIDE, L["Window"] }, general = { GUIDE, L["Window"] }, window = { GUIDE, L["Window"] },
+	navigation = { GUIDE, L["Arrow & routes"] }, nav = { GUIDE, L["Arrow & routes"] }, arrow = { GUIDE, L["Arrow & routes"] },
+	automation = { GUIDE, L["Automation"] }, behavior = { GUIDE, L["Automation"] }, behaviour = { GUIDE, L["Automation"] },
+	quests = { QUESTING, L["Quests"] }, gear = { QUESTING, L["Rewards & gear"] },
+	lookup = { DISCOVERY, L["Lookup"] }, dungeons = { DISCOVERY, L["Dungeons"] }, rares = { DISCOVERY, L["Rares"] },
+	look = { LOOK }, qol = { QOL },
+	guide = { GUIDE }, appearance = { LOOK }, map = { MAP }, questing = { QUESTING }, discovery = { DISCOVERY },
+	qualityoflife = { QOL }, guidepacks = { L["Guide packs"] }, recorder = { REC }, about = { ABOUT },
 }
 
 ---------------------------------------------------------------------------
@@ -881,7 +885,7 @@ local function pageByKey(key)
 	local alias = key and ALIASES[key]
 	if not alias then return nil end
 	for _, p in ipairs(pageList) do
-		if p.key == alias[1] then return p, alias[2] end
+		if p.name == alias[1] then return p, alias[2] end
 	end
 end
 
