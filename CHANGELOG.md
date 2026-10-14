@@ -53,6 +53,8 @@
 - Without the Codex, Lookup and Dungeons say which case it is: not installed
   (get the Polestar zip from CurseForge or the GitHub Releases page, not
   GitHub's "Source code" download) or turned off in the AddOns list.
+- On the Deeprun Tram the arrow stays up with "Take the tram to …" for the
+  ride, where it used to vanish until the far platform.
 
 ### For guide authors
 

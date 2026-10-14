@@ -309,6 +309,8 @@ function Nav.Sample()
 	if not target then return "none" end
 	local C = ns.Compat
 	if not C then return "unknown" end
+	local T = Nav.travel
+	if T and T.OnTram and T.OnTram() and not (C.GetPlayerWorldPosition and C.GetPlayerWorldPosition()) then return "instruction" end
 	if C.IsInInstance and C.IsInInstance() then return "instance" end
 	if C.IsOnTaxi and C.IsOnTaxi() then return "taxi" end
 	if not tC then
@@ -319,7 +321,6 @@ function Nav.Sample()
 	if C.GetPlayerWorldPosition then pc, px, py = C.GetPlayerWorldPosition() end
 	if not pc then return "unknown" end
 
-	local T = Nav.travel
 	if T and T.Active and T.Active() then
 		local mode, ac, ax, ay = T.Aim(pc, px, py)
 		if mode == "instruction" then

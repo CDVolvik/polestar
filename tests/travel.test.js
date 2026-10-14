@@ -356,6 +356,41 @@ test('the Hearthstone coming off cooldown mid-ride does not re-plan from the boa
 	assert.equal(out.leg, 1);
 });
 
+test('on the tram, where the client gives no position, the arrow keeps the ride\'s instruction until the far platform', () => {
+	const [out] = run(`
+		-- A tram like the Deeprun Tram: its platforms are on the city maps, the
+		-- ride itself is an instance with no map position.
+		N.RegisterTravelData({ transports = {
+			{ id = "tram-test", kind = "tram", faction = 3, ab = 60, ba = 60, waitA = 30, waitB = 30,
+				a = { "Testshire Tram", 0, 900, 0, 9000, 50, 5 }, b = { "Farland Tram", 1, -400, 0, 9001, 50, 90 } },
+		} })
+		nav.place(895, 0)                                 -- on the Testshire platform
+		N.SetTarget(9001, 50, 95, "Q")                    -- Farland, past its tram
+		stub.advance(0.2)
+		local before = { route = route(), state = (N.Sample()), mode = A.GetMode() }
+		nav.instance, nav.player = true, nil              -- on the ride
+		stub.advance(0.2)
+		local riding = { route = route(), state = (N.Sample()), mode = A.GetMode() }
+		nav.instance = false
+		nav.place(-390, 0, 1)                             -- off at Farland
+		stub.advance(0.2)
+		emit({ before = before, riding = riding, after = route() })`);
+	assert.deepEqual(out.before, { route: ['tram|Take the tram to Farland Tram', 'walk|Q'], state: 'instruction', mode: 'instruction' });
+	assert.deepEqual(out.riding, { route: out.before.route, state: 'instruction', mode: 'instruction' }, 'shown, not hidden, for the ride');
+	assert.deepEqual(out.after, ['walk|Q']);
+});
+
+test('without a position and off any tram, the arrow still hides', () => {
+	const [out] = run(`
+		nav.place(0, 600)
+		target(0, -780, "Kobolds")
+		stub.advance(0.2)
+		nav.instance, nav.player = true, nil
+		stub.advance(0.2)
+		emit({ state = (N.Sample()), mode = A.GetMode() or false })`);
+	assert.deepEqual(out, { state: 'instance', mode: false });
+});
+
 test('walk legs are priced unmounted, so a fast mount never swaps a flight for a straight swim', () => {
 	const [out] = run(
 		`

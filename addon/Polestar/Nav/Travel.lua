@@ -1126,6 +1126,13 @@ local function riding()
 	return boarded and leg ~= nil and (leg.kind == "boat" or leg.kind == "zeppelin" or leg.kind == "tram")
 end
 
+-- Boarded the tram: the Deeprun Tram's ride is an instance with no map
+-- position, so Nav.Sample keeps this leg's instruction until the far platform.
+function Travel.OnTram()
+	local leg = legs and legs[ci]
+	return boarded and leg ~= nil and leg.kind == "tram"
+end
+
 function Travel:OnSettings()
 	local on = ns.Get("nav.travel") and true or false
 	if on ~= self.enabled then
