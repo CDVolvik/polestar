@@ -390,11 +390,14 @@ function ns.RegisterCommand(name, fn, help)
 	commands[name] = { fn = fn, help = help }
 end
 
+-- Help goes through L again as it prints: the commands below register
+-- before the client's translation (Locales/) loads, and a line that is
+-- already translated comes back as it is.
 local function showHelp()
 	ns.Print(L["Commands"])
 	for i = 1, #commandOrder do
 		local name = commandOrder[i]
-		DEFAULT_CHAT_FRAME:AddMessage(("  /polestar %s  |cff8a8f98%s|r"):format(name, commands[name].help or ""))
+		DEFAULT_CHAT_FRAME:AddMessage(("  /polestar %s  |cff8a8f98%s|r"):format(name, L[commands[name].help or ""]))
 	end
 end
 

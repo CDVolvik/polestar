@@ -135,6 +135,18 @@ test('slash command: bare toggles the frame, names dispatch with the rest of the
 	assert.deepEqual(out, { got: ['toggle', 'goto:12 extra'], mentionsUnknown: true, listsGoto: true });
 });
 
+test('help lists the commands in the client language, though Init.lua registers its own before the translation loads', () => {
+	const [out] = runAddon({
+		addons: [{ name: 'Polestar', files: ['Core/Init.lua', '../../tests/fixtures/locale/xxXX.lua'] }],
+		script: `
+			local before = #stub.messages
+			SlashCmdList.POLESTAR("help")
+			local printed = table.concat(stub.messages, "\\n", before + 1)
+			emit({ translated = printed:find("xx Show the guide window", 1, true) ~= nil })`,
+	}).emitted;
+	assert.deepEqual(out, { translated: true });
+});
+
 test('registering an event the client does not know returns false instead of erroring', () => {
 	const [out] = runAddon({
 		addons: [CORE],
