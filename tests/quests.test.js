@@ -30,11 +30,11 @@ const lua = (s) => JSON.stringify(s);
 const MARKERS_ON = 'PolestarDB = { schema = 1, settings = { qol = { mapObjectives = true, minimapObjectives = true, objectiveAreas = true, turnInMarkers = true, availableQuests = true } } }';
 
 // Loads the full addon with the fake Pins installed, logs in, runs `script`.
-function run(script, { setup = '', saved = { Polestar: MARKERS_ON } } = {}) {
+function run(script, { setup = '', saved = { Polestar: MARKERS_ON }, db = dbFiles } = {}) {
 	return runAddon({
 		stubs: ['stub_world.lua', 'stub_quests.lua'],
 		before: `
-stub.quests.dbFiles = { ${dbFiles.map(lua).join(', ')} }
+stub.quests.dbFiles = { ${db.map(lua).join(', ')} }
 local w = stub.world
 w.addMap(1429, { name = "Elwynn Forest", c = 0, left = 1500, right = -1500, top = 500, bottom = -1500 })
 w.moveTo(1429, 48, 40)
@@ -348,6 +348,31 @@ emit(sq.hoverObject(nil, "Bundle of Wood"))
 `);
 	assert.deepEqual(byId, ['?', 'Gathering Wood: | Not done']);
 	assert.deepEqual(byName, ['?', 'Gathering Wood: | Not done']);
+});
+
+test('an item from several objects that share a name gives one line on their tooltip', () => {
+	// Two Candle Crates (77, 78) both hold Large Candles, as three objects
+	// named Sapphire of Aku'Mai hold the sapphires. A tooltip that has only
+	// the name used to list the objective once per object.
+	const dir = tmpdir('polestar-questdb-src-');
+	for (const f of fs.readdirSync(FIX)) fs.copyFileSync(path.join(FIX, f), path.join(dir, f));
+	const objects = JSON.parse(fs.readFileSync(path.join(dir, 'objects.json'), 'utf8'));
+	objects['78'] = { id: 78, name: 'Candle Crate', spawns: { 1429: { f: 'e', pts: [[62, 22]] } } };
+	fs.writeFileSync(path.join(dir, 'objects.json'), JSON.stringify(objects));
+	const items = JSON.parse(fs.readFileSync(path.join(dir, 'items.json'), 'utf8'));
+	items['772'].drops.object['78'] = 100;
+	fs.writeFileSync(path.join(dir, 'items.json'), JSON.stringify(items));
+	const out = tmpdir('polestar-questdb-');
+	writeQuestDB(buildQuestDB({ dataDir: dir }), out);
+	const db = ['MapFrames.lua', 'Quests.lua', 'Npcs.lua', 'Objects.lua', 'Items.lua'].map((f) => path.join(out, f));
+	const [byName, byId] = run(`
+w.accept(60, { { text = "Large Candle: 0/8", type = "item", required = 8 } })
+stub.advance(0.3)
+emit(sq.hoverObject(nil, "Candle Crate"))
+emit(sq.hoverObject(78, "Candle Crate"))
+`, { db });
+	assert.deepEqual(byName, ['?', 'Kobold Candles: | Large Candle 0/8']);
+	assert.deepEqual(byId, byName);
 });
 
 test('an unchanged quest log costs no rebuild and no Pins call', () => {

@@ -309,8 +309,11 @@ local function rebuildIndex()
 					for k = 1, (r[j] or 0) do
 						local obj = r[j + 2 * k - 1]
 						push(index.object, obj, o)
+						-- Several objects can share a name (three Sapphires of
+						-- Aku'Mai): the objective goes under that name once.
 						local orec = Q.ObjectRecord(obj)
-						if orec then push(index.objectName, orec[1], o) end
+						local named = orec and index.objectName[orec[1]]
+						if orec and not (named and named[#named] == o) then push(index.objectName, orec[1], o) end
 					end
 				end
 			end

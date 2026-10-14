@@ -53,6 +53,8 @@
 - Without the Codex, Lookup and Dungeons say which case it is: not installed
   (get the Polestar zip from CurseForge or the GitHub Releases page, not
   GitHub's "Source code" download) or turned off in the AddOns list.
+- A Sapphire of Aku'Mai's tooltip lists the quest once, not three times:
+  an item that several objects of one name hold shows its objective once.
 
 ### For guide authors
 
