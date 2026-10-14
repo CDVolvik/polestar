@@ -380,6 +380,21 @@ test('on the tram, where the client gives no position, the arrow keeps the ride\
 	assert.deepEqual(out.after, ['walk|Q']);
 });
 
+test('a tram boarded long ago does not keep its instruction: past the ride\'s deadline, no position hides the arrow', () => {
+	const [out] = run(`
+		N.RegisterTravelData({ transports = {
+			{ id = "tram-test", kind = "tram", faction = 3, ab = 60, ba = 60, waitA = 30, waitB = 30,
+				a = { "Testshire Tram", 0, 900, 0, 9000, 50, 5 }, b = { "Farland Tram", 1, -400, 0, 9001, 50, 90 } },
+		} })
+		nav.place(895, 0)
+		N.SetTarget(9001, 50, 95, "Q")
+		stub.advance(0.2)                                 -- boarded at the platform
+		nav.instance, nav.player = true, nil              -- somewhere without a position, much later
+		stub.advance(600)
+		emit({ state = (N.Sample()), mode = A.GetMode() or false })`);
+	assert.deepEqual(out, { state: 'instance', mode: false });
+});
+
 test('without a position and off any tram, the arrow still hides', () => {
 	const [out] = run(`
 		nav.place(0, 600)

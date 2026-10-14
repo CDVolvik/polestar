@@ -1126,11 +1126,12 @@ local function riding()
 	return boarded and leg ~= nil and (leg.kind == "boat" or leg.kind == "zeppelin" or leg.kind == "tram")
 end
 
--- Boarded the tram: the Deeprun Tram's ride is an instance with no map
--- position, so Nav.Sample keeps this leg's instruction until the far platform.
+-- Boarded the tram, within the ride's deadline: the Deeprun Tram's ride is an
+-- instance with no map position, so Nav.Sample keeps this leg's instruction
+-- until the far platform. Past the deadline it no longer counts as riding.
 function Travel.OnTram()
 	local leg = legs and legs[ci]
-	return boarded and leg ~= nil and leg.kind == "tram"
+	return boarded and leg ~= nil and leg.kind == "tram" and GetTime() <= boardDeadline
 end
 
 function Travel:OnSettings()
