@@ -53,6 +53,9 @@
 - Without the Codex, Lookup and Dungeons say which case it is: not installed
   (get the Polestar zip from CurseForge or the GitHub Releases page, not
   GitHub's "Source code" download) or turned off in the AddOns list.
+- On a translated client, `/polestar help` lists the commands in the
+  client's language, and `/polestar options quests` (and the other page
+  keys) opens its page, where they all opened the first one.
 
 ### For guide authors
 
