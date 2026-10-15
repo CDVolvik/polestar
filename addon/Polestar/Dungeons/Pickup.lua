@@ -10,7 +10,8 @@
 --       take: quests that apply (faction, race, class), not done, not in the log,
 --       open now or by the dungeon's lowest level, picked up outside from a
 --       giver (not from an item, not inside), not a follow-up of another quest
---       of this page; pre: the open prerequisites, in the order they are done
+--       of this page (nor titled like one that an item starts or that starts
+--       inside); pre: the open prerequisites, in the order they are done
 --       (all of `pre`, one of `preAny`: Lookup.QuestChain).
 --       carried: the page's quests already in the log. giver: a point
 --       { kind, id, name, map, x, y, f }.
@@ -133,6 +134,16 @@ function Dungeons.PickupPlan(key)
 	local onPage = {}
 	for _, q in ipairs(quests) do onPage[q.id] = true end
 	local plan = { dungeon = d, take = {}, carried = {}, done = 0, later = 0 }
+	-- Forever's multi-part quests share one title, and the quest data names no
+	-- prerequisites for most of them: a quest titled like one of this page's
+	-- that an item starts or that starts inside is a later part of that chain,
+	-- taken after the run (Unending Torment: the Abominable Head drops from the
+	-- Baron inside the Ruins of Lordaeron, the next parts are in the Undercity).
+	local insideTitles = {}
+	for _, q in ipairs(quests) do
+		local s = q.start
+		if q.title and (q.startItem or q.inside or (s and (s.kind == "item" or s.inside))) then insideTitles[q.title] = true end
+	end
 	for _, pq in ipairs(quests) do
 		local rec = C.Quest(pq.id)
 		if not notYours(pq, rec, p) then
@@ -144,7 +155,7 @@ function Dungeons.PickupPlan(key)
 				plan.later = plan.later + 1
 			else
 				local giver = Dungeons.Giver(pq, from, rec)
-				local pre, ok = {}, giver ~= nil
+				local pre, ok = {}, giver ~= nil and not (pq.title and insideTitles[pq.title])
 				if ok and rec then
 					local chain, truncated = Lk.QuestChain(pq.id, p)
 					for i = 1, #chain - 1 do

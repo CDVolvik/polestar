@@ -199,6 +199,11 @@
   bought on the stop right before Felstone Field's cauldron and two on the
   one before the Writhing Haunt's and Dalson's Tears', and the steps say
   they last 30 minutes.
+- A dungeon's pick-up guide leaves the later parts of a quest chain that
+  starts inside for after the run: the Ruins of Lordaeron's no longer sends
+  the Horde to the Undercity for Unending Torment, whose first part starts
+  from the Abominable Head the Baron drops inside (issue #50, thanks
+  Arachnit).
 - Dungeons: an Attunement tab (Keys where each is a key) on the pages of
   Molten Core (Attunement to the Core, and Aqual Quintessence for the runes),
   Onyxia's Lair (the Drakefire Amulet, each side's chain), Blackwing Lair

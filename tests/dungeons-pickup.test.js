@@ -158,6 +158,36 @@ emit({ take = g, target = p and p.name or false })`;
 	}
 });
 
+// Issue #50 (Ruins of Lordaeron): Unending Torment is five quests of one
+// title, the first started by the Abominable Head the Baron drops inside; the
+// quest data names no prerequisite for the next ones, given in the Undercity.
+test('a quest titled like one of the page\'s that an item starts is a later part of that chain: taken after the run', () => {
+	const c = structuredClone(codex);
+	const i = structuredClone(inputs);
+	c.npcs[9001] = { id: 9001, name: 'Master Apothecary Faranell', level: 55, levelMax: null, faction: 'H', rare: false, elite: false, boss: false, instance: null, roles: [], spawns: [{ map: 1458, x: 48.8, y: 69.3, f: 'e' }] };
+	const quest = (id, title, start) => ({
+		id, title, level: 21, minLevel: 16, faction: 'H', races: null, classes: null,
+		start: { npc: [], object: [], item: [], ...start }, end: { npc: [9001], object: [] },
+		objectives: [], pre: [], zone: 1458, rewards: [], choices: [], preAny: [],
+	});
+	c.quests[90300] = quest(90300, 'Unending Torment', { item: [9500] });
+	c.quests[90301] = quest(90301, 'Unending Torment', { npc: [9001] });
+	c.quests[90302] = quest(90302, 'An Errand for Faranell', { npc: [9001] });
+	for (const id of [90300, 90301, 90302]) i.forever.quests[id] = { area: 209 };
+	const own = writeCodexPack(c, { extraFiles: emitJournal(buildJournal(i, c)) });
+	try {
+		const [out] = run(`
+local onPage, take = {}, {}
+for _, q in ipairs(D.Quests("${KEY}")) do if q.id >= 90300 then onPage[#onPage + 1] = q.id end end
+for _, t in ipairs(D.PickupPlan("${KEY}").take) do if t.quest.id >= 90300 then take[#take + 1] = t.quest.id end end
+emit({ onPage = onPage, take = take })`, { cls: 'MAGE', codexPack: own });
+		assert.deepEqual(out.onPage, [90300, 90301, 90302], 'all three are on the page');
+		assert.deepEqual(out.take, [90302], 'not the item-started first part, nor the part titled like it; the unrelated errand still');
+	} finally {
+		own.cleanup();
+	}
+});
+
 test('PickUp opens the guide in a new tab and it plays to the end; the giver link points at the first prerequisite still to do', () => {
 	const [opened, links, out] = run(`
 Polestar.Set("behavior.autoNextGuide", false)
