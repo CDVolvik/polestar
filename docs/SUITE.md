@@ -36,16 +36,15 @@ opening or typing never stalls a frame.
 Inputs are read from the installed copies under
 `<client>/_classic_beta_/Interface/AddOns/`, from the client's own files
 (CASC/DB2), and from public sites (the Forever databases
-wowforevertalents.com, foreverchanges.pro; Wowhead's database pages only as
-cached by an earlier version of the tools, since Polestar no longer fetches
-from Wowhead). Polestar itself is GPL-3.0; each input keeps its own licence,
-and the rules follow it:
+wowforevertalents.com, foreverchanges.pro; Wowhead's database pages as
+cached in `data/sources/wowhead/`). Polestar itself is GPL-3.0; each input
+keeps its own licence, and the rules follow it:
 
 | Input | What may enter the repository and the releases |
 |---|---|
 | MIT (pfQuest, ForeverLevelingBiS, wowsims) | Derived data, with attribution (THIRD_PARTY.md) |
 | QuestieDB (no licence file; its maintainers ask that it be treated as all rights reserved) | Facts only, credited, in the shipped packs (the compiled guides, `Polestar_QuestDB`, `Polestar_Codex`); `data build --no-questie` builds without them if the maintainers ask |
-| Web sources (Wowhead's Forever database, warcraft.wiki.gg, the Forever databases) | Facts only, each with its source: corrections, `entrances.json`, `repgates.json`, `attunements.json`, `journal-quests.json`, the Wowhead caches an earlier version of the tools fetched (incl. its dungeon and raid quest lists; no longer refreshed) |
+| Web sources (Wowhead's Forever database, warcraft.wiki.gg, the Forever databases) | Facts only, each with its source: corrections, `entrances.json`, `repgates.json`, `attunements.json`, `journal-quests.json`, the Wowhead caches in `data/sources/wowhead/` (incl. its dungeon and raid quest lists) |
 | GPL-2.0, no licence or All Rights Reserved addons (AtlasLoot, DungeonJournal, RareScanner, Attune) | Nothing: the importer code only, read by `codex build --local-extras` for the parity comparison (Attune: by `codex attune`, the local comparison of dungeon quests and attunements); its output stays local and `pack` refuses it |
 
 Always facts (ids, names, levels, coordinates, drop rates, sources, rewards),
