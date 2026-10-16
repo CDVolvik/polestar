@@ -357,6 +357,7 @@ function W.Button(parent, text, onClick, opts)
 	if opts.ghost then
 		hoverTexture(b)
 	else
+		b.psTextButton = true
 		Theme.Skin(b, "button")
 	end
 	W.Painter(b, function(self)
@@ -364,9 +365,10 @@ function W.Button(parent, text, onClick, opts)
 		if not self.psHeight then self:SetHeight(Theme.Metric("buttonH", 28)) end
 		local bliz = Theme.SkinKey() == "blizzard"
 		if bliz and self.psPrimary and not self.psGhost then
-			-- The game's red button, edged in gold (#FFD96A) for the main action.
+			-- The game's red button, as the others: an edge of its own would read
+			-- as the gamepad's selection.
 			W.Color(self.Label, "buttonText")
-			Theme.Border(self, 1, 0.851, 0.416, 1)
+			if self.psBorder then for i = 1, 4 do self.psBorder[i]:Hide() end end
 			if icon then icon:SetVertexColor(Theme.Color("buttonText")) end
 			Theme.SetShadow(self.Label, true)
 			return
@@ -1284,7 +1286,7 @@ function W.ActionTile(parent, icon, title, desc, onClick, opts)
 	opts = opts or {}
 	local b = CreateFrame("Button", nil, parent)
 	b:SetHeight(60)
-	Theme.Skin(b, "button")
+	Theme.Skin(b, "tile")
 	b.Icon = b:CreateTexture(nil, "ARTWORK")
 	b.Icon:SetTexture(Theme.Media(icon))
 	b.Icon:SetSize(18, 18)

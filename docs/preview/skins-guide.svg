@@ -370,10 +370,10 @@
 </g>
 <g transform="translate(808 7)">
 <rect x="28" y="28" width="340" height="282" fill="url(#p2g14)" opacity="1"/>
-<rect x="28" y="28" width="340" height="1" fill="rgb(154,122,52)" fill-opacity="1"/>
-<rect x="28" y="309" width="340" height="1" fill="rgb(154,122,52)" fill-opacity="1"/>
-<rect x="28" y="29" width="1" height="280" fill="rgb(154,122,52)" fill-opacity="1"/>
-<rect x="367" y="29" width="1" height="280" fill="rgb(154,122,52)" fill-opacity="1"/>
+<rect x="28" y="28" width="340" height="1" fill="rgb(92,69,24)" fill-opacity="1"/>
+<rect x="28" y="309" width="340" height="1" fill="rgb(92,69,24)" fill-opacity="1"/>
+<rect x="28" y="29" width="1" height="280" fill="rgb(92,69,24)" fill-opacity="1"/>
+<rect x="367" y="29" width="1" height="280" fill="rgb(92,69,24)" fill-opacity="1"/>
 <rect x="28" y="55" width="340" height="1" fill="rgb(154,122,52)" fill-opacity="0.45"/>
 <rect x="32" y="56" width="332" height="31" fill="url(#p2g37)" opacity="1"/>
 <rect x="28" y="87" width="340" height="1" fill="rgb(107,84,32)" fill-opacity="1"/>

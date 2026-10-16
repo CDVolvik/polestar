@@ -187,7 +187,7 @@ local SKIN_PALETTES = {
 		inputBg = hex("000000"), control = hex("000000"),
 		accentLine = hex("9A7A34", 0.6), padSelect = hex("FFD100", 0.14), chipAccent = hex("FFD100", 0.16),
 		separator = hex("9A7A34", 0.45), rowLine = hex("FFFFFF", 0.06),
-		border = hex("6B6B6B"), divider = hex("9A7A34", 0.45), hover = hex("FFD100", 0.12),
+		border = hex("6B6B6B"), windowEdge = hex("5C4518"), divider = hex("9A7A34", 0.45), hover = hex("FFD100", 0.12),
 		selected = hex("6E96FF", 0.28), toggle = hex("000000"), track = hex("000000"),
 		progress = hex("000000", 0.75), chip = hex("000000", 0.6), box = hex("8A7A5A"),
 		thumb = hex("FFE27A"), swatch = hex("FFFFFF", 0.25), watermark = hex("FFFFFF", 0.028), mover = hex("FFD100", 0.12),
@@ -487,7 +487,7 @@ local function resolveSkin(skin)
 	elseif get("ui.borderAccent") then
 		out.windowBorder = { r, g, b, 0.8 }
 	else
-		out.windowBorder = copy(out.border)
+		out.windowBorder = copy(out.windowEdge or out.border)
 	end
 	local far, near = get("nav.arrowColor"), get("nav.arrowNearColor")
 	out.arrow = isColor(far) and { far[1], far[2], far[3], 1 } or copy(out.accent)
@@ -862,6 +862,13 @@ local function paintFont(fs, role)
 		fs:SetFont(STANDARD_TEXT_FONT or "Fonts\\FRIZQT__.TTF", size, flags)
 	end
 	paintShadow(fs)
+	-- Forever leaves a string blank after a new font until its text changes
+	-- (the options' values and tiles after a skin change): set it again.
+	local text = fs.GetText and fs:GetText()
+	if text and text ~= "" then
+		fs:SetText(text .. " ")
+		fs:SetText(text)
+	end
 end
 
 function Theme.Font(fs, role)
@@ -1080,6 +1087,12 @@ local HOUSE_PAINT = {
 		Theme.Border(f, Theme.Color("border"))
 		hoverWash(f)
 	end,
+	-- An action tile (W.ActionTile): a button's ground in the house style.
+	tile = function(f)
+		fill(f):SetVertexColor(Theme.Color("panelAlt"))
+		Theme.Border(f, Theme.Color("border"))
+		hoverWash(f)
+	end,
 	editbox = function(f)
 		local r, g, b = Theme.Color("shade")
 		fill(f):SetVertexColor(r, g, b, 0.35)
@@ -1189,30 +1202,6 @@ local function showVeil(frame, token, alpha)
 	for i = 1, #v.parts do v.parts[i]:SetVertexColor(r, g, b, a) end
 	v:Show()
 	return v
-end
-
--- The game's own nine-slice frames (NineSliceUtil, Blizzard_SharedXML), on
--- a child frame of ours so another skin can hide them whole. `layout` names
--- a NineSliceLayouts entry; nil when the client has none (the tests).
-local function nineFor(frame, layout)
-	local d = frame.psSkin
-	d.nine = d.nine or {}
-	local n = d.nine[layout]
-	if n == nil then
-		n = false
-		if NineSliceUtil and NineSliceUtil.ApplyLayoutByName then
-			n = CreateFrame("Frame", nil, frame)
-			n:SetAllPoints(frame)
-			n:SetFrameLevel(frame:GetFrameLevel() + 1)
-			if not pcall(NineSliceUtil.ApplyLayoutByName, n, layout) then n:Hide(); n = false end
-		end
-		d.nine[layout] = n
-	end
-	for name, other in pairs(d.nine) do
-		if other and name ~= layout then other:Hide() end
-	end
-	if n then n:Show() end
-	return n
 end
 
 -- A vertical two-colour fill (top, bottom), the gradients of Blizzard's
@@ -1329,6 +1318,11 @@ local SKIN_PAINT = {
 			bottomLine(f, "accentLine")
 			hoverWash(f)
 		end,
+		tile = function(f)
+			fill(f):SetVertexColor(1, 1, 1, 0.05)
+			hideBorder(f)
+			hoverWash(f)
+		end,
 		editbox = function(f)
 			fill(f):SetVertexColor(Theme.Color("inputBg"))
 			if f.psFocused then
@@ -1347,31 +1341,49 @@ local SKIN_PAINT = {
 		end,
 	},
 	blizzard = {
+		-- Flat windows (Yendi, after playing it): the handoff's brown gradient
+		-- without the game's metal frame, edged by the window border setting
+		-- in a brown hairline (#5C4518) unless the player picked their own.
 		window = function(f)
 			if f.psBare then return bare(f) end
 			local a = veilAlpha(f, "bg")
 			local top, bottom = { Theme.Color("bg") }, { Theme.Color("bgBottom") }
 			top[4], bottom[4] = a, a
 			gradientFill(f, top, bottom)
-			if not nineFor(f, "ButtonFrameTemplateNoPortrait") then
-				-- No client frame (the tests): the handoff's gold edge, 1 unit.
-				Theme.Border(f, Theme.Color("frameEdge"))
+			local shown, size = Theme.WindowBorder()
+			if shown then
+				local br, bg, bb, ba = Theme.Color("windowBorder")
+				Theme.Border(f, br, bg, bb, ba, nil, size)
+			else
+				hideBorder(f)
 			end
 		end,
 		panel = function(f)
 			if f.psBare then return bare(f) end
-			fill(f):SetVertexColor(Theme.Color("menuBg"))
-			if not nineFor(f, "TooltipDefaultLayout") then Theme.Border(f, 0.627, 0.627, 0.627, 1) end
+			local top, bottom = { Theme.Color("bg") }, { Theme.Color("bgBottom") }
+			top[4], bottom[4] = 0.97, 0.97
+			gradientFill(f, top, bottom)
+			Theme.Border(f, Theme.Color("frameEdgeDark"))
+		end,
+		tile = function(f)
+			fill(f):SetVertexColor(0, 0, 0, 0.4)
+			Theme.Border(f, Theme.Color("titleLine"))
+			hoverWash(f)
 		end,
 		sidebar = function(f)
 			fill(f):SetVertexColor(Theme.Color("sidebar"))
 		end,
 		inset = function(f)
 			fill(f):SetVertexColor(0, 0, 0, 0.45)
-			nineFor(f, "InsetFrameTemplate")
 		end,
+		-- The game's red button for text buttons (W.Button) alone; anything
+		-- else painted as a button (cards, rows, tiles) is a dark well edged
+		-- in brown.
 		button = function(f)
-			redButton(f)
+			if f.psTextButton then return redButton(f) end
+			fill(f):SetVertexColor(0, 0, 0, 0.4)
+			Theme.Border(f, Theme.Color("titleLine"))
+			hoverWash(f)
 		end,
 		dropdown = function(f)
 			fill(f):SetVertexColor(Theme.Color("control"))

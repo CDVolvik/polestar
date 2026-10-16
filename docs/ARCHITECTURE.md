@@ -1161,9 +1161,9 @@ skin brings:
   `iconHover`, `buttonText`, `personName`, `tabRest`) exist in the house
   style too, as their house equivalents;
 - its paints (`Theme.SKIN_PAINT`, falling back to the house paint): Halo's
-  veil (Media/UI/veil-soft, nine slices laid 24 units out), Blizzard's
-  `NineSliceUtil` layouts (`ButtonFrameTemplateNoPortrait`,
-  `TooltipDefaultLayout`, `InsetFrameTemplate`) and `UI-Panel-Button-*`. A
+  veil (Media/UI/veil-soft, nine slices laid 24 units out); Blizzard's flat
+  brown gradient windows edged by the window border setting (a #5C4518
+  hairline by default; no game frame) and the game's `UI-Panel-Button-*`. A
   frame painted in another skin is cleared first, so a switch and back leaves it
   as it was;
 - its fonts (`ui.font` "skin", the default: the game's in the house style and

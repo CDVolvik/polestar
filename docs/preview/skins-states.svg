@@ -195,6 +195,7 @@
 <linearGradient id="p4g209" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="rgb(28,28,28)" stop-opacity="1"/><stop offset="1" stop-color="rgb(0,0,0)" stop-opacity="1"/></linearGradient>
 <linearGradient id="p4g230" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="rgb(28,28,28)" stop-opacity="1"/><stop offset="1" stop-color="rgb(0,0,0)" stop-opacity="1"/></linearGradient>
 <linearGradient id="p4g251" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="rgb(28,28,28)" stop-opacity="1"/><stop offset="1" stop-color="rgb(0,0,0)" stop-opacity="1"/></linearGradient>
+<linearGradient id="p4g297" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="rgb(9,7,4)" stop-opacity="0.97"/><stop offset="1" stop-color="rgb(30,23,13)" stop-opacity="0.97"/></linearGradient>
 </defs>
 <defs>
 <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9fb7c9"/><stop offset="0.3" stop-color="#c9b48a"/><stop offset="0.55" stop-color="#8d7a46"/><stop offset="1" stop-color="#4f4a2a"/></linearGradient>
@@ -506,10 +507,10 @@
 </g>
 <g transform="translate(1212 66)">
 <rect x="28" y="28" width="340" height="217" fill="url(#p3g14)" opacity="1"/>
-<rect x="28" y="28" width="340" height="1" fill="rgb(154,122,52)" fill-opacity="1"/>
-<rect x="28" y="244" width="340" height="1" fill="rgb(154,122,52)" fill-opacity="1"/>
-<rect x="28" y="29" width="1" height="215" fill="rgb(154,122,52)" fill-opacity="1"/>
-<rect x="367" y="29" width="1" height="215" fill="rgb(154,122,52)" fill-opacity="1"/>
+<rect x="28" y="28" width="340" height="1" fill="rgb(92,69,24)" fill-opacity="1"/>
+<rect x="28" y="244" width="340" height="1" fill="rgb(92,69,24)" fill-opacity="1"/>
+<rect x="28" y="29" width="1" height="215" fill="rgb(92,69,24)" fill-opacity="1"/>
+<rect x="367" y="29" width="1" height="215" fill="rgb(92,69,24)" fill-opacity="1"/>
 <rect x="28" y="55" width="340" height="1" fill="rgb(154,122,52)" fill-opacity="0.45"/>
 <rect x="32" y="56" width="332" height="31" fill="url(#p3g37)" opacity="1"/>
 <rect x="28" y="87" width="340" height="1" fill="rgb(107,84,32)" fill-opacity="1"/>
@@ -606,10 +607,10 @@
 </g>
 <g transform="translate(1616 21)">
 <rect x="28" y="28" width="340" height="282" fill="url(#p4g14)" opacity="1"/>
-<rect x="28" y="28" width="340" height="1" fill="rgb(154,122,52)" fill-opacity="1"/>
-<rect x="28" y="309" width="340" height="1" fill="rgb(154,122,52)" fill-opacity="1"/>
-<rect x="28" y="29" width="1" height="280" fill="rgb(154,122,52)" fill-opacity="1"/>
-<rect x="367" y="29" width="1" height="280" fill="rgb(154,122,52)" fill-opacity="1"/>
+<rect x="28" y="28" width="340" height="1" fill="rgb(92,69,24)" fill-opacity="1"/>
+<rect x="28" y="309" width="340" height="1" fill="rgb(92,69,24)" fill-opacity="1"/>
+<rect x="28" y="29" width="1" height="280" fill="rgb(92,69,24)" fill-opacity="1"/>
+<rect x="367" y="29" width="1" height="280" fill="rgb(92,69,24)" fill-opacity="1"/>
 <rect x="28" y="55" width="340" height="1" fill="rgb(154,122,52)" fill-opacity="0.45"/>
 <rect x="32" y="56" width="332" height="31" fill="url(#p4g37)" opacity="1"/>
 <rect x="28" y="87" width="340" height="1" fill="rgb(107,84,32)" fill-opacity="1"/>
@@ -723,13 +724,13 @@
 <rect x="342.5" y="188.5" width="1" height="13" fill="rgb(138,122,90)" fill-opacity="1"/>
 <rect x="356.5" y="188.5" width="1" height="13" fill="rgb(138,122,90)" fill-opacity="1"/>
 <image x="356" y="298" width="10" height="10" preserveAspectRatio="none" opacity="0.6" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAaUlEQVR4nO3UwQmAMAxA0SzQYTKkY2SR3pxMc1CQImiliYf+DzkV+nooESIiysrMVP7K8cVn86mS3QXPf0CDrz5FsgIHb3GL3AMv8Lg90IGPf0AnPvZPgE+J6wOuYfiZX1qPKV/Oie7aAXCaMIwThZAvAAAAAElFTkSuQmCC"/>
-<rect x="100" y="86" width="260" height="250" fill="rgb(0,0,0)" fill-opacity="0.92"/>
+<rect x="100" y="86" width="260" height="250" fill="url(#p4g297)" opacity="1"/>
 <rect x="108" y="184" width="244" height="1" fill="rgb(154,122,52)" fill-opacity="0.45"/>
 <rect x="108" y="259" width="244" height="1" fill="rgb(154,122,52)" fill-opacity="0.45"/>
-<rect x="100" y="86" width="260" height="1" fill="rgb(160,160,160)" fill-opacity="1"/>
-<rect x="100" y="335" width="260" height="1" fill="rgb(160,160,160)" fill-opacity="1"/>
-<rect x="100" y="87" width="1" height="248" fill="rgb(160,160,160)" fill-opacity="1"/>
-<rect x="359" y="87" width="1" height="248" fill="rgb(160,160,160)" fill-opacity="1"/>
+<rect x="100" y="86" width="260" height="1" fill="rgb(92,69,24)" fill-opacity="1"/>
+<rect x="100" y="335" width="260" height="1" fill="rgb(92,69,24)" fill-opacity="1"/>
+<rect x="100" y="87" width="1" height="248" fill="rgb(92,69,24)" fill-opacity="1"/>
+<rect x="359" y="87" width="1" height="248" fill="rgb(92,69,24)" fill-opacity="1"/>
 <image x="111" y="96" width="14" height="14" preserveAspectRatio="none" opacity="1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAA/klEQVR4nO2WsQ2DMBBF/zBIqbJCUrIRDXtQskTqlHR/DwbIAMQnO5KxTOQDgyl40peQwL5/d7YxLi40kKyNWqPOSZ5r7I0LNBpNC5J3LXJjJr3TMiVKuCMHLngs68GodxoYr8Z2Ey4bf2IJWEW+q9y7WSWwBdqe+xM2CWOaYMz6NcF56XskElRixBpot5qfSYVEXDv8sfotGpR/gBLOF6a+DbQHjLr8P4I2dNByBgPFW1B2EQosuQ0Flj6IBFr8CTVH8cfoiS1w/c8ouwn+CRILmteEwMQLiQTbzYTAhCvZ7iZSOLuJB45iwcQbRxIx8cLRSNklcwludMPFmfgChCImAPfXCfgAAAAASUVORK5CYII="/>
 <g transform="translate(134 108.32) scale(0.005859)" fill="rgb(0,0,0)" fill-opacity="1"><use href="#gInter-Mediumttf-73" x="0"/><use href="#gInter-Mediumttf-670" x="1502"/><use href="#gInter-Mediumttf-790" x="2734"/><use href="#gInter-Mediumttf-790" x="3971"/><use href="#gInter-Mediumttf-871" x="5208"/><use href="#gInter-Mediumttf-614" x="6311"/><use href="#gInter-Mediumttf-658" x="8060"/><use href="#gInter-Mediumttf-915" x="9329"/><use href="#gInter-Mediumttf-689" x="10561"/><use href="#gInter-Mediumttf-597" x="11077"/><use href="#gInter-Mediumttf-614" x="12343"/></g>
 <g transform="translate(133 107.32) scale(0.005859)" fill="rgb(255,255,255)" fill-opacity="1"><use href="#gInter-Mediumttf-73" x="0"/><use href="#gInter-Mediumttf-670" x="1502"/><use href="#gInter-Mediumttf-790" x="2734"/><use href="#gInter-Mediumttf-790" x="3971"/><use href="#gInter-Mediumttf-871" x="5208"/><use href="#gInter-Mediumttf-614" x="6311"/><use href="#gInter-Mediumttf-658" x="8060"/><use href="#gInter-Mediumttf-915" x="9329"/><use href="#gInter-Mediumttf-689" x="10561"/><use href="#gInter-Mediumttf-597" x="11077"/><use href="#gInter-Mediumttf-614" x="12343"/></g>
