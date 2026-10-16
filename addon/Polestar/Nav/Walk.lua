@@ -59,10 +59,15 @@
 --     current, choke }, ... } } or nil without a target; NAV_ROUTE_GEOMETRY on change.
 --     kind: walk | flight | boat | zeppelin | tram | portal | hearth | teleport | lift.
 --
--- Every search goes with opts { waterWalking, profile }: the player's faction
--- (Compat.GetPlayerFaction; none when neutral or unread), so the router prices
--- each step by its ground (roads cheaper, slopes and indoors dearer) and the
--- other faction's towns twenty times over. The router's cost chooses (the
+-- Every search goes with opts { waterWalking, profile, style }: the player's
+-- faction (Compat.GetPlayerFaction; none when neutral or unread) and the
+-- Route style option (nav.routeStyle: "fastest", "balanced" (the default) or
+-- "roads"; the router reads anything else as Balanced), so the router prices
+-- each step by its ground in that style (roads cheaper, slopes and indoors
+-- dearer) and the other faction's towns twenty times over. A change of style
+-- drops the arrow's path, the measures and the later walks' paths, and
+-- re-plans at once (Walk:OnSettings): every walk is searched and measured
+-- again in it. The router's cost chooses (the
 -- planner's walkCost); every distance and time shown comes from yards: the
 -- arrow's walk from its path's points (the drawn line, Find's job.yards), a
 -- later walk from Find's job.yards, a measured walk from FindMany's
@@ -80,7 +85,7 @@ local sqrt, huge, abs = math.sqrt, math.huge, math.abs
 local Walk = {}
 Nav.walk = Walk
 
-ns.RegisterDefaults("nav", { navRouting = true })
+ns.RegisterDefaults("nav", { navRouting = true, routeStyle = "balanced" })
 
 local PACK = "Polestar_Nav"
 local STRAY = 25            -- yards off the path: ask again
@@ -96,6 +101,7 @@ local Z_OFF = 30            -- yards: a path ending this far above or below the 
 ---------------------------------------------------------------------------
 
 local loadTried = false
+local styleSeen             -- nav.routeStyle the searches were made in (nil until the first settings pass)
 
 local function inCombat()
 	local C = ns.Compat
@@ -122,14 +128,15 @@ local function engine()
 	return Nav.Path
 end
 
--- The router's options (Routing/Path.lua): water walking (a ghost) and the
--- player's faction (Compat.GetPlayerFaction: nil when neutral or unread), so
--- each step is priced for them: roads cheaper, slopes and indoors dearer, the
--- other faction's towns twenty times over.
+-- The router's options (Routing/Path.lua): water walking (a ghost), the
+-- player's faction (Compat.GetPlayerFaction: nil when neutral or unread) and
+-- the route style (nav.routeStyle, as saved: the router reads an unknown one
+-- as Balanced), so each step is priced for them: roads cheaper, slopes and
+-- indoors dearer, the other faction's towns twenty times over.
 local function opts(water)
 	local C = ns.Compat
 	local profile = C and C.GetPlayerFaction and C.GetPlayerFaction() or nil
-	return { waterWalking = water and true or false, profile = profile }
+	return { waterWalking = water and true or false, profile = profile, style = ns.Get("nav.routeStyle") }
 end
 
 ---------------------------------------------------------------------------
@@ -1094,6 +1101,20 @@ function Walk:OnSettings()
 		cancelMeasure()
 		cancelLeg()
 	end
+	-- Another route style: every walk priced in the old one is dropped (the
+	-- arrow's path, the measures, the later walks' paths) and the route is
+	-- planned again at once, so each is measured and searched again in the new.
+	local style = ns.Get("nav.routeStyle")
+	if styleSeen ~= nil and style ~= styleSeen then
+		Walk.Clear()
+		cancelMeasure()
+		for i = #measures, 1, -1 do measures[i] = nil end
+		cancelLeg()
+		for i = #legOrder, 1, -1 do legPaths[legOrder[i]], legOrder[i] = nil, nil end
+		local T = Nav.travel
+		if T and T.Replan then T.Replan() end
+	end
+	styleSeen = style
 end
 
 function Walk:Refresh()

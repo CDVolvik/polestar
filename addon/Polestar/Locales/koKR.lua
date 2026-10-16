@@ -282,6 +282,11 @@ L["Let other addons set waypoints"] = "다른 애드온의 경유지 설정 허�
 L["Without TomTom installed, waypoints other addons set through TomTom, and /way, point Polestar's arrow. Addons that expect TomTom's own settings may not work with it on."] = "TomTom이 없을 때 다른 애드온이 TomTom으로 설정한 경유지와 /way가 Polestar 화살표를 움직입니다. TomTom 자체 설정을 기대하는 애드온은 이 옵션을 켜면 작동하지 않을 수 있습니다."
 L["Follow TomTom's arrow"] = "TomTom 화살표 따르기"
 L["With TomTom installed, the arrow goes wherever TomTom's arrow points, routed like any goal."] = "TomTom이 있으면 화살표가 TomTom 화살표가 가리키는 곳으로, 다른 목표처럼 경로를 따라 안내합니다."
+-- L["Route style"] = ""
+-- L["Fastest: the shortest walk, over hills and across fields. Balanced: roads that aren't much longer, and round hills. Roads: stays on roads even when they're longer; the safest way, not the quickest."] = ""
+-- L["Fastest"] = ""
+-- L["Balanced"] = ""
+-- L["Roads"] = ""
 
 -- Nav/Nearby.lua
 L["Profession trainer"] = "기술 전문가"

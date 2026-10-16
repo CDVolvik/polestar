@@ -548,7 +548,7 @@ test('the hand-off off: Polestar guides again and its journey is cancelled; on a
 // The guidance options that do nothing while it guides, by settings key.
 const GREYED = ['nav.arrow', 'nav.arrowEta', 'nav.arrivalSound', 'nav.travel', 'nav.navRouting', 'nav.routeLines',
 	'nav.teleports', 'nav.blizzardWaypoint', 'nav.tomtom', 'nav.useTomTomArrow', 'nav.arrowStyle', 'nav.arrowScale',
-	'nav.arrowAlpha', 'nav.trailDots', 'nav.mapPlan', 'nav.answerTomTom', 'nav.alerts', 'nav.alertBanner',
+	'nav.arrowAlpha', 'nav.trailDots', 'nav.mapPlan', 'nav.routeStyle', 'nav.answerTomTom', 'nav.alerts', 'nav.alertBanner',
 	'nav.alertSound', 'nav.alertFlash', 'nav.castPrompt', 'nav.journeySteps'];
 const OPTIONS = `
 Polestar.Set("nav.routeLines", false) -- trailDots' own condition out of the way

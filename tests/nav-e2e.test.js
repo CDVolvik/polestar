@@ -72,12 +72,13 @@ local w, N, C = stub.world, Polestar.Nav, Polestar.Compat
 local E = Polestar_NavEngine
 local floor, sqrt = math.floor, math.sqrt
 local function r1(v) return v and floor(v * 10 + 0.5) / 10 end
--- Every search the arrow asks for, with what it was asked and what came back.
+-- Every search the arrow asks for, with what it was asked (style: its opts.style) and what came back.
 local finds = {}
 if E then -- nil when Polestar_Nav was not loaded (routing off)
 	local realFind = E.Find
 	E.Find = function(map, from, to, callback, water)
-		local rec = { map = map, from = { from.x, from.y, from.z }, to = { to.x, to.y, to.z }, at = GetTime(), combat = InCombatLockdown() and true or false }
+		local rec = { map = map, from = { from.x, from.y, from.z }, to = { to.x, to.y, to.z }, at = GetTime(), combat = InCombatLockdown() and true or false,
+			style = type(water) == "table" and water.style or nil }
 		finds[#finds + 1] = rec
 		return realFind(map, from, to, function(points, cost, job)
 			rec.points, rec.cost, rec.done = points, cost, true
@@ -821,4 +822,82 @@ test('Ashenvale west of Astranaar: where a ridge makes the straight choice\'s me
 		if (ratio <= 1.25) assert.equal(c.after, c.before, `${c.at}: no ridge (${ratio.toFixed(2)} x), the same landing`);
 	}
 	assert.ok(ridges >= 1, 'a ridge makes one straight choice\'s walk dearer than straight x1.25, and the measured route lands elsewhere');
+});
+
+// Route styles (nav.routeStyle, Nav/Walk.lua): the corpus route
+// road-goldshire-sentinelhill (tools/lib/nav/eval/routes.json) walked by the
+// arrow in Balanced, then switched to Roads mid-walk. The road share is
+// nav eval's offRoad (8 yd of a road column of data/local/nav-layers/roads),
+// checked only where that layer is built, against the spec's acceptance for
+// this route (off road at most 0.2; on the shipped maps Roads is about 89%
+// on road, Balanced about 45%).
+test('route styles: Goldshire to Sentinel Hill keeps to the road with Roads and cuts across with Balanced; switching mid-walk searches again', { skip }, (t) => {
+	const out = run(t, `
+		-- The whole walk is the arrow's (the corpus route): the planner, which walks
+		-- the Elwynn-Westfall crossing by hand, is off.
+		Polestar.Set("nav.travel", false)
+		Polestar.Set("nav.routeStyle", "balanced")
+		w.moveTo(1429, 42, 65)
+		w.z = nil
+		N.SetTarget(1436, 56.5, 47.5, "Sentinel Hill")
+		local target = N.GetTarget()
+		local _, tx, ty = N.GetTargetWorld()
+		-- The arrow's own walk to the target, once a search after the first 'after' is in.
+		local function settle(after)
+			for _ = 1, 600 do
+				aim()
+				local f = finds[#finds]
+				if #finds > after and f.done and dist(f.to[1], f.to[2], tx, ty) < 1 then return f end
+				stub.advance(0.05)
+			end
+		end
+		local function line(f)
+			local pts = {}
+			for i, p in ipairs(f.points or {}) do pts[i] = { p.x, p.y, p.z or false } end
+			return pts
+		end
+		local function drawn()
+			local n, legs = 0, N.GetRouteGeometry().legs
+			for _, leg in ipairs(legs) do if leg.kind == "walk" then n = n + #leg.pts end end
+			return { points = n, legs = #legs }
+		end
+		local r = {}
+		local bal = settle(0)
+		assert(bal, "the Balanced walk is never in")
+		r.balanced = { style = bal.style or false, map = bal.map, pts = line(bal), drawn = drawn() }
+		local before = #finds
+		Polestar.Set("nav.routeStyle", "roads")
+		aim()
+		r.switched = { drawn = drawn(), sameTarget = N.GetTarget() == target }
+		local road = settle(before)
+		r.roads = road and { style = road.style or false, map = road.map, pts = line(road), from = dist(road.from[1], road.from[2], bal.from[1], bal.from[2]), drawn = drawn() } or false
+		r.sameTarget = N.GetTarget() == target
+		emit(r)`, { shipped: true });
+	const { metrics, loadLayers, lineLength } = require('../tools/lib/nav/eval/metrics');
+	assert.equal(out.balanced.style, 'balanced', 'the Balanced walk is searched in Balanced');
+	assert.ok(out.roads, 'the switch searched the walk again');
+	assert.equal(out.roads.style, 'roads', 'in Roads');
+	const pts = (rec) => rec.pts.map(([x, y, z]) => [x, y, z === false ? null : z]);
+	const balanced = pts(out.balanced);
+	const roads = pts(out.roads);
+	assert.ok(out.sameTarget && out.switched.sameTarget, 'without a new target');
+	assert.ok(out.roads.from < 1, 'from where the player stands');
+	assert.ok(out.balanced.drawn.points > 2 * out.balanced.drawn.legs, 'the Balanced walk is drawn along its path');
+	assert.equal(out.switched.drawn.points, 2 * out.switched.drawn.legs, 'the switch drops the Balanced line at once: straight until the Roads walk is in');
+	assert.notDeepEqual(roads, balanced, 'the Roads walk differs from the Balanced one');
+	const lb = lineLength(balanced);
+	const lr = lineLength(roads);
+	t.diagnostic(`Balanced ${lb.toFixed(0)} yd, Roads ${lr.toFixed(0)} yd`);
+	assert.ok(lr > lb, `the Roads walk (${lr.toFixed(0)} yd) is longer than the Balanced one (${lb.toFixed(0)} yd)`);
+	const { roads: layer } = loadLayers();
+	if (!layer) {
+		t.diagnostic('no data/local/nav-layers/roads: the road share is not checked');
+		return;
+	}
+	const onRoad = (line, map) => 1 - metrics({ ok: true, pts: line, map }, { layers: { roads: layer } }).offRoad;
+	const sr = onRoad(roads, out.roads.map);
+	const sb = onRoad(balanced, out.balanced.map);
+	t.diagnostic(`on road: Balanced ${(sb * 100).toFixed(1)}%, Roads ${(sr * 100).toFixed(1)}%`);
+	assert.ok(sr >= 0.8, `the Roads walk keeps ${(sr * 100).toFixed(1)}% of its length within 8 yd of a road (off road at most 0.2)`);
+	assert.ok(sb < sr, `the Balanced walk's road share (${(sb * 100).toFixed(1)}%) is lower`);
 });

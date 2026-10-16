@@ -10,12 +10,13 @@
 
 const { test } = require('node:test');
 const assert = require('node:assert/strict');
-const { runAddon } = require('./helpers/lua');
+const path = require('node:path');
+const { runAddon, ADDONS } = require('./helpers/lua');
 
 const NAV = { name: 'Polestar', files: ['Core/Init.lua', 'Nav/Nav.xml'] };
 
 // The fake engine, installed before the addon loads (Polestar_Nav's API.lua sets the same global).
-// The fifth argument is the waterWalking flag or opts { waterWalking, profile }
+// The fifth argument is the waterWalking flag or opts { waterWalking, profile, style }
 // (Routing/Path.lua); a job keeps both. Answers carry job.yards (the drawn
 // line's length) and job.hubs (fake.hubs: the hostile towns it enters).
 const ENGINE = `
@@ -1582,4 +1583,79 @@ test('hostile towns: each is named in the client\'s language by its area (Compat
 		}
 		emit(N.travel.HubText({ kind = "walk", hubs = hubs }))`);
 	assert.equal(out, 'Hostile town: S\u00fcderstade, Hammerfall, Tarrens M\u00fchle');
+});
+
+// Route styles (nav.routeStyle): the saved style goes to every search as
+// opts.style; Routing/Costs.lua (Polestar_Nav, loaded here beside the fake
+// engine) reads anything but the three as Balanced.
+const COSTS = `
+local chunk = assert(loadfile(${JSON.stringify(path.join(ADDONS, 'Polestar_Nav', 'Routing', 'Costs.lua'))}))
+chunk("Polestar_Nav", {})
+local Costs = Polestar_NavCosts
+local function styles(jobs)
+	local out = {}
+	for i, job in ipairs(jobs) do out[i] = { job.opts.style or false, Costs.Style(job.opts.style) } end
+	return out
+end
+`;
+
+test('a saved route style that is none of the three walks as Balanced, without an error', () => {
+	const [out] = run(`${CROSSING}${COSTS}
+		local r = {}
+		Polestar.Set("nav.routeStyle", "Sideways")
+		nav.place(900, 800)
+		target(600, -300)
+		N.Sample()
+		fake.settle(fake.of(true)[1], function(x, y) return math.floor(math.sqrt((x - 600) ^ 2 + (y + 300) ^ 2) * 1.1) end)
+		fake.answer(fake.of(false)[1], 900, 800, 900, 900)
+		r.aim = aim()[1]
+		fake.answer(fake.of(false)[2], 400, 300, 500, 300, 600, 20)
+		r.drawn = lines()[3]
+		r.styles = styles(fake.calls)
+		emit(r)`, { many: true });
+	assert.deepEqual(out.styles, [['Sideways', 'balanced'], ['Sideways', 'balanced'], ['Sideways', 'balanced']],
+		'the measure, the arrow\'s own walk and the later walk carry the saved value, which the router reads as Balanced');
+	assert.equal(out.aim, 'travel', 'the arrow routes');
+	assert.deepEqual(out.drawn, ['walk', 3], 'and the later walk is drawn along its path');
+});
+
+test('changing the route style mid-walk drops the old lines, re-plans at once, and measures and searches every walk again in the new style', () => {
+	const [out] = run(`${CROSSING}${COSTS}
+		local r = {}
+		local changes = 0
+		Polestar.On("ROUTE_CHANGED", function() changes = changes + 1 end)
+		nav.place(900, 800)
+		target(600, -300)
+		N.Sample()
+		local measure = function(x, y) return math.floor(math.sqrt((x - 600) ^ 2 + (y + 300) ^ 2) * 1.1) end
+		fake.settle(fake.of(true)[1], measure)
+		fake.answer(fake.of(false)[1], 900, 800, 880, 850, 900, 900)
+		fake.answer(fake.of(false)[2], 400, 300, 500, 300, 600, 20)
+		r.before = { lines = lines(), calls = #fake.calls }
+		local seen, version = changes, T.version
+		local calls = #fake.calls
+		Polestar.Set("nav.routeStyle", "roads")
+		r.replanned = { changed = changes > seen, version = T.version > version }
+		r.lines = lines()
+		N.Sample()
+		local batch, own = fake.of(true)[2], fake.of(false)[3]
+		r.asked = { #fake.calls - calls, batch and batch.opts.style, own and own.opts.style, own and floor(own.to.x), own and floor(own.to.y) }
+		if batch then fake.settle(batch, measure) end
+		if own then fake.answer(own, 900, 800, 880, 850, 900, 900) end
+		local leg = fake.of(false)[4]
+		r.leg = leg and { leg.opts.style, floor(leg.from.x), floor(leg.from.y), floor(leg.to.x), floor(leg.to.y) } or false
+		r.straight = lines()[3]
+		if leg then fake.answer(leg, 400, 300, 450, 250, 600, 20) end
+		r.after = lines()
+		Polestar.Set("nav.routeStyle", "roads")
+		r.same = #fake.calls
+		emit(r)`, { many: true });
+	assert.deepEqual(out.before.lines.slice(0, 3), [['walk', 3], ['flight', 2], ['walk', 3]], 'Balanced: the arrow\'s walk and the later walk drawn along their paths');
+	assert.deepEqual(out.replanned, { changed: true, version: true }, 're-planned at once');
+	assert.deepEqual(out.lines.slice(0, 3), [['walk', 2], ['flight', 2], ['walk', 2]], 'no Balanced line stays: straight until the Roads paths are in');
+	assert.deepEqual(out.asked, [2, 'roads', 'roads', 900, 900], 'the walks into the target measured again and the arrow\'s own walk searched again, in Roads');
+	assert.deepEqual(out.leg, ['roads', 400, 300, 600, 20], 'the later walk searched again, in Roads');
+	assert.deepEqual(out.straight, ['walk', 2]);
+	assert.deepEqual(out.after.slice(0, 3), [['walk', 3], ['flight', 2], ['walk', 3]], 'drawn along the Roads paths');
+	assert.equal(out.same, 6, 'setting the same style again searches nothing');
 });

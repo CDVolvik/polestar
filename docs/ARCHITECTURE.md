@@ -1919,6 +1919,19 @@ in, else player (or leg start) to leg end; a later walk as its own searched
 path once in (below), else straight; a flight as its hop nodes; a ride or
 portal as its two ends; a hearth or teleport as from and to.
 
+**Route style.** `nav.routeStyle` (Guide > Arrow & routes > Routes, "Route
+style"; `"fastest"`, `"balanced"` (the default) or `"roads"`) goes as
+`opts.style` with every search Walk.lua makes: the arrow's own walk, the
+planner's measure (`FindMany`) and every later walk. It is sent as saved;
+the router (`Costs.Style`) reads anything else (an older build's value, a
+typo, nil) as Balanced. A change (`Walk:OnSettings`, which notes the style
+at the first settings pass) drops every walk priced in the old style: the
+arrow's path (`Walk.Clear`, straight until the new one is in), the
+measure in flight and the kept measures, the later walk in flight and the
+kept later paths; then `Travel.Replan` plans at once, its plan measures the
+walks into the target again and the arrow and the later walks are searched
+again, all in the new style. No line drawn in the old style stays.
+
 **Walks priced by the engine.** A straight line x1.25 cannot tell a walk
 round a ridge from one over it, so the planner would land at a flight master
 whose straight walk crosses a mountain. On a continent the engine covers
@@ -2387,7 +2400,7 @@ Kingdoms, 1 Kalimdor, 2991 Zephras Isle); points are `{ x, y, z }` in
 Results are `{ map, x, y, z }` from start to goal, `points.wet` the yards over
 water; cost is running yards with a swum yard counting the map's `swim`
 (3) unless `waterWalking`, and on a map with classes each yard times its
-class's multiplier for `profile`. Beside the cost every result carries
+class's multiplier for `profile` in `style` (graph edges at Balanced's). Beside the cost every result carries
 yards: `Find`'s `job.yards` is the drawn line's flat length; `FindCost`'s
 and `FindMany`'s are a second label along the cost-best path (grid step
 lengths and the edges' yards), on a format 1 map the cost itself (its edges
@@ -2405,9 +2418,10 @@ the sha256 of every file), and `Nav.xml` to it.
 
 **Polestar's side: the faction, cost and yards, hostile towns**
 (`Nav/Walk.lua`, `Nav/Travel.lua`). Every search goes with opts
-`{ waterWalking, profile }`, `profile` the player's faction from
+`{ waterWalking, profile, style }`, `profile` the player's faction from
 `Compat.GetPlayerFaction()` (none when neutral or unread: the router then
-prices no hub hostile and still routes), so roads are preferred (x0.8) and
+prices no hub hostile and still routes), `style` the Route style option
+(`nav.routeStyle`, above), so roads are preferred (x0.8 in Balanced) and
 the other faction's towns avoided (x20). On format 2 maps a walk's cost is no
 longer its yards, so the two are kept apart: the cost chooses, yards are
 what is shown and timed.

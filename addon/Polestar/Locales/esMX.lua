@@ -1636,6 +1636,11 @@ L["Pages"] = "Páginas"
 -- L["Without TomTom installed, waypoints other addons set through TomTom, and /way, point Polestar's arrow. Addons that expect TomTom's own settings may not work with it on."] = ""
 -- L["Follow TomTom's arrow"] = ""
 -- L["With TomTom installed, the arrow goes wherever TomTom's arrow points, routed like any goal."] = ""
+-- L["Route style"] = ""
+-- L["Fastest: the shortest walk, over hills and across fields. Balanced: roads that aren't much longer, and round hills. Roads: stays on roads even when they're longer; the safest way, not the quickest."] = ""
+-- L["Fastest"] = ""
+-- L["Balanced"] = ""
+-- L["Roads"] = ""
 
 -- Nav/Nearby.lua
 -- L["Profession trainer"] = ""

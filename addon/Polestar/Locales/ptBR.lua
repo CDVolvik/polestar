@@ -282,6 +282,11 @@ L["Let other addons set waypoints"] = "Deixar outros addons definirem pontos de 
 L["Without TomTom installed, waypoints other addons set through TomTom, and /way, point Polestar's arrow. Addons that expect TomTom's own settings may not work with it on."] = "Sem o TomTom instalado, pontos de rota que outros addons definem via TomTom, e o /way, apontam a seta do Polestar. Addons que esperam as configurações do próprio TomTom podem não funcionar com isso ativado."
 L["Follow TomTom's arrow"] = "Seguir a seta do TomTom"
 L["With TomTom installed, the arrow goes wherever TomTom's arrow points, routed like any goal."] = "Com o TomTom instalado, a seta vai aonde a seta do TomTom apontar, com rota como qualquer objetivo."
+-- L["Route style"] = ""
+-- L["Fastest: the shortest walk, over hills and across fields. Balanced: roads that aren't much longer, and round hills. Roads: stays on roads even when they're longer; the safest way, not the quickest."] = ""
+-- L["Fastest"] = ""
+-- L["Balanced"] = ""
+-- L["Roads"] = ""
 
 -- Nav/Nearby.lua
 L["Profession trainer"] = "Instrutor de profissão"

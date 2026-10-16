@@ -282,6 +282,11 @@ L["Let other addons set waypoints"] = "允許其他插件設定路徑點"
 L["Without TomTom installed, waypoints other addons set through TomTom, and /way, point Polestar's arrow. Addons that expect TomTom's own settings may not work with it on."] = "未安裝 TomTom 時，其他插件透過 TomTom 設定的路徑點以及 /way 會指向 Polestar 的箭頭。需要 TomTom 自身設定的插件在開啟時可能無法運作。"
 L["Follow TomTom's arrow"] = "跟隨 TomTom 的箭頭"
 L["With TomTom installed, the arrow goes wherever TomTom's arrow points, routed like any goal."] = "已安裝 TomTom 時，箭頭會跟著 TomTom 箭頭指向的地方，並像任何目標一樣規劃路線。"
+-- L["Route style"] = ""
+-- L["Fastest: the shortest walk, over hills and across fields. Balanced: roads that aren't much longer, and round hills. Roads: stays on roads even when they're longer; the safest way, not the quickest."] = ""
+-- L["Fastest"] = ""
+-- L["Balanced"] = ""
+-- L["Roads"] = ""
 
 -- Nav/Nearby.lua
 L["Profession trainer"] = "專業技能訓練師"
