@@ -182,8 +182,8 @@ L["Waypoint arrow: show, hide, reset"] = "Wegpunkt-Pfeil: anzeigen, ausblenden, 
 L["Usage: /polestar way <x> <y> [label]"] = "Verwendung: /polestar way <x> <y> [Name]"
 L["Point the arrow at x y on your current map (no argument clears it)"] = "Pfeil auf x y der aktuellen Karte richten (ohne Angabe wird er gelöscht)"
 L["Greyed out while Shortest Path Forever guides: it does this itself."] = "Ausgegraut, solange Shortest Path Forever führt: Es erledigt das selbst."
--- L["Shortest Path Forever is guiding a journey of its own. Polestar's arrow comes back when it ends."] = ""
--- L["Shortest Path Forever is guiding. Turn off \"Hand guiding to Shortest Path Forever\" (Options, Integrations) to use Polestar's arrow."] = ""
+L["Shortest Path Forever is guiding a journey of its own. Polestar's arrow comes back when it ends."] = "Shortest Path Forever führt eine eigene Reise. Polestars Pfeil kehrt zurück, wenn sie endet."
+L["Shortest Path Forever is guiding. Turn off \"Hand guiding to Shortest Path Forever\" (Options, Integrations) to use Polestar's arrow."] = "Shortest Path Forever führt. Schalte \"Führung an Shortest Path Forever abgeben\" aus (Optionen, Integrationen), um Polestars Pfeil zu nutzen."
 
 -- Nav/Travel.lua
 L["Go to %s"] = "Geh nach %s"
@@ -223,7 +223,7 @@ L["%s, Top"] = "%s, oben"
 L["%s, Bottom"] = "%s, unten"
 L["Take %s"] = "Nimm %s"
 L["Take the lift"] = "Nimm den Aufzug"
--- L["Hostile town: %s"] = ""
+L["Hostile town: %s"] = "Feindliche Stadt: %s"
 
 -- QoL/Options.lua
 L["Experience"] = "Erfahrung"
@@ -1606,11 +1606,11 @@ L["Let other addons set waypoints"] = "Andere Addons dürfen Wegpunkte setzen"
 L["Without TomTom installed, waypoints other addons set through TomTom, and /way, point Polestar's arrow. Addons that expect TomTom's own settings may not work with it on."] = "Ohne installiertes TomTom steuern Wegpunkte, die andere Addons über TomTom setzen, und /way Polestars Pfeil. Addons, die die eigenen Einstellungen von TomTom erwarten, funktionieren damit eventuell nicht."
 L["Follow TomTom's arrow"] = "TomToms Pfeil folgen"
 L["With TomTom installed, the arrow goes wherever TomTom's arrow points, routed like any goal."] = "Mit installiertem TomTom geht der Pfeil dorthin, wohin TomToms Pfeil zeigt, geroutet wie jedes Ziel."
--- L["Route style"] = ""
--- L["Fastest: the shortest walk, over hills and across fields. Balanced: roads that aren't much longer, and round hills. Roads: stays on roads even when they're longer; the safest way, not the quickest."] = ""
--- L["Fastest"] = ""
--- L["Balanced"] = ""
--- L["Roads"] = ""
+L["Route style"] = "Routenstil"
+L["Fastest: the shortest walk, over hills and across fields. Balanced: roads that aren't much longer, and round hills. Roads: stays on roads even when they're longer; the safest way, not the quickest."] = "Am schnellsten: der kürzeste Weg, über Hügel und quer über Felder. Ausgewogen: Straßen, die nicht viel länger sind, und um Hügel herum. Straßen: bleibt auf Straßen, auch wenn sie länger sind; der sicherste Weg, nicht der schnellste."
+L["Fastest"] = "Am schnellsten"
+L["Balanced"] = "Ausgewogen"
+L["Roads"] = "Straßen"
 
 -- Nav/Nearby.lua
 L["Profession trainer"] = "Berufslehrer"
@@ -1887,8 +1887,8 @@ L["Opens the doors of the Armory and the Cathedral."] = "Öffnet die Türen der 
 L["Opens the gate of the Horde's way into the City of Dalaran; one key opens it for the group. The Alliance is sent in by the Image of Archmage Modera."] = "Öffnet das Tor auf dem Weg der Horde in die Stadt Dalaran; ein Schlüssel öffnet es für die Gruppe. Die Allianz wird vom Abbild der Erzmagierin Modera hineingeschickt."
 
 -- Nav/Handoff.lua
--- L["Hand guiding to Shortest Path Forever"] = ""
--- L["Shortest Path Forever's arrow, route and journey take you to each goal. Polestar's arrow, route lines, journey steps, travel button, transport alerts, map clicks and /way step aside; the guide window and map pins stay. Off: Polestar guides, and steps aside only while a journey you started in Shortest Path Forever runs."] = ""
+L["Hand guiding to Shortest Path Forever"] = "Führung an Shortest Path Forever abgeben"
+L["Shortest Path Forever's arrow, route and journey take you to each goal. Polestar's arrow, route lines, journey steps, travel button, transport alerts, map clicks and /way step aside; the guide window and map pins stay. Off: Polestar guides, and steps aside only while a journey you started in Shortest Path Forever runs."] = "Pfeil, Route und Reise von Shortest Path Forever führen dich zu jedem Ziel. Polestars Pfeil, Routenlinien, Reiseschritte, Reise-Button, Transport-Alarme, Kartenklicks und /way treten zur Seite; das Guide-Fenster und die Kartenmarkierungen bleiben. Aus: Polestar führt und tritt nur zur Seite, solange eine Reise läuft, die du in Shortest Path Forever gestartet hast."
 
 -- No longer in the code (its English changed or it went away): reuse or delete.
 -- L["The arrow's target and the areas it spawns in."] = "Das Ziel des Pfeils und die Gebiete, in denen es spawnt."

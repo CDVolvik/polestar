@@ -179,8 +179,8 @@ L["Greyed out while Shortest Path Forever guides: it does this itself."] = "Shor
 L["Waypoint arrow: show, hide, reset"] = "路徑點箭頭：顯示、隱藏、重置"
 L["Usage: /polestar way <x> <y> [label]"] = "用法：/polestar way <x> <y> [標籤]"
 L["Point the arrow at x y on your current map (no argument clears it)"] = "將箭頭指向目前地圖上的 x y（無參數則清除）"
--- L["Shortest Path Forever is guiding a journey of its own. Polestar's arrow comes back when it ends."] = ""
--- L["Shortest Path Forever is guiding. Turn off \"Hand guiding to Shortest Path Forever\" (Options, Integrations) to use Polestar's arrow."] = ""
+L["Shortest Path Forever is guiding a journey of its own. Polestar's arrow comes back when it ends."] = "Shortest Path Forever 正在導引它自己的旅程。旅程結束後 Polestar 的箭頭會回來。"
+L["Shortest Path Forever is guiding. Turn off \"Hand guiding to Shortest Path Forever\" (Options, Integrations) to use Polestar's arrow."] = "Shortest Path Forever 正在導引。若要使用 Polestar 的箭頭，請關閉\"交由 Shortest Path Forever 導引\"（選項，整合）。"
 
 -- Nav/Arrow.lua
 L["Search here"] = "在此搜尋"
@@ -266,7 +266,7 @@ L["Take %s"] = "搭乘 %s"
 L["Take the lift"] = "搭乘升降梯"
 L["No route: walk straight to the target."] = "無路線：直接走向目標。"
 L["Show the travel route to the current target"] = "顯示前往目前目標的旅行路線"
--- L["Hostile town: %s"] = ""
+L["Hostile town: %s"] = "敵對城鎮：%s"
 
 -- Nav/Journey.lua
 L["%s %d, %d"] = "%s %d, %d"
@@ -286,11 +286,11 @@ L["Let other addons set waypoints"] = "允許其他插件設定路徑點"
 L["Without TomTom installed, waypoints other addons set through TomTom, and /way, point Polestar's arrow. Addons that expect TomTom's own settings may not work with it on."] = "未安裝 TomTom 時，其他插件透過 TomTom 設定的路徑點以及 /way 會指向 Polestar 的箭頭。需要 TomTom 自身設定的插件在開啟時可能無法運作。"
 L["Follow TomTom's arrow"] = "跟隨 TomTom 的箭頭"
 L["With TomTom installed, the arrow goes wherever TomTom's arrow points, routed like any goal."] = "已安裝 TomTom 時，箭頭會跟著 TomTom 箭頭指向的地方，並像任何目標一樣規劃路線。"
--- L["Route style"] = ""
--- L["Fastest: the shortest walk, over hills and across fields. Balanced: roads that aren't much longer, and round hills. Roads: stays on roads even when they're longer; the safest way, not the quickest."] = ""
--- L["Fastest"] = ""
--- L["Balanced"] = ""
--- L["Roads"] = ""
+L["Route style"] = "路線風格"
+L["Fastest: the shortest walk, over hills and across fields. Balanced: roads that aren't much longer, and round hills. Roads: stays on roads even when they're longer; the safest way, not the quickest."] = "最快：最短的路程，翻山越嶺、穿越田野。均衡：走不會長太多的道路，繞開山丘。道路：即使較長也沿道路走；最安全，但不是最快。"
+L["Fastest"] = "最快"
+L["Balanced"] = "均衡"
+L["Roads"] = "道路"
 
 -- Nav/Nearby.lua
 L["Profession trainer"] = "專業技能訓練師"
@@ -1918,8 +1918,8 @@ L["Twist of Light makes swapping seals cheaper and adds seal echoes; it is Forev
 L["Spare points go to Divine Strength and Holy's Improved Seals for damage, then Deflection for survival."] = "多餘點數先投入神聖力量和神聖系的強化聖印以提高傷害，再投入偏斜以提高生存。"
 
 -- Nav/Handoff.lua
--- L["Hand guiding to Shortest Path Forever"] = ""
--- L["Shortest Path Forever's arrow, route and journey take you to each goal. Polestar's arrow, route lines, journey steps, travel button, transport alerts, map clicks and /way step aside; the guide window and map pins stay. Off: Polestar guides, and steps aside only while a journey you started in Shortest Path Forever runs."] = ""
+L["Hand guiding to Shortest Path Forever"] = "交由 Shortest Path Forever 導引"
+L["Shortest Path Forever's arrow, route and journey take you to each goal. Polestar's arrow, route lines, journey steps, travel button, transport alerts, map clicks and /way step aside; the guide window and map pins stay. Off: Polestar guides, and steps aside only while a journey you started in Shortest Path Forever runs."] = "由 Shortest Path Forever 的箭頭、路線與旅程帶你前往每個目標。Polestar 的箭頭、路線線條、旅程步驟、旅行按鈕、交通提醒、地圖點擊與 /way 會讓開；指南視窗與地圖標記保留。關閉：由 Polestar 導引，僅在你於 Shortest Path Forever 中開始的旅程進行時讓開。"
 
 -- No longer in the code (its English changed or it went away): reuse or delete.
 -- L["Shortest Path Forever is guiding. Turn off \"Guide with Shortest Path Forever when it's installed\" (Options, Arrow & routes) to use Polestar's arrow."] = "Shortest Path Forever 正在導引。關閉「已安裝時以 Shortest Path Forever 導引」（「選項」>「箭頭與路線」）即可使用 Polestar 的箭頭。"
