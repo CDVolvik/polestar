@@ -31,7 +31,8 @@ ns.RegisterDefaults("ui", {
 	notesOpen = true, -- a step's tip starts in full; off, it starts on one line (players asked for it open)
 	combat = "show", -- "show" | "fade" | "hide"; steady by default, a fade on every pull distracts
 	reduceMotion = false,
-	font = "game", -- "game" (the client's own font, the default) | "inter" (EllesmereUI's while matchFont is on)
+	skin = "polestar", -- "polestar" (the house style, the default) | "halo" | "blizzard" (Polestar.Theme, "Skins")
+	font = "skin", -- "skin" (the skin's: the game's own font, Fira Sans in Halo) | "game" | "inter" | "fira" (EllesmereUI's while matchFont is on)
 	scheme = "dusk", -- "dusk" | "night" | "graphite" | "ellesmere" (Polestar.Theme.SCHEMES)
 	accent = false, -- false: the scheme's (or EllesmereUI's) accent; { r, g, b }: your own
 	bgColor = false, -- false: the scheme's ground; { r, g, b }: your own

@@ -262,9 +262,10 @@ local BUILTIN = {
 			help = L["The background opacity of every Polestar window: how much of the world shows through. Right-click to reset."] },
 	} },
 	{ page = LOOK, tab = L["Colour & type"], section = L["Type & motion"], controls = {
-		{ kind = "dropdown", key = "ui.font", label = L["Font"], help = L["The game's own font (the default), Inter, or EllesmereUI's."],
+		{ kind = "dropdown", key = "ui.font", label = L["Font"], help = L["The skin's font (the default: the game's own, Fira Sans in Halo), the game's, Inter, Fira Sans, or EllesmereUI's."],
 			choices = function()
-				local list = { { value = "game", label = L["Game font"] }, { value = "inter", label = "Inter" } }
+				local list = { { value = "skin", label = L["The skin's font"] }, { value = "game", label = L["Game font"] },
+					{ value = "inter", label = "Inter" }, { value = "fira", label = "Fira Sans" } }
 				if Theme.IsEllesmere() then list[#list + 1] = { value = "ellesmere", label = "EllesmereUI" } end
 				return list
 			end,
@@ -283,6 +284,13 @@ local BUILTIN = {
 		{ kind = "toggle", key = "ui.reduceMotion", label = L["Reduce motion"], help = L["No sliding or popping; fades stay short."] },
 	} },
 	{ page = LOOK, tab = L["Windows"], section = L["Frame"], controls = {
+		{ kind = "dropdown", key = "ui.skin", label = L["Skin"],
+			help = L["Polestar's own look (the default), Halo (no frame, a soft dark veil, Fira Sans) or Blizzard (the game's own frames, buttons and font). Style, compact mode and the colours you pick work in each."],
+			choices = function()
+				local list = {}
+				for i, c in ipairs(Theme.SkinChoices()) do list[i] = { value = c.value, label = c.text } end
+				return list
+			end },
 		{ kind = "toggle", key = "ui.border", label = L["Window border"], help = L["The line around every Polestar window."] },
 		{ kind = "color", key = "ui.borderColor", label = L["Border colour"], linked = { "ui.borderAccent" }, disabled = borderOff,
 			help = L["Click to pick your own, right-click to go back to the scheme's hairline."],

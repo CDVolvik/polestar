@@ -253,8 +253,8 @@ test('EllesmereUI: an optional scheme and follow toggles, never a lock', () => {
 	assert.equal(out.own, false);
 	assert.equal(out.rematched.accent, false, 'following again drops your own accent');
 	assert.deepEqual(round(out.rematched.live), [0.6, 0.48, 1]);
-	assert.equal(out.fontLabel, 'Game font');
-	assert.deepEqual(out.items, ['Game font', 'Inter', 'EllesmereUI']);
+	assert.equal(out.fontLabel, "The skin's font", "the skin picks the font by default: the game's in the house style");
+	assert.deepEqual(out.items, ["The skin's font", 'Game font', 'Inter', 'Fira Sans', 'EllesmereUI']);
 	assert.equal(out.inter.match, false, 'choosing another font turns following off');
 	assert.deepEqual(out.inter.font, ['Interface\\AddOns\\Polestar\\Media\\Fonts\\Inter-Medium.ttf', 13, '']);
 	assert.equal(out.inter.label, 'Inter');

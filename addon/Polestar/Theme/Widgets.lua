@@ -25,6 +25,11 @@ local WHITE = Theme.Media("white")
 
 W.ROW_H = 40
 
+-- A setting row's height in the skin in use (Halo 34, Blizzard 28).
+function W.RowH()
+	return Theme.Metric("row", W.ROW_H)
+end
+
 ---------------------------------------------------------------------------
 -- Theme-following paint
 ---------------------------------------------------------------------------
@@ -246,26 +251,56 @@ W.Hover = hoverTexture
 
 -- A glyph-only button: the glyph sits in the dim text colour and brightens
 -- under the cursor; a press nudges it down a pixel, like a key going in.
+-- The framed square a Blizzard icon button sits in (DIRECTION_A_BLIZZARD.md
+-- §3: #3A2C14 to #1A1309, a #8A6A2A edge); hidden in the other skins.
+local function iconFrame(b)
+	local bliz = Theme.SkinKey() == "blizzard"
+	local f = rawget(b, "psFrame")
+	if not f and bliz then
+		f = b:CreateTexture(nil, "BACKGROUND", nil, -6)
+		f:SetTexture(WHITE)
+		f:SetAllPoints(b)
+		b.psFrame = f
+	end
+	if not f then return end
+	f:SetShown(bliz)
+	if bliz then
+		if f.SetGradient and CreateColor then
+			f:SetGradient("VERTICAL", CreateColor(0.102, 0.075, 0.035, 1), CreateColor(0.227, 0.173, 0.078, 1))
+		else
+			f:SetVertexColor(0.227, 0.173, 0.078, 1)
+		end
+		Theme.Border(b, 0.541, 0.416, 0.165, 1)
+	elseif b.psBorder then
+		for i = 1, 4 do b.psBorder[i]:Hide() end
+	end
+end
+
 function W.IconButton(parent, icon, size, tip, onClick, glyphSize)
 	local b = CreateFrame("Button", nil, parent)
 	size = size or 22
 	b:SetSize(size, size)
 	hoverTexture(b)
 	local g = b:CreateTexture(nil, "ARTWORK")
-	g:SetTexture(Theme.Media(icon))
+	b.psIconName = icon
+	g:SetTexture(Theme.Media(Theme.Icon(icon)))
 	local gs = glyphSize or floor(size * 0.6 + 0.5)
 	g:SetSize(gs, gs)
 	g:SetPoint("CENTER", b, "CENTER", 0, 0)
 	b.Icon = g
-	W.Color(g, "textDim")
+	W.Color(g, "icon")
 	b.psTip = tip
+	W.Painter(b, function(self)
+		self.Icon:SetTexture(Theme.Media(Theme.Icon(self.psIconName)))
+		iconFrame(self)
+	end)
 	b:SetScript("OnEnter", function(self)
-		if self:IsEnabled() then W.Color(self.Icon, self.psActive and "accent" or "text") end
+		if self:IsEnabled() then W.Color(self.Icon, self.psActive and "accent" or "iconHover") end
 		simpleTip(self)
 		if self.psOnEnter then self.psOnEnter(self) end
 	end)
 	b:SetScript("OnLeave", function(self)
-		W.Color(self.Icon, self.psActive and "accent" or "textDim", self:IsEnabled() and 1 or 0.35)
+		W.Color(self.Icon, self.psActive and "accent" or "icon", self:IsEnabled() and 1 or 0.35)
 		hideTip(self)
 		if self.psOnLeave then self.psOnLeave(self) end
 	end)
@@ -276,14 +311,15 @@ function W.IconButton(parent, icon, size, tip, onClick, glyphSize)
 end
 
 function W.SetIcon(b, icon)
-	b.Icon:SetTexture(Theme.Media(icon))
+	b.psIconName = icon
+	b.Icon:SetTexture(Theme.Media(Theme.Icon(icon)))
 end
 
 -- Mark an icon button as "on" (accent glyph) or dim it when disabled.
 function W.SetIconState(b, active, enabled)
 	b.psActive = active and true or false
 	if enabled == false then b:Disable() else b:Enable() end
-	W.Color(b.Icon, b.psActive and "accent" or "textDim", b:IsEnabled() and 1 or 0.35)
+	W.Color(b.Icon, b.psActive and "accent" or "icon", b:IsEnabled() and 1 or 0.35)
 end
 
 -- A text button. opts: { primary = true, ghost = true, danger = true,
@@ -291,8 +327,9 @@ end
 function W.Button(parent, text, onClick, opts)
 	opts = opts or {}
 	local b = CreateFrame("Button", nil, parent)
-	b:SetHeight(opts.height or 28)
-	local label = W.Text(b, "label", opts.danger and "danger" or "text")
+	b.psHeight = opts.height
+	b:SetHeight(opts.height or Theme.Metric("buttonH", 28))
+	local label = W.Text(b, "label", opts.danger and "danger" or "buttonText")
 	label:SetPoint("CENTER", b, "CENTER", 0, 0)
 	b.Label = label
 	if opts.icon then
@@ -310,6 +347,16 @@ function W.Button(parent, text, onClick, opts)
 	end
 	W.Painter(b, function(self)
 		local icon = rawget(self, "Icon")
+		if not self.psHeight then self:SetHeight(Theme.Metric("buttonH", 28)) end
+		local bliz = Theme.SkinKey() == "blizzard"
+		if bliz and self.psPrimary and not self.psGhost then
+			-- The game's red button, edged in gold (#FFD96A) for the main action.
+			W.Color(self.Label, "buttonText")
+			Theme.Border(self, 1, 0.851, 0.416, 1)
+			if icon then icon:SetVertexColor(Theme.Color("buttonText")) end
+			Theme.SetShadow(self.Label, true)
+			return
+		end
 		if self.psPrimary then
 			local d = self.psSkin
 			local r, g, bb = Theme.Accent()
@@ -343,7 +390,7 @@ function W.SetButtonText(b, text)
 		b.Icon:SetPoint("RIGHT", b.Label, "LEFT", -6, 0)
 	end
 	b.Label:SetPoint("CENTER", b, "CENTER", b.psLabelX or 0, 0)
-	b:SetWidth(b.psFixedWidth or max(72, floor(w + iconW + 32 + 0.5)))
+	b:SetWidth(b.psFixedWidth or max(72, floor(w + iconW + 2 * Theme.Metric("buttonPad", 16) + 0.5)))
 end
 
 -- A link: an address shown as text in the accent, no box. Under the cursor
@@ -590,7 +637,7 @@ Theme.OnChanged(W.RefreshAll)
 -- underneath, the description as the row's tooltip.
 local function settingRow(parent, label, desc)
 	local row = CreateFrame("Button", nil, parent)
-	row:SetHeight(W.ROW_H)
+	row:SetHeight(W.RowH())
 	hoverTexture(row, 0.6)
 	row.Rule = W.Divider(row, false, 0.6)
 	row.Rule:SetPoint("BOTTOMLEFT", row, "BOTTOMLEFT", 0, 0)
@@ -631,10 +678,42 @@ local function toggleValue(self)
 	return ns.Get(self.psPath) and true or false
 end
 
+local CHECK_UP, CHECK_ON = "Interface\\Buttons\\UI-CheckBox-Up", "Interface\\Buttons\\UI-CheckBox-Check"
+
+-- Blizzard's check box in place of the switch: true when it drew one.
+local function gameCheck(self, on)
+	local bliz = Theme.SkinKey() == "blizzard"
+	local box = rawget(self, "psGameBox")
+	if bliz and not box then
+		box = self.Track:GetParent():CreateTexture(nil, "ARTWORK")
+		box:SetTexture(CHECK_UP)
+		box:SetSize(24, 24)
+		box:SetPoint("CENTER", self.Track, "CENTER", 0, 0)
+		local check = self.Track:GetParent():CreateTexture(nil, "OVERLAY")
+		check:SetTexture(CHECK_ON)
+		check:SetAllPoints(box)
+		box.Check = check
+		self.psGameBox = box
+	end
+	for i = 1, #self.Track.parts do self.Track.parts[i]:SetShown(not bliz) end
+	self.Knob:SetShown(not bliz)
+	if box then
+		box:SetShown(bliz)
+		box.Check:SetShown(bliz and on)
+	end
+	return bliz
+end
+
 local function toggleRefresh(self)
 	local on = toggleValue(self)
 	local enabled = W.Enabled(self)
+	if self.SetHeight and self.psRow then self:SetHeight(W.RowH()) end
 	dimRow(self, enabled)
+	if gameCheck(self, on) then
+		self.psOn = on
+		self.checked = on
+		return
+	end
 	if on then
 		local r, g, b = Theme.Accent()
 		self.Track:SetColor(r, g, b, 1)
@@ -659,6 +738,7 @@ end
 -- one switch stands for several settings (set(nil) on right-click: defaults).
 function W.Toggle(parent, label, path, desc, depends, opts)
 	local row = settingRow(parent, label, desc)
+	row.psRow = true
 	row.Track = pill(row, TOGGLE_W, TOGGLE_H)
 	row.psGet, row.psSet = opts and opts.get, opts and opts.set
 	row.Track:SetPoint("RIGHT", row, "RIGHT", -12, 0)
@@ -723,11 +803,13 @@ local function sliderText(self, v)
 	return string.format(fmt or "%.2f", v)
 end
 
+local SLIDER_THUMB = "Interface\\Buttons\\UI-SliderBar-Button-Horizontal"
+
 local function sliderPaint(self, value)
 	local s = self.Slider
 	local lo, hi = s:GetMinMaxValues()
 	local v = value or s:GetValue()
-	local w = SLIDER_W
+	local w = Theme.Metric("sliderW", SLIDER_W)
 	local frac = hi > lo and (v - lo) / (hi - lo) or 0
 	self.Fill:SetWidth(max(0.01, w * frac))
 	self.Value:SetText(sliderText(self, v))
@@ -740,9 +822,39 @@ local function sliderRefresh(self)
 	self.Slider:SetValue(v)
 	self.psRefreshing = false
 	dimRow(self, W.Enabled(self))
-	self.Fill:SetVertexColor(Theme.Accent())
-	self.Thumb:SetVertexColor(Theme.Color("text"))
+	W.SkinSlider(self)
 	sliderPaint(self)
+end
+
+-- A slider's parts in the skin in use (rows and the guide window's own).
+function W.SkinSlider(self)
+	local bliz = Theme.SkinKey() == "blizzard"
+	local s = self.Slider
+	if self.psRow then
+		self:SetHeight(W.RowH())
+		s:SetWidth(Theme.Metric("sliderW", SLIDER_W))
+		self.Value:SetWidth(Theme.Metric("valueW", VALUE_W))
+	end
+	if bliz then
+		self.Track:SetHeight(8)
+		self.Track:SetVertexColor(0, 0, 0, 1)
+		Theme.Border(s, 0.42, 0.42, 0.42, 1)
+		self.Fill:Hide()
+		self.Thumb:SetTexture(SLIDER_THUMB)
+		self.Thumb:SetSize(32, 32)
+		self.Thumb:SetVertexColor(1, 1, 1, 1)
+		if self.Value then W.Color(self.Value, "accent") end
+	else
+		self.Track:SetHeight(2)
+		self.Track:SetVertexColor(Theme.Wash("track"))
+		if s.psBorder then for i = 1, 4 do s.psBorder[i]:Hide() end end
+		self.Fill:Show()
+		self.Fill:SetVertexColor(Theme.Accent())
+		self.Thumb:SetTexture(Theme.Media("circle"))
+		self.Thumb:SetSize(12, 12)
+		self.Thumb:SetVertexColor(Theme.Color("text"))
+		if self.Value then W.Color(self.Value, "textDim") end
+	end
 end
 
 -- The track, fill and thumb of a slider, on `owner`.
@@ -777,6 +889,7 @@ end
 -- setting that rescales the window the slider sits in).
 function W.Slider(parent, label, path, lo, hi, stepSize, fmt, desc, depends, opts)
 	local row = settingRow(parent, label, desc)
+	row.psRow = true
 	row.psMin, row.psMax, row.psStep, row.psFormat = lo, hi, stepSize, fmt
 	row.Value = W.Text(row, "number", "textDim")
 	row.Value:SetJustifyH("RIGHT")
@@ -893,7 +1006,8 @@ end
 function W.ShowMenu(anchor, items, opts)
 	if not menu then buildMenu() end
 	opts = opts or {}
-	local y, width, nrow, nsep = -MENU_PAD, opts.minWidth or 176, 0, 0
+	local pad, rowH = Theme.Metric("menuPad", MENU_PAD), Theme.Metric("menuRow", MENU_ROW)
+	local y, width, nrow, nsep = -pad, opts.minWidth or Theme.Metric(opts.wide and "servicesWidth" or "menuWidth", 176), 0, 0
 	local anyIcon = false
 	for i = 1, #items do if items[i].icon then anyIcon = true end end
 	for i = 1, #menu.rows do menu.rows[i]:Hide() end
@@ -930,14 +1044,15 @@ function W.ShowMenu(anchor, items, opts)
 			row.Check:SetShown(item.checked and true or false)
 			W.Color(row.Check, "accent")
 			row:ClearAllPoints()
+			row:SetHeight(rowH)
 			row:SetPoint("TOPLEFT", menu, "TOPLEFT", 1, y)
 			row:SetPoint("TOPRIGHT", menu, "TOPRIGHT", -1, y)
 			row:Show()
 			width = max(width, row.Text:GetStringWidth() + (anyIcon and 32 or 12) + 36)
-			y = y - MENU_ROW
+			y = y - rowH
 		end
 	end
-	menu:SetSize(floor(width + 0.5), -y + MENU_PAD)
+	menu:SetSize(floor(width + 0.5), -y + pad)
 	menu:ClearAllPoints()
 	menu.psOwner = anchor
 	local point, relPoint = opts.point or "TOPRIGHT", opts.relPoint or "BOTTOMRIGHT"
@@ -986,8 +1101,20 @@ local function choiceText(choices, v)
 	return tostring(v == nil and "" or v)
 end
 
+local DROPDOWN_ARROW = "Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Up"
+
 local function dropdownRefresh(self)
 	self.Button.Label:SetText(choiceText(choicesOf(self), valueOf(self)))
+	self:SetHeight(W.RowH())
+	local b = self.Button
+	b:SetSize(Theme.Metric("dropdownW", DROPDOWN_W), Theme.Metric("dropdownH", 28))
+	local bliz = Theme.SkinKey() == "blizzard"
+	local size = bliz and 22 or Theme.Metric("chevron", 12)
+	b.Arrow:SetTexture(bliz and DROPDOWN_ARROW or Theme.Media("chevron-down"))
+	b.Arrow:SetSize(size, size)
+	b.Arrow:ClearAllPoints()
+	b.Arrow:SetPoint("RIGHT", b, "RIGHT", bliz and 0 or -Theme.Metric("chevronInset", 9), 0)
+	if bliz then W.Uncolor(b.Arrow); b.Arrow:SetVertexColor(1, 1, 1, 1) else W.Color(b.Arrow, "textDim") end
 	dimRow(self, W.Enabled(self))
 end
 
