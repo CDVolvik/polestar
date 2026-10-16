@@ -203,3 +203,16 @@ test('a name the game starts with "The" reads as its sentence needs it on an Eng
 	assert.equal(fillTokens('West of {area:918}. {area:918} is quiet.', names), 'West of the Molsen Farm. The Molsen Farm is quiet.');
 	assert.equal(fillTokens('Back to the {area:918}', names), 'Back to the Molsen Farm');
 });
+
+test('a name inside a longer proper name the data lacks stays words', () => {
+	const dir = packDir();
+	fs.writeFileSync(path.join(dir, 'guides', 'main.guide'), GUIDE.replace(`tip ${TIP}`, 'tip Young Kobold Vermin Runts sit by Marshal McBride; Kobold Vermin Chiefs too, and Kobold Vermin.'));
+	const r = build(dir);
+	assert.equal(r.guides[0]._localised.steps[0].note, 'Young Kobold Vermin Runts sit by {npc:197}; Kobold Vermin Chiefs too, and {npc:6}.');
+});
+
+test('a translation may name a plural the English keeps as words by its singular token', () => {
+	const { textProblems } = require('../tools/lib/i18n/guides');
+	assert.deepEqual(textProblems('Kill the Kobold Vermins.', 'Bandidos ({npc:6}) ×8', ['npc:6']), []);
+	assert.match(textProblems('Kill the Kobold Vermins.', 'Bandidos ({npc:6})')[0], /has \{npc:6\}/);
+});

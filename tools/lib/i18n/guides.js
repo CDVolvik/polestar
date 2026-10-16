@@ -107,10 +107,13 @@ function packLocales(packDir) {
 const TOKEN_ONLY = new RegExp(TOKEN_RE.source, 'g');
 
 // What is wrong with `translation` as the translation of `english`: [message].
-function textProblems(english, translation) {
+// `plurals`: tokens the English names in the plural, as words (its
+// "plural, as words" comment): the translation may use them as it likes.
+function textProblems(english, translation, plurals = []) {
 	const out = [];
+	const free = new Set(plurals);
 	const want = tokensOf(english).sort();
-	const got = tokensOf(translation).sort();
+	const got = tokensOf(translation).filter((t) => !free.has(t) || want.includes(t)).sort();
 	const missing = want.filter((t, i) => want.indexOf(t) === i && got.filter((x) => x === t).length < want.filter((x) => x === t).length);
 	const extra = got.filter((t, i) => got.indexOf(t) === i && want.filter((x) => x === t).length < got.filter((x) => x === t).length);
 	if (missing.length) out.push(`leaves out ${missing.map((t) => `{${t}}`).join(', ')}`);
@@ -185,6 +188,7 @@ function guideState(packDir, manifest, guides, locales) {
 		else if (r && r.layout !== 'return') s.error = 'does not return a table of { ["English"] = "translation" }';
 		else if (r) {
 			const known = new Set(p.texts.map((t) => t.text));
+			const byText = new Map(p.texts.map((t) => [t.text, t.plurals]));
 			for (const k of r.bad) s.problems.push({ text: k, problem: 'the key or the value is not a string' });
 			for (const [k, v] of Object.entries(r.strings)) {
 				if (!known.has(k)) {
@@ -193,7 +197,7 @@ function guideState(packDir, manifest, guides, locales) {
 				}
 				if (v === '') continue;
 				s.translated[k] = v;
-				for (const problem of textProblems(k, v)) s.problems.push({ text: k, problem });
+				for (const problem of textProblems(k, v, (byText.get(k) || []).map(([t]) => t))) s.problems.push({ text: k, problem });
 			}
 			s.retired = retiredEntries(fs.readFileSync(p.file, 'utf8'));
 			const taken = new Set(Object.keys(s.translated));
@@ -227,7 +231,9 @@ function writeTextsFile({ locale, kind, id, source, texts, translated, retired }
 		`-- ${lang} (${locale}): ${what}.`,
 		`-- Written by \`node tools/polestar.js i18n guides sync ${locale}\`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").`,
 		'-- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its',
-		`-- name there in ${lang} (the English is listed above the line). The comments are rewritten by sync.`,
+		`-- name there in ${lang} (the English is listed above the line). A name the English has in the plural, as words,`,
+		'-- may be written with the singular\'s token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".',
+		'-- The comments are rewritten by sync.',
 		'return {',
 	];
 	let where = null;

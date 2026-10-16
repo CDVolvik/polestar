@@ -28,6 +28,11 @@
 // the English of every token it uses: what an English client shows, and any
 // client without a name for it.
 
+const fs = require('node:fs');
+const path = require('node:path');
+const { parseCsv } = require('../data/csv');
+const { compareVersions, PRODUCTS } = require('../data/wago');
+
 const KINDS = ['npc', 'object', 'item', 'quest', 'zone', 'area', 'spell', 'faction', 'skill'];
 const TOKEN_RE = /\{(npc|object|item|quest|zone|area|spell|faction|skill):(\d+)\}/g;
 // The guide fields a player reads as prose (the guide `folder` is the pack's:
@@ -47,7 +52,8 @@ const ZONE_AREA = 2;
 const WORLD_ZONE = 3;
 const WORLD_AREA = 4;
 const WORLD_DATA = 5;
-const SOURCES = ['step', 'guide', 'zoneArea', 'worldZone', 'worldArea', 'worldData'];
+const WORLD_SPELL = 6;
+const SOURCES = ['step', 'guide', 'zoneArea', 'worldZone', 'worldArea', 'worldData', 'worldSpell'];
 const MIN_NAME = 3;
 // Kinds whose names are matched without a leading "The" (and a zone's or
 // area's without its trailing "City").
@@ -74,6 +80,7 @@ function dataName(data, kind, id) {
 	else if (kind === 'area') rec = data.areas ? data.areas.byId.get(id) : null;
 	else if (kind === 'faction') rec = data.faction(id);
 	else if (kind === 'skill') rec = data.profession(id);
+	else if (kind === 'spell') return spellById(data).get(id) || null;
 	return (rec && str(rec.name)) || null;
 }
 
@@ -151,6 +158,19 @@ function forEachText(guide, fn, { steps = true } = {}) {
 	});
 }
 
+// Whether `before` ends in a capitalised word that makes a longer name with
+// what follows: not "The", not a possessive ("Darnassus's Mystic Ward"), and,
+// opening a sentence, not a word the pack also writes in lower case
+// ("Follow", "Take").
+// A profession's rank before its name ("Apprentice {skill:182}"): the rank is words.
+const RANKS = new Set(['Apprentice', 'Journeyman', 'Expert', 'Artisan']);
+function capitalBefore(before, common) {
+	const m = /(^|[\s\S]*?[^\p{L}\p{N}'’-])(\p{Lu}[\p{L}\p{N}'’-]*)[ \t]+$/u.exec(before);
+	if (!m || m[2] === 'The' || RANKS.has(m[2]) || /['’]s$/u.test(m[2])) return false;
+	if (/(^|[.!?:;\n(])\s*$/u.test(m[1])) return !common.has(m[2].toLowerCase());
+	return true;
+}
+
 // Names by their first three characters, each name once (its best source
 // kept), the longest first.
 class NameIndex {
@@ -170,19 +190,22 @@ class NameIndex {
 		// reads its article as the sentence needs it: fillTokens),
 		// "Stormwind" for "Stormwind City": the token shows the game's whole
 		// name. A worse source than the name itself.
+		// Without "The" only where the rest still reads as a name: two words or
+		// more, or a place ("The Rot" is no "Rot": "Rot Hide" gnolls).
+		const place = kind === 'zone' || kind === 'area';
 		const bare = /^The (.+)$/.exec(name);
-		if (bare) this.put(bare[1], name, kind, id, prio + 0.5);
-		const city = (kind === 'zone' || kind === 'area') && /^(.+) City$/.exec(name);
-		if (city) this.put(city[1], name, kind, id, prio + 0.5);
+		if (bare && (place || bare[1].includes(' '))) this.put(bare[1], name, kind, id, prio + 0.5, true);
+		const city = place && /^(.+) City$/.exec(name);
+		if (city) this.put(city[1], name, kind, id, prio + 0.5, true);
 	}
 
 	// `match`: the words looked for; `english`: the token's English.
-	put(match, english, kind, id, prio) {
+	put(match, english, kind, id, prio, alias = false) {
 		if (match.length < MIN_NAME || !/^[\p{Lu}\p{N}]/u.test(match)) return;
 		if (kind !== 'skill' && !match.includes(' ') && this.common.has(match.toLowerCase())) return;
 		const had = this.seen.get(match);
 		if (had && (had.prio < prio || (had.prio === prio && had.id <= id))) return;
-		const entry = { name: match, english, kind, id, prio };
+		const entry = { name: match, english, kind, id, prio, alias };
 		const start = match.slice(0, MIN_NAME);
 		if (!this.byStart.has(start)) this.byStart.set(start, []);
 		const list = this.byStart.get(start);
@@ -204,6 +227,12 @@ class NameIndex {
 		for (const e of list) {
 			if (!text.startsWith(e.name, i)) continue;
 			const end = i + e.name.length;
+			// A name next to a capitalised word is part of a longer name the data
+			// lacks ("Rot Hide" gnolls, "Jade Oozes", "Lost Barrens Kodos"): not
+			// this one.
+			if (/^[ \t]+(of[ \t]+)?\p{Lu}/u.test(text.slice(end)) || capitalBefore(text.slice(0, i), this.common)) continue;
+			// A one-word spell owning something is a name of its own ("Blizzard's designers").
+			if (e.kind === 'spell' && !e.name.includes(' ') && /^['’]s\b/u.test(text.slice(end))) continue;
 			if (plural ? text[end] === 's' && !isWordChar(text[end + 1]) : !isWordChar(text[end])) return e;
 		}
 		return null;
@@ -223,8 +252,9 @@ function longestAt(indexes, text, i, plural = false) {
 
 // The names any guide of the pack may use beyond its own: each zone and each
 // open-world area whose name nothing else has, the professions and their
-// recipes' reagents, and the NPCs, objects and items of the data with a name
-// of two words or more or with an apostrophe. Built once per data and pack.
+// recipes' reagents, the NPCs, objects and items of the data with a name of
+// two words or more or with an apostrophe, and the client's spell names
+// (spellNames). Built once per data and pack.
 const WORLD = new WeakMap();
 function worldIndex(data, common) {
 	const cached = WORLD.get(data);
@@ -252,8 +282,64 @@ function worldIndex(data, common) {
 			if (rec && str(rec.name) && /[ '’]/.test(rec.name.trim())) idx.add(kind, Number(rec.id), rec.name, WORLD_DATA);
 		}
 	}
+	for (const [name, id] of spellNames(data)) idx.add('spell', id, name, WORLD_SPELL);
 	WORLD.set(data, { common, idx });
 	return idx;
+}
+
+// Spell names the client gives by id (GetSpellInfo), from the newest cached
+// Forever SpellName table beside the data folder: [[name, id]], each name once
+// (its lowest id: a spell's ranks share their name in every language), none
+// that another thing of the game is called. Names of
+// two words or more, or with an apostrophe or colon ("Teleport: Moonglade"),
+// of any spell; one-word names only of a class or profession ability
+// (SkillLineAbility: "Polymorph", "Whirlwind").
+const SPELLS = new WeakMap();
+function spellNames(data) {
+	if (!SPELLS.has(data)) SPELLS.set(data, readSpellNames(data));
+	return SPELLS.get(data);
+}
+
+function readSpellNames(data) {
+	const dir = data.dir && wagoBuildDir(path.join(data.dir, '..', 'sources'), ['SpellName.csv', 'SkillLineAbility.csv']);
+	if (!dir) return [];
+	const abilities = new Set(parseCsv(fs.readFileSync(path.join(dir, 'SkillLineAbility.csv'), 'utf8')).map((r) => Number(r.Spell)));
+	// A name something else of the game has too ("Burning Blade", "Zephras
+	// Isle", "The Molten Core") is that thing in a text, not the spell.
+	const taken = new Set();
+	for (const t of [data.npcs, data.objects, data.items, data.zones]) for (const x of Object.values(t || {})) if (x && str(x.name)) taken.add(x.name.trim().toLowerCase());
+	for (const q of Object.values(data.quests || {})) if (q && str(q.title)) taken.add(q.title.trim().toLowerCase());
+	for (const f of data.factions.values()) if (f && str(f.name)) taken.add(f.name.trim().toLowerCase());
+	if (data.areas) for (const key of data.areas.byName.keys()) taken.add(key);
+	const best = new Map();
+	for (const r of parseCsv(fs.readFileSync(path.join(dir, 'SpellName.csv'), 'utf8'))) {
+		const id = Number(r.ID);
+		const name = String(r.Name_lang || '').trim();
+		if (!Number.isInteger(id) || !name || /[()[\]<>_]|\b(OLD|DND|TEST|Test|QA|zz)\b|^\d/.test(name)) continue;
+		// A profession's rank spell reads as rank and profession: words and {skill:id}.
+		if (/^(Apprentice|Journeyman|Expert|Artisan|Master) /.test(name) || / Reputation$/.test(name) || taken.has(name.toLowerCase())) continue;
+		if (!/[ '’:]/.test(name) && !abilities.has(id)) continue;
+		const had = best.get(name);
+		if (had === undefined || id < had) best.set(name, id);
+	}
+	return [...best];
+}
+
+const SPELL_IDS = new WeakMap();
+function spellById(data) {
+	if (!SPELL_IDS.has(data)) SPELL_IDS.set(data, new Map(spellNames(data).map(([n, id]) => [id, n])));
+	return SPELL_IDS.get(data);
+}
+
+// The newest Forever build folder under <sources>/wago holding every file of `files`, or null.
+function wagoBuildDir(sourcesDir, files) {
+	const root = path.join(sourcesDir, 'wago');
+	if (!fs.existsSync(root)) return null;
+	const builds = fs
+		.readdirSync(root)
+		.filter((b) => /^\d+(\.\d+)+$/.test(b) && PRODUCTS.forever.family.test(b) && files.every((f) => fs.existsSync(path.join(root, b, f))))
+		.sort(compareVersions);
+	return builds.length ? path.join(root, builds[builds.length - 1]) : null;
 }
 
 // The AreaTable areas inside the zone whose area is `zoneArea`, cached per data.
@@ -329,13 +415,19 @@ function tokeniseText(text, indexes, accept = () => true) {
 			const e = longestAt(indexes, text, i);
 			if (e && accept(e)) {
 				flush();
-				parts.push({ token: `{${e.kind}:${e.id}}`, name: e.name, used: { kind: e.kind, id: e.id, name: e.english, prio: Math.floor(e.prio) } });
+				parts.push({ token: `{${e.kind}:${e.id}}`, name: e.name, used: { kind: e.kind, id: e.id, name: e.english, prio: Math.floor(e.prio), alias: e.alias ? e.name : undefined } });
 				i += e.name.length;
 				continue;
 			}
 			// "Harvest Watchers": English plurals stay words, noted for the translator.
 			const pl = !e && longestAt(indexes, text, i, true);
-			if (pl) plurals.push({ kind: pl.kind, id: pl.id, name: pl.name });
+			if (pl) {
+				// The whole plural stays words: no shorter name inside it is matched.
+				plurals.push({ kind: pl.kind, id: pl.id, name: pl.name, english: pl.english });
+				plain += text.slice(i, i + pl.name.length + 1);
+				i += pl.name.length + 1;
+				continue;
+			}
 		}
 		plain += ch;
 		i++;
@@ -377,12 +469,15 @@ function selfNote(goal, data) {
 // originals are left as they are (lint, sim and the other tools read them).
 // stats: { replaced: { kind: n }, bySource: { step, guide, zoneArea,
 // worldZone, worldArea, worldData }, dropped }; problems: [{ guide, line,
-// message }] for author-written tokens the data does not know.
+// message }] for author-written tokens the data does not know; aliases: [{
+// guide, line, words, token, english, text }], each name matched without its
+// "The" or "City".
 function tokeniseGuides(guides, data) {
 	const common = commonWords(guides);
 	const world = worldIndex(data, common);
 	const stats = { replaced: Object.fromEntries(KINDS.map((k) => [k, 0])), bySource: Object.fromEntries(SOURCES.map((k) => [k, 0])), dropped: 0 };
 	const problems = [];
+	const aliases = []; // names matched without their "The" or "City"
 	const out = guides.map((guide) => {
 		const base = guideIndex(guide, data, common);
 		const copy = { ...guide, steps: guide.steps.map((s) => ({ ...s, goals: s.goals.map((g) => ({ ...g })) })) };
@@ -407,11 +502,14 @@ function tokeniseGuides(guides, data) {
 				if (!u.author) {
 					stats.replaced[u.kind]++;
 					stats.bySource[SOURCES[u.prio]]++;
+					if (u.alias) aliases.push({ guide: guide.id, line: ln, words: u.alias, token: k, english: name, text });
 				}
 				if (!(k in names)) names[k] = name;
 			}
 			holder[key] = r.text;
 			if (r.plurals.length) plurals.set(r.text, [...(plurals.get(r.text) || []), ...r.plurals]);
+			// A translation may name a plural by its singular's token: the guide carries its English too.
+			for (const pl of r.plurals) if (!(`${pl.kind}:${pl.id}` in names) && pl.english) names[`${pl.kind}:${pl.id}`] = pl.english;
 		};
 		const guideLine = (guide._ast && guide._ast.line) || 0;
 		forEachText(copy, (text, holder, key) => replace(text, holder, key, [base, world], guideLine), { steps: false });
@@ -433,7 +531,7 @@ function tokeniseGuides(guides, data) {
 		Object.defineProperty(copy, '_plurals', { value: plurals, enumerable: false });
 		return copy;
 	});
-	return { guides: out, stats, problems };
+	return { guides: out, stats, problems, aliases };
 }
 
 // A token's English in its sentence: a name the game starts with "The"
