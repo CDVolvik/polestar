@@ -527,8 +527,16 @@ async function hubsLayer(argv) {
 		const t = nav.tile(c, p.col, p.row);
 		return t ? t.areas[(p.j >> 4) * 16 + (p.i >> 4)] : 0;
 	};
+	// The zone map around a point (data/forever map-frames and zones): its area id, for naming capitals under WMOs.
+	const { Frames } = require('../lib/travel/geo');
+	const zonesJson = readJson(path.join(DATA, 'zones.json'));
+	const frames = new Frames(readJson(path.join(DATA, 'map-frames.json')).era, zonesJson);
+	const zoneAt = (c, x, y) => {
+		const z = frames.containing(c, x, y).map((m) => zonesJson[String(m.map)]).find((m) => m && m.areaId);
+		return z ? Number(z.areaId) : 0;
+	};
 	const maps = hubs.HUB_MAPS.filter((c) => nav.index.continents[c]);
-	const out = hubs.buildHubs({ spawns: npc, templates, factionTemplates, areaTable, areaAt, maps });
+	const out = hubs.buildHubs({ spawns: npc, templates, factionTemplates, areaTable, areaAt, zoneAt, maps });
 	const doc = { build, rev: DB_REV, maps, rules: hubs.RULES, ...out };
 	fs.mkdirSync(path.dirname(hubs.HUBS_FILE), { recursive: true });
 	fs.writeFileSync(`${hubs.HUBS_FILE}.tmp`, `${JSON.stringify(doc)}\n`);

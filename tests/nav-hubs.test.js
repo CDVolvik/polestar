@@ -98,14 +98,33 @@ test('a goblin (neutral) guard cluster makes no hub', () => {
 	assert.equal(hubs[1].length, 0);
 });
 
-test('a guard post near a hub joins it; a lone guard post far away is no hub', () => {
+test('a lone guard is a hub; four service NPCs with no guard are a hub; three are not', () => {
+	const guard = hubsOf({ 100: [[0, 3000, 3000, 5]] });
+	assert.equal(guard[0].length, 1);
+	assert.deepEqual({ guards: guard[0][0].guards, services: guard[0][0].services, disks: guard[0][0].disks }, { guards: 1, services: 0, disks: [[3000, 3000, GUARD_RADIUS]] });
+	const four = hubsOf({ 101: [[0, 0, 0, 0], [0, 40, 0, 0], [0, 80, 0, 0], [0, 120, 0, 0]] });
+	assert.equal(four[0].length, 1);
+	assert.deepEqual({ guards: four[0][0].guards, services: four[0][0].services }, { guards: 0, services: 4 });
+	const three = hubsOf({ 101: [[0, 0, 0, 0], [0, 40, 0, 0], [0, 80, 0, 0]] });
+	assert.equal(three[0].length, 0);
+});
+
+test('hubs within 100 yd are listed as one (a naming merge, disks unchanged); a non-hub cluster beside a hub adds no disk', () => {
 	const hubs = hubsOf({
-		100: [[0, 1000, 1000, 5], [0, 1020, 1000, 5], [0, 1000, 1020, 5], [0, 1110, 1000, 5], [0, 1120, 1000, 5], [0, 3000, 3000, 5], [0, 3010, 3000, 5], [0, 3000, 3010, 5]],
-		101: [[0, 1030, 1030, 5], [0, 1010, 1035, 5]],
+		100: [[0, 1000, 1000, 5], [0, 1090, 1000, 5]],
+		101: [[0, 1000, 1100, 5], [0, 1000, 1170, 5], [0, 1000, 1240, 5]],
 	});
 	assert.equal(hubs[0].length, 1);
-	assert.equal(hubs[0][0].guards, 5);
-	assert.ok(hubs[0][0].disks.some(([x]) => x === 1120));
+	assert.deepEqual(hubs[0][0].disks, [[1000, 1000, GUARD_RADIUS], [1090, 1000, GUARD_RADIUS]]);
+});
+
+test('a hub most of whose spawns stand in a capital\'s zone map is named by the capital', () => {
+	const areaTable = AREAS.concat([{ ID: '20', AreaName_lang: 'Capital City', ParentAreaID: '0', Flags_0: '256' }]);
+	const zoneAt = (c, x) => (x < 1050 ? 20 : 0);
+	const hubs = buildHubs({ spawns: { 100: [[0, 1000, 1000, 5], [0, 1020, 1000, 5], [0, 1100, 1000, 5]] }, templates: TEMPLATES, factionTemplates: FACTION_TEMPLATES, areaTable, areaAt, zoneAt });
+	assert.deepEqual(hubs[0].map((h) => [h.name, h.areaId]), [['Capital City', 20]]);
+	const fewer = buildHubs({ spawns: { 100: [[0, 1000, 1000, 5], [0, 1060, 1000, 5], [0, 1100, 1000, 5]] }, templates: TEMPLATES, factionTemplates: FACTION_TEMPLATES, areaTable, areaAt, zoneAt });
+	assert.deepEqual(fewer[0].map((h) => h.name), ['Testshire']);
 });
 
 test('guards: the guard flag from level 10, a guard\'s name from level 20; service NPCs by their flags', () => {
@@ -114,6 +133,8 @@ test('guards: the guard flag from level 10, a guard\'s name from level 20; servi
 	assert.deepEqual(t('Bloodhoof Brave', 14, 0x400), { side: 'Horde', guard: true });
 	assert.equal(t('Camp Marine', 6, 0x400), null);
 	assert.deepEqual(t('Hammerfall Grunt', 34, 0), { side: 'Horde', guard: true });
+	assert.deepEqual(t('Brackenwall Enforcer', 60, 0), { side: 'Horde', guard: true });
+	assert.deepEqual(t('Valormok Soldier', 50, 0), { side: 'Horde', guard: true });
 	assert.equal(t('Ambermill Watcher', 18, 0), null);
 	assert.deepEqual(t('Innkeeper', 30, 0, 0x80), { side: 'Horde', guard: false });
 	assert.equal(t('Peon', 5, 0, 0x1), null);
@@ -155,6 +176,12 @@ test('the built layer: Alliance and Horde towns are hubs of their side; goblin t
 		assert.ok(found.length, `${name} is a hub`);
 		assert.ok(found.every((h) => h.side === side), `${name} is ${side}`);
 	}
+	// Brackenwall Village (Dustwallow Marsh): its Enforcers make it a Horde hub.
+	const brackenwall = (hubs[1] || []).filter((h) => h.disks.some(([hx, hy]) => Math.hypot(-3149 - hx, -2842 - hy) <= 100));
+	assert.ok(brackenwall.length && brackenwall.every((h) => h.side === 'Horde'), `Brackenwall Village is a Horde hub: ${brackenwall.map((h) => `${h.side} ${h.name}`)}`);
+	// Capitals are named as capitals, not by the chunk area under their WMOs.
+	for (const [c, name] of [[0, 'Stormwind City'], [0, 'Ironforge'], [0, 'Undercity'], [1, 'Orgrimmar'], [1, 'Thunder Bluff'], [1, 'Darnassus']]) assert.ok(hubNamed(hubs, c, name).length, `${name} is a hub`);
+	for (const [c, name] of [[0, 'Gates of Ironforge'], [0, 'Ruins of Lordaeron']]) assert.equal(hubNamed(hubs, c, name).length, 0, `no hub named ${name}`);
 	// No hub at all at the goblin towns: by name or by a disk over their middle.
 	for (const [c, name, x, y] of [[0, 'Booty Bay', -14297, 530], [1, 'Ratchet', -956, -3754], [1, 'Gadgetzan', -7150, -3785], [1, 'Everlook', 6724, -4610]]) {
 		assert.equal(hubNamed(hubs, c, name).length, 0, `${name} is no hub`);

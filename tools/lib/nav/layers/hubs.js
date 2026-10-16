@@ -13,21 +13,23 @@
 //   Marines of Tiragarde Keep, a camp of mobs; Bloodhoof Village's Braves
 //   are 14), or with a guard's name (GUARD_NAME: the dump leaves the flag
 //   off many outpost guards, e.g. Southshore Guard, Hammerfall Grunt,
-//   Stonard Grunt) and at least MIN_NAMED_GUARD_LEVEL (not the Dalaran
+//   Stonard Grunt, Brackenwall Enforcer) and at least MIN_NAMED_GUARD_LEVEL (not the Dalaran
 //   Watchers of Ambermill or the Pyrewood Watchers, mobs of 13-18);
 //   a service NPC: one side's, not a guard, with a quest giver, vendor,
 //   flight master, trainer, innkeeper, banker or repair NpcFlag.
 //
 // Guards and service NPCs of one side on one map are clustered by single
-// linkage at LINK yd; a cluster with at least MIN_GUARDS guards, MIN_SERVICES
-// service NPCs and MIN_MEMBERS of both is a hub; then every other cluster of
-// the side (a guard post without services, a second hub) with a spawn within
-// JOIN yd of a hub's spawn joins that hub. A hub's disks: one per spawn,
-// GUARD_RADIUS around a guard, SERVICE_RADIUS around a service NPC.
-// Named by the AreaTable: the capital (Flags_0 & AREA_CAPITAL) most of its
-// spawns stand in, else the area under the hub's centroid (the grid's
-// per-chunk area id) when it is a subzone, else the most common subzone
-// under its spawns, else the zone.
+// linkage at LINK yd; a cluster with at least MIN_GUARDS guard or at least
+// MIN_SERVICES service NPCs is a hub. Hubs of one side with spawns within
+// JOIN yd of each other are listed as one hub under one name (a naming merge
+// only: every disk is a hub cluster's, none is added). A hub's disks: one per
+// spawn, GUARD_RADIUS around a guard, SERVICE_RADIUS around a service NPC.
+// Named by the AreaTable: the capital (Flags_0 & AREA_CAPITAL) at least half
+// its spawns stand in, by the grid's chunk area or by the zone map around
+// them (zoneAt: Ironforge and Undercity lie under WMOs whose chunks carry
+// Dun Morogh's and Tirisfal's areas), else the area under the hub's
+// centroid (the grid's per-chunk area id) when it is a subzone, else the
+// most common subzone under its spawns, else the zone.
 //
 //   data/local/nav-layers/hubs.json: { build, rev, maps: [...], rules, 0: [hub], 1: [hub], ... }
 //   hub = { id, side (the owner: 'Alliance' | 'Horde'), name, areaId, guards, services, disks: [[x, y, r]] }
@@ -57,16 +59,15 @@ const AREA_CAPITAL = 0x100;
 const NPC = { QUESTGIVER: 0x2, VENDOR: 0x4, FLIGHTMASTER: 0x8, TRAINER: 0x10, INNKEEPER: 0x80, BANKER: 0x100, REPAIR: 0x4000 };
 const SERVICE_FLAGS = Object.values(NPC).reduce((a, b) => a | b, 0);
 
-const GUARD_NAME = /\b(Guard|Sentinel|Grunt|Protector|Deathguard|Brave|Watcher|Watchman|Mountaineer|Peacekeeper|Defender)\b/;
+const GUARD_NAME = /\b(Guard|Sentinel|Grunt|Protector|Deathguard|Brave|Watcher|Watchman|Mountaineer|Peacekeeper|Defender|Enforcer|Soldier)\b/;
 const MIN_GUARD_LEVEL = 10;
 const MIN_NAMED_GUARD_LEVEL = 20;
 const GUARD_RADIUS = 50;
 const SERVICE_RADIUS = 25;
 const LINK = 60;
 const JOIN = 100;
-const MIN_GUARDS = 2;
-const MIN_SERVICES = 1;
-const MIN_MEMBERS = 5;
+const MIN_GUARDS = 1;
+const MIN_SERVICES = 4;
 
 const ids = (r, key) => {
 	const out = [];
@@ -160,14 +161,12 @@ const slug = (s) => String(s).toLowerCase().normalize('NFKD').replace(/[\u0300-\
 
 // The hubs of one side on map c from its guards and service NPCs: [[point]].
 function sideHubs(points) {
-	const groups = clusters(points, LINK);
 	const isHub = (g) => {
 		const guards = g.filter((p) => p.guard).length;
-		return guards >= MIN_GUARDS && g.length - guards >= MIN_SERVICES && g.length >= MIN_MEMBERS;
+		return guards >= MIN_GUARDS || g.length - guards >= MIN_SERVICES;
 	};
-	// Hubs absorb every other cluster with a spawn within JOIN yd (hubs merge too).
-	let hubs = groups.filter(isHub);
-	const rest = groups.filter((g) => !isHub(g));
+	const hubs = clusters(points, LINK).filter(isHub);
+	// The naming merge: hubs with spawns within JOIN yd become one listed hub (their disks unchanged).
 	for (let changed = true; changed;) {
 		changed = false;
 		for (let a = 0; a < hubs.length && !changed; a++) {
@@ -181,16 +180,11 @@ function sideHubs(points) {
 			}
 		}
 	}
-	hubs = hubs.map((h) => h.slice());
-	for (const g of rest) {
-		const h = hubs.find((hub) => near(hub, g, JOIN));
-		if (h) h.push(...g);
-	}
 	return hubs;
 }
 
-// The hub's name: { areaId, name }.
-function nameOf(c, members, areaAt, areas) {
+// The hub's name: { areaId, name }. zoneAt(c, x, y) -> the area id of the zone map around a point, or 0.
+function nameOf(c, members, areaAt, zoneAt, areas) {
 	const cx = members.reduce((a, p) => a + p.x, 0) / members.length;
 	const cy = members.reduce((a, p) => a + p.y, 0) / members.length;
 	const isSub = (id) => areas.has(id) && areas.get(id).parent > 0;
@@ -200,20 +194,22 @@ function nameOf(c, members, areaAt, areas) {
 	};
 	const most = (count) => {
 		const best = [...count].sort((a, b) => b[1] - a[1] || a[0] - b[0])[0];
-		return best ? best[0] : 0;
+		return best || null;
 	};
 	const memberAreas = members.map((p) => Number(areaAt(c, p.x, p.y)) || 0);
 	const capitals = new Map();
 	const subs = new Map();
-	for (const a of memberAreas) {
-		const cap = capitalOf(a);
+	members.forEach((p, i) => {
+		const a = memberAreas[i];
+		const cap = capitalOf(a) || (zoneAt ? capitalOf(Number(zoneAt(c, p.x, p.y)) || 0) : 0);
 		if (cap) capitals.set(cap, (capitals.get(cap) || 0) + 1);
 		if (isSub(a)) subs.set(a, (subs.get(a) || 0) + 1);
-	}
-	let id = most(capitals);
+	});
+	const capital = most(capitals);
+	let id = capital && capital[1] * 2 >= members.length ? capital[0] : 0;
 	if (!id) {
 		id = Number(areaAt(c, cx, cy)) || 0;
-		if (!isSub(id)) id = most(subs) || (areas.has(id) ? id : memberAreas.find((a) => areas.has(a)) || 0);
+		if (!isSub(id)) id = (most(subs) || [0])[0] || (areas.has(id) ? id : memberAreas.find((a) => areas.has(a)) || 0);
 	}
 	return { areaId: id, name: areas.has(id) ? areas.get(id).name : `map ${c} (${Math.round(cx)}, ${Math.round(cy)})` };
 }
@@ -221,8 +217,10 @@ function nameOf(c, members, areaAt, areas) {
 // spawns: { entry: [[map, x, y, z], ...] } (spawnz.json's npc table);
 // templates: { entry: { name, faction, npcFlags, extraFlags, rank, minLevel } };
 // factionTemplates, areaTable: client CSV rows; areaAt(c, x, y) -> area id
+// (the grid's chunk); zoneAt(c, x, y) -> the area id of the zone map around
+// the point, or 0 (optional)
 // -> { [map]: [hub] } for every map of HUB_MAPS (maps = HUB_MAPS by default).
-function buildHubs({ spawns, templates, factionTemplates, areaTable, areaAt, maps = HUB_MAPS }) {
+function buildHubs({ spawns, templates, factionTemplates, areaTable, areaAt, zoneAt = null, maps = HUB_MAPS }) {
 	const hostileTo = makeHostileTo(factionTemplates);
 	const areas = new Map();
 	for (const r of areaTable) areas.set(Number(r.ID), { name: String(r.AreaName_lang).trim(), parent: Number(r.ParentAreaID) || 0, capital: (Number(r.Flags_0) & AREA_CAPITAL) !== 0 });
@@ -240,7 +238,7 @@ function buildHubs({ spawns, templates, factionTemplates, areaTable, areaAt, map
 		const hubs = [];
 		for (const side of SIDES) {
 			for (const members of sideHubs(points.get(c)[side])) {
-				const { areaId, name } = nameOf(c, members, areaAt, areas);
+				const { areaId, name } = nameOf(c, members, areaAt, zoneAt, areas);
 				const guards = members.filter((p) => p.guard).length;
 				const seen = new Set();
 				const disks = [];
@@ -272,12 +270,13 @@ function buildHubs({ spawns, templates, factionTemplates, areaTable, areaAt, map
 const RULES = {
 	guard: `one side's (hostile to the other side's players only) with ExtraFlags & 0x${EXTRA_GUARD.toString(16)} and MinLevel >= ${MIN_GUARD_LEVEL}, or named /${GUARD_NAME.source}/ and MinLevel >= ${MIN_NAMED_GUARD_LEVEL}`,
 	service: `one side's, not a guard, NpcFlags & 0x${SERVICE_FLAGS.toString(16)} (quest giver, vendor, flight master, trainer, innkeeper, banker, repair)`,
-	hub: `single linkage at ${LINK} yd; >= ${MIN_GUARDS} guards, >= ${MIN_SERVICES} service NPCs, >= ${MIN_MEMBERS} in all; other clusters with a spawn within ${JOIN} yd join`,
+	hub: `single linkage at ${LINK} yd; a cluster with >= ${MIN_GUARDS} guard or >= ${MIN_SERVICES} service NPCs is a hub; hubs of one side within ${JOIN} yd are listed as one (a naming merge: their disks unchanged, none added)`,
+	name: 'AreaTable: the capital (Flags_0 & 0x100) at least half the spawns stand in (chunk area or zone map), else the subzone under the centroid, else the most common subzone, else the zone',
 	disks: `${GUARD_RADIUS} yd around a guard, ${SERVICE_RADIUS} yd around a service NPC`,
 };
 
 module.exports = {
 	makeHostileTo, buildHubs, roleOf, clusters,
 	HUBS_FILE, HUB_MAPS, GROUP, PLAYER_TEMPLATES, NPC, EXTRA_GUARD, GUARD_NAME, MIN_GUARD_LEVEL, MIN_NAMED_GUARD_LEVEL,
-	GUARD_RADIUS, SERVICE_RADIUS, LINK, JOIN, MIN_GUARDS, MIN_SERVICES, MIN_MEMBERS, RULES,
+	GUARD_RADIUS, SERVICE_RADIUS, LINK, JOIN, MIN_GUARDS, MIN_SERVICES, RULES,
 };
