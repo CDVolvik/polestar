@@ -264,4 +264,4 @@ step Fishin' Time
   buy 6530 x3 npc 5494                        -- Nightcrawlers
   accept 95065                                -- Gilbert Gray
   turnin 95065
-  goto 21.8,56.9 "Boat to Auberdine" live
+  goto 22.71,56.69 "Boat to Auberdine" live

@@ -167,7 +167,7 @@ step Menethil Harbor
   turnin 98072                        -- James Halloran
 
 step Boat to Southshore
-  goto 4.5,56.7 "Boat to Southshore"
+  goto 4.78,57.02 "Boat to Southshore"
 
 # ---------------------------------------------------------------- Southshore
 

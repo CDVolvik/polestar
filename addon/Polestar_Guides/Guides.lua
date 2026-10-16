@@ -244,7 +244,7 @@ do
 						{ t = "buy", npc = 5494, npcName = "Catherine Leland", item = 6530, itemName = "Nightcrawlers", count = 3, map = 1453, x = 55.09, y = 69.76, z = 96.4, note = "Nightcrawlers" },
 						{ t = "accept", quest = 95065, title = "Fishin' Time", npc = 267118, npcName = "Gilbert Gray", minLevel = 7, qlvl = 12, map = 1453, x = 26.36, y = 46.98, spots = { { x = 26.3, y = 47.1, r = 15, n = 2 } }, note = "Gilbert Gray" },
 						{ t = "turnin", quest = 95065, title = "Fishin' Time", npc = 267118, npcName = "Gilbert Gray", map = 1453, x = 26.36, y = 46.98, spots = { { x = 26.3, y = 47.1, r = 15, n = 2 } } },
-						{ t = "goto", text = "Boat to Auberdine", map = 1453, x = 21.8, y = 56.9 },
+						{ t = "goto", text = "Boat to Auberdine", map = 1453, x = 22.71, y = 56.69 },
 					},
 				},
 			},
@@ -2298,7 +2298,7 @@ do
 				{
 					title = "Boat to Southshore",
 					goals = {
-						{ t = "goto", text = "Boat to Southshore", map = 1437, x = 4.5, y = 56.7, f = "e" },
+						{ t = "goto", text = "Boat to Southshore", map = 1437, x = 4.78, y = 57.02, f = "e" },
 					},
 				},
 				{
@@ -3942,7 +3942,7 @@ do
 					note = "Take the boat to Theramore from the far pier.",
 					goals = {
 						{ t = "fly", location = "Menethil Harbor" },
-						{ t = "goto", text = "Boat to Theramore", map = 1437, x = 4.7, y = 63.8, f = "e" },
+						{ t = "goto", text = "Boat to Theramore", map = 1437, x = 5.13, y = 63.61, f = "e" },
 					},
 				},
 				{
@@ -4746,7 +4746,7 @@ do
 					note = "Take the boat to Theramore from the far pier.",
 					goals = {
 						{ t = "fly", location = "Menethil Harbor" },
-						{ t = "goto", text = "Boat to Theramore", map = 1437, x = 4.7, y = 63.8, f = "e" },
+						{ t = "goto", text = "Boat to Theramore", map = 1437, x = 5.13, y = 63.61, f = "e" },
 					},
 				},
 				{
@@ -10124,7 +10124,7 @@ do
 				{
 					title = "Boat to Auberdine",
 					goals = {
-						{ t = "goto", text = "Boat to Auberdine", map = 1438, x = 54.8, y = 97.2, f = "e" },
+						{ t = "goto", text = "Boat to Auberdine", map = 1438, x = 54.79, y = 96.81, f = "e" },
 					},
 				},
 				{
@@ -10176,7 +10176,7 @@ do
 					note = "Laird's fish stall is by the docks. Then take the boat to Stormwind.",
 					goals = {
 						{ t = "turnin", quest = 6342, title = "Flight to Auberdine", npc = 4200, npcName = "Laird", map = 1439, x = 36.77, y = 44.28, z = 8.7, f = "e", note = "Laird" },
-						{ t = "goto", text = "Boat to Stormwind", map = 1439, x = 30.5, y = 40.9, f = "e" },
+						{ t = "goto", text = "Boat to Stormwind", map = 1439, x = 30.76, y = 40.92, f = "e" },
 						{ t = "note", text = "From Stormwind Harbor, ride through the city gates into Elwynn Forest and follow the road west to Westfall." },
 					},
 				},
