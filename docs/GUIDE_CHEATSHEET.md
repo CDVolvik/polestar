@@ -41,7 +41,7 @@ Before the first `step`. `guide`, `title`, `levels` and `zone` are required.
 |---|---|---|
 | `step [title]` | Starts a step; it is done when its goals are | `step Kobold camp` |
 | `tip <text>` | A note for the whole step, shown in the guide window | `tip Pull one kobold at a time.` |
-| `zone <Name>` / `zone map <uiMapID>` | Inside a step: the zone for coordinates from here on | `zone Elwynn Forest` |
+| `zone <Name>` / `zone map <uiMapID>` | Inside a step: the zone for coordinates from here on, also for the steps after it (after a step with `only` that sets one, name the zone again) | `zone Elwynn Forest` |
 | `only <condition>, ...` | Inside a step: the step is only for matching characters | `only Hunter` |
 | `note <text>` | A line of information; never holds the player up | `note The camp is busy at night.` |
 | `level <N>` | Reach level N, grinding if need be | `level 2` |

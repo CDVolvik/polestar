@@ -107,7 +107,7 @@ Step directives:
 
 | Directive | Effect |
 |---|---|
-| `zone <Name>` / `zone map <uiMapID>` | Current zone for coordinates from here on (sticky across later steps). |
+| `zone <Name>` / `zone map <uiMapID>` | Current zone for coordinates from here on (sticky across later steps, also when its step has `only`: after a class trip, the next step everyone sees names its zone again). |
 | `only <cond>[,<cond>...]` | The step applies only to matching characters. |
 | `tip <text>` | Player-facing step note (compiled to `step.note`). |
 
@@ -459,6 +459,9 @@ Warnings:
   recipes excepted); `until <N>` past the recipe's grey skill
 - a coordinate on a map other than the step's zone that the guide never sets as
   a zone (catches a target resolved onto another continent)
+- coordinates without `map` on a zone set in a step for some characters only,
+  when the other characters who see them are in another zone (a class trip's
+  `zone Moonglade` holding for the rest of Darkshore)
 - profession, faction or spell missing from data but given a quoted name
 - a `goto` right before a goal that already leads to the same place: the next
   goal (notes skipped) is located within 200 yards of the goto point, measured to

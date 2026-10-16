@@ -245,7 +245,7 @@ function parseGuide(text, file, diag) {
 			if (lex.note !== null) err(ln, 'notes (` -- `) are only allowed on goal lines');
 			if (kw === 'zone') {
 				const spec = parseZoneSpec(line, lex, ln, err);
-				if (spec) zone = spec;
+				if (spec) zone = step.zone = spec; // the step's last `zone` line (resolve.js: who is in which zone)
 			} else if (kw === 'only') {
 				if (step.only) {
 					err(ln, 'duplicate `only` in step');
