@@ -162,11 +162,13 @@ function luaStr(s) {
 	return `"${String(s).replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/\n/g, '\\n')}"`;
 }
 
+// The summary and the per-level notes are our prose: literal L["..."] keys, so
+// `i18n keys` lists them and each client reads its language's.
 function emitLua(header, facts, source, builds, prereq = PREREQ_RULE) {
-	const L = [header, '', 'local ADDON, ns = ...', 'local T = ns.Talents', '', 'T.Register({'];
+	const L = [header, '', 'local ADDON, ns = ...', 'local T = ns.Talents', 'local L = ns.L', '', 'T.Register({'];
 	L.push(`\tclass = ${luaStr(source.class)}, tree = ${facts.treeID}, prereq = ${luaStr(prereq)},`);
 	L.push(`\tsource = ${luaStr(source.source)}, url = ${luaStr(source.sourceUrl)},`);
-	L.push(`\tsummary = ${luaStr(source.summary)},`);
+	L.push(`\tsummary = L[${luaStr(source.summary)}],`);
 	L.push(`\tspecs = { ${source.order.map(luaStr).join(', ')} },`);
 	L.push('\t-- node = { entry, max ranks, spell, spec column, row, column, name }');
 	L.push('\tnodes = {');
@@ -195,7 +197,7 @@ function emitLua(header, facts, source, builds, prereq = PREREQ_RULE) {
 		for (let i = 0; i < b.picks.length; i += 6) rows.push(`\t\t\t\t${b.picks.slice(i, i + 6).map((p) => `{ ${p.node}, ${p.rank} },`).join(' ')}`);
 		L.push('\t\t\tpicks = {', ...rows, '\t\t\t},');
 		L.push('\t\t\tnotes = {');
-		for (const lv of Object.keys(b.notes).map(Number).sort((x, y) => x - y)) L.push(`\t\t\t\t[${lv}] = ${luaStr(b.notes[lv])},`);
+		for (const lv of Object.keys(b.notes).map(Number).sort((x, y) => x - y)) L.push(`\t\t\t\t[${lv}] = L[${luaStr(b.notes[lv])}],`);
 		L.push('\t\t\t},', '\t\t},');
 	}
 	L.push('\t},', '})', '');
