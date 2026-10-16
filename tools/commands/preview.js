@@ -727,6 +727,28 @@ const SCENES = [
 		],
 	},
 	{
+		file: 'skins-guide.svg',
+		title: 'Skins: the guide window in Polestar, Halo and Blizzard',
+		backdrop: 'terrain',
+		panels: [
+			{ roots: GUIDE, script: TABS },
+			{ roots: GUIDE, script: `Polestar.Set("ui.skin", "halo"); ${TABS}` },
+			{ roots: GUIDE, script: `Polestar.Set("ui.skin", "blizzard"); ${TABS}` },
+		],
+	},
+	{
+		file: 'skins-states.svg',
+		title: 'Skins: a hub step, transparent and the header menu, in Halo and Blizzard',
+		backdrop: 'terrain',
+		panels: [
+			{ roots: GUIDE, script: `Polestar.Set("ui.skin", "halo"); ${TABS}; uistub.setStep(4)` },
+			{ roots: GUIDE, script: `Polestar.Set("ui.skin", "halo"); Polestar.Set("ui.style", "transparent"); ${TABS}; ${HOVER}` },
+			{ roots: [...GUIDE, 'PolestarMenu'], script: `Polestar.Set("ui.skin", "halo"); ${TABS}; stub.RunScript(Polestar.UI.GuideFrame.menuButton, "OnClick", "LeftButton")` },
+			{ roots: GUIDE, script: `Polestar.Set("ui.skin", "blizzard"); ${TABS}; uistub.setStep(4)` },
+			{ roots: [...GUIDE, 'PolestarMenu'], script: `Polestar.Set("ui.skin", "blizzard"); ${TABS}; stub.RunScript(Polestar.UI.GuideFrame.menuButton, "OnClick", "LeftButton")` },
+		],
+	},
+	{
 		file: 'guide-transparent.svg',
 		title: 'Transparent mode over a bright world: at rest, and with the cursor over it',
 		backdrop: 'terrain',

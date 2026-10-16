@@ -172,7 +172,7 @@ local SKIN_PALETTES = {
 		thumb = hex("F4EFE6"), swatch = hex("FFFFFF", 0.25), watermark = hex("FFFFFF", 0.028), mover = hex("FFFFFF", 0.06),
 		success = hex("5FD068"), arrive = hex("5FD068"), todo = hex("FFD100"), warning = hex("FF9A3C"),
 		later = hex("FF9A3C"), danger = hex("FF9A3C"), manual = hex("B49CFF"), skipped = hex("5CC8D6"),
-		icon = hex("C2B9A9"), iconHover = hex("F4EFE6"), buttonText = hex("F4EFE6"),
+		icon = hex("C2B9A9"), iconHover = hex("F4EFE6"), buttonText = hex("F4EFE6"), personName = hex("8CCBFF"), tabRest = hex("C2B9A9"),
 		link = hex("8CCBFF"), npc = hex("8CCBFF"), quest = hex("FFE07A"), place = hex("F5AD85"),
 		rare = hex("FF8052"), dungeon = hex("A385FF"), discord = hex("5865F2"),
 	},
@@ -194,7 +194,7 @@ local SKIN_PALETTES = {
 		frameEdge = hex("9A7A34"), frameEdgeDark = hex("5C4518"), titleLine = hex("6B5420"),
 		success = hex("1EFF00"), arrive = hex("58C04A"), todo = hex("FFD100"), warning = hex("FF8040"),
 		later = hex("FF8040"), danger = hex("FF8040"), manual = hex("C77DFF"), skipped = hex("71D5FF"),
-		icon = hex("FFD100"), iconHover = hex("FFD100"), buttonText = hex("FFD100"),
+		icon = hex("FFD100"), iconHover = hex("FFD100"), buttonText = hex("FFD100"), personName = hex("FFD100"), tabRest = hex("A38D58"),
 		link = hex("FFD100"), npc = hex("FFFFFF"), discord = hex("5865F2"),
 	},
 }
@@ -458,6 +458,7 @@ local HOUSE_EXTRA = {
 	textOff = "textMuted", title = "text", link = "npc", todo = "accent", later = "warning", arrive = "success",
 	manual = "item", skipped = "spell", separator = "divider", rowLine = "divider", veil = "bg", veilWindow = "bg",
 	menuBg = "panel", control = "panelAlt", icon = "textDim", iconHover = "text", buttonText = "text",
+	personName = "npc", tabRest = "textDim",
 }
 
 -- A skin's palette, with the player's own accent, window border and arrow
@@ -780,7 +781,7 @@ local METRICS = {
 		shellHeader = 88, pickerW = 1100, pickerH = 640, pickerDetail = 380,
 		guidePad = 12, guideIconGap = 9, guideTabs = 28, guideNav = 32, guideNavBtn = 22, guideNavIcon = 12,
 		guideIconBtnW = 24, guideIconBtnH = 22, guideIcon = 13, guideRow = 22, guideCheck = 16,
-		guideProgress = 3, guideGrip = 8,
+		guideProgress = 3, guideGrip = 8, guideFoot = 17, guideUpRow = 20, guideUpToggle = 26,
 	},
 	blizzard = {
 		row = 28, menuRow = 22, menuPad = 6, menuWidth = 260, servicesWidth = 290,
@@ -790,7 +791,7 @@ local METRICS = {
 		shellHeader = 88, pickerW = 1100, pickerH = 640, pickerDetail = 380,
 		guidePad = 12, guideIconGap = 9, guideTabs = 28, guideNav = 32, guideNavBtn = 20, guideNavIcon = 12,
 		guideIconBtnW = 20, guideIconBtnH = 20, guideIcon = 11, guideRow = 22, guideCheck = 15,
-		guideProgress = 14, guideGrip = 8,
+		guideProgress = 14, guideGrip = 8, guideFoot = 28, guideUpRow = 20, guideUpToggle = 26,
 	},
 }
 Theme.METRICS = METRICS

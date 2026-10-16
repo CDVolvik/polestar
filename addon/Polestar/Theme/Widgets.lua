@@ -251,10 +251,17 @@ W.Hover = hoverTexture
 
 -- A glyph-only button: the glyph sits in the dim text colour and brightens
 -- under the cursor; a press nudges it down a pixel, like a key going in.
--- The framed square a Blizzard icon button sits in (DIRECTION_A_BLIZZARD.md
--- §3: #3A2C14 to #1A1309, a #8A6A2A edge); hidden in the other skins.
+-- The framed square a Blizzard icon button sits in, on the buttons that ask
+-- for it (b.psFramed; DIRECTION_A_BLIZZARD.md §3): "icon" #3A2C14 to #1A1309
+-- with a #8A6A2A edge, "red" (the small square buttons, ‹ ›) #8A1C10 to
+-- #420B05 with a #C79C3E edge. Hidden in the other skins.
+local FRAMES = {
+	icon = { top = { 0.227, 0.173, 0.078 }, bottom = { 0.102, 0.075, 0.035 }, edge = { 0.541, 0.416, 0.165 } },
+	red = { top = { 0.541, 0.11, 0.063 }, bottom = { 0.259, 0.043, 0.02 }, edge = { 0.78, 0.612, 0.243 } },
+}
 local function iconFrame(b)
-	local bliz = Theme.SkinKey() == "blizzard"
+	local spec = FRAMES[rawget(b, "psFramed") or ""]
+	local bliz = Theme.SkinKey() == "blizzard" and spec ~= nil
 	local f = rawget(b, "psFrame")
 	if not f and bliz then
 		f = b:CreateTexture(nil, "BACKGROUND", nil, -6)
@@ -265,12 +272,13 @@ local function iconFrame(b)
 	if not f then return end
 	f:SetShown(bliz)
 	if bliz then
+		local t, bo, e = spec.top, spec.bottom, spec.edge
 		if f.SetGradient and CreateColor then
-			f:SetGradient("VERTICAL", CreateColor(0.102, 0.075, 0.035, 1), CreateColor(0.227, 0.173, 0.078, 1))
+			f:SetGradient("VERTICAL", CreateColor(bo[1], bo[2], bo[3], 1), CreateColor(t[1], t[2], t[3], 1))
 		else
-			f:SetVertexColor(0.227, 0.173, 0.078, 1)
+			f:SetVertexColor(t[1], t[2], t[3], 1)
 		end
-		Theme.Border(b, 0.541, 0.416, 0.165, 1)
+		Theme.Border(b, e[1], e[2], e[3], 1)
 	elseif b.psBorder then
 		for i = 1, 4 do b.psBorder[i]:Hide() end
 	end
@@ -313,6 +321,12 @@ end
 function W.SetIcon(b, icon)
 	b.psIconName = icon
 	b.Icon:SetTexture(Theme.Media(Theme.Icon(icon)))
+end
+
+-- Ask for Blizzard's framed square on an icon button ("icon" or "red").
+function W.SetFramed(b, kind)
+	b.psFramed = kind
+	iconFrame(b)
 end
 
 -- Mark an icon button as "on" (accent glyph) or dim it when disabled.
@@ -1035,7 +1049,7 @@ function W.ShowMenu(anchor, items, opts)
 			row.Text:SetPoint("LEFT", row, "LEFT", anyIcon and 32 or 12, 0)
 			W.Color(row.Text, item.color or "text", item.disabled and 0.45 or 1)
 			if item.icon then
-				row.Icon:SetTexture(Theme.Media(item.icon))
+				row.Icon:SetTexture(Theme.Media(Theme.Icon(item.icon)))
 				W.Color(row.Icon, item.color or "textDim", item.disabled and 0.45 or 1)
 				row.Icon:Show()
 			else
