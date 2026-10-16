@@ -4,8 +4,7 @@
 // client's, so it holds the names of Forever's own quests, NPCs, objects and
 // items, which neither DingDB nor pfQuest has.
 //
-// Polestar no longer fetches from Wowhead (its terms don't allow automated
-// requests); builds read what is already cached in data/sources/wowhead/:
+// Builds read what is cached in data/sources/wowhead/:
 // - list pages per language: data/sources/wowhead/names/<locale>/lists/<type>.json;
 // - the English lists, to tell a translation from a name left in English:
 //   data/sources/wowhead/codex/lists for npcs, objects and items,

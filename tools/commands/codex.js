@@ -31,9 +31,8 @@ ships that folder in the release zip.
                      (DungeonJournal, no licence). For this machine only: the
                      pack's meta says local and \`pack\` refuses to ship it.
 
-A release build also reads the Wowhead Forever facts already cached in
-data/sources/wowhead/codex/ (tools/lib/codex/wowhead.js). Polestar no
-longer fetches from Wowhead (its terms don't allow automated requests).
+A release build also reads the Wowhead Forever facts cached in
+data/sources/wowhead/codex/ (tools/lib/codex/wowhead.js), when present.
 
 A release build compares itself with the last --local-extras build (when
 data/local/codex-extras exists), entity by entity, writes

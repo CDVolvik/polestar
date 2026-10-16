@@ -3,9 +3,8 @@
 // facts Forever changed. Facts only (ids, XP, levels); results stay in data/,
 // which is gitignored.
 //
-// Polestar no longer fetches from Wowhead (its terms don't allow automated
-// requests); `data build` reads the zone quest lists an earlier version of the
-// tools cached, when there are any, and builds without them otherwise.
+// `data build` reads the zone quest lists cached in data/sources/wowhead/,
+// when there are any, and builds without them otherwise.
 //
 // Cache: <sources>/wowhead/zones.json ({ fetchedAt, zones: { "<area>": rows } }),
 // one list per zone, class (a negative category per class) and instance (the

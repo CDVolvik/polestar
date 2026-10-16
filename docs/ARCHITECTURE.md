@@ -468,10 +468,8 @@ Names.Add(locale, kind, { [id] = name })   -- the pack's files only; any kind
   Map, DungeonEncounter, Faction and TaxiNodes, then the Era client's
   ItemSparse for the items Forever's lacks; the newest build holding every
   one in English and each language, and none stops the build), Wowhead's
-  Forever database in that language (read from `data/sources/wowhead/names`,
-  the cache an earlier version of the tools fetched; Polestar no longer
-  fetches from Wowhead, and without the cache this source is empty; a
-  bracketed name is no translation), DingDB (cloned into
+  Forever database in that language (read from `data/sources/wowhead/names`;
+  without that cache this source is empty; a bracketed name is no translation), DingDB (cloned into
   `data/sources/ding`, pinned to a commit and its files' sha256s: `DING` in
   `tools/lib/i18n/names.js`), then pfQuest's `db/<locale>` (no esMX). A name
   equal to the English one, from any source, is never stored: a translation
@@ -3582,10 +3580,9 @@ built.
   `--local-extras` takes the instances from AtlasLoot and `dungeons.json`
   instead.
 - Wowhead Forever per entity (`tools/lib/codex/wowhead.js`, release build
-  only, lowest precedence). Polestar no longer fetches from Wowhead (its
-  terms don't allow automated requests); `codex build` reads what an earlier
-  version of the tools cached under `data/sources/wowhead/codex/`, and
-  builds without it when there is none. The cache holds Wowhead's NPC, object
+  only, lowest precedence). `codex build` reads the Wowhead Forever facts
+  cached under `data/sources/wowhead/codex/`, and builds without them when
+  there are none. The cache holds Wowhead's NPC, object
   and item list rows by id range (`lists/<type>.json`: id, name, levels,
   classification, boss flag, `location` and `envChange`, how Forever differs
   from Classic) and each fetched entity's facts
@@ -3945,9 +3942,8 @@ exclusive group: pfQuest `close` united with QuestieDB `exclusiveTo`.
    `--no-wowhead` skips them, as does a build without QuestieDB): the quest
    list of every zone and city page and of the nine class pages (class
    quests are filed there, not under a zone) on wowhead.com/forever, read from
-   `data/sources/wowhead/zones.json`, the cache an earlier version of the
-   tools fetched. Polestar no longer fetches from Wowhead; without the cache
-   this step adds nothing. A quest Wowhead marks updated with "Experience
+   `data/sources/wowhead/zones.json`; without that cache this step adds
+   nothing. A quest Wowhead marks updated with "Experience
    X instead of Y", "Level X instead of Y" or "Requires level X instead of Y"
    gets X where its value is still the old Y (for XP, also where it has none),
    and one marked "Renamed from Y" gets Wowhead's Forever name where its title

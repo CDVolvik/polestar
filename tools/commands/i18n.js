@@ -83,9 +83,7 @@ unless --addon names the other.
                              (wago.tools, &locale=), Wowhead's Forever
                              database in that language (list pages and
                              tooltips, read only from what is already cached
-                             in data/sources/wowhead/names: Polestar no
-                             longer fetches from Wowhead, as its terms don't
-                             allow automated requests),
+                             in data/sources/wowhead/names),
                              DingDB (pinned commit and sha256s, cloned into
                              data/sources/ding), then pfQuest's db/<locale>.
                              Only the ids the compiled guides, the quest
