@@ -270,19 +270,23 @@ end
 -- name } }): "Kill 15 <npc>", "Collect 8 <item>", "Use <object>" with the
 -- names from Polestar.Names, else the data's English. Objectives without an
 -- id (escorts, events) read the quest's objective summary from the names
--- pack ("objective") once, else each its English text. nil: none.
+-- pack ("objective") once, else each its English text. A page built before
+-- the objective facts (an older Codex pack) keeps its English line
+-- (quest.objective). nil: none.
 local OBJECTIVE = {
 	kill = { L["Kill %s"], L["Kill %d %s"], "npc" },
 	item = { L["Collect %s"], L["Collect %d %s"], "item" },
 	object = { L["Use %s"], nil, "object" },
 }
 
--- The quest text tokens a summary keeps: $N name, $C class, $R race, $G male:female;
+-- The quest text tokens a summary keeps: $B a line break (a space here),
+-- $N name, $C class, $R race, $G male:female;
 local function fill(s)
 	local name = UnitName and UnitName("player") or ""
 	local class = UnitClass and UnitClass("player") or ""
 	local race = UnitRace and UnitRace("player") or ""
 	local female = UnitSex and UnitSex("player") == 3
+	s = gsub(gsub(s, "%s*%$[Bb]%s*", " "), "  +", " ")
 	s = gsub(s, "%$[Gg]%s*([^:;]*):([^;]*);", function(m, f) return female and f or m end)
 	s = gsub(s, "%$([NnCcRr])", function(t)
 		t = lower(t)
@@ -293,7 +297,9 @@ end
 
 function Dungeons.ObjectiveText(q)
 	local list = type(q) == "table" and q.objectives
-	if type(list) ~= "table" or #list == 0 then return nil end
+	if type(list) ~= "table" or #list == 0 then
+		return type(q) == "table" and type(q.objective) == "string" and q.objective ~= "" and q.objective or nil
+	end
 	local N = ns.Names
 	local lines, summaryDone = {}, false
 	for _, o in ipairs(list) do

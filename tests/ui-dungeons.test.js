@@ -403,7 +403,7 @@ test('Speed: pages reuse pooled frames, only cards in view are painted, open and
 		-- A page of forty quests draws only the blocks in view, the rest as they scroll in.
 		local qs = {}
 		for i = 1, 40 do
-			qs[i] = string.format('{id=%d,title="Errand %d",level=%d,minLevel=%d,objective="Collect 8 Things",start={kind="npc",id=1,name="Giver",map=1413,x=50,y=50},finish={kind="npc",id=1,name="Giver",map=1413,x=50,y=50},chain={},rewards={items={},xp=900,rep={}}}', 90000 + i, i, 20 + i % 5, 15)
+			qs[i] = string.format('{id=%d,title="Errand %d",level=%d,minLevel=%d,objectives={{k="item",id=1,n=8,name="Things"}},start={kind="npc",id=1,name="Giver",map=1413,x=50,y=50},finish={kind="npc",id=1,name="Giver",map=1413,x=50,y=50},chain={},rewards={items={},xp=900,rep={}}}', 90000 + i, i, 20 + i % 5, 15)
 		end
 		Polestar.Dungeons.Register("dungeon", { big = { name = "Big Hold", kind = "dungeon", minLevel = 20, maxLevel = 25, quests = { A = 40, H = 40 }, bosses = 0 } },
 			{ big = "return {quests={" .. table.concat(qs, ",") .. "},chain={},bosses={}}" })

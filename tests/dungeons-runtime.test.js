@@ -252,9 +252,11 @@ Polestar.Names.Add("itIT", "item", { [5423] = "Gemma di Cobrahn" })
 local fang = D.Quest("wailing-caverns", 914)
 local ids = {}
 for i, o in ipairs(fang.objectives) do ids[i] = o.id end
-emit({ D.ObjectiveText(fang), ids })`,
+Polestar.Names.Add("itIT", "objective", { [777] = "Scorta$B$Bil mercante, $N." })
+emit({ D.ObjectiveText(fang), ids, D.ObjectiveText({ id = 777, objectives = { { k = "event", name = "Escort the merchant" } } }) })`,
 	});
 	assert.match(out[0] || out[1] || '', /^Raccogli /, 'the template is the client language\'s');
+	assert.match(out[2], /^Scorta il mercante, [^$]*\.$/, 'an event reads the quest\'s own summary, its tokens filled');
 });
 
 test('runtime: Open fires SHOW_DUNGEON; GuideTo and GuideToPoint set the arrow; the setting stops it; without the pack it says why', () => {
@@ -298,4 +300,12 @@ emit({ list = #list, quests = #q, bosses = #b, listMs = (t1 - t0) * 1000, pageMs
 	assert.equal(out.list, 3);
 	assert.equal(out.quests, 4);
 	assert.ok(out.listMs < 50 && out.pageMs < 50, `list ${out.listMs} ms, page ${out.pageMs} ms`);
+});
+
+test('runtime: a page without objective facts (an older Codex pack) keeps its English line', () => {
+	const [out] = run(`
+local old = D.ObjectiveText({ id = 1, objective = "Kill 5 Kobolds" })
+local none = D.ObjectiveText({ id = 2 }) == nil
+emit({ old, none })`);
+	assert.deepEqual(out, ['Kill 5 Kobolds', true]);
 });
