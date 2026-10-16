@@ -1503,10 +1503,16 @@ function classCounts(cg) {
 	return out;
 }
 
+// Whether a chunk lies in a capital (cellGrid's layers.city): its area is one (capitalAreas of the AreaTable rows)
+// or the zone map around it is (zoneAt(c, x, y) -> area id, optional: Ironforge's and the Undercity's chunks under
+// their WMOs carry Dun Morogh's and Tirisfal's areas). -> city(c, x, y, areaId)
+function cityTest({ areaTable, zoneAt = null }) {
+	const capitals = capitalAreas(areaTable);
+	return (c, x, y, areaId) => capitals.has(areaId) || (!!zoneAt && capitals.has(Number(zoneAt(c, x, y)) || 0));
+}
+
 // The ground layers of `nav layers` (data/local/nav-layers) for packNav: the roads layer
-// (roads/<c>/<col>_<row>.bin, absent tiles and maps none), hubs.json, and the capitals: a chunk is in one when its
-// area is (capitalAreas of the AreaTable rows) or the zone map around its centre is (zoneAt(c, x, y) -> area id,
-// optional: Ironforge's and the Undercity's chunks under their WMOs carry Dun Morogh's and Tirisfal's areas).
+// (roads/<c>/<col>_<row>.bin, absent tiles and maps none), hubs.json, and the capitals (cityTest).
 function readLayers({ dir, areaTable, zoneAt = null }) {
 	const hubsFile = path.join(dir, 'hubs.json');
 	if (!fs.existsSync(hubsFile)) throw new Error(`pack: no hubs layer at ${hubsFile} (node tools/polestar.js nav layers hubs)`);
@@ -1514,7 +1520,7 @@ function readLayers({ dir, areaTable, zoneAt = null }) {
 	const doc = JSON.parse(fs.readFileSync(hubsFile, 'utf8'));
 	const hubs = {};
 	for (const [key, list] of Object.entries(doc)) if (/^\d+$/.test(key) && Array.isArray(list)) hubs[key] = list;
-	const capitals = capitalAreas(areaTable);
+	const city = cityTest({ areaTable, zoneAt });
 	return {
 		roads: (c, col, row) => {
 			const file = path.join(dir, 'roads', String(c), `${tileKey(col, row)}.bin`);
@@ -1524,7 +1530,7 @@ function readLayers({ dir, areaTable, zoneAt = null }) {
 			return b;
 		},
 		hubs,
-		city: (c, x, y, areaId) => capitals.has(areaId) || (!!zoneAt && capitals.has(Number(zoneAt(c, x, y)) || 0)),
+		city,
 	};
 }
 
@@ -1662,5 +1668,5 @@ function checkPack(addonDir) {
 module.exports = {
 	SWIM, ZQ, MIN_REGION, BLOCK_BYTES, PART_BYTES, B64, SDX, SDY, OPP, PACK_JSON, MAPS, COST_MAX, YARDS_MAX, AREA_CAPITAL,
 	CellGrid, cellGrid, cellGridFromDir, readRegions, buildHpa, encodeMaps, packFiles, packNav, shipPack, checkPack,
-	nodeClass, capitalAreas, readLayers, markHubs, navXml,
+	nodeClass, capitalAreas, cityTest, readLayers, markHubs, navXml,
 };

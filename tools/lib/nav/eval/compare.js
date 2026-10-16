@@ -17,9 +17,12 @@
 // A check is n/a (pass null) while a measurement it needs is null (a layer not built, a router without hubs):
 // false when any part fails, else null when any part is n/a, else true.
 //   A1 every `reported` route ok in cand with its expectations; no route ok in base unreachable in cand
-//   A2-A5 the expectations of the hub, road, slope and building routes; A4 also: no route ok in cand climbs a step
+//   A2-A4 the expectations of the hub, road and slope routes; A4 also: no route ok in cand climbs a step
 //     steeper than CLIMB_LIMIT (the baseline's own over-limit routes are listed, never a pass), and the slope
 //     routes' mean steepest climb in cand at most base's
+//   A5 the building routes' expectations, and no indoor yards (metrics.js indoorYards) on any other route ok in cand
+//     with both ends outdoors (endIndoor false); each route that has some is listed, for a person to judge whether
+//     it is the only way
 //   A6 sweep: no target reachable in base unreachable in cand
 //   A7 weighted blocked share (by drawn length, routes ok in both) cand <= base
 //   A8 median cold search ms (routes ok in both) cand <= 1.5 x base
@@ -188,7 +191,33 @@ function compare(base, cand) {
 		a4.detail += `; mean steepest climb ${c === null ? 'n/a' : c.toFixed(1)} deg (baseline ${b === null ? 'n/a' : b.toFixed(1)})`;
 		checks.push(a4);
 	}
-	checks.push(kindCheck('A5', cand, 'building', 'buildings'));
+	// A5: buildings.
+	{
+		const parts = [];
+		const notes = [];
+		for (const r of cand.routes) {
+			if (r.kind === 'building') {
+				for (const v of r.verdicts || evaluateExpectations(r)) {
+					if (v.type === 'ok') continue;
+					parts.push(v.pass);
+					if (v.pass !== true) notes.push(`${r.id}: ${v.detail}`);
+				}
+				continue;
+			}
+			const m = r.result.ok ? r.metrics : null;
+			if (!m) continue;
+			if (m.indoorYards === null || m.indoorYards === undefined) {
+				parts.push(null);
+				continue;
+			}
+			if (m.endIndoor) continue;
+			parts.push(m.indoorYards === 0);
+			if (m.indoorYards !== 0) notes.push(`${r.id}: indoorYards ${m.indoorYards} (both ends outdoors)`);
+		}
+		const nulls = parts.filter((p) => p === null).length;
+		const detail = parts.length ? `buildings: ${parts.filter((p) => p === true).length}/${parts.length} hold${nulls ? ` (${nulls} n/a: no indoor layer)` : ''}${notes.length ? `; ${notes.join('; ')}` : ''}` : 'buildings: no routes';
+		checks.push({ id: 'A5', pass: verdict(parts), detail });
+	}
 
 	// A6: the goal sweep.
 	{

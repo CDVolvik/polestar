@@ -315,6 +315,22 @@ test('nav pack refuses a grid without the slope per surface (grid format 3 or ol
 	assert.match(out, /grid format 3, without the slope per surface .*rebuild it with `node tools\/polestar\.js nav build` \(grid format 4/);
 });
 
+test('nav aids writes aids.json in its grid\'s folder: --dir without --out never overwrites data/local/nav/aids.json', () => {
+	const dir = tmpdir('polestar-nav-aids-');
+	assert.equal(nav.aidsOut({ dir }), path.join(dir, 'aids.json'));
+	assert.equal(nav.aidsOut({}), path.join(ROOT, 'data', 'local', 'nav', 'aids.json'));
+	assert.equal(nav.aidsOut({ dir, out: path.join(dir, 'x.json') }), path.join(dir, 'x.json'));
+});
+
+test('nav layers roads refuses --allowlist with --c: the allowlist is rewritten from both maps\' textures or not at all', async () => {
+	const file = path.join(ROOT, 'tools', 'lib', 'nav', 'layers', 'road-textures.json');
+	const before = fs.readFileSync(file, 'utf8');
+	const { result, out } = await quiet(() => nav.run(['layers', 'roads', '--allowlist', '--c', '0', '--offline']));
+	assert.equal(result, 2);
+	assert.match(out, /--allowlist .*--c/);
+	assert.equal(fs.readFileSync(file, 'utf8'), before);
+});
+
 test('Polestar_Nav ships in the release, credits Shortest Path Forever and carries the GPL', () => {
 	assert.ok(releaseAddons(ADDONS).names.includes('Polestar_Nav'));
 	const toc = fs.readFileSync(path.join(NAV, 'Polestar_Nav.toc'), 'utf8');

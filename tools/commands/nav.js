@@ -43,9 +43,10 @@ path    a route between two map points: <map> a uiMapID, <x>,<y> percent on
         class, falls and the simplified points (map percent of the first
         map); --json prints the whole result. --class (e.g. Druid) and --level
         (default 10) choose the movement profile.
-aids    the arrow's aids from the grid (tools/lib/nav/aids.js): zone
-        crossings, open borders and approach chains in the crossings schema,
-        validated, written to data/local/nav/aids.json (--out). --lua writes
+aids    the arrow's aids from the grid (--dir, default data/local/nav;
+        tools/lib/nav/aids.js): zone crossings, open borders and approach
+        chains in the crossings schema, validated, written to aids.json in
+        the grid's folder (--out: another file). --lua writes
         them as a Crossings.lua for a local test (never into
         addon/Polestar_Travel); to build a test copy of the data addon:
         node tools/polestar.js travel build --offline --crossings data/local/nav/aids.json --travel-addon <test folder> --json <test folder>/travel.json --lua <test folder>/TravelData.lua
@@ -78,7 +79,8 @@ eval    the walking router run standalone (LuaJIT, else Lua 5.1; a folder
         default tools/lib/nav/eval/routes.json) with each route's metrics
         (yards, seconds, the share of the drawn line our grid at
         data/local/nav3 cannot walk, off-road share, yards in hostile hubs,
-        steepest climb, indoor yards; a layer not built yet reads n/a) and
+        steepest climb, indoor yards on data/local/nav4's indoor surfaces
+        outside the capitals; a layer not built yet reads n/a) and
         expectations; --sweep also searches, per zone with located guide
         goals and per side, from the zone's flight master (else its first
         goal) to every goal. --baseline runs the same on another folder (or
@@ -92,7 +94,8 @@ layers  the ground layers under data/local/nav-layers. roads: per grid
         wowdev community listfile (downloaded once to
         data/sources/listfile; build time only), for maps 0 and 1 (--c: one
         of them), into roads/<c>/<col>_<row>.bin. --allowlist instead
-        rewrites the allowlist from every texture the maps' tiles use:
+        rewrites the allowlist from every texture both maps' tiles use (never
+        with --c):
         one whose tileset path names a road, path, cobble, street or trail;
         one naming dirt, footprint, brick or gravel, or listed under
         reviewed, when its shape is a road's (most of its weight in long,
@@ -213,6 +216,12 @@ function aidsLua(set, frames, build) {
 	].join('\n');
 }
 
+// `nav aids`'s output file: --out, else aids.json in the grid's folder (--dir, else data/local/nav: `nav pack` reads
+// that grid's aids.json for the chokepoints, so another grid's aids never overwrite it).
+function aidsOut(o) {
+	return path.resolve(o.out || path.join(o.dir ? path.resolve(o.dir) : DEFAULT_DIR, 'aids.json'));
+}
+
 async function aids(argv) {
 	const { opts: o, positional, error } = parseArgs(argv, { flags: ['--report'], options: ['--out', '--lua', '--continents', '--workers', '--reference', '--dir'] });
 	if (error || positional.length) throw usageError(error || `unexpected argument "${positional[0]}"`);
@@ -227,7 +236,7 @@ async function aids(argv) {
 	const travelAddon = path.join(ROOT, 'addon', TRAVEL_ADDON);
 	const luaOut = o.lua ? path.resolve(o.lua) : null;
 	if (luaOut && (luaOut === travelAddon || luaOut.startsWith(travelAddon + path.sep))) throw usageError(`--lua must not write into ${path.relative(ROOT, travelAddon)} (the owner's local data addon)`);
-	const out = path.resolve(o.out || path.join(DEFAULT_DIR, 'aids.json'));
+	const out = aidsOut(o);
 	const t0 = Date.now();
 	const log = (m) => console.error(`[${((Date.now() - t0) / 1000).toFixed(0)} s] ${m}`);
 	const { openNav } = require('../lib/nav/path');
@@ -341,19 +350,24 @@ function areaTableRows() {
 	return parseCsv(fs.readFileSync(path.join(wago, builds[builds.length - 1], 'AreaTable.csv'), 'utf8'));
 }
 
-// The ground layers the maps' classes come from (pack.js readLayers): roads and hubs from `nav layers` in dir, the
-// capitals by the AreaTable and the zone map around a chunk (data/forever map-frames and zones).
-function packLayers(dir) {
-	const { readLayers } = require('../lib/nav/pack');
+// The zone map around a point (data/forever map-frames and zones): zoneAt(c, x, y) -> its area id (0 none), for the
+// capitals under WMOs (Ironforge's and the Undercity's chunks carry Dun Morogh's and Tirisfal's areas).
+function zoneLookup() {
 	const { Frames } = require('../lib/travel/geo');
 	const zonesJson = readJson(path.join(DATA, 'zones.json'));
 	const frames = new Frames(readJson(path.join(DATA, 'map-frames.json')).era, zonesJson);
-	const zoneAt = (c, x, y) => {
+	return (c, x, y) => {
 		const z = frames.containing(c, x, y).map((m) => zonesJson[String(m.map)]).find((m) => m && m.areaId);
 		return z ? Number(z.areaId) : 0;
 	};
+}
+
+// The ground layers the maps' classes come from (pack.js readLayers): roads and hubs from `nav layers` in dir, the
+// capitals by the AreaTable and the zone map around a chunk.
+function packLayers(dir) {
+	const { readLayers } = require('../lib/nav/pack');
 	try {
-		return readLayers({ dir, areaTable: areaTableRows(), zoneAt });
+		return readLayers({ dir, areaTable: areaTableRows(), zoneAt: zoneLookup() });
 	} catch (e) {
 		throw Object.assign(e, { exit: 1 });
 	}
@@ -406,9 +420,14 @@ async function evalCmd(argv) {
 	const gridDir = path.join(ROOT, 'data', 'local', 'nav3');
 	const grid = fs.existsSync(path.join(gridDir, 'index.json')) ? openNav({ dir: gridDir }) : null;
 	if (!grid) console.error(`nav eval: no grid at ${path.relative(ROOT, gridDir)}: blocked shares are n/a`);
+	// Indoor ground (A5) from the current grid's FLAG.INDOOR surfaces, capitals apart (the packer's indoor class).
+	const indoorDir = path.join(ROOT, 'data', 'local', 'nav4');
+	const indoorGrid = fs.existsSync(path.join(indoorDir, 'index.json')) ? openNav({ dir: indoorDir, cacheTiles: 64 }) : null;
+	if (!indoorGrid) console.error(`nav eval: no grid at ${path.relative(ROOT, indoorDir)}: indoor yards are n/a`);
+	const city = indoorGrid ? require('../lib/nav/pack').cityTest({ areaTable: areaTableRows(), zoneAt: zoneLookup() }) : undefined;
 	const taxi = o.sweep ? readJson(path.join(DATA, 'travel.json')).taxi.nodes : null;
 	const guides = o.sweep ? fs.readFileSync(path.join(ROOT, 'addon', 'Polestar_Guides', 'Guides.lua'), 'utf8') : null;
-	const common = { corpus, sweep: !!o.sweep, geo, taxi, guides, grid, layers: loadLayers(), lua: findInterpreter(), log: (m) => console.error(m) };
+	const common = { corpus, sweep: !!o.sweep, geo, taxi, guides, grid, layers: loadLayers(undefined, { indoorGrid, city }), lua: findInterpreter(), log: (m) => console.error(m) };
 	const fmtSummary = (label, s) => {
 		const sides = Object.entries(s.sweep).map(([p, v]) => `${p} ${v.reachable}/${v.targets} goals in ${v.zones} zones`).join(', ');
 		return `${label}: routes ${s.ok}/${s.routes} found, blocked share ${s.blockedShare === null ? 'n/a' : `${(100 * s.blockedShare).toFixed(1)}%`}, median cold search ${s.medianMs} ms${sides ? `; sweep: ${sides}` : ''}`;
@@ -417,7 +436,8 @@ async function evalCmd(argv) {
 	for (const r of report.routes) {
 		const m = r.metrics;
 		const verdicts = r.verdicts.map((v) => `${v.pass === null ? 'n/a' : v.pass ? 'ok' : 'FAIL'} ${v.detail}`).join('; ');
-		console.log(`${r.kind.padEnd(9)} ${r.id}: ${r.result.ok ? `${m.yards} yd, ${m.seconds} s, blocked ${m.blocked === null ? 'n/a' : `${(100 * m.blocked).toFixed(1)}%`}, climb ${m.maxClimbDeg} deg, ${r.result.ms} ms` : `not found (${r.result.reason})`}${verdicts ? ` [${verdicts}]` : ''}`);
+		const indoor = r.result.ok && m.indoorYards !== null ? `, indoor ${m.indoorYards} yd${m.endIndoor ? ' (an end indoors)' : ''}` : '';
+		console.log(`${r.kind.padEnd(9)} ${r.id}: ${r.result.ok ? `${m.yards} yd, ${m.seconds} s, blocked ${m.blocked === null ? 'n/a' : `${(100 * m.blocked).toFixed(1)}%`}, climb ${m.maxClimbDeg} deg${indoor}, ${r.result.ms} ms` : `not found (${r.result.reason})`}${verdicts ? ` [${verdicts}]` : ''}`);
 	}
 	console.log(fmtSummary(path.relative(process.cwd(), navDir) || '.', report.summary));
 	let code = 0;
@@ -446,6 +466,8 @@ async function layersCmd(argv) {
 	const { opts: o, positional, error } = parseArgs(rest, { flags: ['--allowlist', '--offline'], options: ['--c', '--product'] });
 	if (error || positional.length) throw usageError(error || `unexpected argument "${positional[0]}"`);
 	if (o.c !== undefined && o.c !== '0' && o.c !== '1') throw usageError('--c needs 0 or 1');
+	// The allowlist is one file for both maps: rewritten from one map's textures it would drop the other's.
+	if (o.allowlist && o.c !== undefined) throw usageError('--allowlist reads both maps\' textures: leave out --c');
 	const continents = o.c === undefined ? [0, 1] : [Number(o.c)];
 	const { openCasc } = require('../lib/planner/art/casc');
 	const roads = require('../lib/nav/layers/roads');
@@ -515,14 +537,7 @@ async function hubsLayer(argv) {
 		const t = nav.tile(c, p.col, p.row);
 		return t ? t.areas[(p.j >> 4) * 16 + (p.i >> 4)] : 0;
 	};
-	// The zone map around a point (data/forever map-frames and zones): its area id, for naming capitals under WMOs.
-	const { Frames } = require('../lib/travel/geo');
-	const zonesJson = readJson(path.join(DATA, 'zones.json'));
-	const frames = new Frames(readJson(path.join(DATA, 'map-frames.json')).era, zonesJson);
-	const zoneAt = (c, x, y) => {
-		const z = frames.containing(c, x, y).map((m) => zonesJson[String(m.map)]).find((m) => m && m.areaId);
-		return z ? Number(z.areaId) : 0;
-	};
+	const zoneAt = zoneLookup();
 	const maps = hubs.HUB_MAPS.filter((c) => nav.index.continents[c]);
 	const out = hubs.buildHubs({ spawns: npc, templates, factionTemplates, areaTable, areaAt, zoneAt, maps });
 	const doc = { build, rev: DB_REV, maps, rules: hubs.RULES, ...out };
@@ -562,4 +577,4 @@ async function run(argv) {
 	}
 }
 
-module.exports = { name: 'nav', summary: "Terrain navigation from the client geometry (build the grid, route between map points) and Polestar's walking router with its maps (Polestar_Nav)", usage, run };
+module.exports = { name: 'nav', summary: "Terrain navigation from the client geometry (build the grid, route between map points) and Polestar's walking router with its maps (Polestar_Nav)", usage, run, aidsOut };

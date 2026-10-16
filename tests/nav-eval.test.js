@@ -113,7 +113,7 @@ test('metrics: yards from the drawn line, the steepest climb between points; blo
 	assert.equal(m.yards, 70);
 	assert.equal(m.seconds, 10);
 	assert.equal(m.maxClimbDeg, 45);
-	assert.deepEqual([m.blocked, m.offRoad, m.hubYards, m.indoorYards], [null, null, null, null]);
+	assert.deepEqual([m.blocked, m.offRoad, m.hubYards, m.indoorYards, m.endIndoor], [null, null, null, null, null]);
 	// hubYards.<side>: yards a player of that side walks in hubs hostile to it (a hub's side is its owner).
 	const hubsLayer = { hubs: { 0: [{ id: 1, side: 'Alliance', name: 'Southshore', disks: [[50, 0, 10]] }, { id: 2, side: 'Horde', name: 'Tarren Mill', disks: [[0, 0, 10]] }] } };
 	const through = metrics({ ok: true, cost: 100, pts: [[20, 0, 0], [100, 0, 0]] }, { grid: null, layers: hubsLayer, map: 0 });
@@ -182,6 +182,59 @@ test('compare: A4 fails when any route found on the candidate climbs a step over
 	assert.match(a4.detail, /baseline: 1 \(ref-a 55\)/);
 	const fixed = { routes: [route('ref-a', 'reference', 30), route('ref-b', 'reference', 20)], sweep: [] };
 	assert.notEqual(compare(base, fixed).checks.find((c) => c.id === 'A4').pass, false, 'the baseline over the limit never fails a candidate under it');
+});
+
+test('metrics: the indoor layer from a grid reads the surface nearest the point\'s height (FLAG.INDOOR), never a capital\'s interiors', () => {
+	const { indoorLayer } = require('../tools/lib/nav/eval/metrics');
+	const { cellOf, cellCentre, FLAG, TILE_CELLS } = require('../tools/lib/nav/grid/format');
+	// Tile 32_32 of map 0: column k0 holds terrain at z 0, a blocked indoor ledge at z 5 and a building's floor at
+	// z 10; column k1 (another chunk, in the capital area 1519) an indoor floor at z 0; every other column is empty.
+	const P = cellCentre(32, 32, 20, 20);
+	const Q = cellCentre(32, 32, 100, 100);
+	const k0 = 20 * TILE_CELLS + 20;
+	const k1 = 100 * TILE_CELLS + 100;
+	const first = new Uint32Array(TILE_CELLS * TILE_CELLS + 1);
+	for (let k = 0; k <= TILE_CELLS * TILE_CELLS; k++) first[k] = k <= k0 ? 0 : k <= k1 ? 3 : 4;
+	const areas = new Uint16Array(256);
+	areas[(100 >> 4) * 16 + (100 >> 4)] = 1519;
+	const tile = { first, z: Float32Array.of(0, 5, 10, 0), flags: Uint8Array.of(FLAG.TERRAIN, FLAG.WMO | FLAG.INDOOR | FLAG.BLOCKED, FLAG.WMO | FLAG.INDOOR, FLAG.WMO | FLAG.INDOOR), areas };
+	const grid = { tile: (c, col, row) => (c === 0 && col === 32 && row === 32 ? tile : null) };
+	assert.deepEqual([cellOf(P.wx, P.wy).i, cellOf(P.wx, P.wy).j], [20, 20]);
+	const indoor = indoorLayer(grid, (c, x, y, areaId) => areaId === 1519);
+	assert.equal(indoor(0, P.wx, P.wy, 1), false, 'on the terrain');
+	assert.equal(indoor(0, P.wx, P.wy, 6), true, 'the floor, not the blocked ledge');
+	assert.equal(indoor(0, P.wx, P.wy, null), true, 'without a height: the highest walkable surface');
+	assert.equal(indoor(0, Q.wx, Q.wy, 0), false, 'a capital\'s interior is no building cut through');
+	assert.equal(indoorLayer(grid)(0, Q.wx, Q.wy, 0), true, 'without capitals it is indoors');
+	assert.equal(indoor(0, P.wx + 10, P.wy, 0), null, 'a column with no surface');
+	assert.equal(indoor(1, P.wx, P.wy, 0), null, 'no tile');
+});
+
+test('compare: A5 fails an ok route with both ends outdoors that walks indoors, passes one that goes round, skips one that ends indoors', () => {
+	const { metrics } = require('../tools/lib/nav/eval/metrics');
+	const { compare } = require('../tools/lib/nav/eval/compare');
+	// A building over x 40..60, y -10..10.
+	const layers = { indoor: (c, x, y) => x >= 40 && x <= 60 && Math.abs(y) <= 10 };
+	const route = (id, pts) => {
+		const result = { ok: true, cost: 100, ms: 10, pts };
+		return { id, kind: 'reference', profile: null, expect: [], result, metrics: metrics(result, { grid: null, layers, map: 0 }) };
+	};
+	const through = route('ref-through', [[0, 0, 0], [100, 0, 0]]);
+	const round = route('ref-round', [[0, 0, 0], [50, 20, 0], [100, 0, 0]]);
+	const inside = route('ref-inside', [[0, 0, 0], [50, 0, 0]]);
+	assert.ok(Math.abs(through.metrics.indoorYards - 20) <= 2, `through: ${through.metrics.indoorYards}`);
+	assert.equal(through.metrics.endIndoor, false);
+	assert.equal(round.metrics.indoorYards, 0);
+	assert.equal(inside.metrics.endIndoor, true);
+	const a5 = (routes) => compare({ routes, sweep: [] }, { routes, sweep: [] }).checks.find((c) => c.id === 'A5');
+	const failed = a5([through, round, inside]);
+	assert.equal(failed.pass, false);
+	assert.match(failed.detail, /ref-through: indoorYards 2\d(\.\d)? \(both ends outdoors\)/);
+	assert.doesNotMatch(failed.detail, /ref-inside/);
+	const passed = a5([round, inside]);
+	assert.equal(passed.pass, true, passed.detail);
+	assert.match(passed.detail, /1\/1 hold/);
+	assert.equal(a5([{ ...round, metrics: { ...round.metrics, indoorYards: null, endIndoor: null } }]).pass, null, 'no indoor layer: n/a');
 });
 
 const noGrid = needs('map-frames.json', 'zones.json') || (fs.existsSync(path.join(ROOT, 'data', 'local', 'nav3', 'index.json')) ? false : 'no grid at data/local/nav3');

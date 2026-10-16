@@ -2078,7 +2078,8 @@ up to 12 open-ground points around it are not walkable and 75% of the routes
 from them share their last 40 yd or more, through a cave (indoor under
 terrain), a building, a lift, a climb or a narrow way, that stretch becomes
 an approach chain (targets on one chain's way join it). It writes
-`data/local/nav/aids.json` (`source` and `build`, the grid's client build,
+`aids.json` in the grid's folder (`data/local/nav/aids.json` by default,
+`--out` another file; `source` and `build`, the grid's client build,
 on top) and with `--report` `aids-report.{json,md}`: every consecutive pair
 of located goals in the guides planned by `tools/lib/nav/arrow.js` (many
 PlanRoute calls in one Lua process) without and with the aids, and how many
@@ -2232,8 +2233,8 @@ Polestar_Nav.toc        LoadOnDemand, Dependencies: Polestar
   API.lua               Polestar_NavEngine = the Path table, plus Available(map); the memory ceilings
 ```
 
-**Memory.** Loaded, the packed maps (format 2, all three) are about 34 MB of
-Lua strings (0.2.4's format 1 maps 28 MB; his own three maps were about 12 MB). A search decodes the clusters (ADT tiles) it
+**Memory.** The packed maps (format 2, all three) are 33.3 MB of files; loaded,
+the Lua heap holds about 34 MB (0.2.4's format 1 maps 28 MB; his own three maps were about 12 MB). A search decodes the clusters (ADT tiles) it
 crosses: by the engine's own accounting (`PathGrid.lua` gridSize, an upper
 bound) about 3.3 MB a cluster on average: 15.8 MB for Kharanos to
 Thelsamar (6 clusters), 28.5 MB for Razor Hill to the Valley of Strength
@@ -2372,16 +2373,22 @@ and re-pack.
 order (`tests/lua/stub_encoding.lua` decodes them), drives `Path.Find` and
 `Path.FindMany` with the frame pump in hand, and answers one JSON line per
 query (cost, the router's yards and hubs when it gives them, points, cold
-and warm milliseconds, Lua memory). `run.js` resolves the route corpus
+and warm milliseconds, Lua memory; an error reported through the client's
+error handler during a query fails that query, and the next starts clean).
+`run.js` resolves the route corpus
 (`routes.json`: 0.2.4's measured routes, the #98 reports, hostile-hub,
 road, building and slope routes; zone-map ends through `map-frames.json`)
 and, with `--sweep`, one FindMany per zone with located guide goals and
 per side, from the zone's flight master; `metrics.js` measures each drawn
 line (the share our grid at `data/local/nav3` cannot walk straight, as
-0.2.4's maps were measured; the steepest climb; off-road share, yards in
-hostile hubs and indoor yards from `data/local/nav-layers` once built);
+0.2.4's maps were measured; the steepest climb; off-road share and yards in
+hostile hubs from `data/local/nav-layers` once built; indoor yards, and
+whether an end lies indoors, from the `FLAG.INDOOR` surfaces of the grid at
+`data/local/nav4`, the capitals apart as the packer's indoor city class);
 `compare.js` judges a candidate folder against `--baseline` (a folder, or
-an earlier `--out` report) on the acceptance checks A1-A8.
+an earlier `--out` report) on the acceptance checks A1-A8. A5 holds every
+route found with both ends outdoors to no indoor yards and lists each one
+that has some, for a person to judge whether it is the only way (a tunnel).
 
 **Licence.** The folder is GPL-3.0-or-later with his copyright (`LICENSE`,
 `CREDITS.md`). It is code and data of a GPL program, not reference data:

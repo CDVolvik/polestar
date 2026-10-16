@@ -4,8 +4,9 @@
 //
 //   metrics(result, { grid, layers, map }) -> null when not ok, else
 //     { yards, seconds, blocked, offRoad, hubYards: { Alliance, Horde }, hubYardsAway: { Alliance, Horde },
-//       endHubs: { Alliance: [name], Horde: [name] }, maxClimbDeg, indoorYards }
-//   loadLayers(dir = data/local/nav-layers) -> { roads, hubs } (each null when not built)
+//       endHubs: { Alliance: [name], Horde: [name] }, maxClimbDeg, indoorYards, endIndoor }
+//   loadLayers(dir = data/local/nav-layers, { indoorGrid, city }) -> { roads, hubs, indoor } (each null when not built)
+//   indoorLayer(grid, city?) -> indoor(c, x, y, z): true | false | null (no surface there)
 //
 // yards: the router's own (job.yards) when it gives them, else the drawn
 // line's length (flat); seconds: cost / 7 (cost is in running yards, 7 yd/s).
@@ -25,13 +26,13 @@
 // disks: [[x, y, r]] }]); hubYardsAway: the same without the hubs an end
 // of the line lies in (endHubs, per side the names of those hubs hostile to
 // it: a route to a town of the other side enters it on purpose); indoorYards: yards on indoor ground
-// (layers.indoor(c, x, y, z) -> bool, from the ground classes). Each null
-// until its layer exists.
+// (layers.indoor(c, x, y, z) -> bool, indoorLayer); endIndoor: an end of the line lies on indoor ground (a route
+// that goes inside on purpose). Each null until its layer exists.
 
 const fs = require('node:fs');
 const path = require('node:path');
 const { ROOT } = require('../../paths');
-const { cellOf, tileKey, TILE_CELLS, CELL } = require('../grid/format');
+const { cellOf, tileKey, TILE_CELLS, CELL, FLAG } = require('../grid/format');
 
 const LAYERS = path.join(ROOT, 'data', 'local', 'nav-layers');
 const RUN = 7; // yd/s: a cost in running yards over seconds
@@ -154,12 +155,14 @@ function metrics(result, { grid = null, layers = {}, map = result.map } = {}) {
 		}
 	}
 	let indoorYards = null;
+	let endIndoor = null;
 	if (layers.indoor) {
 		indoorYards = 0;
 		along(pts, (x, y, z, L) => {
 			if (layers.indoor(map, x, y, z)) indoorYards += L;
 		});
 		indoorYards = +indoorYards.toFixed(1);
+		endIndoor = (pts.length ? [pts[0], pts[pts.length - 1]] : []).some((p) => !!layers.indoor(map, p[0], p[1], p[2]));
 	}
 	return {
 		yards: +(typeof result.yards === 'number' ? result.yards : drawn).toFixed(1),
@@ -171,11 +174,40 @@ function metrics(result, { grid = null, layers = {}, map = result.map } = {}) {
 		endHubs,
 		maxClimbDeg: maxClimb(pts),
 		indoorYards,
+		endIndoor,
 	};
 }
 
-// The ground layers under data/local/nav-layers, null where not built yet.
-function loadLayers(dir = LAYERS) {
+// The indoor layer from a grid (an openNav: tile(c, col, row) -> { first, z, flags, areas }), as the packer's indoor
+// class (pack.js nodeClass): a point is indoors when its column's walkable surface nearest its height (the highest
+// without one) is FLAG.INDOOR, unless its chunk lies in a capital (city(c, x, y, areaId), pack.js cityTest: a
+// capital's interiors are its streets, the indoor city class, no building cut through). null where the column holds
+// no walkable surface.
+function indoorLayer(grid, city = () => false) {
+	return (c, x, y, z) => {
+		const { col, row, i, j } = cellOf(x, y);
+		const t = grid.tile(c, col, row);
+		if (!t) return null;
+		const k = j * TILE_CELLS + i;
+		let best = -1;
+		let bestDz = Infinity;
+		for (let e = t.first[k]; e < t.first[k + 1]; e++) {
+			if (t.flags[e] & FLAG.BLOCKED) continue;
+			const dz = z === null || z === undefined ? -t.z[e] : Math.abs(t.z[e] - z);
+			if (dz < bestDz) {
+				best = e;
+				bestDz = dz;
+			}
+		}
+		if (best < 0) return null;
+		if (!(t.flags[best] & FLAG.INDOOR)) return false;
+		return !city(c, x, y, t.areas ? t.areas[(j >> 4) * 16 + (i >> 4)] : 0);
+	};
+}
+
+// The ground layers under data/local/nav-layers, null where not built yet; indoor from indoorGrid (an openNav of
+// the current grid) when given, capitals by city (indoorLayer).
+function loadLayers(dir = LAYERS, { indoorGrid = null, city } = {}) {
 	const roadsDir = path.join(dir, 'roads');
 	let roads = null;
 	if (fs.existsSync(roadsDir)) {
@@ -193,7 +225,7 @@ function loadLayers(dir = LAYERS) {
 	}
 	const hubsFile = path.join(dir, 'hubs.json');
 	const hubs = fs.existsSync(hubsFile) ? JSON.parse(fs.readFileSync(hubsFile, 'utf8')) : null;
-	return { roads, hubs, indoor: null };
+	return { roads, hubs, indoor: indoorGrid ? indoorLayer(indoorGrid, city) : null };
 }
 
-module.exports = { metrics, loadLayers, lineLength, blockedShare, maxClimb };
+module.exports = { metrics, loadLayers, indoorLayer, lineLength, blockedShare, maxClimb };
