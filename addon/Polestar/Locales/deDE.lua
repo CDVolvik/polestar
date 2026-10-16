@@ -909,8 +909,8 @@ L["Close the game menu to see Polestar's settings (it cannot be closed for you i
 -- L["The skin's font (the default: the game's own, Fira Sans in Halo), the game's, Inter, Fira Sans, or EllesmereUI's."] = ""
 -- L["The skin's font"] = ""
 -- L["Skin"] = ""
--- L["Polestar's own look (the default), Halo (no frame, a soft dark veil, Fira Sans) or Blizzard (the game's own frames, buttons and font). Style, compact mode and the colours you pick work in each."] = ""
 -- L["The skin's arrow"] = ""
+-- L["Polestar's own look (the default), Halo (no frame, a soft dark veil, Fira Sans), Hearth (warm game colours), or the game's own art: WoW Forever, Blizzard and Classic. Style, compact mode and the colours you pick work in each."] = ""
 
 -- UI/Dungeons.lua
 L["Ready to turn in"] = "Bereit zur Abgabe"
@@ -1735,6 +1735,9 @@ L["Take"] = "Nimm"
 -- Theme/Theme.lua
 -- L["Halo"] = ""
 -- L["Blizzard"] = ""
+-- L["Hearth"] = ""
+-- L["WoW Forever"] = ""
+-- L["Classic"] = ""
 
 -- No longer in the code (its English changed or it went away): reuse or delete.
 -- L["The arrow's target and the areas it spawns in."] = "Das Ziel des Pfeils und die Gebiete, in denen es spawnt."

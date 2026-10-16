@@ -85,6 +85,8 @@ local function build()
 	f:SetClampedToScreen(true)
 	f:EnableMouse(true)
 	f:SetPoint("TOP", UIParent, "TOP", 0, DEFAULT_Y)
+	-- A toast: the game's looks give it the guide window's light frame.
+	f.psLight = true
 	Theme.Skin(f, "window")
 
 	f.Ring = W.Tex(f, "ARTWORK", "qol-ring", "place")
@@ -95,8 +97,8 @@ local function build()
 	f.Glyph:SetPoint("CENTER", f.Ring, "CENTER", 0, 0)
 
 	-- In the skins (DIRECTION_B_HALO.md §3, DIRECTION_A_BLIZZARD.md §5): Halo's
-	-- 30-unit ring in the accent, Blizzard's 32-unit ring edged #C79C3E and
-	-- its title in gold.
+	-- 30-unit ring in the accent; Hearth's and the game's looks' 32-unit ring
+	-- edged #C79C3E, their title in gold.
 	W.Painter(f.Ring, function(t)
 		local skin = Theme.SkinKey()
 		if skin == "polestar" then

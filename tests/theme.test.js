@@ -431,7 +431,7 @@ test('W.Link: an address in the accent with no box; under the cursor the text co
 
 // The skins (Theme.lua, "Skins"): the handoff's tokens as given, their fonts,
 // sizes and glyphs, and a window repainted from one skin to the next and back.
-test('skins: Polestar by default; Halo and Blizzard bring their tokens, fonts, sizes and glyphs; your own accent still wins', () => {
+test('skins: Polestar by default; Halo and Hearth bring their tokens, fonts, sizes and glyphs; your own accent still wins', () => {
 	const [out] = run(`
 		local function c(name) return { T.Color(name) } end
 		local out = { key = T.SkinKey(), choices = {} }
@@ -447,7 +447,7 @@ test('skins: Polestar by default; Halo and Blizzard bring their tokens, fonts, s
 		Polestar.Set("ui.font", "inter")
 		out.haloInter = (T.FontSpec("body"))
 		Polestar.Set("ui.font", nil)
-		Polestar.Set("ui.skin", "blizzard")
+		Polestar.Set("ui.skin", "hearth")
 		out.bliz = { key = T.SkinKey(), title = c("title"), text = c("text"), success = c("success"), arrive = c("arrive"),
 			selected = c("selected"), row = T.Metric("row", 40), font = (T.FontSpec("body")), menuRow = T.Metric("menuRow", 26) }
 		Polestar.Set("ui.skin", "nonsense")
@@ -455,7 +455,7 @@ test('skins: Polestar by default; Halo and Blizzard bring their tokens, fonts, s
 		emit(out)`);
 	const r = (cs) => round(cs);
 	assert.equal(out.key, 'polestar');
-	assert.deepEqual(out.choices, ['polestar', 'halo', 'blizzard']);
+	assert.deepEqual(out.choices, ['polestar', 'halo', 'hearth', 'forever', 'blizzard', 'classic']);
 	assert.equal(out.houseRow, 40);
 	assert.equal(out.houseHero, 26, 'the house ladder is unchanged');
 	const h = out.halo;
@@ -478,7 +478,7 @@ test('skins: Polestar by default; Halo and Blizzard bring their tokens, fonts, s
 	assert.deepEqual(round(out.ownAccent).slice(0, 3), [0.2, 0.6, 1], 'your own accent wins in a skin');
 	assert.equal(out.haloInter, 'Interface\\AddOns\\Polestar\\Media\\Fonts\\Inter-Medium.ttf', 'a font picked by hand wins');
 	const b = out.bliz;
-	assert.equal(b.key, 'blizzard');
+	assert.equal(b.key, 'hearth');
 	assert.deepEqual(r(b.title), [1, 0.82, 0, 1], 'NORMAL_FONT_COLOR');
 	assert.deepEqual(r(b.text), [1, 1, 1, 1], 'HIGHLIGHT_FONT_COLOR');
 	assert.deepEqual(r(b.success), [0.118, 1, 0, 1], '#1EFF00');
@@ -490,7 +490,7 @@ test('skins: Polestar by default; Halo and Blizzard bring their tokens, fonts, s
 	assert.equal(out.unknown, 'polestar', 'an unknown skin is the house style');
 });
 
-test('skins: a window repaints from the house style to Halo (veil, no fill) to Blizzard (gradient) and back, live', () => {
+test('skins: a window repaints from the house style to Halo (veil, no fill) to Hearth (gradient) and back, live', () => {
 	const [out] = run(`
 		-- A window of Polestar's own (frames a test makes stand for the game's).
 		Polestar.UI.ShowOptions()
@@ -506,7 +506,7 @@ test('skins: a window repaints from the house style to Halo (veil, no fill) to B
 		local v = f.psSkin.veil
 		local _, _, _, a = v.parts[5]:GetVertexColor()
 		out.veilAlpha = a
-		Polestar.Set("ui.skin", "blizzard")
+		Polestar.Set("ui.skin", "hearth")
 		out.bliz = state()
 		Polestar.Set("ui.skin", "polestar")
 		out.back = state()
@@ -516,4 +516,49 @@ test('skins: a window repaints from the house style to Halo (veil, no fill) to B
 	assert.equal(Math.round(out.veilAlpha * 100) / 100, 0.84, 'the big windows\' veil');
 	assert.deepEqual({ bg: out.bliz.bg, veil: out.bliz.veil }, { bg: true, veil: false });
 	assert.deepEqual(out.back, out.house, 'back to the house style, as it was');
+});
+
+// The game's looks (Theme/GameSkins.lua): each draws its own art source, and
+// a window taken through all three comes back to the house style as it was.
+test("skins: WoW Forever draws the client's atlas, Blizzard the retail sheet, Classic the vanilla dialog; a window goes through them and back", () => {
+	const [out] = run(`
+		Polestar.UI.ShowOptions()
+		local f = PolestarOptions
+		local function state()
+			local d = f.psSkin
+			return { bg = d.bg ~= nil and d.bg:IsShown(), veil = d.veil ~= nil and d.veil:IsShown(),
+				border = f.psBorder ~= nil and f.psBorder[1]:IsShown(), shadow = f.psShadow ~= nil and f.psShadow:IsShown(),
+				metal = d.kit ~= nil and d.kit.metal ~= nil and d.kit.metal[1]:IsShown() or false,
+				dialog = d.kit ~= nil and d.kit.dialog ~= nil and d.kit.dialog:IsShown() or false }
+		end
+		local out = { house = state() }
+		Polestar.Set("ui.skin", "forever")
+		out.forever = state()
+		out.foreverCorner = f.psSkin.kit.metal[1].texture
+		out.title = f.psSkin.kit.title:GetText()
+		out.game = T.GameSkin()
+		Polestar.Set("ui.skin", "blizzard")
+		out.blizzard = state()
+		out.blizzardCorner = f.psSkin.kit.metal[1].texture
+		Polestar.Set("ui.skin", "classic")
+		out.classic = state()
+		out.classicEdge = f.psSkin.kit.dialog.backdrop and f.psSkin.kit.dialog.backdrop.edgeFile
+		Polestar.Set("ui.skin", "polestar")
+		out.back = state()
+		out.houseGame = T.GameSkin()
+		emit(out)`, {
+		before: `C_Texture = { GetAtlasInfo = function(name)
+			return { file = "atlas:" .. name, leftTexCoord = 0, rightTexCoord = 1, topTexCoord = 0, bottomTexCoord = 1, width = 95, height = 95 }
+		end }`,
+	});
+	assert.equal(out.foreverCorner, 'atlas:UI-Frame-Metal-CornerTopLeft', "Forever: the client's own art for the atlas");
+	assert.equal(out.title, 'Polestar', 'the title on the metal bar');
+	assert.equal(out.game, true);
+	assert.equal(out.blizzardCorner, 2406979, 'Blizzard: the retail sheet by file ID (Theme/GameArt.lua)');
+	assert.equal(out.forever.metal, true);
+	assert.equal(out.blizzard.metal, true);
+	assert.deepEqual({ metal: out.classic.metal, dialog: out.classic.dialog }, { metal: false, dialog: true }, 'Classic: the dialog box, no metal');
+	assert.equal(out.classicEdge, 'Interface\\DialogFrame\\UI-DialogBox-Border');
+	assert.deepEqual(out.back, out.house, 'back to the house style, as it was');
+	assert.equal(out.houseGame, false);
 });

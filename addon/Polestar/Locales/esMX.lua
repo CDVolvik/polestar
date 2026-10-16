@@ -819,6 +819,9 @@ L["Night"] = "Noche"
 L["Graphite"] = "Grafito"
 -- L["Halo"] = ""
 -- L["Blizzard"] = ""
+-- L["Hearth"] = ""
+-- L["WoW Forever"] = ""
+-- L["Classic"] = ""
 
 -- Theme/Widgets.lua
 L["Click to copy"] = "Haz clic para copiar"
@@ -1364,8 +1367,8 @@ L["Keep the bottom edge in place, so longer steps extend the window up."] = "Man
 -- L["The skin's font (the default: the game's own, Fira Sans in Halo), the game's, Inter, Fira Sans, or EllesmereUI's."] = ""
 -- L["The skin's font"] = ""
 -- L["Skin"] = ""
--- L["Polestar's own look (the default), Halo (no frame, a soft dark veil, Fira Sans) or Blizzard (the game's own frames, buttons and font). Style, compact mode and the colours you pick work in each."] = ""
 -- L["The skin's arrow"] = ""
+-- L["Polestar's own look (the default), Halo (no frame, a soft dark veil, Fira Sans), Hearth (warm game colours), or the game's own art: WoW Forever, Blizzard and Classic. Style, compact mode and the colours you pick work in each."] = ""
 
 -- UI/Packs.lua
 L["turned off in the AddOns list"] = "desactivado en la lista de AddOns"

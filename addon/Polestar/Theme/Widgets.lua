@@ -260,8 +260,10 @@ local FRAMES = {
 	red = { top = { 0.541, 0.11, 0.063 }, bottom = { 0.259, 0.043, 0.02 }, edge = { 0.78, 0.612, 0.243 } },
 }
 local function iconFrame(b)
+	-- The game's looks draw their own plates, page arrows and close button.
+	Theme.KitIconButton(b)
 	local spec = FRAMES[rawget(b, "psFramed") or ""]
-	local bliz = Theme.SkinKey() == "blizzard" and spec ~= nil
+	local bliz = Theme.SkinKey() == "hearth" and spec ~= nil
 	local f = rawget(b, "psFrame")
 	if not f and bliz then
 		f = b:CreateTexture(nil, "BACKGROUND", nil, -6)
@@ -363,8 +365,9 @@ function W.Button(parent, text, onClick, opts)
 	W.Painter(b, function(self)
 		local icon = rawget(self, "Icon")
 		if not self.psHeight then self:SetHeight(Theme.Metric("buttonH", 28)) end
-		local bliz = Theme.SkinKey() == "blizzard"
-		if bliz and self.psPrimary and not self.psGhost then
+		-- Hearth's primary buttons, and every text button in the game's looks.
+		local bliz = Theme.GameSkin() and (self.psPrimary or Theme.Kit() ~= nil)
+		if bliz and not self.psGhost then
 			-- The game's red button, as the others: an edge of its own would read
 			-- as the gamepad's selection.
 			W.Color(self.Label, "buttonText")
@@ -696,9 +699,11 @@ end
 
 local CHECK_UP, CHECK_ON = "Interface\\Buttons\\UI-CheckBox-Up", "Interface\\Buttons\\UI-CheckBox-Check"
 
--- Blizzard's check box in place of the switch: true when it drew one.
+-- The game's check box in place of the switch: true when it drew one
+-- (Hearth the vanilla box, the game's looks their kit's).
 local function gameCheck(self, on)
-	local bliz = Theme.SkinKey() == "blizzard"
+	local game, kit = Theme.GameSkin(), Theme.Kit()
+	local bliz = game and not kit
 	local box = rawget(self, "psGameBox")
 	if bliz and not box then
 		box = self.Track:GetParent():CreateTexture(nil, "ARTWORK")
@@ -711,13 +716,19 @@ local function gameCheck(self, on)
 		box.Check = check
 		self.psGameBox = box
 	end
-	for i = 1, #self.Track.parts do self.Track.parts[i]:SetShown(not bliz) end
-	self.Knob:SetShown(not bliz)
+	for i = 1, #self.Track.parts do self.Track.parts[i]:SetShown(not game) end
+	self.Knob:SetShown(not game)
 	if box then
 		box:SetShown(bliz)
 		box.Check:SetShown(bliz and on)
 	end
-	return bliz
+	if kit then
+		Theme.KitCheck(self, self.Track:GetParent(), self.Track, on)
+	else
+		Theme.KitHide(self, "toggle")
+		Theme.KitHide(self, "toggleCheck")
+	end
+	return game
 end
 
 local function toggleRefresh(self)
@@ -844,13 +855,23 @@ end
 
 -- A slider's parts in the skin in use (rows and the guide window's own).
 function W.SkinSlider(self)
-	local bliz = Theme.SkinKey() == "blizzard"
+	local bliz = Theme.SkinKey() == "hearth"
 	local s = self.Slider
 	if self.psRow then
 		self:SetHeight(W.RowH())
 		s:SetWidth(Theme.Metric("sliderW", SLIDER_W))
 		self.Value:SetWidth(Theme.Metric("valueW", VALUE_W))
 	end
+	self.Thumb:SetTexCoord(0, 1, 0, 1)
+	if Theme.KitSlider(self, s, self.Thumb) then
+		-- The game's looks: their own track and thumb, the value in gold.
+		self.Track:Hide()
+		self.Fill:Hide()
+		if s.psBorder then for i = 1, 4 do s.psBorder[i]:Hide() end end
+		if self.Value then W.Color(self.Value, "accent") end
+		return
+	end
+	self.Track:Show()
 	if bliz then
 		self.Track:SetHeight(8)
 		self.Track:SetVertexColor(0, 0, 0, 1)
@@ -1124,12 +1145,15 @@ local function dropdownRefresh(self)
 	self:SetHeight(W.RowH())
 	local b = self.Button
 	b:SetSize(Theme.Metric("dropdownW", DROPDOWN_W), Theme.Metric("dropdownH", 28))
-	local bliz = Theme.SkinKey() == "blizzard"
+	local bliz = Theme.GameSkin()
 	local size = bliz and 22 or Theme.Metric("chevron", 12)
 	b.Arrow:SetTexture(bliz and DROPDOWN_ARROW or Theme.Media("chevron-down"))
+	b.Arrow:SetTexCoord(0, 1, 0, 1)
 	b.Arrow:SetSize(size, size)
+	-- The game's looks: their own arrow button.
+	Theme.KitDropArrow(b.Arrow)
 	b.Arrow:ClearAllPoints()
-	b.Arrow:SetPoint("RIGHT", b, "RIGHT", bliz and 0 or -Theme.Metric("chevronInset", 9), 0)
+	b.Arrow:SetPoint("RIGHT", b, "RIGHT", bliz and (Theme.Kit() and -3 or 0) or -Theme.Metric("chevronInset", 9), 0)
 	if bliz then W.Uncolor(b.Arrow); b.Arrow:SetVertexColor(1, 1, 1, 1) else W.Color(b.Arrow, "textDim") end
 	dimRow(self, W.Enabled(self))
 end
@@ -1637,6 +1661,11 @@ function W.ShellNav(f, items, active, onSelect)
 		if item.dot then b.Count:Hide() end
 		b.Selected:SetShown(on)
 		b.Bar:SetShown(on)
+		-- The game's looks mark the row with their own selection art.
+		if Theme.KitRowLit(b, on, "navLit", 6) then
+			b.Selected:Hide()
+			b.Bar:Hide()
+		end
 		W.Color(b.Label, on and "text" or (empty and "textMuted" or "textDim"))
 		W.Color(b.Icon, on and "accent" or (empty and "textMuted" or "textDim"))
 		b:SetAlpha((empty and not on) and 0.55 or 1)

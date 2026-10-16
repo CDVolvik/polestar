@@ -162,6 +162,9 @@ L["Night"] = "Nuit"
 L["Graphite"] = "Graphite"
 L["Halo"] = "Halo"
 L["Blizzard"] = "Blizzard"
+L["Hearth"] = "Âtre"
+L["WoW Forever"] = "WoW Forever"
+L["Classic"] = "Classique"
 
 -- Theme/Widgets.lua
 L["Click to copy"] = "Cliquez pour copier"
@@ -1566,8 +1569,8 @@ L["This translation was made with AI. Help improve it on Discord."] = "Cette tra
 L["The skin's font (the default: the game's own, Fira Sans in Halo), the game's, Inter, Fira Sans, or EllesmereUI's."] = "La police de la peau (par défaut : celle du jeu, Fira Sans en Halo), celle du jeu, Inter, Fira Sans ou celle d'EllesmereUI."
 L["The skin's font"] = "La police de la peau"
 L["Skin"] = "Peau"
-L["Polestar's own look (the default), Halo (no frame, a soft dark veil, Fira Sans) or Blizzard (the game's own frames, buttons and font). Style, compact mode and the colours you pick work in each."] = "L'apparence de Polestar (par défaut), Halo (sans cadre, un voile sombre aux bords adoucis, Fira Sans) ou Blizzard (les cadres, les boutons et la police du jeu). Le style, le mode compact et les couleurs que vous choisissez s'appliquent à chacune."
 L["The skin's arrow"] = "La flèche de la peau"
+L["Polestar's own look (the default), Halo (no frame, a soft dark veil, Fira Sans), Hearth (warm game colours), or the game's own art: WoW Forever, Blizzard and Classic. Style, compact mode and the colours you pick work in each."] = "L'apparence de Polestar (par défaut), Halo (sans cadre, un voile sombre aux bords adoucis, Fira Sans), Âtre (les couleurs chaudes du jeu), ou les graphismes du jeu : WoW Forever, Blizzard et Classique. Le style, le mode compact et les couleurs que vous choisissez s'appliquent à chacune."
 
 -- Rares/Rares.lua
 L["Raid warning"] = "Avertissement de raid"

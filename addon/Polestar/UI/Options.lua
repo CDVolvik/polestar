@@ -148,7 +148,7 @@ end
 O.ResetPositions = resetPositions
 
 local function borderOff() return not ns.Get("ui.border") end
--- Settings of the house style alone: the Halo and Blizzard skins bring their own grounds,
+-- Settings of the house style alone: every other skin brings its own grounds,
 -- no starlit band and no drop shadow (Theme.lua, "Skins").
 local function houseOnly() return Theme.SkinKey() ~= "polestar" end
 local function px(v) return string.format(L["%d px"], floor(v + 0.5)) end
@@ -288,7 +288,7 @@ local BUILTIN = {
 	} },
 	{ page = LOOK, tab = L["Windows"], section = L["Frame"], controls = {
 		{ kind = "dropdown", key = "ui.skin", label = L["Skin"],
-			help = L["Polestar's own look (the default), Halo (no frame, a soft dark veil, Fira Sans) or Blizzard (the game's own frames, buttons and font). Style, compact mode and the colours you pick work in each."],
+			help = L["Polestar's own look (the default), Halo (no frame, a soft dark veil, Fira Sans), Hearth (warm game colours), or the game's own art: WoW Forever, Blizzard and Classic. Style, compact mode and the colours you pick work in each."],
 			choices = function()
 				local list = {}
 				for i, c in ipairs(Theme.SkinChoices()) do list[i] = { value = c.value, label = c.text } end
@@ -320,7 +320,7 @@ local BUILTIN = {
 	} },
 	{ page = LOOK, tab = L["Arrow"], section = L["Arrow"], controls = {
 		H({ kind = "dropdown", key = "nav.arrowStyle", label = L["Arrow style"], choices = { { value = "skin", label = L["The skin's arrow"] }, { value = "3d", label = L["3D"] }, { value = "flat", label = L["Flat"] },
-			{ value = "halo", label = L["Halo"] }, { value = "blizzard", label = L["Blizzard"] } } }),
+			{ value = "halo", label = L["Halo"] }, { value = "hearth", label = L["Hearth"] } } }),
 		H({ kind = "slider", key = "nav.arrowScale", label = L["Arrow scale"], min = 0.5, max = 2, step = 0.05, format = percent }),
 		H({ kind = "slider", key = "nav.arrowAlpha", label = L["Arrow opacity"], min = 0.2, max = 1, step = 0.05, format = percent }),
 	} },

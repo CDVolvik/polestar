@@ -14,15 +14,16 @@
 -- ink "mover" wash. No colour literals.
 --
 -- Styles (nav.arrowStyle; "skin", the default, takes the skin's: 3D in the
--- house style, the Halo or Blizzard dart in those skins):
+-- house style, the Halo dart in Halo, the Hearth dart in Hearth and the
+-- game's looks):
 --   "3d"   a pre-rendered arrow lying on the ground in front of you: one
 --          sprite-sheet frame per heading (tools/media/nav/arrow3d.js), the
 --          body tinted with SetVertexColor and an untinted specular sheet
 --          added on top; the heading picks the frame
 --   "flat" a faceted dart rotated with SetRotation
---   "halo", "blizzard"  the skins' darts (DIRECTION_B_HALO.md §3,
+--   "halo", "hearth"  the skins' darts (DIRECTION_B_HALO.md §3,
 --          DIRECTION_A_BLIZZARD.md §5; tools/media/skins.js): a 54-unit dart
---          with a dark 2-unit edge, rotated; Halo's in the accent, Blizzard's
+--          with a dark 2-unit edge, rotated; Halo's in the accent, Hearth's
 --          gold gradient baked in; both turn to the arrival colour within
 --          40 m. Arrival: a 48-unit ring (stroke 3), then a check (stroke 5).
 --
@@ -52,12 +53,12 @@ local SPRITE = DIAL * 1.5
 ns.RegisterDefaults("nav", { arrowStyle = "skin" })
 
 -- The style a skin's arrow takes ("skin" in nav.arrowStyle).
-local SKIN_ARROW = { polestar = "3d", halo = "halo", blizzard = "blizzard" }
+local SKIN_ARROW = { polestar = "3d", halo = "halo", hearth = "hearth", forever = "hearth", blizzard = "hearth", classic = "hearth" }
 local DART = 54          -- the skins' dart, in the 64-unit dial
 local DART_NEAR = 43.7   -- 40 m, in yards: the skins' darts turn to the arrival colour
 local SKIN_RING = 48     -- the skins' arrival ring
--- The darts' dark edge: Halo #17130E (near #0B1A0C), Blizzard #2A1A00.
-local EDGE = { halo = { 0.09, 0.075, 0.055 }, haloNear = { 0.043, 0.102, 0.047 }, blizzard = { 0.165, 0.102, 0 } }
+-- The darts' dark edge: Halo #17130E (near #0B1A0C), Hearth #2A1A00.
+local EDGE = { halo = { 0.09, 0.075, 0.055 }, haloNear = { 0.043, 0.102, 0.047 }, hearth = { 0.165, 0.102, 0 } }
 
 -- Sheet frame for a heading (radians, counter-clockwise, 0 = straight ahead):
 -- frame i shows the arrow turned i * 360 / FRAMES degrees.
@@ -224,7 +225,7 @@ local function etaColor()
 	etaText:SetTextColor(r, g, b, 0.8)
 end
 
-local function skinStyle() return style == "halo" or style == "blizzard" end
+local function skinStyle() return style == "halo" or style == "hearth" end
 
 local function setRotation(a)
 	if skinStyle() then
@@ -341,13 +342,13 @@ local function tint(r, g, b)
 	glow:SetVertexColor(r, g, b, 0.45)
 	sheet:SetVertexColor(r, g, b, 1)
 	if skinStyle() then
-		-- Blizzard's far dart is its baked gold, unless the player picked
+		-- Hearth's far dart is its baked gold, unless the player picked
 		-- their own arrow colour; up close (and Halo's always) it is tinted.
 		local own = type(ns.Get("nav.arrowColor")) == "table"
-		local gold = style == "blizzard" and not nearShown and not own
+		local gold = style == "hearth" and not nearShown and not own
 		dart:SetTexture(UI_DIR .. (gold and "dart-gold" or "dart"))
 		if gold then dart:SetVertexColor(1, 1, 1, 1) else dart:SetVertexColor(r, g, b, 1) end
-		local e = EDGE[style == "halo" and (nearShown and "haloNear" or "halo") or "blizzard"]
+		local e = EDGE[style == "halo" and (nearShown and "haloNear" or "halo") or "hearth"]
 		dartEdge:SetVertexColor(e[1], e[2], e[3], 1)
 	end
 end
@@ -583,7 +584,7 @@ function Arrow.StyleFor(v)
 		local Theme = ns.Theme
 		return SKIN_ARROW[Theme and Theme.SkinKey and Theme.SkinKey() or "polestar"] or "3d"
 	end
-	if v == "flat" or v == "halo" or v == "blizzard" then return v end
+	if v == "flat" or v == "halo" or v == "hearth" then return v end
 	return "3d"
 end
 

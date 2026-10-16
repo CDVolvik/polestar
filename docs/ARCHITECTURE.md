@@ -1170,10 +1170,13 @@ Polestar.Theme.FontKey() -> "game" | "inter" | "fira"   -- ui.font, "skin" resol
 ```
 
 **Skins** (`ui.skin`, Appearance > Windows > Frame): `polestar`, the house
-style everything below describes (the default), and the two directions of the
+style everything below describes (the default); the two directions of the
 design handoff, `halo` (Forever · Halo: no frame, a dark veil with soft edges,
-an off-white ladder, the game's gold, Fira Sans) and `blizzard` (Forever ·
-Blizzard: the client's own frames and textures, its font and text colours). A
+an off-white ladder, the game's gold, Fira Sans) and `hearth` (Forever ·
+Hearth: warm game colours, a brown gradient window, the client's buttons, font
+and text colours); and the game's own looks, `forever`, `blizzard` and
+`classic` (below). `Theme.GameSkin()` is true for Hearth and the game's looks:
+the client's check boxes, sliders and red buttons, its font and hard shadow. A
 skin brings:
 - its palette (`Theme.SKIN_PALETTES`: the handoff's tokens as given, washes
   included); the scheme, ground colour, brightness, band and shadow are the
@@ -1185,21 +1188,48 @@ skin brings:
   `iconHover`, `buttonText`, `personName`, `tabRest`) exist in the house
   style too, as their house equivalents;
 - its paints (`Theme.SKIN_PAINT`, falling back to the house paint): Halo's
-  veil (Media/UI/veil-soft, nine slices laid 24 units out); Blizzard's flat
+  veil (Media/UI/veil-soft, nine slices laid 24 units out); Hearth's flat
   brown gradient windows edged by the window border setting (a #5C4518
   hairline by default; no game frame) and the game's `UI-Panel-Button-*`. A
   frame painted in another skin is cleared first, so a switch and back leaves it
   as it was;
 - its fonts (`ui.font` "skin", the default: the game's in the house style and
-  Blizzard, Fira Sans in Halo), its type sizes and text shadow;
+  Hearth and the game's looks, Fira Sans in Halo), its type sizes and text shadow;
 - its sizes (`Theme.Metric`): setting rows, buttons, menus, dropdowns,
   sliders, the guide window (`readMetrics` / `GF.ApplySkin`), the shell
   (`W.SHELL` reads them) and the guide menu. The big windows take them as they
   are built.
 
 The arrow follows the skin (`nav.arrowStyle` "skin", the default: 3D in the
-house style, the `halo` and `blizzard` darts otherwise; Nav/Arrow.lua). The
-skins' textures are drawn by `tools/media/skins.js`.
+house style, the `halo` dart in Halo, the `hearth` dart in Hearth and the
+game's looks; Nav/Arrow.lua). The skins' textures are drawn by
+`tools/media/skins.js`.
+
+**The game's looks** (Theme/GameSkins.lua) draw Polestar in the client's art,
+the three looks EllesmereUI offers on the Forever client (its visual spec
+only; nothing of that addon is used). Each is a kit of parts by role
+(`Theme.KITS`), drawn by `Theme.Kit*` helpers the widgets and the guide window
+call, and kept in `frame.psSkin.kit` so a skin change hides them:
+- `forever` (WoW Forever): atlas elements by name; the Forever client draws
+  its own art for them. The micro menu box's bronze line round the guide
+  window and the toasts (`psLight`), the heavy bronze metal round the big
+  windows (laid outside them, the title on its bar), the quest tracker's header
+  rods behind the focus, tertiary plates under icon buttons, list cards, the
+  options tabs, minimal check boxes and sliders, the 128 red buttons.
+- `blizzard` (Blizzard Style): the same elements in their retail art, which
+  still ships with the client but which SetAtlas does not draw there: by file
+  ID and coordinates from `Theme/GameArt.lua`, generated from the client's
+  atlas tables by `node tools/polestar.js media game-art`
+  (tools/media/game-art.js). No frame round the guide window (a black body
+  under a 20-unit fade, the damage meter's header bar under the tabs), the
+  retail metal round the big windows.
+- `classic` (Classic WoW UI): the vanilla files. The tooltip tile under the
+  chat tab's 5-unit rim round the guide window, the dialog box and its header
+  plate round the big windows (BackdropTemplate), tooltip borders on panels,
+  the panel buttons, `UI-CheckBox-*`, the slider bar, the option tabs, the
+  cast bar's frame round the progress bar.
+
+No client art is copied into the addon; the kits name files and atlases.
 
 **Colour schemes** (`ui.scheme`, `Theme.SCHEMES`): Dusk (default: Night's
 navy lifted to dusk), Night (the original deep navy-black, values unchanged),

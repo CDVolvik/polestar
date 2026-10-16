@@ -142,12 +142,17 @@ local function hex(s, a)
 end
 Theme.HexColor = hex
 
--- Skins (ui.skin): "polestar", the house style above (the default), and
--- the two directions of the design handoff (docs/ARCHITECTURE.md, "Skins"):
+-- Skins (ui.skin): "polestar", the house style above (the default), the
+-- two directions of the design handoff, and the game's own looks
+-- (docs/ARCHITECTURE.md, "Skins"):
 --   "halo"      Forever · Halo: no frame, a dark veil with soft edges under
 --               the text, an off-white ladder, the game's gold, Fira Sans
---   "blizzard"  Forever · Blizzard: Polestar as one of the game's windows,
---               the client's gold frames, red buttons, font and text colours
+--   "hearth"    Forever · Hearth: Polestar in warm game colours, a brown
+--               gradient window, the client's red buttons, font and text
+--               colours
+--   "forever", "blizzard", "classic"   the client's own art: WoW Forever's,
+--               the retail art (Blizzard Style) and the vanilla files
+--               (Theme/GameSkins.lua draws them)
 -- A skin brings its whole palette, its fonts, its frame paints and its sizes.
 -- The colour scheme, ground colour and brightness belong to the house style;
 -- the player's own accent, window border and arrow colours win in every skin.
@@ -176,7 +181,7 @@ local SKIN_PALETTES = {
 		link = hex("8CCBFF"), npc = hex("8CCBFF"), quest = hex("FFE07A"), place = hex("F5AD85"),
 		rare = hex("FF8052"), dungeon = hex("A385FF"), discord = hex("5865F2"),
 	},
-	blizzard = {
+	hearth = {
 		bg = hex("1E170D", 0.95), bgBottom = hex("090704", 0.95), panel = hex("000000", 0.92), panelAlt = hex("000000"),
 		sidebar = hex("000000", 0.3), footer = hex("000000", 0), sky = hex("2C200C"), skyBottom = hex("150F06"),
 		text = hex("FFFFFF"), textDim = hex("CCCCCC"), textMuted = hex("9D9D9D"), textOff = hex("808080"),
@@ -198,8 +203,39 @@ local SKIN_PALETTES = {
 		link = hex("FFD100"), npc = hex("FFFFFF"), discord = hex("5865F2"),
 	},
 }
+
+-- The game's looks start from Hearth's game colours (white text, gold
+-- titles, the client's quality greens and oranges) with their own grounds,
+-- glyph tints and rules.
+local function gamePalette(over)
+	local p = {}
+	for k, v in pairs(SKIN_PALETTES.hearth) do p[k] = v end
+	for k, v in pairs(over) do p[k] = v end
+	return p
+end
+SKIN_PALETTES.forever = gamePalette({
+	bg = hex("000000", 0.96), bgBottom = hex("000000", 0.96), sidebar = hex("000000", 0.25),
+	textDim = hex("AE9D81"), tabRest = hex("AE9D81"), icon = hex("CEB282"), iconHover = hex("F2D199"),
+	separator = hex("AE9D81", 0.35), divider = hex("AE9D81", 0.35), accentLine = hex("AE9D81", 0.5),
+	border = hex("5C4A30"), windowEdge = hex("5C4A30"), hover = hex("FFD100", 0.1), selected = hex("FFD100", 0.14),
+})
+SKIN_PALETTES.blizzard = gamePalette({
+	bg = hex("000000", 0.96), bgBottom = hex("000000", 0.96), sidebar = hex("000000", 0.25),
+	icon = hex("E8E8E8"), iconHover = hex("FFFFFF"), tabRest = hex("B3B3B3"),
+	separator = hex("FFD100", 0.35), divider = hex("FFFFFF", 0.15), accentLine = hex("FFD100", 0.45),
+	border = hex("404040"), windowEdge = hex("404040"), hover = hex("FFFFFF", 0.08), selected = hex("FFD100", 0.14),
+})
+SKIN_PALETTES.classic = gamePalette({
+	bg = hex("101010", 0.85), bgBottom = hex("101010", 0.85), sidebar = hex("000000", 0),
+	icon = hex("FFD100"), iconHover = hex("FFFFFF"), tabRest = hex("FFD100"),
+	separator = hex("969696", 0.45), divider = hex("969696", 0.45), accentLine = hex("969696", 0.6),
+	border = hex("696969"), windowEdge = hex("696969"), hover = hex("FFFFFF", 0.08), selected = hex("FFD100", 0.14),
+})
 Theme.SKIN_PALETTES = SKIN_PALETTES
-Theme.SKIN_ORDER = { "polestar", "halo", "blizzard" }
+Theme.SKIN_ORDER = { "polestar", "halo", "hearth", "forever", "blizzard", "classic" }
+-- The skins drawn in game colours and controls (the client's check boxes,
+-- sliders, red buttons, the game font with its hard shadow).
+local GAME_SKINS = { hearth = true, forever = true, blizzard = true, classic = true }
 Theme.GROUNDS = { "bg", "panel", "panelAlt", "sidebar", "footer", "sky" }
 
 -- Alphas of the ink washes, by role.
@@ -444,11 +480,20 @@ function Theme.SkinKey()
 	return SKIN_PALETTES[k] and k or "polestar"
 end
 
+-- Whether the skin in use (or `key`) is drawn in the game's colours and
+-- controls: Hearth and the game's own looks.
+function Theme.GameSkin(key)
+	return GAME_SKINS[key or Theme.SkinKey()] or false
+end
+
 function Theme.SkinChoices()
 	return {
 		{ value = "polestar", text = ns.L["Polestar"] },
 		{ value = "halo", text = ns.L["Halo"] },
+		{ value = "hearth", text = ns.L["Hearth"] },
+		{ value = "forever", text = ns.L["WoW Forever"] },
 		{ value = "blizzard", text = ns.L["Blizzard"] },
+		{ value = "classic", text = ns.L["Classic"] },
 	}
 end
 
@@ -650,7 +695,8 @@ end
 
 -- Glyphs a skin draws its own way (DIRECTION_B_HALO.md §7: the report flag
 -- and the Nearby services house).
-local SKIN_ICON = { halo = { bug = "flag", ["icon-goto"] = "house" }, blizzard = { bug = "flag", ["icon-goto"] = "house" } }
+local GAME_ICON = { bug = "flag", ["icon-goto"] = "house" }
+local SKIN_ICON = { halo = GAME_ICON, hearth = GAME_ICON, forever = GAME_ICON, blizzard = GAME_ICON, classic = GAME_ICON }
 
 -- A glyph's name in the skin in use.
 function Theme.Icon(name)
@@ -757,13 +803,13 @@ local FAMILIES = { inter = FACES, fira = FIRA }
 
 -- The font a skin starts with (ui.font "skin", the default): the house
 -- style and Blizzard the game's own, Halo Fira Sans.
-local SKIN_FONT = { polestar = "game", halo = "fira", blizzard = "game" }
+local SKIN_FONT = { polestar = "game", halo = "fira", hearth = "game", forever = "game", blizzard = "game", classic = "game" }
 
 -- A skin's own sizes, where they differ from the ladder above (the handoff's
 -- typography: DIRECTION_B_HALO.md §2, the same in DIRECTION_A_BLIZZARD.md §2).
 local SKIN_ROLES = {
 	halo = { hero = { "semibold", 24 } },
-	blizzard = { hero = { "semibold", 24 } },
+	hearth = { hero = { "semibold", 24 } },
 }
 
 ---------------------------------------------------------------------------
@@ -784,7 +830,7 @@ local METRICS = {
 		guideIconBtnW = 24, guideIconBtnH = 22, guideIcon = 13, guideRow = 22, guideCheck = 16,
 		guideProgress = 3, guideGrip = 8, guideFoot = 17, guideUpRow = 20, guideUpToggle = 26, guideNavGap = 2,
 	},
-	blizzard = {
+	hearth = {
 		row = 28, menuRow = 22, menuPad = 6, menuWidth = 260, servicesWidth = 290,
 		buttonH = 22, buttonPad = 14, dropdownW = 170, dropdownH = 24, chevron = 10, chevronInset = 6,
 		sliderW = 120, valueW = 56, checkbox = 18,
@@ -795,6 +841,11 @@ local METRICS = {
 		guideProgress = 14, guideGrip = 8, guideFoot = 28, guideUpRow = 20, guideUpToggle = 26, guideNavGap = 4,
 	},
 }
+-- The game's looks take Hearth's sizes and type.
+for _, k in ipairs({ "forever", "blizzard", "classic" }) do
+	METRICS[k] = METRICS.hearth
+	SKIN_ROLES[k] = SKIN_ROLES.hearth
+end
 Theme.METRICS = METRICS
 
 function Theme.Metric(key, house)
@@ -841,7 +892,8 @@ local flat = setmetatable({}, { __mode = "k" }) -- fontString -> true: no drop s
 
 -- Text shadows: the house style's soft 1, -1; Halo's 1 down at 90 % black
 -- (DIRECTION_B_HALO.md §2); Blizzard's hard 1, -1 black, as the game's.
-local SKIN_SHADOW = { halo = { 0, -1, 0.9 }, blizzard = { 1, -1, 1 } }
+local HARD = { 1, -1, 1 }
+local SKIN_SHADOW = { halo = { 0, -1, 0.9 }, hearth = HARD, forever = HARD, blizzard = HARD, classic = HARD }
 
 local function paintShadow(fs)
 	if not fs.SetShadowOffset then return end
@@ -1254,9 +1306,25 @@ local function redButton(f)
 end
 
 -- Hide whatever another skin painted on a frame before this one paints it.
+local function hideAll(v)
+	if type(v) ~= "table" then return end
+	if v.Hide then v:Hide() return end
+	for _, x in pairs(v) do hideAll(x) end
+end
+
 local function clearSkin(f)
 	local d = f.psSkin
 	if d.bg then d.bg:Hide() end
+	if d.bg and d.kitFill then
+		-- A game look drew its own art in the fill: back to the house fill,
+		-- white over the whole frame, untiled.
+		d.bg:SetTexture(Theme.Media("white"))
+		d.bg:SetTexCoord(0, 1, 0, 1)
+		if d.bg.SetHorizTile then d.bg:SetHorizTile(false); d.bg:SetVertTile(false) end
+		d.bg:ClearAllPoints()
+		d.bg:SetAllPoints(f)
+		d.kitFill = nil
+	end
 	hideBorder(f)
 	if f.psShadow then f.psShadow:Hide() end
 	if d.veil then d.veil:Hide() end
@@ -1264,6 +1332,8 @@ local function clearSkin(f)
 	if d.red then for i = 1, 3 do d.red[i]:Hide() end; d.red.hl:Hide() end
 	if d.line then d.line:Hide() end
 	if d.hover then d.hover:SetVertexColor(1, 1, 1, 0) end
+	-- The game's looks (Theme/GameSkins.lua) keep their pieces here.
+	if d.kit then hideAll(d.kit) end
 end
 
 -- One 1-unit line along a frame's bottom edge (the dropdowns' accentLine).
@@ -1341,7 +1411,7 @@ local SKIN_PAINT = {
 			Theme.Border(d.box, Theme.Color("box"))
 		end,
 	},
-	blizzard = {
+	hearth = {
 		-- Flat windows (Yendi, after playing it): the handoff's brown gradient
 		-- without the game's metal frame, edged by the window border setting
 		-- in a brown hairline (#5C4518) unless the player picked their own.
@@ -1410,6 +1480,8 @@ local SKIN_PAINT = {
 	},
 }
 Theme.SKIN_PAINT = SKIN_PAINT
+-- The paint helpers Theme/GameSkins.lua builds the game's looks from.
+Theme.Paint = { fill = fill, hoverWash = hoverWash, bare = bare, hideBorder = hideBorder, redButton = redButton, house = HOUSE_PAINT }
 
 local function paint(frame, kind)
 	frame.psSkin = frame.psSkin or {}

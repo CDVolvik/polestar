@@ -383,9 +383,11 @@ local function paintRow(r, goal, pop, sameStep, current, noParty, noMissing)
 	if skipped then
 		W.Color(r.Icon, "textMuted", 0.8)
 	else
-		local gold = Theme.SkinKey() == "blizzard" and (goal.t == "accept" or goal.t == "turnin")
+		local gold = Theme.GameSkin() and (goal.t == "accept" or goal.t == "turnin")
 		W.Color(r.Icon, done and "success" or ((current or gold) and "accent" or "textDim"))
 	end
+	-- The game's looks light the goal to do now with their own art.
+	Theme.KitRowLit(r, current and not done and not skipped and not transparent())
 	r.Text:SetText(UI.GoalLine(goal))
 	-- White while it is to be done; done and skipped goals step back.
 	W.Color(r.Text, (done or skipped) and "textMuted" or "text")
@@ -1607,7 +1609,11 @@ function GF.ApplyStyle()
 	Theme.Repaint(F)
 	local skin = Theme.SkinKey()
 	band:SetShown(not clear and skin == "polestar")
-	nav.TitleBar:SetShown(not clear and skin == "blizzard")
+	nav.TitleBar:SetShown(not clear and skin == "hearth")
+	-- Blizzard's damage meter header bar under the tabs.
+	Theme.KitStrip(strip, not clear)
+	-- The quest tracker's header behind the focus (Forever, Blizzard).
+	Theme.KitHeader(person, not clear)
 	strip.Rule:SetShown(not clear)
 	nav.Rule:SetShown(not clear)
 	W.Painter(foot.Line.Track, paintTrack)
@@ -1740,9 +1746,11 @@ local APPLY = {
 
 local skinShown
 
--- Blizzard's tab: framed, gold on the active one (DIRECTION_A_BLIZZARD.md §3).
+-- Hearth's tab: framed, gold on the active one (DIRECTION_A_BLIZZARD.md §3);
+-- the game's looks: their kit's tab art.
 function GF.PaintTab(b)
-	local bliz = Theme.SkinKey() == "blizzard"
+	local kit = Theme.KitTab(b, b.psActive)
+	local bliz = Theme.SkinKey() == "hearth"
 	local f = rawget(b, "psFrameTex")
 	if bliz and not f then
 		f = b:CreateTexture(nil, "BACKGROUND", nil, -7)
@@ -1763,7 +1771,7 @@ function GF.PaintTab(b)
 			f:SetVertexColor(top[1], top[2], top[3], 1)
 		end
 	end
-	if bliz then
+	if bliz or kit then
 		b.Selected:Hide()
 		b.Bar:Hide()
 		W.Color(b.Label, b.psActive and "title" or "tabRest")
@@ -1799,7 +1807,9 @@ function GF.PaintStatus(frac, pctText)
 	if not b or not b:IsShown() then return end
 	b:SetValue(frac or 0)
 	local t = b:GetStatusBarTexture()
-	if t and t.SetGradient and CreateColor then
+	if Theme.Kit() then
+		-- The game's looks colour their own fill (Theme.KitStatus).
+	elseif t and t.SetGradient and CreateColor then
 		t:SetGradient("VERTICAL", CreateColor(0.478, 0.345, 0, 1), CreateColor(0.91, 0.722, 0, 1))
 	elseif t then
 		t:SetVertexColor(0.91, 0.722, 0, 1)
@@ -1842,20 +1852,23 @@ function GF.ApplySkin()
 	nav.Skip:SetHeight(nb)
 	nav.Steps:SetHeight(nb)
 	nav.Steps:SetPoint("LEFT", nav, "LEFT", PAD - 6, 0)
-	-- Rules: Halo's gold one under the navigator; Blizzard's title bar line.
+	-- Rules: Halo's gold one under the navigator; Hearth's title bar line; the
+	-- game's looks their separator.
 	W.Painter(nav.Rule, function(t)
 		local k = Theme.SkinKey()
 		if k == "halo" then
 			t:SetVertexColor(Theme.Color("accentLine"))
-		elseif k == "blizzard" then
+		elseif k == "hearth" then
 			t:SetVertexColor(Theme.Color("titleLine"))
+		elseif Theme.Kit() then
+			t:SetVertexColor(Theme.Color("separator"))
 		else
 			t:SetVertexColor(Theme.Wash("divider"))
 		end
 		t:SetHeight(Theme.Pixel(nav))
 	end)
-	-- Blizzard: the person's name over a gold separator.
-	person.Rule:SetShown(skin == "blizzard")
+	-- Hearth: the person's name over a gold separator.
+	person.Rule:SetShown(skin == "hearth")
 	-- The focus parts at the skin's paddings.
 	person.Icon:SetPoint("TOPLEFT", person, "TOPLEFT", PAD - 1, -11)
 	person.Name:SetPoint("TOPLEFT", person, "TOPLEFT", TEXT_X, -10)
@@ -1880,8 +1893,8 @@ function GF.ApplySkin()
 		r.Check:SetPoint("TOPRIGHT", r, "TOPRIGHT", -PAD + 3, -3)
 		Theme.Repaint(r.Check)
 	end
-	-- The progress bar.
-	local bliz = skin == "blizzard"
+	-- The progress bar: the game's status bar in Hearth and the game's looks.
+	local bliz = Theme.GameSkin()
 	foot.Line:SetHeight(3)
 	foot.Line:SetPoint("LEFT", foot, "LEFT", PAD, 0)
 	foot.Pct:SetPoint("RIGHT", foot, "RIGHT", -PAD, 0)
@@ -1890,10 +1903,23 @@ function GF.ApplySkin()
 	if bliz then
 		local b = footBar()
 		b:ClearAllPoints()
-		b:SetPoint("LEFT", foot, "LEFT", PAD, 0)
-		b:SetPoint("RIGHT", foot, "RIGHT", -PAD, 0)
-		b:SetHeight(14)
+		local inset = Theme.Kit() and 10 or 0
+		b:SetPoint("LEFT", foot, "LEFT", PAD + inset, 0)
+		b:SetPoint("RIGHT", foot, "RIGHT", -PAD - inset, 0)
+		b:SetHeight(Theme.Kit() and 12 or 14)
 		b:Show()
+		if Theme.KitStatus(b) then
+			b.psKitDrawn = true
+		elseif b.psKitDrawn then
+			-- Back from a game look: Hearth's bar as footBar made it.
+			b:SetStatusBarTexture(STATUS_BAR)
+			b:GetStatusBarTexture():SetTexCoord(0, 1, 0, 1)
+			b.Bg:SetTexture(Theme.Media("white"))
+			b.Bg:SetTexCoord(0, 1, 0, 1)
+			b.Bg:SetVertexColor(0, 0, 0, 0.75)
+			Theme.Border(b, 0.42, 0.329, 0.125, 1)
+			b.psKitDrawn = nil
+		end
 	elseif rawget(foot, "Status") then
 		foot.Status:Hide()
 	end

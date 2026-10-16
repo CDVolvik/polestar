@@ -80,6 +80,8 @@ local function build()
 	f:SetMovable(true)
 	f:EnableMouse(true)
 	f:RegisterForDrag("LeftButton")
+	-- A toast: the game's looks give it the guide window's light frame.
+	f.psLight = true
 	Theme.Skin(f, "window")
 
 	f.Band = Theme.Band(f, "BACKGROUND", -5)

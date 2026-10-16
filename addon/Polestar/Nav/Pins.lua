@@ -287,7 +287,7 @@ local function buildLook(f)
 	f.edge:Hide()
 end
 
--- In the Halo and Blizzard skins every glyph pin sits on a dark disc
+-- In every skin but the house style each glyph pin sits on a dark disc
 -- (DIRECTION_B_HALO.md, "Carte": a dark disc, the glyph in its subject's colour).
 local function skinDisc()
 	local T = ns.Theme
