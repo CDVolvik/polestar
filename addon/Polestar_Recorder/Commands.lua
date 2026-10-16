@@ -266,7 +266,7 @@ local function status()
 		.. (db.talents and L[", talents dumped"] or ""))
 	if s then
 		ns.Print(L["this session: %s"]:format(table.concat({
-			s.factions and "factions" or "-", s.skills and "skills" or "-", s.legacy and "legacy" or "-",
+			s.factions and L["factions"] or "-", s.skills and L["skills"] or "-", s.legacy and L["legacy"] or "-",
 		}, " ")))
 	end
 	ns.Print(L["commands: /psrec on | off | mark <text> | maps | talents | legacy | factions | skills | clear"])

@@ -38,3 +38,6 @@ local L = ns.L
 -- L["all recordings cleared; new session %s"] = ""
 -- L["this deletes every recorded session. Type |cffffd100/psrec clear confirm|r within %d seconds to proceed."] = ""
 -- L["unknown command: %s"] = ""
+-- L["factions"] = ""
+-- L["skills"] = ""
+-- L["legacy"] = ""

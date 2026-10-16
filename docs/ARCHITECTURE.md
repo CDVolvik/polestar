@@ -126,6 +126,7 @@ Messages:
 | `STEP_CHANGED` | stepIndex | Engine |
 | `STEP_UPDATED` | stepIndex | Engine (goal status/progress changed, same step); Names (names arrived) |
 | `NAMES_LOADED` | — | Names, when the names pack loads after a refusal in combat (the quest tracker reads its names again) |
+| `NAME_LEARNED` | kind ("npc" \| "object"), id | Names, when a name learned in play is new or changed (the Codex, Dungeons and ItemDB caches drop their copy) |
 | `STEP_SKIPPED` | fromStep, toStep or nil, `{ { quest, title, reason, text }, ... }` | Engine, active tab, just before `STEP_CHANGED`: the computed step moved past a step whose open quest goals became unavailable (reasons as in "Unavailable quests") |
 | `PLAYER_SKIPPED_STEP` | guideId, stepIndex | Engine, after `Skip()` (the window, the menu, `/polestar skip`): the guide window offers the undo |
 | `WAYPOINT_CHANGED` | waypoint or nil | Engine (and Nav when an override is set/cleared) |
@@ -403,9 +404,14 @@ Names.Add(locale, kind, { [id] = name })   -- the pack's files only; any kind
   `QUEST_COMPLETE`, `MERCHANT_SHOW`, `TRAINER_SHOW`: the `npc` unit, a
   quest-giving object's GUID too) `Names.Learn` keeps the unit's name by its
   GUID's id in `PolestarDB.names[<locale>].npc` / `.object` (account-wide,
-  per client language; player-controlled units are skipped). `Names.Npc`
-  and `Names.Object` answer a learned name before the pack's; a new or
-  changed one redraws the guide window once.
+  per client language, read through `ns.DB()` each time; player-controlled
+  units are skipped; a name equal to the pack's is not kept; at most 2,000
+  ids, `order` oldest first, the oldest tenth dropped past the cap).
+  `Names.Npc` and `Names.Object` answer a learned name before the pack's. A
+  new or changed one fires `NAME_LEARNED(kind, id)`, and redraws the guide
+  window once when the current or next step names that id. The Codex's
+  decoded records, the open dungeon page and ItemDB's parsed quests and
+  sources drop their copies on `NAME_LEARNED` and on `NAMES_LOADED`.
 - **Asking the server.** A quest or item the client has not cached is asked
   for once a session (`Compat.RequestQuest`, `Compat.RequestItem`); the
   pack's name, or the English, shows meanwhile. When asked names arrive

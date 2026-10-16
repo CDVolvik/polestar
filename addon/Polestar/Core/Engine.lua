@@ -899,15 +899,20 @@ local function standingName(n)
 	return ns.StandingName(n) or tostring(n)
 end
 
--- A skill goal's profession in the client's language: its English name (a
--- Lookup.PROFESSIONS key, through L), or "first aid" -> "First Aid" for
--- goals that only carry a skill line ID.
+-- A skill goal's profession or skill in the client's language: the client's
+-- skill-line name (by goal.skillLine, or the line of its English name), else
+-- its English name through L (a Lookup.PROFESSIONS key, or "Riding"), or
+-- "first aid" -> "First Aid" for goals that only carry a skill line ID.
 local skillNames
 local function skillName(goal)
+	local C = Compat()
+	local line = goal.skillLine or (goal.skill and C.SKILL_LINES and C.SKILL_LINES[goal.skill:lower()])
+	local client = line and C.GetSkillLineName and C.GetSkillLineName(line)
+	if client then return client end
 	if goal.skill then return L[goal.skill] end
 	if not skillNames then
 		skillNames = {}
-		for name, id in pairs(Compat().SKILL_LINES or {}) do
+		for name, id in pairs(C.SKILL_LINES or {}) do
 			skillNames[id] = name:gsub("(%a)(%w*)", function(a, b) return a:upper() .. b end)
 		end
 	end

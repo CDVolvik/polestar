@@ -135,6 +135,11 @@ function DB.RegisterLeveling(m, data)
 	if ns.Fire then ns.Fire("ITEMDB_LOADED", meta) end
 end
 
+-- Parsed quests and sources hold translated names: parse them again once
+-- the names pack arrives late, and the sources when an NPC's name is learned.
+ns.On("NAMES_LOADED", function() srcCache, questCache = {}, {} end)
+ns.On("NAME_LEARNED", function(kind) if kind == "npc" then srcCache = {} end end)
+
 local function leveling()
 	if not lev then DB.Load() end
 	return lev

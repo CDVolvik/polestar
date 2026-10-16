@@ -29,7 +29,10 @@
 --   Names.Learn(unit) -> name | nil   -- remembers the name the client shows
 --     for an NPC or a quest-giving object (by its GUID's id), per client
 --     language, in PolestarDB.names; done on target, mouseover, nameplates
---     and NPC windows. A learned name comes before the pack's.
+--     and NPC windows. A learned name comes before the pack's; one equal to
+--     the pack's is not kept; at most 2,000 per language, oldest dropped
+--     first. A change fires NAME_LEARNED(kind, id) and redraws the guide
+--     window when its current or next step names that id.
 --   Names.Localised() -> bool   -- not an English client
 --   Names.Ready() -> bool       -- the pack is in, or will not load this session
 --   Names.PackName() -> "Polestar_Names_<locale>" | nil (English)
@@ -41,7 +44,7 @@ local ADDON, ns = ...
 local Names = {}
 ns.Names = Names
 
-local type, pairs, tonumber = type, pairs, tonumber
+local type, pairs, ipairs, tonumber, floor = type, pairs, ipairs, tonumber, math.floor
 
 local ENGLISH = { enUS = true, enGB = true }
 local locale = (GetLocale and GetLocale()) or "enUS"
@@ -49,10 +52,12 @@ local localised = not ENGLISH[locale]
 local PACK = localised and ("Polestar_Names_" .. locale) or nil
 
 local tables = { quest = {}, npc = {}, object = {}, item = {} }
--- Names the client showed in play: { npc = { [id] = name }, object = {...} },
--- this client language's part of PolestarDB.names, bound once saved
--- variables are in (ADDON_LOADED).
-local learned
+-- Names the client showed in play live in PolestarDB.names[locale]
+-- ({ npc = { [id] = name }, object = {...}, order = { "n<id>"|"o<id>", ... } },
+-- oldest first), read through ns.DB() each time once saved variables are in
+-- (ADDON_LOADED); at most LEARN_CAP ids, the oldest dropped first.
+local svReady = false
+local LEARN_CAP = 2000
 local ready = not localised -- the pack is in, or will not load this session
 -- Ids asked of the server: 1 while waiting, 2 once answered. Never asked twice.
 local asked = { quest = {}, item = {} }
@@ -120,8 +125,30 @@ local function fromPack(kind, id)
 	return t and t[id]
 end
 
+-- This client language's learned names, or nil before saved variables load.
+local function store()
+	if not svReady then return nil end
+	local db = ns.DB()
+	if type(db.names) ~= "table" then db.names = {} end
+	local mine = db.names[locale]
+	if type(mine) ~= "table" then
+		mine = {}
+		db.names[locale] = mine
+	end
+	if type(mine.npc) ~= "table" then mine.npc = {} end
+	if type(mine.object) ~= "table" then mine.object = {} end
+	if type(mine.order) ~= "table" then
+		local order = {}
+		for id in pairs(mine.npc) do order[#order + 1] = "n" .. id end
+		for id in pairs(mine.object) do order[#order + 1] = "o" .. id end
+		mine.order = order
+	end
+	return mine
+end
+
 local function fromPlay(kind, id)
-	local t = learned and learned[kind]
+	local mine = store()
+	local t = mine and mine[kind]
 	return t and t[id]
 end
 
@@ -241,8 +268,49 @@ end
 -- unit) in its own language: that name is the truth, kept over the pack's.
 local LEARN_KIND = { Creature = "npc", Vehicle = "npc", GameObject = "object" }
 
+-- Drops the oldest learned names, a tenth of the cap at once, once there
+-- are more than LEARN_CAP.
+local function prune(mine)
+	local order = mine.order
+	local drop = #order - LEARN_CAP + floor(LEARN_CAP / 10)
+	local last = {}
+	for i, key in ipairs(order) do last[key] = i end
+	local keep = {}
+	for i, key in ipairs(order) do
+		local kind, id = key:sub(1, 1) == "n" and "npc" or "object", tonumber(key:sub(2))
+		if last[key] == i then
+			if i <= drop then
+				if id then mine[kind][id] = nil end
+			elseif id and mine[kind][id] ~= nil then
+				keep[#keep + 1] = key
+			end
+		end
+	end
+	mine.order = keep
+end
+
+-- The current or next step of the active guide names this NPC or object.
+local function onStep(kind, id)
+	local E = ns.Engine
+	local g = E and E.GetGuide and E.GetGuide()
+	local cur = E and E.GetStepIndex and E.GetStepIndex()
+	if not (g and g.steps and cur) then return false end
+	for s = cur, cur + 1 do
+		local step = g.steps[s]
+		for _, goal in ipairs(step and step.goals or {}) do
+			if goal[kind] == id then return true end
+		end
+	end
+	return false
+end
+
+-- A changed name fires NAME_LEARNED(kind, id) (caches drop their copy) and
+-- redraws the guide window when its current or next step names that id.
+-- A name the pack already gives is not kept.
 function Names.Learn(unit)
-	if not (localised and learned and UnitGUID and UnitName) then return nil end
+	if not (localised and UnitGUID and UnitName) then return nil end
+	local mine = store()
+	if not mine then return nil end
 	local C = ns.Compat
 	local guid = C.Readable(UnitGUID(unit))
 	if type(guid) ~= "string" then return nil end
@@ -252,25 +320,23 @@ function Names.Learn(unit)
 	if kind == "npc" and UnitPlayerControlled and C.Readable(UnitPlayerControlled(unit)) then return nil end
 	local name = C.Readable(UnitName(unit))
 	if type(name) ~= "string" or name == "" or name == UNKNOWNOBJECT then return nil end
-	local t = learned[kind]
-	if t[id] ~= name then
+	local t = mine[kind]
+	local old = t[id]
+	if old == name then return name end
+	if name == fromPack(kind, id) then
+		if old == nil then return name end
+		t[id] = nil
+	else
+		if old == nil then
+			local order = mine.order
+			order[#order + 1] = (kind == "npc" and "n" or "o") .. id
+			if #order > LEARN_CAP then prune(mine) end
+		end
 		t[id] = name
-		scheduleRedraw()
 	end
+	ns.Fire("NAME_LEARNED", kind, id)
+	if onStep(kind, id) then scheduleRedraw() end
 	return name
-end
-
-local function bindLearned()
-	local db = ns.DB()
-	if type(db.names) ~= "table" then db.names = {} end
-	local mine = db.names[locale]
-	if type(mine) ~= "table" then
-		mine = {}
-		db.names[locale] = mine
-	end
-	if type(mine.npc) ~= "table" then mine.npc = {} end
-	if type(mine.object) ~= "table" then mine.object = {} end
-	learned = mine
 end
 
 local function arrived(kind, id, success)
@@ -284,7 +350,7 @@ if localised then
 	ns.RegisterEvent("QUEST_DATA_LOAD_RESULT", function(_, id, success) arrived("quest", id, success) end)
 	ns.RegisterEvent("ITEM_DATA_LOAD_RESULT", function(_, id, success) arrived("item", id, success) end)
 	ns.RegisterEvent("PLAYER_REGEN_ENABLED", function() if deferred and not ready then load() end end)
-	ns.OnInit(bindLearned)
+	ns.OnInit(function() svReady = true end)
 	ns.RegisterEvent("PLAYER_TARGET_CHANGED", function() Names.Learn("target") end)
 	ns.RegisterEvent("UPDATE_MOUSEOVER_UNIT", function() Names.Learn("mouseover") end)
 	ns.RegisterEvent("NAME_PLATE_UNIT_ADDED", function(_, unit) Names.Learn(unit) end)

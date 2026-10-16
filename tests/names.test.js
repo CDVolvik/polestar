@@ -150,7 +150,7 @@ emit({ N.Localised(), N.Quest(176) or false, N.Npc(448) or false, N.Object(68) o
 
 test('a name the client shows in play (target, mouseover, an NPC or object window) is kept per language and wins over the pack\'s, next session too', () => {
 	const stubs = ['stub_world.lua', 'stub_rares.lua'];
-	const [first, saved] = run({
+	const [first, saved, capped] = run({
 		stubs,
 		script: `
 local R = stub.rares
@@ -158,11 +158,19 @@ R.unit("target", { npc = 448, name = "Lardeur (client)" }); stub.fire("PLAYER_TA
 R.unit("mouseover", { npc = 1, name = "Pas dans le pack" }); stub.fire("UPDATE_MOUSEOVER_UNIT")
 R.unit("mouseover", { npc = 2, name = "Mon familier", controlled = true }); stub.fire("UPDATE_MOUSEOVER_UNIT")
 R.unit("npc", { object = 68, name = "Avis (client)" }); stub.fire("QUEST_DETAIL")
+R.unit("target", { npc = 6, name = "Vermine kobold" }); stub.fire("PLAYER_TARGET_CHANGED")
 emit({ N.Npc(448), N.Npc(1), N.Npc(2) or false, N.Object(68), N.Cached("npc", 448), N.Get("npc", 1) })
-emit(PolestarDB.names.frFR)`,
+local db = PolestarDB.names.frFR
+emit({ npc = db.npc, object = db.object })
+for i = 1, 2001 do R.unit("target", { npc = 10000 + i, name = "N" .. i }); N.Learn("target") end
+local n = 0
+for _ in pairs(db.npc) do n = n + 1 end
+emit({ n, N.Npc(10001) or false, N.Npc(12001) })`,
 	});
 	assert.deepEqual(first, ['Lardeur (client)', 'Pas dans le pack', false, 'Avis (client)', 'Lardeur (client)', 'Pas dans le pack']);
-	assert.deepEqual(saved, { npc: { 448: 'Lardeur (client)', 1: 'Pas dans le pack' }, object: { 68: 'Avis (client)' } });
+	assert.deepEqual(saved, { npc: { 448: 'Lardeur (client)', 1: 'Pas dans le pack' }, object: { 68: 'Avis (client)' } }, 'the pack\'s own name is not kept');
+	assert.ok(capped[0] <= 2000 && capped[0] > 1500, `kept ${capped[0]}`);
+	assert.deepEqual(capped.slice(1), [false, 'N2001'], 'the oldest dropped first');
 	const [next] = run({
 		stubs,
 		saved: { Polestar: 'PolestarDB = { schema = 1, settings = {}, names = { frFR = { npc = { [448] = "Lardeur (client)" } }, deDE = { npc = { [6] = "Kobold (deDE)" } } } }' },
@@ -366,6 +374,11 @@ test('Lookup finds a quest, NPC, item or zone by its French name and by its Engl
 	assert.deepEqual(viande, ['item:750:Viande de loup coriace']);
 	assert.deepEqual(counts, { npc: 1, quest: 1 });
 	assert.equal(loads, 1);
+});
+
+test('Lookup\'s search asks the server for no quest or item name', () => {
+	const out = run({ before: CODEX.stubLua, script: `${SEARCH}\nemit({ #__asked.quest, #__asked.item })` });
+	assert.deepEqual(out[out.length - 1], [0, 0]);
 });
 
 test('an English client\'s Lookup is unchanged and loads no names pack', () => {

@@ -152,6 +152,9 @@ const DATA_KEYS = {
 		'Warrior', 'Paladin', 'Hunter', 'Rogue', 'Priest', 'Shaman', 'Mage', 'Warlock', 'Druid'],
 	// Lookup.PROFESSIONS (Lookup/Sources.lua), shown through L[name] in Lookup/Guide.lua.
 	'Lookup/Sources.lua': ['Alchemy', 'Blacksmithing', 'Enchanting', 'Engineering', 'Herbalism', 'Leatherworking', 'Mining', 'Skinning', 'Tailoring', 'Cooking', 'Fishing', 'First Aid'],
+	// Engine's skillName: a skill goal's name through L when the client has no name for its
+	// skill line (the professions above, and Riding).
+	'Core/Engine.lua': ['Riding'],
 	// ns.stage (Core/Init.lua), the chip beside the version (Theme/Widgets.lua).
 	'Core/Init.lua': ['Beta'],
 };

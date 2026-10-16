@@ -179,6 +179,20 @@ local function page(key)
 	return p
 end
 
+-- The open page holds translated names: decode it again after the names
+-- pack arrives late, or when a name it carries is learned anew.
+ns.On("NAMES_LOADED", function() openKey, openPage = nil, nil end)
+ns.On("NAME_LEARNED", function(_, id)
+	local src = openKey and sources[openKey]
+	if type(src) ~= "string" then return end
+	for _, field in ipairs({ "id=", "npc=", "object=" }) do
+		if find(src, field .. id .. ",", 1, true) or find(src, field .. id .. "}", 1, true) then
+			openKey, openPage = nil, nil
+			return
+		end
+	end
+end)
+
 ---------------------------------------------------------------------------
 -- Reading
 ---------------------------------------------------------------------------

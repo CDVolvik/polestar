@@ -33,8 +33,9 @@
 -- Records use the codex JSON field names (data/forever/codex/*.json), with
 -- 1-based arrays; JSON nulls are absent. An item's, NPC's, object's or
 -- quest's name (a quest's title, an instance boss's name), in records and
--- from Codex.Name, is the client's language's (Polestar.Names) where it has
--- one; Each and Index keep the pack's English (Search adds the translated).
+-- from Codex.Name, is the client's language's where it has one, read
+-- without asking the server (Names.Cached, an item the client has cached);
+-- Each and Index keep the pack's English (Search adds the translated).
 
 local ADDON, ns = ...
 
@@ -125,10 +126,14 @@ local NAMES_KIND = {
 	npc = "npc", rare = "npc", object = "object", treasure = "object", quest = "quest",
 }
 
--- A name in the client's language (Polestar.Names), else the pack's English.
+-- A name in the client's language, else the pack's English. Never asks the
+-- server (Search decodes records by the hundred): an item the client has
+-- cached (Compat.GetItemName), else Names.Cached (a quest's client title,
+-- learned and pack names).
 local function shown(kind, id, english)
 	local N = kind and ns.Names
-	return N and N.Get(kind, id) or english
+	if not (N and N.Localised()) then return english end
+	return (kind == "item" and ns.Compat.GetItemName(id)) or N.Cached(kind, id) or english
 end
 
 -- Same letters as FROM in tools/lib/codex/pack.js.
@@ -557,6 +562,23 @@ function Codex.Name(kind, id)
 	end
 	local name = nameOf(kind, id)
 	return name and shown(NAMES_KIND[kind], id, name)
+end
+
+-- Decoded records carry translated names: drop them when the names pack
+-- arrives late, and a record naming an NPC or object whose learned name
+-- changed (an instance's bosses too). (The pack's memory measure loads this
+-- file alone, without the message bus.)
+if ns.On then
+	ns.On("NAMES_LOADED", function()
+		for g in pairs(cache) do cache[g] = nil end
+	end)
+	ns.On("NAME_LEARNED", function(kind, id)
+		for _, g in ipairs(SPAN[kind] or {}) do
+			local c = cache[g]
+			if c then c[id] = nil end
+		end
+		cache.instance = nil
+	end)
 end
 
 local EMPTY = {}
