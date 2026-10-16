@@ -56,8 +56,8 @@ async function buildGround() {
 		return [tenth(w.wx), tenth(w.wy), r];
 	};
 	const hubs = [
-		{ id: 'horde-camp', side: 'Horde', name: 'Mor\'shan "Camp"', disks: [at(a, 525, 300, 20), at(a, 520, 330, 12)] },
-		{ id: 'alliance-post', side: 'Alliance', name: 'Post', disks: [at(b, 10, 150, 20)] },
+		{ id: 'horde-camp', side: 'Horde', name: 'Mor\'shan "Camp"', areaId: 2357, disks: [at(a, 525, 300, 20), at(a, 520, 330, 12)] },
+		{ id: 'alliance-post', side: 'Alliance', name: 'Post', areaId: 87, disks: [at(b, 10, 150, 20)] },
 	];
 	const layers = {
 		roads: (c, col) => (col === 32 ? road : null),
@@ -303,7 +303,7 @@ emit(out)`,
 	assert.equal(got.has, true, 'API.lua keeps the map: its counts hold the class field');
 	assert.equal(got.format, 2);
 	assert.deepEqual(got.profiles, ['Alliance', 'Horde']);
-	assert.deepEqual(got.hubs.map((h) => [h.id, h.side, h.name, h.disks]), hubs.map((h) => [h.id, h.side, h.name, h.disks]));
+	assert.deepEqual(got.hubs.map((h) => [h.id, h.side, h.name, h.areaId, h.disks]), hubs.map((h) => [h.id, h.side, h.name, h.areaId, h.disks]));
 	// The classes the router decodes are the packer's, node for node (base cells, then floors).
 	const NB = cg.GW * cg.GH;
 	const seen = new Set();

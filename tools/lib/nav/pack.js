@@ -486,7 +486,7 @@ class Faces {
 // source: { tiles: [{ col, row, tile }] or a loader, regions } — see cellGridFromDir.
 // layers (each optional): roads(c, col, row) -> the tile's road columns (65536 bytes, j * 256 + i, nonzero: road;
 // cellGridFromDir derives them from the layer's weights) or null;
-// hubs: { [c]: [{ id, side, name, disks: [[x, y, r]] }] } (hubs.json's); city(c, x, y, areaId) -> whether a
+// hubs: { [c]: [{ id, side, name, areaId, disks: [[x, y, r]] }] } (hubs.json's); city(c, x, y, areaId) -> whether a
 // chunk (its centre, its area) lies in a capital. The ground classes (nodeClass) come from these and the grid's
 // flags and tslope.
 function cellGrid({ tiles, loadTile, regions, C, c = 0, layers = {}, log = () => {} }) {
@@ -1402,7 +1402,8 @@ const HEADER = [
 	'--   floor from the bottom; directions 0-7 are +x, -x, +y, -y, +x+y, +x-y, -x+y, -x-y.',
 	'-- class[k + 1]: per node in node order its ground class byte (Routing/Costs.lua: bits 0-2 the base class,',
 	'--   bit 3 inside an Alliance hub, bit 4 inside a Horde hub), run-length as the grid field; nodes past the end',
-	'--   are class 0, and so is every node of a cluster without one. hubs: the hostile hubs, for the router\'s report.',
+	'--   are class 0, and so is every node of a cluster without one. hubs: the hostile hubs, for the router\'s report:',
+	'--   { id, side, name (English), areaId (AreaTable: the town in the client\'s language), disks = { { x, y, r } } }.',
 	'-- Packed (pack_nav.py\'s layout): data.packed.<field>[k + 1] = { base64(zlib(16 KB block)), ... } in the parts.',
 ];
 
@@ -1421,14 +1422,14 @@ const luaStr = (s) => `"${String(s).replace(/[\\"]/g, (ch) => `\\${ch}`).replace
 
 // One map's strings -> its metadata file and parts (pack_nav.py write_bundle);
 // `gen` is the generated-file header line. Maps format 2 (maps.class set)
-// carry format = 2, the profiles, the hubs ([{ id, side, name, disks }]) and the class field.
+// carry format = 2, the profiles, the hubs ([{ id, side, name, areaId, disks }]) and the class field.
 function packFiles({ map, cg, maps, global, gen, hubs = [] }) {
 	const files = [];
 	const classed = maps.class !== undefined;
 	const fields = classed ? CLASS_FIELDS : FIELDS;
 	const hubLines = hubs
 		.filter((h) => h.side === 'Alliance' || h.side === 'Horde')
-		.map((h) => `\t\t{ id = ${luaStr(h.id)}, side = ${luaStr(h.side)}, name = ${luaStr(h.name)}, disks = { ${h.disks.map(([x, y, r]) => `{ ${x}, ${y}, ${r} }`).join(', ')} } },`);
+		.map((h) => `\t\t{ id = ${luaStr(h.id)}, side = ${luaStr(h.side)}, name = ${luaStr(h.name)}, areaId = ${Number(h.areaId) || 0}, disks = { ${h.disks.map(([x, y, r]) => `{ ${x}, ${y}, ${r} }`).join(', ')} } },`);
 	const meta = [
 		gen,
 		...CREDIT,

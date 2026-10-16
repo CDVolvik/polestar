@@ -26,7 +26,8 @@
 --   floor from the bottom; directions 0-7 are +x, -x, +y, -y, +x+y, +x-y, -x+y, -x-y.
 -- class[k + 1]: per node in node order its ground class byte (Routing/Costs.lua: bits 0-2 the base class,
 --   bit 3 inside an Alliance hub, bit 4 inside a Horde hub), run-length as the grid field; nodes past the end
---   are class 0, and so is every node of a cluster without one. hubs: the hostile hubs, for the router's report.
+--   are class 0, and so is every node of a cluster without one. hubs: the hostile hubs, for the router's report:
+--   { id, side, name (English), areaId (AreaTable: the town in the client's language), disks = { { x, y, r } } }.
 -- Packed (pack_nav.py's layout): data.packed.<field>[k + 1] = { base64(zlib(16 KB block)), ... } in the parts.
 PolestarPathData = PolestarPathData or {}
 

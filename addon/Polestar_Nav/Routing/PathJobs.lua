@@ -131,7 +131,7 @@ end
 -- goal, with points.wet the drawn yards over water. Cost is the abstract route in running yards, not the smoothed
 -- polyline length; a swum grid yard counts as the data's swim (so routes keep out of water) unless waterWalking, when
 -- water is ground. On a map with ground classes a yard counts as Costs.Mult(its class, opts.profile) of one. job.yards
--- is the drawn line's flat length and job.hubs the hostile hubs it enters, { { id, name }, ... } (Path.lua's header).
+-- is the drawn line's flat length and job.hubs the hostile hubs it enters, { { id, name, areaId }, ... } (Path.lua's header).
 -- reason is "nodata", "outside", "offmesh", "unreachable" or "error". opts is the waterWalking flag (a boolean, as
 -- every caller before profiles passes it) or { waterWalking = boolean, profile = "Alliance" | "Horde" | nil }.
 -- Returns a Cancel handle.

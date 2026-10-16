@@ -393,6 +393,25 @@ test('Polestar\'s maps on the engine: the Razor Hill inn is left by its door, th
 	assert.ok(got.coast.found && got.coast.cost > 0, 'the walk along the Merchant Coast still routes');
 });
 
+// Ruling 30: the hostile town's AreaTable id rides with the walk, so the warning can name it in the client's
+// language. Southshore is area 271 (hubs.json's alliance-southshore; AreaTable 1.60.1.70425: 271,Southshore).
+test('a Horde walk into Southshore on the shipped maps reports the town with its area id (job.hubs)', () => {
+	const [got] = runAddon({
+		stubs: ['stub_encoding.lua'],
+		addons: ['Polestar_Nav'],
+		script: `
+local Path = Polestar_NavEngine
+local frames = {}
+Path.after = function(fn) frames[#frames + 1] = fn end
+local got = {}
+Path.Find(0, { x = -500, y = -560 }, { x = -850, y = -540 }, function(points, cost, job) got.found, got.hubs = points ~= nil, job and job.hubs end, { profile = "Horde" })
+while #frames > 0 do table.remove(frames, 1)() end
+emit(got)`,
+	}).emitted;
+	assert.equal(got.found, true);
+	assert.deepEqual(got.hubs, [{ id: 'alliance-southshore', name: 'Southshore', areaId: 271 }]);
+});
+
 test('the packed maps decode with the engine\'s logic: every entrance names a cell of its cluster (SpfUpstream: floor entrances)', () => {
 	const S = require('./helpers/spfnav');
 	const files = new Map(fs.readdirSync(path.join(NAV, 'Nav')).filter((f) => f.endsWith('.lua')).map((f) => [f, fs.readFileSync(path.join(NAV, 'Nav', f), 'utf8')]));

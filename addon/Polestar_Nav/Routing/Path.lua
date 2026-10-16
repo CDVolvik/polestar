@@ -19,8 +19,9 @@ local ns = select(2, ...)
 -- length and each graph edge's yards (one value an edge for every profile, the no-profile way's: across a cluster
 -- where a profile detours a hostile hub, FindMany's yards understate the walk); on format 1, whose edges carry no yards, the cost itself (no per-step classes
 -- there; a swum stretch counts at the swim factor), so yards[i] equals costs[i]. Find's job.hubs lists the hubs of
--- the map's metadata (D.hubs = { { id, side, name, disks = { { x, y, r }, ... } }, ... }) hostile to the profile
--- that the drawn line enters: { { id, name }, ... }, each once, in path order; {} without a profile or hubs.
+-- the map's metadata (D.hubs = { { id, side, name, areaId, disks = { { x, y, r }, ... } }, ... }: name in English,
+-- areaId the town's AreaTable id) hostile to the profile that the drawn line enters: { { id, name, areaId }, ... },
+-- each once, in path order; {} without a profile or hubs.
 ---@class SPFPath
 local Path = ns.Path
 local Grid, Costs = ns.PathGrid, ns.Costs
@@ -463,7 +464,7 @@ local function enters(a, b, disks)
 end
 
 -- The hubs (metadata D.hubs) hostile to profile that the drawn line enters: a point of it inside one of the hub's
--- disks. -> { { id, name }, ... }, each hub once, in path order; {} without hubs or a profile.
+-- disks. -> { { id, name, areaId }, ... }, each hub once, in path order; {} without hubs or a profile.
 local function hubsOn(hubs, points, profile)
 	local out = {}
 	profile = Costs.Profile(profile)
@@ -488,7 +489,7 @@ local function hubsOn(hubs, points, profile)
 			end)
 			for _, hit in ipairs(hits) do
 				listed[hit.hub] = true
-				out[#out + 1] = { id = hit.hub.id, name = hit.hub.name }
+				out[#out + 1] = { id = hit.hub.id, name = hit.hub.name, areaId = hit.hub.areaId }
 			end
 		end
 	end
