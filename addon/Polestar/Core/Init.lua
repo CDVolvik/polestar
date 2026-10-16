@@ -52,7 +52,7 @@ end
 
 -- The interface's translations made with AI (tools/lib/i18n/locales.js,
 -- status "ai"; tests/i18n.test.js keeps the two lists equal).
-ns.AI_LOCALES = { esES = true, koKR = true, ptBR = true, ruRU = true, zhCN = true, zhTW = true }
+ns.AI_LOCALES = { koKR = true, ptBR = true, ruRU = true, zhCN = true, zhTW = true }
 
 -- True when this client reads an AI-made translation: its locale is one of
 -- AI_LOCALES and its file filled L. Options' About then says so.
