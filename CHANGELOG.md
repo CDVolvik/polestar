@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.2.5 (unreleased)
+## Unreleased
 
 ### For players
 
@@ -11,6 +11,14 @@
   and its count go once the mob is no longer needed. A one-kill or one-item
   objective keeps the icon alone. It comes with the Nameplate icons option
   (Questing → Quests, off by default).
+
+### For contributors
+
+- `tools/discord-bot`: `/close` and `/reopen` for server administrators in
+  a #bugs thread. `/close` takes a reason (Fixed, Won't fix, No action
+  needed, Can't reproduce, Not resolved, Duplicate) and an optional note,
+  closes the issue with it, and the reporter hears it in those words with
+  the note quoted (`tools/discord-bot/README.md`).
 
 ## 0.2.4 (2026-10-16)
 
