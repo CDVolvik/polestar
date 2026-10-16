@@ -694,8 +694,9 @@ local function run(map, from, to, waterWalking, costOnly, profile, job)
 	end
 
 	-- Points carry the height of the surface they stand on; the cost weights water as the search did, and points.wet
-	-- is the yards over water, which call for Water Walking.
-	local keep = smooth(st, P)
+	-- is the yards over water, which call for Water Walking. Straightening keeps to ground no costlier for profile
+	-- than the path it replaces and out of hostile hub cells the path kept out of (smooth).
+	local keep = smooth(st, P, profile)
 	if #keep == 1 then -- both ends on one node
 		keep[2] = keep[1]
 	end

@@ -1920,10 +1920,14 @@ gentle 1.3, steep 2.5, indoor 2.0, indoor city 1.0, a hub hostile to the
 profile x20), times the swim factor in water, and the A* heuristics (and
 `Path.LowerBound`) scale by `Costs.MIN` (0.8) to stay admissible; each graph
 edge carries one cost per profile (`costAlliance`, `costHorde`, `costNone`)
-and its yards (the record layout is at `PathGrid.lua`'s `adjacent`). A map of
+and its yards (the record layout is at `PathGrid.lua`'s `adjacent`). The
+drawn line straightens the found path (`PathGrid.lua`'s `smooth`) only over
+ground no costlier for the profile than the path stretch it replaces, and
+into a hostile hub only where that stretch already entered one, so it never
+cuts a road's bend or a hostile hub's rim. A map of
 format 1 (0.2.4's, no class field) is class 0 everywhere, has one edge cost
-for every profile and keeps the 1.0 heuristic, so it routes exactly as before
-classes, for any profile.
+for every profile and keeps the 1.0 heuristic, so it routes and straightens
+exactly as before classes, for any profile.
 
 ```
 Polestar_Nav.toc        LoadOnDemand, Dependencies: Polestar

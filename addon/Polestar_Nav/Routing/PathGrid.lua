@@ -38,6 +38,8 @@ local EDGE1, EDGE2 = 7, 14 -- symbols in a graph edge record of format 1 and for
 
 local byte, floor, sqrt, huge, max, abs = string.byte, math.floor, math.sqrt, math.huge, math.max, math.abs
 local yield = coroutine.yield
+local Costs = ns.Costs -- Routing/Costs.lua loads first
+local Mult = Costs.Mult
 
 local B64 = {}
 do
@@ -852,9 +854,21 @@ local function neighbour(st, k, node, gx, gy, dx, dy, water)
 	return nil
 end
 
+-- A node's class byte (0 on a map without classes), decoding its cluster again if it was evicted.
+local function classOf(st, k, node)
+	local cls = st.cls[k]
+	if not cls then
+		grid(st, k)
+		cls = st.cls[k]
+	end
+	return cls and cls[node + 1] or 0
+end
+
 -- Line of sight between two path entries, walking every cell the segment between their cell centres crosses and
--- following the surface from node to node, so it cannot jump between floors.
-local function sight(st, P, a, b, water)
+-- following the surface from node to node, so it cannot jump between floors. With limit (a map with classes), every
+-- node crossed must also cost no more than limit (Costs.Mult for profile) and, unless hostileOK, carry no hub bit hb
+-- (the one hostile to profile; nil for none).
+local function sight(st, P, a, b, water, limit, profile, hb, hostileOK)
 	local ax, ay, bx, by = P.x[a], P.y[a], P.x[b], P.y[b]
 	local k, node = P.k[a], P.n[a]
 	local dx, dy = bx - ax, by - ay
@@ -877,6 +891,12 @@ local function sight(st, P, a, b, water)
 		if not k then
 			return false
 		end
+		if limit then
+			local c = classOf(st, k, node)
+			if Mult(c, profile) > limit or (hb and not hostileOK and c % (hb + hb) >= hb) then
+				return false
+			end
+		end
 		x, y = x + mx, y + my
 		ix, iy = ix + mx * sx, iy + my * sy
 	end
@@ -884,9 +904,12 @@ local function sight(st, P, a, b, water)
 end
 
 -- Collapse a node path to its turns, then pull the string: from each anchor, jump to the furthest point in sight.
--- Water may only be crossed where the path itself swam.
-local function smooth(st, P)
-	local PX, PY, PW = P.x, P.y, P.w
+-- Water may only be crossed where the path itself swam. On a map with classes a straight segment replaces the path
+-- between two entries only over ground no costlier for profile than the costliest node of that path stretch, and
+-- into a hub hostile to profile only where that stretch already entered one: the drawn line (and the hubs it
+-- reports) never cuts a road's bend or a hostile hub's rim the cost-best path kept to.
+local function smooth(st, P, profile)
+	local PX, PY, PW, PK, PN = P.x, P.y, P.w, P.k, P.n
 	local n = #PX
 	local keep = { 1 }
 	for i = 2, n - 1 do
@@ -897,12 +920,33 @@ local function smooth(st, P)
 	if n > 1 then
 		keep[#keep + 1] = n
 	end
+	local classed = st.classed
+	profile = Costs.Profile(profile)
+	local hb = profile == "Horde" and Costs.HUB_ALLIANCE or profile == "Alliance" and Costs.HUB_HORDE or nil
 	local out, a = { keep[1] }, 1
 	while a < #keep do
 		local b = a + 1
+		-- The costliest node of the path from keep[a] to keep[j], and whether it entered a hostile hub, grown with j.
+		local limit, hostile, last
+		if classed then
+			limit, hostile, last = 0, false, keep[a] - 1
+		end
 		for j = a + 2, #keep do
 			local p, q = keep[a], keep[j]
-			if not sight(st, P, p, q, PW[q] - PW[p] > 0) then
+			if classed then
+				for i = last + 1, q do
+					local c = classOf(st, PK[i], PN[i])
+					local m = Mult(c, profile)
+					if m > limit then
+						limit = m
+					end
+					if hb and c % (hb + hb) >= hb then
+						hostile = true
+					end
+				end
+				last = q
+			end
+			if not sight(st, P, p, q, PW[q] - PW[p] > 0, limit, profile, hb, hostile) then
 				break
 			end
 			b = j

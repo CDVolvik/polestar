@@ -12,8 +12,10 @@
 // cost (Find: the drawn line's length; FindCost, FindMany: a label along the
 // cost-best path, the cost itself on format 1), a format 2 graph edge is
 // priced per profile (hand-made edge records), Find reports the hostile hubs
-// of the map's `hubs` metadata its drawn line enters, and ReuseMany keeps a
-// batch to the profile it was priced for.
+// of the map's `hubs` metadata its drawn line enters, the drawn line
+// straightens only over ground no costlier than the path it replaces (a
+// road's bend, a hostile hub's rim), and ReuseMany keeps a batch to the
+// profile it was priced for.
 
 const { test } = require('node:test');
 const assert = require('node:assert/strict');
@@ -293,6 +295,19 @@ test('format 1 (no class field): the same points and costs as the router before 
 		assert.deepEqual(got, want, `${what}: identical to the router before classes`);
 		close(got.none, what === 'water' ? ROUND(4) : STRAIGHT, `${what}: no classes on format 1`);
 	}
+	// Straightening across the bends and the hub's rim (the class field dropped): the same drawn points.
+	const bends = [bend(12, 12, 0, 2), bend(10, 10, 1, 0)];
+	for (const [what, cells, to] of [['90 degree bend', bends[0].cells, bends[0].to], ['45 degree bend', bends[1].cells, bends[1].to], ['rim', rim().cells, at(X0 + 20, Y0 + 8)]]) {
+		const files = mapFiles(cells, false);
+		const got = route(OURS, files, ours, { to });
+		const want = route(BEFORE, files, theirs, { to });
+		for (const r of Object.values(got)) {
+			delete r.yards;
+			delete r.hubs;
+		}
+		assert.deepEqual(got, want, `${what}: identical to the router before classes`);
+		assert.equal(got.none.points.length, 2, `${what}: no classes on format 1, one straight segment`);
+	}
 });
 
 test('format 1: Find\'s yards are the drawn line\'s length, FindCost\'s and FindMany\'s the cost (no per-step classes), and no hubs', () => {
@@ -372,6 +387,85 @@ test('hubs: a Horde route into an Alliance hub reports it (each hub once, in pat
 	const own = route(OURS, mapFiles(strip, true, { hubs: hubs.replace(/\n\t\t\{ id = 13[^\n]*/, '') }), [q('alliance', 'find', '{ profile = "Alliance" }'), q('horde', 'find', '{ profile = "Horde" }')]);
 	assert.deepEqual(own.alliance.hubs, {}, 'Alliance: no hub on the same route');
 	assert.equal(own.horde.hubs.length, 2);
+});
+
+// Straightening (PathGrid.lua's smooth): a drawn segment replaces the path between two of its entries only over
+// ground no costlier than the path there, and never into a hostile hub the path kept out of.
+// The cells (gx * C + gy) a drawn line passes, sampled at 997 steps a segment: a segment runs between cell
+// centres, so no sample falls on a cell corner (997 is odd and prime).
+function crossed(r) {
+	const out = new Set();
+	const pts = r.points.map(([x, y]) => [Number(x) / CS, Number(y) / CS]);
+	for (let i = 1; i < pts.length; i++) {
+		const [[ax, ay], [bx, by]] = [pts[i - 1], pts[i]];
+		for (let s = 0; s <= 997; s++) out.add(Math.floor(ax + ((bx - ax) * s) / 997) * C + Math.floor(ay + ((by - ay) * s) / 997));
+	}
+	return out;
+}
+// Ground of class `cls` (walkable) on every cell of the box x0..x1, y0..y1 not yet set.
+function fill(cells, x0, x1, y0, y1, cls) {
+	for (let x = x0; x <= x1; x++) for (let y = y0; y <= y1; y++) if (!cells.has(x * C + y)) cells.set(x * C + y, { val: 1, cls });
+	return cells;
+}
+// A road (class 1) east along row Y0 from X0 for `east` cells, then `rise` cells on by (1, dy) each; then `inside`
+// (the class of the ground in the bend) and normal ground round it, three cells wide. -> { cells, to }
+function bend(east, rise, dy, inside) {
+	const cells = new Map();
+	const road = (x, y) => cells.set(x * C + y, { val: 1, cls: 1 });
+	for (let x = X0; x <= X0 + east; x++) road(x, Y0);
+	for (let i = 1; i <= rise; i++) road(X0 + east + (dy ? i : 0), Y0 + i);
+	const [ex, ey] = [X0 + east + (dy ? rise : 0), Y0 + rise];
+	for (let y = Y0 + 1; y <= ey; y++) fill(cells, X0, X0 + east + (dy ? y - Y0 - 1 : -1), y, y, inside);
+	return { cells: fill(cells, X0 - 3, ex + 3, Y0 - 3, ey + 3, 0), to: at(ex, ey) };
+}
+// Open normal ground with an Alliance hub's disk below the straight line from FROM to HUB_TO, that line clipping
+// the disk: the hub bit on every cell the disk touches. -> { cells, hubs (metadata, Lua), hub (the hub cells) }
+const HUB_TO = at(X0 + 20, Y0 + 8);
+function rim() {
+	const [cx, cy, r] = [X0 + 13, Y0 + 3.5, 2.5]; // in cells
+	const cells = new Map();
+	const hub = new Set();
+	for (let x = X0 - 3; x <= X0 + 23; x++) {
+		for (let y = Y0 - 3; y <= Y0 + 11; y++) {
+			const [nx, ny] = [Math.min(Math.max(cx, x), x + 1), Math.min(Math.max(cy, y), y + 1)];
+			const inside = Math.hypot(nx - cx, ny - cy) < r;
+			if (inside) hub.add(x * C + y);
+			cells.set(x * C + y, { val: 1, cls: inside ? 8 : 0 });
+		}
+	}
+	const hubs = `{ { id = 21, side = "Alliance", name = "Rim", disks = { { ${cx * CS}, ${cy * CS}, ${r * CS} } } } }`;
+	return { cells, hubs, hub };
+}
+
+test('straightening keeps a drawn line on the road round a bend: a 90 degree bend beside gentle ground, a 45 degree one beside normal ground', () => {
+	for (const [what, east, rise, dy, inside, want] of [
+		['90 degree bend, gentle inside', 12, 12, 0, 2, 0.8 * (22 + Math.SQRT2) * CS],
+		['45 degree bend, normal inside', 10, 10, 1, 0, 0.8 * (10 + 10 * Math.SQRT2) * CS],
+	]) {
+		const { cells, to } = bend(east, rise, dy, inside);
+		const got = route(OURS, mapFiles(cells, true), [q('none', 'find'), q('horde', 'find', '{ profile = "Horde" }')], { to });
+		for (const id of ['none', 'horde']) {
+			close(got[id], want, `${what} ${id}: the cost-best path is the road`);
+			const off = [...crossed(got[id])].filter((g) => cells.get(g).cls !== 1);
+			assert.deepEqual(off, [], `${what} ${id}: every cell the drawn line passes is road`);
+			assert.ok(got[id].points.length >= 3, `${what} ${id}: the bend is drawn`);
+		}
+	}
+});
+
+test('straightening never cuts into a hostile hub the path went round; a profile it is not hostile to straightens the same corner', () => {
+	const { cells, hubs, hub } = rim();
+	const got = route(OURS, mapFiles(cells, true, { hubs }), [q('horde', 'find', '{ profile = "Horde" }'), q('alliance', 'find', '{ profile = "Alliance" }'), q('none', 'find')], { to: HUB_TO });
+	const octile = (12 + 8 * Math.SQRT2) * CS;
+	close(got.horde, octile, 'Horde: round the rim at no extra length');
+	assert.deepEqual([...crossed(got.horde)].filter((g) => hub.has(g)), [], 'Horde: no drawn segment crosses a hub cell');
+	assert.deepEqual(got.horde.hubs, {}, 'Horde: the drawn line enters no hostile hub');
+	for (const id of ['alliance', 'none']) {
+		close(got[id], octile, id);
+		assert.equal(got[id].points.length, 2, `${id}: the corner is straightened`);
+		assert.ok([...crossed(got[id])].some((g) => hub.has(g)), `${id}: the straight line crosses the hub's cells`);
+		assert.deepEqual(got[id].hubs, {}, `${id}: the hub is not hostile`);
+	}
 });
 
 test('ReuseMany reuses a batch only for the profile it was priced for', () => {
