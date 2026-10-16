@@ -10,12 +10,32 @@ const { ROOT } = require('../lib/paths');
 const { LOCALES, LOCALE_CODES, checkLocale } = require('../lib/i18n/locales');
 const { localeState, syncFiles, rel } = require('../lib/i18n/project');
 
-const ADDON = path.join(ROOT, 'addon', 'Polestar');
+// The addons with interface translations, each with Locales/<locale>.lua:
+// Polestar's own (loaded by Core/Core.xml) and the Recorder's (its TOC).
+const ADDONS = {
+	Polestar: { dir: path.join(ROOT, 'addon', 'Polestar'), title: "Polestar's interface strings" },
+	Polestar_Recorder: { dir: path.join(ROOT, 'addon', 'Polestar_Recorder'), title: "Polestar Recorder's interface strings" },
+};
+const ADDON = ADDONS.Polestar.dir;
 
-const usage = `usage: node tools/polestar.js i18n <status|check|sync|keys|import|names> [options]
+// --addon <name> -> that addon; else every addon, or Polestar's alone for
+// the commands that read one (status, keys, import).
+function addons(opts, { one = false } = {}) {
+	if (opts.addon) {
+		const a = ADDONS[opts.addon];
+		if (!a) throw new Error(`unknown addon "${opts.addon}" (${Object.keys(ADDONS).join(', ')})`);
+		return [a];
+	}
+	return one ? [ADDONS.Polestar] : Object.values(ADDONS);
+}
+
+const usage = `usage: node tools/polestar.js i18n <status|check|sync|keys|import|fit|names> [options]
 
 Polestar's interface translations (docs/TRANSLATING.md): one file per
-locale, addon/Polestar/Locales/<locale>.lua. Locales: ${LOCALE_CODES.join(', ')}.
+locale, addon/Polestar/Locales/<locale>.lua, and the same for the Recorder,
+addon/Polestar_Recorder/Locales/<locale>.lua. Locales: ${LOCALE_CODES.join(', ')}.
+check and sync read both addons; status, keys and import read Polestar's
+unless --addon names the other.
 
   i18n status                per locale: its language, status (reviewed or
                              ai), translators, and how many keys it
@@ -33,7 +53,8 @@ locale, addon/Polestar/Locales/<locale>.lua. Locales: ${LOCALE_CODES.join(', ')}
                              group, and moves translations of keys it lost to
                              a commented block at the end. Never rewrites a
                              translation. A locale named that has no file
-                             gets one, loaded from Core/Core.xml.
+                             gets one, loaded from Core/Core.xml (the
+                             Recorder's TOC lists its own).
   i18n keys                  every interface key with where it is used.
   i18n import <locale> <file.lua>...
                              merges translations written apart (a file that
@@ -42,27 +63,59 @@ locale, addon/Polestar/Locales/<locale>.lua. Locales: ${LOCALE_CODES.join(', ')}
                              the locale's file: only into keys not translated
                              yet; a broken format is refused; keys the code
                              lacks go to the commented block at the end.
+  i18n fit [<locale>[=<file>]...]
+                             lays out every preview scene and every Options
+                             page and tab in English and in each locale (or
+                             those named; <file> stands in for the shipped
+                             file, such as a pull request's), in the game
+                             font and in Inter, and lists the text the
+                             window cuts with an ellipsis, cuts after its
+                             last line or lets cross its edge. Text cut the
+                             same way in English (a long guide or item name)
+                             is left out. Fails (exit 1) when a locale has
+                             any. CJK is measured 1em wide.
   i18n names [<locale>...]   builds the names addons addon/Polestar_Names_<locale>:
-                             the quest, NPC, object and item names in each
-                             language, from DingDB (pinned commit and sha256s,
-                             cloned into data/sources/ding), then pfQuest's
-                             db/<locale> for the ones it lacks; only the ids
-                             the compiled guides, the quest database and the
-                             Codex's data name. A language left without names
-                             loses its folder.
+                             the names of quests, NPCs, objects, items,
+                             instances, encounters, factions and flight points
+                             (and the objectives of dungeon event quests) in
+                             each language. Per id, the first source with a
+                             name wins: the Forever client's tables
+                             (wago.tools, &locale=), Wowhead's Forever
+                             database in that language (list pages, then
+                             tooltips for the ids no list holds; one request
+                             at a time, cached in data/sources/wowhead/names),
+                             DingDB (pinned commit and sha256s, cloned into
+                             data/sources/ding), then pfQuest's db/<locale>.
+                             Only the ids the compiled guides, the quest
+                             database, the Codex's data and the travel data
+                             name. A language left without names loses its
+                             folder.
 
 options:
-  --json            status, check, keys, names: one JSON document on stdout
+  --json            status, check, keys, names, fit: one JSON document on stdout
+  --slack <n>       fit: measure every glyph n times wider (1.15: about the
+                    client's own font)
   --markdown        status: a Markdown table
-  --no-questie      names: leave DingDB out (its base data is QuestieDB's);
-                    pfQuest only
-  --offline         names: use the cached DingDB and pfQuest clones as they are
+  --no-questie      names: leave DingDB out (its base data is QuestieDB's)
+  --no-tables       names: leave the client tables out (otherwise a missing
+                    table stops the build)
+  --offline         names: no downloads; the cached clones, tables and pages
+  --dry-run         names: count the Wowhead requests a run would make; write nothing
+  --limit <n>       names: at most n Wowhead tooltip requests this run
+  --delay <ms>      names: between Wowhead requests (default 2500, at least 2000)
+  --build <version> names: this Forever client build (default the newest wago.tools lists)
+  --sources <dir>   names: the client-table and Wowhead cache (default data/sources)
   --ding <dir>      names: this DingDB checkout (default data/sources/ding)
   --pfquest <dir>   names: this pfQuest checkout (default data/sources/pfQuest)
   --guides <file>   names: the compiled guides (default addon/Polestar_Guides/Guides.lua)
   --questdb <dir>   names: the built quest database (default addon/Polestar_QuestDB)
   --codex <dir>     names: the Codex's data (default data/forever/codex)
-  --out <dir>       names: where the addon folders go (default addon/)`;
+  --travel <file>   names: the travel data (default addon/Polestar/Nav/TravelData.lua)
+  --chokepoints <file> names: the walking map's chokepoints, for the lifts' objects
+                    (default addon/Polestar_Nav/Nav/Chokepoints.lua)
+  --out <dir>       names: where the addon folders go (default addon/)
+  --addon <name>    status, check, sync, keys, import: Polestar or
+                    Polestar_Recorder only`;
 
 function locales(positional) {
 	if (!positional.length) return LOCALE_CODES.slice();
@@ -74,14 +127,14 @@ function count(o) {
 }
 
 // Locales/<x>.lua files that are not one of LOCALES.
-function strayFiles() {
-	const dir = path.join(ADDON, 'Locales');
+function strayFiles(addonDir) {
+	const dir = path.join(addonDir, 'Locales');
 	if (!fs.existsSync(dir)) return [];
 	return fs.readdirSync(dir).filter((f) => f.endsWith('.lua') && !LOCALES[f.replace(/\.lua$/, '')]).map((f) => path.join(dir, f));
 }
 
 function runStatus(opts) {
-	const st = localeState(ADDON, LOCALE_CODES);
+	const st = localeState(addons(opts, { one: true })[0].dir, LOCALE_CODES);
 	const total = st.keys.size;
 	const rows = LOCALE_CODES.map((locale) => {
 		const s = st.locales[locale];
@@ -112,29 +165,36 @@ function runStatus(opts) {
 
 function runCheck(opts, positional) {
 	const list = locales(positional);
-	const st = localeState(ADDON, list);
-	const report = { ok: true, keys: st.keys.size, locales: {} };
+	const report = { ok: true, keys: 0, locales: {}, addons: {} };
 	let failures = 0;
 	const fail = (msg) => {
 		failures++;
 		if (!opts.json) console.error(`error: ${msg}`);
 	};
-	if (!positional.length) for (const f of strayFiles()) fail(`${rel(f)}: not a locale Polestar ships (tools/lib/i18n/locales.js)`);
-	for (const locale of list) {
-		const s = st.locales[locale];
-		const file = rel(s.file);
-		const r = { file, exists: s.exists, translated: count(s.translated), missing: s.missing.length, stale: Object.keys(s.stale), problems: s.problems, warnings: s.warnings, error: s.error };
-		report.locales[locale] = r;
-		if (!s.exists) {
-			if (!opts.json) console.log(`${locale}: no file yet (\`node tools/polestar.js i18n sync ${locale}\` starts one)`);
-			continue;
-		}
-		if (s.error) fail(`${file}: ${s.error}`);
-		for (const k of r.stale) fail(`${file}: stale key ${JSON.stringify(k)} (not in the code; \`i18n sync ${locale}\` moves it to the end as a comment)`);
-		for (const p of s.problems) fail(`${file}: ${JSON.stringify(p.key)}: ${p.problem}`);
-		if (!opts.json) {
-			for (const w of s.warnings) console.warn(`warning: ${file}: ${JSON.stringify(w.key)} = ${JSON.stringify(w.value)}: the glossary says "${w.term}" for ${w.id}`);
-			console.log(`${locale}: ${r.translated}/${st.keys.size} translated, ${r.missing} missing${r.stale.length ? `, ${r.stale.length} stale` : ''}${s.warnings.length ? `, ${plural(s.warnings.length, 'glossary warning')}` : ''}`);
+	const all = addons(opts);
+	for (const [i, addon] of all.entries()) {
+		const st = localeState(addon.dir, list);
+		const part = { keys: st.keys.size, locales: {} };
+		report.addons[path.basename(addon.dir)] = part;
+		if (i === 0) Object.assign(report, part);
+		if (all.length > 1 && !opts.json) console.log(`${path.basename(addon.dir)}:`);
+		if (!positional.length) for (const f of strayFiles(addon.dir)) fail(`${rel(f)}: not a locale Polestar ships (tools/lib/i18n/locales.js)`);
+		for (const locale of list) {
+			const s = st.locales[locale];
+			const file = rel(s.file);
+			const r = { file, exists: s.exists, translated: count(s.translated), missing: s.missing.length, stale: Object.keys(s.stale), problems: s.problems, warnings: s.warnings, error: s.error };
+			part.locales[locale] = r;
+			if (!s.exists) {
+				if (!opts.json) console.log(`${locale}: no file yet (\`node tools/polestar.js i18n sync ${locale}\` starts one)`);
+				continue;
+			}
+			if (s.error) fail(`${file}: ${s.error}`);
+			for (const k of r.stale) fail(`${file}: stale key ${JSON.stringify(k)} (not in the code; \`i18n sync ${locale}\` moves it to the end as a comment)`);
+			for (const p of s.problems) fail(`${file}: ${JSON.stringify(p.key)}: ${p.problem}`);
+			if (!opts.json) {
+				for (const w of s.warnings) console.warn(`warning: ${file}: ${JSON.stringify(w.key)} = ${JSON.stringify(w.value)}: the glossary says "${w.term}" for ${w.id}`);
+				console.log(`${locale}: ${r.translated}/${st.keys.size} translated, ${r.missing} missing${r.stale.length ? `, ${r.stale.length} stale` : ''}${s.warnings.length ? `, ${plural(s.warnings.length, 'glossary warning')}` : ''}`);
+			}
 		}
 	}
 	report.ok = failures === 0;
@@ -160,6 +220,8 @@ function loadInCoreXml(locale) {
 	return true;
 }
 
+// A new Polestar locale file is loaded from Core/Core.xml; another addon's
+// TOC lists its files.
 function writeSync(files) {
 	let written = 0;
 	for (const [file, r] of Object.entries(files)) {
@@ -167,24 +229,29 @@ function writeSync(files) {
 		fs.mkdirSync(path.dirname(file), { recursive: true });
 		const created = !fs.existsSync(file);
 		fs.writeFileSync(file, r.text);
-		if (created && loadInCoreXml(path.basename(file, '.lua'))) console.log(`Core/Core.xml loads ${rel(file)}`);
+		const own = path.dirname(file) === path.join(ADDON, 'Locales');
+		if (created && own && loadInCoreXml(path.basename(file, '.lua'))) console.log(`Core/Core.xml loads ${rel(file)}`);
+		if (created && !own) console.log(`${rel(file)} is new: list it in its addon's TOC`);
 		written++;
 	}
 	return written;
 }
 
 function runSync(opts, positional) {
-	const list = positional.length ? locales(positional) : LOCALE_CODES.filter((l) => fs.existsSync(path.join(ADDON, 'Locales', `${l}.lua`)));
-	const st = localeState(ADDON, list);
 	let code = 0;
-	for (const locale of list) {
-		const s = st.locales[locale];
-		if (s.error) {
-			console.error(`error: ${rel(s.file)}: ${s.error}; fix it first (nothing written for ${locale})`);
-			code = 1;
+	const files = {};
+	for (const addon of addons(opts)) {
+		const list = positional.length ? locales(positional) : LOCALE_CODES.filter((l) => fs.existsSync(path.join(addon.dir, 'Locales', `${l}.lua`)));
+		const st = localeState(addon.dir, list);
+		for (const locale of list) {
+			const s = st.locales[locale];
+			if (s.error) {
+				console.error(`error: ${rel(s.file)}: ${s.error}; fix it first (nothing written for ${locale})`);
+				code = 1;
+			}
 		}
+		Object.assign(files, syncFiles(st, { create: positional.length ? list : [], title: addon.title }));
 	}
-	const files = syncFiles(st, { create: positional.length ? list : [] });
 	for (const [file, r] of Object.entries(files)) {
 		const parts = [];
 		if (r.added.length) parts.push(`${plural(r.added.length, 'key')} added`);
@@ -198,7 +265,7 @@ function runSync(opts, positional) {
 
 function runKeys(opts) {
 	const { extractKeys } = require('../lib/i18n/keys');
-	const keys = extractKeys(ADDON);
+	const keys = extractKeys(addons(opts, { one: true })[0].dir);
 	const where = (w) => w.map((x) => (x.data ? `${x.file} (data)` : `${x.file}:${x.line}`));
 	if (opts.json) {
 		console.log(JSON.stringify(Object.fromEntries([...keys].map(([k, w]) => [k, where(w)])), null, 1));
@@ -218,7 +285,8 @@ function runImport(opts, positional) {
 	checkLocale(locale);
 	const { readLocaleFiles } = require('../lib/i18n/files');
 	const { formatProblems } = require('../lib/i18n/check');
-	const st = localeState(ADDON, [locale]);
+	const addon = addons(opts, { one: true })[0];
+	const st = localeState(addon.dir, [locale]);
 	const s = st.locales[locale];
 	if (s.error) throw new Error(`${rel(s.file)}: ${s.error}`);
 	const fill = {};
@@ -245,7 +313,7 @@ function runImport(opts, positional) {
 			fill[k] = v;
 		}
 	}
-	const out = syncFiles(st, { create: [locale], fill: { [locale]: fill }, retire: { [locale]: retire } });
+	const out = syncFiles(st, { create: [locale], fill: { [locale]: fill }, retire: { [locale]: retire }, title: addon.title });
 	writeSync(out);
 	const r = out[s.file];
 	console.log(`${locale}: ${plural(r.filled.length, 'translation')} imported into ${rel(s.file)}`
@@ -255,56 +323,177 @@ function runImport(opts, positional) {
 	return bad ? 1 : 0;
 }
 
-const KIND_WORDS = { quest: 'quest', npc: 'NPC', object: 'object', item: 'item' };
+const KIND_WORDS = {
+	quest: 'quest', npc: 'NPC', object: 'object', item: 'item', map: 'instance', encounter: 'encounter',
+	faction: 'faction', taxi: 'flight point', objective: 'quest objective',
+};
+const SOURCE_WORDS = { wago: 'client tables', wowhead: 'Wowhead', ding: 'DingDB', pfquest: 'pfQuest' };
 
-function runNames(opts, positional) {
+async function runNames(opts, positional) {
 	const names = require('../lib/i18n/names');
 	const { ensurePfQuest, loadPfQuestNames } = require('../lib/data/pfquest');
+	const { loadClientNames } = require('../lib/i18n/names-wago');
+	const wh = require('../lib/i18n/names-wowhead');
+	const { politeClient } = require('../lib/codex/wowhead');
 	const wanted = locales(positional);
 	const abs = (p) => (p ? path.resolve(p) : undefined);
 	const log = opts.json ? () => {} : (m) => console.log(m);
-	const ids = names.usedIds({ guides: abs(opts.guides), questdb: abs(opts.questdb), codex: abs(opts.codex) });
-	const pfInfo = ensurePfQuest({ dir: abs(opts.pfquest) || names.DEFAULTS.pfquest, explicit: Boolean(opts.pfquest), offline: Boolean(opts.offline), log });
-	for (const w of pfInfo.warnings) console.error(`warning: ${w}`);
-	const ding = opts.noQuestie ? null : names.ensureDing({ dir: abs(opts.ding) || names.DEFAULTS.ding, explicit: Boolean(opts.ding), offline: Boolean(opts.offline), log });
+	const warn = (m) => console.error(`warning: ${m}`);
+	const offline = Boolean(opts.offline);
+	const dryRun = Boolean(opts.dryRun);
+	const sourcesDir = abs(opts.sources) || names.DEFAULTS.sources;
+	const codex = abs(opts.codex) || names.DEFAULTS.codex;
+	const ids = names.usedIds({ guides: abs(opts.guides), questdb: abs(opts.questdb), codex });
+	const { liftObject, ...extra } = names.extraIds({ codex, travel: abs(opts.travel) || names.DEFAULTS.travel, chokepoints: abs(opts.chokepoints) || names.DEFAULTS.chokepoints });
+	Object.assign(ids, extra);
+	for (const id of liftObject) ids.object.add(id);
+	const pfInfo = ensurePfQuest({ dir: abs(opts.pfquest) || names.DEFAULTS.pfquest, explicit: Boolean(opts.pfquest), offline, log });
+	for (const w of pfInfo.warnings) warn(w);
+	const ding = opts.noQuestie ? null : names.ensureDing({ dir: abs(opts.ding) || names.DEFAULTS.ding, explicit: Boolean(opts.ding), offline, log });
 	const pf = loadPfQuestNames(pfInfo.dir, [...wanted, 'enUS']);
-	const out = names.buildNames({ locales: wanted, ids, ding: ding ? names.readDing(ding, wanted) : null, pf });
+	const dingNames = ding ? names.readDing(ding, wanted) : null;
+
+	// The client's tables in each language: Forever's, then the Era client's
+	// items. Missing tables stop the build (--no-tables leaves them out).
+	let wago = null;
+	let wagoInfo = null;
+	const english = {};
+	if (!opts.noTables) {
+		const tables = await loadClientNames({ sourcesDir, locales: wanted, forever: opts.build, offline, log });
+		wago = tables.names;
+		wagoInfo = { builds: tables.builds, urls: tables.urls };
+		for (const [kind, m] of Object.entries(tables.english)) for (const [id, n] of m) names.addEnglish(english, kind, id, n);
+	}
+	// The data's English names: a name equal to one of them is no translation.
+	for (const [kind, file] of Object.entries({ quest: 'quests.json', npc: 'npcs.json', object: 'objects.json', item: 'items.json' })) {
+		const f = path.join(codex, file);
+		if (!fs.existsSync(f)) continue;
+		for (const [id, r] of Object.entries(JSON.parse(fs.readFileSync(f, 'utf8')))) names.addEnglish(english, kind, Number(id), r && (r.name || r.title));
+	}
+
+	// Wowhead: the list ranges holding an id (items: only those some
+	// language's client table lacks), then tooltips for the rest.
+	const want = {};
+	for (const kind of names.NAME_KINDS) want[kind] = ids[kind];
+	if (wago) want.item = new Set([...ids.item].filter((id) => wanted.some((l) => !(wago[l] && wago[l].item && wago[l].item.has(id)))));
+	const delayMs = Math.max(wh.MIN_DELAY_MS, opts.delay ? Number(opts.delay) : wh.DELAY_MS);
+	const http = politeClient({ delayMs, retryPauseMs: 30000, maxFailures: 5, userAgent: 'Mozilla/5.0 (polestar-names-build)', log: (m) => console.error(m) });
+	const lists = await wh.fetchListNames({ sourcesDir, locales: wanted, want, client: http, dryRun, offline, log: (m) => console.error(m) });
+	for (const f of lists.failed.slice(0, 20)) warn(`Wowhead ${f.locale} ${f.url}: ${f.error}`);
+	if (lists.missingEnglish.length) warn(`no cached English Wowhead list for ${lists.missingEnglish.join(', ')} (run codex wowhead once): those kinds get tooltips only`);
+	const loadAll = () => Object.fromEntries(wanted.map((l) => [l, wh.loadWowheadNames(sourcesDir, l)]));
+	let whNames = loadAll();
+	let out = names.buildNames({ locales: wanted, ids, ding: dingNames, pf, wago, wowhead: whNames, english });
+	const tooltips = {};
+	let stragglers = 0;
+	for (const l of wanted) {
+		const byType = {};
+		for (const kind of names.NAME_KINDS) {
+			const left = [...ids[kind]].filter((id) => !out[l].names[kind].has(id) && !out[l].english[kind].has(id) && !whNames[l].listed[kind].has(id));
+			if (left.length) byType[kind] = left;
+		}
+		const objectives = [...ids.objective].filter((id) => !out[l].names.objective.has(id));
+		if (objectives.length) byType.quest = [...new Set([...(byType.quest || []), ...objectives])].sort((a, b) => a - b);
+		for (const v of Object.values(byType)) stragglers += v.length;
+		tooltips[l] = byType;
+	}
+	const tips = await wh.fetchTooltipNames({ sourcesDir, wanted: tooltips, client: http, dryRun, offline, limit: opts.limit ? Number(opts.limit) : Infinity, log: (m) => console.error(m) });
+	for (const f of tips.failed.slice(0, 20)) warn(`Wowhead ${f.locale} ${f.url}: ${f.error}`);
+	if (dryRun) {
+		console.log(`dry run: ${lists.planned} Wowhead list ranges and ${tips.left} tooltips to fetch (${tips.cached} tooltips cached); nothing written`);
+		return 0;
+	}
+	if (tips.fetched) {
+		whNames = loadAll();
+		out = names.buildNames({ locales: wanted, ids, ding: dingNames, pf, wago, wowhead: whNames, english });
+	}
+	for (const l of wanted) {
+		for (const kind of ['map', 'faction', 'taxi']) {
+			if (wago && ids[kind] && ids[kind].size && !out[l].names[kind].size) throw new Error(`${l}: no ${kind} names from the client tables (${ids[kind].size} wanted); nothing written`);
+		}
+	}
 	const outDir = abs(opts.out) || names.DEFAULTS.out;
-	const written = names.writeNamesAddons(out, outDir, { sources: { ding, pf: pfInfo } });
+	const sources = { wago: wagoInfo, wowhead: Object.fromEntries(wanted.map((l) => [l, whNames[l]])), ding, pf: pfInfo };
+	if (!Object.values(sources.wowhead).some((x) => x.fetched)) sources.wowhead = null;
+	const written = names.writeNamesAddons(out, outDir, { sources });
+	const idCount = (k) => (ids[k] === null ? null : ids[k].size);
+	// Ids with no name in a language, and those whose every name there is the
+	// English one (not stored: the English shows, as the game does).
+	const lacking = (l) => Object.fromEntries(names.PACK_KINDS.filter((k) => ids[k]).map((k) => [k, [...ids[k]].filter((id) => !out[l].names[k].has(id) && !out[l].english[k].has(id)).length]));
+	const sameAsEnglish = (l) => Object.fromEntries(names.PACK_KINDS.filter((k) => ids[k]).map((k) => [k, out[l].english[k].size]));
 	if (opts.json) {
-		const kinds = (m) => Object.fromEntries(names.NAME_KINDS.map((k) => [k, m[k]]));
+		const kinds = (f) => Object.fromEntries(names.PACK_KINDS.map((k) => [k, f(k)]));
 		console.log(JSON.stringify({
-			ids: { ...kinds(Object.fromEntries(names.NAME_KINDS.map((k) => [k, ids[k].size]))), sources: ids.counts },
+			ids: { ...kinds(idCount), sources: ids.counts },
+			wago: wagoInfo ? wagoInfo.builds : null,
+			wowhead: { listRequests: lists.requests, tooltipRequests: tips.requests, tooltipsLeft: tips.left, failed: lists.failed.length + tips.failed.length },
 			ding: ding ? { version: ding.pin.version, commit: ding.pin.commit, revision: ding.revision } : null,
 			pfquest: { revision: pfInfo.revision },
 			locales: Object.fromEntries(wanted.map((l) => {
 				const w = written.find((x) => x.locale === l);
-				return [l, { names: kinds(Object.fromEntries(names.NAME_KINDS.map((k) => [k, out[l].names[k].size]))), from: out[l].from, bytes: w ? w.bytes : 0 }];
+				return [l, { names: kinds((k) => out[l].names[k].size), lacking: lacking(l), sameAsEnglish: sameAsEnglish(l), from: out[l].from, bytes: w ? w.bytes : 0 }];
 			})),
 		}, null, 2));
 		return 0;
 	}
-	const idLine = (c) => names.NAME_KINDS.map((k) => plural(c[k], KIND_WORDS[k])).join(', ');
-	console.log(`ids Polestar's data names: ${idLine(Object.fromEntries(names.NAME_KINDS.map((k) => [k, ids[k].size])))}`);
-	for (const [src, c] of Object.entries(ids.counts)) console.log(`  ${src}: ${idLine(c)}`);
+	const idLine = (c, kinds = names.PACK_KINDS) => kinds.filter((k) => c[k] != null).map((k) => plural(c[k], KIND_WORDS[k])).join(', ');
+	console.log(`ids Polestar's data names: ${idLine(Object.fromEntries(names.PACK_KINDS.map((k) => [k, idCount(k)])))}${ids.encounter === null ? ', every encounter' : ''}`);
+	for (const [src, c] of Object.entries(ids.counts)) console.log(`  ${src}: ${idLine(c, names.NAME_KINDS)}`);
+	console.log(wagoInfo ? `client tables: ${Object.entries(wagoInfo.builds).map(([p, b]) => `${p} ${b}`).join(', ')}` : 'client tables left out');
+	console.log(`Wowhead: ${lists.requests} list and ${tips.requests} tooltip requests this run${tips.left ? `, ${tips.left} tooltips left (--limit)` : ''}`);
 	console.log(ding ? `DingDB ${ding.pin.version} (${ding.pin.commit.slice(0, 7)}): every pinned file matches its sha256` : 'DingDB left out (--no-questie)');
 	console.log(`pfQuest ${pfInfo.revision ? pfInfo.revision.slice(0, 7) : '(revision unknown)'}`);
 	for (const l of wanted) {
 		const b = out[l];
 		const w = written.find((x) => x.locale === l);
-		const from = names.NAME_KINDS.reduce((s, k) => ({ ding: s.ding + b.from[k].ding, pfquest: s.pfquest + b.from[k].pfquest }), { ding: 0, pfquest: 0 });
-		const sizes = Object.fromEntries(names.NAME_KINDS.map((k) => [k, b.names[k].size]));
+		const from = Object.fromEntries(names.SOURCE_KEYS.map((s) => [s, names.PACK_KINDS.reduce((n, k) => n + b.from[k][s], 0)]));
+		const sizes = Object.fromEntries(names.PACK_KINDS.map((k) => [k, b.names[k].size]));
+		const fromLine = names.SOURCE_KEYS.map((s) => `${SOURCE_WORDS[s]} ${from[s]}`).join(', ');
+		const miss = lacking(l);
 		console.log(w
-			? `${l}: ${idLine(sizes)} (DingDB ${from.ding}, pfQuest ${from.pfquest}); ${path.relative(process.cwd(), w.dir) || '.'}, ${(w.bytes / 1024).toFixed(0)} KB`
+			? `${l}: ${idLine(sizes)} (${fromLine}); the English one for ${idLine(sameAsEnglish(l))}; none for ${idLine(miss)}; ${path.relative(process.cwd(), w.dir) || '.'}, ${(w.bytes / 1024).toFixed(0)} KB`
 			: `${l}: no names; no folder`);
 	}
 	return 0;
 }
 
+// Every locale (or those named, each with the file standing in for its
+// shipped one) laid out in every preview scene and Options page: the
+// translated text that does not fit (tools/preview/fit.js).
+async function runFit(opts, positional) {
+	const { fitLocales, describe } = require('../preview/fit');
+	const slack = opts.slack === undefined ? 1 : Number(opts.slack);
+	if (!(slack > 0)) throw new Error(`--slack ${opts.slack}: a number above 0`);
+	const targets = (positional.length ? positional : LOCALE_CODES).map((a) => {
+		const [locale, file] = a.split('=');
+		checkLocale(locale);
+		if (file && !fs.existsSync(file)) throw new Error(`${file}: no such file`);
+		return { locale, file: file ? path.resolve(file) : null };
+	});
+	const results = await fitLocales(targets, { slack });
+	const failed = results.some((r) => r.translated.length);
+	if (opts.json) {
+		console.log(JSON.stringify(results, null, 1));
+		return failed ? 1 : 0;
+	}
+	const where = (f) => {
+		const places = [...new Set(f.places)];
+		return `      in ${places.slice(0, 2).join('; ')}${places.length > 2 ? ` and ${places.length - 2} more` : ''}`;
+	};
+	const english = results[0].found;
+	console.log(`English: ${plural(english.length, 'string')} cut in every language alike (left out below)`);
+	for (const f of english) console.log(`  ${describe(f)}`);
+	for (const r of results.slice(1)) {
+		console.log(`${r.locale}${r.file ? ` (${path.relative(process.cwd(), r.file)})` : ''}: ${r.translated.length ? `${plural(r.translated.length, 'string')} that do not fit` : 'everything fits'}`);
+		for (const f of r.translated) console.log(`  ${describe(f)}\n${where(f)}`);
+	}
+	return failed ? 1 : 0;
+}
+
 async function run(argv) {
 	const { opts, positional, error } = parseArgs(argv, {
-		flags: ['--json', '--markdown', '--no-questie', '--offline'],
-		options: ['--ding', '--pfquest', '--guides', '--questdb', '--codex', '--out'],
+		flags: ['--json', '--markdown', '--no-questie', '--no-tables', '--offline', '--dry-run'],
+		options: ['--ding', '--pfquest', '--guides', '--questdb', '--codex', '--travel', '--chokepoints', '--out', '--limit', '--delay', '--build', '--sources', '--slack', '--addon'],
 	});
 	const [sub, ...rest] = positional;
 	if (error || !sub) {
@@ -317,7 +506,8 @@ async function run(argv) {
 		if (sub === 'sync') return runSync(opts, rest);
 		if (sub === 'keys') return runKeys(opts);
 		if (sub === 'import') return runImport(opts, rest);
-		if (sub === 'names') return runNames(opts, rest);
+		if (sub === 'fit') return await runFit(opts, rest);
+		if (sub === 'names') return await runNames(opts, rest);
 	} catch (e) {
 		console.error(`error: ${e.message}`);
 		return 1;
@@ -326,4 +516,4 @@ async function run(argv) {
 	return 2;
 }
 
-module.exports = { name: 'i18n', summary: 'interface translations (status, check, sync, keys, import) and the names addons (names)', usage, run };
+module.exports = { name: 'i18n', summary: 'interface translations (status, check, sync, keys, import, fit) and the names addons (names)', usage, run };

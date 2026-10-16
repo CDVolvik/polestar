@@ -126,6 +126,7 @@ Messages:
 | `STEP_CHANGED` | stepIndex | Engine |
 | `STEP_UPDATED` | stepIndex | Engine (goal status/progress changed, same step); Names (names arrived) |
 | `NAMES_LOADED` | — | Names, when the names pack loads after a refusal in combat (the quest tracker reads its names again) |
+| `NAME_LEARNED` | kind ("npc" \| "object"), id | Names, when a name learned in play is new or changed (the Codex, Dungeons and ItemDB caches drop their copy) |
 | `STEP_SKIPPED` | fromStep, toStep or nil, `{ { quest, title, reason, text }, ... }` | Engine, active tab, just before `STEP_CHANGED`: the computed step moved past a step whose open quest goals became unavailable (reasons as in "Unavailable quests") |
 | `PLAYER_SKIPPED_STEP` | guideId, stepIndex | Engine, after `Skip()` (the window, the menu, `/polestar skip`): the guide window offers the undo |
 | `WAYPOINT_CHANGED` | waypoint or nil | Engine (and Nav when an override is set/cleared) |
@@ -138,6 +139,8 @@ Messages:
 | `SHOW_COPY` | title, text | `/polestar where` → UI/Copy.lua |
 | `SHOW_REPORT` | — | `/polestar report` → UI/Report.lua |
 | `SHOW_DISCORD` | — | `/polestar discord` → UI/Report.lua |
+| `TOGGLE_PICKER` / `TOGGLE_OPTIONS` | — | key bindings and gamepad chords (`POLESTAR_MENU`, `POLESTAR_OPTIONS`) → UI: open, or close when open |
+| `TOGGLE_FOCUS` | — | `POLESTAR_FOCUS` → UI/GamepadGuide.lua (focus mode) |
 
 Modules fire their own (`TABS_CHANGED`, `ROUTE_*`, `TRAIN_DUE`,
 `CLASS_TRAINED`, `GUIDE_OUTLEVELED`, `QUESTDB_*`, `CODEX_LOADED`,
@@ -164,7 +167,7 @@ the nearest 5, `opts.compact` writes yards from 1000 as "1.2k yd"
 (`Rares.YardsText`); metres turn to kilometres from 1000 m. The bug report
 keeps yards for whoever reads it.
 
-`PolestarDB = { schema = 1, settings = { [section] = { ... } }, packs = { [packId] = { off = true } }, welcomeSeen = 1 }`
+`PolestarDB = { schema = 1, settings = { [section] = { ... } }, packs = { [packId] = { off = true } }, welcomeSeen = 1, gamepad = { chords = { [action] = "PADRSHOULDER+PADDUP" } } }`
 `PolestarCharDB = { schema = 1, guide = id|nil, tabs = { guideId, ... }, activeTab = n, absentAt = { [guideId] = place }, manual = { [guideId] = { ["s:g"] = true|"tick" } }, skipped = { [guideId] = { [stepIndex] = true, ["s:g"] = true } }, pins = { [guideId] = { step, done } }, offers = { [questID] = level }, shapes = { [guideId] = shape }, stepKeys = { [guideId] = { hash, ... } }, flags = { fp = { [name] = true }, ... }, welcomeSeen = 0|1 }`
 
 `packs[<id>].off` hides a pack's guides account-wide (the Guide packs page's
@@ -172,7 +175,7 @@ switch). `welcomeSeen` (UI/Welcome.lua) is the version of the welcome last
 seen: in `PolestarDB`, the account has had its welcome (later characters skip
 its Set up page); in `PolestarCharDB`, this character has (0 while due).
 `behavior.suggestFrom` (default `"guides"`) is the pack suggestions come from.
-Modules keep their own keys beside these (`rares`, `instances` account-wide;
+Modules keep their own keys beside these (`rares`, `instances`, `names` account-wide;
 `ui`, `routes`, `classTrainLevel`, `classTrainVisit`, `qol`, `flightTimes`,
 `flightNow`, `instanceRuns` per character), each described in its section or file header.
 
@@ -182,7 +185,8 @@ during their step, and conditions that can stop holding later (goto,
 sethome, hearth, fly, getfp, buy, bag-count collect, `train class` with
 nothing to learn) are latched once the route moves past their step, so
 leaving a zone, rebinding the hearthstone or levelling up never drags the
-guide backwards. Quest goals are never latched: abandoning a
+guide backwards. Quest goals are never latched, but for a `direct` turn-in's
+QUEST_TURNED_IN during its step (a repeatable is never flagged completed): abandoning a
 quest reopens its step (unless the player ticked it). `skipped` holds the
 steps the player skipped (step number) and the optional goals they skipped
 (`"s:g"`). `pins` is the step the player was looking at when it is not the
@@ -204,7 +208,7 @@ registered commands with their `help` lines (already translated:
 (skip the step shown, for good), `reset` (clear ticks, latches, skips and
 the saved view for the current guide), `guide <id>`, `status`, `tabs`,
 `tab <n>`, `close`, `path` (the route choice), `welcome` (`SHOW_WELCOME`),
-`packs` (Options at Guide packs), `where`, `report` (`SHOW_REPORT`),
+`packs` (Options at Guide packs), `gamepad` (Options at Gamepad), `where`, `report` (`SHOW_REPORT`),
 `discord` (`SHOW_DISCORD`), `debug`; Nav adds `arrow`, `way` and `route`;
 modules add theirs (`xp`, `gear`, `instances`, `dungeons`, `lookup`, `mount`,
 `rares`, `questdb`).
@@ -230,6 +234,95 @@ the errors Polestar catches are noted by their first line, counted, for the
 report a player copies (UI, "Reporting a problem"). Polestar never replaces
 the game's error handler: wrapping it would shift the stack the game and
 !BugGrabber show for every error.
+
+### Frames under the game's UI
+
+```lua
+Polestar.CreateFrameUnder(kind, name, parent, template) -> frame   -- CreateFrame with no parent, then SetParent(parent)
+```
+
+Forever's gamepad interface hooks `CreateFrame`
+(`Blizzard_GamepadSmartNavigation`, `SetupFrameHooks`): when the parent is,
+or is under, one of its open panels (the world map, the quest frame, the
+talents, the settings...), it rebuilds that panel's button groups inside the
+caller's code. Called from Polestar, the panel's tables are left tainted and
+the next gamepad action there is blocked ("An action was blocked because of
+taint from Polestar"; seen in game as a quest reward was taken, then on every
+panel after it). `SetParent` is not hooked. So every frame of Polestar's
+whose parent is a game frame, or is under one (the map canvases, the
+minimap, the quest reward and talent buttons, and the frames under those),
+is made through `CreateFrameUnder`; frames under Polestar's own windows,
+which hang off `UIParent`, are made with `CreateFrame`. No `CreateFramePool`
+with a game frame either: it calls `CreateFrame` with its parent.
+`tests/lua/wow_stub.lua`'s `CreateFrame` raises on a call from addon code
+whose parent is, or is under, a frame addon code did not make
+(`stub.underGameFrames`), and `tests/nav-mapcanvas.test.js`,
+`tests/qol.test.js` (the reward marks) and `tests/talents.test.js` (the
+talent marks) check that none was made.
+
+### Gamepad interface
+
+```lua
+Polestar.GamepadUI() -> bool   -- Forever's Gamepad interface style is on (read once, as the addon loads)
+Polestar.CloseOnEscape(name)   -- add a Polestar window to UISpecialFrames, except with the gamepad interface
+Polestar.RunCommand(msg)       -- what /polestar runs; registered as a slash command only with the keyboard and mouse
+```
+
+With Forever's Gamepad interface on (Options, Gamepad, Enable Gamepad UI;
+`C_InputInterfaceStyle`, which decides: the CVar `InputDeviceInterfaceStyle`
+can stay at Gamepad with the keyboard and mouse, so it is read only on a
+client without the API), its navigation
+(`Blizzard_GamepadSmartNavigation`, `FrameControlsManager`) opens, closes
+and focuses the game's windows, popups, menus and chat box from Blizzard's
+code, and in the same execution makes protected calls
+(`SetPreferredGamepadInteractTarget`, `RunBinding`, `DescendStop`). Addon
+code running in that flow gets them blocked, and the "AddOn blocked"
+popup's own gamepad handling blocks the next one, thousands of times, until
+the client freezes. An addon whose only code is an empty slash command
+reproduces it (Blizzard forum threads 2367777 and 2370253). Other Forever
+addons (EllesmereUI, Olympus, Questie) do the same as Polestar: with the
+gamepad interface on, they keep to their own windows.
+
+`GamepadUI()` reads the style once, as `Core/Init.lua` loads (the client
+reloads the UI when it changes). With it on, Polestar:
+
+- registers no slash command: `/polestar`, `/pole`, `/way` (Nav/Journey)
+  and `/psrec` (Polestar_Recorder, which reads the style itself). The chat
+  box calls a command's function, then closes itself in that function's
+  taint. The minimap button, on by default then (`maps.minimapButton`), and
+  the key bindings open Polestar; the Recorder page calls
+  `PolestarRecorder_Command`;
+- adds no entry to the world map and minimap tracking menus
+  (`Menu.ModifyMenu`, Nav/Nearby);
+- puts no window in `UISpecialFrames` (`CloseOnEscape`), which the
+  gamepad's menus read and close;
+- opens no world map (`Compat.OpenWorldMap`; a dungeon page has no "Show
+  on map") and adds no canvas click handler to it (Nav/Journey);
+- never closes the game's Settings panel for "Open Polestar settings"
+  (UI/Options: the chat says to close it);
+- hooks no button the gamepad's navigation moves over: no Polestar line on
+  talent tooltips (Talents/Overlay), no route on the flight map
+  (QoL/Flight; the node keeps its mark), no quest levels in the game's
+  quest windows (Quests/QuestLevels, whose surfaces lay out windows the
+  gamepad manages);
+- leaves the game's request dialogs for the player (QoL/Social) and the
+  error-message setting off (QoL/Toggles, which writes the game's
+  `BLACK_LISTED_MESSAGE_TYPES`);
+- sets no override binding on the gamepad's buttons: a Polestar window
+  holding the gamepad reads them through its own frame only; binds no chord
+  unasked and names every chord on LB or RB as the game's own; and only
+  reads the gamepad's focused window, never calls into its managers
+  (UI/Gamepad, see [Gamepad](#gamepad-uigamepadlua-uigamepadguidelua)).
+
+Frames under the game's frames are made through `CreateFrameUnder` and the
+maps are only read (MapCanvas) with either style. The quest automation, the
+vendor and the trainer stay on: they call the game's API, never its
+windows, and the game opens and closes those from its own event handlers.
+`tests/gamepad-ui.test.js` loads Polestar with each style, and lists every
+line of addon code that reaches into the game's UI (slash commands,
+`UISpecialFrames`, menus, panels, popups, the world map's tables, the error
+frame's settings, override bindings, the gamepad's managers): a new one fails
+there until it is guarded and listed.
 
 ### Localisation
 
@@ -265,7 +358,16 @@ where it appears, so `i18n keys` and a translator find every key: a table of
 labels holds `L["Home"]`, not `"Home"` translated later through
 `L[VIEW_LABEL[v]]`. `L[variable]` is left only for text that comes from data
 (a guide's category, race and class names, profession and spec names, the
-release stage), each listed in `DATA_KEYS` (`tools/lib/i18n/keys.js`).
+talent plans' spec names, the release stage), each listed in `DATA_KEYS`
+(`tools/lib/i18n/keys.js`, which also reads Gear/Weights.lua's spec labels,
+Talents/Builds.lua's `specs` and the Dungeons attunement notes of
+`tools/lib/codex/attunements.json`). Generated files carry their prose as
+literal keys too: `talents build` writes the plan summary and per-level notes
+as `L["..."]` in `Talents/Builds.lua`. Data that names a game thing carries
+its id instead, and the display asks `Polestar.Names` (quests, NPCs, objects,
+items, spells, factions, instances, areas, flight points, encounters). The
+optional Recorder has its own `ns.L` and `Locales/<locale>.lua` (listed in
+its TOC); `i18n check` and `sync` cover it too.
 
 `Polestar.AI_LOCALES` names the languages whose translation is AI-made
 (`status: "ai"` in locales.js; `tests/i18n.test.js` keeps the two equal). On
@@ -274,29 +376,57 @@ Options > About says so, with the Discord invite.
 
 ### Names
 
-`Polestar.Names` (`Core/Names.lua`) names quests, NPCs, objects and items in
+`Polestar.Names` (`Core/Names.lua`) names quests, NPCs, objects, items,
+spells, factions, areas, instances, flight points and dungeon encounters in
 the client's language. The guides and data packs keep their English; where a
 name is shown or matched, the caller asks Names first and keeps its English
 when the answer is nil:
 
 ```
 Names.Quest(id) / Names.Npc(id) / Names.Object(id) / Names.Item(id) -> name | nil
+Names.Spell(id) / Names.Faction(id) / Names.Area(areaID) / Names.Instance(mapID)
+  / Names.Taxi(id) / Names.Encounter(id) -> name | nil
+Names.Get(kind, id) -> name | nil      -- the above by kind: quest npc object item
+                                       -- spell faction area map taxi encounter,
+                                       -- else the kind's pack table
 Names.Cached(kind, id) -> name | nil   -- never asks the server; items from the pack only
+Names.Learn(unit) -> name | nil        -- keeps the name the client shows for unit
 Names.Localised() -> bool              -- false on enUS and enGB
 Names.Ready() -> bool                  -- the pack is in, or will not load this session
 Names.PackName() -> "Polestar_Names_<locale>" | nil
-Names.Add(locale, kind, { [id] = name })   -- the pack's files only
+Names.Add(locale, kind, { [id] = name })   -- the pack's files only; any kind
 ```
 
 - **Order.** The client's own name first, where the client has an API by id:
-  a quest's title (`Compat.GetQuestTitle`, `C_QuestLog.GetTitleForQuestID`)
-  and an item's name (`Compat.GetItemName`, `C_Item.GetItemNameByID`). The
-  client has none for NPCs and objects. Then the names pack of the client's
+  a quest's title (`Compat.GetQuestTitle`, `C_QuestLog.GetTitleForQuestID`),
+  an item's name (`Compat.GetItemName`, `C_Item.GetItemNameByID`), a spell's
+  (`C_Spell.GetSpellName`, `GetSpellInfo`), a faction's (`C_Reputation`,
+  `GetFactionInfoByID`; a faction the character has not met falls to the
+  pack) and an area's (`Compat.GetAreaName`). An instance is the pack's
+  first (`map`, Map.csv), then `GetRealZoneText(mapID)` when that names
+  somewhere other than the current zone (an older client ignores the
+  argument). Flight points (`taxi`) and encounters are the pack's only.
+  Then the names pack of the client's
   language, `Polestar_Names_<GetLocale()>`, loaded through `Data.Pack` on the
   first ask (refused in combat, it loads when combat ends, fires
   `NAMES_LOADED` and redraws the guide window once; a missing
   folder is final for the session and harmless). Then nil. On an English
   client every answer is nil and nothing loads.
+- **Learned in play.** The client has no API for NPC or object names by id,
+  but it names the units it shows: on `PLAYER_TARGET_CHANGED`,
+  `UPDATE_MOUSEOVER_UNIT`, `NAME_PLATE_UNIT_ADDED` and the NPC windows
+  (`GOSSIP_SHOW`, `QUEST_GREETING`, `QUEST_DETAIL`, `QUEST_PROGRESS`,
+  `QUEST_COMPLETE`, `MERCHANT_SHOW`, `TRAINER_SHOW`: the `npc` unit, a
+  quest-giving object's GUID too) `Names.Learn` keeps the unit's name by its
+  GUID's id in `PolestarDB.names[<locale>].npc` / `.object` (account-wide,
+  per client language, read through `ns.DB()` each time; player-controlled
+  units are skipped; a name equal to the pack's is not kept; at most 2,000
+  ids, `order` oldest first, the oldest tenth dropped past the cap).
+  `Names.Npc` and `Names.Object` answer a learned name before the pack's. A
+  new or changed one fires `NAME_LEARNED(kind, id)`, and redraws the guide
+  window once when the current or next step names that id. The Codex's
+  decoded records, the open dungeon page and ItemDB's parsed quests and
+  sources drop their copies on `NAME_LEARNED` and on `NAMES_LOADED`.
 - **Asking the server.** A quest or item the client has not cached is asked
   for once a session (`Compat.RequestQuest`, `Compat.RequestItem`); the
   pack's name, or the English, shows meanwhile. When asked names arrive
@@ -304,26 +434,55 @@ Names.Add(locale, kind, { [id] = name })   -- the pack's files only
   per burst refills the guide window's rows.
 - **Consumers.** The guide window's labels (`Engine` `describe`, the quest
   title order: on a non-English client the client's title before the guide's
-  English one), the target button's `/targetexact` (`QoL/Buttons.lua`), the
+  English one; skill goals' professions through `L`, learn and craft goals'
+  spells and rep goals' factions by id; the class trainer of
+  `Engine.NearestClassTrainer`), the target button's `/targetexact`
+  (`QoL/Buttons.lua`), the
   quest database's names (`QuestDB.GetQuestTitle`, `EntityName`, `GetNpc`,
   `GetItem`, `GetItemDroppers`, `GetObjectiveMobs`: tooltips and the target
   button's droppers), objective matching (`Quests/Tracker.lua`: a client line
   is matched on the translated name before falling back to order, and object
-  tooltips find their objectives by the translated name), and `Search`: on a
+  tooltips find their objectives by the translated name), the Codex's
+  records (`Codex.Item/Npc/Object/Quest`, an instance's bosses and
+  `Codex.Name` for those kinds: so Lookup, its sources, the item-tooltip
+  spotter and Rares read them translated), a dungeon page as it is decoded
+  (`Dungeons/Dungeons.lua`: quest titles, start and finish points, reward and
+  starting items, keys, bosses by encounter, NPC or object, attunement
+  names), the gear advice's leveling data (`ItemDB.ItemName`, `Quest`,
+  `Sources`), and `Search`: on a
   non-English client each Codex kind's index gets, once, a line per id whose
   translated name (or, for zones, the client's map name) differs, a match
   counts an id once and is listed under its translated name. The collect
-  goals' compiled sources (`from`, `fromAlso`) carry no id and stay English.
+  goals' compiled sources carry their ids (`fromId`, `fromAlsoId`, of kind
+  `fromKind`), so the goal line names them in the client's language;
+  `from` and `fromAlso` are the English for older packs and English clients.
 - **The packs.** One load-on-demand addon per language
   (`addon/Polestar_Names_<locale>/`: `Names.lua` calling `Names.Add` per
-  1,000 names, the TOC, `LICENSE-DATA.txt`, Ding's `CREDITS.md`), committed
-  and shipped. `node tools/polestar.js i18n names` builds them from DingDB
-  (cloned into `data/sources/ding`, pinned to a commit and its files'
-  sha256s: `DING` in `tools/lib/i18n/names.js`) and, for the names it lacks,
-  pfQuest's `db/<locale>` (no esMX), keeping only the ids the compiled guides,
-  the quest database and the Codex's data name. `--no-questie` leaves DingDB
-  out. `Data.CheckInstall` checks the client's pack like the other optional
-  data packs: never missing, named when its version differs.
+  1,000 names and kind, the TOC, `LICENSE-DATA.txt`, Ding's `CREDITS.md`),
+  committed and shipped. Kinds: `quest`, `npc`, `object`, `item`, and `map`
+  (instance maps), `encounter` (DungeonEncounter ids), `faction`, `taxi`
+  (TaxiNodes ids) and `objective` (the objective text of the dungeon quests
+  whose objective is an event). `node tools/polestar.js i18n names` builds
+  them, per id the first source with a name winning: the client's own
+  tables in that language (wago.tools with `&locale=`: Forever's ItemSparse,
+  Map, DungeonEncounter, Faction and TaxiNodes, then the Era client's
+  ItemSparse for the items Forever's lacks; the newest build holding every
+  one in English and each language, and none stops the build), Wowhead's
+  Forever database in that language (its list pages for the id ranges
+  holding a wanted id, then tooltips for ids no list holds; one request at a
+  time, at least 2 s apart, cached in `data/sources/wowhead/names`; a
+  bracketed name is no translation), DingDB (cloned into
+  `data/sources/ding`, pinned to a commit and its files' sha256s: `DING` in
+  `tools/lib/i18n/names.js`), then pfQuest's `db/<locale>` (no esMX). A name
+  equal to the English one, from any source, is never stored: a translation
+  from a later source wins, else the English shows as it would; a name
+  marking unused content (`[PH]`, `[UNUSED]`, `(DNT)`, `<NYI>`, `(test)`
+  and their translations) is none. Areas need no pack: the client names
+  them by id (`Compat.GetAreaName`). Only the ids the compiled guides, the
+  quest database, the Codex's data and the travel data name are kept.
+  `--no-questie` leaves DingDB out. `Data.CheckInstall` checks the client's
+  pack like the other optional data packs: never missing, named when its
+  version differs.
 
 ### Compat — the client's game data goes through here
 
@@ -331,7 +490,9 @@ UI, Nav and Engine read the client's quests, map, units and items through
 `Polestar.Compat`, with these exceptions that call the client themselves:
 Nav's Blizzard user waypoint (`C_Map`, `C_SuperTrack`; `Nav/Bridges.lua`),
 the minimap's radius, shape, rotation and indoors state (`Nav/Pins.lua`;
-`Maps/RouteLines.lua` reads them through `Pins.MinimapView()`),
+`Maps/RouteLines.lua` reads them through `Pins.MinimapView()`), the gamepad's
+map cursor and A (`SoftCursor`, `IsKeyDown`; `Nav/Pins.lua`), the map frames
+Polestar draws on (only read; `Nav/MapCanvas.lua`),
 the run speed, taxi nodes, hearthstone cooldown and ghost state (`GetUnitSpeed`,
 `C_TaxiMap`, item cooldown, `UnitIsGhost`; `Nav/Travel.lua`), the player's
 height for the walking engine (`Compat.GetPlayerUnitPosition`, `Nav/Walk.lua`), the zone art's map art
@@ -362,14 +523,18 @@ who hears them (`C_ChatInfo.RegisterAddonMessagePrefix`,
 and the TomTom stand-in (`Nav/Journey.lua`: `IsShiftKeyDown`, `IsAltKeyDown`,
 `IsControlKeyDown`, `GetMouseFoci` or `GetMouseFocus`, the open chat box
 through `ChatFrameUtil.GetActiveWindow` or `ChatEdit_GetActiveWindow`,
-`WorldMapFrame:AddCanvasClickHandler`, `AddGlobalPinMouseActionHandler`,
+`WorldMapFrame:AddCanvasClickHandler` (kept in Blizzard_MapCanvasSecureUtil's
+registry, which calls addon handlers through `securecallfunction`),
 `GetNormalizedCursorPosition`, `ScrollContainer:IsMouseOver`, the
 `GLOBAL_MOUSE_DOWN` event, `Minimap:HookScript("OnMouseUp")`,
 `C_Map.GetMapInfo`, `C_Map.GetMapInfoAtPosition`, `C_Map.GetBestMapForUnit`,
 `C_Map.GetMapChildrenInfo`, `hooksecurefunc` on TomTom's own table, the
 `TomTom` global and `SlashCmdList`), the cursor on the minimap
-(`GetCursorPosition`; `Pins.MinimapCursor()`, `Nav/Pins.lua`) and the nearby
-services' tracking menus (`Menu.ModifyMenu`, `Nav/Nearby.lua`). Frame and system calls (`GetTime`, `GetServerTime`, `C_Timer`,
+(`GetCursorPosition`; `Pins.MinimapCursor()`, `Nav/Pins.lua`), the nearby
+services' tracking menus (`Menu.ModifyMenu`, `Nav/Nearby.lua`) and the
+gamepad and key binding API (`C_GamePad`, `C_InputInterfaceStyle`,
+`C_KeyBindings`, `SetBinding`, `GetBindingKey`, `SetOverrideBindingClick`,
+`IsKeyDown`; `UI/Gamepad.lua`). Frame and system calls (`GetTime`, `GetServerTime`, `C_Timer`,
 `InCombatLockdown`, the cursor, CVars, addon loading, the build and locale)
 are not routed either. `Polestar_Nav` is a separate addon whose vendored
 engine stays as upstream wrote it, so it calls the client directly:
@@ -432,6 +597,7 @@ Compat.GetNpcID(unit)                  -> number | nil   (from UnitGUID)
 Compat.InCombat()                      -> bool
 Compat.IsInInstance()                  -> bool
 Compat.IsShiftKeyDown()                -> bool
+Compat.AddOnPresent(name)              -> bool   (installed and enabled: loaded, or loadable after Polestar)
 Compat.Supports(feature)               -> bool   ("skill" | "spell" | "faction" | "explore" | "achievement")
 Compat.GetSkillRank(skillLineOrName)   -> rank, maxRank | nil  (profession/secondary skill)
 Compat.IsSpellKnown(spellID)           -> bool
@@ -592,7 +758,7 @@ as on a bag item (`W.ItemClick`: Shift links, Ctrl tries it on, Alt guides;
 | `t` | Required | Optional | Done when (Engine) |
 |---|---|---|---|
 | `accept` | `quest`, `title` | `npc`/`npcName`, `object`/`objName`, `item`/`itemName`, `minLevel`, `qlvl`, `pre`, `preAll`, `closedBy`, `preTitles` | on quest **or** completed |
-| `turnin` | `quest`, `title` | `npc`/`npcName`, `object`/`objName`, `rewards = { choices = { { item, itemName, quality } }, items = { ... }, xp, money }` (copper) | completed |
+| `turnin` | `quest`, `title` | `npc`/`npcName`, `object`/`objName`, `rewards = { choices = { { item, itemName, quality } }, items = { ... }, xp, money }` (copper), `direct` | completed; `direct` (never accepted, so never orphaned): its QUEST_TURNED_IN during the step (latched) or the completed flag, not the session's turn-ins, so one hand-in of a repeatable closes one goal |
 | `complete` | `quest`, `title` | — | ready for turn-in or completed |
 | `kill` | `target` | `npc`, `count`, `quest`, `oi` | objective `oi` finished, or quest ready/completed (not while the log lists no objectives yet, right after the accept); without `quest`: manual |
 | `collect` | `item`, `itemName` | `count`, `quest`, `oi` | objective finished / quest ready (as `kill`) / completed; without `quest`: item count ≥ `count` |
@@ -823,7 +989,9 @@ Polestar.Engine.GetProgress() -> doneSteps, totalSteps
   on an unrelated turn-in. A giver's window that offers the quest (this
   session) beats the data: no mark in advance after that. Beyond
   that, when a gossip/greeting/detail window opens on an `accept` goal's NPC
-  (any tab's current step) and the quest is neither offered, in the log, nor
+  (any tab's current step) and the quest is neither offered, listed as active
+  by that window (just accepted: the window refreshes before the quest log),
+  in the log, nor
   completed, the Engine marks that accept unavailable for the session, with a
   reason: `"level"` (below minLevel), `"pre"` (a `pre` quest not done, title
   given) or `"offer"`. A detail window says nothing about the NPC's other
@@ -832,9 +1000,11 @@ Polestar.Engine.GetProgress() -> doneSteps, totalSteps
   client pops after a turn-in), or when an item starts it. An unavailable
   accept and the goals of that quest in the
   guide (objectives, complete, turnin) count as skipped, so the guide moves on
-  instead of stalling. The session marks clear on level-up and on any quest
+  instead of stalling. The session marks clear on level-up, on any quest
   turn-in (either can open a quest whose prerequisite the data lacks), and
-  the guide goes back to a step they had let it pass until its giver says no
+  for the quest itself when it is accepted or its giver's window lists it as
+  active; a quest in the log is not saved as refused at logout. The guide
+  goes back to a step the marks had let it pass until its giver says no
   again. The view carries `unavailable = reason` and `unavailableText`.
   When such marks move the guide past a step during play, the Engine fires
   `STEP_SKIPPED`; the guide window's banner then reads "Skipped <quest>  ·
@@ -892,11 +1062,14 @@ goal's NPC (`npc`, or the chosen candidate's for smart goals) or object
 (`object`) for accept, turnin, talk, train, vendor, sethome, getfp, learn,
 buy and interact goals; every other goal (goto, kill, collect, use, complete,
 explore, level, skill, craft, rep, achieve, note, and NPC verbs without an
-NPC) is "here". So a hub step reads person by person, and a field step (goto
-the camp, kill, collect) stays one group. A goal that does not apply to the
-character (`only`, grey-skipped, never-had) joins the group around it instead
-of starting one, so a class-only line between two goals at the same person
-never splits that person's group.
+NPC) is "here". An interact for a quest objective (`quest`: totems, mounds,
+cages, braziers) is "here" too: it is field work beside the kills, not a
+visit, so it shows with them instead of waiting behind them; a plain interact
+(no quest) is still a visit. So a hub step reads person by person, and a field
+step (goto the camp, kill, collect) stays one group. A goal that does not
+apply to the character (`only`, grey-skipped, never-had) joins the group
+around it instead of starting one, so a class-only line between two goals at
+the same person never splits that person's group.
 
 - **Done:** a group is done when none of its applicable goals still blocks
   (done, `na`, skipped or optional). **Focus** is the first group that is not
@@ -1134,7 +1307,9 @@ one open, or while the waypoint's goal has spots.
 Automation (setting `behavior.autoAccept`, `behavior.autoTurnin`, default
 on; holding Shift suppresses): accept only quests that are `accept` goals, and
 turn in only quests that are `turnin` goals, in the current or next two
-steps; never choose among multiple rewards; with `behavior.warnClosing` on,
+steps (a `direct` one is picked from the gossip or greeting list of offered
+quests, and only while its goal is not done: the giver of a repeatable keeps
+offering it); never choose among multiple rewards; with `behavior.warnClosing` on,
 never accept a quest that closes another for good (Missable quests).
 
 ## Theme — used by UI and Nav
@@ -1385,7 +1560,9 @@ Polestar.Pins.MinimapCursor() -> dNorth, dWest | nil      -- yards from the play
   included (`GLOBAL_MOUSE_DOWN`; the icon's name labels the target), except
   Polestar's own clickable pins. The label is "Zone x, y". Shift- or
   Alt-clicking within 1.5% of the map's width (8% of the minimap's radius) of
-  the shown pick, or Shift-clicking its pin, lets it go. With a chat edit box
+  the shown pick, or Shift-clicking its pin (`Pins.OnWorldClick`; Polestar's
+  pins are its own frames, `Pins.WorldPinOf` tells them under the mouse),
+  lets it go. With a chat edit box
   open Shift-click stays Blizzard's (links into chat). A spot on no zone (open
   sea, the world map, the minimap's corner) prints one line and plans nothing.
 - **Ownership**: a target replaced by another is not the owner's while it is
@@ -1407,7 +1584,7 @@ Polestar.Pins.MinimapCursor() -> dNorth, dWest | nil      -- yards from the play
   never mirrors into it. Default off: the stand-in has methods only, so an
   addon that finds the global and reads TomTom's settings (`TomTom.db`, its
   profile) would error; the option ("Let other addons set waypoints",
-  Options, Arrow & routes, Other waypoints) says so. With it off nothing sets
+  Options, Integrations, TomTom) says so. With it off nothing sets
   `TomTom` and `/way` is not claimed.
 - **Following TomTom** (`nav.followTomTom`, off; real TomTom only): hooks on
   TomTom's table: `SetCrazyArrow(uid)` points Polestar's arrow at that
@@ -1441,7 +1618,7 @@ Polestar.Pins.MinimapCursor() -> dNorth, dWest | nil      -- yards from the play
 installed (its global `ShortestPathForever.API`, `version` 1, with `Cancel`
 and `NavigateRoute` or `Navigate`; every other function checked before it is
 called, as its `minor` grows) and `nav.spfHandoff` on (the default; Options,
-Arrow & routes, Routes: "Guide with Shortest Path Forever when it's
+Integrations, Shortest Path Forever: "Guide with Shortest Path Forever when it's
 installed", shown only with it installed), Polestar's target is guided by it
 and Polestar's own guidance steps aside, so the two never guide at once.
 
@@ -1515,6 +1692,59 @@ Polestar.Nav.handoff.Available() -> bool
 Tested by `tests/nav-handoff.test.js` against a fake API written to its
 `docs/api.md` (v1.16.0).
 
+### MapCanvas — drawing on Blizzard's map frames
+
+```lua
+local view = Polestar.MapCanvas.Watch(map, fn)  -- map: WorldMapFrame or BattlefieldMapFrame; one view per map frame
+-- fn(view, what, elapsed): what = "show" | "map" | "size" | "scale" | "alpha" | "hide" | "tick"
+-- view.map, view.canvas, view.shown, view.mapID, view.width, view.height, view.scale, view.zoom, view.pinScale, view.alpha
+view:Level(levelType)              -- the frame level the map gives its pins of that level type
+view:PinScale(startScale, endScale) -- a map pin's scale under SetScalingLimits(1, startScale, endScale)
+Polestar.MapCanvas.Get(map) -> view | nil
+```
+
+The world map and the battlefield map are Lua (`Blizzard_MapCanvas`,
+`Blizzard_WorldMap`), and Forever's gamepad interface reads them from secure
+code as they open and close (`MapCanvasMixin:OnHide` walks the pins its gamepad
+cursor hovered, then `FrameControlsManager` refreshes its focus and
+`Blizzard_GamepadActionBars` calls the protected
+`SetPreferredGamepadInteractTarget`). A value an addon wrote into the map's
+tables taints that code and the game blocks the call ("An action was blocked
+because of taint from Polestar"). So every module draws on the maps through
+`Nav/MapCanvas.lua` and never writes into them: no data provider, no pin
+pool, no `AcquirePin`, no map method that writes, no hook on the map. Its
+frames are children of `map:GetCanvas()` (parenting is the client's, in C:
+the scroll frame clips them, they show and hide with the map), each made
+with no parent and then set under the canvas (`CreateFrameUnder`, Core,
+"Frames under the game's UI"), positioned
+from map percent times the canvas size, and the map is only read through
+`GetMapID`, `GetCanvas`, `GetCanvasScale`, `HasZoomLevels`,
+`GetCanvasZoomPercent`, `GetGlobalPinScale`, `GetGlobalAlpha`,
+`GetPinFrameLevelsManager():GetValidFrameLevel(levelType)` (each returns a
+field or works one out, writing nothing; not `GetViewRect`, which caches) and
+the canvas's `GetWidth` / `GetHeight`; Maps' info bar also reads
+`GetNormalizedCursorPosition`, `IsCanvasMouseFocus` and `ScrollContainer`
+(to sit at its foot), and Pins the canvas's `GetLeft`, `GetTop` and
+`GetEffectiveScale` and the gamepad cursor's place (`SoftCursor:IsShown`,
+`GetCenter`, `GetEffectiveScale`). Frames on the canvas carry no field the client's code
+reads on the frames it finds there (`owningMap` on the mouse focus,
+`smartNavigation*` and the other SmartNavigation keys on the buttons it
+scans), and none is a button to the gamepad's navigation: as the gamepad
+interface focuses the map, `SmartNavigation_CanFocusFrame` takes a Button,
+an EditBox or a frame with an OnMouseDown or OnMouseUp script for one and
+reads that script back (`GetScript`), which put Polestar's function in its
+secure code (seen in game: the map's `FocusGamepad` registered its callbacks
+tainted). Polestar's world map pins take the mouse with OnEnter and OnLeave
+only; a click is a `GLOBAL_MOUSE_DOWN` and a `GLOBAL_MOUSE_UP` of one button
+(not the right one, which passes through to the map) on the pin. A view is a frame of Polestar's on the canvas whose OnUpdate runs
+only while the map is shown; each frame it compares the map ID, the canvas
+size, scale and zoom, the pin scale and the alpha, and tells its listeners
+what changed ("show" with fresh values on the map's first frame open).
+`tests/nav-mapcanvas.test.js` runs every drawing with the maps' tables
+guarded (`stub.guardMap`: any write of addon code fails), pins the list
+of what is read and checks that no frame was made with a parent on the maps
+or the minimap.
+
 ### Pins — map and minimap icons for every module
 
 ```lua
@@ -1531,15 +1761,29 @@ Polestar.Pins.SetLayerVisible(layer, visible)
 
 Pins are drawn on the world map for the map being viewed (converted through Compat
 for other maps) and projected on the minimap; `edge = true` clamps that layer's
-out-of-range pins to the minimap rim. Pooled frames, distance-filtered, minimap
+out-of-range pins to the minimap rim. On the world map they are Polestar's own
+frames on the canvas, at the frame levels the map gives its own pins (MapCanvas,
+below): pins at `PIN_FRAME_LEVEL_SUPER_TRACKED_QUEST`, counter-scaled as a map
+pin with `SetScalingLimits(1, 1, 1.25)` is, tooltip and click, the right button
+passed through to the map (`SetPassThroughButtons`, restricted in combat: set
+once per frame, for frames made in combat once it ends). The gamepad
+interface's map cursor (`SoftCursor`, no mouse) hovers them as the map hovers
+its own pins: every 0.05 s while it shows, the nearest pin with a tooltip or a
+click within 12 UI units (its place from its map percent and the canvas's
+`GetLeft`, `GetTop` and `GetEffectiveScale`) shows its tooltip, and a press of
+A (`GAMEPAD_FACE_BOTTOM`, polled with `IsKeyDown` so the press still reaches
+the map) clicks it; a redraw hands every
+frame back the pin it showed, higher priorities on top; layer changes while the
+map is open are drawn once, on its next frame (`GetWorldFrames(kind)` runs a
+pending draw first). Pooled frames, distance-filtered, minimap
 updates throttled; layers with hundreds of pins must cost nothing per frame when
 the player stands still. Each layer indexes its pins by continent and 500-yard
 grid square when it is set, so a minimap redraw visits only the pins around the
 player; layer changes made in one frame share one minimap redraw on the next
 (`GetMinimapFrames` runs a pending one first). Nav's own target pins are one layer. A pin's `area`
 draws a soft disc of that radius (`Media/Nav/area`, the pin's colour at 0.32
-alpha) under every pin on the world map (`PIN_FRAME_LEVEL_QUEST_BLOB`, own
-pool, no mouse, sized in canvas units so it scales with the terrain). On the
+alpha) under every pin on the world map (`PIN_FRAME_LEVEL_QUEST_BLOB`, frames
+of their own, no mouse, sized in canvas units so it scales with the terrain). On the
 minimap only a layer with `minimapAreas` draws its areas (Nav's target and
 `nav.areas`; quest objective areas stay on the world map): textures on one
 no-mouse frame under the trail and the pins, every area whose disc reaches
@@ -1556,7 +1800,7 @@ snapping off, so pieces that share an edge are rasterised without a seam or
 an overlap. The polygon inset by the rim is filled with quads fanned from its
 first point (the pin's colour at 0.2 alpha), the rim is one quad per side
 (0.7), 1.5 UI units wide on screen. Every piece shares the polygon's box
-around its centre. On the world map a hull is a pin of its own pool
+around its centre. On the world map a hull is a frame of its own
 (`PIN_FRAME_LEVEL_QUEST_BLOB`, no mouse, the box in canvas units; the rim is
 laid out again when zooming changes its width by a quarter), drawn when any of
 it lies on the viewed map (the view's world-to-percent transform, the trail's).
@@ -1581,8 +1825,8 @@ break where the continent changes. Dots are anchored to each run's end, so
 they stay put as the player walks and crawl toward the destination (one
 spacing per 1.5 s; still with `ui.reduceMotion`). Minimap: every 40 yd, only
 inside the visible disc or square, 5 px, at most 40. World map: every max(15,
-map width / 60) yd, clipped to the map, 6 px under the pins in their own
-no-mouse pool, at most 300. One 20 Hz driver runs only while dots show.
+map width / 60) yd, clipped to the map, 6 px (counter-scaled like the pins)
+under the pins, textures on one no-mouse frame, at most 300. One 20 Hz driver runs only while dots show.
 `nav.trailDots` (default on) with `nav.worldPins` / `nav.minimapPins` per surface.
 The trail stands in only while route lines draw nothing (`nav.routeLines` off):
 `Nav/Layers.lua` clears it while `Polestar.RouteLines.Active()`.
@@ -1613,8 +1857,9 @@ permission; `addon/Polestar_Nav/CREDITS.md`).
   minimap's 600), so the pools of lines, which the client cannot destroy,
   are too.
 - `RouteLines.lua` builds the draw paths once per `NAV_ROUTE_GEOMETRY` and
-  paints: one world map pin the canvas's size at `PIN_FRAME_LEVEL_QUEST_BLOB`
-  (its own pool, no mouse) redrawn on map, zoom, size, route, setting and
+  paints: one frame of Polestar's on the world map's canvas (MapCanvas, Nav),
+  the canvas's size, at `PIN_FRAME_LEVEL_QUEST_BLOB`, no mouse, redrawn on
+  map, zoom, size, route, setting and
   theme changes, and one frame over the minimap under Pins' frames, redrawn
   by a 10 Hz driver only when the player, facing, zoom or route changed
   (`Pins.MinimapView()` for the view). The walk being walked starts at the
@@ -1818,7 +2063,12 @@ lift is a walk to the landing the path reaches first ("Walk to The Great
 Lift, Bottom": the side comes from the path's direction, K4) and a `lift`
 leg to its paired landing ("Take The Great Lift"), timed and captioned by
 `Transit.NextDeparture`/`Caption("lift", ...)` (30 s without); other steps
-carry no wait (K3). The pieces' seconds are whole seconds of the path at run
+carry no wait (K3). The names in the captions are the client's, in its
+language: each chokepoint carries the AreaTable ids of its name, zone and
+sides (`area`, `zoneArea`, read with `Names.Area`) and a lift its
+GameObject (`liftObject`, the names pack's object name, else the Transit
+lift's area name); the English names are kept for enUS and as the fallback.
+The pieces' seconds are whole seconds of the path at run
 speed that add up exactly to the walk (K6), and every piece keeps `parent`
 (the whole walk), `seg` (the path segment its end lies on) and `tail` (path
 yards after it): the arrow keeps following the one path to the whole walk's
@@ -1877,7 +2127,13 @@ inns from the client tables, learned paths, the shipped zone crossings, and
 crossings learned from zone changes in recordings,
 `tools/lib/travel/crossings.js` `recordedCrossings`, registered with
 `complete = false`: they refine a continent that has full crossing data and
-change nothing elsewhere). The shipped crossings are the full crossing data
+change nothing elsewhere). Names the player reads come from the client in
+its language: a flight master by its TaxiNodes id (`Travel.TaxiName`, the
+names pack's `taxi`), a dock, portal end, teleport landing or inn by the
+AreaTable area each carries (`Travel.PlaceName`, `Names.Area`), a boat's
+route from its two ends' areas, the tram and the lifts by their area
+(`L["%s, east lift"]` and its kin), a class teleport by its spell; the
+English names stay for enUS, logs and matching. The shipped crossings are the full crossing data
 of both continents (`complete = true`): `tools/lib/travel/crossings.json`,
 committed, written by `node tools/polestar.js travel import --carbonite
 <ZoneConnections.lua> --source <text>` from Carbonite's Classic Era zone
@@ -2293,8 +2549,10 @@ entrances, flight masters `maps.taxiPins`, docks `maps.dockPins`, inns
 flight timer and the instance tracker are set under Quality of Life.
 
 - Unexplored areas (`maps.reveal`: `off` | `on` | `tint`, `Maps/Reveal.lua`):
-  one `MapCanvasDataProviderMixin` provider per map frame (the world map, and
-  the battlefield map once Blizzard loads it) added with `AddDataProvider`.
+  textures on one frame of Polestar's on each map frame's canvas (the world
+  map, and the battlefield map once Blizzard loads it), watched through
+  MapCanvas (Nav) once the setting is first on, faded with the map's global
+  alpha (the battlefield map's opacity).
   `ZoneArt.FullOverlays` returns the overlay table only when it was built for
   the art the client shows (art ID and tile size). `Maps.UnexploredOverlays`
   subtracts the client's explored list (`GetExploredMapTextures`, matched on
@@ -2303,11 +2561,18 @@ flight timer and the instance tracker are set under Quality of Life.
   The tiles are split by `ZoneArt.EachOverlayTile`, as
   `MapExplorationDataProvider` splits them, onto one frame at the exploration
   pin frame level. `tint` multiplies them by the Theme token `mapUnexplored`.
-  The provider repaints on `MAP_EXPLORATION_UPDATED` and on theme changes.
+  The tiles are painted again as the map opens or changes, on
+  `MAP_EXPLORATION_UPDATED` and on theme changes.
 - Coordinates: the world map's info bar shows the player and the cursor
   (`maps.coords`, `Maps/WorldMap.lua`). `maps.minimapCoords` adds a readout at
   the bottom of the minimap (`Maps/Coords.lua`, 5 Hz, repainted only when the
   tenth changes). Both use `Maps.FormatCoords`.
+- Minimap button (`maps.minimapButton`, off by default; `Maps/MinimapButton.lua`):
+  click fires `TOGGLE_FRAME`, right-click `SHOW_OPTIONS`, a drag moves it
+  around the minimap's edge and saves `maps.minimapButtonAngle` (degrees, 0 =
+  east). A square minimap (`GetMinimapShape`) puts it on the square's edge,
+  and a resized one (`OnSizeChanged`) moves it to the new edge.
+  No frame exists until the setting is first turned on.
 - Zone level ranges (`maps.zoneLevels`): labels on continent maps, and the
   hovered zone's range in the info bar. The ranges come from `maps build`
   (`tools/lib/maps/zonelevels.js`). Forever-only zones (maps with Forever
@@ -2456,21 +2721,31 @@ game event (pfQuest's `event`: the Darkmoon Faire, the holidays, the war
 efforts) is on a page only where QuestieDB or Wowhead files it (Copper
 Modulator, Rinling's Faire turn-in, is on none). What no rule can catch is
 in the cited table `tools/lib/codex/journal-quests.json` (Shards of the
-Felvine). Each quest has giver and ender and their positions, our own
-objective line, chain (every prerequisite and breadcrumb of the quest's side,
+Felvine). Each quest has giver and ender and their positions, its objective
+facts (`objectives`: kind, NPC, item or object id, count and the English
+name; the escorts' and events' text), composed at run time into our own
+objective line in the client's language (`Dungeons.ObjectiveText`:
+`L["Kill %d %s"]`, `L["Collect %d %s"]`, `L["Use %s"]` with the names from
+`Polestar.Names`; an event's line is the quest's own objective summary from
+the names pack, kind `objective`), chain (every prerequisite and breadcrumb of the quest's side,
 all of `pre` and `preAny`, oldest first, at most 20), rewards (items with
 quality, count and choice from recordings and ForeverLevelingBiS, else
 Wowhead's list rewards, choice versus fixed as Wowhead files them; XP from
 `quests.json`; money, else Wowhead's; reputation from Wowhead's rewards, its
 "+1" placeholders left out, never the standing a quest asks for) and, with
 `--local-extras`, DungeonJournal's audited shareability; bosses in kill order
-with the quests tied to them; entrances from the Codex, else the client's Map
+with the quests tied to them (an encounter's boss carries its DungeonEncounter
+id, `encounter`, for its name in every language); entrances from the Codex, else the client's Map
 table (the corpse point, placed on its zone); and the page's `attunement`
-list (below). No loot tables. `codex attune` writes the local comparison with
+list (below). No loot tables. The page also carries the instance's Map id
+(`map`): the list shows the dungeon's name in the client's language
+(`Names.Instance`) and its zone's (`C_Map`); attunement notes are our prose,
+read through `L[note]` (`i18n keys` lists them from
+`tools/lib/codex/attunements.json`). `codex attune` writes the local comparison with
 the Attune addon (`tools/lib/codex/questaudit.js`,
 `tools/lib/consume/attune.js`; `data/local/dungeon-quests-audit.md` and
 `.json`, then the attunements report). Runtime: `addon/Polestar/Dungeons/Dungeons.lua`
-(`Polestar.Dungeons`: List, Get, Entrance, Quests, Quest, Bosses, Open,
+(`Polestar.Dungeons`: List, Get, Entrance, Quests, Quest, ObjectiveText, Bosses, Open,
 GuideTo, GuideToPoint, ShowOnMap; `SHOW_DUNGEON`). `dungeons build` writes no
 guides.
 
@@ -2594,6 +2869,7 @@ Polestar.RegisterOptions({
       -- shown: the colour in effect while the key holds none; source: where it comes from;
       -- linked: paths a cancelled pick restores too. Right-click resets (sliders too).
     { kind = "button",   label = "Reset lockouts", help = "One line.", onClick = function() end },
+    { kind = "binding",  action = "POLESTAR_NEXT", label = "Next step", help = "One line." }, -- a key binding row (UI/GamepadGuide.lua)
   },
 })
 ```
@@ -2608,7 +2884,8 @@ Window, Arrow & routes, Automation), **Appearance** (20: Colour & type,
 Windows, Arrow), **Map** (30), **Questing** (40: Quests, Rewards & gear,
 Talents, Buttons), **Discovery** (50: Lookup, Dungeons, Rares), **Quality of Life** (60:
 Travel, Social, Vendors, Trackers), **Guide packs** (70, a custom page:
-`UI/Packs.lua`), Recorder, About. The options window
+`UI/Packs.lua`), **Gamepad** (75, registered by `UI/GamepadGuide.lua`:
+Navigation, Key bindings), Recorder, About. The options window
 declares every tab and section of the module-filled pages, in order, and the
 modules register their controls into them by name (`page = L["Questing"]`,
 `tab = L["Rewards & gear"]`, `section = L["Gear advice"]`): Quests, QoL,
@@ -2930,6 +3207,137 @@ returns its height); never in compact mode. Off with `nav.journeySteps`
 (Options, Arrow & routes, Routes, "Show the journey"); without Nav neither
 setting exists. Non-secure frames only. Tests: `tests/ui-journey.test.js`;
 render: `docs/preview/journey.svg`.
+
+### Gamepad (`UI/Gamepad.lua`, `UI/GamepadGuide.lua`)
+
+Ported from Ding! by Yendi (@moust4ki), GPL-3.0, and rebuilt on the Theme.
+No Polestar window takes a button from the game while it is merely shown:
+a window holds the gamepad only while it is the newest one open, out of
+combat, with a gamepad active and `gamepad.navigate` on (focus mode needs
+only a gamepad), through a frame that reads the buttons first
+(`PolestarPadInput`, `OnGamePadButtonDown`), so neither the game's gamepad
+interface nor another addon's overrides (Easy Controller, ConsolePort) go
+before it; any other button goes on to the game. With the keyboard and
+mouse interface, temporary override bindings (`SetOverrideBindingClick` on
+the hidden buttons `PolestarPad<KEY>`) sit under the frame for a client where
+the frame gets nothing. With Forever's gamepad interface on
+(`Polestar.GamepadUI()`, see [Gamepad interface](#gamepad-interface)) none
+is set: the game's own bindings on those buttons stay as its binding stack
+left them, and the frame alone reads the window's buttons. Both are cleared
+when the window closes. At `PLAYER_REGEN_DISABLED` (before the lockdown:
+nothing is set in a fight) the window lets go first, then a binding row's
+capture ends, each step in its own `pcall`, so an error in a row's callback
+cannot leave the frame shown or a binding set for the fight; until
+`PLAYER_REGEN_ENABLED` no window takes the gamepad, then the newest open one
+takes it again. A button already down when a window takes the gamepad stays
+the game's until released (`G.heldKeys`); a press that opened the window
+stays Polestar's.
+
+A window that shows by itself waits to be asked: the welcome at login (or
+back after a fight or the route choice) and the route choice the engine
+offers (`spec.unasked()`) take no button, unless a Polestar window held the
+gamepad as they came. The focus binding (`POLESTAR_FOCUS`) gives the newest
+waiting window the gamepad (`G.TakeWaiting`) before it starts focus mode,
+and the waiting window's hint bar shows that binding's button when it has
+one. Opened by the player (a binding, a chord, a click, A in another
+window), every window takes the gamepad at once.
+
+```lua
+Polestar.Gamepad.Register(frame, spec)  -- navigation while `frame` is shown (the contract every window uses)
+-- spec = { unasked = fn -> bool (this showing came by itself: wait for the focus binding),
+--          rows = fn -> { widget, ... } (default G.Collect(frame): every shown, enabled, clickable
+--          widget, the outermost one), initial = fn(rows) -> index, back = fn (B, Start; default Hide),
+--          prevTab / nextTab = fn (LB / RB), reset = fn(w) -> handled (Y; default: a setting row's
+--          right-click), x = fn(w) (X), activate = fn(w) -> handled (A; default w:Click()),
+--          key = fn(key, w, isRepeat) -> handled, onFocus = fn(w),
+--          close = button | false (where B's chip sits; default frame.Close),
+--          actionLabel / xLabel / resetLabel = fn(w) -> text, backLabel, tabsLabel = text }
+Polestar.Gamepad.IsActive() -> bool        -- Polestar.GamepadUI(), or C_GamePad / GamePadEnable with a device plugged in
+Polestar.Gamepad.Style() -> "xbox" | "playstation"  -- gamepad.glyphs, "auto" reads C_GamePad's labelStyle ("Shapes")
+Polestar.Gamepad.ButtonName(button), KeyName(key) -> text   -- "A" / "Cross", "LT + A", "LB + D-pad up", "Ctrl + N"
+Polestar.Gamepad.Glyph(parent[, name]) -> frame             -- frame:SetKeys(key or { button, ... }) -> width
+Polestar.Gamepad.BindingKeys(action), ShownKeys(action[, pad]), KeyText(action), Bind(action, key), Unbind(action[, pad])
+Polestar.Gamepad.WhoUses(action, key) -> { kind = "binding"|"addon"|"gamepad", name, action } | nil
+Polestar.Gamepad.Capture(opts)                              -- a key, a button or a chord for a binding row
+Polestar.Gamepad.StartFocus(), StopFocus(), ToggleFocus(), IsFocusing()   -- the guide window's focus mode
+Polestar.Gamepad.TakeWaiting() -> bool                      -- the newest window waiting to be asked takes the gamepad
+Polestar.Gamepad.HasWindow() -> bool                        -- a Polestar window holds the gamepad (for other gamepad addons)
+```
+
+- **Navigation.** Where widgets have places (a client; the test and preview
+  stubs place none) the D-pad goes to the nearest widget that way (its
+  distance plus twice how far it sits off the line), scrolling a list on at
+  its edge; without, it walks `rows` in order. Left / right step a slider
+  (`row.Slider`'s wheel handler) or a dropdown's choices instead. The D-pad
+  repeats while held (0.4 s, then every 0.12 s). Until the player presses a
+  button the focus follows `spec.initial` (a window fills its page after it
+  shows); LB / RB start the new page on it again. Registered: the options
+  (LB / RB: `Options.StepTab`, every page's tabs in order), the hub (LB / RB:
+  `Picker.StepSection`, the rail's sections; X loads the focused guide), the
+  shared menu (`PolestarMenu`, B closes it and the window under it has the
+  gamepad back where it was), the welcome (LB / RB its pages), the route
+  choice, the report and copy windows.
+- **The look** (docs/DESIGN.md, "Gamepad"): one focus ring (`PolestarPadRing`,
+  the focused widget's child: the hover wash under a 2px accent ring at 90%),
+  one hint bar under the window holding the gamepad (`PolestarPadHints`, the
+  panel skin, clamped to the screen, wrapping to the window's width, 300 at
+  least) and one B chip left of its close button (`PolestarPadBadge`; the
+  bar then leaves B out: each action shown once). The bar lists the D-pad,
+  what A, X and Y do on the focused widget, LB / RB and B. `gamepad.hints`
+  turns the bar and the chip off. Without a gamepad none of it exists.
+- **Chips** (`G.Glyph`): a 20px circle per face button (Xbox's letter in
+  Caption, PlayStation's shape: `pad-cross`, `pad-circle`, `pad-square`,
+  `pad-triangle` in `Media/UI`) and D-pad direction (the chevrons), a capsule
+  for the rest ("LB", "Ctrl"), "+" between the buttons of a combination; the
+  chip wash, the name in text.
+- **Focus mode** (`POLESTAR_FOCUS`, `TOGGLE_FOCUS`; a window waiting to be
+  asked takes the gamepad first): `G.Open` of the guide
+  window with its own spec: rows are its widgets (tabs, navigator, banner,
+  person, goal lines, tip, up next), the first open goal first; A on a goal
+  line aims the arrow (`rowClick`), or on the quest item's line (the item
+  button `QoL.Buttons.item` shows the goal's `item`, or a `use` goal) is
+  redirected to the secure binding `CLICK PolestarQuestItemButton`
+  (`G.Redirect`, an override binding: not with the gamepad interface, where
+  A clicks that line like any other); X runs the line's `OnEnter` (its
+  tooltip) and again its `OnLeave`; LB / RB `Engine.Prev/Next`; Y sets
+  `ui.compact` and ends the mode; B ends it; hiding the window or
+  `GAMEPAD_COMBAT` ends it.
+- **Bindings and chords.** Bindings.xml: `POLESTAR_TOGGLE`, `_NEXT`,
+  `_PREV`, `_FOCUS`, `_MENU` (`TOGGLE_PICKER`), `_OPTIONS`
+  (`TOGGLE_OPTIONS`), `_REPORT`, and the quest buttons' `CLICK` bindings;
+  `Polestar.Bindings` runs them. Nothing is bound unasked. A chord
+  (`"PADLSHOULDER+PADDUP"`) is Polestar's own, in
+  `PolestarDB.gamepad.chords[action]` (account-wide, outside the settings,
+  so "Reset all settings" keeps it), never bound: while chords exist and a
+  gamepad is active, the driver reads their first buttons (`IsKeyDown`,
+  the chords parsed once per `GAMEPAD_BINDINGS_CHANGED`) every 0.05 s, and
+  every frame while one is held; then, out of combat, `PolestarPadChords`
+  reads the gamepad first and keeps the second button from the game; any
+  other button goes on. A chord does nothing in a fight (`chordsFree`, and
+  `runChord` itself: its window could not take the gamepad, and the button
+  reached the game as well), while a Polestar window holds the gamepad, a
+  binding row waits, the chat has the keyboard or a game window the
+  gamepad's focus (`GamepadMode.FrameControlsManager.focusedFrame`, the
+  field read, never a call), nor with another shoulder or trigger held
+  (LB + RB + Up is not RB + Up). With the gamepad interface, LB and RB are
+  its targeting modifiers (held, the D-pad and face buttons pick, mark and
+  assist; both held, the D-pad pages the bars and opens the quest tracker
+  or the chat): `G.WhoUses` names any chord on them as the game's. The
+  quest buttons' secure clicks take no chord: a combination is the game's,
+  with a button it makes a modifier (`GamePadEmulateShift` / `Ctrl` /
+  `Alt`). Polestar never changes the game's gamepad settings.
+- **Binding rows**: the registry's `binding` control (`G.BindingRow`). A (a
+  click) captures (`G.Capture`): a gamepad button on its release, two
+  buttons as a chord, a keyboard key with its modifiers; B tapped cancels, B
+  held a second binds B, Escape cancels, so do a fight and 20 s idle. A key
+  someone else has (`G.WhoUses`: another binding or chord, another addon's
+  override, Easy Controller's own chord read from its saved settings, the
+  game's gamepad interface) is named in danger and bound by a second A within
+  5 s. Y (right-click) unbinds what the row shows: the gamepad's keys while a
+  gamepad is active, else the keyboard's.
+- Messages: `GAMEPAD_BINDINGS_CHANGED`, `GAMEPAD_CHANGED(active)`
+  (`GAME_PAD_CONNECTED` / `DISCONNECTED` / `ACTIVE_CHANGED`),
+  `GAMEPAD_COMBAT` (the gamepad went back at `PLAYER_REGEN_DISABLED`).
 
 ## Rares — rare NPCs and treasures
 
@@ -3501,16 +3909,27 @@ only it knows needs its title (and level) written in the guide.
 
 The hub's Dungeons section and the pick-up guide built from it: "Dungeons" above.
 
-`professions.json` is built by `profession build` from Blizzard's Era DB2
-(SkillLine, SkillLineAbility, SpellName, SpellEffect, SpellReagents, ItemSparse,
-Item, ItemEffect, ...). Each profession also carries `mainTrainer { Alliance,
+`professions.json` is built by `profession build` from the Forever client's
+DB2 (`wow_classic_beta` 1.60+ via wago.tools: SkillLine, SkillLineAbility,
+SpellName, SpellEffect, SpellReagents, ItemSparse, Item, ItemEffect,
+ItemXItemEffect, ...; `tools/lib/professions/tables.js`). Forever changed
+recipe thresholds, reagents and names from Classic (issue #109), so Classic
+Era only fills gaps: a table wago.tools has no Forever export of (SpellTotems,
+SpellCastingRequirements, SpellFocusObject) comes whole from the newest Era
+build, and the spells and items the Forever tables lack come from Era's rows.
+Each profession also carries `mainTrainer { Alliance,
 Horde }` and `materials { itemId: { name, buy, buyCount, sell, quality,
 vendors { A, H }, limitedVendors { A, H }, madeBy, gather { herb, mine, fishing },
 drops, dropCount } }`; ranks carry `minSkill`, `spell`, `trainers { A, H }` and,
 for secondary skills, `book`/`quest`; recipes may carry `enchant`,
 `learnedAtEstimated`, `requires` (specialisation), `reputation { faction,
 standing }`, `tools`, `focus`, `races`, `classes`, `skillUps`. Season of
-Discovery recipes (spell id ≥ 400000) are excluded.
+Discovery recipes (spell id ≥ 400000 that the Era client's SkillLineAbility
+lists too; Forever's own recipes, past 1,000,000, it does not) and the ones Forever
+retired (`AcquireMethod` 3, such as Alchemy's healing potions, which Forever
+teaches in First Aid) are excluded. A crafting profession whose last points no
+trainer or vendor recipe reaches (Forever Tailoring past 295: Spinning Wheel,
+Loom) is drafted as far as they go, with a last step naming what is left.
 
 `races`/`classes` are Blizzard bitmasks (Human 1, Orc 2, Dwarf 4, NightElf 8,
 Undead 16, Tauren 32, Gnome 64, Troll 128; Warrior 1, Paladin 2, Hunter 4,

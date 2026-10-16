@@ -64,9 +64,13 @@ const CLASSES = { 'rare elite': 'rareelite', rare: 'rare', elite: 'elite', boss:
 const VERSION = { npc: 2, object: 2, item: 1, spell: 1 };
 // List pages: the row cap, each type's path and ID filter criterion, the
 // first ranges (LIST_SPAN wide up to LIST_TOP, then one open range) and the
-// list's numeric classification.
+// list's numeric classification. The Codex reads the npc, object and item
+// lists (CODEX_LISTS); `i18n names` also the quest list, in each language.
 const LIST_CAP = 1000;
-const LISTS = { npc: { path: 'npcs', filter: 37 }, object: { path: 'objects', filter: 15 }, item: { path: 'items', filter: 151 } };
+const LISTS = { npc: { path: 'npcs', filter: 37 }, object: { path: 'objects', filter: 15 }, item: { path: 'items', filter: 151 }, quest: { path: 'quests', filter: 30 } };
+const CODEX_LISTS = ['npc', 'object', 'item'];
+// Wowhead's path segment of each client language (www.wowhead.com/forever/ru/...).
+const LOCALE_PATHS = { deDE: 'de', esES: 'es', esMX: 'mx', frFR: 'fr', koKR: 'ko', ptBR: 'pt', ruRU: 'ru', zhCN: 'cn', zhTW: 'tw' };
 const LIST_SPAN = 25000;
 const LIST_TOP = 300000;
 const CLASS_IDS = { 1: 'elite', 2: 'rareelite', 3: 'boss', 4: 'rare' };
@@ -229,6 +233,7 @@ function listRow(r, type) {
 
 // List page HTML -> { rows, found, truncated } | null (not a list page of
 // that type). npcs carry `new Listview({..."template":"npc","data":[...]})`,
+// quests `new Listview({template: 'quest', id: 'quests', ..., data:[...]})`,
 // objects the same object in a JSON script (data.page.listPage.listviews),
 // items `listviewitems = [...]` with bare keys. A page with no match has no
 // list at all, only the list's template script: no rows.
@@ -241,8 +246,12 @@ function parseList(html, type) {
 		const tpl = new RegExp(`"template":"${type}"|template: '${type}'`, 'g');
 		for (let m = tpl.exec(html); m && rows === null; m = tpl.exec(html)) {
 			const at = m.index + m[0].length;
-			const data = /^,\s*"?data"?\s*:\s*\[/.exec(html.slice(at, at + 32));
-			if (data) rows = jsonAt(html, at + data[0].length - 1);
+			// The data key of the same Listview: before any other template.
+			let head = html.slice(at, at + 2048);
+			const next = head.search(/"?template"?\s*:/);
+			if (next >= 0) head = head.slice(0, next);
+			const data = /(?:^|[,{])\s*"?data"?\s*:\s*\[/.exec(head);
+			if (data) rows = jsonAt(html, at + data.index + data[0].length - 1);
 		}
 		if (rows === null && new RegExp(`Listview/Templates/${type}\\.js`).test(html)) rows = [];
 	}
@@ -322,11 +331,14 @@ function writeJson(file, value) {
 
 // One client per run, shared by lists and pages: requests delayMs apart, a
 // pause (retryPauseMs, longer each time) and retry on 403/429, three tries.
+// After maxFailures requests in a row that got nothing (a block, a challenge
+// page, the network) it stops asking: every later get fails at once.
 // get(url, 'text' | 'json') -> { status, body } | { status, error }.
-function politeClient({ fetchImpl = globalThis.fetch, delayMs = DELAY_MS, retryPauseMs = RETRY_PAUSE_MS, log = () => {} } = {}) {
+function politeClient({ fetchImpl = globalThis.fetch, delayMs = DELAY_MS, retryPauseMs = RETRY_PAUSE_MS, log = () => {}, userAgent = 'Mozilla/5.0 (polestar-codex-build)', maxFailures = Infinity } = {}) {
 	let last = 0;
-	const client = { requests: 0, delayMs };
-	client.get = async (url, as = 'text') => {
+	let failures = 0;
+	const client = { requests: 0, delayMs, stopped: false };
+	const once = async (url, as) => {
 		let error = null;
 		for (let attempt = 0; attempt < 3; attempt++) {
 			const wait = last + delayMs - Date.now();
@@ -334,7 +346,7 @@ function politeClient({ fetchImpl = globalThis.fetch, delayMs = DELAY_MS, retryP
 			last = Date.now();
 			client.requests++;
 			try {
-				const r = await fetchImpl(url, { headers: { 'user-agent': 'Mozilla/5.0 (polestar-codex-build)' }, redirect: 'follow' });
+				const r = await fetchImpl(url, { headers: { 'user-agent': userAgent }, redirect: 'follow' });
 				if (r.status === 403 || r.status === 429) {
 					error = `HTTP ${r.status}`;
 					log(`wowhead: ${url}: ${error}; pausing ${(retryPauseMs * (attempt + 1)) / 1000} s`);
@@ -350,12 +362,32 @@ function politeClient({ fetchImpl = globalThis.fetch, delayMs = DELAY_MS, retryP
 		}
 		return { status: 0, error };
 	};
+	client.get = async (url, as = 'text') => {
+		if (client.stopped) return { status: 0, error: `stopped after ${maxFailures} failed requests in a row` };
+		const got = await once(url, as);
+		failures = got.error && got.status !== 404 ? failures + 1 : 0;
+		if (failures >= maxFailures) {
+			client.stopped = true;
+			log(`wowhead: ${failures} failed requests in a row; no more requests this run`);
+		}
+		return got;
+	};
+	// A page that came back but is not what was asked for (a challenge page
+	// instead of a list) counts as a failure too.
+	client.failed = () => {
+		if (++failures >= maxFailures && !client.stopped) {
+			client.stopped = true;
+			log(`wowhead: ${failures} failed requests in a row; no more requests this run`);
+		}
+	};
 	return client;
 }
 
-function listUrl(type, { lo, hi }) {
+// locale: a client language (LOCALE_PATHS), or none for English.
+function listUrl(type, { lo, hi }, locale = null) {
 	const f = LISTS[type].filter;
-	return `${BASE}/${LISTS[type].path}?filter=${hi == null ? `${f};2;${lo}` : `${f}:${f};2:5;${lo}:${hi}`}`;
+	const loc = locale && LOCALE_PATHS[locale] ? `${LOCALE_PATHS[locale]}/` : '';
+	return `${BASE}/${loc}${LISTS[type].path}?filter=${hi == null ? `${f};2;${lo}` : `${f}:${f};2:5;${lo}:${hi}`}`;
 }
 
 function firstRanges() {
@@ -381,16 +413,39 @@ function splitRange({ lo, hi }, found) {
 // it outgrew the cap). dryRun fetches nothing: `planned` counts the ranges
 // it would (at least: a split costs more). rows[type] is null unless every
 // range of that type is cached: a partial list can't tell "not listed".
-async function fetchLists({ sourcesDir, types = Object.keys(LISTS), client, maxAgeDays = MAX_AGE_DAYS, now = Date.now(), dryRun = false, log = () => {}, ...opts }) {
+// `i18n names` reads them in a client language (locale, cached in
+// listFileOf(type)) for only the ranges it names (ranges[type]: [{ lo, hi }],
+// the English list's): a range is served by the cached chunks that tile it,
+// rows holds only those ranges, and the file keeps the other cached ones.
+async function fetchLists({ sourcesDir, types = CODEX_LISTS, client, maxAgeDays = MAX_AGE_DAYS, now = Date.now(), dryRun = false, log = () => {}, locale = null, listFileOf = null, ranges = null, ...opts }) {
 	client = client || politeClient({ log, ...opts });
 	const before = client.requests;
 	const res = { rows: {}, requests: 0, planned: 0, failed: [] };
 	for (const type of types) {
-		const file = listFile(sourcesDir, type);
+		const file = listFileOf ? listFileOf(type) : listFile(sourcesDir, type);
 		const old = readJson(file);
+		const listed = (old && old.chunks) || [];
+		const want = ranges && ranges[type];
+		let start = listed.length ? listed : firstRanges();
+		let others = [];
+		if (want) {
+			start = [];
+			const used = new Set();
+			for (const r of want) {
+				const inside = listed.filter((c) => c.lo >= r.lo && (r.hi == null || (c.hi != null && c.hi <= r.hi))).sort((a, b) => a.lo - b.lo);
+				let at = r.lo;
+				for (const c of inside) at = at === c.lo ? c.hi : NaN;
+				if (inside.length && at === r.hi) {
+					start.push(...inside);
+					for (const c of inside) used.add(c);
+				} else start.push({ lo: r.lo, hi: r.hi });
+			}
+			const overlaps = (c, r) => (r.hi == null || c.lo < r.hi) && (c.hi == null || c.hi > r.lo);
+			others = listed.filter((c) => !used.has(c) && !want.some((r) => overlaps(c, r)));
+		}
 		const chunks = [];
 		const queue = [];
-		for (const c of (old && old.chunks) || firstRanges()) {
+		for (const c of start) {
 			if (c.rows && now - Date.parse(c.fetchedAt) < maxAgeDays * 86400000) chunks.push(c);
 			else queue.push({ lo: c.lo, hi: c.hi, old: c.rows ? c : null });
 		}
@@ -406,7 +461,7 @@ async function fetchLists({ sourcesDir, types = Object.keys(LISTS), client, maxA
 			let spent = 0;
 			while (queue.length) {
 				const q = queue.shift();
-				const url = listUrl(type, q);
+				const url = listUrl(type, q, locale);
 				if (++spent > LIST_MAX_REQUESTS) {
 					res.failed.push({ type, url, error: `over ${LIST_MAX_REQUESTS} list requests: ${queue.length + 1} ranges left` });
 					complete = false;
@@ -431,6 +486,7 @@ async function fetchLists({ sourcesDir, types = Object.keys(LISTS), client, maxA
 					}
 				}
 				if (!parsed) {
+					if (got.body && client.failed) client.failed();
 					res.failed.push({ type, url, error: got.error || 'not a list page' });
 					if (q.old) chunks.push(q.old);
 					else complete = false;
@@ -442,8 +498,8 @@ async function fetchLists({ sourcesDir, types = Object.keys(LISTS), client, maxA
 				}
 				chunks.push({ lo: q.lo, hi: q.hi, fetchedAt: new Date(now).toISOString(), url, rows: parsed.rows });
 			}
-			chunks.sort((a, b) => a.lo - b.lo);
-			if (chunks.length) writeJson(file, { type, chunks });
+			const all = [...chunks, ...others].sort((a, b) => a.lo - b.lo);
+			if (all.length) writeJson(file, { type, chunks: all });
 		}
 		const rows = {};
 		for (const c of chunks) for (const r of c.rows) rows[r.id] = r;
@@ -532,7 +588,7 @@ function loadWowhead(sourcesDir) {
 			if (!facts.notFound) out[type][facts.id] = facts;
 		}
 	}
-	for (const type of Object.keys(LISTS)) {
+	for (const type of CODEX_LISTS) {
 		const list = readJson(listFile(sourcesDir, type));
 		if (!list) continue;
 		const rows = (out.listed[type] = {});
@@ -545,4 +601,4 @@ function chanceOf(d) {
 	return Math.round((d.count / d.outof) * 10000) / 100;
 }
 
-module.exports = { parseEntity, parseTooltip, parseList, wowheadWants, openGaps, fetchLists, planPages, fetchEntities, loadWowhead, chanceOf, politeClient, listUrl, splitRange, BASE, TOOLTIP, DELAY_MS, MAX_AGE_DAYS, VERSION, LIST_CAP };
+module.exports = { parseEntity, parseTooltip, parseList, wowheadWants, openGaps, fetchLists, planPages, fetchEntities, loadWowhead, chanceOf, politeClient, listUrl, splitRange, BASE, TOOLTIP, DELAY_MS, MAX_AGE_DAYS, VERSION, LIST_CAP, LISTS, CODEX_LISTS, LOCALE_PATHS };

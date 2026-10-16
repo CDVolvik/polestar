@@ -60,7 +60,7 @@ function T.Register(data)
 	for _, b in ipairs(data.builds) do
 		local picks = {}
 		for i, p in ipairs(b.picks) do picks[i] = { order = i, node = p[1], rank = p[2] } end
-		b.picks, b.data, b.specName = picks, data, data.specs[b.spec]
+		b.picks, b.data, b.specName = picks, data, L[data.specs[b.spec]]
 	end
 	registry[data.class] = data
 end

@@ -16,7 +16,7 @@ const GOAL_KEYS = [
 	't', 'class', 'spell', 'spellName', 'faction', 'factionName', 'standing', 'achievement', 'achievementName', 'criteria',
 	'quest', 'title', 'target', 'npc', 'npcName', 'object', 'objName', 'item', 'itemName', 'count', 'oi', 'skill', 'skillLine', 'rank', 'rankMax', 'level', 'untilSkill',
 	'reagents', 'location', 'minLevel', 'qlvl', 'pre', 'preAll', 'closedBy', 'preTitles', 'text', 'node', 'area', 'map', 'x', 'y', 'z', 'f', 'r', 'spots', 'spread', 'optional', 'only', 'profLine', 'profName', 'profRank', 'note',
-	'from', 'fromKind', 'fromRank', 'fromFaction', 'fromAlso', 'candidates', 'rewards', 'group',
+	'from', 'fromKind', 'fromRank', 'fromFaction', 'fromAlso', 'fromId', 'fromAlsoId', 'candidates', 'rewards', 'group', 'direct',
 ];
 const REAGENT_KEYS = ['item', 'itemName', 'count'];
 const CANDIDATE_KEYS = ['npc', 'npcName', 'map', 'x', 'y', 'f', 'faction', 'races', 'classes', 'lvl', 'rate', 'spawns'];
@@ -160,6 +160,8 @@ function emitToc(manifest, iface) {
 		`## Interface: ${iface}`,
 		`## Title: ${title}`,
 		`## Notes: ${manifest.notes || `Guide pack for Polestar by ${manifest.author}`}`,
+		// Polestar's own pack: the AddOns list in the client's language too.
+		...(ours ? require('../i18n/toc').tocLines('Polestar_Guides') : []),
 		`## Author: ${manifest.author}`,
 		`## Version: ${manifest.version}`,
 		'## Category: Quests',

@@ -223,9 +223,11 @@ end
 -- accept that is not left out as grey nor checked off: it was picked up on
 -- another route, or skipped, or ticked without being taken, so it cannot be
 -- done here and no longer applies. Taking the quest brings the goals back.
+-- A `turnin ... direct` has no accept by definition: it is handed in from the
+-- giver's own window, so it is never orphaned.
 local function orphaned(goal)
 	local q = goal.quest
-	if not q or goal.t == "accept" or not guide then return false end
+	if not q or goal.t == "accept" or goal.direct or not guide then return false end
 	local C = Compat()
 	if C.IsOnQuest(q) or questDone(q) then return false end
 	local l = layoutOf(guide)
@@ -897,17 +899,25 @@ local function standingName(n)
 	return ns.StandingName(n) or tostring(n)
 end
 
--- "first aid" -> "First Aid", for goals that only carry a skill line ID.
+-- A skill goal's profession or skill in the client's language: the client's
+-- skill-line name (by goal.skillLine, or the line of its English name), else
+-- its English name through L (a Lookup.PROFESSIONS key, or "Riding"), or
+-- "first aid" -> "First Aid" for goals that only carry a skill line ID.
 local skillNames
 local function skillName(goal)
-	if goal.skill then return goal.skill end
+	local C = Compat()
+	local line = goal.skillLine or (goal.skill and C.SKILL_LINES and C.SKILL_LINES[goal.skill:lower()])
+	local client = line and C.GetSkillLineName and C.GetSkillLineName(line)
+	if client then return client end
+	if goal.skill then return L[goal.skill] end
 	if not skillNames then
 		skillNames = {}
-		for name, id in pairs(Compat().SKILL_LINES or {}) do
+		for name, id in pairs(C.SKILL_LINES or {}) do
 			skillNames[id] = name:gsub("(%a)(%w*)", function(a, b) return a:upper() .. b end)
 		end
 	end
-	return goal.skillLine and skillNames[goal.skillLine] or nil
+	local name = goal.skillLine and skillNames[goal.skillLine]
+	return name and L[name] or nil
 end
 
 local function skillRank(goal)
@@ -1047,6 +1057,10 @@ goalDone = function(s, g, goal)
 	if t == "accept" then
 		return C.IsOnQuest(goal.quest) or questDone(goal.quest)
 	elseif t == "turnin" then
+		-- `direct`: only its latched QUEST_TURNED_IN (checked above) or the
+		-- completed flag. The session's turn-ins would close every later goal
+		-- of a repeatable at the first hand-in; one hand-in closes one goal.
+		if goal.direct then return C.IsQuestCompleted(goal.quest) and true or false end
 		return questDone(goal.quest) and true or false
 	elseif t == "complete" then
 		if questDone(goal.quest) or C.IsQuestReadyForTurnIn(goal.quest) then return true end
@@ -1383,11 +1397,17 @@ local WHO_VERBS = {
 }
 
 -- kind ("npc" | "object" | "here"), id and name of whom a goal is done with.
+-- An interact for a quest objective (totems, mounds, cages, braziers) is
+-- field work done where you are, like a kill or a collect, not a visit: it
+-- shows with the step's kills instead of waiting behind them. A plain
+-- interact (no quest) is still a visit to that object.
 local function whoOf(goal)
 	if WHO_VERBS[goal.t] then
 		local npc, name = npcOf(goal)
 		if npc then return "npc", npc, name end
-		if goal.object then return "object", goal.object, ns.Names.Object(goal.object) or goal.objName end
+		if goal.object and not (goal.t == "interact" and goal.quest) then
+			return "object", goal.object, ns.Names.Object(goal.object) or goal.objName
+		end
 	end
 	return "here"
 end
@@ -1562,7 +1582,7 @@ local function describe(goal)
 	elseif t == "train" then
 		local _, npcName = npcOf(goal)
 		if goal.skillLine and rankCap(goal) then
-			local name = skillName(goal) or goal.skill
+			local name = skillName(goal)
 			return L["Train"], name, "skill", fmt(L["at %s"], npcName)
 		end
 		if npcName then return L["Train at"], npcName, "npc", nil end
@@ -1577,19 +1597,19 @@ local function describe(goal)
 	elseif t == "level" then
 		return L["Reach level"], tostring(goal.level), "level", nil
 	elseif t == "skill" then
-		return L["Raise"], goal.skill, "skill", fmt(L["to %d"], goal.level)
+		return L["Raise"], skillName(goal), "skill", fmt(L["to %d"], goal.level)
 	elseif t == "learn" then
 		local _, npcName = npcOf(goal)
-		return L["Learn"], goal.spellName, "spell", fmt(L["from %s"], npcName)
+		return L["Learn"], N.Spell(goal.spell) or goal.spellName, "spell", fmt(L["from %s"], npcName)
 	elseif t == "craft" then
 		local detail
 		if goal.untilSkill then
 			local name = skillName(goal)
 			detail = name and L["until %s %d"]:format(name, goal.untilSkill) or fmt(L["until skill %d"], goal.untilSkill)
 		end
-		return L["Craft"], goal.spellName, "spell", detail
+		return L["Craft"], N.Spell(goal.spell) or goal.spellName, "spell", detail
 	elseif t == "rep" then
-		return L["Reach %s with"]:format(standingName(goal.standing)), goal.factionName, "faction", nil
+		return L["Reach %s with"]:format(standingName(goal.standing)), N.Faction(goal.faction) or goal.factionName, "faction", nil
 	elseif t == "explore" then
 		local mapName = C.GetMapName(goal.map)
 		if goal.text then return L["Explore"], goal.text, "area", mapName end
@@ -1619,13 +1639,17 @@ local TEXT_IS_PLACE = { ["goto"] = true, explore = true }
 
 -- Plain text, independent of the goal's state: "Kill Kobold Vermin" (with a
 -- progress bar), "Kill 5 Young Wolf" (manual, no tracking). Second: a
--- collect's compiled source (`from`, `fromAlso`, `fromKind`, `fromRank`,
--- `fromFaction`; an NPC of a faction that is not the character's own is one
--- to kill), `inText` when the text names it.
+-- collect's compiled source (`from`, `fromAlso`, named in the client's
+-- language by `fromId`, `fromAlsoId`; `fromKind`, `fromRank`, `fromFaction`;
+-- an NPC of a faction that is not the character's own is one to kill),
+-- `inText` when the text names it.
 local function goalText(goal, verb, subject, detail)
+	local fromKind = goal.fromKind or "npc"
+	local nameOf = fromKind == "object" and ns.Names.Object or ns.Names.Npc
 	local src = goal.from and {
-		name = goal.from, also = goal.fromAlso, kind = goal.fromKind or "npc", rank = goal.fromRank,
-		enemy = (goal.fromKind or "npc") == "npc" and not (goal.fromFaction == "AH"
+		name = nameOf(goal.fromId) or goal.from, also = goal.fromAlso and (nameOf(goal.fromAlsoId) or goal.fromAlso),
+		kind = fromKind, rank = goal.fromRank,
+		enemy = fromKind == "npc" and not (goal.fromFaction == "AH"
 			or (goal.fromFaction == "A" and player and player.faction == "Alliance")
 			or (goal.fromFaction == "H" and player and player.faction == "Horde")),
 	} or nil
@@ -1637,7 +1661,7 @@ local function goalText(goal, verb, subject, detail)
 	-- a collect whose source is known says where the item comes from (the
 	-- game's objective only names the item); not an object named as the item
 	-- (the item lying there).
-	if goal.t == "collect" and subject and src and src.name ~= goal.itemName then
+	if goal.t == "collect" and subject and src and goal.from ~= goal.itemName then
 		local item = counted and (goal.count .. " " .. subject) or subject
 		local who = src.name
 		local rank = src.rank and ({ L["elite"], L["rare elite"], L["boss"], L["rare"] })[src.rank]
@@ -2354,6 +2378,32 @@ local function latchOpenFrame()
 	return hit
 end
 
+-- A hand-in the client never flags completed (a repeatable quest, and every
+-- `turnin ... direct` is one in practice) is stored like the latches above, so
+-- it stays done after a /reload. The quest's own goal in the live step, and in
+-- the step in view when the player looks elsewhere: one hand-in checks off one
+-- goal, so a guide that repeats the same quest keeps its later steps open.
+function Own.latchTurnin(questID)
+	if not (guide and questID) then return false end
+	local hit = false
+	for pass = 1, 2 do
+		local s = pass == 1 and current or computed
+		if s and (pass == 1 or s ~= current) then
+			for g, goal in ipairs(guide.steps[s].goals) do
+				if goal.t == "turnin" and goal.direct and goal.quest == questID and goalApplies(goal) then
+					local m = manualFor(guide.id, true)
+					local key = s .. ":" .. g
+					if not m[key] then
+						m[key] = true
+						hit = true
+					end
+				end
+			end
+		end
+	end
+	return hit
+end
+
 local lastEval = -math.huge
 local pendingCompleted = {} -- background tabs' GUIDE_COMPLETED, fired once the active tab is loaded again
 local pendingChoices = {} -- ROUTE_CHOICE from-guide ids, fired at the end of the evaluation
@@ -2475,12 +2525,18 @@ function ns.RegisterClassTrainerIds(byClass)
 	end
 end
 
--- The best class trainer for the character from where they stand, or nil.
+-- The best class trainer for the character from where they stand, or nil;
+-- its npcName in the client's language where Names has it.
 function Engine.NearestClassTrainer()
 	if #classTrainers.candidates == 0 then return nil end
 	if not player then refreshPlayer() end
 	local p = pickFor(classTrainers)
-	return p.list[p.i]
+	local t = p.list[p.i]
+	if t then
+		t.npcEnglish = t.npcEnglish or t.npcName
+		t.npcName = ns.Names.Npc(t.npc) or t.npcEnglish
+	end
+	return t
 end
 
 -- Whether `npc` is a class trainer of the character's class.
@@ -3418,6 +3474,13 @@ end)
 
 ns.RegisterEvent("QUEST_TURNED_IN", function(_, questID)
 	if questID then turnedIn[questID] = true end
+	if questID and player then
+		for i = 1, #tabs do
+			use(tabs[i])
+			Own.latchTurnin(questID)
+		end
+		useActive()
+	end
 	wipe(unavailable)
 	requestUpdate()
 end)
@@ -3491,6 +3554,13 @@ local function checkOffers(source, startItem)
 		unavailable[list[i]] = nil
 		Own.offered[list[i]] = true
 	end
+	-- The window lists a quest just accepted as active a moment before the
+	-- quest log has it (#127): taken, not refused.
+	local active = source ~= "detail" and C.GetActiveQuests(source) or nil
+	for i = 1, active and #active or 0 do
+		offered[active[i]] = true
+		unavailable[active[i]] = nil
+	end
 	for i = 1, #tabs do
 		use(tabs[i])
 		if guide and current then
@@ -3509,6 +3579,9 @@ end
 ns.RegisterEvent("GOSSIP_SHOW", function() checkOffers("gossip") end)
 ns.RegisterEvent("QUEST_GREETING", function() checkOffers("greeting") end)
 ns.RegisterEvent("QUEST_DETAIL", function(_, startItem) checkOffers("detail", startItem) end)
+ns.RegisterEvent("QUEST_ACCEPTED", function(_, q)
+	if type(q) == "number" then unavailable[q] = nil end
+end)
 for _, event in ipairs({ "QUEST_COMPLETE", "QUEST_TURNED_IN" }) do
 	ns.RegisterEvent(event, function()
 		local npc = Compat().GetNpcID("npc")
@@ -3524,7 +3597,7 @@ function Own.saveOffers()
 	local s = ns.CharState()
 	local out
 	for q, u in pairs(unavailable) do
-		if u.reason == "offer" then
+		if u.reason == "offer" and not Compat().IsOnQuest(q) then
 			out = out or {}
 			out[q] = player and player.level or levelSeen
 		end
@@ -3579,8 +3652,17 @@ ns.RegisterEvent("TAXIMAP_OPENED", function()
 	onNpcFrame("taxi")
 end)
 
--- True when an applicable `verb` goal ("accept"/"turnin") for questID sits
--- in the live step or the next `span` (default 2) applicable steps of any
+-- "direct": a `turnin ... direct` goal not done yet, whose quest its giver
+-- lists among the quests it offers rather than the ones in the log, so
+-- Automation picks it from there. A done one is not wanted: the giver of a
+-- repeatable keeps offering it, and a second visit must not hand in again.
+local function matchesVerb(goal, verb)
+	if verb == "direct" then return goal.t == "turnin" and goal.direct == true end
+	return goal.t == verb
+end
+
+-- True when an applicable `verb` goal ("accept"/"turnin"/"direct") for questID
+-- sits in the live step or the next `span` (default 2) applicable steps of any
 -- open tab, or in the step in view and the ones after it when Prev/Next moved
 -- the view. Automation's gate: never act on quests the route does not want now.
 local function wantsFrom(from, verb, questID, span)
@@ -3589,8 +3671,11 @@ local function wantsFrom(from, verb, questID, span)
 	for s = from, #steps do
 		local step = steps[s]
 		if stepApplies(step) then
-			for _, goal in ipairs(step.goals) do
-				if goal.t == verb and goal.quest == questID and goalApplies(goal) then return true end
+			for g, goal in ipairs(step.goals) do
+				if matchesVerb(goal, verb) and goal.quest == questID and goalApplies(goal)
+					and not (verb == "direct" and goalDone(s, g, goal)) then
+					return true
+				end
 			end
 			left = left - 1
 			if left == 0 then break end
