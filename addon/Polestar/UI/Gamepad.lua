@@ -34,6 +34,7 @@ ns.RegisterDefaults("gamepad", {
 	glyphs = "auto", -- "auto" (the gamepad's own labels) | "xbox" | "playstation"
 	navigate = true, -- Polestar's windows hold the gamepad while open
 	hints = true, -- the hint bar and the B chip on a window's close button
+	withMouse = false, -- the gamepad drives Polestar with the keyboard and mouse interface too
 })
 
 -- Polestar's chords live outside the settings, account-wide, so "Reset all
@@ -78,11 +79,15 @@ local function cvar(name)
 end
 
 -- A gamepad the player can use: Forever's gamepad interface style
--- (ns.GamepadUI), or turned on in the game's options and plugged in. Turned
+-- (ns.GamepadUI). With the keyboard and mouse interface only when the
+-- player asks for it (gamepad.withMouse) and the gamepad is turned on in the
+-- game's options and plugged in: a pad left on for movement must not put
+-- gamepad hints and a focus ring on the windows of a mouse player. Turned
 -- on but unplugged, the gamepad help would name buttons nobody can press:
 -- everything reads as mouse and keyboard then.
 function G.IsActive()
 	if ns.GamepadUI() then return true end
+	if not ns.Get("gamepad.withMouse") then return false end
 	local enabled = false
 	if C_GamePad and C_GamePad.IsEnabled then
 		local ok, value = pcall(C_GamePad.IsEnabled)
@@ -1855,6 +1860,7 @@ ns.RegisterEvent("GAME_PAD_DISCONNECTED", gamepadChanged)
 ns.RegisterEvent("GAME_PAD_ACTIVE_CHANGED", gamepadChanged)
 
 ns.On("SETTING_CHANGED", function(path)
+	if path == "gamepad.withMouse" or path == "gamepad" or path == "" then gamepadChanged() end
 	if path == "gamepad.navigate" or path == "gamepad.hints" or path == "gamepad" or path == "" then refresh() end
 	if (path == "gamepad.hints" or path == "gamepad.glyphs" or path == "gamepad") and G.entry then paint(G.entry) end
 end)

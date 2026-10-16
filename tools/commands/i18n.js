@@ -29,7 +29,7 @@ function addons(opts, { one = false } = {}) {
 	return one ? [ADDONS.Polestar] : Object.values(ADDONS);
 }
 
-const usage = `usage: node tools/polestar.js i18n <status|check|sync|keys|import|fit|names> [options]
+const usage = `usage: node tools/polestar.js i18n <status|check|sync|keys|import|fit|names|guides> [options]
 
 Polestar's interface translations (docs/TRANSLATING.md): one file per
 locale, addon/Polestar/Locales/<locale>.lua, and the same for the Recorder,
@@ -91,10 +91,36 @@ unless --addon names the other.
                              name. A language left without names loses its
                              folder.
 
+  i18n guides sync [<locale>...]
+                             writes a guide pack's texts in other languages
+                             (docs/TRANSLATING.md, "Guide texts"):
+                             <pack>/locales/<locale>/<guide path>.lua per
+                             guide and _pack.lua for the pack's own texts,
+                             each with every text that needs words, the
+                             game's names as {kind:id} tokens, "" while not
+                             translated. Keeps every translation; one whose
+                             English the guide lost moves to a commented
+                             block at the end. Without a locale: every
+                             language the pack has a folder for.
+  i18n guides check [<locale>...]
+                             fails (exit 1) on a texts file Lua cannot load,
+                             a translation that leaves out or adds a name
+                             token or a line break, a stale translation (its
+                             English changed or went away: the new English
+                             is named when it can be told) or a file no
+                             guide has. Missing translations are fine.
+  i18n guides stats          the texts to translate: unique texts, words and
+                             characters (tokens left out), in all and by
+                             guide folder; the names the compiler made
+                             tokens, by kind and source; the notes dropped
+                             for naming only their goal.
+
 options:
-  --json            status, check, keys, names, fit: one JSON document on stdout
+  --json            status, check, keys, names, fit, guides: one JSON document on stdout
   --slack <n>       fit: measure every glyph n times wider (1.15: about the
                     client's own font)
+  --pack <dir>      guides: the guide pack (default our guides/)
+  --data <dir>      guides: the reference data (default data/forever)
   --markdown        status: a Markdown table
   --no-questie      names: leave DingDB out (its base data is QuestieDB's)
   --no-tables       names: leave the client tables out (otherwise a missing
@@ -490,10 +516,119 @@ async function runFit(opts, positional) {
 	return failed ? 1 : 0;
 }
 
+// --- guide texts (tools/lib/i18n/guides.js) ----------------------------------
+
+// The pack (--pack, else ours) compiled in memory, with its tokenised texts.
+function packGuides(opts) {
+	const { commandPack } = require('../lib/pack/locate');
+	const { buildPack } = require('../lib/pack/build');
+	const { DATA } = require('../lib/paths');
+	const pack = commandPack({ pack: opts.pack ? path.resolve(opts.pack) : undefined });
+	if (pack.error) throw new Error(pack.error);
+	if (!pack.manifest) throw new Error(`${pack.dir}: no valid pack.json`);
+	// Our guides as context only check routes across packs: the texts need none.
+	const r = buildPack({ ...pack, contextDir: null }, { dataDir: opts.data ? path.resolve(opts.data) : DATA, files: false });
+	if (r.noData) throw new Error('no reference data: run `node tools/polestar.js data build` (or pass --data)');
+	if (r.diag.errors.length) throw new Error(`the pack does not compile (${plural(r.diag.errors.length, 'error')}): run \`node tools/polestar.js lint\``);
+	return { dir: pack.dir, manifest: pack.manifest, guides: r.guides.filter((g) => g._ast && g._ast.source), tokens: r.tokens };
+}
+
+function runGuides(opts, positional) {
+	const G = require('../lib/i18n/guides');
+	const [what, ...rest] = positional;
+	if (!['sync', 'check', 'stats'].includes(what)) {
+		console.error(`i18n guides needs sync, check or stats\n\n${usage}`);
+		return 2;
+	}
+	const pack = packGuides(opts);
+	if (what === 'stats') {
+		const st = G.textStats(pack.manifest, pack.guides);
+		if (opts.json) {
+			console.log(JSON.stringify({ ...st, tokens: pack.tokens }, null, 1));
+			return 0;
+		}
+		const row = (name, r) => `${name.padEnd(34)}${String(r.guides === undefined ? '' : r.guides).padStart(7)}${String(r.texts).padStart(8)}${String(r.words).padStart(9)}${String(r.chars).padStart(10)}`;
+		console.log(`${'folder'.padEnd(34)}${'guides'.padStart(7)}${'texts'.padStart(8)}${'words'.padStart(9)}${'chars'.padStart(10)}`);
+		for (const f of Object.keys(st.byFolder).sort()) console.log(row(f, st.byFolder[f]));
+		console.log(row('all (each text once)', { ...st.total, guides: pack.guides.length }));
+		const t = pack.tokens;
+		const sum = (o) => Object.values(o).reduce((a, b) => a + b, 0);
+		console.log(`\nnames made tokens: ${sum(t.replaced)} (${Object.entries(t.replaced).filter(([, n]) => n).map(([k, n]) => `${k} ${n}`).join(', ')})`);
+		console.log(`  by source: ${Object.entries(t.bySource).map(([k, n]) => `${k} ${n}`).join(', ')}`);
+		console.log(`notes dropped for naming only their goal: ${t.dropped}`);
+		return 0;
+	}
+	const chosen = rest.length ? locales(rest) : G.packLocales(pack.dir);
+	if (!chosen.length) {
+		console.log(`${rel(path.join(pack.dir, 'locales'))}: no languages yet (\`node tools/polestar.js i18n guides sync <locale>\` starts one)`);
+		return 0;
+	}
+	const st = G.guideState(pack.dir, pack.manifest, pack.guides, chosen);
+	if (what === 'sync') {
+		let code = 0;
+		for (const locale of chosen) {
+			for (const s of st[locale].files) {
+				if (!s.error) continue;
+				console.error(`error: ${rel(s.file)}: ${s.error}; fix it first (left as it is)`);
+				code = 1;
+			}
+			for (const f of st[locale].orphans) console.log(`note: ${rel(f)}: no guide has this path (left alone: rename it after its guide, or delete it)`);
+		}
+		let written = 0;
+		for (const [file, text] of Object.entries(G.syncFiles(st))) {
+			if (fs.existsSync(file) && fs.readFileSync(file, 'utf8') === text) continue;
+			fs.mkdirSync(path.dirname(file), { recursive: true });
+			fs.writeFileSync(file, text);
+			written++;
+		}
+		for (const locale of chosen) {
+			const files = st[locale].files;
+			const texts = files.reduce((n, s) => n + s.texts.length, 0);
+			const done = files.reduce((n, s) => n + count(s.translated), 0);
+			console.log(`${locale}: ${done}/${texts} texts translated`);
+		}
+		console.log(`${plural(written, 'file')} written`);
+		return code;
+	}
+	const report = { ok: true, locales: {} };
+	let failures = 0;
+	const fail = (msg) => {
+		failures++;
+		if (!opts.json) console.error(`error: ${msg}`);
+	};
+	for (const locale of chosen) {
+		const files = st[locale].files;
+		const r = { texts: 0, translated: 0, missing: 0, stale: 0, problems: 0, orphans: st[locale].orphans.map(rel), files: files.filter((s) => s.exists).length };
+		for (const s of files) {
+			r.texts += s.texts.length;
+			r.translated += count(s.translated);
+			r.missing += s.missing.length;
+			if (!s.exists) continue;
+			const file = rel(s.file);
+			if (s.error) fail(`${file}: ${s.error}`);
+			for (const p of s.problems) {
+				r.problems++;
+				fail(`${file}: ${JSON.stringify(p.text)}: the translation ${p.problem}`);
+			}
+			for (const k of Object.keys(s.stale)) {
+				r.stale++;
+				const next = s.successors[k];
+				fail(`${file}: stale translation of ${JSON.stringify(k)} (${next ? `its English is now ${JSON.stringify(next)}` : 'the guide no longer has it'}; \`i18n guides sync ${locale}\` moves it to the end)`);
+			}
+		}
+		for (const f of r.orphans) fail(`${f}: no guide has this path`);
+		report.locales[locale] = r;
+		if (!opts.json) console.log(`${locale}: ${r.translated}/${r.texts} texts translated in ${plural(r.files, 'file')}, ${r.missing} missing${r.stale ? `, ${r.stale} stale` : ''}`);
+	}
+	report.ok = failures === 0;
+	if (opts.json) console.log(JSON.stringify(report, null, 1));
+	return failures ? 1 : 0;
+}
+
 async function run(argv) {
 	const { opts, positional, error } = parseArgs(argv, {
 		flags: ['--json', '--markdown', '--no-questie', '--no-tables', '--offline', '--dry-run'],
-		options: ['--ding', '--pfquest', '--guides', '--questdb', '--codex', '--travel', '--chokepoints', '--out', '--limit', '--delay', '--build', '--sources', '--slack', '--addon'],
+		options: ['--ding', '--pfquest', '--guides', '--questdb', '--codex', '--travel', '--chokepoints', '--out', '--limit', '--delay', '--build', '--sources', '--slack', '--addon', '--pack', '--data'],
 	});
 	const [sub, ...rest] = positional;
 	if (error || !sub) {
@@ -508,6 +643,7 @@ async function run(argv) {
 		if (sub === 'import') return runImport(opts, rest);
 		if (sub === 'fit') return await runFit(opts, rest);
 		if (sub === 'names') return await runNames(opts, rest);
+		if (sub === 'guides') return runGuides(opts, rest);
 	} catch (e) {
 		console.error(`error: ${e.message}`);
 		return 1;
@@ -516,4 +652,4 @@ async function run(argv) {
 	return 2;
 }
 
-module.exports = { name: 'i18n', summary: 'interface translations (status, check, sync, keys, import, fit) and the names addons (names)', usage, run };
+module.exports = { name: 'i18n', summary: 'interface translations (status, check, sync, keys, import, fit), guide texts (guides) and the names addons (names)', usage, run };
