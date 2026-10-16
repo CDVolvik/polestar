@@ -244,9 +244,9 @@ profession abilities; none another thing of the game shares, and no
 profession rank spells). A place, NPC or
 object the game names with a leading "The" matches without it ("Molsen
 Farm" is the game's "The Molsen Farm"), and a zone or area ending "City"
-without that ("Stormwind"): the token shows the game's whole name, and an
-English client reads its "The" as the sentence needs it ("west of the Molsen
-Farm", "back to the Molsen Farm", "The Molsen Farm" opening one). A name in its
+without that ("Stormwind"): other languages show the game's name there, and
+an English client reads the author's own words (a guide spells each such name
+one way; another spelling of it stays words). A name in its
 English plural ("Harvest Watchers"), in lower case ("the Jansen Stead") or
 inside a longer word stays words, as does a name right next to a capitalised
 word or before "of <Capitalised>" that would make it a longer name the data

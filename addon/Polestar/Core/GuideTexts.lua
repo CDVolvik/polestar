@@ -85,17 +85,6 @@ local function localName(kind, id, en)
 	return ns.Names.Cached(kind, id)
 end
 
--- A token's English in its sentence (tools/lib/dsl/tokens.js englishIn): a
--- name starting "The " drops it after the text's own "the", and reads "the"
--- inside a sentence. before: the text up to the token.
-local function englishIn(name, before)
-	if sub(name, 1, 4) ~= "The " then return name end
-	local tail = sub(before, -5)
-	if find(tail, "^[Tt]he $") or find(tail, "[^%w][Tt]he $") then return sub(name, 5) end
-	if before == "" or find(before, "[%.!%?:;\n]%s*$") then return name end
-	return "t" .. sub(name, 2)
-end
-
 local function fill(s, names, live)
 	if not find(s, "{", 1, true) then return s end
 	local out, at = "", 1
@@ -106,7 +95,7 @@ local function fill(s, names, live)
 		local en = names[kind .. ":" .. id]
 		local name = en and live and not english and localName(kind, tonumber(id), en) or nil
 		if valid(name) then out = out .. name
-		elseif en then out = out .. englishIn(en, out)
+		elseif en then out = out .. en
 		else out = out .. sub(s, a, b) end -- not a token of this guide: left as written
 		at = b + 1
 	end

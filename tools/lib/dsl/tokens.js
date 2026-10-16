@@ -31,7 +31,6 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const { parseCsv } = require('../data/csv');
-const { compareVersions, PRODUCTS } = require('../data/wago');
 
 const KINDS = ['npc', 'object', 'item', 'quest', 'zone', 'area', 'spell', 'faction', 'skill'];
 const TOKEN_RE = /\{(npc|object|item|quest|zone|area|spell|faction|skill):(\d+)\}/g;
@@ -100,10 +99,6 @@ function goalNames(goal, data) {
 	add('faction', goal.faction, goal.factionName);
 	add('skill', goal.skillLine, goal.skill);
 	add('skill', goal.profLine, goal.profName);
-	if (goal.fromKind === 'npc' || goal.fromKind === 'object') {
-		add(goal.fromKind, goal.fromId, goal.from);
-		add(goal.fromKind, goal.fromAlsoId, goal.fromAlso);
-	}
 	for (const c of goal.candidates || []) add('npc', c.npc, c.npcName, true);
 	for (const r of goal.reagents || []) add('item', r.item, r.itemName);
 	for (const list of [goal.rewards && goal.rewards.items, goal.rewards && goal.rewards.choices]) {
@@ -158,17 +153,22 @@ function forEachText(guide, fn, { steps = true } = {}) {
 	});
 }
 
-// Whether `before` ends in a capitalised word that makes a longer name with
-// what follows: not "The", not a possessive ("Darnassus's Mystic Ward"), and,
-// opening a sentence, not a word the pack also writes in lower case
-// ("Follow", "Take").
-// A profession's rank before its name ("Apprentice {skill:182}"): the rank is words.
-const RANKS = new Set(['Apprentice', 'Journeyman', 'Expert', 'Artisan']);
-function capitalBefore(before, common) {
+// Whether `before` ends in a capitalised word (or "<Capitalised> of") that
+// makes a longer name with what follows: not "The", a possessive
+// ("Darnassus's Mystic Ward"), a profession rank, nor a word opening its
+// sentence ("Assist Walton"); "<Capitalised> of" counts anywhere ("Elixirs
+// of Agility").
+function capitalBefore(before) {
+	const of = /(^|[^\p{L}\p{N}'’-])\p{Lu}[\p{L}\p{N}'’-]*[ \t]+of[ \t]+$/u.test(before);
+	if (of) return true;
 	const m = /(^|[\s\S]*?[^\p{L}\p{N}'’-])(\p{Lu}[\p{L}\p{N}'’-]*)[ \t]+$/u.exec(before);
 	if (!m || m[2] === 'The' || RANKS.has(m[2]) || /['’]s$/u.test(m[2])) return false;
-	if (/(^|[.!?:;\n(])\s*$/u.test(m[1])) return !common.has(m[2].toLowerCase());
-	return true;
+	return !opensSentence(m[1]);
+}
+
+// Whether a word after `before` opens its sentence.
+function opensSentence(before) {
+	return /(^|[.!?:;\n(])\s*$/u.test(before);
 }
 
 // Names by their first three characters, each name once (its best source
@@ -186,9 +186,9 @@ class NameIndex {
 		if (!name || !Number.isInteger(id) || id <= 0) return;
 		this.put(name, name, kind, id, prio);
 		if (!ALIAS_KINDS.has(kind)) return;
-		// "Molsen Farm" for the game's "The Molsen Farm" (an English client
-		// reads its article as the sentence needs it: fillTokens),
-		// "Stormwind" for "Stormwind City": the token shows the game's whole
+		// "Molsen Farm" for the game's "The Molsen Farm", "Stormwind" for
+		// "Stormwind City": the token's English is the author's words (one
+		// spelling per token and guide), the other languages show the game's
 		// name. A worse source than the name itself.
 		// Without "The" only where the rest still reads as a name: two words or
 		// more, or a place ("The Rot" is no "Rot": "Rot Hide" gnolls).
@@ -230,9 +230,13 @@ class NameIndex {
 			// A name next to a capitalised word is part of a longer name the data
 			// lacks ("Rot Hide" gnolls, "Jade Oozes", "Lost Barrens Kodos"): not
 			// this one.
-			if (/^[ \t]+(of[ \t]+)?\p{Lu}/u.test(text.slice(end)) || capitalBefore(text.slice(0, i), this.common)) continue;
-			// A one-word spell owning something is a name of its own ("Blizzard's designers").
-			if (e.kind === 'spell' && !e.name.includes(' ') && /^['’]s\b/u.test(text.slice(end))) continue;
+			if (/^[ \t]+(of[ \t]+)?\p{Lu}/u.test(text.slice(end)) || capitalBefore(text.slice(0, i))) continue;
+			if (e.kind === 'spell') {
+				// A spell owning something is a name of its own ("Blizzard's designers", "Burning Blade's").
+				if (/^['’]s\b/u.test(text.slice(end))) continue;
+				// A one-word spell opening a sentence or taking an object is a verb ("Shatter the crystal").
+				if (!e.name.includes(' ') && (opensSentence(text.slice(0, i)) || /^[ \t]+(the|a|an|your|its|their|it|them|him|her)\b/u.test(text.slice(end)))) continue;
+			}
 			if (plural ? text[end] === 's' && !isWordChar(text[end + 1]) : !isWordChar(text[end])) return e;
 		}
 		return null;
@@ -258,7 +262,7 @@ function longestAt(indexes, text, i, plural = false) {
 const WORLD = new WeakMap();
 function worldIndex(data, common) {
 	const cached = WORLD.get(data);
-	if (cached && cached.common === common) return cached.idx;
+	if (cached && cached.common === common) return { idx: cached.idx, abilities: cached.abilities };
 	const idx = new NameIndex(common);
 	const zoneCount = new Map();
 	for (const z of Object.values(data.zones || {})) if (z && str(z.name)) zoneCount.set(z.name, (zoneCount.get(z.name) || 0) + 1);
@@ -282,13 +286,14 @@ function worldIndex(data, common) {
 			if (rec && str(rec.name) && /[ '’]/.test(rec.name.trim())) idx.add(kind, Number(rec.id), rec.name, WORLD_DATA);
 		}
 	}
-	for (const [name, id] of spellNames(data)) idx.add('spell', id, name, WORLD_SPELL);
-	WORLD.set(data, { common, idx });
-	return idx;
+	const abilities = new NameIndex(common);
+	for (const [name, id] of spellNames(data)) (name.includes(' ') || /['’:]/.test(name) ? idx : abilities).add('spell', id, name, WORLD_SPELL);
+	WORLD.set(data, { common, idx, abilities });
+	return { idx, abilities };
 }
 
-// Spell names the client gives by id (GetSpellInfo), from the newest cached
-// Forever SpellName table beside the data folder: [[name, id]], each name once
+// Spell names the client gives by id (GetSpellInfo), from the Forever
+// SpellName table of the data's own client build (pinnedBuildDir): [[name, id]], each name once
 // (its lowest id: a spell's ranks share their name in every language), none
 // that another thing of the game is called. Names of
 // two words or more, or with an apostrophe or colon ("Teleport: Moonglade"),
@@ -301,7 +306,7 @@ function spellNames(data) {
 }
 
 function readSpellNames(data) {
-	const dir = data.dir && wagoBuildDir(path.join(data.dir, '..', 'sources'), ['SpellName.csv', 'SkillLineAbility.csv']);
+	const dir = data.dir && pinnedBuildDir(data, ['SpellName.csv', 'SkillLineAbility.csv']);
 	if (!dir) return [];
 	const abilities = new Set(parseCsv(fs.readFileSync(path.join(dir, 'SkillLineAbility.csv'), 'utf8')).map((r) => Number(r.Spell)));
 	// A name something else of the game has too ("Burning Blade", "Zephras
@@ -331,15 +336,16 @@ function spellById(data) {
 	return SPELL_IDS.get(data);
 }
 
-// The newest Forever build folder under <sources>/wago holding every file of `files`, or null.
-function wagoBuildDir(sourcesDir, files) {
-	const root = path.join(sourcesDir, 'wago');
-	if (!fs.existsSync(root)) return null;
-	const builds = fs
-		.readdirSync(root)
-		.filter((b) => /^\d+(\.\d+)+$/.test(b) && PRODUCTS.forever.family.test(b) && files.every((f) => fs.existsSync(path.join(root, b, f))))
-		.sort(compareVersions);
-	return builds.length ? path.join(root, builds[builds.length - 1]) : null;
+// The Forever client build the data was built from (meta.json's "World of
+// Warcraft: Forever client tables" source), as its cache folder beside the
+// data, when it holds every file of `files`; else null: the same data
+// compiles the same guides whatever else is cached.
+function pinnedBuildDir(data, files) {
+	const src = ((data.meta && data.meta.sources) || []).find((x) => x && /^World of Warcraft: Forever client tables/.test(String(x.name)));
+	const m = src && /(\d+\.\d+\.\d+\.\d+)/.exec(String(src.revision || ''));
+	if (!m) return null;
+	const dir = path.join(data.dir, '..', 'sources', 'wago', m[1]);
+	return files.every((f) => fs.existsSync(path.join(dir, f))) ? dir : null;
 }
 
 // The AreaTable areas inside the zone whose area is `zoneArea`, cached per data.
@@ -415,7 +421,7 @@ function tokeniseText(text, indexes, accept = () => true) {
 			const e = longestAt(indexes, text, i);
 			if (e && accept(e)) {
 				flush();
-				parts.push({ token: `{${e.kind}:${e.id}}`, name: e.name, used: { kind: e.kind, id: e.id, name: e.english, prio: Math.floor(e.prio), alias: e.alias ? e.name : undefined } });
+				parts.push({ token: `{${e.kind}:${e.id}}`, name: e.name, used: { kind: e.kind, id: e.id, name: e.name, prio: Math.floor(e.prio), alias: e.alias ? e.english : undefined } });
 				i += e.name.length;
 				continue;
 			}
@@ -474,12 +480,14 @@ function selfNote(goal, data) {
 // "The" or "City".
 function tokeniseGuides(guides, data) {
 	const common = commonWords(guides);
-	const world = worldIndex(data, common);
+	const { idx: world, abilities } = worldIndex(data, common);
 	const stats = { replaced: Object.fromEntries(KINDS.map((k) => [k, 0])), bySource: Object.fromEntries(SOURCES.map((k) => [k, 0])), dropped: 0 };
 	const problems = [];
 	const aliases = []; // names matched without their "The" or "City"
 	const out = guides.map((guide) => {
 		const base = guideIndex(guide, data, common);
+		// One-word class and profession abilities ("Polymorph", "Whirlwind") only where the guide teaches them.
+		const worlds = guide.category === 'Class' || guide.category === 'Professions' ? [world, abilities] : [world];
 		const copy = { ...guide, steps: guide.steps.map((s) => ({ ...s, goals: s.goals.map((g) => ({ ...g })) })) };
 		for (const k of GUIDE_LISTS) if (Array.isArray(copy[k])) copy[k] = copy[k].slice();
 		if (Array.isArray(copy.reward)) copy.reward = copy.reward.map((r) => ({ ...r }));
@@ -488,7 +496,7 @@ function tokeniseGuides(guides, data) {
 		// One English per token: a second spelling of the same id stays words.
 		const accept = (e) => {
 			const k = `${e.kind}:${e.id}`;
-			return !(k in names) || names[k] === e.english;
+			return !(k in names) || names[k] === e.name;
 		};
 		const replace = (text, holder, key, indexes, ln) => {
 			const r = tokeniseText(text, indexes, accept);
@@ -502,7 +510,7 @@ function tokeniseGuides(guides, data) {
 				if (!u.author) {
 					stats.replaced[u.kind]++;
 					stats.bySource[SOURCES[u.prio]]++;
-					if (u.alias) aliases.push({ guide: guide.id, line: ln, words: u.alias, token: k, english: name, text });
+					if (u.alias) aliases.push({ guide: guide.id, line: ln, words: name, token: k, english: u.alias, text });
 				}
 				if (!(k in names)) names[k] = name;
 			}
@@ -512,10 +520,10 @@ function tokeniseGuides(guides, data) {
 			for (const pl of r.plurals) if (!(`${pl.kind}:${pl.id}` in names) && pl.english) names[`${pl.kind}:${pl.id}`] = pl.english;
 		};
 		const guideLine = (guide._ast && guide._ast.line) || 0;
-		forEachText(copy, (text, holder, key) => replace(text, holder, key, [base, world], guideLine), { steps: false });
+		forEachText(copy, (text, holder, key) => replace(text, holder, key, [base, ...worlds], guideLine), { steps: false });
 		copy.steps.forEach((step, si) => {
 			const orig = guide.steps[si];
-			const indexes = [stepIndex(orig, data, common), base, world];
+			const indexes = [stepIndex(orig, data, common), base, ...worlds];
 			for (const f of STEP_FIELDS) if (str(step[f])) replace(step[f], step, f, indexes, orig._line || guideLine);
 			step.goals.forEach((goal, gi) => {
 				const og = orig.goals[gi];
@@ -534,16 +542,6 @@ function tokeniseGuides(guides, data) {
 	return { guides: out, stats, problems, aliases };
 }
 
-// A token's English in its sentence: a name the game starts with "The"
-// ("The Molsen Farm") drops it after the text's own "the", and reads "the"
-// inside a sentence. `before`: the text up to the token.
-function englishIn(name, before) {
-	if (!name.startsWith('The ')) return name;
-	if (/(^|[^\p{L}\p{N}])[Tt]he $/u.test(before)) return name.slice(4);
-	if (/(^|[.!?:;\n]\s*)$/u.test(before)) return name;
-	return `t${name.slice(1)}`;
-}
-
 // A text with its tokens filled by `names` (a guide's), as an English client
 // reads it (Core/GuideTexts.lua fills them the same way).
 function fillTokens(text, names) {
@@ -552,7 +550,7 @@ function fillTokens(text, names) {
 	for (const m of String(text).matchAll(new RegExp(TOKEN_RE.source, 'g'))) {
 		out += text.slice(at, m.index);
 		const en = names && names[`${m[1]}:${m[2]}`];
-		out += en ? englishIn(en, out) : m[0];
+		out += en || m[0];
 		at = m.index + m[0].length;
 	}
 	return out + String(text).slice(at);

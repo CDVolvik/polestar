@@ -196,12 +196,14 @@ test('a token the author wrote must name something the data has', () => {
 	assert.deepEqual(r.diag.errors.map((d) => d.message), ['{npc:999999}: the data has no npc 999999']);
 });
 
-test('a name the game starts with "The" reads as its sentence needs it on an English client', () => {
+test('a name written without the game\'s "The" keeps the author\'s words in English', () => {
+	const dir = packDir();
+	fs.writeFileSync(path.join(dir, 'guides', 'main.guide'), GUIDE.replace(`tip ${TIP}`, 'tip Ride to Stormwind; ask Marshal McBride.'));
+	const r = build(dir);
+	const g = r.guides[0]._localised;
 	const { fillTokens } = require('../tools/lib/dsl/tokens');
-	const names = { 'area:918': 'The Molsen Farm' };
-	assert.equal(fillTokens('{area:918}', names), 'The Molsen Farm');
-	assert.equal(fillTokens('West of {area:918}. {area:918} is quiet.', names), 'West of the Molsen Farm. The Molsen Farm is quiet.');
-	assert.equal(fillTokens('Back to the {area:918}', names), 'Back to the Molsen Farm');
+	assert.equal(g.steps[0].note, 'Ride to {zone:1453}; ask {npc:197}.');
+	assert.equal(fillTokens(g.steps[0].note, g.names), 'Ride to Stormwind; ask Marshal McBride.');
 });
 
 test('a name inside a longer proper name the data lacks stays words', () => {
