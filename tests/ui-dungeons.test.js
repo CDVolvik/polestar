@@ -457,3 +457,35 @@ test('review P3-13: "Show on map" in combat says in chat why the map stays shut,
 	assert.equal(out.after, 1413);
 	assert.equal(out.lines, 1, 'the out-of-combat click prints nothing');
 });
+
+test('a French client: a dungeon page and the Codex name quests, NPCs and items in French; English where French has none', () => {
+	const { namesPack } = require('./helpers/names');
+	const fr = namesPack('frFR', {
+		quest: { 1486: 'Peaux déviantes' },
+		npc: { 5767: 'Nalpak (fr)', 3671: 'Dame Anacondra', 234: 'Gryan Forte-Manteau' },
+		item: { 6480: 'Jambières déviantes lisses', 9739: "Gemme d'Anacondra" },
+	});
+	const [page, codex] = runAddon({
+		stubs: ['stub_ui.lua'],
+		before: `function GetLocale() return "frFR" end
+do
+	local load = loadfile
+	function loadfile(file)
+		if file:match("[/\\\\]Locales[/\\\\]%a%a%u%u%.lua$") then return function() end end
+		return load(file)
+	end
+end
+${fr.stubLua}
+${pack.stubLua}`,
+		addons: [{ name: 'Polestar', files: FILES }],
+		script: `uistub.install()\nstub.login()
+local D = Polestar.Dungeons
+local q = D.Quest("wailing-caverns", 1486)
+local b = D.Bosses("wailing-caverns")
+emit({ q.title, q.start.name, q.rewards.items[1].name, q.rewards.items[2].name, b[1].name, b[1].quests[1].itemName, b[2].name })
+local C = Polestar.Codex
+emit({ C.Npc(234).name, C.Name("npc", 234), C.Name("npc", 639) })`,
+	}).emitted;
+	assert.deepEqual(page, ['Peaux déviantes', 'Nalpak (fr)', 'Jambières déviantes lisses', 'Deviate Hide Pack', 'Dame Anacondra', "Gemme d'Anacondra", 'Kresh']);
+	assert.deepEqual(codex, ['Gryan Forte-Manteau', 'Gryan Forte-Manteau', 'Edwin VanCleef']);
+});

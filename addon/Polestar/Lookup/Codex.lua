@@ -31,7 +31,10 @@
 --   Codex.Register(group, names, records, lo, hi) ; Codex.RegisterIndex(kind, blob)   -- pack files only
 --
 -- Records use the codex JSON field names (data/forever/codex/*.json), with
--- 1-based arrays; JSON nulls are absent.
+-- 1-based arrays; JSON nulls are absent. An item's, NPC's, object's or
+-- quest's name (a quest's title, an instance boss's name), in records and
+-- from Codex.Name, is the client's language's (Polestar.Names) where it has
+-- one; Each and Index keep the pack's English (Search adds the translated).
 
 local ADDON, ns = ...
 
@@ -115,6 +118,18 @@ local IS_ITEM = { item = true, mount = true, pet = true, recipe = true, tabard =
 local NPC_GROUPS = { "npc", "rare" }
 local OBJECT_GROUPS = { "object", "treasure" }
 local SPAN = { item = ITEM_GROUPS, npc = NPC_GROUPS, object = OBJECT_GROUPS }
+
+-- The Names kind of a group whose names the client's language has.
+local NAMES_KIND = {
+	item = "item", mount = "item", pet = "item", recipe = "item", tabard = "item",
+	npc = "npc", rare = "npc", object = "object", treasure = "object", quest = "quest",
+}
+
+-- A name in the client's language (Polestar.Names), else the pack's English.
+local function shown(kind, id, english)
+	local N = kind and ns.Names
+	return N and N.Get(kind, id) or english
+end
 
 -- Same letters as FROM in tools/lib/codex/pack.js.
 local FROM = {
@@ -319,7 +334,13 @@ local function decodeInstance(group, id, s)
 		for k = 3, m do items[#items + 1] = tonumber(b[k]) end
 		local boss = { name = unesc(b[1]), items = items }
 		local _, _, o, ref, role = find(b[2] or "", "^(o?)(%d*)(%a?)$")
-		if o == "o" then boss.object = tonumber(ref) else boss.npc = tonumber(ref) end
+		if o == "o" then
+			boss.object = tonumber(ref)
+			boss.name = shown("object", boss.object, boss.name)
+		else
+			boss.npc = tonumber(ref)
+			boss.name = shown("npc", boss.npc, boss.name)
+		end
 		boss.role = BOSS_ROLE[role or ""]
 		rec.bosses[#rec.bosses + 1] = boss
 	end
@@ -419,6 +440,12 @@ local function get(group, id)
 	local rec
 	if s and DECODE[group] then rec = DECODE[group](group, id, s) end
 	if not rec then rec = { id = id, name = name } end
+	local nk = NAMES_KIND[group]
+	if nk == "quest" then
+		rec.title = shown(nk, id, rec.title or name)
+	elseif nk then
+		rec.name = shown(nk, id, rec.name)
+	end
 	if not c then
 		-- Weak values: records nobody holds are decoded again on demand.
 		c = setmetatable({}, WEAK)
@@ -524,11 +551,12 @@ function Codex.Name(kind, id)
 	if groups then
 		for i = 1, #groups do
 			local name = nameOf(groups[i], id)
-			if name then return name end
+			if name then return shown(NAMES_KIND[kind], id, name) end
 		end
 		return nil
 	end
-	return nameOf(kind, id)
+	local name = nameOf(kind, id)
+	return name and shown(NAMES_KIND[kind], id, name)
 end
 
 local EMPTY = {}
