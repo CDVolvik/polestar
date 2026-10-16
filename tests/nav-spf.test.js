@@ -1483,3 +1483,10 @@ test('hostile towns: a walk that is the whole route (a target inside Southshore)
 	assert.equal(out.after, 'Quest in Southshore', 'said once, then the target alone');
 	assert.equal(out.again, 'Quest in Southshore', 'a fresh plan of the same walk does not say it again');
 });
+
+test('hostile towns: two towns of the same name are named once', () => {
+	const [out] = run(`
+		local hubs = { { id = "a", name = "Goldshire" }, { id = "b", name = "Lakeshire" }, { id = "c", name = "Goldshire" } }
+		emit(N.travel.HubText({ kind = "walk", hubs = hubs }))`);
+	assert.equal(out, 'Hostile town: Goldshire, Lakeshire');
+});

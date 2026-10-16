@@ -1177,13 +1177,18 @@ local function sameHubs(a, b)
 end
 
 -- "Hostile town: <names>" for a walk whose engine path enters the other
--- faction's towns (leg.hubs, from Find's job.hubs), else nil.
+-- faction's towns (leg.hubs, from Find's job.hubs), each name once (two
+-- towns can share one), else nil.
 function Travel.HubText(leg)
 	local hubs = type(leg) == "table" and leg.hubs
 	if type(hubs) ~= "table" or #hubs == 0 then return nil end
-	local names = {}
+	local names, seen = {}, {}
 	for _, h in ipairs(hubs) do
-		if type(h) == "table" and type(h.name) == "string" and h.name ~= "" then names[#names + 1] = h.name end
+		local name = type(h) == "table" and h.name
+		if type(name) == "string" and name ~= "" and not seen[name] then
+			seen[name] = true
+			names[#names + 1] = name
+		end
 	end
 	if #names == 0 then return nil end
 	return format(L["Hostile town: %s"], table.concat(names, ", "))
