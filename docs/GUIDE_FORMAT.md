@@ -237,14 +237,22 @@ collect sources, smart-target candidates, rewards, reagents, quest objectives,
 spells, factions, professions), then the whole guide's, the zones of its maps
 and the AreaTable areas in them, then any zone and any open-world area whose
 name is unique, the professions and their reagents, and any NPC, object or
-item of the data whose name has two words or an apostrophe. A place, NPC or
+item of the data whose name has two words or an apostrophe, then the
+client's spell names (the newest cached Forever `SpellName` table: any spell
+of two words or more, or with an apostrophe or colon, and one-word class and
+profession abilities; none another thing of the game shares, and no
+profession rank spells). A place, NPC or
 object the game names with a leading "The" matches without it ("Molsen
 Farm" is the game's "The Molsen Farm"), and a zone or area ending "City"
 without that ("Stormwind"): the token shows the game's whole name, and an
 English client reads its "The" as the sentence needs it ("west of the Molsen
 Farm", "back to the Molsen Farm", "The Molsen Farm" opening one). A name in its
 English plural ("Harvest Watchers"), in lower case ("the Jansen Stead") or
-inside a longer word stays words, as does a one-word name the pack's texts
+inside a longer word stays words, as does a name right next to a capitalised
+word or before "of <Capitalised>" that would make it a longer name the data
+lacks ("Rot Hide" gnolls, "Young Wetlands Crocolisks", "Cleft of Shadow"; a
+possessive, a profession rank or a sentence's opening word does not count),
+and a one-word name the pack's texts
 also use as a lower-case word ("Barracks"), and two names a space apart (a
 name the data lacks, "Longshore Murloc Gills"). You may write a token
 yourself, `{npc:240}`: its kind and id must be in the data. `i18n guides

@@ -222,8 +222,11 @@ return {
   A text that is only names (a step titled after its NPC) has no line.
 - A name the text uses in the English plural stays words ("Harvest
   Watchers"): the comment `-- plural, as words: Harvest Watchers = {npc:115}
-  Harvest Watcher` gives its NPC, so the plural can be made from the game's
-  own singular name (Polestar_Names_<locale>, `i18n names`).
+  Harvest Watcher` gives its NPC. Translate the plural yourself from the
+  game's singular name (Polestar_Names_<locale>, `i18n names`), or, where
+  the game has no name for it in your language, write the singular's token
+  in the translation: `"Bandidos ({npc:251918})"`, `"{npc:251918} ×8"`. A
+  token of that line is allowed though the English has none.
 - `""` is not translated yet: the English shows. Keep the key byte for byte.
 - Keep the line breaks (`\n`) of the English.
 - `-- No longer in the guide (its English changed or it went away)` heads
