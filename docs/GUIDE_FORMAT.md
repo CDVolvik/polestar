@@ -222,6 +222,46 @@ AND. `only Warrior,Paladin,Dwarf` = (Warrior or Paladin) and Dwarf.
 | height `z` | a goal at an NPC or object: the height of that NPC's or object's spawn (`spawnz.json`), so the walk ends on its floor: see "Heights" below |
 | place area `area` | `sethome`, `hearth`, `fly` and `getfp` (their location) and `goto` (its label): the AreaTable area of that name, so the goal completes and reads right on every client language: see "Places by ID" below |
 | taxi node `node` | `getfp`: its flight point's taxi node (`travel.json`): see "Places by ID" below |
+| name tokens `{kind:id}`, `names` | the game's names in every text a player reads, so each shows in the client's language: see "Names in texts" below |
+| (a note dropped) | a goal's `--` note that only names the goal's own NPC, object, target or item (`accept 6181 -- Quartermaster Lewis`): the goal shows that name already, in the client's language |
+
+**Names in texts.** A text the player reads (the guide's `title`, `why`,
+`pitch`, `pros`, `cons` and `reward text`; a step's title and `tip`; a goal's
+`--` note and display text) names quests, NPCs, places and items in English.
+The compiler writes each name it can tell apart as a token, `{kind:id}`, so
+the addon shows the game's own name there on every client language
+(docs/TRANSLATING.md, "Guide texts"), and a translator writes only the words
+around it. It looks, longest name first and with its exact case, for: the
+names the step's own goals give (quests, givers and enders, targets, items,
+collect sources, smart-target candidates, rewards, reagents, quest objectives,
+spells, factions, professions), then the whole guide's, the zones of its maps
+and the AreaTable areas in them, then any zone and any open-world area whose
+name is unique, the professions and their reagents, and any NPC, object or
+item of the data whose name has two words or an apostrophe, then the
+client's spell names (the Forever `SpellName` table of the client build
+`meta.json` names, cached beside the data: any spell of two words or more, or
+with an apostrophe or colon; a one-word class or profession ability only in
+Class and Professions guides, or after "cast" or "your"; none another thing
+of the game shares, no profession rank spell, no spell owning something
+("Blizzard's designers"), and no one-word spell used as a verb: taking an
+object or opening a sentence that goes on in lower case, "Polymorph a
+naga"). A place, NPC or
+object the game names with a leading "The" matches without it ("Molsen
+Farm" is the game's "The Molsen Farm"), and a zone or area ending "City"
+without that ("Stormwind"): other languages show the game's name there, and
+an English client reads the author's own words (a guide spells each such name
+one way; another spelling of it stays words). A name in its
+English plural ("Harvest Watchers"), in lower case ("the Jansen Stead") or
+inside a longer word stays words, as does a name right next to a capitalised
+word or before "of <Capitalised>" that would make it a longer name the data
+lacks ("Rot Hide" gnolls, "Young Wetlands Crocolisks", "Cleft of Shadow",
+"Elixirs of Shadow Power"; a possessive, a profession rank or a sentence's
+opening word does not count),
+and a one-word name the pack's texts
+also use as a lower-case word ("Barracks"), and two names a space apart (a
+name the data lacks, "Longshore Murloc Gills"). You may write a token
+yourself, `{npc:240}`: its kind and id must be in the data. `i18n guides
+stats` counts the tokens, by kind and by where the compiler found them.
 
 **Spawn areas.** Mobs, quest objects and some NPCs spawn at more than one
 place, and a player who finds nothing where the arrow led must be able to try
@@ -468,7 +508,9 @@ saying how to fix them.
 another pack's: `dist/<folder>/`): the generated TOC, `Pack.lua`,
 `MapFrames.lua` (Era bounds for referenced maps), `Guides.lua` (one
 `RegisterGuide` per guide, each in its own function) and `LICENSE-DATA.txt`,
-plus the pack folder's `LICENSE` copied as `LICENSE.txt` when it has one.
+plus the pack folder's `LICENSE` copied as `LICENSE.txt` when it has one, and
+beside it a texts addon per language the pack's `locales/` translates
+(docs/TRANSLATING.md, "Guide texts").
 [PACK_FORMAT.md](PACK_FORMAT.md) describes them. Output is deterministic: the
 same inputs give byte-identical files.
 
