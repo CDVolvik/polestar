@@ -941,6 +941,16 @@ stub.RunScript(d, "OnTextChanged", true)`,
 		],
 	},
 	{
+		file: 'skins-options.svg',
+		title: 'Skins: Options in Halo and Blizzard (Guide, Window; Appearance, Windows with the Skin setting)',
+		panels: [
+			{ roots: OPTIONS, script: 'Polestar.Set("ui.skin", "halo"); Polestar.UI.ShowOptions("guide")' },
+			{ roots: OPTIONS, script: 'Polestar.Set("ui.skin", "halo"); Polestar.UI.ShowOptions("appearance"); Polestar.UI.Options.Select("appearance", "Windows")' },
+			{ roots: OPTIONS, script: 'Polestar.Set("ui.skin", "blizzard"); Polestar.UI.ShowOptions("guide")' },
+			{ roots: OPTIONS, script: 'Polestar.Set("ui.skin", "blizzard"); Polestar.UI.ShowOptions("appearance"); Polestar.UI.Options.Select("appearance", "Windows")' },
+		],
+	},
+	{
 		file: 'options-appearance.svg',
 		title: 'Options: Appearance (Colour & type, Windows, Arrow); then a look of your own: an accent border 2px thick, no band, no shadow, your own arrow colours',
 		panels: [
@@ -985,6 +995,14 @@ stub.RunScript(d, "OnTextChanged", true)`,
 			{ roots: OPTIONS, script: `${REGISTERED}; Polestar.UI.ShowOptions("questing")` },
 			{ roots: OPTIONS, script: `${REGISTERED}; Polestar.UI.ShowOptions(); local box = Polestar.UI.Options.frame.Search; box:SetText("arrow"); stub.RunScript(box, "OnTextChanged", true)` },
 			{ files: MODULE_FILES, roots: OPTIONS, script: `${MANY_PAGES}; Polestar.UI.ShowOptions("about")` },
+		],
+	},
+	{
+		file: 'skins-picker.svg',
+		title: 'Skins: the guide menu in Halo and Blizzard',
+		panels: [
+			{ roots: PICKER, script: pickerScene(`Polestar.Set("ui.skin", "halo"); ${TABS}; Polestar.UI.ShowPicker(); Polestar.UI.Picker.Select(uistub.elwynn)`) },
+			{ roots: PICKER, script: pickerScene(`Polestar.Set("ui.skin", "blizzard"); ${TABS}; Polestar.UI.ShowPicker(); Polestar.UI.Picker.Select(uistub.elwynn)`) },
 		],
 	},
 	{

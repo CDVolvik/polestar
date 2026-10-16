@@ -94,7 +94,25 @@ local function build()
 	f.Glyph:SetSize(16, 16)
 	f.Glyph:SetPoint("CENTER", f.Ring, "CENTER", 0, 0)
 
-	f.Title = W.Text(f, "title", "text")
+	-- In the skins (DIRECTION_B_HALO.md §3, DIRECTION_A_BLIZZARD.md §5): Halo's
+	-- 30-unit ring in the accent, Blizzard's 32-unit ring edged #C79C3E and
+	-- its title in gold.
+	W.Painter(f.Ring, function(t)
+		local skin = Theme.SkinKey()
+		if skin == "polestar" then
+			t:SetTexture(Theme.Media("qol-ring"))
+			t:SetSize(32, 32)
+			W.Color(t, "place")
+			W.Color(f.Glyph, "place")
+		else
+			local size = skin == "halo" and 30 or 32
+			t:SetTexture(Theme.Media("skin-ring"))
+			t:SetSize(size * 60 / 48, size * 60 / 48)
+			if skin == "halo" then W.Color(t, "accent") else W.Uncolor(t); t:SetVertexColor(0.78, 0.612, 0.243, 1) end
+			W.Color(f.Glyph, "accent")
+		end
+	end)
+	f.Title = W.Text(f, "title", "title")
 	f.Title:SetPoint("BOTTOMLEFT", f.Ring, "RIGHT", 12, 1)
 	f.Title:SetPoint("RIGHT", f, "RIGHT", -PAD, 0)
 	f.Title:SetJustifyH("LEFT")

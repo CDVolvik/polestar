@@ -1516,7 +1516,7 @@ end
 -- The shell
 ---------------------------------------------------------------------------
 
-local SHELL = {
+local HOUSE_SHELL = {
 	width = 960, height = 680, sidebar = 240, header = 112, tabs = 40, footer = 56, pad = 32,
 	side = 24, -- the sidebar's left edge
 	top = 152, -- header + tab band: where navigation and content begin
@@ -1524,6 +1524,22 @@ local SHELL = {
 	brand = 69, -- a hub's brand block ends here: the rail's hairline starts below it
 	foot = 23, -- the version line's bottom, level with the rail's foot label
 }
+-- The shell's sizes follow the skin (Theme.Metric; DIRECTION_B_HALO.md §3:
+-- 930 x 690, a 200 sidebar, 32 tabs, the body 28 from the edge, a 56 foot).
+-- A window takes them as it is built: one built before a skin change keeps
+-- its sizes until the interface reloads.
+local SHELL_METRIC = { width = "shellW", height = "shellH", sidebar = "shellSidebar", header = "shellHeader",
+	tabs = "shellTabs", footer = "shellFooter", pad = "shellPad" }
+local SHELL = setmetatable({}, {
+	__index = function(_, k)
+		if k == "top" then
+			return Theme.Metric("shellHeader", HOUSE_SHELL.header) + Theme.Metric("shellTabs", HOUSE_SHELL.tabs)
+		end
+		local m = SHELL_METRIC[k]
+		if m then return Theme.Metric(m, HOUSE_SHELL[k]) end
+		return HOUSE_SHELL[k]
+	end,
+})
 W.SHELL = SHELL
 
 -- Polestar's memory in KB (nil when the client hides it), for About.
@@ -1648,7 +1664,7 @@ function W.ShellNav(f, items, active, onSelect)
 	end
 	for i = #items + 1, #f.navButtons do f.navButtons[i]:Hide() end
 	local view = W.ShellNavHeight(f)
-	sf.Child:SetWidth(SHELL.sidebar - 1)
+	sf.Child:SetWidth((f.psSidebar or SHELL.sidebar) - 1)
 	W.SetScrollContent(sf, y, view)
 	if activeY then
 		local cur = sf:GetVerticalScroll()
@@ -1809,6 +1825,7 @@ end
 -- across both columns at 152 where navigation and content begin. Left edges:
 -- 24 in the sidebar, 32 in the main column.
 --
+-- opts.sidebar: the sidebar's width (SHELL.sidebar by default).
 -- opts.rail: a section rail (SHELL.rail wide) left of the sidebar, for a
 -- hub of several sections (W.ShellRail); the emblem moves into it and the
 -- window grows by the rail's width.
@@ -1816,8 +1833,9 @@ function W.Shell(name, opts)
 	opts = opts or {}
 	local RAIL = opts.rail and SHELL.rail or 0
 	local Wd, Hd = opts.width or (SHELL.width + RAIL), opts.height or SHELL.height
-	local SB = SHELL.sidebar
+	local SB = opts.sidebar or SHELL.sidebar
 	local f = CreateFrame("Frame", name, UIParent)
+	f.psSidebar = SB
 	f:SetSize(Wd, Hd)
 	f:SetPoint("CENTER", UIParent, "CENTER", 0, 20)
 	f:SetFrameStrata("HIGH")
