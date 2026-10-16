@@ -1435,3 +1435,24 @@ test('hostile towns: a fresh search of the same walk with the same towns changes
 	assert.equal(out.changes, 0);
 	assert.equal(out.hubs, 'Hostile town: Southshore');
 });
+
+test('hostile towns: the arrow says them once for a split walk, not again at each step', () => {
+	const [out] = run(`
+		fake.hubs = { { id = 12, name = "Southshore" } }
+		${SPLIT}
+		fake.hubs = nil
+		local function said() return (N.arrow.labelText:GetText() or ""):find("Hostile town", 1, true) ~= nil end
+		stub.advance(0.3)
+		local first = said()
+		stub.advance(10)
+		local quiet = said()
+		nav.place(0, -160)
+		N.Sample()
+		stub.advance(0.3)
+		local _, ci = N.GetRoute()
+		emit({ first = first, quiet = quiet, ci = ci, again = said() })`);
+	assert.equal(out.first, true, 'said as the walk starts');
+	assert.equal(out.quiet, false);
+	assert.ok(out.ci > 1, 'past the bridge');
+	assert.equal(out.again, false, 'not said again at the next step');
+});

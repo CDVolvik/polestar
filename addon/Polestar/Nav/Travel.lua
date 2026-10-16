@@ -1200,7 +1200,8 @@ function Travel.TakeWarning()
 	if not text then return nil end
 	local target = Nav.GetTarget()
 	if target ~= warnedFor then warned, warnedFor = {}, target end
-	local to = leg.to
+	-- The whole walk's end: a split walk's pieces all carry its towns, said once.
+	local to = (leg.parent and leg.parent.leg or leg).to
 	local key = to.c .. ":" .. floor(to.wx + 0.5) .. ":" .. floor(to.wy + 0.5) .. ":" .. text
 	if warned[key] then return nil end
 	warned[key] = true
