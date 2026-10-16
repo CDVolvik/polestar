@@ -8,4 +8,7 @@ section: contributors
   and a second Holy Specialization below the Priest's Shadow column. Kept,
   they made the Hunter tree a fourth spec column and the Priest tree an
   eighth row. Rows a few units apart (Warlock's first and fourth) count as
-  one (thanks jnickles85-bit).
+  one, and a line the client only draws (a TraitEdge of type 0, VisualOnly)
+  is no prerequisite: the Druid's Nature's Majesty and Nature's Splendor
+  each seemed to need the other, so neither could be planned
+  (thanks jnickles85-bit).

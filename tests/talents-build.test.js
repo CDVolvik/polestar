@@ -27,7 +27,7 @@ function tables() {
 		],
 		TraitNodeGroupXTraitCond: [{ TraitCondID: 70, TraitNodeGroupID: 60 }],
 		TraitCond: [{ ID: 70, CondType: 0, TraitNodeGroupID: 50, SpentAmountRequired: 3 }],
-		TraitEdge: [{ LeftTraitNodeID: 1, RightTraitNodeID: 2 }],
+		TraitEdge: [{ LeftTraitNodeID: 1, RightTraitNodeID: 2, Type: 2 }, { LeftTraitNodeID: 2, RightTraitNodeID: 1, Type: 0 }],
 	};
 }
 
@@ -44,7 +44,7 @@ test('treeFacts: the class tree only, spec columns by position, rows, gates and 
 	assert.equal(f.nodes[2].name, 'Beta');
 	assert.deepEqual(f.gates, { 3: [{ group: 50, need: 3 }] });
 	assert.deepEqual(f.groups, { 50: [1, 2, 3] });
-	assert.deepEqual(f.edges, [{ from: 1, to: 2 }]);
+	assert.deepEqual(f.edges, [{ from: 1, to: 2 }], 'a VisualOnly line (Type 0) is not an arrow');
 });
 
 test('resolveBuild: names within their column; an unknown name or tree is an error', () => {
@@ -162,4 +162,9 @@ test('treeFacts on the Forever tables: three spec columns for every class, Hunte
 		for (const col of names) assert.equal(new Set(col).size, col.length, `${cls}: a talent name twice in one column`);
 	}
 	assert.deepEqual(strays, { HUNTER: [104982], PRIEST: [105865] });
+	// The Druid's Nature's Splendor needs Nature's Majesty; the line back is drawn only.
+	const druid = treeFacts(tables, 'DRUID');
+	const named = (n) => Number(Object.keys(druid.nodes).find((id) => druid.nodes[id].name === n));
+	const pair = druid.edges.filter((e) => [e.from, e.to].includes(named("Nature's Majesty")));
+	assert.deepEqual(pair, [{ from: named("Nature's Majesty"), to: named("Nature's Splendor") }]);
 });

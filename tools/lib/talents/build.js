@@ -13,7 +13,8 @@
 //   TraitNodeGroupXTraitNode, TraitNodeGroupXTraitCond -> TraitCond: a node
 //                        group gated on points spent (CondType 0,
 //                        SpentAmountRequired) in the group TraitNodeGroupID
-//   TraitEdge            LeftTraitNodeID -> RightTraitNodeID (an arrow)
+//   TraitEdge            LeftTraitNodeID -> RightTraitNodeID (an arrow);
+//                        Type 0 is drawn only (VisualOnly) and gates nothing
 
 // Whether an arrow needs the talent before it at full rank ("full") or one
 // rank ("started"). Unconfirmed in game: the one switch for the tool's replay
@@ -50,6 +51,7 @@ const COLUMN_GAP = 1200; // PosX distance that separates two spec columns
 const SAME_X = 100; // PosX (or PosY) within this is one column (or row) of a spec
 
 const num = (v) => Number(v) || 0;
+const VISUAL_ONLY = 0; // TraitEdge.Type of a line that is not a prerequisite
 
 // A stray copy of a talent: a node with the same spell as another node of its
 // tree, placed far off the tree's grid (more than STRAY_FAR times the other
@@ -150,7 +152,9 @@ function treeFacts(tables, cls) {
 	const groups = {};
 	for (const list of Object.values(gates)) for (const { group } of list) groups[group] = (members.get(group) || []).slice().sort((a, b) => a - b);
 	for (const list of Object.values(gates)) list.sort((a, b) => a.need - b.need || a.group - b.group);
-	const edges = tables.TraitEdge.filter((r) => nodes[num(r.LeftTraitNodeID)] && nodes[num(r.RightTraitNodeID)])
+	// Type 0 (VisualOnly) draws a line without gating: the Druid tree's
+	// Nature's Splendor -> Nature's Majesty, beside the real arrow back.
+	const edges = tables.TraitEdge.filter((r) => num(r.Type) !== VISUAL_ONLY && nodes[num(r.LeftTraitNodeID)] && nodes[num(r.RightTraitNodeID)])
 		.map((r) => ({ from: num(r.LeftTraitNodeID), to: num(r.RightTraitNodeID) }))
 		.sort((a, b) => a.to - b.to || a.from - b.from);
 	return { cls, treeID, strays: dropped, nodes, specs, groups, gates, edges };
