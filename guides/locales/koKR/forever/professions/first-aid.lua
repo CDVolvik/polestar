@@ -1,7 +1,9 @@
 -- Korean (koKR): the guide forever/professions/first-aid (forever/professions/first-aid.guide).
 -- Written by `node tools/polestar.js i18n guides sync koKR`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Korean (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Step 1: Learn First Aid
 	-- {skill:129} First Aid
@@ -125,6 +127,9 @@ return {
 	["humanoids of level 45-60 drop {item:14047} (or buy it at the Auction House)."] = "45-60레벨 인간형 몹이 {item:14047}을(를) 떨어뜨립니다(경매장에서 사도 됩니다).",
 
 	-- Step 28: Runecloth Bandage (260-300)
-	-- {item:14529} Runecloth Bandage · {item:14047} Runecloth
-	["{item:14529} is yellow from 260 (yellow at 260, grey at 320): about 65 crafts to 300. Bandages need no fire: craft them anywhere. {item:14529} stays yellow to 320, so it carries you to 300 without a trip for Heavy {item:14047}."] = "{item:14529}은(는) 260부터 노란색입니다(노란색 260, 회색 320). 300까지 약 65번 만드세요. 붕대는 불이 필요 없으니 어디서나 만드세요. {item:14529}은(는) 320까지 노란색이라, 두꺼운 {item:14047} 붕대를 배우러 가지 않고도 300까지 올릴 수 있습니다.",
+	-- {item:14529} Runecloth Bandage
+	["{item:14529} is yellow from 260 (yellow at 260, grey at 320): about 65 crafts to 300. Bandages need no fire: craft them anywhere. {item:14529} stays yellow to 320, so it carries you to 300 without a trip for Heavy Runecloth."] = "",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["{item:14529} is yellow from 260 (yellow at 260, grey at 320): about 65 crafts to 300. Bandages need no fire: craft them anywhere. {item:14529} stays yellow to 320, so it carries you to 300 without a trip for Heavy {item:14047}."] = "{item:14529}은(는) 260부터 노란색입니다(노란색 260, 회색 320). 300까지 약 65번 만드세요. 붕대는 불이 필요 없으니 어디서나 만드세요. {item:14529}은(는) 320까지 노란색이라, 두꺼운 {item:14047} 붕대를 배우러 가지 않고도 300까지 올릴 수 있습니다.",
 }

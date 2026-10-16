@@ -1,7 +1,9 @@
 -- Chinese (traditional) (zhTW): the guide forever/alliance/30-40/05-arathi-highlands (forever/alliance/30-40/05-arathi-highlands.guide).
 -- Written by `node tools/polestar.js i18n guides sync zhTW`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Chinese (traditional) (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Chinese (traditional) (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Step 1: Fly to Darkshire
 	-- {area:42} Darkshire
@@ -52,7 +54,6 @@ return {
 	-- {npc:6122} Gakin the Darkbinder · {object:2164} The Slaughtered Lamb · {object:2101} Mage Quarter · {item:6913} Heartswood Core · {quest:65602} What Is Love? · {item:190309} Wooden Figurine
 	["{npc:6122} waits in the {object:2164}'s cellar, in the {object:2101}. Use the {item:6913} at the summoning circle there and defeat the succubus it calls. If you took {quest:65602}, hand him the {item:190309} too, place it at the same circle and defeat the incubus."] = "",
 	["Subdue the succubus"] = "",
-	["Summon Succubus"] = "",
 	-- {quest:65602} What Is Love?
 	["{quest:65602}, if you took it"] = "",
 	-- {npc:185335} Summoned Incubus

@@ -1,11 +1,12 @@
 -- Russian (ruRU): the guide forever/class/paladin/lumina-windsinger (forever/class/paladin/lumina-windsinger.guide).
 -- Written by `node tools/polestar.js i18n guides sync ruRU`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Russian (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Russian (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Guide
-	-- {quest:91862} Lumina Windsinger
-	["Rescuing {quest:91862}"] = "Спасение: {quest:91862}",
+	["Rescuing Lumina Windsinger"] = "",
 	-- {item:268484} Moonsilver Blade
 	["No item yet: a Forsaken paladin rescue story; its sequel, the {item:268484}, cannot be finished yet."] = "Предмета пока нет: история о спасении для паладина Отрекшихся; ее продолжение, {item:268484}, пока нельзя завершить.",
 	-- {zone:1458} Undercity
@@ -28,10 +29,10 @@ return {
 	["from the {object:566037}"] = "Объект: {object:566037}",
 
 	-- Step 4: Fenris Keep
-	-- {quest:91862} Lumina Windsinger · {area:235} Fenris Keep · {npc:14235} The Rot
-	["{quest:91862} is caged inside {area:235}, at the north end of the isle. {npc:14235} Hide gnolls around her carry the key."] = "{quest:91862} заперта в клетке здесь: {area:235}, северный край острова. Ключ у гноллов из стаи Гнилошкуров ({npc:14235}) вокруг нее.",
-	-- {item:267412} Fenris Isle Key · {npc:14235} The Rot
-	["{item:267412}, from the {npc:14235} Hide gnolls"] = "{item:267412} — с гноллов из стаи Гнилошкуров ({npc:14235})",
+	-- {quest:91862} Lumina Windsinger · {area:235} Fenris Keep
+	["{quest:91862} is caged inside {area:235}, at the north end of the isle. The Rot Hide gnolls around her carry the key."] = "",
+	-- {item:267412} Fenris Isle Key
+	["{item:267412}, from the Rot Hide gnolls"] = "",
 
 	-- Step 5: Free Lumina
 	["Free Lumina"] = "Освободите Lumina",
@@ -44,4 +45,9 @@ return {
 	["Once she is clear of {area:235}, Lumina waits for you in the {area:228}. Speak with her again to hear what really happened on the road."] = "Когда она выберется из места {area:235}, Lumina ждет вас здесь: {area:228}. Поговорите с ней снова, чтобы узнать, что на самом деле случилось в дороге.",
 	-- {npc:259620} Lumina Windsinger · {area:228} The Sepulcher
 	["{npc:259620}, the {area:228}"] = "{npc:259620}, {area:228}",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Rescuing {quest:91862}"] = "Спасение: {quest:91862}",
+	-- ["{item:267412}, from the {npc:14235} Hide gnolls"] = "{item:267412} — с гноллов из стаи Гнилошкуров ({npc:14235})",
+	-- ["{quest:91862} is caged inside {area:235}, at the north end of the isle. {npc:14235} Hide gnolls around her carry the key."] = "{quest:91862} заперта в клетке здесь: {area:235}, северный край острова. Ключ у гноллов из стаи Гнилошкуров ({npc:14235}) вокруг нее.",
 }

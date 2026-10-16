@@ -1,7 +1,9 @@
 -- French (frFR): the guide forever/professions/leatherworking (forever/professions/leatherworking.guide).
 -- Written by `node tools/polestar.js i18n guides sync frFR`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in French (the English is listed above the line). The comments are rewritten by sync.
+-- name there in French (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Step 1: Apprentice Leatherworking
 	-- {skill:165} Leatherworking
@@ -197,8 +199,8 @@ return {
 	-- Step 39: Leatherworking materials for 150-225
 	-- {skill:165} Leatherworking
 	["{skill:165} materials for 150-225"] = "Matériaux de {skill:165} pour 150-225",
-	-- {skill:171} Alchemy
-	["{skill:171}: Elixir of Ogre Strength (or the Auction House)"] = "{skill:171} : Élixir de force d’ogre (ou l'hôtel des ventes)",
+	-- {skill:171} Alchemy · {spell:3188} Elixir of Ogre Strength
+	["{skill:171}: {spell:3188} (or the Auction House)"] = "",
 	-- {skill:171} Alchemy · {item:3389} Elixir of Defense
 	["{skill:171}: {item:3389} (or the Auction House)"] = "{skill:171} : {item:3389} (ou l'hôtel des ventes)",
 	-- {skill:333} Enchanting
@@ -319,4 +321,7 @@ return {
 	["{item:15094} to 300"] = "{item:15094} jusqu'à 300",
 	-- {skill:165} Leatherworking
 	["Orange (a point every craft) until 285, yellow until 295, green until 305. {skill:165} 300 is a Legacy System milestone."] = "Orange (un point à chaque fabrication) jusqu'à 285, jaune jusqu'à 295, vert jusqu'à 305. {skill:165} 300 est un palier du système d'héritage.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["{skill:171}: Elixir of Ogre Strength (or the Auction House)"] = "{skill:171} : Élixir de force d’ogre (ou l'hôtel des ventes)",
 }

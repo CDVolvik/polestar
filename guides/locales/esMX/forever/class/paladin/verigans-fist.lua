@@ -1,7 +1,9 @@
 -- Spanish (Latin America) (esMX): the guide forever/class/paladin/verigans-fist (forever/class/paladin/verigans-fist.guide).
 -- Written by `node tools/polestar.js i18n guides sync esMX`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Spanish (Latin America) (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Spanish (Latin America) (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Guide
 	["The Alliance paladin's rare two-handed mace for the 20s, with a shield on the way."] = "La maza rara de dos manos del paladín de la Alianza para los 20, con un escudo por el camino.",

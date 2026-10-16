@@ -1,7 +1,9 @@
 -- Spanish (Spain) (esES): the guide forever/collectibles/mounts/horde/skeletal-warhorse (forever/collectibles/mounts/horde/skeletal-warhorse.guide).
 -- Written by `node tools/polestar.js i18n guides sync esES`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Spanish (Spain) (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Spanish (Spain) (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Guide
 	["Skeletal Warhorse"] = "Caballo de guerra esquelético",
@@ -23,6 +25,6 @@ return {
 	-- {item:18791} Purple Skeletal Warhorse
 	["{item:18791}, 200g"] = "{item:18791}, 200 o",
 	-- {npc:265653} Ochre Skeletal Warhorse
-	-- plural, as words: Purple Skeletal Horses = {item:265840} Purple Skeletal Horse · Skeletal Horses = {npc:6346} Skeletal Horse
+	-- plural, as words: Purple Skeletal Horses = {item:265840} Purple Skeletal Horse
 	["The new Forever Green, Dark and Purple Skeletal Horses and the {npc:265653} (level 60) have no known source yet."] = "Los nuevos Caballos esqueléticos verde, oscuro y morado de Forever y el {npc:265653} (nivel 60) aún no tienen fuente conocida.",
 }

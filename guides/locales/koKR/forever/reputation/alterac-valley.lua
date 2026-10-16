@@ -1,11 +1,12 @@
 -- Korean (koKR): the guide forever/reputation/alterac-valley (forever/reputation/alterac-valley.guide).
 -- Written by `node tools/polestar.js i18n guides sync koKR`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Korean (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Guide
-	-- {zone:1459} Alterac Valley
-	["{zone:1459} Reputation"] = "{zone:1459} 평판",
+	["Alterac Valley Reputation"] = "",
 
 	-- Step 1: Stormpike Guard to Friendly
 	-- {faction:730} Stormpike Guard
@@ -49,8 +50,9 @@ return {
 	-- Step 6: Frostwolf Clan to Honored
 	-- {faction:729} Frostwolf Clan
 	["{faction:729} to Honored"] = "{faction:729}: 우호적까지",
-	-- {zone:1459} Alterac Valley · {npc:13176} Smith Regzar · {item:17306} Stormpike Soldier's Blood · {npc:13236} Primalist Thurloga · {npc:13256} Lokholar the Ice Lord · {npc:10990} Alterac Ram · {npc:13441} Frostwolf Wolf Rider Commander
-	["Keep winning {zone:1459}. More Booty! ({npc:13176}), {item:17306} for {npc:13236} (it summons {npc:13256}) and {npc:10990} Hides for the {npc:13441} all repeat."] = "{zone:1459}에서 계속 승리하십시오. 추가 전리품! 제출({npc:13176}), {npc:13236}에게 {item:17306} 제출({npc:13256} 소환), {npc:13441}에게 {npc:10990} 통가죽 제출은 모두 반복할 수 있습니다.",
+	-- {zone:1459} Alterac Valley · {npc:13176} Smith Regzar · {item:17306} Stormpike Soldier's Blood · {npc:13236} Primalist Thurloga · {npc:13256} Lokholar the Ice Lord · {npc:13441} Frostwolf Wolf Rider Commander
+	-- plural, as words: Alterac Ram Hides = {item:17642} Alterac Ram Hide
+	["Keep winning {zone:1459}. More Booty! ({npc:13176}), {item:17306} for {npc:13236} (it summons {npc:13256}) and Alterac Ram Hides for the {npc:13441} all repeat."] = "",
 	-- {npc:13176} Smith Regzar
 	["{npc:13176}: More Booty!"] = "{npc:13176}: 추가 전리품!",
 	-- {npc:13236} Primalist Thurloga
@@ -67,4 +69,8 @@ return {
 	["{faction:729} to Exalted"] = "{faction:729}: 확고한 동맹까지",
 	-- {faction:729} Frostwolf Clan
 	["Exalted with the {faction:729} earns a Legacy Point."] = "{faction:729}와(과) 확고한 동맹이 되면 Legacy Point 1점을 얻습니다.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Keep winning {zone:1459}. More Booty! ({npc:13176}), {item:17306} for {npc:13236} (it summons {npc:13256}) and {npc:10990} Hides for the {npc:13441} all repeat."] = "{zone:1459}에서 계속 승리하십시오. 추가 전리품! 제출({npc:13176}), {npc:13236}에게 {item:17306} 제출({npc:13256} 소환), {npc:13441}에게 {npc:10990} 통가죽 제출은 모두 반복할 수 있습니다.",
+	-- ["{zone:1459} Reputation"] = "{zone:1459} 평판",
 }

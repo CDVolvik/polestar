@@ -1,7 +1,9 @@
 -- Spanish (Latin America) (esMX): the guide forever/horde/50-60/06-silithus (forever/horde/50-60/06-silithus.guide).
 -- Written by `node tools/polestar.js i18n guides sync esMX`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Spanish (Latin America) (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Spanish (Latin America) (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Step 1: Layo Starstrike
 	-- {area:3077} Valor's Rest · {zone:1451} Silithus
@@ -12,8 +14,9 @@ return {
 	["Ride south-west to the ruins of {area:2738}. The {object:179565} for {npc:11801} sits inside one of the ruined houses."] = "",
 
 	-- Step 4: Hive in the Tower
-	-- {area:2742} Hive'Ashi · {item:17346} Encrusted Silithid Object
-	["Back to Southwind and climb the tower. Stirring the hive at the top brings out {area:2742} Ambushers; one carries the {item:17346}."] = "",
+	-- {item:17346} Encrusted Silithid Object
+	-- plural, as words: Hive'Ashi Ambushers = {npc:13301} Hive'Ashi Ambusher
+	["Back to Southwind and climb the tower. Stirring the hive at the top brings out Hive'Ashi Ambushers; one carries the {item:17346}."] = "",
 
 	-- Step 5: Cenarion Hold
 	["Ride west to the walled hold in the middle of the desert."] = "",

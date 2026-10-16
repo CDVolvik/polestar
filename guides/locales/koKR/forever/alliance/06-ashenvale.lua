@@ -1,11 +1,13 @@
 -- Korean (koKR): the guide forever/alliance/06-ashenvale (forever/alliance/06-ashenvale.guide).
 -- Written by `node tools/polestar.js i18n guides sync koKR`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Korean (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Step 1: Aquatic Form
-	-- {area:17203} Stormwind Harbor · {area:442} Auberdine · {item:15885} Pendant of the Sea Lion · {zone:1450} Moonglade · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {area:702} Rut'theran Village
-	["Take the boat from {area:17203} to {area:442}. Join the two half pendants into the {item:15885} and cast Teleport: {zone:1450}: {npc:11802} is in {area:2361}. Then fly to {area:702} (by way of {area:442})."] = "{area:17203}에서 배를 타고 {area:442}(으)로 가세요. 펜던트 반쪽 두 개를 합쳐 {item:15885}을(를) 만들고 순간이동: {zone:1450}을(를) 시전하세요. {npc:11802}은(는) {area:2361}에 있습니다. 그런 다음 ({area:442}을(를) 거쳐) {area:702}(으)로 날아가세요.",
+	-- {area:17203} Stormwind Harbor · {area:442} Auberdine · {item:15885} Pendant of the Sea Lion · {spell:18960} Teleport: Moonglade · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {area:702} Rut'theran Village
+	["Take the boat from {area:17203} to {area:442}. Join the two half pendants into the {item:15885} and cast {spell:18960}: {npc:11802} is in {area:2361}. Then fly to {area:702} (by way of {area:442})."] = "",
 	-- {item:15885} Pendant of the Sea Lion
 	["{item:15885}: join the two halves"] = "{item:15885}: 반쪽 두 개를 합치기",
 
@@ -77,16 +79,16 @@ return {
 
 	-- Step 23: The Foulweald
 	["The Foulweald"] = "썩은나무 숲",
-	-- {area:415} Astranaar · {area:364} The Den
-	["The Foulweald furbolgs live in the woods south of the road, south-east of {area:415}. {area:364} Watcher and the Ursas guard the den."] = "썩은나무일족 펄볼그는 {area:415} 남동쪽, 길 남쪽의 숲에 삽니다. {area:364} 보초와 펄볼그들이 굴을 지킵니다.",
+	-- {area:415} Astranaar
+	["The Foulweald furbolgs live in the woods south of the road, south-east of {area:415}. The Den Watcher and the Ursas guard the den."] = "",
 
 	-- Step 24: Mystral Lake
 	-- {npc:3885} Sentinel Velene Starstrike · {area:420} Silverwind Refuge · {area:421} Mystral Lake · {npc:210995} Alonso
-	-- plural, as words: Befouled Water Elementals = {npc:3917} Befouled Water Elemental · Water Elementals = {npc:510} Water Elemental
+	-- plural, as words: Befouled Water Elementals = {npc:3917} Befouled Water Elemental
 	["{npc:3885} stands at the {area:420} on the east shore of {area:421}; {npc:210995} camps on its west shore. Befouled Water Elementals wade in the lake between them."] = "{npc:3885}은(는) {area:421} 동쪽 기슭의 {area:420}에 서 있고, {npc:210995}은(는) 서쪽 기슭에 진을 치고 있습니다. 타락한 물의 정령이 그 사이 호수를 걸어다닙니다.",
-	-- {quest:1016} Elemental Bracers · {item:5456} Divining Scroll
+	-- {item:5456} Divining Scroll
 	-- plural, as words: Intact Elemental Bracers = {item:12220} Intact Elemental Bracer
-	["Kill the elementals for 5 Intact {quest:1016}, then use the {item:5456}"] = "정령을 처치해 온전한 {quest:1016} 5개를 모은 뒤 {item:5456}을(를) 사용하세요.",
+	["Kill the elementals for 5 Intact Elemental Bracers, then use the {item:5456}"] = "",
 
 	-- Step 25: The Ruins of Stardust
 	-- {area:421} Mystral Lake
@@ -112,8 +114,8 @@ return {
 	["To {area:150}"] = "{area:150}(으)로",
 	-- {area:1276} The Talondeep Path
 	["Hearthstone on cooldown? Ride back north through the {area:1276}."] = "귀환석이 재사용 대기 중인가요? {area:1276}을(를) 지나 북쪽으로 돌아가세요.",
-	-- {object:176364} Boat to Menethil
-	["{object:176364} Harbor"] = "{object:176364} 항구",
+	-- {area:150} Menethil Harbor
+	["Boat to {area:150}"] = "",
 
 	-- Step 32: Menethil Harbor
 	-- {npc:1242} Karl Boran
@@ -153,9 +155,8 @@ return {
 
 	-- Step 40: Young crocolisks
 	["Young crocolisks"] = "새끼 악어",
-	-- {zone:1437} Wetlands
 	-- plural, as words: Young Wetlands Crocolisks = {npc:1417} Young Wetlands Crocolisk
-	["Follow the road east. Young {zone:1437} Crocolisks lurk in the pools north of the excavation site."] = "길을 따라 동쪽으로 가세요. 새끼 습지악어가 {zone:1437} 발굴 현장 북쪽 웅덩이에 숨어 있습니다.",
+	["Follow the road east. Young Wetlands Crocolisks lurk in the pools north of the excavation site."] = "",
 
 	-- Step 41: Whelgar's Excavation Site
 	["The excavation site sits on the hill south of the road."] = "발굴 현장은 길 남쪽 언덕 위에 있습니다.",
@@ -266,4 +267,11 @@ return {
 	-- Step 65: Trade District
 	-- {area:42} Darkshire
 	["Next: fly to {area:42}."] = "다음: {area:42}(으)로 날아가세요.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Follow the road east. Young {zone:1437} Crocolisks lurk in the pools north of the excavation site."] = "길을 따라 동쪽으로 가세요. 새끼 습지악어가 {zone:1437} 발굴 현장 북쪽 웅덩이에 숨어 있습니다.",
+	-- ["Kill the elementals for 5 Intact {quest:1016}, then use the {item:5456}"] = "정령을 처치해 온전한 {quest:1016} 5개를 모은 뒤 {item:5456}을(를) 사용하세요.",
+	-- ["Take the boat from {area:17203} to {area:442}. Join the two half pendants into the {item:15885} and cast Teleport: {zone:1450}: {npc:11802} is in {area:2361}. Then fly to {area:702} (by way of {area:442})."] = "{area:17203}에서 배를 타고 {area:442}(으)로 가세요. 펜던트 반쪽 두 개를 합쳐 {item:15885}을(를) 만들고 순간이동: {zone:1450}을(를) 시전하세요. {npc:11802}은(는) {area:2361}에 있습니다. 그런 다음 ({area:442}을(를) 거쳐) {area:702}(으)로 날아가세요.",
+	-- ["The Foulweald furbolgs live in the woods south of the road, south-east of {area:415}. {area:364} Watcher and the Ursas guard the den."] = "썩은나무일족 펄볼그는 {area:415} 남동쪽, 길 남쪽의 숲에 삽니다. {area:364} 보초와 펄볼그들이 굴을 지킵니다.",
+	-- ["{object:176364} Harbor"] = "{object:176364} 항구",
 }

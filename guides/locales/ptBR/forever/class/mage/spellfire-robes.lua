@@ -1,7 +1,9 @@
 -- Portuguese (Brazil) (ptBR): the guide forever/class/mage/spellfire-robes (forever/class/mage/spellfire-robes.guide).
 -- Written by `node tools/polestar.js i18n guides sync ptBR`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Portuguese (Brazil) (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Portuguese (Brazil) (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Guide
 	-- {zone:1458} Undercity · {zone:1421} Silverpine Forest
@@ -21,16 +23,16 @@ return {
 
 	-- Step 4: The alchemist shop
 	["The alchemist shop"] = "A loja do alquimista",
-	-- {object:36072} The Apothecarium · {item:7308} Cantation of Manifestation · {npc:6492} Rift Spawn · {item:7247} Chest of Containment Coffers
-	["Algernon's alchemist shop is in the {object:36072}. Use the {item:7308} there to make the {npc:6492} visible, subdue one with your spells, then use the {item:7247} to throw down a coffer and capture it."] = "A loja de alquimia de Algernon fica no {object:36072}. Use a {item:7308} lá para tornar o {npc:6492} visível, subjugue um com seus feitiços e depois use o {item:7247} para lançar um cofre e capturá-lo.",
+	-- {item:7308} Cantation of Manifestation · {npc:6492} Rift Spawn · {item:7247} Chest of Containment Coffers
+	["Algernon's alchemist shop is in the Apothecarium. Use the {item:7308} there to make the {npc:6492} visible, subdue one with your spells, then use the {item:7247} to throw down a coffer and capture it."] = "",
 
 	-- Step 5: Back to Anastasia Hartwell
 	-- {npc:4568} Anastasia Hartwell
 	["Back to {npc:4568}"] = "De volta a {npc:4568}",
 
 	-- Step 6: Linen Cloth
-	-- {item:2589} Linen Cloth · {zone:1458} Undercity
-	["Humanoids drop {item:2589}; the {zone:1458} Auction House sells it."] = "Humanoides deixam cair {item:2589}; a casa de leilões de {zone:1458} vende.",
+	-- {item:2589} Linen Cloth
+	["Humanoids drop {item:2589}; the Undercity Auction House sells it."] = "",
 
 	-- Step 7: Ambermill
 	-- {zone:1458} Undercity · {zone:1421} Silverpine Forest · {area:279} Dalaran · {area:233} Ambermill · {area:228} The Sepulcher · {npc:1867} Dalaran Apprentice · {item:7293} Dalaran Mana Gem
@@ -39,4 +41,8 @@ return {
 	-- Step 8: Josef Gregorian
 	-- {zone:1458} Undercity · {npc:4576} Josef Gregorian · {npc:11048} Victor Ward · {npc:11049} Rhiannon Davis
 	["Back to the {zone:1458}. {npc:4576}, {npc:11048} and {npc:11049} keep the tailor's shop."] = "De volta a {zone:1458}. {npc:4576}, {npc:11048} e {npc:11049} cuidam da loja do alfaiate.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Algernon's alchemist shop is in the {object:36072}. Use the {item:7308} there to make the {npc:6492} visible, subdue one with your spells, then use the {item:7247} to throw down a coffer and capture it."] = "A loja de alquimia de Algernon fica no {object:36072}. Use a {item:7308} lá para tornar o {npc:6492} visível, subjugue um com seus feitiços e depois use o {item:7247} para lançar um cofre e capturá-lo.",
+	-- ["Humanoids drop {item:2589}; the {zone:1458} Auction House sells it."] = "Humanoides deixam cair {item:2589}; a casa de leilões de {zone:1458} vende.",
 }

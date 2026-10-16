@@ -1,11 +1,12 @@
 -- Spanish (Latin America) (esMX): the guide forever/reputation/darnassus (forever/reputation/darnassus.guide).
 -- Written by `node tools/polestar.js i18n guides sync esMX`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Spanish (Latin America) (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Spanish (Latin America) (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Guide
-	-- {faction:69} Darnassus
-	["{faction:69} Reputation"] = "",
+	["Darnassus Reputation"] = "",
 
 	-- Step 1: Raedon Duskstriker: A Donation of Wool
 	-- {npc:14725} Raedon Duskstriker · {faction:69} Darnassus · {item:14047} Runecloth · {quest:7801} Additional Runecloth

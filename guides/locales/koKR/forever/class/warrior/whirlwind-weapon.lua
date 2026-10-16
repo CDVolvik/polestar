@@ -1,11 +1,13 @@
 -- Korean (koKR): the guide forever/class/warrior/whirlwind-weapon (forever/class/warrior/whirlwind-weapon.guide).
 -- Written by `node tools/polestar.js i18n guides sync koKR`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Korean (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Guide
-	-- {spell:2458} Berserker Stance
-	["{spell:2458} at 30 and a Whirlwind axe, sword or warhammer at 40."] = "30레벨에 {spell:2458}, 40레벨에 소용돌이 도끼, 검 또는 전투망치.",
+	-- {spell:2458} Berserker Stance · {spell:1680} Whirlwind
+	["{spell:2458} at 30 and a {spell:1680} axe, sword or warhammer at 40."] = "",
 
 	-- Step 1: The Islander (Stormwind City)
 	-- {npc:5479} Wu Shen · {object:2100} Old Town · {npc:6236} Klannoc Macleod · {area:720} Fray Island · {zone:1413} The Barrens
@@ -65,4 +67,7 @@ return {
 	["{quest:1712} waits just north of Bath'rah's camp and carries the {item:6894}. {quest:1712} is elite: grouping up is advised."] = "{quest:1712}은(는) 바스라의 야영지 바로 북쪽에서 기다리며 {item:6894}을(를) 가지고 있습니다. {quest:1712}은(는) 정예입니다. 파티를 권장합니다.",
 	-- {item:6894} Whirlwind Heart · {quest:1712} Cyclonian
 	["{item:6894} from {quest:1712}"] = "{item:6894}, {quest:1712}에게서",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["{spell:2458} at 30 and a Whirlwind axe, sword or warhammer at 40."] = "30레벨에 {spell:2458}, 40레벨에 소용돌이 도끼, 검 또는 전투망치.",
 }

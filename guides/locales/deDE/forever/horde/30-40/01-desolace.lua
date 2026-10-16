@@ -1,7 +1,9 @@
 -- German (deDE): the guide forever/horde/30-40/01-desolace (forever/horde/30-40/01-desolace.guide).
 -- Written by `node tools/polestar.js i18n guides sync deDE`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in German (the English is listed above the line). The comments are rewritten by sync.
+-- name there in German (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Step 1: Fly to Orgrimmar
 	-- {area:1637} Orgrimmar
@@ -10,8 +12,8 @@ return {
 	["From {area:484}, fly to {area:1637}."] = "Flieg vom {area:484} nach {area:1637}.",
 
 	-- Step 2: Alliance Relations
-	-- {npc:5639} Craven Drok · {object:172959} The Drag · {npc:5640} Keldran · {object:172961} Valley of Spirits · {npc:4949} Thrall · {object:172957} Valley of Wisdom
-	["{npc:5639} waits in the {object:172959}; {npc:5640} stands in the {object:172961} on the west side of the city. Skyborne: {npc:4949} waits in Grommash Hold, in the {object:172957}."] = "{npc:5639} wartet in der Gasse ({object:172959}); {npc:5640} steht im {object:172961} auf der Westseite der Stadt. Skyborne: {npc:4949} wartet in Grommash Hold im {object:172957}.",
+	-- {npc:5639} Craven Drok · {npc:5640} Keldran · {object:172961} Valley of Spirits · {npc:4949} Thrall · {object:172957} Valley of Wisdom
+	["{npc:5639} waits in the Drag; {npc:5640} stands in the {object:172961} on the west side of the city. Skyborne: {npc:4949} waits in Grommash Hold, in the {object:172957}."] = "",
 	-- {npc:4949} Thrall
 	["{npc:4949}, Grommash Hold, if you carry it"] = "{npc:4949}, Grommash Hold, falls du sie dabeihast",
 
@@ -71,8 +73,8 @@ return {
 	["North along the eastern hills, the satyrs hold the ruins of {area:603}. The Shadowstalkers walk unseen; the four kinds you need do not."] = "Nördlich entlang der östlichen Hügel halten die Satyrn die Ruinen von {area:603}. Die Schattenpirscher sind unsichtbar; die vier Arten, die du brauchst, nicht.",
 
 	-- Step 16: Thunder Axe Fortress
-	-- {area:599} Thunder Axe Fortress · {item:6436} Burning Gem · {item:6435} Infused Burning Gem · {item:20310} Flayed Demon Skin
-	["Ride west to {area:599}. Beat a Burning Blade cultist down, then use the {item:6436} on it before it dies to fill one {item:6435}. They also drop a {item:20310} now and then (1-5%); if one drops, read it."] = "Reite nach Westen zur {area:599}. Prügle einen Kultisten der Burning Blade runter und benutze dann den {item:6436} an ihm, bevor er stirbt, um einen {item:6435} zu füllen. Sie lassen ab und zu auch eine {item:20310} fallen (1-5%); falls eine fällt, lies sie.",
+	-- {area:599} Thunder Axe Fortress · {spell:1294269} Burning Blade · {item:6436} Burning Gem · {item:6435} Infused Burning Gem · {item:20310} Flayed Demon Skin
+	["Ride west to {area:599}. Beat a {spell:1294269} cultist down, then use the {item:6436} on it before it dies to fill one {item:6435}. They also drop a {item:20310} now and then (1-5%); if one drops, read it."] = "",
 
 	-- Step 17: Ghost Walker Post
 	["Ride back south to the post."] = "Reite zurück nach Süden zum Posten.",
@@ -98,7 +100,7 @@ return {
 
 	-- Step 22: Clam beds
 	["Clam beds"] = "Muschelbänke",
-	-- plural, as words: Giant Softshell Clams = {object:177784} Giant Softshell Clam · Enraged Reef Crawlers = {npc:12347} Enraged Reef Crawler · Reef Crawlers = {npc:2235} Reef Crawler
+	-- plural, as words: Giant Softshell Clams = {object:177784} Giant Softshell Clam · Enraged Reef Crawlers = {npc:12347} Enraged Reef Crawler
 	["Ride north up the coast. Giant Softshell Clams lie in the shallows and the Enraged Reef Crawlers walk the beach; open each clam in your bags for its meat."] = "Reite die Küste hinauf nach Norden. Riesenweichpanzermuscheln liegen im seichten Wasser und Wütende Riffkriecher laufen am Strand; öffne jede Muschel in deinen Taschen für ihr Fleisch.",
 
 	-- Step 23: Slitherblade Oracles
@@ -148,8 +150,8 @@ return {
 	["{npc:260093} trains Paladins in the {area:1497}."] = "{npc:260093} bildet in {area:1497} Paladine aus.",
 
 	-- Step 34: Brazier of Everfount
-	-- {area:1497} Undercity · {area:228} The Sepulcher · {object:113791} Brazier of Everfount · {npc:11256} Manifestation of Water · {npc:5895} Minor Manifestation of Water · {item:7813} Shard of Water · {area:272} Tarren Mill
-	["Do your shopping in the {area:1497} first, then fly to the {area:228}. The {object:113791} stands on the hill just south-west of it: beat the Corrupt {npc:11256} beside it, place its bracers in the brazier, speak to the {npc:5895} and keep the {item:7813} for Islen. Fly on to {area:272} from the {area:228}."] = "Erledige zuerst deine Einkäufe in {area:1497} und flieg dann zum Grabmal ({area:228}). Die {object:113791} steht auf dem Hügel gleich südwestlich davon: Besiege die verderbte {npc:11256} daneben, leg ihre Armschienen in die Kohlenpfanne, sprich mit der {npc:5895} und behalte den {item:7813} für Islen. Flieg vom Grabmal ({area:228}) weiter nach {area:272}.",
+	-- {area:1497} Undercity · {area:228} The Sepulcher · {object:113791} Brazier of Everfount · {npc:5895} Minor Manifestation of Water · {item:7813} Shard of Water · {area:272} Tarren Mill
+	["Do your shopping in the {area:1497} first, then fly to the {area:228}. The {object:113791} stands on the hill just south-west of it: beat the Corrupt Manifestation of Water beside it, place its bracers in the brazier, speak to the {npc:5895} and keep the {item:7813} for Islen. Fly on to {area:272} from the {area:228}."] = "",
 	-- {npc:5901} Islen Waterseer
 	["for {npc:5901}: from Stranglethorn, next guide"] = "für {npc:5901}: aus dem Schlingendorntal, nächster Guide",
 
@@ -214,9 +216,9 @@ return {
 	-- Step 45: The Dalaran traitors
 	-- {area:279} Dalaran
 	["The {area:279} traitors"] = "Die Verräter von {area:279}",
-	-- {area:279} Dalaran · {npc:2414} Kegan Darkmar · {quest:556} Stone Tokens
+	-- {area:279} Dalaran · {npc:2414} Kegan Darkmar
 	-- plural, as words: Worn Stone Tokens = {item:3714} Worn Stone Token
-	["Head west along the foot of the mountains to the violet dome of {area:279}. Ricter, Alina and Dermot (33-34) stand together inside the crater's eastern rim, {npc:2414} (35) a little west of them; each carries one Bloodstone piece. The Shield Guards and Theurgists (31-32) around them drop the Worn {quest:556}."] = "Geh am Fuß der Berge entlang nach Westen zur violetten Kuppel von {area:279}. Ricter, Alina und Dermot (33-34) stehen zusammen innerhalb des östlichen Kraterrands, {npc:2414} (35) etwas westlich von ihnen; jeder trägt ein Blutsteinstück. Die Schildwachen und Theurgiker von Dalaran (31-32) um sie herum lassen die abgenutzten {quest:556} fallen.",
+	["Head west along the foot of the mountains to the violet dome of {area:279}. Ricter, Alina and Dermot (33-34) stand together inside the crater's eastern rim, {npc:2414} (35) a little west of them; each carries one Bloodstone piece. The Shield Guards and Theurgists (31-32) around them drop the Worn Stone Tokens."] = "",
 
 	-- Step 46: Tarren Mill
 	-- {area:272} Tarren Mill
@@ -237,4 +239,10 @@ return {
 	["Fly to the {area:1497}"] = "Flieg nach {area:1497}",
 	-- {area:1497} Undercity · {object:3202} Grom'gol
 	["The next guide starts in the {area:1497}, at the {object:3202} zeppelin."] = "Der nächste Guide beginnt in {area:1497}, am Zeppelin nach {object:3202}.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Do your shopping in the {area:1497} first, then fly to the {area:228}. The {object:113791} stands on the hill just south-west of it: beat the Corrupt {npc:11256} beside it, place its bracers in the brazier, speak to the {npc:5895} and keep the {item:7813} for Islen. Fly on to {area:272} from the {area:228}."] = "Erledige zuerst deine Einkäufe in {area:1497} und flieg dann zum Grabmal ({area:228}). Die {object:113791} steht auf dem Hügel gleich südwestlich davon: Besiege die verderbte {npc:11256} daneben, leg ihre Armschienen in die Kohlenpfanne, sprich mit der {npc:5895} und behalte den {item:7813} für Islen. Flieg vom Grabmal ({area:228}) weiter nach {area:272}.",
+	-- ["Head west along the foot of the mountains to the violet dome of {area:279}. Ricter, Alina and Dermot (33-34) stand together inside the crater's eastern rim, {npc:2414} (35) a little west of them; each carries one Bloodstone piece. The Shield Guards and Theurgists (31-32) around them drop the Worn {quest:556}."] = "Geh am Fuß der Berge entlang nach Westen zur violetten Kuppel von {area:279}. Ricter, Alina und Dermot (33-34) stehen zusammen innerhalb des östlichen Kraterrands, {npc:2414} (35) etwas westlich von ihnen; jeder trägt ein Blutsteinstück. Die Schildwachen und Theurgiker von Dalaran (31-32) um sie herum lassen die abgenutzten {quest:556} fallen.",
+	-- ["Ride west to {area:599}. Beat a Burning Blade cultist down, then use the {item:6436} on it before it dies to fill one {item:6435}. They also drop a {item:20310} now and then (1-5%); if one drops, read it."] = "Reite nach Westen zur {area:599}. Prügle einen Kultisten der Burning Blade runter und benutze dann den {item:6436} an ihm, bevor er stirbt, um einen {item:6435} zu füllen. Sie lassen ab und zu auch eine {item:20310} fallen (1-5%); falls eine fällt, lies sie.",
+	-- ["{npc:5639} waits in the {object:172959}; {npc:5640} stands in the {object:172961} on the west side of the city. Skyborne: {npc:4949} waits in Grommash Hold, in the {object:172957}."] = "{npc:5639} wartet in der Gasse ({object:172959}); {npc:5640} steht im {object:172961} auf der Westseite der Stadt. Skyborne: {npc:4949} wartet in Grommash Hold im {object:172957}.",
 }

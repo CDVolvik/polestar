@@ -1,7 +1,9 @@
 -- Portuguese (Brazil) (ptBR): the guide forever/alliance/50-60/06-silithus (forever/alliance/50-60/06-silithus.guide).
 -- Written by `node tools/polestar.js i18n guides sync ptBR`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Portuguese (Brazil) (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Portuguese (Brazil) (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Guide
 	-- {zone:1451} Silithus · {zone:1448} Felwood · {zone:1452} Winterspring
@@ -108,8 +110,8 @@ return {
 	-- {item:20404} Encrypted Twilight Text · {npc:15306} Bor Wildmane · {npc:15194} Hermit Ortell
 	-- plural, as words: Dust Stormers = {npc:11744} Dust Stormer · Desert Rumblers = {npc:11746} Desert Rumbler
 	["The Twilight's Hammer dig fills the north-west corner: tablet fragments lie on the ground and the Dust Stormers and Desert Rumblers carry them too. Every cultist can drop an {item:20404}: keep twenty, ten for {npc:15306} and ten for {npc:15194} later."] = "A escavação do Martelo do Crepúsculo ocupa o canto noroeste: há fragmentos de tábua no chão, e as Tempestades de Poeira e os Estrondores do Deserto também os carregam. Todo sectário pode deixar cair um {item:20404}: guarde vinte, dez para {npc:15306} e dez para {npc:15194} depois.",
-	-- {object:210335} Twilight Tablet
-	["{object:210335} Fragments"] = "Fragmentos de {object:210335}",
+	-- plural, as words: Twilight Tablet Fragments = {item:20378} Twilight Tablet Fragment
+	["Twilight Tablet Fragments"] = "",
 	["Twilight's Hammer cultists"] = "Sectários do Martelo do Crepúsculo",
 	-- {quest:8323} True Believers
 	["Ten more for {quest:8323}"] = "Mais dez para {quest:8323}",
@@ -270,7 +272,8 @@ return {
 	-- Step 53: Grind to 60
 	["Grind to 60"] = "Upe até o 60",
 	-- {area:2627} Terrordale
-	["Cross the river east of Tirion into {area:2627}. The {area:2627} Spirits haunt the woods there."] = "Atravesse o rio a leste de Tirion Fordring até {area:2627}. Os Espíritos da {area:2627} assombram o bosque ali.",
+	-- plural, as words: Terrordale Spirits = {npc:14564} Terrordale Spirit
+	["Cross the river east of Tirion into {area:2627}. The Terrordale Spirits haunt the woods there."] = "",
 	-- {npc:14564} Terrordale Spirit · {area:2627} Terrordale · {zone:1423} Eastern Plaguelands
 	["grind on {npc:14564} at {area:2627}, {zone:1423}"] = "farme {npc:14564} em {area:2627}, {zone:1423}",
 
@@ -287,4 +290,8 @@ return {
 	["Shaman training"] = "Treinamento de xamã",
 	-- {zone:1453} Stormwind City · {area:2257} Deeprun Tram · {object:28027} Dwarven District · {zone:1455} Ironforge · {npc:258098} Eldrun Stormbreaker
 	["{zone:1453} has no shaman trainer: take the {area:2257} from the {object:28027} to {zone:1455} and train your level 60 spells with {npc:258098}."] = "{zone:1453} não tem instrutor de xamã: pegue o {area:2257} de {object:28027} para {zone:1455} e treine seus feitiços de nível 60 com {npc:258098}.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Cross the river east of Tirion into {area:2627}. The {area:2627} Spirits haunt the woods there."] = "Atravesse o rio a leste de Tirion Fordring até {area:2627}. Os Espíritos da {area:2627} assombram o bosque ali.",
+	-- ["{object:210335} Fragments"] = "Fragmentos de {object:210335}",
 }

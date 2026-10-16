@@ -1,7 +1,9 @@
 -- Spanish (Spain) (esES): the guide forever/horde/orc-troll/01-durotar (forever/horde/orc-troll/01-durotar.guide).
 -- Written by `node tools/polestar.js i18n guides sync esES`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Spanish (Spain) (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Spanish (Spain) (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Step 1: Kaltunk
 	-- {npc:10176} Kaltunk
@@ -110,8 +112,8 @@ return {
 	-- Step 24: Brakk's campfire
 	-- {npc:265809} Brakk
 	["{npc:265809}'s campfire"] = "La hoguera de {npc:265809}",
-	-- {npc:265809} Brakk · {area:362} Razor Hill
-	["{npc:265809} camps just south of {area:362}. Sit by his campfire (/sit) until the Boosted Rest buff appears."] = "{npc:265809} acampa justo al sur de {area:362}. Siéntate junto a su hoguera (/sentarse) hasta que aparezca el beneficio de descanso potenciado.",
+	-- {npc:265809} Brakk · {area:362} Razor Hill · {spell:1229451} Boosted Rest
+	["{npc:265809} camps just south of {area:362}. Sit by his campfire (/sit) until the {spell:1229451} buff appears."] = "",
 
 	-- Step 25: Razor Hill
 	-- {npc:266940} Turroc
@@ -138,6 +140,7 @@ return {
 
 	-- Step 33: Drygulch Ravine
 	-- {area:370} Drygulch Ravine · {npc:3293} Rezlak · {item:277661} Dull Storm Orb
+	-- plural, as words: Savages = {spell:20574} Savage
 	["Savages and Storm Witches nest in {area:370}, east of {npc:3293}. A Storm Witch drops the {item:277661}."] = "Los salvajes y las brujas de la Tormenta Viento Seco anidan en {area:370}, al este de {npc:3293}. Una bruja de la Tormenta suelta {item:277661}.",
 
 	-- Step 35: Thunder lizards
@@ -174,8 +177,8 @@ return {
 
 	-- Step 43: South-east shore
 	["South-east shore"] = "Orilla sureste",
-	-- {zone:1411} Durotar
-	["Wade back west to the shore south of Sen'jin. {zone:1411} Tigers roam it and the Taillasher eggs sit in nests along the beach."] = "Vuelve vadeando al oeste hasta la orilla al sur del poblado Sen'jin. Por ella rondan los tigres de {zone:1411}, y los huevos de Colazote están en nidos a lo largo de la playa.",
+	-- plural, as words: Durotar Tigers = {npc:3121} Durotar Tiger
+	["Wade back west to the shore south of Sen'jin. Durotar Tigers roam it and the Taillasher eggs sit in nests along the beach."] = "",
 
 	-- Step 45: Kolkar Crag
 	-- {area:366} Kolkar Crag · {npc:275811} Pal'juh
@@ -192,8 +195,8 @@ return {
 	["{npc:3706}, for {npc:6018} in {zone:1454}: keep it"] = "{npc:3706}, para {npc:6018} en {zone:1454}: guárdala",
 
 	-- Step 48: Fizzle Darkstorm
-	-- {area:369} Thunder Ridge · {area:362} Razor Hill · {npc:3099} Dire Mottled Boar · {item:15908} Taming Rod
-	["Fizzle holds the Burning Blade camp on {area:369}, north-west of {area:362}. Hunters: tame a {npc:3099} with the {item:15908} on the way."] = "Fizzle ocupa el campamento del Filo Ardiente en {area:369}, al noroeste de {area:362}. Cazadores: domesticad un {npc:3099} con {item:15908} por el camino.",
+	-- {spell:1294269} Burning Blade · {area:369} Thunder Ridge · {area:362} Razor Hill · {npc:3099} Dire Mottled Boar · {item:15908} Taming Rod
+	["Fizzle holds the {spell:1294269} camp on {area:369}, north-west of {area:362}. Hunters: tame a {npc:3099} with the {item:15908} on the way."] = "",
 	-- {item:15908} Taming Rod
 	["Tame it with the {item:15908}"] = "Domestícalo con {item:15908}",
 
@@ -214,8 +217,8 @@ return {
 	["{area:817}'s mouth"] = "Entrada de {area:817}",
 
 	-- Step 54: Skull Rock
-	-- {quest:827} Skull Rock · {item:4871} Searing Collar · {npc:3204} Gazz'uz · {item:4903} Eye of Burning Shadow
-	["Burning Blade cultists hold the caves of {quest:827}; any of them drops a {item:4871}. {npc:3204}, a level 14 warlock, stands deep inside and drops the {item:4903}."] = "Los fieles Filo Ardiente ocupan las cuevas de {quest:827}; cualquiera de ellos suelta {item:4871}. {npc:3204}, un brujo de nivel 14, está en lo más hondo y suelta {item:4903}.",
+	-- {spell:1294269} Burning Blade · {quest:827} Skull Rock · {item:4871} Searing Collar · {npc:3204} Gazz'uz · {item:4903} Eye of Burning Shadow
+	["{spell:1294269} cultists hold the caves of {quest:827}; any of them drops a {item:4871}. {npc:3204}, a level 14 warlock, stands deep inside and drops the {item:4903}."] = "",
 
 	-- Step 55: Tablet of Verga
 	-- {object:58595} Burning Blade Stash · {area:817} Skull Rock
@@ -224,8 +227,6 @@ return {
 	-- Step 56: The Binding
 	-- {object:172960} Cleft of Shadow · {item:7464} Glyphs of Summoning
 	["Back to Gan'rul in the {object:172960}. Use the {item:7464} on the summoning circle there and defeat the voidwalker to bind it."] = "Vuelve con Gan'rul en {object:172960}. Usa {item:7464} en el círculo de invocación de allí y derrota al abisario para vincularlo.",
-	-- {npc:5875} Gan'rul Bloodeye
-	["{npc:5875}: Summon Voidwalker"] = "{npc:5875}: Invocar abisario",
 
 	-- Step 58: Razor Hill
 	-- {area:362} Razor Hill
@@ -253,16 +254,12 @@ return {
 	-- {area:362} Razor Hill · {npc:3171} Thotar
 	-- plural, as words: Armored Scorpids = {npc:3126} Armored Scorpid
 	["Armored Scorpids crawl over the plains west of {area:362}. Tame one, then return to {npc:3171}."] = "Los escórpidos acorazados se arrastran por las llanuras al oeste de {area:362}. Domestica uno y vuelve con {npc:3171}.",
-	-- {npc:3171} Thotar
-	["{npc:3171}: Tame Beast"] = "{npc:3171}: Domesticar bestia",
-	-- {npc:3171} Thotar · {npc:3352} Ormak Grimshot · {zone:1454} Orgrimmar
-	["{npc:3171}: {npc:3352} in {zone:1454} teaches Beast Training"] = "{npc:3171}: {npc:3352}, en {zone:1454}, enseña Adiestramiento de bestias",
+	-- {npc:3171} Thotar · {npc:3352} Ormak Grimshot · {zone:1454} Orgrimmar · {spell:5149} Beast Training
+	["{npc:3171}: {npc:3352} in {zone:1454} teaches {spell:5149}"] = "",
 
 	-- Step 63: Ormak Grimshot
 	-- {area:362} Razor Hill · {zone:1454} Orgrimmar · {area:817} Skull Rock · {npc:3352} Ormak Grimshot · {object:172958} Valley of Honor
 	["Follow the road north from {area:362} to {zone:1454}'s main gate, just west of {area:817}. {npc:3352} stands with the hunter trainers in the {object:172958}."] = "Sigue el camino hacia el norte desde {area:362} hasta la puerta principal de {zone:1454}, justo al oeste de {area:817}. {npc:3352} está con los instructores de cazadores en {object:172958}.",
-	-- {npc:3352} Ormak Grimshot
-	["{npc:3352}: Beast Training"] = "{npc:3352}: Adiestramiento de bestias",
 
 	-- Step 64: Far Watch Post
 	-- {area:362} Razor Hill · {area:814} Southfury River · {area:379} Far Watch Post · {zone:1413} The Barrens
@@ -277,4 +274,14 @@ return {
 	-- Step 67: The Crossroads
 	-- {area:379} Far Watch Post · {area:380} The Crossroads · {zone:1413} The Barrens
 	["Follow the road south-west from {area:379} to the {area:380}. {zone:1413} guide starts here."] = "Sigue el camino hacia el suroeste desde {area:379} hasta {area:380}. Aquí empieza la guía de {zone:1413}.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Burning Blade cultists hold the caves of {quest:827}; any of them drops a {item:4871}. {npc:3204}, a level 14 warlock, stands deep inside and drops the {item:4903}."] = "Los fieles Filo Ardiente ocupan las cuevas de {quest:827}; cualquiera de ellos suelta {item:4871}. {npc:3204}, un brujo de nivel 14, está en lo más hondo y suelta {item:4903}.",
+	-- ["Fizzle holds the Burning Blade camp on {area:369}, north-west of {area:362}. Hunters: tame a {npc:3099} with the {item:15908} on the way."] = "Fizzle ocupa el campamento del Filo Ardiente en {area:369}, al noroeste de {area:362}. Cazadores: domesticad un {npc:3099} con {item:15908} por el camino.",
+	-- ["Wade back west to the shore south of Sen'jin. {zone:1411} Tigers roam it and the Taillasher eggs sit in nests along the beach."] = "Vuelve vadeando al oeste hasta la orilla al sur del poblado Sen'jin. Por ella rondan los tigres de {zone:1411}, y los huevos de Colazote están en nidos a lo largo de la playa.",
+	-- ["{npc:265809} camps just south of {area:362}. Sit by his campfire (/sit) until the Boosted Rest buff appears."] = "{npc:265809} acampa justo al sur de {area:362}. Siéntate junto a su hoguera (/sentarse) hasta que aparezca el beneficio de descanso potenciado.",
+	-- ["{npc:3171}: Tame Beast"] = "{npc:3171}: Domesticar bestia",
+	-- ["{npc:3171}: {npc:3352} in {zone:1454} teaches Beast Training"] = "{npc:3171}: {npc:3352}, en {zone:1454}, enseña Adiestramiento de bestias",
+	-- ["{npc:3352}: Beast Training"] = "{npc:3352}: Adiestramiento de bestias",
+	-- ["{npc:5875}: Summon Voidwalker"] = "{npc:5875}: Invocar abisario",
 }

@@ -1,7 +1,9 @@
 -- Korean (koKR): the guide forever/horde/50-60/07-felwood (forever/horde/50-60/07-felwood.guide).
 -- Written by `node tools/polestar.js i18n guides sync koKR`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Korean (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Step 1: Zeppelin to Orgrimmar
 	-- {zone:1454} Orgrimmar
@@ -69,8 +71,8 @@ return {
 
 	-- Step 16: Dungeon instead of grinding
 	["Dungeon instead of grinding"] = "사냥 대신 던전",
-	-- {area:2279} Stratholme · {area:2057} Scholomance · {area:1583} Blackrock Spire · {area:1584} Blackrock Depths
-	["Optional. Running {area:2279}, {area:2057}, Lower {area:1583} or {area:1584} with a group instead of grinding gets you there faster."] = "선택 사항. 사냥 대신 파티로 {area:2279}, {area:2057}, {area:1583} 하층, {area:1584}을(를) 돌면 더 빨리 도달합니다.",
+	-- {area:2279} Stratholme · {area:2057} Scholomance · {area:1584} Blackrock Depths
+	["Optional. Running {area:2279}, {area:2057}, Lower Blackrock Spire or {area:1584} with a group instead of grinding gets you there faster."] = "",
 	["Optional: with a group, a 55-60 dungeon replaces the grind below."] = "선택 사항: 파티가 있으면 55-60 던전으로 아래 사냥을 대신하세요.",
 
 	-- Step 17: Grind to 60
@@ -84,4 +86,7 @@ return {
 	["In {zone:1454}: fly from {area:2255}"] = "{zone:1454}에서: {area:2255}에서 비행",
 	-- {zone:1456} Thunder Bluff · {area:2255} Everlook
 	["In {zone:1456}: fly from {area:2255}"] = "{zone:1456}에서: {area:2255}에서 비행",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Optional. Running {area:2279}, {area:2057}, Lower {area:1583} or {area:1584} with a group instead of grinding gets you there faster."] = "선택 사항. 사냥 대신 파티로 {area:2279}, {area:2057}, {area:1583} 하층, {area:1584}을(를) 돌면 더 빨리 도달합니다.",
 }

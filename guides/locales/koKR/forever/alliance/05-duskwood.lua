@@ -1,7 +1,9 @@
 -- Korean (koKR): the guide forever/alliance/05-duskwood (forever/alliance/05-duskwood.guide).
 -- Written by `node tools/polestar.js i18n guides sync koKR`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Korean (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Step 1: Darkshire
 	-- {area:1002} Three Corners · {zone:1431} Duskwood · {area:42} Darkshire
@@ -46,7 +48,7 @@ return {
 	-- {area:492} Raven Hill Cemetery
 	["{area:492}, south"] = "{area:492}, 남쪽",
 	-- {npc:522} Mor'Ladim
-	-- plural, as words: Skeletal Horrors = {npc:202} Skeletal Horror · Horrors = {npc:251103} Horror · Skeletal Fiends = {npc:531} Skeletal Fiend
+	-- plural, as words: Skeletal Horrors = {npc:202} Skeletal Horror · Skeletal Fiends = {npc:531} Skeletal Fiend
 	["The cemetery lies north of the village. Skeletal Horrors and Skeletal Fiends walk its southern half. {npc:522}, an elite, wanders the graves: keep away from him."] = "묘지는 마을 북쪽에 있습니다. 묘지 남쪽 절반에는 해골 병사와 해골 악령이 돌아다닙니다. 정예인 {npc:522}이(가) 무덤 사이를 배회하니 멀리하십시오.",
 
 	-- Step 8: Sven's Camp
@@ -60,7 +62,7 @@ return {
 	-- Step 10: Wolves, spiders and ghouls
 	["Wolves, spiders and ghouls"] = "늑대, 거미, 구울",
 	-- {npc:289} Abercrombie
-	-- plural, as words: Pygmy Venom Web Spiders = {npc:539} Pygmy Venom Web Spider · Venom Web Spiders = {npc:217} Venom Web Spider
+	-- plural, as words: Pygmy Venom Web Spiders = {npc:539} Pygmy Venom Web Spider
 	["Rabid Dire Wolves roam the woods around the cemetery and {npc:289}, Starving Dire Wolves the hills north-east of him. Pygmy Venom Web Spiders crawl east of the cemetery and drop the venom. Every ghoul of the cemetery's northern half can drop a fang."] = "광포한 그늘숲늑대는 묘지와 {npc:289} 주변 숲을, 굶주린 그늘숲늑대는 그의 북동쪽 언덕을 돌아다닙니다. 새끼 그물독거미는 묘지 동쪽을 기어다니며 독을 떨어뜨립니다. 묘지 북쪽 절반의 모든 구울이 송곳니를 떨어뜨릴 수 있습니다.",
 
 	-- Step 11: Watcher Dodds
@@ -87,12 +89,12 @@ return {
 	-- {npc:273} Tavernkeep Smitts
 	["{npc:273}, in the tavern"] = "{npc:273}, 주점",
 
-	-- Step 19: The Rot Blossoms
-	-- {npc:14235} The Rot
-	["{npc:14235} Blossoms"] = "{npc:14235}의 꽃",
-	-- {area:42} Darkshire · {area:121} Tranquil Gardens Cemetery · {npc:14235} The Rot
-	-- plural, as words: Skeletal Horrors = {npc:202} Skeletal Horror · Horrors = {npc:251103} Horror
-	["Skeletal Horrors walk the hillside between {area:42} and the {area:121}, south-east of town; they drop the {npc:14235} Blossoms."] = "해골 병사가 마을 남동쪽, {area:42}와(과) {area:121} 사이의 언덕을 돌아다니며 {npc:14235}의 꽃을 떨어뜨립니다.",
+	-- Step 19: Rot Blossoms
+	-- plural, as words: Rot Blossoms = {item:1598} Rot Blossom
+	["Rot Blossoms"] = "",
+	-- {area:42} Darkshire · {area:121} Tranquil Gardens Cemetery
+	-- plural, as words: Skeletal Horrors = {npc:202} Skeletal Horror · Rot Blossoms = {item:1598} Rot Blossom
+	["Skeletal Horrors walk the hillside between {area:42} and the {area:121}, south-east of town; they drop the Rot Blossoms."] = "",
 
 	-- Step 21: Abercrombie
 	["Ride west to the hermit once more."] = "다시 한 번 서쪽의 은둔자에게 가십시오.",
@@ -121,14 +123,14 @@ return {
 	-- Step 27: Master Mathias Shaw
 	-- {zone:1453} Stormwind City · {object:2100} Old Town
 	["Ride north through Elwynn to {zone:1453}; Mathias Shaw is at SI:7 in {object:2100}."] = "엘윈 숲을 지나 북쪽 {zone:1453}(으)로 달려가십시오. 마티아스 쇼는 {object:2100}의 SI:7에 있습니다.",
-	-- {npc:332} Master Mathias Shaw · {item:18160} Recipe: Thistle Tea
-	["{npc:332}: Poisons, and {item:18160}"] = "{npc:332}: 독, 그리고 {item:18160}",
+	-- {npc:332} Master Mathias Shaw · {spell:2842} Poisons · {item:18160} Recipe: Thistle Tea
+	["{npc:332}: {spell:2842}, and {item:18160}"] = "",
 	-- {quest:2607} The Touch of Zanzil · {npc:7207} Doc Mixilpixil
 	["{quest:2607}: {npc:7207}, in the cellar of the Barracks"] = "{quest:2607}: {npc:7207}, 병영 지하실",
 	-- {npc:7207} Doc Mixilpixil
 	["/lay down beside {npc:7207}"] = "{npc:7207} 옆에서 /lay down",
-	-- {item:3372} Leaded Vial · {npc:1313} Maria Lumere · {skill:171} Alchemy
-	["{item:3372}: {npc:1313}, {skill:171} Supplies"] = "{item:3372}: {npc:1313}, {skill:171} 용품",
+	-- {item:3372} Leaded Vial · {npc:1313} Maria Lumere
+	["{item:3372}: {npc:1313}, Alchemy Supplies"] = "",
 
 	-- Step 28: Stormwind City
 	-- {zone:1453} Stormwind City · {zone:1429} Elwynn Forest · {area:17203} Stormwind Harbor · {area:442} Auberdine
@@ -139,4 +141,10 @@ return {
 	["Shaman training"] = "주술사 수련",
 	-- {zone:1453} Stormwind City · {area:2257} Deeprun Tram · {object:28027} Dwarven District · {zone:1455} Ironforge · {npc:258098} Eldrun Stormbreaker · {area:442} Auberdine
 	["{zone:1453} has no shaman trainer: take the {area:2257} from the {object:28027} to {zone:1455}, train with {npc:258098}, then ride the tram back for the {area:442} boat."] = "{zone:1453}에는 주술사 상급자가 없습니다: {object:28027}에서 {area:2257}을(를) 타고 {zone:1455}(으)로 가서 {npc:258098}에게 수련한 뒤, 지하철로 돌아와 {area:442}행 배를 타십시오.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Skeletal Horrors walk the hillside between {area:42} and the {area:121}, south-east of town; they drop the {npc:14235} Blossoms."] = "해골 병사가 마을 남동쪽, {area:42}와(과) {area:121} 사이의 언덕을 돌아다니며 {npc:14235}의 꽃을 떨어뜨립니다.",
+	-- ["{item:3372}: {npc:1313}, {skill:171} Supplies"] = "{item:3372}: {npc:1313}, {skill:171} 용품",
+	-- ["{npc:14235} Blossoms"] = "{npc:14235}의 꽃",
+	-- ["{npc:332}: Poisons, and {item:18160}"] = "{npc:332}: 독, 그리고 {item:18160}",
 }

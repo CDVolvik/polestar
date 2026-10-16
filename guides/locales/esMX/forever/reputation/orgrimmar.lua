@@ -1,11 +1,12 @@
 -- Spanish (Latin America) (esMX): the guide forever/reputation/orgrimmar (forever/reputation/orgrimmar.guide).
 -- Written by `node tools/polestar.js i18n guides sync esMX`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Spanish (Latin America) (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Spanish (Latin America) (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Guide
-	-- {faction:76} Orgrimmar
-	["{faction:76} Reputation"] = "",
+	["Orgrimmar Reputation"] = "",
 
 	-- Step 1: Rashona Straglash: A Donation of Wool
 	-- {npc:14726} Rashona Straglash · {faction:76} Orgrimmar · {item:14047} Runecloth · {quest:7832} Additional Runecloth

@@ -1,7 +1,9 @@
 -- German (deDE): the guide forever/alliance/30-40/05-arathi-highlands (forever/alliance/30-40/05-arathi-highlands.guide).
 -- Written by `node tools/polestar.js i18n guides sync deDE`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in German (the English is listed above the line). The comments are rewritten by sync.
+-- name there in German (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Step 1: Fly to Darkshire
 	-- {area:42} Darkshire
@@ -52,7 +54,6 @@ return {
 	-- {npc:6122} Gakin the Darkbinder · {object:2164} The Slaughtered Lamb · {object:2101} Mage Quarter · {item:6913} Heartswood Core · {quest:65602} What Is Love? · {item:190309} Wooden Figurine
 	["{npc:6122} waits in the {object:2164}'s cellar, in the {object:2101}. Use the {item:6913} at the summoning circle there and defeat the succubus it calls. If you took {quest:65602}, hand him the {item:190309} too, place it at the same circle and defeat the incubus."] = "{npc:6122} wartet im Keller von {object:2164} in {object:2101}. Benutze {item:6913} am Beschwörungskreis dort und besiege den herbeigerufenen Sukkubus. Wenn du {quest:65602} angenommen hast, gib ihm auch {item:190309}, stelle sie am selben Kreis ab und besiege den Inkubus.",
 	["Subdue the succubus"] = "Bezwinge den Sukkubus",
-	["Summon Succubus"] = "Sukkubus beschwören",
 	-- {quest:65602} What Is Love?
 	["{quest:65602}, if you took it"] = "{quest:65602}, falls du sie angenommen hast",
 	-- {npc:185335} Summoned Incubus
@@ -185,4 +186,7 @@ return {
 
 	-- Step 48: Ironband's Excavation Site
 	["South-east along the loch to the dig site."] = "Nach Südosten am See entlang zur Ausgrabungsstätte.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Summon Succubus"] = "Sukkubus beschwören",
 }

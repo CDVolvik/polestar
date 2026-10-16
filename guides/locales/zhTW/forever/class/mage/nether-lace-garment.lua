@@ -1,7 +1,9 @@
 -- Chinese (traditional) (zhTW): the guide forever/class/mage/nether-lace-garment (forever/class/mage/nether-lace-garment.guide).
 -- Written by `node tools/polestar.js i18n guides sync zhTW`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Chinese (traditional) (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Chinese (traditional) (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Guide
 	["A robe or a tunic for Undead and Troll mages in their late 20s."] = "",
@@ -17,8 +19,8 @@ return {
 	-- Step 3: The Xavian Waterfall
 	-- {object:174797} Xavian Waterfall
 	["The {object:174797}"] = "",
-	-- {area:429} Xavian · {zone:1440} Ashenvale · {item:7269} Deino's Flask
-	["Satyrs hold the ruins of {area:429} in eastern {zone:1440}. Fill {item:7269} at the bottom of the highest waterfall."] = "",
+	-- {area:429} Xavian · {zone:1440} Ashenvale · {spell:9052} Fill Deino's Flask
+	["Satyrs hold the ruins of {area:429} in eastern {zone:1440}. {spell:9052} at the bottom of the highest waterfall."] = "",
 
 	-- Step 4: Back to Deino
 	-- {npc:5885} Deino

@@ -1,7 +1,9 @@
 -- Korean (koKR): the guide forever/professions/cooking (forever/professions/cooking.guide).
 -- Written by `node tools/polestar.js i18n guides sync koKR`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Korean (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Step 1: Learn Cooking
 	-- {skill:185} Cooking
@@ -264,8 +266,8 @@ return {
 	["Giant Eggs drop from the Ironbeak owls of {zone:1448}."] = "거대한 알은 {zone:1448}의 무쇠부리 올빼미가 떨어뜨립니다.",
 
 	-- Step 67: Zesty Clam Meat
-	-- {item:7974} Zesty Clam Meat · {object:175904} Gadgetzan Auction
-	["{item:7974} has no drop data: buy it at the {object:175904} House, next to Dirge, or open clams looted from coastal creatures."] = "{item:7974}은(는) 획득 데이터가 없습니다. 더지 옆의 {object:175904}에서 사거나, 해안 생물에게서 얻은 조개를 여세요.",
+	-- {item:7974} Zesty Clam Meat
+	["{item:7974} has no drop data: buy it at the Gadgetzan Auction House, next to Dirge, or open clams looted from coastal creatures."] = "",
 
 	-- Step 68: Dirge Quikcleave
 	-- {skill:185} Cooking
@@ -288,4 +290,7 @@ return {
 	-- Step 74: Monster Omelet (240-300)
 	-- {item:12218} Monster Omelet · {object:29784} Basic Campfire · {skill:185} Cooking
 	["{item:12218} is orange from 240 (yellow at 265, grey at 305): about 105 crafts to 300. Cook at any fire: {object:29784} comes with {skill:185}."] = "{item:12218}은(는) 240부터 주황색입니다(노란색 265, 회색 305). 300까지 약 105번 만드세요. 아무 불에서나 요리하세요. {object:29784}은(는) {skill:185}와(과) 함께 배웁니다.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["{item:7974} has no drop data: buy it at the {object:175904} House, next to Dirge, or open clams looted from coastal creatures."] = "{item:7974}은(는) 획득 데이터가 없습니다. 더지 옆의 {object:175904}에서 사거나, 해안 생물에게서 얻은 조개를 여세요.",
 }

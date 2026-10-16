@@ -1,7 +1,9 @@
 -- Spanish (Latin America) (esMX): the guide forever/alliance/50-60/03-winterspring (forever/alliance/50-60/03-winterspring.guide).
 -- Written by `node tools/polestar.js i18n guides sync esMX`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Spanish (Latin America) (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Spanish (Latin America) (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Step 1: Everlook
 	-- {npc:11629} Jessica Redpath · {area:2262} Darrowshire
@@ -119,10 +121,11 @@ return {
 	["{npc:11038}: Zaeldarr is a level 54 elite"] = "",
 
 	-- Step 28: Corin's Crossing
-	-- {area:2264} Corin's Crossing · {area:2262} Darrowshire
-	["The Scourge around {area:2264}, west of the chapel, drop both kinds of Scourgestone; {area:2262} Spirits rise from them: talk to each one to free it."] = "",
-	-- {area:2262} Darrowshire
-	["Free {area:2262} Spirits: talk to them"] = "",
+	-- {area:2264} Corin's Crossing
+	-- plural, as words: Darrowshire Spirits = {npc:11064} Darrowshire Spirit
+	["The Scourge around {area:2264}, west of the chapel, drop both kinds of Scourgestone; Darrowshire Spirits rise from them: talk to each one to free it."] = "",
+	-- plural, as words: Darrowshire Spirits = {npc:11064} Darrowshire Spirit
+	["Free Darrowshire Spirits: talk to them"] = "",
 
 	-- Step 30: The Undercroft
 	-- {area:2261} The Undercroft

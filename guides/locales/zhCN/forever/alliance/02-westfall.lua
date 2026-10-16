@@ -1,7 +1,9 @@
 -- Chinese (simplified) (zhCN): the guide forever/alliance/02-westfall (forever/alliance/02-westfall.guide).
 -- Written by `node tools/polestar.js i18n guides sync zhCN`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Chinese (simplified) (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Chinese (simplified) (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Step 1: Sentinel Hill
 	-- {npc:234} Gryan Stoutmantle · {npc:821} Captain Danuvin · {npc:491} Quartermaster Lewis · {npc:878} Scout Galiaan · {npc:253092} Alba Fairmoon · {npc:523} Thor
@@ -56,6 +58,7 @@ return {
 	["The north coast"] = "",
 	-- plural, as words: Murloc Coastrunners = {npc:126} Murloc Coastrunner
 	["Murloc Coastrunners and Raiders line the beach north of the mine. They flee at low health: pull one at a time."] = "",
+	-- plural, as words: Longshore Murloc Gills = {item:254548} Longshore Murloc Gill
 	["Longshore Murloc Gills"] = "",
 
 	-- Step 9: The gnoll hills
@@ -94,11 +97,8 @@ return {
 	["For {npc:11026} in {zone:1453}'s {object:28027}"] = "",
 
 	-- Step 17: Defensive Stance
-	["Defensive Stance"] = "",
 	-- {zone:1453} Stormwind City · {npc:5480} Ilsa Corbin · {object:2100} Old Town · {npc:6089} Harry Burlguard · {npc:6090} Bartleby · {object:2152} Pig and Whistle Tavern
 	["Fly or ride to {zone:1453}. {npc:5480} trains warriors in {object:2100}; {npc:6089} and {npc:6090} stand together by the {object:2152} there. {npc:6090} fights you for his mug."] = "",
-	-- {npc:6089} Harry Burlguard
-	["{npc:6089}: Defensive Stance"] = "",
 
 	-- Step 18: High Priestess Laurena
 	-- {zone:1453} Stormwind City · {npc:376} High Priestess Laurena
@@ -110,11 +110,11 @@ return {
 	["Ride to {zone:1453}. It has no shaman trainer: take the {area:2257} from the {object:28027} to {zone:1455}, train with {npc:258098}, then ride the tram back for the boat."] = "",
 
 	-- Step 20: Stormwind City
-	-- {zone:1453} Stormwind City · {object:2100} Old Town · {object:2101} Mage Quarter · {object:23299} The Park · {npc:11026} Sprite Jumpsprocket · {object:28027} Dwarven District · {npc:279} Morgan Pestle · {object:2096} Trade District
-	["Fly or ride to {zone:1453}. Trainers: {object:2100} (Warriors, Rogues), the Cathedral (Paladins, Priests), the {object:2101} (Mages, Warlocks), the {object:23299} (Druids). {npc:11026} works in the {object:28027}, {npc:279} in the {object:2096}."] = "",
+	-- {zone:1453} Stormwind City · {object:2100} Old Town · {object:2101} Mage Quarter · {npc:11026} Sprite Jumpsprocket · {object:28027} Dwarven District · {npc:279} Morgan Pestle · {object:2096} Trade District
+	["Fly or ride to {zone:1453}. Trainers: {object:2100} (Warriors, Rogues), the Cathedral (Paladins, Priests), the {object:2101} (Mages, Warlocks), the Park (Druids). {npc:11026} works in the {object:28027}, {npc:279} in the {object:2096}."] = "",
 	["Level 12, 14 and 16 spells"] = "",
-	-- {item:2449} Earthroot · {zone:1439} Darkshore · {npc:1313} Maria Lumere · {skill:171} Alchemy
-	["{item:2449} for Gathering the Cure (6123) in {zone:1439}: {npc:1313}, {skill:171} Supplies; herbalists pick it there instead"] = "",
+	-- {item:2449} Earthroot · {zone:1439} Darkshore · {npc:1313} Maria Lumere
+	["{item:2449} for Gathering the Cure (6123) in {zone:1439}: {npc:1313}, Alchemy Supplies; herbalists pick it there instead"] = "",
 	-- {npc:5497} Jennea Cannon · {quest:1861} Mirror Lake
 	["{npc:5497}, Wizard's Sanctum: {quest:1861}"] = "",
 

@@ -1,7 +1,9 @@
 -- Russian (ruRU): the guide forever/class/warrior/brutal-armor (forever/class/warrior/brutal-armor.guide).
 -- Written by `node tools/polestar.js i18n guides sync ruRU`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Russian (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Russian (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Guide
 	["Four armor pieces at 30 (hauberk, helm, gauntlets, legguards) and a shield on the way."] = "Четыре части доспехов на 30-м уровне (хауберк, шлем, рукавицы, поножи), а по пути еще и щит.",
@@ -44,12 +46,14 @@ return {
 	["Smoky Iron Ingots from the Windshear kobolds"] = "Закопченые железные слитки с кобольдов из племени Ветрорезов",
 
 	-- Step 8: Hillsbrad Miners
-	-- {area:287} Hillsbrad
-	["{area:287} Miners"] = "Хилсбрадские шахтеры ({area:287})",
-	-- {area:287} Hillsbrad · {zone:1424} Hillsbrad Foothills · {item:7127} Powdered Azurite · {zone:1454} Orgrimmar · {zone:1420} Tirisfal Glades · {zone:1421} Silverpine Forest
-	["The {area:287} Miners work the mine in the west of {zone:1424}; they drop the {item:7127}. Take the zeppelin from {zone:1454} to {zone:1420} and ride south through {zone:1421}."] = "Хилсбрадские шахтеры ({area:287}) работают в шахте на западе зоны {zone:1424}; они оставляют {item:7127}. Сядьте на дирижабль из города {zone:1454} до зоны {zone:1420} и скачите на юг через зону {zone:1421}.",
-	-- {item:7127} Powdered Azurite · {area:287} Hillsbrad
-	["{item:7127} from the {area:287} Miners"] = "{item:7127} с хилсбрадских шахтеров ({area:287})",
+	-- plural, as words: Hillsbrad Miners = {npc:2269} Hillsbrad Miner
+	["Hillsbrad Miners"] = "",
+	-- {zone:1424} Hillsbrad Foothills · {item:7127} Powdered Azurite · {zone:1454} Orgrimmar · {zone:1420} Tirisfal Glades · {zone:1421} Silverpine Forest
+	-- plural, as words: Hillsbrad Miners = {npc:2269} Hillsbrad Miner
+	["The Hillsbrad Miners work the mine in the west of {zone:1424}; they drop the {item:7127}. Take the zeppelin from {zone:1454} to {zone:1420} and ride south through {zone:1421}."] = "",
+	-- {item:7127} Powdered Azurite
+	-- plural, as words: Hillsbrad Miners = {npc:2269} Hillsbrad Miner
+	["{item:7127} from the Hillsbrad Miners"] = "",
 
 	-- Step 9: Iron Bars
 	-- plural, as words: Iron Bars = {item:3575} Iron Bar
@@ -70,10 +74,9 @@ return {
 	["{npc:6408} is in {area:367} on the {zone:1411} coast."] = "{npc:6408} находится здесь: {area:367}, на побережье зоны {zone:1411}.",
 
 	-- Step 12: Satyr Hooves
-	-- {area:429} Xavian · {zone:1440} Ashenvale · {quest:1842} Satyr Hooves
-	["The {area:429} satyrs camp in eastern {zone:1440}, with the Felmusk satyrs further west; both drop Uncloven {quest:1842}."] = "Сатиры из племени Ксавиан ({area:429}) живут на востоке зоны {zone:1440}, а сатиры из племени Мускуса Скверны — западнее; и те и другие оставляют нераздвоенные копыта сатиров ({quest:1842}).",
-	-- {quest:1842} Satyr Hooves
-	["Uncloven {quest:1842}"] = "Нераздвоенные копыта ({quest:1842})",
+	-- {area:429} Xavian · {zone:1440} Ashenvale
+	["The {area:429} satyrs camp in eastern {zone:1440}, with the Felmusk satyrs further west; both drop Uncloven Satyr Hooves."] = "",
+	["Uncloven Satyr Hooves"] = "",
 
 	-- Step 15: Chimaeric Horn
 	-- {npc:6167} Chimaera Matriarch · {item:6840} Galvanized Horn
@@ -87,10 +90,18 @@ return {
 	["Take the zeppelin from {zone:1454} to {zone:1420}; the {zone:1458} lies below the {area:153}."] = "Сядьте на дирижабль из города {zone:1454} до зоны {zone:1420}; город {zone:1458} находится под местом {area:153}.",
 
 	-- Step 18: Dragonmaw Shinbones
-	-- {zone:1437} Wetlands · {quest:1846} Dragonmaw Shinbones
+	-- {zone:1437} Wetlands
 	-- plural, as words: Sturdy Dragonmaw Shinbones = {item:7134} Sturdy Dragonmaw Shinbone
-	["The Dragonmaw orcs camp in the middle of the {zone:1437}, south of the road; Raiders, Swamprunners, Centurions, Shadowwarders and Bonewarders all drop the Sturdy {quest:1846}."] = "Орки клана Драконьей Пасти стоят лагерем в центре зоны {zone:1437}, к югу от дороги; налетчики, болотные бегуны, центурионы, хранители теней и костостражи — все оставляют прочные берцовые кости ({quest:1846}).",
-	-- {quest:1846} Dragonmaw Shinbones
+	["The Dragonmaw orcs camp in the middle of the {zone:1437}, south of the road; Raiders, Swamprunners, Centurions, Shadowwarders and Bonewarders all drop the Sturdy Dragonmaw Shinbones."] = "",
 	-- plural, as words: Sturdy Dragonmaw Shinbones = {item:7134} Sturdy Dragonmaw Shinbone
-	["Sturdy {quest:1846}"] = "Прочные берцовые кости ({quest:1846})",
+	["Sturdy Dragonmaw Shinbones"] = "",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Sturdy {quest:1846}"] = "Прочные берцовые кости ({quest:1846})",
+	-- ["The Dragonmaw orcs camp in the middle of the {zone:1437}, south of the road; Raiders, Swamprunners, Centurions, Shadowwarders and Bonewarders all drop the Sturdy {quest:1846}."] = "Орки клана Драконьей Пасти стоят лагерем в центре зоны {zone:1437}, к югу от дороги; налетчики, болотные бегуны, центурионы, хранители теней и костостражи — все оставляют прочные берцовые кости ({quest:1846}).",
+	-- ["The {area:287} Miners work the mine in the west of {zone:1424}; they drop the {item:7127}. Take the zeppelin from {zone:1454} to {zone:1420} and ride south through {zone:1421}."] = "Хилсбрадские шахтеры ({area:287}) работают в шахте на западе зоны {zone:1424}; они оставляют {item:7127}. Сядьте на дирижабль из города {zone:1454} до зоны {zone:1420} и скачите на юг через зону {zone:1421}.",
+	-- ["The {area:429} satyrs camp in eastern {zone:1440}, with the Felmusk satyrs further west; both drop Uncloven {quest:1842}."] = "Сатиры из племени Ксавиан ({area:429}) живут на востоке зоны {zone:1440}, а сатиры из племени Мускуса Скверны — западнее; и те и другие оставляют нераздвоенные копыта сатиров ({quest:1842}).",
+	-- ["Uncloven {quest:1842}"] = "Нераздвоенные копыта ({quest:1842})",
+	-- ["{area:287} Miners"] = "Хилсбрадские шахтеры ({area:287})",
+	-- ["{item:7127} from the {area:287} Miners"] = "{item:7127} с хилсбрадских шахтеров ({area:287})",
 }

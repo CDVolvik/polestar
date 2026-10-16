@@ -1,7 +1,9 @@
 -- French (frFR): the guide forever/horde/50-60/04-azshara (forever/horde/50-60/04-azshara.guide).
 -- Written by `node tools/polestar.js i18n guides sync frFR`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in French (the English is listed above the line). The comments are rewritten by sync.
+-- name there in French (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Step 1: Orgrimmar
 	-- {npc:8659} Jes'rimon · {object:172960} Cleft of Shadow
@@ -92,6 +94,9 @@ return {
 	["{quest:5050} goes back to {npc:10778} in the {zone:1422}: keep it."] = "{quest:5050} se rend à {npc:10778}, dans {zone:1422} : gardez-la.",
 
 	-- Step 21: Prompt Potion Runner
-	-- {npc:11044} Doctor Martin Felben · {object:36072} The Apothecarium
-	["{npc:11044}, in the {object:36072}"] = "{npc:11044}, dans {object:36072}",
+	-- {npc:11044} Doctor Martin Felben
+	["{npc:11044}, in the Apothecarium"] = "",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["{npc:11044}, in the {object:36072}"] = "{npc:11044}, dans {object:36072}",
 }

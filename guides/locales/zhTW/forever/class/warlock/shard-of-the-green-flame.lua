@@ -1,7 +1,9 @@
 -- Chinese (traditional) (zhTW): the guide forever/class/warlock/shard-of-the-green-flame (forever/class/warlock/shard-of-the-green-flame.guide).
 -- Written by `node tools/polestar.js i18n guides sync zhTW`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Chinese (traditional) (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Chinese (traditional) (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Guide
 	-- {npc:14470} Impsy · {zone:1448} Felwood
@@ -13,7 +15,8 @@ return {
 
 	-- Step 2: Jaedenar
 	-- {area:1763} Jaedenar
-	["The {area:1763} Legionnaires, a short way west of Niby, carry {area:1763}'s essence."] = "",
+	-- plural, as words: Jaedenar Legionnaires = {npc:9862} Jaedenar Legionnaire
+	["The Jaedenar Legionnaires, a short way west of Niby, carry {area:1763}'s essence."] = "",
 
 	-- Step 3: Azshara
 	-- {zone:1447} Azshara

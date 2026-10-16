@@ -1,7 +1,9 @@
 -- Spanish (Latin America) (esMX): the guide forever/professions/first-aid (forever/professions/first-aid.guide).
 -- Written by `node tools/polestar.js i18n guides sync esMX`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Spanish (Latin America) (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Spanish (Latin America) (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Step 1: Learn First Aid
 	-- {skill:129} First Aid
@@ -125,6 +127,9 @@ return {
 	["humanoids of level 45-60 drop {item:14047} (or buy it at the Auction House)."] = "los humanoides de nivel 45-60 sueltan {item:14047} (o cómpralo en la casa de subastas).",
 
 	-- Step 28: Runecloth Bandage (260-300)
-	-- {item:14529} Runecloth Bandage · {item:14047} Runecloth
-	["{item:14529} is yellow from 260 (yellow at 260, grey at 320): about 65 crafts to 300. Bandages need no fire: craft them anywhere. {item:14529} stays yellow to 320, so it carries you to 300 without a trip for Heavy {item:14047}."] = "{item:14529} es amarillo desde 260 (amarillo en 260, gris en 320): unas 65 creaciones hasta 300. Las vendas no necesitan fuego: créalas en cualquier lugar. {item:14529} sigue amarillo hasta 320, así que te lleva hasta 300 sin viajar por la venda gruesa de {item:14047}.",
+	-- {item:14529} Runecloth Bandage
+	["{item:14529} is yellow from 260 (yellow at 260, grey at 320): about 65 crafts to 300. Bandages need no fire: craft them anywhere. {item:14529} stays yellow to 320, so it carries you to 300 without a trip for Heavy Runecloth."] = "",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["{item:14529} is yellow from 260 (yellow at 260, grey at 320): about 65 crafts to 300. Bandages need no fire: craft them anywhere. {item:14529} stays yellow to 320, so it carries you to 300 without a trip for Heavy {item:14047}."] = "{item:14529} es amarillo desde 260 (amarillo en 260, gris en 320): unas 65 creaciones hasta 300. Las vendas no necesitan fuego: créalas en cualquier lugar. {item:14529} sigue amarillo hasta 320, así que te lleva hasta 300 sin viajar por la venda gruesa de {item:14047}.",
 }

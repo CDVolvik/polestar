@@ -1,7 +1,9 @@
 -- Spanish (Spain) (esES): the guide forever/alliance/03-darkshore (forever/alliance/03-darkshore.guide).
 -- Written by `node tools/polestar.js i18n guides sync esES`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Spanish (Spain) (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Spanish (Spain) (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Step 1: Auberdine
 	["The boat docks west of the village. The flight master stands on the hill south of the inn; the quest givers are spread along the main street."] = "El barco atraca al oeste del pueblo. El maestro de vuelo está en la colina al sur de la posada; los que dan misiones están repartidos por la calle principal.",
@@ -17,9 +19,9 @@ return {
 
 	-- Step 2: The beach
 	["The beach"] = "La playa",
-	-- {quest:983} Buzzbox 827 · {zone:1439} Darkshore · {quest:4723} Beached Sea Creature
-	-- plural, as words: Tide Crawlers = {npc:2232} Tide Crawler
-	["Tide Crawlers scuttle along the shore below the village; {quest:983} stands on the beach just south of the docks. {zone:1439} Threshers swim in the shallows. The {quest:4723} lies on the shore just south of the village."] = "Los Corremareas corretean por la orilla bajo el pueblo; {quest:983} está en la playa, justo al sur de los muelles. Los Trilladores de la {zone:1439} nadan en las aguas poco profundas. La {quest:4723} yace en la orilla, justo al sur del pueblo.",
+	-- {quest:983} Buzzbox 827 · {quest:4723} Beached Sea Creature
+	-- plural, as words: Tide Crawlers = {npc:2232} Tide Crawler · Darkshore Threshers = {npc:2185} Darkshore Thresher
+	["Tide Crawlers scuttle along the shore below the village; {quest:983} stands on the beach just south of the docks. Darkshore Threshers swim in the shallows. The {quest:4723} lies on the shore just south of the village."] = "",
 	-- plural, as words: Crawler Legs = {item:5385} Crawler Leg
 	["Crawler Legs"] = "Patas de reptador",
 	-- plural, as words: Thresher Eyes = {item:5412} Thresher Eye
@@ -35,13 +37,13 @@ return {
 	-- Step 5: Plagued bears
 	["Plagued bears"] = "Osos apestados",
 	-- {area:442} Auberdine · {quest:2139} Tharnariun's Hope
-	-- plural, as words: Rabid Thistle Bears = {npc:2164} Rabid Thistle Bear · Thistle Bears = {npc:2163} Thistle Bear
+	-- plural, as words: Rabid Thistle Bears = {npc:2164} Rabid Thistle Bear
 	["Rabid Thistle Bears roam the hills just east of {area:442}. Use {quest:2139} on one and lead it back to him."] = "Los Osos Cardo rabiosos deambulan por las colinas justo al este de {area:442}. Usa {quest:2139} con uno y llévalo hasta él.",
 
 	-- Step 6: Bears and the Blackwood camp
 	["Bears and the Blackwood camp"] = "Osos y el campamento Bosquenegro",
 	-- {area:442} Auberdine
-	-- plural, as words: Rabid Thistle Bears = {npc:2164} Rabid Thistle Bear · Thistle Bears = {npc:2163} Thistle Bear
+	-- plural, as words: Rabid Thistle Bears = {npc:2164} Rabid Thistle Bear
 	["Kill Rabid Thistle Bears in the hills east of {area:442}, then walk up to the furbolg camp south-east of them: nothing to kill yet."] = "Mata Osos Cardo rabiosos en las colinas al este de {area:442} y luego sube al campamento furbolg al sureste: aún no hay nada que matar.",
 
 	-- Step 7: Ameth'Aran
@@ -68,7 +70,7 @@ return {
 
 	-- Step 10: The Tower of Althalaxx
 	-- {quest:954} Bashal'Aran · {quest:1002} Buzzbox 323
-	-- plural, as words: Grizzled Thistle Bears = {npc:2165} Grizzled Thistle Bear · Thistle Bears = {npc:2163} Thistle Bear
+	-- plural, as words: Grizzled Thistle Bears = {npc:2165} Grizzled Thistle Bear
 	["Moonstalkers prowl the hills between {quest:954} and the tower. {quest:1002} stands on the hill west of the tower; Grizzled Thistle Bears roam around it."] = "Los Acechalunas merodean por las colinas entre {quest:954} y la torre. {quest:1002} está en la colina al oeste de la torre; los Grisosos cardo deambulan a su alrededor.",
 	-- plural, as words: Moonstalker Fangs = {item:5413} Moonstalker Fang
 	["Moonstalker Fangs"] = "Colmillos de Acechalunas",
@@ -85,9 +87,9 @@ return {
 	["Fly from {area:442} to {area:702} and take the portal up to {npc:4217} in the {area:1658}."] = "Vuela de {area:442} a {area:702} y toma el portal para subir hasta {npc:4217} en el {area:1658}.",
 
 	-- Step 13: Trial of the Lake
-	-- {area:493} Moonglade · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {area:656} Lake Elune'ara · {area:2362} Shrine of Remulos · {npc:11799} Tajarri · {area:442} Auberdine
+	-- {spell:18960} Teleport: Moonglade · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {area:656} Lake Elune'ara · {area:2362} Shrine of Remulos · {npc:11799} Tajarri · {area:442} Auberdine
 	-- plural, as words: Shrine Baubles = {item:15877} Shrine Bauble
-	["Cast Teleport: {area:493}. {npc:11802} is in {area:2361}. Shrine Baubles lie in the containers on the floor of {area:656}, below {area:2361}: take one to the {area:2362} in the north-west, use it there and speak to {npc:11799}. Then fly back to {area:442} from {area:2361}."] = "Lanza Teletransporte: {area:493}. {npc:11802} está en {area:2361}. Los Adornos de altar están en los contenedores del fondo del {area:656}, bajo {area:2361}: lleva uno al {area:2362}, al noroeste, úsalo allí y habla con {npc:11799}. Después vuela de vuelta a {area:442} desde {area:2361}.",
+	["Cast {spell:18960}. {npc:11802} is in {area:2361}. Shrine Baubles lie in the containers on the floor of {area:656}, below {area:2361}: take one to the {area:2362} in the north-west, use it there and speak to {npc:11799}. Then fly back to {area:442} from {area:2361}."] = "",
 	-- {quest:6122} The Principal Source · {area:445} Cliffspring Falls
 	["{quest:6122}: fill the sampler at {area:445}"] = "{quest:6122}: llena el muestreador en {area:445}",
 	-- {item:15877} Shrine Bauble · {object:177785} Bauble Container
@@ -137,14 +139,14 @@ return {
 	-- Step 22: The bay wrecks
 	["The bay wrecks"] = "Los pecios de la bahía",
 	-- {area:442} Auberdine
-	-- plural, as words: Reef Crawlers = {npc:2235} Reef Crawler · Encrusted Tide Crawlers = {npc:2233} Encrusted Tide Crawler · Tide Crawlers = {npc:2232} Tide Crawler
+	-- plural, as words: Reef Crawlers = {npc:2235} Reef Crawler · Encrusted Tide Crawlers = {npc:2233} Encrusted Tide Crawler
 	["Two wrecks lie on the sea floor in the bay north of {area:442}; each holds a lockbox. Reef Crawlers and Encrusted Tide Crawlers line this shore."] = "Hay dos pecios en el fondo de la bahía al norte de {area:442}; cada uno guarda una caja fuerte. Correarrecifes y Corremareas escamados recorren esta orilla.",
 
 	-- Step 23: The Ruins of Mathystra
 	-- {area:443} Ruins of Mathystra
 	["The {area:443}"] = "Las {area:443}",
 	-- {npc:6667} Gelkak Gyromast
-	-- plural, as words: Giant Foreststriders = {npc:2323} Giant Foreststrider · Raging Reef Crawlers = {npc:2236} Raging Reef Crawler · Reef Crawlers = {npc:2235} Reef Crawler
+	-- plural, as words: Giant Foreststriders = {npc:2323} Giant Foreststrider · Raging Reef Crawlers = {npc:2236} Raging Reef Crawler
 	["{npc:6667} hides on the little island off the ruins; Stormscale Beastmistresses walk the shore. The key pieces drop from Giant Foreststriders (top), Greymist murlocs (middle) and Raging Reef Crawlers (bottom)."] = "{npc:6667} se esconde en el islote frente a las ruinas; las Maestras de bestias Escama Tormentosa recorren la orilla. Las piezas de la llave las sueltan los Zancudos del bosque gigantes (arriba), los múrlocs Brumagris (centro) y los Reptadores Correarrecifes enfurecidos (abajo).",
 	-- {item:15883} Half Pendant of Aquatic Agility · {object:177790} Strange Lockbox
 	["{item:15883}: the {object:177790} under the water off the north coast, west of the ruins"] = "{item:15883}: la {object:177790} bajo el agua frente a la costa norte, al oeste de las ruinas",
@@ -160,9 +162,9 @@ return {
 	-- Step 25: The cave and the Den Mother
 	-- {npc:6788} Den Mother
 	["The cave and the {npc:6788}"] = "La cueva y la {npc:6788}",
-	-- {item:5270} Death Cap · {area:364} The Den · {object:177624} Xabraxxis' Demon Bag
+	-- {item:5270} Death Cap · {npc:6788} Den Mother · {object:177624} Xabraxxis' Demon Bag
 	-- plural, as words: Scaber Stalks = {item:5271} Scaber Stalk
-	["The cave lies south of the falls: Scaber Stalks grow all through it, the {item:5270} at the very back. {area:364} Mother lairs in the hills south of the falls; {object:177624} lies at the satyr camp north of her."] = "La cueva está al sur de la cascada: los Níscalos crecen por toda ella y la {item:5270}, al fondo del todo. La Madre del cubil tiene su guarida en las colinas al sur de la cascada ({area:364}); {object:177624} está en el campamento sátiro al norte de ella.",
+	["The cave lies south of the falls: Scaber Stalks grow all through it, the {item:5270} at the very back. The {npc:6788} lairs in the hills south of the falls; {object:177624} lies at the satyr camp north of her."] = "",
 	-- plural, as words: Scaber Stalks = {item:5271} Scaber Stalk
 	["Scaber Stalks"] = "Níscalos",
 	-- {item:12355} Talisman of Corruption · {object:177624} Xabraxxis' Demon Bag
@@ -245,8 +247,8 @@ return {
 	["Night Elves fly from {area:442} to {area:702}; Skyborne take the boat from the {area:442} dock and learn the Rut'theran flight path there. Take the portal up to {npc:4217} in the {area:1658}."] = "Los elfos de la noche vuelan de {area:442} a {area:702}; los Cielonato toman el barco en el muelle de {area:442} y descubren allí la ruta de vuelo de Rut'theran. Toma el portal para subir hasta {npc:4217} en el {area:1658}.",
 
 	-- Step 39: Dendrite Starblaze
-	-- {area:493} Moonglade · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven
-	["Cast Teleport: {area:493}. {npc:11802} is in {area:2361}; learn the flight path there if you do not have it."] = "Lanza Teletransporte: {area:493}. {npc:11802} está en {area:2361}; descubre allí la ruta de vuelo si no la tienes.",
+	-- {spell:18960} Teleport: Moonglade · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven
+	["Cast {spell:18960}. {npc:11802} is in {area:2361}; learn the flight path there if you do not have it."] = "",
 	-- {npc:11802} Dendrite Starblaze
 	["{npc:11802}: the welcome from Sheldras"] = "{npc:11802}: la bienvenida de Sheldras Moontree",
 
@@ -263,8 +265,12 @@ return {
 	-- Step 42: To Darnassus
 	-- {area:442} Auberdine · {zone:1453} Stormwind City
 	["Take the portal up to Mathrengyl, then fly back to {area:442} for the boat to {zone:1453}."] = "Toma el portal para subir hasta Mathrengyl y luego vuela de vuelta a {area:442} para tomar el barco a {zone:1453}.",
-	-- {npc:4217} Mathrengyl Bearwalker
-	["{npc:4217}: Cat Form"] = "{npc:4217}: Forma felina",
-	-- {npc:4217} Mathrengyl Bearwalker
-	["{npc:4217}: Cure Poison"] = "{npc:4217}: Curar envenenamiento",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Cast Teleport: {area:493}. {npc:11802} is in {area:2361}. Shrine Baubles lie in the containers on the floor of {area:656}, below {area:2361}: take one to the {area:2362} in the north-west, use it there and speak to {npc:11799}. Then fly back to {area:442} from {area:2361}."] = "Lanza Teletransporte: {area:493}. {npc:11802} está en {area:2361}. Los Adornos de altar están en los contenedores del fondo del {area:656}, bajo {area:2361}: lleva uno al {area:2362}, al noroeste, úsalo allí y habla con {npc:11799}. Después vuela de vuelta a {area:442} desde {area:2361}.",
+	-- ["Cast Teleport: {area:493}. {npc:11802} is in {area:2361}; learn the flight path there if you do not have it."] = "Lanza Teletransporte: {area:493}. {npc:11802} está en {area:2361}; descubre allí la ruta de vuelo si no la tienes.",
+	-- ["The cave lies south of the falls: Scaber Stalks grow all through it, the {item:5270} at the very back. {area:364} Mother lairs in the hills south of the falls; {object:177624} lies at the satyr camp north of her."] = "La cueva está al sur de la cascada: los Níscalos crecen por toda ella y la {item:5270}, al fondo del todo. La Madre del cubil tiene su guarida en las colinas al sur de la cascada ({area:364}); {object:177624} está en el campamento sátiro al norte de ella.",
+	-- ["Tide Crawlers scuttle along the shore below the village; {quest:983} stands on the beach just south of the docks. {zone:1439} Threshers swim in the shallows. The {quest:4723} lies on the shore just south of the village."] = "Los Corremareas corretean por la orilla bajo el pueblo; {quest:983} está en la playa, justo al sur de los muelles. Los Trilladores de la {zone:1439} nadan en las aguas poco profundas. La {quest:4723} yace en la orilla, justo al sur del pueblo.",
+	-- ["{npc:4217}: Cat Form"] = "{npc:4217}: Forma felina",
+	-- ["{npc:4217}: Cure Poison"] = "{npc:4217}: Curar envenenamiento",
 }

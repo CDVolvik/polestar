@@ -1,7 +1,9 @@
 -- Chinese (traditional) (zhTW): the guide forever/collectibles/pets/minimule (forever/collectibles/pets/minimule.guide).
 -- Written by `node tools/polestar.js i18n guides sync zhTW`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Chinese (traditional) (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Chinese (traditional) (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Guide
 	["Minimule"] = "",
@@ -13,8 +15,7 @@ return {
 	["1,500 Merchant's Favor"] = "",
 
 	-- Step 2: Durotar Supply and Logistics
-	-- {zone:1411} Durotar
-	["{zone:1411} Supply and Logistics"] = "",
+	["Durotar Supply and Logistics"] = "",
 	-- {area:380} The Crossroads · {npc:256384} Gishah · {zone:1458} Undercity
 	["The Horde camp is just outside the {area:380}. Loot supply crates in the world, fill them and hand them in at the camp for Merchant's Favor; the treat costs 1,500. (Another {npc:256384} stands in the {zone:1458}; this is the one at the camp.)"] = "",
 }

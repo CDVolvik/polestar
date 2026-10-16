@@ -1,7 +1,9 @@
 -- Chinese (simplified) (zhCN): the guide forever/alliance/skyborne/01-zephras-isle (forever/alliance/skyborne/01-zephras-isle.guide).
 -- Written by `node tools/polestar.js i18n guides sync zhCN`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Chinese (simplified) (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Chinese (simplified) (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Step 1: Thendal Grove
 	-- {area:16622} Thendal Grove · {npc:251362} Ailee Farheart · {npc:251361} Rorian the Dayseeker · {npc:251368} Elatrell Featherlight
@@ -33,7 +35,8 @@ return {
 	["{npc:251373}, the druid trainer, on the ground floor of the tree behind Rorian"] = "{npc:251373}，德鲁伊训练师，在罗里安身后那棵树的底层",
 	["The class trainers stand together in the grove"] = "职业训练师都聚在林地里",
 	["Listen to Halaan"] = "聆听哈兰",
-	["Use Walk on Air"] = "使用Walk on Air",
+	-- {spell:1259416} Walk on Air
+	["Use {spell:1259416}"] = "",
 
 	-- Step 4: Raw Windstones and the Cirrusfly Queen
 	-- {npc:251404} Cirrusfly Queen
@@ -46,9 +49,9 @@ return {
 	-- Step 5: Yala Windwatcher
 	-- {npc:249363} Yala Windwatcher · {npc:251143} Roiling Winds · {object:460002} Ley Line
 	-- plural, as words: Al'Aketh Converts = {npc:251160} Al'Aketh Convert
-	["{npc:249363} keeps watch east of the grove. The {npc:251143} and Al'Aketh Converts gather just north of her; the {object:460002} rises further north: cast your Read {object:460002} racial ability at it."] = "{npc:249363}在林地东边守望。{npc:251143}和奥拉凯斯信徒聚集在她北边不远处；{object:460002}在更北边升起：对它施放你的种族技能Read {object:460002}。",
+	["{npc:249363} keeps watch east of the grove. The {npc:251143} and Al'Aketh Converts gather just north of her; the {object:460002} rises further north: cast your Read Ley Line racial ability at it."] = "",
 	-- {object:460002} Ley Line
-	["Cast Read {object:460002} at the {object:460002}"] = "对{object:460002}施放Read {object:460002}",
+	["Cast Read Ley Line at the {object:460002}"] = "",
 
 	-- Step 6: Thendal Grove turn-ins
 	-- {area:16622} Thendal Grove
@@ -76,7 +79,8 @@ return {
 	["Speak with {npc:251903} and {npc:254089}, north-west of the village"] = "与村子西北边的{npc:251903}和{npc:254089}交谈",
 
 	-- Step 11: Raan Wildwind
-	["/sit by Raan's campfire until you get Boosted Rest"] = "在拉安的篝火旁/sit，直到获得Boosted Rest",
+	-- {spell:1229451} Boosted Rest
+	["/sit by Raan's campfire until you get {spell:1229451}"] = "",
 
 	-- Step 12: Village quests
 	["Village quests"] = "村庄任务",
@@ -98,8 +102,8 @@ return {
 	["Shen'dar turn-ins"] = "申达尔交还任务",
 
 	-- Step 17: Falaath Village
-	-- {npc:257065} Missionary Jasaan · {quest:92529} Falaath Village
-	["{npc:257065} waits at the entrance to {quest:92529}, south of Shen'dar. The Mark of Akir lets you walk in among the faithful."] = "{npc:257065}在申达尔南边的{quest:92529}入口处等候。Mark of Akir让你可以混进信徒之中。",
+	-- {npc:257065} Missionary Jasaan · {quest:92529} Falaath Village · {spell:1254832} Mark of Akir
+	["{npc:257065} waits at the entrance to {quest:92529}, south of Shen'dar. The {spell:1254832} lets you walk in among the faithful."] = "",
 	["Search the wardrobe"] = "搜查衣柜",
 
 	-- Step 19: Havoc in Falaath
@@ -196,9 +200,6 @@ return {
 	["{npc:254588}: tame it with the {item:15908}"] = "{npc:254588}：用{item:15908}驯服它",
 	-- {item:15908} Taming Rod
 	["Tame it with the {item:15908}"] = "用{item:15908}驯服它",
-	["Tame Beast"] = "驯服野兽",
-	-- {npc:254411} Quel'dora Quickgale
-	["{npc:254411}: Beast Training"] = "{npc:254411}：训练野兽",
 
 	-- Step 36: The Windstone Formations
 	-- plural, as words: Windstone Formations = {object:697118} Windstone Formation
@@ -238,8 +239,6 @@ return {
 	-- Step 43: Strength and Mercy
 	-- {npc:255853} Urs'endris · {area:16638} Valanaar
 	["Back to {npc:255853} by the falls north-east of {area:16638}, on the way north to the shrine."] = "回到{area:16638}东北边瀑布旁的{npc:255853}那里，就在北上前往圣坛的路上。",
-	-- {npc:255853} Urs'endris
-	["{npc:255853}: Bear Form"] = "{npc:255853}：熊形态",
 
 	-- Step 44: The Shrine of Akir
 	-- {area:16629} Shrine of Akir
@@ -273,8 +272,9 @@ return {
 	["{npc:257944}, the missive"] = "{npc:257944}，密信",
 
 	-- Step 50: The Strange Hermit
-	-- {quest:93159} The Strange Hermit · {item:257128} Zephyrseed
-	["{quest:93159} lives west of Elegael. The {item:257128} Cones lie in the woods between his hut and Elegael."] = "{quest:93159}住在Elegael西边。{item:257128}球果散落在他的小屋和Elegael之间的树林里。",
+	-- {quest:93159} The Strange Hermit
+	-- plural, as words: Zephyrseed Cones = {object:613238} Zephyrseed Cone
+	["{quest:93159} lives west of Elegael. The Zephyrseed Cones lie in the woods between his hut and Elegael."] = "",
 
 	-- Step 51: The refugees' camp
 	["The refugees' camp"] = "难民营地",
@@ -294,8 +294,6 @@ return {
 	["{area:16638}, the fate of Zephras"] = "{area:16638}，泽风岛的命运",
 	-- {npc:252475} Elaadrin Evengale · {npc:259084} Denaaris Stargale
 	["{npc:252475}: {npc:259084} waits by the Skyborne portal"] = "{npc:252475}：{npc:259084}在天裔传送门旁等候",
-	-- {npc:252377} Seena Skybreaker
-	["{npc:252377}: Defensive Stance"] = "{npc:252377}：防御姿态",
 
 	-- Step 55: The skycutter
 	["The skycutter"] = "天空快船",
@@ -317,8 +315,8 @@ return {
 	["For {npc:234} at {area:108}"] = "前往{area:108}找{npc:234}",
 
 	-- Step 58: Sheldras Moontree
-	-- {npc:5504} Sheldras Moontree · {zone:1453} Stormwind City · {quest:94914} Moonglade · {npc:11802} Dendrite Starblaze · {zone:1439} Darkshore
-	["{npc:5504}, {zone:1453}'s druid trainer, teaches you Teleport: {quest:94914}. {npc:11802}'s welcome waits for your Cat Form trip at the end of {zone:1439}."] = "{npc:5504}，{zone:1453}的德鲁伊训练师，教你传送：{quest:94914}。{npc:11802}的欢迎任务会在{zone:1439}尽头等着你的猎豹形态之旅。",
+	-- {npc:5504} Sheldras Moontree · {zone:1453} Stormwind City · {spell:18960} Teleport: Moonglade · {npc:11802} Dendrite Starblaze · {spell:499} Cat Form · {zone:1439} Darkshore
+	["{npc:5504}, {zone:1453}'s druid trainer, teaches you {spell:18960}. {npc:11802}'s welcome waits for your {spell:499} trip at the end of {zone:1439}."] = "",
 
 	-- Step 59: Jennea Cannon
 	-- {npc:5497} Jennea Cannon · {object:2101} Mage Quarter · {quest:1861} Mirror Lake
@@ -327,4 +325,17 @@ return {
 	-- Step 60: Mirror Lake
 	-- {zone:1453} Stormwind City · {quest:1861} Mirror Lake · {zone:1436} Westfall · {item:7207} Jennea's Flask
 	["Leave {zone:1453} by the main gate. The {quest:1861} waterfall is south-west of the gates, on the way west to {zone:1436}: fill {item:7207} at its base."] = "从正门离开{zone:1453}。{quest:1861}瀑布在城门西南边，就在西去{zone:1436}的路上：在瀑布底部装满{item:7207}。",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["/sit by Raan's campfire until you get Boosted Rest"] = "在拉安的篝火旁/sit，直到获得Boosted Rest",
+	-- ["Cast Read {object:460002} at the {object:460002}"] = "对{object:460002}施放Read {object:460002}",
+	-- ["Tame Beast"] = "驯服野兽",
+	-- ["Use Walk on Air"] = "使用Walk on Air",
+	-- ["{npc:249363} keeps watch east of the grove. The {npc:251143} and Al'Aketh Converts gather just north of her; the {object:460002} rises further north: cast your Read {object:460002} racial ability at it."] = "{npc:249363}在林地东边守望。{npc:251143}和奥拉凯斯信徒聚集在她北边不远处；{object:460002}在更北边升起：对它施放你的种族技能Read {object:460002}。",
+	-- ["{npc:252377}: Defensive Stance"] = "{npc:252377}：防御姿态",
+	-- ["{npc:254411}: Beast Training"] = "{npc:254411}：训练野兽",
+	-- ["{npc:255853}: Bear Form"] = "{npc:255853}：熊形态",
+	-- ["{npc:257065} waits at the entrance to {quest:92529}, south of Shen'dar. The Mark of Akir lets you walk in among the faithful."] = "{npc:257065}在申达尔南边的{quest:92529}入口处等候。Mark of Akir让你可以混进信徒之中。",
+	-- ["{npc:5504}, {zone:1453}'s druid trainer, teaches you Teleport: {quest:94914}. {npc:11802}'s welcome waits for your Cat Form trip at the end of {zone:1439}."] = "{npc:5504}，{zone:1453}的德鲁伊训练师，教你传送：{quest:94914}。{npc:11802}的欢迎任务会在{zone:1439}尽头等着你的猎豹形态之旅。",
+	-- ["{quest:93159} lives west of Elegael. The {item:257128} Cones lie in the woods between his hut and Elegael."] = "{quest:93159}住在Elegael西边。{item:257128}球果散落在他的小屋和Elegael之间的树林里。",
 }

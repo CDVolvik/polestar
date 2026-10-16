@@ -1,11 +1,13 @@
 -- French (frFR): the guide forever/alliance/06-ashenvale (forever/alliance/06-ashenvale.guide).
 -- Written by `node tools/polestar.js i18n guides sync frFR`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in French (the English is listed above the line). The comments are rewritten by sync.
+-- name there in French (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Step 1: Aquatic Form
-	-- {area:17203} Stormwind Harbor · {area:442} Auberdine · {item:15885} Pendant of the Sea Lion · {zone:1450} Moonglade · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {area:702} Rut'theran Village
-	["Take the boat from {area:17203} to {area:442}. Join the two half pendants into the {item:15885} and cast Teleport: {zone:1450}: {npc:11802} is in {area:2361}. Then fly to {area:702} (by way of {area:442})."] = "Prenez le bateau de {area:17203} à {area:442}. Assemblez les deux moitiés de pendentif pour obtenir {item:15885} et lancez Téléportation : {zone:1450} : {npc:11802} se trouve à {area:2361}. Volez ensuite jusqu'à {area:702} (en passant par {area:442}).",
+	-- {area:17203} Stormwind Harbor · {area:442} Auberdine · {item:15885} Pendant of the Sea Lion · {spell:18960} Teleport: Moonglade · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {area:702} Rut'theran Village
+	["Take the boat from {area:17203} to {area:442}. Join the two half pendants into the {item:15885} and cast {spell:18960}: {npc:11802} is in {area:2361}. Then fly to {area:702} (by way of {area:442})."] = "",
 	-- {item:15885} Pendant of the Sea Lion
 	["{item:15885}: join the two halves"] = "{item:15885} : assemblez les deux moitiés",
 
@@ -77,16 +79,16 @@ return {
 
 	-- Step 23: The Foulweald
 	["The Foulweald"] = "Les Vile-sylve",
-	-- {area:415} Astranaar · {area:364} The Den
-	["The Foulweald furbolgs live in the woods south of the road, south-east of {area:415}. {area:364} Watcher and the Ursas guard the den."] = "Les furbolgs Vile-sylve vivent dans les bois au sud de la route, au sud-est d'{area:415}. Le Protecteur et les Ursa gardent {area:364}.",
+	-- {area:415} Astranaar
+	["The Foulweald furbolgs live in the woods south of the road, south-east of {area:415}. The Den Watcher and the Ursas guard the den."] = "",
 
 	-- Step 24: Mystral Lake
 	-- {npc:3885} Sentinel Velene Starstrike · {area:420} Silverwind Refuge · {area:421} Mystral Lake · {npc:210995} Alonso
-	-- plural, as words: Befouled Water Elementals = {npc:3917} Befouled Water Elemental · Water Elementals = {npc:510} Water Elemental
+	-- plural, as words: Befouled Water Elementals = {npc:3917} Befouled Water Elemental
 	["{npc:3885} stands at the {area:420} on the east shore of {area:421}; {npc:210995} camps on its west shore. Befouled Water Elementals wade in the lake between them."] = "{npc:3885} se tient au {area:420}, sur la rive est du {area:421} ; {npc:210995} campe sur sa rive ouest. Des Elémentaires d’eau souillés pataugent dans le lac entre les deux.",
-	-- {quest:1016} Elemental Bracers · {item:5456} Divining Scroll
+	-- {item:5456} Divining Scroll
 	-- plural, as words: Intact Elemental Bracers = {item:12220} Intact Elemental Bracer
-	["Kill the elementals for 5 Intact {quest:1016}, then use the {item:5456}"] = "Tuez les élémentaires pour obtenir 5 Bracelets élémentaires intacts ({quest:1016}), puis utilisez {item:5456}",
+	["Kill the elementals for 5 Intact Elemental Bracers, then use the {item:5456}"] = "",
 
 	-- Step 25: The Ruins of Stardust
 	-- {area:421} Mystral Lake
@@ -112,8 +114,8 @@ return {
 	["To {area:150}"] = "Vers {area:150}",
 	-- {area:1276} The Talondeep Path
 	["Hearthstone on cooldown? Ride back north through the {area:1276}."] = "Pierre de foyer en recharge ? Revenez vers le nord par {area:1276}.",
-	-- {object:176364} Boat to Menethil
-	["{object:176364} Harbor"] = "{object:176364}",
+	-- {area:150} Menethil Harbor
+	["Boat to {area:150}"] = "",
 
 	-- Step 32: Menethil Harbor
 	-- {npc:1242} Karl Boran
@@ -153,9 +155,8 @@ return {
 
 	-- Step 40: Young crocolisks
 	["Young crocolisks"] = "Jeunes crocilisques",
-	-- {zone:1437} Wetlands
 	-- plural, as words: Young Wetlands Crocolisks = {npc:1417} Young Wetlands Crocolisk
-	["Follow the road east. Young {zone:1437} Crocolisks lurk in the pools north of the excavation site."] = "Suivez la route vers l'est. Les Jeunes crocilisques ({zone:1437}) rôdent dans les mares au nord des excavations.",
+	["Follow the road east. Young Wetlands Crocolisks lurk in the pools north of the excavation site."] = "",
 
 	-- Step 41: Whelgar's Excavation Site
 	["The excavation site sits on the hill south of the road."] = "Les excavations se trouvent sur la colline au sud de la route.",
@@ -266,4 +267,11 @@ return {
 	-- Step 65: Trade District
 	-- {area:42} Darkshire
 	["Next: fly to {area:42}."] = "Ensuite : volez jusqu'à {area:42}.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Follow the road east. Young {zone:1437} Crocolisks lurk in the pools north of the excavation site."] = "Suivez la route vers l'est. Les Jeunes crocilisques ({zone:1437}) rôdent dans les mares au nord des excavations.",
+	-- ["Kill the elementals for 5 Intact {quest:1016}, then use the {item:5456}"] = "Tuez les élémentaires pour obtenir 5 Bracelets élémentaires intacts ({quest:1016}), puis utilisez {item:5456}",
+	-- ["Take the boat from {area:17203} to {area:442}. Join the two half pendants into the {item:15885} and cast Teleport: {zone:1450}: {npc:11802} is in {area:2361}. Then fly to {area:702} (by way of {area:442})."] = "Prenez le bateau de {area:17203} à {area:442}. Assemblez les deux moitiés de pendentif pour obtenir {item:15885} et lancez Téléportation : {zone:1450} : {npc:11802} se trouve à {area:2361}. Volez ensuite jusqu'à {area:702} (en passant par {area:442}).",
+	-- ["The Foulweald furbolgs live in the woods south of the road, south-east of {area:415}. {area:364} Watcher and the Ursas guard the den."] = "Les furbolgs Vile-sylve vivent dans les bois au sud de la route, au sud-est d'{area:415}. Le Protecteur et les Ursa gardent {area:364}.",
+	-- ["{object:176364} Harbor"] = "{object:176364}",
 }

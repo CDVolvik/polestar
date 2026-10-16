@@ -1,7 +1,9 @@
 -- Korean (koKR): the guide forever/class/warrior/heirloom-weapon (forever/class/warrior/heirloom-weapon.guide).
 -- Written by `node tools/polestar.js i18n guides sync koKR`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Korean (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Guide
 	-- {spell:71} Defensive Stance
@@ -17,7 +19,7 @@ return {
 
 	-- Step 3: Agamand Mills
 	-- {area:157} Agamand Mills · {area:159} Brill
-	-- plural, as words: Agamand Weapon Racks = {object:105169} Agamand Weapon Rack · Weapon Racks = {object:181627} Weapon Rack
+	-- plural, as words: Agamand Weapon Racks = {object:105169} Agamand Weapon Rack
 	["The four Agamand Weapon Racks stand among the buildings of {area:157}, north of {area:159}. The mills' undead attack on sight."] = "아가만드 무기 선반 네 개가 {area:159} 북쪽 {area:157}의 건물들 사이에 있습니다. 방앗간의 언데드는 보는 즉시 공격합니다.",
 
 	-- Step 4: Back to Coleman Farthing

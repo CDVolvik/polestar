@@ -1,7 +1,9 @@
 -- Spanish (Latin America) (esMX): the guide forever/class/shaman/call-of-air-alliance (forever/class/shaman/call-of-air-alliance.guide).
 -- Written by `node tools/polestar.js i18n guides sync esMX`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Spanish (Latin America) (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Spanish (Latin America) (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Guide
 	-- {quest:94789} Call of Air
@@ -26,31 +28,31 @@ return {
 	["{item:274463}, from {npc:4421}"] = "{item:274463}, de {npc:4421}",
 
 	-- Step 5: Twisted Fire Totems
-	-- plural, as words: Twisted Fire Totems = {item:274044} Twisted Fire Totem · Fire Totems = {item:5176} Fire Totem
+	-- plural, as words: Twisted Fire Totems = {item:274044} Twisted Fire Totem
 	["Twisted Fire Totems"] = "Tótems de fuego retorcidos",
 	-- {zone:1418} Badlands
-	-- plural, as words: Twisted Fire Totems = {item:274044} Twisted Fire Totem · Fire Totems = {item:5176} Fire Totem
+	-- plural, as words: Twisted Fire Totems = {item:274044} Twisted Fire Totem
 	["The Stonevault troggs in the south of the {zone:1418} carry the Twisted Fire Totems."] = "Los troggs Grutacanto del sur de {zone:1418} llevan los tótems de fuego retorcidos.",
 
 	-- Step 6: Twisted Earth Totems
-	-- plural, as words: Twisted Earth Totems = {item:274045} Twisted Earth Totem · Earth Totems = {item:5175} Earth Totem
+	-- plural, as words: Twisted Earth Totems = {item:274045} Twisted Earth Totem
 	["Twisted Earth Totems"] = "Tótems de tierra retorcidos",
 	-- {zone:1435} Swamp of Sorrows
-	-- plural, as words: The Lost Ones = {npc:256028} The Lost One · Lost Ones = {npc:254797} Lost One · Twisted Earth Totems = {item:274045} Twisted Earth Totem · Earth Totems = {item:5175} Earth Totem
+	-- plural, as words: The Lost Ones = {npc:256028} The Lost One · Twisted Earth Totems = {item:274045} Twisted Earth Totem
 	["The Lost Ones in the north of the {zone:1435} carry the Twisted Earth Totems."] = "Los perdidos del norte de {zone:1435} llevan los tótems de tierra retorcidos.",
 
 	-- Step 7: Twisted Water Totems
-	-- plural, as words: Twisted Water Totems = {item:274046} Twisted Water Totem · Water Totems = {item:5177} Water Totem
+	-- plural, as words: Twisted Water Totems = {item:274046} Twisted Water Totem
 	["Twisted Water Totems"] = "Tótems de agua retorcidos",
 	-- {zone:1445} Dustwallow Marsh
-	-- plural, as words: Twisted Water Totems = {item:274046} Twisted Water Totem · Water Totems = {item:5177} Water Totem
+	-- plural, as words: Twisted Water Totems = {item:274046} Twisted Water Totem
 	["The Mirefin murlocs of northern {zone:1445} carry the Twisted Water Totems."] = "Los múrlocs Ancalodo del norte de {zone:1445} llevan los tótems de agua retorcidos.",
 
 	-- Step 8: Twisted Air Totems
-	-- plural, as words: Twisted Air Totems = {item:274047} Twisted Air Totem · Air Totems = {item:5178} Air Totem
+	-- plural, as words: Twisted Air Totems = {item:274047} Twisted Air Totem
 	["Twisted Air Totems"] = "Tótems de aire retorcidos",
 	-- {zone:1443} Desolace
-	-- plural, as words: Twisted Air Totems = {item:274047} Twisted Air Totem · Air Totems = {item:5178} Air Totem
+	-- plural, as words: Twisted Air Totems = {item:274047} Twisted Air Totem
 	["The Maraudine centaurs of western {zone:1443} carry the Twisted Air Totems."] = "Los centauros Maraudine del oeste de {zone:1443} llevan los tótems de aire retorcidos.",
 
 	-- Step 10: The steam pools

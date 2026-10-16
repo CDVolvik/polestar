@@ -1,11 +1,12 @@
 -- Spanish (Spain) (esES): the guide forever/reputation/alterac-valley (forever/reputation/alterac-valley.guide).
 -- Written by `node tools/polestar.js i18n guides sync esES`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Spanish (Spain) (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Spanish (Spain) (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Guide
-	-- {zone:1459} Alterac Valley
-	["{zone:1459} Reputation"] = "Reputación de {zone:1459}",
+	["Alterac Valley Reputation"] = "",
 
 	-- Step 1: Stormpike Guard to Friendly
 	-- {faction:730} Stormpike Guard
@@ -49,8 +50,9 @@ return {
 	-- Step 6: Frostwolf Clan to Honored
 	-- {faction:729} Frostwolf Clan
 	["{faction:729} to Honored"] = "{faction:729} a Honorable",
-	-- {zone:1459} Alterac Valley · {npc:13176} Smith Regzar · {item:17306} Stormpike Soldier's Blood · {npc:13236} Primalist Thurloga · {npc:13256} Lokholar the Ice Lord · {npc:10990} Alterac Ram · {npc:13441} Frostwolf Wolf Rider Commander
-	["Keep winning {zone:1459}. More Booty! ({npc:13176}), {item:17306} for {npc:13236} (it summons {npc:13256}) and {npc:10990} Hides for the {npc:13441} all repeat."] = "Sigue ganando en {zone:1459}. ¡Más botines! ({npc:13176}), {item:17306} para {npc:13236} (invoca a {npc:13256}) y pellejos de {npc:10990} para el {npc:13441}: todas se repiten.",
+	-- {zone:1459} Alterac Valley · {npc:13176} Smith Regzar · {item:17306} Stormpike Soldier's Blood · {npc:13236} Primalist Thurloga · {npc:13256} Lokholar the Ice Lord · {npc:13441} Frostwolf Wolf Rider Commander
+	-- plural, as words: Alterac Ram Hides = {item:17642} Alterac Ram Hide
+	["Keep winning {zone:1459}. More Booty! ({npc:13176}), {item:17306} for {npc:13236} (it summons {npc:13256}) and Alterac Ram Hides for the {npc:13441} all repeat."] = "",
 	-- {npc:13176} Smith Regzar
 	["{npc:13176}: More Booty!"] = "{npc:13176}: ¡Más botines!",
 	-- {npc:13236} Primalist Thurloga
@@ -67,4 +69,8 @@ return {
 	["{faction:729} to Exalted"] = "{faction:729} a Exaltado",
 	-- {faction:729} Frostwolf Clan
 	["Exalted with the {faction:729} earns a Legacy Point."] = "Exaltado con el {faction:729} da un punto de Legado.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Keep winning {zone:1459}. More Booty! ({npc:13176}), {item:17306} for {npc:13236} (it summons {npc:13256}) and {npc:10990} Hides for the {npc:13441} all repeat."] = "Sigue ganando en {zone:1459}. ¡Más botines! ({npc:13176}), {item:17306} para {npc:13236} (invoca a {npc:13256}) y pellejos de {npc:10990} para el {npc:13441}: todas se repiten.",
+	-- ["{zone:1459} Reputation"] = "Reputación de {zone:1459}",
 }

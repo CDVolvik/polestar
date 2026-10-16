@@ -1,7 +1,9 @@
 -- Spanish (Latin America) (esMX): the guide forever/horde/50-60/02-felwood (forever/horde/50-60/02-felwood.guide).
 -- Written by `node tools/polestar.js i18n guides sync esMX`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Spanish (Latin America) (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Spanish (Latin America) (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Step 1: Fly to the Undercity
 	-- {area:1497} Undercity
@@ -165,7 +167,7 @@ return {
 
 	-- Step 39: Shatter Scar Vale
 	-- {area:1997} Bloodvenom Post
-	-- plural, as words: Entropic Beasts = {npc:9878} Entropic Beast · Horrors = {npc:251103} Horror
+	-- plural, as words: Entropic Beasts = {npc:9878} Entropic Beast
 	["East of {area:1997}, the cratered vale where the Entropic Beasts and Horrors roam. Kill two of each, then walk to each of the three fel-water craters."] = "Al este de {area:1997}, la cañada de cráteres donde deambulan las bestias entrópicas y los horrores. Mata dos de cada uno y luego camina hasta cada uno de los tres cráteres de agua vil.",
 	["Southern crater"] = "Cráter sur",
 	["Western crater"] = "Cráter oeste",

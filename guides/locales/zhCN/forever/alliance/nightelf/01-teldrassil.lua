@@ -1,7 +1,9 @@
 -- Chinese (simplified) (zhCN): the guide forever/alliance/nightelf/01-teldrassil (forever/alliance/nightelf/01-teldrassil.guide).
 -- Written by `node tools/polestar.js i18n guides sync zhCN`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Chinese (simplified) (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Chinese (simplified) (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Step 1: Aldrassil
 	-- {area:256} Aldrassil · {area:188} Shadowglen
@@ -13,7 +15,7 @@ return {
 
 	-- Step 2: The Balance of Nature
 	-- {area:256} Aldrassil · {item:3297} Fel Moss
-	-- plural, as words: Young Nightsabers = {npc:2031} Young Nightsaber · Young Thistle Boars = {npc:1984} Young Thistle Boar · Thistle Boars = {npc:1985} Thistle Boar · Gnarlpine Totems = {item:279082} Gnarlpine Totem
+	-- plural, as words: Young Nightsabers = {npc:2031} Young Nightsaber · Young Thistle Boars = {npc:1984} Young Thistle Boar · Gnarlpine Totems = {item:279082} Gnarlpine Totem
 	["Young Nightsabers and Young Thistle Boars roam around {area:256}. Grells carry {item:3297} in the woods west of the tree, where the Gnarlpine Totems stand."] = "夜刃豹幼崽和草刺野猪幼崽在{area:256}周围游荡。小劣魔在巨树西边的树林里携带{item:3297}，瘤背图腾就立在那里。",
 
 	-- Step 3: Back at Aldrassil
@@ -25,8 +27,8 @@ return {
 	["{npc:2082}, on the tree's ramp"] = "{npc:2082}，在巨树的坡道上",
 	-- {npc:3595} Shanda
 	["{npc:3595}, inside the tree"] = "{npc:3595}，在巨树内",
-	-- {quest:97979} The Goddess Provides · {npc:3595} Shanda
-	["{quest:97979}: cast Elune's Light and Shadowmeld, then hand it back to {npc:3595}"] = "{quest:97979}：施放Elune's Light和影遁，然后交还给{npc:3595}",
+	-- {quest:97979} The Goddess Provides · {spell:1259799} Elune's Light · {spell:20580} Shadowmeld · {npc:3595} Shanda
+	["{quest:97979}: cast {spell:1259799} and {spell:20580}, then hand it back to {npc:3595}"] = "",
 	-- {npc:8583} Dirania Silvershine
 	["{npc:8583}, east of the tree"] = "{npc:8583}，在巨树东边",
 
@@ -106,7 +108,8 @@ return {
 	["{area:186} quests"] = "{area:186}的任务",
 
 	-- Step 16: The Great Outdoors
-	["/sit by Lyreena's campfire until you get Boosted Rest"] = "在莉瑞娜的篝火旁 /sit，直到获得Boosted Rest",
+	-- {spell:1229451} Boosted Rest
+	["/sit by Lyreena's campfire until you get {spell:1229451}"] = "",
 	-- {npc:6286} Zarrin
 	["Speak with {npc:6286}, south of the inn"] = "与旅店南边的{npc:6286}交谈",
 
@@ -251,7 +254,6 @@ return {
 	["{npc:2043}: tame it with the {item:15908}"] = "{npc:2043}：用{item:15908}驯服它",
 	-- {npc:1996} Strigid Screecher · {item:15908} Taming Rod
 	["{npc:1996}: tame it with the {item:15908}"] = "{npc:1996}：用{item:15908}驯服它",
-	["Tame Beast"] = "驯服野兽",
 	-- {npc:4146} Jocaste · {zone:1457} Darnassus
 	["{npc:4146} in {zone:1457} takes it"] = "交给{zone:1457}的{npc:4146}",
 
@@ -264,24 +266,24 @@ return {
 	["Follow the road west into {zone:1457}. {npc:4241} stands on the {area:1659} just inside the city. {npc:3516} is in the {area:1658} at the north end of the city, {quest:922} just south of it; {npc:4092} and {npc:7999} are in the Temple of the Moon at the south end. {npc:7316} is in the west of the city, on the way to the pink portal down to Rut'theran."] = "沿道路向西进入{zone:1457}。{npc:4241}站在一进城的{area:1659}上。{npc:3516}在城市北端的{area:1658}，{quest:922}就在其南边；{npc:4092}和{npc:7999}在南端的月神殿。{npc:7316}在城市西部，在通往鲁瑟兰村的粉色传送门的路上。",
 	-- {npc:3516} Arch Druid Fandral Staghelm · {area:1658} Cenarion Enclave
 	["{npc:3516}, in the {area:1658}"] = "{npc:3516}，在{area:1658}",
-	-- {npc:4146} Jocaste · {area:1658} Cenarion Enclave
-	["{npc:4146}, in the {area:1658}: Beast Training"] = "{npc:4146}，在{area:1658}：训练野兽",
+	-- {npc:4146} Jocaste · {area:1658} Cenarion Enclave · {spell:5149} Beast Training
+	["{npc:4146}, in the {area:1658}: {spell:5149}"] = "",
 	-- {npc:4217} Mathrengyl Bearwalker · {area:1658} Cenarion Enclave
 	["{npc:4217}, in the {area:1658}"] = "{npc:4217}，在{area:1658}",
 	-- {npc:4092} Lariia
 	["{npc:4092}, in the Temple of the Moon"] = "{npc:4092}，在月神殿",
 	-- {npc:7999} Tyrande Whisperwind · {npc:4092} Lariia
 	["{npc:7999}, above {npc:4092}"] = "{npc:7999}，在{npc:4092}上方",
-	-- {npc:11401} Priestess Alathea
-	["{npc:11401}, in the Temple of the Moon: Starshards"] = "{npc:11401}，在月神殿：星辰碎片",
+	-- {npc:11401} Priestess Alathea · {spell:10797} Starshards
+	["{npc:11401}, in the Temple of the Moon: {spell:10797}"] = "",
 
 	-- Step 43: Rut'theran Village
 	-- {area:702} Rut'theran Village · {npc:3838} Vesprystus
 	["Take the portal down to {area:702}. Nessa stands on the dock, {npc:3838} by the hippogryphs."] = "乘传送门下到{area:702}。尼莎站在码头上，{npc:3838}在角鹰兽旁边。",
 
 	-- Step 45: Moonglade
-	-- {area:442} Auberdine · {area:493} Moonglade · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {quest:5929} Great Bear Spirit · {area:702} Rut'theran Village
-	["Learn the {area:442} flight path on the hill south of the inn, then cast Teleport: {area:493}. {npc:11802} is in {area:2361}; the {quest:5929} sits in the woods to the north-west. Learn the {area:493} flight path in {area:2361} and fly to {area:702} (by way of {area:442})."] = "在旅店南边的山丘上学会{area:442}的飞行路线，然后施放传送：{area:493}。{npc:11802}在{area:2361}；{quest:5929}在西北方的树林里。在{area:2361}学会{area:493}的飞行路线，然后飞往{area:702}（途经{area:442}）。",
+	-- {area:442} Auberdine · {spell:18960} Teleport: Moonglade · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {quest:5929} Great Bear Spirit · {area:493} Moonglade · {area:702} Rut'theran Village
+	["Learn the {area:442} flight path on the hill south of the inn, then cast {spell:18960}. {npc:11802} is in {area:2361}; the {quest:5929} sits in the woods to the north-west. Learn the {area:493} flight path in {area:2361} and fly to {area:702} (by way of {area:442})."] = "",
 	-- {quest:5929} Great Bear Spirit
 	["Speak with the {quest:5929}"] = "与{quest:5929}交谈",
 
@@ -298,8 +300,6 @@ return {
 	-- Step 48: Body and Heart
 	-- {area:702} Rut'theran Village · {area:442} Auberdine
 	["Fly to {area:702} once more and take the portal up to Mathrengyl, then fly back to {area:442} for the boat."] = "再次飞往{area:702}，乘传送门上去找玛斯雷，然后飞回{area:442}乘船。",
-	-- {npc:4217} Mathrengyl Bearwalker
-	["{npc:4217}: Bear Form"] = "{npc:4217}：熊形态",
 
 	-- Step 49: Auberdine
 	-- {npc:4200} Laird · {zone:1453} Stormwind City
@@ -310,9 +310,17 @@ return {
 	["From {area:17203}, ride through the city gates into {zone:1429} and follow the road west to {zone:1436}."] = "从{area:17203}穿过城门进入{zone:1429}，沿道路向西前往{zone:1436}。",
 
 	-- Step 50: Defensive Stance
-	["Defensive Stance"] = "防御姿态",
 	-- {object:2100} Old Town · {npc:5480} Ilsa Corbin · {npc:6089} Harry Burlguard · {npc:6090} Bartleby · {object:2152} Pig and Whistle Tavern
 	["From the harbour walk into {object:2100}. {npc:5480} trains warriors there; {npc:6089} and {npc:6090} stand together by the {object:2152}. {npc:6090} fights you for his mug."] = "从港口步行进入{object:2100}。{npc:5480}在那里训练战士；{npc:6089}和{npc:6090}一起站在{object:2152}旁。{npc:6090}会为了他的杯子和你打一架。",
-	-- {npc:6089} Harry Burlguard
-	["{npc:6089}: Defensive Stance"] = "{npc:6089}：防御姿态",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["/sit by Lyreena's campfire until you get Boosted Rest"] = "在莉瑞娜的篝火旁 /sit，直到获得Boosted Rest",
+	-- ["Defensive Stance"] = "防御姿态",
+	-- ["Learn the {area:442} flight path on the hill south of the inn, then cast Teleport: {area:493}. {npc:11802} is in {area:2361}; the {quest:5929} sits in the woods to the north-west. Learn the {area:493} flight path in {area:2361} and fly to {area:702} (by way of {area:442})."] = "在旅店南边的山丘上学会{area:442}的飞行路线，然后施放传送：{area:493}。{npc:11802}在{area:2361}；{quest:5929}在西北方的树林里。在{area:2361}学会{area:493}的飞行路线，然后飞往{area:702}（途经{area:442}）。",
+	-- ["Tame Beast"] = "驯服野兽",
+	-- ["{npc:11401}, in the Temple of the Moon: Starshards"] = "{npc:11401}，在月神殿：星辰碎片",
+	-- ["{npc:4146}, in the {area:1658}: Beast Training"] = "{npc:4146}，在{area:1658}：训练野兽",
+	-- ["{npc:4217}: Bear Form"] = "{npc:4217}：熊形态",
+	-- ["{npc:6089}: Defensive Stance"] = "{npc:6089}：防御姿态",
+	-- ["{quest:97979}: cast Elune's Light and Shadowmeld, then hand it back to {npc:3595}"] = "{quest:97979}：施放Elune's Light和影遁，然后交还给{npc:3595}",
 }

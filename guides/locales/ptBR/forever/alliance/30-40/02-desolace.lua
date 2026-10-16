@@ -1,7 +1,9 @@
 -- Portuguese (Brazil) (ptBR): the guide forever/alliance/30-40/02-desolace (forever/alliance/30-40/02-desolace.guide).
 -- Written by `node tools/polestar.js i18n guides sync ptBR`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Portuguese (Brazil) (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Portuguese (Brazil) (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Step 1: Menethil Harbor
 	-- {zone:1455} Ironforge · {npc:1573} Gryth Thurden
@@ -41,13 +43,13 @@ return {
 	["Azore's tower stands on the hill west of {area:599}: take his quest first, the sceptre he wants is in the fortress."] = "A torre de Azore fica no morro a oeste de {area:599}: pegue a missão dele primeiro; o cetro que ele quer está na fortaleza.",
 
 	-- Step 11: Dalinda Malem
-	-- {area:608} Nijel's Point
-	["Dalinda hides inside the Burning Blade's fortress south-west of {area:608}."] = "Dalinda se esconde na fortaleza da Lâmina Ardente, a sudoeste de {area:608}.",
+	-- {spell:1294269} Burning Blade · {area:608} Nijel's Point
+	["Dalinda hides inside the {spell:1294269}'s fortress south-west of {area:608}."] = "",
 
 	-- Step 12: Tyranis and the Seer
 	["Tyranis and the Seer"] = "Tyranis e o Vidente",
-	-- {npc:13019} Burning Blade Seer
-	["Her brother Tyranis (36) walks the fortress with the Burning Blade cultists (30-33): pull him alone. The {npc:13019} keeps the sceptre in the fortress's main building."] = "O irmão dela, Tyranis (36), anda pela fortaleza com os Sectários da Lâmina Ardente (30-33): puxe-o sozinho. {npc:13019} guarda o cetro no prédio principal da fortaleza.",
+	-- {spell:1294269} Burning Blade · {npc:13019} Burning Blade Seer
+	["Her brother Tyranis (36) walks the fortress with the {spell:1294269} cultists (30-33): pull him alone. The {npc:13019} keeps the sceptre in the fortress's main building."] = "",
 
 	-- Step 13: Escort Dalinda
 	["Escort Dalinda"] = "Escolte Dalinda",
@@ -82,4 +84,8 @@ return {
 	-- Step 21: Kolkar Village
 	-- {area:609} Kolkar Village · {npc:5752} Corporal Melkins
 	["The Kolkar roam the plains around {area:609}; their ears are for {npc:5752}."] = "Os Kolkar vagam pelas planícies ao redor de {area:609}; as orelhas deles são para {npc:5752}.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Dalinda hides inside the Burning Blade's fortress south-west of {area:608}."] = "Dalinda se esconde na fortaleza da Lâmina Ardente, a sudoeste de {area:608}.",
+	-- ["Her brother Tyranis (36) walks the fortress with the Burning Blade cultists (30-33): pull him alone. The {npc:13019} keeps the sceptre in the fortress's main building."] = "O irmão dela, Tyranis (36), anda pela fortaleza com os Sectários da Lâmina Ardente (30-33): puxe-o sozinho. {npc:13019} guarda o cetro no prédio principal da fortaleza.",
 }

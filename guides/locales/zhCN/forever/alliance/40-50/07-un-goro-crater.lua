@@ -1,7 +1,9 @@
 -- Chinese (simplified) (zhCN): the guide forever/alliance/40-50/07-un-goro-crater (forever/alliance/40-50/07-un-goro-crater.guide).
 -- Written by `node tools/polestar.js i18n guides sync zhCN`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Chinese (simplified) (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Chinese (simplified) (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Step 1: Gadgetzan
 	-- {area:144} Thelsamar · {area:150} Menethil Harbor · {area:976} Gadgetzan
@@ -17,10 +19,11 @@ return {
 	["The dead Threshadon lies by the water north of Torwa."] = "死去的蛇颈龙躺在托尔瓦北边的水边。",
 
 	-- Step 5: Lar'korwi Mates and the raft
-	-- {npc:9684} Lar'korwi
-	["{npc:9684} Mates and the raft"] = "{npc:9684}的配偶和木筏",
-	-- {npc:9684} Lar'korwi · {npc:8737} Linken · {item:11116} A Mangled Journal
-	["The {npc:9684} Mates prowl the jungle west of Torwa. The wrecked raft lies on the shore of the lake there; the small pack sits in the water beside it. Keep the compass, map and key for {npc:8737}. Any beast in the crater may drop {item:11116}: right-click it."] = "{npc:9684}的配偶在托尔瓦西边的丛林中徘徊。失事的木筏在那里的湖岸上；小背包在它旁边的水里。指南针、地图和钥匙留给{npc:8737}。环形山中任何野兽都可能掉落{item:11116}：右键点击它。",
+	-- plural, as words: Lar'korwi Mates = {npc:9683} Lar'korwi Mate
+	["Lar'korwi Mates and the raft"] = "",
+	-- {npc:8737} Linken · {item:11116} A Mangled Journal
+	-- plural, as words: Lar'korwi Mates = {npc:9683} Lar'korwi Mate
+	["The Lar'korwi Mates prowl the jungle west of Torwa. The wrecked raft lies on the shore of the lake there; the small pack sits in the water beside it. Keep the compass, map and key for {npc:8737}. Any beast in the crater may drop {item:11116}: right-click it."] = "",
 
 	-- Step 7: Marshal's Refuge
 	-- {area:541} Marshal's Refuge · {object:157936} Un'Goro Dirt Pile
@@ -37,8 +40,9 @@ return {
 	-- Step 9: Fire Plume Ridge and the eastern jungle
 	-- {area:537} Fire Plume Ridge
 	["{area:537} and the eastern jungle"] = "{area:537}和东部丛林",
-	-- {area:537} Fire Plume Ridge · {item:11316} Bloodpetal · {item:11113} Crate of Foodstuffs
-	["Ride south to {area:537} in the middle of the crater, then east into the eastern jungle. Crystal clusters stand all over the crater, many of them around {area:537}: take a few extra of each colour. {item:11316} Lashers and Threshers drop the petals; the expedition's {item:11113} sits at an abandoned camp in the eastern jungle."] = "向南骑行到环形山中央的{area:537}，然后向东进入东部丛林。水晶簇遍布环形山，很多在{area:537}周围：每种颜色多拿几个。{item:11316}鞭笞者和猛击者掉落花瓣；探险队的{item:11113}在东部丛林的一处废弃营地里。",
+	-- {area:537} Fire Plume Ridge · {item:11113} Crate of Foodstuffs
+	-- plural, as words: Bloodpetal Lashers = {npc:6509} Bloodpetal Lasher
+	["Ride south to {area:537} in the middle of the crater, then east into the eastern jungle. Crystal clusters stand all over the crater, many of them around {area:537}: take a few extra of each colour. Bloodpetal Lashers and Threshers drop the petals; the expedition's {item:11113} sits at an abandoned camp in the eastern jungle."] = "",
 
 	-- Step 10: A-Me 01
 	-- {area:1943} Ironstone Plateau
@@ -183,4 +187,9 @@ return {
 	-- Step 44: Xiggs Fuselighter
 	-- {object:32359} The Military Ward
 	["Xiggs waits in the {object:32359}."] = "西格斯在{object:32359}等候。",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Ride south to {area:537} in the middle of the crater, then east into the eastern jungle. Crystal clusters stand all over the crater, many of them around {area:537}: take a few extra of each colour. {item:11316} Lashers and Threshers drop the petals; the expedition's {item:11113} sits at an abandoned camp in the eastern jungle."] = "向南骑行到环形山中央的{area:537}，然后向东进入东部丛林。水晶簇遍布环形山，很多在{area:537}周围：每种颜色多拿几个。{item:11316}鞭笞者和猛击者掉落花瓣；探险队的{item:11113}在东部丛林的一处废弃营地里。",
+	-- ["The {npc:9684} Mates prowl the jungle west of Torwa. The wrecked raft lies on the shore of the lake there; the small pack sits in the water beside it. Keep the compass, map and key for {npc:8737}. Any beast in the crater may drop {item:11116}: right-click it."] = "{npc:9684}的配偶在托尔瓦西边的丛林中徘徊。失事的木筏在那里的湖岸上；小背包在它旁边的水里。指南针、地图和钥匙留给{npc:8737}。环形山中任何野兽都可能掉落{item:11116}：右键点击它。",
+	-- ["{npc:9684} Mates and the raft"] = "{npc:9684}的配偶和木筏",
 }

@@ -1,7 +1,9 @@
 -- Spanish (Latin America) (esMX): the guide forever/horde/05-stonetalon-mountains (forever/horde/05-stonetalon-mountains.guide).
 -- Written by `node tools/polestar.js i18n guides sync esMX`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Spanish (Latin America) (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Spanish (Latin America) (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Step 1: Kadrak
 	-- {area:380} The Crossroads · {npc:8582} Kadrak · {area:1703} The Mor'shan Rampart · {zone:1440} Ashenvale · {item:16783} Bundle of Reports
@@ -26,9 +28,9 @@ return {
 	["The {npc:12864} patrols the road east of {area:428} toward the {area:430}."] = "{npc:12864} patrulla el camino al este de {area:428}, hacia {area:430}.",
 
 	-- Step 6: Va'xug Firefure
-	-- {npc:267214} Va'xug Firefure · {area:415} Astranaar · {zone:1440} Ashenvale
-	-- plural, as words: Shadowhorn Stags = {npc:3817} Shadowhorn Stag
-	["On the ride west, {npc:267214} is stuck in a ravine south of the main road, south-east of {area:415}. Shadowhorn Stags and {zone:1440} Bears roam the woods all around it."] = "Cabalgando al oeste, {npc:267214} está atrapado en un barranco al sur del camino principal, al sureste de {area:415}. Los venados Necraste y los osos de {zone:1440} deambulan por el bosque a su alrededor.",
+	-- {npc:267214} Va'xug Firefure · {area:415} Astranaar
+	-- plural, as words: Shadowhorn Stags = {npc:3817} Shadowhorn Stag · Ashenvale Bears = {npc:3809} Ashenvale Bear
+	["On the ride west, {npc:267214} is stuck in a ravine south of the main road, south-east of {area:415}. Shadowhorn Stags and Ashenvale Bears roam the woods all around it."] = "",
 
 	-- Step 7: A Void Path
 	-- {npc:271181} Eye of Kilrogg
@@ -99,7 +101,7 @@ return {
 	-- {area:465} The Charred Vale · {item:16312} Incendrites
 	-- plural, as words: Gaea Seeds = {item:16205} Gaea Seed
 	["South-west of Sun Rock lies the burned {area:465}. Plant the Gaea Seeds in the dirt mounds on the valley floor; the fire elementals drop {item:16312}. Bloodfury Harpies and Ambushers nest on the north side, Slayers and Roguefeathers to the south."] = "Al suroeste del Refugio Roca del Sol está {area:465}, quemado. Planta las semillas de Gaia en los montones de tierra del fondo del valle; los elementales de fuego sueltan {item:16312}. Las arpías y emboscadoras Furia Sangrienta anidan en el lado norte; las destripadoras y malaplumas, al sur.",
-	-- plural, as words: Gaea Dirt Mounds = {object:177929} Gaea Dirt Mound · Dirt Mounds = {npc:15712} Dirt Mound
+	-- plural, as words: Gaea Dirt Mounds = {object:177929} Gaea Dirt Mound
 	["Gaea Dirt Mounds"] = "Túmulos de Gaia",
 	-- {item:277936} Glittering Sunstone
 	["{item:277936}, from any Bloodfury harpy"] = "{item:277936}, de cualquier arpía Furia Sangrienta",
@@ -148,4 +150,7 @@ return {
 	-- Step 28: Tarren Mill
 	-- {area:272} Tarren Mill
 	["Follow the road east along the river, then north-east up into the hills to {area:272}."] = "Sigue el camino al este junto al río y luego al noreste, subiendo a las colinas, hasta {area:272}.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["On the ride west, {npc:267214} is stuck in a ravine south of the main road, south-east of {area:415}. Shadowhorn Stags and {zone:1440} Bears roam the woods all around it."] = "Cabalgando al oeste, {npc:267214} está atrapado en un barranco al sur del camino principal, al sureste de {area:415}. Los venados Necraste y los osos de {zone:1440} deambulan por el bosque a su alrededor.",
 }

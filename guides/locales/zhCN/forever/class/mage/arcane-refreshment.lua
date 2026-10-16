@@ -1,7 +1,9 @@
 -- Chinese (simplified) (zhCN): the guide forever/class/mage/arcane-refreshment (forever/class/mage/arcane-refreshment.guide).
 -- Written by `node tools/polestar.js i18n guides sync zhCN`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Chinese (simplified) (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Chinese (simplified) (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Guide
 	-- {spell:10140} Conjure Water · {area:2577} Dire Maul
@@ -14,11 +16,13 @@ return {
 
 	-- Step 2: Hydrospawn
 	["Hydrospawn"] = "海多斯博恩",
-	-- {area:2577} Dire Maul
-	["Hydrospawn, a water elemental, lives in the Warpwood Quarter ({area:2577} East): chase the imp Pusillin until he turns to fight, clear the satyr room, then take the spiral ramp down to the pool."] = "海多斯博恩是一个水元素，位于Warpwood Quarter（{area:2577}东区）：追赶小鬼普希林直到他转身战斗，清理萨特房间，然后沿螺旋坡道下到水池。",
+	["Hydrospawn, a water elemental, lives in the Warpwood Quarter (Dire Maul East): chase the imp Pusillin until he turns to fight, clear the satyr room, then take the spiral ramp down to the pool."] = "",
 	-- {item:18299} Hydrospawn Essence
 	["{item:18299}: Hydrospawn"] = "{item:18299}：海多斯博恩",
 
 	-- Step 3: Back to Lydros
 	["Back to Lydros"] = "回到莱德罗斯处",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Hydrospawn, a water elemental, lives in the Warpwood Quarter ({area:2577} East): chase the imp Pusillin until he turns to fight, clear the satyr room, then take the spiral ramp down to the pool."] = "海多斯博恩是一个水元素，位于Warpwood Quarter（{area:2577}东区）：追赶小鬼普希林直到他转身战斗，清理萨特房间，然后沿螺旋坡道下到水池。",
 }

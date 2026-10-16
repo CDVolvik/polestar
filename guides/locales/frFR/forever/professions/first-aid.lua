@@ -1,7 +1,9 @@
 -- French (frFR): the guide forever/professions/first-aid (forever/professions/first-aid.guide).
 -- Written by `node tools/polestar.js i18n guides sync frFR`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in French (the English is listed above the line). The comments are rewritten by sync.
+-- name there in French (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Step 1: Learn First Aid
 	-- {skill:129} First Aid
@@ -125,6 +127,9 @@ return {
 	["humanoids of level 45-60 drop {item:14047} (or buy it at the Auction House)."] = "les humanoïdes de niveau 45-60 lâchent de l'{item:14047} (ou achetez-en à l'hôtel des ventes).",
 
 	-- Step 28: Runecloth Bandage (260-300)
-	-- {item:14529} Runecloth Bandage · {item:14047} Runecloth
-	["{item:14529} is yellow from 260 (yellow at 260, grey at 320): about 65 crafts to 300. Bandages need no fire: craft them anywhere. {item:14529} stays yellow to 320, so it carries you to 300 without a trip for Heavy {item:14047}."] = "{item:14529} est jaune dès 260 (jaune à 260, gris à 320) : environ 65 fabrications jusqu'à 300. Les bandages ne demandent pas de feu : fabriquez-les n'importe où. {item:14529} reste jaune jusqu'à 320 : il vous mène à 300 sans trajet pour le bandage épais en {item:14047}.",
+	-- {item:14529} Runecloth Bandage
+	["{item:14529} is yellow from 260 (yellow at 260, grey at 320): about 65 crafts to 300. Bandages need no fire: craft them anywhere. {item:14529} stays yellow to 320, so it carries you to 300 without a trip for Heavy Runecloth."] = "",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["{item:14529} is yellow from 260 (yellow at 260, grey at 320): about 65 crafts to 300. Bandages need no fire: craft them anywhere. {item:14529} stays yellow to 320, so it carries you to 300 without a trip for Heavy {item:14047}."] = "{item:14529} est jaune dès 260 (jaune à 260, gris à 320) : environ 65 fabrications jusqu'à 300. Les bandages ne demandent pas de feu : fabriquez-les n'importe où. {item:14529} reste jaune jusqu'à 320 : il vous mène à 300 sans trajet pour le bandage épais en {item:14047}.",
 }

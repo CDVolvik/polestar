@@ -1,7 +1,9 @@
 -- Portuguese (Brazil) (ptBR): the guide forever/horde/skyborne/01-zephras-isle (forever/horde/skyborne/01-zephras-isle.guide).
 -- Written by `node tools/polestar.js i18n guides sync ptBR`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Portuguese (Brazil) (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Portuguese (Brazil) (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Step 1: Thendal Village
 	-- {area:16635} Thendal Village
@@ -27,7 +29,8 @@ return {
 
 	-- Step 4: The watchtower
 	["The watchtower"] = "A torre de vigia",
-	["Climb the watchtower in the village, jump off the top and use Walk on Air to float down."] = "Suba a torre de vigia da aldeia, pule do topo e use Walk on Air para descer flutuando.",
+	-- {spell:1259416} Walk on Air
+	["Climb the watchtower in the village, jump off the top and use {spell:1259416} to float down."] = "",
 
 	-- Step 5: Rorian's errands
 	["Rorian's errands"] = "As tarefas de Rorian",
@@ -40,11 +43,11 @@ return {
 
 	-- Step 8: The standing stones
 	["The standing stones"] = "Os monólitos",
-	-- {npc:249363} Yala Windwatcher · {area:17678} Thendal Standing Stones · {npc:251143} Roiling Winds · {object:460001} Elemental Convergence
+	-- {npc:249363} Yala Windwatcher · {area:17678} Thendal Standing Stones · {npc:251143} Roiling Winds · {object:460001} Elemental Convergence · {spell:1259686} Skysight
 	-- plural, as words: Al'Aketh Converts = {npc:251160} Al'Aketh Convert
-	["{npc:249363} stands at the {area:17678}, east of the village. {npc:251143} and Al'Aketh Converts gather just north of her. The {object:460001} is just north-east of her: cast your Skysight racial ability next to it."] = "{npc:249363} fica em {area:17678}, a leste da aldeia. {npc:251143} e Convertidos Al'Aketh se reúnem logo ao norte dela. {object:460001} fica logo a nordeste dela: lance sua habilidade racial Skysight ao lado dela.",
-	-- {object:460001} Elemental Convergence
-	["Cast Skysight near the {object:460001}"] = "Lance Skysight perto de {object:460001}",
+	["{npc:249363} stands at the {area:17678}, east of the village. {npc:251143} and Al'Aketh Converts gather just north of her. The {object:460001} is just north-east of her: cast your {spell:1259686} racial ability next to it."] = "",
+	-- {spell:1259686} Skysight · {object:460001} Elemental Convergence
+	["Cast {spell:1259686} near the {object:460001}"] = "",
 
 	-- Step 9: The Cirrusfly Queen
 	["The queen hovers at the south-east end of the grove, on your way back from the stones."] = "A rainha paira no extremo sudeste do bosque, no caminho de volta dos monólitos.",
@@ -83,8 +86,7 @@ return {
 	["The Ursera den is west of the village. {npc:251115}, their matriarch, sits at its far end."] = "O covil dos Ursera fica a oeste da aldeia. {npc:251115}, a matriarca deles, fica no fundo.",
 
 	-- Step 16: Leaving Thendal Village
-	-- {area:16635} Thendal Village
-	["Leaving {area:16635}"] = "Saindo de {area:16635}",
+	["Leaving Thendal Village"] = "",
 
 	-- Step 17: Call of Earth
 	-- {npc:251374} Windshaper Boro · {area:16988} Rise of Spirits · {item:6635} Earth Sapta · {npc:251166} Minor Manifestation of Earth · {item:6656} Rough Quartz
@@ -100,9 +102,10 @@ return {
 
 	-- Step 19: Raan's campfire
 	["Raan's campfire"] = "A fogueira de Raan",
-	-- {npc:251905} Zerril Softbreeze
-	["Sit by Raan's campfire (type /sit) until you get the Boosted Rest buff, then find {npc:251905} at the cook fire."] = "Sente-se junto à fogueira de Raan (digite /sit) até receber o bônus Boosted Rest, depois encontre {npc:251905} na fogueira de cozinhar.",
-	["/sit by Raan's campfire until you get Boosted Rest"] = "/sit junto à fogueira de Raan até receber Boosted Rest",
+	-- {spell:1229451} Boosted Rest · {npc:251905} Zerril Softbreeze
+	["Sit by Raan's campfire (type /sit) until you get the {spell:1229451} buff, then find {npc:251905} at the cook fire."] = "",
+	-- {spell:1229451} Boosted Rest
+	["/sit by Raan's campfire until you get {spell:1229451}"] = "",
 	-- {npc:251905} Zerril Softbreeze
 	["talk to {npc:251905}"] = "fale com {npc:251905}",
 
@@ -223,8 +226,7 @@ return {
 	["The highwaymen hold the hills north-east of the orchard. More {object:616466} lie near the road to {area:16638}."] = "Os bandoleiros ocupam as colinas a nordeste do pomar. Mais {object:616466} ficam perto da estrada para {area:16638}.",
 
 	-- Step 45: Standing Our Ground
-	-- {npc:252800} Aamelia Windfield
-	["Tell {npc:252800} you're ready"] = "Diga a {npc:252800} que você está pronto",
+	["Tell Aamelia Windfield you're ready"] = "",
 
 	-- Step 46: Alvarion and Riaani
 	["Alvarion and Riaani"] = "Alvarion e Riaani",
@@ -232,10 +234,6 @@ return {
 	-- Step 47: Taming the Beast
 	-- {npc:252389} Quel'ana Quickgale · {area:16638} Valanaar · {item:15908} Taming Rod · {npc:254588} Windsong Crawler · {npc:251707} Ornery Galestrider · {npc:250874} Vuldren Alpha · {area:16663} Windfield Orchard · {npc:254411} Quel'dora Quickgale
 	["{npc:252389} in {area:16638} hands you a {item:15908} three times: tame a {npc:254588} by the lakes north-west of town, an {npc:251707} in the fields west of town and a {npc:250874} at {area:16663}, returning to her after each. {npc:254411} stands beside her."] = "{npc:252389}, em {area:16638}, entrega a você um {item:15908} três vezes: dome um {npc:254588} junto aos lagos a noroeste da cidade, um {npc:251707} nos campos a oeste da cidade e um {npc:250874} em {area:16663}, voltando a ela após cada um. {npc:254411} fica ao lado dela.",
-	-- {npc:252389} Quel'ana Quickgale
-	["{npc:252389}: Tame Beast"] = "{npc:252389}: Domar Fera",
-	-- {npc:254411} Quel'dora Quickgale
-	["{npc:254411}: Beast Training"] = "{npc:254411}: Treinamento de Feras",
 
 	-- Step 48: Belathaan Brightwish
 	-- {area:16638} Valanaar · {area:16629} Shrine of Akir
@@ -314,8 +312,6 @@ return {
 	-- Step 64: Strength and Mercy
 	-- {npc:255853} Urs'endris
 	["On the way north, back to {npc:255853} by the falls."] = "No caminho para o norte, volte a {npc:255853} junto às cachoeiras.",
-	-- {npc:255853} Urs'endris
-	["{npc:255853}: Bear Form"] = "{npc:255853}: Forma de Urso",
 
 	-- Step 65: The Shrine of Akir
 	-- {area:16629} Shrine of Akir
@@ -367,10 +363,6 @@ return {
 	-- {area:16630} Rohashi Spires
 	["Take the portal up to the {area:16630} and join Elaadrin and Ayessa against the High Priestess."] = "Pegue o portal até {area:16630} e junte-se a Elaadrin e Ayessa contra a Alta-sacerdotisa.",
 
-	-- Step 76: Seena Skybreaker
-	-- {npc:252377} Seena Skybreaker
-	["{npc:252377}: Defensive Stance"] = "{npc:252377}: Postura Defensiva",
-
 	-- Step 77: The airship
 	["The airship"] = "O dirigível",
 	-- {area:16638} Valanaar · {zone:1412} Mulgore
@@ -410,12 +402,26 @@ return {
 	["Spread the {item:278078} off {area:1641}"] = "Espalhe {item:278078} a partir de {area:1641}",
 
 	-- Step 83: Turak Runetotem
-	-- {npc:3033} Turak Runetotem · {area:1639} Elder Rise · {quest:94913} Moonglade · {npc:11802} Dendrite Starblaze
-	["{npc:3033} trains druids on {area:1639}. He teaches you Teleport: {quest:94913}; {npc:11802}'s welcome waits for your Cat Form trip at about 23 (forever/horde/04-the-barrens)."] = "{npc:3033} treina druidas em {area:1639}. Ele ensina Teleportar: {quest:94913}; as boas-vindas de {npc:11802} esperam sua viagem da Forma de Felino, por volta do nível 23 (forever/horde/04-the-barrens).",
+	-- {npc:3033} Turak Runetotem · {area:1639} Elder Rise · {spell:18960} Teleport: Moonglade · {npc:11802} Dendrite Starblaze · {spell:499} Cat Form
+	["{npc:3033} trains druids on {area:1639}. He teaches you {spell:18960}; {npc:11802}'s welcome waits for your {spell:499} trip at about 23 (forever/horde/04-the-barrens)."] = "",
 
 	-- Step 84: The Crossroads
 	-- {zone:1456} Thunder Bluff · {area:222} Bloodhoof Village · {zone:1413} The Barrens · {area:458} Gold Road · {area:380} The Crossroads
 	["Leave {zone:1456} by a lift and follow the road south past {area:222} and through the eastern pass into the {zone:1413}; from the pass, take the {area:458} north to the {area:380}, the Horde town in the middle of the {zone:1413}."] = "Saia de {zone:1456} por um elevador e siga a estrada para o sul passando por {area:222} e pelo desfiladeiro leste até {zone:1413}; do desfiladeiro, pegue {area:458} para o norte até {area:380}, a cidade da Horda no meio de {zone:1413}.",
 	-- {npc:3615} Devrak
 	["{npc:3615}, the wind rider master"] = "{npc:3615}, o mestre de mantícoras",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["/sit by Raan's campfire until you get Boosted Rest"] = "/sit junto à fogueira de Raan até receber Boosted Rest",
+	-- ["Cast Skysight near the {object:460001}"] = "Lance Skysight perto de {object:460001}",
+	-- ["Climb the watchtower in the village, jump off the top and use Walk on Air to float down."] = "Suba a torre de vigia da aldeia, pule do topo e use Walk on Air para descer flutuando.",
+	-- ["Leaving {area:16635}"] = "Saindo de {area:16635}",
+	-- ["Sit by Raan's campfire (type /sit) until you get the Boosted Rest buff, then find {npc:251905} at the cook fire."] = "Sente-se junto à fogueira de Raan (digite /sit) até receber o bônus Boosted Rest, depois encontre {npc:251905} na fogueira de cozinhar.",
+	-- ["Tell {npc:252800} you're ready"] = "Diga a {npc:252800} que você está pronto",
+	-- ["{npc:249363} stands at the {area:17678}, east of the village. {npc:251143} and Al'Aketh Converts gather just north of her. The {object:460001} is just north-east of her: cast your Skysight racial ability next to it."] = "{npc:249363} fica em {area:17678}, a leste da aldeia. {npc:251143} e Convertidos Al'Aketh se reúnem logo ao norte dela. {object:460001} fica logo a nordeste dela: lance sua habilidade racial Skysight ao lado dela.",
+	-- ["{npc:252377}: Defensive Stance"] = "{npc:252377}: Postura Defensiva",
+	-- ["{npc:252389}: Tame Beast"] = "{npc:252389}: Domar Fera",
+	-- ["{npc:254411}: Beast Training"] = "{npc:254411}: Treinamento de Feras",
+	-- ["{npc:255853}: Bear Form"] = "{npc:255853}: Forma de Urso",
+	-- ["{npc:3033} trains druids on {area:1639}. He teaches you Teleport: {quest:94913}; {npc:11802}'s welcome waits for your Cat Form trip at about 23 (forever/horde/04-the-barrens)."] = "{npc:3033} treina druidas em {area:1639}. Ele ensina Teleportar: {quest:94913}; as boas-vindas de {npc:11802} esperam sua viagem da Forma de Felino, por volta do nível 23 (forever/horde/04-the-barrens).",
 }

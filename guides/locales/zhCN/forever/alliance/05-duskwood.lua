@@ -1,7 +1,9 @@
 -- Chinese (simplified) (zhCN): the guide forever/alliance/05-duskwood (forever/alliance/05-duskwood.guide).
 -- Written by `node tools/polestar.js i18n guides sync zhCN`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Chinese (simplified) (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Chinese (simplified) (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Step 1: Darkshire
 	-- {area:1002} Three Corners · {zone:1431} Duskwood · {area:42} Darkshire
@@ -46,7 +48,7 @@ return {
 	-- {area:492} Raven Hill Cemetery
 	["{area:492}, south"] = "{area:492}，南部",
 	-- {npc:522} Mor'Ladim
-	-- plural, as words: Skeletal Horrors = {npc:202} Skeletal Horror · Horrors = {npc:251103} Horror · Skeletal Fiends = {npc:531} Skeletal Fiend
+	-- plural, as words: Skeletal Horrors = {npc:202} Skeletal Horror · Skeletal Fiends = {npc:531} Skeletal Fiend
 	["The cemetery lies north of the village. Skeletal Horrors and Skeletal Fiends walk its southern half. {npc:522}, an elite, wanders the graves: keep away from him."] = "墓地位于村子北边。恐怖骸骨和骸骨魔在墓地南半部游荡。精英{npc:522}在墓地间徘徊：离他远点。",
 
 	-- Step 8: Sven's Camp
@@ -60,7 +62,7 @@ return {
 	-- Step 10: Wolves, spiders and ghouls
 	["Wolves, spiders and ghouls"] = "狼、蜘蛛和食尸鬼",
 	-- {npc:289} Abercrombie
-	-- plural, as words: Pygmy Venom Web Spiders = {npc:539} Pygmy Venom Web Spider · Venom Web Spiders = {npc:217} Venom Web Spider
+	-- plural, as words: Pygmy Venom Web Spiders = {npc:539} Pygmy Venom Web Spider
 	["Rabid Dire Wolves roam the woods around the cemetery and {npc:289}, Starving Dire Wolves the hills north-east of him. Pygmy Venom Web Spiders crawl east of the cemetery and drop the venom. Every ghoul of the cemetery's northern half can drop a fang."] = "疯狂的恐狼在墓地和{npc:289}周围的树林中游荡，饥饿的恐狼在他东北方的山丘上。小型结网毒蜘蛛在墓地东边爬行，掉落毒液。墓地北半部的所有食尸鬼都可能掉落牙齿。",
 
 	-- Step 11: Watcher Dodds
@@ -87,12 +89,12 @@ return {
 	-- {npc:273} Tavernkeep Smitts
 	["{npc:273}, in the tavern"] = "{npc:273}，在酒馆里",
 
-	-- Step 19: The Rot Blossoms
-	-- {npc:14235} The Rot
-	["{npc:14235} Blossoms"] = "{npc:14235}之花",
-	-- {area:42} Darkshire · {area:121} Tranquil Gardens Cemetery · {npc:14235} The Rot
-	-- plural, as words: Skeletal Horrors = {npc:202} Skeletal Horror · Horrors = {npc:251103} Horror
-	["Skeletal Horrors walk the hillside between {area:42} and the {area:121}, south-east of town; they drop the {npc:14235} Blossoms."] = "恐怖骸骨在镇子东南方{area:42}和{area:121}之间的山坡上游荡；它们掉落{npc:14235}之花。",
+	-- Step 19: Rot Blossoms
+	-- plural, as words: Rot Blossoms = {item:1598} Rot Blossom
+	["Rot Blossoms"] = "",
+	-- {area:42} Darkshire · {area:121} Tranquil Gardens Cemetery
+	-- plural, as words: Skeletal Horrors = {npc:202} Skeletal Horror · Rot Blossoms = {item:1598} Rot Blossom
+	["Skeletal Horrors walk the hillside between {area:42} and the {area:121}, south-east of town; they drop the Rot Blossoms."] = "",
 
 	-- Step 21: Abercrombie
 	["Ride west to the hermit once more."] = "再次向西骑行去找隐士。",
@@ -121,14 +123,14 @@ return {
 	-- Step 27: Master Mathias Shaw
 	-- {zone:1453} Stormwind City · {object:2100} Old Town
 	["Ride north through Elwynn to {zone:1453}; Mathias Shaw is at SI:7 in {object:2100}."] = "向北穿过艾尔文森林前往{zone:1453}；马迪亚斯·肖尔在{object:2100}的军情七处。",
-	-- {npc:332} Master Mathias Shaw · {item:18160} Recipe: Thistle Tea
-	["{npc:332}: Poisons, and {item:18160}"] = "{npc:332}：毒药，以及{item:18160}",
+	-- {npc:332} Master Mathias Shaw · {spell:2842} Poisons · {item:18160} Recipe: Thistle Tea
+	["{npc:332}: {spell:2842}, and {item:18160}"] = "",
 	-- {quest:2607} The Touch of Zanzil · {npc:7207} Doc Mixilpixil
 	["{quest:2607}: {npc:7207}, in the cellar of the Barracks"] = "{quest:2607}：{npc:7207}，在兵营地下室",
 	-- {npc:7207} Doc Mixilpixil
 	["/lay down beside {npc:7207}"] = "在{npc:7207}旁边 /lay down",
-	-- {item:3372} Leaded Vial · {npc:1313} Maria Lumere · {skill:171} Alchemy
-	["{item:3372}: {npc:1313}, {skill:171} Supplies"] = "{item:3372}：{npc:1313}，{skill:171}用品",
+	-- {item:3372} Leaded Vial · {npc:1313} Maria Lumere
+	["{item:3372}: {npc:1313}, Alchemy Supplies"] = "",
 
 	-- Step 28: Stormwind City
 	-- {zone:1453} Stormwind City · {zone:1429} Elwynn Forest · {area:17203} Stormwind Harbor · {area:442} Auberdine
@@ -139,4 +141,10 @@ return {
 	["Shaman training"] = "萨满祭司训练",
 	-- {zone:1453} Stormwind City · {area:2257} Deeprun Tram · {object:28027} Dwarven District · {zone:1455} Ironforge · {npc:258098} Eldrun Stormbreaker · {area:442} Auberdine
 	["{zone:1453} has no shaman trainer: take the {area:2257} from the {object:28027} to {zone:1455}, train with {npc:258098}, then ride the tram back for the {area:442} boat."] = "{zone:1453}没有萨满祭司训练师：从{object:28027}乘{area:2257}前往{zone:1455}，找{npc:258098}训练，然后乘地铁返回，搭乘前往{area:442}的船。",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Skeletal Horrors walk the hillside between {area:42} and the {area:121}, south-east of town; they drop the {npc:14235} Blossoms."] = "恐怖骸骨在镇子东南方{area:42}和{area:121}之间的山坡上游荡；它们掉落{npc:14235}之花。",
+	-- ["{item:3372}: {npc:1313}, {skill:171} Supplies"] = "{item:3372}：{npc:1313}，{skill:171}用品",
+	-- ["{npc:14235} Blossoms"] = "{npc:14235}之花",
+	-- ["{npc:332}: Poisons, and {item:18160}"] = "{npc:332}：毒药，以及{item:18160}",
 }

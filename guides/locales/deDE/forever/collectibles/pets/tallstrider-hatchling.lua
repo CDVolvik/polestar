@@ -1,7 +1,9 @@
 -- German (deDE): the guide forever/collectibles/pets/tallstrider-hatchling (forever/collectibles/pets/tallstrider-hatchling.guide).
 -- Written by `node tools/polestar.js i18n guides sync deDE`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in German (the English is listed above the line). The comments are rewritten by sync.
+-- name there in German (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Step 1: Strider Clutchmother
 	-- {npc:2172} Strider Clutchmother · {zone:1439} Darkshore

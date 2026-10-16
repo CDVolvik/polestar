@@ -1,7 +1,9 @@
 -- Spanish (Latin America) (esMX): the guide forever/horde/50-60/01-un-goro-crater (forever/horde/50-60/01-un-goro-crater.guide).
 -- Written by `node tools/polestar.js i18n guides sync esMX`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Spanish (Latin America) (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Spanish (Latin America) (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Step 1: Into Un'Goro Crater
 	-- {zone:1449} Un'Goro Crater
@@ -59,10 +61,10 @@ return {
 	["North of Torwa, a dead Threshadon lies by the water."] = "Al norte de Torwa, un trillanodonte muerto yace junto al agua.",
 
 	-- Step 12: Lar'korwi Mates
-	-- {npc:9684} Lar'korwi
-	["{npc:9684} Mates"] = "Compañeras de {npc:9684}",
-	-- {npc:9684} Lar'korwi
-	["The {npc:9684} Mates prowl the jungle north-west of Torwa."] = "Las Compañeras de {npc:9684} merodean en la selva al noroeste de Torwa.",
+	-- plural, as words: Lar'korwi Mates = {npc:9683} Lar'korwi Mate
+	["Lar'korwi Mates"] = "",
+	-- plural, as words: Lar'korwi Mates = {npc:9683} Lar'korwi Mate
+	["The Lar'korwi Mates prowl the jungle north-west of Torwa."] = "",
 
 	-- Step 13: Torwa Pathfinder
 	-- {npc:9684} Lar'korwi
@@ -222,8 +224,8 @@ return {
 	["{npc:10879}, the {object:36078}, beside the bat master"] = "{npc:10879}, en {object:36078}, junto al maestro de murciélagos",
 	-- {npc:6522} Andron Gant · {object:36073} Rogues' Quarter
 	["{npc:6522}, the {object:36073}"] = "{npc:6522}, en {object:36073}",
-	-- {npc:8390} Chemist Cuely · {object:36072} The Apothecarium · {zone:1447} Azshara
-	["{npc:8390}, the {object:36072}: the vials fill in {zone:1447} later"] = "{npc:8390}, en {object:36072}: los viales se llenan en {zone:1447} más adelante",
+	-- {npc:8390} Chemist Cuely · {zone:1447} Azshara
+	["{npc:8390}, the Apothecarium: the vials fill in {zone:1447} later"] = "",
 
 	-- Step 45: The Bulwark
 	-- {zone:1458} Undercity · {zone:1420} Tirisfal Glades · {area:152} The Bulwark
@@ -250,12 +252,12 @@ return {
 	["Ride south back to the road and follow it east across the whole zone to {area:2268}."] = "Cabalga al sur de vuelta al camino y síguelo al este por toda la zona hasta {area:2268}.",
 
 	-- Step 51: Darrowshire Spirits
-	-- {area:2262} Darrowshire
-	["{area:2262} Spirits"] = "Espíritus de {area:2262}",
+	-- plural, as words: Darrowshire Spirits = {npc:11064} Darrowshire Spirit
+	["Darrowshire Spirits"] = "",
 	-- {npc:11064} Darrowshire Spirit · {area:2262} Darrowshire
 	["With Carlin's quest in your log, slain Scourge sometimes leave a {npc:11064}; talk to it to free it. Kill undead on the ride south-west to {area:2262}."] = "Con la misión de Carlin en tu registro, la Plaga que matas a veces deja un {npc:11064}; habla con él para liberarlo. Mata no-muertos en el camino al suroeste hacia {area:2262}.",
-	-- {area:2262} Darrowshire
-	["Free {area:2262} Spirits: talk to them"] = "Libera Espíritus de {area:2262}: habla con ellos",
+	-- plural, as words: Darrowshire Spirits = {npc:11064} Darrowshire Spirit
+	["Free Darrowshire Spirits: talk to them"] = "",
 
 	-- Step 52: Pamela Redpath
 	-- {area:2262} Darrowshire
@@ -276,4 +278,11 @@ return {
 	-- {area:2268} Light's Hope Chapel
 	["Back to {area:2268}"] = "De vuelta a {area:2268}",
 	["The next guide starts here, at the chapel's flight master."] = "La siguiente guía empieza aquí, en el maestro de vuelo de la capilla.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Free {area:2262} Spirits: talk to them"] = "Libera Espíritus de {area:2262}: habla con ellos",
+	-- ["The {npc:9684} Mates prowl the jungle north-west of Torwa."] = "Las Compañeras de {npc:9684} merodean en la selva al noroeste de Torwa.",
+	-- ["{area:2262} Spirits"] = "Espíritus de {area:2262}",
+	-- ["{npc:8390}, the {object:36072}: the vials fill in {zone:1447} later"] = "{npc:8390}, en {object:36072}: los viales se llenan en {zone:1447} más adelante",
+	-- ["{npc:9684} Mates"] = "Compañeras de {npc:9684}",
 }

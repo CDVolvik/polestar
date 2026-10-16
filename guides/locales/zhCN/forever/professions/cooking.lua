@@ -1,7 +1,9 @@
 -- Chinese (simplified) (zhCN): the guide forever/professions/cooking (forever/professions/cooking.guide).
 -- Written by `node tools/polestar.js i18n guides sync zhCN`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Chinese (simplified) (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Chinese (simplified) (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Step 1: Learn Cooking
 	-- {skill:185} Cooking
@@ -264,8 +266,8 @@ return {
 	["Giant Eggs drop from the Ironbeak owls of {zone:1448}."] = "巨蛋由{zone:1448}的铁喙猫头鹰掉落。",
 
 	-- Step 67: Zesty Clam Meat
-	-- {item:7974} Zesty Clam Meat · {object:175904} Gadgetzan Auction
-	["{item:7974} has no drop data: buy it at the {object:175904} House, next to Dirge, or open clams looted from coastal creatures."] = "{item:7974}没有掉落数据：在迪尔格旁边的{object:175904}购买，或打开从海岸生物身上拾取的蚌壳。",
+	-- {item:7974} Zesty Clam Meat
+	["{item:7974} has no drop data: buy it at the Gadgetzan Auction House, next to Dirge, or open clams looted from coastal creatures."] = "",
 
 	-- Step 68: Dirge Quikcleave
 	-- {skill:185} Cooking
@@ -288,4 +290,7 @@ return {
 	-- Step 74: Monster Omelet (240-300)
 	-- {item:12218} Monster Omelet · {object:29784} Basic Campfire · {skill:185} Cooking
 	["{item:12218} is orange from 240 (yellow at 265, grey at 305): about 105 crafts to 300. Cook at any fire: {object:29784} comes with {skill:185}."] = "{item:12218}从240起为橙色（265变黄，305变灰）：约制作105次可到300。任何火堆都能烹饪：学会{skill:185}即获得{object:29784}。",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["{item:7974} has no drop data: buy it at the {object:175904} House, next to Dirge, or open clams looted from coastal creatures."] = "{item:7974}没有掉落数据：在迪尔格旁边的{object:175904}购买，或打开从海岸生物身上拾取的蚌壳。",
 }

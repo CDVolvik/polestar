@@ -1,15 +1,17 @@
 -- Chinese (traditional) (zhTW): the guide forever/collectibles/mounts/neutral/galestrider (forever/collectibles/mounts/neutral/galestrider.guide).
 -- Written by `node tools/polestar.js i18n guides sync zhTW`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Chinese (traditional) (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Chinese (traditional) (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Guide
 	["Galestrider"] = "",
 
 	-- Step 1: Learn to ride
 	["Learn to ride"] = "",
-	-- {skill:762} Riding
-	["Galestriders need level 40 and {skill:762} (Galestrider {skill:762} comes with it in the Forever client). Any riding trainer of your faction teaches it; see the Level 40 mount guides for where."] = "",
+	-- {skill:762} Riding · {spell:1285849} Galestrider Riding
+	["Galestriders need level 40 and {skill:762} ({spell:1285849} comes with it in the Forever client). Any riding trainer of your faction teaches it; see the Level 40 mount guides for where."] = "",
 
 	-- Step 2: Skyboat from Dalaran
 	-- {area:279} Dalaran

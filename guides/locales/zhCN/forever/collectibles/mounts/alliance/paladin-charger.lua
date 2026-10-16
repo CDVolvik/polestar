@@ -1,7 +1,9 @@
 -- Chinese (simplified) (zhCN): the guide forever/collectibles/mounts/alliance/paladin-charger (forever/collectibles/mounts/alliance/paladin-charger.guide).
 -- Written by `node tools/polestar.js i18n guides sync zhCN`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Chinese (simplified) (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Chinese (simplified) (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Guide
 	["Paladin Charger"] = "圣骑士军马",
@@ -29,8 +31,8 @@ return {
 	-- Step 5: Exorcising Terrordale
 	-- {area:2627} Terrordale · {zone:1423} Eastern Plaguelands · {zone:1422} Western Plaguelands · {item:18752} Exorcism Censer
 	["{area:2627} lies in the far north-west of the {zone:1423}, by the {zone:1422} border. Use the {item:18752} there to drive out the spirits, then defeat them."] = "{area:2627}位于{zone:1423}最西北端，靠近{zone:1422}边界。在那里使用{item:18752}驱出灵魂，然后击败它们。",
-	-- {area:2627} Terrordale
-	["{area:2627} Spirits"] = "{area:2627}的灵魂",
+	-- plural, as words: Terrordale Spirits = {npc:14564} Terrordale Spirit
+	["Terrordale Spirits"] = "",
 
 	-- Step 7: Grimand Elmore
 	-- {npc:1416} Grimand Elmore · {zone:1453} Stormwind City · {object:28027} Dwarven District
@@ -91,4 +93,7 @@ return {
 	-- Step 18: The Great Ossuary
 	-- {area:2057} Scholomance · {area:2298} Caer Darrow · {zone:1422} Western Plaguelands · {item:18746} Divination Scryer · {object:179746} The Great Ossuary · {npc:14516} Death Knight Darkreaver · {item:18799} Charger's Redeemed Soul · {item:18792} Blessed Arcanite Barding
 	["{area:2057} lies under {area:2298}, the island town in the south-east of the {zone:1422}. Use the {item:18746} in the heart of the {object:179746}'s basement, defeat the spirits it calls and then {npc:14516}, and give his Fallen Charger the {item:18799} and the {item:18792}. All are elite: bring a group. If the attempt fails, Lord Grayson gives you a new scryer through Again Into the {object:179746}."] = "{area:2057}位于{zone:1422}东南部的岛上小镇{area:2298}之下。在{object:179746}地下室的中央使用{item:18746}，击败它召来的灵魂，再击败{npc:14516}，然后把{item:18799}和{item:18792}交给达克雷尔的堕落战马。全都是精英：请带上小队。如果失败，格雷森·沙东布瑞克公爵会通过“重回尸骨储藏所”（{object:179746}）给你一个新的水晶球。",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["{area:2627} Spirits"] = "{area:2627}的灵魂",
 }

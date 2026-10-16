@@ -1,7 +1,9 @@
 -- Spanish (Latin America) (esMX): the guide forever/horde/04-the-barrens (forever/horde/04-the-barrens.guide).
 -- Written by `node tools/polestar.js i18n guides sync esMX`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Spanish (Latin America) (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Spanish (Latin America) (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Step 1: Fly to Ratchet
 	-- {area:392} Ratchet
@@ -68,8 +70,8 @@ return {
 	["Fly to {area:1637} to train your level 20 ranks. {npc:3354} is in the {object:172958}, {npc:5892} in the {object:172957}."] = "Vuela a {area:1637} para entrenar tus rangos de nivel 20. {npc:3354} está en {object:172958}; {npc:5892}, en {object:172957}.",
 
 	-- Step 13: Gan'rul Bloodeye
-	-- {area:263} The Cleft · {object:172982} Valley of Strength
-	["{area:263} of Shadow is the canyon under the {object:172982}."] = "{area:263} de las Sombras es el cañón bajo {object:172982}.",
+	-- {object:172960} Cleft of Shadow · {object:172982} Valley of Strength
+	["The {object:172960} is the canyon under the {object:172982}."] = "",
 	-- {npc:5909} Cazul
 	["{npc:5909}, a few steps away"] = "{npc:5909}, a unos pasos",
 
@@ -99,9 +101,9 @@ return {
 
 	-- Step 19: Barak Kodobane
 	["Barak stands in the Kolkar camp north-west of Regthar."] = "Barak está en el campamento Kolkar al noroeste de Regthar.",
-	-- {item:15852} Kodo Horn · {zone:1413} The Barrens
+	-- {item:15852} Kodo Horn
 	-- plural, as words: Lost Barrens Kodos = {npc:3234} Lost Barrens Kodo
-	["{item:15852}: Lost {zone:1413} Kodos on the plains around the Kolkar camp"] = "{item:15852}: Kodos de {zone:1413} perdidos en las llanuras alrededor del campamento Kolkar",
+	["{item:15852}: Lost Barrens Kodos on the plains around the Kolkar camp"] = "",
 	-- {item:2449} Earthroot
 	["{item:2449}: herbalists pick it here"] = "{item:2449}: los herboristas la recogen aquí",
 
@@ -123,8 +125,8 @@ return {
 	["{npc:262119} and his marines hold the wrecked caravan south of {npc:261366}."] = "{npc:262119} y sus marinos defienden la caravana destrozada al sur de {npc:261366}.",
 
 	-- Step 27: Walton
-	-- {npc:261366} Walton · {npc:261367} Terry Longdrink · {area:21} Kul Tiras
-	["Assist {npc:261366}: stay by him when {npc:261367} and the {area:21} marines come up the ridge"] = "Ayuda a {npc:261366}: quédate a su lado cuando {npc:261367} y los marinos de {area:21} suban la loma",
+	-- {npc:261367} Terry Longdrink · {area:21} Kul Tiras
+	["Assist Walton: stay by him when {npc:261367} and the {area:21} marines come up the ridge"] = "",
 
 	-- Step 28: Strange Lockbox
 	-- {object:177790} Strange Lockbox · {area:382} The Sludge Fen · {item:15883} Half Pendant of Aquatic Agility · {quest:30} Trial of the Sea Lion
@@ -284,16 +286,16 @@ return {
 	["{npc:5875} stands in the {object:172960}. Use {item:6626} on the summoning circle there and defeat the succubus to bind her."] = "{npc:5875} está en {object:172960}. Usa {item:6626} en el círculo de invocación de ahí y derrota a la súcubo para vincularla.",
 
 	-- Step 70: Shenthul
-	-- {npc:2391} Serge Hinott · {area:272} Tarren Mill
-	["{npc:2391} in {area:272} teaches Poisons: keep it"] = "{npc:2391}, en {area:272}, enseña venenos: guárdala",
+	-- {npc:2391} Serge Hinott · {area:272} Tarren Mill · {spell:2842} Poisons
+	["{npc:2391} in {area:272} teaches {spell:2842}: keep it"] = "",
 
 	-- Step 71: The Great Cat Spirit
 	-- {area:1638} Thunder Bluff · {npc:3033} Turak Runetotem · {area:1639} Elder Rise
 	["Fly to {area:1638} to train: {npc:3033} is on {area:1639}."] = "Vuela a {area:1638} para entrenar: {npc:3033} está en {area:1639}.",
 
 	-- Step 72: Moonglade
-	-- {quest:94913} Moonglade · {area:2362} Shrine of Remulos · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven
-	["Cast Teleport: {quest:94913}. Tauren: join the two pendant halves at the {area:2362}, on the north-west shore of the lake, before you see {npc:11802} in {area:2361}."] = "Lanza Teleport: {quest:94913}. Tauren: une las dos mitades del colgante en {area:2362}, en la orilla noroeste del lago, antes de ver a {npc:11802} en {area:2361}.",
+	-- {spell:18960} Teleport: Moonglade · {area:2362} Shrine of Remulos · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven
+	["Cast {spell:18960}. Tauren: join the two pendant halves at the {area:2362}, on the north-west shore of the lake, before you see {npc:11802} in {area:2361}."] = "",
 	-- {item:15885} Pendant of the Sea Lion · {area:2362} Shrine of Remulos
 	["{item:15885}: use a half at the {area:2362}"] = "{item:15885}: usa una mitad en {area:2362}",
 	-- {npc:11802} Dendrite Starblaze
@@ -308,12 +310,17 @@ return {
 	-- Step 75: Turak Runetotem
 	-- {npc:11798} Bunthen Plainswind · {area:2361} Nighthaven
 	["{npc:11798} in {area:2361} flies druids there"] = "{npc:11798}, en {area:2361}, lleva volando a los druidas ahí",
-	-- {npc:3033} Turak Runetotem
-	["{npc:3033}: Cure Poison"] = "{npc:3033}: Cure Poison",
-	-- {npc:3033} Turak Runetotem
-	["{npc:3033}: Cat Form"] = "{npc:3033}: Cat Form",
 
 	-- Step 76: Back to the Crossroads
 	-- {area:380} The Crossroads · {area:1703} The Mor'shan Rampart · {zone:1440} Ashenvale
 	["Fly back to the {area:380}. The next guide starts here and takes the road north to the {area:1703} and {zone:1440}."] = "Vuela de vuelta a {area:380}. La siguiente guía empieza aquí y toma el camino al norte hacia {area:1703} y {zone:1440}.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Assist {npc:261366}: stay by him when {npc:261367} and the {area:21} marines come up the ridge"] = "Ayuda a {npc:261366}: quédate a su lado cuando {npc:261367} y los marinos de {area:21} suban la loma",
+	-- ["Cast Teleport: {quest:94913}. Tauren: join the two pendant halves at the {area:2362}, on the north-west shore of the lake, before you see {npc:11802} in {area:2361}."] = "Lanza Teleport: {quest:94913}. Tauren: une las dos mitades del colgante en {area:2362}, en la orilla noroeste del lago, antes de ver a {npc:11802} en {area:2361}.",
+	-- ["{area:263} of Shadow is the canyon under the {object:172982}."] = "{area:263} de las Sombras es el cañón bajo {object:172982}.",
+	-- ["{item:15852}: Lost {zone:1413} Kodos on the plains around the Kolkar camp"] = "{item:15852}: Kodos de {zone:1413} perdidos en las llanuras alrededor del campamento Kolkar",
+	-- ["{npc:2391} in {area:272} teaches Poisons: keep it"] = "{npc:2391}, en {area:272}, enseña venenos: guárdala",
+	-- ["{npc:3033}: Cat Form"] = "{npc:3033}: Cat Form",
+	-- ["{npc:3033}: Cure Poison"] = "{npc:3033}: Cure Poison",
 }

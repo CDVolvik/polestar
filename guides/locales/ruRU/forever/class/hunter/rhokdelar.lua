@@ -1,7 +1,9 @@
 -- Russian (ruRU): the guide forever/class/hunter/rhokdelar (forever/class/hunter/rhokdelar.guide).
 -- Written by `node tools/polestar.js i18n guides sync ruRU`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Russian (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Russian (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Guide
 	["Rhok'delar and Lok'delar"] = "Рок-Делар и Лок-Делар",
@@ -48,8 +50,8 @@ return {
 	["Back to the Ancients"] = "Обратно к Древним",
 
 	-- Step 9: Rhok'delar and Lok'delar
-	-- {item:18707} Ancient Rune Etched Stave · {item:18724} Enchanted Black Dragon Sinew · {item:18715} Lok'delar, Stave of the Ancient Keepers
-	["Not confirmed in Forever. In Classic, using the {item:18707} with the {item:18724} in your bags made Rhok'delar, and Vartrus then gave {item:18715} (Icy Veins)."] = "В Forever не подтверждено. В Classic {item:18707}, использованный с предметом {item:18724} в сумках, превращался в Рок-Делар, а Вартус затем давал {item:18715} (Icy Veins).",
+	-- {item:18707} Ancient Rune Etched Stave · {item:18724} Enchanted Black Dragon Sinew · {item:18715} Lok'delar, Stave of the Ancient Keepers · {spell:425121} Icy Veins
+	["Not confirmed in Forever. In Classic, using the {item:18707} with the {item:18724} in your bags made Rhok'delar, and Vartrus then gave {item:18715} ({spell:425121})."] = "",
 	-- {item:18707} Ancient Rune Etched Stave
 	["{item:18707}, by Vartrus"] = "{item:18707}, от Вартуса",
 	-- {npc:14524} Vartrus the Ancient
@@ -61,4 +63,7 @@ return {
 	["Hastat's quiver needs the {item:18704}. Azuregos, a world boss for a raid, roams the south of {zone:1447} and drops it most of the time; the Cobalt dragonkin of {zone:1452} drop it very rarely. Skip the rest of this guide if you do not want the quiver."] = "Для колчана Хастата нужен предмет {item:18704}. Азурегос, мировой босс для рейда, бродит на юге зоны {zone:1447} и чаще всего оставляет его; синие дракониды зоны {zone:1452} оставляют его очень редко. Пропустите остаток этого гайда, если колчан вам не нужен.",
 	-- {item:18704} Mature Blue Dragon Sinew
 	["{item:18704}, from Azuregos"] = "{item:18704} с Азурегоса",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Not confirmed in Forever. In Classic, using the {item:18707} with the {item:18724} in your bags made Rhok'delar, and Vartrus then gave {item:18715} (Icy Veins)."] = "В Forever не подтверждено. В Classic {item:18707}, использованный с предметом {item:18724} в сумках, превращался в Рок-Делар, а Вартус затем давал {item:18715} (Icy Veins).",
 }

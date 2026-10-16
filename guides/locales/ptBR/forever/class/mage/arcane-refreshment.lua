@@ -1,7 +1,9 @@
 -- Portuguese (Brazil) (ptBR): the guide forever/class/mage/arcane-refreshment (forever/class/mage/arcane-refreshment.guide).
 -- Written by `node tools/polestar.js i18n guides sync ptBR`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Portuguese (Brazil) (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Portuguese (Brazil) (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Guide
 	-- {spell:10140} Conjure Water · {area:2577} Dire Maul
@@ -14,11 +16,13 @@ return {
 
 	-- Step 2: Hydrospawn
 	["Hydrospawn"] = "Rebentágua",
-	-- {area:2577} Dire Maul
-	["Hydrospawn, a water elemental, lives in the Warpwood Quarter ({area:2577} East): chase the imp Pusillin until he turns to fight, clear the satyr room, then take the spiral ramp down to the pool."] = "Rebentágua, um elemental da água, vive no Bairro Lenhatorta ({area:2577} Leste): persiga o diabrete Pusillin até ele se virar para lutar, limpe a sala dos sátiros e desça a rampa em espiral até o lago.",
+	["Hydrospawn, a water elemental, lives in the Warpwood Quarter (Dire Maul East): chase the imp Pusillin until he turns to fight, clear the satyr room, then take the spiral ramp down to the pool."] = "",
 	-- {item:18299} Hydrospawn Essence
 	["{item:18299}: Hydrospawn"] = "{item:18299}: Rebentágua",
 
 	-- Step 3: Back to Lydros
 	["Back to Lydros"] = "De volta a Lydros",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Hydrospawn, a water elemental, lives in the Warpwood Quarter ({area:2577} East): chase the imp Pusillin until he turns to fight, clear the satyr room, then take the spiral ramp down to the pool."] = "Rebentágua, um elemental da água, vive no Bairro Lenhatorta ({area:2577} Leste): persiga o diabrete Pusillin até ele se virar para lutar, limpe a sala dos sátiros e desça a rampa em espiral até o lago.",
 }

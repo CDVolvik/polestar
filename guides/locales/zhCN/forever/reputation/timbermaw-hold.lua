@@ -1,11 +1,12 @@
 -- Chinese (simplified) (zhCN): the guide forever/reputation/timbermaw-hold (forever/reputation/timbermaw-hold.guide).
 -- Written by `node tools/polestar.js i18n guides sync zhCN`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Chinese (simplified) (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Chinese (simplified) (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Guide
-	-- {faction:576} Timbermaw Hold
-	["{faction:576} Reputation"] = "",
+	["Timbermaw Hold Reputation"] = "",
 
 	-- Step 1: Grazle
 	-- {faction:576} Timbermaw Hold

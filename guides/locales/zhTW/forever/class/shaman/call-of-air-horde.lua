@@ -1,7 +1,9 @@
 -- Chinese (traditional) (zhTW): the guide forever/class/shaman/call-of-air-horde (forever/class/shaman/call-of-air-horde.guide).
 -- Written by `node tools/polestar.js i18n guides sync zhTW`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Chinese (traditional) (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Chinese (traditional) (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Guide
 	-- {quest:1531} Call of Air
@@ -34,31 +36,31 @@ return {
 	["{npc:4722} stands at {area:484}."] = "",
 
 	-- Step 7: Twisted Air Totems
-	-- plural, as words: Twisted Air Totems = {item:274047} Twisted Air Totem · Air Totems = {item:5178} Air Totem
+	-- plural, as words: Twisted Air Totems = {item:274047} Twisted Air Totem
 	["Twisted Air Totems"] = "",
 	-- {zone:1443} Desolace
-	-- plural, as words: Twisted Air Totems = {item:274047} Twisted Air Totem · Air Totems = {item:5178} Air Totem
+	-- plural, as words: Twisted Air Totems = {item:274047} Twisted Air Totem
 	["The Maraudine centaurs of western {zone:1443} carry the Twisted Air Totems."] = "",
 
 	-- Step 8: Twisted Water Totems
-	-- plural, as words: Twisted Water Totems = {item:274046} Twisted Water Totem · Water Totems = {item:5177} Water Totem
+	-- plural, as words: Twisted Water Totems = {item:274046} Twisted Water Totem
 	["Twisted Water Totems"] = "",
 	-- {zone:1445} Dustwallow Marsh
-	-- plural, as words: Twisted Water Totems = {item:274046} Twisted Water Totem · Water Totems = {item:5177} Water Totem
+	-- plural, as words: Twisted Water Totems = {item:274046} Twisted Water Totem
 	["The Mirefin murlocs of northern {zone:1445} carry the Twisted Water Totems."] = "",
 
 	-- Step 9: Twisted Fire Totems
-	-- plural, as words: Twisted Fire Totems = {item:274044} Twisted Fire Totem · Fire Totems = {item:5176} Fire Totem
+	-- plural, as words: Twisted Fire Totems = {item:274044} Twisted Fire Totem
 	["Twisted Fire Totems"] = "",
 	-- {zone:1418} Badlands
-	-- plural, as words: Twisted Fire Totems = {item:274044} Twisted Fire Totem · Fire Totems = {item:5176} Fire Totem
+	-- plural, as words: Twisted Fire Totems = {item:274044} Twisted Fire Totem
 	["The Stonevault troggs in the south of the {zone:1418} carry the Twisted Fire Totems."] = "",
 
 	-- Step 10: Twisted Earth Totems
-	-- plural, as words: Twisted Earth Totems = {item:274045} Twisted Earth Totem · Earth Totems = {item:5175} Earth Totem
+	-- plural, as words: Twisted Earth Totems = {item:274045} Twisted Earth Totem
 	["Twisted Earth Totems"] = "",
 	-- {zone:1435} Swamp of Sorrows
-	-- plural, as words: The Lost Ones = {npc:256028} The Lost One · Lost Ones = {npc:254797} Lost One · Twisted Earth Totems = {item:274045} Twisted Earth Totem · Earth Totems = {item:5175} Earth Totem
+	-- plural, as words: The Lost Ones = {npc:256028} The Lost One · Twisted Earth Totems = {item:274045} Twisted Earth Totem
 	["The Lost Ones in the north of the {zone:1435} carry the Twisted Earth Totems."] = "",
 
 	-- Step 12: The steam pools

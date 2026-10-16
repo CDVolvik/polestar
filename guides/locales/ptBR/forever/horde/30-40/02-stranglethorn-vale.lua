@@ -1,7 +1,9 @@
 -- Portuguese (Brazil) (ptBR): the guide forever/horde/30-40/02-stranglethorn-vale (forever/horde/30-40/02-stranglethorn-vale.guide).
 -- Written by `node tools/polestar.js i18n guides sync ptBR`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Portuguese (Brazil) (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Portuguese (Brazil) (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Step 1: Zeppelin to Grom'gol
 	-- {object:3202} Grom'gol
@@ -34,7 +36,7 @@ return {
 
 	-- Step 7: Young tigers and panthers
 	["Young tigers and panthers"] = "Tigres jovens e panteras",
-	-- plural, as words: Young Stranglethorn Tigers = {npc:681} Young Stranglethorn Tiger · Stranglethorn Tigers = {npc:682} Stranglethorn Tiger · Young Panthers = {npc:683} Young Panther
+	-- plural, as words: Young Stranglethorn Tigers = {npc:681} Young Stranglethorn Tiger · Young Panthers = {npc:683} Young Panther
 	["Young Stranglethorn Tigers prowl west of the camp, Young Panthers south and east of it."] = "Tigres-do-espinhaço Jovens rondam a oeste do acampamento, e Panteras Jovens ao sul e a leste dele.",
 
 	-- Step 9: Tigers and panthers
@@ -51,7 +53,7 @@ return {
 	-- Step 12: Elder tigers and Lashtail raptors
 	["Elder tigers and Lashtail raptors"] = "Tigres anciãos e Raptores Batecauda",
 	-- {object:3202} Grom'gol
-	-- plural, as words: Elder Stranglethorn Tigers = {npc:1085} Elder Stranglethorn Tiger · Stranglethorn Tigers = {npc:682} Stranglethorn Tiger · Lashtail Raptors = {npc:686} Lashtail Raptor
+	-- plural, as words: Elder Stranglethorn Tigers = {npc:1085} Elder Stranglethorn Tiger · Lashtail Raptors = {npc:686} Lashtail Raptor
 	["The Elder Stranglethorn Tigers (34-35) roam the hills south-west of the camp; the Lashtail Raptors (35-36) hunt further south, towards {object:3202}."] = "Os Tigres-do-espinhaço Anciões (34-35) vagam pelas colinas a sudoeste do acampamento; os Raptores Batecauda (35-36) caçam mais ao sul, em direção a {object:3202}.",
 
 	-- Step 13: Grom'gol
@@ -164,7 +166,7 @@ return {
 	-- Step 41: Mistvale gorillas
 	["Mistvale gorillas"] = "Gorilas do Vale da Névoa",
 	-- {area:35} Booty Bay · {area:1737} Mistvale Valley
-	-- plural, as words: Elder Mistvale Gorillas = {npc:1557} Elder Mistvale Gorilla · Mistvale Gorillas = {npc:1108} Mistvale Gorilla
+	-- plural, as words: Elder Mistvale Gorillas = {npc:1557} Elder Mistvale Gorilla
 	["Take the road south towards {area:35}. The Elder Mistvale Gorillas (40-41) live in {area:1737}, east of the road; about one in twenty carries an aged sinew."] = "Pegue a estrada para o sul em direção a {area:35}. Os Gorilas Anciões do Vale da Névoa (40-41) vivem no {area:1737}, a leste da estrada; cerca de um em cada vinte carrega um tendão velho.",
 
 	-- Step 42: Booty Bay

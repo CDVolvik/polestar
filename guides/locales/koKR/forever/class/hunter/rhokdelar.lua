@@ -1,7 +1,9 @@
 -- Korean (koKR): the guide forever/class/hunter/rhokdelar (forever/class/hunter/rhokdelar.guide).
 -- Written by `node tools/polestar.js i18n guides sync koKR`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Korean (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Guide
 	["Rhok'delar and Lok'delar"] = "라크델라와 로크델라",
@@ -48,8 +50,8 @@ return {
 	["Back to the Ancients"] = "고대정령에게 돌아가기",
 
 	-- Step 9: Rhok'delar and Lok'delar
-	-- {item:18707} Ancient Rune Etched Stave · {item:18724} Enchanted Black Dragon Sinew · {item:18715} Lok'delar, Stave of the Ancient Keepers
-	["Not confirmed in Forever. In Classic, using the {item:18707} with the {item:18724} in your bags made Rhok'delar, and Vartrus then gave {item:18715} (Icy Veins)."] = "Forever에서는 미확인입니다. 클래식에서는 가방에 {item:18724}이(가) 있는 상태에서 {item:18707}을(를) 사용하면 라크델라가 만들어졌고, 그 후 바르투스가 {item:18715}을(를) 주었습니다(Icy Veins).",
+	-- {item:18707} Ancient Rune Etched Stave · {item:18724} Enchanted Black Dragon Sinew · {item:18715} Lok'delar, Stave of the Ancient Keepers · {spell:425121} Icy Veins
+	["Not confirmed in Forever. In Classic, using the {item:18707} with the {item:18724} in your bags made Rhok'delar, and Vartrus then gave {item:18715} ({spell:425121})."] = "",
 	-- {item:18707} Ancient Rune Etched Stave
 	["{item:18707}, by Vartrus"] = "{item:18707}, 바르투스 곁에서",
 	-- {npc:14524} Vartrus the Ancient
@@ -61,4 +63,7 @@ return {
 	["Hastat's quiver needs the {item:18704}. Azuregos, a world boss for a raid, roams the south of {zone:1447} and drops it most of the time; the Cobalt dragonkin of {zone:1452} drop it very rarely. Skip the rest of this guide if you do not want the quiver."] = "하스타트의 화살통에는 {item:18704}이(가) 필요합니다. 공격대용 필드 우두머리인 아주어고스는 {zone:1447} 남부를 돌아다니며 대부분 이것을 떨어뜨립니다. {zone:1452}의 푸른비늘 용족은 매우 드물게 떨어뜨립니다. 화살통을 원하지 않으면 이 가이드의 나머지는 건너뛰세요.",
 	-- {item:18704} Mature Blue Dragon Sinew
 	["{item:18704}, from Azuregos"] = "{item:18704}, 아주어고스에게서",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Not confirmed in Forever. In Classic, using the {item:18707} with the {item:18724} in your bags made Rhok'delar, and Vartrus then gave {item:18715} (Icy Veins)."] = "Forever에서는 미확인입니다. 클래식에서는 가방에 {item:18724}이(가) 있는 상태에서 {item:18707}을(를) 사용하면 라크델라가 만들어졌고, 그 후 바르투스가 {item:18715}을(를) 주었습니다(Icy Veins).",
 }

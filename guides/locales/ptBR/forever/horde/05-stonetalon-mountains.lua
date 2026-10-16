@@ -1,7 +1,9 @@
 -- Portuguese (Brazil) (ptBR): the guide forever/horde/05-stonetalon-mountains (forever/horde/05-stonetalon-mountains.guide).
 -- Written by `node tools/polestar.js i18n guides sync ptBR`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Portuguese (Brazil) (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Portuguese (Brazil) (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Step 1: Kadrak
 	-- {area:380} The Crossroads · {npc:8582} Kadrak · {area:1703} The Mor'shan Rampart · {zone:1440} Ashenvale · {item:16783} Bundle of Reports
@@ -26,9 +28,9 @@ return {
 	["The {npc:12864} patrols the road east of {area:428} toward the {area:430}."] = "",
 
 	-- Step 6: Va'xug Firefure
-	-- {npc:267214} Va'xug Firefure · {area:415} Astranaar · {zone:1440} Ashenvale
-	-- plural, as words: Shadowhorn Stags = {npc:3817} Shadowhorn Stag
-	["On the ride west, {npc:267214} is stuck in a ravine south of the main road, south-east of {area:415}. Shadowhorn Stags and {zone:1440} Bears roam the woods all around it."] = "",
+	-- {npc:267214} Va'xug Firefure · {area:415} Astranaar
+	-- plural, as words: Shadowhorn Stags = {npc:3817} Shadowhorn Stag · Ashenvale Bears = {npc:3809} Ashenvale Bear
+	["On the ride west, {npc:267214} is stuck in a ravine south of the main road, south-east of {area:415}. Shadowhorn Stags and Ashenvale Bears roam the woods all around it."] = "",
 
 	-- Step 7: A Void Path
 	-- {npc:271181} Eye of Kilrogg
@@ -99,7 +101,7 @@ return {
 	-- {area:465} The Charred Vale · {item:16312} Incendrites
 	-- plural, as words: Gaea Seeds = {item:16205} Gaea Seed
 	["South-west of Sun Rock lies the burned {area:465}. Plant the Gaea Seeds in the dirt mounds on the valley floor; the fire elementals drop {item:16312}. Bloodfury Harpies and Ambushers nest on the north side, Slayers and Roguefeathers to the south."] = "",
-	-- plural, as words: Gaea Dirt Mounds = {object:177929} Gaea Dirt Mound · Dirt Mounds = {npc:15712} Dirt Mound
+	-- plural, as words: Gaea Dirt Mounds = {object:177929} Gaea Dirt Mound
 	["Gaea Dirt Mounds"] = "",
 	-- {item:277936} Glittering Sunstone
 	["{item:277936}, from any Bloodfury harpy"] = "",

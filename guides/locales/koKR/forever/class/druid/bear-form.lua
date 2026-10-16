@@ -1,7 +1,9 @@
 -- Korean (koKR): the guide forever/class/druid/bear-form (forever/class/druid/bear-form.guide).
 -- Written by `node tools/polestar.js i18n guides sync koKR`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Korean (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Guide
 	-- {spell:5487} Bear Form · {area:493} Moonglade
@@ -10,8 +12,8 @@ return {
 	["Your tanking form: Forever no longer trains {spell:5487}, these quests give it. Opens {area:493} too."] = "방어 전담 변신: Forever에서는 더 이상 {spell:5487}을(를) 훈련으로 배울 수 없고, 이 퀘스트들로 얻습니다. {area:493}도 열립니다.",
 
 	-- Step 1: Heeding the Call
-	-- {npc:3602} Kal · {area:186} Dolanaar · {zone:1457} Darnassus · {zone:1453} Stormwind City · {npc:4217} Mathrengyl Bearwalker · {area:1658} Cenarion Enclave
-	["At 10 a druid's call reaches you: {npc:3602} in {area:186}, Denatharion in {zone:1457} or Theridran in {zone:1453}. Any one of them sends you to {npc:4217} in the {area:1658} of {zone:1457}."] = "10레벨에 드루이드의 부름이 옵니다: {area:186}의 {npc:3602}, {zone:1457}의 데나타리온, 또는 {zone:1453}의 테리드란. 누구든 {zone:1457} {area:1658}의 {npc:4217}에게 보냅니다.",
+	-- {npc:3602} Kal · {area:186} Dolanaar · {zone:1457} Darnassus · {zone:1453} Stormwind City · {npc:4217} Mathrengyl Bearwalker
+	["At 10 a druid's call reaches you: {npc:3602} in {area:186}, Denatharion in {zone:1457} or Theridran in {zone:1453}. Any one of them sends you to {npc:4217} in the Cenarion Enclave of {zone:1457}."] = "",
 	-- {npc:3602} Kal · {area:186} Dolanaar
 	["{npc:3602}, {area:186}; Denatharion's and Theridran's letters lead to the same place"] = "{npc:3602}, {area:186}. 데나타리온과 테리드란의 편지도 같은 곳으로 안내합니다",
 
@@ -21,8 +23,8 @@ return {
 	["or whichever of the three letters you carry"] = "또는 가지고 있는 세 편지 중 하나",
 
 	-- Step 3: Moonglade
-	-- {area:493} Moonglade · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {quest:5929} Great Bear Spirit · {area:702} Rut'theran Village · {area:442} Auberdine · {zone:1457} Darnassus
-	["Cast Teleport: {area:493}. {npc:11802} is in {area:2361}; the {quest:5929} sits in the woods to the north-west. Learn the {area:493} flight path, then fly to {area:702} (by way of {area:442}) and take the portal up to {zone:1457}."] = "순간이동: {area:493}을(를) 시전하세요. {npc:11802}은(는) {area:2361}에 있고, {quest:5929}은(는) 북서쪽 숲속에 있습니다. {area:493} 비행 경로를 배운 뒤 ({area:442}을(를) 거쳐) {area:702}(으)로 날아가 차원문을 타고 {zone:1457}(으)로 올라가세요.",
+	-- {spell:18960} Teleport: Moonglade · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {quest:5929} Great Bear Spirit · {area:493} Moonglade · {area:702} Rut'theran Village · {area:442} Auberdine · {zone:1457} Darnassus
+	["Cast {spell:18960}. {npc:11802} is in {area:2361}; the {quest:5929} sits in the woods to the north-west. Learn the {area:493} flight path, then fly to {area:702} (by way of {area:442}) and take the portal up to {zone:1457}."] = "",
 	-- {quest:5929} Great Bear Spirit
 	["Speak with the {quest:5929}"] = "{quest:5929}와(과) 대화하세요",
 
@@ -47,8 +49,8 @@ return {
 	["{npc:3033} stands on {area:1639}."] = "{npc:3033}은(는) {area:1639}에 있습니다.",
 
 	-- Step 9: Moonglade
-	-- {quest:5922} Moonglade · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {quest:5930} Great Bear Spirit · {npc:11798} Bunthen Plainswind · {area:1638} Thunder Bluff
-	["Cast Teleport: {quest:5922}. {npc:11802} is in {area:2361}; the {quest:5930} sits in the woods to the north-west. {npc:11798} in {area:2361} flies druids to {area:1638}."] = "순간이동: {quest:5922}을(를) 시전하세요. {npc:11802}은(는) {area:2361}에 있고, {quest:5930}은(는) 북서쪽 숲속에 있습니다. {area:2361}의 {npc:11798}이(가) 드루이드를 {area:1638}(으)로 태워 줍니다.",
+	-- {spell:18960} Teleport: Moonglade · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {quest:5930} Great Bear Spirit · {npc:11798} Bunthen Plainswind · {area:1638} Thunder Bluff
+	["Cast {spell:18960}. {npc:11802} is in {area:2361}; the {quest:5930} sits in the woods to the north-west. {npc:11798} in {area:2361} flies druids to {area:1638}."] = "",
 	-- {quest:5930} Great Bear Spirit
 	["Speak with the {quest:5930}"] = "{quest:5930}와(과) 대화하세요",
 
@@ -105,6 +107,12 @@ return {
 	["The Skyborne Portal takes you to {zone:1453}. {npc:5504} is the city's druid trainer."] = "스카이본 차원문은 {zone:1453}(으)로 연결됩니다. {npc:5504}은(는) 이 도시의 드루이드 상급자입니다.",
 
 	-- Step 22: Dendrite Starblaze
-	-- {area:493} Moonglade · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven
-	["Cast Teleport: {area:493}. {npc:11802} is in {area:2361}. Learn the {area:493} flight path while you are here."] = "순간이동: {area:493}을(를) 시전하세요. {npc:11802}은(는) {area:2361}에 있습니다. 온 김에 {area:493} 비행 경로를 배우세요.",
+	-- {spell:18960} Teleport: Moonglade · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {area:493} Moonglade
+	["Cast {spell:18960}. {npc:11802} is in {area:2361}. Learn the {area:493} flight path while you are here."] = "",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["At 10 a druid's call reaches you: {npc:3602} in {area:186}, Denatharion in {zone:1457} or Theridran in {zone:1453}. Any one of them sends you to {npc:4217} in the {area:1658} of {zone:1457}."] = "10레벨에 드루이드의 부름이 옵니다: {area:186}의 {npc:3602}, {zone:1457}의 데나타리온, 또는 {zone:1453}의 테리드란. 누구든 {zone:1457} {area:1658}의 {npc:4217}에게 보냅니다.",
+	-- ["Cast Teleport: {area:493}. {npc:11802} is in {area:2361}. Learn the {area:493} flight path while you are here."] = "순간이동: {area:493}을(를) 시전하세요. {npc:11802}은(는) {area:2361}에 있습니다. 온 김에 {area:493} 비행 경로를 배우세요.",
+	-- ["Cast Teleport: {area:493}. {npc:11802} is in {area:2361}; the {quest:5929} sits in the woods to the north-west. Learn the {area:493} flight path, then fly to {area:702} (by way of {area:442}) and take the portal up to {zone:1457}."] = "순간이동: {area:493}을(를) 시전하세요. {npc:11802}은(는) {area:2361}에 있고, {quest:5929}은(는) 북서쪽 숲속에 있습니다. {area:493} 비행 경로를 배운 뒤 ({area:442}을(를) 거쳐) {area:702}(으)로 날아가 차원문을 타고 {zone:1457}(으)로 올라가세요.",
+	-- ["Cast Teleport: {quest:5922}. {npc:11802} is in {area:2361}; the {quest:5930} sits in the woods to the north-west. {npc:11798} in {area:2361} flies druids to {area:1638}."] = "순간이동: {quest:5922}을(를) 시전하세요. {npc:11802}은(는) {area:2361}에 있고, {quest:5930}은(는) 북서쪽 숲속에 있습니다. {area:2361}의 {npc:11798}이(가) 드루이드를 {area:1638}(으)로 태워 줍니다.",
 }

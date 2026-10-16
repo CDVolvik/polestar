@@ -1,11 +1,12 @@
 -- French (frFR): the guide forever/reputation/thorium-brotherhood (forever/reputation/thorium-brotherhood.guide).
 -- Written by `node tools/polestar.js i18n guides sync frFR`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in French (the English is listed above the line). The comments are rewritten by sync.
+-- name there in French (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Guide
-	-- {faction:59} Thorium Brotherhood
-	["{faction:59} Reputation"] = "Réputation : {faction:59}",
+	["Thorium Brotherhood Reputation"] = "",
 
 	-- Step 1: Master Smith Burninate
 	-- {area:1446} Thorium Point · {zone:1427} Searing Gorge · {faction:59} Thorium Brotherhood
@@ -21,17 +22,18 @@ return {
 	-- Step 4: Fiery Flux supplies to Friendly
 	-- {item:18942} Fiery Flux
 	["{item:18942} supplies to Friendly"] = "Réserves de {item:18942} jusqu'à Amical",
-	-- {item:18942} Fiery Flux · {item:3356} Kingsblood · {item:4234} Heavy Leather · {item:18944} Incendosaur Scale · {zone:1427} Searing Gorge
+	-- {item:3356} Kingsblood · {item:4234} Heavy Leather · {item:18944} Incendosaur Scale · {zone:1427} Searing Gorge
 	-- plural, as words: Iron Bars = {item:3575} Iron Bar
-	["Restoring {item:18942} Supplies repeats in three versions: {item:3356}, Iron Bars or {item:4234}, each with Coal and an {item:18944}. Incendosaurs (level 47-49) in the north of {zone:1427} drop a scale every time; Burninate himself sells Coal."] = "Réapprovisionnement en {item:18942} se répète en trois versions : {item:3356}, Barres de fer ou {item:4234}, chacune avec du Charbon et {item:18944}. Les Incendosaures (niveau 47-49) au nord de {zone:1427} lâchent une écaille à chaque fois ; Burninate vend lui-même le Charbon.",
-	-- {npc:14624} Master Smith Burninate · {item:18942} Fiery Flux
-	["{npc:14624}: Restoring {item:18942} Supplies"] = "{npc:14624} : Réapprovisionnement en {item:18942}",
+	["Restoring Fiery Flux Supplies repeats in three versions: {item:3356}, Iron Bars or {item:4234}, each with Coal and an {item:18944}. Incendosaurs (level 47-49) in the north of {zone:1427} drop a scale every time; Burninate himself sells Coal."] = "",
+	-- {npc:14624} Master Smith Burninate
+	["{npc:14624}: Restoring Fiery Flux Supplies"] = "",
 
 	-- Step 5: Lokhtos Darkbargainer to Honored
 	-- {npc:12944} Lokhtos Darkbargainer
 	["{npc:12944} to Honored"] = "{npc:12944} jusqu'à Honoré",
-	-- {npc:12944} Lokhtos Darkbargainer · {area:1584} Blackrock Depths · {item:11099} Dark Iron Ore · {object:147516} Dark Iron · {skill:186} Mining · {item:11382} Blood of the Mountain · {item:17010} Fiery Core · {item:17011} Lava Core · {item:17012} Core Leather · {npc:14387} Lothos Riftwaker · {area:1445} Blackrock Mountain · {area:2717} Molten Core
-	["{npc:12944} trades in the Grim Guzzler inside {area:1584}. His Favor Amongst the Brotherhood turn-ins take {item:11099} (mined from {object:147516} Deposits with {skill:186}), {item:11382}, {item:17010}, {item:17011} and {item:17012}. {npc:14387} at the {area:1445} entrance offers attunement to the {area:2717}."] = "{npc:12944} commerce au Sinistre écluseur, dans {area:1584}. Ses quêtes Faveur auprès de la Confrérie prennent {item:11099} (extrait des gisements de {object:147516} avec {skill:186}), {item:11382}, {item:17010}, {item:17011} et {item:17012}. {npc:14387}, à l'entrée de {area:1445}, propose l'harmonisation pour {area:2717}.",
+	-- {npc:12944} Lokhtos Darkbargainer · {area:1584} Blackrock Depths · {item:11099} Dark Iron Ore · {skill:186} Mining · {item:11382} Blood of the Mountain · {item:17010} Fiery Core · {item:17011} Lava Core · {item:17012} Core Leather · {npc:14387} Lothos Riftwaker · {area:1445} Blackrock Mountain · {area:2717} Molten Core
+	-- plural, as words: Dark Iron Deposits = {object:165658} Dark Iron Deposit
+	["{npc:12944} trades in the Grim Guzzler inside {area:1584}. His Favor Amongst the Brotherhood turn-ins take {item:11099} (mined from Dark Iron Deposits with {skill:186}), {item:11382}, {item:17010}, {item:17011} and {item:17012}. {npc:14387} at the {area:1445} entrance offers attunement to the {area:2717}."] = "",
 	-- {item:11099} Dark Iron Ore
 	["{item:11099}: Favor Amongst the Brotherhood, {item:11099} at Lokhtos, repeatable."] = "{item:11099} : Faveur auprès de la Confrérie, {item:11099}, auprès de Lokhtos, répétable.",
 
@@ -49,4 +51,10 @@ return {
 	["{faction:59} to Exalted"] = "{faction:59} jusqu'à Exalté",
 	-- {area:2717} Molten Core · {item:11099} Dark Iron Ore
 	["Keep turning in {area:2717} materials and {item:11099} at Lokhtos until Exalted."] = "Continuez à rendre des matériaux de {area:2717} et du {item:11099} auprès de Lokhtos jusqu'à Exalté.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Restoring {item:18942} Supplies repeats in three versions: {item:3356}, Iron Bars or {item:4234}, each with Coal and an {item:18944}. Incendosaurs (level 47-49) in the north of {zone:1427} drop a scale every time; Burninate himself sells Coal."] = "Réapprovisionnement en {item:18942} se répète en trois versions : {item:3356}, Barres de fer ou {item:4234}, chacune avec du Charbon et {item:18944}. Les Incendosaures (niveau 47-49) au nord de {zone:1427} lâchent une écaille à chaque fois ; Burninate vend lui-même le Charbon.",
+	-- ["{faction:59} Reputation"] = "Réputation : {faction:59}",
+	-- ["{npc:12944} trades in the Grim Guzzler inside {area:1584}. His Favor Amongst the Brotherhood turn-ins take {item:11099} (mined from {object:147516} Deposits with {skill:186}), {item:11382}, {item:17010}, {item:17011} and {item:17012}. {npc:14387} at the {area:1445} entrance offers attunement to the {area:2717}."] = "{npc:12944} commerce au Sinistre écluseur, dans {area:1584}. Ses quêtes Faveur auprès de la Confrérie prennent {item:11099} (extrait des gisements de {object:147516} avec {skill:186}), {item:11382}, {item:17010}, {item:17011} et {item:17012}. {npc:14387}, à l'entrée de {area:1445}, propose l'harmonisation pour {area:2717}.",
+	-- ["{npc:14624}: Restoring {item:18942} Supplies"] = "{npc:14624} : Réapprovisionnement en {item:18942}",
 }

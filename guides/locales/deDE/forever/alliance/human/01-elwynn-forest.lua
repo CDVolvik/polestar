@@ -1,7 +1,9 @@
 -- German (deDE): the guide forever/alliance/human/01-elwynn-forest (forever/alliance/human/01-elwynn-forest.guide).
 -- Written by `node tools/polestar.js i18n guides sync deDE`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in German (the English is listed above the line). The comments are rewritten by sync.
+-- name there in German (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Step 1: Northshire Abbey
 	-- {npc:823} Deputy Willem · {npc:197} Marshal McBride · {npc:951} Brother Paxton · {npc:247229} Daniel · {npc:196} Eagan Peltskinner
@@ -54,10 +56,6 @@ return {
 	-- {item:6785} Powers of the Void · {object:83763} Stolen Books
 	["{item:6785}: the {object:83763} in the Defias camp"] = "{item:6785}: {object:83763} im Lager der Defias",
 
-	-- Step 9: Deputy Willem
-	-- {npc:459} Drusilla La Salle
-	["{npc:459}: Summon Imp"] = "{npc:459}: Wichtel beschwören",
-
 	-- Step 10: Milly Osworth
 	["She stands by her cart at the vineyard east of the Abbey."] = "Sie steht bei ihrem Karren am Weinberg östlich der Abtei.",
 
@@ -96,13 +94,14 @@ return {
 	["The lake shore"] = "Das Seeufer",
 	-- {npc:263399} Sam Sarsaparilla · {npc:6306} Helene Peltskinner · {npc:383} Jason Mathers · {npc:1651} Lee Brown · {area:18} Crystal Lake
 	["{npc:263399} camps north-east of the inn; {npc:6306}, {npc:383} and {npc:1651} stand on the shore of {area:18} east of town."] = "{npc:263399} lagert nordöstlich des Gasthauses; {npc:6306}, {npc:383} und {npc:1651} stehen am Ufer von {area:18} östlich des Ortes.",
-	["Sit (/sit) by his campfire until you have Boosted Rest"] = "Setz dich (/sit) an sein Lagerfeuer, bis du Boosted Rest hast",
+	-- {spell:1229451} Boosted Rest
+	["Sit (/sit) by his campfire until you have {spell:1229451}"] = "",
 	-- {npc:6306} Helene Peltskinner
 	["{npc:6306}: skinners only, the pelts are skinned"] = "{npc:6306}: nur für Kürschner, die Felle werden gehäutet",
 
 	-- Step 18: Crystal Lake
-	-- {skill:356} Fishing
-	["The {skill:356} Traps sit along the west shore of the lake."] = "Die Fallen zum {skill:356} stehen entlang des Westufers des Sees.",
+	-- plural, as words: Fishing Traps = {object:694772} Fishing Trap
+	["The Fishing Traps sit along the west shore of the lake."] = "",
 
 	-- Step 20: The murloc camp
 	["The murloc camp"] = "Das Murloclager",
@@ -279,7 +278,7 @@ return {
 	-- {npc:473} Morgan the Collector · {area:62} Brackwell Pumpkin Patch
 	-- plural, as words: Murloc Foragers = {npc:46} Murloc Forager · Prowlers = {npc:118} Prowler · Young Forest Bears = {npc:822} Young Forest Bear
 	["Murloc Foragers and Lurkers line the river south of the bridge. {npc:473}, a Defias, walks the {area:62} west of it. Finish the Prowlers and Young Forest Bears on the way."] = "Murlocfutterwühler und Murloclauerer säumen den Fluss südlich der Brücke. {npc:473}, ein Defias, streift durch {area:62} westlich davon. Erledige unterwegs die Streuner und Jungen Waldbären.",
-	-- plural, as words: Torn Murloc Fins = {item:780} Torn Murloc Fin · Murloc Fins = {item:1468} Murloc Fin
+	-- plural, as words: Torn Murloc Fins = {item:780} Torn Murloc Fin
 	["Torn Murloc Fins"] = "Zerrissene Murlocflossen",
 
 	-- Step 60: Stone Cairn Lake
@@ -311,9 +310,8 @@ return {
 	["{npc:1922}: tame it with the {item:15908}"] = "{npc:1922}: Zähme ihn mit {item:15908}",
 	-- {npc:822} Young Forest Bear · {item:15908} Taming Rod
 	["{npc:822}: tame it with the {item:15908}"] = "{npc:822}: Zähme ihn mit {item:15908}",
-	["Tame Beast"] = "Wildtier zähmen",
-	-- {npc:258930} Isaac Chan
-	["{npc:258930}, beside her: Beast Training"] = "{npc:258930}, neben ihr: Wildtierausbildung",
+	-- {npc:258930} Isaac Chan · {spell:5149} Beast Training
+	["{npc:258930}, beside her: {spell:5149}"] = "",
 
 	-- Step 64: Jennea Cannon
 	-- {area:87} Goldshire · {zone:1453} Stormwind City · {npc:5497} Jennea Cannon · {object:2101} Mage Quarter · {quest:1861} Mirror Lake
@@ -335,7 +333,6 @@ return {
 	-- {item:6928} Bloodstone Choker · {object:2164} The Slaughtered Lamb
 	["Back to Gakin. Use the {item:6928} at the summoning circle in the {object:2164}'s cellar and defeat the voidwalker it calls."] = "Zurück zu Gakin. Benutze {item:6928} am Beschwörungskreis im Keller von {object:2164} und besiege den Leerwandler, den er ruft.",
 	["Subdue the voidwalker"] = "Bezwinge den Leerwandler",
-	["Summon Voidwalker"] = "Leerwandler beschwören",
 
 	-- Step 69: The Tome of Divinity
 	-- {area:87} Goldshire · {zone:1453} Stormwind City · {npc:6171} Duthorian Rall · {npc:6173} Gazin Tenorm · {npc:6174} Stephanie Turner · {object:2100} Old Town · {item:2589} Linen Cloth
@@ -361,4 +358,12 @@ return {
 	-- Step 72: Sentinel Hill
 	-- {zone:1436} Westfall · {area:108} Sentinel Hill
 	["Follow the road west past Westbrook into {zone:1436}, then south along it to {area:108}. Thor, the gryphon master, stands on the hill."] = "Folge der Straße nach Westen an Weststrom vorbei nach {zone:1436} und dann auf ihr nach Süden nach {area:108}. Thor, der Greifenmeister, steht auf dem Hügel.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Sit (/sit) by his campfire until you have Boosted Rest"] = "Setz dich (/sit) an sein Lagerfeuer, bis du Boosted Rest hast",
+	-- ["Summon Voidwalker"] = "Leerwandler beschwören",
+	-- ["Tame Beast"] = "Wildtier zähmen",
+	-- ["The {skill:356} Traps sit along the west shore of the lake."] = "Die Fallen zum {skill:356} stehen entlang des Westufers des Sees.",
+	-- ["{npc:258930}, beside her: Beast Training"] = "{npc:258930}, neben ihr: Wildtierausbildung",
+	-- ["{npc:459}: Summon Imp"] = "{npc:459}: Wichtel beschwören",
 }

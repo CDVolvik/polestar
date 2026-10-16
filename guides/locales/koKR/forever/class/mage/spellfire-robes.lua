@@ -1,7 +1,9 @@
 -- Korean (koKR): the guide forever/class/mage/spellfire-robes (forever/class/mage/spellfire-robes.guide).
 -- Written by `node tools/polestar.js i18n guides sync koKR`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Korean (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Guide
 	-- {zone:1458} Undercity · {zone:1421} Silverpine Forest
@@ -21,16 +23,16 @@ return {
 
 	-- Step 4: The alchemist shop
 	["The alchemist shop"] = "연금술 상점",
-	-- {object:36072} The Apothecarium · {item:7308} Cantation of Manifestation · {npc:6492} Rift Spawn · {item:7247} Chest of Containment Coffers
-	["Algernon's alchemist shop is in the {object:36072}. Use the {item:7308} there to make the {npc:6492} visible, subdue one with your spells, then use the {item:7247} to throw down a coffer and capture it."] = "알게르논의 연금술 상점은 {object:36072}에 있습니다. 그곳에서 {item:7308}을(를) 사용해 {npc:6492}이(가) 보이게 한 뒤, 주문으로 하나를 제압하고 {item:7247}을(를) 사용해 금고를 던져 포획하세요.",
+	-- {item:7308} Cantation of Manifestation · {npc:6492} Rift Spawn · {item:7247} Chest of Containment Coffers
+	["Algernon's alchemist shop is in the Apothecarium. Use the {item:7308} there to make the {npc:6492} visible, subdue one with your spells, then use the {item:7247} to throw down a coffer and capture it."] = "",
 
 	-- Step 5: Back to Anastasia Hartwell
 	-- {npc:4568} Anastasia Hartwell
 	["Back to {npc:4568}"] = "{npc:4568}에게 돌아가기",
 
 	-- Step 6: Linen Cloth
-	-- {item:2589} Linen Cloth · {zone:1458} Undercity
-	["Humanoids drop {item:2589}; the {zone:1458} Auction House sells it."] = "인간형 몹이 {item:2589}을(를) 떨어뜨립니다. {zone:1458} 경매장에서도 팝니다.",
+	-- {item:2589} Linen Cloth
+	["Humanoids drop {item:2589}; the Undercity Auction House sells it."] = "",
 
 	-- Step 7: Ambermill
 	-- {zone:1458} Undercity · {zone:1421} Silverpine Forest · {area:279} Dalaran · {area:233} Ambermill · {area:228} The Sepulcher · {npc:1867} Dalaran Apprentice · {item:7293} Dalaran Mana Gem
@@ -39,4 +41,8 @@ return {
 	-- Step 8: Josef Gregorian
 	-- {zone:1458} Undercity · {npc:4576} Josef Gregorian · {npc:11048} Victor Ward · {npc:11049} Rhiannon Davis
 	["Back to the {zone:1458}. {npc:4576}, {npc:11048} and {npc:11049} keep the tailor's shop."] = "{zone:1458}(으)로 돌아가세요. {npc:4576}, {npc:11048}, {npc:11049}이(가) 재봉 상점을 운영합니다.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Algernon's alchemist shop is in the {object:36072}. Use the {item:7308} there to make the {npc:6492} visible, subdue one with your spells, then use the {item:7247} to throw down a coffer and capture it."] = "알게르논의 연금술 상점은 {object:36072}에 있습니다. 그곳에서 {item:7308}을(를) 사용해 {npc:6492}이(가) 보이게 한 뒤, 주문으로 하나를 제압하고 {item:7247}을(를) 사용해 금고를 던져 포획하세요.",
+	-- ["Humanoids drop {item:2589}; the {zone:1458} Auction House sells it."] = "인간형 몹이 {item:2589}을(를) 떨어뜨립니다. {zone:1458} 경매장에서도 팝니다.",
 }

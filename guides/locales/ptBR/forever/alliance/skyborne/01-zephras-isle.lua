@@ -1,7 +1,9 @@
 -- Portuguese (Brazil) (ptBR): the guide forever/alliance/skyborne/01-zephras-isle (forever/alliance/skyborne/01-zephras-isle.guide).
 -- Written by `node tools/polestar.js i18n guides sync ptBR`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Portuguese (Brazil) (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Portuguese (Brazil) (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Step 1: Thendal Grove
 	-- {area:16622} Thendal Grove · {npc:251362} Ailee Farheart · {npc:251361} Rorian the Dayseeker · {npc:251368} Elatrell Featherlight
@@ -33,7 +35,8 @@ return {
 	["{npc:251373}, the druid trainer, on the ground floor of the tree behind Rorian"] = "{npc:251373}, o instrutor de druidas, no térreo da árvore atrás de Rorian",
 	["The class trainers stand together in the grove"] = "Os instrutores de classe ficam juntos no bosque",
 	["Listen to Halaan"] = "Escute Halaan",
-	["Use Walk on Air"] = "Use Andar no Ar",
+	-- {spell:1259416} Walk on Air
+	["Use {spell:1259416}"] = "",
 
 	-- Step 4: Raw Windstones and the Cirrusfly Queen
 	-- {npc:251404} Cirrusfly Queen
@@ -46,9 +49,9 @@ return {
 	-- Step 5: Yala Windwatcher
 	-- {npc:249363} Yala Windwatcher · {npc:251143} Roiling Winds · {object:460002} Ley Line
 	-- plural, as words: Al'Aketh Converts = {npc:251160} Al'Aketh Convert
-	["{npc:249363} keeps watch east of the grove. The {npc:251143} and Al'Aketh Converts gather just north of her; the {object:460002} rises further north: cast your Read {object:460002} racial ability at it."] = "{npc:249363} vigia a leste do bosque. Os {npc:251143} e os Convertidos Al'Aketh se reúnem logo ao norte dela; o {object:460002} se ergue mais ao norte: use nele sua habilidade racial Ler {object:460002}.",
+	["{npc:249363} keeps watch east of the grove. The {npc:251143} and Al'Aketh Converts gather just north of her; the {object:460002} rises further north: cast your Read Ley Line racial ability at it."] = "",
 	-- {object:460002} Ley Line
-	["Cast Read {object:460002} at the {object:460002}"] = "Use Ler {object:460002} no {object:460002}",
+	["Cast Read Ley Line at the {object:460002}"] = "",
 
 	-- Step 6: Thendal Grove turn-ins
 	-- {area:16622} Thendal Grove
@@ -76,7 +79,8 @@ return {
 	["Speak with {npc:251903} and {npc:254089}, north-west of the village"] = "Fale com {npc:251903} e {npc:254089}, a noroeste da aldeia",
 
 	-- Step 11: Raan Wildwind
-	["/sit by Raan's campfire until you get Boosted Rest"] = "Use /sentar junto à fogueira de Raan até receber Descanso Aprimorado",
+	-- {spell:1229451} Boosted Rest
+	["/sit by Raan's campfire until you get {spell:1229451}"] = "",
 
 	-- Step 12: Village quests
 	["Village quests"] = "Missões da aldeia",
@@ -98,8 +102,8 @@ return {
 	["Shen'dar turn-ins"] = "Entregas em Shen'dar",
 
 	-- Step 17: Falaath Village
-	-- {npc:257065} Missionary Jasaan · {quest:92529} Falaath Village
-	["{npc:257065} waits at the entrance to {quest:92529}, south of Shen'dar. The Mark of Akir lets you walk in among the faithful."] = "{npc:257065} espera na entrada da {quest:92529}, ao sul de Shen'dar. A Marca de Akir permite que você entre entre os fiéis.",
+	-- {npc:257065} Missionary Jasaan · {quest:92529} Falaath Village · {spell:1254832} Mark of Akir
+	["{npc:257065} waits at the entrance to {quest:92529}, south of Shen'dar. The {spell:1254832} lets you walk in among the faithful."] = "",
 	["Search the wardrobe"] = "Revire o guarda-roupa",
 
 	-- Step 19: Havoc in Falaath
@@ -196,9 +200,6 @@ return {
 	["{npc:254588}: tame it with the {item:15908}"] = "{npc:254588}: dome-o com o {item:15908}",
 	-- {item:15908} Taming Rod
 	["Tame it with the {item:15908}"] = "Dome-o com o {item:15908}",
-	["Tame Beast"] = "Domar Fera",
-	-- {npc:254411} Quel'dora Quickgale
-	["{npc:254411}: Beast Training"] = "{npc:254411}: Treinamento de Feras",
 
 	-- Step 36: The Windstone Formations
 	-- plural, as words: Windstone Formations = {object:697118} Windstone Formation
@@ -238,8 +239,6 @@ return {
 	-- Step 43: Strength and Mercy
 	-- {npc:255853} Urs'endris · {area:16638} Valanaar
 	["Back to {npc:255853} by the falls north-east of {area:16638}, on the way north to the shrine."] = "Volte a {npc:255853}, junto às cachoeiras a nordeste de {area:16638}, no caminho para o santuário ao norte.",
-	-- {npc:255853} Urs'endris
-	["{npc:255853}: Bear Form"] = "{npc:255853}: Forma de Urso",
 
 	-- Step 44: The Shrine of Akir
 	-- {area:16629} Shrine of Akir
@@ -273,8 +272,9 @@ return {
 	["{npc:257944}, the missive"] = "{npc:257944}, a missiva",
 
 	-- Step 50: The Strange Hermit
-	-- {quest:93159} The Strange Hermit · {item:257128} Zephyrseed
-	["{quest:93159} lives west of Elegael. The {item:257128} Cones lie in the woods between his hut and Elegael."] = "{quest:93159} mora a oeste de Elegael. As Pinhas de {item:257128} ficam na mata entre a cabana dele e Elegael.",
+	-- {quest:93159} The Strange Hermit
+	-- plural, as words: Zephyrseed Cones = {object:613238} Zephyrseed Cone
+	["{quest:93159} lives west of Elegael. The Zephyrseed Cones lie in the woods between his hut and Elegael."] = "",
 
 	-- Step 51: The refugees' camp
 	["The refugees' camp"] = "O acampamento dos refugiados",
@@ -294,8 +294,6 @@ return {
 	["{area:16638}, the fate of Zephras"] = "{area:16638}, o destino de Zefras",
 	-- {npc:252475} Elaadrin Evengale · {npc:259084} Denaaris Stargale
 	["{npc:252475}: {npc:259084} waits by the Skyborne portal"] = "{npc:252475}: {npc:259084} espera junto ao portal Celonato",
-	-- {npc:252377} Seena Skybreaker
-	["{npc:252377}: Defensive Stance"] = "{npc:252377}: Postura Defensiva",
 
 	-- Step 55: The skycutter
 	["The skycutter"] = "A nave celeste",
@@ -317,8 +315,8 @@ return {
 	["For {npc:234} at {area:108}"] = "Para {npc:234} em {area:108}",
 
 	-- Step 58: Sheldras Moontree
-	-- {npc:5504} Sheldras Moontree · {zone:1453} Stormwind City · {quest:94914} Moonglade · {npc:11802} Dendrite Starblaze · {zone:1439} Darkshore
-	["{npc:5504}, {zone:1453}'s druid trainer, teaches you Teleport: {quest:94914}. {npc:11802}'s welcome waits for your Cat Form trip at the end of {zone:1439}."] = "{npc:5504}, instrutor de druidas de {zone:1453}, ensina Teletransporte: {quest:94914}. As boas-vindas de {npc:11802} aguardam sua viagem da Forma de Felino no fim de {zone:1439}.",
+	-- {npc:5504} Sheldras Moontree · {zone:1453} Stormwind City · {spell:18960} Teleport: Moonglade · {npc:11802} Dendrite Starblaze · {spell:499} Cat Form · {zone:1439} Darkshore
+	["{npc:5504}, {zone:1453}'s druid trainer, teaches you {spell:18960}. {npc:11802}'s welcome waits for your {spell:499} trip at the end of {zone:1439}."] = "",
 
 	-- Step 59: Jennea Cannon
 	-- {npc:5497} Jennea Cannon · {object:2101} Mage Quarter · {quest:1861} Mirror Lake
@@ -327,4 +325,17 @@ return {
 	-- Step 60: Mirror Lake
 	-- {zone:1453} Stormwind City · {quest:1861} Mirror Lake · {zone:1436} Westfall · {item:7207} Jennea's Flask
 	["Leave {zone:1453} by the main gate. The {quest:1861} waterfall is south-west of the gates, on the way west to {zone:1436}: fill {item:7207} at its base."] = "Saia de {zone:1453} pelo portão principal. A cachoeira do {quest:1861} fica a sudoeste dos portões, no caminho para {zone:1436}, a oeste: encha o {item:7207} na base dela.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["/sit by Raan's campfire until you get Boosted Rest"] = "Use /sentar junto à fogueira de Raan até receber Descanso Aprimorado",
+	-- ["Cast Read {object:460002} at the {object:460002}"] = "Use Ler {object:460002} no {object:460002}",
+	-- ["Tame Beast"] = "Domar Fera",
+	-- ["Use Walk on Air"] = "Use Andar no Ar",
+	-- ["{npc:249363} keeps watch east of the grove. The {npc:251143} and Al'Aketh Converts gather just north of her; the {object:460002} rises further north: cast your Read {object:460002} racial ability at it."] = "{npc:249363} vigia a leste do bosque. Os {npc:251143} e os Convertidos Al'Aketh se reúnem logo ao norte dela; o {object:460002} se ergue mais ao norte: use nele sua habilidade racial Ler {object:460002}.",
+	-- ["{npc:252377}: Defensive Stance"] = "{npc:252377}: Postura Defensiva",
+	-- ["{npc:254411}: Beast Training"] = "{npc:254411}: Treinamento de Feras",
+	-- ["{npc:255853}: Bear Form"] = "{npc:255853}: Forma de Urso",
+	-- ["{npc:257065} waits at the entrance to {quest:92529}, south of Shen'dar. The Mark of Akir lets you walk in among the faithful."] = "{npc:257065} espera na entrada da {quest:92529}, ao sul de Shen'dar. A Marca de Akir permite que você entre entre os fiéis.",
+	-- ["{npc:5504}, {zone:1453}'s druid trainer, teaches you Teleport: {quest:94914}. {npc:11802}'s welcome waits for your Cat Form trip at the end of {zone:1439}."] = "{npc:5504}, instrutor de druidas de {zone:1453}, ensina Teletransporte: {quest:94914}. As boas-vindas de {npc:11802} aguardam sua viagem da Forma de Felino no fim de {zone:1439}.",
+	-- ["{quest:93159} lives west of Elegael. The {item:257128} Cones lie in the woods between his hut and Elegael."] = "{quest:93159} mora a oeste de Elegael. As Pinhas de {item:257128} ficam na mata entre a cabana dele e Elegael.",
 }

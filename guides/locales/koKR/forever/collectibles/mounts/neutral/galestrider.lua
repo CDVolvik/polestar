@@ -1,15 +1,17 @@
 -- Korean (koKR): the guide forever/collectibles/mounts/neutral/galestrider (forever/collectibles/mounts/neutral/galestrider.guide).
 -- Written by `node tools/polestar.js i18n guides sync koKR`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Korean (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Guide
 	["Galestrider"] = "돌풍타조",
 
 	-- Step 1: Learn to ride
 	["Learn to ride"] = "탈것 타기 배우기",
-	-- {skill:762} Riding
-	["Galestriders need level 40 and {skill:762} (Galestrider {skill:762} comes with it in the Forever client). Any riding trainer of your faction teaches it; see the Level 40 mount guides for where."] = "돌풍타조를 타려면 40레벨과 {skill:762}이(가) 필요합니다(Forever 클라이언트에서는 돌풍타조 {skill:762}이(가) 함께 주어집니다). 자기 진영의 탈것 상급자라면 누구나 가르칩니다. 위치는 40레벨 탈것 가이드를 참고하십시오.",
+	-- {skill:762} Riding · {spell:1285849} Galestrider Riding
+	["Galestriders need level 40 and {skill:762} ({spell:1285849} comes with it in the Forever client). Any riding trainer of your faction teaches it; see the Level 40 mount guides for where."] = "",
 
 	-- Step 2: Skyboat from Dalaran
 	-- {area:279} Dalaran
@@ -29,4 +31,7 @@ return {
 	-- {npc:265756} Genn Fairweather · {area:16638} Valanaar
 	["{npc:265756} is in {area:16638}, the island's harbour town, near the skyboat docks. The Forever client lists each Galestrider at 20g; choose one."] = "{npc:265756}은(는) 섬의 항구 마을인 {area:16638}의 하늘배 선착장 근처에 있습니다. Forever 클라이언트에서 돌풍타조는 각 20골드입니다. 하나를 고르십시오.",
 	["20g"] = "20골드",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Galestriders need level 40 and {skill:762} (Galestrider {skill:762} comes with it in the Forever client). Any riding trainer of your faction teaches it; see the Level 40 mount guides for where."] = "돌풍타조를 타려면 40레벨과 {skill:762}이(가) 필요합니다(Forever 클라이언트에서는 돌풍타조 {skill:762}이(가) 함께 주어집니다). 자기 진영의 탈것 상급자라면 누구나 가르칩니다. 위치는 40레벨 탈것 가이드를 참고하십시오.",
 }

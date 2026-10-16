@@ -1,7 +1,9 @@
 -- Russian (ruRU): the guide forever/alliance/50-60/02-felwood (forever/alliance/50-60/02-felwood.guide).
 -- Written by `node tools/polestar.js i18n guides sync ruRU`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Russian (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Russian (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Step 1: Auberdine
 	-- {area:702} Rut'theran Village · {area:442} Auberdine · {area:415} Astranaar
@@ -53,7 +55,7 @@ return {
 	["The Cursed and Tainted Oozes slide about the streams and fel pools around {area:1763} and {area:1765}: kill them and use Laris's Empty Ooze Jars on their remains."] = "",
 
 	-- Step 11: Shatter Scar Vale
-	-- plural, as words: Entropic Beasts = {npc:9878} Entropic Beast · Horrors = {npc:251103} Horror
+	-- plural, as words: Entropic Beasts = {npc:9878} Entropic Beast
 	["Follow the road north to the cratered vale and walk to each crater, killing the Entropic Beasts and Horrors between them."] = "",
 	["First crater"] = "",
 	["Second crater"] = "",

@@ -1,7 +1,9 @@
 -- German (deDE): the guide forever/exploration/kalimdor-45-60 (forever/exploration/kalimdor-45-60.guide).
 -- Written by `node tools/polestar.js i18n guides sync deDE`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in German (the English is listed above the line). The comments are rewritten by sync.
+-- name there in German (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Guide
 	-- {zone:1414} Kalimdor
@@ -60,8 +62,8 @@ return {
 
 	-- Step 11: Moonglade
 	["1 area to discover here, level 15."] = "Hier gibt es 1 Gebiet zu entdecken, Stufe 15.",
-	-- {area:1769} Timbermaw Hold · {zone:1448} Felwood · {zone:1450} Moonglade · {area:2361} Nighthaven
-	["Take the {area:1769} tunnel in northern {zone:1448} through to {zone:1450} (druids: Teleport: {zone:1450}). {area:2361} is neutral."] = "Nimm den Tunnel der {area:1769} im nördlichen {zone:1448} hindurch nach {zone:1450} (Druiden: Teleportieren: {zone:1450}). {area:2361} ist neutral.",
+	-- {area:1769} Timbermaw Hold · {zone:1448} Felwood · {zone:1450} Moonglade · {spell:18960} Teleport: Moonglade · {area:2361} Nighthaven
+	["Take the {area:1769} tunnel in northern {zone:1448} through to {zone:1450} (druids: {spell:18960}). {area:2361} is neutral."] = "",
 	-- {zone:1450} Moonglade
 	["Flight path here: {zone:1450} (Sindrayl)."] = "Flugroute hier: {zone:1450} (Sindrayl).",
 	-- {zone:1450} Moonglade
@@ -81,4 +83,7 @@ return {
 	["9 areas to discover here."] = "Hier gibt es 9 Gebiete zu entdecken.",
 	-- {zone:2482} Mount Hyjal · {zone:1452} Winterspring · {area:2256} Darkwhisper Gorge
 	["{zone:2482} is reached from {zone:1452} through {area:2256} in the south. It is Forever's endgame leveling zone."] = "{zone:2482} erreichst du von {zone:1452} aus durch die {area:2256} im Süden. Es ist das Endgame-Levelgebiet von Forever.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Take the {area:1769} tunnel in northern {zone:1448} through to {zone:1450} (druids: Teleport: {zone:1450}). {area:2361} is neutral."] = "Nimm den Tunnel der {area:1769} im nördlichen {zone:1448} hindurch nach {zone:1450} (Druiden: Teleportieren: {zone:1450}). {area:2361} ist neutral.",
 }

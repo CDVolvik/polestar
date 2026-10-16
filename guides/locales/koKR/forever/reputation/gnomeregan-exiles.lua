@@ -1,11 +1,12 @@
 -- Korean (koKR): the guide forever/reputation/gnomeregan-exiles (forever/reputation/gnomeregan-exiles.guide).
 -- Written by `node tools/polestar.js i18n guides sync koKR`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Korean (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Guide
-	-- {faction:54} Gnomeregan Exiles
-	["{faction:54} Reputation"] = "{faction:54} 평판",
+	["Gnomeregan Exiles Reputation"] = "",
 
 	-- Step 1: Bubulo Acerbus: A Donation of Wool
 	-- {npc:14724} Bubulo Acerbus · {faction:54} Gnomeregan Exiles · {object:171524} Tinker Town · {zone:1455} Ironforge · {item:14047} Runecloth · {quest:7812} Additional Runecloth
@@ -50,4 +51,7 @@ return {
 	-- {quest:7812} Additional Runecloth · {faction:54} Gnomeregan Exiles · {item:14047} Runecloth · {zone:1423} Eastern Plaguelands
 	-- plural, as words: Dark Adepts = {npc:8546} Dark Adept
 	["Keep handing in {quest:7812} until {faction:54} is Exalted. {item:14047}: Dark Adepts and Shadowmages (level 58-60) in {zone:1423}, or the Auction House."] = "{faction:54}와(과) 확고한 동맹이 될 때까지 {quest:7812}을(를) 계속 제출하십시오. {item:14047}: {zone:1423}의 암흑의 수행사제와 어둠마법사(레벨 58-60) 또는 경매장.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["{faction:54} Reputation"] = "{faction:54} 평판",
 }

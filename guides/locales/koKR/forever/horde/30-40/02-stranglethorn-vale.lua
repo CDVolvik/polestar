@@ -1,7 +1,9 @@
 -- Korean (koKR): the guide forever/horde/30-40/02-stranglethorn-vale (forever/horde/30-40/02-stranglethorn-vale.guide).
 -- Written by `node tools/polestar.js i18n guides sync koKR`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Korean (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Step 1: Zeppelin to Grom'gol
 	-- {object:3202} Grom'gol
@@ -34,7 +36,7 @@ return {
 
 	-- Step 7: Young tigers and panthers
 	["Young tigers and panthers"] = "새끼 호랑이와 퓨마",
-	-- plural, as words: Young Stranglethorn Tigers = {npc:681} Young Stranglethorn Tiger · Stranglethorn Tigers = {npc:682} Stranglethorn Tiger · Young Panthers = {npc:683} Young Panther
+	-- plural, as words: Young Stranglethorn Tigers = {npc:681} Young Stranglethorn Tiger · Young Panthers = {npc:683} Young Panther
 	["Young Stranglethorn Tigers prowl west of the camp, Young Panthers south and east of it."] = "새끼 가시덤불 호랑이는 야영지 서쪽에, 새끼 퓨마는 남쪽과 동쪽에 돌아다닙니다.",
 
 	-- Step 9: Tigers and panthers
@@ -51,7 +53,7 @@ return {
 	-- Step 12: Elder tigers and Lashtail raptors
 	["Elder tigers and Lashtail raptors"] = "덩치큰 호랑이와 채찍꼬리랩터",
 	-- {object:3202} Grom'gol
-	-- plural, as words: Elder Stranglethorn Tigers = {npc:1085} Elder Stranglethorn Tiger · Stranglethorn Tigers = {npc:682} Stranglethorn Tiger · Lashtail Raptors = {npc:686} Lashtail Raptor
+	-- plural, as words: Elder Stranglethorn Tigers = {npc:1085} Elder Stranglethorn Tiger · Lashtail Raptors = {npc:686} Lashtail Raptor
 	["The Elder Stranglethorn Tigers (34-35) roam the hills south-west of the camp; the Lashtail Raptors (35-36) hunt further south, towards {object:3202}."] = "덩치큰 가시덤불 호랑이(34-35)는 야영지 남서쪽 언덕을 돌아다니고, 채찍꼬리랩터(35-36)는 더 남쪽, {object:3202} 쪽에서 사냥합니다.",
 
 	-- Step 13: Grom'gol
@@ -164,7 +166,7 @@ return {
 	-- Step 41: Mistvale gorillas
 	["Mistvale gorillas"] = "안개계곡고릴라",
 	-- {area:35} Booty Bay · {area:1737} Mistvale Valley
-	-- plural, as words: Elder Mistvale Gorillas = {npc:1557} Elder Mistvale Gorilla · Mistvale Gorillas = {npc:1108} Mistvale Gorilla
+	-- plural, as words: Elder Mistvale Gorillas = {npc:1557} Elder Mistvale Gorilla
 	["Take the road south towards {area:35}. The Elder Mistvale Gorillas (40-41) live in {area:1737}, east of the road; about one in twenty carries an aged sinew."] = "길을 따라 남쪽 {area:35} 방향으로 가세요. 덩치큰 안개계곡고릴라(40-41)는 길 동쪽의 {area:1737}에 살며, 약 20마리 중 1마리가 덩치큰 고릴라의 힘줄을 지니고 있습니다.",
 
 	-- Step 42: Booty Bay

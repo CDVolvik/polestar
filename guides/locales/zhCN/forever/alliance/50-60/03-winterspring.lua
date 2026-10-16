@@ -1,7 +1,9 @@
 -- Chinese (simplified) (zhCN): the guide forever/alliance/50-60/03-winterspring (forever/alliance/50-60/03-winterspring.guide).
 -- Written by `node tools/polestar.js i18n guides sync zhCN`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Chinese (simplified) (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Chinese (simplified) (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Step 1: Everlook
 	-- {npc:11629} Jessica Redpath · {area:2262} Darrowshire
@@ -119,10 +121,11 @@ return {
 	["{npc:11038}: Zaeldarr is a level 54 elite"] = "{npc:11038}：流亡者塞达尔是54级精英",
 
 	-- Step 28: Corin's Crossing
-	-- {area:2264} Corin's Crossing · {area:2262} Darrowshire
-	["The Scourge around {area:2264}, west of the chapel, drop both kinds of Scourgestone; {area:2262} Spirits rise from them: talk to each one to free it."] = "礼拜堂以西{area:2264}周围的天灾军团会掉落两种天灾石；{area:2262}的灵魂会从它们身上升起：与每个灵魂交谈以解放它。",
-	-- {area:2262} Darrowshire
-	["Free {area:2262} Spirits: talk to them"] = "解放{area:2262}的灵魂：与它们交谈",
+	-- {area:2264} Corin's Crossing
+	-- plural, as words: Darrowshire Spirits = {npc:11064} Darrowshire Spirit
+	["The Scourge around {area:2264}, west of the chapel, drop both kinds of Scourgestone; Darrowshire Spirits rise from them: talk to each one to free it."] = "",
+	-- plural, as words: Darrowshire Spirits = {npc:11064} Darrowshire Spirit
+	["Free Darrowshire Spirits: talk to them"] = "",
 
 	-- Step 30: The Undercroft
 	-- {area:2261} The Undercroft
@@ -135,4 +138,8 @@ return {
 	-- Step 32: Light's Hope Chapel
 	-- {area:3197} Chillwind Camp
 	["The next guide starts here and flies to {area:3197}."] = "下一份指南从这里开始，飞往{area:3197}。",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Free {area:2262} Spirits: talk to them"] = "解放{area:2262}的灵魂：与它们交谈",
+	-- ["The Scourge around {area:2264}, west of the chapel, drop both kinds of Scourgestone; {area:2262} Spirits rise from them: talk to each one to free it."] = "礼拜堂以西{area:2264}周围的天灾军团会掉落两种天灾石；{area:2262}的灵魂会从它们身上升起：与每个灵魂交谈以解放它。",
 }

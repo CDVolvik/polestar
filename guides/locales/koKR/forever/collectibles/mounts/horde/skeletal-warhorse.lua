@@ -1,7 +1,9 @@
 -- Korean (koKR): the guide forever/collectibles/mounts/horde/skeletal-warhorse (forever/collectibles/mounts/horde/skeletal-warhorse.guide).
 -- Written by `node tools/polestar.js i18n guides sync koKR`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Korean (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Guide
 	["Skeletal Warhorse"] = "전투해골마",
@@ -23,6 +25,6 @@ return {
 	-- {item:18791} Purple Skeletal Warhorse
 	["{item:18791}, 200g"] = "{item:18791}, 200골드",
 	-- {npc:265653} Ochre Skeletal Warhorse
-	-- plural, as words: Purple Skeletal Horses = {item:265840} Purple Skeletal Horse · Skeletal Horses = {npc:6346} Skeletal Horse
+	-- plural, as words: Purple Skeletal Horses = {item:265840} Purple Skeletal Horse
 	["The new Forever Green, Dark and Purple Skeletal Horses and the {npc:265653} (level 60) have no known source yet."] = "Forever에 새로 추가된 녹색, 어두운, 보라색 해골마와 {npc:265653}(60레벨)은 아직 알려진 획득처가 없습니다.",
 }

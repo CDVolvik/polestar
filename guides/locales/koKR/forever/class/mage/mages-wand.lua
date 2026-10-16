@@ -1,7 +1,9 @@
 -- Korean (koKR): the guide forever/class/mage/mages-wand (forever/class/mage/mages-wand.guide).
 -- Written by `node tools/polestar.js i18n guides sync koKR`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Korean (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Guide
 	["A wand of your school for the 30s: frost, arcane or fire."] = "30레벨대를 위한 자신의 계열 마법봉: 냉기, 비전 또는 화염.",
@@ -29,8 +31,8 @@ return {
 	-- Step 6: Rituals of Power
 	-- {area:796} Scarlet Monastery · {zone:1420} Tirisfal Glades · {npc:6487} Arcanist Doan
 	["Tirth sold the book to the Scarlet Brotherhood. The {area:796} stands in north-eastern {zone:1420}; take the Library wing. The book juts out of the wall on the left as you enter the Athenaeum, before {npc:6487}."] = "틸스는 책을 붉은십자군에 팔았습니다. {area:796}은(는) {zone:1420} 북동쪽에 있습니다. 도서관 구역으로 가십시오. {npc:6487}이(가) 있는 방에 들어서면 그보다 앞쪽 왼쪽 벽에서 책이 튀어나와 있습니다.",
-	-- {quest:1951} Rituals of Power · {area:796} Scarlet Monastery
-	["{quest:1951}: {area:796} Library"] = "{quest:1951}: {area:796} 도서관",
+	-- {quest:1951} Rituals of Power
+	["{quest:1951}: Scarlet Monastery Library"] = "",
 
 	-- Step 7: Back to Tabetha
 	-- {npc:6546} Tabetha
@@ -45,4 +47,7 @@ return {
 	-- Step 9: Tabetha's ritual
 	-- {npc:6546} Tabetha
 	["{npc:6546}'s ritual"] = "{npc:6546}의 의식",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["{quest:1951}: {area:796} Library"] = "{quest:1951}: {area:796} 도서관",
 }

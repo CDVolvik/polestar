@@ -1,7 +1,9 @@
 -- Spanish (Spain) (esES): the guide forever/class/mage/astral-knot-garment (forever/class/mage/astral-knot-garment.guide).
 -- Written by `node tools/polestar.js i18n guides sync esES`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Spanish (Spain) (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Spanish (Spain) (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Guide
 	["A robe or a blouse for Human and Gnome mages in their late 20s."] = "Una toga o una blusa para magos humanos y gnomos de nivel 27-29 aprox.",

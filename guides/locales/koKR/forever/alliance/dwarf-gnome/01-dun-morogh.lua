@@ -1,7 +1,9 @@
 -- Korean (koKR): the guide forever/alliance/dwarf-gnome/01-dun-morogh (forever/alliance/dwarf-gnome/01-dun-morogh.guide).
 -- Written by `node tools/polestar.js i18n guides sync koKR`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Korean (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Step 1: Sten Stoutarm
 	-- {area:77} Anvilmar · {npc:658} Sten Stoutarm
@@ -57,19 +59,19 @@ return {
 
 	-- Step 7: The boars
 	["The boars"] = "멧돼지",
-	-- plural, as words: Small Crag Boars = {npc:708} Small Crag Boar · Crag Boars = {npc:1125} Crag Boar
+	-- plural, as words: Small Crag Boars = {npc:708} Small Crag Boar
 	["Small Crag Boars graze around Talin's camp and along the west side of the valley."] = "작은 멧돼지가 탈린의 야영지 주변과 골짜기 서쪽을 따라 풀을 뜯습니다.",
 
 	-- Step 9: Grelin Whitebeard
 	-- {npc:12738} Nori Pridedrift
 	["Grelin and {npc:12738} camp at the south-west edge of the valley, below the troll cave."] = "그렐린과 {npc:12738}은(는) 트롤 동굴 아래, 골짜기 남서쪽 가장자리에 진을 치고 있습니다.",
-	-- {npc:1120} Frostmane Troll
-	["A few {npc:1120} Whelps if you are short"] = "모자라면 어린 {npc:1120} 몇 마리",
+	-- plural, as words: Frostmane Troll Whelps = {npc:706} Frostmane Troll Whelp
+	["A few Frostmane Troll Whelps if you are short"] = "",
 
 	-- Step 10: The troll cave
 	["The troll cave"] = "트롤 동굴",
-	-- {npc:1120} Frostmane Troll
-	["{npc:1120} Whelps fill the slopes south and east of Grelin's camp."] = "어린 {npc:1120}이(가) 그렐린의 야영지 남쪽과 동쪽 비탈에 가득합니다.",
+	-- plural, as words: Frostmane Troll Whelps = {npc:706} Frostmane Troll Whelp
+	["Frostmane Troll Whelps fill the slopes south and east of Grelin's camp."] = "",
 	-- plural, as words: Feather Charms = {item:6753} Feather Charm · Frostmane Novices = {npc:946} Frostmane Novice
 	["Feather Charms, from the Frostmane Novices"] = "깃털 부적, 서리갈기부족 견습마법사에게서",
 
@@ -83,8 +85,6 @@ return {
 	-- {npc:836} Durnan Furcutter · {area:77} Anvilmar
 	["{npc:836}, inside {area:77}"] = "{npc:836}, {area:77} 안",
 	["Level 4 spells, before Gozwin's camp"] = "4레벨 주문, 고즈윈의 야영지 전에",
-	-- {npc:460} Alamar Grimm
-	["{npc:460}: Summon Imp"] = "{npc:460}: 임프 소환",
 
 	-- Step 13: Grund and Gozwin
 	-- {npc:2756} Grund Drokda · {area:77} Anvilmar · {npc:269075} Snow Leopard Prowler
@@ -99,9 +99,8 @@ return {
 	-- Step 15: Grelin Whitebeard
 	-- {npc:12738} Nori Pridedrift
 	["{npc:12738}, next to him"] = "{npc:12738}, 그의 옆",
-	-- {npc:1120} Frostmane Troll
-	-- plural, as words: Iceclaw Bear Pendants = {item:264356} Iceclaw Bear Pendant
-	["Iceclaw Bear Pendants, from the {npc:1120} Whelps on the slopes above the camp"] = "얼음발톱 곰 펜던트, 야영지 위 비탈의 어린 {npc:1120}에게서",
+	-- plural, as words: Iceclaw Bear Pendants = {item:264356} Iceclaw Bear Pendant · Frostmane Troll Whelps = {npc:706} Frostmane Troll Whelp
+	["Iceclaw Bear Pendants, from the Frostmane Troll Whelps on the slopes above the camp"] = "",
 
 	-- Step 16: Call of Earth
 	-- {npc:257446} Teo Hammerstorm · {area:77} Anvilmar · {item:6635} Earth Sapta · {npc:5891} Minor Manifestation of Earth · {item:6656} Rough Quartz
@@ -140,7 +139,7 @@ return {
 	-- Step 21: Boars and bears
 	["Boars and bears"] = "멧돼지와 곰",
 	-- {area:131} Kharanos
-	-- plural, as words: Crag Boars = {npc:1125} Crag Boar · Young Black Bears = {npc:1128} Young Black Bear · Black Bears = {npc:1129} Black Bear
+	-- plural, as words: Crag Boars = {npc:1125} Crag Boar · Young Black Bears = {npc:1128} Young Black Bear
 	["Crag Boars and Young Black Bears roam the fields around {area:131} and the depot."] = "멧돼지와 새끼 흑곰이 {area:131}와(과) 정거장 주변 들판을 돌아다닙니다.",
 
 	-- Step 24: The Grizzled Den
@@ -174,12 +173,12 @@ return {
 	-- Step 32: Gnomes, bears and leopards
 	["Gnomes, bears and leopards"] = "노움, 곰, 표범",
 	-- {area:133} Gnomeregan
-	-- plural, as words: Leper Gnomes = {npc:1211} Leper Gnome · Ice Claw Bears = {npc:1196} Ice Claw Bear · Elder Crag Boars = {npc:1127} Elder Crag Boar · Crag Boars = {npc:1125} Crag Boar · Snow Leopards = {npc:1201} Snow Leopard
+	-- plural, as words: Leper Gnomes = {npc:1211} Leper Gnome · Ice Claw Bears = {npc:1196} Ice Claw Bear · Elder Crag Boars = {npc:1127} Elder Crag Boar · Snow Leopards = {npc:1201} Snow Leopard
 	["Leper Gnomes around Brewnall and the {area:133} road carry the cogs and gears. Ice Claw Bears, Elder Crag Boars and Snow Leopards roam the hills around the lake."] = "브루날 마을과 {area:133} 길 주변의 오염된 노움이 톱니와 기어를 지니고 있습니다. 얼음발톱흰곰, 덩치큰 멧돼지, 눈표범이 호수 주변 언덕을 돌아다닙니다.",
 
 	-- Step 35: Kharanos
-	-- {npc:1373} Jarven Thunderbrew · {item:2686} Thunder Ale · {npc:1247} Innkeeper Belm
-	["{npc:1373} guards the {item:2686} barrels in the distillery basement. Buy a {item:2686} from {npc:1247}, click the guarded barrel, then hand the ale to Jarven from his quest window (there is no quest to accept); after that, the unguarded barrel takes the Barleybrew Scalder."] = "{npc:1373}은(는) 양조장 지하실의 {item:2686} 통을 지킵니다. {npc:1247}에게서 {item:2686}을(를) 사서 지켜지는 통을 클릭한 뒤, 자벤의 퀘스트 창에서 맥주를 건네세요(수락할 퀘스트는 없습니다). 그 후 지키는 이 없는 통에 발리브루 스칼더를 넣으세요.",
+	-- {npc:1373} Jarven Thunderbrew · {item:2686} Thunder Ale · {npc:1247} Innkeeper Belm · {spell:8553} Barleybrew Scalder
+	["{npc:1373} guards the {item:2686} barrels in the distillery basement. Buy a {item:2686} from {npc:1247}, click the guarded barrel, then hand the ale to Jarven from his quest window (there is no quest to accept); after that, the unguarded barrel takes the {spell:8553}."] = "",
 	-- {item:2686} Thunder Ale · {npc:1247} Innkeeper Belm
 	["{item:2686}, from {npc:1247} in the distillery"] = "{item:2686}, 양조장 안 {npc:1247}에게서",
 	-- {object:269} Guarded Thunder Ale Barrel
@@ -199,7 +198,7 @@ return {
 
 	-- Step 40: The cold
 	["The cold"] = "추위",
-	-- plural, as words: Minor Ice Elementals = {npc:276003} Minor Ice Elemental · Ice Elementals = {npc:274257} Ice Elemental
+	-- plural, as words: Minor Ice Elementals = {npc:276003} Minor Ice Elemental
 	["Minor Ice Elementals drift around the frozen lake by the refuge. The three rifles are in the snow around it."] = "하급 얼음 정령이 피난처 옆 얼어붙은 호수 주변을 떠다닙니다. 소총 세 자루는 그 주변 눈밭에 있습니다.",
 
 	-- Step 42: Avala's Core
@@ -227,6 +226,7 @@ return {
 	["Rockjaw Ambushers by {area:212}, north of the quarry, and Rockjaw Backbreakers further east drop the {quest:95214}."] = "채석장 북쪽 {area:212} 옆의 바위턱일족 잠복꾼과 더 동쪽의 바위턱일족 투사가 {quest:95214}을(를) 떨어뜨립니다.",
 
 	-- Step 49: Leopards and boars
+	-- plural, as words: Leopards = {spell:10788} Leopard
 	["Leopards and boars"] = "표범과 멧돼지",
 	-- {item:2770} Copper Ore
 	-- plural, as words: Snow Leopards = {npc:1201} Snow Leopard · Blacksmiths = {area:3421} Blacksmith · Copper Bars = {item:2840} Copper Bar
@@ -250,7 +250,7 @@ return {
 
 	-- Step 54: Taming the Beast
 	-- {npc:1231} Grif Wildheart · {item:15908} Taming Rod · {area:131} Kharanos
-	-- plural, as words: Large Crag Boars = {npc:1126} Large Crag Boar · Crag Boars = {npc:1125} Crag Boar · Snow Leopards = {npc:1201} Snow Leopard · Ice Claw Bears = {npc:1196} Ice Claw Bear
+	-- plural, as words: Large Crag Boars = {npc:1126} Large Crag Boar · Snow Leopards = {npc:1201} Snow Leopard · Ice Claw Bears = {npc:1196} Ice Claw Bear
 	["Each of {npc:1231}'s quests hands you a {item:15908}: use it on the beast he names, then bring the rod back to him at the {area:131} smithy. Large Crag Boars, Snow Leopards and Ice Claw Bears all roam the fields just south and east of {area:131}."] = "{npc:1231}의 퀘스트마다 {item:15908}을(를) 줍니다. 그가 지정한 야수에게 사용한 뒤, {area:131} 대장간의 그에게 막대를 가져가세요. 큰 멧돼지, 눈표범, 얼음발톱흰곰 모두 {area:131} 바로 남쪽과 동쪽 들판을 돌아다닙니다.",
 	-- {npc:1126} Large Crag Boar · {item:15908} Taming Rod
 	["{npc:1126}: tame it with the {item:15908}"] = "{npc:1126}: {item:15908}(으)로 길들이세요",
@@ -258,7 +258,6 @@ return {
 	["{npc:1201}: tame it with the {item:15908}"] = "{npc:1201}: {item:15908}(으)로 길들이세요",
 	-- {npc:1196} Ice Claw Bear · {item:15908} Taming Rod
 	["{npc:1196}: tame it with the {item:15908}"] = "{npc:1196}: {item:15908}(으)로 길들이세요",
-	["Tame Beast"] = "야수 길들이기",
 	-- {npc:10090} Belia Thundergranite · {zone:1455} Ironforge
 	["{npc:10090} in {zone:1455} takes it"] = "{zone:1455}의 {npc:10090}에게 제출합니다",
 
@@ -292,8 +291,7 @@ return {
 	["{item:5026}: Tunnel Rat Geomancers"] = "{item:5026}: 동굴쥐일족 흙점쟁이",
 
 	-- Step 62: The Fire Spirit Stone
-	-- {npc:5896} Fire Spirit
-	["The {npc:5896} Stone"] = "{npc:5896}의 돌",
+	["The Fire Spirit Stone"] = "",
 	-- {item:6636} Fire Sapta · {npc:5893} Minor Manifestation of Fire · {item:6655} Glowing Ember · {object:61934} Brazier of the Dormant Flame · {object:148418} Eternal Flame
 	["Braldir gives you the {item:6636}. Climb to the peak above his camp, drink the Sapta beside the Spirit Stone and defeat the {npc:5893}, then place its {item:6655} in the {object:61934}, atop the Shrine of {object:148418}."] = "Braldir가 {item:6636}을(를) 줍니다. 그의 야영지 위 봉우리로 올라가 정령석 옆에서 삽타를 마시고 {npc:5893}을(를) 물리친 뒤, {object:148418} 제단 꼭대기의 {object:61934}에 {item:6655}을(를) 넣으세요.",
 	-- {item:6636} Fire Sapta
@@ -314,9 +312,9 @@ return {
 
 	-- Step 65: Spies and Bonesnappers
 	["Spies and Bonesnappers"] = "첩자와 뼈다귀싸움꾼",
-	-- {area:212} Helm's Bed Lake · {object:147516} Dark Iron · {item:274268} Dark Iron Map
+	-- {area:212} Helm's Bed Lake · {item:274268} Dark Iron Map
 	-- plural, as words: Rockjaw Bonesnappers = {npc:1117} Rockjaw Bonesnapper
-	["Rockjaw Bonesnappers prowl the quarry and {area:212}; {object:147516} Spies sneak around the lake shore. One spy drops the {item:274268}."] = "바위턱일족 뼈다귀싸움꾼은 채석장과 {area:212}을(를) 배회하고, {object:147516} 첩자가 호숫가를 몰래 돌아다닙니다. 첩자 하나가 {item:274268}을(를) 떨어뜨립니다.",
+	["Rockjaw Bonesnappers prowl the quarry and {area:212}; Dark Iron Spies sneak around the lake shore. One spy drops the {item:274268}."] = "",
 
 	-- Step 68: Tundra MacGrann
 	-- {npc:1266} Tundra MacGrann · {area:801} Chill Breeze Valley · {npc:1271} Old Icebeard
@@ -329,12 +327,12 @@ return {
 	["From the {quest:2997} she gives you"] = "그녀가 주는 {quest:2997}에서",
 
 	-- Step 70: Narm Faulk
-	-- {zone:1455} Ironforge · {area:212} Helm's Bed Lake · {npc:6177} Narm Faulk · {item:6866} Symbol of Life · {object:147516} Dark Iron
-	["Ride back out of {zone:1455} and east along the road to {area:212}. {npc:6177} lies dead by its shore: use the {item:6866} on him. The {object:147516} Spies sneaking around the lake carry the script."] = "{zone:1455} 밖으로 나가 길을 따라 동쪽으로 {area:212}까지 가세요. {npc:6177}은(는) 호숫가에 죽어 있습니다. 그에게 {item:6866}을(를) 사용하세요. 호수 주변을 몰래 돌아다니는 {object:147516} 첩자가 문서를 지니고 있습니다.",
+	-- {zone:1455} Ironforge · {area:212} Helm's Bed Lake · {npc:6177} Narm Faulk · {item:6866} Symbol of Life
+	["Ride back out of {zone:1455} and east along the road to {area:212}. {npc:6177} lies dead by its shore: use the {item:6866} on him. The Dark Iron Spies sneaking around the lake carry the script."] = "",
 	-- {item:6866} Symbol of Life · {npc:6177} Narm Faulk
 	["Use the {item:6866} on {npc:6177}"] = "{npc:6177}에게 {item:6866}을(를) 사용하세요",
-	-- {item:6847} Dark Iron Script · {object:147516} Dark Iron
-	["{item:6847}: {object:147516} Spies"] = "{item:6847}: {object:147516} 첩자",
+	-- {item:6847} Dark Iron Script
+	["{item:6847}: Dark Iron Spies"] = "",
 
 	-- Step 71: Muiredon Battleforge
 	-- {npc:6179} Tiza Battleforge
@@ -345,8 +343,6 @@ return {
 	["{zone:1455} class quests"] = "{zone:1455} 직업 퀘스트",
 	-- {npc:10090} Belia Thundergranite · {object:32390} Hall of Arms · {npc:258785} High Priestess Mims · {object:32386} Hall of Mysteries · {npc:6120} Lago Blackwrench · {object:32383} The Forlorn Cavern
 	["{npc:10090} is in the {object:32390}, {npc:258785} in the {object:32386}, {npc:6120} in the {object:32383}."] = "{npc:10090}은(는) {object:32390}에, {npc:258785}은(는) {object:32386}에, {npc:6120}은(는) {object:32383}에 있습니다.",
-	-- {npc:10090} Belia Thundergranite
-	["{npc:10090}: Beast Training"] = "{npc:10090}: 야수 조련",
 	-- {npc:6120} Lago Blackwrench · {npc:6122} Gakin the Darkbinder · {zone:1453} Stormwind City
 	["{npc:6120}: {npc:6122} in {zone:1453} takes it"] = "{npc:6120}: {zone:1453}의 {npc:6122}에게 제출합니다",
 
@@ -361,11 +357,8 @@ return {
 	["{npc:258098}, the shaman trainer, north of the {object:32372}"] = "{npc:258098}, 주술사 상급자, {object:32372} 북쪽",
 
 	-- Step 74: Defensive Stance
-	["Defensive Stance"] = "방어 태세",
 	-- {object:28027} Dwarven District · {npc:5480} Ilsa Corbin · {object:2100} Old Town · {npc:6089} Harry Burlguard · {npc:6090} Bartleby · {object:2152} Pig and Whistle Tavern
 	["The tram arrives in the {object:28027}. {npc:5480} trains warriors in {object:2100}; {npc:6089} and {npc:6090} stand together by the {object:2152} there. {npc:6090} fights you for his mug."] = "지하철은 {object:28027}에 도착합니다. {npc:5480}은(는) {object:2100}에서 전사를 훈련시킵니다. {npc:6089}와(과) {npc:6090}은(는) 그곳 {object:2152} 옆에 함께 서 있습니다. {npc:6090}은(는) 자기 잔을 걸고 당신과 싸웁니다.",
-	-- {npc:6089} Harry Burlguard
-	["{npc:6089}: Defensive Stance"] = "{npc:6089}: 방어 태세",
 
 	-- Step 75: Desperate Prayer
 	-- {npc:376} High Priestess Laurena
@@ -383,7 +376,6 @@ return {
 	-- {item:6928} Bloodstone Choker · {object:2164} The Slaughtered Lamb · {zone:1436} Westfall · {area:87} Goldshire
 	["Back to Gakin. Use the {item:6928} at the summoning circle in the {object:2164}'s cellar and defeat the voidwalker it calls. {zone:1436} is next, west of {area:87}."] = "가킨에게 돌아가세요. {object:2164} 지하실의 소환진에서 {item:6928}을(를) 사용하고 나타나는 공허방랑자를 물리치세요. 다음은 {area:87} 서쪽의 {zone:1436}입니다.",
 	["Subdue the voidwalker"] = "공허방랑자 제압",
-	["Summon Voidwalker"] = "공허방랑자 소환",
 
 	-- Step 79: Jennea Cannon
 	-- {npc:5497} Jennea Cannon · {object:2101} Mage Quarter · {quest:1861} Mirror Lake
@@ -392,4 +384,20 @@ return {
 	-- Step 80: Mirror Lake
 	-- {zone:1453} Stormwind City · {quest:1861} Mirror Lake · {zone:1436} Westfall · {item:7207} Jennea's Flask
 	["Leave {zone:1453} by the main gate. The {quest:1861} waterfall is south-west of the gates, on the way west to {zone:1436}: fill {item:7207} at its base."] = "정문으로 {zone:1453}을(를) 나가세요. {quest:1861} 폭포는 성문 남서쪽, 서쪽 {zone:1436}(으)로 가는 길에 있습니다. 폭포 아래에서 {item:7207}을(를) 채우세요.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["A few {npc:1120} Whelps if you are short"] = "모자라면 어린 {npc:1120} 몇 마리",
+	-- ["Defensive Stance"] = "방어 태세",
+	-- ["Iceclaw Bear Pendants, from the {npc:1120} Whelps on the slopes above the camp"] = "얼음발톱 곰 펜던트, 야영지 위 비탈의 어린 {npc:1120}에게서",
+	-- ["Ride back out of {zone:1455} and east along the road to {area:212}. {npc:6177} lies dead by its shore: use the {item:6866} on him. The {object:147516} Spies sneaking around the lake carry the script."] = "{zone:1455} 밖으로 나가 길을 따라 동쪽으로 {area:212}까지 가세요. {npc:6177}은(는) 호숫가에 죽어 있습니다. 그에게 {item:6866}을(를) 사용하세요. 호수 주변을 몰래 돌아다니는 {object:147516} 첩자가 문서를 지니고 있습니다.",
+	-- ["Rockjaw Bonesnappers prowl the quarry and {area:212}; {object:147516} Spies sneak around the lake shore. One spy drops the {item:274268}."] = "바위턱일족 뼈다귀싸움꾼은 채석장과 {area:212}을(를) 배회하고, {object:147516} 첩자가 호숫가를 몰래 돌아다닙니다. 첩자 하나가 {item:274268}을(를) 떨어뜨립니다.",
+	-- ["Summon Voidwalker"] = "공허방랑자 소환",
+	-- ["Tame Beast"] = "야수 길들이기",
+	-- ["The {npc:5896} Stone"] = "{npc:5896}의 돌",
+	-- ["{item:6847}: {object:147516} Spies"] = "{item:6847}: {object:147516} 첩자",
+	-- ["{npc:10090}: Beast Training"] = "{npc:10090}: 야수 조련",
+	-- ["{npc:1120} Whelps fill the slopes south and east of Grelin's camp."] = "어린 {npc:1120}이(가) 그렐린의 야영지 남쪽과 동쪽 비탈에 가득합니다.",
+	-- ["{npc:1373} guards the {item:2686} barrels in the distillery basement. Buy a {item:2686} from {npc:1247}, click the guarded barrel, then hand the ale to Jarven from his quest window (there is no quest to accept); after that, the unguarded barrel takes the Barleybrew Scalder."] = "{npc:1373}은(는) 양조장 지하실의 {item:2686} 통을 지킵니다. {npc:1247}에게서 {item:2686}을(를) 사서 지켜지는 통을 클릭한 뒤, 자벤의 퀘스트 창에서 맥주를 건네세요(수락할 퀘스트는 없습니다). 그 후 지키는 이 없는 통에 발리브루 스칼더를 넣으세요.",
+	-- ["{npc:460}: Summon Imp"] = "{npc:460}: 임프 소환",
+	-- ["{npc:6089}: Defensive Stance"] = "{npc:6089}: 방어 태세",
 }

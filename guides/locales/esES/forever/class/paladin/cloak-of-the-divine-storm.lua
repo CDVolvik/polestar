@@ -1,10 +1,13 @@
 -- Spanish (Spain) (esES): the guide forever/class/paladin/cloak-of-the-divine-storm (forever/class/paladin/cloak-of-the-divine-storm.guide).
 -- Written by `node tools/polestar.js i18n guides sync esES`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Spanish (Spain) (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Spanish (Spain) (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Guide
-	["A rare cloak at 30 from the old Divine Storm story; for now only Alliance paladins can finish it."] = "Una capa rara a nivel 30 de la antigua historia de Tormenta Divina; por ahora solo los paladines de la Alianza pueden terminarla.",
+	-- {spell:407778} Divine Storm
+	["A rare cloak at 30 from the old {spell:407778} story; for now only Alliance paladins can finish it."] = "",
 
 	-- Step 1: The Strange Orb
 	["The Strange Orb"] = "El orbe extraño",
@@ -42,12 +45,16 @@ return {
 	-- Step 8: The Spear of Mannoroth
 	-- {object:409311} Spear of Mannoroth
 	["The {object:409311}"] = "La {object:409311}",
-	-- {object:409311} Spear of Mannoroth · {area:435} Demon Fall Canyon · {object:409315} Shattered Orb
-	["The {object:409311} stands at the east end of {area:435}. Shatter the orb on it; the {object:409315} appears beside it."] = "La {object:409311} está en el extremo este de {area:435}. Rompe el orbe sobre ella; el {object:409315} aparece a su lado.",
+	-- {object:409311} Spear of Mannoroth · {area:435} Demon Fall Canyon · {spell:11170} Shatter · {object:409315} Shattered Orb
+	["The {object:409311} stands at the east end of {area:435}. {spell:11170} the orb on it; the {object:409315} appears beside it."] = "",
 	-- {object:409315} Shattered Orb
 	["from the {object:409315}"] = "del {object:409315}",
 
 	-- Step 9: Return to Delgren
 	-- {area:413} Maestra's Post
 	["Back to {area:413}."] = "Vuelve a {area:413}.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["A rare cloak at 30 from the old Divine Storm story; for now only Alliance paladins can finish it."] = "Una capa rara a nivel 30 de la antigua historia de Tormenta Divina; por ahora solo los paladines de la Alianza pueden terminarla.",
+	-- ["The {object:409311} stands at the east end of {area:435}. Shatter the orb on it; the {object:409315} appears beside it."] = "La {object:409311} está en el extremo este de {area:435}. Rompe el orbe sobre ella; el {object:409315} aparece a su lado.",
 }

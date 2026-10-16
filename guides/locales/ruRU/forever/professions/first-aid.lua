@@ -1,7 +1,9 @@
 -- Russian (ruRU): the guide forever/professions/first-aid (forever/professions/first-aid.guide).
 -- Written by `node tools/polestar.js i18n guides sync ruRU`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Russian (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Russian (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Step 1: Learn First Aid
 	-- {skill:129} First Aid
@@ -125,6 +127,9 @@ return {
 	["humanoids of level 45-60 drop {item:14047} (or buy it at the Auction House)."] = "с гуманоидов 45-60 уровня падает {item:14047} (или купите на аукционе).",
 
 	-- Step 28: Runecloth Bandage (260-300)
-	-- {item:14529} Runecloth Bandage · {item:14047} Runecloth
-	["{item:14529} is yellow from 260 (yellow at 260, grey at 320): about 65 crafts to 300. Bandages need no fire: craft them anywhere. {item:14529} stays yellow to 320, so it carries you to 300 without a trip for Heavy {item:14047}."] = "{item:14529} — желтый с 260 (желтый с 260, серый с 320): примерно 65 изготовлений до 300. Для бинтов не нужен огонь: делайте их где угодно. {item:14529} остается желтым до 320, так что доведет вас до 300 без поездки за рецептом плотных бинтов ({item:14047}).",
+	-- {item:14529} Runecloth Bandage
+	["{item:14529} is yellow from 260 (yellow at 260, grey at 320): about 65 crafts to 300. Bandages need no fire: craft them anywhere. {item:14529} stays yellow to 320, so it carries you to 300 without a trip for Heavy Runecloth."] = "",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["{item:14529} is yellow from 260 (yellow at 260, grey at 320): about 65 crafts to 300. Bandages need no fire: craft them anywhere. {item:14529} stays yellow to 320, so it carries you to 300 without a trip for Heavy {item:14047}."] = "{item:14529} — желтый с 260 (желтый с 260, серый с 320): примерно 65 изготовлений до 300. Для бинтов не нужен огонь: делайте их где угодно. {item:14529} остается желтым до 320, так что доведет вас до 300 без поездки за рецептом плотных бинтов ({item:14047}).",
 }

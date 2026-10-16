@@ -1,15 +1,17 @@
 -- Spanish (Latin America) (esMX): the guide forever/collectibles/mounts/neutral/galestrider (forever/collectibles/mounts/neutral/galestrider.guide).
 -- Written by `node tools/polestar.js i18n guides sync esMX`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Spanish (Latin America) (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Spanish (Latin America) (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Guide
 	["Galestrider"] = "Zancavientos",
 
 	-- Step 1: Learn to ride
 	["Learn to ride"] = "Aprende a montar",
-	-- {skill:762} Riding
-	["Galestriders need level 40 and {skill:762} (Galestrider {skill:762} comes with it in the Forever client). Any riding trainer of your faction teaches it; see the Level 40 mount guides for where."] = "Los Zancavientos requieren nivel 40 y {skill:762} ({skill:762} de Zancavientos viene incluida en el cliente de Forever). Cualquier instructor de equitación de tu facción la enseña; consulta dónde en las guías de monturas de nivel 40.",
+	-- {skill:762} Riding · {spell:1285849} Galestrider Riding
+	["Galestriders need level 40 and {skill:762} ({spell:1285849} comes with it in the Forever client). Any riding trainer of your faction teaches it; see the Level 40 mount guides for where."] = "",
 
 	-- Step 2: Skyboat from Dalaran
 	-- {area:279} Dalaran
@@ -29,4 +31,7 @@ return {
 	-- {npc:265756} Genn Fairweather · {area:16638} Valanaar
 	["{npc:265756} is in {area:16638}, the island's harbour town, near the skyboat docks. The Forever client lists each Galestrider at 20g; choose one."] = "{npc:265756} está en {area:16638}, el pueblo portuario de la isla, cerca de los muelles de los barcos celestes. El cliente de Forever vende cada Zancavientos a 20 o; elige uno.",
 	["20g"] = "20 o",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Galestriders need level 40 and {skill:762} (Galestrider {skill:762} comes with it in the Forever client). Any riding trainer of your faction teaches it; see the Level 40 mount guides for where."] = "Los Zancavientos requieren nivel 40 y {skill:762} ({skill:762} de Zancavientos viene incluida en el cliente de Forever). Cualquier instructor de equitación de tu facción la enseña; consulta dónde en las guías de monturas de nivel 40.",
 }

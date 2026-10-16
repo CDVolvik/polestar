@@ -1,7 +1,9 @@
 -- German (deDE): the guide forever/professions/first-aid (forever/professions/first-aid.guide).
 -- Written by `node tools/polestar.js i18n guides sync deDE`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in German (the English is listed above the line). The comments are rewritten by sync.
+-- name there in German (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Step 1: Learn First Aid
 	-- {skill:129} First Aid
@@ -125,6 +127,9 @@ return {
 	["humanoids of level 45-60 drop {item:14047} (or buy it at the Auction House)."] = "Humanoide der Stufe 45-60 lassen {item:14047} fallen (oder kauf ihn im Auktionshaus).",
 
 	-- Step 28: Runecloth Bandage (260-300)
-	-- {item:14529} Runecloth Bandage · {item:14047} Runecloth
-	["{item:14529} is yellow from 260 (yellow at 260, grey at 320): about 65 crafts to 300. Bandages need no fire: craft them anywhere. {item:14529} stays yellow to 320, so it carries you to 300 without a trip for Heavy {item:14047}."] = "{item:14529} ist ab 260 gelb (gelb ab 260, grau ab 320): etwa 65 Herstellungen bis 300. Verbände brauchen kein Feuer: Stelle sie überall her. {item:14529} bleibt bis 320 gelb und bringt dich so ohne einen Weg für den schweren Verband aus {item:14047} bis 300.",
+	-- {item:14529} Runecloth Bandage
+	["{item:14529} is yellow from 260 (yellow at 260, grey at 320): about 65 crafts to 300. Bandages need no fire: craft them anywhere. {item:14529} stays yellow to 320, so it carries you to 300 without a trip for Heavy Runecloth."] = "",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["{item:14529} is yellow from 260 (yellow at 260, grey at 320): about 65 crafts to 300. Bandages need no fire: craft them anywhere. {item:14529} stays yellow to 320, so it carries you to 300 without a trip for Heavy {item:14047}."] = "{item:14529} ist ab 260 gelb (gelb ab 260, grau ab 320): etwa 65 Herstellungen bis 300. Verbände brauchen kein Feuer: Stelle sie überall her. {item:14529} bleibt bis 320 gelb und bringt dich so ohne einen Weg für den schweren Verband aus {item:14047} bis 300.",
 }

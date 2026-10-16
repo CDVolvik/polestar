@@ -1,7 +1,9 @@
 -- German (deDE): the guide forever/horde/40-50/06-azshara (forever/horde/40-50/06-azshara.guide).
 -- Written by `node tools/polestar.js i18n guides sync deDE`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in German (the English is listed above the line). The comments are rewritten by sync.
+-- name there in German (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Step 1: Fly to the Undercity
 	-- {area:1497} Undercity
@@ -22,8 +24,9 @@ return {
 	-- Step 4: Ride into Azshara
 	-- {zone:1447} Azshara
 	["Ride into {zone:1447}"] = "Reite nach {zone:1447}",
-	-- {npc:11548} Loh'atu · {area:1235} Shadowsong Shrine · {area:3137} Talrendis Point · {zone:1447} Azshara
-	["Ride east along the road out of Splintertree. {npc:11548} waits at the {area:1235} just off the road, a few steps west of the Alliance's {area:3137}: come in from the west and keep clear of the {zone:1447} Sentinels and Jarrodenus (elite)."] = "Reite auf der Straße vom Splintertreeposten aus nach Osten. {npc:11548} wartet am {area:1235} gleich neben der Straße, ein paar Schritte westlich der {area:3137} der Allianz: Komm von Westen und halte dich von den Schildwachen von {zone:1447} und Jarrodenus (Elite) fern.",
+	-- {npc:11548} Loh'atu · {area:1235} Shadowsong Shrine · {area:3137} Talrendis Point
+	-- plural, as words: Azshara Sentinels = {npc:11276} Azshara Sentinel
+	["Ride east along the road out of Splintertree. {npc:11548} waits at the {area:1235} just off the road, a few steps west of the Alliance's {area:3137}: come in from the west and keep clear of the Azshara Sentinels and Jarrodenus (elite)."] = "",
 
 	-- Step 5: Highborne and Haldarr satyrs
 	["Highborne and Haldarr satyrs"] = "Hochgeborene und Satyrn der Haldarr",
@@ -36,8 +39,8 @@ return {
 	-- Step 7: Valormok
 	-- {area:1237} Valormok
 	["Follow the road north to {area:1237}, the Horde camp."] = "Folge der Straße nach Norden nach {area:1237}, dem Lager der Horde.",
-	-- {npc:8395} Sanath Lim-yo · {zone:1447} Azshara
-	["{npc:8395}, at the east edge of the camp: no experience, only a teleport to {zone:1447} Tower"] = "{npc:8395}, am Ostrand des Lagers: keine Erfahrung, nur ein Teleport zum Turm in {zone:1447}",
+	-- {npc:8395} Sanath Lim-yo
+	["{npc:8395}, at the east edge of the camp: no experience, only a teleport to Azshara Tower"] = "",
 
 	-- Step 8: Undamaged Hippogryph Feathers
 	-- plural, as words: Undamaged Hippogryph Feathers = {item:10450} Undamaged Hippogryph Feather
@@ -99,8 +102,8 @@ return {
 	-- Step 23: Orgrimmar
 	-- {zone:1454} Orgrimmar
 	["Take the zeppelin back to {zone:1454}."] = "Nimm den Zeppelin zurück nach {zone:1454}.",
-	-- {npc:6986} Dran Droffers · {object:172959} The Drag
-	["{npc:6986}, the {object:172959}"] = "{npc:6986}, {object:172959}",
+	-- {npc:6986} Dran Droffers
+	["{npc:6986}, the Drag"] = "",
 	-- {npc:8659} Jes'rimon · {object:172960} Cleft of Shadow
 	["{npc:8659}, the {object:172960}"] = "{npc:8659}, {object:172960}",
 	-- {npc:8659} Jes'rimon · {quest:3504} Betrayed · {area:1237} Valormok
@@ -164,4 +167,9 @@ return {
 	["Ride south along the road to the {area:1938}; {npc:7771} camps beside it. From here the road west leads down into {zone:1449}, where the next guide starts."] = "Reite auf der Straße nach Süden zur {area:1938}; {npc:7771} lagert daneben. Von hier führt die Straße nach Westen hinab in {zone:1449}, wo der nächste Guide beginnt.",
 	-- {quest:3444} The Stone Circle
 	["Keep {quest:3444}: Marvon's chest is opened on a later visit."] = "Behalte {quest:3444}: Marvons Truhe wird bei einem späteren Besuch geöffnet.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Ride east along the road out of Splintertree. {npc:11548} waits at the {area:1235} just off the road, a few steps west of the Alliance's {area:3137}: come in from the west and keep clear of the {zone:1447} Sentinels and Jarrodenus (elite)."] = "Reite auf der Straße vom Splintertreeposten aus nach Osten. {npc:11548} wartet am {area:1235} gleich neben der Straße, ein paar Schritte westlich der {area:3137} der Allianz: Komm von Westen und halte dich von den Schildwachen von {zone:1447} und Jarrodenus (Elite) fern.",
+	-- ["{npc:6986}, the {object:172959}"] = "{npc:6986}, {object:172959}",
+	-- ["{npc:8395}, at the east edge of the camp: no experience, only a teleport to {zone:1447} Tower"] = "{npc:8395}, am Ostrand des Lagers: keine Erfahrung, nur ein Teleport zum Turm in {zone:1447}",
 }

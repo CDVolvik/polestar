@@ -1,11 +1,12 @@
 -- French (frFR): the guide forever/reputation/argent-dawn (forever/reputation/argent-dawn.guide).
 -- Written by `node tools/polestar.js i18n guides sync frFR`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in French (the English is listed above the line). The comments are rewritten by sync.
+-- name there in French (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Guide
-	-- {faction:529} Argent Dawn
-	["{faction:529} Reputation"] = "Réputation : {faction:529}",
+	["Argent Dawn Reputation"] = "",
 
 	-- Step 1: Argent Dawn Commission (Alliance)
 	-- {quest:5401} Argent Dawn Commission
@@ -47,4 +48,7 @@ return {
 	["{faction:529} to Exalted"] = "{faction:529} jusqu'à Exalté",
 	-- {area:2279} Stratholme · {area:2057} Scholomance · {item:12843} Corruptor's Scourgestone · {area:2268} Light's Hope Chapel
 	["Keep running {area:2279} and {area:2057} and turning in every {item:12843} at {area:2268} until Exalted."] = "Continuez {area:2279} et {area:2057} et rendez chaque {item:12843} à {area:2268} jusqu'à Exalté.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["{faction:529} Reputation"] = "Réputation : {faction:529}",
 }

@@ -1,7 +1,9 @@
 -- German (deDE): the guide forever/horde/40-50/04-tanaris (forever/horde/40-50/04-tanaris.guide).
 -- Written by `node tools/polestar.js i18n guides sync deDE`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in German (the English is listed above the line). The comments are rewritten by sync.
+-- name there in German (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Step 1: Fly to Gadgetzan
 	-- {area:976} Gadgetzan
@@ -97,8 +99,9 @@ return {
 	-- Step 21: The Grimesilt Dig Site
 	-- {area:247} Grimesilt Dig Site
 	["The {area:247}"] = "{area:247}",
-	-- {area:340} Kargath · {zone:1427} Searing Gorge · {object:173265} Wooden Outhouse · {object:147516} Dark Iron · {item:4306} Silk Cloth
-	["Take the pass out of {area:340}'s west side into the {zone:1427}, then ride south-west to the dig site. The {object:173265} stands at its southern end; the {object:147516} Geologists dig just north of it. Bring 15 {item:4306} (the Auction House sells it)."] = "Nimm den Pass auf der Westseite von {area:340} in die {zone:1427} und reite dann nach Südwesten zur Grabungsstätte. Das {object:173265} steht an ihrem Südende; die Geologen der {object:147516}zwerge graben gleich nördlich davon. Bring 15 {item:4306} mit (gibt es im Auktionshaus).",
+	-- {area:340} Kargath · {zone:1427} Searing Gorge · {object:173265} Wooden Outhouse · {item:4306} Silk Cloth
+	-- plural, as words: Dark Iron Geologists = {npc:5839} Dark Iron Geologist
+	["Take the pass out of {area:340}'s west side into the {zone:1427}, then ride south-west to the dig site. The {object:173265} stands at its southern end; the Dark Iron Geologists dig just north of it. Bring 15 {item:4306} (the Auction House sells it)."] = "",
 	-- {object:173265} Wooden Outhouse
 	["the {object:173265}"] = "das {object:173265}",
 
@@ -113,16 +116,17 @@ return {
 	["Kalaran stands alone south of {area:1446}, at the edge of the Cauldron. Listen to his story."] = "Kalaran steht allein südlich von {area:1446}, am Rand des Kessels. Hör dir seine Geschichte an.",
 
 	-- Step 24: The Cauldron
-	-- {object:147516} Dark Iron · {item:11818} Grimesilt Outhouse Key
-	-- plural, as words: Heavy War Golems = {npc:5854} Heavy War Golem · War Golems = {npc:2751} War Golem · Blazing Elementals = {npc:5850} Blazing Elemental
-	["Heavy War Golems patrol the Cauldron below Kalaran and drop the oil; the Magma and Blazing Elementals drifting among them drop the hearts. The {object:147516} Taskmasters and Slavers drive the slaves on the paths; a Slaver may drop the {item:11818}: keep it."] = "Schwere Kriegsgolems patrouillieren im Kessel unter Kalaran und lassen das Öl fallen; die Magmaelementare und Lodernden Elementare zwischen ihnen lassen die Herzen fallen. Die Zuchtmeister und Sklavenhändler der {object:147516}zwerge treiben die Sklaven auf den Wegen an; ein Sklavenhändler kann den {item:11818} fallen lassen: Behalte ihn.",
+	-- {item:11818} Grimesilt Outhouse Key
+	-- plural, as words: Heavy War Golems = {npc:5854} Heavy War Golem · Blazing Elementals = {npc:5850} Blazing Elemental · Dark Iron Taskmasters = {npc:5846} Dark Iron Taskmaster
+	["Heavy War Golems patrol the Cauldron below Kalaran and drop the oil; the Magma and Blazing Elementals drifting among them drop the hearts. The Dark Iron Taskmasters and Slavers drive the slaves on the paths; a Slaver may drop the {item:11818}: keep it."] = "",
 	-- {item:11818} Grimesilt Outhouse Key
 	["{item:11818}, a rare drop"] = "{item:11818}, seltene Beute",
 
 	-- Step 26: The Steamsmiths' furnaces
 	["The Steamsmiths' furnaces"] = "Die Öfen der Dampfschmiede",
-	-- {object:147516} Dark Iron · {item:10551} Thorium Plated Dagger · {item:18959} Smithing Tuyere
-	["The {object:147516} Steamsmiths work the furnaces in the middle of the Cauldron; half of them carry a {item:10551}, one in ten the {item:18959}. Slaves, Slavers and Taskmasters carry daggers too."] = "Die Dampfschmiede der {object:147516}zwerge arbeiten an den Öfen mitten im Kessel; die Hälfte trägt einen {item:10551}, jeder zehnte die {item:18959}. Sklaven, Sklavenhändler und Zuchtmeister tragen auch Dolche.",
+	-- {item:10551} Thorium Plated Dagger · {item:18959} Smithing Tuyere
+	-- plural, as words: Dark Iron Steamsmiths = {npc:5840} Dark Iron Steamsmith
+	["The Dark Iron Steamsmiths work the furnaces in the middle of the Cauldron; half of them carry a {item:10551}, one in ten the {item:18959}. Slaves, Slavers and Taskmasters carry daggers too."] = "",
 
 	-- Step 27: Kalaran Windblade
 	-- {item:10552} Symbol of Ragnaros
@@ -140,10 +144,11 @@ return {
 	["The Greater Lava Spiders roam the plateaus and lava pools in the south-west of the gorge."] = "Die Großen Lavaspinnen streifen über die Plateaus und Lavabecken im Südwesten der Schlucht.",
 
 	-- Step 30: Dark Iron Lookouts
-	-- {object:147516} Dark Iron
-	["{object:147516} Lookouts"] = "Ausgucke der {object:147516}zwerge",
-	-- {object:147516} Dark Iron · {item:18960} Lookout's Spyglass
-	["The {object:147516} Lookouts stand on the ridges around the sentry towers south of the Cauldron; about one in ten carries the {item:18960}."] = "Die Ausgucke der {object:147516}zwerge stehen auf den Kämmen um die Wachtürme südlich des Kessels; etwa jeder zehnte trägt das {item:18960}.",
+	-- plural, as words: Dark Iron Lookouts = {npc:8566} Dark Iron Lookout
+	["Dark Iron Lookouts"] = "",
+	-- {item:18960} Lookout's Spyglass
+	-- plural, as words: Dark Iron Lookouts = {npc:8566} Dark Iron Lookout
+	["The Dark Iron Lookouts stand on the ridges around the sentry towers south of the Cauldron; about one in ten carries the {item:18960}."] = "",
 
 	-- Step 31: The Key to Freedom
 	-- {item:11818} Grimesilt Outhouse Key · {object:173265} Wooden Outhouse
@@ -152,4 +157,11 @@ return {
 	-- Step 32: Thorium Point
 	-- {area:1446} Thorium Point · {area:75} Stonard
 	["Ride back north to {area:1446}. Stay here: the next guide starts with the flight to {area:75}."] = "Reite zurück nach Norden zur {area:1446}. Bleib hier: Der nächste Guide beginnt mit dem Flug nach {area:75}.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Heavy War Golems patrol the Cauldron below Kalaran and drop the oil; the Magma and Blazing Elementals drifting among them drop the hearts. The {object:147516} Taskmasters and Slavers drive the slaves on the paths; a Slaver may drop the {item:11818}: keep it."] = "Schwere Kriegsgolems patrouillieren im Kessel unter Kalaran und lassen das Öl fallen; die Magmaelementare und Lodernden Elementare zwischen ihnen lassen die Herzen fallen. Die Zuchtmeister und Sklavenhändler der {object:147516}zwerge treiben die Sklaven auf den Wegen an; ein Sklavenhändler kann den {item:11818} fallen lassen: Behalte ihn.",
+	-- ["Take the pass out of {area:340}'s west side into the {zone:1427}, then ride south-west to the dig site. The {object:173265} stands at its southern end; the {object:147516} Geologists dig just north of it. Bring 15 {item:4306} (the Auction House sells it)."] = "Nimm den Pass auf der Westseite von {area:340} in die {zone:1427} und reite dann nach Südwesten zur Grabungsstätte. Das {object:173265} steht an ihrem Südende; die Geologen der {object:147516}zwerge graben gleich nördlich davon. Bring 15 {item:4306} mit (gibt es im Auktionshaus).",
+	-- ["The {object:147516} Lookouts stand on the ridges around the sentry towers south of the Cauldron; about one in ten carries the {item:18960}."] = "Die Ausgucke der {object:147516}zwerge stehen auf den Kämmen um die Wachtürme südlich des Kessels; etwa jeder zehnte trägt das {item:18960}.",
+	-- ["The {object:147516} Steamsmiths work the furnaces in the middle of the Cauldron; half of them carry a {item:10551}, one in ten the {item:18959}. Slaves, Slavers and Taskmasters carry daggers too."] = "Die Dampfschmiede der {object:147516}zwerge arbeiten an den Öfen mitten im Kessel; die Hälfte trägt einen {item:10551}, jeder zehnte die {item:18959}. Sklaven, Sklavenhändler und Zuchtmeister tragen auch Dolche.",
+	-- ["{object:147516} Lookouts"] = "Ausgucke der {object:147516}zwerge",
 }

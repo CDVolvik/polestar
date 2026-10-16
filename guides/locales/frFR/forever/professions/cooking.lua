@@ -1,7 +1,9 @@
 -- French (frFR): the guide forever/professions/cooking (forever/professions/cooking.guide).
 -- Written by `node tools/polestar.js i18n guides sync frFR`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in French (the English is listed above the line). The comments are rewritten by sync.
+-- name there in French (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Step 1: Learn Cooking
 	-- {skill:185} Cooking
@@ -264,8 +266,8 @@ return {
 	["Giant Eggs drop from the Ironbeak owls of {zone:1448}."] = "Les Oeufs géants sont laissés par les chouettes Bec-de-fer de {zone:1448}.",
 
 	-- Step 67: Zesty Clam Meat
-	-- {item:7974} Zesty Clam Meat · {object:175904} Gadgetzan Auction
-	["{item:7974} has no drop data: buy it at the {object:175904} House, next to Dirge, or open clams looted from coastal creatures."] = "Aucune donnée de butin pour {item:7974} : achetez-en à l'hôtel des ventes ({object:175904}), à côté de Dirge, ou ouvrez les palourdes récupérées sur les créatures côtières.",
+	-- {item:7974} Zesty Clam Meat
+	["{item:7974} has no drop data: buy it at the Gadgetzan Auction House, next to Dirge, or open clams looted from coastal creatures."] = "",
 
 	-- Step 68: Dirge Quikcleave
 	-- {skill:185} Cooking
@@ -288,4 +290,7 @@ return {
 	-- Step 74: Monster Omelet (240-300)
 	-- {item:12218} Monster Omelet · {object:29784} Basic Campfire · {skill:185} Cooking
 	["{item:12218} is orange from 240 (yellow at 265, grey at 305): about 105 crafts to 300. Cook at any fire: {object:29784} comes with {skill:185}."] = "{item:12218} est orange dès 240 (jaune à 265, gris à 305) : environ 105 préparations jusqu'à 300. Cuisinez à n'importe quel feu : {object:29784} s'apprend avec {skill:185}.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["{item:7974} has no drop data: buy it at the {object:175904} House, next to Dirge, or open clams looted from coastal creatures."] = "Aucune donnée de butin pour {item:7974} : achetez-en à l'hôtel des ventes ({object:175904}), à côté de Dirge, ou ouvrez les palourdes récupérées sur les créatures côtières.",
 }

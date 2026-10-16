@@ -1,7 +1,9 @@
 -- Portuguese (Brazil) (ptBR): the guide forever/class/druid/cure-poison (forever/class/druid/cure-poison.guide).
 -- Written by `node tools/polestar.js i18n guides sync ptBR`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Portuguese (Brazil) (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Portuguese (Brazil) (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Guide
 	-- {spell:8946} Cure Poison
@@ -12,8 +14,8 @@ return {
 	["{npc:4217} stands in the {area:1658}."] = "{npc:4217} fica no {area:1658}.",
 
 	-- Step 2: Dendrite Starblaze
-	-- {zone:1450} Moonglade · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {area:442} Auberdine
-	["Cast Teleport: {zone:1450}. {npc:11802} is in {area:2361}. Then fly to {area:442}."] = "Lance Teleportar: {zone:1450}. {npc:11802} está em {area:2361}. Depois voe para {area:442}.",
+	-- {spell:18960} Teleport: Moonglade · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {area:442} Auberdine
+	["Cast {spell:18960}. {npc:11802} is in {area:2361}. Then fly to {area:442}."] = "",
 
 	-- Step 3: Cliffspring Falls
 	-- {area:442} Auberdine · {area:445} Cliffspring Falls · {item:15844} Empty Cliffspring Falls Sampler
@@ -26,9 +28,9 @@ return {
 	-- Step 5: Lunar Fungus and Earthroot
 	-- {item:15851} Lunar Fungus · {item:2449} Earthroot
 	["{item:15851} and {item:2449}"] = "{item:15851} e {item:2449}",
-	-- {area:442} Auberdine · {item:2449} Earthroot · {skill:182} Herbalism · {zone:1439} Darkshore · {npc:1313} Maria Lumere · {skill:171} Alchemy · {zone:1453} Stormwind City
+	-- {area:442} Auberdine · {item:2449} Earthroot · {skill:182} Herbalism · {zone:1439} Darkshore · {npc:1313} Maria Lumere · {zone:1453} Stormwind City
 	-- plural, as words: Lunar Fungal Blooms = {object:177750} Lunar Fungal Bloom
-	["The Lunar Fungal Blooms grow in the moonkin caves in the hills just east of {area:442}; the moonkin there are irritable. {item:2449} needs {skill:182}: herbalists pick it all over {zone:1439}, anyone else buys it from {npc:1313} ({skill:171} Supplies) in {zone:1453} or on the Auction House."] = "Os Brotos Fúngicos Lunares crescem nas cavernas dos luniscantes nas colinas logo a leste de {area:442}; os luniscantes de lá são irritadiços. {item:2449} exige {skill:182}: herbalistas a colhem por toda {zone:1439}, os demais a compram de {npc:1313} (Suprimentos de {skill:171}) em {zone:1453} ou na Casa de Leilões.",
+	["The Lunar Fungal Blooms grow in the moonkin caves in the hills just east of {area:442}; the moonkin there are irritable. {item:2449} needs {skill:182}: herbalists pick it all over {zone:1439}, anyone else buys it from {npc:1313} (Alchemy Supplies) in {zone:1453} or on the Auction House."] = "",
 
 	-- Step 7: Sickly Deer
 	-- {item:15826} Curative Animal Salve · {npc:12298} Sickly Deer · {zone:1439} Darkshore · {area:456} Cliffspring River · {zone:1440} Ashenvale
@@ -37,16 +39,16 @@ return {
 	["{npc:12298}: use the salve on them"] = "{npc:12298}: use o unguento neles",
 
 	-- Step 8: Curing the Sick
-	-- {zone:1450} Moonglade · {npc:11802} Dendrite Starblaze · {area:702} Rut'theran Village · {zone:1457} Darnassus
-	["Cast Teleport: {zone:1450} and see {npc:11802}, then fly to {area:702} and take the portal up to {zone:1457}."] = "Lance Teleportar: {zone:1450} e fale com {npc:11802}, depois voe para {area:702} e pegue o portal até {zone:1457}.",
+	-- {spell:18960} Teleport: Moonglade · {npc:11802} Dendrite Starblaze · {area:702} Rut'theran Village · {zone:1457} Darnassus
+	["Cast {spell:18960} and see {npc:11802}, then fly to {area:702} and take the portal up to {zone:1457}."] = "",
 
 	-- Step 10: Lessons Anew
 	-- {npc:3033} Turak Runetotem · {area:1639} Elder Rise
 	["{npc:3033} stands on {area:1639}."] = "{npc:3033} fica em {area:1639}.",
 
 	-- Step 11: Dendrite Starblaze
-	-- {zone:1450} Moonglade · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {npc:11798} Bunthen Plainswind · {area:1638} Thunder Bluff · {area:380} The Crossroads
-	["Cast Teleport: {zone:1450}. {npc:11802} is in {area:2361}. {npc:11798} flies druids to {area:1638}; fly on to the {area:380} from there."] = "Lance Teleportar: {zone:1450}. {npc:11802} está em {area:2361}. {npc:11798} leva druidas voando a {area:1638}; de lá, siga voando até {area:380}.",
+	-- {spell:18960} Teleport: Moonglade · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {npc:11798} Bunthen Plainswind · {area:1638} Thunder Bluff · {area:380} The Crossroads
+	["Cast {spell:18960}. {npc:11802} is in {area:2361}. {npc:11798} flies druids to {area:1638}; fly on to the {area:380} from there."] = "",
 
 	-- Step 12: Dreadmist Peak
 	-- {area:380} The Crossroads · {area:384} Dreadmist Peak · {item:15842} Empty Dreadmist Peak Sampler · {object:19464} Dreadmist Peak Pool
@@ -62,9 +64,9 @@ return {
 	-- {item:2449} Earthroot
 	-- plural, as words: Kodo Horns = {item:15852} Kodo Horn
 	["{item:2449} and Kodo Horns"] = "{item:2449} e Chifres de Kodo",
-	-- {zone:1413} The Barrens · {area:380} The Crossroads · {area:388} The Stagnant Oasis · {item:2449} Earthroot
+	-- {area:380} The Crossroads · {area:388} The Stagnant Oasis · {item:2449} Earthroot · {zone:1413} The Barrens
 	-- plural, as words: Lost Barrens Kodos = {npc:3234} Lost Barrens Kodo
-	["Lost {zone:1413} Kodos roam the plains north and west of the {area:380} and around the {area:388}; each drops a horn. Herbalists find {item:2449} all over the northern {zone:1413}."] = "Kodos Perdidos dos {zone:1413} vagam pelas planícies ao norte e a oeste de {area:380} e em volta de {area:388}; cada um deixa cair um chifre. Herbalistas encontram {item:2449} por todo o norte dos {zone:1413}.",
+	["Lost Barrens Kodos roam the plains north and west of the {area:380} and around the {area:388}; each drops a horn. Herbalists find {item:2449} all over the northern {zone:1413}."] = "",
 
 	-- Step 16: Sickly Gazelles
 	-- plural, as words: Sickly Gazelles = {npc:12296} Sickly Gazelle
@@ -76,6 +78,14 @@ return {
 	["{npc:12296}: use the salve on them"] = "{npc:12296}: use o unguento nelas",
 
 	-- Step 17: Curing the Sick
-	-- {zone:1450} Moonglade · {npc:11802} Dendrite Starblaze · {npc:11798} Bunthen Plainswind · {area:1638} Thunder Bluff
-	["Cast Teleport: {zone:1450} and see {npc:11802}, then take {npc:11798}'s flight to {area:1638}."] = "Lance Teleportar: {zone:1450} e fale com {npc:11802}, depois pegue o voo de {npc:11798} para {area:1638}.",
+	-- {spell:18960} Teleport: Moonglade · {npc:11802} Dendrite Starblaze · {npc:11798} Bunthen Plainswind · {area:1638} Thunder Bluff
+	["Cast {spell:18960} and see {npc:11802}, then take {npc:11798}'s flight to {area:1638}."] = "",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Cast Teleport: {zone:1450} and see {npc:11802}, then fly to {area:702} and take the portal up to {zone:1457}."] = "Lance Teleportar: {zone:1450} e fale com {npc:11802}, depois voe para {area:702} e pegue o portal até {zone:1457}.",
+	-- ["Cast Teleport: {zone:1450} and see {npc:11802}, then take {npc:11798}'s flight to {area:1638}."] = "Lance Teleportar: {zone:1450} e fale com {npc:11802}, depois pegue o voo de {npc:11798} para {area:1638}.",
+	-- ["Cast Teleport: {zone:1450}. {npc:11802} is in {area:2361}. Then fly to {area:442}."] = "Lance Teleportar: {zone:1450}. {npc:11802} está em {area:2361}. Depois voe para {area:442}.",
+	-- ["Cast Teleport: {zone:1450}. {npc:11802} is in {area:2361}. {npc:11798} flies druids to {area:1638}; fly on to the {area:380} from there."] = "Lance Teleportar: {zone:1450}. {npc:11802} está em {area:2361}. {npc:11798} leva druidas voando a {area:1638}; de lá, siga voando até {area:380}.",
+	-- ["Lost {zone:1413} Kodos roam the plains north and west of the {area:380} and around the {area:388}; each drops a horn. Herbalists find {item:2449} all over the northern {zone:1413}."] = "Kodos Perdidos dos {zone:1413} vagam pelas planícies ao norte e a oeste de {area:380} e em volta de {area:388}; cada um deixa cair um chifre. Herbalistas encontram {item:2449} por todo o norte dos {zone:1413}.",
+	-- ["The Lunar Fungal Blooms grow in the moonkin caves in the hills just east of {area:442}; the moonkin there are irritable. {item:2449} needs {skill:182}: herbalists pick it all over {zone:1439}, anyone else buys it from {npc:1313} ({skill:171} Supplies) in {zone:1453} or on the Auction House."] = "Os Brotos Fúngicos Lunares crescem nas cavernas dos luniscantes nas colinas logo a leste de {area:442}; os luniscantes de lá são irritadiços. {item:2449} exige {skill:182}: herbalistas a colhem por toda {zone:1439}, os demais a compram de {npc:1313} (Suprimentos de {skill:171}) em {zone:1453} ou na Casa de Leilões.",
 }

@@ -1,7 +1,9 @@
 -- French (frFR): the guide forever/horde/40-50/02-feralas (forever/horde/40-50/02-feralas.guide).
 -- Written by `node tools/polestar.js i18n guides sync frFR`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in French (the English is listed above the line). The comments are rewritten by sync.
+-- name there in French (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Step 1: Fly to Grom'gol
 	-- {object:3202} Grom'gol
@@ -161,8 +163,8 @@ return {
 	["Hearth to {area:1099}"] = "Pierre de foyer vers {area:1099}",
 
 	-- Step 36: Orgrimmar
-	-- {area:1637} Orgrimmar · {object:172959} The Drag
-	["Fly to {area:1637}. The Droffers brothers run their shop in the {object:172959}."] = "Prenez un vol pour {area:1637}. Dran et Malton Droffers tiennent leur boutique dans {object:172959}.",
+	-- {area:1637} Orgrimmar
+	["Fly to {area:1637}. The Droffers brothers run their shop in the Drag."] = "",
 	-- {zone:1425} The Hinterlands
 	["for the {zone:1425}, around level 48"] = "pour {zone:1425}, vers le niveau 48",
 
@@ -177,4 +179,7 @@ return {
 	["Fly to {area:75}"] = "Prendre un vol pour {area:75}",
 	-- {area:75} Stonard
 	["Thysta, the flight master, stands just east of the zeppelin tower. Fly to {area:75}: the next guide starts there."] = "Thysta, la maîtresse de vol, se tient juste à l'est de la tour des zeppelins. Prenez un vol pour {area:75} : le guide suivant commence là.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Fly to {area:1637}. The Droffers brothers run their shop in the {object:172959}."] = "Prenez un vol pour {area:1637}. Dran et Malton Droffers tiennent leur boutique dans {object:172959}.",
 }

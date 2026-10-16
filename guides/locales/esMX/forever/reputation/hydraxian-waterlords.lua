@@ -1,11 +1,12 @@
 -- Spanish (Latin America) (esMX): the guide forever/reputation/hydraxian-waterlords (forever/reputation/hydraxian-waterlords.guide).
 -- Written by `node tools/polestar.js i18n guides sync esMX`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Spanish (Latin America) (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Spanish (Latin America) (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Guide
-	-- {faction:749} Hydraxian Waterlords
-	["{faction:749} Reputation"] = "",
+	["Hydraxian Waterlords Reputation"] = "",
 
 	-- Step 1: Duke Hydraxis
 	-- {npc:13278} Duke Hydraxis · {zone:1447} Azshara · {faction:749} Hydraxian Waterlords
@@ -26,8 +27,8 @@ return {
 	["Back to {npc:13278}"] = "",
 
 	-- Step 5: Eye of the Emberseer
-	-- {npc:9816} Pyroguard Emberseer · {area:1583} Blackrock Spire · {quest:6821} Eye of the Emberseer
-	["{npc:9816} in Upper {area:1583} drops the {quest:6821}. This needs a raid group."] = "",
+	-- {npc:9816} Pyroguard Emberseer · {quest:6821} Eye of the Emberseer
+	["{npc:9816} in Upper Blackrock Spire drops the {quest:6821}. This needs a raid group."] = "",
 
 	-- Step 6: The Molten Core
 	-- {npc:11668} Firelord · {npc:11658} Molten Giant · {npc:11673} Ancient Core Hound · {npc:12101} Lava Surger · {area:2717} Molten Core

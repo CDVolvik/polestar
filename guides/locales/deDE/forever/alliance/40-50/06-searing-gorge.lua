@@ -1,7 +1,9 @@
 -- German (deDE): the guide forever/alliance/40-50/06-searing-gorge (forever/alliance/40-50/06-searing-gorge.guide).
 -- Written by `node tools/polestar.js i18n guides sync deDE`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in German (the English is listed above the line). The comments are rewritten by sync.
+-- name there in German (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Step 1: Thorium Point
 	-- {area:144} Thelsamar · {zone:1418} Badlands · {area:340} Kargath · {zone:1427} Searing Gorge · {area:1446} Thorium Point
@@ -19,7 +21,7 @@ return {
 
 	-- Step 4: Golems and elementals
 	["Golems and elementals"] = "Golems und Elementare",
-	-- plural, as words: Heavy War Golems = {npc:5854} Heavy War Golem · War Golems = {npc:2751} War Golem · Magma Elementals = {npc:5855} Magma Elemental
+	-- plural, as words: Heavy War Golems = {npc:5854} Heavy War Golem · Magma Elementals = {npc:5855} Magma Elemental
 	["Heavy War Golems patrol the floor of the Cauldron below Kalaran; Magma Elementals drift among them. Golems and elementals drop the oil, elementals the hearts."] = "Schwere Kriegsgolems patrouillieren unterhalb von Kalaran über den Boden des Kessels; Magmaelementare treiben zwischen ihnen. Golems und Elementare droppen das Öl, Elementare die Herzen.",
 
 	-- Step 6: Dark Iron dwarves
@@ -40,8 +42,9 @@ return {
 
 	-- Step 11: The Grimesilt outhouse
 	["The Grimesilt outhouse"] = "Das Grimesilt-Nebengebäude",
-	-- {area:247} Grimesilt Dig Site · {item:4306} Silk Cloth · {object:147516} Dark Iron
-	["Ride east across the Cauldron to the {area:247} in the south-east. The prisoner in the wooden outhouse wants 15 {item:4306} and eight dead {object:147516} Geologists from the dig site around it. The outhouse also opens with the key, if you found one."] = "Reite nach Osten über den Kessel zur {area:247} im Südosten. Der Gefangene im hölzernen Nebengebäude will 15 {item:4306} und acht tote {object:147516}-Geologen von der Grabungsstätte drumherum. Das Nebengebäude lässt sich auch mit dem Schlüssel öffnen, falls du einen gefunden hast.",
+	-- {area:247} Grimesilt Dig Site · {item:4306} Silk Cloth
+	-- plural, as words: Dark Iron Geologists = {npc:5839} Dark Iron Geologist
+	["Ride east across the Cauldron to the {area:247} in the south-east. The prisoner in the wooden outhouse wants 15 {item:4306} and eight dead Dark Iron Geologists from the dig site around it. The outhouse also opens with the key, if you found one."] = "",
 	-- {zone:1446} Tanaris · {zone:1435} Swamp of Sorrows · {zone:1445} Dustwallow Marsh
 	["The prisoner's next task, Ledger from {zone:1446}, sends you to the {zone:1435} and {zone:1445}: skip it."] = "Die nächste Aufgabe des Gefangenen, Geschäftsbuch aus {zone:1446}, schickt dich in die {zone:1435} und in die {zone:1445}: Überspring sie.",
 
@@ -50,4 +53,7 @@ return {
 	["The dwarf stands by the road at the dig site. Follow him north along the road and fight off the {object:147516} ambushes. When it is over, read the {object:175704} he leaves on the road in {area:1959}."] = "Der Zwerg steht an der Straße bei der Grabungsstätte. Folge ihm auf der Straße nach Norden und wehr die Hinterhalte der {object:147516}-Zwerge ab. Wenn es vorbei ist, lies den {object:175704}, den er im {area:1959} auf der Straße zurücklässt.",
 	-- {npc:8256} Curator Thorius · {zone:1455} Ironforge
 	["For {npc:8256} in {zone:1455}, later"] = "Für {npc:8256} in {zone:1455}, später",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Ride east across the Cauldron to the {area:247} in the south-east. The prisoner in the wooden outhouse wants 15 {item:4306} and eight dead {object:147516} Geologists from the dig site around it. The outhouse also opens with the key, if you found one."] = "Reite nach Osten über den Kessel zur {area:247} im Südosten. Der Gefangene im hölzernen Nebengebäude will 15 {item:4306} und acht tote {object:147516}-Geologen von der Grabungsstätte drumherum. Das Nebengebäude lässt sich auch mit dem Schlüssel öffnen, falls du einen gefunden hast.",
 }

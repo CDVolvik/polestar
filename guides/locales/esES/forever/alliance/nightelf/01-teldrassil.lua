@@ -1,7 +1,9 @@
 -- Spanish (Spain) (esES): the guide forever/alliance/nightelf/01-teldrassil (forever/alliance/nightelf/01-teldrassil.guide).
 -- Written by `node tools/polestar.js i18n guides sync esES`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Spanish (Spain) (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Spanish (Spain) (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Step 1: Aldrassil
 	-- {area:256} Aldrassil · {area:188} Shadowglen
@@ -13,7 +15,7 @@ return {
 
 	-- Step 2: The Balance of Nature
 	-- {area:256} Aldrassil · {item:3297} Fel Moss
-	-- plural, as words: Young Nightsabers = {npc:2031} Young Nightsaber · Young Thistle Boars = {npc:1984} Young Thistle Boar · Thistle Boars = {npc:1985} Thistle Boar · Gnarlpine Totems = {item:279082} Gnarlpine Totem
+	-- plural, as words: Young Nightsabers = {npc:2031} Young Nightsaber · Young Thistle Boars = {npc:1984} Young Thistle Boar · Gnarlpine Totems = {item:279082} Gnarlpine Totem
 	["Young Nightsabers and Young Thistle Boars roam around {area:256}. Grells carry {item:3297} in the woods west of the tree, where the Gnarlpine Totems stand."] = "Los sables de la Noche jóvenes y los jóvenes jabalíes Cardo deambulan alrededor de {area:256}. Los grells llevan {item:3297} en el bosque al oeste del árbol, donde están los tótems Tuercepinos.",
 
 	-- Step 3: Back at Aldrassil
@@ -25,8 +27,8 @@ return {
 	["{npc:2082}, on the tree's ramp"] = "{npc:2082}, en la rampa del árbol",
 	-- {npc:3595} Shanda
 	["{npc:3595}, inside the tree"] = "{npc:3595}, dentro del árbol",
-	-- {quest:97979} The Goddess Provides · {npc:3595} Shanda
-	["{quest:97979}: cast Elune's Light and Shadowmeld, then hand it back to {npc:3595}"] = "{quest:97979}: lanza Luz de Elune y Fusión de las Sombras, y luego entrégasela a {npc:3595}",
+	-- {quest:97979} The Goddess Provides · {spell:1259799} Elune's Light · {spell:20580} Shadowmeld · {npc:3595} Shanda
+	["{quest:97979}: cast {spell:1259799} and {spell:20580}, then hand it back to {npc:3595}"] = "",
 	-- {npc:8583} Dirania Silvershine
 	["{npc:8583}, east of the tree"] = "{npc:8583}, al este del árbol",
 
@@ -106,7 +108,8 @@ return {
 	["{area:186} quests"] = "Misiones de {area:186}",
 
 	-- Step 16: The Great Outdoors
-	["/sit by Lyreena's campfire until you get Boosted Rest"] = "/sentarse junto a la hoguera de Lyreena hasta que tengas Descanso potenciado",
+	-- {spell:1229451} Boosted Rest
+	["/sit by Lyreena's campfire until you get {spell:1229451}"] = "",
 	-- {npc:6286} Zarrin
 	["Speak with {npc:6286}, south of the inn"] = "Habla con {npc:6286}, al sur de la posada",
 
@@ -251,7 +254,6 @@ return {
 	["{npc:2043}: tame it with the {item:15908}"] = "{npc:2043}: domestícalo con la {item:15908}",
 	-- {npc:1996} Strigid Screecher · {item:15908} Taming Rod
 	["{npc:1996}: tame it with the {item:15908}"] = "{npc:1996}: domestícalo con la {item:15908}",
-	["Tame Beast"] = "Domesticar bestia",
 	-- {npc:4146} Jocaste · {zone:1457} Darnassus
 	["{npc:4146} in {zone:1457} takes it"] = "La recibe {npc:4146} en {zone:1457}",
 
@@ -264,24 +266,24 @@ return {
 	["Follow the road west into {zone:1457}. {npc:4241} stands on the {area:1659} just inside the city. {npc:3516} is in the {area:1658} at the north end of the city, {quest:922} just south of it; {npc:4092} and {npc:7999} are in the Temple of the Moon at the south end. {npc:7316} is in the west of the city, on the way to the pink portal down to Rut'theran."] = "Sigue el camino al oeste hasta {zone:1457}. {npc:4241} está en la {area:1659}, justo al entrar en la ciudad. {npc:3516} está en el {area:1658}, en el extremo norte de la ciudad, y {quest:922} justo al sur; {npc:4092} y {npc:7999} están en el Templo de la Luna, en el extremo sur. {npc:7316} está en el oeste de la ciudad, camino del portal rosa que baja a la Aldea Rut'theran.",
 	-- {npc:3516} Arch Druid Fandral Staghelm · {area:1658} Cenarion Enclave
 	["{npc:3516}, in the {area:1658}"] = "{npc:3516}, en el {area:1658}",
-	-- {npc:4146} Jocaste · {area:1658} Cenarion Enclave
-	["{npc:4146}, in the {area:1658}: Beast Training"] = "{npc:4146}, en el {area:1658}: adiestramiento de bestias",
+	-- {npc:4146} Jocaste · {area:1658} Cenarion Enclave · {spell:5149} Beast Training
+	["{npc:4146}, in the {area:1658}: {spell:5149}"] = "",
 	-- {npc:4217} Mathrengyl Bearwalker · {area:1658} Cenarion Enclave
 	["{npc:4217}, in the {area:1658}"] = "{npc:4217}, en el {area:1658}",
 	-- {npc:4092} Lariia
 	["{npc:4092}, in the Temple of the Moon"] = "{npc:4092}, en el Templo de la Luna",
 	-- {npc:7999} Tyrande Whisperwind · {npc:4092} Lariia
 	["{npc:7999}, above {npc:4092}"] = "{npc:7999}, encima de {npc:4092}",
-	-- {npc:11401} Priestess Alathea
-	["{npc:11401}, in the Temple of the Moon: Starshards"] = "{npc:11401}, en el Templo de la Luna: Fragmentos estelares",
+	-- {npc:11401} Priestess Alathea · {spell:10797} Starshards
+	["{npc:11401}, in the Temple of the Moon: {spell:10797}"] = "",
 
 	-- Step 43: Rut'theran Village
 	-- {area:702} Rut'theran Village · {npc:3838} Vesprystus
 	["Take the portal down to {area:702}. Nessa stands on the dock, {npc:3838} by the hippogryphs."] = "Toma el portal hasta {area:702}. Nessa está en el muelle, {npc:3838} junto a los hipogrifos.",
 
 	-- Step 45: Moonglade
-	-- {area:442} Auberdine · {area:493} Moonglade · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {quest:5929} Great Bear Spirit · {area:702} Rut'theran Village
-	["Learn the {area:442} flight path on the hill south of the inn, then cast Teleport: {area:493}. {npc:11802} is in {area:2361}; the {quest:5929} sits in the woods to the north-west. Learn the {area:493} flight path in {area:2361} and fly to {area:702} (by way of {area:442})."] = "Aprende la ruta de vuelo de {area:442} en la colina al sur de la posada y lanza Teletransporte: {area:493}. {npc:11802} está en {area:2361}; el {quest:5929} está en el bosque al noroeste. Aprende la ruta de vuelo de {area:493} en {area:2361} y vuela a {area:702} (pasando por {area:442}).",
+	-- {area:442} Auberdine · {spell:18960} Teleport: Moonglade · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {quest:5929} Great Bear Spirit · {area:493} Moonglade · {area:702} Rut'theran Village
+	["Learn the {area:442} flight path on the hill south of the inn, then cast {spell:18960}. {npc:11802} is in {area:2361}; the {quest:5929} sits in the woods to the north-west. Learn the {area:493} flight path in {area:2361} and fly to {area:702} (by way of {area:442})."] = "",
 	-- {quest:5929} Great Bear Spirit
 	["Speak with the {quest:5929}"] = "Habla con el {quest:5929}",
 
@@ -298,8 +300,6 @@ return {
 	-- Step 48: Body and Heart
 	-- {area:702} Rut'theran Village · {area:442} Auberdine
 	["Fly to {area:702} once more and take the portal up to Mathrengyl, then fly back to {area:442} for the boat."] = "Vuela otra vez a {area:702} y toma el portal hasta Mathrengyl; luego vuelve a volar a {area:442} para el barco.",
-	-- {npc:4217} Mathrengyl Bearwalker
-	["{npc:4217}: Bear Form"] = "{npc:4217}: forma de oso",
 
 	-- Step 49: Auberdine
 	-- {npc:4200} Laird · {zone:1453} Stormwind City
@@ -310,9 +310,17 @@ return {
 	["From {area:17203}, ride through the city gates into {zone:1429} and follow the road west to {zone:1436}."] = "Desde {area:17203}, cruza las puertas de la ciudad hacia {zone:1429} y sigue el camino al oeste hasta {zone:1436}.",
 
 	-- Step 50: Defensive Stance
-	["Defensive Stance"] = "Actitud defensiva",
 	-- {object:2100} Old Town · {npc:5480} Ilsa Corbin · {npc:6089} Harry Burlguard · {npc:6090} Bartleby · {object:2152} Pig and Whistle Tavern
 	["From the harbour walk into {object:2100}. {npc:5480} trains warriors there; {npc:6089} and {npc:6090} stand together by the {object:2152}. {npc:6090} fights you for his mug."] = "Desde el puerto entra en {object:2100}. {npc:5480} entrena a los guerreros allí; {npc:6089} y {npc:6090} están juntos junto al {object:2152}. {npc:6090} pelea contigo por su jarra.",
-	-- {npc:6089} Harry Burlguard
-	["{npc:6089}: Defensive Stance"] = "{npc:6089}: Actitud defensiva",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["/sit by Lyreena's campfire until you get Boosted Rest"] = "/sentarse junto a la hoguera de Lyreena hasta que tengas Descanso potenciado",
+	-- ["Defensive Stance"] = "Actitud defensiva",
+	-- ["Learn the {area:442} flight path on the hill south of the inn, then cast Teleport: {area:493}. {npc:11802} is in {area:2361}; the {quest:5929} sits in the woods to the north-west. Learn the {area:493} flight path in {area:2361} and fly to {area:702} (by way of {area:442})."] = "Aprende la ruta de vuelo de {area:442} en la colina al sur de la posada y lanza Teletransporte: {area:493}. {npc:11802} está en {area:2361}; el {quest:5929} está en el bosque al noroeste. Aprende la ruta de vuelo de {area:493} en {area:2361} y vuela a {area:702} (pasando por {area:442}).",
+	-- ["Tame Beast"] = "Domesticar bestia",
+	-- ["{npc:11401}, in the Temple of the Moon: Starshards"] = "{npc:11401}, en el Templo de la Luna: Fragmentos estelares",
+	-- ["{npc:4146}, in the {area:1658}: Beast Training"] = "{npc:4146}, en el {area:1658}: adiestramiento de bestias",
+	-- ["{npc:4217}: Bear Form"] = "{npc:4217}: forma de oso",
+	-- ["{npc:6089}: Defensive Stance"] = "{npc:6089}: Actitud defensiva",
+	-- ["{quest:97979}: cast Elune's Light and Shadowmeld, then hand it back to {npc:3595}"] = "{quest:97979}: lanza Luz de Elune y Fusión de las Sombras, y luego entrégasela a {npc:3595}",
 }

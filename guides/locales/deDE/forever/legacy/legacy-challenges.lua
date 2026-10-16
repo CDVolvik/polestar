@@ -1,7 +1,9 @@
 -- German (deDE): the guide forever/legacy/legacy-challenges (forever/legacy/legacy-challenges.guide).
 -- Written by `node tools/polestar.js i18n guides sync deDE`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in German (the English is listed above the line). The comments are rewritten by sync.
+-- name there in German (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Guide
 	["Legacy Challenges"] = "Legacy-Herausforderungen",
@@ -56,8 +58,7 @@ return {
 
 	-- Step 10: PvP: battleground reputations (Alliance)
 	["PvP: battleground reputations (Alliance)"] = "PvP: Schlachtfeld-Ruf (Allianz)",
-	-- {zone:1460} Warsong Gulch · {zone:1461} Arathi Basin · {zone:1459} Alterac Valley
-	["Exalted with each battleground faction is worth a point (4 in all; this page shows three, see the note). Follow the Polestar Reputation guides {zone:1460} Reputation, {zone:1461} Reputation and {zone:1459} Reputation. The Diplomat Legacy perk increases reputation gains."] = "Ehrfürchtig bei jeder Schlachtfeldfraktion ist einen Punkt wert (insgesamt 4; diese Seite zeigt drei, siehe Hinweis). Folge den Polestar-Rufguides Ruf: {zone:1460}, Ruf: {zone:1461} und Ruf: {zone:1459}. Der Legacy-Vorteil „Diplomat“ erhöht den Rufgewinn.",
+	["Exalted with each battleground faction is worth a point (4 in all; this page shows three, see the note). Follow the Polestar Reputation guides Warsong Gulch Reputation, Arathi Basin Reputation and Alterac Valley Reputation. The Diplomat Legacy perk increases reputation gains."] = "",
 	-- {zone:1460} Warsong Gulch · {zone:1461} Arathi Basin · {zone:1459} Alterac Valley
 	["Blizzard counts four battleground reputations, but our faction data has three per side ({zone:1460}, {zone:1461}, {zone:1459}). The fourth is likely tied to Forever's new PvP content; check the in-game Legacy panel."] = "Blizzard zählt vier Schlachtfeld-Rufe, aber unsere Fraktionsdaten haben drei pro Seite ({zone:1460}, {zone:1461}, {zone:1459}). Der vierte hängt wohl mit den neuen PvP-Inhalten von Forever zusammen; sieh im Legacy-Fenster im Spiel nach.",
 
@@ -131,12 +132,9 @@ return {
 	["Lower {area:1583}"] = "Untere {area:1583}",
 	-- {area:1583} Blackrock Spire
 	["Upper {area:1583}"] = "Obere {area:1583}",
-	-- {area:2577} Dire Maul
-	["{area:2577} East"] = "{area:2577} Ost",
-	-- {area:2577} Dire Maul
-	["{area:2577} West"] = "{area:2577} West",
-	-- {area:2577} Dire Maul
-	["{area:2577} North"] = "{area:2577} Nord",
+	["Dire Maul East"] = "",
+	["Dire Maul West"] = "",
+	["Dire Maul North"] = "",
 	-- {area:2279} Stratholme
 	["{area:2279}, Live side"] = "{area:2279}, lebende Seite",
 	-- {area:2279} Stratholme
@@ -160,4 +158,10 @@ return {
 	-- Step 24: Raids: Barrow Deeps
 	["Raids: Barrow Deeps"] = "Schlachtzüge: Barrow Deeps",
 	["All 8 Barrow Deeps bosses are a point. Barrow Deeps is a new Forever raid; its bosses are not in our data, so tick it off once all 8 are down."] = "Alle 8 Bosse der Barrow Deeps sind einen Punkt wert. Barrow Deeps ist ein neuer Forever-Schlachtzug; seine Bosse sind nicht in unseren Daten, hak ihn also ab, sobald alle 8 besiegt sind.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Exalted with each battleground faction is worth a point (4 in all; this page shows three, see the note). Follow the Polestar Reputation guides {zone:1460} Reputation, {zone:1461} Reputation and {zone:1459} Reputation. The Diplomat Legacy perk increases reputation gains."] = "Ehrfürchtig bei jeder Schlachtfeldfraktion ist einen Punkt wert (insgesamt 4; diese Seite zeigt drei, siehe Hinweis). Folge den Polestar-Rufguides Ruf: {zone:1460}, Ruf: {zone:1461} und Ruf: {zone:1459}. Der Legacy-Vorteil „Diplomat“ erhöht den Rufgewinn.",
+	-- ["{area:2577} East"] = "{area:2577} Ost",
+	-- ["{area:2577} North"] = "{area:2577} Nord",
+	-- ["{area:2577} West"] = "{area:2577} West",
 }

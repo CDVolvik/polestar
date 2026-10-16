@@ -1,7 +1,9 @@
 -- Chinese (simplified) (zhCN): the guide forever/horde/03-silverpine-forest (forever/horde/03-silverpine-forest.guide).
 -- Written by `node tools/polestar.js i18n guides sync zhCN`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Chinese (simplified) (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Chinese (simplified) (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Step 1: To Orgrimmar
 	-- {area:1637} Orgrimmar
@@ -20,9 +22,9 @@ return {
 	["Fly to {area:1638}: {npc:3033} trains you on {area:1639}. Skyborne: fly back to {zone:1454} for the zeppelin afterwards."] = "",
 
 	-- Step 4: Trial of the Lake
-	-- {zone:1450} Moonglade · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {area:656} Lake Elune'ara · {area:2362} Shrine of Remulos · {npc:11799} Tajarri
+	-- {spell:18960} Teleport: Moonglade · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {area:656} Lake Elune'ara · {area:2362} Shrine of Remulos · {npc:11799} Tajarri
 	-- plural, as words: Shrine Baubles = {item:15877} Shrine Bauble
-	["Cast Teleport: {zone:1450}; {npc:11802} is in {area:2361}. The Shrine Baubles lie on the bed of {area:656} and fade within minutes: swim one straight to the {area:2362} on the north-west shore, use it there and speak to {npc:11799}."] = "",
+	["Cast {spell:18960}; {npc:11802} is in {area:2361}. The Shrine Baubles lie on the bed of {area:656} and fade within minutes: swim one straight to the {area:2362} on the north-west shore, use it there and speak to {npc:11799}."] = "",
 	-- {quest:6127} The Principal Source · {area:384} Dreadmist Peak
 	["{quest:6127}: {area:384}, next guide"] = "",
 	-- {npc:11799} Tajarri · {area:2362} Shrine of Remulos
@@ -93,8 +95,8 @@ return {
 	["North again to the Yoricks' house. {quest:425} lurks a short walk west of it."] = "",
 
 	-- Step 21: Fenris Isle
-	-- {area:172} Fenris Isle · {npc:14235} The Rot · {area:235} Fenris Keep
-	["Follow the lake shore south-east and swim out to {area:172}. {npc:14235} Hide gnolls cover the island; every type drops ichor. Stay out of {area:235} on its north side unless you go for the optional niche: the gnolls there are level 18-22."] = "",
+	-- {area:172} Fenris Isle · {area:235} Fenris Keep
+	["Follow the lake shore south-east and swim out to {area:172}. Rot Hide gnolls cover the island; every type drops ichor. Stay out of {area:235} on its north side unless you go for the optional niche: the gnolls there are level 18-22."] = "",
 	-- {item:3317} A Talking Head
 	["{item:3317}: a rare drop from the gnolls"] = "",
 	-- {object:1599} Shallow Grave
@@ -159,16 +161,16 @@ return {
 	["Walk in through the main gate. {npc:268701} stands in the {object:172982}; {object:173016} is a few steps north."] = "",
 
 	-- Step 33: Cleft of Shadow
-	-- {area:263} The Cleft · {object:172982} Valley of Strength · {npc:3216} Neeru Fireblade
-	["{area:263} of Shadow is the canyon under the {object:172982}; {npc:3216} stands at its far end."] = "",
+	-- {object:172960} Cleft of Shadow · {object:172982} Valley of Strength · {npc:3216} Neeru Fireblade
+	["The {object:172960} is the canyon under the {object:172982}; {npc:3216} stands at its far end."] = "",
 
 	-- Step 34: The Drag
-	-- {npc:3348} Kor'geld · {npc:3347} Yelmak · {object:172959} The Drag · {npc:11046} Whuut
-	["{npc:3348} and {npc:3347} run the alchemy shop in the {object:172959}; {npc:11046} is next door."] = "",
+	-- {npc:3348} Kor'geld · {npc:3347} Yelmak · {npc:11046} Whuut
+	["{npc:3348} and {npc:3347} run the alchemy shop in the Drag; {npc:11046} is next door."] = "",
 
 	-- Step 35: Valley of Honor
-	-- {object:172958} Valley of Honor · {object:172959} The Drag
-	["The cattails and speargrass grow along the water in the {object:172958}, east of the {object:172959}."] = "",
+	-- {object:172958} Valley of Honor
+	["The cattails and speargrass grow along the water in the {object:172958}, east of the Drag."] = "",
 
 	-- Step 37: Valley of Wisdom
 	-- {npc:268684} Thra · {npc:268682} Migi · {object:172957} Valley of Wisdom · {npc:3310} Doras · {object:172982} Valley of Strength

@@ -1,7 +1,9 @@
 -- Spanish (Latin America) (esMX): the guide forever/horde/30-40/03-arathi-highlands (forever/horde/30-40/03-arathi-highlands.guide).
 -- Written by `node tools/polestar.js i18n guides sync esMX`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Spanish (Latin America) (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Spanish (Latin America) (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Step 1: Fly to Grom'gol
 	-- {object:3202} Grom'gol
@@ -16,8 +18,8 @@ return {
 	["{object:1661} has no Hunter or Shaman trainer: take the {zone:1454} zeppelin from the same tower instead and train in the city, then take the {zone:1458} zeppelin from the tower outside {zone:1454}'s main gate."] = "{object:1661} no tiene instructor de cazadores ni de chamanes: toma en su lugar el zepelín a {zone:1454} desde la misma torre y entrena en la ciudad; luego toma el zepelín a {zone:1458} desde la torre a las afueras de la puerta principal de {zone:1454}.",
 
 	-- Step 3: Thunder Bluff
-	-- {zone:1450} Moonglade · {npc:11798} Bunthen Plainswind · {area:1638} Thunder Bluff · {npc:3033} Turak Runetotem · {area:1639} Elder Rise · {zone:1454} Orgrimmar · {zone:1458} Undercity
-	["Cast Teleport: {zone:1450} and take {npc:11798}'s flight to {area:1638}; {npc:3033} trains you on {area:1639}. Then fly to {zone:1454} and take the {zone:1458} zeppelin from the tower outside the main gate."] = "Lanza Teletransporte: {zone:1450} y toma el vuelo de {npc:11798} a {area:1638}; {npc:3033} te entrena en {area:1639}. Luego vuela a {zone:1454} y toma el zepelín a {zone:1458} desde la torre a las afueras de la puerta principal.",
+	-- {spell:18960} Teleport: Moonglade · {npc:11798} Bunthen Plainswind · {area:1638} Thunder Bluff · {npc:3033} Turak Runetotem · {area:1639} Elder Rise · {zone:1454} Orgrimmar · {zone:1458} Undercity
+	["Cast {spell:18960} and take {npc:11798}'s flight to {area:1638}; {npc:3033} trains you on {area:1639}. Then fly to {zone:1454} and take the {zone:1458} zeppelin from the tower outside the main gate."] = "",
 
 	-- Step 4: Undercity trainers
 	-- {zone:1458} Undercity
@@ -146,10 +148,10 @@ return {
 	["for Helgrum in {area:75}, around level 42"] = "para Helgrum en {area:75}, alrededor del nivel 42",
 
 	-- Step 32: Lesser Rock Elementals
-	-- plural, as words: Lesser Rock Elementals = {npc:2735} Lesser Rock Elemental · Rock Elementals = {npc:92} Rock Elemental
+	-- plural, as words: Lesser Rock Elementals = {npc:2735} Lesser Rock Elemental
 	["Lesser Rock Elementals"] = "Elementales de roca inferiores",
-	-- {npc:92} Rock Elemental
-	["The small elementals drift across the flats just west of Lotwil's camp. Every rock elemental in the zone can drop Jarkal's {npc:92} Shards: keep them."] = "Los elementales pequeños vagan por la llanura justo al oeste del campamento de Lotwil. Cualquier elemental de roca de la zona puede soltar los fragmentos de {npc:92} para Jarkal: guárdalos.",
+	-- plural, as words: Rock Elemental Shards = {item:7848} Rock Elemental Shard
+	["The small elementals drift across the flats just west of Lotwil's camp. Every rock elemental in the zone can drop Jarkal's Rock Elemental Shards: keep them."] = "",
 
 	-- Step 34: Rock Elementals
 	-- plural, as words: Rock Elementals = {npc:92} Rock Elemental
@@ -161,13 +163,13 @@ return {
 	-- Step 36: Coyotes and buzzards
 	["Coyotes and buzzards"] = "Coyotes y águilas ratoneras",
 	-- {area:1878} The Dustbowl
-	-- plural, as words: Elder Crag Coyotes = {npc:2729} Elder Crag Coyote · Crag Coyotes = {npc:2727} Crag Coyote · Giant Buzzards = {npc:2831} Giant Buzzard
+	-- plural, as words: Elder Crag Coyotes = {npc:2729} Elder Crag Coyote · Giant Buzzards = {npc:2831} Giant Buzzard
 	["The Elder Crag Coyotes and Giant Buzzards roam the basin south of the {area:1878}. Coyotes drop both the jawbones and the fangs; only the buzzards drop wings and gizzards."] = "Los coyotes del risco mayores y las águilas ratoneras gigantes deambulan por la cuenca al sur de {area:1878}. Los coyotes sueltan tanto las mandíbulas como los colmillos; solo las águilas ratoneras sueltan alas y mollejas.",
 
 	-- Step 37: Greater Rock Elementals
-	-- plural, as words: Greater Rock Elementals = {npc:2736} Greater Rock Elemental · Rock Elementals = {npc:92} Rock Elemental
+	-- plural, as words: Greater Rock Elementals = {npc:2736} Greater Rock Elemental
 	["Greater Rock Elementals"] = "Elementales de roca superiores",
-	-- plural, as words: Greater Rock Elementals = {npc:2736} Greater Rock Elemental · Rock Elementals = {npc:92} Rock Elemental
+	-- plural, as words: Greater Rock Elementals = {npc:2736} Greater Rock Elemental
 	["The Greater Rock Elementals (42-44, well above you) wander the gulches in the south-west; the bracers drop about one kill in five. Pull one at a time and rest between fights, or leave them. Keep killing coyotes and buzzards you still need on the way."] = "Los elementales de roca superiores (42-44, muy por encima de ti) vagan por los barrancos del suroeste; los brazales caen más o menos una vez de cada cinco. Atráelos de uno en uno y descansa entre peleas, o déjalos. Por el camino, sigue matando los coyotes y águilas ratoneras que aún necesites.",
 
 	-- Step 38: Kargath
@@ -230,6 +232,9 @@ return {
 	-- Step 53: The Affray
 	-- {area:392} Ratchet · {area:720} Fray Island · {npc:6236} Klannoc Macleod · {npc:6238} Big Will
 	["Ride south along the coast from {area:392} to {area:720}. {npc:6236} stands by the arena: step on the grate to start the fight; the challengers come one at a time, then {npc:6238} (33)."] = "Cabalga al sur por la costa desde {area:392} hasta {area:720}. {npc:6236} está junto a la arena: pisa la rejilla para empezar la pelea; los retadores vienen de uno en uno y luego {npc:6238} (33).",
-	-- {npc:6236} Klannoc Macleod
-	["{npc:6236}: Berserker Stance"] = "{npc:6236}: Actitud rabiosa",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Cast Teleport: {zone:1450} and take {npc:11798}'s flight to {area:1638}; {npc:3033} trains you on {area:1639}. Then fly to {zone:1454} and take the {zone:1458} zeppelin from the tower outside the main gate."] = "Lanza Teletransporte: {zone:1450} y toma el vuelo de {npc:11798} a {area:1638}; {npc:3033} te entrena en {area:1639}. Luego vuela a {zone:1454} y toma el zepelín a {zone:1458} desde la torre a las afueras de la puerta principal.",
+	-- ["The small elementals drift across the flats just west of Lotwil's camp. Every rock elemental in the zone can drop Jarkal's {npc:92} Shards: keep them."] = "Los elementales pequeños vagan por la llanura justo al oeste del campamento de Lotwil. Cualquier elemental de roca de la zona puede soltar los fragmentos de {npc:92} para Jarkal: guárdalos.",
+	-- ["{npc:6236}: Berserker Stance"] = "{npc:6236}: Actitud rabiosa",
 }

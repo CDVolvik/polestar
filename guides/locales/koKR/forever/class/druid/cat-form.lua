@@ -1,7 +1,9 @@
 -- Korean (koKR): the guide forever/class/druid/cat-form (forever/class/druid/cat-form.guide).
 -- Written by `node tools/polestar.js i18n guides sync koKR`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Korean (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Guide
 	-- {spell:768} Cat Form
@@ -12,8 +14,8 @@ return {
 	["{npc:4217} stands in the {area:1658}. Skyborne without the Rut'theran flight path: take the boat from {area:442}."] = "{npc:4217}은(는) {area:1658}에 있습니다. 루테란 비행 경로가 없는 스카이본이라면 {area:442}에서 배를 타십시오.",
 
 	-- Step 2: Dendrite Starblaze
-	-- {area:493} Moonglade · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven
-	["Cast Teleport: {area:493}. {npc:11802} is in {area:2361}; learn the flight path there if you do not have it."] = "순간이동: {area:493}을(를) 시전하십시오. {npc:11802}은(는) {area:2361}에 있습니다. 비행 경로가 없다면 그곳에서 배우십시오.",
+	-- {spell:18960} Teleport: Moonglade · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven
+	["Cast {spell:18960}. {npc:11802} is in {area:2361}; learn the flight path there if you do not have it."] = "",
 
 	-- Step 3: The relics of the Barrow Dens
 	["The relics of the Barrow Dens"] = "지하굴의 성물",
@@ -34,8 +36,8 @@ return {
 	["{npc:3033} stands on {area:1639}."] = "{npc:3033}은(는) {area:1639}에 있습니다.",
 
 	-- Step 7: Dendrite Starblaze
-	-- {area:493} Moonglade · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven
-	["Cast Teleport: {area:493}. {npc:11802} is in {area:2361}."] = "순간이동: {area:493}을(를) 시전하십시오. {npc:11802}은(는) {area:2361}에 있습니다.",
+	-- {spell:18960} Teleport: Moonglade · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven
+	["Cast {spell:18960}. {npc:11802} is in {area:2361}."] = "",
 
 	-- Step 8: The Stormrage Barrow Dens
 	-- {area:2363} Stormrage Barrow Dens
@@ -46,4 +48,8 @@ return {
 	-- Step 9: Back to Dendrite
 	-- {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {npc:11798} Bunthen Plainswind · {area:1638} Thunder Bluff
 	["Back to {npc:11802} in {area:2361}, then take {npc:11798}'s flight to {area:1638}."] = "{area:2361}의 {npc:11802}에게 돌아간 뒤 {npc:11798}의 비행편으로 {area:1638}에 가십시오.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Cast Teleport: {area:493}. {npc:11802} is in {area:2361}."] = "순간이동: {area:493}을(를) 시전하십시오. {npc:11802}은(는) {area:2361}에 있습니다.",
+	-- ["Cast Teleport: {area:493}. {npc:11802} is in {area:2361}; learn the flight path there if you do not have it."] = "순간이동: {area:493}을(를) 시전하십시오. {npc:11802}은(는) {area:2361}에 있습니다. 비행 경로가 없다면 그곳에서 배우십시오.",
 }

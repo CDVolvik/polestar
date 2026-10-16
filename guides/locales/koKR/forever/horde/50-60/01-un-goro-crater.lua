@@ -1,7 +1,9 @@
 -- Korean (koKR): the guide forever/horde/50-60/01-un-goro-crater (forever/horde/50-60/01-un-goro-crater.guide).
 -- Written by `node tools/polestar.js i18n guides sync koKR`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Korean (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Step 1: Into Un'Goro Crater
 	-- {zone:1449} Un'Goro Crater
@@ -59,10 +61,10 @@ return {
 	["North of Torwa, a dead Threshadon lies by the water."] = "토르와 북쪽 물가에 죽은 트레샤돈이 있습니다.",
 
 	-- Step 12: Lar'korwi Mates
-	-- {npc:9684} Lar'korwi
-	["{npc:9684} Mates"] = "{npc:9684}의 짝",
-	-- {npc:9684} Lar'korwi
-	["The {npc:9684} Mates prowl the jungle north-west of Torwa."] = "{npc:9684}의 짝은 토르와 북서쪽 정글을 배회합니다.",
+	-- plural, as words: Lar'korwi Mates = {npc:9683} Lar'korwi Mate
+	["Lar'korwi Mates"] = "",
+	-- plural, as words: Lar'korwi Mates = {npc:9683} Lar'korwi Mate
+	["The Lar'korwi Mates prowl the jungle north-west of Torwa."] = "",
 
 	-- Step 13: Torwa Pathfinder
 	-- {npc:9684} Lar'korwi
@@ -222,8 +224,8 @@ return {
 	["{npc:10879}, the {object:36078}, beside the bat master"] = "{object:36078}, 박쥐 조련사 옆의 {npc:10879}",
 	-- {npc:6522} Andron Gant · {object:36073} Rogues' Quarter
 	["{npc:6522}, the {object:36073}"] = "{object:36073}의 {npc:6522}",
-	-- {npc:8390} Chemist Cuely · {object:36072} The Apothecarium · {zone:1447} Azshara
-	["{npc:8390}, the {object:36072}: the vials fill in {zone:1447} later"] = "{object:36072}의 {npc:8390}: 약병은 나중에 {zone:1447}에서 채웁니다",
+	-- {npc:8390} Chemist Cuely · {zone:1447} Azshara
+	["{npc:8390}, the Apothecarium: the vials fill in {zone:1447} later"] = "",
 
 	-- Step 45: The Bulwark
 	-- {zone:1458} Undercity · {zone:1420} Tirisfal Glades · {area:152} The Bulwark
@@ -250,12 +252,12 @@ return {
 	["Ride south back to the road and follow it east across the whole zone to {area:2268}."] = "남쪽 길로 돌아가 지역을 가로질러 동쪽 {area:2268}까지 가세요.",
 
 	-- Step 51: Darrowshire Spirits
-	-- {area:2262} Darrowshire
-	["{area:2262} Spirits"] = "{area:2262} 영혼",
+	-- plural, as words: Darrowshire Spirits = {npc:11064} Darrowshire Spirit
+	["Darrowshire Spirits"] = "",
 	-- {npc:11064} Darrowshire Spirit · {area:2262} Darrowshire
 	["With Carlin's quest in your log, slain Scourge sometimes leave a {npc:11064}; talk to it to free it. Kill undead on the ride south-west to {area:2262}."] = "카를린의 퀘스트가 있으면 처치한 스컬지가 가끔 {npc:11064}을(를) 남깁니다. 말을 걸어 풀어 주세요. 남서쪽 {area:2262}(으)로 가는 길에 언데드를 처치하세요.",
-	-- {area:2262} Darrowshire
-	["Free {area:2262} Spirits: talk to them"] = "{area:2262} 영혼 해방: 말 걸기",
+	-- plural, as words: Darrowshire Spirits = {npc:11064} Darrowshire Spirit
+	["Free Darrowshire Spirits: talk to them"] = "",
 
 	-- Step 52: Pamela Redpath
 	-- {area:2262} Darrowshire
@@ -276,4 +278,11 @@ return {
 	-- {area:2268} Light's Hope Chapel
 	["Back to {area:2268}"] = "{area:2268}(으)로 돌아가기",
 	["The next guide starts here, at the chapel's flight master."] = "다음 가이드는 여기 예배당의 비행 조련사에서 시작합니다.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Free {area:2262} Spirits: talk to them"] = "{area:2262} 영혼 해방: 말 걸기",
+	-- ["The {npc:9684} Mates prowl the jungle north-west of Torwa."] = "{npc:9684}의 짝은 토르와 북서쪽 정글을 배회합니다.",
+	-- ["{area:2262} Spirits"] = "{area:2262} 영혼",
+	-- ["{npc:8390}, the {object:36072}: the vials fill in {zone:1447} later"] = "{object:36072}의 {npc:8390}: 약병은 나중에 {zone:1447}에서 채웁니다",
+	-- ["{npc:9684} Mates"] = "{npc:9684}의 짝",
 }

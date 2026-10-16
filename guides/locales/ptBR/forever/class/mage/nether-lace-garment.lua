@@ -1,7 +1,9 @@
 -- Portuguese (Brazil) (ptBR): the guide forever/class/mage/nether-lace-garment (forever/class/mage/nether-lace-garment.guide).
 -- Written by `node tools/polestar.js i18n guides sync ptBR`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Portuguese (Brazil) (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Portuguese (Brazil) (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Guide
 	["A robe or a tunic for Undead and Troll mages in their late 20s."] = "Uma veste ou túnica para magos Mortos-vivos e Trolls no fim dos níveis 20.",
@@ -17,8 +19,8 @@ return {
 	-- Step 3: The Xavian Waterfall
 	-- {object:174797} Xavian Waterfall
 	["The {object:174797}"] = "A {object:174797}",
-	-- {area:429} Xavian · {zone:1440} Ashenvale · {item:7269} Deino's Flask
-	["Satyrs hold the ruins of {area:429} in eastern {zone:1440}. Fill {item:7269} at the bottom of the highest waterfall."] = "Sátiros dominam as ruínas de {area:429}, no leste de {zone:1440}. Encha o {item:7269} no pé da cachoeira mais alta.",
+	-- {area:429} Xavian · {zone:1440} Ashenvale · {spell:9052} Fill Deino's Flask
+	["Satyrs hold the ruins of {area:429} in eastern {zone:1440}. {spell:9052} at the bottom of the highest waterfall."] = "",
 
 	-- Step 4: Back to Deino
 	-- {npc:5885} Deino
@@ -33,4 +35,7 @@ return {
 	-- Step 6: Kil'hala
 	-- {npc:3484} Kil'hala · {area:380} The Crossroads
 	["{npc:3484}, a troll tailor, works at the {area:380}."] = "{npc:3484}, uma alfaiate troll, trabalha na {area:380}.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Satyrs hold the ruins of {area:429} in eastern {zone:1440}. Fill {item:7269} at the bottom of the highest waterfall."] = "Sátiros dominam as ruínas de {area:429}, no leste de {zone:1440}. Encha o {item:7269} no pé da cachoeira mais alta.",
 }

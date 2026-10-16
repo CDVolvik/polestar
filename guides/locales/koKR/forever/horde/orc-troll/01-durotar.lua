@@ -1,7 +1,9 @@
 -- Korean (koKR): the guide forever/horde/orc-troll/01-durotar (forever/horde/orc-troll/01-durotar.guide).
 -- Written by `node tools/polestar.js i18n guides sync koKR`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Korean (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Step 1: Kaltunk
 	-- {npc:10176} Kaltunk
@@ -110,8 +112,8 @@ return {
 	-- Step 24: Brakk's campfire
 	-- {npc:265809} Brakk
 	["{npc:265809}'s campfire"] = "",
-	-- {npc:265809} Brakk · {area:362} Razor Hill
-	["{npc:265809} camps just south of {area:362}. Sit by his campfire (/sit) until the Boosted Rest buff appears."] = "",
+	-- {npc:265809} Brakk · {area:362} Razor Hill · {spell:1229451} Boosted Rest
+	["{npc:265809} camps just south of {area:362}. Sit by his campfire (/sit) until the {spell:1229451} buff appears."] = "",
 
 	-- Step 25: Razor Hill
 	-- {npc:266940} Turroc
@@ -138,6 +140,7 @@ return {
 
 	-- Step 33: Drygulch Ravine
 	-- {area:370} Drygulch Ravine · {npc:3293} Rezlak · {item:277661} Dull Storm Orb
+	-- plural, as words: Savages = {spell:20574} Savage
 	["Savages and Storm Witches nest in {area:370}, east of {npc:3293}. A Storm Witch drops the {item:277661}."] = "",
 
 	-- Step 35: Thunder lizards
@@ -174,8 +177,8 @@ return {
 
 	-- Step 43: South-east shore
 	["South-east shore"] = "",
-	-- {zone:1411} Durotar
-	["Wade back west to the shore south of Sen'jin. {zone:1411} Tigers roam it and the Taillasher eggs sit in nests along the beach."] = "",
+	-- plural, as words: Durotar Tigers = {npc:3121} Durotar Tiger
+	["Wade back west to the shore south of Sen'jin. Durotar Tigers roam it and the Taillasher eggs sit in nests along the beach."] = "",
 
 	-- Step 45: Kolkar Crag
 	-- {area:366} Kolkar Crag · {npc:275811} Pal'juh
@@ -192,8 +195,8 @@ return {
 	["{npc:3706}, for {npc:6018} in {zone:1454}: keep it"] = "",
 
 	-- Step 48: Fizzle Darkstorm
-	-- {area:369} Thunder Ridge · {area:362} Razor Hill · {npc:3099} Dire Mottled Boar · {item:15908} Taming Rod
-	["Fizzle holds the Burning Blade camp on {area:369}, north-west of {area:362}. Hunters: tame a {npc:3099} with the {item:15908} on the way."] = "",
+	-- {spell:1294269} Burning Blade · {area:369} Thunder Ridge · {area:362} Razor Hill · {npc:3099} Dire Mottled Boar · {item:15908} Taming Rod
+	["Fizzle holds the {spell:1294269} camp on {area:369}, north-west of {area:362}. Hunters: tame a {npc:3099} with the {item:15908} on the way."] = "",
 	-- {item:15908} Taming Rod
 	["Tame it with the {item:15908}"] = "",
 
@@ -214,8 +217,8 @@ return {
 	["{area:817}'s mouth"] = "",
 
 	-- Step 54: Skull Rock
-	-- {quest:827} Skull Rock · {item:4871} Searing Collar · {npc:3204} Gazz'uz · {item:4903} Eye of Burning Shadow
-	["Burning Blade cultists hold the caves of {quest:827}; any of them drops a {item:4871}. {npc:3204}, a level 14 warlock, stands deep inside and drops the {item:4903}."] = "",
+	-- {spell:1294269} Burning Blade · {quest:827} Skull Rock · {item:4871} Searing Collar · {npc:3204} Gazz'uz · {item:4903} Eye of Burning Shadow
+	["{spell:1294269} cultists hold the caves of {quest:827}; any of them drops a {item:4871}. {npc:3204}, a level 14 warlock, stands deep inside and drops the {item:4903}."] = "",
 
 	-- Step 55: Tablet of Verga
 	-- {object:58595} Burning Blade Stash · {area:817} Skull Rock
@@ -224,8 +227,6 @@ return {
 	-- Step 56: The Binding
 	-- {object:172960} Cleft of Shadow · {item:7464} Glyphs of Summoning
 	["Back to Gan'rul in the {object:172960}. Use the {item:7464} on the summoning circle there and defeat the voidwalker to bind it."] = "",
-	-- {npc:5875} Gan'rul Bloodeye
-	["{npc:5875}: Summon Voidwalker"] = "",
 
 	-- Step 58: Razor Hill
 	-- {area:362} Razor Hill
@@ -253,16 +254,12 @@ return {
 	-- {area:362} Razor Hill · {npc:3171} Thotar
 	-- plural, as words: Armored Scorpids = {npc:3126} Armored Scorpid
 	["Armored Scorpids crawl over the plains west of {area:362}. Tame one, then return to {npc:3171}."] = "",
-	-- {npc:3171} Thotar
-	["{npc:3171}: Tame Beast"] = "",
-	-- {npc:3171} Thotar · {npc:3352} Ormak Grimshot · {zone:1454} Orgrimmar
-	["{npc:3171}: {npc:3352} in {zone:1454} teaches Beast Training"] = "",
+	-- {npc:3171} Thotar · {npc:3352} Ormak Grimshot · {zone:1454} Orgrimmar · {spell:5149} Beast Training
+	["{npc:3171}: {npc:3352} in {zone:1454} teaches {spell:5149}"] = "",
 
 	-- Step 63: Ormak Grimshot
 	-- {area:362} Razor Hill · {zone:1454} Orgrimmar · {area:817} Skull Rock · {npc:3352} Ormak Grimshot · {object:172958} Valley of Honor
 	["Follow the road north from {area:362} to {zone:1454}'s main gate, just west of {area:817}. {npc:3352} stands with the hunter trainers in the {object:172958}."] = "",
-	-- {npc:3352} Ormak Grimshot
-	["{npc:3352}: Beast Training"] = "",
 
 	-- Step 64: Far Watch Post
 	-- {area:362} Razor Hill · {area:814} Southfury River · {area:379} Far Watch Post · {zone:1413} The Barrens

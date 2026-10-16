@@ -1,7 +1,9 @@
 -- Portuguese (Brazil) (ptBR): the guide forever/horde/50-60/05-eastern-plaguelands (forever/horde/50-60/05-eastern-plaguelands.guide).
 -- Written by `node tools/polestar.js i18n guides sync ptBR`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Portuguese (Brazil) (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Portuguese (Brazil) (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Step 1: Fly to Light's Hope Chapel
 	-- {area:2268} Light's Hope Chapel
@@ -25,7 +27,7 @@ return {
 	-- {area:2622} Pestilent Scar
 	["The {area:2622}"] = "A {area:2622}",
 	-- {area:2622} Pestilent Scar
-	-- plural, as words: Blighted Horrors = {npc:8521} Blighted Horror · Horrors = {npc:251103} Horror
+	-- plural, as words: Blighted Horrors = {npc:8521} Blighted Horror
 	["The skull sits in the {area:2622}, among Blighted Horrors and Plague Monstrosities."] = "O crânio está na {area:2622}, entre Horrores Empesteados e Monstruosidades da Peste.",
 
 	-- Step 6: Hameya's scroll
@@ -39,9 +41,9 @@ return {
 
 	-- Step 8: The western hills
 	["The western hills"] = "As colinas do oeste",
-	-- {npc:8597} Plaguehound · {area:2260} The Marris Stead · {area:2627} Terrordale
-	-- plural, as words: Plaguebats = {npc:8600} Plaguebat · Carrion Grubs = {npc:8603} Carrion Grub
-	["{npc:8597} Runts and Plaguebats roam the hills north of the {area:2260}, Carrion Grubs crawl among them; work north toward {area:2627}."] = "Filhotes de {npc:8597} e Quirópragos vagam pelas colinas ao norte da {area:2260}, e Vermes Carniceiros rastejam entre eles; avance para o norte rumo à {area:2627}.",
+	-- {area:2260} The Marris Stead · {area:2627} Terrordale
+	-- plural, as words: Plaguehound Runts = {npc:8596} Plaguehound Runt · Plaguebats = {npc:8600} Plaguebat · Carrion Grubs = {npc:8603} Carrion Grub
+	["Plaguehound Runts and Plaguebats roam the hills north of the {area:2260}, Carrion Grubs crawl among them; work north toward {area:2627}."] = "",
 
 	-- Step 9: Egan
 	-- {npc:11140} Egan · {area:2627} Terrordale
@@ -49,7 +51,7 @@ return {
 
 	-- Step 10: Quel'Lithien Lodge
 	-- {area:2275} Northpass Tower
-	-- plural, as words: Rangers = {npc:8564} Ranger · Pathstriders = {npc:8565} Pathstrider · Noxious Plaguebats = {npc:8601} Noxious Plaguebat · Plaguebats = {npc:8600} Plaguebat
+	-- plural, as words: Rangers = {npc:8564} Ranger · Pathstriders = {npc:8565} Pathstrider · Noxious Plaguebats = {npc:8601} Noxious Plaguebat
 	["The high elf Rangers, Pathstriders and Woodsmen guard the lodge by {area:2275}; the Registry lies inside. Rangers reach 60: pull one at a time. Noxious Plaguebats fly over the fields on the way."] = "Os Patrulheiros, Trilheiros e Mateiros altos elfos guardam o pavilhão perto da {area:2275}; os Arquivos estão lá dentro. Os Patrulheiros chegam ao nível 60: puxe um de cada vez. Quirópragos Nóxios sobrevoam os campos no caminho.",
 
 	-- Step 11: Infiltrator Hameya
@@ -58,7 +60,7 @@ return {
 
 	-- Step 12: Northdale
 	-- {area:2272} Northdale · {area:2271} Eastwall Tower · {area:2273} Zul'Mashar
-	-- plural, as words: Frenzied Plaguehounds = {npc:8598} Frenzied Plaguehound · Plaguehounds = {npc:8597} Plaguehound · Monstrous Plaguebats = {npc:8602} Monstrous Plaguebat · Plaguebats = {npc:8600} Plaguebat
+	-- plural, as words: Frenzied Plaguehounds = {npc:8598} Frenzied Plaguehound · Monstrous Plaguebats = {npc:8602} Monstrous Plaguebat
 	["Frenzied Plaguehounds and Monstrous Plaguebats share the fields around {area:2272} and {area:2271}, south of {area:2273}."] = "Cães Pestilentos Frenéticos e Quirópragos Monstruosos dividem os campos em volta do {area:2272} e da {area:2271}, ao sul de {area:2273}.",
 
 	-- Step 13: Corin's Crossing
@@ -145,4 +147,7 @@ return {
 	["On to {zone:1451}"] = "Rumo a {zone:1451}",
 	-- {area:541} Marshal's Refuge · {zone:1451} Silithus · {area:3077} Valor's Rest
 	["Fly to {area:541}, then ride south-west through Un'Goro to the pass into {zone:1451}. The next guide opens at {area:3077}, where the pass comes out."] = "Voe para o {area:541}, depois siga para sudoeste pela Cratera Un'Goro até o desfiladeiro que leva a {zone:1451}. O próximo guia começa em {area:3077}, onde o desfiladeiro termina.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["{npc:8597} Runts and Plaguebats roam the hills north of the {area:2260}, Carrion Grubs crawl among them; work north toward {area:2627}."] = "Filhotes de {npc:8597} e Quirópragos vagam pelas colinas ao norte da {area:2260}, e Vermes Carniceiros rastejam entre eles; avance para o norte rumo à {area:2627}.",
 }

@@ -1,7 +1,9 @@
 -- Chinese (simplified) (zhCN): the guide forever/alliance/40-50/01-stranglethorn-vale (forever/alliance/40-50/01-stranglethorn-vale.guide).
 -- Written by `node tools/polestar.js i18n guides sync zhCN`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Chinese (simplified) (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Chinese (simplified) (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Step 1: Theramore
 	["Theramore"] = "塞拉摩",
@@ -68,9 +70,8 @@ return {
 	["On the ride north to {area:392}, {area:720} lies off the {area:391} south of the town: wade over the sand bar shallows. {npc:6236} sends four challengers and then {npc:6238} (level 33) at you, one at a time."] = "向北骑往{area:392}的路上，{area:720}位于镇子南边的{area:391}近海：涉水穿过沙洲浅滩。{npc:6236}会让四名挑战者和{npc:6238}（33级）依次与你交战。",
 	-- {npc:6238} Big Will
 	["Defeat the challengers and {npc:6238}"] = "击败挑战者和{npc:6238}",
-	-- {npc:6236} Klannoc Macleod
-	["{npc:6236}: Berserker Stance"] = "{npc:6236}：狂暴姿态",
-	["Klannoc offers The Windwatcher next (1791): the Whirlwind weapon chain, with an elite at the end, is in the Warrior class guide Whirlwind Weapon."] = "克兰诺克接下来提供“捕风者”（1791）：旋风武器任务线最后有一个精英，见战士职业指南“旋风武器”。",
+	-- {spell:1680} Whirlwind
+	["Klannoc offers The Windwatcher next (1791): the {spell:1680} weapon chain, with an elite at the end, is in the Warrior class guide Whirlwind Weapon."] = "",
 
 	-- Step 18: Ratchet
 	-- {zone:1413} The Barrens · {area:392} Ratchet · {npc:16227} Bragok · {area:35} Booty Bay
@@ -118,7 +119,7 @@ return {
 	-- Step 27: Gorilla hills
 	["Gorilla hills"] = "猩猩山丘",
 	-- {npc:1449} Witch Doctor Unbagwa
-	-- plural, as words: Elder Mistvale Gorillas = {npc:1557} Elder Mistvale Gorilla · Mistvale Gorillas = {npc:1108} Mistvale Gorilla
+	-- plural, as words: Elder Mistvale Gorillas = {npc:1557} Elder Mistvale Gorilla
 	["Ride inland to the Mistvale gorilla hills. Elder Mistvale Gorillas drop the giblets; {npc:1449} sits among them."] = "向内陆骑行到迷雾谷猩猩所在的山丘。老迈的迷雾谷猩猩掉落内脏；{npc:1449}坐在它们中间。",
 
 	-- Step 28: Unbagwa's ritual
@@ -188,8 +189,8 @@ return {
 	["{npc:384}: other colours, 20g"] = "{npc:384}：其他颜色，20金",
 
 	-- Step 40: Riding at 40
-	-- {npc:4732} Randal Hunter · {area:88} Eastvale Logging Camp · {zone:1429} Elwynn Forest · {zone:1453} Stormwind City · {npc:265756} Genn Fairweather · {area:16638} Valanaar
-	["At 40 with 100 gold you can learn to ride, and learning it gives you a mount. No Skyborne riding trainer is known; the Forever client files Galestrider Riding under the one Riding skill, so {npc:4732} at {area:88} in eastern {zone:1429}, the nearest trainer to {zone:1453}, should teach it (unconfirmed). The Galestriders are sold by {npc:265756} in {area:16638} on Zephras Isle; Collectibles, Mounts · Level 40 lists them."] = "40级且有100金时可以学习骑术，学会后会获得一匹坐骑。目前不知道天裔的骑术训练师；Forever 客户端将疾风陆行鸟骑术归入同一骑术技能，所以{zone:1429}东部{area:88}的{npc:4732}——离{zone:1453}最近的训练师——应该能教（未确认）。疾风陆行鸟由泽风岛{area:16638}的{npc:265756}出售；收藏指南“坐骑 · 40级”列出了它们。",
+	-- {spell:1285849} Galestrider Riding · {npc:4732} Randal Hunter · {area:88} Eastvale Logging Camp · {zone:1429} Elwynn Forest · {zone:1453} Stormwind City · {npc:265756} Genn Fairweather · {area:16638} Valanaar
+	["At 40 with 100 gold you can learn to ride, and learning it gives you a mount. No Skyborne riding trainer is known; the Forever client files {spell:1285849} under the one Riding skill, so {npc:4732} at {area:88} in eastern {zone:1429}, the nearest trainer to {zone:1453}, should teach it (unconfirmed). The Galestriders are sold by {npc:265756} in {area:16638} on Zephras Isle; Collectibles, Mounts · Level 40 lists them."] = "",
 	-- {npc:265756} Genn Fairweather · {area:16638} Valanaar
 	["Galestriders: {npc:265756}, in {area:16638} on Zephras Isle."] = "疾风陆行鸟：{npc:265756}，在泽风岛的{area:16638}。",
 
@@ -222,7 +223,7 @@ return {
 	-- Step 46: The sunken temple
 	["The sunken temple"] = "沉没的神庙",
 	-- {area:74} Pool of Tears
-	-- plural, as words: Tangled Horrors = {npc:766} Tangled Horror · Horrors = {npc:251103} Horror
+	-- plural, as words: Tangled Horrors = {npc:766} Tangled Horror
 	["Ride east; the Tangled Horrors along the way also drop the essays. Search the edge of the {area:74}, where the temple's ruins break the water."] = "向东骑行；沿途的纠缠恐兽也会掉落研究笔记。在{area:74}边缘搜寻，神庙的废墟在那里露出水面。",
 
 	-- Step 47: Misty Reed Strand
@@ -259,4 +260,9 @@ return {
 	["At 40 with 100 gold you can learn to ride, and learning it gives you a mount. {npc:7954} teaches Gnomes at {area:189}, just east of {area:131}, beside {npc:7955}'s mechanostriders. Forever may let any race learn from any riding trainer (unconfirmed). Collectibles, Mounts · Level 40 lists every colour."] = "40级且有100金时可以学习骑术，学会后会获得一匹坐骑。{npc:7954}在{area:131}东边不远的{area:189}教授侏儒，旁边是{npc:7955}的机械陆行鸟。Forever 可能允许任何种族向任何骑术训练师学习（未确认）。收藏指南“坐骑 · 40级”列出了所有颜色。",
 	-- {npc:7955} Milli Featherwhistle
 	["{npc:7955}: other colours, 20g"] = "{npc:7955}：其他颜色，20金",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["At 40 with 100 gold you can learn to ride, and learning it gives you a mount. No Skyborne riding trainer is known; the Forever client files Galestrider Riding under the one Riding skill, so {npc:4732} at {area:88} in eastern {zone:1429}, the nearest trainer to {zone:1453}, should teach it (unconfirmed). The Galestriders are sold by {npc:265756} in {area:16638} on Zephras Isle; Collectibles, Mounts · Level 40 lists them."] = "40级且有100金时可以学习骑术，学会后会获得一匹坐骑。目前不知道天裔的骑术训练师；Forever 客户端将疾风陆行鸟骑术归入同一骑术技能，所以{zone:1429}东部{area:88}的{npc:4732}——离{zone:1453}最近的训练师——应该能教（未确认）。疾风陆行鸟由泽风岛{area:16638}的{npc:265756}出售；收藏指南“坐骑 · 40级”列出了它们。",
+	-- ["Klannoc offers The Windwatcher next (1791): the Whirlwind weapon chain, with an elite at the end, is in the Warrior class guide Whirlwind Weapon."] = "克兰诺克接下来提供“捕风者”（1791）：旋风武器任务线最后有一个精英，见战士职业指南“旋风武器”。",
+	-- ["{npc:6236}: Berserker Stance"] = "{npc:6236}：狂暴姿态",
 }

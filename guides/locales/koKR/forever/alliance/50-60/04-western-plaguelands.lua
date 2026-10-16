@@ -1,7 +1,9 @@
 -- Korean (koKR): the guide forever/alliance/50-60/04-western-plaguelands (forever/alliance/50-60/04-western-plaguelands.guide).
 -- Written by `node tools/polestar.js i18n guides sync koKR`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Korean (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Step 1: Chillwind Camp
 	-- {npc:11616} Nathaniel Dumah · {area:2627} Terrordale
@@ -175,9 +177,9 @@ return {
 	["Ride north-west to {area:2276}, at the edge of the {area:2277}."] = "북서쪽 {area:2277} 가장자리의 {area:2276}(으)로 가세요.",
 
 	-- Step 44: Terrordale
-	-- {area:2627} Terrordale · {npc:8597} Plaguehound · {item:15042} Empty Termite Jar
-	-- plural, as words: Plaguebats = {npc:8600} Plaguebat · Carrion Grubs = {npc:8603} Carrion Grub · Frenzied Plaguehounds = {npc:8598} Frenzied Plaguehound · Plaguehounds = {npc:8597} Plaguehound
-	["Ride west to {area:2627}. {npc:8597} Runts, Plaguebats and Carrion Grubs roam its woods; fill the {item:15042} at the big termite mounds and kill the Frenzied Plaguehounds further north."] = "서쪽 {area:2627}(으)로 가세요. 숲에는 새끼 {npc:8597}, 역병박쥐, 청소부구더기가 돌아다닙니다. 큰 흰개미집에서 {item:15042}을(를) 채우고, 더 북쪽에서 광포한 역병사냥개를 처치하세요.",
+	-- {area:2627} Terrordale · {item:15042} Empty Termite Jar
+	-- plural, as words: Plaguehound Runts = {npc:8596} Plaguehound Runt · Plaguebats = {npc:8600} Plaguebat · Carrion Grubs = {npc:8603} Carrion Grub · Frenzied Plaguehounds = {npc:8598} Frenzied Plaguehound
+	["Ride west to {area:2627}. Plaguehound Runts, Plaguebats and Carrion Grubs roam its woods; fill the {item:15042} at the big termite mounds and kill the Frenzied Plaguehounds further north."] = "",
 
 	-- Step 45: Egan
 	-- {npc:11140} Egan · {area:2627} Terrordale
@@ -275,4 +277,7 @@ return {
 	-- Step 63: Ratchet
 	-- {area:392} Ratchet · {area:976} Gadgetzan
 	["The next guide starts here in {area:392} and flies on to {area:976}."] = "다음 가이드는 여기 {area:392}에서 시작해 {area:976}(으)로 날아갑니다.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Ride west to {area:2627}. {npc:8597} Runts, Plaguebats and Carrion Grubs roam its woods; fill the {item:15042} at the big termite mounds and kill the Frenzied Plaguehounds further north."] = "서쪽 {area:2627}(으)로 가세요. 숲에는 새끼 {npc:8597}, 역병박쥐, 청소부구더기가 돌아다닙니다. 큰 흰개미집에서 {item:15042}을(를) 채우고, 더 북쪽에서 광포한 역병사냥개를 처치하세요.",
 }

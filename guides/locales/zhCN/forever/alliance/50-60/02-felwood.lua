@@ -1,7 +1,9 @@
 -- Chinese (simplified) (zhCN): the guide forever/alliance/50-60/02-felwood (forever/alliance/50-60/02-felwood.guide).
 -- Written by `node tools/polestar.js i18n guides sync zhCN`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Chinese (simplified) (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Chinese (simplified) (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Step 1: Auberdine
 	-- {area:702} Rut'theran Village · {area:442} Auberdine · {area:415} Astranaar
@@ -53,7 +55,7 @@ return {
 	["The Cursed and Tainted Oozes slide about the streams and fel pools around {area:1763} and {area:1765}: kill them and use Laris's Empty Ooze Jars on their remains."] = "被诅咒的软泥怪和被污染的软泥怪在{area:1763}和{area:1765}周围的溪流和邪能池中滑行：杀死它们，对残骸使用拉里斯给的空采样瓶。",
 
 	-- Step 11: Shatter Scar Vale
-	-- plural, as words: Entropic Beasts = {npc:9878} Entropic Beast · Horrors = {npc:251103} Horror
+	-- plural, as words: Entropic Beasts = {npc:9878} Entropic Beast
 	["Follow the road north to the cratered vale and walk to each crater, killing the Entropic Beasts and Horrors between them."] = "沿道路向北前往布满弹坑的山谷，走到每个弹坑处，杀死途中的热能野兽和Horror。",
 	["First crater"] = "第一个弹坑",
 	["Second crater"] = "第二个弹坑",

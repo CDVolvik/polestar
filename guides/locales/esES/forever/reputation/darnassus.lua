@@ -1,11 +1,12 @@
 -- Spanish (Spain) (esES): the guide forever/reputation/darnassus (forever/reputation/darnassus.guide).
 -- Written by `node tools/polestar.js i18n guides sync esES`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Spanish (Spain) (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Spanish (Spain) (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Guide
-	-- {faction:69} Darnassus
-	["{faction:69} Reputation"] = "Reputación con {faction:69}",
+	["Darnassus Reputation"] = "",
 
 	-- Step 1: Raedon Duskstriker: A Donation of Wool
 	-- {npc:14725} Raedon Duskstriker · {faction:69} Darnassus · {item:14047} Runecloth · {quest:7801} Additional Runecloth
@@ -50,4 +51,7 @@ return {
 	-- {quest:7801} Additional Runecloth · {faction:69} Darnassus · {item:14047} Runecloth · {zone:1423} Eastern Plaguelands
 	-- plural, as words: Dark Adepts = {npc:8546} Dark Adept
 	["Keep handing in {quest:7801} until {faction:69} is Exalted. {item:14047}: Dark Adepts and Shadowmages (level 58-60) in {zone:1423}, or the Auction House."] = "Sigue entregando {quest:7801} hasta que seas Exaltado con {faction:69}. {item:14047}: Adeptos oscuros y magos oscuros (nivel 58-60) en {zone:1423}, o la casa de subastas.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["{faction:69} Reputation"] = "Reputación con {faction:69}",
 }

@@ -1,7 +1,9 @@
 -- Chinese (traditional) (zhTW): the guide forever/horde/tauren/01-mulgore (forever/horde/tauren/01-mulgore.guide).
 -- Written by `node tools/polestar.js i18n guides sync zhTW`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Chinese (traditional) (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Chinese (traditional) (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Step 1: Camp Narache
 	-- {area:221} Camp Narache
@@ -64,9 +66,10 @@ return {
 	["{npc:5888}: {npc:5873} and your {item:5175}"] = "",
 
 	-- Step 15: Kaga Wildhoof
-	-- {area:220} Red Cloud Mesa · {npc:265810} Kaga Wildhoof · {area:222} Bloodhoof Village
-	["Follow the road north out of {area:220}. {npc:265810} waits on the road just south of {area:222}; /sit by her campfire until you get Boosted Rest."] = "",
-	["/sit by Kaga's campfire until you get Boosted Rest"] = "",
+	-- {area:220} Red Cloud Mesa · {npc:265810} Kaga Wildhoof · {area:222} Bloodhoof Village · {spell:1229451} Boosted Rest
+	["Follow the road north out of {area:220}. {npc:265810} waits on the road just south of {area:222}; /sit by her campfire until you get {spell:1229451}."] = "",
+	-- {spell:1229451} Boosted Rest
+	["/sit by Kaga's campfire until you get {spell:1229451}"] = "",
 
 	-- Step 16: Bloodhoof Village
 	-- {npc:3067} Pyall Silentstride
@@ -123,10 +126,11 @@ return {
 	["Malah stands on the {area:821} a little east of the well."] = "",
 
 	-- Step 31: Galak centaurs and Prairie Wolf Alphas
-	-- {npc:2958} Prairie Wolf
-	["Galak centaurs and {npc:2958} Alphas"] = "",
-	-- {area:821} The Rolling Plains · {npc:2958} Prairie Wolf
-	["The Galak centaurs camp on the plains north of the {area:821}; Herak leads them. {npc:2958} Alphas roam among the wolves."] = "",
+	-- plural, as words: Prairie Wolf Alphas = {npc:2960} Prairie Wolf Alpha
+	["Galak centaurs and Prairie Wolf Alphas"] = "",
+	-- {area:821} The Rolling Plains
+	-- plural, as words: Prairie Wolf Alphas = {npc:2960} Prairie Wolf Alpha
+	["The Galak centaurs camp on the plains north of the {area:821}; Herak leads them. Prairie Wolf Alphas roam among the wolves."] = "",
 
 	-- Step 32: The Ravaged Caravan
 	-- {zone:1456} Thunder Bluff
@@ -205,8 +209,8 @@ return {
 	["{npc:6746} on the central rise sends you to Turak on {area:1639}."] = "",
 
 	-- Step 53: Moonglade
-	-- {quest:5922} Moonglade · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {quest:5930} Great Bear Spirit
-	["Cast Teleport: {quest:5922}. {npc:11802} is in {area:2361}; the {quest:5930} sits in the north-western woods."] = "",
+	-- {spell:18960} Teleport: Moonglade · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {quest:5930} Great Bear Spirit
+	["Cast {spell:18960}. {npc:11802} is in {area:2361}; the {quest:5930} sits in the north-western woods."] = "",
 
 	-- Step 54: Back to Thunder Bluff
 	-- {area:222} Bloodhoof Village · {area:1639} Elder Rise
@@ -217,7 +221,6 @@ return {
 	["Ride down to {area:222} and tame with the {item:15908}: an {npc:2956} on the plains, a {npc:2959} north of the village, a Swoop to the north-west."] = "",
 	-- {item:15908} Taming Rod
 	["Tame it with the {item:15908}"] = "",
-	["Tame Beast"] = "",
 
 	-- Step 56: The Moonkin Stone
 	-- {object:177525} Moonkin Stone

@@ -1,7 +1,9 @@
 -- German (deDE): the guide forever/class/paladin/holy-mightstone (forever/class/paladin/holy-mightstone.guide).
 -- Written by `node tools/polestar.js i18n guides sync deDE`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in German (the English is listed above the line). The comments are rewritten by sync.
+-- name there in German (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Guide
 	["A one-use stone that makes you much stronger against undead for 10 minutes; the old choice rewards are gone."] = "Ein Stein zum einmaligen Gebrauch, der dich 10 Minuten lang viel stärker gegen Untote macht; die alten Belohnungen zur Auswahl gibt es nicht mehr.",

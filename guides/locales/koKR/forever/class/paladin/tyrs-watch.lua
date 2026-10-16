@@ -1,7 +1,9 @@
 -- Korean (koKR): the guide forever/class/paladin/tyrs-watch (forever/class/paladin/tyrs-watch.guide).
 -- Written by `node tools/polestar.js i18n guides sync koKR`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Korean (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Guide
 	-- {spell:7328} Redemption
@@ -29,8 +31,8 @@ return {
 	["{npc:246378} leads the order from inside the keep; {npc:246393} stands beside it."] = "{npc:246378}은(는) 요새 안에서 기사단을 이끌며, {npc:246393}이(가) 그 옆에 서 있습니다.",
 
 	-- Step 6: Shadowvale
-	-- {quest:91317} The Tarnished · {area:16881} Shadowvale · {area:16616} Whispering Forest · {item:246213} Sturdy Lumber · {npc:259431} Rudolph Gelhardt
-	["{quest:91317} hold the ruined village of {area:16881} in the {area:16616}, south-west of the keep. The {item:246213} is piled in the root cellar of one of its houses; Commander {npc:259431} walks among his Tarnished."] = "{quest:91317}이(가) 요새 남서쪽 {area:16616}의 폐허가 된 마을 {area:16881}을(를) 장악하고 있습니다. {item:246213}은(는) 한 집의 뿌리 저장고에 쌓여 있으며, 사령관 {npc:259431}이(가) 자신의 부하들 사이를 돌아다닙니다.",
+	-- {quest:91317} The Tarnished · {area:16881} Shadowvale · {area:16616} Whispering Forest · {item:246213} Sturdy Lumber
+	["{quest:91317} hold the ruined village of {area:16881} in the {area:16616}, south-west of the keep. The {item:246213} is piled in the root cellar of one of its houses; Commander Rudolph Gelhardt walks among his Tarnished."] = "",
 	-- {object:181686} Lumber Pile
 	["{object:181686}, in the root cellar"] = "{object:181686}, 뿌리 저장고 안",
 	-- plural, as words: Tarnished Drudges = {npc:259434} Tarnished Drudge
@@ -72,4 +74,7 @@ return {
 	-- Step 15: Redemption
 	-- {area:16602} Bandarion Keep · {spell:7328} Redemption
 	["Back to {area:16602}: Billmuth takes the plans, Danitha teaches you {spell:7328}."] = "{area:16602}(으)로 돌아가십시오. Billmuth가 계획을 받고, 다니타가 {spell:7328}을(를) 가르칩니다.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["{quest:91317} hold the ruined village of {area:16881} in the {area:16616}, south-west of the keep. The {item:246213} is piled in the root cellar of one of its houses; Commander {npc:259431} walks among his Tarnished."] = "{quest:91317}이(가) 요새 남서쪽 {area:16616}의 폐허가 된 마을 {area:16881}을(를) 장악하고 있습니다. {item:246213}은(는) 한 집의 뿌리 저장고에 쌓여 있으며, 사령관 {npc:259431}이(가) 자신의 부하들 사이를 돌아다닙니다.",
 }

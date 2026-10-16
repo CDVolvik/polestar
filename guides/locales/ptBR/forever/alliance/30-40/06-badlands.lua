@@ -1,7 +1,9 @@
 -- Portuguese (Brazil) (ptBR): the guide forever/alliance/30-40/06-badlands (forever/alliance/30-40/06-badlands.guide).
 -- Written by `node tools/polestar.js i18n guides sync ptBR`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Portuguese (Brazil) (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Portuguese (Brazil) (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Step 1: Hammertoe's Digsite
 	-- {zone:1432} Loch Modan · {zone:1418} Badlands · {npc:2910} Prospector Ryedol · {npc:2860} Sigrun Ironhew
@@ -43,24 +45,23 @@ return {
 	["Ride west into the {area:1878}; Lotwil works by his machines in the middle of it."] = "Cavalgue para o oeste até {area:1878}; Lotwil trabalha junto às máquinas dele, no meio da área.",
 
 	-- Step 10: Lesser Rock Elementals
-	-- plural, as words: Lesser Rock Elementals = {npc:2735} Lesser Rock Elemental · Rock Elementals = {npc:92} Rock Elemental
+	-- plural, as words: Lesser Rock Elementals = {npc:2735} Lesser Rock Elemental
 	["Lesser Rock Elementals"] = "Elementais Inferiores da Rocha",
 	-- {area:1878} The Dustbowl
-	-- plural, as words: Lesser Rock Elementals = {npc:2735} Lesser Rock Elemental · Rock Elementals = {npc:92} Rock Elemental
+	-- plural, as words: Lesser Rock Elementals = {npc:2735} Lesser Rock Elemental
 	["The Lesser Rock Elementals wander the {area:1878} west of Lotwil."] = "Os Elementais Inferiores da Rocha vagam por {area:1878}, a oeste de Lotwil.",
 
 	-- Step 12: Rock Elementals
 	-- plural, as words: Rock Elementals = {npc:92} Rock Elemental
 	["Rock Elementals"] = "Elementais da Rocha",
-	-- {item:7337} The Rock
-	-- plural, as words: Giant Buzzards = {npc:2831} Giant Buzzard · Elder Crag Coyotes = {npc:2729} Elder Crag Coyote · Crag Coyotes = {npc:2727} Crag Coyote
-	["{item:7337} Elementals roam south-east of Lotwil; Giant Buzzards and Elder Crag Coyotes share the plain to their west."] = "{item:7337}: Elementais da Rocha vagam a sudeste de Lotwil; Urubus Gigantes e Coiotes Anciões do Rochedo dividem a planície a oeste deles.",
+	-- plural, as words: Rock Elementals = {npc:92} Rock Elemental · Giant Buzzards = {npc:2831} Giant Buzzard · Elder Crag Coyotes = {npc:2729} Elder Crag Coyote
+	["The Rock Elementals roam south-east of Lotwil; Giant Buzzards and Elder Crag Coyotes share the plain to their west."] = "",
 
 	-- Step 14: Greater Rock Elementals
-	-- plural, as words: Greater Rock Elementals = {npc:2736} Greater Rock Elemental · Rock Elementals = {npc:92} Rock Elemental
+	-- plural, as words: Greater Rock Elementals = {npc:2736} Greater Rock Elemental
 	["Greater Rock Elementals"] = "Elementais Maiores da Rocha",
 	-- {area:342} Camp Boff
-	-- plural, as words: Greater Rock Elementals = {npc:2736} Greater Rock Elemental · Rock Elementals = {npc:92} Rock Elemental · Dustbelcher Wyrmhunters = {npc:2716} Dustbelcher Wyrmhunter
+	-- plural, as words: Greater Rock Elementals = {npc:2736} Greater Rock Elemental · Dustbelcher Wyrmhunters = {npc:2716} Dustbelcher Wyrmhunter
 	["The Greater Rock Elementals (level 42) walk the far south-west corner below {area:342}; pull them one at a time. The Dustbelcher Wyrmhunters and Maulers at {area:342} also drop scrap."] = "Os Elementais Maiores da Rocha (nível 42) andam no extremo sudoeste, abaixo de {area:342}; puxe um de cada vez. Os Caçadores de Serpes e Espancadores Arrota-pó em {area:342} também soltam sucata.",
 
 	-- Step 15: Lotwil Veriatus
@@ -156,4 +157,7 @@ return {
 	-- Step 39: Fly to Theramore
 	["Fly to Theramore"] = "Voe para a Ilha Theramore",
 	["The next guide starts in Theramore."] = "O próximo guia começa na Ilha Theramore.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["{item:7337} Elementals roam south-east of Lotwil; Giant Buzzards and Elder Crag Coyotes share the plain to their west."] = "{item:7337}: Elementais da Rocha vagam a sudeste de Lotwil; Urubus Gigantes e Coiotes Anciões do Rochedo dividem a planície a oeste deles.",
 }

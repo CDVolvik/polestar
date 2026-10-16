@@ -1,7 +1,9 @@
 -- Korean (koKR): the guide forever/horde/04-the-barrens (forever/horde/04-the-barrens.guide).
 -- Written by `node tools/polestar.js i18n guides sync koKR`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Korean (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Step 1: Fly to Ratchet
 	-- {area:392} Ratchet
@@ -68,8 +70,8 @@ return {
 	["Fly to {area:1637} to train your level 20 ranks. {npc:3354} is in the {object:172958}, {npc:5892} in the {object:172957}."] = "{area:1637}(으)로 비행해 20레벨 기술을 수련하십시오. {npc:3354}은(는) {object:172958}에, {npc:5892}은(는) {object:172957}에 있습니다.",
 
 	-- Step 13: Gan'rul Bloodeye
-	-- {area:263} The Cleft · {object:172982} Valley of Strength
-	["{area:263} of Shadow is the canyon under the {object:172982}."] = "어둠의 {area:263}은(는) {object:172982} 아래 협곡입니다.",
+	-- {object:172960} Cleft of Shadow · {object:172982} Valley of Strength
+	["The {object:172960} is the canyon under the {object:172982}."] = "",
 	-- {npc:5909} Cazul
 	["{npc:5909}, a few steps away"] = "{npc:5909}, 몇 걸음 떨어진 곳",
 
@@ -99,9 +101,9 @@ return {
 
 	-- Step 19: Barak Kodobane
 	["Barak stands in the Kolkar camp north-west of Regthar."] = "바라크는 렉타르 북서쪽 콜카르일족 야영지에 있습니다.",
-	-- {item:15852} Kodo Horn · {zone:1413} The Barrens
+	-- {item:15852} Kodo Horn
 	-- plural, as words: Lost Barrens Kodos = {npc:3234} Lost Barrens Kodo
-	["{item:15852}: Lost {zone:1413} Kodos on the plains around the Kolkar camp"] = "{item:15852}: 콜카르일족 야영지 주변 평원의 길잃은 황무지 코도",
+	["{item:15852}: Lost Barrens Kodos on the plains around the Kolkar camp"] = "",
 	-- {item:2449} Earthroot
 	["{item:2449}: herbalists pick it here"] = "{item:2449}: 약초채집가는 여기서 채집하십시오",
 
@@ -123,8 +125,8 @@ return {
 	["{npc:262119} and his marines hold the wrecked caravan south of {npc:261366}."] = "{npc:262119}와(과) 해병들이 {npc:261366} 남쪽의 부서진 대상단을 차지하고 있습니다.",
 
 	-- Step 27: Walton
-	-- {npc:261366} Walton · {npc:261367} Terry Longdrink · {area:21} Kul Tiras
-	["Assist {npc:261366}: stay by him when {npc:261367} and the {area:21} marines come up the ridge"] = "{npc:261366} 돕기: {npc:261367}와(과) {area:21} 해병이 능선을 올라오면 그의 곁에 있으십시오",
+	-- {npc:261367} Terry Longdrink · {area:21} Kul Tiras
+	["Assist Walton: stay by him when {npc:261367} and the {area:21} marines come up the ridge"] = "",
 
 	-- Step 28: Strange Lockbox
 	-- {object:177790} Strange Lockbox · {area:382} The Sludge Fen · {item:15883} Half Pendant of Aquatic Agility · {quest:30} Trial of the Sea Lion
@@ -284,16 +286,16 @@ return {
 	["{npc:5875} stands in the {object:172960}. Use {item:6626} on the summoning circle there and defeat the succubus to bind her."] = "{npc:5875}은(는) {object:172960}에 있습니다. 그곳 소환진에서 {item:6626}을(를) 사용하고 서큐버스를 쓰러뜨려 속박하십시오.",
 
 	-- Step 70: Shenthul
-	-- {npc:2391} Serge Hinott · {area:272} Tarren Mill
-	["{npc:2391} in {area:272} teaches Poisons: keep it"] = "{area:272}의 {npc:2391}이(가) 독 사용법을 가르칩니다: 보관하십시오",
+	-- {npc:2391} Serge Hinott · {area:272} Tarren Mill · {spell:2842} Poisons
+	["{npc:2391} in {area:272} teaches {spell:2842}: keep it"] = "",
 
 	-- Step 71: The Great Cat Spirit
 	-- {area:1638} Thunder Bluff · {npc:3033} Turak Runetotem · {area:1639} Elder Rise
 	["Fly to {area:1638} to train: {npc:3033} is on {area:1639}."] = "{area:1638}(으)로 비행해 수련하십시오. {npc:3033}은(는) {area:1639}에 있습니다.",
 
 	-- Step 72: Moonglade
-	-- {quest:94913} Moonglade · {area:2362} Shrine of Remulos · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven
-	["Cast Teleport: {quest:94913}. Tauren: join the two pendant halves at the {area:2362}, on the north-west shore of the lake, before you see {npc:11802} in {area:2361}."] = "순간이동: {quest:94913}을(를) 시전하십시오. 타우렌: {area:2361}의 {npc:11802}을(를) 만나기 전에 호수 북서쪽 기슭 {area:2362}에서 펜던트 두 조각을 합치십시오.",
+	-- {spell:18960} Teleport: Moonglade · {area:2362} Shrine of Remulos · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven
+	["Cast {spell:18960}. Tauren: join the two pendant halves at the {area:2362}, on the north-west shore of the lake, before you see {npc:11802} in {area:2361}."] = "",
 	-- {item:15885} Pendant of the Sea Lion · {area:2362} Shrine of Remulos
 	["{item:15885}: use a half at the {area:2362}"] = "{item:15885}: {area:2362}에서 조각을 사용하십시오",
 	-- {npc:11802} Dendrite Starblaze
@@ -308,12 +310,17 @@ return {
 	-- Step 75: Turak Runetotem
 	-- {npc:11798} Bunthen Plainswind · {area:2361} Nighthaven
 	["{npc:11798} in {area:2361} flies druids there"] = "{area:2361}의 {npc:11798}이(가) 드루이드를 그곳으로 태워 줍니다",
-	-- {npc:3033} Turak Runetotem
-	["{npc:3033}: Cure Poison"] = "{npc:3033}: 해독",
-	-- {npc:3033} Turak Runetotem
-	["{npc:3033}: Cat Form"] = "{npc:3033}: 표범 변신",
 
 	-- Step 76: Back to the Crossroads
 	-- {area:380} The Crossroads · {area:1703} The Mor'shan Rampart · {zone:1440} Ashenvale
 	["Fly back to the {area:380}. The next guide starts here and takes the road north to the {area:1703} and {zone:1440}."] = "{area:380}(으)로 비행해 돌아가십시오. 다음 가이드는 여기서 시작해 북쪽 길로 {area:1703}와(과) {zone:1440}(으)로 갑니다.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Assist {npc:261366}: stay by him when {npc:261367} and the {area:21} marines come up the ridge"] = "{npc:261366} 돕기: {npc:261367}와(과) {area:21} 해병이 능선을 올라오면 그의 곁에 있으십시오",
+	-- ["Cast Teleport: {quest:94913}. Tauren: join the two pendant halves at the {area:2362}, on the north-west shore of the lake, before you see {npc:11802} in {area:2361}."] = "순간이동: {quest:94913}을(를) 시전하십시오. 타우렌: {area:2361}의 {npc:11802}을(를) 만나기 전에 호수 북서쪽 기슭 {area:2362}에서 펜던트 두 조각을 합치십시오.",
+	-- ["{area:263} of Shadow is the canyon under the {object:172982}."] = "어둠의 {area:263}은(는) {object:172982} 아래 협곡입니다.",
+	-- ["{item:15852}: Lost {zone:1413} Kodos on the plains around the Kolkar camp"] = "{item:15852}: 콜카르일족 야영지 주변 평원의 길잃은 황무지 코도",
+	-- ["{npc:2391} in {area:272} teaches Poisons: keep it"] = "{area:272}의 {npc:2391}이(가) 독 사용법을 가르칩니다: 보관하십시오",
+	-- ["{npc:3033}: Cat Form"] = "{npc:3033}: 표범 변신",
+	-- ["{npc:3033}: Cure Poison"] = "{npc:3033}: 해독",
 }

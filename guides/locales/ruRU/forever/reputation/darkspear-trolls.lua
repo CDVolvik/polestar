@@ -1,11 +1,12 @@
 -- Russian (ruRU): the guide forever/reputation/darkspear-trolls (forever/reputation/darkspear-trolls.guide).
 -- Written by `node tools/polestar.js i18n guides sync ruRU`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Russian (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Russian (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Guide
-	-- {faction:530} Darkspear Trolls
-	["{faction:530} Reputation"] = "Репутация: {faction:530}",
+	["Darkspear Trolls Reputation"] = "",
 
 	-- Step 1: Vehena: A Donation of Wool
 	-- {npc:14727} Vehena · {faction:530} Darkspear Trolls · {object:172961} Valley of Spirits · {zone:1454} Orgrimmar · {item:14047} Runecloth · {quest:7837} Additional Runecloth
@@ -51,4 +52,7 @@ return {
 	-- {quest:7837} Additional Runecloth · {faction:530} Darkspear Trolls · {item:14047} Runecloth · {zone:1423} Eastern Plaguelands
 	-- plural, as words: Dark Adepts = {npc:8546} Dark Adept
 	["Keep handing in {quest:7837} until {faction:530} is Exalted. {item:14047}: Dark Adepts and Shadowmages (level 58-60) in {zone:1423}, or the Auction House."] = "Продолжайте сдавать {quest:7837}, пока репутация ({faction:530}) не достигнет превознесения. {item:14047}: адепты Тьмы и темные маги (уровень 58-60) в зоне {zone:1423} или аукцион.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["{faction:530} Reputation"] = "Репутация: {faction:530}",
 }

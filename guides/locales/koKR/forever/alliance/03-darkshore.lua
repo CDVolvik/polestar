@@ -1,7 +1,9 @@
 -- Korean (koKR): the guide forever/alliance/03-darkshore (forever/alliance/03-darkshore.guide).
 -- Written by `node tools/polestar.js i18n guides sync koKR`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Korean (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Step 1: Auberdine
 	["The boat docks west of the village. The flight master stands on the hill south of the inn; the quest givers are spread along the main street."] = "배는 마을 서쪽에 정박합니다. 비행 조련사는 여관 남쪽 언덕에 있고, 퀘스트 제공자들은 큰길을 따라 흩어져 있습니다.",
@@ -17,9 +19,9 @@ return {
 
 	-- Step 2: The beach
 	["The beach"] = "해변",
-	-- {quest:983} Buzzbox 827 · {zone:1439} Darkshore · {quest:4723} Beached Sea Creature
-	-- plural, as words: Tide Crawlers = {npc:2232} Tide Crawler
-	["Tide Crawlers scuttle along the shore below the village; {quest:983} stands on the beach just south of the docks. {zone:1439} Threshers swim in the shallows. The {quest:4723} lies on the shore just south of the village."] = "왕바닷게가 마을 아래 해안을 따라 기어다닙니다. {quest:983}은(는) 부두 바로 남쪽 해변에 서 있습니다. {zone:1439} 트레샤돈이 얕은 물에서 헤엄칩니다. {quest:4723}은(는) 마을 바로 남쪽 해안에 있습니다.",
+	-- {quest:983} Buzzbox 827 · {quest:4723} Beached Sea Creature
+	-- plural, as words: Tide Crawlers = {npc:2232} Tide Crawler · Darkshore Threshers = {npc:2185} Darkshore Thresher
+	["Tide Crawlers scuttle along the shore below the village; {quest:983} stands on the beach just south of the docks. Darkshore Threshers swim in the shallows. The {quest:4723} lies on the shore just south of the village."] = "",
 	-- plural, as words: Crawler Legs = {item:5385} Crawler Leg
 	["Crawler Legs"] = "집게다리",
 	-- plural, as words: Thresher Eyes = {item:5412} Thresher Eye
@@ -35,13 +37,13 @@ return {
 	-- Step 5: Plagued bears
 	["Plagued bears"] = "병든 곰",
 	-- {area:442} Auberdine · {quest:2139} Tharnariun's Hope
-	-- plural, as words: Rabid Thistle Bears = {npc:2164} Rabid Thistle Bear · Thistle Bears = {npc:2163} Thistle Bear
+	-- plural, as words: Rabid Thistle Bears = {npc:2164} Rabid Thistle Bear
 	["Rabid Thistle Bears roam the hills just east of {area:442}. Use {quest:2139} on one and lead it back to him."] = "광포한 엉겅퀴곰이 {area:442} 바로 동쪽 언덕을 돌아다닙니다. 한 마리에게 {quest:2139}을(를) 사용하고 그에게 데려가십시오.",
 
 	-- Step 6: Bears and the Blackwood camp
 	["Bears and the Blackwood camp"] = "곰과 검은나무일족 야영지",
 	-- {area:442} Auberdine
-	-- plural, as words: Rabid Thistle Bears = {npc:2164} Rabid Thistle Bear · Thistle Bears = {npc:2163} Thistle Bear
+	-- plural, as words: Rabid Thistle Bears = {npc:2164} Rabid Thistle Bear
 	["Kill Rabid Thistle Bears in the hills east of {area:442}, then walk up to the furbolg camp south-east of them: nothing to kill yet."] = "{area:442} 동쪽 언덕에서 광포한 엉겅퀴곰을 처치한 다음, 그 남동쪽의 펄볼그 야영지로 걸어가십시오. 아직 처치할 것은 없습니다.",
 
 	-- Step 7: Ameth'Aran
@@ -68,7 +70,7 @@ return {
 
 	-- Step 10: The Tower of Althalaxx
 	-- {quest:954} Bashal'Aran · {quest:1002} Buzzbox 323
-	-- plural, as words: Grizzled Thistle Bears = {npc:2165} Grizzled Thistle Bear · Thistle Bears = {npc:2163} Thistle Bear
+	-- plural, as words: Grizzled Thistle Bears = {npc:2165} Grizzled Thistle Bear
 	["Moonstalkers prowl the hills between {quest:954} and the tower. {quest:1002} stands on the hill west of the tower; Grizzled Thistle Bears roam around it."] = "달표범이 {quest:954}와(과) 탑 사이의 언덕을 배회합니다. {quest:1002}은(는) 탑 서쪽 언덕에 서 있고, 그 주변을 엉겅퀴불곰이 돌아다닙니다.",
 	-- plural, as words: Moonstalker Fangs = {item:5413} Moonstalker Fang
 	["Moonstalker Fangs"] = "달표범 송곳니",
@@ -85,9 +87,9 @@ return {
 	["Fly from {area:442} to {area:702} and take the portal up to {npc:4217} in the {area:1658}."] = "{area:442}에서 {area:702}(으)로 날아간 다음, 차원문을 타고 {area:1658}의 {npc:4217}에게 올라가십시오.",
 
 	-- Step 13: Trial of the Lake
-	-- {area:493} Moonglade · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {area:656} Lake Elune'ara · {area:2362} Shrine of Remulos · {npc:11799} Tajarri · {area:442} Auberdine
+	-- {spell:18960} Teleport: Moonglade · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {area:656} Lake Elune'ara · {area:2362} Shrine of Remulos · {npc:11799} Tajarri · {area:442} Auberdine
 	-- plural, as words: Shrine Baubles = {item:15877} Shrine Bauble
-	["Cast Teleport: {area:493}. {npc:11802} is in {area:2361}. Shrine Baubles lie in the containers on the floor of {area:656}, below {area:2361}: take one to the {area:2362} in the north-west, use it there and speak to {npc:11799}. Then fly back to {area:442} from {area:2361}."] = "순간이동: 달의 숲을 시전하십시오({area:493}). {npc:11802}은(는) {area:2361}에 있습니다. 제단 구슬은 {area:2361} 아래 {area:656} 바닥의 상자에 있습니다. 하나를 북서쪽의 {area:2362}(으)로 가져가 사용하고 {npc:11799}와(과) 대화하십시오. 그다음 {area:2361}에서 {area:442}(으)로 날아 돌아가십시오.",
+	["Cast {spell:18960}. {npc:11802} is in {area:2361}. Shrine Baubles lie in the containers on the floor of {area:656}, below {area:2361}: take one to the {area:2362} in the north-west, use it there and speak to {npc:11799}. Then fly back to {area:442} from {area:2361}."] = "",
 	-- {quest:6122} The Principal Source · {area:445} Cliffspring Falls
 	["{quest:6122}: fill the sampler at {area:445}"] = "{quest:6122}: {area:445}에서 채집기를 채우십시오",
 	-- {item:15877} Shrine Bauble · {object:177785} Bauble Container
@@ -137,14 +139,14 @@ return {
 	-- Step 22: The bay wrecks
 	["The bay wrecks"] = "만의 난파선",
 	-- {area:442} Auberdine
-	-- plural, as words: Reef Crawlers = {npc:2235} Reef Crawler · Encrusted Tide Crawlers = {npc:2233} Encrusted Tide Crawler · Tide Crawlers = {npc:2232} Tide Crawler
+	-- plural, as words: Reef Crawlers = {npc:2235} Reef Crawler · Encrusted Tide Crawlers = {npc:2233} Encrusted Tide Crawler
 	["Two wrecks lie on the sea floor in the bay north of {area:442}; each holds a lockbox. Reef Crawlers and Encrusted Tide Crawlers line this shore."] = "{area:442} 북쪽 만의 바다 밑에 난파선 두 척이 있고, 각각 금고가 하나씩 있습니다. 이 해안에는 모래톱게와 등껍질 왕바닷게가 늘어서 있습니다.",
 
 	-- Step 23: The Ruins of Mathystra
 	-- {area:443} Ruins of Mathystra
 	["The {area:443}"] = "{area:443}",
 	-- {npc:6667} Gelkak Gyromast
-	-- plural, as words: Giant Foreststriders = {npc:2323} Giant Foreststrider · Raging Reef Crawlers = {npc:2236} Raging Reef Crawler · Reef Crawlers = {npc:2235} Reef Crawler
+	-- plural, as words: Giant Foreststriders = {npc:2323} Giant Foreststrider · Raging Reef Crawlers = {npc:2236} Raging Reef Crawler
 	["{npc:6667} hides on the little island off the ruins; Stormscale Beastmistresses walk the shore. The key pieces drop from Giant Foreststriders (top), Greymist murlocs (middle) and Raging Reef Crawlers (bottom)."] = "{npc:6667}은(는) 폐허 앞바다의 작은 섬에 숨어 있고, 폭풍비늘 야수조련사가 해안을 거닙니다. 열쇠 조각은 거대한 숲타조(윗부분), 잿빛안개멀록(가운데), 사나운 모래톱게(아랫부분)에게서 떨어집니다.",
 	-- {item:15883} Half Pendant of Aquatic Agility · {object:177790} Strange Lockbox
 	["{item:15883}: the {object:177790} under the water off the north coast, west of the ruins"] = "{item:15883}: 폐허 서쪽, 북쪽 해안 앞바다 물속의 {object:177790}",
@@ -160,9 +162,9 @@ return {
 	-- Step 25: The cave and the Den Mother
 	-- {npc:6788} Den Mother
 	["The cave and the {npc:6788}"] = "동굴과 {npc:6788}",
-	-- {item:5270} Death Cap · {area:364} The Den · {object:177624} Xabraxxis' Demon Bag
+	-- {item:5270} Death Cap · {npc:6788} Den Mother · {object:177624} Xabraxxis' Demon Bag
 	-- plural, as words: Scaber Stalks = {item:5271} Scaber Stalk
-	["The cave lies south of the falls: Scaber Stalks grow all through it, the {item:5270} at the very back. {area:364} Mother lairs in the hills south of the falls; {object:177624} lies at the satyr camp north of her."] = "동굴은 폭포 남쪽에 있습니다. 껄껄이그물버섯은 동굴 전체에 자라고, {item:5270}은(는) 맨 안쪽에 있습니다. 우두머리 엉겅퀴곰({area:364})은 폭포 남쪽 언덕에 살고, {object:177624}은(는) 그 북쪽의 사티로스 야영지에 있습니다.",
+	["The cave lies south of the falls: Scaber Stalks grow all through it, the {item:5270} at the very back. The {npc:6788} lairs in the hills south of the falls; {object:177624} lies at the satyr camp north of her."] = "",
 	-- plural, as words: Scaber Stalks = {item:5271} Scaber Stalk
 	["Scaber Stalks"] = "껄껄이그물버섯",
 	-- {item:12355} Talisman of Corruption · {object:177624} Xabraxxis' Demon Bag
@@ -245,8 +247,8 @@ return {
 	["Night Elves fly from {area:442} to {area:702}; Skyborne take the boat from the {area:442} dock and learn the Rut'theran flight path there. Take the portal up to {npc:4217} in the {area:1658}."] = "나이트 엘프는 {area:442}에서 {area:702}(으)로 날아가십시오. 스카이본은 {area:442} 부두에서 배를 타고 가서 그곳의 루테란 비행 경로를 익히십시오. 차원문을 타고 {area:1658}의 {npc:4217}에게 올라가십시오.",
 
 	-- Step 39: Dendrite Starblaze
-	-- {area:493} Moonglade · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven
-	["Cast Teleport: {area:493}. {npc:11802} is in {area:2361}; learn the flight path there if you do not have it."] = "순간이동: 달의 숲을 시전하십시오({area:493}). {npc:11802}은(는) {area:2361}에 있습니다. 비행 경로가 없다면 그곳에서 익히십시오.",
+	-- {spell:18960} Teleport: Moonglade · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven
+	["Cast {spell:18960}. {npc:11802} is in {area:2361}; learn the flight path there if you do not have it."] = "",
 	-- {npc:11802} Dendrite Starblaze
 	["{npc:11802}: the welcome from Sheldras"] = "{npc:11802}: 셸드라스 문트리의 환영 인사",
 
@@ -263,8 +265,12 @@ return {
 	-- Step 42: To Darnassus
 	-- {area:442} Auberdine · {zone:1453} Stormwind City
 	["Take the portal up to Mathrengyl, then fly back to {area:442} for the boat to {zone:1453}."] = "차원문을 타고 마스렌길 베어워커에게 올라간 다음, {area:442}(으)로 날아가 {zone:1453}행 배를 타십시오.",
-	-- {npc:4217} Mathrengyl Bearwalker
-	["{npc:4217}: Cat Form"] = "{npc:4217}: 표범 변신",
-	-- {npc:4217} Mathrengyl Bearwalker
-	["{npc:4217}: Cure Poison"] = "{npc:4217}: 해독",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Cast Teleport: {area:493}. {npc:11802} is in {area:2361}. Shrine Baubles lie in the containers on the floor of {area:656}, below {area:2361}: take one to the {area:2362} in the north-west, use it there and speak to {npc:11799}. Then fly back to {area:442} from {area:2361}."] = "순간이동: 달의 숲을 시전하십시오({area:493}). {npc:11802}은(는) {area:2361}에 있습니다. 제단 구슬은 {area:2361} 아래 {area:656} 바닥의 상자에 있습니다. 하나를 북서쪽의 {area:2362}(으)로 가져가 사용하고 {npc:11799}와(과) 대화하십시오. 그다음 {area:2361}에서 {area:442}(으)로 날아 돌아가십시오.",
+	-- ["Cast Teleport: {area:493}. {npc:11802} is in {area:2361}; learn the flight path there if you do not have it."] = "순간이동: 달의 숲을 시전하십시오({area:493}). {npc:11802}은(는) {area:2361}에 있습니다. 비행 경로가 없다면 그곳에서 익히십시오.",
+	-- ["The cave lies south of the falls: Scaber Stalks grow all through it, the {item:5270} at the very back. {area:364} Mother lairs in the hills south of the falls; {object:177624} lies at the satyr camp north of her."] = "동굴은 폭포 남쪽에 있습니다. 껄껄이그물버섯은 동굴 전체에 자라고, {item:5270}은(는) 맨 안쪽에 있습니다. 우두머리 엉겅퀴곰({area:364})은 폭포 남쪽 언덕에 살고, {object:177624}은(는) 그 북쪽의 사티로스 야영지에 있습니다.",
+	-- ["Tide Crawlers scuttle along the shore below the village; {quest:983} stands on the beach just south of the docks. {zone:1439} Threshers swim in the shallows. The {quest:4723} lies on the shore just south of the village."] = "왕바닷게가 마을 아래 해안을 따라 기어다닙니다. {quest:983}은(는) 부두 바로 남쪽 해변에 서 있습니다. {zone:1439} 트레샤돈이 얕은 물에서 헤엄칩니다. {quest:4723}은(는) 마을 바로 남쪽 해안에 있습니다.",
+	-- ["{npc:4217}: Cat Form"] = "{npc:4217}: 표범 변신",
+	-- ["{npc:4217}: Cure Poison"] = "{npc:4217}: 해독",
 }

@@ -1,7 +1,9 @@
 -- Portuguese (Brazil) (ptBR): the guide forever/legacy/legacy-challenges (forever/legacy/legacy-challenges.guide).
 -- Written by `node tools/polestar.js i18n guides sync ptBR`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Portuguese (Brazil) (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Portuguese (Brazil) (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Guide
 	["Legacy Challenges"] = "Desafios de Legado",
@@ -56,8 +58,7 @@ return {
 
 	-- Step 10: PvP: battleground reputations (Alliance)
 	["PvP: battleground reputations (Alliance)"] = "JxJ: reputações de campos de batalha (Aliança)",
-	-- {zone:1460} Warsong Gulch · {zone:1461} Arathi Basin · {zone:1459} Alterac Valley
-	["Exalted with each battleground faction is worth a point (4 in all; this page shows three, see the note). Follow the Polestar Reputation guides {zone:1460} Reputation, {zone:1461} Reputation and {zone:1459} Reputation. The Diplomat Legacy perk increases reputation gains."] = "Exaltado com cada facção de campo de batalha vale um ponto (4 no total; esta página mostra três, veja a nota). Siga os guias de Reputação do Polestar: Reputação: {zone:1460}, Reputação: {zone:1461} e Reputação: {zone:1459}. A vantagem de Legado Diplomata aumenta os ganhos de reputação.",
+	["Exalted with each battleground faction is worth a point (4 in all; this page shows three, see the note). Follow the Polestar Reputation guides Warsong Gulch Reputation, Arathi Basin Reputation and Alterac Valley Reputation. The Diplomat Legacy perk increases reputation gains."] = "",
 	-- {zone:1460} Warsong Gulch · {zone:1461} Arathi Basin · {zone:1459} Alterac Valley
 	["Blizzard counts four battleground reputations, but our faction data has three per side ({zone:1460}, {zone:1461}, {zone:1459}). The fourth is likely tied to Forever's new PvP content; check the in-game Legacy panel."] = "A Blizzard conta quatro reputações de campo de batalha, mas nossos dados de facção têm três por lado ({zone:1460}, {zone:1461}, {zone:1459}). A quarta provavelmente está ligada ao novo conteúdo JxJ do Forever; confira o painel de Legado no jogo.",
 
@@ -131,12 +132,9 @@ return {
 	["Lower {area:1583}"] = "{area:1583} Inferior",
 	-- {area:1583} Blackrock Spire
 	["Upper {area:1583}"] = "{area:1583} Superior",
-	-- {area:2577} Dire Maul
-	["{area:2577} East"] = "{area:2577} Leste",
-	-- {area:2577} Dire Maul
-	["{area:2577} West"] = "{area:2577} Oeste",
-	-- {area:2577} Dire Maul
-	["{area:2577} North"] = "{area:2577} Norte",
+	["Dire Maul East"] = "",
+	["Dire Maul West"] = "",
+	["Dire Maul North"] = "",
 	-- {area:2279} Stratholme
 	["{area:2279}, Live side"] = "{area:2279}, lado vivo",
 	-- {area:2279} Stratholme
@@ -160,4 +158,10 @@ return {
 	-- Step 24: Raids: Barrow Deeps
 	["Raids: Barrow Deeps"] = "Raides: Barrow Deeps",
 	["All 8 Barrow Deeps bosses are a point. Barrow Deeps is a new Forever raid; its bosses are not in our data, so tick it off once all 8 are down."] = "Os 8 chefes de Barrow Deeps, juntos, valem um ponto. Barrow Deeps é uma raide nova do Forever; seus chefes não estão nos nossos dados, então marque-a quando os 8 caírem.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Exalted with each battleground faction is worth a point (4 in all; this page shows three, see the note). Follow the Polestar Reputation guides {zone:1460} Reputation, {zone:1461} Reputation and {zone:1459} Reputation. The Diplomat Legacy perk increases reputation gains."] = "Exaltado com cada facção de campo de batalha vale um ponto (4 no total; esta página mostra três, veja a nota). Siga os guias de Reputação do Polestar: Reputação: {zone:1460}, Reputação: {zone:1461} e Reputação: {zone:1459}. A vantagem de Legado Diplomata aumenta os ganhos de reputação.",
+	-- ["{area:2577} East"] = "{area:2577} Leste",
+	-- ["{area:2577} North"] = "{area:2577} Norte",
+	-- ["{area:2577} West"] = "{area:2577} Oeste",
 }

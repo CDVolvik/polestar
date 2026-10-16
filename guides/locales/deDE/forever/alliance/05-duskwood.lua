@@ -1,7 +1,9 @@
 -- German (deDE): the guide forever/alliance/05-duskwood (forever/alliance/05-duskwood.guide).
 -- Written by `node tools/polestar.js i18n guides sync deDE`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in German (the English is listed above the line). The comments are rewritten by sync.
+-- name there in German (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Step 1: Darkshire
 	-- {area:1002} Three Corners · {zone:1431} Duskwood · {area:42} Darkshire
@@ -46,7 +48,7 @@ return {
 	-- {area:492} Raven Hill Cemetery
 	["{area:492}, south"] = "{area:492}, Süden",
 	-- {npc:522} Mor'Ladim
-	-- plural, as words: Skeletal Horrors = {npc:202} Skeletal Horror · Horrors = {npc:251103} Horror · Skeletal Fiends = {npc:531} Skeletal Fiend
+	-- plural, as words: Skeletal Horrors = {npc:202} Skeletal Horror · Skeletal Fiends = {npc:531} Skeletal Fiend
 	["The cemetery lies north of the village. Skeletal Horrors and Skeletal Fiends walk its southern half. {npc:522}, an elite, wanders the graves: keep away from him."] = "Der Friedhof liegt nördlich des Dorfs. Skelettschrecken und Skelettsatanskreaturen wandeln in seiner südlichen Hälfte. {npc:522}, ein Elite, wandert zwischen den Gräbern: Halte dich von ihm fern.",
 
 	-- Step 8: Sven's Camp
@@ -60,7 +62,7 @@ return {
 	-- Step 10: Wolves, spiders and ghouls
 	["Wolves, spiders and ghouls"] = "Wölfe, Spinnen und Ghule",
 	-- {npc:289} Abercrombie
-	-- plural, as words: Pygmy Venom Web Spiders = {npc:539} Pygmy Venom Web Spider · Venom Web Spiders = {npc:217} Venom Web Spider
+	-- plural, as words: Pygmy Venom Web Spiders = {npc:539} Pygmy Venom Web Spider
 	["Rabid Dire Wolves roam the woods around the cemetery and {npc:289}, Starving Dire Wolves the hills north-east of him. Pygmy Venom Web Spiders crawl east of the cemetery and drop the venom. Every ghoul of the cemetery's northern half can drop a fang."] = "Tollwütige Terrorwölfe streifen durch den Wald um den Friedhof und {npc:289}, Ausgehungerte Terrorwölfe durch die Hügel nordöstlich von ihm. Zwerggiftweberspinnen krabbeln östlich des Friedhofs und lassen das Gift fallen. Jeder Ghul der nördlichen Friedhofshälfte kann einen Fangzahn fallen lassen.",
 
 	-- Step 11: Watcher Dodds
@@ -87,12 +89,12 @@ return {
 	-- {npc:273} Tavernkeep Smitts
 	["{npc:273}, in the tavern"] = "{npc:273}, in der Taverne",
 
-	-- Step 19: The Rot Blossoms
-	-- {npc:14235} The Rot
-	["{npc:14235} Blossoms"] = "Blüten von {npc:14235}",
-	-- {area:42} Darkshire · {area:121} Tranquil Gardens Cemetery · {npc:14235} The Rot
-	-- plural, as words: Skeletal Horrors = {npc:202} Skeletal Horror · Horrors = {npc:251103} Horror
-	["Skeletal Horrors walk the hillside between {area:42} and the {area:121}, south-east of town; they drop the {npc:14235} Blossoms."] = "Skelettschrecken wandeln am Hang zwischen {area:42} und dem {area:121}, südöstlich des Orts; sie lassen die Blüten von {npc:14235} fallen.",
+	-- Step 19: Rot Blossoms
+	-- plural, as words: Rot Blossoms = {item:1598} Rot Blossom
+	["Rot Blossoms"] = "",
+	-- {area:42} Darkshire · {area:121} Tranquil Gardens Cemetery
+	-- plural, as words: Skeletal Horrors = {npc:202} Skeletal Horror · Rot Blossoms = {item:1598} Rot Blossom
+	["Skeletal Horrors walk the hillside between {area:42} and the {area:121}, south-east of town; they drop the Rot Blossoms."] = "",
 
 	-- Step 21: Abercrombie
 	["Ride west to the hermit once more."] = "Reite noch einmal nach Westen zum Einsiedler.",
@@ -121,14 +123,14 @@ return {
 	-- Step 27: Master Mathias Shaw
 	-- {zone:1453} Stormwind City · {object:2100} Old Town
 	["Ride north through Elwynn to {zone:1453}; Mathias Shaw is at SI:7 in {object:2100}."] = "Reite nach Norden durch den Wald von Elwynn nach {zone:1453}; Mathias Shaw ist bei SI:7 in {object:2100}.",
-	-- {npc:332} Master Mathias Shaw · {item:18160} Recipe: Thistle Tea
-	["{npc:332}: Poisons, and {item:18160}"] = "{npc:332}: Gifte und {item:18160}",
+	-- {npc:332} Master Mathias Shaw · {spell:2842} Poisons · {item:18160} Recipe: Thistle Tea
+	["{npc:332}: {spell:2842}, and {item:18160}"] = "",
 	-- {quest:2607} The Touch of Zanzil · {npc:7207} Doc Mixilpixil
 	["{quest:2607}: {npc:7207}, in the cellar of the Barracks"] = "{quest:2607}: {npc:7207}, im Keller der Kaserne",
 	-- {npc:7207} Doc Mixilpixil
 	["/lay down beside {npc:7207}"] = "/hinlegen neben {npc:7207}",
-	-- {item:3372} Leaded Vial · {npc:1313} Maria Lumere · {skill:171} Alchemy
-	["{item:3372}: {npc:1313}, {skill:171} Supplies"] = "{item:3372}: {npc:1313}, {skill:171}bedarf",
+	-- {item:3372} Leaded Vial · {npc:1313} Maria Lumere
+	["{item:3372}: {npc:1313}, Alchemy Supplies"] = "",
 
 	-- Step 28: Stormwind City
 	-- {zone:1453} Stormwind City · {zone:1429} Elwynn Forest · {area:17203} Stormwind Harbor · {area:442} Auberdine
@@ -139,4 +141,10 @@ return {
 	["Shaman training"] = "Schamanentraining",
 	-- {zone:1453} Stormwind City · {area:2257} Deeprun Tram · {object:28027} Dwarven District · {zone:1455} Ironforge · {npc:258098} Eldrun Stormbreaker · {area:442} Auberdine
 	["{zone:1453} has no shaman trainer: take the {area:2257} from the {object:28027} to {zone:1455}, train with {npc:258098}, then ride the tram back for the {area:442} boat."] = "{zone:1453} hat keinen Schamanenlehrer: Nimm die {area:2257} vom {object:28027} nach {zone:1455}, trainiere bei {npc:258098} und fahr dann mit der Bahn zurück zum Boot nach {area:442}.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Skeletal Horrors walk the hillside between {area:42} and the {area:121}, south-east of town; they drop the {npc:14235} Blossoms."] = "Skelettschrecken wandeln am Hang zwischen {area:42} und dem {area:121}, südöstlich des Orts; sie lassen die Blüten von {npc:14235} fallen.",
+	-- ["{item:3372}: {npc:1313}, {skill:171} Supplies"] = "{item:3372}: {npc:1313}, {skill:171}bedarf",
+	-- ["{npc:14235} Blossoms"] = "Blüten von {npc:14235}",
+	-- ["{npc:332}: Poisons, and {item:18160}"] = "{npc:332}: Gifte und {item:18160}",
 }

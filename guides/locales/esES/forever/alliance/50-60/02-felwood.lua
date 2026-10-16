@@ -1,7 +1,9 @@
 -- Spanish (Spain) (esES): the guide forever/alliance/50-60/02-felwood (forever/alliance/50-60/02-felwood.guide).
 -- Written by `node tools/polestar.js i18n guides sync esES`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Spanish (Spain) (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Spanish (Spain) (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Step 1: Auberdine
 	-- {area:702} Rut'theran Village · {area:442} Auberdine · {area:415} Astranaar
@@ -53,7 +55,7 @@ return {
 	["The Cursed and Tainted Oozes slide about the streams and fel pools around {area:1763} and {area:1765}: kill them and use Laris's Empty Ooze Jars on their remains."] = "Los mocos malditos y corruptos se deslizan por los arroyos y charcas viles alrededor de {area:1763} y {area:1765}: mátalos y usa las jarras de moco vacías de Laris en sus restos.",
 
 	-- Step 11: Shatter Scar Vale
-	-- plural, as words: Entropic Beasts = {npc:9878} Entropic Beast · Horrors = {npc:251103} Horror
+	-- plural, as words: Entropic Beasts = {npc:9878} Entropic Beast
 	["Follow the road north to the cratered vale and walk to each crater, killing the Entropic Beasts and Horrors between them."] = "Sigue el camino al norte hasta el valle de cráteres y ve a cada cráter, matando las bestias entrópicas y los horrores entre ellos.",
 	["First crater"] = "Primer cráter",
 	["Second crater"] = "Segundo cráter",

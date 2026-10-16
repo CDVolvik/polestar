@@ -1,7 +1,9 @@
 -- Chinese (simplified) (zhCN): the guide forever/class/mage/mages-wand (forever/class/mage/mages-wand.guide).
 -- Written by `node tools/polestar.js i18n guides sync zhCN`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Chinese (simplified) (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Chinese (simplified) (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Guide
 	["A wand of your school for the 30s: frost, arcane or fire."] = "一根适合你30多级使用的本系魔杖：冰霜、奥术或火焰。",
@@ -29,8 +31,8 @@ return {
 	-- Step 6: Rituals of Power
 	-- {area:796} Scarlet Monastery · {zone:1420} Tirisfal Glades · {npc:6487} Arcanist Doan
 	["Tirth sold the book to the Scarlet Brotherhood. The {area:796} stands in north-eastern {zone:1420}; take the Library wing. The book juts out of the wall on the left as you enter the Athenaeum, before {npc:6487}."] = "提尔斯把书卖给了血色十字军。{area:796}位于{zone:1420}东北部；进入图书馆区。进入图书馆大厅时，书从左侧墙上突出来，在{npc:6487}之前。",
-	-- {quest:1951} Rituals of Power · {area:796} Scarlet Monastery
-	["{quest:1951}: {area:796} Library"] = "{quest:1951}：{area:796}图书馆",
+	-- {quest:1951} Rituals of Power
+	["{quest:1951}: Scarlet Monastery Library"] = "",
 
 	-- Step 7: Back to Tabetha
 	-- {npc:6546} Tabetha
@@ -45,4 +47,7 @@ return {
 	-- Step 9: Tabetha's ritual
 	-- {npc:6546} Tabetha
 	["{npc:6546}'s ritual"] = "{npc:6546}的仪式",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["{quest:1951}: {area:796} Library"] = "{quest:1951}：{area:796}图书馆",
 }

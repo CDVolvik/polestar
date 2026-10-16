@@ -1,7 +1,9 @@
 -- Korean (koKR): the guide forever/alliance/human/01-elwynn-forest (forever/alliance/human/01-elwynn-forest.guide).
 -- Written by `node tools/polestar.js i18n guides sync koKR`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Korean (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Step 1: Northshire Abbey
 	-- {npc:823} Deputy Willem · {npc:197} Marshal McBride · {npc:951} Brother Paxton · {npc:247229} Daniel · {npc:196} Eagan Peltskinner
@@ -54,10 +56,6 @@ return {
 	-- {item:6785} Powers of the Void · {object:83763} Stolen Books
 	["{item:6785}: the {object:83763} in the Defias camp"] = "{item:6785}: 데피아즈단 야영지의 {object:83763}",
 
-	-- Step 9: Deputy Willem
-	-- {npc:459} Drusilla La Salle
-	["{npc:459}: Summon Imp"] = "{npc:459}: 임프 소환",
-
 	-- Step 10: Milly Osworth
 	["She stands by her cart at the vineyard east of the Abbey."] = "그녀는 대성당 동쪽 포도밭의 수레 옆에 있습니다.",
 
@@ -96,13 +94,14 @@ return {
 	["The lake shore"] = "호숫가",
 	-- {npc:263399} Sam Sarsaparilla · {npc:6306} Helene Peltskinner · {npc:383} Jason Mathers · {npc:1651} Lee Brown · {area:18} Crystal Lake
 	["{npc:263399} camps north-east of the inn; {npc:6306}, {npc:383} and {npc:1651} stand on the shore of {area:18} east of town."] = "{npc:263399}은(는) 여관 북동쪽에 야영하고 있으며, {npc:6306}, {npc:383}, {npc:1651}은(는) 마을 동쪽 {area:18} 호숫가에 있습니다.",
-	["Sit (/sit) by his campfire until you have Boosted Rest"] = "Boosted Rest가 생길 때까지 그의 모닥불 옆에 앉으십시오(/sit)",
+	-- {spell:1229451} Boosted Rest
+	["Sit (/sit) by his campfire until you have {spell:1229451}"] = "",
 	-- {npc:6306} Helene Peltskinner
 	["{npc:6306}: skinners only, the pelts are skinned"] = "{npc:6306}: 무두질 전용, 가죽은 무두질로 얻습니다",
 
 	-- Step 18: Crystal Lake
-	-- {skill:356} Fishing
-	["The {skill:356} Traps sit along the west shore of the lake."] = "{skill:356} 덫은 호수 서쪽 기슭을 따라 있습니다.",
+	-- plural, as words: Fishing Traps = {object:694772} Fishing Trap
+	["The Fishing Traps sit along the west shore of the lake."] = "",
 
 	-- Step 20: The murloc camp
 	["The murloc camp"] = "멀록 야영지",
@@ -279,7 +278,7 @@ return {
 	-- {npc:473} Morgan the Collector · {area:62} Brackwell Pumpkin Patch
 	-- plural, as words: Murloc Foragers = {npc:46} Murloc Forager · Prowlers = {npc:118} Prowler · Young Forest Bears = {npc:822} Young Forest Bear
 	["Murloc Foragers and Lurkers line the river south of the bridge. {npc:473}, a Defias, walks the {area:62} west of it. Finish the Prowlers and Young Forest Bears on the way."] = "멀록 채집꾼과 멀록 잠복꾼이 다리 남쪽 강을 따라 있습니다. 데피아즈단인 {npc:473}이(가) 그 서쪽 {area:62}을(를) 돌아다닙니다. 가는 길에 굶주린 늑대와 새끼곰을 마저 처치하십시오.",
-	-- plural, as words: Torn Murloc Fins = {item:780} Torn Murloc Fin · Murloc Fins = {item:1468} Murloc Fin
+	-- plural, as words: Torn Murloc Fins = {item:780} Torn Murloc Fin
 	["Torn Murloc Fins"] = "찢어진 멀록 지느러미",
 
 	-- Step 60: Stone Cairn Lake
@@ -311,9 +310,8 @@ return {
 	["{npc:1922}: tame it with the {item:15908}"] = "{npc:1922}: {item:15908}(으)로 길들이기",
 	-- {npc:822} Young Forest Bear · {item:15908} Taming Rod
 	["{npc:822}: tame it with the {item:15908}"] = "{npc:822}: {item:15908}(으)로 길들이기",
-	["Tame Beast"] = "야수 길들이기",
-	-- {npc:258930} Isaac Chan
-	["{npc:258930}, beside her: Beast Training"] = "{npc:258930}, 그녀 옆: 야수 조련",
+	-- {npc:258930} Isaac Chan · {spell:5149} Beast Training
+	["{npc:258930}, beside her: {spell:5149}"] = "",
 
 	-- Step 64: Jennea Cannon
 	-- {area:87} Goldshire · {zone:1453} Stormwind City · {npc:5497} Jennea Cannon · {object:2101} Mage Quarter · {quest:1861} Mirror Lake
@@ -335,7 +333,6 @@ return {
 	-- {item:6928} Bloodstone Choker · {object:2164} The Slaughtered Lamb
 	["Back to Gakin. Use the {item:6928} at the summoning circle in the {object:2164}'s cellar and defeat the voidwalker it calls."] = "가킨에게 돌아가십시오. {object:2164} 지하실의 소환진에서 {item:6928}을(를) 사용하고 소환된 공허방랑자를 쓰러뜨리십시오.",
 	["Subdue the voidwalker"] = "공허방랑자 제압",
-	["Summon Voidwalker"] = "공허방랑자 소환",
 
 	-- Step 69: The Tome of Divinity
 	-- {area:87} Goldshire · {zone:1453} Stormwind City · {npc:6171} Duthorian Rall · {npc:6173} Gazin Tenorm · {npc:6174} Stephanie Turner · {object:2100} Old Town · {item:2589} Linen Cloth
@@ -361,4 +358,12 @@ return {
 	-- Step 72: Sentinel Hill
 	-- {zone:1436} Westfall · {area:108} Sentinel Hill
 	["Follow the road west past Westbrook into {zone:1436}, then south along it to {area:108}. Thor, the gryphon master, stands on the hill."] = "길을 따라 서쪽으로 서부 주둔지를 지나 {zone:1436}(으)로 간 뒤, 남쪽으로 따라가 {area:108}(으)로 가십시오. 그리폰 조련사 토르가 언덕 위에 있습니다.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Sit (/sit) by his campfire until you have Boosted Rest"] = "Boosted Rest가 생길 때까지 그의 모닥불 옆에 앉으십시오(/sit)",
+	-- ["Summon Voidwalker"] = "공허방랑자 소환",
+	-- ["Tame Beast"] = "야수 길들이기",
+	-- ["The {skill:356} Traps sit along the west shore of the lake."] = "{skill:356} 덫은 호수 서쪽 기슭을 따라 있습니다.",
+	-- ["{npc:258930}, beside her: Beast Training"] = "{npc:258930}, 그녀 옆: 야수 조련",
+	-- ["{npc:459}: Summon Imp"] = "{npc:459}: 임프 소환",
 }

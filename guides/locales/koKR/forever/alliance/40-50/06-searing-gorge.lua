@@ -1,7 +1,9 @@
 -- Korean (koKR): the guide forever/alliance/40-50/06-searing-gorge (forever/alliance/40-50/06-searing-gorge.guide).
 -- Written by `node tools/polestar.js i18n guides sync koKR`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Korean (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Step 1: Thorium Point
 	-- {area:144} Thelsamar · {zone:1418} Badlands · {area:340} Kargath · {zone:1427} Searing Gorge · {area:1446} Thorium Point
@@ -19,7 +21,7 @@ return {
 
 	-- Step 4: Golems and elementals
 	["Golems and elementals"] = "골렘과 정령",
-	-- plural, as words: Heavy War Golems = {npc:5854} Heavy War Golem · War Golems = {npc:2751} War Golem · Magma Elementals = {npc:5855} Magma Elemental
+	-- plural, as words: Heavy War Golems = {npc:5854} Heavy War Golem · Magma Elementals = {npc:5855} Magma Elemental
 	["Heavy War Golems patrol the floor of the Cauldron below Kalaran; Magma Elementals drift among them. Golems and elementals drop the oil, elementals the hearts."] = "칼라란 아래 용광로 바닥을 육중한 전투골렘이 순찰하고, 그 사이를 용암 정령이 떠다닙니다. 골렘 기름은 골렘과 정령이, 화염의 심장은 정령이 떨어뜨립니다.",
 
 	-- Step 6: Dark Iron dwarves
@@ -40,8 +42,9 @@ return {
 
 	-- Step 11: The Grimesilt outhouse
 	["The Grimesilt outhouse"] = "검댕가루 간이화장실",
-	-- {area:247} Grimesilt Dig Site · {item:4306} Silk Cloth · {object:147516} Dark Iron
-	["Ride east across the Cauldron to the {area:247} in the south-east. The prisoner in the wooden outhouse wants 15 {item:4306} and eight dead {object:147516} Geologists from the dig site around it. The outhouse also opens with the key, if you found one."] = "용광로를 가로질러 동쪽, 남동쪽의 {area:247}(으)로 가십시오. 나무 간이화장실에 갇힌 포로는 {item:4306} 15개와 주변 발굴현장의 {object:147516} 지질학자 여덟 명 처치를 원합니다. 열쇠를 찾았다면 그것으로도 간이화장실을 열 수 있습니다.",
+	-- {area:247} Grimesilt Dig Site · {item:4306} Silk Cloth
+	-- plural, as words: Dark Iron Geologists = {npc:5839} Dark Iron Geologist
+	["Ride east across the Cauldron to the {area:247} in the south-east. The prisoner in the wooden outhouse wants 15 {item:4306} and eight dead Dark Iron Geologists from the dig site around it. The outhouse also opens with the key, if you found one."] = "",
 	-- {zone:1446} Tanaris · {zone:1435} Swamp of Sorrows · {zone:1445} Dustwallow Marsh
 	["The prisoner's next task, Ledger from {zone:1446}, sends you to the {zone:1435} and {zone:1445}: skip it."] = "포로의 다음 임무인 {zone:1446}의 장부는 {zone:1435}와(과) {zone:1445}(으)로 보냅니다: 건너뛰십시오.",
 
@@ -50,4 +53,7 @@ return {
 	["The dwarf stands by the road at the dig site. Follow him north along the road and fight off the {object:147516} ambushes. When it is over, read the {object:175704} he leaves on the road in {area:1959}."] = "드워프 도리우스 스톤텐더는 발굴현장의 길가에 서 있습니다. 그를 따라 길을 북쪽으로 가며 {object:147516}의 매복을 물리치십시오. 끝나면 {area:1959}의 길에 그가 남긴 {object:175704}을(를) 읽으십시오.",
 	-- {npc:8256} Curator Thorius · {zone:1455} Ironforge
 	["For {npc:8256} in {zone:1455}, later"] = "나중에 {zone:1455}의 {npc:8256}에게",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Ride east across the Cauldron to the {area:247} in the south-east. The prisoner in the wooden outhouse wants 15 {item:4306} and eight dead {object:147516} Geologists from the dig site around it. The outhouse also opens with the key, if you found one."] = "용광로를 가로질러 동쪽, 남동쪽의 {area:247}(으)로 가십시오. 나무 간이화장실에 갇힌 포로는 {item:4306} 15개와 주변 발굴현장의 {object:147516} 지질학자 여덟 명 처치를 원합니다. 열쇠를 찾았다면 그것으로도 간이화장실을 열 수 있습니다.",
 }

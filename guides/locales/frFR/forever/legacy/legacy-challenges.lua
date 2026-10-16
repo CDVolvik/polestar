@@ -1,7 +1,9 @@
 -- French (frFR): the guide forever/legacy/legacy-challenges (forever/legacy/legacy-challenges.guide).
 -- Written by `node tools/polestar.js i18n guides sync frFR`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in French (the English is listed above the line). The comments are rewritten by sync.
+-- name there in French (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Guide
 	["Legacy Challenges"] = "",
@@ -56,8 +58,7 @@ return {
 
 	-- Step 10: PvP: battleground reputations (Alliance)
 	["PvP: battleground reputations (Alliance)"] = "",
-	-- {zone:1460} Warsong Gulch · {zone:1461} Arathi Basin · {zone:1459} Alterac Valley
-	["Exalted with each battleground faction is worth a point (4 in all; this page shows three, see the note). Follow the Polestar Reputation guides {zone:1460} Reputation, {zone:1461} Reputation and {zone:1459} Reputation. The Diplomat Legacy perk increases reputation gains."] = "",
+	["Exalted with each battleground faction is worth a point (4 in all; this page shows three, see the note). Follow the Polestar Reputation guides Warsong Gulch Reputation, Arathi Basin Reputation and Alterac Valley Reputation. The Diplomat Legacy perk increases reputation gains."] = "",
 	-- {zone:1460} Warsong Gulch · {zone:1461} Arathi Basin · {zone:1459} Alterac Valley
 	["Blizzard counts four battleground reputations, but our faction data has three per side ({zone:1460}, {zone:1461}, {zone:1459}). The fourth is likely tied to Forever's new PvP content; check the in-game Legacy panel."] = "",
 
@@ -131,12 +132,9 @@ return {
 	["Lower {area:1583}"] = "",
 	-- {area:1583} Blackrock Spire
 	["Upper {area:1583}"] = "",
-	-- {area:2577} Dire Maul
-	["{area:2577} East"] = "",
-	-- {area:2577} Dire Maul
-	["{area:2577} West"] = "",
-	-- {area:2577} Dire Maul
-	["{area:2577} North"] = "",
+	["Dire Maul East"] = "",
+	["Dire Maul West"] = "",
+	["Dire Maul North"] = "",
 	-- {area:2279} Stratholme
 	["{area:2279}, Live side"] = "",
 	-- {area:2279} Stratholme

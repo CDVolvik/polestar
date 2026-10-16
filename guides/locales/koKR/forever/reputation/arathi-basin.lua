@@ -1,11 +1,12 @@
 -- Korean (koKR): the guide forever/reputation/arathi-basin (forever/reputation/arathi-basin.guide).
 -- Written by `node tools/polestar.js i18n guides sync koKR`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Korean (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Guide
-	-- {zone:1461} Arathi Basin
-	["{zone:1461} Reputation"] = "{zone:1461} 평판",
+	["Arathi Basin Reputation"] = "",
 
 	-- Step 1: League of Arathor to Friendly
 	["League of Arathor to Friendly"] = "아라소르 연맹: 약간 우호적까지",
@@ -18,7 +19,7 @@ return {
 	-- Step 2: League of Arathor to Honored
 	["League of Arathor to Honored"] = "아라소르 연맹: 우호적까지",
 	-- {zone:1461} Arathi Basin · {npc:15351} Alliance Brigadier General
-	["Keep playing {zone:1461}. On Call to Arms: {zone:1461} weekends the {npc:15351} in the capitals takes three {zone:1461} Marks of Honor for extra reputation."] = "{zone:1461}을(를) 계속 플레이하십시오. 전투의 부름: {zone:1461} 주말에는 수도에 있는 {npc:15351}이(가) {zone:1461} 명예 훈장 3개를 받고 추가 평판을 줍니다.",
+	["Keep playing {zone:1461}. On Call to Arms: {zone:1461} weekends the {npc:15351} in the capitals takes three Arathi Basin Marks of Honor for extra reputation."] = "",
 	-- {npc:15127} Samuel Hawke
 	["{npc:15127} hands out one Arathor care package by level"] = "{npc:15127}이(가) 레벨에 따라 아라소르 구급품 하나를 줍니다",
 
@@ -44,7 +45,7 @@ return {
 	-- {faction:510} The Defilers
 	["{faction:510} to Honored"] = "{faction:510}: 우호적까지",
 	-- {zone:1461} Arathi Basin · {npc:15350} Horde Warbringer
-	["Keep playing {zone:1461}. On Call to Arms: {zone:1461} weekends the {npc:15350} in the capitals takes three {zone:1461} Marks of Honor for extra reputation."] = "{zone:1461}을(를) 계속 플레이하십시오. 전투의 부름: {zone:1461} 주말에는 수도에 있는 {npc:15350}이(가) {zone:1461} 명예 훈장 3개를 받고 추가 평판을 줍니다.",
+	["Keep playing {zone:1461}. On Call to Arms: {zone:1461} weekends the {npc:15350} in the capitals takes three Arathi Basin Marks of Honor for extra reputation."] = "",
 	-- {npc:15126} Rutherford Twing
 	["{npc:15126} hands out one Defiler's care package by level"] = "{npc:15126}이(가) 레벨에 따라 파멸단 구급품 하나를 줍니다",
 
@@ -57,4 +58,9 @@ return {
 	["{faction:510} to Exalted"] = "{faction:510}: 확고한 동맹까지",
 	-- {faction:510} The Defilers
 	["Exalted with {faction:510} earns a Legacy Point."] = "{faction:510}와(과) 확고한 동맹이 되면 Legacy Point 1점을 얻습니다.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Keep playing {zone:1461}. On Call to Arms: {zone:1461} weekends the {npc:15350} in the capitals takes three {zone:1461} Marks of Honor for extra reputation."] = "{zone:1461}을(를) 계속 플레이하십시오. 전투의 부름: {zone:1461} 주말에는 수도에 있는 {npc:15350}이(가) {zone:1461} 명예 훈장 3개를 받고 추가 평판을 줍니다.",
+	-- ["Keep playing {zone:1461}. On Call to Arms: {zone:1461} weekends the {npc:15351} in the capitals takes three {zone:1461} Marks of Honor for extra reputation."] = "{zone:1461}을(를) 계속 플레이하십시오. 전투의 부름: {zone:1461} 주말에는 수도에 있는 {npc:15351}이(가) {zone:1461} 명예 훈장 3개를 받고 추가 평판을 줍니다.",
+	-- ["{zone:1461} Reputation"] = "{zone:1461} 평판",
 }

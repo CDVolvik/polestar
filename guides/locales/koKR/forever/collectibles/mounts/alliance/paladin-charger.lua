@@ -1,7 +1,9 @@
 -- Korean (koKR): the guide forever/collectibles/mounts/alliance/paladin-charger (forever/collectibles/mounts/alliance/paladin-charger.guide).
 -- Written by `node tools/polestar.js i18n guides sync koKR`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Korean (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Guide
 	["Paladin Charger"] = "성기사 군마",
@@ -29,8 +31,8 @@ return {
 	-- Step 5: Exorcising Terrordale
 	-- {area:2627} Terrordale · {zone:1423} Eastern Plaguelands · {zone:1422} Western Plaguelands · {item:18752} Exorcism Censer
 	["{area:2627} lies in the far north-west of the {zone:1423}, by the {zone:1422} border. Use the {item:18752} there to drive out the spirits, then defeat them."] = "{area:2627}은(는) {zone:1423} 북서쪽 끝, {zone:1422} 경계 옆에 있습니다. 그곳에서 {item:18752}을(를) 사용해 영혼을 몰아낸 뒤 물리치세요.",
-	-- {area:2627} Terrordale
-	["{area:2627} Spirits"] = "{area:2627} 영혼",
+	-- plural, as words: Terrordale Spirits = {npc:14564} Terrordale Spirit
+	["Terrordale Spirits"] = "",
 
 	-- Step 7: Grimand Elmore
 	-- {npc:1416} Grimand Elmore · {zone:1453} Stormwind City · {object:28027} Dwarven District
@@ -91,4 +93,7 @@ return {
 	-- Step 18: The Great Ossuary
 	-- {area:2057} Scholomance · {area:2298} Caer Darrow · {zone:1422} Western Plaguelands · {item:18746} Divination Scryer · {object:179746} The Great Ossuary · {npc:14516} Death Knight Darkreaver · {item:18799} Charger's Redeemed Soul · {item:18792} Blessed Arcanite Barding
 	["{area:2057} lies under {area:2298}, the island town in the south-east of the {zone:1422}. Use the {item:18746} in the heart of the {object:179746}'s basement, defeat the spirits it calls and then {npc:14516}, and give his Fallen Charger the {item:18799} and the {item:18792}. All are elite: bring a group. If the attempt fails, Lord Grayson gives you a new scryer through Again Into the {object:179746}."] = "{area:2057}은(는) {zone:1422} 남동쪽의 섬 마을인 {area:2298} 아래에 있습니다. {object:179746} 지하실 중앙에서 {item:18746}을(를) 사용하고, 나타나는 영혼들과 {npc:14516}을(를) 물리친 뒤, 그의 쓰러진 군마에게 {item:18799}와(과) {item:18792}을(를) 주세요. 모두 정예이니 파티를 데려가세요. 실패하면 그레이슨 경이 다시 {object:179746}(으)로 퀘스트를 통해 새 점술 도구를 줍니다.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["{area:2627} Spirits"] = "{area:2627} 영혼",
 }

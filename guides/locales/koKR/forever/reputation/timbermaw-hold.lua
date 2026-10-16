@@ -1,11 +1,12 @@
 -- Korean (koKR): the guide forever/reputation/timbermaw-hold (forever/reputation/timbermaw-hold.guide).
 -- Written by `node tools/polestar.js i18n guides sync koKR`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Korean (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Guide
-	-- {faction:576} Timbermaw Hold
-	["{faction:576} Reputation"] = "{faction:576} 평판",
+	["Timbermaw Hold Reputation"] = "",
 
 	-- Step 1: Grazle
 	-- {faction:576} Timbermaw Hold
@@ -67,4 +68,7 @@ return {
 	-- {faction:576} Timbermaw Hold
 	["{faction:576} to Exalted"] = "{faction:576}: 확고한 동맹까지",
 	["Keep turning in feathers and beads until Exalted."] = "확고한 동맹이 될 때까지 깃털과 구슬을 계속 제출하세요.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["{faction:576} Reputation"] = "{faction:576} 평판",
 }

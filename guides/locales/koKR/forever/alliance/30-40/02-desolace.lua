@@ -1,7 +1,9 @@
 -- Korean (koKR): the guide forever/alliance/30-40/02-desolace (forever/alliance/30-40/02-desolace.guide).
 -- Written by `node tools/polestar.js i18n guides sync koKR`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Korean (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Step 1: Menethil Harbor
 	-- {zone:1455} Ironforge · {npc:1573} Gryth Thurden
@@ -41,13 +43,13 @@ return {
 	["Azore's tower stands on the hill west of {area:599}: take his quest first, the sceptre he wants is in the fortress."] = "아조레의 탑은 {area:599} 서쪽 언덕에 있습니다. 먼저 그의 퀘스트를 수락하십시오. 그가 원하는 홀은 요새 안에 있습니다.",
 
 	-- Step 11: Dalinda Malem
-	-- {area:608} Nijel's Point
-	["Dalinda hides inside the Burning Blade's fortress south-west of {area:608}."] = "달린다는 {area:608} 남서쪽 불타는칼날단 요새 안에 숨어 있습니다.",
+	-- {spell:1294269} Burning Blade · {area:608} Nijel's Point
+	["Dalinda hides inside the {spell:1294269}'s fortress south-west of {area:608}."] = "",
 
 	-- Step 12: Tyranis and the Seer
 	["Tyranis and the Seer"] = "티라니스와 {npc:13019}",
-	-- {npc:13019} Burning Blade Seer
-	["Her brother Tyranis (36) walks the fortress with the Burning Blade cultists (30-33): pull him alone. The {npc:13019} keeps the sceptre in the fortress's main building."] = "그녀의 오빠 티라니스(36)는 불타는칼날단 이교도(30-33)와 함께 요새를 돌아다닙니다. 그만 따로 끌어오십시오. {npc:13019}은(는) 요새 본관에 홀을 가지고 있습니다.",
+	-- {spell:1294269} Burning Blade · {npc:13019} Burning Blade Seer
+	["Her brother Tyranis (36) walks the fortress with the {spell:1294269} cultists (30-33): pull him alone. The {npc:13019} keeps the sceptre in the fortress's main building."] = "",
 
 	-- Step 13: Escort Dalinda
 	["Escort Dalinda"] = "달린다 호위",
@@ -82,4 +84,8 @@ return {
 	-- Step 21: Kolkar Village
 	-- {area:609} Kolkar Village · {npc:5752} Corporal Melkins
 	["The Kolkar roam the plains around {area:609}; their ears are for {npc:5752}."] = "콜카르일족이 {area:609} 주변 평원을 돌아다닙니다. 귀는 {npc:5752}에게 가져가십시오.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Dalinda hides inside the Burning Blade's fortress south-west of {area:608}."] = "달린다는 {area:608} 남서쪽 불타는칼날단 요새 안에 숨어 있습니다.",
+	-- ["Her brother Tyranis (36) walks the fortress with the Burning Blade cultists (30-33): pull him alone. The {npc:13019} keeps the sceptre in the fortress's main building."] = "그녀의 오빠 티라니스(36)는 불타는칼날단 이교도(30-33)와 함께 요새를 돌아다닙니다. 그만 따로 끌어오십시오. {npc:13019}은(는) 요새 본관에 홀을 가지고 있습니다.",
 }

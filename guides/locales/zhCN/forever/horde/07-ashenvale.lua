@@ -1,7 +1,9 @@
 -- Chinese (simplified) (zhCN): the guide forever/horde/07-ashenvale (forever/horde/07-ashenvale.guide).
 -- Written by `node tools/polestar.js i18n guides sync zhCN`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Chinese (simplified) (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Chinese (simplified) (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Step 1: Zoram'gar Outpost
 	-- {area:392} Ratchet · {area:2897} Zoram'gar Outpost · {zone:1440} Ashenvale
@@ -93,7 +95,7 @@ return {
 
 	-- Step 20: Mystral Lake
 	-- {area:421} Mystral Lake
-	-- plural, as words: Befouled Water Elementals = {npc:3917} Befouled Water Elemental · Water Elementals = {npc:510} Water Elemental
+	-- plural, as words: Befouled Water Elementals = {npc:3917} Befouled Water Elemental
 	["Back south-west to {area:421}. Befouled Water Elementals drift around its shores; the gazebo stands on the island, overlooking the Alliance outpost."] = "",
 	["Gazebo"] = "",
 
@@ -112,11 +114,11 @@ return {
 	-- {area:17044} Gloomrise · {npc:264074} Mazu'kon · {item:273015} Toxin Extractor · {item:273181} Crystalline Silk · {npc:264082} Broodmother Valraxx · {item:273658} Bloody Parchment · {quest:96294} A Darker Truth
 	-- plural, as words: Gnawed Corpses = {npc:264096} Gnawed Corpse
 	["North of the camp, spiders overrun the burial ground at {area:17044}. Use {npc:264074}'s {item:273015} on the Gnawed Corpses; the Spinners drop the {item:273181}. {npc:264082} sits at the north end: her {item:273658} starts {quest:96294}."] = "",
-	-- {area:17044} Gloomrise
-	-- plural, as words: Gnawed Corpses = {npc:264096} Gnawed Corpse
-	["{area:17044} Toxin Samples, from the Gnawed Corpses"] = "",
-	-- {item:273181} Crystalline Silk · {area:17044} Gloomrise
-	["{item:273181}, from {area:17044} Spinners"] = "",
+	-- plural, as words: Gloomrise Toxin Samples = {item:273001} Gloomrise Toxin Sample · Gnawed Corpses = {npc:264096} Gnawed Corpse
+	["Gloomrise Toxin Samples, from the Gnawed Corpses"] = "",
+	-- {item:273181} Crystalline Silk
+	-- plural, as words: Gloomrise Spinners = {npc:264081} Gloomrise Spinner
+	["{item:273181}, from Gloomrise Spinners"] = "",
 	-- {item:273658} Bloody Parchment · {npc:264082} Broodmother Valraxx
 	["{item:273658}, from {npc:264082}"] = "",
 

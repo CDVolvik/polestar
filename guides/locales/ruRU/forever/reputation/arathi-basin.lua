@@ -1,11 +1,12 @@
 -- Russian (ruRU): the guide forever/reputation/arathi-basin (forever/reputation/arathi-basin.guide).
 -- Written by `node tools/polestar.js i18n guides sync ruRU`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Russian (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Russian (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Guide
-	-- {zone:1461} Arathi Basin
-	["{zone:1461} Reputation"] = "",
+	["Arathi Basin Reputation"] = "",
 
 	-- Step 1: League of Arathor to Friendly
 	["League of Arathor to Friendly"] = "",
@@ -18,7 +19,7 @@ return {
 	-- Step 2: League of Arathor to Honored
 	["League of Arathor to Honored"] = "",
 	-- {zone:1461} Arathi Basin · {npc:15351} Alliance Brigadier General
-	["Keep playing {zone:1461}. On Call to Arms: {zone:1461} weekends the {npc:15351} in the capitals takes three {zone:1461} Marks of Honor for extra reputation."] = "",
+	["Keep playing {zone:1461}. On Call to Arms: {zone:1461} weekends the {npc:15351} in the capitals takes three Arathi Basin Marks of Honor for extra reputation."] = "",
 	-- {npc:15127} Samuel Hawke
 	["{npc:15127} hands out one Arathor care package by level"] = "",
 
@@ -44,7 +45,7 @@ return {
 	-- {faction:510} The Defilers
 	["{faction:510} to Honored"] = "",
 	-- {zone:1461} Arathi Basin · {npc:15350} Horde Warbringer
-	["Keep playing {zone:1461}. On Call to Arms: {zone:1461} weekends the {npc:15350} in the capitals takes three {zone:1461} Marks of Honor for extra reputation."] = "",
+	["Keep playing {zone:1461}. On Call to Arms: {zone:1461} weekends the {npc:15350} in the capitals takes three Arathi Basin Marks of Honor for extra reputation."] = "",
 	-- {npc:15126} Rutherford Twing
 	["{npc:15126} hands out one Defiler's care package by level"] = "",
 

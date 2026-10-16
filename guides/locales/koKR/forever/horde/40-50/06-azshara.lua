@@ -1,7 +1,9 @@
 -- Korean (koKR): the guide forever/horde/40-50/06-azshara (forever/horde/40-50/06-azshara.guide).
 -- Written by `node tools/polestar.js i18n guides sync koKR`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Korean (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Step 1: Fly to the Undercity
 	-- {area:1497} Undercity
@@ -22,8 +24,9 @@ return {
 	-- Step 4: Ride into Azshara
 	-- {zone:1447} Azshara
 	["Ride into {zone:1447}"] = "{zone:1447}(으)로 이동",
-	-- {npc:11548} Loh'atu · {area:1235} Shadowsong Shrine · {area:3137} Talrendis Point · {zone:1447} Azshara
-	["Ride east along the road out of Splintertree. {npc:11548} waits at the {area:1235} just off the road, a few steps west of the Alliance's {area:3137}: come in from the west and keep clear of the {zone:1447} Sentinels and Jarrodenus (elite)."] = "토막나무 주둔지에서 길을 따라 동쪽으로 가세요. {npc:11548}은(는) 길에서 조금 벗어난 {area:1235}, 얼라이언스의 {area:3137} 바로 서쪽에서 기다립니다. 서쪽에서 접근하고 {zone:1447} 파수꾼과 자로데누스(정예)를 피하세요.",
+	-- {npc:11548} Loh'atu · {area:1235} Shadowsong Shrine · {area:3137} Talrendis Point
+	-- plural, as words: Azshara Sentinels = {npc:11276} Azshara Sentinel
+	["Ride east along the road out of Splintertree. {npc:11548} waits at the {area:1235} just off the road, a few steps west of the Alliance's {area:3137}: come in from the west and keep clear of the Azshara Sentinels and Jarrodenus (elite)."] = "",
 
 	-- Step 5: Highborne and Haldarr satyrs
 	["Highborne and Haldarr satyrs"] = "명가 유령과 할다르 사티로스",
@@ -36,8 +39,8 @@ return {
 	-- Step 7: Valormok
 	-- {area:1237} Valormok
 	["Follow the road north to {area:1237}, the Horde camp."] = "길을 따라 북쪽의 호드 야영지 {area:1237}(으)로 가세요.",
-	-- {npc:8395} Sanath Lim-yo · {zone:1447} Azshara
-	["{npc:8395}, at the east edge of the camp: no experience, only a teleport to {zone:1447} Tower"] = "야영지 동쪽 끝의 {npc:8395}: 경험치 없음, {zone:1447} 탑으로 순간이동만 가능",
+	-- {npc:8395} Sanath Lim-yo
+	["{npc:8395}, at the east edge of the camp: no experience, only a teleport to Azshara Tower"] = "",
 
 	-- Step 8: Undamaged Hippogryph Feathers
 	-- plural, as words: Undamaged Hippogryph Feathers = {item:10450} Undamaged Hippogryph Feather
@@ -99,8 +102,8 @@ return {
 	-- Step 23: Orgrimmar
 	-- {zone:1454} Orgrimmar
 	["Take the zeppelin back to {zone:1454}."] = "비행선을 타고 {zone:1454}(으)로 돌아가세요.",
-	-- {npc:6986} Dran Droffers · {object:172959} The Drag
-	["{npc:6986}, the {object:172959}"] = "{object:172959}의 {npc:6986}",
+	-- {npc:6986} Dran Droffers
+	["{npc:6986}, the Drag"] = "",
 	-- {npc:8659} Jes'rimon · {object:172960} Cleft of Shadow
 	["{npc:8659}, the {object:172960}"] = "{object:172960}의 {npc:8659}",
 	-- {npc:8659} Jes'rimon · {quest:3504} Betrayed · {area:1237} Valormok
@@ -164,4 +167,9 @@ return {
 	["Ride south along the road to the {area:1938}; {npc:7771} camps beside it. From here the road west leads down into {zone:1449}, where the next guide starts."] = "길을 따라 남쪽 {area:1938}(으)로 가세요. {npc:7771}이(가) 그 옆에 있습니다. 여기서 서쪽 길을 따라 내려가면 다음 가이드가 시작되는 {zone:1449}입니다.",
 	-- {quest:3444} The Stone Circle
 	["Keep {quest:3444}: Marvon's chest is opened on a later visit."] = "{quest:3444}은(는) 보관하세요. 마본의 상자는 나중에 다시 와서 엽니다.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Ride east along the road out of Splintertree. {npc:11548} waits at the {area:1235} just off the road, a few steps west of the Alliance's {area:3137}: come in from the west and keep clear of the {zone:1447} Sentinels and Jarrodenus (elite)."] = "토막나무 주둔지에서 길을 따라 동쪽으로 가세요. {npc:11548}은(는) 길에서 조금 벗어난 {area:1235}, 얼라이언스의 {area:3137} 바로 서쪽에서 기다립니다. 서쪽에서 접근하고 {zone:1447} 파수꾼과 자로데누스(정예)를 피하세요.",
+	-- ["{npc:6986}, the {object:172959}"] = "{object:172959}의 {npc:6986}",
+	-- ["{npc:8395}, at the east edge of the camp: no experience, only a teleport to {zone:1447} Tower"] = "야영지 동쪽 끝의 {npc:8395}: 경험치 없음, {zone:1447} 탑으로 순간이동만 가능",
 }

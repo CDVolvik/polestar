@@ -1,7 +1,9 @@
 -- Spanish (Latin America) (esMX): the guide forever/collectibles/mounts/neutral/warlock-dreadsteed (forever/collectibles/mounts/neutral/warlock-dreadsteed.guide).
 -- Written by `node tools/polestar.js i18n guides sync esMX`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Spanish (Latin America) (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Spanish (Latin America) (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Guide
 	["Warlock Dreadsteed"] = "Corcelorror de brujo",
@@ -28,9 +30,9 @@ return {
 	["{quest:7562} and his goblin {npc:14437} camp at the {area:255}, in the north-west of the {zone:1428}, west of {area:254}. The chain is long, costs gold at Gorzeeki's and ends in two dungeons."] = "{quest:7562} y su goblin {npc:14437} acampan en el {area:255}, al noroeste de {zone:1428}, al oeste de {area:254}. La cadena es larga, cuesta oro con Gorzeeki y termina en dos calabozos.",
 
 	-- Step 6: Raging Beast's Blood
-	-- {zone:1452} Winterspring · {area:2255} Everlook
+	-- {zone:1452} Winterspring · {area:2255} Everlook · {spell:417141} Berserk
 	-- plural, as words: Raging Owlbeasts = {npc:7451} Raging Owlbeast
-	["The owlbeasts of {zone:1452} drop the blood, about one in three: the Ragged and Raging Owlbeasts west of and around {area:2255}, the Crazed, Moontouched and Berserk ones in the east. While you hunt, start on the materials of the next step: the Auction House has them all."] = "Las lechubestias de {zone:1452} sueltan la sangre, más o menos una de cada tres: las Lechubestias pulgosas y enfurecidas al oeste y alrededor de {area:2255}, y las enloquecidas, lunadón y rabiosas en el este. Mientras cazas, empieza con los materiales del siguiente paso: la casa de subastas los tiene todos.",
+	["The owlbeasts of {zone:1452} drop the blood, about one in three: the Ragged and Raging Owlbeasts west of and around {area:2255}, the Crazed, Moontouched and {spell:417141} ones in the east. While you hunt, start on the materials of the next step: the Auction House has them all."] = "",
 
 	-- Step 7: Wildeyes
 	-- {item:18591} Case of Blood · {npc:14437} Gorzeeki Wildeyes · {zone:1448} Felwood
@@ -43,13 +45,13 @@ return {
 
 	-- Step 8: The ritual pieces
 	["The ritual pieces"] = "Las piezas del ritual",
-	-- {skill:171} Alchemy · {skill:333} Enchanting · {item:11370} Dark Iron Ore · {skill:186} Mining · {area:1584} Blackrock Depths · {zone:1427} Searing Gorge · {skill:393} Skinning · {zone:1428} Burning Steppes
+	-- {spell:5896} Shadow Power · {skill:171} Alchemy · {skill:333} Enchanting · {item:11370} Dark Iron Ore · {skill:186} Mining · {area:1584} Blackrock Depths · {zone:1427} Searing Gorge · {skill:393} Skinning · {zone:1428} Burning Steppes
 	-- plural, as words: Large Brilliant Shards = {item:14344} Large Brilliant Shard · Black Dragonscales = {item:15416} Black Dragonscale
-	["Gorzeeki wants 10 Elixirs of Shadow Power ({skill:171}), 6 Large Brilliant Shards ({skill:333}), 25 {item:11370} ({skill:186}, in {area:1584} and the {zone:1427}) and 35 Black Dragonscales ({skill:393}, black dragonkin of the {zone:1428}). Make or gather what your professions allow; buy the rest at the Auction House."] = "Gorzeeki quiere 10 Elixires de poder de las Sombras ({skill:171}), 6 Fragmentos luminosos grandes ({skill:333}), 25 {item:11370} ({skill:186}, en {area:1584} y {zone:1427}) y 35 Dragontinas negras ({skill:393}, dracónidos negros de {zone:1428}). Fabrica o recolecta lo que te permitan tus profesiones; compra el resto en la casa de subastas.",
+	["Gorzeeki wants 10 Elixirs of {spell:5896} ({skill:171}), 6 Large Brilliant Shards ({skill:333}), 25 {item:11370} ({skill:186}, in {area:1584} and the {zone:1427}) and 35 Black Dragonscales ({skill:393}, black dragonkin of the {zone:1428}). Make or gather what your professions allow; buy the rest at the Auction House."] = "",
 
 	-- Step 9: Arcanite
-	-- {quest:7630} Arcanite
-	["Hand the three pieces to Gorzeeki. He then wants 3 {quest:7630} Bars: alchemists transmute them, everyone else buys them at the Auction House."] = "Entrega las tres piezas a Gorzeeki. Luego quiere 3 barras de {quest:7630}: los alquimistas las transmutan, los demás las compran en la casa de subastas.",
+	-- plural, as words: Arcanite Bars = {item:12360} Arcanite Bar
+	["Hand the three pieces to Gorzeeki. He then wants 3 Arcanite Bars: alchemists transmute them, everyone else buys them at the Auction House."] = "",
 
 	-- Step 10: Lord Banehollow
 	-- {area:1763} Jaedenar · {zone:1448} Felwood · {item:18802} Shadowy Potion · {quest:7623} Lord Banehollow · {area:1770} Shadow Hold
@@ -89,4 +91,9 @@ return {
 	["{area:2577} stands in the ruins of central {zone:1444}; the ritual circle is in its west wing, past {npc:11496}, and the door needs the {item:18249} or a rogue. Use {item:18663} to start; when the bell, the wheel or the candle fades, click it with the {item:18629} (a {item:6265} each). When the demons stop coming, use the {item:18670}, defeat the {npc:14502} and its dreadlord master, and speak to the {npc:14504}. Bring a group."] = "{area:2577} está en las ruinas del centro de {zone:1444}; el círculo del ritual está en su ala oeste, pasando a {npc:11496}, y la puerta requiere la {item:18249} o un pícaro. Usa el {item:18663} para empezar; cuando la campana, la rueda o la vela se apague, haz clic en ella con la {item:18629} (un {item:6265} cada vez). Cuando dejen de llegar demonios, usa los {item:18670}, derrota al {npc:14502} y a su amo señor del terror, y habla con el {npc:14504}. Lleva un grupo.",
 	-- {npc:14504} Dreadsteed Spirit
 	["{npc:14504}: it binds itself to you"] = "{npc:14504}: se vincula contigo",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Gorzeeki wants 10 Elixirs of Shadow Power ({skill:171}), 6 Large Brilliant Shards ({skill:333}), 25 {item:11370} ({skill:186}, in {area:1584} and the {zone:1427}) and 35 Black Dragonscales ({skill:393}, black dragonkin of the {zone:1428}). Make or gather what your professions allow; buy the rest at the Auction House."] = "Gorzeeki quiere 10 Elixires de poder de las Sombras ({skill:171}), 6 Fragmentos luminosos grandes ({skill:333}), 25 {item:11370} ({skill:186}, en {area:1584} y {zone:1427}) y 35 Dragontinas negras ({skill:393}, dracónidos negros de {zone:1428}). Fabrica o recolecta lo que te permitan tus profesiones; compra el resto en la casa de subastas.",
+	-- ["Hand the three pieces to Gorzeeki. He then wants 3 {quest:7630} Bars: alchemists transmute them, everyone else buys them at the Auction House."] = "Entrega las tres piezas a Gorzeeki. Luego quiere 3 barras de {quest:7630}: los alquimistas las transmutan, los demás las compran en la casa de subastas.",
+	-- ["The owlbeasts of {zone:1452} drop the blood, about one in three: the Ragged and Raging Owlbeasts west of and around {area:2255}, the Crazed, Moontouched and Berserk ones in the east. While you hunt, start on the materials of the next step: the Auction House has them all."] = "Las lechubestias de {zone:1452} sueltan la sangre, más o menos una de cada tres: las Lechubestias pulgosas y enfurecidas al oeste y alrededor de {area:2255}, y las enloquecidas, lunadón y rabiosas en el este. Mientras cazas, empieza con los materiales del siguiente paso: la casa de subastas los tiene todos.",
 }

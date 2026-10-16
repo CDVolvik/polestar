@@ -1,11 +1,12 @@
 -- French (frFR): the guide forever/reputation/cenarion-circle (forever/reputation/cenarion-circle.guide).
 -- Written by `node tools/polestar.js i18n guides sync frFR`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in French (the English is listed above the line). The comments are rewritten by sync.
+-- name there in French (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Guide
-	-- {faction:609} Cenarion Circle
-	["{faction:609} Reputation"] = "Réputation {faction:609}",
+	["Cenarion Circle Reputation"] = "",
 
 	-- Step 1: Cenarion Hold
 	-- {area:3425} Cenarion Hold · {zone:1451} Silithus · {npc:15270} Huum Wildmane · {faction:609} Cenarion Circle
@@ -52,4 +53,7 @@ return {
 	["{faction:609} to Exalted"] = "{faction:609} jusqu'à Exalté",
 	-- {area:3454} Ruins of Ahn'Qiraj
 	["Keep running the {area:3454} and turning in Abyssal Council insignia until Exalted."] = "Continuez les {area:3454} et les remises d'insignes du Conseil abyssal jusqu'à Exalté.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["{faction:609} Reputation"] = "Réputation {faction:609}",
 }

@@ -1,7 +1,9 @@
 -- Portuguese (Brazil) (ptBR): the guide forever/horde/undead/01-tirisfal-glades (forever/horde/undead/01-tirisfal-glades.guide).
 -- Written by `node tools/polestar.js i18n guides sync ptBR`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Portuguese (Brazil) (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Portuguese (Brazil) (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Step 1: Undertaker Mordo
 	-- {area:154} Deathknell · {npc:1568} Undertaker Mordo
@@ -56,12 +58,8 @@ return {
 	["{npc:1570}, in the church"] = "{npc:1570}, na igreja",
 
 	-- Step 9: Aramis and Venya
-	-- {quest:90902} Rediscovering the Light · {npc:259377} Injured Deathguard
-	["Paladins: {quest:90902} is done once you have healed five {npc:259377} around the church with Holy Light."] = "Paladinos: {quest:90902} se completa quando você curar cinco {npc:259377} em volta da igreja com Luz Sagrada.",
-	-- {npc:244808} Aramis Hammerhand
-	["{npc:244808}: Holy Light"] = "{npc:244808}: Luz Sagrada",
-	-- {npc:5667} Venya Marthand
-	["{npc:5667}: Summon Imp"] = "{npc:5667}: Evocar Diabrete",
+	-- {quest:90902} Rediscovering the Light · {npc:259377} Injured Deathguard · {spell:635} Holy Light
+	["Paladins: {quest:90902} is done once you have healed five {npc:259377} around the church with {spell:635}."] = "",
 
 	-- Step 10: Scavenging Deathknell
 	-- {object:164662} Equipment Boxes · {area:154} Deathknell
@@ -134,7 +132,8 @@ return {
 
 	-- Step 26: Eleanor Shackleton
 	["Eleanor camps just south-west of town."] = "Eleonora acampa logo a sudoeste da cidade.",
-	["/sit by her campfire until you get Boosted Rest"] = "/sentar junto à fogueira dela até receber Descanso Reforçado",
+	-- {spell:1229451} Boosted Rest
+	["/sit by her campfire until you get {spell:1229451}"] = "",
 
 	-- Step 27: Fields west of Brill
 	-- {area:159} Brill
@@ -176,15 +175,16 @@ return {
 	-- plural, as words: Greater Duskbats = {npc:1553} Greater Duskbat
 	["Greater Duskbats fly over the fields around {area:159} and along the road north."] = "Grandes Quiropúsculos voam sobre os campos em volta de {area:159} e ao longo da estrada ao norte.",
 
-	-- Step 33: The Rot Hide graveyards
-	-- {npc:14235} The Rot
-	["{npc:14235} Hide graveyards"] = "Cemitérios dos Putricouro",
-	-- {npc:14235} The Rot · {quest:358} Graverobbers · {area:159} Brill
-	["{npc:14235} Hide {quest:358} dig through the graveyards north of {area:159}; all the {npc:14235} Hides drop the ichor."] = "Roubacovas Putricouro cavam pelos cemitérios ao norte de {area:159} ({quest:358}); todos os Putricouro deixam cair o icor, como {npc:14235}.",
+	-- Step 33: Rot Hide graveyards
+	["Rot Hide graveyards"] = "",
+	-- {area:159} Brill
+	-- plural, as words: Rot Hide Graverobbers = {npc:1941} Rot Hide Graverobber
+	["The Rot Hide Graverobbers dig through the graveyards north of {area:159}; all the Rot Hides drop the ichor."] = "",
 
 	-- Step 34: Maggot Eye
-	-- {npc:14235} The Rot · {npc:1753} Maggot Eye
-	["{npc:14235} Hide Mongrels hold the hills further north. {npc:1753} (level 11) stands in their camp on the hill south of the shore: clear the gnolls around him first."] = "Mestiços Putricouro ocupam as colinas mais ao norte, perto de {npc:14235}. {npc:1753} (nível 11) fica no acampamento deles na colina ao sul da margem: elimine primeiro os gnolls em volta dele.",
+	-- {npc:1753} Maggot Eye
+	-- plural, as words: Rot Hide Mongrels = {npc:1675} Rot Hide Mongrel
+	["The Rot Hide Mongrels hold the hills further north. {npc:1753} (level 11) stands in their camp on the hill south of the shore: clear the gnolls around him first."] = "",
 
 	-- Step 35: Vile Fin murlocs
 	["Vile Fin murlocs"] = "Murlocs Pinavil",
@@ -242,7 +242,8 @@ return {
 
 	-- Step 45: Shadowvale
 	-- {area:16881} Shadowvale · {item:286269} Glowing Crystal Fragment
-	["{area:16881} is the hollow at the west edge of the glades. The {area:16881} Lurchers and Mystics drop the bones; the bottles lie on the ground among them, and the {item:286269} is at the south end."] = "O {area:16881} é a depressão na borda oeste das clareiras. Os Saltadores e Místicos do {area:16881} deixam cair os ossos; as garrafas ficam no chão entre eles, e o {item:286269} fica no extremo sul.",
+	-- plural, as words: Shadowvale Lurchers = {npc:260428} Shadowvale Lurcher
+	["{area:16881} is the hollow at the west edge of the glades. The Shadowvale Lurchers and Mystics drop the bones; the bottles lie on the ground among them, and the {item:286269} is at the south end."] = "",
 
 	-- Step 48: Brill
 	-- {npc:1560} Yvette Farthing
@@ -255,8 +256,6 @@ return {
 	-- Step 49: Ulag the Cleaver
 	-- {npc:1496} Deathguard Dillinger · {area:159} Brill
 	["{npc:1496} stands in {area:159}. Ulag waits in the mausoleum on the hill just north of town: open the gate and fight him."] = "{npc:1496} fica em {area:159}. Ulag espera no mausoléu na colina logo ao norte da cidade: abra o portão e lute com ele.",
-	-- {npc:1496} Deathguard Dillinger
-	["{npc:1496}: Defensive Stance"] = "{npc:1496}: Postura Defensiva",
 
 	-- Step 50: Carendin Halgar
 	-- {area:159} Brill · {area:153} Ruins of Lordaeron · {zone:1458} Undercity · {npc:5675} Carendin Halgar · {object:36082} Magic Quarter
@@ -291,7 +290,7 @@ return {
 	-- Step 58: Balnir graves
 	["Balnir graves"] = "Túmulos dos Balnir",
 	-- {quest:99142} Tomb Weed
-	-- plural, as words: Bleeding Horrors = {npc:1529} Bleeding Horror · Horrors = {npc:251103} Horror · Wandering Spirits = {npc:1532} Wandering Spirit
+	-- plural, as words: Bleeding Horrors = {npc:1529} Bleeding Horror · Wandering Spirits = {npc:1532} Wandering Spirit
 	["Follow the road east. Bleeding Horrors and Wandering Spirits haunt the graves on the east side of the farmstead, where the {quest:99142} grows."] = "Siga a estrada para leste. Horrores Sangrentos e Espíritos Errantes assombram os túmulos no lado leste da fazenda, onde cresce a {quest:99142}.",
 	-- {item:7227} Balnir Snapdragons
 	["{item:7227}, in the farmstead's garden"] = "{item:7227}, na horta da fazenda",
@@ -302,7 +301,7 @@ return {
 	["The Scarlet Friars camp just north-east of the graves; {npc:1664} stands among them."] = "Os Frades Escarlates acampam logo a nordeste dos túmulos; {npc:1664} fica entre eles.",
 
 	-- Step 60: Vicious Night Web Spiders
-	-- plural, as words: Vicious Night Web Spiders = {npc:1555} Vicious Night Web Spider · Night Web Spiders = {npc:1505} Night Web Spider
+	-- plural, as words: Vicious Night Web Spiders = {npc:1555} Vicious Night Web Spider
 	["Vicious Night Web Spiders"] = "Trevateias Malévolas",
 	["The spiders lurk in the woods at the far east end of the glades. Riptear, a rogue abomination, wanders just north-west of them. Riptear is elite: grouping up is advised."] = "As aranhas espreitam na mata no extremo leste das clareiras. Riptear, uma abominação desgarrada, vaga logo a noroeste delas. Riptear é elite: é recomendado formar grupo.",
 	-- {item:286326} Riptear's Heart
@@ -337,8 +336,6 @@ return {
 	-- Step 68: The Undercity
 	-- {object:1661} The Undercity · {area:153} Ruins of Lordaeron · {npc:5675} Carendin Halgar · {object:36082} Magic Quarter · {item:6284} Runes of Summoning · {npc:4606} Aelthalyste · {object:36070} War Quarter · {npc:4568} Anastasia Hartwell
 	["{object:1661} is under the {area:153}, beside the zeppelin towers. {npc:5675} is in the {object:36082}: use the {item:6284} on the summoning circle beside him and defeat the voidwalker. {npc:4606} is in the {object:36070}. {npc:4568} is in the {object:36082} too."] = "{object:1661} fica embaixo das {area:153}, ao lado das torres de zepelim. {npc:5675} fica no {object:36082}: use as {item:6284} no círculo de evocação ao lado dele e derrote o emissário do caos. {npc:4606} fica no {object:36070}. {npc:4568} também fica no {object:36082}.",
-	-- {npc:5675} Carendin Halgar
-	["{npc:5675}: Summon Voidwalker"] = "{npc:5675}: Evocar Emissário do Caos",
 
 	-- Step 69: Zeppelin to Durotar
 	-- {zone:1411} Durotar
@@ -352,4 +349,16 @@ return {
 	["The zeppelin lands at the tower just north-east of {zone:1454}'s main gate. Follow the road south into {zone:1411}, cross the {area:815} bridge below {area:379} and follow the road west to the {area:380}."] = "O zepelim pousa na torre logo a nordeste do portão principal de {zone:1454}. Siga a estrada para o sul até {zone:1411}, atravesse a ponte do {area:815} abaixo do {area:379} e siga a estrada para oeste até a {area:380}.",
 	-- {npc:3615} Devrak
 	["{npc:3615}, the wind rider master"] = "{npc:3615}, o mestre de mantícoras",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["/sit by her campfire until you get Boosted Rest"] = "/sentar junto à fogueira dela até receber Descanso Reforçado",
+	-- ["Paladins: {quest:90902} is done once you have healed five {npc:259377} around the church with Holy Light."] = "Paladinos: {quest:90902} se completa quando você curar cinco {npc:259377} em volta da igreja com Luz Sagrada.",
+	-- ["{area:16881} is the hollow at the west edge of the glades. The {area:16881} Lurchers and Mystics drop the bones; the bottles lie on the ground among them, and the {item:286269} is at the south end."] = "O {area:16881} é a depressão na borda oeste das clareiras. Os Saltadores e Místicos do {area:16881} deixam cair os ossos; as garrafas ficam no chão entre eles, e o {item:286269} fica no extremo sul.",
+	-- ["{npc:14235} Hide Mongrels hold the hills further north. {npc:1753} (level 11) stands in their camp on the hill south of the shore: clear the gnolls around him first."] = "Mestiços Putricouro ocupam as colinas mais ao norte, perto de {npc:14235}. {npc:1753} (nível 11) fica no acampamento deles na colina ao sul da margem: elimine primeiro os gnolls em volta dele.",
+	-- ["{npc:14235} Hide graveyards"] = "Cemitérios dos Putricouro",
+	-- ["{npc:14235} Hide {quest:358} dig through the graveyards north of {area:159}; all the {npc:14235} Hides drop the ichor."] = "Roubacovas Putricouro cavam pelos cemitérios ao norte de {area:159} ({quest:358}); todos os Putricouro deixam cair o icor, como {npc:14235}.",
+	-- ["{npc:1496}: Defensive Stance"] = "{npc:1496}: Postura Defensiva",
+	-- ["{npc:244808}: Holy Light"] = "{npc:244808}: Luz Sagrada",
+	-- ["{npc:5667}: Summon Imp"] = "{npc:5667}: Evocar Diabrete",
+	-- ["{npc:5675}: Summon Voidwalker"] = "{npc:5675}: Evocar Emissário do Caos",
 }

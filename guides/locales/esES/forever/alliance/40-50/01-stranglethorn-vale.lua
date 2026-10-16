@@ -1,7 +1,9 @@
 -- Spanish (Spain) (esES): the guide forever/alliance/40-50/01-stranglethorn-vale (forever/alliance/40-50/01-stranglethorn-vale.guide).
 -- Written by `node tools/polestar.js i18n guides sync esES`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Spanish (Spain) (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Spanish (Spain) (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Step 1: Theramore
 	["Theramore"] = "Theramore",
@@ -68,9 +70,8 @@ return {
 	["On the ride north to {area:392}, {area:720} lies off the {area:391} south of the town: wade over the sand bar shallows. {npc:6236} sends four challengers and then {npc:6238} (level 33) at you, one at a time."] = "De camino al norte hacia {area:392}, la {area:720} está frente a {area:391}, al sur del pueblo: cruza vadeando los bajíos del banco de arena. {npc:6236} te envía cuatro aspirantes y luego a {npc:6238} (nivel 33), de uno en uno.",
 	-- {npc:6238} Big Will
 	["Defeat the challengers and {npc:6238}"] = "Derrota a los aspirantes y a {npc:6238}",
-	-- {npc:6236} Klannoc Macleod
-	["{npc:6236}: Berserker Stance"] = "{npc:6236}: Actitud rabiosa",
-	["Klannoc offers The Windwatcher next (1791): the Whirlwind weapon chain, with an elite at the end, is in the Warrior class guide Whirlwind Weapon."] = "Klannoc ofrece después El Cazavientos (1791): la cadena del arma torbellino, con un élite al final, está en la guía de clase de guerrero Arma torbellino.",
+	-- {spell:1680} Whirlwind
+	["Klannoc offers The Windwatcher next (1791): the {spell:1680} weapon chain, with an elite at the end, is in the Warrior class guide Whirlwind Weapon."] = "",
 
 	-- Step 18: Ratchet
 	-- {zone:1413} The Barrens · {area:392} Ratchet · {npc:16227} Bragok · {area:35} Booty Bay
@@ -118,7 +119,7 @@ return {
 	-- Step 27: Gorilla hills
 	["Gorilla hills"] = "Colinas de los gorilas",
 	-- {npc:1449} Witch Doctor Unbagwa
-	-- plural, as words: Elder Mistvale Gorillas = {npc:1557} Elder Mistvale Gorilla · Mistvale Gorillas = {npc:1108} Mistvale Gorilla
+	-- plural, as words: Elder Mistvale Gorillas = {npc:1557} Elder Mistvale Gorilla
 	["Ride inland to the Mistvale gorilla hills. Elder Mistvale Gorillas drop the giblets; {npc:1449} sits among them."] = "Ve tierra adentro hasta las colinas de los gorilas del Valle del Velo de Bruma. Los Gorilas del Valle Velo de Bruma viejos sueltan las tripas; {npc:1449} está sentado entre ellos.",
 
 	-- Step 28: Unbagwa's ritual
@@ -188,8 +189,8 @@ return {
 	["{npc:384}: other colours, 20g"] = "{npc:384}: otros colores, 20 o",
 
 	-- Step 40: Riding at 40
-	-- {npc:4732} Randal Hunter · {area:88} Eastvale Logging Camp · {zone:1429} Elwynn Forest · {zone:1453} Stormwind City · {npc:265756} Genn Fairweather · {area:16638} Valanaar
-	["At 40 with 100 gold you can learn to ride, and learning it gives you a mount. No Skyborne riding trainer is known; the Forever client files Galestrider Riding under the one Riding skill, so {npc:4732} at {area:88} in eastern {zone:1429}, the nearest trainer to {zone:1453}, should teach it (unconfirmed). The Galestriders are sold by {npc:265756} in {area:16638} on Zephras Isle; Collectibles, Mounts · Level 40 lists them."] = "A nivel 40 y con 100 de oro puedes aprender equitación, y al aprenderla recibes una montura. No se conoce ningún instructor de equitación cielonato; el cliente de Forever incluye la equitación de zancavendavales en la única habilidad de Equitación, así que {npc:4732}, en el {area:88}, en el este de {zone:1429}, el instructor más cercano a {zone:1453}, debería enseñarla (sin confirmar). Los zancavendavales los vende {npc:265756} en {area:16638}, en la Isla de Zephras; Coleccionables, Monturas · Nivel 40, los muestra.",
+	-- {spell:1285849} Galestrider Riding · {npc:4732} Randal Hunter · {area:88} Eastvale Logging Camp · {zone:1429} Elwynn Forest · {zone:1453} Stormwind City · {npc:265756} Genn Fairweather · {area:16638} Valanaar
+	["At 40 with 100 gold you can learn to ride, and learning it gives you a mount. No Skyborne riding trainer is known; the Forever client files {spell:1285849} under the one Riding skill, so {npc:4732} at {area:88} in eastern {zone:1429}, the nearest trainer to {zone:1453}, should teach it (unconfirmed). The Galestriders are sold by {npc:265756} in {area:16638} on Zephras Isle; Collectibles, Mounts · Level 40 lists them."] = "",
 	-- {npc:265756} Genn Fairweather · {area:16638} Valanaar
 	["Galestriders: {npc:265756}, in {area:16638} on Zephras Isle."] = "Zancavendavales: {npc:265756}, en {area:16638}, en la Isla de Zephras.",
 
@@ -222,7 +223,7 @@ return {
 	-- Step 46: The sunken temple
 	["The sunken temple"] = "El Templo Sumergido",
 	-- {area:74} Pool of Tears
-	-- plural, as words: Tangled Horrors = {npc:766} Tangled Horror · Horrors = {npc:251103} Horror
+	-- plural, as words: Tangled Horrors = {npc:766} Tangled Horror
 	["Ride east; the Tangled Horrors along the way also drop the essays. Search the edge of the {area:74}, where the temple's ruins break the water."] = "Ve al este; los Horrores enredados del camino también sueltan los ensayos. Busca en la orilla de la {area:74}, donde las ruinas del templo asoman del agua.",
 
 	-- Step 47: Misty Reed Strand
@@ -259,4 +260,9 @@ return {
 	["At 40 with 100 gold you can learn to ride, and learning it gives you a mount. {npc:7954} teaches Gnomes at {area:189}, just east of {area:131}, beside {npc:7955}'s mechanostriders. Forever may let any race learn from any riding trainer (unconfirmed). Collectibles, Mounts · Level 40 lists every colour."] = "A nivel 40 y con 100 de oro puedes aprender equitación, y al aprenderla recibes una montura. {npc:7954} enseña a los gnomos en el {area:189}, justo al este de {area:131}, junto a los mecazancudos de {npc:7955}. Puede que Forever permita a cualquier raza aprender con cualquier instructor de equitación (sin confirmar). Coleccionables, Monturas · Nivel 40, muestra todos los colores.",
 	-- {npc:7955} Milli Featherwhistle
 	["{npc:7955}: other colours, 20g"] = "{npc:7955}: otros colores, 20 o",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["At 40 with 100 gold you can learn to ride, and learning it gives you a mount. No Skyborne riding trainer is known; the Forever client files Galestrider Riding under the one Riding skill, so {npc:4732} at {area:88} in eastern {zone:1429}, the nearest trainer to {zone:1453}, should teach it (unconfirmed). The Galestriders are sold by {npc:265756} in {area:16638} on Zephras Isle; Collectibles, Mounts · Level 40 lists them."] = "A nivel 40 y con 100 de oro puedes aprender equitación, y al aprenderla recibes una montura. No se conoce ningún instructor de equitación cielonato; el cliente de Forever incluye la equitación de zancavendavales en la única habilidad de Equitación, así que {npc:4732}, en el {area:88}, en el este de {zone:1429}, el instructor más cercano a {zone:1453}, debería enseñarla (sin confirmar). Los zancavendavales los vende {npc:265756} en {area:16638}, en la Isla de Zephras; Coleccionables, Monturas · Nivel 40, los muestra.",
+	-- ["Klannoc offers The Windwatcher next (1791): the Whirlwind weapon chain, with an elite at the end, is in the Warrior class guide Whirlwind Weapon."] = "Klannoc ofrece después El Cazavientos (1791): la cadena del arma torbellino, con un élite al final, está en la guía de clase de guerrero Arma torbellino.",
+	-- ["{npc:6236}: Berserker Stance"] = "{npc:6236}: Actitud rabiosa",
 }

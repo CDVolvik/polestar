@@ -1,14 +1,16 @@
 -- Portuguese (Brazil) (ptBR): the guide forever/class/druid/bloodpetal-poison (forever/class/druid/bloodpetal-poison.guide).
 -- Written by `node tools/polestar.js i18n guides sync ptBR`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Portuguese (Brazil) (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Portuguese (Brazil) (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Guide
 	["Experience in Un'Goro at 50 and two healing potions; Forever removed the Classic item choice."] = "Experiência em Un'Goro no nível 50 e duas poções de cura; o Forever removeu a escolha de item do Classic.",
 
 	-- Step 1: Loganaar
-	-- {zone:1450} Moonglade · {npc:12042} Loganaar · {area:2361} Nighthaven
-	["Cast Teleport: {zone:1450}. {npc:12042} stands in {area:2361}; your class trainer offers the same quest."] = "Lance Teleporte: {zone:1450}. {npc:12042} fica em {area:2361}; seu instrutor de classe oferece a mesma missão.",
+	-- {spell:18960} Teleport: Moonglade · {npc:12042} Loganaar · {area:2361} Nighthaven
+	["Cast {spell:18960}. {npc:12042} stands in {area:2361}; your class trainer offers the same quest."] = "",
 
 	-- Step 2: Torwa Pathfinder
 	-- {area:976} Gadgetzan · {zone:1449} Un'Goro Crater
@@ -38,4 +40,7 @@ return {
 	-- Step 8: A Better Ingredient
 	-- {zone:1449} Un'Goro Crater
 	["Back to Torwa in the south-east corner of {zone:1449}."] = "De volta a Torwa, no canto sudeste da {zone:1449}.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Cast Teleport: {zone:1450}. {npc:12042} stands in {area:2361}; your class trainer offers the same quest."] = "Lance Teleporte: {zone:1450}. {npc:12042} fica em {area:2361}; seu instrutor de classe oferece a mesma missão.",
 }

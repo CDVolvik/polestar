@@ -1,7 +1,9 @@
 -- French (frFR): the guide forever/horde/tauren/01-mulgore (forever/horde/tauren/01-mulgore.guide).
 -- Written by `node tools/polestar.js i18n guides sync frFR`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in French (the English is listed above the line). The comments are rewritten by sync.
+-- name there in French (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Step 1: Camp Narache
 	-- {area:221} Camp Narache
@@ -64,9 +66,10 @@ return {
 	["{npc:5888}: {npc:5873} and your {item:5175}"] = "{npc:5888} : {npc:5873} et votre {item:5175}",
 
 	-- Step 15: Kaga Wildhoof
-	-- {area:220} Red Cloud Mesa · {npc:265810} Kaga Wildhoof · {area:222} Bloodhoof Village
-	["Follow the road north out of {area:220}. {npc:265810} waits on the road just south of {area:222}; /sit by her campfire until you get Boosted Rest."] = "Suivez la route au nord hors de {area:220}. {npc:265810} attend sur la route juste au sud de {area:222} ; /asseoir près de son feu de camp jusqu'à obtenir Repos renforcé.",
-	["/sit by Kaga's campfire until you get Boosted Rest"] = "/asseoir près du feu de camp de Kaga jusqu'à obtenir Repos renforcé",
+	-- {area:220} Red Cloud Mesa · {npc:265810} Kaga Wildhoof · {area:222} Bloodhoof Village · {spell:1229451} Boosted Rest
+	["Follow the road north out of {area:220}. {npc:265810} waits on the road just south of {area:222}; /sit by her campfire until you get {spell:1229451}."] = "",
+	-- {spell:1229451} Boosted Rest
+	["/sit by Kaga's campfire until you get {spell:1229451}"] = "",
 
 	-- Step 16: Bloodhoof Village
 	-- {npc:3067} Pyall Silentstride
@@ -123,10 +126,11 @@ return {
 	["Malah stands on the {area:821} a little east of the well."] = "Malah se tient dans {area:821}, un peu à l'est du puits.",
 
 	-- Step 31: Galak centaurs and Prairie Wolf Alphas
-	-- {npc:2958} Prairie Wolf
-	["Galak centaurs and {npc:2958} Alphas"] = "Centaures galak et Loups Alpha ({npc:2958})",
-	-- {area:821} The Rolling Plains · {npc:2958} Prairie Wolf
-	["The Galak centaurs camp on the plains north of the {area:821}; Herak leads them. {npc:2958} Alphas roam among the wolves."] = "Les centaures galak campent dans les plaines au nord de {area:821} ; Herak les mène. Les Loups Alpha des prairies ({npc:2958}) rôdent parmi les loups.",
+	-- plural, as words: Prairie Wolf Alphas = {npc:2960} Prairie Wolf Alpha
+	["Galak centaurs and Prairie Wolf Alphas"] = "",
+	-- {area:821} The Rolling Plains
+	-- plural, as words: Prairie Wolf Alphas = {npc:2960} Prairie Wolf Alpha
+	["The Galak centaurs camp on the plains north of the {area:821}; Herak leads them. Prairie Wolf Alphas roam among the wolves."] = "",
 
 	-- Step 32: The Ravaged Caravan
 	-- {zone:1456} Thunder Bluff
@@ -205,8 +209,8 @@ return {
 	["{npc:6746} on the central rise sends you to Turak on {area:1639}."] = "{npc:6746}, sur le piton central, vous envoie voir Turak sur {area:1639}.",
 
 	-- Step 53: Moonglade
-	-- {quest:5922} Moonglade · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {quest:5930} Great Bear Spirit
-	["Cast Teleport: {quest:5922}. {npc:11802} is in {area:2361}; the {quest:5930} sits in the north-western woods."] = "Lancez Téléportation : {quest:5922}. {npc:11802} se trouve à {area:2361} ; l'{quest:5930} se trouve dans les bois au nord-ouest.",
+	-- {spell:18960} Teleport: Moonglade · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {quest:5930} Great Bear Spirit
+	["Cast {spell:18960}. {npc:11802} is in {area:2361}; the {quest:5930} sits in the north-western woods."] = "",
 
 	-- Step 54: Back to Thunder Bluff
 	-- {area:222} Bloodhoof Village · {area:1639} Elder Rise
@@ -217,7 +221,6 @@ return {
 	["Ride down to {area:222} and tame with the {item:15908}: an {npc:2956} on the plains, a {npc:2959} north of the village, a Swoop to the north-west."] = "Redescendez à {area:222} et apprivoisez avec le {item:15908} : un {npc:2956} dans les plaines, un {npc:2959} au nord du village, un Rapace au nord-ouest.",
 	-- {item:15908} Taming Rod
 	["Tame it with the {item:15908}"] = "Apprivoisez-le avec le {item:15908}",
-	["Tame Beast"] = "Apprivoiser une bête",
 
 	-- Step 56: The Moonkin Stone
 	-- {object:177525} Moonkin Stone
@@ -232,4 +235,12 @@ return {
 	-- Step 58: Class turn-ins in Thunder Bluff
 	-- {area:1638} Thunder Bluff
 	["Class turn-ins in {area:1638}"] = "Quêtes de classe à rendre à {area:1638}",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["/sit by Kaga's campfire until you get Boosted Rest"] = "/asseoir près du feu de camp de Kaga jusqu'à obtenir Repos renforcé",
+	-- ["Cast Teleport: {quest:5922}. {npc:11802} is in {area:2361}; the {quest:5930} sits in the north-western woods."] = "Lancez Téléportation : {quest:5922}. {npc:11802} se trouve à {area:2361} ; l'{quest:5930} se trouve dans les bois au nord-ouest.",
+	-- ["Follow the road north out of {area:220}. {npc:265810} waits on the road just south of {area:222}; /sit by her campfire until you get Boosted Rest."] = "Suivez la route au nord hors de {area:220}. {npc:265810} attend sur la route juste au sud de {area:222} ; /asseoir près de son feu de camp jusqu'à obtenir Repos renforcé.",
+	-- ["Galak centaurs and {npc:2958} Alphas"] = "Centaures galak et Loups Alpha ({npc:2958})",
+	-- ["Tame Beast"] = "Apprivoiser une bête",
+	-- ["The Galak centaurs camp on the plains north of the {area:821}; Herak leads them. {npc:2958} Alphas roam among the wolves."] = "Les centaures galak campent dans les plaines au nord de {area:821} ; Herak les mène. Les Loups Alpha des prairies ({npc:2958}) rôdent parmi les loups.",
 }

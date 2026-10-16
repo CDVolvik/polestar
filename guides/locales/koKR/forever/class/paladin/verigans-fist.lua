@@ -1,7 +1,9 @@
 -- Korean (koKR): the guide forever/class/paladin/verigans-fist (forever/class/paladin/verigans-fist.guide).
 -- Written by `node tools/polestar.js i18n guides sync koKR`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Korean (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Guide
 	["The Alliance paladin's rare two-handed mace for the 20s, with a shield on the way."] = "20대 얼라이언스 성기사용 희귀 양손 둔기, 도중에 방패도 얻습니다.",

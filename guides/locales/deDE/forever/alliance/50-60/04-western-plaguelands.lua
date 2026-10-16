@@ -1,7 +1,9 @@
 -- German (deDE): the guide forever/alliance/50-60/04-western-plaguelands (forever/alliance/50-60/04-western-plaguelands.guide).
 -- Written by `node tools/polestar.js i18n guides sync deDE`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in German (the English is listed above the line). The comments are rewritten by sync.
+-- name there in German (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Step 1: Chillwind Camp
 	-- {npc:11616} Nathaniel Dumah · {area:2627} Terrordale
@@ -175,9 +177,9 @@ return {
 	["Ride north-west to {area:2276}, at the edge of the {area:2277}."] = "Reite nach Nordwesten zur {area:2276}, am Rand des Gebiets {area:2277}.",
 
 	-- Step 44: Terrordale
-	-- {area:2627} Terrordale · {npc:8597} Plaguehound · {item:15042} Empty Termite Jar
-	-- plural, as words: Plaguebats = {npc:8600} Plaguebat · Carrion Grubs = {npc:8603} Carrion Grub · Frenzied Plaguehounds = {npc:8598} Frenzied Plaguehound · Plaguehounds = {npc:8597} Plaguehound
-	["Ride west to {area:2627}. {npc:8597} Runts, Plaguebats and Carrion Grubs roam its woods; fill the {item:15042} at the big termite mounds and kill the Frenzied Plaguehounds further north."] = "Reite nach Westen ins {area:2627}. Kleine Seuchenhunde ({npc:8597}), Seuchenfledermäuse und Aaslarven streifen durch seine Wälder; fülle den {item:15042} an den großen Termitenhügeln und töte weiter nördlich die Rasenden Seuchenhunde.",
+	-- {area:2627} Terrordale · {item:15042} Empty Termite Jar
+	-- plural, as words: Plaguehound Runts = {npc:8596} Plaguehound Runt · Plaguebats = {npc:8600} Plaguebat · Carrion Grubs = {npc:8603} Carrion Grub · Frenzied Plaguehounds = {npc:8598} Frenzied Plaguehound
+	["Ride west to {area:2627}. Plaguehound Runts, Plaguebats and Carrion Grubs roam its woods; fill the {item:15042} at the big termite mounds and kill the Frenzied Plaguehounds further north."] = "",
 
 	-- Step 45: Egan
 	-- {npc:11140} Egan · {area:2627} Terrordale
@@ -275,4 +277,7 @@ return {
 	-- Step 63: Ratchet
 	-- {area:392} Ratchet · {area:976} Gadgetzan
 	["The next guide starts here in {area:392} and flies on to {area:976}."] = "Der nächste Guide beginnt hier in {area:392} und fliegt weiter nach {area:976}.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Ride west to {area:2627}. {npc:8597} Runts, Plaguebats and Carrion Grubs roam its woods; fill the {item:15042} at the big termite mounds and kill the Frenzied Plaguehounds further north."] = "Reite nach Westen ins {area:2627}. Kleine Seuchenhunde ({npc:8597}), Seuchenfledermäuse und Aaslarven streifen durch seine Wälder; fülle den {item:15042} an den großen Termitenhügeln und töte weiter nördlich die Rasenden Seuchenhunde.",
 }

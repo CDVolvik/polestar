@@ -1,7 +1,9 @@
 -- German (deDE): the guide forever/class/mage/arcane-refreshment (forever/class/mage/arcane-refreshment.guide).
 -- Written by `node tools/polestar.js i18n guides sync deDE`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in German (the English is listed above the line). The comments are rewritten by sync.
+-- name there in German (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Guide
 	-- {spell:10140} Conjure Water · {area:2577} Dire Maul
@@ -14,11 +16,13 @@ return {
 
 	-- Step 2: Hydrospawn
 	["Hydrospawn"] = "Hydrobrut",
-	-- {area:2577} Dire Maul
-	["Hydrospawn, a water elemental, lives in the Warpwood Quarter ({area:2577} East): chase the imp Pusillin until he turns to fight, clear the satyr room, then take the spiral ramp down to the pool."] = "Hydrobrut, ein Wasserelementar, lebt im Wucherborkenviertel ({area:2577} Ost): Jag den Wichtel Pusillin, bis er sich zum Kampf stellt, säubere den Satyrraum und nimm dann die Wendelrampe hinab zum Becken.",
+	["Hydrospawn, a water elemental, lives in the Warpwood Quarter (Dire Maul East): chase the imp Pusillin until he turns to fight, clear the satyr room, then take the spiral ramp down to the pool."] = "",
 	-- {item:18299} Hydrospawn Essence
 	["{item:18299}: Hydrospawn"] = "{item:18299}: Hydrobrut",
 
 	-- Step 3: Back to Lydros
 	["Back to Lydros"] = "Zurück zu Lydros",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Hydrospawn, a water elemental, lives in the Warpwood Quarter ({area:2577} East): chase the imp Pusillin until he turns to fight, clear the satyr room, then take the spiral ramp down to the pool."] = "Hydrobrut, ein Wasserelementar, lebt im Wucherborkenviertel ({area:2577} Ost): Jag den Wichtel Pusillin, bis er sich zum Kampf stellt, säubere den Satyrraum und nimm dann die Wendelrampe hinab zum Becken.",
 }

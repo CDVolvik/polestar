@@ -1,11 +1,12 @@
 -- German (deDE): the guide forever/reputation/arathi-basin (forever/reputation/arathi-basin.guide).
 -- Written by `node tools/polestar.js i18n guides sync deDE`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in German (the English is listed above the line). The comments are rewritten by sync.
+-- name there in German (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Guide
-	-- {zone:1461} Arathi Basin
-	["{zone:1461} Reputation"] = "Ruf: {zone:1461}",
+	["Arathi Basin Reputation"] = "",
 
 	-- Step 1: League of Arathor to Friendly
 	["League of Arathor to Friendly"] = "Der Bund von Arathor auf Freundlich",
@@ -18,7 +19,7 @@ return {
 	-- Step 2: League of Arathor to Honored
 	["League of Arathor to Honored"] = "Der Bund von Arathor auf Wohlwollend",
 	-- {zone:1461} Arathi Basin · {npc:15351} Alliance Brigadier General
-	["Keep playing {zone:1461}. On Call to Arms: {zone:1461} weekends the {npc:15351} in the capitals takes three {zone:1461} Marks of Honor for extra reputation."] = "Spiel weiter {zone:1461}. An Wochenenden mit „Zu den Waffen: {zone:1461}“ nimmt der {npc:15351} in den Hauptstädten drei Ehrenabzeichen ({zone:1461}) für zusätzlichen Ruf an.",
+	["Keep playing {zone:1461}. On Call to Arms: {zone:1461} weekends the {npc:15351} in the capitals takes three Arathi Basin Marks of Honor for extra reputation."] = "",
 	-- {npc:15127} Samuel Hawke
 	["{npc:15127} hands out one Arathor care package by level"] = "{npc:15127} gibt je nach Stufe ein Überlebenspaket von Arathor aus",
 
@@ -44,7 +45,7 @@ return {
 	-- {faction:510} The Defilers
 	["{faction:510} to Honored"] = "{faction:510} auf Wohlwollend",
 	-- {zone:1461} Arathi Basin · {npc:15350} Horde Warbringer
-	["Keep playing {zone:1461}. On Call to Arms: {zone:1461} weekends the {npc:15350} in the capitals takes three {zone:1461} Marks of Honor for extra reputation."] = "Spiel weiter {zone:1461}. An Wochenenden mit „Zu den Waffen: {zone:1461}“ nimmt der {npc:15350} in den Hauptstädten drei Ehrenabzeichen ({zone:1461}) für zusätzlichen Ruf an.",
+	["Keep playing {zone:1461}. On Call to Arms: {zone:1461} weekends the {npc:15350} in the capitals takes three Arathi Basin Marks of Honor for extra reputation."] = "",
 	-- {npc:15126} Rutherford Twing
 	["{npc:15126} hands out one Defiler's care package by level"] = "{npc:15126} gibt je nach Stufe ein Überlebenspaket der Entweihten aus",
 
@@ -57,4 +58,9 @@ return {
 	["{faction:510} to Exalted"] = "{faction:510} auf Ehrfürchtig",
 	-- {faction:510} The Defilers
 	["Exalted with {faction:510} earns a Legacy Point."] = "Ehrfürchtig bei {faction:510} bringt einen Legacy-Punkt.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Keep playing {zone:1461}. On Call to Arms: {zone:1461} weekends the {npc:15350} in the capitals takes three {zone:1461} Marks of Honor for extra reputation."] = "Spiel weiter {zone:1461}. An Wochenenden mit „Zu den Waffen: {zone:1461}“ nimmt der {npc:15350} in den Hauptstädten drei Ehrenabzeichen ({zone:1461}) für zusätzlichen Ruf an.",
+	-- ["Keep playing {zone:1461}. On Call to Arms: {zone:1461} weekends the {npc:15351} in the capitals takes three {zone:1461} Marks of Honor for extra reputation."] = "Spiel weiter {zone:1461}. An Wochenenden mit „Zu den Waffen: {zone:1461}“ nimmt der {npc:15351} in den Hauptstädten drei Ehrenabzeichen ({zone:1461}) für zusätzlichen Ruf an.",
+	-- ["{zone:1461} Reputation"] = "Ruf: {zone:1461}",
 }

@@ -1,11 +1,12 @@
 -- Korean (koKR): the guide forever/class/paladin/lumina-windsinger (forever/class/paladin/lumina-windsinger.guide).
 -- Written by `node tools/polestar.js i18n guides sync koKR`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Korean (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Guide
-	-- {quest:91862} Lumina Windsinger
-	["Rescuing {quest:91862}"] = "{quest:91862} 구출",
+	["Rescuing Lumina Windsinger"] = "",
 	-- {item:268484} Moonsilver Blade
 	["No item yet: a Forsaken paladin rescue story; its sequel, the {item:268484}, cannot be finished yet."] = "아직 아이템 없음: 포세이큰 성기사 구출 이야기입니다. 후속인 {item:268484}은(는) 아직 완료할 수 없습니다.",
 	-- {zone:1458} Undercity
@@ -28,10 +29,10 @@ return {
 	["from the {object:566037}"] = "{object:566037}에서",
 
 	-- Step 4: Fenris Keep
-	-- {quest:91862} Lumina Windsinger · {area:235} Fenris Keep · {npc:14235} The Rot
-	["{quest:91862} is caged inside {area:235}, at the north end of the isle. {npc:14235} Hide gnolls around her carry the key."] = "{quest:91862}은(는) 섬 북쪽 끝 {area:235} 안에 갇혀 있습니다. 그녀 주변의 썩은가죽 놀({npc:14235})이 열쇠를 가지고 있습니다.",
-	-- {item:267412} Fenris Isle Key · {npc:14235} The Rot
-	["{item:267412}, from the {npc:14235} Hide gnolls"] = "{item:267412}, 썩은가죽 놀({npc:14235})에게서",
+	-- {quest:91862} Lumina Windsinger · {area:235} Fenris Keep
+	["{quest:91862} is caged inside {area:235}, at the north end of the isle. The Rot Hide gnolls around her carry the key."] = "",
+	-- {item:267412} Fenris Isle Key
+	["{item:267412}, from the Rot Hide gnolls"] = "",
 
 	-- Step 5: Free Lumina
 	["Free Lumina"] = "Lumina 풀어주기",
@@ -44,4 +45,9 @@ return {
 	["Once she is clear of {area:235}, Lumina waits for you in the {area:228}. Speak with her again to hear what really happened on the road."] = "{area:235}을(를) 벗어나면 Lumina가 {area:228}에서 기다립니다. 다시 대화하여 길에서 실제로 무슨 일이 있었는지 들으십시오.",
 	-- {npc:259620} Lumina Windsinger · {area:228} The Sepulcher
 	["{npc:259620}, the {area:228}"] = "{npc:259620}, {area:228}",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Rescuing {quest:91862}"] = "{quest:91862} 구출",
+	-- ["{item:267412}, from the {npc:14235} Hide gnolls"] = "{item:267412}, 썩은가죽 놀({npc:14235})에게서",
+	-- ["{quest:91862} is caged inside {area:235}, at the north end of the isle. {npc:14235} Hide gnolls around her carry the key."] = "{quest:91862}은(는) 섬 북쪽 끝 {area:235} 안에 갇혀 있습니다. 그녀 주변의 썩은가죽 놀({npc:14235})이 열쇠를 가지고 있습니다.",
 }

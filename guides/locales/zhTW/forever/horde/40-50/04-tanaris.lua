@@ -1,7 +1,9 @@
 -- Chinese (traditional) (zhTW): the guide forever/horde/40-50/04-tanaris (forever/horde/40-50/04-tanaris.guide).
 -- Written by `node tools/polestar.js i18n guides sync zhTW`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Chinese (traditional) (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Chinese (traditional) (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Step 1: Fly to Gadgetzan
 	-- {area:976} Gadgetzan
@@ -97,8 +99,9 @@ return {
 	-- Step 21: The Grimesilt Dig Site
 	-- {area:247} Grimesilt Dig Site
 	["The {area:247}"] = "",
-	-- {area:340} Kargath · {zone:1427} Searing Gorge · {object:173265} Wooden Outhouse · {object:147516} Dark Iron · {item:4306} Silk Cloth
-	["Take the pass out of {area:340}'s west side into the {zone:1427}, then ride south-west to the dig site. The {object:173265} stands at its southern end; the {object:147516} Geologists dig just north of it. Bring 15 {item:4306} (the Auction House sells it)."] = "",
+	-- {area:340} Kargath · {zone:1427} Searing Gorge · {object:173265} Wooden Outhouse · {item:4306} Silk Cloth
+	-- plural, as words: Dark Iron Geologists = {npc:5839} Dark Iron Geologist
+	["Take the pass out of {area:340}'s west side into the {zone:1427}, then ride south-west to the dig site. The {object:173265} stands at its southern end; the Dark Iron Geologists dig just north of it. Bring 15 {item:4306} (the Auction House sells it)."] = "",
 	-- {object:173265} Wooden Outhouse
 	["the {object:173265}"] = "",
 
@@ -113,16 +116,17 @@ return {
 	["Kalaran stands alone south of {area:1446}, at the edge of the Cauldron. Listen to his story."] = "",
 
 	-- Step 24: The Cauldron
-	-- {object:147516} Dark Iron · {item:11818} Grimesilt Outhouse Key
-	-- plural, as words: Heavy War Golems = {npc:5854} Heavy War Golem · War Golems = {npc:2751} War Golem · Blazing Elementals = {npc:5850} Blazing Elemental
-	["Heavy War Golems patrol the Cauldron below Kalaran and drop the oil; the Magma and Blazing Elementals drifting among them drop the hearts. The {object:147516} Taskmasters and Slavers drive the slaves on the paths; a Slaver may drop the {item:11818}: keep it."] = "",
+	-- {item:11818} Grimesilt Outhouse Key
+	-- plural, as words: Heavy War Golems = {npc:5854} Heavy War Golem · Blazing Elementals = {npc:5850} Blazing Elemental · Dark Iron Taskmasters = {npc:5846} Dark Iron Taskmaster
+	["Heavy War Golems patrol the Cauldron below Kalaran and drop the oil; the Magma and Blazing Elementals drifting among them drop the hearts. The Dark Iron Taskmasters and Slavers drive the slaves on the paths; a Slaver may drop the {item:11818}: keep it."] = "",
 	-- {item:11818} Grimesilt Outhouse Key
 	["{item:11818}, a rare drop"] = "",
 
 	-- Step 26: The Steamsmiths' furnaces
 	["The Steamsmiths' furnaces"] = "",
-	-- {object:147516} Dark Iron · {item:10551} Thorium Plated Dagger · {item:18959} Smithing Tuyere
-	["The {object:147516} Steamsmiths work the furnaces in the middle of the Cauldron; half of them carry a {item:10551}, one in ten the {item:18959}. Slaves, Slavers and Taskmasters carry daggers too."] = "",
+	-- {item:10551} Thorium Plated Dagger · {item:18959} Smithing Tuyere
+	-- plural, as words: Dark Iron Steamsmiths = {npc:5840} Dark Iron Steamsmith
+	["The Dark Iron Steamsmiths work the furnaces in the middle of the Cauldron; half of them carry a {item:10551}, one in ten the {item:18959}. Slaves, Slavers and Taskmasters carry daggers too."] = "",
 
 	-- Step 27: Kalaran Windblade
 	-- {item:10552} Symbol of Ragnaros
@@ -140,10 +144,11 @@ return {
 	["The Greater Lava Spiders roam the plateaus and lava pools in the south-west of the gorge."] = "",
 
 	-- Step 30: Dark Iron Lookouts
-	-- {object:147516} Dark Iron
-	["{object:147516} Lookouts"] = "",
-	-- {object:147516} Dark Iron · {item:18960} Lookout's Spyglass
-	["The {object:147516} Lookouts stand on the ridges around the sentry towers south of the Cauldron; about one in ten carries the {item:18960}."] = "",
+	-- plural, as words: Dark Iron Lookouts = {npc:8566} Dark Iron Lookout
+	["Dark Iron Lookouts"] = "",
+	-- {item:18960} Lookout's Spyglass
+	-- plural, as words: Dark Iron Lookouts = {npc:8566} Dark Iron Lookout
+	["The Dark Iron Lookouts stand on the ridges around the sentry towers south of the Cauldron; about one in ten carries the {item:18960}."] = "",
 
 	-- Step 31: The Key to Freedom
 	-- {item:11818} Grimesilt Outhouse Key · {object:173265} Wooden Outhouse

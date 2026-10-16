@@ -1,7 +1,9 @@
 -- Chinese (traditional) (zhTW): the guide forever/horde/50-60/06-silithus (forever/horde/50-60/06-silithus.guide).
 -- Written by `node tools/polestar.js i18n guides sync zhTW`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Chinese (traditional) (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Chinese (traditional) (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Step 1: Layo Starstrike
 	-- {area:3077} Valor's Rest · {zone:1451} Silithus
@@ -12,8 +14,9 @@ return {
 	["Ride south-west to the ruins of {area:2738}. The {object:179565} for {npc:11801} sits inside one of the ruined houses."] = "往西南騎到{area:2738}的廢墟。要交給{npc:11801}的{object:179565}就在其中一間破屋裡。",
 
 	-- Step 4: Hive in the Tower
-	-- {area:2742} Hive'Ashi · {item:17346} Encrusted Silithid Object
-	["Back to Southwind and climb the tower. Stirring the hive at the top brings out {area:2742} Ambushers; one carries the {item:17346}."] = "回到南風村，爬上高塔。驚動塔頂的蟲巢會引出{area:2742}伏擊者；其中一隻身上帶著{item:17346}。",
+	-- {item:17346} Encrusted Silithid Object
+	-- plural, as words: Hive'Ashi Ambushers = {npc:13301} Hive'Ashi Ambusher
+	["Back to Southwind and climb the tower. Stirring the hive at the top brings out Hive'Ashi Ambushers; one carries the {item:17346}."] = "",
 
 	-- Step 5: Cenarion Hold
 	["Ride west to the walled hold in the middle of the desert."] = "往西騎到沙漠中央有城牆的城堡。",
@@ -188,4 +191,7 @@ return {
 	-- Step 42: The Bulwark
 	-- {area:152} The Bulwark · {zone:1458} Undercity
 	["West to the {area:152}. The next guide starts in the {zone:1458}, a short ride west."] = "往西到{area:152}。下一份指南從往西騎不遠的{zone:1458}開始。",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Back to Southwind and climb the tower. Stirring the hive at the top brings out {area:2742} Ambushers; one carries the {item:17346}."] = "回到南風村，爬上高塔。驚動塔頂的蟲巢會引出{area:2742}伏擊者；其中一隻身上帶著{item:17346}。",
 }

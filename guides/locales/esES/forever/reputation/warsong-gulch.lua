@@ -1,25 +1,26 @@
 -- Spanish (Spain) (esES): the guide forever/reputation/warsong-gulch (forever/reputation/warsong-gulch.guide).
 -- Written by `node tools/polestar.js i18n guides sync esES`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Spanish (Spain) (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Spanish (Spain) (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Guide
-	-- {zone:1460} Warsong Gulch
-	["{zone:1460} Reputation"] = "Reputación con {zone:1460}",
+	["Warsong Gulch Reputation"] = "",
 
 	-- Step 1: Silverwing Sentinels to Friendly
 	-- {faction:890} Silverwing Sentinels
 	["{faction:890} to Friendly"] = "{faction:890} hasta Amistoso",
 	-- {faction:890} Silverwing Sentinels · {zone:1460} Warsong Gulch
 	["The {faction:890} are the Night Elves holding {zone:1460}. Their reputation comes from the battleground: every enemy flag your team captures pays it to the whole team. Queue at any battlemaster. Forever's Legacy Diplomat perk increases reputation gains."] = "Los {faction:890} son los elfos de la noche que defienden {zone:1460}. Su reputación se gana en el campo de batalla: cada bandera enemiga que captura tu equipo se la da a todo el equipo. Ponte en cola con cualquier maestro de batalla. La ventaja Diplomático del legado de Forever aumenta la reputación obtenida.",
-	-- {npc:14733} Sentinel Farsong · {zone:1460} Warsong Gulch
-	["{npc:14733} takes {zone:1460} Marks of Honor for Vanquish the Invaders!, once per level bracket (data); check them live."] = "{npc:14733} acepta Marcas de Honor de {zone:1460} para ¡Expulsa al invasor!, una vez por franja de niveles (según los datos); compruébalo en el juego.",
+	-- {npc:14733} Sentinel Farsong
+	["{npc:14733} takes Warsong Gulch Marks of Honor for Vanquish the Invaders!, once per level bracket (data); check them live."] = "",
 
 	-- Step 2: Silverwing Sentinels to Honored
 	-- {faction:890} Silverwing Sentinels
 	["{faction:890} to Honored"] = "{faction:890} hasta Honorable",
 	-- {zone:1460} Warsong Gulch · {npc:15351} Alliance Brigadier General
-	["Keep playing {zone:1460} and capturing flags. On Call to Arms: {zone:1460} weekends the {npc:15351} in the capitals takes three {zone:1460} Marks of Honor for extra reputation."] = "Sigue jugando en {zone:1460} y capturando banderas. Los fines de semana de Llamada a las armas: {zone:1460}, el {npc:15351} de las capitales acepta tres Marcas de Honor de {zone:1460} a cambio de reputación extra.",
+	["Keep playing {zone:1460} and capturing flags. On Call to Arms: {zone:1460} weekends the {npc:15351} in the capitals takes three Warsong Gulch Marks of Honor for extra reputation."] = "",
 	-- {npc:14753} Illiyana Moonblaze
 	["{npc:14753} hands out one Sentinel care package by level"] = "{npc:14753} entrega un paquete de curación de centinela según tu nivel",
 
@@ -40,14 +41,14 @@ return {
 	["{faction:889} to Friendly"] = "{faction:889} hasta Amistoso",
 	-- {faction:889} Warsong Outriders · {zone:1440} Ashenvale
 	["The {faction:889} are the Orcs logging {zone:1440}. Their reputation comes from the battleground: every enemy flag your team captures pays it to the whole team. Queue at any battlemaster. Forever's Legacy Diplomat perk increases reputation gains."] = "Los {faction:889} son los orcos que talan {zone:1440}. Su reputación se gana en el campo de batalla: cada bandera enemiga que captura tu equipo se la da a todo el equipo. Ponte en cola con cualquier maestro de batalla. La ventaja Diplomático del legado de Forever aumenta la reputación obtenida.",
-	-- {npc:14781} Captain Shatterskull · {zone:1460} Warsong Gulch
-	["{npc:14781} takes {zone:1460} Marks of Honor for Quell the Silverwing Usurpers, once per level bracket (data); check them live."] = "{npc:14781} acepta Marcas de Honor de {zone:1460} para Acaba con los usurpadores Ala de Plata, una vez por franja de niveles (según los datos); compruébalo en el juego.",
+	-- {npc:14781} Captain Shatterskull
+	["{npc:14781} takes Warsong Gulch Marks of Honor for Quell the Silverwing Usurpers, once per level bracket (data); check them live."] = "",
 
 	-- Step 6: Warsong Outriders to Honored
 	-- {faction:889} Warsong Outriders
 	["{faction:889} to Honored"] = "{faction:889} hasta Honorable",
 	-- {zone:1460} Warsong Gulch · {npc:15350} Horde Warbringer
-	["Keep playing {zone:1460} and capturing flags. On Call to Arms: {zone:1460} weekends the {npc:15350} in the capitals takes three {zone:1460} Marks of Honor for extra reputation."] = "Sigue jugando en {zone:1460} y capturando banderas. Los fines de semana de Llamada a las armas: {zone:1460}, el {npc:15350} de las capitales acepta tres Marcas de Honor de {zone:1460} a cambio de reputación extra.",
+	["Keep playing {zone:1460} and capturing flags. On Call to Arms: {zone:1460} weekends the {npc:15350} in the capitals takes three Warsong Gulch Marks of Honor for extra reputation."] = "",
 	-- {npc:14754} Kelm Hargunth
 	["{npc:14754} hands out one Outrider care package by level"] = "{npc:14754} entrega un paquete de curación de escolta según tu nivel",
 
@@ -60,4 +61,11 @@ return {
 	["{faction:889} to Exalted"] = "{faction:889} hasta Exaltado",
 	-- {faction:889} Warsong Outriders
 	["Exalted with the {faction:889} earns a Legacy Point."] = "Ser Exaltado con los {faction:889} otorga un punto de Legado.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Keep playing {zone:1460} and capturing flags. On Call to Arms: {zone:1460} weekends the {npc:15350} in the capitals takes three {zone:1460} Marks of Honor for extra reputation."] = "Sigue jugando en {zone:1460} y capturando banderas. Los fines de semana de Llamada a las armas: {zone:1460}, el {npc:15350} de las capitales acepta tres Marcas de Honor de {zone:1460} a cambio de reputación extra.",
+	-- ["Keep playing {zone:1460} and capturing flags. On Call to Arms: {zone:1460} weekends the {npc:15351} in the capitals takes three {zone:1460} Marks of Honor for extra reputation."] = "Sigue jugando en {zone:1460} y capturando banderas. Los fines de semana de Llamada a las armas: {zone:1460}, el {npc:15351} de las capitales acepta tres Marcas de Honor de {zone:1460} a cambio de reputación extra.",
+	-- ["{npc:14733} takes {zone:1460} Marks of Honor for Vanquish the Invaders!, once per level bracket (data); check them live."] = "{npc:14733} acepta Marcas de Honor de {zone:1460} para ¡Expulsa al invasor!, una vez por franja de niveles (según los datos); compruébalo en el juego.",
+	-- ["{npc:14781} takes {zone:1460} Marks of Honor for Quell the Silverwing Usurpers, once per level bracket (data); check them live."] = "{npc:14781} acepta Marcas de Honor de {zone:1460} para Acaba con los usurpadores Ala de Plata, una vez por franja de niveles (según los datos); compruébalo en el juego.",
+	-- ["{zone:1460} Reputation"] = "Reputación con {zone:1460}",
 }

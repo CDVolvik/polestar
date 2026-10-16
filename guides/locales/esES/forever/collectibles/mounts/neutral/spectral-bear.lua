@@ -1,11 +1,10 @@
 -- Spanish (Spain) (esES): the guide forever/collectibles/mounts/neutral/spectral-bear (forever/collectibles/mounts/neutral/spectral-bear.guide).
 -- Written by `node tools/polestar.js i18n guides sync esES`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Spanish (Spain) (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Spanish (Spain) (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
-	-- Guide
-	["Spectral Bear"] = "Oso espectral",
-
 	-- Step 1: Journeyman Riding
 	-- {skill:762} Riding
 	["Journeyman {skill:762}"] = "{skill:762} de oficial",
@@ -16,4 +15,7 @@ return {
 	["55 Legacy Points"] = "55 puntos de Legado",
 	-- {item:281060} Replica Ironforge Air Rifle · {npc:268840} Spectral Bear Cub · {item:277717} Spectral Bear Tabard
 	["Legacy Points are account-wide: each Legacy Challenge (a class reaching 25, 45 and 60, professions, PvP, exploring) is worth one. The Progress Track gives the {item:281060} at 15, the {npc:268840} at 25, the {item:277717} at 40 and the reins at 55. How rewards are delivered is not known yet (perhaps by mail); this goal ticks once the reins are in your bags."] = "Los puntos de Legado son de toda la cuenta: cada desafío de Legado (una clase que llega a 25, 45 y 60, profesiones, JcJ, exploración) vale uno. El registro de progreso da {item:281060} con 15, {npc:268840} con 25, {item:277717} con 40 y las riendas con 55. Aún no se sabe cómo se entregan las recompensas (quizá por correo); este objetivo se marca cuando tengas las riendas en las bolsas.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Spectral Bear"] = "Oso espectral",
 }

@@ -1,7 +1,9 @@
 -- French (frFR): the guide forever/class/paladin/holy-mightstone (forever/class/paladin/holy-mightstone.guide).
 -- Written by `node tools/polestar.js i18n guides sync frFR`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in French (the English is listed above the line). The comments are rewritten by sync.
+-- name there in French (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Guide
 	["A one-use stone that makes you much stronger against undead for 10 minutes; the old choice rewards are gone."] = "Une pierre à usage unique qui vous rend bien plus fort contre les morts-vivants pendant 10 minutes ; les anciennes récompenses au choix ont disparu.",

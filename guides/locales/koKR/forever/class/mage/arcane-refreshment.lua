@@ -1,7 +1,9 @@
 -- Korean (koKR): the guide forever/class/mage/arcane-refreshment (forever/class/mage/arcane-refreshment.guide).
 -- Written by `node tools/polestar.js i18n guides sync koKR`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Korean (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Guide
 	-- {spell:10140} Conjure Water · {area:2577} Dire Maul
@@ -14,11 +16,13 @@ return {
 
 	-- Step 2: Hydrospawn
 	["Hydrospawn"] = "히드로스폰",
-	-- {area:2577} Dire Maul
-	["Hydrospawn, a water elemental, lives in the Warpwood Quarter ({area:2577} East): chase the imp Pusillin until he turns to fight, clear the satyr room, then take the spiral ramp down to the pool."] = "물의 정령 히드로스폰은 굽이나무 지구({area:2577} 동쪽)에 있습니다. 임프 푸실린이 돌아서서 싸울 때까지 쫓아가고, 사티로스 방을 정리한 뒤 나선형 경사로를 따라 연못으로 내려가십시오.",
+	["Hydrospawn, a water elemental, lives in the Warpwood Quarter (Dire Maul East): chase the imp Pusillin until he turns to fight, clear the satyr room, then take the spiral ramp down to the pool."] = "",
 	-- {item:18299} Hydrospawn Essence
 	["{item:18299}: Hydrospawn"] = "{item:18299}: 히드로스폰",
 
 	-- Step 3: Back to Lydros
 	["Back to Lydros"] = "리드로스에게 돌아가기",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Hydrospawn, a water elemental, lives in the Warpwood Quarter ({area:2577} East): chase the imp Pusillin until he turns to fight, clear the satyr room, then take the spiral ramp down to the pool."] = "물의 정령 히드로스폰은 굽이나무 지구({area:2577} 동쪽)에 있습니다. 임프 푸실린이 돌아서서 싸울 때까지 쫓아가고, 사티로스 방을 정리한 뒤 나선형 경사로를 따라 연못으로 내려가십시오.",
 }

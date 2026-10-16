@@ -1,10 +1,13 @@
 -- German (deDE): the guide forever/class/mage/polymorph-pig (forever/class/mage/polymorph-pig.guide).
 -- Written by `node tools/polestar.js i18n guides sync deDE`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in German (the English is listed above the line). The comments are rewritten by sync.
+-- name there in German (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Guide
-	["A new look for Polymorph: it turns the target into a pig rather than a sheep."] = "Ein neues Aussehen für Verwandlung: Das Ziel wird in ein Schwein statt in ein Schaf verwandelt.",
+	-- {spell:118} Polymorph
+	["A new look for {spell:118}: it turns the target into a pig rather than a sheep."] = "",
 
 	-- Step 1: Sanath Lim-yo
 	-- {area:3137} Talrendis Point · {area:1237} Valormok · {npc:8395} Sanath Lim-yo · {npc:8379} Archmage Xylem · {zone:1447} Azshara · {area:1221} Ruins of Eldarath
@@ -21,11 +24,16 @@ return {
 	-- Step 4: Polymorph Clones
 	-- plural, as words: Polymorph Clones = {npc:16479} Polymorph Clone
 	["Polymorph Clones"] = "Verwandelte Kopien",
-	-- {item:23250} Prismatic Shell · {area:1221} Ruins of Eldarath
+	-- {item:23250} Prismatic Shell · {area:1221} Ruins of Eldarath · {spell:118} Polymorph
 	-- plural, as words: Polymorph Clones = {npc:16479} Polymorph Clone
-	["Carry the {item:23250} back to the {area:1221}. Polymorph a Spitelash naga and wait a few seconds: it splits into small Polymorph Clones. Kill the clones quickly; the shell collects their essence."] = "Bring die {item:23250} zurück ins Gebiet {area:1221}. Verwandle einen Naga der Grollflossen und warte ein paar Sekunden: Er teilt sich in kleine Verwandelte Kopien. Töte die Kopien schnell; die Muschel sammelt ihre Essenz.",
+	["Carry the {item:23250} back to the {area:1221}. {spell:118} a Spitelash naga and wait a few seconds: it splits into small Polymorph Clones. Kill the clones quickly; the shell collects their essence."] = "",
 
 	-- Step 5: Fragmented Magic
-	-- {npc:8379} Archmage Xylem
-	["{npc:8379}: Polymorph (pig)"] = "{npc:8379}: Verwandlung: Schwein",
+	-- {npc:8379} Archmage Xylem · {spell:118} Polymorph
+	["{npc:8379}: {spell:118} (pig)"] = "",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["A new look for Polymorph: it turns the target into a pig rather than a sheep."] = "Ein neues Aussehen für Verwandlung: Das Ziel wird in ein Schwein statt in ein Schaf verwandelt.",
+	-- ["Carry the {item:23250} back to the {area:1221}. Polymorph a Spitelash naga and wait a few seconds: it splits into small Polymorph Clones. Kill the clones quickly; the shell collects their essence."] = "Bring die {item:23250} zurück ins Gebiet {area:1221}. Verwandle einen Naga der Grollflossen und warte ein paar Sekunden: Er teilt sich in kleine Verwandelte Kopien. Töte die Kopien schnell; die Muschel sammelt ihre Essenz.",
+	-- ["{npc:8379}: Polymorph (pig)"] = "{npc:8379}: Verwandlung: Schwein",
 }

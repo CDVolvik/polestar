@@ -1,7 +1,9 @@
 -- German (deDE): the guide forever/alliance/50-60/06-silithus (forever/alliance/50-60/06-silithus.guide).
 -- Written by `node tools/polestar.js i18n guides sync deDE`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in German (the English is listed above the line). The comments are rewritten by sync.
+-- name there in German (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Guide
 	-- {zone:1451} Silithus · {zone:1448} Felwood · {zone:1452} Winterspring
@@ -108,8 +110,8 @@ return {
 	-- {item:20404} Encrypted Twilight Text · {npc:15306} Bor Wildmane · {npc:15194} Hermit Ortell
 	-- plural, as words: Dust Stormers = {npc:11744} Dust Stormer · Desert Rumblers = {npc:11746} Desert Rumbler
 	["The Twilight's Hammer dig fills the north-west corner: tablet fragments lie on the ground and the Dust Stormers and Desert Rumblers carry them too. Every cultist can drop an {item:20404}: keep twenty, ten for {npc:15306} and ten for {npc:15194} later."] = "Die Grabung der Twilight füllt die Nordwestecke: Schrifttafelfragmente liegen auf dem Boden, und auch die Staubstürmer und Wüstenrumpler tragen welche. Jeder Kultist kann einen {item:20404} fallen lassen: Behalte zwanzig, zehn für {npc:15306} und zehn für {npc:15194} später.",
-	-- {object:210335} Twilight Tablet
-	["{object:210335} Fragments"] = "Fragmente von {object:210335}",
+	-- plural, as words: Twilight Tablet Fragments = {item:20378} Twilight Tablet Fragment
+	["Twilight Tablet Fragments"] = "",
 	["Twilight's Hammer cultists"] = "Kultisten der Twilight",
 	-- {quest:8323} True Believers
 	["Ten more for {quest:8323}"] = "Zehn weitere für {quest:8323}",
@@ -270,7 +272,8 @@ return {
 	-- Step 53: Grind to 60
 	["Grind to 60"] = "Grinde bis 60",
 	-- {area:2627} Terrordale
-	["Cross the river east of Tirion into {area:2627}. The {area:2627} Spirits haunt the woods there."] = "Überquere den Fluss östlich von Tirion nach {area:2627}. Die Geister von {area:2627} spuken dort in den Wäldern.",
+	-- plural, as words: Terrordale Spirits = {npc:14564} Terrordale Spirit
+	["Cross the river east of Tirion into {area:2627}. The Terrordale Spirits haunt the woods there."] = "",
 	-- {npc:14564} Terrordale Spirit · {area:2627} Terrordale · {zone:1423} Eastern Plaguelands
 	["grind on {npc:14564} at {area:2627}, {zone:1423}"] = "Grinde an {npc:14564} in {area:2627}, {zone:1423}",
 
@@ -287,4 +290,8 @@ return {
 	["Shaman training"] = "Schamanentraining",
 	-- {zone:1453} Stormwind City · {area:2257} Deeprun Tram · {object:28027} Dwarven District · {zone:1455} Ironforge · {npc:258098} Eldrun Stormbreaker
 	["{zone:1453} has no shaman trainer: take the {area:2257} from the {object:28027} to {zone:1455} and train your level 60 spells with {npc:258098}."] = "{zone:1453} hat keinen Schamanenlehrer: Nimm die {area:2257} vom {object:28027} nach {zone:1455} und trainiere deine Zauber der Stufe 60 bei {npc:258098}.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Cross the river east of Tirion into {area:2627}. The {area:2627} Spirits haunt the woods there."] = "Überquere den Fluss östlich von Tirion nach {area:2627}. Die Geister von {area:2627} spuken dort in den Wäldern.",
+	-- ["{object:210335} Fragments"] = "Fragmente von {object:210335}",
 }

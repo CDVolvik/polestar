@@ -1,7 +1,9 @@
 -- Chinese (simplified) (zhCN): the guide forever/horde/30-40/03-arathi-highlands (forever/horde/30-40/03-arathi-highlands.guide).
 -- Written by `node tools/polestar.js i18n guides sync zhCN`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Chinese (simplified) (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Chinese (simplified) (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Step 1: Fly to Grom'gol
 	-- {object:3202} Grom'gol
@@ -16,8 +18,8 @@ return {
 	["{object:1661} has no Hunter or Shaman trainer: take the {zone:1454} zeppelin from the same tower instead and train in the city, then take the {zone:1458} zeppelin from the tower outside {zone:1454}'s main gate."] = "{object:1661}没有猎人或萨满祭司训练师：改从同一座塔楼乘飞艇前往{zone:1454}，在城里训练，然后从{zone:1454}正门外的塔楼乘飞艇前往{zone:1458}。",
 
 	-- Step 3: Thunder Bluff
-	-- {zone:1450} Moonglade · {npc:11798} Bunthen Plainswind · {area:1638} Thunder Bluff · {npc:3033} Turak Runetotem · {area:1639} Elder Rise · {zone:1454} Orgrimmar · {zone:1458} Undercity
-	["Cast Teleport: {zone:1450} and take {npc:11798}'s flight to {area:1638}; {npc:3033} trains you on {area:1639}. Then fly to {zone:1454} and take the {zone:1458} zeppelin from the tower outside the main gate."] = "施放传送：{zone:1450}，乘{npc:11798}的飞行前往{area:1638}；{npc:3033}在{area:1639}训练你。然后飞往{zone:1454}，从正门外的塔楼乘飞艇前往{zone:1458}。",
+	-- {spell:18960} Teleport: Moonglade · {npc:11798} Bunthen Plainswind · {area:1638} Thunder Bluff · {npc:3033} Turak Runetotem · {area:1639} Elder Rise · {zone:1454} Orgrimmar · {zone:1458} Undercity
+	["Cast {spell:18960} and take {npc:11798}'s flight to {area:1638}; {npc:3033} trains you on {area:1639}. Then fly to {zone:1454} and take the {zone:1458} zeppelin from the tower outside the main gate."] = "",
 
 	-- Step 4: Undercity trainers
 	-- {zone:1458} Undercity
@@ -146,10 +148,10 @@ return {
 	["for Helgrum in {area:75}, around level 42"] = "交给{area:75}的赫格拉姆，约42级",
 
 	-- Step 32: Lesser Rock Elementals
-	-- plural, as words: Lesser Rock Elementals = {npc:2735} Lesser Rock Elemental · Rock Elementals = {npc:92} Rock Elemental
+	-- plural, as words: Lesser Rock Elementals = {npc:2735} Lesser Rock Elemental
 	["Lesser Rock Elementals"] = "次级石元素",
-	-- {npc:92} Rock Elemental
-	["The small elementals drift across the flats just west of Lotwil's camp. Every rock elemental in the zone can drop Jarkal's {npc:92} Shards: keep them."] = "小石元素在鲁特维尔营地西边不远的平地上飘荡。该地区所有石元素都可能掉落加卡尔要的{npc:92}碎片：留着。",
+	-- plural, as words: Rock Elemental Shards = {item:7848} Rock Elemental Shard
+	["The small elementals drift across the flats just west of Lotwil's camp. Every rock elemental in the zone can drop Jarkal's Rock Elemental Shards: keep them."] = "",
 
 	-- Step 34: Rock Elementals
 	-- plural, as words: Rock Elementals = {npc:92} Rock Elemental
@@ -161,13 +163,13 @@ return {
 	-- Step 36: Coyotes and buzzards
 	["Coyotes and buzzards"] = "山狗和秃鹫",
 	-- {area:1878} The Dustbowl
-	-- plural, as words: Elder Crag Coyotes = {npc:2729} Elder Crag Coyote · Crag Coyotes = {npc:2727} Crag Coyote · Giant Buzzards = {npc:2831} Giant Buzzard
+	-- plural, as words: Elder Crag Coyotes = {npc:2729} Elder Crag Coyote · Giant Buzzards = {npc:2831} Giant Buzzard
 	["The Elder Crag Coyotes and Giant Buzzards roam the basin south of the {area:1878}. Coyotes drop both the jawbones and the fangs; only the buzzards drop wings and gizzards."] = "老峭壁山狗和巨型秃鹫在{area:1878}南边的盆地中游荡。山狗掉落颚骨和尖牙；只有秃鹫掉落翅膀和胃。",
 
 	-- Step 37: Greater Rock Elementals
-	-- plural, as words: Greater Rock Elementals = {npc:2736} Greater Rock Elemental · Rock Elementals = {npc:92} Rock Elemental
+	-- plural, as words: Greater Rock Elementals = {npc:2736} Greater Rock Elemental
 	["Greater Rock Elementals"] = "巨型石元素",
-	-- plural, as words: Greater Rock Elementals = {npc:2736} Greater Rock Elemental · Rock Elementals = {npc:92} Rock Elemental
+	-- plural, as words: Greater Rock Elementals = {npc:2736} Greater Rock Elemental
 	["The Greater Rock Elementals (42-44, well above you) wander the gulches in the south-west; the bracers drop about one kill in five. Pull one at a time and rest between fights, or leave them. Keep killing coyotes and buzzards you still need on the way."] = "巨型石元素（42-44级，远高于你）在西南部的沟壑中游荡；护腕约五次击杀掉落一次。一次拉一个，战斗间休息，或者放弃。途中继续击杀还需要的山狗和秃鹫。",
 
 	-- Step 38: Kargath
@@ -230,6 +232,9 @@ return {
 	-- Step 53: The Affray
 	-- {area:392} Ratchet · {area:720} Fray Island · {npc:6236} Klannoc Macleod · {npc:6238} Big Will
 	["Ride south along the coast from {area:392} to {area:720}. {npc:6236} stands by the arena: step on the grate to start the fight; the challengers come one at a time, then {npc:6238} (33)."] = "从{area:392}沿海岸向南骑到{area:720}。{npc:6236}站在竞技场旁：踏上格栅开始战斗；挑战者依次上场，然后是{npc:6238}（33级）。",
-	-- {npc:6236} Klannoc Macleod
-	["{npc:6236}: Berserker Stance"] = "{npc:6236}：狂暴姿态",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Cast Teleport: {zone:1450} and take {npc:11798}'s flight to {area:1638}; {npc:3033} trains you on {area:1639}. Then fly to {zone:1454} and take the {zone:1458} zeppelin from the tower outside the main gate."] = "施放传送：{zone:1450}，乘{npc:11798}的飞行前往{area:1638}；{npc:3033}在{area:1639}训练你。然后飞往{zone:1454}，从正门外的塔楼乘飞艇前往{zone:1458}。",
+	-- ["The small elementals drift across the flats just west of Lotwil's camp. Every rock elemental in the zone can drop Jarkal's {npc:92} Shards: keep them."] = "小石元素在鲁特维尔营地西边不远的平地上飘荡。该地区所有石元素都可能掉落加卡尔要的{npc:92}碎片：留着。",
+	-- ["{npc:6236}: Berserker Stance"] = "{npc:6236}：狂暴姿态",
 }

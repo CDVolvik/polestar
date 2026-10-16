@@ -1,7 +1,9 @@
 -- Spanish (Spain) (esES): the guide forever/horde/06-hillsbrad-foothills (forever/horde/06-hillsbrad-foothills.guide).
 -- Written by `node tools/polestar.js i18n guides sync esES`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Spanish (Spain) (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Spanish (Spain) (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Step 1: Tarren Mill
 	-- {area:272} Tarren Mill
@@ -14,16 +16,15 @@ return {
 	["Fill the {item:7768} at the {object:107045} beside the inn"] = "Llena {item:7768} en {object:107045} junto a la posada",
 
 	-- Step 2: Serge Hinott
-	-- {zone:1413} The Barrens · {npc:2391} Serge Hinott · {area:272} Tarren Mill
-	["Only if Gallywix fell in the {zone:1413} (Mission: Possible But Not Probable): {npc:2391} stands in {area:272}. Wait beside him while he brews the cure, then take your reward: Poisons."] = "Solo si Gallywix cayó en {zone:1413} (Misión: posible, pero no probable): {npc:2391} está en {area:272}. Espera a su lado mientras prepara la cura y recoge tu recompensa: Venenos.",
-	-- {npc:2391} Serge Hinott
-	["{npc:2391}: Poisons"] = "{npc:2391}: Venenos",
-	["No Gallywix yet? The Class guide Poisons (Horde) runs the chain from Shenthul again, with a group for Gallywix."] = "¿Aún no has acabado con Gallywix? La guía de clase Venenos (Horda) repite la cadena desde Shenthul, con un grupo para Gallywix.",
+	-- {zone:1413} The Barrens · {npc:2391} Serge Hinott · {area:272} Tarren Mill · {spell:2842} Poisons
+	["Only if Gallywix fell in the {zone:1413} (Mission: Possible But Not Probable): {npc:2391} stands in {area:272}. Wait beside him while he brews the cure, then take your reward: {spell:2842}."] = "",
+	-- {spell:2842} Poisons
+	["No Gallywix yet? The Class guide {spell:2842} (Horde) runs the chain from Shenthul again, with a group for Gallywix."] = "",
 
 	-- Step 3: Bears, creepers and lions
 	["Bears, creepers and lions"] = "Osos, trepamusgos y leones",
 	-- {area:272} Tarren Mill · {item:3477} Creeper Ichor
-	-- plural, as words: Gray Bears = {npc:2351} Gray Bear · Forest Moss Creepers = {npc:2350} Forest Moss Creeper · Starving Mountain Lions = {npc:2384} Starving Mountain Lion · Mountain Lions = {npc:2406} Mountain Lion
+	-- plural, as words: Gray Bears = {npc:2351} Gray Bear · Forest Moss Creepers = {npc:2350} Forest Moss Creeper · Starving Mountain Lions = {npc:2384} Starving Mountain Lion
 	["West of {area:272}, Gray Bears, Forest Moss Creepers and Starving Mountain Lions roam the hills on the way down to the farms. The creepers drop {item:3477} rarely; you need only one."] = "Al oeste de {area:272}, osos grises, trepamusgos del bosque y leones monteses hambrientos recorren las colinas de bajada a las granjas. Los trepamusgos sueltan {item:3477} rara vez; solo necesitas uno.",
 
 	-- Step 4: Hillsbrad Fields
@@ -84,8 +85,8 @@ return {
 	["The {area:288} lies south of {area:287} town. Miners work the tunnels; {npc:2305} (30) and {npc:2450} (29) are deep inside."] = "{area:288} está al sur del pueblo de {area:287}. Los mineros trabajan en los túneles; {npc:2305} (30) y {npc:2450} (29) están al fondo.",
 
 	-- Step 20: Master Apothecary Faranell
-	-- {npc:2055} Master Apothecary Faranell · {object:36072} The Apothecarium
-	["{npc:2055}, in the {object:36072}"] = "{npc:2055}, en {object:36072}",
+	-- {npc:2055} Master Apothecary Faranell
+	["{npc:2055}, in the Apothecarium"] = "",
 	-- {area:287} Hillsbrad
 	["Keep it: the {area:287} coast, later on the route"] = "Guárdala: la costa de {area:287}, más adelante en la ruta",
 
@@ -128,4 +129,10 @@ return {
 	-- Step 29: Ratchet
 	-- {npc:3442} Sputtervalve · {area:392} Ratchet
 	["{npc:3442}, by the docks in {area:392}"] = "{npc:3442}, junto a los muelles de {area:392}",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["No Gallywix yet? The Class guide Poisons (Horde) runs the chain from Shenthul again, with a group for Gallywix."] = "¿Aún no has acabado con Gallywix? La guía de clase Venenos (Horda) repite la cadena desde Shenthul, con un grupo para Gallywix.",
+	-- ["Only if Gallywix fell in the {zone:1413} (Mission: Possible But Not Probable): {npc:2391} stands in {area:272}. Wait beside him while he brews the cure, then take your reward: Poisons."] = "Solo si Gallywix cayó en {zone:1413} (Misión: posible, pero no probable): {npc:2391} está en {area:272}. Espera a su lado mientras prepara la cura y recoge tu recompensa: Venenos.",
+	-- ["{npc:2055}, in the {object:36072}"] = "{npc:2055}, en {object:36072}",
+	-- ["{npc:2391}: Poisons"] = "{npc:2391}: Venenos",
 }

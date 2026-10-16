@@ -1,7 +1,9 @@
 -- Chinese (simplified) (zhCN): the guide forever/class/priest/benediction (forever/class/priest/benediction.guide).
 -- Written by `node tools/polestar.js i18n guides sync zhCN`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Chinese (simplified) (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Chinese (simplified) (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Guide
 	-- {item:18608} Benediction
@@ -16,11 +18,12 @@ return {
 
 	-- Step 2: Eris Havenfire
 	-- {item:18646} The Eye of Divinity · {npc:14494} Eris Havenfire · {zone:1423} Eastern Plaguelands · {item:8956} Oil of Immolation
-	-- plural, as words: Major Mana Potions = {item:13444} Major Mana Potion · Mana Potions = {item:3827} Mana Potion
+	-- plural, as words: Major Mana Potions = {item:13444} Major Mana Potion
 	["Equip {item:18646} to see {npc:14494}, a ghost on the mountainside in the north-west of the {zone:1423}. Come with full mana, Major Mana Potions and {item:8956}: if you fail, the event takes about two hours to return."] = "",
 
 	-- Step 3: The Balance of Light and Shadow
-	["Save 50 peasants before 15 die. Kill the skeletons that attack them, cure their diseases (the purple ones first) and heal the wounded with Renew. Friends may buff you beforehand but must stay out of the fight, or a demon appears and kills everyone."] = "",
+	-- {spell:139} Renew
+	["Save 50 peasants before 15 die. Kill the skeletons that attack them, cure their diseases (the purple ones first) and heal the wounded with {spell:139}. Friends may buff you beforehand but must stay out of the fight, or a demon appears and kills everyone."] = "",
 
 	-- Step 4: Benediction
 	-- {item:18608} Benediction

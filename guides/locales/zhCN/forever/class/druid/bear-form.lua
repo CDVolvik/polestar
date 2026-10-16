@@ -1,7 +1,9 @@
 -- Chinese (simplified) (zhCN): the guide forever/class/druid/bear-form (forever/class/druid/bear-form.guide).
 -- Written by `node tools/polestar.js i18n guides sync zhCN`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Chinese (simplified) (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Chinese (simplified) (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Guide
 	-- {spell:5487} Bear Form · {area:493} Moonglade
@@ -10,8 +12,8 @@ return {
 	["Your tanking form: Forever no longer trains {spell:5487}, these quests give it. Opens {area:493} too."] = "你的坦克形态：Forever不再由训练师教授{spell:5487}，而是由这些任务给予。同时也会开启{area:493}。",
 
 	-- Step 1: Heeding the Call
-	-- {npc:3602} Kal · {area:186} Dolanaar · {zone:1457} Darnassus · {zone:1453} Stormwind City · {npc:4217} Mathrengyl Bearwalker · {area:1658} Cenarion Enclave
-	["At 10 a druid's call reaches you: {npc:3602} in {area:186}, Denatharion in {zone:1457} or Theridran in {zone:1453}. Any one of them sends you to {npc:4217} in the {area:1658} of {zone:1457}."] = "10级时会收到德鲁伊的召唤：{area:186}的{npc:3602}、{zone:1457}的德纳萨里安或{zone:1453}的塞瑞德兰。任何一位都会让你去找{zone:1457}{area:1658}的{npc:4217}。",
+	-- {npc:3602} Kal · {area:186} Dolanaar · {zone:1457} Darnassus · {zone:1453} Stormwind City · {npc:4217} Mathrengyl Bearwalker
+	["At 10 a druid's call reaches you: {npc:3602} in {area:186}, Denatharion in {zone:1457} or Theridran in {zone:1453}. Any one of them sends you to {npc:4217} in the Cenarion Enclave of {zone:1457}."] = "",
 	-- {npc:3602} Kal · {area:186} Dolanaar
 	["{npc:3602}, {area:186}; Denatharion's and Theridran's letters lead to the same place"] = "{npc:3602}，{area:186}；德纳萨里安和塞瑞德兰的信也指向同一个地方",
 
@@ -21,8 +23,8 @@ return {
 	["or whichever of the three letters you carry"] = "或你携带的三封信中的任意一封",
 
 	-- Step 3: Moonglade
-	-- {area:493} Moonglade · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {quest:5929} Great Bear Spirit · {area:702} Rut'theran Village · {area:442} Auberdine · {zone:1457} Darnassus
-	["Cast Teleport: {area:493}. {npc:11802} is in {area:2361}; the {quest:5929} sits in the woods to the north-west. Learn the {area:493} flight path, then fly to {area:702} (by way of {area:442}) and take the portal up to {zone:1457}."] = "施放传送：{area:493}。{npc:11802}在{area:2361}；{quest:5929}位于西北边的树林里。学会{area:493}的飞行路线，然后飞往{area:702}（经由{area:442}），再乘传送门上到{zone:1457}。",
+	-- {spell:18960} Teleport: Moonglade · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {quest:5929} Great Bear Spirit · {area:493} Moonglade · {area:702} Rut'theran Village · {area:442} Auberdine · {zone:1457} Darnassus
+	["Cast {spell:18960}. {npc:11802} is in {area:2361}; the {quest:5929} sits in the woods to the north-west. Learn the {area:493} flight path, then fly to {area:702} (by way of {area:442}) and take the portal up to {zone:1457}."] = "",
 	-- {quest:5929} Great Bear Spirit
 	["Speak with the {quest:5929}"] = "与{quest:5929}交谈",
 
@@ -47,8 +49,8 @@ return {
 	["{npc:3033} stands on {area:1639}."] = "{npc:3033}站在{area:1639}。",
 
 	-- Step 9: Moonglade
-	-- {quest:5922} Moonglade · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {quest:5930} Great Bear Spirit · {npc:11798} Bunthen Plainswind · {area:1638} Thunder Bluff
-	["Cast Teleport: {quest:5922}. {npc:11802} is in {area:2361}; the {quest:5930} sits in the woods to the north-west. {npc:11798} in {area:2361} flies druids to {area:1638}."] = "施放传送：{quest:5922}。{npc:11802}在{area:2361}；{quest:5930}位于西北边的树林里。{area:2361}的{npc:11798}会载德鲁伊飞往{area:1638}。",
+	-- {spell:18960} Teleport: Moonglade · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {quest:5930} Great Bear Spirit · {npc:11798} Bunthen Plainswind · {area:1638} Thunder Bluff
+	["Cast {spell:18960}. {npc:11802} is in {area:2361}; the {quest:5930} sits in the woods to the north-west. {npc:11798} in {area:2361} flies druids to {area:1638}."] = "",
 	-- {quest:5930} Great Bear Spirit
 	["Speak with the {quest:5930}"] = "与{quest:5930}交谈",
 
@@ -105,6 +107,12 @@ return {
 	["The Skyborne Portal takes you to {zone:1453}. {npc:5504} is the city's druid trainer."] = "天裔传送门会把你送到{zone:1453}。{npc:5504}是该城的德鲁伊训练师。",
 
 	-- Step 22: Dendrite Starblaze
-	-- {area:493} Moonglade · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven
-	["Cast Teleport: {area:493}. {npc:11802} is in {area:2361}. Learn the {area:493} flight path while you are here."] = "施放传送：{area:493}。{npc:11802}在{area:2361}。趁在这里学会{area:493}的飞行路线。",
+	-- {spell:18960} Teleport: Moonglade · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {area:493} Moonglade
+	["Cast {spell:18960}. {npc:11802} is in {area:2361}. Learn the {area:493} flight path while you are here."] = "",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["At 10 a druid's call reaches you: {npc:3602} in {area:186}, Denatharion in {zone:1457} or Theridran in {zone:1453}. Any one of them sends you to {npc:4217} in the {area:1658} of {zone:1457}."] = "10级时会收到德鲁伊的召唤：{area:186}的{npc:3602}、{zone:1457}的德纳萨里安或{zone:1453}的塞瑞德兰。任何一位都会让你去找{zone:1457}{area:1658}的{npc:4217}。",
+	-- ["Cast Teleport: {area:493}. {npc:11802} is in {area:2361}. Learn the {area:493} flight path while you are here."] = "施放传送：{area:493}。{npc:11802}在{area:2361}。趁在这里学会{area:493}的飞行路线。",
+	-- ["Cast Teleport: {area:493}. {npc:11802} is in {area:2361}; the {quest:5929} sits in the woods to the north-west. Learn the {area:493} flight path, then fly to {area:702} (by way of {area:442}) and take the portal up to {zone:1457}."] = "施放传送：{area:493}。{npc:11802}在{area:2361}；{quest:5929}位于西北边的树林里。学会{area:493}的飞行路线，然后飞往{area:702}（经由{area:442}），再乘传送门上到{zone:1457}。",
+	-- ["Cast Teleport: {quest:5922}. {npc:11802} is in {area:2361}; the {quest:5930} sits in the woods to the north-west. {npc:11798} in {area:2361} flies druids to {area:1638}."] = "施放传送：{quest:5922}。{npc:11802}在{area:2361}；{quest:5930}位于西北边的树林里。{area:2361}的{npc:11798}会载德鲁伊飞往{area:1638}。",
 }

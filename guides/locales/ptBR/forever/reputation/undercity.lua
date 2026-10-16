@@ -1,11 +1,12 @@
 -- Portuguese (Brazil) (ptBR): the guide forever/reputation/undercity (forever/reputation/undercity.guide).
 -- Written by `node tools/polestar.js i18n guides sync ptBR`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Portuguese (Brazil) (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Portuguese (Brazil) (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Guide
-	-- {faction:68} Undercity
-	["{faction:68} Reputation"] = "Reputação com {faction:68}",
+	["Undercity Reputation"] = "",
 
 	-- Step 1: Ralston Farnsley: A Donation of Wool
 	-- {npc:14729} Ralston Farnsley · {faction:68} Undercity · {item:14047} Runecloth · {quest:7819} Additional Runecloth
@@ -51,4 +52,7 @@ return {
 	-- {quest:7819} Additional Runecloth · {faction:68} Undercity · {item:14047} Runecloth · {zone:1423} Eastern Plaguelands
 	-- plural, as words: Dark Adepts = {npc:8546} Dark Adept
 	["Keep handing in {quest:7819} until {faction:68} is Exalted. {item:14047}: Dark Adepts and Shadowmages (level 58-60) in {zone:1423}, or the Auction House."] = "Continue entregando {quest:7819} até ficar Exaltado com {faction:68}. {item:14047}: Adeptos das Trevas e Umbramantes (nível 58-60) em {zone:1423}, ou a Casa de Leilões.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["{faction:68} Reputation"] = "Reputação com {faction:68}",
 }

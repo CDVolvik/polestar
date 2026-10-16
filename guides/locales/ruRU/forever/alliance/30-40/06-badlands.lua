@@ -1,7 +1,9 @@
 -- Russian (ruRU): the guide forever/alliance/30-40/06-badlands (forever/alliance/30-40/06-badlands.guide).
 -- Written by `node tools/polestar.js i18n guides sync ruRU`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Russian (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Russian (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Step 1: Hammertoe's Digsite
 	-- {zone:1432} Loch Modan · {zone:1418} Badlands · {npc:2910} Prospector Ryedol · {npc:2860} Sigrun Ironhew
@@ -43,24 +45,23 @@ return {
 	["Ride west into the {area:1878}; Lotwil works by his machines in the middle of it."] = "Езжайте на запад. Цель: {area:1878}; в ее центре у своих машин работает Лотвиль.",
 
 	-- Step 10: Lesser Rock Elementals
-	-- plural, as words: Lesser Rock Elementals = {npc:2735} Lesser Rock Elemental · Rock Elementals = {npc:92} Rock Elemental
+	-- plural, as words: Lesser Rock Elementals = {npc:2735} Lesser Rock Elemental
 	["Lesser Rock Elementals"] = "Младшие каменные элементали",
 	-- {area:1878} The Dustbowl
-	-- plural, as words: Lesser Rock Elementals = {npc:2735} Lesser Rock Elemental · Rock Elementals = {npc:92} Rock Elemental
+	-- plural, as words: Lesser Rock Elementals = {npc:2735} Lesser Rock Elemental
 	["The Lesser Rock Elementals wander the {area:1878} west of Lotwil."] = "Младшие каменные элементали бродят здесь: {area:1878}, к западу от Лотвиля.",
 
 	-- Step 12: Rock Elementals
 	-- plural, as words: Rock Elementals = {npc:92} Rock Elemental
 	["Rock Elementals"] = "Каменные элементали",
-	-- {item:7337} The Rock
-	-- plural, as words: Giant Buzzards = {npc:2831} Giant Buzzard · Elder Crag Coyotes = {npc:2729} Elder Crag Coyote · Crag Coyotes = {npc:2727} Crag Coyote
-	["{item:7337} Elementals roam south-east of Lotwil; Giant Buzzards and Elder Crag Coyotes share the plain to their west."] = "Элементали ({item:7337}) бродят к юго-востоку от Лотвиля; на равнине к западу от них – гигантские канюки и старые скальные койоты.",
+	-- plural, as words: Rock Elementals = {npc:92} Rock Elemental · Giant Buzzards = {npc:2831} Giant Buzzard · Elder Crag Coyotes = {npc:2729} Elder Crag Coyote
+	["The Rock Elementals roam south-east of Lotwil; Giant Buzzards and Elder Crag Coyotes share the plain to their west."] = "",
 
 	-- Step 14: Greater Rock Elementals
-	-- plural, as words: Greater Rock Elementals = {npc:2736} Greater Rock Elemental · Rock Elementals = {npc:92} Rock Elemental
+	-- plural, as words: Greater Rock Elementals = {npc:2736} Greater Rock Elemental
 	["Greater Rock Elementals"] = "Большие каменные элементали",
 	-- {area:342} Camp Boff
-	-- plural, as words: Greater Rock Elementals = {npc:2736} Greater Rock Elemental · Rock Elementals = {npc:92} Rock Elemental · Dustbelcher Wyrmhunters = {npc:2716} Dustbelcher Wyrmhunter
+	-- plural, as words: Greater Rock Elementals = {npc:2736} Greater Rock Elemental · Dustbelcher Wyrmhunters = {npc:2716} Dustbelcher Wyrmhunter
 	["The Greater Rock Elementals (level 42) walk the far south-west corner below {area:342}; pull them one at a time. The Dustbelcher Wyrmhunters and Maulers at {area:342} also drop scrap."] = "Большие каменные элементали (42-й уровень) ходят в дальнем юго-западном углу, под местом {area:342}; выманивайте по одному. Лом падает и с охотников на драконов и извергов из клана Гнилобрюхов ({area:342}).",
 
 	-- Step 15: Lotwil Veriatus
@@ -156,4 +157,7 @@ return {
 	-- Step 39: Fly to Theramore
 	["Fly to Theramore"] = "Лететь на остров Терамор",
 	["The next guide starts in Theramore."] = "Следующий гайд начинается на острове Терамор.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["{item:7337} Elementals roam south-east of Lotwil; Giant Buzzards and Elder Crag Coyotes share the plain to their west."] = "Элементали ({item:7337}) бродят к юго-востоку от Лотвиля; на равнине к западу от них – гигантские канюки и старые скальные койоты.",
 }

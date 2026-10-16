@@ -1,7 +1,9 @@
 -- Chinese (traditional) (zhTW): the guide forever/horde/50-60/07-felwood (forever/horde/50-60/07-felwood.guide).
 -- Written by `node tools/polestar.js i18n guides sync zhTW`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Chinese (traditional) (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Chinese (traditional) (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Step 1: Zeppelin to Orgrimmar
 	-- {zone:1454} Orgrimmar
@@ -69,8 +71,8 @@ return {
 
 	-- Step 16: Dungeon instead of grinding
 	["Dungeon instead of grinding"] = "",
-	-- {area:2279} Stratholme · {area:2057} Scholomance · {area:1583} Blackrock Spire · {area:1584} Blackrock Depths
-	["Optional. Running {area:2279}, {area:2057}, Lower {area:1583} or {area:1584} with a group instead of grinding gets you there faster."] = "",
+	-- {area:2279} Stratholme · {area:2057} Scholomance · {area:1584} Blackrock Depths
+	["Optional. Running {area:2279}, {area:2057}, Lower Blackrock Spire or {area:1584} with a group instead of grinding gets you there faster."] = "",
 	["Optional: with a group, a 55-60 dungeon replaces the grind below."] = "",
 
 	-- Step 17: Grind to 60

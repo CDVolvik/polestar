@@ -1,7 +1,9 @@
 -- Korean (koKR): the guide forever/alliance/skyborne/01-zephras-isle (forever/alliance/skyborne/01-zephras-isle.guide).
 -- Written by `node tools/polestar.js i18n guides sync koKR`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Korean (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Step 1: Thendal Grove
 	-- {area:16622} Thendal Grove · {npc:251362} Ailee Farheart · {npc:251361} Rorian the Dayseeker · {npc:251368} Elatrell Featherlight
@@ -33,7 +35,8 @@ return {
 	["{npc:251373}, the druid trainer, on the ground floor of the tree behind Rorian"] = "드루이드 상급자 {npc:251373}: 로리안 뒤편 나무의 1층",
 	["The class trainers stand together in the grove"] = "직업 상급자들은 숲에 함께 모여 있습니다",
 	["Listen to Halaan"] = "할란의 말을 들으세요",
-	["Use Walk on Air"] = "Walk on Air 사용",
+	-- {spell:1259416} Walk on Air
+	["Use {spell:1259416}"] = "",
 
 	-- Step 4: Raw Windstones and the Cirrusfly Queen
 	-- {npc:251404} Cirrusfly Queen
@@ -46,9 +49,9 @@ return {
 	-- Step 5: Yala Windwatcher
 	-- {npc:249363} Yala Windwatcher · {npc:251143} Roiling Winds · {object:460002} Ley Line
 	-- plural, as words: Al'Aketh Converts = {npc:251160} Al'Aketh Convert
-	["{npc:249363} keeps watch east of the grove. The {npc:251143} and Al'Aketh Converts gather just north of her; the {object:460002} rises further north: cast your Read {object:460002} racial ability at it."] = "{npc:249363}은(는) 숲 동쪽에서 망을 봅니다. {npc:251143}와(과) 알아케스 전향자가 그녀 바로 북쪽에 모여 있고, {object:460002}은(는) 더 북쪽에서 솟아오릅니다. 그곳에 종족 능력 Read {object:460002}을(를) 시전하세요.",
+	["{npc:249363} keeps watch east of the grove. The {npc:251143} and Al'Aketh Converts gather just north of her; the {object:460002} rises further north: cast your Read Ley Line racial ability at it."] = "",
 	-- {object:460002} Ley Line
-	["Cast Read {object:460002} at the {object:460002}"] = "{object:460002}에 Read {object:460002} 시전",
+	["Cast Read Ley Line at the {object:460002}"] = "",
 
 	-- Step 6: Thendal Grove turn-ins
 	-- {area:16622} Thendal Grove
@@ -76,7 +79,8 @@ return {
 	["Speak with {npc:251903} and {npc:254089}, north-west of the village"] = "마을 북서쪽의 {npc:251903}, {npc:254089}와(과) 대화하세요",
 
 	-- Step 11: Raan Wildwind
-	["/sit by Raan's campfire until you get Boosted Rest"] = "Boosted Rest를 얻을 때까지 란의 모닥불 옆에 앉으세요(/sit)",
+	-- {spell:1229451} Boosted Rest
+	["/sit by Raan's campfire until you get {spell:1229451}"] = "",
 
 	-- Step 12: Village quests
 	["Village quests"] = "마을 퀘스트",
@@ -98,8 +102,8 @@ return {
 	["Shen'dar turn-ins"] = "셴다르 퀘스트 제출",
 
 	-- Step 17: Falaath Village
-	-- {npc:257065} Missionary Jasaan · {quest:92529} Falaath Village
-	["{npc:257065} waits at the entrance to {quest:92529}, south of Shen'dar. The Mark of Akir lets you walk in among the faithful."] = "{npc:257065}은(는) 셴다르 남쪽 {quest:92529} 입구에서 기다립니다. Mark of Akir가 있으면 신도들 사이로 걸어 들어갈 수 있습니다.",
+	-- {npc:257065} Missionary Jasaan · {quest:92529} Falaath Village · {spell:1254832} Mark of Akir
+	["{npc:257065} waits at the entrance to {quest:92529}, south of Shen'dar. The {spell:1254832} lets you walk in among the faithful."] = "",
 	["Search the wardrobe"] = "옷장을 뒤지세요",
 
 	-- Step 19: Havoc in Falaath
@@ -196,9 +200,6 @@ return {
 	["{npc:254588}: tame it with the {item:15908}"] = "{npc:254588}: {item:15908}(으)로 길들이세요",
 	-- {item:15908} Taming Rod
 	["Tame it with the {item:15908}"] = "{item:15908}(으)로 길들이세요",
-	["Tame Beast"] = "야수 길들이기",
-	-- {npc:254411} Quel'dora Quickgale
-	["{npc:254411}: Beast Training"] = "{npc:254411}: 야수 조련",
 
 	-- Step 36: The Windstone Formations
 	-- plural, as words: Windstone Formations = {object:697118} Windstone Formation
@@ -238,8 +239,6 @@ return {
 	-- Step 43: Strength and Mercy
 	-- {npc:255853} Urs'endris · {area:16638} Valanaar
 	["Back to {npc:255853} by the falls north-east of {area:16638}, on the way north to the shrine."] = "북쪽 사당으로 가는 길에, {area:16638} 북동쪽 폭포 옆의 {npc:255853}에게 돌아가세요.",
-	-- {npc:255853} Urs'endris
-	["{npc:255853}: Bear Form"] = "{npc:255853}: 곰 변신",
 
 	-- Step 44: The Shrine of Akir
 	-- {area:16629} Shrine of Akir
@@ -273,8 +272,9 @@ return {
 	["{npc:257944}, the missive"] = "{npc:257944}: 전갈",
 
 	-- Step 50: The Strange Hermit
-	-- {quest:93159} The Strange Hermit · {item:257128} Zephyrseed
-	["{quest:93159} lives west of Elegael. The {item:257128} Cones lie in the woods between his hut and Elegael."] = "{quest:93159}은(는) 엘레게일 서쪽에 삽니다. {item:257128} 솔방울은 그의 오두막과 엘레게일 사이의 숲에 있습니다.",
+	-- {quest:93159} The Strange Hermit
+	-- plural, as words: Zephyrseed Cones = {object:613238} Zephyrseed Cone
+	["{quest:93159} lives west of Elegael. The Zephyrseed Cones lie in the woods between his hut and Elegael."] = "",
 
 	-- Step 51: The refugees' camp
 	["The refugees' camp"] = "피난민 야영지",
@@ -294,8 +294,6 @@ return {
 	["{area:16638}, the fate of Zephras"] = "{area:16638}, 제프라스의 운명",
 	-- {npc:252475} Elaadrin Evengale · {npc:259084} Denaaris Stargale
 	["{npc:252475}: {npc:259084} waits by the Skyborne portal"] = "{npc:252475}: {npc:259084}이(가) 스카이본 차원문 옆에서 기다립니다",
-	-- {npc:252377} Seena Skybreaker
-	["{npc:252377}: Defensive Stance"] = "{npc:252377}: 방어 태세",
 
 	-- Step 55: The skycutter
 	["The skycutter"] = "비행정",
@@ -317,8 +315,8 @@ return {
 	["For {npc:234} at {area:108}"] = "{area:108}의 {npc:234}용",
 
 	-- Step 58: Sheldras Moontree
-	-- {npc:5504} Sheldras Moontree · {zone:1453} Stormwind City · {quest:94914} Moonglade · {npc:11802} Dendrite Starblaze · {zone:1439} Darkshore
-	["{npc:5504}, {zone:1453}'s druid trainer, teaches you Teleport: {quest:94914}. {npc:11802}'s welcome waits for your Cat Form trip at the end of {zone:1439}."] = "{zone:1453}의 드루이드 상급자 {npc:5504}이(가) 순간이동: {quest:94914}을(를) 가르쳐 줍니다. {npc:11802}의 환영 인사는 {zone:1439} 끝의 표범 변신 여정에서 기다립니다.",
+	-- {npc:5504} Sheldras Moontree · {zone:1453} Stormwind City · {spell:18960} Teleport: Moonglade · {npc:11802} Dendrite Starblaze · {spell:499} Cat Form · {zone:1439} Darkshore
+	["{npc:5504}, {zone:1453}'s druid trainer, teaches you {spell:18960}. {npc:11802}'s welcome waits for your {spell:499} trip at the end of {zone:1439}."] = "",
 
 	-- Step 59: Jennea Cannon
 	-- {npc:5497} Jennea Cannon · {object:2101} Mage Quarter · {quest:1861} Mirror Lake
@@ -327,4 +325,17 @@ return {
 	-- Step 60: Mirror Lake
 	-- {zone:1453} Stormwind City · {quest:1861} Mirror Lake · {zone:1436} Westfall · {item:7207} Jennea's Flask
 	["Leave {zone:1453} by the main gate. The {quest:1861} waterfall is south-west of the gates, on the way west to {zone:1436}: fill {item:7207} at its base."] = "정문으로 {zone:1453}을(를) 나가세요. {quest:1861} 폭포는 성문 남서쪽, 서쪽 {zone:1436}(으)로 가는 길에 있습니다. 폭포 아래에서 {item:7207}을(를) 채우세요.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["/sit by Raan's campfire until you get Boosted Rest"] = "Boosted Rest를 얻을 때까지 란의 모닥불 옆에 앉으세요(/sit)",
+	-- ["Cast Read {object:460002} at the {object:460002}"] = "{object:460002}에 Read {object:460002} 시전",
+	-- ["Tame Beast"] = "야수 길들이기",
+	-- ["Use Walk on Air"] = "Walk on Air 사용",
+	-- ["{npc:249363} keeps watch east of the grove. The {npc:251143} and Al'Aketh Converts gather just north of her; the {object:460002} rises further north: cast your Read {object:460002} racial ability at it."] = "{npc:249363}은(는) 숲 동쪽에서 망을 봅니다. {npc:251143}와(과) 알아케스 전향자가 그녀 바로 북쪽에 모여 있고, {object:460002}은(는) 더 북쪽에서 솟아오릅니다. 그곳에 종족 능력 Read {object:460002}을(를) 시전하세요.",
+	-- ["{npc:252377}: Defensive Stance"] = "{npc:252377}: 방어 태세",
+	-- ["{npc:254411}: Beast Training"] = "{npc:254411}: 야수 조련",
+	-- ["{npc:255853}: Bear Form"] = "{npc:255853}: 곰 변신",
+	-- ["{npc:257065} waits at the entrance to {quest:92529}, south of Shen'dar. The Mark of Akir lets you walk in among the faithful."] = "{npc:257065}은(는) 셴다르 남쪽 {quest:92529} 입구에서 기다립니다. Mark of Akir가 있으면 신도들 사이로 걸어 들어갈 수 있습니다.",
+	-- ["{npc:5504}, {zone:1453}'s druid trainer, teaches you Teleport: {quest:94914}. {npc:11802}'s welcome waits for your Cat Form trip at the end of {zone:1439}."] = "{zone:1453}의 드루이드 상급자 {npc:5504}이(가) 순간이동: {quest:94914}을(를) 가르쳐 줍니다. {npc:11802}의 환영 인사는 {zone:1439} 끝의 표범 변신 여정에서 기다립니다.",
+	-- ["{quest:93159} lives west of Elegael. The {item:257128} Cones lie in the woods between his hut and Elegael."] = "{quest:93159}은(는) 엘레게일 서쪽에 삽니다. {item:257128} 솔방울은 그의 오두막과 엘레게일 사이의 숲에 있습니다.",
 }

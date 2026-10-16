@@ -1,10 +1,13 @@
 -- Korean (koKR): the guide forever/class/paladin/cloak-of-the-divine-storm (forever/class/paladin/cloak-of-the-divine-storm.guide).
 -- Written by `node tools/polestar.js i18n guides sync koKR`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Korean (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Guide
-	["A rare cloak at 30 from the old Divine Storm story; for now only Alliance paladins can finish it."] = "옛 천상의 폭풍 이야기에서 얻는 30레벨 희귀 망토. 현재는 얼라이언스 성기사만 완료할 수 있습니다.",
+	-- {spell:407778} Divine Storm
+	["A rare cloak at 30 from the old {spell:407778} story; for now only Alliance paladins can finish it."] = "",
 
 	-- Step 1: The Strange Orb
 	["The Strange Orb"] = "Strange Orb",
@@ -42,12 +45,16 @@ return {
 	-- Step 8: The Spear of Mannoroth
 	-- {object:409311} Spear of Mannoroth
 	["The {object:409311}"] = "{object:409311}",
-	-- {object:409311} Spear of Mannoroth · {area:435} Demon Fall Canyon · {object:409315} Shattered Orb
-	["The {object:409311} stands at the east end of {area:435}. Shatter the orb on it; the {object:409315} appears beside it."] = "{object:409311}은(는) {area:435} 동쪽 끝에 있습니다. 그 위에서 보주를 깨뜨리면 옆에 {object:409315}이(가) 나타납니다.",
+	-- {object:409311} Spear of Mannoroth · {area:435} Demon Fall Canyon · {spell:11170} Shatter · {object:409315} Shattered Orb
+	["The {object:409311} stands at the east end of {area:435}. {spell:11170} the orb on it; the {object:409315} appears beside it."] = "",
 	-- {object:409315} Shattered Orb
 	["from the {object:409315}"] = "{object:409315}에서",
 
 	-- Step 9: Return to Delgren
 	-- {area:413} Maestra's Post
 	["Back to {area:413}."] = "{area:413}(으)로 돌아가십시오.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["A rare cloak at 30 from the old Divine Storm story; for now only Alliance paladins can finish it."] = "옛 천상의 폭풍 이야기에서 얻는 30레벨 희귀 망토. 현재는 얼라이언스 성기사만 완료할 수 있습니다.",
+	-- ["The {object:409311} stands at the east end of {area:435}. Shatter the orb on it; the {object:409315} appears beside it."] = "{object:409311}은(는) {area:435} 동쪽 끝에 있습니다. 그 위에서 보주를 깨뜨리면 옆에 {object:409315}이(가) 나타납니다.",
 }

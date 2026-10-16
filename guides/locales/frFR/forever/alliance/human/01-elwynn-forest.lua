@@ -1,7 +1,9 @@
 -- French (frFR): the guide forever/alliance/human/01-elwynn-forest (forever/alliance/human/01-elwynn-forest.guide).
 -- Written by `node tools/polestar.js i18n guides sync frFR`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in French (the English is listed above the line). The comments are rewritten by sync.
+-- name there in French (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Step 1: Northshire Abbey
 	-- {npc:823} Deputy Willem · {npc:197} Marshal McBride · {npc:951} Brother Paxton · {npc:247229} Daniel · {npc:196} Eagan Peltskinner
@@ -54,10 +56,6 @@ return {
 	-- {item:6785} Powers of the Void · {object:83763} Stolen Books
 	["{item:6785}: the {object:83763} in the Defias camp"] = "{item:6785} : les {object:83763} dans le camp défias",
 
-	-- Step 9: Deputy Willem
-	-- {npc:459} Drusilla La Salle
-	["{npc:459}: Summon Imp"] = "{npc:459} : Invocation d'un diablotin",
-
 	-- Step 10: Milly Osworth
 	["She stands by her cart at the vineyard east of the Abbey."] = "Elle se tient près de sa charrette, dans la vigne à l'est de l'abbaye.",
 
@@ -96,13 +94,14 @@ return {
 	["The lake shore"] = "La rive du lac",
 	-- {npc:263399} Sam Sarsaparilla · {npc:6306} Helene Peltskinner · {npc:383} Jason Mathers · {npc:1651} Lee Brown · {area:18} Crystal Lake
 	["{npc:263399} camps north-east of the inn; {npc:6306}, {npc:383} and {npc:1651} stand on the shore of {area:18} east of town."] = "{npc:263399} campe au nord-est de l'auberge ; {npc:6306}, {npc:383} et {npc:1651} se tiennent sur la rive du {area:18}, à l'est du village.",
-	["Sit (/sit) by his campfire until you have Boosted Rest"] = "Asseyez-vous (/asseoir) près de son feu de camp jusqu'à obtenir Boosted Rest",
+	-- {spell:1229451} Boosted Rest
+	["Sit (/sit) by his campfire until you have {spell:1229451}"] = "",
 	-- {npc:6306} Helene Peltskinner
 	["{npc:6306}: skinners only, the pelts are skinned"] = "{npc:6306} : dépeceurs uniquement, les peaux s'obtiennent en dépeçant",
 
 	-- Step 18: Crystal Lake
-	-- {skill:356} Fishing
-	["The {skill:356} Traps sit along the west shore of the lake."] = "Les pièges de {skill:356} sont disposés le long de la rive ouest du lac.",
+	-- plural, as words: Fishing Traps = {object:694772} Fishing Trap
+	["The Fishing Traps sit along the west shore of the lake."] = "",
 
 	-- Step 20: The murloc camp
 	["The murloc camp"] = "Le camp murloc",
@@ -279,7 +278,7 @@ return {
 	-- {npc:473} Morgan the Collector · {area:62} Brackwell Pumpkin Patch
 	-- plural, as words: Murloc Foragers = {npc:46} Murloc Forager · Prowlers = {npc:118} Prowler · Young Forest Bears = {npc:822} Young Forest Bear
 	["Murloc Foragers and Lurkers line the river south of the bridge. {npc:473}, a Defias, walks the {area:62} west of it. Finish the Prowlers and Young Forest Bears on the way."] = "Les Fourrageurs murlocs et les Rôdeurs murlocs bordent la rivière au sud du pont. {npc:473}, un Défias, arpente le {area:62} à l'ouest de celle-ci. Achevez les Rôdeurs et les Jeunes ours des forêts en chemin.",
-	-- plural, as words: Torn Murloc Fins = {item:780} Torn Murloc Fin · Murloc Fins = {item:1468} Murloc Fin
+	-- plural, as words: Torn Murloc Fins = {item:780} Torn Murloc Fin
 	["Torn Murloc Fins"] = "Ailerons de murloc déchirés",
 
 	-- Step 60: Stone Cairn Lake
@@ -311,9 +310,8 @@ return {
 	["{npc:1922}: tame it with the {item:15908}"] = "{npc:1922} : apprivoisez-le avec le {item:15908}",
 	-- {npc:822} Young Forest Bear · {item:15908} Taming Rod
 	["{npc:822}: tame it with the {item:15908}"] = "{npc:822} : apprivoisez-le avec le {item:15908}",
-	["Tame Beast"] = "Apprivoiser une bête",
-	-- {npc:258930} Isaac Chan
-	["{npc:258930}, beside her: Beast Training"] = "{npc:258930}, à côté d'elle : Dressage des bêtes",
+	-- {npc:258930} Isaac Chan · {spell:5149} Beast Training
+	["{npc:258930}, beside her: {spell:5149}"] = "",
 
 	-- Step 64: Jennea Cannon
 	-- {area:87} Goldshire · {zone:1453} Stormwind City · {npc:5497} Jennea Cannon · {object:2101} Mage Quarter · {quest:1861} Mirror Lake
@@ -335,7 +333,6 @@ return {
 	-- {item:6928} Bloodstone Choker · {object:2164} The Slaughtered Lamb
 	["Back to Gakin. Use the {item:6928} at the summoning circle in the {object:2164}'s cellar and defeat the voidwalker it calls."] = "Retournez voir Gakin. Utilisez l'{item:6928} sur le cercle d'invocation dans la cave de l'{object:2164} et vainquez le marcheur du Vide qu'elle appelle.",
 	["Subdue the voidwalker"] = "Soumettez le marcheur du Vide",
-	["Summon Voidwalker"] = "Invocation d'un marcheur du Vide",
 
 	-- Step 69: The Tome of Divinity
 	-- {area:87} Goldshire · {zone:1453} Stormwind City · {npc:6171} Duthorian Rall · {npc:6173} Gazin Tenorm · {npc:6174} Stephanie Turner · {object:2100} Old Town · {item:2589} Linen Cloth
@@ -361,4 +358,12 @@ return {
 	-- Step 72: Sentinel Hill
 	-- {zone:1436} Westfall · {area:108} Sentinel Hill
 	["Follow the road west past Westbrook into {zone:1436}, then south along it to {area:108}. Thor, the gryphon master, stands on the hill."] = "Suivez la route vers l'ouest, au-delà de la garnison du ruisseau de l'ouest, jusqu'en {zone:1436}, puis vers le sud jusqu'à la {area:108}. Thor, le maître des griffons, se tient sur la colline.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Sit (/sit) by his campfire until you have Boosted Rest"] = "Asseyez-vous (/asseoir) près de son feu de camp jusqu'à obtenir Boosted Rest",
+	-- ["Summon Voidwalker"] = "Invocation d'un marcheur du Vide",
+	-- ["Tame Beast"] = "Apprivoiser une bête",
+	-- ["The {skill:356} Traps sit along the west shore of the lake."] = "Les pièges de {skill:356} sont disposés le long de la rive ouest du lac.",
+	-- ["{npc:258930}, beside her: Beast Training"] = "{npc:258930}, à côté d'elle : Dressage des bêtes",
+	-- ["{npc:459}: Summon Imp"] = "{npc:459} : Invocation d'un diablotin",
 }

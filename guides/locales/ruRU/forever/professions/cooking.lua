@@ -1,7 +1,9 @@
 -- Russian (ruRU): the guide forever/professions/cooking (forever/professions/cooking.guide).
 -- Written by `node tools/polestar.js i18n guides sync ruRU`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Russian (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Russian (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Step 1: Learn Cooking
 	-- {skill:185} Cooking
@@ -264,8 +266,8 @@ return {
 	["Giant Eggs drop from the Ironbeak owls of {zone:1448}."] = "",
 
 	-- Step 67: Zesty Clam Meat
-	-- {item:7974} Zesty Clam Meat · {object:175904} Gadgetzan Auction
-	["{item:7974} has no drop data: buy it at the {object:175904} House, next to Dirge, or open clams looted from coastal creatures."] = "",
+	-- {item:7974} Zesty Clam Meat
+	["{item:7974} has no drop data: buy it at the Gadgetzan Auction House, next to Dirge, or open clams looted from coastal creatures."] = "",
 
 	-- Step 68: Dirge Quikcleave
 	-- {skill:185} Cooking

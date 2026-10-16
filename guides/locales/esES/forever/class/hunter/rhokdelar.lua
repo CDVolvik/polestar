@@ -1,7 +1,9 @@
 -- Spanish (Spain) (esES): the guide forever/class/hunter/rhokdelar (forever/class/hunter/rhokdelar.guide).
 -- Written by `node tools/polestar.js i18n guides sync esES`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Spanish (Spain) (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Spanish (Spain) (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Guide
 	["Rhok'delar and Lok'delar"] = "Rhok'delar y Lok'delar",
@@ -48,8 +50,8 @@ return {
 	["Back to the Ancients"] = "De vuelta con los Ancestros",
 
 	-- Step 9: Rhok'delar and Lok'delar
-	-- {item:18707} Ancient Rune Etched Stave · {item:18724} Enchanted Black Dragon Sinew · {item:18715} Lok'delar, Stave of the Ancient Keepers
-	["Not confirmed in Forever. In Classic, using the {item:18707} with the {item:18724} in your bags made Rhok'delar, and Vartrus then gave {item:18715} (Icy Veins)."] = "Sin confirmar en Forever. En Classic, usar {item:18707} con {item:18724} en las bolsas creaba Rhok'delar, y Vartrus te daba entonces {item:18715} (Venas heladas).",
+	-- {item:18707} Ancient Rune Etched Stave · {item:18724} Enchanted Black Dragon Sinew · {item:18715} Lok'delar, Stave of the Ancient Keepers · {spell:425121} Icy Veins
+	["Not confirmed in Forever. In Classic, using the {item:18707} with the {item:18724} in your bags made Rhok'delar, and Vartrus then gave {item:18715} ({spell:425121})."] = "",
 	-- {item:18707} Ancient Rune Etched Stave
 	["{item:18707}, by Vartrus"] = "{item:18707}, de Vartrus",
 	-- {npc:14524} Vartrus the Ancient
@@ -61,4 +63,7 @@ return {
 	["Hastat's quiver needs the {item:18704}. Azuregos, a world boss for a raid, roams the south of {zone:1447} and drops it most of the time; the Cobalt dragonkin of {zone:1452} drop it very rarely. Skip the rest of this guide if you do not want the quiver."] = "El carcaj de Hastat necesita {item:18704}. Azuregos, un jefe del mundo para una banda, recorre el sur de {zone:1447} y lo suelta casi siempre; los vermis de cobalto de {zone:1452} lo sueltan muy rara vez. Omite el resto de esta guía si no quieres el carcaj.",
 	-- {item:18704} Mature Blue Dragon Sinew
 	["{item:18704}, from Azuregos"] = "{item:18704}, de Azuregos",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Not confirmed in Forever. In Classic, using the {item:18707} with the {item:18724} in your bags made Rhok'delar, and Vartrus then gave {item:18715} (Icy Veins)."] = "Sin confirmar en Forever. En Classic, usar {item:18707} con {item:18724} en las bolsas creaba Rhok'delar, y Vartrus te daba entonces {item:18715} (Venas heladas).",
 }

@@ -1,11 +1,12 @@
 -- French (frFR): the guide forever/class/paladin/lumina-windsinger (forever/class/paladin/lumina-windsinger.guide).
 -- Written by `node tools/polestar.js i18n guides sync frFR`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in French (the English is listed above the line). The comments are rewritten by sync.
+-- name there in French (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Guide
-	-- {quest:91862} Lumina Windsinger
-	["Rescuing {quest:91862}"] = "Secourir {quest:91862}",
+	["Rescuing Lumina Windsinger"] = "",
 	-- {item:268484} Moonsilver Blade
 	["No item yet: a Forsaken paladin rescue story; its sequel, the {item:268484}, cannot be finished yet."] = "Pas encore d'objet : une histoire de sauvetage pour paladin réprouvé ; sa suite, la {item:268484}, ne peut pas encore être terminée.",
 	-- {zone:1458} Undercity
@@ -28,10 +29,10 @@ return {
 	["from the {object:566037}"] = "sur {object:566037}",
 
 	-- Step 4: Fenris Keep
-	-- {quest:91862} Lumina Windsinger · {area:235} Fenris Keep · {npc:14235} The Rot
-	["{quest:91862} is caged inside {area:235}, at the north end of the isle. {npc:14235} Hide gnolls around her carry the key."] = "{quest:91862} est enfermée dans une cage à {area:235}, au nord de l'île. Les gnolls poil-putride ({npc:14235}) qui l'entourent portent la clé.",
-	-- {item:267412} Fenris Isle Key · {npc:14235} The Rot
-	["{item:267412}, from the {npc:14235} Hide gnolls"] = "{item:267412}, sur les gnolls poil-putride ({npc:14235})",
+	-- {quest:91862} Lumina Windsinger · {area:235} Fenris Keep
+	["{quest:91862} is caged inside {area:235}, at the north end of the isle. The Rot Hide gnolls around her carry the key."] = "",
+	-- {item:267412} Fenris Isle Key
+	["{item:267412}, from the Rot Hide gnolls"] = "",
 
 	-- Step 5: Free Lumina
 	["Free Lumina"] = "Libérer Lumina",
@@ -44,4 +45,9 @@ return {
 	["Once she is clear of {area:235}, Lumina waits for you in the {area:228}. Speak with her again to hear what really happened on the road."] = "Une fois sortie de {area:235}, Lumina vous attend au {area:228}. Parlez-lui de nouveau pour apprendre ce qui s'est vraiment passé sur la route.",
 	-- {npc:259620} Lumina Windsinger · {area:228} The Sepulcher
 	["{npc:259620}, the {area:228}"] = "{npc:259620}, au {area:228}",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Rescuing {quest:91862}"] = "Secourir {quest:91862}",
+	-- ["{item:267412}, from the {npc:14235} Hide gnolls"] = "{item:267412}, sur les gnolls poil-putride ({npc:14235})",
+	-- ["{quest:91862} is caged inside {area:235}, at the north end of the isle. {npc:14235} Hide gnolls around her carry the key."] = "{quest:91862} est enfermée dans une cage à {area:235}, au nord de l'île. Les gnolls poil-putride ({npc:14235}) qui l'entourent portent la clé.",
 }

@@ -1,7 +1,9 @@
 -- Korean (koKR): the guide forever/legacy/legacy-challenges (forever/legacy/legacy-challenges.guide).
 -- Written by `node tools/polestar.js i18n guides sync koKR`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Korean (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Guide
 	["Legacy Challenges"] = "Legacy 도전 과제",
@@ -56,8 +58,7 @@ return {
 
 	-- Step 10: PvP: battleground reputations (Alliance)
 	["PvP: battleground reputations (Alliance)"] = "PvP: 전장 평판 (얼라이언스)",
-	-- {zone:1460} Warsong Gulch · {zone:1461} Arathi Basin · {zone:1459} Alterac Valley
-	["Exalted with each battleground faction is worth a point (4 in all; this page shows three, see the note). Follow the Polestar Reputation guides {zone:1460} Reputation, {zone:1461} Reputation and {zone:1459} Reputation. The Diplomat Legacy perk increases reputation gains."] = "각 전장 세력과 확고한 동맹이 되면 1점입니다(총 4개, 이 페이지에는 3개만 있으니 참고 사항을 확인하십시오). Polestar 평판 가이드 {zone:1460} 평판, {zone:1461} 평판, {zone:1459} 평판을 따르십시오. Legacy 특전 Diplomat은 평판 획득량을 늘려 줍니다.",
+	["Exalted with each battleground faction is worth a point (4 in all; this page shows three, see the note). Follow the Polestar Reputation guides Warsong Gulch Reputation, Arathi Basin Reputation and Alterac Valley Reputation. The Diplomat Legacy perk increases reputation gains."] = "",
 	-- {zone:1460} Warsong Gulch · {zone:1461} Arathi Basin · {zone:1459} Alterac Valley
 	["Blizzard counts four battleground reputations, but our faction data has three per side ({zone:1460}, {zone:1461}, {zone:1459}). The fourth is likely tied to Forever's new PvP content; check the in-game Legacy panel."] = "블리자드는 전장 평판 4개를 계산하지만, 우리 세력 데이터에는 진영마다 3개({zone:1460}, {zone:1461}, {zone:1459})만 있습니다. 네 번째는 Forever의 새 PvP 콘텐츠와 관련된 것으로 보입니다. 게임 내 Legacy 창을 확인하십시오.",
 
@@ -131,12 +132,9 @@ return {
 	["Lower {area:1583}"] = "{area:1583} 하층",
 	-- {area:1583} Blackrock Spire
 	["Upper {area:1583}"] = "{area:1583} 상층",
-	-- {area:2577} Dire Maul
-	["{area:2577} East"] = "{area:2577} 동부",
-	-- {area:2577} Dire Maul
-	["{area:2577} West"] = "{area:2577} 서부",
-	-- {area:2577} Dire Maul
-	["{area:2577} North"] = "{area:2577} 북부",
+	["Dire Maul East"] = "",
+	["Dire Maul West"] = "",
+	["Dire Maul North"] = "",
 	-- {area:2279} Stratholme
 	["{area:2279}, Live side"] = "{area:2279}, 산 자 구역",
 	-- {area:2279} Stratholme
@@ -160,4 +158,10 @@ return {
 	-- Step 24: Raids: Barrow Deeps
 	["Raids: Barrow Deeps"] = "공격대: Barrow Deeps",
 	["All 8 Barrow Deeps bosses are a point. Barrow Deeps is a new Forever raid; its bosses are not in our data, so tick it off once all 8 are down."] = "Barrow Deeps 우두머리 8명을 모두 처치하면 1점입니다. Barrow Deeps은(는) Forever의 새 공격대이며 우두머리가 우리 데이터에 없으니, 8명을 모두 처치하면 직접 체크하십시오.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Exalted with each battleground faction is worth a point (4 in all; this page shows three, see the note). Follow the Polestar Reputation guides {zone:1460} Reputation, {zone:1461} Reputation and {zone:1459} Reputation. The Diplomat Legacy perk increases reputation gains."] = "각 전장 세력과 확고한 동맹이 되면 1점입니다(총 4개, 이 페이지에는 3개만 있으니 참고 사항을 확인하십시오). Polestar 평판 가이드 {zone:1460} 평판, {zone:1461} 평판, {zone:1459} 평판을 따르십시오. Legacy 특전 Diplomat은 평판 획득량을 늘려 줍니다.",
+	-- ["{area:2577} East"] = "{area:2577} 동부",
+	-- ["{area:2577} North"] = "{area:2577} 북부",
+	-- ["{area:2577} West"] = "{area:2577} 서부",
 }

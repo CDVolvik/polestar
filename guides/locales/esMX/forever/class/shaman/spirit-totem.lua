@@ -1,7 +1,9 @@
 -- Spanish (Latin America) (esMX): the guide forever/class/shaman/spirit-totem (forever/class/shaman/spirit-totem.guide).
 -- Written by `node tools/polestar.js i18n guides sync esMX`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Spanish (Latin America) (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Spanish (Latin America) (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Guide
 	-- {quest:8412} Spirit Totem · {quest:8413} Da Voodoo
@@ -42,7 +44,7 @@ return {
 	-- Step 5: Spider eye and bear claw
 	["Spider eye and bear claw"] = "Ojo de araña y garra de oso",
 	-- {zone:1422} Western Plaguelands · {item:20610} Bloodshot Spider Eye · {item:20611} Thick Black Claw
-	-- plural, as words: Venom Mist Lurkers = {npc:1822} Venom Mist Lurker · Diseased Black Bears = {npc:1815} Diseased Black Bear · Black Bears = {npc:1129} Black Bear
+	-- plural, as words: Venom Mist Lurkers = {npc:1822} Venom Mist Lurker · Diseased Black Bears = {npc:1815} Diseased Black Bear
 	["In the {zone:1422}, the Venom Mist Lurkers drop the {item:20610} and the Diseased Black Bears the {item:20611} (about one kill in five each)."] = "En {zone:1422}, los Rondadores Brumatósigo sueltan {item:20610} y los Osos negros malsanos, {item:20611} (cada uno, más o menos una de cada cinco muertes).",
 
 	-- Step 7: The Sunken Temple

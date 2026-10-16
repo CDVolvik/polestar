@@ -1,7 +1,9 @@
 -- Korean (koKR): the guide forever/class/shaman/call-of-water-alliance (forever/class/shaman/call-of-water-alliance.guide).
 -- Written by `node tools/polestar.js i18n guides sync koKR`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Korean (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Guide
 	-- {quest:94494} Call of Water
@@ -28,9 +30,9 @@ return {
 
 	-- Step 6: The red waterskin
 	["The red waterskin"] = "붉은 물주머니",
-	-- {area:71} Stonewatch Falls · {area:68} Lake Everstill · {item:265747} Unfilled Red Waterskin · {item:6530} Nightcrawlers
+	-- {area:71} Stonewatch Falls · {area:68} Lake Everstill · {item:265747} Unfilled Red Waterskin
 	-- plural, as words: Murloc Nightcrawlers = {npc:544} Murloc Nightcrawler
-	["{area:71} pour out of {area:68} at the east end of Redridge. Fill the {item:265747} at their foot, where the Murloc {item:6530} gather."] = "{area:71}은(는) 붉은마루 산맥 동쪽 끝의 {area:68}에서 흘러내립니다. 멀록 {item:6530}이(가) 모이는 폭포 아래에서 {item:265747}을(를) 채우십시오.",
+	["{area:71} pour out of {area:68} at the east end of Redridge. Fill the {item:265747} at their foot, where the Murloc Nightcrawlers gather."] = "",
 
 	-- Step 8: The blue waterskin
 	["The blue waterskin"] = "파란 물주머니",
@@ -54,4 +56,7 @@ return {
 	-- Step 12: Norric Lochthane
 	-- {npc:258043} Norric Lochthane · {spell:5394} Healing Stream Totem · {item:5177} Water Totem
 	["{npc:258043}: {spell:5394} and your {item:5177}"] = "{npc:258043}: {spell:5394}과(와) {item:5177}",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["{area:71} pour out of {area:68} at the east end of Redridge. Fill the {item:265747} at their foot, where the Murloc {item:6530} gather."] = "{area:71}은(는) 붉은마루 산맥 동쪽 끝의 {area:68}에서 흘러내립니다. 멀록 {item:6530}이(가) 모이는 폭포 아래에서 {item:265747}을(를) 채우십시오.",
 }

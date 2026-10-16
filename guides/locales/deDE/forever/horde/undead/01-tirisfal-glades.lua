@@ -1,7 +1,9 @@
 -- German (deDE): the guide forever/horde/undead/01-tirisfal-glades (forever/horde/undead/01-tirisfal-glades.guide).
 -- Written by `node tools/polestar.js i18n guides sync deDE`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in German (the English is listed above the line). The comments are rewritten by sync.
+-- name there in German (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Step 1: Undertaker Mordo
 	-- {area:154} Deathknell · {npc:1568} Undertaker Mordo
@@ -56,12 +58,8 @@ return {
 	["{npc:1570}, in the church"] = "{npc:1570}, in der Kirche",
 
 	-- Step 9: Aramis and Venya
-	-- {quest:90902} Rediscovering the Light · {npc:259377} Injured Deathguard
-	["Paladins: {quest:90902} is done once you have healed five {npc:259377} around the church with Holy Light."] = "Paladine: {quest:90902} ist erledigt, sobald du fünf {npc:259377} rund um die Kirche mit Heiliges Licht geheilt hast.",
-	-- {npc:244808} Aramis Hammerhand
-	["{npc:244808}: Holy Light"] = "{npc:244808}: Heiliges Licht",
-	-- {npc:5667} Venya Marthand
-	["{npc:5667}: Summon Imp"] = "{npc:5667}: Wichtel beschwören",
+	-- {quest:90902} Rediscovering the Light · {npc:259377} Injured Deathguard · {spell:635} Holy Light
+	["Paladins: {quest:90902} is done once you have healed five {npc:259377} around the church with {spell:635}."] = "",
 
 	-- Step 10: Scavenging Deathknell
 	-- {object:164662} Equipment Boxes · {area:154} Deathknell
@@ -134,7 +132,8 @@ return {
 
 	-- Step 26: Eleanor Shackleton
 	["Eleanor camps just south-west of town."] = "Eleanor lagert direkt südwestlich des Ortes.",
-	["/sit by her campfire until you get Boosted Rest"] = "/sit an ihrem Lagerfeuer, bis du Boosted Rest bekommst",
+	-- {spell:1229451} Boosted Rest
+	["/sit by her campfire until you get {spell:1229451}"] = "",
 
 	-- Step 27: Fields west of Brill
 	-- {area:159} Brill
@@ -176,15 +175,16 @@ return {
 	-- plural, as words: Greater Duskbats = {npc:1553} Greater Duskbat
 	["Greater Duskbats fly over the fields around {area:159} and along the road north."] = "Große Nachtsauger fliegen über die Felder um {area:159} und entlang der Straße nach Norden.",
 
-	-- Step 33: The Rot Hide graveyards
-	-- {npc:14235} The Rot
-	["{npc:14235} Hide graveyards"] = "Friedhöfe der Moderfelle ({npc:14235})",
-	-- {npc:14235} The Rot · {quest:358} Graverobbers · {area:159} Brill
-	["{npc:14235} Hide {quest:358} dig through the graveyards north of {area:159}; all the {npc:14235} Hides drop the ichor."] = "Die Moderfelle ({npc:14235}) graben für {quest:358} auf den Friedhöfen nördlich von {area:159}; alle Moderfelle ({npc:14235}) lassen das Sekret fallen.",
+	-- Step 33: Rot Hide graveyards
+	["Rot Hide graveyards"] = "",
+	-- {area:159} Brill
+	-- plural, as words: Rot Hide Graverobbers = {npc:1941} Rot Hide Graverobber
+	["The Rot Hide Graverobbers dig through the graveyards north of {area:159}; all the Rot Hides drop the ichor."] = "",
 
 	-- Step 34: Maggot Eye
-	-- {npc:14235} The Rot · {npc:1753} Maggot Eye
-	["{npc:14235} Hide Mongrels hold the hills further north. {npc:1753} (level 11) stands in their camp on the hill south of the shore: clear the gnolls around him first."] = "Bastarde der Moderfelle ({npc:14235}) halten die Hügel weiter nördlich. {npc:1753} (Stufe 11) steht in ihrem Lager auf dem Hügel südlich des Ufers: Räum zuerst die Gnolle um ihn herum weg.",
+	-- {npc:1753} Maggot Eye
+	-- plural, as words: Rot Hide Mongrels = {npc:1675} Rot Hide Mongrel
+	["The Rot Hide Mongrels hold the hills further north. {npc:1753} (level 11) stands in their camp on the hill south of the shore: clear the gnolls around him first."] = "",
 
 	-- Step 35: Vile Fin murlocs
 	["Vile Fin murlocs"] = "Murlocs der Finsterflossen",
@@ -242,7 +242,8 @@ return {
 
 	-- Step 45: Shadowvale
 	-- {area:16881} Shadowvale · {item:286269} Glowing Crystal Fragment
-	["{area:16881} is the hollow at the west edge of the glades. The {area:16881} Lurchers and Mystics drop the bones; the bottles lie on the ground among them, and the {item:286269} is at the south end."] = "{area:16881} ist die Senke am Westrand von Tirisfal. Die Schlinger und Mystiker von {area:16881} lassen die Knochen fallen; die Flaschen liegen zwischen ihnen am Boden, und das {item:286269} ist am Südende.",
+	-- plural, as words: Shadowvale Lurchers = {npc:260428} Shadowvale Lurcher
+	["{area:16881} is the hollow at the west edge of the glades. The Shadowvale Lurchers and Mystics drop the bones; the bottles lie on the ground among them, and the {item:286269} is at the south end."] = "",
 
 	-- Step 48: Brill
 	-- {npc:1560} Yvette Farthing
@@ -255,8 +256,6 @@ return {
 	-- Step 49: Ulag the Cleaver
 	-- {npc:1496} Deathguard Dillinger · {area:159} Brill
 	["{npc:1496} stands in {area:159}. Ulag waits in the mausoleum on the hill just north of town: open the gate and fight him."] = "{npc:1496} steht in {area:159}. Ulag wartet im Mausoleum auf dem Hügel direkt nördlich des Ortes: Öffne das Tor und kämpfe gegen ihn.",
-	-- {npc:1496} Deathguard Dillinger
-	["{npc:1496}: Defensive Stance"] = "{npc:1496}: Verteidigungshaltung",
 
 	-- Step 50: Carendin Halgar
 	-- {area:159} Brill · {area:153} Ruins of Lordaeron · {zone:1458} Undercity · {npc:5675} Carendin Halgar · {object:36082} Magic Quarter
@@ -291,7 +290,7 @@ return {
 	-- Step 58: Balnir graves
 	["Balnir graves"] = "Gräber von Balnirs Bauernhof",
 	-- {quest:99142} Tomb Weed
-	-- plural, as words: Bleeding Horrors = {npc:1529} Bleeding Horror · Horrors = {npc:251103} Horror · Wandering Spirits = {npc:1532} Wandering Spirit
+	-- plural, as words: Bleeding Horrors = {npc:1529} Bleeding Horror · Wandering Spirits = {npc:1532} Wandering Spirit
 	["Follow the road east. Bleeding Horrors and Wandering Spirits haunt the graves on the east side of the farmstead, where the {quest:99142} grows."] = "Folge der Straße nach Osten. Blutende Schrecken und Wandernde Geister spuken bei den Gräbern auf der Ostseite des Hofs, wo {quest:99142} wächst.",
 	-- {item:7227} Balnir Snapdragons
 	["{item:7227}, in the farmstead's garden"] = "{item:7227}, im Garten des Hofs",
@@ -302,7 +301,7 @@ return {
 	["The Scarlet Friars camp just north-east of the graves; {npc:1664} stands among them."] = "Die Scharlachroten Ordensmitglieder lagern direkt nordöstlich der Gräber; {npc:1664} steht zwischen ihnen.",
 
 	-- Step 60: Vicious Night Web Spiders
-	-- plural, as words: Vicious Night Web Spiders = {npc:1555} Vicious Night Web Spider · Night Web Spiders = {npc:1505} Night Web Spider
+	-- plural, as words: Vicious Night Web Spiders = {npc:1555} Vicious Night Web Spider
 	["Vicious Night Web Spiders"] = "Heimtückische Nachtweber",
 	["The spiders lurk in the woods at the far east end of the glades. Riptear, a rogue abomination, wanders just north-west of them. Riptear is elite: grouping up is advised."] = "Die Spinnen lauern in den Wäldern am äußersten Ostende von Tirisfal. Reißer, eine abtrünnige Monstrosität, streift direkt nordwestlich von ihnen umher. Reißer ist Elite: Eine Gruppe wird empfohlen.",
 	-- {item:286326} Riptear's Heart
@@ -337,8 +336,6 @@ return {
 	-- Step 68: The Undercity
 	-- {object:1661} The Undercity · {area:153} Ruins of Lordaeron · {npc:5675} Carendin Halgar · {object:36082} Magic Quarter · {item:6284} Runes of Summoning · {npc:4606} Aelthalyste · {object:36070} War Quarter · {npc:4568} Anastasia Hartwell
 	["{object:1661} is under the {area:153}, beside the zeppelin towers. {npc:5675} is in the {object:36082}: use the {item:6284} on the summoning circle beside him and defeat the voidwalker. {npc:4606} is in the {object:36070}. {npc:4568} is in the {object:36082} too."] = "{object:1661} liegt unter {area:153}, neben den Zeppelintürmen. {npc:5675} ist im {object:36082}: Benutze die {item:6284} am Beschwörungskreis neben ihm und besiege den Leerwandler. {npc:4606} ist im {object:36070}. {npc:4568} ist ebenfalls im {object:36082}.",
-	-- {npc:5675} Carendin Halgar
-	["{npc:5675}: Summon Voidwalker"] = "{npc:5675}: Leerwandler beschwören",
 
 	-- Step 69: Zeppelin to Durotar
 	-- {zone:1411} Durotar
@@ -352,4 +349,16 @@ return {
 	["The zeppelin lands at the tower just north-east of {zone:1454}'s main gate. Follow the road south into {zone:1411}, cross the {area:815} bridge below {area:379} and follow the road west to the {area:380}."] = "Der Zeppelin landet am Turm direkt nordöstlich des Haupttors von {zone:1454}. Folge der Straße nach Süden nach {zone:1411}, überquere die Brücke über {area:815} unterhalb von {area:379} und folge der Straße nach Westen zu {area:380}.",
 	-- {npc:3615} Devrak
 	["{npc:3615}, the wind rider master"] = "{npc:3615}, der Windreitermeister",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["/sit by her campfire until you get Boosted Rest"] = "/sit an ihrem Lagerfeuer, bis du Boosted Rest bekommst",
+	-- ["Paladins: {quest:90902} is done once you have healed five {npc:259377} around the church with Holy Light."] = "Paladine: {quest:90902} ist erledigt, sobald du fünf {npc:259377} rund um die Kirche mit Heiliges Licht geheilt hast.",
+	-- ["{area:16881} is the hollow at the west edge of the glades. The {area:16881} Lurchers and Mystics drop the bones; the bottles lie on the ground among them, and the {item:286269} is at the south end."] = "{area:16881} ist die Senke am Westrand von Tirisfal. Die Schlinger und Mystiker von {area:16881} lassen die Knochen fallen; die Flaschen liegen zwischen ihnen am Boden, und das {item:286269} ist am Südende.",
+	-- ["{npc:14235} Hide Mongrels hold the hills further north. {npc:1753} (level 11) stands in their camp on the hill south of the shore: clear the gnolls around him first."] = "Bastarde der Moderfelle ({npc:14235}) halten die Hügel weiter nördlich. {npc:1753} (Stufe 11) steht in ihrem Lager auf dem Hügel südlich des Ufers: Räum zuerst die Gnolle um ihn herum weg.",
+	-- ["{npc:14235} Hide graveyards"] = "Friedhöfe der Moderfelle ({npc:14235})",
+	-- ["{npc:14235} Hide {quest:358} dig through the graveyards north of {area:159}; all the {npc:14235} Hides drop the ichor."] = "Die Moderfelle ({npc:14235}) graben für {quest:358} auf den Friedhöfen nördlich von {area:159}; alle Moderfelle ({npc:14235}) lassen das Sekret fallen.",
+	-- ["{npc:1496}: Defensive Stance"] = "{npc:1496}: Verteidigungshaltung",
+	-- ["{npc:244808}: Holy Light"] = "{npc:244808}: Heiliges Licht",
+	-- ["{npc:5667}: Summon Imp"] = "{npc:5667}: Wichtel beschwören",
+	-- ["{npc:5675}: Summon Voidwalker"] = "{npc:5675}: Leerwandler beschwören",
 }

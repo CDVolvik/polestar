@@ -1,7 +1,9 @@
 -- Korean (koKR): the guide forever/class/rogue/the-azure-key (forever/class/rogue/the-azure-key.guide).
 -- Written by `node tools/polestar.js i18n guides sync koKR`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
--- name there in Korean (the English is listed above the line). The comments are rewritten by sync.
+-- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
+-- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- The comments are rewritten by sync.
 return {
 	-- Guide
 	["Ravenholdt reputation and experience at 50; Forever removed the Classic item choice."] = "50레벨에 얻는 라벤홀트 암살단 평판과 경험치. Forever에서는 클래식의 아이템 선택 보상이 없어졌습니다.",
