@@ -97,7 +97,9 @@
 		{"id":"hub-astranaar-crossroads-south","kind":"hub","from":{"uiMap":1440,"x":36.6,"y":49.6},"to":{"uiMap":1413,"x":51,"y":35},"profile":"Alliance","expect":[{"type":"metric","metric":"hubYards.Alliance","op":"==","value":0}]},
 		{"id":"hub-crossroads-astranaar-west-outside","kind":"hub","outside":60,"from":{"uiMap":1413,"x":51.5,"y":30.3},"to":{"uiMap":1440,"x":32,"y":50},"profile":"Horde","expect":[{"type":"metric","metric":"hubYards.Horde","op":"==","value":0}]},
 		{"id":"hub-tarrenmill-southshore-north-outside","kind":"hub","outside":60,"from":{"uiMap":1424,"x":62,"y":20},"to":{"uiMap":1424,"x":52,"y":44},"profile":"Horde","expect":[{"type":"metric","metric":"hubYards.Horde","op":"==","value":0}]},
-		{"id":"road-goldshire-sentinelhill","kind":"road","from":{"uiMap":1429,"x":42,"y":65},"to":{"uiMap":1436,"x":56.5,"y":47.5},"profile":null,"expect":[{"type":"metric","metric":"offRoad","op":"<=","value":0.2}]},
+		{"id":"road-goldshire-sentinelhill","kind":"reference","from":{"uiMap":1429,"x":42,"y":65},"to":{"uiMap":1436,"x":56.5,"y":47.5},"profile":null,"expect":[]},
+		{"id":"road-elwynn-goldshire-eastvale","kind":"road","map":0,"from":[-9587,-200,null],"to":[-9648,-1300,null],"profile":null,"expect":[{"type":"metric","metric":"offRoad","op":"<=","value":0.2}]},
+		{"id":"road-westfall-sentinelhill-north","kind":"road","map":0,"from":[-10400,990,null],"to":[-9900,988,null],"profile":null,"expect":[{"type":"metric","metric":"offRoad","op":"<=","value":0.2}]},
 		{"id":"road-crossroads-ratchet","kind":"road","from":{"uiMap":1413,"x":51.5,"y":30.3},"to":{"uiMap":1413,"x":62.7,"y":37.4},"profile":null,"expect":[{"type":"metric","metric":"offRoad","op":"<=","value":0.2}]},
 		{"id":"building-stormwind-trade-cathedral","kind":"building","from":{"uiMap":1453,"x":60,"y":70},"to":{"uiMap":1453,"x":52,"y":45},"profile":null,"expect":[{"type":"metric","metric":"indoorYards","op":"==","value":0}]},
 		{"id":"slope-barrens-north-ridge","kind":"slope","from":{"uiMap":1413,"x":49.26,"y":24.99},"to":{"uiMap":1413,"x":49.3,"y":21},"profile":null,"expect":[{"type":"metric","metric":"maxClimbDeg","op":"<=","value":50}]}

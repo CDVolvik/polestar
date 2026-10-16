@@ -8,8 +8,10 @@
 -- y in [(cy0 + k % ny) T, +T), T = 1600 / 3, cut into cells x cells cells, x-major. Base64 (A-Za-z0-9+/).
 -- graph[k + 1]: n(2) | n x [cell(3) layer(1) component(2) degree(1)] | edges in node order [cluster offset(1):
 --   (dx + 1) * 3 + dy + 1, node(2), costAlliance(3), costHorde(3), costNone(3), yards(2)]: an edge's cost under
---   each profile (Routing/Costs.lua; water at swim) in running yards, and the yards walked (Routing/PathGrid.lua
---   adjacent). grid[k + 1]: per cell value * 16 + flags, where value 0 blocked, 1 ground, 2 water;
+--   each profile (Routing/Costs.lua; water at swim) in running yards, and the yards walked along the cost-best way
+--   with no profile (one value for every profile: a walk round a hostile hub inside a cluster is longer than its
+--   yards say; Routing/PathGrid.lua adjacent). grid[k + 1]: per cell value * 16 + flags, where value 0 blocked,
+--   1 ground, 2 water;
 --   flags 1/2 close the step to the +x/+y neighbour, 4/8 open the +x+y/+x-y
 --   diagonal (otherwise a diagonal is open when either L-shaped detour is). A symbol >= 48 repeats the
 --   previous cell (symbol - 47) more times. Nodes are local cells, then floors from cells * cells on.

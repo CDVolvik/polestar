@@ -12,7 +12,7 @@
 //   them) when the pieces run on towards each other (the ends' outward
 //   directions oppose: cosine of one with the other reversed at least AGREE,
 //   and each looks across the gap: cosine with the gap at least AHEAD) and
-//   our grid walks the straight segment (nav.los).
+//   our grid walks the straight segment dry (nav.lineRuns: no swim on it).
 // A piece's tips: the column farthest from any other, then every local
 // maximum of the walked distance from it, at least TIP_GAP columns apart. An
 // end lies at the centroid of the piece's columns under DIR_NEAR (walked) from
@@ -22,7 +22,7 @@
 //   // mask: Map 'col_row' -> Uint8Array(65536) (1 road; index j * 256 + i), the tiles with weights;
 //   // mask.stats: { strong, weak, pieces, ends, bridges, bridgedColumns, refused }
 
-const { CELL, TILE_CELLS, cellCentre, tileKey } = require('./grid/format');
+const { CELL, TILE_CELLS, FLAG, CLS, cellCentre, tileKey } = require('./grid/format');
 
 const STRONG = 128;
 const WEAK = 32;
@@ -197,9 +197,11 @@ function roadMask({ c, tiles, weights, nav = null, log = () => {} }) {
 		const e = ends[i];
 		const f = ends[j];
 		if (nav) {
+			// Walkable straight across, dry all the way: a gap over a river or a lake is no road.
 			const A = nav.snap({ ...world(e.gx, e.gy), radius: 4 });
 			const B = nav.snap({ ...world(f.gx, f.gy), radius: 4 });
-			if (!A || !B || !nav.los(A, B)) {
+			const runs = A && B && !((A.flags | B.flags) & FLAG.SWIM) ? nav.lineRuns(A, B) : null;
+			if (!runs || runs.some((r) => r.cls === CLS.SWIM)) {
 				stats.refused++;
 				continue;
 			}

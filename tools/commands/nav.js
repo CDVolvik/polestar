@@ -379,6 +379,8 @@ async function packCmd(argv) {
 	const { TILE_VERSIONS } = require('../lib/nav/grid/format');
 	const version = JSON.parse(fs.readFileSync(path.join(dir, 'index.json'), 'utf8')).version;
 	if (!TILE_VERSIONS.includes(version)) throw Object.assign(new Error(`${dir} is grid version ${version}, this code reads ${TILE_VERSIONS.join(' or ')}: rebuild it with \`node tools/polestar.js nav build\``), { exit: 1 });
+	// Maps format 2's slope classes need each surface's steepest terrain triangle (grid format 4's tslope).
+	if (version < 4) throw Object.assign(new Error(`${dir} is grid format ${version}, without the slope per surface the walking maps' classes need: rebuild it with \`node tools/polestar.js nav build\` (grid format 4, e.g. --out data/local/nav4) and pack with --dir`), { exit: 1 });
 	const layers = packLayers(o.layers ? path.resolve(o.layers) : path.join(ROOT, 'data', 'local', 'nav-layers'));
 	const files = await packNav({ dir, cells, continents: MAPS, places: packPlaces(dir), layers, date: o.date, log: (m) => console.error(m) });
 	const { written, removed } = shipPack(files, out);

@@ -16,7 +16,8 @@ local ns = select(2, ...)
 -- inside the end clusters runs on water.
 -- Every result carries yards beside its cost. Find's job.yards is the drawn line's flat length (any format). FindCost's
 -- job.yards and FindMany's job.yards[i] are a second label along the cost-best path: on format 2 each grid step's
--- length and each graph edge's yards; on format 1, whose edges carry no yards, the cost itself (no per-step classes
+-- length and each graph edge's yards (one value an edge for every profile, the no-profile way's: across a cluster
+-- where a profile detours a hostile hub, FindMany's yards understate the walk); on format 1, whose edges carry no yards, the cost itself (no per-step classes
 -- there; a swum stretch counts at the swim factor), so yards[i] equals costs[i]. Find's job.hubs lists the hubs of
 -- the map's metadata (D.hubs = { { id, side, name, disks = { { x, y, r }, ... } }, ... }) hostile to the profile
 -- that the drawn line enters: { { id, name }, ... }, each once, in path order; {} without a profile or hubs.
@@ -981,7 +982,9 @@ function Path.FindSync(map, from, to, opts)
 end
 
 -- Costs indexed like targets, false for unreachable/off-mesh points; no geometry is built. reverse returns
--- target -> from costs, including the directed same-cluster water step. The shipped abstract edges are symmetric.
+-- target -> from costs, including the directed same-cluster water step. Format 1's abstract edges are symmetric;
+-- format 2's are directional (each priced the way out of its entrance, the class of the node it enters), and the
+-- reversed search reads the outbound costs, so a reversed cost is off by at most one entered step at each end.
 -- Returns costs, reason, the expansion count and yards indexed like costs (FindMany's job.yards).
 ---@param map number
 ---@param from SPFPoint

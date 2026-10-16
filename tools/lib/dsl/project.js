@@ -243,7 +243,7 @@ function writePackDir(outDir, files) {
 }
 
 // Addon folders of the release: always these (Polestar_Nav is committed:
-// Shortest Path Forever's walking router, `nav vendor`), plus the generated
+// Polestar's walking router and maps, `nav pack`), plus the generated
 // data addons when they have been built (each skipped while its folder or TOC
 // is missing; `pack` refuses a release without the Codex, which Lookup,
 // Dungeons and Rares read: tools/lib/codex/pack.js releaseRefusal).

@@ -22,12 +22,15 @@
 -- Hinterlands; 0.2.4's maps: 33.7 MB and 7.7 MB), with the maps themselves
 -- 33.9 MB loaded (0.2.4: 27.8 MB). So 48 MB of grids holds such a walk
 -- without evicting a cluster mid-search, and 16 MB of graph its whole graph.
--- Both are ceilings: Idle drops the decoded grids when no search is queued.
+-- Both are ceilings while a search runs: Idle drops the decoded grids when no
+-- search is queued and trims the decoded graph to Path.graphRestKB, 0.2.4's
+-- 6 MB, so what a player keeps between walks stays where 0.2.4 left it.
 local _, ns = ...
 local Path = ns.Path
 
 Path.cacheKB = 48 * 1024
 Path.graphKB = 16 * 1024
+Path.graphRestKB = 6 * 1024
 
 function Path.Available(map)
 	return map ~= nil and Path.HasData(map)

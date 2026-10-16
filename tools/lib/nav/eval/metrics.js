@@ -15,8 +15,8 @@
 // maxClimbDeg: the steepest uphill between consecutive points (degrees;
 // points under 1 yd apart on the ground, a lift's rise, are skipped).
 // offRoad: the share of the drawn line (by its SAMPLE yd pieces) with no road
-// column within NEAR_ROAD yd (a player that close to the painted road is on
-// it, and the drawn line is straightened over 4.17 yd cells); a road column
+// column within NEAR_ROAD yd (painted roads are 8-15 yd wide and wander, so
+// a player that close to a road column is on the road; the drawn line is straightened over 4.17 yd cells); a road column
 // has road weight ROAD or more (roads layer,
 // data/local/nav-layers/roads/<c>/<col>_<row>.bin, one byte per grid column,
 // index j * 256 + i); hubYards: per side, the yards a
@@ -38,7 +38,7 @@ const RUN = 7; // yd/s: a cost in running yards over seconds
 const PIECE = 8; // yd: blocked-share pieces (0.2.4's eval)
 const SAMPLE = 2; // yd: layer samples along the line
 const ROAD = 128; // road weight from which a column is road (half the alpha)
-const NEAR_ROAD = 4; // yd: a line piece this close to a road column is on the road
+const NEAR_ROAD = 8; // yd: a line piece this close to a road column is on the road
 // Offsets (yd) of the columns around a point within NEAR_ROAD.
 const AROUND = [];
 for (let dx = -Math.ceil(NEAR_ROAD / CELL); dx <= Math.ceil(NEAR_ROAD / CELL); dx++) {

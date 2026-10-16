@@ -12,7 +12,8 @@ const { test } = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
-const { runAddon, xmlFiles, ADDONS } = require('./helpers/lua');
+const { runAddon, xmlFiles, tocEntries, ADDONS } = require('./helpers/lua');
+const { tmpdir } = require('./helpers/tmp');
 const { quiet } = require('./helpers/cli');
 const { ROOT } = require('../tools/lib/paths');
 const { checkPack, navXml } = require('../tools/lib/nav/pack');
@@ -282,6 +283,36 @@ emit({ frames = n, cost = got.cost, syncCost = syncCost, points = #got.points, s
 	// API.lua's ceilings for Polestar's 4.17 yd maps format 2 (measured on the eval corpus's longest walks: 40.9 MB of grids, 15.7 MB of graph).
 	assert.deepEqual([got.cacheKB, got.graphKB], [48 * 1024, 16 * 1024]);
 	assert.match(fs.readFileSync(path.join(NAV, 'Routing', 'PathGrid.lua'), 'utf8'), /^Path\.cacheKB = 24576 /m);
+});
+
+test('memory at rest: a search may decode graph up to Path.graphKB, Idle trims it to Path.graphRestKB (0.2.4\'s 6 MB)', () => {
+	const keep = path.join(tmpdir('polestar-nav-rest-'), 'keep-ns.lua');
+	fs.writeFileSync(keep, 'local _, ns = ...\nstub.navNs = ns\n');
+	const [got] = runAddon({
+		stubs: ['stub_encoding.lua'],
+		addons: [{ name: 'Polestar_Nav', files: [...tocEntries(NAV), path.relative(NAV, keep)] }],
+		script: `local Path, G = Polestar_NavEngine, stub.navNs.PathGrid
+local function kb() local i = 1 while true do local k, v = debug.getupvalue(G.Reset, i) if k == "graphKB" then return v end i = i + 1 end end
+local rest = Path.graphRestKB
+Path.graphRestKB = 512
+-- The Hinterlands, a 6,850 yd walk (the eval corpus's lost|1423 route).
+local pts = Path.FindSync(0, { x = 3089.7, y = -2647.7 }, { x = 3079.3, y = -2755.7 })
+local searching = kb()
+G.Idle()
+emit({ found = pts ~= nil, searching = searching, resting = kb(), rest = rest, ceiling = Path.graphKB })`,
+	}).emitted;
+	assert.equal(got.found, true);
+	assert.deepEqual([got.rest, got.ceiling], [6 * 1024, 16 * 1024], 'API.lua\'s ceilings');
+	assert.ok(got.searching > 512, `the search decoded ${got.searching} KB of graph`);
+	assert.ok(got.resting <= 512, `Idle leaves ${got.resting} KB (want <= 512)`);
+});
+
+test('nav pack refuses a grid without the slope per surface (grid format 3 or older) and says to rebuild it', async () => {
+	const dir = tmpdir('polestar-nav-grid3-');
+	fs.writeFileSync(path.join(dir, 'index.json'), JSON.stringify({ version: 3, continents: {} }));
+	const { result, out } = await quiet(() => nav.run(['pack', '--dir', dir, '--out', tmpdir('polestar-nav-out-')]));
+	assert.equal(result, 1);
+	assert.match(out, /grid format 3, without the slope per surface .*rebuild it with `node tools\/polestar\.js nav build` \(grid format 4/);
 });
 
 test('Polestar_Nav ships in the release, credits Shortest Path Forever and carries the GPL', () => {

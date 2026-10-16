@@ -100,16 +100,16 @@ test('metrics: yards from the drawn line, the steepest climb between points; blo
 	assert.ok(Math.abs(into.hubYards.Horde - 10) <= 1 && into.hubYardsAway.Horde === 0, `into Southshore: ${into.hubYards.Horde} in all, ${into.hubYardsAway.Horde} away`);
 });
 
-test('metrics: offRoad counts a piece of the line with a road column within 4 yd as on the road', () => {
+test('metrics: offRoad counts a piece of the line with a road column within 8 yd as on the road', () => {
 	const { metrics } = require('../tools/lib/nav/eval/metrics');
 	// A road 2 yd wide along y = 0 (weight 200), plain ground (0) elsewhere.
 	const layers = { roads: (c, x, y) => (Math.abs(y) < 1 ? 200 : 0) };
 	const at = (y) => metrics({ ok: true, cost: 100, pts: [[0, y, 0], [100, y, 0]] }, { grid: null, layers, map: 0 }).offRoad;
 	assert.equal(at(0), 0, 'on the road');
-	assert.equal(at(3), 0, '3 yd beside it: on it');
-	assert.equal(at(7), 1, '7 yd beside it: off it');
+	assert.equal(at(7), 0, '7 yd beside it: on it');
+	assert.equal(at(12), 1, '12 yd beside it: off it');
 	const half = metrics({ ok: true, cost: 100, pts: [[0, 0, 0], [50, 0, 0], [50, 50, 0]] }, { grid: null, layers, map: 0 }).offRoad;
-	assert.ok(Math.abs(half - 0.46) < 0.03, `the second half leaves the road: ${half}`);
+	assert.ok(Math.abs(half - 0.42) < 0.03, `the second half leaves the road: ${half}`);
 });
 
 test('compare: a hub route with an end inside a hostile hub is held to its yards in the other hostile hubs (A2)', () => {

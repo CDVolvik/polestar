@@ -24,7 +24,8 @@ ns.Path = Path
 
 Path.budget = 2 -- milliseconds of path work, leaving headroom under the 3 ms frame ceiling
 Path.clusters = 64 -- secondary count ceiling per map (at least 4)
-Path.graphKB = 4096 -- decoded entrances/edges across all maps
+Path.graphKB = 4096 -- decoded entrances/edges across all maps while a search runs
+Path.graphRestKB = 4096 -- the same with no search queued (Idle trims to it)
 Path.cacheKB = 24576 -- decoded grids across all maps; active coroutine locals are additional
 Path.clock = debugprofilestop or function()
 	return os.clock() * 1000
@@ -555,8 +556,8 @@ local function cellOf(st, k, node)
 end
 
 local graphKB, graphClock = 0, 0
-local function trimGraphs()
-	while graphKB > Path.graphKB do
+local function trimGraphs(limit)
+	while graphKB > (limit or Path.graphKB) do
 		local owner, oldest, age = nil, nil, huge
 		for _, st in pairs(states) do
 			for k, used in pairs(st.graphUsed) do
@@ -957,7 +958,8 @@ local function smooth(st, P, profile)
 	return out
 end
 
--- With no search queued, drop decoded grids and local trees; exact endpoint costs stay.
+-- With no search queued, drop decoded grids and local trees and trim the decoded graph to its resting ceiling; exact
+-- endpoint costs stay.
 local function Idle()
 	for _, st in pairs(states) do
 		for _, entry in ipairs(st.endTrees or {}) do
@@ -974,7 +976,7 @@ local function Idle()
 			end
 		end
 	end
-	trimGraphs()
+	trimGraphs(math.min(Path.graphRestKB or Path.graphKB, Path.graphKB))
 end
 
 local function Reset()

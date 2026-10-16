@@ -371,6 +371,20 @@ class Nav {
 		return r.ok;
 	}
 
+	// The straight line between two points as los walks it, cut where its link class changes: null when it is no
+	// straight walkable line, else lineCost's runs ([{ cls, seconds, t, z }]; cls CLS.SWIM where it swims).
+	lineRuns(a, b) {
+		const A = this.ensureSnapped(a);
+		const B = this.ensureSnapped(b);
+		if (!A || !B || A.c !== B.c) return null;
+		const space = new Space(this.tilesBetween(A, B));
+		const sa = space.slot(A.tile.col, A.tile.row);
+		const sb = space.slot(B.tile.col, B.tile.row);
+		if (sa < 0 || sb < 0) return null;
+		const r = this.lineCost(space, sa, A.entry, A.cell.j * 256 + A.cell.i, sb, B.entry, B.cell.j * 256 + B.cell.i, profileFor({}), true);
+		return r.ok ? r.runs : null;
+	}
+
 	// The tiles a straight line between two snapped points crosses (bounding box).
 	tilesBetween(A, B) {
 		const out = [];

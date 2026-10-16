@@ -29,7 +29,7 @@ one into the other. The addons:
 | `Polestar_ItemDB` (`addon/Polestar_ItemDB/`) | Item stats and Forever reward choices for the gear advice; loaded on demand | `itemdb build` (`Items.lua`), then `gear build` (`Forever.lua`) | yes (generated) | yes |
 | `Polestar_QuestDB` (`addon/Polestar_QuestDB/`) | The quest database behind quest markers and tooltips; loaded on demand | `questdb build` | no (local, gitignored) | yes, when built |
 | `Polestar_Codex` (`addon/Polestar_Codex/`) | Lookup's Codex, and the Dungeons and Rares data; loaded on demand | `codex build`, from release-safe inputs (`--local-extras` builds a local-only one) | no (generated, gitignored) | yes, always: `pack` fails without it |
-| `Polestar_Nav` (`addon/Polestar_Nav/`) | Polestar's walking router (started from Shortest Path Forever v1.16.0 by Cillian Berragan, GPL-3.0-or-later; Polestar's since 2026-10-16) and his map of Zephras Isle, with Polestar's walking maps of Eastern Kingdoms and Kalimdor in his format and the walk's chokepoints, for the arrow's walking routes; loaded on demand at login, never while the target is handed to an installed Shortest Path Forever (Nav, "In-game walking routes (Polestar_Nav)", "Hand-off to Shortest Path Forever") | the router hand-written (`Routing/`); `nav vendor <checkout>` (his map, `UPSTREAM.json`), `nav pack` (ours, `PACK.json`, from the navigation grid) | yes | yes, always |
+| `Polestar_Nav` (`addon/Polestar_Nav/`) | Polestar's walking router (started from Shortest Path Forever v1.16.0 by Cillian Berragan, GPL-3.0-or-later; Polestar's since 2026-10-16) with Polestar's walking maps of Eastern Kingdoms, Kalimdor and Zephras Isle (maps format 2, grown from his format) and the walk's chokepoints, for the arrow's walking routes; loaded on demand at login, never while the target is handed to an installed Shortest Path Forever (Nav, "In-game walking routes (Polestar_Nav)", "Hand-off to Shortest Path Forever") | the router hand-written (`Routing/`); `nav pack` (the maps, `PACK.json`, from the navigation grid and the ground layers) | yes | yes, always |
 | `Polestar_Travel` (`addon/Polestar_Travel/`) | Zone crossings for the travel planner, from an optional local crossings file; loaded with Polestar | `travel build` | no (local, gitignored) | no, never packaged (Nav, "Travel planner and zone crossings") |
 | `Polestar_Recorder` (`addon/Polestar_Recorder/`) | The optional standalone recorder of play sessions, for authoring | hand-written | yes | yes, as its own zip |
 
@@ -1906,9 +1906,9 @@ Cillian Berragan (https://github.com/cjber/shortest-path-forever,
 GPL-3.0-or-later, used with his permission). Polestar's walking router
 started from Shortest Path Forever v1.16.0 by Cillian Berragan, with thanks;
 Polestar maintains it since 2026-10-16. `addon/Polestar_Nav` holds that
-router, running on Polestar's own walking maps of Eastern Kingdoms and
-Kalimdor (packed from our navigation grid in his map format, `nav pack`) and
-his map of Zephras Isle; Polestar's travel planner (above) keeps choosing
+router, running on Polestar's own walking maps of Eastern Kingdoms,
+Kalimdor and Zephras Isle (packed from our navigation grid in maps format 2,
+grown from his map format, `nav pack`); Polestar's travel planner (above) keeps choosing
 flights, rides and the Hearthstone, and the walking is the router's: the
 arrow's walk, every later walk's path, and the measure of the walks into the
 target the planner prices (`Path.Find` and one reversed `Path.FindMany` per
@@ -1932,8 +1932,7 @@ exactly as before classes, for any profile.
 ```
 Polestar_Nav.toc        LoadOnDemand, Dependencies: Polestar
   Nav\Nav.xml           the walking maps -> PolestarPathData[map], then the chokepoints
-    Nav0*.lua, Nav1*.lua  ours: `nav pack` from the grid (128 cells a tile, 4.17 yd), listed in PACK.json
-    Nav2991*.lua          his (Zephras Isle), listed in UPSTREAM.json
+    Nav0*.lua, Nav1*.lua, Nav2991*.lua  ours: `nav pack` from the grid (128 cells a tile, 4.17 yd), listed in PACK.json
     Chokepoints.lua       ours: PolestarNavChokepoints[map] for the walk's named steps
   Routing\Costs.lua     ours: Polestar_NavCosts, the ground classes' multipliers and the faction profiles
   Routing\PathGrid.lua  ours from his: decoded clusters and ground classes, memory ceilings, frame slicing, string-pulling
@@ -2000,11 +1999,11 @@ of the map's `hubs` metadata (`{ id, side, name, disks = { { x, y, r }, ...
 order (`{}` without a profile or hubs). Reasons: `nodata`, `outside`, `offmesh`,
 `unreachable`, `error`. Searches run as coroutines in `C_Timer.After(0)`
 slices of `Path.budget` ms, wait out combat, and drop decoded clusters once
-the queue is empty (`Path.cacheKB`, `Path.graphKB` cap them meanwhile, set
-in `API.lua`). The maps are base64 zlib blocks decoded per cluster with
-`C_EncodingUtil`. `nav check` holds his map to `UPSTREAM.json` and ours to
-`PACK.json` (grid build, cells, date, sizes, the sha256 of every file), and
-`Nav.xml` to both.
+the queue is empty (`Path.cacheKB`, `Path.graphKB` cap them meanwhile, and
+`Idle` trims the decoded graph to `Path.graphRestKB`, all set in `API.lua`).
+The maps are base64 zlib blocks decoded per cluster with `C_EncodingUtil`.
+`nav check` holds the maps to `PACK.json` (grid build, cells, date, sizes,
+the sha256 of every file), and `Nav.xml` to it.
 
 **Our own maps, always.** The engine reads only `PolestarPathData`, never an
 installed Shortest Path Forever's `ShortestPathForeverPathData`, even when it
@@ -2014,7 +2013,7 @@ in the middle of a search that already counts a cluster as decoded, which
 would end in a Lua error (docs/NAV_QA.md H1). With both
 addons installed and the hand-off off, each holds its own maps in memory
 (with it on, the default, `Polestar_Nav` is not loaded: "Hand-off to Shortest
-Path Forever"); `tests/nav-vendor.test.js`
+Path Forever"); `tests/nav-maps.test.js`
 trims a stand-in for his tables after every frame of one of our searches and
 checks the route is unchanged.
 
@@ -2023,30 +2022,16 @@ tested by `tests/nav-router.test.js` (synthetic maps with and without the
 class field; format 1 against the router before classes, from git) and the
 real-map tests, and no tool copies it from upstream any more; its three
 files that began as his keep his copyright and the GPL notice under a header
-line saying where it started. `node tools/polestar.js nav vendor <checkout>`
-(`tools/lib/nav/vendor.js`) copies only `Nav/Nav.xml`'s map files of the
-maps we do not pack (Zephras Isle), with one mechanical
-transform (idempotent): `ShortestPathForeverPathData` becomes
-`PolestarPathData`, and a first line names the upstream file and commit, his
-copyright and licence, and the date of the change (GPLv3 section 5a;
-`--date`, default today). Only `Nav<name>.lua` map names are taken from
-`Nav.xml`, so a checkout cannot point it outside `Nav/`. It refuses a
-checkout with uncommitted or untracked changes (`git status --porcelain`) or
-whose `origin` is not `github.com/cjber/shortest-path-forever` (https or ssh),
-and an output folder that has no `UPSTREAM.json` unless it is new and empty
-(or whose `UPSTREAM.json` is broken). It removes only map files the previous
-`UPSTREAM.json` listed that upstream dropped, never any other file in the
-folder (never `Routing/`, even where an older `UPSTREAM.json` listed it), and writes `UPSTREAM.json`
-(`{ repo, commit, version, vendored: date, files: { path: sha256 } }`); `nav
-check` reports a missing or broken `UPSTREAM.json` as such. Then update `CREDITS.md`'s version line by hand. `nav
-check` and `tests/nav-vendor.test.js` hold the vendored maps to `UPSTREAM.json`
-(and `Routing/` to nothing); the
-test also loads the addon with the real maps (`tests/lua/stub_encoding.lua`
-decodes them in plain Lua), walks Goldshire to the Fargodeep Mine mouth and
-holds the engine to NAV_QA C2 (a cancelled search never calls back), C6
-(Stormwind's flight master to the Mage Quarter never doubles back) and C17
-(searches sliced over frames). Never edit the vendored map by hand: a fix
-belongs upstream, then a re-vendor.
+line saying where it started. The maps are Polestar's too (Zephras Isle's
+since 2026-10-16, when `nav vendor` and `UPSTREAM.json` went): `nav pack`
+writes all three from the grid, and `nav check` and
+`tests/nav-maps.test.js` hold them to `PACK.json`; the test also loads the
+addon with the real maps (`tests/lua/stub_encoding.lua` decodes them in
+plain Lua), walks Goldshire to the Fargodeep Mine mouth and holds the engine
+to NAV_QA C2 (a cancelled search never calls back), C6 (Stormwind's flight
+master to the Mage Quarter never doubles back) and C17 (searches sliced over
+frames). Never edit a map by hand: change the grid, the layers or the packer
+and re-pack.
 
 **Measuring the maps.** `node tools/polestar.js nav eval`
 (`tools/lib/nav/eval/`) runs the engine outside the client: `harness.lua`
