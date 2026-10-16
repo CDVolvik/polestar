@@ -13,26 +13,30 @@
 --   Dungeons.Load() -> ok, reason   -- "off" (dungeons.enabled false), Data.Pack's reasons
 --                                     ("missing", "disabled", "combat", ...), "nodata" (pack built without Dungeons)
 --   Dungeons.IsEnabled() ; Dungeons.Meta()
---   Dungeons.List() -> { { key, name, kind, forever, minLevel, maxLevel, players, zone, zoneName,
+--   Dungeons.List() -> { { key, name, kind, forever, minLevel, maxLevel, players, map, zone, zoneName,
 --       entrance = { map, x, y, f } | nil, quests = { A = n, H = n }, bosses = n,
 --       attune = { A = n, H = n } } }   -- level order, no page decoded
---   Dungeons.Get(key) -> { key, name, kind, forever, minLevel, maxLevel, players, zone, zoneName, entrance } | nil
+--       (name and zoneName in the client's language when it has them; map: the instance's Map id)
+--   Dungeons.Get(key) -> { key, name, kind, forever, minLevel, maxLevel, players, map, zone, zoneName, entrance } | nil
 --   Dungeons.Entrance(key) -> map, x, y, f | nil
 --   Dungeons.Quests(key, faction) -> { quest, ... }   -- faction "A" | "H" | nil (all); level order
 --   Dungeons.Quest(key, id) -> quest | nil           -- page and chain quests
---       quest = { id, title, level, minLevel, faction, classes, inside, shareable, objective,
+--       quest = { id, title, level, minLevel, faction, classes, inside, shareable,
+--         objectives = { { k = "kill"|"item"|"object"|"event", id, n (count over one), name (English) } },
 --         start, finish (= { kind, id, name, map, x, y, f, inside }), startItem = { id, name },
 --         chain = { ids }, rewards = { items = { { id, name, quality, choice } }, xp, money, rep = { { faction, name, value } } },
 --         bosses = { names } }
---   Dungeons.Bosses(key) -> { { order, name, npc, level, object, role, quests = { { id, how, item, itemName } } } }
+--   Dungeons.ObjectiveText(quest) -> text | nil   -- its objectives in the client's language, one a line
+--   Dungeons.Bosses(key) -> { { order, name, npc, level, object, role, encounter, quests = { { id, how, item, itemName } } } }
 --       object: a chest boss's object id (npc nil); role: "rare" | "event" | "optional" for the
---       bosses after the encounters, nil for an encounter (and on pages built before roles)
+--       bosses after the encounters, nil for an encounter (and on pages built before roles);
+--       encounter: its DungeonEncounter id (its name in every language: Names.Encounter)
 --       how: "kill" (an objective), "item" (drops an objective item), "starts" (drops the item
 --       that starts it), "involved" (DungeonJournal names it for the quest)
 --   Dungeons.Open(key|nil)   -- fires SHOW_DUNGEON(key); the hub section listens
 --   Dungeons.GuideTo(key) -> ok ; Dungeons.GuideToPoint(point, label[, stop]) -> ok   (Nav)
 --   Dungeons.ShowOnMap(key) -> ok   -- the world map on the entrance's zone
---   Dungeons.Find(text) -> key | nil
+--   Dungeons.Find(text) -> key | nil   -- by name (the client's language or English) or key
 --   Dungeons.Register(group, a, b)  -- pack files only
 --   Dungeons.Attunements(key, faction) -> { attunement, ... }   -- faction "A" | "H" | nil (all)
 --       attunement = { id, name, kind = "attunement"|"key"|"item", need = "each"|"one", faction,
@@ -57,7 +61,7 @@ local Dungeons = {}
 ns.Dungeons = Dungeons
 
 local type, pairs, ipairs, pcall, tostring = type, pairs, ipairs, pcall, tostring
-local find, lower = string.find, string.lower
+local find, lower, format, gsub = string.find, string.lower, string.format, string.gsub
 local sort = table.sort
 
 ns.RegisterDefaults("dungeons", { enabled = true })
@@ -197,10 +201,16 @@ end)
 -- Reading
 ---------------------------------------------------------------------------
 
+-- The instance's name and its zone's in the client's language (Names: the
+-- names pack's Map.csv name, the client's map name), else the data's English.
 local function summary(key, s)
+	local N = ns.Names
+	local localised = N and N.Localised and N.Localised()
+	local zoneName = s.zoneName
+	if localised and s.zone then zoneName = ns.Compat.MapName(s.zone) or zoneName end
 	return {
-		key = key, name = s.name or key, kind = s.kind or "dungeon", forever = s.forever and true or false,
-		minLevel = s.minLevel, maxLevel = s.maxLevel, players = s.players, zone = s.zone, zoneName = s.zoneName,
+		key = key, name = (localised and s.map and N.Instance(s.map)) or s.name or key, kind = s.kind or "dungeon", forever = s.forever and true or false,
+		minLevel = s.minLevel, maxLevel = s.maxLevel, players = s.players, map = s.map, zone = s.zone, zoneName = zoneName,
 		entrance = s.entrance,
 		quests = { A = s.quests and s.quests.A or 0, H = s.quests and s.quests.H or 0 }, bosses = s.bosses or 0,
 		attune = { A = s.attune and s.attune.A or 0, H = s.attune and s.attune.H or 0 },
@@ -255,6 +265,56 @@ function Dungeons.Bosses(key)
 	return p and p.bosses or {}
 end
 
+-- A quest's objective line in the client's language, one objective a line,
+-- composed from the page's objective facts (quest.objectives = { { k, id, n,
+-- name } }): "Kill 15 <npc>", "Collect 8 <item>", "Use <object>" with the
+-- names from Polestar.Names, else the data's English. Objectives without an
+-- id (escorts, events) read the quest's objective summary from the names
+-- pack ("objective") once, else each its English text. nil: none.
+local OBJECTIVE = {
+	kill = { L["Kill %s"], L["Kill %d %s"], "npc" },
+	item = { L["Collect %s"], L["Collect %d %s"], "item" },
+	object = { L["Use %s"], nil, "object" },
+}
+
+-- The quest text tokens a summary keeps: $N name, $C class, $R race, $G male:female;
+local function fill(s)
+	local name = UnitName and UnitName("player") or ""
+	local class = UnitClass and UnitClass("player") or ""
+	local race = UnitRace and UnitRace("player") or ""
+	local female = UnitSex and UnitSex("player") == 3
+	s = gsub(s, "%$[Gg]%s*([^:;]*):([^;]*);", function(m, f) return female and f or m end)
+	s = gsub(s, "%$([NnCcRr])", function(t)
+		t = lower(t)
+		return t == "n" and name or t == "c" and class or race
+	end)
+	return s
+end
+
+function Dungeons.ObjectiveText(q)
+	local list = type(q) == "table" and q.objectives
+	if type(list) ~= "table" or #list == 0 then return nil end
+	local N = ns.Names
+	local lines, summaryDone = {}, false
+	for _, o in ipairs(list) do
+		local f = OBJECTIVE[o.k]
+		if f then
+			local name = (N and N.Get(f[3], o.id)) or o.name or ""
+			lines[#lines + 1] = (o.n and f[2]) and format(f[2], o.n, name) or format(f[1], name)
+		elseif not summaryDone then
+			local text = N and N.Get("objective", q.id)
+			if text then
+				summaryDone = true
+				lines[#lines + 1] = fill(text)
+			elseif o.name then
+				lines[#lines + 1] = o.name
+			end
+		end
+	end
+	if #lines == 0 then return nil end
+	return table.concat(lines, "\n")
+end
+
 function Dungeons.Attunements(key, faction)
 	local p = page(key)
 	if not p then return {} end
@@ -265,13 +325,14 @@ function Dungeons.Attunements(key, faction)
 	return out
 end
 
+-- By name in the client's language or in English, or by key.
 function Dungeons.Find(text)
 	if type(text) ~= "string" or text == "" then return nil end
 	local want, hit = lower(text), nil
 	for _, d in ipairs(Dungeons.List()) do
-		local n = lower(d.name)
-		if n == want or d.key == want then return d.key end
-		if not hit and find(n, want, 1, true) then hit = d.key end
+		local n, en = lower(d.name), lower(summaries[d.key].name or d.key)
+		if n == want or en == want or d.key == want then return d.key end
+		if not hit and (find(n, want, 1, true) or find(en, want, 1, true)) then hit = d.key end
 	end
 	return hit
 end

@@ -93,6 +93,12 @@ local shown = {} -- what the last render put up, for tests and the preview
 
 local function D() return ns.Dungeons end
 
+-- A faction's name in the client's language (Names.Faction), else the data's.
+local function factionName(id, name)
+	local N = ns.Names
+	return (N and N.Faction and N.Faction(id)) or name
+end
+
 ---------------------------------------------------------------------------
 -- Helpers
 ---------------------------------------------------------------------------
@@ -1167,7 +1173,7 @@ local function rewardExtras(rw)
 	if m then extras[#extras + 1] = m end
 	for _, r in ipairs(rw.rep or {}) do
 		if r.value and r.value ~= 0 then
-			extras[#extras + 1] = format(r.value > 0 and "+%d %s" or "%d %s", r.value, r.name or L["Reputation"])
+			extras[#extras + 1] = format(r.value > 0 and "+%d %s" or "%d %s", r.value, factionName(r.faction, r.name) or L["Reputation"])
 		end
 	end
 	return extras
@@ -1206,11 +1212,12 @@ local function plan(q, key)
 	local VW = mainWidth() - VALUE_X - PAD
 	local p = {}
 	local y = 66
-	if q.objective then
+	p.objective = D().ObjectiveText(q)
+	if p.objective then
 		p.obj = y
 		local m = pg.Measure
 		m:SetWidth(min(VW, 620))
-		m:SetText(q.objective)
+		m:SetText(p.objective)
 		y = y + max(16, m:GetStringHeight()) + 12
 	end
 	p.starts = y
@@ -1347,7 +1354,7 @@ local function paintQuest(b, q, p, top, plevel, key)
 		b.Obj:ClearAllPoints()
 		b.Obj:SetPoint("TOPLEFT", b, "TOPLEFT", VALUE_X, -p.obj)
 		b.Obj:SetWidth(min(VW, 620))
-		b.Obj:SetText(q.objective)
+		b.Obj:SetText(p.objective)
 		b.Obj:Show()
 	else
 		b.Obj:Hide()
@@ -1668,7 +1675,7 @@ local function stepLine(s, plevel)
 	elseif s.kind == "object" then
 		return format(L["%s from %s"], colored("item", s.item.name), colored("object", s.object and s.object.name)), s.object
 	elseif s.kind == "rep" then
-		return format(L["Reach %s with %s"], standingName(s.standing), colored("faction", s.name)), nil
+		return format(L["Reach %s with %s"], standingName(s.standing), colored("faction", factionName(s.faction, s.name))), nil
 	elseif s.kind == "gift" then
 		return format(L["%s gives you %s"], colored("npc", s.npc and s.npc.name), colored("item", s.item.name)), s.npc
 	end
@@ -1683,7 +1690,7 @@ local function stepSub(s, state)
 	elseif state == "log" then t[#t + 1] = L["In your log"]
 	elseif state == "locked" then t[#t + 1] = L["After the steps before it"]
 	elseif state == "level" then t[#t + 1] = format(L["From level %d"], s.minLevel or 0)
-	elseif state == "rep" and s.rep then t[#t + 1] = format(L["Needs %s with %s"], standingName(s.rep.standing), s.rep.name or L["Not known"])
+	elseif state == "rep" and s.rep then t[#t + 1] = format(L["Needs %s with %s"], standingName(s.rep.standing), factionName(s.rep.faction, s.rep.name) or L["Not known"])
 	elseif state == "skip" then t[#t + 1] = L["Not needed"]
 	end
 	if s.kind == "quest" and s.start then
@@ -1753,7 +1760,7 @@ local function renderAttune(key, f, plevel)
 		local hy = 66
 		if a.note then
 			h.Note:SetWidth(MW - PAD * 2)
-			h.Note:SetText(a.note)
+			h.Note:SetText(L[a.note]) -- the attunement table's notes are data keys (tools/lib/i18n/keys.js)
 			h.Note:Show()
 			hy = hy + floor(h.Note:GetStringHeight() + 0.5)
 		else
