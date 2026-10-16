@@ -1490,3 +1490,18 @@ test('hostile towns: two towns of the same name are named once', () => {
 		emit(N.travel.HubText({ kind = "walk", hubs = hubs }))`);
 	assert.equal(out, 'Hostile town: Goldshire, Lakeshire');
 });
+
+test('hostile towns: each is named in the client\'s language by its area (Compat.GetAreaName), else by the packed name, a shown name once', () => {
+	const [out] = run(`
+		local de = { [271] = "S\\195\\188derstade", [272] = "Tarrens M\\195\\188hle" }
+		Polestar.Compat.GetAreaName = function(id) return de[id] end
+		local hubs = {
+			{ id = "a", name = "Southshore", areaId = 271 },
+			{ id = "b", name = "Hammerfall", areaId = 999 },
+			{ id = "c", name = "Tarren Mill", areaId = 272 },
+			{ id = "d", name = "Southshore copy", areaId = 271 },
+			{ id = "e", name = "Hammerfall" },
+		}
+		emit(N.travel.HubText({ kind = "walk", hubs = hubs }))`);
+	assert.equal(out, 'Hostile town: S\u00fcderstade, Hammerfall, Tarrens M\u00fchle');
+});

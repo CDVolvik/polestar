@@ -1772,7 +1772,7 @@ Polestar.Nav.GetRouteGeometry() -> { legs = { { kind, pts = { { c, wx, wy }, ...
 --         lift, side (a lift ride: Transit's lift id, "top"|"bottom" boarded),
 --         item (hearth: 6948), spell (teleport), parent, seg, tail (pieces of a split walk),
 --         engine ("cost": a walk into the target priced by the engine's measure; "path": by its own path),
---         hubs = { { id, name }, ... } (a walk whose engine path enters the other faction's towns) }
+--         hubs = { { id, name, areaId }, ... } (a walk whose engine path enters the other faction's towns) }
 ```
 
 The planner is Dijkstra over the player, the target, known flight masters,
@@ -2288,8 +2288,8 @@ class's multiplier for `profile`. Beside the cost every result carries
 yards: `Find`'s `job.yards` is the drawn line's flat length; `FindCost`'s
 and `FindMany`'s are a second label along the cost-best path (grid step
 lengths and the edges' yards), on a format 1 map the cost itself (its edges
-carry no yards). `Find`'s `job.hubs` = `{ { id, name }, ... }` lists the hubs
-of the map's `hubs` metadata (`{ id, side, name, disks = { { x, y, r }, ...
+carry no yards). `Find`'s `job.hubs` = `{ { id, name, areaId }, ... }` lists the hubs
+of the map's `hubs` metadata (`{ id, side, name, areaId, disks = { { x, y, r }, ...
 } }`) hostile to `profile` that the drawn line enters, each once, in path
 order (`{}` without a profile or hubs). Reasons: `nodata`, `outside`, `offmesh`,
 `unreachable`, `error`. Searches run as coroutines in `C_Timer.After(0)`
@@ -2336,8 +2336,10 @@ what is shown and timed.
   instruction on a route, under the target's label when the walk is the whole
   route (no journey panel then). A walk whose target is inside a hostile town
   warns too: the router enters it because it must, and the player is told.
-  The names are the packed English ones (the hub records carry a slug id, no
-  area id to look a client name up by).
+  `Travel.HubText` names each town in the client's language by its area:
+  `Compat.GetAreaName(areaId)` (`C_Map.GetAreaInfo`; the hub record's
+  AreaTable id), else the packed English name, as goto labels and
+  `Compat.MapName` do; the "each name once" rule works on the shown name.
 
 **Our own maps, always.** The engine reads only `PolestarPathData`, never an
 installed Shortest Path Forever's `ShortestPathForeverPathData`, even when it

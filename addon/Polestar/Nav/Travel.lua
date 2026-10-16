@@ -323,8 +323,9 @@ end
 --         item = the Hearthstone (hearth), spell = spell ID (teleport),
 --         yards = straight hops (a walk x1.25, or the engine's measured yards), step = "crossing"|"chain"|"goto",
 --         engine = "cost" (a walk priced by walkCost) | "path" (by its engine path),
---         hubs = { { id, name }, ... } on a walk whose engine path enters the other
---         faction's towns (Travel.SplitWalk, Travel.PricePaths; Find's job.hubs) }
+--         hubs = { { id, name, areaId }, ... } on a walk whose engine path enters the other
+--         faction's towns (Travel.SplitWalk, Travel.PricePaths; Find's job.hubs;
+--         Travel.HubText names each by its areaId in the client's language) }
 -- Travel.SplitWalk later adds walk pieces (step and choke = { kind, name },
 -- parent, seg, tail) and lift rides (kind "lift", lift, side), or measures an
 -- unsplit walk along the path (straightYards, straightSeconds: the estimate here);
@@ -1177,14 +1178,17 @@ local function sameHubs(a, b)
 end
 
 -- "Hostile town: <names>" for a walk whose engine path enters the other
--- faction's towns (leg.hubs, from Find's job.hubs), each name once (two
--- towns can share one), else nil.
+-- faction's towns (leg.hubs, from Find's job.hubs), else nil. Each town is
+-- named in the client's language by its area (Compat.GetAreaName(areaId)),
+-- else by the packed English name; each shown name once (two towns can
+-- share one).
 function Travel.HubText(leg)
 	local hubs = type(leg) == "table" and leg.hubs
 	if type(hubs) ~= "table" or #hubs == 0 then return nil end
+	local C = ns.Compat
 	local names, seen = {}, {}
 	for _, h in ipairs(hubs) do
-		local name = type(h) == "table" and h.name
+		local name = type(h) == "table" and (C and C.GetAreaName and C.GetAreaName(h.areaId) or h.name)
 		if type(name) == "string" and name ~= "" and not seen[name] then
 			seen[name] = true
 			names[#names + 1] = name
