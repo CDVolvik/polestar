@@ -653,6 +653,28 @@ function Compat.IsSpellKnown(spellID)
 	return false
 end
 
+-- A skill line's name in the client's language (C_SkillInfo by ID, else the
+-- character's professions), or nil when the client does not say.
+function Compat.GetSkillLineName(skillLine)
+	if type(skillLine) ~= "number" then return nil end
+	local S = C_SkillInfo
+	if S and S.GetSkillLineInfoByID then
+		local ok, info = pcall(S.GetSkillLineInfoByID, skillLine)
+		local name = ok and type(info) == "table" and readable(info.name)
+		if type(name) == "string" and name ~= "" then return name end
+	end
+	if GetProfessions and GetProfessionInfo then
+		local profs = { GetProfessions() }
+		for i = 1, 5 do
+			if profs[i] then
+				local pname, _, _, _, _, _, line = GetProfessionInfo(profs[i])
+				if line == skillLine and type(pname) == "string" and pname ~= "" then return pname end
+			end
+		end
+	end
+	return nil
+end
+
 -- standingID (1 Hated .. 8 Exalted), value, barMin, barMax, name; nil for a
 -- faction the character has no data for.
 function Compat.GetFactionStanding(factionID)
