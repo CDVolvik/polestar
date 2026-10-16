@@ -8,8 +8,9 @@
 //   map.fitWorld(c, [[wx, wy], ...], { padding });
 //   map.toScreen(c, wx, wy)          // { x, y } CSS px in the canvas | null (continent not shown)
 //   map.toWorld(sx, sy)              // { c, wx, wy }
-//   map.setLayer(name, on);          // terrain, zoneArt, route, labels, spawns, grid, walkable, aids
+//   map.setLayer(name, on);          // terrain, zoneArt, route, labels, spawns, grid, walkable, roads, aids
 //   map.setNav({ tiles } | null);     // the Walkable layer's tiles: { [c]: ['col_row'] } (GET /nav/index.json)
+//   map.setRoads({ tiles } | null);   // the Roads layer's tiles: { [c]: ['col_row'] } (GET /nav/roads/index.json)
 //   map.setAids(aids | null);         // the arrow aids (GET /nav/aids.json): crossings, chains
 //   map.setRoute([{ c, pts /* Float32Array wx,wy,... */, mode, step, state }]);
 //   map.setScene({ areas, dots, markers, rings });
@@ -46,8 +47,8 @@
 // everything. stats: { path: 's3tc' | 'worker' | null, frameMs (CPU, EMA),
 // tiles }. Constructor options: artBase ('/art'), c (initial continent, 0),
 // compressed (false forces the worker path). Layers default on except
-// zoneArt, grid, walkable and aids; the grid is drawn whenever there is no
-// terrain art. The Walkable layer draws under the route from WALKABLE_ZOOM;
+// zoneArt, grid, walkable, roads and aids; the grid is drawn whenever there is no
+// terrain art. The Walkable and Roads layers draw under the route from WALKABLE_ZOOM;
 // the aids draw over it: a crossing as its two ends' rings joined by a long
 // dash, its caption at its middle; a chain as a line through its nodes'
 // rings, its name at its first node and the node captions.
@@ -92,8 +93,9 @@ export class MapView {
 		this.opts = opts;
 		this.artBase = (opts.artBase ?? '/art').replace(/\/$/, '');
 		this.listeners = {};
-		this.layers = { terrain: true, zoneArt: false, route: true, labels: true, spawns: true, grid: false, walkable: false, aids: false };
+		this.layers = { terrain: true, zoneArt: false, route: true, labels: true, spawns: true, grid: false, walkable: false, roads: false, aids: false };
 		this.navTiles = null;
+		this.roadTiles = null;
 		this.aids = null;
 		this.mode = 'continent';
 		this.c = Number(opts.c ?? 0);
@@ -177,6 +179,7 @@ export class MapView {
 		this.preview.setColors(this.colors);
 		this.preview.styles.style[8] = 3.25;
 		this.walkable = this.navTiles ? new WalkableTiles(gl, { tiles: this.navTiles, onChange: () => this.requestRender() }) : null;
+		this.roads = this.roadTiles ? new WalkableTiles(gl, { base: '/nav/roads', tiles: this.roadTiles, onChange: () => this.requestRender() }) : null;
 		// the arrow aids: crossings as boat-like long dashes, chains as solid lines, in the aid colour
 		this.aidRoute = new RouteLayer(gl);
 		const aid = this.colors.aid;
@@ -355,6 +358,13 @@ export class MapView {
 		this.requestRender();
 	}
 
+	setRoads(roads) {
+		this.roadTiles = roads?.tiles || null;
+		this.roads?.dispose();
+		this.roads = this.gl && this.roadTiles ? new WalkableTiles(this.gl, { base: '/nav/roads', tiles: this.roadTiles, onChange: () => this.requestRender() }) : null;
+		this.requestRender();
+	}
+
 	setAids(aids) {
 		this.aids = aids || null;
 		this._dirty = true;
@@ -414,6 +424,7 @@ export class MapView {
 		this.terrain?.dispose();
 		this.zoneArt?.dispose();
 		this.walkable?.dispose();
+		this.roads?.dispose();
 		this.overlay?.dispose();
 		this.listeners = {};
 	}
@@ -680,6 +691,7 @@ export class MapView {
 		if (this.zoneArt && this.layers.zoneArt) more = this.zoneArt.draw(f, this.quad) || more;
 		if (this.layers.grid || !this.terrain || !this.layers.terrain) this.grid.draw(f);
 		if (this.walkable && this.layers.walkable) more = this.walkable.draw(f, this.quad) || more;
+		if (this.roads && this.layers.roads) more = this.roads.draw(f, this.quad) || more;
 		this.circles.drawUnion(f, this.inst.areas);
 		if (this.layers.route) this.route.draw(f);
 		if (this.legShown) this.preview.draw(f);
@@ -963,6 +975,7 @@ export class MapView {
 			this.terrain?.dispose();
 			this.zoneArt?.dispose();
 			this.walkable?.dispose();
+			this.roads?.dispose();
 			this._initGL();
 			this.requestRender();
 		});

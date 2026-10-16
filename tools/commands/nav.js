@@ -30,6 +30,7 @@ const usage = `usage: node tools/polestar.js nav build [--continents 0,1] [--for
        node tools/polestar.js nav vendor <shortest-path-forever checkout> [--out <dir>] [--date <YYYY-MM-DD>]
        node tools/polestar.js nav check [--out <dir>]
        node tools/polestar.js nav eval [--nav <Polestar_Nav dir>] [--baseline <dir or eval .json>] [--routes <file>] [--sweep] [--out <file.json>]
+       node tools/polestar.js nav layers roads [--c 0|1] [--allowlist] [--offline] [--product <p>]
 
 build   the navigation grid of every continent map-frames.json names (or
         --continents): client geometry per ADT tile through the CASC cache
@@ -98,7 +99,17 @@ eval    the walking router run standalone (LuaJIT, else Lua 5.1; a folder
         goals and per side, from the zone's flight master (else its first
         goal) to every goal. --baseline runs the same on another folder (or
         reads an earlier --out report) and judges the acceptance checks
-        A1-A8; exit 1 when one fails. --out writes the whole report.`;
+        A1-A8; exit 1 when one fails. --out writes the whole report.
+layers  the ground layers under data/local/nav-layers. roads: per grid
+        column, the share of the ground the client paints with a road
+        texture (tools/lib/nav/layers/roads.js), from each tile's tex0 ADT
+        (its texture layers and alpha maps) and the reviewed allowlist
+        tools/lib/nav/layers/road-textures.json, texture names from the
+        wowdev community listfile (downloaded once to
+        data/sources/listfile; build time only), for maps 0 and 1 (--c: one
+        of them), into roads/<c>/<col>_<row>.bin. --allowlist instead
+        rewrites the allowlist: every texture the maps' tiles use whose
+        tileset path names a road, path, cobble, street or trail (review it).`;
 
 const usageError = (msg) => Object.assign(new Error(msg), { exit: 2 });
 
@@ -430,7 +441,43 @@ async function evalCmd(argv) {
 	return code;
 }
 
-const SUBCOMMANDS = { build, path: route, aids, pack: packCmd, vendor: vendorCmd, check: checkCmd, eval: evalCmd };
+async function layersCmd(argv) {
+	const [layer, ...rest] = argv;
+	if (layer !== 'roads') throw usageError(layer ? `unknown nav layer "${layer}" (roads)` : 'nav layers needs a layer: roads');
+	const { opts: o, positional, error } = parseArgs(rest, { flags: ['--allowlist', '--offline'], options: ['--c', '--product'] });
+	if (error || positional.length) throw usageError(error || `unexpected argument "${positional[0]}"`);
+	if (o.c !== undefined && o.c !== '0' && o.c !== '1') throw usageError('--c needs 0 or 1');
+	const continents = o.c === undefined ? [0, 1] : [Number(o.c)];
+	const { openCasc } = require('../lib/planner/art/casc');
+	const roads = require('../lib/nav/layers/roads');
+	const casc = await openCasc({ sourcesDir: SOURCES, product: o.product || 'wow_classic_beta', offline: !!o.offline });
+	const log = (m) => console.error(m);
+	const t0 = Date.now();
+	if (o.allowlist) {
+		const r = await roads.roadAllowlist({ casc, sourcesDir: SOURCES, continents, offline: !!o.offline, log });
+		const file = roads.ALLOWLIST_FILE;
+		const doc = {
+			about: 'Road textures (tileset paths, the _s and _h variants as their base) for the roads layer: every diffuse texture the tex0 ADTs of the listed maps use, named by the wowdev community listfile, whose path matches the pattern. Reviewed by hand; regenerate with node tools/polestar.js nav layers roads --allowlist.',
+			build: casc.build,
+			maps: continents,
+			pattern: roads.ROAD_PATTERN.source,
+			textures: r.textures,
+		};
+		fs.writeFileSync(file, JSON.stringify(doc, null, '\t') + '\n');
+		for (const t of r.textures) console.log(`${String(r.used.get(t)).padStart(5)} tiles  ${t}`);
+		console.log(`nav layers roads: ${r.textures.length} road textures of ${r.used.size} used in ${path.relative(ROOT, file)}${r.unnamed.length ? `; ${r.unnamed.length} used fdids the listfile does not name` : ''} (${fmt((Date.now() - t0) / 1000)})`);
+		return 0;
+	}
+	const stats = await roads.buildRoads({ casc, sourcesDir: SOURCES, continents, offline: !!o.offline, log });
+	for (const [c, s] of Object.entries(stats)) {
+		console.log(`roads ${c}: ${s.tiles} tiles, ${s.roadTiles} with road, ${s.roadColumns} road columns, ${s.bigAlpha ? '8-bit' : '4-bit'} alpha, ${fmt(s.seconds)}`);
+		for (const t of s.textures) console.log(`  ${String(t.tiles).padStart(5)} tiles  ${t.path} (${t.fdid})`);
+	}
+	console.log(`nav layers roads ${casc.build}: in ${path.relative(ROOT, roads.ROADS_DIR)} (${fmt((Date.now() - t0) / 1000)})`);
+	return 0;
+}
+
+const SUBCOMMANDS = { build, path: route, aids, pack: packCmd, vendor: vendorCmd, check: checkCmd, eval: evalCmd, layers: layersCmd };
 
 async function run(argv) {
 	const [sub, ...rest] = argv;

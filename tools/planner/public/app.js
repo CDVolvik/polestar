@@ -26,10 +26,11 @@ const LAYERS = [
 	['spawns', 'Spawns'],
 	['grid', 'ADT grid'],
 	['walkable', 'Walkable'],
+	['roads', 'Roads'],
 	['aids', 'Arrow aids'],
 ];
-// Layers offered only when the planner has their data: the navigation grid, the arrow aids.
-const layerOffered = ([k]) => (k === 'walkable' ? !!(S.info.nav && S.info.nav.available) : k === 'aids' ? !!S.aids : true);
+// Layers offered only when the planner has their data: the navigation grid, the roads layer, the arrow aids.
+const layerOffered = ([k]) => (k === 'walkable' ? !!(S.info.nav && S.info.nav.available) : k === 'roads' ? !!S.roads : k === 'aids' ? !!S.aids : true);
 
 // What the route layer draws (S.extent): the bird's-eye 'route' shows every
 // leg from the start guide to the end, simplified by the renderer per zoom.
@@ -279,10 +280,20 @@ function showOpenBorders() {
 		open.length > MAX ? h('div.c-textMuted', `${open.length - MAX} more`) : '');
 }
 
-// The navigation grid's overlays: the Walkable tiles and the arrow aids.
+// The navigation grid's overlays: the Walkable tiles, the Roads tiles and the arrow aids.
 async function loadNav() {
+	if (!map) return;
+	try {
+		const res = await fetch('/nav/roads/index.json');
+		if (res.ok) {
+			S.roads = (await res.json()).continents;
+			map.setRoads({ tiles: S.roads });
+		}
+	} catch (e) {
+		console.warn('roads tiles:', e);
+	}
 	const nav = S.info.nav;
-	if (!map || !nav || !nav.available) return;
+	if (!nav || !nav.available) return;
 	try {
 		const res = await fetch('/nav/index.json');
 		if (res.ok) map.setNav({ tiles: (await res.json()).continents });
