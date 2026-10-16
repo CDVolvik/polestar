@@ -165,9 +165,8 @@ has the details.
   is one marking unused content (`[PH]`, `(DNT)`...). The client tables
   come from the newest build that has them all in English and every
   language; without one the build stops (`--no-tables` leaves them out on
-  purpose). Polestar no longer fetches from Wowhead (its terms don't allow
-  automated requests): the Wowhead names are read from the cache an earlier
-  version of the tools fetched, and without it that source is empty.
+  purpose). The Wowhead names are read from the cache in
+  `data/sources/wowhead/names/`, and without it that source is empty.
   `--offline` reads only the caches, `--no-questie` leaves DingDB out. It
   prints, per language, how many ids of each kind have no name. Commit the
   folders it writes.

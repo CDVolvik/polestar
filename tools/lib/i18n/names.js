@@ -14,7 +14,7 @@
 //      (names-wago.js): items (ItemSparse), map, encounter, faction, taxi.
 //   2. Wowhead's Forever database in that language (names-wowhead.js): its
 //      list pages and tooltips, read only from what is already cached in
-//      data/sources/wowhead/names (Polestar no longer fetches from Wowhead).
+//      data/sources/wowhead/names, when present.
 //      The only source for the names of Forever's own quests, NPCs and
 //      objects.
 //   3. DingDB (Ding/DB/Locales/<locale>.lua of Ding! by Yendi, GPL-3.0, used
