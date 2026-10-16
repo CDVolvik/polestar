@@ -1,6 +1,6 @@
 'use strict';
 // Walking paths (addon/Polestar/Nav/Walk.lua): the arrow follows the walking
-// engine vendored from Shortest Path Forever (addon/Polestar_Nav) instead of a
+// router started from Shortest Path Forever's (addon/Polestar_Nav) instead of a
 // straight line. A fake engine with deterministic callbacks stands in for
 // Polestar_NavEngine: the arrow follows the path's points, straying asks
 // again, a new target cancels the stale search, nothing is searched in

@@ -265,9 +265,9 @@ Hearthstone; the router that started from his walks every leg between them.
 His pathing ships with Polestar as the `Polestar_Nav` folder. Polestar's
 walking router started from Shortest Path Forever v1.16.0 by Cillian
 Berragan, with thanks; Polestar maintains it since 2026-10-16. It runs on
-Polestar's own walking maps of Eastern Kingdoms and Kalimdor, made from the
-game's geometry in his map format by a port of his map baker, and on his map
-of Zephras Isle (GPL-3.0-or-later; what came from where is in
+Polestar's own walking maps of Eastern Kingdoms, Kalimdor and Zephras Isle,
+made from the game's geometry in a format grown from his by a port of his map
+baker (GPL-3.0-or-later; what came from where is in
 [addon/Polestar_Nav/CREDITS.md](addon/Polestar_Nav/CREDITS.md)).
 **Walk real paths** (Options, Arrow & routes) turns it off. If you like it, try
 his addon:
@@ -858,8 +858,8 @@ button's anvil is the CurseForge mark from simple-icons (CC0 1.0).
 
 The walking router in `Polestar_Nav` started from Shortest Path Forever's, by
 Cillian Berragan, and keeps his copyright in the files that began as his; its
-map of Zephras Isle is his, and its maps of Eastern Kingdoms and Kalimdor are
-Polestar's, written in his format by a port of his baker; all of it is under
+maps of Eastern Kingdoms, Kalimdor and Zephras Isle are Polestar's, written in
+a format grown from his by a port of his baker; all of it is under
 the GPL version 3 or later, used with his permission
 (see [Pathing by Shortest Path Forever](#pathing-by-shortest-path-forever));
 the guide-pack permission below does not cover them.

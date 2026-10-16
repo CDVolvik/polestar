@@ -1941,8 +1941,8 @@ Polestar_Nav.toc        LoadOnDemand, Dependencies: Polestar
   API.lua               Polestar_NavEngine = the Path table, plus Available(map); the memory ceilings
 ```
 
-**Memory.** Loaded, the packed maps are about 26 MB of Lua strings (his own
-three maps were about 12 MB). A search decodes the clusters (ADT tiles) it
+**Memory.** Loaded, the packed maps (format 2, all three) are about 34 MB of
+Lua strings (0.2.4's format 1 maps 28 MB; his own three maps were about 12 MB). A search decodes the clusters (ADT tiles) it
 crosses: by the engine's own accounting (`PathGrid.lua` gridSize, an upper
 bound) about 3.3 MB a cluster on average: 15.8 MB for Kharanos to
 Thelsamar (6 clusters), 28.5 MB for Razor Hill to the Valley of Strength
@@ -1950,10 +1950,13 @@ through Orgrimmar (4), 46.4 MB and 4.9 MB of graph for a 7,700 yd walk from
 the Crossroads to Tanaris (17 clusters, none evicted); the decoded graph of a
 whole continent is 4.2 MB (Eastern Kingdoms) or 4.9 MB (Kalimdor). His
 ceilings, 24 MB of grids and 4 MB of graph, were sized for his 8 yd cells, so
-`API.lua` raises them to `Path.cacheKB` 48 MB and `Path.graphKB` 6 MB (never
-by editing his files). Decoded grids go when no search is queued (`Idle`);
-in game the arrow holds about 26 MB with no search running and at most about
-80 MB (the strings and both ceilings) while one runs.
+`API.lua` sets `Path.cacheKB` 48 MB and `Path.graphKB` 16 MB while a search
+runs (maps format 2's longest corpus walk decodes 40.9 MB of grids and 15.7 MB
+of graph) and `Path.graphRestKB` 6 MB at rest. With no search queued (`Idle`)
+the decoded grids go and the decoded graph is trimmed to 6 MB: measured
+standalone, 33.9 MB with the maps loaded and no search, 41.4 MB after the six
+longest corpus walks (0.2.4: 27.8 MB and 33.4 MB), about 103 MB at the peak of
+a long walk.
 
 **A map is used whole.** `API.lua` drops a map whose packed tables hold
 fewer entries than its `counts` (a part file missing from the folder, or one
@@ -2023,7 +2026,7 @@ class field; format 1 against the router before classes, from git) and the
 real-map tests, and no tool copies it from upstream any more; its three
 files that began as his keep his copyright and the GPL notice under a header
 line saying where it started. The maps are Polestar's too (Zephras Isle's
-since 2026-10-16, when `nav vendor` and `UPSTREAM.json` went): `nav pack`
+since 2026-10-16, no longer copied from his repository): `nav pack`
 writes all three from the grid, and `nav check` and
 `tests/nav-maps.test.js` hold them to `PACK.json`; the test also loads the
 addon with the real maps (`tests/lua/stub_encoding.lua` decodes them in
