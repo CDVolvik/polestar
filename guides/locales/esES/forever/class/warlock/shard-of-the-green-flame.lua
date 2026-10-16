@@ -7,15 +7,15 @@
 -- The comments are rewritten by sync.
 return {
 	-- Guide
-	-- {npc:14469} Niby · {npc:14470} Impsy · {zone:1448} Felwood
+	-- {npc:14469} Niby the Almighty · {npc:14470} Impsy · {zone:1448} Felwood
 	["A rare off-hand for your 50s from {npc:14469} and {npc:14470} in {zone:1448}, the camp that also offers An Imp's Request."] = "Un objeto raro de mano izquierda para tus niveles 50, de {npc:14469} y {npc:14470} en {zone:1448}, el campamento que también ofrece Pedido de un diablillo.",
 
-	-- Step 1: Niby
-	-- {npc:14469} Niby · {npc:14470} Impsy · {zone:1448} Felwood · {area:1763} Jaedenar
+	-- Step 1: Niby the Almighty
+	-- {npc:14469} Niby the Almighty · {npc:14470} Impsy · {zone:1448} Felwood · {area:1763} Jaedenar
 	["At 50 {npc:14469} and his imp {npc:14470} wait in central {zone:1448}, just east of {area:1763}."] = "A nivel 50, {npc:14469} y su diablillo {npc:14470} esperan en el centro de {zone:1448}, justo al este de {area:1763}.",
 
 	-- Step 2: Jaedenar
-	-- {npc:14469} Niby · {area:1763} Jaedenar
+	-- {npc:14469} Niby the Almighty · {area:1763} Jaedenar
 	-- plural, as words: Jaedenar Legionnaires = {npc:9862} Jaedenar Legionnaire
 	["The Jaedenar Legionnaires, a short way west of {npc:14469}, carry {area:1763}'s essence."] = "Los legionarios Jaedenar, un poco al oeste de {npc:14469}, llevan la esencia de {area:1763}.",
 
@@ -28,13 +28,13 @@ return {
 	["The Felguard Sentries around the {area:72}, in southern {zone:1419}, carry its essence."] = "Los centinelas guardia vil que rodean {area:72}, en el sur de {zone:1419}, llevan su esencia.",
 
 	-- Step 6: Kroshius
-	-- {npc:14467} Kroshius · {area:1766} Shatter Scar Vale · {npc:14469} Niby · {item:18626} Fel Fire
+	-- {npc:14467} Kroshius · {area:1766} Shatter Scar Vale · {npc:14469} Niby the Almighty · {item:18626} Fel Fire
 	["{npc:14467}' remains lie in {area:1766}, north of {npc:14469}. Use the {item:18626} beside them and kill the infernal when he wakes. {npc:14467} is elite: grouping up is advised."] = "Los restos de {npc:14467} están en {area:1766}, al norte de {npc:14469}. Usa {item:18626} junto a ellos y mata al infernal cuando despierte. {npc:14467} es élite: se recomienda ir en grupo.",
 	-- {item:18626} Fel Fire · {object:179677} Kroshius' Remains (no name in this language: may be words)
 	["{item:18626}, at {object:179677}"] = "{item:18626}, en {object:179677}",
 
-	-- Step 7: Back to Niby
-	-- {npc:14469} Niby
+	-- Step 7: Back to Niby the Almighty
+	-- {npc:14469} Niby the Almighty
 	["Back to {npc:14469}"] = "Vuelve con {npc:14469}",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.

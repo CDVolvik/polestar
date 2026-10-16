@@ -55,7 +55,7 @@ return {
 	["Burning Blade Cultists hold {area:1898} in northern {zone:1411}; they drop the {item:6652}. The {item:5026} comes from the Razormane on your next visit to their camp."] = "Los Fanáticos Filo Ardiente ocupan {area:1898}, en el norte de {zone:1411}; sueltan {item:6652}. {item:5026} lo sueltan los Crines de Acero en tu próxima visita a su campamento.",
 
 	-- Step 13: Thun'grim Firegaze
-	-- {npc:5878} Thun'grim · {area:380} The Crossroads · {area:392} Ratchet · {object:58369} Stolen Iron Chest
+	-- {npc:5878} Thun'grim Firegaze · {area:380} The Crossroads · {area:392} Ratchet · {object:58369} Stolen Iron Chest
 	["{npc:5878} camps beside the road from the {area:380} to {area:392}. The {object:58369} sits in the south of the Razormane camp just north of him."] = "{npc:5878} acampa junto al camino de {area:380} a {area:392}. {object:58369} está en el sur del campamento Crines de Acero, justo al norte de él.",
 
 	-- Step 14: Ratchet
@@ -151,14 +151,14 @@ return {
 	["The Witchwing Slayers hold the western {area:383}; they wear the rings."] = "Los Destripadores Alabruja ocupan el oeste de {area:383}; llevan los anillos.",
 
 	-- Step 38: Wenikee Boltbucket
-	-- {area:1703} Mor'shan Rampart · {npc:9316} Wenikee
+	-- {area:1703} Mor'shan Rampart · {npc:9316} Wenikee Boltbucket
 	["East to the {area:1703}; {npc:9316} stands at the camp just south of it."] = "Ve al este, a {area:1703}; {npc:9316} está en el campamento justo al sur.",
 
 	-- Step 39: Nugget Slugs
-	-- {area:382} Sludge Fen · {npc:9316} Wenikee
+	-- {area:382} Sludge Fen · {npc:9316} Wenikee Boltbucket
 	["The tool buckets with the slugs lie around the Venture Co. drill site in the {area:382}, east of {npc:9316}."] = "Los cubos de herramientas con las babosas están alrededor de la perforadora de Ventura y Cía. en {area:382}, al este de {npc:9316}.",
 
-	-- Step 40: Wenikee
+	-- Step 40: Wenikee Boltbucket
 	-- {quest:3923} Rilli Greasygob · {zone:1454} Orgrimmar
 	["Keep it: {quest:3923} stands outside {zone:1454}; a later guide hands it in"] = "Guárdalo: {quest:3923} está fuera de {zone:1454}; una guía posterior lo entrega",
 

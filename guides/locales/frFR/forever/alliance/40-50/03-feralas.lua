@@ -80,7 +80,7 @@ return {
 
 	-- Step 17: Rage Scar yetis
 	["Rage Scar yetis"] = "Yétis Griffe féroce",
-	-- {quest:7735} Pristine Yeti Hide · {npc:7852} Pratt
+	-- {quest:7735} Pristine Yeti Hide · {npc:7852} Pratt McGrubben
 	["Ride back west along the road, then north into the Rage Scar hills. Every yeti here can drop a hide; one may drop a {quest:7735}, which {npc:7852} pays for too."] = "Revenez vers l'ouest par la route, puis montez au nord dans les collines du Repaire des Griffes féroces. Tout yéti ici peut laisser tomber une peau ; l'un d'eux peut donner une {quest:7735}, que {npc:7852} McGrubben paie aussi.",
 
 	-- Step 18: Rockbiter
@@ -104,17 +104,17 @@ return {
 	-- Step 22: Zul'Farrak instead of grinding
 	-- {area:978} Zul'Farrak
 	["{area:978} instead of grinding"] = "{area:978} au lieu de farmer",
-	-- {area:978} Zul'Farrak · {zone:1446} Tanaris · {npc:14637} Zorbin · {area:1108} Forgotten Coast
+	-- {area:978} Zul'Farrak · {zone:1446} Tanaris · {npc:14637} Zorbin Fandazzle · {area:1108} Forgotten Coast
 	["Running {area:978} instead of grinding gets you there faster in a group. The troll city lies in northern {zone:1446}, the next zone on the route; come back to {npc:14637} on the {area:1108} afterwards."] = "Faire {area:978} au lieu de farmer vous y amène plus vite en groupe. La cité troll se trouve au nord de {zone:1446}, la zone suivante de l'itinéraire ; revenez voir {npc:14637} Fandazzle sur la {area:1108} ensuite.",
 
 	-- Step 23: Grind to 45
 	["Grind to 45"] = "Farmer jusqu'au niveau 45",
-	-- {area:1108} Forgotten Coast · {area:1105} Feral Scar Vale · {npc:14637} Zorbin
+	-- {area:1108} Forgotten Coast · {area:1105} Feral Scar Vale · {npc:14637} Zorbin Fandazzle
 	["Boat to the {area:1108} and ride east into {area:1105}. {npc:14637}'s quests on the coast need level 45."] = "Bateau pour la {area:1108}, puis chevauchez vers l'est jusqu'au {area:1105}. Les quêtes de {npc:14637} Fandazzle sur la côte demandent le niveau 45.",
 	-- {npc:5292} Feral Scar Yeti · {area:1105} Feral Scar Vale · {zone:1444} Feralas
 	["grind on {npc:5292} at {area:1105}, {zone:1444}"] = "farmez les {npc:5292} au {area:1105}, {zone:1444}",
 
-	-- Step 24: Zorbin
+	-- Step 24: Zorbin Fandazzle
 	-- {area:1108} Forgotten Coast
 	["Ride back to the {area:1108}; the goblin stands by the dock."] = "Revenez à la {area:1108} ; le gobelin se tient près du quai.",
 
@@ -124,8 +124,8 @@ return {
 	-- plural, as words: Shore Striders = {npc:5359} Shore Strider · Deep Striders = {npc:5360} Deep Strider · Wave Striders = {npc:5361} Wave Strider · Sea Elementals = {npc:5461} Sea Elemental · Sea Sprays = {npc:5462} Sea Spray
 	["Shore Striders, Deep Striders and Wave Striders (elite giants) wade along the coast north of the dock: zap one with {item:18904} and kill the shrunken giant. Sea Elementals and Sea Sprays drift in the same surf."] = "Des Marcheurs des rivages, des Marcheurs des profondeurs et des Marcheurs des vagues (géants élites) arpentent la côte au nord du quai : frappez-en un avec l'{item:18904} et tuez le géant rétréci. Des Elémentaires marins et des Embruns dérivent dans les mêmes vagues.",
 
-	-- Step 26: Zorbin
-	-- {npc:14637} Zorbin
+	-- Step 26: Zorbin Fandazzle
+	-- {npc:14637} Zorbin Fandazzle
 	["{npc:14637}'s refills are level 55: skip them."] = "Les recharges de {npc:14637} Fandazzle sont de niveau 55 : passez-les.",
 	-- {area:1108} Forgotten Coast · {zone:1446} Tanaris
 	["You end at the {area:1108} dock: the {zone:1446} guide starts with the trip east from here."] = "Vous terminez au quai de la {area:1108} : le guide de {zone:1446} commence par le trajet vers l'est depuis ici.",

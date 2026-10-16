@@ -54,10 +54,10 @@ return {
 	-- {area:272} Tarren Mill
 	["Fly to {area:272}"] = "飛往{area:272}",
 
-	-- Step 10: Gilveradin's camp
-	-- {npc:7801} Gilveradin
+	-- Step 10: Gilveradin Sunchaser's camp
+	-- {npc:7801} Gilveradin Sunchaser
 	["{npc:7801}'s camp"] = "{npc:7801}的營地",
-	-- {area:272} Tarren Mill · {zone:1425} The Hinterlands · {npc:7801} Gilveradin · {area:350} Quel'Danil Lodge
+	-- {area:272} Tarren Mill · {zone:1425} The Hinterlands · {npc:7801} Gilveradin Sunchaser · {area:350} Quel'Danil Lodge
 	["Ride north-east from {area:272} into the {zone:1425} and east along the road; {npc:7801} camps on the hill south of the elves' {area:350}."] = "從{area:272}向東北騎進{zone:1425}，再沿道路向東；{npc:7801}在精靈的{area:350}南邊的山丘上紮營。",
 
 	-- Step 11: Highvale
@@ -107,7 +107,7 @@ return {
 
 	-- Step 20: The central hills
 	["The central hills"] = "中部丘陵",
-	-- {area:351} Skulk Rock · {item:9618} Wildkin Muisek Vessel · {npc:14738} Otho
+	-- {area:351} Skulk Rock · {item:9618} Wildkin Muisek Vessel · {npc:14738} Otho Moji'ko
 	-- plural, as words: Silvermane Stalkers = {npc:2926} Silvermane Stalker · Savage Owlbeasts = {npc:2929} Savage Owlbeast · Razorbeak Skylords = {npc:2659} Razorbeak Skylord · Long Elegant Feathers = {item:4589} Long Elegant Feather
 	["The Silvermane Stalkers, Savage Owlbeasts and Razorbeak Skylords share the hills between the temples and {area:351}. Use the {item:9618} on the owlbeasts you kill. The Skylords also drop Long Elegant Feathers: keep ten for {npc:14738}'s second message."] = "銀鬃捕獵者、野蠻的梟獸和翱翔的鋒喙獅鷲獸共同分布在神廟與{area:351}之間的丘陵。對你殺死的梟獸使用{item:9618}。翱翔的鋒喙獅鷲獸也會掉落細長的獅鷲獸羽毛：留十根給{npc:14738}的第二個訊息。",
 
@@ -130,7 +130,7 @@ return {
 	-- {area:350} Quel'Danil Lodge
 	["Back west to {area:350}; rangers and marksmen stay near the lodge, scouts and outrunners on the slopes south of it."] = "向西回到{area:350}；高原遊俠和高原神射手待在小屋附近，高原斥候和高原前鋒在小屋南邊的山坡上。",
 
-	-- Step 25: Gilveradin's camp
+	-- Step 25: Gilveradin Sunchaser's camp
 	-- {npc:6986} Dran Droffers · {zone:1454} Orgrimmar
 	["for {npc:6986} in {zone:1454}, around level 50"] = "之後給{zone:1454}的{npc:6986}，約50級",
 

@@ -58,11 +58,11 @@ return {
 	["The caravan rolls south past {area:609}. Kolkar raiders ambush it in waves: kill them before they reach {npc:11625}. It stops by {area:2617}, east of {area:597}."] = "대상단은 {area:609}을(를) 지나 남쪽으로 이동합니다. 콜카르일족 약탈자가 여러 차례 습격합니다. {npc:11625}에게 닿기 전에 처치하세요. 대상단은 {area:597} 동쪽의 {area:2617} 옆에서 멈춥니다.",
 
 	-- Step 12: Ghost Walker Post
-	-- {npc:5395} Felgur · {npc:5641} Takata Steelblade · {npc:4498} Maurin Bonesplitter · {area:596} Kodo Graveyard
+	-- {npc:5395} Felgur Twocuts · {npc:5641} Takata Steelblade · {npc:4498} Maurin Bonesplitter · {area:596} Kodo Graveyard
 	["{npc:5395} stands in the post; {npc:5641} and {npc:4498} wait on the rise west of it, above the {area:596}."] = "{npc:5395}은(는) 주둔지에 있고, {npc:5641}와(과) {npc:4498}은(는) 그 서쪽, {area:596} 위의 언덕에서 기다립니다.",
 
 	-- Step 13: Kodo Roundup
-	-- {npc:11596} Smeed · {item:13892} Kodo Kombobulator · {npc:4702} Ancient Kodo
+	-- {npc:11596} Smeed Scrabblescrew · {item:13892} Kodo Kombobulator · {npc:4702} Ancient Kodo
 	["Use {npc:11596}'s {item:13892} on an Aged, Dying or {npc:4702} in the graveyard and walk the tamed kodo back to {npc:11596}. Five kodos, one at a time."] = "묘지의 늙은 코도, 임종의 코도, {npc:4702}에게 {npc:11596}의 {item:13892}을(를) 사용하고, 길들인 코도를 {npc:11596}에게 데려가세요. 다섯 마리를 한 번에 한 마리씩 데려갑니다.",
 
 	-- Step 14: Khan Dez'hepah

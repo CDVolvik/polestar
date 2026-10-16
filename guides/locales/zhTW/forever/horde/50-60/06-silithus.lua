@@ -163,16 +163,16 @@ return {
 	-- Step 36: Scourge Champions
 	-- plural, as words: Scourge Champions = {npc:8529} Scourge Champion
 	["Scourge Champions"] = "天災勇士",
-	-- {area:2270} Noxious Glade · {npc:11063} Carlin · {item:13156} Mystic Crystal
+	-- {area:2270} Noxious Glade · {npc:11063} Carlin Redpath · {item:13156} Mystic Crystal
 	-- plural, as words: Scourge Champions = {npc:8529} Scourge Champion
 	["Scourge Champions roam the {area:2270}, north of the chapel. Pass {npc:11063}'s {item:13156} over each one you kill: the skulls that resonate are the ones he wants."] = "天災勇士在禮拜堂北邊的{area:2270}遊蕩。每殺一隻就用{npc:11063}的{item:13156}掃過屍體：產生共鳴的頭骨就是他要的。",
 
-	-- Step 38: Pamela and the Undercroft
-	-- {npc:10926} Pamela · {area:2261} Undercroft
+	-- Step 38: Pamela Redpath and the Undercroft
+	-- {npc:10926} Pamela Redpath · {area:2261} Undercroft
 	["{npc:10926} and the {area:2261}"] = "{npc:10926}與{area:2261}",
-	-- {area:2262} Darrowshire · {npc:10926} Pamela · {npc:11886} Mercutio Filthgorger · {area:2261} Undercroft
+	-- {area:2262} Darrowshire · {npc:10926} Pamela Redpath · {npc:11886} Mercutio Filthgorger · {area:2261} Undercroft
 	["Ride to {area:2262} in the south-west; {npc:10926} plays among the houses. {npc:11886} lurks in the {area:2261}, the crypt just west of the town."] = "騎到西南方的{area:2262}；{npc:10926}在房屋之間玩耍。{npc:11886}潛伏在{area:2261}，就是鎮西邊不遠的墓穴。",
-	-- {npc:10926} Pamela
+	-- {npc:10926} Pamela Redpath
 	["{npc:10926}'s own errand is not on this route. Skip it."] = "{npc:10926}自己的差事不在這條路線上。跳過。",
 
 	-- Step 39: Nathanos Blightcaller

@@ -14,7 +14,7 @@ return {
 	["Cast {spell:18960}. {npc:12042} stands in {area:2361}; your class trainer offers the same quest."] = "Примените {spell:18960}. {npc:12042} стоит здесь: {area:2361}; ваш учитель класса дает то же задание.",
 
 	-- Step 2: Torwa Pathfinder
-	-- {area:976} Gadgetzan · {zone:1449} Un'Goro Crater · {npc:9619} Torwa
+	-- {area:976} Gadgetzan · {zone:1449} Un'Goro Crater · {npc:9619} Torwa Pathfinder
 	["Fly to {area:976}, ride west to the long ramp down into {zone:1449}: {npc:9619} camps at its foot, in the south-east corner of the crater."] = "Летите сюда: {area:976}. Скачите на запад к длинному спуску в {zone:1449}: {npc:9619} разбил лагерь у его подножия, в юго-восточном углу кратера.",
 
 	-- Step 3: Gorishi Stings and Bloodcap
@@ -39,6 +39,6 @@ return {
 	["{area:1477} lies in the {area:74} in the {zone:1435}. {npc:8580} guards the bottom of the temple: a dungeon boss, so bring a group."] = "{area:1477} находится здесь: {area:74} ({zone:1435}). {npc:8580} охраняет дно храма: это босс подземелья, так что возьмите группу.",
 
 	-- Step 8: A Better Ingredient
-	-- {npc:9619} Torwa · {zone:1449} Un'Goro Crater
+	-- {npc:9619} Torwa Pathfinder · {zone:1449} Un'Goro Crater
 	["Back to {npc:9619} in the south-east corner of {zone:1449}."] = "Вернитесь к Землепроходцу {npc:9619} в юго-восточный угол кратера: {zone:1449}.",
 }

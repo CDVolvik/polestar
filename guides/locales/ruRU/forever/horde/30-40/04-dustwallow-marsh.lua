@@ -53,7 +53,7 @@ return {
 	["Ride east back to the {area:497}."] = "Возвращайтесь на восток сюда: {area:497}.",
 	-- {item:3853} Moonsteel Broadsword · {skill:164} Blacksmithing
 	["only if you carry a {item:3853} ({skill:164} or the Auction House)"] = "только если у вас есть {item:3853} ({skill:164} или аукцион)",
-	-- {object:20985} Loose Dirt · {npc:4791} Nazeer
+	-- {object:20985} Loose Dirt · {npc:4791} Nazeer Bloodpike
 	["{object:20985}, now that {npc:4791} has read the report"] = "{object:20985}, теперь, когда {npc:4791} прочел донесение",
 
 	-- Step 12: Brackenwall Village
@@ -70,7 +70,7 @@ return {
 	["Ride north-east to the {area:607}. {npc:12277} is held in the Maraudine centaur camp; free her and escort her out east of the valley."] = "Езжайте на северо-восток сюда: {area:607}. {npc:12277} в плену в лагере кентавров Мародин; освободите ее и выведите на восток из долины.",
 
 	-- Step 16: Kodo Graveyard
-	-- {npc:6019} Hornizz · {area:596} Kodo Graveyard
+	-- {npc:6019} Hornizz Brimbuzzle · {area:596} Kodo Graveyard
 	["{npc:6019} waits at the goblin camp on the west side of the {area:596}."] = "{npc:6019} ждет в лагере гоблинов в западной части места {area:596}.",
 
 	-- Step 17: Gizelton Caravan
@@ -78,11 +78,11 @@ return {
 	["{npc:11626}'s caravan stops on the road at the edge of {area:602}. Escort it east past the coven; demons attack it twice."] = "Караван ({npc:11626}) останавливается на дороге у края места {area:602}. Сопроводите его на восток мимо ковена; демоны нападут дважды.",
 
 	-- Step 18: Scrabblescrew's Camp
-	-- {npc:11596} Smeed · {area:596} Kodo Graveyard
+	-- {npc:11596} Smeed Scrabblescrew · {area:596} Kodo Graveyard
 	["The caravan ends at {npc:11596}'s camp on the east side of the {area:596}."] = "Караван заканчивает путь у лагеря {npc:11596} в восточной части места {area:596}.",
 
 	-- Step 19: Ghost Walker Post
-	-- {npc:5395} Felgur Twocuts · {npc:5412} Gurda Wildmane · {npc:11596} Smeed
+	-- {npc:5395} Felgur Twocuts · {npc:5412} Gurda Wildmane · {npc:11596} Smeed Scrabblescrew
 	["{npc:5395} and {npc:5412} stand in the post just west of {npc:11596}'s camp."] = "{npc:5395} и {npc:5412} стоят в лагере чуть к западу от лагеря {npc:11596}.",
 
 	-- Step 20: Kormek's Hut

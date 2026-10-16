@@ -11,7 +11,7 @@ return {
 	["{spell:71} and a one-hand weapon of your choice at 10."] = "{spell:71} und mit Stufe 10 eine Einhandwaffe deiner Wahl.",
 
 	-- Step 1: Ulag the Cleaver
-	-- {npc:1496} Deathguard Dillinger · {area:159} Brill · {npc:6390} Ulag
+	-- {npc:1496} Deathguard Dillinger · {area:159} Brill · {npc:6390} Ulag the Cleaver
 	["{npc:1496} stands in {area:159}. {npc:6390} waits in the mausoleum on the hill just north of town: open the gate and fight him."] = "{npc:1496} steht in {area:159}. {npc:6390} wartet im Mausoleum auf dem Hügel direkt nördlich des Ortes: Öffne das Tor und kämpf gegen ihn.",
 
 	-- Step 2: Coleman Farthing

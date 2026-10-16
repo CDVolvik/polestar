@@ -121,7 +121,7 @@ return {
 	["Follow the west coast north; the haunted island lies off the shore west of Nesingwary's camp. Just reach it."] = "서쪽 해안을 따라 북쪽으로 가세요. 유령의 섬은 네싱워리 야영지 서쪽 앞바다에 있습니다. 도착만 하면 됩니다.",
 
 	-- Step 26: Nesingwary's Expedition
-	-- {npc:716} Barnil · {item:2755} Green Hills of Stranglethorn
+	-- {npc:716} Barnil Stonepot · {item:2755} Green Hills of Stranglethorn
 	["{npc:716} collects the {item:2755}: the pages drop from almost every humanoid in the jungle. Turn the pages into chapters as you go."] = "{npc:716}이(가) {item:2755}을(를) 모읍니다. 책장은 밀림의 거의 모든 인간형 몹이 떨어뜨립니다. 모이는 대로 책장을 장(章)으로 묶으세요.",
 
 	-- Step 28: Kurzen's Compound

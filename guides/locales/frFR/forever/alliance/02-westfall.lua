@@ -13,7 +13,7 @@ return {
 	["{npc:523}; skip the free flight it offers"] = "{npc:523} ; ignorez le vol gratuit proposé",
 
 	-- Step 2: Saldean's Farm
-	-- {npc:233} Farmer Saldean · {npc:235} Salma · {npc:253395} Ozwin Ironsprocket
+	-- {npc:233} Farmer Saldean · {npc:235} Salma Saldean · {npc:253395} Ozwin Ironsprocket
 	["Follow the road north. {npc:233} stands outside, {npc:235} in the house, {npc:253395} in the barn to the west."] = "Suivez la route vers le nord. {npc:233} se tient dehors, {npc:235} dans la maison, {npc:253395} dans la grange à l'ouest.",
 
 	-- Step 3: The Jansen Stead

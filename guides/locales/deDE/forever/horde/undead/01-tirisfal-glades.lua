@@ -35,12 +35,12 @@ return {
 	-- {area:154} Deathknell
 	["The {area:154} trainers stand around the church"] = "Die Lehrer von {area:154} stehen rund um die Kirche",
 
-	-- Step 5: Aramis and Venya
-	-- {npc:244808} Aramis · {npc:5667} Venya
+	-- Step 5: Aramis Hammerhand and Venya Marthand
+	-- {npc:244808} Aramis Hammerhand · {npc:5667} Venya Marthand
 	["{npc:244808} and {npc:5667}"] = "{npc:244808} und {npc:5667}",
-	-- {npc:244808} Aramis · {npc:5667} Venya
+	-- {npc:244808} Aramis Hammerhand · {npc:5667} Venya Marthand
 	["{npc:244808} and {npc:5667} stand beside the church."] = "{npc:244808} und {npc:5667} stehen neben der Kirche.",
-	-- {npc:1569} Shadow Priest Sarvis · {npc:244808} Aramis
+	-- {npc:1569} Shadow Priest Sarvis · {npc:244808} Aramis Hammerhand
 	["{npc:1569}: the scroll for {npc:244808}"] = "{npc:1569}: die Schriftrolle für {npc:244808}",
 
 	-- Step 6: Rattlecages, scavengers and duskbats
@@ -59,7 +59,7 @@ return {
 	-- {npc:1570} Executor Arren
 	["{npc:1570}, in the church"] = "{npc:1570}, in der Kirche",
 
-	-- Step 9: Aramis and Venya
+	-- Step 9: Aramis Hammerhand and Venya Marthand
 	-- {quest:90902} Rediscovering the Light · {npc:259377} Injured Deathguard · {spell:635} Holy Light
 	["Paladins: {quest:90902} is done once you have healed five {npc:259377} around the church with {spell:635}."] = "Paladine: {quest:90902} ist erledigt, sobald du fünf {npc:259377} rund um die Kirche mit {spell:635} geheilt hast.",
 
@@ -70,7 +70,7 @@ return {
 	-- Step 11: Night Web's Hollow
 	-- plural, as words: Young Night Web Spiders = {npc:1504} Young Night Web Spider · Night Web Spiders = {npc:1505} Night Web Spider
 	["Head west to the cave. The Young Night Web Spiders sit outside; the Night Web Spiders and the Webbed Victims are inside."] = "Geh nach Westen zur Höhle. Die Jungen Nachtweber sitzen draußen; die Nachtweber und die eingesponnenen Opfer sind drinnen.",
-	-- {npc:244808} Aramis
+	-- {npc:244808} Aramis Hammerhand
 	["Free six Webbed Victims inside the cave for {npc:244808}"] = "Befreie sechs eingesponnene Opfer in der Höhle für {npc:244808}",
 	["Webbed Victims"] = "Eingesponnene Opfer",
 
@@ -243,7 +243,7 @@ return {
 	-- Step 44: Paladin: Whispering Forest
 	-- {area:16616} Whispering Forest
 	["Paladin: {area:16616}"] = "Paladin: {area:16616}",
-	-- {area:16616} Whispering Forest · {npc:246389} Hilda · {npc:259190} Ephram
+	-- {area:16616} Whispering Forest · {npc:246389} Hilda the Breaker · {npc:259190} Ephram Barbaro
 	["Head west into the {area:16616}; {npc:246389} and {npc:259190} camp at its edge."] = "Geh nach Westen in {area:16616}; {npc:246389} und {npc:259190} lagern an seinem Rand.",
 
 	-- Step 45: Shadowvale
@@ -260,7 +260,7 @@ return {
 	["{npc:2128}: {npc:4568} in the {zone:1458} takes it"] = "{npc:2128}: {npc:4568} in {zone:1458} nimmt es an",
 
 	-- Step 49: Ulag the Cleaver
-	-- {npc:1496} Deathguard Dillinger · {area:159} Brill · {npc:6390} Ulag
+	-- {npc:1496} Deathguard Dillinger · {area:159} Brill · {npc:6390} Ulag the Cleaver
 	["{npc:1496} stands in {area:159}. {npc:6390} waits in the mausoleum on the hill just north of town: open the gate and fight him."] = "{npc:1496} steht in {area:159}. {npc:6390} wartet im Mausoleum auf dem Hügel direkt nördlich des Ortes: Öffne das Tor und kämpfe gegen ihn.",
 
 	-- Step 50: Carendin Halgar
@@ -336,7 +336,7 @@ return {
 	["Back to {area:159}."] = "Zurück nach {area:159}.",
 
 	-- Step 66: Leonid Barthalomew
-	-- {area:157} Agamand Mills · {area:16616} Whispering Forest · {npc:246389} Hilda
+	-- {area:157} Agamand Mills · {area:16616} Whispering Forest · {npc:246389} Hilda the Breaker
 	["Follow the road west past {area:157} to the {area:16616}. Leonid stands just north of {npc:246389}'s camp."] = "Folge der Straße nach Westen an {area:157} vorbei zu {area:16616}. Leonid steht direkt nördlich von {npc:246389}s Lager.",
 	-- {npc:246378} Danitha Morr
 	["Listen to Leonid and {npc:246378}, then talk to him again"] = "Hör Leonid und {npc:246378} zu, dann sprich erneut mit ihm",

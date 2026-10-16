@@ -36,17 +36,17 @@ return {
 	-- {item:267412} Fenris Isle Key
 	["{item:267412}, from the Rot Hide gnolls"] = "{item:267412}, sur les gnolls Poil-Putride",
 
-	-- Step 5: Free Lumina
-	-- {npc:248755} Lumina
+	-- Step 5: Free Lumina Windsinger
+	-- {npc:248755} Lumina Windsinger
 	["Free {npc:248755}"] = "Libérer {npc:248755}",
 	["Free her with the key, then stay close while she fights her way out of the keep."] = "Libérez-la avec la clé, puis restez près d'elle pendant qu'elle se fraie un chemin hors du donjon.",
 
 	-- Step 6: Back to the The Sepulcher
 	-- {area:228} The Sepulcher
 	["Back to the {area:228}"] = "Retour au {area:228}",
-	-- {area:235} Fenris Keep · {npc:259620} Lumina · {area:228} The Sepulcher
+	-- {area:235} Fenris Keep · {npc:259620} Lumina Windsinger · {area:228} The Sepulcher
 	["Once she is clear of {area:235}, {npc:259620} waits for you in the {area:228}. Speak with her again to hear what really happened on the road."] = "Une fois sortie de {area:235}, {npc:259620} vous attend au {area:228}. Parlez-lui de nouveau pour apprendre ce qui s'est vraiment passé sur la route.",
-	-- {npc:259620} Lumina · {area:228} The Sepulcher
+	-- {npc:259620} Lumina Windsinger · {area:228} The Sepulcher
 	["{npc:259620}, the {area:228}"] = "{npc:259620}, au {area:228}",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.

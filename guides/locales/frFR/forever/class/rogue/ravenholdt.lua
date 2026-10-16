@@ -26,16 +26,16 @@ return {
 	["{npc:6766}: {quest:6701}, repeatable"] = "{npc:6766} : {quest:6701}, répétable",
 
 	-- Step 3: Lord Tomas
-	-- {npc:266216} Lord Tomas · {area:275} Durnholde Keep · {area:287} Hillsbrad · {npc:13085} Myrokos
+	-- {npc:266216} Lord Tomas · {area:275} Durnholde Keep · {area:287} Hillsbrad · {npc:13085} Myrokos Silentform
 	["{npc:266216} is inside {area:275}, the Syndicate fortress in eastern {area:287}, south of the manor. Quick and quiet, says {npc:13085}."] = "{npc:266216} est à l'intérieur de {area:275}, la forteresse du Syndicat dans l'est de {area:287}, au sud du manoir. Vite et sans bruit, dit {npc:13085}.",
 
 	-- Step 5: What's the Big Idea?
-	-- {npc:13085} Myrokos · {area:280} Strahnbrad · {zone:1416} Alterac Mountains
+	-- {npc:13085} Myrokos Silentform · {area:280} Strahnbrad · {zone:1416} Alterac Mountains
 	["At 36, {npc:13085} sends you after Barton's scouting report. Barton leads a Syndicate party at {area:280}, in the east of the {zone:1416}: pick his pocket, do not kill him."] = "Au niveau 36, {npc:13085} vous envoie chercher le rapport de reconnaissance de Barton. Barton mène un groupe du Syndicat à {area:280}, dans l'est de {zone:1416} : faites-lui les poches, ne le tuez pas.",
 	-- {item:275482} Barton's Scouting Report
 	["{item:275482}: pickpocket Barton"] = "{item:275482} : faites les poches de Barton",
 
-	-- Step 6: Back to Myrokos
-	-- {npc:13085} Myrokos
+	-- Step 6: Back to Myrokos Silentform
+	-- {npc:13085} Myrokos Silentform
 	["Back to {npc:13085}"] = "Retour auprès de {npc:13085}",
 }

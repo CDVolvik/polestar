@@ -58,11 +58,11 @@ return {
 	["The caravan rolls south past {area:609}. Kolkar raiders ambush it in waves: kill them before they reach {npc:11625}. It stops by {area:2617}, east of {area:597}."] = "La caravane descend vers le sud au-delà de {area:609}. Des pillards kolkar l'attaquent par vagues : tuez-les avant qu'ils n'atteignent {npc:11625}. Elle s'arrête près de {area:2617}, à l'est de {area:597}.",
 
 	-- Step 12: Ghost Walker Post
-	-- {npc:5395} Felgur · {npc:5641} Takata Steelblade · {npc:4498} Maurin Bonesplitter · {area:596} Kodo Graveyard
+	-- {npc:5395} Felgur Twocuts · {npc:5641} Takata Steelblade · {npc:4498} Maurin Bonesplitter · {area:596} Kodo Graveyard
 	["{npc:5395} stands in the post; {npc:5641} and {npc:4498} wait on the rise west of it, above the {area:596}."] = "{npc:5395} se tient dans le poste ; {npc:5641} et {npc:4498} attendent sur la butte à l'ouest, au-dessus de {area:596}.",
 
 	-- Step 13: Kodo Roundup
-	-- {npc:11596} Smeed · {item:13892} Kodo Kombobulator · {npc:4702} Ancient Kodo
+	-- {npc:11596} Smeed Scrabblescrew · {item:13892} Kodo Kombobulator · {npc:4702} Ancient Kodo
 	["Use {npc:11596}'s {item:13892} on an Aged, Dying or {npc:4702} in the graveyard and walk the tamed kodo back to {npc:11596}. Five kodos, one at a time."] = "Utilisez le {item:13892} de {npc:11596} sur un Vieux kodo, un Kodo mourant ou un {npc:4702} du cimetière, puis ramenez le kodo apprivoisé à {npc:11596}. Cinq kodos, un à la fois.",
 
 	-- Step 14: Khan Dez'hepah

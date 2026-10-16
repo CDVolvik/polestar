@@ -7,7 +7,7 @@
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: The Crossroads
-	-- {area:379} Far Watch Post · {npc:3338} Sergra · {npc:3429} Thork · {npc:3449} Darsok · {npc:3464} Gazrog · {npc:3448} Tonga
+	-- {area:379} Far Watch Post · {npc:3338} Sergra Darkthorn · {npc:3429} Thork · {npc:3449} Darsok Swiftdagger · {npc:3464} Gazrog · {npc:3448} Tonga Runetotem
 	["You arrive from {area:379}. {npc:3338} stands by the inn; {npc:3429} and {npc:3449} on the tower platform; Helbrim and {npc:3464} by the north gate; {npc:3448} at the south gate."] = "Du kommst von {area:379}. {npc:3338} steht beim Gasthaus; {npc:3429} und {npc:3449} auf der Turmplattform; Helbrim und {npc:3464} am Nordtor; {npc:3448} am Südtor.",
 
 	-- Step 2: Plainstriders and raptors
@@ -21,11 +21,11 @@ return {
 	["Zhevra Runners graze on the same plains; finish the raptor heads as you go."] = "Zhevra-Läufer grasen auf denselben Ebenen; sammle dabei die restlichen Raptorköpfe.",
 
 	-- Step 5: The Crossroads
-	-- {npc:3449} Darsok
+	-- {npc:3449} Darsok Swiftdagger
 	["{npc:3449}, on the tower platform: needs level 12"] = "{npc:3449}, auf der Turmplattform: erfordert Stufe 12",
 
 	-- Step 6: Thun'grim Firegaze
-	-- {npc:5878} Thun'grim · {area:392} Ratchet
+	-- {npc:5878} Thun'grim Firegaze · {area:392} Ratchet
 	["{npc:5878} camps beside the road east toward {area:392}."] = "{npc:5878} lagert an der Straße nach Osten Richtung {area:392}.",
 
 	-- Step 7: Kranal Fiss
@@ -101,7 +101,7 @@ return {
 	["Head east to the Venture Co. research site west of the {area:382}. Use the {object:4141}, close the three valves around the drill, use the console again, then take the {item:5089} from {npc:3471}."] = "Geh nach Osten zur Forschungsstätte der Venture Co. westlich vom {area:382}. Benutze {object:4141}, schließ die drei Ventile um den Bohrer, benutze die Konsole erneut und nimm dann {item:5089} von {npc:3471}.",
 
 	-- Step 25: Echeyakee
-	-- {quest:881} Echeyakee · {area:382} The Sludge Fen · {area:380} The Crossroads · {npc:3338} Sergra · {area:392} Ratchet
+	-- {quest:881} Echeyakee · {area:382} The Sludge Fen · {area:380} The Crossroads · {npc:3338} Sergra Darkthorn · {area:392} Ratchet
 	["{quest:881}'s lair lies south of the {area:382}, north-east of the {area:380}. Use the horn {npc:3338} gave you there to call the white lion out. Then hearth to {area:392}."] = "Der Unterschlupf von {quest:881} liegt südlich vom {area:382}, nordöstlich von {area:380}. Benutze dort das Horn, das {npc:3338} dir gegeben hat, um den weißen Löwen hervorzulocken. Nimm dann den Ruhestein nach {area:392}.",
 
 	-- Step 27: The Disruption Ends
@@ -123,11 +123,11 @@ return {
 	["Oasis Snapjaws crowd the water of {area:387}, south-west of the {area:380}."] = "Oasenschnappkiefer drängen sich im Wasser von {area:387}, südwestlich von {area:380}.",
 
 	-- Step 34: Wenikee Boltbucket
-	-- {area:1703} Mor'shan Rampart · {npc:9316} Wenikee
+	-- {area:1703} Mor'shan Rampart · {npc:9316} Wenikee Boltbucket
 	["Follow the road north to the {area:1703}; {npc:9316} stands just south of it."] = "Folge der Straße nach Norden zum {area:1703}; {npc:9316} steht gleich südlich davon.",
 
 	-- Step 35: Nugget Slugs
-	-- {area:382} The Sludge Fen · {npc:9316} Wenikee
+	-- {area:382} The Sludge Fen · {npc:9316} Wenikee Boltbucket
 	-- plural, as words: Tool Buckets = {object:161752} Tool Bucket
 	["The Tool Buckets sit around the Venture Co. camp in the {area:382}, east of {npc:9316}."] = "Die Werkzeugkisten stehen um das Lager der Venture Co. im {area:382}, östlich von {npc:9316}.",
 

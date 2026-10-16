@@ -7,7 +7,7 @@
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Thendal Village
-	-- {area:16635} Thendal Village · {npc:251362} Ailee · {npc:251361} Rorian
+	-- {area:16635} Thendal Village · {npc:251362} Ailee Farheart · {npc:251361} Rorian the Dayseeker
 	["You wake in {area:16635}, in the north of the isle. {npc:251362} stands by the path, {npc:251361} at the village centre."] = "Du wachst in {area:16635} auf, im Norden der Insel. {npc:251362} steht am Pfad, {npc:251361} in der Dorfmitte.",
 
 	-- Step 2: Thendal Grove
@@ -17,11 +17,11 @@ return {
 	-- Step 3: Back to Thendal Village
 	-- {area:16635} Thendal Village
 	["Back to {area:16635}"] = "Zurück nach {area:16635}",
-	-- {npc:251361} Rorian · {item:4100} Crumpled Note
+	-- {npc:251361} Rorian the Dayseeker · {item:4100} Crumpled Note
 	["{npc:251361}: the {item:4100}"] = "{npc:251361}: {item:4100}",
-	-- {npc:251361} Rorian
+	-- {npc:251361} Rorian the Dayseeker
 	["{npc:251361}: a note from your trainer"] = "{npc:251361}: eine Notiz von deinem Lehrer",
-	-- {npc:251361} Rorian · {item:282418} Humming Recall Crystal
+	-- {npc:251361} Rorian the Dayseeker · {item:282418} Humming Recall Crystal
 	["{npc:251361}: examine the {item:282418}"] = "{npc:251361}: Untersuche {item:282418}",
 	-- {npc:257554} Halaan Hawk-Eye
 	["talk to {npc:257554}"] = "sprich mit {npc:257554}",
@@ -31,8 +31,8 @@ return {
 	-- {spell:1259416} Walk on Air
 	["Climb the watchtower in the village, jump off the top and use {spell:1259416} to float down."] = "Steig auf den Wachturm im Dorf, spring von oben und benutze {spell:1259416}, um hinabzuschweben.",
 
-	-- Step 5: Rorian's errands
-	-- {npc:251361} Rorian
+	-- Step 5: Rorian the Dayseeker's errands
+	-- {npc:251361} Rorian the Dayseeker
 	["{npc:251361}'s errands"] = "{npc:251361}s Besorgungen",
 
 	-- Step 6: Raw Windstones
@@ -55,7 +55,7 @@ return {
 	-- Step 10: Thendal Village turn-ins
 	-- {area:16635} Thendal Village
 	["{area:16635} turn-ins"] = "Abgaben in {area:16635}",
-	-- {npc:251361} Rorian · {item:9547} Simple Note
+	-- {npc:251361} Rorian the Dayseeker · {item:9547} Simple Note
 	["{npc:251361}: read the {item:9547}"] = "{npc:251361}: Lies {item:9547}",
 	-- {npc:251389} Akeri Duskblade
 	["{npc:251389}, in the watchtower"] = "{npc:251389}, im Wachturm",
@@ -63,7 +63,7 @@ return {
 	["{npc:251964}, in the watchtower"] = "{npc:251964}, im Wachturm",
 	-- {npc:251374} Windshaper Boro
 	["{npc:251374}, at the village centre"] = "{npc:251374}, in der Dorfmitte",
-	-- {npc:251373} Xyton Silverwind · {npc:251361} Rorian
+	-- {npc:251373} Xyton Silverwind · {npc:251361} Rorian the Dayseeker
 	["{npc:251373}, the druid trainer, on the ground floor of the tree behind {npc:251361}"] = "{npc:251373}, der Druidenlehrer, im Erdgeschoss des Baums hinter {npc:251361}",
 
 	-- Step 11: Windshaper Boro
@@ -71,15 +71,15 @@ return {
 	["{npc:251374} stands in the village."] = "{npc:251374} steht im Dorf.",
 
 	-- Step 12: Scrawny Ursera
-	-- {npc:250926} Scrawny Ursera · {npc:252095} Hanaa
+	-- {npc:250926} Scrawny Ursera · {npc:252095} Hanaa Nightwind
 	["{npc:250926} prowl the slopes south-west of the village, on the way to {npc:252095}."] = "{npc:250926} streifen über die Hänge südwestlich des Dorfs, auf dem Weg zu {npc:252095}.",
 
-	-- Step 13: Hanaa
-	-- {npc:252095} Hanaa · {area:16622} Thendal Grove · {npc:256935} Malduko Cloudcrush
+	-- Step 13: Hanaa Nightwind
+	-- {npc:252095} Hanaa Nightwind · {area:16622} Thendal Grove · {npc:256935} Malduko Cloudcrush
 	["{npc:252095} waits in {area:16622}, south-west of the village. The Al'Aketh camp is just beyond her; {npc:256935} leads it."] = "{npc:252095} wartet in {area:16622}, südwestlich des Dorfs. Das Lager der Al'Aketh liegt gleich hinter ihr; {npc:256935} führt es an.",
 
 	-- Step 14: Signet of Akir
-	-- {npc:252095} Hanaa
+	-- {npc:252095} Hanaa Nightwind
 	["The Al'Aketh cultists in the camp beyond {npc:252095} carry the signet."] = "Die Kultisten der Al'Aketh im Lager hinter {npc:252095} tragen das Siegel.",
 
 	-- Step 15: Urs'anah
@@ -102,12 +102,12 @@ return {
 	-- {npc:251902} Illaya Amberwind
 	["talk to {npc:251902}"] = "sprich mit {npc:251902}",
 
-	-- Step 19: Raan's campfire
-	-- {npc:263664} Raan
+	-- Step 19: Raan Wildwind's campfire
+	-- {npc:263664} Raan Wildwind
 	["{npc:263664}'s campfire"] = "{npc:263664}s Lagerfeuer",
-	-- {npc:263664} Raan · {spell:1229451} Boosted Rest · {npc:251905} Zerril Softbreeze
+	-- {npc:263664} Raan Wildwind · {spell:1229451} Boosted Rest · {npc:251905} Zerril Softbreeze
 	["Sit by {npc:263664}'s campfire (type /sit) until you get the {spell:1229451} buff, then find {npc:251905} at the cook fire."] = "Setz dich an {npc:263664}s Lagerfeuer (tippe /sit), bis du den Buff {spell:1229451} bekommst, und such dann {npc:251905} am Kochfeuer.",
-	-- {npc:263664} Raan · {spell:1229451} Boosted Rest
+	-- {npc:263664} Raan Wildwind · {spell:1229451} Boosted Rest
 	["/sit by {npc:263664}'s campfire until you get {spell:1229451}"] = "/sit an {npc:263664}s Lagerfeuer, bis du {spell:1229451} bekommst",
 	-- {npc:251905} Zerril Softbreeze
 	["talk to {npc:251905}"] = "sprich mit {npc:251905}",
@@ -182,9 +182,9 @@ return {
 	["Walk north to {area:16624}; finish the {item:5469} on the Galestriders along the way if you are short."] = "Geh nach Norden nach {area:16624}; erledige unterwegs an den Windschreitern das restliche {item:5469}, falls dir welches fehlt.",
 
 	-- Step 33: To Valanaar
-	-- {area:16638} Valanaar · {npc:257006} Nyalah · {npc:252448} Alvarion
+	-- {area:16638} Valanaar · {npc:257006} Nyalah Brightfire · {npc:252448} Alvarion Windfield
 	["Take the road south-east to {area:16638}, the Skyborne town on the south coast. {npc:257006} and {npc:252448} stand at its western edge."] = "Nimm die Straße nach Südosten nach {area:16638}, der Stadt der Himmelsgeborenen an der Südküste. {npc:257006} und {npc:252448} stehen an ihrem Westrand.",
-	-- {npc:252448} Alvarion
+	-- {npc:252448} Alvarion Windfield
 	["Listen to {npc:252448}'s story"] = "Hör dir die Geschichte von {npc:252448} an",
 
 	-- Step 34: Windsong Crawlers
@@ -236,8 +236,8 @@ return {
 	-- {npc:252800} Aamelia Windfield
 	["Tell {npc:252800} you're ready"] = "Sag {npc:252800}, dass du bereit bist",
 
-	-- Step 46: Alvarion and Riaani Nightwind
-	-- {npc:252448} Alvarion · {npc:256083} Riaani Nightwind
+	-- Step 46: Alvarion Windfield and Riaani Nightwind
+	-- {npc:252448} Alvarion Windfield · {npc:256083} Riaani Nightwind
 	["{npc:252448} and {npc:256083}"] = "{npc:252448} und {npc:256083}",
 
 	-- Step 47: Taming the Beast
@@ -369,7 +369,7 @@ return {
 	["talk to {npc:251684}"] = "sprich mit {npc:251684}",
 
 	-- Step 74: Confront Lorthuna
-	-- {area:16630} Rohashi Spires · {npc:252475} Elaadrin · {npc:251968} Ayessa Dawnsinger
+	-- {area:16630} Rohashi Spires · {npc:252475} Elaadrin Evengale · {npc:251968} Ayessa Dawnsinger
 	["Take the portal up to the {area:16630} and join {npc:252475} and {npc:251968} against the High Priestess."] = "Nimm das Portal hinauf zu {area:16630} und schließ dich {npc:252475} und {npc:251968} gegen die Hohepriesterin an.",
 
 	-- Step 77: The airship
@@ -393,15 +393,15 @@ return {
 	["{area:1638} is beside the landing: ride up a lift and learn the flight path from {npc:2995}, the wind rider master."] = "{area:1638} liegt neben der Landestelle: Fahr mit einem Aufzug hinauf und hol dir die Flugroute bei {npc:2995}, dem Windreitermeister.",
 
 	-- Step 80: Traditions of the Bluff
-	-- {npc:269068} Eylah Sunhorn · {npc:3014} Nida · {npc:3012} Nata · {npc:3005} Mahu · {npc:3027} Naal · {item:278078} Prepared Incense
+	-- {npc:269068} Eylah Sunhorn · {npc:3014} Nida Winterhoof · {npc:3012} Nata Dawnstrider · {npc:3005} Mahu · {npc:3027} Naal Mistrunner · {item:278078} Prepared Incense
 	["{npc:269068} wants tauren incense: buy its four parts from {npc:3014} the herbalist, {npc:3012} the enchanting supplier, {npc:3005} the leatherworking supplier and {npc:3027} the cooking supplier, then combine them into {item:278078}."] = "{npc:269068} will Taurenweihrauch: Kauf seine vier Teile bei {npc:3014}, der Kräuterhändlerin, {npc:3012}, der Händlerin für Verzauberkunstbedarf, {npc:3005}, dem Händler für Lederverarbeitungsbedarf, und {npc:3027}, dem Händler für Kochbedarf, und kombiniere sie dann zu {item:278078}.",
-	-- {item:278079} Bundle of Herbs · {npc:3014} Nida
+	-- {item:278079} Bundle of Herbs · {npc:3014} Nida Winterhoof
 	["{item:278079}, from {npc:3014}"] = "{item:278079}, von {npc:3014}",
-	-- {item:278080} Bundle of Dried Cedar Twigs · {npc:3012} Nata
+	-- {item:278080} Bundle of Dried Cedar Twigs · {npc:3012} Nata Dawnstrider
 	["{item:278080}, from {npc:3012}"] = "{item:278080}, von {npc:3012}",
 	-- {item:278081} Sinew Thread · {npc:3005} Mahu
 	["{item:278081}, from {npc:3005}"] = "{item:278081}, von {npc:3005}",
-	-- {item:278083} Ceremonial Flint and Tinder · {npc:3027} Naal
+	-- {item:278083} Ceremonial Flint and Tinder · {npc:3027} Naal Mistrunner
 	["{item:278083}, from {npc:3027}"] = "{item:278083}, von {npc:3027}",
 
 	-- Step 81: Hunter Rise

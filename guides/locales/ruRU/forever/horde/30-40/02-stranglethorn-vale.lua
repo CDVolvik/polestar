@@ -32,7 +32,7 @@ return {
 
 	-- Step 6: Nesingwary's camp
 	["Nesingwary's camp"] = "Лагерь Эрнестуэя",
-	-- {object:3202} Grom'gol (no name in this language: may be words) · {quest:338} The Green Hills of Stranglethorn · {npc:716} Barnil
+	-- {object:3202} Grom'gol (no name in this language: may be words) · {quest:338} The Green Hills of Stranglethorn · {npc:716} Barnil Stonepot
 	["Follow the road north out of {object:3202}; Nesingwary's hunting camp sits on the hill north-east of the river. From here on, keep every page of {quest:338} you loot: {npc:716} asks for them later."] = "Идите по дороге на север из места {object:3202}; охотничий лагерь Эрнестуэя — на холме к северо-востоку от реки. С этого момента сохраняйте каждую страницу из книги «{quest:338}»: позже их попросит {npc:716}.",
 
 	-- Step 7: Young tigers and panthers
@@ -145,7 +145,7 @@ return {
 
 	-- Step 34: Green Hills pages
 	["Green Hills pages"] = "Страницы «Зеленых холмов»",
-	-- {item:2755} Green Hills of Stranglethorn · {npc:716} Barnil
+	-- {item:2755} Green Hills of Stranglethorn · {npc:716} Barnil Stonepot
 	["Pages of The {item:2755} drop at about 1% each from the Bloodscalp and Skullsplitter trolls; keep every page you loot and look on the auction house for the rest. {npc:716} takes the chapters later in this guide."] = "Страницы книги «{item:2755}» падают с шансом около 1% каждая с троллей из племен Кровавого Скальпа и Дробителей Черепов; сохраняйте каждую найденную страницу, а остальные поищите на аукционе. {npc:716} принимает главы позже в этом гайде.",
 
 	-- Step 35: Shadowmaw panthers

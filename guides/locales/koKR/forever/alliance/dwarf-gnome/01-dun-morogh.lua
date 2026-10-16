@@ -79,13 +79,13 @@ return {
 	["Feather Charms, from the Frostmane Novices"] = "깃털 부적, 서리갈기부족 견습마법사에게서",
 
 	-- Step 11: Grelin Whitebeard
-	-- {npc:12738} Nori Pridedrift · {npc:836} Durnan · {area:77} Anvilmar
+	-- {npc:12738} Nori Pridedrift · {npc:836} Durnan Furcutter · {area:77} Anvilmar
 	["{npc:12738}: timed, five minutes to reach {npc:836} in {area:77}"] = "{npc:12738}: 시간 제한, 5분 안에 {area:77}의 {npc:836}에게 가야 합니다",
 
 	-- Step 12: Anvilmar
-	-- {npc:836} Durnan · {area:77} Anvilmar
+	-- {npc:836} Durnan Furcutter · {area:77} Anvilmar
 	["The Scalding Mornbrew lasts five minutes: go straight north to {npc:836} inside {area:77}."] = "두르난의 뜨거운 새벽주는 5분 동안 유지됩니다. 곧장 북쪽으로 {area:77} 안의 {npc:836}에게 가세요.",
-	-- {npc:836} Durnan · {area:77} Anvilmar
+	-- {npc:836} Durnan Furcutter · {area:77} Anvilmar
 	["{npc:836}, inside {area:77}"] = "{npc:836}, {area:77} 안",
 	["Level 4 spells, before Gozwin's camp"] = "4레벨 주문, 고즈윈의 야영지 전에",
 
@@ -119,12 +119,12 @@ return {
 	["{npc:1965} guards the tunnel out of the valley, east of {area:77}; {npc:6782} stands beside him at its mouth."] = "{npc:1965}은(는) {area:77} 동쪽, 골짜기 밖으로 나가는 굴을 지킵니다. {npc:6782}은(는) 굴 입구에서 그 옆에 서 있습니다.",
 
 	-- Step 18: Kharanos
-	-- {area:131} Kharanos · {npc:1267} Ragnar · {npc:1252} Senir · {area:2102} Thunderbrew Distillery · {npc:6806} Tannok · {npc:1226} Maxan · {npc:1872} Tharek Blackstone
+	-- {area:131} Kharanos · {npc:1267} Ragnar Thunderbrew · {npc:1252} Senir Whitebeard · {area:2102} Thunderbrew Distillery · {npc:6806} Tannok Frosthammer · {npc:1226} Maxan Anvol · {npc:1872} Tharek Blackstone
 	-- plural, as words: Crag Boars = {npc:1125} Crag Boar
 	["Follow the road through the tunnel and north-east to {area:131}. Kill the Crag Boars on the way: their ribs drop before you have {npc:1267}'s quest and count toward it. {npc:1252}, Eric and his campfire are outside the {area:2102}. {npc:6806}, {npc:1226} and {npc:1267} are inside. {npc:1872} works the forge."] = "굴을 지나 길을 따라 북동쪽으로 {area:131}까지 가세요. 가는 길에 멧돼지를 처치하세요. {npc:1267}의 퀘스트를 받기 전에도 갈비가 떨어지며 퀘스트에 포함됩니다. {npc:1252}, 에릭과 그의 모닥불은 {area:2102} 밖에 있습니다. {npc:6806}, {npc:1226}, {npc:1267}은(는) 안에 있습니다. {npc:1872}은(는) 대장간에서 일합니다.",
-	-- {npc:6806} Tannok
+	-- {npc:6806} Tannok Frosthammer
 	["{npc:6806}, in the distillery"] = "{npc:6806}, 양조장 안",
-	-- {npc:1226} Maxan · {npc:6806} Tannok
+	-- {npc:1226} Maxan Anvol · {npc:6806} Tannok Frosthammer
 	["{npc:1226}, next to {npc:6806}"] = "{npc:1226}, {npc:6806} 옆",
 	-- {item:2894} Rhapsody Malt · {npc:1247} Innkeeper Belm
 	["{item:2894}, from {npc:1247}"] = "{item:2894}, {npc:1247}에게서",
@@ -245,9 +245,9 @@ return {
 	["{npc:1231}, at the smithy"] = "{npc:1231}, 대장간에서",
 	-- {npc:258113} Ingrid Dunwald · {npc:257597} Bruegs Kindleborn
 	["{npc:258113}: {npc:257597} by the South Gate takes it"] = "{npc:258113}: 남문 옆 {npc:257597}에게 제출합니다",
-	-- {npc:1226} Maxan · {npc:376} High Priestess Laurena · {zone:1453} Stormwind
+	-- {npc:1226} Maxan Anvol · {npc:376} High Priestess Laurena · {zone:1453} Stormwind
 	["{npc:1226}: {npc:376} in {zone:1453} takes it"] = "{npc:1226}: {zone:1453}의 {npc:376}에게 제출합니다",
-	-- {npc:1226} Maxan · {npc:258785} High Priestess Mims · {zone:1455} Ironforge
+	-- {npc:1226} Maxan Anvol · {npc:258785} High Priestess Mims · {zone:1455} Ironforge
 	["{npc:1226}: {npc:258785} in {zone:1455} takes it"] = "{npc:1226}: {zone:1455}의 {npc:258785}에게 제출합니다",
 
 	-- Step 54: Taming the Beast

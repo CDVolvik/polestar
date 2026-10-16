@@ -162,7 +162,7 @@ return {
 	["He gives you the {item:15826}"] = "Te da {item:15826}",
 
 	-- Step 35: Verog the Dervish
-	-- {npc:3395} Verog · {area:388} Stagnant Oasis · {area:380} Crossroads
+	-- {npc:3395} Verog the Dervish · {area:388} Stagnant Oasis · {area:380} Crossroads
 	["{npc:3395} walks among the Kolkar at the {area:388} south-east of the {area:380}."] = "{npc:3395} camina entre los Kolkar de {area:388}, al sureste de {area:380}.",
 	-- {npc:12296} Sickly Gazelle · {item:15826} Curative Animal Salve · {area:380} Crossroads
 	["{npc:12296}: use the {item:15826} on them; they roam the plains all around the {area:380}"] = "{npc:12296}: usa {item:15826} con ellas; recorren las llanuras alrededor de {area:380}",
@@ -202,7 +202,7 @@ return {
 	["{npc:3432} offers {quest:95774} once {quest:4921} is handed in"] = "{npc:3432} ofrece {quest:95774} cuando entregas {quest:4921}",
 
 	-- Step 46: Hezrul Bloodmark
-	-- {npc:3396} Hezrul · {area:387} Lushwater Oasis · {npc:3389} Regthar Deathgate · {area:380} Crossroads
+	-- {npc:3396} Hezrul Bloodmark · {area:387} Lushwater Oasis · {npc:3389} Regthar Deathgate · {area:380} Crossroads
 	["{npc:3396} leads the Kolkar on the west shore of {area:387}, south of {npc:3389}. Hand his head to {npc:3389} on your last {area:380} stop."] = "{npc:3396} dirige a los Kolkar en la orilla oeste de {area:387}, al sur de {npc:3389}. Entrega su cabeza a {npc:3389} en tu última parada en {area:380}.",
 
 	-- Step 47: Olgra's Adornments

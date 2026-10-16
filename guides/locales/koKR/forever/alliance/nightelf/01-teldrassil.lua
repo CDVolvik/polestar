@@ -279,7 +279,7 @@ return {
 	["{npc:11401}, in the Temple of the Moon: Starshards"] = "달의 신전의 {npc:11401}: 별조각",
 
 	-- Step 43: Rut'theran Village
-	-- {area:702} Rut'theran Village · {npc:10118} Nessa · {npc:3838} Vesprystus
+	-- {area:702} Rut'theran Village · {npc:10118} Nessa Shadowsong · {npc:3838} Vesprystus
 	["Take the portal down to {area:702}. {npc:10118} stands on the dock, {npc:3838} by the hippogryphs."] = "차원문을 타고 {area:702}(으)로 내려가세요. {npc:10118}은(는) 부두에, {npc:3838}은(는) 히포그리프 옆에 있습니다.",
 
 	-- Step 45: Moonglade

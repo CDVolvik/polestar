@@ -79,13 +79,13 @@ return {
 	["Feather Charms, from the Frostmane Novices"] = "羽毛符咒，來自霜鬃食人妖新兵",
 
 	-- Step 11: Grelin Whitebeard
-	-- {npc:12738} Nori Pridedrift · {npc:836} Durnan · {area:77} Anvilmar
+	-- {npc:12738} Nori Pridedrift · {npc:836} Durnan Furcutter · {area:77} Anvilmar
 	["{npc:12738}: timed, five minutes to reach {npc:836} in {area:77}"] = "{npc:12738}：限時任務，五分鐘內抵達{area:77}的{npc:836}處",
 
 	-- Step 12: Anvilmar
-	-- {npc:836} Durnan · {area:77} Anvilmar
+	-- {npc:836} Durnan Furcutter · {area:77} Anvilmar
 	["The Scalding Mornbrew lasts five minutes: go straight north to {npc:836} inside {area:77}."] = "熱酒只能維持五分鐘：直接向北前往{area:77}裡的{npc:836}。",
-	-- {npc:836} Durnan · {area:77} Anvilmar
+	-- {npc:836} Durnan Furcutter · {area:77} Anvilmar
 	["{npc:836}, inside {area:77}"] = "{npc:836}，在{area:77}裡面",
 	["Level 4 spells, before Gozwin's camp"] = "4級法術，在前往戈茲溫的營地之前學習",
 
@@ -119,12 +119,12 @@ return {
 	["{npc:1965} guards the tunnel out of the valley, east of {area:77}; {npc:6782} stands beside him at its mouth."] = "{npc:1965}守衛著{area:77}東邊通往山谷外的隧道；{npc:6782}站在隧道口他的身旁。",
 
 	-- Step 18: Kharanos
-	-- {area:131} Kharanos · {npc:1267} Ragnar · {npc:1252} Senir · {area:2102} Thunderbrew Distillery · {npc:6806} Tannok · {npc:1226} Maxan · {npc:1872} Tharek Blackstone
+	-- {area:131} Kharanos · {npc:1267} Ragnar Thunderbrew · {npc:1252} Senir Whitebeard · {area:2102} Thunderbrew Distillery · {npc:6806} Tannok Frosthammer · {npc:1226} Maxan Anvol · {npc:1872} Tharek Blackstone
 	-- plural, as words: Crag Boars = {npc:1125} Crag Boar
 	["Follow the road through the tunnel and north-east to {area:131}. Kill the Crag Boars on the way: their ribs drop before you have {npc:1267}'s quest and count toward it. {npc:1252}, Eric and his campfire are outside the {area:2102}. {npc:6806}, {npc:1226} and {npc:1267} are inside. {npc:1872} works the forge."] = "沿著道路穿過隧道，向東北前往{area:131}。途中擊殺峭壁野豬：在接到{npc:1267}的任務之前，牠們就會掉落肋排，並算入該任務。{npc:1252}、埃瑞克和他的營火在{area:2102}外面。{npc:6806}、{npc:1226}和{npc:1267}在裡面。{npc:1872}在鍛爐工作。",
-	-- {npc:6806} Tannok
+	-- {npc:6806} Tannok Frosthammer
 	["{npc:6806}, in the distillery"] = "{npc:6806}，在釀製廠裡",
-	-- {npc:1226} Maxan · {npc:6806} Tannok
+	-- {npc:1226} Maxan Anvol · {npc:6806} Tannok Frosthammer
 	["{npc:1226}, next to {npc:6806}"] = "{npc:1226}，在{npc:6806}旁邊",
 	-- {item:2894} Rhapsody Malt · {npc:1247} Innkeeper Belm
 	["{item:2894}, from {npc:1247}"] = "{item:2894}，來自{npc:1247}",
@@ -245,9 +245,9 @@ return {
 	["{npc:1231}, at the smithy"] = "{npc:1231}，在鐵匠舖",
 	-- {npc:258113} Ingrid Dunwald · {npc:257597} Bruegs Kindleborn
 	["{npc:258113}: {npc:257597} by the South Gate takes it"] = "{npc:258113}：由南門旁的{npc:257597}接收",
-	-- {npc:1226} Maxan · {npc:376} High Priestess Laurena · {zone:1453} Stormwind
+	-- {npc:1226} Maxan Anvol · {npc:376} High Priestess Laurena · {zone:1453} Stormwind
 	["{npc:1226}: {npc:376} in {zone:1453} takes it"] = "{npc:1226}：由{zone:1453}的{npc:376}接收",
-	-- {npc:1226} Maxan · {npc:258785} High Priestess Mims · {zone:1455} Ironforge
+	-- {npc:1226} Maxan Anvol · {npc:258785} High Priestess Mims · {zone:1455} Ironforge
 	["{npc:1226}: {npc:258785} in {zone:1455} takes it"] = "{npc:1226}：由{zone:1455}的{npc:258785}接收",
 
 	-- Step 54: Taming the Beast

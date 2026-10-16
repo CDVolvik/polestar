@@ -80,7 +80,7 @@ return {
 
 	-- Step 17: Rage Scar yetis
 	["Rage Scar yetis"] = "怒痕雪人",
-	-- {quest:7735} Pristine Yeti Hide · {npc:7852} Pratt
+	-- {quest:7735} Pristine Yeti Hide · {npc:7852} Pratt McGrubben
 	["Ride back west along the road, then north into the Rage Scar hills. Every yeti here can drop a hide; one may drop a {quest:7735}, which {npc:7852} pays for too."] = "沿道路向西骑回，然后向北进入怒痕山丘。这里的每个雪人都可能掉落毛皮；可能会掉落{quest:7735}，{npc:7852}也会收购。",
 
 	-- Step 18: Rockbiter
@@ -104,17 +104,17 @@ return {
 	-- Step 22: Zul'Farrak instead of grinding
 	-- {area:978} Zul'Farrak
 	["{area:978} instead of grinding"] = "用{area:978}代替刷怪",
-	-- {area:978} Zul'Farrak · {zone:1446} Tanaris · {npc:14637} Zorbin · {area:1108} Forgotten Coast
+	-- {area:978} Zul'Farrak · {zone:1446} Tanaris · {npc:14637} Zorbin Fandazzle · {area:1108} Forgotten Coast
 	["Running {area:978} instead of grinding gets you there faster in a group. The troll city lies in northern {zone:1446}, the next zone on the route; come back to {npc:14637} on the {area:1108} afterwards."] = "组队刷{area:978}代替刷怪升级更快。巨魔城市在{zone:1446}北部，也就是路线的下一个区域；之后回到{area:1108}找{npc:14637}。",
 
 	-- Step 23: Grind to 45
 	["Grind to 45"] = "刷到45级",
-	-- {area:1108} Forgotten Coast · {area:1105} Feral Scar Vale · {npc:14637} Zorbin
+	-- {area:1108} Forgotten Coast · {area:1105} Feral Scar Vale · {npc:14637} Zorbin Fandazzle
 	["Boat to the {area:1108} and ride east into {area:1105}. {npc:14637}'s quests on the coast need level 45."] = "乘船前往{area:1108}，向东骑进{area:1105}。{npc:14637}在海岸的任务需要45级。",
 	-- {npc:5292} Feral Scar Yeti · {area:1105} Feral Scar Vale · {zone:1444} Feralas
 	["grind on {npc:5292} at {area:1105}, {zone:1444}"] = "在{zone:1444}的{area:1105}刷{npc:5292}",
 
-	-- Step 24: Zorbin
+	-- Step 24: Zorbin Fandazzle
 	-- {area:1108} Forgotten Coast
 	["Ride back to the {area:1108}; the goblin stands by the dock."] = "骑回{area:1108}；那个地精站在码头旁。",
 
@@ -124,8 +124,8 @@ return {
 	-- plural, as words: Shore Striders = {npc:5359} Shore Strider · Deep Striders = {npc:5360} Deep Strider · Wave Striders = {npc:5361} Wave Strider · Sea Elementals = {npc:5461} Sea Elemental · Sea Sprays = {npc:5462} Sea Spray
 	["Shore Striders, Deep Striders and Wave Striders (elite giants) wade along the coast north of the dock: zap one with {item:18904} and kill the shrunken giant. Sea Elementals and Sea Sprays drift in the same surf."] = "{npc:5359}、{npc:5360}和{npc:5361}（精英巨人）在码头北边的海岸涉水：用{item:18904}电一只，然后杀掉缩小的巨人。{npc:5461}和{npc:5462}在同一片浪花中飘荡。",
 
-	-- Step 26: Zorbin
-	-- {npc:14637} Zorbin
+	-- Step 26: Zorbin Fandazzle
+	-- {npc:14637} Zorbin Fandazzle
 	["{npc:14637}'s refills are level 55: skip them."] = "{npc:14637}的补充任务是55级：跳过。",
 	-- {area:1108} Forgotten Coast · {zone:1446} Tanaris
 	["You end at the {area:1108} dock: the {zone:1446} guide starts with the trip east from here."] = "你在{area:1108}的码头结束：{zone:1446}指南从这里向东出发开始。",

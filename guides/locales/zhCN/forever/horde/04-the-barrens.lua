@@ -162,7 +162,7 @@ return {
 	["He gives you the {item:15826}"] = "他会给你{item:15826}",
 
 	-- Step 35: Verog the Dervish
-	-- {npc:3395} Verog · {area:388} Stagnant Oasis · {area:380} Crossroads
+	-- {npc:3395} Verog the Dervish · {area:388} Stagnant Oasis · {area:380} Crossroads
 	["{npc:3395} walks among the Kolkar at the {area:388} south-east of the {area:380}."] = "{npc:3395}在{area:380}东南的{area:388}，在科卡尔半人马中间走动。",
 	-- {npc:12296} Sickly Gazelle · {item:15826} Curative Animal Salve · {area:380} Crossroads
 	["{npc:12296}: use the {item:15826} on them; they roam the plains all around the {area:380}"] = "{npc:12296}：对它们使用{item:15826}；它们在{area:380}周围的平原上游荡",
@@ -202,7 +202,7 @@ return {
 	["{npc:3432} offers {quest:95774} once {quest:4921} is handed in"] = "{quest:4921}交还后，{npc:3432}会提供{quest:95774}",
 
 	-- Step 46: Hezrul Bloodmark
-	-- {npc:3396} Hezrul · {area:387} Lushwater Oasis · {npc:3389} Regthar Deathgate · {area:380} Crossroads
+	-- {npc:3396} Hezrul Bloodmark · {area:387} Lushwater Oasis · {npc:3389} Regthar Deathgate · {area:380} Crossroads
 	["{npc:3396} leads the Kolkar on the west shore of {area:387}, south of {npc:3389}. Hand his head to {npc:3389} on your last {area:380} stop."] = "{npc:3396}率领着{area:387}西岸的科卡尔半人马，位于{npc:3389}南边。最后一次在{area:380}停留时把他的头颅交给{npc:3389}。",
 
 	-- Step 47: Olgra's Adornments

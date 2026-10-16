@@ -66,7 +66,7 @@ return {
 	-- Step 14: The Broken Pillar
 	-- {area:1938} Broken Pillar
 	["The {area:1938}"] = "{area:1938}",
-	-- {area:1938} Broken Pillar · {npc:7771} Marvon · {quest:3161} Gahz'ridian
+	-- {area:1938} Broken Pillar · {npc:7771} Marvon Rivetseeker · {quest:3161} Gahz'ridian
 	["Ride south to the dig camp at the {area:1938}. {npc:7771} hands you a detector helm: wear it to see the {quest:3161} mounds, which lie thick in the sand around the camp and south-west toward the ogres."] = "남쪽 {area:1938}의 발굴 야영지로 가십시오. {npc:7771}이(가) 탐지 투구를 줍니다: 착용하면 {quest:3161} 흙더미가 보이며, 야영지 주변과 남서쪽 오우거 쪽 모래에 많이 있습니다.",
 
 	-- Step 15: Dunemaul Compound

@@ -35,7 +35,7 @@ return {
 	-- Step 6: The Wild Shore
 	-- {area:43} Wild Shore
 	["The {area:43}"] = "{area:43}",
-	-- {area:43} Wild Shore · {npc:2493} Dizzy
+	-- {area:43} Wild Shore · {npc:2493} Dizzy One-Eye
 	["South of Booty Bay the Bloodsail swashbucklers camp on the {area:43}; the charts and the orders lie in their tents. Any Bloodsail can carry snuff and {npc:2493}'s eye, so keep killing until you have both."] = "Au sud de Baie-du-Butin, les bretteurs de la Voile sanglante campent sur {area:43} ; les cartes et les ordres se trouvent dans leurs tentes. Tout pirate de la Voile sanglante peut porter le tabac et l'œil de {npc:2493} : continuez jusqu'à avoir les deux.",
 
 	-- Step 8: The Bloodsail ships
@@ -76,7 +76,7 @@ return {
 
 	-- Step 17: Zul'Kunda
 	["Zul'Kunda"] = "Ruines de Zul'Kunda",
-	-- {npc:1061} Gan'zulah · {npc:1062} Nezzliok
+	-- {npc:1061} Gan'zulah · {npc:1062} Nezzliok the Dire
 	["West of the expedition, the Bloodscalp chiefs {npc:1061} and {npc:1062} stand together in the ruins of Zul'Kunda. Clear their guards first, then pull them."] = "À l'ouest de l'expédition, les chefs Bloodscalp {npc:1061} et {npc:1062} se tiennent ensemble dans les Ruines de Zul'Kunda. Éliminez d'abord leurs gardes, puis attirez-les.",
 
 	-- Step 18: Hearth to Grom'gol
@@ -102,7 +102,7 @@ return {
 
 	-- Step 22: Pirate ghosts
 	["Pirate ghosts"] = "Pirates fantômes",
-	-- {area:35} Booty Bay · {npc:2535} Maury · {npc:2536} Jon-Jon · {npc:2537} Chucky
+	-- {area:35} Booty Bay · {npc:2535} Maury "Club Foot" Wilkins · {npc:2536} Jon-Jon the Crow · {npc:2537} Chucky "Ten Thumbs"
 	["The three ghostly pirates haunt the jungle north of {area:35}, near Zanzil's camps: {npc:2535} and {npc:2536} stand together, {npc:2537} further east."] = "Les trois pirates fantômes hantent la jungle au nord de {area:35}, près des camps de Zanzil : {npc:2535} et {npc:2536} se tiennent ensemble, {npc:2537} plus à l'est.",
 
 	-- Step 23: Zul'Mamwe

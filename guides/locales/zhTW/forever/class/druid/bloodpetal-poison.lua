@@ -14,7 +14,7 @@ return {
 	["Cast {spell:18960}. {npc:12042} stands in {area:2361}; your class trainer offers the same quest."] = "施放{spell:18960}。{npc:12042}站在{area:2361}；你的職業訓練師也提供同一個任務。",
 
 	-- Step 2: Torwa Pathfinder
-	-- {area:976} Gadgetzan · {zone:1449} Un'Goro Crater · {npc:9619} Torwa
+	-- {area:976} Gadgetzan · {zone:1449} Un'Goro Crater · {npc:9619} Torwa Pathfinder
 	["Fly to {area:976}, ride west to the long ramp down into {zone:1449}: {npc:9619} camps at its foot, in the south-east corner of the crater."] = "飛往{area:976}，向西騎往下到{zone:1449}的長坡道：{npc:9619}在坡道底部紮營，位於環形山東南角。",
 
 	-- Step 3: Gorishi Stings and Bloodcap
@@ -39,6 +39,6 @@ return {
 	["{area:1477} lies in the {area:74} in the {zone:1435}. {npc:8580} guards the bottom of the temple: a dungeon boss, so bring a group."] = "{area:1477}位於{zone:1435}的{area:74}中。{npc:8580}守在神廟底層：這是地城首領，所以要帶小隊。",
 
 	-- Step 8: A Better Ingredient
-	-- {npc:9619} Torwa · {zone:1449} Un'Goro Crater
+	-- {npc:9619} Torwa Pathfinder · {zone:1449} Un'Goro Crater
 	["Back to {npc:9619} in the south-east corner of {zone:1449}."] = "回到{zone:1449}東南角的{npc:9619}處。",
 }

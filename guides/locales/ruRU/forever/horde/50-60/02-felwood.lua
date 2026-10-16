@@ -36,7 +36,7 @@ return {
 	["He camps by the {area:202}, south-east of {area:200}."] = "Он стоит лагерем у места {area:202}, к юго-востоку от места {area:200}.",
 
 	-- Step 6: Sorrow Hill
-	-- {area:202} Writhing Haunt · {area:197} Sorrow Hill · {npc:10927} Marlene · {npc:10936} Joseph Redpath
+	-- {area:202} Writhing Haunt · {area:197} Sorrow Hill · {npc:10927} Marlene Redpath · {npc:10936} Joseph Redpath
 	["Ride south past the {area:202} to {area:197}; {npc:10927}'s house stands by the road, and {npc:10936}'s monument is in the graveyard behind it. Kill the Diseased Wolves you meet in the fields on the way."] = "Езжайте на юг мимо места {area:202} сюда: {area:197}; дом {npc:10927} стоит у дороги, а памятник ({npc:10936}) – на кладбище за ним. По пути убивайте больных волков в полях.",
 	-- {npc:10840} Argent Officer Pureheart
 	["{npc:10840}, at the graveyard's south end"] = "{npc:10840}, в южной части кладбища",
@@ -104,7 +104,7 @@ return {
 	-- Step 24: Bulwark
 	-- {area:152} Bulwark
 	["Ride south-west past Felstone Farm and follow the road west back to the {area:152}."] = "Езжайте на юго-запад мимо фермы Фелстоунов и по дороге на запад обратно сюда: {area:152}.",
-	-- {npc:11615} Mickey
+	-- {npc:11615} Mickey Levine
 	["Derrington's watchtowers, Vandis' cauldron and {npc:11615}'s barrel are done on a later visit: keep them."] = "Сторожевые башни Деррингтона, котел Вандис и бочка {npc:11615} – в следующий визит: сохраните эти задания.",
 
 	-- Step 25: To Felwood
@@ -144,7 +144,7 @@ return {
 	-- Step 32: The Jaedenar moonwell
 	-- {area:1763} Jaedenar
 	["The {area:1763} moonwell"] = "Лунный колодец: {area:1763}",
-	-- {area:1763} Jaedenar · {npc:10922} Greta
+	-- {area:1763} Jaedenar · {npc:10922} Greta Mosshoof
 	["Back north to {area:1763}. Fill {npc:10922}'s canteen at the corrupted moonwell in the middle of the southern camp."] = "Назад на север сюда: {area:1763}. Наполните флягу {npc:10922} у оскверненного лунного колодца в центре южного лагеря.",
 
 	-- Step 33: Rakaiah
@@ -159,13 +159,13 @@ return {
 
 	-- Step 35: The Jadefire moonwell
 	["The Jadefire moonwell"] = "Лунный колодец Нефритового Пламени",
-	-- {area:1763} Jaedenar · {npc:9996} Winna
+	-- {area:1763} Jaedenar · {npc:9996} Winna Hazzard
 	["Ride back south past {area:1763} to the corrupted moonwell of the Jadefire satyrs and fill {npc:9996}'s flasket there."] = "Возвращайтесь на юг мимо места {area:1763} к оскверненному лунному колодцу сатиров Нефритового Пламени и наполните там фляжку {npc:9996}.",
 
-	-- Step 37: Winna's kitten
-	-- {npc:9996} Winna
+	-- Step 37: Winna Hazzard's kitten
+	-- {npc:9996} Winna Hazzard
 	["{npc:9996}'s kitten"] = "Котенок {npc:9996}",
-	-- {npc:10042} Corrupted Saber · {npc:9996} Winna
+	-- {npc:10042} Corrupted Saber · {npc:9996} Winna Hazzard
 	["Take the kitten to the same moonwell and release it there; once it has turned into a {npc:10042}, bring it back to {npc:9996} and click on it to hand it over."] = "Отнесите котенка к тому же лунному колодцу и выпустите его; когда он превратится в монстра {npc:10042}, приведите его к {npc:9996} и щелкните по нему, чтобы передать.",
 	["Jadefire moonwell"] = "Лунный колодец Нефритового Пламени",
 

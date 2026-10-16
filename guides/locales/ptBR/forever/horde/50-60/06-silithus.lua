@@ -163,16 +163,16 @@ return {
 	-- Step 36: Scourge Champions
 	-- plural, as words: Scourge Champions = {npc:8529} Scourge Champion
 	["Scourge Champions"] = "Campeões do Flagelo",
-	-- {area:2270} Noxious Glade · {npc:11063} Carlin · {item:13156} Mystic Crystal
+	-- {area:2270} Noxious Glade · {npc:11063} Carlin Redpath · {item:13156} Mystic Crystal
 	-- plural, as words: Scourge Champions = {npc:8529} Scourge Champion
 	["Scourge Champions roam the {area:2270}, north of the chapel. Pass {npc:11063}'s {item:13156} over each one you kill: the skulls that resonate are the ones he wants."] = "Campeões do Flagelo vagam pela {area:2270}, ao norte da capela. Passe o {item:13156} de {npc:11063} sobre cada um que matar: os crânios que ressoam são os que ele quer.",
 
-	-- Step 38: Pamela and the Undercroft
-	-- {npc:10926} Pamela · {area:2261} Undercroft
+	-- Step 38: Pamela Redpath and the Undercroft
+	-- {npc:10926} Pamela Redpath · {area:2261} Undercroft
 	["{npc:10926} and the {area:2261}"] = "{npc:10926} e a {area:2261}",
-	-- {area:2262} Darrowshire · {npc:10926} Pamela · {npc:11886} Mercutio Filthgorger · {area:2261} Undercroft
+	-- {area:2262} Darrowshire · {npc:10926} Pamela Redpath · {npc:11886} Mercutio Filthgorger · {area:2261} Undercroft
 	["Ride to {area:2262} in the south-west; {npc:10926} plays among the houses. {npc:11886} lurks in the {area:2261}, the crypt just west of the town."] = "Cavalgue até {area:2262}, no sudoeste; {npc:10926} brinca entre as casas. {npc:11886} espreita na {area:2261}, a cripta logo a oeste da cidade.",
-	-- {npc:10926} Pamela
+	-- {npc:10926} Pamela Redpath
 	["{npc:10926}'s own errand is not on this route. Skip it."] = "A tarefa da própria {npc:10926} não está nesta rota. Pule-a.",
 
 	-- Step 39: Nathanos Blightcaller

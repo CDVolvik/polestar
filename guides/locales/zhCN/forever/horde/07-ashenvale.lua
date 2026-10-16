@@ -28,7 +28,7 @@ return {
 	["The Sapphires are blue crystals on the walls of the tunnels leading to the {area:2797} portal, underground and outside the instance: swim down from the pit, under the wall, into the cave. The satyrs and naga in the tunnels are elite: grouping up is advised. The crystals respawn quickly, so there is no need to go deep."] = "阿库麦尔蓝宝石是通往{area:2797}传送门的坑道墙壁上的蓝色水晶，位于地下、副本之外：从坑里潜下去，从墙下游进洞穴。坑道里的萨特和纳迦是精英：建议组队。水晶刷新很快，不用深入。",
 
 	-- Step 5: Zoram'gar Outpost
-	-- {npc:12736} Je'neu · {area:2797} Blackfathom Deeps
+	-- {npc:12736} Je'neu Sancrea · {area:2797} Blackfathom Deeps
 	["{npc:12736} offers a {area:2797} quest next; leave it unless you have a group."] = "{npc:12736}接下来会提供一个{area:2797}任务；除非你有队伍，否则别接。",
 
 	-- Step 6: Thistlefur Village
@@ -143,7 +143,7 @@ return {
 	["{npc:10377}, by the wind rider master"] = "{npc:10377}，在双足飞龙管理员旁边",
 	-- {npc:4877} Jandia · {area:487} Roguefeather Den
 	["{npc:4877}, the trade supplies vendor: the Screeching harpies of {area:487}"] = "{npc:4877}，商业用品商人：{area:487}的尖啸的鹰身人",
-	-- {npc:10537} Cliffwatcher
+	-- {npc:10537} Cliffwatcher Longhorn
 	["The Wanted poster beside {npc:10537}"] = "{npc:10537}旁的通缉告示",
 
 	-- Step 30: Alien Egg
@@ -177,9 +177,9 @@ return {
 	-- Step 37: Whitereach Post
 	-- {area:2237} Whitereach Post
 	["Follow the canyon west to {area:2237}."] = "沿峡谷向西前往{area:2237}。",
-	-- {npc:10428} Motega · {area:1638} Thunder Bluff
+	-- {npc:10428} Motega Firemane · {area:1638} Thunder Bluff
 	["{npc:10428}'s next quest, Sacred Fire, ends in {area:1638}, off this route. Skip it."] = "{npc:10428}的下一个任务（生命圣火）在{area:1638}结束，不在本路线上。跳过它。",
-	-- {npc:10720} Galak Assassin · {npc:10638} Kanati
+	-- {npc:10720} Galak Assassin · {npc:10638} Kanati Greycloud
 	["Kill the {npc:10720} that comes for {npc:10638}"] = "杀死前来袭击{npc:10638}的{npc:10720}",
 
 	-- Step 38: Highperch

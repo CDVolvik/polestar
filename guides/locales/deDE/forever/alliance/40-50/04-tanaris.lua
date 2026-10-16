@@ -66,7 +66,7 @@ return {
 	-- Step 14: The Broken Pillar
 	-- {area:1938} Broken Pillar
 	["The {area:1938}"] = "Die {area:1938}",
-	-- {area:1938} Broken Pillar · {npc:7771} Marvon · {quest:3161} Gahz'ridian
+	-- {area:1938} Broken Pillar · {npc:7771} Marvon Rivetseeker · {quest:3161} Gahz'ridian
 	["Ride south to the dig camp at the {area:1938}. {npc:7771} hands you a detector helm: wear it to see the {quest:3161} mounds, which lie thick in the sand around the camp and south-west toward the ogres."] = "Reite nach Süden zum Grabungslager an der {area:1938}. {npc:7771} gibt dir einen Detektorhelm: Trag ihn, um die Hügel von {quest:3161} zu sehen, die dicht im Sand rund um das Lager und nach Südwesten Richtung Oger liegen.",
 
 	-- Step 15: Dunemaul Compound

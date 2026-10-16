@@ -28,7 +28,7 @@ return {
 	["The Sapphires are blue crystals on the walls of the tunnels leading to the {area:2797} portal, underground and outside the instance: swim down from the pit, under the wall, into the cave. The satyrs and naga in the tunnels are elite: grouping up is advised. The crystals respawn quickly, so there is no need to go deep."] = "Die Saphire sind blaue Kristalle an den Wänden der Tunnel zum Portal der {area:2797}, unterirdisch und außerhalb der Instanz: Schwimm aus der Grube hinab, unter der Mauer hindurch, in die Höhle. Die Satyrn und Naga in den Tunneln sind Elite: Eine Gruppe wird empfohlen. Die Kristalle erscheinen schnell wieder, du musst also nicht tief hinein.",
 
 	-- Step 5: Zoram'gar Outpost
-	-- {npc:12736} Je'neu · {area:2797} Blackfathom Deeps
+	-- {npc:12736} Je'neu Sancrea · {area:2797} Blackfathom Deeps
 	["{npc:12736} offers a {area:2797} quest next; leave it unless you have a group."] = "{npc:12736} bietet als Nächstes eine Quest für die {area:2797} an; lass sie aus, außer du hast eine Gruppe.",
 
 	-- Step 6: Thistlefur Village
@@ -143,7 +143,7 @@ return {
 	["{npc:10377}, by the wind rider master"] = "{npc:10377}, beim Windreitermeister",
 	-- {npc:4877} Jandia · {area:487} Roguefeather Den
 	["{npc:4877}, the trade supplies vendor: the Screeching harpies of {area:487}"] = "{npc:4877}, die Handwerkswarenhändlerin: die kreischenden Harpyien im {area:487}",
-	-- {npc:10537} Cliffwatcher
+	-- {npc:10537} Cliffwatcher Longhorn
 	["The Wanted poster beside {npc:10537}"] = "Der Steckbrief neben {npc:10537}",
 
 	-- Step 30: Alien Egg
@@ -177,9 +177,9 @@ return {
 	-- Step 37: Whitereach Post
 	-- {area:2237} Whitereach Post
 	["Follow the canyon west to {area:2237}."] = "Folge der Schlucht nach Westen zum {area:2237}.",
-	-- {npc:10428} Motega · {area:1638} Thunder Bluff
+	-- {npc:10428} Motega Firemane · {area:1638} Thunder Bluff
 	["{npc:10428}'s next quest, Sacred Fire, ends in {area:1638}, off this route. Skip it."] = "{npc:10428}s nächste Quest, Hochheiliges Feuer, endet in {area:1638}, abseits dieser Route. Überspring sie.",
-	-- {npc:10720} Galak Assassin · {npc:10638} Kanati
+	-- {npc:10720} Galak Assassin · {npc:10638} Kanati Greycloud
 	["Kill the {npc:10720} that comes for {npc:10638}"] = "Töte den {npc:10720}, der für {npc:10638} kommt",
 
 	-- Step 38: Highperch

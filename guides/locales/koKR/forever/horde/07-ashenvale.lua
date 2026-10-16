@@ -28,7 +28,7 @@ return {
 	["The Sapphires are blue crystals on the walls of the tunnels leading to the {area:2797} portal, underground and outside the instance: swim down from the pit, under the wall, into the cave. The satyrs and naga in the tunnels are elite: grouping up is advised. The crystals respawn quickly, so there is no need to go deep."] = "사파이어는 {area:2797} 차원문으로 이어지는 터널 벽에 박힌 푸른 수정으로, 인스턴스 밖 지하에 있습니다. 구덩이에서 헤엄쳐 내려가 벽 아래를 지나 동굴로 들어가세요. 터널의 사티로스와 나가는 정예입니다. 파티를 권장합니다. 수정은 빨리 다시 생기므로 깊이 들어갈 필요는 없습니다.",
 
 	-- Step 5: Zoram'gar Outpost
-	-- {npc:12736} Je'neu · {area:2797} Blackfathom Deeps
+	-- {npc:12736} Je'neu Sancrea · {area:2797} Blackfathom Deeps
 	["{npc:12736} offers a {area:2797} quest next; leave it unless you have a group."] = "다음으로 {npc:12736}이(가) {area:2797} 퀘스트를 줍니다. 파티가 없다면 두세요.",
 
 	-- Step 6: Thistlefur Village
@@ -143,7 +143,7 @@ return {
 	["{npc:10377}, by the wind rider master"] = "윈드라이더 조련사 옆의 {npc:10377}",
 	-- {npc:4877} Jandia · {area:487} Roguefeather Den
 	["{npc:4877}, the trade supplies vendor: the Screeching harpies of {area:487}"] = "교역품 상인 {npc:4877}: {area:487}의 회오리 하피",
-	-- {npc:10537} Cliffwatcher
+	-- {npc:10537} Cliffwatcher Longhorn
 	["The Wanted poster beside {npc:10537}"] = "{npc:10537} 옆의 현상수배 게시판",
 
 	-- Step 30: Alien Egg
@@ -177,9 +177,9 @@ return {
 	-- Step 37: Whitereach Post
 	-- {area:2237} Whitereach Post
 	["Follow the canyon west to {area:2237}."] = "협곡을 따라 서쪽의 {area:2237}(으)로 가세요.",
-	-- {npc:10428} Motega · {area:1638} Thunder Bluff
+	-- {npc:10428} Motega Firemane · {area:1638} Thunder Bluff
 	["{npc:10428}'s next quest, Sacred Fire, ends in {area:1638}, off this route. Skip it."] = "{npc:10428}의 다음 퀘스트인 신성한 불은 이 경로에서 벗어난 {area:1638}에서 끝납니다. 건너뛰세요.",
-	-- {npc:10720} Galak Assassin · {npc:10638} Kanati
+	-- {npc:10720} Galak Assassin · {npc:10638} Kanati Greycloud
 	["Kill the {npc:10720} that comes for {npc:10638}"] = "{npc:10638}을(를) 노리고 오는 {npc:10720}을(를) 처치하세요",
 
 	-- Step 38: Highperch

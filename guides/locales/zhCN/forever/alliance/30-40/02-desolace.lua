@@ -47,10 +47,10 @@ return {
 	-- {npc:5644} Dalinda Malem · {area:608} Nijel's Point
 	["{npc:5644} hides inside the Burning Blade's fortress south-west of {area:608}."] = "{npc:5644}躲在{area:608}西南方燃烧之刃的要塞里。",
 
-	-- Step 12: Tyranis and the Seer
-	-- {npc:5643} Tyranis
+	-- Step 12: Tyranis Malem and the Seer
+	-- {npc:5643} Tyranis Malem
 	["{npc:5643} and the Seer"] = "{npc:5643}和先知",
-	-- {npc:5643} Tyranis · {npc:13019} Burning Blade Seer
+	-- {npc:5643} Tyranis Malem · {npc:13019} Burning Blade Seer
 	["Her brother {npc:5643} (36) walks the fortress with the Burning Blade cultists (30-33): pull him alone. The {npc:13019} keeps the sceptre in the fortress's main building."] = "她的哥哥{npc:5643}（36级）和火刃氏族的祭司（30-33级）在要塞里巡逻：单独把他拉出来。{npc:13019}把权杖放在要塞的主建筑里。",
 
 	-- Step 13: Escort Dalinda Malem

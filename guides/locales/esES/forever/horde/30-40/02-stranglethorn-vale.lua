@@ -32,7 +32,7 @@ return {
 
 	-- Step 6: Nesingwary's camp
 	["Nesingwary's camp"] = "Campamento de Hemet Decautela",
-	-- {object:3202} Grom'gol (no name in this language: may be words) · {quest:338} The Green Hills of Stranglethorn · {npc:716} Barnil
+	-- {object:3202} Grom'gol (no name in this language: may be words) · {quest:338} The Green Hills of Stranglethorn · {npc:716} Barnil Stonepot
 	["Follow the road north out of {object:3202}; Nesingwary's hunting camp sits on the hill north-east of the river. From here on, keep every page of {quest:338} you loot: {npc:716} asks for them later."] = "Sigue el camino hacia el norte desde {object:3202}; el campamento de caza de Hemet Decautela está en la colina al noreste del río. A partir de aquí, guarda cada página de {quest:338} que consigas: {npc:716} te las pedirá más adelante.",
 
 	-- Step 7: Young tigers and panthers
@@ -145,7 +145,7 @@ return {
 
 	-- Step 34: Green Hills pages
 	["Green Hills pages"] = "Páginas de Las verdes colinas",
-	-- {item:2755} Green Hills of Stranglethorn · {npc:716} Barnil
+	-- {item:2755} Green Hills of Stranglethorn · {npc:716} Barnil Stonepot
 	["Pages of The {item:2755} drop at about 1% each from the Bloodscalp and Skullsplitter trolls; keep every page you loot and look on the auction house for the rest. {npc:716} takes the chapters later in this guide."] = "Las páginas de {item:2755} caen con un 1% aprox. cada una de los trols Cabellesangre y Machacacráneos; guarda cada página que consigas y busca el resto en la casa de subastas. {npc:716} recoge los capítulos más adelante en esta guía.",
 
 	-- Step 35: Shadowmaw panthers

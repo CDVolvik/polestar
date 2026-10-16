@@ -28,7 +28,7 @@ return {
 	["The Sapphires are blue crystals on the walls of the tunnels leading to the {area:2797} portal, underground and outside the instance: swim down from the pit, under the wall, into the cave. The satyrs and naga in the tunnels are elite: grouping up is advised. The crystals respawn quickly, so there is no need to go deep."] = "Сапфиры – синие кристаллы на стенах туннелей, ведущих к порталу ({area:2797}), под землей и вне подземелья: нырните из ямы под стену в пещеру. Сатиры и наги в туннелях – элита: лучше собрать группу. Кристаллы быстро появляются снова, так что глубоко идти не нужно.",
 
 	-- Step 5: Zoram'gar Outpost
-	-- {npc:12736} Je'neu · {area:2797} Blackfathom Deeps
+	-- {npc:12736} Je'neu Sancrea · {area:2797} Blackfathom Deeps
 	["{npc:12736} offers a {area:2797} quest next; leave it unless you have a group."] = "Затем {npc:12736} предложит задание ({area:2797}); не берите без группы.",
 
 	-- Step 6: Thistlefur Village
@@ -143,7 +143,7 @@ return {
 	["{npc:10377}, by the wind rider master"] = "{npc:10377}, у распорядителя полетов",
 	-- {npc:4877} Jandia · {area:487} Roguefeather Den
 	["{npc:4877}, the trade supplies vendor: the Screeching harpies of {area:487}"] = "{npc:4877}, торговец товарами: визгливые гарпии ({area:487})",
-	-- {npc:10537} Cliffwatcher
+	-- {npc:10537} Cliffwatcher Longhorn
 	["The Wanted poster beside {npc:10537}"] = "Плакат «Разыскивается» рядом с {npc:10537} утесов",
 
 	-- Step 30: Alien Egg
@@ -177,9 +177,9 @@ return {
 	-- Step 37: Whitereach Post
 	-- {area:2237} Whitereach Post
 	["Follow the canyon west to {area:2237}."] = "Идите по каньону на запад: {area:2237}.",
-	-- {npc:10428} Motega · {area:1638} Thunder Bluff
+	-- {npc:10428} Motega Firemane · {area:1638} Thunder Bluff
 	["{npc:10428}'s next quest, Sacred Fire, ends in {area:1638}, off this route. Skip it."] = "Следующее задание {npc:10428}, «Священное пламя», заканчивается в {area:1638}, вне маршрута. Пропустите его.",
-	-- {npc:10720} Galak Assassin · {npc:10638} Kanati
+	-- {npc:10720} Galak Assassin · {npc:10638} Kanati Greycloud
 	["Kill the {npc:10720} that comes for {npc:10638}"] = "Убейте NPC {npc:10720}, который придет за {npc:10638}",
 
 	-- Step 38: Highperch

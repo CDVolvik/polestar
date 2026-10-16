@@ -32,7 +32,7 @@ return {
 
 	-- Step 6: Nesingwary's camp
 	["Nesingwary's camp"] = "Acampamento de Rosarães Guima",
-	-- {object:3202} Grom'gol (no name in this language: may be words) · {quest:338} The Green Hills of Stranglethorn · {npc:716} Barnil
+	-- {object:3202} Grom'gol (no name in this language: may be words) · {quest:338} The Green Hills of Stranglethorn · {npc:716} Barnil Stonepot
 	["Follow the road north out of {object:3202}; Nesingwary's hunting camp sits on the hill north-east of the river. From here on, keep every page of {quest:338} you loot: {npc:716} asks for them later."] = "Siga a estrada para o norte saindo de {object:3202}; o acampamento de caça de Rosarães Guima fica na colina a nordeste do rio. Daqui em diante, guarde toda página de {quest:338} que saquear: {npc:716} vai pedi-las depois.",
 
 	-- Step 7: Young tigers and panthers
@@ -145,7 +145,7 @@ return {
 
 	-- Step 34: Green Hills pages
 	["Green Hills pages"] = "Páginas de Grande Espinhaço: Veredas",
-	-- {item:2755} Green Hills of Stranglethorn · {npc:716} Barnil
+	-- {item:2755} Green Hills of Stranglethorn · {npc:716} Barnil Stonepot
 	["Pages of The {item:2755} drop at about 1% each from the Bloodscalp and Skullsplitter trolls; keep every page you loot and look on the auction house for the rest. {npc:716} takes the chapters later in this guide."] = "As páginas de {item:2755} caem com cerca de 1% cada dos trolls Sanguescalpo e Rachacrânio; guarde toda página que saquear e procure o resto na casa de leilões. {npc:716} recebe os capítulos mais adiante neste guia.",
 
 	-- Step 35: Shadowmaw panthers

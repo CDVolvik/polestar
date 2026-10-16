@@ -66,7 +66,7 @@ return {
 
 	-- Step 12: The Villards
 	["The Villards"] = "빌라드 남매",
-	-- {npc:5683} Comar Villard · {area:205} Dun Modr · {area:881} Thandol Span · {npc:271322} Essene
+	-- {npc:5683} Comar Villard · {area:205} Dun Modr · {area:881} Thandol Span · {npc:271322} Essene Villard
 	["{npc:5683} waits north of {area:205} by the {area:881}; {npc:271322} a short walk further north-east."] = "{npc:5683}은(는) {area:205} 북쪽 {area:881} 옆에서 기다리고, {npc:271322}은(는) 조금 더 북동쪽에 있습니다.",
 
 	-- Step 13: Prospector Whelgar

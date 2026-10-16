@@ -36,7 +36,7 @@ return {
 	["The owlbeasts of {zone:1452} drop the blood, about one in three: the Ragged and Raging Owlbeasts west of and around {area:2255}, the Crazed, Moontouched and {spell:417141} ones in the east. While you hunt, start on the materials of the next step: the Auction House has them all."] = "{zone:1452}의 올빼미야수는 세 마리 중 한 마리꼴로 피를 떨어뜨립니다: {area:2255} 서쪽과 주변의 털복숭이 올빼미야수와 {npc:7451}, 동쪽의 광기어린 올빼미야수, 달빛 깃든 올빼미야수, {spell:417141} 올빼미야수. 사냥하는 동안 다음 단계의 재료도 준비하세요. 경매장에 모두 있습니다.",
 
 	-- Step 7: Wildeyes
-	-- {npc:14436} Mor'zul · {item:18591} Case of Blood · {npc:14437} Gorzeeki Wildeyes · {zone:1448} Felwood
+	-- {npc:14436} Mor'zul Bloodbringer · {item:18591} Case of Blood · {npc:14437} Gorzeeki Wildeyes · {zone:1448} Felwood
 	-- plural, as words: Shadowy Potions = {item:18802} Shadowy Potion
 	["Back to {npc:14436}, then hand his {item:18591} to {npc:14437} beside him. {npc:14436} then asks for three ritual pieces and {npc:14437} sends you to {zone:1448}: buy two Shadowy Potions from {npc:14437} for that trip."] = "{npc:14436}에게 돌아간 뒤, 그의 {item:18591}을(를) 옆의 {npc:14437}에게 건네세요. 그 후 {npc:14436}은(는) 의식 재료 세 가지를 요구하고 {npc:14437}는 당신을 {zone:1448}(으)로 보냅니다. 그 여정을 위해 {npc:14437}에게서 어둠의 물약 두 개를 사세요.",
 	-- {item:18591} Case of Blood
@@ -82,7 +82,7 @@ return {
 	["Use the {item:18688} at the alchemy lab"] = "연금술 실험대에서 {item:18688}을(를) 사용하세요",
 
 	-- Step 15: Dreadsteed of Xoroth
-	-- {npc:14437} Gorzeeki Wildeyes · {npc:14436} Mor'zul · {item:18663} J'eevee's Jar · {item:18629} Black Lodestone · {item:18670} Xorothian Glyphs
+	-- {npc:14437} Gorzeeki Wildeyes · {npc:14436} Mor'zul Bloodbringer · {item:18663} J'eevee's Jar · {item:18629} Black Lodestone · {item:18670} Xorothian Glyphs
 	-- plural, as words: Soul Shards = {item:6265} Soul Shard
 	["Back to {npc:14437}, then {npc:14436} hands you his instructions for the ritual. Buy {item:18663}, the {item:18629} and the {item:18670} from {npc:14437}, and carry ten or more Soul Shards."] = "{npc:14437}에게 돌아간 뒤, {npc:14436}이(가) 의식 지침을 줍니다. {npc:14437}에게서 {item:18663}, {item:18629}, {item:18670}을(를) 사고, 영혼의 조각을 10개 이상 챙기세요.",
 

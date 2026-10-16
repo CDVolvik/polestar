@@ -104,7 +104,7 @@ return {
 
 	-- Step 22: Bloodsail pirates
 	["Bloodsail pirates"] = "血帆海盗",
-	-- {npc:2493} Dizzy · {area:43} Wild Shore · {area:35} Booty Bay
+	-- {npc:2493} Dizzy One-Eye · {area:43} Wild Shore · {area:35} Booty Bay
 	["Every Bloodsail drops Snuff and one of them carries {npc:2493}'s eye; the Swashbucklers walk the shore just north of town. The charts and orders lie in the pirate camp on the {area:43}, south of {area:35}."] = "每个血帆海盗都掉落鼻烟，其中一个携带{npc:2493}的眼睛；血帆流氓在镇子北边的岸上游荡。海图和命令在{area:35}南边{area:43}的海盗营地里。",
 
 	-- Step 24: The Bloodsail captains
@@ -135,10 +135,10 @@ return {
 	-- {npc:2616} Privateer Groy
 	["for {npc:2616} in Theramore: keep it"] = "交给塞拉摩的{npc:2616}：留着",
 
-	-- Step 30: Maury and Jon-Jon
-	-- {npc:2535} Maury · {npc:2536} Jon-Jon
+	-- Step 30: Maury "Club Foot" Wilkins and Jon-Jon the Crow
+	-- {npc:2535} Maury "Club Foot" Wilkins · {npc:2536} Jon-Jon the Crow
 	["{npc:2535} and {npc:2536}"] = "{npc:2535}和{npc:2536}",
-	-- {npc:2535} Maury · {npc:2536} Jon-Jon
+	-- {npc:2535} Maury "Club Foot" Wilkins · {npc:2536} Jon-Jon the Crow
 	["Ride north to the hills west of the road. {npc:2535} and {npc:2536} stand together just north of Zanzil's village."] = "向北骑行到道路西边的山丘。{npc:2535}和{npc:2536}一起站在赞吉尔村子北边不远处。",
 
 	-- Step 31: Zanzil's village
@@ -174,7 +174,7 @@ return {
 
 	-- Step 37: Booty Bay
 	["MacKinley's next task sends you after elite ogres: skip it."] = "马克基雷的下一个任务要你对付精英食人魔：跳过。",
-	-- {npc:2498} Crank · {zone:1441} Thousand Needles
+	-- {npc:2498} Crank Fizzlebub · {zone:1441} Thousand Needles
 	["{npc:2498}'s next Zanzil errand starts in {zone:1441}: skip it."] = "{npc:2498}的下一个赞吉尔差事从{zone:1441}开始：跳过。",
 
 	-- Step 38: Stormwind
@@ -246,7 +246,7 @@ return {
 	["for {npc:5635} at {area:348}: keep it"] = "交给{area:348}的{npc:5635}：留着",
 
 	-- Step 50: Ironforge
-	-- {area:2257} Deeprun Tram · {object:28027} Dwarven District (no name in this language: may be words) · {npc:5637} Roetten · {object:32356} Hall of Explorers (no name in this language: may be words) · {npc:1356} Prospector Stormpike · {npc:2786} Gerrig Bonegrip · {object:32383} Forlorn Cavern (no name in this language: may be words) · {area:144} Thelsamar
+	-- {area:2257} Deeprun Tram · {object:28027} Dwarven District (no name in this language: may be words) · {npc:5637} Roetten Stonehammer · {object:32356} Hall of Explorers (no name in this language: may be words) · {npc:1356} Prospector Stormpike · {npc:2786} Gerrig Bonegrip · {object:32383} Forlorn Cavern (no name in this language: may be words) · {area:144} Thelsamar
 	["Take the {area:2257} from the {object:28027}. {npc:5637} is in the Reclaimers' hall by the {object:32356}, {npc:1356} in the hall itself, {npc:2786} in the {object:32383}. The next guide flies on to {area:144}."] = "从{object:28027}乘{area:2257}。{npc:5637}在{object:32356}旁的寻物公司大厅，{npc:1356}在大厅内，{npc:2786}在{object:32383}。下一份指南飞往{area:144}。",
 	-- {npc:1356} Prospector Stormpike · {npc:1344} Prospector Ironband · {zone:1432} Loch Modan
 	["{npc:1356}: for {npc:1344} in {zone:1432}, keep it"] = "{npc:1356}：交给{zone:1432}的{npc:1344}，留着",

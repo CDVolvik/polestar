@@ -7,7 +7,7 @@
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: The Crossroads
-	-- {area:379} Far Watch Post · {npc:3338} Sergra · {npc:3429} Thork · {npc:3449} Darsok · {npc:3464} Gazrog · {npc:3448} Tonga
+	-- {area:379} Far Watch Post · {npc:3338} Sergra Darkthorn · {npc:3429} Thork · {npc:3449} Darsok Swiftdagger · {npc:3464} Gazrog · {npc:3448} Tonga Runetotem
 	["You arrive from {area:379}. {npc:3338} stands by the inn; {npc:3429} and {npc:3449} on the tower platform; Helbrim and {npc:3464} by the north gate; {npc:3448} at the south gate."] = "你從{area:379}抵達。{npc:3338}站在旅店旁；{npc:3429}和{npc:3449}在塔台上；藥劑師赫布瑞姆和{npc:3464}在北門旁；{npc:3448}在南門。",
 
 	-- Step 2: Plainstriders and raptors
@@ -21,11 +21,11 @@ return {
 	["Zhevra Runners graze on the same plains; finish the raptor heads as you go."] = "快步斑馬在同一片平原上吃草；順便收集完迅猛龍頭。",
 
 	-- Step 5: The Crossroads
-	-- {npc:3449} Darsok
+	-- {npc:3449} Darsok Swiftdagger
 	["{npc:3449}, on the tower platform: needs level 12"] = "{npc:3449}，在塔台上：需要12級",
 
 	-- Step 6: Thun'grim Firegaze
-	-- {npc:5878} Thun'grim · {area:392} Ratchet
+	-- {npc:5878} Thun'grim Firegaze · {area:392} Ratchet
 	["{npc:5878} camps beside the road east toward {area:392}."] = "{npc:5878}在往東通往{area:392}的道路旁紮營。",
 
 	-- Step 7: Kranal Fiss
@@ -101,7 +101,7 @@ return {
 	["Head east to the Venture Co. research site west of the {area:382}. Use the {object:4141}, close the three valves around the drill, use the console again, then take the {item:5089} from {npc:3471}."] = "向東前往{area:382}西邊的風險投資公司研究站。使用{object:4141}，關閉鑽機周圍的三個閥門，再次使用控制台，然後從{npc:3471}身上取得{item:5089}。",
 
 	-- Step 25: Echeyakee
-	-- {quest:881} Echeyakee · {area:382} The Sludge Fen · {area:380} The Crossroads · {npc:3338} Sergra · {area:392} Ratchet
+	-- {quest:881} Echeyakee · {area:382} The Sludge Fen · {area:380} The Crossroads · {npc:3338} Sergra Darkthorn · {area:392} Ratchet
 	["{quest:881}'s lair lies south of the {area:382}, north-east of the {area:380}. Use the horn {npc:3338} gave you there to call the white lion out. Then hearth to {area:392}."] = "{quest:881}的巢穴在{area:382}南邊、{area:380}東北方。在那裡使用{npc:3338}給你的號角把白獅引出來。然後用爐石回到{area:392}。",
 
 	-- Step 27: The Disruption Ends
@@ -123,11 +123,11 @@ return {
 	["Oasis Snapjaws crowd the water of {area:387}, south-west of the {area:380}."] = "綠洲鉗嘴龜擠滿了{area:380}西南方{area:387}的水域。",
 
 	-- Step 34: Wenikee Boltbucket
-	-- {area:1703} Mor'shan Rampart · {npc:9316} Wenikee
+	-- {area:1703} Mor'shan Rampart · {npc:9316} Wenikee Boltbucket
 	["Follow the road north to the {area:1703}; {npc:9316} stands just south of it."] = "沿道路向北前往{area:1703}；{npc:9316}就站在它南邊。",
 
 	-- Step 35: Nugget Slugs
-	-- {area:382} The Sludge Fen · {npc:9316} Wenikee
+	-- {area:382} The Sludge Fen · {npc:9316} Wenikee Boltbucket
 	-- plural, as words: Tool Buckets = {object:161752} Tool Bucket
 	["The Tool Buckets sit around the Venture Co. camp in the {area:382}, east of {npc:9316}."] = "工具籃放在{npc:9316}東邊、{area:382}的風險投資公司營地周圍。",
 

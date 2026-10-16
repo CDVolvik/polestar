@@ -7,13 +7,13 @@
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Camp Narache
-	-- {area:221} Camp Narache · {npc:2980} Grull
+	-- {area:221} Camp Narache · {npc:2980} Grull Hawkwind
 	["You start on the mesa of {area:221}. {npc:2980} and the chief stand by the big tent in the middle."] = "你从{area:221}的台地上出发。{npc:2980}和鹰风酋长站在中央的大帐篷旁。",
 
 	-- Step 2: The Hunt Begins
 	["Plainstriders roam the grass all around the camp."] = "平原陆行鸟在营地周围的草地上游荡。",
 
-	-- Step 3: Grull
+	-- Step 3: Grull Hawkwind
 	-- {npc:3059} Harutt Thunderhorn
 	["{npc:3059}, the warrior trainer"] = "{npc:3059}，战士训练师",
 	-- {npc:3061} Lanka Farshot
@@ -28,12 +28,12 @@ return {
 	["{npc:2991} sits by the tent on the camp's eastern edge; the {item:4755} stands next to her."] = "{npc:2991}坐在营地东缘的帐篷旁；{item:4755}就在她旁边。",
 
 	-- Step 6: The Hunt Continues
-	-- {npc:6775} Antur Fallow · {npc:2980} Grull
+	-- {npc:6775} Antur Fallow · {npc:2980} Grull Hawkwind
 	-- plural, as words: Mountain Cougars = {npc:2961} Mountain Cougar
 	["{npc:6775} stands at the west end of the camp, at the north-west corner of the hills where the Mountain Cougars prowl: take his quest, hunt the cougars from there south and east, then come back up to {npc:2980}."] = "{npc:6775}站在营地西端，位于{npc:2961}出没的山丘西北角：接下他的任务，从那里向南和向东猎杀美洲狮，然后回到{npc:2980}处。",
 
-	-- Step 7: Grull
-	-- {npc:3209} Brave Windfeather · {npc:2980} Grull
+	-- Step 7: Grull Hawkwind
+	-- {npc:3209} Brave Windfeather · {npc:2980} Grull Hawkwind
 	["{npc:3209}, next to {npc:2980}"] = "{npc:3209}，在{npc:2980}旁边",
 
 	-- Step 8: Seer Graytongue
@@ -92,7 +92,7 @@ return {
 
 	-- Step 22: Back to Bloodhoof
 	["Back to Bloodhoof"] = "返回血蹄村",
-	-- {npc:2993} Baine Bloodhoof · {npc:3057} Cairne · {zone:1456} Thunder Bluff
+	-- {npc:2993} Baine Bloodhoof · {npc:3057} Cairne Bloodhoof · {zone:1456} Thunder Bluff
 	["{npc:2993}, for {npc:3057} in {zone:1456}"] = "{npc:2993}，交给{zone:1456}的{npc:3057}",
 	-- {npc:2948} Mull Thunderhorn · {zone:1456} Thunder Bluff
 	["{npc:2948}, for Hamuul in {zone:1456}"] = "{npc:2948}，交给{zone:1456}的大德鲁伊哈缪尔·符文图腾",
@@ -123,7 +123,7 @@ return {
 	["{npc:2988} camps by the {area:396} south-east of Bloodhoof."] = "{npc:2988}在血蹄村东南方的{area:396}旁扎营。",
 
 	-- Step 30: Longwalker Malah
-	-- {npc:275789} Malah · {area:821} Rolling Plains
+	-- {npc:275789} Malah Longwind · {area:821} Rolling Plains
 	["{npc:275789} stands on the {area:821} a little east of the well."] = "漫行者{npc:275789}站在水井东边不远处的{area:821}上。",
 
 	-- Step 31: Galak centaurs and Prairie Wolf Alphas
@@ -178,19 +178,19 @@ return {
 	["Flatland Prowlers roam the plains around {area:225}"] = "{npc:3566}在{area:225}周围的平原上游荡",
 
 	-- Step 46: Thunder Bluff
-	-- {npc:2995} Tal · {npc:3057} Cairne
+	-- {npc:2995} Tal · {npc:3057} Cairne Bloodhoof
 	["Ride a lift up to the mesas. {npc:2995} keeps the wind riders on the central rise; {npc:3057} stands in the great tent there."] = "乘升降梯上到台地。{npc:2995}在中央台地照看双足飞龙；{npc:3057}站在那里的大帐篷里。",
 
 	-- Step 47: Traditions of the Bluff
-	-- {npc:269068} Eylah Sunhorn · {npc:3014} Nida · {npc:3012} Nata · {npc:3005} Mahu · {npc:3027} Naal · {item:278078} Prepared Incense
+	-- {npc:269068} Eylah Sunhorn · {npc:3014} Nida Winterhoof · {npc:3012} Nata Dawnstrider · {npc:3005} Mahu · {npc:3027} Naal Mistrunner · {item:278078} Prepared Incense
 	["{npc:269068} wants tauren incense: buy its four parts from {npc:3014} the herbalist, {npc:3012} the enchanting supplier, {npc:3005} the leatherworking supplier and {npc:3027} the cooking supplier, then combine them into {item:278078}."] = "{npc:269068}想要牛头人熏香：从草药商{npc:3014}、附魔供应商{npc:3012}、制皮供应商{npc:3005}和烹饪供应商{npc:3027}处购买四种材料，然后合成{item:278078}。",
-	-- {item:278079} Bundle of Herbs · {npc:3014} Nida
+	-- {item:278079} Bundle of Herbs · {npc:3014} Nida Winterhoof
 	["{item:278079}, from {npc:3014}"] = "{item:278079}，来自{npc:3014}",
-	-- {item:278080} Bundle of Dried Cedar Twigs · {npc:3012} Nata
+	-- {item:278080} Bundle of Dried Cedar Twigs · {npc:3012} Nata Dawnstrider
 	["{item:278080}, from {npc:3012}"] = "{item:278080}，来自{npc:3012}",
 	-- {item:278081} Sinew Thread · {npc:3005} Mahu
 	["{item:278081}, from {npc:3005}"] = "{item:278081}，来自{npc:3005}",
-	-- {item:278083} Ceremonial Flint and Tinder · {npc:3027} Naal
+	-- {item:278083} Ceremonial Flint and Tinder · {npc:3027} Naal Mistrunner
 	["{item:278083}, from {npc:3027}"] = "{item:278083}，来自{npc:3027}",
 
 	-- Step 48: Hunter Rise

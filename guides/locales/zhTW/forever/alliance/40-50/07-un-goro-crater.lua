@@ -7,23 +7,23 @@
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Gadgetzan
-	-- {area:144} Thelsamar · {area:150} Menethil Harbor · {area:976} Gadgetzan · {npc:9619} Torwa
+	-- {area:144} Thelsamar · {area:150} Menethil Harbor · {area:976} Gadgetzan · {npc:9619} Torwa Pathfinder
 	["From {area:144} fly to {area:150}, take the boat to Theramore and fly on to {area:976}. {npc:9619}'s first quest in the crater needs level 48: finish the level here if you are short."] = "從{area:144}飛往{area:150}，搭船到塞拉摩，再飛往{area:976}。{npc:9619}在環形山的第一個任務需要等級48：若等級不足，先在這裡練完這一級。",
 	-- {area:976} Gadgetzan
 	["grind on the Wastewanderers or Dunemaul ogres around {area:976}"] = "在{area:976}周圍擊殺廢土強盜或砂槌巨魔練等",
 
-	-- Step 2: Torwa
-	-- {area:976} Gadgetzan · {zone:1449} Un'Goro Crater · {npc:9619} Torwa
+	-- Step 2: Torwa Pathfinder
+	-- {area:976} Gadgetzan · {zone:1449} Un'Goro Crater · {npc:9619} Torwa Pathfinder
 	["Ride west out of {area:976} to the long ramp down into {zone:1449}. {npc:9619} camps at the foot of the ramp, in the south-east corner of the crater."] = "從{area:976}向西出發，前往通往{zone:1449}的長坡道。{npc:9619}在坡道底部紮營，位於環形山東南角。",
 
 	-- Step 3: Fresh Threshadon Carcass
-	-- {npc:9619} Torwa
+	-- {npc:9619} Torwa Pathfinder
 	["The dead Threshadon lies by the water north of {npc:9619}."] = "死去的蛇頸龍躺在{npc:9619}北邊的水邊。",
 
 	-- Step 5: Lar'korwi Mates and the raft
 	-- plural, as words: Lar'korwi Mates = {npc:9683} Lar'korwi Mate
 	["Lar'korwi Mates and the raft"] = "拉克維的配偶與木筏",
-	-- {npc:9619} Torwa · {npc:8737} Linken · {item:11116} A Mangled Journal
+	-- {npc:9619} Torwa Pathfinder · {npc:8737} Linken · {item:11116} A Mangled Journal
 	-- plural, as words: Lar'korwi Mates = {npc:9683} Lar'korwi Mate
 	["The Lar'korwi Mates prowl the jungle west of {npc:9619}. The wrecked raft lies on the shore of the lake there; the small pack sits in the water beside it. Keep the compass, map and key for {npc:8737}. Any beast in the crater may drop {item:11116}: right-click it."] = "拉克維的配偶在{npc:9619}西邊的叢林中徘徊。破碎的木筏在那裡的湖岸上；小包就在旁邊的水裡。把指南針、地圖和鑰匙留給{npc:8737}。環形山的任何野獸都可能掉落{item:11116}：右鍵點擊它。",
 
@@ -59,7 +59,7 @@ return {
 
 	-- Step 12: Grind to 50
 	["Grind to 50"] = "練到50級",
-	-- {area:1943} Ironstone Plateau · {npc:9619} Torwa · {npc:9622} U'cha
+	-- {area:1943} Ironstone Plateau · {npc:9619} Torwa Pathfinder · {npc:9622} U'cha
 	["The gorillas of {area:1943} come in small groups and drop nothing for you yet; {npc:9619}'s pelt quest comes later. Stay out of the deepest cave: {npc:9622} is level 55."] = "{area:1943}的猩猩成小群出現，目前還不會為你掉落任何東西；{npc:9619}的毛皮任務稍後才有。不要進入最深的洞穴：{npc:9622}是55級。",
 	-- {npc:6514} Un'Goro Gorilla · {area:1943} Ironstone Plateau · {zone:1449} Un'Goro Crater
 	["grind on {npc:6514} at {area:1943}, {zone:1449}"] = "在{zone:1449}的{area:1943}擊殺{npc:6514}練等",
@@ -88,14 +88,14 @@ return {
 	["Eastern Pylon"] = "東部水晶塔",
 	["The pylon stands on the eastern cliffs."] = "水晶塔位於東面懸崖上。",
 
-	-- Step 17: Torwa
-	-- {npc:9619} Torwa
+	-- Step 17: Torwa Pathfinder
+	-- {npc:9619} Torwa Pathfinder
 	["Ride south along the eastern cliffs to {npc:9619} at the foot of the ramp."] = "沿東面懸崖向南騎往坡道底部的{npc:9619}。",
 	["The pelts come after loop 2, on the gorilla plateau"] = "毛皮在第二輪之後，到猩猩高地取得",
 
 	-- Step 18: The Gorishi hive
 	["The Gorishi hive"] = "格里什蟲巢",
-	-- {npc:9619} Torwa · {quest:3764} Un'Goro Soil · {npc:9166} Pterrordax
+	-- {npc:9619} Torwa Pathfinder · {quest:3764} Un'Goro Soil · {npc:9166} Pterrordax
 	["Ride west from {npc:9619}: the silithid hive fills the south of the crater. Use the Scraping Vial on a hatchery, a chamber with hanging larvae. Gorishi wasps and workers drop {quest:3764}; {npc:9166} nest on the southern cliffs if you still need kills."] = "從{npc:9619}向西騎：異種蟲巢穴佔據環形山南部。在孵化室（掛著幼蟲的洞室）使用未使用的採集瓶。格里什異種蠍和格里什工蠍會掉落{quest:3764}；若還需要擊殺數，{npc:9166}在南面懸崖築巢。",
 
 	-- Step 19: Bones and equipment
@@ -119,7 +119,7 @@ return {
 	["{npc:9997}'s friend {npc:9999} has gone missing."] = "{npc:9997}的朋友{npc:9999}失蹤了。",
 
 	-- Step 23: Ironstone Plateau
-	-- {area:1943} Ironstone Plateau · {area:541} Marshal's Refuge · {npc:9619} Torwa · {npc:9622} U'cha
+	-- {area:1943} Ironstone Plateau · {area:541} Marshal's Refuge · {npc:9619} Torwa Pathfinder · {npc:9622} U'cha
 	["The gorillas live on {area:1943}, east of {area:541}. Keep their pelts for {npc:9619}. Stay out of the deepest cave: {npc:9622} is level 55."] = "猩猩住在{area:541}東邊的{area:1943}。把牠們的毛皮留給{npc:9619}。不要進入最深的洞穴：{npc:9622}是55級。",
 
 	-- Step 24: Ringo
@@ -143,12 +143,12 @@ return {
 	-- {npc:5458} Centipaar Worker · {area:982} Noxious Lair · {zone:1446} Tanaris
 	["grind on {npc:5458} at {area:982}, {zone:1446}"] = "在{zone:1446}的{area:982}擊殺{npc:5458}練等",
 
-	-- Step 29: Torwa
-	-- {npc:9619} Torwa
+	-- Step 29: Torwa Pathfinder
+	-- {npc:9619} Torwa Pathfinder
 	["Ride down the ramp into the crater: {npc:9619} camps at its foot."] = "沿坡道騎下環形山：{npc:9619}在坡道底部紮營。",
 
 	-- Step 30: Lar'korwi
-	-- {npc:9684} Lar'korwi · {npc:9619} Torwa · {item:11568} Torwa's Pouch
+	-- {npc:9684} Lar'korwi · {npc:9619} Torwa Pathfinder · {item:11568} Torwa's Pouch
 	["{npc:9684}'s lair lies in the jungle north of {npc:9619}, below the eastern cliffs: use {item:11568} there. {npc:9684} is level 56: start at full health."] = "{npc:9684}的巢穴位於{npc:9619}北邊的叢林，在東面懸崖下方：在那裡使用{item:11568}。{npc:9684}是56級：滿血再開打。",
 
 	-- Step 32: U'cha
@@ -163,8 +163,8 @@ return {
 	-- {area:537} Fire Plume Ridge · {npc:10541} Krakle's Thermometer
 	["Ride east to {area:537}, climb it and use {npc:10541} at the lava vents near the top."] = "向東騎往{area:537}，爬上去，在山頂附近的熔岩噴口使用{npc:10541}。",
 
-	-- Step 36: Torwa
-	-- {npc:9619} Torwa
+	-- Step 36: Torwa Pathfinder
+	-- {npc:9619} Torwa Pathfinder
 	["Cross the south of the crater to {npc:9619} by the ramp."] = "穿越環形山南部，前往坡道旁的{npc:9619}。",
 
 	-- Step 38: Ironforge

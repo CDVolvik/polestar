@@ -53,7 +53,7 @@ return {
 	["Ride east back to the {area:497}."] = "Regresa cabalgando al este a {area:497}.",
 	-- {item:3853} Moonsteel Broadsword · {skill:164} Blacksmithing
 	["only if you carry a {item:3853} ({skill:164} or the Auction House)"] = "solo si llevas una {item:3853} ({skill:164} o la casa de subastas)",
-	-- {object:20985} Loose Dirt · {npc:4791} Nazeer
+	-- {object:20985} Loose Dirt · {npc:4791} Nazeer Bloodpike
 	["{object:20985}, now that {npc:4791} has read the report"] = "{object:20985}, ahora que {npc:4791} leyó el informe",
 
 	-- Step 12: Brackenwall Village
@@ -70,7 +70,7 @@ return {
 	["Ride north-east to the {area:607}. {npc:12277} is held in the Maraudine centaur camp; free her and escort her out east of the valley."] = "Cabalga al noreste hasta {area:607}. {npc:12277} está cautiva en el campamento de los centauros Maraudine; libérala y escóltala fuera del valle por el este.",
 
 	-- Step 16: Kodo Graveyard
-	-- {npc:6019} Hornizz · {area:596} Kodo Graveyard
+	-- {npc:6019} Hornizz Brimbuzzle · {area:596} Kodo Graveyard
 	["{npc:6019} waits at the goblin camp on the west side of the {area:596}."] = "{npc:6019} espera en el campamento goblin del lado oeste de {area:596}.",
 
 	-- Step 17: Gizelton Caravan
@@ -78,11 +78,11 @@ return {
 	["{npc:11626}'s caravan stops on the road at the edge of {area:602}. Escort it east past the coven; demons attack it twice."] = "La caravana de {npc:11626} se detiene en el camino, al borde de {area:602}. Escóltala al este pasando el aquelarre; los demonios la atacan dos veces.",
 
 	-- Step 18: Scrabblescrew's Camp
-	-- {npc:11596} Smeed · {area:596} Kodo Graveyard
+	-- {npc:11596} Smeed Scrabblescrew · {area:596} Kodo Graveyard
 	["The caravan ends at {npc:11596}'s camp on the east side of the {area:596}."] = "La caravana termina en el campamento de {npc:11596}, en el lado este de {area:596}.",
 
 	-- Step 19: Ghost Walker Post
-	-- {npc:5395} Felgur Twocuts · {npc:5412} Gurda Wildmane · {npc:11596} Smeed
+	-- {npc:5395} Felgur Twocuts · {npc:5412} Gurda Wildmane · {npc:11596} Smeed Scrabblescrew
 	["{npc:5395} and {npc:5412} stand in the post just west of {npc:11596}'s camp."] = "{npc:5395} y {npc:5412} están en el poblado justo al oeste del campamento de {npc:11596}.",
 
 	-- Step 20: Kormek's Hut

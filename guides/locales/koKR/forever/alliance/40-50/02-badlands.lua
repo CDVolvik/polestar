@@ -54,18 +54,18 @@ return {
 	["Raleigh's next errand is in the {area:796}: skip it."] = "랄레이의 다음 심부름은 {area:796}에 있으니 건너뛰십시오.",
 
 	-- Step 11: Aerie Peak
-	-- {area:271} Southshore · {zone:1425} The Hinterlands · {area:348} Aerie Peak · {npc:5635} Falstad · {quest:1450} Gryphon Master Talonaxe · {npc:7884} Fraggar Thundermantle
+	-- {area:271} Southshore · {zone:1425} The Hinterlands · {area:348} Aerie Peak · {npc:5635} Falstad Wildhammer · {quest:1450} Gryphon Master Talonaxe · {npc:7884} Fraggar Thundermantle
 	["Ride north-east out of {area:271} on the road into the {zone:1425}; {area:348} sits just past the border. {npc:5635} holds court at the top, {quest:1450} tends the aviary and {npc:7884} stands by the inn."] = "길을 따라 북동쪽으로 {area:271}을(를) 빠져나가 {zone:1425}로 가십시오. {area:348}은(는) 경계 바로 너머에 있습니다. {npc:5635}은(는) 꼭대기에, {quest:1450}은(는) 그리핀 둥지에, {npc:7884}은(는) 여관 옆에 있습니다.",
 
 	-- Step 12: Rhapsody Shindigger
-	-- {npc:5634} Rhapsody · {area:348} Aerie Peak
+	-- {npc:5634} Rhapsody Shindigger · {area:348} Aerie Peak
 	["{npc:5634} camps on the road east of {area:348}."] = "{npc:5634}은(는) {area:348} 동쪽 길가에 야영하고 있습니다.",
-	-- {npc:5634} Rhapsody
+	-- {npc:5634} Rhapsody Shindigger
 	["{npc:5634}'s cocktail needs parts from Kalimdor: skip it."] = "{npc:5634}의 칵테일에는 칼림도어의 재료가 필요하니 건너뛰십시오.",
 
 	-- Step 13: Witherbark villages
 	["Witherbark villages"] = "마른나무껍질 마을",
-	-- {npc:5634} Rhapsody
+	-- {npc:5634} Rhapsody Shindigger
 	["The first two cages stand together in the Witherbark village south of {npc:5634}; the third is in the next village to the east. Every Witherbark troll can drop a necklace."] = "처음 두 우리는 {npc:5634} 남쪽 마른나무껍질 마을에 함께 있고, 세 번째는 동쪽의 다음 마을에 있습니다. 모든 마른나무껍질 트롤이 목걸이를 떨어뜨릴 수 있습니다.",
 
 	-- Step 14: Aerie Peak

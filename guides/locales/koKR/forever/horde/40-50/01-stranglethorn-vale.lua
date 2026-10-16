@@ -35,7 +35,7 @@ return {
 	-- Step 6: The Wild Shore
 	-- {area:43} Wild Shore
 	["The {area:43}"] = "{area:43}",
-	-- {area:43} Wild Shore · {npc:2493} Dizzy
+	-- {area:43} Wild Shore · {npc:2493} Dizzy One-Eye
 	["South of Booty Bay the Bloodsail swashbucklers camp on the {area:43}; the charts and the orders lie in their tents. Any Bloodsail can carry snuff and {npc:2493}'s eye, so keep killing until you have both."] = "무법항 남쪽, {area:43}에 붉은해적단 칼잡이가 야영하고 있습니다. 해도와 명령서는 천막 안에 있습니다. 붉은해적단은 누구나 코담배와 {npc:2493}의 눈을 지니고 있을 수 있으니, 둘 다 얻을 때까지 계속 처치하세요.",
 
 	-- Step 8: The Bloodsail ships
@@ -76,7 +76,7 @@ return {
 
 	-- Step 17: Zul'Kunda
 	["Zul'Kunda"] = "줄쿤다",
-	-- {npc:1061} Gan'zulah · {npc:1062} Nezzliok
+	-- {npc:1061} Gan'zulah · {npc:1062} Nezzliok the Dire
 	["West of the expedition, the Bloodscalp chiefs {npc:1061} and {npc:1062} stand together in the ruins of Zul'Kunda. Clear their guards first, then pull them."] = "원정대 서쪽, 줄쿤다의 폐허에 붉은머리부족 족장 {npc:1061}와(과) {npc:1062}이(가) 함께 서 있습니다. 먼저 호위병을 처치한 뒤 끌어오세요.",
 
 	-- Step 18: Hearth to Grom'gol
@@ -102,7 +102,7 @@ return {
 
 	-- Step 22: Pirate ghosts
 	["Pirate ghosts"] = "해적 유령",
-	-- {area:35} Booty Bay · {npc:2535} Maury · {npc:2536} Jon-Jon · {npc:2537} Chucky
+	-- {area:35} Booty Bay · {npc:2535} Maury "Club Foot" Wilkins · {npc:2536} Jon-Jon the Crow · {npc:2537} Chucky "Ten Thumbs"
 	["The three ghostly pirates haunt the jungle north of {area:35}, near Zanzil's camps: {npc:2535} and {npc:2536} stand together, {npc:2537} further east."] = "해적 유령 셋은 {area:35} 북쪽, 잔질의 야영지 근처 정글에 출몰합니다. {npc:2535}와(과) {npc:2536}은(는) 함께 있고, {npc:2537}은(는) 더 동쪽에 있습니다.",
 
 	-- Step 23: Zul'Mamwe

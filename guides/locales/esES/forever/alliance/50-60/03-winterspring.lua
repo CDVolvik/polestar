@@ -79,19 +79,19 @@ return {
 	["{npc:10978}: {npc:7583} and {npc:10977} come later"] = "{npc:10978}: {npc:7583} y {npc:10977} vienen después",
 
 	-- Step 14: Starfall Village
-	-- {npc:10301} Jaron
+	-- {npc:10301} Jaron Stoneshaper
 	["Ride west along the road to {npc:10301}."] = "Cabalga al oeste por el camino hasta {npc:10301}.",
 
-	-- Step 15: Jaron's camp
-	-- {npc:10301} Jaron
+	-- Step 15: Jaron Stoneshaper's camp
+	-- {npc:10301} Jaron Stoneshaper
 	["{npc:10301}'s camp"] = "El campamento de {npc:10301}",
-	-- {npc:10301} Jaron · {area:2245} Mazthoril
+	-- {npc:10301} Jaron Stoneshaper · {area:2245} Mazthoril
 	["Ride south-east down the valley to {npc:10301}'s damaged crate in the snow at {area:2245}, with his wrecked wagon just east of it."] = "Cabalga al sureste valle abajo hasta la caja dañada de {npc:10301}, en la nieve de {area:2245}, con su carro destrozado justo al este.",
 
-	-- Step 16: Jaron's supplies
-	-- {npc:10301} Jaron
+	-- Step 16: Jaron Stoneshaper's supplies
+	-- {npc:10301} Jaron Stoneshaper
 	["{npc:10301}'s supplies"] = "Los suministros de {npc:10301}",
-	-- {npc:10301} Jaron
+	-- {npc:10301} Jaron Stoneshaper
 	["Pick up the supplies around the wagon and take {npc:10301}'s amulet back from the owlbeasts nearby."] = "Recoge los suministros alrededor del carro y recupera el amuleto de {npc:10301} de las lechubestias cercanas.",
 
 	-- Step 17: Darkwhisper Gorge
@@ -124,7 +124,7 @@ return {
 
 	-- Step 27: Light's Hope Chapel
 	["Follow the road east across the zone to the chapel."] = "Sigue el camino al este cruzando la zona hasta la capilla.",
-	-- {npc:11038} Caretaker Alen · {npc:12250} Zaeldarr
+	-- {npc:11038} Caretaker Alen · {npc:12250} Zaeldarr the Outcast
 	["{npc:11038}: {npc:12250} is a level 54 elite"] = "{npc:11038}: {npc:12250} es un élite de nivel 54",
 
 	-- Step 28: Corin's Crossing
@@ -135,7 +135,7 @@ return {
 	["Free Darrowshire Spirits: talk to them"] = "Libera espíritus de Villa Darrow ({npc:11064}): habla con ellos",
 
 	-- Step 30: The Undercroft
-	-- {npc:12250} Zaeldarr · {area:2261} The Undercroft
+	-- {npc:12250} Zaeldarr the Outcast · {area:2261} The Undercroft
 	["{npc:12250} is elite: grouping up is advised. He waits at the bottom of the {area:2261}, the crypt in the south-west of the zone."] = "{npc:12250} es élite: se recomienda ir en grupo. Espera al fondo de {area:2261}, la cripta del suroeste de la zona.",
 
 	-- Step 31: Augustus the Touched

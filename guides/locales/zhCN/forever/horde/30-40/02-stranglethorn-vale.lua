@@ -32,7 +32,7 @@ return {
 
 	-- Step 6: Nesingwary's camp
 	["Nesingwary's camp"] = "奈辛瓦里的营地",
-	-- {object:3202} Grom'gol (no name in this language: may be words) · {quest:338} The Green Hills of Stranglethorn · {npc:716} Barnil
+	-- {object:3202} Grom'gol (no name in this language: may be words) · {quest:338} The Green Hills of Stranglethorn · {npc:716} Barnil Stonepot
 	["Follow the road north out of {object:3202}; Nesingwary's hunting camp sits on the hill north-east of the river. From here on, keep every page of {quest:338} you loot: {npc:716} asks for them later."] = "沿道路向北离开{object:3202}；奈辛瓦里的狩猎营地在河东北边的山上。从现在起，留着拾取到的每一页{quest:338}：{npc:716}之后会要。",
 
 	-- Step 7: Young tigers and panthers
@@ -145,7 +145,7 @@ return {
 
 	-- Step 34: Green Hills pages
 	["Green Hills pages"] = "荆棘谷的青山书页",
-	-- {item:2755} Green Hills of Stranglethorn · {npc:716} Barnil
+	-- {item:2755} Green Hills of Stranglethorn · {npc:716} Barnil Stonepot
 	["Pages of The {item:2755} drop at about 1% each from the Bloodscalp and Skullsplitter trolls; keep every page you loot and look on the auction house for the rest. {npc:716} takes the chapters later in this guide."] = "{item:2755}的每一页从血顶巨魔和劈颅巨魔身上的掉率约为1%；留着拾取到的每一页，其余的去拍卖行找。{npc:716}会在本指南稍后收取各章节。",
 
 	-- Step 35: Shadowmaw panthers

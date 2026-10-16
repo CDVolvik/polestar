@@ -17,7 +17,7 @@ return {
 	["The {area:2479}"] = "{area:2479}",
 	-- {area:431} Splintertree Post · {zone:1440} Ashenvale · {zone:1448} Felwood · {area:2479} Emerald Sanctuary
 	["Fly to {area:431} and ride north-west along the road out of {zone:1440} into {zone:1448}. The {area:2479} is the druids' camp just past the border."] = "Voe para {area:431} e siga para o noroeste pela estrada que sai de {zone:1440} para {zone:1448}. {area:2479} é o acampamento dos druidas logo depois da fronteira.",
-	-- {npc:9116} Eridan · {item:11173} Irontree Heart · {zone:1448} Felwood
+	-- {npc:9116} Eridan Bluewind · {item:11173} Irontree Heart · {zone:1448} Felwood
 	["{npc:9116}'s Silver Heart needs an {item:11173} from northern {zone:1448} and a ride back here. Skip it."] = "Coração de prata, de {npc:9116}, pede {item:11173} do norte de {zone:1448} e uma volta até aqui. Pule.",
 
 	-- Step 3: Dousing the Flames of Protection
@@ -37,11 +37,11 @@ return {
 	-- Step 7: Bloodvenom Post
 	-- {area:1763} Jaedenar · {area:1997} Bloodvenom Post
 	["Ride north along the road, past {area:1763}, to {area:1997}."] = "Siga a estrada para o norte, passando por {area:1763}, até {area:1997}.",
-	-- {npc:10306} Trull · {quest:4741} Wild Guardians · {zone:1452} Winterspring
+	-- {npc:10306} Trull Failbane · {quest:4741} Wild Guardians · {zone:1452} Winterspring
 	["{npc:10306}'s next {quest:4741} would bring you back here from {zone:1452}. Skip it."] = "A próxima missão de {npc:10306}, {quest:4741}, traria você de volta de {zone:1452}. Pule.",
 
 	-- Step 8: Toxic Horrors
-	-- {npc:9298} Donova · {quest:5086} Toxic Horrors · {zone:1448} Felwood · {area:1767} Irontree Woods
+	-- {npc:9298} Donova Snowden · {quest:5086} Toxic Horrors · {zone:1448} Felwood · {area:1767} Irontree Woods
 	["Only if {npc:9298} gave you {quest:5086}: ride north up the {zone:1448} road to {area:1767}; the {quest:5086} ooze between the trees."] = "Só se {npc:9298} deu {quest:5086} a você: siga para o norte pela estrada de {zone:1448} até {area:1767}; os alvos de {quest:5086} escorrem entre as árvores.",
 
 	-- Step 9: Meilosh
@@ -56,14 +56,14 @@ return {
 	-- {npc:11801} Rabine Saturna · {area:2577} Dire Maul
 	["{npc:11801}'s Shards of the Felvine needs {area:2577}. Skip it."] = "Pedaços de Vinhavil, de {npc:11801}, pede {area:2577}. Pule.",
 
-	-- Step 13: Donova
-	-- {zone:1452} Winterspring · {npc:9298} Donova
+	-- Step 13: Donova Snowden
+	-- {zone:1452} Winterspring · {npc:9298} Donova Snowden
 	["Back into the Timbermaw tunnel and take the {zone:1452} exit; {npc:9298} camps by the hot springs just outside."] = "Volte ao túnel dos Presamatos e pegue a saída para {zone:1452}; {npc:9298} acampa junto às fontes termais logo do lado de fora.",
 
 	-- Step 14: Winterfall Runners
-	-- {quest:5087} Winterfall Runners · {area:1769} Timbermaw Hold · {area:2244} Winterfall Village · {npc:9298} Donova
+	-- {quest:5087} Winterfall Runners · {area:1769} Timbermaw Hold · {area:2244} Winterfall Village · {npc:9298} Donova Snowden
 	["Only if you carry {quest:5087}: the runners walk the road from {area:1769} toward {area:2244} in small groups; wait by the road near {npc:9298} and kill them as they pass. Each one carries a crate."] = "Só se tiver {quest:5087}: os mensageiros andam pela estrada de {area:1769} rumo a {area:2244} em pequenos grupos; espere na estrada perto de {npc:9298} e mate-os quando passarem. Cada um carrega um caixote.",
-	-- {npc:9298} Donova · {npc:10738} High Chief Winterfall
+	-- {npc:9298} Donova Snowden · {npc:10738} High Chief Winterfall
 	["{npc:9298} next sends you after {npc:10738}, an elite in his cave. Skip it."] = "Depois {npc:9298} manda você atrás de {npc:10738}, um elite na caverna dele. Pule.",
 
 	-- Step 15: Everlook

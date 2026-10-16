@@ -14,7 +14,7 @@ return {
 	["Cast {spell:18960}. {npc:12042} stands in {area:2361}; your class trainer offers the same quest."] = "Lanza {spell:18960}. {npc:12042} está en {area:2361}; tu instructor de clase ofrece la misma misión.",
 
 	-- Step 2: Torwa Pathfinder
-	-- {area:976} Gadgetzan · {zone:1449} Un'Goro Crater · {npc:9619} Torwa
+	-- {area:976} Gadgetzan · {zone:1449} Un'Goro Crater · {npc:9619} Torwa Pathfinder
 	["Fly to {area:976}, ride west to the long ramp down into {zone:1449}: {npc:9619} camps at its foot, in the south-east corner of the crater."] = "Vuela a {area:976} y cabalga al oeste hasta la larga rampa que baja a {zone:1449}: {npc:9619} acampa a su pie, en la esquina sureste del cráter.",
 
 	-- Step 3: Gorishi Stings and Bloodcap
@@ -39,6 +39,6 @@ return {
 	["{area:1477} lies in the {area:74} in the {zone:1435}. {npc:8580} guards the bottom of the temple: a dungeon boss, so bring a group."] = "{area:1477} está en {area:74}, en {zone:1435}. {npc:8580} guarda el fondo del templo: es jefe de calabozo, así que lleva un grupo.",
 
 	-- Step 8: A Better Ingredient
-	-- {npc:9619} Torwa · {zone:1449} Un'Goro Crater
+	-- {npc:9619} Torwa Pathfinder · {zone:1449} Un'Goro Crater
 	["Back to {npc:9619} in the south-east corner of {zone:1449}."] = "Vuelve con {npc:9619} en la esquina sureste de {zone:1449}.",
 }

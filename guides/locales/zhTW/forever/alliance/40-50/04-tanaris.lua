@@ -66,7 +66,7 @@ return {
 	-- Step 14: The Broken Pillar
 	-- {area:1938} Broken Pillar
 	["The {area:1938}"] = "{area:1938}",
-	-- {area:1938} Broken Pillar · {npc:7771} Marvon · {quest:3161} Gahz'ridian
+	-- {area:1938} Broken Pillar · {npc:7771} Marvon Rivetseeker · {quest:3161} Gahz'ridian
 	["Ride south to the dig camp at the {area:1938}. {npc:7771} hands you a detector helm: wear it to see the {quest:3161} mounds, which lie thick in the sand around the camp and south-west toward the ogres."] = "向南騎往{area:1938}的挖掘營地。{npc:7771}會給你一頂探測頭盔：戴上它就能看見{quest:3161}土堆，它們密集分布在營地周圍的沙地上，以及往西南方巨魔那邊。",
 
 	-- Step 15: Dunemaul Compound

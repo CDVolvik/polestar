@@ -107,7 +107,7 @@ return {
 	["The Bluegill murlocs on the beach south-west of Menethil carry the ingots."] = "米奈希尔港西南方海滩上的蓝腮鱼人带着锭。",
 
 	-- Step 35: Deepwater Tavern
-	-- {npc:5082} Vincent Hyal · {npc:4963} Mikhail · {npc:4962} Tapoke · {npc:1480} Caitlin Grassman
+	-- {npc:5082} Vincent Hyal · {npc:4963} Mikhail · {npc:4962} Tapoke "Slim" Jahn · {npc:1480} Caitlin Grassman
 	["{npc:5082}, {npc:4963} and Tapoke Jahn are all at Menethil's inn; {npc:4962} fights you when you talk to {npc:4963}, but gives up once beaten. {npc:1480} stands a short walk north-east of the inn."] = "{npc:5082}、{npc:4963}和{npc:4962} Jahn都在米奈希尔港的旅店里；你和{npc:4963}交谈时Tapoke会和你打，但被打败后就会放弃。{npc:1480}在旅店东北方不远处。",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.

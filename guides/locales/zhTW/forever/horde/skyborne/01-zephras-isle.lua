@@ -7,7 +7,7 @@
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Thendal Village
-	-- {area:16635} Thendal Village · {npc:251362} Ailee · {npc:251361} Rorian
+	-- {area:16635} Thendal Village · {npc:251362} Ailee Farheart · {npc:251361} Rorian the Dayseeker
 	["You wake in {area:16635}, in the north of the isle. {npc:251362} stands by the path, {npc:251361} at the village centre."] = "你在島嶼北部的{area:16635}醒來。{npc:251362}站在小徑旁，{npc:251361}在村莊中央。",
 
 	-- Step 2: Thendal Grove
@@ -17,11 +17,11 @@ return {
 	-- Step 3: Back to Thendal Village
 	-- {area:16635} Thendal Village
 	["Back to {area:16635}"] = "返回{area:16635}",
-	-- {npc:251361} Rorian · {item:4100} Crumpled Note
+	-- {npc:251361} Rorian the Dayseeker · {item:4100} Crumpled Note
 	["{npc:251361}: the {item:4100}"] = "{npc:251361}：{item:4100}",
-	-- {npc:251361} Rorian
+	-- {npc:251361} Rorian the Dayseeker
 	["{npc:251361}: a note from your trainer"] = "{npc:251361}：訓練師留給你的字條",
-	-- {npc:251361} Rorian · {item:282418} Humming Recall Crystal
+	-- {npc:251361} Rorian the Dayseeker · {item:282418} Humming Recall Crystal
 	["{npc:251361}: examine the {item:282418}"] = "{npc:251361}：檢查{item:282418}",
 	-- {npc:257554} Halaan Hawk-Eye
 	["talk to {npc:257554}"] = "與{npc:257554}交談",
@@ -31,8 +31,8 @@ return {
 	-- {spell:1259416} Walk on Air
 	["Climb the watchtower in the village, jump off the top and use {spell:1259416} to float down."] = "爬上村裡的瞭望塔，從塔頂跳下，使用{spell:1259416}飄落地面。",
 
-	-- Step 5: Rorian's errands
-	-- {npc:251361} Rorian
+	-- Step 5: Rorian the Dayseeker's errands
+	-- {npc:251361} Rorian the Dayseeker
 	["{npc:251361}'s errands"] = "{npc:251361}的差事",
 
 	-- Step 6: Raw Windstones
@@ -55,7 +55,7 @@ return {
 	-- Step 10: Thendal Village turn-ins
 	-- {area:16635} Thendal Village
 	["{area:16635} turn-ins"] = "{area:16635}繳交任務",
-	-- {npc:251361} Rorian · {item:9547} Simple Note
+	-- {npc:251361} Rorian the Dayseeker · {item:9547} Simple Note
 	["{npc:251361}: read the {item:9547}"] = "{npc:251361}：閱讀{item:9547}",
 	-- {npc:251389} Akeri Duskblade
 	["{npc:251389}, in the watchtower"] = "{npc:251389}，在瞭望塔內",
@@ -63,7 +63,7 @@ return {
 	["{npc:251964}, in the watchtower"] = "{npc:251964}，在瞭望塔內",
 	-- {npc:251374} Windshaper Boro
 	["{npc:251374}, at the village centre"] = "{npc:251374}，在村莊中央",
-	-- {npc:251373} Xyton Silverwind · {npc:251361} Rorian
+	-- {npc:251373} Xyton Silverwind · {npc:251361} Rorian the Dayseeker
 	["{npc:251373}, the druid trainer, on the ground floor of the tree behind {npc:251361}"] = "德魯伊訓練師{npc:251373}，在{npc:251361}身後那棵樹的底層",
 
 	-- Step 11: Windshaper Boro
@@ -71,15 +71,15 @@ return {
 	["{npc:251374} stands in the village."] = "{npc:251374}站在村莊裡。",
 
 	-- Step 12: Scrawny Ursera
-	-- {npc:250926} Scrawny Ursera · {npc:252095} Hanaa
+	-- {npc:250926} Scrawny Ursera · {npc:252095} Hanaa Nightwind
 	["{npc:250926} prowl the slopes south-west of the village, on the way to {npc:252095}."] = "{npc:250926}在村莊西南方的山坡上徘徊，就在前往{npc:252095}的路上。",
 
-	-- Step 13: Hanaa
-	-- {npc:252095} Hanaa · {area:16622} Thendal Grove · {npc:256935} Malduko Cloudcrush
+	-- Step 13: Hanaa Nightwind
+	-- {npc:252095} Hanaa Nightwind · {area:16622} Thendal Grove · {npc:256935} Malduko Cloudcrush
 	["{npc:252095} waits in {area:16622}, south-west of the village. The Al'Aketh camp is just beyond her; {npc:256935} leads it."] = "{npc:252095}在村莊西南方的{area:16622}等你。奧拉凱斯營地就在她後方；由{npc:256935}率領。",
 
 	-- Step 14: Signet of Akir
-	-- {npc:252095} Hanaa
+	-- {npc:252095} Hanaa Nightwind
 	["The Al'Aketh cultists in the camp beyond {npc:252095} carry the signet."] = "{npc:252095}後方營地裡的奧拉凱斯教徒身上帶著徽記。",
 
 	-- Step 15: Urs'anah
@@ -102,12 +102,12 @@ return {
 	-- {npc:251902} Illaya Amberwind
 	["talk to {npc:251902}"] = "與{npc:251902}交談",
 
-	-- Step 19: Raan's campfire
-	-- {npc:263664} Raan
+	-- Step 19: Raan Wildwind's campfire
+	-- {npc:263664} Raan Wildwind
 	["{npc:263664}'s campfire"] = "{npc:263664}的營火",
-	-- {npc:263664} Raan · {spell:1229451} Boosted Rest · {npc:251905} Zerril Softbreeze
+	-- {npc:263664} Raan Wildwind · {spell:1229451} Boosted Rest · {npc:251905} Zerril Softbreeze
 	["Sit by {npc:263664}'s campfire (type /sit) until you get the {spell:1229451} buff, then find {npc:251905} at the cook fire."] = "坐在{npc:263664}的營火旁（輸入 /sit），直到獲得{spell:1229451}增益效果，然後到烹飪火堆旁找{npc:251905}。",
-	-- {npc:263664} Raan · {spell:1229451} Boosted Rest
+	-- {npc:263664} Raan Wildwind · {spell:1229451} Boosted Rest
 	["/sit by {npc:263664}'s campfire until you get {spell:1229451}"] = "在{npc:263664}的營火旁 /sit，直到獲得{spell:1229451}",
 	-- {npc:251905} Zerril Softbreeze
 	["talk to {npc:251905}"] = "與{npc:251905}交談",
@@ -182,9 +182,9 @@ return {
 	["Walk north to {area:16624}; finish the {item:5469} on the Galestriders along the way if you are short."] = "向北走到{area:16624}；如果{item:5469}不夠，沿途擊殺逐風者補齊。",
 
 	-- Step 33: To Valanaar
-	-- {area:16638} Valanaar · {npc:257006} Nyalah · {npc:252448} Alvarion
+	-- {area:16638} Valanaar · {npc:257006} Nyalah Brightfire · {npc:252448} Alvarion Windfield
 	["Take the road south-east to {area:16638}, the Skyborne town on the south coast. {npc:257006} and {npc:252448} stand at its western edge."] = "沿道路向東南前往南岸的天裔精靈城鎮{area:16638}。{npc:257006}和{npc:252448}站在城鎮西緣。",
-	-- {npc:252448} Alvarion
+	-- {npc:252448} Alvarion Windfield
 	["Listen to {npc:252448}'s story"] = "聆聽{npc:252448}的故事",
 
 	-- Step 34: Windsong Crawlers
@@ -236,8 +236,8 @@ return {
 	-- {npc:252800} Aamelia Windfield
 	["Tell {npc:252800} you're ready"] = "告訴{npc:252800}你準備好了",
 
-	-- Step 46: Alvarion and Riaani Nightwind
-	-- {npc:252448} Alvarion · {npc:256083} Riaani Nightwind
+	-- Step 46: Alvarion Windfield and Riaani Nightwind
+	-- {npc:252448} Alvarion Windfield · {npc:256083} Riaani Nightwind
 	["{npc:252448} and {npc:256083}"] = "{npc:252448}與{npc:256083}",
 
 	-- Step 47: Taming the Beast
@@ -369,7 +369,7 @@ return {
 	["talk to {npc:251684}"] = "與{npc:251684}交談",
 
 	-- Step 74: Confront Lorthuna
-	-- {area:16630} Rohashi Spires · {npc:252475} Elaadrin · {npc:251968} Ayessa Dawnsinger
+	-- {area:16630} Rohashi Spires · {npc:252475} Elaadrin Evengale · {npc:251968} Ayessa Dawnsinger
 	["Take the portal up to the {area:16630} and join {npc:252475} and {npc:251968} against the High Priestess."] = "搭乘傳送門上到{area:16630}，與{npc:252475}和{npc:251968}一起對抗高階女祭司洛舒娜。",
 
 	-- Step 77: The airship
@@ -393,15 +393,15 @@ return {
 	["{area:1638} is beside the landing: ride up a lift and learn the flight path from {npc:2995}, the wind rider master."] = "{area:1638}就在降落處旁：搭升降梯上去，向雙足飛龍管理員{npc:2995}學習飛行路線。",
 
 	-- Step 80: Traditions of the Bluff
-	-- {npc:269068} Eylah Sunhorn · {npc:3014} Nida · {npc:3012} Nata · {npc:3005} Mahu · {npc:3027} Naal · {item:278078} Prepared Incense
+	-- {npc:269068} Eylah Sunhorn · {npc:3014} Nida Winterhoof · {npc:3012} Nata Dawnstrider · {npc:3005} Mahu · {npc:3027} Naal Mistrunner · {item:278078} Prepared Incense
 	["{npc:269068} wants tauren incense: buy its four parts from {npc:3014} the herbalist, {npc:3012} the enchanting supplier, {npc:3005} the leatherworking supplier and {npc:3027} the cooking supplier, then combine them into {item:278078}."] = "{npc:269068}想要牛頭人的薰香：向草藥商{npc:3014}、附魔供應商{npc:3012}、製皮供應商{npc:3005}和烹飪供應商{npc:3027}購買四種材料，然後合成{item:278078}。",
-	-- {item:278079} Bundle of Herbs · {npc:3014} Nida
+	-- {item:278079} Bundle of Herbs · {npc:3014} Nida Winterhoof
 	["{item:278079}, from {npc:3014}"] = "{item:278079}，向{npc:3014}購買",
-	-- {item:278080} Bundle of Dried Cedar Twigs · {npc:3012} Nata
+	-- {item:278080} Bundle of Dried Cedar Twigs · {npc:3012} Nata Dawnstrider
 	["{item:278080}, from {npc:3012}"] = "{item:278080}，向{npc:3012}購買",
 	-- {item:278081} Sinew Thread · {npc:3005} Mahu
 	["{item:278081}, from {npc:3005}"] = "{item:278081}，向{npc:3005}購買",
-	-- {item:278083} Ceremonial Flint and Tinder · {npc:3027} Naal
+	-- {item:278083} Ceremonial Flint and Tinder · {npc:3027} Naal Mistrunner
 	["{item:278083}, from {npc:3027}"] = "{item:278083}，向{npc:3027}購買",
 
 	-- Step 81: Hunter Rise

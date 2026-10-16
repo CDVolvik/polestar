@@ -54,18 +54,18 @@ return {
 	["Raleigh's next errand is in the {area:796}: skip it."] = "虔诚的莱雷恩的下一个差事在{area:796}：跳过。",
 
 	-- Step 11: Aerie Peak
-	-- {area:271} Southshore · {zone:1425} The Hinterlands · {area:348} Aerie Peak · {npc:5635} Falstad · {quest:1450} Gryphon Master Talonaxe · {npc:7884} Fraggar Thundermantle
+	-- {area:271} Southshore · {zone:1425} The Hinterlands · {area:348} Aerie Peak · {npc:5635} Falstad Wildhammer · {quest:1450} Gryphon Master Talonaxe · {npc:7884} Fraggar Thundermantle
 	["Ride north-east out of {area:271} on the road into the {zone:1425}; {area:348} sits just past the border. {npc:5635} holds court at the top, {quest:1450} tends the aviary and {npc:7884} stands by the inn."] = "沿道路向东北骑出{area:271}，进入{zone:1425}；{area:348}就在边界后面。{npc:5635}在顶层，{quest:1450}照看狮鹫棚，{npc:7884}站在旅店旁。",
 
 	-- Step 12: Rhapsody Shindigger
-	-- {npc:5634} Rhapsody · {area:348} Aerie Peak
+	-- {npc:5634} Rhapsody Shindigger · {area:348} Aerie Peak
 	["{npc:5634} camps on the road east of {area:348}."] = "{npc:5634}在{area:348}东边的路上扎营。",
-	-- {npc:5634} Rhapsody
+	-- {npc:5634} Rhapsody Shindigger
 	["{npc:5634}'s cocktail needs parts from Kalimdor: skip it."] = "{npc:5634}的鸡尾酒需要卡利姆多的材料：跳过。",
 
 	-- Step 13: Witherbark villages
 	["Witherbark villages"] = "枯木村庄",
-	-- {npc:5634} Rhapsody
+	-- {npc:5634} Rhapsody Shindigger
 	["The first two cages stand together in the Witherbark village south of {npc:5634}; the third is in the next village to the east. Every Witherbark troll can drop a necklace."] = "前两个笼子一起在{npc:5634}南边的枯木村庄里；第三个在东边的下一个村庄里。每个枯木巨魔都可能掉落项链。",
 
 	-- Step 14: Aerie Peak

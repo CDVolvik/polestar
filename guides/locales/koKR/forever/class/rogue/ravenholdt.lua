@@ -26,16 +26,16 @@ return {
 	["{npc:6766}: {quest:6701}, repeatable"] = "{npc:6766}: {quest:6701}, 반복 가능",
 
 	-- Step 3: Lord Tomas
-	-- {npc:266216} Lord Tomas · {area:275} Durnholde Keep · {area:287} Hillsbrad · {npc:13085} Myrokos
+	-- {npc:266216} Lord Tomas · {area:275} Durnholde Keep · {area:287} Hillsbrad · {npc:13085} Myrokos Silentform
 	["{npc:266216} is inside {area:275}, the Syndicate fortress in eastern {area:287}, south of the manor. Quick and quiet, says {npc:13085}."] = "{npc:266216}은(는) 장원 남쪽, {area:287} 동부의 비밀결사대 요새인 {area:275} 안에 있습니다. {npc:13085}은(는) 빠르고 조용히 처리하라고 합니다.",
 
 	-- Step 5: What's the Big Idea?
-	-- {npc:13085} Myrokos · {area:280} Strahnbrad · {zone:1416} Alterac Mountains
+	-- {npc:13085} Myrokos Silentform · {area:280} Strahnbrad · {zone:1416} Alterac Mountains
 	["At 36, {npc:13085} sends you after Barton's scouting report. Barton leads a Syndicate party at {area:280}, in the east of the {zone:1416}: pick his pocket, do not kill him."] = "36레벨에 {npc:13085}이(가) 바턴의 정찰 보고서를 가져오라고 보냅니다. 바턴은 {zone:1416} 동쪽의 {area:280}에서 비밀결사대 무리를 이끕니다: 죽이지 말고 소매치기하십시오.",
 	-- {item:275482} Barton's Scouting Report
 	["{item:275482}: pickpocket Barton"] = "{item:275482}: 바턴 소매치기",
 
-	-- Step 6: Back to Myrokos
-	-- {npc:13085} Myrokos
+	-- Step 6: Back to Myrokos Silentform
+	-- {npc:13085} Myrokos Silentform
 	["Back to {npc:13085}"] = "{npc:13085}에게 돌아가기",
 }

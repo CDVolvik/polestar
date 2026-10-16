@@ -138,7 +138,7 @@ return {
 	["{quest:1106}: Fizzle's letter from the {area:439}"] = "{quest:1106}: письмо Пшикса Медноштифа ({area:439})",
 
 	-- Step 30: The Dustbowl
-	-- {npc:2921} Lotwil · {area:1878} The Dustbowl · {area:340} Kargath
+	-- {npc:2921} Lotwil Veriatus · {area:1878} The Dustbowl · {area:340} Kargath
 	["Ride west along the road; {npc:2921}'s camp sits in the {area:1878} halfway to {area:340}."] = "Езжайте на запад по дороге; лагерь {npc:2921} – в {area:1878}, на полпути к месту {area:340}.",
 
 	-- Step 31: Kargath
@@ -150,7 +150,7 @@ return {
 	-- Step 32: Lesser Rock Elementals
 	-- plural, as words: Lesser Rock Elementals = {npc:2735} Lesser Rock Elemental
 	["Lesser Rock Elementals"] = "Младшие каменные элементали",
-	-- {npc:2921} Lotwil · {npc:6868} Jarkal
+	-- {npc:2921} Lotwil Veriatus · {npc:6868} Jarkal Mossmeld
 	-- plural, as words: Rock Elemental Shards = {item:7848} Rock Elemental Shard
 	["The small elementals drift across the flats just west of {npc:2921}'s camp. Every rock elemental in the zone can drop {npc:6868}'s Rock Elemental Shards: keep them."] = "Маленькие элементали бродят по равнине чуть к западу от лагеря {npc:2921}. С любого каменного элементаля в зоне могут падать осколки каменного элементаля для {npc:6868}: сохраните их.",
 
@@ -191,7 +191,7 @@ return {
 	["Theldurin sits among the dwarven ruins at {area:345}, south of the {area:1877}."] = "Тельдарин сидит среди руин дворфов ({area:345}), к югу от места {area:1877}.",
 
 	-- Step 43: Valley of Fangs
-	-- {npc:4618} Martek
+	-- {npc:4618} Martek the Exiled
 	["Follow the road north; {npc:4618}'s camp is on the way."] = "Идите по дороге на север; лагерь {npc:4618} – по пути.",
 
 	-- Step 44: Ancient Chest
@@ -218,7 +218,7 @@ return {
 	["Your trainer is in {area:1638}, one flight from {zone:1454}: {npc:3033} (Druids) on {area:1639}, {npc:246344} (Paladins). Fly on to the {area:380} from there."] = "Ваш учитель – в городе {area:1638}, в одном перелете от города {zone:1454}: {npc:3033} (друиды), ориентир: {area:1639}; {npc:246344} (паладины). Оттуда летите дальше сюда: {area:380}.",
 
 	-- Step 51: Regthar Deathgate
-	-- {area:380} Crossroads · {area:386} Forgotten Pools · {npc:3389} Regthar
+	-- {area:380} Crossroads · {area:386} Forgotten Pools · {npc:3389} Regthar Deathgate
 	["Ride north up the road from the {area:380} to the {area:386}; {npc:3389} keeps watch on the rise above the water."] = "Езжайте на север по дороге от места {area:380} сюда: {area:386}; {npc:3389} стоит на возвышенности над водой.",
 	-- {npc:5395} Felgur Twocuts · {zone:1443} Desolace
 	["for {npc:5395} in {zone:1443}, in the next guide"] = "для персонажа {npc:5395} ({zone:1443}), в следующем руководстве",

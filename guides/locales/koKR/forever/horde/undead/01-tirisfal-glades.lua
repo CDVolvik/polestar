@@ -35,12 +35,12 @@ return {
 	-- {area:154} Deathknell
 	["The {area:154} trainers stand around the church"] = "{area:154}의 상급자들은 교회 주변에 있습니다",
 
-	-- Step 5: Aramis and Venya
-	-- {npc:244808} Aramis · {npc:5667} Venya
+	-- Step 5: Aramis Hammerhand and Venya Marthand
+	-- {npc:244808} Aramis Hammerhand · {npc:5667} Venya Marthand
 	["{npc:244808} and {npc:5667}"] = "{npc:244808}와(과) {npc:5667}",
-	-- {npc:244808} Aramis · {npc:5667} Venya
+	-- {npc:244808} Aramis Hammerhand · {npc:5667} Venya Marthand
 	["{npc:244808} and {npc:5667} stand beside the church."] = "{npc:244808}와(과) {npc:5667}이(가) 교회 옆에 서 있습니다.",
-	-- {npc:1569} Shadow Priest Sarvis · {npc:244808} Aramis
+	-- {npc:1569} Shadow Priest Sarvis · {npc:244808} Aramis Hammerhand
 	["{npc:1569}: the scroll for {npc:244808}"] = "{npc:1569}: {npc:244808}에게 줄 두루마리",
 
 	-- Step 6: Rattlecages, scavengers and duskbats
@@ -59,7 +59,7 @@ return {
 	-- {npc:1570} Executor Arren
 	["{npc:1570}, in the church"] = "교회 안의 {npc:1570}",
 
-	-- Step 9: Aramis and Venya
+	-- Step 9: Aramis Hammerhand and Venya Marthand
 	-- {quest:90902} Rediscovering the Light · {npc:259377} Injured Deathguard · {spell:635} Holy Light
 	["Paladins: {quest:90902} is done once you have healed five {npc:259377} around the church with {spell:635}."] = "성기사: 교회 주변의 {npc:259377} 5명을 {spell:635}(으)로 치유하면 {quest:90902}이(가) 완료됩니다.",
 
@@ -70,7 +70,7 @@ return {
 	-- Step 11: Night Web's Hollow
 	-- plural, as words: Young Night Web Spiders = {npc:1504} Young Night Web Spider · Night Web Spiders = {npc:1505} Night Web Spider
 	["Head west to the cave. The Young Night Web Spiders sit outside; the Night Web Spiders and the Webbed Victims are inside."] = "서쪽 동굴로 가세요. 새끼 검은그물거미는 밖에 있고, 검은그물거미와 거미줄에 갇힌 희생자는 안에 있습니다.",
-	-- {npc:244808} Aramis
+	-- {npc:244808} Aramis Hammerhand
 	["Free six Webbed Victims inside the cave for {npc:244808}"] = "{npc:244808}을(를) 위해 동굴 안에서 거미줄에 갇힌 희생자 6명을 구출하세요",
 	["Webbed Victims"] = "거미줄에 갇힌 희생자",
 
@@ -243,7 +243,7 @@ return {
 	-- Step 44: Paladin: Whispering Forest
 	-- {area:16616} Whispering Forest
 	["Paladin: {area:16616}"] = "성기사: {area:16616}",
-	-- {area:16616} Whispering Forest · {npc:246389} Hilda · {npc:259190} Ephram
+	-- {area:16616} Whispering Forest · {npc:246389} Hilda the Breaker · {npc:259190} Ephram Barbaro
 	["Head west into the {area:16616}; {npc:246389} and {npc:259190} camp at its edge."] = "서쪽 {area:16616}(으)로 가세요. {npc:246389}와(과) {npc:259190}이(가) 숲 가장자리에서 야영합니다.",
 
 	-- Step 45: Shadowvale
@@ -260,7 +260,7 @@ return {
 	["{npc:2128}: {npc:4568} in the {zone:1458} takes it"] = "{npc:2128}: {zone:1458}의 {npc:4568}에게 가져가세요",
 
 	-- Step 49: Ulag the Cleaver
-	-- {npc:1496} Deathguard Dillinger · {area:159} Brill · {npc:6390} Ulag
+	-- {npc:1496} Deathguard Dillinger · {area:159} Brill · {npc:6390} Ulag the Cleaver
 	["{npc:1496} stands in {area:159}. {npc:6390} waits in the mausoleum on the hill just north of town: open the gate and fight him."] = "{npc:1496}은(는) {area:159}에 있습니다. {npc:6390}은(는) 마을 바로 북쪽 언덕의 묘지에서 기다립니다. 문을 열고 그와 싸우십시오.",
 
 	-- Step 50: Carendin Halgar
@@ -336,7 +336,7 @@ return {
 	["Back to {area:159}."] = "{area:159}(으)로 돌아가세요.",
 
 	-- Step 66: Leonid Barthalomew
-	-- {area:157} Agamand Mills · {area:16616} Whispering Forest · {npc:246389} Hilda
+	-- {area:157} Agamand Mills · {area:16616} Whispering Forest · {npc:246389} Hilda the Breaker
 	["Follow the road west past {area:157} to the {area:16616}. Leonid stands just north of {npc:246389}'s camp."] = "길을 따라 서쪽으로 {area:157}을(를) 지나 {area:16616}(으)로 가세요. 리어니드 바돌로매는 {npc:246389}의 야영지 바로 북쪽에 있습니다.",
 	-- {npc:246378} Danitha Morr
 	["Listen to Leonid and {npc:246378}, then talk to him again"] = "리어니드와 {npc:246378}의 대화를 들은 뒤 그에게 다시 말을 거세요",

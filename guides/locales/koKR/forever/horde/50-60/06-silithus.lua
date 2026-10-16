@@ -163,16 +163,16 @@ return {
 	-- Step 36: Scourge Champions
 	-- plural, as words: Scourge Champions = {npc:8529} Scourge Champion
 	["Scourge Champions"] = "스컬지 용사",
-	-- {area:2270} Noxious Glade · {npc:11063} Carlin · {item:13156} Mystic Crystal
+	-- {area:2270} Noxious Glade · {npc:11063} Carlin Redpath · {item:13156} Mystic Crystal
 	-- plural, as words: Scourge Champions = {npc:8529} Scourge Champion
 	["Scourge Champions roam the {area:2270}, north of the chapel. Pass {npc:11063}'s {item:13156} over each one you kill: the skulls that resonate are the ones he wants."] = "스컬지 용사는 예배당 북쪽 {area:2270}을(를) 돌아다닙니다. 처치한 용사마다 {npc:11063}의 {item:13156}을(를) 대 보세요. 공명하는 해골이 그가 원하는 것입니다.",
 
-	-- Step 38: Pamela and the Undercroft
-	-- {npc:10926} Pamela · {area:2261} Undercroft
+	-- Step 38: Pamela Redpath and the Undercroft
+	-- {npc:10926} Pamela Redpath · {area:2261} Undercroft
 	["{npc:10926} and the {area:2261}"] = "{npc:10926}와(과) {area:2261}",
-	-- {area:2262} Darrowshire · {npc:10926} Pamela · {npc:11886} Mercutio Filthgorger · {area:2261} Undercroft
+	-- {area:2262} Darrowshire · {npc:10926} Pamela Redpath · {npc:11886} Mercutio Filthgorger · {area:2261} Undercroft
 	["Ride to {area:2262} in the south-west; {npc:10926} plays among the houses. {npc:11886} lurks in the {area:2261}, the crypt just west of the town."] = "남서쪽의 {area:2262}(으)로 가세요. {npc:10926}은(는) 집들 사이에서 놀고 있습니다. {npc:11886}은(는) 마을 바로 서쪽의 납골당인 {area:2261}에 숨어 있습니다.",
-	-- {npc:10926} Pamela
+	-- {npc:10926} Pamela Redpath
 	["{npc:10926}'s own errand is not on this route. Skip it."] = "{npc:10926}의 심부름은 이 경로에 없습니다. 건너뛰세요.",
 
 	-- Step 39: Nathanos Blightcaller

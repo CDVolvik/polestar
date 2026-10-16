@@ -35,7 +35,7 @@ return {
 	-- Step 6: The Wild Shore
 	-- {area:43} Wild Shore
 	["The {area:43}"] = "{area:43}",
-	-- {area:43} Wild Shore · {npc:2493} Dizzy
+	-- {area:43} Wild Shore · {npc:2493} Dizzy One-Eye
 	["South of Booty Bay the Bloodsail swashbucklers camp on the {area:43}; the charts and the orders lie in their tents. Any Bloodsail can carry snuff and {npc:2493}'s eye, so keep killing until you have both."] = "在藏宝海湾南边，血帆流氓在{area:43}扎营；血帆海图和血帆计划书就在他们的帐篷里。任何血帆海盗都可能携带鼻烟和{npc:2493}的眼睛，所以一直杀到两样都拿到为止。",
 
 	-- Step 8: The Bloodsail ships
@@ -76,7 +76,7 @@ return {
 
 	-- Step 17: Zul'Kunda
 	["Zul'Kunda"] = "祖昆达废墟",
-	-- {npc:1061} Gan'zulah · {npc:1062} Nezzliok
+	-- {npc:1061} Gan'zulah · {npc:1062} Nezzliok the Dire
 	["West of the expedition, the Bloodscalp chiefs {npc:1061} and {npc:1062} stand together in the ruins of Zul'Kunda. Clear their guards first, then pull them."] = "在远征队营地西边，血顶酋长{npc:1061}和{npc:1062}一起站在祖昆达废墟里。先清掉他们的守卫，再引他们。",
 
 	-- Step 18: Hearth to Grom'gol
@@ -102,7 +102,7 @@ return {
 
 	-- Step 22: Pirate ghosts
 	["Pirate ghosts"] = "海盗幽灵",
-	-- {area:35} Booty Bay · {npc:2535} Maury · {npc:2536} Jon-Jon · {npc:2537} Chucky
+	-- {area:35} Booty Bay · {npc:2535} Maury "Club Foot" Wilkins · {npc:2536} Jon-Jon the Crow · {npc:2537} Chucky "Ten Thumbs"
 	["The three ghostly pirates haunt the jungle north of {area:35}, near Zanzil's camps: {npc:2535} and {npc:2536} stand together, {npc:2537} further east."] = "三个海盗幽灵在{area:35}北边、赞吉尔营地附近的丛林里出没：{npc:2535}和{npc:2536}站在一起，{npc:2537}在更东边。",
 
 	-- Step 23: Zul'Mamwe

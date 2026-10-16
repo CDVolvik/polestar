@@ -17,7 +17,7 @@ return {
 	["The {area:2479}"] = "{area:2479}",
 	-- {area:431} Splintertree Post · {zone:1440} Ashenvale · {zone:1448} Felwood · {area:2479} Emerald Sanctuary
 	["Fly to {area:431} and ride north-west along the road out of {zone:1440} into {zone:1448}. The {area:2479} is the druids' camp just past the border."] = "{area:431}(으)로 날아간 뒤 길을 따라 북서쪽으로 달려 {zone:1440}에서 {zone:1448}(으)로 가세요. {area:2479}은(는) 경계를 막 지난 곳의 드루이드 야영지입니다.",
-	-- {npc:9116} Eridan · {item:11173} Irontree Heart · {zone:1448} Felwood
+	-- {npc:9116} Eridan Bluewind · {item:11173} Irontree Heart · {zone:1448} Felwood
 	["{npc:9116}'s Silver Heart needs an {item:11173} from northern {zone:1448} and a ride back here. Skip it."] = "{npc:9116}의 은색 심장은 {zone:1448} 북쪽의 {item:11173}을(를) 가지고 여기로 돌아와야 합니다. 건너뛰세요.",
 
 	-- Step 3: Dousing the Flames of Protection
@@ -37,11 +37,11 @@ return {
 	-- Step 7: Bloodvenom Post
 	-- {area:1763} Jaedenar · {area:1997} Bloodvenom Post
 	["Ride north along the road, past {area:1763}, to {area:1997}."] = "길을 따라 북쪽으로 {area:1763}을(를) 지나 {area:1997}(으)로 가세요.",
-	-- {npc:10306} Trull · {quest:4741} Wild Guardians · {zone:1452} Winterspring
+	-- {npc:10306} Trull Failbane · {quest:4741} Wild Guardians · {zone:1452} Winterspring
 	["{npc:10306}'s next {quest:4741} would bring you back here from {zone:1452}. Skip it."] = "{npc:10306}의 다음 퀘스트 {quest:4741}은(는) {zone:1452}에서 여기로 다시 와야 합니다. 건너뛰세요.",
 
 	-- Step 8: Toxic Horrors
-	-- {npc:9298} Donova · {quest:5086} Toxic Horrors · {zone:1448} Felwood · {area:1767} Irontree Woods
+	-- {npc:9298} Donova Snowden · {quest:5086} Toxic Horrors · {zone:1448} Felwood · {area:1767} Irontree Woods
 	["Only if {npc:9298} gave you {quest:5086}: ride north up the {zone:1448} road to {area:1767}; the {quest:5086} ooze between the trees."] = "{npc:9298}에게 {quest:5086}을(를) 받았을 때만: {zone:1448} 길을 따라 북쪽 {area:1767}(으)로 가세요. {quest:5086}이(가) 나무 사이를 떠돕니다.",
 
 	-- Step 9: Meilosh
@@ -56,14 +56,14 @@ return {
 	-- {npc:11801} Rabine Saturna · {area:2577} Dire Maul
 	["{npc:11801}'s Shards of the Felvine needs {area:2577}. Skip it."] = "{npc:11801}의 악령덩굴 조각은 {area:2577}이(가) 필요합니다. 건너뛰세요.",
 
-	-- Step 13: Donova
-	-- {zone:1452} Winterspring · {npc:9298} Donova
+	-- Step 13: Donova Snowden
+	-- {zone:1452} Winterspring · {npc:9298} Donova Snowden
 	["Back into the Timbermaw tunnel and take the {zone:1452} exit; {npc:9298} camps by the hot springs just outside."] = "다시 나무구렁일족 동굴로 들어가 {zone:1452} 쪽 출구로 나가세요. {npc:9298}은(는) 바로 밖 온천 옆에 있습니다.",
 
 	-- Step 14: Winterfall Runners
-	-- {quest:5087} Winterfall Runners · {area:1769} Timbermaw Hold · {area:2244} Winterfall Village · {npc:9298} Donova
+	-- {quest:5087} Winterfall Runners · {area:1769} Timbermaw Hold · {area:2244} Winterfall Village · {npc:9298} Donova Snowden
 	["Only if you carry {quest:5087}: the runners walk the road from {area:1769} toward {area:2244} in small groups; wait by the road near {npc:9298} and kill them as they pass. Each one carries a crate."] = "{quest:5087}이(가) 있을 때만: 정찰꾼들이 작은 무리로 {area:1769}에서 {area:2244}(으)로 길을 걷습니다. {npc:9298} 근처 길가에서 기다렸다가 지나갈 때 처치하세요. 각자 상자를 하나씩 들고 있습니다.",
-	-- {npc:9298} Donova · {npc:10738} High Chief Winterfall
+	-- {npc:9298} Donova Snowden · {npc:10738} High Chief Winterfall
 	["{npc:9298} next sends you after {npc:10738}, an elite in his cave. Skip it."] = "{npc:9298}은(는) 다음으로 동굴 속 정예인 {npc:10738}을(를) 처치하라고 보냅니다. 건너뛰세요.",
 
 	-- Step 15: Everlook

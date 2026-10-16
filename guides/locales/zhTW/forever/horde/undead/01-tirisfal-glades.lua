@@ -35,12 +35,12 @@ return {
 	-- {area:154} Deathknell
 	["The {area:154} trainers stand around the church"] = "{area:154}的訓練師們在教堂周圍",
 
-	-- Step 5: Aramis and Venya
-	-- {npc:244808} Aramis · {npc:5667} Venya
+	-- Step 5: Aramis Hammerhand and Venya Marthand
+	-- {npc:244808} Aramis Hammerhand · {npc:5667} Venya Marthand
 	["{npc:244808} and {npc:5667}"] = "{npc:244808}與{npc:5667}",
-	-- {npc:244808} Aramis · {npc:5667} Venya
+	-- {npc:244808} Aramis Hammerhand · {npc:5667} Venya Marthand
 	["{npc:244808} and {npc:5667} stand beside the church."] = "{npc:244808}和{npc:5667}站在教堂旁。",
-	-- {npc:1569} Shadow Priest Sarvis · {npc:244808} Aramis
+	-- {npc:1569} Shadow Priest Sarvis · {npc:244808} Aramis Hammerhand
 	["{npc:1569}: the scroll for {npc:244808}"] = "{npc:1569}：給{npc:244808}的卷軸",
 
 	-- Step 6: Rattlecages, scavengers and duskbats
@@ -59,7 +59,7 @@ return {
 	-- {npc:1570} Executor Arren
 	["{npc:1570}, in the church"] = "{npc:1570}，在教堂裡",
 
-	-- Step 9: Aramis and Venya
+	-- Step 9: Aramis Hammerhand and Venya Marthand
 	-- {quest:90902} Rediscovering the Light · {npc:259377} Injured Deathguard · {spell:635} Holy Light
 	["Paladins: {quest:90902} is done once you have healed five {npc:259377} around the church with {spell:635}."] = "聖騎士：用{spell:635}治療教堂周圍五名{npc:259377}後，{quest:90902}即完成。",
 
@@ -70,7 +70,7 @@ return {
 	-- Step 11: Night Web's Hollow
 	-- plural, as words: Young Night Web Spiders = {npc:1504} Young Night Web Spider · Night Web Spiders = {npc:1505} Night Web Spider
 	["Head west to the cave. The Young Night Web Spiders sit outside; the Night Web Spiders and the Webbed Victims are inside."] = "向西前往洞穴。小夜行蜘蛛在洞外；夜行蜘蛛和被蛛網纏住的受害者在洞內。",
-	-- {npc:244808} Aramis
+	-- {npc:244808} Aramis Hammerhand
 	["Free six Webbed Victims inside the cave for {npc:244808}"] = "為{npc:244808}解救洞內六名被蛛網纏住的受害者",
 	["Webbed Victims"] = "被蛛網纏住的受害者",
 
@@ -243,7 +243,7 @@ return {
 	-- Step 44: Paladin: Whispering Forest
 	-- {area:16616} Whispering Forest
 	["Paladin: {area:16616}"] = "聖騎士：{area:16616}",
-	-- {area:16616} Whispering Forest · {npc:246389} Hilda · {npc:259190} Ephram
+	-- {area:16616} Whispering Forest · {npc:246389} Hilda the Breaker · {npc:259190} Ephram Barbaro
 	["Head west into the {area:16616}; {npc:246389} and {npc:259190} camp at its edge."] = "向西進入{area:16616}；{npc:246389}和{npc:259190}在森林邊緣紮營。",
 
 	-- Step 45: Shadowvale
@@ -260,7 +260,7 @@ return {
 	["{npc:2128}: {npc:4568} in the {zone:1458} takes it"] = "{npc:2128}：由{zone:1458}的{npc:4568}接收",
 
 	-- Step 49: Ulag the Cleaver
-	-- {npc:1496} Deathguard Dillinger · {area:159} Brill · {npc:6390} Ulag
+	-- {npc:1496} Deathguard Dillinger · {area:159} Brill · {npc:6390} Ulag the Cleaver
 	["{npc:1496} stands in {area:159}. {npc:6390} waits in the mausoleum on the hill just north of town: open the gate and fight him."] = "{npc:1496}站在{area:159}。{npc:6390}在城鎮北邊山丘上的陵墓裡等候：打開大門和他戰鬥。",
 
 	-- Step 50: Carendin Halgar
@@ -336,7 +336,7 @@ return {
 	["Back to {area:159}."] = "回到{area:159}。",
 
 	-- Step 66: Leonid Barthalomew
-	-- {area:157} Agamand Mills · {area:16616} Whispering Forest · {npc:246389} Hilda
+	-- {area:157} Agamand Mills · {area:16616} Whispering Forest · {npc:246389} Hilda the Breaker
 	["Follow the road west past {area:157} to the {area:16616}. Leonid stands just north of {npc:246389}'s camp."] = "沿著道路向西經過{area:157}前往{area:16616}。萊尼德站在{npc:246389}營地北邊。",
 	-- {npc:246378} Danitha Morr
 	["Listen to Leonid and {npc:246378}, then talk to him again"] = "聽萊尼德和{npc:246378}交談，然後再和他說話",

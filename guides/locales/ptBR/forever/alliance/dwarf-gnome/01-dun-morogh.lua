@@ -79,13 +79,13 @@ return {
 	["Feather Charms, from the Frostmane Novices"] = "Patuás de Penas, dos Noviços Jubafria",
 
 	-- Step 11: Grelin Whitebeard
-	-- {npc:12738} Nori Pridedrift · {npc:836} Durnan · {area:77} Anvilmar
+	-- {npc:12738} Nori Pridedrift · {npc:836} Durnan Furcutter · {area:77} Anvilmar
 	["{npc:12738}: timed, five minutes to reach {npc:836} in {area:77}"] = "{npc:12738}: com tempo, cinco minutos para chegar a {npc:836} em {area:77}",
 
 	-- Step 12: Anvilmar
-	-- {npc:836} Durnan · {area:77} Anvilmar
+	-- {npc:836} Durnan Furcutter · {area:77} Anvilmar
 	["The Scalding Mornbrew lasts five minutes: go straight north to {npc:836} inside {area:77}."] = "O Rabo-de-galo Escaldante dura cinco minutos: vá direto para o norte até {npc:836} dentro de {area:77}.",
-	-- {npc:836} Durnan · {area:77} Anvilmar
+	-- {npc:836} Durnan Furcutter · {area:77} Anvilmar
 	["{npc:836}, inside {area:77}"] = "{npc:836}, dentro de {area:77}",
 	["Level 4 spells, before Gozwin's camp"] = "Feitiços de nível 4, antes do acampamento de Gozwin",
 
@@ -119,12 +119,12 @@ return {
 	["{npc:1965} guards the tunnel out of the valley, east of {area:77}; {npc:6782} stands beside him at its mouth."] = "{npc:1965} guarda o túnel que sai do vale, a leste de {area:77}; {npc:6782} fica ao lado dele na entrada.",
 
 	-- Step 18: Kharanos
-	-- {area:131} Kharanos · {npc:1267} Ragnar · {npc:1252} Senir · {area:2102} Thunderbrew Distillery · {npc:6806} Tannok · {npc:1226} Maxan · {npc:1872} Tharek Blackstone
+	-- {area:131} Kharanos · {npc:1267} Ragnar Thunderbrew · {npc:1252} Senir Whitebeard · {area:2102} Thunderbrew Distillery · {npc:6806} Tannok Frosthammer · {npc:1226} Maxan Anvol · {npc:1872} Tharek Blackstone
 	-- plural, as words: Crag Boars = {npc:1125} Crag Boar
 	["Follow the road through the tunnel and north-east to {area:131}. Kill the Crag Boars on the way: their ribs drop before you have {npc:1267}'s quest and count toward it. {npc:1252}, Eric and his campfire are outside the {area:2102}. {npc:6806}, {npc:1226} and {npc:1267} are inside. {npc:1872} works the forge."] = "Siga a estrada pelo túnel e para nordeste até {area:131}. Mate os Rochetuscos no caminho: as costelas caem antes de você ter a missão de {npc:1267} e contam para ela. {npc:1252}, Eric e a fogueira dele ficam do lado de fora da {area:2102}. {npc:6806}, {npc:1226} e {npc:1267} estão lá dentro. {npc:1872} trabalha na forja.",
-	-- {npc:6806} Tannok
+	-- {npc:6806} Tannok Frosthammer
 	["{npc:6806}, in the distillery"] = "{npc:6806}, na destilaria",
-	-- {npc:1226} Maxan · {npc:6806} Tannok
+	-- {npc:1226} Maxan Anvol · {npc:6806} Tannok Frosthammer
 	["{npc:1226}, next to {npc:6806}"] = "{npc:1226}, ao lado de {npc:6806}",
 	-- {item:2894} Rhapsody Malt · {npc:1247} Innkeeper Belm
 	["{item:2894}, from {npc:1247}"] = "{item:2894}, de {npc:1247}",
@@ -245,9 +245,9 @@ return {
 	["{npc:1231}, at the smithy"] = "{npc:1231}, na ferraria",
 	-- {npc:258113} Ingrid Dunwald · {npc:257597} Bruegs Kindleborn
 	["{npc:258113}: {npc:257597} by the South Gate takes it"] = "{npc:258113}: {npc:257597}, perto do Portão Sul, a recebe",
-	-- {npc:1226} Maxan · {npc:376} High Priestess Laurena · {zone:1453} Stormwind
+	-- {npc:1226} Maxan Anvol · {npc:376} High Priestess Laurena · {zone:1453} Stormwind
 	["{npc:1226}: {npc:376} in {zone:1453} takes it"] = "{npc:1226}: {npc:376} em {zone:1453} a recebe",
-	-- {npc:1226} Maxan · {npc:258785} High Priestess Mims · {zone:1455} Ironforge
+	-- {npc:1226} Maxan Anvol · {npc:258785} High Priestess Mims · {zone:1455} Ironforge
 	["{npc:1226}: {npc:258785} in {zone:1455} takes it"] = "{npc:1226}: {npc:258785} em {zone:1455} a recebe",
 
 	-- Step 54: Taming the Beast

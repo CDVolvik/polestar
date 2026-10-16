@@ -162,7 +162,7 @@ return {
 	["He gives you the {item:15826}"] = "그가 {item:15826}을(를) 줍니다",
 
 	-- Step 35: Verog the Dervish
-	-- {npc:3395} Verog · {area:388} Stagnant Oasis · {area:380} Crossroads
+	-- {npc:3395} Verog the Dervish · {area:388} Stagnant Oasis · {area:380} Crossroads
 	["{npc:3395} walks among the Kolkar at the {area:388} south-east of the {area:380}."] = "{npc:3395}은(는) {area:380} 남동쪽 {area:388}의 콜카르일족 사이를 걷습니다.",
 	-- {npc:12296} Sickly Gazelle · {item:15826} Curative Animal Salve · {area:380} Crossroads
 	["{npc:12296}: use the {item:15826} on them; they roam the plains all around the {area:380}"] = "{npc:12296}: {item:15826}을(를) 사용하십시오. {area:380} 주변 평원 곳곳을 돌아다닙니다",
@@ -202,7 +202,7 @@ return {
 	["{npc:3432} offers {quest:95774} once {quest:4921} is handed in"] = "{quest:4921}을(를) 제출하면 {npc:3432}이(가) {quest:95774}을(를) 줍니다",
 
 	-- Step 46: Hezrul Bloodmark
-	-- {npc:3396} Hezrul · {area:387} Lushwater Oasis · {npc:3389} Regthar Deathgate · {area:380} Crossroads
+	-- {npc:3396} Hezrul Bloodmark · {area:387} Lushwater Oasis · {npc:3389} Regthar Deathgate · {area:380} Crossroads
 	["{npc:3396} leads the Kolkar on the west shore of {area:387}, south of {npc:3389}. Hand his head to {npc:3389} on your last {area:380} stop."] = "{npc:3396}은(는) {npc:3389} 남쪽, {area:387} 서쪽 기슭의 콜카르일족을 이끕니다. 마지막으로 {area:380}에 들를 때 머리를 {npc:3389}에게 건네십시오.",
 
 	-- Step 47: Olgra's Adornments

@@ -11,7 +11,7 @@ return {
 	["Into {zone:1449}"] = "進入{zone:1449}",
 	-- {area:1938} Broken Pillar · {zone:1449} Un'Goro Crater · {area:541} Marshal's Refuge
 	["From the {area:1938} ride west to the long ramp that winds down into {zone:1449}, then follow the crater's north wall to {area:541}, a camp in the cliff caves. Everyone here is neutral."] = "從{area:1938}向西騎到蜿蜒而下進入{zone:1449}的長坡道，然後沿著環形山北壁前往{area:541}，一個位於懸崖洞穴中的營地。這裡的所有人都是中立的。",
-	-- {npc:9997} Spraggle
+	-- {npc:9997} Spraggle Frock
 	["The wooden sign beside {npc:9997}"] = "{npc:9997}旁邊的木牌",
 	-- {npc:9117} J.D. Collie
 	["{npc:9117}, at the back of the cave"] = "{npc:9117}，在洞穴深處",
@@ -196,7 +196,7 @@ return {
 	-- Step 38: Black Broodlings
 	-- plural, as words: Black Broodlings = {npc:7047} Black Broodling
 	["Black Broodlings"] = "黑色小龍",
-	-- {area:251} Flame Crest · {npc:10267} Tinkee · {item:12284} Draco-Incarcinatrix 900
+	-- {area:251} Flame Crest · {npc:10267} Tinkee Steamboil · {item:12284} Draco-Incarcinatrix 900
 	-- plural, as words: Black Broodlings = {npc:7047} Black Broodling
 	["Black Broodlings nest in the hills just east of {area:251}. Use {npc:10267}'s {item:12284} on a broodling when it is almost dead to capture its essence."] = "黑色小龍在{area:251}東邊的山丘築巢。在小龍快死時對牠使用{npc:10267}的{item:12284}來捕捉牠的精華。",
 
@@ -216,7 +216,7 @@ return {
 	-- Step 42: Flame Crest
 	-- {area:251} Flame Crest
 	["Back north-east to {area:251}."] = "向東北回到{area:251}。",
-	-- {npc:10267} Tinkee · {quest:4808} Felnok Steelspring · {area:2255} Everlook · {zone:1452} Winterspring
+	-- {npc:10267} Tinkee Steamboil · {quest:4808} Felnok Steelspring · {area:2255} Everlook · {zone:1452} Winterspring
 	["Keep {npc:10267}'s letter: {quest:4808} is in {area:2255}, {zone:1452}."] = "保留{npc:10267}的信：{quest:4808}在{zone:1452}的{area:2255}。",
 
 	-- Step 43: Kargath
@@ -258,7 +258,7 @@ return {
 	-- Step 51: Darrowshire Spirits
 	-- plural, as words: Darrowshire Spirits = {npc:11064} Darrowshire Spirit
 	["Darrowshire Spirits"] = "達隆郡居民的靈魂",
-	-- {npc:11063} Carlin · {npc:11064} Darrowshire Spirit · {area:2262} Darrowshire
+	-- {npc:11063} Carlin Redpath · {npc:11064} Darrowshire Spirit · {area:2262} Darrowshire
 	["With {npc:11063}'s quest in your log, slain Scourge sometimes leave a {npc:11064}; talk to it to free it. Kill undead on the ride south-west to {area:2262}."] = "任務日誌中有{npc:11063}的任務時，被殺死的天譴軍有時會留下{npc:11064}；和它交談來釋放它。在向西南騎往{area:2262}的路上擊殺不死生物。",
 	-- plural, as words: Darrowshire Spirits = {npc:11064} Darrowshire Spirit
 	["Free Darrowshire Spirits: talk to them"] = "釋放達隆郡居民的靈魂：和它們交談",
@@ -276,7 +276,7 @@ return {
 	["Keep {quest:5152}: Marlene lives at {area:197} in the {zone:1422}."] = "保留{quest:5152}：瑪萊恩住在{zone:1422}的{area:197}。",
 
 	-- Step 55: Zaeldarr the Outcast
-	-- {npc:12250} Zaeldarr · {area:2262} Darrowshire
+	-- {npc:12250} Zaeldarr the Outcast · {area:2262} Darrowshire
 	["{npc:12250} lurks just west of {area:2262}."] = "{npc:12250}潛伏在{area:2262}西邊。",
 
 	-- Step 56: Back to Light's Hope Chapel

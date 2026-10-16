@@ -53,7 +53,7 @@ return {
 	["Ride east back to the {area:497}."] = "Reite nach Osten zurück zum {area:497}.",
 	-- {item:3853} Moonsteel Broadsword · {skill:164} Blacksmithing
 	["only if you carry a {item:3853} ({skill:164} or the Auction House)"] = "nur, wenn du ein {item:3853} dabeihast ({skill:164} oder Auktionshaus)",
-	-- {object:20985} Loose Dirt · {npc:4791} Nazeer
+	-- {object:20985} Loose Dirt · {npc:4791} Nazeer Bloodpike
 	["{object:20985}, now that {npc:4791} has read the report"] = "{object:20985}, jetzt wo {npc:4791} den Bericht gelesen hat",
 
 	-- Step 12: Brackenwall Village
@@ -70,7 +70,7 @@ return {
 	["Ride north-east to the {area:607}. {npc:12277} is held in the Maraudine centaur camp; free her and escort her out east of the valley."] = "Reite nach Nordosten ins Tal ({area:607}). {npc:12277} wird im Zentaurenlager der Maraudine festgehalten; befreie sie und eskortiere sie nach Osten aus dem Tal hinaus.",
 
 	-- Step 16: Kodo Graveyard
-	-- {npc:6019} Hornizz · {area:596} Kodo Graveyard
+	-- {npc:6019} Hornizz Brimbuzzle · {area:596} Kodo Graveyard
 	["{npc:6019} waits at the goblin camp on the west side of the {area:596}."] = "{npc:6019} wartet im Goblinlager auf der Westseite des Friedhofs ({area:596}).",
 
 	-- Step 17: Gizelton Caravan
@@ -78,11 +78,11 @@ return {
 	["{npc:11626}'s caravan stops on the road at the edge of {area:602}. Escort it east past the coven; demons attack it twice."] = "Die Karawane von {npc:11626} hält auf der Straße am Rand von {area:602}. Eskortiere sie nach Osten am Koven vorbei; Dämonen greifen sie zweimal an.",
 
 	-- Step 18: Scrabblescrew's Camp
-	-- {npc:11596} Smeed · {area:596} Kodo Graveyard
+	-- {npc:11596} Smeed Scrabblescrew · {area:596} Kodo Graveyard
 	["The caravan ends at {npc:11596}'s camp on the east side of the {area:596}."] = "Die Karawane endet in {npc:11596}s Lager auf der Ostseite des Friedhofs ({area:596}).",
 
 	-- Step 19: Ghost Walker Post
-	-- {npc:5395} Felgur Twocuts · {npc:5412} Gurda Wildmane · {npc:11596} Smeed
+	-- {npc:5395} Felgur Twocuts · {npc:5412} Gurda Wildmane · {npc:11596} Smeed Scrabblescrew
 	["{npc:5395} and {npc:5412} stand in the post just west of {npc:11596}'s camp."] = "{npc:5395} und {npc:5412} stehen im Posten gleich westlich von {npc:11596}s Lager.",
 
 	-- Step 20: Kormek's Hut

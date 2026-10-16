@@ -33,7 +33,7 @@ return {
 	-- {npc:251373} Xyton Silverwind · {npc:251361} Rorian the Dayseeker
 	["{npc:251373}, the druid trainer, on the ground floor of the tree behind {npc:251361}"] = "{npc:251373}，德魯伊訓練師，在{npc:251361}身後那棵樹的一樓",
 	["The class trainers stand together in the grove"] = "職業訓練師都站在林地裡",
-	-- {npc:257554} Halaan
+	-- {npc:257554} Halaan Hawk-Eye
 	["Listen to {npc:257554}"] = "聆聽{npc:257554}的話",
 	-- {spell:1259416} Walk on Air
 	["Use {spell:1259416}"] = "使用{spell:1259416}",
@@ -42,12 +42,12 @@ return {
 	-- {npc:251404} Cirrusfly Queen
 	-- plural, as words: Raw Windstones = {object:613286} Raw Windstone
 	["Raw Windstones and the {npc:251404}"] = "原始風石與{npc:251404}",
-	-- {quest:92463} The Cirrusfly Queen · {npc:249363} Yala
+	-- {quest:92463} The Cirrusfly Queen · {npc:249363} Yala Windwatcher
 	-- plural, as words: Raw Windstones = {object:613286} Raw Windstone
 	["The Raw Windstones glitter on the ground just south of the grove. {quest:92463} hovers over the meadow further east, on the way to {npc:249363}."] = "原始風石在林地南邊的地上閃閃發光。{quest:92463}在更東邊的草地上空盤旋，就在前往{npc:249363}的路上。",
 
-	-- Step 5: Yala
-	-- {npc:249363} Yala · {npc:251143} Roiling Winds · {object:460002} Ley Line (no name in this language: may be words) · {spell:1259705} Read Leyline
+	-- Step 5: Yala Windwatcher
+	-- {npc:249363} Yala Windwatcher · {npc:251143} Roiling Winds · {object:460002} Ley Line (no name in this language: may be words) · {spell:1259705} Read Leyline
 	-- plural, as words: Al'Aketh Converts = {npc:251160} Al'Aketh Convert
 	["{npc:249363} keeps watch east of the grove. The {npc:251143} and Al'Aketh Converts gather just north of her; the {object:460002} rises further north: cast your {spell:1259705} racial ability at it."] = "{npc:249363}在林地東邊守望。{npc:251143}和奧拉凱斯皈依者聚集在她北邊；{object:460002}在更北邊升起：對它施放你的種族技能{spell:1259705}。",
 	-- {spell:1259705} Read Leyline · {object:460002} Ley Line (no name in this language: may be words)
@@ -196,7 +196,7 @@ return {
 	["{npc:252373}, the mage trainer"] = "{npc:252373}，法師訓練師",
 
 	-- Step 35: Taming the Beast
-	-- {item:15908} Taming Rod · {area:16638} Valanaar · {area:16626} Gustberry Lowlands · {npc:254411} Quel'dora
+	-- {item:15908} Taming Rod · {area:16638} Valanaar · {area:16626} Gustberry Lowlands · {npc:254411} Quel'dora Quickgale
 	-- plural, as words: Windsong Crawlers = {npc:254588} Windsong Crawler · Vuldren Alphas = {npc:250874} Vuldren Alpha · Ornery Galestriders = {npc:251707} Ornery Galestrider
 	["Each of Quel'ana's quests hands you a {item:15908}: use it on the beast she names, then bring the rod back to her in {area:16638}. Windsong Crawlers line the shore west of town; Vuldren Alphas and Ornery Galestriders roam the {area:16626} around the Windfield farm. Her sister {npc:254411} stands beside her."] = "奎爾安娜的每個任務都會給你一根{item:15908}：對她指定的野獸使用，然後把馴獸棒帶回{area:16638}交給她。風歌蟹遍布城鎮西邊的海岸；弗德飛狐首領和暴躁的逐風者在荒原農場周圍的{area:16626}遊蕩。她的妹妹{npc:254411}站在她身旁。",
 	-- {npc:254588} Windsong Crawler · {item:15908} Taming Rod
@@ -246,9 +246,9 @@ return {
 	-- Step 44: The Shrine of Akir
 	-- {area:16629} Shrine of Akir
 	["The {area:16629}"] = "{area:16629}",
-	-- {area:16629} Shrine of Akir · {npc:253576} Hyusaa Quickbreeze · {npc:253590} Valennia
+	-- {area:16629} Shrine of Akir · {npc:253576} Hyusaa Quickbreeze · {npc:253590} Valennia Stormfist
 	["Fight north to the {area:16629}. Guardians, Spiritcallers and Blademasters hold the approach; {npc:253576} waits at the shrine's door, {npc:253590} inside the inner sanctum."] = "一路向北殺到{area:16629}。奧拉凱斯守護者、招魂師和大劍師守著通道；{npc:253576}在聖殿門口等候，{npc:253590}在內殿裡。",
-	-- {npc:253590} Valennia
+	-- {npc:253590} Valennia Stormfist
 	["{npc:253590}, in the sanctum"] = "{npc:253590}，在內殿裡",
 	-- {item:263993} Skybreaker Bulwark · {npc:257196} Zaal Stormshield
 	["{item:263993}: {npc:257196}, west of the shrine's approach"] = "{item:263993}：{npc:257196}，在聖殿通道西邊",

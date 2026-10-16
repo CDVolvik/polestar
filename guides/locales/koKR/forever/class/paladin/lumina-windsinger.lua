@@ -36,17 +36,17 @@ return {
 	-- {item:267412} Fenris Isle Key
 	["{item:267412}, from the Rot Hide gnolls"] = "{item:267412}, 썩은가죽일족 놀에게서",
 
-	-- Step 5: Free Lumina
-	-- {npc:248755} Lumina
+	-- Step 5: Free Lumina Windsinger
+	-- {npc:248755} Lumina Windsinger
 	["Free {npc:248755}"] = "{npc:248755} 풀어주기",
 	["Free her with the key, then stay close while she fights her way out of the keep."] = "열쇠로 그녀를 풀어준 뒤, 그녀가 싸우며 성채를 빠져나가는 동안 가까이 있으십시오.",
 
 	-- Step 6: Back to the The Sepulcher
 	-- {area:228} The Sepulcher
 	["Back to the {area:228}"] = "{area:228}로 돌아가기",
-	-- {area:235} Fenris Keep · {npc:259620} Lumina · {area:228} The Sepulcher
+	-- {area:235} Fenris Keep · {npc:259620} Lumina Windsinger · {area:228} The Sepulcher
 	["Once she is clear of {area:235}, {npc:259620} waits for you in the {area:228}. Speak with her again to hear what really happened on the road."] = "{area:235}을(를) 벗어나면 {npc:259620}이(가) {area:228}에서 기다립니다. 다시 대화하여 길에서 실제로 무슨 일이 있었는지 들으십시오.",
-	-- {npc:259620} Lumina · {area:228} The Sepulcher
+	-- {npc:259620} Lumina Windsinger · {area:228} The Sepulcher
 	["{npc:259620}, the {area:228}"] = "{npc:259620}, {area:228}",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.

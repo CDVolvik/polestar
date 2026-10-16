@@ -36,17 +36,17 @@ return {
 	-- {item:267412} Fenris Isle Key
 	["{item:267412}, from the Rot Hide gnolls"] = "{item:267412} – с гноллов из стаи Гнилошкуров",
 
-	-- Step 5: Free Lumina
-	-- {npc:248755} Lumina
+	-- Step 5: Free Lumina Windsinger
+	-- {npc:248755} Lumina Windsinger
 	["Free {npc:248755}"] = "Освободите {npc:248755}",
 	["Free her with the key, then stay close while she fights her way out of the keep."] = "Освободите ее ключом и держитесь рядом, пока она пробивается из крепости.",
 
 	-- Step 6: Back to the The Sepulcher
 	-- {area:228} The Sepulcher
 	["Back to the {area:228}"] = "Вернитесь в {area:228}",
-	-- {area:235} Fenris Keep · {npc:259620} Lumina · {area:228} The Sepulcher
+	-- {area:235} Fenris Keep · {npc:259620} Lumina Windsinger · {area:228} The Sepulcher
 	["Once she is clear of {area:235}, {npc:259620} waits for you in the {area:228}. Speak with her again to hear what really happened on the road."] = "Когда она выберется из места {area:235}, {npc:259620} ждет вас в месте {area:228}. Поговорите с ней снова, чтобы узнать, что на самом деле случилось в дороге.",
-	-- {npc:259620} Lumina · {area:228} The Sepulcher
+	-- {npc:259620} Lumina Windsinger · {area:228} The Sepulcher
 	["{npc:259620}, the {area:228}"] = "{npc:259620}, {area:228}",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.

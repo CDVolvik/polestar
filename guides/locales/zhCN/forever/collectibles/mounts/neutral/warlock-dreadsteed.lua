@@ -36,7 +36,7 @@ return {
 	["The owlbeasts of {zone:1452} drop the blood, about one in three: the Ragged and Raging Owlbeasts west of and around {area:2255}, the Crazed, Moontouched and {spell:417141} ones in the east. While you hunt, start on the materials of the next step: the Auction House has them all."] = "{zone:1452}的枭兽会掉落血液，大约三只掉一次：{area:2255}西边及周围的蓬毛枭兽和{npc:7451}，东边的疯狂的枭兽、月光枭兽和{spell:417141}枭兽。打怪时就开始准备下一步的材料：拍卖行都有。",
 
 	-- Step 7: Wildeyes
-	-- {npc:14436} Mor'zul · {item:18591} Case of Blood · {npc:14437} Gorzeeki Wildeyes · {zone:1448} Felwood
+	-- {npc:14436} Mor'zul Bloodbringer · {item:18591} Case of Blood · {npc:14437} Gorzeeki Wildeyes · {zone:1448} Felwood
 	-- plural, as words: Shadowy Potions = {item:18802} Shadowy Potion
 	["Back to {npc:14436}, then hand his {item:18591} to {npc:14437} beside him. {npc:14436} then asks for three ritual pieces and {npc:14437} sends you to {zone:1448}: buy two Shadowy Potions from {npc:14437} for that trip."] = "回到{npc:14436}处，然后把他的{item:18591}交给他身旁的{npc:14437}。接着{npc:14436}要三件仪式物品，{npc:14437}会让你去{zone:1448}：为这趟行程从{npc:14437}处买两瓶暗影药水。",
 	-- {item:18591} Case of Blood
@@ -82,7 +82,7 @@ return {
 	["Use the {item:18688} at the alchemy lab"] = "在炼金实验室使用{item:18688}",
 
 	-- Step 15: Dreadsteed of Xoroth
-	-- {npc:14437} Gorzeeki Wildeyes · {npc:14436} Mor'zul · {item:18663} J'eevee's Jar · {item:18629} Black Lodestone · {item:18670} Xorothian Glyphs
+	-- {npc:14437} Gorzeeki Wildeyes · {npc:14436} Mor'zul Bloodbringer · {item:18663} J'eevee's Jar · {item:18629} Black Lodestone · {item:18670} Xorothian Glyphs
 	-- plural, as words: Soul Shards = {item:6265} Soul Shard
 	["Back to {npc:14437}, then {npc:14436} hands you his instructions for the ritual. Buy {item:18663}, the {item:18629} and the {item:18670} from {npc:14437}, and carry ten or more Soul Shards."] = "回到{npc:14437}处，然后{npc:14436}会交给你仪式说明。从{npc:14437}处购买{item:18663}、{item:18629}和{item:18670}，并携带十个或更多灵魂碎片。",
 

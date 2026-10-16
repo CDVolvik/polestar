@@ -79,19 +79,19 @@ return {
 	["{npc:10978}: {npc:7583} and {npc:10977} come later"] = "{npc:10978}：{npc:7583}和{npc:10977}稍後再找",
 
 	-- Step 14: Starfall Village
-	-- {npc:10301} Jaron
+	-- {npc:10301} Jaron Stoneshaper
 	["Ride west along the road to {npc:10301}."] = "沿著道路向西騎往{npc:10301}處。",
 
-	-- Step 15: Jaron's camp
-	-- {npc:10301} Jaron
+	-- Step 15: Jaron Stoneshaper's camp
+	-- {npc:10301} Jaron Stoneshaper
 	["{npc:10301}'s camp"] = "{npc:10301}的營地",
-	-- {npc:10301} Jaron · {area:2245} Mazthoril
+	-- {npc:10301} Jaron Stoneshaper · {area:2245} Mazthoril
 	["Ride south-east down the valley to {npc:10301}'s damaged crate in the snow at {area:2245}, with his wrecked wagon just east of it."] = "沿著山谷向東南騎往{area:2245}雪地中{npc:10301}的受損箱子，他的馬車殘骸就在它東邊。",
 
-	-- Step 16: Jaron's supplies
-	-- {npc:10301} Jaron
+	-- Step 16: Jaron Stoneshaper's supplies
+	-- {npc:10301} Jaron Stoneshaper
 	["{npc:10301}'s supplies"] = "{npc:10301}的補給物資",
-	-- {npc:10301} Jaron
+	-- {npc:10301} Jaron Stoneshaper
 	["Pick up the supplies around the wagon and take {npc:10301}'s amulet back from the owlbeasts nearby."] = "撿起馬車周圍的補給物資，並從附近的梟獸身上奪回{npc:10301}的護符。",
 
 	-- Step 17: Darkwhisper Gorge
@@ -124,7 +124,7 @@ return {
 
 	-- Step 27: Light's Hope Chapel
 	["Follow the road east across the zone to the chapel."] = "沿著道路向東穿過本區前往禮拜堂。",
-	-- {npc:11038} Caretaker Alen · {npc:12250} Zaeldarr
+	-- {npc:11038} Caretaker Alen · {npc:12250} Zaeldarr the Outcast
 	["{npc:11038}: {npc:12250} is a level 54 elite"] = "{npc:11038}：{npc:12250}是54級精英",
 
 	-- Step 28: Corin's Crossing
@@ -135,7 +135,7 @@ return {
 	["Free Darrowshire Spirits: talk to them"] = "解放達隆郡居民的靈魂：與他們交談",
 
 	-- Step 30: The Undercroft
-	-- {npc:12250} Zaeldarr · {area:2261} The Undercroft
+	-- {npc:12250} Zaeldarr the Outcast · {area:2261} The Undercroft
 	["{npc:12250} is elite: grouping up is advised. He waits at the bottom of the {area:2261}, the crypt in the south-west of the zone."] = "{npc:12250}是精英：建議組隊。他在本區西南部的地穴{area:2261}最底層等著。",
 
 	-- Step 31: Augustus the Touched

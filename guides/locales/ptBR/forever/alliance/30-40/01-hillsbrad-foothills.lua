@@ -66,7 +66,7 @@ return {
 
 	-- Step 12: The Villards
 	["The Villards"] = "Os Villard",
-	-- {npc:5683} Comar Villard · {area:205} Dun Modr · {area:881} Thandol Span · {npc:271322} Essene
+	-- {npc:5683} Comar Villard · {area:205} Dun Modr · {area:881} Thandol Span · {npc:271322} Essene Villard
 	["{npc:5683} waits north of {area:205} by the {area:881}; {npc:271322} a short walk further north-east."] = "{npc:5683} espera ao norte de {area:205}, perto de {area:881}; {npc:271322}, um pouco mais a nordeste.",
 
 	-- Step 13: Prospector Whelgar

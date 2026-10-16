@@ -33,7 +33,7 @@ return {
 	-- {npc:251373} Xyton Silverwind · {npc:251361} Rorian the Dayseeker
 	["{npc:251373}, the druid trainer, on the ground floor of the tree behind {npc:251361}"] = "드루이드 상급자 {npc:251373}: {npc:251361} 뒤편 나무의 1층",
 	["The class trainers stand together in the grove"] = "직업 상급자들은 숲에 함께 모여 있습니다",
-	-- {npc:257554} Halaan
+	-- {npc:257554} Halaan Hawk-Eye
 	["Listen to {npc:257554}"] = "{npc:257554}의 말을 들으세요",
 	-- {spell:1259416} Walk on Air
 	["Use {spell:1259416}"] = "{spell:1259416} 사용",
@@ -42,12 +42,12 @@ return {
 	-- {npc:251404} Cirrusfly Queen
 	-- plural, as words: Raw Windstones = {object:613286} Raw Windstone
 	["Raw Windstones and the {npc:251404}"] = "바람석 원석과 {npc:251404}",
-	-- {quest:92463} The Cirrusfly Queen · {npc:249363} Yala
+	-- {quest:92463} The Cirrusfly Queen · {npc:249363} Yala Windwatcher
 	-- plural, as words: Raw Windstones = {object:613286} Raw Windstone
 	["The Raw Windstones glitter on the ground just south of the grove. {quest:92463} hovers over the meadow further east, on the way to {npc:249363}."] = "바람석 원석은 숲 바로 남쪽 땅에서 반짝입니다. {quest:92463}은(는) 더 동쪽, {npc:249363}에게 가는 길의 초원 위를 맴돕니다.",
 
-	-- Step 5: Yala
-	-- {npc:249363} Yala · {npc:251143} Roiling Winds · {object:460002} Ley Line (no name in this language: may be words) · {spell:1259705} Read Leyline
+	-- Step 5: Yala Windwatcher
+	-- {npc:249363} Yala Windwatcher · {npc:251143} Roiling Winds · {object:460002} Ley Line (no name in this language: may be words) · {spell:1259705} Read Leyline
 	-- plural, as words: Al'Aketh Converts = {npc:251160} Al'Aketh Convert
 	["{npc:249363} keeps watch east of the grove. The {npc:251143} and Al'Aketh Converts gather just north of her; the {object:460002} rises further north: cast your {spell:1259705} racial ability at it."] = "{npc:249363}은(는) 숲 동쪽에서 망을 봅니다. {npc:251143}와(과) {npc:251160}이(가) 그녀 바로 북쪽에 모여 있고, 지맥은 더 북쪽에서 솟아오릅니다. 그곳에 종족 능력 {spell:1259705}을(를) 시전하세요.",
 	-- {spell:1259705} Read Leyline · {object:460002} Ley Line (no name in this language: may be words)
@@ -196,7 +196,7 @@ return {
 	["{npc:252373}, the mage trainer"] = "마법사 상급자 {npc:252373}",
 
 	-- Step 35: Taming the Beast
-	-- {item:15908} Taming Rod · {area:16638} Valanaar · {area:16626} Gustberry Lowlands · {npc:254411} Quel'dora
+	-- {item:15908} Taming Rod · {area:16638} Valanaar · {area:16626} Gustberry Lowlands · {npc:254411} Quel'dora Quickgale
 	-- plural, as words: Windsong Crawlers = {npc:254588} Windsong Crawler · Vuldren Alphas = {npc:250874} Vuldren Alpha · Ornery Galestriders = {npc:251707} Ornery Galestrider
 	["Each of Quel'ana's quests hands you a {item:15908}: use it on the beast she names, then bring the rod back to her in {area:16638}. Windsong Crawlers line the shore west of town; Vuldren Alphas and Ornery Galestriders roam the {area:16626} around the Windfield farm. Her sister {npc:254411} stands beside her."] = "퀠라나의 퀘스트는 각각 {item:15908}을(를) 줍니다. 그녀가 말한 야수에게 사용한 뒤, 막대를 {area:16638}에 있는 그녀에게 다시 가져가세요. 바람노래 집게발은 마을 서쪽 해안에 늘어서 있고, 벌드렌 우두머리와 심술궂은 돌풍타조는 윈드필드 농장 주변 {area:16626}을(를) 돌아다닙니다. 그녀의 자매 {npc:254411}이(가) 곁에 서 있습니다.",
 	-- {npc:254588} Windsong Crawler · {item:15908} Taming Rod
@@ -246,9 +246,9 @@ return {
 	-- Step 44: The Shrine of Akir
 	-- {area:16629} Shrine of Akir
 	["The {area:16629}"] = "{area:16629}",
-	-- {area:16629} Shrine of Akir · {npc:253576} Hyusaa Quickbreeze · {npc:253590} Valennia
+	-- {area:16629} Shrine of Akir · {npc:253576} Hyusaa Quickbreeze · {npc:253590} Valennia Stormfist
 	["Fight north to the {area:16629}. Guardians, Spiritcallers and Blademasters hold the approach; {npc:253576} waits at the shrine's door, {npc:253590} inside the inner sanctum."] = "싸우며 북쪽 {area:16629}(으)로 가세요. 알아케스 수호자, 알아케스 영혼소환사, 알아케스 검귀가 진입로를 지키고 있습니다. {npc:253576}은(는) 사당 문 앞에서, {npc:253590}은(는) 안쪽 성소에서 기다립니다.",
-	-- {npc:253590} Valennia
+	-- {npc:253590} Valennia Stormfist
 	["{npc:253590}, in the sanctum"] = "성소 안의 {npc:253590}",
 	-- {item:263993} Skybreaker Bulwark · {npc:257196} Zaal Stormshield
 	["{item:263993}: {npc:257196}, west of the shrine's approach"] = "{item:263993}: 사당 진입로 서쪽의 {npc:257196}",

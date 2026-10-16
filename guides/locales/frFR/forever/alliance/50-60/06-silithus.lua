@@ -19,7 +19,7 @@ return {
 	["The {area:2479}"] = "{area:2479}",
 	-- {area:415} Astranaar · {zone:1448} Felwood
 	["Ride north out of {area:415} into {zone:1448} to the druids' camp on the road just past the border."] = "Chevauchez vers le nord hors de {area:415} jusqu'en {zone:1448}, jusqu'au camp des druides sur la route juste après la frontière.",
-	-- {npc:9116} Eridan
+	-- {npc:9116} Eridan Bluewind
 	["Wait a moment for {npc:9116}"] = "Patientez un instant pour {npc:9116}",
 	-- {npc:10924} Ivy Leafrunner · {zone:1452} Winterspring
 	["{npc:10924}: ends in {zone:1452}, keep it"] = "{npc:10924} : se termine au {zone:1452}, gardez-la",
@@ -81,7 +81,7 @@ return {
 	["Take the road west down into the crater and ride to the {area:540}, the silithid cave in the south. The {npc:10041} waits in its deepest chamber."] = "Prenez la route vers l'ouest qui descend dans le cratère et chevauchez jusqu'à la {area:540}, la grotte silithide au sud. La {npc:10041} attend dans sa salle la plus profonde.",
 
 	-- Step 14: Fire Plume Ridge
-	-- {area:537} Fire Plume Ridge · {item:14644} Skeleton Key Mold · {npc:9616} Laris
+	-- {area:537} Fire Plume Ridge · {item:14644} Skeleton Key Mold · {npc:9616} Laris Geardawdle
 	-- plural, as words: Thorium Bars = {item:12359} Thorium Bar · Empty Pure Sample Jars = {item:11953} Empty Pure Sample Jar · Primal Oozes = {npc:6557} Primal Ooze
 	["Climb {area:537} in the middle of the crater and use the {item:14644} by the lava lake at the top, with two Thorium Bars in your bags. Fill {npc:9616}'s Empty Pure Sample Jars on the Primal Oozes in the pools around the ridge."] = "Gravissez {area:537}, au milieu du cratère, et utilisez le {item:14644} près du lac de lave au sommet, avec deux Barres de thorium dans vos sacs. Remplissez les Pots d'échantillon pur vides de {npc:9616} sur les Limons primitifs des mares autour de la crête.",
 	["Use the jars on slain oozes"] = "Utilisez les pots sur les limons tués",
@@ -141,7 +141,7 @@ return {
 
 	-- Step 24: Bronzebeard's Encampment
 	["Bronzebeard's Encampment"] = "Campement de Bronzebeard",
-	-- {npc:15171} Frankal Stonebridge · {npc:15170} Rutgar Glyphshaper · {npc:15190} Noggle
+	-- {npc:15171} Frankal Stonebridge · {npc:15170} Rutgar Glyphshaper · {npc:15190} Noggle Ficklespragg
 	["Ride south-west to the dwarves' camp near the southern mountains and question {npc:15171} and {npc:15170}. {npc:15190}'s satchel lies in the sand just south-east of the camp."] = "Chevauchez vers le sud-ouest jusqu'au camp des nains près des montagnes du sud et interrogez {npc:15171} et {npc:15170}. La Sacoche de {npc:15190} se trouve dans le sable juste au sud-est du camp.",
 
 	-- Step 25: The Twilight Post
@@ -229,9 +229,9 @@ return {
 	["{npc:3516}, atop the {area:1658}"] = "{npc:3516}, au sommet de {area:1658}",
 
 	-- Step 45: Stormwind
-	-- {area:702} Rut'theran Village · {area:442} Auberdine · {area:17203} Stormwind Harbor · {item:14047} Runecloth · {npc:14722} Clavicus
+	-- {area:702} Rut'theran Village · {area:442} Auberdine · {area:17203} Stormwind Harbor · {item:14047} Runecloth · {npc:14722} Clavicus Knavingham
 	["Go back down to {area:702}, take the boat to {area:442} and the boat on to {area:17203}. Bring sixty Silk, sixty Mageweave and sixty {item:14047} for {npc:14722}: buy what you lack at the Auction House."] = "Redescendez à {area:702}, prenez le bateau pour {area:442} puis le bateau pour {area:17203}. Apportez soixante Etoffes de soie, soixante Etoffes de tisse-mage et soixante {item:14047} pour {npc:14722} : achetez ce qui vous manque à l'hôtel des ventes.",
-	-- {npc:14722} Clavicus · {object:2096} Trade District (no name in this language: may be words)
+	-- {npc:14722} Clavicus Knavingham · {object:2096} Trade District (no name in this language: may be words)
 	["{npc:14722}, in the {object:2096}"] = "{npc:14722}, dans {object:2096}",
 
 	-- Step 46: Ironforge
@@ -251,7 +251,7 @@ return {
 	["Araj is elite: grouping up is advised."] = "Araj est élite : mieux vaut être en groupe.",
 
 	-- Step 49: Felstone Field
-	-- {npc:10778} Janice · {area:199} Felstone Field
+	-- {npc:10778} Janice Felstone · {area:199} Felstone Field
 	-- plural, as words: Jabbering Ghouls = {npc:10801} Jabbering Ghoul
 	["{npc:10778}'s ghost wanders by the farmhouse of {area:199}, west of Andorhal. The Jabbering Ghouls in the field carry the other half of the charm: combine the two halves."] = "Le fantôme de {npc:10778} erre près de la ferme de {area:199}, à l'ouest d'Andorhal. Les Goules jacassantes du champ portent l'autre moitié du charme : combinez les deux moitiés.",
 

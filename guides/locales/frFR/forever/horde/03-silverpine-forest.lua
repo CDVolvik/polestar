@@ -75,7 +75,7 @@ return {
 	["Follow the road north-east to the Yoricks' house at {area:238}."] = "Suivez la route vers le nord-est jusqu'à la maison des Yorick, à {area:238}.",
 
 	-- Step 14: Escorting Erland
-	-- {npc:1978} Deathstalker Erland · {npc:1950} Rane
+	-- {npc:1978} Deathstalker Erland · {npc:1950} Rane Yorick
 	["{npc:1978} waits north-east of the house. Escort him back to {npc:1950}; worgs attack on the way."] = "{npc:1978} attend au nord-est de la maison. Escortez-le jusqu'à {npc:1950} ; des worgs attaquent en chemin.",
 
 	-- Step 16: Worgs and murlocs

@@ -36,7 +36,7 @@ return {
 	["Ride on east along the road to the keep first: the {item:6091} expires an hour after {area:42}, and the bloodmages' beasts take longer than that."] = "先沿道路继续向东到城堡：{item:6091}在离开{area:42}一小时后失效，而血法师要的野兽需要更长时间。",
 	-- {quest:2990} Thadius Grimshade
 	["{quest:2990}, at the top of the keep"] = "{quest:2990}，在城堡顶层",
-	-- {npc:8022} Thadius · {item:9471} Nekrum's Medallion · {area:978} Zul'Farrak
+	-- {npc:8022} Thadius Grimshade · {item:9471} Nekrum's Medallion · {area:978} Zul'Farrak
 	["{npc:8022}' next task, {item:9471}, is a {area:978} quest: skip it."] = "{npc:8022}的下一个任务{item:9471}是{area:978}任务：跳过。",
 
 	-- Step 8: Boars and basilisks
@@ -73,7 +73,7 @@ return {
 	-- {area:144} Thelsamar · {area:150} Menethil Harbor · {area:442} Auberdine · {area:702} Rut'theran Village
 	["Fly from {area:144} to {area:150}, take the boat to {area:442} and fly to {area:702}."] = "从{area:144}飞往{area:150}，乘船前往{area:442}，再飞往{area:702}。",
 	["the book on her table"] = "她桌上的书",
-	-- {npc:7907} Daryn · {zone:1446} Tanaris
+	-- {npc:7907} Daryn Lightwind · {zone:1446} Tanaris
 	["{npc:7907}'s next errand goes to {zone:1446}: skip it."] = "{npc:7907}的下一个差事要去{zone:1446}：跳过。",
 	-- {npc:7916} Erelas Ambersky · {zone:1428} Burning Steppes
 	["{npc:7916}: keep it, the feathers come at the end of the {zone:1428} guide"] = "{npc:7916}：先留着，羽毛在{zone:1428}指南结尾获得",

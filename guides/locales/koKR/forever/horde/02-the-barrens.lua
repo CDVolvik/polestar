@@ -55,7 +55,7 @@ return {
 	["Burning Blade Cultists hold {area:1898} in northern {zone:1411}; they drop the {item:6652}. The {item:5026} comes from the Razormane on your next visit to their camp."] = "불타는칼날단 이교도는 {zone:1411} 북부의 {area:1898}을(를) 차지하고 있으며, {item:6652}을(를) 떨어뜨립니다. {item:5026}은(는) 다음에 서슬갈기일족 야영지에 갈 때 그들에게서 얻습니다.",
 
 	-- Step 13: Thun'grim Firegaze
-	-- {npc:5878} Thun'grim · {area:380} The Crossroads · {area:392} Ratchet · {object:58369} Stolen Iron Chest
+	-- {npc:5878} Thun'grim Firegaze · {area:380} The Crossroads · {area:392} Ratchet · {object:58369} Stolen Iron Chest
 	["{npc:5878} camps beside the road from the {area:380} to {area:392}. The {object:58369} sits in the south of the Razormane camp just north of him."] = "{npc:5878}은(는) {area:380}에서 {area:392}(으)로 가는 길가에 야영하고 있습니다. {object:58369}은(는) 그 바로 북쪽, 서슬갈기일족 야영지 남쪽에 있습니다.",
 
 	-- Step 14: Ratchet
@@ -151,14 +151,14 @@ return {
 	["The Witchwing Slayers hold the western {area:383}; they wear the rings."] = "칼날바람일족 암살자는 {area:383} 서부를 차지하고 있으며, 반지를 끼고 있습니다.",
 
 	-- Step 38: Wenikee Boltbucket
-	-- {area:1703} Mor'shan Rampart · {npc:9316} Wenikee
+	-- {area:1703} Mor'shan Rampart · {npc:9316} Wenikee Boltbucket
 	["East to the {area:1703}; {npc:9316} stands at the camp just south of it."] = "동쪽의 {area:1703}(으)로 가세요. {npc:9316}은(는) 그 바로 남쪽 야영지에 있습니다.",
 
 	-- Step 39: Nugget Slugs
-	-- {area:382} Sludge Fen · {npc:9316} Wenikee
+	-- {area:382} Sludge Fen · {npc:9316} Wenikee Boltbucket
 	["The tool buckets with the slugs lie around the Venture Co. drill site in the {area:382}, east of {npc:9316}."] = "민달팽이가 든 공구 양동이는 {npc:9316} 동쪽, {area:382}의 투자개발회사 시추 현장 주변에 있습니다.",
 
-	-- Step 40: Wenikee
+	-- Step 40: Wenikee Boltbucket
 	-- {quest:3923} Rilli Greasygob · {zone:1454} Orgrimmar
 	["Keep it: {quest:3923} stands outside {zone:1454}; a later guide hands it in"] = "보관하세요: {quest:3923}은(는) {zone:1454} 밖에 있으며, 나중 가이드에서 완료합니다",
 

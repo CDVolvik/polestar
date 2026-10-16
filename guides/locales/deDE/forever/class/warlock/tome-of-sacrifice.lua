@@ -7,11 +7,11 @@
 -- The comments are rewritten by sync.
 return {
 	-- Guide
-	-- {npc:14463} Daio · {npc:12396} Doomguard Commander · {zone:1419} Blasted Lands
+	-- {npc:14463} Daio the Decrepit · {npc:12396} Doomguard Commander · {zone:1419} Blasted Lands
 	["A rare off-hand at 60, {npc:14463}'s payment for capturing a {npc:12396} in the {zone:1419}."] = "Ein seltener Schildhand-Gegenstand mit 60, {npc:14463}s Lohn dafür, dass du einen {npc:12396} in den {zone:1419} einfängst.",
 
-	-- Step 1: Daio
-	-- {npc:14463} Daio · {area:73} Tainted Scar · {zone:1419} Blasted Lands
+	-- Step 1: Daio the Decrepit
+	-- {npc:14463} Daio the Decrepit · {area:73} Tainted Scar · {zone:1419} Blasted Lands
 	["At 60 {npc:14463} waits in the {area:73}, in western {zone:1419}."] = "Mit 60 wartet {npc:14463} in der {area:73} im Westen der {zone:1419}.",
 
 	-- Step 2: Satyr Blood
@@ -25,12 +25,12 @@ return {
 	["The Hederine demons hold {area:2256}, in southern {zone:1452}. They are elite: grouping up is advised."] = "Die Dämonen von Hederine halten die {area:2256} im Süden von {zone:1452}. Sie sind Elite: Eine Gruppe wird empfohlen.",
 
 	-- Step 4: Suppression
-	-- {npc:14463} Daio · {npc:12396} Doomguard Commander · {area:73} Tainted Scar · {item:18601} Glowing Crystal Prison
+	-- {npc:14463} Daio the Decrepit · {npc:12396} Doomguard Commander · {area:73} Tainted Scar · {item:18601} Glowing Crystal Prison
 	["Hand both in to {npc:14463}, then find the {npc:12396} in the {area:73} and use the {item:18601} on him. He is elite and fights to escape: grouping up is advised."] = "Gib beides bei {npc:14463} dem Klapprigen ab, such dann den {npc:12396} in der {area:73} und benutze {item:18601} an ihm. Er ist Elite und kämpft um seine Flucht: Eine Gruppe wird empfohlen.",
 	-- {item:18601} Glowing Crystal Prison · {npc:12396} Doomguard Commander
 	["{item:18601}, on the {npc:12396}"] = "{item:18601}, am {npc:12396}",
 
-	-- Step 5: Back to Daio
-	-- {npc:14463} Daio
+	-- Step 5: Back to Daio the Decrepit
+	-- {npc:14463} Daio the Decrepit
 	["Back to {npc:14463}"] = "Zurück zu {npc:14463} dem Klapprigen",
 }

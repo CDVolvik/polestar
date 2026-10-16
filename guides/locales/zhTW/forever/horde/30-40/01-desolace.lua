@@ -58,11 +58,11 @@ return {
 	["The caravan rolls south past {area:609}. Kolkar raiders ambush it in waves: kill them before they reach {npc:11625}. It stops by {area:2617}, east of {area:597}."] = "商隊向南經過{area:609}。科卡爾掠奪者會一波波伏擊：在他們接近{npc:11625}之前殺掉。商隊停在{area:597}東邊的{area:2617}旁。",
 
 	-- Step 12: Ghost Walker Post
-	-- {npc:5395} Felgur · {npc:5641} Takata Steelblade · {npc:4498} Maurin Bonesplitter · {area:596} Kodo Graveyard
+	-- {npc:5395} Felgur Twocuts · {npc:5641} Takata Steelblade · {npc:4498} Maurin Bonesplitter · {area:596} Kodo Graveyard
 	["{npc:5395} stands in the post; {npc:5641} and {npc:4498} wait on the rise west of it, above the {area:596}."] = "{npc:5395}站在哨站裡；{npc:5641}和{npc:4498}在哨站西邊、{area:596}上方的高地等著。",
 
 	-- Step 13: Kodo Roundup
-	-- {npc:11596} Smeed · {item:13892} Kodo Kombobulator · {npc:4702} Ancient Kodo
+	-- {npc:11596} Smeed Scrabblescrew · {item:13892} Kodo Kombobulator · {npc:4702} Ancient Kodo
 	["Use {npc:11596}'s {item:13892} on an Aged, Dying or {npc:4702} in the graveyard and walk the tamed kodo back to {npc:11596}. Five kodos, one at a time."] = "對墓地裡的老邁的科多獸、瀕死的科多獸或{npc:4702}使用{npc:11596}的{item:13892}，把馴服的科多獸帶回給{npc:11596}。共五隻，一次一隻。",
 
 	-- Step 14: Khan Dez'hepah

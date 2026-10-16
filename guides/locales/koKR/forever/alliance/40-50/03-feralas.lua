@@ -80,7 +80,7 @@ return {
 
 	-- Step 17: Rage Scar yetis
 	["Rage Scar yetis"] = "분노한 무쇠설인",
-	-- {quest:7735} Pristine Yeti Hide · {npc:7852} Pratt
+	-- {quest:7735} Pristine Yeti Hide · {npc:7852} Pratt McGrubben
 	["Ride back west along the road, then north into the Rage Scar hills. Every yeti here can drop a hide; one may drop a {quest:7735}, which {npc:7852} pays for too."] = "길을 따라 서쪽으로 돌아간 다음 북쪽 무쇠설인 소굴 언덕으로 가십시오. 이곳의 설인은 모두 가죽을 떨어뜨릴 수 있고, {quest:7735}이(가) 나올 수도 있습니다. 이것도 {npc:7852}이(가) 값을 쳐 줍니다.",
 
 	-- Step 18: Rockbiter
@@ -104,17 +104,17 @@ return {
 	-- Step 22: Zul'Farrak instead of grinding
 	-- {area:978} Zul'Farrak
 	["{area:978} instead of grinding"] = "사냥 대신 {area:978}",
-	-- {area:978} Zul'Farrak · {zone:1446} Tanaris · {npc:14637} Zorbin · {area:1108} Forgotten Coast
+	-- {area:978} Zul'Farrak · {zone:1446} Tanaris · {npc:14637} Zorbin Fandazzle · {area:1108} Forgotten Coast
 	["Running {area:978} instead of grinding gets you there faster in a group. The troll city lies in northern {zone:1446}, the next zone on the route; come back to {npc:14637} on the {area:1108} afterwards."] = "파티로 사냥 대신 {area:978}을(를) 돌면 더 빨리 도달합니다. 트롤 도시는 경로상 다음 지역인 {zone:1446} 북쪽에 있습니다. 그 후 {area:1108}의 {npc:14637}에게 돌아오십시오.",
 
 	-- Step 23: Grind to 45
 	["Grind to 45"] = "45레벨까지 사냥",
-	-- {area:1108} Forgotten Coast · {area:1105} Feral Scar Vale · {npc:14637} Zorbin
+	-- {area:1108} Forgotten Coast · {area:1105} Feral Scar Vale · {npc:14637} Zorbin Fandazzle
 	["Boat to the {area:1108} and ride east into {area:1105}. {npc:14637}'s quests on the coast need level 45."] = "배를 타고 {area:1108}(으)로 가서 동쪽 {area:1105}(으)로 가십시오. 해안에 있는 {npc:14637}의 퀘스트는 45레벨이 필요합니다.",
 	-- {npc:5292} Feral Scar Yeti · {area:1105} Feral Scar Vale · {zone:1444} Feralas
 	["grind on {npc:5292} at {area:1105}, {zone:1444}"] = "{zone:1444} {area:1105}에서 {npc:5292} 사냥",
 
-	-- Step 24: Zorbin
+	-- Step 24: Zorbin Fandazzle
 	-- {area:1108} Forgotten Coast
 	["Ride back to the {area:1108}; the goblin stands by the dock."] = "{area:1108}(으)로 돌아가십시오. 고블린은 부두 옆에 있습니다.",
 
@@ -124,8 +124,8 @@ return {
 	-- plural, as words: Shore Striders = {npc:5359} Shore Strider · Deep Striders = {npc:5360} Deep Strider · Wave Striders = {npc:5361} Wave Strider · Sea Elementals = {npc:5461} Sea Elemental · Sea Sprays = {npc:5462} Sea Spray
 	["Shore Striders, Deep Striders and Wave Striders (elite giants) wade along the coast north of the dock: zap one with {item:18904} and kill the shrunken giant. Sea Elementals and Sea Sprays drift in the same surf."] = "성큼걸이 해안거인, 성큼걸이 바다거인, 성큼걸이 파도거인(정예 거인)이 부두 북쪽 해안을 걸어다닙니다: {item:18904}(으)로 하나를 쏘고 작아진 거인을 처치하십시오. 바다 정령과 바다 물보라 정령도 같은 파도 속을 떠다닙니다.",
 
-	-- Step 26: Zorbin
-	-- {npc:14637} Zorbin
+	-- Step 26: Zorbin Fandazzle
+	-- {npc:14637} Zorbin Fandazzle
 	["{npc:14637}'s refills are level 55: skip them."] = "{npc:14637}의 재충전 퀘스트는 55레벨입니다: 건너뛰십시오.",
 	-- {area:1108} Forgotten Coast · {zone:1446} Tanaris
 	["You end at the {area:1108} dock: the {zone:1446} guide starts with the trip east from here."] = "{area:1108} 부두에서 끝납니다: {zone:1446} 가이드는 여기서 동쪽으로 가는 길로 시작합니다.",

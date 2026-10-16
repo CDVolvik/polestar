@@ -36,7 +36,7 @@ return {
 	["Ride on east along the road to the keep first: the {item:6091} expires an hour after {area:42}, and the bloodmages' beasts take longer than that."] = "Siga primeiro pela estrada para o leste até a fortaleza: o {item:6091} expira uma hora depois de {area:42}, e as feras dos Magos Sangrentos levam mais tempo que isso.",
 	-- {quest:2990} Thadius Grimshade
 	["{quest:2990}, at the top of the keep"] = "{quest:2990}, no alto da fortaleza",
-	-- {npc:8022} Thadius · {item:9471} Nekrum's Medallion · {area:978} Zul'Farrak
+	-- {npc:8022} Thadius Grimshade · {item:9471} Nekrum's Medallion · {area:978} Zul'Farrak
 	["{npc:8022}' next task, {item:9471}, is a {area:978} quest: skip it."] = "A próxima tarefa de {npc:8022}, {item:9471}, é uma missão de {area:978}: pule.",
 
 	-- Step 8: Boars and basilisks
@@ -73,7 +73,7 @@ return {
 	-- {area:144} Thelsamar · {area:150} Menethil Harbor · {area:442} Auberdine · {area:702} Rut'theran Village
 	["Fly from {area:144} to {area:150}, take the boat to {area:442} and fly to {area:702}."] = "Voe de {area:144} para {area:150}, pegue o barco para {area:442} e voe para {area:702}.",
 	["the book on her table"] = "o livro na mesa dela",
-	-- {npc:7907} Daryn · {zone:1446} Tanaris
+	-- {npc:7907} Daryn Lightwind · {zone:1446} Tanaris
 	["{npc:7907}'s next errand goes to {zone:1446}: skip it."] = "A próxima tarefa de {npc:7907} vai para {zone:1446}: pule.",
 	-- {npc:7916} Erelas Ambersky · {zone:1428} Burning Steppes
 	["{npc:7916}: keep it, the feathers come at the end of the {zone:1428} guide"] = "{npc:7916}: guarde-a; as penas vêm no fim do guia de {zone:1428}",

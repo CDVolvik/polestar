@@ -121,7 +121,7 @@ return {
 	["Follow the west coast north; the haunted island lies off the shore west of Nesingwary's camp. Just reach it."] = "沿西海岸向北；闹鬼的小岛在奈辛瓦里营地西边的近海。到达即可。",
 
 	-- Step 26: Nesingwary's Expedition
-	-- {npc:716} Barnil · {item:2755} Green Hills of Stranglethorn
+	-- {npc:716} Barnil Stonepot · {item:2755} Green Hills of Stranglethorn
 	["{npc:716} collects the {item:2755}: the pages drop from almost every humanoid in the jungle. Turn the pages into chapters as you go."] = "{npc:716}收集{item:2755}：丛林中几乎所有人型怪都会掉落书页。边走边把书页合成章节。",
 
 	-- Step 28: Kurzen's Compound

@@ -47,10 +47,10 @@ return {
 	-- {npc:5644} Dalinda Malem · {area:608} Nijel's Point
 	["{npc:5644} hides inside the Burning Blade's fortress south-west of {area:608}."] = "{npc:5644} прячется в крепости клана Пылающего Клинка к юго-западу (ориентир: {area:608}).",
 
-	-- Step 12: Tyranis and the Seer
-	-- {npc:5643} Tyranis
+	-- Step 12: Tyranis Malem and the Seer
+	-- {npc:5643} Tyranis Malem
 	["{npc:5643} and the Seer"] = "{npc:5643} и Провидец",
-	-- {npc:5643} Tyranis · {npc:13019} Burning Blade Seer
+	-- {npc:5643} Tyranis Malem · {npc:13019} Burning Blade Seer
 	["Her brother {npc:5643} (36) walks the fortress with the Burning Blade cultists (30-33): pull him alone. The {npc:13019} keeps the sceptre in the fortress's main building."] = "Ее брат {npc:5643} (36) ходит по крепости с культистами (Пылающий Клинок, 30-33): выманите его одного. {npc:13019} хранит скипетр в главном здании крепости.",
 
 	-- Step 13: Escort Dalinda Malem

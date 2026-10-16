@@ -36,7 +36,7 @@ return {
 	["The owlbeasts of {zone:1452} drop the blood, about one in three: the Ragged and Raging Owlbeasts west of and around {area:2255}, the Crazed, Moontouched and {spell:417141} ones in the east. While you hunt, start on the materials of the next step: the Auction House has them all."] = "Las lechubestias de {zone:1452} sueltan la sangre, más o menos una de cada tres: las Lechubestias andrajosas y enfurecidas al oeste y alrededor de {area:2255}; las enloquecidas, lunadón y {spell:417141}, en el este. Mientras cazas, empieza con los materiales del paso siguiente: la casa de subastas los tiene todos.",
 
 	-- Step 7: Wildeyes
-	-- {npc:14436} Mor'zul · {item:18591} Case of Blood · {npc:14437} Gorzeeki Wildeyes · {zone:1448} Felwood
+	-- {npc:14436} Mor'zul Bloodbringer · {item:18591} Case of Blood · {npc:14437} Gorzeeki Wildeyes · {zone:1448} Felwood
 	-- plural, as words: Shadowy Potions = {item:18802} Shadowy Potion
 	["Back to {npc:14436}, then hand his {item:18591} to {npc:14437} beside him. {npc:14436} then asks for three ritual pieces and {npc:14437} sends you to {zone:1448}: buy two Shadowy Potions from {npc:14437} for that trip."] = "Vuelve con {npc:14436} y entrega su {item:18591} a {npc:14437}, a su lado. {npc:14436} pide entonces tres piezas del ritual y {npc:14437} te envía a {zone:1448}: cómprale a {npc:14437} dos Pociones enigmáticas para ese viaje.",
 	-- {item:18591} Case of Blood
@@ -82,7 +82,7 @@ return {
 	["Use the {item:18688} at the alchemy lab"] = "Usa el {item:18688} en el laboratorio de alquimia",
 
 	-- Step 15: Dreadsteed of Xoroth
-	-- {npc:14437} Gorzeeki Wildeyes · {npc:14436} Mor'zul · {item:18663} J'eevee's Jar · {item:18629} Black Lodestone · {item:18670} Xorothian Glyphs
+	-- {npc:14437} Gorzeeki Wildeyes · {npc:14436} Mor'zul Bloodbringer · {item:18663} J'eevee's Jar · {item:18629} Black Lodestone · {item:18670} Xorothian Glyphs
 	-- plural, as words: Soul Shards = {item:6265} Soul Shard
 	["Back to {npc:14437}, then {npc:14436} hands you his instructions for the ritual. Buy {item:18663}, the {item:18629} and the {item:18670} from {npc:14437}, and carry ten or more Soul Shards."] = "Vuelve con {npc:14437}; después {npc:14436} te da sus instrucciones para el ritual. Compra {item:18663}, la {item:18629} y los {item:18670} a {npc:14437}, y lleva diez o más Fragmentos de alma.",
 

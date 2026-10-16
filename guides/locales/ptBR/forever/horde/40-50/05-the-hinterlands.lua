@@ -54,10 +54,10 @@ return {
 	-- {area:272} Tarren Mill
 	["Fly to {area:272}"] = "Voe para {area:272}",
 
-	-- Step 10: Gilveradin's camp
-	-- {npc:7801} Gilveradin
+	-- Step 10: Gilveradin Sunchaser's camp
+	-- {npc:7801} Gilveradin Sunchaser
 	["{npc:7801}'s camp"] = "O acampamento de {npc:7801}",
-	-- {area:272} Tarren Mill · {zone:1425} The Hinterlands · {npc:7801} Gilveradin · {area:350} Quel'Danil Lodge
+	-- {area:272} Tarren Mill · {zone:1425} The Hinterlands · {npc:7801} Gilveradin Sunchaser · {area:350} Quel'Danil Lodge
 	["Ride north-east from {area:272} into the {zone:1425} and east along the road; {npc:7801} camps on the hill south of the elves' {area:350}."] = "Siga para nordeste saindo de {area:272} até as {zone:1425} e para leste pela estrada; {npc:7801} acampa na colina ao sul do {area:350} dos elfos.",
 
 	-- Step 11: Highvale
@@ -107,7 +107,7 @@ return {
 
 	-- Step 20: The central hills
 	["The central hills"] = "As colinas centrais",
-	-- {area:351} Skulk Rock · {item:9618} Wildkin Muisek Vessel · {npc:14738} Otho
+	-- {area:351} Skulk Rock · {item:9618} Wildkin Muisek Vessel · {npc:14738} Otho Moji'ko
 	-- plural, as words: Silvermane Stalkers = {npc:2926} Silvermane Stalker · Savage Owlbeasts = {npc:2929} Savage Owlbeast · Razorbeak Skylords = {npc:2659} Razorbeak Skylord · Long Elegant Feathers = {item:4589} Long Elegant Feather
 	["The Silvermane Stalkers, Savage Owlbeasts and Razorbeak Skylords share the hills between the temples and {area:351}. Use the {item:9618} on the owlbeasts you kill. The Skylords also drop Long Elegant Feathers: keep ten for {npc:14738}'s second message."] = "Os Espreitadores Jubaprata, as Ferujas Selvagens e os Senhores Celestes Bicavalha dividem as colinas entre os templos e {area:351}. Use o {item:9618} nas ferujas que matar. Os Senhores Celestes também derrubam Penas Longas Elegantes: guarde dez para a segunda mensagem de {npc:14738}.",
 
@@ -130,7 +130,7 @@ return {
 	-- {area:350} Quel'Danil Lodge
 	["Back west to {area:350}; rangers and marksmen stay near the lodge, scouts and outrunners on the slopes south of it."] = "Volte para oeste até o {area:350}; patrulheiros e atiradores ficam perto do pavilhão, batedores e vanguardeiros nas encostas ao sul dele.",
 
-	-- Step 25: Gilveradin's camp
+	-- Step 25: Gilveradin Sunchaser's camp
 	-- {npc:6986} Dran Droffers · {zone:1454} Orgrimmar
 	["for {npc:6986} in {zone:1454}, around level 50"] = "para {npc:6986} em {zone:1454}, por volta do nível 50",
 

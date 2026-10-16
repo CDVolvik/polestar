@@ -24,7 +24,7 @@ return {
 	["Ryedol's next errand goes into {area:1517}: skip it."] = "Следующее поручение Ржанца ведет сюда: {area:1517}. Пропустите его.",
 
 	-- Step 5: Valley of Fangs
-	-- {npc:4618} Martek · {npc:2817} Rigglefuzz · {area:1877} Valley of Fangs · {zone:1418} Badlands
+	-- {npc:4618} Martek the Exiled · {npc:2817} Rigglefuzz · {area:1877} Valley of Fangs · {zone:1418} Badlands
 	["{npc:4618} and {npc:2817} camp together in the {area:1877}, in the middle of the {zone:1418}."] = "{npc:4618} и {npc:2817} стоят лагерем вместе ({area:1877}), в центре зоны {zone:1418}.",
 	["The clams lie on Stranglethorn's north-west coast, in the next guide: keep it"] = "Моллюски – на северо-западном побережье Тернистой долины, в следующем гайде: сохраните задание",
 
@@ -112,7 +112,7 @@ return {
 	["{npc:12369}, a centaur chieftain, camps on the north-west coast, north of {npc:11863}'s tower."] = "{npc:12369}, вождь кентавров, стоит лагерем на северо-западном побережье, к северу от башни {npc:11863}.",
 
 	-- Step 27: Nijel's Point
-	-- {npc:5638} Kreldig · {item:6245} Karnitol's Satchel
+	-- {npc:5638} Kreldig Ungor · {item:6245} Karnitol's Satchel
 	["{npc:5638}'s next task, {item:6245}, is a drop on the far coast: skip it."] = "Следующее задание {npc:5638}, {item:6245}, – добыча на дальнем побережье: пропустите его.",
 
 	-- Step 28: Bibbly F'utzbuckle
@@ -120,7 +120,7 @@ return {
 	["Follow the road south to {area:2407}."] = "Идите по дороге на юг. Цель: {area:2407}.",
 
 	-- Step 29: Kodo Graveyard
-	-- {npc:6019} Hornizz · {area:596} Kodo Graveyard · {area:2407} Kormek's Hut · {object:176751} Kodo Bones · {npc:217590} Flesh Picker
+	-- {npc:6019} Hornizz Brimbuzzle · {area:596} Kodo Graveyard · {area:2407} Kormek's Hut · {object:176751} Kodo Bones · {npc:217590} Flesh Picker
 	["{npc:6019} stands at the edge of the {area:596}, south-west of {area:2407}; {object:176751} lie among the skeletons. A {npc:217590} crawls about the graveyard: catch one with the Entomology Starter Kit, then tick it off."] = "{npc:6019} стоит на краю места {area:596}, к юго-западу (ориентир: {area:2407}); {object:176751} лежат среди скелетов. По кладбищу ползает {npc:217590}: поймайте одного с помощью набора начинающего энтомолога и отметьте цель.",
 	-- {npc:217590} Flesh Picker
 	["{npc:217590}: catch it, for My Little Friends"] = "{npc:217590}: поймайте для задания «Мои маленькие друзья»",
@@ -137,7 +137,7 @@ return {
 	["escort {npc:12277} back toward the graveyard"] = "сопроводите {npc:12277} обратно к кладбищу",
 
 	-- Step 33: Gizelton Caravan
-	-- {npc:11626} Rigger Gizelton · {area:606} Gelkis Village · {area:602} Mannoroc Coven · {npc:11596} Smeed · {area:596} Kodo Graveyard
+	-- {npc:11626} Rigger Gizelton · {area:606} Gelkis Village · {area:602} Mannoroc Coven · {npc:11596} Smeed Scrabblescrew · {area:596} Kodo Graveyard
 	["{npc:11626}'s caravan stops on the road east of {area:606}. Take the quest and walk with the kodos past the {area:602}, killing the demons that jump them; talk to {npc:11596} at his camp east of the {area:596} afterwards."] = "Караван (это {npc:11626}) останавливается на дороге к востоку (ориентир: {area:606}). Возьмите задание и идите с кодо мимо места {area:602}, убивая нападающих демонов; потом поговорите со {npc:11596} в его лагере к востоку (ориентир: {area:596}).",
 
 	-- Step 34: Mannoroc Coven

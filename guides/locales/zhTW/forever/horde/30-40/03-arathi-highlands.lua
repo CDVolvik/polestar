@@ -138,7 +138,7 @@ return {
 	["{quest:1106}: Fizzle's letter from the {area:439}"] = "{quest:1106}：來自{area:439}的菲茲爾·銅栓的信",
 
 	-- Step 30: The Dustbowl
-	-- {npc:2921} Lotwil · {area:1878} The Dustbowl · {area:340} Kargath
+	-- {npc:2921} Lotwil Veriatus · {area:1878} The Dustbowl · {area:340} Kargath
 	["Ride west along the road; {npc:2921}'s camp sits in the {area:1878} halfway to {area:340}."] = "沿著道路向西騎；{npc:2921}的營地在前往{area:340}半路上的{area:1878}。",
 
 	-- Step 31: Kargath
@@ -150,7 +150,7 @@ return {
 	-- Step 32: Lesser Rock Elementals
 	-- plural, as words: Lesser Rock Elementals = {npc:2735} Lesser Rock Elemental
 	["Lesser Rock Elementals"] = "次級石元素",
-	-- {npc:2921} Lotwil · {npc:6868} Jarkal
+	-- {npc:2921} Lotwil Veriatus · {npc:6868} Jarkal Mossmeld
 	-- plural, as words: Rock Elemental Shards = {item:7848} Rock Elemental Shard
 	["The small elementals drift across the flats just west of {npc:2921}'s camp. Every rock elemental in the zone can drop {npc:6868}'s Rock Elemental Shards: keep them."] = "小型元素在{npc:2921}營地西邊的平地上漂移。本區每個石元素都可能掉落{npc:6868}要的石元素的碎片：保留它們。",
 
@@ -191,7 +191,7 @@ return {
 	["Theldurin sits among the dwarven ruins at {area:345}, south of the {area:1877}."] = "塞爾杜林坐在{area:1877}南邊{area:345}的矮人遺跡中。",
 
 	-- Step 43: Valley of Fangs
-	-- {npc:4618} Martek
+	-- {npc:4618} Martek the Exiled
 	["Follow the road north; {npc:4618}'s camp is on the way."] = "沿著道路向北走；{npc:4618}的營地就在路上。",
 
 	-- Step 44: Ancient Chest
@@ -218,7 +218,7 @@ return {
 	["Your trainer is in {area:1638}, one flight from {zone:1454}: {npc:3033} (Druids) on {area:1639}, {npc:246344} (Paladins). Fly on to the {area:380} from there."] = "你的訓練師在{area:1638}，從{zone:1454}飛一趟即可抵達：{npc:3033}（德魯伊）在{area:1639}，{npc:246344}（聖騎士）。然後從那裡飛往{area:380}。",
 
 	-- Step 51: Regthar Deathgate
-	-- {area:380} Crossroads · {area:386} Forgotten Pools · {npc:3389} Regthar
+	-- {area:380} Crossroads · {area:386} Forgotten Pools · {npc:3389} Regthar Deathgate
 	["Ride north up the road from the {area:380} to the {area:386}; {npc:3389} keeps watch on the rise above the water."] = "沿著道路從{area:380}向北騎往{area:386}；{npc:3389}在水邊上方的高地守望。",
 	-- {npc:5395} Felgur Twocuts · {zone:1443} Desolace
 	["for {npc:5395} in {zone:1443}, in the next guide"] = "給{zone:1443}的{npc:5395}，在下一份指南中",

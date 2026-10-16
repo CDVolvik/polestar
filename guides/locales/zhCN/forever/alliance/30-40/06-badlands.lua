@@ -24,7 +24,7 @@ return {
 	["Ryedol's next errand goes into {area:1517}: skip it."] = "勘察员雷杜尔的下一个差事要进入{area:1517}：跳过。",
 
 	-- Step 5: Valley of Fangs
-	-- {npc:4618} Martek · {npc:2817} Rigglefuzz · {area:1877} Valley of Fangs · {zone:1418} Badlands
+	-- {npc:4618} Martek the Exiled · {npc:2817} Rigglefuzz · {area:1877} Valley of Fangs · {zone:1418} Badlands
 	["{npc:4618} and {npc:2817} camp together in the {area:1877}, in the middle of the {zone:1418}."] = "{npc:4618}和{npc:2817}一起在{zone:1418}中部的{area:1877}扎营。",
 	["The clams lie on Stranglethorn's north-west coast, in the next guide: keep it"] = "蚌壳在荆棘谷西北海岸，在下一份指南里：先留着",
 
@@ -112,7 +112,7 @@ return {
 	["{npc:12369}, a centaur chieftain, camps on the north-west coast, north of {npc:11863}'s tower."] = "{npc:12369}是一个半人马首领，在{npc:11863}的塔北边的西北海岸扎营。",
 
 	-- Step 27: Nijel's Point
-	-- {npc:5638} Kreldig · {item:6245} Karnitol's Satchel
+	-- {npc:5638} Kreldig Ungor · {item:6245} Karnitol's Satchel
 	["{npc:5638}'s next task, {item:6245}, is a drop on the far coast: skip it."] = "{npc:5638}的下一个任务{item:6245}是远处海岸的掉落物：跳过。",
 
 	-- Step 28: Bibbly F'utzbuckle
@@ -120,7 +120,7 @@ return {
 	["Follow the road south to {area:2407}."] = "沿道路向南到{area:2407}。",
 
 	-- Step 29: Kodo Graveyard
-	-- {npc:6019} Hornizz · {area:596} Kodo Graveyard · {area:2407} Kormek's Hut · {object:176751} Kodo Bones · {npc:217590} Flesh Picker
+	-- {npc:6019} Hornizz Brimbuzzle · {area:596} Kodo Graveyard · {area:2407} Kormek's Hut · {object:176751} Kodo Bones · {npc:217590} Flesh Picker
 	["{npc:6019} stands at the edge of the {area:596}, south-west of {area:2407}; {object:176751} lie among the skeletons. A {npc:217590} crawls about the graveyard: catch one with the Entomology Starter Kit, then tick it off."] = "{npc:6019}站在{area:2407}西南方的{area:596}边缘；{object:176751}散落在骨架之间。一只{npc:217590}在墓地里爬行：用Entomology Starter Kit抓住一只，然后勾选完成。",
 	-- {npc:217590} Flesh Picker
 	["{npc:217590}: catch it, for My Little Friends"] = "{npc:217590}：抓住它，用于My Little Friends",
@@ -137,7 +137,7 @@ return {
 	["escort {npc:12277} back toward the graveyard"] = "护送{npc:12277}回到墓地",
 
 	-- Step 33: Gizelton Caravan
-	-- {npc:11626} Rigger Gizelton · {area:606} Gelkis Village · {area:602} Mannoroc Coven · {npc:11596} Smeed · {area:596} Kodo Graveyard
+	-- {npc:11626} Rigger Gizelton · {area:606} Gelkis Village · {area:602} Mannoroc Coven · {npc:11596} Smeed Scrabblescrew · {area:596} Kodo Graveyard
 	["{npc:11626}'s caravan stops on the road east of {area:606}. Take the quest and walk with the kodos past the {area:602}, killing the demons that jump them; talk to {npc:11596} at his camp east of the {area:596} afterwards."] = "{npc:11626}的车队停在{area:606}东边的路上。接下任务，跟着科多兽经过{area:602}，击杀袭击它们的恶魔；之后到{area:596}东边的营地与{npc:11596}交谈。",
 
 	-- Step 34: Mannoroc Coven

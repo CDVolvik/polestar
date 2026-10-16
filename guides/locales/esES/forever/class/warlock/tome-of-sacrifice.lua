@@ -7,11 +7,11 @@
 -- The comments are rewritten by sync.
 return {
 	-- Guide
-	-- {npc:14463} Daio · {npc:12396} Doomguard Commander · {zone:1419} Blasted Lands
+	-- {npc:14463} Daio the Decrepit · {npc:12396} Doomguard Commander · {zone:1419} Blasted Lands
 	["A rare off-hand at 60, {npc:14463}'s payment for capturing a {npc:12396} in the {zone:1419}."] = "Un objeto de mano izquierda raro a nivel 60, el pago de {npc:14463} por capturar a un {npc:12396} en {zone:1419}.",
 
-	-- Step 1: Daio
-	-- {npc:14463} Daio · {area:73} Tainted Scar · {zone:1419} Blasted Lands
+	-- Step 1: Daio the Decrepit
+	-- {npc:14463} Daio the Decrepit · {area:73} Tainted Scar · {zone:1419} Blasted Lands
 	["At 60 {npc:14463} waits in the {area:73}, in western {zone:1419}."] = "A nivel 60 {npc:14463} espera en {area:73}, al oeste de {zone:1419}.",
 
 	-- Step 2: Satyr Blood
@@ -25,12 +25,12 @@ return {
 	["The Hederine demons hold {area:2256}, in southern {zone:1452}. They are elite: grouping up is advised."] = "Los demonios Hederine ocupan {area:2256}, al sur de {zone:1452}. Son élite: se recomienda ir en grupo.",
 
 	-- Step 4: Suppression
-	-- {npc:14463} Daio · {npc:12396} Doomguard Commander · {area:73} Tainted Scar · {item:18601} Glowing Crystal Prison
+	-- {npc:14463} Daio the Decrepit · {npc:12396} Doomguard Commander · {area:73} Tainted Scar · {item:18601} Glowing Crystal Prison
 	["Hand both in to {npc:14463}, then find the {npc:12396} in the {area:73} and use the {item:18601} on him. He is elite and fights to escape: grouping up is advised."] = "Entrégale ambas cosas a {npc:14463}, luego busca al {npc:12396} en {area:73} y usa la {item:18601} en él. Es élite y lucha por escapar: se recomienda ir en grupo.",
 	-- {item:18601} Glowing Crystal Prison · {npc:12396} Doomguard Commander
 	["{item:18601}, on the {npc:12396}"] = "{item:18601}, en el {npc:12396}",
 
-	-- Step 5: Back to Daio
-	-- {npc:14463} Daio
+	-- Step 5: Back to Daio the Decrepit
+	-- {npc:14463} Daio the Decrepit
 	["Back to {npc:14463}"] = "Vuelve con {npc:14463}",
 }

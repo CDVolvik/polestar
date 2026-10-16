@@ -53,7 +53,7 @@ return {
 	["The cemetery lies north of the village. Skeletal Horrors and Skeletal Fiends walk its southern half. {npc:522}, an elite, wanders the graves: keep away from him."] = "墓地在村莊北邊。恐怖骸骨和骸骨魔在墓地南半部走動。精英{npc:522}在墓地之間遊蕩：遠離他。",
 
 	-- Step 8: Sven's Camp
-	-- {npc:311} Sven · {npc:893} Lars
+	-- {npc:311} Sven Yorgen · {npc:893} Lars
 	["Follow the road north-west past the cemetery to {npc:311}'s camp on the far west edge of the forest. {npc:893} stands beside {npc:311}."] = "沿著道路向西北經過墓地，前往森林最西緣的{npc:311}營地。{npc:893}站在{npc:311}旁邊。",
 
 	-- Step 9: Abercrombie

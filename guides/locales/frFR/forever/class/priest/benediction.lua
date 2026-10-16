@@ -9,7 +9,7 @@ return {
 	-- Guide
 	-- {item:18608} Benediction
 	["{item:18608} and Anathema"] = "{item:18608} et Anathème",
-	-- {npc:14494} Eris · {item:18608} Benediction
+	-- {npc:14494} Eris Havenfire · {item:18608} Benediction
 	["{npc:14494}'s splinter and the two Eyes make {item:18608}, the epic priest staff that turns into Anathema."] = "L'éclat d'{npc:14494} et les deux Yeux donnent {item:18608}, le bâton épique de prêtre qui se change en Anathème.",
 
 	-- Step 1: The Eye of Shadow
@@ -17,8 +17,8 @@ return {
 	-- plural, as words: Doomguard Commanders = {npc:12396} Doomguard Commander
 	["You need {item:18646} first: it comes from the {object:179703} after {npc:12018} in {area:2717}. {item:18665} drops from elite demons ({npc:12397}, a world boss, always; Doomguard Commanders and Manahounds rarely); it binds when equipped, so buying one works too."] = "Il vous faut d'abord {item:18646} : il vient de la {object:179703} après {npc:12018} dans le {area:2717}. {item:18665} tombe sur des démons élites ({npc:12397}, un boss mondial, à coup sûr ; les Commandants de la Garde funeste et les Molosses de mana, rarement) ; il est lié quand équipé, vous pouvez donc aussi l'acheter.",
 
-	-- Step 2: Eris
-	-- {item:18646} The Eye of Divinity · {npc:14494} Eris · {zone:1423} Eastern Plaguelands · {item:8956} Oil of Immolation
+	-- Step 2: Eris Havenfire
+	-- {item:18646} The Eye of Divinity · {npc:14494} Eris Havenfire · {zone:1423} Eastern Plaguelands · {item:8956} Oil of Immolation
 	-- plural, as words: Major Mana Potions = {item:13444} Major Mana Potion
 	["Equip {item:18646} to see {npc:14494}, a ghost on the mountainside in the north-west of the {zone:1423}. Come with full mana, Major Mana Potions and {item:8956}: if you fail, the event takes about two hours to return."] = "Équipez {item:18646} pour voir {npc:14494}, un fantôme à flanc de montagne au nord-ouest des {zone:1423}. Venez avec tout votre mana, des Potions de mana majeures et de l'{item:8956} : en cas d'échec, l'événement met environ deux heures à revenir.",
 

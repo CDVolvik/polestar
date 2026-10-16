@@ -95,7 +95,7 @@ return {
 	["West of Mystral Lake, the stardust bushes grow among the ruins."] = "在密斯特拉湖以西，星尘覆盖的草丛生长在废墟中。",
 
 	-- Step 27: Windshear Crag
-	-- {area:421} Mystral Lake · {area:1276} Talondeep Path · {area:461} Windshear Crag · {npc:4080} Kaela · {npc:4077} Gaxim · {area:1076} Webwinder Path
+	-- {area:421} Mystral Lake · {area:1276} Talondeep Path · {area:461} Windshear Crag · {npc:4080} Kaela Shadowspear · {npc:4077} Gaxim Rustfizzle · {area:1076} Webwinder Path
 	["Ride south past {area:421} into the {area:1276} tunnel; it comes out in Stonetalon's {area:461}. {npc:4080} and {npc:4077} camp on the {area:1076} south-west of the crag."] = "向南骑过{area:421}，进入{area:1276}隧道；出口在石爪山脉的{area:461}。{npc:4080}和{npc:4077}在峭壁西南方的{area:1076}扎营。",
 	-- {npc:4201} Ziz Fizziks
 	["{npc:4201}, in the hut north of them"] = "{npc:4201}，在他们北边的小屋里",
@@ -179,12 +179,12 @@ return {
 	-- Step 47: Black Oozes
 	-- plural, as words: Black Oozes = {npc:1032} Black Ooze
 	["Black Oozes"] = "{npc:1032}",
-	-- {area:1025} Green Belt · {npc:2093} Einar · {npc:2111} Sida
+	-- {area:1025} Green Belt · {npc:2093} Einar Stonegrip · {npc:2111} Sida
 	-- plural, as words: Black Oozes = {npc:1032} Black Ooze
 	["Black Oozes creep through the marsh north of the {area:1025} road, west of {npc:2093}'s camp. Any ooze may hold {npc:2111}'s bag."] = "{npc:1032}在{area:1025}道路北边、{npc:2093}营地西边的沼泽里蠕动。任何软泥怪都可能带着{npc:2111}的包。",
 
 	-- Step 48: Green Belt
-	-- {npc:2093} Einar · {npc:1244} Rethiel the Greenwarden
+	-- {npc:2093} Einar Stonegrip · {npc:1244} Rethiel the Greenwarden
 	["{npc:2093} camps by the road; {npc:1244} stands farther east, by the river."] = "{npc:2093}在路边扎营；{npc:1244}站在更东边的河旁。",
 
 	-- Step 49: The Mosshide gnolls

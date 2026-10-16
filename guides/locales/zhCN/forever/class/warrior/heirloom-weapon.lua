@@ -11,7 +11,7 @@ return {
 	["{spell:71} and a one-hand weapon of your choice at 10."] = "10级时的{spell:71}和一把自选的单手武器。",
 
 	-- Step 1: Ulag the Cleaver
-	-- {npc:1496} Deathguard Dillinger · {area:159} Brill · {npc:6390} Ulag
+	-- {npc:1496} Deathguard Dillinger · {area:159} Brill · {npc:6390} Ulag the Cleaver
 	["{npc:1496} stands in {area:159}. {npc:6390} waits in the mausoleum on the hill just north of town: open the gate and fight him."] = "{npc:1496}站在{area:159}。{npc:6390}在镇子北边山丘上的陵墓里等着：打开大门与他战斗。",
 
 	-- Step 2: Coleman Farthing

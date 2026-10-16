@@ -7,7 +7,7 @@
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: The Crossroads
-	-- {area:379} Far Watch Post · {npc:3338} Sergra · {npc:3429} Thork · {npc:3449} Darsok · {npc:3464} Gazrog · {npc:3448} Tonga
+	-- {area:379} Far Watch Post · {npc:3338} Sergra Darkthorn · {npc:3429} Thork · {npc:3449} Darsok Swiftdagger · {npc:3464} Gazrog · {npc:3448} Tonga Runetotem
 	["You arrive from {area:379}. {npc:3338} stands by the inn; {npc:3429} and {npc:3449} on the tower platform; Helbrim and {npc:3464} by the north gate; {npc:3448} at the south gate."] = "{area:379}에서 도착합니다. {npc:3338}은(는) 여관 옆에, {npc:3429}와(과) {npc:3449}은(는) 탑 위에, 헬브림과 {npc:3464}은(는) 북문 옆에, {npc:3448}은(는) 남문에 있습니다.",
 
 	-- Step 2: Plainstriders and raptors
@@ -21,11 +21,11 @@ return {
 	["Zhevra Runners graze on the same plains; finish the raptor heads as you go."] = "{npc:3242}도 같은 평원에서 풀을 뜯습니다. 가는 길에 랩터 머리도 마저 모으세요.",
 
 	-- Step 5: The Crossroads
-	-- {npc:3449} Darsok
+	-- {npc:3449} Darsok Swiftdagger
 	["{npc:3449}, on the tower platform: needs level 12"] = "{npc:3449}, 탑 위: 12레벨 필요",
 
 	-- Step 6: Thun'grim Firegaze
-	-- {npc:5878} Thun'grim · {area:392} Ratchet
+	-- {npc:5878} Thun'grim Firegaze · {area:392} Ratchet
 	["{npc:5878} camps beside the road east toward {area:392}."] = "{npc:5878}은(는) {area:392}(으)로 가는 동쪽 길 옆에 진을 치고 있습니다.",
 
 	-- Step 7: Kranal Fiss
@@ -101,7 +101,7 @@ return {
 	["Head east to the Venture Co. research site west of the {area:382}. Use the {object:4141}, close the three valves around the drill, use the console again, then take the {item:5089} from {npc:3471}."] = "동쪽으로 {area:382} 서쪽의 투자개발회사 연구 현장으로 가세요. {object:4141}을(를) 사용하고, 시추기 주변의 밸브 세 개를 잠근 뒤, 다시 제어판을 사용하고 {npc:3471}에게서 {item:5089}을(를) 가져가세요.",
 
 	-- Step 25: Echeyakee
-	-- {quest:881} Echeyakee · {area:382} The Sludge Fen · {area:380} The Crossroads · {npc:3338} Sergra · {area:392} Ratchet
+	-- {quest:881} Echeyakee · {area:382} The Sludge Fen · {area:380} The Crossroads · {npc:3338} Sergra Darkthorn · {area:392} Ratchet
 	["{quest:881}'s lair lies south of the {area:382}, north-east of the {area:380}. Use the horn {npc:3338} gave you there to call the white lion out. Then hearth to {area:392}."] = "{quest:881}의 굴은 {area:382} 남쪽, {area:380} 북동쪽에 있습니다. 그곳에서 {npc:3338}이(가) 준 뿔피리를 불어 흰 사자를 불러내세요. 그런 다음 {area:392}(으)로 귀환하세요.",
 
 	-- Step 27: The Disruption Ends
@@ -123,11 +123,11 @@ return {
 	["Oasis Snapjaws crowd the water of {area:387}, south-west of the {area:380}."] = "오아시스 무쇠턱거북이 {area:380} 남서쪽 {area:387}의 물에 가득합니다.",
 
 	-- Step 34: Wenikee Boltbucket
-	-- {area:1703} Mor'shan Rampart · {npc:9316} Wenikee
+	-- {area:1703} Mor'shan Rampart · {npc:9316} Wenikee Boltbucket
 	["Follow the road north to the {area:1703}; {npc:9316} stands just south of it."] = "길을 따라 북쪽 {area:1703}까지 가세요. {npc:9316}은(는) 그 바로 남쪽에 서 있습니다.",
 
 	-- Step 35: Nugget Slugs
-	-- {area:382} The Sludge Fen · {npc:9316} Wenikee
+	-- {area:382} The Sludge Fen · {npc:9316} Wenikee Boltbucket
 	-- plural, as words: Tool Buckets = {object:161752} Tool Bucket
 	["The Tool Buckets sit around the Venture Co. camp in the {area:382}, east of {npc:9316}."] = "연장통은 {npc:9316} 동쪽 {area:382}의 투자개발회사 야영지 주변에 있습니다.",
 

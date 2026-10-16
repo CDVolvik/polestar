@@ -53,7 +53,7 @@ return {
 	["Ride east back to the {area:497}."] = "向东骑回{area:497}。",
 	-- {item:3853} Moonsteel Broadsword · {skill:164} Blacksmithing
 	["only if you carry a {item:3853} ({skill:164} or the Auction House)"] = "仅当你带着{item:3853}时（{skill:164}或拍卖行）",
-	-- {object:20985} Loose Dirt · {npc:4791} Nazeer
+	-- {object:20985} Loose Dirt · {npc:4791} Nazeer Bloodpike
 	["{object:20985}, now that {npc:4791} has read the report"] = "{object:20985}，现在{npc:4791}已经读过报告了",
 
 	-- Step 12: Brackenwall Village
@@ -70,7 +70,7 @@ return {
 	["Ride north-east to the {area:607}. {npc:12277} is held in the Maraudine centaur camp; free her and escort her out east of the valley."] = "向东北骑往{area:607}。{npc:12277}被关在玛洛迪半人马的营地里；救出她，护送她从山谷东边出去。",
 
 	-- Step 16: Kodo Graveyard
-	-- {npc:6019} Hornizz · {area:596} Kodo Graveyard
+	-- {npc:6019} Hornizz Brimbuzzle · {area:596} Kodo Graveyard
 	["{npc:6019} waits at the goblin camp on the west side of the {area:596}."] = "{npc:6019}在{area:596}西侧的地精营地里等候。",
 
 	-- Step 17: Gizelton Caravan
@@ -78,11 +78,11 @@ return {
 	["{npc:11626}'s caravan stops on the road at the edge of {area:602}. Escort it east past the coven; demons attack it twice."] = "{npc:11626}的商队停在{area:602}边缘的路上。护送商队向东经过集会所；恶魔会袭击两次。",
 
 	-- Step 18: Scrabblescrew's Camp
-	-- {npc:11596} Smeed · {area:596} Kodo Graveyard
+	-- {npc:11596} Smeed Scrabblescrew · {area:596} Kodo Graveyard
 	["The caravan ends at {npc:11596}'s camp on the east side of the {area:596}."] = "商队终点是{area:596}东侧{npc:11596}的营地。",
 
 	-- Step 19: Ghost Walker Post
-	-- {npc:5395} Felgur Twocuts · {npc:5412} Gurda Wildmane · {npc:11596} Smeed
+	-- {npc:5395} Felgur Twocuts · {npc:5412} Gurda Wildmane · {npc:11596} Smeed Scrabblescrew
 	["{npc:5395} and {npc:5412} stand in the post just west of {npc:11596}'s camp."] = "{npc:5395}和{npc:5412}站在{npc:11596}营地正西的哨站里。",
 
 	-- Step 20: Kormek's Hut

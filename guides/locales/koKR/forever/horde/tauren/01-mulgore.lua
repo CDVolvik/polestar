@@ -7,13 +7,13 @@
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Camp Narache
-	-- {area:221} Camp Narache · {npc:2980} Grull
+	-- {area:221} Camp Narache · {npc:2980} Grull Hawkwind
 	["You start on the mesa of {area:221}. {npc:2980} and the chief stand by the big tent in the middle."] = "{area:221}의 고원에서 시작합니다. {npc:2980}와(과) 족장은 한가운데 큰 천막 옆에 서 있습니다.",
 
 	-- Step 2: The Hunt Begins
 	["Plainstriders roam the grass all around the camp."] = "초원타조는 야영지 주변 풀밭 곳곳을 돌아다닙니다.",
 
-	-- Step 3: Grull
+	-- Step 3: Grull Hawkwind
 	-- {npc:3059} Harutt Thunderhorn
 	["{npc:3059}, the warrior trainer"] = "전사 상급자 {npc:3059}",
 	-- {npc:3061} Lanka Farshot
@@ -28,12 +28,12 @@ return {
 	["{npc:2991} sits by the tent on the camp's eastern edge; the {item:4755} stands next to her."] = "{npc:2991}은(는) 야영지 동쪽 가장자리 천막 옆에 앉아 있으며, {item:4755}은(는) 그 옆에 있습니다.",
 
 	-- Step 6: The Hunt Continues
-	-- {npc:6775} Antur Fallow · {npc:2980} Grull
+	-- {npc:6775} Antur Fallow · {npc:2980} Grull Hawkwind
 	-- plural, as words: Mountain Cougars = {npc:2961} Mountain Cougar
 	["{npc:6775} stands at the west end of the camp, at the north-west corner of the hills where the Mountain Cougars prowl: take his quest, hunt the cougars from there south and east, then come back up to {npc:2980}."] = "{npc:6775}은(는) 야영지 서쪽 끝, 산지퓨마가 돌아다니는 언덕의 북서쪽 모퉁이에 서 있습니다. 그의 퀘스트를 받고, 거기서부터 남쪽과 동쪽으로 퓨마를 사냥한 뒤 {npc:2980}에게 돌아오세요.",
 
-	-- Step 7: Grull
-	-- {npc:3209} Brave Windfeather · {npc:2980} Grull
+	-- Step 7: Grull Hawkwind
+	-- {npc:3209} Brave Windfeather · {npc:2980} Grull Hawkwind
 	["{npc:3209}, next to {npc:2980}"] = "{npc:2980} 옆의 {npc:3209}",
 
 	-- Step 8: Seer Graytongue
@@ -92,7 +92,7 @@ return {
 
 	-- Step 22: Back to Bloodhoof
 	["Back to Bloodhoof"] = "블러드후프 마을로 돌아가기",
-	-- {npc:2993} Baine Bloodhoof · {npc:3057} Cairne · {zone:1456} Thunder Bluff
+	-- {npc:2993} Baine Bloodhoof · {npc:3057} Cairne Bloodhoof · {zone:1456} Thunder Bluff
 	["{npc:2993}, for {npc:3057} in {zone:1456}"] = "{zone:1456}의 {npc:3057}에게 갈 {npc:2993}",
 	-- {npc:2948} Mull Thunderhorn · {zone:1456} Thunder Bluff
 	["{npc:2948}, for Hamuul in {zone:1456}"] = "{zone:1456}의 하물에게 갈 {npc:2948}",
@@ -123,7 +123,7 @@ return {
 	["{npc:2988} camps by the {area:396} south-east of Bloodhoof."] = "{npc:2988}은(는) 블러드후프 마을 남동쪽의 {area:396} 옆에 야영하고 있습니다.",
 
 	-- Step 30: Longwalker Malah
-	-- {npc:275789} Malah · {area:821} Rolling Plains
+	-- {npc:275789} Malah Longwind · {area:821} Rolling Plains
 	["{npc:275789} stands on the {area:821} a little east of the well."] = "{npc:275789}은(는) 우물 조금 동쪽의 {area:821}에 서 있습니다.",
 
 	-- Step 31: Galak centaurs and Prairie Wolf Alphas
@@ -178,19 +178,19 @@ return {
 	["Flatland Prowlers roam the plains around {area:225}"] = "굶주린 평원퓨마는 {area:225} 주변 평원을 돌아다닙니다",
 
 	-- Step 46: Thunder Bluff
-	-- {npc:2995} Tal · {npc:3057} Cairne
+	-- {npc:2995} Tal · {npc:3057} Cairne Bloodhoof
 	["Ride a lift up to the mesas. {npc:2995} keeps the wind riders on the central rise; {npc:3057} stands in the great tent there."] = "승강기를 타고 고원으로 올라가세요. {npc:2995}은(는) 중앙 고지에서 윈드라이더를 돌보고, {npc:3057}은(는) 그곳 큰 천막에 서 있습니다.",
 
 	-- Step 47: Traditions of the Bluff
-	-- {npc:269068} Eylah Sunhorn · {npc:3014} Nida · {npc:3012} Nata · {npc:3005} Mahu · {npc:3027} Naal · {item:278078} Prepared Incense
+	-- {npc:269068} Eylah Sunhorn · {npc:3014} Nida Winterhoof · {npc:3012} Nata Dawnstrider · {npc:3005} Mahu · {npc:3027} Naal Mistrunner · {item:278078} Prepared Incense
 	["{npc:269068} wants tauren incense: buy its four parts from {npc:3014} the herbalist, {npc:3012} the enchanting supplier, {npc:3005} the leatherworking supplier and {npc:3027} the cooking supplier, then combine them into {item:278078}."] = "{npc:269068}은(는) 타우렌 향을 원합{npc:3014}. 약초 상인 니다, 마법부여 재료 상인 {npc:3012}, 가죽세공 재료 상인 {npc:3005}, 요리 재료 상인 {npc:3027}에게서 재료 네 가지를 사서 {item:278078}(으)로 합치세요.",
-	-- {item:278079} Bundle of Herbs · {npc:3014} Nida
+	-- {item:278079} Bundle of Herbs · {npc:3014} Nida Winterhoof
 	["{item:278079}, from {npc:3014}"] = "{npc:3014}에게서 사는 {item:278079}",
-	-- {item:278080} Bundle of Dried Cedar Twigs · {npc:3012} Nata
+	-- {item:278080} Bundle of Dried Cedar Twigs · {npc:3012} Nata Dawnstrider
 	["{item:278080}, from {npc:3012}"] = "{npc:3012}에게서 사는 {item:278080}",
 	-- {item:278081} Sinew Thread · {npc:3005} Mahu
 	["{item:278081}, from {npc:3005}"] = "{npc:3005}에게서 사는 {item:278081}",
-	-- {item:278083} Ceremonial Flint and Tinder · {npc:3027} Naal
+	-- {item:278083} Ceremonial Flint and Tinder · {npc:3027} Naal Mistrunner
 	["{item:278083}, from {npc:3027}"] = "{npc:3027}에게서 사는 {item:278083}",
 
 	-- Step 48: Hunter Rise

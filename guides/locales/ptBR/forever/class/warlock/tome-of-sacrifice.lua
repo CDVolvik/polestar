@@ -7,11 +7,11 @@
 -- The comments are rewritten by sync.
 return {
 	-- Guide
-	-- {npc:14463} Daio · {npc:12396} Doomguard Commander · {zone:1419} Blasted Lands
+	-- {npc:14463} Daio the Decrepit · {npc:12396} Doomguard Commander · {zone:1419} Blasted Lands
 	["A rare off-hand at 60, {npc:14463}'s payment for capturing a {npc:12396} in the {zone:1419}."] = "Um item de mão secundária raro no nível 60, o pagamento de {npc:14463} por capturar um {npc:12396} nas {zone:1419}.",
 
-	-- Step 1: Daio
-	-- {npc:14463} Daio · {area:73} Tainted Scar · {zone:1419} Blasted Lands
+	-- Step 1: Daio the Decrepit
+	-- {npc:14463} Daio the Decrepit · {area:73} Tainted Scar · {zone:1419} Blasted Lands
 	["At 60 {npc:14463} waits in the {area:73}, in western {zone:1419}."] = "No nível 60, {npc:14463} espera na {area:73}, no oeste das {zone:1419}.",
 
 	-- Step 2: Satyr Blood
@@ -25,12 +25,12 @@ return {
 	["The Hederine demons hold {area:2256}, in southern {zone:1452}. They are elite: grouping up is advised."] = "Os demônios Hederine ocupam o {area:2256}, no sul de {zone:1452}. Eles são elite: é recomendado formar grupo.",
 
 	-- Step 4: Suppression
-	-- {npc:14463} Daio · {npc:12396} Doomguard Commander · {area:73} Tainted Scar · {item:18601} Glowing Crystal Prison
+	-- {npc:14463} Daio the Decrepit · {npc:12396} Doomguard Commander · {area:73} Tainted Scar · {item:18601} Glowing Crystal Prison
 	["Hand both in to {npc:14463}, then find the {npc:12396} in the {area:73} and use the {item:18601} on him. He is elite and fights to escape: grouping up is advised."] = "Entregue os dois a {npc:14463} depois encontre o {npc:12396} na {area:73} e use a {item:18601} nele. Ele é elite e luta para escapar: é recomendado formar grupo.",
 	-- {item:18601} Glowing Crystal Prison · {npc:12396} Doomguard Commander
 	["{item:18601}, on the {npc:12396}"] = "{item:18601}, no {npc:12396}",
 
-	-- Step 5: Back to Daio
-	-- {npc:14463} Daio
+	-- Step 5: Back to Daio the Decrepit
+	-- {npc:14463} Daio the Decrepit
 	["Back to {npc:14463}"] = "De volta a {npc:14463}",
 }

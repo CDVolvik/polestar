@@ -179,7 +179,7 @@ return {
 	["{npc:252085}, in the City of Dalaran"] = "{npc:252085}，在達拉然城內",
 
 	-- Step 45: Southshore
-	-- {item:2321} Fine Thread · {npc:2438} Bartolo · {npc:2381} Micha Yance
+	-- {item:2321} Fine Thread · {npc:2438} Bartolo Ginsetti · {npc:2381} Micha Yance
 	["{item:2321} for {npc:2438}'s cloak, from {npc:2381}, if you have none"] = "如果你沒有，向{npc:2381}購買{npc:2438}的披風所需的{item:2321}",
 	-- {npc:1440} Milton Sheaf · {zone:1453} Stormwind
 	["For {npc:1440} in {zone:1453}: keep it"] = "給{zone:1453}的{npc:1440}：先留著",
