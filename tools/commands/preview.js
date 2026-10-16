@@ -337,9 +337,12 @@ Polestar.Transit = { Now = function() return 1000 end, NextDeparture = function(
 uistub.target = { label = "Silithus" }
 ${TABS}
 Polestar.Fire("ROUTE_CHANGED", JR.legs)`;
-// A gamepad plugged in (labels "Letters": Xbox; "Shapes": PlayStation), LT
-// acting as Shift, and a few saved bindings for the Key bindings tab.
-const PAD = (labels = 'Letters') => `C_GamePad = { IsEnabled = function() return true end, GetAllDeviceIDs = function() return { 1 } end,
+// The game's gamepad interface with a gamepad plugged in (labels "Letters":
+// Xbox; "Shapes": PlayStation), LT acting as Shift, and a few saved bindings
+// for the Key bindings tab.
+const PAD = (labels = 'Letters') => `Enum.InputDeviceInterfaceType = { Mkb = 0, Gamepad = 1 }
+C_InputInterfaceStyle = { GetCurrentStyle = function() return 1 end }
+C_GamePad = { IsEnabled = function() return true end, GetAllDeviceIDs = function() return { 1 } end,
 	GetActiveDeviceID = function() return 1 end, GetDeviceMappedState = function() return { labelStyle = "${labels}" } end }
 stub.cvars.GamePadEmulateShift = "PADLTRIGGER"
 local saved = { PAD3 = "CLICK PolestarQuestItemButton:LeftButton", ["SHIFT-PADDRIGHT"] = "POLESTAR_NEXT", ["SHIFT-PADDLEFT"] = "POLESTAR_PREV", N = "POLESTAR_TOGGLE" }

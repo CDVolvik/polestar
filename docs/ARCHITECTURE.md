@@ -3175,7 +3175,8 @@ render: `docs/preview/journey.svg`.
 Ported from Ding! by Yendi (@moust4ki), GPL-3.0, and rebuilt on the Theme.
 No Polestar window takes a button from the game while it is merely shown:
 a window holds the gamepad only while it is the newest one open, out of
-combat, with a gamepad active and `gamepad.navigate` on (focus mode needs
+combat, with a gamepad active (the game's gamepad interface, or
+`gamepad.withMouse` on with the keyboard and mouse) and `gamepad.navigate` on (focus mode needs
 only a gamepad), through a frame that reads the buttons first
 (`PolestarPadInput`, `OnGamePadButtonDown`), so neither the game's gamepad
 interface nor another addon's overrides (Easy Controller, ConsolePort) go
@@ -3214,7 +3215,7 @@ Polestar.Gamepad.Register(frame, spec)  -- navigation while `frame` is shown (th
 --          key = fn(key, w, isRepeat) -> handled, onFocus = fn(w),
 --          close = button | false (where B's chip sits; default frame.Close),
 --          actionLabel / xLabel / resetLabel = fn(w) -> text, backLabel, tabsLabel = text }
-Polestar.Gamepad.IsActive() -> bool        -- Polestar.GamepadUI(), or C_GamePad / GamePadEnable with a device plugged in
+Polestar.Gamepad.IsActive() -> bool        -- Polestar.GamepadUI(); with the keyboard and mouse only with gamepad.withMouse on (off by default) and C_GamePad / GamePadEnable with a device plugged in
 Polestar.Gamepad.Style() -> "xbox" | "playstation"  -- gamepad.glyphs, "auto" reads C_GamePad's labelStyle ("Shapes")
 Polestar.Gamepad.ButtonName(button), KeyName(key) -> text   -- "A" / "Cross", "LT + A", "LB + D-pad up", "Ctrl + N"
 Polestar.Gamepad.Glyph(parent[, name]) -> frame             -- frame:SetKeys(key or { button, ... }) -> width

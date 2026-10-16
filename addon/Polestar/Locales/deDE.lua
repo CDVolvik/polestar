@@ -1788,7 +1788,6 @@ L["Point the arrow"] = "Pfeil ausrichten"
 L["Details"] = "Details"
 L["Minimize"] = "Minimieren"
 L["Back to the game"] = "Zurück zum Spiel"
-L["Browsing the guide needs a gamepad: turn it on in the game's options and plug one in."] = "Zum Durchgehen des Guides brauchst du ein Gamepad: Aktiviere es in den Spieloptionen und schließ eines an."
 L["%s, then press a button, or hold one and press another. Tap %s to cancel, hold it to bind %s. %s unbinds."] = "%s, dann eine Taste drücken oder eine halten und eine weitere drücken. %s tippen bricht ab, halten belegt %s. %s löst die Belegung."
 L["%s, then press a button. Tap %s to cancel, hold it to bind %s. %s unbinds."] = "%s, dann eine Taste drücken. %s tippen bricht ab, halten belegt %s. %s löst die Belegung."
 L["Click, then press a key; Escape cancels. Right-click unbinds."] = "Klicken, dann eine Taste drücken; Escape bricht ab. Rechtsklick löst die Belegung."
@@ -1814,6 +1813,9 @@ L["A bar under the window says what each button does, and B sits on the close bu
 L["The guide"] = "Der Guide"
 L["Quest buttons"] = "Quest-Buttons"
 L["The guide window holds the gamepad until B: the D-pad picks a line, A points the arrow there or uses the item, X shows its details, LB and RB change steps, Y minimizes the window. A window that opened by itself, such as a route choice, waits for this button before it takes the gamepad."] = "Das Guide-Fenster behält das Gamepad bis B: Das Steuerkreuz wählt eine Zeile, A richtet den Pfeil dorthin oder benutzt den Gegenstand, X zeigt Details, LB und RB wechseln den Schritt, Y minimiert das Fenster. Ein Fenster, das sich von selbst geöffnet hat, etwa eine Routenwahl, wartet auf diese Taste, bevor es das Gamepad übernimmt."
+-- L["Browsing the guide needs the game's gamepad interface (Options, Gamepad, Enable Gamepad UI), or Use with the keyboard and mouse on Polestar's Gamepad page with a gamepad plugged in."] = ""
+-- L["Use with the keyboard and mouse"] = ""
+-- L["Off, Polestar uses the gamepad only with the game's gamepad interface (Options, Gamepad, Enable Gamepad UI). On, also with the keyboard and mouse interface, while the gamepad is turned on in the game's options and plugged in."] = ""
 
 -- Core/RoutePlan.lua
 L["step %d"] = "Schritt %d"
@@ -1920,3 +1922,4 @@ L["Opens the gate of the Horde's way into the City of Dalaran; one key opens it 
 -- L["slot: Wrist"] = "Handgelenke"
 -- L["Dungeon journal"] = "Dungeonkompendium"
 -- L["Shortest Path Forever is guiding. Turn off \"Guide with Shortest Path Forever when it's installed\" (Options, Arrow & routes) to use Polestar's arrow."] = "Shortest Path Forever führt. Schalte „Mit Shortest Path Forever führen, wenn es installiert ist“ (Optionen, Pfeil & Routen) aus, um Polestars Pfeil zu benutzen."
+-- L["Browsing the guide needs a gamepad: turn it on in the game's options and plug one in."] = "Zum Durchgehen des Guides brauchst du ein Gamepad: Aktiviere es in den Spieloptionen und schließ eines an."

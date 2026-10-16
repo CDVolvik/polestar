@@ -1840,7 +1840,6 @@ L["Point the arrow"] = "화살표 지정"
 L["Details"] = "상세"
 L["Minimize"] = "최소화"
 L["Back to the game"] = "게임으로 돌아가기"
-L["Browsing the guide needs a gamepad: turn it on in the game's options and plug one in."] = "가이드 탐색에는 게임패드가 필요합니다. 게임 설정에서 켜고 게임패드를 연결하십시오."
 L["%s, then press a button, or hold one and press another. Tap %s to cancel, hold it to bind %s. %s unbinds."] = "%s 후 버튼을 누르거나, 하나를 누른 채 다른 버튼을 누르십시오. %s 짧게 누르면 취소, 길게 누르면 %s 지정. %s: 해제."
 L["%s, then press a button. Tap %s to cancel, hold it to bind %s. %s unbinds."] = "%s 후 버튼을 누르십시오. %s 짧게 누르면 취소, 길게 누르면 %s 지정. %s: 해제."
 L["Click, then press a key; Escape cancels. Right-click unbinds."] = "클릭 후 키를 누르십시오. Esc는 취소, 오른쪽 클릭은 해제."
@@ -1866,6 +1865,9 @@ L["A bar under the window says what each button does, and B sits on the close bu
 L["The guide"] = "가이드"
 L["Quest buttons"] = "퀘스트 버튼"
 L["The guide window holds the gamepad until B: the D-pad picks a line, A points the arrow there or uses the item, X shows its details, LB and RB change steps, Y minimizes the window. A window that opened by itself, such as a route choice, waits for this button before it takes the gamepad."] = "가이드 창은 B를 누를 때까지 게임패드를 차지합니다. 방향 패드로 줄 선택, A로 화살표 지정 또는 아이템 사용, X로 상세 보기, LB와 RB로 단계 전환, Y로 창 최소화. 경로 선택처럼 저절로 열린 창은 이 버튼을 눌러야 게임패드를 가져갑니다."
+-- L["Browsing the guide needs the game's gamepad interface (Options, Gamepad, Enable Gamepad UI), or Use with the keyboard and mouse on Polestar's Gamepad page with a gamepad plugged in."] = ""
+-- L["Use with the keyboard and mouse"] = ""
+-- L["Off, Polestar uses the gamepad only with the game's gamepad interface (Options, Gamepad, Enable Gamepad UI). On, also with the keyboard and mouse interface, while the gamepad is turned on in the game's options and plugged in."] = ""
 
 -- Core/RoutePlan.lua
 L["step %d"] = "%d단계"
@@ -1916,3 +1918,4 @@ L["Spare points go to Divine Strength and Holy's Improved Seals for damage, then
 
 -- No longer in the code (its English changed or it went away): reuse or delete.
 -- L["Shortest Path Forever is guiding. Turn off \"Guide with Shortest Path Forever when it's installed\" (Options, Arrow & routes) to use Polestar's arrow."] = "Shortest Path Forever가 가이드 중입니다. Polestar 화살표를 쓰려면 \"설치 시 Shortest Path Forever로 가이드\"를 끄십시오(설정, 화살표 및 경로)."
+-- L["Browsing the guide needs a gamepad: turn it on in the game's options and plug one in."] = "가이드 탐색에는 게임패드가 필요합니다. 게임 설정에서 켜고 게임패드를 연결하십시오."
