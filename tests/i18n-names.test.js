@@ -59,7 +59,10 @@ test('DingDB names come first and pfQuest fills the gaps; a pfQuest name that is
 	assert.deepEqual(obj(fr.names.npc), { 6: 'Vermine kobold', 240: 'Maréchal Dughan', 448: 'Lardeur' }, 'Ding over pfQuest for 448; 197 is English in pfQuest; 99999 unused');
 	assert.deepEqual(obj(fr.names.object), { 68: 'Avis de recherche', 2843: 'Coffre cabossé' });
 	assert.deepEqual(obj(fr.names.item), { 750: 'Viande de loup coriace', 1528: "Poignée d'avoine", 2862: 'Pierre à aiguiser brute' });
-	assert.deepEqual(fr.from, { quest: { ding: 2, pfquest: 1 }, npc: { ding: 2, pfquest: 1 }, object: { ding: 1, pfquest: 1 }, item: { ding: 2, pfquest: 1 } });
+	assert.deepEqual(Object.fromEntries(names.NAME_KINDS.map((k) => [k, fr.from[k]])), {
+		quest: { wago: 0, wowhead: 0, ding: 2, pfquest: 1 }, npc: { wago: 0, wowhead: 0, ding: 2, pfquest: 1 },
+		object: { wago: 0, wowhead: 0, ding: 1, pfquest: 1 }, item: { wago: 0, wowhead: 0, ding: 2, pfquest: 1 },
+	});
 	assert.deepEqual(obj(out.esMX.names.npc), { 240: 'Alguacil Dughan', 448: 'Hogger' }, 'pfQuest has no esMX: DingDB only');
 	assert.deepEqual(obj(out.deDE.names.npc), { 6: 'Koboldungeziefer', 448: 'Hogger' });
 	assert.equal(out.koKR.names.npc.size, 0, 'a locale neither source has stays empty');
@@ -162,11 +165,14 @@ test('--no-questie: pfQuest only, no DingDB credit; a language left without name
 
 test('node tools/polestar.js i18n names writes the folders and reports what each language has', () => {
 	const out = tmpdir();
-	const r = polestar(['i18n', 'names', '--json', '--no-questie', '--pfquest', PF, '--guides', INPUTS.guides, '--questdb', INPUTS.questdb, '--codex', INPUTS.codex, '--out', out]);
+	// --offline with an empty cache: no client tables, no Wowhead pages.
+	const r = polestar(['i18n', 'names', '--json', '--offline', '--sources', tmpdir(), '--no-questie', '--pfquest', PF, '--guides', INPUTS.guides, '--questdb', INPUTS.questdb, '--codex', INPUTS.codex, '--out', out]);
 	assert.equal(r.status, 0, r.stderr);
 	const report = JSON.parse(r.stdout);
 	assert.equal(report.ding, null);
-	assert.deepEqual(report.locales.frFR.names, { quest: 2, npc: 2, object: 1, item: 1 });
+	assert.equal(report.wago, null);
+	assert.deepEqual(Object.fromEntries(names.NAME_KINDS.map((k) => [k, report.locales.frFR.names[k]])), { quest: 2, npc: 2, object: 1, item: 1 });
+	assert.deepEqual(report.locales.frFR.lacking.npc, report.ids.npc - 2, 'what each language lacks');
 	assert.deepEqual(fs.readdirSync(out).sort(), ['Polestar_Names_deDE', 'Polestar_Names_frFR']);
 	const lua = fs.readFileSync(path.join(out, 'Polestar_Names_frFR', 'Names.lua'), 'utf8');
 	assert.ok(lua.includes('[448]="Lardeur (pfQuest)"'), 'the pfQuest name, written for the addon');

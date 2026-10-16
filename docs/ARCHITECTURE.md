@@ -451,17 +451,30 @@ Names.Add(locale, kind, { [id] = name })   -- the pack's files only; any kind
   non-English client each Codex kind's index gets, once, a line per id whose
   translated name (or, for zones, the client's map name) differs, a match
   counts an id once and is listed under its translated name. The collect
-  goals' compiled sources (`from`, `fromAlso`) carry no id and stay English.
+  goals' compiled sources carry their ids (`fromId`, `fromAlsoId`, of kind
+  `fromKind`), so the goal line names them in the client's language;
+  `from` and `fromAlso` are the English for older packs and English clients.
 - **The packs.** One load-on-demand addon per language
   (`addon/Polestar_Names_<locale>/`: `Names.lua` calling `Names.Add` per
-  1,000 names, the TOC, `LICENSE-DATA.txt`, Ding's `CREDITS.md`), committed
-  and shipped. `node tools/polestar.js i18n names` builds them from DingDB
+  1,000 names and kind, the TOC, `LICENSE-DATA.txt`, Ding's `CREDITS.md`),
+  committed and shipped. Kinds: `quest`, `npc`, `object`, `item`, and `map`
+  (instance maps), `encounter` (DungeonEncounter ids), `faction`, `taxi`
+  (TaxiNodes ids) and `objective` (the objective text of the dungeon quests
+  whose objective is an event). `node tools/polestar.js i18n names` builds
+  them, per id the first source with a name winning: the client's own
+  tables in that language (wago.tools with `&locale=`: Forever's ItemSparse,
+  Map, DungeonEncounter, Faction and TaxiNodes, then the Era client's
+  ItemSparse for the items Forever's lacks), Wowhead's Forever database in
+  that language (its list pages for the id ranges holding a wanted id, then
+  tooltips for ids no list holds; one request at a time, cached in
+  `data/sources/wowhead/names`; a bracketed name is no translation), DingDB
   (cloned into `data/sources/ding`, pinned to a commit and its files'
-  sha256s: `DING` in `tools/lib/i18n/names.js`) and, for the names it lacks,
-  pfQuest's `db/<locale>` (no esMX), keeping only the ids the compiled guides,
-  the quest database and the Codex's data name. `--no-questie` leaves DingDB
-  out. `Data.CheckInstall` checks the client's pack like the other optional
-  data packs: never missing, named when its version differs.
+  sha256s: `DING` in `tools/lib/i18n/names.js`), then pfQuest's
+  `db/<locale>` (no esMX). Only the ids the compiled guides, the quest
+  database, the Codex's data and the travel data name are kept.
+  `--no-questie` leaves DingDB out. `Data.CheckInstall` checks the client's
+  pack like the other optional data packs: never missing, named when its
+  version differs.
 
 ### Compat — the client's game data goes through here
 

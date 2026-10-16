@@ -142,31 +142,54 @@ translated client fake a language Polestar does not ship:
 
 ## Game names
 
-Quest, NPC, object and item names are not translated by hand: they are the
-game's own. A client in another language reads them from the client where it
-has them (quest titles, item names) and from Polestar's names addon of its
-language, `Polestar_Names_<locale>` (DingDB's names, by Yendi, then pfQuest's
-for the ones DingDB lacks), loaded only on that client. A name neither has
-stays English. The client is the truth: a name it shows in play (an NPC
-targeted, moused over or talked to, a quest-giving object opened) is kept,
-per language, and shown from then on. docs/ARCHITECTURE.md, "Names", has
-the details.
+Names of quests, NPCs, objects, items, instances, dungeon encounters,
+factions and flight points are not translated by hand: they are the game's
+own. A client in another language reads them from the client where it has
+them (quest titles, item names) and from Polestar's names addon of its
+language, `Polestar_Names_<locale>`, loaded only on that client. A name no
+source has stays English. The client is the truth: a name it shows in play
+(an NPC targeted, moused over or talked to, a quest-giving object opened) is
+kept, per language, and shown from then on. docs/ARCHITECTURE.md, "Names",
+has the details.
 
-- `node tools/polestar.js i18n names [<locale>...]` rebuilds the addons from
-  DingDB (cloned into `data/sources/ding` at the commit pinned in
-  `tools/lib/i18n/names.js`, every file checked against its sha256) and
-  pfQuest's `db/<locale>` (the clone `data build` uses), keeping only the ids
-  the compiled guides, the quest database (`questdb build`, or `--questdb
-  <dir>`) and the Codex's data (`codex build`, or `--codex <dir>`) name.
-  `--no-questie` leaves DingDB out. Commit the folders it writes.
-- A wrong name is fixed at its source: in DingDB (tell Yendi, then move the
-  pin to his new commit and rebuild) or, for one only pfQuest has, in pfQuest.
+- `node tools/polestar.js i18n names [<locale>...]` rebuilds the addons. Per
+  id the first source with a name wins: the client's own tables in that
+  language (wago.tools), Wowhead's Forever database in that language (its
+  list pages, then a tooltip for an id no list holds), DingDB (cloned into
+  `data/sources/ding` at the commit pinned in `tools/lib/i18n/names.js`,
+  every file checked against its sha256) and pfQuest's `db/<locale>` (the
+  clone `data build` uses). It keeps only the ids the compiled guides, the
+  quest database (`questdb build`, or `--questdb <dir>`), the Codex's data
+  (`codex build`, or `--codex <dir>`) and the travel data name. Wowhead is
+  asked one request at a time, 2.5 s apart (`--delay`), and its pages are
+  cached under `data/sources/wowhead/names` for 30 days: a first run for all
+  nine languages takes about an hour, a later one only reads the cache.
+  `--dry-run` counts the requests, `--limit <n>` caps the tooltips,
+  `--offline` reads only the caches, `--no-questie` leaves DingDB out. It
+  prints, per language, how many ids of each kind have no name. Commit the
+  folders it writes.
+- A wrong name is fixed at its source: on Wowhead or in the client (it
+  changes there), in DingDB (tell Yendi, then move the pin to his new commit
+  and rebuild) or, for one only pfQuest has, in pfQuest.
 - To move the pin, read what changed in Ding's `Ding/DB/`, then set the
   commit, version and sha256s of `DING` in `tools/lib/i18n/names.js`; a file
   that differs from its pin stops the build.
-- A new language needs a DingDB file for it, a `DING` pin and the folder's
+- A new language needs its Wowhead path and tooltip locale id
+  (`LOCALE_PATHS` in `tools/lib/codex/wowhead.js`, `TOOLTIP_LOCALES` in
+  `tools/lib/i18n/names-wowhead.js`), a DingDB file and `DING` pin if Ding
+  has it, its AddOns-list text (`tools/lib/i18n/toc.js`) and the folder's
   entry in the release list (`tools/lib/dsl/project.js` takes every locale of
   `locales.js`).
+
+## The AddOns list
+
+The game's AddOns list shows each addon's title and notes in the client's
+language from its TOC's `## Title-<locale>` and `## Notes-<locale>`. Every
+Polestar addon's are written once in `tools/lib/i18n/toc.js` (Polestar and
+Codex stay as they are); the generated TOCs take them from there, the
+hand-written ones (Polestar, Polestar_Nav, Polestar_ItemDB,
+Polestar_Recorder) carry the same lines, and `tests/i18n-toc.test.js` checks
+that every TOC under `addon/` has all nine and that they match.
 
 ## Adding a language
 

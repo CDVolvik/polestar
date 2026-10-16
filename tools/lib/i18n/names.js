@@ -1,23 +1,34 @@
 'use strict';
-// `i18n names`: the quest, NPC, object and item names of Polestar's data in
-// each client language, as one load-on-demand addon per language,
-// addon/Polestar_Names_<locale> (docs/ARCHITECTURE.md, "Names"; the runtime
-// side is addon/Polestar/Core/Names.lua).
+// `i18n names`: the names of Polestar's data in each client language, as one
+// load-on-demand addon per language, addon/Polestar_Names_<locale>
+// (docs/ARCHITECTURE.md, "Names"; the runtime side is
+// addon/Polestar/Core/Names.lua).
 //
-// Sources, first one with a name wins:
-//   1. DingDB (Ding/DB/Locales/<locale>.lua of Ding! by Yendi, GPL-3.0, used
+// Kinds: quest, npc, object and item (the ids the data names), and map
+// (instances), encounter (dungeon bosses and events), faction, taxi (flight
+// points) and objective (a quest's objective text, for the dungeon quests
+// whose objective is an event no name covers).
+//
+// Sources, per id, the first one with a name winning:
+//   1. The Forever client's own tables in that language, from wago.tools
+//      (names-wago.js): items (ItemSparse), map, encounter, faction, taxi.
+//   2. Wowhead's Forever database in that language (names-wowhead.js): its
+//      list pages, then tooltips for the ids no list holds. The only source
+//      for the names of Forever's own quests, NPCs and objects.
+//   3. DingDB (Ding/DB/Locales/<locale>.lua of Ding! by Yendi, GPL-3.0, used
 //      with his permission: THIRD_PARTY.md), cloned into data/sources/ding
 //      and pinned: the checkout must sit at DING.commit and every file must
 //      have the sha256 below, or the build stops. Moving the pin is an edit
 //      here, after reading what changed. Its base data comes from QuestieDB,
 //      so --no-questie leaves it out.
-//   2. pfQuest's db/<locale> (MIT; Era names, no esMX), the cache clone
+//   4. pfQuest's db/<locale> (MIT; Era names, no esMX), the cache clone
 //      `data build` uses (data/sources/pfQuest), for the names DingDB lacks.
 //      A pfQuest name equal to its English one is no translation and is
 //      skipped.
 // Only the ids Polestar's data names are kept: the compiled guides
 // (addon/Polestar_Guides/Guides.lua), the quest database
-// (addon/Polestar_QuestDB) and the Codex's data (data/forever/codex).
+// (addon/Polestar_QuestDB), the Codex's data (data/forever/codex) and the
+// travel data's flight points (addon/Polestar/Nav/TravelData.lua).
 
 const crypto = require('node:crypto');
 const fs = require('node:fs');
@@ -29,8 +40,12 @@ const { checkLicense, REPO: PFQUEST_REPO } = require('../data/pfquest');
 const { ROOT, DATA, SOURCES } = require('../paths');
 const { luaString } = require('./files');
 const { LOCALES, LOCALE_CODES } = require('./locales');
+const { tocLines } = require('./toc');
 
 const NAME_KINDS = ['quest', 'npc', 'object', 'item'];
+const EXTRA_KINDS = ['map', 'encounter', 'faction', 'taxi', 'objective'];
+const PACK_KINDS = [...NAME_KINDS, ...EXTRA_KINDS];
+const SOURCE_KEYS = ['wago', 'wowhead', 'ding', 'pfquest'];
 const ADDON_PREFIX = 'Polestar_Names_';
 const CHUNK = 1000; // names per add() call
 
@@ -61,6 +76,9 @@ const DEFAULTS = {
 	guides: path.join(ROOT, 'addon', 'Polestar_Guides', 'Guides.lua'),
 	questdb: path.join(ROOT, 'addon', 'Polestar_QuestDB'),
 	codex: path.join(DATA, 'codex'),
+	travel: path.join(ROOT, 'addon', 'Polestar', 'Nav', 'TravelData.lua'),
+	chokepoints: path.join(ROOT, 'addon', 'Polestar_Nav', 'Nav', 'Chokepoints.lua'),
+	sources: SOURCES,
 	out: path.join(ROOT, 'addon'),
 };
 
@@ -172,7 +190,8 @@ return { quest = list(__ids.quest), npc = list(__ids.npc), object = list(__ids.o
 
 // Every compiled guide's goals, candidates, reagents and rewards: the keys
 // quest, npc, object and item, the quests of pre, preAll and closedBy (one id
-// or a list) and of preTitles (its keys).
+// or a list) and of preTitles (its keys), and a collect's sources (fromId,
+// fromAlsoId, of kind fromKind).
 const GUIDE_WALK = `
 __ids = { quest = {}, npc = {}, object = {}, item = {} }
 local KIND = { quest = "quest", npc = "npc", object = "object", item = "item" }
@@ -188,6 +207,9 @@ local function walk(t)
     end
     if type(v) == "table" then walk(v) end
   end
+  local from = (t.fromKind == "npc" or t.fromKind == "object") and t.fromKind or "npc"
+  add(from, t.fromId)
+  add(from, t.fromAlsoId)
 end
 Polestar = { RegisterGuide = function(g) if type(g) == "table" then walk(g) end return true end }
 `;
@@ -237,31 +259,116 @@ function usedIds({ guides = DEFAULTS.guides, questdb = DEFAULTS.questdb, codex =
 	return out;
 }
 
+const readJsonIf = (file) => (fs.existsSync(file) ? JSON.parse(fs.readFileSync(file, 'utf8')) : null);
+
+// The ids of the kinds beside quest, npc, object and item: instance maps
+// (codex instances.json), every encounter the client has (null: no list),
+// factions (codex factions.json), flight points (TravelData.lua's taxi rows)
+// and the objectives of the dungeon quests (journal.json) with an objective
+// that is an event, or names nothing by id (codex quests.json); and
+// liftObject, the lifts' game objects the walking map's chokepoints name
+// (Polestar_Nav's Chokepoints.lua, `liftObject = <id>`), more object ids. A
+// missing input leaves its kind empty.
+// -> { map, faction, taxi, objective, liftObject: Set, encounter: null }
+function extraIds({ codex = DEFAULTS.codex, travel = DEFAULTS.travel, chokepoints = DEFAULTS.chokepoints } = {}) {
+	const out = { map: new Set(), encounter: null, faction: new Set(), taxi: new Set(), objective: new Set(), liftObject: new Set() };
+	const instances = readJsonIf(path.join(codex, 'instances.json')) || {};
+	for (const i of Object.values(instances)) if (Number(i.map) > 0) out.map.add(Number(i.map));
+	const factions = readJsonIf(path.join(codex, 'factions.json')) || {};
+	for (const id of Object.keys(factions)) if (Number(id) > 0) out.faction.add(Number(id));
+	if (fs.existsSync(chokepoints)) {
+		for (const m of fs.readFileSync(chokepoints, 'utf8').matchAll(/\bliftObject\s*=\s*(\d+)/g)) out.liftObject.add(Number(m[1]));
+	}
+	if (fs.existsSync(travel)) {
+		const ids = luaToJson({
+			files: [],
+			expr: `
+local ids = {}
+local Nav = setmetatable({ RegisterTravelData = function(d)
+  for _, t in ipairs(type(d) == "table" and d.taxi or {}) do if type(t[1]) == "number" then ids[#ids + 1] = t[1] end end
+end }, { __index = function() return function() end end })
+local ns = { Nav = Nav }
+local ok, err = __polestar_loaddata(${luaString(travel)}, "Polestar", ns)
+if not ok then error(err, 0) end
+return ids`,
+		});
+		for (const id of Array.isArray(ids) ? ids : []) out.taxi.add(Number(id));
+	}
+	const journal = readJsonIf(path.join(codex, 'journal.json'));
+	const quests = readJsonIf(path.join(codex, 'quests.json')) || {};
+	const inJournal = new Set();
+	const walk = (v, key) => {
+		if (Array.isArray(v)) for (const x of v) walk(x, key);
+		else if (v && typeof v === 'object') {
+			if (typeof v.id === 'number' && quests[v.id]) inJournal.add(v.id);
+			for (const [k, x] of Object.entries(v)) walk(x, k);
+		} else if (typeof v === 'number' && /quest|chain|pre/i.test(key || '') && quests[v]) inJournal.add(v);
+	};
+	if (journal) walk(journal.dungeons || journal);
+	for (const id of inJournal) {
+		if ((quests[id].objectives || []).some((o) => o && (o.type === 'event' || o.id == null))) out.objective.add(id);
+	}
+	return out;
+}
+
 // --- Merging ------------------------------------------------------------------
 
 const clean = (s) => (typeof s === 'string' ? s.trim() : '');
+// pfQuest's objective text: its $B line breaks as spaces (other $ tokens stay).
+const objectiveText = (s) => clean(s).replace(/\$[Bb]/g, ' ').replace(/[ \t]+/g, ' ').trim();
 
-// ding: readDing's result or null (--no-questie); pf: loadPfQuestNames' with
-// enUS among its locales. -> { [locale]: { names: { kind: Map id -> name }
-// (sorted by id), from: { kind: { ding, pfquest } } } }
-function buildNames({ locales = LOCALE_CODES, ids, ding = null, pf = null }) {
+// ids: usedIds' with extraIds' kinds; ding: readDing's result or null
+// (--no-questie); pf: loadPfQuestNames' with enUS among its locales; wago:
+// loadClientNames' names ({ [locale]: { item, map, encounter, faction, taxi } })
+// or null; wowhead: { [locale]: loadWowheadNames' } or null. A Wowhead name
+// that is its English one comes after DingDB's and pfQuest's: it may be a
+// string the client left untranslated.
+// -> { [locale]: { names: { kind: Map id -> name } (sorted by id),
+// from: { kind: { wago, wowhead, ding, pfquest } } } }
+function buildNames({ locales = LOCALE_CODES, ids, ding = null, pf = null, wago = null, wowhead = null }) {
 	const out = {};
 	const en = pf && pf.enUS;
 	for (const locale of locales) {
+		const w = wago && wago[locale];
+		const h = wowhead && wowhead[locale];
 		const d = ding && ding[locale];
 		const p = pf && pf[locale];
-		const names = emptyKinds();
-		const from = Object.fromEntries(NAME_KINDS.map((k) => [k, { ding: 0, pfquest: 0 }]));
-		for (const kind of NAME_KINDS) {
-			for (const id of [...ids[kind]].sort((a, b) => a - b)) {
-				let name = clean(d && d[kind].get(id));
-				let src = 'ding';
-				if (!name) {
-					const pn = clean(p && p[kind].get(id));
-					if (pn && !(en && clean(en[kind].get(id)) === pn)) {
-						name = pn;
-						src = 'pfquest';
+		const names = Object.fromEntries(PACK_KINDS.map((k) => [k, new Map()]));
+		const from = Object.fromEntries(PACK_KINDS.map((k) => [k, Object.fromEntries(SOURCE_KEYS.map((s) => [s, 0]))]));
+		for (const kind of PACK_KINDS) {
+			let list = ids[kind];
+			if (list === undefined) continue;
+			// null: every id the client table has (encounters).
+			if (list === null) list = w && w[kind] ? w[kind].keys() : [];
+			const pfKind = (k, id) => {
+				const m = k && k[kind];
+				return m ? m.get(id) : undefined;
+			};
+			for (const id of [...list].sort((a, b) => a - b)) {
+				let name = '';
+				let src = null;
+				const take = (s, v) => {
+					if (!name && clean(v)) {
+						name = clean(v);
+						src = s;
 					}
+				};
+				if (kind === 'objective') {
+					take('wowhead', h && h.objective && h.objective.get(id));
+					const pn = objectiveText(pfKind(p, id));
+					if (pn && !(en && objectiveText(pfKind(en, id)) === pn)) take('pfquest', pn);
+				} else {
+					const wn = w && w[kind] && w[kind].get(id);
+					const wagoSame = wn && w.same && w.same[kind] && w.same[kind].has(id);
+					if (!wagoSame) take('wago', wn);
+					const hn = h && h.names && h.names[kind] && h.names[kind].get(id);
+					const sameAsEnglish = hn && h.same && h.same[kind] && h.same[kind].has(id);
+					if (!sameAsEnglish) take('wowhead', hn);
+					take('ding', d && d[kind] && d[kind].get(id));
+					const pn = clean(pfKind(p, id));
+					if (pn && !(en && clean(pfKind(en, id)) === pn)) take('pfquest', pn);
+					if (wagoSame) take('wago', wn);
+					if (sameAsEnglish) take('wowhead', hn);
 				}
 				if (!name) continue;
 				names[kind].set(id, name);
@@ -273,31 +380,57 @@ function buildNames({ locales = LOCALE_CODES, ids, ding = null, pf = null }) {
 	return out;
 }
 
-const total = (built) => NAME_KINDS.reduce((n, k) => n + built.names[k].size, 0);
+const total = (built) => PACK_KINDS.reduce((n, k) => n + (built.names[k] ? built.names[k].size : 0), 0);
 
 // --- Output -------------------------------------------------------------------
 
 function sourceLabel(sources) {
 	const parts = [];
+	if (sources.wago) parts.push(`the client's tables (${Object.values(sources.wago.builds).join(', ')}, wago.tools)`);
+	if (sources.wowhead) parts.push('Wowhead');
 	if (sources.ding) parts.push(`DingDB ${sources.ding.pin.version}`);
 	parts.push(`pfQuest${sources.pf && sources.pf.revision ? ` ${sources.pf.revision.slice(0, 7)}` : ''}`);
-	return parts.join(' and ');
+	return parts.length > 1 ? `${parts.slice(0, -1).join(', ')} and ${parts[parts.length - 1]}` : parts[0];
 }
+
+const KIND_WORDS = {
+	quest: ['quest', 'quests'], npc: ['NPC', 'NPCs'], object: ['object', 'objects'], item: ['item', 'items'],
+	map: ['instance', 'instances'], encounter: ['encounter', 'encounters'], faction: ['faction', 'factions'],
+	taxi: ['flight point', 'flight points'], objective: ['quest objective', 'quest objectives'],
+};
 
 function licenseText(locale, built, sources) {
 	const { language } = LOCALES[locale];
-	const counts = (src) => NAME_KINDS.map((k) => `${built.from[k][src]} ${k === 'npc' ? 'NPC' : k}${built.from[k][src] === 1 ? '' : 's'}`).join(', ');
+	const counts = (src) => {
+		const parts = PACK_KINDS.filter((k) => built.from[k] && built.from[k][src]).map((k) => `${built.from[k][src]} ${KIND_WORDS[k][built.from[k][src] === 1 ? 0 : 1]}`);
+		return parts.length ? parts.join(', ') : 'none';
+	};
 	const out = [
 		`Polestar names (${locale}): third-party notices`,
 		'='.repeat(`Polestar names (${locale}): third-party notices`.length),
 		'',
-		`The quest, NPC, object and item names in this folder are the game's names in`,
-		`${language}, for Polestar's guides. Names and texts of the game belong to`,
-		'Blizzard Entertainment. They come from the sources below, the first one',
-		'with a name winning.',
+		`The names in this folder (quests, NPCs, objects, items, instances, dungeon`,
+		`encounters, factions, flight points and some quest objectives) are the game's`,
+		`texts in ${language}, for Polestar. Names and texts of the game belong to`,
+		'Blizzard Entertainment. They come from the sources below, in this order, the',
+		'first one with a name for an id winning.',
 		'',
 	];
-	const { ding, pf } = sources;
+	const { wago, wowhead, ding, pf } = sources;
+	if (wago) {
+		out.push('World of Warcraft client tables, via wago.tools', '-----------------------------------------------');
+		const builds = { forever: 'World of Warcraft: Forever (wow_classic_beta)', era: 'Classic Era (wow_classic_era), for the items Forever\'s table lacks' };
+		for (const [product, build] of Object.entries(wago.builds)) out.push(`Build: ${build}, ${builds[product] || product}`);
+		for (const url of [...wago.urls].sort()) out.push(`Table: ${url.replace('<locale>', locale)}`);
+		out.push('The client\'s own strings: names only.', `Names taken: ${counts('wago')}.`, '');
+	}
+	const wh = wowhead && wowhead[locale];
+	if (wh) {
+		out.push('Wowhead, World of Warcraft: Forever database', '--------------------------------------------');
+		out.push(`URL: https://www.wowhead.com/forever/${require('../codex/wowhead').LOCALE_PATHS[locale]}/ (list pages; tooltips from nether.wowhead.com/forever)`);
+		if (wh.fetched) out.push(`Read: ${wh.fetched.first.slice(0, 10)} to ${wh.fetched.last.slice(0, 10)}`);
+		out.push('Public web pages; the game\'s names only (facts), credited in THIRD_PARTY.md.', `Names taken: ${counts('wowhead')}.`, '');
+	}
 	if (ding) {
 		out.push('DingDB, the game database of Ding! by Yendi (@moust4ki)', '-------------------------------------------------------');
 		out.push(`URL: ${ding.pin.repo}`, `Version: ${ding.pin.version}, commit ${ding.pin.commit}`);
@@ -316,7 +449,7 @@ function licenseText(locale, built, sources) {
 	out.push('pfQuest database by Shagu', '-------------------------');
 	out.push(`URL: ${PFQUEST_REPO}`);
 	if (pf && pf.revision) out.push(`Revision: ${pf.revision}`);
-	out.push(`Files: db/${locale}/{quests,units,objects,items}.lua`, 'License: MIT', `Names taken: ${counts('pfquest')}${ding ? ' (the ones DingDB lacks)' : ''}.`);
+	out.push(`Files: db/${locale}/{quests,units,objects,items}.lua`, 'License: MIT', `Names taken: ${counts('pfquest')} (the ones the sources above lack).`);
 	const notice = pf && pf.dir ? checkLicense(pf.dir).notice : null;
 	if (notice) out.push('', notice);
 	out.push('');
@@ -333,7 +466,8 @@ function emitNamesAddon(locale, built, { version = require('../../../package.jso
 	files[`${name}.toc`] = [
 		`## Interface: ${iface || coreInterface()}`,
 		`## Title: Polestar Names (${locale})`,
-		`## Notes: Quest, NPC, object and item names in ${language} for Polestar's guides. Loaded on demand on a ${language} client.`,
+		`## Notes: Names of quests, NPCs, objects, items, instances and more in ${language} for Polestar. Loaded on demand on a ${language} client.`,
+		...tocLines(name),
 		'## Author: Polestar',
 		'## X-License: GPL-3.0-only',
 		`## Version: ${version}`,
@@ -346,15 +480,15 @@ function emitNamesAddon(locale, built, { version = require('../../../package.jso
 	].join('\n');
 	const lines = [
 		header('lua', 'i18n names', from),
-		`-- Quest, NPC, object and item names in ${language} (${locale}) for Polestar.Names`,
-		'-- (addon/Polestar/Core/Names.lua). Sources and licences: LICENSE-DATA.txt.',
+		`-- Names in ${language} (${locale}) for Polestar.Names (addon/Polestar/Core/Names.lua),`,
+		'-- by kind. Sources and licences: LICENSE-DATA.txt.',
 		'',
 		'local add = Polestar and Polestar.Names and Polestar.Names.Add',
 		'if not add then return end',
 		'',
 	];
-	for (const kind of NAME_KINDS) {
-		const entries = [...built.names[kind]];
+	for (const kind of PACK_KINDS) {
+		const entries = [...(built.names[kind] || [])];
 		for (let i = 0; i < entries.length; i += CHUNK) {
 			lines.push(`add(${luaString(locale)}, ${luaString(kind)}, {`);
 			for (const [id, n] of entries.slice(i, i + CHUNK)) lines.push(`[${id}]=${luaString(n)},`);
@@ -392,6 +526,6 @@ function writeNamesAddons(out, addonsDir, { sources, version, iface } = {}) {
 }
 
 module.exports = {
-	DING, NAME_KINDS, ADDON_PREFIX, DEFAULTS,
-	ensureDing, readDing, usedIds, buildNames, emitNamesAddon, writeNamesAddons, total,
+	DING, NAME_KINDS, EXTRA_KINDS, PACK_KINDS, SOURCE_KEYS, ADDON_PREFIX, DEFAULTS,
+	ensureDing, readDing, usedIds, extraIds, buildNames, emitNamesAddon, writeNamesAddons, total, sourceLabel,
 };
