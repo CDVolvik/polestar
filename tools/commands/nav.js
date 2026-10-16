@@ -31,6 +31,7 @@ const usage = `usage: node tools/polestar.js nav build [--continents 0,1] [--for
        node tools/polestar.js nav check [--out <dir>]
        node tools/polestar.js nav eval [--nav <Polestar_Nav dir>] [--baseline <dir or eval .json>] [--routes <file>] [--sweep] [--out <file.json>]
        node tools/polestar.js nav layers roads [--c 0|1] [--allowlist] [--offline] [--product <p>]
+       node tools/polestar.js nav layers hubs [--dir <grid dir>] [--offline]
 
 build   the navigation grid of every continent map-frames.json names (or
         --continents): client geometry per ADT tile through the CASC cache
@@ -112,7 +113,13 @@ layers  the ground layers under data/local/nav-layers. roads: per grid
         one whose tileset path names a road, path, cobble, street or trail;
         one naming dirt, footprint, brick or gravel, or listed under
         reviewed, when its shape is a road's (most of its weight in long,
-        narrow, elongated strips); with every measure (review it).`;
+        narrow, elongated strips); with every measure (review it).
+        hubs: each faction's towns and outposts (tools/lib/nav/layers/hubs.js):
+        its guards and service NPCs (quest givers, vendors, trainers, flight
+        masters, innkeepers, bankers, repairers) from the CMaNGOS classic-db
+        spawns and creature templates, judged by the client's FactionTemplate
+        table, clustered, named by the AreaTable area under them (the grid's
+        area ids, --dir, default data/local/nav4), into hubs.json.`;
 
 const usageError = (msg) => Object.assign(new Error(msg), { exit: 2 });
 
@@ -446,7 +453,8 @@ async function evalCmd(argv) {
 
 async function layersCmd(argv) {
 	const [layer, ...rest] = argv;
-	if (layer !== 'roads') throw usageError(layer ? `unknown nav layer "${layer}" (roads)` : 'nav layers needs a layer: roads');
+	if (layer === 'hubs') return hubsLayer(rest);
+	if (layer !== 'roads') throw usageError(layer ? `unknown nav layer "${layer}" (roads, hubs)` : 'nav layers needs a layer: roads or hubs');
 	const { opts: o, positional, error } = parseArgs(rest, { flags: ['--allowlist', '--offline'], options: ['--c', '--product'] });
 	if (error || positional.length) throw usageError(error || `unexpected argument "${positional[0]}"`);
 	if (o.c !== undefined && o.c !== '0' && o.c !== '1') throw usageError('--c needs 0 or 1');
@@ -486,6 +494,50 @@ async function layersCmd(argv) {
 		for (const t of s.textures) console.log(`  ${String(t.tiles).padStart(5)} tiles  ${t.path} (${t.fdid})`);
 	}
 	console.log(`nav layers roads ${casc.build}: in ${path.relative(ROOT, roads.ROADS_DIR)} (${fmt((Date.now() - t0) / 1000)})`);
+	return 0;
+}
+
+// `nav layers hubs`: data/local/nav-layers/hubs.json.
+async function hubsLayer(argv) {
+	const { opts: o, positional, error } = parseArgs(argv, { flags: ['--offline'], options: ['--dir'] });
+	if (error || positional.length) throw usageError(error || `unexpected argument "${positional[0]}"`);
+	const hubs = require('../lib/nav/layers/hubs');
+	const { loadSpawnHeights, loadCreatureTemplates, DB_REV } = require('../lib/travel/cmangos');
+	const { cachedTable } = require('../lib/data/wago');
+	const { openNav } = require('../lib/nav/path');
+	const { cellOf } = require('../lib/nav/grid/format');
+	const gridDir = o.dir ? path.resolve(o.dir) : path.join(ROOT, 'data', 'local', 'nav4');
+	const nav = openNav({ dir: gridDir, cacheTiles: 64 });
+	if (!nav.available) throw Object.assign(new Error(`no navigation grid at ${path.relative(ROOT, gridDir)} (its area ids name the hubs): run \`node tools/polestar.js nav build\``), { exit: 1 });
+	const build = nav.index.build;
+	const log = (m) => console.error(m);
+	const t0 = Date.now();
+	const offline = !!o.offline;
+	const get = async (url) => {
+		const res = await fetch(url, { headers: { 'user-agent': 'polestar-nav' } });
+		if (!res.ok) throw new Error(`GET ${url}: HTTP ${res.status}`);
+		return res.text();
+	};
+	const factionTemplates = await cachedTable({ sourcesDir: SOURCES, build, table: 'FactionTemplate', offline, get, log });
+	const areaTable = await cachedTable({ sourcesDir: SOURCES, build, table: 'AreaTable', offline, get, log });
+	const { npc } = await loadSpawnHeights({ sourcesDir: SOURCES, offline, log });
+	const { templates } = await loadCreatureTemplates({ sourcesDir: SOURCES, offline, log });
+	const areaAt = (c, x, y) => {
+		const p = cellOf(x, y);
+		const t = nav.tile(c, p.col, p.row);
+		return t ? t.areas[(p.j >> 4) * 16 + (p.i >> 4)] : 0;
+	};
+	const maps = hubs.HUB_MAPS.filter((c) => nav.index.continents[c]);
+	const out = hubs.buildHubs({ spawns: npc, templates, factionTemplates, areaTable, areaAt, maps });
+	const doc = { build, rev: DB_REV, maps, rules: hubs.RULES, ...out };
+	fs.mkdirSync(path.dirname(hubs.HUBS_FILE), { recursive: true });
+	fs.writeFileSync(`${hubs.HUBS_FILE}.tmp`, `${JSON.stringify(doc)}\n`);
+	fs.renameSync(`${hubs.HUBS_FILE}.tmp`, hubs.HUBS_FILE);
+	for (const c of maps) {
+		console.log(`hubs ${c}: ${out[c].length} (${out[c].filter((h) => h.side === 'Alliance').length} Alliance, ${out[c].filter((h) => h.side === 'Horde').length} Horde)`);
+		for (const h of out[c]) console.log(`  ${h.side.padEnd(8)} ${h.name} (${h.guards} guards, ${h.services} services, ${h.disks.length} disks)`);
+	}
+	console.log(`nav layers hubs ${build}: ${path.relative(ROOT, hubs.HUBS_FILE)} (${fmt((Date.now() - t0) / 1000)})`);
 	return 0;
 }
 

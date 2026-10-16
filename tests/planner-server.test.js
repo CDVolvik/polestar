@@ -76,7 +76,9 @@ test.before(async () => {
 	w[1] = 60;
 	fs.writeFileSync(path.join(roads, '0', '32_48.bin'), w);
 	fs.writeFileSync(path.join(roads, 'index.json'), JSON.stringify({ build: '1.60.1.0', continents: { 0: ['32_48'] } }));
-	server = await startServer({ port: 0, workspace: ws, roadsDir: roads });
+	const hubsFile = path.join(tmp, 'hubs.json');
+	fs.writeFileSync(hubsFile, JSON.stringify({ build: '1.60.1.0', rev: 'x', maps: [0, 1], rules: {}, 0: [{ id: 'alliance-southshore', side: 'Alliance', name: 'Southshore', areaId: 271, guards: 1, services: 0, disks: [[-817, -549, 50]] }], 1: [] }));
+	server = await startServer({ port: 0, workspace: ws, roadsDir: roads, hubsFile });
 });
 
 test.after(async () => {
@@ -111,6 +113,14 @@ test('the Roads layer: its index and a tile as a 256 x 256 PNG, 404 without one'
 	assert.equal(png.readUInt32BE(16), 256);
 	assert.equal(png.readUInt32BE(20), 256);
 	assert.equal((await fetch(`${server.url}nav/roads/tile/0/1_1.png`)).status, 404);
+});
+
+test('the Hubs layer: each map\'s hubs from hubs.json', async () => {
+	const hubs = await (await fetch(`${server.url}nav/hubs.json`)).json();
+	assert.deepEqual(Object.keys(hubs).sort(), ['0', '1']);
+	assert.equal(hubs[0][0].name, 'Southshore');
+	assert.deepEqual(hubs[0][0].disks, [[-817, -549, 50]]);
+	assert.deepEqual(hubs[1], []);
 });
 
 test('only this machine\'s JSON requests run commands', async () => {

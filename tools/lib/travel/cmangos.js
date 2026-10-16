@@ -15,7 +15,10 @@
 // and, for `data build` (data/forever/spawnz.json), every creature and
 // gameobject spawn on maps 0 and 1 with its height (loadSpawnHeights): the
 // compiler gives a guide goal at an NPC or object its spawn's z
-// (tools/lib/dsl/heights.js), facts like the transport periods.
+// (tools/lib/dsl/heights.js), facts like the transport periods; and, for
+// `nav layers hubs`, every
+// creature template's name, faction template, NPC flags, extra flags, rank and
+// level (loadCreatureTemplates, cached as creature_template.json).
 //
 // The dump (~13 MB gzip, its sha256 pinned, at most MAX_BYTES read) is
 // fetched once into <sources>/cmangos/<rev>/ and only the rows above are
@@ -161,6 +164,41 @@ function serializeSpawnHeights(db) {
 	return `{"npc":{\n${part(db.npc)}\n},"object":{\n${part(db.object)}\n}}\n`;
 }
 
+// The creature_template columns `nav layers hubs` keeps, as the extract names them.
+const TEMPLATE_COLUMNS = { Name: 'name', Faction: 'faction', NpcFlags: 'npcFlags', ExtraFlags: 'extraFlags', Rank: 'rank', MinLevel: 'minLevel' };
+
+// Lines of the dump -> { entry: { name, faction (a FactionTemplate id),
+// npcFlags, extraFlags, rank, minLevel } } for every creature template, the
+// columns found by name in the dump's CREATE TABLE.
+async function extractCreatureTemplates(lines) {
+	const out = {};
+	let cols = null;
+	let creating = false;
+	for await (const line of lines) {
+		if (line.startsWith('CREATE TABLE `creature_template` (')) {
+			creating = true;
+			cols = [];
+		} else if (creating) {
+			const m = /^\s*`(\w+)`/.exec(line);
+			if (m) cols.push(m[1]);
+			else creating = false;
+		} else if (line.startsWith('INSERT INTO `creature_template` VALUES')) {
+			if (!cols) throw new Error('classic-db: creature_template rows before its CREATE TABLE');
+			const at = { Entry: cols.indexOf('Entry') };
+			for (const c of Object.keys(TEMPLATE_COLUMNS)) at[c] = cols.indexOf(c);
+			const lost = Object.keys(at).filter((c) => at[c] < 0);
+			if (lost.length) throw new Error(`classic-db: creature_template has no ${lost.join(', ')}`);
+			for (const r of tuples(line)) {
+				const t = {};
+				for (const [c, k] of Object.entries(TEMPLATE_COLUMNS)) t[k] = c === 'Name' ? r[at[c]] : Number(r[at[c]]);
+				out[Number(r[at.Entry])] = t;
+			}
+		}
+	}
+	if (!Object.keys(out).length) throw new Error(`classic-db ${DB_REV.slice(0, 8)}: no creature_template rows`);
+	return out;
+}
+
 const sha256 = (buf) => crypto.createHash('sha256').update(buf).digest('hex');
 
 // The pinned dump, read up to maxBytes, checked against its hash, written atomically.
@@ -236,6 +274,13 @@ async function loadSpawnHeights({ sourcesDir, offline = false, fetchImpl = globa
 	return { rev: DB_REV, url: DB_URL, text: serializeSpawnHeights(data), npc: data.npc, object: data.object };
 }
 
+// -> { rev, url, templates }: extractCreatureTemplates' table, cached as
+// creature_template.json beside the dump. Throws like loadClassicDb.
+async function loadCreatureTemplates({ sourcesDir, offline = false, fetchImpl = globalThis.fetch, log = () => {}, url = DB_URL, hash = DB_SHA256, maxBytes = MAX_BYTES }) {
+	const templates = await cachedExtract({ sourcesDir, offline, fetchImpl, log, url, hash, maxBytes, name: 'creature_template.json', extract: extractCreatureTemplates, write: (data) => `${JSON.stringify(data)}\n` });
+	return { rev: DB_REV, url: DB_URL, templates };
+}
+
 // The reference data source the heights come from: meta.json's entry (`data
 // build`), and the LICENSE-DATA.txt section of a pack whose goals carry z.
 const HEIGHTS_SOURCE = {
@@ -247,6 +292,6 @@ const HEIGHTS_SOURCE = {
 };
 
 module.exports = {
-	loadClassicDb, loadSpawnHeights, extractLines, extractSpawnHeights, serializeSpawnHeights, sqlFields,
+	loadClassicDb, loadSpawnHeights, loadCreatureTemplates, extractLines, extractSpawnHeights, extractCreatureTemplates, serializeSpawnHeights, sqlFields,
 	DB_REV, DB_URL, DB_SHA256, MAX_BYTES, LIFT_ENTRIES, TRAM_ENTRIES, PORTAL_TRIGGERS, HEIGHTS_SOURCE,
 };
