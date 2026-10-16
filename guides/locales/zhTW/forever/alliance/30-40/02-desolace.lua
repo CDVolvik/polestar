@@ -40,7 +40,7 @@ return {
 
 	-- Step 10: Azore Aldamort
 	-- {area:599} Thunder Axe Fortress
-	["Azore's tower stands on the hill west of {area:599}: take his quest first, the sceptre he wants is in the fortress."] = "燒焦的奇美拉角與光滑的奇美拉角",
+	["Azore's tower stands on the hill west of {area:599}: take his quest first, the sceptre he wants is in the fortress."] = "阿佐爾的塔位於{area:599}西邊的山丘上：先接他的任務，他要的權杖就在要塞裡。",
 
 	-- Step 11: Dalinda Malem
 	-- {spell:1294269} Burning Blade · {area:608} Nijel's Point

@@ -362,7 +362,7 @@ return {
 
 	-- Step 75: Desperate Prayer
 	-- {npc:376} High Priestess Laurena
-	["{npc:376} is in the Cathedral of Light."] = "{npc:376}在聖光大教堂裡。",
+	["{npc:376} is in the Cathedral of Light."] = "{npc:376}在光明大教堂裡。",
 
 	-- Step 76: Gakin the Darkbinder
 	-- {npc:6122} Gakin the Darkbinder · {object:2164} The Slaughtered Lamb · {object:2101} Mage Quarter

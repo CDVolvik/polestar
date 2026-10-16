@@ -46,7 +46,7 @@ return {
 	-- plural, as words: Dark Iron Geologists = {npc:5839} Dark Iron Geologist
 	["Ride east across the Cauldron to the {area:247} in the south-east. The prisoner in the wooden outhouse wants 15 {item:4306} and eight dead Dark Iron Geologists from the dig site around it. The outhouse also opens with the key, if you found one."] = "向東騎過大熔爐，前往東南方的{area:247}。木製廁所裡的囚犯要15塊{item:4306}，以及擊殺周圍挖掘場的八名黑鐵地質學家。如果你找到了鑰匙，也能用它打開廁所。",
 	-- {zone:1446} Tanaris · {zone:1435} Swamp of Sorrows · {zone:1445} Dustwallow Marsh
-	["The prisoner's next task, Ledger from {zone:1446}, sends you to the {zone:1435} and {zone:1445}: skip it."] = "囚犯的下一個任務「塔納利斯的帳本」會派你去{zone:1435}和{zone:1445}：跳過它。",
+	["The prisoner's next task, Ledger from {zone:1446}, sends you to the {zone:1435} and {zone:1445}: skip it."] = "囚犯的下一個任務「{zone:1446}的帳本」會派你去{zone:1435}和{zone:1445}：跳過它。",
 
 	-- Step 12: Dorius Stonetender
 	-- {object:147516} Dark Iron · {object:175704} Singed Letter · {area:1959} Dustfire Valley

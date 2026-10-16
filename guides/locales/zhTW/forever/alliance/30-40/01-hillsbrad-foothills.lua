@@ -157,7 +157,7 @@ return {
 	["{npc:5479} trains warriors in {object:2100}, beside the Pig and Whistle. {npc:6236} waits on {area:720} in the {zone:1413}, on the way to {area:392} much later (40-50/01)."] = "{npc:5479}在{object:2100}的酒館旁訓練戰士。{npc:6236}在{zone:1413}的{area:720}等候，要很久以後前往{area:392}的途中才會經過（40-50/01）。",
 
 	-- Step 33: Cathedral of Light
-	["Cathedral of Light"] = "聖光大教堂",
+	["Cathedral of Light"] = "光明大教堂",
 
 	-- Step 34: Mage Quarter
 	-- {npc:2708} Archmage Malin · {object:2164} The Slaughtered Lamb · {npc:211033} Garion Wendell · {npc:5081} Connor Rivers · {object:2101} Mage Quarter

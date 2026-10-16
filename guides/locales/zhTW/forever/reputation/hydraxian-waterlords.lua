@@ -6,7 +6,7 @@
 -- The comments are rewritten by sync.
 return {
 	-- Guide
-	["Hydraxian Waterlords Reputation"] = "海達克西斯水元素聲望",
+	["Hydraxian Waterlords Reputation"] = "海達希亞水元素聲望",
 
 	-- Step 1: Duke Hydraxis
 	-- {npc:13278} Duke Hydraxis · {zone:1447} Azshara · {faction:749} Hydraxian Waterlords

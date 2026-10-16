@@ -15,7 +15,7 @@ return {
 	-- Step 2: Sentry Point
 	-- {area:503} Sentry Point
 	-- plural, as words: Mudrock Burrowers = {npc:4398} Mudrock Burrower
-	["Follow the road north-west out of Theramore to the watchtower at {area:503}. Mudrock Burrowers roam the marsh around it."] = "坐騎 · 傳承",
+	["Follow the road north-west out of Theramore to the watchtower at {area:503}. Mudrock Burrowers roam the marsh around it."] = "沿著道路從塞拉摩向西北前往{area:503}的瞭望塔。泥石穴居龜在周圍的沼澤中遊蕩。",
 
 	-- Step 3: Archmage Tervosh
 	-- {area:514} Foothold Citadel
@@ -204,7 +204,7 @@ return {
 	-- {quest:1661} The Tome of Nobility
 	["Paladin: {quest:1661}"] = "聖騎士：{quest:1661}",
 	-- {npc:6171} Duthorian Rall
-	["{npc:6171}, in the Cathedral of Light"] = "{npc:6171}，在聖光大教堂裡",
+	["{npc:6171}, in the Cathedral of Light"] = "{npc:6171}，在光明大教堂裡",
 
 	-- Step 43: Warlock: Summon Felsteed
 	-- {quest:3631} Summon Felsteed

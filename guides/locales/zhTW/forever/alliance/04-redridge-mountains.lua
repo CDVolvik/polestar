@@ -23,7 +23,7 @@ return {
 	-- {zone:1453} Stormwind City
 	["{zone:1453} class quests"] = "{zone:1453}職業任務",
 	-- {npc:332} Master Mathias Shaw · {object:2100} Old Town · {npc:6122} Gakin the Darkbinder · {object:2164} The Slaughtered Lamb · {object:2101} Mage Quarter · {npc:376} High Priestess Laurena
-	["{npc:332} is at SI:7 in {object:2100}, {npc:6122} in the {object:2164}'s cellar in the {object:2101}, {npc:376} in the Cathedral of Light."] = "{npc:332}在{object:2100}的軍情七處，{npc:6122}在{object:2101}的{object:2164}地下室，{npc:376}在聖光大教堂。",
+	["{npc:332} is at SI:7 in {object:2100}, {npc:6122} in the {object:2164}'s cellar in the {object:2101}, {npc:376} in the Cathedral of Light."] = "{npc:332}在{object:2100}的軍情七處，{npc:6122}在{object:2101}的{object:2164}地下室，{npc:376}在光明大教堂。",
 	-- {npc:332} Master Mathias Shaw · {npc:7024} Agent Kearnen · {zone:1436} Westfall · {zone:1431} Duskwood
 	["{npc:332}: {npc:7024} in {zone:1436} takes it, at the end of {zone:1431}"] = "{npc:332}：由{zone:1436}的{npc:7024}接收，在{zone:1431}的結尾",
 	-- {npc:6122} Gakin the Darkbinder · {npc:6244} Takar the Seer · {zone:1413} The Barrens

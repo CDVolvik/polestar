@@ -10,7 +10,7 @@ return {
 
 	-- Step 1: Lord Grayson Shadowbreaker
 	-- {npc:928} Lord Grayson Shadowbreaker
-	["{npc:928} is in the Cathedral of Light."] = "{npc:928}在聖光大教堂裡。",
+	["{npc:928} is in the Cathedral of Light."] = "{npc:928}在光明大教堂裡。",
 
 	-- Step 2: Brandur Ironhammer
 	-- {npc:5149} Brandur Ironhammer · {object:32362} The Mystic Ward
