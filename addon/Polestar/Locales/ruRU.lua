@@ -170,11 +170,12 @@ L["Close"] = "Закрыть"
 
 -- Nav/Nav.lua
 L["Waypoint"] = "Путевая точка"
-L["Shortest Path Forever is guiding. Turn off \"Guide with Shortest Path Forever when it's installed\" (Options, Arrow & routes) to use Polestar's arrow."] = "Ведет Shortest Path Forever. Отключите «Вести через Shortest Path Forever, если он установлен» (Настройки, Стрелка и маршруты), чтобы использовать стрелку Polestar."
 L["Greyed out while Shortest Path Forever guides: it does this itself."] = "Недоступно, пока ведет Shortest Path Forever: он делает это сам."
 L["Waypoint arrow: show, hide, reset"] = "Стрелка: показать, скрыть, сбросить"
 L["Usage: /polestar way <x> <y> [label]"] = "Использование: /polestar way <x> <y> [метка]"
 L["Point the arrow at x y on your current map (no argument clears it)"] = "Навести стрелку на x y на текущей карте (без аргументов — сбросить)"
+-- L["Shortest Path Forever is guiding a journey of its own. Polestar's arrow comes back when it ends."] = ""
+-- L["Shortest Path Forever is guiding. Turn off \"Hand guiding to Shortest Path Forever\" (Options, Arrow & routes) to use Polestar's arrow."] = ""
 
 -- Nav/Arrow.lua
 L["Search here"] = "Ищите здесь"
@@ -256,6 +257,7 @@ L["Take %s"] = "Сесть на %s"
 L["Take the lift"] = "Подняться на подъемнике"
 L["No route: walk straight to the target."] = "Маршрута нет: идите прямо к цели."
 L["Show the travel route to the current target"] = "Показать маршрут к текущей цели"
+-- L["Hostile town: %s"] = ""
 
 -- Nav/Journey.lua
 L["%s %d, %d"] = "%s %d, %d"
@@ -336,10 +338,6 @@ L["Flash the taskbar icon"] = "Мигать значком на панели з�
 L["The game's icon flashes while the game is in the background."] = "Значок игры мигает, пока игра в фоне."
 L["Show a sample alert"] = "Показать пример"
 L["See the banner and hear the boat's bell."] = "Посмотреть баннер и услышать колокол корабля."
-
--- Nav/Handoff.lua
-L["Guide with Shortest Path Forever when it's installed"] = "Вести через Shortest Path Forever, если он установлен"
-L["Shortest Path Forever's arrow, route and journey take you to each goal. Polestar's arrow, route lines, journey steps, travel button, transport alerts, map clicks and /way step aside; the guide window and map pins stay."] = "Стрелка, маршрут и путь Shortest Path Forever ведут к каждой цели. Стрелка Polestar, линии маршрута, шаги пути, кнопка пути, оповещения о транспорте, щелчки по карте и /way отключаются; окно гайда и метки на карте остаются."
 
 -- Quests/Tracker.lua
 L["Done"] = "Готово"
@@ -1770,3 +1768,12 @@ L["Feral"] = "Сила зверя"
 -- L["Click: show or hide the guide"] = ""
 -- L["Right-click: settings"] = ""
 -- L["Drag: move it around the minimap"] = ""
+
+-- Nav/Handoff.lua
+-- L["Hand guiding to Shortest Path Forever"] = ""
+-- L["Shortest Path Forever's arrow, route and journey take you to each goal. Polestar's arrow, route lines, journey steps, travel button, transport alerts, map clicks and /way step aside; the guide window and map pins stay. Off: Polestar guides, and steps aside only while a journey you started in Shortest Path Forever runs."] = ""
+
+-- No longer in the code (its English changed or it went away): reuse or delete.
+-- L["Shortest Path Forever is guiding. Turn off \"Guide with Shortest Path Forever when it's installed\" (Options, Arrow & routes) to use Polestar's arrow."] = "Ведет Shortest Path Forever. Отключите «Вести через Shortest Path Forever, если он установлен» (Настройки, Стрелка и маршруты), чтобы использовать стрелку Polestar."
+-- L["Guide with Shortest Path Forever when it's installed"] = "Вести через Shortest Path Forever, если он установлен"
+-- L["Shortest Path Forever's arrow, route and journey take you to each goal. Polestar's arrow, route lines, journey steps, travel button, transport alerts, map clicks and /way step aside; the guide window and map pins stay."] = "Стрелка, маршрут и путь Shortest Path Forever ведут к каждой цели. Стрелка Polestar, линии маршрута, шаги пути, кнопка пути, оповещения о транспорте, щелчки по карте и /way отключаются; окно гайда и метки на карте остаются."

@@ -15,12 +15,24 @@ const { runAddon } = require('./helpers/lua');
 const NAV = { name: 'Polestar', files: ['Core/Init.lua', 'Nav/Nav.xml'] };
 
 // The fake engine, installed before the addon loads (Polestar_Nav's API.lua sets the same global).
+// The fifth argument is the waterWalking flag or opts { waterWalking, profile }
+// (Routing/Path.lua); a job keeps both. Answers carry job.yards (the drawn
+// line's length) and job.hubs (fake.hubs: the hostile towns it enters).
 const ENGINE = `
 fake = { calls = {}, avail = {} }
+local function opts(job, o)
+	job.opts = o
+	if type(o) == "table" then
+		job.waterWalking, job.profile = o.waterWalking, o.profile
+	else
+		job.waterWalking = o
+	end
+end
 Polestar_NavEngine = {
-	Find = function(map, from, to, callback, waterWalking)
+	Find = function(map, from, to, callback, o)
 		if fake.throw then error("boom") end
-		local job = { map = map, from = from, to = to, callback = callback, waterWalking = waterWalking }
+		local job = { map = map, from = from, to = to, callback = callback }
+		opts(job, o)
 		fake.calls[#fake.calls + 1] = job
 		return job
 	end,
@@ -28,13 +40,25 @@ Polestar_NavEngine = {
 	Busy = function() return false end,
 	Available = function(c) return fake.avail[c] ~= false end,
 }
+fake.opts = opts
 function fake.last() return fake.calls[#fake.calls] end
--- Answer the last search with the path x1, y1, x2, y2, ... (UnitPosition frame).
-function fake.resolve(...)
-	local job, xy, points = fake.last(), { ... }, {}
+-- The path's length, as Find's job.yards gives it.
+local function length(points)
+	local yards = 0
+	for i = 2, #points do yards = yards + math.sqrt((points[i].x - points[i - 1].x) ^ 2 + (points[i].y - points[i - 1].y) ^ 2) end
+	return yards
+end
+-- Answer a search with the path x1, y1, x2, y2, ... (UnitPosition frame); its
+-- cost (100) is never its yards, as on format 2 maps.
+local function answer(job, xy)
+	local points = {}
 	for i = 1, #xy - 1, 2 do points[#points + 1] = { map = job.map, x = xy[i], y = xy[i + 1] } end
+	job.yards, job.hubs = length(points), fake.hubs or {}
 	job.callback(points, 100, job)
 end
+fake.answerXY = answer
+-- Answer the last search.
+function fake.resolve(...) answer(fake.last(), { ... }) end
 function fake.fail(reason)
 	local job = fake.last()
 	job.callback(nil, reason, job)
@@ -60,10 +84,13 @@ local function calls() return #fake.calls end
 `;
 
 // The planner's measures (Walk.Measure): the fake engine with Path.FindMany too.
-// settle(job, fn) answers a batch with fn(x, y) per target (a cost, or false).
+// settle(job, fn) answers a batch with fn(x, y) per target: a cost, or false,
+// and the yards along that walk (job.yards[i]; the cost when fn gives none,
+// as on a format 1 map).
 const MANY = `
-Polestar_NavEngine.FindMany = function(map, from, targets, callback, waterWalking, reverse)
-	local job = { many = true, map = map, from = from, targets = targets, callback = callback, waterWalking = waterWalking, reverse = reverse }
+Polestar_NavEngine.FindMany = function(map, from, targets, callback, o, reverse)
+	local job = { many = true, map = map, from = from, targets = targets, callback = callback, reverse = reverse }
+	fake.opts(job, o)
 	fake.calls[#fake.calls + 1] = job
 	return job
 end
@@ -74,16 +101,18 @@ function fake.of(many)
 	return out
 end
 function fake.settle(job, fn)
-	local costs = {}
-	for i, p in ipairs(job.targets) do costs[i] = fn(p.x, p.y) end
+	local costs, yards = {}, {}
+	for i, p in ipairs(job.targets) do
+		local c, y = fn(p.x, p.y)
+		costs[i] = c
+		if y == nil then y = c end
+		yards[i] = y
+	end
+	job.yards = yards
 	job.callback(costs, nil, job)
 end
 -- Answer one Path.Find with the path x1, y1, x2, y2, ...
-function fake.answer(job, ...)
-	local xy, points = { ... }, {}
-	for i = 1, #xy - 1, 2 do points[#points + 1] = { map = job.map, x = xy[i], y = xy[i + 1] } end
-	job.callback(points, 100, job)
-end
+function fake.answer(job, ...) fake.answerXY(job, { ... }) end
 `;
 
 function run(script, { engine = true, many = false } = {}) {
@@ -1237,4 +1266,128 @@ test('test gap: handed off to Shortest Path Forever, Refresh cancels the measure
 	assert.equal(out.measure, true);
 	assert.deepEqual(out.legFrom, [400, 300], 'the later walk was in flight');
 	assert.equal(out.leg, true);
+});
+
+// Pathing v2 (docs/ARCHITECTURE.md, "In-game walking routes"): searches are
+// priced for the player's faction; the router's cost chooses, its yards time
+// (on format 2 maps a road walk costs less than its yards, a steep one more);
+// hostile towns a walk enters are said; a later rule scales walk costs.
+
+test('profile: every search carries the player\'s faction as opts.profile; a neutral faction sends none and still routes', () => {
+	const [out] = run(`${TERRAIN}
+		local r = {}
+		nav.faction = "Horde"
+		nav.place(0, 0)
+		target(0, -600)
+		N.Sample()
+		local job = fake.of(false)[1]
+		r.horde = { job.profile or false, type(job.opts), job.waterWalking == true }
+		fake.resolve(0, 0, 100, -300, 0, -600)
+		r.hordeAim = aim()[1]
+		nav.faction = "Neutral"
+		target(0, -300)
+		N.Sample()
+		job = fake.of(false)[#fake.of(false)]
+		r.none = { job.profile or false, job.waterWalking == true }
+		fake.resolve(0, 0, 50, -150, 0, -300)
+		r.noneAim = aim()
+		nav.faction = "Alliance"
+		nav.place(900, 900)
+		target(0, 0)
+		N.Sample()
+		local many = fake.of(true)
+		r.batch = many[#many].profile or false
+		emit(r)`, { many: true });
+	assert.deepEqual(out.horde, ['Horde', 'table', false], 'the arrow\'s own walk: opts { waterWalking, profile }');
+	assert.equal(out.hordeAim, 'travel');
+	assert.deepEqual(out.none, [false, false], 'neutral or unread: no profile');
+	assert.deepEqual(out.noneAim, ['travel', 316, 50, -150], 'and it routes');
+	assert.equal(out.batch, 'Alliance', 'the planner\'s measure too');
+});
+
+test('cost and yards: the measure\'s cost picks the landing, its yards time the walk (a road walk costs less than its yards)', () => {
+	const [out] = run(`${TERRAIN}
+		nav.place(900, 900)
+		target(0, 0)
+		N.Sample()
+		-- Road Roost: 750 yd along a road, costing 600 (x0.8). Ridge Roost: 500 yd
+		-- over rough ground, costing 650. Flights are alike: the cheaper walk wins.
+		fake.settle(fake.of(true)[1], function(x, y)
+			if at(x, y, 0, -700) then return 600, 750 end
+			if at(x, y, 0, 300) then return 650, 500 end
+			local d = math.sqrt(x * x + y * y)
+			return math.floor(d * 1.3), math.floor(d)
+		end)
+		emit(route())`, { many: true });
+	assert.deepEqual(out, { lands: 'Road Roost, Testshire', yards: 750, seconds: 107, engine: 'cost' },
+		'chosen by cost (600 < 650), shown and timed by its 750 yards at 7 yd/s');
+});
+
+test('cost and yards: a searched walk is measured by the path\'s yards, never its cost', () => {
+	const [out] = run(`${CROSSING}
+		nav.place(900, 800)
+		target(600, -300)
+		N.Sample()
+		fake.settle(fake.of(true)[1], function(x, y) return math.floor(math.sqrt((x - 600) ^ 2 + (y + 300) ^ 2) * 1.1) end)
+		fake.answer(fake.of(false)[1], 900, 800, 900, 900)
+		fake.answer(fake.of(false)[2], 400, 300, 500, 300, 600, 20)
+		local legs, ci = N.GetRoute()
+		emit({ legs[ci].yards, legs[ci].seconds, legs[ci + 2].yards, legs[ci + 2].seconds })`, { many: true });
+	const path = 100 + Math.hypot(100, 280);
+	assert.deepEqual(out, [100, 14, Math.round(path), Math.round(path / 7)], 'the engine\'s cost (100 for each) is not a distance');
+});
+
+test('Travel.WalkCostHook: a registered rule scales a walk\'s cost, never its time', () => {
+	const [out] = run(`${TERRAIN}
+		local r = {}
+		nav.place(900, 900)
+		target(0, 0)
+		N.Sample()
+		r.before = route()
+		local seen = 0
+		T.WalkCostHook(function(leg, cost)
+			seen = seen + 1
+			if at(leg.from.wx, leg.from.wy, 0, 300) and at(leg.to.wx, leg.to.wy, 0, 0) then return cost * 4 end
+			return cost
+		end)
+		T.Replan()
+		r.after = route()
+		r.seen = seen > 0
+		emit(r)`, { many: true });
+	assert.deepEqual(out.before, { lands: 'Ridge Roost, Testshire', yards: 375, seconds: 54, engine: false });
+	assert.deepEqual(out.after, { lands: 'Road Roost, Testshire', yards: 875, seconds: 125, engine: false },
+		'the walk from Ridge Roost costs four times as much: the route lands at Road Roost, timed as before');
+	assert.equal(out.seen, true);
+});
+
+test('hostile towns: a walk whose path enters one carries it (leg.hubs); the arrow says "Hostile town: <name>" once, when the walk starts', () => {
+	const [out] = run(`${CROSSING}
+		local r = {}
+		nav.place(900, 800)
+		target(600, -300)
+		N.Sample()
+		fake.settle(fake.of(true)[1], function(x, y) return math.floor(math.sqrt((x - 600) ^ 2 + (y + 300) ^ 2) * 1.1) end)
+		fake.hubs = { { id = 12, name = "Southshore" } }
+		fake.answer(fake.of(false)[1], 900, 800, 900, 900)
+		fake.hubs = { { id = 13, name = "Tarren Mill" } }
+		fake.answer(fake.of(false)[2], 400, 300, 500, 300, 600, 20)
+		fake.hubs = nil
+		local legs, ci = N.GetRoute()
+		r.current = legs[ci].hubs and legs[ci].hubs[1].name or false
+		r.later = legs[ci + 2].hubs and legs[ci + 2].hubs[1].name or false
+		r.none = legs[ci + 1].hubs ~= nil
+		stub.advance(0.3)
+		r.said = N.arrow.labelText:GetText()
+		stub.advance(15)
+		r.after = N.arrow.labelText:GetText()
+		T.Replan()
+		stub.advance(0.3)
+		r.again = N.arrow.labelText:GetText()
+		emit(r)`, { many: true });
+	assert.equal(out.current, 'Southshore', 'the arrow\'s own walk');
+	assert.equal(out.later, 'Tarren Mill', 'a later walk, from its own search');
+	assert.equal(out.none, false, 'a flight has none');
+	assert.equal(out.said, 'Walk to the flight master\nHostile town: Southshore');
+	assert.equal(out.after, 'Walk to the flight master', 'said once, then the step alone');
+	assert.equal(out.again, 'Walk to the flight master', 'a fresh plan of the same walk does not say it again');
 });

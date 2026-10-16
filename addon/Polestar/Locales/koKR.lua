@@ -170,11 +170,12 @@ L["Close"] = "닫기"
 
 -- Nav/Nav.lua
 L["Waypoint"] = "경유지"
-L["Shortest Path Forever is guiding. Turn off \"Guide with Shortest Path Forever when it's installed\" (Options, Arrow & routes) to use Polestar's arrow."] = "Shortest Path Forever가 가이드 중입니다. Polestar 화살표를 쓰려면 \"설치 시 Shortest Path Forever로 가이드\"를 끄십시오(설정, 화살표 및 경로)."
 L["Greyed out while Shortest Path Forever guides: it does this itself."] = "Shortest Path Forever가 가이드 중이면 비활성: 그 애드온이 직접 처리합니다."
 L["Waypoint arrow: show, hide, reset"] = "경유지 화살표: 표시, 숨기기, 초기화"
 L["Usage: /polestar way <x> <y> [label]"] = "사용법: /polestar way <x> <y> [이름]"
 L["Point the arrow at x y on your current map (no argument clears it)"] = "현재 지도의 x y를 화살표로 가리킴 (인수 없으면 지움)"
+-- L["Shortest Path Forever is guiding a journey of its own. Polestar's arrow comes back when it ends."] = ""
+-- L["Shortest Path Forever is guiding. Turn off \"Hand guiding to Shortest Path Forever\" (Options, Arrow & routes) to use Polestar's arrow."] = ""
 
 -- Nav/Arrow.lua
 L["Search here"] = "여기서 찾기"
@@ -256,6 +257,7 @@ L["Take %s"] = "타기: %s"
 L["Take the lift"] = "승강기 타기"
 L["No route: walk straight to the target."] = "경로 없음: 목표까지 곧장 걸어가십시오."
 L["Show the travel route to the current target"] = "현재 목표까지의 이동 경로 표시"
+-- L["Hostile town: %s"] = ""
 
 -- Nav/Journey.lua
 L["%s %d, %d"] = "%s %d, %d"
@@ -336,10 +338,6 @@ L["Flash the taskbar icon"] = "작업 표시줄 아이콘 깜빡임"
 L["The game's icon flashes while the game is in the background."] = "게임이 백그라운드일 때 게임 아이콘이 깜빡입니다."
 L["Show a sample alert"] = "알림 미리보기"
 L["See the banner and hear the boat's bell."] = "배너를 보고 배의 종소리를 듣습니다."
-
--- Nav/Handoff.lua
-L["Guide with Shortest Path Forever when it's installed"] = "설치 시 Shortest Path Forever로 가이드"
-L["Shortest Path Forever's arrow, route and journey take you to each goal. Polestar's arrow, route lines, journey steps, travel button, transport alerts, map clicks and /way step aside; the guide window and map pins stay."] = "Shortest Path Forever의 화살표, 경로, 여정이 각 목표로 안내합니다. Polestar의 화살표, 경로선, 여정 단계, 이동 버튼, 교통수단 알림, 지도 클릭, /way는 물러나고 가이드 창과 지도 핀은 남습니다."
 
 -- Quests/Tracker.lua
 L["Done"] = "완료"
@@ -1770,3 +1768,12 @@ L["Feral"] = "야성"
 -- L["Click: show or hide the guide"] = ""
 -- L["Right-click: settings"] = ""
 -- L["Drag: move it around the minimap"] = ""
+
+-- Nav/Handoff.lua
+-- L["Hand guiding to Shortest Path Forever"] = ""
+-- L["Shortest Path Forever's arrow, route and journey take you to each goal. Polestar's arrow, route lines, journey steps, travel button, transport alerts, map clicks and /way step aside; the guide window and map pins stay. Off: Polestar guides, and steps aside only while a journey you started in Shortest Path Forever runs."] = ""
+
+-- No longer in the code (its English changed or it went away): reuse or delete.
+-- L["Shortest Path Forever is guiding. Turn off \"Guide with Shortest Path Forever when it's installed\" (Options, Arrow & routes) to use Polestar's arrow."] = "Shortest Path Forever가 가이드 중입니다. Polestar 화살표를 쓰려면 \"설치 시 Shortest Path Forever로 가이드\"를 끄십시오(설정, 화살표 및 경로)."
+-- L["Guide with Shortest Path Forever when it's installed"] = "설치 시 Shortest Path Forever로 가이드"
+-- L["Shortest Path Forever's arrow, route and journey take you to each goal. Polestar's arrow, route lines, journey steps, travel button, transport alerts, map clicks and /way step aside; the guide window and map pins stay."] = "Shortest Path Forever의 화살표, 경로, 여정이 각 목표로 안내합니다. Polestar의 화살표, 경로선, 여정 단계, 이동 버튼, 교통수단 알림, 지도 클릭, /way는 물러나고 가이드 창과 지도 핀은 남습니다."

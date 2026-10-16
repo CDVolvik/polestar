@@ -520,11 +520,17 @@ end)
 -- Commands
 ---------------------------------------------------------------------------
 
--- While Shortest Path Forever guides (Nav/Handoff.lua), a command that would
--- show Polestar's own arrow or route says so in one line instead. True if it did.
+-- While Shortest Path Forever guides (Nav/Handoff.lua: handed off, or a
+-- journey of its own runs), a command that would show Polestar's own arrow
+-- or route says so in one line instead. True if it did.
 function Nav.SayHandedOff()
 	if not (Nav.HandedOff and Nav.HandedOff()) then return false end
-	ns.Print(L["Shortest Path Forever is guiding. Turn off \"Guide with Shortest Path Forever when it's installed\" (Options, Arrow & routes) to use Polestar's arrow."])
+	local H = Nav.handoff
+	if H and H.Yielding and H.Yielding() then
+		ns.Print(L["Shortest Path Forever is guiding a journey of its own. Polestar's arrow comes back when it ends."])
+	else
+		ns.Print(L["Shortest Path Forever is guiding. Turn off \"Hand guiding to Shortest Path Forever\" (Options, Arrow & routes) to use Polestar's arrow."])
+	end
 	return true
 end
 

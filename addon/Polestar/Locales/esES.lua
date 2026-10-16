@@ -170,11 +170,12 @@ L["Close"] = "Cerrar"
 
 -- Nav/Nav.lua
 L["Waypoint"] = "Punto de ruta"
-L["Shortest Path Forever is guiding. Turn off \"Guide with Shortest Path Forever when it's installed\" (Options, Arrow & routes) to use Polestar's arrow."] = "Shortest Path Forever está guiando. Desactiva \"Guiar con Shortest Path Forever si está instalado\" (Opciones, Flecha y rutas) para usar la flecha de Polestar."
 L["Greyed out while Shortest Path Forever guides: it does this itself."] = "Atenuado mientras guía Shortest Path Forever: lo hace él mismo."
 L["Waypoint arrow: show, hide, reset"] = "Flecha de punto de ruta: mostrar, ocultar, restablecer"
 L["Usage: /polestar way <x> <y> [label]"] = "Uso: /polestar way <x> <y> [etiqueta]"
 L["Point the arrow at x y on your current map (no argument clears it)"] = "Apuntar la flecha a x y en tu mapa actual (sin argumentos la borra)"
+-- L["Shortest Path Forever is guiding a journey of its own. Polestar's arrow comes back when it ends."] = ""
+-- L["Shortest Path Forever is guiding. Turn off \"Hand guiding to Shortest Path Forever\" (Options, Arrow & routes) to use Polestar's arrow."] = ""
 
 -- Nav/Arrow.lua
 L["Search here"] = "Busca aquí"
@@ -256,6 +257,7 @@ L["Take %s"] = "Toma %s"
 L["Take the lift"] = "Toma el ascensor"
 L["No route: walk straight to the target."] = "No hay ruta: camina directamente al objetivo."
 L["Show the travel route to the current target"] = "Mostrar la ruta de viaje al objetivo actual"
+-- L["Hostile town: %s"] = ""
 
 -- Nav/Journey.lua
 L["%s %d, %d"] = "%s %d, %d"
@@ -336,10 +338,6 @@ L["Flash the taskbar icon"] = "Hacer parpadear el icono de la barra de tareas"
 L["The game's icon flashes while the game is in the background."] = "El icono del juego parpadea mientras el juego está en segundo plano."
 L["Show a sample alert"] = "Mostrar una alerta de ejemplo"
 L["See the banner and hear the boat's bell."] = "Ver el aviso y oír la campana del barco."
-
--- Nav/Handoff.lua
-L["Guide with Shortest Path Forever when it's installed"] = "Guiar con Shortest Path Forever si está instalado"
-L["Shortest Path Forever's arrow, route and journey take you to each goal. Polestar's arrow, route lines, journey steps, travel button, transport alerts, map clicks and /way step aside; the guide window and map pins stay."] = "La flecha, la ruta y el trayecto de Shortest Path Forever te llevan a cada objetivo. La flecha de Polestar, las líneas de ruta, los pasos del trayecto, el botón de viaje, los avisos de transporte, los clics en el mapa y /way se apartan; la ventana de la guía y los marcadores del mapa se quedan."
 
 -- Quests/Tracker.lua
 L["Done"] = "Hecho"
@@ -1770,3 +1768,12 @@ L["Feral"] = "Combate feral"
 -- L["Click: show or hide the guide"] = ""
 -- L["Right-click: settings"] = ""
 -- L["Drag: move it around the minimap"] = ""
+
+-- Nav/Handoff.lua
+-- L["Hand guiding to Shortest Path Forever"] = ""
+-- L["Shortest Path Forever's arrow, route and journey take you to each goal. Polestar's arrow, route lines, journey steps, travel button, transport alerts, map clicks and /way step aside; the guide window and map pins stay. Off: Polestar guides, and steps aside only while a journey you started in Shortest Path Forever runs."] = ""
+
+-- No longer in the code (its English changed or it went away): reuse or delete.
+-- L["Shortest Path Forever is guiding. Turn off \"Guide with Shortest Path Forever when it's installed\" (Options, Arrow & routes) to use Polestar's arrow."] = "Shortest Path Forever está guiando. Desactiva \"Guiar con Shortest Path Forever si está instalado\" (Opciones, Flecha y rutas) para usar la flecha de Polestar."
+-- L["Guide with Shortest Path Forever when it's installed"] = "Guiar con Shortest Path Forever si está instalado"
+-- L["Shortest Path Forever's arrow, route and journey take you to each goal. Polestar's arrow, route lines, journey steps, travel button, transport alerts, map clicks and /way step aside; the guide window and map pins stay."] = "La flecha, la ruta y el trayecto de Shortest Path Forever te llevan a cada objetivo. La flecha de Polestar, las líneas de ruta, los pasos del trayecto, el botón de viaje, los avisos de transporte, los clics en el mapa y /way se apartan; la ventana de la guía y los marcadores del mapa se quedan."

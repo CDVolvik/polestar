@@ -176,8 +176,19 @@ local lastDist, closeSpeed = nil, 0
 local pulse = 0
 local showEta = true
 local routeSeen = -1  -- Travel.version the label shows; -1 = the target's own label
+local WARN_SECONDS = 8 -- a walk's "Hostile town" warning stays under its step this long
+local warning, warnUntil -- the warning being said (Travel.TakeWarning) and until when (GetTime)
 local style = "3d"    -- nav.arrowStyle
 local shownFrame = -1 -- sheet frame on screen (-1 = none yet)
+
+-- The route's label line: the current leg's instruction, and under it the
+-- walk's "Hostile town" warning while it is being said.
+local function routeLabel(T)
+	local text = T.CurrentLabel() or ""
+	if not warning then return text end
+	return text ~= "" and (text .. "\n" .. warning) or warning
+end
+
 local tintR, tintG, tintB = Nav.RGB("arrow")
 
 -- The ETA / secondary line: text at 80%, a step behind the distance.
@@ -268,7 +279,7 @@ local function setMode(m)
 		distText:SetTextColor(Nav.RGB("text"))
 		etaColor()
 		local T = Nav.travel
-		if T and T.Active() then labelText:SetText(T.CurrentLabel() or "") end
+		if T and T.Active() then labelText:SetText(routeLabel(T)) end
 	end
 end
 
@@ -314,12 +325,20 @@ local function showSeconds(secs)
 end
 
 -- The label line follows the route: the current leg's instruction while a
--- route is active, the target's label otherwise.
+-- route is active, the target's label otherwise. A walk entering the other
+-- faction's towns says so once, as it starts (Travel.TakeWarning), for
+-- WARN_SECONDS.
 local function syncLabel(T, routed)
+	if warning and (not routed or GetTime() >= warnUntil) then
+		warning = nil
+		if routeSeen ~= -1 then routeSeen = -2 end
+	end
 	if routed then
 		if T.version ~= routeSeen then
 			routeSeen = T.version
-			labelText:SetText(T.CurrentLabel() or "")
+			local w = T.TakeWarning and T.TakeWarning()
+			if w then warning, warnUntil = w, GetTime() + WARN_SECONDS end
+			labelText:SetText(routeLabel(T))
 			if mode == "instruction" then mode = nil end
 		end
 	elseif routeSeen ~= -1 then
@@ -509,7 +528,7 @@ end
 
 function Arrow:OnTarget(target)
 	labelText:SetText(target and target.label or "")
-	mode, hasAngle, routeSeen = nil, false, -1
+	mode, hasAngle, routeSeen, warning = nil, false, -1, nil
 	self:Refresh()
 end
 

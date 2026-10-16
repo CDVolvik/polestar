@@ -170,11 +170,12 @@ L["Close"] = "Fechar"
 
 -- Nav/Nav.lua
 L["Waypoint"] = "Ponto de rota"
-L["Shortest Path Forever is guiding. Turn off \"Guide with Shortest Path Forever when it's installed\" (Options, Arrow & routes) to use Polestar's arrow."] = "Shortest Path Forever está guiando. Desative \"Guiar com Shortest Path Forever quando instalado\" (Opções, Seta e rotas) para usar a seta do Polestar."
 L["Greyed out while Shortest Path Forever guides: it does this itself."] = "Desativado enquanto Shortest Path Forever guia: ele mesmo faz isso."
 L["Waypoint arrow: show, hide, reset"] = "Seta do ponto de rota: mostrar, ocultar, redefinir"
 L["Usage: /polestar way <x> <y> [label]"] = "Uso: /polestar way <x> <y> [rótulo]"
 L["Point the arrow at x y on your current map (no argument clears it)"] = "Apontar a seta para x y no mapa atual (sem argumento, limpa)"
+-- L["Shortest Path Forever is guiding a journey of its own. Polestar's arrow comes back when it ends."] = ""
+-- L["Shortest Path Forever is guiding. Turn off \"Hand guiding to Shortest Path Forever\" (Options, Arrow & routes) to use Polestar's arrow."] = ""
 
 -- Nav/Arrow.lua
 L["Search here"] = "Procure aqui"
@@ -256,6 +257,7 @@ L["Take %s"] = "Pegue %s"
 L["Take the lift"] = "Pegue o elevador"
 L["No route: walk straight to the target."] = "Sem rota: vá direto até o alvo."
 L["Show the travel route to the current target"] = "Mostrar a rota de viagem até o alvo atual"
+-- L["Hostile town: %s"] = ""
 
 -- Nav/Journey.lua
 L["%s %d, %d"] = "%s %d, %d"
@@ -336,10 +338,6 @@ L["Flash the taskbar icon"] = "Piscar o ícone na barra de tarefas"
 L["The game's icon flashes while the game is in the background."] = "O ícone do jogo pisca enquanto o jogo está em segundo plano."
 L["Show a sample alert"] = "Mostrar alerta de exemplo"
 L["See the banner and hear the boat's bell."] = "Veja o aviso e ouça o sino do barco."
-
--- Nav/Handoff.lua
-L["Guide with Shortest Path Forever when it's installed"] = "Guiar com Shortest Path Forever quando instalado"
-L["Shortest Path Forever's arrow, route and journey take you to each goal. Polestar's arrow, route lines, journey steps, travel button, transport alerts, map clicks and /way step aside; the guide window and map pins stay."] = "A seta, a rota e a jornada do Shortest Path Forever levam você a cada objetivo. A seta do Polestar, linhas de rota, etapas da jornada, botão de viagem, alertas de transporte, cliques no mapa e /way saem de cena; a janela do guia e os marcadores no mapa ficam."
 
 -- Quests/Tracker.lua
 L["Done"] = "Feito"
@@ -1770,3 +1768,12 @@ L["Feral"] = "Combate Feral"
 -- L["Click: show or hide the guide"] = ""
 -- L["Right-click: settings"] = ""
 -- L["Drag: move it around the minimap"] = ""
+
+-- Nav/Handoff.lua
+-- L["Hand guiding to Shortest Path Forever"] = ""
+-- L["Shortest Path Forever's arrow, route and journey take you to each goal. Polestar's arrow, route lines, journey steps, travel button, transport alerts, map clicks and /way step aside; the guide window and map pins stay. Off: Polestar guides, and steps aside only while a journey you started in Shortest Path Forever runs."] = ""
+
+-- No longer in the code (its English changed or it went away): reuse or delete.
+-- L["Shortest Path Forever is guiding. Turn off \"Guide with Shortest Path Forever when it's installed\" (Options, Arrow & routes) to use Polestar's arrow."] = "Shortest Path Forever está guiando. Desative \"Guiar com Shortest Path Forever quando instalado\" (Opções, Seta e rotas) para usar a seta do Polestar."
+-- L["Guide with Shortest Path Forever when it's installed"] = "Guiar com Shortest Path Forever quando instalado"
+-- L["Shortest Path Forever's arrow, route and journey take you to each goal. Polestar's arrow, route lines, journey steps, travel button, transport alerts, map clicks and /way step aside; the guide window and map pins stay."] = "A seta, a rota e a jornada do Shortest Path Forever levam você a cada objetivo. A seta do Polestar, linhas de rota, etapas da jornada, botão de viagem, alertas de transporte, cliques no mapa e /way saem de cena; a janela do guia e os marcadores no mapa ficam."

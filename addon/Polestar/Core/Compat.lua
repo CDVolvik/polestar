@@ -56,11 +56,19 @@ function Compat.Now()
 	return time and time() or 0
 end
 
+-- The player's faction: "Alliance", "Horde", or nil (neutral, unread or secret).
+-- Compat's one reader of UnitFactionGroup; the walking router prices the
+-- other faction's towns by it (Nav/Walk.lua).
+function Compat.GetPlayerFaction()
+	local faction = readable(UnitFactionGroup and UnitFactionGroup("player"))
+	if faction == "Alliance" or faction == "Horde" then return faction end
+	return nil
+end
+
 function Compat.GetPlayerInfo()
 	local _, race = UnitRace("player")
 	local _, class = UnitClass("player")
-	local faction = readable(UnitFactionGroup and UnitFactionGroup("player"))
-	if faction ~= "Alliance" and faction ~= "Horde" then faction = "Neutral" end
+	local faction = Compat.GetPlayerFaction() or "Neutral"
 	return {
 		name = readable(UnitName("player")),
 		realm = GetRealmName and GetRealmName() or nil,

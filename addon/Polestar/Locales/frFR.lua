@@ -171,11 +171,12 @@ L["Close"] = "Fermer"
 
 -- Nav/Nav.lua
 L["Waypoint"] = "Point de passage"
-L["Shortest Path Forever is guiding. Turn off \"Guide with Shortest Path Forever when it's installed\" (Options, Arrow & routes) to use Polestar's arrow."] = "Shortest Path Forever guide. Désactivez « Guider avec Shortest Path Forever s'il est installé » (Options, Flèche et itinéraires) pour utiliser la flèche de Polestar."
 L["Greyed out while Shortest Path Forever guides: it does this itself."] = "Grisé tant que Shortest Path Forever guide : il le fait lui-même."
 L["Waypoint arrow: show, hide, reset"] = "Flèche : afficher, masquer, réinitialiser"
 L["Usage: /polestar way <x> <y> [label]"] = "Usage : /polestar way <x> <y> [libellé]"
 L["Point the arrow at x y on your current map (no argument clears it)"] = "Pointer la flèche sur x y de votre carte (sans argument, l'efface)"
+-- L["Shortest Path Forever is guiding a journey of its own. Polestar's arrow comes back when it ends."] = ""
+-- L["Shortest Path Forever is guiding. Turn off \"Hand guiding to Shortest Path Forever\" (Options, Arrow & routes) to use Polestar's arrow."] = ""
 
 -- Nav/Arrow.lua
 L["Search here"] = "Cherchez ici"
@@ -257,6 +258,7 @@ L["Take %s"] = "Prenez %s"
 L["Take the lift"] = "Prenez l'ascenseur"
 L["No route: walk straight to the target."] = "Pas d'itinéraire : allez droit sur la cible."
 L["Show the travel route to the current target"] = "Afficher l'itinéraire vers la cible actuelle"
+-- L["Hostile town: %s"] = ""
 
 -- Nav/Journey.lua
 L["%s %d, %d"] = "%s %d, %d"
@@ -337,10 +339,6 @@ L["Flash the taskbar icon"] = "Faire clignoter l'icône de la barre des tâches"
 L["The game's icon flashes while the game is in the background."] = "L'icône du jeu clignote tant que le jeu est en arrière-plan."
 L["Show a sample alert"] = "Afficher une alerte d'exemple"
 L["See the banner and hear the boat's bell."] = "Voir le bandeau et entendre la cloche du bateau."
-
--- Nav/Handoff.lua
-L["Guide with Shortest Path Forever when it's installed"] = "Guider avec Shortest Path Forever s'il est installé"
-L["Shortest Path Forever's arrow, route and journey take you to each goal. Polestar's arrow, route lines, journey steps, travel button, transport alerts, map clicks and /way step aside; the guide window and map pins stay."] = "La flèche, l'itinéraire et le trajet de Shortest Path Forever vous mènent à chaque objectif. La flèche de Polestar, ses lignes d'itinéraire, les étapes du trajet, le bouton de voyage, les alertes de transport, les clics sur la carte et /way s'effacent ; la fenêtre du guide et les marques de la carte restent."
 
 -- Quests/Tracker.lua
 L["Done"] = "Fait"
@@ -1772,6 +1770,10 @@ L["Feral"] = "Combat farouche"
 -- L["Right-click: settings"] = ""
 -- L["Drag: move it around the minimap"] = ""
 
+-- Nav/Handoff.lua
+-- L["Hand guiding to Shortest Path Forever"] = ""
+-- L["Shortest Path Forever's arrow, route and journey take you to each goal. Polestar's arrow, route lines, journey steps, travel button, transport alerts, map clicks and /way step aside; the guide window and map pins stay. Off: Polestar guides, and steps aside only while a journey you started in Shortest Path Forever runs."] = ""
+
 -- No longer in the code (its English changed or it went away): reuse or delete.
 -- L["Alliance"] = "Alliance"
 -- L["Blood Elf"] = "Elfe de sang"
@@ -1812,3 +1814,6 @@ L["Feral"] = "Combat farouche"
 -- L["slot: Trinket"] = "Bijou"
 -- L["slot: Waist"] = "Taille"
 -- L["slot: Wrist"] = "Poignets"
+-- L["Shortest Path Forever is guiding. Turn off \"Guide with Shortest Path Forever when it's installed\" (Options, Arrow & routes) to use Polestar's arrow."] = "Shortest Path Forever guide. Désactivez « Guider avec Shortest Path Forever s'il est installé » (Options, Flèche et itinéraires) pour utiliser la flèche de Polestar."
+-- L["Guide with Shortest Path Forever when it's installed"] = "Guider avec Shortest Path Forever s'il est installé"
+-- L["Shortest Path Forever's arrow, route and journey take you to each goal. Polestar's arrow, route lines, journey steps, travel button, transport alerts, map clicks and /way step aside; the guide window and map pins stay."] = "La flèche, l'itinéraire et le trajet de Shortest Path Forever vous mènent à chaque objectif. La flèche de Polestar, ses lignes d'itinéraire, les étapes du trajet, le bouton de voyage, les alertes de transport, les clics sur la carte et /way s'effacent ; la fenêtre du guide et les marques de la carte restent."

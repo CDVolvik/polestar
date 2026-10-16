@@ -1,20 +1,29 @@
--- Hand-off to Shortest Path Forever: with it installed (and nav.spfHandoff
--- on, the default), it guides to Polestar's target and Polestar's own
--- guidance steps aside, so the two never guide at once. Contract:
--- docs/ARCHITECTURE.md, "Hand-off to Shortest Path Forever".
+-- Shortest Path Forever beside Polestar: the two never guide at once.
+-- Contract: docs/ARCHITECTURE.md, "Hand-off to Shortest Path Forever".
+--
+--   Hand-off (nav.spfHandoff on; an option, off by default): with it
+--   installed, it guides to Polestar's target and Polestar's own guidance
+--   steps aside.
+--   Yield (the option off, the default): Polestar guides, and steps aside
+--   the same way while Shortest Path Forever runs a journey that is not
+--   Polestar's (one the player started there, or another addon's); when that
+--   journey ends Polestar guides again. Its API is never called in combat:
+--   news that comes then is looked at when combat ends.
 --
 -- Shortest Path Forever by Cillian Berragan (GPL-3.0-or-later,
 -- https://github.com/cjber/shortest-path-forever) is driven only through its
 -- public API, ShortestPathForever.API (version 1; minor 1 adds Subscribe),
 -- each function checked before it is called.
 --
---   Nav.HandedOff() -> bool   the one predicate every guidance surface checks:
---       the arrow, the trail and transport alerts; the travel planner, which
---       then plans no route, so no route lines, journey steps or travel
---       button; the walking engine (Nav/Walk.lua neither loads Polestar_Nav
---       nor searches); map clicks, the TomTom stand-in and /way
---       (Nav/Journey.lua); and the TomTom and Blizzard waypoint mirrors
---       (Nav/Bridges.lua). Pins, the guide window and everything else stay.
+--   Nav.HandedOff() -> bool   the one predicate every guidance surface checks
+--       (handed off, or yielding): the arrow, the trail and transport alerts;
+--       the travel planner, which then plans no route, so no route lines,
+--       journey steps or travel button; the walking engine (Nav/Walk.lua
+--       neither loads Polestar_Nav nor searches); map clicks, the TomTom
+--       stand-in and /way (Nav/Journey.lua); and the TomTom and Blizzard
+--       waypoint mirrors (Nav/Bridges.lua). Pins, the guide window and
+--       everything else stay.
+--   Handoff.Yielding() -> bool   stepping aside for a journey not Polestar's
 --
 -- The target goes as one stop, owner "Polestar": its live map point, its
 -- label as the title, a stop kind (the goal's verb, a hand-set target's
@@ -40,7 +49,7 @@ local format, concat = string.format, table.concat
 local Handoff = {}
 Nav.handoff = Handoff
 
-ns.RegisterDefaults("nav", { spfHandoff = true })
+ns.RegisterDefaults("nav", { spfHandoff = false })
 
 local OWNER = "Polestar"
 local PLACE = 15 -- yards: a target this close to a flight master, inn or portal stands at it
@@ -84,15 +93,62 @@ local pending = false -- a stop waits for combat's end or a position
 local worldUp = false -- PLAYER_ENTERING_WORLD seen: nothing is sent before
 local subscribed = false
 local wasEngaged
+local yielding = false -- the option off: a journey not Polestar's runs in it, so Polestar steps aside
+local lookOwed = false -- news of its journeys came in combat: looked at when combat ends
 
 function Nav.HandedOff()
-	return not refused and engaged()
+	if engaged() then return not refused end
+	return yielding
+end
+
+function Handoff.Yielding()
+	return yielding and not engaged()
 end
 
 local function inCombat()
 	local C = ns.Compat
 	if C and C.InCombat then return C.InCombat() end
 	return InCombatLockdown ~= nil and InCombatLockdown() and true or false
+end
+
+-- Polestar steps aside for a journey that is not its own, or comes back:
+-- every guidance surface hears it (Nav.Reapply), the TomTom stand-in too.
+local function setYielding(on)
+	if yielding == on then return end
+	yielding = on
+	Nav.Reapply()
+	local J = Nav.journey
+	if J and J.RefreshTomTom then J.RefreshTomTom() end
+end
+
+-- With the option off: does Shortest Path Forever run a journey that is not
+-- Polestar's (Active, and no current stop of Polestar's)? Never asked in
+-- combat: the question waits for its end.
+local function look()
+	local A = api()
+	if not A or engaged() then
+		lookOwed = false
+		setYielding(false)
+		return
+	end
+	if inCombat() then
+		lookOwed = true
+		return
+	end
+	lookOwed = false
+	local on = false
+	if type(A.Active) == "function" then
+		local ok, active = pcall(A.Active)
+		if ok and active then
+			local mine = false
+			if type(A.CurrentStop) == "function" then
+				local ok2, stop = pcall(A.CurrentStop, OWNER)
+				mine = ok2 and stop ~= nil
+			end
+			on = not mine
+		end
+	end
+	setYielding(on)
 end
 
 local function dead()
@@ -324,9 +380,11 @@ local function sync(force)
 end
 Handoff.Sync = sync
 
--- Its guidance changed: has the journey Polestar sent ended (arrived, cleared,
--- replaced)? Then it stays ended until Polestar's target changes.
+-- Its guidance changed. Handing off: has the journey Polestar sent ended
+-- (arrived, cleared, replaced)? Then it stays ended until Polestar's target
+-- changes. Not handing off: does a journey not Polestar's run (look)?
 local function heard()
+	if not engaged() then return look() end
 	local A = api()
 	if not (A and live) then return end
 	local why = type(A.Ended) == "function" and A.Ended(OWNER)
@@ -350,7 +408,11 @@ end
 
 -- Without Subscribe (minor 0): Nav's once-a-second tick asks instead.
 function Handoff:Refresh()
-	if live and not subscribed then heard() end
+	if engaged() then
+		if live and not subscribed then heard() end
+	elseif (not subscribed or lookOwed) and worldUp then
+		look()
+	end
 end
 
 function Handoff:OnSettings()
@@ -361,8 +423,11 @@ function Handoff:OnSettings()
 	if now then
 		sentKey, refusedKey, refused = nil, nil, false
 		subscribe()
+		setYielding(false)
 	else
 		sync()
+		subscribe()
+		look()
 	end
 	Nav.Reapply()
 end
@@ -372,14 +437,16 @@ Nav.RegisterModule(Handoff)
 ns.RegisterEvent("PLAYER_ENTERING_WORLD", function()
 	worldUp = true
 	wasEngaged = engaged()
-	if wasEngaged then subscribe() end
+	subscribe()
 	sync(true)
+	if not wasEngaged then look() end
 end)
 ns.RegisterEvent("ZONE_CHANGED_NEW_AREA", function()
 	if pending or refused then sync(true) end
 end)
 ns.RegisterEvent("PLAYER_REGEN_ENABLED", function()
 	if pending then sync() end
+	if lookOwed then look() end
 end)
 -- Dead or a ghost, nothing is sent; alive again, the target goes as it is.
 for _, event in ipairs({ "PLAYER_DEAD", "PLAYER_ALIVE", "PLAYER_UNGHOST" }) do
@@ -390,8 +457,8 @@ if ns.RegisterOptions then
 	local ok, err = ns.RegisterOptions({
 		page = L["Guide"], tab = L["Arrow & routes"], section = L["Routes"],
 		controls = {
-			{ kind = "toggle", key = "nav.spfHandoff", label = L["Guide with Shortest Path Forever when it's installed"],
-				help = L["Shortest Path Forever's arrow, route and journey take you to each goal. Polestar's arrow, route lines, journey steps, travel button, transport alerts, map clicks and /way step aside; the guide window and map pins stay."],
+			{ kind = "toggle", key = "nav.spfHandoff", label = L["Hand guiding to Shortest Path Forever"],
+				help = L["Shortest Path Forever's arrow, route and journey take you to each goal. Polestar's arrow, route lines, journey steps, travel button, transport alerts, map clicks and /way step aside; the guide window and map pins stay. Off: Polestar guides, and steps aside only while a journey you started in Shortest Path Forever runs."],
 				needs = Handoff.Available },
 		},
 	})

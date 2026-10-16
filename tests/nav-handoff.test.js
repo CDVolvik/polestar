@@ -59,7 +59,7 @@ end
 // spf.clear(), spf.replace(owner) and spf.arrive() are the player, another
 // addon and the journey's end; subscribers hear of changes on the next frame.
 const SPF = `
-spf = { calls = {}, ended = {}, subs = {}, journeys = true }
+spf = { calls = {}, ended = {}, subs = {}, journeys = true, reads = 0 }
 local A = { version = 1, minor = 1 }
 ShortestPathForever = { API = A }
 local function number(v) return type(v) == "number" and v == v and math.abs(v) < math.huge end
@@ -117,7 +117,7 @@ end
 function A.Navigate(owner, map, x, y, title, kind)
 	return A.NavigateRoute(owner, { { map = map, x = x, y = y, title = title, kind = kind } })
 end
-function A.CurrentStop(owner) return spf.owner == owner and spf.index or nil end
+function A.CurrentStop(owner) spf.reads = spf.reads + 1; return spf.owner == owner and spf.index or nil end
 function A.Cancel(owner)
 	table.insert(spf.calls, { op = "cancel", owner = owner })
 	if spf.owner ~= owner then return false end
@@ -125,7 +125,7 @@ function A.Cancel(owner)
 	spf.changed("ended")
 	return true
 end
-function A.Active() return spf.owner ~= nil end
+function A.Active() spf.reads = spf.reads + 1; return spf.owner ~= nil end
 function A.Ended(owner) return spf.ended[owner] end
 function A.Subscribe(cb)
 	if type(cb) ~= "function" then error("callback must be a function", 2) end
@@ -204,15 +204,18 @@ end
 `;
 
 // The TomTom stand-in ("Let other addons set waypoints") is off by default;
-// it is on here so its stepping aside is seen.
-const SAVED = 'PolestarDB = { schema = 1, settings = { nav = { answerTomTom = true } } }';
+// it is on here so its stepping aside is seen. Handing off is an option (off
+// on a fresh profile); these tests hand off unless they say otherwise.
+const SAVED = 'PolestarDB = { schema = 1, settings = { nav = { answerTomTom = true, spfHandoff = true } } }';
+// A fresh profile: the defaults, the stand-in on to be seen.
+const FRESH = 'PolestarDB = { schema = 1, settings = { nav = { answerTomTom = true } } }';
 
-function run(script, { spf = SPF, files = FILES } = {}) {
+function run(script, { spf = SPF, files = FILES, saved = SAVED } = {}) {
 	return runAddon({
 		stubs: ['stub_nav.lua'],
 		before: EARLY + (spf || ''),
 		addons: [{ name: 'Polestar', files }],
-		saved: { Polestar: SAVED },
+		saved: { Polestar: saved },
 		login: true,
 		script: PRELUDE + script,
 	}).emitted;
@@ -632,4 +635,74 @@ test('no arrival chime from Polestar while it guides (its own arrival says so); 
 		emit(#stub.sounds)`;
 	assert.deepEqual(run(script), [0]);
 	assert.deepEqual(run(script, { spf: null }), [1]);
+});
+
+// Pathing v2: Polestar guides by default with Shortest Path Forever installed;
+// handing off is an option. While a journey of Shortest Path Forever's own
+// runs (one the player started there, or another addon's), Polestar steps
+// aside as it does when handing off, so the two never guide at once.
+
+test('a fresh profile with Shortest Path Forever installed: Polestar guides; handing off is an option, off by default', () => {
+	const [out] = run(`
+		nav.setWaypoint(copy(FARLAND))
+		local s = surfaces()
+		s.handedOff = N.HandedOff()
+		s.setting = Polestar.Get("nav.spfHandoff")
+		s.label = option().label
+		s.shown = option().needs()
+		s.sent = sent()
+		emit(s)
+	`, { saved: FRESH });
+	assert.deepEqual(out, {
+		arrow: true, route: 3, lines: 3, journey: true, trail: false, walk: true, pack: true, way: true, shim: true,
+		handedOff: false, setting: false, label: 'Hand guiding to Shortest Path Forever', shown: true, sent: 0,
+	});
+});
+
+test('a journey the player starts in Shortest Path Forever: Polestar steps aside until it ends, and never asks in combat', () => {
+	const [out] = run(`
+		nav.setWaypoint(copy(FARLAND))
+		local r = {}
+		r.before = { N.HandedOff(), arrowShown(), legs() }
+		-- The player's own journey (his owner, not Polestar's).
+		spf.replace("ShortestPathForever")
+		stub.runTimers()
+		local s = surfaces()
+		r.during = { N.HandedOff(), s.arrow, s.route, s.lines, s.journey }
+		spf.arrive()
+		stub.runTimers()
+		s = surfaces()
+		r.after = { N.HandedOff(), s.arrow, s.route, s.lines, s.journey }
+		-- In combat his API is never called: the news waits for combat's end.
+		stub.inCombat = true
+		local reads = spf.reads
+		spf.replace("ShortestPathForever")
+		stub.runTimers()
+		stub.advance(2)
+		r.fight = { spf.reads - reads, N.HandedOff() }
+		stub.inCombat = false
+		stub.fire("PLAYER_REGEN_ENABLED")
+		r.ended = { N.HandedOff() }
+		r.sent = sent()
+		emit(r)
+	`, { saved: FRESH });
+	assert.deepEqual(out.before, [false, true, 3], 'Polestar guides');
+	assert.deepEqual(out.during, [true, false, 0, 0, false], 'it steps aside while his journey runs');
+	assert.deepEqual(out.after, [false, true, 3, 3, true], 'and guides again when it ends');
+	assert.deepEqual(out.fight, [0, false], 'no call in combat');
+	assert.deepEqual(out.ended, [true], 'after combat it steps aside');
+	assert.equal(out.sent, 0, 'with the option off Polestar never sends');
+});
+
+test('without Subscribe (minor 0) his journey is noticed on Nav\'s tick', () => {
+	const [out] = run(`
+		nav.setWaypoint(copy(FARLAND))
+		spf.replace("ShortestPathForever")
+		stub.advance(1.5)
+		local during = N.HandedOff()
+		spf.arrive()
+		stub.advance(1.5)
+		emit({ during, N.HandedOff() })
+	`, { saved: FRESH, spf: SPF_MINOR0 });
+	assert.deepEqual(out, [true, false]);
 });

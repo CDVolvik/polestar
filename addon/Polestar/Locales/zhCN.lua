@@ -170,11 +170,12 @@ L["Close"] = "关闭"
 
 -- Nav/Nav.lua
 L["Waypoint"] = "路径点"
-L["Shortest Path Forever is guiding. Turn off \"Guide with Shortest Path Forever when it's installed\" (Options, Arrow & routes) to use Polestar's arrow."] = "Shortest Path Forever 正在导航。要使用 Polestar 的箭头，请关闭“安装 Shortest Path Forever 时由其导航”（选项 > 箭头与路线）。"
 L["Greyed out while Shortest Path Forever guides: it does this itself."] = "Shortest Path Forever 导航时不可用：它会自行处理。"
 L["Waypoint arrow: show, hide, reset"] = "路径点箭头：show、hide、reset"
 L["Usage: /polestar way <x> <y> [label]"] = "用法：/polestar way <x> <y> [标签]"
 L["Point the arrow at x y on your current map (no argument clears it)"] = "让箭头指向当前地图上的 x y（无参数则清除）"
+-- L["Shortest Path Forever is guiding a journey of its own. Polestar's arrow comes back when it ends."] = ""
+-- L["Shortest Path Forever is guiding. Turn off \"Hand guiding to Shortest Path Forever\" (Options, Arrow & routes) to use Polestar's arrow."] = ""
 
 -- Nav/Arrow.lua
 L["Search here"] = "在此搜索"
@@ -256,6 +257,7 @@ L["Take %s"] = "乘坐 %s"
 L["Take the lift"] = "乘坐升降梯"
 L["No route: walk straight to the target."] = "无路线：直接走向目标。"
 L["Show the travel route to the current target"] = "显示前往当前目标的旅行路线"
+-- L["Hostile town: %s"] = ""
 
 -- Nav/Journey.lua
 L["%s %d, %d"] = "%s %d, %d"
@@ -336,10 +338,6 @@ L["Flash the taskbar icon"] = "闪烁任务栏图标"
 L["The game's icon flashes while the game is in the background."] = "游戏在后台时，其图标会闪烁。"
 L["Show a sample alert"] = "显示示例提醒"
 L["See the banner and hear the boat's bell."] = "查看横幅并听听船钟声。"
-
--- Nav/Handoff.lua
-L["Guide with Shortest Path Forever when it's installed"] = "安装 Shortest Path Forever 时由其导航"
-L["Shortest Path Forever's arrow, route and journey take you to each goal. Polestar's arrow, route lines, journey steps, travel button, transport alerts, map clicks and /way step aside; the guide window and map pins stay."] = "由 Shortest Path Forever 的箭头、路线和行程带你前往每个目标。Polestar 的箭头、路线线条、行程步骤、旅行按钮、交通提醒、地图点击和 /way 将让位；指南窗口和地图标记保留。"
 
 -- Quests/Tracker.lua
 L["Done"] = "完成"
@@ -1770,3 +1768,12 @@ L["Feral"] = "野性战斗"
 -- L["Click: show or hide the guide"] = ""
 -- L["Right-click: settings"] = ""
 -- L["Drag: move it around the minimap"] = ""
+
+-- Nav/Handoff.lua
+-- L["Hand guiding to Shortest Path Forever"] = ""
+-- L["Shortest Path Forever's arrow, route and journey take you to each goal. Polestar's arrow, route lines, journey steps, travel button, transport alerts, map clicks and /way step aside; the guide window and map pins stay. Off: Polestar guides, and steps aside only while a journey you started in Shortest Path Forever runs."] = ""
+
+-- No longer in the code (its English changed or it went away): reuse or delete.
+-- L["Shortest Path Forever is guiding. Turn off \"Guide with Shortest Path Forever when it's installed\" (Options, Arrow & routes) to use Polestar's arrow."] = "Shortest Path Forever 正在导航。要使用 Polestar 的箭头，请关闭“安装 Shortest Path Forever 时由其导航”（选项 > 箭头与路线）。"
+-- L["Guide with Shortest Path Forever when it's installed"] = "安装 Shortest Path Forever 时由其导航"
+-- L["Shortest Path Forever's arrow, route and journey take you to each goal. Polestar's arrow, route lines, journey steps, travel button, transport alerts, map clicks and /way step aside; the guide window and map pins stay."] = "由 Shortest Path Forever 的箭头、路线和行程带你前往每个目标。Polestar 的箭头、路线线条、行程步骤、旅行按钮、交通提醒、地图点击和 /way 将让位；指南窗口和地图标记保留。"

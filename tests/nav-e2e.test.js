@@ -215,7 +215,13 @@ test('a: Polestar\'s world frame is the engine\'s: known UnitPosition spots and 
 	assert.ok(out.points >= 3 && Math.abs(out.secondZ - 57) < 15, `a ${out.points}-point path on the ground (z ${out.secondZ})`);
 });
 
-test('b, e, f: the arrow aims at the engine path\'s next point; the route lines and the journey carry the same path', { skip }, (t) => {
+// The Fargodeep Mine's lower mouth in Polestar_Nav's Chokepoints.lua: the walk
+// from Goldshire into the mine is split there (a named cave step), the walk to
+// the mouth first, then the mine itself (Ruling 26 of pathing v2: the format 2
+// path passes within the mouth's 10 yd).
+const FARGODEEP_MOUTH = [-9842.4, 135.3, 10];
+
+test('b, e, f: the arrow aims at the engine path\'s next point; the route lines and the journey carry the same path, split at the mine\'s mouth', { skip }, (t) => {
 	const out = run(t, `
 		local r = {}
 		place(1429, GOLDSHIRE[1], GOLDSHIRE[2], GOLDSHIRE[3])
@@ -228,28 +234,38 @@ test('b, e, f: the arrow aims at the engine path\'s next point; the route lines 
 		r.path = { length = length(pts), straight = dist(GOLDSHIRE[1], GOLDSHIRE[2], tx, ty), endGap = dist(pts[#pts].x, pts[#pts].y, tx, ty) }
 		r.left = { walk = N.walk.Left(0, tx, ty), along = length(pts) }
 		r.shown = { text = N.arrow.distText:GetText(), want = Polestar.FormatDistance(floor(a.dist + 0.5)), visible = PolestarNavArrow:IsShown() }
-		-- e: the route lines' walk leg is the engine's path, the player first.
+		-- e: the route lines' walk legs are the engine's path, the player first:
+		-- every path point, in order, along the pieces' points (the mouth between them).
 		local g = N.GetRouteGeometry()
-		local walk
-		for _, leg in ipairs(g.legs) do if leg.kind == "walk" and leg.current then walk = leg end end
-		local same = #walk.pts == #pts
-		for i, p in ipairs(walk.pts) do
-			if not pts[i] or p[1] ~= 0 or p[2] ~= pts[i].x or p[3] ~= pts[i].y then same = false end
+		local along, walks, current = {}, 0, nil
+		for _, leg in ipairs(g.legs) do
+			if leg.kind == "walk" then
+				walks = walks + 1
+				if leg.current then current = leg end
+				for _, p in ipairs(leg.pts) do along[#along + 1] = p end
+			end
 		end
-		r.geometry = { legs = #g.legs, n = #walk.pts, same = same, first = dist(walk.pts[1][2], walk.pts[1][3], GOLDSHIRE[1], GOLDSHIRE[2]) }
+		local k, inOrder = 1, true
+		for _, p in ipairs(pts) do
+			while along[k] and not (along[k][1] == 0 and along[k][2] == p.x and along[k][3] == p.y) do k = k + 1 end
+			if not along[k] then inOrder = false break end
+		end
+		r.geometry = { legs = #g.legs, walks = walks, inOrder = inOrder, first = dist(current.pts[1][2], current.pts[1][3], GOLDSHIRE[1], GOLDSHIRE[2]) }
 		-- f: the journey's legs.
 		local legs, ci = N.GetRoute()
 		local T = N.travel
-		local list, finite, sum = {}, true, 0
+		local list, finite, sum, yards = {}, true, 0, 0
 		for i = ci, #legs do
 			local l = legs[i]
 			list[#list + 1] = { l.kind, l.label, l.seconds, l.yards }
 			if l.seconds ~= l.seconds or l.seconds == math.huge or l.yards ~= l.yards then finite = false end
-			sum = sum + l.seconds
+			sum, yards = sum + l.seconds, yards + l.yards
 		end
 		local ps, py = T.Progress()
-		r.journey = { legs = list, finite = finite, sum = sum, total = legs[ci].seconds + legs[ci].rest, progress = { ps, py }, remaining = T.Remaining(a.dist, true), speed = py and ps and py / ps,
-			yards = legs[ci].yards, seconds = legs[ci].seconds, straight = { legs[ci].straightYards, legs[ci].straightSeconds } }
+		local first = legs[ci]
+		r.first = { step = first.step, choke = first.choke and first.choke.name, mouth = dist(first.to.wx, first.to.wy, ${FARGODEEP_MOUTH[0]}, ${FARGODEEP_MOUTH[1]}), tail = first.tail }
+		r.journey = { legs = list, finite = finite, sum = sum, yards = yards, total = first.seconds + first.rest, progress = { ps, py }, remaining = T.Remaining(a.dist, true), speed = py and ps and py / ps,
+			whole = first.parent and first.parent.leg.yards }
 		r.finds = #finds
 		emit(r)`);
 	// b
@@ -259,32 +275,38 @@ test('b, e, f: the arrow aims at the engine path\'s next point; the route lines 
 	assert.ok(out.aim.toTarget > 50, `the aimed point is ${out.aim.toTarget.toFixed(0)} yd short of the target`);
 	assert.ok(out.aim.off < 1e-6, 'and on the path');
 	assert.ok(out.path.endGap < 10, `the path ends ${out.path.endGap.toFixed(1)} yd from the target`);
-	assert.ok(Math.abs(out.aim.dist - out.path.length) < 0.5, `the arrow shows the path's length (${out.aim.dist.toFixed(1)} vs ${out.path.length.toFixed(1)})`);
+	// The walk is split at the mine's mouth: the first piece ends there.
+	assert.equal(out.first.step, 'cave');
+	assert.equal(out.first.choke, 'Fargodeep Mine');
+	assert.ok(out.first.mouth <= FARGODEEP_MOUTH[2], `the first piece ends ${out.first.mouth.toFixed(1)} yd from the mine's mouth`);
+	assert.ok(Math.abs(out.aim.dist - (out.path.length - out.first.tail)) < 0.5,
+		`the arrow shows the path's length to the mouth (${out.aim.dist.toFixed(1)} vs ${out.path.length.toFixed(1)} less ${out.first.tail.toFixed(1)} after it)`);
 	assert.ok(out.path.length >= out.path.straight, `path ${out.path.length.toFixed(0)} yd, straight ${out.path.straight.toFixed(0)} yd`);
-	assert.ok(Math.abs(out.left.walk - out.path.length) < 0.5, 'Walk.Left is the path left');
-	assert.equal(out.shown.text, out.shown.want, 'the arrow\'s distance text is that path length');
+	assert.ok(Math.abs(out.left.walk - out.path.length) < 0.5, 'Walk.Left is the whole path left');
+	assert.equal(out.shown.text, out.shown.want, 'the arrow\'s distance text is that length');
 	// e
-	assert.equal(out.geometry.same, true, 'the walk leg\'s points are the engine\'s path, point for point');
+	assert.equal(out.geometry.walks, 2, 'two walk pieces on the route lines');
+	assert.equal(out.geometry.inOrder, true, 'their points carry the engine\'s path, point for point, in order');
 	assert.ok(out.geometry.first < 0.01, 'starting where the player stands');
 	// f (K1, K6, K7)
 	assert.equal(out.finds, 1);
-	assert.ok(out.journey.legs.length >= 1);
+	assert.equal(out.journey.legs.length, 2, 'the walk to the mouth, then the mine');
 	for (const [kind, label, seconds, yards] of out.journey.legs) {
 		assert.ok(typeof label === 'string' && label !== '' && label !== 'Unknown', `K1: the ${kind} leg is named (${label})`);
 		assert.ok(Number.isFinite(seconds) && Number.isFinite(yards), `K7: finite (${seconds} s, ${yards} yd)`);
 	}
 	assert.equal(out.journey.finite, true);
-	assert.equal(out.journey.sum, out.journey.total, 'K6: the legs\' times add up to the walk\'s');
+	assert.equal(out.journey.sum, out.journey.total, 'K6: the pieces\' times add up to the walk\'s');
 	assert.ok(out.journey.progress.every(Number.isFinite), 'K7: the walk\'s progress is finite');
-	assert.ok(Math.abs(out.journey.progress[1] - out.path.length) < 0.5, 'and measured along the engine\'s path');
+	assert.ok(Math.abs(out.journey.progress[1] - (out.path.length - out.first.tail)) < 0.5, 'and measured along the engine\'s path to the mouth');
 	assert.ok(Number.isFinite(out.journey.remaining));
-	// f: once the path is in, the walk leg is measured along it, at the planner's 7 yd/s.
-	assert.ok(Math.abs(out.journey.yards - out.path.length) <= 1, `the walk leg is ${out.journey.yards} yd, the path ${out.path.length.toFixed(1)} yd`);
-	assert.ok(Math.abs(out.journey.seconds - out.journey.yards / 7) <= 1, `${out.journey.seconds} s for ${out.journey.yards} yd`);
-	assert.ok(out.journey.straight[0] > out.journey.yards, `its straight estimate (${out.journey.straight[0]} yd) is kept for when the path goes`);
+	// f: once the path is in, the whole walk is measured along it (the sum of its pieces), at the planner's 7 yd/s.
+	assert.ok(Math.abs(out.journey.yards - out.path.length) <= 1, `the pieces add up to ${out.journey.yards} yd, the path ${out.path.length.toFixed(1)} yd`);
+	assert.ok(Math.abs(out.journey.sum - out.journey.yards / 7) <= 1, `${out.journey.sum} s for ${out.journey.yards} yd`);
+	assert.ok(out.journey.whole > out.journey.yards, `the walk's straight estimate (${out.journey.whole} yd) stays on the whole walk`);
 });
 
-test('second review: after the path arrives the arrow, the panel\'s leg time and the header total agree', { skip }, (t) => {
+test('second review: after the path arrives the arrow, the panel\'s step times and the header total agree (the walk split at the mine\'s mouth)', { skip }, (t) => {
 	const out = run(t, `
 		place(1429, GOLDSHIRE[1], GOLDSHIRE[2], GOLDSHIRE[3])
 		guide()
@@ -293,9 +315,13 @@ test('second review: after the path arrives the arrow, the panel\'s leg time and
 		local legs, ci = N.GetRoute()
 		local T = N.travel
 		local view = Polestar.UI.JourneyPanel.Compute(legs, ci)
-		emit({ arrow = T.Remaining(a.dist, true), leg = view.secs[1], header = view.total, planned = legs[ci].seconds + legs[ci].rest })`);
+		local steps = 0
+		for i = 1, view.n do steps = steps + view.secs[i] end
+		emit({ arrow = T.Remaining(a.dist, true), n = view.n, leg = view.secs[1], rest = legs[ci].rest, steps = steps, header = view.total, planned = legs[ci].seconds + legs[ci].rest })`);
+	assert.equal(out.n, 2, 'the walk to the mouth, then the mine');
 	assert.ok(Math.abs(out.arrow - out.header) <= 1, `arrow ${out.arrow} s, header ${out.header} s`);
-	assert.ok(Math.abs(out.leg - out.header) <= 1, `leg ${out.leg} s, header ${out.header} s`);
+	assert.equal(out.steps, out.header, `the steps add up to the header (${out.steps} s, ${out.header} s)`);
+	assert.ok(Math.abs(out.leg + out.rest - out.header) <= 1, `the current step and the rest after it (${out.leg} + ${out.rest} s), header ${out.header} s`);
 	assert.ok(Math.abs(out.planned - out.header) <= 1, `the legs' planned times (${out.planned} s) and the header (${out.header} s)`);
 });
 
@@ -368,9 +394,16 @@ test('c: walking the path point by point advances the aim, never asks the engine
 		end
 		local distinct = {}
 		for _, i in ipairs(seen) do if distinct[#distinct] ~= i then distinct[#distinct + 1] = i end end
-		emit({ n = #pts, distinct = distinct, backwards = backwards, finds = #finds, steps = steps, final = aim().state, states = states })`);
+		-- The first step's spot: the path's second point (the start cell's centre)
+		-- may lie within Walk.lua's POINT_REACH (5 yd) of it, and count as passed.
+		local a1, b1 = pts[1], pts[2]
+		local n1 = math.max(1, math.ceil(dist(a1.x, a1.y, b1.x, b1.y) / 4))
+		local gap = dist(a1.x + (b1.x - a1.x) / n1, a1.y + (b1.y - a1.y) / n1, b1.x, b1.y)
+		emit({ n = #pts, distinct = distinct, gap = gap, backwards = backwards, finds = #finds, steps = steps, final = aim().state, states = states })`);
 	assert.equal(out.backwards, 0, 'the aimed point never goes back');
-	assert.deepEqual(out.distinct, Array.from({ length: out.n - 1 }, (_, i) => i + 2), `the aim went through every point after the first, in order, to the last (of ${out.n})`);
+	const from = out.gap <= 5 ? 3 : 2;
+	assert.deepEqual(out.distinct, Array.from({ length: out.n - from + 1 }, (_, i) => i + from),
+		`the aim went through every point after the first (the second passed on the first step when within 5 yd: ${out.gap.toFixed(1)} yd), in order, to the last (of ${out.n})`);
 	assert.equal(out.finds, 1, `${out.steps} steps along the path, no new search`);
 	assert.equal(out.final, 'arrived');
 });
@@ -459,6 +492,9 @@ test('Z1: a guide goal at Andron Gant (Undercity, Rogues\' Quarter) is walked to
 	const out = run(t, `
 		local r = {}
 		local ANDRON = { 1389.34, 347.315, -65.96 } -- his CMaNGOS spawn; the guides' 54.81,76.33 (Era) on the Undercity's map
+		-- His quests are the Horde's: Undercity is the player's own capital (an
+		-- Alliance profile prices it as a hostile town, x20, and walks elsewhere).
+		w.faction = "Horde"
 		-- The walk itself, from Brill: without route planning the arrow searches player to target
 		-- (with it, Undercity's entrance chain takes the last stretch straight).
 		Polestar.Set("nav.travel", false)

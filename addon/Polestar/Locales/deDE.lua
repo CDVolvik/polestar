@@ -176,8 +176,9 @@ L["Waypoint"] = "Wegpunkt"
 L["Waypoint arrow: show, hide, reset"] = "Wegpunkt-Pfeil: anzeigen, ausblenden, zurücksetzen"
 L["Usage: /polestar way <x> <y> [label]"] = "Verwendung: /polestar way <x> <y> [Name]"
 L["Point the arrow at x y on your current map (no argument clears it)"] = "Pfeil auf x y der aktuellen Karte richten (ohne Angabe wird er gelöscht)"
--- L["Shortest Path Forever is guiding. Turn off \"Guide with Shortest Path Forever when it's installed\" (Options, Arrow & routes) to use Polestar's arrow."] = ""
 -- L["Greyed out while Shortest Path Forever guides: it does this itself."] = ""
+-- L["Shortest Path Forever is guiding a journey of its own. Polestar's arrow comes back when it ends."] = ""
+-- L["Shortest Path Forever is guiding. Turn off \"Hand guiding to Shortest Path Forever\" (Options, Arrow & routes) to use Polestar's arrow."] = ""
 
 -- Nav/Travel.lua
 L["Go to %s"] = "Geh nach %s"
@@ -217,6 +218,7 @@ L["Show the travel route to the current target"] = "Reiseroute zum aktuellen Zie
 -- L["%s, Bottom"] = ""
 -- L["Take %s"] = ""
 -- L["Take the lift"] = ""
+-- L["Hostile town: %s"] = ""
 
 -- QoL/Options.lua
 L["Experience"] = "Erfahrung"
@@ -1646,10 +1648,6 @@ L["Take"] = "Nimm"
 -- L["The game's icon flashes while the game is in the background."] = ""
 -- L["See the banner and hear the boat's bell."] = ""
 
--- Nav/Handoff.lua
--- L["Guide with Shortest Path Forever when it's installed"] = ""
--- L["Shortest Path Forever's arrow, route and journey take you to each goal. Polestar's arrow, route lines, journey steps, travel button, transport alerts, map clicks and /way step aside; the guide window and map pins stay."] = ""
-
 -- Quests/Party.lua
 -- L["%s done"] = ""
 -- L["Not on this quest: %s"] = ""
@@ -1735,6 +1733,10 @@ L["Take"] = "Nimm"
 -- L["Click: show or hide the guide"] = ""
 -- L["Right-click: settings"] = ""
 -- L["Drag: move it around the minimap"] = ""
+
+-- Nav/Handoff.lua
+-- L["Hand guiding to Shortest Path Forever"] = ""
+-- L["Shortest Path Forever's arrow, route and journey take you to each goal. Polestar's arrow, route lines, journey steps, travel button, transport alerts, map clicks and /way step aside; the guide window and map pins stay. Off: Polestar guides, and steps aside only while a journey you started in Shortest Path Forever runs."] = ""
 
 -- No longer in the code (its English changed or it went away): reuse or delete.
 -- L["The arrow's target and the areas it spawns in."] = "Das Ziel des Pfeils und die Gebiete, in denen es spawnt."

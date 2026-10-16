@@ -50,11 +50,23 @@
 --   Walk.Clear()
 --   Walk.Measure(c, x, y, water, places): measure the walks into that target
 --     from the planner's places (one FindMany; Travel.Remeasured when in)
---   Walk.Measured(c, x, y, water) -> walkCost(c, wx, wy, start) -> yards | nil, or nil
---   Walk.LegPath(from, to) -> yards along that later walk's searched path | nil
+--   Walk.Measured(c, x, y, water) -> walkCost(c, wx, wy, start) -> cost, yards | nil, or nil
+--   Walk.LegPath(from, to) -> yards along that later walk's searched path, its hubs | nil
 --   Nav.GetRouteGeometry() -> { legs = { { kind, pts = { { c, wx, wy }, ... },
 --     current, choke }, ... } } or nil without a target; NAV_ROUTE_GEOMETRY on change.
 --     kind: walk | flight | boat | zeppelin | tram | portal | hearth | teleport | lift.
+--
+-- Every search goes with opts { waterWalking, profile }: the player's faction
+-- (Compat.GetPlayerFaction; none when neutral or unread), so the router prices
+-- each step by its ground (roads cheaper, slopes and indoors dearer) and the
+-- other faction's towns twenty times over. The router's cost chooses (the
+-- planner's walkCost); every distance and time shown comes from yards: the
+-- arrow's walk from its path's points (the drawn line, Find's job.yards), a
+-- later walk from Find's job.yards, a measured walk from FindMany's
+-- job.yards[i] (the no-profile path's yards per graph edge: low for a walk
+-- that goes round a hostile town inside one cluster). Find's job.hubs, the
+-- hostile towns the drawn line enters, go to the walk's leg (leg.hubs:
+-- Travel.SplitWalk for the arrow's walk, Travel.PricePaths for later ones).
 
 local ADDON, ns = ...
 local Nav = ns.Nav
@@ -107,6 +119,16 @@ local function engine()
 	return Nav.Path
 end
 
+-- The router's options (Routing/Path.lua): water walking (a ghost) and the
+-- player's faction (Compat.GetPlayerFaction: nil when neutral or unread), so
+-- each step is priced for them: roads cheaper, slopes and indoors dearer, the
+-- other faction's towns twenty times over.
+local function opts(water)
+	local C = ns.Compat
+	local profile = C and C.GetPlayerFaction and C.GetPlayerFaction() or nil
+	return { waterWalking = water and true or false, profile = profile }
+end
+
 ---------------------------------------------------------------------------
 -- The current walk
 ---------------------------------------------------------------------------
@@ -117,6 +139,7 @@ local gz                     -- the height searches still send (nil: none, or dr
 local token                  -- the live search's identity
 local job                    -- its Cancel handle
 local ptsX, ptsY, ptsZ = {}, {}, {} -- the path, reused (z false where unknown)
+local hubs                   -- the other faction's towns the path enters (Find's job.hubs; nil: none)
 local left = {}              -- left[i] = yards from point i to the end of the path
 local lastLeft               -- yards left along the path at the last Aim
 local count = 0              -- points in the path (0: none yet)
@@ -151,7 +174,7 @@ end
 function Walk.Clear()
 	local had, c, x, y = gc ~= nil, gc, gx, gy
 	cancel()
-	gc, gx, gy, gzFor, gz, count, idx, wanted, failed = nil, nil, nil, nil, nil, 0, 1, false, false
+	gc, gx, gy, gzFor, gz, count, idx, wanted, failed, hubs = nil, nil, nil, nil, nil, 0, 1, false, false, nil
 	if had then
 		restore(c, x, y)
 		changed()
@@ -223,9 +246,9 @@ local function ask(P, pc, px, py)
 	end
 	local mine = {}
 	token = mine
-	local ghost = Nav.travel and Nav.travel.IsGhost and Nav.travel.IsGhost() or nil
+	local ghost = Nav.travel and Nav.travel.IsGhost and Nav.travel.IsGhost() or false
 	local z = gz
-	local ok, handle = pcall(P.Find, pc, { x = px, y = py, z = playerZ(pc) }, { x = gx, y = gy, z = z }, function(points)
+	local ok, handle = pcall(P.Find, pc, { x = px, y = py, z = playerZ(pc) }, { x = gx, y = gy, z = z }, function(points, _, answer)
 		if token ~= mine then return end
 		token, job = nil, nil
 		local got = type(points) == "table" and #points > 0
@@ -238,15 +261,17 @@ local function ask(P, pc, px, py)
 		if got then
 			failed = false
 			took(points)
+			local h = type(answer) == "table" and answer.hubs
+			hubs = type(h) == "table" and #h > 0 and h or nil
 			if Walk.Split then Walk.Split() end
 		else
 			failed, failAt, failX, failY = true, GetTime(), px, py
-			count = 0
+			count, hubs = 0, nil
 			restore(gc, gx, gy)
 		end
 		changed()
 		pumpLegs()
-	end, ghost) -- a ghost walks on water
+	end, opts(ghost)) -- a ghost walks on water
 	if not ok then
 		token = nil
 		if z then
@@ -283,7 +308,7 @@ function Walk.Aim(pc, px, py, goalC, goalX, goalY, handmade)
 	if gc ~= goalC or gx == nil or tz ~= gzFor or (goalX - gx) * (goalX - gx) + (goalY - gy) * (goalY - gy) > GOAL_MOVED * GOAL_MOVED then
 		local had = count > 0
 		cancel()
-		gc, gx, gy, count, idx, failed = goalC, goalX, goalY, 0, 1, false
+		gc, gx, gy, count, idx, failed, hubs = goalC, goalX, goalY, 0, 1, false, nil
 		gzFor, gz = tz, tz or nil
 		askedAt = -huge
 		if had then changed() end
@@ -422,28 +447,34 @@ local function placeIndex(e, x, y)
 	return nil
 end
 
--- Running yards from (c, wx, wy) to the measure's target (the player's walk
--- when start), or nil for the straight estimate.
+-- The walk from (c, wx, wy) to the measure's target (the player's walk when
+-- start): its cost (chooses) and its yards (times it; FindMany's job.yards[i],
+-- the cost itself from a router without them), or nil for the straight
+-- estimate. The player's walk measured more than START_NEAR yards away is
+-- that walk's yards less the yards moved, never below the straight distance,
+-- its cost scaled alike.
 local function measuredCost(e, c, wx, wy, start)
 	if c ~= e.c then return nil end
-	local costs = e.costs
-	if not start then
-		local i = placeIndex(e, wx, wy)
-		local m = i and costs[i]
-		return type(m) == "number" and m or nil
-	end
-	local m = e.si and costs[e.si]
+	local costs, yards = e.costs, e.yards
+	local i
+	if start then i = e.si else i = placeIndex(e, wx, wy) end
+	local m = i and costs[i]
 	if type(m) ~= "number" then return nil end
+	local y = yards and yards[i]
+	if type(y) ~= "number" then y = m end
+	if not start then return m, y end
 	local dx, dy = wx - e.sx, wy - e.sy
 	local moved = sqrt(dx * dx + dy * dy)
-	if moved <= START_NEAR then return m end
+	if moved <= START_NEAR then return m, y end
 	dx, dy = e.x - wx, e.y - wy
 	local least = sqrt(dx * dx + dy * dy)
-	m = m - moved
-	return m > least and m or least
+	local rate = y > 0 and m / y or 1
+	y = y - moved
+	if y < least then y = least end
+	return y * rate, y
 end
 
--- The target's measured walks for the planner: walkCost(c, wx, wy, start) -> yards | nil, or nil (none).
+-- The target's measured walks for the planner: walkCost(c, wx, wy, start) -> cost, yards | nil, or nil (none).
 function Walk.Measured(c, x, y, water)
 	if not engine() then return nil end
 	local e = findMeasure(c, x, y, water or false)
@@ -455,10 +486,11 @@ end
 -- more without it.
 local function batch(P, mine, z)
 	local pts, water = mine.pts, mine.water
-	local ok, handle = pcall(P.FindMany, mine.c, { x = mine.x, y = mine.y, z = z }, pts, function(costs)
+	local ok, handle = pcall(P.FindMany, mine.c, { x = mine.x, y = mine.y, z = z }, pts, function(costs, _, answer)
 		if measuring ~= mine then return end
 		mine.job = nil
 		costs = type(costs) == "table" and costs or {}
+		mine.yards = type(answer) == "table" and type(answer.yards) == "table" and answer.yards or nil
 		local found = false
 		for i = 1, #pts do
 			if type(costs[i]) == "number" then found = true end
@@ -474,7 +506,7 @@ local function batch(P, mine, z)
 		local tc, tx, ty = Nav.GetTargetWorld()
 		if found and tc and T and T.Remeasured and sameTarget(mine, tc, tx, ty, water) then T.Remeasured() end
 		pumpLegs()
-	end, water, true)
+	end, opts(water), true)
 	if not ok then
 		if z then return batch(P, mine, nil) end
 		measuring = nil
@@ -607,10 +639,13 @@ local function legPath(from, to)
 	return legPaths[legKeyOf(from, to, ghostNow())] or nil
 end
 
--- Yards along the searched path of the walk from `from` to `to`, or nil.
+-- The searched path of the walk from `from` to `to`: its yards (Find's
+-- job.yards, the drawn line's length, never its cost) and the other faction's
+-- towns it enters (job.hubs; nil: none), or nil.
 function Walk.LegPath(from, to)
 	local e = legPath(from, to)
-	return e and e.yards or nil
+	if not e then return nil end
+	return e.yards, e.hubs
 end
 
 -- Leg i of the route is the last walk to a target after a guide `goto`: straight.
@@ -642,7 +677,7 @@ end
 -- once more without it.
 local function searchLeg(P, mine, key, from, to, z, ghost)
 	local T = Nav.travel
-	local ok, handle = pcall(P.Find, from.c, { x = from.wx, y = from.wy }, { x = to.wx, y = to.wy, z = z }, function(points)
+	local ok, handle = pcall(P.Find, from.c, { x = from.wx, y = from.wy }, { x = to.wx, y = to.wy, z = z }, function(points, _, answer)
 		if legToken ~= mine then return end
 		legJob = nil
 		local got = type(points) == "table" and #points > 0
@@ -662,13 +697,18 @@ local function searchLeg(P, mine, key, from, to, z, ghost)
 					end
 				end
 			end
-			if n > 1 then e = { xs = xs, ys = ys, n = n, yards = yards } end
+			if n > 1 then
+				local a = type(answer) == "table" and answer or nil
+				local h = a and a.hubs
+				if a and type(a.yards) == "number" then yards = a.yards end
+				e = { xs = xs, ys = ys, n = n, yards = yards, hubs = type(h) == "table" and #h > 0 and h or nil }
+			end
 		end
 		keepLeg(key, e)
 		-- Priced: ROUTE_CHANGED redraws; a failure keeps the straight line.
 		if not (e and T and T.PricePaths and T.PricePaths()) then changed() end
 		pumpLegs()
-	end, ghost or nil)
+	end, opts(ghost))
 	if not ok then
 		if z then return searchLeg(P, mine, key, from, to, nil, ghost) end
 		legToken, legKey = nil, nil
@@ -879,7 +919,7 @@ function Walk.Split()
 	if C and C.GetPlayerWorldPosition then pc, px, py = C.GetPlayerWorldPosition() end
 	if pc ~= gc then return end
 	local stops, total = Walk.Stops(pc, px, py)
-	if stops then T.SplitWalk(gc, gx, gy, stops, total) end
+	if stops then T.SplitWalk(gc, gx, gy, stops, total, hubs) end
 end
 
 ---------------------------------------------------------------------------

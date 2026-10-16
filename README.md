@@ -261,8 +261,12 @@ route over them a couple of milliseconds at a time, so the game never
 stutters. It is beautiful work, and he generously said yes when we asked to
 use it. Polestar's travel planner still picks the flights, boats and
 Hearthstone; the router that started from his walks every leg between them.
+It keeps to roads where they are not much longer, round steep slopes, and out
+of the other faction's towns; when a walk must enter one (a quest inside
+Southshore for a Horde character), its journey step reads "Hostile town:
+Southshore" and the arrow says so once as the walk starts.
 
-His pathing ships with Polestar as the `Polestar_Nav` folder. Polestar's
+The router ships with Polestar as the `Polestar_Nav` folder. Polestar's
 walking router started from Shortest Path Forever v1.16.0 by Cillian
 Berragan, with thanks; Polestar maintains it since 2026-10-16. It runs on
 Polestar's own walking maps of Eastern Kingdoms, Kalimdor and Zephras Isle,
@@ -275,16 +279,18 @@ his addon:
 plans whole journeys with flights, boats, zeppelins, portals and live
 departure times.
 
-**Works with Shortest Path Forever.** With it installed, Polestar hands it
-the route: each goal goes to Shortest Path Forever, whose arrow, route and
-journey take you there, and Polestar's own arrow, route lines, journey steps,
-travel button, transport alerts, map clicks and `/way` step aside, so the two
-never guide at once (Polestar's walking maps are not even loaded). The guide
-window and the map pins stay. A kill or collect area is handed over as an
-area, so it holds you there until the goal is done; if you clear or replace
-the journey, Polestar leaves it be until the guide moves on. **Guide with
-Shortest Path Forever when it's installed** (Options, Arrow & routes) turns
-it off.
+**Shortest Path Forever: an option.** With it installed, Polestar still
+guides by default. **Hand guiding to Shortest Path Forever** (Options, Arrow
+& routes) hands it the route instead: each goal goes to Shortest Path
+Forever, whose arrow, route and journey take you there, and Polestar's own
+arrow, route lines, journey steps, travel button, transport alerts, map
+clicks and `/way` step aside, so the two never guide at once (Polestar's
+walking maps are not even loaded). The guide window and the map pins stay. A
+kill or collect area is handed over as an area, so it holds you there until
+the goal is done; if you clear or replace the journey, Polestar leaves it be
+until the guide moves on. With the option off, a journey you start in
+Shortest Path Forever itself still wins: Polestar steps aside the same way
+while it runs, and guides again when it ends.
 
 ### Quests and the map
 
