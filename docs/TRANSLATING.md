@@ -196,6 +196,60 @@ hand-written ones (Polestar, Polestar_Nav, Polestar_ItemDB,
 Polestar_Recorder) carry the same lines, and `tests/i18n-toc.test.js` checks
 that every TOC under `addon/` has all nine and that they match.
 
+## Guide texts
+
+A guide's own words (its title, why and route-choice lines, each step's title
+and tip, each goal's note and label) are translated per guide pack, in the
+pack's `locales/` folder: `guides/locales/<locale>/` for Polestar's own, one
+file per guide at the guide's path (`forever/alliance/02-westfall.lua`), plus
+`_pack.lua` for the pack's own texts (its title and notes, its guides' menu
+folders). A file returns the English of each text with its translation:
+
+```lua
+return {
+	-- Step 1: Sentinel Hill
+	-- {npc:234} Gryan Stoutmantle · {npc:821} Captain Danuvin
+	["{npc:234} and {npc:821} stand at the top of the stone tower."] = "{npc:234} und {npc:821} stehen oben auf dem Steinturm.",
+	["Fill the vial at the well"] = "",
+}
+```
+
+- **Names are not translated.** The compiler writes the game's names inside
+  a text as tokens, `{npc:234}` (kinds: npc, object, item, quest, zone, area,
+  spell, faction, skill), and the game shows each in the client's language.
+  The comment above the line lists them with their English. Keep every token
+  of the English, as many times, wherever the sentence needs it; add none.
+  A text that is only names (a step titled after its NPC) has no line.
+- A name the text uses in the English plural stays words ("Harvest
+  Watchers"): the comment `-- plural, as words: Harvest Watchers = {npc:115}
+  Harvest Watcher` gives its NPC, so the plural can be made from the game's
+  own singular name (Polestar_Names_<locale>, `i18n names`).
+- `""` is not translated yet: the English shows. Keep the key byte for byte.
+- Keep the line breaks (`\n`) of the English.
+- `-- No longer in the guide (its English changed or it went away)` heads
+  the translations whose English the guide lost, commented out; `i18n guides
+  check` names the new English of a changed one where it can tell. Copy the
+  translation to the new line, adapt it, and delete the old one.
+- The files are written whole by sync: comments you add are rewritten.
+
+The compiler puts each language's translations into the pack's texts addon
+for it, `<pack folder>_<locale>` (`Polestar_Guides_deDE`), which only that
+client loads, on demand (docs/PACK_FORMAT.md, "Texts addons"). Commit the
+locale files and the texts addons `compile` writes.
+
+- `node tools/polestar.js i18n guides sync [<locale>...]` writes every
+  guide's file and `_pack.lua` for each language named (without one: each the
+  pack has a folder for): every text in reading order, the translations kept,
+  the lost ones moved to the end. `--pack <dir>` names another guide pack.
+- `node tools/polestar.js i18n guides check [<locale>...]` fails on a file
+  Lua cannot load, a translation that leaves out or adds a token or a line
+  break, a stale translation, or a file no guide has. `lint` and `compile`
+  warn about the same, and leave a broken translation out (the English
+  shows).
+- `node tools/polestar.js i18n guides stats` sizes the work: the texts that
+  need words, with their words and characters, in all and per guide folder,
+  and how many names the compiler made tokens.
+
 ## Adding a language
 
 Add it to `LOCALES` in `tools/lib/i18n/locales.js` with its status and
