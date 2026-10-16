@@ -5,19 +5,19 @@
 return {
 	-- Guide
 	-- {area:368} Echo Isles
-	["A staff or an orb at 10 for Horde mages, worth a short trip back to the {area:368}."] = "",
+	["A staff or an orb at 10 for Horde mages, worth a short trip back to the {area:368}."] = "Un bâton ou un orbe au niveau 10 pour les mages de la Horde, qui vaut un petit retour aux {area:368}.",
 
 	-- Step 1: Un'thuwa
-	["Un'thuwa"] = "",
+	["Un'thuwa"] = "Un'Thuwa",
 	-- {area:367} Sen'jin Village · {zone:1411} Durotar · {area:362} Razor Hill
-	["Un'thuwa stands in {area:367}, on the {zone:1411} coast south of {area:362}."] = "",
+	["Un'thuwa stands in {area:367}, on the {zone:1411} coast south of {area:362}."] = "Un'Thuwa se tient au {area:367}, sur la côte de {zone:1411} au sud de {area:362}.",
 
 	-- Step 2: The Ju-Ju Heaps
 	-- {quest:1884} Ju-Ju Heaps
-	["The {quest:1884}"] = "",
+	["The {quest:1884}"] = "{quest:1884}",
 	-- {area:368} Echo Isles
-	["Wade across to the {area:368}, south-east of Sen'jin. Zalazane placed the heaps among his huts on the main isle: click a heap to destroy it."] = "",
+	["Wade across to the {area:368}, south-east of Sen'jin. Zalazane placed the heaps among his huts on the main isle: click a heap to destroy it."] = "Traversez à gué jusqu'aux {area:368}, au sud-est du Village de Sen'jin. Zalazane a placé les tas parmi ses huttes sur l'île principale : cliquez sur un tas pour le détruire.",
 
 	-- Step 3: Back to Un'thuwa
-	["Back to Un'thuwa"] = "",
+	["Back to Un'thuwa"] = "Retour auprès d'Un'Thuwa",
 }

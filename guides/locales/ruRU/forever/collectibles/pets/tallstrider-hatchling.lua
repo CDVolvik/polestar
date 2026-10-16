@@ -5,5 +5,5 @@
 return {
 	-- Step 1: Strider Clutchmother
 	-- {npc:2172} Strider Clutchmother · {zone:1439} Darkshore
-	["The {npc:2172} is a rare level 20 tallstrider in southern {zone:1439}; early kill counts give about 0.6% per kill, so expect many respawns."] = "",
+	["The {npc:2172} is a rare level 20 tallstrider in southern {zone:1439}; early kill counts give about 0.6% per kill, so expect many respawns."] = "{npc:2172} — редкий долгоног 20-го уровня на юге зоны {zone:1439}; по первым подсчетам шанс около 0,6% за убийство, так что придется ждать много появлений.",
 }

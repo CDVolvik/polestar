@@ -5,14 +5,14 @@
 return {
 	-- Guide
 	-- {quest:94817} Confounding Flash · {quest:94818} Contingency Plan
-	["{quest:94817} and {quest:94818}"] = "",
-	["The Gnome priest spells, new in Forever: one at 10, one at 20."] = "",
+	["{quest:94817} and {quest:94818}"] = "{quest:94817} et {quest:94818}",
+	["The Gnome priest spells, new in Forever: one at 10, one at 20."] = "Les sorts de prêtre gnome, nouveaux dans Forever : l'un au niveau 10, l'autre au niveau 20.",
 
 	-- Step 1: Confounding Flash
 	-- {npc:258785} High Priestess Mims · {object:32386} Hall of Mysteries · {zone:1455} Ironforge · {object:32362} The Mystic Ward · {npc:1226} Maxan Anvol · {area:131} Kharanos · {npc:377} Priestess Josetta · {area:87} Goldshire · {npc:376} High Priestess Laurena · {zone:1453} Stormwind City
-	["At 10, go to {npc:258785} in the {object:32386}, in {zone:1455}'s {object:32362}. {npc:1226} in {area:131}, {npc:377} in {area:87} and {npc:376} in {zone:1453} send you to her with a quest of the same name (its text may say {zone:1453}: Mims is in {zone:1455})."] = "",
+	["At 10, go to {npc:258785} in the {object:32386}, in {zone:1455}'s {object:32362}. {npc:1226} in {area:131}, {npc:377} in {area:87} and {npc:376} in {zone:1453} send you to her with a quest of the same name (its text may say {zone:1453}: Mims is in {zone:1455})."] = "Au niveau 10, allez voir {npc:258785} à {object:32386}, dans {object:32362} de {zone:1455}. {npc:1226} à {area:131}, {npc:377} à {area:87} et {npc:376} à {zone:1453} vous envoient la voir avec une quête du même nom (son texte peut indiquer {zone:1453} : Mims est à {zone:1455}).",
 
 	-- Step 2: Contingency Plan
 	-- {npc:258785} High Priestess Mims · {quest:94818} Contingency Plan · {npc:376} High Priestess Laurena · {zone:1453} Stormwind City
-	["At 20, {npc:258785} teaches {quest:94818}. {npc:376} in {zone:1453} sends you to her with a quest of the same name."] = "",
+	["At 20, {npc:258785} teaches {quest:94818}. {npc:376} in {zone:1453} sends you to her with a quest of the same name."] = "Au niveau 20, {npc:258785} enseigne {quest:94818}. {npc:376} à {zone:1453} vous envoie la voir avec une quête du même nom.",
 }

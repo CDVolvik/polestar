@@ -5,20 +5,20 @@
 return {
 	-- Guide
 	-- {spell:10140} Conjure Water · {area:2577} Dire Maul
-	["The level 60 {spell:10140}, from a {area:2577} library: drink for you and your group."] = "",
-	["Shen'dralar reputation"] = "",
+	["The level 60 {spell:10140}, from a {area:2577} library: drink for you and your group."] = "{spell:10140} der Stufe 60, aus einer Bibliothek in {area:2577}: Getränke für dich und deine Gruppe.",
+	["Shen'dralar reputation"] = "Ruf bei den Shen'dralar",
 
 	-- Step 1: Lorekeeper Lydros
 	-- {area:1099} Camp Mojache · {area:2577} Dire Maul · {zone:1444} Feralas · {npc:14368} Lorekeeper Lydros · {item:18249} Crescent Key
-	["Fly to Feathermoon (Alliance) or {area:1099} (Horde) and ride to {area:2577} in central {zone:1444}. {npc:14368} waits in the Athenaeum, the library, reached through the West wing (or the North wing with a {item:18249})."] = "",
+	["Fly to Feathermoon (Alliance) or {area:1099} (Horde) and ride to {area:2577} in central {zone:1444}. {npc:14368} waits in the Athenaeum, the library, reached through the West wing (or the North wing with a {item:18249})."] = "Flieg nach Feathermoon (Allianz) oder {area:1099} (Horde) und reite nach {area:2577} im Zentrum von {zone:1444}. {npc:14368} wartet im Athenaeum, der Bibliothek, erreichbar durch den Westflügel (oder den Nordflügel mit einem {item:18249}).",
 
 	-- Step 2: Hydrospawn
-	["Hydrospawn"] = "",
+	["Hydrospawn"] = "Hydrobrut",
 	-- {area:2577} Dire Maul
-	["Hydrospawn, a water elemental, lives in the Warpwood Quarter ({area:2577} East): chase the imp Pusillin until he turns to fight, clear the satyr room, then take the spiral ramp down to the pool."] = "",
+	["Hydrospawn, a water elemental, lives in the Warpwood Quarter ({area:2577} East): chase the imp Pusillin until he turns to fight, clear the satyr room, then take the spiral ramp down to the pool."] = "Hydrobrut, ein Wasserelementar, lebt im Wucherborkenviertel ({area:2577} Ost): Jag den Wichtel Pusillin, bis er sich zum Kampf stellt, säubere den Satyrraum und nimm dann die Wendelrampe hinab zum Becken.",
 	-- {item:18299} Hydrospawn Essence
-	["{item:18299}: Hydrospawn"] = "",
+	["{item:18299}: Hydrospawn"] = "{item:18299}: Hydrobrut",
 
 	-- Step 3: Back to Lydros
-	["Back to Lydros"] = "",
+	["Back to Lydros"] = "Zurück zu Lydros",
 }

@@ -5,28 +5,28 @@
 return {
 	-- Guide
 	-- {npc:12396} Doomguard Commander · {zone:1419} Blasted Lands
-	["A rare off-hand at 60, Daio's payment for capturing a {npc:12396} in the {zone:1419}."] = "",
+	["A rare off-hand at 60, Daio's payment for capturing a {npc:12396} in the {zone:1419}."] = "Um item de mão secundária raro no nível 60, o pagamento de Daio por capturar um {npc:12396} nas {zone:1419}.",
 
 	-- Step 1: Daio the Decrepit
 	-- {npc:14463} Daio the Decrepit · {area:73} The Tainted Scar · {zone:1419} Blasted Lands
-	["At 60 {npc:14463} waits in the {area:73}, in western {zone:1419}."] = "",
+	["At 60 {npc:14463} waits in the {area:73}, in western {zone:1419}."] = "No nível 60, {npc:14463} espera na {area:73}, no oeste das {zone:1419}.",
 
 	-- Step 2: Satyr Blood
 	-- {area:2577} Dire Maul · {area:2518} Lariss Pavilion · {area:1099} Camp Mojache · {item:18249} Crescent Key
-	["The Wildspawn satyrs of the Warpwood Quarter, {area:2577}'s eastern wing, carry the blood. The back door at {area:2518}, north of {area:1099}, needs the {item:18249}; otherwise go in by {area:2577}'s main entrance. Bring a group."] = "",
+	["The Wildspawn satyrs of the Warpwood Quarter, {area:2577}'s eastern wing, carry the blood. The back door at {area:2518}, north of {area:1099}, needs the {item:18249}; otherwise go in by {area:2577}'s main entrance. Bring a group."] = "Os sátiros Criasselvagem do Bairro Lenhatorta, a ala leste de {area:2577}, levam o sangue. A porta dos fundos no {area:2518}, ao norte do {area:1099}, requer a {item:18249}; caso contrário, entre pela entrada principal de {area:2577}. Leve um grupo.",
 	-- {item:18603} Satyr Blood
-	["{item:18603}, inside the Warpwood Quarter"] = "",
+	["{item:18603}, inside the Warpwood Quarter"] = "{item:18603}, dentro do Bairro Lenhatorta",
 
 	-- Step 3: Tears of the Hederine
 	-- {area:2256} Darkwhisper Gorge · {zone:1452} Winterspring
-	["The Hederine demons hold {area:2256}, in southern {zone:1452}. They are elite: grouping up is advised."] = "",
+	["The Hederine demons hold {area:2256}, in southern {zone:1452}. They are elite: grouping up is advised."] = "Os demônios Hederine ocupam o {area:2256}, no sul de {zone:1452}. Eles são elite: é recomendado formar grupo.",
 
 	-- Step 4: Suppression
 	-- {npc:12396} Doomguard Commander · {area:73} The Tainted Scar · {item:18601} Glowing Crystal Prison
-	["Hand both in to Daio, then find the {npc:12396} in the {area:73} and use the {item:18601} on him. He is elite and fights to escape: grouping up is advised."] = "",
+	["Hand both in to Daio, then find the {npc:12396} in the {area:73} and use the {item:18601} on him. He is elite and fights to escape: grouping up is advised."] = "Entregue os dois a Daio, depois encontre o {npc:12396} na {area:73} e use a {item:18601} nele. Ele é elite e luta para escapar: é recomendado formar grupo.",
 	-- {item:18601} Glowing Crystal Prison · {npc:12396} Doomguard Commander
-	["{item:18601}, on the {npc:12396}"] = "",
+	["{item:18601}, on the {npc:12396}"] = "{item:18601}, no {npc:12396}",
 
 	-- Step 5: Back to Daio
-	["Back to Daio"] = "",
+	["Back to Daio"] = "De volta a Daio",
 }

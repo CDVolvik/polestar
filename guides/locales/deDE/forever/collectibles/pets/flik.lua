@@ -4,15 +4,15 @@
 -- name there in German (the English is listed above the line). The comments are rewritten by sync.
 return {
 	-- Guide
-	["Darkmoon Faire Frogs"] = "",
+	["Darkmoon Faire Frogs"] = "Frösche vom Dunkelmond-Jahrmarkt",
 
 	-- Step 1: Flik at the Darkmoon Faire
 	-- {npc:14860} Flik
-	["{npc:14860} at the Darkmoon Faire"] = "",
+	["{npc:14860} at the Darkmoon Faire"] = "{npc:14860} auf dem Dunkelmond-Jahrmarkt",
 	-- {npc:14860} Flik · {area:87} Goldshire · {zone:1429} Elwynn Forest · {zone:1456} Thunder Bluff · {zone:1412} Mulgore
-	["{npc:14860} sells two frogs (1g each) while the Darkmoon Faire is in town. In Era the Faire sets up south of {area:87} in {zone:1429} one month and near {zone:1456} in {zone:1412} the next; go to whichever is up. Each pet item teaches its companion when you use it; the goals stay ticked afterwards."] = "",
+	["{npc:14860} sells two frogs (1g each) while the Darkmoon Faire is in town. In Era the Faire sets up south of {area:87} in {zone:1429} one month and near {zone:1456} in {zone:1412} the next; go to whichever is up. Each pet item teaches its companion when you use it; the goals stay ticked afterwards."] = "{npc:14860} verkauft zwei Frösche (je 1g), solange der Dunkelmond-Jahrmarkt da ist. In Era baut sich der Jahrmarkt einen Monat südlich von {area:87} im {zone:1429} auf und im nächsten nahe {zone:1456} in {zone:1412}; geh zu dem, der gerade steht. Jeder Haustiergegenstand lehrt sein Haustier, wenn du ihn benutzt; die Ziele bleiben danach abgehakt.",
 	-- {item:11026} Tree Frog Box
-	["{item:11026}, 1g"] = "",
+	["{item:11026}, 1g"] = "{item:11026}, 1g",
 	-- {item:11027} Wood Frog Box
-	["{item:11027}, 1g"] = "",
+	["{item:11027}, 1g"] = "{item:11027}, 1g",
 }

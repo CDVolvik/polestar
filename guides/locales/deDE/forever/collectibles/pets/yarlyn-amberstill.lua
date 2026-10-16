@@ -5,12 +5,12 @@
 return {
 	-- Guide
 	-- {npc:1263} Yarlyn Amberstill
-	["{npc:1263}'s Rabbits"] = "",
+	["{npc:1263}'s Rabbits"] = "Hasen von {npc:1263}",
 
 	-- Step 1: Yarlyn Amberstill
 	-- {npc:1263} Yarlyn Amberstill · {area:803} Amberstill Ranch · {area:131} Kharanos
-	["{npc:1263} stands at {area:803}, east of {area:131}. Each rabbit crate costs 20s; the Arctic and Brown crates are new in Forever. Each pet item teaches its companion when you use it; the goals stay ticked afterwards."] = "",
+	["{npc:1263} stands at {area:803}, east of {area:131}. Each rabbit crate costs 20s; the Arctic and Brown crates are new in Forever. Each pet item teaches its companion when you use it; the goals stay ticked afterwards."] = "{npc:1263} steht beim {area:803}, östlich von {area:131}. Jeder Hasenkäfig kostet 20s; der Arktis- und der Braun-Käfig sind neu in Forever. Jeder Haustier-Gegenstand lehrt dir beim Benutzen seinen Begleiter; die Ziele bleiben danach abgehakt.",
 	-- {item:8497} Rabbit Crate (Snowshoe)
-	["{item:8497}, 20s"] = "",
-	["20s"] = "",
+	["{item:8497}, 20s"] = "{item:8497}, 20s",
+	["20s"] = "20s",
 }

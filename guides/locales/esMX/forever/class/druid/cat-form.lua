@@ -5,45 +5,45 @@
 return {
 	-- Guide
 	-- {spell:768} Cat Form
-	["Your stealth and melee form: in Forever this chain gives {spell:768} at 20, not the trainer."] = "",
+	["Your stealth and melee form: in Forever this chain gives {spell:768} at 20, not the trainer."] = "Tu forma de sigilo y combate cuerpo a cuerpo: en Forever esta cadena te da {spell:768} a nivel 20, no el instructor.",
 
 	-- Step 1: The Great Cat Spirit
 	-- {npc:4217} Mathrengyl Bearwalker · {area:1658} Cenarion Enclave · {area:442} Auberdine
-	["{npc:4217} stands in the {area:1658}. Skyborne without the Rut'theran flight path: take the boat from {area:442}."] = "",
+	["{npc:4217} stands in the {area:1658}. Skyborne without the Rut'theran flight path: take the boat from {area:442}."] = "{npc:4217} está en {area:1658}. Si eres Cielonato y no tienes la ruta de vuelo de Rut'theran, toma el barco desde {area:442}.",
 
 	-- Step 2: Dendrite Starblaze
 	-- {area:493} Moonglade · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven
-	["Cast Teleport: {area:493}. {npc:11802} is in {area:2361}; learn the flight path there if you do not have it."] = "",
+	["Cast Teleport: {area:493}. {npc:11802} is in {area:2361}; learn the flight path there if you do not have it."] = "Lanza Teletransporte: {area:493}. {npc:11802} está en {area:2361}; consigue allí la ruta de vuelo si no la tienes.",
 
 	-- Step 3: The relics of the Barrow Dens
-	["The relics of the Barrow Dens"] = "",
+	["The relics of the Barrow Dens"] = "Las reliquias de los Túmulos",
 	-- {quest:98394} The Great Cat Spirit · {npc:272054} Avatar of Saeyleenan · {area:2363} Stormrage Barrow Dens · {item:280680} Relic of the Silent Shadow
-	["{quest:98394} (Night Elves) waits on the southern hill above the bridge, the {npc:272054} (Skyborne) south of the twin bridges. The relics lie in the {area:2363} east of the lake: leave your form, click the statue at the entrance for five minutes of stealth, keep clear of the spirits inside and take one of each relic; the {item:280680} lies at the foot of the white cat statue. A relic gives no loot while another player is looting it: wait a moment and try again."] = "",
+	["{quest:98394} (Night Elves) waits on the southern hill above the bridge, the {npc:272054} (Skyborne) south of the twin bridges. The relics lie in the {area:2363} east of the lake: leave your form, click the statue at the entrance for five minutes of stealth, keep clear of the spirits inside and take one of each relic; the {item:280680} lies at the foot of the white cat statue. A relic gives no loot while another player is looting it: wait a moment and try again."] = "{quest:98394} (elfos de la noche) espera en la colina sur sobre el puente; {npc:272054} (Cielonato), al sur de los puentes gemelos. Las reliquias están en {area:2363}, al este del lago: sal de tu forma, haz clic en la estatua de la entrada para obtener cinco minutos de sigilo, mantente lejos de los espíritus del interior y toma una de cada reliquia; {item:280680} está al pie de la estatua del gato blanco. Una reliquia no da botín mientras otro jugador la está saqueando: espera un momento y vuelve a intentarlo.",
 
 	-- Step 4: Back to Dendrite
-	["Back to Dendrite"] = "",
+	["Back to Dendrite"] = "Regresa con Dendrite",
 	-- {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {area:702} Rut'theran Village
-	["Back to {npc:11802} in {area:2361}, then fly to {area:702}."] = "",
+	["Back to {npc:11802} in {area:2361}, then fly to {area:702}."] = "Regresa con {npc:11802} en {area:2361} y luego vuela a {area:702}.",
 
 	-- Step 5: To Darnassus
 	-- {area:1658} Cenarion Enclave
-	["Take the portal up to Mathrengyl in the {area:1658}."] = "",
+	["Take the portal up to Mathrengyl in the {area:1658}."] = "Toma el portal para subir con Mathrengyl en {area:1658}.",
 
 	-- Step 6: The Great Cat Spirit
 	-- {npc:3033} Turak Runetotem · {area:1639} Elder Rise
-	["{npc:3033} stands on {area:1639}."] = "",
+	["{npc:3033} stands on {area:1639}."] = "{npc:3033} está en {area:1639}.",
 
 	-- Step 7: Dendrite Starblaze
 	-- {area:493} Moonglade · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven
-	["Cast Teleport: {area:493}. {npc:11802} is in {area:2361}."] = "",
+	["Cast Teleport: {area:493}. {npc:11802} is in {area:2361}."] = "Lanza Teletransporte: {area:493}. {npc:11802} está en {area:2361}.",
 
 	-- Step 8: The Stormrage Barrow Dens
 	-- {area:2363} Stormrage Barrow Dens
-	["The {area:2363}"] = "",
+	["The {area:2363}"] = "{area:2363}",
 	-- {quest:98342} The Great Cat Spirit · {npc:272054} Avatar of Saeyleenan · {area:2363} Stormrage Barrow Dens · {item:280680} Relic of the Silent Shadow
-	["{quest:98342} (Tauren) waits on the southern hill above the bridge, the {npc:272054} (Skyborne) south of the twin bridges. The relics lie in the {area:2363} east of the lake: leave your form, click the statue at the entrance for five minutes of stealth, keep clear of the spirits inside and take one of each relic; the {item:280680} lies at the foot of the white cat statue. A relic gives no loot while another player is looting it: wait a moment and try again."] = "",
+	["{quest:98342} (Tauren) waits on the southern hill above the bridge, the {npc:272054} (Skyborne) south of the twin bridges. The relics lie in the {area:2363} east of the lake: leave your form, click the statue at the entrance for five minutes of stealth, keep clear of the spirits inside and take one of each relic; the {item:280680} lies at the foot of the white cat statue. A relic gives no loot while another player is looting it: wait a moment and try again."] = "{quest:98342} (taurens) espera en la colina sur sobre el puente; {npc:272054} (Cielonato), al sur de los puentes gemelos. Las reliquias están en {area:2363}, al este del lago: sal de tu forma, haz clic en la estatua de la entrada para obtener cinco minutos de sigilo, mantente lejos de los espíritus del interior y toma una de cada reliquia; {item:280680} está al pie de la estatua del gato blanco. Una reliquia no da botín mientras otro jugador la está saqueando: espera un momento y vuelve a intentarlo.",
 
 	-- Step 9: Back to Dendrite
 	-- {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {npc:11798} Bunthen Plainswind · {area:1638} Thunder Bluff
-	["Back to {npc:11802} in {area:2361}, then take {npc:11798}'s flight to {area:1638}."] = "",
+	["Back to {npc:11802} in {area:2361}, then take {npc:11798}'s flight to {area:1638}."] = "Regresa con {npc:11802} en {area:2361} y luego toma el vuelo de {npc:11798} a {area:1638}.",
 }

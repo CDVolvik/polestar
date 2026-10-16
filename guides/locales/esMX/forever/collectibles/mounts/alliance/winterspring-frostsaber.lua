@@ -5,14 +5,14 @@
 return {
 	-- Guide
 	-- {zone:1452} Winterspring
-	["{zone:1452} Frostsaber"] = "",
+	["{zone:1452} Frostsaber"] = "Sable de hielo de {zone:1452}",
 
 	-- Step 1: Wintersaber Trainers
 	-- {npc:10618} Rivern Frostwind · {area:2241} Frostsaber Rock · {zone:1452} Winterspring
-	["{npc:10618} at {area:2241} in northern {zone:1452} offers the repeatable Frostsaber Provisions, Winterfall Intrusion and Rampaging Giants (level 58); they are the whole road to Exalted, so expect weeks of turn-ins."] = "",
+	["{npc:10618} at {area:2241} in northern {zone:1452} offers the repeatable Frostsaber Provisions, Winterfall Intrusion and Rampaging Giants (level 58); they are the whole road to Exalted, so expect weeks of turn-ins."] = "{npc:10618}, en {area:2241}, en el norte de {zone:1452}, ofrece las misiones repetibles Provisiones de sable de hielo, Intrusión Nevada y Gigantes arrasadores (nivel 58); son todo el camino hasta Exaltado, así que prepárate para semanas de entregas.",
 
 	-- Step 2: Reins of the Winterspring Frostsaber
-	["The Forever client lists it at 200g and level 60, and asks for no riding rank."] = "",
+	["The Forever client lists it at 200g and level 60, and asks for no riding rank."] = "El cliente de Forever la pone a 200g y nivel 60, y no pide ningún rango de equitación.",
 	-- {npc:10618} Rivern Frostwind
-	["{npc:10618}, 200g"] = "",
+	["{npc:10618}, 200g"] = "{npc:10618}, 200g",
 }

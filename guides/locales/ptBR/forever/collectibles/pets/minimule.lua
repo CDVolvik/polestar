@@ -4,17 +4,17 @@
 -- name there in Portuguese (Brazil) (the English is listed above the line). The comments are rewritten by sync.
 return {
 	-- Guide
-	["Minimule"] = "",
+	["Minimule"] = "Minimula",
 
 	-- Step 1: Azeroth Commerce Authority
-	["Azeroth Commerce Authority"] = "",
+	["Azeroth Commerce Authority"] = "Autoridade Comercial de Azeroth",
 	-- {area:1002} Three Corners · {zone:1433} Redridge Mountains · {npc:214101} Marcy Baker
-	["The Alliance camp is at {area:1002} in western {zone:1433}. Loot supply crates in the world, fill them and hand them in to {npc:214101} for Merchant's Favor (5-20 a crate); the treat costs 1,500."] = "",
-	["1,500 Merchant's Favor"] = "",
+	["The Alliance camp is at {area:1002} in western {zone:1433}. Loot supply crates in the world, fill them and hand them in to {npc:214101} for Merchant's Favor (5-20 a crate); the treat costs 1,500."] = "O acampamento da Aliança fica em {area:1002}, no oeste das {zone:1433}. Saqueie caixas de suprimentos pelo mundo, encha-as e entregue-as a {npc:214101} por Favor Mercantil (5-20 por caixa); o petisco custa 1.500.",
+	["1,500 Merchant's Favor"] = "1.500 de Favor Mercantil",
 
 	-- Step 2: Durotar Supply and Logistics
 	-- {zone:1411} Durotar
-	["{zone:1411} Supply and Logistics"] = "",
+	["{zone:1411} Supply and Logistics"] = "Logística e Suprimentos de {zone:1411}",
 	-- {area:380} The Crossroads · {npc:256384} Gishah · {zone:1458} Undercity
-	["The Horde camp is just outside the {area:380}. Loot supply crates in the world, fill them and hand them in at the camp for Merchant's Favor; the treat costs 1,500. (Another {npc:256384} stands in the {zone:1458}; this is the one at the camp.)"] = "",
+	["The Horde camp is just outside the {area:380}. Loot supply crates in the world, fill them and hand them in at the camp for Merchant's Favor; the treat costs 1,500. (Another {npc:256384} stands in the {zone:1458}; this is the one at the camp.)"] = "O acampamento da Horda fica logo fora de {area:380}. Saqueie caixas de suprimentos pelo mundo, encha-as e entregue-as no acampamento por Favor Mercantil; o petisco custa 1.500. (Outro {npc:256384} fica em {zone:1458}; este é o do acampamento.)",
 }

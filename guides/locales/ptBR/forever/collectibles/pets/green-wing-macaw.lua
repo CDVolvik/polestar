@@ -6,12 +6,12 @@ return {
 	-- Step 1: The Deadmines: Defias Pirates
 	-- {area:1581} The Deadmines
 	-- plural, as words: Defias Pirates = {npc:657} Defias Pirate
-	["{area:1581}: Defias Pirates"] = "",
+	["{area:1581}: Defias Pirates"] = "{area:1581}: Piratas Défias",
 	-- {area:1581} The Deadmines · {area:20} Moonbrook
 	-- plural, as words: Defias Pirates = {npc:657} Defias Pirate
-	["{area:1581} is a group of five under {area:20}; the instance portal is inside the {area:20} mine. The Defias Pirates on and around the ship drop the macaw about 3.5% of the time in our data."] = "",
+	["{area:1581} is a group of five under {area:20}; the instance portal is inside the {area:20} mine. The Defias Pirates on and around the ship drop the macaw about 3.5% of the time in our data."] = "{area:1581} é para um grupo de cinco, embaixo de {area:20}; o portal da instância fica dentro da mina de {area:20}. Os Piratas Défias no navio e em volta dele deixam cair a arara em cerca de 3,5% das vezes nos nossos dados.",
 	-- {area:1581} The Deadmines · {area:20} Moonbrook
-	["{area:1581} portal, inside the {area:20} mine"] = "",
+	["{area:1581} portal, inside the {area:20} mine"] = "Portal de {area:1581}, dentro da mina de {area:20}",
 	-- plural, as words: Defias Pirates = {npc:657} Defias Pirate
-	["Defias Pirates"] = "",
+	["Defias Pirates"] = "Piratas Défias",
 }

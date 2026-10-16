@@ -5,14 +5,14 @@
 return {
 	-- Guide
 	-- {zone:1452} Winterspring
-	["{zone:1452} Frostsaber"] = "",
+	["{zone:1452} Frostsaber"] = "{zone:1452} 눈호랑이",
 
 	-- Step 1: Wintersaber Trainers
 	-- {npc:10618} Rivern Frostwind · {area:2241} Frostsaber Rock · {zone:1452} Winterspring
-	["{npc:10618} at {area:2241} in northern {zone:1452} offers the repeatable Frostsaber Provisions, Winterfall Intrusion and Rampaging Giants (level 58); they are the whole road to Exalted, so expect weeks of turn-ins."] = "",
+	["{npc:10618} at {area:2241} in northern {zone:1452} offers the repeatable Frostsaber Provisions, Winterfall Intrusion and Rampaging Giants (level 58); they are the whole road to Exalted, so expect weeks of turn-ins."] = "{zone:1452} 북쪽 {area:2241}의 {npc:10618}이(가) 반복 퀘스트 눈호랑이의 먹이, 눈사태일족의 침략, 광란의 거인(58레벨)을 줍니다. 확고한 동맹까지 가는 유일한 길이므로 몇 주 동안 퀘스트를 반복할 각오를 하십시오.",
 
 	-- Step 2: Reins of the Winterspring Frostsaber
-	["The Forever client lists it at 200g and level 60, and asks for no riding rank."] = "",
+	["The Forever client lists it at 200g and level 60, and asks for no riding rank."] = "Forever 클라이언트에서는 200골드, 60레벨이며 탈것 기술 등급은 요구하지 않습니다.",
 	-- {npc:10618} Rivern Frostwind
-	["{npc:10618}, 200g"] = "",
+	["{npc:10618}, 200g"] = "{npc:10618}, 200골드",
 }

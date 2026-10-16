@@ -5,8 +5,8 @@
 return {
 	-- Step 1: Dreaming Whelps
 	-- plural, as words: Dreaming Whelps = {npc:741} Dreaming Whelp
-	["Dreaming Whelps"] = "",
+	["Dreaming Whelps"] = "Dragonetes Sonhadores",
 	-- {zone:1435} Swamp of Sorrows
 	-- plural, as words: Dreaming Whelps = {npc:741} Dreaming Whelp
-	["The Dreaming Whelps (level 35) in western {zone:1435} drop it about once in 1,250 kills in our data."] = "",
+	["The Dreaming Whelps (level 35) in western {zone:1435} drop it about once in 1,250 kills in our data."] = "Os Dragonetes Sonhadores (nível 35) no oeste do {zone:1435} o deixam cair cerca de uma vez em 1.250 abates em nossos dados.",
 }

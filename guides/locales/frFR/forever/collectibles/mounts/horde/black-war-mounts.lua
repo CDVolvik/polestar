@@ -4,14 +4,14 @@
 -- name there in French (the English is listed above the line). The comments are rewritten by sync.
 return {
 	-- Guide
-	["Black War Mounts"] = "",
+	["Black War Mounts"] ="Montures de guerre noires",
 
 	-- Step 1: PvP rank 11
-	["PvP rank 11"] = "",
-	["Forever's PvP ranks come from Rank Points earned in battlegrounds and world PvP, with a weekly cap; Lieutenant General (rank 11) unlocks the Black War mounts. Polestar cannot read your rank, so this step waits for level 40 and the riding skill."] = "",
+	["PvP rank 11"] ="Rang JcJ 11",
+	["Forever's PvP ranks come from Rank Points earned in battlegrounds and world PvP, with a weekly cap; Lieutenant General (rank 11) unlocks the Black War mounts. Polestar cannot read your rank, so this step waits for level 40 and the riding skill."] ="Les rangs JcJ de Forever viennent des points de rang gagnés en champs de bataille et en JcJ sauvage, avec un plafond hebdomadaire ; le rang de Lieutenant général (rang 11) débloque les montures de guerre noires. Polestar ne peut pas lire votre rang : cette étape attend le niveau 40 et la compétence de monte.",
 
 	-- Step 2: Raider Bork
 	-- {npc:12796} Raider Bork · {area:2917} Hall of Legends · {zone:1454} Orgrimmar · {object:172958} Valley of Honor · {npc:12799} Sergeant Ba'sha
-	["{npc:12796} sells the mounts in the {area:2917} in {zone:1454}'s {object:172958}, beside the other honor quartermasters such as {npc:12799}. The Forever client lists each at 100g; choose one."] = "",
-	["100g"] = "",
+	["{npc:12796} sells the mounts in the {area:2917} in {zone:1454}'s {object:172958}, beside the other honor quartermasters such as {npc:12799}. The Forever client lists each at 100g; choose one."] ="{npc:12796} vend les montures dans {area:2917}, dans {object:172958} de {zone:1454}, à côté des autres intendants d'honneur comme {npc:12799}. Le client Forever les vend 100 po chacune ; choisissez-en une.",
+	["100g"] ="100 po",
 }

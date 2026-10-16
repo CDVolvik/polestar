@@ -5,14 +5,14 @@
 return {
 	-- Guide
 	-- {zone:1452} Winterspring
-	["{zone:1452} Frostsaber"] = "",
+	["{zone:1452} Frostsaber"] = "Ледопард: {zone:1452}",
 
 	-- Step 1: Wintersaber Trainers
 	-- {npc:10618} Rivern Frostwind · {area:2241} Frostsaber Rock · {zone:1452} Winterspring
-	["{npc:10618} at {area:2241} in northern {zone:1452} offers the repeatable Frostsaber Provisions, Winterfall Intrusion and Rampaging Giants (level 58); they are the whole road to Exalted, so expect weeks of turn-ins."] = "",
+	["{npc:10618} at {area:2241} in northern {zone:1452} offers the repeatable Frostsaber Provisions, Winterfall Intrusion and Rampaging Giants (level 58); they are the whole road to Exalted, so expect weeks of turn-ins."] = "{npc:10618} ({area:2241}, север зоны {zone:1452}) выдает повторяемые задания «Накормить ледопардов», «Вторжение племени Зимней Спячки» и «Истребление великанов» (уровень 58); это единственный путь к превознесению, так что сдавать их придется неделями.",
 
 	-- Step 2: Reins of the Winterspring Frostsaber
-	["The Forever client lists it at 200g and level 60, and asks for no riding rank."] = "",
+	["The Forever client lists it at 200g and level 60, and asks for no riding rank."] = "Клиент Forever указывает цену 200 з и 60-й уровень и не требует навыка верховой езды.",
 	-- {npc:10618} Rivern Frostwind
-	["{npc:10618}, 200g"] = "",
+	["{npc:10618}, 200g"] = "{npc:10618}, 200 з",
 }

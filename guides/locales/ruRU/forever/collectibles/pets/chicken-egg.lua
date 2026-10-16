@@ -5,9 +5,9 @@
 return {
 	-- Step 1: CLUCK!
 	-- {npc:233} Farmer Saldean · {quest:3861} CLUCK! · {item:11109} Special Chicken Feed · {item:11110} Chicken Egg
-	["Find a chicken at {npc:233}'s farm and type /chicken at it until it offers {quest:3861}. Buy {item:11109} from {npc:233}, go back, /cheer at the same chicken, then hand in the feed. The chicken lays an egg: loot it for your {item:11110} pet."] = "",
+	["Find a chicken at {npc:233}'s farm and type /chicken at it until it offers {quest:3861}. Buy {item:11109} from {npc:233}, go back, /cheer at the same chicken, then hand in the feed. The chicken lays an egg: loot it for your {item:11110} pet."] = "Найдите курицу на ферме (хозяин: {npc:233}) и вводите /chicken, выбрав ее целью, пока она не предложит задание {quest:3861}. Купите {item:11109} у NPC {npc:233}, вернитесь, введите /cheer для той же курицы и сдайте корм. Курица снесет яйцо: заберите его – это ваш питомец {item:11110}.",
 	-- {item:11109} Special Chicken Feed · {npc:233} Farmer Saldean
-	["{item:11109}, from {npc:233}"] = "",
+	["{item:11109}, from {npc:233}"] = "{item:11109}: продает {npc:233}",
 	-- {object:161513} Farm Chicken Egg
-	["Loot the {object:161513} the chicken lays"] = "",
+	["Loot the {object:161513} the chicken lays"] = "Заберите {object:161513}, которое снесет курица",
 }

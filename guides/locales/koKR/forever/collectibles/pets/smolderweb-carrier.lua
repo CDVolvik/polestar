@@ -5,17 +5,17 @@
 return {
 	-- Step 1: Kibler at Flame Crest
 	-- {npc:10260} Kibler · {area:251} Flame Crest
-	["{npc:10260} at {area:251}"] = "",
+	["{npc:10260} at {area:251}"] = "{area:251}의 {npc:10260}",
 	-- {npc:10260} Kibler · {area:251} Flame Crest · {zone:1428} Burning Steppes · {area:254} Blackrock Mountain
-	["{npc:10260} stands at {area:251} in northern {zone:1428}, near the {area:254} path."] = "",
+	["{npc:10260} stands at {area:251} in northern {zone:1428}, near the {area:254} path."] = "{npc:10260}은(는) {zone:1428} 북부의 {area:251}, {area:254}(으)로 가는 길 근처에 있습니다.",
 
 	-- Step 2: Lower Blackrock Spire
 	-- {area:1583} Blackrock Spire
-	["Lower {area:1583}"] = "",
+	["Lower {area:1583}"] = "{area:1583} 하층",
 	-- {area:1583} Blackrock Spire · {npc:10374} Spire Spider · {npc:10596} Mother Smolderweb
-	["Lower {area:1583} is a group of five, level 55-60. Collect 15 {npc:10374} Eggs from the nests near {npc:10596}."] = "",
+	["Lower {area:1583} is a group of five, level 55-60. Collect 15 {npc:10374} Eggs from the nests near {npc:10596}."] = "{area:1583} 하층은 레벨 55-60, 5인 파티 던전입니다. {npc:10596} 근처 둥지에서 {npc:10374} 알 15개를 모으십시오.",
 
 	-- Step 3: Back to Kibler
 	-- {npc:10260} Kibler
-	["Back to {npc:10260}"] = "",
+	["Back to {npc:10260}"] = "{npc:10260}에게 돌아가기",
 }

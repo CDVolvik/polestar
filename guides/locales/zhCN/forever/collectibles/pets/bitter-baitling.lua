@@ -5,9 +5,9 @@
 return {
 	-- Step 1: Extravagant Extravaganza Coin
 	-- {item:276275} Bitter Baitling · {npc:15078} Jang · {item:274026} Extravagant Extravaganza Coin · {area:35} Booty Bay
-	["The {item:276275} is a fishing reward: {npc:15078} trades it for one {item:274026}, a reward of the fishing contest {npc:15078} runs in {area:35}. The coin's exact source is not published yet."] = "",
+	["The {item:276275} is a fishing reward: {npc:15078} trades it for one {item:274026}, a reward of the fishing contest {npc:15078} runs in {area:35}. The coin's exact source is not published yet."] = "{item:276275}是钓鱼奖励：{npc:15078}用它交换一枚{item:274026}，那是{npc:15078}在{area:35}举办的钓鱼大赛的奖励。硬币的确切来源尚未公布。",
 
 	-- Step 2: Jang
 	-- {npc:15078} Jang · {area:35} Booty Bay
-	["{npc:15078} stands on the {area:35} docks."] = "",
+	["{npc:15078} stands on the {area:35} docks."] = "{npc:15078}站在{area:35}的码头上。",
 }

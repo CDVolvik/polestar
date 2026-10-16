@@ -5,5 +5,5 @@
 return {
 	-- Step 1: Dalaran Spellscribe
 	-- {npc:1920} Dalaran Spellscribe · {area:233} Ambermill · {zone:1421} Silverpine Forest · {area:279} Dalaran
-	["The {npc:1920}, a rare spawn among the mages at {area:233} in southern {zone:1421}, drops it about 17% of the time in our data; the other {area:279} mages at {area:233} and around the {area:279} crater drop it at about 0.2%. Kill the mages until the Spellscribe appears. Alliance players buy it on the Auction House."] = "",
+	["The {npc:1920}, a rare spawn among the mages at {area:233} in southern {zone:1421}, drops it about 17% of the time in our data; the other {area:279} mages at {area:233} and around the {area:279} crater drop it at about 0.2%. Kill the mages until the Spellscribe appears. Alliance players buy it on the Auction House."] = "O {npc:1920}, um raro entre os magos de {area:233} no sul de {zone:1421}, o deixa cair em cerca de 17% das vezes nos nossos dados; os outros magos de {area:279} em {area:233} e em volta da cratera de {area:279} o deixam cair em cerca de 0,2%. Mate os magos até o Escriba aparecer. Jogadores da Aliança o compram na Casa de Leilões.",
 }

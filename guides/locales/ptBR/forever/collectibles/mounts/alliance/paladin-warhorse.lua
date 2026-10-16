@@ -4,14 +4,14 @@
 -- name there in Portuguese (Brazil) (the English is listed above the line). The comments are rewritten by sync.
 return {
 	-- Guide
-	["Paladin Warhorse"] = "",
-	["Your first mount at 40, summoned at will: a paladin buys no horse."] = "",
+	["Paladin Warhorse"] = "Cavalo de Guerra de Paladino",
+	["Your first mount at 40, summoned at will: a paladin buys no horse."] = "Sua primeira montaria no nível 40, evocada à vontade: paladinos não compram cavalo.",
 
 	-- Step 1: The Tome of Nobility (Ironforge)
 	-- {npc:5149} Brandur Ironhammer · {object:32362} The Mystic Ward · {npc:6171} Duthorian Rall · {zone:1453} Stormwind City · {zone:1455} Ironforge
-	["At 40 {npc:5149} in the {object:32362} sends you to {npc:6171} in {zone:1453}'s Cathedral of Light. Take the tram from {zone:1455} to {zone:1453}."] = "",
+	["At 40 {npc:5149} in the {object:32362} sends you to {npc:6171} in {zone:1453}'s Cathedral of Light. Take the tram from {zone:1455} to {zone:1453}."] = "No nível 40, {npc:5149} na {object:32362} manda você até {npc:6171} na Catedral da Luz de {zone:1453}. Pegue o metrô de {zone:1455} para {zone:1453}.",
 
 	-- Step 2: Summon Warhorse
 	-- {npc:6171} Duthorian Rall · {item:6779} Tome of Nobility · {spell:13819} Summon Warhorse
-	["{npc:6171} stands in the Cathedral of Light. Turning in the {item:6779} teaches {spell:13819}; Paladins do not buy a mount."] = "",
+	["{npc:6171} stands in the Cathedral of Light. Turning in the {item:6779} teaches {spell:13819}; Paladins do not buy a mount."] = "{npc:6171} fica na Catedral da Luz. Entregar o {item:6779} ensina {spell:13819}; paladinos não compram montaria.",
 }

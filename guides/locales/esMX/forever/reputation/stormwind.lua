@@ -5,49 +5,49 @@
 return {
 	-- Guide
 	-- {faction:72} Stormwind
-	["{faction:72} Reputation"] = "",
+	["{faction:72} Reputation"] = "Reputación con {faction:72}",
 
 	-- Step 1: Clavicus Knavingham: A Donation of Wool
 	-- {npc:14722} Clavicus Knavingham · {faction:72} Stormwind · {zone:1453} Stormwind City · {item:14047} Runecloth · {quest:7796} Additional Runecloth
-	["{npc:14722} takes cloth for {faction:72} in {zone:1453}. The first donations of Wool, Silk, Mageweave and {item:14047} (60 cloth each) are done once and give the most reputation per cloth; after them, {quest:7796} repeats until Exalted. Exalted with another race's city lets you buy that race's mounts. Forever's Legacy Diplomat perk increases reputation gains."] = "",
+	["{npc:14722} takes cloth for {faction:72} in {zone:1453}. The first donations of Wool, Silk, Mageweave and {item:14047} (60 cloth each) are done once and give the most reputation per cloth; after them, {quest:7796} repeats until Exalted. Exalted with another race's city lets you buy that race's mounts. Forever's Legacy Diplomat perk increases reputation gains."] = "{npc:14722} acepta paño para {faction:72} en {zone:1453}. Las primeras donaciones de Paño de lana, Paño de seda, Paño de tejido mágico y {item:14047} (60 paños cada una) se hacen una sola vez y dan la mayor reputación por paño; después, {quest:7796} se repite hasta Exaltado. Ser Exaltado con la ciudad de otra raza te permite comprar las monturas de esa raza. La ventaja Diplomático del Legado de Forever aumenta la reputación obtenida.",
 
 	-- Step 2: Wool Cloth
 	-- plural, as words: Riverpaw Bandits = {npc:452} Riverpaw Bandit
-	["Riverpaw Bandits and Taskmasters (level 16-18) drop it here. The Auction House works too."] = "",
+	["Riverpaw Bandits and Taskmasters (level 16-18) drop it here. The Auction House works too."] = "Los Bandidos Zarparrío y los Capataces Zarparrío (nivel 16-18) lo sueltan aquí. La casa de subastas también sirve.",
 
 	-- Step 4: Silk Cloth
-	["Syndicate Mercenaries at Stromgarde (level 31-32) drop it here. The Auction House works too."] = "",
+	["Syndicate Mercenaries at Stromgarde (level 31-32) drop it here. The Auction House works too."] = "Los Mercenarios de la Hermandad en Stromgarde (nivel 31-32) lo sueltan aquí. La casa de subastas también sirve.",
 
 	-- Step 6: Mageweave Cloth
-	["Dunemaul ogres (level 45-48) drop it here. The Auction House works too."] = "",
+	["Dunemaul ogres (level 45-48) drop it here. The Auction House works too."] = "Los ogros Machacaduna (nivel 45-48) lo sueltan aquí. La casa de subastas también sirve.",
 
 	-- Step 8: Runecloth
 	-- {object:92525} Argent Dawn
 	-- plural, as words: Dark Adepts = {npc:8546} Dark Adept
-	["Dark Adepts and Shadowmages (level 58-60) drop it here; every Scourge kill here also counts toward the {object:92525} (see that guide). The Auction House works too."] = "",
+	["Dark Adepts and Shadowmages (level 58-60) drop it here; every Scourge kill here also counts toward the {object:92525} (see that guide). The Auction House works too."] = "Los Adeptos oscuros y los Magos oscuros (nivel 58-60) lo sueltan aquí; cada muerte de la Plaga aquí también cuenta para {object:92525} (consulta esa guía). La casa de subastas también sirve.",
 
 	-- Step 9: Clavicus Knavingham: Runecloth delivered
 	-- {npc:14722} Clavicus Knavingham · {item:14047} Runecloth
-	["{npc:14722}: {item:14047} delivered"] = "",
+	["{npc:14722}: {item:14047} delivered"] = "{npc:14722}: {item:14047} entregado",
 
 	-- Step 10: Additional Runecloth to Honored
 	-- {quest:7796} Additional Runecloth
-	["{quest:7796} to Honored"] = "",
+	["{quest:7796} to Honored"] = "{quest:7796} hasta Honorable",
 	-- {quest:7796} Additional Runecloth · {item:14047} Runecloth · {zone:1423} Eastern Plaguelands
 	-- plural, as words: Dark Adepts = {npc:8546} Dark Adept
-	["{quest:7796} takes 20 {item:14047} per turn-in and repeats as often as you like. Bring {item:14047} in multiples of 20 and hand them all in at once, one turn-in after another. {item:14047}: Dark Adepts and Shadowmages (level 58-60) in {zone:1423}, or the Auction House."] = "",
+	["{quest:7796} takes 20 {item:14047} per turn-in and repeats as often as you like. Bring {item:14047} in multiples of 20 and hand them all in at once, one turn-in after another. {item:14047}: Dark Adepts and Shadowmages (level 58-60) in {zone:1423}, or the Auction House."] = "{quest:7796} acepta 20 de {item:14047} por entrega y se repite cuantas veces quieras. Lleva {item:14047} en múltiplos de 20 y entrégalo todo a la vez, una entrega tras otra. {item:14047}: Adeptos oscuros y Magos oscuros (nivel 58-60) en {zone:1423}, o la casa de subastas.",
 
 	-- Step 11: Additional Runecloth to Revered
 	-- {quest:7796} Additional Runecloth
-	["{quest:7796} to Revered"] = "",
+	["{quest:7796} to Revered"] = "{quest:7796} hasta Reverenciado",
 	-- {quest:7796} Additional Runecloth · {item:14047} Runecloth · {zone:1423} Eastern Plaguelands
 	-- plural, as words: Dark Adepts = {npc:8546} Dark Adept
-	["Keep handing in {quest:7796}, 20 {item:14047} at a time. {item:14047}: Dark Adepts and Shadowmages (level 58-60) in {zone:1423}, or the Auction House."] = "",
+	["Keep handing in {quest:7796}, 20 {item:14047} at a time. {item:14047}: Dark Adepts and Shadowmages (level 58-60) in {zone:1423}, or the Auction House."] = "Sigue entregando {quest:7796}, 20 de {item:14047} cada vez. {item:14047}: Adeptos oscuros y Magos oscuros (nivel 58-60) en {zone:1423}, o la casa de subastas.",
 
 	-- Step 12: Additional Runecloth to Exalted
 	-- {quest:7796} Additional Runecloth
-	["{quest:7796} to Exalted"] = "",
+	["{quest:7796} to Exalted"] = "{quest:7796} hasta Exaltado",
 	-- {quest:7796} Additional Runecloth · {faction:72} Stormwind · {item:14047} Runecloth · {zone:1423} Eastern Plaguelands
 	-- plural, as words: Dark Adepts = {npc:8546} Dark Adept
-	["Keep handing in {quest:7796} until {faction:72} is Exalted. {item:14047}: Dark Adepts and Shadowmages (level 58-60) in {zone:1423}, or the Auction House."] = "",
+	["Keep handing in {quest:7796} until {faction:72} is Exalted. {item:14047}: Dark Adepts and Shadowmages (level 58-60) in {zone:1423}, or the Auction House."] = "Sigue entregando {quest:7796} hasta que {faction:72} sea Exaltado. {item:14047}: Adeptos oscuros y Magos oscuros (nivel 58-60) en {zone:1423}, o la casa de subastas.",
 }

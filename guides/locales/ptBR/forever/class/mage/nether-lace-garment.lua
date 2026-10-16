@@ -4,33 +4,33 @@
 -- name there in Portuguese (Brazil) (the English is listed above the line). The comments are rewritten by sync.
 return {
 	-- Guide
-	["A robe or a tunic for Undead and Troll mages in their late 20s."] = "",
+	["A robe or a tunic for Undead and Troll mages in their late 20s."] = "Uma veste ou túnica para magos Mortos-vivos e Trolls no fim dos níveis 20.",
 
 	-- Step 1: Anastasia Hartwell
 	-- {npc:4568} Anastasia Hartwell · {zone:1458} Undercity · {object:36082} Magic Quarter · {zone:1454} Orgrimmar · {zone:1420} Tirisfal Glades
-	["{npc:4568} stands in the {zone:1458}'s {object:36082}. Trolls take the zeppelin from {zone:1454} to {zone:1420} for her."] = "",
+	["{npc:4568} stands in the {zone:1458}'s {object:36082}. Trolls take the zeppelin from {zone:1454} to {zone:1420} for her."] = "{npc:4568} fica no {object:36082} de {zone:1458}. Trolls pegam o zepelim de {zone:1454} para {zone:1420} para chegar até ela.",
 
 	-- Step 2: Deino
 	-- {zone:1454} Orgrimmar · {npc:5885} Deino
-	["Take the zeppelin to {zone:1454}. {npc:5885} is one of {zone:1454}'s mage trainers."] = "",
+	["Take the zeppelin to {zone:1454}. {npc:5885} is one of {zone:1454}'s mage trainers."] = "Pegue o zepelim para {zone:1454}. {npc:5885} é um dos instrutores de magos de {zone:1454}.",
 
 	-- Step 3: The Xavian Waterfall
 	-- {object:174797} Xavian Waterfall
-	["The {object:174797}"] = "",
+	["The {object:174797}"] = "A {object:174797}",
 	-- {area:429} Xavian · {zone:1440} Ashenvale · {item:7269} Deino's Flask
-	["Satyrs hold the ruins of {area:429} in eastern {zone:1440}. Fill {item:7269} at the bottom of the highest waterfall."] = "",
+	["Satyrs hold the ruins of {area:429} in eastern {zone:1440}. Fill {item:7269} at the bottom of the highest waterfall."] = "Sátiros dominam as ruínas de {area:429}, no leste de {zone:1440}. Encha o {item:7269} no pé da cachoeira mais alta.",
 
 	-- Step 4: Back to Deino
 	-- {npc:5885} Deino
-	["Back to {npc:5885}"] = "",
+	["Back to {npc:5885}"] = "De volta a {npc:5885}",
 
 	-- Step 5: The Laughing Sisters
 	-- {quest:1945} Laughing Sisters
-	["The {quest:1945}"] = "",
+	["The {quest:1945}"] = "As {quest:1945}",
 	-- {quest:1945} Laughing Sisters · {area:426} Raynewood Retreat · {zone:1440} Ashenvale
-	["The {quest:1945}, dryads, gather near the {area:426} in central {zone:1440}."] = "",
+	["The {quest:1945}, dryads, gather near the {area:426} in central {zone:1440}."] = "As {quest:1945}, dríades, se reúnem perto do {area:426}, no centro de {zone:1440}.",
 
 	-- Step 6: Kil'hala
 	-- {npc:3484} Kil'hala · {area:380} The Crossroads
-	["{npc:3484}, a troll tailor, works at the {area:380}."] = "",
+	["{npc:3484}, a troll tailor, works at the {area:380}."] = "{npc:3484}, uma alfaiate troll, trabalha na {area:380}.",
 }

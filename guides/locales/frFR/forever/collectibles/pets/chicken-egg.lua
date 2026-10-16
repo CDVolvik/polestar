@@ -5,9 +5,9 @@
 return {
 	-- Step 1: CLUCK!
 	-- {npc:233} Farmer Saldean · {quest:3861} CLUCK! · {item:11109} Special Chicken Feed · {item:11110} Chicken Egg
-	["Find a chicken at {npc:233}'s farm and type /chicken at it until it offers {quest:3861}. Buy {item:11109} from {npc:233}, go back, /cheer at the same chicken, then hand in the feed. The chicken lays an egg: loot it for your {item:11110} pet."] = "",
+	["Find a chicken at {npc:233}'s farm and type /chicken at it until it offers {quest:3861}. Buy {item:11109} from {npc:233}, go back, /cheer at the same chicken, then hand in the feed. The chicken lays an egg: loot it for your {item:11110} pet."] = "Trouvez une poule à la ferme de {npc:233} et tapez /chicken en la ciblant jusqu'à ce qu'elle propose {quest:3861}. Achetez {item:11109} à {npc:233}, revenez, faites /cheer à la même poule, puis rendez le grain. La poule pond un œuf : ramassez-le pour obtenir votre mascotte {item:11110}.",
 	-- {item:11109} Special Chicken Feed · {npc:233} Farmer Saldean
-	["{item:11109}, from {npc:233}"] = "",
+	["{item:11109}, from {npc:233}"] = "{item:11109}, auprès de {npc:233}",
 	-- {object:161513} Farm Chicken Egg
-	["Loot the {object:161513} the chicken lays"] = "",
+	["Loot the {object:161513} the chicken lays"] = "Ramassez l'{object:161513} pondu par la poule",
 }

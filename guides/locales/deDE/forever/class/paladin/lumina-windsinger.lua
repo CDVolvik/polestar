@@ -5,43 +5,43 @@
 return {
 	-- Guide
 	-- {quest:91862} Lumina Windsinger
-	["Rescuing {quest:91862}"] = "",
+	["Rescuing {quest:91862}"] = "Die Rettung von {quest:91862}",
 	-- {item:268484} Moonsilver Blade
-	["No item yet: a Forsaken paladin rescue story; its sequel, the {item:268484}, cannot be finished yet."] = "",
+	["No item yet: a Forsaken paladin rescue story; its sequel, the {item:268484}, cannot be finished yet."] = "Noch kein Gegenstand: eine Rettungsgeschichte für Paladine der Verlassenen; die Fortsetzung, die {item:268484}, kann noch nicht abgeschlossen werden.",
 	-- {zone:1458} Undercity
-	["{zone:1458} and Earthen Ring reputation"] = "",
+	["{zone:1458} and Earthen Ring reputation"] = "Ruf bei {zone:1458} und beim Irdenen Ring",
 
 	-- Step 1: Danitha Morr
 	-- {npc:246378} Danitha Morr · {area:16602} Bandarion Keep · {area:156} Solliden Farmstead
-	["{npc:246378} leads the Paladins of Tyr's Watch from inside {area:16602}, on the bluffs north-west of the {area:156}."] = "",
+	["{npc:246378} leads the Paladins of Tyr's Watch from inside {area:16602}, on the bluffs north-west of the {area:156}."] = "{npc:246378} führt die Paladine von Tyrs Wacht aus {area:16602} heraus, auf den Klippen nordwestlich von {area:156}.",
 
 	-- Step 2: The Sepulcher
 	-- {zone:1421} Silverpine Forest · {area:228} The Sepulcher · {npc:248840} Trevan Rol · {npc:259611} Deathguard Baldren
-	["Ride south through {zone:1421} to the {area:228}. {npc:248840} stands in the town; {npc:259611} keeps watch near its entrance."] = "",
+	["Ride south through {zone:1421} to the {area:228}. {npc:248840} stands in the town; {npc:259611} keeps watch near its entrance."] = "Reite nach Süden durch {zone:1421} zum Ort {area:228}. {npc:248840} steht im Ort; {npc:259611} hält nahe dem Eingang Wache.",
 
 	-- Step 3: The pyre on Fenris Isle
 	-- {area:172} Fenris Isle
-	["The pyre on {area:172}"] = "",
+	["The pyre on {area:172}"] = "Der Scheiterhaufen auf der {area:172}",
 	-- {area:172} Fenris Isle · {area:228} The Sepulcher
-	["{area:172} lies in the lake east of the {area:228}. The charred remains are on its shore."] = "",
+	["{area:172} lies in the lake east of the {area:228}. The charred remains are on its shore."] = "Die {area:172} liegt im See östlich vom Ort {area:228}. Die verkohlten Überreste sind am Ufer.",
 	-- {object:566037} Charred Remains
-	["from the {object:566037}"] = "",
+	["from the {object:566037}"] = "von den {object:566037}",
 
 	-- Step 4: Fenris Keep
 	-- {quest:91862} Lumina Windsinger · {area:235} Fenris Keep · {npc:14235} The Rot
-	["{quest:91862} is caged inside {area:235}, at the north end of the isle. {npc:14235} Hide gnolls around her carry the key."] = "",
+	["{quest:91862} is caged inside {area:235}, at the north end of the isle. {npc:14235} Hide gnolls around her carry the key."] = "{quest:91862} ist in {area:235} eingesperrt, am Nordende der Insel. Gnolle der Sippe {npc:14235} um sie herum tragen den Schlüssel.",
 	-- {item:267412} Fenris Isle Key · {npc:14235} The Rot
-	["{item:267412}, from the {npc:14235} Hide gnolls"] = "",
+	["{item:267412}, from the {npc:14235} Hide gnolls"] = "{item:267412}, von den Gnollen der Sippe {npc:14235}",
 
 	-- Step 5: Free Lumina
-	["Free Lumina"] = "",
-	["Free her with the key, then stay close while she fights her way out of the keep."] = "",
+	["Free Lumina"] = "Befreie Lumina",
+	["Free her with the key, then stay close while she fights her way out of the keep."] = "Befreie sie mit dem Schlüssel und bleib dann in ihrer Nähe, während sie sich aus der Burg kämpft.",
 
 	-- Step 6: Back to the Sepulcher
 	-- {area:228} The Sepulcher
-	["Back to the {area:228}"] = "",
+	["Back to the {area:228}"] = "Zurück zum Ort {area:228}",
 	-- {area:235} Fenris Keep · {area:228} The Sepulcher
-	["Once she is clear of {area:235}, Lumina waits for you in the {area:228}. Speak with her again to hear what really happened on the road."] = "",
+	["Once she is clear of {area:235}, Lumina waits for you in the {area:228}. Speak with her again to hear what really happened on the road."] = "Sobald sie aus {area:235} heraus ist, wartet Lumina im Ort {area:228} auf dich. Sprich erneut mit ihr, um zu erfahren, was auf der Straße wirklich geschah.",
 	-- {npc:259620} Lumina Windsinger · {area:228} The Sepulcher
-	["{npc:259620}, the {area:228}"] = "",
+	["{npc:259620}, the {area:228}"] = "{npc:259620}, {area:228}",
 }

@@ -5,7 +5,7 @@
 return {
 	-- Step 1: Lil Timmy
 	-- {npc:8666} Lil Timmy · {npc:7386} White Kitten
-	["{npc:8666} sells the {npc:7386} (60s). He walks around the city, so the waypoint is only one point on his path; look along the nearby streets if he is not there. Each pet item teaches its companion when you use it; the goals stay ticked afterwards."] = "",
+	["{npc:8666} sells the {npc:7386} (60s). He walks around the city, so the waypoint is only one point on his path; look along the nearby streets if he is not there. Each pet item teaches its companion when you use it; the goals stay ticked afterwards."] = "{npc:8666} продает питомца {npc:7386} (60с). Он ходит по городу, поэтому путевая точка – лишь одна точка его маршрута; если его там нет, поищите на соседних улицах. Каждый предмет с питомцем при использовании обучает вас этому спутнику; цели после этого остаются отмеченными.",
 	-- {item:8489} Cat Carrier (White Kitten)
-	["{item:8489}, 60s"] = "",
+	["{item:8489}, 60s"] = "{item:8489}, 60с",
 }

@@ -5,14 +5,14 @@
 return {
 	-- Guide
 	-- {quest:94817} Confounding Flash · {quest:94818} Contingency Plan
-	["{quest:94817} and {quest:94818}"] = "",
-	["The Gnome priest spells, new in Forever: one at 10, one at 20."] = "",
+	["{quest:94817} and {quest:94818}"] = "{quest:94817}와(과) {quest:94818}",
+	["The Gnome priest spells, new in Forever: one at 10, one at 20."] = "Forever에 새로 추가된 노움 사제 주문입니다. 하나는 10레벨, 하나는 20레벨.",
 
 	-- Step 1: Confounding Flash
 	-- {npc:258785} High Priestess Mims · {object:32386} Hall of Mysteries · {zone:1455} Ironforge · {object:32362} The Mystic Ward · {npc:1226} Maxan Anvol · {area:131} Kharanos · {npc:377} Priestess Josetta · {area:87} Goldshire · {npc:376} High Priestess Laurena · {zone:1453} Stormwind City
-	["At 10, go to {npc:258785} in the {object:32386}, in {zone:1455}'s {object:32362}. {npc:1226} in {area:131}, {npc:377} in {area:87} and {npc:376} in {zone:1453} send you to her with a quest of the same name (its text may say {zone:1453}: Mims is in {zone:1455})."] = "",
+	["At 10, go to {npc:258785} in the {object:32386}, in {zone:1455}'s {object:32362}. {npc:1226} in {area:131}, {npc:377} in {area:87} and {npc:376} in {zone:1453} send you to her with a quest of the same name (its text may say {zone:1453}: Mims is in {zone:1455})."] = "10레벨에 {zone:1455} {object:32362}의 {object:32386}에 있는 {npc:258785}에게 가세요. {area:131}의 {npc:1226}, {area:87}의 {npc:377}, {zone:1453}의 {npc:376}이(가) 같은 이름의 퀘스트로 당신을 그녀에게 보냅니다(퀘스트 내용에는 {zone:1453}(이)라고 나올 수 있지만 밈스는 {zone:1455}에 있습니다).",
 
 	-- Step 2: Contingency Plan
 	-- {npc:258785} High Priestess Mims · {quest:94818} Contingency Plan · {npc:376} High Priestess Laurena · {zone:1453} Stormwind City
-	["At 20, {npc:258785} teaches {quest:94818}. {npc:376} in {zone:1453} sends you to her with a quest of the same name."] = "",
+	["At 20, {npc:258785} teaches {quest:94818}. {npc:376} in {zone:1453} sends you to her with a quest of the same name."] = "20레벨에 {npc:258785}이(가) {quest:94818}을(를) 가르쳐 줍니다. {zone:1453}의 {npc:376}이(가) 같은 이름의 퀘스트로 당신을 그녀에게 보냅니다.",
 }

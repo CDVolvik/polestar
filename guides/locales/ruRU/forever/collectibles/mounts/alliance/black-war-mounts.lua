@@ -4,14 +4,14 @@
 -- name there in Russian (the English is listed above the line). The comments are rewritten by sync.
 return {
 	-- Guide
-	["Black War Mounts"] = "",
+	["Black War Mounts"] = "Черные боевые скакуны",
 
 	-- Step 1: PvP rank 11
-	["PvP rank 11"] = "",
-	["Forever's PvP ranks come from Rank Points earned in battlegrounds and world PvP, with a weekly cap; Commander (rank 11) unlocks the Black War mounts. Polestar cannot read your rank, so this step waits for level 40 and the riding skill."] = "",
+	["PvP rank 11"] = "PvP-звание 11",
+	["Forever's PvP ranks come from Rank Points earned in battlegrounds and world PvP, with a weekly cap; Commander (rank 11) unlocks the Black War mounts. Polestar cannot read your rank, so this step waits for level 40 and the riding skill."] = "PvP-звания в Forever даются за очки звания, заработанные на полях боя и в мировом PvP, с недельным ограничением; Командор (звание 11) открывает черных боевых скакунов. Polestar не может узнать ваше звание, поэтому этот шаг ждет 40-го уровня и навыка верховой езды.",
 
 	-- Step 2: Lieutenant Karter
 	-- {npc:12783} Lieutenant Karter · {area:2918} Champions' Hall · {zone:1453} Stormwind City · {object:2100} Old Town · {npc:12805} Officer Areyn
-	["{npc:12783} sells the mounts in the {area:2918} in {zone:1453}'s {object:2100}, beside the other honor quartermasters such as {npc:12805}. The Forever client lists each at 100g; choose one."] = "",
-	["100g"] = "",
+	["{npc:12783} sells the mounts in the {area:2918} in {zone:1453}'s {object:2100}, beside the other honor quartermasters such as {npc:12805}. The Forever client lists each at 100g; choose one."] = "{npc:12783} продает скакунов здесь: {area:2918} ({zone:1453}, {object:2100}), рядом с другими интендантами чести, например: {npc:12805}. Клиент Forever указывает цену 100 з за каждого; выберите одного.",
+	["100g"] = "100 з",
 }

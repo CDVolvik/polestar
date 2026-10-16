@@ -5,8 +5,8 @@
 return {
 	-- Step 1: Wetlands whelps
 	-- {zone:1437} Wetlands
-	["{zone:1437} whelps"] = "",
+	["{zone:1437} whelps"] = "{zone:1437}의 새끼용",
 	-- {zone:1437} Wetlands
 	-- plural, as words: Flamesnorting Whelps = {npc:1044} Flamesnorting Whelp
-	["The Red, Crimson and Flamesnorting Whelps (levels 23-26) in the eastern {zone:1437} drop it about once in 600-1,600 kills in our data."] = "",
+	["The Red, Crimson and Flamesnorting Whelps (levels 23-26) in the eastern {zone:1437} drop it about once in 600-1,600 kills in our data."] = "{zone:1437} 동쪽의 새끼 붉은용, 심홍색 새끼용, 불뿜는 새끼용(23-26레벨)이 우리 데이터상 약 600-1,600마리 처치당 한 번 떨어뜨립니다.",
 }

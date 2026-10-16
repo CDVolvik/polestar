@@ -5,8 +5,8 @@
 return {
 	-- Step 1: Wetlands whelps
 	-- {zone:1437} Wetlands
-	["{zone:1437} whelps"] = "",
+	["{zone:1437} whelps"] = "Welpen in {zone:1437}",
 	-- {zone:1437} Wetlands
 	-- plural, as words: Flamesnorting Whelps = {npc:1044} Flamesnorting Whelp
-	["The Red, Crimson and Flamesnorting Whelps (levels 23-26) in the eastern {zone:1437} drop it about once in 600-1,600 kills in our data."] = "",
+	["The Red, Crimson and Flamesnorting Whelps (levels 23-26) in the eastern {zone:1437} drop it about once in 600-1,600 kills in our data."] = "Die Roten, Purpurroten und Flammenschnaubenden Welpen (Stufe 23-26) im Osten von {zone:1437} droppen ihn laut unseren Daten etwa einmal in 600-1.600 Kills.",
 }

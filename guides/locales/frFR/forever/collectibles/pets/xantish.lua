@@ -5,16 +5,16 @@
 return {
 	-- Guide
 	-- {npc:8404} Xan'tish
-	["{npc:8404}'s Snakes"] = "",
+	["{npc:8404}'s Snakes"] = "Serpents de {npc:8404}",
 
 	-- Step 1: Xan'tish
 	-- {npc:8404} Xan'tish · {zone:1454} Orgrimmar · {item:280703} Jungle Boa
-	["{npc:8404} sells four snakes in {zone:1454} (50s each); the {item:280703} is new in Forever. Each pet item teaches its companion when you use it; the goals stay ticked afterwards."] = "",
+	["{npc:8404} sells four snakes in {zone:1454} (50s each); the {item:280703} is new in Forever. Each pet item teaches its companion when you use it; the goals stay ticked afterwards."] = "{npc:8404} vend quatre serpents à {zone:1454} (50 pa chacun) ; {item:280703} est une nouveauté de Forever. Chaque objet de familier apprend sa mascotte quand vous l'utilisez ; les objectifs restent cochés ensuite.",
 	-- {item:10360} Black Kingsnake
-	["{item:10360}, 50s"] = "",
+	["{item:10360}, 50s"] = "{item:10360}, 50 pa",
 	-- {item:10361} Brown Snake
-	["{item:10361}, 50s"] = "",
+	["{item:10361}, 50s"] = "{item:10361}, 50 pa",
 	-- {item:10392} Crimson Snake
-	["{item:10392}, 50s"] = "",
-	["50s"] = "",
+	["{item:10392}, 50s"] = "{item:10392}, 50 pa",
+	["50s"] = "50 pa",
 }

@@ -4,18 +4,18 @@
 -- name there in Russian (the English is listed above the line). The comments are rewritten by sync.
 return {
 	-- Pack
-	["Polestar Guides"] = "",
-	["Leveling, profession, reputation and collectible guides for Polestar."] = "",
+	["Polestar Guides"] = "Гайды Polestar",
+	["Leveling, profession, reputation and collectible guides for Polestar."] = "Гайды по прокачке, профессиям, репутации и коллекциям для Polestar.",
 
 	-- Folders
-	["Companion pets · Drops"] = "",
-	["Companion pets · Legacy"] = "",
-	["Companion pets · Quests"] = "",
-	["Companion pets · Vendors"] = "",
-	["Mounts · Drops"] = "",
-	["Mounts · Legacy"] = "",
-	["Mounts · Level 40"] = "",
-	["Mounts · Level 60"] = "",
-	["Mounts · PvP"] = "",
-	["Mounts · Reputation"] = "",
+	["Companion pets · Drops"] = "Питомцы · Добыча",
+	["Companion pets · Legacy"] = "Питомцы · Устаревшие",
+	["Companion pets · Quests"] = "Питомцы · Задания",
+	["Companion pets · Vendors"] = "Питомцы · Торговцы",
+	["Mounts · Drops"] = "Транспорт · Добыча",
+	["Mounts · Legacy"] = "Транспорт · Устаревшие",
+	["Mounts · Level 40"] = "Транспорт · 40-й уровень",
+	["Mounts · Level 60"] = "Транспорт · 60-й уровень",
+	["Mounts · PvP"] = "Транспорт · PvP",
+	["Mounts · Reputation"] = "Транспорт · Репутация",
 }

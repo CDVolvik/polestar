@@ -5,15 +5,15 @@
 return {
 	-- Guide
 	-- {quest:5652} Hex of Weakness · {quest:5642} Shadowguard
-	["{quest:5652} and {quest:5642}"] = "",
+	["{quest:5652} and {quest:5642}"] = "{quest:5652} et {quest:5642}",
 	-- {quest:5652} Hex of Weakness · {quest:5642} Shadowguard
-	["The Troll priest spells: {quest:5652} at 10, {quest:5642} at 20."] = "",
+	["The Troll priest spells: {quest:5652} at 10, {quest:5642} at 20."] = "Les sorts de prêtre troll : {quest:5652} au niveau 10, {quest:5642} au niveau 20.",
 
 	-- Step 1: Hex of Weakness
 	-- {npc:6018} Ur'kyo · {object:172961} Valley of Spirits · {zone:1454} Orgrimmar · {npc:3706} Tai'jin · {area:362} Razor Hill · {npc:3044} Miles Welsh · {zone:1456} Thunder Bluff
-	["At 10, go to {npc:6018} in the {object:172961}, on {zone:1454}'s west side. Priest trainers elsewhere ({npc:3706} in {area:362}, {npc:3044} in {zone:1456}) send you to him with a quest of the same name."] = "",
+	["At 10, go to {npc:6018} in the {object:172961}, on {zone:1454}'s west side. Priest trainers elsewhere ({npc:3706} in {area:362}, {npc:3044} in {zone:1456}) send you to him with a quest of the same name."] = "Au niveau 10, allez voir {npc:6018} dans la {object:172961}, à l'ouest d'{zone:1454}. Les maîtres des prêtres d'ailleurs ({npc:3706} à {area:362}, {npc:3044} à {zone:1456}) vous envoient à lui avec une quête du même nom.",
 
 	-- Step 2: Shadowguard
 	-- {npc:6018} Ur'kyo · {quest:5642} Shadowguard · {npc:3044} Miles Welsh · {zone:1456} Thunder Bluff · {zone:1458} Undercity
-	["At 20, {npc:6018} teaches {quest:5642}. {npc:3044} in {zone:1456} and Aelthalyste in the {zone:1458} send you to him with a quest of the same name."] = "",
+	["At 20, {npc:6018} teaches {quest:5642}. {npc:3044} in {zone:1456} and Aelthalyste in the {zone:1458} send you to him with a quest of the same name."] = "Au niveau 20, {npc:6018} enseigne {quest:5642}. {npc:3044} à {zone:1456} et Aelthalyste à {zone:1458} vous envoient à lui avec une quête du même nom.",
 }

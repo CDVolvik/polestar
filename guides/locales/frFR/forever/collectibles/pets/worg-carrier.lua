@@ -5,17 +5,17 @@
 return {
 	-- Step 1: Kibler at Flame Crest
 	-- {npc:10260} Kibler · {area:251} Flame Crest
-	["{npc:10260} at {area:251}"] = "",
+	["{npc:10260} at {area:251}"] = "{npc:10260} à {area:251}",
 	-- {npc:10260} Kibler · {area:251} Flame Crest · {zone:1428} Burning Steppes · {area:254} Blackrock Mountain
-	["{npc:10260} stands at {area:251} in northern {zone:1428}, near the {area:254} path."] = "",
+	["{npc:10260} stands at {area:251} in northern {zone:1428}, near the {area:254} path."] = "{npc:10260} se tient à {area:251}, au nord de {zone:1428}, près du chemin de {area:254}.",
 
 	-- Step 2: Upper Blackrock Spire
 	-- {area:1583} Blackrock Spire
-	["Upper {area:1583}"] = "",
+	["Upper {area:1583}"] = "{area:1583} supérieur",
 	-- {area:1583} Blackrock Spire · {npc:10260} Kibler · {npc:10221} Bloodaxe Worg Pup · {item:12263} Caged Worg Pup
-	["Upper {area:1583} is a raid group of up to ten, level 58-60. Use {npc:10260}'s cage on a {npc:10221} (Halycon's den) to get the {item:12263}."] = "",
+	["Upper {area:1583} is a raid group of up to ten, level 58-60. Use {npc:10260}'s cage on a {npc:10221} (Halycon's den) to get the {item:12263}."] = "{area:1583} supérieur est un raid jusqu'à dix joueurs, niveau 58-60. Utilisez la cage de {npc:10260} sur un {npc:10221} (repaire de Halycon) pour obtenir le {item:12263}.",
 
 	-- Step 3: Back to Kibler
 	-- {npc:10260} Kibler
-	["Back to {npc:10260}"] = "",
+	["Back to {npc:10260}"] = "Retour à {npc:10260}",
 }

@@ -5,5 +5,5 @@
 return {
 	-- Step 1: Sewer Beast
 	-- {npc:3581} Sewer Beast · {zone:1453} Stormwind City
-	["The {npc:3581} is a rare level 50 crocolisk that swims {zone:1453}'s canals; early kill counts give about 1.5% per kill. It is friendly to nobody: Horde players can farm it too, but they are in an enemy capital."] = "",
+	["The {npc:3581} is a rare level 50 crocolisk that swims {zone:1453}'s canals; early kill counts give about 1.5% per kill. It is friendly to nobody: Horde players can farm it too, but they are in an enemy capital."] = "A {npc:3581} é um crocolisco raro de nível 50 que nada nos canais de {zone:1453}; as primeiras contagens dão cerca de 1,5% por morte. Não é amigável a ninguém: jogadores da Horda também podem caçá-la, mas estarão numa capital inimiga.",
 }

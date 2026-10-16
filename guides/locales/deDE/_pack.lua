@@ -4,18 +4,18 @@
 -- name there in German (the English is listed above the line). The comments are rewritten by sync.
 return {
 	-- Pack
-	["Polestar Guides"] = "",
-	["Leveling, profession, reputation and collectible guides for Polestar."] = "",
+	["Polestar Guides"] = "Polestar-Guides",
+	["Leveling, profession, reputation and collectible guides for Polestar."] = "Guides für Stufenaufstieg, Berufe, Ruf und Sammelobjekte für Polestar.",
 
 	-- Folders
-	["Companion pets · Drops"] = "",
-	["Companion pets · Legacy"] = "",
-	["Companion pets · Quests"] = "",
-	["Companion pets · Vendors"] = "",
-	["Mounts · Drops"] = "",
-	["Mounts · Legacy"] = "",
-	["Mounts · Level 40"] = "",
-	["Mounts · Level 60"] = "",
-	["Mounts · PvP"] = "",
-	["Mounts · Reputation"] = "",
+	["Companion pets · Drops"] = "Haustiere · Beute",
+	["Companion pets · Legacy"] = "Haustiere · Legacy",
+	["Companion pets · Quests"] = "Haustiere · Quests",
+	["Companion pets · Vendors"] = "Haustiere · Händler",
+	["Mounts · Drops"] = "Reittiere · Beute",
+	["Mounts · Legacy"] = "Reittiere · Legacy",
+	["Mounts · Level 40"] = "Reittiere · Stufe 40",
+	["Mounts · Level 60"] = "Reittiere · Stufe 60",
+	["Mounts · PvP"] = "Reittiere · PvP",
+	["Mounts · Reputation"] = "Reittiere · Ruf",
 }

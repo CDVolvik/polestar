@@ -5,15 +5,15 @@
 return {
 	-- Guide
 	-- {spell:10797} Starshards · {spell:2651} Elune's Grace
-	["{spell:10797} and {spell:2651}"] = "",
+	["{spell:10797} and {spell:2651}"] = "{spell:10797} und {spell:2651}",
 	-- {spell:10797} Starshards · {spell:2651} Elune's Grace
-	["The Night Elf priest spells: {spell:10797} at 10, {spell:2651} at 20."] = "",
+	["The Night Elf priest spells: {spell:10797} at 10, {spell:2651} at 20."] = "Die Nachtelfen-Priesterzauber: {spell:10797} auf Stufe 10, {spell:2651} auf Stufe 20.",
 
 	-- Step 1: Stars of Elune
 	-- {npc:11401} Priestess Alathea · {npc:3600} Laurna Morninglight · {area:186} Dolanaar · {npc:377} Priestess Josetta · {area:87} Goldshire · {npc:1226} Maxan Anvol · {area:131} Kharanos · {quest:5628} Returning Home
-	["At 10, go to {npc:11401} in the Temple of the Moon. Priest trainers elsewhere ({npc:3600} in {area:186}, {npc:377} in {area:87}, {npc:1226} in {area:131}) send you to her with {quest:5628}."] = "",
+	["At 10, go to {npc:11401} in the Temple of the Moon. Priest trainers elsewhere ({npc:3600} in {area:186}, {npc:377} in {area:87}, {npc:1226} in {area:131}) send you to her with {quest:5628}."] = "Geh auf Stufe 10 zu {npc:11401} im Tempel des Mondes. Priesterlehrer anderswo ({npc:3600} in {area:186}, {npc:377} in {area:87}, {npc:1226} in {area:131}) schicken dich mit {quest:5628} zu ihr.",
 
 	-- Step 2: Elune's Grace
 	-- {npc:11401} Priestess Alathea · {quest:5672} Elune's Grace · {npc:376} High Priestess Laurena · {zone:1453} Stormwind City · {npc:11406} High Priest Rohan · {zone:1455} Ironforge
-	["At 20, {npc:11401} teaches {quest:5672}. {npc:376} in {zone:1453} and {npc:11406} in {zone:1455} send you to her with a quest of the same name."] = "",
+	["At 20, {npc:11401} teaches {quest:5672}. {npc:376} in {zone:1453} and {npc:11406} in {zone:1455} send you to her with a quest of the same name."] = "Auf Stufe 20 lehrt {npc:11401} {quest:5672}. {npc:376} in {zone:1453} und {npc:11406} in {zone:1455} schicken dich mit einer gleichnamigen Quest zu ihr.",
 }

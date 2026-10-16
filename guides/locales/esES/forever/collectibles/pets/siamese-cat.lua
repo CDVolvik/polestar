@@ -4,14 +4,14 @@
 -- name there in Spanish (Spain) (the English is listed above the line). The comments are rewritten by sync.
 return {
 	-- Guide
-	["Siamese Cat"] = "",
+	["Siamese Cat"] = "Gato siamés",
 
 	-- Step 1: The Deadmines: Cookie
 	-- {area:1581} The Deadmines
-	["{area:1581}: Cookie"] = "",
+	["{area:1581}: Cookie"] = "{area:1581}: El Chef",
 	-- {area:1581} The Deadmines · {area:20} Moonbrook
-	["{area:1581} is a group of five under {area:20}; the instance portal is inside the {area:20} mine. Cookie, the murloc cook near the ship at the end, drops the Siamese about 15% of the time in our data."] = "",
+	["{area:1581} is a group of five under {area:20}; the instance portal is inside the {area:20} mine. Cookie, the murloc cook near the ship at the end, drops the Siamese about 15% of the time in our data."] = "{area:1581} es para un grupo de cinco, bajo {area:20}; el portal de la instancia está dentro de la mina de {area:20}. El Chef, el múrloc cocinero junto al barco del final, suelta el siamés aproximadamente un 15% de las veces según nuestros datos.",
 	-- {area:1581} The Deadmines · {area:20} Moonbrook
-	["{area:1581} portal, inside the {area:20} mine"] = "",
-	["Cookie"] = "",
+	["{area:1581} portal, inside the {area:20} mine"] = "Portal de {area:1581}, dentro de la mina de {area:20}",
+	["Cookie"] = "El Chef",
 }

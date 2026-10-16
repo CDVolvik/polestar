@@ -4,37 +4,37 @@
 -- name there in Spanish (Spain) (the English is listed above the line). The comments are rewritten by sync.
 return {
 	-- Guide
-	["A robe or a blouse for Human and Gnome mages in their late 20s."] = "",
+	["A robe or a blouse for Human and Gnome mages in their late 20s."] = "Una toga o una blusa para magos humanos y gnomos de nivel 27-29 aprox.",
 
 	-- Step 1: Bink (Ironforge)
 	-- {npc:5144} Bink · {zone:1455} Ironforge · {object:32362} The Mystic Ward · {area:2257} Deeprun Tram · {object:171524} Tinker Town · {zone:1453} Stormwind City
-	["{npc:5144} teaches mages in {zone:1455}'s {object:32362}. Take the {area:2257} from {object:171524} to {zone:1453} afterwards."] = "",
+	["{npc:5144} teaches mages in {zone:1455}'s {object:32362}. Take the {area:2257} from {object:171524} to {zone:1453} afterwards."] = "{npc:5144} entrena a los magos en {object:32362} de {zone:1455}. Después, toma el {area:2257} desde {object:171524} hasta {zone:1453}.",
 
 	-- Step 2: Jennea Cannon (Stormwind City)
 	-- {npc:5497} Jennea Cannon · {object:2101} Mage Quarter
-	["{npc:5497} stands in the Wizard's Sanctum, the tower of the {object:2101}."] = "",
+	["{npc:5497} stands in the Wizard's Sanctum, the tower of the {object:2101}."] = "{npc:5497} está en la torre del {object:2101}.",
 
 	-- Step 3: High Sorcerer Andromath
 	-- {quest:1939} High Sorcerer Andromath
-	["{quest:1939} is in the Wizard's Sanctum too."] = "",
+	["{quest:1939} is in the Wizard's Sanctum too."] = "{quest:1939} también está en esa torre.",
 
 	-- Step 4: The Tower of Ilgalar
 	-- {area:96} Tower of Ilgalar
-	["The {area:96}"] = "",
+	["The {area:96}"] = "{area:96}",
 	-- {zone:1429} Elwynn Forest
-	["Ride east through {zone:1429} into Redridge. The fallen mage's tower of Ilgalar stands in the east of the zone; the treatise is in his library."] = "",
+	["Ride east through {zone:1429} into Redridge. The fallen mage's tower of Ilgalar stands in the east of the zone; the treatise is in his library."] = "Cabalga hacia el este por {zone:1429} hasta las Montañas Crestagrana. La torre de Ilgalar, el mago caído, está en el este de la zona; el tratado está en su biblioteca.",
 
 	-- Step 5: Back to Andromath
-	["Back to Andromath"] = "",
+	["Back to Andromath"] = "Vuelve con Andromath",
 
 	-- Step 6: Carrion Recluses
 	-- plural, as words: Carrion Recluses = {npc:949} Carrion Recluse
-	["Carrion Recluses"] = "",
+	["Carrion Recluses"] = "Ermitaños carroñeros",
 	-- {zone:1431} Duskwood
 	-- plural, as words: Carrion Recluses = {npc:949} Carrion Recluse · Black Widow Hatchlings = {npc:930} Black Widow Hatchling
-	["Carrion Recluses lurk in the woods of western {zone:1431} and each one drops the silk. The Black Widow Hatchlings further east drop it now and then."] = "",
+	["Carrion Recluses lurk in the woods of western {zone:1431} and each one drops the silk. The Black Widow Hatchlings further east drop it now and then."] = "Los Ermitaños carroñeros acechan en los bosques del oeste de {zone:1431} y todos sueltan la seda. Las Viudas negras reproductoras, más al este, la sueltan de vez en cuando.",
 
 	-- Step 7: Wynne Larson
 	-- {npc:1309} Wynne Larson · {object:23296} Larson Clothiers · {object:2101} Mage Quarter
-	["{npc:1309} works at {object:23296} in the {object:2101}."] = "",
+	["{npc:1309} works at {object:23296} in the {object:2101}."] = "{npc:1309} trabaja en {object:23296}, en el {object:2101}.",
 }

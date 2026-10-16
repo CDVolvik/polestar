@@ -5,12 +5,12 @@
 return {
 	-- Guide
 	-- {npc:1263} Yarlyn Amberstill
-	["{npc:1263}'s Rabbits"] = "",
+	["{npc:1263}'s Rabbits"] = "Кролики — {npc:1263}",
 
 	-- Step 1: Yarlyn Amberstill
 	-- {npc:1263} Yarlyn Amberstill · {area:803} Amberstill Ranch · {area:131} Kharanos
-	["{npc:1263} stands at {area:803}, east of {area:131}. Each rabbit crate costs 20s; the Arctic and Brown crates are new in Forever. Each pet item teaches its companion when you use it; the goals stay ticked afterwards."] = "",
+	["{npc:1263} stands at {area:803}, east of {area:131}. Each rabbit crate costs 20s; the Arctic and Brown crates are new in Forever. Each pet item teaches its companion when you use it; the goals stay ticked afterwards."] = "{npc:1263} стоит здесь: {area:803}, к востоку от места {area:131}. Каждая клетка с кроликом стоит 20 с; арктическая и бурая клетки — новинки Forever. Каждый предмет питомца при использовании дает спутника; цели после этого остаются отмеченными.",
 	-- {item:8497} Rabbit Crate (Snowshoe)
-	["{item:8497}, 20s"] = "",
-	["20s"] = "",
+	["{item:8497}, 20s"] = "{item:8497}, 20 с",
+	["20s"] = "20 с",
 }

@@ -5,8 +5,8 @@
 return {
 	-- Step 1: Wetlands whelps
 	-- {zone:1437} Wetlands
-	["{zone:1437} whelps"] = "",
+	["{zone:1437} whelps"] = "Dragonnets des {zone:1437}",
 	-- {zone:1437} Wetlands
 	-- plural, as words: Flamesnorting Whelps = {npc:1044} Flamesnorting Whelp
-	["The Red, Crimson and Flamesnorting Whelps (levels 23-26) in the eastern {zone:1437} drop it about once in 600-1,600 kills in our data."] = "",
+	["The Red, Crimson and Flamesnorting Whelps (levels 23-26) in the eastern {zone:1437} drop it about once in 600-1,600 kills in our data."] = "Les Dragonnets rouges, Dragonnets cramoisis et Dragonnets crache-flammes (niveaux 23-26) de l'est des {zone:1437} le laissent tomber environ une fois sur 600 à 1 600 morts selon nos données.",
 }

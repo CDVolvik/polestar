@@ -4,50 +4,50 @@
 -- name there in Spanish (Latin America) (the English is listed above the line). The comments are rewritten by sync.
 return {
 	-- Guide
-	["A rare cloak at 30 from the old Divine Storm story; for now only Alliance paladins can finish it."] = "",
+	["A rare cloak at 30 from the old Divine Storm story; for now only Alliance paladins can finish it."] = "Una capa rara a nivel 30 de la antigua historia de Tormenta Divina; por ahora solo los paladines de la Alianza pueden completarla.",
 
 	-- Step 1: The Strange Orb
-	["The Strange Orb"] = "",
+	["The Strange Orb"] = "Strange Orb",
 	-- {area:444} Tower of Althalaxx · {zone:1439} Darkshore
-	["Climb to the top of the {area:444} in northern {zone:1439}. Loot the Strange Orb up there: it gives you the Althalaxx Orb, which starts the quest."] = "",
+	["Climb to the top of the {area:444} in northern {zone:1439}. Loot the Strange Orb up there: it gives you the Althalaxx Orb, which starts the quest."] = "Sube a lo alto de {area:444}, en el norte de {zone:1439}. Saquea el Strange Orb de arriba: te da el Althalaxx Orb, que inicia la misión.",
 	-- {area:444} Tower of Althalaxx
-	["Strange Orb atop the {area:444}: right-click the Althalaxx Orb it gives"] = "",
+	["Strange Orb atop the {area:444}: right-click the Althalaxx Orb it gives"] = "Strange Orb en lo alto de {area:444}: haz clic derecho en el Althalaxx Orb que te da",
 
 	-- Step 2: Delgren the Purifier
 	-- {npc:3663} Delgren the Purifier · {area:413} Maestra's Post · {zone:1440} Ashenvale
-	["{npc:3663} stands at {area:413} in western {zone:1440}."] = "",
+	["{npc:3663} stands at {area:413} in western {zone:1440}."] = "{npc:3663} está en {area:413}, en el oeste de {zone:1440}.",
 
 	-- Step 3: Katherine the Pure
 	-- {npc:5492} Katherine the Pure
-	["{npc:5492} is in the Cathedral of Light."] = "",
+	["{npc:5492} is in the Cathedral of Light."] = "{npc:5492} está en la Catedral de la Luz.",
 
 	-- Step 4: Ursula Deline
 	-- {object:2101} Mage Quarter · {npc:5495} Ursula Deline
-	["Katherine sends you to the warlocks in the {object:2101}; {npc:5495} speaks for them."] = "",
+	["Katherine sends you to the warlocks in the {object:2101}; {npc:5495} speaks for them."] = "Katherine te envía con los brujos de {object:2101}; {npc:5495} habla por ellos.",
 
 	-- Step 5: Summoner's Salt
 	-- {item:209778} Summoner's Salt
 	-- plural, as words: Blackrock Summoners = {npc:4463} Blackrock Summoner
-	["Blackrock Summoners, Champions and Trackers camp in the north-west of Redridge; they drop the {item:209778}."] = "",
+	["Blackrock Summoners, Champions and Trackers camp in the north-west of Redridge; they drop the {item:209778}."] = "Los invocadores, campeones y rastreadores Roca Negra acampan en el noroeste de Crestagrana; sueltan {item:209778}.",
 
 	-- Step 6: Back to Ursula
-	["Back to Ursula"] = "",
+	["Back to Ursula"] = "Regresa con Ursula",
 
 	-- Step 7: Motes of Mannoroth
-	["Motes of Mannoroth"] = "",
+	["Motes of Mannoroth"] = "Motas de Mannoroth",
 	-- {area:435} Demon Fall Canyon · {zone:1440} Ashenvale
 	-- plural, as words: Mannoroc Lashers = {npc:11697} Mannoroc Lasher · Searing Infernals = {npc:6073} Searing Infernal · Legion Hounds = {npc:6071} Legion Hound
-	["{area:435} is in south-east {zone:1440}. The Mannoroc Lashers, Searing Infernals, Felguards and Legion Hounds in it drop the Motes of Mannoroth."] = "",
+	["{area:435} is in south-east {zone:1440}. The Mannoroc Lashers, Searing Infernals, Felguards and Legion Hounds in it drop the Motes of Mannoroth."] = "{area:435} está en el sureste de {zone:1440}. Las azotadoras Mannoroc, los infernales abrasadores, los guardias viles y los canes de la Legión de allí sueltan las motas de Mannoroth.",
 
 	-- Step 8: The Spear of Mannoroth
 	-- {object:409311} Spear of Mannoroth
-	["The {object:409311}"] = "",
+	["The {object:409311}"] = "{object:409311}",
 	-- {object:409311} Spear of Mannoroth · {area:435} Demon Fall Canyon · {object:409315} Shattered Orb
-	["The {object:409311} stands at the east end of {area:435}. Shatter the orb on it; the {object:409315} appears beside it."] = "",
+	["The {object:409311} stands at the east end of {area:435}. Shatter the orb on it; the {object:409315} appears beside it."] = "{object:409311} está en el extremo este de {area:435}. Rompe el orbe en ella; {object:409315} aparece a su lado.",
 	-- {object:409315} Shattered Orb
-	["from the {object:409315}"] = "",
+	["from the {object:409315}"] = "de {object:409315}",
 
 	-- Step 9: Return to Delgren
 	-- {area:413} Maestra's Post
-	["Back to {area:413}."] = "",
+	["Back to {area:413}."] = "Regresa a {area:413}.",
 }

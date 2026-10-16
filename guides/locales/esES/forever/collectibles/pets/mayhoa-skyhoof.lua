@@ -5,6 +5,6 @@
 return {
 	-- Step 1: Mayhoa Skyhoof
 	-- {npc:268745} Mayhoa Skyhoof · {zone:1454} Orgrimmar · {object:172982} Valley of Strength · {object:172959} The Drag
-	["{npc:268745} walks a long loop through {zone:1454} (from the {object:172982} to the {object:172959}); the waypoint is one point on her path. The carrier costs 60s. Each pet item teaches its companion when you use it; the goals stay ticked afterwards."] = "",
-	["60s"] = "",
+	["{npc:268745} walks a long loop through {zone:1454} (from the {object:172982} to the {object:172959}); the waypoint is one point on her path. The carrier costs 60s. Each pet item teaches its companion when you use it; the goals stay ticked afterwards."] = "{npc:268745} hace un largo recorrido por {zone:1454} (del {object:172982} a {object:172959}); el punto de ruta es solo un punto de su camino. La jaula cuesta 60 p. Cada objeto de mascota enseña su compañero al usarlo; los objetivos siguen marcados después.",
+	["60s"] = "60 p",
 }

@@ -4,18 +4,18 @@
 -- name there in Spanish (Latin America) (the English is listed above the line). The comments are rewritten by sync.
 return {
 	-- Pack
-	["Polestar Guides"] = "",
-	["Leveling, profession, reputation and collectible guides for Polestar."] = "",
+	["Polestar Guides"] = "Guías de Polestar",
+	["Leveling, profession, reputation and collectible guides for Polestar."] = "Guías de subida de nivel, profesiones, reputación y coleccionables para Polestar.",
 
 	-- Folders
-	["Companion pets · Drops"] = "",
-	["Companion pets · Legacy"] = "",
-	["Companion pets · Quests"] = "",
-	["Companion pets · Vendors"] = "",
-	["Mounts · Drops"] = "",
-	["Mounts · Legacy"] = "",
-	["Mounts · Level 40"] = "",
-	["Mounts · Level 60"] = "",
-	["Mounts · PvP"] = "",
-	["Mounts · Reputation"] = "",
+	["Companion pets · Drops"] = "Mascotas de compañía · Botín",
+	["Companion pets · Legacy"] = "Mascotas de compañía · Legado",
+	["Companion pets · Quests"] = "Mascotas de compañía · Misiones",
+	["Companion pets · Vendors"] = "Mascotas de compañía · Mercaderes",
+	["Mounts · Drops"] = "Monturas · Botín",
+	["Mounts · Legacy"] = "Monturas · Legado",
+	["Mounts · Level 40"] = "Monturas · Nivel 40",
+	["Mounts · Level 60"] = "Monturas · Nivel 60",
+	["Mounts · PvP"] = "Monturas · JcJ",
+	["Mounts · Reputation"] = "Monturas · Reputación",
 }

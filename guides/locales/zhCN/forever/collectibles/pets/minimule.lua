@@ -4,17 +4,17 @@
 -- name there in Chinese (simplified) (the English is listed above the line). The comments are rewritten by sync.
 return {
 	-- Guide
-	["Minimule"] = "",
+	["Minimule"] = "Minimule",
 
 	-- Step 1: Azeroth Commerce Authority
-	["Azeroth Commerce Authority"] = "",
+	["Azeroth Commerce Authority"] = "艾泽拉斯贸易局",
 	-- {area:1002} Three Corners · {zone:1433} Redridge Mountains · {npc:214101} Marcy Baker
-	["The Alliance camp is at {area:1002} in western {zone:1433}. Loot supply crates in the world, fill them and hand them in to {npc:214101} for Merchant's Favor (5-20 a crate); the treat costs 1,500."] = "",
-	["1,500 Merchant's Favor"] = "",
+	["The Alliance camp is at {area:1002} in western {zone:1433}. Loot supply crates in the world, fill them and hand them in to {npc:214101} for Merchant's Favor (5-20 a crate); the treat costs 1,500."] = "联盟营地位于{zone:1433}西部的{area:1002}。在野外拾取补给箱，装满后交给{npc:214101}换取Merchant's Favor（每箱5-20）；该宠物售价1,500。",
+	["1,500 Merchant's Favor"] = "1,500 Merchant's Favor",
 
 	-- Step 2: Durotar Supply and Logistics
 	-- {zone:1411} Durotar
-	["{zone:1411} Supply and Logistics"] = "",
+	["{zone:1411} Supply and Logistics"] = "{zone:1411}补给后勤部",
 	-- {area:380} The Crossroads · {npc:256384} Gishah · {zone:1458} Undercity
-	["The Horde camp is just outside the {area:380}. Loot supply crates in the world, fill them and hand them in at the camp for Merchant's Favor; the treat costs 1,500. (Another {npc:256384} stands in the {zone:1458}; this is the one at the camp.)"] = "",
+	["The Horde camp is just outside the {area:380}. Loot supply crates in the world, fill them and hand them in at the camp for Merchant's Favor; the treat costs 1,500. (Another {npc:256384} stands in the {zone:1458}; this is the one at the camp.)"] = "部落营地就在{area:380}外。在野外拾取补给箱，装满后在营地上交换取Merchant's Favor；该宠物售价1,500。（{zone:1458}还有另一个{npc:256384}；要找的是营地里的这个。）",
 }

@@ -4,8 +4,8 @@
 -- name there in Korean (the English is listed above the line). The comments are rewritten by sync.
 return {
 	-- Step 1: Bloodsail pirates
-	["Bloodsail pirates"] = "",
+	["Bloodsail pirates"] = "붉은해적단 해적",
 	-- {area:35} Booty Bay
-	["Every Bloodsail pirate on the southern Stranglethorn coast can drop it, but only about once in 2,500-5,000 kills in our data. Expect a very long grind. The waypoint is the Bloodsail camp north of {area:35}, among the Swashbucklers and Raiders."] = "",
-	["Bloodsail camps"] = "",
+	["Every Bloodsail pirate on the southern Stranglethorn coast can drop it, but only about once in 2,500-5,000 kills in our data. Expect a very long grind. The waypoint is the Bloodsail camp north of {area:35}, among the Swashbucklers and Raiders."] = "가시덤불 골짜기 남부 해안의 모든 붉은해적단 해적이 떨어뜨릴 수 있지만, 우리 데이터상 약 2,500-5,000번 처치에 한 번뿐입니다. 아주 오래 사냥할 각오를 하십시오. 경유지는 {area:35} 북쪽, 붉은해적단 칼잡이와 약탈자가 있는 붉은해적단 야영지입니다.",
+	["Bloodsail camps"] = "붉은해적단 야영지",
 }

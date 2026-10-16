@@ -4,8 +4,8 @@
 -- name there in Portuguese (Brazil) (the English is listed above the line). The comments are rewritten by sync.
 return {
 	-- Step 1: Bloodsail pirates
-	["Bloodsail pirates"] = "",
+	["Bloodsail pirates"] = "Piratas da Vela Sangrenta",
 	-- {area:35} Booty Bay
-	["Every Bloodsail pirate on the southern Stranglethorn coast can drop it, but only about once in 2,500-5,000 kills in our data. Expect a very long grind. The waypoint is the Bloodsail camp north of {area:35}, among the Swashbucklers and Raiders."] = "",
-	["Bloodsail camps"] = "",
+	["Every Bloodsail pirate on the southern Stranglethorn coast can drop it, but only about once in 2,500-5,000 kills in our data. Expect a very long grind. The waypoint is the Bloodsail camp north of {area:35}, among the Swashbucklers and Raiders."] = "Qualquer pirata da Vela Sangrenta no litoral sul da Selva do Espinhaço pode deixá-lo cair, mas só cerca de uma vez em 2.500-5.000 abates em nossos dados. Espere um farm muito longo. O ponto de rota é o acampamento da Vela Sangrenta ao norte de {area:35}, entre os Espadachins e Saqueadores.",
+	["Bloodsail camps"] = "Acampamentos da Vela Sangrenta",
 }

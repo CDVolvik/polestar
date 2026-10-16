@@ -5,5 +5,5 @@
 return {
 	-- Step 1: My Little Friends
 	-- {npc:217412} Amaryllis Webb · {npc:217588} Arbor Tarantula · {npc:217589} Hay Weevil · {npc:217590} Flesh Picker
-	["{npc:217412} gives you an Entomology Starter Kit: use its items to catch an {npc:217588}, a {npc:217589} Specimen and a {npc:217590}. This quest is named as the weevil's source but gives only money as its reward; the pet may come from the {npc:217589} you catch. If you lose the kit, she sells another."] = "",
+	["{npc:217412} gives you an Entomology Starter Kit: use its items to catch an {npc:217588}, a {npc:217589} Specimen and a {npc:217590}. This quest is named as the weevil's source but gives only money as its reward; the pet may come from the {npc:217589} you catch. If you lose the kit, she sells another."] = "{npc:217412} dá a você um Kit Inicial de Entomologia: use os itens dele para capturar uma {npc:217588}, um Espécime de {npc:217589} e um {npc:217590}. Esta missão é indicada como a origem do gorgulho, mas só dá dinheiro como recompensa; o mascote pode vir do {npc:217589} que você capturar. Se perder o kit, ela vende outro.",
 }

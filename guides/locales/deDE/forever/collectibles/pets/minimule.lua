@@ -4,17 +4,17 @@
 -- name there in German (the English is listed above the line). The comments are rewritten by sync.
 return {
 	-- Guide
-	["Minimule"] = "",
+	["Minimule"] = "Minimule",
 
 	-- Step 1: Azeroth Commerce Authority
-	["Azeroth Commerce Authority"] = "",
+	["Azeroth Commerce Authority"] = "Handelskommission von Azeroth",
 	-- {area:1002} Three Corners · {zone:1433} Redridge Mountains · {npc:214101} Marcy Baker
-	["The Alliance camp is at {area:1002} in western {zone:1433}. Loot supply crates in the world, fill them and hand them in to {npc:214101} for Merchant's Favor (5-20 a crate); the treat costs 1,500."] = "",
-	["1,500 Merchant's Favor"] = "",
+	["The Alliance camp is at {area:1002} in western {zone:1433}. Loot supply crates in the world, fill them and hand them in to {npc:214101} for Merchant's Favor (5-20 a crate); the treat costs 1,500."] = "Das Lager der Allianz ist bei {area:1002} im westlichen {zone:1433}. Plündere Vorratskisten in der Welt, füll sie und gib sie bei {npc:214101} ab für Merchant's Favor (5-20 pro Kiste); das Leckerli kostet 1.500.",
+	["1,500 Merchant's Favor"] = "1.500 Merchant's Favor",
 
 	-- Step 2: Durotar Supply and Logistics
 	-- {zone:1411} Durotar
-	["{zone:1411} Supply and Logistics"] = "",
+	["{zone:1411} Supply and Logistics"] = "Versorgung und Logistik {zone:1411}",
 	-- {area:380} The Crossroads · {npc:256384} Gishah · {zone:1458} Undercity
-	["The Horde camp is just outside the {area:380}. Loot supply crates in the world, fill them and hand them in at the camp for Merchant's Favor; the treat costs 1,500. (Another {npc:256384} stands in the {zone:1458}; this is the one at the camp.)"] = "",
+	["The Horde camp is just outside the {area:380}. Loot supply crates in the world, fill them and hand them in at the camp for Merchant's Favor; the treat costs 1,500. (Another {npc:256384} stands in the {zone:1458}; this is the one at the camp.)"] = "Das Lager der Horde liegt gleich außerhalb von {area:380}. Plündere Vorratskisten in der Welt, füll sie und gib sie im Lager ab für Merchant's Favor; das Leckerli kostet 1.500. (Ein weiterer {npc:256384} steht in {zone:1458}; gemeint ist der im Lager.)",
 }

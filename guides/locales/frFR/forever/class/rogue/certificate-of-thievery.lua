@@ -5,33 +5,33 @@
 return {
 	-- Guide
 	-- {npc:6966} Lucius · {quest:2282} Alther's Mill · {quest:2300} SI:7
-	["Your first lockpicking job at 16: {npc:6966}'s lockbox at {quest:2282}, for {quest:2300}."] = "",
+	["Your first lockpicking job at 16: {npc:6966}'s lockbox at {quest:2282}, for {quest:2300}."] = "Votre premier crochetage au niveau 16 : le coffret de {npc:6966} à {quest:2282}, pour le {quest:2300}.",
 
 	-- Step 1: SI:7 (Goldshire)
 	-- {npc:917} Keryn Sylvius · {area:87} Goldshire · {npc:6946} Renzik "The Shiv" · {zone:1453} Stormwind City
-	["At 16 {npc:917}, the rogue trainer in the Lion's Pride Inn in {area:87}, sends you to {npc:6946} in {zone:1453}."] = "",
+	["At 16 {npc:917}, the rogue trainer in the Lion's Pride Inn in {area:87}, sends you to {npc:6946} in {zone:1453}."] = "Au niveau 16, {npc:917}, le maître des voleurs de l'auberge de la Fierté du lion à {area:87}, vous envoie voir {npc:6946} à {zone:1453}.",
 
 	-- Step 2: To Hulfdan! (Kharanos)
 	-- {npc:1234} Hogral Bakkan · {area:2102} Thunderbrew Distillery · {area:131} Kharanos · {npc:5165} Hulfdan Blackbeard · {zone:1455} Ironforge
-	["At 16 {npc:1234} in the {area:2102} in {area:131} sends you to {npc:5165}, in the north of {zone:1455}."] = "",
+	["At 16 {npc:1234} in the {area:2102} in {area:131} sends you to {npc:5165}, in the north of {zone:1455}."] = "Au niveau 16, {npc:1234}, dans la {area:2102} à {area:131}, vous envoie voir {npc:5165}, au nord de {zone:1455}.",
 
 	-- Step 4: Erion Shadewhisper (Dolanaar)
 	-- {npc:3599} Jannok Breezesong · {area:186} Dolanaar · {quest:2259} Erion Shadewhisper · {zone:1457} Darnassus
-	["At 16 {npc:3599} in {area:186} sends you to {quest:2259} in {zone:1457}."] = "",
+	["At 16 {npc:3599} in {area:186} sends you to {quest:2259} in {zone:1457}."] = "Au niveau 16, {npc:3599} à {area:186} vous envoie voir {quest:2259} à {zone:1457}.",
 
 	-- Step 5: Renzik "The Shiv"
 	-- {npc:332} Master Mathias Shaw · {quest:2300} SI:7 · {object:2100} Old Town · {area:2257} Deeprun Tram · {zone:1455} Ironforge · {area:442} Auberdine · {area:17203} Stormwind Harbor
-	["Renzik stands beside {npc:332} at {quest:2300} in {object:2100}. Dwarves and Gnomes take the {area:2257} from {zone:1455}; Night Elves take the boat from {area:442} to {area:17203}."] = "",
+	["Renzik stands beside {npc:332} at {quest:2300} in {object:2100}. Dwarves and Gnomes take the {area:2257} from {zone:1455}; Night Elves take the boat from {area:442} to {area:17203}."] = "Renzik se tient à côté de {npc:332} au {quest:2300}, dans la {object:2100}. Nains et gnomes prennent le {area:2257} depuis {zone:1455} ; les elfes de la nuit prennent le bateau d'{area:442} au {area:17203}.",
 
 	-- Step 6: Lucius
 	-- {zone:1429} Elwynn Forest · {area:69} Lakeshire · {npc:6966} Lucius · {item:5060} Thieves' Tools
-	["Ride east through {zone:1429} into Redridge, or fly to {area:69}. {npc:6966} waits on the west side of {area:69} and gives you {item:5060}."] = "",
+	["Ride east through {zone:1429} into Redridge, or fly to {area:69}. {npc:6966} waits on the west side of {area:69} and gives you {item:5060}."] = "Allez vers l'est à travers la {zone:1429} jusqu'aux Carmines, ou volez jusqu'à {area:69}. {npc:6966} attend à l'ouest de {area:69} et vous donne des {item:5060}.",
 
 	-- Step 7: Alther's Mill
 	-- {quest:2282} Alther's Mill · {area:69} Lakeshire · {item:7869} Lucius's Lockbox
-	["{quest:2282} stands east of {area:69}, up off the road. Open {item:7869} there."] = "",
+	["{quest:2282} stands east of {area:69}, up off the road. Open {item:7869} there."] = "{quest:2282} se trouve à l'est de {area:69}, en hauteur à l'écart de la route. Ouvrez-y le {item:7869}.",
 
 	-- Step 8: Back to Lucius
 	-- {npc:6966} Lucius
-	["Back to {npc:6966}"] = "",
+	["Back to {npc:6966}"] = "Retournez voir {npc:6966}",
 }

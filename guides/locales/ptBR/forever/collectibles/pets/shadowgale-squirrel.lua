@@ -5,22 +5,22 @@
 return {
 	-- Step 1: Skyboat from Dalaran
 	-- {area:279} Dalaran
-	["Skyboat from {area:279}"] = "",
+	["Skyboat from {area:279}"] = "Aeronave de {area:279}",
 	-- {zone:2521} Zephras Isle · {area:279} Dalaran · {zone:1456} Thunder Bluff
-	["{zone:2521} is the Skyborne starting island; anyone may visit. A skyboat leaves the north side of {area:279} about every five minutes (another flies from north of {zone:1456}; either faction may take either). Skip this if you are already on the island."] = "",
+	["{zone:2521} is the Skyborne starting island; anyone may visit. A skyboat leaves the north side of {area:279} about every five minutes (another flies from north of {zone:1456}; either faction may take either). Skip this if you are already on the island."] = "{zone:2521} é a ilha inicial dos Celonatos; qualquer um pode visitá-la. Uma aeronave parte do lado norte de {area:279} a cada cinco minutos, mais ou menos (outra sai do norte de {zone:1456}; qualquer facção pode usar qualquer uma). Pule isto se já estiver na ilha.",
 	-- {zone:2521} Zephras Isle
-	["Skyboat to {zone:2521}"] = "",
+	["Skyboat to {zone:2521}"] = "Aeronave para {zone:2521}",
 
 	-- Step 2: Skyboat from Thunder Bluff
 	-- {zone:1456} Thunder Bluff
-	["Skyboat from {zone:1456}"] = "",
+	["Skyboat from {zone:1456}"] = "Aeronave de {zone:1456}",
 	-- {zone:2521} Zephras Isle · {area:17045} Skywatcher Plateau · {zone:1456} Thunder Bluff · {area:279} Dalaran
-	["{zone:2521} is the Skyborne starting island; anyone may visit. A skyboat leaves the cliffs south of {area:17045}, north of {zone:1456}, about every five minutes (another flies from {area:279}; either faction may take either). Skip this if you are already on the island."] = "",
+	["{zone:2521} is the Skyborne starting island; anyone may visit. A skyboat leaves the cliffs south of {area:17045}, north of {zone:1456}, about every five minutes (another flies from {area:279}; either faction may take either). Skip this if you are already on the island."] = "{zone:2521} é a ilha inicial dos Celonatos; qualquer um pode visitá-la. Uma aeronave parte dos penhascos ao sul de {area:17045}, ao norte de {zone:1456}, a cada cinco minutos, mais ou menos (outra sai de {area:279}; qualquer facção pode usar qualquer uma). Pule isto se já estiver na ilha.",
 
 	-- Step 3: Revered with the Nightclaw Druids
 	-- {faction:2758} Nightclaw Druids
-	["Revered with the {faction:2758}"] = "",
+	["Revered with the {faction:2758}"] = "Reverenciado com {faction:2758}",
 	-- {npc:254151} Vayn Moongaze · {faction:2758} Nightclaw Druids
-	["{npc:254151} sells the squirrel (50s) once you are Revered with the {faction:2758}."] = "",
-	["50s"] = "",
+	["{npc:254151} sells the squirrel (50s) once you are Revered with the {faction:2758}."] = "{npc:254151} vende o esquilo (50s) quando você estiver Reverenciado com {faction:2758}.",
+	["50s"] = "50s",
 }

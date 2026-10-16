@@ -5,6 +5,6 @@
 return {
 	-- Step 1: Mayhoa Skyhoof
 	-- {npc:268745} Mayhoa Skyhoof · {zone:1454} Orgrimmar · {object:172982} Valley of Strength · {object:172959} The Drag
-	["{npc:268745} walks a long loop through {zone:1454} (from the {object:172982} to the {object:172959}); the waypoint is one point on her path. The carrier costs 60s. Each pet item teaches its companion when you use it; the goals stay ticked afterwards."] = "",
-	["60s"] = "",
+	["{npc:268745} walks a long loop through {zone:1454} (from the {object:172982} to the {object:172959}); the waypoint is one point on her path. The carrier costs 60s. Each pet item teaches its companion when you use it; the goals stay ticked afterwards."] = "{npc:268745} fait une longue boucle dans {zone:1454} (de la {object:172982} à {object:172959}) ; le point de passage n'est qu'un point de son trajet. La cage coûte 60 pa. Chaque objet de mascotte apprend sa compagnie quand vous l'utilisez ; les objectifs restent cochés ensuite.",
+	["60s"] = "60 pa",
 }

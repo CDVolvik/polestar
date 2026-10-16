@@ -4,24 +4,24 @@
 -- name there in Portuguese (Brazil) (the English is listed above the line). The comments are rewritten by sync.
 return {
 	-- Guide
-	["Swift Horse"] = "",
+	["Swift Horse"] = "Cavalo Veloz",
 
 	-- Step 1: Journeyman Riding
 	-- {skill:762} Riding
-	["Journeyman {skill:762}"] = "",
+	["Journeyman {skill:762}"] = "{skill:762} de Profissional",
 	-- {npc:4732} Randal Hunter · {npc:384} Katie Hunter · {area:88} Eastvale Logging Camp · {zone:1429} Elwynn Forest · {skill:762} Riding
-	["{npc:4732} and {npc:384}'s horse pen are at {area:88} in eastern {zone:1429}. At 60 {npc:4732} teaches Journeyman {skill:762} (1,000g per Blizzard's designers); Blizzard says learning riding grants a mount. The Forever client sells each swift horse for 200g at level 60."] = "",
+	["{npc:4732} and {npc:384}'s horse pen are at {area:88} in eastern {zone:1429}. At 60 {npc:4732} teaches Journeyman {skill:762} (1,000g per Blizzard's designers); Blizzard says learning riding grants a mount. The Forever client sells each swift horse for 200g at level 60."] = "{npc:4732} e o curral de cavalos de {npc:384} ficam em {area:88}, no leste de {zone:1429}. No nível 60, {npc:4732} ensina {skill:762} de Profissional (1.000g segundo os designers da Blizzard); segundo a Blizzard, aprender montaria dá uma montaria. O cliente Forever vende cada cavalo veloz por 200g no nível 60.",
 	-- {npc:4732} Randal Hunter
-	["{npc:4732}, riding trainer"] = "",
+	["{npc:4732}, riding trainer"] = "{npc:4732}, instrutor de montaria",
 
 	-- Step 2: Pick a colour
-	["Pick a colour"] = "",
+	["Pick a colour"] = "Escolha uma cor",
 	-- {npc:384} Katie Hunter
-	["{npc:384} sells the other colours (200g each in the Forever client). Buy any you want, or none if the mount you were given is the one you like."] = "",
+	["{npc:384} sells the other colours (200g each in the Forever client). Buy any you want, or none if the mount you were given is the one you like."] = "{npc:384} vende as outras cores (200g cada no cliente Forever). Compre as que quiser, ou nenhuma se gostar da montaria que ganhou.",
 	-- {item:18776} Swift Palomino
-	["{item:18776}, 200g"] = "",
+	["{item:18776}, 200g"] = "{item:18776}, 200g",
 	-- {item:18777} Swift Brown Steed
-	["{item:18777}, 200g"] = "",
+	["{item:18777}, 200g"] = "{item:18777}, 200g",
 	-- {item:18778} Swift White Steed
-	["{item:18778}, 200g"] = "",
+	["{item:18778}, 200g"] = "{item:18778}, 200g",
 }

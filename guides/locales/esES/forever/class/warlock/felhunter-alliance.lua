@@ -4,45 +4,45 @@
 -- name there in Spanish (Spain) (the English is listed above the line). The comments are rewritten by sync.
 return {
 	-- Guide
-	["Felhunter (Alliance)"] = "",
+	["Felhunter (Alliance)"] = "Manáfago (Alianza)",
 	-- {item:22244} Box of Souls
-	["The felhunter, the demon to bring against spellcasters, and a {item:22244} for your shards."] = "",
+	["The felhunter, the demon to bring against spellcasters, and a {item:22244} for your shards."] = "El manáfago, el demonio ideal contra lanzadores de hechizos, y una {item:22244} para tus fragmentos.",
 
 	-- Step 1: Seeking Strahad (Stormwind City)
 	-- {npc:6122} Gakin the Darkbinder · {object:2164} The Slaughtered Lamb · {object:2101} Mage Quarter · {npc:6251} Strahad Farsan · {area:392} Ratchet
-	["At 30 {npc:6122}, in the cellar of the {object:2164} in the {object:2101}, sends you to {npc:6251} in {area:392}."] = "",
+	["At 30 {npc:6122}, in the cellar of the {object:2164} in the {object:2101}, sends you to {npc:6251} in {area:392}."] = "A nivel 30, {npc:6122}, en el sótano de {object:2164}, en el {object:2101}, te envía con {npc:6251} en {area:392}.",
 
 	-- Step 2: Seeking Strahad (Ironforge)
 	-- {npc:6120} Lago Blackwrench · {object:32383} The Forlorn Cavern · {npc:6251} Strahad Farsan · {area:392} Ratchet
-	["At 30 {npc:6120}, in the {object:32383}, sends you to {npc:6251} in {area:392}."] = "",
+	["At 30 {npc:6120}, in the {object:32383}, sends you to {npc:6251} in {area:392}."] = "A nivel 30, {npc:6120}, en {object:32383}, te envía con {npc:6251} en {area:392}.",
 
 	-- Step 3: Strahad Farsan
 	-- {area:392} Ratchet · {zone:1413} The Barrens · {npc:6251} Strahad Farsan
-	["{area:392} is on the {zone:1413} coast; {npc:6251} stands on the hill in town."] = "",
+	["{area:392} is on the {zone:1413} coast; {npc:6251} stands on the hill in town."] = "{area:392} está en la costa de {zone:1413}; {npc:6251} está en la colina del pueblo.",
 
 	-- Step 4: Krom Stoutarm
 	-- {npc:6294} Krom Stoutarm · {object:32356} Hall of Explorers
-	["{npc:6294} stands in the {object:32356}."] = "",
+	["{npc:6294} stands in the {object:32356}."] = "{npc:6294} está en la {object:32356}.",
 
 	-- Step 5: Moldy Tome
 	-- {item:6931} Moldy Tome · {area:271} Southshore
-	["The {item:6931} lies on the shore west of {area:271}, past the Torn Fin murloc camps."] = "",
+	["The {item:6931} lies on the shore west of {area:271}, past the Torn Fin murloc camps."] = "{item:6931} está en la orilla al oeste de {area:271}, pasados los campamentos de múrlocs Rompeanca.",
 
 	-- Step 6: Tattered Manuscript
 	-- {object:92423} Damaged Chest · {area:484} Freewind Post
-	["The {object:92423} lies in the canyon north of {area:484}."] = "",
+	["The {object:92423} lies in the canyon north of {area:484}."] = "{object:92423} está en el cañón al norte de {area:484}.",
 	-- {item:6997} Tattered Manuscript · {object:92423} Damaged Chest
-	["{item:6997}, in the {object:92423}"] = "",
+	["{item:6997}, in the {object:92423}"] = "{item:6997}, en {object:92423}",
 
 	-- Step 8: Rods of Channeling
-	["Rods of Channeling"] = "",
+	["Rods of Channeling"] = "Varas de Mediación",
 	-- {zone:1437} Wetlands
 	-- plural, as words: Dragonmaw Bonewarders = {npc:1057} Dragonmaw Bonewarder
-	["The Dragonmaw Bonewarders and Shadowwarders hold the hills east of the road through the {zone:1437}: the rods drop from them."] = "",
+	["The Dragonmaw Bonewarders and Shadowwarders hold the hills east of the road through the {zone:1437}: the rods drop from them."] = "Los Guardahuesos Faucedraco y los Pastores Faucedraco ocupan las colinas al este del camino que cruza {zone:1437}: sueltan las varas.",
 
 	-- Step 9: The Binding
 	-- {npc:6251} Strahad Farsan · {area:392} Ratchet · {quest:1804} Tome of the Cabal
-	["Back to {npc:6251} in {area:392}. Use the {quest:1804} on the summoning circle beside him and defeat the felhunter to bind it."] = "",
+	["Back to {npc:6251} in {area:392}. Use the {quest:1804} on the summoning circle beside him and defeat the felhunter to bind it."] = "Vuelve con {npc:6251} en {area:392}. Usa {quest:1804} en el círculo de invocación a su lado y derrota al manáfago para vincularlo.",
 	-- {npc:6251} Strahad Farsan
-	["{npc:6251}: he binds the felhunter to you"] = "",
+	["{npc:6251}: he binds the felhunter to you"] = "{npc:6251}: vincula el manáfago a ti",
 }

@@ -4,24 +4,24 @@
 -- name there in Portuguese (Brazil) (the English is listed above the line). The comments are rewritten by sync.
 return {
 	-- Guide
-	["Swift Mechanostrider"] = "",
+	["Swift Mechanostrider"] = "Mecanostruz Veloz",
 
 	-- Step 1: Journeyman Riding
 	-- {skill:762} Riding
-	["Journeyman {skill:762}"] = "",
+	["Journeyman {skill:762}"] = "{skill:762} (Artesão)",
 	-- {area:189} Steelgrill's Depot · {area:131} Kharanos · {npc:7954} Binjy Featherwhistle · {npc:7955} Milli Featherwhistle · {skill:762} Riding
-	["{area:189} is just east of {area:131}; {npc:7954} stands beside {npc:7955}'s mechanostriders. At 60 {npc:7954} teaches Journeyman {skill:762} (1,000g per Blizzard's designers); Blizzard says learning riding grants a mount. The Forever client sells each swift mechanostrider for 200g at level 60."] = "",
+	["{area:189} is just east of {area:131}; {npc:7954} stands beside {npc:7955}'s mechanostriders. At 60 {npc:7954} teaches Journeyman {skill:762} (1,000g per Blizzard's designers); Blizzard says learning riding grants a mount. The Forever client sells each swift mechanostrider for 200g at level 60."] = "A {area:189} fica logo a leste de {area:131}; {npc:7954} fica ao lado dos mecanostruzes de {npc:7955}. No nível 60, {npc:7954} ensina {skill:762} (Artesão) (1,000g segundo os criadores da Blizzard); a Blizzard diz que aprender montaria concede uma montaria. O cliente Forever vende cada mecanostruz veloz por 200g no nível 60.",
 	-- {npc:7954} Binjy Featherwhistle
-	["{npc:7954}, riding trainer"] = "",
+	["{npc:7954}, riding trainer"] = "{npc:7954}, instrutor de montaria",
 
 	-- Step 2: Pick a colour
-	["Pick a colour"] = "",
+	["Pick a colour"] = "Escolha uma cor",
 	-- {npc:7955} Milli Featherwhistle
-	["{npc:7955} sells the other colours (200g each in the Forever client). Buy any you want, or none if the mount you were given is the one you like."] = "",
+	["{npc:7955} sells the other colours (200g each in the Forever client). Buy any you want, or none if the mount you were given is the one you like."] = "{npc:7955} vende as outras cores (200g cada no cliente Forever). Compre as que quiser, ou nenhuma se a montaria que recebeu é a que você gosta.",
 	-- {item:18772} Swift Green Mechanostrider
-	["{item:18772}, 200g"] = "",
+	["{item:18772}, 200g"] = "{item:18772}, 200g",
 	-- {item:18773} Swift White Mechanostrider
-	["{item:18773}, 200g"] = "",
+	["{item:18773}, 200g"] = "{item:18773}, 200g",
 	-- {item:18774} Swift Yellow Mechanostrider
-	["{item:18774}, 200g"] = "",
+	["{item:18774}, 200g"] = "{item:18774}, 200g",
 }

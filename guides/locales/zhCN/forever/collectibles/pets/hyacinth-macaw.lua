@@ -4,8 +4,8 @@
 -- name there in Chinese (simplified) (the English is listed above the line). The comments are rewritten by sync.
 return {
 	-- Step 1: Bloodsail pirates
-	["Bloodsail pirates"] = "",
+	["Bloodsail pirates"] = "血帆海盗",
 	-- {area:35} Booty Bay
-	["Every Bloodsail pirate on the southern Stranglethorn coast can drop it, but only about once in 2,500-5,000 kills in our data. Expect a very long grind. The waypoint is the Bloodsail camp north of {area:35}, among the Swashbucklers and Raiders."] = "",
-	["Bloodsail camps"] = "",
+	["Every Bloodsail pirate on the southern Stranglethorn coast can drop it, but only about once in 2,500-5,000 kills in our data. Expect a very long grind. The waypoint is the Bloodsail camp north of {area:35}, among the Swashbucklers and Raiders."] = "荆棘谷南部海岸的所有血帆海盗都可能掉落它，但我们的数据中约2,500-5,000次击杀才掉落一次。准备长时间刷怪。路径点是{area:35}北边的血帆营地，位于血帆流氓和血帆袭击者之间。",
+	["Bloodsail camps"] = "血帆营地",
 }

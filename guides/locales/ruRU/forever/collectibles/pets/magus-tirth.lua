@@ -5,7 +5,7 @@
 return {
 	-- Step 1: Magus Tirth
 	-- {npc:6548} Magus Tirth · {area:2240} Mirage Raceway · {area:439} The Shimmering Flats · {zone:1441} Thousand Needles · {item:11023} Ancona Chicken
-	["{npc:6548} at the {area:2240}, in the {area:439} of south-eastern {zone:1441}, sells the {item:11023} (1g). Each pet item teaches its companion when you use it; the goals stay ticked afterwards."] = "",
+	["{npc:6548} at the {area:2240}, in the {area:439} of south-eastern {zone:1441}, sells the {item:11023} (1g). Each pet item teaches its companion when you use it; the goals stay ticked afterwards."] = "{npc:6548} ({area:2240}, {area:439}, юго-восток зоны {zone:1441}) продает питомца {item:11023} (1з). Каждый предмет с питомцем при использовании обучает вас этому спутнику; цели после этого остаются отмеченными.",
 	-- {item:11023} Ancona Chicken
-	["{item:11023}, 1g"] = "",
+	["{item:11023}, 1g"] = "{item:11023}, 1з",
 }
