@@ -371,6 +371,42 @@ test('Hotline\'s report: Walton and Vrang\'s quests come in the order the game o
 	assert.deepEqual(order, [...order].sort((a, b) => a - b), 'each goal comes after the one before it in the chain');
 });
 
+// --- Forever chains the quest data has no prerequisite for, so the guide took
+// a follow-up at the same visit as the quest before it and the giver did not
+// offer it: Baine's chain in Mulgore (Kori, #112) and Mull's report (#51),
+// Bandarion Keep (whiteswag, #128) and Linnea's second Rear Guard Patrol (#51)
+// in Tirisfal, Alther's Mill in Redridge (#126's report), The State of the
+// Mines in Westfall (SouthernStyleSims, #143) and Scout Support in Hillsbrad
+// (Taako, #148). Each accept comes after every quest it follows is handed in;
+// 99156 may be left out, never taken early.
+
+const WESTFALL = 'forever/alliance/02-westfall.guide';
+const REDRIDGE = 'forever/alliance/04-redridge-mountains.guide';
+const HILLSBRAD_HORDE = 'forever/horde/06-hillsbrad-foothills.guide';
+
+test('Forever follow-ups are taken only once the quests before them are handed in', { skip }, () => {
+	for (const [guide, quest, after, optional] of [
+		[MULGORE, 99081, [99079]],
+		[MULGORE, 99101, [99081]],
+		[MULGORE, 99080, [99101]],
+		[MULGORE, 99082, [99080]],
+		[MULGORE, 98435, [760]],
+		[TIRISFAL, 96899, [96897, 96898]],
+		[TIRISFAL, 99156, [356], true],
+		[REDRIDGE, 98386, [89]],
+		[WESTFALL, 92745, [92742]],
+		[HILLSBRAD_HORDE, 98094, [528]],
+	]) {
+		const list = goals(guide);
+		const take = list.findIndex(({ goal }) => is('accept', quest)(goal));
+		if (take < 0 && optional) continue;
+		assert.ok(take >= 0, `${guide}: accept ${quest} is in the guide`);
+		for (const pre of after) {
+			assert.ok(at(list, `${guide}: turnin ${pre}`, is('turnin', pre)) < take, `${guide}: ${quest} is taken after ${pre} is handed in`);
+		}
+	}
+});
+
 // Every leveling guide with a profession quest still plays to the end for a
 // character who already has the profession (tests/guides.test.js plays them
 // all without one).

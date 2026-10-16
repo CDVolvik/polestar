@@ -39,6 +39,15 @@ next forever/horde/02-the-barrens
 #   so the export's first mine visit is folded into the second.
 # - A Sacred Burial (833) and Rite of Wisdom (773) are done on one visit to
 #   Red Rocks instead of two.
+# - Baine's chain goes in the order the game offers it (Wowhead Forever's
+#   Series box; the quest data has no prerequisites for it, #112): Longwalker
+#   Malah (99079) on the first Bloodhoof visit, Grim Tidings (99081) from
+#   Malah, then Our Ancient Enemy (99101) and Drive Them Out (99080) when
+#   Grim Tidings is handed in, and The High Chieftain (99082) when Drive Them
+#   Out is. The Galak centaurs are killed on the walk from Morin Cloudstalker
+#   to the Venture Co. Mine instead of with Malah's visit. Thunderhorn's
+#   Report (98435) is taken when Wildmane Cleansing (760) is handed in, its
+#   only offer.
 # - Durotar is no longer visited: the older guide went on from the Crossroads
 #   to Razor Hill for Threat from Below (99048, 99049, 99051), Rezlak's
 #   Stormy Potential (97281, 97282), Lost But Not Forgotten (816), Burning
@@ -226,16 +235,11 @@ step Back to Bloodhoof
   turnin 96130                        -- Yaw Sharpmane
   turnin 756                          -- Mull Thunderhorn
   accept 758
-  accept 99101                        -- Brave Wildrunner
-  turnin 99101                        -- Baine Bloodhoof
   accept 99079                        -- Brave Wildrunner
   accept 743                          -- Ruul Eagletalon
   accept 745                          -- Baine Bloodhoof
   accept 746
   accept 767
-  accept 99080
-  accept 99082                        -- Baine Bloodhoof, for Cairne in Thunder Bluff
-  accept 98435                        -- Mull Thunderhorn, for Hamuul in Thunder Bluff
   accept 761                          -- Harken Windtotem
 
 step Sparring Match
@@ -286,11 +290,8 @@ step Longwalker Malah
   turnin 99079
   accept 99081
 
-step Galak centaurs and Prairie Wolf Alphas
-  tip The Galak centaurs camp on the plains north of the Rolling Plains; Herak leads them. Prairie Wolf Alphas roam among the wolves.
-  kill 2967 quest 99080.1             -- Galak Centaur
-  kill 2968 quest 99080.2             -- Galak Outrunner
-  collect 286075 quest 99080.3        -- Herak's Head
+step Prairie Wolf Alphas
+  tip Prairie Wolf Alphas roam among the wolves on the plains around Malah and the Galak camp to the east.
   collect 4803 quest 759.1            -- Prairie Alpha Tooth
 
 step The Ravaged Caravan
@@ -302,8 +303,10 @@ step Bloodhoof Village
   turnin 761                          -- Harken Windtotem
   turnin 759                          -- Mull Thunderhorn
   accept 760
-  turnin 99080                        -- Baine Bloodhoof
   turnin 99081                        -- Brave Wildrunner
+  accept 99101                        -- Brave Wildrunner
+  turnin 99101                        -- Baine Bloodhoof
+  accept 99080
 
 step Mazzranache
   tip Finish the wolf heart, cougar femur, plainstrider scale and swoop gizzard on the plains around the village.
@@ -320,6 +323,12 @@ step Morin Cloudstalker
   turnin 751
   accept 764
   accept 765
+
+step Galak centaurs
+  tip The Galak centaurs camp on the plains east of the well; Herak leads them.
+  kill 2967 quest 99080.1             -- Galak Centaur
+  kill 2968 quest 99080.2             -- Galak Outrunner
+  collect 286075 quest 99080.3        -- Herak's Head
 
 # ---------------------------------------------------------------- The Venture Co. Mine
 
@@ -358,11 +367,14 @@ step Sharing the Land
   complete 98430
 
 step Bloodhoof Village
-  accept 861                          -- Skorn Whitecloud
   turnin 743                          -- Ruul Eagletalon
   turnin 745                          -- Baine Bloodhoof
+  turnin 99080
+  accept 99082                        -- Baine Bloodhoof, for Cairne in Thunder Bluff
   turnin 746
   turnin 760                          -- Mull Thunderhorn
+  accept 98435                        -- Mull Thunderhorn, for Hamuul in Thunder Bluff
+  accept 861                          -- Skorn Whitecloud
   train class
 
 step Morin Cloudstalker

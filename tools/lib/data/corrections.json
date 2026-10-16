@@ -37,6 +37,17 @@
 			},
 			"note": "A Scribbled Letter is the Human Hunter letter: it ends at Tordrin Sternblade 248415 <Hunter Trainer> in Northshire (Wowhead Forever npc=248415, checked 2026-10-12). QuestieDB 1.0.5 has requiredClasses 1 (Warrior)."
 		},
+		"92745": {
+			"set": {
+				"pre": [
+					92742
+				],
+				"preAny": [
+					92742
+				]
+			},
+			"note": "The State of the Mines (Westfall, Alba Fairmoon) is offered only after Testing the Wells 92742 is handed in: its text on https://www.wowhead.com/forever/quest=92745 opens \"The well samples you collected contain toxic metals!\" (checked 2026-10-16), and issue #143 (SouthernStyleSims) saw it in game: Alba did not offer it until another of her quests was turned in. Murloc Gills (92744) gets no link: nothing shows it gating or gated. QuestieDB 1.0.5 has no prerequisite."
+		},
 		"92747": {
 			"set": {
 				"pre": [
@@ -46,7 +57,7 @@
 					92745
 				]
 			},
-			"note": "Moonbrook Espionage (92747) is step 4 of Alba Fairmoon's Westfall storyline \"Toxic Soil\" 92742 -> 92744 -> 92745 -> 92747 -> 92748 -> 92749 -> 92750 -> 92751 -> 92752 -> 92753 -> 92819 (foreverchanges.pro https://foreverchanges.pro/quest/92753 Storyline box, from Wowhead's Forever database, checked 2026-10-15). QuestieDB 1.0.5 has no chain links for it. Testing the Wells (92742), Murloc Gills (92744) and The State of the Mines (92745) get no prerequisite links among themselves: a storyline box groups quests, it does not prove one gates the next, and the Westfall guide has taken all three from Alba at once since 0.2.0 with no 'Not offered' report. Add them only with in-game evidence (a recording of Alba's offer list)."
+			"note": "Moonbrook Espionage (92747) is step 4 of Alba Fairmoon's Westfall storyline \"Toxic Soil\" 92742 -> 92744 -> 92745 -> 92747 -> 92748 -> 92749 -> 92750 -> 92751 -> 92752 -> 92753 -> 92819 (foreverchanges.pro https://foreverchanges.pro/quest/92753 Storyline box, from Wowhead's Forever database, checked 2026-10-15). QuestieDB 1.0.5 has no chain links for it. The State of the Mines (92745) itself comes after Testing the Wells (92742), seen in game (issue #143; see its own entry); Murloc Gills (92744) has no link."
 		},
 		"92748": {
 			"set": {
@@ -277,6 +288,20 @@
 			},
 			"note": "Legging It (Durotar) lists the Ridgeshade Creepers first, then the Ridgeshade Lurkers: Wowhead Forever https://www.wowhead.com/forever/quest=96821, checked 2026-10-16. The merged data has the two the other way round, so `quest 96821.1` named the Lurkers."
 		},
+		"96899": {
+			"set": {
+				"pre": [
+					96897,
+					96898
+				],
+				"preAll": [
+					96897,
+					96898
+				],
+				"preAny": []
+			},
+			"note": "Bandarion Keep (Tirisfal, Hadric Harlson) is offered only after both The Cult of the Damned 96897 and Remnants of War 96898: a Wowhead Forever comment on https://www.wowhead.com/forever/quest=96899 (\"*beta* 96898 and 96897 must be completed first\"), and its text (\"You've done a great thing for the cause of the Argent Dawn here today...\") follows them (checked 2026-10-16). Issue #128 (whiteswag): Hadric did not offer it beside the two. QuestieDB 1.0.5 has no prerequisite."
+		},
 		"96984": {
 			"set": {
 				"breadcrumbs": [
@@ -352,6 +377,28 @@
 			},
 			"note": "Traditions of the Bluff (Thunder Bluff): Wowhead Forever https://www.wowhead.com/forever/quest=97485 lists \"Prepared Incense\" (item=278078, 1) and \"Spread incense\" (1, kill credit npc=269255 \"[DNT] Kill Credit: Spread Incense\", which has no spawns: https://www.wowhead.com/forever/npc=269255); item=278078 is used \"over the southern cliff of Hunter Rise\" (https://www.wowhead.com/forever/item=278078); a quest comment (2026-09-20) places the ceremonial site at Thunder Bluff 53.3,87.9. Checked 2026-10-13. The spread is an event at that site (no spawns for the credit NPC); Thunder Bluff's frame is the same in Era and Forever. QuestieDB 1.0.5 has no objectives."
 		},
+		"98094": {
+			"set": {
+				"pre": [
+					528
+				],
+				"preAny": [
+					528
+				]
+			},
+			"note": "Scout Support (Hillsbrad, High Executor Darthalia, for Deathstalker Masoj) is offered only after Battle of Hillsbrad part II 528: a Wowhead Forever comment on https://www.wowhead.com/forever/quest=98094 (\"Prerequisite is 528 (part II)\"), checked 2026-10-16. Issue #148 (Taako): Darthalia did not offer it with 527 turned in and 528 open. QuestieDB 1.0.5 has no prerequisite."
+		},
+		"98386": {
+			"set": {
+				"pre": [
+					89
+				],
+				"preAny": [
+					89
+				]
+			},
+			"note": "Alther's Mill (Redridge, Foreman Oslow) is offered only after The Everstill Bridge 89 is handed in: two Wowhead Forever comments on https://www.wowhead.com/forever/quest=98386 (\"Seems to require The Everstill Bridge\", \"Acquired after turning in 89\"), checked 2026-10-16. Issue #126's report shows it not offered at the mill (\"[n/a] Kill Greater Tarantula\"). QuestieDB 1.0.5 has no prerequisite."
+		},
 		"98389": {
 			"set": {
 				"objectives": [
@@ -368,6 +415,17 @@
 				]
 			},
 			"note": "A Light in the Darkness (Tirisfal): Wowhead Forever https://www.wowhead.com/forever/quest=98389 lists \"Webbed Forsaken freed\" (6), credited by npc=271961 Webbed Forsaken, which is friendly to the Horde and has 8 map points in Night's Web Hollow (https://www.wowhead.com/forever/npc=271961), checked 2026-10-13. Encoded as an event and not a kill: freeing a friendly NPC is an interaction, not a fight. The position is the Webbed Forsaken spawn nearest the centroid of its 24 spawns in data/forever (Tirisfal 24.67,59.39, Era frame = Forever frame). QuestieDB 1.0.5 has no objectives."
+		},
+		"98435": {
+			"set": {
+				"pre": [
+					760
+				],
+				"preAny": [
+					760
+				]
+			},
+			"note": "Thunderhorn's Report (Mulgore, Mull Thunderhorn) comes after Wildmane Cleansing 760: Wowhead Forever's Series box on https://www.wowhead.com/forever/quest=98435 lists \"1. Wildmane Cleansing; 2. Thunderhorn's Report\" (checked 2026-10-16). Issue #51. QuestieDB 1.0.5 has no prerequisite."
 		},
 		"98823": {
 			"set": {
@@ -403,6 +461,50 @@
 				]
 			},
 			"note": "Escaping Ban'ethil (Teldrassil) is an escort: Wowhead Forever https://www.wowhead.com/forever/quest=99053 lists one objective \"Escort Lynessa Duskblossom out of Ban'ethil\" (1) with no map point; a comment says it completes when she reaches the road (checked 2026-10-13). QuestieDB 1.0.5 has no objectives. No map point: the event runs where it starts (Sentinel Lynessa Duskblossom 275744)."
+		},
+		"99080": {
+			"set": {
+				"pre": [
+					99101
+				],
+				"preAny": [
+					99101
+				]
+			},
+			"note": "Drive Them Out (Mulgore, Baine Bloodhoof) comes after Our Ancient Enemy 99101: Wowhead Forever's Series box on https://www.wowhead.com/forever/quest=99080 lists \"1. Longwalker Malah; 2. Grim Tidings; 3. Our Ancient Enemy; 4. Drive Them Out; 5. The High Chieftain\" (checked 2026-10-16). Issue #112 (Kori): Our Ancient Enemy was not offered before Longwalker Malah and Grim Tidings. QuestieDB 1.0.5 has no prerequisite."
+		},
+		"99081": {
+			"set": {
+				"pre": [
+					99079
+				],
+				"preAny": [
+					99079
+				]
+			},
+			"note": "Grim Tidings (Mulgore, Malah Longwind) comes after Longwalker Malah 99079: Wowhead Forever's Series box on https://www.wowhead.com/forever/quest=99101 lists \"1. Longwalker Malah; 2. Grim Tidings; 3. Our Ancient Enemy; 4. Drive Them Out; 5. The High Chieftain\" (checked 2026-10-16). Issue #112 (Kori): Our Ancient Enemy was not offered before Longwalker Malah and Grim Tidings. QuestieDB 1.0.5 has no prerequisite."
+		},
+		"99082": {
+			"set": {
+				"pre": [
+					99080
+				],
+				"preAny": [
+					99080
+				]
+			},
+			"note": "The High Chieftain (Mulgore, Baine Bloodhoof) comes after Drive Them Out 99080: Wowhead Forever's Series box on https://www.wowhead.com/forever/quest=99082 lists \"1. Longwalker Malah; 2. Grim Tidings; 3. Our Ancient Enemy; 4. Drive Them Out; 5. The High Chieftain\" (checked 2026-10-16). Issue #112 (Kori): Our Ancient Enemy was not offered before Longwalker Malah and Grim Tidings. QuestieDB 1.0.5 has no prerequisite."
+		},
+		"99101": {
+			"set": {
+				"pre": [
+					99081
+				],
+				"preAny": [
+					99081
+				]
+			},
+			"note": "Our Ancient Enemy (Mulgore, Brave Wildrunner) comes after Grim Tidings 99081: Wowhead Forever's Series box on https://www.wowhead.com/forever/quest=99101 lists \"1. Longwalker Malah; 2. Grim Tidings; 3. Our Ancient Enemy; 4. Drive Them Out; 5. The High Chieftain\" (checked 2026-10-16). Issue #112 (Kori): Our Ancient Enemy was not offered before Longwalker Malah and Grim Tidings. QuestieDB 1.0.5 has no prerequisite."
 		},
 		"99123": {
 			"set": {
@@ -458,6 +560,17 @@
 				"classes": 2
 			},
 			"note": "The One That Got Away (Ephram Barbaro 259190, Bandarion Keep) is Paladin-only: Mike_'s in-game report (Discord, Polestar 0.2.3, Scourge Mage 11): Polestar marked it 'Not offered by Ephram Barbaro', which it does only when the giver's quest window opened without the quest; warcraft.wiki.gg https://warcraft.wiki.gg/wiki/Hilda_the_Breaker: Hilda the Breaker is a Forsaken paladin trainer at Bandarion Keep, the Undead Paladin hub (checked 2026-10-15). QuestieDB 1.0.5 has no class gate (classes null)."
+		},
+		"99156": {
+			"set": {
+				"pre": [
+					356
+				],
+				"preAny": [
+					356
+				]
+			},
+			"note": "The second Rear Guard Patrol (Tirisfal, Deathguard Linnea; Riptear) comes after the first, Rear Guard Patrol 356: Wowhead Forever's Series box on https://www.wowhead.com/forever/quest=99156 lists \"1. Rear Guard Patrol; 2. Rear Guard Patrol\" (checked 2026-10-16). Issue #51. QuestieDB 1.0.5 has no prerequisite."
 		}
 	},
 	"npcs": {
