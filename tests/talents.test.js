@@ -66,6 +66,7 @@ const CLASS_SPECS = {
 	MAGE: ['Arcane', 'Fire', 'Frost'],
 	PALADIN: ['Holy', 'Protection', 'Retribution'],
 	ROGUE: ['Assassination', 'Combat', 'Subtlety'],
+	WARLOCK: ['Affliction', 'Demonology', 'Destruction'],
 	WARRIOR: ['Arms', 'Fury', 'Protection'],
 };
 
