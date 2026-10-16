@@ -1095,6 +1095,46 @@ test('review 4: after ROUTE_ADVANCED (off the boat) the arrow\'s own walk is sea
 	assert.deepEqual(out.then_, [-400, -400, -300], 'then Far Roost to the target');
 });
 
+test('a walk to a boat whose end has a board point is searched to the deck, with the deck\'s height; a later walk too', () => {
+	const [out] = run(`
+		N.RegisterTravelData({ build = "test",
+			taxi = {
+				{ 1, 1, 300, 0, 9001, 50, 20, 3, "Pier Roost, Farland" },
+				{ 2, 1, -400, 0, 9001, 50, 90, 3, "Far Roost, Farland" },
+			},
+			flights = { 1, 2, 800, 2, 1, 800 },
+			transports = {
+				{ id = "boat-test", kind = "boat", faction = 3, ab = 60, ba = 60, waitA = 30, waitB = 30,
+					a = { "Testshire Docks", 0, -900, 0, 9000, 50, 95, "e", { wx = -890, wy = 10, z = 5.9 } },
+					b = { "Farland Pier", 1, 400, 0, 9001, 50, 10, "e", { wx = 410, wy = 5, z = 4.5 } } },
+			},
+		}, true)
+		Polestar.CharState().flags.taxi = { [1] = true, [2] = true }
+		local r = {}
+		nav.place(-600, 0)
+		N.SetTarget(9001, 80, 90, "Target")
+		N.Sample()
+		local job = fake.of(false)[1]
+		r.arrow = { job and job.to.x, job and job.to.y, job and (job.to.z or "none") }
+		-- On Farland at Far Roost: fly to Pier Roost, then the later walk to the pier's deck.
+		fake.calls = {}
+		nav.place(-400, -20, 1)
+		N.SetTarget(9000, 60, 90, "Testshire")
+		N.Sample()
+		local legs, ci = N.GetRoute()
+		local kinds = {}
+		for i = ci, #legs do kinds[#kinds + 1] = legs[i].kind end
+		r.kinds = table.concat(kinds, " ")
+		fake.settle(fake.of(true)[1], function() return false end) -- measured: nothing found, straight as planned
+		fake.answer(fake.of(false)[1], -400, -20, -400, 0)
+		local later = fake.of(false)[2]
+		r.later = { later and later.to.x, later and later.to.y, later and (later.to.z or "none") }
+		emit(r)`, { many: true });
+	assert.deepEqual(out.arrow, [-890, 10, 5.9], 'the deck, not the ship\'s stop in the water under it');
+	assert.match(out.kinds, /^walk fly walk boat/);
+	assert.deepEqual(out.later, [410, 5, 4.5], 'the later walk from the flight master to the deck');
+});
+
 test('review 5: the target\'s height goes with the measure (once more without it when it finds nothing) and with the last walk\'s search', () => {
 	const [out] = run(`${TERRAIN}
 		local r = {}

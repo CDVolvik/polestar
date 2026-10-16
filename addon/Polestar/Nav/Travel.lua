@@ -41,6 +41,13 @@
 -- travel build`): Era flight masters and legs, transports, inns, learned
 -- paths and crossings learned from recordings; full crossing data comes from
 -- the optional local data addon Polestar_Travel.
+--
+-- Docks: a transport end is its ship's stop. A ship that lies in the water
+-- off its pier has a board point on the deck (the end's `board`, from the
+-- navigation grid): the dock is there, so the walk to the boat ends on the
+-- deck (with the deck's height for the walking engine) and the boarding,
+-- leaving and arrival checks (BOARD, LEAVE, DOCK_ARRIVE) measure from it; the
+-- ride, its caption and its timetable stay the transport's.
 
 local ADDON, ns = ...
 local Nav = ns.Nav
@@ -106,6 +113,17 @@ local function point(name, c, wx, wy, map, x, y, f)
 	return { name = name, c = c, wx = wx, wy = wy, map = map, x = x, y = y, f = f }
 end
 
+-- A transport end (point) with its board point, when TravelData gives one
+-- (b = { wx, wy, z }): end.board = a point on the deck, with z.
+local function withBoard(e, b)
+	if type(b) == "table" and type(b.wx) == "number" and type(b.wy) == "number" then
+		local p = point(e.name, e.c, b.wx, b.wy, e.map)
+		p.z = b.z
+		e.board = p
+	end
+	return e
+end
+
 local function clearData()
 	taxi, taxiList, taxiByName, flights = {}, {}, {}, {}
 	transports, inns, innByName, innByNpc, portals = {}, {}, {}, {}, {}
@@ -146,8 +164,8 @@ function Nav.RegisterTravelData(d, replace)
 		local a, b = t.a, t.b
 		transports[#transports + 1] = {
 			id = t.id, kind = t.kind, faction = t.faction,
-			a = point(a[1], a[2], a[3], a[4], a[5], a[6], a[7], a[8] or "e"),
-			b = point(b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8] or "e"),
+			a = withBoard(point(a[1], a[2], a[3], a[4], a[5], a[6], a[7], a[8] or "e"), a[9]),
+			b = withBoard(point(b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8] or "e"), b[9]),
 			ab = t.ab, ba = t.ba, waitA = t.waitA, waitB = t.waitB,
 		}
 	end
@@ -278,6 +296,8 @@ end
 --   taxi = { node, ... }, taxiById = { [id] = node }    node = { id, name, short, c, wx, wy, map, x, y, f, faction }
 --   flights = { [fromId] = { toId, yards, toId, yards, ... } }
 --   transports = { { id, kind, faction, a, b, ab, ba, waitA, waitB }, ... }, inns = { inn, ... },
+--     (a, b: the ends, at the ship's stop; end.board = { name, c, wx, wy, map, z }: where a ship
+--     lying off its pier is boarded, the dock the planner walks to)
 --   portals = { { id, kind = "portal", name, faction, a, b, seconds }, ... }
 function Nav.GetTravelData()
 	return { taxi = taxiList, taxiById = taxi, flights = flights, transports = transports, inns = inns, portals = portals, build = Travel.build }
@@ -468,11 +488,13 @@ function Nav.PlanRoute(p)
 	local rideTo, rideCost, dockEnd, dockOf, dockSide = {}, {}, {}, {}, {}
 	for _, t in ipairs(walkOnly and {} or transports) do
 		if allowed(t.faction, faction) and not (skip and skip.transports[t]) then
-			local va = add(DOCK, t.a.c, t.a.wx, t.a.wy, t, t.a.map)
-			local vb = add(DOCK, t.b.c, t.b.wx, t.b.wy, t, t.b.map)
+			-- The dock: the end's board point on the deck when its ship lies off the pier.
+			local da, db = t.a.board or t.a, t.b.board or t.b
+			local va = add(DOCK, da.c, da.wx, da.wy, t, da.map)
+			local vb = add(DOCK, db.c, db.wx, db.wy, t, db.map)
 			rideTo[va], rideTo[vb] = vb, va
 			rideCost[va], rideCost[vb] = t.waitA + t.ab, t.waitB + t.ba
-			dockEnd[va], dockEnd[vb] = t.a, t.b
+			dockEnd[va], dockEnd[vb] = da, db
 			dockOf[va], dockOf[vb] = t, t
 			dockSide[va], dockSide[vb] = "a", "b"
 		end
@@ -1813,9 +1835,9 @@ function Travel.Aim(pc, px, py)
 			if not passed and yards(pc, px, py, to.c, to.wx, to.wy) > (leg.radius or REACH) then
 				-- Along the walking engine's path when it has one (Nav/Walk.lua).
 				if W then
-					local gc, gx, gy = to.c, to.wx, to.wy
-					if P then gc, gx, gy = P.c, P.wx, P.wy end
-					local wc, wx, wy, left = W.Aim(pc, px, py, gc, gx, gy, leg.handmade)
+					local gc, gx, gy, gz = to.c, to.wx, to.wy, to.z
+					if P then gc, gx, gy, gz = P.c, P.wx, P.wy, P.leg.to.z end
+					local wc, wx, wy, left = W.Aim(pc, px, py, gc, gx, gy, leg.handmade, gz)
 					if wc then
 						left = left - (leg.tail or 0)
 						if left < 0 then left = 0 end

@@ -1846,6 +1846,13 @@ wait, never stops planning. `Transit.Teleports(now)` lists the castable teleport
 planned like the Hearthstone from the start. While a ride waits, the leg's
 caption gains `Transit.Caption` ("Next boat in 1:20"), refreshed every
 second; a crossing at a lift (`Transit.LiftNear`) the same.
+A transport end is its ship's stop; where the ship lies in the water off
+its pier, the end carries a board point on the deck (TravelData's `board`,
+below), and the dock vertex is there: the walk to the boat ends on the
+deck, with its height, and the boarding (60 yd), leaving (90 yd) and
+arrival (120 yd) checks measure from it. The ride, its caption and its
+timetable stay the transport's (`Nav.GetTravelData()` ends keep the stop,
+`end.board` the deck).
 `NAV_TRANSIT(changed, own)` plans again at once for the player's own rides
 and teleport changes (`own`, or `changed` nil); a shared time from another
 player only when a leg from the current one on uses a changed service
@@ -1892,8 +1899,9 @@ none). It goes to `Path.Find` as `to.z`, so the path ends on that floor; a
 search with it that fails, or whose path's last engine point before the goal
 lies more than 30 yd above or below it, is asked once more without it, and
 that answer stands for the goal (later searches for it, after straying, go
-without it too). Walks to a leg's end other than the target go without a
-height (docs/NAV_QA.md Z1-Z3).
+without it too). A walk to a leg's end with a height of its own (a dock's
+board point) carries that one the same way; walks to other leg ends go
+without a height (docs/NAV_QA.md Z1-Z3).
 Hand-made walks win: a walk leg from a crossing or chain waypoint, to a
 chain node past its mouth, or from inside a chain (`leg.handmade`), and a
 guide goal whose last located goal before it, across steps, is a `goto`
@@ -2063,6 +2071,20 @@ the build validates it and writes it into the local data addon
 with `RegisterCrossings` at load, which merges; installed when built, never
 packaged). Without the file nothing is written and TravelData.lua never holds
 it.
+
+**Board points.** A boat's stop (its TaxiPathNode stop) is where the ship
+lies, 12-14 yd off its pier in open water at most docks. `travel build`
+reads the navigation grid (`--grid <dir>`, default `data/local/nav4`;
+`--grid none` or no grid: no board points, one warning) and gives every end
+whose point is not on dry walkable ground (a grid column with a surface
+that is not swum, not blocked and above the water there) a board point
+`{ wx, wy, z }` (`tools/lib/travel/transports.js` `boardPoint`): the
+nearest such surface within 30 yd, in a region of at least `SNAP_REGION`
+surfaces and open both ways (path.js's snap rules: not a piling or a pocket
+under a floor), at equal distance the larger region (the one the town is
+in), then the lower surface; an end with none warns. travel.json carries it
+as the end's `board`, TravelData.lua as the end's ninth field. Zeppelin and
+tram ends stand on their platforms and get none.
 
 The crossings file (schema 1, Era map percent):
 

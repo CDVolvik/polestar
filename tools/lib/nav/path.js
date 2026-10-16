@@ -1015,4 +1015,4 @@ function openNav(opts = {}) {
 	return new Nav(opts);
 }
 
-module.exports = { openNav, Nav, SIMPLIFY };
+module.exports = { openNav, Nav, SIMPLIFY, SNAP_REGION };
