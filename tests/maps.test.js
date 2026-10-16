@@ -368,6 +368,34 @@ test('the compact tracker is off until a player turns it on, then shows while it
 	assert.equal(out.expired, false, 'hidden once the hour has passed');
 });
 
+test('with the lock on, only a Shift-drag moves the flight timer and the instance tracker', () => {
+	const [out] = run(`${FLY}
+		known(1, 3)
+		fly(1, 1, { 3 }, 600, 0, 40)
+		local function drag(f)
+			stub.RunScript(f, "OnDragStart")
+			local started = f.moving == true
+			f:StopMovingOrSizing()
+			return started
+		end
+		local r = {}
+		for _, name in ipairs({ "PolestarFlightTimer", "PolestarInstanceTracker" }) do
+			local f = stub.frame(name)
+			Polestar.Set("ui.lockHud", false)
+			stub.keys.shift = false
+			local unlocked = drag(f)
+			Polestar.Set("ui.lockHud", true)
+			local locked = drag(f)
+			stub.keys.shift = true
+			r[name] = { unlocked, locked, drag(f), f:IsMouseEnabled() }
+		end
+		emit(r)`);
+	assert.deepEqual(out, {
+		PolestarFlightTimer: [true, false, true, true],
+		PolestarInstanceTracker: [true, false, true, true],
+	}, 'unlocked: a plain drag; locked: only with Shift held');
+});
+
 // ---------------------------------------------------------------------------
 // World map zone info
 // ---------------------------------------------------------------------------
