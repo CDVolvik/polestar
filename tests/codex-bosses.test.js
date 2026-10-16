@@ -88,9 +88,9 @@ test('buildInstances: Wowhead location ties NPCs and chests to the instance; bos
 	const { instances, bossInstance, npcInstance } = buildInstances(facts, ctx());
 	const brd = instances['blackrock-depths'];
 	assert.deepEqual(brd.bosses, [
-		{ name: 'Lord Roccor', npc: 9025, items: [] },
-		{ name: 'The Seven', npc: null, items: [11920], object: 169243 },
-		{ name: 'Magmus', npc: 9938, items: [] },
+		{ name: 'Lord Roccor', npc: 9025, items: [], encounter: 1 },
+		{ name: 'The Seven', npc: null, items: [11920], object: 169243, encounter: 2 },
+		{ name: 'Magmus', npc: 9938, items: [], encounter: 3 },
 		{ name: 'Watchman Doomgrip', npc: 9476, items: [], role: 'optional' },
 		{ name: 'Gorosh the Dervish', npc: 9027, items: [1001], role: 'event' },
 		{ name: 'Panzor the Invincible', npc: 8923, items: [], role: 'rare' },
@@ -120,7 +120,7 @@ test('parseEntity reads the page entry location and boss flag; wowheadWants asks
 	assert.deepEqual(want.object, [123329, 169243]);
 });
 
-const LUA_FILES = { name: 'Polestar', files: ['Core/Init.lua', 'Core/Compat.lua', 'Core/Data.lua', 'Core/Guides.lua', 'Lookup/Codex.lua'] };
+const LUA_FILES = { name: 'Polestar', files: ['Core/Init.lua', 'Core/Compat.lua', 'Core/Data.lua', 'Core/Names.lua', 'Core/GuideTexts.lua', 'Core/Guides.lua', 'Lookup/Codex.lua'] };
 
 test('the pack carries chest bosses and roles; an encounter boss keeps the old bare npc ref', () => {
 	const codex = sampleCodex();

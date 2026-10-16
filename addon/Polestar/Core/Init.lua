@@ -52,7 +52,7 @@ end
 
 -- The interface's translations made with AI (tools/lib/i18n/locales.js,
 -- status "ai"; tests/i18n.test.js keeps the two lists equal).
-ns.AI_LOCALES = { esES = true, koKR = true, ptBR = true, ruRU = true, zhCN = true, zhTW = true }
+ns.AI_LOCALES = { koKR = true, ptBR = true, ruRU = true, zhCN = true, zhTW = true }
 
 -- True when this client reads an AI-made translation: its locale is one of
 -- AI_LOCALES and its file filled L. Options' About then says so.
@@ -168,13 +168,14 @@ end
 -- (the list: docs/ARCHITECTURE.md, "Gamepad interface"; the test:
 -- tests/gamepad-ui.test.js). The style is read once, as the addon loads:
 -- the client reloads the UI when it changes, and the slash commands are
--- registered then. Both the API and the CVar are read, as the CVar is set
--- before any addon loads.
+-- registered then. C_InputInterfaceStyle is the answer: the CVar
+-- InputDeviceInterfaceStyle can stay "1" (Gamepad) on a client playing with
+-- the keyboard and mouse, so it is read only on a client without the API.
 local function readGamepadUI()
 	local E = Enum and Enum.InputDeviceInterfaceType
 	if not (E and E.Gamepad) then return false end
 	local S = C_InputInterfaceStyle
-	if S and S.GetCurrentStyle and S.GetCurrentStyle() == E.Gamepad then return true end
+	if S and S.GetCurrentStyle then return S.GetCurrentStyle() == E.Gamepad end
 	local get = (C_CVar and C_CVar.GetCVar) or GetCVar
 	return get and tonumber(get("InputDeviceInterfaceStyle")) == E.Gamepad or false
 end

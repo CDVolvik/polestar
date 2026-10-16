@@ -319,12 +319,17 @@ end
 -- pack's ref is the bare npc id.
 local BOSS_ROLE = { r = "rare", e = "event", x = "optional" }
 
+-- Instance, faction and spell names in the client's language (Polestar.Names:
+-- the names pack's Map.csv and Faction names, the client's spell names), else
+-- the Codex's English.
 local function decodeInstance(group, id, s)
 	local t, n = split(s, ";")
+	local map = tonumber(t[4])
+	local N = ns.Names
 	local rec = {
-		key = id, name = nameOf(group, id),
+		key = id, name = (N and map and N.Instance(map)) or nameOf(group, id),
 		kind = unesc(t[1]), forever = t[2] == "1",
-		areaId = tonumber(t[3]), map = tonumber(t[4]),
+		areaId = tonumber(t[3]), map = map,
 		bosses = {},
 	}
 	if t[5] and t[5] ~= "" then
@@ -353,12 +358,14 @@ local function decodeInstance(group, id, s)
 end
 
 local function decodeFaction(group, id, s)
-	return { id = id, name = nameOf(group, id), side = unesc(s) }
+	local N = ns.Names
+	return { id = id, name = (N and N.Faction(id)) or nameOf(group, id), side = unesc(s) }
 end
 
 local function decodeSpell(group, id, s)
 	local t = split(s, ";")
-	return { id = id, name = nameOf(group, id), kind = unesc(t[1]), item = tonumber(t[2]), class = unesc(t[3]) }
+	local N = ns.Names
+	return { id = id, name = (N and N.Spell(id)) or nameOf(group, id), kind = unesc(t[1]), item = tonumber(t[2]), class = unesc(t[3]) }
 end
 
 local DECODE = {

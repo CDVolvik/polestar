@@ -99,7 +99,7 @@ L["rare"] = "редкий"
 L["%s or %s"] = "%s или %s"
 L["Kill %s for %s"] = "Убить %s и добыть %s"
 L["Collect %s from %s"] = "Собрать %s с %s"
--- L["Riding"] = ""
+L["Riding"] = "Верховая езда"
 
 -- Core/Closes.lua
 L["Taking %s closes %s for good."] = "Взяв %s, вы навсегда закроете %s."
@@ -180,7 +180,7 @@ L["Waypoint arrow: show, hide, reset"] = "Стрелка: показать, ск
 L["Usage: /polestar way <x> <y> [label]"] = "Использование: /polestar way <x> <y> [метка]"
 L["Point the arrow at x y on your current map (no argument clears it)"] = "Навести стрелку на x y на текущей карте (без аргументов — сбросить)"
 -- L["Shortest Path Forever is guiding a journey of its own. Polestar's arrow comes back when it ends."] = ""
--- L["Shortest Path Forever is guiding. Turn off \"Hand guiding to Shortest Path Forever\" (Options, Arrow & routes) to use Polestar's arrow."] = ""
+-- L["Shortest Path Forever is guiding. Turn off \"Hand guiding to Shortest Path Forever\" (Options, Integrations) to use Polestar's arrow."] = ""
 
 -- Nav/Arrow.lua
 L["Search here"] = "Ищите здесь"
@@ -217,6 +217,10 @@ L["Next zeppelin in about %s"] = "Следующий дирижабль прим
 L["Next tram in about %s"] = "Следующий поезд примерно через %s"
 L["Next lift in about %s"] = "Следующий подъемник примерно через %s"
 L["Timed the %s from your ride."] = "Время засечено по вашей поездке: %s."
+L["%s, north lift"] = "%s, северный подъемник"
+L["%s, south lift"] = "%s, южный подъемник"
+L["%s, east lift"] = "%s, восточный подъемник"
+L["%s, west lift"] = "%s, западный подъемник"
 
 -- Nav/Travel.lua
 L["Go to %s"] = "Идти в %s"
@@ -433,7 +437,7 @@ L["at level"] = "на уровне"
 L["Best pick"] = "Лучший выбор"
 L["Item"] = "Предмет"
 L["Reward pick"] = "Выбор награды"
--- L["weapon skill not trained"] = ""
+L["weapon skill not trained"] = "навык владения оружием не изучен"
 
 -- Gear/Options.lua
 L["Automatic (talents)"] = "Авто (таланты)"
@@ -498,8 +502,8 @@ L["Instances per day"] = "Подземелий в сутки"
 L["Classic Era allows 30 new instances per 24 hours per account; 0 ignores the daily cap. Forever may differ."] = "В Classic Era разрешено 30 новых подземелий за 24 часа на учетную запись; 0 — без суточного лимита. В Forever может отличаться."
 L["Clear instance history"] = "Очистить историю подземелий"
 L["Forgets recorded entries and runs (the server's own limit is not affected)."] = "Забывает записанные входы и проходы (лимит сервера не меняется)."
--- L["Minimap button"] = ""
--- L["A Polestar button on the edge of the minimap. Click to show or hide the guide, right-click for settings, drag to move it."] = ""
+L["Minimap button"] = "Кнопка у миникарты"
+L["A Polestar button on the edge of the minimap. Click to show or hide the guide, right-click for settings, drag to move it."] = "Кнопка Polestar на краю миникарты. Щелчок показывает или скрывает гайд, правый щелчок открывает настройки, перетаскивание перемещает ее."
 
 -- Maps/WorldMap.lua
 L["Player"] = "Игрок"
@@ -772,6 +776,10 @@ L["Dungeons are turned off (Options > Discovery > Dungeons)."] = "Подземе
 L["Dungeon quests, bosses and entrances"] = "Задания, боссы и входы подземелий"
 L["Dungeons"] = "Подземелья"
 L["A page per dungeon and raid: every quest with where to get it, its chain and rewards, the bosses and the entrance."] = "Страница для каждого подземелья и рейда: все задания с местом получения, цепочкой и наградами, боссы и вход."
+L["Kill %d %s"] = "Убить: %2$s (%1$d)"
+L["Collect %s"] = "Собрать: %s"
+L["Collect %d %s"] = "Собрать: %2$s (%1$d)"
+L["Use %s"] = "Использовать: %s"
 
 -- Dungeons/Pickup.lua
 L["Quest giver"] = "Дающий задание"
@@ -792,6 +800,19 @@ L["Where it is turned in is not known: %s."] = "Неизвестно, где с�
 -- Dungeons/Attune.lua
 L["%s drops it inside %s."] = "%s: выпадает внутри %s."
 L["%s: %s"] = "%s: %s"
+L["Lets Lothos Riftwaker in Blackrock Mountain send you to the Molten Core; without it, walk in through Blackrock Depths."] = "Позволяет Лотосу Странника Разломов в Черной горе отправить вас в Огненные Недра; без этого придется идти через Глубины Черной горы."
+L["Douses the Molten Core's runes; Majordomo Executus comes out only when every rune is doused. Duke Hydraxis hands it out once Hands of the Enemy is done."] = "Гасит руны Огненных Недр; мажордом Экзекутус появляется, только когда погашены все руны. Выдает герцог Гидраксис после выполнения задания «Руки врага»."
+L["Everyone entering Onyxia's Lair carries the Drakefire Amulet."] = "Каждый, кто входит в Логово Ониксии, должен иметь при себе Амулет Драконьего Огня."
+L["Lets you touch the Orb of Command in Upper Blackrock Spire to reach Blackwing Lair; without it, walk in through the spire."] = "Позволяет коснуться Сферы повиновения в верхней части пика Черной горы, чтобы попасть в Логово Крыла Тьмы; без этого придется идти через пик."
+L["Everyone entering Naxxramas needs it; which of the three quests you take depends on your standing with the Argent Dawn."] = "Нужен каждому, кто входит в Наксрамас; какое из трех заданий вы получите, зависит от вашей репутации у Серебряного Рассвета."
+L["Opens Scholomance's gate; one key opens it for the group."] = "Открывает ворота Некроситета; одного ключа достаточно для всей группы."
+L["Opens the Shadowforge gates in Blackrock Depths; one key opens them for the group."] = "Открывает ворота Тенегорна в Глубинах Черной горы; одного ключа достаточно для всей группы."
+L["Opens the cells of Blackrock Depths' prison."] = "Открывает камеры тюрьмы Глубин Черной горы."
+L["Opens the Eastwall Gate into Stratholme's Scourge-held districts."] = "Открывает Восточные врата в захваченные Плетью кварталы Стратхольма."
+L["Opens the inner doors of Dire Maul's North and West wings."] = "Открывает внутренние двери северного и западного крыльев Забытого Города."
+L["Opens Gnomeregan's back door, the Workshop entrance."] = "Открывает черный ход Гномрегана — вход через Мастерскую."
+L["Opens the doors of the Armory and the Cathedral."] = "Открывает двери Оружейной и Собора."
+L["Opens the gate of the Horde's way into the City of Dalaran; one key opens it for the group. The Alliance is sent in by the Image of Archmage Modera."] = "Открывает ворота на пути Орды в город Даларан; одного ключа достаточно для всей группы. Альянс отправляет внутрь Образ верховного мага Модеры."
 
 -- UI/UI.lua
 L["Map %d"] = "Карта %d"
@@ -916,7 +937,7 @@ L["Nice work. Pick your next guide to keep going."] = "Отлично! Выбе�
 L["Up next · 1 step"] = "Далее · 1 шаг"
 L["Up next · %d steps"] = "Далее · шагов: %d"
 L["Then:"] = "Затем:"
-L["Person %d of %d"] = "Персонаж %d из %d"
+L["Person %d of %d"] = "NPC %d из %d"
 L["Choose guide"] = "Выбрать гайд"
 L["Open in new tab"] = "Открыть в новой вкладке"
 L["Skip this step"] = "Пропустить шаг"
@@ -1574,9 +1595,9 @@ L["Search settings"] = "Поиск настроек"
 L["Open Polestar settings"] = "Открыть настройки Polestar"
 L["Close the game menu to see Polestar's settings (it cannot be closed for you in combat)."] = "Закройте игровое меню, чтобы увидеть настройки Polestar (в бою его нельзя закрыть за вас)."
 L["Close the game menu to see Polestar's settings."] = "Закройте игровое меню, чтобы увидеть настройки Polestar."
--- L["Integrations"] = ""
--- L["Settings for other addons Polestar works with, shown when they are installed."] = ""
--- L["None of the addons Polestar works with is installed."] = ""
+L["Integrations"] = "Интеграции"
+L["Settings for other addons Polestar works with, shown when they are installed."] = "Настройки других аддонов, с которыми работает Polestar; показываются, если они установлены."
+L["None of the addons Polestar works with is installed."] = "Ни один из аддонов, с которыми работает Polestar, не установлен."
 
 -- Rares/Rares.lua
 L["Raid warning"] = "Предупреждение рейда"
@@ -1780,9 +1801,9 @@ L["Balance"] = "Баланс"
 L["Feral"] = "Сила зверя"
 
 -- Maps/MinimapButton.lua
--- L["Click: show or hide the guide"] = ""
--- L["Right-click: settings"] = ""
--- L["Drag: move it around the minimap"] = ""
+L["Click: show or hide the guide"] = "Щелчок: показать или скрыть гайд"
+L["Right-click: settings"] = "Правый щелчок: настройки"
+L["Drag: move it around the minimap"] = "Перетаскивание: перемещение вокруг миникарты"
 
 -- UI/Gamepad.lua
 L["D-pad up"] = "Крестовина вверх"
@@ -1850,32 +1871,58 @@ L["Quest buttons"] = "Кнопки заданий"
 L["The guide window holds the gamepad until B: the D-pad picks a line, A points the arrow there or uses the item, X shows its details, LB and RB change steps, Y minimizes the window. A window that opened by itself, such as a route choice, waits for this button before it takes the gamepad."] = "Окно гайда держит геймпад до нажатия B: крестовина выбирает строку, A наводит туда стрелку или использует предмет, X показывает подробности, LB и RB переключают шаги, Y сворачивает окно. Окно, открывшееся само (например, выбор маршрута), ждет этой кнопки, прежде чем взять геймпад."
 
 -- Core/RoutePlan.lua
--- L["step %d"] = ""
--- L["%s · %s"] = ""
--- L["Turn in at this step · %s"] = ""
--- L["Turn in at %s"] = ""
--- L["Earlier turn-in · %s — check"] = ""
--- L["Skipped turn-in · %s — check"] = ""
--- L["Turn-in plan depends on your next route choice"] = ""
--- L["Next guide is not loaded; turn-in plan unavailable"] = ""
--- L["No turn-in in this route"] = ""
--- L["Select a guide to see its turn-in plan"] = ""
--- L["%s (optional)"] = ""
+L["step %d"] = "шаг %d"
+L["%s · %s"] = "%s · %s"
+L["Turn in at this step · %s"] = "Сдать на этом шаге · %s"
+L["Turn in at %s"] = "Сдать: %s"
+L["Earlier turn-in · %s — check"] = "Ранняя сдача · %s — проверьте"
+L["Skipped turn-in · %s — check"] = "Пропущенная сдача · %s — проверьте"
+L["Turn-in plan depends on your next route choice"] = "План сдачи зависит от вашего следующего выбора маршрута"
+L["Next guide is not loaded; turn-in plan unavailable"] = "Следующий гайд не загружен; план сдачи недоступен"
+L["No turn-in in this route"] = "На этом маршруте сдачи нет"
+L["Select a guide to see its turn-in plan"] = "Выберите гайд, чтобы увидеть план сдачи"
+L["%s (optional)"] = "%s (необязательно)"
 
 -- UI/QuestieTurnIns.lua
--- L["Polestar: %s"] = ""
--- L["Show planned turn-ins in Questie"] = ""
--- L["Completed quests in Questie's tracker show their Polestar turn-in step. Earlier, skipped and unplanned hand-ins are flagged."] = ""
+L["Polestar: %s"] = "Polestar: %s"
+L["Show planned turn-ins in Questie"] = "Показывать запланированные сдачи в Questie"
+L["Completed quests in Questie's tracker show their Polestar turn-in step. Earlier, skipped and unplanned hand-ins are flagged."] = "У выполненных заданий в трекере Questie показывается шаг сдачи из Polestar. Ранние, пропущенные и незапланированные сдачи отмечаются."
+
+-- Talents/Builds.lua
+L["Holy"] = "Свет"
+L["Protection"] = "Защита"
+L["Level as Retribution (quickest solo, with a two-hander and Seal of Command) or Protection (safe group pulls, dungeon-tank ready). Holy suits raids; it can level through its melee build, more slowly, if you want to heal dungeons on the way."] = "Качайтесь в Воздаянии (быстрее всего в одиночку, с двуручным оружием и Печатью повеления) или в Защите (безопасные групповые пулы, готовность танковать подземелья). Свет подходит для рейдов; в нем можно качаться через ближний бой, но медленнее, если хотите по пути лечить в подземельях."
+L["Start with Divine Intellect: more mana means you can melee and still cover your own (or a group's) healing."] = "Начните с Божественного интеллекта: больше маны — значит, можно драться в ближнем бою и при этом лечить себя (или группу)."
+L["Improved Seals raises every seal and Judgement here, which is where Holy's leveling damage comes from."] = "Улучшенные печати усиливают здесь все печати и Правосудие — отсюда и берется урон Света при прокачке."
+L["Reverence keeps a trickle of regen going while casting; three ranks unlock Illumination."] = "Почтение поддерживает небольшое восполнение маны во время произнесения заклинаний; три ранга открывают Озарение."
+L["Illumination refunds mana on critical heals and is the heart of Holy's staying power."] = "Озарение возвращает ману при критических исцелениях и является основой выносливости Света."
+L["Holy Shock is a talent on Forever: an instant heal or Holy hit, handy for emergencies and for pulling."] = "Шок небес на Forever — это талант: мгновенное исцеление или удар Светом, полезный в экстренных случаях и для пулла."
+L["Holy Power raises Holy Shock's crit chance, feeding Illumination and Infusion of Light."] = "Сила Света повышает шанс критического эффекта Шока небес, питая Озарение и Прилив Света."
+L["Light's Vigil turns Holy Shock into a group-heal burst; this is the signature Forever Holy talent."] = "Бдение Света превращает Шок небес во всплеск группового исцеления; это фирменный талант Света на Forever."
+L["The remaining 20 points go to Retribution: cheaper spells and more melee crit while questing, ending in Seal of Command."] = "Оставшиеся 20 очков идут в Воздаяние: более дешевые заклинания и больше критических ударов в ближнем бою при выполнении заданий, а в конце — Печать повеления."
+L["Open with Redoubt: blocking pays off at once, and Shield Specialization needs all five ranks."] = "Начните с Несокрушимости: блок окупается сразу, а Специализации на щитах нужны все пять рангов."
+L["Precision and Anticipation help you land hits and dodge them while questing with a shield."] = "Точность и Предвидение помогают попадать и уклоняться при выполнении заданий со щитом."
+L["Improved Seal of Fury and Improved Righteous Fury begin the mana and mitigation cycle Forever tanking is built on."] = "Улучшенная печать ярости и Улучшенное праведное неистовство запускают цикл маны и снижения урона, на котором построено танкование на Forever."
+L["Around 20 points in, you match the usual dungeon-tank setup: Shield Specialization, Sacred Duty and Swift Judgement are complete."] = "Примерно к 20 очкам вы получаете обычную сборку танка подземелий: Специализация на щитах, Священный долг и Быстрое правосудие завершены."
+L["Templar's Bulwark is an absorb cooldown that scales with your health, and Holy Shield later in the plan requires it."] = "Оплот тамплиера — поглощающая способность с перезарядкой, зависящая от вашего здоровья; она требуется для Щита небес позже в плане."
+L["Iron Creed adds threat and damage reduction to Holy Strike while Righteous Fury is active."] = "Железное кредо добавляет угрозу и снижение урона к Удару Света, пока активно Праведное неистовство."
+L["Holy Shield is the capstone: more block uptime, with Holy damage each time you block. Ideal for pulling packs."] = "Щит небес — вершина ветки: блок чаще, и каждый блок наносит урон от сил Света. Идеально для пулла групп противников."
+L["Leftover points buy armor, a quicker Hammer of Justice, and Holy Strength and seal damage for leveling."] = "Оставшиеся очки идут на броню, более быстрый Молот правосудия, а также Силу небес и урон печатей для прокачки."
+L["Benediction lowers the mana cost of Judgement, Holy Strike and seals, so you rest less between fights."] = "Благодать снижает стоимость Правосудия, Удара Света и печатей, так что между боями отдыхать нужно меньше."
+L["Seal of Command is the main two-hander seal for leveling; take it as soon as it opens."] = "Печать повеления — основная печать для двуручного оружия при прокачке; берите ее, как только она откроется."
+L["Sanctified Judgement gives mana back and is the prerequisite arrow for Vengeance."] = "Освященное правосудие возвращает ману и является обязательной стрелкой к Отмщению."
+L["Sacred Arbiter strengthens Holy Strike and keeps Judgements rolling, and completes the 20 points row 5 asks for."] = "Священный арбитр усиливает Удар Света, поддерживает Правосудие и добирает 20 очков, нужных для 5-го ряда."
+L["Vengeance, then Two-Handed Weapon Specialization: the crit-driven damage core of the two-hander plan."] = "Отмщение, затем Специализация на двуручном оружии: критическое ядро урона плана с двуручным оружием."
+L["Pursuit of Justice adds run speed. Champion of the Light is left out while the Retribution Aura spell-power bug keeps spell damage low."] = "Поиск справедливости повышает скорость бега. Поборник Света не берется, пока ошибка силы заклинаний Ауры воздаяния занижает урон от заклинаний."
+L["Twist of Light makes swapping seals cheaper and adds seal echoes; it is Forever's seal-twisting talent."] = "Поворот Света удешевляет смену печатей и добавляет эхо печатей; это талант Forever для переключения печатей."
+L["Spare points go to Divine Strength and Holy's Improved Seals for damage, then Deflection for survival."] = "Свободные очки идут в Божественную силу и Улучшенные печати Света ради урона, затем в Отражение ради выживаемости."
 
 -- Nav/Handoff.lua
 -- L["Hand guiding to Shortest Path Forever"] = ""
 -- L["Shortest Path Forever's arrow, route and journey take you to each goal. Polestar's arrow, route lines, journey steps, travel button, transport alerts, map clicks and /way step aside; the guide window and map pins stay. Off: Polestar guides, and steps aside only while a journey you started in Shortest Path Forever runs."] = ""
 
--- Talents/Builds.lua
--- L["Holy"] = ""
--- L["Protection"] = ""
-
 -- No longer in the code (its English changed or it went away): reuse or delete.
 -- L["Shortest Path Forever is guiding. Turn off \"Guide with Shortest Path Forever when it's installed\" (Options, Arrow & routes) to use Polestar's arrow."] = "Ведет Shortest Path Forever. Отключите «Вести через Shortest Path Forever, если он установлен» (Настройки, Стрелка и маршруты), чтобы использовать стрелку Polestar."
+-- L["Shortest Path Forever is guiding. Turn off \"Guide with Shortest Path Forever when it's installed\" (Options, Integrations) to use Polestar's arrow."] = "Сейчас ведет Shortest Path Forever. Чтобы использовать стрелку Polestar, отключите \"Вести через Shortest Path Forever, если он установлен\" (Настройки, Интеграции)."
 -- L["Guide with Shortest Path Forever when it's installed"] = "Вести через Shortest Path Forever, если он установлен"
 -- L["Shortest Path Forever's arrow, route and journey take you to each goal. Polestar's arrow, route lines, journey steps, travel button, transport alerts, map clicks and /way step aside; the guide window and map pins stay."] = "Стрелка, маршрут и путь Shortest Path Forever ведут к каждой цели. Стрелка Polestar, линии маршрута, шаги пути, кнопка пути, оповещения о транспорте, щелчки по карте и /way отключаются; окно гайда и метки на карте остаются."

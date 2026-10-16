@@ -246,9 +246,6 @@ local BUILTIN = {
 			end },
 		{ kind = "toggle", key = "ui.classAccent", label = L["Class colour"],
 			help = L["The accent follows your class: warlock purple, shaman blue, druid orange. Picking your own accent turns this off."] },
-		{ kind = "toggle", key = "ui.matchAccent", label = L["Match EllesmereUI accent"],
-			help = L["Follow EllesmereUI's accent, live. Picking your own accent turns this off."],
-			needs = function() return Theme.IsEllesmere() end },
 	} },
 	{ page = LOOK, tab = L["Colour & type"], section = L["Background"], controls = {
 		{ kind = "dropdown", key = "ui.scheme", label = L["Colour scheme"],
@@ -279,9 +276,6 @@ local BUILTIN = {
 				ns.Set("ui.font", v)
 				if Theme.IsEllesmere() then ns.Set("ui.matchFont", false) end
 			end },
-		{ kind = "toggle", key = "ui.matchFont", label = L["Match EllesmereUI font"],
-			help = L["Follow EllesmereUI's font, live. Choosing another font turns this off."],
-			needs = function() return Theme.IsEllesmere() end },
 		{ kind = "toggle", key = "ui.reduceMotion", label = L["Reduce motion"], help = L["No sliding or popping; fades stay short."] },
 	} },
 	{ page = LOOK, tab = L["Windows"], section = L["Frame"], controls = {
@@ -377,6 +371,14 @@ for _, spec in ipairs(BUILTIN) do add(spec, true) end
 add({ page = L["Integrations"], key = "integrations", icon = "plug", order = 65,
 	subtitle = L["Settings for other addons Polestar works with, shown when they are installed."],
 	empty = L["None of the addons Polestar works with is installed."] }, true)
+add({ page = L["Integrations"], section = "EllesmereUI", controls = {
+	{ kind = "toggle", key = "ui.matchAccent", label = L["Match EllesmereUI accent"],
+		help = L["Follow EllesmereUI's accent, live. Picking your own accent turns this off."],
+		needs = function() return Theme.IsEllesmere() end },
+	{ kind = "toggle", key = "ui.matchFont", label = L["Match EllesmereUI font"],
+		help = L["Follow EllesmereUI's font, live. Choosing another font turns this off."],
+		needs = function() return Theme.IsEllesmere() end },
+} }, true)
 
 ---------------------------------------------------------------------------
 -- Custom pages: Recorder status and About

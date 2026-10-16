@@ -1639,13 +1639,17 @@ local TEXT_IS_PLACE = { ["goto"] = true, explore = true }
 
 -- Plain text, independent of the goal's state: "Kill Kobold Vermin" (with a
 -- progress bar), "Kill 5 Young Wolf" (manual, no tracking). Second: a
--- collect's compiled source (`from`, `fromAlso`, `fromKind`, `fromRank`,
--- `fromFaction`; an NPC of a faction that is not the character's own is one
--- to kill), `inText` when the text names it.
+-- collect's compiled source (`from`, `fromAlso`, named in the client's
+-- language by `fromId`, `fromAlsoId`; `fromKind`, `fromRank`, `fromFaction`;
+-- an NPC of a faction that is not the character's own is one to kill),
+-- `inText` when the text names it.
 local function goalText(goal, verb, subject, detail)
+	local fromKind = goal.fromKind or "npc"
+	local nameOf = fromKind == "object" and ns.Names.Object or ns.Names.Npc
 	local src = goal.from and {
-		name = goal.from, also = goal.fromAlso, kind = goal.fromKind or "npc", rank = goal.fromRank,
-		enemy = (goal.fromKind or "npc") == "npc" and not (goal.fromFaction == "AH"
+		name = nameOf(goal.fromId) or goal.from, also = goal.fromAlso and (nameOf(goal.fromAlsoId) or goal.fromAlso),
+		kind = fromKind, rank = goal.fromRank,
+		enemy = fromKind == "npc" and not (goal.fromFaction == "AH"
 			or (goal.fromFaction == "A" and player and player.faction == "Alliance")
 			or (goal.fromFaction == "H" and player and player.faction == "Horde")),
 	} or nil
@@ -1657,7 +1661,7 @@ local function goalText(goal, verb, subject, detail)
 	-- a collect whose source is known says where the item comes from (the
 	-- game's objective only names the item); not an object named as the item
 	-- (the item lying there).
-	if goal.t == "collect" and subject and src and src.name ~= goal.itemName then
+	if goal.t == "collect" and subject and src and goal.from ~= goal.itemName then
 		local item = counted and (goal.count .. " " .. subject) or subject
 		local who = src.name
 		local rank = src.rank and ({ L["elite"], L["rare elite"], L["boss"], L["rare"] })[src.rank]

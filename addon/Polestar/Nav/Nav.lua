@@ -529,7 +529,7 @@ function Nav.SayHandedOff()
 	if H and H.Yielding and H.Yielding() then
 		ns.Print(L["Shortest Path Forever is guiding a journey of its own. Polestar's arrow comes back when it ends."])
 	else
-		ns.Print(L["Shortest Path Forever is guiding. Turn off \"Hand guiding to Shortest Path Forever\" (Options, Arrow & routes) to use Polestar's arrow."])
+		ns.Print(L["Shortest Path Forever is guiding. Turn off \"Hand guiding to Shortest Path Forever\" (Options, Integrations) to use Polestar's arrow."])
 	end
 	return true
 end

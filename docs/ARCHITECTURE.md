@@ -270,7 +270,9 @@ Polestar.RunCommand(msg)       -- what /polestar runs; registered as a slash com
 ```
 
 With Forever's Gamepad interface on (Options, Gamepad, Enable Gamepad UI;
-`C_InputInterfaceStyle`, CVar `InputDeviceInterfaceStyle`), its navigation
+`C_InputInterfaceStyle`, which decides: the CVar `InputDeviceInterfaceStyle`
+can stay at Gamepad with the keyboard and mouse, so it is read only on a
+client without the API), its navigation
 (`Blizzard_GamepadSmartNavigation`, `FrameControlsManager`) opens, closes
 and focuses the game's windows, popups, menus and chat box from Blizzard's
 code, and in the same execution makes protected calls
@@ -358,10 +360,15 @@ labels holds `L["Home"]`, not `"Home"` translated later through
 `L[VIEW_LABEL[v]]`. `L[variable]` is left only for text that comes from data
 (a guide's category, race and class names, profession and spec names, the
 talent plans' spec names, the release stage), each listed in `DATA_KEYS`
-(`tools/lib/i18n/keys.js`, which also reads Gear/Weights.lua's spec labels
-and Talents/Builds.lua's `specs`). The optional Recorder has its own `ns.L`
-and `Locales/<locale>.lua` (listed in its TOC); `i18n check` and `sync`
-cover it too.
+(`tools/lib/i18n/keys.js`, which also reads Gear/Weights.lua's spec labels,
+Talents/Builds.lua's `specs` and the Dungeons attunement notes of
+`tools/lib/codex/attunements.json`). Generated files carry their prose as
+literal keys too: `talents build` writes the plan summary and per-level notes
+as `L["..."]` in `Talents/Builds.lua`. Data that names a game thing carries
+its id instead, and the display asks `Polestar.Names` (quests, NPCs, objects,
+items, spells, factions, instances, areas, flight points, encounters). The
+optional Recorder has its own `ns.L` and `Locales/<locale>.lua` (listed in
+its TOC); `i18n check` and `sync` cover it too.
 
 `Polestar.AI_LOCALES` names the languages whose translation is AI-made
 (`status: "ai"` in locales.js; `tests/i18n.test.js` keeps the two equal). On
@@ -447,17 +454,77 @@ Names.Add(locale, kind, { [id] = name })   -- the pack's files only; any kind
   non-English client each Codex kind's index gets, once, a line per id whose
   translated name (or, for zones, the client's map name) differs, a match
   counts an id once and is listed under its translated name. The collect
-  goals' compiled sources (`from`, `fromAlso`) carry no id and stay English.
+  goals' compiled sources carry their ids (`fromId`, `fromAlsoId`, of kind
+  `fromKind`), so the goal line names them in the client's language;
+  `from` and `fromAlso` are the English for older packs and English clients.
 - **The packs.** One load-on-demand addon per language
   (`addon/Polestar_Names_<locale>/`: `Names.lua` calling `Names.Add` per
-  1,000 names, the TOC, `LICENSE-DATA.txt`, Ding's `CREDITS.md`), committed
-  and shipped. `node tools/polestar.js i18n names` builds them from DingDB
-  (cloned into `data/sources/ding`, pinned to a commit and its files'
-  sha256s: `DING` in `tools/lib/i18n/names.js`) and, for the names it lacks,
-  pfQuest's `db/<locale>` (no esMX), keeping only the ids the compiled guides,
-  the quest database and the Codex's data name. `--no-questie` leaves DingDB
-  out. `Data.CheckInstall` checks the client's pack like the other optional
-  data packs: never missing, named when its version differs.
+  1,000 names and kind, the TOC, `LICENSE-DATA.txt`, Ding's `CREDITS.md`),
+  committed and shipped. Kinds: `quest`, `npc`, `object`, `item`, and `map`
+  (instance maps), `encounter` (DungeonEncounter ids), `faction`, `taxi`
+  (TaxiNodes ids) and `objective` (the objective text of the dungeon quests
+  whose objective is an event). `node tools/polestar.js i18n names` builds
+  them, per id the first source with a name winning: the client's own
+  tables in that language (wago.tools with `&locale=`: Forever's ItemSparse,
+  Map, DungeonEncounter, Faction and TaxiNodes, then the Era client's
+  ItemSparse for the items Forever's lacks; the newest build holding every
+  one in English and each language, and none stops the build), Wowhead's
+  Forever database in that language (its list pages for the id ranges
+  holding a wanted id, then tooltips for ids no list holds; one request at a
+  time, at least 2 s apart, cached in `data/sources/wowhead/names`; a
+  bracketed name is no translation), DingDB (cloned into
+  `data/sources/ding`, pinned to a commit and its files' sha256s: `DING` in
+  `tools/lib/i18n/names.js`), then pfQuest's `db/<locale>` (no esMX). A name
+  equal to the English one, from any source, is never stored: a translation
+  from a later source wins, else the English shows as it would; a name
+  marking unused content (`[PH]`, `[UNUSED]`, `(DNT)`, `<NYI>`, `(test)`
+  and their translations) is none. Areas need no pack: the client names
+  them by id (`Compat.GetAreaName`). Only the ids the compiled guides, the
+  quest database, the Codex's data and the travel data name are kept.
+  `--no-questie` leaves DingDB out. `Data.CheckInstall` checks the client's
+  pack like the other optional data packs: never missing, named when its
+  version differs.
+
+### Guide texts
+
+`Polestar.GuideTexts` (`Core/GuideTexts.lua`) shows a guide's own words in
+the client's language. A compiled guide's texts (its `title`, `why`, `pitch`,
+`pros`, `cons` and reward `text`; each step's `title` and `note`; each goal's
+`note` and `text`) carry the game's names as tokens, `{kind:id}`, and the
+guide's `names` hold each token's English (tools/lib/dsl/tokens.js;
+docs/PACK_FORMAT.md, "Format 3"). `RegisterGuide` hands each guide to
+`GuideTexts.Prepare` before escaping it, which rewrites every text in place
+as the pack's translation into the client's language (else the English)
+with each token filled: `Names.Cached` for quests, NPCs, objects and items
+(never asking the server), `Names.Get` for spells, factions and areas, the
+client's map name for a zone, `L` for a profession; else the token's
+English. A guide's `folder` and the pack's title and notes are the pack's own
+texts; a folder named after a class reads as `LOCALIZED_CLASS_NAMES_MALE`'s.
+
+```
+GuideTexts.Prepare(def, live) / GuideTexts.Refresh(def) -> changed
+GuideTexts.Load(addon) -> "loaded" | "combat" | nil
+GuideTexts.TextsAddon(addon) -> "<addon>_<locale>" | nil   -- nil on English
+GuideTexts.PackText(packId, text) -> translation | text
+Polestar.RegisterGuideTexts(locale, packId, { pack = {...}, guides = { [id] = {...} } })
+```
+
+- **Loading.** The translations of a pack are its texts addon for the
+  client's language, `<pack addon>_<locale>` (load on demand, generated by
+  `compile` from the pack's `locales/<locale>/` files): only that one loads,
+  only on that client, through `Data.Pack`, at the pack's own
+  `ADDON_LOADED`. While the pack's files load, its guides show their English
+  names (asking Names then would load the names pack in the middle of
+  another addon's files); at its `ADDON_LOADED` `Core/Guides.lua` loads the
+  texts addon and refreshes the pack's guides, their headers and the pack's
+  title and notes, with the names. A texts addon refused in combat loads on
+  `PLAYER_REGEN_ENABLED`; a names pack landing late (`NAMES_LOADED`)
+  refreshes every guide; a refresh after login fires `GUIDES_REGISTERED`, so
+  the guide window, the menus and search read the new texts.
+- **English clients** fill the tokens once at registration and keep nothing
+  else; no texts addon loads.
+- `Data.CheckInstall` checks the client's texts addon of our pack like the
+  names pack: never missing, named when its version differs.
 
 ### Compat — the client's game data goes through here
 
@@ -1482,7 +1549,7 @@ Polestar.Pins.MinimapCursor() -> dNorth, dWest | nil      -- yards from the play
   never mirrors into it. Default off: the stand-in has methods only, so an
   addon that finds the global and reads TomTom's settings (`TomTom.db`, its
   profile) would error; the option ("Let other addons set waypoints",
-  Options, Arrow & routes, Other waypoints) says so. With it off nothing sets
+  Options, Integrations, TomTom) says so. With it off nothing sets
   `TomTom` and `/way` is not claimed.
 - **Following TomTom** (`nav.followTomTom`, off; real TomTom only): hooks on
   TomTom's table: `SetCrazyArrow(uid)` points Polestar's arrow at that
@@ -1518,9 +1585,9 @@ and `NavigateRoute` or `Navigate`; every other function checked before it is
 called, as its `minor` grows) the two never guide at once:
 
 - **Hand-off** (`nav.spfHandoff` on; an option, off by default since 0.2.5:
-  Options, Arrow & routes, Routes: "Hand guiding to Shortest Path Forever",
-  shown only with it installed): Polestar's target is guided by it and
-  Polestar's own guidance steps aside.
+  Options, Integrations, Shortest Path Forever: "Hand guiding to Shortest
+  Path Forever", shown only with it installed): Polestar's target is guided
+  by it and Polestar's own guidance steps aside.
 - **Yield** (the option off, the default): Polestar guides, and steps aside
   exactly as it does when handing off while Shortest Path Forever runs a
   journey that is not Polestar's (`Active()` true and no
@@ -2013,7 +2080,12 @@ lift is a walk to the landing the path reaches first ("Walk to The Great
 Lift, Bottom": the side comes from the path's direction, K4) and a `lift`
 leg to its paired landing ("Take The Great Lift"), timed and captioned by
 `Transit.NextDeparture`/`Caption("lift", ...)` (30 s without); other steps
-carry no wait (K3). The pieces' seconds are whole seconds of the path at run
+carry no wait (K3). The names in the captions are the client's, in its
+language: each chokepoint carries the AreaTable ids of its name, zone and
+sides (`area`, `zoneArea`, read with `Names.Area`) and a lift its
+GameObject (`liftObject`, the names pack's object name, else the Transit
+lift's area name); the English names are kept for enUS and as the fallback.
+The pieces' seconds are whole seconds of the path at run
 speed that add up exactly to the walk (K6), and every piece keeps `parent`
 (the whole walk), `seg` (the path segment its end lies on) and `tail` (path
 yards after it): the arrow keeps following the one path to the whole walk's
@@ -2072,7 +2144,13 @@ inns from the client tables, learned paths, the shipped zone crossings, and
 crossings learned from zone changes in recordings,
 `tools/lib/travel/crossings.js` `recordedCrossings`, registered with
 `complete = false`: they refine a continent that has full crossing data and
-change nothing elsewhere). The shipped crossings are the full crossing data
+change nothing elsewhere). Names the player reads come from the client in
+its language: a flight master by its TaxiNodes id (`Travel.TaxiName`, the
+names pack's `taxi`), a dock, portal end, teleport landing or inn by the
+AreaTable area each carries (`Travel.PlaceName`, `Names.Area`), a boat's
+route from its two ends' areas, the tram and the lifts by their area
+(`L["%s, east lift"]` and its kin), a class teleport by its spell; the
+English names stay for enUS, logs and matching. The shipped crossings are the full crossing data
 of both continents (`complete = true`): `tools/lib/travel/crossings.json`,
 committed, written by `node tools/polestar.js travel import --carbonite
 <ZoneConnections.lua> --source <text>` from Carbonite's Classic Era zone
@@ -2099,8 +2177,9 @@ nearest such surface within 30 yd, in a region of at least `SNAP_REGION`
 surfaces and open both ways (path.js's snap rules: not a piling or a pocket
 under a floor), at equal distance the larger region (the one the town is
 in), then the lower surface; an end with none warns. travel.json carries it
-as the end's `board`, TravelData.lua as the end's ninth field. Zeppelin and
-tram ends stand on their platforms and get none.
+as the end's `board`, TravelData.lua as the end's tenth field (after its
+AreaTable area). Zeppelin and tram ends stand on their platforms and get
+none.
 
 The crossings file (schema 1, Era map percent):
 
@@ -2790,21 +2869,31 @@ game event (pfQuest's `event`: the Darkmoon Faire, the holidays, the war
 efforts) is on a page only where QuestieDB or Wowhead files it (Copper
 Modulator, Rinling's Faire turn-in, is on none). What no rule can catch is
 in the cited table `tools/lib/codex/journal-quests.json` (Shards of the
-Felvine). Each quest has giver and ender and their positions, our own
-objective line, chain (every prerequisite and breadcrumb of the quest's side,
+Felvine). Each quest has giver and ender and their positions, its objective
+facts (`objectives`: kind, NPC, item or object id, count and the English
+name; the escorts' and events' text), composed at run time into our own
+objective line in the client's language (`Dungeons.ObjectiveText`:
+`L["Kill %d %s"]`, `L["Collect %d %s"]`, `L["Use %s"]` with the names from
+`Polestar.Names`; an event's line is the quest's own objective summary from
+the names pack, kind `objective`), chain (every prerequisite and breadcrumb of the quest's side,
 all of `pre` and `preAny`, oldest first, at most 20), rewards (items with
 quality, count and choice from recordings and ForeverLevelingBiS, else
 Wowhead's list rewards, choice versus fixed as Wowhead files them; XP from
 `quests.json`; money, else Wowhead's; reputation from Wowhead's rewards, its
 "+1" placeholders left out, never the standing a quest asks for) and, with
 `--local-extras`, DungeonJournal's audited shareability; bosses in kill order
-with the quests tied to them; entrances from the Codex, else the client's Map
+with the quests tied to them (an encounter's boss carries its DungeonEncounter
+id, `encounter`, for its name in every language); entrances from the Codex, else the client's Map
 table (the corpse point, placed on its zone); and the page's `attunement`
-list (below). No loot tables. `codex attune` writes the local comparison with
+list (below). No loot tables. The page also carries the instance's Map id
+(`map`): the list shows the dungeon's name in the client's language
+(`Names.Instance`) and its zone's (`C_Map`); attunement notes are our prose,
+read through `L[note]` (`i18n keys` lists them from
+`tools/lib/codex/attunements.json`). `codex attune` writes the local comparison with
 the Attune addon (`tools/lib/codex/questaudit.js`,
 `tools/lib/consume/attune.js`; `data/local/dungeon-quests-audit.md` and
 `.json`, then the attunements report). Runtime: `addon/Polestar/Dungeons/Dungeons.lua`
-(`Polestar.Dungeons`: List, Get, Entrance, Quests, Quest, Bosses, Open,
+(`Polestar.Dungeons`: List, Get, Entrance, Quests, Quest, ObjectiveText, Bosses, Open,
 GuideTo, GuideToPoint, ShowOnMap; `SHOW_DUNGEON`). `dungeons build` writes no
 guides.
 

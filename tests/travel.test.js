@@ -393,7 +393,7 @@ test('the Hearthstone coming off cooldown mid-ride does not re-plan from the boa
 
 // Playtest: at Auberdine the walk to the boat ended at the ship's stop, in
 // the water off the pier, and swam. An end with a board point (TravelData's
-// 9th field: the deck, from the navigation grid) is the dock: the walk ends
+// 10th field, after the area: the deck, from the navigation grid) is the dock: the walk ends
 // there, with its height, and boarding, leaving and arrival measure from it.
 // The board points here lie 70 yd off their stops (real ones are 12-14 yd),
 // past BOARD (60 yd), so measuring from the stop shows.
@@ -401,8 +401,8 @@ test('a boat end with a board point: the walk ends on the deck, and arriving the
 	const [out] = run(`
 		N.RegisterTravelData({ build = "test", taxi = {}, flights = {}, inns = {},
 			transports = { { id = "boat-test", kind = "boat", faction = 3, ab = 60, ba = 60, waitA = 30, waitB = 30,
-				a = { "Testshire Docks", 0, -900, 0, 9000, 50, 95, "e", { wx = -900, wy = 70, z = 5.9 } },
-				b = { "Farland Pier", 1, 400, 0, 9001, 50, 10, "e", { wx = 400, wy = 70, z = 4.5 } } } } }, true)
+				a = { "Testshire Docks", 0, -900, 0, 9000, 50, 95, "e", nil, { wx = -900, wy = 70, z = 5.9 } },
+				b = { "Farland Pier", 1, 400, 0, 9001, 50, 10, "e", nil, { wx = 400, wy = 70, z = 4.5 } } } } }, true)
 		local function at(p) return p and { p.c, p.wx, p.wy, p.z or "none" } end
 		local r = {}
 		nav.place(0, 0, 1)                               -- Farland, continent 1

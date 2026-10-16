@@ -130,7 +130,11 @@ Write every player-facing text as a literal `L["..."]` (or
 adding, changing or removing texts, run `node tools/polestar.js i18n sync`
 and commit the locale files with the change: a stale key fails `npm test`. A
 text looked up through a variable (`L[category]`) must be listed in
-`DATA_KEYS` in `tools/lib/i18n/keys.js`. A game term the client names
+`DATA_KEYS` in `tools/lib/i18n/keys.js` (the Dungeons attunement notes are
+read from `tools/lib/codex/attunements.json` there); a generator writes its
+prose as literal keys (`talents build`: the plan notes in `Talents/Builds.lua`).
+Data that names a game thing carries its id, never its English name alone, so
+the display can ask `Polestar.Names` for it. A game term the client names
 (`ITEM_QUALITY3_DESC`, `FACTION_HORDE`…) is read from the client, not put in
 `L`, and its English value goes in `tests/lua/wow_stub.lua`. Tests that need a
 translated client fake a language Polestar does not ship:
@@ -138,31 +142,116 @@ translated client fake a language Polestar does not ship:
 
 ## Game names
 
-Quest, NPC, object and item names are not translated by hand: they are the
-game's own. A client in another language reads them from the client where it
-has them (quest titles, item names) and from Polestar's names addon of its
-language, `Polestar_Names_<locale>` (DingDB's names, by Yendi, then pfQuest's
-for the ones DingDB lacks), loaded only on that client. A name neither has
-stays English. The client is the truth: a name it shows in play (an NPC
-targeted, moused over or talked to, a quest-giving object opened) is kept,
-per language, and shown from then on. docs/ARCHITECTURE.md, "Names", has
-the details.
+Names of quests, NPCs, objects, items, instances, dungeon encounters,
+factions and flight points are not translated by hand: they are the game's
+own. A client in another language reads them from the client where it has
+them (quest titles, item names) and from Polestar's names addon of its
+language, `Polestar_Names_<locale>`, loaded only on that client. A name no
+source has stays English. The client is the truth: a name it shows in play
+(an NPC targeted, moused over or talked to, a quest-giving object opened) is
+kept, per language, and shown from then on. docs/ARCHITECTURE.md, "Names",
+has the details.
 
-- `node tools/polestar.js i18n names [<locale>...]` rebuilds the addons from
-  DingDB (cloned into `data/sources/ding` at the commit pinned in
-  `tools/lib/i18n/names.js`, every file checked against its sha256) and
-  pfQuest's `db/<locale>` (the clone `data build` uses), keeping only the ids
-  the compiled guides, the quest database (`questdb build`, or `--questdb
-  <dir>`) and the Codex's data (`codex build`, or `--codex <dir>`) name.
-  `--no-questie` leaves DingDB out. Commit the folders it writes.
-- A wrong name is fixed at its source: in DingDB (tell Yendi, then move the
-  pin to his new commit and rebuild) or, for one only pfQuest has, in pfQuest.
+- `node tools/polestar.js i18n names [<locale>...]` rebuilds the addons. Per
+  id the first source with a name wins: the client's own tables in that
+  language (wago.tools), Wowhead's Forever database in that language (its
+  list pages, then a tooltip for an id no list holds), DingDB (cloned into
+  `data/sources/ding` at the commit pinned in `tools/lib/i18n/names.js`,
+  every file checked against its sha256) and pfQuest's `db/<locale>` (the
+  clone `data build` uses). It keeps only the ids the compiled guides, the
+  quest database (`questdb build`, or `--questdb <dir>`), the Codex's data
+  (`codex build`, or `--codex <dir>`) and the travel data name. A name equal
+  to the English one is not stored (a later source's translation wins), nor
+  is one marking unused content (`[PH]`, `(DNT)`...). The client tables
+  come from the newest build that has them all in English and every
+  language; without one the build stops (`--no-tables` leaves them out on
+  purpose). Wowhead is asked one request at a time, 2.5 s apart (`--delay`,
+  never under 2 s), and its pages are cached under
+  `data/sources/wowhead/names` for 30 days: a first run for all nine
+  languages takes about an hour, a later one only reads the cache.
+  `--dry-run` counts the requests, `--limit <n>` caps the tooltips,
+  `--offline` reads only the caches, `--no-questie` leaves DingDB out. It
+  prints, per language, how many ids of each kind have no name. Commit the
+  folders it writes.
+- A wrong name is fixed at its source: on Wowhead or in the client (it
+  changes there), in DingDB (tell Yendi, then move the pin to his new commit
+  and rebuild) or, for one only pfQuest has, in pfQuest.
 - To move the pin, read what changed in Ding's `Ding/DB/`, then set the
   commit, version and sha256s of `DING` in `tools/lib/i18n/names.js`; a file
   that differs from its pin stops the build.
-- A new language needs a DingDB file for it, a `DING` pin and the folder's
+- A new language needs its Wowhead path and tooltip locale id
+  (`LOCALE_PATHS` in `tools/lib/codex/wowhead.js`, `TOOLTIP_LOCALES` in
+  `tools/lib/i18n/names-wowhead.js`), a DingDB file and `DING` pin if Ding
+  has it, its AddOns-list text (`tools/lib/i18n/toc.js`) and the folder's
   entry in the release list (`tools/lib/dsl/project.js` takes every locale of
   `locales.js`).
+
+## The AddOns list
+
+The game's AddOns list shows each addon's title and notes in the client's
+language from its TOC's `## Title-<locale>` and `## Notes-<locale>`. Every
+Polestar addon's are written once in `tools/lib/i18n/toc.js` (Polestar and
+Codex stay as they are); the generated TOCs take them from there, the
+hand-written ones (Polestar, Polestar_Nav, Polestar_ItemDB,
+Polestar_Recorder) carry the same lines, and `tests/i18n-toc.test.js` checks
+that every TOC under `addon/` has all nine and that they match.
+
+## Guide texts
+
+A guide's own words (its title, why and route-choice lines, each step's title
+and tip, each goal's note and label) are translated per guide pack, in the
+pack's `locales/` folder: `guides/locales/<locale>/` for Polestar's own, one
+file per guide at the guide's path (`forever/alliance/02-westfall.lua`), plus
+`_pack.lua` for the pack's own texts (its title and notes, its guides' menu
+folders). A file returns the English of each text with its translation:
+
+```lua
+return {
+	-- Step 1: Sentinel Hill
+	-- {npc:234} Gryan Stoutmantle · {npc:821} Captain Danuvin
+	["{npc:234} and {npc:821} stand at the top of the stone tower."] = "{npc:234} und {npc:821} stehen oben auf dem Steinturm.",
+	["Fill the vial at the well"] = "",
+}
+```
+
+- **Names are not translated.** The compiler writes the game's names inside
+  a text as tokens, `{npc:234}` (kinds: npc, object, item, quest, zone, area,
+  spell, faction, skill), and the game shows each in the client's language.
+  The comment above the line lists them with their English. Keep every token
+  of the English, as many times, wherever the sentence needs it; add none.
+  A text that is only names (a step titled after its NPC) has no line.
+- A name the text uses in the English plural stays words ("Harvest
+  Watchers"): the comment `-- plural, as words: Harvest Watchers = {npc:115}
+  Harvest Watcher` gives its NPC. Translate the plural yourself from the
+  game's singular name (Polestar_Names_<locale>, `i18n names`), or, where
+  the game has no name for it in your language, write the singular's token
+  in the translation: `"Bandidos ({npc:251918})"`, `"{npc:251918} ×8"`. A
+  token of that line is allowed though the English has none.
+- `""` is not translated yet: the English shows. Keep the key byte for byte.
+- Keep the line breaks (`\n`) of the English.
+- `-- No longer in the guide (its English changed or it went away)` heads
+  the translations whose English the guide lost, commented out; `i18n guides
+  check` names the new English of a changed one where it can tell. Copy the
+  translation to the new line, adapt it, and delete the old one.
+- The files are written whole by sync: comments you add are rewritten.
+
+The compiler puts each language's translations into the pack's texts addon
+for it, `<pack folder>_<locale>` (`Polestar_Guides_deDE`), which only that
+client loads, on demand (docs/PACK_FORMAT.md, "Texts addons"). Commit the
+locale files and the texts addons `compile` writes.
+
+- `node tools/polestar.js i18n guides sync [<locale>...]` writes every
+  guide's file and `_pack.lua` for each language named (without one: each the
+  pack has a folder for): every text in reading order, the translations kept,
+  the lost ones moved to the end. `--pack <dir>` names another guide pack.
+- `node tools/polestar.js i18n guides check [<locale>...]` fails on a file
+  Lua cannot load, a translation that leaves out or adds a token or a line
+  break, a stale translation, or a file no guide has. `lint` and `compile`
+  warn about the same, and leave a broken translation out (the English
+  shows).
+- `node tools/polestar.js i18n guides stats` sizes the work: the texts that
+  need words, with their words and characters, in all and per guide folder,
+  and how many names the compiler made tokens.
 
 ## Adding a language
 

@@ -1106,8 +1106,8 @@ test('a walk to a boat whose end has a board point is searched to the deck, with
 			flights = { 1, 2, 800, 2, 1, 800 },
 			transports = {
 				{ id = "boat-test", kind = "boat", faction = 3, ab = 60, ba = 60, waitA = 30, waitB = 30,
-					a = { "Testshire Docks", 0, -900, 0, 9000, 50, 95, "e", { wx = -890, wy = 10, z = 5.9 } },
-					b = { "Farland Pier", 1, 400, 0, 9001, 50, 10, "e", { wx = 410, wy = 5, z = 4.5 } } },
+					a = { "Testshire Docks", 0, -900, 0, 9000, 50, 95, "e", nil, { wx = -890, wy = 10, z = 5.9 } },
+					b = { "Farland Pier", 1, 400, 0, 9001, 50, 10, "e", nil, { wx = 410, wy = 5, z = 4.5 } } },
 			},
 		}, true)
 		Polestar.CharState().flags.taxi = { [1] = true, [2] = true }
@@ -1146,8 +1146,8 @@ test('the walk off a boat whose end has a board point is searched and measured f
 			flights = { 1, 2, 800, 2, 1, 800 },
 			transports = {
 				{ id = "boat-test", kind = "boat", faction = 3, ab = 60, ba = 60, waitA = 30, waitB = 30,
-					a = { "Testshire Docks", 0, -900, 0, 9000, 50, 95, "e", { wx = -890, wy = 10, z = 5.9 } },
-					b = { "Farland Pier", 1, 400, 0, 9001, 50, 10, "e", { wx = 410, wy = 5, z = 4.5 } } },
+					a = { "Testshire Docks", 0, -900, 0, 9000, 50, 95, "e", nil, { wx = -890, wy = 10, z = 5.9 } },
+					b = { "Farland Pier", 1, 400, 0, 9001, 50, 10, "e", nil, { wx = 410, wy = 5, z = 4.5 } } },
 			},
 		}, true)
 		Polestar.CharState().flags.taxi = { [1] = true, [2] = true }

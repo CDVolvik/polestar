@@ -70,16 +70,16 @@ test('collect positions at the item drop sources, preferring the current zone, t
 	const pack = { x: 45.5, y: 39, r: 30, n: 2 };
 	const lone = { x: 44, y: 45, r: 15, n: 1 };
 	const alone = goalsOf(['step One', '  collect 750 x4']).goals[0];
-	assert.deepEqual(alone, { t: 'collect', item: 750, itemName: 'Tough Wolf Meat', from: 'Timber Wolf', fromKind: 'npc', fromFaction: 'A', count: 4, map: 1429, x: 44.5, y: 42.5, f: 'e', spots: [lone, pack] });
+	assert.deepEqual(alone, { t: 'collect', item: 750, itemName: 'Tough Wolf Meat', from: 'Timber Wolf', fromId: 69, fromKind: 'npc', fromFaction: 'A', count: 4, map: 1429, x: 44.5, y: 42.5, f: 'e', spots: [lone, pack] });
 	// After meeting Eagan (48.94,40.17) the nearest spawn of any source wins: a Young Wolf at 46,38.
 	const linked = goalsOf(['step One', '  accept 33', '  collect 750 quest 33']).goals[1];
-	assert.deepEqual(linked, { t: 'collect', quest: 33, title: 'Wolves Across the Border', item: 750, itemName: 'Tough Wolf Meat', from: 'Timber Wolf', fromKind: 'npc', fromFaction: 'A', count: 8, oi: 1, map: 1429, x: 46, y: 38, f: 'e', spots: [pack, lone] });
+	assert.deepEqual(linked, { t: 'collect', quest: 33, title: 'Wolves Across the Border', item: 750, itemName: 'Tough Wolf Meat', from: 'Timber Wolf', fromId: 69, fromKind: 'npc', fromFaction: 'A', count: 8, oi: 1, map: 1429, x: 46, y: 38, f: 'e', spots: [pack, lone] });
 });
 
-test('a second source dropping the item at 50% or more is named beside the first', () => {
+test('a second source dropping the item at 50% or more is named beside the first; both carry their ids (the names in the client\'s language)', () => {
 	// Fractured Canine: Timber Wolf 70%, Diseased Young Wolf (299) 60%.
 	const g = goalsOf(['step One', '  collect 3299 x2']).goals[0];
-	assert.deepEqual([g.from, g.fromAlso, g.fromKind], ['Timber Wolf', 'Diseased Young Wolf', 'npc']);
+	assert.deepEqual([g.from, g.fromId, g.fromAlso, g.fromAlsoId, g.fromKind], ['Timber Wolf', 69, 'Diseased Young Wolf', 299, 'npc']);
 	// Tough Wolf Meat: Diseased Young Wolf drops it at 40%, so only Timber Wolf is named.
 	assert.equal(goalsOf(['step One', '  collect 750 x4']).goals[0].fromAlso, undefined);
 });

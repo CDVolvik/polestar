@@ -99,7 +99,7 @@ L["rare"] = "raro"
 L["%s or %s"] = "%s ou %s"
 L["Kill %s for %s"] = "Matar %s para obter %s"
 L["Collect %s from %s"] = "Coletar %s de %s"
--- L["Riding"] = ""
+L["Riding"] = "Montaria"
 
 -- Core/Closes.lua
 L["Taking %s closes %s for good."] = "Pegar %s fecha %s para sempre."
@@ -180,7 +180,7 @@ L["Waypoint arrow: show, hide, reset"] = "Seta do ponto de rota: mostrar, oculta
 L["Usage: /polestar way <x> <y> [label]"] = "Uso: /polestar way <x> <y> [rótulo]"
 L["Point the arrow at x y on your current map (no argument clears it)"] = "Apontar a seta para x y no mapa atual (sem argumento, limpa)"
 -- L["Shortest Path Forever is guiding a journey of its own. Polestar's arrow comes back when it ends."] = ""
--- L["Shortest Path Forever is guiding. Turn off \"Hand guiding to Shortest Path Forever\" (Options, Arrow & routes) to use Polestar's arrow."] = ""
+-- L["Shortest Path Forever is guiding. Turn off \"Hand guiding to Shortest Path Forever\" (Options, Integrations) to use Polestar's arrow."] = ""
 
 -- Nav/Arrow.lua
 L["Search here"] = "Procure aqui"
@@ -217,6 +217,10 @@ L["Next zeppelin in about %s"] = "Próximo zepelim em cerca de %s"
 L["Next tram in about %s"] = "Próximo metrô em cerca de %s"
 L["Next lift in about %s"] = "Próximo elevador em cerca de %s"
 L["Timed the %s from your ride."] = "Horário de %s medido na sua viagem."
+L["%s, north lift"] = "%s, elevador norte"
+L["%s, south lift"] = "%s, elevador sul"
+L["%s, east lift"] = "%s, elevador leste"
+L["%s, west lift"] = "%s, elevador oeste"
 
 -- Nav/Travel.lua
 L["Go to %s"] = "Vá para %s"
@@ -433,7 +437,7 @@ L["at level"] = "no nível"
 L["Best pick"] = "Melhor escolha"
 L["Item"] = "Item"
 L["Reward pick"] = "Recompensa escolhida"
--- L["weapon skill not trained"] = ""
+L["weapon skill not trained"] = "perícia com arma não treinada"
 
 -- Gear/Options.lua
 L["Automatic (talents)"] = "Automático (talentos)"
@@ -498,8 +502,8 @@ L["Instances per day"] = "Instâncias por dia"
 L["Classic Era allows 30 new instances per 24 hours per account; 0 ignores the daily cap. Forever may differ."] = "O Classic Era permite 30 novas instâncias a cada 24 horas por conta; 0 ignora o limite diário. O Forever pode ser diferente."
 L["Clear instance history"] = "Limpar histórico de instâncias"
 L["Forgets recorded entries and runs (the server's own limit is not affected)."] = "Esquece entradas e incursões gravadas (o limite do próprio servidor não é afetado)."
--- L["Minimap button"] = ""
--- L["A Polestar button on the edge of the minimap. Click to show or hide the guide, right-click for settings, drag to move it."] = ""
+L["Minimap button"] = "Botão do minimapa"
+L["A Polestar button on the edge of the minimap. Click to show or hide the guide, right-click for settings, drag to move it."] = "Um botão do Polestar na borda do minimapa. Clique para mostrar ou ocultar o guia, clique com o botão direito para as configurações, arraste para movê-lo."
 
 -- Maps/WorldMap.lua
 L["Player"] = "Jogador"
@@ -772,6 +776,10 @@ L["Dungeons are turned off (Options > Discovery > Dungeons)."] = "Masmorras est�
 L["Dungeon quests, bosses and entrances"] = "Missões, chefes e entradas de masmorras"
 L["Dungeons"] = "Masmorras"
 L["A page per dungeon and raid: every quest with where to get it, its chain and rewards, the bosses and the entrance."] = "Uma página por masmorra e raide: cada missão com onde pegar, sua sequência e recompensas, os chefes e a entrada."
+L["Kill %d %s"] = "Matar %d %s"
+L["Collect %s"] = "Coletar %s"
+L["Collect %d %s"] = "Coletar %d %s"
+L["Use %s"] = "Usar %s"
 
 -- Dungeons/Pickup.lua
 L["Quest giver"] = "Recrutador de missões"
@@ -792,6 +800,19 @@ L["Where it is turned in is not known: %s."] = "Local de entrega desconhecido: %
 -- Dungeons/Attune.lua
 L["%s drops it inside %s."] = "%s o deixa cair dentro de %s."
 L["%s: %s"] = "%s: %s"
+L["Lets Lothos Riftwaker in Blackrock Mountain send you to the Molten Core; without it, walk in through Blackrock Depths."] = "Permite que Lothos Fendefenda, na Montanha Rocha Negra, envie você ao Núcleo Derretido; sem isso, entre a pé pelo Abismo Rocha Negra."
+L["Douses the Molten Core's runes; Majordomo Executus comes out only when every rune is doused. Duke Hydraxis hands it out once Hands of the Enemy is done."] = "Apaga as runas do Núcleo Derretido; o Majordomo Executus só aparece quando todas as runas são apagadas. O Duque Hydraxis o entrega depois que Mãos do Inimigo for concluída."
+L["Everyone entering Onyxia's Lair carries the Drakefire Amulet."] = "Todos que entram no Covil da Onyxia carregam o Amuleto de Fogo Dragônico."
+L["Lets you touch the Orb of Command in Upper Blackrock Spire to reach Blackwing Lair; without it, walk in through the spire."] = "Permite tocar o Orbe de Comando no Pico da Rocha Negra Superior para chegar ao Covil Asa Negra; sem isso, entre a pé pelo pico."
+L["Everyone entering Naxxramas needs it; which of the three quests you take depends on your standing with the Argent Dawn."] = "Todos que entram em Naxxramas precisam dele; qual das três missões você faz depende da sua reputação com a Aurora Argêntea."
+L["Opens Scholomance's gate; one key opens it for the group."] = "Abre o portão de Scholomance; uma chave o abre para o grupo."
+L["Opens the Shadowforge gates in Blackrock Depths; one key opens them for the group."] = "Abre os portões da Forja Sombria no Abismo Rocha Negra; uma chave os abre para o grupo."
+L["Opens the cells of Blackrock Depths' prison."] = "Abre as celas da prisão do Abismo Rocha Negra."
+L["Opens the Eastwall Gate into Stratholme's Scourge-held districts."] = "Abre o Portão da Muralha Leste para os distritos de Stratholme dominados pelo Flagelo."
+L["Opens the inner doors of Dire Maul's North and West wings."] = "Abre as portas internas das alas Norte e Oeste de Gládio Cruel."
+L["Opens Gnomeregan's back door, the Workshop entrance."] = "Abre a porta dos fundos de Gnomeregan, a entrada da Oficina."
+L["Opens the doors of the Armory and the Cathedral."] = "Abre as portas do Arsenal e da Catedral."
+L["Opens the gate of the Horde's way into the City of Dalaran; one key opens it for the group. The Alliance is sent in by the Image of Archmage Modera."] = "Abre o portão do caminho da Horda para a Cidade de Dalaran; uma chave o abre para o grupo. A Aliança é enviada pela Imagem da Arquimaga Modera."
 
 -- UI/UI.lua
 L["Map %d"] = "Mapa %d"
@@ -1574,9 +1595,9 @@ L["Search settings"] = "Buscar opções"
 L["Open Polestar settings"] = "Abrir opções do Polestar"
 L["Close the game menu to see Polestar's settings (it cannot be closed for you in combat)."] = "Feche o menu do jogo para ver as opções do Polestar (em combate ele não pode ser fechado por você)."
 L["Close the game menu to see Polestar's settings."] = "Feche o menu do jogo para ver as opções do Polestar."
--- L["Integrations"] = ""
--- L["Settings for other addons Polestar works with, shown when they are installed."] = ""
--- L["None of the addons Polestar works with is installed."] = ""
+L["Integrations"] = "Integrações"
+L["Settings for other addons Polestar works with, shown when they are installed."] = "Configurações de outros addons com os quais o Polestar funciona, mostradas quando estão instalados."
+L["None of the addons Polestar works with is installed."] = "Nenhum dos addons com os quais o Polestar funciona está instalado."
 
 -- Rares/Rares.lua
 L["Raid warning"] = "Aviso de raide"
@@ -1780,9 +1801,9 @@ L["Balance"] = "Equilíbrio"
 L["Feral"] = "Combate Feral"
 
 -- Maps/MinimapButton.lua
--- L["Click: show or hide the guide"] = ""
--- L["Right-click: settings"] = ""
--- L["Drag: move it around the minimap"] = ""
+L["Click: show or hide the guide"] = "Clique: mostrar ou ocultar o guia"
+L["Right-click: settings"] = "Clique direito: configurações"
+L["Drag: move it around the minimap"] = "Arrastar: mover ao redor do minimapa"
 
 -- UI/Gamepad.lua
 L["D-pad up"] = "Direcional para cima"
@@ -1850,32 +1871,58 @@ L["Quest buttons"] = "Botões de missão"
 L["The guide window holds the gamepad until B: the D-pad picks a line, A points the arrow there or uses the item, X shows its details, LB and RB change steps, Y minimizes the window. A window that opened by itself, such as a route choice, waits for this button before it takes the gamepad."] = "A janela do guia mantém o controle até B: o direcional escolhe uma linha, A aponta a seta para lá ou usa o item, X mostra os detalhes, LB e RB trocam de etapa, Y minimiza a janela. Uma janela que abriu sozinha, como uma escolha de rota, espera por este botão antes de tomar o controle."
 
 -- Core/RoutePlan.lua
--- L["step %d"] = ""
--- L["%s · %s"] = ""
--- L["Turn in at this step · %s"] = ""
--- L["Turn in at %s"] = ""
--- L["Earlier turn-in · %s — check"] = ""
--- L["Skipped turn-in · %s — check"] = ""
--- L["Turn-in plan depends on your next route choice"] = ""
--- L["Next guide is not loaded; turn-in plan unavailable"] = ""
--- L["No turn-in in this route"] = ""
--- L["Select a guide to see its turn-in plan"] = ""
--- L["%s (optional)"] = ""
+L["step %d"] = "etapa %d"
+L["%s · %s"] = "%s · %s"
+L["Turn in at this step · %s"] = "Entregar nesta etapa · %s"
+L["Turn in at %s"] = "Entregar em %s"
+L["Earlier turn-in · %s — check"] = "Entrega anterior · %s — verificar"
+L["Skipped turn-in · %s — check"] = "Entrega pulada · %s — verificar"
+L["Turn-in plan depends on your next route choice"] = "O plano de entregas depende da sua próxima escolha de rota"
+L["Next guide is not loaded; turn-in plan unavailable"] = "O próximo guia não está carregado; plano de entregas indisponível"
+L["No turn-in in this route"] = "Nenhuma entrega nesta rota"
+L["Select a guide to see its turn-in plan"] = "Selecione um guia para ver o plano de entregas dele"
+L["%s (optional)"] = "%s (opcional)"
 
 -- UI/QuestieTurnIns.lua
--- L["Polestar: %s"] = ""
--- L["Show planned turn-ins in Questie"] = ""
--- L["Completed quests in Questie's tracker show their Polestar turn-in step. Earlier, skipped and unplanned hand-ins are flagged."] = ""
+L["Polestar: %s"] = "Polestar: %s"
+L["Show planned turn-ins in Questie"] = "Mostrar entregas planejadas no Questie"
+L["Completed quests in Questie's tracker show their Polestar turn-in step. Earlier, skipped and unplanned hand-ins are flagged."] = "Missões concluídas no rastreador do Questie mostram a etapa de entrega do Polestar. Entregas anteriores, puladas e não planejadas são sinalizadas."
+
+-- Talents/Builds.lua
+L["Holy"] = "Sagrado"
+L["Protection"] = "Proteção"
+L["Level as Retribution (quickest solo, with a two-hander and Seal of Command) or Protection (safe group pulls, dungeon-tank ready). Holy suits raids; it can level through its melee build, more slowly, if you want to heal dungeons on the way."] = "Suba de nível como Retribuição (mais rápido solo, com uma arma de duas mãos e Selo de Comando) ou Proteção (puxadas seguras em grupo, pronto para tanquear masmorras). Sagrado combina com raides; ele pode subir de nível pela build corpo a corpo, mais devagar, se você quiser curar masmorras no caminho."
+L["Start with Divine Intellect: more mana means you can melee and still cover your own (or a group's) healing."] = "Comece com Intelecto Divino: mais mana significa que você pode lutar corpo a corpo e ainda cobrir sua própria cura (ou a de um grupo)."
+L["Improved Seals raises every seal and Judgement here, which is where Holy's leveling damage comes from."] = "Selos Aprimorados fortalece aqui cada selo e Julgamento, que é de onde vem o dano do Sagrado ao subir de nível."
+L["Reverence keeps a trickle of regen going while casting; three ranks unlock Illumination."] = "Reverência mantém um pouco de regeneração enquanto você lança feitiços; três graus liberam Iluminação."
+L["Illumination refunds mana on critical heals and is the heart of Holy's staying power."] = "Iluminação devolve mana em curas críticas e é o coração da resistência do Sagrado."
+L["Holy Shock is a talent on Forever: an instant heal or Holy hit, handy for emergencies and for pulling."] = "Choque Sagrado é um talento no Forever: uma cura ou golpe Sagrado instantâneo, útil em emergências e para puxar."
+L["Holy Power raises Holy Shock's crit chance, feeding Illumination and Infusion of Light."] = "Poder Sagrado aumenta a chance de crítico do Choque Sagrado, alimentando Iluminação e Infusão de Luz."
+L["Light's Vigil turns Holy Shock into a group-heal burst; this is the signature Forever Holy talent."] = "Vigília da Luz transforma o Choque Sagrado numa explosão de cura em grupo; é o talento Sagrado característico do Forever."
+L["The remaining 20 points go to Retribution: cheaper spells and more melee crit while questing, ending in Seal of Command."] = "Os 20 pontos restantes vão para Retribuição: feitiços mais baratos e mais crítico corpo a corpo ao fazer missões, terminando em Selo de Comando."
+L["Open with Redoubt: blocking pays off at once, and Shield Specialization needs all five ranks."] = "Comece com Reduto: bloquear compensa na hora, e Especialização em Escudo precisa de todos os cinco graus."
+L["Precision and Anticipation help you land hits and dodge them while questing with a shield."] = "Precisão e Antecipação ajudam você a acertar golpes e a esquivar ao fazer missões com escudo."
+L["Improved Seal of Fury and Improved Righteous Fury begin the mana and mitigation cycle Forever tanking is built on."] = "Selo da Fúria Aprimorado e Fúria Íntegra Aprimorada iniciam o ciclo de mana e mitigação no qual o tanque do Forever se baseia."
+L["Around 20 points in, you match the usual dungeon-tank setup: Shield Specialization, Sacred Duty and Swift Judgement are complete."] = "Por volta de 20 pontos, você chega à configuração usual de tanque de masmorra: Especialização em Escudo, Dever Sagrado e Julgamento Ágil estão completos."
+L["Templar's Bulwark is an absorb cooldown that scales with your health, and Holy Shield later in the plan requires it."] = "Baluarte do Templário é uma recarga de absorção que escala com sua vida, e Escudo Sagrado o exige mais adiante no plano."
+L["Iron Creed adds threat and damage reduction to Holy Strike while Righteous Fury is active."] = "Credo de Ferro adiciona ameaça e redução de dano ao Golpe Sagrado enquanto Fúria Íntegra está ativa."
+L["Holy Shield is the capstone: more block uptime, with Holy damage each time you block. Ideal for pulling packs."] = "Escudo Sagrado é o ápice: mais tempo de bloqueio, com dano Sagrado a cada bloqueio. Ideal para puxar grupos."
+L["Leftover points buy armor, a quicker Hammer of Justice, and Holy Strength and seal damage for leveling."] = "Pontos que sobram compram armadura, um Martelo da Justiça mais rápido, e Força Sagrada e dano de selo para subir de nível."
+L["Benediction lowers the mana cost of Judgement, Holy Strike and seals, so you rest less between fights."] = "Bênção reduz o custo de mana de Julgamento, Golpe Sagrado e selos, então você descansa menos entre lutas."
+L["Seal of Command is the main two-hander seal for leveling; take it as soon as it opens."] = "Selo de Comando é o selo principal de duas mãos para subir de nível; pegue-o assim que liberar."
+L["Sanctified Judgement gives mana back and is the prerequisite arrow for Vengeance."] = "Julgamento Santificado devolve mana e é o pré-requisito (seta) para Vingança."
+L["Sacred Arbiter strengthens Holy Strike and keeps Judgements rolling, and completes the 20 points row 5 asks for."] = "Árbitro Sagrado fortalece o Golpe Sagrado, mantém os Julgamentos rolando e completa os 20 pontos que a linha 5 exige."
+L["Vengeance, then Two-Handed Weapon Specialization: the crit-driven damage core of the two-hander plan."] = "Vingança, depois Especialização em Armas de Duas Mãos: o núcleo de dano baseado em crítico do plano de duas mãos."
+L["Pursuit of Justice adds run speed. Champion of the Light is left out while the Retribution Aura spell-power bug keeps spell damage low."] = "Busca da Justiça aumenta a velocidade de corrida. Campeão da Luz fica de fora enquanto o bug de poder mágico da Aura de Retribuição mantiver o dano de feitiços baixo."
+L["Twist of Light makes swapping seals cheaper and adds seal echoes; it is Forever's seal-twisting talent."] = "Torção da Luz deixa a troca de selos mais barata e adiciona ecos de selo; é o talento de alternância de selos do Forever."
+L["Spare points go to Divine Strength and Holy's Improved Seals for damage, then Deflection for survival."] = "Pontos extras vão para Força Divina e Selos Aprimorados do Sagrado para dano, depois Deflexão para sobrevivência."
 
 -- Nav/Handoff.lua
 -- L["Hand guiding to Shortest Path Forever"] = ""
 -- L["Shortest Path Forever's arrow, route and journey take you to each goal. Polestar's arrow, route lines, journey steps, travel button, transport alerts, map clicks and /way step aside; the guide window and map pins stay. Off: Polestar guides, and steps aside only while a journey you started in Shortest Path Forever runs."] = ""
 
--- Talents/Builds.lua
--- L["Holy"] = ""
--- L["Protection"] = ""
-
 -- No longer in the code (its English changed or it went away): reuse or delete.
 -- L["Shortest Path Forever is guiding. Turn off \"Guide with Shortest Path Forever when it's installed\" (Options, Arrow & routes) to use Polestar's arrow."] = "Shortest Path Forever está guiando. Desative \"Guiar com Shortest Path Forever quando instalado\" (Opções, Seta e rotas) para usar a seta do Polestar."
+-- L["Shortest Path Forever is guiding. Turn off \"Guide with Shortest Path Forever when it's installed\" (Options, Integrations) to use Polestar's arrow."] = "Shortest Path Forever está guiando. Desative \"Guiar com Shortest Path Forever quando instalado\" (Opções, Integrações) para usar a seta do Polestar."
 -- L["Guide with Shortest Path Forever when it's installed"] = "Guiar com Shortest Path Forever quando instalado"
 -- L["Shortest Path Forever's arrow, route and journey take you to each goal. Polestar's arrow, route lines, journey steps, travel button, transport alerts, map clicks and /way step aside; the guide window and map pins stay."] = "A seta, a rota e a jornada do Shortest Path Forever levam você a cada objetivo. A seta do Polestar, linhas de rota, etapas da jornada, botão de viagem, alertas de transporte, cliques no mapa e /way saem de cena; a janela do guia e os marcadores no mapa ficam."

@@ -80,7 +80,7 @@ test('buildTalents: the Lua names its rule, the snapshot and each plan, notes by
 	assert.match(r.lua, /\[3\] = \{ \{ 50, 3 \} \},/);
 	assert.match(r.lua, /edges = \{ \{ 1, 2 \} \},/);
 	assert.match(r.lua, /\{ 1, 1 \}, \{ 1, 2 \},/);
-	assert.match(r.lua, /\[10\] = "Say \\"hi\\"",/);
+	assert.match(r.lua, /\[10\] = L\["Say \\"hi\\""\],/);
 });
 
 // The committed file matches the plans and the Forever tables (when cached).
