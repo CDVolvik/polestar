@@ -285,8 +285,8 @@ plans whole journeys with flights, boats, zeppelins, portals and live
 departure times.
 
 **Shortest Path Forever: an option.** With it installed, Polestar still
-guides by default. **Hand guiding to Shortest Path Forever** (Options, Arrow
-& routes) hands it the route instead: each goal goes to Shortest Path
+guides by default. **Hand guiding to Shortest Path Forever** (Options,
+Integrations) hands it the route instead: each goal goes to Shortest Path
 Forever, whose arrow, route and journey take you there, and Polestar's own
 arrow, route lines, journey steps, travel button, transport alerts, map
 clicks and `/way` step aside, so the two never guide at once (Polestar's
