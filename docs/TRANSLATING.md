@@ -130,7 +130,11 @@ Write every player-facing text as a literal `L["..."]` (or
 adding, changing or removing texts, run `node tools/polestar.js i18n sync`
 and commit the locale files with the change: a stale key fails `npm test`. A
 text looked up through a variable (`L[category]`) must be listed in
-`DATA_KEYS` in `tools/lib/i18n/keys.js`. A game term the client names
+`DATA_KEYS` in `tools/lib/i18n/keys.js` (the Dungeons attunement notes are
+read from `tools/lib/codex/attunements.json` there); a generator writes its
+prose as literal keys (`talents build`: the plan notes in `Talents/Builds.lua`).
+Data that names a game thing carries its id, never its English name alone, so
+the display can ask `Polestar.Names` for it. A game term the client names
 (`ITEM_QUALITY3_DESC`, `FACTION_HORDE`…) is read from the client, not put in
 `L`, and its English value goes in `tests/lua/wow_stub.lua`. Tests that need a
 translated client fake a language Polestar does not ship:

@@ -183,6 +183,15 @@ function talentSpecs(addonDir) {
 	return out;
 }
 
+// The attunement table's notes (tools/lib/codex/attunements.json `note`),
+// shown through L[a.note] on the Dungeons Attunement tab and in its guide.
+function attunementNotes(addonDir) {
+	const file = path.join(__dirname, '..', 'codex', 'attunements.json');
+	if (!fs.existsSync(path.join(addonDir, 'Dungeons', 'Attune.lua')) || !fs.existsSync(file)) return [];
+	const doc = JSON.parse(fs.readFileSync(file, 'utf8'));
+	return [...new Set((doc.attunements || []).map((a) => a.note).filter((n) => typeof n === 'string' && n !== ''))];
+}
+
 function luaFiles(dir, skip) {
 	const out = [];
 	const walk = (abs) => {
@@ -226,6 +235,7 @@ function extractKeys(addonDir) {
 	}
 	for (const key of specLabels(addonDir)) add(key, { file: 'Gear/Weights.lua', line: 0, data: true });
 	for (const key of talentSpecs(addonDir)) add(key, { file: 'Talents/Builds.lua', line: 0, data: true });
+	for (const key of attunementNotes(addonDir)) add(key, { file: 'Dungeons/Attune.lua', line: 0, data: true });
 	return keys;
 }
 

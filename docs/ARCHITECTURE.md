@@ -357,10 +357,15 @@ labels holds `L["Home"]`, not `"Home"` translated later through
 `L[VIEW_LABEL[v]]`. `L[variable]` is left only for text that comes from data
 (a guide's category, race and class names, profession and spec names, the
 talent plans' spec names, the release stage), each listed in `DATA_KEYS`
-(`tools/lib/i18n/keys.js`, which also reads Gear/Weights.lua's spec labels
-and Talents/Builds.lua's `specs`). The optional Recorder has its own `ns.L`
-and `Locales/<locale>.lua` (listed in its TOC); `i18n check` and `sync`
-cover it too.
+(`tools/lib/i18n/keys.js`, which also reads Gear/Weights.lua's spec labels,
+Talents/Builds.lua's `specs` and the Dungeons attunement notes of
+`tools/lib/codex/attunements.json`). Generated files carry their prose as
+literal keys too: `talents build` writes the plan summary and per-level notes
+as `L["..."]` in `Talents/Builds.lua`. Data that names a game thing carries
+its id instead, and the display asks `Polestar.Names` (quests, NPCs, objects,
+items, spells, factions, instances, areas, flight points, encounters). The
+optional Recorder has its own `ns.L` and `Locales/<locale>.lua` (listed in
+its TOC); `i18n check` and `sync` cover it too.
 
 `Polestar.AI_LOCALES` names the languages whose translation is AI-made
 (`status: "ai"` in locales.js; `tests/i18n.test.js` keeps the two equal). On
@@ -1958,7 +1963,12 @@ lift is a walk to the landing the path reaches first ("Walk to The Great
 Lift, Bottom": the side comes from the path's direction, K4) and a `lift`
 leg to its paired landing ("Take The Great Lift"), timed and captioned by
 `Transit.NextDeparture`/`Caption("lift", ...)` (30 s without); other steps
-carry no wait (K3). The pieces' seconds are whole seconds of the path at run
+carry no wait (K3). The names in the captions are the client's, in its
+language: each chokepoint carries the AreaTable ids of its name, zone and
+sides (`area`, `zoneArea`, read with `Names.Area`) and a lift its
+GameObject (`liftObject`, the names pack's object name, else the Transit
+lift's area name); the English names are kept for enUS and as the fallback.
+The pieces' seconds are whole seconds of the path at run
 speed that add up exactly to the walk (K6), and every piece keeps `parent`
 (the whole walk), `seg` (the path segment its end lies on) and `tail` (path
 yards after it): the arrow keeps following the one path to the whole walk's
@@ -2017,7 +2027,13 @@ inns from the client tables, learned paths, the shipped zone crossings, and
 crossings learned from zone changes in recordings,
 `tools/lib/travel/crossings.js` `recordedCrossings`, registered with
 `complete = false`: they refine a continent that has full crossing data and
-change nothing elsewhere). The shipped crossings are the full crossing data
+change nothing elsewhere). Names the player reads come from the client in
+its language: a flight master by its TaxiNodes id (`Travel.TaxiName`, the
+names pack's `taxi`), a dock, portal end, teleport landing or inn by the
+AreaTable area each carries (`Travel.PlaceName`, `Names.Area`), a boat's
+route from its two ends' areas, the tram and the lifts by their area
+(`L["%s, east lift"]` and its kin), a class teleport by its spell; the
+English names stay for enUS, logs and matching. The shipped crossings are the full crossing data
 of both continents (`complete = true`): `tools/lib/travel/crossings.json`,
 committed, written by `node tools/polestar.js travel import --carbonite
 <ZoneConnections.lua> --source <text>` from Carbonite's Classic Era zone
@@ -2605,21 +2621,31 @@ game event (pfQuest's `event`: the Darkmoon Faire, the holidays, the war
 efforts) is on a page only where QuestieDB or Wowhead files it (Copper
 Modulator, Rinling's Faire turn-in, is on none). What no rule can catch is
 in the cited table `tools/lib/codex/journal-quests.json` (Shards of the
-Felvine). Each quest has giver and ender and their positions, our own
-objective line, chain (every prerequisite and breadcrumb of the quest's side,
+Felvine). Each quest has giver and ender and their positions, its objective
+facts (`objectives`: kind, NPC, item or object id, count and the English
+name; the escorts' and events' text), composed at run time into our own
+objective line in the client's language (`Dungeons.ObjectiveText`:
+`L["Kill %d %s"]`, `L["Collect %d %s"]`, `L["Use %s"]` with the names from
+`Polestar.Names`; an event's line is the quest's own objective summary from
+the names pack, kind `objective`), chain (every prerequisite and breadcrumb of the quest's side,
 all of `pre` and `preAny`, oldest first, at most 20), rewards (items with
 quality, count and choice from recordings and ForeverLevelingBiS, else
 Wowhead's list rewards, choice versus fixed as Wowhead files them; XP from
 `quests.json`; money, else Wowhead's; reputation from Wowhead's rewards, its
 "+1" placeholders left out, never the standing a quest asks for) and, with
 `--local-extras`, DungeonJournal's audited shareability; bosses in kill order
-with the quests tied to them; entrances from the Codex, else the client's Map
+with the quests tied to them (an encounter's boss carries its DungeonEncounter
+id, `encounter`, for its name in every language); entrances from the Codex, else the client's Map
 table (the corpse point, placed on its zone); and the page's `attunement`
-list (below). No loot tables. `codex attune` writes the local comparison with
+list (below). No loot tables. The page also carries the instance's Map id
+(`map`): the list shows the dungeon's name in the client's language
+(`Names.Instance`) and its zone's (`C_Map`); attunement notes are our prose,
+read through `L[note]` (`i18n keys` lists them from
+`tools/lib/codex/attunements.json`). `codex attune` writes the local comparison with
 the Attune addon (`tools/lib/codex/questaudit.js`,
 `tools/lib/consume/attune.js`; `data/local/dungeon-quests-audit.md` and
 `.json`, then the attunements report). Runtime: `addon/Polestar/Dungeons/Dungeons.lua`
-(`Polestar.Dungeons`: List, Get, Entrance, Quests, Quest, Bosses, Open,
+(`Polestar.Dungeons`: List, Get, Entrance, Quests, Quest, ObjectiveText, Bosses, Open,
 GuideTo, GuideToPoint, ShowOnMap; `SHOW_DUNGEON`). `dungeons build` writes no
 guides.
 
