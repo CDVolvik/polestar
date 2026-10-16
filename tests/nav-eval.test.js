@@ -44,7 +44,7 @@ function twoClusterFolder() {
 	return dir;
 }
 
-test('eval harness: a route query on a two-cluster map returns ok with points; yards and hubs null when the router gives none', { skip: noLua }, () => {
+test('eval harness: a route query on a two-cluster map returns ok with points, the router\'s yards (the drawn line\'s length) and no hubs', { skip: noLua }, () => {
 	const { runRoutes } = require('../tools/lib/nav/eval/run');
 	const navDir = twoClusterFolder();
 	const [r] = runRoutes({ navDir, lua, routes: [{ id: 'across', map: 0, from: [200, 200, null], to: [300, 800, null] }] });
@@ -54,12 +54,15 @@ test('eval harness: a route query on a two-cluster map returns ok with points; y
 	assert.ok(Math.hypot(r.pts[0][0] - 200, r.pts[0][1] - 200) < 40, 'starts near the start');
 	assert.ok(Math.hypot(r.pts.at(-1)[0] - 300, r.pts.at(-1)[1] - 800) < 40, 'ends near the end');
 	assert.ok(r.cost >= Math.hypot(100, 600) * 0.9, `cost ${r.cost}`);
-	assert.equal(r.yards, null);
-	assert.equal(r.hubs, null);
+	// The router returns job.yards, the drawn polyline's length (Routing/Path.lua), and job.hubs, the hostile hubs it enters: none here.
+	const drawn = r.pts.slice(1).reduce((s, p, i) => s + Math.hypot(p[0] - r.pts[i][0], p[1] - r.pts[i][1]), 0);
+	assert.equal(typeof r.yards, 'number');
+	assert.ok(Math.abs(r.yards - drawn) <= Math.max(1, drawn * 0.01), `yards ${r.yards} vs drawn ${drawn}`);
+	assert.deepEqual(r.hubs, []);
 	assert.ok(r.ms >= 0);
 });
 
-test('eval harness: a many query returns one cost per target (false off the map)', { skip: noLua }, () => {
+test('eval harness: a many query returns one cost per target (false off the map) and the router\'s yards beside them', { skip: noLua }, () => {
 	const { runQueries } = require('../tools/lib/nav/eval/run');
 	const navDir = twoClusterFolder();
 	const { results } = runQueries({ navDir, lua, queries: [{ type: 'many', id: 'm', map: 0, from: [200, 200, null], targets: [[250, 250, null], [300, 800, null], [5000, 5000, null]] }] });
@@ -68,6 +71,8 @@ test('eval harness: a many query returns one cost per target (false off the map)
 	assert.equal(m.costs.length, 3);
 	assert.ok(m.costs[0] > 0 && m.costs[1] > m.costs[0], `costs ${m.costs}`);
 	assert.equal(m.costs[2], false);
+	// On format 1 maps (no ground classes) a step's cost is its yards: FindMany's yards[i] equals costs[i].
+	assert.deepEqual(m.yards, m.costs);
 });
 
 test('metrics: yards from the drawn line, the steepest climb between points; blocked, roads, hubs and indoor null without grid and layers', () => {
