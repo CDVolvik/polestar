@@ -1824,11 +1824,20 @@ function GF.ApplySkin()
 		b.Icon:SetSize(ni, ni)
 		W.SetFramed(b, "red")
 	end
+	-- Room between ‹ › and "28 / 36": Halo's 2, Blizzard's framed squares 4.
+	local gap = Theme.Metric("guideNavGap", 0)
+	nav.Steps.Count:SetPoint("LEFT", nav.Prev, "RIGHT", gap, 0)
+	nav.Next:SetPoint("LEFT", nav.Steps.Count, "RIGHT", gap, 0)
 	local iw, ih, ig = Theme.Metric("guideIconBtnW", 24), Theme.Metric("guideIconBtnH", 24), Theme.Metric("guideIcon", 14)
-	for _, b in ipairs({ nav.Menu, nav.Report }) do
-		b:SetSize(iw, ih)
-		b.Icon:SetSize(ig, ig)
-		W.SetFramed(b, "icon")
+	-- The icon buttons right of Skip: the bug, the menu and, where it is built,
+	-- the Nearby services button.
+	for _, key in ipairs({ "Menu", "Report", "Nearby" }) do
+		local b = rawget(nav, key)
+		if b then
+			b:SetSize(iw, ih)
+			b.Icon:SetSize(ig, ig)
+			W.SetFramed(b, "icon")
+		end
 	end
 	nav.Skip:SetHeight(nb)
 	nav.Steps:SetHeight(nb)

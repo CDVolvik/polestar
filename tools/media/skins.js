@@ -92,6 +92,18 @@ function flag() {
 	return new Canvas(32, 32).fill(sdf.union(pole, cloth), WHITE);
 }
 
+// Nearby services, in the skins: a house (the handoff's 14-unit outline,
+// 1.5,7 7,2 12.5,7 12.5,12.5 1.5,12.5, stroke 1.6, and its door 3 x 4).
+function house() {
+	const s = 32 / 14;
+	const g = (v) => v * s;
+	const pts = [[1.5, 7], [7, 2], [12.5, 7], [12.5, 12.5], [1.5, 12.5]].map(([x, y]) => [g(x), g(y)]);
+	const half = g(1.6) / 2;
+	const edges = pts.map((p, i) => sdf.segment(p[0], p[1], pts[(i + 1) % pts.length][0], pts[(i + 1) % pts.length][1], half));
+	const door = sdf.box(g(7), g(10.5), g(1.5), g(2));
+	return new Canvas(32, 32).fill(sdf.union(...edges, door), WHITE);
+}
+
 function generate(addonRoot) {
 	const dir = path.join(addonRoot, 'Media', 'UI');
 	const out = [];
@@ -102,6 +114,7 @@ function generate(addonRoot) {
 	out.push(dartEdge().write(path.join(dir, 'dart-edge.tga')));
 	out.push(dartGold().write(path.join(dir, 'dart-gold.tga')));
 	out.push(flag().write(path.join(dir, 'flag.tga')));
+	out.push(house().write(path.join(dir, 'house.tga')));
 	return out;
 }
 

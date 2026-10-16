@@ -648,8 +648,9 @@ function Theme.Media(name)
 	return MEDIA .. "UI\\" .. name
 end
 
--- Glyphs a skin draws its own way (DIRECTION_B_HALO.md §7: the report flag).
-local SKIN_ICON = { halo = { bug = "flag" }, blizzard = { bug = "flag" } }
+-- Glyphs a skin draws its own way (DIRECTION_B_HALO.md §7: the report flag
+-- and the Nearby services house).
+local SKIN_ICON = { halo = { bug = "flag", ["icon-goto"] = "house" }, blizzard = { bug = "flag", ["icon-goto"] = "house" } }
 
 -- A glyph's name in the skin in use.
 function Theme.Icon(name)
@@ -781,7 +782,7 @@ local METRICS = {
 		pickerW = 1100, pickerH = 640, pickerDetail = 380, pickerSidebar = 230,
 		guidePad = 12, guideIconGap = 9, guideTabs = 28, guideNav = 32, guideNavBtn = 22, guideNavIcon = 12,
 		guideIconBtnW = 24, guideIconBtnH = 22, guideIcon = 13, guideRow = 22, guideCheck = 16,
-		guideProgress = 3, guideGrip = 8, guideFoot = 17, guideUpRow = 20, guideUpToggle = 26,
+		guideProgress = 3, guideGrip = 8, guideFoot = 17, guideUpRow = 20, guideUpToggle = 26, guideNavGap = 2,
 	},
 	blizzard = {
 		row = 28, menuRow = 22, menuPad = 6, menuWidth = 260, servicesWidth = 290,
@@ -791,7 +792,7 @@ local METRICS = {
 		pickerW = 1100, pickerH = 640, pickerDetail = 380, pickerSidebar = 230,
 		guidePad = 12, guideIconGap = 9, guideTabs = 28, guideNav = 32, guideNavBtn = 20, guideNavIcon = 12,
 		guideIconBtnW = 20, guideIconBtnH = 20, guideIcon = 11, guideRow = 22, guideCheck = 15,
-		guideProgress = 14, guideGrip = 8, guideFoot = 28, guideUpRow = 20, guideUpToggle = 26,
+		guideProgress = 14, guideGrip = 8, guideFoot = 28, guideUpRow = 20, guideUpToggle = 26, guideNavGap = 4,
 	},
 }
 Theme.METRICS = METRICS
