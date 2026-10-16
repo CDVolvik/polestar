@@ -2211,7 +2211,6 @@ do
 					goals = {
 						{ t = "turnin", quest = 98230, title = "This Land Was Their Land", npc = 270637, npcName = "Howin Kindfeather", map = 1437, x = 49.36, y = 42.05, f = "e", note = "Howin Kindfeather" },
 						{ t = "accept", quest = 98245, title = "Razormaw Needling", npc = 270637, npcName = "Howin Kindfeather", minLevel = 21, qlvl = 29, map = 1437, x = 49.36, y = 42.05, f = "e" },
-						{ t = "accept", quest = 98297, title = "Stopping the Cycle", npc = 270637, npcName = "Howin Kindfeather", minLevel = 24, qlvl = 34, map = 1437, x = 49.36, y = 42.05, f = "e" },
 						{ t = "accept", quest = 98283, title = "Carnage", npc = 1244, npcName = "Rethiel the Greenwarden", minLevel = 22, qlvl = 30, map = 1437, x = 56.37, y = 40.4, z = 9.5, f = "e", optional = true, note = "Rethiel the Greenwarden: Carnage, an elite raptor" },
 					},
 				},
@@ -2233,9 +2232,8 @@ do
 				},
 				{
 					title = "Dragonmaw Gates",
-					note = "North-east to the Dragonmaw Gates: the Subdued Dragonspawn are held there, and Ados stands at the gates (use the Goaz Stone).",
+					note = "North-east to the Dragonmaw Gates: Ados stands at the gates (use the Goaz Stone).",
 					goals = {
-						{ t = "kill", quest = 98297, title = "Stopping the Cycle", target = "Subdued Dragonspawn", npc = 271373, oi = 1, map = 1437, x = 75.81, y = 48.18, f = "e", spots = { { x = 76.6, y = 46.2, r = 64, n = 9 }, { x = 75.9, y = 43.1, r = 15, n = 1, alt = true } }, note = "Subdued Dragonspawn" },
 						{ t = "collect", quest = 98310, title = "Gleaning Our Future", item = 280395, itemName = "Heart of Ados", oi = 1, map = 1437, x = 75.1, y = 48.25, f = "e", spots = { { x = 75.1, y = 47.3, r = 27, n = 2 }, { x = 77.4, y = 47, r = 34, n = 7 }, { x = 80.4, y = 47.9, r = 15, n = 1, alt = true } }, note = "Heart of Ados", from = "Ados", fromKind = "npc" },
 					},
 				},
@@ -2253,8 +2251,7 @@ do
 				{
 					title = "The Green Belt",
 					goals = {
-						{ t = "turnin", quest = 98297, title = "Stopping the Cycle", npc = 270637, npcName = "Howin Kindfeather", map = 1437, x = 49.36, y = 42.05, f = "e", note = "Howin Kindfeather" },
-						{ t = "turnin", quest = 98245, title = "Razormaw Needling", npc = 270637, npcName = "Howin Kindfeather", map = 1437, x = 49.36, y = 42.05, f = "e" },
+						{ t = "turnin", quest = 98245, title = "Razormaw Needling", npc = 270637, npcName = "Howin Kindfeather", map = 1437, x = 49.36, y = 42.05, f = "e", note = "Howin Kindfeather" },
 						{ t = "accept", quest = 98300, title = "Word to Ironforge", npc = 270637, npcName = "Howin Kindfeather", minLevel = 24, qlvl = 34, map = 1437, x = 49.36, y = 42.05, f = "e", note = "For King Magni in Ironforge, at the end of this guide" },
 						{ t = "turnin", quest = 98283, title = "Carnage", npc = 1244, npcName = "Rethiel the Greenwarden", map = 1437, x = 56.37, y = 40.4, z = 9.5, f = "e", optional = true, note = "Rethiel the Greenwarden" },
 					},
