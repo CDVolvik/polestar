@@ -32,16 +32,25 @@ const TIRISFAL = 'forever/horde/undead/01-tirisfal-glades.guide';
 
 let data;
 const memo = new Map();
-// The guide's goals in order, as { step, goal }.
-function goals(guide) {
+// The guide compiled with the reference data (its parse tree is `_ast`).
+function compiled(guide) {
 	if (!memo.has(guide)) {
 		data = data || loadData(DATA);
 		const file = path.join(OFFICIAL_DIR, guide);
 		const { guides } = compileSources([{ file, text: fs.readFileSync(file, 'utf8') }], data);
 		assert.equal(guides.length, 1, `${guide} compiles`);
-		memo.set(guide, guides[0].steps.flatMap((step) => step.goals.map((goal) => ({ step, goal }))));
+		memo.set(guide, guides[0]);
 	}
 	return memo.get(guide);
+}
+// The guide's goals in order, as { step, goal }.
+function goals(guide) {
+	return compiled(guide).steps.flatMap((step) => step.goals.map((goal) => ({ step, goal })));
+}
+// Every guide of ours, as paths relative to guides/.
+function allGuides() {
+	const walk = (dir) => fs.readdirSync(dir, { withFileTypes: true }).flatMap((e) => (e.isDirectory() ? walk(path.join(dir, e.name)) : e.name.endsWith('.guide') ? [path.join(dir, e.name)] : []));
+	return walk(path.join(OFFICIAL_DIR, 'forever')).map((file) => path.relative(OFFICIAL_DIR, file));
 }
 
 // Index of the first goal matching, asserted present.
@@ -483,10 +492,8 @@ const FOLLOWS_AN_NPC = new Set([
 ]);
 
 test('every step with a quest objective to do has a goal the arrow can lead to', { skip }, () => {
-	const walk = (dir) => fs.readdirSync(dir, { withFileTypes: true }).flatMap((e) => (e.isDirectory() ? walk(path.join(dir, e.name)) : e.name.endsWith('.guide') ? [path.join(dir, e.name)] : []));
 	const offenders = [];
-	for (const file of walk(path.join(OFFICIAL_DIR, 'forever'))) {
-		const guide = path.relative(OFFICIAL_DIR, file);
+	for (const guide of allGuides()) {
 		const steps = [...new Set(goals(guide).map(({ step }) => step))];
 		steps.forEach((step, i) => {
 			const open = step.goals.filter((g) => g.t === 'complete' && !FOLLOWS_AN_NPC.has(g.quest));
@@ -494,4 +501,106 @@ test('every step with a quest objective to do has a goal the arrow can lead to',
 		});
 	}
 	assert.deepEqual(offenders, [], 'steps whose objectives have no place');
+});
+
+// --- Boats in open water (Fitz's playtest at the Auberdine pier): a boat's
+// stop in travel.json is where the ship stands (TaxiPathNode), most of them in
+// open water 12-14 yd off the pier. A goto there completes only within 8 yd of
+// it, so the step cannot finish without swimming and the arrow points into the
+// sea. Every goto at a transport (within 40 yd of its stop) is on walkable
+// ground: dry deck, pier or platform within 8 yd, on the navigation grid.
+
+const NAV = path.join(__dirname, '..', 'data', 'local', 'nav');
+const navIndex = fs.existsSync(path.join(NAV, 'index.json')) ? JSON.parse(fs.readFileSync(path.join(NAV, 'index.json'), 'utf8')) : null;
+const navSkip =
+	skip ||
+	needs('travel.json', 'zones.json') ||
+	(!navIndex ? 'no navigation build in data/local/nav (node tools/polestar.js nav build)' : navIndex.version !== require('../tools/lib/nav/grid/format').VERSION ? `data/local/nav is tile version ${navIndex.version}: rebuild it (node tools/polestar.js nav build)` : false);
+
+test("Fitz's playtest: every goto at a boat, zeppelin or tram stop is on its deck or pier, not in the water", { skip: navSkip }, () => {
+	const { openNav } = require('../tools/lib/nav/path');
+	const { FLAG, TILE_CELLS, cellOf } = require('../tools/lib/nav/grid/format');
+	const { Geo } = require('../tools/lib/planner/geo');
+	const read = (f) => JSON.parse(fs.readFileSync(path.join(DATA, f), 'utf8'));
+	const nav = openNav({ dir: NAV });
+	const geo = new Geo(read('map-frames.json'), read('zones.json'));
+	const stops = read('travel.json').transports.flatMap((t) => ['a', 'b'].map((side) => ({ id: `${t.id} (${t[side].name})`, ...t[side] })));
+	// A dry walkable surface in the cell at (wx, wy): not swim or blocked, above any water there, in a region the
+	// router snaps to (not a pocket under the deck).
+	const dry = (c, wx, wy) => {
+		const a = cellOf(wx, wy);
+		const t = nav.tile(c, a.col, a.row);
+		if (!t) return false;
+		const k = a.j * TILE_CELLS + a.i;
+		const s = [];
+		for (let e = t.first[k]; e < t.first[k + 1]; e++) s.push({ e, z: t.z[e], f: t.flags[e] });
+		const water = Math.max(-Infinity, ...s.filter((q) => q.f & FLAG.SWIM).map((q) => q.z));
+		return s.some((q) => !(q.f & (FLAG.SWIM | FLAG.BLOCKED)) && q.z > water && (nav.regionSize(c, a.col, a.row, q.e) ?? 1000) >= 1000);
+	};
+	const nearDry = (c, wx, wy) => {
+		if (dry(c, wx, wy)) return true;
+		for (let r = 2; r <= 8; r += 2) for (let deg = 0; deg < 360; deg += 15) if (dry(c, wx + r * Math.cos((deg * Math.PI) / 180), wy + r * Math.sin((deg * Math.PI) / 180))) return true;
+		return false;
+	};
+	const offenders = new Set();
+	let checked = 0;
+	for (const guide of allGuides()) {
+		for (const { step, goal } of goals(guide)) {
+			if (goal.t !== 'goto') continue;
+			const w = geo.toWorld(goal.map, goal.x, goal.y, goal.f || 'l');
+			if (!w) continue;
+			const stop = stops.find((s) => s.c === w.c && Math.hypot(s.wx - w.wx, s.wy - w.wy) <= 40);
+			if (!stop) continue;
+			checked++;
+			if (!nearDry(w.c, w.wx, w.wy)) offenders.add(`${guide} step "${step.title}": goto ${goal.x},${goal.y} "${goal.text}" by ${stop.id}`);
+		}
+	}
+	assert.ok(checked >= 10, `the guides' transport gotos are found (${checked})`);
+	assert.deepEqual([...offenders], [], 'transport gotos with no deck or pier within 8 yd');
+});
+
+// --- Typed coordinates on the wrong map (Fitz's playtest: Darkshore's "Boat to
+// Stormwind" pointed into Moonglade). Coordinates without `map` are on the zone
+// in effect, and a `zone` line holds for the steps after it, even when its step
+// is for some characters only: the Night Elf Druids' Moonglade trip set zone
+// Moonglade for the rest of Darkshore, and a Paladin trip set Thunder Bluff for
+// the Barrens Warlocks' summoning circle in Orgrimmar. Each such goal is on the
+// zone every character who sees it is in: the last `zone` line of the steps
+// that character sees.
+
+test("Fitz's playtest: typed coordinates are on the zone of every character who sees them", { skip: skip || needs('races.json') }, () => {
+	const { characterKeys } = require('../tools/lib/dsl/conditions');
+	const races = JSON.parse(fs.readFileSync(path.join(DATA, 'races.json'), 'utf8'));
+	const classesOf = (race, side) => (races[race] && races[race][side] ? races[race][side].classes : null);
+	const offenders = [];
+	for (const guide of allGuides()) {
+		const g = compiled(guide);
+		const ast = g._ast;
+		const lines = fs.readFileSync(path.join(OFFICIAL_DIR, guide), 'utf8').split(/\r?\n/);
+		const zoneAt = (ln) => (ln ? lines[ln - 1].trim() : 'no zone');
+		const head = { factions: ast.header.faction ? [ast.header.faction] : null, races: ast.header.races || null, classes: ast.header.classes || null };
+		// Every step's `zone` lines, with who sees the step.
+		const zoneLines = ast.steps.flatMap((s, i) => {
+			const end = i + 1 < ast.steps.length ? ast.steps[i + 1].line : lines.length + 1;
+			const who = characterKeys([head, s.only], classesOf);
+			const out = [];
+			for (let ln = s.line + 1; ln < end; ln++) if (/^\s+zone\b/.test(lines[ln - 1])) out.push({ ln, who });
+			return out;
+		});
+		ast.steps.forEach((s, si) => {
+			s.goals.forEach((ag, gi) => {
+				if (!ag.explicitCoords || ag.coordMap !== undefined) return;
+				const compiledZone = zoneAt(ag.zone && ag.zone.line);
+				const elsewhere = new Set();
+				for (const k of characterKeys([head, s.only, ag.only], classesOf)) {
+					let ln = ast.header.zone ? ast.header.zone.line : null;
+					for (const z of zoneLines) if (z.ln < ag.line && z.who.has(k)) ln = z.ln;
+					if (zoneAt(ln) !== compiledZone) elsewhere.add(zoneAt(ln));
+				}
+				const goal = g.steps[si].goals[gi];
+				if (elsewhere.size) offenders.push(`${guide}:${ag.line} (${goal.t} ${goal.x},${goal.y}) is on ${compiledZone}, for characters in ${[...elsewhere].join(', ')}`);
+			});
+		});
+	}
+	assert.deepEqual(offenders, [], 'typed coordinates on a zone some of their characters are not in');
 });

@@ -244,7 +244,7 @@ do
 						{ t = "buy", npc = 5494, npcName = "Catherine Leland", item = 6530, itemName = "Nightcrawlers", count = 3, map = 1453, x = 55.09, y = 69.76, z = 96.4, note = "Nightcrawlers" },
 						{ t = "accept", quest = 95065, title = "Fishin' Time", npc = 267118, npcName = "Gilbert Gray", minLevel = 7, qlvl = 12, map = 1453, x = 26.36, y = 46.98, spots = { { x = 26.3, y = 47.1, r = 15, n = 2 } }, note = "Gilbert Gray" },
 						{ t = "turnin", quest = 95065, title = "Fishin' Time", npc = 267118, npcName = "Gilbert Gray", map = 1453, x = 26.36, y = 46.98, spots = { { x = 26.3, y = 47.1, r = 15, n = 2 } } },
-						{ t = "goto", text = "Boat to Auberdine", map = 1453, x = 21.8, y = 56.9 },
+						{ t = "goto", text = "Boat to Auberdine", map = 1453, x = 22.71, y = 56.69 },
 					},
 				},
 			},
@@ -678,7 +678,7 @@ do
 						{ t = "accept", quest = 990, title = "Trek to Ashenvale", npc = 3694, npcName = "Sentinel Selarin", minLevel = 15, qlvl = 19, pre = { 994, 995 }, preTitles = { [994] = "Escape Through Force", [995] = "Escape Through Stealth" }, map = 1439, x = 39.28, y = 43.46, f = "e", note = "Sentinel Selarin: for Raene Wolfrunner in Astranaar, on the later Ashenvale leg" },
 						{ t = "accept", quest = 97914, title = "Expanding Horizons", npc = 3649, npcName = "Thundris Windweaver", minLevel = 13, qlvl = 17, map = 1439, x = 37.4, y = 40.13, z = 8.3, f = "e", note = "Thundris Windweaver: for Baros Alexston in Stormwind" },
 						{ t = "vendor", candidates = { { npc = 4183, npcName = "Naram Longclaw", map = 1439, x = 37.57, y = 40.35, f = "e", faction = "A" }, { npc = 15315, npcName = "Mylini Frostmoon", map = 1448, x = 62.41, y = 25.78, f = "e", faction = "A" }, { npc = 3612, npcName = "Sinda", map = 1438, x = 56.33, y = 59.59, f = "e", faction = "A" }, { npc = 12024, npcName = "Meliri", map = 1450, x = 51.18, y = 42.31, f = "e", faction = "AH" }, { npc = 4234, npcName = "Andrus", map = 1457, x = 56.13, y = 88.91, f = "e", faction = "A" }, { npc = 4164, npcName = "Cylania", map = 1457, x = 59.24, y = 46.36, f = "e", faction = "A" }, { npc = 3589, npcName = "Keina", map = 1438, x = 59.31, y = 41.09, f = "e", faction = "A" }, { npc = 3952, npcName = "Aeolynn", map = 1440, x = 34.47, y = 49.52, f = "e", faction = "A" }, { npc = 4188, npcName = "Illyanie", map = 1442, x = 35.59, y = 7.35, f = "e", faction = "A" }, { npc = 3951, npcName = "Bhaldaran Ravenshade", map = 1440, x = 50.27, y = 67.27, f = "e", faction = "A" }, { npc = 4085, npcName = "Nizzik", map = 1442, x = 62.7, y = 40.18, f = "e", faction = "AH" }, { npc = 11182, npcName = "Nixxrak", map = 1452, x = 61.62, y = 37.87, f = "e", faction = "AH" }, { npc = 222685, npcName = "Quartermaster Kyleen", map = 1440, x = 89.4, y = 40.4, f = "e", faction = "AH" }, { npc = 4086, npcName = "Veenix", map = 1442, x = 58.22, y = 51.74, f = "e", faction = "AH" }, { npc = 14753, npcName = "Illiyana Moonblaze", map = 1440, x = 61.49, y = 83.86, f = "e", faction = "A" }, { npc = 14301, npcName = "Brinna Valanaar", map = 1447, x = 12, y = 78.38, f = "e", faction = "A" }, { npc = 1322, npcName = "Maxton Strang", map = 1443, x = 67.93, y = 8.31, f = "e", faction = "A" }, { npc = 3684, npcName = "Pizznukle", map = 1413, x = 41.77, y = 38.62, f = "e", faction = "AH" }, { npc = 3491, npcName = "Ironzar", map = 1413, x = 62.24, y = 37.48, f = "e", faction = "AH" }, { npc = 263569, npcName = "Bryanna Embreeze", map = 1413, x = 63.44, y = 58.74, f = "e", faction = "A" }, { npc = 1695, npcName = "Rendow", map = 1441, x = 7.6, y = 17.9, f = "e", faction = "A" }, { npc = 7852, npcName = "Pratt McGrubben", map = 1444, x = 30.63, y = 42.71, f = "e", faction = "A" }, { npc = 4890, npcName = "Piter Verance", map = 1445, x = 67.39, y = 47.86, f = "e", faction = "A" }, { npc = 3000, npcName = "Gibbert", map = 1449, x = 44.1, y = 7.19, f = "e", faction = "AH" }, { npc = 15176, npcName = "Vargus", map = 1451, x = 51.23, y = 38.86, f = "e", faction = "AH" }, { npc = 3053, npcName = "Synge", map = 1441, x = 80.4, y = 77.01, f = "e", faction = "AH" }, { npc = 8131, npcName = "Blizrik Buckshot", map = 1446, x = 50.74, y = 27.53, f = "e", faction = "AH" }, { npc = 3537, npcName = "Zixil", map = 1416, x = 53.6, y = 98.7, f = "e", faction = "AH" }, { npc = 13217, npcName = "Thanthaldis Snowgleam", map = 1416, x = 39.45, y = 81.65, f = "e", faction = "A" }, { npc = 28989, npcName = "Aemara", map = 1416, x = 16.59, y = 70.12, f = "e", faction = "A" }, { npc = 275596, npcName = "Rafael Langrom", map = 1416, x = 12.66, y = 70.91, f = "e", faction = "AH" }, { npc = 1471, npcName = "Jannos Ironwill", map = 1417, x = 45.98, y = 47.72, f = "e", faction = "A" }, { npc = 9179, npcName = "Jazzrik", map = 1418, x = 42.47, y = 52.5, f = "e", faction = "AH" }, { npc = 9544, npcName = "Yuka Screwspigot", map = 1418, x = 4.9, y = 94.7, f = "e", faction = "AH" }, { npc = 5508, npcName = "Strumner Flintheel", map = 1419, x = 66.08, y = 17.16, f = "e", faction = "A" }, { npc = 3528, npcName = "Pyrewood Armorer", map = 1421, x = 46.4, y = 71.88, f = "e", faction = "A" }, { npc = 3534, npcName = "Wallace the Blind", map = 1421, x = 46.5, y = 86.49, f = "e", faction = "AH" }, { npc = 10856, npcName = "Argent Quartermaster Hasana", map = 1422, x = 26.6, y = 55.2, f = "e", faction = "AH" }, { npc = 10857, npcName = "Argent Quartermaster Lightspark", map = 1422, x = 42.84, y = 83.72, f = "e", faction = "AH" }, { npc = 11278, npcName = "Magnus Frostwake", map = 1422, x = 68.12, y = 77.57, f = "e", faction = "AH" }, { npc = 12942, npcName = "Leonard Porter", map = 1422, x = 43.08, y = 84.31, f = "e", faction = "A" }, { npc = 16376, npcName = "Craftsman Wilhelm", map = 1423, x = 71.24, y = 49.9, faction = "AH" }, { npc = 2404, npcName = "Blacksmith Verringtan", map = 1424, x = 32.11, y = 44.42, f = "e", faction = "A" }, { npc = 3536, npcName = "Kris Legace", map = 1424, x = 80.14, y = 38.89, f = "e", faction = "AH" }, { npc = 3543, npcName = "Robert Aebischer", map = 1424, x = 51.21, y = 56.98, f = "e", faction = "A" }, { npc = 8161, npcName = "Harggan", map = 1424, x = 98.7, y = 3.1, f = "e", faction = "A" }, { npc = 836, npcName = "Durnan Furcutter", map = 1426, x = 28.77, y = 66.37, f = "e", faction = "A" }, { npc = 1238, npcName = "Gamili Frosthide", map = 1426, x = 45.18, y = 51.93, f = "e", faction = "A" }, { npc = 1698, npcName = "Frast Dokner", map = 1426, x = 69, y = 55.89, f = "e", faction = "A" }, { npc = 3162, npcName = "Burdrak Harglhelm", map = 1426, x = 30.11, y = 45.28, f = "e", faction = "A" }, { npc = 3177, npcName = "Turuk Amberstill", map = 1426, x = 62.9, y = 49.89, f = "e", faction = "A" }, { npc = 11703, npcName = "Graw Cornerstone", map = 1427, x = 41.5, y = 74.97, f = "e", faction = "A" }, { npc = 14624, npcName = "Master Smith Burninate", map = 1427, x = 38.8, y = 28.51, f = "e", faction = "AH" }, { npc = 1296, npcName = "Felder Stover", map = 1428, x = 85.21, y = 68.39, f = "e", faction = "A" }, { npc = 54, npcName = "Corina Steele", map = 1429, x = 41.53, y = 65.9, f = "e", faction = "A" }, { npc = 78, npcName = "Janos Hammerknuckle", map = 1429, x = 47.24, y = 41.9, f = "e", faction = "A" }, { npc = 896, npcName = "Veldan Lightfoot", map = 1429, x = 25.18, y = 73.89, f = "e", faction = "A" }, { npc = 959, npcName = "Morley Eberlein", map = 1429, x = 64.69, y = 69.51, f = "e", faction = "A" }, { npc = 1198, npcName = "Rallic Finn", map = 1429, x = 83.28, y = 66.09, f = "e", faction = "A" }, { npc = 225, npcName = "Gavin Gnarltree", map = 1431, x = 73.6, y = 50.04, f = "e", faction = "A" }, { npc = 167, npcName = "Morhan Coppertongue", map = 1432, x = 34.02, y = 46.54, f = "e", faction = "A" }, { npc = 222, npcName = "Nillen Andemar", map = 1432, x = 42.87, y = 9.89, f = "e", faction = "A" }, { npc = 954, npcName = "Kat Sampson", map = 1432, x = 82.65, y = 64.11, f = "e", faction = "A" }, { npc = 1214, npcName = "Aldren Cordon", map = 1432, x = 64.82, y = 66.05, f = "e", faction = "A" }, { npc = 1362, npcName = "Gothor Brumn", map = 1432, x = 24.13, y = 18.21, f = "e", faction = "A" }, { npc = 789, npcName = "Kimberly Hiett", map = 1433, x = 21.99, y = 45.55, faction = "A" }, { npc = 3097, npcName = "Bernard Brubaker", map = 1433, x = 83.16, y = 71.02, faction = "A" }, { npc = 256730, npcName = "Stondry Darkhammer", map = 1433, x = 10.38, y = 73.85, faction = "A" }, { npc = 2482, npcName = "Zarena Cromwind", map = 1434, x = 28.34, y = 75.46, f = "e", faction = "AH" }, { npc = 2483, npcName = "Jaquilina Dramet", map = 1434, x = 35.75, y = 10.66, f = "e", faction = "AH" }, { npc = 14921, npcName = "Rin'wosho the Trader", map = 1434, x = 15.07, y = 16, f = "e", faction = "AH" }, { npc = 1668, npcName = "William MacGregor", map = 1436, x = 57.71, y = 53.94, f = "e", faction = "A" }, { npc = 1669, npcName = "Defias Profiteer", map = 1436, x = 43.47, y = 66.76, f = "e", faction = "AH" }, { npc = 1441, npcName = "Brak Durnad", map = 1437, x = 11.44, y = 59.69, f = "e", faction = "A" }, { npc = 2679, npcName = "Wenna Silkbeard", map = 1437, x = 25.61, y = 25.8, f = "e", faction = "A" }, { npc = 1287, npcName = "Marda Weller", map = 1453, x = 64.07, y = 68.36, faction = "A" }, { npc = 5509, npcName = "Kathrum Axehand", map = 1453, x = 59.3, y = 33.82, faction = "A" }, { npc = 4259, npcName = "Thurgrum Deepforge", map = 1455, x = 51.74, y = 42.78, f = "e", faction = "A" }, { npc = 5119, npcName = "Hegnar Swiftaxe", map = 1455, x = 62.19, y = 88.16, f = "e", faction = "A" }, { npc = 5133, npcName = "Harick Boulderdrum", map = 1455, x = 23.13, y = 15.94, f = "e", faction = "A" }, { npc = 4257, npcName = "Lana Thunderbrew", map = 1459, x = 43.41, y = 15.64, f = "e", faction = "A" }, { npc = 243855, npcName = "Toron Rockhoof", map = 2482, x = 69, y = 47.36, faction = "A" }, { npc = 265883, npcName = "Chagrak Hammerstrike", map = 2482, x = 13.4, y = 52.4, faction = "AH" }, { npc = 251364, npcName = "Destin Thriceforged", map = 2521, x = 43.08, y = 23.4, faction = "AH" }, { npc = 259766, npcName = "Mika Darby", map = 2548, x = 77.78, y = 52.02, faction = "A" }, { npc = 260566, npcName = "Fizzix Boomshot", map = 2548, x = 78.5, y = 53.89, faction = "AH" } } },
-						{ t = "goto", text = "Boat to Stormwind", map = 1450, x = 32.4, y = 43.8, f = "e" },
+						{ t = "goto", text = "Boat to Stormwind", map = 1439, x = 30.76, y = 40.92, f = "e" },
 					},
 				},
 				{
@@ -2298,7 +2298,7 @@ do
 				{
 					title = "Boat to Southshore",
 					goals = {
-						{ t = "goto", text = "Boat to Southshore", map = 1437, x = 4.5, y = 56.7, f = "e" },
+						{ t = "goto", text = "Boat to Southshore", map = 1437, x = 4.78, y = 57.02, f = "e" },
 					},
 				},
 				{
@@ -3942,7 +3942,7 @@ do
 					note = "Take the boat to Theramore from the far pier.",
 					goals = {
 						{ t = "fly", location = "Menethil Harbor" },
-						{ t = "goto", text = "Boat to Theramore", map = 1437, x = 4.7, y = 63.8, f = "e" },
+						{ t = "goto", text = "Boat to Theramore", map = 1437, x = 5.13, y = 63.61, f = "e" },
 					},
 				},
 				{
@@ -4746,7 +4746,7 @@ do
 					note = "Take the boat to Theramore from the far pier.",
 					goals = {
 						{ t = "fly", location = "Menethil Harbor" },
-						{ t = "goto", text = "Boat to Theramore", map = 1437, x = 4.7, y = 63.8, f = "e" },
+						{ t = "goto", text = "Boat to Theramore", map = 1437, x = 5.13, y = 63.61, f = "e" },
 					},
 				},
 				{
@@ -10124,7 +10124,7 @@ do
 				{
 					title = "Boat to Auberdine",
 					goals = {
-						{ t = "goto", text = "Boat to Auberdine", map = 1438, x = 54.8, y = 97.2, f = "e" },
+						{ t = "goto", text = "Boat to Auberdine", map = 1438, x = 54.79, y = 96.81, f = "e" },
 					},
 				},
 				{
@@ -10176,7 +10176,7 @@ do
 					note = "Laird's fish stall is by the docks. Then take the boat to Stormwind.",
 					goals = {
 						{ t = "turnin", quest = 6342, title = "Flight to Auberdine", npc = 4200, npcName = "Laird", map = 1439, x = 36.77, y = 44.28, z = 8.7, f = "e", note = "Laird" },
-						{ t = "goto", text = "Boat to Stormwind", map = 1439, x = 30.5, y = 40.9, f = "e" },
+						{ t = "goto", text = "Boat to Stormwind", map = 1439, x = 30.76, y = 40.92, f = "e" },
 						{ t = "note", text = "From Stormwind Harbor, ride through the city gates into Elwynn Forest and follow the road west to Westfall." },
 					},
 				},
@@ -23096,7 +23096,7 @@ do
 					goals = {
 						{ t = "turnin", quest = 1512, title = "Love's Gift", npc = 5875, npcName = "Gan'rul Bloodeye", map = 1454, x = 48.25, y = 45.28, z = -14.8, f = "e" },
 						{ t = "accept", quest = 1513, title = "The Binding", npc = 5875, npcName = "Gan'rul Bloodeye", minLevel = 20, qlvl = 20, pre = { 1512 }, closedBy = { 1472 }, preTitles = { [1472] = "Devourer of Souls", [1512] = "Love's Gift" }, map = 1454, x = 48.25, y = 45.28, z = -14.8, f = "e" },
-						{ t = "use", item = 6626, itemName = "Dogran's Pendant", map = 1456, x = 49.4, y = 50, f = "e", note = "Dogran's Pendant" },
+						{ t = "use", item = 6626, itemName = "Dogran's Pendant", map = 1454, x = 49.4, y = 50, f = "e", note = "Dogran's Pendant" },
 						{ t = "kill", quest = 1513, title = "The Binding", target = "Summoned Succubus", npc = 5677, oi = 1, map = 1454, x = 49.4, y = 50, f = "e" },
 						{ t = "turnin", quest = 1513, title = "The Binding", npc = 5875, npcName = "Gan'rul Bloodeye", map = 1454, x = 48.25, y = 45.28, z = -14.8, f = "e" },
 					},
