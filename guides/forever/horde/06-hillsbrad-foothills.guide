@@ -161,7 +161,7 @@ step Stanley
 step Peasants and skulls
   tip The Peasants work the fields south of the farmhouses. Every Hillsbrad human drops skulls; the Peasants drop them most often.
   kill 2267 quest 528.1
-  collect 3692 quest 546.1
+  collect 3692 quest 546.1 @30.3,40.3 -- Hillsbrad Human Skull: the Peasants in the fields
 
 step Tarren Mill
   turnin 528                          -- High Executor Darthalia
