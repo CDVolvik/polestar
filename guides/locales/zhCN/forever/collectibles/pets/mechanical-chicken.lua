@@ -13,7 +13,7 @@ return {
 
 	-- Step 2: Rescue OOX-22/FE
 	["Rescue OOX-22/FE"] = "营救自动导航机器人OOX-22/FE",
-	-- {area:1105} Feral Scar Vale · {area:1108} The Forgotten Coast · {area:35} Booty Bay
+	-- {area:1105} Feral Scar Vale · {area:1108} Forgotten Coast · {area:35} Booty Bay
 	["Take the beacon to OOX-22/FE in a cave near {area:1105}, then escort it to the dock on the {area:1108}. Its turn-in is in {area:35}; keep it for later."] = "把定位器带到{area:1105}附近一个洞穴里的自动导航机器人OOX-22/FE处，然后护送它到{area:1108}的码头。它的任务在{area:35}交还；先留着。",
 	["Escort OOX-22/FE"] = "护送自动导航机器人OOX-22/FE",
 
@@ -30,9 +30,9 @@ return {
 	["Escort OOX-17/TN"] = "护送自动导航机器人OOX-17/TN",
 
 	-- Step 5: OOX-09/HL Distress Beacon in the Hinterlands
-	-- {item:8704} OOX-09/HL Distress Beacon · {zone:1425} The Hinterlands
+	-- {item:8704} OOX-09/HL Distress Beacon · {zone:1425} Hinterlands
 	["{item:8704} in the {zone:1425}"] = "{zone:1425}的{item:8704}",
-	-- {zone:1425} The Hinterlands
+	-- {zone:1425} Hinterlands
 	["Most {zone:1425} mobs can drop OOX-09/HL's beacon (about 1-2.5% per kill in our data)."] = "{zone:1425}的大多数怪物都可能掉落OOX-09/HL定位器（我们的数据显示每次击杀约1-2.5%）。",
 
 	-- Step 6: Rescue OOX-09/HL

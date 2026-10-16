@@ -27,8 +27,8 @@ return {
 	["A new {item:279996}, for the four titan watchers around the {zone:1437}"] = "Ein neuer {item:279996}, für die vier Titanenwächter rund um das {zone:1437}",
 
 	-- Step 5: The Green Belt
-	-- {area:1025} The Green Belt · {npc:270637} Howin Kindfeather · {npc:1244} Rethiel the Greenwarden
-	["Follow the road north-east into the {area:1025}: {npc:270637} camps beside it, {npc:1244} a short way east."] = "Folge der Straße nach Nordosten in {area:1025}: {npc:270637} lagert daneben, {npc:1244} ein Stück weiter östlich.",
+	-- {npc:270637} Howin Kindfeather · {npc:1244} Rethiel the Greenwarden
+	["Follow the road north-east into the Green Belt: {npc:270637} camps beside it, {npc:1244} a short way east."] = "",
 	-- {npc:1244} Rethiel the Greenwarden · {quest:98283} Carnage
 	["{npc:1244}: {quest:98283}, an elite raptor"] = "{npc:1244}: {quest:98283}, ein Elite-Raptor",
 
@@ -41,27 +41,27 @@ return {
 	["{object:671518}: for {npc:2104}"] = "{object:671518}: für {npc:2104}",
 
 	-- Step 7: Golm
-	["Golm"] = "Golm",
-	-- {item:279996} Goaz Stone
-	["Golm stands in the south-eastern hills: use the {item:279996} beside it."] = "Golm steht in den südöstlichen Hügeln: Benutze daneben {item:279996}.",
+	-- {npc:271462} Golm · {item:279996} Goaz Stone
+	["{npc:271462} stands in the south-eastern hills: use the {item:279996} beside it."] = "",
 
 	-- Step 8: Dragonmaw Gates
-	-- {area:1038} Dragonmaw Gates · {npc:271373} Subdued Dragonspawn · {item:279996} Goaz Stone
-	["North-east to the {area:1038}: the {npc:271373} are held there, and Ados stands at the gates (use the {item:279996})."] = "Nach Nordosten zu {area:1038}: {npc:271373} werden dort festgehalten, und Ados steht an den Toren (benutze {item:279996}).",
+	-- {area:1038} Dragonmaw Gates · {npc:271373} Subdued Dragonspawn · {npc:271338} Ados · {item:279996} Goaz Stone
+	["North-east to the {area:1038}: the {npc:271373} are held there, and {npc:271338} stands at the gates (use the {item:279996})."] = "",
 
 	-- Step 9: Whelps, raptors and Neru
-	["Whelps, raptors and Neru"] = "Welpen, Raptoren und Neru",
-	-- {area:1025} The Green Belt · {item:279996} Goaz Stone · {quest:98283} Carnage
+	-- {npc:271458} Neru
+	["Whelps, raptors and {npc:271458}"] = "",
+	-- {npc:271458} Neru · {item:279996} Goaz Stone · {quest:98283} Carnage
 	-- plural, as words: Maddened Rotclaws = {npc:271334} Maddened Rotclaw
-	["Red whelps fill the hills west of the gates, Maddened Rotclaws the {area:1025}, Razormaws the northern slopes; Neru stands in the north-east (use the {item:279996}).\n{quest:98283} is elite: grouping up is advised."] = "Rote Welpen füllen die Hügel westlich der Tore, Wahnsinnige Faulklauen ({npc:271334}) {area:1025}, Scharfzähne die nördlichen Hänge; Neru steht im Nordosten (benutze {item:279996}).\n{quest:98283} ist Elite: Such dir am besten eine Gruppe.",
+	["Red whelps fill the hills west of the gates, Maddened Rotclaws the Green Belt, Razormaws the northern slopes; {npc:271458} stands in the north-east (use the {item:279996}).\n{quest:98283} is elite: grouping up is advised."] = "",
 
 	-- Step 10: The Green Belt
 	-- {zone:1455} Ironforge
 	["For King Magni in {zone:1455}, at the end of this guide"] = "Für König Magni in {zone:1455}, am Ende dieses Guides",
 
 	-- Step 11: Dun Modr
-	-- {area:205} Dun Modr · {item:279996} Goaz Stone · {npc:271481} Captive Fire Elemental · {npc:1072} Roggo Harlbarrow
-	["North along the road to {area:205}. Modr stands in the ruins (use the {item:279996}); the {npc:271481} is held on the west side: lead it out to {npc:1072}."] = "Nach Norden die Straße entlang nach {area:205}. Modr steht in den Ruinen (benutze {item:279996}); {npc:271481} wird auf der Westseite festgehalten: Führ ihn hinaus zu {npc:1072}.",
+	-- {area:205} Dun Modr · {npc:271460} Modr · {item:279996} Goaz Stone · {npc:271481} Captive Fire Elemental · {npc:1072} Roggo Harlbarrow
+	["North along the road to {area:205}. {npc:271460} stands in the ruins (use the {item:279996}); the {npc:271481} is held on the west side: lead it out to {npc:1072}."] = "",
 
 	-- Step 12: The Villards
 	["The Villards"] = "Die Villards",
@@ -138,9 +138,8 @@ return {
 	-- {area:287} Hillsbrad
 	["{area:287} town hall"] = "Rathaus von {area:287}",
 
-	-- Step 28: Fly to Stormwind City
-	-- {zone:1453} Stormwind City
-	["Fly to {zone:1453}"] = "Flieg nach {zone:1453}",
+	-- Step 28: Fly to Stormwind
+	["Fly to Stormwind"] = "",
 	-- {npc:2432} Darla Harris · {area:271} Southshore
 	["From {npc:2432} in {area:271}"] = "Von {npc:2432} in {area:271}",
 
@@ -153,25 +152,36 @@ return {
 	["Dashel waits in the Pig and Whistle tavern in {object:2100}; he and his two thugs fight you, but stop once beaten."] = "Dashel wartet in der Taverne „Zum Schwein und Pfeife“ in {object:2100}; er und seine zwei Schläger greifen dich an, hören aber auf, sobald sie besiegt sind.",
 
 	-- Step 31: The Islander
-	-- {npc:5479} Wu Shen · {object:2100} Old Town · {npc:6236} Klannoc Macleod · {area:720} Fray Island · {zone:1413} The Barrens · {area:392} Ratchet
+	-- {npc:5479} Wu Shen · {object:2100} Old Town · {npc:6236} Klannoc Macleod · {area:720} Fray Island · {zone:1413} Barrens · {area:392} Ratchet
 	["{npc:5479} trains warriors in {object:2100}, beside the Pig and Whistle. {npc:6236} waits on {area:720} in the {zone:1413}, on the way to {area:392} much later (40-50/01)."] = "{npc:5479} bildet in {object:2100} Krieger aus, neben der Taverne „Zum Schwein und Pfeife“. {npc:6236} wartet auf {area:720} im {zone:1413}, auf dem Weg nach {area:392} viel später (40-50/01).",
 
 	-- Step 33: Cathedral of Light
 	["Cathedral of Light"] = "Kathedrale des Lichts",
 
 	-- Step 34: Mage Quarter
-	-- {npc:2708} Archmage Malin · {object:2164} The Slaughtered Lamb · {npc:211033} Garion Wendell · {npc:5081} Connor Rivers · {object:2101} Mage Quarter
+	-- {npc:2708} Archmage Malin · {object:2164} Slaughtered Lamb · {npc:211033} Garion Wendell · {npc:5081} Connor Rivers · {object:2101} Mage Quarter
 	["{npc:2708} is in the {object:2164}; {npc:211033} near the canal; {npc:5081} south of the {object:2101}."] = "{npc:2708} ist im {object:2164}; {npc:211033} nahe dem Kanal; {npc:5081} südlich vom {object:2101}.",
 
 	-- Step 36: Druid training
 	["Druid training"] = "Druidenausbildung",
-	-- {zone:1455} Ironforge · {npc:5504} Sheldras Moontree · {zone:1453} Stormwind City
-	["{zone:1455} has no druid trainer: train with {npc:5504} in {zone:1453} before the tram."] = "{zone:1455} hat keinen Druidenlehrer: Trainiere vor der Bahn bei {npc:5504} in {zone:1453}.",
+	-- {zone:1455} Ironforge · {npc:5504} Sheldras Moontree
+	["{zone:1455} has no druid trainer: train with {npc:5504} in Stormwind before the tram."] = "",
 
 	-- Step 37: Deeprun Tram
 	-- {area:2257} Deeprun Tram · {object:28027} Dwarven District · {zone:1455} Ironforge
 	["Take the {area:2257} from the {object:28027} to {zone:1455}."] = "Nimm die {area:2257} vom {object:28027} nach {zone:1455}.",
-	-- {npc:2784} King Magni Bronzebeard · {object:171709} The High Seat
+	-- {npc:2784} King Magni Bronzebeard · {object:171709} High Seat
 	["{npc:2784}, the {object:171709}"] = "{npc:2784}, {object:171709}",
 	["Level 30 and 32 spells"] = "Zauber der Stufen 30 und 32",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Fly to {zone:1453}"] = "Flieg nach {zone:1453}",
+	-- ["Follow the road north-east into the {area:1025}: {npc:270637} camps beside it, {npc:1244} a short way east."] = "Folge der Straße nach Nordosten in {area:1025}: {npc:270637} lagert daneben, {npc:1244} ein Stück weiter östlich.",
+	-- ["Golm"] = "Golm",
+	-- ["Golm stands in the south-eastern hills: use the {item:279996} beside it."] = "Golm steht in den südöstlichen Hügeln: Benutze daneben {item:279996}.",
+	-- ["North along the road to {area:205}. Modr stands in the ruins (use the {item:279996}); the {npc:271481} is held on the west side: lead it out to {npc:1072}."] = "Nach Norden die Straße entlang nach {area:205}. Modr steht in den Ruinen (benutze {item:279996}); {npc:271481} wird auf der Westseite festgehalten: Führ ihn hinaus zu {npc:1072}.",
+	-- ["North-east to the {area:1038}: the {npc:271373} are held there, and Ados stands at the gates (use the {item:279996})."] = "Nach Nordosten zu {area:1038}: {npc:271373} werden dort festgehalten, und Ados steht an den Toren (benutze {item:279996}).",
+	-- ["Red whelps fill the hills west of the gates, Maddened Rotclaws the {area:1025}, Razormaws the northern slopes; Neru stands in the north-east (use the {item:279996}).\n{quest:98283} is elite: grouping up is advised."] = "Rote Welpen füllen die Hügel westlich der Tore, Wahnsinnige Faulklauen ({npc:271334}) {area:1025}, Scharfzähne die nördlichen Hänge; Neru steht im Nordosten (benutze {item:279996}).\n{quest:98283} ist Elite: Such dir am besten eine Gruppe.",
+	-- ["Whelps, raptors and Neru"] = "Welpen, Raptoren und Neru",
+	-- ["{zone:1455} has no druid trainer: train with {npc:5504} in {zone:1453} before the tram."] = "{zone:1455} hat keinen Druidenlehrer: Trainiere vor der Bahn bei {npc:5504} in {zone:1453}.",
 }

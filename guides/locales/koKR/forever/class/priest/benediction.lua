@@ -28,5 +28,4 @@ return {
 	-- Step 4: Benediction
 	-- {item:18608} Benediction
 	["With both Eyes in your bags: {item:18608}"] = "두 눈을 가방에 넣고: {item:18608}",
-
 }

@@ -147,7 +147,7 @@ return {
 	["{quest:313} is the wendigo cave south-west of {area:131}. Flintfire's shipments lie on the cave floor."] = "{quest:313} est la grotte des wendigos au sud-ouest de {area:131}. Les Cargaisons de Flammesilex sont au sol dans la grotte.",
 
 	-- Step 26: Mountaineer Cornelius
-	-- {area:136} The Grizzled Den
+	-- {area:136} Grizzled Den
 	["Cornelius is missing in the {area:136}: find him inside, then go back to Gretchen."] = "Cornelius a disparu dans {area:136} : trouvez-le à l'intérieur, puis retournez voir Gretchen.",
 
 	-- Step 28: Kharanos and the depot
@@ -226,7 +226,6 @@ return {
 	["Rockjaw Ambushers by {area:212}, north of the quarry, and Rockjaw Backbreakers further east drop the {quest:95214}."] = "Les Embusqués Mâcheroc près du {area:212}, au nord de la carrière, et les Brise-dos Mâcheroc plus à l'est laissent tomber {quest:95214}.",
 
 	-- Step 49: Leopards and boars
-	-- plural, as words: Leopards = {spell:10788} Leopard
 	["Leopards and boars"] = "Léopards et sangliers",
 	-- {item:2770} Copper Ore
 	-- plural, as words: Snow Leopards = {npc:1201} Snow Leopard · Blacksmiths = {area:3421} Blacksmith · Copper Bars = {item:2840} Copper Bar
@@ -243,15 +242,15 @@ return {
 	["{npc:1231}, at the smithy"] = "{npc:1231}, à la forge",
 	-- {npc:258113} Ingrid Dunwald · {npc:257597} Bruegs Kindleborn
 	["{npc:258113}: {npc:257597} by the South Gate takes it"] = "{npc:258113} : à rendre à {npc:257597}, près de la porte Sud",
-	-- {npc:1226} Maxan Anvol · {npc:376} High Priestess Laurena · {zone:1453} Stormwind City
+	-- {npc:1226} Maxan Anvol · {npc:376} High Priestess Laurena · {zone:1453} Stormwind
 	["{npc:1226}: {npc:376} in {zone:1453} takes it"] = "{npc:1226} : à rendre à {npc:376}, à {zone:1453}",
 	-- {npc:1226} Maxan Anvol · {npc:258785} High Priestess Mims · {zone:1455} Ironforge
 	["{npc:1226}: {npc:258785} in {zone:1455} takes it"] = "{npc:1226} : à rendre à {npc:258785}, à {zone:1455}",
 
 	-- Step 54: Taming the Beast
-	-- {npc:1231} Grif Wildheart · {item:15908} Taming Rod · {area:131} Kharanos
+	-- {item:15908} Taming Rod · {area:131} Kharanos
 	-- plural, as words: Large Crag Boars = {npc:1126} Large Crag Boar · Snow Leopards = {npc:1201} Snow Leopard · Ice Claw Bears = {npc:1196} Ice Claw Bear
-	["Each of {npc:1231}'s quests hands you a {item:15908}: use it on the beast he names, then bring the rod back to him at the {area:131} smithy. Large Crag Boars, Snow Leopards and Ice Claw Bears all roam the fields just south and east of {area:131}."] = "Chaque quête de {npc:1231} vous donne un {item:15908} : utilisez-le sur la bête qu'il désigne, puis rapportez-lui le bâtonnet à la forge de {area:131}. Les Grands sangliers des rochers, les Léopards des neiges et les Ours Griffeglace parcourent tous les champs juste au sud et à l'est de {area:131}.",
+	["Each of Grif Wildheart's quests hands you a {item:15908}: use it on the beast he names, then bring the rod back to him at the {area:131} smithy. Large Crag Boars, Snow Leopards and Ice Claw Bears all roam the fields just south and east of {area:131}."] = "",
 	-- {npc:1126} Large Crag Boar · {item:15908} Taming Rod
 	["{npc:1126}: tame it with the {item:15908}"] = "{npc:1126} : apprivoisez-le avec le {item:15908}",
 	-- {npc:1201} Snow Leopard · {item:15908} Taming Rod
@@ -292,8 +291,8 @@ return {
 
 	-- Step 62: The Fire Spirit Stone
 	["The Fire Spirit Stone"] = "La pierre de l'esprit du feu",
-	-- {item:6636} Fire Sapta · {npc:5893} Minor Manifestation of Fire · {item:6655} Glowing Ember · {object:61934} Brazier of the Dormant Flame · {object:148418} Eternal Flame
-	["Braldir gives you the {item:6636}. Climb to the peak above his camp, drink the Sapta beside the Spirit Stone and defeat the {npc:5893}, then place its {item:6655} in the {object:61934}, atop the Shrine of {object:148418}."] = "Braldir vous donne {item:6636}. Montez au sommet au-dessus de son camp, buvez le Sapta à côté de la Pierre de l'esprit et vainquez {npc:5893}, puis placez son {item:6655} dans {object:61934}, au sommet de l'autel de {object:148418}.",
+	-- {item:6636} Fire Sapta · {npc:5893} Minor Manifestation of Fire · {item:6655} Glowing Ember · {object:61934} Brazier of the Dormant Flame
+	["Braldir gives you the {item:6636}. Climb to the peak above his camp, drink the Sapta beside the Spirit Stone and defeat the {npc:5893}, then place its {item:6655} in the {object:61934}, atop the Shrine of Eternal Flame."] = "",
 	-- {item:6636} Fire Sapta
 	["{item:6636}, beside the Spirit Stone"] = "{item:6636}, à côté de la Pierre de l'esprit",
 
@@ -321,7 +320,7 @@ return {
 	["{npc:1266} camps in {area:801}, south of Brewnall. His meats are in the locker in {npc:1271}'s cave to the north-east of his camp: grab them and leave quickly."] = "{npc:1266} campe dans {area:801}, au sud de Brassetout. Ses viandes sont dans le coffre de la grotte de {npc:1271}, au nord-est de son camp : prenez-les et repartez vite.",
 
 	-- Step 69: The Tome of Divinity
-	-- {zone:1455} Ironforge · {object:32362} The Mystic Ward · {npc:5149} Brandur Ironhammer · {npc:6179} Tiza Battleforge · {npc:6178} Muiredon Battleforge · {object:32386} Hall of Mysteries · {npc:6175} John Turner · {item:2589} Linen Cloth · {zone:1426} Dun Morogh
+	-- {zone:1455} Ironforge · {object:32362} Mystic Ward · {npc:5149} Brandur Ironhammer · {npc:6179} Tiza Battleforge · {npc:6178} Muiredon Battleforge · {object:32386} Hall of Mysteries · {npc:6175} John Turner · {item:2589} Linen Cloth · {zone:1426} Dun Morogh
 	["Follow the road up to {zone:1455} and take the {object:32362}: {npc:5149}, {npc:6179} and {npc:6178} are in the {object:32386}. {npc:6175}, a beggar, wanders the city. He asks for ten {item:2589}: the troggs and trolls of {zone:1426} drop it, and the Auction House sells it."] = "Suivez la route jusqu'à {zone:1455} et prenez {object:32362} : {npc:5149}, {npc:6179} et {npc:6178} sont dans {object:32386}. {npc:6175}, un mendiant, erre dans la ville. Il demande dix {item:2589} : les troggs et les trolls de {zone:1426} en laissent tomber, et l'Hôtel des ventes en vend.",
 	-- {quest:2997} Tome of Divinity
 	["From the {quest:2997} she gives you"] = "Grâce à {quest:2997} qu'elle vous donne",
@@ -341,19 +340,19 @@ return {
 	-- Step 72: Ironforge class quests
 	-- {zone:1455} Ironforge
 	["{zone:1455} class quests"] = "Quêtes de classe de {zone:1455}",
-	-- {npc:10090} Belia Thundergranite · {object:32390} Hall of Arms · {npc:258785} High Priestess Mims · {object:32386} Hall of Mysteries · {npc:6120} Lago Blackwrench · {object:32383} The Forlorn Cavern
+	-- {npc:10090} Belia Thundergranite · {object:32390} Hall of Arms · {npc:258785} High Priestess Mims · {object:32386} Hall of Mysteries · {npc:6120} Lago Blackwrench · {object:32383} Forlorn Cavern
 	["{npc:10090} is in the {object:32390}, {npc:258785} in the {object:32386}, {npc:6120} in the {object:32383}."] = "{npc:10090} est dans {object:32390}, {npc:258785} dans {object:32386}, {npc:6120} dans {object:32383}.",
-	-- {npc:6120} Lago Blackwrench · {npc:6122} Gakin the Darkbinder · {zone:1453} Stormwind City
+	-- {npc:6120} Lago Blackwrench · {npc:6122} Gakin the Darkbinder · {zone:1453} Stormwind
 	["{npc:6120}: {npc:6122} in {zone:1453} takes it"] = "{npc:6120} : à rendre à {npc:6122}, à {zone:1453}",
 
 	-- Step 73: The Deeprun Tram
 	-- {area:2257} Deeprun Tram
 	["The {area:2257}"] = "{area:2257}",
-	-- {zone:1455} Ironforge · {area:2257} Deeprun Tram · {object:171524} Tinker Town · {zone:1453} Stormwind City
+	-- {zone:1455} Ironforge · {area:2257} Deeprun Tram · {object:171524} Tinker Town · {zone:1453} Stormwind
 	["Follow the road up to {zone:1455} and train with your class trainer. The {area:2257} leaves from {object:171524}, in the east of the city. Ride it to {zone:1453}."] = "Suivez la route jusqu'à {zone:1455} et allez voir votre maître de classe. {area:2257} part de {object:171524}, à l'est de la ville. Prenez-le jusqu'à {zone:1453}.",
 	-- {object:660964} Misplaced Packages · {object:171524} Tinker Town
 	["{object:660964}, by the mailbox in {object:171524}"] = "{object:660964}, près de la boîte aux lettres de {object:171524}",
-	-- {npc:258098} Eldrun Stormbreaker · {object:32372} The Great Forge
+	-- {npc:258098} Eldrun Stormbreaker · {object:32372} Great Forge
 	["{npc:258098}, the shaman trainer, north of the {object:32372}"] = "{npc:258098}, le maître des chamans, au nord de {object:32372}",
 
 	-- Step 74: Defensive Stance
@@ -365,15 +364,15 @@ return {
 	["{npc:376} is in the Cathedral of Light."] = "{npc:376} est dans la Cathédrale de la Lumière.",
 
 	-- Step 76: Gakin the Darkbinder
-	-- {npc:6122} Gakin the Darkbinder · {object:2164} The Slaughtered Lamb · {object:2101} Mage Quarter
+	-- {npc:6122} Gakin the Darkbinder · {object:2164} Slaughtered Lamb · {object:2101} Mage Quarter
 	["{npc:6122} waits in the cellar of the {object:2164}, in the {object:2101}."] = "{npc:6122} attend dans la cave de {object:2164}, dans {object:2101}.",
 
 	-- Step 77: Surena Caledon
-	-- {zone:1453} Stormwind City · {area:87} Goldshire · {area:62} Brackwell Pumpkin Patch · {quest:1688} Surena Caledon
-	["Leave {zone:1453} by the main gate, go south to {area:87} and east along the road to the {area:62}. {quest:1688} (level 9) stands by its farmhouse."] = "Quittez {zone:1453} par la grande porte, allez au sud jusqu'à {area:87} puis à l'est par la route jusqu'à {area:62}. {quest:1688} (niveau 9) se tient près de la ferme.",
+	-- {zone:1453} Stormwind · {area:87} Goldshire · {area:62} Brackwell Pumpkin Patch · {npc:881} Surena Caledon
+	["Leave {zone:1453} by the main gate, go south to {area:87} and east along the road to the {area:62}. {npc:881} (level 9) stands by its farmhouse."] = "",
 
 	-- Step 78: The Binding
-	-- {item:6928} Bloodstone Choker · {object:2164} The Slaughtered Lamb · {zone:1436} Westfall · {area:87} Goldshire
+	-- {item:6928} Bloodstone Choker · {object:2164} Slaughtered Lamb · {zone:1436} Westfall · {area:87} Goldshire
 	["Back to Gakin. Use the {item:6928} at the summoning circle in the {object:2164}'s cellar and defeat the voidwalker it calls. {zone:1436} is next, west of {area:87}."] = "Retournez voir Gakin. Utilisez {item:6928} sur le cercle d'invocation de la cave de {object:2164} et vainquez le marcheur du Vide qu'il appelle. Ensuite : {zone:1436}, à l'ouest de {area:87}.",
 	["Subdue the voidwalker"] = "Soumettez le marcheur du Vide",
 
@@ -382,13 +381,16 @@ return {
 	["{npc:5497} stands in the Wizard's Sanctum, the tower of the {object:2101}; she gives you a flask for the {quest:1861} waterfall."] = "{npc:5497} se tient dans le Sanctum des sorciers, la tour de {object:2101} ; elle vous donne une flasque pour la cascade de {quest:1861}.",
 
 	-- Step 80: Mirror Lake
-	-- {zone:1453} Stormwind City · {quest:1861} Mirror Lake · {zone:1436} Westfall · {item:7207} Jennea's Flask
+	-- {zone:1453} Stormwind · {quest:1861} Mirror Lake · {zone:1436} Westfall · {item:7207} Jennea's Flask
 	["Leave {zone:1453} by the main gate. The {quest:1861} waterfall is south-west of the gates, on the way west to {zone:1436}: fill {item:7207} at its base."] = "Quittez {zone:1453} par la grande porte. La cascade de {quest:1861} est au sud-ouest des portes, sur le chemin de {zone:1436} vers l'ouest : remplissez {item:7207} à son pied.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["A few {npc:1120} Whelps if you are short"] = "Quelques Jeunes {npc:1120} s'il vous en manque",
+	-- ["Braldir gives you the {item:6636}. Climb to the peak above his camp, drink the Sapta beside the Spirit Stone and defeat the {npc:5893}, then place its {item:6655} in the {object:61934}, atop the Shrine of {object:148418}."] = "Braldir vous donne {item:6636}. Montez au sommet au-dessus de son camp, buvez le Sapta à côté de la Pierre de l'esprit et vainquez {npc:5893}, puis placez son {item:6655} dans {object:61934}, au sommet de l'autel de {object:148418}.",
 	-- ["Defensive Stance"] = "Posture défensive",
+	-- ["Each of {npc:1231}'s quests hands you a {item:15908}: use it on the beast he names, then bring the rod back to him at the {area:131} smithy. Large Crag Boars, Snow Leopards and Ice Claw Bears all roam the fields just south and east of {area:131}."] = "Chaque quête de {npc:1231} vous donne un {item:15908} : utilisez-le sur la bête qu'il désigne, puis rapportez-lui le bâtonnet à la forge de {area:131}. Les Grands sangliers des rochers, les Léopards des neiges et les Ours Griffeglace parcourent tous les champs juste au sud et à l'est de {area:131}.",
 	-- ["Iceclaw Bear Pendants, from the {npc:1120} Whelps on the slopes above the camp"] = "Pendentifs d'ours Griffeglace, sur les Jeunes {npc:1120} des pentes au-dessus du camp",
+	-- ["Leave {zone:1453} by the main gate, go south to {area:87} and east along the road to the {area:62}. {quest:1688} (level 9) stands by its farmhouse."] = "Quittez {zone:1453} par la grande porte, allez au sud jusqu'à {area:87} puis à l'est par la route jusqu'à {area:62}. {quest:1688} (niveau 9) se tient près de la ferme.",
 	-- ["Ride back out of {zone:1455} and east along the road to {area:212}. {npc:6177} lies dead by its shore: use the {item:6866} on him. The {object:147516} Spies sneaking around the lake carry the script."] = "Ressortez de {zone:1455} et suivez la route vers l'est jusqu'au {area:212}. {npc:6177} gît mort sur la rive : utilisez {item:6866} sur lui. Les Espions {object:147516} qui se faufilent autour du lac portent le texte.",
 	-- ["Rockjaw Bonesnappers prowl the quarry and {area:212}; {object:147516} Spies sneak around the lake shore. One spy drops the {item:274268}."] = "Les Briseurs d'os Mâcheroc rôdent dans la carrière et autour du {area:212} ; les Espions {object:147516} se faufilent sur la rive du lac. Un espion laisse tomber {item:274268}.",
 	-- ["Summon Voidwalker"] = "Invocation d'un marcheur du Vide",

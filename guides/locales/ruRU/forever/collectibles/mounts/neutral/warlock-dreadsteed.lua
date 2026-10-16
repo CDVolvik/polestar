@@ -9,8 +9,8 @@ return {
 	["Warlock Dreadsteed"] = "Конь погибели чернокнижника",
 	["Your epic mount at 60: summoned anywhere, with no gold spent on an epic horse."] = "Ваше эпическое средство передвижения на 60-м уровне: призывается где угодно, без трат золота на эпического коня.",
 
-	-- Step 1: Mor'zul Bloodbringer (Stormwind City)
-	-- {npc:5520} Spackle Thornberry · {object:2164} The Slaughtered Lamb · {quest:7562} Mor'zul Bloodbringer · {zone:1428} Burning Steppes
+	-- Step 1: Mor'zul Bloodbringer (Stormwind)
+	-- {npc:5520} Spackle Thornberry · {object:2164} Slaughtered Lamb · {quest:7562} Mor'zul Bloodbringer · {zone:1428} Burning Steppes
 	["At 60 {npc:5520} in the {object:2164} sends you to {quest:7562} in the {zone:1428}."] = "На 60-м уровне {npc:5520} ({object:2164}) отправляет вас к NPC {quest:7562} ({zone:1428}).",
 
 	-- Step 2: Mor'zul Bloodbringer (Ironforge)
@@ -45,9 +45,9 @@ return {
 
 	-- Step 8: The ritual pieces
 	["The ritual pieces"] = "Предметы для ритуала",
-	-- {spell:5896} Shadow Power · {skill:171} Alchemy · {skill:333} Enchanting · {item:11370} Dark Iron Ore · {skill:186} Mining · {area:1584} Blackrock Depths · {zone:1427} Searing Gorge · {skill:393} Skinning · {zone:1428} Burning Steppes
+	-- {skill:171} Alchemy · {skill:333} Enchanting · {item:11370} Dark Iron Ore · {skill:186} Mining · {area:1584} Blackrock Depths · {zone:1427} Searing Gorge · {skill:393} Skinning · {zone:1428} Burning Steppes
 	-- plural, as words: Large Brilliant Shards = {item:14344} Large Brilliant Shard · Black Dragonscales = {item:15416} Black Dragonscale
-	["Gorzeeki wants 10 Elixirs of {spell:5896} ({skill:171}), 6 Large Brilliant Shards ({skill:333}), 25 {item:11370} ({skill:186}, in {area:1584} and the {zone:1427}) and 35 Black Dragonscales ({skill:393}, black dragonkin of the {zone:1428}). Make or gather what your professions allow; buy the rest at the Auction House."] = "Горзиеки нужны 10 эликсиров «{spell:5896}» ({skill:171}), 6 больших сверкающих осколков ({skill:333}), 25 шт. {item:11370} ({skill:186}; {area:1584} и {zone:1427}) и 35 шкур черного дракона ({skill:393}; черные дракониды зоны {zone:1428}). Сделайте или добудьте то, что позволяют ваши профессии; остальное купите на аукционе.",
+	["Gorzeeki wants 10 Elixirs of Shadow Power ({skill:171}), 6 Large Brilliant Shards ({skill:333}), 25 {item:11370} ({skill:186}, in {area:1584} and the {zone:1427}) and 35 Black Dragonscales ({skill:393}, black dragonkin of the {zone:1428}). Make or gather what your professions allow; buy the rest at the Auction House."] = "",
 
 	-- Step 9: Arcanite
 	-- plural, as words: Arcanite Bars = {item:12360} Arcanite Bar
@@ -92,4 +92,6 @@ return {
 	-- {npc:14504} Dreadsteed Spirit
 	["{npc:14504}: it binds itself to you"] = "{npc:14504}: он привязывается к вам",
 
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Gorzeeki wants 10 Elixirs of {spell:5896} ({skill:171}), 6 Large Brilliant Shards ({skill:333}), 25 {item:11370} ({skill:186}, in {area:1584} and the {zone:1427}) and 35 Black Dragonscales ({skill:393}, black dragonkin of the {zone:1428}). Make or gather what your professions allow; buy the rest at the Auction House."] = "Горзиеки нужны 10 эликсиров «{spell:5896}» ({skill:171}), 6 больших сверкающих осколков ({skill:333}), 25 шт. {item:11370} ({skill:186}; {area:1584} и {zone:1427}) и 35 шкур черного дракона ({skill:393}; черные дракониды зоны {zone:1428}). Сделайте или добудьте то, что позволяют ваши профессии; остальное купите на аукционе.",
 }

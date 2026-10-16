@@ -13,7 +13,7 @@ return {
 	["{area:1446}, on the scaffolds in the north-west of {zone:1427}, is the Brotherhood's outpost. The {faction:59} starts out Neutral. Forever's Legacy Diplomat perk increases reputation gains."] = "{zone:1427}西北部脚手架上的{area:1446}是兄弟会的前哨。{faction:59}初始为中立。Forever的传承外交官特权可提高声望获取。",
 
 	-- Step 2: Secret Plans: Fiery Flux
-	-- {area:1443} The Slag Pit · {object:147516} Dark Iron · {item:18945} Dark Iron Residue
+	-- {area:1443} Slag Pit · {object:147516} Dark Iron · {item:18945} Dark Iron Residue
 	["The plans lie in the {area:1443} of the Cauldron, guarded by {object:147516} dwarves. {object:147516} dwarves also drop {item:18945}, which Burninate takes for Gaining Acceptance."] = "图纸在大熔炉的{area:1443}中，由{object:147516}矮人看守。{object:147516}矮人还会掉落{item:18945}，博恩奈特会收下它用于“获得信任”任务。",
 
 	-- Step 3: Back to Burninate
@@ -23,7 +23,7 @@ return {
 	-- {item:18942} Fiery Flux
 	["{item:18942} supplies to Friendly"] = "{item:18942}补给刷到友善",
 	-- {item:3356} Kingsblood · {item:4234} Heavy Leather · {item:18944} Incendosaur Scale · {zone:1427} Searing Gorge
-	-- plural, as words: Iron Bars = {item:3575} Iron Bar
+	-- plural, as words: Iron Bars = {item:3575} Iron Bar · Incendosaurs = {npc:9318} Incendosaur
 	["Restoring Fiery Flux Supplies repeats in three versions: {item:3356}, Iron Bars or {item:4234}, each with Coal and an {item:18944}. Incendosaurs (level 47-49) in the north of {zone:1427} drop a scale every time; Burninate himself sells Coal."] = "“炽热助熔剂的补给”有三个可重复版本：{item:3356}、{item:3575}或{item:4234}，每个都需要煤块和一个{item:18944}。{zone:1427}北部的熏火龙（47-49级）每次都会掉落鳞片；博恩奈特本人出售煤块。",
 	-- {npc:14624} Master Smith Burninate
 	["{npc:14624}: Restoring Fiery Flux Supplies"] = "{npc:14624}：炽热助熔剂的补给",

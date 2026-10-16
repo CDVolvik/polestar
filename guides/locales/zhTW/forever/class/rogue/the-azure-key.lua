@@ -12,7 +12,7 @@ return {
 	-- Step 1: A Simple Request (Alliance)
 	-- {quest:8233} A Simple Request
 	["{quest:8233} (Alliance)"] = "{quest:8233}（聯盟）",
-	-- {npc:918} Osborne the Night Man · {zone:1453} Stormwind City · {object:2100} Old Town · {zone:1457} Darnassus · {npc:5165} Hulfdan Blackbeard · {zone:1455} Ironforge
+	-- {npc:918} Osborne the Night Man · {zone:1453} Stormwind · {object:2100} Old Town · {zone:1457} Darnassus · {npc:5165} Hulfdan Blackbeard · {zone:1455} Ironforge
 	["At 50 {npc:918} in {zone:1453}'s {object:2100} has it; so do Syurna in {zone:1457} and {npc:5165} and Fenthwick in {zone:1455}."] = "50級時，{zone:1453}{object:2100}的{npc:918}提供此任務；{zone:1457}的塞尤娜，以及{zone:1455}的{npc:5165}和芬斯維克也有。",
 
 	-- Step 2: A Simple Request (Horde)

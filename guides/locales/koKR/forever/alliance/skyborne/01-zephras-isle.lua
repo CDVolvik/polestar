@@ -87,7 +87,9 @@ return {
 	["The bounty board"] = "현상금 게시판",
 
 	-- Step 13: Prideclaws and Galestriders
+	-- plural, as words: Prideclaws = {npc:251245} Prideclaw
 	["Prideclaws and Galestriders"] = "무리발톱과 돌풍타조",
+	-- plural, as words: Prideclaws = {npc:251245} Prideclaw
 	["Prideclaws and Galestriders roam the grasslands south of the village. Galestriders drop both the eggs and the meat."] = "무리발톱과 돌풍타조가 마을 남쪽 초원을 돌아다닙니다. 돌풍타조는 알과 고기를 모두 떨어뜨립니다.",
 
 	-- Step 14: Back to Shen'dar
@@ -224,8 +226,8 @@ return {
 
 	-- Step 41: The dead cultist
 	["The dead cultist"] = "죽은 광신도",
-	-- {area:16638} Valanaar · {npc:273017} Fendaal Windstone · {quest:98512} Al'Aketh Assassins
-	["North-west of {area:16638} along the road: {npc:273017} watches the {quest:98512}; the dead cultist lies just north of him."] = "{area:16638} 북서쪽 길가: {npc:273017}이(가) {quest:98512}을(를) 감시하고 있고, 죽은 광신도는 그 바로 북쪽에 쓰러져 있습니다.",
+	-- {npc:273017} Fendaal Windstone · {quest:98512} Al'Aketh Assassins
+	["North-west of Valanaar along the road: {npc:273017} watches the {quest:98512}; the dead cultist lies just north of him."] = "",
 	["Search the dead cultist"] = "죽은 광신도를 조사하세요",
 	-- {npc:258443} Ur'endra
 	["{npc:258443}, in the highlands south-west of the cultist"] = "광신도 남서쪽 고원의 {npc:258443}",
@@ -303,9 +305,9 @@ return {
 	["Skycutter to {area:279}"] = "비행정으로 {area:279}에 가기",
 
 	-- Step 56: Denaaris Stargale
-	-- {zone:1453} Stormwind City
+	-- {zone:1453} Stormwind
 	["Denaaris stands beside the Skyborne Portal where the zeppelin lands. The portal takes you to {zone:1453}."] = "데나리스는 비행선이 내리는 곳의 스카이본 차원문 옆에 서 있습니다. 차원문은 {zone:1453}(으)로 연결됩니다.",
-	-- {npc:270459} Alfina Nightgaze · {npc:5504} Sheldras Moontree · {zone:1453} Stormwind City
+	-- {npc:270459} Alfina Nightgaze · {npc:5504} Sheldras Moontree · {zone:1453} Stormwind
 	["{npc:270459}, beside Denaaris: for {npc:5504} in {zone:1453}"] = "데나리스 옆의 {npc:270459}: {zone:1453}의 {npc:5504}용",
 
 	-- Step 57: Stormwind Keep
@@ -315,7 +317,7 @@ return {
 	["For {npc:234} at {area:108}"] = "{area:108}의 {npc:234}용",
 
 	-- Step 58: Sheldras Moontree
-	-- {npc:5504} Sheldras Moontree · {zone:1453} Stormwind City · {spell:18960} Teleport: Moonglade · {npc:11802} Dendrite Starblaze · {spell:499} Cat Form · {zone:1439} Darkshore
+	-- {npc:5504} Sheldras Moontree · {zone:1453} Stormwind · {spell:18960} Teleport: Moonglade · {npc:11802} Dendrite Starblaze · {spell:499} Cat Form · {zone:1439} Darkshore
 	["{npc:5504}, {zone:1453}'s druid trainer, teaches you {spell:18960}. {npc:11802}'s welcome waits for your {spell:499} trip at the end of {zone:1439}."] = "{zone:1453}의 드루이드 상급자 {npc:5504}이(가) {spell:18960}을(를) 가르쳐 줍니다. {npc:11802}의 환영 인사는 {zone:1439} 끝의 {spell:499} 여정에서 기다립니다.",
 
 	-- Step 59: Jennea Cannon
@@ -323,7 +325,9 @@ return {
 	["{npc:5497} stands in the Wizard's Sanctum, the tower of the {object:2101}; she gives you a flask for the {quest:1861} waterfall."] = "{npc:5497}은(는) {object:2101}의 탑인 마법사의 성소에 있습니다. 그녀는 {quest:1861} 폭포에 쓸 병을 줍니다.",
 
 	-- Step 60: Mirror Lake
-	-- {zone:1453} Stormwind City · {quest:1861} Mirror Lake · {zone:1436} Westfall · {item:7207} Jennea's Flask
+	-- {zone:1453} Stormwind · {quest:1861} Mirror Lake · {zone:1436} Westfall · {item:7207} Jennea's Flask
 	["Leave {zone:1453} by the main gate. The {quest:1861} waterfall is south-west of the gates, on the way west to {zone:1436}: fill {item:7207} at its base."] = "정문으로 {zone:1453}을(를) 나가세요. {quest:1861} 폭포는 성문 남서쪽, 서쪽 {zone:1436}(으)로 가는 길에 있습니다. 폭포 아래에서 {item:7207}을(를) 채우세요.",
 
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["North-west of {area:16638} along the road: {npc:273017} watches the {quest:98512}; the dead cultist lies just north of him."] = "{area:16638} 북서쪽 길가: {npc:273017}이(가) {quest:98512}을(를) 감시하고 있고, 죽은 광신도는 그 바로 북쪽에 쓰러져 있습니다.",
 }

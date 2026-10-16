@@ -27,13 +27,13 @@ return {
 	["Twitching Antennae from the silithid"] = "Zuckende Fühler von den Silithiden",
 
 	-- Step 5: Thun'grim Firegaze
-	-- {area:380} The Crossroads · {quest:1838} Brutal Armor
+	-- {area:380} Crossroads · {quest:1838} Brutal Armor
 	["Thun'grim camps beside the road east of the {area:380}. {quest:1838} is a level 30 quest; you can take it now and gather for it on the way."] = "Thun'grim Firegaze lagert an der Straße östlich vom {area:380}. {quest:1838} ist eine Quest der Stufe 30; du kannst sie jetzt annehmen und unterwegs dafür sammeln.",
 
 	-- Step 6: Roogug in Razorfen Kraul
 	-- {area:1717} Razorfen Kraul
 	["Roogug in {area:1717}"] = "Roogug in {area:1717}",
-	-- {area:1717} Razorfen Kraul · {zone:1413} The Barrens · {item:6841} Vial of Phlogiston
+	-- {area:1717} Razorfen Kraul · {zone:1413} Barrens · {item:6841} Vial of Phlogiston
 	["Roogug is an elite quilboar inside {area:1717}, the dungeon at the south end of the {zone:1413}; he drops the {item:6841}. {area:1717} is a dungeon: grouping up is advised."] = "Roogug ist ein Elite-Stacheleber in {area:1717}, dem Dungeon am Südende des {zone:1413}; er lässt {item:6841} fallen. {area:1717} ist ein Dungeon: Eine Gruppe wird empfohlen.",
 	-- {item:6841} Vial of Phlogiston
 	["{item:6841}, from Roogug"] = "{item:6841}, von Roogug",
@@ -66,7 +66,7 @@ return {
 	["Iron Bars: {npc:8673}"] = "Eisenbarren: {npc:8673}",
 
 	-- Step 10: Brutal Hauberk
-	-- {area:380} The Crossroads · {quest:1848} Brutal Hauberk
+	-- {area:380} Crossroads · {quest:1848} Brutal Hauberk
 	["Back to Thun'grim beside the road east of the {area:380}. {quest:1848} is the first piece; he then sends you to three crafters for the rest."] = "Zurück zu Thun'grim Firegaze an der Straße östlich vom {area:380}. {quest:1848} ist das erste Teil; danach schickt er dich für den Rest zu drei Handwerkern.",
 
 	-- Step 11: Ula'elek
@@ -76,7 +76,8 @@ return {
 	-- Step 12: Satyr Hooves
 	-- {area:429} Xavian · {zone:1440} Ashenvale
 	["The {area:429} satyrs camp in eastern {zone:1440}, with the Felmusk satyrs further west; both drop Uncloven Satyr Hooves."] = "Die Satyrn von {area:429} lagern im Osten von {zone:1440}, die Satyrn der Teufelshufe weiter westlich; beide lassen Ungespaltene Satyrhufe fallen.",
-	["Uncloven Satyr Hooves"] = "Ungespaltene Satyrhufe",
+	-- {quest:1842} Satyr Hooves
+	["Uncloven {quest:1842}"] = "",
 
 	-- Step 15: Chimaeric Horn
 	-- {npc:6167} Chimaera Matriarch · {item:6840} Galvanized Horn
@@ -95,4 +96,7 @@ return {
 	["The Dragonmaw orcs camp in the middle of the {zone:1437}, south of the road; Raiders, Swamprunners, Centurions, Shadowwarders and Bonewarders all drop the Sturdy Dragonmaw Shinbones."] = "Die Orcs der Dragonmaw lagern in der Mitte des {zone:1437}, südlich der Straße; Räuber, Sumpfläufer, Zenturios, Schattenwärter und Knochenwärter lassen alle die Stabilen Schienbeinknochen ({item:7134}) fallen.",
 	-- plural, as words: Sturdy Dragonmaw Shinbones = {item:7134} Sturdy Dragonmaw Shinbone
 	["Sturdy Dragonmaw Shinbones"] = "Stabile Schienbeinknochen ({item:7134})",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Uncloven Satyr Hooves"] = "Ungespaltene Satyrhufe",
 }

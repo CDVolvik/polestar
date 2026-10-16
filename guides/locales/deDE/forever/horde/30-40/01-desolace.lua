@@ -150,7 +150,7 @@ return {
 	["{npc:260093} trains Paladins in the {area:1497}."] = "{npc:260093} bildet in {area:1497} Paladine aus.",
 
 	-- Step 34: Brazier of Everfount
-	-- {area:1497} Undercity · {area:228} The Sepulcher · {object:113791} Brazier of Everfount · {npc:5895} Minor Manifestation of Water · {item:7813} Shard of Water · {area:272} Tarren Mill
+	-- {area:1497} Undercity · {area:228} Sepulcher · {object:113791} Brazier of Everfount · {npc:5895} Minor Manifestation of Water · {item:7813} Shard of Water · {area:272} Tarren Mill
 	["Do your shopping in the {area:1497} first, then fly to the {area:228}. The {object:113791} stands on the hill just south-west of it: beat the Corrupt Manifestation of Water beside it, place its bracers in the brazier, speak to the {npc:5895} and keep the {item:7813} for Islen. Fly on to {area:272} from the {area:228}."] = "Erledige zuerst deine Einkäufe in {area:1497} und flieg dann zum {area:228}. {object:113791} steht auf dem Hügel gleich südwestlich davon: Besiege die Verderbte schwache Wassermanifestation daneben, leg ihre Armschienen in die Kohlenpfanne, sprich mit {npc:5895} und behalte {item:7813} für Islen. Flieg vom {area:228} weiter nach {area:272}.",
 	-- {npc:5901} Islen Waterseer
 	["for {npc:5901}: from Stranglethorn, next guide"] = "für {npc:5901}: aus dem Schlingendorntal, nächster Guide",
@@ -168,7 +168,7 @@ return {
 	["{item:3703}, for {npc:2333}"] = "{item:3703}, für {npc:2333}",
 	-- {npc:2770} Tallow · {area:321} Hammerfall
 	["{npc:2770}: for {area:321} in Arathi, later on the route"] = "{npc:2770}: für {area:321} im Arathihochland, später auf der Route",
-	-- {npc:2229} Krusk · {zone:1413} The Barrens
+	-- {npc:2229} Krusk · {zone:1413} Barrens
 	["{npc:2229}: for the {zone:1413}, later on the route"] = "{npc:2229}: fürs {zone:1413}, später auf der Route",
 
 	-- Step 37: Daggerspine naga
@@ -216,9 +216,9 @@ return {
 	-- Step 45: The Dalaran traitors
 	-- {area:279} Dalaran
 	["The {area:279} traitors"] = "Die Verräter von {area:279}",
-	-- {area:279} Dalaran · {npc:2414} Kegan Darkmar
+	-- {area:279} Dalaran · {npc:2411} Ricter · {npc:2412} Alina · {npc:2413} Dermot · {npc:2414} Kegan Darkmar
 	-- plural, as words: Worn Stone Tokens = {item:3714} Worn Stone Token
-	["Head west along the foot of the mountains to the violet dome of {area:279}. Ricter, Alina and Dermot (33-34) stand together inside the crater's eastern rim, {npc:2414} (35) a little west of them; each carries one Bloodstone piece. The Shield Guards and Theurgists (31-32) around them drop the Worn Stone Tokens."] = "Geh am Fuß der Berge entlang nach Westen zur violetten Kuppel von {area:279}. Ricter, Alina und Dermot (33-34) stehen zusammen innerhalb des östlichen Kraterrands, {npc:2414} (35) etwas westlich von ihnen; jeder trägt ein Blutsteinstück. Die Schildwachen und Theurgiker (31-32) um sie herum lassen die Abgenutzten Steinmarken fallen.",
+	["Head west along the foot of the mountains to the violet dome of {area:279}. {npc:2411}, {npc:2412} and {npc:2413} (33-34) stand together inside the crater's eastern rim, {npc:2414} (35) a little west of them; each carries one Bloodstone piece. The Shield Guards and Theurgists (31-32) around them drop the Worn Stone Tokens."] = "",
 
 	-- Step 46: Tarren Mill
 	-- {area:272} Tarren Mill
@@ -239,4 +239,7 @@ return {
 	["Fly to the {area:1497}"] = "Flieg nach {area:1497}",
 	-- {area:1497} Undercity · {object:3202} Grom'gol
 	["The next guide starts in the {area:1497}, at the {object:3202} zeppelin."] = "Der nächste Guide beginnt in {area:1497}, am Zeppelin nach {object:3202}.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Head west along the foot of the mountains to the violet dome of {area:279}. Ricter, Alina and Dermot (33-34) stand together inside the crater's eastern rim, {npc:2414} (35) a little west of them; each carries one Bloodstone piece. The Shield Guards and Theurgists (31-32) around them drop the Worn Stone Tokens."] = "Geh am Fuß der Berge entlang nach Westen zur violetten Kuppel von {area:279}. Ricter, Alina und Dermot (33-34) stehen zusammen innerhalb des östlichen Kraterrands, {npc:2414} (35) etwas westlich von ihnen; jeder trägt ein Blutsteinstück. Die Schildwachen und Theurgiker (31-32) um sie herum lassen die Abgenutzten Steinmarken fallen.",
 }

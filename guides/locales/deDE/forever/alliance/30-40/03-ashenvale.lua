@@ -31,7 +31,7 @@ return {
 	["The Crazed and Withered Ancients north of the moonwell carry the {item:5475}; the worn chest it opens stands among them."] = "Die Wahnsinnigen und Welken Urtume nördlich des Mondbrunnens tragen den {item:5475}; die abgenutzte Truhe, die er öffnet, steht zwischen ihnen.",
 
 	-- Step 6: The Howling Vale
-	-- {area:419} The Howling Vale
+	-- {area:419} Howling Vale
 	["Take the tunnel into the {area:419}; the tome lies in the ruins at its west end."] = "Nimm den Tunnel ins Gebiet {area:419}; der Foliant liegt in den Ruinen an seinem Westende.",
 
 	-- Step 8: Anilia
@@ -39,9 +39,8 @@ return {
 	["Follow the road east to the satyr camps of {area:429}; {npc:3920} hides at their edge."] = "Folge der Straße nach Osten zu den Satyrlagern von {area:429}; {npc:3920} versteckt sich an ihrem Rand.",
 
 	-- Step 9: Geltharis
-	["Geltharis"] = "Geltharis",
-	-- {area:429} Xavian
-	["Geltharis leads the {area:429} satyrs; he carries the branch."] = "Geltharis führt die Satyrn von {area:429} an; er trägt den Zweig.",
+	-- {npc:4619} Geltharis · {area:429} Xavian
+	["{npc:4619} leads the {area:429} satyrs; he carries the branch."] = "",
 
 	-- Step 10: Satyrnaar
 	-- {object:19901} Circle of Imprisonment · {area:430} Satyrnaar
@@ -108,4 +107,8 @@ return {
 	-- Step 35: Deepwater Tavern
 	-- {npc:5082} Vincent Hyal · {npc:4963} Mikhail · {npc:1480} Caitlin Grassman
 	["{npc:5082}, {npc:4963} and Tapoke Jahn are all at Menethil's inn; Tapoke fights you when you talk to {npc:4963}, but gives up once beaten. {npc:1480} stands a short walk north-east of the inn."] = "{npc:5082}, {npc:4963} und Tapoke Jahn sind alle im Gasthaus von Menethil; Tapoke greift dich an, wenn du mit {npc:4963} sprichst, gibt aber auf, sobald er besiegt ist. {npc:1480} steht ein kurzes Stück nordöstlich des Gasthauses.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Geltharis"] = "Geltharis",
+	-- ["Geltharis leads the {area:429} satyrs; he carries the branch."] = "Geltharis führt die Satyrn von {area:429} an; er trägt den Zweig.",
 }

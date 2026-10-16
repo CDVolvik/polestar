@@ -6,7 +6,7 @@
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Thelsamar
-	-- {npc:1573} Gryth Thurden · {object:32372} The Great Forge
+	-- {npc:1573} Gryth Thurden · {object:32372} Great Forge
 	["{npc:1573}, the {object:32372}"] = "{npc:1573}，{object:32372}",
 
 	-- Step 2: Hammertoe's Digsite
@@ -53,8 +53,8 @@ return {
 	["Raleigh's next errand is in the {area:796}: skip it."] = "虔诚的莱雷恩的下一个差事在{area:796}：跳过。",
 
 	-- Step 11: Aerie Peak
-	-- {area:271} Southshore · {zone:1425} The Hinterlands · {area:348} Aerie Peak · {quest:1450} Gryphon Master Talonaxe · {npc:7884} Fraggar Thundermantle
-	["Ride north-east out of {area:271} on the road into the {zone:1425}; {area:348} sits just past the border. Falstad holds court at the top, {quest:1450} tends the aviary and {npc:7884} stands by the inn."] = "沿道路向东北骑出{area:271}，进入{zone:1425}；{area:348}就在边界后面。弗斯塔德·蛮锤在顶层，{quest:1450}照看狮鹫棚，{npc:7884}站在旅店旁。",
+	-- {area:271} Southshore · {area:348} Aerie Peak · {quest:1450} Gryphon Master Talonaxe · {npc:7884} Fraggar Thundermantle
+	["Ride north-east out of {area:271} on the road into the Hinterlands; {area:348} sits just past the border. Falstad holds court at the top, {quest:1450} tends the aviary and {npc:7884} stands by the inn."] = "",
 
 	-- Step 12: Rhapsody Shindigger
 	-- {area:348} Aerie Peak
@@ -69,8 +69,7 @@ return {
 	["Fraggar keeps paying for necklaces: hand in any extras"] = "弗拉加尔会继续收购项链：交上多余的",
 	-- {npc:5636} Gryphon Master Talonaxe
 	["{npc:5636}, beside the flight master at the top"] = "{npc:5636}，在顶层飞行管理员旁边",
-	-- {zone:1425} The Hinterlands
-	["Talonaxe's next task waits for a later {zone:1425} guide."] = "狮鹫管理员沙拉克·鹰斧的下一个任务留到之后的{zone:1425}指南。",
+	["Talonaxe's next task waits for a later Hinterlands guide."] = "",
 
 	-- Step 15: Menethil Harbor
 	["Take the boat to Theramore from the far pier."] = "从最远的码头乘船前往塞拉摩岛。",
@@ -88,6 +87,10 @@ return {
 
 	-- Step 18: On to Feathermoon
 	["On to Feathermoon"] = "前往羽月要塞",
-	-- {area:608} Nijel's Point · {zone:1443} Desolace · {zone:1444} Feralas · {area:1108} The Forgotten Coast · {area:1116} Feathermoon Stronghold
+	-- {area:608} Nijel's Point · {zone:1443} Desolace · {zone:1444} Feralas · {area:1108} Forgotten Coast · {area:1116} Feathermoon Stronghold
 	["Fly to {area:608}, ride south through {zone:1443} into {zone:1444} and follow the road to the dock on the {area:1108}; the boat crosses to {area:1116}, where the next guide starts."] = "飞往{area:608}，向南骑过{zone:1443}进入{zone:1444}，沿道路到{area:1108}的码头；船会渡海前往{area:1116}，下一份指南从那里开始。",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Ride north-east out of {area:271} on the road into the {zone:1425}; {area:348} sits just past the border. Falstad holds court at the top, {quest:1450} tends the aviary and {npc:7884} stands by the inn."] = "沿道路向东北骑出{area:271}，进入{zone:1425}；{area:348}就在边界后面。弗斯塔德·蛮锤在顶层，{quest:1450}照看狮鹫棚，{npc:7884}站在旅店旁。",
+	-- ["Talonaxe's next task waits for a later {zone:1425} guide."] = "狮鹫管理员沙拉克·鹰斧的下一个任务留到之后的{zone:1425}指南。",
 }

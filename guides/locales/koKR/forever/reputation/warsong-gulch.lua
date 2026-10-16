@@ -61,5 +61,4 @@ return {
 	["{faction:889} to Exalted"] = "{faction:889} 확고한 동맹까지",
 	-- {faction:889} Warsong Outriders
 	["Exalted with the {faction:889} earns a Legacy Point."] = "{faction:889}와(과) 확고한 동맹이 되면 Legacy Point를 1 얻습니다.",
-
 }

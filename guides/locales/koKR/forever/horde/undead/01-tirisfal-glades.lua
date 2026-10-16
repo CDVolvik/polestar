@@ -44,7 +44,7 @@ return {
 	-- Step 6: Rattlecages, scavengers and duskbats
 	["Rattlecages, scavengers and duskbats"] = "해골, 승냥이, 그늘박쥐",
 	-- {area:154} Deathknell
-	-- plural, as words: Rattlecage Skeletons = {npc:1890} Rattlecage Skeleton · Young Scavengers = {npc:1508} Young Scavenger · Ragged Scavengers = {npc:1509} Ragged Scavenger · Mangy Duskbats = {npc:1513} Mangy Duskbat
+	-- plural, as words: Rattlecage Skeletons = {npc:1890} Rattlecage Skeleton · Young Scavengers = {npc:1508} Young Scavenger · Duskbats = {npc:1512} Duskbat · Ragged Scavengers = {npc:1509} Ragged Scavenger · Mangy Duskbats = {npc:1513} Mangy Duskbat
 	["Rattlecage Skeletons wander the ruined houses in the north half of {area:154}. Young Scavengers and Duskbats roam all around the village; the Ragged Scavengers and Mangy Duskbats are on its east side."] = "덜그럭거리는 해골은 {area:154} 북쪽의 폐허가 된 집들을 배회합니다. 새끼 승냥이와 그늘박쥐는 마을 곳곳을 돌아다니고, 승냥이와 병든 그늘박쥐는 마을 동쪽에 있습니다.",
 
 	-- Step 7: Rattlecage skulls
@@ -197,8 +197,8 @@ return {
 	-- Step 37: Deathguard Linnea
 	-- {area:159} Brill · {npc:3549} Shelene Rhobart
 	["Follow the road south-east from {area:159} past the zeppelin towers. Linnea, Kristof and {npc:3549} camp by the road."] = "{area:159}에서 남동쪽 길을 따라 비행선 탑을 지나가세요. 리니아, 크리스토프, {npc:3549}이(가) 길가에서 야영합니다.",
-	-- {npc:1495} Deathguard Linnea
-	["{npc:1495}: Riptear, an elite abomination in the east"] = "{npc:1495}: 동쪽의 정예 누더기골렘 너덜토막",
+	-- {npc:1495} Deathguard Linnea · {npc:276020} Riptear
+	["{npc:1495}: {npc:276020}, an elite abomination in the east"] = "",
 	-- {npc:251001} Deathguard Kristof
 	["Ask {npc:251001} for his report"] = "{npc:251001}에게 보고를 요청하세요",
 
@@ -208,7 +208,7 @@ return {
 
 	-- Step 39: Agamand Mills
 	-- {area:157} Agamand Mills · {npc:1657} Devlin Agamand · {npc:1656} Thurman Agamand · {item:2839} A Letter to Yvette
-	-- plural, as words: Cracked Skull Soldiers = {npc:1523} Cracked Skull Soldier · Darkeye Bonecasters = {npc:1522} Darkeye Bonecaster
+	-- plural, as words: Cracked Skull Soldiers = {npc:1523} Cracked Skull Soldier · Darkeye Bonecasters = {npc:1522} Darkeye Bonecaster · Duskbats = {npc:1512} Duskbat
 	["Follow the road north-west to {area:157}. {npc:1657} walks the graveyard south of the mills; Nissa, Gregor and {npc:1656} haunt the mills themselves. Rattlecage and Cracked Skull Soldiers drop the ribs, Darkeye Bonecasters the skulls, and any of them may drop {item:2839}. From here on, kill the Duskbats and Darkhounds you pass: Shelene wants their wings and hides."] = "길을 따라 북서쪽 {area:157}(으)로 가세요. {npc:1657}은(는) 방앗간 남쪽 묘지를 걸어 다니고, 니사, 그레고르, {npc:1656}은(는) 방앗간 안에 출몰합니다. 덜그럭거리는 해골병사와 금이간 해골병사는 갈비뼈를, 검은눈 해골마법사는 두개골을 떨어뜨리며, 누구든 {item:2839}을(를) 떨어뜨릴 수 있습니다. 지금부터 지나가며 그늘박쥐와 암흑사냥개를 처치하세요. 셸렌에게 날개와 가죽이 필요합니다.",
 	-- {item:2839} A Letter to Yvette
 	["{item:2839}, a rare drop"] = "희귀 획득품 {item:2839}",
@@ -219,7 +219,7 @@ return {
 	["Walk south-west to the {area:156}; Simmer stands at the farm."] = "남서쪽 {area:156}(으)로 가세요. 죽음의경비병 시머가 농장에 있습니다.",
 
 	-- Step 41: Tirisfal Pumpkins
-	-- plural, as words: Tirisfal Pumpkins = {item:2846} Tirisfal Pumpkin
+	-- plural, as words: Tirisfal Pumpkins = {object:375} Tirisfal Pumpkin
 	["Tirisfal Pumpkins"] = "티리스팔 호박",
 	["The pumpkins grow in the Scarlet-held fields north-west of Solliden."] = "호박은 솔리덴 농장 북서쪽, 붉은십자군이 차지한 들판에 자랍니다.",
 
@@ -303,11 +303,13 @@ return {
 	-- Step 60: Vicious Night Web Spiders
 	-- plural, as words: Vicious Night Web Spiders = {npc:1555} Vicious Night Web Spider
 	["Vicious Night Web Spiders"] = "흉포한 검은그물거미",
-	["The spiders lurk in the woods at the far east end of the glades. Riptear, a rogue abomination, wanders just north-west of them. Riptear is elite: grouping up is advised."] = "거미는 숲 동쪽 맨 끝의 수풀에 숨어 있습니다. 떠돌이 누더기골렘 너덜토막이 그 바로 북서쪽을 배회합니다. 너덜토막은 정예이니 파티를 권장합니다.",
-	-- {item:286326} Riptear's Heart
-	["{item:286326}, from Riptear"] = "너덜토막에게서 {item:286326}",
+	-- {npc:276020} Riptear
+	["The spiders lurk in the woods at the far east end of the glades. {npc:276020}, a rogue abomination, wanders just north-west of them. {npc:276020} is elite: grouping up is advised."] = "",
+	-- {item:286326} Riptear's Heart · {npc:276020} Riptear
+	["{item:286326}, from {npc:276020}"] = "",
 
 	-- Step 61: Hides for the Forsaken
+	-- plural, as words: Duskbats = {npc:1512} Duskbat
 	["Duskbats and Darkhounds roam all along the road back west; finish the wings and hides on the way."] = "서쪽으로 돌아가는 길 내내 그늘박쥐와 암흑사냥개가 돌아다닙니다. 가는 길에 날개와 가죽을 마저 모으세요.",
 
 	-- Step 62: Deathguard Linnea's camp
@@ -345,8 +347,14 @@ return {
 	["Zeppelin tower"] = "비행선 탑",
 
 	-- Step 70: The Crossroads
-	-- {zone:1454} Orgrimmar · {zone:1411} Durotar · {area:815} Southfury River · {area:379} Far Watch Post · {area:380} The Crossroads
-	["The zeppelin lands at the tower just north-east of {zone:1454}'s main gate. Follow the road south into {zone:1411}, cross the {area:815} bridge below {area:379} and follow the road west to the {area:380}."] = "비행선은 {zone:1454} 정문 바로 북동쪽 탑에 내립니다. 길을 따라 남쪽 {zone:1411}(으)로 가서, {area:379} 아래 {area:815} 다리를 건넌 뒤 서쪽 길을 따라 {area:380}(으)로 가세요.",
+	-- {zone:1454} Orgrimmar · {zone:1411} Durotar · {area:815} Southfury River · {area:379} Far Watch Post
+	["The zeppelin lands at the tower just north-east of {zone:1454}'s main gate. Follow the road south into {zone:1411}, cross the {area:815} bridge below {area:379} and follow the road west to the Crossroads."] = "",
 	-- {npc:3615} Devrak
 	["{npc:3615}, the wind rider master"] = "와이번 조련사 {npc:3615}",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["The spiders lurk in the woods at the far east end of the glades. Riptear, a rogue abomination, wanders just north-west of them. Riptear is elite: grouping up is advised."] = "거미는 숲 동쪽 맨 끝의 수풀에 숨어 있습니다. 떠돌이 누더기골렘 너덜토막이 그 바로 북서쪽을 배회합니다. 너덜토막은 정예이니 파티를 권장합니다.",
+	-- ["The zeppelin lands at the tower just north-east of {zone:1454}'s main gate. Follow the road south into {zone:1411}, cross the {area:815} bridge below {area:379} and follow the road west to the {area:380}."] = "비행선은 {zone:1454} 정문 바로 북동쪽 탑에 내립니다. 길을 따라 남쪽 {zone:1411}(으)로 가서, {area:379} 아래 {area:815} 다리를 건넌 뒤 서쪽 길을 따라 {area:380}(으)로 가세요.",
+	-- ["{item:286326}, from Riptear"] = "너덜토막에게서 {item:286326}",
+	-- ["{npc:1495}: Riptear, an elite abomination in the east"] = "{npc:1495}: 동쪽의 정예 누더기골렘 너덜토막",
 }

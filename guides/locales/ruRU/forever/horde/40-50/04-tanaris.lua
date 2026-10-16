@@ -18,12 +18,11 @@ return {
 	["the {object:150075} in the square"] = "{object:150075} на площади",
 
 	-- Step 3: Sandsorrow Watch
-	-- {area:976} Gadgetzan · {item:8584} Untapped Dowsing Widget
-	["West of {area:976}, use the {item:8584} beside the water hole in the troll camp."] = "К западу от места {area:976} используйте предмет {item:8584} у водопоя в лагере троллей.",
+	-- {item:8584} Untapped Dowsing Widget
+	["West of Gadgetzan, use the {item:8584} beside the water hole in the troll camp."] = "",
 
 	-- Step 5: Caliph Scorpidsting
-	-- {area:976} Gadgetzan
-	["South-east of {area:976} the Wastewander bandits camp in the dunes; Caliph stands in the eastern camp."] = "К юго-востоку от места {area:976} в дюнах стоят лагерем бандиты Скитальцев Пустыни; Калиф – в восточном лагере.",
+	["South-east of Gadgetzan the Wastewander bandits camp in the dunes; Caliph stands in the eastern camp."] = "",
 
 	-- Step 6: Marvon Rivetseeker
 	-- {area:1938} Broken Pillar · {item:9978} Gahz'ridian Detector · {area:983} Dunemaul Compound
@@ -33,8 +32,8 @@ return {
 	["West, the Centipaar insects swarm around their hives; any of them drops the parts."] = "К западу насекомые-сентипаары роятся у своих ульев; части тел падают с любого.",
 
 	-- Step 8: Dunemaul Compound
-	-- {area:982} The Noxious Lair · {npc:12046} Gor'marok the Ravager · {quest:3161} Gahz'ridian
-	["South of the {area:982} the Dunemaul ogres hold their compound, with {npc:12046} at its eastern end. Dig up {quest:3161} ornaments between the fights."] = "К югу от места {area:982} огры клана Песчаного Молота занимают свой лагерь, {npc:12046} – в его восточной части. Между боями выкапывайте украшения ({quest:3161}).",
+	-- {npc:12046} Gor'marok the Ravager · {quest:3161} Gahz'ridian
+	["South of the Noxious Lair the Dunemaul ogres hold their compound, with {npc:12046} at its eastern end. Dig up {quest:3161} ornaments between the fights."] = "",
 
 	-- Step 9: Thistleshrub Valley
 	-- {zone:1446} Tanaris
@@ -51,7 +50,7 @@ return {
 	-- Step 11: Gadgetzan
 	-- {area:976} Gadgetzan
 	["Ride south-west to {area:976}."] = "Езжайте на юго-запад сюда: {area:976}.",
-	-- {item:8526} Violet Tragan · {zone:1425} The Hinterlands
+	-- {item:8526} Violet Tragan · {zone:1425} Hinterlands
 	["the {item:8526} grows in the {zone:1425}, around level 48"] = "{item:8526} растет здесь: {zone:1425}, примерно на 48-м уровне",
 
 	-- Step 12: Marvon Rivetseeker
@@ -157,4 +156,9 @@ return {
 	-- Step 32: Thorium Point
 	-- {area:1446} Thorium Point · {area:75} Stonard
 	["Ride back north to {area:1446}. Stay here: the next guide starts with the flight to {area:75}."] = "Возвращайтесь на север сюда: {area:1446}. Оставайтесь здесь: следующее руководство начинается с полета сюда: {area:75}.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["South of the {area:982} the Dunemaul ogres hold their compound, with {npc:12046} at its eastern end. Dig up {quest:3161} ornaments between the fights."] = "К югу от места {area:982} огры клана Песчаного Молота занимают свой лагерь, {npc:12046} – в его восточной части. Между боями выкапывайте украшения ({quest:3161}).",
+	-- ["South-east of {area:976} the Wastewander bandits camp in the dunes; Caliph stands in the eastern camp."] = "К юго-востоку от места {area:976} в дюнах стоят лагерем бандиты Скитальцев Пустыни; Калиф – в восточном лагере.",
+	-- ["West of {area:976}, use the {item:8584} beside the water hole in the troll camp."] = "К западу от места {area:976} используйте предмет {item:8584} у водопоя в лагере троллей.",
 }

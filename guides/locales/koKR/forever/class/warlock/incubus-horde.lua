@@ -36,7 +36,7 @@ return {
 	["{npc:185333} works as a tailor for the {area:279} wizards at {area:233}, in eastern {zone:1421}. Take her heart."] = "{npc:185333}은(는) {zone:1421} 동부 {area:233}에서 {area:279} 마법사들의 재봉사로 일합니다. 그녀의 심장을 가져가십시오.",
 
 	-- Step 7: Isaac Pearson
-	-- {npc:185334} Isaac Pearson · {area:392} Ratchet · {zone:1413} The Barrens · {zone:1411} Durotar
+	-- {npc:185334} Isaac Pearson · {area:392} Ratchet · {zone:1413} Barrens · {zone:1411} Durotar
 	["{npc:185334} works in {area:392}, on the {zone:1413} coast. Take the zeppelin to {zone:1411} and ride or fly on to {area:392}."] = "{npc:185334}은(는) {zone:1413} 해안의 {area:392}에서 일합니다. 비행선을 타고 {zone:1411}(으)로 간 뒤 {area:392}까지 이동하거나 비행하십시오.",
 
 	-- Step 8: The Binding (Undercity)

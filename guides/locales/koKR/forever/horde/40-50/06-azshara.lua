@@ -26,7 +26,7 @@ return {
 	["Ride into {zone:1447}"] = "{zone:1447}(으)로 이동",
 	-- {npc:11548} Loh'atu · {area:1235} Shadowsong Shrine · {area:3137} Talrendis Point
 	-- plural, as words: Azshara Sentinels = {npc:11276} Azshara Sentinel
-	["Ride east along the road out of Splintertree. {npc:11548} waits at the {area:1235} just off the road, a few steps west of the Alliance's {area:3137}: come in from the west and keep clear of the Azshara Sentinels and Jarrodenus (elite)."] ="토막나무 주둔지에서 길을 따라 동쪽으로 가세요. {npc:11548}은(는) 길에서 조금 벗어난 {area:1235}, 얼라이언스의 {area:3137} 바로 서쪽에서 기다립니다. 서쪽에서 접근하고 아즈샤라 파수꾼과 자로데누스(정예)를 피하세요.",
+	["Ride east along the road out of Splintertree. {npc:11548} waits at the {area:1235} just off the road, a few steps west of the Alliance's {area:3137}: come in from the west and keep clear of the Azshara Sentinels and Jarrodenus (elite)."] = "토막나무 주둔지에서 길을 따라 동쪽으로 가세요. {npc:11548}은(는) 길에서 조금 벗어난 {area:1235}, 얼라이언스의 {area:3137} 바로 서쪽에서 기다립니다. 서쪽에서 접근하고 아즈샤라 파수꾼과 자로데누스(정예)를 피하세요.",
 
 	-- Step 5: Highborne and Haldarr satyrs
 	["Highborne and Haldarr satyrs"] = "명가 유령과 할다르 사티로스",
@@ -40,7 +40,7 @@ return {
 	-- {area:1237} Valormok
 	["Follow the road north to {area:1237}, the Horde camp."] = "길을 따라 북쪽의 호드 야영지 {area:1237}(으)로 가세요.",
 	-- {npc:8395} Sanath Lim-yo
-	["{npc:8395}, at the east edge of the camp: no experience, only a teleport to Azshara Tower"] ="야영지 동쪽 끝의 {npc:8395}: 경험치 없음, 아즈샤라 탑으로 순간이동만 가능",
+	["{npc:8395}, at the east edge of the camp: no experience, only a teleport to Azshara Tower"] = "야영지 동쪽 끝의 {npc:8395}: 경험치 없음, 아즈샤라 탑으로 순간이동만 가능",
 
 	-- Step 8: Undamaged Hippogryph Feathers
 	-- plural, as words: Undamaged Hippogryph Feathers = {item:10450} Undamaged Hippogryph Feather
@@ -103,7 +103,7 @@ return {
 	-- {zone:1454} Orgrimmar
 	["Take the zeppelin back to {zone:1454}."] = "비행선을 타고 {zone:1454}(으)로 돌아가세요.",
 	-- {npc:6986} Dran Droffers
-	["{npc:6986}, the Drag"] ="골목길의 {npc:6986}",
+	["{npc:6986}, the Drag"] = "골목길의 {npc:6986}",
 	-- {npc:8659} Jes'rimon · {object:172960} Cleft of Shadow
 	["{npc:8659}, the {object:172960}"] = "{object:172960}의 {npc:8659}",
 	-- {npc:8659} Jes'rimon · {quest:3504} Betrayed · {area:1237} Valormok
@@ -138,7 +138,7 @@ return {
 	["The treants wander the forest roads between the camp and the middle of {zone:1444}; there are only a few, so look along the paths."] = "나무정령은 야영지와 {zone:1444} 중앙 사이의 숲길을 떠돕니다. 수가 적으니 길을 따라 찾아보세요.",
 
 	-- Step 32: Zorbin Fandazzle
-	-- {area:1108} The Forgotten Coast
+	-- {area:1108} Forgotten Coast
 	["Ride north-west to the {area:1108}; Zorbin waits on the dock."] = "북서쪽 {area:1108}(으)로 가세요. 조브린이 부두에서 기다립니다.",
 
 	-- Step 33: Zapped giants

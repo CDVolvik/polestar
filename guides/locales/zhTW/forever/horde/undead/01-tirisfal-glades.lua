@@ -44,7 +44,7 @@ return {
 	-- Step 6: Rattlecages, scavengers and duskbats
 	["Rattlecages, scavengers and duskbats"] = "斷骨骷髏、食腐狼和夜行蝙蝠",
 	-- {area:154} Deathknell
-	-- plural, as words: Rattlecage Skeletons = {npc:1890} Rattlecage Skeleton · Young Scavengers = {npc:1508} Young Scavenger · Ragged Scavengers = {npc:1509} Ragged Scavenger · Mangy Duskbats = {npc:1513} Mangy Duskbat
+	-- plural, as words: Rattlecage Skeletons = {npc:1890} Rattlecage Skeleton · Young Scavengers = {npc:1508} Young Scavenger · Duskbats = {npc:1512} Duskbat · Ragged Scavengers = {npc:1509} Ragged Scavenger · Mangy Duskbats = {npc:1513} Mangy Duskbat
 	["Rattlecage Skeletons wander the ruined houses in the north half of {area:154}. Young Scavengers and Duskbats roam all around the village; the Ragged Scavengers and Mangy Duskbats are on its east side."] = "斷骨骷髏在{area:154}北半部的廢墟房屋間遊蕩。小食腐狼和夜行蝙蝠在村莊各處遊蕩；蓬毛食腐狼和癩皮夜行蝙蝠在村莊東側。",
 
 	-- Step 7: Rattlecage skulls
@@ -197,8 +197,8 @@ return {
 	-- Step 37: Deathguard Linnea
 	-- {area:159} Brill · {npc:3549} Shelene Rhobart
 	["Follow the road south-east from {area:159} past the zeppelin towers. Linnea, Kristof and {npc:3549} camp by the road."] = "沿著道路從{area:159}向東南經過飛艇塔。林奈、克里斯多夫和{npc:3549}在路旁紮營。",
-	-- {npc:1495} Deathguard Linnea
-	["{npc:1495}: Riptear, an elite abomination in the east"] = "{npc:1495}：撕裂者，東邊的一個精英憎惡",
+	-- {npc:1495} Deathguard Linnea · {npc:276020} Riptear
+	["{npc:1495}: {npc:276020}, an elite abomination in the east"] = "",
 	-- {npc:251001} Deathguard Kristof
 	["Ask {npc:251001} for his report"] = "向{npc:251001}索取報告",
 
@@ -208,7 +208,7 @@ return {
 
 	-- Step 39: Agamand Mills
 	-- {area:157} Agamand Mills · {npc:1657} Devlin Agamand · {npc:1656} Thurman Agamand · {item:2839} A Letter to Yvette
-	-- plural, as words: Cracked Skull Soldiers = {npc:1523} Cracked Skull Soldier · Darkeye Bonecasters = {npc:1522} Darkeye Bonecaster
+	-- plural, as words: Cracked Skull Soldiers = {npc:1523} Cracked Skull Soldier · Darkeye Bonecasters = {npc:1522} Darkeye Bonecaster · Duskbats = {npc:1512} Duskbat
 	["Follow the road north-west to {area:157}. {npc:1657} walks the graveyard south of the mills; Nissa, Gregor and {npc:1656} haunt the mills themselves. Rattlecage and Cracked Skull Soldiers drop the ribs, Darkeye Bonecasters the skulls, and any of them may drop {item:2839}. From here on, kill the Duskbats and Darkhounds you pass: Shelene wants their wings and hides."] = "沿著道路向西北前往{area:157}。{npc:1657}在磨坊南邊的墓地走動；妮薩、格里高和{npc:1656}則在磨坊內徘徊。斷骨骷髏和碎顱士兵會掉落肋骨，暗眼骷髏法師掉落頭骨，牠們都可能掉落{item:2839}。從現在起，擊殺沿途遇到的夜行蝙蝠和黑暗犬：舍倫尼要牠們的翅膀和外皮。",
 	-- {item:2839} A Letter to Yvette
 	["{item:2839}, a rare drop"] = "{item:2839}，稀有掉落",
@@ -219,7 +219,7 @@ return {
 	["Walk south-west to the {area:156}; Simmer stands at the farm."] = "向西南走到{area:156}；希米爾站在農場裡。",
 
 	-- Step 41: Tirisfal Pumpkins
-	-- plural, as words: Tirisfal Pumpkins = {item:2846} Tirisfal Pumpkin
+	-- plural, as words: Tirisfal Pumpkins = {object:375} Tirisfal Pumpkin
 	["Tirisfal Pumpkins"] = "提里斯法南瓜",
 	["The pumpkins grow in the Scarlet-held fields north-west of Solliden."] = "南瓜生長在索利丹西北方、血色十字軍佔據的田地裡。",
 
@@ -303,11 +303,13 @@ return {
 	-- Step 60: Vicious Night Web Spiders
 	-- plural, as words: Vicious Night Web Spiders = {npc:1555} Vicious Night Web Spider
 	["Vicious Night Web Spiders"] = "邪惡的夜行蜘蛛",
-	["The spiders lurk in the woods at the far east end of the glades. Riptear, a rogue abomination, wanders just north-west of them. Riptear is elite: grouping up is advised."] = "蜘蛛潛伏在林地最東端的樹林裡。撕裂者是一個失控的憎惡，在牠們西北方遊蕩。撕裂者是精英：建議組隊。",
-	-- {item:286326} Riptear's Heart
-	["{item:286326}, from Riptear"] = "{item:286326}，來自撕裂者",
+	-- {npc:276020} Riptear
+	["The spiders lurk in the woods at the far east end of the glades. {npc:276020}, a rogue abomination, wanders just north-west of them. {npc:276020} is elite: grouping up is advised."] = "",
+	-- {item:286326} Riptear's Heart · {npc:276020} Riptear
+	["{item:286326}, from {npc:276020}"] = "",
 
 	-- Step 61: Hides for the Forsaken
+	-- plural, as words: Duskbats = {npc:1512} Duskbat
 	["Duskbats and Darkhounds roam all along the road back west; finish the wings and hides on the way."] = "夜行蝙蝠和黑暗犬在往西的回程道路沿線遊蕩；順路把翅膀和外皮收集完。",
 
 	-- Step 62: Deathguard Linnea's camp
@@ -345,8 +347,14 @@ return {
 	["Zeppelin tower"] = "飛艇塔",
 
 	-- Step 70: The Crossroads
-	-- {zone:1454} Orgrimmar · {zone:1411} Durotar · {area:815} Southfury River · {area:379} Far Watch Post · {area:380} The Crossroads
-	["The zeppelin lands at the tower just north-east of {zone:1454}'s main gate. Follow the road south into {zone:1411}, cross the {area:815} bridge below {area:379} and follow the road west to the {area:380}."] = "飛艇停靠在{zone:1454}正門東北方的塔。沿著道路向南進入{zone:1411}，在{area:379}下方過{area:815}的橋，再沿著道路向西前往{area:380}。",
+	-- {zone:1454} Orgrimmar · {zone:1411} Durotar · {area:815} Southfury River · {area:379} Far Watch Post
+	["The zeppelin lands at the tower just north-east of {zone:1454}'s main gate. Follow the road south into {zone:1411}, cross the {area:815} bridge below {area:379} and follow the road west to the Crossroads."] = "",
 	-- {npc:3615} Devrak
 	["{npc:3615}, the wind rider master"] = "{npc:3615}，雙足飛龍管理員",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["The spiders lurk in the woods at the far east end of the glades. Riptear, a rogue abomination, wanders just north-west of them. Riptear is elite: grouping up is advised."] = "蜘蛛潛伏在林地最東端的樹林裡。撕裂者是一個失控的憎惡，在牠們西北方遊蕩。撕裂者是精英：建議組隊。",
+	-- ["The zeppelin lands at the tower just north-east of {zone:1454}'s main gate. Follow the road south into {zone:1411}, cross the {area:815} bridge below {area:379} and follow the road west to the {area:380}."] = "飛艇停靠在{zone:1454}正門東北方的塔。沿著道路向南進入{zone:1411}，在{area:379}下方過{area:815}的橋，再沿著道路向西前往{area:380}。",
+	-- ["{item:286326}, from Riptear"] = "{item:286326}，來自撕裂者",
+	-- ["{npc:1495}: Riptear, an elite abomination in the east"] = "{npc:1495}：撕裂者，東邊的一個精英憎惡",
 }

@@ -131,14 +131,14 @@ return {
 	["Kill the mobs that drop it at the farm spot Polestar picks for your level and faction. The Auction House works too."] = "在Polestar依你的等級和陣營選定的地點擊殺掉落它的怪物。拍賣場也買得到。",
 
 	-- Step 27: Wild Steelbloom (Alliance)
-	-- {item:3355} Wild Steelbloom
-	["{item:3355} (Alliance)"] = "{item:3355}（聯盟）",
-	-- {item:3355} Wild Steelbloom · {skill:182} Herbalism
-	["Pick {item:3355} with {skill:182}; this is the densest patch in the data. The Auction House works too."] = "用{skill:182}採集{item:3355}；這是資料中最密集的區域。拍賣場也買得到。",
+	-- {object:1623} Wild Steelbloom
+	["{object:1623} (Alliance)"] = "",
+	-- {object:1623} Wild Steelbloom · {skill:182} Herbalism
+	["Pick {object:1623} with {skill:182}; this is the densest patch in the data. The Auction House works too."] = "",
 
 	-- Step 28: Wild Steelbloom (Horde)
-	-- {item:3355} Wild Steelbloom
-	["{item:3355} (Horde)"] = "{item:3355}（部落）",
+	-- {object:1623} Wild Steelbloom
+	["{object:1623} (Horde)"] = "",
 
 	-- Step 29: Kingsblood (Alliance)
 	-- {item:3356} Kingsblood
@@ -161,14 +161,14 @@ return {
 	["{item:3357} (Horde)"] = "{item:3357}（部落）",
 
 	-- Step 33: Goldthorn (Alliance)
-	-- {item:3821} Goldthorn
-	["{item:3821} (Alliance)"] = "{item:3821}（聯盟）",
-	-- {item:3821} Goldthorn · {skill:182} Herbalism
-	["Pick {item:3821} with {skill:182}; this is the densest patch in the data. The Auction House works too."] = "用{skill:182}採集{item:3821}；這是資料中最密集的區域。拍賣場也買得到。",
+	-- {object:2046} Goldthorn
+	["{object:2046} (Alliance)"] = "",
+	-- {object:2046} Goldthorn · {skill:182} Herbalism
+	["Pick {object:2046} with {skill:182}; this is the densest patch in the data. The Auction House works too."] = "",
 
 	-- Step 34: Goldthorn (Horde)
-	-- {item:3821} Goldthorn
-	["{item:3821} (Horde)"] = "{item:3821}（部落）",
+	-- {object:2046} Goldthorn
+	["{object:2046} (Horde)"] = "",
 
 	-- Step 35: Oily Blackmouth (Alliance)
 	-- {item:6358} Oily Blackmouth
@@ -323,4 +323,12 @@ return {
 	["{spell:17554} to 300"] = "{spell:17554}練到300",
 	-- {skill:171} Alchemy
 	["Orange (a point every craft) until 280, yellow until 300, green until 320. {skill:171} 300 is a Legacy System milestone."] = "280前為橘色（每次製作都加點），300前為黃色，320前為綠色。{skill:171}300是傳承系統的里程碑。",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Pick {item:3355} with {skill:182}; this is the densest patch in the data. The Auction House works too."] = "用{skill:182}採集{item:3355}；這是資料中最密集的區域。拍賣場也買得到。",
+	-- ["Pick {item:3821} with {skill:182}; this is the densest patch in the data. The Auction House works too."] = "用{skill:182}採集{item:3821}；這是資料中最密集的區域。拍賣場也買得到。",
+	-- ["{item:3355} (Alliance)"] = "{item:3355}（聯盟）",
+	-- ["{item:3355} (Horde)"] = "{item:3355}（部落）",
+	-- ["{item:3821} (Alliance)"] = "{item:3821}（聯盟）",
+	-- ["{item:3821} (Horde)"] = "{item:3821}（部落）",
 }

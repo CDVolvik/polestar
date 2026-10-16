@@ -17,5 +17,4 @@ return {
 	-- {npc:12796} Raider Bork · {area:2917} Hall of Legends · {zone:1454} Orgrimmar · {object:172958} Valley of Honor · {npc:12799} Sergeant Ba'sha
 	["{npc:12796} sells the mounts in the {area:2917} in {zone:1454}'s {object:172958}, beside the other honor quartermasters such as {npc:12799}. The Forever client lists each at 100g; choose one."] = "{npc:12796}은(는) {zone:1454} {object:172958}의 {area:2917}에서 {npc:12799} 같은 다른 명예 병참장교 옆에서 탈것을 팝니다. Forever 클라이언트 기준 각 100골드이며, 하나를 고르십시오.",
 	["100g"] = "100골드",
-
 }

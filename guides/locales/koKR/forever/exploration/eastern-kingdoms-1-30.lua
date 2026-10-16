@@ -42,8 +42,8 @@ return {
 
 	-- Step 9: Dun Morogh (1/3)
 	["18 areas to discover here, levels 4-12."] = "이곳에서 발견할 지역은 18곳, 레벨 4-12입니다.",
-	-- {area:2257} Deeprun Tram · {zone:1453} Stormwind City · {object:28027} Dwarven District · {zone:1455} Ironforge
-	["Take the {area:2257} from {zone:1453}'s {object:28027} to {zone:1455} (or fly to {zone:1455}), then leave the city through its gates."] = "{zone:1453}의 {object:28027}에서 {area:2257}을(를) 타고 {zone:1455}(으)로 가세요(또는 {zone:1455}(으)로 날아가세요). 그런 다음 성문을 통해 도시를 나가세요.",
+	-- {area:2257} Deeprun Tram · {object:28027} Dwarven District · {zone:1455} Ironforge
+	["Take the {area:2257} from Stormwind's {object:28027} to {zone:1455} (or fly to {zone:1455}), then leave the city through its gates."] = "",
 
 	-- Step 12: Loch Modan (1/2)
 	["11 areas to discover here, levels 10-18."] = "이곳에서 발견할 지역은 11곳, 레벨 10-18입니다.",
@@ -72,10 +72,12 @@ return {
 
 	-- Step 18: Silverpine Forest (1/2)
 	["15 areas to discover here, levels 10-20."] = "이곳에서 발견할 지역은 15곳, 레벨 10-20입니다.",
-	-- {area:287} Hillsbrad · {area:285} Southpoint Tower · {zone:1421} Silverpine Forest · {area:228} The Sepulcher
+	-- {area:287} Hillsbrad · {area:285} Southpoint Tower · {zone:1421} Silverpine Forest · {area:228} Sepulcher
 	["Follow the road west from {area:287} past {area:285} into {zone:1421}, Horde country with Horde guards at the {area:228}."] = "{area:287}에서 길을 따라 서쪽으로 {area:285}을(를) 지나 {zone:1421}(으)로 가세요. 호드 지역이며 {area:228}에 호드 경비병이 있습니다.",
-	-- {area:228} The Sepulcher
-	["Horde guards: touch the edge of {area:228} and move on"] = "호드 경비병: {area:228}의 가장자리만 밟고 지나가세요",
+	-- {area:228} Sepulcher
+	["Horde guards: touch the edge of The {area:228} and move on"] = "",
+	-- {area:228} Sepulcher
+	["The {area:228}"] = "",
 
 	-- Step 20: Tirisfal Glades (1/3)
 	["17 areas to discover here, levels 5-10."] = "이곳에서 발견할 지역은 17곳, 레벨 5-10입니다.",
@@ -101,8 +103,8 @@ return {
 	-- Step 26: Silverpine Forest (1/2)
 	-- {zone:1421} Silverpine Forest · {zone:1420} Tirisfal Glades · {area:159} Brill
 	["{zone:1421} is south of {zone:1420}: follow the road south from {area:159}."] = "{zone:1421}은(는) {zone:1420}의 남쪽에 있습니다. {area:159}에서 길을 따라 남쪽으로 가세요.",
-	-- {area:228} The Sepulcher · {npc:2226} Karos Razok
-	["Flight path here: {area:228} ({npc:2226})."] = "이곳의 비행 경로: {area:228} ({npc:2226}).",
+	-- {area:228} Sepulcher · {npc:2226} Karos Razok
+	["Flight path here: The {area:228} ({npc:2226})."] = "",
 
 	-- Step 28: Hillsbrad Foothills (1/2)
 	-- {zone:1424} Hillsbrad Foothills · {area:285} Southpoint Tower · {area:272} Tarren Mill · {area:271} Southshore
@@ -160,8 +162,8 @@ return {
 
 	-- Step 41: Elwynn Forest (1/2)
 	["12 areas to discover here, levels 5-10."] = "이곳에서 발견할 지역은 12곳, 레벨 5-10입니다.",
-	-- {zone:1429} Elwynn Forest · {zone:1436} Westfall · {zone:1431} Duskwood · {area:87} Goldshire · {area:9} Northshire Valley · {zone:1453} Stormwind City
-	["{zone:1429} is north of {zone:1436} and {zone:1431}. {area:87}, {area:9} and {zone:1453}'s gates are Alliance ground with guards."] = "{zone:1429}은(는) {zone:1436}와(과) {zone:1431}의 북쪽에 있습니다. {area:87}, {area:9}, {zone:1453} 성문은 경비병이 있는 얼라이언스 지역입니다.",
+	-- {zone:1429} Elwynn Forest · {zone:1436} Westfall · {zone:1431} Duskwood · {area:87} Goldshire · {area:9} Northshire Valley
+	["{zone:1429} is north of {zone:1436} and {zone:1431}. {area:87}, {area:9} and Stormwind's gates are Alliance ground with guards."] = "",
 	-- {zone:1453} Stormwind City
 	["Alliance guards: touch the edge of {zone:1453} and move on; any one of these names counts"] = "얼라이언스 경비병: {zone:1453}의 가장자리만 밟고 지나가세요. 이 이름 중 하나만 발견해도 됩니다",
 	-- {area:9} Northshire Valley
@@ -174,4 +176,10 @@ return {
 	["Go east through {zone:1429} to {area:1002}, where Redridge starts. {area:69} is an Alliance town."] = "{zone:1429}을(를) 지나 동쪽의 {area:1002}(으)로 가세요. 여기서 붉은마루 산맥이 시작됩니다. {area:69}은(는) 얼라이언스 마을입니다.",
 	-- {area:69} Lakeshire
 	["Alliance guards: touch the edge of {area:69} and move on"] = "얼라이언스 경비병: {area:69}의 가장자리만 밟고 지나가세요",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Flight path here: {area:228} ({npc:2226})."] = "이곳의 비행 경로: {area:228} ({npc:2226}).",
+	-- ["Horde guards: touch the edge of {area:228} and move on"] = "호드 경비병: {area:228}의 가장자리만 밟고 지나가세요",
+	-- ["Take the {area:2257} from {zone:1453}'s {object:28027} to {zone:1455} (or fly to {zone:1455}), then leave the city through its gates."] = "{zone:1453}의 {object:28027}에서 {area:2257}을(를) 타고 {zone:1455}(으)로 가세요(또는 {zone:1455}(으)로 날아가세요). 그런 다음 성문을 통해 도시를 나가세요.",
+	-- ["{zone:1429} is north of {zone:1436} and {zone:1431}. {area:87}, {area:9} and {zone:1453}'s gates are Alliance ground with guards."] = "{zone:1429}은(는) {zone:1436}와(과) {zone:1431}의 북쪽에 있습니다. {area:87}, {area:9}, {zone:1453} 성문은 경비병이 있는 얼라이언스 지역입니다.",
 }

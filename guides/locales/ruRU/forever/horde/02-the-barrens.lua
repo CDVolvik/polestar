@@ -10,13 +10,12 @@ return {
 	["{area:380} is your base for this guide. Everyone you need stands within a few steps of the inn."] = "{area:380} – ваша база в этом гайде. Все нужные NPC стоят в нескольких шагах от таверны.",
 	-- {npc:3615} Devrak
 	["{npc:3615}, the wind rider master"] = "{npc:3615}, распорядитель полетов",
-	-- {npc:3449} Darsok Swiftdagger · {area:383} The Dry Hills
+	-- {npc:3449} Darsok Swiftdagger · {area:383} Dry Hills
 	["{npc:3449}: the harpies come later, in the {area:383}"] = "{npc:3449}: гарпии будут позже – {area:383}",
 
 	-- Step 2: Plainstriders and raptors
 	["Plainstriders and raptors"] = "Долгоноги и ящеры",
-	-- {area:380} The Crossroads
-	["Plainstriders and Sunscale raptors roam the plains all around the {area:380}, thickest to the north."] = "Равнинные долгоноги и яркочешуйчатые ящеры бродят по равнинам вокруг поселения {area:380}, гуще всего к северу.",
+	["Plainstriders and Sunscale raptors roam the plains all around the Crossroads, thickest to the north."] = "",
 
 	-- Step 4: The Zhevra
 	-- plural, as words: Zhevra Runners = {npc:3242} Zhevra Runner
@@ -54,13 +53,13 @@ return {
 	["Burning Blade Cultists hold {area:1898} in northern {zone:1411}; they drop the {item:6652}. The {item:5026} comes from the Razormane on your next visit to their camp."] = "Сектанты из клана Пылающего Клинка ({npc:3199}) удерживают {area:1898} на севере зоны {zone:1411}; с них падает {item:6652}. {item:5026} добудете у Иглогривых в следующий заход в их лагерь.",
 
 	-- Step 13: Thun'grim Firegaze
-	-- {area:380} The Crossroads · {area:392} Ratchet · {object:58369} Stolen Iron Chest
-	["Thun'grim camps beside the road from the {area:380} to {area:392}. The {object:58369} sits in the south of the Razormane camp just north of him."] = "Тун'грим разбил лагерь у дороги из поселения {area:380} в {area:392}. {object:58369} стоит на юге лагеря Иглогривых, сразу к северу от него.",
+	-- {area:392} Ratchet · {object:58369} Stolen Iron Chest
+	["Thun'grim camps beside the road from the Crossroads to {area:392}. The {object:58369} sits in the south of the Razormane camp just north of him."] = "",
 
 	-- Step 14: Ratchet
 	-- {area:392} Ratchet
 	["Follow the road south-east to {area:392} on the coast."] = "Идите по дороге на юго-восток: {area:392} на побережье.",
-	-- {npc:3442} Sputtervalve · {area:382} The Sludge Fen
+	-- {npc:3442} Sputtervalve · {area:382} Sludge Fen
 	["{npc:3442}: the console is in the {area:382}, later"] = "{npc:3442}: пульт управления – {area:382}, позже",
 	-- {quest:1492} Wharfmaster Dizzywig
 	["{quest:1492}, on the dock"] = "{quest:1492}, на причале",
@@ -74,8 +73,7 @@ return {
 	["Back down the beach, past the pirate camp: the crate of boots and the fragile crate with the lens sit at its south end."] = "Обратно вниз по пляжу, мимо лагеря пиратов: ящик с сапогами и хрупкий ящик с линзой стоят на его южном краю.",
 
 	-- Step 19: The Crossroads
-	-- {area:380} The Crossroads
-	["Walk back west along the road to the {area:380}."] = "Вернитесь по дороге на запад: {area:380}.",
+	["Walk back west along the road to the Crossroads."] = "",
 
 	-- Step 20: The Disruption Ends
 	-- {npc:3438} Kreenig Snarlsnout
@@ -94,13 +92,15 @@ return {
 	["{quest:881}, a white lion, prowls the plains north of the Razormane camp."] = "{quest:881}, белый лев, рыщет по равнинам к северу от лагеря Иглогривых.",
 
 	-- Step 24: Samophlange
-	-- {object:4141} Control Console · {area:382} The Sludge Fen · {item:5089} Console Key · {npc:3471} Tinkerer Sniggles
+	-- {object:4141} Control Console · {area:382} Sludge Fen · {item:5089} Console Key · {npc:3471} Tinkerer Sniggles
 	["The {object:4141} stands at the Venture Co. research site west of the {area:382}. Close the three valves around the drill, use the console again, then take the {item:5089} from {npc:3471} beside it."] = "{object:4141} стоит на исследовательской площадке Торговой компании к западу от места {area:382}. Закройте три вентиля вокруг бура, снова используйте пульт, затем заберите {item:5089} у NPC {npc:3471} рядом.",
 	-- {npc:3442} Sputtervalve · {area:392} Ratchet
 	["{npc:3442} in {area:392}: later, on the way"] = "{npc:3442} ({area:392}): позже, по пути",
 
 	-- Step 25: The Dry Hills
-	-- {area:383} The Dry Hills · {quest:819} Chen's Empty Keg
+	-- {area:383} Dry Hills
+	["The {area:383}"] = "",
+	-- {area:383} Dry Hills · {quest:819} Chen's Empty Keg
 	["West to the {area:383}. The Witchwing harpies nest all over them; any of them can drop a talon. {quest:819} lies in their hills."] = "На запад: {area:383}. Гарпии из стаи Зачарованного Крыла гнездятся повсюду; коготь может упасть с любой. {quest:819} лежит в этих холмах.",
 
 	-- Step 26: Regthar Deathgate
@@ -116,8 +116,7 @@ return {
 	["Kolkar Wranglers and Stormers hold the camps south of Regthar."] = "Пастухи ({npc:3272}) и буревестницы из племени Колкар занимают лагеря к югу от Регтара.",
 
 	-- Step 31: The Stagnant Oasis
-	-- {area:380} The Crossroads
-	["South-east of the {area:380}. Test the seeds at the bubbling fissure on the oasis' east bank."] = "К юго-востоку от поселения {area:380}. Проверьте семена у бурлящей расщелины на восточном берегу оазиса.",
+	["South-east of the Crossroads. Test the seeds at the bubbling fissure on the oasis' east bank."] = "",
 
 	-- Step 32: Raptor nests
 	["Raptor nests"] = "Гнезда ящеров",
@@ -133,25 +132,25 @@ return {
 	["Back west along the road."] = "Назад на запад по дороге.",
 
 	-- Step 35: Lushwater Oasis
-	-- {area:387} Lushwater Oasis · {area:380} The Crossroads · {area:388} The Stagnant Oasis
+	-- {area:387} Lushwater Oasis · {area:388} Stagnant Oasis
 	-- plural, as words: Oasis Snapjaws = {npc:3461} Oasis Snapjaw
-	["Oasis Snapjaws crawl around {area:387}, south-west of the {area:380}, and around the {area:388}."] = "Оазисные хрустогрызы ({npc:3461}) ползают вокруг места {area:387}, к юго-западу от поселения {area:380}, и вокруг места {area:388}.",
+	["Oasis Snapjaws crawl around {area:387}, south-west of the Crossroads, and around the {area:388}."] = "",
 
 	-- Step 36: The Crossroads
-	-- {quest:3301} Mura Runetotem · {area:228} The Sepulcher · {zone:1421} Silverpine Forest
+	-- {quest:3301} Mura Runetotem · {area:228} Sepulcher · {zone:1421} Silverpine Forest
 	["{quest:3301}: the {area:228} in {zone:1421}, next guide"] = "{quest:3301}: {area:228} ({zone:1421}), следующий гайд",
 
 	-- Step 37: Harpy Lieutenants
-	-- {area:383} The Dry Hills
+	-- {area:383} Dry Hills
 	-- plural, as words: Witchwing Slayers = {npc:3278} Witchwing Slayer
 	["The Witchwing Slayers hold the western {area:383}; they wear the rings."] = "Душегубки из стаи Зачарованного Крыла ({npc:3278}) держат запад местности {area:383}; кольца – у них.",
 
 	-- Step 38: Wenikee Boltbucket
-	-- {area:1703} The Mor'shan Rampart
+	-- {area:1703} Mor'shan Rampart
 	["East to the {area:1703}; Wenikee stands at the camp just south of it."] = "На восток: {area:1703}; Венаки стоит в лагере сразу к югу.",
 
 	-- Step 39: Nugget Slugs
-	-- {area:382} The Sludge Fen
+	-- {area:382} Sludge Fen
 	["The tool buckets with the slugs lie around the Venture Co. drill site in the {area:382}, east of Wenikee."] = "Ведра с инструментами и слизнями лежат вокруг буровой площадки Торговой компании ({area:382}), к востоку от Венаки.",
 
 	-- Step 40: Wenikee Boltbucket
@@ -159,6 +158,14 @@ return {
 	["Keep it: {quest:3923} stands outside {zone:1454}; a later guide hands it in"] = "Сохраните: {quest:3923} стоит у ворот города {zone:1454}; сдадите в одном из следующих гайдов",
 
 	-- Step 41: The Crossroads
-	-- {area:380} The Crossroads · {zone:1454} Orgrimmar · {zone:1420} Tirisfal Glades
-	["Walk back south to the {area:380}. The next guide starts here and takes you to {zone:1454} and the zeppelin to {zone:1420}."] = "Вернитесь на юг: {area:380}. Отсюда начинается следующий гайд; он ведет в {zone:1454} и к дирижаблю в зону {zone:1420}.",
+	-- {zone:1454} Orgrimmar · {zone:1420} Tirisfal Glades
+	["Walk back south to the Crossroads. The next guide starts here and takes you to {zone:1454} and the zeppelin to {zone:1420}."] = "",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Oasis Snapjaws crawl around {area:387}, south-west of the {area:380}, and around the {area:388}."] = "Оазисные хрустогрызы ({npc:3461}) ползают вокруг места {area:387}, к юго-западу от поселения {area:380}, и вокруг места {area:388}.",
+	-- ["Plainstriders and Sunscale raptors roam the plains all around the {area:380}, thickest to the north."] = "Равнинные долгоноги и яркочешуйчатые ящеры бродят по равнинам вокруг поселения {area:380}, гуще всего к северу.",
+	-- ["South-east of the {area:380}. Test the seeds at the bubbling fissure on the oasis' east bank."] = "К юго-востоку от поселения {area:380}. Проверьте семена у бурлящей расщелины на восточном берегу оазиса.",
+	-- ["Thun'grim camps beside the road from the {area:380} to {area:392}. The {object:58369} sits in the south of the Razormane camp just north of him."] = "Тун'грим разбил лагерь у дороги из поселения {area:380} в {area:392}. {object:58369} стоит на юге лагеря Иглогривых, сразу к северу от него.",
+	-- ["Walk back south to the {area:380}. The next guide starts here and takes you to {zone:1454} and the zeppelin to {zone:1420}."] = "Вернитесь на юг: {area:380}. Отсюда начинается следующий гайд; он ведет в {zone:1454} и к дирижаблю в зону {zone:1420}.",
+	-- ["Walk back west along the road to the {area:380}."] = "Вернитесь по дороге на запад: {area:380}.",
 }

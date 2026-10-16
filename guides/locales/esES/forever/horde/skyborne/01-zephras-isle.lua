@@ -86,7 +86,8 @@ return {
 	["The Ursera den is west of the village. {npc:251115}, their matriarch, sits at its far end."] = "La guarida de los Ursera está al oeste del pueblo. {npc:251115}, su matriarca, está al fondo.",
 
 	-- Step 16: Leaving Thendal Village
-	["Leaving Thendal Village"] = "Saliendo de Thendal",
+	-- {area:16635} Thendal Village
+	["Leaving {area:16635}"] = "",
 
 	-- Step 17: Call of Earth
 	-- {npc:251374} Windshaper Boro · {area:16988} Rise of Spirits · {item:6635} Earth Sapta · {npc:251166} Minor Manifestation of Earth · {item:6656} Rough Quartz
@@ -117,8 +118,10 @@ return {
 	["the bounty board"] = "el tablón de recompensas",
 
 	-- Step 21: Prideclaws and Galestriders
+	-- plural, as words: Prideclaws = {npc:251245} Prideclaw
 	["Prideclaws and Galestriders"] = "Garramanadas y Zancavendavales",
 	-- {item:5469} Strider Meat
+	-- plural, as words: Prideclaws = {npc:251245} Prideclaw
 	["Prideclaws and Galestriders share the meadows south of the village. Keep the {item:5469} for Zerril; the eggs come later from the hippogryphs."] = "Garramanadas y Zancavendavales comparten los prados al sur del pueblo. Guarda la {item:5469} para Zerril; los huevos vienen después, de los hipogrifos.",
 
 	-- Step 22: High Order Apprentices
@@ -135,6 +138,7 @@ return {
 	["{area:16624} turn-ins"] = "Entregas en {area:16624}",
 
 	-- Step 25: Vulgara the Insatiable
+	-- plural, as words: Prideclaws = {npc:251245} Prideclaw
 	["Vulgara lurks south of the village, among the Prideclaws. Vulgara is elite: grouping up is advised."] = "Vulgara el Insaciable acecha al sur del pueblo, entre las Garramanadas. Vulgara es élite: se aconseja ir en grupo.",
 
 	-- Step 26: Falaath Village
@@ -202,12 +206,12 @@ return {
 	["Listen to {npc:256083}"] = "Escucha a {npc:256083}",
 
 	-- Step 39: Wind Hollows and Construct Parts
-	-- {object:616466} Construct Parts
+	-- {object:616467} Construct Parts
 	-- plural, as words: Wind Hollows = {npc:251676} Wind Hollow
-	["Wind Hollows and {object:616466}"] = "Huecos ventosos y {object:616466}",
-	-- {area:16638} Valanaar · {object:616466} Construct Parts
+	["Wind Hollows and {object:616467}"] = "",
+	-- {area:16638} Valanaar · {object:616467} Construct Parts
 	-- plural, as words: Wind Hollows = {npc:251676} Wind Hollow
-	["Wind Hollows drift over the lowlands around {area:16638}. The first {object:616466} lie west of the orchard road."] = "Los Huecos ventosos flotan sobre las tierras bajas alrededor de {area:16638}. Las primeras {object:616466} están al oeste del camino del huerto.",
+	["Wind Hollows drift over the lowlands around {area:16638}. The first {object:616467} lie west of the orchard road."] = "",
 
 	-- Step 41: Windfield Orchard
 	-- {area:16663} Windfield Orchard · {area:16638} Valanaar
@@ -222,11 +226,12 @@ return {
 
 	-- Step 44: Bandit Highwaymen
 	["Bandit Highwaymen"] = "Bandidos salteadores",
-	-- {object:616466} Construct Parts · {area:16638} Valanaar
-	["The highwaymen hold the hills north-east of the orchard. More {object:616466} lie near the road to {area:16638}."] = "Los Bandidos salteadores ocupan las colinas al noreste del huerto. Hay más {object:616466} cerca del camino a {area:16638}.",
+	-- {object:616468} Construct Parts · {area:16638} Valanaar
+	["The highwaymen hold the hills north-east of the orchard. More {object:616468} lie near the road to {area:16638}."] = "",
 
 	-- Step 45: Standing Our Ground
-	["Tell Aamelia Windfield you're ready"] = "Dile a Aamelia Campovento que estás listo",
+	-- {npc:252800} Aamelia Windfield
+	["Tell {npc:252800} you're ready"] = "",
 
 	-- Step 46: Alvarion and Riaani
 	["Alvarion and Riaani"] = "Alvarion y Riaani",
@@ -284,10 +289,9 @@ return {
 	["Faladiel stands on the hill west of the falls, north of {area:16638}."] = "Faladiel está en la colina al oeste de la cascada, al norte de {area:16638}.",
 
 	-- Step 60: Kuramaa
-	["Kuramaa"] = "Kuramaa",
-	-- {area:16623} Shen'dar Highlands
+	-- {area:16623} Shen'dar Highlands · {npc:268605} Kuramaa
 	-- plural, as words: Windsong Crawlers = {npc:254588} Windsong Crawler
-	["Back to Olariaan, then west into the {area:16623}: Kuramaa's home is in the hills south of the Windsong Crawlers' lakes."] = "Vuelve con Olariaan y luego ve al oeste hacia {area:16623}: el hogar de Kuramaa está en las colinas al sur de los lagos de los Reptadores Canzalvaje.",
+	["Back to Olariaan, then west into the {area:16623}: {npc:268605}'s home is in the hills south of the Windsong Crawlers' lakes."] = "",
 
 	-- Step 61: The Eternal Flame
 	-- {object:148418} Eternal Flame
@@ -406,18 +410,26 @@ return {
 	["{npc:3033} trains druids on {area:1639}. He teaches you {spell:18960}; {npc:11802}'s welcome waits for your {spell:499} trip at about 23 (forever/horde/04-the-barrens)."] = "{npc:3033} entrena a los druidas en {area:1639}. Te enseña {spell:18960}; la bienvenida de {npc:11802} espera a tu viaje de {spell:499}, hacia el nivel 23 (forever/horde/04-the-barrens).",
 
 	-- Step 84: The Crossroads
-	-- {zone:1456} Thunder Bluff · {area:222} Bloodhoof Village · {zone:1413} The Barrens · {area:458} Gold Road · {area:380} The Crossroads
-	["Leave {zone:1456} by a lift and follow the road south past {area:222} and through the eastern pass into the {zone:1413}; from the pass, take the {area:458} north to the {area:380}, the Horde town in the middle of the {zone:1413}."] = "Sal de {zone:1456} por un ascensor y sigue el camino al sur pasando {area:222} y por el paso del este hasta {zone:1413}; desde el paso, toma {area:458} al norte hasta {area:380}, el pueblo de la Horda en el centro de {zone:1413}.",
+	-- {zone:1456} Thunder Bluff · {area:222} Bloodhoof Village · {zone:1413} Barrens · {area:458} Gold Road
+	["Leave {zone:1456} by a lift and follow the road south past {area:222} and through the eastern pass into the {zone:1413}; from the pass, take the {area:458} north to the Crossroads, the Horde town in the middle of the {zone:1413}."] = "",
 	-- {npc:3615} Devrak
 	["{npc:3615}, the wind rider master"] = "{npc:3615}, el maestro de jinetes del viento",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["/sit by Raan's campfire until you get Boosted Rest"] = "/sit junto a la hoguera de Raan hasta obtener Descanso potenciado",
+	-- ["Back to Olariaan, then west into the {area:16623}: Kuramaa's home is in the hills south of the Windsong Crawlers' lakes."] = "Vuelve con Olariaan y luego ve al oeste hacia {area:16623}: el hogar de Kuramaa está en las colinas al sur de los lagos de los Reptadores Canzalvaje.",
 	-- ["Cast Skysight near the {object:460001}"] = "Lanza Vista celeste cerca de {object:460001}",
 	-- ["Climb the watchtower in the village, jump off the top and use Walk on Air to float down."] = "Sube a la atalaya del pueblo, salta desde arriba y usa Caminar sobre el aire para bajar flotando.",
+	-- ["Kuramaa"] = "Kuramaa",
+	-- ["Leave {zone:1456} by a lift and follow the road south past {area:222} and through the eastern pass into the {zone:1413}; from the pass, take the {area:458} north to the {area:380}, the Horde town in the middle of the {zone:1413}."] = "Sal de {zone:1456} por un ascensor y sigue el camino al sur pasando {area:222} y por el paso del este hasta {zone:1413}; desde el paso, toma {area:458} al norte hasta {area:380}, el pueblo de la Horda en el centro de {zone:1413}.",
+	-- ["Leaving Thendal Village"] = "Saliendo de Thendal",
 	-- ["Leaving {area:16635}"] = "Saliendo de {area:16635}",
 	-- ["Sit by Raan's campfire (type /sit) until you get the Boosted Rest buff, then find {npc:251905} at the cook fire."] = "Siéntate junto a la hoguera de Raan (escribe /sit) hasta obtener el beneficio Descanso potenciado y luego busca a {npc:251905} en el fuego de cocina.",
+	-- ["Tell Aamelia Windfield you're ready"] = "Dile a Aamelia Campovento que estás listo",
 	-- ["Tell {npc:252800} you're ready"] = "Dile a {npc:252800} que estás listo",
+	-- ["The highwaymen hold the hills north-east of the orchard. More {object:616466} lie near the road to {area:16638}."] = "Los Bandidos salteadores ocupan las colinas al noreste del huerto. Hay más {object:616466} cerca del camino a {area:16638}.",
+	-- ["Wind Hollows and {object:616466}"] = "Huecos ventosos y {object:616466}",
+	-- ["Wind Hollows drift over the lowlands around {area:16638}. The first {object:616466} lie west of the orchard road."] = "Los Huecos ventosos flotan sobre las tierras bajas alrededor de {area:16638}. Las primeras {object:616466} están al oeste del camino del huerto.",
 	-- ["{npc:249363} stands at the {area:17678}, east of the village. {npc:251143} and Al'Aketh Converts gather just north of her. The {object:460001} is just north-east of her: cast your Skysight racial ability next to it."] = "{npc:249363} está en {area:17678}, al este del pueblo. {npc:251143} y Convertidos Al'Aketh se reúnen justo al norte de ella. {object:460001} está justo al noreste de ella: lanza tu habilidad racial Vista celeste a su lado.",
 	-- ["{npc:252377}: Defensive Stance"] = "{npc:252377}: Actitud defensiva",
 	-- ["{npc:252389}: Tame Beast"] = "{npc:252389}: Domesticar bestia",

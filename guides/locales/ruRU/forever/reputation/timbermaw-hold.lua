@@ -68,5 +68,4 @@ return {
 	-- {faction:576} Timbermaw Hold
 	["{faction:576} to Exalted"] = "{faction:576}: до превознесения",
 	["Keep turning in feathers and beads until Exalted."] = "Сдавайте перья и бусины до превознесения.",
-
 }

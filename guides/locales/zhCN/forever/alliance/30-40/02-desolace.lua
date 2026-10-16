@@ -16,17 +16,19 @@ return {
 	["{npc:3649}: {item:279915}, from Sylessa in Menethil"] = "{npc:3649}：{item:279915}，来自米奈希尔港的Sylessa",
 
 	-- Step 3: Heartswood
-	-- {area:415} Astranaar · {quest:1738} Heartswood · {area:413} Maestra's Post · {quest:65602} What Is Love? · {item:190309} Wooden Figurine · {area:1276} The Talondeep Path
+	-- {area:415} Astranaar · {quest:1738} Heartswood · {area:413} Maestra's Post · {quest:65602} What Is Love? · {item:190309} Wooden Figurine · {area:1276} Talondeep Path
 	["From {area:415} ride north-west into the hills: the {quest:1738} is a glowing tree north of the road to {area:413}. If you took {quest:65602}, the {item:190309} lies in a house among the trees north of {area:413} (26.6,22.0). Then back past {area:415} to the {area:1276}."] = "从{area:415}向西北骑进山丘：{quest:1738}是通往{area:413}的道路北边一棵发光的树。如果你接了{quest:65602}，{item:190309}在{area:413}北边树林中的一座房子里（26.6,22.0）。然后经过{area:415}返回{area:1276}。",
 	-- {item:190309} Wooden Figurine · {area:413} Maestra's Post
 	["{item:190309}, north of {area:413}"] = "{item:190309}，在{area:413}北边",
 
 	-- Step 4: The Talondeep Path
-	-- {area:415} Astranaar · {area:1276} The Talondeep Path
+	-- {area:1276} Talondeep Path
+	["The {area:1276}"] = "",
+	-- {area:415} Astranaar · {area:1276} Talondeep Path
 	["From {area:415} head south-west to the {area:1276}, a tunnel through the mountains into Stonetalon."] = "从{area:415}向西南到{area:1276}，这是一条穿过山脉通往石爪山脉的隧道。",
 
 	-- Step 5: Nijel's Point
-	-- {area:460} Sun Rock Retreat · {area:465} The Charred Vale · {zone:1443} Desolace · {area:608} Nijel's Point
+	-- {area:460} Sun Rock Retreat · {area:465} Charred Vale · {zone:1443} Desolace · {area:608} Nijel's Point
 	["Follow the road west past {area:460} (Horde) and south-west through the {area:465} into {zone:1443}; {area:608} stands at the top of the pass."] = "沿道路向西经过{area:460}（部落），再向西南穿过{area:465}进入{zone:1443}；{area:608}在山口顶部。",
 
 	-- Step 6: Sargeron
@@ -43,8 +45,8 @@ return {
 	["Azore's tower stands on the hill west of {area:599}: take his quest first, the sceptre he wants is in the fortress."] = "阿佐尔·奥达蒙特的塔在{area:599}西边的山丘上：先接他的任务，他要的权杖在要塞里。",
 
 	-- Step 11: Dalinda Malem
-	-- {spell:1294269} Burning Blade · {area:608} Nijel's Point
-	["Dalinda hides inside the {spell:1294269}'s fortress south-west of {area:608}."] = "黛琳达·玛雷姆躲在{area:608}西南方{spell:1294269}的要塞里。",
+	-- {area:608} Nijel's Point
+	["Dalinda hides inside the Burning Blade's fortress south-west of {area:608}."] = "",
 
 	-- Step 12: Tyranis and the Seer
 	["Tyranis and the Seer"] = "泰拉尼斯·玛雷姆和先知",
@@ -53,8 +55,7 @@ return {
 
 	-- Step 13: Escort Dalinda
 	["Escort Dalinda"] = "护送黛琳达·玛雷姆",
-	-- {area:599} Thunder Axe Fortress
-	["Out of {area:599}"] = "离开{area:599}",
+	["Out of Thunder Axe Fortress"] = "",
 	-- {area:608} Nijel's Point
 	["Lead Dalinda out of the fortress; she walks off once you are clear of it. Vahlarriel takes the turn-in at {area:608} at the end of the guide."] = "带黛琳达·玛雷姆离开要塞；离开要塞后她会自行离去。指南结尾在{area:608}向瓦拉里尔·屠魔者交任务。",
 
@@ -84,4 +85,8 @@ return {
 	-- Step 21: Kolkar Village
 	-- {area:609} Kolkar Village · {npc:5752} Corporal Melkins
 	["The Kolkar roam the plains around {area:609}; their ears are for {npc:5752}."] = "科卡尔半人马在{area:609}周围的平原上游荡；它们的耳朵交给{npc:5752}。",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Dalinda hides inside the {spell:1294269}'s fortress south-west of {area:608}."] = "黛琳达·玛雷姆躲在{area:608}西南方{spell:1294269}的要塞里。",
+	-- ["Out of {area:599}"] = "离开{area:599}",
 }

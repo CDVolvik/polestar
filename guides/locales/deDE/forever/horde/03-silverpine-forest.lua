@@ -8,7 +8,7 @@ return {
 	-- Step 1: To Orgrimmar
 	-- {area:1637} Orgrimmar
 	["To {area:1637}"] = "Nach {area:1637}",
-	-- {area:380} The Crossroads · {area:1637} Orgrimmar · {npc:3310} Doras · {object:172982} Valley of Strength
+	-- {area:380} Crossroads · {area:1637} Orgrimmar · {npc:3310} Doras · {object:172982} Valley of Strength
 	["From the {area:380}, follow the road north-east to {area:1637} and walk in by the main gate. {npc:3310}, the wind rider master, stands on the tower in the {object:172982}."] = "Folge von {area:380} aus der Straße nach Nordosten bis {area:1637} und geh durch das Haupttor hinein. {npc:3310}, der Windreitermeister, steht auf dem Turm im {object:172982}.",
 
 	-- Step 2: Orgrimmar class quests
@@ -45,13 +45,15 @@ return {
 
 	-- Step 7: Into Silverpine
 	["Into Silverpine"] = "In den Silberwald",
-	-- {area:153} Ruins of Lordaeron · {zone:1421} Silverpine Forest · {area:228} The Sepulcher
+	-- {area:153} Ruins of Lordaeron · {zone:1421} Silverpine Forest · {area:228} Sepulcher
 	["The zeppelin lands at the towers outside the {area:153}. Walk west along the road past the ruins and south into {zone:1421}; follow the road to the {area:228}."] = "Der Zeppelin landet an den Türmen vor den {area:153}. Geh die Straße nach Westen an den Ruinen vorbei und nach Süden in den {zone:1421}; folge der Straße bis zum Ziel {area:228}.",
 	["Road to Silverpine"] = "Straße zum Silberwald",
 
 	-- Step 8: The Sepulcher
-	-- {area:228} The Sepulcher · {npc:2226} Karos Razok
-	["{area:228} is the Forsaken crypt-town in the middle of the forest. Everyone you need stands around the crypt entrance; {npc:2226}, the bat handler, is just east of it."] = "{area:228} ist die Gruftstadt der Verlassenen mitten im Wald. Alle, die du brauchst, stehen um den Grufteingang; {npc:2226}, der Fledermausführer, steht gleich östlich davon.",
+	-- {area:228} Sepulcher
+	["The {area:228}"] = "",
+	-- {area:228} Sepulcher · {npc:2226} Karos Razok
+	["The {area:228} is the Forsaken crypt-town in the middle of the forest. Everyone you need stands around the crypt entrance; {npc:2226}, the bat handler, is just east of it."] = "",
 
 	-- Step 9: Border Crossings
 	-- {object:1627} Dalaran Crate
@@ -62,12 +64,12 @@ return {
 	["{area:233} comes later, on the southern loop"] = "{area:233} kommt später, auf der südlichen Runde",
 
 	-- Step 11: The Dead Field
-	-- {area:228} The Sepulcher · {area:240} The Dead Field
-	["North of the {area:228}. Nightlash haunts the {area:240}: kill it, then walk across the field."] = "Nördlich vom Grabmal ({area:228}). Nachtseele spukt auf dem Feld ({area:240}): Töte sie und geh dann über das Feld.",
+	-- {area:228} Sepulcher · {npc:1983} Nightlash
+	["North of the {area:228}. {npc:1983} haunts the Dead Field: kill it, then walk across the field."] = "",
 
 	-- Step 12: Strange Lockbox
-	-- {object:177790} Strange Lockbox · {area:240} The Dead Field · {item:15882} Half Pendant of Aquatic Endurance · {quest:30} Trial of the Sea Lion
-	["The {object:177790} lies on the coast west of the {area:240}. It holds the {item:15882} for {quest:30}."] = "Die {object:177790} liegt an der Küste westlich vom Todesfeld ({area:240}). Sie enthält den {item:15882} für {quest:30}.",
+	-- {object:177790} Strange Lockbox · {item:15882} Half Pendant of Aquatic Endurance · {quest:30} Trial of the Sea Lion
+	["The {object:177790} lies on the coast west of the Dead Field. It holds the {item:15882} for {quest:30}."] = "",
 
 	-- Step 13: Malden's Orchard
 	-- {area:238} Malden's Orchard
@@ -83,11 +85,11 @@ return {
 	["Mottled Worgs prowl the hills around the house. Then walk south along the lake shore: the Vile Fin Shredders and Tidehunters there drop the murloc eyes."] = "Scheckige Worgs streifen durch die Hügel um das Haus. Geh dann am Seeufer entlang nach Süden: Die Schredder und Gezeitenjäger der Finsterflossen dort lassen die Murlocaugen fallen.",
 
 	-- Step 17: Hearth to the Sepulcher
-	-- {area:228} The Sepulcher
+	-- {area:228} Sepulcher
 	["Hearth to the {area:228}"] = "Ruhestein: {area:228}",
 
 	-- Step 18: The Decrepit Ferry
-	-- {object:1593} Corpse Laden Boat · {area:228} The Sepulcher
+	-- {object:1593} Corpse Laden Boat · {area:228} Sepulcher
 	["The {object:1593} lies at the ferry landing on the lake shore east of the {area:228}."] = "Das {object:1593} liegt an der Fähranlegestelle am Seeufer östlich vom Grabmal ({area:228}).",
 
 	-- Step 20: The Ivar Patch
@@ -105,7 +107,7 @@ return {
 	["{object:112888}, inside the keep"] = "{object:112888}, in der Burg",
 
 	-- Step 22: The Sepulcher
-	-- {area:228} The Sepulcher
+	-- {area:228} Sepulcher
 	["Swim back and follow the road west to the {area:228}."] = "Schwimm zurück und folge der Straße nach Westen bis zum Grabmal ({area:228}).",
 	-- {npc:2121} Shadow Priest Allister · {quest:516} Beren's Peril
 	["{npc:2121}: {quest:516}, on the south loop"] = "{npc:2121}: {quest:516}, auf der südlichen Runde",
@@ -124,7 +126,7 @@ return {
 
 	-- Step 25: The refugees
 	["The refugees"] = "Die Flüchtlinge",
-	-- {area:230} The Greymane Wall
+	-- {area:230} Greymane Wall
 	-- plural, as words: Haggard Refugees = {npc:2053} Haggard Refugee
 	["The Sickly and Haggard Refugees shamble along the road south of Pyrewood toward the {area:230}."] = "Die Kränklichen und Hageren Flüchtlinge schlurfen die Straße südlich von Pyrewood entlang in Richtung Wall ({area:230}).",
 
@@ -136,7 +138,7 @@ return {
 	-- Step 28: Lordamere Lake shore
 	-- {area:1338} Lordamere Lake
 	["{area:1338} shore"] = "Ufer: {area:1338}",
-	-- {area:237} The Decrepit Ferry · {area:228} The Sepulcher
+	-- {area:237} Decrepit Ferry · {area:228} Sepulcher
 	-- plural, as words: Vile Fin Lakestalkers = {npc:1909} Vile Fin Lakestalker
 	["The Vile Fin Lakestalkers and Oracles sit on the lake shore south of the {area:237}, east of the {area:228}."] = "Die Seepirscher und Orakel der Finsterflossen sitzen am Seeufer südlich der Fähre ({area:237}), östlich vom Grabmal ({area:228}).",
 	-- {npc:1909} Vile Fin Lakestalker · {area:1338} Lordamere Lake · {zone:1421} Silverpine Forest
@@ -178,7 +180,7 @@ return {
 	["{npc:268684} and {npc:268682} sit behind Grommash Hold in the {object:172957}; the Smooth Boulders lie around them. Train while you are in the city (Druids and Paladins have no trainer here). The next guide starts at {npc:3310}, the wind rider master in the {object:172982}."] = "{npc:268684} und {npc:268682} sitzen hinter Grommash Hold im {object:172957}; die Glatten Felsen liegen um sie herum. Trainiere, solange du in der Stadt bist (Druiden und Paladine haben hier keinen Lehrer). Der nächste Guide beginnt bei {npc:3310}, dem Windreitermeister im {object:172982}.",
 	-- {npc:4949} Thrall
 	["{npc:4949}, inside Grommash Hold"] = "{npc:4949}, in Grommash Hold",
-	-- {area:380} The Crossroads
+	-- {area:380} Crossroads
 	["Keep it: Thork at the {area:380}"] = "Behalte sie: Thork in {area:380}",
 	-- {npc:4949} Thrall · {quest:93739} Exploring the Horde
 	["{npc:4949}: {quest:93739}, a tour of the Horde's leaders"] = "{npc:4949}: {quest:93739}, eine Tour zu den Anführern der Horde",
@@ -186,4 +188,9 @@ return {
 	["Speak with {npc:3230}, in Grommash Hold"] = "Sprich mit {npc:3230} in Grommash Hold",
 	-- {npc:10540} Vol'jin
 	["Speak with {npc:10540}, in Grommash Hold"] = "Sprich mit {npc:10540} in Grommash Hold",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["North of the {area:228}. Nightlash haunts the {area:240}: kill it, then walk across the field."] = "Nördlich vom Grabmal ({area:228}). Nachtseele spukt auf dem Feld ({area:240}): Töte sie und geh dann über das Feld.",
+	-- ["The {object:177790} lies on the coast west of the {area:240}. It holds the {item:15882} for {quest:30}."] = "Die {object:177790} liegt an der Küste westlich vom Todesfeld ({area:240}). Sie enthält den {item:15882} für {quest:30}.",
+	-- ["{area:228} is the Forsaken crypt-town in the middle of the forest. Everyone you need stands around the crypt entrance; {npc:2226}, the bat handler, is just east of it."] = "{area:228} ist die Gruftstadt der Verlassenen mitten im Wald. Alle, die du brauchst, stehen um den Grufteingang; {npc:2226}, der Fledermausführer, steht gleich östlich davon.",
 }

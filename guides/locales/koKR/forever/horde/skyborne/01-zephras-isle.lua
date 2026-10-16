@@ -86,7 +86,8 @@ return {
 	["The Ursera den is west of the village. {npc:251115}, their matriarch, sits at its far end."] = "우르세라 굴은 마을 서쪽에 있습니다. 우르세라의 어미 {npc:251115}은(는) 굴 맨 안쪽에 있습니다.",
 
 	-- Step 16: Leaving Thendal Village
-	["Leaving Thendal Village"] = "센달 마을 떠나기",
+	-- {area:16635} Thendal Village
+	["Leaving {area:16635}"] = "",
 
 	-- Step 17: Call of Earth
 	-- {npc:251374} Windshaper Boro · {area:16988} Rise of Spirits · {item:6635} Earth Sapta · {npc:251166} Minor Manifestation of Earth · {item:6656} Rough Quartz
@@ -117,8 +118,10 @@ return {
 	["the bounty board"] = "현상수배 게시판",
 
 	-- Step 21: Prideclaws and Galestriders
+	-- plural, as words: Prideclaws = {npc:251245} Prideclaw
 	["Prideclaws and Galestriders"] = "무리발톱과 돌풍타조",
 	-- {item:5469} Strider Meat
+	-- plural, as words: Prideclaws = {npc:251245} Prideclaw
 	["Prideclaws and Galestriders share the meadows south of the village. Keep the {item:5469} for Zerril; the eggs come later from the hippogryphs."] = "무리발톱과 돌풍타조가 마을 남쪽 초원에 함께 있습니다. {item:5469}은(는) 제릴에게 줄 것이니 챙겨 두세요. 알은 나중에 히포그리프에게서 얻습니다.",
 
 	-- Step 22: High Order Apprentices
@@ -135,6 +138,7 @@ return {
 	["{area:16624} turn-ins"] = "{area:16624} 퀘스트 완료",
 
 	-- Step 25: Vulgara the Insatiable
+	-- plural, as words: Prideclaws = {npc:251245} Prideclaw
 	["Vulgara lurks south of the village, among the Prideclaws. Vulgara is elite: grouping up is advised."] = "탐욕의 불가라는 마을 남쪽 무리발톱 사이에 숨어 있습니다. 불가라는 정예이니 파티를 권장합니다.",
 
 	-- Step 26: Falaath Village
@@ -202,12 +206,12 @@ return {
 	["Listen to {npc:256083}"] = "{npc:256083}의 이야기를 들으세요",
 
 	-- Step 39: Wind Hollows and Construct Parts
-	-- {object:616466} Construct Parts
+	-- {object:616467} Construct Parts
 	-- plural, as words: Wind Hollows = {npc:251676} Wind Hollow
-	["Wind Hollows and {object:616466}"] = "{npc:251676}와(과) {object:616466}",
-	-- {area:16638} Valanaar · {object:616466} Construct Parts
+	["Wind Hollows and {object:616467}"] = "",
+	-- {area:16638} Valanaar · {object:616467} Construct Parts
 	-- plural, as words: Wind Hollows = {npc:251676} Wind Hollow
-	["Wind Hollows drift over the lowlands around {area:16638}. The first {object:616466} lie west of the orchard road."] = "{npc:251676}은(는) {area:16638} 주변 저지대를 떠다닙니다. 첫 {object:616466}은(는) 과수원 길 서쪽에 있습니다.",
+	["Wind Hollows drift over the lowlands around {area:16638}. The first {object:616467} lie west of the orchard road."] = "",
 
 	-- Step 41: Windfield Orchard
 	-- {area:16663} Windfield Orchard · {area:16638} Valanaar
@@ -222,11 +226,12 @@ return {
 
 	-- Step 44: Bandit Highwaymen
 	["Bandit Highwaymen"] = "산적 노상강도",
-	-- {object:616466} Construct Parts · {area:16638} Valanaar
-	["The highwaymen hold the hills north-east of the orchard. More {object:616466} lie near the road to {area:16638}."] = "노상강도는 과수원 북동쪽 언덕을 차지하고 있습니다. {area:16638}(으)로 가는 길 근처에 {object:616466}이(가) 더 있습니다.",
+	-- {object:616468} Construct Parts · {area:16638} Valanaar
+	["The highwaymen hold the hills north-east of the orchard. More {object:616468} lie near the road to {area:16638}."] = "",
 
 	-- Step 45: Standing Our Ground
-	["Tell Aamelia Windfield you're ready"] = "아멜리아 윈드필드에게 준비되었다고 말하세요",
+	-- {npc:252800} Aamelia Windfield
+	["Tell {npc:252800} you're ready"] = "",
 
 	-- Step 46: Alvarion and Riaani
 	["Alvarion and Riaani"] = "알바리온과 리아니",
@@ -284,10 +289,9 @@ return {
 	["Faladiel stands on the hill west of the falls, north of {area:16638}."] = "하늘사제 팔라디엘은 {area:16638} 북쪽, 폭포 서쪽 언덕에 있습니다.",
 
 	-- Step 60: Kuramaa
-	["Kuramaa"] = "쿠라마",
-	-- {area:16623} Shen'dar Highlands
+	-- {area:16623} Shen'dar Highlands · {npc:268605} Kuramaa
 	-- plural, as words: Windsong Crawlers = {npc:254588} Windsong Crawler
-	["Back to Olariaan, then west into the {area:16623}: Kuramaa's home is in the hills south of the Windsong Crawlers' lakes."] = "올라리안에게 돌아간 뒤 서쪽 {area:16623}(으)로 가세요. 쿠라마의 집은 {npc:254588} 호수 남쪽 언덕에 있습니다.",
+	["Back to Olariaan, then west into the {area:16623}: {npc:268605}'s home is in the hills south of the Windsong Crawlers' lakes."] = "",
 
 	-- Step 61: The Eternal Flame
 	-- {object:148418} Eternal Flame
@@ -406,8 +410,18 @@ return {
 	["{npc:3033} trains druids on {area:1639}. He teaches you {spell:18960}; {npc:11802}'s welcome waits for your {spell:499} trip at about 23 (forever/horde/04-the-barrens)."] = "{npc:3033}은(는) {area:1639}에서 드루이드를 가르칩니다. 그에게서 {spell:18960}을(를) 배우세요. {npc:11802}의 환영 인사는 23레벨쯤 {spell:499} 여정 때 받습니다(forever/horde/04-the-barrens).",
 
 	-- Step 84: The Crossroads
-	-- {zone:1456} Thunder Bluff · {area:222} Bloodhoof Village · {zone:1413} The Barrens · {area:458} Gold Road · {area:380} The Crossroads
-	["Leave {zone:1456} by a lift and follow the road south past {area:222} and through the eastern pass into the {zone:1413}; from the pass, take the {area:458} north to the {area:380}, the Horde town in the middle of the {zone:1413}."] = "승강기로 {zone:1456}을(를) 내려가 남쪽 길을 따라 {area:222}을(를) 지나고 동쪽 고개를 넘어 {zone:1413}(으)로 가세요. 고개에서 {area:458}을(를) 따라 북쪽으로 {zone:1413} 한가운데의 호드 마을 {area:380}에 가세요.",
+	-- {zone:1456} Thunder Bluff · {area:222} Bloodhoof Village · {zone:1413} Barrens · {area:458} Gold Road
+	["Leave {zone:1456} by a lift and follow the road south past {area:222} and through the eastern pass into the {zone:1413}; from the pass, take the {area:458} north to the Crossroads, the Horde town in the middle of the {zone:1413}."] = "",
 	-- {npc:3615} Devrak
 	["{npc:3615}, the wind rider master"] = "와이번 조련사 {npc:3615}",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Back to Olariaan, then west into the {area:16623}: Kuramaa's home is in the hills south of the Windsong Crawlers' lakes."] = "올라리안에게 돌아간 뒤 서쪽 {area:16623}(으)로 가세요. 쿠라마의 집은 {npc:254588} 호수 남쪽 언덕에 있습니다.",
+	-- ["Kuramaa"] = "쿠라마",
+	-- ["Leave {zone:1456} by a lift and follow the road south past {area:222} and through the eastern pass into the {zone:1413}; from the pass, take the {area:458} north to the {area:380}, the Horde town in the middle of the {zone:1413}."] = "승강기로 {zone:1456}을(를) 내려가 남쪽 길을 따라 {area:222}을(를) 지나고 동쪽 고개를 넘어 {zone:1413}(으)로 가세요. 고개에서 {area:458}을(를) 따라 북쪽으로 {zone:1413} 한가운데의 호드 마을 {area:380}에 가세요.",
+	-- ["Leaving Thendal Village"] = "센달 마을 떠나기",
+	-- ["Tell Aamelia Windfield you're ready"] = "아멜리아 윈드필드에게 준비되었다고 말하세요",
+	-- ["The highwaymen hold the hills north-east of the orchard. More {object:616466} lie near the road to {area:16638}."] = "노상강도는 과수원 북동쪽 언덕을 차지하고 있습니다. {area:16638}(으)로 가는 길 근처에 {object:616466}이(가) 더 있습니다.",
+	-- ["Wind Hollows and {object:616466}"] = "{npc:251676}와(과) {object:616466}",
+	-- ["Wind Hollows drift over the lowlands around {area:16638}. The first {object:616466} lie west of the orchard road."] = "{npc:251676}은(는) {area:16638} 주변 저지대를 떠다닙니다. 첫 {object:616466}은(는) 과수원 길 서쪽에 있습니다.",
 }

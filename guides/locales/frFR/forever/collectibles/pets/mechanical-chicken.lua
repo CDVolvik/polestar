@@ -13,7 +13,7 @@ return {
 
 	-- Step 2: Rescue OOX-22/FE
 	["Rescue OOX-22/FE"] = "Secourir OOX-22/FE",
-	-- {area:1105} Feral Scar Vale · {area:1108} The Forgotten Coast · {area:35} Booty Bay
+	-- {area:1105} Feral Scar Vale · {area:1108} Forgotten Coast · {area:35} Booty Bay
 	["Take the beacon to OOX-22/FE in a cave near {area:1105}, then escort it to the dock on the {area:1108}. Its turn-in is in {area:35}; keep it for later."] = "Apportez la balise à OOX-22/FE dans une grotte près du {area:1105}, puis escortez-le jusqu'au quai de la {area:1108}. La quête se rend à {area:35} ; gardez-la pour plus tard.",
 	["Escort OOX-22/FE"] = "Escorter OOX-22/FE",
 
@@ -30,9 +30,9 @@ return {
 	["Escort OOX-17/TN"] = "Escorter OOX-17/TN",
 
 	-- Step 5: OOX-09/HL Distress Beacon in the Hinterlands
-	-- {item:8704} OOX-09/HL Distress Beacon · {zone:1425} The Hinterlands
+	-- {item:8704} OOX-09/HL Distress Beacon · {zone:1425} Hinterlands
 	["{item:8704} in the {zone:1425}"] = "{item:8704} dans les {zone:1425}",
-	-- {zone:1425} The Hinterlands
+	-- {zone:1425} Hinterlands
 	["Most {zone:1425} mobs can drop OOX-09/HL's beacon (about 1-2.5% per kill in our data)."] = "La plupart des monstres des {zone:1425} peuvent laisser tomber la balise d'OOX-09/HL (environ 1-2.5% par mort selon nos données).",
 
 	-- Step 6: Rescue OOX-09/HL

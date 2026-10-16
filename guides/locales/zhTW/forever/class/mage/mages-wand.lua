@@ -8,8 +8,8 @@ return {
 	-- Guide
 	["A wand of your school for the 30s: frost, arcane or fire."] = "30多級用的本系魔杖：冰霜、秘法或火焰。",
 
-	-- Step 1: Journey to the Marsh (Stormwind City)
-	-- {npc:5497} Jennea Cannon · {zone:1453} Stormwind City · {object:2101} Mage Quarter · {npc:6546} Tabetha · {zone:1455} Ironforge
+	-- Step 1: Journey to the Marsh (Stormwind)
+	-- {npc:5497} Jennea Cannon · {zone:1453} Stormwind · {object:2101} Mage Quarter · {npc:6546} Tabetha · {zone:1455} Ironforge
 	["{npc:5497} in the Wizard's Sanctum, {zone:1453}'s {object:2101}, sends you to {npc:6546}; Bink in {zone:1455} gives the same quest."] = "{zone:1453}{object:2101}巫師聖所的{npc:5497}會派你去找{npc:6546}；{zone:1455}的彬克也提供同一任務。",
 
 	-- Step 2: Journey to the Marsh (Orgrimmar)
@@ -21,7 +21,7 @@ return {
 	["{npc:6546}, a hermit, lives in a cottage deep in the marsh west of Theramore, just north of the {area:508}."] = "隱士{npc:6546}住在塞拉摩島西邊沼澤深處的小屋，就在{area:508}北邊。",
 
 	-- Step 4: Magus Tirth
-	-- {npc:6548} Magus Tirth · {area:439} The Shimmering Flats · {zone:1441} Thousand Needles
+	-- {npc:6548} Magus Tirth · {area:439} Shimmering Flats · {zone:1441} Thousand Needles
 	["{npc:6548} spends his days at the race track in the {area:439}, south-east {zone:1441}."] = "{npc:6548}整天待在{zone:1441}東南部{area:439}的賽道上。",
 
 	-- Step 5: "Plucky" Johnson

@@ -87,7 +87,9 @@ return {
 	["The bounty board"] = "懸賞告示板",
 
 	-- Step 13: Prideclaws and Galestriders
+	-- plural, as words: Prideclaws = {npc:251245} Prideclaw
 	["Prideclaws and Galestriders"] = "群爪與逐風者",
+	-- plural, as words: Prideclaws = {npc:251245} Prideclaw
 	["Prideclaws and Galestriders roam the grasslands south of the village. Galestriders drop both the eggs and the meat."] = "群爪和逐風者在村子南邊的草原上遊蕩。逐風者會掉落蛋和肉。",
 
 	-- Step 14: Back to Shen'dar
@@ -224,8 +226,8 @@ return {
 
 	-- Step 41: The dead cultist
 	["The dead cultist"] = "死去的教徒",
-	-- {area:16638} Valanaar · {npc:273017} Fendaal Windstone · {quest:98512} Al'Aketh Assassins
-	["North-west of {area:16638} along the road: {npc:273017} watches the {quest:98512}; the dead cultist lies just north of him."] = "沿著道路前往{area:16638}西北方：{npc:273017}監視著{quest:98512}；死去的教徒就躺在他北邊。",
+	-- {npc:273017} Fendaal Windstone · {quest:98512} Al'Aketh Assassins
+	["North-west of Valanaar along the road: {npc:273017} watches the {quest:98512}; the dead cultist lies just north of him."] = "",
 	["Search the dead cultist"] = "搜查死去的教徒",
 	-- {npc:258443} Ur'endra
 	["{npc:258443}, in the highlands south-west of the cultist"] = "{npc:258443}，在教徒西南方的高地上",
@@ -303,9 +305,9 @@ return {
 	["Skycutter to {area:279}"] = "搭天空快艇前往{area:279}",
 
 	-- Step 56: Denaaris Stargale
-	-- {zone:1453} Stormwind City
+	-- {zone:1453} Stormwind
 	["Denaaris stands beside the Skyborne Portal where the zeppelin lands. The portal takes you to {zone:1453}."] = "德納里斯站在飛艇降落處的天裔精靈傳送門旁。傳送門會帶你前往{zone:1453}。",
-	-- {npc:270459} Alfina Nightgaze · {npc:5504} Sheldras Moontree · {zone:1453} Stormwind City
+	-- {npc:270459} Alfina Nightgaze · {npc:5504} Sheldras Moontree · {zone:1453} Stormwind
 	["{npc:270459}, beside Denaaris: for {npc:5504} in {zone:1453}"] = "{npc:270459}，在德納里斯旁邊：交給{zone:1453}的{npc:5504}",
 
 	-- Step 57: Stormwind Keep
@@ -315,7 +317,7 @@ return {
 	["For {npc:234} at {area:108}"] = "交給{area:108}的{npc:234}",
 
 	-- Step 58: Sheldras Moontree
-	-- {npc:5504} Sheldras Moontree · {zone:1453} Stormwind City · {spell:18960} Teleport: Moonglade · {npc:11802} Dendrite Starblaze · {spell:499} Cat Form · {zone:1439} Darkshore
+	-- {npc:5504} Sheldras Moontree · {zone:1453} Stormwind · {spell:18960} Teleport: Moonglade · {npc:11802} Dendrite Starblaze · {spell:499} Cat Form · {zone:1439} Darkshore
 	["{npc:5504}, {zone:1453}'s druid trainer, teaches you {spell:18960}. {npc:11802}'s welcome waits for your {spell:499} trip at the end of {zone:1439}."] = "{npc:5504}是{zone:1453}的德魯伊訓練師，會教你{spell:18960}。{npc:11802}的歡迎任務在你{spell:499}任務旅程的終點{zone:1439}等著你。",
 
 	-- Step 59: Jennea Cannon
@@ -323,6 +325,9 @@ return {
 	["{npc:5497} stands in the Wizard's Sanctum, the tower of the {object:2101}; she gives you a flask for the {quest:1861} waterfall."] = "{npc:5497}站在{object:2101}的法師塔裡；她會給你一個裝{quest:1861}瀑布水的瓶子。",
 
 	-- Step 60: Mirror Lake
-	-- {zone:1453} Stormwind City · {quest:1861} Mirror Lake · {zone:1436} Westfall · {item:7207} Jennea's Flask
+	-- {zone:1453} Stormwind · {quest:1861} Mirror Lake · {zone:1436} Westfall · {item:7207} Jennea's Flask
 	["Leave {zone:1453} by the main gate. The {quest:1861} waterfall is south-west of the gates, on the way west to {zone:1436}: fill {item:7207} at its base."] = "從正門離開{zone:1453}。{quest:1861}瀑布在城門西南方，位於向西前往{zone:1436}的路上：在瀑布底下裝滿{item:7207}。",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["North-west of {area:16638} along the road: {npc:273017} watches the {quest:98512}; the dead cultist lies just north of him."] = "沿著道路前往{area:16638}西北方：{npc:273017}監視著{quest:98512}；死去的教徒就躺在他北邊。",
 }

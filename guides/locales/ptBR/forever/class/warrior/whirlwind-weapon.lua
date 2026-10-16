@@ -9,24 +9,24 @@ return {
 	-- {spell:2458} Berserker Stance · {spell:1680} Whirlwind
 	["{spell:2458} at 30 and a {spell:1680} axe, sword or warhammer at 40."] = "{spell:2458} no nível 30 e um machado, espada ou martelo de guerra de {spell:1680} no nível 40.",
 
-	-- Step 1: The Islander (Stormwind City)
-	-- {npc:5479} Wu Shen · {object:2100} Old Town · {npc:6236} Klannoc Macleod · {area:720} Fray Island · {zone:1413} The Barrens
+	-- Step 1: The Islander (Stormwind)
+	-- {npc:5479} Wu Shen · {object:2100} Old Town · {npc:6236} Klannoc Macleod · {area:720} Fray Island · {zone:1413} Barrens
 	["At 30, {npc:5479} in {object:2100}, beside the Pig and Whistle, sends you to {npc:6236} on {area:720} in the {zone:1413}."] = "No nível 30, {npc:5479}, em {object:2100}, ao lado da Porco e Apito, envia você a {npc:6236} na {area:720}, em {zone:1413}.",
 
 	-- Step 2: The Islander (Ironforge)
-	-- {npc:5113} Kelv Sternhammer · {zone:1455} Ironforge · {npc:6236} Klannoc Macleod · {area:720} Fray Island · {zone:1413} The Barrens
+	-- {npc:5113} Kelv Sternhammer · {zone:1455} Ironforge · {npc:6236} Klannoc Macleod · {area:720} Fray Island · {zone:1413} Barrens
 	["At 30, {npc:5113}, the warrior trainer of {zone:1455}, sends you to {npc:6236} on {area:720} in the {zone:1413}."] = "No nível 30, {npc:5113}, o instrutor de guerreiros de {zone:1455}, envia você a {npc:6236} na {area:720}, em {zone:1413}.",
 
 	-- Step 3: The Islander (Orgrimmar)
-	-- {npc:3354} Sorek · {object:172958} Valley of Honor · {npc:6236} Klannoc Macleod · {area:720} Fray Island · {zone:1413} The Barrens
+	-- {npc:3354} Sorek · {object:172958} Valley of Honor · {npc:6236} Klannoc Macleod · {area:720} Fray Island · {zone:1413} Barrens
 	["At 30, {npc:3354} in the {object:172958} sends you to {npc:6236} on {area:720} in the {zone:1413}."] = "No nível 30, {npc:3354}, no {object:172958}, envia você a {npc:6236} na {area:720}, em {zone:1413}.",
 
 	-- Step 4: The Islander (Thunder Bluff)
-	-- {npc:3041} Torm Ragetotem · {zone:1456} Thunder Bluff · {npc:6236} Klannoc Macleod · {area:720} Fray Island · {zone:1413} The Barrens
+	-- {npc:3041} Torm Ragetotem · {zone:1456} Thunder Bluff · {npc:6236} Klannoc Macleod · {area:720} Fray Island · {zone:1413} Barrens
 	["At 30, {npc:3041}, the warrior trainer of {zone:1456}, sends you to {npc:6236} on {area:720} in the {zone:1413}."] = "No nível 30, {npc:3041}, o instrutor de guerreiros de {zone:1456}, envia você a {npc:6236} na {area:720}, em {zone:1413}.",
 
 	-- Step 5: The Islander (Undercity)
-	-- {npc:4595} Baltus Fowler · {zone:1458} Undercity · {npc:6236} Klannoc Macleod · {area:720} Fray Island · {zone:1413} The Barrens
+	-- {npc:4595} Baltus Fowler · {zone:1458} Undercity · {npc:6236} Klannoc Macleod · {area:720} Fray Island · {zone:1413} Barrens
 	["At 30, {npc:4595}, a warrior trainer of the {zone:1458}, sends you to {npc:6236} on {area:720} in the {zone:1413}."] = "No nível 30, {npc:4595}, um instrutor de guerreiros de {zone:1458}, envia você a {npc:6236} na {area:720}, em {zone:1413}.",
 
 	-- Step 6: The Affray

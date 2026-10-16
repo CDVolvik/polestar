@@ -12,7 +12,7 @@ return {
 	["From {area:2268}'s flight master, fly to the {area:1497}."] = "從{area:2268}的飛行管理員處飛往{area:1497}。",
 
 	-- Step 2: Janice Felstone
-	-- {area:1497} Undercity · {zone:1420} Tirisfal Glades · {area:152} The Bulwark
+	-- {area:1497} Undercity · {zone:1420} Tirisfal Glades · {area:152} Bulwark
 	["Leave the {area:1497} and ride east along the road through {zone:1420}, past the {area:152}. Felstone Farm is the first farm along the road; Janice waits in the house."] = "離開{area:1497}，沿著道路向東穿過{zone:1420}，經過{area:152}。費爾斯通農場是道路旁的第一座農場；詹妮絲在屋裡等候。",
 	-- {object:175894} Janice's Parcel
 	["{object:175894}, beside the house"] = "{object:175894}，在房子旁邊",
@@ -31,11 +31,11 @@ return {
 	["The diary lies in the farmhouse, the cabinet stands inside and the outhouse is behind it. A {npc:10816} carries the outhouse key; {npc:10836} comes out when you open the outhouse and carries the cabinet key."] = "日記在農舍裡，櫃子在屋內，廁所在屋後。一隻{npc:10816}帶著廁所鑰匙；打開廁所時{npc:10836}會出來，他身上帶著櫃子鑰匙。",
 
 	-- Step 5: Mulgris Deepriver
-	-- {area:202} The Writhing Haunt · {area:200} Dalson's Tears
+	-- {area:202} Writhing Haunt · {area:200} Dalson's Tears
 	["He camps by the {area:202}, south-east of {area:200}."] = "他在{area:200}東南方的{area:202}旁紮營。",
 
 	-- Step 6: Sorrow Hill
-	-- {area:202} The Writhing Haunt · {area:197} Sorrow Hill · {npc:10936} Joseph Redpath
+	-- {area:202} Writhing Haunt · {area:197} Sorrow Hill · {npc:10936} Joseph Redpath
 	["Ride south past the {area:202} to {area:197}; Marlene's house stands by the road, and {npc:10936}'s monument is in the graveyard behind it. Kill the Diseased Wolves you meet in the fields on the way."] = "向南騎過{area:202}前往{area:197}；瑪萊恩的房子在路旁，{npc:10936}的紀念碑在房子後面的墓地裡。沿途擊殺田野中遇到的生病的狼。",
 	-- {npc:10840} Argent Officer Pureheart
 	["{npc:10840}, at the graveyard's south end"] = "{npc:10840}，在墓地南端",
@@ -56,12 +56,12 @@ return {
 
 	-- Step 10: Diseased Wolves
 	["Diseased Wolves"] = "生病的狼",
-	-- {area:200} Dalson's Tears · {area:202} The Writhing Haunt
+	-- {area:200} Dalson's Tears · {area:202} Writhing Haunt
 	["The wolves roam the fields between Andorhal, {area:200} and the {area:202}. Finish them on the ride back east."] = "狼群在安多哈爾、{area:200}和{area:202}之間的田野遊蕩。在往東騎回去的路上把牠們殺完。",
 
 	-- Step 12: Diseased Grizzlies
 	["Diseased Grizzlies"] = "生病的灰熊",
-	-- {area:202} The Writhing Haunt
+	-- {area:202} Writhing Haunt
 	["The bears roam the hills north and east of the {area:202}."] = "熊在{area:202}北邊和東邊的山丘遊蕩。",
 
 	-- Step 13: Mulgris Deepriver
@@ -100,7 +100,9 @@ return {
 	["{area:190}'s Scarlets are level 58-60. Ride in to the high point marked on your map, look over the town, and get out."] = "{area:190}的血色十字軍是58-60級。騎進去到地圖上標示的高處，俯瞰城鎮，然後離開。",
 
 	-- Step 24: The Bulwark
-	-- {area:152} The Bulwark
+	-- {area:152} Bulwark
+	["The {area:152}"] = "",
+	-- {area:152} Bulwark
 	["Ride south-west past Felstone Farm and follow the road west back to the {area:152}."] = "向西南騎過費爾斯通農場，沿著道路向西回到{area:152}。",
 	["Derrington's watchtowers, Vandis' cauldron and Mickey's barrel are done on a later visit: keep them."] = "德靈頓的瞭望塔、范蒂絲的大鍋和米克的木桶會在之後造訪時完成：先保留。",
 
@@ -166,9 +168,8 @@ return {
 	["Jadefire moonwell"] = "碧火月井",
 
 	-- Step 39: Shatter Scar Vale
-	-- {area:1997} Bloodvenom Post
 	-- plural, as words: Entropic Beasts = {npc:9878} Entropic Beast
-	["East of {area:1997}, the cratered vale where the Entropic Beasts and Horrors roam. Kill two of each, then walk to each of the three fel-water craters."] = "在{area:1997}東邊，熱能野獸和熱能恐獸遊蕩的坑窪山谷。各擊殺兩隻，然後走到三個魔化水坑的每一個。",
+	["East of Bloodvenom Post, the cratered vale where the Entropic Beasts and Horrors roam. Kill two of each, then walk to each of the three fel-water craters."] = "",
 	["Southern crater"] = "南方坑洞",
 	["Western crater"] = "西方坑洞",
 	["Northern crater"] = "北方坑洞",
@@ -199,7 +200,7 @@ return {
 	["Ride the road south through {zone:1448} to the Sanctuary."] = "沿著道路向南穿過{zone:1448}前往聖地。",
 	-- {npc:9529} Maybess Riverbreeze
 	["{npc:9529}, on the west side of the Sanctuary"] = "{npc:9529}，在聖地西側",
-	-- {quest:5158} Seeking Spiritual Aid · {npc:5901} Islen Waterseer · {zone:1413} The Barrens
+	-- {quest:5158} Seeking Spiritual Aid · {npc:5901} Islen Waterseer · {zone:1413} Barrens
 	["Keep {quest:5158}: {npc:5901} is in the {zone:1413}."] = "保留{quest:5158}：{npc:5901}在{zone:1413}。",
 
 	-- Step 45: Overlord Ror
@@ -223,4 +224,7 @@ return {
 	["Through {area:1769}"] = "穿過{area:1769}",
 	-- {area:1769} Timbermaw Hold · {npc:15395} Nafien · {zone:1452} Winterspring · {area:2255} Everlook
 	["Walk into the {area:1769} tunnel beside {npc:15395} and never attack the Timbermaw furbolgs inside. The tunnel opens into {zone:1452}; follow the road east to {area:2255}, the goblin town where the next guide starts."] = "走進{npc:15395}旁邊的{area:1769}隧道，絕對不要攻擊裡面的木喉熊怪。隧道通往{zone:1452}；沿著道路向東前往哥布林城鎮{area:2255}，下一份指南從那裡開始。",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["East of {area:1997}, the cratered vale where the Entropic Beasts and Horrors roam. Kill two of each, then walk to each of the three fel-water craters."] = "在{area:1997}東邊，熱能野獸和熱能恐獸遊蕩的坑窪山谷。各擊殺兩隻，然後走到三個魔化水坑的每一個。",
 }

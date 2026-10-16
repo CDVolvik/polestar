@@ -22,7 +22,7 @@ return {
 	["{item:7908}, in the {object:123214}"] = "{item:7908}, dans le {object:123214}",
 
 	-- Step 3: Master Mathias Shaw
-	-- {zone:1453} Stormwind City · {object:2100} Old Town
+	-- {zone:1453} Stormwind · {object:2100} Old Town
 	["Ride north through Elwynn to {zone:1453}; Mathias Shaw is at SI:7 in {object:2100}."] = "Chevauchez vers le nord à travers Elwynn jusqu'à {zone:1453} ; Mathias Shaw se trouve au SI:7, dans {object:2100}.",
 
 	-- Step 4: Doc Mixilpixil
@@ -32,7 +32,7 @@ return {
 
 	-- Step 5: The cure's ingredients
 	["The cure's ingredients"] = "Les ingrédients du remède",
-	-- {zone:1453} Stormwind City · {item:3421} Simple Wildflowers · {item:8431} Spool of Light Chartreuse Silk Thread · {item:3372} Leaded Vial · {item:4371} Bronze Tube
+	-- {zone:1453} Stormwind · {item:3421} Simple Wildflowers · {item:8431} Spool of Light Chartreuse Silk Thread · {item:3372} Leaded Vial · {item:4371} Bronze Tube
 	["Everything is in {zone:1453}: the Gumps sell {item:3421}, the {item:8431} lies in the city, and the nearest vendors sell a {item:3372} and a {item:4371}."] = "Tout se trouve à {zone:1453} : les Gump vendent des {item:3421}, la {item:8431} se trouve dans la ville, et les marchands les plus proches vendent une {item:3372} et un {item:4371}.",
 
 	-- Step 6: Back to Doc Mixilpixil

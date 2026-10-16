@@ -12,7 +12,7 @@ return {
 	["The Human and Dwarf priest spells: {quest:5634} at 10, {quest:5641} for Dwarves at 20."] = "人类和矮人牧师的法术：10级的{quest:5634}，矮人20级的{quest:5641}。",
 
 	-- Step 1: Desperate Prayer
-	-- {npc:11406} High Priest Rohan · {object:32386} Hall of Mysteries · {zone:1455} Ironforge · {object:32362} The Mystic Ward · {npc:376} High Priestess Laurena · {zone:1453} Stormwind City · {area:2257} Deeprun Tram
+	-- {npc:11406} High Priest Rohan · {object:32386} Hall of Mysteries · {zone:1455} Ironforge · {object:32362} Mystic Ward · {npc:376} High Priestess Laurena · {zone:1453} Stormwind · {area:2257} Deeprun Tram
 	["At 10, go to {npc:11406} in the {object:32386}, in {zone:1455}'s {object:32362}. Forever's quest text names Rohan, but the quest data has {npc:376} in {zone:1453}'s Cathedral of Light take it: try Rohan first, then Laurena (the {area:2257} links the cities)."] = "10级时，去{zone:1455}{object:32362}的{object:32386}找{npc:11406}。Forever 的任务文本写的是洛汉，但任务数据显示由{zone:1453}光明大教堂的{npc:376}接收：先试洛汉，再试劳瑞娜（{area:2257}连接两座城市）。",
 
 	-- Step 2: High Priestess Laurena
@@ -20,6 +20,6 @@ return {
 	["If Rohan did not take it: {npc:376} is in the Cathedral of Light. Take the {area:2257} from {object:171524}."] = "如果洛汉没有接收：{npc:376}在光明大教堂。从{object:171524}乘{area:2257}。",
 
 	-- Step 3: Chastise
-	-- {npc:11406} High Priest Rohan · {quest:5641} Chastise · {npc:376} High Priestess Laurena · {zone:1453} Stormwind City · {npc:11401} Priestess Alathea · {zone:1457} Darnassus
+	-- {npc:11406} High Priest Rohan · {quest:5641} Chastise · {npc:376} High Priestess Laurena · {zone:1453} Stormwind · {npc:11401} Priestess Alathea · {zone:1457} Darnassus
 	["At 20, {npc:11406} teaches {quest:5641}. {npc:376} in {zone:1453} and {npc:11401} in {zone:1457} send you to him with a quest of the same name."] = "20级时，{npc:11406}教授{quest:5641}。{zone:1453}的{npc:376}和{zone:1457}的{npc:11401}会用同名任务让你去找他。",
 }

@@ -9,8 +9,8 @@ return {
 	["Orb of Orahil"] = "奧拉赫寶珠",
 	["An off-hand orb or a staff for your late 30s, down the felhound's or the infernal's path, your pick."] = "30多級後期的副手寶珠或法杖，走地獄犬或地獄火的路線，任你選擇。",
 
-	-- Step 1: Knowledge of the Orb of Orahil (Stormwind City)
-	-- {npc:461} Demisette Cloyce · {object:2164} The Slaughtered Lamb · {object:2101} Mage Quarter · {npc:6266} Menara Voidrender · {area:392} Ratchet
+	-- Step 1: Knowledge of the Orb of Orahil (Stormwind)
+	-- {npc:461} Demisette Cloyce · {object:2164} Slaughtered Lamb · {object:2101} Mage Quarter · {npc:6266} Menara Voidrender · {area:392} Ratchet
 	["At 35 {npc:461} in the {object:2164}, in the {object:2101}, sends you to {npc:6266} in {area:392}."] = "35級時，{object:2101}{object:2164}的{npc:461}會派你去找{area:392}的{npc:6266}。",
 
 	-- Step 2: Knowledge of the Orb of Orahil (Ironforge)

@@ -22,8 +22,8 @@ return {
 
 	-- Step 3: The four elements
 	["The four elements"] = "네 가지 원소",
-	-- {item:7069} Elemental Air · {zone:1417} Arathi Highlands
-	["One each of {item:7069}, Fire, Earth and Water. The Exiles of {zone:1417} drop them, one element each, about one kill in ten: Thundering (air), Burning (fire), Rumbling (earth) and Cresting (water). Or buy them at the auction house."] = "{item:7069}, 불, 대지, 물을 하나씩 모으십시오. {zone:1417}의 떠도는 정령들이 각자 원소 하나씩을 약 열 번에 한 번 떨어뜨립니다: 떠도는 천둥 정령(공기), 떠도는 불의 정령(불), 떠도는 바위 정령(대지), 떠도는 물의 정령(물). 경매장에서 구매해도 됩니다.",
+	-- {item:7069} Elemental Air
+	["One each of {item:7069}, Fire, Earth and Water. The Exiles of Arathi Highlands drop them, one element each, about one kill in ten: Thundering (air), Burning (fire), Rumbling (earth) and Cresting (water). Or buy them at the auction house."] = "",
 	-- {item:7069} Elemental Air
 	-- plural, as words: Thundering Exiles = {npc:2762} Thundering Exile
 	["{item:7069}: Thundering Exiles"] = "{item:7069}: 떠도는 천둥 정령",
@@ -50,6 +50,9 @@ return {
 	-- Step 7: The Sunken Temple
 	-- {area:1417} Sunken Temple
 	["The {area:1417}"] = "{area:1417}",
-	-- {area:1417} Sunken Temple · {area:1477} The Temple of Atal'Hakkar · {area:74} Pool of Tears · {npc:5716} Zul'Lor · {item:20606} Amber Voodoo Feather
+	-- {area:1417} Sunken Temple · {area:1477} Temple of Atal'Hakkar · {area:74} Pool of Tears · {npc:5716} Zul'Lor · {item:20606} Amber Voodoo Feather
 	["The {area:1417} ({area:1477}) lies under the {area:74}; the arrow points at its entrance. Gasher or {npc:5716} drop the {item:20606}, Hukku or Mijan the Blue, Zolo or Loro the Green: all six are elite trolls inside. Bring a group."] = "{area:1417}({area:1477})은(는) {area:74} 아래에 있으며, 화살표가 입구를 가리킵니다. 게이셔 또는 {npc:5716}이(가) {item:20606}을(를), 후쿠 또는 마이잔이 파란색을, 졸로 또는 로로가 녹색을 떨어뜨립니다. 여섯 모두 내부의 정예 트롤입니다. 파티를 꾸리십시오.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["One each of {item:7069}, Fire, Earth and Water. The Exiles of {zone:1417} drop them, one element each, about one kill in ten: Thundering (air), Burning (fire), Rumbling (earth) and Cresting (water). Or buy them at the auction house."] = "{item:7069}, 불, 대지, 물을 하나씩 모으십시오. {zone:1417}의 떠도는 정령들이 각자 원소 하나씩을 약 열 번에 한 번 떨어뜨립니다: 떠도는 천둥 정령(공기), 떠도는 불의 정령(불), 떠도는 바위 정령(대지), 떠도는 물의 정령(물). 경매장에서 구매해도 됩니다.",
 }

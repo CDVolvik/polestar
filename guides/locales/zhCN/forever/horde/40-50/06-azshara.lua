@@ -138,7 +138,7 @@ return {
 	["The treants wander the forest roads between the camp and the middle of {zone:1444}; there are only a few, so look along the paths."] = "树人在营地和{zone:1444}中部之间的林间道路上游荡；数量很少，所以沿着小路找。",
 
 	-- Step 32: Zorbin Fandazzle
-	-- {area:1108} The Forgotten Coast
+	-- {area:1108} Forgotten Coast
 	["Ride north-west to the {area:1108}; Zorbin waits on the dock."] = "向西北骑往{area:1108}；索尔宾在码头上等候。",
 
 	-- Step 33: Zapped giants

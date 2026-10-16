@@ -16,6 +16,6 @@ return {
 
 	-- Step 2: Durotar Supply and Logistics
 	["Durotar Supply and Logistics"] = "Дуротарские снабжение и логистика",
-	-- {area:380} The Crossroads · {npc:256384} Gishah · {zone:1458} Undercity
+	-- {area:380} Crossroads · {npc:256384} Gishah · {zone:1458} Undercity
 	["The Horde camp is just outside the {area:380}. Loot supply crates in the world, fill them and hand them in at the camp for Merchant's Favor; the treat costs 1,500. (Another {npc:256384} stands in the {zone:1458}; this is the one at the camp.)"] = "Лагерь Орды – сразу у места {area:380}. Собирайте ящики с припасами по миру, заполняйте их и сдавайте в лагере за Merchant's Favor; лакомство стоит 1500. (Еще один {npc:256384} стоит здесь: {zone:1458}; нужен тот, что в лагере.)",
 }

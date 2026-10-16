@@ -134,10 +134,10 @@ return {
 
 	-- Step 28: Grind to 51
 	["Grind to 51"] = "Добейте 51-й уровень",
-	-- {area:982} The Noxious Lair · {zone:1446} Tanaris
+	-- {area:982} Noxious Lair · {zone:1446} Tanaris
 	["The Centipaar silithid crawl around the {area:982} in western {zone:1446}, just east of the crater ramp. The Workers are the easiest pulls."] = "Силитиды-сентипаары ползают вокруг улья ({area:982}) на западе зоны {zone:1446}, сразу к востоку от спуска в кратер. Легче всего выманивать рабочих.",
-	-- {npc:5458} Centipaar Worker · {area:982} The Noxious Lair · {zone:1446} Tanaris
-	["grind on {npc:5458} at {area:982}, {zone:1446}"] = "убивайте: {npc:5458} ({area:982}, {zone:1446})",
+	-- {npc:5458} Centipaar Worker · {area:982} Noxious Lair · {zone:1446} Tanaris
+	["grind on {npc:5458} at The {area:982}, {zone:1446}"] = "",
 
 	-- Step 29: Torwa Pathfinder
 	["Ride down the ramp into the crater: Torwa camps at its foot."] = "Езжайте по спуску вниз в кратер: Торва стоит лагерем у его подножия.",
@@ -169,14 +169,14 @@ return {
 	-- {npc:9616} Laris Geardawdle · {zone:1448} Felwood
 	["{npc:9616}: the oozes are in {zone:1448}, keep it"] = "{npc:9616}: слизни – в зоне {zone:1448}, сохраните",
 
-	-- Step 41: The Mystic Ward
+	-- Step 41: Mystic Ward
 	-- {zone:1447} Azshara
 	["Four rune rubbings in {zone:1447}: keep it"] = "Четыре оттиска рун в зоне {zone:1447}: сохраните",
 	-- {npc:11406} High Priest Rohan · {zone:1447} Azshara
 	["{npc:11406}: for Ogtinc in {zone:1447}, keep it"] = "{npc:11406}: для Огтинка (зона {zone:1447}), сохраните",
 
 	-- Step 42: Royal Historian Archesonus
-	-- {object:171709} The High Seat
+	-- {object:171709} High Seat
 	["Archesonus stands beside King Magni in the {object:171709}."] = "Аркессон стоит рядом с королем Магни ({object:171709}).",
 	-- {zone:1428} Burning Steppes
 	["The relics are in the {zone:1428}: keep it"] = "Реликвии – в зоне {zone:1428}: сохраните",
@@ -185,7 +185,9 @@ return {
 	["Bind and train"] = "Привяжите камень и обучитесь",
 
 	-- Step 44: Xiggs Fuselighter
-	-- {object:32359} The Military Ward
+	-- {object:32359} Military Ward
 	["Xiggs waits in the {object:32359}."] = "Зиггс ждет здесь: {object:32359}.",
 
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["grind on {npc:5458} at {area:982}, {zone:1446}"] = "убивайте: {npc:5458} ({area:982}, {zone:1446})",
 }

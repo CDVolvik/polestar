@@ -81,7 +81,9 @@ return {
 	["Inside the cave, keep to the right wall all the way round, over the stream: Yarrog waits at the end."] = "Dentro da caverna, mantenha-se rente à parede da direita a volta toda, passando o riacho: Yarrog espera no fim.",
 
 	-- Step 18: Felstalker hooves
-	["Felstalker hooves"] = "Cascos de Espreitador Vil",
+	-- {npc:3102} Felstalker
+	["{npc:3102} hooves"] = "",
+	-- plural, as words: Felstalkers = {npc:3102} Felstalker
 	["Felstalkers roam the slope below the cave, on the valley's north side."] = "Os Espreitadores Vis vagam pela encosta abaixo da caverna, no lado norte do vale.",
 
 	-- Step 19: Zureetha Fargaze
@@ -140,7 +142,6 @@ return {
 
 	-- Step 33: Drygulch Ravine
 	-- {area:370} Drygulch Ravine · {npc:3293} Rezlak · {item:277661} Dull Storm Orb
-	-- plural, as words: Savages = {spell:20574} Savage
 	["Savages and Storm Witches nest in {area:370}, east of {npc:3293}. A Storm Witch drops the {item:277661}."] = "Selvagens e Bruxas da Tempestade se abrigam na {area:370}, a leste de {npc:3293}. Uma Bruxa da Tempestade derruba o {item:277661}.",
 
 	-- Step 35: Thunder lizards
@@ -262,7 +263,7 @@ return {
 	["Follow the road north from {area:362} to {zone:1454}'s main gate, just west of {area:817}. {npc:3352} stands with the hunter trainers in the {object:172958}."] = "Siga a estrada para o norte de {area:362} até o portão principal de {zone:1454}, logo a oeste da {area:817}. {npc:3352} fica com os instrutores de caçador no {object:172958}.",
 
 	-- Step 64: Far Watch Post
-	-- {area:362} Razor Hill · {area:814} Southfury River · {area:379} Far Watch Post · {zone:1413} The Barrens
+	-- {area:362} Razor Hill · {area:814} Southfury River · {area:379} Far Watch Post · {zone:1413} Barrens
 	["Follow the road west from {area:362} over the {area:814} bridge; {area:379} sits just above it on the {zone:1413} side."] = "Siga a estrada para oeste de {area:362} pela ponte do {area:814}; o {area:379} fica logo acima, do lado de {zone:1413}.",
 
 	-- Step 65: Thunder lizards across the river
@@ -272,6 +273,10 @@ return {
 	["Thunder Lizards and Lightning Hides graze on {area:369} across the bridge; any of them can drop a {item:6486}."] = "Lagartos Trovejantes e Pelegos de Relâmpago pastam no {area:369}, do outro lado da ponte; qualquer um deles pode derrubar uma {item:6486}.",
 
 	-- Step 67: The Crossroads
-	-- {area:379} Far Watch Post · {area:380} The Crossroads · {zone:1413} The Barrens
-	["Follow the road south-west from {area:379} to the {area:380}. {zone:1413} guide starts here."] = "Siga a estrada para sudoeste do {area:379} até {area:380}. O guia de {zone:1413} começa aqui.",
+	-- {area:379} Far Watch Post · {zone:1413} Barrens
+	["Follow the road south-west from {area:379} to the Crossroads. The {zone:1413} guide starts here."] = "",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Felstalker hooves"] = "Cascos de Espreitador Vil",
+	-- ["Follow the road south-west from {area:379} to the {area:380}. {zone:1413} guide starts here."] = "Siga a estrada para sudoeste do {area:379} até {area:380}. O guia de {zone:1413} começa aqui.",
 }

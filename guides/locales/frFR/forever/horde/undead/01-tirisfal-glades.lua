@@ -44,7 +44,7 @@ return {
 	-- Step 6: Rattlecages, scavengers and duskbats
 	["Rattlecages, scavengers and duskbats"] = "Cliquethorax, charognards et chauves-souris du crépuscule",
 	-- {area:154} Deathknell
-	-- plural, as words: Rattlecage Skeletons = {npc:1890} Rattlecage Skeleton · Young Scavengers = {npc:1508} Young Scavenger · Ragged Scavengers = {npc:1509} Ragged Scavenger · Mangy Duskbats = {npc:1513} Mangy Duskbat
+	-- plural, as words: Rattlecage Skeletons = {npc:1890} Rattlecage Skeleton · Young Scavengers = {npc:1508} Young Scavenger · Duskbats = {npc:1512} Duskbat · Ragged Scavengers = {npc:1509} Ragged Scavenger · Mangy Duskbats = {npc:1513} Mangy Duskbat
 	["Rattlecage Skeletons wander the ruined houses in the north half of {area:154}. Young Scavengers and Duskbats roam all around the village; the Ragged Scavengers and Mangy Duskbats are on its east side."] = "Les Squelettes Cliquethorax errent dans les maisons en ruine de la moitié nord de {area:154}. Les Jeunes charognards et les Chauves-souris du crépuscule rôdent tout autour du village ; les Charognards pouilleux et les Chauves-souris du crépuscule galeuses sont du côté est.",
 
 	-- Step 7: Rattlecage skulls
@@ -197,8 +197,8 @@ return {
 	-- Step 37: Deathguard Linnea
 	-- {area:159} Brill · {npc:3549} Shelene Rhobart
 	["Follow the road south-east from {area:159} past the zeppelin towers. Linnea, Kristof and {npc:3549} camp by the road."] = "Suivez la route au sud-est de {area:159} au-delà des tours des zeppelins. Linnea, Kristof et {npc:3549} campent au bord de la route.",
-	-- {npc:1495} Deathguard Linnea
-	["{npc:1495}: Riptear, an elite abomination in the east"] = "{npc:1495} : Fendécorche, une abomination élite à l'est",
+	-- {npc:1495} Deathguard Linnea · {npc:276020} Riptear
+	["{npc:1495}: {npc:276020}, an elite abomination in the east"] = "",
 	-- {npc:251001} Deathguard Kristof
 	["Ask {npc:251001} for his report"] = "Demandez son rapport à {npc:251001}",
 
@@ -208,7 +208,7 @@ return {
 
 	-- Step 39: Agamand Mills
 	-- {area:157} Agamand Mills · {npc:1657} Devlin Agamand · {npc:1656} Thurman Agamand · {item:2839} A Letter to Yvette
-	-- plural, as words: Cracked Skull Soldiers = {npc:1523} Cracked Skull Soldier · Darkeye Bonecasters = {npc:1522} Darkeye Bonecaster
+	-- plural, as words: Cracked Skull Soldiers = {npc:1523} Cracked Skull Soldier · Darkeye Bonecasters = {npc:1522} Darkeye Bonecaster · Duskbats = {npc:1512} Duskbat
 	["Follow the road north-west to {area:157}. {npc:1657} walks the graveyard south of the mills; Nissa, Gregor and {npc:1656} haunt the mills themselves. Rattlecage and Cracked Skull Soldiers drop the ribs, Darkeye Bonecasters the skulls, and any of them may drop {item:2839}. From here on, kill the Duskbats and Darkhounds you pass: Shelene wants their wings and hides."] = "Suivez la route au nord-ouest jusqu'à {area:157}. {npc:1657} arpente le cimetière au sud des moulins ; Nissa, Gregor et {npc:1656} hantent les moulins eux-mêmes. Les Soldats Cliquethorax et les Soldats Squelettes lâchent les côtes, les Ossomanciens Sombroeil les crânes, et chacun d'eux peut lâcher {item:2839}. Dès maintenant, tuez les chauves-souris du crépuscule et les sombredogues sur votre chemin : Shelene veut leurs ailes et leurs peaux.",
 	-- {item:2839} A Letter to Yvette
 	["{item:2839}, a rare drop"] = "{item:2839}, butin rare",
@@ -219,7 +219,7 @@ return {
 	["Walk south-west to the {area:156}; Simmer stands at the farm."] = "Marchez vers le sud-ouest jusqu'à {area:156} ; Simmer se tient à la ferme.",
 
 	-- Step 41: Tirisfal Pumpkins
-	-- plural, as words: Tirisfal Pumpkins = {item:2846} Tirisfal Pumpkin
+	-- plural, as words: Tirisfal Pumpkins = {object:375} Tirisfal Pumpkin
 	["Tirisfal Pumpkins"] = "Potirons de Tirisfal",
 	["The pumpkins grow in the Scarlet-held fields north-west of Solliden."] = "Les potirons poussent dans les champs tenus par la Croisade écarlate au nord-ouest de la ferme des Solliden.",
 
@@ -303,11 +303,13 @@ return {
 	-- Step 60: Vicious Night Web Spiders
 	-- plural, as words: Vicious Night Web Spiders = {npc:1555} Vicious Night Web Spider
 	["Vicious Night Web Spiders"] = "Tisse-nuit vicieuses",
-	["The spiders lurk in the woods at the far east end of the glades. Riptear, a rogue abomination, wanders just north-west of them. Riptear is elite: grouping up is advised."] = "Les araignées rôdent dans les bois à l'extrémité est des clairières. Fendécorche, une abomination renégate, erre juste au nord-ouest. Fendécorche est élite : mieux vaut former un groupe.",
-	-- {item:286326} Riptear's Heart
-	["{item:286326}, from Riptear"] = "{item:286326}, sur Fendécorche",
+	-- {npc:276020} Riptear
+	["The spiders lurk in the woods at the far east end of the glades. {npc:276020}, a rogue abomination, wanders just north-west of them. {npc:276020} is elite: grouping up is advised."] = "",
+	-- {item:286326} Riptear's Heart · {npc:276020} Riptear
+	["{item:286326}, from {npc:276020}"] = "",
 
 	-- Step 61: Hides for the Forsaken
+	-- plural, as words: Duskbats = {npc:1512} Duskbat
 	["Duskbats and Darkhounds roam all along the road back west; finish the wings and hides on the way."] = "Les chauves-souris du crépuscule et les sombredogues rôdent tout le long de la route vers l'ouest ; finissez les ailes et les peaux en chemin.",
 
 	-- Step 62: Deathguard Linnea's camp
@@ -345,18 +347,22 @@ return {
 	["Zeppelin tower"] = "Tour des zeppelins",
 
 	-- Step 70: The Crossroads
-	-- {zone:1454} Orgrimmar · {zone:1411} Durotar · {area:815} Southfury River · {area:379} Far Watch Post · {area:380} The Crossroads
-	["The zeppelin lands at the tower just north-east of {zone:1454}'s main gate. Follow the road south into {zone:1411}, cross the {area:815} bridge below {area:379} and follow the road west to the {area:380}."] = "Le zeppelin arrive à la tour juste au nord-est de la porte principale d'{zone:1454}. Suivez la route vers le sud jusqu'en {zone:1411}, franchissez le pont sur le {area:815} sous {area:379} et suivez la route vers l'ouest jusqu'à {area:380}.",
+	-- {zone:1454} Orgrimmar · {zone:1411} Durotar · {area:815} Southfury River · {area:379} Far Watch Post
+	["The zeppelin lands at the tower just north-east of {zone:1454}'s main gate. Follow the road south into {zone:1411}, cross the {area:815} bridge below {area:379} and follow the road west to the Crossroads."] = "",
 	-- {npc:3615} Devrak
 	["{npc:3615}, the wind rider master"] = "{npc:3615}, maître des coursiers du vent",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["/sit by her campfire until you get Boosted Rest"] = "/asseoir près de son feu de camp jusqu'à obtenir Boosted Rest",
 	-- ["Paladins: {quest:90902} is done once you have healed five {npc:259377} around the church with Holy Light."] = "Paladins : {quest:90902} est terminée une fois que vous avez soigné cinq {npc:259377} autour de l'église avec Lumière sacrée.",
+	-- ["The spiders lurk in the woods at the far east end of the glades. Riptear, a rogue abomination, wanders just north-west of them. Riptear is elite: grouping up is advised."] = "Les araignées rôdent dans les bois à l'extrémité est des clairières. Fendécorche, une abomination renégate, erre juste au nord-ouest. Fendécorche est élite : mieux vaut former un groupe.",
+	-- ["The zeppelin lands at the tower just north-east of {zone:1454}'s main gate. Follow the road south into {zone:1411}, cross the {area:815} bridge below {area:379} and follow the road west to the {area:380}."] = "Le zeppelin arrive à la tour juste au nord-est de la porte principale d'{zone:1454}. Suivez la route vers le sud jusqu'en {zone:1411}, franchissez le pont sur le {area:815} sous {area:379} et suivez la route vers l'ouest jusqu'à {area:380}.",
 	-- ["{area:16881} is the hollow at the west edge of the glades. The {area:16881} Lurchers and Mystics drop the bones; the bottles lie on the ground among them, and the {item:286269} is at the south end."] = "{area:16881} est le creux à la lisière ouest des clairières. Les Lurchers et les Mystics de {area:16881} lâchent les os ; les bouteilles sont au sol parmi eux, et le {item:286269} est à l'extrémité sud.",
+	-- ["{item:286326}, from Riptear"] = "{item:286326}, sur Fendécorche",
 	-- ["{npc:14235} Hide Mongrels hold the hills further north. {npc:1753} (level 11) stands in their camp on the hill south of the shore: clear the gnolls around him first."] = "Les Bâtards Poil-Putride ({npc:14235}) tiennent les collines plus au nord. {npc:1753} (niveau 11) se tient dans leur camp sur la colline au sud du rivage : éliminez d'abord les gnolls autour de lui.",
 	-- ["{npc:14235} Hide graveyards"] = "Cimetières des Poil-Putride ({npc:14235})",
 	-- ["{npc:14235} Hide {quest:358} dig through the graveyards north of {area:159}; all the {npc:14235} Hides drop the ichor."] = "{quest:358} : les Profanateurs Poil-Putride fouillent les cimetières au nord de {area:159} ; tous les Poil-Putride lâchent l'ichor ({npc:14235} / {npc:14235}).",
+	-- ["{npc:1495}: Riptear, an elite abomination in the east"] = "{npc:1495} : Fendécorche, une abomination élite à l'est",
 	-- ["{npc:1496}: Defensive Stance"] = "{npc:1496} : Posture défensive",
 	-- ["{npc:244808}: Holy Light"] = "{npc:244808} : Lumière sacrée",
 	-- ["{npc:5667}: Summon Imp"] = "{npc:5667} : Invocation d'un diablotin",

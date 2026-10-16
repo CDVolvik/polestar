@@ -6,7 +6,7 @@
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Kadrak
-	-- {area:380} The Crossroads · {npc:8582} Kadrak · {area:1703} The Mor'shan Rampart · {zone:1440} Ashenvale · {item:16783} Bundle of Reports
+	-- {area:380} Crossroads · {npc:8582} Kadrak · {area:1703} Mor'shan Rampart · {zone:1440} Ashenvale · {item:16783} Bundle of Reports
 	["From the {area:380} follow the road north. {npc:8582} stands on the watch tower of the {area:1703} where the road enters {zone:1440}. Open the {item:16783} he gives you."] = "Depuis {area:380}, suivez la route vers le nord. {npc:8582} se tient sur la tour de guet du {area:1703}, là où la route entre en {zone:1440}. Ouvrez {item:16783} qu'il vous donne.",
 
 	-- Step 2: Warsong Scout
@@ -39,7 +39,7 @@ return {
 	["{npc:271181}, on the road"] = "{npc:271181}, sur la route",
 
 	-- Step 8: Zoram'gar Outpost
-	-- {zone:1440} Ashenvale · {area:415} Astranaar · {area:2897} Zoram'gar Outpost · {area:414} The Zoram Strand
+	-- {zone:1440} Ashenvale · {area:415} Astranaar · {area:2897} Zoram'gar Outpost · {area:414} Zoram Strand
 	["Ride west along the main road across {zone:1440}, past {area:415} (Alliance: keep to the road), to the coast. {area:2897} is on the {area:414} in the north-west. Its other quests are for the next visit, at 27."] = "Chevauchez vers l'ouest sur la route principale à travers {zone:1440}, en passant {area:415} (Alliance : restez sur la route), jusqu'à la côte. {area:2897} se trouve sur {area:414} au nord-ouest. Ses autres quêtes sont pour la prochaine visite, au niveau 27.",
 
 	-- Step 9: Naga heads
@@ -49,11 +49,11 @@ return {
 	-- Step 11: Back to Kadrak
 	-- {npc:8582} Kadrak
 	["Back to {npc:8582}"] = "Retour à {npc:8582}",
-	-- {area:431} Splintertree Post · {area:1703} The Mor'shan Rampart
+	-- {area:431} Splintertree Post · {area:1703} Mor'shan Rampart
 	["Fly to {area:431} and ride south down the road to the {area:1703}."] = "Volez jusqu'au {area:431} et descendez la route vers le sud jusqu'au {area:1703}.",
 
 	-- Step 12: Malaka'jin
-	-- {area:380} The Crossroads · {zone:1413} The Barrens · {area:2539} Malaka'jin
+	-- {area:380} Crossroads · {zone:1413} Barrens · {area:2539} Malaka'jin
 	["Ride south to the {area:380}, then west along the road out of the {zone:1413} into Stonetalon. The troll village of {area:2539} sits at the entrance of the canyon."] = "Chevauchez vers le sud jusqu'à {area:380}, puis vers l'ouest sur la route pour quitter {zone:1413} et entrer dans les Serres-Rocheuses. Le village troll de {area:2539} se trouve à l'entrée du canyon.",
 
 	-- Step 13: Ziz Fizziks
@@ -71,7 +71,7 @@ return {
 	-- Step 16: Sun Rock Retreat
 	-- {area:460} Sun Rock Retreat
 	["Follow the road west to {area:460}."] = "Suivez la route vers l'ouest jusqu'à {area:460}.",
-	-- {npc:11860} Maggran Earthbinder · {object:19844} The Great Lift
+	-- {npc:11860} Maggran Earthbinder · {object:19844} Great Lift
 	["{npc:11860}: Grish is at the {object:19844}, in the next guide"] = "{npc:11860} : Grish est au {object:19844}, dans le prochain guide",
 	-- {npc:11860} Maggran Earthbinder
 	-- plural, as words: Glittering Sunstones = {item:277936} Glittering Sunstone
@@ -98,9 +98,9 @@ return {
 	["Braelyn's next quest, Ordanus, is on the Alliance side of {zone:1440}. Skip it."] = "La quête suivante de Braelyn, Ordanus, se trouve du côté Alliance d'{zone:1440}. Passez-la.",
 
 	-- Step 20: The Charred Vale
-	-- {area:465} The Charred Vale · {item:16312} Incendrites
+	-- {item:16312} Incendrites
 	-- plural, as words: Gaea Seeds = {item:16205} Gaea Seed
-	["South-west of Sun Rock lies the burned {area:465}. Plant the Gaea Seeds in the dirt mounds on the valley floor; the fire elementals drop {item:16312}. Bloodfury Harpies and Ambushers nest on the north side, Slayers and Roguefeathers to the south."] = "Au sud-ouest de Roche-Soleil s'étend {area:465} calciné. Plantez les Graines de Gaea ({item:16205}) dans les monticules de terre au fond de la vallée ; les élémentaires de feu lâchent {item:16312}. Harpies et Embusquées Rougefurie nichent au nord, Tueuses et Volplumes au sud.",
+	["South-west of Sun Rock lies the burned Charred Vale. Plant the Gaea Seeds in the dirt mounds on the valley floor; the fire elementals drop {item:16312}. Bloodfury Harpies and Ambushers nest on the north side, Slayers and Roguefeathers to the south."] = "",
 	-- plural, as words: Gaea Dirt Mounds = {object:177929} Gaea Dirt Mound
 	["Gaea Dirt Mounds"] = "Monticules de poussière de Gaea ({object:177929})",
 	-- {item:277936} Glittering Sunstone
@@ -119,7 +119,7 @@ return {
 	-- Step 23: To the Undercity
 	-- {area:1497} Undercity
 	["To the {area:1497}"] = "Vers {area:1497}",
-	-- {area:380} The Crossroads · {zone:1454} Orgrimmar · {zone:1420} Tirisfal Glades · {area:1497} Undercity · {area:153} Ruins of Lordaeron · {object:36078} Trade Quarter
+	-- {area:380} Crossroads · {zone:1454} Orgrimmar · {zone:1420} Tirisfal Glades · {area:1497} Undercity · {area:153} Ruins of Lordaeron · {object:36078} Trade Quarter
 	["Ride east to the {area:380} and fly to {zone:1454}. Take the zeppelin from the towers outside {zone:1454} to {zone:1420}; the {area:1497} lies below the {area:153}. The bat handler is in the {object:36078}."] = "Chevauchez vers l'est jusqu'à {area:380} et volez jusqu'à {zone:1454}. Prenez le zeppelin aux tours devant {zone:1454} pour {zone:1420} ; {area:1497} se trouve sous les {area:153}. Le maître des chauves-souris est dans {object:36078}.",
 	-- {npc:10181} Lady Sylvanas Windrunner · {object:36126} Royal Quarter · {quest:93739} Exploring the Horde
 	["Speak with {npc:10181}, in the {object:36126}: {quest:93739}"] = "Parlez à {npc:10181}, dans {object:36126} : {quest:93739}",
@@ -129,7 +129,7 @@ return {
 	["{npc:4606} stands in the {object:36070}."] = "{npc:4606} se tient dans {object:36070}.",
 
 	-- Step 25: Beren's Peril
-	-- {area:272} Tarren Mill · {zone:1458} Undercity · {area:228} The Sepulcher · {area:231} Beren's Peril · {npc:1973} Ravenclaw Guardian · {item:271343} Note Scrap · {object:645153} Offering Stone
+	-- {area:272} Tarren Mill · {zone:1458} Undercity · {area:228} Sepulcher · {area:231} Beren's Peril · {npc:1973} Ravenclaw Guardian · {item:271343} Note Scrap · {object:645153} Offering Stone
 	["If you already know the {area:272} flight path, fly there and skip to {area:272}. Otherwise fly from the {zone:1458} to the {area:228} and ride south down the road past Pyrewood. The Ravenclaw undead haunt the ruins of {area:231} east of the road in the south-east of the forest; a {npc:1973} drops the {item:271343} that leads to the {object:645153}."] = "Si vous connaissez déjà le trajet aérien de {area:272}, volez-y et passez directement à {area:272}. Sinon, volez de {zone:1458} au {area:228} et descendez la route vers le sud en passant Bois-du-Bûcher. Les morts-vivants Ravenclaw hantent les ruines de {area:231} à l'est de la route, au sud-est de la forêt ; un {npc:1973} lâche {item:271343} qui mène à {object:645153}.",
 	-- {item:271343} Note Scrap · {npc:1973} Ravenclaw Guardian
 	["{item:271343}, from a {npc:1973}"] = "{item:271343}, sur un {npc:1973}",
@@ -150,4 +150,7 @@ return {
 	-- Step 28: Tarren Mill
 	-- {area:272} Tarren Mill
 	["Follow the road east along the river, then north-east up into the hills to {area:272}."] = "Suivez la route vers l'est le long de la rivière, puis montez vers le nord-est dans les collines jusqu'à {area:272}.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["South-west of Sun Rock lies the burned {area:465}. Plant the Gaea Seeds in the dirt mounds on the valley floor; the fire elementals drop {item:16312}. Bloodfury Harpies and Ambushers nest on the north side, Slayers and Roguefeathers to the south."] = "Au sud-ouest de Roche-Soleil s'étend {area:465} calciné. Plantez les Graines de Gaea ({item:16205}) dans les monticules de terre au fond de la vallée ; les élémentaires de feu lâchent {item:16312}. Harpies et Embusquées Rougefurie nichent au nord, Tueuses et Volplumes au sud.",
 }

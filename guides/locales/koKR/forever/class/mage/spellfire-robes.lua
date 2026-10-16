@@ -35,11 +35,10 @@ return {
 	["Humanoids drop {item:2589}; the Undercity Auction House sells it."] = "인간형 몹이 {item:2589}을(를) 떨어뜨립니다. 언더시티 경매장에서도 팝니다.",
 
 	-- Step 7: Ambermill
-	-- {zone:1458} Undercity · {zone:1421} Silverpine Forest · {area:279} Dalaran · {area:233} Ambermill · {area:228} The Sepulcher · {npc:1867} Dalaran Apprentice · {item:7293} Dalaran Mana Gem
+	-- {zone:1458} Undercity · {zone:1421} Silverpine Forest · {area:279} Dalaran · {area:233} Ambermill · {area:228} Sepulcher · {npc:1867} Dalaran Apprentice · {item:7293} Dalaran Mana Gem
 	["Leave the {zone:1458} and follow the road south through {zone:1421}. The {area:279} mages hold {area:233}, south-east of the {area:228}; every {npc:1867}, Mage, Protector, Warder, Conjuror, Watcher and Wizard can drop a {item:7293}."] = "{zone:1458}을(를) 나와 길을 따라 남쪽으로 {zone:1421}을(를) 지나가세요. {area:279} 마법사들이 {area:228} 남동쪽의 {area:233}을(를) 차지하고 있습니다. {npc:1867}, 달라란 마법사, 수호병, 보초병, 요술사, 파수꾼, 마술사 모두 {item:7293}을(를) 떨어뜨릴 수 있습니다.",
 
 	-- Step 8: Josef Gregorian
 	-- {zone:1458} Undercity · {npc:4576} Josef Gregorian · {npc:11048} Victor Ward · {npc:11049} Rhiannon Davis
 	["Back to the {zone:1458}. {npc:4576}, {npc:11048} and {npc:11049} keep the tailor's shop."] = "{zone:1458}(으)로 돌아가세요. {npc:4576}, {npc:11048}, {npc:11049}이(가) 재봉 상점을 운영합니다.",
-
 }

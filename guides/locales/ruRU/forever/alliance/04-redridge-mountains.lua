@@ -5,7 +5,7 @@
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
 -- The comments are rewritten by sync.
 return {
-	-- Step 1: Stormwind City
+	-- Step 1: Stormwind
 	-- {area:442} Auberdine · {area:17203} Stormwind Harbor · {npc:1646} Baros Alexston · {zone:1429} Elwynn Forest
 	["The {area:442} boat docks at {area:17203}. Walk up into the city for training and {npc:1646}, then leave by the main gate and follow the road east through {zone:1429}."] = "Корабль из места {area:442} причаливает здесь: {area:17203}. Поднимитесь в город за обучением и к NPC {npc:1646}, затем выйдите через главные ворота и идите по дороге на восток через зону {zone:1429}.",
 	["Level 18 and 20 spells"] = "Заклинания 18-го и 20-го уровней",
@@ -16,17 +16,17 @@ return {
 
 	-- Step 2: Shaman training
 	["Shaman training"] = "Обучение шамана",
-	-- {zone:1453} Stormwind City · {area:2257} Deeprun Tram · {object:28027} Dwarven District · {zone:1455} Ironforge · {npc:258098} Eldrun Stormbreaker
+	-- {zone:1453} Stormwind · {area:2257} Deeprun Tram · {object:28027} Dwarven District · {zone:1455} Ironforge · {npc:258098} Eldrun Stormbreaker
 	["{zone:1453} has no shaman trainer: take the {area:2257} from the {object:28027} to {zone:1455}, train with {npc:258098}, then ride the tram back."] = "В городе {zone:1453} нет учителя шаманов: сядьте на поезд ({area:2257}) в месте {object:28027} до города {zone:1455}, обучитесь у NPC {npc:258098}, затем вернитесь на поезде.",
 
-	-- Step 3: Stormwind City class quests
-	-- {zone:1453} Stormwind City
+	-- Step 3: Stormwind class quests
+	-- {zone:1453} Stormwind
 	["{zone:1453} class quests"] = "Классовые задания: {zone:1453}",
-	-- {npc:332} Master Mathias Shaw · {object:2100} Old Town · {npc:6122} Gakin the Darkbinder · {object:2164} The Slaughtered Lamb · {object:2101} Mage Quarter · {npc:376} High Priestess Laurena
+	-- {npc:332} Master Mathias Shaw · {object:2100} Old Town · {npc:6122} Gakin the Darkbinder · {object:2164} Slaughtered Lamb · {object:2101} Mage Quarter · {npc:376} High Priestess Laurena
 	["{npc:332} is at SI:7 in {object:2100}, {npc:6122} in the {object:2164}'s cellar in the {object:2101}, {npc:376} in the Cathedral of Light."] = "{npc:332} находится в ШРУ ({object:2100}), {npc:6122} — в подвале здания {object:2164} ({object:2101}), {npc:376} — в Соборе Света.",
 	-- {npc:332} Master Mathias Shaw · {npc:7024} Agent Kearnen · {zone:1436} Westfall · {zone:1431} Duskwood
 	["{npc:332}: {npc:7024} in {zone:1436} takes it, at the end of {zone:1431}"] = "{npc:332}: сдается NPC {npc:7024} ({zone:1436}), в конце зоны {zone:1431}",
-	-- {npc:6122} Gakin the Darkbinder · {npc:6244} Takar the Seer · {zone:1413} The Barrens
+	-- {npc:6122} Gakin the Darkbinder · {npc:6244} Takar the Seer · {zone:1413} Barrens
 	["{npc:6122}: {npc:6244} in the {zone:1413} takes it, later"] = "{npc:6122}: сдается NPC {npc:6244} ({zone:1413}), позже",
 	-- {npc:376} High Priestess Laurena · {npc:11406} High Priest Rohan · {zone:1455} Ironforge
 	["{npc:376}: {npc:11406} in {zone:1455} takes it, later"] = "{npc:376}: сдается NPC {npc:11406} ({zone:1455}), позже",
@@ -70,9 +70,8 @@ return {
 	["{item:280911}: Redridge Thrashers"] = "{item:280911}: твердозубы из стаи Красногорья",
 
 	-- Step 10: Bellygrub
-	["Bellygrub"] = "Грубобрюх",
-	-- {area:69} Lakeshire
-	["Bellygrub (level 24) roots around the pen just west of {area:69}. Pull him away from the other boars and fight at full health."] = "Грубобрюх (уровень 24) роется в загоне чуть западнее места {area:69}. Выманите его от других кабанов и сражайтесь с полным здоровьем.",
+	-- {npc:345} Bellygrub · {area:69} Lakeshire
+	["{npc:345} (level 24) roots around the pen just west of {area:69}. Pull him away from the other boars and fight at full health."] = "",
 
 	-- Step 12: Lakeshire
 	-- {npc:703} Lieutenant Fangore · {area:1000} Galardell Valley
@@ -116,4 +115,8 @@ return {
 	["{npc:903}, by the gryphons south of the bridge"] = "{npc:903}, у грифонов к югу от моста",
 	-- {zone:1431} Duskwood · {area:1002} Three Corners · {area:42} Darkshire
 	["{zone:1431} is next: follow the road west to {area:1002}, then south to {area:42}."] = "Далее — {zone:1431}: идите по дороге на запад до места {area:1002}, затем на юг сюда: {area:42}.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Bellygrub"] = "Грубобрюх",
+	-- ["Bellygrub (level 24) roots around the pen just west of {area:69}. Pull him away from the other boars and fight at full health."] = "Грубобрюх (уровень 24) роется в загоне чуть западнее места {area:69}. Выманите его от других кабанов и сражайтесь с полным здоровьем.",
 }

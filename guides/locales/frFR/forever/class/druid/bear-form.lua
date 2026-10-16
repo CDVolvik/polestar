@@ -12,8 +12,8 @@ return {
 	["Your tanking form: Forever no longer trains {spell:5487}, these quests give it. Opens {area:493} too."] = "Votre forme de tank : Forever n'enseigne plus {spell:5487}, ces quêtes la donnent. Elles ouvrent aussi {area:493}.",
 
 	-- Step 1: Heeding the Call
-	-- {npc:3602} Kal · {area:186} Dolanaar · {zone:1457} Darnassus · {zone:1453} Stormwind City · {npc:4217} Mathrengyl Bearwalker
-	["At 10 a druid's call reaches you: {npc:3602} in {area:186}, Denatharion in {zone:1457} or Theridran in {zone:1453}. Any one of them sends you to {npc:4217} in the Cenarion Enclave of {zone:1457}."] = "Au niveau 10, l'appel d'un druide vous parvient : {npc:3602} à {area:186}, Denatharion à {zone:1457} ou Theridran à {zone:1453}. N'importe lequel vous envoie voir {npc:4217} à l'Enclave cénarienne de {zone:1457}.",
+	-- {npc:3602} Kal · {area:186} Dolanaar · {zone:1457} Darnassus · {zone:1453} Stormwind · {npc:4217} Mathrengyl Bearwalker
+	["At 10 a druid's call reaches you: {npc:3602} in {area:186}, Denatharion in {zone:1457} or Theridran in {zone:1453}. Any one of them sends you to {npc:4217} in the Cenarion Enclave of Darnassus."] = "",
 	-- {npc:3602} Kal · {area:186} Dolanaar
 	["{npc:3602}, {area:186}; Denatharion's and Theridran's letters lead to the same place"] = "{npc:3602}, {area:186} ; les lettres de Denatharion et de Theridran mènent au même endroit",
 
@@ -55,7 +55,7 @@ return {
 	["Speak with the {quest:5930}"] = "Parler à {quest:5930}",
 
 	-- Step 11: The Moonkin Stone
-	-- {object:177525} Moonkin Stone · {zone:1412} Mulgore · {zone:1413} The Barrens · {item:15710} Cenarion Lunardust · {npc:12144} Lunaclaw Spirit
+	-- {object:177525} Moonkin Stone · {zone:1412} Mulgore · {zone:1413} Barrens · {item:15710} Cenarion Lunardust · {npc:12144} Lunaclaw Spirit
 	["The {object:177525} stands in the pass from {zone:1412} into the {zone:1413}. Use the {item:15710} there, defeat Lunaclaw and speak to the {npc:12144}."] = "{object:177525} se dresse dans le col entre {zone:1412} et {zone:1413}. Utilisez-y {item:15710}, vainquez Lunegriffe et parlez à {npc:12144}.",
 
 	-- Step 12: Body and Heart
@@ -103,7 +103,7 @@ return {
 	["{npc:270459} stands beside {npc:259084} and the Skyborne Portal, west of {area:279}, where the skycutter from {zone:2521} lands. {npc:2543} offers the same quest."] = "{npc:270459} se tient à côté de {npc:259084} et du portail éolide, à l'ouest de {area:279}, là où se pose le vaisseau venu de {zone:2521}. {npc:2543} propose la même quête.",
 
 	-- Step 21: Sheldras Moontree
-	-- {zone:1453} Stormwind City · {npc:5504} Sheldras Moontree
+	-- {zone:1453} Stormwind · {npc:5504} Sheldras Moontree
 	["The Skyborne Portal takes you to {zone:1453}. {npc:5504} is the city's druid trainer."] = "Le portail éolide vous mène à {zone:1453}. {npc:5504} est le maître des druides de la ville.",
 
 	-- Step 22: Dendrite Starblaze
@@ -111,6 +111,7 @@ return {
 	["Cast {spell:18960}. {npc:11802} is in {area:2361}. Learn the {area:493} flight path while you are here."] = "Lancez {spell:18960}. {npc:11802} est à {area:2361}. Apprenez le trajet aérien de {area:493} pendant que vous y êtes.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["At 10 a druid's call reaches you: {npc:3602} in {area:186}, Denatharion in {zone:1457} or Theridran in {zone:1453}. Any one of them sends you to {npc:4217} in the Cenarion Enclave of {zone:1457}."] = "Au niveau 10, l'appel d'un druide vous parvient : {npc:3602} à {area:186}, Denatharion à {zone:1457} ou Theridran à {zone:1453}. N'importe lequel vous envoie voir {npc:4217} à l'Enclave cénarienne de {zone:1457}.",
 	-- ["At 10 a druid's call reaches you: {npc:3602} in {area:186}, Denatharion in {zone:1457} or Theridran in {zone:1453}. Any one of them sends you to {npc:4217} in the {area:1658} of {zone:1457}."] = "Au niveau 10, l'appel d'un druide vous parvient : {npc:3602} à {area:186}, Denatharion à {zone:1457} ou Theridran à {zone:1453}. N'importe lequel vous envoie voir {npc:4217} dans {area:1658} de {zone:1457}.",
 	-- ["Cast Teleport: {area:493}. {npc:11802} is in {area:2361}. Learn the {area:493} flight path while you are here."] = "Lancez Téléportation : {area:493}. {npc:11802} est à {area:2361}. Apprenez le trajet aérien de {area:493} pendant que vous y êtes.",
 	-- ["Cast Teleport: {area:493}. {npc:11802} is in {area:2361}; the {quest:5929} sits in the woods to the north-west. Learn the {area:493} flight path, then fly to {area:702} (by way of {area:442}) and take the portal up to {zone:1457}."] = "Lancez Téléportation : {area:493}. {npc:11802} est à {area:2361} ; {quest:5929} se trouve dans les bois au nord-ouest. Apprenez le trajet aérien de {area:493}, puis volez jusqu'à {area:702} (via {area:442}) et prenez le portail vers {zone:1457}.",

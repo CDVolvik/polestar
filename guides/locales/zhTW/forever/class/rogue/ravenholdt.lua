@@ -14,7 +14,7 @@ return {
 	-- Step 1: The Elegant Letter
 	-- {item:17126} Elegant Letter
 	["The {item:17126}"] = "{item:17126}",
-	-- {item:17126} Elegant Letter · {npc:13936} Ravenholdt · {npc:332} Master Mathias Shaw · {npc:918} Osborne the Night Man · {zone:1453} Stormwind City · {zone:1454} Orgrimmar · {item:17125} Seal of Ravenholdt · {npc:6707} Fahrad
+	-- {item:17126} Elegant Letter · {npc:13936} Ravenholdt · {npc:332} Master Mathias Shaw · {npc:918} Osborne the Night Man · {zone:1453} Stormwind · {zone:1454} Orgrimmar · {item:17125} Seal of Ravenholdt · {npc:6707} Fahrad
 	["At 24 an {item:17126} from {npc:13936} starts this; the data gives it to you through {npc:332} or {npc:918} in {zone:1453}, or Gest or Ormok in {zone:1454}. The quest hands you the {item:17125} for {npc:6707}."] = "24級時，{npc:13936}的{item:17126}會開啟此任務；依資料，你會透過{zone:1453}的{npc:332}或{npc:918}，或{zone:1454}的蓋斯特或奧莫克收到它。任務會給你{item:17125}，交給{npc:6707}。",
 
 	-- Step 2: Ravenholdt Manor

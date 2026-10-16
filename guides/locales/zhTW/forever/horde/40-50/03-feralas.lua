@@ -36,7 +36,7 @@ return {
 	["The same murlocs again, plus the Oracles, who stay near the huts on the western shore."] = "同樣的魚人，再加上待在西岸小屋附近的沼澤魚人智者。",
 
 	-- Step 10: Stonard
-	-- {npc:5598} Atal'ai Exile · {zone:1425} The Hinterlands
+	-- {npc:5598} Atal'ai Exile · {zone:1425} Hinterlands
 	["for the {npc:5598} in the {zone:1425}, around level 48"] = "之後給{zone:1425}的{npc:5598}，約48級",
 
 	-- Step 11: Fly to Grom'gol
@@ -80,7 +80,7 @@ return {
 	["{npc:4500} is elite: grouping up is advised. Beat him down until he gives up, then report to {npc:4501}."] = "{npc:4500}是精英：建議組隊。把他打到認輸，然後向{npc:4501}報告。",
 
 	-- Step 21: Camp Mojache
-	-- {zone:1425} The Hinterlands
+	-- {zone:1425} Hinterlands
 	["for the {zone:1425} owlbeasts, around level 48"] = "之後給{zone:1425}的梟獸，約48級",
 	-- {npc:7875} Hadoken Swiftstrider · {npc:7010} Zilzibin Drumlore · {zone:1454} Orgrimmar
 	["{npc:7875}: for {npc:7010} in {zone:1454}, around level 50"] = "{npc:7875}：之後給{zone:1454}的{npc:7010}，約50級",
@@ -101,10 +101,12 @@ return {
 	["South of the vale the Frayfeather hippogryphs roost on the slopes; nearly every one drops sinew and metallic fragments."] = "山谷南邊，亂羽角鷹獸棲息在山坡上；幾乎每一隻都會掉落肌腱和金屬碎片。",
 
 	-- Step 25: Zorbin Fandazzle
-	-- {area:1108} The Forgotten Coast
+	-- {area:1108} Forgotten Coast
 	["Ride north-west to the {area:1108}; Zorbin waits on the dock."] = "向西北騎到{area:1108}；索爾賓·范達瑟在碼頭上等著。",
 
 	-- Step 26: The Forgotten Coast
+	-- {area:1108} Forgotten Coast
+	["The {area:1108}"] = "",
 	-- {item:18904} Zorbin's Ultra-Shrinker
 	["Sea elementals and sea sprays wash along the shore around the dock. Zap the giants with {item:18904} first: shrunken, they lose their elite strength. Shore striders wade in the water; the land walkers and cliff giants roam the hills further north."] = "海元素和巨型海元素在碼頭周圍的海岸邊漂流。先用{item:18904}電擊巨人：縮小後就失去精英的力量。海岸巨人在水中涉行；大地行者和峭壁巨人在更北邊的山丘遊蕩。",
 

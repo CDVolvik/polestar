@@ -10,7 +10,7 @@ return {
 	["Your first lockpicking job at 16: {npc:6966}'s lockbox at {quest:2282}, for {quest:2300}."] = "16级时你的第一份开锁工作：为{quest:2300}打开{quest:2282}的{npc:6966}的锁箱。",
 
 	-- Step 1: SI:7 (Goldshire)
-	-- {npc:917} Keryn Sylvius · {area:87} Goldshire · {npc:6946} Renzik "The Shiv" · {zone:1453} Stormwind City
+	-- {npc:917} Keryn Sylvius · {area:87} Goldshire · {npc:6946} Renzik "The Shiv" · {zone:1453} Stormwind
 	["At 16 {npc:917}, the rogue trainer in the Lion's Pride Inn in {area:87}, sends you to {npc:6946} in {zone:1453}."] = "16级时，{area:87}狮王之傲旅店的潜行者训练师{npc:917}会让你去{zone:1453}找{npc:6946}。",
 
 	-- Step 2: To Hulfdan! (Kharanos)
@@ -30,10 +30,13 @@ return {
 	["Ride east through {zone:1429} into Redridge, or fly to {area:69}. {npc:6966} waits on the west side of {area:69} and gives you {item:5060}."] = "向东穿过{zone:1429}进入赤脊山，或飞往{area:69}。{npc:6966}在{area:69}西侧等候，会给你{item:5060}。",
 
 	-- Step 7: Alther's Mill
-	-- {quest:2282} Alther's Mill · {area:69} Lakeshire · {item:7869} Lucius's Lockbox
-	["{quest:2282} stands east of {area:69}, up off the road. Open {item:7869} there."] = "{quest:2282}位于{area:69}东边，道路上方。在那里打开{item:7869}。",
+	-- {quest:2282} Alther's Mill · {area:69} Lakeshire · {object:121264} Lucius's Lockbox
+	["{quest:2282} stands east of {area:69}, up off the road. Open {object:121264} there."] = "",
 
 	-- Step 8: Back to Lucius
 	-- {npc:6966} Lucius
 	["Back to {npc:6966}"] = "回到{npc:6966}那里",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["{quest:2282} stands east of {area:69}, up off the road. Open {item:7869} there."] = "{quest:2282}位于{area:69}东边，道路上方。在那里打开{item:7869}。",
 }

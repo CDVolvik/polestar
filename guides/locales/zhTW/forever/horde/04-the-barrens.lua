@@ -20,9 +20,8 @@ return {
 	["{npc:3453}, on the dock"] = "{npc:3453}，在碼頭上",
 
 	-- Step 3: Bruuz
-	["Bruuz"] = "布魯茲",
-	-- {area:392} Ratchet
-	["Bruuz swims in the harbour just off {area:392}'s docks. Bruuz is elite: grouping up is advised."] = "布魯茲在{area:392}碼頭外的港口中游動。布魯茲是精英：建議組隊。",
+	-- {npc:209797} Bruuz · {area:392} Ratchet
+	["{npc:209797} swims in the harbour just off {area:392}'s docks. {npc:209797} is elite: grouping up is advised."] = "",
 
 	-- Step 4: Baron Longshore
 	-- {area:392} Ratchet · {npc:3467} Baron Longshore
@@ -38,12 +37,14 @@ return {
 	["{npc:3465} is chained inside the hold. Talk to him to start the escort and stay close: Theramore soldiers attack on the way out. He walks you back to {area:392}."] = "{npc:3465}被鎖在要塞內。和他交談開始護送並緊跟著他：出去的路上塞拉摩士兵會攻擊。他會和你一起走回{area:392}。",
 
 	-- Step 8: Raptor Horns
-	-- {area:380} The Crossroads · {area:1697} Raptor Grounds · {area:392} Ratchet
+	-- {area:380} Crossroads · {area:1697} Raptor Grounds · {area:392} Ratchet
 	-- plural, as words: Sunscale Scytheclaws = {npc:3256} Sunscale Scytheclaw
 	["Sunscale Scytheclaws hunt the plains south of the {area:380}, around the {area:1697}; they drop the horns. Hand them in on your next pass through {area:392}."] = "赤鱗鐮爪龍在{area:380}南邊、{area:1697}周圍的平原狩獵；牠們會掉落角。下次經過{area:392}時繳交。",
 
 	-- Step 9: The Crossroads
-	-- {npc:3429} Thork · {area:1703} The Mor'shan Rampart
+	-- {area:380} Crossroads
+	["The {area:380}"] = "",
+	-- {npc:3429} Thork · {area:1703} Mor'shan Rampart
 	["{npc:3429}. Keep it: Kadrak at the {area:1703}, next guide"] = "{npc:3429}。先留著：下一份指南中{area:1703}的卡德拉克",
 	-- {npc:3428} Korran · {area:390} Field of Giants
 	["{npc:3428}: the eggs are in the {area:390}, later"] = "{npc:3428}：蛋在{area:390}，之後再去",
@@ -51,17 +52,17 @@ return {
 	["{npc:3429}, at the top of the tower"] = "{npc:3429}，在塔頂",
 
 	-- Step 10: Dreadmist Peak
-	-- {area:380} The Crossroads · {area:384} Dreadmist Peak · {item:15842} Empty Dreadmist Peak Sampler · {object:19464} Dreadmist Peak Pool · {npc:3448} Tonga Runetotem · {skill:182} Herbalism · {npc:3490} Hula'mahi · {item:2449} Earthroot
+	-- {area:380} Crossroads · {area:384} Dreadmist Peak · {item:15842} Empty Dreadmist Peak Sampler · {object:19464} Dreadmist Peak Pool · {npc:3448} Tonga Runetotem · {skill:182} Herbalism · {npc:3490} Hula'mahi · {item:2449} Earthroot
 	["Ride north from the {area:380} to {area:384} and fill the {item:15842} at the {object:19464}, then back to {npc:3448} in the {area:380}. No {skill:182}? {npc:3490} beside him sells {item:2449}, three at a time until he restocks."] = "從{area:380}向北騎到{area:384}，在{object:19464}裝滿{item:15842}，然後回{area:380}找{npc:3448}。沒有{skill:182}？他旁邊的{npc:3490}出售{item:2449}，每次三個，賣完要等補貨。",
 	-- {item:2449} Earthroot · {npc:3490} Hula'mahi
 	["{item:2449} from {npc:3490}; herbalists pick it on the plains"] = "向{npc:3490}購買{item:2449}；草藥學家可在平原上採集",
 
 	-- Step 11: Level 20
 	["Level 20"] = "20級",
-	-- {zone:1454} Orgrimmar · {npc:3354} Sorek · {npc:5892} Searn Firewarder · {area:380} The Crossroads · {area:388} The Stagnant Oasis
+	-- {zone:1454} Orgrimmar · {npc:3354} Sorek · {npc:5892} Searn Firewarder · {area:380} Crossroads · {area:388} Stagnant Oasis
 	-- plural, as words: Thunderhawk Hatchlings = {npc:3247} Thunderhawk Hatchling
 	["The level-20 class quests in {zone:1454} ({npc:3354}, {npc:5892}, the Warlock and Rogue trainers) are only offered from level 20, so finish the level here before you fly. The Thunderhawk Hatchlings (18) on the plains south-west of the {area:380} and the Kolkar (14-15) at the {area:388} are the nearest mobs worth killing; you need well under a level."] = "{zone:1454}的20級職業任務（{npc:3354}、{npc:5892}、術士和盜賊訓練師）只在20級後才提供，所以飛之前先在這裡升到20級。{area:380}西南方平原上的雷鷹雛鳥（18級）和{area:388}的科卡爾半人馬（14-15級）是最近值得打的怪；你需要的經驗遠不到一級。",
-	-- {area:380} The Crossroads
+	-- {area:380} Crossroads
 	-- plural, as words: Thunderhawk Hatchlings = {npc:3247} Thunderhawk Hatchling
 	["grind on Thunderhawk Hatchlings south-west of the {area:380}"] = "在{area:380}西南方刷雷鷹雛鳥",
 
@@ -78,7 +79,7 @@ return {
 	-- Step 14: Shenthul
 	-- {npc:3401} Shenthul · {object:172960} Cleft of Shadow · {quest:2460} The Shattered Salute
 	["{npc:3401} stands in the {object:172960}. Target him and type /salute to finish {quest:2460}."] = "{npc:3401}站在{object:172960}。選取他並輸入 /salute 以完成{quest:2460}。",
-	-- {quest:2458} Deep Cover · {npc:7233} Taskmaster Fizzule · {area:382} The Sludge Fen
+	-- {quest:2458} Deep Cover · {npc:7233} Taskmaster Fizzule · {area:382} Sludge Fen
 	["{quest:2458}: {npc:7233}, by the {area:382}"] = "{quest:2458}：{npc:7233}，在{area:382}旁",
 
 	-- Step 15: Ur'kyo
@@ -92,11 +93,11 @@ return {
 	["Fly to {area:1638} and train your level 20 ranks: {npc:3033} is on {area:1639}."] = "飛往{area:1638}學習20級技能：{npc:3033}在{area:1639}。",
 
 	-- Step 17: Back to the Crossroads
-	-- {area:380} The Crossroads
+	-- {area:380} Crossroads
 	["Back to the {area:380}"] = "返回{area:380}",
 
 	-- Step 18: Regthar Deathgate
-	-- {area:380} The Crossroads
+	-- {area:380} Crossroads
 	["Regthar stands at the Kolkar watch post just west of the {area:380}."] = "雷戈薩·死門站在{area:380}西邊不遠的科卡爾半人馬哨站。",
 
 	-- Step 19: Barak Kodobane
@@ -112,10 +113,12 @@ return {
 	["{npc:4197} lives in {area:2539}, the troll village just inside Stonetalon at the end of the road west from Regthar."] = "{npc:4197}住在{area:2539}，那是從雷戈薩往西的道路盡頭、剛進入石爪山脈的食人妖村落。",
 
 	-- Step 22: Vrang Wildgore
-	-- {area:383} The Dry Hills · {npc:3682} Vrang Wildgore · {npc:261366} Walton
+	-- {area:383} Dry Hills · {npc:3682} Vrang Wildgore · {npc:261366} Walton
 	["North to the {area:383}. {npc:3682} camps below the hills; {npc:261366}, the hermit on the ridge behind him, has work for you only once Vrang sends you up."] = "向北前往{area:383}。{npc:3682}在丘陵下紮營；他身後山脊上的隱士{npc:261366}，要等弗朗恩·凝血派你上去後才會有工作給你。",
 
 	-- Step 23: The Dry Hills
+	-- {area:383} Dry Hills
+	["The {area:383}"] = "",
 	-- {quest:876} Serena Bloodfeather
 	-- plural, as words: Savannah Patriarchs = {npc:3241} Savannah Patriarch · Sprung Traps = {object:640104} Sprung Trap
 	["Savannah Patriarchs roam the plains east of the hills, and the Sprung Traps lie among them. {quest:876} leads the Witchwing harpies in the hills to the west."] = "草原獅王在丘陵東邊的平原遊蕩，發動過的陷阱就在牠們之間。{quest:876}率領西邊丘陵中的巫翼鷹身人。",
@@ -125,15 +128,15 @@ return {
 	["{npc:262119} and his marines hold the wrecked caravan south of {npc:261366}."] = "{npc:262119}和他的水兵佔據{npc:261366}南邊的失事商隊。",
 
 	-- Step 27: Walton
-	-- {npc:261367} Terry Longdrink · {area:21} Kul Tiras
-	["Assist Walton: stay by him when {npc:261367} and the {area:21} marines come up the ridge"] = "協助那名隱士：{npc:261367}和{area:21}水兵爬上山脊時，待在他身邊",
+	-- {npc:261366} Walton · {npc:261367} Terry Longdrink · {area:21} Kul Tiras
+	["Assist {npc:261366}: stay by him when {npc:261367} and the {area:21} marines come up the ridge"] = "",
 
 	-- Step 28: Strange Lockbox
-	-- {object:177790} Strange Lockbox · {area:382} The Sludge Fen · {item:15883} Half Pendant of Aquatic Agility · {quest:30} Trial of the Sea Lion
-	["The {object:177790} lies at the north edge of the {area:382}, by the Venture Co. tower. It holds the {item:15883} for {quest:30}."] = "{object:177790}在{area:382}北緣，風險投資公司的塔旁。裡面有{quest:30}所需的{item:15883}。",
+	-- {object:177792} Strange Lockbox · {area:382} Sludge Fen · {item:15883} Half Pendant of Aquatic Agility · {quest:30} Trial of the Sea Lion
+	["The {object:177792} lies at the north edge of the {area:382}, by the Venture Co. tower. It holds the {item:15883} for {quest:30}."] = "",
 
 	-- Step 29: Ignition
-	-- {area:382} The Sludge Fen · {npc:3439} Wizzlecrank's Shredder · {npc:3445} Supervisor Lugwizzle
+	-- {area:382} Sludge Fen · {npc:3439} Wizzlecrank's Shredder · {npc:3445} Supervisor Lugwizzle
 	["East to the {area:382}. {npc:3439} stands inside the Venture Co. camp; {npc:3445} carries the key."] = "向東前往{area:382}。{npc:3439}在風險投資公司營地裡；{npc:3445}身上帶著鑰匙。",
 
 	-- Step 30: The Escape
@@ -141,7 +144,7 @@ return {
 	["Wizzlecrank drives his shredder out of the camp: stay with him and kill whatever attacks him. {npc:3442} takes it in {area:392}."] = "伐木機的主人會駕駛它離開營地：跟著他，擊殺任何攻擊他的東西。{area:392}的{npc:3442}接受繳交。",
 
 	-- Step 31: Taskmaster Fizzule
-	-- {area:382} The Sludge Fen
+	-- {area:382} Sludge Fen
 	["Fizzule runs the Venture Co. camp at the east end of the {area:382}. He attacks strangers: target him and /salute before he does."] = "工頭費蘇勒管理{area:382}東端的風險投資公司營地。他會攻擊陌生人：在他動手前選取他並 /salute。",
 
 	-- Step 32: Mission: Possible But Not Probable
@@ -155,15 +158,15 @@ return {
 	["The Venture Co. Overseers and Enforcers at the mine in the north-east corner of the zone drop the {item:5097}."] = "地區東北角礦坑的風險投資公司監工和風險投資公司執行者會掉落{item:5097}。",
 
 	-- Step 34: Hearth to the Crossroads
-	-- {area:380} The Crossroads
+	-- {area:380} Crossroads
 	["Hearth to the {area:380}"] = "用爐石回到{area:380}",
 	-- {item:15826} Curative Animal Salve
 	["He gives you the {item:15826}"] = "他會給你{item:15826}",
 
 	-- Step 35: Verog the Dervish
-	-- {area:388} The Stagnant Oasis · {area:380} The Crossroads
+	-- {area:388} Stagnant Oasis · {area:380} Crossroads
 	["Verog walks among the Kolkar at the {area:388} south-east of the {area:380}."] = "狂熱的維羅戈在{area:380}東南方{area:388}的科卡爾半人馬之間走動。",
-	-- {npc:12296} Sickly Gazelle · {item:15826} Curative Animal Salve · {area:380} The Crossroads
+	-- {npc:12296} Sickly Gazelle · {item:15826} Curative Animal Salve · {area:380} Crossroads
 	["{npc:12296}: use the {item:15826} on them; they roam the plains all around the {area:380}"] = "{npc:12296}：對牠們使用{item:15826}；牠們在{area:380}周圍的平原各處遊蕩",
 
 	-- Step 36: Camp Taurajo
@@ -193,7 +196,7 @@ return {
 	["Islen waits on the hill south of {area:392}, on your way north."] = "水之先知伊斯倫在{area:392}南邊的山丘上等著，就在你往北的路上。",
 
 	-- Step 43: Ishamuhale
-	-- {quest:882} Ishamuhale · {area:392} Ratchet · {area:380} The Crossroads
+	-- {quest:882} Ishamuhale · {area:392} Ratchet · {area:380} Crossroads
 	["{quest:882}, a big Sunscale raptor, hunts the plains north of the road from {area:392} to the {area:380}."] = "大型赤鱗迅猛龍{quest:882}在從{area:392}到{area:380}的道路北邊平原狩獵。",
 
 	-- Step 44: The Crossroads
@@ -201,11 +204,11 @@ return {
 	["{npc:3432} offers {quest:95774} once {quest:4921} is handed in"] = "繳交{quest:4921}後，{npc:3432}會提供{quest:95774}",
 
 	-- Step 46: Hezrul Bloodmark
-	-- {area:387} Lushwater Oasis · {area:380} The Crossroads
+	-- {area:387} Lushwater Oasis · {area:380} Crossroads
 	["Hezrul leads the Kolkar on the west shore of {area:387}, south of Regthar. Hand his head to Regthar on your last {area:380} stop."] = "赫茲盧爾·血印率領雷戈薩南邊、{area:387}西岸的科卡爾半人馬。最後一次在{area:380}停留時，把他的頭交給雷戈薩。",
 
 	-- Step 47: Olgra's Adornments
-	-- {area:458} Gold Road · {area:378} Camp Taurajo · {item:277277} Olgra's Adornments · {npc:3432} Mankrik · {area:380} The Crossroads
+	-- {area:458} Gold Road · {area:378} Camp Taurajo · {item:277277} Olgra's Adornments · {npc:3432} Mankrik · {area:380} Crossroads
 	-- plural, as words: Razormane Raiders = {npc:268624} Razormane Raider
 	["On the way back down the {area:458} to {area:378}: the Razormane Raiders among the Bristleback camps, either side of the road north of the camp, carry {item:277277}. Hand them to {npc:3432} on your last {area:380} stop."] = "在沿{area:458}返回{area:378}的路上：營地北邊道路兩側、刺背營地之間的剃鬃劫掠者身上帶著{item:277277}。最後一次在{area:380}停留時交給{npc:3432}。",
 
@@ -217,6 +220,7 @@ return {
 
 	-- Step 49: Enraged Thunder Lizards
 	-- {area:378} Camp Taurajo · {quest:884} Owatanka
+	-- plural, as words: Thunderheads = {npc:3239} Thunderhead
 	["Thunderheads graze on the plains just south of {area:378}. {quest:884}, a blue thunder lizard, roams among them: his Tailspike starts a quest."] = "電角蜥蜴在{area:378}南邊不遠的平原吃草。藍色雷霆蜥蜴{quest:884}在牠們之間遊蕩：牠的尾刺會開啟任務。",
 
 	-- Step 51: Cry of the Thunderhawk
@@ -224,9 +228,9 @@ return {
 	["Thunderhawk Cloudscrapers circle over the same plains south of the camp."] = "雷鷹破雲者在營地南邊同一片平原上空盤旋。",
 
 	-- Step 53: Field of Giants
-	-- {area:378} Camp Taurajo · {area:390} Field of Giants
+	-- {area:390} Field of Giants
 	-- plural, as words: Silithid Mounds = {object:3685} Silithid Mound · Silithid Swarmers = {npc:3252} Silithid Swarmer · Silithid Harvesters = {npc:3253} Silithid Harvester
-	["South of {area:378} the Silithid Mounds dot the {area:390}; the eggs lie in them, and Silithid Swarmers come out to defend them. Silithid Harvesters are rare: if you see one, kill it for its head."] = "在{area:378}南邊，異種蠍土丘散布在{area:390}；蛋就在土丘裡，異種群居蠍會出來保護。異種收割者很稀有：看到就殺掉取得頭部。",
+	["South of Camp Taurajo the Silithid Mounds dot the {area:390}; the eggs lie in them, and Silithid Swarmers come out to defend them. Silithid Harvesters are rare: if you see one, kill it for its head."] = "",
 
 	-- Step 54: Gann Stonespire
 	-- {area:359} Bael Modan
@@ -241,9 +245,9 @@ return {
 	["Keep it: the {object:107045} is beside {area:272}"] = "先留著：{object:107045}在{area:272}旁邊",
 
 	-- Step 55: Blackthorn Ridge
-	-- {area:1701} Blackthorn Ridge · {npc:3435} Lok Orcbane · {npc:5859} Hagg Taurenbane · {npc:3238} Stormhide · {quest:885} Washte Pawne
+	-- {area:1701} Blackthorn Ridge · {npc:3436} Kuz · {npc:3434} Nak · {npc:3435} Lok Orcbane · {npc:5859} Hagg Taurenbane · {npc:3238} Stormhide · {quest:885} Washte Pawne
 	-- plural, as words: Hecklefang Stalkers = {npc:4128} Hecklefang Stalker
-	["West of Gann, the Razormane hold {area:1701}. Kuz is on the east side, Nak to the south, {npc:3435} at the west end. Lok (25) and the Warfrenzies (24-25) are a few levels above you; {npc:5859}, a rare elite, sometimes walks the ridge: leave him. Pathfinders and Stalkers drop the Backstabber, Seers the Wand, Warfrenzies the War Shield. {npc:3238} lizards and Hecklefang Stalkers roam the plain between Gann and the ridge. {quest:885}, a rare red wind serpent, flies over the ridge: its feather starts a quest."] = "在加恩·石塔西邊，鋼鬃野豬人佔據{area:1701}。卡茲在東側，納克在南邊，{npc:3435}在西端。洛克·奧克班恩（25級）和鋼鬃戰士（24-25級）比你高幾級；稀有精英{npc:5859}有時會在山脊上走動：別惹他。鋼鬃探路者和鋼鬃捕獵者會掉落鋼鬃背刺匕首，鋼鬃先知會掉落魔杖，鋼鬃戰士會掉落鋼鬃大盾。{npc:3238}蜥蜴和亂齒捕獵者在加恩·石塔與山脊之間的平原遊蕩。稀有的紅色風蛇{quest:885}在山脊上空飛行：牠的羽毛會開啟任務。",
+	["West of Gann, the Razormane hold {area:1701}. {npc:3436} is on the east side, {npc:3434} to the south, {npc:3435} at the west end. Lok (25) and the Warfrenzies (24-25) are a few levels above you; {npc:5859}, a rare elite, sometimes walks the ridge: leave him. Pathfinders and Stalkers drop the Backstabber, Seers the Wand, Warfrenzies the War Shield. {npc:3238} lizards and Hecklefang Stalkers roam the plain between Gann and the ridge. {quest:885}, a rare red wind serpent, flies over the ridge: its feather starts a quest."] = "",
 	-- {npc:3238} Stormhide
 	["{npc:3238}, on the plain between Gann and the ridge"] = "{npc:3238}，在加恩·石塔與山脊之間的平原",
 
@@ -268,7 +272,7 @@ return {
 	["Twitching Antennae from the silithid"] = "從異種蠍身上取得抽動的觸鬚",
 
 	-- Step 66: Thun'grim Firegaze
-	-- {area:380} The Crossroads
+	-- {area:380} Crossroads
 	["Thun'grim camps beside the road east of the {area:380}."] = "索恩格瑞姆·火眼在{area:380}東邊的道路旁紮營。",
 	-- {quest:1838} Brutal Armor · {area:1717} Razorfen Kraul
 	["He offers {quest:1838} next (1838, level 30): it needs {area:1717} and sends you all over Kalimdor and the Eastern Kingdoms. The Warrior class guide {quest:1838} covers it."] = "他接著提供{quest:1838}（1838，30級）：需要{area:1717}，並會讓你跑遍卡林多和東部王國。戰士職業指南{quest:1838}涵蓋此任務。",
@@ -286,8 +290,8 @@ return {
 	["{npc:5875} stands in the {object:172960}. Use {item:6626} on the summoning circle there and defeat the succubus to bind her."] = "{npc:5875}站在{object:172960}。在那裡的召喚法陣使用{item:6626}，擊敗魅魔以束縛她。",
 
 	-- Step 70: Shenthul
-	-- {npc:2391} Serge Hinott · {area:272} Tarren Mill · {spell:2842} Poisons
-	["{npc:2391} in {area:272} teaches {spell:2842}: keep it"] = "{area:272}的{npc:2391}教授{spell:2842}：先留著",
+	-- {npc:2391} Serge Hinott · {area:272} Tarren Mill
+	["{npc:2391} in {area:272} teaches Poisons: keep it"] = "",
 
 	-- Step 71: The Great Cat Spirit
 	-- {area:1638} Thunder Bluff · {npc:3033} Turak Runetotem · {area:1639} Elder Rise
@@ -312,6 +316,15 @@ return {
 	["{npc:11798} in {area:2361} flies druids there"] = "{area:2361}的{npc:11798}會載德魯伊飛到那裡",
 
 	-- Step 76: Back to the Crossroads
-	-- {area:380} The Crossroads · {area:1703} The Mor'shan Rampart · {zone:1440} Ashenvale
+	-- {area:380} Crossroads · {area:1703} Mor'shan Rampart · {zone:1440} Ashenvale
 	["Fly back to the {area:380}. The next guide starts here and takes the road north to the {area:1703} and {zone:1440}."] = "飛回{area:380}。下一份指南從這裡開始，沿道路向北前往{area:1703}和{zone:1440}。",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Assist Walton: stay by him when {npc:261367} and the {area:21} marines come up the ridge"] = "協助那名隱士：{npc:261367}和{area:21}水兵爬上山脊時，待在他身邊",
+	-- ["Bruuz"] = "布魯茲",
+	-- ["Bruuz swims in the harbour just off {area:392}'s docks. Bruuz is elite: grouping up is advised."] = "布魯茲在{area:392}碼頭外的港口中游動。布魯茲是精英：建議組隊。",
+	-- ["South of {area:378} the Silithid Mounds dot the {area:390}; the eggs lie in them, and Silithid Swarmers come out to defend them. Silithid Harvesters are rare: if you see one, kill it for its head."] = "在{area:378}南邊，異種蠍土丘散布在{area:390}；蛋就在土丘裡，異種群居蠍會出來保護。異種收割者很稀有：看到就殺掉取得頭部。",
+	-- ["The {object:177790} lies at the north edge of the {area:382}, by the Venture Co. tower. It holds the {item:15883} for {quest:30}."] = "{object:177790}在{area:382}北緣，風險投資公司的塔旁。裡面有{quest:30}所需的{item:15883}。",
+	-- ["West of Gann, the Razormane hold {area:1701}. Kuz is on the east side, Nak to the south, {npc:3435} at the west end. Lok (25) and the Warfrenzies (24-25) are a few levels above you; {npc:5859}, a rare elite, sometimes walks the ridge: leave him. Pathfinders and Stalkers drop the Backstabber, Seers the Wand, Warfrenzies the War Shield. {npc:3238} lizards and Hecklefang Stalkers roam the plain between Gann and the ridge. {quest:885}, a rare red wind serpent, flies over the ridge: its feather starts a quest."] = "在加恩·石塔西邊，鋼鬃野豬人佔據{area:1701}。卡茲在東側，納克在南邊，{npc:3435}在西端。洛克·奧克班恩（25級）和鋼鬃戰士（24-25級）比你高幾級；稀有精英{npc:5859}有時會在山脊上走動：別惹他。鋼鬃探路者和鋼鬃捕獵者會掉落鋼鬃背刺匕首，鋼鬃先知會掉落魔杖，鋼鬃戰士會掉落鋼鬃大盾。{npc:3238}蜥蜴和亂齒捕獵者在加恩·石塔與山脊之間的平原遊蕩。稀有的紅色風蛇{quest:885}在山脊上空飛行：牠的羽毛會開啟任務。",
+	-- ["{npc:2391} in {area:272} teaches {spell:2842}: keep it"] = "{area:272}的{npc:2391}教授{spell:2842}：先留著",
 }

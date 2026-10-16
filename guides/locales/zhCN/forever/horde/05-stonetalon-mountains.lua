@@ -6,7 +6,7 @@
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Kadrak
-	-- {area:380} The Crossroads · {npc:8582} Kadrak · {area:1703} The Mor'shan Rampart · {zone:1440} Ashenvale · {item:16783} Bundle of Reports
+	-- {area:380} Crossroads · {npc:8582} Kadrak · {area:1703} Mor'shan Rampart · {zone:1440} Ashenvale · {item:16783} Bundle of Reports
 	["From the {area:380} follow the road north. {npc:8582} stands on the watch tower of the {area:1703} where the road enters {zone:1440}. Open the {item:16783} he gives you."] = "从{area:380}沿道路向北。{npc:8582}站在道路进入{zone:1440}处{area:1703}的瞭望塔上。打开他给你的{item:16783}。",
 
 	-- Step 2: Warsong Scout
@@ -39,7 +39,7 @@ return {
 	["{npc:271181}, on the road"] = "{npc:271181}，在路上",
 
 	-- Step 8: Zoram'gar Outpost
-	-- {zone:1440} Ashenvale · {area:415} Astranaar · {area:2897} Zoram'gar Outpost · {area:414} The Zoram Strand
+	-- {zone:1440} Ashenvale · {area:415} Astranaar · {area:2897} Zoram'gar Outpost · {area:414} Zoram Strand
 	["Ride west along the main road across {zone:1440}, past {area:415} (Alliance: keep to the road), to the coast. {area:2897} is on the {area:414} in the north-west. Its other quests are for the next visit, at 27."] = "沿主路向西穿过{zone:1440}，经过{area:415}（联盟：别离开道路），到达海岸。{area:2897}位于西北部的{area:414}。它的其他任务留到27级下次来时。",
 
 	-- Step 9: Naga heads
@@ -49,11 +49,11 @@ return {
 	-- Step 11: Back to Kadrak
 	-- {npc:8582} Kadrak
 	["Back to {npc:8582}"] = "回到{npc:8582}处",
-	-- {area:431} Splintertree Post · {area:1703} The Mor'shan Rampart
+	-- {area:431} Splintertree Post · {area:1703} Mor'shan Rampart
 	["Fly to {area:431} and ride south down the road to the {area:1703}."] = "飞往{area:431}，沿道路向南骑到{area:1703}。",
 
 	-- Step 12: Malaka'jin
-	-- {area:380} The Crossroads · {zone:1413} The Barrens · {area:2539} Malaka'jin
+	-- {area:380} Crossroads · {zone:1413} Barrens · {area:2539} Malaka'jin
 	["Ride south to the {area:380}, then west along the road out of the {zone:1413} into Stonetalon. The troll village of {area:2539} sits at the entrance of the canyon."] = "向南骑到{area:380}，然后沿道路向西离开{zone:1413}进入石爪山脉。巨魔村庄{area:2539}位于峡谷入口。",
 
 	-- Step 13: Ziz Fizziks
@@ -71,7 +71,7 @@ return {
 	-- Step 16: Sun Rock Retreat
 	-- {area:460} Sun Rock Retreat
 	["Follow the road west to {area:460}."] = "沿道路向西前往{area:460}。",
-	-- {npc:11860} Maggran Earthbinder · {object:19844} The Great Lift
+	-- {npc:11860} Maggran Earthbinder · {object:19844} Great Lift
 	["{npc:11860}: Grish is at the {object:19844}, in the next guide"] = "{npc:11860}：瑞什在{object:19844}，下一份指南",
 	-- {npc:11860} Maggran Earthbinder
 	-- plural, as words: Glittering Sunstones = {item:277936} Glittering Sunstone
@@ -98,9 +98,9 @@ return {
 	["Braelyn's next quest, Ordanus, is on the Alliance side of {zone:1440}. Skip it."] = "布莱林的下一个任务“奥达努斯”在{zone:1440}的联盟一方。跳过。",
 
 	-- Step 20: The Charred Vale
-	-- {area:465} The Charred Vale · {item:16312} Incendrites
+	-- {item:16312} Incendrites
 	-- plural, as words: Gaea Seeds = {item:16205} Gaea Seed
-	["South-west of Sun Rock lies the burned {area:465}. Plant the Gaea Seeds in the dirt mounds on the valley floor; the fire elementals drop {item:16312}. Bloodfury Harpies and Ambushers nest on the north side, Slayers and Roguefeathers to the south."] = "烈日石居西南方是烧焦的{area:465}。把盖亚之种种在谷底的土堆里；火元素掉落{item:16312}。血怒鹰身人和血怒伏击者在北侧筑巢，血怒杀戮者和血怒游荡者在南侧。",
+	["South-west of Sun Rock lies the burned Charred Vale. Plant the Gaea Seeds in the dirt mounds on the valley floor; the fire elementals drop {item:16312}. Bloodfury Harpies and Ambushers nest on the north side, Slayers and Roguefeathers to the south."] = "",
 	-- plural, as words: Gaea Dirt Mounds = {object:177929} Gaea Dirt Mound
 	["Gaea Dirt Mounds"] = "盖亚土堆",
 	-- {item:277936} Glittering Sunstone
@@ -119,7 +119,7 @@ return {
 	-- Step 23: To the Undercity
 	-- {area:1497} Undercity
 	["To the {area:1497}"] = "前往{area:1497}",
-	-- {area:380} The Crossroads · {zone:1454} Orgrimmar · {zone:1420} Tirisfal Glades · {area:1497} Undercity · {area:153} Ruins of Lordaeron · {object:36078} Trade Quarter
+	-- {area:380} Crossroads · {zone:1454} Orgrimmar · {zone:1420} Tirisfal Glades · {area:1497} Undercity · {area:153} Ruins of Lordaeron · {object:36078} Trade Quarter
 	["Ride east to the {area:380} and fly to {zone:1454}. Take the zeppelin from the towers outside {zone:1454} to {zone:1420}; the {area:1497} lies below the {area:153}. The bat handler is in the {object:36078}."] = "向东骑到{area:380}，飞往{zone:1454}。从{zone:1454}外的塔楼乘飞艇前往{zone:1420}；{area:1497}在{area:153}下方。蝙蝠管理员在{object:36078}。",
 	-- {npc:10181} Lady Sylvanas Windrunner · {object:36126} Royal Quarter · {quest:93739} Exploring the Horde
 	["Speak with {npc:10181}, in the {object:36126}: {quest:93739}"] = "与{object:36126}的{npc:10181}交谈：{quest:93739}",
@@ -129,7 +129,7 @@ return {
 	["{npc:4606} stands in the {object:36070}."] = "{npc:4606}站在{object:36070}。",
 
 	-- Step 25: Beren's Peril
-	-- {area:272} Tarren Mill · {zone:1458} Undercity · {area:228} The Sepulcher · {area:231} Beren's Peril · {npc:1973} Ravenclaw Guardian · {item:271343} Note Scrap · {object:645153} Offering Stone
+	-- {area:272} Tarren Mill · {zone:1458} Undercity · {area:228} Sepulcher · {area:231} Beren's Peril · {npc:1973} Ravenclaw Guardian · {item:271343} Note Scrap · {object:645153} Offering Stone
 	["If you already know the {area:272} flight path, fly there and skip to {area:272}. Otherwise fly from the {zone:1458} to the {area:228} and ride south down the road past Pyrewood. The Ravenclaw undead haunt the ruins of {area:231} east of the road in the south-east of the forest; a {npc:1973} drops the {item:271343} that leads to the {object:645153}."] = "如果你已经知道{area:272}的飞行路线，就飞过去并跳到{area:272}。否则从{zone:1458}飞往{area:228}，沿道路向南经过焚木村。鸦爪亡灵在森林东南部、道路东边的{area:231}废墟中游荡；{npc:1973}掉落{item:271343}，指引你找到{object:645153}。",
 	-- {item:271343} Note Scrap · {npc:1973} Ravenclaw Guardian
 	["{item:271343}, from a {npc:1973}"] = "{item:271343}，来自{npc:1973}",
@@ -150,4 +150,7 @@ return {
 	-- Step 28: Tarren Mill
 	-- {area:272} Tarren Mill
 	["Follow the road east along the river, then north-east up into the hills to {area:272}."] = "沿河边道路向东，然后向东北爬进山丘到{area:272}。",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["South-west of Sun Rock lies the burned {area:465}. Plant the Gaea Seeds in the dirt mounds on the valley floor; the fire elementals drop {item:16312}. Bloodfury Harpies and Ambushers nest on the north side, Slayers and Roguefeathers to the south."] = "烈日石居西南方是烧焦的{area:465}。把盖亚之种种在谷底的土堆里；火元素掉落{item:16312}。血怒鹰身人和血怒伏击者在北侧筑巢，血怒杀戮者和血怒游荡者在南侧。",
 }

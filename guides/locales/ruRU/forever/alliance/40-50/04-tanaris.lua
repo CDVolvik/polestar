@@ -6,7 +6,7 @@
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Mirage Raceway
-	-- {area:1108} The Forgotten Coast · {area:489} Thalanaar · {zone:1441} Thousand Needles · {area:2240} Mirage Raceway · {area:439} The Shimmering Flats · {npc:4454} Fizzle Brassbolts · {npc:4630} Pozzik · {npc:4709} Zamek
+	-- {area:1108} Forgotten Coast · {area:489} Thalanaar · {zone:1441} Thousand Needles · {area:2240} Mirage Raceway · {area:439} Shimmering Flats · {npc:4454} Fizzle Brassbolts · {npc:4630} Pozzik · {npc:4709} Zamek
 	["From the {area:1108} dock, boat to Feathermoon and fly to {area:489}, then ride east through {zone:1441} to the {area:2240} on the {area:439}. {npc:4454} and {npc:4630} are in the camps beside the track; {npc:4709} stands by the goblin camp."] = "От причала ({area:1108}) плывите на корабле в Крепость Оперенной Луны и летите в {area:489}, затем езжайте на восток через {zone:1441} к месту {area:2240} ({area:439}). {npc:4454} и {npc:4630} — в лагерях у трассы; {npc:4709} стоит у лагеря гоблинов.",
 	["He runs off to keep Rizzle busy"] = "Он убегает отвлечь Риззла",
 
@@ -16,7 +16,7 @@ return {
 	["While {npc:4709} keeps Rizzle talking, his plans lie unguarded in the gnome camp across the track."] = "Пока {npc:4709} заговаривает Риззлу зубы, его чертежи лежат без охраны в лагере гномов по ту сторону трассы.",
 
 	-- Step 4: Gadgetzan
-	-- {area:439} The Shimmering Flats · {zone:1446} Tanaris · {area:976} Gadgetzan
+	-- {area:439} Shimmering Flats · {zone:1446} Tanaris · {area:976} Gadgetzan
 	["Ride south-east off the {area:439} into {zone:1446}. {area:976} is just inside the border."] = "Езжайте на юго-восток из места {area:439} в {zone:1446}. {area:976} — сразу за границей.",
 	-- {quest:2864} Tran'rek
 	["{quest:2864}, north side of town"] = "{quest:2864}, северная часть городка",
@@ -95,7 +95,7 @@ return {
 	["Ride back west to {area:976}."] = "Езжайте обратно на запад в {area:976}.",
 	-- {npc:11758} Andi Lynn
 	["{npc:11758}, on the east side of town"] = "{npc:11758}, восточная часть городка",
-	-- {npc:7583} Sprinkle · {zone:1425} The Hinterlands
+	-- {npc:7583} Sprinkle · {zone:1425} Hinterlands
 	["{npc:7583}'s next ingredient grows in the {zone:1425}, and the route never brings it back: skip it."] = "Следующий ингредиент ({npc:7583}) растет здесь: {zone:1425}, а маршрут никогда не приводит его обратно: пропустите.",
 
 	-- Step 21: Caliph Scorpidsting
@@ -103,8 +103,8 @@ return {
 	["Ride south-east to {area:985}. Caliph stands in the middle of the southern Wastewander camp: clear around him first."] = "Езжайте на юго-восток в {area:985}. Калиф стоит в центре южного лагеря Скитальцев Пустыни: сначала зачистите все вокруг него.",
 
 	-- Step 22: The Gaping Chasm
-	-- {area:1938} Broken Pillar · {area:981} The Gaping Chasm
-	["Ride south past the {area:1938} to the {area:981}, the Hazzali tunnels; Scrimshank's gear lies deep inside."] = "Езжайте на юг мимо места {area:1938} к месту {area:981}, туннелям Хаззали; снаряжение Холстомера лежит глубоко внутри.",
+	-- {area:1938} Broken Pillar
+	["Ride south past the {area:1938} to the Gaping Chasm, the Hazzali tunnels; Scrimshank's gear lies deep inside."] = "",
 
 	-- Step 23: Gadgetzan
 	-- {area:976} Gadgetzan
@@ -117,6 +117,10 @@ return {
 	["Fly from {area:976} to Theramore, take the boat to {area:150} and fly to {area:1537}. Train."] = "Летите из места {area:976} в Терамор, плывите на корабле в {area:150} и летите в {area:1537}. Обучитесь.",
 
 	-- Step 25: Aerie Peak
-	-- {area:348} Aerie Peak · {zone:1425} The Hinterlands
-	["Fly to {area:348}. {zone:1425} guide starts here."] = "Летите в {area:348}. Здесь начинается гайд по зоне {zone:1425}.",
+	-- {area:348} Aerie Peak · {zone:1425} Hinterlands
+	["Fly to {area:348}. The {zone:1425} guide starts here."] = "",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Fly to {area:348}. {zone:1425} guide starts here."] = "Летите в {area:348}. Здесь начинается гайд по зоне {zone:1425}.",
+	-- ["Ride south past the {area:1938} to the {area:981}, the Hazzali tunnels; Scrimshank's gear lies deep inside."] = "Езжайте на юг мимо места {area:1938} к месту {area:981}, туннелям Хаззали; снаряжение Холстомера лежит глубоко внутри.",
 }

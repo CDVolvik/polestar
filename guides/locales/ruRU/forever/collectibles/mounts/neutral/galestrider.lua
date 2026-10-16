@@ -31,5 +31,4 @@ return {
 	-- {npc:265756} Genn Fairweather · {area:16638} Valanaar
 	["{npc:265756} is in {area:16638}, the island's harbour town, near the skyboat docks. The Forever client lists each Galestrider at 20g; choose one."] = "{npc:265756} – здесь: {area:16638}, портовый город острова, у причалов небесных кораблей. В клиенте Forever каждый буреног стоит 20з; выберите одного.",
 	["20g"] = "20з",
-
 }

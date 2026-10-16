@@ -9,8 +9,8 @@ return {
 	["Warlock Felsteed"] = "Corcel Vil do Bruxo",
 	["Your own mount at 40, summoned anywhere, with no gold spent on a riding horse."] = "Sua própria montaria no nível 40, evocada em qualquer lugar, sem gastar ouro num cavalo.",
 
-	-- Step 1: Summon Felsteed (Stormwind City)
-	-- {npc:461} Demisette Cloyce · {object:2164} The Slaughtered Lamb · {object:2101} Mage Quarter · {npc:6251} Strahad Farsan · {area:392} Ratchet
+	-- Step 1: Summon Felsteed (Stormwind)
+	-- {npc:461} Demisette Cloyce · {object:2164} Slaughtered Lamb · {object:2101} Mage Quarter · {npc:6251} Strahad Farsan · {area:392} Ratchet
 	["At 40 {npc:461} in the {object:2164}, in the {object:2101}, sends you to {npc:6251} in {area:392}."] = "No nível 40, {npc:461}, em {object:2164}, no {object:2101}, envia você a {npc:6251} em {area:392}.",
 
 	-- Step 2: Summon Felsteed (Ironforge)
@@ -28,6 +28,6 @@ return {
 	-- Step 5: Strahad Farsan in Ratchet
 	-- {npc:6251} Strahad Farsan · {area:392} Ratchet
 	["{npc:6251} in {area:392}"] = "{npc:6251} em {area:392}",
-	-- {area:392} Ratchet · {zone:1413} The Barrens · {area:380} The Crossroads · {area:35} Booty Bay · {npc:6251} Strahad Farsan · {quest:3631} Summon Felsteed
+	-- {area:392} Ratchet · {zone:1413} Barrens · {area:380} Crossroads · {area:35} Booty Bay · {npc:6251} Strahad Farsan · {quest:3631} Summon Felsteed
 	["{area:392} is on the {zone:1413} coast east of the {area:380}; from the Alliance side, take the boat from {area:35}. {npc:6251}'s follow-up teaches {quest:3631}."] = "{area:392} fica no litoral dos {zone:1413}, a leste da {area:380}; do lado da Aliança, pegue o barco em {area:35}. A missão seguinte de {npc:6251} ensina {quest:3631}.",
 }

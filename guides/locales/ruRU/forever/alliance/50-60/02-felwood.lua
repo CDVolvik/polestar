@@ -100,7 +100,7 @@ return {
 	["Fly from {area:1998} to the Sanctuary's end of the road, or ride south along it."] = "Летите ({area:1998}) к концу дороги у Святилища или езжайте по ней на юг.",
 	-- {zone:1457} Darnassus
 	["The vial is filled in {zone:1457}: keep it"] = "Склянка наполняется здесь: {zone:1457} – сохраните задание",
-	-- {zone:1413} The Barrens
+	-- {zone:1413} Barrens
 	["Ends in the {zone:1413}: keep it"] = "Завершается здесь: {zone:1413} – сохраните задание",
 
 	-- Step 20: Everlook

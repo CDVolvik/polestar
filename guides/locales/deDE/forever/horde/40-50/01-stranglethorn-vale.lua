@@ -34,8 +34,8 @@ return {
 	-- Step 6: The Wild Shore
 	-- {area:43} Wild Shore
 	["The {area:43}"] = "{area:43}",
-	-- {area:35} Booty Bay · {area:43} Wild Shore
-	["South of {area:35} the Bloodsail swashbucklers camp on the {area:43}; the charts and the orders lie in their tents. Any Bloodsail can carry snuff and Dizzy's eye, so keep killing until you have both."] = "Südlich von {area:35} lagern die Schwadroneure der Blutsegelbukaniere an der {area:43}; die Karten und Befehle liegen in ihren Zelten. Jeder Blutsegelbukanier kann Schnupftabak und Dizzys Auge tragen, also töte weiter, bis du beides hast.",
+	-- {area:43} Wild Shore
+	["South of Booty Bay the Bloodsail swashbucklers camp on the {area:43}; the charts and the orders lie in their tents. Any Bloodsail can carry snuff and Dizzy's eye, so keep killing until you have both."] = "",
 
 	-- Step 8: The Bloodsail ships
 	["The Bloodsail ships"] = "Die Schiffe der Blutsegelbukaniere",
@@ -66,7 +66,7 @@ return {
 	-- Step 15: Grom'gol Base Camp
 	-- {object:3202} Grom'gol
 	["Ride north-west to {object:3202}."] = "Reite nach Nordwesten nach {object:3202}.",
-	-- {zone:1425} The Hinterlands
+	-- {zone:1425} Hinterlands
 	["for later: the {zone:1425}, around level 48"] = "für später: das {zone:1425}, etwa ab Stufe 48",
 
 	-- Step 16: Nesingwary's Expedition
@@ -89,9 +89,9 @@ return {
 	["The stalker raptors hunt the jungle south of {object:3202}, out towards the west coast."] = "Die Pirscher-Raptoren jagen im Dschungel südlich von {object:3202}, hinaus Richtung Westküste.",
 
 	-- Step 20: Naga shore and the Holy Spring
-	-- {object:759} The Holy Spring
+	-- {object:759} Holy Spring
 	["Naga shore and the {object:759}"] = "Nagaufer und {object:759}",
-	-- {object:759} The Holy Spring
+	-- {object:759} Holy Spring
 	["Follow the coast south. The naga explorers wade along the shore and carry the reed bundles; the {object:759} bubbles in the hills just east of them."] = "Folge der Küste nach Süden. Die Forscher der Naga waten am Ufer entlang und tragen die Schilfbündel; {object:759} sprudelt in den Hügeln gleich östlich davon.",
 
 	-- Step 21: Booty Bay
@@ -136,7 +136,7 @@ return {
 	-- Step 30: Into the Swamp of Sorrows
 	-- {zone:1435} Swamp of Sorrows
 	["Into the {zone:1435}"] = "In die {zone:1435}",
-	-- {zone:1431} Duskwood · {zone:1430} Deadwind Pass · {npc:1776} Magtoor · {area:657} The Harborage
+	-- {zone:1431} Duskwood · {zone:1430} Deadwind Pass · {npc:1776} Magtoor · {area:657} Harborage
 	["Keep riding north into {zone:1431}, then east along the road through {zone:1430} into the swamp. {npc:1776} waits at the {area:657}, the draenei camp near the way in from {zone:1430}."] = "Reite weiter nach Norden in den {zone:1431}, dann auf der Straße nach Osten durch den {zone:1430} in den Sumpf. {npc:1776} wartet bei {area:657}, dem Draeneilager nahe dem Weg vom {zone:1430} herein.",
 
 	-- Step 31: Stonard
@@ -166,7 +166,9 @@ return {
 	["The crocolisks wallow in the pools around Galen's camp and south towards {area:75}; about one in four drops a flank."] = "Die Krokilisken suhlen sich in den Tümpeln um Galens Lager und südlich Richtung {area:75}; etwa jeder vierte lässt eine Flanke fallen.",
 
 	-- Step 37: The Harborage
-	-- {area:657} The Harborage · {zone:1430} Deadwind Pass
+	-- {area:657} Harborage
+	["The {area:657}"] = "",
+	-- {area:657} Harborage · {zone:1430} Deadwind Pass
 	["Ride west along the road to the draenei camp at the {area:657}, near the way in from {zone:1430}."] = "Reite auf der Straße nach Westen zum Draeneilager bei {area:657}, nahe dem Weg vom {zone:1430} herein.",
 
 	-- Step 38: Misty Reed Post
@@ -180,4 +182,7 @@ return {
 	-- Step 40: Misty Reed Post
 	-- {zone:1446} Tanaris
 	["The next guide starts here and takes you to {zone:1446}."] = "Der nächste Guide beginnt hier und bringt dich nach {zone:1446}.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["South of {area:35} the Bloodsail swashbucklers camp on the {area:43}; the charts and the orders lie in their tents. Any Bloodsail can carry snuff and Dizzy's eye, so keep killing until you have both."] = "Südlich von {area:35} lagern die Schwadroneure der Blutsegelbukaniere an der {area:43}; die Karten und Befehle liegen in ihren Zelten. Jeder Blutsegelbukanier kann Schnupftabak und Dizzys Auge tragen, also töte weiter, bis du beides hast.",
 }

@@ -21,7 +21,7 @@ return {
 	-- plural, as words: Gorishi Stings = {item:22435} Gorishi Sting
 	["Gorishi Stings and {item:22434}"] = "Aguijones Gorishi y {item:22434}",
 	-- {item:22434} Bloodcap
-	-- plural, as words: Bloodpetal Sprouts = {item:11315} Bloodpetal Sprout
+	-- plural, as words: Bloodpetal Sprouts = {object:164958} Bloodpetal Sprout
 	["The Gorishi wasps, workers and reavers of the hive in the south of the crater drop the stings; the Bloodpetal Sprouts that give the {item:22434} grow all over the crater's western half."] = "Las Avispas, Trabajadores y Atracadores Gorishi de la colmena del sur del cráter sueltan los aguijones; los Brotes sangrepétalo que dan el {item:22434} crecen por toda la mitad oeste del cráter.",
 
 	-- Step 5: Toxic Test

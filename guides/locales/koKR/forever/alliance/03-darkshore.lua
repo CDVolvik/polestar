@@ -19,9 +19,9 @@ return {
 
 	-- Step 2: The beach
 	["The beach"] = "해변",
-	-- {quest:983} Buzzbox 827 · {quest:4723} Beached Sea Creature
+	-- {quest:983} Buzzbox 827 · {object:175207} Beached Sea Creature
 	-- plural, as words: Tide Crawlers = {npc:2232} Tide Crawler · Darkshore Threshers = {npc:2185} Darkshore Thresher
-	["Tide Crawlers scuttle along the shore below the village; {quest:983} stands on the beach just south of the docks. Darkshore Threshers swim in the shallows. The {quest:4723} lies on the shore just south of the village."] = "{npc:2232}은(는) 마을 아래 해안을 따라 기어다니고, {quest:983}은(는) 부두 바로 남쪽 해변에 서 있습니다. {npc:2185}은(는) 얕은 물에서 헤엄칩니다. {quest:4723}은(는) 마을 바로 남쪽 해안에 놓여 있습니다.",
+	["Tide Crawlers scuttle along the shore below the village; {quest:983} stands on the beach just south of the docks. Darkshore Threshers swim in the shallows. The {object:175207} lies on the shore just south of the village."] = "",
 	-- plural, as words: Crawler Legs = {item:5385} Crawler Leg
 	["Crawler Legs"] = "집게다리",
 	-- plural, as words: Thresher Eyes = {item:5412} Thresher Eye
@@ -148,8 +148,8 @@ return {
 	-- {npc:6667} Gelkak Gyromast
 	-- plural, as words: Giant Foreststriders = {npc:2323} Giant Foreststrider · Raging Reef Crawlers = {npc:2236} Raging Reef Crawler
 	["{npc:6667} hides on the little island off the ruins; Stormscale Beastmistresses walk the shore. The key pieces drop from Giant Foreststriders (top), Greymist murlocs (middle) and Raging Reef Crawlers (bottom)."] = "{npc:6667}은(는) 폐허 앞바다의 작은 섬에 숨어 있고, 폭풍비늘 야수조련사가 해안을 거닙니다. 열쇠 조각은 거대한 숲타조(윗부분), 잿빛안개멀록(가운데), 사나운 모래톱게(아랫부분)에게서 떨어집니다.",
-	-- {item:15883} Half Pendant of Aquatic Agility · {object:177790} Strange Lockbox
-	["{item:15883}: the {object:177790} under the water off the north coast, west of the ruins"] = "{item:15883}: 폐허 서쪽, 북쪽 해안 앞바다 물속의 {object:177790}",
+	-- {item:15883} Half Pendant of Aquatic Agility · {object:177792} Strange Lockbox
+	["{item:15883}: the {object:177792} under the water off the north coast, west of the ruins"] = "",
 
 	-- Step 24: The Tower of Althalaxx
 	-- {npc:3661} Balthule Shadowstrike · {zone:1440} Ashenvale
@@ -173,7 +173,7 @@ return {
 	-- Step 27: Lunar Fungus and Earthroot
 	-- {item:15851} Lunar Fungus · {item:2449} Earthroot
 	["{item:15851} and {item:2449}"] = "{item:15851}와(과) {item:2449}",
-	-- {area:442} Auberdine · {item:2449} Earthroot · {skill:182} Herbalism · {zone:1439} Darkshore · {zone:1453} Stormwind City · {npc:1313} Maria Lumere
+	-- {area:442} Auberdine · {item:2449} Earthroot · {skill:182} Herbalism · {zone:1439} Darkshore · {zone:1453} Stormwind · {npc:1313} Maria Lumere
 	-- plural, as words: Lunar Fungal Blooms = {object:177750} Lunar Fungal Bloom
 	["The Lunar Fungal Blooms grow in the moonkin caves in the hills just east of {area:442}; the moonkin there are irritable. {item:2449} needs {skill:182}: herbalists pick it all over {zone:1439}, anyone else brings it from {zone:1453} ({npc:1313}) or the Auction House."] = "달버섯은 {area:442} 바로 동쪽 언덕의 달빛야수 동굴에서 자랍니다. 그곳의 달빛야수는 성미가 사납습니다. {item:2449}에는 {skill:182}이(가) 필요합니다: 약초 채집가는 {zone:1439} 곳곳에서 캘 수 있고, 그 외에는 {zone:1453}({npc:1313})이나 경매장에서 구해 오십시오.",
 
@@ -229,7 +229,7 @@ return {
 	["{npc:3616}, at the Grove"] = "{npc:3616}, 고대정령의 숲에서",
 
 	-- Step 36: Volcor
-	-- {npc:3692} Volcor · {area:449} The Master's Glaive
+	-- {npc:3692} Volcor · {area:449} Master's Glaive
 	["{npc:3692} hides in the hills east of the {area:449}. Help him back to the road; he fights on his way out."] = "{npc:3692}은(는) {area:449} 동쪽 언덕에 숨어 있습니다. 그가 길로 돌아가도록 도우십시오. 나가는 길에 그도 싸웁니다.",
 	-- {npc:12298} Sickly Deer · {item:15826} Curative Animal Salve · {zone:1439} Darkshore
 	["{npc:12298}: use the {item:15826} on them; they roam all of {zone:1439}"] = "{npc:12298}: {item:15826}을(를) 사용하십시오. {zone:1439} 전역을 돌아다닙니다",
@@ -237,9 +237,9 @@ return {
 	-- Step 37: Auberdine
 	-- {npc:3694} Sentinel Selarin · {npc:3691} Raene Wolfrunner · {area:415} Astranaar · {zone:1440} Ashenvale
 	["{npc:3694}: for {npc:3691} in {area:415}, on the later {zone:1440} leg"] = "{npc:3694}: 나중의 {zone:1440} 구간에서 {area:415}의 {npc:3691}에게",
-	-- {npc:3649} Thundris Windweaver · {npc:1646} Baros Alexston · {zone:1453} Stormwind City
+	-- {npc:3649} Thundris Windweaver · {npc:1646} Baros Alexston · {zone:1453} Stormwind
 	["{npc:3649}: for {npc:1646} in {zone:1453}"] = "{npc:3649}: {zone:1453}의 {npc:1646}에게",
-	-- {zone:1453} Stormwind City
+	-- {zone:1453} Stormwind
 	["Boat to {zone:1453}"] = "배를 타고 {zone:1453}(으)로 가십시오",
 
 	-- Step 38: The Great Cat Spirit
@@ -263,7 +263,10 @@ return {
 	["Back to {npc:11802} in {area:2361}, then fly to {area:702} (by way of {area:442})."] = "{area:2361}의 {npc:11802}에게 돌아간 다음, ({area:442}을(를) 거쳐) {area:702}(으)로 날아가십시오.",
 
 	-- Step 42: To Darnassus
-	-- {area:442} Auberdine · {zone:1453} Stormwind City
+	-- {area:442} Auberdine · {zone:1453} Stormwind
 	["Take the portal up to Mathrengyl, then fly back to {area:442} for the boat to {zone:1453}."] = "차원문을 타고 마스렌길 베어워커에게 올라간 다음, {area:442}(으)로 날아가 {zone:1453}행 배를 타십시오.",
 
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Tide Crawlers scuttle along the shore below the village; {quest:983} stands on the beach just south of the docks. Darkshore Threshers swim in the shallows. The {quest:4723} lies on the shore just south of the village."] = "{npc:2232}은(는) 마을 아래 해안을 따라 기어다니고, {quest:983}은(는) 부두 바로 남쪽 해변에 서 있습니다. {npc:2185}은(는) 얕은 물에서 헤엄칩니다. {quest:4723}은(는) 마을 바로 남쪽 해안에 놓여 있습니다.",
+	-- ["{item:15883}: the {object:177790} under the water off the north coast, west of the ruins"] = "{item:15883}: 폐허 서쪽, 북쪽 해안 앞바다 물속의 {object:177790}",
 }

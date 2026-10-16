@@ -19,21 +19,16 @@ return {
 	["{quest:1859} stands in the {object:172960}, the canyon under the {object:172982}. Trolls: take {quest:1963} from him at 10."] = "{quest:1859} fica na {object:172960}, o cânion sob o {object:172982}. Trolls: peguem {quest:1963} com ele no nível 10.",
 
 	-- Step 3: Tazan
-	["Tazan"] = "Tazan",
-	-- {zone:1413} The Barrens · {area:392} Ratchet
-	["Tazan stands on the {zone:1413} coast south of {area:392}. Kill him for his satchel."] = "Tazan fica no litoral dos {zone:1413}, ao sul de {area:392}. Mate-o para pegar a algibeira.",
-	-- {item:7209} Tazan's Satchel
-	["{item:7209}: Tazan"] = "{item:7209}: Tazan",
+	-- {npc:6494} Tazan · {zone:1413} Barrens · {area:392} Ratchet
+	["{npc:6494} stands on the {zone:1413} coast south of {area:392}. Kill him for his satchel."] = "",
 
 	-- Step 4: Back to Therzok
 	-- {npc:6446} Therzok
 	["Back to {npc:6446}"] = "Volte a {npc:6446}",
 
 	-- Step 5: Tazan's Key
-	-- {object:172982} Valley of Strength · {item:7208} Tazan's Key · {item:7209} Tazan's Satchel
-	["Gamon drinks in the inn in the {object:172982}. Pick his pocket for {item:7208}, then open {item:7209}."] = "Gamon bebe na estalagem do {object:172982}. Bata a carteira dele para pegar a {item:7208} e abra a {item:7209}.",
-	-- {item:7208} Tazan's Key
-	["{item:7208}: Gamon"] = "{item:7208}: Gamon",
+	-- {npc:6466} Gamon · {object:172982} Valley of Strength · {item:7208} Tazan's Key · {item:7209} Tazan's Satchel
+	["{npc:6466} drinks in the inn in the {object:172982}. Pick his pocket for {item:7208}, then open {item:7209}."] = "",
 	-- {item:7209} Tazan's Satchel
 	["{item:7209}, once you have the key"] = "{item:7209}, depois de ter a chave",
 	-- {item:7295} Tazan's Logbook
@@ -54,7 +49,7 @@ return {
 	["{quest:1885} stands in the {object:36073}."] = "{quest:1885} fica no {object:36073}.",
 
 	-- Step 9: Astor Hadren
-	-- {npc:6497} Astor Hadren · {area:228} The Sepulcher
+	-- {npc:6497} Astor Hadren · {area:228} Sepulcher
 	["{npc:6497} stands north-east of the {area:228}. Take his Letter of Introduction from him."] = "{npc:6497} fica a nordeste de {area:228}. Pegue com ele a Carta de Apresentação do Astolfo.",
 
 	-- Step 10: Back to Mennet Carkad
@@ -70,4 +65,11 @@ return {
 	["Mennet and {npc:2425}"] = "Mennet e {npc:2425}",
 	-- {npc:2425} Varimathras · {object:36126} Royal Quarter
 	["Mennet sends the ledger on to {npc:2425} in the Hall of the Dark Lady, the {object:36126}."] = "Mennet envia o livro-caixa a {npc:2425} no Salão da Dama Sombria, o {object:36126}.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Gamon drinks in the inn in the {object:172982}. Pick his pocket for {item:7208}, then open {item:7209}."] = "Gamon bebe na estalagem do {object:172982}. Bata a carteira dele para pegar a {item:7208} e abra a {item:7209}.",
+	-- ["Tazan"] = "Tazan",
+	-- ["Tazan stands on the {zone:1413} coast south of {area:392}. Kill him for his satchel."] = "Tazan fica no litoral dos {zone:1413}, ao sul de {area:392}. Mate-o para pegar a algibeira.",
+	-- ["{item:7208}: Gamon"] = "{item:7208}: Gamon",
+	-- ["{item:7209}: Tazan"] = "{item:7209}: Tazan",
 }

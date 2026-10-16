@@ -10,7 +10,7 @@ return {
 	["Exploration: {zone:1414} 30-45"] = "Exploración: {zone:1414} 30-45",
 
 	-- Step 1: Desolace (1/2)
-	-- {zone:1413} The Barrens · {zone:1443} Desolace · {zone:1445} Dustwallow Marsh
+	-- {zone:1413} Barrens · {zone:1443} Desolace · {zone:1445} Dustwallow Marsh
 	["Picks up west of the {zone:1413}, in {zone:1443}, and ends in {zone:1445}. 15 areas to discover here, levels 30-39."] = "Empieza al oeste de {zone:1413}, en {zone:1443}, y termina en {zone:1445}. 15 áreas por descubrir aquí, niveles 30-39.",
 	["Exploring the entire world map on one character is a Forever Legacy Challenge (1 account-wide Legacy Point)."] = "Explorar el mapa del mundo entero con un personaje es un Desafío de Legado de Forever (1 Punto de Legado para toda la cuenta).",
 	-- {zone:1442} Stonetalon Mountains · {zone:1443} Desolace · {area:608} Nijel's Point
@@ -35,7 +35,7 @@ return {
 	["16 areas to discover here, levels 41-60."] = "16 áreas por descubrir aquí, niveles 41-60.",
 	-- {zone:1443} Desolace · {zone:1444} Feralas
 	["Go back into southern {zone:1443}; the road continues south into {zone:1444}."] = "Vuelve al sur de {zone:1443}; el camino sigue hacia el sur hasta {zone:1444}.",
-	-- {area:1116} Feathermoon Stronghold · {area:1120} Sardor Isle · {area:1108} The Forgotten Coast
+	-- {area:1116} Feathermoon Stronghold · {area:1120} Sardor Isle · {area:1108} Forgotten Coast
 	["{area:1116} on {area:1120} is the Alliance town (boat from the {area:1108})."] = "{area:1116}, en {area:1120}, es el pueblo de la Alianza (barco desde {area:1108}).",
 	-- {area:1099} Camp Mojache
 	["{area:1099} in the east is the Horde town."] = "{area:1099}, al este, es el pueblo de la Horda.",
@@ -44,12 +44,14 @@ return {
 	-- {area:1099} Camp Mojache
 	["Flight path here: {area:1099} (Shyn)."] = "Ruta de vuelo aquí: {area:1099} (Shyn).",
 	["level 60 area, well above this guide's range"] = "área de nivel 60, muy por encima del rango de esta guía",
+	-- {area:1108} Forgotten Coast
+	["The {area:1108}"] = "",
 
 	-- Step 6: Dustwallow Marsh
 	["7 areas to discover here, levels 36-61."] = "7 áreas por descubrir aquí, niveles 36-61.",
 	-- {area:150} Menethil Harbor · {area:513} Theramore Isle
 	["Fly to Theramore (or take the boat from {area:150}); {area:513} is the Alliance town."] = "Vuela a Theramore (o toma el barco desde {area:150}); {area:513} es el pueblo de la Alianza.",
-	-- {zone:1445} Dustwallow Marsh · {zone:1413} The Barrens · {area:496} Brackenwall Village
+	-- {zone:1445} Dustwallow Marsh · {zone:1413} Barrens · {area:496} Brackenwall Village
 	["{zone:1445} is east of the southern {zone:1413}; {area:496} in the north-west is the Horde town."] = "{zone:1445} está al este del sur de {zone:1413}; {area:496}, al noroeste, es el pueblo de la Horda.",
 	["Flight path here: Theramore (Baldruc)."] = "Ruta de vuelo aquí: Theramore (Baldruc).",
 	-- {area:496} Brackenwall Village

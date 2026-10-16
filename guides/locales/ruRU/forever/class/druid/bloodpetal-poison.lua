@@ -21,7 +21,7 @@ return {
 	-- plural, as words: Gorishi Stings = {item:22435} Gorishi Sting
 	["Gorishi Stings and {item:22434}"] = "Жала Гориши и {item:22434}",
 	-- {item:22434} Bloodcap
-	-- plural, as words: Bloodpetal Sprouts = {item:11315} Bloodpetal Sprout
+	-- plural, as words: Bloodpetal Sprouts = {object:164958} Bloodpetal Sprout
 	["The Gorishi wasps, workers and reavers of the hive in the south of the crater drop the stings; the Bloodpetal Sprouts that give the {item:22434} grow all over the crater's western half."] = "Осы, рабочие и разорители из улья Гориши на юге кратера оставляют жала; побеги кровоцвета, дающие {item:22434}, растут по всей западной половине кратера.",
 
 	-- Step 5: Toxic Test
@@ -40,5 +40,4 @@ return {
 	-- Step 8: A Better Ingredient
 	-- {zone:1449} Un'Goro Crater
 	["Back to Torwa in the south-east corner of {zone:1449}."] = "Вернитесь к Землепроходцу Торве в юго-восточный угол кратера: {zone:1449}.",
-
 }

@@ -8,7 +8,7 @@ return {
 	-- Step 1: Darkshire
 	-- {item:4371} Bronze Tube · {quest:174} Look to the Stars · {npc:3133} Herble Baubbletump · {npc:1448} Neal Allen · {area:150} Menethil Harbor
 	["No {item:4371} for {quest:174}? {npc:3133} sells it in the house beside Viktori, in limited stock; {npc:1448} in {area:150} sells it too."] = "沒有{quest:174}要的{item:4371}？{npc:3133}在維克托旁邊的房子裡限量出售；{area:150}的{npc:1448}也有賣。",
-	-- {npc:352} Dungar Longdrink · {zone:1453} Stormwind City
+	-- {npc:352} Dungar Longdrink · {zone:1453} Stormwind
 	["From {npc:352} in {zone:1453}"] = "向{zone:1453}的{npc:352}取得",
 	-- {npc:6790} Innkeeper Trelayne
 	["{npc:6790}, Scarlet Raven Tavern"] = "{npc:6790}，在旅店",
@@ -71,7 +71,7 @@ return {
 	["Skeletal Raiders, Healers and Warders hold the west part of the cemetery, just east of Sven's camp."] = "骷髏襲擊者、骷髏醫師和骷髏看守佔據墓地西側，就在斯溫營地的東邊。",
 
 	-- Step 13: Sven's Camp
-	-- {npc:1212} Bishop Farthing · {zone:1453} Stormwind City
+	-- {npc:1212} Bishop Farthing · {zone:1453} Stormwind
 	["For {npc:1212} in {zone:1453}, in the next guide"] = "交給{zone:1453}的{npc:1212}，在下一份指南",
 
 	-- Step 14: Defias Strongbox
@@ -79,15 +79,15 @@ return {
 	["The Defias camp lies in the south-west of {zone:1431}, south of {area:94} near the {zone:1436} border. The strongbox stands among the tents."] = "迪菲亞營地位於{zone:1431}西南部，{area:94}南邊，靠近{zone:1436}邊界。保險箱在帳篷之間。",
 
 	-- Step 15: Vul'Gol Ogre Mound
-	-- {item:1349} Abercrombie's Crate
-	["Ride east to the ogre mound. {item:1349} sits in the camp at its entrance; Splinter Fist ogres guard it."] = "向東騎往巨魔山。{item:1349}放在入口處的營地裡；裂拳巨魔守衛著它。",
+	-- {object:119} Abercrombie's Crate
+	["Ride east to the ogre mound. {object:119} sits in the camp at its entrance; Splinter Fist ogres guard it."] = "",
 	-- {npc:272273} Lost Watcher · {quest:96138} Merrick's Bow
 	["Only if a {npc:272273} dropped {quest:96138}: right-click it"] = "僅限{npc:272273}掉落了{quest:96138}時：右鍵點擊它",
 
 	-- Step 17: Back to Darkshire
 	-- {area:42} Darkshire
 	["Back to {area:42}"] = "回到{area:42}",
-	-- {npc:482} Elling Trias · {zone:1453} Stormwind City
+	-- {npc:482} Elling Trias · {zone:1453} Stormwind
 	["For {npc:482} in {zone:1453}, in the next guide"] = "交給{zone:1453}的{npc:482}，在下一份指南",
 	-- {npc:263} Lord Ello Ebonlocke
 	["{npc:263}, in the town hall"] = "{npc:263}，在市政廳裡",
@@ -121,15 +121,17 @@ return {
 	["The captain walks the deck of the wrecked ship; his strongbox sits in the hold."] = "船長在沉船的甲板上走動；他的保險箱在貨艙裡。",
 
 	-- Step 23: Glorin Steelbrow
-	-- {npc:1284} Archbishop Benedictus · {zone:1453} Stormwind City
+	-- {npc:1284} Archbishop Benedictus · {zone:1453} Stormwind
 	["For {npc:1284} in {zone:1453}, in the next guide"] = "交給{zone:1453}的{npc:1284}，在下一份指南",
 
 	-- Step 24: Whelgar's Excavation Site
 	["Follow the road east to the excavation site."] = "沿著道路向東前往挖掘場。",
 
 	-- Step 25: The dig and Sarltooth
-	["The dig and Sarltooth"] = "挖掘場與薩爾圖斯",
-	["The relics lie in the dig itself. Sarltooth, a big Razormaw, prowls the raptor valley just west of it."] = "文物就在挖掘場裡。薩爾圖斯是一隻大型刺喉龍，在挖掘場西邊的迅猛龍山谷徘徊。",
+	-- {npc:1353} Sarltooth
+	["The dig and {npc:1353}"] = "",
+	-- {npc:1353} Sarltooth
+	["The relics lie in the dig itself. {npc:1353}, a big Razormaw, prowls the raptor valley just west of it."] = "",
 	-- {item:2661} Neru Fragment · {object:331} Loose Soil
 	["{item:2661}: the {object:331}"] = "{item:2661}：{object:331}",
 
@@ -155,7 +157,7 @@ return {
 	["Take the boat from Menethil's pier to {area:513} in {zone:1445}."] = "從米奈希爾的碼頭搭船前往{zone:1445}的{area:513}。",
 
 	-- Step 31: Takar the Seer
-	-- {zone:1413} The Barrens · {npc:6244} Takar the Seer · {area:378} Camp Taurajo
+	-- {zone:1413} Barrens · {npc:6244} Takar the Seer · {area:378} Camp Taurajo
 	["On the road south through the {zone:1413}, {npc:6244} camps east of the road, north-east of {area:378}; come in from the east and keep clear of the Horde guards."] = "在向南穿過{zone:1413}的道路上，{npc:6244}在道路東邊、{area:378}東北方紮營；從東邊過去，避開部落衛兵。",
 	-- {quest:1738} Heartswood · {zone:1440} Ashenvale · {zone:1443} Desolace
 	["{quest:1738}: in {zone:1440}, on the way to {zone:1443}"] = "{quest:1738}：在{zone:1440}，前往{zone:1443}的路上",
@@ -163,7 +165,7 @@ return {
 	["{quest:65602}: the incubus, beside the succubus; the {item:190309} is near the {quest:1738}"] = "{quest:65602}：夢魔在魅魔旁邊；{item:190309}在{quest:1738}附近",
 
 	-- Step 32: The Great Lift
-	-- {zone:1413} The Barrens · {area:378} Camp Taurajo · {area:485} The Great Lift · {zone:1441} Thousand Needles
+	-- {zone:1413} Barrens · {area:378} Camp Taurajo · {area:485} The Great Lift · {zone:1441} Thousand Needles
 	["From Theramore follow the road west out of Dustwallow into the {zone:1413} and south along it; give {area:378} a wide berth. {area:485} at the {zone:1413}' south end takes you down into {zone:1441}. The journal lies at the foot of the lift."] = "從塞拉摩沿著道路向西離開塵泥沼澤進入{zone:1413}，再沿路向南；遠離{area:378}。{zone:1413}南端的{area:485}帶你往下進入{zone:1441}。日記就在升降梯底下。",
 	-- {npc:4048} Falfindel Waywarder · {zone:1444} Feralas
 	["For {npc:4048} in {zone:1444}, much later"] = "交給{zone:1444}的{npc:4048}，很久以後",
@@ -186,4 +188,9 @@ return {
 
 	-- Step 36: Back to Menethil
 	["Back to Menethil"] = "回到米奈希爾",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Ride east to the ogre mound. {item:1349} sits in the camp at its entrance; Splinter Fist ogres guard it."] = "向東騎往巨魔山。{item:1349}放在入口處的營地裡；裂拳巨魔守衛著它。",
+	-- ["The dig and Sarltooth"] = "挖掘場與薩爾圖斯",
+	-- ["The relics lie in the dig itself. Sarltooth, a big Razormaw, prowls the raptor valley just west of it."] = "文物就在挖掘場裡。薩爾圖斯是一隻大型刺喉龍，在挖掘場西邊的迅猛龍山谷徘徊。",
 }

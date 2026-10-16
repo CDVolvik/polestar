@@ -55,8 +55,7 @@ return {
 	["Highland Striders roam the hills all around {area:321}; both they and the Thrashers further west drop the eyes."] = "Hochlandschreiter streifen überall um {area:321} durch die Hügel; sie und die Hochlandhauer weiter westlich lassen die Augen fallen.",
 
 	-- Step 11: Drywhisker Gorge
-	-- {area:321} Hammerfall
-	["North-east of {area:321} the Drywhisker kobolds mine the gorge; the Kobolds at the mouth and the Diggers and Surveyors deeper in all drop the Motes of Myzrael."] = "Nordöstlich von {area:321} graben die Kobolde der Trockenstoppel in der Schlucht; die Kobolde am Eingang und die Buddler und Feldvermesser weiter drinnen lassen alle die Körner von Myzrael fallen.",
+	["North-east of Hammerfall the Drywhisker kobolds mine the gorge; the Kobolds at the mouth and the Diggers and Surveyors deeper in all drop the Motes of Myzrael."] = "",
 
 	-- Step 12: Iridescent Shards
 	-- {object:2701} Iridescent Shards
@@ -134,12 +133,12 @@ return {
 	["Ride south-west out of Arathi over {area:880}, south through the {zone:1437} (keep clear of {area:150}) and east into {zone:1432}; the road leaves {zone:1432} to the south into the {zone:1418}. Follow it south to the goblin camp in the {area:1877}."] = "Reite nach Südwesten aus Arathi über den {area:880}, nach Süden durch das {zone:1437} (meide {area:150}) und nach Osten nach {zone:1432}; die Straße verlässt {zone:1432} nach Süden ins {zone:1418}. Folge ihr nach Süden zum Goblinlager im {area:1877}.",
 
 	-- Step 29: Valley of Fangs
-	-- {quest:1106} Martek the Exiled · {area:439} The Shimmering Flats
+	-- {quest:1106} Martek the Exiled · {area:439} Shimmering Flats
 	["{quest:1106}: Fizzle's letter from the {area:439}"] = "{quest:1106}: Fizzles Brief aus {area:439}",
 
 	-- Step 30: The Dustbowl
-	-- {area:1878} The Dustbowl · {area:340} Kargath
-	["Ride west along the road; Lotwil's camp sits in the {area:1878} halfway to {area:340}."] = "Reite auf der Straße nach Westen; Lotwils Lager liegt in {area:1878} auf halbem Weg nach {area:340}.",
+	-- {area:340} Kargath
+	["Ride west along the road; Lotwil's camp sits in the Dustbowl halfway to {area:340}."] = "",
 
 	-- Step 31: Kargath
 	-- {area:340} Kargath
@@ -156,15 +155,13 @@ return {
 	-- Step 34: Rock Elementals
 	-- plural, as words: Rock Elementals = {npc:92} Rock Elemental
 	["Rock Elementals"] = "Felselementare",
-	-- {area:1878} The Dustbowl
 	-- plural, as words: Rock Elementals = {npc:92} Rock Elemental
-	["The bigger Rock Elementals stand on the slopes north-west of the {area:1878}; each one drops a slab."] = "Die größeren Felselementare stehen an den Hängen nordwestlich von {area:1878}; jedes lässt eine Steinplatte fallen.",
+	["The bigger Rock Elementals stand on the slopes north-west of the Dustbowl; each one drops a slab."] = "",
 
 	-- Step 36: Coyotes and buzzards
 	["Coyotes and buzzards"] = "Kojoten und Bussarde",
-	-- {area:1878} The Dustbowl
 	-- plural, as words: Elder Crag Coyotes = {npc:2729} Elder Crag Coyote · Giant Buzzards = {npc:2831} Giant Buzzard
-	["The Elder Crag Coyotes and Giant Buzzards roam the basin south of the {area:1878}. Coyotes drop both the jawbones and the fangs; only the buzzards drop wings and gizzards."] = "Die Alten Klippenkojoten und Riesenbussarde streifen durch das Becken südlich von {area:1878}. Kojoten lassen Kieferknochen und Fangzähne fallen; nur die Bussarde lassen Flügel und Muskelmägen fallen.",
+	["The Elder Crag Coyotes and Giant Buzzards roam the basin south of the Dustbowl. Coyotes drop both the jawbones and the fangs; only the buzzards drop wings and gizzards."] = "",
 
 	-- Step 37: Greater Rock Elementals
 	-- plural, as words: Greater Rock Elementals = {npc:2736} Greater Rock Elemental
@@ -212,17 +209,21 @@ return {
 	["Zeppelin tower"] = "Zeppelinturm",
 
 	-- Step 49: Thunder Bluff
-	-- {area:1638} Thunder Bluff · {zone:1454} Orgrimmar · {npc:3033} Turak Runetotem · {area:1639} Elder Rise · {npc:246344} Alodan the Hopeful · {area:380} The Crossroads
+	-- {area:1638} Thunder Bluff · {zone:1454} Orgrimmar · {npc:3033} Turak Runetotem · {area:1639} Elder Rise · {npc:246344} Alodan the Hopeful · {area:380} Crossroads
 	["Your trainer is in {area:1638}, one flight from {zone:1454}: {npc:3033} (Druids) on {area:1639}, {npc:246344} (Paladins). Fly on to the {area:380} from there."] = "Dein Lehrer ist in {area:1638}, einen Flug von {zone:1454} entfernt: {npc:3033} (Druiden) auf der {area:1639}, {npc:246344} (Paladine). Flieg von dort weiter nach {area:380}.",
 
+	-- Step 50: The Crossroads
+	-- {area:380} Crossroads
+	["The {area:380}"] = "",
+
 	-- Step 51: Regthar Deathgate
-	-- {area:380} The Crossroads · {area:386} The Forgotten Pools
+	-- {area:380} Crossroads · {area:386} Forgotten Pools
 	["Ride north up the road from the {area:380} to the {area:386}; Regthar keeps watch on the rise above the water."] = "Reite von {area:380} die Straße nach Norden zu {area:386}; Regthar hält auf der Anhöhe über dem Wasser Wache.",
 	-- {npc:5395} Felgur Twocuts · {zone:1443} Desolace
 	["for {npc:5395} in {zone:1443}, in the next guide"] = "für {npc:5395} in {zone:1443}, im nächsten Guide",
 
 	-- Step 52: Ratchet
-	-- {area:380} The Crossroads · {area:392} Ratchet
+	-- {area:380} Crossroads · {area:392} Ratchet
 	["Ride back south to the {area:380} and fly to {area:392}."] = "Reite zurück nach Süden nach {area:380} und flieg nach {area:392}.",
 	-- {item:3713} Soothing Spices · {zone:1445} Dustwallow Marsh
 	["{item:3713}, for \"Swamp Eye\" Jarl in {zone:1445}"] = "{item:3713}, für Sumpfauge Jarl in {zone:1445}",
@@ -232,4 +233,10 @@ return {
 	-- Step 53: The Affray
 	-- {area:392} Ratchet · {area:720} Fray Island · {npc:6236} Klannoc Macleod · {npc:6238} Big Will
 	["Ride south along the coast from {area:392} to {area:720}. {npc:6236} stands by the arena: step on the grate to start the fight; the challengers come one at a time, then {npc:6238} (33)."] = "Reite von {area:392} die Küste entlang nach Süden zur {area:720}. {npc:6236} steht bei der Arena: Tritt auf das Gitter, um den Kampf zu starten; die Herausforderer kommen einzeln, dann {npc:6238} (33).",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["North-east of {area:321} the Drywhisker kobolds mine the gorge; the Kobolds at the mouth and the Diggers and Surveyors deeper in all drop the Motes of Myzrael."] = "Nordöstlich von {area:321} graben die Kobolde der Trockenstoppel in der Schlucht; die Kobolde am Eingang und die Buddler und Feldvermesser weiter drinnen lassen alle die Körner von Myzrael fallen.",
+	-- ["Ride west along the road; Lotwil's camp sits in the {area:1878} halfway to {area:340}."] = "Reite auf der Straße nach Westen; Lotwils Lager liegt in {area:1878} auf halbem Weg nach {area:340}.",
+	-- ["The Elder Crag Coyotes and Giant Buzzards roam the basin south of the {area:1878}. Coyotes drop both the jawbones and the fangs; only the buzzards drop wings and gizzards."] = "Die Alten Klippenkojoten und Riesenbussarde streifen durch das Becken südlich von {area:1878}. Kojoten lassen Kieferknochen und Fangzähne fallen; nur die Bussarde lassen Flügel und Muskelmägen fallen.",
+	-- ["The bigger Rock Elementals stand on the slopes north-west of the {area:1878}; each one drops a slab."] = "Die größeren Felselementare stehen an den Hängen nordwestlich von {area:1878}; jedes lässt eine Steinplatte fallen.",
 }

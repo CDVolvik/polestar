@@ -10,7 +10,7 @@ return {
 	["Your epic mount at 60, summoned at will: the faster step up from the Warhorse."] = "60级的史诗坐骑，可随时召唤：比战马更快的升级。",
 
 	-- Step 1: Lord Grayson Shadowbreaker (Ironforge)
-	-- {npc:5149} Brandur Ironhammer · {object:32362} The Mystic Ward · {quest:7638} Lord Grayson Shadowbreaker · {zone:1453} Stormwind City
+	-- {npc:5149} Brandur Ironhammer · {object:32362} Mystic Ward · {quest:7638} Lord Grayson Shadowbreaker · {zone:1453} Stormwind
 	["At 60 {npc:5149} in the {object:32362} sends you to {quest:7638} in {zone:1453}'s Cathedral of Light."] = "60级时，{object:32362}的{npc:5149}会让你去找{zone:1453}光明大教堂的{quest:7638}。",
 
 	-- Step 2: Lord Grayson Shadowbreaker
@@ -20,7 +20,7 @@ return {
 	["{npc:6171}, Cathedral of Light"] = "{npc:6171}，光明大教堂",
 
 	-- Step 3: High Priest Rohan
-	-- {npc:11406} High Priest Rohan · {zone:1455} Ironforge · {object:32362} The Mystic Ward
+	-- {npc:11406} High Priest Rohan · {zone:1455} Ironforge · {object:32362} Mystic Ward
 	["{npc:11406} is in {zone:1455}'s {object:32362}. Bring 150 gold: the censer is yours for a donation."] = "{npc:11406}在{zone:1455}的{object:32362}。带上150金：捐献后香炉就归你了。",
 	-- {npc:11406} High Priest Rohan
 	["{npc:11406}: 150 gold"] = "{npc:11406}：150金",
@@ -35,12 +35,12 @@ return {
 	["Terrordale Spirits"] = "{npc:14564}",
 
 	-- Step 7: Grimand Elmore
-	-- {npc:1416} Grimand Elmore · {zone:1453} Stormwind City · {object:28027} Dwarven District
+	-- {npc:1416} Grimand Elmore · {zone:1453} Stormwind · {object:28027} Dwarven District
 	["{npc:1416} works in {zone:1453}'s {object:28027}."] = "{npc:1416}在{zone:1453}的{object:28027}工作。",
 
 	-- Step 8: Grimand's materials
 	["Grimand's materials"] = "格瑞曼德的材料",
-	-- {item:14047} Runecloth · {item:8836} Arthas' Tears · {zone:1448} Felwood · {skill:171} Alchemy · {zone:1453} Stormwind City · {object:2096} Trade District
+	-- {item:14047} Runecloth · {item:8836} Arthas' Tears · {zone:1448} Felwood · {skill:171} Alchemy · {zone:1453} Stormwind · {object:2096} Trade District
 	-- plural, as words: Arcanite Bars = {item:12360} Arcanite Bar
 	["{item:14047} drops from humanoids around level 50 and up; {item:8836} is an herb of the Plaguelands and {zone:1448}; Arcanite Bars are an {skill:171} transmute. The Auction House in {zone:1453}'s {object:2096} sells all three, and so do crafters."] = "{item:14047}由约50级及以上的人型生物掉落；{item:8836}是瘟疫之地和{zone:1448}的草药；奥金锭由{skill:171}转化而来。{zone:1453}{object:2096}的拍卖行三样都有售，工匠也会出售。",
 	-- plural, as words: Arcanite Bars = {item:12360} Arcanite Bar
@@ -65,7 +65,7 @@ return {
 	-- Step 12: Enriched Manna Biscuits
 	-- plural, as words: Enriched Manna Biscuits = {item:13724} Enriched Manna Biscuit
 	["Enriched Manna Biscuits"] = "可口的魔法点心",
-	-- {object:2160} The Argent Dawn · {object:92525} Argent Dawn · {npc:10857} Argent Quartermaster Lightspark · {area:3197} Chillwind Camp · {npc:11536} Quartermaster Miranda Breechlock · {area:2268} Light's Hope Chapel · {npc:10856} Argent Quartermaster Hasana · {area:813} The Bulwark
+	-- {object:2160} The Argent Dawn · {object:92525} Argent Dawn · {npc:10857} Argent Quartermaster Lightspark · {area:3197} Chillwind Camp · {npc:11536} Quartermaster Miranda Breechlock · {area:2268} Light's Hope Chapel · {npc:10856} Argent Quartermaster Hasana · {area:813} Bulwark
 	["{object:2160} quartermasters sell the biscuits in fives once the {object:92525} is Friendly with you: {npc:10857} at {area:3197}, {npc:11536} at {area:2268}, {npc:10856} at the {area:813}."] = "与{object:92525}达到友善后，{object:2160}的军需官会以五个一组出售点心：{area:3197}的{npc:10857}、{area:2268}的{npc:11536}、{area:813}的{npc:10856}。",
 	-- {npc:10857} Argent Quartermaster Lightspark · {area:3197} Chillwind Camp
 	-- plural, as words: Enriched Manna Biscuits = {item:13724} Enriched Manna Biscuit
@@ -91,9 +91,10 @@ return {
 	["he hands you the {item:18746}"] = "他会交给你{item:18746}",
 
 	-- Step 18: The Great Ossuary
-	-- {area:2057} Scholomance · {area:2298} Caer Darrow · {zone:1422} Western Plaguelands · {item:18746} Divination Scryer · {object:179746} The Great Ossuary · {npc:14516} Death Knight Darkreaver · {item:18799} Charger's Redeemed Soul · {item:18792} Blessed Arcanite Barding
-	["{area:2057} lies under {area:2298}, the island town in the south-east of the {zone:1422}. Use the {item:18746} in the heart of the {object:179746}'s basement, defeat the spirits it calls and then {npc:14516}, and give his Fallen Charger the {item:18799} and the {item:18792}. All are elite: bring a group. If the attempt fails, Lord Grayson gives you a new scryer through Again Into the {object:179746}."] = "{area:2057}位于{zone:1422}东南部的岛上小镇{area:2298}之下。在{object:179746}地下室的中央使用{item:18746}，击败它召来的灵魂，再击败{npc:14516}，然后把{item:18799}和{item:18792}交给达克雷尔的堕落战马。全都是精英：请带上小队。如果失败，格雷森·沙东布瑞克公爵会通过“重回尸骨储藏所”（{object:179746}）给你一个新的水晶球。",
+	-- {area:2057} Scholomance · {area:2298} Caer Darrow · {zone:1422} Western Plaguelands · {item:18746} Divination Scryer · {npc:14516} Death Knight Darkreaver · {item:18799} Charger's Redeemed Soul · {item:18792} Blessed Arcanite Barding
+	["{area:2057} lies under {area:2298}, the island town in the south-east of the {zone:1422}. Use the {item:18746} in the heart of the Great Ossuary's basement, defeat the spirits it calls and then {npc:14516}, and give his Fallen Charger the {item:18799} and the {item:18792}. All are elite: bring a group. If the attempt fails, Lord Grayson gives you a new scryer through Again Into the Great Ossuary."] = "",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["{area:2057} lies under {area:2298}, the island town in the south-east of the {zone:1422}. Use the {item:18746} in the heart of the {object:179746}'s basement, defeat the spirits it calls and then {npc:14516}, and give his Fallen Charger the {item:18799} and the {item:18792}. All are elite: bring a group. If the attempt fails, Lord Grayson gives you a new scryer through Again Into the {object:179746}."] = "{area:2057}位于{zone:1422}东南部的岛上小镇{area:2298}之下。在{object:179746}地下室的中央使用{item:18746}，击败它召来的灵魂，再击败{npc:14516}，然后把{item:18799}和{item:18792}交给达克雷尔的堕落战马。全都是精英：请带上小队。如果失败，格雷森·沙东布瑞克公爵会通过“重回尸骨储藏所”（{object:179746}）给你一个新的水晶球。",
 	-- ["{area:2627} Spirits"] = "{area:2627}的灵魂",
 }

@@ -32,16 +32,16 @@ return {
 
 	-- Step 6: Hameya's scroll
 	["Hameya's scroll"] = "O pergaminho de Hameya",
-	-- {area:2261} The Undercroft · {area:2260} The Marris Stead
+	-- {area:2261} Undercroft · {area:2260} Marris Stead
 	["A torn scroll lies at the entrance of the {area:2261}, the crypt south of the {area:2260}."] = "Um pergaminho rasgado está na entrada da {area:2261}, a cripta ao sul da {area:2260}.",
 
 	-- Step 7: Nathanos Blightcaller
-	-- {npc:15193} The Banshee Queen · {area:2260} The Marris Stead
+	-- {npc:15193} The Banshee Queen · {area:2260} Marris Stead
 	["{npc:15193}'s champion holds the {area:2260} farmhouse."] = "O campeão de {npc:15193} ocupa a casa da {area:2260}.",
 
 	-- Step 8: The western hills
 	["The western hills"] = "As colinas do oeste",
-	-- {area:2260} The Marris Stead · {area:2627} Terrordale
+	-- {area:2260} Marris Stead · {area:2627} Terrordale
 	-- plural, as words: Plaguehound Runts = {npc:8596} Plaguehound Runt · Plaguebats = {npc:8600} Plaguebat · Carrion Grubs = {npc:8603} Carrion Grub
 	["Plaguehound Runts and Plaguebats roam the hills north of the {area:2260}, Carrion Grubs crawl among them; work north toward {area:2627}."] = "Cães Pestilentos Miúdos e Quirópragos vagam pelas colinas ao norte de {area:2260}, e Vermes Carniceiros rastejam entre eles; avance para o norte rumo a {area:2627}.",
 
@@ -68,12 +68,12 @@ return {
 	["{item:15447} spoils within ten minutes: kill the town's Scourge quickly and grind the seven pieces with the {item:15454} at once."] = "{item:15447} estraga em dez minutos: mate rápido o Flagelo da cidade e moa as sete partes com o {item:15454} na hora.",
 
 	-- Step 14: Nathanos Blightcaller
-	-- {area:2260} The Marris Stead
+	-- {area:2260} Marris Stead
 	["Ride west to the {area:2260}."] = "Volte para oeste até a {area:2260}.",
 
 	-- Step 15: Hameya's mound
 	["Hameya's mound"] = "O monte de Hameya",
-	-- {object:177675} Mound of Dirt · {area:2261} The Undercroft
+	-- {object:177675} Mound of Dirt · {area:2261} Undercroft
 	["The {object:177675} is just behind the {area:2261}."] = "O {object:177675} fica logo atrás da {area:2261}.",
 
 	-- Step 17: Fly to Thunder Bluff

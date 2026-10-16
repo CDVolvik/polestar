@@ -10,7 +10,7 @@ return {
 	["A rare off-hand at 60, Daio's payment for capturing a {npc:12396} in the {zone:1419}."] = "60级的稀有副手，是戴奥对你在{zone:1419}捕获{npc:12396}的报酬。",
 
 	-- Step 1: Daio the Decrepit
-	-- {npc:14463} Daio the Decrepit · {area:73} The Tainted Scar · {zone:1419} Blasted Lands
+	-- {npc:14463} Daio the Decrepit · {area:73} Tainted Scar · {zone:1419} Blasted Lands
 	["At 60 {npc:14463} waits in the {area:73}, in western {zone:1419}."] = "60级时，{npc:14463}在{zone:1419}西部的{area:73}等候。",
 
 	-- Step 2: Satyr Blood
@@ -24,7 +24,7 @@ return {
 	["The Hederine demons hold {area:2256}, in southern {zone:1452}. They are elite: grouping up is advised."] = "赫达琳恶魔占据着{zone:1452}南部的{area:2256}。它们是精英：建议组队。",
 
 	-- Step 4: Suppression
-	-- {npc:12396} Doomguard Commander · {area:73} The Tainted Scar · {item:18601} Glowing Crystal Prison
+	-- {npc:12396} Doomguard Commander · {area:73} Tainted Scar · {item:18601} Glowing Crystal Prison
 	["Hand both in to Daio, then find the {npc:12396} in the {area:73} and use the {item:18601} on him. He is elite and fights to escape: grouping up is advised."] = "把两样都交给戴奥，然后在{area:73}找到{npc:12396}，对他使用{item:18601}。他是精英，会奋力挣脱：建议组队。",
 	-- {item:18601} Glowing Crystal Prison · {npc:12396} Doomguard Commander
 	["{item:18601}, on the {npc:12396}"] = "对{npc:12396}使用{item:18601}",

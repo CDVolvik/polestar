@@ -10,7 +10,7 @@ return {
 	["Experience at 50, ending in the {area:1417}; Forever removed the Classic item choice."] = "50레벨에 얻는 경험치이며, {area:1417}에서 끝납니다. Forever에서는 클래식의 아이템 선택 보상이 제거되었습니다.",
 	["Experience"] = "경험치",
 
-	-- Step 1: A Troubled Spirit (Stormwind City)
+	-- Step 1: A Troubled Spirit (Stormwind)
 	-- {npc:5479} Wu Shen · {object:2100} Old Town · {npc:7572} Fallen Hero of the Horde · {zone:1435} Swamp of Sorrows
 	["At 50, {npc:5479} in {object:2100}, beside the Pig and Whistle, sends you to the {npc:7572} in the {zone:1435}."] = "50레벨에 돼지와 휘파람 선술집 옆 {object:2100}의 {npc:5479}이(가) {zone:1435}의 {npc:7572}에게 보냅니다.",
 

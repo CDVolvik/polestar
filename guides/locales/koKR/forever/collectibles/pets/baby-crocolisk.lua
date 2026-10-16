@@ -6,6 +6,6 @@
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Sewer Beast
-	-- {npc:3581} Sewer Beast · {zone:1453} Stormwind City
+	-- {npc:3581} Sewer Beast · {zone:1453} Stormwind
 	["The {npc:3581} is a rare level 50 crocolisk that swims {zone:1453}'s canals; early kill counts give about 1.5% per kill. It is friendly to nobody: Horde players can farm it too, but they are in an enemy capital."] = "{npc:3581}은(는) {zone:1453}의 수로를 헤엄치는 50레벨 희귀 악어입니다. 초기 처치 집계로는 처치당 약 1.5%입니다. 누구에게도 우호적이지 않으므로 호드 플레이어도 사냥할 수 있지만, 적 수도 안에 있게 됩니다.",
 }

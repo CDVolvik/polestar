@@ -10,13 +10,12 @@ return {
 	["{area:380} is your base for this guide. Everyone you need stands within a few steps of the inn."] = "{area:380}是本指南的大本营。你要找的人都在旅店几步之内。",
 	-- {npc:3615} Devrak
 	["{npc:3615}, the wind rider master"] = "{npc:3615}，双足飞龙管理员",
-	-- {npc:3449} Darsok Swiftdagger · {area:383} The Dry Hills
+	-- {npc:3449} Darsok Swiftdagger · {area:383} Dry Hills
 	["{npc:3449}: the harpies come later, in the {area:383}"] = "{npc:3449}：鹰身人稍后再打，在{area:383}",
 
 	-- Step 2: Plainstriders and raptors
 	["Plainstriders and raptors"] = "陆行鸟和迅猛龙",
-	-- {area:380} The Crossroads
-	["Plainstriders and Sunscale raptors roam the plains all around the {area:380}, thickest to the north."] = "平原陆行鸟和赤鳞迅猛龙在{area:380}四周的平原上游荡，北边最多。",
+	["Plainstriders and Sunscale raptors roam the plains all around the Crossroads, thickest to the north."] = "",
 
 	-- Step 4: The Zhevra
 	-- plural, as words: Zhevra Runners = {npc:3242} Zhevra Runner
@@ -54,13 +53,13 @@ return {
 	["Burning Blade Cultists hold {area:1898} in northern {zone:1411}; they drop the {item:6652}. The {item:5026} comes from the Razormane on your next visit to their camp."] = "火刃祭司占据{zone:1411}北部的{area:1898}；它们掉落{item:6652}。{item:5026}在你下次去钢鬃营地时从钢鬃野猪人身上获得。",
 
 	-- Step 13: Thun'grim Firegaze
-	-- {area:380} The Crossroads · {area:392} Ratchet · {object:58369} Stolen Iron Chest
-	["Thun'grim camps beside the road from the {area:380} to {area:392}. The {object:58369} sits in the south of the Razormane camp just north of him."] = "索恩格瑞姆在从{area:380}到{area:392}的路旁扎营。{object:58369}在他北边不远的钢鬃营地南部。",
+	-- {area:392} Ratchet · {object:58369} Stolen Iron Chest
+	["Thun'grim camps beside the road from the Crossroads to {area:392}. The {object:58369} sits in the south of the Razormane camp just north of him."] = "",
 
 	-- Step 14: Ratchet
 	-- {area:392} Ratchet
 	["Follow the road south-east to {area:392} on the coast."] = "沿道路向东南前往海岸上的{area:392}。",
-	-- {npc:3442} Sputtervalve · {area:382} The Sludge Fen
+	-- {npc:3442} Sputtervalve · {area:382} Sludge Fen
 	["{npc:3442}: the console is in the {area:382}, later"] = "{npc:3442}：控制台在{area:382}，稍后",
 	-- {quest:1492} Wharfmaster Dizzywig
 	["{quest:1492}, on the dock"] = "{quest:1492}，在码头上",
@@ -74,8 +73,7 @@ return {
 	["Back down the beach, past the pirate camp: the crate of boots and the fragile crate with the lens sit at its south end."] = "沿海滩往回走，经过海盗营地：一箱靴子和装着镜片的易碎品箱在营地南端。",
 
 	-- Step 19: The Crossroads
-	-- {area:380} The Crossroads
-	["Walk back west along the road to the {area:380}."] = "沿道路向西走回{area:380}。",
+	["Walk back west along the road to the Crossroads."] = "",
 
 	-- Step 20: The Disruption Ends
 	-- {npc:3438} Kreenig Snarlsnout
@@ -94,13 +92,15 @@ return {
 	["{quest:881}, a white lion, prowls the plains north of the Razormane camp."] = "{quest:881}是一头白狮，在钢鬃营地北边的平原上徘徊。",
 
 	-- Step 24: Samophlange
-	-- {object:4141} Control Console · {area:382} The Sludge Fen · {item:5089} Console Key · {npc:3471} Tinkerer Sniggles
+	-- {object:4141} Control Console · {area:382} Sludge Fen · {item:5089} Console Key · {npc:3471} Tinkerer Sniggles
 	["The {object:4141} stands at the Venture Co. research site west of the {area:382}. Close the three valves around the drill, use the console again, then take the {item:5089} from {npc:3471} beside it."] = "{object:4141}位于{area:382}西边的风险投资公司研究站。关闭钻机周围的三个阀门，再次使用控制台，然后从旁边的{npc:3471}身上拿到{item:5089}。",
 	-- {npc:3442} Sputtervalve · {area:392} Ratchet
 	["{npc:3442} in {area:392}: later, on the way"] = "{area:392}的{npc:3442}：稍后，顺路",
 
 	-- Step 25: The Dry Hills
-	-- {area:383} The Dry Hills · {quest:819} Chen's Empty Keg
+	-- {area:383} Dry Hills
+	["The {area:383}"] = "",
+	-- {area:383} Dry Hills · {quest:819} Chen's Empty Keg
 	["West to the {area:383}. The Witchwing harpies nest all over them; any of them can drop a talon. {quest:819} lies in their hills."] = "向西前往{area:383}。巫翼鹰身人在那里到处筑巢；任何一只都可能掉落爪子。{quest:819}就在它们的山丘中。",
 
 	-- Step 26: Regthar Deathgate
@@ -116,8 +116,7 @@ return {
 	["Kolkar Wranglers and Stormers hold the camps south of Regthar."] = "科卡尔牧民和科卡尔召雷师占据雷戈萨南边的营地。",
 
 	-- Step 31: The Stagnant Oasis
-	-- {area:380} The Crossroads
-	["South-east of the {area:380}. Test the seeds at the bubbling fissure on the oasis' east bank."] = "在{area:380}东南方。在绿洲东岸冒泡的裂缝处测试种子。",
+	["South-east of the Crossroads. Test the seeds at the bubbling fissure on the oasis' east bank."] = "",
 
 	-- Step 32: Raptor nests
 	["Raptor nests"] = "迅猛龙巢穴",
@@ -133,25 +132,25 @@ return {
 	["Back west along the road."] = "沿道路向西返回。",
 
 	-- Step 35: Lushwater Oasis
-	-- {area:387} Lushwater Oasis · {area:380} The Crossroads · {area:388} The Stagnant Oasis
+	-- {area:387} Lushwater Oasis · {area:388} Stagnant Oasis
 	-- plural, as words: Oasis Snapjaws = {npc:3461} Oasis Snapjaw
-	["Oasis Snapjaws crawl around {area:387}, south-west of the {area:380}, and around the {area:388}."] = "绿洲钳嘴龟在{area:380}西南方的{area:387}周围和{area:388}周围爬行。",
+	["Oasis Snapjaws crawl around {area:387}, south-west of the Crossroads, and around the {area:388}."] = "",
 
 	-- Step 36: The Crossroads
-	-- {quest:3301} Mura Runetotem · {area:228} The Sepulcher · {zone:1421} Silverpine Forest
+	-- {quest:3301} Mura Runetotem · {area:228} Sepulcher · {zone:1421} Silverpine Forest
 	["{quest:3301}: the {area:228} in {zone:1421}, next guide"] = "{quest:3301}：{zone:1421}的{area:228}，下一份指南",
 
 	-- Step 37: Harpy Lieutenants
-	-- {area:383} The Dry Hills
+	-- {area:383} Dry Hills
 	-- plural, as words: Witchwing Slayers = {npc:3278} Witchwing Slayer
 	["The Witchwing Slayers hold the western {area:383}; they wear the rings."] = "巫翼杀戮者占据{area:383}西部；戒指在它们身上。",
 
 	-- Step 38: Wenikee Boltbucket
-	-- {area:1703} The Mor'shan Rampart
+	-- {area:1703} Mor'shan Rampart
 	["East to the {area:1703}; Wenikee stands at the camp just south of it."] = "向东前往{area:1703}；维妮站在其南边不远的营地。",
 
 	-- Step 39: Nugget Slugs
-	-- {area:382} The Sludge Fen
+	-- {area:382} Sludge Fen
 	["The tool buckets with the slugs lie around the Venture Co. drill site in the {area:382}, east of Wenikee."] = "装有高强度齿轮的工具桶散落在维妮东边{area:382}中的风险投资公司钻探点周围。",
 
 	-- Step 40: Wenikee Boltbucket
@@ -159,6 +158,14 @@ return {
 	["Keep it: {quest:3923} stands outside {zone:1454}; a later guide hands it in"] = "留着：{quest:3923}站在{zone:1454}外；之后的指南会交还",
 
 	-- Step 41: The Crossroads
-	-- {area:380} The Crossroads · {zone:1454} Orgrimmar · {zone:1420} Tirisfal Glades
-	["Walk back south to the {area:380}. The next guide starts here and takes you to {zone:1454} and the zeppelin to {zone:1420}."] = "向南走回{area:380}。下一份指南从这里开始，带你前往{zone:1454}并乘飞艇前往{zone:1420}。",
+	-- {zone:1454} Orgrimmar · {zone:1420} Tirisfal Glades
+	["Walk back south to the Crossroads. The next guide starts here and takes you to {zone:1454} and the zeppelin to {zone:1420}."] = "",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Oasis Snapjaws crawl around {area:387}, south-west of the {area:380}, and around the {area:388}."] = "绿洲钳嘴龟在{area:380}西南方的{area:387}周围和{area:388}周围爬行。",
+	-- ["Plainstriders and Sunscale raptors roam the plains all around the {area:380}, thickest to the north."] = "平原陆行鸟和赤鳞迅猛龙在{area:380}四周的平原上游荡，北边最多。",
+	-- ["South-east of the {area:380}. Test the seeds at the bubbling fissure on the oasis' east bank."] = "在{area:380}东南方。在绿洲东岸冒泡的裂缝处测试种子。",
+	-- ["Thun'grim camps beside the road from the {area:380} to {area:392}. The {object:58369} sits in the south of the Razormane camp just north of him."] = "索恩格瑞姆在从{area:380}到{area:392}的路旁扎营。{object:58369}在他北边不远的钢鬃营地南部。",
+	-- ["Walk back south to the {area:380}. The next guide starts here and takes you to {zone:1454} and the zeppelin to {zone:1420}."] = "向南走回{area:380}。下一份指南从这里开始，带你前往{zone:1454}并乘飞艇前往{zone:1420}。",
+	-- ["Walk back west along the road to the {area:380}."] = "沿道路向西走回{area:380}。",
 }

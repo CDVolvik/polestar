@@ -87,7 +87,9 @@ return {
 	["The bounty board"] = "Le tableau des primes",
 
 	-- Step 13: Prideclaws and Galestriders
+	-- plural, as words: Prideclaws = {npc:251245} Prideclaw
 	["Prideclaws and Galestriders"] = "Fièregriffes et trotteurs des trombes",
+	-- plural, as words: Prideclaws = {npc:251245} Prideclaw
 	["Prideclaws and Galestriders roam the grasslands south of the village. Galestriders drop both the eggs and the meat."] = "Les Fièregriffes et les Trotteurs des trombes errent dans les prairies au sud du village. Les Trotteurs des trombes lâchent les œufs et la viande.",
 
 	-- Step 14: Back to Shen'dar
@@ -224,8 +226,8 @@ return {
 
 	-- Step 41: The dead cultist
 	["The dead cultist"] = "Le cultiste mort",
-	-- {area:16638} Valanaar · {npc:273017} Fendaal Windstone · {quest:98512} Al'Aketh Assassins
-	["North-west of {area:16638} along the road: {npc:273017} watches the {quest:98512}; the dead cultist lies just north of him."] = "Au nord-ouest de {area:16638}, le long de la route : {npc:273017} surveille {quest:98512} ; le cultiste mort gît juste au nord.",
+	-- {npc:273017} Fendaal Windstone · {quest:98512} Al'Aketh Assassins
+	["North-west of Valanaar along the road: {npc:273017} watches the {quest:98512}; the dead cultist lies just north of him."] = "",
 	["Search the dead cultist"] = "Fouiller le cultiste mort",
 	-- {npc:258443} Ur'endra
 	["{npc:258443}, in the highlands south-west of the cultist"] = "{npc:258443}, dans les hautes-terres au sud-ouest du cultiste",
@@ -303,9 +305,9 @@ return {
 	["Skycutter to {area:279}"] = "Fend-ciel pour {area:279}",
 
 	-- Step 56: Denaaris Stargale
-	-- {zone:1453} Stormwind City
+	-- {zone:1453} Stormwind
 	["Denaaris stands beside the Skyborne Portal where the zeppelin lands. The portal takes you to {zone:1453}."] = "Denaaris se tient près du portail éolide, là où le zeppelin se pose. Le portail vous mène à {zone:1453}.",
-	-- {npc:270459} Alfina Nightgaze · {npc:5504} Sheldras Moontree · {zone:1453} Stormwind City
+	-- {npc:270459} Alfina Nightgaze · {npc:5504} Sheldras Moontree · {zone:1453} Stormwind
 	["{npc:270459}, beside Denaaris: for {npc:5504} in {zone:1453}"] = "{npc:270459}, à côté de Denaaris : pour {npc:5504} à {zone:1453}",
 
 	-- Step 57: Stormwind Keep
@@ -315,7 +317,7 @@ return {
 	["For {npc:234} at {area:108}"] = "Pour {npc:234} à {area:108}",
 
 	-- Step 58: Sheldras Moontree
-	-- {npc:5504} Sheldras Moontree · {zone:1453} Stormwind City · {spell:18960} Teleport: Moonglade · {npc:11802} Dendrite Starblaze · {spell:499} Cat Form · {zone:1439} Darkshore
+	-- {npc:5504} Sheldras Moontree · {zone:1453} Stormwind · {spell:18960} Teleport: Moonglade · {npc:11802} Dendrite Starblaze · {spell:499} Cat Form · {zone:1439} Darkshore
 	["{npc:5504}, {zone:1453}'s druid trainer, teaches you {spell:18960}. {npc:11802}'s welcome waits for your {spell:499} trip at the end of {zone:1439}."] = "{npc:5504}, le maître des druides de {zone:1453}, vous enseigne {spell:18960}. L'accueil de {npc:11802} attend votre voyage en {spell:499} à la fin de {zone:1439}.",
 
 	-- Step 59: Jennea Cannon
@@ -323,12 +325,13 @@ return {
 	["{npc:5497} stands in the Wizard's Sanctum, the tower of the {object:2101}; she gives you a flask for the {quest:1861} waterfall."] = "{npc:5497} se tient dans la tour de {object:2101} ; elle vous donne une flasque pour la cascade de {quest:1861}.",
 
 	-- Step 60: Mirror Lake
-	-- {zone:1453} Stormwind City · {quest:1861} Mirror Lake · {zone:1436} Westfall · {item:7207} Jennea's Flask
+	-- {zone:1453} Stormwind · {quest:1861} Mirror Lake · {zone:1436} Westfall · {item:7207} Jennea's Flask
 	["Leave {zone:1453} by the main gate. The {quest:1861} waterfall is south-west of the gates, on the way west to {zone:1436}: fill {item:7207} at its base."] = "Quittez {zone:1453} par la grande porte. La cascade de {quest:1861} est au sud-ouest des portes, sur la route de {zone:1436} à l'ouest : remplissez {item:7207} à son pied.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["/sit by Raan's campfire until you get Boosted Rest"] = "/s'asseoir près du feu de Raan jusqu'à obtenir Repos amplifié",
 	-- ["Cast Read {object:460002} at the {object:460002}"] = "Lancer Read {object:460002} sur {object:460002}",
+	-- ["North-west of {area:16638} along the road: {npc:273017} watches the {quest:98512}; the dead cultist lies just north of him."] = "Au nord-ouest de {area:16638}, le long de la route : {npc:273017} surveille {quest:98512} ; le cultiste mort gît juste au nord.",
 	-- ["Tame Beast"] = "Apprivoise une bête",
 	-- ["Use Walk on Air"] = "Utiliser Marche sur l’air",
 	-- ["{npc:249363} keeps watch east of the grove. The {npc:251143} and Al'Aketh Converts gather just north of her; the {object:460002} rises further north: cast your Read {object:460002} racial ability at it."] = "{npc:249363} monte la garde à l'est du bosquet. {npc:251143} et les Convertis al'aketh se rassemblent juste au nord ; {object:460002} s'élève plus au nord : lancez-y votre technique raciale Read {object:460002}.",

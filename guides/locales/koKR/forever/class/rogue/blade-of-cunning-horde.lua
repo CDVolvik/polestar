@@ -19,21 +19,16 @@ return {
 	["{quest:1859} stands in the {object:172960}, the canyon under the {object:172982}. Trolls: take {quest:1963} from him at 10."] = "{quest:1859}은(는) {object:172982} 아래 협곡인 {object:172960}에 있습니다. 트롤은 10레벨에 그에게서 {quest:1963}을(를) 수락하십시오.",
 
 	-- Step 3: Tazan
-	["Tazan"] = "타잔",
-	-- {zone:1413} The Barrens · {area:392} Ratchet
-	["Tazan stands on the {zone:1413} coast south of {area:392}. Kill him for his satchel."] = "타잔은 {area:392} 남쪽 {zone:1413} 해안에 있습니다. 처치해서 가방을 얻으십시오.",
-	-- {item:7209} Tazan's Satchel
-	["{item:7209}: Tazan"] = "{item:7209}: 타잔",
+	-- {npc:6494} Tazan · {zone:1413} Barrens · {area:392} Ratchet
+	["{npc:6494} stands on the {zone:1413} coast south of {area:392}. Kill him for his satchel."] = "",
 
 	-- Step 4: Back to Therzok
 	-- {npc:6446} Therzok
 	["Back to {npc:6446}"] = "{npc:6446}에게 돌아가기",
 
 	-- Step 5: Tazan's Key
-	-- {object:172982} Valley of Strength · {item:7208} Tazan's Key · {item:7209} Tazan's Satchel
-	["Gamon drinks in the inn in the {object:172982}. Pick his pocket for {item:7208}, then open {item:7209}."] = "가몬은 {object:172982}의 여관에서 술을 마십니다. 소매치기로 {item:7208}을(를) 얻은 뒤 {item:7209}을(를) 여십시오.",
-	-- {item:7208} Tazan's Key
-	["{item:7208}: Gamon"] = "{item:7208}: 가몬",
+	-- {npc:6466} Gamon · {object:172982} Valley of Strength · {item:7208} Tazan's Key · {item:7209} Tazan's Satchel
+	["{npc:6466} drinks in the inn in the {object:172982}. Pick his pocket for {item:7208}, then open {item:7209}."] = "",
 	-- {item:7209} Tazan's Satchel
 	["{item:7209}, once you have the key"] = "{item:7209}, 열쇠를 얻은 뒤",
 	-- {item:7295} Tazan's Logbook
@@ -54,7 +49,7 @@ return {
 	["{quest:1885} stands in the {object:36073}."] = "{quest:1885}은(는) {object:36073}에 있습니다.",
 
 	-- Step 9: Astor Hadren
-	-- {npc:6497} Astor Hadren · {area:228} The Sepulcher
+	-- {npc:6497} Astor Hadren · {area:228} Sepulcher
 	["{npc:6497} stands north-east of the {area:228}. Take his Letter of Introduction from him."] = "{npc:6497}은(는) {area:228} 북동쪽에 있습니다. 그에게서 소개장을 받으십시오.",
 
 	-- Step 10: Back to Mennet Carkad
@@ -70,4 +65,11 @@ return {
 	["Mennet and {npc:2425}"] = "메넷 칼카드와 {npc:2425}",
 	-- {npc:2425} Varimathras · {object:36126} Royal Quarter
 	["Mennet sends the ledger on to {npc:2425} in the Hall of the Dark Lady, the {object:36126}."] = "메넷이 장부를 {object:36126}에 있는 {npc:2425}에게 전달하라고 합니다.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Gamon drinks in the inn in the {object:172982}. Pick his pocket for {item:7208}, then open {item:7209}."] = "가몬은 {object:172982}의 여관에서 술을 마십니다. 소매치기로 {item:7208}을(를) 얻은 뒤 {item:7209}을(를) 여십시오.",
+	-- ["Tazan"] = "타잔",
+	-- ["Tazan stands on the {zone:1413} coast south of {area:392}. Kill him for his satchel."] = "타잔은 {area:392} 남쪽 {zone:1413} 해안에 있습니다. 처치해서 가방을 얻으십시오.",
+	-- ["{item:7208}: Gamon"] = "{item:7208}: 가몬",
+	-- ["{item:7209}: Tazan"] = "{item:7209}: 타잔",
 }

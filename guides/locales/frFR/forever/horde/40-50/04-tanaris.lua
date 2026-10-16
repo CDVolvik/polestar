@@ -18,12 +18,11 @@ return {
 	["the {object:150075} in the square"] = "l'{object:150075} sur la place",
 
 	-- Step 3: Sandsorrow Watch
-	-- {area:976} Gadgetzan · {item:8584} Untapped Dowsing Widget
-	["West of {area:976}, use the {item:8584} beside the water hole in the troll camp."] = "À l'ouest de {area:976}, utilisez le {item:8584} près du point d'eau du camp troll.",
+	-- {item:8584} Untapped Dowsing Widget
+	["West of Gadgetzan, use the {item:8584} beside the water hole in the troll camp."] = "",
 
 	-- Step 5: Caliph Scorpidsting
-	-- {area:976} Gadgetzan
-	["South-east of {area:976} the Wastewander bandits camp in the dunes; Caliph stands in the eastern camp."] = "Au sud-est de {area:976}, les bandits Bat-le-désert campent dans les dunes ; Caliph se tient dans le camp est.",
+	["South-east of Gadgetzan the Wastewander bandits camp in the dunes; Caliph stands in the eastern camp."] = "",
 
 	-- Step 6: Marvon Rivetseeker
 	-- {area:1938} Broken Pillar · {item:9978} Gahz'ridian Detector · {area:983} Dunemaul Compound
@@ -33,8 +32,8 @@ return {
 	["West, the Centipaar insects swarm around their hives; any of them drops the parts."] = "À l'ouest, les insectes Centipaar grouillent autour de leurs ruches ; n'importe lequel lâche les pièces.",
 
 	-- Step 8: Dunemaul Compound
-	-- {area:982} The Noxious Lair · {npc:12046} Gor'marok the Ravager · {quest:3161} Gahz'ridian
-	["South of the {area:982} the Dunemaul ogres hold their compound, with {npc:12046} at its eastern end. Dig up {quest:3161} ornaments between the fights."] = "Au sud de {area:982}, les ogres Cognedune tiennent leur camp, avec {npc:12046} à son extrémité est. Déterrez des ornements ({quest:3161}) entre les combats.",
+	-- {npc:12046} Gor'marok the Ravager · {quest:3161} Gahz'ridian
+	["South of the Noxious Lair the Dunemaul ogres hold their compound, with {npc:12046} at its eastern end. Dig up {quest:3161} ornaments between the fights."] = "",
 
 	-- Step 9: Thistleshrub Valley
 	-- {zone:1446} Tanaris
@@ -51,7 +50,7 @@ return {
 	-- Step 11: Gadgetzan
 	-- {area:976} Gadgetzan
 	["Ride south-west to {area:976}."] = "Chevauchez vers le sud-ouest jusqu'à {area:976}.",
-	-- {item:8526} Violet Tragan · {zone:1425} The Hinterlands
+	-- {item:8526} Violet Tragan · {zone:1425} Hinterlands
 	["the {item:8526} grows in the {zone:1425}, around level 48"] = "la {item:8526} pousse dans {zone:1425}, vers le niveau 48",
 
 	-- Step 12: Marvon Rivetseeker
@@ -160,8 +159,11 @@ return {
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Heavy War Golems patrol the Cauldron below Kalaran and drop the oil; the Magma and Blazing Elementals drifting among them drop the hearts. The {object:147516} Taskmasters and Slavers drive the slaves on the paths; a Slaver may drop the {item:11818}: keep it."] = "Les Golems de guerre lourds patrouillent dans le Chaudron sous Kalaran et lâchent l'huile ; les Élémentaires de magma et les Élémentaires flamboyants qui errent parmi eux lâchent les cœurs. Les Sous-chefs et les Esclavagistes {object:147516} mènent les esclaves sur les chemins ; un Esclavagiste peut lâcher la {item:11818} : gardez-la.",
+	-- ["South of the {area:982} the Dunemaul ogres hold their compound, with {npc:12046} at its eastern end. Dig up {quest:3161} ornaments between the fights."] = "Au sud de {area:982}, les ogres Cognedune tiennent leur camp, avec {npc:12046} à son extrémité est. Déterrez des ornements ({quest:3161}) entre les combats.",
+	-- ["South-east of {area:976} the Wastewander bandits camp in the dunes; Caliph stands in the eastern camp."] = "Au sud-est de {area:976}, les bandits Bat-le-désert campent dans les dunes ; Caliph se tient dans le camp est.",
 	-- ["Take the pass out of {area:340}'s west side into the {zone:1427}, then ride south-west to the dig site. The {object:173265} stands at its southern end; the {object:147516} Geologists dig just north of it. Bring 15 {item:4306} (the Auction House sells it)."] = "Prenez le col à l'ouest de {area:340} vers {zone:1427}, puis chevauchez au sud-ouest jusqu'au site de fouilles. Les {object:173265} se trouvent à son extrémité sud ; les Géologues {object:147516} creusent juste au nord. Apportez 15 {item:4306} (l'hôtel des ventes en vend).",
 	-- ["The {object:147516} Lookouts stand on the ridges around the sentry towers south of the Cauldron; about one in ten carries the {item:18960}."] = "Les Guetteurs {object:147516} se tiennent sur les crêtes autour des tours de guet au sud du Chaudron ; environ un sur dix porte la {item:18960}.",
 	-- ["The {object:147516} Steamsmiths work the furnaces in the middle of the Cauldron; half of them carry a {item:10551}, one in ten the {item:18959}. Slaves, Slavers and Taskmasters carry daggers too."] = "Les Forge-vapeur {object:147516} travaillent aux fourneaux au centre du Chaudron ; la moitié porte une {item:10551}, un sur dix la {item:18959}. Les esclaves, les Esclavagistes et les Sous-chefs portent aussi des dagues.",
+	-- ["West of {area:976}, use the {item:8584} beside the water hole in the troll camp."] = "À l'ouest de {area:976}, utilisez le {item:8584} près du point d'eau du camp troll.",
 	-- ["{object:147516} Lookouts"] = "Guetteurs {object:147516}",
 }

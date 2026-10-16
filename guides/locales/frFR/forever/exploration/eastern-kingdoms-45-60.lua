@@ -51,10 +51,10 @@ return {
 
 	-- Step 7: The Hinterlands (1/2)
 	["14 areas to discover here, levels 41-49."] = "14 zones à découvrir ici, niveaux 41-49.",
-	-- {area:348} Aerie Peak · {area:271} Southshore · {zone:1424} Hillsbrad Foothills · {zone:1425} The Hinterlands
-	["Fly to {area:348} if you have it; otherwise fly to {area:271} and walk north-east from {zone:1424} into the {zone:1425}."] = "Prenez un vol pour {area:348} si vous l'avez ; sinon, prenez un vol pour {area:271} et marchez vers le nord-est depuis {zone:1424} jusqu'à {zone:1425}.",
-	-- {area:3317} Revantusk Village · {area:272} Tarren Mill · {zone:1424} Hillsbrad Foothills · {zone:1425} The Hinterlands
-	["Fly to {area:3317} if you have it; otherwise fly to {area:272} and walk east from {zone:1424} into the {zone:1425}."] = "Prenez un vol pour {area:3317} si vous l'avez ; sinon, prenez un vol pour {area:272} et marchez vers l'est depuis {zone:1424} jusqu'à {zone:1425}.",
+	-- {area:348} Aerie Peak · {area:271} Southshore · {zone:1424} Hillsbrad Foothills
+	["Fly to {area:348} if you have it; otherwise fly to {area:271} and walk north-east from {zone:1424} into the Hinterlands."] = "",
+	-- {area:3317} Revantusk Village · {area:272} Tarren Mill · {zone:1424} Hillsbrad Foothills
+	["Fly to {area:3317} if you have it; otherwise fly to {area:272} and walk east from {zone:1424} into the Hinterlands."] = "",
 	-- {area:348} Aerie Peak · {npc:8018} Guthrum Thunderfist
 	["Flight path here: {area:348} ({npc:8018})."] = "Trajet aérien ici : {area:348} ({npc:8018}).",
 	-- {area:3317} Revantusk Village
@@ -80,4 +80,8 @@ return {
 	["Flight path here: {area:2268} ({npc:12617})."] = "Trajet aérien ici : {area:2268} ({npc:12617}).",
 	-- {area:2268} Light's Hope Chapel
 	["Flight path here: {area:2268} (Georgia)."] = "Trajet aérien ici : {area:2268} (Georgia).",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Fly to {area:3317} if you have it; otherwise fly to {area:272} and walk east from {zone:1424} into the {zone:1425}."] = "Prenez un vol pour {area:3317} si vous l'avez ; sinon, prenez un vol pour {area:272} et marchez vers l'est depuis {zone:1424} jusqu'à {zone:1425}.",
+	-- ["Fly to {area:348} if you have it; otherwise fly to {area:271} and walk north-east from {zone:1424} into the {zone:1425}."] = "Prenez un vol pour {area:348} si vous l'avez ; sinon, prenez un vol pour {area:271} et marchez vers le nord-est depuis {zone:1424} jusqu'à {zone:1425}.",
 }

@@ -12,13 +12,13 @@ return {
 	["{npc:15188}, {object:172957}: keep it for {zone:1451}"] = "{npc:15188}，在{object:172957}：留着它去{zone:1451}",
 
 	-- Step 2: Fly to the Crossroads
-	-- {area:380} The Crossroads
+	-- {area:380} Crossroads
 	["Fly to the {area:380}"] = "飞往{area:380}",
 
 	-- Step 3: Dokimi's crates
 	-- {npc:256386} Dokimi
 	["{npc:256386}'s crates"] = "{npc:256386}的箱子",
-	-- {npc:256386} Dokimi · {area:380} The Crossroads
+	-- {npc:256386} Dokimi · {area:380} Crossroads
 	["{npc:256386} stands in the {area:380}. Open each crate she hands you and bring back what is inside."] = "{npc:256386}站在{area:380}。打开她交给你的每一个箱子，把里面的东西带回来。",
 
 	-- Step 4: Fly to Ratchet

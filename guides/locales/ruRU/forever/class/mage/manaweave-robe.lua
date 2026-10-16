@@ -6,7 +6,7 @@
 -- The comments are rewritten by sync.
 return {
 	-- Guide
-	-- {zone:1453} Stormwind City · {zone:1432} Loch Modan
+	-- {zone:1453} Stormwind · {zone:1432} Loch Modan
 	["A robe at 15 for Alliance mages, from {zone:1453} and {zone:1432}."] = "Мантия на 15-м уровне для магов Альянса; задания: {zone:1453} и {zone:1432}.",
 
 	-- Step 1: Zaldimar Wefhellt (Goldshire)
@@ -14,7 +14,7 @@ return {
 	["{npc:328} is the {area:87} mage trainer."] = "{npc:328} – учитель магов ({area:87}).",
 
 	-- Step 2: Dink (Ironforge)
-	-- {npc:7312} Dink · {zone:1455} Ironforge · {object:32362} The Mystic Ward · {area:2257} Deeprun Tram · {object:171524} Tinker Town · {zone:1453} Stormwind City
+	-- {npc:7312} Dink · {zone:1455} Ironforge · {object:32362} Mystic Ward · {area:2257} Deeprun Tram · {object:171524} Tinker Town · {zone:1453} Stormwind
 	["{npc:7312} teaches mages in {zone:1455}'s {object:32362}. Take the {area:2257} from {object:171524} to {zone:1453} afterwards."] = "{npc:7312} обучает магов ({zone:1455}, {object:32362}). Затем сядьте на поезд ({area:2257}) в районе {object:171524} до города {zone:1453}.",
 
 	-- Step 3: Jennea Cannon
@@ -40,6 +40,6 @@ return {
 	["Take the {area:2257} to {zone:1455}, then the road east through the South Gate tunnel into {zone:1432}. The dwarven miners' league left the crates in the {area:149} at the north end of the loch; Tunnel Rat troggs hold the mine."] = "Сядьте на поезд ({area:2257}) до города {zone:1455}, затем идите по дороге на восток через туннель Южных ворот в зону {zone:1432}. Лига дворфов-шахтеров оставила ящики здесь: {area:149}, у северного конца озера; рудник занимают трогги-туннельщики.",
 
 	-- Step 8: Wynne Larson
-	-- {zone:1453} Stormwind City · {npc:1309} Wynne Larson · {object:23296} Larson Clothiers · {object:2101} Mage Quarter
+	-- {zone:1453} Stormwind · {npc:1309} Wynne Larson · {object:23296} Larson Clothiers · {object:2101} Mage Quarter
 	["Back to {zone:1453} by the tram. {npc:1309} works at {object:23296} in the {object:2101}."] = "Назад на поезде. Цель: {zone:1453}. {npc:1309} работает здесь: {object:23296} ({object:2101}).",
 }

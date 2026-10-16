@@ -12,8 +12,8 @@ return {
 	["Your tanking form: Forever no longer trains {spell:5487}, these quests give it. Opens {area:493} too."] = "你的坦克形态：Forever不再由训练师教授{spell:5487}，而是由这些任务给予。同时也会开启{area:493}。",
 
 	-- Step 1: Heeding the Call
-	-- {npc:3602} Kal · {area:186} Dolanaar · {zone:1457} Darnassus · {zone:1453} Stormwind City · {npc:4217} Mathrengyl Bearwalker
-	["At 10 a druid's call reaches you: {npc:3602} in {area:186}, Denatharion in {zone:1457} or Theridran in {zone:1453}. Any one of them sends you to {npc:4217} in the Cenarion Enclave of {zone:1457}."] = "10级时会有德鲁伊召唤你：{area:186}的{npc:3602}、{zone:1457}的德纳萨里安或{zone:1453}的塞瑞德兰。任何一位都会让你去{zone:1457}塞纳里奥区找{npc:4217}。",
+	-- {npc:3602} Kal · {area:186} Dolanaar · {zone:1457} Darnassus · {zone:1453} Stormwind · {npc:4217} Mathrengyl Bearwalker
+	["At 10 a druid's call reaches you: {npc:3602} in {area:186}, Denatharion in {zone:1457} or Theridran in {zone:1453}. Any one of them sends you to {npc:4217} in the Cenarion Enclave of Darnassus."] = "",
 	-- {npc:3602} Kal · {area:186} Dolanaar
 	["{npc:3602}, {area:186}; Denatharion's and Theridran's letters lead to the same place"] = "{npc:3602}，{area:186}；德纳萨里安和塞瑞德兰的信也指向同一个地方",
 
@@ -55,7 +55,7 @@ return {
 	["Speak with the {quest:5930}"] = "与{quest:5930}交谈",
 
 	-- Step 11: The Moonkin Stone
-	-- {object:177525} Moonkin Stone · {zone:1412} Mulgore · {zone:1413} The Barrens · {item:15710} Cenarion Lunardust · {npc:12144} Lunaclaw Spirit
+	-- {object:177525} Moonkin Stone · {zone:1412} Mulgore · {zone:1413} Barrens · {item:15710} Cenarion Lunardust · {npc:12144} Lunaclaw Spirit
 	["The {object:177525} stands in the pass from {zone:1412} into the {zone:1413}. Use the {item:15710} there, defeat Lunaclaw and speak to the {npc:12144}."] = "{object:177525}位于从{zone:1412}进入{zone:1413}的山口。在那里使用{item:15710}，击败月爪枭兽，然后与{npc:12144}交谈。",
 
 	-- Step 12: Body and Heart
@@ -103,7 +103,7 @@ return {
 	["{npc:270459} stands beside {npc:259084} and the Skyborne Portal, west of {area:279}, where the skycutter from {zone:2521} lands. {npc:2543} offers the same quest."] = "{npc:270459}站在{npc:259084}和天裔传送门旁，位于{area:279}西边，从{zone:2521}来的天空快船在此降落。{npc:2543}也提供同样的任务。",
 
 	-- Step 21: Sheldras Moontree
-	-- {zone:1453} Stormwind City · {npc:5504} Sheldras Moontree
+	-- {zone:1453} Stormwind · {npc:5504} Sheldras Moontree
 	["The Skyborne Portal takes you to {zone:1453}. {npc:5504} is the city's druid trainer."] = "天裔传送门会把你送到{zone:1453}。{npc:5504}是该城的德鲁伊训练师。",
 
 	-- Step 22: Dendrite Starblaze
@@ -111,6 +111,7 @@ return {
 	["Cast {spell:18960}. {npc:11802} is in {area:2361}. Learn the {area:493} flight path while you are here."] = "施放{spell:18960}。{npc:11802}在{area:2361}。趁在这里学会{area:493}的飞行路线。",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["At 10 a druid's call reaches you: {npc:3602} in {area:186}, Denatharion in {zone:1457} or Theridran in {zone:1453}. Any one of them sends you to {npc:4217} in the Cenarion Enclave of {zone:1457}."] = "10级时会有德鲁伊召唤你：{area:186}的{npc:3602}、{zone:1457}的德纳萨里安或{zone:1453}的塞瑞德兰。任何一位都会让你去{zone:1457}塞纳里奥区找{npc:4217}。",
 	-- ["At 10 a druid's call reaches you: {npc:3602} in {area:186}, Denatharion in {zone:1457} or Theridran in {zone:1453}. Any one of them sends you to {npc:4217} in the {area:1658} of {zone:1457}."] = "10级时会收到德鲁伊的召唤：{area:186}的{npc:3602}、{zone:1457}的德纳萨里安或{zone:1453}的塞瑞德兰。任何一位都会让你去找{zone:1457}{area:1658}的{npc:4217}。",
 	-- ["Cast Teleport: {area:493}. {npc:11802} is in {area:2361}. Learn the {area:493} flight path while you are here."] = "施放传送：{area:493}。{npc:11802}在{area:2361}。趁在这里学会{area:493}的飞行路线。",
 	-- ["Cast Teleport: {area:493}. {npc:11802} is in {area:2361}; the {quest:5929} sits in the woods to the north-west. Learn the {area:493} flight path, then fly to {area:702} (by way of {area:442}) and take the portal up to {zone:1457}."] = "施放传送：{area:493}。{npc:11802}在{area:2361}；{quest:5929}位于西北边的树林里。学会{area:493}的飞行路线，然后飞往{area:702}（经由{area:442}），再乘传送门上到{zone:1457}。",

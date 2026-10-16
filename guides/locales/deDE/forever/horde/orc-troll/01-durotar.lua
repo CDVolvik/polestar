@@ -81,7 +81,9 @@ return {
 	["Inside the cave, keep to the right wall all the way round, over the stream: Yarrog waits at the end."] = "Halte dich in der Höhle immer an der rechten Wand, über den Bach: Yarrog wartet am Ende.",
 
 	-- Step 18: Felstalker hooves
-	["Felstalker hooves"] = "Teufelspirscherhufe",
+	-- {npc:3102} Felstalker
+	["{npc:3102} hooves"] = "",
+	-- plural, as words: Felstalkers = {npc:3102} Felstalker
 	["Felstalkers roam the slope below the cave, on the valley's north side."] = "Teufelspirscher streifen über den Hang unterhalb der Höhle, auf der Nordseite des Tals.",
 
 	-- Step 19: Zureetha Fargaze
@@ -140,7 +142,6 @@ return {
 
 	-- Step 33: Drygulch Ravine
 	-- {area:370} Drygulch Ravine · {npc:3293} Rezlak · {item:277661} Dull Storm Orb
-	-- plural, as words: Savages = {spell:20574} Savage
 	["Savages and Storm Witches nest in {area:370}, east of {npc:3293}. A Storm Witch drops the {item:277661}."] = "Wilde und Sturmhexen der Staubschwingen nisten in {area:370}, östlich von {npc:3293}. Eine Sturmhexe lässt {item:277661} fallen.",
 
 	-- Step 35: Thunder lizards
@@ -262,7 +263,7 @@ return {
 	["Follow the road north from {area:362} to {zone:1454}'s main gate, just west of {area:817}. {npc:3352} stands with the hunter trainers in the {object:172958}."] = "Folge der Straße von {area:362} nach Norden zum Haupttor von {zone:1454}, gleich westlich von {area:817}. {npc:3352} steht bei den Jägerlehrern im {object:172958}.",
 
 	-- Step 64: Far Watch Post
-	-- {area:362} Razor Hill · {area:814} Southfury River · {area:379} Far Watch Post · {zone:1413} The Barrens
+	-- {area:362} Razor Hill · {area:814} Southfury River · {area:379} Far Watch Post · {zone:1413} Barrens
 	["Follow the road west from {area:362} over the {area:814} bridge; {area:379} sits just above it on the {zone:1413} side."] = "Folge der Straße von {area:362} nach Westen über die Brücke am {area:814}; {area:379} liegt gleich darüber auf der Seite des {zone:1413}.",
 
 	-- Step 65: Thunder lizards across the river
@@ -272,6 +273,10 @@ return {
 	["Thunder Lizards and Lightning Hides graze on {area:369} across the bridge; any of them can drop a {item:6486}."] = "Donnerechsen und Blitzechsen grasen jenseits der Brücke auf dem {area:369}; jede kann {item:6486} fallen lassen.",
 
 	-- Step 67: The Crossroads
-	-- {area:379} Far Watch Post · {area:380} The Crossroads · {zone:1413} The Barrens
-	["Follow the road south-west from {area:379} to the {area:380}. {zone:1413} guide starts here."] = "Folge der Straße von {area:379} nach Südwesten nach {area:380}. Hier beginnt der Guide für das {zone:1413}.",
+	-- {area:379} Far Watch Post · {zone:1413} Barrens
+	["Follow the road south-west from {area:379} to the Crossroads. The {zone:1413} guide starts here."] = "",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Felstalker hooves"] = "Teufelspirscherhufe",
+	-- ["Follow the road south-west from {area:379} to the {area:380}. {zone:1413} guide starts here."] = "Folge der Straße von {area:379} nach Südwesten nach {area:380}. Hier beginnt der Guide für das {zone:1413}.",
 }

@@ -87,7 +87,9 @@ return {
 	["The bounty board"] = "Доска объявлений о награде",
 
 	-- Step 13: Prideclaws and Galestriders
+	-- plural, as words: Prideclaws = {npc:251245} Prideclaw
 	["Prideclaws and Galestriders"] = "Когти прайда и буреноги",
+	-- plural, as words: Prideclaws = {npc:251245} Prideclaw
 	["Prideclaws and Galestriders roam the grasslands south of the village. Galestriders drop both the eggs and the meat."] = "Когти прайда и буреноги бродят по лугам к югу от деревни. С буреногов падают и яйца, и мясо.",
 
 	-- Step 14: Back to Shen'dar
@@ -224,8 +226,8 @@ return {
 
 	-- Step 41: The dead cultist
 	["The dead cultist"] = "Мертвый культист",
-	-- {area:16638} Valanaar · {npc:273017} Fendaal Windstone · {quest:98512} Al'Aketh Assassins
-	["North-west of {area:16638} along the road: {npc:273017} watches the {quest:98512}; the dead cultist lies just north of him."] = "К северо-западу от места {area:16638} по дороге: {npc:273017} следит за врагами ({quest:98512}); мертвый культист лежит чуть севернее него.",
+	-- {npc:273017} Fendaal Windstone · {quest:98512} Al'Aketh Assassins
+	["North-west of Valanaar along the road: {npc:273017} watches the {quest:98512}; the dead cultist lies just north of him."] = "",
 	["Search the dead cultist"] = "Обыщите мертвого культиста",
 	-- {npc:258443} Ur'endra
 	["{npc:258443}, in the highlands south-west of the cultist"] = "{npc:258443} – на нагорье к юго-западу от культиста",
@@ -303,9 +305,9 @@ return {
 	["Skycutter to {area:279}"] = "Небесный катер: {area:279}",
 
 	-- Step 56: Denaaris Stargale
-	-- {zone:1453} Stormwind City
+	-- {zone:1453} Stormwind
 	["Denaaris stands beside the Skyborne Portal where the zeppelin lands. The portal takes you to {zone:1453}."] = "Денаарис стоит у портала небеснорожденных, где приземляется дирижабль. Портал переносит вас сюда: {zone:1453}.",
-	-- {npc:270459} Alfina Nightgaze · {npc:5504} Sheldras Moontree · {zone:1453} Stormwind City
+	-- {npc:270459} Alfina Nightgaze · {npc:5504} Sheldras Moontree · {zone:1453} Stormwind
 	["{npc:270459}, beside Denaaris: for {npc:5504} in {zone:1453}"] = "{npc:270459} – рядом с Денаарисом: для персонажа {npc:5504} ({zone:1453})",
 
 	-- Step 57: Stormwind Keep
@@ -315,7 +317,7 @@ return {
 	["For {npc:234} at {area:108}"] = "Для персонажа {npc:234} ({area:108})",
 
 	-- Step 58: Sheldras Moontree
-	-- {npc:5504} Sheldras Moontree · {zone:1453} Stormwind City · {spell:18960} Teleport: Moonglade · {npc:11802} Dendrite Starblaze · {spell:499} Cat Form · {zone:1439} Darkshore
+	-- {npc:5504} Sheldras Moontree · {zone:1453} Stormwind · {spell:18960} Teleport: Moonglade · {npc:11802} Dendrite Starblaze · {spell:499} Cat Form · {zone:1439} Darkshore
 	["{npc:5504}, {zone:1453}'s druid trainer, teaches you {spell:18960}. {npc:11802}'s welcome waits for your {spell:499} trip at the end of {zone:1439}."] = "{npc:5504}, учитель друидов ({zone:1453}), обучит вас заклинанию «{spell:18960}». Приветствие ({npc:11802}) будет ждать вашего путешествия за заклинанием «{spell:499}» в конце отрезка «{zone:1439}».",
 
 	-- Step 59: Jennea Cannon
@@ -323,6 +325,9 @@ return {
 	["{npc:5497} stands in the Wizard's Sanctum, the tower of the {object:2101}; she gives you a flask for the {quest:1861} waterfall."] = "{npc:5497} стоит в Святилище волшебника – башне в квартале ({object:2101}); она дает вам флягу для водопада ({quest:1861}).",
 
 	-- Step 60: Mirror Lake
-	-- {zone:1453} Stormwind City · {quest:1861} Mirror Lake · {zone:1436} Westfall · {item:7207} Jennea's Flask
+	-- {zone:1453} Stormwind · {quest:1861} Mirror Lake · {zone:1436} Westfall · {item:7207} Jennea's Flask
 	["Leave {zone:1453} by the main gate. The {quest:1861} waterfall is south-west of the gates, on the way west to {zone:1436}: fill {item:7207} at its base."] = "Выходите из города ({zone:1453}) через главные ворота. Водопад ({quest:1861}) – к юго-западу от ворот, по пути на запад, в зону {zone:1436}: наполните {item:7207} у его подножия.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["North-west of {area:16638} along the road: {npc:273017} watches the {quest:98512}; the dead cultist lies just north of him."] = "К северо-западу от места {area:16638} по дороге: {npc:273017} следит за врагами ({quest:98512}); мертвый культист лежит чуть севернее него.",
 }

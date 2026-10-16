@@ -131,14 +131,14 @@ return {
 	["Kill the mobs that drop it at the farm spot Polestar picks for your level and faction. The Auction House works too."] = "Mate os monstros que deixam cair o item no local que o Polestar escolhe para seu nível e facção. A Casa de Leilões também serve.",
 
 	-- Step 27: Wild Steelbloom (Alliance)
-	-- {item:3355} Wild Steelbloom
-	["{item:3355} (Alliance)"] = "{item:3355} (Aliança)",
-	-- {item:3355} Wild Steelbloom · {skill:182} Herbalism
-	["Pick {item:3355} with {skill:182}; this is the densest patch in the data. The Auction House works too."] = "Pegue {item:3355} com {skill:182}; este é o local mais denso nos dados. A Casa de Leilões também serve.",
+	-- {object:1623} Wild Steelbloom
+	["{object:1623} (Alliance)"] = "",
+	-- {object:1623} Wild Steelbloom · {skill:182} Herbalism
+	["Pick {object:1623} with {skill:182}; this is the densest patch in the data. The Auction House works too."] = "",
 
 	-- Step 28: Wild Steelbloom (Horde)
-	-- {item:3355} Wild Steelbloom
-	["{item:3355} (Horde)"] = "{item:3355} (Horda)",
+	-- {object:1623} Wild Steelbloom
+	["{object:1623} (Horde)"] = "",
 
 	-- Step 29: Kingsblood (Alliance)
 	-- {item:3356} Kingsblood
@@ -161,14 +161,14 @@ return {
 	["{item:3357} (Horde)"] = "{item:3357} (Horda)",
 
 	-- Step 33: Goldthorn (Alliance)
-	-- {item:3821} Goldthorn
-	["{item:3821} (Alliance)"] = "{item:3821} (Aliança)",
-	-- {item:3821} Goldthorn · {skill:182} Herbalism
-	["Pick {item:3821} with {skill:182}; this is the densest patch in the data. The Auction House works too."] = "Pegue {item:3821} com {skill:182}; este é o local mais denso nos dados. A Casa de Leilões também serve.",
+	-- {object:2046} Goldthorn
+	["{object:2046} (Alliance)"] = "",
+	-- {object:2046} Goldthorn · {skill:182} Herbalism
+	["Pick {object:2046} with {skill:182}; this is the densest patch in the data. The Auction House works too."] = "",
 
 	-- Step 34: Goldthorn (Horde)
-	-- {item:3821} Goldthorn
-	["{item:3821} (Horde)"] = "{item:3821} (Horda)",
+	-- {object:2046} Goldthorn
+	["{object:2046} (Horde)"] = "",
 
 	-- Step 35: Oily Blackmouth (Alliance)
 	-- {item:6358} Oily Blackmouth
@@ -323,4 +323,12 @@ return {
 	["{spell:17554} to 300"] = "{spell:17554} até 300",
 	-- {skill:171} Alchemy
 	["Orange (a point every craft) until 280, yellow until 300, green until 320. {skill:171} 300 is a Legacy System milestone."] = "Laranja (um ponto a cada produção) até 280, amarelo até 300, verde até 320. {skill:171} 300 é um marco do Sistema de Legado.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Pick {item:3355} with {skill:182}; this is the densest patch in the data. The Auction House works too."] = "Pegue {item:3355} com {skill:182}; este é o local mais denso nos dados. A Casa de Leilões também serve.",
+	-- ["Pick {item:3821} with {skill:182}; this is the densest patch in the data. The Auction House works too."] = "Pegue {item:3821} com {skill:182}; este é o local mais denso nos dados. A Casa de Leilões também serve.",
+	-- ["{item:3355} (Alliance)"] = "{item:3355} (Aliança)",
+	-- ["{item:3355} (Horde)"] = "{item:3355} (Horda)",
+	-- ["{item:3821} (Alliance)"] = "{item:3821} (Aliança)",
+	-- ["{item:3821} (Horde)"] = "{item:3821} (Horda)",
 }

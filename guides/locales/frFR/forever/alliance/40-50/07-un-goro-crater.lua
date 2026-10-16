@@ -134,10 +134,10 @@ return {
 
 	-- Step 28: Grind to 51
 	["Grind to 51"] = "Monter au niveau 51",
-	-- {area:982} The Noxious Lair · {zone:1446} Tanaris
+	-- {area:982} Noxious Lair · {zone:1446} Tanaris
 	["The Centipaar silithid crawl around the {area:982} in western {zone:1446}, just east of the crater ramp. The Workers are the easiest pulls."] = "Les silithides Centipaar rampent autour de {area:982}, dans l'ouest de {zone:1446}, juste à l'est de la rampe du cratère. Les Ouvriers sont les plus faciles à attirer.",
-	-- {npc:5458} Centipaar Worker · {area:982} The Noxious Lair · {zone:1446} Tanaris
-	["grind on {npc:5458} at {area:982}, {zone:1446}"] = "tuez des {npc:5458} à {area:982}, {zone:1446}",
+	-- {npc:5458} Centipaar Worker · {area:982} Noxious Lair · {zone:1446} Tanaris
+	["grind on {npc:5458} at The {area:982}, {zone:1446}"] = "",
 
 	-- Step 29: Torwa Pathfinder
 	["Ride down the ramp into the crater: Torwa camps at its foot."] = "Descendez la rampe dans le cratère : Torwa campe à son pied.",
@@ -169,14 +169,14 @@ return {
 	-- {npc:9616} Laris Geardawdle · {zone:1448} Felwood
 	["{npc:9616}: the oozes are in {zone:1448}, keep it"] = "{npc:9616} : les limons sont en {zone:1448}, gardez-la",
 
-	-- Step 41: The Mystic Ward
+	-- Step 41: Mystic Ward
 	-- {zone:1447} Azshara
 	["Four rune rubbings in {zone:1447}: keep it"] = "Quatre estampes de runes en {zone:1447} : gardez-la",
 	-- {npc:11406} High Priest Rohan · {zone:1447} Azshara
 	["{npc:11406}: for Ogtinc in {zone:1447}, keep it"] = "{npc:11406} : pour Ogtinc en {zone:1447}, gardez-la",
 
 	-- Step 42: Royal Historian Archesonus
-	-- {object:171709} The High Seat
+	-- {object:171709} High Seat
 	["Archesonus stands beside King Magni in the {object:171709}."] = "Archesonus se tient à côté du roi Magni dans {object:171709}.",
 	-- {zone:1428} Burning Steppes
 	["The relics are in the {zone:1428}: keep it"] = "Les reliques sont dans {zone:1428} : gardez-la",
@@ -185,11 +185,12 @@ return {
 	["Bind and train"] = "Lier la pierre de foyer et s'entraîner",
 
 	-- Step 44: Xiggs Fuselighter
-	-- {object:32359} The Military Ward
+	-- {object:32359} Military Ward
 	["Xiggs waits in the {object:32359}."] = "Xiggs attend dans {object:32359}.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Ride south to {area:537} in the middle of the crater, then east into the eastern jungle. Crystal clusters stand all over the crater, many of them around {area:537}: take a few extra of each colour. {item:11316} Lashers and Threshers drop the petals; the expedition's {item:11113} sits at an abandoned camp in the eastern jungle."] = "Chevauchez vers le sud jusqu'à {area:537}, au milieu du cratère, puis vers l'est dans la jungle est. Des amas de cristaux se dressent partout dans le cratère, beaucoup autour de {area:537} : prenez-en quelques-uns de plus de chaque couleur. Les Flagellants et Batteurs {item:11316} laissent tomber les pétales ; la {item:11113} de l'expédition se trouve dans un camp abandonné de la jungle est.",
 	-- ["The {npc:9684} Mates prowl the jungle west of Torwa. The wrecked raft lies on the shore of the lake there; the small pack sits in the water beside it. Keep the compass, map and key for {npc:8737}. Any beast in the crater may drop {item:11116}: right-click it."] = "Les Compagnes de {npc:9684} rôdent dans la jungle à l'ouest de Torwa. Le radeau échoué se trouve sur la rive du lac ; le petit sac est dans l'eau à côté. Gardez la boussole, la carte et la clé pour {npc:8737}. Toute bête du cratère peut laisser tomber {item:11116} : clic droit dessus.",
+	-- ["grind on {npc:5458} at {area:982}, {zone:1446}"] = "tuez des {npc:5458} à {area:982}, {zone:1446}",
 	-- ["{npc:9684} Mates and the raft"] = "Compagnes de {npc:9684} et le radeau",
 }

@@ -15,7 +15,7 @@ return {
 
 	-- Step 2: The Balance of Nature
 	-- {area:256} Aldrassil · {item:3297} Fel Moss
-	-- plural, as words: Young Nightsabers = {npc:2031} Young Nightsaber · Young Thistle Boars = {npc:1984} Young Thistle Boar · Gnarlpine Totems = {item:279082} Gnarlpine Totem
+	-- plural, as words: Young Nightsabers = {npc:2031} Young Nightsaber · Young Thistle Boars = {npc:1984} Young Thistle Boar · Grells = {npc:1988} Grell · Gnarlpine Totems = {item:279082} Gnarlpine Totem
 	["Young Nightsabers and Young Thistle Boars roam around {area:256}. Grells carry {item:3297} in the woods west of the tree, where the Gnarlpine Totems stand."] = "새끼 흑호와 새끼 엉겅퀴멧돼지가 {area:256} 주변을 돌아다닙니다. 나무 서쪽 숲의 그렐이 {item:3297}을(를) 지니고 있으며, 그곳에 나무옹이일족 토템이 서 있습니다.",
 
 	-- Step 3: Back at Aldrassil
@@ -27,8 +27,8 @@ return {
 	["{npc:2082}, on the tree's ramp"] = "나무 경사로의 {npc:2082}",
 	-- {npc:3595} Shanda
 	["{npc:3595}, inside the tree"] = "나무 안의 {npc:3595}",
-	-- {quest:97979} The Goddess Provides · {spell:1259799} Elune's Light · {spell:20580} Shadowmeld · {npc:3595} Shanda
-	["{quest:97979}: cast {spell:1259799} and {spell:20580}, then hand it back to {npc:3595}"] = "{quest:97979}: {spell:1259799}와(과) {spell:20580}을(를) 시전한 뒤 {npc:3595}에게 완료하세요",
+	-- {quest:97979} The Goddess Provides · {spell:1259799} Elune's Light · {npc:3595} Shanda
+	["{quest:97979}: cast {spell:1259799} and Shadowmeld, then hand it back to {npc:3595}"] = "",
 	-- {npc:8583} Dirania Silvershine
 	["{npc:8583}, east of the tree"] = "나무 동쪽의 {npc:8583}",
 
@@ -57,7 +57,7 @@ return {
 	-- {quest:917} Webwood Egg
 	["{quest:917} and the antidote"] = "{quest:917}와(과) 해독제",
 	-- {object:4406} Webwood Eggs · {area:257} Shadowthread Cave · {area:256} Aldrassil
-	-- plural, as words: Hyacinth Mushrooms = {item:10639} Hyacinth Mushroom
+	-- plural, as words: Hyacinth Mushrooms = {item:10639} Hyacinth Mushroom · Grells = {npc:1988} Grell
 	["The {object:4406} lie at the back of {area:257}: take the central path, then left where it splits, up to the high ledge. Hyacinth Mushrooms drop from Grells, Moonpetal Lilies grow by the ponds north of {area:256}."] = "{object:4406}은(는) {area:257} 안쪽에 있습니다. 가운데 길로 가다가 갈림길에서 왼쪽으로 높은 바위턱까지 오르세요. {item:10639}은(는) 그렐이 떨어뜨리고, 달봉우리 백합은 {area:256} 북쪽 연못가에 자랍니다.",
 
 	-- Step 8: Aldrassil
@@ -117,7 +117,7 @@ return {
 	-- {area:260} Starbreeze Village
 	["East to {area:260}"] = "동쪽 {area:260}(으)로",
 	-- {area:186} Dolanaar · {object:126158} Tallonkai's Dresser
-	-- plural, as words: Fel Cones = {item:3418} Fel Cone · Webwood Lurkers = {npc:1998} Webwood Lurker
+	-- plural, as words: Fel Cones = {object:1673} Fel Cone · Webwood Lurkers = {npc:1998} Webwood Lurker
 	["Fel Cones lie under the trees all around {area:186} and Zenn. Nightsabers and Webwood Lurkers keep roaming the road east. {object:126158} is in the house on the hill at the east end of the village."] = "악의 열매는 {area:186}와(과) 젠 파울후프 주변 나무 아래 곳곳에 있습니다. 흑호와 나무그물 늑대거미는 여전히 동쪽 길을 돌아다닙니다. {object:126158}은(는) 마을 동쪽 끝 언덕 위의 집에 있습니다.",
 	["Nightsabers"] = "흑호",
 	-- plural, as words: Webwood Lurkers = {npc:1998} Webwood Lurker
@@ -185,10 +185,12 @@ return {
 	["{npc:3567}, back in {area:186}"] = "{area:186}(으)로 돌아가 {npc:3567}",
 
 	-- Step 30: Sentinel Eralya Leafshadow
-	-- {area:186} Dolanaar · {area:264} The Oracle Glade
+	-- {area:186} Dolanaar · {area:264} Oracle Glade
 	["Take the road north-west from {area:186} towards the {area:264}; she lies hurt beside it."] = "{area:186}에서 북서쪽 길을 따라 {area:264}(으)로 가세요. 그녀가 다친 채 길가에 누워 있습니다.",
 
 	-- Step 31: The Oracle Glade
+	-- {area:264} Oracle Glade
+	["The {area:264}"] = "",
 	-- {object:6752} Strange Fronded Plant
 	["The moonwell is in the middle of the glade. The {object:6752} grows at its north end."] = "달샘은 숲 한가운데에 있습니다. {object:6752}은(는) 북쪽 끝에 자랍니다.",
 	-- {item:5623} Amethyst Phial
@@ -205,8 +207,8 @@ return {
 
 	-- Step 34: The named harpies
 	["The named harpies"] = "이름 있는 하피",
-	-- {npc:272044} Windmistress Gaedress · {npc:272046} Witchmother Arysa
-	["Hatescreech and {npc:272044} fly just west of the moonwell, {npc:272046} further north."] = "증오비명과 {npc:272044}은(는) 달샘 바로 서쪽에, {npc:272046}은(는) 더 북쪽에 날아다닙니다.",
+	-- {npc:272034} Hatescreech · {npc:272044} Windmistress Gaedress · {npc:272046} Witchmother Arysa
+	["{npc:272034} and {npc:272044} fly just west of the moonwell, {npc:272046} further north."] = "",
 
 	-- Step 35: Sentinel Arynia again
 	["Sentinel Arynia again"] = "다시 파수꾼 아리니아 클라우드브레이크",
@@ -232,9 +234,9 @@ return {
 	["{npc:3602}: {npc:4217} in {zone:1457} takes it"] = "{npc:3602}: {zone:1457}의 {npc:4217}에게 가져가세요",
 
 	-- Step 38: Lake Al'Ameth
-	-- {area:186} Dolanaar · {npc:2080} Denalan
+	-- {npc:2080} Denalan
 	-- plural, as words: Lasher Sproutlings = {npc:275703} Lasher Sproutling
-	["South-east of {area:186}, to {npc:2080}. Lasher Sproutlings wander around him on the shore."] = "{area:186} 남동쪽의 {npc:2080}에게 가세요. 덩굴손 묘목이 물가에서 그 주변을 돌아다닙니다.",
+	["South-east of Dolanaar, to {npc:2080}. Lasher Sproutlings wander around him on the shore."] = "",
 	-- {npc:2080} Denalan · {quest:922} Rellian Greenspyre · {zone:1457} Darnassus
 	["{npc:2080}: {quest:922} in {zone:1457} takes it"] = "{npc:2080}: {zone:1457}의 {quest:922}에게 가져가세요",
 	-- {object:7510} Sprouted Frond
@@ -245,9 +247,9 @@ return {
 	["{area:186} again"] = "다시 {area:186}",
 
 	-- Step 40: Taming the Beast
-	-- {npc:3601} Dazalar · {item:15908} Taming Rod · {area:186} Dolanaar
+	-- {item:15908} Taming Rod · {area:186} Dolanaar
 	-- plural, as words: Webwood Lurkers = {npc:1998} Webwood Lurker · Nightsaber Stalkers = {npc:2043} Nightsaber Stalker · Strigid Screechers = {npc:1996} Strigid Screecher
-	["Each of {npc:3601}'s quests hands you a {item:15908}: use it on the beast he names, then bring the rod back to him in {area:186}. Webwood Lurkers creep around the village, Nightsaber Stalkers and Strigid Screechers roam the woods south of it."] = "{npc:3601}의 퀘스트마다 {item:15908}을(를) 줍니다. 그가 말한 야수에게 사용한 뒤 {area:186}의 그에게 막대를 가져가세요. 나무그물 늑대거미는 마을 주변을 기어 다니고, 긴발톱 흑호와 {npc:1996}은(는) 마을 남쪽 숲을 돌아다닙니다.",
+	["Each of Dazalar's quests hands you a {item:15908}: use it on the beast he names, then bring the rod back to him in {area:186}. Webwood Lurkers creep around the village, Nightsaber Stalkers and Strigid Screechers roam the woods south of it."] = "",
 	-- {npc:1998} Webwood Lurker · {item:15908} Taming Rod
 	["{npc:1998}: tame it with the {item:15908}"] = "{npc:1998}: {item:15908}(으)로 길들이세요",
 	-- {npc:2043} Nightsaber Stalker · {item:15908} Taming Rod
@@ -274,8 +276,8 @@ return {
 	["{npc:4092}, in the Temple of the Moon"] = "달의 신전의 {npc:4092}",
 	-- {npc:7999} Tyrande Whisperwind · {npc:4092} Lariia
 	["{npc:7999}, above {npc:4092}"] = "{npc:4092} 위층의 {npc:7999}",
-	-- {npc:11401} Priestess Alathea · {spell:10797} Starshards
-	["{npc:11401}, in the Temple of the Moon: {spell:10797}"] = "달의 신전의 {npc:11401}: {spell:10797}",
+	-- {npc:11401} Priestess Alathea
+	["{npc:11401}, in the Temple of the Moon: Starshards"] = "",
 
 	-- Step 43: Rut'theran Village
 	-- {area:702} Rut'theran Village · {npc:3838} Vesprystus
@@ -302,9 +304,9 @@ return {
 	["Fly to {area:702} once more and take the portal up to Mathrengyl, then fly back to {area:442} for the boat."] = "한 번 더 {area:702}(으)로 날아가 차원문을 타고 마스렌길에게 간 뒤, 배를 타러 {area:442}(으)로 날아가세요.",
 
 	-- Step 49: Auberdine
-	-- {npc:4200} Laird · {zone:1453} Stormwind City
+	-- {npc:4200} Laird · {zone:1453} Stormwind
 	["{npc:4200}'s fish stall is by the docks. Then take the boat to {zone:1453}."] = "{npc:4200}의 생선 가판대는 부두 옆에 있습니다. 그다음 배를 타고 {zone:1453}(으)로 가세요.",
-	-- {zone:1453} Stormwind City
+	-- {zone:1453} Stormwind
 	["Boat to {zone:1453}"] = "배를 타고 {zone:1453}(으)로 가십시오",
 	-- {area:17203} Stormwind Harbor · {zone:1429} Elwynn Forest · {zone:1436} Westfall
 	["From {area:17203}, ride through the city gates into {zone:1429} and follow the road west to {zone:1436}."] = "{area:17203}에서 도시 성문을 지나 {zone:1429}(으)로 간 뒤 서쪽 길을 따라 {zone:1436}(으)로 가세요.",
@@ -312,4 +314,11 @@ return {
 	-- Step 50: Defensive Stance
 	-- {object:2100} Old Town · {npc:5480} Ilsa Corbin · {npc:6089} Harry Burlguard · {npc:6090} Bartleby · {object:2152} Pig and Whistle Tavern
 	["From the harbour walk into {object:2100}. {npc:5480} trains warriors there; {npc:6089} and {npc:6090} stand together by the {object:2152}. {npc:6090} fights you for his mug."] = "항구에서 {object:2100}(으)로 걸어가세요. {npc:5480}이(가) 그곳에서 전사를 가르칩니다. {npc:6089}와(과) {npc:6090}은(는) {object:2152} 옆에 함께 서 있습니다. {npc:6090}은(는) 자기 머그잔을 걸고 당신과 싸웁니다.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Each of {npc:3601}'s quests hands you a {item:15908}: use it on the beast he names, then bring the rod back to him in {area:186}. Webwood Lurkers creep around the village, Nightsaber Stalkers and Strigid Screechers roam the woods south of it."] = "{npc:3601}의 퀘스트마다 {item:15908}을(를) 줍니다. 그가 말한 야수에게 사용한 뒤 {area:186}의 그에게 막대를 가져가세요. 나무그물 늑대거미는 마을 주변을 기어 다니고, 긴발톱 흑호와 {npc:1996}은(는) 마을 남쪽 숲을 돌아다닙니다.",
+	-- ["Hatescreech and {npc:272044} fly just west of the moonwell, {npc:272046} further north."] = "증오비명과 {npc:272044}은(는) 달샘 바로 서쪽에, {npc:272046}은(는) 더 북쪽에 날아다닙니다.",
+	-- ["South-east of {area:186}, to {npc:2080}. Lasher Sproutlings wander around him on the shore."] = "{area:186} 남동쪽의 {npc:2080}에게 가세요. 덩굴손 묘목이 물가에서 그 주변을 돌아다닙니다.",
+	-- ["{npc:11401}, in the Temple of the Moon: {spell:10797}"] = "달의 신전의 {npc:11401}: {spell:10797}",
+	-- ["{quest:97979}: cast {spell:1259799} and {spell:20580}, then hand it back to {npc:3595}"] = "{quest:97979}: {spell:1259799}와(과) {spell:20580}을(를) 시전한 뒤 {npc:3595}에게 완료하세요",
 }

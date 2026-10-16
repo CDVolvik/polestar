@@ -51,10 +51,10 @@ return {
 
 	-- Step 7: The Hinterlands (1/2)
 	["14 areas to discover here, levels 41-49."] = "这里有14个区域待发现，41-49级。",
-	-- {area:348} Aerie Peak · {area:271} Southshore · {zone:1424} Hillsbrad Foothills · {zone:1425} The Hinterlands
-	["Fly to {area:348} if you have it; otherwise fly to {area:271} and walk north-east from {zone:1424} into the {zone:1425}."] = "如果有{area:348}的飞行路线就飞过去；否则飞往{area:271}，从{zone:1424}向东北步行进入{zone:1425}。",
-	-- {area:3317} Revantusk Village · {area:272} Tarren Mill · {zone:1424} Hillsbrad Foothills · {zone:1425} The Hinterlands
-	["Fly to {area:3317} if you have it; otherwise fly to {area:272} and walk east from {zone:1424} into the {zone:1425}."] = "如果有{area:3317}的飞行路线就飞过去；否则飞往{area:272}，从{zone:1424}向东步行进入{zone:1425}。",
+	-- {area:348} Aerie Peak · {area:271} Southshore · {zone:1424} Hillsbrad Foothills
+	["Fly to {area:348} if you have it; otherwise fly to {area:271} and walk north-east from {zone:1424} into the Hinterlands."] = "",
+	-- {area:3317} Revantusk Village · {area:272} Tarren Mill · {zone:1424} Hillsbrad Foothills
+	["Fly to {area:3317} if you have it; otherwise fly to {area:272} and walk east from {zone:1424} into the Hinterlands."] = "",
 	-- {area:348} Aerie Peak · {npc:8018} Guthrum Thunderfist
 	["Flight path here: {area:348} ({npc:8018})."] = "飞行路线：{area:348}（{npc:8018}）。",
 	-- {area:3317} Revantusk Village
@@ -80,4 +80,8 @@ return {
 	["Flight path here: {area:2268} ({npc:12617})."] = "飞行路线：{area:2268}（{npc:12617}）。",
 	-- {area:2268} Light's Hope Chapel
 	["Flight path here: {area:2268} (Georgia)."] = "飞行路线：{area:2268}（乔吉亚）。",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Fly to {area:3317} if you have it; otherwise fly to {area:272} and walk east from {zone:1424} into the {zone:1425}."] = "如果有{area:3317}的飞行路线就飞过去；否则飞往{area:272}，从{zone:1424}向东步行进入{zone:1425}。",
+	-- ["Fly to {area:348} if you have it; otherwise fly to {area:271} and walk north-east from {zone:1424} into the {zone:1425}."] = "如果有{area:348}的飞行路线就飞过去；否则飞往{area:271}，从{zone:1424}向东北步行进入{zone:1425}。",
 }

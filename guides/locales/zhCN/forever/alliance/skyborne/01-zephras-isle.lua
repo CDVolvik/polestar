@@ -87,7 +87,9 @@ return {
 	["The bounty board"] = "悬赏布告板",
 
 	-- Step 13: Prideclaws and Galestriders
+	-- plural, as words: Prideclaws = {npc:251245} Prideclaw
 	["Prideclaws and Galestriders"] = "傲爪和疾风陆行鸟",
+	-- plural, as words: Prideclaws = {npc:251245} Prideclaw
 	["Prideclaws and Galestriders roam the grasslands south of the village. Galestriders drop both the eggs and the meat."] = "傲爪和疾风陆行鸟在村子南边的草原上游荡。疾风陆行鸟会掉落蛋和肉。",
 
 	-- Step 14: Back to Shen'dar
@@ -224,8 +226,8 @@ return {
 
 	-- Step 41: The dead cultist
 	["The dead cultist"] = "死去的邪教徒",
-	-- {area:16638} Valanaar · {npc:273017} Fendaal Windstone · {quest:98512} Al'Aketh Assassins
-	["North-west of {area:16638} along the road: {npc:273017} watches the {quest:98512}; the dead cultist lies just north of him."] = "沿道路前往{area:16638}西北：{npc:273017}监视着{quest:98512}；死去的邪教徒就躺在他北边不远处。",
+	-- {npc:273017} Fendaal Windstone · {quest:98512} Al'Aketh Assassins
+	["North-west of Valanaar along the road: {npc:273017} watches the {quest:98512}; the dead cultist lies just north of him."] = "",
 	["Search the dead cultist"] = "搜查死去的邪教徒",
 	-- {npc:258443} Ur'endra
 	["{npc:258443}, in the highlands south-west of the cultist"] = "{npc:258443}，在邪教徒西南边的高地",
@@ -303,9 +305,9 @@ return {
 	["Skycutter to {area:279}"] = "乘天空快船前往{area:279}",
 
 	-- Step 56: Denaaris Stargale
-	-- {zone:1453} Stormwind City
+	-- {zone:1453} Stormwind
 	["Denaaris stands beside the Skyborne Portal where the zeppelin lands. The portal takes you to {zone:1453}."] = "Denaaris站在飞艇降落处的天裔传送门旁。传送门会把你送到{zone:1453}。",
-	-- {npc:270459} Alfina Nightgaze · {npc:5504} Sheldras Moontree · {zone:1453} Stormwind City
+	-- {npc:270459} Alfina Nightgaze · {npc:5504} Sheldras Moontree · {zone:1453} Stormwind
 	["{npc:270459}, beside Denaaris: for {npc:5504} in {zone:1453}"] = "{npc:270459}，在Denaaris身旁：前往{zone:1453}找{npc:5504}",
 
 	-- Step 57: Stormwind Keep
@@ -315,7 +317,7 @@ return {
 	["For {npc:234} at {area:108}"] = "前往{area:108}找{npc:234}",
 
 	-- Step 58: Sheldras Moontree
-	-- {npc:5504} Sheldras Moontree · {zone:1453} Stormwind City · {spell:18960} Teleport: Moonglade · {npc:11802} Dendrite Starblaze · {spell:499} Cat Form · {zone:1439} Darkshore
+	-- {npc:5504} Sheldras Moontree · {zone:1453} Stormwind · {spell:18960} Teleport: Moonglade · {npc:11802} Dendrite Starblaze · {spell:499} Cat Form · {zone:1439} Darkshore
 	["{npc:5504}, {zone:1453}'s druid trainer, teaches you {spell:18960}. {npc:11802}'s welcome waits for your {spell:499} trip at the end of {zone:1439}."] = "{zone:1453}的德鲁伊训练师{npc:5504}会教你{spell:18960}。{npc:11802}的问候要等到{zone:1439}结尾的{spell:499}之旅时再去。",
 
 	-- Step 59: Jennea Cannon
@@ -323,12 +325,13 @@ return {
 	["{npc:5497} stands in the Wizard's Sanctum, the tower of the {object:2101}; she gives you a flask for the {quest:1861} waterfall."] = "{npc:5497}站在{object:2101}的塔楼巫师圣殿里；她会给你一个瓶子，用于{quest:1861}的瀑布。",
 
 	-- Step 60: Mirror Lake
-	-- {zone:1453} Stormwind City · {quest:1861} Mirror Lake · {zone:1436} Westfall · {item:7207} Jennea's Flask
+	-- {zone:1453} Stormwind · {quest:1861} Mirror Lake · {zone:1436} Westfall · {item:7207} Jennea's Flask
 	["Leave {zone:1453} by the main gate. The {quest:1861} waterfall is south-west of the gates, on the way west to {zone:1436}: fill {item:7207} at its base."] = "从正门离开{zone:1453}。{quest:1861}瀑布在城门西南边，就在西去{zone:1436}的路上：在瀑布底部装满{item:7207}。",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["/sit by Raan's campfire until you get Boosted Rest"] = "在拉安的篝火旁/sit，直到获得Boosted Rest",
 	-- ["Cast Read {object:460002} at the {object:460002}"] = "对{object:460002}施放Read {object:460002}",
+	-- ["North-west of {area:16638} along the road: {npc:273017} watches the {quest:98512}; the dead cultist lies just north of him."] = "沿道路前往{area:16638}西北：{npc:273017}监视着{quest:98512}；死去的邪教徒就躺在他北边不远处。",
 	-- ["Tame Beast"] = "驯服野兽",
 	-- ["Use Walk on Air"] = "使用Walk on Air",
 	-- ["{npc:249363} keeps watch east of the grove. The {npc:251143} and Al'Aketh Converts gather just north of her; the {object:460002} rises further north: cast your Read {object:460002} racial ability at it."] = "{npc:249363}在林地东边守望。{npc:251143}和奥拉凯斯信徒聚集在她北边不远处；{object:460002}在更北边升起：对它施放你的种族技能Read {object:460002}。",

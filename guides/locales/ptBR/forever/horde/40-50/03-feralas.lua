@@ -36,7 +36,7 @@ return {
 	["The same murlocs again, plus the Oracles, who stay near the huts on the western shore."] = "Os mesmos murlocs de novo, mais os Oráculos, que ficam perto das cabanas na margem oeste.",
 
 	-- Step 10: Stonard
-	-- {npc:5598} Atal'ai Exile · {zone:1425} The Hinterlands
+	-- {npc:5598} Atal'ai Exile · {zone:1425} Hinterlands
 	["for the {npc:5598} in the {zone:1425}, around level 48"] = "para {npc:5598} em {zone:1425}, por volta do nível 48",
 
 	-- Step 11: Fly to Grom'gol
@@ -80,7 +80,7 @@ return {
 	["{npc:4500} is elite: grouping up is advised. Beat him down until he gives up, then report to {npc:4501}."] = "{npc:4500} é elite: é recomendado formar um grupo. Bata nele até ele se render e depois fale com {npc:4501}.",
 
 	-- Step 21: Camp Mojache
-	-- {zone:1425} The Hinterlands
+	-- {zone:1425} Hinterlands
 	["for the {zone:1425} owlbeasts, around level 48"] = "para os corujaursos de {zone:1425}, por volta do nível 48",
 	-- {npc:7875} Hadoken Swiftstrider · {npc:7010} Zilzibin Drumlore · {zone:1454} Orgrimmar
 	["{npc:7875}: for {npc:7010} in {zone:1454}, around level 50"] = "{npc:7875}: para {npc:7010} em {zone:1454}, por volta do nível 50",
@@ -101,10 +101,12 @@ return {
 	["South of the vale the Frayfeather hippogryphs roost on the slopes; nearly every one drops sinew and metallic fragments."] = "Ao sul do vale, os Hipogrifos Esfiapluma pousam nas encostas; quase todos deixam cair tendões e fragmentos metálicos.",
 
 	-- Step 25: Zorbin Fandazzle
-	-- {area:1108} The Forgotten Coast
+	-- {area:1108} Forgotten Coast
 	["Ride north-west to the {area:1108}; Zorbin waits on the dock."] = "Siga para o noroeste até {area:1108}; Zorbin espera no cais.",
 
 	-- Step 26: The Forgotten Coast
+	-- {area:1108} Forgotten Coast
+	["The {area:1108}"] = "",
 	-- {item:18904} Zorbin's Ultra-Shrinker
 	["Sea elementals and sea sprays wash along the shore around the dock. Zap the giants with {item:18904} first: shrunken, they lose their elite strength. Shore striders wade in the water; the land walkers and cliff giants roam the hills further north."] = "Elementais do Mar e Borrifos do Mar percorrem a margem em volta do cais. Primeiro atinja os gigantes com {item:18904}: encolhidos, eles perdem a força de elite. Costívagos andam na água; os Terrâmbulos e Gigantes do Penhasco vagam pelas colinas mais ao norte.",
 

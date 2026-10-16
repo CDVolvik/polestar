@@ -10,7 +10,7 @@ return {
 	["Your epic mount at 60, summoned at will: the faster step up from the Warhorse."] = "Ваше эпическое средство передвижения на 60-м уровне, призываемое в любой момент: более быстрая замена боевого коня.",
 
 	-- Step 1: Lord Grayson Shadowbreaker (Ironforge)
-	-- {npc:5149} Brandur Ironhammer · {object:32362} The Mystic Ward · {quest:7638} Lord Grayson Shadowbreaker · {zone:1453} Stormwind City
+	-- {npc:5149} Brandur Ironhammer · {object:32362} Mystic Ward · {quest:7638} Lord Grayson Shadowbreaker · {zone:1453} Stormwind
 	["At 60 {npc:5149} in the {object:32362} sends you to {quest:7638} in {zone:1453}'s Cathedral of Light."] = "На 60-м уровне {npc:5149} ({object:32362}) отправляет вас к NPC {quest:7638} в Собор Света ({zone:1453}).",
 
 	-- Step 2: Lord Grayson Shadowbreaker
@@ -20,7 +20,7 @@ return {
 	["{npc:6171}, Cathedral of Light"] = "{npc:6171}, Собор Света",
 
 	-- Step 3: High Priest Rohan
-	-- {npc:11406} High Priest Rohan · {zone:1455} Ironforge · {object:32362} The Mystic Ward
+	-- {npc:11406} High Priest Rohan · {zone:1455} Ironforge · {object:32362} Mystic Ward
 	["{npc:11406} is in {zone:1455}'s {object:32362}. Bring 150 gold: the censer is yours for a donation."] = "{npc:11406} находится здесь: {object:32362} ({zone:1455}). Возьмите 150 золотых: кадило ваше за пожертвование.",
 	-- {npc:11406} High Priest Rohan
 	["{npc:11406}: 150 gold"] = "{npc:11406}: 150 золотых",
@@ -35,12 +35,12 @@ return {
 	["Terrordale Spirits"] = "Духи долины Ужаса",
 
 	-- Step 7: Grimand Elmore
-	-- {npc:1416} Grimand Elmore · {zone:1453} Stormwind City · {object:28027} Dwarven District
+	-- {npc:1416} Grimand Elmore · {zone:1453} Stormwind · {object:28027} Dwarven District
 	["{npc:1416} works in {zone:1453}'s {object:28027}."] = "{npc:1416} работает здесь: {object:28027} ({zone:1453}).",
 
 	-- Step 8: Grimand's materials
 	["Grimand's materials"] = "Материалы Гриманда",
-	-- {item:14047} Runecloth · {item:8836} Arthas' Tears · {zone:1448} Felwood · {skill:171} Alchemy · {zone:1453} Stormwind City · {object:2096} Trade District
+	-- {item:14047} Runecloth · {item:8836} Arthas' Tears · {zone:1448} Felwood · {skill:171} Alchemy · {zone:1453} Stormwind · {object:2096} Trade District
 	-- plural, as words: Arcanite Bars = {item:12360} Arcanite Bar
 	["{item:14047} drops from humanoids around level 50 and up; {item:8836} is an herb of the Plaguelands and {zone:1448}; Arcanite Bars are an {skill:171} transmute. The Auction House in {zone:1453}'s {object:2096} sells all three, and so do crafters."] = "{item:14047} падает с гуманоидов примерно с 50-го уровня; {item:8836} — трава Чумных земель и зоны {zone:1448}; арканитовые слитки получают трансмутацией ({skill:171}). Все три продаются на аукционе ({zone:1453}, {object:2096}), а также у ремесленников.",
 	-- plural, as words: Arcanite Bars = {item:12360} Arcanite Bar
@@ -65,7 +65,7 @@ return {
 	-- Step 12: Enriched Manna Biscuits
 	-- plural, as words: Enriched Manna Biscuits = {item:13724} Enriched Manna Biscuit
 	["Enriched Manna Biscuits"] = "Витаминизированное печенье из манны",
-	-- {object:2160} The Argent Dawn · {object:92525} Argent Dawn · {npc:10857} Argent Quartermaster Lightspark · {area:3197} Chillwind Camp · {npc:11536} Quartermaster Miranda Breechlock · {area:2268} Light's Hope Chapel · {npc:10856} Argent Quartermaster Hasana · {area:813} The Bulwark
+	-- {object:2160} The Argent Dawn · {object:92525} Argent Dawn · {npc:10857} Argent Quartermaster Lightspark · {area:3197} Chillwind Camp · {npc:11536} Quartermaster Miranda Breechlock · {area:2268} Light's Hope Chapel · {npc:10856} Argent Quartermaster Hasana · {area:813} Bulwark
 	["{object:2160} quartermasters sell the biscuits in fives once the {object:92525} is Friendly with you: {npc:10857} at {area:3197}, {npc:11536} at {area:2268}, {npc:10856} at the {area:813}."] = "Интенданты ({object:2160}) продают печенье по пять штук, когда ваше отношение с фракцией {object:92525} — дружелюбие: {npc:10857} ({area:3197}), {npc:11536} ({area:2268}), {npc:10856} ({area:813}).",
 	-- {npc:10857} Argent Quartermaster Lightspark · {area:3197} Chillwind Camp
 	-- plural, as words: Enriched Manna Biscuits = {item:13724} Enriched Manna Biscuit
@@ -91,7 +91,9 @@ return {
 	["he hands you the {item:18746}"] = "он вручает вам {item:18746}",
 
 	-- Step 18: The Great Ossuary
-	-- {area:2057} Scholomance · {area:2298} Caer Darrow · {zone:1422} Western Plaguelands · {item:18746} Divination Scryer · {object:179746} The Great Ossuary · {npc:14516} Death Knight Darkreaver · {item:18799} Charger's Redeemed Soul · {item:18792} Blessed Arcanite Barding
-	["{area:2057} lies under {area:2298}, the island town in the south-east of the {zone:1422}. Use the {item:18746} in the heart of the {object:179746}'s basement, defeat the spirits it calls and then {npc:14516}, and give his Fallen Charger the {item:18799} and the {item:18792}. All are elite: bring a group. If the attempt fails, Lord Grayson gives you a new scryer through Again Into the {object:179746}."] = "{area:2057} находится под местом {area:2298} — городком на острове на юго-востоке зоны {zone:1422}. Используйте {item:18746} в центре подвала ({object:179746}), победите призванных духов, а затем: {npc:14516}; отдайте его падшему скакуну {item:18799} и {item:18792}. Все они элитные: возьмите группу. Если попытка не удалась, лорд Грейсон даст вам новый прорицатель через задание «Снова в {object:179746}».",
+	-- {area:2057} Scholomance · {area:2298} Caer Darrow · {zone:1422} Western Plaguelands · {item:18746} Divination Scryer · {npc:14516} Death Knight Darkreaver · {item:18799} Charger's Redeemed Soul · {item:18792} Blessed Arcanite Barding
+	["{area:2057} lies under {area:2298}, the island town in the south-east of the {zone:1422}. Use the {item:18746} in the heart of the Great Ossuary's basement, defeat the spirits it calls and then {npc:14516}, and give his Fallen Charger the {item:18799} and the {item:18792}. All are elite: bring a group. If the attempt fails, Lord Grayson gives you a new scryer through Again Into the Great Ossuary."] = "",
 
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["{area:2057} lies under {area:2298}, the island town in the south-east of the {zone:1422}. Use the {item:18746} in the heart of the {object:179746}'s basement, defeat the spirits it calls and then {npc:14516}, and give his Fallen Charger the {item:18799} and the {item:18792}. All are elite: bring a group. If the attempt fails, Lord Grayson gives you a new scryer through Again Into the {object:179746}."] = "{area:2057} находится под местом {area:2298} — городком на острове на юго-востоке зоны {zone:1422}. Используйте {item:18746} в центре подвала ({object:179746}), победите призванных духов, а затем: {npc:14516}; отдайте его падшему скакуну {item:18799} и {item:18792}. Все они элитные: возьмите группу. Если попытка не удалась, лорд Грейсон даст вам новый прорицатель через задание «Снова в {object:179746}».",
 }

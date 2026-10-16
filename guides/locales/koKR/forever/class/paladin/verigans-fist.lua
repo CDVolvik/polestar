@@ -9,7 +9,7 @@ return {
 	["The Alliance paladin's rare two-handed mace for the 20s, with a shield on the way."] = "20대 얼라이언스 성기사용 희귀 양손 둔기, 도중에 방패도 얻습니다.",
 
 	-- Step 1: The Tome of Valor (Ironforge)
-	-- {npc:6179} Tiza Battleforge · {object:32362} The Mystic Ward · {item:6776} Tome of Valor · {npc:6171} Duthorian Rall · {zone:1453} Stormwind City · {zone:1455} Ironforge
+	-- {npc:6179} Tiza Battleforge · {object:32362} Mystic Ward · {item:6776} Tome of Valor · {npc:6171} Duthorian Rall · {zone:1453} Stormwind · {zone:1455} Ironforge
 	["At 20 {npc:6179} in the {object:32362} gives you the {item:6776}; it sends you to {npc:6171} in {zone:1453}'s Cathedral of Light. Take the tram from {zone:1455} to {zone:1453}."] = "20레벨에 {object:32362}의 {npc:6179}이(가) {item:6776}을(를) 줍니다. 이것은 {zone:1453} 빛의 대성당의 {npc:6171}에게 보냅니다. {zone:1455}에서 지하철을 타고 {zone:1453}(으)로 가세요.",
 
 	-- Step 2: The Tome of Valor

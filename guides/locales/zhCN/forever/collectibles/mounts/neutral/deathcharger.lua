@@ -17,5 +17,9 @@ return {
 	-- Step 2: Stratholme: Baron Rivendare
 	-- {area:2279} Stratholme · {object:175461} Service Entrance · {object:175440} Elders' Square · {zone:1423} Eastern Plaguelands · {npc:10440} Baron Rivendare
 	["{area:2279} is a group of five, level 58-60. The {object:175461} at {object:175440}, in north-western {zone:1423}, leads to the undead side; {npc:10440} waits in the Slaughter House at its end. Our data gives the reins a 0.02% drop chance (pfQuest, Era): one in about five thousand kills. Nothing shows Forever changing it."] = "{area:2279}是五人小队地下城，58-60级。{zone:1423}西北部{object:175440}的{object:175461}通往亡灵区；{npc:10440}在尽头的屠宰场等着。我们的数据显示缰绳掉落率为0.02%（pfQuest，怀旧服）：大约五千次击杀掉一次。没有迹象表明Forever 改动过。",
-	["Stratholme Service Entrance"] = "斯坦索姆仆从入口",
+	-- {object:175461} Service Entrance
+	["Stratholme {object:175461}"] = "",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Stratholme Service Entrance"] = "斯坦索姆仆从入口",
 }

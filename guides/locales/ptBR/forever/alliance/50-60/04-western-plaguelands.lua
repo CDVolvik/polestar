@@ -21,7 +21,7 @@ return {
 	["Skeletal Flayers and Slavering Ghouls roam the fields north of the camp; all the Scourge here drop Scourgestones."] = "Esfoladores Descarnados e Carniçais Salivantes vagam pelos campos ao norte do acampamento; todo o Flagelo daqui deixa cair Pedras do Flagelo.",
 
 	-- Step 4: Mulgris Deepriver
-	-- {area:202} The Writhing Haunt
+	-- {area:202} Writhing Haunt
 	["Mulgris stands by the farm at the {area:202}, north-east of the fields."] = "Mulgris fica junto à fazenda em {area:202}, a nordeste dos campos.",
 
 	-- Step 5: Diseased Wolves
@@ -43,7 +43,7 @@ return {
 	-- Step 10: Janice Felstone
 	-- {area:199} Felstone Field · {area:200} Dalson's Tears
 	["Janice's ghost wanders by the farmhouse of {area:199}, west of {area:200}; her parcel lies inside."] = "O fantasma de Janice vaga junto à casa da fazenda de {area:199}, a oeste de {area:200}; o embrulho dela está lá dentro.",
-	-- {zone:1453} Stormwind City
+	-- {zone:1453} Stormwind
 	["For {zone:1453}: keep it"] = "Para {zone:1453}: guarde",
 
 	-- Step 11: Chillwind Camp
@@ -84,23 +84,23 @@ return {
 	-- {area:200} Dalson's Tears
 	["The cauldron sits at {area:200}, north-east of Felstone; its Cauldron Lord stands beside it."] = "O caldeirão fica em {area:200}, a nordeste do Campo Pedravil; o Mestre da Caldeira dele fica ao lado.",
 
-	-- Step 18: The Writhing Haunt cauldron
-	-- {area:202} The Writhing Haunt
+	-- Step 18: Writhing Haunt cauldron
+	-- {area:202} Writhing Haunt
 	["{area:202} cauldron"] = "Caldeirão de {area:202}",
-	-- {area:202} The Writhing Haunt
+	-- {area:202} Writhing Haunt
 	["The cauldron sits at the {area:202}, by Mulgris' farm."] = "O caldeirão fica em {area:202}, junto à fazenda de Mulgris.",
-	-- {npc:1796} Freezing Ghoul · {area:202} The Writhing Haunt · {zone:1422} Western Plaguelands
+	-- {npc:1796} Freezing Ghoul · {area:202} Writhing Haunt · {zone:1422} Western Plaguelands
 	["grind on {npc:1796} at the {area:202}, {zone:1422}"] = "mate {npc:1796} em {area:202}, {zone:1422}",
 
 	-- Step 19: Chillwind Camp
-	-- {area:202} The Writhing Haunt
+	-- {area:202} Writhing Haunt
 	-- plural, as words: Arcane Quickeners = {item:13320} Arcane Quickener
 	["Buy two more Arcane Quickeners for the {area:202}'s and Dalson's cauldrons, and ride straight there: they vanish after 30 minutes."] = "Compre mais dois Aceleradores Arcanos para os caldeirões de {area:202} e das Lágrimas de Dalson, e vá direto para lá: eles somem após 30 minutos.",
 	-- {npc:1852} Araj the Summoner
 	["{npc:1852} is a level 61 elite"] = "{npc:1852} é elite de nível 61",
 
-	-- Step 20: The Writhing Haunt cauldron
-	-- {area:202} The Writhing Haunt
+	-- Step 20: Writhing Haunt cauldron
+	-- {area:202} Writhing Haunt
 	-- plural, as words: Somatic Intensifiers = {item:13356} Somatic Intensifier
 	["Back north to the {area:202}: the cauldron offers its own task now. The ghouls nearby drop Somatic Intensifiers."] = "Volte para o norte até {area:202}: o caldeirão agora oferece a própria tarefa. Os carniçais por perto deixam cair Intensificadores Somáticos.",
 
@@ -168,7 +168,7 @@ return {
 	["{npc:11038}, by the graves south of the chapel"] = "{npc:11038}, junto aos túmulos ao sul da capela",
 
 	-- Step 41: Villains of Darrowshire
-	-- {area:2624} Blackwood Lake · {area:2623} The Infectis Scar
+	-- {area:2624} Blackwood Lake · {area:2623} Infectis Scar
 	-- plural, as words: Plaguehounds = {npc:8597} Plaguehound
 	["Horgus' skull lies at {area:2624} and Marduk's sword in the {area:2623}, each where ghosts fight; grown Plaguehounds hunt the plains between."] = "O Crânio de Horgus está em {area:2624} e a espada de Marduque em {area:2623}, ambos onde fantasmas lutam; Cães Pestilentos adultos caçam nas planícies entre eles.",
 
@@ -200,8 +200,8 @@ return {
 	["{item:12955} lies east of the barn at {area:201}."] = "{item:12955} está a leste do celeiro em {area:201}.",
 
 	-- Step 49: The Undercroft
-	-- {area:2261} The Undercroft · {object:177667} Torn Scroll · {npc:12248} Infiltrator Hameya
-	["Cross the river east to the {area:2261}, the crypt in the south-west of the zone. The {object:177667} lies inside: its key is on {npc:12248} in the far north-east, done in the next guide."] = "Atravesse o rio para o leste até {area:2261}, a cripta no sudoeste da zona. O {object:177667} está lá dentro: a chave está com {npc:12248}, no extremo nordeste, no próximo guia.",
+	-- {object:177667} Torn Scroll · {npc:12248} Infiltrator Hameya
+	["Cross the river east to the Undercroft, the crypt in the south-west of the zone. The {object:177667} lies inside: its key is on {npc:12248} in the far north-east, done in the next guide."] = "",
 
 	-- Step 50: Darnassus
 	-- {area:3197} Chillwind Camp · {area:150} Menethil Harbor · {area:442} Auberdine · {area:702} Rut'theran Village · {zone:1457} Darnassus
@@ -235,16 +235,16 @@ return {
 	["{npc:7900}: keep it for {zone:1446}"] = "{npc:7900}: guarde para {zone:1446}",
 
 	-- Step 55: Zorbin Fandazzle
-	-- {area:1119} The Twin Colossals
+	-- {area:1119} Twin Colossals
 	["Take the boat to the mainland and ride north-east to Zorbin's camp by the {area:1119}."] = "Pegue o barco para o continente e cavalgue para o nordeste até o acampamento de Zorbin, junto a {area:1119}.",
 
 	-- Step 56: Zapped giants and sea elementals
 	["Zapped giants and sea elementals"] = "Gigantes irradiados e Elementais do Mar",
-	-- {area:1119} The Twin Colossals
+	-- {area:1119} Twin Colossals
 	["The shrunken giants roam the {area:1119}; the sea elementals wade along the coast to the west."] = "Os gigantes encolhidos vagam por {area:1119}; os Elementais do Mar andam pela costa a oeste.",
 
 	-- Step 58: Gregan Brewspewer
-	-- {area:1119} The Twin Colossals · {item:11243} Videre Elixir
+	-- {area:1119} Twin Colossals · {item:11243} Videre Elixir
 	["Gregan's camp lies north of the {area:1119}. He sells the {item:11243} once he has his bait."] = "O acampamento de Gregan fica ao norte de {area:1119}. Ele vende o {item:11243} quando recebe a isca.",
 
 	-- Step 59: Ratchet
@@ -277,4 +277,7 @@ return {
 	-- Step 63: Ratchet
 	-- {area:392} Ratchet · {area:976} Gadgetzan
 	["The next guide starts here in {area:392} and flies on to {area:976}."] = "O próximo guia começa aqui em {area:392} e voa para {area:976}.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Cross the river east to the {area:2261}, the crypt in the south-west of the zone. The {object:177667} lies inside: its key is on {npc:12248} in the far north-east, done in the next guide."] = "Atravesse o rio para o leste até {area:2261}, a cripta no sudoeste da zona. O {object:177667} está lá dentro: a chave está com {npc:12248}, no extremo nordeste, no próximo guia.",
 }

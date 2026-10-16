@@ -44,8 +44,8 @@ return {
 	["The incense burns out in ten minutes: run straight east along the southern hills to the {object:660739}."] = "熏香十分钟就会燃尽：沿南边的山丘一直向东跑到{object:660739}。",
 
 	-- Step 10: Brambleblade Ravine
-	-- {npc:8554} Chief Sharptusk Thornmantle · {item:4851} Dirt-stained Map
-	["Battleboars graze north of the shrine; the Bristleback quilboar hold the ravine to the north-east. {npc:8554} stands at its eastern end, and the {item:4851} lies on the ground in the camp."] = "斗猪在神龛北边吃草；刺背野猪人占据着东北方的峡谷。{npc:8554}站在峡谷东端，{item:4851}在营地的地上。",
+	-- {npc:8554} Chief Sharptusk Thornmantle · {object:3076} Dirt-stained Map
+	["Battleboars graze north of the shrine; the Bristleback quilboar hold the ravine to the north-east. {npc:8554} stands at its eastern end, and the {object:3076} lies on the ground in the camp."] = "",
 
 	-- Step 11: Camp Narache
 	["Back west to the camp."] = "向西返回营地。",
@@ -122,13 +122,13 @@ return {
 	["Morin camps by the {area:396} south-east of Bloodhoof."] = "摩林·云行者在血蹄村东南方的{area:396}旁扎营。",
 
 	-- Step 30: Longwalker Malah
-	-- {area:821} The Rolling Plains
+	-- {area:821} Rolling Plains
 	["Malah stands on the {area:821} a little east of the well."] = "漫行者玛拉站在水井东边不远处的{area:821}上。",
 
 	-- Step 31: Galak centaurs and Prairie Wolf Alphas
 	-- plural, as words: Prairie Wolf Alphas = {npc:2960} Prairie Wolf Alpha
 	["Galak centaurs and Prairie Wolf Alphas"] = "加拉克半人马和{npc:2960}",
-	-- {area:821} The Rolling Plains
+	-- {area:821} Rolling Plains
 	-- plural, as words: Prairie Wolf Alphas = {npc:2960} Prairie Wolf Alpha
 	["The Galak centaurs camp on the plains north of the {area:821}; Herak leads them. Prairie Wolf Alphas roam among the wolves."] = "加拉克半人马在{area:821}北边的平原上扎营；掠夺者赫拉克是他们的首领。{npc:2960}在狼群中游荡。",
 
@@ -197,11 +197,11 @@ return {
 	["Use the {item:278078} at the ceremonial mat and burner on the south-facing cliff of {area:1641}."] = "在{area:1641}朝南的悬崖上，于仪式垫和香炉处使用{item:278078}。",
 	-- {item:278078} Prepared Incense · {area:1641} Hunter Rise
 	["Spread the {item:278078} off {area:1641}"] = "在{area:1641}散播{item:278078}",
-	-- {npc:3441} Melor Stonehoof · {quest:860} Sergra Darkthorn · {area:380} The Crossroads
+	-- {npc:3441} Melor Stonehoof · {quest:860} Sergra Darkthorn · {area:380} Crossroads
 	["{npc:3441}: for {quest:860} at the {area:380}"] = "{npc:3441}：交给{area:380}的{quest:860}",
 
 	-- Step 50: Elder Rise
-	-- {npc:5769} Arch Druid Hamuul Runetotem · {npc:3448} Tonga Runetotem · {area:380} The Crossroads
+	-- {npc:5769} Arch Druid Hamuul Runetotem · {npc:3448} Tonga Runetotem · {area:380} Crossroads
 	["{npc:5769}: for {npc:3448} at the {area:380}"] = "{npc:5769}：交给{area:380}的{npc:3448}",
 
 	-- Step 52: Turak Runetotem
@@ -229,10 +229,15 @@ return {
 	["The stone stands in the pass out of {zone:1412}, on your way east. Use the {item:15710} there and defeat Lunaclaw."] = "石头在离开{zone:1412}的山口里，就在你向东的路上。在那里使用{item:15710}并击败月爪枭兽。",
 
 	-- Step 57: The Crossroads
-	-- {zone:1412} Mulgore · {area:380} The Crossroads · {quest:860} Sergra Darkthorn · {npc:3448} Tonga Runetotem · {zone:1413} The Barrens
+	-- {area:380} Crossroads
+	["The {area:380}"] = "",
+	-- {zone:1412} Mulgore · {area:380} Crossroads · {quest:860} Sergra Darkthorn · {npc:3448} Tonga Runetotem · {zone:1413} The Barrens
 	["Leave {zone:1412} by the south-eastern pass and follow the road to the {area:380}. {quest:860} stands by the inn, {npc:3448} at the south gate. {zone:1413} guide starts here."] = "从东南方的山口离开{zone:1412}，沿道路到{area:380}。{quest:860}站在旅店旁，{npc:3448}在南门。{zone:1413}指南从这里开始。",
 
 	-- Step 58: Class turn-ins in Thunder Bluff
 	-- {area:1638} Thunder Bluff
 	["Class turn-ins in {area:1638}"] = "在{area:1638}交职业任务",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Battleboars graze north of the shrine; the Bristleback quilboar hold the ravine to the north-east. {npc:8554} stands at its eastern end, and the {item:4851} lies on the ground in the camp."] = "斗猪在神龛北边吃草；刺背野猪人占据着东北方的峡谷。{npc:8554}站在峡谷东端，{item:4851}在营地的地上。",
 }

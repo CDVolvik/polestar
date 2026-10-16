@@ -45,12 +45,15 @@ return {
 	-- Step 8: The Spear of Mannoroth
 	-- {object:409311} Spear of Mannoroth
 	["The {object:409311}"] = "Der {object:409311}",
-	-- {object:409311} Spear of Mannoroth · {area:435} Demon Fall Canyon · {spell:11170} Shatter · {object:409315} Shattered Orb
-	["The {object:409311} stands at the east end of {area:435}. {spell:11170} the orb on it; the {object:409315} appears beside it."] = "{object:409311} steht am Ostende von {area:435}. Wirke {spell:11170} auf die Kugel darauf; {object:409315} erscheint daneben.",
+	-- {object:409311} Spear of Mannoroth · {area:435} Demon Fall Canyon · {object:409315} Shattered Orb
+	["The {object:409311} stands at the east end of {area:435}. Shatter the orb on it; the {object:409315} appears beside it."] = "",
 	-- {object:409315} Shattered Orb
 	["from the {object:409315}"] = "von der {object:409315}",
 
 	-- Step 9: Return to Delgren
 	-- {area:413} Maestra's Post
 	["Back to {area:413}."] = "Zurück zu {area:413}.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["The {object:409311} stands at the east end of {area:435}. {spell:11170} the orb on it; the {object:409315} appears beside it."] = "{object:409311} steht am Ostende von {area:435}. Wirke {spell:11170} auf die Kugel darauf; {object:409315} erscheint daneben.",
 }

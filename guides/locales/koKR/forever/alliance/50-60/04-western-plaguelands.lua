@@ -21,7 +21,7 @@ return {
 	["Skeletal Flayers and Slavering Ghouls roam the fields north of the camp; all the Scourge here drop Scourgestones."] = "해골 타작꾼과 걸신들린 구울이 야영지 북쪽 들판을 배회합니다. 이곳의 스컬지는 모두 스컬지석을 떨어뜨립니다.",
 
 	-- Step 4: Mulgris Deepriver
-	-- {area:202} The Writhing Haunt
+	-- {area:202} Writhing Haunt
 	["Mulgris stands by the farm at the {area:202}, north-east of the fields."] = "멀그리스는 들판 북동쪽, {area:202}의 농장 옆에 있습니다.",
 
 	-- Step 5: Diseased Wolves
@@ -43,7 +43,7 @@ return {
 	-- Step 10: Janice Felstone
 	-- {area:199} Felstone Field · {area:200} Dalson's Tears
 	["Janice's ghost wanders by the farmhouse of {area:199}, west of {area:200}; her parcel lies inside."] = "재니스의 유령은 {area:200} 서쪽, {area:199}의 농가 근처를 떠돕니다. 소포는 농가 안에 있습니다.",
-	-- {zone:1453} Stormwind City
+	-- {zone:1453} Stormwind
 	["For {zone:1453}: keep it"] = "{zone:1453}용: 보관하세요",
 
 	-- Step 11: Chillwind Camp
@@ -84,23 +84,23 @@ return {
 	-- {area:200} Dalson's Tears
 	["The cauldron sits at {area:200}, north-east of Felstone; its Cauldron Lord stands beside it."] = "가마솥은 펠스톤 북동쪽 {area:200}에 있고, 가마솥군주가 그 옆에 서 있습니다.",
 
-	-- Step 18: The Writhing Haunt cauldron
-	-- {area:202} The Writhing Haunt
+	-- Step 18: Writhing Haunt cauldron
+	-- {area:202} Writhing Haunt
 	["{area:202} cauldron"] = "{area:202} 가마솥",
-	-- {area:202} The Writhing Haunt
+	-- {area:202} Writhing Haunt
 	["The cauldron sits at the {area:202}, by Mulgris' farm."] = "가마솥은 멀그리스의 농장 옆 {area:202}에 있습니다.",
-	-- {npc:1796} Freezing Ghoul · {area:202} The Writhing Haunt · {zone:1422} Western Plaguelands
+	-- {npc:1796} Freezing Ghoul · {area:202} Writhing Haunt · {zone:1422} Western Plaguelands
 	["grind on {npc:1796} at the {area:202}, {zone:1422}"] = "{zone:1422} {area:202}에서 {npc:1796} 사냥",
 
 	-- Step 19: Chillwind Camp
-	-- {area:202} The Writhing Haunt
+	-- {area:202} Writhing Haunt
 	-- plural, as words: Arcane Quickeners = {item:13320} Arcane Quickener
 	["Buy two more Arcane Quickeners for the {area:202}'s and Dalson's cauldrons, and ride straight there: they vanish after 30 minutes."] = "{area:202} 가마솥과 달슨 가마솥에 쓸 비전 촉매제를 두 개 더 구입하고 곧장 가세요. 촉매제는 30분 후에 사라집니다.",
 	-- {npc:1852} Araj the Summoner
 	["{npc:1852} is a level 61 elite"] = "{npc:1852}은(는) 61레벨 정예입니다",
 
-	-- Step 20: The Writhing Haunt cauldron
-	-- {area:202} The Writhing Haunt
+	-- Step 20: Writhing Haunt cauldron
+	-- {area:202} Writhing Haunt
 	-- plural, as words: Somatic Intensifiers = {item:13356} Somatic Intensifier
 	["Back north to the {area:202}: the cauldron offers its own task now. The ghouls nearby drop Somatic Intensifiers."] = "북쪽 {area:202}(으)로 돌아가세요. 이제 가마솥이 직접 퀘스트를 줍니다. 근처 구울들이 체세포 강화물질을 떨어뜨립니다.",
 
@@ -168,7 +168,7 @@ return {
 	["{npc:11038}, by the graves south of the chapel"] = "예배당 남쪽 무덤 옆의 {npc:11038}",
 
 	-- Step 41: Villains of Darrowshire
-	-- {area:2624} Blackwood Lake · {area:2623} The Infectis Scar
+	-- {area:2624} Blackwood Lake · {area:2623} Infectis Scar
 	-- plural, as words: Plaguehounds = {npc:8597} Plaguehound
 	["Horgus' skull lies at {area:2624} and Marduk's sword in the {area:2623}, each where ghosts fight; grown Plaguehounds hunt the plains between."] = "호르구스의 해골은 {area:2624}에, 마르두크의 검은 {area:2623}에 있으며, 둘 다 유령들이 싸우는 곳입니다. 다 자란 역병사냥개가 그 사이 평원을 사냥합니다.",
 
@@ -200,8 +200,8 @@ return {
 	["{item:12955} lies east of the barn at {area:201}."] = "{item:12955}은(는) {area:201}의 헛간 동쪽에 있습니다.",
 
 	-- Step 49: The Undercroft
-	-- {area:2261} The Undercroft · {object:177667} Torn Scroll · {npc:12248} Infiltrator Hameya
-	["Cross the river east to the {area:2261}, the crypt in the south-west of the zone. The {object:177667} lies inside: its key is on {npc:12248} in the far north-east, done in the next guide."] = "강을 건너 동쪽, 지역 남서쪽의 지하 묘지인 {area:2261}(으)로 가세요. {object:177667}은(는) 그 안에 있습니다. 열쇠는 북동쪽 끝의 {npc:12248}이(가) 가지고 있으며, 다음 가이드에서 처리합니다.",
+	-- {object:177667} Torn Scroll · {npc:12248} Infiltrator Hameya
+	["Cross the river east to the Undercroft, the crypt in the south-west of the zone. The {object:177667} lies inside: its key is on {npc:12248} in the far north-east, done in the next guide."] = "",
 
 	-- Step 50: Darnassus
 	-- {area:3197} Chillwind Camp · {area:150} Menethil Harbor · {area:442} Auberdine · {area:702} Rut'theran Village · {zone:1457} Darnassus
@@ -235,16 +235,16 @@ return {
 	["{npc:7900}: keep it for {zone:1446}"] = "{npc:7900}: {zone:1446}용으로 보관하세요",
 
 	-- Step 55: Zorbin Fandazzle
-	-- {area:1119} The Twin Colossals
+	-- {area:1119} Twin Colossals
 	["Take the boat to the mainland and ride north-east to Zorbin's camp by the {area:1119}."] = "배를 타고 본토로 건너가 북동쪽 {area:1119} 옆에 있는 조브린의 야영지로 가세요.",
 
 	-- Step 56: Zapped giants and sea elementals
 	["Zapped giants and sea elementals"] = "축소된 거인과 바다 정령",
-	-- {area:1119} The Twin Colossals
+	-- {area:1119} Twin Colossals
 	["The shrunken giants roam the {area:1119}; the sea elementals wade along the coast to the west."] = "축소된 거인들은 {area:1119}을(를) 돌아다니고, 바다 정령들은 서쪽 해안을 따라 물속을 걷습니다.",
 
 	-- Step 58: Gregan Brewspewer
-	-- {area:1119} The Twin Colossals · {item:11243} Videre Elixir
+	-- {area:1119} Twin Colossals · {item:11243} Videre Elixir
 	["Gregan's camp lies north of the {area:1119}. He sells the {item:11243} once he has his bait."] = "그레간의 야영지는 {area:1119} 북쪽에 있습니다. 미끼를 받으면 {item:11243}을(를) 팝니다.",
 
 	-- Step 59: Ratchet
@@ -278,4 +278,6 @@ return {
 	-- {area:392} Ratchet · {area:976} Gadgetzan
 	["The next guide starts here in {area:392} and flies on to {area:976}."] = "다음 가이드는 여기 {area:392}에서 시작해 {area:976}(으)로 날아갑니다.",
 
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Cross the river east to the {area:2261}, the crypt in the south-west of the zone. The {object:177667} lies inside: its key is on {npc:12248} in the far north-east, done in the next guide."] = "강을 건너 동쪽, 지역 남서쪽의 지하 묘지인 {area:2261}(으)로 가세요. {object:177667}은(는) 그 안에 있습니다. 열쇠는 북동쪽 끝의 {npc:12248}이(가) 가지고 있으며, 다음 가이드에서 처리합니다.",
 }

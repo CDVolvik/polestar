@@ -20,7 +20,7 @@ return {
 	["{quest:2458}: keep the {item:8051}"] = "{quest:2458}：保留{item:8051}",
 
 	-- Step 2: Taskmaster Fizzule
-	-- {area:380} The Crossroads · {area:382} The Sludge Fen · {item:8051} Flare Gun · {npc:7233} Taskmaster Fizzule
+	-- {area:380} Crossroads · {area:382} Sludge Fen · {item:8051} Flare Gun · {npc:7233} Taskmaster Fizzule
 	["Fly to the {area:380} and ride north to the Venture Co. tower north of the {area:382}. In sight of the tower, fire the {item:8051} twice, then /salute {npc:7233} before he attacks you."] = "飛往{area:380}，向北騎往{area:382}北邊的風險投資公司塔樓。在看得到塔樓的地方發射兩次{item:8051}，然後在{npc:7233}攻擊你之前對他 /salute。",
 	-- {item:8051} Flare Gun
 	["{item:8051}, twice, in sight of the tower"] = "{item:8051}，兩次，在看得到塔樓的地方",

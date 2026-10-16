@@ -44,8 +44,8 @@ return {
 	["The incense burns out in ten minutes: run straight east along the southern hills to the {object:660739}."] = "Благовония сгорают за десять минут: бегите прямо на восток вдоль южных холмов сюда: {object:660739}.",
 
 	-- Step 10: Brambleblade Ravine
-	-- {npc:8554} Chief Sharptusk Thornmantle · {item:4851} Dirt-stained Map
-	["Battleboars graze north of the shrine; the Bristleback quilboar hold the ravine to the north-east. {npc:8554} stands at its eastern end, and the {item:4851} lies on the ground in the camp."] = "К северу от святилища пасутся боевые вепри; дыбогривые свинобразы занимают ущелье к северо-востоку. {npc:8554} стоит в его восточной части, а {item:4851} лежит на земле в лагере.",
+	-- {npc:8554} Chief Sharptusk Thornmantle · {object:3076} Dirt-stained Map
+	["Battleboars graze north of the shrine; the Bristleback quilboar hold the ravine to the north-east. {npc:8554} stands at its eastern end, and the {object:3076} lies on the ground in the camp."] = "",
 
 	-- Step 11: Camp Narache
 	["Back west to the camp."] = "Назад на запад в лагерь.",
@@ -122,13 +122,13 @@ return {
 	["Morin camps by the {area:396} south-east of Bloodhoof."] = "Морин стоит лагерем у места {area:396}, к юго-востоку от Деревни Кровавого Копыта.",
 
 	-- Step 30: Longwalker Malah
-	-- {area:821} The Rolling Plains
+	-- {area:821} Rolling Plains
 	["Malah stands on the {area:821} a little east of the well."] = "Мала стоит здесь: {area:821}, чуть к востоку от колодца.",
 
 	-- Step 31: Galak centaurs and Prairie Wolf Alphas
 	-- plural, as words: Prairie Wolf Alphas = {npc:2960} Prairie Wolf Alpha
 	["Galak centaurs and Prairie Wolf Alphas"] = "Кентавры Галак и могучие волки прерий",
-	-- {area:821} The Rolling Plains
+	-- {area:821} Rolling Plains
 	-- plural, as words: Prairie Wolf Alphas = {npc:2960} Prairie Wolf Alpha
 	["The Galak centaurs camp on the plains north of the {area:821}; Herak leads them. Prairie Wolf Alphas roam among the wolves."] = "Кентавры племени Галак стоят лагерем на равнинах к северу от места {area:821}; их ведет Херак. Среди волков бродят могучие волки прерий.",
 
@@ -197,11 +197,11 @@ return {
 	["Use the {item:278078} at the ceremonial mat and burner on the south-facing cliff of {area:1641}."] = "Используйте предмет {item:278078} у церемониального коврика и курильницы на южном обрыве ({area:1641}).",
 	-- {item:278078} Prepared Incense · {area:1641} Hunter Rise
 	["Spread the {item:278078} off {area:1641}"] = "Развейте предмет {item:278078} с обрыва ({area:1641})",
-	-- {npc:3441} Melor Stonehoof · {quest:860} Sergra Darkthorn · {area:380} The Crossroads
+	-- {npc:3441} Melor Stonehoof · {quest:860} Sergra Darkthorn · {area:380} Crossroads
 	["{npc:3441}: for {quest:860} at the {area:380}"] = "{npc:3441}: для задания {quest:860} ({area:380})",
 
 	-- Step 50: Elder Rise
-	-- {npc:5769} Arch Druid Hamuul Runetotem · {npc:3448} Tonga Runetotem · {area:380} The Crossroads
+	-- {npc:5769} Arch Druid Hamuul Runetotem · {npc:3448} Tonga Runetotem · {area:380} Crossroads
 	["{npc:5769}: for {npc:3448} at the {area:380}"] = "{npc:5769}: для персонажа {npc:3448} ({area:380})",
 
 	-- Step 52: Turak Runetotem
@@ -229,10 +229,15 @@ return {
 	["The stone stands in the pass out of {zone:1412}, on your way east. Use the {item:15710} there and defeat Lunaclaw."] = "Камень стоит на перевале из края {zone:1412}, по пути на восток. Используйте там предмет {item:15710} и одолейте Лунокогтя.",
 
 	-- Step 57: The Crossroads
-	-- {zone:1412} Mulgore · {area:380} The Crossroads · {quest:860} Sergra Darkthorn · {npc:3448} Tonga Runetotem · {zone:1413} The Barrens
+	-- {area:380} Crossroads
+	["The {area:380}"] = "",
+	-- {zone:1412} Mulgore · {area:380} Crossroads · {quest:860} Sergra Darkthorn · {npc:3448} Tonga Runetotem · {zone:1413} The Barrens
 	["Leave {zone:1412} by the south-eastern pass and follow the road to the {area:380}. {quest:860} stands by the inn, {npc:3448} at the south gate. {zone:1413} guide starts here."] = "Покиньте край {zone:1412} через юго-восточный перевал и идите по дороге сюда: {area:380}. {quest:860} стоит у таверны, {npc:3448} – у южных ворот. Здесь начинается руководство: {zone:1413}.",
 
 	-- Step 58: Class turn-ins in Thunder Bluff
 	-- {area:1638} Thunder Bluff
 	["Class turn-ins in {area:1638}"] = "Сдача классовых заданий: {area:1638}",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Battleboars graze north of the shrine; the Bristleback quilboar hold the ravine to the north-east. {npc:8554} stands at its eastern end, and the {item:4851} lies on the ground in the camp."] = "К северу от святилища пасутся боевые вепри; дыбогривые свинобразы занимают ущелье к северо-востоку. {npc:8554} стоит в его восточной части, а {item:4851} лежит на земле в лагере.",
 }

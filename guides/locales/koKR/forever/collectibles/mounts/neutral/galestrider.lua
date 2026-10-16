@@ -31,5 +31,4 @@ return {
 	-- {npc:265756} Genn Fairweather · {area:16638} Valanaar
 	["{npc:265756} is in {area:16638}, the island's harbour town, near the skyboat docks. The Forever client lists each Galestrider at 20g; choose one."] = "{npc:265756}은(는) 섬의 항구 마을인 {area:16638}의 하늘배 선착장 근처에 있습니다. Forever 클라이언트에서 돌풍타조는 각 20골드입니다. 하나를 고르십시오.",
 	["20g"] = "20골드",
-
 }

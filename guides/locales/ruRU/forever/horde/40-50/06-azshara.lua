@@ -138,7 +138,7 @@ return {
 	["The treants wander the forest roads between the camp and the middle of {zone:1444}; there are only a few, so look along the paths."] = "Древни бродят по лесным дорогам между лагерем и центром зоны {zone:1444}; их немного, так что ищите вдоль троп.",
 
 	-- Step 32: Zorbin Fandazzle
-	-- {area:1108} The Forgotten Coast
+	-- {area:1108} Forgotten Coast
 	["Ride north-west to the {area:1108}; Zorbin waits on the dock."] = "Езжайте на северо-запад: {area:1108}; Зорбин ждет на причале.",
 
 	-- Step 33: Zapped giants
@@ -167,5 +167,4 @@ return {
 	["Ride south along the road to the {area:1938}; {npc:7771} camps beside it. From here the road west leads down into {zone:1449}, where the next guide starts."] = "Езжайте на юг по дороге к месту {area:1938}; {npc:7771} стоит лагерем рядом. Отсюда дорога на запад ведет вниз в {zone:1449}, где начинается следующий гайд.",
 	-- {quest:3444} The Stone Circle
 	["Keep {quest:3444}: Marvon's chest is opened on a later visit."] = "Сохраните {quest:3444}: сундук Марвона откроется при следующем визите.",
-
 }

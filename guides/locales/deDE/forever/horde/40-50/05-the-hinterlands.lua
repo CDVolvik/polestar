@@ -55,8 +55,8 @@ return {
 
 	-- Step 10: Gilveradin's camp
 	["Gilveradin's camp"] = "Gilveradins Lager",
-	-- {area:272} Tarren Mill · {zone:1425} The Hinterlands · {npc:7801} Gilveradin Sunchaser · {area:350} Quel'Danil Lodge
-	["Ride north-east from {area:272} into the {zone:1425} and east along the road; {npc:7801} camps on the hill south of the elves' {area:350}."] = "Reite von {area:272} nach Nordosten ins {zone:1425} und auf der Straße nach Osten; {npc:7801} lagert auf dem Hügel südlich der {area:350} der Elfen.",
+	-- {area:272} Tarren Mill · {npc:7801} Gilveradin Sunchaser · {area:350} Quel'Danil Lodge
+	["Ride north-east from {area:272} into the Hinterlands and east along the road; {npc:7801} camps on the hill south of the elves' {area:350}."] = "",
 
 	-- Step 11: Highvale
 	["Highvale"] = "Hochtal",
@@ -75,8 +75,7 @@ return {
 	["South-west again, the exile hides by the ruins of {area:353}."] = "Wieder nach Südwesten: Der Verbannte versteckt sich bei den Ruinen von {area:353}.",
 
 	-- Step 15: Revantusk Village
-	-- {zone:1425} The Hinterlands
-	["Follow the roads east across the {zone:1425} to the troll village on the eastern coast."] = "Folge den Straßen nach Osten durch das {zone:1425} zum Trolldorf an der Ostküste.",
+	["Follow the roads east across the Hinterlands to the troll village on the eastern coast."] = "",
 
 	-- Step 16: Saltwater Snapjaws
 	-- plural, as words: Saltwater Snapjaws = {npc:2505} Saltwater Snapjaw
@@ -87,7 +86,7 @@ return {
 	["{item:8704}, a rare drop"] = "{item:8704}, eine seltene Beute",
 
 	-- Step 17: Rin'ji's Secret
-	-- {area:307} The Overlook Cliffs
+	-- {area:307} Overlook Cliffs
 	["The secret lies on the {area:307}, above the beach."] = "Das Geheimnis liegt auf den {area:307}, über dem Strand.",
 	-- {npc:7825} Oran Snakewrithe · {zone:1458} Undercity
 	["for {npc:7825} in the {zone:1458}, around level 50"] = "für {npc:7825} in {zone:1458}, etwa ab Stufe 50",
@@ -115,7 +114,7 @@ return {
 
 	-- Step 22: OOX-09/HL
 	["OOX-09/HL"] = "OOX-09/HL",
-	-- {area:351} Skulk Rock · {area:307} The Overlook Cliffs · {area:35} Booty Bay
+	-- {area:351} Skulk Rock · {area:307} Overlook Cliffs · {area:35} Booty Bay
 	["Only with the distress beacon: the robot sits at the head of the river west of {area:351}. Escort it east to the shore beyond the {area:307}; its reward waits with Oglethorpe in {area:35}."] = "Nur mit dem Notsignal: Der Roboter sitzt an der Quelle des Flusses westlich vom {area:351}. Eskortiere ihn nach Osten zum Ufer hinter den {area:307}; seine Belohnung wartet bei Oglethorpe in {area:35}.",
 
 	-- Step 23: Silvermane Howlers
@@ -134,15 +133,15 @@ return {
 
 	-- Step 26: Vilebranch soothsayers
 	["Vilebranch soothsayers"] = "Sterndeuter der Vilebranch",
-	-- {area:355} The Altar of Zul · {npc:8636} Morta'gya the Keeper
+	-- {area:355} Altar of Zul · {npc:8636} Morta'gya the Keeper
 	["On the way back east, the Vilebranch soothsayers hold the {area:355}, the troll temple south of the central hills. Qiaga and {npc:8636} (elite, 50) stand at its top: take the soothsayers on the lower steps."] = "Auf dem Rückweg nach Osten halten die Sterndeuter der Vilebranch {area:355}, den Trolltempel südlich der zentralen Hügel. Qiaga und {npc:8636} (Elite, 50) stehen oben: Nimm dir die Sterndeuter auf den unteren Stufen vor.",
 
 	-- Step 27: Jintha'Alor
-	-- {area:354} Jintha'Alor · {spell:19478} Tainted Blood · {npc:14757} Elder Torntusk
-	["Huntsman Malkhor's skull lies on a pile below the Vilebranch ruins, his bones on a pile at the foot of {area:354}. The Vessels of {spell:19478} sit on the lower terraces, and {npc:14757} is held at the top. Keep to the paths: the trolls inside are elite."] = "Der Schädel von Jäger Malkhor liegt auf einem Haufen unterhalb der Ruinen der Vilebranch, seine Knochen auf einem Haufen am Fuß von {area:354}. Die Gefäße mit {spell:19478} stehen auf den unteren Terrassen, und {npc:14757} wird oben festgehalten. Bleib auf den Wegen: Die Trolle drinnen sind Elite.",
+	-- {area:354} Jintha'Alor · {npc:14757} Elder Torntusk
+	["Huntsman Malkhor's skull lies on a pile below the Vilebranch ruins, his bones on a pile at the foot of {area:354}. The Vessels of Tainted Blood sit on the lower terraces, and {npc:14757} is held at the top. Keep to the paths: the trolls inside are elite."] = "",
 	-- {npc:14757} Elder Torntusk · {area:354} Jintha'Alor
 	["{npc:14757}, at the top of {area:354}"] = "{npc:14757}, oben in {area:354}",
-	-- {area:355} The Altar of Zul
+	-- {area:355} Altar of Zul
 	["His next request, going on to the {area:355}, is for a group."] = "Seine nächste Bitte, weiter zu {area:355}, ist etwas für eine Gruppe.",
 
 	-- Step 29: Aerie Peak
@@ -154,4 +153,9 @@ return {
 	-- Step 30: Revantusk Village
 	-- {area:3317} Revantusk Village
 	["The next guide starts here, at {area:3317}."] = "Der nächste Guide beginnt hier, in {area:3317}.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Follow the roads east across the {zone:1425} to the troll village on the eastern coast."] = "Folge den Straßen nach Osten durch das {zone:1425} zum Trolldorf an der Ostküste.",
+	-- ["Huntsman Malkhor's skull lies on a pile below the Vilebranch ruins, his bones on a pile at the foot of {area:354}. The Vessels of {spell:19478} sit on the lower terraces, and {npc:14757} is held at the top. Keep to the paths: the trolls inside are elite."] = "Der Schädel von Jäger Malkhor liegt auf einem Haufen unterhalb der Ruinen der Vilebranch, seine Knochen auf einem Haufen am Fuß von {area:354}. Die Gefäße mit {spell:19478} stehen auf den unteren Terrassen, und {npc:14757} wird oben festgehalten. Bleib auf den Wegen: Die Trolle drinnen sind Elite.",
+	-- ["Ride north-east from {area:272} into the {zone:1425} and east along the road; {npc:7801} camps on the hill south of the elves' {area:350}."] = "Reite von {area:272} nach Nordosten ins {zone:1425} und auf der Straße nach Osten; {npc:7801} lagert auf dem Hügel südlich der {area:350} der Elfen.",
 }

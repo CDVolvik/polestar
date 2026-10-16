@@ -9,7 +9,7 @@ return {
 	["A rare off-hand orb or staff for your late 20s, for fragments from two dungeons."] = "Un orbe de mano izquierda o un bastón raro para el final de tus 20, a cambio de fragmentos de dos calabozos.",
 
 	-- Step 1: Doan Karhan
-	-- {npc:6247} Doan Karhan · {zone:1413} The Barrens · {area:378} Camp Taurajo
+	-- {npc:6247} Doan Karhan · {zone:1413} Barrens · {area:378} Camp Taurajo
 	["{npc:6247} camps in the southern {zone:1413}, east of the road north-east of {area:378}."] = "{npc:6247} acampa en el sur de {zone:1413}, al este del camino al noreste de {area:378}.",
 
 	-- Step 2: Blackfathom Deeps
@@ -21,7 +21,7 @@ return {
 	["{item:6914}, from the Twilight Acolytes"] = "{item:6914}, de los acólitos Crepusculares",
 
 	-- Step 3: Shadowfang Keep
-	-- {area:236} Shadowfang Keep · {area:228} The Sepulcher
+	-- {area:236} Shadowfang Keep · {area:228} Sepulcher
 	-- plural, as words: Shadowfang Darksouls = {npc:3855} Shadowfang Darksoul
 	["The Shadowfang Darksouls inside {area:236}, a level 20-30 dungeon, drop the Large Fragment about one time in five: bring a group. The keep stands south of the {area:228}."] = "Los Almanegra Colmillo Oscuro dentro de {area:236}, un calabozo de nivel 20-30, sueltan el trozo grande más o menos una vez de cada cinco: lleva un grupo. El castillo está al sur de {area:228}.",
 	-- {item:6915} Large Soran'ruk Fragment

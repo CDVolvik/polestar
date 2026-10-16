@@ -53,5 +53,4 @@ return {
 	["The dwarf stands by the road at the dig site. Follow him north along the road and fight off the {object:147516} ambushes. When it is over, read the {object:175704} he leaves on the road in {area:1959}."] = "Дворф стоит у дороги на карьере. Идите за ним на север по дороге и отбивайте засады ({object:147516}). Когда все закончится, прочтите {object:175704}, который он оставит на дороге ({area:1959}).",
 	-- {npc:8256} Curator Thorius · {zone:1455} Ironforge
 	["For {npc:8256} in {zone:1455}, later"] = "Для NPC {npc:8256} ({zone:1455}), позже",
-
 }

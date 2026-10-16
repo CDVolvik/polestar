@@ -34,8 +34,8 @@ return {
 	-- Step 6: The Wild Shore
 	-- {area:43} Wild Shore
 	["The {area:43}"] = "{area:43}",
-	-- {area:35} Booty Bay · {area:43} Wild Shore
-	["South of {area:35} the Bloodsail swashbucklers camp on the {area:43}; the charts and the orders lie in their tents. Any Bloodsail can carry snuff and Dizzy's eye, so keep killing until you have both."] = "在{area:35}南边，血帆流氓在{area:43}扎营；血帆海图和血帆计划书就在他们的帐篷里。任何血帆海盗都可能携带鼻烟和迪兹的眼睛，所以一直杀到两样都拿到为止。",
+	-- {area:43} Wild Shore
+	["South of Booty Bay the Bloodsail swashbucklers camp on the {area:43}; the charts and the orders lie in their tents. Any Bloodsail can carry snuff and Dizzy's eye, so keep killing until you have both."] = "",
 
 	-- Step 8: The Bloodsail ships
 	["The Bloodsail ships"] = "血帆海盗船",
@@ -66,7 +66,7 @@ return {
 	-- Step 15: Grom'gol Base Camp
 	-- {object:3202} Grom'gol
 	["Ride north-west to {object:3202}."] = "向西北骑往{object:3202}。",
-	-- {zone:1425} The Hinterlands
+	-- {zone:1425} Hinterlands
 	["for later: the {zone:1425}, around level 48"] = "留到之后：{zone:1425}，大约48级时",
 
 	-- Step 16: Nesingwary's Expedition
@@ -89,9 +89,9 @@ return {
 	["The stalker raptors hunt the jungle south of {object:3202}, out towards the west coast."] = "丛林捕猎者迅猛龙在{object:3202}南边的丛林里捕猎，一直到西海岸。",
 
 	-- Step 20: Naga shore and the Holy Spring
-	-- {object:759} The Holy Spring
+	-- {object:759} Holy Spring
 	["Naga shore and the {object:759}"] = "纳迦海岸和{object:759}",
-	-- {object:759} The Holy Spring
+	-- {object:759} Holy Spring
 	["Follow the coast south. The naga explorers wade along the shore and carry the reed bundles; the {object:759} bubbles in the hills just east of them."] = "沿海岸向南。纳迦探险者在岸边涉水而行，携带一捆海蛇草；{object:759}就在他们正东的山丘里冒泡。",
 
 	-- Step 21: Booty Bay
@@ -136,7 +136,7 @@ return {
 	-- Step 30: Into the Swamp of Sorrows
 	-- {zone:1435} Swamp of Sorrows
 	["Into the {zone:1435}"] = "进入{zone:1435}",
-	-- {zone:1431} Duskwood · {zone:1430} Deadwind Pass · {npc:1776} Magtoor · {area:657} The Harborage
+	-- {zone:1431} Duskwood · {zone:1430} Deadwind Pass · {npc:1776} Magtoor · {area:657} Harborage
 	["Keep riding north into {zone:1431}, then east along the road through {zone:1430} into the swamp. {npc:1776} waits at the {area:657}, the draenei camp near the way in from {zone:1430}."] = "继续向北骑进{zone:1431}，然后沿道路向东穿过{zone:1430}进入沼泽。{npc:1776}在{area:657}等候，那是靠近{zone:1430}入口的德莱尼营地。",
 
 	-- Step 31: Stonard
@@ -166,7 +166,9 @@ return {
 	["The crocolisks wallow in the pools around Galen's camp and south towards {area:75}; about one in four drops a flank."] = "鳄鱼在加林营地周围的水塘里打滚，一直到南边的{area:75}；大约四分之一会掉落鳄鱼肉。",
 
 	-- Step 37: The Harborage
-	-- {area:657} The Harborage · {zone:1430} Deadwind Pass
+	-- {area:657} Harborage
+	["The {area:657}"] = "",
+	-- {area:657} Harborage · {zone:1430} Deadwind Pass
 	["Ride west along the road to the draenei camp at the {area:657}, near the way in from {zone:1430}."] = "沿道路向西骑往{area:657}的德莱尼营地，靠近{zone:1430}的入口。",
 
 	-- Step 38: Misty Reed Post
@@ -180,4 +182,7 @@ return {
 	-- Step 40: Misty Reed Post
 	-- {zone:1446} Tanaris
 	["The next guide starts here and takes you to {zone:1446}."] = "下一个指南从这里开始，带你前往{zone:1446}。",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["South of {area:35} the Bloodsail swashbucklers camp on the {area:43}; the charts and the orders lie in their tents. Any Bloodsail can carry snuff and Dizzy's eye, so keep killing until you have both."] = "在{area:35}南边，血帆流氓在{area:43}扎营；血帆海图和血帆计划书就在他们的帐篷里。任何血帆海盗都可能携带鼻烟和迪兹的眼睛，所以一直杀到两样都拿到为止。",
 }

@@ -10,7 +10,7 @@ return {
 	["A rare off-hand at 60, Daio's payment for capturing a {npc:12396} in the {zone:1419}."] = "Una pieza rara de mano izquierda a nivel 60, el pago de Daio por capturar a un {npc:12396} en {zone:1419}.",
 
 	-- Step 1: Daio the Decrepit
-	-- {npc:14463} Daio the Decrepit · {area:73} The Tainted Scar · {zone:1419} Blasted Lands
+	-- {npc:14463} Daio the Decrepit · {area:73} Tainted Scar · {zone:1419} Blasted Lands
 	["At 60 {npc:14463} waits in the {area:73}, in western {zone:1419}."] = "A nivel 60, {npc:14463} espera en la {area:73}, al oeste de {zone:1419}.",
 
 	-- Step 2: Satyr Blood
@@ -24,7 +24,7 @@ return {
 	["The Hederine demons hold {area:2256}, in southern {zone:1452}. They are elite: grouping up is advised."] = "Los demonios Hederine ocupan la {area:2256}, al sur de {zone:1452}. Son élite: se recomienda ir en grupo.",
 
 	-- Step 4: Suppression
-	-- {npc:12396} Doomguard Commander · {area:73} The Tainted Scar · {item:18601} Glowing Crystal Prison
+	-- {npc:12396} Doomguard Commander · {area:73} Tainted Scar · {item:18601} Glowing Crystal Prison
 	["Hand both in to Daio, then find the {npc:12396} in the {area:73} and use the {item:18601} on him. He is elite and fights to escape: grouping up is advised."] = "Entrega ambas a Daio, luego busca al {npc:12396} en la {area:73} y usa la {item:18601} en él. Es élite y pelea para escapar: se recomienda ir en grupo.",
 	-- {item:18601} Glowing Crystal Prison · {npc:12396} Doomguard Commander
 	["{item:18601}, on the {npc:12396}"] = "{item:18601}, en el {npc:12396}",

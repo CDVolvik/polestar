@@ -13,7 +13,7 @@ return {
 	["{area:1446}, on the scaffolds in the north-west of {zone:1427}, is the Brotherhood's outpost. The {faction:59} starts out Neutral. Forever's Legacy Diplomat perk increases reputation gains."] = "{area:1446}, nos andaimes do noroeste de {zone:1427}, é o posto avançado da Irmandade. A {faction:59} começa em Neutro. A vantagem de Legado Diplomata do Forever aumenta os ganhos de reputação.",
 
 	-- Step 2: Secret Plans: Fiery Flux
-	-- {area:1443} The Slag Pit · {object:147516} Dark Iron · {item:18945} Dark Iron Residue
+	-- {area:1443} Slag Pit · {object:147516} Dark Iron · {item:18945} Dark Iron Residue
 	["The plans lie in the {area:1443} of the Cauldron, guarded by {object:147516} dwarves. {object:147516} dwarves also drop {item:18945}, which Burninate takes for Gaining Acceptance."] = "As instruções estão em {area:1443} do Caldeirão, guardadas por anões {object:147516}. Anões {object:147516} também deixam cair {item:18945}, que Queimatar aceita em Conquistando a confiança.",
 
 	-- Step 3: Back to Burninate
@@ -23,7 +23,7 @@ return {
 	-- {item:18942} Fiery Flux
 	["{item:18942} supplies to Friendly"] = "Suprimentos de {item:18942} até Amistoso",
 	-- {item:3356} Kingsblood · {item:4234} Heavy Leather · {item:18944} Incendosaur Scale · {zone:1427} Searing Gorge
-	-- plural, as words: Iron Bars = {item:3575} Iron Bar
+	-- plural, as words: Iron Bars = {item:3575} Iron Bar · Incendosaurs = {npc:9318} Incendosaur
 	["Restoring Fiery Flux Supplies repeats in three versions: {item:3356}, Iron Bars or {item:4234}, each with Coal and an {item:18944}. Incendosaurs (level 47-49) in the north of {zone:1427} drop a scale every time; Burninate himself sells Coal."] = "Restaurando suprimentos de fluxo ígneo se repete em três versões: {item:3356}, Barras de Ferro ou {item:4234}, cada uma com Carvão e uma {item:18944}. Incendossauros (nível 47-49) no norte de {zone:1427} sempre deixam cair uma escama; o próprio Queimatar vende Carvão.",
 	-- {npc:14624} Master Smith Burninate
 	["{npc:14624}: Restoring Fiery Flux Supplies"] = "{npc:14624}: Restaurando suprimentos de fluxo ígneo",

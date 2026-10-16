@@ -44,7 +44,7 @@ return {
 	-- Step 6: Rattlecages, scavengers and duskbats
 	["Rattlecages, scavengers and duskbats"] = "Armadóseos, carroñeros y murciumbríos",
 	-- {area:154} Deathknell
-	-- plural, as words: Rattlecage Skeletons = {npc:1890} Rattlecage Skeleton · Young Scavengers = {npc:1508} Young Scavenger · Ragged Scavengers = {npc:1509} Ragged Scavenger · Mangy Duskbats = {npc:1513} Mangy Duskbat
+	-- plural, as words: Rattlecage Skeletons = {npc:1890} Rattlecage Skeleton · Young Scavengers = {npc:1508} Young Scavenger · Duskbats = {npc:1512} Duskbat · Ragged Scavengers = {npc:1509} Ragged Scavenger · Mangy Duskbats = {npc:1513} Mangy Duskbat
 	["Rattlecage Skeletons wander the ruined houses in the north half of {area:154}. Young Scavengers and Duskbats roam all around the village; the Ragged Scavengers and Mangy Duskbats are on its east side."] = "Los Esqueletos armadóseos deambulan por las casas en ruinas de la mitad norte de {area:154}. Los Carroñeros jóvenes y los Murciumbríos rondan por todo el pueblo; los Carroñeros andrajosos y los Murciumbríos sarnosos están en su lado este.",
 
 	-- Step 7: Rattlecage skulls
@@ -197,8 +197,8 @@ return {
 	-- Step 37: Deathguard Linnea
 	-- {area:159} Brill · {npc:3549} Shelene Rhobart
 	["Follow the road south-east from {area:159} past the zeppelin towers. Linnea, Kristof and {npc:3549} camp by the road."] = "Sigue el camino al sureste desde {area:159}, pasando las torres de los zepelines. Linnea, Kristof y {npc:3549} acampan junto al camino.",
-	-- {npc:1495} Deathguard Linnea
-	["{npc:1495}: Riptear, an elite abomination in the east"] = "{npc:1495}: Rasgallanto, una abominación élite del este",
+	-- {npc:1495} Deathguard Linnea · {npc:276020} Riptear
+	["{npc:1495}: {npc:276020}, an elite abomination in the east"] = "",
 	-- {npc:251001} Deathguard Kristof
 	["Ask {npc:251001} for his report"] = "Pide su informe a {npc:251001}",
 
@@ -208,7 +208,7 @@ return {
 
 	-- Step 39: Agamand Mills
 	-- {area:157} Agamand Mills · {npc:1657} Devlin Agamand · {npc:1656} Thurman Agamand · {item:2839} A Letter to Yvette
-	-- plural, as words: Cracked Skull Soldiers = {npc:1523} Cracked Skull Soldier · Darkeye Bonecasters = {npc:1522} Darkeye Bonecaster
+	-- plural, as words: Cracked Skull Soldiers = {npc:1523} Cracked Skull Soldier · Darkeye Bonecasters = {npc:1522} Darkeye Bonecaster · Duskbats = {npc:1512} Duskbat
 	["Follow the road north-west to {area:157}. {npc:1657} walks the graveyard south of the mills; Nissa, Gregor and {npc:1656} haunt the mills themselves. Rattlecage and Cracked Skull Soldiers drop the ribs, Darkeye Bonecasters the skulls, and any of them may drop {item:2839}. From here on, kill the Duskbats and Darkhounds you pass: Shelene wants their wings and hides."] = "Sigue el camino al noroeste hasta {area:157}. {npc:1657} recorre el cementerio al sur de los molinos; Nissa, Gregor y {npc:1656} rondan por los propios molinos. Los Soldados armadóseos y los Soldados testapartida sueltan las costillas, los Tirahuesos Ojosombra las calaveras, y cualquiera de ellos puede soltar {item:2839}. A partir de aquí, mata los murciumbríos y canes oscuros que encuentres: Shelene quiere sus alas y pellejos.",
 	-- {item:2839} A Letter to Yvette
 	["{item:2839}, a rare drop"] = "{item:2839}, botín poco común",
@@ -219,7 +219,7 @@ return {
 	["Walk south-west to the {area:156}; Simmer stands at the farm."] = "Camina al suroeste hasta {area:156}; el Guardia de la Muerte Simmer está en la granja.",
 
 	-- Step 41: Tirisfal Pumpkins
-	-- plural, as words: Tirisfal Pumpkins = {item:2846} Tirisfal Pumpkin
+	-- plural, as words: Tirisfal Pumpkins = {object:375} Tirisfal Pumpkin
 	["Tirisfal Pumpkins"] = "Calabazas de Tirisfal",
 	["The pumpkins grow in the Scarlet-held fields north-west of Solliden."] = "Las calabazas crecen en los campos ocupados por los Escarlata al noroeste de Solliden.",
 
@@ -303,11 +303,13 @@ return {
 	-- Step 60: Vicious Night Web Spiders
 	-- plural, as words: Vicious Night Web Spiders = {npc:1555} Vicious Night Web Spider
 	["Vicious Night Web Spiders"] = "Nocturácnidas feroces",
-	["The spiders lurk in the woods at the far east end of the glades. Riptear, a rogue abomination, wanders just north-west of them. Riptear is elite: grouping up is advised."] = "Las arañas acechan en el bosque del extremo este de los claros. Rasgallanto, una abominación descontrolada, deambula justo al noroeste de ellas. Rasgallanto es élite: conviene ir en grupo.",
-	-- {item:286326} Riptear's Heart
-	["{item:286326}, from Riptear"] = "{item:286326}, de Rasgallanto",
+	-- {npc:276020} Riptear
+	["The spiders lurk in the woods at the far east end of the glades. {npc:276020}, a rogue abomination, wanders just north-west of them. {npc:276020} is elite: grouping up is advised."] = "",
+	-- {item:286326} Riptear's Heart · {npc:276020} Riptear
+	["{item:286326}, from {npc:276020}"] = "",
 
 	-- Step 61: Hides for the Forsaken
+	-- plural, as words: Duskbats = {npc:1512} Duskbat
 	["Duskbats and Darkhounds roam all along the road back west; finish the wings and hides on the way."] = "Los murciumbríos y canes oscuros rondan por todo el camino de vuelta al oeste; completa las alas y los pellejos por el camino.",
 
 	-- Step 62: Deathguard Linnea's camp
@@ -345,8 +347,14 @@ return {
 	["Zeppelin tower"] = "Torre de los zepelines",
 
 	-- Step 70: The Crossroads
-	-- {zone:1454} Orgrimmar · {zone:1411} Durotar · {area:815} Southfury River · {area:379} Far Watch Post · {area:380} The Crossroads
-	["The zeppelin lands at the tower just north-east of {zone:1454}'s main gate. Follow the road south into {zone:1411}, cross the {area:815} bridge below {area:379} and follow the road west to the {area:380}."] = "El zepelín aterriza en la torre justo al noreste de la puerta principal de {zone:1454}. Sigue el camino al sur hasta {zone:1411}, cruza el puente del {area:815} bajo {area:379} y sigue el camino al oeste hasta {area:380}.",
+	-- {zone:1454} Orgrimmar · {zone:1411} Durotar · {area:815} Southfury River · {area:379} Far Watch Post
+	["The zeppelin lands at the tower just north-east of {zone:1454}'s main gate. Follow the road south into {zone:1411}, cross the {area:815} bridge below {area:379} and follow the road west to the Crossroads."] = "",
 	-- {npc:3615} Devrak
 	["{npc:3615}, the wind rider master"] = "{npc:3615}, el maestro de jinetes del viento",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["The spiders lurk in the woods at the far east end of the glades. Riptear, a rogue abomination, wanders just north-west of them. Riptear is elite: grouping up is advised."] = "Las arañas acechan en el bosque del extremo este de los claros. Rasgallanto, una abominación descontrolada, deambula justo al noroeste de ellas. Rasgallanto es élite: conviene ir en grupo.",
+	-- ["The zeppelin lands at the tower just north-east of {zone:1454}'s main gate. Follow the road south into {zone:1411}, cross the {area:815} bridge below {area:379} and follow the road west to the {area:380}."] = "El zepelín aterriza en la torre justo al noreste de la puerta principal de {zone:1454}. Sigue el camino al sur hasta {zone:1411}, cruza el puente del {area:815} bajo {area:379} y sigue el camino al oeste hasta {area:380}.",
+	-- ["{item:286326}, from Riptear"] = "{item:286326}, de Rasgallanto",
+	-- ["{npc:1495}: Riptear, an elite abomination in the east"] = "{npc:1495}: Rasgallanto, una abominación élite del este",
 }

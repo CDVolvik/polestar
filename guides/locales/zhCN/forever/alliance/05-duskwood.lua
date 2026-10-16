@@ -35,7 +35,7 @@ return {
 	["{quest:337}: a rare drop from {zone:1431}'s mobs"] = "{quest:337}：{zone:1431}怪物的稀有掉落",
 
 	-- Step 5: Watcher Dodds
-	-- {npc:888} Watcher Dodds · {area:245} The Yorgen Farmstead
+	-- {npc:888} Watcher Dodds · {area:245} Yorgen Farmstead
 	["{npc:888} stands south of the road, at the {area:245}."] = "{npc:888}站在道路南边的{area:245}。",
 
 	-- Step 6: Raven Hill
@@ -66,10 +66,10 @@ return {
 	["Rabid Dire Wolves roam the woods around the cemetery and {npc:289}, Starving Dire Wolves the hills north-east of him. Pygmy Venom Web Spiders crawl east of the cemetery and drop the venom. Every ghoul of the cemetery's northern half can drop a fang."] = "疯狂的恐狼在墓地和{npc:289}周围的树林中游荡，饥饿的恐狼在他东北方的山丘上。小型结网毒蜘蛛在墓地东边爬行，掉落毒液。墓地北半部的所有食尸鬼都可能掉落牙齿。",
 
 	-- Step 11: Watcher Dodds
-	-- {area:245} The Yorgen Farmstead
+	-- {area:245} Yorgen Farmstead
 	["Ride back east along the road to the {area:245}."] = "沿道路向东骑回{area:245}。",
 
-	-- Step 12: The Yorgen Farmstead
+	-- Step 12: Yorgen Farmstead
 	["The mound of loose dirt lies south of the farmhouse, by the old stump."] = "松土堆在农舍南边的老树桩旁。",
 
 	-- Step 14: Blind Mary
@@ -111,7 +111,7 @@ return {
 	["{npc:288} hides in the house at the west end of {area:94}."] = "{npc:288}躲在{area:94}西端的房子里。",
 
 	-- Step 25: Sven's Camp
-	-- {zone:1453} Stormwind City · {area:17203} Stormwind Harbor · {area:442} Auberdine · {zone:1440} Ashenvale
+	-- {zone:1453} Stormwind · {area:17203} Stormwind Harbor · {area:442} Auberdine · {zone:1440} Ashenvale
 	["Next: {zone:1453} for training, then the boat from {area:17203} to {area:442} for {zone:1440}."] = "下一步：去{zone:1453}训练，然后从{area:17203}乘船前往{area:442}，再去{zone:1440}。",
 
 	-- Step 26: Agent Kearnen
@@ -121,10 +121,10 @@ return {
 	["{item:7908}, in the chest"] = "{item:7908}，在箱子里",
 
 	-- Step 27: Master Mathias Shaw
-	-- {zone:1453} Stormwind City · {object:2100} Old Town
+	-- {zone:1453} Stormwind · {object:2100} Old Town
 	["Ride north through Elwynn to {zone:1453}; Mathias Shaw is at SI:7 in {object:2100}."] = "向北穿过艾尔文森林前往{zone:1453}；马迪亚斯·肖尔在{object:2100}的军情七处。",
-	-- {npc:332} Master Mathias Shaw · {spell:2842} Poisons · {item:18160} Recipe: Thistle Tea
-	["{npc:332}: {spell:2842}, and {item:18160}"] = "{npc:332}：{spell:2842}，以及{item:18160}",
+	-- {npc:332} Master Mathias Shaw · {item:18160} Recipe: Thistle Tea
+	["{npc:332}: Poisons, and {item:18160}"] = "",
 	-- {quest:2607} The Touch of Zanzil · {npc:7207} Doc Mixilpixil
 	["{quest:2607}: {npc:7207}, in the cellar of the Barracks"] = "{quest:2607}：{npc:7207}，在兵营地下室",
 	-- {npc:7207} Doc Mixilpixil
@@ -132,14 +132,14 @@ return {
 	-- {item:3372} Leaded Vial · {npc:1313} Maria Lumere
 	["{item:3372}: {npc:1313}, Alchemy Supplies"] = "{item:3372}：{npc:1313}，炼金用品",
 
-	-- Step 28: Stormwind City
-	-- {zone:1453} Stormwind City · {zone:1429} Elwynn Forest · {area:17203} Stormwind Harbor · {area:442} Auberdine
+	-- Step 28: Stormwind
+	-- {zone:1453} Stormwind · {zone:1429} Elwynn Forest · {area:17203} Stormwind Harbor · {area:442} Auberdine
 	["Train in {zone:1453}, north through {zone:1429}. Then take the boat from {area:17203} to {area:442}."] = "在{zone:1453}训练，从{zone:1429}向北走。然后从{area:17203}乘船前往{area:442}。",
 	["Level 22 and 24 spells"] = "22级和24级法术",
 
 	-- Step 29: Shaman training
 	["Shaman training"] = "萨满祭司训练",
-	-- {zone:1453} Stormwind City · {area:2257} Deeprun Tram · {object:28027} Dwarven District · {zone:1455} Ironforge · {npc:258098} Eldrun Stormbreaker · {area:442} Auberdine
+	-- {zone:1453} Stormwind · {area:2257} Deeprun Tram · {object:28027} Dwarven District · {zone:1455} Ironforge · {npc:258098} Eldrun Stormbreaker · {area:442} Auberdine
 	["{zone:1453} has no shaman trainer: take the {area:2257} from the {object:28027} to {zone:1455}, train with {npc:258098}, then ride the tram back for the {area:442} boat."] = "{zone:1453}没有萨满祭司训练师：从{object:28027}乘{area:2257}前往{zone:1455}，找{npc:258098}训练，然后乘地铁返回，搭乘前往{area:442}的船。",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
@@ -147,4 +147,5 @@ return {
 	-- ["{item:3372}: {npc:1313}, {skill:171} Supplies"] = "{item:3372}：{npc:1313}，{skill:171}用品",
 	-- ["{npc:14235} Blossoms"] = "{npc:14235}之花",
 	-- ["{npc:332}: Poisons, and {item:18160}"] = "{npc:332}：毒药，以及{item:18160}",
+	-- ["{npc:332}: {spell:2842}, and {item:18160}"] = "{npc:332}：{spell:2842}，以及{item:18160}",
 }

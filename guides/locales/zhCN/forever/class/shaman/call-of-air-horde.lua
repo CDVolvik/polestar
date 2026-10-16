@@ -26,7 +26,7 @@ return {
 	["{npc:5905}: your {item:5178}"] = "{npc:5905}：你的{item:5178}",
 
 	-- Step 4: Charlga Razorflank
-	-- {area:1717} Razorfen Kraul · {zone:1413} The Barrens · {npc:4421} Charlga Razorflank
+	-- {area:1717} Razorfen Kraul · {zone:1413} Barrens · {npc:4421} Charlga Razorflank
 	["{area:1717} is a dungeon at the southern edge of the {zone:1413} (the arrow points at its entrance); {npc:4421} is its last boss. Bring a group."] = "{area:1717}是{zone:1413}南缘的地下城（箭头指向入口）；{npc:4421}是最后一个首领。请带上小队。",
 	-- {item:274463} Tattered Note · {npc:4421} Charlga Razorflank
 	["{item:274463}, from {npc:4421}"] = "{item:274463}，来自{npc:4421}",

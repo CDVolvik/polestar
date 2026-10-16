@@ -53,5 +53,4 @@ return {
 	["{faction:609} to Exalted"] = "{faction:609} 확고한 동맹까지",
 	-- {area:3454} Ruins of Ahn'Qiraj
 	["Keep running the {area:3454} and turning in Abyssal Council insignia until Exalted."] = "확고한 동맹이 될 때까지 {area:3454}을(를) 계속 돌고 Abyssal Council 휘장을 제출하십시오.",
-
 }

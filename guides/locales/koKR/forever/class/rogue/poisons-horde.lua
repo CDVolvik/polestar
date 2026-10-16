@@ -20,7 +20,7 @@ return {
 	["{quest:2458}: keep the {item:8051}"] = "{quest:2458}: {item:8051}을(를) 보관하세요",
 
 	-- Step 2: Taskmaster Fizzule
-	-- {area:380} The Crossroads · {area:382} The Sludge Fen · {item:8051} Flare Gun · {npc:7233} Taskmaster Fizzule
+	-- {area:380} Crossroads · {area:382} Sludge Fen · {item:8051} Flare Gun · {npc:7233} Taskmaster Fizzule
 	["Fly to the {area:380} and ride north to the Venture Co. tower north of the {area:382}. In sight of the tower, fire the {item:8051} twice, then /salute {npc:7233} before he attacks you."] = "{area:380}(으)로 날아가 북쪽으로 {area:382} 북쪽의 투자개발회사 탑까지 가세요. 탑이 보이는 곳에서 {item:8051}을(를) 두 번 쏜 뒤, {npc:7233}이(가) 공격하기 전에 /경례를 하세요.",
 	-- {item:8051} Flare Gun
 	["{item:8051}, twice, in sight of the tower"] = "{item:8051}, 탑이 보이는 곳에서 두 번",

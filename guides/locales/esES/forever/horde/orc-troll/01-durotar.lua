@@ -81,7 +81,9 @@ return {
 	["Inside the cave, keep to the right wall all the way round, over the stream: Yarrog waits at the end."] = "Dentro de la cueva, sigue la pared derecha durante todo el recorrido, cruzando el arroyo: Yarrog espera al final.",
 
 	-- Step 18: Felstalker hooves
-	["Felstalker hooves"] = "Pezuñas de acechador vil",
+	-- {npc:3102} Felstalker
+	["{npc:3102} hooves"] = "",
+	-- plural, as words: Felstalkers = {npc:3102} Felstalker
 	["Felstalkers roam the slope below the cave, on the valley's north side."] = "Los acechadores viles recorren la ladera bajo la cueva, en el lado norte del valle.",
 
 	-- Step 19: Zureetha Fargaze
@@ -140,7 +142,6 @@ return {
 
 	-- Step 33: Drygulch Ravine
 	-- {area:370} Drygulch Ravine · {npc:3293} Rezlak · {item:277661} Dull Storm Orb
-	-- plural, as words: Savages = {spell:20574} Savage
 	["Savages and Storm Witches nest in {area:370}, east of {npc:3293}. A Storm Witch drops the {item:277661}."] = "Los salvajes y las brujas de la Tormenta Viento Seco anidan en {area:370}, al este de {npc:3293}. Una bruja de la Tormenta suelta {item:277661}.",
 
 	-- Step 35: Thunder lizards
@@ -262,7 +263,7 @@ return {
 	["Follow the road north from {area:362} to {zone:1454}'s main gate, just west of {area:817}. {npc:3352} stands with the hunter trainers in the {object:172958}."] = "Sigue el camino hacia el norte desde {area:362} hasta la puerta principal de {zone:1454}, justo al oeste de {area:817}. {npc:3352} está con los instructores de cazadores en {object:172958}.",
 
 	-- Step 64: Far Watch Post
-	-- {area:362} Razor Hill · {area:814} Southfury River · {area:379} Far Watch Post · {zone:1413} The Barrens
+	-- {area:362} Razor Hill · {area:814} Southfury River · {area:379} Far Watch Post · {zone:1413} Barrens
 	["Follow the road west from {area:362} over the {area:814} bridge; {area:379} sits just above it on the {zone:1413} side."] = "Sigue el camino hacia el oeste desde {area:362} y cruza el puente de {area:814}; {area:379} está justo encima, en el lado de {zone:1413}.",
 
 	-- Step 65: Thunder lizards across the river
@@ -272,12 +273,14 @@ return {
 	["Thunder Lizards and Lightning Hides graze on {area:369} across the bridge; any of them can drop a {item:6486}."] = "Los truenagartos y los lomorrayos pastan en {area:369}, al otro lado del puente; cualquiera de ellos puede soltar {item:6486}.",
 
 	-- Step 67: The Crossroads
-	-- {area:379} Far Watch Post · {area:380} The Crossroads · {zone:1413} The Barrens
-	["Follow the road south-west from {area:379} to the {area:380}. {zone:1413} guide starts here."] = "Sigue el camino hacia el suroeste desde {area:379} hasta {area:380}. Aquí empieza la guía de {zone:1413}.",
+	-- {area:379} Far Watch Post · {zone:1413} Barrens
+	["Follow the road south-west from {area:379} to the Crossroads. The {zone:1413} guide starts here."] = "",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Burning Blade cultists hold the caves of {quest:827}; any of them drops a {item:4871}. {npc:3204}, a level 14 warlock, stands deep inside and drops the {item:4903}."] = "Los fieles Filo Ardiente ocupan las cuevas de {quest:827}; cualquiera de ellos suelta {item:4871}. {npc:3204}, un brujo de nivel 14, está en lo más hondo y suelta {item:4903}.",
+	-- ["Felstalker hooves"] = "Pezuñas de acechador vil",
 	-- ["Fizzle holds the Burning Blade camp on {area:369}, north-west of {area:362}. Hunters: tame a {npc:3099} with the {item:15908} on the way."] = "Fizzle ocupa el campamento del Filo Ardiente en {area:369}, al noroeste de {area:362}. Cazadores: domesticad un {npc:3099} con {item:15908} por el camino.",
+	-- ["Follow the road south-west from {area:379} to the {area:380}. {zone:1413} guide starts here."] = "Sigue el camino hacia el suroeste desde {area:379} hasta {area:380}. Aquí empieza la guía de {zone:1413}.",
 	-- ["Wade back west to the shore south of Sen'jin. {zone:1411} Tigers roam it and the Taillasher eggs sit in nests along the beach."] = "Vuelve vadeando al oeste hasta la orilla al sur del poblado Sen'jin. Por ella rondan los tigres de {zone:1411}, y los huevos de Colazote están en nidos a lo largo de la playa.",
 	-- ["{npc:265809} camps just south of {area:362}. Sit by his campfire (/sit) until the Boosted Rest buff appears."] = "{npc:265809} acampa justo al sur de {area:362}. Siéntate junto a su hoguera (/sentarse) hasta que aparezca el beneficio de descanso potenciado.",
 	-- ["{npc:3171}: Tame Beast"] = "{npc:3171}: Domesticar bestia",

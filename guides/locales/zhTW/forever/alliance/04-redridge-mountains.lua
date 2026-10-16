@@ -5,7 +5,7 @@
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
 -- The comments are rewritten by sync.
 return {
-	-- Step 1: Stormwind City
+	-- Step 1: Stormwind
 	-- {area:442} Auberdine · {area:17203} Stormwind Harbor · {npc:1646} Baros Alexston · {zone:1429} Elwynn Forest
 	["The {area:442} boat docks at {area:17203}. Walk up into the city for training and {npc:1646}, then leave by the main gate and follow the road east through {zone:1429}."] = "{area:442}的船停靠在{area:17203}。走進城裡學習技能並找{npc:1646}，然後從正門離開，沿著道路向東穿過{zone:1429}。",
 	["Level 18 and 20 spells"] = "18級和20級法術",
@@ -16,17 +16,17 @@ return {
 
 	-- Step 2: Shaman training
 	["Shaman training"] = "薩滿訓練",
-	-- {zone:1453} Stormwind City · {area:2257} Deeprun Tram · {object:28027} Dwarven District · {zone:1455} Ironforge · {npc:258098} Eldrun Stormbreaker
+	-- {zone:1453} Stormwind · {area:2257} Deeprun Tram · {object:28027} Dwarven District · {zone:1455} Ironforge · {npc:258098} Eldrun Stormbreaker
 	["{zone:1453} has no shaman trainer: take the {area:2257} from the {object:28027} to {zone:1455}, train with {npc:258098}, then ride the tram back."] = "{zone:1453}沒有薩滿訓練師：從{object:28027}搭乘{area:2257}前往{zone:1455}，向{npc:258098}學習，然後搭地鐵回來。",
 
-	-- Step 3: Stormwind City class quests
-	-- {zone:1453} Stormwind City
+	-- Step 3: Stormwind class quests
+	-- {zone:1453} Stormwind
 	["{zone:1453} class quests"] = "{zone:1453}職業任務",
-	-- {npc:332} Master Mathias Shaw · {object:2100} Old Town · {npc:6122} Gakin the Darkbinder · {object:2164} The Slaughtered Lamb · {object:2101} Mage Quarter · {npc:376} High Priestess Laurena
+	-- {npc:332} Master Mathias Shaw · {object:2100} Old Town · {npc:6122} Gakin the Darkbinder · {object:2164} Slaughtered Lamb · {object:2101} Mage Quarter · {npc:376} High Priestess Laurena
 	["{npc:332} is at SI:7 in {object:2100}, {npc:6122} in the {object:2164}'s cellar in the {object:2101}, {npc:376} in the Cathedral of Light."] = "{npc:332}在{object:2100}的軍情七處，{npc:6122}在{object:2101}的{object:2164}地下室，{npc:376}在光明大教堂。",
 	-- {npc:332} Master Mathias Shaw · {npc:7024} Agent Kearnen · {zone:1436} Westfall · {zone:1431} Duskwood
 	["{npc:332}: {npc:7024} in {zone:1436} takes it, at the end of {zone:1431}"] = "{npc:332}：由{zone:1436}的{npc:7024}接收，在{zone:1431}的結尾",
-	-- {npc:6122} Gakin the Darkbinder · {npc:6244} Takar the Seer · {zone:1413} The Barrens
+	-- {npc:6122} Gakin the Darkbinder · {npc:6244} Takar the Seer · {zone:1413} Barrens
 	["{npc:6122}: {npc:6244} in the {zone:1413} takes it, later"] = "{npc:6122}：由{zone:1413}的{npc:6244}接收，稍後",
 	-- {npc:376} High Priestess Laurena · {npc:11406} High Priest Rohan · {zone:1455} Ironforge
 	["{npc:376}: {npc:11406} in {zone:1455} takes it, later"] = "{npc:376}：由{zone:1455}的{npc:11406}接收，稍後",
@@ -70,9 +70,8 @@ return {
 	["{item:280911}: Redridge Thrashers"] = "{item:280911}：赤脊山鞭笞者",
 
 	-- Step 10: Bellygrub
-	["Bellygrub"] = "貝利格拉布",
-	-- {area:69} Lakeshire
-	["Bellygrub (level 24) roots around the pen just west of {area:69}. Pull him away from the other boars and fight at full health."] = "貝利格拉布（24級）在{area:69}西邊不遠處的豬圈裡拱土。把牠從其他野豬旁拉開，滿血再戰。",
+	-- {npc:345} Bellygrub · {area:69} Lakeshire
+	["{npc:345} (level 24) roots around the pen just west of {area:69}. Pull him away from the other boars and fight at full health."] = "",
 
 	-- Step 12: Lakeshire
 	-- {npc:703} Lieutenant Fangore · {area:1000} Galardell Valley
@@ -116,4 +115,8 @@ return {
 	["{npc:903}, by the gryphons south of the bridge"] = "{npc:903}，在橋南邊的獅鷲旁",
 	-- {zone:1431} Duskwood · {area:1002} Three Corners · {area:42} Darkshire
 	["{zone:1431} is next: follow the road west to {area:1002}, then south to {area:42}."] = "下一站是{zone:1431}：沿著道路向西前往{area:1002}，再向南前往{area:42}。",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Bellygrub"] = "貝利格拉布",
+	-- ["Bellygrub (level 24) roots around the pen just west of {area:69}. Pull him away from the other boars and fight at full health."] = "貝利格拉布（24級）在{area:69}西邊不遠處的豬圈裡拱土。把牠從其他野豬旁拉開，滿血再戰。",
 }

@@ -9,8 +9,8 @@ return {
 	["Warlock Dreadsteed"] = "흑마법사 공포마",
 	["Your epic mount at 60: summoned anywhere, with no gold spent on an epic horse."] = "60레벨의 영웅 탈것으로, 어디서든 소환할 수 있으며 영웅 말에 골드를 쓸 필요가 없습니다.",
 
-	-- Step 1: Mor'zul Bloodbringer (Stormwind City)
-	-- {npc:5520} Spackle Thornberry · {object:2164} The Slaughtered Lamb · {quest:7562} Mor'zul Bloodbringer · {zone:1428} Burning Steppes
+	-- Step 1: Mor'zul Bloodbringer (Stormwind)
+	-- {npc:5520} Spackle Thornberry · {object:2164} Slaughtered Lamb · {quest:7562} Mor'zul Bloodbringer · {zone:1428} Burning Steppes
 	["At 60 {npc:5520} in the {object:2164} sends you to {quest:7562} in the {zone:1428}."] = "60레벨에 {object:2164}의 {npc:5520}이(가) 당신을 {zone:1428}의 {quest:7562}에게 보냅니다.",
 
 	-- Step 2: Mor'zul Bloodbringer (Ironforge)
@@ -45,9 +45,9 @@ return {
 
 	-- Step 8: The ritual pieces
 	["The ritual pieces"] = "의식 재료",
-	-- {spell:5896} Shadow Power · {skill:171} Alchemy · {skill:333} Enchanting · {item:11370} Dark Iron Ore · {skill:186} Mining · {area:1584} Blackrock Depths · {zone:1427} Searing Gorge · {skill:393} Skinning · {zone:1428} Burning Steppes
+	-- {skill:171} Alchemy · {skill:333} Enchanting · {item:11370} Dark Iron Ore · {skill:186} Mining · {area:1584} Blackrock Depths · {zone:1427} Searing Gorge · {skill:393} Skinning · {zone:1428} Burning Steppes
 	-- plural, as words: Large Brilliant Shards = {item:14344} Large Brilliant Shard · Black Dragonscales = {item:15416} Black Dragonscale
-	["Gorzeeki wants 10 Elixirs of {spell:5896} ({skill:171}), 6 Large Brilliant Shards ({skill:333}), 25 {item:11370} ({skill:186}, in {area:1584} and the {zone:1427}) and 35 Black Dragonscales ({skill:393}, black dragonkin of the {zone:1428}). Make or gather what your professions allow; buy the rest at the Auction House."] = "고르지키는 {spell:5896}의 비약 10개({skill:171}), {item:14344} 6개({skill:333}), {item:11370} 25개({skill:186}, {area:1584}와(과) {zone:1427}), {item:15416} 35개({skill:393}, {zone:1428}의 검은용족)를 원합니다. 전문 기술로 만들거나 모을 수 있는 것은 직접 하고, 나머지는 경매장에서 사세요.",
+	["Gorzeeki wants 10 Elixirs of Shadow Power ({skill:171}), 6 Large Brilliant Shards ({skill:333}), 25 {item:11370} ({skill:186}, in {area:1584} and the {zone:1427}) and 35 Black Dragonscales ({skill:393}, black dragonkin of the {zone:1428}). Make or gather what your professions allow; buy the rest at the Auction House."] = "",
 
 	-- Step 9: Arcanite
 	-- plural, as words: Arcanite Bars = {item:12360} Arcanite Bar
@@ -92,4 +92,6 @@ return {
 	-- {npc:14504} Dreadsteed Spirit
 	["{npc:14504}: it binds itself to you"] = "{npc:14504}: 당신에게 귀속됩니다",
 
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Gorzeeki wants 10 Elixirs of {spell:5896} ({skill:171}), 6 Large Brilliant Shards ({skill:333}), 25 {item:11370} ({skill:186}, in {area:1584} and the {zone:1427}) and 35 Black Dragonscales ({skill:393}, black dragonkin of the {zone:1428}). Make or gather what your professions allow; buy the rest at the Auction House."] = "고르지키는 {spell:5896}의 비약 10개({skill:171}), {item:14344} 6개({skill:333}), {item:11370} 25개({skill:186}, {area:1584}와(과) {zone:1427}), {item:15416} 35개({skill:393}, {zone:1428}의 검은용족)를 원합니다. 전문 기술로 만들거나 모을 수 있는 것은 직접 하고, 나머지는 경매장에서 사세요.",
 }

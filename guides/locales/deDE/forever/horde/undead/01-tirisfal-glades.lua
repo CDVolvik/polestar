@@ -44,7 +44,7 @@ return {
 	-- Step 6: Rattlecages, scavengers and duskbats
 	["Rattlecages, scavengers and duskbats"] = "Klappernde Skelette, Aasfresser und Nachtsauger",
 	-- {area:154} Deathknell
-	-- plural, as words: Rattlecage Skeletons = {npc:1890} Rattlecage Skeleton · Young Scavengers = {npc:1508} Young Scavenger · Ragged Scavengers = {npc:1509} Ragged Scavenger · Mangy Duskbats = {npc:1513} Mangy Duskbat
+	-- plural, as words: Rattlecage Skeletons = {npc:1890} Rattlecage Skeleton · Young Scavengers = {npc:1508} Young Scavenger · Duskbats = {npc:1512} Duskbat · Ragged Scavengers = {npc:1509} Ragged Scavenger · Mangy Duskbats = {npc:1513} Mangy Duskbat
 	["Rattlecage Skeletons wander the ruined houses in the north half of {area:154}. Young Scavengers and Duskbats roam all around the village; the Ragged Scavengers and Mangy Duskbats are on its east side."] = "Klappernde Skelette streifen durch die zerstörten Häuser in der Nordhälfte von {area:154}. Junge Aasfresser und Nachtsauger streifen überall im Dorf umher; die Struppigen Aasfresser und Räudigen Nachtsauger sind auf seiner Ostseite.",
 
 	-- Step 7: Rattlecage skulls
@@ -197,8 +197,8 @@ return {
 	-- Step 37: Deathguard Linnea
 	-- {area:159} Brill · {npc:3549} Shelene Rhobart
 	["Follow the road south-east from {area:159} past the zeppelin towers. Linnea, Kristof and {npc:3549} camp by the road."] = "Folge der Straße von {area:159} nach Südosten an den Zeppelintürmen vorbei. Linnea, Kristof und {npc:3549} lagern an der Straße.",
-	-- {npc:1495} Deathguard Linnea
-	["{npc:1495}: Riptear, an elite abomination in the east"] = "{npc:1495}: Reißer, eine Elite-Monstrosität im Osten",
+	-- {npc:1495} Deathguard Linnea · {npc:276020} Riptear
+	["{npc:1495}: {npc:276020}, an elite abomination in the east"] = "",
 	-- {npc:251001} Deathguard Kristof
 	["Ask {npc:251001} for his report"] = "Bitte {npc:251001} um seinen Bericht",
 
@@ -208,7 +208,7 @@ return {
 
 	-- Step 39: Agamand Mills
 	-- {area:157} Agamand Mills · {npc:1657} Devlin Agamand · {npc:1656} Thurman Agamand · {item:2839} A Letter to Yvette
-	-- plural, as words: Cracked Skull Soldiers = {npc:1523} Cracked Skull Soldier · Darkeye Bonecasters = {npc:1522} Darkeye Bonecaster
+	-- plural, as words: Cracked Skull Soldiers = {npc:1523} Cracked Skull Soldier · Darkeye Bonecasters = {npc:1522} Darkeye Bonecaster · Duskbats = {npc:1512} Duskbat
 	["Follow the road north-west to {area:157}. {npc:1657} walks the graveyard south of the mills; Nissa, Gregor and {npc:1656} haunt the mills themselves. Rattlecage and Cracked Skull Soldiers drop the ribs, Darkeye Bonecasters the skulls, and any of them may drop {item:2839}. From here on, kill the Duskbats and Darkhounds you pass: Shelene wants their wings and hides."] = "Folge der Straße nach Nordwesten zu {area:157}. {npc:1657} geht über den Friedhof südlich der Mühlen; Nissa, Gregor und {npc:1656} spuken in den Mühlen selbst. Klappernde Skelettsoldaten und Trümmerschädelsoldaten lassen die Rippen fallen, Dunkle Skelettmagier die Schädel, und jeder von ihnen kann {item:2839} fallen lassen. Töte ab hier die Nachtsauger und Schattenhunde, an denen du vorbeikommst: Shelene will ihre Flügel und Felle.",
 	-- {item:2839} A Letter to Yvette
 	["{item:2839}, a rare drop"] = "{item:2839}, ein seltener Drop",
@@ -219,7 +219,7 @@ return {
 	["Walk south-west to the {area:156}; Simmer stands at the farm."] = "Geh nach Südwesten zu {area:156}; Simmer steht beim Hof.",
 
 	-- Step 41: Tirisfal Pumpkins
-	-- plural, as words: Tirisfal Pumpkins = {item:2846} Tirisfal Pumpkin
+	-- plural, as words: Tirisfal Pumpkins = {object:375} Tirisfal Pumpkin
 	["Tirisfal Pumpkins"] = "Tirisfalkürbisse",
 	["The pumpkins grow in the Scarlet-held fields north-west of Solliden."] = "Die Kürbisse wachsen auf den von den Scharlachroten gehaltenen Feldern nordwestlich von Sollidens Bauernhof.",
 
@@ -303,11 +303,13 @@ return {
 	-- Step 60: Vicious Night Web Spiders
 	-- plural, as words: Vicious Night Web Spiders = {npc:1555} Vicious Night Web Spider
 	["Vicious Night Web Spiders"] = "Heimtückische Nachtweber",
-	["The spiders lurk in the woods at the far east end of the glades. Riptear, a rogue abomination, wanders just north-west of them. Riptear is elite: grouping up is advised."] = "Die Spinnen lauern in den Wäldern am äußersten Ostende von Tirisfal. Reißer, eine abtrünnige Monstrosität, streift direkt nordwestlich von ihnen umher. Reißer ist Elite: Eine Gruppe wird empfohlen.",
-	-- {item:286326} Riptear's Heart
-	["{item:286326}, from Riptear"] = "{item:286326}, von Reißer",
+	-- {npc:276020} Riptear
+	["The spiders lurk in the woods at the far east end of the glades. {npc:276020}, a rogue abomination, wanders just north-west of them. {npc:276020} is elite: grouping up is advised."] = "",
+	-- {item:286326} Riptear's Heart · {npc:276020} Riptear
+	["{item:286326}, from {npc:276020}"] = "",
 
 	-- Step 61: Hides for the Forsaken
+	-- plural, as words: Duskbats = {npc:1512} Duskbat
 	["Duskbats and Darkhounds roam all along the road back west; finish the wings and hides on the way."] = "Nachtsauger und Schattenhunde streifen überall entlang der Straße zurück nach Westen umher; sammle unterwegs die restlichen Flügel und Felle.",
 
 	-- Step 62: Deathguard Linnea's camp
@@ -345,8 +347,14 @@ return {
 	["Zeppelin tower"] = "Zeppelinturm",
 
 	-- Step 70: The Crossroads
-	-- {zone:1454} Orgrimmar · {zone:1411} Durotar · {area:815} Southfury River · {area:379} Far Watch Post · {area:380} The Crossroads
-	["The zeppelin lands at the tower just north-east of {zone:1454}'s main gate. Follow the road south into {zone:1411}, cross the {area:815} bridge below {area:379} and follow the road west to the {area:380}."] = "Der Zeppelin landet am Turm direkt nordöstlich des Haupttors von {zone:1454}. Folge der Straße nach Süden nach {zone:1411}, überquere die Brücke über {area:815} unterhalb von {area:379} und folge der Straße nach Westen zu {area:380}.",
+	-- {zone:1454} Orgrimmar · {zone:1411} Durotar · {area:815} Southfury River · {area:379} Far Watch Post
+	["The zeppelin lands at the tower just north-east of {zone:1454}'s main gate. Follow the road south into {zone:1411}, cross the {area:815} bridge below {area:379} and follow the road west to the Crossroads."] = "",
 	-- {npc:3615} Devrak
 	["{npc:3615}, the wind rider master"] = "{npc:3615}, der Windreitermeister",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["The spiders lurk in the woods at the far east end of the glades. Riptear, a rogue abomination, wanders just north-west of them. Riptear is elite: grouping up is advised."] = "Die Spinnen lauern in den Wäldern am äußersten Ostende von Tirisfal. Reißer, eine abtrünnige Monstrosität, streift direkt nordwestlich von ihnen umher. Reißer ist Elite: Eine Gruppe wird empfohlen.",
+	-- ["The zeppelin lands at the tower just north-east of {zone:1454}'s main gate. Follow the road south into {zone:1411}, cross the {area:815} bridge below {area:379} and follow the road west to the {area:380}."] = "Der Zeppelin landet am Turm direkt nordöstlich des Haupttors von {zone:1454}. Folge der Straße nach Süden nach {zone:1411}, überquere die Brücke über {area:815} unterhalb von {area:379} und folge der Straße nach Westen zu {area:380}.",
+	-- ["{item:286326}, from Riptear"] = "{item:286326}, von Reißer",
+	-- ["{npc:1495}: Riptear, an elite abomination in the east"] = "{npc:1495}: Reißer, eine Elite-Monstrosität im Osten",
 }

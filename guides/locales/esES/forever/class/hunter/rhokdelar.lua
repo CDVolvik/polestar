@@ -58,12 +58,14 @@ return {
 	["{npc:14524}: Lok'delar in Classic"] = "{npc:14524}: Lok'delar en Classic",
 
 	-- Step 10: Azuregos
-	["Azuregos"] = "Azuregos",
-	-- {item:18704} Mature Blue Dragon Sinew · {zone:1447} Azshara · {zone:1452} Winterspring
-	["Hastat's quiver needs the {item:18704}. Azuregos, a world boss for a raid, roams the south of {zone:1447} and drops it most of the time; the Cobalt dragonkin of {zone:1452} drop it very rarely. Skip the rest of this guide if you do not want the quiver."] = "El carcaj de Hastat necesita {item:18704}. Azuregos, un jefe del mundo para una banda, recorre el sur de {zone:1447} y lo suelta casi siempre; los vermis de cobalto de {zone:1452} lo sueltan muy rara vez. Omite el resto de esta guía si no quieres el carcaj.",
-	-- {item:18704} Mature Blue Dragon Sinew
-	["{item:18704}, from Azuregos"] = "{item:18704}, de Azuregos",
+	-- {item:18704} Mature Blue Dragon Sinew · {npc:6109} Azuregos · {zone:1447} Azshara · {zone:1452} Winterspring
+	["Hastat's quiver needs the {item:18704}. {npc:6109}, a world boss for a raid, roams the south of {zone:1447} and drops it most of the time; the Cobalt dragonkin of {zone:1452} drop it very rarely. Skip the rest of this guide if you do not want the quiver."] = "",
+	-- {item:18704} Mature Blue Dragon Sinew · {npc:6109} Azuregos
+	["{item:18704}, from {npc:6109}"] = "",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Azuregos"] = "Azuregos",
+	-- ["Hastat's quiver needs the {item:18704}. Azuregos, a world boss for a raid, roams the south of {zone:1447} and drops it most of the time; the Cobalt dragonkin of {zone:1452} drop it very rarely. Skip the rest of this guide if you do not want the quiver."] = "El carcaj de Hastat necesita {item:18704}. Azuregos, un jefe del mundo para una banda, recorre el sur de {zone:1447} y lo suelta casi siempre; los vermis de cobalto de {zone:1452} lo sueltan muy rara vez. Omite el resto de esta guía si no quieres el carcaj.",
 	-- ["Not confirmed in Forever. In Classic, using the {item:18707} with the {item:18724} in your bags made Rhok'delar, and Vartrus then gave {item:18715} (Icy Veins)."] = "Sin confirmar en Forever. En Classic, usar {item:18707} con {item:18724} en las bolsas creaba Rhok'delar, y Vartrus te daba entonces {item:18715} (Venas heladas).",
+	-- ["{item:18704}, from Azuregos"] = "{item:18704}, de Azuregos",
 }

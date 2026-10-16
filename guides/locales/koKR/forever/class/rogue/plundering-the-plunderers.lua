@@ -24,7 +24,7 @@ return {
 	["Undead take the zeppelin from the towers outside the {zone:1458} to {zone:1411}. {npc:3401} and {quest:2379} stand in the {object:172960}, the canyon under the {object:172982}."] = "언데드는 {zone:1458} 밖의 탑에서 비행선을 타고 {zone:1411}(으)로 가십시오. {npc:3401}와(과) {quest:2379}은(는) {object:172982} 아래 협곡인 {object:172960}에 있습니다.",
 
 	-- Step 4: Wrenix the Wretched
-	-- {area:392} Ratchet · {zone:1413} The Barrens · {item:7970} E.C.A.C. · {item:5060} Thieves' Tools
+	-- {area:392} Ratchet · {zone:1413} Barrens · {item:7970} E.C.A.C. · {item:5060} Thieves' Tools
 	["Fly or ride to {area:392} on the {zone:1413} coast. Wrenix stands in town with his Gizmotronic Apparatus: buy an {item:7970} and {item:5060} from the apparatus before you go."] = "{zone:1413} 해안의 {area:392}(으)로 비행하거나 달려가십시오. 비운의 레닉스는 마을에서 레닉스의 기계장치와 함께 서 있습니다. 떠나기 전에 기계장치에서 {item:7970}와(과) {item:5060}을(를) 구매하십시오.",
 
 	-- Step 5: Southsea Treasure
@@ -37,7 +37,7 @@ return {
 	["{npc:7161}: ten {item:7676}"] = "{npc:7161}: {item:7676} 10개",
 
 	-- Step 7: Fenwick Thatros
-	-- {zone:1454} Orgrimmar · {zone:1458} Undercity · {quest:1998} Fenwick Thatros · {area:228} The Sepulcher
+	-- {zone:1454} Orgrimmar · {zone:1458} Undercity · {quest:1998} Fenwick Thatros · {area:228} Sepulcher
 	["Take the zeppelin from {zone:1454} to the {zone:1458} and ride south into Silverpine. {quest:1998} stands north-east of the {area:228}."] = "{zone:1454}에서 비행선을 타고 {zone:1458}(으)로 간 뒤 남쪽 은빛소나무 숲으로 달려가십시오. {quest:1998}은(는) {area:228} 북동쪽에 있습니다.",
 
 	-- Step 9: Ambermill

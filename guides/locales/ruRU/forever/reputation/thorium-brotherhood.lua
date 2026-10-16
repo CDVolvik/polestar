@@ -13,7 +13,7 @@ return {
 	["{area:1446}, on the scaffolds in the north-west of {zone:1427}, is the Brotherhood's outpost. The {faction:59} starts out Neutral. Forever's Legacy Diplomat perk increases reputation gains."] = "{area:1446} – аванпост Братства на лесах на северо-западе зоны {zone:1427}. {faction:59}: начальная репутация – равнодушие. Бонус наследия Forever «Дипломат» ускоряет рост репутации.",
 
 	-- Step 2: Secret Plans: Fiery Flux
-	-- {area:1443} The Slag Pit · {object:147516} Dark Iron · {item:18945} Dark Iron Residue
+	-- {area:1443} Slag Pit · {object:147516} Dark Iron · {item:18945} Dark Iron Residue
 	["The plans lie in the {area:1443} of the Cauldron, guarded by {object:147516} dwarves. {object:147516} dwarves also drop {item:18945}, which Burninate takes for Gaining Acceptance."] = "Чертежи лежат здесь: {area:1443} в Котловане; их охраняют дворфы ({object:147516}). С этих дворфов ({object:147516}) также падает {item:18945} – Гориврат принимает его для задания «Завоевать благосклонность».",
 
 	-- Step 3: Back to Burninate
@@ -23,7 +23,7 @@ return {
 	-- {item:18942} Fiery Flux
 	["{item:18942} supplies to Friendly"] = "Припасы ({item:18942}) до уровня «Дружелюбие»",
 	-- {item:3356} Kingsblood · {item:4234} Heavy Leather · {item:18944} Incendosaur Scale · {zone:1427} Searing Gorge
-	-- plural, as words: Iron Bars = {item:3575} Iron Bar
+	-- plural, as words: Iron Bars = {item:3575} Iron Bar · Incendosaurs = {npc:9318} Incendosaur
 	["Restoring Fiery Flux Supplies repeats in three versions: {item:3356}, Iron Bars or {item:4234}, each with Coal and an {item:18944}. Incendosaurs (level 47-49) in the north of {zone:1427} drop a scale every time; Burninate himself sells Coal."] = "Задание на пополнение запасов огненного плавня повторяется в трех вариантах: {item:3356}, {item:3575} или {item:4234}, каждый – с углем и предметом {item:18944}. Пламезавры (уровень 47-49) на севере зоны {zone:1427} всегда роняют чешую; уголь продает сам Гориврат.",
 	-- {npc:14624} Master Smith Burninate
 	["{npc:14624}: Restoring Fiery Flux Supplies"] = "{npc:14624}: пополнение запасов огненного плавня",

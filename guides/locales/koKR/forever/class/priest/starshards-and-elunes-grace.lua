@@ -16,6 +16,6 @@ return {
 	["At 10, go to {npc:11401} in the Temple of the Moon. Priest trainers elsewhere ({npc:3600} in {area:186}, {npc:377} in {area:87}, {npc:1226} in {area:131}) send you to her with {quest:5628}."] = "10레벨에 달의 신전의 {npc:11401}에게 가십시오. 다른 곳의 사제 상급자({area:186}의 {npc:3600}, {area:87}의 {npc:377}, {area:131}의 {npc:1226})가 {quest:5628} 퀘스트로 그녀에게 보냅니다.",
 
 	-- Step 2: Elune's Grace
-	-- {npc:11401} Priestess Alathea · {quest:5672} Elune's Grace · {npc:376} High Priestess Laurena · {zone:1453} Stormwind City · {npc:11406} High Priest Rohan · {zone:1455} Ironforge
+	-- {npc:11401} Priestess Alathea · {quest:5672} Elune's Grace · {npc:376} High Priestess Laurena · {zone:1453} Stormwind · {npc:11406} High Priest Rohan · {zone:1455} Ironforge
 	["At 20, {npc:11401} teaches {quest:5672}. {npc:376} in {zone:1453} and {npc:11406} in {zone:1455} send you to her with a quest of the same name."] = "20레벨에 {npc:11401}이(가) {quest:5672}을(를) 가르칩니다. {zone:1453}의 {npc:376}와(과) {zone:1455}의 {npc:11406}이(가) 같은 이름의 퀘스트로 그녀에게 보냅니다.",
 }

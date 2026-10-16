@@ -123,7 +123,7 @@ return {
 
 	-- Step 33: Wildkin feathers
 	["Wildkin feathers"] = "Plumes d'Indomptable",
-	-- {area:1438} Nethergarde Keep · {area:348} Aerie Peak · {zone:1425} The Hinterlands
+	-- {area:1438} Nethergarde Keep · {area:348} Aerie Peak · {zone:1425} Hinterlands
 	-- plural, as words: Wildkin Feathers = {item:10819} Wildkin Feather
 	["Ride back to {area:1438} and fly to {area:348}. The Wildkin Feathers lie on the ground across the {zone:1425}, south and east of {area:348}, where the owlbeasts roam; the mobs here are well below you now."] = "Revenez à {area:1438} et prenez un vol pour {area:348}. Les Plumes d'Indomptable jonchent le sol dans {zone:1425}, au sud et à l'est de {area:348}, là où rôdent les chouettards ; les monstres d'ici sont désormais bien en dessous de votre niveau.",
 

@@ -6,7 +6,7 @@
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Thelsamar
-	-- {npc:1573} Gryth Thurden · {object:32372} The Great Forge
+	-- {npc:1573} Gryth Thurden · {object:32372} Great Forge
 	["{npc:1573}, the {object:32372}"] = "{npc:1573}, {object:32372}",
 
 	-- Step 2: Hammertoe's Digsite
@@ -53,8 +53,8 @@ return {
 	["Raleigh's next errand is in the {area:796}: skip it."] = "El siguiente encargo de Raleigh es en {area:796}: omítelo.",
 
 	-- Step 11: Aerie Peak
-	-- {area:271} Southshore · {zone:1425} The Hinterlands · {area:348} Aerie Peak · {quest:1450} Gryphon Master Talonaxe · {npc:7884} Fraggar Thundermantle
-	["Ride north-east out of {area:271} on the road into the {zone:1425}; {area:348} sits just past the border. Falstad holds court at the top, {quest:1450} tends the aviary and {npc:7884} stands by the inn."] = "Cabalga hacia el noreste fuera de {area:271} por el camino hacia {zone:1425}; {area:348} está justo pasando la frontera. Falstad recibe en la cima, {quest:1450} cuida el aviario y {npc:7884} está junto a la posada.",
+	-- {area:271} Southshore · {area:348} Aerie Peak · {quest:1450} Gryphon Master Talonaxe · {npc:7884} Fraggar Thundermantle
+	["Ride north-east out of {area:271} on the road into the Hinterlands; {area:348} sits just past the border. Falstad holds court at the top, {quest:1450} tends the aviary and {npc:7884} stands by the inn."] = "",
 
 	-- Step 12: Rhapsody Shindigger
 	-- {area:348} Aerie Peak
@@ -69,8 +69,7 @@ return {
 	["Fraggar keeps paying for necklaces: hand in any extras"] = "Fraggar sigue pagando por collares: entrega los que te sobren",
 	-- {npc:5636} Gryphon Master Talonaxe
 	["{npc:5636}, beside the flight master at the top"] = "{npc:5636}, junto al maestro de vuelo en la cima",
-	-- {zone:1425} The Hinterlands
-	["Talonaxe's next task waits for a later {zone:1425} guide."] = "La siguiente tarea de Talonaxe espera a una guía posterior de {zone:1425}.",
+	["Talonaxe's next task waits for a later Hinterlands guide."] = "",
 
 	-- Step 15: Menethil Harbor
 	["Take the boat to Theramore from the far pier."] = "Toma el barco a Isla Theramore desde el muelle más lejano.",
@@ -88,6 +87,10 @@ return {
 
 	-- Step 18: On to Feathermoon
 	["On to Feathermoon"] = "Rumbo a Bastión Plumaluna",
-	-- {area:608} Nijel's Point · {zone:1443} Desolace · {zone:1444} Feralas · {area:1108} The Forgotten Coast · {area:1116} Feathermoon Stronghold
+	-- {area:608} Nijel's Point · {zone:1443} Desolace · {zone:1444} Feralas · {area:1108} Forgotten Coast · {area:1116} Feathermoon Stronghold
 	["Fly to {area:608}, ride south through {zone:1443} into {zone:1444} and follow the road to the dock on the {area:1108}; the boat crosses to {area:1116}, where the next guide starts."] = "Vuela a {area:608}, cabalga hacia el sur por {zone:1443} hasta {zone:1444} y sigue el camino hasta el muelle de {area:1108}; el barco cruza a {area:1116}, donde empieza la siguiente guía.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Ride north-east out of {area:271} on the road into the {zone:1425}; {area:348} sits just past the border. Falstad holds court at the top, {quest:1450} tends the aviary and {npc:7884} stands by the inn."] = "Cabalga hacia el noreste fuera de {area:271} por el camino hacia {zone:1425}; {area:348} está justo pasando la frontera. Falstad recibe en la cima, {quest:1450} cuida el aviario y {npc:7884} está junto a la posada.",
+	-- ["Talonaxe's next task waits for a later {zone:1425} guide."] = "La siguiente tarea de Talonaxe espera a una guía posterior de {zone:1425}.",
 }

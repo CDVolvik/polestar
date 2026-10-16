@@ -86,7 +86,8 @@ return {
 	["The Ursera den is west of the village. {npc:251115}, their matriarch, sits at its far end."] = "熊獸巢穴在村莊西邊。牠們的族母{npc:251115}坐在巢穴最深處。",
 
 	-- Step 16: Leaving Thendal Village
-	["Leaving Thendal Village"] = "離開坦德爾村",
+	-- {area:16635} Thendal Village
+	["Leaving {area:16635}"] = "",
 
 	-- Step 17: Call of Earth
 	-- {npc:251374} Windshaper Boro · {area:16988} Rise of Spirits · {item:6635} Earth Sapta · {npc:251166} Minor Manifestation of Earth · {item:6656} Rough Quartz
@@ -117,8 +118,10 @@ return {
 	["the bounty board"] = "懸賞告示板",
 
 	-- Step 21: Prideclaws and Galestriders
+	-- plural, as words: Prideclaws = {npc:251245} Prideclaw
 	["Prideclaws and Galestriders"] = "群爪與逐風者",
 	-- {item:5469} Strider Meat
+	-- plural, as words: Prideclaws = {npc:251245} Prideclaw
 	["Prideclaws and Galestriders share the meadows south of the village. Keep the {item:5469} for Zerril; the eggs come later from the hippogryphs."] = "群爪和逐風者共同分布在村莊南邊的草地上。把{item:5469}留給哲里爾；蛋稍後從角鷹獸身上取得。",
 
 	-- Step 22: High Order Apprentices
@@ -135,6 +138,7 @@ return {
 	["{area:16624} turn-ins"] = "{area:16624}繳交任務",
 
 	-- Step 25: Vulgara the Insatiable
+	-- plural, as words: Prideclaws = {npc:251245} Prideclaw
 	["Vulgara lurks south of the village, among the Prideclaws. Vulgara is elite: grouping up is advised."] = "『貪食者』弗加拉潛伏在村莊南邊的群爪之間。弗加拉是精英：建議組隊。",
 
 	-- Step 26: Falaath Village
@@ -202,12 +206,12 @@ return {
 	["Listen to {npc:256083}"] = "聆聽{npc:256083}",
 
 	-- Step 39: Wind Hollows and Construct Parts
-	-- {object:616466} Construct Parts
+	-- {object:616467} Construct Parts
 	-- plural, as words: Wind Hollows = {npc:251676} Wind Hollow
-	["Wind Hollows and {object:616466}"] = "風之空靈與{object:616466}",
-	-- {area:16638} Valanaar · {object:616466} Construct Parts
+	["Wind Hollows and {object:616467}"] = "",
+	-- {area:16638} Valanaar · {object:616467} Construct Parts
 	-- plural, as words: Wind Hollows = {npc:251676} Wind Hollow
-	["Wind Hollows drift over the lowlands around {area:16638}. The first {object:616466} lie west of the orchard road."] = "風之空靈在{area:16638}周圍的低地上飄蕩。第一批{object:616466}在果園道路的西邊。",
+	["Wind Hollows drift over the lowlands around {area:16638}. The first {object:616467} lie west of the orchard road."] = "",
 
 	-- Step 41: Windfield Orchard
 	-- {area:16663} Windfield Orchard · {area:16638} Valanaar
@@ -222,11 +226,12 @@ return {
 
 	-- Step 44: Bandit Highwaymen
 	["Bandit Highwaymen"] = "強盜路霸",
-	-- {object:616466} Construct Parts · {area:16638} Valanaar
-	["The highwaymen hold the hills north-east of the orchard. More {object:616466} lie near the road to {area:16638}."] = "強盜路霸佔據果園東北方的丘陵。更多{object:616466}在通往{area:16638}的道路附近。",
+	-- {object:616468} Construct Parts · {area:16638} Valanaar
+	["The highwaymen hold the hills north-east of the orchard. More {object:616468} lie near the road to {area:16638}."] = "",
 
 	-- Step 45: Standing Our Ground
-	["Tell Aamelia Windfield you're ready"] = "告訴阿梅莉雅‧荒原你準備好了",
+	-- {npc:252800} Aamelia Windfield
+	["Tell {npc:252800} you're ready"] = "",
 
 	-- Step 46: Alvarion and Riaani
 	["Alvarion and Riaani"] = "亞瓦里安與里安尼",
@@ -284,10 +289,9 @@ return {
 	["Faladiel stands on the hill west of the falls, north of {area:16638}."] = "天空祭司法拉迪爾站在{area:16638}北邊、瀑布西側的山丘上。",
 
 	-- Step 60: Kuramaa
-	["Kuramaa"] = "庫拉瑪",
-	-- {area:16623} Shen'dar Highlands
+	-- {area:16623} Shen'dar Highlands · {npc:268605} Kuramaa
 	-- plural, as words: Windsong Crawlers = {npc:254588} Windsong Crawler
-	["Back to Olariaan, then west into the {area:16623}: Kuramaa's home is in the hills south of the Windsong Crawlers' lakes."] = "回去找Olariaan，然後向西進入{area:16623}：庫拉瑪的家在風歌蟹所在湖泊南邊的丘陵中。",
+	["Back to Olariaan, then west into the {area:16623}: {npc:268605}'s home is in the hills south of the Windsong Crawlers' lakes."] = "",
 
 	-- Step 61: The Eternal Flame
 	-- {object:148418} Eternal Flame
@@ -406,8 +410,18 @@ return {
 	["{npc:3033} trains druids on {area:1639}. He teaches you {spell:18960}; {npc:11802}'s welcome waits for your {spell:499} trip at about 23 (forever/horde/04-the-barrens)."] = "{npc:3033}在{area:1639}訓練德魯伊。他會教你{spell:18960}；約23級進行{spell:499}之旅時，{npc:11802}的歡迎在等著你（forever/horde/04-the-barrens）。",
 
 	-- Step 84: The Crossroads
-	-- {zone:1456} Thunder Bluff · {area:222} Bloodhoof Village · {zone:1413} The Barrens · {area:458} Gold Road · {area:380} The Crossroads
-	["Leave {zone:1456} by a lift and follow the road south past {area:222} and through the eastern pass into the {zone:1413}; from the pass, take the {area:458} north to the {area:380}, the Horde town in the middle of the {zone:1413}."] = "搭升降梯離開{zone:1456}，沿道路向南經過{area:222}，穿過東邊的山口進入{zone:1413}；從山口沿{area:458}向北前往{area:380}，即{zone:1413}中央的部落城鎮。",
+	-- {zone:1456} Thunder Bluff · {area:222} Bloodhoof Village · {zone:1413} Barrens · {area:458} Gold Road
+	["Leave {zone:1456} by a lift and follow the road south past {area:222} and through the eastern pass into the {zone:1413}; from the pass, take the {area:458} north to the Crossroads, the Horde town in the middle of the {zone:1413}."] = "",
 	-- {npc:3615} Devrak
 	["{npc:3615}, the wind rider master"] = "雙足飛龍管理員{npc:3615}",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Back to Olariaan, then west into the {area:16623}: Kuramaa's home is in the hills south of the Windsong Crawlers' lakes."] = "回去找Olariaan，然後向西進入{area:16623}：庫拉瑪的家在風歌蟹所在湖泊南邊的丘陵中。",
+	-- ["Kuramaa"] = "庫拉瑪",
+	-- ["Leave {zone:1456} by a lift and follow the road south past {area:222} and through the eastern pass into the {zone:1413}; from the pass, take the {area:458} north to the {area:380}, the Horde town in the middle of the {zone:1413}."] = "搭升降梯離開{zone:1456}，沿道路向南經過{area:222}，穿過東邊的山口進入{zone:1413}；從山口沿{area:458}向北前往{area:380}，即{zone:1413}中央的部落城鎮。",
+	-- ["Leaving Thendal Village"] = "離開坦德爾村",
+	-- ["Tell Aamelia Windfield you're ready"] = "告訴阿梅莉雅‧荒原你準備好了",
+	-- ["The highwaymen hold the hills north-east of the orchard. More {object:616466} lie near the road to {area:16638}."] = "強盜路霸佔據果園東北方的丘陵。更多{object:616466}在通往{area:16638}的道路附近。",
+	-- ["Wind Hollows and {object:616466}"] = "風之空靈與{object:616466}",
+	-- ["Wind Hollows drift over the lowlands around {area:16638}. The first {object:616466} lie west of the orchard road."] = "風之空靈在{area:16638}周圍的低地上飄蕩。第一批{object:616466}在果園道路的西邊。",
 }

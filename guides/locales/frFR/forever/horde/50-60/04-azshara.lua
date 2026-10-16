@@ -12,13 +12,13 @@ return {
 	["{npc:15188}, {object:172957}: keep it for {zone:1451}"] = "{npc:15188}, {object:172957} : gardez-la pour {zone:1451}",
 
 	-- Step 2: Fly to the Crossroads
-	-- {area:380} The Crossroads
+	-- {area:380} Crossroads
 	["Fly to the {area:380}"] = "Prendre un vol pour {area:380}",
 
 	-- Step 3: Dokimi's crates
 	-- {npc:256386} Dokimi
 	["{npc:256386}'s crates"] = "Les caisses de {npc:256386}",
-	-- {npc:256386} Dokimi · {area:380} The Crossroads
+	-- {npc:256386} Dokimi · {area:380} Crossroads
 	["{npc:256386} stands in the {area:380}. Open each crate she hands you and bring back what is inside."] = "{npc:256386} se tient à {area:380}. Ouvrez chaque caisse qu'elle vous remet et rapportez-lui ce qu'elle contient.",
 
 	-- Step 4: Fly to Ratchet

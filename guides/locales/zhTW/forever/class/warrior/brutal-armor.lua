@@ -27,13 +27,13 @@ return {
 	["Twitching Antennae from the silithid"] = "從異種蠍身上取得顫抖的觸角",
 
 	-- Step 5: Thun'grim Firegaze
-	-- {area:380} The Crossroads · {quest:1838} Brutal Armor
+	-- {area:380} Crossroads · {quest:1838} Brutal Armor
 	["Thun'grim camps beside the road east of the {area:380}. {quest:1838} is a level 30 quest; you can take it now and gather for it on the way."] = "索恩格瑞姆在{area:380}東邊的路旁紮營。{quest:1838}是30級任務；你可以現在接下，順路收集材料。",
 
 	-- Step 6: Roogug in Razorfen Kraul
 	-- {area:1717} Razorfen Kraul
 	["Roogug in {area:1717}"] = "{area:1717}的魯古格",
-	-- {area:1717} Razorfen Kraul · {zone:1413} The Barrens · {item:6841} Vial of Phlogiston
+	-- {area:1717} Razorfen Kraul · {zone:1413} Barrens · {item:6841} Vial of Phlogiston
 	["Roogug is an elite quilboar inside {area:1717}, the dungeon at the south end of the {zone:1413}; he drops the {item:6841}. {area:1717} is a dungeon: grouping up is advised."] = "魯古格是{area:1717}裡的精英野豬人，那是{zone:1413}南端的地城；他會掉落{item:6841}。{area:1717}是地城：建議組隊。",
 	-- {item:6841} Vial of Phlogiston
 	["{item:6841}, from Roogug"] = "{item:6841}，來自魯古格",
@@ -66,7 +66,7 @@ return {
 	["Iron Bars: {npc:8673}"] = "鐵錠：{npc:8673}",
 
 	-- Step 10: Brutal Hauberk
-	-- {area:380} The Crossroads · {quest:1848} Brutal Hauberk
+	-- {area:380} Crossroads · {quest:1848} Brutal Hauberk
 	["Back to Thun'grim beside the road east of the {area:380}. {quest:1848} is the first piece; he then sends you to three crafters for the rest."] = "回到{area:380}東邊路旁的索恩格瑞姆那裡。{quest:1848}是第一件；接著他會派你去找三位工匠製作其餘部件。",
 
 	-- Step 11: Ula'elek
@@ -76,7 +76,8 @@ return {
 	-- Step 12: Satyr Hooves
 	-- {area:429} Xavian · {zone:1440} Ashenvale
 	["The {area:429} satyrs camp in eastern {zone:1440}, with the Felmusk satyrs further west; both drop Uncloven Satyr Hooves."] = "{area:429}的薩特在{zone:1440}東部紮營，魔草薩特在更西邊；兩者都會掉落完整的薩特之蹄。",
-	["Uncloven Satyr Hooves"] = "完整的薩特之蹄",
+	-- {quest:1842} Satyr Hooves
+	["Uncloven {quest:1842}"] = "",
 
 	-- Step 15: Chimaeric Horn
 	-- {npc:6167} Chimaera Matriarch · {item:6840} Galvanized Horn
@@ -95,4 +96,7 @@ return {
 	["The Dragonmaw orcs camp in the middle of the {zone:1437}, south of the road; Raiders, Swamprunners, Centurions, Shadowwarders and Bonewarders all drop the Sturdy Dragonmaw Shinbones."] = "龍喉獸人在{zone:1437}中部、道路南邊紮營；龍喉襲擊者、龍喉沼澤行者、龍喉百夫長、龍喉暗影守衛和龍喉白骨守衛都會掉落結實的龍喉脛骨。",
 	-- plural, as words: Sturdy Dragonmaw Shinbones = {item:7134} Sturdy Dragonmaw Shinbone
 	["Sturdy Dragonmaw Shinbones"] = "結實的龍喉脛骨",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Uncloven Satyr Hooves"] = "完整的薩特之蹄",
 }

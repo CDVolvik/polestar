@@ -22,7 +22,7 @@ return {
 	["{item:7908}, in the {object:123214}"] = "{item:7908}，在{object:123214}",
 
 	-- Step 3: Master Mathias Shaw
-	-- {zone:1453} Stormwind City · {object:2100} Old Town
+	-- {zone:1453} Stormwind · {object:2100} Old Town
 	["Ride north through Elwynn to {zone:1453}; Mathias Shaw is at SI:7 in {object:2100}."] = "向北騎過艾爾文森林前往{zone:1453}；馬迪亞斯·肖爾在{object:2100}的軍情七處。",
 
 	-- Step 4: Doc Mixilpixil
@@ -32,7 +32,7 @@ return {
 
 	-- Step 5: The cure's ingredients
 	["The cure's ingredients"] = "解藥的材料",
-	-- {zone:1453} Stormwind City · {item:3421} Simple Wildflowers · {item:8431} Spool of Light Chartreuse Silk Thread · {item:3372} Leaded Vial · {item:4371} Bronze Tube
+	-- {zone:1453} Stormwind · {item:3421} Simple Wildflowers · {item:8431} Spool of Light Chartreuse Silk Thread · {item:3372} Leaded Vial · {item:4371} Bronze Tube
 	["Everything is in {zone:1453}: the Gumps sell {item:3421}, the {item:8431} lies in the city, and the nearest vendors sell a {item:3372} and a {item:4371}."] = "全部都在{zone:1453}：加姆一家販售{item:3421}，{item:8431}就在城裡，最近的商人販售{item:3372}和{item:4371}。",
 
 	-- Step 6: Back to Doc Mixilpixil

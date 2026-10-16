@@ -35,7 +35,7 @@ return {
 	["Humanoids drop {item:2589}; the Undercity Auction House sells it."] = "人型生物会掉落{item:2589}；幽暗城拍卖行也有出售。",
 
 	-- Step 7: Ambermill
-	-- {zone:1458} Undercity · {zone:1421} Silverpine Forest · {area:279} Dalaran · {area:233} Ambermill · {area:228} The Sepulcher · {npc:1867} Dalaran Apprentice · {item:7293} Dalaran Mana Gem
+	-- {zone:1458} Undercity · {zone:1421} Silverpine Forest · {area:279} Dalaran · {area:233} Ambermill · {area:228} Sepulcher · {npc:1867} Dalaran Apprentice · {item:7293} Dalaran Mana Gem
 	["Leave the {zone:1458} and follow the road south through {zone:1421}. The {area:279} mages hold {area:233}, south-east of the {area:228}; every {npc:1867}, Mage, Protector, Warder, Conjuror, Watcher and Wizard can drop a {item:7293}."] = "离开{zone:1458}，沿道路向南穿过{zone:1421}。{area:279}法师占据着{area:228}东南的{area:233}；每个{npc:1867}、达拉然法师、达拉然保卫者、达拉然守卫、达拉然咒术师、达拉然卫士和达拉然巫师都可能掉落{item:7293}。",
 
 	-- Step 8: Josef Gregorian

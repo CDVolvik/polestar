@@ -123,7 +123,7 @@ return {
 
 	-- Step 33: Wildkin feathers
 	["Wildkin feathers"] = "Перья диких совухов",
-	-- {area:1438} Nethergarde Keep · {area:348} Aerie Peak · {zone:1425} The Hinterlands
+	-- {area:1438} Nethergarde Keep · {area:348} Aerie Peak · {zone:1425} Hinterlands
 	-- plural, as words: Wildkin Feathers = {item:10819} Wildkin Feather
 	["Ride back to {area:1438} and fly to {area:348}. The Wildkin Feathers lie on the ground across the {zone:1425}, south and east of {area:348}, where the owlbeasts roam; the mobs here are well below you now."] = "Езжайте назад в {area:1438} и летите в {area:348}. Перья диких совухов лежат на земле по всей зоне {zone:1425}, к югу и востоку от места {area:348}, где бродят совухи; здешние существа теперь намного ниже вас уровнем.",
 

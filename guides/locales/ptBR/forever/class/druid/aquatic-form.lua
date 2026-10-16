@@ -22,11 +22,11 @@ return {
 	["At the {area:2362}"] = "No {area:2362}",
 
 	-- Step 3: Half Pendant of Aquatic Agility
-	-- {area:2361} Nighthaven · {area:442} Auberdine · {object:177790} Strange Lockbox · {area:443} Ruins of Mathystra
-	["Fly from {area:2361} to {area:442}. The {object:177790} lies under the water off the north coast, west of the {area:443}."] = "Voe de {area:2361} até {area:442}. O {object:177790} está debaixo d'água perto da costa norte, a oeste das {area:443}.",
+	-- {area:2361} Nighthaven · {area:442} Auberdine · {object:177792} Strange Lockbox · {area:443} Ruins of Mathystra
+	["Fly from {area:2361} to {area:442}. The {object:177792} lies under the water off the north coast, west of the {area:443}."] = "",
 
 	-- Step 4: Half Pendant of Aquatic Endurance
-	-- {area:442} Auberdine · {zone:1453} Stormwind City · {area:108} Sentinel Hill · {object:177790} Strange Lockbox
+	-- {area:442} Auberdine · {zone:1453} Stormwind · {area:108} Sentinel Hill · {object:177790} Strange Lockbox
 	["Take the boat from {area:442} to {zone:1453} and fly to {area:108}. Ride north-west to the coast: the {object:177790} lies on the sea floor off the shore."] = "Pegue o navio de {area:442} até {zone:1453} e voe até {area:108}. Cavalgue para noroeste até a costa: o {object:177790} está no fundo do mar perto da praia.",
 
 	-- Step 5: Pendant of the Sea Lion
@@ -49,14 +49,18 @@ return {
 	["Cast {spell:18960}. {npc:11802} is in {area:2361}. The Shrine Baubles lie on the bed of {area:656} and fade within minutes: swim one straight to the {area:2362} on the north-west shore, use it there and speak to {npc:11799}."] = "Lance {spell:18960}. {npc:11802} está em {area:2361}. Os Adornos de Altar ficam no fundo de {area:656} e somem em poucos minutos: nade com um direto até {area:2362} na margem noroeste, use-o lá e fale com {npc:11799}.",
 
 	-- Step 9: Half Pendant of Aquatic Endurance
-	-- {npc:11798} Bunthen Plainswind · {zone:1456} Thunder Bluff · {zone:1454} Orgrimmar · {zone:1420} Tirisfal Glades · {zone:1421} Silverpine Forest · {zone:1458} Undercity · {object:177790} Strange Lockbox · {area:240} The Dead Field · {area:228} The Sepulcher
+	-- {npc:11798} Bunthen Plainswind · {zone:1456} Thunder Bluff · {zone:1454} Orgrimmar · {zone:1420} Tirisfal Glades · {zone:1421} Silverpine Forest · {zone:1458} Undercity · {object:177790} Strange Lockbox · {area:240} Dead Field · {area:228} Sepulcher
 	["Take {npc:11798}'s flight to {zone:1456}, fly to {zone:1454} and take the zeppelin to {zone:1420}; {zone:1421} is south of the {zone:1458}. The {object:177790} lies on the coast west of the {area:240}, north of the {area:228}."] = "Pegue o voo de {npc:11798} até {zone:1456}, voe até {zone:1454} e pegue o zepelim até {zone:1420}; {zone:1421} fica ao sul de {zone:1458}. O {object:177790} está na costa a oeste do {area:240}, ao norte do {area:228}.",
 
 	-- Step 10: Half Pendant of Aquatic Agility
-	-- {object:177790} Strange Lockbox · {area:382} The Sludge Fen · {area:380} The Crossroads
-	["The {object:177790} lies at the north edge of the {area:382}, by the Venture Co. tower, north of the {area:380}."] = "O {object:177790} está na borda norte do {area:382}, perto da torre da Empreendimentos S.A., ao norte da {area:380}.",
+	-- {object:177792} Strange Lockbox · {area:382} Sludge Fen · {area:380} Crossroads
+	["The {object:177792} lies at the north edge of the {area:382}, by the Venture Co. tower, north of the {area:380}."] = "",
 
 	-- Step 11: Pendant of the Sea Lion
 	-- {spell:18960} Teleport: Moonglade · {item:15885} Pendant of the Sea Lion · {area:2362} Shrine of Remulos · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {npc:11798} Bunthen Plainswind · {area:1638} Thunder Bluff
 	["Cast {spell:18960}. Join the two halves into the {item:15885} near the {area:2362}, on the north-west shore of the lake, then see {npc:11802} in {area:2361}. {npc:11798} flies druids to {area:1638}."] = "Lance {spell:18960}. Junte as duas metades no {item:15885} perto de {area:2362}, na margem noroeste do lago, e depois fale com {npc:11802} em {area:2361}. {npc:11798} leva druidas voando até {area:1638}.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Fly from {area:2361} to {area:442}. The {object:177790} lies under the water off the north coast, west of the {area:443}."] = "Voe de {area:2361} até {area:442}. O {object:177790} está debaixo d'água perto da costa norte, a oeste das {area:443}.",
+	-- ["The {object:177790} lies at the north edge of the {area:382}, by the Venture Co. tower, north of the {area:380}."] = "O {object:177790} está na borda norte do {area:382}, perto da torre da Empreendimentos S.A., ao norte da {area:380}.",
 }

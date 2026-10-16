@@ -52,5 +52,4 @@ return {
 	-- {quest:7837} Additional Runecloth · {faction:530} Darkspear Trolls · {item:14047} Runecloth · {zone:1423} Eastern Plaguelands
 	-- plural, as words: Dark Adepts = {npc:8546} Dark Adept
 	["Keep handing in {quest:7837} until {faction:530} is Exalted. {item:14047}: Dark Adepts and Shadowmages (level 58-60) in {zone:1423}, or the Auction House."] = "Продолжайте сдавать {quest:7837}, пока репутация ({faction:530}) не достигнет превознесения. {item:14047}: адепты Тьмы и темные маги (уровень 58-60) в зоне {zone:1423} или аукцион.",
-
 }

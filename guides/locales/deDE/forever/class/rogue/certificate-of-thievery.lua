@@ -10,7 +10,7 @@ return {
 	["Your first lockpicking job at 16: {npc:6966}'s lockbox at {quest:2282}, for {quest:2300}."] = "Dein erster Schlossknacker-Auftrag mit Stufe 16: die Kassette von {npc:6966} bei {quest:2282}, für {quest:2300}.",
 
 	-- Step 1: SI:7 (Goldshire)
-	-- {npc:917} Keryn Sylvius · {area:87} Goldshire · {npc:6946} Renzik "The Shiv" · {zone:1453} Stormwind City
+	-- {npc:917} Keryn Sylvius · {area:87} Goldshire · {npc:6946} Renzik "The Shiv" · {zone:1453} Stormwind
 	["At 16 {npc:917}, the rogue trainer in the Lion's Pride Inn in {area:87}, sends you to {npc:6946} in {zone:1453}."] = "Mit Stufe 16 schickt dich {npc:917}, der Schurkenlehrer im Gasthaus Zur Höhle des Löwen in {area:87}, zu {npc:6946} in {zone:1453}.",
 
 	-- Step 2: To Hulfdan! (Kharanos)
@@ -30,10 +30,13 @@ return {
 	["Ride east through {zone:1429} into Redridge, or fly to {area:69}. {npc:6966} waits on the west side of {area:69} and gives you {item:5060}."] = "Reite nach Osten durch {zone:1429} ins Rotkammgebirge oder flieg nach {area:69}. {npc:6966} wartet auf der Westseite von {area:69} und gibt dir {item:5060}.",
 
 	-- Step 7: Alther's Mill
-	-- {quest:2282} Alther's Mill · {area:69} Lakeshire · {item:7869} Lucius's Lockbox
-	["{quest:2282} stands east of {area:69}, up off the road. Open {item:7869} there."] = "{quest:2282} steht östlich von {area:69}, etwas abseits der Straße. Öffne dort {item:7869}.",
+	-- {quest:2282} Alther's Mill · {area:69} Lakeshire · {object:121264} Lucius's Lockbox
+	["{quest:2282} stands east of {area:69}, up off the road. Open {object:121264} there."] = "",
 
 	-- Step 8: Back to Lucius
 	-- {npc:6966} Lucius
 	["Back to {npc:6966}"] = "Zurück zu {npc:6966}",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["{quest:2282} stands east of {area:69}, up off the road. Open {item:7869} there."] = "{quest:2282} steht östlich von {area:69}, etwas abseits der Straße. Öffne dort {item:7869}.",
 }

@@ -115,18 +115,20 @@ return {
 	["Speak with {npc:1430}"] = "与{npc:1430}交谈",
 
 	-- Step 23: Maybell Maclure
-	-- {area:87} Goldshire · {area:64} The Maclure Vineyards
+	-- {area:87} Goldshire · {area:64} Maclure Vineyards
 	["Follow the road south out of {area:87} to the {area:64}. Maybell waits by the house."] = "沿道路向南离开{area:87}到{area:64}。梅贝尔·马科伦在房子旁等候。",
 
 	-- Step 24: The Fargodeep Mine
+	-- {npc:248464} Nimsy
 	-- plural, as words: Kobold Miners = {npc:40} Kobold Miner
-	["The mine is west of the vineyards. Kobold Miners and Tunnelers fill both levels; Nimsy, a named kobold, holds the picture book in the lower tunnels. Nimsy is elite: grouping up is advised."] = "矿洞在葡萄园西边。{npc:40}和狗头人隧道工遍布两层；名为Nimsy的狗头人在下层隧道里拿着绘本。Nimsy是精英：建议组队。",
+	["The mine is west of the vineyards. Kobold Miners and Tunnelers fill both levels; {npc:248464}, a named kobold, holds the picture book in the lower tunnels. {npc:248464} is elite: grouping up is advised."] = "",
 	["Walk through the mine"] = "走过矿洞",
 	-- plural, as words: Large Candles = {item:772} Large Candle
 	["Large Candles"] = "{item:772}",
 	-- plural, as words: Lost Books = {item:248001} Lost Book · Kobold Miners = {npc:40} Kobold Miner
 	["Lost Books: Kobold Miners and Tunnelers"] = "{item:248001}：{npc:40}和狗头人隧道工",
-	["Fun with Elementals: Nimsy"] = "绘本：和元素一起玩：Nimsy",
+	-- {npc:248464} Nimsy
+	["Fun with Elementals: {npc:248464}"] = "",
 
 	-- Step 25: Bait ingredients
 	["Bait ingredients"] = "鱼饵材料",
@@ -147,7 +149,7 @@ return {
 	["She sits inside the farmhouse."] = "她坐在农舍里。",
 
 	-- Step 29: Billy Maclure
-	-- {area:64} The Maclure Vineyards
+	-- {area:64} Maclure Vineyards
 	["Billy plays in the {area:64}, east of the mine."] = "比利·马科伦在矿洞东边的{area:64}玩耍。",
 
 	-- Step 30: Boar meat
@@ -169,7 +171,7 @@ return {
 	["{quest:87} is inside the {area:57}, not on the hill above it: go in at the mouth and keep left to the back of the mine floor; don't take the stairs up. Defias Bandits around the vineyards drop a {item:1972} now and then: right-click it."] = "{quest:87}在{area:57}里面，不在上方的山丘上：从入口进去，一直靠左走到矿洞底层的最深处；不要上楼梯。葡萄园周围的{npc:116}偶尔会掉落{item:1972}：右键点击它。",
 
 	-- Step 34: Goldshire
-	-- {npc:279} Morgan Pestle · {zone:1453} Stormwind City
+	-- {npc:279} Morgan Pestle · {zone:1453} Stormwind
 	["{npc:279} in {zone:1453} takes it (02-westfall)"] = "交给{zone:1453}的{npc:279}（02-westfall）",
 
 	-- Step 35: Crystal Lake and the wolves
@@ -193,13 +195,11 @@ return {
 	["{npc:261} guards the bridge on the road east; {npc:248265} stands just across it."] = "{npc:261}守卫着向东道路上的桥；{npc:248265}就站在桥对面。",
 
 	-- Step 38: Downstream and Princess
-	-- {quest:91733} Downstream
-	["{quest:91733} and Princess"] = "{quest:91733}和公主",
-	-- {item:247813} Waterlogged Saw · {area:62} Brackwell Pumpkin Patch · {npc:390} Porcine Entourage
+	-- {quest:91733} Downstream · {npc:330} Princess
+	["{quest:91733} and {npc:330}"] = "",
+	-- {item:247813} Waterlogged Saw · {npc:330} Princess · {area:62} Brackwell Pumpkin Patch · {npc:390} Porcine Entourage
 	-- plural, as words: Prowlers = {npc:118} Prowler · Young Forest Bears = {npc:822} Young Forest Bear
-	["The {item:247813}, Axe and Toolbox lie in the river south of the bridge. Princess, a big boar, roots in the {area:62} west of the river with her {npc:390}: pull the piglets away first. Kill Prowlers and Young Forest Bears on the way."] = "{item:247813}、浸水的斧头和浸水的工具箱在桥南边的河里。公主是一头大野猪，和她的{npc:390}在河西边的{area:62}拱地：先把小猪拉开。沿途击杀{npc:118}和{npc:822}。",
-	-- {item:1006} Brass Collar
-	["{item:1006}: Princess"] = "{item:1006}：公主",
+	["The {item:247813}, Axe and Toolbox lie in the river south of the bridge. {npc:330}, a big boar, roots in the {area:62} west of the river with her {npc:390}: pull the piglets away first. Kill Prowlers and Young Forest Bears on the way."] = "",
 
 	-- Step 40: The Eastvale Logging Camp
 	-- {area:88} Eastvale Logging Camp
@@ -239,7 +239,7 @@ return {
 	["Follow the road west back to {area:87}; Helene and Jason stand on the lake shore before town."] = "沿道路向西返回{area:87}；到镇子前，海伦尼·派特斯金纳和贾森·玛瑟斯站在湖岸上。",
 
 	-- Step 49: Maybell Maclure
-	-- {area:64} The Maclure Vineyards
+	-- {area:64} Maclure Vineyards
 	["South down the road to the {area:64}."] = "沿道路向南到{area:64}。",
 
 	-- Step 50: The Stonefield Farm
@@ -291,17 +291,17 @@ return {
 	-- Step 62: Goldshire
 	-- {area:87} Goldshire
 	["Follow the road west back to {area:87}."] = "沿道路向西返回{area:87}。",
-	-- {npc:6121} Remen Marcot · {npc:6122} Gakin the Darkbinder · {zone:1453} Stormwind City
+	-- {npc:6121} Remen Marcot · {npc:6122} Gakin the Darkbinder · {zone:1453} Stormwind
 	["{npc:6121}: {npc:6122} in {zone:1453} takes it"] = "{npc:6121}：交给{zone:1453}的{npc:6122}",
-	-- {npc:927} Brother Wilhelm · {npc:6171} Duthorian Rall · {zone:1453} Stormwind City
+	-- {npc:927} Brother Wilhelm · {npc:6171} Duthorian Rall · {zone:1453} Stormwind
 	["{npc:927}: {npc:6171} in {zone:1453} takes it"] = "{npc:927}：交给{zone:1453}的{npc:6171}",
-	-- {npc:377} Priestess Josetta · {npc:376} High Priestess Laurena · {zone:1453} Stormwind City
+	-- {npc:377} Priestess Josetta · {npc:376} High Priestess Laurena · {zone:1453} Stormwind
 	["{npc:377}: {npc:376} in {zone:1453} takes both"] = "{npc:377}：两个都交给{zone:1453}的{npc:376}",
-	-- {npc:328} Zaldimar Wefhellt · {npc:5497} Jennea Cannon · {zone:1453} Stormwind City
+	-- {npc:328} Zaldimar Wefhellt · {npc:5497} Jennea Cannon · {zone:1453} Stormwind
 	["{npc:328}: {npc:5497} in {zone:1453} takes it"] = "{npc:328}：交给{zone:1453}的{npc:5497}",
 
 	-- Step 63: Taming the Beast
-	-- {npc:251507} Josephine Carson · {area:87} Goldshire · {item:15908} Taming Rod · {area:64} The Maclure Vineyards · {area:18} Crystal Lake
+	-- {npc:251507} Josephine Carson · {area:87} Goldshire · {item:15908} Taming Rod · {area:64} Maclure Vineyards · {area:18} Crystal Lake
 	-- plural, as words: Rockhide Boars = {npc:524} Rockhide Boar · Young Forest Bears = {npc:822} Young Forest Bear
 	["{npc:251507} stands with the {area:87} trainers. Each of her quests hands you a {item:15908}: use it on the beast she names, then bring the rod back to her. Rockhide Boars and Young Forest Bears roam the hills south of the {area:64}, Gray Forest Wolves the woods east of {area:18}."] = "{npc:251507}和{area:87}的训练师站在一起。她的每个任务都会给你一根{item:15908}：对她指定的野兽使用，然后把驯兽棒带回给她。{npc:524}和{npc:822}在{area:64}南边的山丘上游荡，森林灰狼在{area:18}东边的树林里。",
 	-- {npc:524} Rockhide Boar · {item:15908} Taming Rod
@@ -314,28 +314,28 @@ return {
 	["{npc:258930}, beside her: {spell:5149}"] = "{npc:258930}，在她旁边：{spell:5149}",
 
 	-- Step 64: Jennea Cannon
-	-- {area:87} Goldshire · {zone:1453} Stormwind City · {npc:5497} Jennea Cannon · {object:2101} Mage Quarter · {quest:1861} Mirror Lake
+	-- {area:87} Goldshire · {zone:1453} Stormwind · {npc:5497} Jennea Cannon · {object:2101} Mage Quarter · {quest:1861} Mirror Lake
 	["Follow the road north from {area:87} into {zone:1453}. {npc:5497} stands in the Wizard's Sanctum, the tower of the {object:2101}; she gives you a flask for the {quest:1861} waterfall."] = "沿道路从{area:87}向北进入{zone:1453}。{npc:5497}站在{object:2101}的法师圣殿塔里；她会给你一个瓶子，用于{quest:1861}的瀑布。",
 
 	-- Step 65: Mirror Lake
-	-- {zone:1453} Stormwind City · {quest:1861} Mirror Lake · {zone:1436} Westfall · {item:7207} Jennea's Flask
+	-- {zone:1453} Stormwind · {quest:1861} Mirror Lake · {zone:1436} Westfall · {item:7207} Jennea's Flask
 	["Leave {zone:1453} by the main gate. The {quest:1861} waterfall is south-west of the gates, on the way west to {zone:1436}: fill {item:7207} at its base."] = "从正门离开{zone:1453}。{quest:1861}瀑布在城门西南方，就在向西前往{zone:1436}的路上：在瀑布底部装满{item:7207}。",
 
 	-- Step 66: Gakin the Darkbinder
-	-- {area:87} Goldshire · {zone:1453} Stormwind City · {npc:6122} Gakin the Darkbinder · {object:2164} The Slaughtered Lamb · {object:2101} Mage Quarter
+	-- {area:87} Goldshire · {zone:1453} Stormwind · {npc:6122} Gakin the Darkbinder · {object:2164} Slaughtered Lamb · {object:2101} Mage Quarter
 	["Follow the road north from {area:87} into {zone:1453}. {npc:6122} waits in the cellar of the {object:2164}, in the {object:2101}."] = "沿道路从{area:87}向北进入{zone:1453}。{npc:6122}在{object:2101}的{object:2164}地下室等候。",
 
 	-- Step 67: Surena Caledon
-	-- {area:87} Goldshire · {area:62} Brackwell Pumpkin Patch · {quest:1688} Surena Caledon
-	["Ride back out through {area:87} and east along the road to the {area:62}. {quest:1688} (level 9) stands by its farmhouse."] = "骑马穿过{area:87}，沿道路向东到{area:62}。{quest:1688}（9级）站在农舍旁。",
+	-- {area:87} Goldshire · {area:62} Brackwell Pumpkin Patch · {npc:881} Surena Caledon
+	["Ride back out through {area:87} and east along the road to the {area:62}. {npc:881} (level 9) stands by its farmhouse."] = "",
 
 	-- Step 68: The Binding
-	-- {item:6928} Bloodstone Choker · {object:2164} The Slaughtered Lamb
+	-- {item:6928} Bloodstone Choker · {object:2164} Slaughtered Lamb
 	["Back to Gakin. Use the {item:6928} at the summoning circle in the {object:2164}'s cellar and defeat the voidwalker it calls."] = "回去找黑暗缚灵者加科因。在{object:2164}地下室的召唤法阵处使用{item:6928}，击败召唤出的虚空行者。",
 	["Subdue the voidwalker"] = "制服虚空行者",
 
 	-- Step 69: The Tome of Divinity
-	-- {area:87} Goldshire · {zone:1453} Stormwind City · {npc:6171} Duthorian Rall · {npc:6173} Gazin Tenorm · {npc:6174} Stephanie Turner · {object:2100} Old Town · {item:2589} Linen Cloth
+	-- {area:87} Goldshire · {zone:1453} Stormwind · {npc:6171} Duthorian Rall · {npc:6173} Gazin Tenorm · {npc:6174} Stephanie Turner · {object:2100} Old Town · {item:2589} Linen Cloth
 	["Follow the road north from {area:87} into {zone:1453}. {npc:6171} and {npc:6173} are in the Cathedral of Light; {npc:6174} stands in {object:2100} and asks for ten {item:2589} (humanoids drop it; the Auction House sells it)."] = "沿道路从{area:87}向北进入{zone:1453}。{npc:6171}和{npc:6173}在光明大教堂；{npc:6174}站在{object:2100}，要十块{item:2589}（人形生物会掉落；拍卖行也有卖）。",
 	-- {quest:2998} Tome of Divinity
 	["From the {quest:2998} he gives you"] = "从他给你的{quest:2998}获得",
@@ -358,4 +358,12 @@ return {
 	-- Step 72: Sentinel Hill
 	-- {zone:1436} Westfall · {area:108} Sentinel Hill
 	["Follow the road west past Westbrook into {zone:1436}, then south along it to {area:108}. Thor, the gryphon master, stands on the hill."] = "沿道路向西经过西泉要塞进入{zone:1436}，再沿路向南到{area:108}。狮鹫管理员索尔站在山丘上。",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Fun with Elementals: Nimsy"] = "绘本：和元素一起玩：Nimsy",
+	-- ["Ride back out through {area:87} and east along the road to the {area:62}. {quest:1688} (level 9) stands by its farmhouse."] = "骑马穿过{area:87}，沿道路向东到{area:62}。{quest:1688}（9级）站在农舍旁。",
+	-- ["The mine is west of the vineyards. Kobold Miners and Tunnelers fill both levels; Nimsy, a named kobold, holds the picture book in the lower tunnels. Nimsy is elite: grouping up is advised."] = "矿洞在葡萄园西边。{npc:40}和狗头人隧道工遍布两层；名为Nimsy的狗头人在下层隧道里拿着绘本。Nimsy是精英：建议组队。",
+	-- ["The {item:247813}, Axe and Toolbox lie in the river south of the bridge. Princess, a big boar, roots in the {area:62} west of the river with her {npc:390}: pull the piglets away first. Kill Prowlers and Young Forest Bears on the way."] = "{item:247813}、浸水的斧头和浸水的工具箱在桥南边的河里。公主是一头大野猪，和她的{npc:390}在河西边的{area:62}拱地：先把小猪拉开。沿途击杀{npc:118}和{npc:822}。",
+	-- ["{item:1006}: Princess"] = "{item:1006}：公主",
+	-- ["{quest:91733} and Princess"] = "{quest:91733}和公主",
 }

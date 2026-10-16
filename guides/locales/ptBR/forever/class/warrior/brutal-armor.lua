@@ -27,13 +27,13 @@ return {
 	["Twitching Antennae from the silithid"] = "Antenas Agitadas dos silitídeos",
 
 	-- Step 5: Thun'grim Firegaze
-	-- {area:380} The Crossroads · {quest:1838} Brutal Armor
+	-- {area:380} Crossroads · {quest:1838} Brutal Armor
 	["Thun'grim camps beside the road east of the {area:380}. {quest:1838} is a level 30 quest; you can take it now and gather for it on the way."] = "Thun'grim acampa junto à estrada a leste da {area:380}. {quest:1838} é uma missão de nível 30; você pode pegá-la agora e coletar para ela no caminho.",
 
 	-- Step 6: Roogug in Razorfen Kraul
 	-- {area:1717} Razorfen Kraul
 	["Roogug in {area:1717}"] = "Rugug em {area:1717}",
-	-- {area:1717} Razorfen Kraul · {zone:1413} The Barrens · {item:6841} Vial of Phlogiston
+	-- {area:1717} Razorfen Kraul · {zone:1413} Barrens · {item:6841} Vial of Phlogiston
 	["Roogug is an elite quilboar inside {area:1717}, the dungeon at the south end of the {zone:1413}; he drops the {item:6841}. {area:1717} is a dungeon: grouping up is advised."] = "Rugug é um javaligno de elite dentro de {area:1717}, a masmorra no extremo sul de {zone:1413}; ele deixa cair o {item:6841}. {area:1717} é uma masmorra: é recomendado formar grupo.",
 	-- {item:6841} Vial of Phlogiston
 	["{item:6841}, from Roogug"] = "{item:6841}, de Rugug",
@@ -66,7 +66,7 @@ return {
 	["Iron Bars: {npc:8673}"] = "Barras de Ferro: {npc:8673}",
 
 	-- Step 10: Brutal Hauberk
-	-- {area:380} The Crossroads · {quest:1848} Brutal Hauberk
+	-- {area:380} Crossroads · {quest:1848} Brutal Hauberk
 	["Back to Thun'grim beside the road east of the {area:380}. {quest:1848} is the first piece; he then sends you to three crafters for the rest."] = "De volta a Thun'grim, junto à estrada a leste da {area:380}. {quest:1848} é a primeira peça; depois ele manda você a três artesãos para o resto.",
 
 	-- Step 11: Ula'elek
@@ -76,7 +76,8 @@ return {
 	-- Step 12: Satyr Hooves
 	-- {area:429} Xavian · {zone:1440} Ashenvale
 	["The {area:429} satyrs camp in eastern {zone:1440}, with the Felmusk satyrs further west; both drop Uncloven Satyr Hooves."] = "Os sátiros de {area:429} acampam no leste de {zone:1440}, com os sátiros Malmíscar mais a oeste; ambos deixam cair Cascos Não Fendidos de Sátiro.",
-	["Uncloven Satyr Hooves"] = "Cascos Não Fendidos de Sátiro",
+	-- {quest:1842} Satyr Hooves
+	["Uncloven {quest:1842}"] = "",
 
 	-- Step 15: Chimaeric Horn
 	-- {npc:6167} Chimaera Matriarch · {item:6840} Galvanized Horn
@@ -95,4 +96,7 @@ return {
 	["The Dragonmaw orcs camp in the middle of the {zone:1437}, south of the road; Raiders, Swamprunners, Centurions, Shadowwarders and Bonewarders all drop the Sturdy Dragonmaw Shinbones."] = "Os orcs Presa do Dragão acampam no meio de {zone:1437}, ao sul da estrada; Saqueadores, Corre-brejos, Centuriões, Guarda-sombras e Guarda-ossos deixam cair Tíbias Firmes de Presa do Dragão.",
 	-- plural, as words: Sturdy Dragonmaw Shinbones = {item:7134} Sturdy Dragonmaw Shinbone
 	["Sturdy Dragonmaw Shinbones"] = "Tíbias Firmes de Presa do Dragão",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Uncloven Satyr Hooves"] = "Cascos Não Fendidos de Sátiro",
 }

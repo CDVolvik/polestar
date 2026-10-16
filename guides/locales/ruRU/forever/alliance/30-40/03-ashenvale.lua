@@ -31,7 +31,7 @@ return {
 	["The Crazed and Withered Ancients north of the moonwell carry the {item:5475}; the worn chest it opens stands among them."] = "{item:5475} у безумных и высохших древняков к северу от лунного колодца; старый сундук, который он открывает, стоит среди них.",
 
 	-- Step 6: The Howling Vale
-	-- {area:419} The Howling Vale
+	-- {area:419} Howling Vale
 	["Take the tunnel into the {area:419}; the tome lies in the ruins at its west end."] = "Пройдите по туннелю сюда: {area:419}; фолиант лежит в руинах в западной части.",
 
 	-- Step 8: Anilia
@@ -39,9 +39,8 @@ return {
 	["Follow the road east to the satyr camps of {area:429}; {npc:3920} hides at their edge."] = "Идите по дороге на восток к лагерям сатиров ({area:429}); {npc:3920} прячется на их окраине.",
 
 	-- Step 9: Geltharis
-	["Geltharis"] = "Гелтарис",
-	-- {area:429} Xavian
-	["Geltharis leads the {area:429} satyrs; he carries the branch."] = "Гелтарис ведет сатиров ({area:429}); ветвь у него.",
+	-- {npc:4619} Geltharis · {area:429} Xavian
+	["{npc:4619} leads the {area:429} satyrs; he carries the branch."] = "",
 
 	-- Step 10: Satyrnaar
 	-- {object:19901} Circle of Imprisonment · {area:430} Satyrnaar
@@ -108,4 +107,8 @@ return {
 	-- Step 35: Deepwater Tavern
 	-- {npc:5082} Vincent Hyal · {npc:4963} Mikhail · {npc:1480} Caitlin Grassman
 	["{npc:5082}, {npc:4963} and Tapoke Jahn are all at Menethil's inn; Tapoke fights you when you talk to {npc:4963}, but gives up once beaten. {npc:1480} stands a short walk north-east of the inn."] = "{npc:5082}, {npc:4963} и Тапоке — все в таверне Менетила; Тапоке нападает, когда вы говорите с NPC {npc:4963}, но сдается после поражения. {npc:1480} стоит недалеко к северо-востоку от таверны.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Geltharis"] = "Гелтарис",
+	-- ["Geltharis leads the {area:429} satyrs; he carries the branch."] = "Гелтарис ведет сатиров ({area:429}); ветвь у него.",
 }

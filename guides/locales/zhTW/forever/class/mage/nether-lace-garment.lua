@@ -33,6 +33,6 @@ return {
 	["The {quest:1945}, dryads, gather near the {area:426} in central {zone:1440}."] = "{quest:1945}是樹妖，聚集在{zone:1440}中部的{area:426}附近。",
 
 	-- Step 6: Kil'hala
-	-- {npc:3484} Kil'hala · {area:380} The Crossroads
+	-- {npc:3484} Kil'hala · {area:380} Crossroads
 	["{npc:3484}, a troll tailor, works at the {area:380}."] = "食人妖裁縫{npc:3484}在{area:380}工作。",
 }

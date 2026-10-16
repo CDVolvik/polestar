@@ -20,7 +20,7 @@ return {
 	["{quest:2458}: keep the {item:8051}"] = "{quest:2458} : gardez {item:8051}",
 
 	-- Step 2: Taskmaster Fizzule
-	-- {area:380} The Crossroads · {area:382} The Sludge Fen · {item:8051} Flare Gun · {npc:7233} Taskmaster Fizzule
+	-- {area:380} Crossroads · {area:382} Sludge Fen · {item:8051} Flare Gun · {npc:7233} Taskmaster Fizzule
 	["Fly to the {area:380} and ride north to the Venture Co. tower north of the {area:382}. In sight of the tower, fire the {item:8051} twice, then /salute {npc:7233} before he attacks you."] = "Volez jusqu'à {area:380} et allez vers le nord jusqu'à la tour de la KapitalRisk, au nord de {area:382}. En vue de la tour, tirez deux fois avec {item:8051}, puis faites /saluer à {npc:7233} avant qu'il ne vous attaque.",
 	-- {item:8051} Flare Gun
 	["{item:8051}, twice, in sight of the tower"] = "{item:8051}, deux fois, en vue de la tour",

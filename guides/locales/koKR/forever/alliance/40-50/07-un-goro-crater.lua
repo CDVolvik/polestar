@@ -134,10 +134,10 @@ return {
 
 	-- Step 28: Grind to 51
 	["Grind to 51"] = "51레벨까지 사냥",
-	-- {area:982} The Noxious Lair · {zone:1446} Tanaris
+	-- {area:982} Noxious Lair · {zone:1446} Tanaris
 	["The Centipaar silithid crawl around the {area:982} in western {zone:1446}, just east of the crater ramp. The Workers are the easiest pulls."] = "센티파르 실리시드가 분화구 비탈 바로 동쪽, {zone:1446} 서부의 {area:982} 주변을 기어다닙니다. 일꾼이 가장 쉽게 끌어올 수 있습니다.",
-	-- {npc:5458} Centipaar Worker · {area:982} The Noxious Lair · {zone:1446} Tanaris
-	["grind on {npc:5458} at {area:982}, {zone:1446}"] = "{zone:1446} {area:982}에서 {npc:5458} 사냥",
+	-- {npc:5458} Centipaar Worker · {area:982} Noxious Lair · {zone:1446} Tanaris
+	["grind on {npc:5458} at The {area:982}, {zone:1446}"] = "",
 
 	-- Step 29: Torwa Pathfinder
 	["Ride down the ramp into the crater: Torwa camps at its foot."] = "비탈을 내려가 분화구로 가세요. 토르와는 비탈 아래에 진을 치고 있습니다.",
@@ -169,14 +169,14 @@ return {
 	-- {npc:9616} Laris Geardawdle · {zone:1448} Felwood
 	["{npc:9616}: the oozes are in {zone:1448}, keep it"] = "{npc:9616}: 수액괴물은 {zone:1448}에 있습니다. 보관하세요",
 
-	-- Step 41: The Mystic Ward
+	-- Step 41: Mystic Ward
 	-- {zone:1447} Azshara
 	["Four rune rubbings in {zone:1447}: keep it"] = "{zone:1447}의 룬 탁본 네 개: 보관하세요",
 	-- {npc:11406} High Priest Rohan · {zone:1447} Azshara
 	["{npc:11406}: for Ogtinc in {zone:1447}, keep it"] = "{npc:11406}: {zone:1447}의 오그틴크에게 줄 것, 보관하세요",
 
 	-- Step 42: Royal Historian Archesonus
-	-- {object:171709} The High Seat
+	-- {object:171709} High Seat
 	["Archesonus stands beside King Magni in the {object:171709}."] = "아케소누스는 {object:171709}에서 국왕 마그니 브론즈비어드 옆에 서 있습니다.",
 	-- {zone:1428} Burning Steppes
 	["The relics are in the {zone:1428}: keep it"] = "유물은 {zone:1428}에 있습니다: 보관하세요",
@@ -185,6 +185,9 @@ return {
 	["Bind and train"] = "귀환 장소 설정 및 수련",
 
 	-- Step 44: Xiggs Fuselighter
-	-- {object:32359} The Military Ward
+	-- {object:32359} Military Ward
 	["Xiggs waits in the {object:32359}."] = "시그스는 {object:32359}에서 기다립니다.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["grind on {npc:5458} at {area:982}, {zone:1446}"] = "{zone:1446} {area:982}에서 {npc:5458} 사냥",
 }

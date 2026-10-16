@@ -21,7 +21,7 @@ return {
 	["Skeletal Flayers and Slavering Ghouls roam the fields north of the camp; all the Scourge here drop Scourgestones."] = "Скелеты-живодеры и слюнявые вурдалаки бродят по полям к северу от лагеря; со всей Плети здесь падают камни Плети.",
 
 	-- Step 4: Mulgris Deepriver
-	-- {area:202} The Writhing Haunt
+	-- {area:202} Writhing Haunt
 	["Mulgris stands by the farm at the {area:202}, north-east of the fields."] = "Мулгрис стоит у фермы к северо-востоку от полей: {area:202}.",
 
 	-- Step 5: Diseased Wolves
@@ -43,7 +43,7 @@ return {
 	-- Step 10: Janice Felstone
 	-- {area:199} Felstone Field · {area:200} Dalson's Tears
 	["Janice's ghost wanders by the farmhouse of {area:199}, west of {area:200}; her parcel lies inside."] = "Призрак Джанис бродит у дома ({area:199}) к западу от места {area:200}; ее посылка лежит внутри.",
-	-- {zone:1453} Stormwind City
+	-- {zone:1453} Stormwind
 	["For {zone:1453}: keep it"] = "Для города {zone:1453}: сохраните задание",
 
 	-- Step 11: Chillwind Camp
@@ -84,23 +84,23 @@ return {
 	-- {area:200} Dalson's Tears
 	["The cauldron sits at {area:200}, north-east of Felstone; its Cauldron Lord stands beside it."] = "Котел стоит к северо-востоку от поля Фелстоуна ({area:200}); рядом – его повелитель котла.",
 
-	-- Step 18: The Writhing Haunt cauldron
-	-- {area:202} The Writhing Haunt
+	-- Step 18: Writhing Haunt cauldron
+	-- {area:202} Writhing Haunt
 	["{area:202} cauldron"] = "Котел: {area:202}",
-	-- {area:202} The Writhing Haunt
+	-- {area:202} Writhing Haunt
 	["The cauldron sits at the {area:202}, by Mulgris' farm."] = "Котел стоит у фермы Мулгриса: {area:202}.",
-	-- {npc:1796} Freezing Ghoul · {area:202} The Writhing Haunt · {zone:1422} Western Plaguelands
+	-- {npc:1796} Freezing Ghoul · {area:202} Writhing Haunt · {zone:1422} Western Plaguelands
 	["grind on {npc:1796} at the {area:202}, {zone:1422}"] = "убивайте мобов ({npc:1796}): {area:202}, {zone:1422}",
 
 	-- Step 19: Chillwind Camp
-	-- {area:202} The Writhing Haunt
+	-- {area:202} Writhing Haunt
 	-- plural, as words: Arcane Quickeners = {item:13320} Arcane Quickener
 	["Buy two more Arcane Quickeners for the {area:202}'s and Dalson's cauldrons, and ride straight there: they vanish after 30 minutes."] = "Купите еще два чародейских ускорителя для котлов ({area:202} и Далсона) и сразу езжайте туда: они исчезают через 30 минут.",
 	-- {npc:1852} Araj the Summoner
 	["{npc:1852} is a level 61 elite"] = "{npc:1852} – элитный противник 61-го уровня",
 
-	-- Step 20: The Writhing Haunt cauldron
-	-- {area:202} The Writhing Haunt
+	-- Step 20: Writhing Haunt cauldron
+	-- {area:202} Writhing Haunt
 	-- plural, as words: Somatic Intensifiers = {item:13356} Somatic Intensifier
 	["Back north to the {area:202}: the cauldron offers its own task now. The ghouls nearby drop Somatic Intensifiers."] = "Назад на север: {area:202} – теперь котел предлагает свое задание. С ближайших вурдалаков падают соматические усилители.",
 
@@ -168,7 +168,7 @@ return {
 	["{npc:11038}, by the graves south of the chapel"] = "{npc:11038} – у могил к югу от часовни",
 
 	-- Step 41: Villains of Darrowshire
-	-- {area:2624} Blackwood Lake · {area:2623} The Infectis Scar
+	-- {area:2624} Blackwood Lake · {area:2623} Infectis Scar
 	-- plural, as words: Plaguehounds = {npc:8597} Plaguehound
 	["Horgus' skull lies at {area:2624} and Marduk's sword in the {area:2623}, each where ghosts fight; grown Plaguehounds hunt the plains between."] = "Череп Хоргуса лежит здесь: {area:2624}, а меч Мардука – здесь: {area:2623}; оба там, где сражаются призраки. На равнинах между ними охотятся взрослые чумные псы.",
 
@@ -200,8 +200,8 @@ return {
 	["{item:12955} lies east of the barn at {area:201}."] = "{item:12955} лежит к востоку от амбара ({area:201}).",
 
 	-- Step 49: The Undercroft
-	-- {area:2261} The Undercroft · {object:177667} Torn Scroll · {npc:12248} Infiltrator Hameya
-	["Cross the river east to the {area:2261}, the crypt in the south-west of the zone. The {object:177667} lies inside: its key is on {npc:12248} in the far north-east, done in the next guide."] = "Перейдите реку на восток: {area:2261} – склеп на юго-западе зоны. {object:177667} лежит внутри: ключ от него у персонажа {npc:12248} на дальнем северо-востоке, это будет в следующем гайде.",
+	-- {object:177667} Torn Scroll · {npc:12248} Infiltrator Hameya
+	["Cross the river east to the Undercroft, the crypt in the south-west of the zone. The {object:177667} lies inside: its key is on {npc:12248} in the far north-east, done in the next guide."] = "",
 
 	-- Step 50: Darnassus
 	-- {area:3197} Chillwind Camp · {area:150} Menethil Harbor · {area:442} Auberdine · {area:702} Rut'theran Village · {zone:1457} Darnassus
@@ -235,16 +235,16 @@ return {
 	["{npc:7900}: keep it for {zone:1446}"] = "{npc:7900}: сохраните задание для зоны {zone:1446}",
 
 	-- Step 55: Zorbin Fandazzle
-	-- {area:1119} The Twin Colossals
+	-- {area:1119} Twin Colossals
 	["Take the boat to the mainland and ride north-east to Zorbin's camp by the {area:1119}."] = "Плывите на корабле на материк и езжайте на северо-восток к лагерю Зорбина (ориентир: {area:1119}).",
 
 	-- Step 56: Zapped giants and sea elementals
 	["Zapped giants and sea elementals"] = "Уменьшенные великаны и морские элементали",
-	-- {area:1119} The Twin Colossals
+	-- {area:1119} Twin Colossals
 	["The shrunken giants roam the {area:1119}; the sea elementals wade along the coast to the west."] = "Уменьшенные великаны бродят здесь: {area:1119}; морские элементали – вдоль побережья к западу.",
 
 	-- Step 58: Gregan Brewspewer
-	-- {area:1119} The Twin Colossals · {item:11243} Videre Elixir
+	-- {area:1119} Twin Colossals · {item:11243} Videre Elixir
 	["Gregan's camp lies north of the {area:1119}. He sells the {item:11243} once he has his bait."] = "Лагерь Грегана – к северу (ориентир: {area:1119}). Он продает {item:11243}, когда получит свою наживку.",
 
 	-- Step 59: Ratchet
@@ -277,4 +277,7 @@ return {
 	-- Step 63: Ratchet
 	-- {area:392} Ratchet · {area:976} Gadgetzan
 	["The next guide starts here in {area:392} and flies on to {area:976}."] = "Следующий гайд начинается здесь ({area:392}) и продолжается полетом сюда: {area:976}.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Cross the river east to the {area:2261}, the crypt in the south-west of the zone. The {object:177667} lies inside: its key is on {npc:12248} in the far north-east, done in the next guide."] = "Перейдите реку на восток: {area:2261} – склеп на юго-западе зоны. {object:177667} лежит внутри: ключ от него у персонажа {npc:12248} на дальнем северо-востоке, это будет в следующем гайде.",
 }

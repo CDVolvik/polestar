@@ -13,7 +13,7 @@ return {
 	["{area:1446}, on the scaffolds in the north-west of {zone:1427}, is the Brotherhood's outpost. The {faction:59} starts out Neutral. Forever's Legacy Diplomat perk increases reputation gains."] = "{area:1446} auf den Gerüsten im Nordwesten der {zone:1427} ist der Außenposten der Bruderschaft. Bei {faction:59} beginnst du neutral. Das Vermächtnis-Perk „Diplomat“ von Forever erhöht den Rufgewinn.",
 
 	-- Step 2: Secret Plans: Fiery Flux
-	-- {area:1443} The Slag Pit · {object:147516} Dark Iron · {item:18945} Dark Iron Residue
+	-- {area:1443} Slag Pit · {object:147516} Dark Iron · {item:18945} Dark Iron Residue
 	["The plans lie in the {area:1443} of the Cauldron, guarded by {object:147516} dwarves. {object:147516} dwarves also drop {item:18945}, which Burninate takes for Gaining Acceptance."] = "Die Pläne liegen in der {area:1443} im Kessel, bewacht von Zwergen der {object:147516}. Zwerge der {object:147516} lassen auch {item:18945} fallen, das Meisterschmied Burninate für „Erlangte Anerkennung“ annimmt.",
 
 	-- Step 3: Back to Burninate
@@ -23,7 +23,7 @@ return {
 	-- {item:18942} Fiery Flux
 	["{item:18942} supplies to Friendly"] = "Nachschub an {item:18942} bis Freundlich",
 	-- {item:3356} Kingsblood · {item:4234} Heavy Leather · {item:18944} Incendosaur Scale · {zone:1427} Searing Gorge
-	-- plural, as words: Iron Bars = {item:3575} Iron Bar
+	-- plural, as words: Iron Bars = {item:3575} Iron Bar · Incendosaurs = {npc:9318} Incendosaur
 	["Restoring Fiery Flux Supplies repeats in three versions: {item:3356}, Iron Bars or {item:4234}, each with Coal and an {item:18944}. Incendosaurs (level 47-49) in the north of {zone:1427} drop a scale every time; Burninate himself sells Coal."] = "Nachschub an feurigem Fluxus wiederholt sich in drei Versionen: {item:3356}, Eisenbarren oder {item:4234}, jeweils mit Kohle und {item:18944}. Incendosaurier (Stufe 47-49) im Norden der {zone:1427} lassen jedes Mal eine Schuppe fallen; Burninate selbst verkauft Kohle.",
 	-- {npc:14624} Master Smith Burninate
 	["{npc:14624}: Restoring Fiery Flux Supplies"] = "{npc:14624}: Nachschub an feurigem Fluxus",

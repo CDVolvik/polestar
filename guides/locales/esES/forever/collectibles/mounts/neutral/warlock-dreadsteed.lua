@@ -9,8 +9,8 @@ return {
 	["Warlock Dreadsteed"] = "Corcel nefasto de brujo",
 	["Your epic mount at 60: summoned anywhere, with no gold spent on an epic horse."] = "Tu montura épica a nivel 60: invocable en cualquier lugar, sin gastar oro en un caballo épico.",
 
-	-- Step 1: Mor'zul Bloodbringer (Stormwind City)
-	-- {npc:5520} Spackle Thornberry · {object:2164} The Slaughtered Lamb · {quest:7562} Mor'zul Bloodbringer · {zone:1428} Burning Steppes
+	-- Step 1: Mor'zul Bloodbringer (Stormwind)
+	-- {npc:5520} Spackle Thornberry · {object:2164} Slaughtered Lamb · {quest:7562} Mor'zul Bloodbringer · {zone:1428} Burning Steppes
 	["At 60 {npc:5520} in the {object:2164} sends you to {quest:7562} in the {zone:1428}."] = "A nivel 60 {npc:5520}, en {object:2164}, te envía con {quest:7562} en {zone:1428}.",
 
 	-- Step 2: Mor'zul Bloodbringer (Ironforge)
@@ -45,9 +45,9 @@ return {
 
 	-- Step 8: The ritual pieces
 	["The ritual pieces"] = "Las piezas del ritual",
-	-- {spell:5896} Shadow Power · {skill:171} Alchemy · {skill:333} Enchanting · {item:11370} Dark Iron Ore · {skill:186} Mining · {area:1584} Blackrock Depths · {zone:1427} Searing Gorge · {skill:393} Skinning · {zone:1428} Burning Steppes
+	-- {skill:171} Alchemy · {skill:333} Enchanting · {item:11370} Dark Iron Ore · {skill:186} Mining · {area:1584} Blackrock Depths · {zone:1427} Searing Gorge · {skill:393} Skinning · {zone:1428} Burning Steppes
 	-- plural, as words: Large Brilliant Shards = {item:14344} Large Brilliant Shard · Black Dragonscales = {item:15416} Black Dragonscale
-	["Gorzeeki wants 10 Elixirs of {spell:5896} ({skill:171}), 6 Large Brilliant Shards ({skill:333}), 25 {item:11370} ({skill:186}, in {area:1584} and the {zone:1427}) and 35 Black Dragonscales ({skill:393}, black dragonkin of the {zone:1428}). Make or gather what your professions allow; buy the rest at the Auction House."] = "Gorzeeki quiere 10 Elixires de {spell:5896} ({skill:171}), 6 Fragmentos luminosos grandes ({skill:333}), 25 {item:11370} ({skill:186}, en {area:1584} y {zone:1427}) y 35 Escamas de dragón negro ({skill:393}, dragonantes negros de {zone:1428}). Fabrica o recoge lo que te permitan tus profesiones; compra el resto en la casa de subastas.",
+	["Gorzeeki wants 10 Elixirs of Shadow Power ({skill:171}), 6 Large Brilliant Shards ({skill:333}), 25 {item:11370} ({skill:186}, in {area:1584} and the {zone:1427}) and 35 Black Dragonscales ({skill:393}, black dragonkin of the {zone:1428}). Make or gather what your professions allow; buy the rest at the Auction House."] = "",
 
 	-- Step 9: Arcanite
 	-- plural, as words: Arcanite Bars = {item:12360} Arcanite Bar
@@ -94,6 +94,7 @@ return {
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Gorzeeki wants 10 Elixirs of Shadow Power ({skill:171}), 6 Large Brilliant Shards ({skill:333}), 25 {item:11370} ({skill:186}, in {area:1584} and the {zone:1427}) and 35 Black Dragonscales ({skill:393}, black dragonkin of the {zone:1428}). Make or gather what your professions allow; buy the rest at the Auction House."] = "Gorzeeki quiere 10 Elixires de poder de las Sombras ({skill:171}), 6 Fragmentos luminosos grandes ({skill:333}), 25 {item:11370} ({skill:186}, en {area:1584} y {zone:1427}) y 35 Escamas de dragón negro ({skill:393}, dragonantes negros de {zone:1428}). Fabrica o recoge lo que te permitan tus profesiones; compra el resto en la casa de subastas.",
+	-- ["Gorzeeki wants 10 Elixirs of {spell:5896} ({skill:171}), 6 Large Brilliant Shards ({skill:333}), 25 {item:11370} ({skill:186}, in {area:1584} and the {zone:1427}) and 35 Black Dragonscales ({skill:393}, black dragonkin of the {zone:1428}). Make or gather what your professions allow; buy the rest at the Auction House."] = "Gorzeeki quiere 10 Elixires de {spell:5896} ({skill:171}), 6 Fragmentos luminosos grandes ({skill:333}), 25 {item:11370} ({skill:186}, en {area:1584} y {zone:1427}) y 35 Escamas de dragón negro ({skill:393}, dragonantes negros de {zone:1428}). Fabrica o recoge lo que te permitan tus profesiones; compra el resto en la casa de subastas.",
 	-- ["Hand the three pieces to Gorzeeki. He then wants 3 {quest:7630} Bars: alchemists transmute them, everyone else buys them at the Auction House."] = "Entrega las tres piezas a Gorzeeki. Después quiere 3 Lingotes de arcanita ({quest:7630}): los alquimistas los transmutan y los demás los compran en la casa de subastas.",
 	-- ["The owlbeasts of {zone:1452} drop the blood, about one in three: the Ragged and Raging Owlbeasts west of and around {area:2255}, the Crazed, Moontouched and Berserk ones in the east. While you hunt, start on the materials of the next step: the Auction House has them all."] = "Las lechubestias de {zone:1452} sueltan la sangre, más o menos una de cada tres: las andrajosas y las Lechubestias enfurecidas al oeste y alrededor de {area:2255}; las enloquecidas, lunadón y rabiosas, en el este. Mientras cazas, empieza con los materiales del paso siguiente: la casa de subastas los tiene todos.",
 }

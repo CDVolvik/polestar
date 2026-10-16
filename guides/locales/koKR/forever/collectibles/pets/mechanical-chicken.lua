@@ -13,7 +13,7 @@ return {
 
 	-- Step 2: Rescue OOX-22/FE
 	["Rescue OOX-22/FE"] = "OOX-22/FE 구출",
-	-- {area:1105} Feral Scar Vale · {area:1108} The Forgotten Coast · {area:35} Booty Bay
+	-- {area:1105} Feral Scar Vale · {area:1108} Forgotten Coast · {area:35} Booty Bay
 	["Take the beacon to OOX-22/FE in a cave near {area:1105}, then escort it to the dock on the {area:1108}. Its turn-in is in {area:35}; keep it for later."] = "{area:1105} 근처 동굴의 OOX-22/FE에게 신호기를 가져간 뒤, {area:1108}의 부두까지 호위하십시오. 완료 보고는 {area:35}에서 하니 나중을 위해 남겨 두십시오.",
 	["Escort OOX-22/FE"] = "OOX-22/FE 호위",
 
@@ -30,9 +30,9 @@ return {
 	["Escort OOX-17/TN"] = "OOX-17/TN 호위",
 
 	-- Step 5: OOX-09/HL Distress Beacon in the Hinterlands
-	-- {item:8704} OOX-09/HL Distress Beacon · {zone:1425} The Hinterlands
+	-- {item:8704} OOX-09/HL Distress Beacon · {zone:1425} Hinterlands
 	["{item:8704} in the {zone:1425}"] = "{zone:1425}의 {item:8704}",
-	-- {zone:1425} The Hinterlands
+	-- {zone:1425} Hinterlands
 	["Most {zone:1425} mobs can drop OOX-09/HL's beacon (about 1-2.5% per kill in our data)."] = "대부분의 {zone:1425} 몬스터가 OOX-09/HL의 신호기를 떨어뜨릴 수 있습니다(우리 데이터상 처치당 약 1-2.5%).",
 
 	-- Step 6: Rescue OOX-09/HL

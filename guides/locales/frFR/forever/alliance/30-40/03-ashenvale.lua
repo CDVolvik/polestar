@@ -31,7 +31,7 @@ return {
 	["The Crazed and Withered Ancients north of the moonwell carry the {item:5475}; the worn chest it opens stands among them."] = "Les Anciens fous et les Anciens flétris au nord du puits de lune portent la {item:5475} ; le vieux coffre qu'elle ouvre se trouve parmi eux.",
 
 	-- Step 6: The Howling Vale
-	-- {area:419} The Howling Vale
+	-- {area:419} Howling Vale
 	["Take the tunnel into the {area:419}; the tome lies in the ruins at its west end."] = "Empruntez le tunnel jusqu'au {area:419} ; le tome se trouve dans les ruines à son extrémité ouest.",
 
 	-- Step 8: Anilia
@@ -39,9 +39,8 @@ return {
 	["Follow the road east to the satyr camps of {area:429}; {npc:3920} hides at their edge."] = "Suivez la route vers l'est jusqu'aux camps de satyres de {area:429} ; {npc:3920} se cache à leur lisière.",
 
 	-- Step 9: Geltharis
-	["Geltharis"] = "Geltharis",
-	-- {area:429} Xavian
-	["Geltharis leads the {area:429} satyrs; he carries the branch."] = "Geltharis dirige les satyres de {area:429} ; il porte la branche.",
+	-- {npc:4619} Geltharis · {area:429} Xavian
+	["{npc:4619} leads the {area:429} satyrs; he carries the branch."] = "",
 
 	-- Step 10: Satyrnaar
 	-- {object:19901} Circle of Imprisonment · {area:430} Satyrnaar
@@ -108,4 +107,8 @@ return {
 	-- Step 35: Deepwater Tavern
 	-- {npc:5082} Vincent Hyal · {npc:4963} Mikhail · {npc:1480} Caitlin Grassman
 	["{npc:5082}, {npc:4963} and Tapoke Jahn are all at Menethil's inn; Tapoke fights you when you talk to {npc:4963}, but gives up once beaten. {npc:1480} stands a short walk north-east of the inn."] = "{npc:5082}, {npc:4963} et Tapoke \"Slim\" Jahn sont tous à l'auberge du Port de Menethil ; Tapoke vous attaque quand vous parlez à {npc:4963}, mais abandonne une fois vaincu. {npc:1480} se tient à quelques pas au nord-est de l'auberge.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Geltharis"] = "Geltharis",
+	-- ["Geltharis leads the {area:429} satyrs; he carries the branch."] = "Geltharis dirige les satyres de {area:429} ; il porte la branche.",
 }

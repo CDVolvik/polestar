@@ -58,12 +58,14 @@ return {
 	["{npc:14524}: Lok'delar in Classic"] = "{npc:14524}：经典版中的罗克迪洛尔",
 
 	-- Step 10: Azuregos
-	["Azuregos"] = "艾索雷葛斯",
-	-- {item:18704} Mature Blue Dragon Sinew · {zone:1447} Azshara · {zone:1452} Winterspring
-	["Hastat's quiver needs the {item:18704}. Azuregos, a world boss for a raid, roams the south of {zone:1447} and drops it most of the time; the Cobalt dragonkin of {zone:1452} drop it very rarely. Skip the rest of this guide if you do not want the quiver."] = "古树哈斯塔特的箭袋需要{item:18704}。艾索雷葛斯是需要团队的世界首领，在{zone:1447}南部游荡，大多数时候会掉落它；{zone:1452}的深蓝龙族极少掉落。如果不要箭袋，跳过本指南的剩余部分。",
-	-- {item:18704} Mature Blue Dragon Sinew
-	["{item:18704}, from Azuregos"] = "{item:18704}，来自艾索雷葛斯",
+	-- {item:18704} Mature Blue Dragon Sinew · {npc:6109} Azuregos · {zone:1447} Azshara · {zone:1452} Winterspring
+	["Hastat's quiver needs the {item:18704}. {npc:6109}, a world boss for a raid, roams the south of {zone:1447} and drops it most of the time; the Cobalt dragonkin of {zone:1452} drop it very rarely. Skip the rest of this guide if you do not want the quiver."] = "",
+	-- {item:18704} Mature Blue Dragon Sinew · {npc:6109} Azuregos
+	["{item:18704}, from {npc:6109}"] = "",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Azuregos"] = "艾索雷葛斯",
+	-- ["Hastat's quiver needs the {item:18704}. Azuregos, a world boss for a raid, roams the south of {zone:1447} and drops it most of the time; the Cobalt dragonkin of {zone:1452} drop it very rarely. Skip the rest of this guide if you do not want the quiver."] = "古树哈斯塔特的箭袋需要{item:18704}。艾索雷葛斯是需要团队的世界首领，在{zone:1447}南部游荡，大多数时候会掉落它；{zone:1452}的深蓝龙族极少掉落。如果不要箭袋，跳过本指南的剩余部分。",
 	-- ["Not confirmed in Forever. In Classic, using the {item:18707} with the {item:18724} in your bags made Rhok'delar, and Vartrus then gave {item:18715} (Icy Veins)."] = "Forever中未确认。在经典版中，背包里有{item:18724}时使用{item:18707}可制成伦鲁迪洛尔，之后古树瓦特鲁斯会给予{item:18715}（Icy Veins）。",
+	-- ["{item:18704}, from Azuregos"] = "{item:18704}，来自艾索雷葛斯",
 }

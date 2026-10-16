@@ -28,7 +28,7 @@ return {
 	-- Step 5: Lunar Fungus and Earthroot
 	-- {item:15851} Lunar Fungus · {item:2449} Earthroot
 	["{item:15851} and {item:2449}"] = "{item:15851} et {item:2449}",
-	-- {area:442} Auberdine · {item:2449} Earthroot · {skill:182} Herbalism · {zone:1439} Darkshore · {npc:1313} Maria Lumere · {zone:1453} Stormwind City
+	-- {area:442} Auberdine · {item:2449} Earthroot · {skill:182} Herbalism · {zone:1439} Darkshore · {npc:1313} Maria Lumere · {zone:1453} Stormwind
 	-- plural, as words: Lunar Fungal Blooms = {object:177750} Lunar Fungal Bloom
 	["The Lunar Fungal Blooms grow in the moonkin caves in the hills just east of {area:442}; the moonkin there are irritable. {item:2449} needs {skill:182}: herbalists pick it all over {zone:1439}, anyone else buys it from {npc:1313} (Alchemy Supplies) in {zone:1453} or on the Auction House."] = "Les Floraisons fongiques lunaires ({object:177750}) poussent dans les grottes des séléniens dans les collines juste à l'est d'{area:442} ; les séléniens y sont irritables. {item:2449} requiert {skill:182} : les herboristes la cueillent partout à {zone:1439}, les autres l'achètent à {npc:1313} (Fournitures d'alchimie) à {zone:1453} ou à l'hôtel des ventes.",
 
@@ -47,15 +47,15 @@ return {
 	["{npc:3033} stands on {area:1639}."] = "{npc:3033} se trouve sur {area:1639}.",
 
 	-- Step 11: Dendrite Starblaze
-	-- {spell:18960} Teleport: Moonglade · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {npc:11798} Bunthen Plainswind · {area:1638} Thunder Bluff · {area:380} The Crossroads
+	-- {spell:18960} Teleport: Moonglade · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {npc:11798} Bunthen Plainswind · {area:1638} Thunder Bluff · {area:380} Crossroads
 	["Cast {spell:18960}. {npc:11802} is in {area:2361}. {npc:11798} flies druids to {area:1638}; fly on to the {area:380} from there."] = "Lancez {spell:18960}. {npc:11802} est à {area:2361}. {npc:11798} transporte les druides jusqu'à {area:1638} ; de là, volez jusqu'à {area:380}.",
 
 	-- Step 12: Dreadmist Peak
-	-- {area:380} The Crossroads · {area:384} Dreadmist Peak · {item:15842} Empty Dreadmist Peak Sampler · {object:19464} Dreadmist Peak Pool
+	-- {area:380} Crossroads · {area:384} Dreadmist Peak · {item:15842} Empty Dreadmist Peak Sampler · {object:19464} Dreadmist Peak Pool
 	["From the {area:380} ride north to {area:384} and fill the {item:15842} at the {object:19464}."] = "Depuis {area:380}, chevauchez vers le nord jusqu'à {area:384} et remplissez l'{item:15842} au {object:19464}.",
 
 	-- Step 13: Tonga Runetotem
-	-- {npc:3448} Tonga Runetotem · {area:380} The Crossroads · {skill:182} Herbalism · {npc:3490} Hula'mahi · {item:2449} Earthroot
+	-- {npc:3448} Tonga Runetotem · {area:380} Crossroads · {skill:182} Herbalism · {npc:3490} Hula'mahi · {item:2449} Earthroot
 	["{npc:3448} stands in the {area:380}. No {skill:182}? {npc:3490}, a few steps away, sells {item:2449}, three at a time until he restocks."] = "{npc:3448} se trouve à {area:380}. Pas d'{skill:182} ? {npc:3490}, à quelques pas, vend de la {item:2449}, trois à la fois jusqu'à son réapprovisionnement.",
 	-- {item:2449} Earthroot
 	["{item:2449}; herbalists pick it on the plains"] = "{item:2449} ; les herboristes en cueillent dans les plaines",
@@ -64,14 +64,14 @@ return {
 	-- {item:2449} Earthroot
 	-- plural, as words: Kodo Horns = {item:15852} Kodo Horn
 	["{item:2449} and Kodo Horns"] = "{item:2449} et Cornes de kodo",
-	-- {area:380} The Crossroads · {area:388} The Stagnant Oasis · {item:2449} Earthroot · {zone:1413} The Barrens
+	-- {area:380} Crossroads · {area:388} Stagnant Oasis · {item:2449} Earthroot · {zone:1413} Barrens
 	-- plural, as words: Lost Barrens Kodos = {npc:3234} Lost Barrens Kodo
 	["Lost Barrens Kodos roam the plains north and west of the {area:380} and around the {area:388}; each drops a horn. Herbalists find {item:2449} all over the northern {zone:1413}."] = "Des Kodos égarés des Tarides ({npc:3234}) errent dans les plaines au nord et à l'ouest de {area:380} et autour de {area:388} ; chacun lâche une corne. Les herboristes trouvent {item:2449} partout dans le nord de {zone:1413}.",
 
 	-- Step 16: Sickly Gazelles
 	-- plural, as words: Sickly Gazelles = {npc:12296} Sickly Gazelle
 	["Sickly Gazelles"] = "Gazelles malades",
-	-- {item:15826} Curative Animal Salve · {area:380} The Crossroads
+	-- {item:15826} Curative Animal Salve · {area:380} Crossroads
 	-- plural, as words: Sickly Gazelles = {npc:12296} Sickly Gazelle
 	["Use the {item:15826} on Sickly Gazelles: they graze north of the road that runs east and west through the {area:380}."] = "Utilisez le {item:15826} sur les Gazelles malades : elles paissent au nord de la route qui traverse {area:380} d'est en ouest.",
 	-- {npc:12296} Sickly Gazelle

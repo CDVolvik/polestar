@@ -128,8 +128,7 @@ return {
 	["Free Darrowshire Spirits: talk to them"] = "{npc:11064} 해방: 대화하기",
 
 	-- Step 30: The Undercroft
-	-- {area:2261} The Undercroft
-	["Zaeldarr is elite: grouping up is advised. He waits at the bottom of the {area:2261}, the crypt in the south-west of the zone."] = "잴다르는 정예이니 파티를 권장합니다. 그는 지역 남서쪽의 지하실인 {area:2261}의 맨 아래에서 기다립니다.",
+	["Zaeldarr is elite: grouping up is advised. He waits at the bottom of the Undercroft, the crypt in the south-west of the zone."] = "",
 
 	-- Step 31: Augustus the Touched
 	-- {area:2627} Terrordale
@@ -139,4 +138,6 @@ return {
 	-- {area:3197} Chillwind Camp
 	["The next guide starts here and flies to {area:3197}."] = "다음 가이드는 여기서 시작해 {area:3197}(으)로 날아갑니다.",
 
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Zaeldarr is elite: grouping up is advised. He waits at the bottom of the {area:2261}, the crypt in the south-west of the zone."] = "잴다르는 정예이니 파티를 권장합니다. 그는 지역 남서쪽의 지하실인 {area:2261}의 맨 아래에서 기다립니다.",
 }

@@ -11,11 +11,11 @@ return {
 	["A dagger at 10 from your home town's rogue quests."] = "Una daga a nivel 10 de las misiones de pícaro de tu ciudad natal.",
 
 	-- Step 1: Seek out SI: 7
-	-- {npc:917} Keryn Sylvius · {area:87} Goldshire · {npc:332} Master Mathias Shaw · {zone:1453} Stormwind City
+	-- {npc:917} Keryn Sylvius · {area:87} Goldshire · {npc:332} Master Mathias Shaw · {zone:1453} Stormwind
 	["At 10 {npc:917}, the rogue trainer in the Lion's Pride Inn in {area:87}, gives you a package for {npc:332} in {zone:1453}."] = "A nivel 10, {npc:917}, el instructor de pícaros de la posada Orgullo de León en {area:87}, te da un paquete para {npc:332} en {zone:1453}.",
 
 	-- Step 2: Master Mathias Shaw
-	-- {zone:1453} Stormwind City · {object:2100} Old Town
+	-- {zone:1453} Stormwind · {object:2100} Old Town
 	["Ride north to {zone:1453}; Mathias Shaw is at SI:7 in {object:2100}."] = "Cabalga al norte hasta {zone:1453}; Mathias Shaw está en el IV:7, en {object:2100}.",
 
 	-- Step 3: Defias Dockmaster

@@ -21,7 +21,7 @@ return {
 	["Skeletal Flayers and Slavering Ghouls roam the fields north of the camp; all the Scourge here drop Scourgestones."] = "{npc:1783}和{npc:1791}在营地北边的田野里游荡；这里的所有天灾军团都会掉落天灾石。",
 
 	-- Step 4: Mulgris Deepriver
-	-- {area:202} The Writhing Haunt
+	-- {area:202} Writhing Haunt
 	["Mulgris stands by the farm at the {area:202}, north-east of the fields."] = "穆格雷斯·深水站在田野东北方{area:202}的农场旁。",
 
 	-- Step 5: Diseased Wolves
@@ -43,7 +43,7 @@ return {
 	-- Step 10: Janice Felstone
 	-- {area:199} Felstone Field · {area:200} Dalson's Tears
 	["Janice's ghost wanders by the farmhouse of {area:199}, west of {area:200}; her parcel lies inside."] = "詹妮丝·费尔斯通的鬼魂在{area:200}西边、{area:199}的农舍旁游荡；她的包裹在屋里。",
-	-- {zone:1453} Stormwind City
+	-- {zone:1453} Stormwind
 	["For {zone:1453}: keep it"] = "交给{zone:1453}：先留着",
 
 	-- Step 11: Chillwind Camp
@@ -84,23 +84,23 @@ return {
 	-- {area:200} Dalson's Tears
 	["The cauldron sits at {area:200}, north-east of Felstone; its Cauldron Lord stands beside it."] = "大锅在费尔斯通农场东北方的{area:200}；护锅者拉扎奇站在旁边。",
 
-	-- Step 18: The Writhing Haunt cauldron
-	-- {area:202} The Writhing Haunt
+	-- Step 18: Writhing Haunt cauldron
+	-- {area:202} Writhing Haunt
 	["{area:202} cauldron"] = "{area:202}的大锅",
-	-- {area:202} The Writhing Haunt
+	-- {area:202} Writhing Haunt
 	["The cauldron sits at the {area:202}, by Mulgris' farm."] = "大锅在{area:202}，穆格雷斯·深水的农场旁。",
-	-- {npc:1796} Freezing Ghoul · {area:202} The Writhing Haunt · {zone:1422} Western Plaguelands
+	-- {npc:1796} Freezing Ghoul · {area:202} Writhing Haunt · {zone:1422} Western Plaguelands
 	["grind on {npc:1796} at the {area:202}, {zone:1422}"] = "在{zone:1422}的{area:202}刷{npc:1796}",
 
 	-- Step 19: Chillwind Camp
-	-- {area:202} The Writhing Haunt
+	-- {area:202} Writhing Haunt
 	-- plural, as words: Arcane Quickeners = {item:13320} Arcane Quickener
 	["Buy two more Arcane Quickeners for the {area:202}'s and Dalson's cauldrons, and ride straight there: they vanish after 30 minutes."] = "再买两个{item:13320}，用于{area:202}和达尔松之泪的大锅，然后直接骑过去：它们在30分钟后消失。",
 	-- {npc:1852} Araj the Summoner
 	["{npc:1852} is a level 61 elite"] = "{npc:1852}是61级精英",
 
-	-- Step 20: The Writhing Haunt cauldron
-	-- {area:202} The Writhing Haunt
+	-- Step 20: Writhing Haunt cauldron
+	-- {area:202} Writhing Haunt
 	-- plural, as words: Somatic Intensifiers = {item:13356} Somatic Intensifier
 	["Back north to the {area:202}: the cauldron offers its own task now. The ghouls nearby drop Somatic Intensifiers."] = "向北回到{area:202}：大锅现在会提供它自己的任务。附近的食尸鬼掉落{item:13356}。",
 
@@ -168,7 +168,7 @@ return {
 	["{npc:11038}, by the graves south of the chapel"] = "{npc:11038}，在礼拜堂南边的墓地旁",
 
 	-- Step 41: Villains of Darrowshire
-	-- {area:2624} Blackwood Lake · {area:2623} The Infectis Scar
+	-- {area:2624} Blackwood Lake · {area:2623} Infectis Scar
 	-- plural, as words: Plaguehounds = {npc:8597} Plaguehound
 	["Horgus' skull lies at {area:2624} and Marduk's sword in the {area:2623}, each where ghosts fight; grown Plaguehounds hunt the plains between."] = "掠夺者霍古斯的头骨在{area:2624}，Marduk的剑在{area:2623}，各在鬼魂交战的地方；成年的{npc:8597}在两地之间的平原上捕猎。",
 
@@ -200,8 +200,8 @@ return {
 	["{item:12955} lies east of the barn at {area:201}."] = "{item:12955}在{area:201}谷仓东边。",
 
 	-- Step 49: The Undercroft
-	-- {area:2261} The Undercroft · {object:177667} Torn Scroll · {npc:12248} Infiltrator Hameya
-	["Cross the river east to the {area:2261}, the crypt in the south-west of the zone. The {object:177667} lies inside: its key is on {npc:12248} in the far north-east, done in the next guide."] = "向东过河到{area:2261}，即区域西南部的地穴。{object:177667}在里面：它的钥匙在东北远端的{npc:12248}身上，在下一份指南中完成。",
+	-- {object:177667} Torn Scroll · {npc:12248} Infiltrator Hameya
+	["Cross the river east to the Undercroft, the crypt in the south-west of the zone. The {object:177667} lies inside: its key is on {npc:12248} in the far north-east, done in the next guide."] = "",
 
 	-- Step 50: Darnassus
 	-- {area:3197} Chillwind Camp · {area:150} Menethil Harbor · {area:442} Auberdine · {area:702} Rut'theran Village · {zone:1457} Darnassus
@@ -235,16 +235,16 @@ return {
 	["{npc:7900}: keep it for {zone:1446}"] = "{npc:7900}：留到{zone:1446}",
 
 	-- Step 55: Zorbin Fandazzle
-	-- {area:1119} The Twin Colossals
+	-- {area:1119} Twin Colossals
 	["Take the boat to the mainland and ride north-east to Zorbin's camp by the {area:1119}."] = "乘船到大陆，向东北骑到{area:1119}旁索尔宾·范达瑟的营地。",
 
 	-- Step 56: Zapped giants and sea elementals
 	["Zapped giants and sea elementals"] = "被电过的巨人和海元素",
-	-- {area:1119} The Twin Colossals
+	-- {area:1119} Twin Colossals
 	["The shrunken giants roam the {area:1119}; the sea elementals wade along the coast to the west."] = "缩小的巨人在{area:1119}游荡；海元素在西边的海岸涉水。",
 
 	-- Step 58: Gregan Brewspewer
-	-- {area:1119} The Twin Colossals · {item:11243} Videre Elixir
+	-- {area:1119} Twin Colossals · {item:11243} Videre Elixir
 	["Gregan's camp lies north of the {area:1119}. He sells the {item:11243} once he has his bait."] = "格雷甘·山酒的营地在{area:1119}北边。拿到诱饵后，他会出售{item:11243}。",
 
 	-- Step 59: Ratchet
@@ -277,4 +277,7 @@ return {
 	-- Step 63: Ratchet
 	-- {area:392} Ratchet · {area:976} Gadgetzan
 	["The next guide starts here in {area:392} and flies on to {area:976}."] = "下一份指南从{area:392}开始，然后飞往{area:976}。",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Cross the river east to the {area:2261}, the crypt in the south-west of the zone. The {object:177667} lies inside: its key is on {npc:12248} in the far north-east, done in the next guide."] = "向东过河到{area:2261}，即区域西南部的地穴。{object:177667}在里面：它的钥匙在东北远端的{npc:12248}身上，在下一份指南中完成。",
 }

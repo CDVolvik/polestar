@@ -34,8 +34,8 @@ return {
 	-- Step 6: The Wild Shore
 	-- {area:43} Wild Shore
 	["The {area:43}"] = "{area:43}",
-	-- {area:35} Booty Bay · {area:43} Wild Shore
-	["South of {area:35} the Bloodsail swashbucklers camp on the {area:43}; the charts and the orders lie in their tents. Any Bloodsail can carry snuff and Dizzy's eye, so keep killing until you have both."] = "Ao sul de {area:35}, os Espadachins da Vela Sangrenta acampam em {area:43}; os mapas e as ordens ficam nas barracas deles. Qualquer pirata da Vela Sangrenta pode levar rapé e o olho do Dizzy, então continue matando até ter os dois.",
+	-- {area:43} Wild Shore
+	["South of Booty Bay the Bloodsail swashbucklers camp on the {area:43}; the charts and the orders lie in their tents. Any Bloodsail can carry snuff and Dizzy's eye, so keep killing until you have both."] = "",
 
 	-- Step 8: The Bloodsail ships
 	["The Bloodsail ships"] = "Os navios da Vela Sangrenta",
@@ -66,7 +66,7 @@ return {
 	-- Step 15: Grom'gol Base Camp
 	-- {object:3202} Grom'gol
 	["Ride north-west to {object:3202}."] = "Cavalgue para noroeste até {object:3202}.",
-	-- {zone:1425} The Hinterlands
+	-- {zone:1425} Hinterlands
 	["for later: the {zone:1425}, around level 48"] = "para depois: {zone:1425}, por volta do nível 48",
 
 	-- Step 16: Nesingwary's Expedition
@@ -89,9 +89,9 @@ return {
 	["The stalker raptors hunt the jungle south of {object:3202}, out towards the west coast."] = "Os raptores espreitadores caçam na selva ao sul de {object:3202}, rumo à costa oeste.",
 
 	-- Step 20: Naga shore and the Holy Spring
-	-- {object:759} The Holy Spring
+	-- {object:759} Holy Spring
 	["Naga shore and the {object:759}"] = "Costa das nagas e {object:759}",
-	-- {object:759} The Holy Spring
+	-- {object:759} Holy Spring
 	["Follow the coast south. The naga explorers wade along the shore and carry the reed bundles; the {object:759} bubbles in the hills just east of them."] = "Siga a costa para o sul. As nagas exploradoras andam pela água ao longo da costa e levam os feixes de junco; {object:759} borbulha nas colinas logo a leste delas.",
 
 	-- Step 21: Booty Bay
@@ -136,7 +136,7 @@ return {
 	-- Step 30: Into the Swamp of Sorrows
 	-- {zone:1435} Swamp of Sorrows
 	["Into the {zone:1435}"] = "Rumo a {zone:1435}",
-	-- {zone:1431} Duskwood · {zone:1430} Deadwind Pass · {npc:1776} Magtoor · {area:657} The Harborage
+	-- {zone:1431} Duskwood · {zone:1430} Deadwind Pass · {npc:1776} Magtoor · {area:657} Harborage
 	["Keep riding north into {zone:1431}, then east along the road through {zone:1430} into the swamp. {npc:1776} waits at the {area:657}, the draenei camp near the way in from {zone:1430}."] = "Continue cavalgando para o norte até {zone:1431}, depois para o leste pela estrada através de {zone:1430} até o pântano. {npc:1776} espera em {area:657}, o acampamento draenei perto da entrada vinda de {zone:1430}.",
 
 	-- Step 31: Stonard
@@ -166,7 +166,9 @@ return {
 	["The crocolisks wallow in the pools around Galen's camp and south towards {area:75}; about one in four drops a flank."] = "Os crocoliscos chafurdam nas poças em volta do acampamento de Galen e ao sul rumo a {area:75}; cerca de um em quatro deixa cair uma anca.",
 
 	-- Step 37: The Harborage
-	-- {area:657} The Harborage · {zone:1430} Deadwind Pass
+	-- {area:657} Harborage
+	["The {area:657}"] = "",
+	-- {area:657} Harborage · {zone:1430} Deadwind Pass
 	["Ride west along the road to the draenei camp at the {area:657}, near the way in from {zone:1430}."] = "Cavalgue para o oeste pela estrada até o acampamento draenei em {area:657}, perto da entrada vinda de {zone:1430}.",
 
 	-- Step 38: Misty Reed Post
@@ -180,4 +182,7 @@ return {
 	-- Step 40: Misty Reed Post
 	-- {zone:1446} Tanaris
 	["The next guide starts here and takes you to {zone:1446}."] = "O próximo guia começa aqui e leva você até {zone:1446}.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["South of {area:35} the Bloodsail swashbucklers camp on the {area:43}; the charts and the orders lie in their tents. Any Bloodsail can carry snuff and Dizzy's eye, so keep killing until you have both."] = "Ao sul de {area:35}, os Espadachins da Vela Sangrenta acampam em {area:43}; os mapas e as ordens ficam nas barracas deles. Qualquer pirata da Vela Sangrenta pode levar rapé e o olho do Dizzy, então continue matando até ter os dois.",
 }

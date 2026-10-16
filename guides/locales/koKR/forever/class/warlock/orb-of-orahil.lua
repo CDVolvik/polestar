@@ -9,8 +9,8 @@ return {
 	["Orb of Orahil"] = "오라힐의 보주",
 	["An off-hand orb or a staff for your late 30s, down the felhound's or the infernal's path, your pick."] = "30대 후반에 얻는 보조장비 보주 또는 지팡이입니다. 지옥사냥개 경로와 지옥불정령 경로 중 원하는 쪽을 고르십시오.",
 
-	-- Step 1: Knowledge of the Orb of Orahil (Stormwind City)
-	-- {npc:461} Demisette Cloyce · {object:2164} The Slaughtered Lamb · {object:2101} Mage Quarter · {npc:6266} Menara Voidrender · {area:392} Ratchet
+	-- Step 1: Knowledge of the Orb of Orahil (Stormwind)
+	-- {npc:461} Demisette Cloyce · {object:2164} Slaughtered Lamb · {object:2101} Mage Quarter · {npc:6266} Menara Voidrender · {area:392} Ratchet
 	["At 35 {npc:461} in the {object:2164}, in the {object:2101}, sends you to {npc:6266} in {area:392}."] = "35레벨에 {object:2101} {object:2164}의 {npc:461}이(가) {area:392}의 {npc:6266}에게 보냅니다.",
 
 	-- Step 2: Knowledge of the Orb of Orahil (Ironforge)

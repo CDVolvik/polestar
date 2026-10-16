@@ -19,7 +19,7 @@ return {
 	["{npc:4503}, at the south edge of the village where the road comes in"] = "{npc:4503}，在道路进入村庄处的南缘",
 
 	-- Step 4: Questioning Reethe
-	-- {npc:4983} Ogron · {area:2302} The Quagmire
+	-- {npc:4983} Ogron · {area:2302} Quagmire
 	["{npc:4983} waits in the {area:2302} east of the village. Follow him to Reethe and keep him alive through the fight that breaks out."] = "{npc:4983}在村庄东边的{area:2302}等候。跟着他去找雷瑟，并在随后爆发的战斗中保护他活下来。",
 
 	-- Step 5: Stinky Ignatz

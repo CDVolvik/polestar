@@ -20,7 +20,7 @@ return {
 	["{quest:2458}: keep the {item:8051}"] = "{quest:2458}: сохраните {item:8051}",
 
 	-- Step 2: Taskmaster Fizzule
-	-- {area:380} The Crossroads · {area:382} The Sludge Fen · {item:8051} Flare Gun · {npc:7233} Taskmaster Fizzule
+	-- {area:380} Crossroads · {area:382} Sludge Fen · {item:8051} Flare Gun · {npc:7233} Taskmaster Fizzule
 	["Fly to the {area:380} and ride north to the Venture Co. tower north of the {area:382}. In sight of the tower, fire the {item:8051} twice, then /salute {npc:7233} before he attacks you."] = "Летите сюда: {area:380}. Скачите на север к башне Торговой компании севернее места {area:382}. В пределах видимости башни выстрелите из ракетницы ({item:8051}) дважды, затем выполните /salute для NPC {npc:7233}, пока он не напал на вас.",
 	-- {item:8051} Flare Gun
 	["{item:8051}, twice, in sight of the tower"] = "{item:8051}: дважды, в пределах видимости башни",

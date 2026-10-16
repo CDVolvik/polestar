@@ -42,8 +42,8 @@ return {
 
 	-- Step 9: Dun Morogh (1/3)
 	["18 areas to discover here, levels 4-12."] = "Aquí hay 18 zonas por descubrir, niveles 4-12.",
-	-- {area:2257} Deeprun Tram · {zone:1453} Stormwind City · {object:28027} Dwarven District · {zone:1455} Ironforge
-	["Take the {area:2257} from {zone:1453}'s {object:28027} to {zone:1455} (or fly to {zone:1455}), then leave the city through its gates."] = "Toma el {area:2257} desde {object:28027} de {zone:1453} hasta {zone:1455} (o vuela a {zone:1455}) y sal de la ciudad por sus puertas.",
+	-- {area:2257} Deeprun Tram · {object:28027} Dwarven District · {zone:1455} Ironforge
+	["Take the {area:2257} from Stormwind's {object:28027} to {zone:1455} (or fly to {zone:1455}), then leave the city through its gates."] = "",
 
 	-- Step 12: Loch Modan (1/2)
 	["11 areas to discover here, levels 10-18."] = "Aquí hay 11 zonas por descubrir, niveles 10-18.",
@@ -72,10 +72,12 @@ return {
 
 	-- Step 18: Silverpine Forest (1/2)
 	["15 areas to discover here, levels 10-20."] = "Aquí hay 15 zonas por descubrir, niveles 10-20.",
-	-- {area:287} Hillsbrad · {area:285} Southpoint Tower · {zone:1421} Silverpine Forest · {area:228} The Sepulcher
+	-- {area:287} Hillsbrad · {area:285} Southpoint Tower · {zone:1421} Silverpine Forest · {area:228} Sepulcher
 	["Follow the road west from {area:287} past {area:285} into {zone:1421}, Horde country with Horde guards at the {area:228}."] = "Sigue el camino hacia el oeste desde {area:287}, más allá de {area:285}, hasta {zone:1421}, tierra de la Horda con guardias de la Horda en {area:228}.",
-	-- {area:228} The Sepulcher
-	["Horde guards: touch the edge of {area:228} and move on"] = "Guardias de la Horda: toca el borde de {area:228} y sigue adelante",
+	-- {area:228} Sepulcher
+	["Horde guards: touch the edge of The {area:228} and move on"] = "",
+	-- {area:228} Sepulcher
+	["The {area:228}"] = "",
 
 	-- Step 20: Tirisfal Glades (1/3)
 	["17 areas to discover here, levels 5-10."] = "Aquí hay 17 zonas por descubrir, niveles 5-10.",
@@ -101,8 +103,8 @@ return {
 	-- Step 26: Silverpine Forest (1/2)
 	-- {zone:1421} Silverpine Forest · {zone:1420} Tirisfal Glades · {area:159} Brill
 	["{zone:1421} is south of {zone:1420}: follow the road south from {area:159}."] = "{zone:1421} está al sur de {zone:1420}: sigue el camino hacia el sur desde {area:159}.",
-	-- {area:228} The Sepulcher · {npc:2226} Karos Razok
-	["Flight path here: {area:228} ({npc:2226})."] = "Ruta de vuelo aquí: {area:228} ({npc:2226}).",
+	-- {area:228} Sepulcher · {npc:2226} Karos Razok
+	["Flight path here: The {area:228} ({npc:2226})."] = "",
 
 	-- Step 28: Hillsbrad Foothills (1/2)
 	-- {zone:1424} Hillsbrad Foothills · {area:285} Southpoint Tower · {area:272} Tarren Mill · {area:271} Southshore
@@ -160,8 +162,8 @@ return {
 
 	-- Step 41: Elwynn Forest (1/2)
 	["12 areas to discover here, levels 5-10."] = "Aquí hay 12 zonas por descubrir, niveles 5-10.",
-	-- {zone:1429} Elwynn Forest · {zone:1436} Westfall · {zone:1431} Duskwood · {area:87} Goldshire · {area:9} Northshire Valley · {zone:1453} Stormwind City
-	["{zone:1429} is north of {zone:1436} and {zone:1431}. {area:87}, {area:9} and {zone:1453}'s gates are Alliance ground with guards."] = "{zone:1429} está al norte de {zone:1436} y {zone:1431}. {area:87}, {area:9} y las puertas de {zone:1453} son territorio de la Alianza con guardias.",
+	-- {zone:1429} Elwynn Forest · {zone:1436} Westfall · {zone:1431} Duskwood · {area:87} Goldshire · {area:9} Northshire Valley
+	["{zone:1429} is north of {zone:1436} and {zone:1431}. {area:87}, {area:9} and Stormwind's gates are Alliance ground with guards."] = "",
 	-- {zone:1453} Stormwind City
 	["Alliance guards: touch the edge of {zone:1453} and move on; any one of these names counts"] = "Guardias de la Alianza: toca el borde de {zone:1453} y sigue adelante; vale cualquiera de estos nombres",
 	-- {area:9} Northshire Valley
@@ -174,4 +176,10 @@ return {
 	["Go east through {zone:1429} to {area:1002}, where Redridge starts. {area:69} is an Alliance town."] = "Ve hacia el este por {zone:1429} hasta {area:1002}, donde empiezan las Montañas Crestagrana. {area:69} es un pueblo de la Alianza.",
 	-- {area:69} Lakeshire
 	["Alliance guards: touch the edge of {area:69} and move on"] = "Guardias de la Alianza: toca el borde de {area:69} y sigue adelante",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Flight path here: {area:228} ({npc:2226})."] = "Ruta de vuelo aquí: {area:228} ({npc:2226}).",
+	-- ["Horde guards: touch the edge of {area:228} and move on"] = "Guardias de la Horda: toca el borde de {area:228} y sigue adelante",
+	-- ["Take the {area:2257} from {zone:1453}'s {object:28027} to {zone:1455} (or fly to {zone:1455}), then leave the city through its gates."] = "Toma el {area:2257} desde {object:28027} de {zone:1453} hasta {zone:1455} (o vuela a {zone:1455}) y sal de la ciudad por sus puertas.",
+	-- ["{zone:1429} is north of {zone:1436} and {zone:1431}. {area:87}, {area:9} and {zone:1453}'s gates are Alliance ground with guards."] = "{zone:1429} está al norte de {zone:1436} y {zone:1431}. {area:87}, {area:9} y las puertas de {zone:1453} son territorio de la Alianza con guardias.",
 }

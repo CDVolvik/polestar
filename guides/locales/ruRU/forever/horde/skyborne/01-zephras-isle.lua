@@ -86,7 +86,8 @@ return {
 	["The Ursera den is west of the village. {npc:251115}, their matriarch, sits at its far end."] = "Логово медвер – к западу от деревни. {npc:251115}, их матриарх, сидит в дальнем конце.",
 
 	-- Step 16: Leaving Thendal Village
-	["Leaving Thendal Village"] = "Покидаем деревню Тендал",
+	-- {area:16635} Thendal Village
+	["Leaving {area:16635}"] = "",
 
 	-- Step 17: Call of Earth
 	-- {npc:251374} Windshaper Boro · {area:16988} Rise of Spirits · {item:6635} Earth Sapta · {npc:251166} Minor Manifestation of Earth · {item:6656} Rough Quartz
@@ -117,8 +118,10 @@ return {
 	["the bounty board"] = "доска объявлений",
 
 	-- Step 21: Prideclaws and Galestriders
+	-- plural, as words: Prideclaws = {npc:251245} Prideclaw
 	["Prideclaws and Galestriders"] = "Когти прайда и буреноги",
 	-- {item:5469} Strider Meat
+	-- plural, as words: Prideclaws = {npc:251245} Prideclaw
 	["Prideclaws and Galestriders share the meadows south of the village. Keep the {item:5469} for Zerril; the eggs come later from the hippogryphs."] = "Когти прайда и буреноги бродят по лугам к югу от деревни. Сохраните {item:5469} для Зеррила; яйца будут позже, с гиппогрифов.",
 
 	-- Step 22: High Order Apprentices
@@ -135,6 +138,7 @@ return {
 	["{area:16624} turn-ins"] = "Сдача заданий: {area:16624}",
 
 	-- Step 25: Vulgara the Insatiable
+	-- plural, as words: Prideclaws = {npc:251245} Prideclaw
 	["Vulgara lurks south of the village, among the Prideclaws. Vulgara is elite: grouping up is advised."] = "Вулгара прячется к югу от деревни среди когтей прайда. Вулгара – элита: лучше собрать группу.",
 
 	-- Step 26: Falaath Village
@@ -202,12 +206,12 @@ return {
 	["Listen to {npc:256083}"] = "Выслушайте персонажа {npc:256083}",
 
 	-- Step 39: Wind Hollows and Construct Parts
-	-- {object:616466} Construct Parts
+	-- {object:616467} Construct Parts
 	-- plural, as words: Wind Hollows = {npc:251676} Wind Hollow
-	["Wind Hollows and {object:616466}"] = "Ветряные мертвени и {object:616466}",
-	-- {area:16638} Valanaar · {object:616466} Construct Parts
+	["Wind Hollows and {object:616467}"] = "",
+	-- {area:16638} Valanaar · {object:616467} Construct Parts
 	-- plural, as words: Wind Hollows = {npc:251676} Wind Hollow
-	["Wind Hollows drift over the lowlands around {area:16638}. The first {object:616466} lie west of the orchard road."] = "Ветряные мертвени парят над низинами вокруг места {area:16638}. Первые детали ({object:616466}) лежат к западу от дороги к саду.",
+	["Wind Hollows drift over the lowlands around {area:16638}. The first {object:616467} lie west of the orchard road."] = "",
 
 	-- Step 41: Windfield Orchard
 	-- {area:16663} Windfield Orchard · {area:16638} Valanaar
@@ -222,11 +226,12 @@ return {
 
 	-- Step 44: Bandit Highwaymen
 	["Bandit Highwaymen"] = "Придорожные бандиты",
-	-- {object:616466} Construct Parts · {area:16638} Valanaar
-	["The highwaymen hold the hills north-east of the orchard. More {object:616466} lie near the road to {area:16638}."] = "Придорожные бандиты занимают холмы к северо-востоку от сада. Еще детали ({object:616466}) лежат у дороги к месту {area:16638}.",
+	-- {object:616468} Construct Parts · {area:16638} Valanaar
+	["The highwaymen hold the hills north-east of the orchard. More {object:616468} lie near the road to {area:16638}."] = "",
 
 	-- Step 45: Standing Our Ground
-	["Tell Aamelia Windfield you're ready"] = "Скажите Аамелии, что вы готовы",
+	-- {npc:252800} Aamelia Windfield
+	["Tell {npc:252800} you're ready"] = "",
 
 	-- Step 46: Alvarion and Riaani
 	["Alvarion and Riaani"] = "Альварион и Риаани",
@@ -284,10 +289,9 @@ return {
 	["Faladiel stands on the hill west of the falls, north of {area:16638}."] = "Фаладиэль стоит на холме к западу от водопада, к северу от места {area:16638}.",
 
 	-- Step 60: Kuramaa
-	["Kuramaa"] = "Курамаа",
-	-- {area:16623} Shen'dar Highlands
+	-- {area:16623} Shen'dar Highlands · {npc:268605} Kuramaa
 	-- plural, as words: Windsong Crawlers = {npc:254588} Windsong Crawler
-	["Back to Olariaan, then west into the {area:16623}: Kuramaa's home is in the hills south of the Windsong Crawlers' lakes."] = "Назад к Олариану, затем на запад сюда: {area:16623}: дом Курамаа – на холмах к югу от озер ветроозерных крабов.",
+	["Back to Olariaan, then west into the {area:16623}: {npc:268605}'s home is in the hills south of the Windsong Crawlers' lakes."] = "",
 
 	-- Step 61: The Eternal Flame
 	-- {object:148418} Eternal Flame
@@ -406,8 +410,18 @@ return {
 	["{npc:3033} trains druids on {area:1639}. He teaches you {spell:18960}; {npc:11802}'s welcome waits for your {spell:499} trip at about 23 (forever/horde/04-the-barrens)."] = "{npc:3033} обучает друидов, ориентир: {area:1639}. Он научит вас заклинанию {spell:18960}; приветствие ({npc:11802}) ждет вашего путешествия за обликом ({spell:499}) примерно на 23-м уровне (forever/horde/04-the-barrens).",
 
 	-- Step 84: The Crossroads
-	-- {zone:1456} Thunder Bluff · {area:222} Bloodhoof Village · {zone:1413} The Barrens · {area:458} Gold Road · {area:380} The Crossroads
-	["Leave {zone:1456} by a lift and follow the road south past {area:222} and through the eastern pass into the {zone:1413}; from the pass, take the {area:458} north to the {area:380}, the Horde town in the middle of the {zone:1413}."] = "Спуститесь на подъемнике из города {zone:1456} и идите по дороге на юг мимо места {area:222} и через восточный перевал в край {zone:1413}; от перевала идите на север по дороге ({area:458}) сюда: {area:380} – городок Орды в центре края {zone:1413}.",
+	-- {zone:1456} Thunder Bluff · {area:222} Bloodhoof Village · {zone:1413} Barrens · {area:458} Gold Road
+	["Leave {zone:1456} by a lift and follow the road south past {area:222} and through the eastern pass into the {zone:1413}; from the pass, take the {area:458} north to the Crossroads, the Horde town in the middle of the {zone:1413}."] = "",
 	-- {npc:3615} Devrak
 	["{npc:3615}, the wind rider master"] = "{npc:3615}, распорядитель полетов",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Back to Olariaan, then west into the {area:16623}: Kuramaa's home is in the hills south of the Windsong Crawlers' lakes."] = "Назад к Олариану, затем на запад сюда: {area:16623}: дом Курамаа – на холмах к югу от озер ветроозерных крабов.",
+	-- ["Kuramaa"] = "Курамаа",
+	-- ["Leave {zone:1456} by a lift and follow the road south past {area:222} and through the eastern pass into the {zone:1413}; from the pass, take the {area:458} north to the {area:380}, the Horde town in the middle of the {zone:1413}."] = "Спуститесь на подъемнике из города {zone:1456} и идите по дороге на юг мимо места {area:222} и через восточный перевал в край {zone:1413}; от перевала идите на север по дороге ({area:458}) сюда: {area:380} – городок Орды в центре края {zone:1413}.",
+	-- ["Leaving Thendal Village"] = "Покидаем деревню Тендал",
+	-- ["Tell Aamelia Windfield you're ready"] = "Скажите Аамелии, что вы готовы",
+	-- ["The highwaymen hold the hills north-east of the orchard. More {object:616466} lie near the road to {area:16638}."] = "Придорожные бандиты занимают холмы к северо-востоку от сада. Еще детали ({object:616466}) лежат у дороги к месту {area:16638}.",
+	-- ["Wind Hollows and {object:616466}"] = "Ветряные мертвени и {object:616466}",
+	-- ["Wind Hollows drift over the lowlands around {area:16638}. The first {object:616466} lie west of the orchard road."] = "Ветряные мертвени парят над низинами вокруг места {area:16638}. Первые детали ({object:616466}) лежат к западу от дороги к саду.",
 }

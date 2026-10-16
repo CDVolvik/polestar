@@ -111,13 +111,12 @@ return {
 	["Take the zeppelin from the tower outside {area:1637} to {zone:1420} and ride into the {zone:1458}. Lady Sylvanas holds the {object:36126}."] = "在{area:1637}外的塔上搭飛艇到{zone:1420}，再騎進{zone:1458}。希瓦娜斯女士在{object:36126}。",
 
 	-- Step 26: The Bulwark
-	-- {area:152} The Bulwark
-	["Ride east along the road to the {area:152} on the border."] = "沿著道路往東騎到邊界上的{area:152}。",
+	["Ride east along the road to the Bulwark on the border."] = "",
 
 	-- Step 27: Felstone Field
-	-- {npc:10778} Janice Felstone · {area:152} The Bulwark · {npc:11075} Cauldron Lord Bilemaw
+	-- {npc:10778} Janice Felstone · {npc:11075} Cauldron Lord Bilemaw
 	-- plural, as words: Jabbering Ghouls = {npc:10801} Jabbering Ghoul
-	["{npc:10778}'s farm is the first one east of the {area:152}. Jabbering Ghouls on the farm carry the other half of her charm; {npc:11075} guards the cauldron in the field."] = "{npc:10778}的農場是{area:152}以東的第一座。農場上的喋喋不休的食屍鬼身上有她護符的另一半；{npc:11075}守著田裡的大鍋。",
+	["{npc:10778}'s farm is the first one east of the Bulwark. Jabbering Ghouls on the farm carry the other half of her charm; {npc:11075} guards the cauldron in the field."] = "",
 
 	-- Step 28: Andorhal watchtowers and silos
 	["Andorhal watchtowers and silos"] = "安多哈爾的哨塔與穀倉",
@@ -162,19 +161,19 @@ return {
 	-- Step 36: Scourge Champions
 	-- plural, as words: Scourge Champions = {npc:8529} Scourge Champion
 	["Scourge Champions"] = "天災勇士",
-	-- {area:2270} The Noxious Glade · {item:13156} Mystic Crystal
+	-- {area:2270} Noxious Glade · {item:13156} Mystic Crystal
 	-- plural, as words: Scourge Champions = {npc:8529} Scourge Champion
 	["Scourge Champions roam the {area:2270}, north of the chapel. Pass Carlin's {item:13156} over each one you kill: the skulls that resonate are the ones he wants."] = "天災勇士在禮拜堂北邊的{area:2270}遊蕩。每殺一隻就用卡林的{item:13156}掃過屍體：產生共鳴的頭骨就是他要的。",
 
 	-- Step 38: Pamela and the Undercroft
-	-- {area:2261} The Undercroft
+	-- {area:2261} Undercroft
 	["Pamela and the {area:2261}"] = "帕米拉與{area:2261}",
-	-- {area:2262} Darrowshire · {npc:11886} Mercutio Filthgorger · {area:2261} The Undercroft
+	-- {area:2262} Darrowshire · {npc:11886} Mercutio Filthgorger · {area:2261} Undercroft
 	["Ride to {area:2262} in the south-west; Pamela plays among the houses. {npc:11886} lurks in the {area:2261}, the crypt just west of the town."] = "騎到西南方的{area:2262}；帕米拉在房屋之間玩耍。{npc:11886}潛伏在{area:2261}，就是鎮西邊不遠的墓穴。",
 	["Pamela's own errand is not on this route. Skip it."] = "帕米拉自己的差事不在這條路線上。跳過。",
 
 	-- Step 39: Nathanos Blightcaller
-	-- {npc:15193} The Banshee Queen · {area:2260} The Marris Stead · {area:2261} The Undercroft
+	-- {npc:15193} The Banshee Queen · {area:2260} Marris Stead · {area:2261} Undercroft
 	["{npc:15193}'s champion holds the {area:2260} farmhouse, north of the {area:2261}."] = "{npc:15193}的勇士守在{area:2261}北邊的{area:2260}農舍。",
 	["Nathanos' errands are not on this route. Skip them."] = "納薩諾斯的差事不在這條路線上。跳過。",
 
@@ -185,10 +184,16 @@ return {
 	-- Step 41: Chromie
 	-- {npc:10667} Chromie
 	["Ride south-west to {npc:10667} in Andorhal."] = "往西南騎到安多哈爾找{npc:10667}。",
-	-- {npc:10667} Chromie · {area:2262} Darrowshire
-	["{npc:10667}'s Battle of {area:2262} ends against elites. Skip it."] = "{npc:10667}的{area:2262}之戰最後要對付精英。跳過。",
+	-- {npc:10667} Chromie
+	["{npc:10667}'s Battle of Darrowshire ends against elites. Skip it."] = "",
 
 	-- Step 42: The Bulwark
-	-- {area:152} The Bulwark · {zone:1458} Undercity
-	["West to the {area:152}. The next guide starts in the {zone:1458}, a short ride west."] = "往西到{area:152}。下一份指南從往西騎不遠的{zone:1458}開始。",
+	-- {zone:1458} Undercity
+	["West to the Bulwark. The next guide starts in the {zone:1458}, a short ride west."] = "",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Ride east along the road to the {area:152} on the border."] = "沿著道路往東騎到邊界上的{area:152}。",
+	-- ["West to the {area:152}. The next guide starts in the {zone:1458}, a short ride west."] = "往西到{area:152}。下一份指南從往西騎不遠的{zone:1458}開始。",
+	-- ["{npc:10667}'s Battle of {area:2262} ends against elites. Skip it."] = "{npc:10667}的{area:2262}之戰最後要對付精英。跳過。",
+	-- ["{npc:10778}'s farm is the first one east of the {area:152}. Jabbering Ghouls on the farm carry the other half of her charm; {npc:11075} guards the cauldron in the field."] = "{npc:10778}的農場是{area:152}以東的第一座。農場上的喋喋不休的食屍鬼身上有她護符的另一半；{npc:11075}守著田裡的大鍋。",
 }

@@ -23,8 +23,8 @@ return {
 	["The Legashi satyrs of northern {zone:1447} carry {zone:1447}'s essence."] = "{zone:1447}北部的雷加斯薩特帶著{zone:1447}的精華。",
 
 	-- Step 4: The Dark Portal
-	-- {area:72} The Dark Portal · {zone:1419} Blasted Lands
-	["The Felguard Sentries around the {area:72}, in southern {zone:1419}, carry its essence."] = "{zone:1419}南部{area:72}周圍的地獄衛士斥候帶著它的精華。",
+	-- {zone:1419} Blasted Lands
+	["The Felguard Sentries around the Dark Portal, in southern {zone:1419}, carry its essence."] = "",
 
 	-- Step 6: Kroshius
 	-- {npc:14467} Kroshius · {area:1766} Shatter Scar Vale · {item:18626} Fel Fire
@@ -34,4 +34,7 @@ return {
 
 	-- Step 7: Back to Niby
 	["Back to Niby"] = "回到尼比那裡",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["The Felguard Sentries around the {area:72}, in southern {zone:1419}, carry its essence."] = "{zone:1419}南部{area:72}周圍的地獄衛士斥候帶著它的精華。",
 }

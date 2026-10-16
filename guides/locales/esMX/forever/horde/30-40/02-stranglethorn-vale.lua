@@ -127,8 +127,8 @@ return {
 	["Back to {object:3202}."] = "De vuelta a {object:3202}.",
 
 	-- Step 30: The Vile Reef
-	-- {object:3202} Grom'gol · {area:104} The Vile Reef · {item:4094} Tablet Shard
-	["North-west of {object:3202} the {area:104} lies under the water off the coast. The {item:4094} rests on the sea floor by the sunken ruins; watch your breath and the murlocs."] = "Al noroeste de {object:3202}, {area:104} está bajo el agua frente a la costa. El {item:4094} descansa en el fondo del mar junto a las ruinas hundidas; cuida tu respiración y a los múrlocs.",
+	-- {area:104} Vile Reef · {item:4094} Tablet Shard
+	["North-west of Grom'gol the {area:104} lies under the water off the coast. The {item:4094} rests on the sea floor by the sunken ruins; watch your breath and the murlocs."] = "",
 
 	-- Step 31: Bloodscalp ruins
 	["Bloodscalp ruins"] = "Ruinas Sangrapellejo",
@@ -144,8 +144,8 @@ return {
 
 	-- Step 34: Green Hills pages
 	["Green Hills pages"] = "Páginas de Las verdes colinas",
-	-- {quest:338} The Green Hills of Stranglethorn
-	["Pages of {quest:338} drop at about 1% each from the Bloodscalp and Skullsplitter trolls; keep every page you loot and look on the auction house for the rest. Barnil takes the chapters later in this guide."] = "Las páginas de {quest:338} caen con un 1% cada una de los trols Sangrapellejo y Machacacráneos; guarda cada página que saquees y busca el resto en la casa de subastas. Barnil recibe los capítulos más adelante en esta guía.",
+	-- {item:2755} Green Hills of Stranglethorn
+	["Pages of The {item:2755} drop at about 1% each from the Bloodscalp and Skullsplitter trolls; keep every page you loot and look on the auction house for the rest. Barnil takes the chapters later in this guide."] = "",
 
 	-- Step 35: Shadowmaw panthers
 	["Shadowmaw panthers"] = "Panteras Faucesombría",
@@ -153,8 +153,8 @@ return {
 	["The Shadowmaw Panthers (37-38) stalk the jungle east of the Mosh'Ogg hills and north-east towards the lake; they strike from stealth. Loot every Green Hills page you find on the way."] = "Las Panteras Faucesombría (37-38) acechan en la selva al este de las colinas Mosh'Ogg y al noreste hacia el lago; atacan desde el sigilo. Saquea toda página de Las verdes colinas que encuentres en el camino.",
 
 	-- Step 36: Green Hills pages
-	-- {quest:338} The Green Hills of Stranglethorn
-	["Pages of {quest:338} drop at about 1% each from the Bloodscalp and Skullsplitter trolls; take what drops and check the Auction House for the rest."] = "Las páginas de {quest:338} caen con un 1% cada una de los trols Sangrapellejo y Machacacráneos; toma lo que caiga y busca el resto en la casa de subastas.",
+	-- {item:2755} Green Hills of Stranglethorn
+	["Pages of The {item:2755} drop at about 1% each from the Bloodscalp and Skullsplitter trolls; take what drops and check the Auction House for the rest."] = "",
 
 	-- Step 39: Jungle Stalkers
 	-- plural, as words: Jungle Stalkers = {npc:687} Jungle Stalker
@@ -185,4 +185,9 @@ return {
 	["Hearth to {area:35}"] = "Piedra de hogar a {area:35}",
 	-- {area:272} Tarren Mill · {zone:1417} Arathi Highlands
 	["The next guide flies you north to {area:272} and into the {zone:1417}."] = "La siguiente guía te lleva volando al norte a {area:272} y a {zone:1417}.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["North-west of {object:3202} the {area:104} lies under the water off the coast. The {item:4094} rests on the sea floor by the sunken ruins; watch your breath and the murlocs."] = "Al noroeste de {object:3202}, {area:104} está bajo el agua frente a la costa. El {item:4094} descansa en el fondo del mar junto a las ruinas hundidas; cuida tu respiración y a los múrlocs.",
+	-- ["Pages of {quest:338} drop at about 1% each from the Bloodscalp and Skullsplitter trolls; keep every page you loot and look on the auction house for the rest. Barnil takes the chapters later in this guide."] = "Las páginas de {quest:338} caen con un 1% cada una de los trols Sangrapellejo y Machacacráneos; guarda cada página que saquees y busca el resto en la casa de subastas. Barnil recibe los capítulos más adelante en esta guía.",
+	-- ["Pages of {quest:338} drop at about 1% each from the Bloodscalp and Skullsplitter trolls; take what drops and check the Auction House for the rest."] = "Las páginas de {quest:338} caen con un 1% cada una de los trols Sangrapellejo y Machacacráneos; toma lo que caiga y busca el resto en la casa de subastas.",
 }

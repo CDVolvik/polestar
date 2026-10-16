@@ -12,7 +12,7 @@ return {
 	["From {area:2268}'s flight master, fly to the {area:1497}."] = "Desde el maestro de vuelo de {area:2268}, vuela a {area:1497}.",
 
 	-- Step 2: Janice Felstone
-	-- {area:1497} Undercity · {zone:1420} Tirisfal Glades · {area:152} The Bulwark
+	-- {area:1497} Undercity · {zone:1420} Tirisfal Glades · {area:152} Bulwark
 	["Leave the {area:1497} and ride east along the road through {zone:1420}, past the {area:152}. Felstone Farm is the first farm along the road; Janice waits in the house."] = "Sal de {area:1497} y cabalga al este por el camino a través de {zone:1420}, pasando {area:152}. La granja de Piedramácula es la primera del camino; Janice espera en la casa.",
 	-- {object:175894} Janice's Parcel
 	["{object:175894}, beside the house"] = "{object:175894}, junto a la casa",
@@ -31,11 +31,11 @@ return {
 	["The diary lies in the farmhouse, the cabinet stands inside and the outhouse is behind it. A {npc:10816} carries the outhouse key; {npc:10836} comes out when you open the outhouse and carries the cabinet key."] = "El diario está en la granja, el armario dentro y la letrina detrás. Un {npc:10816} lleva la llave de la letrina; {npc:10836} aparece al abrir la letrina y lleva la llave del armario.",
 
 	-- Step 5: Mulgris Deepriver
-	-- {area:202} The Writhing Haunt · {area:200} Dalson's Tears
+	-- {area:202} Writhing Haunt · {area:200} Dalson's Tears
 	["He camps by the {area:202}, south-east of {area:200}."] = "Acampa junto a {area:202}, al sureste de {area:200}.",
 
 	-- Step 6: Sorrow Hill
-	-- {area:202} The Writhing Haunt · {area:197} Sorrow Hill · {npc:10936} Joseph Redpath
+	-- {area:202} Writhing Haunt · {area:197} Sorrow Hill · {npc:10936} Joseph Redpath
 	["Ride south past the {area:202} to {area:197}; Marlene's house stands by the road, and {npc:10936}'s monument is in the graveyard behind it. Kill the Diseased Wolves you meet in the fields on the way."] = "Cabalga al sur pasando {area:202} hasta {area:197}; la casa de Marlene está junto al camino y el monumento de {npc:10936} está en el cementerio detrás. Mata a los Lobos malsanos que encuentres en los campos por el camino.",
 	-- {npc:10840} Argent Officer Pureheart
 	["{npc:10840}, at the graveyard's south end"] = "{npc:10840}, en el extremo sur del cementerio",
@@ -56,12 +56,12 @@ return {
 
 	-- Step 10: Diseased Wolves
 	["Diseased Wolves"] = "Lobos malsanos",
-	-- {area:200} Dalson's Tears · {area:202} The Writhing Haunt
+	-- {area:200} Dalson's Tears · {area:202} Writhing Haunt
 	["The wolves roam the fields between Andorhal, {area:200} and the {area:202}. Finish them on the ride back east."] = "Los lobos deambulan por los campos entre Andorhal, {area:200} y {area:202}. Termínalos en el camino de vuelta al este.",
 
 	-- Step 12: Diseased Grizzlies
 	["Diseased Grizzlies"] = "Griseznos malsanos",
-	-- {area:202} The Writhing Haunt
+	-- {area:202} Writhing Haunt
 	["The bears roam the hills north and east of the {area:202}."] = "Los osos deambulan por las colinas al norte y al este de {area:202}.",
 
 	-- Step 13: Mulgris Deepriver
@@ -100,7 +100,9 @@ return {
 	["{area:190}'s Scarlets are level 58-60. Ride in to the high point marked on your map, look over the town, and get out."] = "Los Escarlata de {area:190} son de nivel 58-60. Entra hasta el punto alto marcado en tu mapa, observa el pueblo y sal.",
 
 	-- Step 24: The Bulwark
-	-- {area:152} The Bulwark
+	-- {area:152} Bulwark
+	["The {area:152}"] = "",
+	-- {area:152} Bulwark
 	["Ride south-west past Felstone Farm and follow the road west back to the {area:152}."] = "Cabalga al suroeste pasando la granja de Piedramácula y sigue el camino al oeste de vuelta a {area:152}.",
 	["Derrington's watchtowers, Vandis' cauldron and Mickey's barrel are done on a later visit: keep them."] = "Las atalayas de Derrington, el caldero de Vandis y el barril de Mickey se hacen en una visita posterior: guárdalas.",
 
@@ -166,9 +168,8 @@ return {
 	["Jadefire moonwell"] = "Poza de la luna Fuego de Jade",
 
 	-- Step 39: Shatter Scar Vale
-	-- {area:1997} Bloodvenom Post
 	-- plural, as words: Entropic Beasts = {npc:9878} Entropic Beast
-	["East of {area:1997}, the cratered vale where the Entropic Beasts and Horrors roam. Kill two of each, then walk to each of the three fel-water craters."] = "Al este de {area:1997}, el valle lleno de cráteres donde deambulan Bestias entrópicas y Horrors. Mata dos de cada y luego camina hasta cada uno de los tres cráteres de agua vil.",
+	["East of Bloodvenom Post, the cratered vale where the Entropic Beasts and Horrors roam. Kill two of each, then walk to each of the three fel-water craters."] = "",
 	["Southern crater"] = "Cráter sur",
 	["Western crater"] = "Cráter oeste",
 	["Northern crater"] = "Cráter norte",
@@ -199,7 +200,7 @@ return {
 	["Ride the road south through {zone:1448} to the Sanctuary."] = "Sigue el camino al sur por {zone:1448} hasta el Santuario.",
 	-- {npc:9529} Maybess Riverbreeze
 	["{npc:9529}, on the west side of the Sanctuary"] = "{npc:9529}, en el lado oeste del Santuario",
-	-- {quest:5158} Seeking Spiritual Aid · {npc:5901} Islen Waterseer · {zone:1413} The Barrens
+	-- {quest:5158} Seeking Spiritual Aid · {npc:5901} Islen Waterseer · {zone:1413} Barrens
 	["Keep {quest:5158}: {npc:5901} is in the {zone:1413}."] = "Guarda {quest:5158}: {npc:5901} está en {zone:1413}.",
 
 	-- Step 45: Overlord Ror
@@ -223,4 +224,7 @@ return {
 	["Through {area:1769}"] = "A través de {area:1769}",
 	-- {area:1769} Timbermaw Hold · {npc:15395} Nafien · {zone:1452} Winterspring · {area:2255} Everlook
 	["Walk into the {area:1769} tunnel beside {npc:15395} and never attack the Timbermaw furbolgs inside. The tunnel opens into {zone:1452}; follow the road east to {area:2255}, the goblin town where the next guide starts."] = "Entra en el túnel de {area:1769} junto a {npc:15395} y nunca ataques a los fúrbolgs Fauces de Madera de dentro. El túnel sale a {zone:1452}; sigue el camino al este hasta {area:2255}, el pueblo goblin donde empieza la siguiente guía.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["East of {area:1997}, the cratered vale where the Entropic Beasts and Horrors roam. Kill two of each, then walk to each of the three fel-water craters."] = "Al este de {area:1997}, el valle lleno de cráteres donde deambulan Bestias entrópicas y Horrors. Mata dos de cada y luego camina hasta cada uno de los tres cráteres de agua vil.",
 }

@@ -9,8 +9,8 @@ return {
 	["Warlock Felsteed"] = "Hexenmeister-Teufelsross",
 	["Your own mount at 40, summoned anywhere, with no gold spent on a riding horse."] = "Dein eigenes Reittier mit 40, überall beschwörbar, ohne Gold für ein Reitpferd auszugeben.",
 
-	-- Step 1: Summon Felsteed (Stormwind City)
-	-- {npc:461} Demisette Cloyce · {object:2164} The Slaughtered Lamb · {object:2101} Mage Quarter · {npc:6251} Strahad Farsan · {area:392} Ratchet
+	-- Step 1: Summon Felsteed (Stormwind)
+	-- {npc:461} Demisette Cloyce · {object:2164} Slaughtered Lamb · {object:2101} Mage Quarter · {npc:6251} Strahad Farsan · {area:392} Ratchet
 	["At 40 {npc:461} in the {object:2164}, in the {object:2101}, sends you to {npc:6251} in {area:392}."] = "Mit 40 schickt dich {npc:461} in {object:2164} in {object:2101} zu {npc:6251} in {area:392}.",
 
 	-- Step 2: Summon Felsteed (Ironforge)
@@ -28,6 +28,6 @@ return {
 	-- Step 5: Strahad Farsan in Ratchet
 	-- {npc:6251} Strahad Farsan · {area:392} Ratchet
 	["{npc:6251} in {area:392}"] = "{npc:6251} in {area:392}",
-	-- {area:392} Ratchet · {zone:1413} The Barrens · {area:380} The Crossroads · {area:35} Booty Bay · {npc:6251} Strahad Farsan · {quest:3631} Summon Felsteed
+	-- {area:392} Ratchet · {zone:1413} Barrens · {area:380} Crossroads · {area:35} Booty Bay · {npc:6251} Strahad Farsan · {quest:3631} Summon Felsteed
 	["{area:392} is on the {zone:1413} coast east of the {area:380}; from the Alliance side, take the boat from {area:35}. {npc:6251}'s follow-up teaches {quest:3631}."] = "{area:392} liegt an der Küste von {zone:1413} östlich von {area:380}; von der Allianzseite aus nimm das Schiff von {area:35}. Die Folgequest von {npc:6251} lehrt dich {quest:3631}.",
 }

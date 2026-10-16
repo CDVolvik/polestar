@@ -13,7 +13,7 @@ return {
 	-- Step 1: Cenarion Aid (Alliance)
 	-- {quest:8254} Cenarion Aid
 	["{quest:8254} (Alliance)"] = "{quest:8254} (Aliança)",
-	-- {npc:5489} Brother Joshua · {zone:1453} Stormwind City · {npc:11406} High Priest Rohan · {zone:1455} Ironforge · {object:32386} Hall of Mysteries
+	-- {npc:5489} Brother Joshua · {zone:1453} Stormwind · {npc:11406} High Priest Rohan · {zone:1455} Ironforge · {object:32386} Hall of Mysteries
 	["At 50 {npc:5489} in {zone:1453}'s Cathedral of Light or {npc:11406} in {zone:1455}'s {object:32386} offers it."] = "No nível 50, {npc:5489}, na Catedral da Luz de {zone:1453}, ou {npc:11406}, no {object:32386} de {zone:1455}, oferece a missão.",
 
 	-- Step 2: Cenarion Aid (Horde)

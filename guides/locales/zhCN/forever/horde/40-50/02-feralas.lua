@@ -155,8 +155,8 @@ return {
 	["Keep riding west to the coast. The Coast Crawl Deepseers and Snapclaws on the beaches drop OOX-22/FE's distress beacon about one kill in forty: if one drops, use it to start the quest."] = "继续向西骑到海岸。海滩上的海滩龙虾人先知和海滩利爪龙虾人大约每杀四十只掉落一个OOX-22/FE定位器：如果掉了，就使用它开始任务。",
 
 	-- Step 34: Homing Robot OOX-22/FE
-	-- {area:1105} Feral Scar Vale · {area:1108} The Forgotten Coast · {area:35} Booty Bay
-	["Only with the distress beacon: the robot sits in a small cave on the north side of {area:1105}. Escort it to the dock on the {area:1108}; yetis and gorillas ambush you on the way. Its reward waits in {area:35} for a later visit."] = "仅当你有定位器时：机器人在{area:1105}北侧的一个小山洞里。护送它到{area:1108}的码头；途中会有雪人和猩猩伏击你。它的奖励在{area:35}，留到之后再去领取。",
+	-- {area:1105} Feral Scar Vale · {area:35} Booty Bay
+	["Only with the distress beacon: the robot sits in a small cave on the north side of {area:1105}. Escort it to the dock on the Forgotten Coast; yetis and gorillas ambush you on the way. Its reward waits in {area:35} for a later visit."] = "",
 
 	-- Step 35: Hearth to Camp Mojache
 	-- {area:1099} Camp Mojache
@@ -165,7 +165,7 @@ return {
 	-- Step 36: Orgrimmar
 	-- {area:1637} Orgrimmar
 	["Fly to {area:1637}. The Droffers brothers run their shop in the Drag."] = "飞往{area:1637}。杜佛斯兄弟在暗巷区经营他们的商店。",
-	-- {zone:1425} The Hinterlands
+	-- {zone:1425} Hinterlands
 	["for the {zone:1425}, around level 48"] = "交给{zone:1425}，大约48级时",
 
 	-- Step 37: Zeppelin to Grom'gol
@@ -179,4 +179,7 @@ return {
 	["Fly to {area:75}"] = "飞往{area:75}",
 	-- {area:75} Stonard
 	["Thysta, the flight master, stands just east of the zeppelin tower. Fly to {area:75}: the next guide starts there."] = "飞行管理员塞斯塔站在飞艇塔正东。飞往{area:75}：下一个指南从那里开始。",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Only with the distress beacon: the robot sits in a small cave on the north side of {area:1105}. Escort it to the dock on the {area:1108}; yetis and gorillas ambush you on the way. Its reward waits in {area:35} for a later visit."] = "仅当你有定位器时：机器人在{area:1105}北侧的一个小山洞里。护送它到{area:1108}的码头；途中会有雪人和猩猩伏击你。它的奖励在{area:35}，留到之后再去领取。",
 }

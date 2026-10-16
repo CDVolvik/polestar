@@ -150,7 +150,7 @@ return {
 	["{npc:260093} trains Paladins in the {area:1497}."] = "{npc:260093}在{area:1497}训练圣骑士。",
 
 	-- Step 34: Brazier of Everfount
-	-- {area:1497} Undercity · {area:228} The Sepulcher · {object:113791} Brazier of Everfount · {npc:5895} Minor Manifestation of Water · {item:7813} Shard of Water · {area:272} Tarren Mill
+	-- {area:1497} Undercity · {area:228} Sepulcher · {object:113791} Brazier of Everfount · {npc:5895} Minor Manifestation of Water · {item:7813} Shard of Water · {area:272} Tarren Mill
 	["Do your shopping in the {area:1497} first, then fly to the {area:228}. The {object:113791} stands on the hill just south-west of it: beat the Corrupt Manifestation of Water beside it, place its bracers in the brazier, speak to the {npc:5895} and keep the {item:7813} for Islen. Fly on to {area:272} from the {area:228}."] = "先在{area:1497}采购，然后飞往{area:228}。{object:113791}在它西南边的小山上：击败旁边的堕落水之魂，把它的护腕放进火盆，与{npc:5895}交谈，留着{item:7813}交给伊斯伦。然后从{area:228}继续飞往{area:272}。",
 	-- {npc:5901} Islen Waterseer
 	["for {npc:5901}: from Stranglethorn, next guide"] = "交给{npc:5901}：从荆棘谷前往，见下一个指南",
@@ -168,7 +168,7 @@ return {
 	["{item:3703}, for {npc:2333}"] = "{item:3703}，交给{npc:2333}",
 	-- {npc:2770} Tallow · {area:321} Hammerfall
 	["{npc:2770}: for {area:321} in Arathi, later on the route"] = "{npc:2770}：交给阿拉希高地的{area:321}，路线后面会去",
-	-- {npc:2229} Krusk · {zone:1413} The Barrens
+	-- {npc:2229} Krusk · {zone:1413} Barrens
 	["{npc:2229}: for the {zone:1413}, later on the route"] = "{npc:2229}：交给{zone:1413}，路线后面会去",
 
 	-- Step 37: Daggerspine naga
@@ -216,9 +216,9 @@ return {
 	-- Step 45: The Dalaran traitors
 	-- {area:279} Dalaran
 	["The {area:279} traitors"] = "{area:279}的叛徒",
-	-- {area:279} Dalaran · {npc:2414} Kegan Darkmar
+	-- {area:279} Dalaran · {npc:2411} Ricter · {npc:2412} Alina · {npc:2413} Dermot · {npc:2414} Kegan Darkmar
 	-- plural, as words: Worn Stone Tokens = {item:3714} Worn Stone Token
-	["Head west along the foot of the mountains to the violet dome of {area:279}. Ricter, Alina and Dermot (33-34) stand together inside the crater's eastern rim, {npc:2414} (35) a little west of them; each carries one Bloodstone piece. The Shield Guards and Theurgists (31-32) around them drop the Worn Stone Tokens."] = "沿山脚向西前往{area:279}的紫色穹顶。瑞克特尔、奥丽娜和德莫特（33-34级）一起站在陨坑东缘内侧，{npc:2414}（35级）在他们西边不远处；每人携带一块血石。他们周围的达拉然持盾守卫和达拉然法师（31-32级）掉落用旧的石雕。",
+	["Head west along the foot of the mountains to the violet dome of {area:279}. {npc:2411}, {npc:2412} and {npc:2413} (33-34) stand together inside the crater's eastern rim, {npc:2414} (35) a little west of them; each carries one Bloodstone piece. The Shield Guards and Theurgists (31-32) around them drop the Worn Stone Tokens."] = "",
 
 	-- Step 46: Tarren Mill
 	-- {area:272} Tarren Mill
@@ -239,4 +239,7 @@ return {
 	["Fly to the {area:1497}"] = "飞往{area:1497}",
 	-- {area:1497} Undercity · {object:3202} Grom'gol
 	["The next guide starts in the {area:1497}, at the {object:3202} zeppelin."] = "下一个指南从{area:1497}的{object:3202}飞艇处开始。",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Head west along the foot of the mountains to the violet dome of {area:279}. Ricter, Alina and Dermot (33-34) stand together inside the crater's eastern rim, {npc:2414} (35) a little west of them; each carries one Bloodstone piece. The Shield Guards and Theurgists (31-32) around them drop the Worn Stone Tokens."] = "沿山脚向西前往{area:279}的紫色穹顶。瑞克特尔、奥丽娜和德莫特（33-34级）一起站在陨坑东缘内侧，{npc:2414}（35级）在他们西边不远处；每人携带一块血石。他们周围的达拉然持盾守卫和达拉然法师（31-32级）掉落用旧的石雕。",
 }

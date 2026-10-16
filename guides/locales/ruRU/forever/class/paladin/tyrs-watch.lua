@@ -31,10 +31,10 @@ return {
 	["{npc:246378} leads the order from inside the keep; {npc:246393} stands beside it."] = "{npc:246378} руководит орденом из крепости; {npc:246393} стоит рядом с ней.",
 
 	-- Step 6: Shadowvale
-	-- {quest:91317} The Tarnished · {area:16881} Shadowvale · {area:16616} Whispering Forest · {item:246213} Sturdy Lumber
-	["{quest:91317} hold the ruined village of {area:16881} in the {area:16616}, south-west of the keep. The {item:246213} is piled in the root cellar of one of its houses; Commander Rudolph Gelhardt walks among his Tarnished."] = "{quest:91317}: они занимают разрушенную деревню ({area:16881}, {area:16616}) к юго-западу от крепости. {item:246213} сложены в погребе одного из домов; среди своих порочных ходит командир Рудольф Гельхардт.",
-	-- {object:181686} Lumber Pile
-	["{object:181686}, in the root cellar"] = "{object:181686}, в погребе",
+	-- {quest:91317} The Tarnished · {area:16881} Shadowvale · {area:16616} Whispering Forest · {item:246213} Sturdy Lumber · {npc:259431} Rudolph Gelhardt
+	["{quest:91317} hold the ruined village of {area:16881} in the {area:16616}, south-west of the keep. The {item:246213} is piled in the root cellar of one of its houses; Commander {npc:259431} walks among his Tarnished."] = "",
+	-- {object:554626} Lumber Pile
+	["{object:554626}, in the root cellar"] = "",
 	-- plural, as words: Tarnished Drudges = {npc:259434} Tarnished Drudge
 	["Tarnished Drudges"] = "Порочные чернорабочие",
 	-- plural, as words: Tarnished Zealots = {npc:259433} Tarnished Zealot
@@ -75,4 +75,7 @@ return {
 	-- {area:16602} Bandarion Keep · {spell:7328} Redemption
 	["Back to {area:16602}: Billmuth takes the plans, Danitha teaches you {spell:7328}."] = "Назад. Цель: {area:16602}. Билмут примет планы, Данита научит вас: {spell:7328}.",
 
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["{object:181686}, in the root cellar"] = "{object:181686}, в погребе",
+	-- ["{quest:91317} hold the ruined village of {area:16881} in the {area:16616}, south-west of the keep. The {item:246213} is piled in the root cellar of one of its houses; Commander Rudolph Gelhardt walks among his Tarnished."] = "{quest:91317}: они занимают разрушенную деревню ({area:16881}, {area:16616}) к юго-западу от крепости. {item:246213} сложены в погребе одного из домов; среди своих порочных ходит командир Рудольф Гельхардт.",
 }

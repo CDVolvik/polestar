@@ -26,8 +26,7 @@ return {
 	["The wrecked caravan lies off the road near Biggs."] = "失事的商隊在衛兵比格斯附近的路邊。",
 
 	-- Step 7: The Harborage
-	-- {area:657} The Harborage
-	["Follow the road north to the draenei of the {area:657}."] = "沿道路向北前往{area:657}的德萊尼人那裡。",
+	["Follow the road north to the draenei of the Harborage."] = "",
 
 	-- Step 8: Fallow Sanctuary
 	-- {area:76} Fallow Sanctuary · {npc:256028} The Lost One
@@ -36,13 +35,13 @@ return {
 	-- Step 9: Galen Goodward
 	["Galen is caged at the north end of the sanctuary. Free him and keep him alive on the walk out; his strongbox waits by the road afterwards."] = "加林·古瓦德被關在聖所北端的籠子裡。釋放他並在走出去的路上保護他；之後他的保險箱就在路邊。",
 
-	-- Step 11: Fly to Stormwind City
-	-- {zone:1453} Stormwind City
+	-- Step 11: Fly to Stormwind
+	-- {zone:1453} Stormwind
 	["Fly to {zone:1453}"] = "飛往{zone:1453}",
 	-- {zone:1430} Deadwind Pass · {area:42} Darkshire
 	["Back west through {zone:1430} to {area:42}."] = "向西穿過{zone:1430}回到{area:42}。",
 
-	-- Step 12: Stormwind City
+	-- Step 12: Stormwind
 	-- {npc:1141} Angus Stern · {area:17203} Stormwind Harbor
 	["{npc:1141}, {area:17203} road"] = "{npc:1141}，{area:17203}的路上",
 	-- {npc:12336} Brother Crowley
@@ -51,7 +50,7 @@ return {
 	["{npc:1440}, the Royal Library in the keep"] = "{npc:1440}，城堡裡的皇家圖書館",
 
 	-- Step 13: The Binding
-	-- {npc:6122} Gakin the Darkbinder · {object:2164} The Slaughtered Lamb · {object:2101} Mage Quarter · {item:6913} Heartswood Core · {quest:65602} What Is Love? · {item:190309} Wooden Figurine
+	-- {npc:6122} Gakin the Darkbinder · {object:2164} Slaughtered Lamb · {object:2101} Mage Quarter · {item:6913} Heartswood Core · {quest:65602} What Is Love? · {item:190309} Wooden Figurine
 	["{npc:6122} waits in the {object:2164}'s cellar, in the {object:2101}. Use the {item:6913} at the summoning circle there and defeat the succubus it calls. If you took {quest:65602}, hand him the {item:190309} too, place it at the same circle and defeat the incubus."] = "{npc:6122}在{object:2101}{object:2164}的地窖裡等著。在那裡的召喚法陣使用{item:6913}，擊敗召喚出的魅魔。如果你接了{quest:65602}，也把{item:190309}交給他，放在同一個法陣並擊敗夢魘。",
 	["Subdue the succubus"] = "制服魅魔",
 	-- {quest:65602} What Is Love?
@@ -62,7 +61,7 @@ return {
 
 	-- Step 14: Shaman training
 	["Shaman training"] = "薩滿訓練",
-	-- {zone:1453} Stormwind City · {area:2257} Deeprun Tram · {object:28027} Dwarven District · {zone:1455} Ironforge · {npc:258098} Eldrun Stormbreaker · {npc:1573} Gryth Thurden · {object:32372} The Great Forge · {area:271} Southshore
+	-- {zone:1453} Stormwind · {area:2257} Deeprun Tram · {object:28027} Dwarven District · {zone:1455} Ironforge · {npc:258098} Eldrun Stormbreaker · {npc:1573} Gryth Thurden · {object:32372} Great Forge · {area:271} Southshore
 	["{zone:1453} has no shaman trainer: take the {area:2257} from the {object:28027} to {zone:1455} and train with {npc:258098}. {npc:1573} in the {object:32372} flies to {area:271} too."] = "{zone:1453}沒有薩滿訓練師：從{object:28027}搭乘{area:2257}前往{zone:1455}，向{npc:258098}學習。{object:32372}的{npc:1573}也能飛往{area:271}。",
 
 	-- Step 15: Fly to Southshore
@@ -158,8 +157,8 @@ return {
 
 	-- Step 42: Crushridge ogres
 	["Crushridge ogres"] = "破碎嶺巨魔",
-	-- {area:280} Strahnbrad · {item:3706} Ensorcelled Parchment · {quest:537} Dark Council
-	["The Crushridge ogres hold the hills north of {area:280}. Farther north, a worn wooden chest holds the {item:3706}; Nagaz of the {quest:537} stands right by it."] = "破碎嶺巨魔佔據{area:280}北邊的丘陵。再往北，一個破舊的木箱裡有{item:3706}；{quest:537}的納伽茲就站在旁邊。",
+	-- {area:280} Strahnbrad · {item:3706} Ensorcelled Parchment · {npc:2320} Nagaz · {quest:537} Dark Council
+	["The Crushridge ogres hold the hills north of {area:280}. Farther north, a worn wooden chest holds the {item:3706}; {npc:2320} of the {quest:537} stands right by it."] = "",
 
 	-- Step 43: Ruins of Alterac
 	-- {area:280} Strahnbrad
@@ -171,13 +170,13 @@ return {
 	["South-west to the Kirin Tor camp on the lake shore west of {area:279}, just over the border into {zone:1421}: the {npc:269127} stands there. Archmage Ansirem stands south-east of it, by the dome."] = "向西南前往{area:279}西邊湖岸的祈倫托營地，就在越過邊界進入{zone:1421}之處：{npc:269127}站在那裡。大法師安斯雷姆·魯因維沃爾站在它東南方的穹頂旁。",
 	-- {npc:2542} Catelyn the Blade · {area:35} Booty Bay
 	["For {npc:2542} in {area:35}: keep it"] = "給{area:35}的{npc:2542}：先留著",
-	-- {npc:252085} Archmage Celindra · {area:279} Dalaran
-	["{npc:252085}, in the City of {area:279}"] = "{npc:252085}，在{area:279}城內",
+	-- {npc:252085} Archmage Celindra
+	["{npc:252085}, in the City of Dalaran"] = "",
 
 	-- Step 45: Southshore
 	-- {item:2321} Fine Thread · {npc:2381} Micha Yance
 	["{item:2321} for Bartolo's cloak, from {npc:2381}, if you have none"] = "如果你沒有，向{npc:2381}購買巴圖羅·吉塞提的披風所需的{item:2321}",
-	-- {npc:1440} Milton Sheaf · {zone:1453} Stormwind City
+	-- {npc:1440} Milton Sheaf · {zone:1453} Stormwind
 	["For {npc:1440} in {zone:1453}: keep it"] = "給{zone:1453}的{npc:1440}：先留著",
 
 	-- Step 47: Thelsamar
@@ -186,4 +185,9 @@ return {
 
 	-- Step 48: Ironband's Excavation Site
 	["South-east along the loch to the dig site."] = "沿湖向東南前往挖掘場。",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Follow the road north to the draenei of the {area:657}."] = "沿道路向北前往{area:657}的德萊尼人那裡。",
+	-- ["The Crushridge ogres hold the hills north of {area:280}. Farther north, a worn wooden chest holds the {item:3706}; Nagaz of the {quest:537} stands right by it."] = "破碎嶺巨魔佔據{area:280}北邊的丘陵。再往北，一個破舊的木箱裡有{item:3706}；{quest:537}的納伽茲就站在旁邊。",
+	-- ["{npc:252085}, in the City of {area:279}"] = "{npc:252085}，在{area:279}城內",
 }

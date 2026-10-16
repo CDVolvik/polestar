@@ -100,7 +100,7 @@ return {
 	["Fly from {area:1998} to the Sanctuary's end of the road, or ride south along it."] = "Voe de {area:1998} até o Santuário, no fim da estrada, ou siga por ela para o sul.",
 	-- {zone:1457} Darnassus
 	["The vial is filled in {zone:1457}: keep it"] = "A ampola é enchida em {zone:1457}: guarde-a",
-	-- {zone:1413} The Barrens
+	-- {zone:1413} Barrens
 	["Ends in the {zone:1413}: keep it"] = "Termina em {zone:1413}: guarde-a",
 
 	-- Step 20: Everlook

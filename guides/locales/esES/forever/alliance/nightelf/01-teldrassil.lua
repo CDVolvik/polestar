@@ -15,7 +15,7 @@ return {
 
 	-- Step 2: The Balance of Nature
 	-- {area:256} Aldrassil · {item:3297} Fel Moss
-	-- plural, as words: Young Nightsabers = {npc:2031} Young Nightsaber · Young Thistle Boars = {npc:1984} Young Thistle Boar · Gnarlpine Totems = {item:279082} Gnarlpine Totem
+	-- plural, as words: Young Nightsabers = {npc:2031} Young Nightsaber · Young Thistle Boars = {npc:1984} Young Thistle Boar · Grells = {npc:1988} Grell · Gnarlpine Totems = {item:279082} Gnarlpine Totem
 	["Young Nightsabers and Young Thistle Boars roam around {area:256}. Grells carry {item:3297} in the woods west of the tree, where the Gnarlpine Totems stand."] = "Los sables de la Noche jóvenes y los jóvenes jabalíes Cardo deambulan alrededor de {area:256}. Los grells llevan {item:3297} en el bosque al oeste del árbol, donde están los tótems Tuercepinos.",
 
 	-- Step 3: Back at Aldrassil
@@ -27,8 +27,8 @@ return {
 	["{npc:2082}, on the tree's ramp"] = "{npc:2082}, en la rampa del árbol",
 	-- {npc:3595} Shanda
 	["{npc:3595}, inside the tree"] = "{npc:3595}, dentro del árbol",
-	-- {quest:97979} The Goddess Provides · {spell:1259799} Elune's Light · {spell:20580} Shadowmeld · {npc:3595} Shanda
-	["{quest:97979}: cast {spell:1259799} and {spell:20580}, then hand it back to {npc:3595}"] = "{quest:97979}: lanza {spell:1259799} y {spell:20580}, y luego entrégasela a {npc:3595}",
+	-- {quest:97979} The Goddess Provides · {spell:1259799} Elune's Light · {npc:3595} Shanda
+	["{quest:97979}: cast {spell:1259799} and Shadowmeld, then hand it back to {npc:3595}"] = "",
 	-- {npc:8583} Dirania Silvershine
 	["{npc:8583}, east of the tree"] = "{npc:8583}, al este del árbol",
 
@@ -57,7 +57,7 @@ return {
 	-- {quest:917} Webwood Egg
 	["{quest:917} and the antidote"] = "{quest:917} y el antídoto",
 	-- {object:4406} Webwood Eggs · {area:257} Shadowthread Cave · {area:256} Aldrassil
-	-- plural, as words: Hyacinth Mushrooms = {item:10639} Hyacinth Mushroom
+	-- plural, as words: Hyacinth Mushrooms = {item:10639} Hyacinth Mushroom · Grells = {npc:1988} Grell
 	["The {object:4406} lie at the back of {area:257}: take the central path, then left where it splits, up to the high ledge. Hyacinth Mushrooms drop from Grells, Moonpetal Lilies grow by the ponds north of {area:256}."] = "Los {object:4406} están al fondo de {area:257}: toma el sendero central, luego a la izquierda donde se divide, hasta la cornisa alta. Los grells sueltan champiñones jacinto; los lirios alunados crecen junto a las charcas al norte de {area:256}.",
 
 	-- Step 8: Aldrassil
@@ -117,7 +117,7 @@ return {
 	-- {area:260} Starbreeze Village
 	["East to {area:260}"] = "Al este, hacia {area:260}",
 	-- {area:186} Dolanaar · {object:126158} Tallonkai's Dresser
-	-- plural, as words: Fel Cones = {item:3418} Fel Cone · Webwood Lurkers = {npc:1998} Webwood Lurker
+	-- plural, as words: Fel Cones = {object:1673} Fel Cone · Webwood Lurkers = {npc:1998} Webwood Lurker
 	["Fel Cones lie under the trees all around {area:186} and Zenn. Nightsabers and Webwood Lurkers keep roaming the road east. {object:126158} is in the house on the hill at the east end of the village."] = "Los conos inferi están bajo los árboles alrededor de {area:186} y Zenn. Los sables de la Noche y los rondadores Tejemadera siguen por el camino al este. {object:126158} está en la casa de la colina, en el extremo este del poblado.",
 	["Nightsabers"] = "Sables de la Noche",
 	-- plural, as words: Webwood Lurkers = {npc:1998} Webwood Lurker
@@ -185,10 +185,12 @@ return {
 	["{npc:3567}, back in {area:186}"] = "{npc:3567}, de vuelta en {area:186}",
 
 	-- Step 30: Sentinel Eralya Leafshadow
-	-- {area:186} Dolanaar · {area:264} The Oracle Glade
+	-- {area:186} Dolanaar · {area:264} Oracle Glade
 	["Take the road north-west from {area:186} towards the {area:264}; she lies hurt beside it."] = "Toma el camino al noroeste desde {area:186} hacia el {area:264}; ella yace herida a su lado.",
 
 	-- Step 31: The Oracle Glade
+	-- {area:264} Oracle Glade
+	["The {area:264}"] = "",
 	-- {object:6752} Strange Fronded Plant
 	["The moonwell is in the middle of the glade. The {object:6752} grows at its north end."] = "El pozo de la luna está en el centro del claro. La {object:6752} crece en su extremo norte.",
 	-- {item:5623} Amethyst Phial
@@ -205,8 +207,8 @@ return {
 
 	-- Step 34: The named harpies
 	["The named harpies"] = "Las arpías con nombre",
-	-- {npc:272044} Windmistress Gaedress · {npc:272046} Witchmother Arysa
-	["Hatescreech and {npc:272044} fly just west of the moonwell, {npc:272046} further north."] = "Hatescreech y {npc:272044} vuelan justo al oeste del pozo de la luna, {npc:272046} más al norte.",
+	-- {npc:272034} Hatescreech · {npc:272044} Windmistress Gaedress · {npc:272046} Witchmother Arysa
+	["{npc:272034} and {npc:272044} fly just west of the moonwell, {npc:272046} further north."] = "",
 
 	-- Step 35: Sentinel Arynia again
 	["Sentinel Arynia again"] = "Centinela Arynia otra vez",
@@ -232,9 +234,9 @@ return {
 	["{npc:3602}: {npc:4217} in {zone:1457} takes it"] = "{npc:3602}: la recibe {npc:4217} en {zone:1457}",
 
 	-- Step 38: Lake Al'Ameth
-	-- {area:186} Dolanaar · {npc:2080} Denalan
+	-- {npc:2080} Denalan
 	-- plural, as words: Lasher Sproutlings = {npc:275703} Lasher Sproutling
-	["South-east of {area:186}, to {npc:2080}. Lasher Sproutlings wander around him on the shore."] = "Al sureste de {area:186}, hasta {npc:2080}. Los brotes azotadores deambulan a su alrededor en la orilla.",
+	["South-east of Dolanaar, to {npc:2080}. Lasher Sproutlings wander around him on the shore."] = "",
 	-- {npc:2080} Denalan · {quest:922} Rellian Greenspyre · {zone:1457} Darnassus
 	["{npc:2080}: {quest:922} in {zone:1457} takes it"] = "{npc:2080}: la recibe {quest:922} en {zone:1457}",
 	-- {object:7510} Sprouted Frond
@@ -245,9 +247,9 @@ return {
 	["{area:186} again"] = "{area:186} otra vez",
 
 	-- Step 40: Taming the Beast
-	-- {npc:3601} Dazalar · {item:15908} Taming Rod · {area:186} Dolanaar
+	-- {item:15908} Taming Rod · {area:186} Dolanaar
 	-- plural, as words: Webwood Lurkers = {npc:1998} Webwood Lurker · Nightsaber Stalkers = {npc:2043} Nightsaber Stalker · Strigid Screechers = {npc:1996} Strigid Screecher
-	["Each of {npc:3601}'s quests hands you a {item:15908}: use it on the beast he names, then bring the rod back to him in {area:186}. Webwood Lurkers creep around the village, Nightsaber Stalkers and Strigid Screechers roam the woods south of it."] = "Cada misión de {npc:3601} te da una {item:15908}: úsala en la bestia que nombra y devuélvele la vara en {area:186}. Los rondadores Tejemadera merodean alrededor del poblado; los acechadores sable de la noche y los estridadores estrígidos recorren el bosque al sur.",
+	["Each of Dazalar's quests hands you a {item:15908}: use it on the beast he names, then bring the rod back to him in {area:186}. Webwood Lurkers creep around the village, Nightsaber Stalkers and Strigid Screechers roam the woods south of it."] = "",
 	-- {npc:1998} Webwood Lurker · {item:15908} Taming Rod
 	["{npc:1998}: tame it with the {item:15908}"] = "{npc:1998}: domestícalo con la {item:15908}",
 	-- {npc:2043} Nightsaber Stalker · {item:15908} Taming Rod
@@ -274,8 +276,8 @@ return {
 	["{npc:4092}, in the Temple of the Moon"] = "{npc:4092}, en el Templo de la Luna",
 	-- {npc:7999} Tyrande Whisperwind · {npc:4092} Lariia
 	["{npc:7999}, above {npc:4092}"] = "{npc:7999}, encima de {npc:4092}",
-	-- {npc:11401} Priestess Alathea · {spell:10797} Starshards
-	["{npc:11401}, in the Temple of the Moon: {spell:10797}"] = "{npc:11401}, en el Templo de la Luna: {spell:10797}",
+	-- {npc:11401} Priestess Alathea
+	["{npc:11401}, in the Temple of the Moon: Starshards"] = "",
 
 	-- Step 43: Rut'theran Village
 	-- {area:702} Rut'theran Village · {npc:3838} Vesprystus
@@ -302,9 +304,9 @@ return {
 	["Fly to {area:702} once more and take the portal up to Mathrengyl, then fly back to {area:442} for the boat."] = "Vuela otra vez a {area:702} y toma el portal hasta Mathrengyl; luego vuelve a volar a {area:442} para el barco.",
 
 	-- Step 49: Auberdine
-	-- {npc:4200} Laird · {zone:1453} Stormwind City
+	-- {npc:4200} Laird · {zone:1453} Stormwind
 	["{npc:4200}'s fish stall is by the docks. Then take the boat to {zone:1453}."] = "El puesto de pescado de {npc:4200} está junto a los muelles. Luego toma el barco a {zone:1453}.",
-	-- {zone:1453} Stormwind City
+	-- {zone:1453} Stormwind
 	["Boat to {zone:1453}"] = "Barco a {zone:1453}",
 	-- {area:17203} Stormwind Harbor · {zone:1429} Elwynn Forest · {zone:1436} Westfall
 	["From {area:17203}, ride through the city gates into {zone:1429} and follow the road west to {zone:1436}."] = "Desde {area:17203}, cruza las puertas de la ciudad hacia {zone:1429} y sigue el camino al oeste hasta {zone:1436}.",
@@ -316,11 +318,16 @@ return {
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["/sit by Lyreena's campfire until you get Boosted Rest"] = "/sentarse junto a la hoguera de Lyreena hasta que tengas Descanso potenciado",
 	-- ["Defensive Stance"] = "Actitud defensiva",
+	-- ["Each of {npc:3601}'s quests hands you a {item:15908}: use it on the beast he names, then bring the rod back to him in {area:186}. Webwood Lurkers creep around the village, Nightsaber Stalkers and Strigid Screechers roam the woods south of it."] = "Cada misión de {npc:3601} te da una {item:15908}: úsala en la bestia que nombra y devuélvele la vara en {area:186}. Los rondadores Tejemadera merodean alrededor del poblado; los acechadores sable de la noche y los estridadores estrígidos recorren el bosque al sur.",
+	-- ["Hatescreech and {npc:272044} fly just west of the moonwell, {npc:272046} further north."] = "Hatescreech y {npc:272044} vuelan justo al oeste del pozo de la luna, {npc:272046} más al norte.",
 	-- ["Learn the {area:442} flight path on the hill south of the inn, then cast Teleport: {area:493}. {npc:11802} is in {area:2361}; the {quest:5929} sits in the woods to the north-west. Learn the {area:493} flight path in {area:2361} and fly to {area:702} (by way of {area:442})."] = "Aprende la ruta de vuelo de {area:442} en la colina al sur de la posada y lanza Teletransporte: {area:493}. {npc:11802} está en {area:2361}; el {quest:5929} está en el bosque al noroeste. Aprende la ruta de vuelo de {area:493} en {area:2361} y vuela a {area:702} (pasando por {area:442}).",
+	-- ["South-east of {area:186}, to {npc:2080}. Lasher Sproutlings wander around him on the shore."] = "Al sureste de {area:186}, hasta {npc:2080}. Los brotes azotadores deambulan a su alrededor en la orilla.",
 	-- ["Tame Beast"] = "Domesticar bestia",
 	-- ["{npc:11401}, in the Temple of the Moon: Starshards"] = "{npc:11401}, en el Templo de la Luna: Fragmentos estelares",
+	-- ["{npc:11401}, in the Temple of the Moon: {spell:10797}"] = "{npc:11401}, en el Templo de la Luna: {spell:10797}",
 	-- ["{npc:4146}, in the {area:1658}: Beast Training"] = "{npc:4146}, en el {area:1658}: adiestramiento de bestias",
 	-- ["{npc:4217}: Bear Form"] = "{npc:4217}: forma de oso",
 	-- ["{npc:6089}: Defensive Stance"] = "{npc:6089}: Actitud defensiva",
 	-- ["{quest:97979}: cast Elune's Light and Shadowmeld, then hand it back to {npc:3595}"] = "{quest:97979}: lanza Luz de Elune y Fusión de las Sombras, y luego entrégasela a {npc:3595}",
+	-- ["{quest:97979}: cast {spell:1259799} and {spell:20580}, then hand it back to {npc:3595}"] = "{quest:97979}: lanza {spell:1259799} y {spell:20580}, y luego entrégasela a {npc:3595}",
 }

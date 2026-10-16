@@ -11,11 +11,11 @@ return {
 
 	-- Step 2: Druid training
 	["Druid training"] = "Druidentraining",
-	-- {area:1537} Ironforge · {area:2257} Deeprun Tram · {object:171524} Tinker Town · {zone:1453} Stormwind City · {npc:5504} Sheldras Moontree
+	-- {area:1537} Ironforge · {area:2257} Deeprun Tram · {object:171524} Tinker Town · {zone:1453} Stormwind · {npc:5504} Sheldras Moontree
 	["{area:1537} has no druid trainer: take the {area:2257} from {object:171524} to {zone:1453} and train with {npc:5504}."] = "{area:1537} hat keinen Druidenlehrer: Nimm die {area:2257} von {object:171524} nach {zone:1453} und trainiere bei {npc:5504}.",
 
 	-- Step 3: Darkshire
-	-- {area:42} Darkshire · {npc:1573} Gryth Thurden · {area:1537} Ironforge · {object:32372} The Great Forge · {npc:352} Dungar Longdrink · {zone:1453} Stormwind City · {object:2096} Trade District
+	-- {area:42} Darkshire · {npc:1573} Gryth Thurden · {area:1537} Ironforge · {object:32372} Great Forge · {npc:352} Dungar Longdrink · {zone:1453} Stormwind · {object:2096} Trade District
 	["Fly to {area:42}: {npc:1573} in {area:1537}'s {object:32372}, or {npc:352} in {zone:1453}'s {object:2096}."] = "Flieg nach {area:42}: {npc:1573} im {object:32372} von {area:1537} oder {npc:352} im {object:2096} von {zone:1453}.",
 
 	-- Step 4: Nesingwary's Expedition
@@ -72,8 +72,8 @@ return {
 	-- {object:3202} Grom'gol · {area:35} Booty Bay
 	["Follow the main road south the length of the jungle, past the {object:3202} turn-off, to {area:35} on the southern cape."] = "Folge der Hauptstraße durch den ganzen Dschungel nach Süden, vorbei an der Abzweigung nach {object:3202}, bis {area:35} am Südkap.",
 	["Gyll, on the top floor by the docks"] = "Gyll, im obersten Stockwerk bei den Docks",
-	-- {npc:2832} Nixxrax Fillamug · {object:56910} The Salty Sailor Tavern
-	["{npc:2832}, in the {object:56910}"] = "{npc:2832}, im {object:56910}",
+	-- {npc:2832} Nixxrax Fillamug
+	["{npc:2832}, in the Salty Sailor Tavern"] = "",
 	-- {npc:2495} Drizzlik
 	["{npc:2495}, by the bank"] = "{npc:2495}, bei der Bank",
 	-- {npc:773} Krazek
@@ -150,4 +150,7 @@ return {
 	-- Step 36: Baron Revilgaz
 	-- {zone:1416} Alterac Mountains
 	["For Archmage Ansirem in {zone:1416}"] = "Für Erzmagier Ansirem im {zone:1416}",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["{npc:2832}, in the {object:56910}"] = "{npc:2832}, im {object:56910}",
 }

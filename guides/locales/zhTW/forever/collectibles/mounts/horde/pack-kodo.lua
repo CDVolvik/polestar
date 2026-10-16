@@ -7,7 +7,7 @@
 return {
 	-- Step 1: Durotar Supply and Logistics
 	["Durotar Supply and Logistics"] = "杜洛塔物資流通",
-	-- {area:380} The Crossroads · {zone:1413} The Barrens · {npc:10636} Pack Kodo
+	-- {area:380} Crossroads · {zone:1413} Barrens · {npc:10636} Pack Kodo
 	["The camp is just outside the {area:380} in the {zone:1413}. Loot supply crates in the world, fill them, and hand them in at the camp for Merchant's Favor (5-20 a crate); the {npc:10636} costs 6,000. Craftsman's Writs may help from level 10."] = "營地就在{zone:1413}的{area:380}外面。在野外拾取補給箱，裝滿後在營地繳交換取Merchant's Favor（每箱5-20）；{npc:10636}要價6,000。10級起工匠的令狀可能有幫助。",
 	["Durotar Supply and Logistics camp"] = "杜洛塔物資流通營地",
 

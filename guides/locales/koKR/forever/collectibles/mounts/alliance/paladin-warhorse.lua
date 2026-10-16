@@ -10,7 +10,7 @@ return {
 	["Your first mount at 40, summoned at will: a paladin buys no horse."] = "40레벨에 얻는 첫 탈것으로, 언제든 소환할 수 있습니다: 성기사는 말을 구매하지 않습니다.",
 
 	-- Step 1: The Tome of Nobility (Ironforge)
-	-- {npc:5149} Brandur Ironhammer · {object:32362} The Mystic Ward · {npc:6171} Duthorian Rall · {zone:1453} Stormwind City · {zone:1455} Ironforge
+	-- {npc:5149} Brandur Ironhammer · {object:32362} Mystic Ward · {npc:6171} Duthorian Rall · {zone:1453} Stormwind · {zone:1455} Ironforge
 	["At 40 {npc:5149} in the {object:32362} sends you to {npc:6171} in {zone:1453}'s Cathedral of Light. Take the tram from {zone:1455} to {zone:1453}."] = "40레벨에 {object:32362}의 {npc:5149}이(가) {zone:1453} 빛의 대성당의 {npc:6171}에게 보냅니다. {zone:1455}에서 {zone:1453}까지는 깊은굴 지하철을 타십시오.",
 
 	-- Step 2: Summon Warhorse

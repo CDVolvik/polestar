@@ -11,11 +11,11 @@ return {
 	["A dagger at 10 from your home town's rogue quests."] = "고향 마을 도적 퀘스트로 10레벨에 얻는 단검.",
 
 	-- Step 1: Seek out SI: 7
-	-- {npc:917} Keryn Sylvius · {area:87} Goldshire · {npc:332} Master Mathias Shaw · {zone:1453} Stormwind City
+	-- {npc:917} Keryn Sylvius · {area:87} Goldshire · {npc:332} Master Mathias Shaw · {zone:1453} Stormwind
 	["At 10 {npc:917}, the rogue trainer in the Lion's Pride Inn in {area:87}, gives you a package for {npc:332} in {zone:1453}."] = "10레벨에 {area:87} 여관의 도적 상급자 {npc:917}이(가) {zone:1453}의 {npc:332}에게 전할 꾸러미를 줍니다.",
 
 	-- Step 2: Master Mathias Shaw
-	-- {zone:1453} Stormwind City · {object:2100} Old Town
+	-- {zone:1453} Stormwind · {object:2100} Old Town
 	["Ride north to {zone:1453}; Mathias Shaw is at SI:7 in {object:2100}."] = "북쪽 {zone:1453}(으)로 달려가십시오. 마티아스 쇼는 {object:2100}의 SI:7에 있습니다.",
 
 	-- Step 3: Defias Dockmaster

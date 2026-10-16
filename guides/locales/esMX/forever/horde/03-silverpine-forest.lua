@@ -8,7 +8,7 @@ return {
 	-- Step 1: To Orgrimmar
 	-- {area:1637} Orgrimmar
 	["To {area:1637}"] = "A {area:1637}",
-	-- {area:380} The Crossroads · {area:1637} Orgrimmar · {npc:3310} Doras · {object:172982} Valley of Strength
+	-- {area:380} Crossroads · {area:1637} Orgrimmar · {npc:3310} Doras · {object:172982} Valley of Strength
 	["From the {area:380}, follow the road north-east to {area:1637} and walk in by the main gate. {npc:3310}, the wind rider master, stands on the tower in the {object:172982}."] = "Desde {area:380}, sigue el camino al noreste hasta {area:1637} y entra por la puerta principal. {npc:3310}, el maestro de jinetes del viento, está en la torre de {object:172982}.",
 
 	-- Step 2: Orgrimmar class quests
@@ -45,13 +45,15 @@ return {
 
 	-- Step 7: Into Silverpine
 	["Into Silverpine"] = "Hacia Bosque de Argénteos",
-	-- {area:153} Ruins of Lordaeron · {zone:1421} Silverpine Forest · {area:228} The Sepulcher
+	-- {area:153} Ruins of Lordaeron · {zone:1421} Silverpine Forest · {area:228} Sepulcher
 	["The zeppelin lands at the towers outside the {area:153}. Walk west along the road past the ruins and south into {zone:1421}; follow the road to the {area:228}."] = "El zepelín aterriza en las torres afuera de {area:153}. Camina al oeste por el camino, pasando las ruinas, y al sur hacia {zone:1421}; sigue el camino hasta {area:228}.",
 	["Road to Silverpine"] = "Camino a Bosque de Argénteos",
 
 	-- Step 8: The Sepulcher
-	-- {area:228} The Sepulcher · {npc:2226} Karos Razok
-	["{area:228} is the Forsaken crypt-town in the middle of the forest. Everyone you need stands around the crypt entrance; {npc:2226}, the bat handler, is just east of it."] = "{area:228} es el pueblo cripta de los Renegados en medio del bosque. Todos los que necesitas están alrededor de la entrada de la cripta; {npc:2226}, el cuidador de murciélagos, está justo al este.",
+	-- {area:228} Sepulcher
+	["The {area:228}"] = "",
+	-- {area:228} Sepulcher · {npc:2226} Karos Razok
+	["The {area:228} is the Forsaken crypt-town in the middle of the forest. Everyone you need stands around the crypt entrance; {npc:2226}, the bat handler, is just east of it."] = "",
 
 	-- Step 9: Border Crossings
 	-- {object:1627} Dalaran Crate
@@ -62,12 +64,12 @@ return {
 	["{area:233} comes later, on the southern loop"] = "{area:233} viene después, en el circuito sur",
 
 	-- Step 11: The Dead Field
-	-- {area:228} The Sepulcher · {area:240} The Dead Field
-	["North of the {area:228}. Nightlash haunts the {area:240}: kill it, then walk across the field."] = "Al norte de {area:228}. Latipesadilla ronda {area:240}: mátalo y luego cruza el campo.",
+	-- {area:228} Sepulcher · {npc:1983} Nightlash
+	["North of the {area:228}. {npc:1983} haunts the Dead Field: kill it, then walk across the field."] = "",
 
 	-- Step 12: Strange Lockbox
-	-- {object:177790} Strange Lockbox · {area:240} The Dead Field · {item:15882} Half Pendant of Aquatic Endurance · {quest:30} Trial of the Sea Lion
-	["The {object:177790} lies on the coast west of the {area:240}. It holds the {item:15882} for {quest:30}."] = "{object:177790} está en la costa al oeste de {area:240}. Contiene {item:15882} para {quest:30}.",
+	-- {object:177790} Strange Lockbox · {item:15882} Half Pendant of Aquatic Endurance · {quest:30} Trial of the Sea Lion
+	["The {object:177790} lies on the coast west of the Dead Field. It holds the {item:15882} for {quest:30}."] = "",
 
 	-- Step 13: Malden's Orchard
 	-- {area:238} Malden's Orchard
@@ -83,11 +85,11 @@ return {
 	["Mottled Worgs prowl the hills around the house. Then walk south along the lake shore: the Vile Fin Shredders and Tidehunters there drop the murloc eyes."] = "Los Huargos jaspeados ({npc:1766}) merodean las colinas alrededor de la casa. Luego camina al sur por la orilla del lago: los Machacadores Anca Vil ({npc:1767}) y Cazamareas de allí sueltan los ojos de múrloc.",
 
 	-- Step 17: Hearth to the Sepulcher
-	-- {area:228} The Sepulcher
+	-- {area:228} Sepulcher
 	["Hearth to the {area:228}"] = "Usa tu piedra de hogar para ir a {area:228}",
 
 	-- Step 18: The Decrepit Ferry
-	-- {object:1593} Corpse Laden Boat · {area:228} The Sepulcher
+	-- {object:1593} Corpse Laden Boat · {area:228} Sepulcher
 	["The {object:1593} lies at the ferry landing on the lake shore east of the {area:228}."] = "{object:1593} está en el embarcadero de la orilla del lago, al este de {area:228}.",
 
 	-- Step 20: The Ivar Patch
@@ -105,7 +107,7 @@ return {
 	["{object:112888}, inside the keep"] = "{object:112888}, dentro de la fortaleza",
 
 	-- Step 22: The Sepulcher
-	-- {area:228} The Sepulcher
+	-- {area:228} Sepulcher
 	["Swim back and follow the road west to the {area:228}."] = "Nada de regreso y sigue el camino al oeste hasta {area:228}.",
 	-- {npc:2121} Shadow Priest Allister · {quest:516} Beren's Peril
 	["{npc:2121}: {quest:516}, on the south loop"] = "{npc:2121}: {quest:516}, en el circuito sur",
@@ -124,7 +126,7 @@ return {
 
 	-- Step 25: The refugees
 	["The refugees"] = "Los refugiados",
-	-- {area:230} The Greymane Wall
+	-- {area:230} Greymane Wall
 	-- plural, as words: Haggard Refugees = {npc:2053} Haggard Refugee
 	["The Sickly and Haggard Refugees shamble along the road south of Pyrewood toward the {area:230}."] = "Los Refugiados enfermos y demacrados ({npc:2053}) deambulan por el camino al sur de Aldea Piroleña hacia {area:230}.",
 
@@ -136,7 +138,7 @@ return {
 	-- Step 28: Lordamere Lake shore
 	-- {area:1338} Lordamere Lake
 	["{area:1338} shore"] = "Orilla de {area:1338}",
-	-- {area:237} The Decrepit Ferry · {area:228} The Sepulcher
+	-- {area:237} Decrepit Ferry · {area:228} Sepulcher
 	-- plural, as words: Vile Fin Lakestalkers = {npc:1909} Vile Fin Lakestalker
 	["The Vile Fin Lakestalkers and Oracles sit on the lake shore south of the {area:237}, east of the {area:228}."] = "Los Acechalagos Anca Vil ({npc:1909}) y Oráculos están en la orilla del lago al sur de {area:237}, al este de {area:228}.",
 	-- {npc:1909} Vile Fin Lakestalker · {area:1338} Lordamere Lake · {zone:1421} Silverpine Forest
@@ -178,7 +180,7 @@ return {
 	["{npc:268684} and {npc:268682} sit behind Grommash Hold in the {object:172957}; the Smooth Boulders lie around them. Train while you are in the city (Druids and Paladins have no trainer here). The next guide starts at {npc:3310}, the wind rider master in the {object:172982}."] = "{npc:268684} y {npc:268682} están detrás de la fortaleza de Thrall en {object:172957}; las Rocas lisas ({item:277952}) están a su alrededor. Entrena mientras estés en la ciudad (los druidas y paladines no tienen instructor aquí). La siguiente guía empieza con {npc:3310}, el maestro de jinetes del viento en {object:172982}.",
 	-- {npc:4949} Thrall
 	["{npc:4949}, inside Grommash Hold"] = "{npc:4949}, dentro de la fortaleza de Thrall",
-	-- {area:380} The Crossroads
+	-- {area:380} Crossroads
 	["Keep it: Thork at the {area:380}"] = "Guárdala: Thork en {area:380}",
 	-- {npc:4949} Thrall · {quest:93739} Exploring the Horde
 	["{npc:4949}: {quest:93739}, a tour of the Horde's leaders"] = "{npc:4949}: {quest:93739}, un recorrido por los líderes de la Horda",
@@ -186,4 +188,9 @@ return {
 	["Speak with {npc:3230}, in Grommash Hold"] = "Habla con {npc:3230}, en la fortaleza de Thrall",
 	-- {npc:10540} Vol'jin
 	["Speak with {npc:10540}, in Grommash Hold"] = "Habla con {npc:10540}, en la fortaleza de Thrall",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["North of the {area:228}. Nightlash haunts the {area:240}: kill it, then walk across the field."] = "Al norte de {area:228}. Latipesadilla ronda {area:240}: mátalo y luego cruza el campo.",
+	-- ["The {object:177790} lies on the coast west of the {area:240}. It holds the {item:15882} for {quest:30}."] = "{object:177790} está en la costa al oeste de {area:240}. Contiene {item:15882} para {quest:30}.",
+	-- ["{area:228} is the Forsaken crypt-town in the middle of the forest. Everyone you need stands around the crypt entrance; {npc:2226}, the bat handler, is just east of it."] = "{area:228} es el pueblo cripta de los Renegados en medio del bosque. Todos los que necesitas están alrededor de la entrada de la cripta; {npc:2226}, el cuidador de murciélagos, está justo al este.",
 }

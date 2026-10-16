@@ -31,7 +31,7 @@ return {
 
 	-- Step 5: The crater
 	["The crater"] = "Кратер",
-	-- {area:538} Lakkari Tar Pits · {area:537} Fire Plume Ridge · {area:540} The Slithering Scar · {item:11018} Un'Goro Soil
+	-- {area:538} Lakkari Tar Pits · {area:537} Fire Plume Ridge · {area:540} Slithering Scar · {item:11018} Un'Goro Soil
 	-- plural, as words: Tar Beasts = {npc:6517} Tar Beast
 	["Tar Beasts wallow in the {area:538}; the fire elementals of {area:537} in the middle carry the ash; the Gorishi wasps of the {area:540} in the south carry the gland. Every creature in the crater can drop {item:11018}."] = "Смоляные твари барахтаются здесь: {area:538}; пепел носят огненные элементали в центре ({area:537}); железу – осы из улья Гориши на юге ({area:540}). С любого существа в кратере может упасть {item:11018}.",
 
@@ -71,8 +71,8 @@ return {
 	["Ride back to {area:3425} and fly to {area:392}."] = "Езжайте назад: {area:3425}, затем летите сюда: {area:392}.",
 
 	-- Step 17: Stormwind City
-	-- {area:392} Ratchet · {area:35} Booty Bay · {zone:1453} Stormwind City
-	["Take the boat from {area:392} to {area:35} and fly to {zone:1453}."] = "Плывите на корабле: {area:392} → {area:35}, затем летите сюда: {zone:1453}.",
+	-- {area:392} Ratchet · {area:35} Booty Bay
+	["Take the boat from {area:392} to {area:35} and fly to Stormwind."] = "",
 	-- {npc:3520} Ol' Emma
 	["{npc:3520}, who walks the canals"] = "{npc:3520} – ходит вдоль каналов",
 	-- {npc:10778} Janice Felstone
@@ -104,7 +104,7 @@ return {
 	-- Step 22: Scourge Champions
 	-- plural, as words: Scourge Champions = {npc:8529} Scourge Champion
 	["Scourge Champions"] = "Воители Плети",
-	-- {area:2270} The Noxious Glade · {area:2268} Light's Hope Chapel · {item:13156} Mystic Crystal
+	-- {area:2270} Noxious Glade · {area:2268} Light's Hope Chapel · {item:13156} Mystic Crystal
 	-- plural, as words: Scourge Champions = {npc:8529} Scourge Champion
 	["Scourge Champions (59) roam the {area:2270}, north of {area:2268}. Pass Carlin's {item:13156} over each one you kill: the skulls that resonate are the ones he wants. Pull them one at a time."] = "Воители Плети (59) бродят здесь: {area:2270}, к северу от места {area:2268}. Проводите предметом {item:13156} Карлина над каждым убитым: нужны ему черепа, которые резонируют. Выманивайте по одному.",
 	-- {item:13155} Resonating Skull
@@ -119,16 +119,21 @@ return {
 	["Ride north to the {area:2277}'s north-eastern edge."] = "Езжайте на север, к северо-восточному краю места {area:2277}.",
 
 	-- Step 25: The Undercroft
-	-- {area:2261} The Undercroft · {npc:11886} Mercutio Filthgorger
-	["Ride south-west to the {area:2261}. The mound of dirt lies inside. {npc:11886} is elite: grouping up is advised."] = "Езжайте на юго-запад: {area:2261}. Холмик земли – внутри. {npc:11886} – элитный противник: лучше собрать группу.",
+	-- {npc:11886} Mercutio Filthgorger
+	["Ride south-west to the Undercroft. The mound of dirt lies inside. {npc:11886} is elite: grouping up is advised."] = "",
 	-- {item:14613} Taelan's Hammer · {npc:11886} Mercutio Filthgorger
 	["{item:14613}, from {npc:11886}"] = "{item:14613}: с персонажа {npc:11886}",
 
 	-- Step 26: The Fungal Vale
-	-- {npc:8532} Diseased Flayer · {area:2258} The Fungal Vale · {zone:1423} Eastern Plaguelands
-	["grind on {npc:8532} at the {area:2258}, {zone:1423}"] = "убивайте мобов ({npc:8532}): {area:2258}, {zone:1423}",
+	-- {npc:8532} Diseased Flayer · {zone:1423} Eastern Plaguelands
+	["grind on {npc:8532} at the Fungal Vale, {zone:1423}"] = "",
 
 	-- Step 27: Ratchet
 	-- {area:392} Ratchet
 	["The next guide starts here in {area:392}."] = "Следующий гайд начинается здесь: {area:392}.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Ride south-west to the {area:2261}. The mound of dirt lies inside. {npc:11886} is elite: grouping up is advised."] = "Езжайте на юго-запад: {area:2261}. Холмик земли – внутри. {npc:11886} – элитный противник: лучше собрать группу.",
+	-- ["Take the boat from {area:392} to {area:35} and fly to {zone:1453}."] = "Плывите на корабле: {area:392} → {area:35}, затем летите сюда: {zone:1453}.",
+	-- ["grind on {npc:8532} at the {area:2258}, {zone:1423}"] = "убивайте мобов ({npc:8532}): {area:2258}, {zone:1423}",
 }

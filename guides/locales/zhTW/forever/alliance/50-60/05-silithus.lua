@@ -31,7 +31,7 @@ return {
 
 	-- Step 5: The crater
 	["The crater"] = "環形山",
-	-- {area:538} Lakkari Tar Pits · {area:537} Fire Plume Ridge · {area:540} The Slithering Scar · {item:11018} Un'Goro Soil
+	-- {area:538} Lakkari Tar Pits · {area:537} Fire Plume Ridge · {area:540} Slithering Scar · {item:11018} Un'Goro Soil
 	-- plural, as words: Tar Beasts = {npc:6517} Tar Beast
 	["Tar Beasts wallow in the {area:538}; the fire elementals of {area:537} in the middle carry the ash; the Gorishi wasps of the {area:540} in the south carry the gland. Every creature in the crater can drop {item:11018}."] = "焦油獸在{area:538}打滾；中央{area:537}的火元素帶著灰燼；南邊{area:540}的格里什異種蠍帶著腺體。環形山的每隻生物都可能掉落{item:11018}。",
 
@@ -71,8 +71,8 @@ return {
 	["Ride back to {area:3425} and fly to {area:392}."] = "騎回{area:3425}，飛往{area:392}。",
 
 	-- Step 17: Stormwind City
-	-- {area:392} Ratchet · {area:35} Booty Bay · {zone:1453} Stormwind City
-	["Take the boat from {area:392} to {area:35} and fly to {zone:1453}."] = "從{area:392}搭船前往{area:35}，然後飛往{zone:1453}。",
+	-- {area:392} Ratchet · {area:35} Booty Bay
+	["Take the boat from {area:392} to {area:35} and fly to Stormwind."] = "",
 	-- {npc:3520} Ol' Emma
 	["{npc:3520}, who walks the canals"] = "{npc:3520}，在運河邊走動",
 	-- {npc:10778} Janice Felstone
@@ -104,7 +104,7 @@ return {
 	-- Step 22: Scourge Champions
 	-- plural, as words: Scourge Champions = {npc:8529} Scourge Champion
 	["Scourge Champions"] = "天災勇士",
-	-- {area:2270} The Noxious Glade · {area:2268} Light's Hope Chapel · {item:13156} Mystic Crystal
+	-- {area:2270} Noxious Glade · {area:2268} Light's Hope Chapel · {item:13156} Mystic Crystal
 	-- plural, as words: Scourge Champions = {npc:8529} Scourge Champion
 	["Scourge Champions (59) roam the {area:2270}, north of {area:2268}. Pass Carlin's {item:13156} over each one you kill: the skulls that resonate are the ones he wants. Pull them one at a time."] = "天災勇士（59級）在{area:2268}北邊的{area:2270}遊蕩。每殺一隻就用卡林的{item:13156}掃過牠：產生共鳴的頭骨才是他要的。一次只拉一隻。",
 	-- {item:13155} Resonating Skull
@@ -119,16 +119,21 @@ return {
 	["Ride north to the {area:2277}'s north-eastern edge."] = "向北騎往{area:2277}的東北邊緣。",
 
 	-- Step 25: The Undercroft
-	-- {area:2261} The Undercroft · {npc:11886} Mercutio Filthgorger
-	["Ride south-west to the {area:2261}. The mound of dirt lies inside. {npc:11886} is elite: grouping up is advised."] = "向西南騎往{area:2261}。土堆在裡面。{npc:11886}是精英：建議組隊。",
+	-- {npc:11886} Mercutio Filthgorger
+	["Ride south-west to the Undercroft. The mound of dirt lies inside. {npc:11886} is elite: grouping up is advised."] = "",
 	-- {item:14613} Taelan's Hammer · {npc:11886} Mercutio Filthgorger
 	["{item:14613}, from {npc:11886}"] = "{item:14613}，來自{npc:11886}",
 
 	-- Step 26: The Fungal Vale
-	-- {npc:8532} Diseased Flayer · {area:2258} The Fungal Vale · {zone:1423} Eastern Plaguelands
-	["grind on {npc:8532} at the {area:2258}, {zone:1423}"] = "在{zone:1423}的{area:2258}擊殺{npc:8532}練等",
+	-- {npc:8532} Diseased Flayer · {zone:1423} Eastern Plaguelands
+	["grind on {npc:8532} at the Fungal Vale, {zone:1423}"] = "",
 
 	-- Step 27: Ratchet
 	-- {area:392} Ratchet
 	["The next guide starts here in {area:392}."] = "下一份指南從{area:392}這裡開始。",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Ride south-west to the {area:2261}. The mound of dirt lies inside. {npc:11886} is elite: grouping up is advised."] = "向西南騎往{area:2261}。土堆在裡面。{npc:11886}是精英：建議組隊。",
+	-- ["Take the boat from {area:392} to {area:35} and fly to {zone:1453}."] = "從{area:392}搭船前往{area:35}，然後飛往{zone:1453}。",
+	-- ["grind on {npc:8532} at the {area:2258}, {zone:1423}"] = "在{zone:1423}的{area:2258}擊殺{npc:8532}練等",
 }

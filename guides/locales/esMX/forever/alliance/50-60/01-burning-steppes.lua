@@ -123,7 +123,7 @@ return {
 
 	-- Step 33: Wildkin feathers
 	["Wildkin feathers"] = "Plumas de lechúcico salvaje",
-	-- {area:1438} Nethergarde Keep · {area:348} Aerie Peak · {zone:1425} The Hinterlands
+	-- {area:1438} Nethergarde Keep · {area:348} Aerie Peak · {zone:1425} Hinterlands
 	-- plural, as words: Wildkin Feathers = {item:10819} Wildkin Feather
 	["Ride back to {area:1438} and fly to {area:348}. The Wildkin Feathers lie on the ground across the {zone:1425}, south and east of {area:348}, where the owlbeasts roam; the mobs here are well below you now."] = "Cabalga de vuelta a {area:1438} y vuela a {area:348}. Las plumas de lechúcico salvaje están en el suelo por {zone:1425}, al sur y al este de {area:348}, donde deambulan las lechubestias; los enemigos de aquí ya están muy por debajo de tu nivel.",
 

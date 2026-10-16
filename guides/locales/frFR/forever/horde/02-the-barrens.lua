@@ -10,13 +10,12 @@ return {
 	["{area:380} is your base for this guide. Everyone you need stands within a few steps of the inn."] = "{area:380} est votre base pour ce guide. Tous ceux dont vous avez besoin se tiennent à quelques pas de l'auberge.",
 	-- {npc:3615} Devrak
 	["{npc:3615}, the wind rider master"] = "{npc:3615}, le maître des coursiers du vent",
-	-- {npc:3449} Darsok Swiftdagger · {area:383} The Dry Hills
+	-- {npc:3449} Darsok Swiftdagger · {area:383} Dry Hills
 	["{npc:3449}: the harpies come later, in the {area:383}"] = "{npc:3449} : les harpies viendront plus tard, dans {area:383}",
 
 	-- Step 2: Plainstriders and raptors
 	["Plainstriders and raptors"] = "Trotteurs des plaines et raptors",
-	-- {area:380} The Crossroads
-	["Plainstriders and Sunscale raptors roam the plains all around the {area:380}, thickest to the north."] = "Les Trotteurs des plaines et les raptors solécaille parcourent les plaines tout autour de {area:380}, surtout au nord.",
+	["Plainstriders and Sunscale raptors roam the plains all around the Crossroads, thickest to the north."] = "",
 
 	-- Step 4: The Zhevra
 	-- plural, as words: Zhevra Runners = {npc:3242} Zhevra Runner
@@ -54,13 +53,13 @@ return {
 	["Burning Blade Cultists hold {area:1898} in northern {zone:1411}; they drop the {item:6652}. The {item:5026} comes from the Razormane on your next visit to their camp."] = "Les Sectateurs de la Lame ardente tiennent {area:1898}, dans le nord de {zone:1411} ; ils laissent tomber la {item:6652}. Le {item:5026} vient des Tranchecrin lors de votre prochaine visite à leur camp.",
 
 	-- Step 13: Thun'grim Firegaze
-	-- {area:380} The Crossroads · {area:392} Ratchet · {object:58369} Stolen Iron Chest
-	["Thun'grim camps beside the road from the {area:380} to {area:392}. The {object:58369} sits in the south of the Razormane camp just north of him."] = "Thun'grim campe au bord de la route de {area:380} à {area:392}. Le {object:58369} se trouve dans le sud du camp Tranchecrin, juste au nord de lui.",
+	-- {area:392} Ratchet · {object:58369} Stolen Iron Chest
+	["Thun'grim camps beside the road from the Crossroads to {area:392}. The {object:58369} sits in the south of the Razormane camp just north of him."] = "",
 
 	-- Step 14: Ratchet
 	-- {area:392} Ratchet
 	["Follow the road south-east to {area:392} on the coast."] = "Suivez la route vers le sud-est jusqu'à {area:392}, sur la côte.",
-	-- {npc:3442} Sputtervalve · {area:382} The Sludge Fen
+	-- {npc:3442} Sputtervalve · {area:382} Sludge Fen
 	["{npc:3442}: the console is in the {area:382}, later"] = "{npc:3442} : la console est dans {area:382}, plus tard",
 	-- {quest:1492} Wharfmaster Dizzywig
 	["{quest:1492}, on the dock"] = "{quest:1492}, sur le quai",
@@ -74,8 +73,7 @@ return {
 	["Back down the beach, past the pirate camp: the crate of boots and the fragile crate with the lens sit at its south end."] = "Redescendez la plage après le camp pirate : la caisse de bottes et la caisse fragile avec la lentille se trouvent à son extrémité sud.",
 
 	-- Step 19: The Crossroads
-	-- {area:380} The Crossroads
-	["Walk back west along the road to the {area:380}."] = "Revenez vers l'ouest par la route jusqu'à {area:380}.",
+	["Walk back west along the road to the Crossroads."] = "",
 
 	-- Step 20: The Disruption Ends
 	-- {npc:3438} Kreenig Snarlsnout
@@ -94,13 +92,15 @@ return {
 	["{quest:881}, a white lion, prowls the plains north of the Razormane camp."] = "{quest:881}, un lion blanc, rôde dans les plaines au nord du camp Tranchecrin.",
 
 	-- Step 24: Samophlange
-	-- {object:4141} Control Console · {area:382} The Sludge Fen · {item:5089} Console Key · {npc:3471} Tinkerer Sniggles
+	-- {object:4141} Control Console · {area:382} Sludge Fen · {item:5089} Console Key · {npc:3471} Tinkerer Sniggles
 	["The {object:4141} stands at the Venture Co. research site west of the {area:382}. Close the three valves around the drill, use the console again, then take the {item:5089} from {npc:3471} beside it."] = "La {object:4141} se trouve sur le site de recherche de la KapitalRisk à l'ouest de {area:382}. Fermez les trois vannes autour du foreur, utilisez de nouveau la console, puis prenez la {item:5089} sur {npc:3471}, à côté.",
 	-- {npc:3442} Sputtervalve · {area:392} Ratchet
 	["{npc:3442} in {area:392}: later, on the way"] = "{npc:3442} à {area:392} : plus tard, en chemin",
 
 	-- Step 25: The Dry Hills
-	-- {area:383} The Dry Hills · {quest:819} Chen's Empty Keg
+	-- {area:383} Dry Hills
+	["The {area:383}"] = "",
+	-- {area:383} Dry Hills · {quest:819} Chen's Empty Keg
 	["West to the {area:383}. The Witchwing harpies nest all over them; any of them can drop a talon. {quest:819} lies in their hills."] = "À l'ouest vers {area:383}. Les harpies Ensorçaile y nichent partout ; chacune peut laisser tomber une serre. {quest:819} se trouve dans leurs collines.",
 
 	-- Step 26: Regthar Deathgate
@@ -116,8 +116,7 @@ return {
 	["Kolkar Wranglers and Stormers hold the camps south of Regthar."] = "Les Querelleurs et les Légions-tempête kolkar tiennent les camps au sud de Regthar.",
 
 	-- Step 31: The Stagnant Oasis
-	-- {area:380} The Crossroads
-	["South-east of the {area:380}. Test the seeds at the bubbling fissure on the oasis' east bank."] = "Au sud-est de {area:380}. Testez les graines à la fissure bouillonnante sur la rive est de l'oasis.",
+	["South-east of the Crossroads. Test the seeds at the bubbling fissure on the oasis' east bank."] = "",
 
 	-- Step 32: Raptor nests
 	["Raptor nests"] = "Nids de raptors",
@@ -133,25 +132,25 @@ return {
 	["Back west along the road."] = "Revenez vers l'ouest par la route.",
 
 	-- Step 35: Lushwater Oasis
-	-- {area:387} Lushwater Oasis · {area:380} The Crossroads · {area:388} The Stagnant Oasis
+	-- {area:387} Lushwater Oasis · {area:388} Stagnant Oasis
 	-- plural, as words: Oasis Snapjaws = {npc:3461} Oasis Snapjaw
-	["Oasis Snapjaws crawl around {area:387}, south-west of the {area:380}, and around the {area:388}."] = "Les Gueules d'acier des oasis rampent autour de {area:387}, au sud-ouest de {area:380}, et autour de {area:388}.",
+	["Oasis Snapjaws crawl around {area:387}, south-west of the Crossroads, and around the {area:388}."] = "",
 
 	-- Step 36: The Crossroads
-	-- {quest:3301} Mura Runetotem · {area:228} The Sepulcher · {zone:1421} Silverpine Forest
+	-- {quest:3301} Mura Runetotem · {area:228} Sepulcher · {zone:1421} Silverpine Forest
 	["{quest:3301}: the {area:228} in {zone:1421}, next guide"] = "{quest:3301} : {area:228} en {zone:1421}, guide suivant",
 
 	-- Step 37: Harpy Lieutenants
-	-- {area:383} The Dry Hills
+	-- {area:383} Dry Hills
 	-- plural, as words: Witchwing Slayers = {npc:3278} Witchwing Slayer
 	["The Witchwing Slayers hold the western {area:383}; they wear the rings."] = "Les Tueuses Ensorçaile tiennent l'ouest de {area:383} ; elles portent les anneaux.",
 
 	-- Step 38: Wenikee Boltbucket
-	-- {area:1703} The Mor'shan Rampart
+	-- {area:1703} Mor'shan Rampart
 	["East to the {area:1703}; Wenikee stands at the camp just south of it."] = "À l'est vers {area:1703} ; Wenikee se tient au camp juste au sud.",
 
 	-- Step 39: Nugget Slugs
-	-- {area:382} The Sludge Fen
+	-- {area:382} Sludge Fen
 	["The tool buckets with the slugs lie around the Venture Co. drill site in the {area:382}, east of Wenikee."] = "Les seaux à outils avec les rondelles se trouvent autour du site de forage de la KapitalRisk, dans {area:382}, à l'est de Wenikee.",
 
 	-- Step 40: Wenikee Boltbucket
@@ -159,6 +158,14 @@ return {
 	["Keep it: {quest:3923} stands outside {zone:1454}; a later guide hands it in"] = "Gardez-la : {quest:3923} se tient devant {zone:1454} ; un guide ultérieur la rend",
 
 	-- Step 41: The Crossroads
-	-- {area:380} The Crossroads · {zone:1454} Orgrimmar · {zone:1420} Tirisfal Glades
-	["Walk back south to the {area:380}. The next guide starts here and takes you to {zone:1454} and the zeppelin to {zone:1420}."] = "Revenez vers le sud jusqu'à {area:380}. Le guide suivant commence ici et vous emmène à {zone:1454} et au zeppelin pour {zone:1420}.",
+	-- {zone:1454} Orgrimmar · {zone:1420} Tirisfal Glades
+	["Walk back south to the Crossroads. The next guide starts here and takes you to {zone:1454} and the zeppelin to {zone:1420}."] = "",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Oasis Snapjaws crawl around {area:387}, south-west of the {area:380}, and around the {area:388}."] = "Les Gueules d'acier des oasis rampent autour de {area:387}, au sud-ouest de {area:380}, et autour de {area:388}.",
+	-- ["Plainstriders and Sunscale raptors roam the plains all around the {area:380}, thickest to the north."] = "Les Trotteurs des plaines et les raptors solécaille parcourent les plaines tout autour de {area:380}, surtout au nord.",
+	-- ["South-east of the {area:380}. Test the seeds at the bubbling fissure on the oasis' east bank."] = "Au sud-est de {area:380}. Testez les graines à la fissure bouillonnante sur la rive est de l'oasis.",
+	-- ["Thun'grim camps beside the road from the {area:380} to {area:392}. The {object:58369} sits in the south of the Razormane camp just north of him."] = "Thun'grim campe au bord de la route de {area:380} à {area:392}. Le {object:58369} se trouve dans le sud du camp Tranchecrin, juste au nord de lui.",
+	-- ["Walk back south to the {area:380}. The next guide starts here and takes you to {zone:1454} and the zeppelin to {zone:1420}."] = "Revenez vers le sud jusqu'à {area:380}. Le guide suivant commence ici et vous emmène à {zone:1454} et au zeppelin pour {zone:1420}.",
+	-- ["Walk back west along the road to the {area:380}."] = "Revenez vers l'ouest par la route jusqu'à {area:380}.",
 }

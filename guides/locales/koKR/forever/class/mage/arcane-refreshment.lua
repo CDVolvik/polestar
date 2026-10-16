@@ -22,5 +22,4 @@ return {
 
 	-- Step 3: Back to Lydros
 	["Back to Lydros"] = "리드로스에게 돌아가기",
-
 }

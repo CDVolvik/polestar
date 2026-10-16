@@ -9,7 +9,7 @@ return {
 	["Fire Hardened Armor"] = "불에 달궈 만든 갑옷",
 	["A hauberk at 28, a coif, leggings or gauntlets by race, and a shield on the way."] = "28레벨에 사슬 갑옷, 종족에 따라 사슬 두건, 다리보호구 또는 건틀릿, 그리고 도중에 방패.",
 
-	-- Step 1: Yorus Barleybrew (Stormwind City)
+	-- Step 1: Yorus Barleybrew (Stormwind)
 	-- {npc:5479} Wu Shen · {object:2100} Old Town · {quest:1698} Yorus Barleybrew
 	["At 20, {npc:5479} in {object:2100}, beside the Pig and Whistle, sends you to {quest:1698} in Redridge."] = "20레벨에 돼지와 휘파람 선술집 옆 {object:2100}의 {npc:5479}이(가) 붉은마루 산맥의 {quest:1698}에게 보냅니다.",
 
@@ -28,8 +28,8 @@ return {
 	["Enter the {area:98} and come back"] = "{area:98}에 들어갔다가 돌아오기",
 
 	-- Step 5: The Shieldsmith
-	-- {npc:5413} Furen Longbeard · {zone:1453} Stormwind City · {item:6843} Cask of Scalder · {item:6970} Furen's Favor · {quest:1701} Fire Hardened Mail
-	["{npc:5413} works in the Dwarven District of {zone:1453}. He keeps the {item:6843} and gives you {item:6970}, a shield; {quest:1701} is a level 28 quest."] = "{npc:5413}은(는) {zone:1453} 드워프 지구에서 일합니다. 그가 {item:6843}을(를) 가지고 있으며 방패인 {item:6970}을(를) 줍니다. {quest:1701}은(는) 28레벨 퀘스트입니다.",
+	-- {npc:5413} Furen Longbeard · {item:6843} Cask of Scalder · {item:6970} Furen's Favor · {quest:1701} Fire Hardened Mail
+	["{npc:5413} works in the Dwarven District of Stormwind. He keeps the {item:6843} and gives you {item:6970}, a shield; {quest:1701} is a level 28 quest."] = "",
 
 	-- Step 6: Scorched Spider Fangs
 	-- plural, as words: Scorched Spider Fangs = {item:6838} Scorched Spider Fang
@@ -52,7 +52,7 @@ return {
 	-- Step 8: Roogug in Razorfen Kraul
 	-- {area:1717} Razorfen Kraul
 	["Roogug in {area:1717}"] = "{area:1717}의 루구그",
-	-- {area:1717} Razorfen Kraul · {zone:1413} The Barrens · {item:6841} Vial of Phlogiston
+	-- {area:1717} Razorfen Kraul · {zone:1413} Barrens · {item:6841} Vial of Phlogiston
 	["Roogug is an elite quilboar inside {area:1717}, the dungeon at the south end of the {zone:1413}; he drops the {item:6841}. {area:1717} is a dungeon: grouping up is advised."] = "루구그는 {zone:1413} 남쪽 끝 던전인 {area:1717} 안의 정예 가시멧돼지입니다. {item:6841}을(를) 떨어뜨립니다. {area:1717}은(는) 던전입니다. 파티를 권장합니다.",
 	-- {item:6841} Vial of Phlogiston
 	["{item:6841}, from Roogug"] = "{item:6841}, 루구그에게서",
@@ -62,16 +62,16 @@ return {
 	["Back to {npc:5413} in the {object:28027}. He sends you on to a smith of your own race."] = "{object:28027}의 {npc:5413}에게 돌아가십시오. 그가 당신 종족의 대장장이에게 보냅니다.",
 
 	-- Step 10: Grimand Elmore
-	-- {npc:1416} Grimand Elmore · {zone:1453} Stormwind City
+	-- {npc:1416} Grimand Elmore · {zone:1453} Stormwind
 	["{npc:1416} is in {zone:1453}, a short walk from Furen."] = "{npc:1416}은(는) {zone:1453}에 있으며, 푸렌에게서 조금만 걸어가면 됩니다.",
 
 	-- Step 11: Burning Blood
-	-- {zone:1431} Duskwood · {quest:1705} Burning Blood · {item:6845} Burning Rock
-	["The Nightbane worgen of {zone:1431} drop the {quest:1705}. Gutspill walks in the far south-east of {zone:1431} and carries the {item:6845}."] = "{zone:1431}의 파멸의어둠일족 늑대인간이 {quest:1705}을(를) 떨어뜨립니다. 거트스필은 {zone:1431} 남동쪽 끝을 돌아다니며 {item:6845}을(를) 가지고 있습니다.",
+	-- {zone:1431} Duskwood · {quest:1705} Burning Blood · {npc:6170} Gutspill · {item:6845} Burning Rock
+	["The Nightbane worgen of {zone:1431} drop the {quest:1705}. {npc:6170} walks in the far south-east of {zone:1431} and carries the {item:6845}."] = "",
 	-- {quest:1705} Burning Blood
 	["{quest:1705} from the Nightbane worgen"] = "{quest:1705}, 파멸의어둠일족 늑대인간에게서",
-	-- {item:6845} Burning Rock
-	["{item:6845} from Gutspill"] = "{item:6845}, 거트스필에게서",
+	-- {item:6845} Burning Rock · {npc:6170} Gutspill
+	["{item:6845} from {npc:6170}"] = "",
 
 	-- Step 13: Mathiel
 	-- {quest:1703} Mathiel · {zone:1457} Darnassus
@@ -82,11 +82,15 @@ return {
 	["The {quest:1710} lie along the western edge of {zone:1441}."] = "{quest:1710}은(는) {zone:1441} 서쪽 가장자리를 따라 있습니다.",
 
 	-- Step 16: Klockmort Spannerspan
-	-- {area:2257} Deeprun Tram · {zone:1453} Stormwind City · {zone:1455} Ironforge
+	-- {area:2257} Deeprun Tram · {zone:1453} Stormwind · {zone:1455} Ironforge
 	["Ride the {area:2257} from {zone:1453} to {zone:1455}."] = "{zone:1453}에서 {area:2257}을(를) 타고 {zone:1455}(으)로 가십시오.",
 
 	-- Step 17: Iron Coral
 	-- {quest:1708} Iron Coral · {zone:1437} Wetlands · {area:150} Menethil Harbor
 	["The {quest:1708} grows along the {zone:1437}' west coast, south of {area:150}."] = "{quest:1708}은(는) {area:150} 남쪽, {zone:1437} 서쪽 해안을 따라 자랍니다.",
 
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["The Nightbane worgen of {zone:1431} drop the {quest:1705}. Gutspill walks in the far south-east of {zone:1431} and carries the {item:6845}."] = "{zone:1431}의 파멸의어둠일족 늑대인간이 {quest:1705}을(를) 떨어뜨립니다. 거트스필은 {zone:1431} 남동쪽 끝을 돌아다니며 {item:6845}을(를) 가지고 있습니다.",
+	-- ["{item:6845} from Gutspill"] = "{item:6845}, 거트스필에게서",
+	-- ["{npc:5413} works in the Dwarven District of {zone:1453}. He keeps the {item:6843} and gives you {item:6970}, a shield; {quest:1701} is a level 28 quest."] = "{npc:5413}은(는) {zone:1453} 드워프 지구에서 일합니다. 그가 {item:6843}을(를) 가지고 있으며 방패인 {item:6970}을(를) 줍니다. {quest:1701}은(는) 28레벨 퀘스트입니다.",
 }

@@ -9,8 +9,8 @@ return {
 	-- {npc:6266} Menara Voidrender
 	["A rare cloth robe for your 30s, which {npc:6266} makes from the parts you bring her."] = "Um manto de tecido raro para seus 30 e poucos, que {npc:6266} faz com as partes que você trouxer.",
 
-	-- Step 1: In Search of Menara Voidrender (Stormwind City)
-	-- {npc:461} Demisette Cloyce · {object:2164} The Slaughtered Lamb · {object:2101} Mage Quarter · {npc:6266} Menara Voidrender · {area:392} Ratchet
+	-- Step 1: In Search of Menara Voidrender (Stormwind)
+	-- {npc:461} Demisette Cloyce · {object:2164} Slaughtered Lamb · {object:2101} Mage Quarter · {npc:6266} Menara Voidrender · {area:392} Ratchet
 	["At 31 {npc:461} in the {object:2164}, in the {object:2101}, sends you to {npc:6266} in {area:392}."] = "No nível 31, {npc:461} no {object:2164}, no {object:2101}, manda você até {npc:6266} em {area:392}.",
 
 	-- Step 2: In Search of Menara Voidrender (Ironforge)
@@ -43,9 +43,9 @@ return {
 	-- Step 9: Desolace demons
 	-- {zone:1443} Desolace
 	["{zone:1443} demons"] = "Demônios de {zone:1443}",
-	-- {area:603} Sargeron · {zone:1443} Desolace · {area:602} Mannoroc Coven
+	-- {area:603} Sargeron · {zone:1443} Desolace
 	-- plural, as words: Lesser Infernals = {npc:4676} Lesser Infernal
-	["The Hatefury satyrs of {area:603}, in north-eastern {zone:1443}, carry the blood; the Lesser Infernals of {area:602}, in the south, the stone."] = "Os sátiros Furiódio de {area:603}, no nordeste de {zone:1443}, carregam o sangue; os Infernais Menores de {area:602}, no sul, a pedra.",
+	["The Hatefury satyrs of {area:603}, in north-eastern {zone:1443}, carry the blood; the Lesser Infernals of Mannoroc Coven, in the south, the stone."] = "",
 	["Vials of Hatefury Blood"] = "Ampolas de Sangue de Furiódio",
 
 	-- Step 10: Menara again
@@ -64,4 +64,7 @@ return {
 	-- {item:6265} Soul Shard
 	["Back to Menara with the thread, the coal and a {item:6265}. Wait while she completes the robe, then speak to her again."] = "De volta a Menara com a linha, o carvão e um {item:6265}. Espere enquanto ela termina o manto, depois fale com ela de novo.",
 	["Wait for the robe"] = "Espere o manto",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["The Hatefury satyrs of {area:603}, in north-eastern {zone:1443}, carry the blood; the Lesser Infernals of {area:602}, in the south, the stone."] = "Os sátiros Furiódio de {area:603}, no nordeste de {zone:1443}, carregam o sangue; os Infernais Menores de {area:602}, no sul, a pedra.",
 }

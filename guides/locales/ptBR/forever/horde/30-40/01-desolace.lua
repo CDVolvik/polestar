@@ -150,7 +150,7 @@ return {
 	["{npc:260093} trains Paladins in the {area:1497}."] = "{npc:260093} treina Paladinos em {area:1497}.",
 
 	-- Step 34: Brazier of Everfount
-	-- {area:1497} Undercity · {area:228} The Sepulcher · {object:113791} Brazier of Everfount · {npc:5895} Minor Manifestation of Water · {item:7813} Shard of Water · {area:272} Tarren Mill
+	-- {area:1497} Undercity · {area:228} Sepulcher · {object:113791} Brazier of Everfount · {npc:5895} Minor Manifestation of Water · {item:7813} Shard of Water · {area:272} Tarren Mill
 	["Do your shopping in the {area:1497} first, then fly to the {area:228}. The {object:113791} stands on the hill just south-west of it: beat the Corrupt Manifestation of Water beside it, place its bracers in the brazier, speak to the {npc:5895} and keep the {item:7813} for Islen. Fly on to {area:272} from the {area:228}."] = "Faça suas compras em {area:1497} primeiro, depois voe até {area:228}. O {object:113791} fica na colina logo a sudoeste dele: derrote a Manifestação Menor Corrompida da Água ao lado, coloque as braçadeiras dela no braseiro, fale com a {npc:5895} e guarde o {item:7813} para Islen. De {area:228}, voe até {area:272}.",
 	-- {npc:5901} Islen Waterseer
 	["for {npc:5901}: from Stranglethorn, next guide"] = "para {npc:5901}: do Espinhaço, próximo guia",
@@ -168,7 +168,7 @@ return {
 	["{item:3703}, for {npc:2333}"] = "{item:3703}, para {npc:2333}",
 	-- {npc:2770} Tallow · {area:321} Hammerfall
 	["{npc:2770}: for {area:321} in Arathi, later on the route"] = "{npc:2770}: para {area:321} em Arathi, mais adiante na rota",
-	-- {npc:2229} Krusk · {zone:1413} The Barrens
+	-- {npc:2229} Krusk · {zone:1413} Barrens
 	["{npc:2229}: for the {zone:1413}, later on the route"] = "{npc:2229}: para {zone:1413}, mais adiante na rota",
 
 	-- Step 37: Daggerspine naga
@@ -216,9 +216,9 @@ return {
 	-- Step 45: The Dalaran traitors
 	-- {area:279} Dalaran
 	["The {area:279} traitors"] = "Os traidores de {area:279}",
-	-- {area:279} Dalaran · {npc:2414} Kegan Darkmar
+	-- {area:279} Dalaran · {npc:2411} Ricter · {npc:2412} Alina · {npc:2413} Dermot · {npc:2414} Kegan Darkmar
 	-- plural, as words: Worn Stone Tokens = {item:3714} Worn Stone Token
-	["Head west along the foot of the mountains to the violet dome of {area:279}. Ricter, Alina and Dermot (33-34) stand together inside the crater's eastern rim, {npc:2414} (35) a little west of them; each carries one Bloodstone piece. The Shield Guards and Theurgists (31-32) around them drop the Worn Stone Tokens."] = "Siga para oeste ao pé das montanhas até a cúpula violeta de {area:279}. Ricter, Alina e Dermot (33-34) ficam juntos dentro da borda leste da cratera, {npc:2414} (35) um pouco a oeste deles; cada um leva uma peça de Pedra-sangrenta. Os Escudeiros e Teurgos (31-32) em volta deles deixam cair as Fichas de Pedra Gasta.",
+	["Head west along the foot of the mountains to the violet dome of {area:279}. {npc:2411}, {npc:2412} and {npc:2413} (33-34) stand together inside the crater's eastern rim, {npc:2414} (35) a little west of them; each carries one Bloodstone piece. The Shield Guards and Theurgists (31-32) around them drop the Worn Stone Tokens."] = "",
 
 	-- Step 46: Tarren Mill
 	-- {area:272} Tarren Mill
@@ -239,4 +239,7 @@ return {
 	["Fly to the {area:1497}"] = "Voar para {area:1497}",
 	-- {area:1497} Undercity · {object:3202} Grom'gol
 	["The next guide starts in the {area:1497}, at the {object:3202} zeppelin."] = "O próximo guia começa em {area:1497}, no zepelim de {object:3202}.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Head west along the foot of the mountains to the violet dome of {area:279}. Ricter, Alina and Dermot (33-34) stand together inside the crater's eastern rim, {npc:2414} (35) a little west of them; each carries one Bloodstone piece. The Shield Guards and Theurgists (31-32) around them drop the Worn Stone Tokens."] = "Siga para oeste ao pé das montanhas até a cúpula violeta de {area:279}. Ricter, Alina e Dermot (33-34) ficam juntos dentro da borda leste da cratera, {npc:2414} (35) um pouco a oeste deles; cada um leva uma peça de Pedra-sangrenta. Os Escudeiros e Teurgos (31-32) em volta deles deixam cair as Fichas de Pedra Gasta.",
 }

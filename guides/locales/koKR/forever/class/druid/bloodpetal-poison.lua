@@ -21,7 +21,7 @@ return {
 	-- plural, as words: Gorishi Stings = {item:22435} Gorishi Sting
 	["Gorishi Stings and {item:22434}"] = "고리쉬 독침과 {item:22434}",
 	-- {item:22434} Bloodcap
-	-- plural, as words: Bloodpetal Sprouts = {item:11315} Bloodpetal Sprout
+	-- plural, as words: Bloodpetal Sprouts = {object:164958} Bloodpetal Sprout
 	["The Gorishi wasps, workers and reavers of the hive in the south of the crater drop the stings; the Bloodpetal Sprouts that give the {item:22434} grow all over the crater's western half."] = "분화구 남쪽 벌집의 병정 고리쉬, 일꾼 고리쉬, 갈퀴발톱 고리쉬가 독침을 떨어뜨립니다. {item:22434}을(를) 주는 붉은꽃잎 씨앗은 분화구 서쪽 절반 곳곳에 자랍니다.",
 
 	-- Step 5: Toxic Test
@@ -40,5 +40,4 @@ return {
 	-- Step 8: A Better Ingredient
 	-- {zone:1449} Un'Goro Crater
 	["Back to Torwa in the south-east corner of {zone:1449}."] = "{zone:1449} 남동쪽 구석의 토르와에게 돌아가세요.",
-
 }

@@ -7,7 +7,7 @@
 return {
 	-- Step 1: Durotar Supply and Logistics
 	["Durotar Supply and Logistics"] = "Versorgung und Logistik Durotar",
-	-- {area:380} The Crossroads · {zone:1413} The Barrens · {npc:10636} Pack Kodo
+	-- {area:380} Crossroads · {zone:1413} Barrens · {npc:10636} Pack Kodo
 	["The camp is just outside the {area:380} in the {zone:1413}. Loot supply crates in the world, fill them, and hand them in at the camp for Merchant's Favor (5-20 a crate); the {npc:10636} costs 6,000. Craftsman's Writs may help from level 10."] = "Das Lager ist direkt außerhalb von {area:380} in {zone:1413}. Plündere Versorgungskisten in der Welt, füll sie und gib sie im Lager für Merchant's Favor ab (5-20 pro Kiste); {npc:10636} kostet 6,000. Handwerksverfügungen können ab Stufe 10 helfen.",
 	["Durotar Supply and Logistics camp"] = "Lager von Versorgung und Logistik Durotar",
 

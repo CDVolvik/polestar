@@ -10,8 +10,8 @@ return {
 	["Experience at 50 through {zone:1447} and the {area:1417}; Forever removed the Classic item choice."] = "50레벨에 {zone:1447}와(과) {area:1417}을(를) 거치며 얻는 경험치. Forever에서는 클래식의 아이템 보상 선택이 사라졌습니다.",
 	["Experience"] = "경험치",
 
-	-- Step 1: Magecraft (Stormwind City)
-	-- {npc:331} Maginor Dumas · {zone:1453} Stormwind City · {object:2101} Mage Quarter · {zone:1455} Ironforge
+	-- Step 1: Magecraft (Stormwind)
+	-- {npc:331} Maginor Dumas · {zone:1453} Stormwind · {object:2101} Mage Quarter · {zone:1455} Ironforge
 	["{npc:331}, the Master Mage, stands in the Wizard's Sanctum in {zone:1453}'s {object:2101}; Dink in {zone:1455} gives the same quest."] = "마법사 길드장 {npc:331}은(는) {zone:1453} {object:2101}의 마법사의 성소에 있습니다. {zone:1455}의 딩크도 같은 퀘스트를 줍니다.",
 
 	-- Step 2: Magecraft (Orgrimmar)
@@ -46,7 +46,7 @@ return {
 
 	-- Step 8: Morphaz
 	["Morphaz"] = "몰파즈",
-	-- {area:1477} The Temple of Atal'Hakkar · {area:1417} Sunken Temple · {area:74} Pool of Tears · {item:20085} Arcane Shard
+	-- {area:1477} Temple of Atal'Hakkar · {area:1417} Sunken Temple · {area:74} Pool of Tears · {item:20085} Arcane Shard
 	["Morphaz, a green drake, waits deep in the {area:1477}, the {area:1417} in the {area:74}: a group of five, level 50-54. Kill him for the {item:20085}."] = "녹색 비룡 몰파즈는 {area:74}에 있는 {area:1417}, {area:1477} 깊숙한 곳에서 기다립니다. 5인 파티, 레벨 50-54. 그를 처치해 {item:20085}을(를) 얻으세요.",
 	-- {item:20085} Arcane Shard
 	["{item:20085}: Morphaz"] = "{item:20085}: 몰파즈",

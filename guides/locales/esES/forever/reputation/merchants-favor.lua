@@ -36,7 +36,7 @@ return {
 	-- Step 5: Durotar Supply and Logistics to Friendly
 	-- {faction:2587} Durotar Supply and Logistics
 	["{faction:2587} to Friendly"] = "{faction:2587} a Amistoso",
-	-- {faction:2587} Durotar Supply and Logistics · {area:380} The Crossroads · {zone:1413} The Barrens · {object:1561} Sealed Crate
+	-- {faction:2587} Durotar Supply and Logistics · {area:380} Crossroads · {zone:1413} Barrens · {object:1561} Sealed Crate
 	-- plural, as words: Waylaid Crates = {item:248549} Waylaid Crate
 	["{faction:2587} is the Horde's tradeskill faction in Forever. Its camp is just outside the {area:380} in the {zone:1413}. From level 10 mobs drop Waylaid Crates: fill each with the goods its label asks for and hand the {object:1561} to Dokimi at the camp for reputation and Merchant's Favor. Forever's Legacy Diplomat perk increases reputation gains."] = "{faction:2587} es la facción de profesiones de la Horda en Forever. Su campamento está justo a las afueras de {area:380}, en {zone:1413}. Desde el nivel 10 los enemigos sueltan Cajones saqueados: llena cada uno con los bienes que pide su etiqueta y entrega el {object:1561} a Dokimi en el campamento a cambio de reputación y Favor del mercader. La ventaja de Legado Diplomático de Forever aumenta la reputación obtenida.",
 	["Dokimi"] = "Dokimi",

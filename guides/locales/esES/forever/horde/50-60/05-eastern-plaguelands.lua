@@ -32,16 +32,16 @@ return {
 
 	-- Step 6: Hameya's scroll
 	["Hameya's scroll"] = "El pergamino de Hameya",
-	-- {area:2261} The Undercroft · {area:2260} The Marris Stead
+	-- {area:2261} Undercroft · {area:2260} Marris Stead
 	["A torn scroll lies at the entrance of the {area:2261}, the crypt south of the {area:2260}."] = "Hay un pergamino roto en la entrada de {area:2261}, la cripta al sur de {area:2260}.",
 
 	-- Step 7: Nathanos Blightcaller
-	-- {npc:15193} The Banshee Queen · {area:2260} The Marris Stead
+	-- {npc:15193} The Banshee Queen · {area:2260} Marris Stead
 	["{npc:15193}'s champion holds the {area:2260} farmhouse."] = "El campeón de {npc:15193} ocupa la granja de {area:2260}.",
 
 	-- Step 8: The western hills
 	["The western hills"] = "Las colinas del oeste",
-	-- {area:2260} The Marris Stead · {area:2627} Terrordale
+	-- {area:2260} Marris Stead · {area:2627} Terrordale
 	-- plural, as words: Plaguehound Runts = {npc:8596} Plaguehound Runt · Plaguebats = {npc:8600} Plaguebat · Carrion Grubs = {npc:8603} Carrion Grub
 	["Plaguehound Runts and Plaguebats roam the hills north of the {area:2260}, Carrion Grubs crawl among them; work north toward {area:2627}."] = "Los Cachorros de can de la Peste y los Murcipestes recorren las colinas al norte de {area:2260}, y las Larvas carroñeras se arrastran entre ellos; avanza hacia el norte, hacia {area:2627}.",
 
@@ -68,12 +68,12 @@ return {
 	["{item:15447} spoils within ten minutes: kill the town's Scourge quickly and grind the seven pieces with the {item:15454} at once."] = "{item:15447} se echa a perder en diez minutos: mata rápido a la Plaga del pueblo y muele los siete trozos con {item:15454} enseguida.",
 
 	-- Step 14: Nathanos Blightcaller
-	-- {area:2260} The Marris Stead
+	-- {area:2260} Marris Stead
 	["Ride west to the {area:2260}."] = "Ve al oeste a {area:2260}.",
 
 	-- Step 15: Hameya's mound
 	["Hameya's mound"] = "El montículo de Hameya",
-	-- {object:177675} Mound of Dirt · {area:2261} The Undercroft
+	-- {object:177675} Mound of Dirt · {area:2261} Undercroft
 	["The {object:177675} is just behind the {area:2261}."] = "{object:177675} está justo detrás de {area:2261}.",
 
 	-- Step 17: Fly to Thunder Bluff

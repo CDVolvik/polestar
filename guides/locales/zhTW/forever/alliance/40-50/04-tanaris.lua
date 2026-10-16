@@ -6,7 +6,7 @@
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Mirage Raceway
-	-- {area:1108} The Forgotten Coast · {area:489} Thalanaar · {zone:1441} Thousand Needles · {area:2240} Mirage Raceway · {area:439} The Shimmering Flats · {npc:4454} Fizzle Brassbolts · {npc:4630} Pozzik · {npc:4709} Zamek
+	-- {area:1108} Forgotten Coast · {area:489} Thalanaar · {zone:1441} Thousand Needles · {area:2240} Mirage Raceway · {area:439} Shimmering Flats · {npc:4454} Fizzle Brassbolts · {npc:4630} Pozzik · {npc:4709} Zamek
 	["From the {area:1108} dock, boat to Feathermoon and fly to {area:489}, then ride east through {zone:1441} to the {area:2240} on the {area:439}. {npc:4454} and {npc:4630} are in the camps beside the track; {npc:4709} stands by the goblin camp."] = "從{area:1108}的碼頭搭船前往羽月要塞並飛往{area:489}，然後向東騎過{zone:1441}，前往{area:439}上的{area:2240}。{npc:4454}和{npc:4630}在賽道旁的營地裡；{npc:4709}站在哥布林營地旁。",
 	["He runs off to keep Rizzle busy"] = "他跑去拖住瑞茲爾",
 
@@ -16,7 +16,7 @@ return {
 	["While {npc:4709} keeps Rizzle talking, his plans lie unguarded in the gnome camp across the track."] = "趁{npc:4709}拖住瑞茲爾說話時，他的設計圖就無人看守地放在賽道對面的地精營地裡。",
 
 	-- Step 4: Gadgetzan
-	-- {area:439} The Shimmering Flats · {zone:1446} Tanaris · {area:976} Gadgetzan
+	-- {area:439} Shimmering Flats · {zone:1446} Tanaris · {area:976} Gadgetzan
 	["Ride south-east off the {area:439} into {zone:1446}. {area:976} is just inside the border."] = "向東南騎離{area:439}進入{zone:1446}。{area:976}就在邊界內側。",
 	-- {quest:2864} Tran'rek
 	["{quest:2864}, north side of town"] = "{quest:2864}，在城鎮北側",
@@ -95,7 +95,7 @@ return {
 	["Ride back west to {area:976}."] = "向西騎回{area:976}。",
 	-- {npc:11758} Andi Lynn
 	["{npc:11758}, on the east side of town"] = "{npc:11758}，在城鎮東側",
-	-- {npc:7583} Sprinkle · {zone:1425} The Hinterlands
+	-- {npc:7583} Sprinkle · {zone:1425} Hinterlands
 	["{npc:7583}'s next ingredient grows in the {zone:1425}, and the route never brings it back: skip it."] = "{npc:7583}的下一種材料生長在{zone:1425}，而路線不會再帶你回來：跳過。",
 
 	-- Step 21: Caliph Scorpidsting
@@ -103,8 +103,8 @@ return {
 	["Ride south-east to {area:985}. Caliph stands in the middle of the southern Wastewander camp: clear around him first."] = "向東南騎往{area:985}。卡利夫站在南方廢土營地的中央：先清掉他周圍的敵人。",
 
 	-- Step 22: The Gaping Chasm
-	-- {area:1938} Broken Pillar · {area:981} The Gaping Chasm
-	["Ride south past the {area:1938} to the {area:981}, the Hazzali tunnels; Scrimshank's gear lies deep inside."] = "向南騎過{area:1938}前往{area:981}，也就是哈札里的隧道；謝申克的設備在深處。",
+	-- {area:1938} Broken Pillar
+	["Ride south past the {area:1938} to the Gaping Chasm, the Hazzali tunnels; Scrimshank's gear lies deep inside."] = "",
 
 	-- Step 23: Gadgetzan
 	-- {area:976} Gadgetzan
@@ -117,6 +117,10 @@ return {
 	["Fly from {area:976} to Theramore, take the boat to {area:150} and fly to {area:1537}. Train."] = "從{area:976}飛往塞拉摩，搭船前往{area:150}，再飛往{area:1537}。訓練。",
 
 	-- Step 25: Aerie Peak
-	-- {area:348} Aerie Peak · {zone:1425} The Hinterlands
-	["Fly to {area:348}. {zone:1425} guide starts here."] = "飛往{area:348}。{zone:1425}指南從這裡開始。",
+	-- {area:348} Aerie Peak · {zone:1425} Hinterlands
+	["Fly to {area:348}. The {zone:1425} guide starts here."] = "",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Fly to {area:348}. {zone:1425} guide starts here."] = "飛往{area:348}。{zone:1425}指南從這裡開始。",
+	-- ["Ride south past the {area:1938} to the {area:981}, the Hazzali tunnels; Scrimshank's gear lies deep inside."] = "向南騎過{area:1938}前往{area:981}，也就是哈札里的隧道；謝申克的設備在深處。",
 }

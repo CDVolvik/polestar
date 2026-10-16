@@ -11,8 +11,7 @@ return {
 
 	-- Step 2: Plainstriders and raptors
 	["Plainstriders and raptors"] = "초원타조와 랩터",
-	-- {area:380} The Crossroads
-	["Plainstriders and Sunscale raptors roam the plains all around the {area:380}."] = "초원타조와 열대초원랩터가 {area:380} 주변 평원 곳곳을 돌아다닙니다.",
+	["Plainstriders and Sunscale raptors roam the plains all around the Crossroads."] = "",
 
 	-- Step 4: Zhevra and raptors
 	["Zhevra and raptors"] = "얼룩말과 랩터",
@@ -28,8 +27,8 @@ return {
 	["Thun'grim camps beside the road east toward {area:392}."] = "툰그림은 {area:392}(으)로 가는 동쪽 길 옆에 진을 치고 있습니다.",
 
 	-- Step 7: Kranal Fiss
-	-- {npc:5907} Kranal Fiss · {area:380} The Crossroads
-	["{npc:5907} stands on the ridge north of the Razormane camp, east of the {area:380}."] = "{npc:5907}은(는) {area:380} 동쪽, 서슬갈기일족 야영지 북쪽 능선에 서 있습니다.",
+	-- {npc:5907} Kranal Fiss
+	["{npc:5907} stands on the ridge north of the Razormane camp, east of the Crossroads."] = "",
 
 	-- Step 8: Telf Joolam
 	-- {zone:1411} Durotar · {area:814} Southfury River
@@ -44,9 +43,9 @@ return {
 
 	-- Step 10: Razormane camp
 	["Razormane camp"] = "서슬갈기일족 야영지",
-	-- {area:380} The Crossroads · {object:58369} Stolen Iron Chest · {item:5026} Fire Tar
+	-- {object:58369} Stolen Iron Chest · {item:5026} Fire Tar
 	-- plural, as words: Savannah Prowlers = {npc:3425} Savannah Prowler
-	["Water Seekers, Thornweavers and Hunters hold the camp east of the {area:380}. The supply crates sit at its eastern end. Warriors: the {object:58369} stands in the camp. Shamans: the quilboar drop the {item:5026}. Kill Savannah Prowlers you pass for their claws."] = "서슬갈기일족 풍수사, 가시마술사, 사냥꾼이 {area:380} 동쪽 야영지를 차지하고 있습니다. 보급품 상자는 야영지 동쪽 끝에 있습니다. 전사: {object:58369}은(는) 야영지 안에 있습니다. 주술사: 멧돼지인간이 {item:5026}을(를) 떨어뜨립니다. 지나가며 {npc:3425}을(를) 처치해 발톱을 모으세요.",
+	["Water Seekers, Thornweavers and Hunters hold the camp east of the Crossroads. The supply crates sit at its eastern end. Warriors: the {object:58369} stands in the camp. Shamans: the quilboar drop the {item:5026}. Kill Savannah Prowlers you pass for their claws."] = "",
 
 	-- Step 11: Telf Joolam
 	-- {item:6636} Fire Sapta · {npc:5893} Minor Manifestation of Fire · {item:6655} Glowing Ember
@@ -72,44 +71,42 @@ return {
 	["Back to the pirate camp: the boots are in the crate marked {object:3767} at the camp's south end, the lens in the Fragile crate just east of it."] = "해적 야영지로 돌아가세요. 장화는 야영지 남쪽 끝의 {object:3767} 표시 상자에, 렌즈는 그 바로 동쪽의 Fragile 상자에 있습니다.",
 
 	-- Step 19: Back to the Crossroads
-	-- {area:380} The Crossroads
-	["Back to the {area:380}"] = "{area:380}(으)로 돌아가기",
-	-- {area:380} The Crossroads
+	["Back to the Crossroads"] = "",
 	-- plural, as words: Savannah Prowlers = {npc:3425} Savannah Prowler
-	["Walk back up the road to the {area:380}. Savannah Prowlers hunt along it and on the plains west of town: finish the claws before you hand them in."] = "길을 따라 {area:380}까지 걸어 돌아가세요. {npc:3425}이(가) 길가와 마을 서쪽 평원에서 사냥합니다. 제출하기 전에 발톱을 마저 모으세요.",
+	["Walk back up the road to the Crossroads. Savannah Prowlers hunt along it and on the plains west of town: finish the claws before you hand them in."] = "",
 
 	-- Step 20: Regthar Deathgate
-	-- {area:380} The Crossroads
-	["Regthar stands at the Kolkar watch post just west of the {area:380}."] = "렉타르는 {area:380} 바로 서쪽의 콜카르 감시초소에 서 있습니다.",
+	["Regthar stands at the Kolkar watch post just west of the Crossroads."] = "",
 
 	-- Step 21: Kolkar camps and the Forgotten Pools
-	-- {area:386} The Forgotten Pools
+	-- {area:386} Forgotten Pools
 	["Kolkar camps and the {area:386}"] = "콜카르 야영지와 {area:386}",
-	-- {quest:855} Centaur Bracers · {area:386} The Forgotten Pools
+	-- {quest:855} Centaur Bracers · {area:386} Forgotten Pools
 	-- plural, as words: Laden Mushrooms = {object:3640} Laden Mushroom · Savannah Prowlers = {npc:3425} Savannah Prowler
-	["The Kolkar camps spread north-west of Regthar; every Kolkar can drop {quest:855}. {area:386} lie in their middle, with Laden Mushrooms around the water. Savannah Prowlers roam the same plains."] = "콜카르 야영지는 렉타르 북서쪽으로 퍼져 있습니다. 콜카르는 누구나 {quest:855}을(를) 떨어뜨릴 수 있습니다. {area:386}은(는) 그 한가운데에 있고, 물가에 {object:3640}이(가) 있습니다. {npc:3425}도 같은 평원을 돌아다닙니다.",
+	["The Kolkar camps spread north-west of Regthar; every Kolkar can drop {quest:855}. The {area:386} lie in their middle, with Laden Mushrooms around the water. Savannah Prowlers roam the same plains."] = "",
 	["Wade into the pools to explore them"] = "웅덩이에 들어가 탐험하세요",
+	-- {area:386} Forgotten Pools
+	["The {area:386}"] = "",
 
 	-- Step 23: Witchwing harpies
 	["Witchwing harpies"] = "칼날바람하피",
-	-- {area:383} The Dry Hills · {area:386} The Forgotten Pools
+	-- {area:383} Dry Hills · {area:386} Forgotten Pools
 	["The harpies nest in the {area:383} north-west of the {area:386}; any of them can drop a talon."] = "하피는 {area:386} 북서쪽 {area:383}에 둥지를 틀고 있습니다. 누구든 발톱을 떨어뜨릴 수 있습니다.",
 
 	-- Step 24: The Sludge Fen
-	-- {area:382} The Sludge Fen · {object:4141} Control Console · {item:5089} Console Key · {npc:3471} Tinkerer Sniggles
-	["Head east to the Venture Co. research site west of the {area:382}. Use the {object:4141}, close the three valves around the drill, use the console again, then take the {item:5089} from {npc:3471}."] = "동쪽으로 {area:382} 서쪽의 투자개발회사 연구 현장으로 가세요. {object:4141}을(를) 사용하고, 시추기 주변의 밸브 세 개를 잠근 뒤, 다시 제어판을 사용하고 {npc:3471}에게서 {item:5089}을(를) 가져가세요.",
+	-- {object:4141} Control Console · {item:5089} Console Key · {npc:3471} Tinkerer Sniggles
+	["Head east to the Venture Co. research site west of the Sludge Fen. Use the {object:4141}, close the three valves around the drill, use the console again, then take the {item:5089} from {npc:3471}."] = "",
 
 	-- Step 25: Echeyakee
-	-- {quest:881} Echeyakee · {area:382} The Sludge Fen · {area:380} The Crossroads · {area:392} Ratchet
-	["{quest:881}'s lair lies south of the {area:382}, north-east of the {area:380}. Use the horn Sergra gave you there to call the white lion out. Then hearth to {area:392}."] = "{quest:881}의 굴은 {area:382} 남쪽, {area:380} 북동쪽에 있습니다. 그곳에서 셀그라가 준 뿔피리를 불어 흰 사자를 불러내세요. 그런 다음 {area:392}(으)로 귀환하세요.",
+	-- {quest:881} Echeyakee · {area:392} Ratchet
+	["{quest:881}'s lair lies south of the Sludge Fen, north-east of the Crossroads. Use the horn Sergra gave you there to call the white lion out. Then hearth to {area:392}."] = "",
 
 	-- Step 27: The Disruption Ends
-	-- {area:380} The Crossroads · {npc:3438} Kreenig Snarlsnout
-	["On the way back to the {area:380}, the Razormane camp again: Geomancers and Defenders hold its eastern half; {npc:3438} walks among them."] = "{area:380}(으)로 돌아가는 길에 다시 서슬갈기일족 야영지로: 흙점쟁이와 파수병이 동쪽 절반을 차지하고 있으며, {npc:3438}이(가) 그 사이를 걸어다닙니다.",
+	-- {npc:3438} Kreenig Snarlsnout
+	["On the way back to the Crossroads, the Razormane camp again: Geomancers and Defenders hold its eastern half; {npc:3438} walks among them."] = "",
 
 	-- Step 29: The Stagnant Oasis
-	-- {area:380} The Crossroads
-	["The oasis lies south-east of the {area:380}. Test the seeds at the bubbling fissure in the middle of the water."] = "오아시스는 {area:380} 남동쪽에 있습니다. 물 한가운데 거품이 이는 균열에서 씨앗을 시험하세요.",
+	["The oasis lies south-east of the Crossroads. Test the seeds at the bubbling fissure in the middle of the water."] = "",
 
 	-- Step 30: Raptor Grounds
 	-- {area:1697} Raptor Grounds
@@ -117,29 +114,43 @@ return {
 	["The {area:1697} lie south-west of the oasis. Sunscale Scytheclaws drop the feathers you use on the three nests."] = "{area:1697}은(는) 오아시스 남서쪽에 있습니다. {npc:3256}이(가) 떨어뜨리는 깃털을 둥지 세 곳에 사용하세요.",
 
 	-- Step 32: Lushwater Oasis
-	-- {area:387} Lushwater Oasis · {area:380} The Crossroads
+	-- {area:387} Lushwater Oasis
 	-- plural, as words: Oasis Snapjaws = {npc:3461} Oasis Snapjaw
-	["Oasis Snapjaws crowd the water of {area:387}, south-west of the {area:380}."] = "{npc:3461}이(가) {area:380} 남서쪽 {area:387}의 물에 가득합니다.",
+	["Oasis Snapjaws crowd the water of {area:387}, south-west of the Crossroads."] = "",
 
 	-- Step 34: Wenikee Boltbucket
-	-- {area:1703} The Mor'shan Rampart
+	-- {area:1703} Mor'shan Rampart
 	["Follow the road north to the {area:1703}; Wenikee stands just south of it."] = "길을 따라 북쪽 {area:1703}까지 가세요. 웨니키는 그 바로 남쪽에 서 있습니다.",
 
 	-- Step 35: Nugget Slugs
-	-- {area:382} The Sludge Fen
 	-- plural, as words: Tool Buckets = {object:161752} Tool Bucket
-	["The Tool Buckets sit around the Venture Co. camp in the {area:382}, east of Wenikee."] = "{object:161752}은(는) 웨니키 동쪽 {area:382}의 투자개발회사 야영지 주변에 있습니다.",
+	["The Tool Buckets sit around the Venture Co. camp in the Sludge Fen, east of Wenikee."] = "",
 
 	-- Step 37: Witchwing Slayers
 	-- plural, as words: Witchwing Slayers = {npc:3278} Witchwing Slayer
 	["Witchwing Slayers"] = "{npc:3278}",
-	-- {area:383} The Dry Hills
+	-- {area:383} Dry Hills
 	["The Slayers hold the western end of the {area:383}, past the harpies you fought before; they drop the rings."] = "암살자는 전에 싸운 하피들 너머 {area:383} 서쪽 끝을 차지하고 있으며, 반지를 떨어뜨립니다.",
-	-- {area:383} The Dry Hills · {zone:1413} The Barrens
+	-- {area:383} Dry Hills · {zone:1413} The Barrens
 	-- plural, as words: Witchwing Slayers = {npc:3278} Witchwing Slayer
 	["grind on Witchwing Slayers at the {area:383}, {zone:1413}"] = "{zone:1413} {area:383}에서 {npc:3278} 사냥",
 
 	-- Step 38: The Crossroads
-	-- {area:380} The Crossroads
-	["Back to the {area:380}; the next guide starts here."] = "{area:380}(으)로 돌아가세요. 다음 가이드는 여기서 시작합니다.",
+	["Back to the Crossroads; the next guide starts here."] = "",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Back to the {area:380}"] = "{area:380}(으)로 돌아가기",
+	-- ["Back to the {area:380}; the next guide starts here."] = "{area:380}(으)로 돌아가세요. 다음 가이드는 여기서 시작합니다.",
+	-- ["Head east to the Venture Co. research site west of the {area:382}. Use the {object:4141}, close the three valves around the drill, use the console again, then take the {item:5089} from {npc:3471}."] = "동쪽으로 {area:382} 서쪽의 투자개발회사 연구 현장으로 가세요. {object:4141}을(를) 사용하고, 시추기 주변의 밸브 세 개를 잠근 뒤, 다시 제어판을 사용하고 {npc:3471}에게서 {item:5089}을(를) 가져가세요.",
+	-- ["Oasis Snapjaws crowd the water of {area:387}, south-west of the {area:380}."] = "{npc:3461}이(가) {area:380} 남서쪽 {area:387}의 물에 가득합니다.",
+	-- ["On the way back to the {area:380}, the Razormane camp again: Geomancers and Defenders hold its eastern half; {npc:3438} walks among them."] = "{area:380}(으)로 돌아가는 길에 다시 서슬갈기일족 야영지로: 흙점쟁이와 파수병이 동쪽 절반을 차지하고 있으며, {npc:3438}이(가) 그 사이를 걸어다닙니다.",
+	-- ["Plainstriders and Sunscale raptors roam the plains all around the {area:380}."] = "초원타조와 열대초원랩터가 {area:380} 주변 평원 곳곳을 돌아다닙니다.",
+	-- ["Regthar stands at the Kolkar watch post just west of the {area:380}."] = "렉타르는 {area:380} 바로 서쪽의 콜카르 감시초소에 서 있습니다.",
+	-- ["The Kolkar camps spread north-west of Regthar; every Kolkar can drop {quest:855}. {area:386} lie in their middle, with Laden Mushrooms around the water. Savannah Prowlers roam the same plains."] = "콜카르 야영지는 렉타르 북서쪽으로 퍼져 있습니다. 콜카르는 누구나 {quest:855}을(를) 떨어뜨릴 수 있습니다. {area:386}은(는) 그 한가운데에 있고, 물가에 {object:3640}이(가) 있습니다. {npc:3425}도 같은 평원을 돌아다닙니다.",
+	-- ["The Tool Buckets sit around the Venture Co. camp in the {area:382}, east of Wenikee."] = "{object:161752}은(는) 웨니키 동쪽 {area:382}의 투자개발회사 야영지 주변에 있습니다.",
+	-- ["The oasis lies south-east of the {area:380}. Test the seeds at the bubbling fissure in the middle of the water."] = "오아시스는 {area:380} 남동쪽에 있습니다. 물 한가운데 거품이 이는 균열에서 씨앗을 시험하세요.",
+	-- ["Walk back up the road to the {area:380}. Savannah Prowlers hunt along it and on the plains west of town: finish the claws before you hand them in."] = "길을 따라 {area:380}까지 걸어 돌아가세요. {npc:3425}이(가) 길가와 마을 서쪽 평원에서 사냥합니다. 제출하기 전에 발톱을 마저 모으세요.",
+	-- ["Water Seekers, Thornweavers and Hunters hold the camp east of the {area:380}. The supply crates sit at its eastern end. Warriors: the {object:58369} stands in the camp. Shamans: the quilboar drop the {item:5026}. Kill Savannah Prowlers you pass for their claws."] = "서슬갈기일족 풍수사, 가시마술사, 사냥꾼이 {area:380} 동쪽 야영지를 차지하고 있습니다. 보급품 상자는 야영지 동쪽 끝에 있습니다. 전사: {object:58369}은(는) 야영지 안에 있습니다. 주술사: 멧돼지인간이 {item:5026}을(를) 떨어뜨립니다. 지나가며 {npc:3425}을(를) 처치해 발톱을 모으세요.",
+	-- ["{npc:5907} stands on the ridge north of the Razormane camp, east of the {area:380}."] = "{npc:5907}은(는) {area:380} 동쪽, 서슬갈기일족 야영지 북쪽 능선에 서 있습니다.",
+	-- ["{quest:881}'s lair lies south of the {area:382}, north-east of the {area:380}. Use the horn Sergra gave you there to call the white lion out. Then hearth to {area:392}."] = "{quest:881}의 굴은 {area:382} 남쪽, {area:380} 북동쪽에 있습니다. 그곳에서 셀그라가 준 뿔피리를 불어 흰 사자를 불러내세요. 그런 다음 {area:392}(으)로 귀환하세요.",
 }

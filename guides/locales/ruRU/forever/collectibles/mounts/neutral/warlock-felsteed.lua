@@ -9,8 +9,8 @@ return {
 	["Warlock Felsteed"] = "Конь Скверны чернокнижника",
 	["Your own mount at 40, summoned anywhere, with no gold spent on a riding horse."] = "Собственный транспорт на 40-м уровне: призывается где угодно, без трат на ездового коня.",
 
-	-- Step 1: Summon Felsteed (Stormwind City)
-	-- {npc:461} Demisette Cloyce · {object:2164} The Slaughtered Lamb · {object:2101} Mage Quarter · {npc:6251} Strahad Farsan · {area:392} Ratchet
+	-- Step 1: Summon Felsteed (Stormwind)
+	-- {npc:461} Demisette Cloyce · {object:2164} Slaughtered Lamb · {object:2101} Mage Quarter · {npc:6251} Strahad Farsan · {area:392} Ratchet
 	["At 40 {npc:461} in the {object:2164}, in the {object:2101}, sends you to {npc:6251} in {area:392}."] = "На 40-м уровне {npc:461} ({object:2164}, {object:2101}) отправит вас сюда: {npc:6251} ({area:392}).",
 
 	-- Step 2: Summon Felsteed (Ironforge)
@@ -28,6 +28,6 @@ return {
 	-- Step 5: Strahad Farsan in Ratchet
 	-- {npc:6251} Strahad Farsan · {area:392} Ratchet
 	["{npc:6251} in {area:392}"] = "{npc:6251} ({area:392})",
-	-- {area:392} Ratchet · {zone:1413} The Barrens · {area:380} The Crossroads · {area:35} Booty Bay · {npc:6251} Strahad Farsan · {quest:3631} Summon Felsteed
+	-- {area:392} Ratchet · {zone:1413} Barrens · {area:380} Crossroads · {area:35} Booty Bay · {npc:6251} Strahad Farsan · {quest:3631} Summon Felsteed
 	["{area:392} is on the {zone:1413} coast east of the {area:380}; from the Alliance side, take the boat from {area:35}. {npc:6251}'s follow-up teaches {quest:3631}."] = "{area:392} – на побережье зоны {zone:1413} к востоку от места {area:380}; со стороны Альянса плывите на корабле отсюда: {area:35}. Следующее задание (это {npc:6251}) обучает: {quest:3631}.",
 }

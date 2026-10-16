@@ -9,8 +9,8 @@ return {
 	-- {npc:6266} Menara Voidrender
 	["A rare cloth robe for your 30s, which {npc:6266} makes from the parts you bring her."] = "Eine seltene Stoffrobe für deine 30er, die {npc:6266} aus den Teilen fertigt, die du ihr bringst.",
 
-	-- Step 1: In Search of Menara Voidrender (Stormwind City)
-	-- {npc:461} Demisette Cloyce · {object:2164} The Slaughtered Lamb · {object:2101} Mage Quarter · {npc:6266} Menara Voidrender · {area:392} Ratchet
+	-- Step 1: In Search of Menara Voidrender (Stormwind)
+	-- {npc:461} Demisette Cloyce · {object:2164} Slaughtered Lamb · {object:2101} Mage Quarter · {npc:6266} Menara Voidrender · {area:392} Ratchet
 	["At 31 {npc:461} in the {object:2164}, in the {object:2101}, sends you to {npc:6266} in {area:392}."] = "Auf Stufe 31 schickt dich {npc:461} im {object:2164} im {object:2101} zu {npc:6266} in {area:392}.",
 
 	-- Step 2: In Search of Menara Voidrender (Ironforge)
@@ -43,9 +43,9 @@ return {
 	-- Step 9: Desolace demons
 	-- {zone:1443} Desolace
 	["{zone:1443} demons"] = "Dämonen in {zone:1443}",
-	-- {area:603} Sargeron · {zone:1443} Desolace · {area:602} Mannoroc Coven
+	-- {area:603} Sargeron · {zone:1443} Desolace
 	-- plural, as words: Lesser Infernals = {npc:4676} Lesser Infernal
-	["The Hatefury satyrs of {area:603}, in north-eastern {zone:1443}, carry the blood; the Lesser Infernals of {area:602}, in the south, the stone."] = "Die Zornsäer-Satyrn von {area:603} im Nordosten von {zone:1443} tragen das Blut; die Geringen Höllenbestien vom {area:602} im Süden den Stein.",
+	["The Hatefury satyrs of {area:603}, in north-eastern {zone:1443}, carry the blood; the Lesser Infernals of Mannoroc Coven, in the south, the stone."] = "",
 	["Vials of Hatefury Blood"] = "Phiolen mit Zornsäerblut",
 
 	-- Step 10: Menara again
@@ -64,4 +64,7 @@ return {
 	-- {item:6265} Soul Shard
 	["Back to Menara with the thread, the coal and a {item:6265}. Wait while she completes the robe, then speak to her again."] = "Zurück zu Menara mit dem Faden, der Kohle und einem {item:6265}. Warte, während sie die Robe fertigstellt, und sprich sie dann erneut an.",
 	["Wait for the robe"] = "Auf die Robe warten",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["The Hatefury satyrs of {area:603}, in north-eastern {zone:1443}, carry the blood; the Lesser Infernals of {area:602}, in the south, the stone."] = "Die Zornsäer-Satyrn von {area:603} im Nordosten von {zone:1443} tragen das Blut; die Geringen Höllenbestien vom {area:602} im Süden den Stein.",
 }

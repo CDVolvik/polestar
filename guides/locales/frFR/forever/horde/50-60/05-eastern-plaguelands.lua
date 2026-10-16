@@ -32,16 +32,16 @@ return {
 
 	-- Step 6: Hameya's scroll
 	["Hameya's scroll"] = "Le parchemin d'Hameya",
-	-- {area:2261} The Undercroft · {area:2260} The Marris Stead
+	-- {area:2261} Undercroft · {area:2260} Marris Stead
 	["A torn scroll lies at the entrance of the {area:2261}, the crypt south of the {area:2260}."] = "Un Parchemin déchiré se trouve à l'entrée de {area:2261}, la crypte au sud de {area:2260}.",
 
 	-- Step 7: Nathanos Blightcaller
-	-- {npc:15193} The Banshee Queen · {area:2260} The Marris Stead
+	-- {npc:15193} The Banshee Queen · {area:2260} Marris Stead
 	["{npc:15193}'s champion holds the {area:2260} farmhouse."] = "Le champion de {npc:15193} occupe la ferme de {area:2260}.",
 
 	-- Step 8: The western hills
 	["The western hills"] = "Les collines de l'ouest",
-	-- {area:2260} The Marris Stead · {area:2627} Terrordale
+	-- {area:2260} Marris Stead · {area:2627} Terrordale
 	-- plural, as words: Plaguehound Runts = {npc:8596} Plaguehound Runt · Plaguebats = {npc:8600} Plaguebat · Carrion Grubs = {npc:8603} Carrion Grub
 	["Plaguehound Runts and Plaguebats roam the hills north of the {area:2260}, Carrion Grubs crawl among them; work north toward {area:2627}."] = "Les Chiens pestiférés chétifs ({npc:8596}) et les Chauves-souris pestiférées ({npc:8600}) parcourent les collines au nord de {area:2260}, des Larves putrides ({npc:8603}) rampent parmi eux ; progressez vers le nord en direction de {area:2627}.",
 
@@ -68,12 +68,12 @@ return {
 	["{item:15447} spoils within ten minutes: kill the town's Scourge quickly and grind the seven pieces with the {item:15454} at once."] = "La {item:15447} se gâte en dix minutes : tuez vite le Fléau de la ville et broyez aussitôt les sept morceaux avec le {item:15454}.",
 
 	-- Step 14: Nathanos Blightcaller
-	-- {area:2260} The Marris Stead
+	-- {area:2260} Marris Stead
 	["Ride west to the {area:2260}."] = "Allez à l'ouest jusqu'à {area:2260}.",
 
 	-- Step 15: Hameya's mound
 	["Hameya's mound"] = "Le monticule d'Hameya",
-	-- {object:177675} Mound of Dirt · {area:2261} The Undercroft
+	-- {object:177675} Mound of Dirt · {area:2261} Undercroft
 	["The {object:177675} is just behind the {area:2261}."] = "Le {object:177675} se trouve juste derrière {area:2261}.",
 
 	-- Step 17: Fly to Thunder Bluff

@@ -58,10 +58,13 @@ return {
 	["{npc:14524}: Lok'delar in Classic"] = "{npc:14524}: Лок-Делар в Classic",
 
 	-- Step 10: Azuregos
-	["Azuregos"] = "Азурегос",
-	-- {item:18704} Mature Blue Dragon Sinew · {zone:1447} Azshara · {zone:1452} Winterspring
-	["Hastat's quiver needs the {item:18704}. Azuregos, a world boss for a raid, roams the south of {zone:1447} and drops it most of the time; the Cobalt dragonkin of {zone:1452} drop it very rarely. Skip the rest of this guide if you do not want the quiver."] = "Для колчана Хастата нужен предмет {item:18704}. Азурегос, мировой босс для рейда, бродит на юге зоны {zone:1447} и чаще всего оставляет его; синие дракониды зоны {zone:1452} оставляют его очень редко. Пропустите остаток этого гайда, если колчан вам не нужен.",
-	-- {item:18704} Mature Blue Dragon Sinew
-	["{item:18704}, from Azuregos"] = "{item:18704} с Азурегоса",
+	-- {item:18704} Mature Blue Dragon Sinew · {npc:6109} Azuregos · {zone:1447} Azshara · {zone:1452} Winterspring
+	["Hastat's quiver needs the {item:18704}. {npc:6109}, a world boss for a raid, roams the south of {zone:1447} and drops it most of the time; the Cobalt dragonkin of {zone:1452} drop it very rarely. Skip the rest of this guide if you do not want the quiver."] = "",
+	-- {item:18704} Mature Blue Dragon Sinew · {npc:6109} Azuregos
+	["{item:18704}, from {npc:6109}"] = "",
 
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Azuregos"] = "Азурегос",
+	-- ["Hastat's quiver needs the {item:18704}. Azuregos, a world boss for a raid, roams the south of {zone:1447} and drops it most of the time; the Cobalt dragonkin of {zone:1452} drop it very rarely. Skip the rest of this guide if you do not want the quiver."] = "Для колчана Хастата нужен предмет {item:18704}. Азурегос, мировой босс для рейда, бродит на юге зоны {zone:1447} и чаще всего оставляет его; синие дракониды зоны {zone:1452} оставляют его очень редко. Пропустите остаток этого гайда, если колчан вам не нужен.",
+	-- ["{item:18704}, from Azuregos"] = "{item:18704} с Азурегоса",
 }

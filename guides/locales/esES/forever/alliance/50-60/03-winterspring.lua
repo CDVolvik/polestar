@@ -128,8 +128,7 @@ return {
 	["Free Darrowshire Spirits: talk to them"] = "Libera espíritus de Villa Darrow ({npc:11064}): habla con ellos",
 
 	-- Step 30: The Undercroft
-	-- {area:2261} The Undercroft
-	["Zaeldarr is elite: grouping up is advised. He waits at the bottom of the {area:2261}, the crypt in the south-west of the zone."] = "Zaeldarr es élite: se recomienda ir en grupo. Espera al fondo de {area:2261}, la cripta del suroeste de la zona.",
+	["Zaeldarr is elite: grouping up is advised. He waits at the bottom of the Undercroft, the crypt in the south-west of the zone."] = "",
 
 	-- Step 31: Augustus the Touched
 	-- {area:2627} Terrordale
@@ -142,4 +141,5 @@ return {
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Free {area:2262} Spirits: talk to them"] = "Libera a los Espíritus de {area:2262}: habla con ellos",
 	-- ["The Scourge around {area:2264}, west of the chapel, drop both kinds of Scourgestone; {area:2262} Spirits rise from them: talk to each one to free it."] = "La Plaga alrededor de {area:2264}, al oeste de la capilla, suelta ambos tipos de Piedra de la Plaga; de ellos surgen Espíritus de {area:2262}: habla con cada uno para liberarlo.",
+	-- ["Zaeldarr is elite: grouping up is advised. He waits at the bottom of the {area:2261}, the crypt in the south-west of the zone."] = "Zaeldarr es élite: se recomienda ir en grupo. Espera al fondo de {area:2261}, la cripta del suroeste de la zona.",
 }

@@ -10,7 +10,7 @@ return {
 	["Exploration: {zone:1414} 30-45"] = "탐험: {zone:1414} 30-45",
 
 	-- Step 1: Desolace (1/2)
-	-- {zone:1413} The Barrens · {zone:1443} Desolace · {zone:1445} Dustwallow Marsh
+	-- {zone:1413} Barrens · {zone:1443} Desolace · {zone:1445} Dustwallow Marsh
 	["Picks up west of the {zone:1413}, in {zone:1443}, and ends in {zone:1445}. 15 areas to discover here, levels 30-39."] = "{zone:1413} 서쪽의 {zone:1443}에서 이어지며 {zone:1445}에서 끝납니다. 이곳에서 발견할 지역은 15곳, 30-39레벨입니다.",
 	["Exploring the entire world map on one character is a Forever Legacy Challenge (1 account-wide Legacy Point)."] = "한 캐릭터로 세계 지도 전체를 탐험하는 것은 Forever Legacy Challenge입니다(계정 공통 Legacy Point 1점).",
 	-- {zone:1442} Stonetalon Mountains · {zone:1443} Desolace · {area:608} Nijel's Point
@@ -35,7 +35,7 @@ return {
 	["16 areas to discover here, levels 41-60."] = "이곳에서 발견할 지역은 16곳, 41-60레벨입니다.",
 	-- {zone:1443} Desolace · {zone:1444} Feralas
 	["Go back into southern {zone:1443}; the road continues south into {zone:1444}."] = "{zone:1443} 남부로 돌아가십시오. 길은 남쪽 {zone:1444}(으)로 이어집니다.",
-	-- {area:1116} Feathermoon Stronghold · {area:1120} Sardor Isle · {area:1108} The Forgotten Coast
+	-- {area:1116} Feathermoon Stronghold · {area:1120} Sardor Isle · {area:1108} Forgotten Coast
 	["{area:1116} on {area:1120} is the Alliance town (boat from the {area:1108})."] = "{area:1120}의 {area:1116}은(는) 얼라이언스 마을입니다({area:1108}에서 배).",
 	-- {area:1099} Camp Mojache
 	["{area:1099} in the east is the Horde town."] = "동쪽의 {area:1099}은(는) 호드 마을입니다.",
@@ -44,12 +44,14 @@ return {
 	-- {area:1099} Camp Mojache
 	["Flight path here: {area:1099} (Shyn)."] = "이곳의 비행 경로: {area:1099} (쉬인).",
 	["level 60 area, well above this guide's range"] = "60레벨 지역으로, 이 가이드 범위보다 훨씬 높습니다",
+	-- {area:1108} Forgotten Coast
+	["The {area:1108}"] = "",
 
 	-- Step 6: Dustwallow Marsh
 	["7 areas to discover here, levels 36-61."] = "이곳에서 발견할 지역은 7곳, 36-61레벨입니다.",
 	-- {area:150} Menethil Harbor · {area:513} Theramore Isle
 	["Fly to Theramore (or take the boat from {area:150}); {area:513} is the Alliance town."] = "테라모어 섬으로 비행하십시오(또는 {area:150}에서 배를 타십시오). {area:513}은(는) 얼라이언스 마을입니다.",
-	-- {zone:1445} Dustwallow Marsh · {zone:1413} The Barrens · {area:496} Brackenwall Village
+	-- {zone:1445} Dustwallow Marsh · {zone:1413} Barrens · {area:496} Brackenwall Village
 	["{zone:1445} is east of the southern {zone:1413}; {area:496} in the north-west is the Horde town."] = "{zone:1445}은(는) {zone:1413} 남부의 동쪽에 있습니다. 북서쪽의 {area:496}은(는) 호드 마을입니다.",
 	["Flight path here: Theramore (Baldruc)."] = "이곳의 비행 경로: 테라모어 섬 (발드럭).",
 	-- {area:496} Brackenwall Village

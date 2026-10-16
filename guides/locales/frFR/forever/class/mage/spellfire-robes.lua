@@ -35,7 +35,7 @@ return {
 	["Humanoids drop {item:2589}; the Undercity Auction House sells it."] = "Les humanoïdes lâchent {item:2589} ; l'hôtel des ventes de Fossoyeuse en vend.",
 
 	-- Step 7: Ambermill
-	-- {zone:1458} Undercity · {zone:1421} Silverpine Forest · {area:279} Dalaran · {area:233} Ambermill · {area:228} The Sepulcher · {npc:1867} Dalaran Apprentice · {item:7293} Dalaran Mana Gem
+	-- {zone:1458} Undercity · {zone:1421} Silverpine Forest · {area:279} Dalaran · {area:233} Ambermill · {area:228} Sepulcher · {npc:1867} Dalaran Apprentice · {item:7293} Dalaran Mana Gem
 	["Leave the {zone:1458} and follow the road south through {zone:1421}. The {area:279} mages hold {area:233}, south-east of the {area:228}; every {npc:1867}, Mage, Protector, Warder, Conjuror, Watcher and Wizard can drop a {item:7293}."] = "Quittez {zone:1458} et suivez la route vers le sud à travers {zone:1421}. Les mages de {area:279} tiennent {area:233}, au sud-est de {area:228} ; chaque {npc:1867}, Mage, Protecteur, Garde, Conjurateur, Gardien et Sorcier de Dalaran peut lâcher une {item:7293}.",
 
 	-- Step 8: Josef Gregorian

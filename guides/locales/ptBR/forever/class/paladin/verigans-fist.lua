@@ -9,7 +9,7 @@ return {
 	["The Alliance paladin's rare two-handed mace for the 20s, with a shield on the way."] = "A maça de duas mãos rara do paladino da Aliança para os 20, com um escudo no caminho.",
 
 	-- Step 1: The Tome of Valor (Ironforge)
-	-- {npc:6179} Tiza Battleforge · {object:32362} The Mystic Ward · {item:6776} Tome of Valor · {npc:6171} Duthorian Rall · {zone:1453} Stormwind City · {zone:1455} Ironforge
+	-- {npc:6179} Tiza Battleforge · {object:32362} Mystic Ward · {item:6776} Tome of Valor · {npc:6171} Duthorian Rall · {zone:1453} Stormwind · {zone:1455} Ironforge
 	["At 20 {npc:6179} in the {object:32362} gives you the {item:6776}; it sends you to {npc:6171} in {zone:1453}'s Cathedral of Light. Take the tram from {zone:1455} to {zone:1453}."] = "No nível 20, {npc:6179} na {object:32362} lhe dá o {item:6776}; ele manda você a {npc:6171} na Catedral da Luz de {zone:1453}. Pegue o metrô de {zone:1455} até {zone:1453}.",
 
 	-- Step 2: The Tome of Valor

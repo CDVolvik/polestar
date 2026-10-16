@@ -12,7 +12,7 @@ return {
 	["The Human and Dwarf priest spells: {quest:5634} at 10, {quest:5641} for Dwarves at 20."] = "인간과 드워프 사제 주문: 10레벨에 {quest:5634}, 드워프는 20레벨에 {quest:5641}.",
 
 	-- Step 1: Desperate Prayer
-	-- {npc:11406} High Priest Rohan · {object:32386} Hall of Mysteries · {zone:1455} Ironforge · {object:32362} The Mystic Ward · {npc:376} High Priestess Laurena · {zone:1453} Stormwind City · {area:2257} Deeprun Tram
+	-- {npc:11406} High Priest Rohan · {object:32386} Hall of Mysteries · {zone:1455} Ironforge · {object:32362} Mystic Ward · {npc:376} High Priestess Laurena · {zone:1453} Stormwind · {area:2257} Deeprun Tram
 	["At 10, go to {npc:11406} in the {object:32386}, in {zone:1455}'s {object:32362}. Forever's quest text names Rohan, but the quest data has {npc:376} in {zone:1453}'s Cathedral of Light take it: try Rohan first, then Laurena (the {area:2257} links the cities)."] = "10레벨에 {zone:1455} {object:32362}의 {object:32386}에 있는 {npc:11406}에게 가십시오. Forever의 퀘스트 글에는 로한이 나오지만, 퀘스트 데이터상으로는 {zone:1453} 빛의 대성당의 {npc:376}이(가) 받습니다. 먼저 로한에게 시도한 뒤 로레나에게 가십시오({area:2257}이(가) 두 도시를 잇습니다).",
 
 	-- Step 2: High Priestess Laurena
@@ -20,6 +20,6 @@ return {
 	["If Rohan did not take it: {npc:376} is in the Cathedral of Light. Take the {area:2257} from {object:171524}."] = "로한이 받지 않았다면: {npc:376}은(는) 빛의 대성당에 있습니다. {object:171524}에서 {area:2257}을(를) 타십시오.",
 
 	-- Step 3: Chastise
-	-- {npc:11406} High Priest Rohan · {quest:5641} Chastise · {npc:376} High Priestess Laurena · {zone:1453} Stormwind City · {npc:11401} Priestess Alathea · {zone:1457} Darnassus
+	-- {npc:11406} High Priest Rohan · {quest:5641} Chastise · {npc:376} High Priestess Laurena · {zone:1453} Stormwind · {npc:11401} Priestess Alathea · {zone:1457} Darnassus
 	["At 20, {npc:11406} teaches {quest:5641}. {npc:376} in {zone:1453} and {npc:11401} in {zone:1457} send you to him with a quest of the same name."] = "20레벨에 {npc:11406}이(가) {quest:5641}을(를) 가르칩니다. {zone:1453}의 {npc:376}과(와) {zone:1457}의 {npc:11401}이(가) 같은 이름의 퀘스트로 그에게 보냅니다.",
 }

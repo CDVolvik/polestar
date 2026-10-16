@@ -27,13 +27,13 @@ return {
 	["Twitching Antennae from the silithid"] = "Дергающиеся усики с силитидов",
 
 	-- Step 5: Thun'grim Firegaze
-	-- {area:380} The Crossroads · {quest:1838} Brutal Armor
+	-- {area:380} Crossroads · {quest:1838} Brutal Armor
 	["Thun'grim camps beside the road east of the {area:380}. {quest:1838} is a level 30 quest; you can take it now and gather for it on the way."] = "Тун'грим разбил лагерь у дороги к востоку от места {area:380}. {quest:1838} — задание 30-го уровня; можно взять его сейчас и собирать нужное по пути.",
 
 	-- Step 6: Roogug in Razorfen Kraul
 	-- {area:1717} Razorfen Kraul
 	["Roogug in {area:1717}"] = "Ругуг. Локация: {area:1717}",
-	-- {area:1717} Razorfen Kraul · {zone:1413} The Barrens · {item:6841} Vial of Phlogiston
+	-- {area:1717} Razorfen Kraul · {zone:1413} Barrens · {item:6841} Vial of Phlogiston
 	["Roogug is an elite quilboar inside {area:1717}, the dungeon at the south end of the {zone:1413}; he drops the {item:6841}. {area:1717} is a dungeon: grouping up is advised."] = "Ругуг — элитный свинобраз в подземелье {area:1717} на южной окраине зоны {zone:1413}; он оставляет {item:6841}. {area:1717} — подземелье: лучше собрать группу.",
 	-- {item:6841} Vial of Phlogiston
 	["{item:6841}, from Roogug"] = "{item:6841} с Ругуга",
@@ -66,7 +66,7 @@ return {
 	["Iron Bars: {npc:8673}"] = "Железные слитки: {npc:8673}",
 
 	-- Step 10: Brutal Hauberk
-	-- {area:380} The Crossroads · {quest:1848} Brutal Hauberk
+	-- {area:380} Crossroads · {quest:1848} Brutal Hauberk
 	["Back to Thun'grim beside the road east of the {area:380}. {quest:1848} is the first piece; he then sends you to three crafters for the rest."] = "Вернитесь к Тун'гриму у дороги к востоку от места {area:380}. {quest:1848} — первая часть; затем он отправляет вас к трем мастерам за остальным.",
 
 	-- Step 11: Ula'elek
@@ -76,7 +76,8 @@ return {
 	-- Step 12: Satyr Hooves
 	-- {area:429} Xavian · {zone:1440} Ashenvale
 	["The {area:429} satyrs camp in eastern {zone:1440}, with the Felmusk satyrs further west; both drop Uncloven Satyr Hooves."] = "Сатиры ({area:429}) живут на востоке зоны {zone:1440}, а сатиры из племени Мускуса Скверны – западнее; с тех и других падают нераздвоенные копыта сатира.",
-	["Uncloven Satyr Hooves"] = "Нераздвоенные копыта сатира",
+	-- {quest:1842} Satyr Hooves
+	["Uncloven {quest:1842}"] = "",
 
 	-- Step 15: Chimaeric Horn
 	-- {npc:6167} Chimaera Matriarch · {item:6840} Galvanized Horn
@@ -96,4 +97,6 @@ return {
 	-- plural, as words: Sturdy Dragonmaw Shinbones = {item:7134} Sturdy Dragonmaw Shinbone
 	["Sturdy Dragonmaw Shinbones"] = "Прочные берцовые кости Драконьей Пасти",
 
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Uncloven Satyr Hooves"] = "Нераздвоенные копыта сатира",
 }

@@ -31,7 +31,7 @@ return {
 	["The Crazed and Withered Ancients north of the moonwell carry the {item:5475}; the worn chest it opens stands among them."] = "月井北邊的瘋狂的古樹和乾枯的古樹帶著{item:5475}；它能打開的破舊箱子就在它們之間。",
 
 	-- Step 6: The Howling Vale
-	-- {area:419} The Howling Vale
+	-- {area:419} Howling Vale
 	["Take the tunnel into the {area:419}; the tome lies in the ruins at its west end."] = "穿過隧道進入{area:419}；書在山谷西端的廢墟裡。",
 
 	-- Step 8: Anilia
@@ -39,9 +39,8 @@ return {
 	["Follow the road east to the satyr camps of {area:429}; {npc:3920} hides at their edge."] = "沿著道路向東前往{area:429}的薩特營地；{npc:3920}躲在營地邊緣。",
 
 	-- Step 9: Geltharis
-	["Geltharis"] = "加薩里斯",
-	-- {area:429} Xavian
-	["Geltharis leads the {area:429} satyrs; he carries the branch."] = "加薩里斯率領{area:429}的薩特；樹枝在他身上。",
+	-- {npc:4619} Geltharis · {area:429} Xavian
+	["{npc:4619} leads the {area:429} satyrs; he carries the branch."] = "",
 
 	-- Step 10: Satyrnaar
 	-- {object:19901} Circle of Imprisonment · {area:430} Satyrnaar
@@ -108,4 +107,8 @@ return {
 	-- Step 35: Deepwater Tavern
 	-- {npc:5082} Vincent Hyal · {npc:4963} Mikhail · {npc:1480} Caitlin Grassman
 	["{npc:5082}, {npc:4963} and Tapoke Jahn are all at Menethil's inn; Tapoke fights you when you talk to {npc:4963}, but gives up once beaten. {npc:1480} stands a short walk north-east of the inn."] = "{npc:5082}、{npc:4963}和塔伯克·賈恩都在米奈希爾的旅店；你和{npc:4963}說話時塔伯克會攻擊你，但被打敗後就會投降。{npc:1480}站在旅店東北方不遠處。",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Geltharis"] = "加薩里斯",
+	-- ["Geltharis leads the {area:429} satyrs; he carries the branch."] = "加薩里斯率領{area:429}的薩特；樹枝在他身上。",
 }

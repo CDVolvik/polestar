@@ -13,7 +13,7 @@ return {
 	-- Step 1: The Hunter's Charm (Alliance)
 	-- {quest:8151} The Hunter's Charm
 	["{quest:8151} (Alliance)"] = "{quest:8151} (Alliance)",
-	-- {npc:5516} Ulfir Ironbeard · {zone:1453} Stormwind City · {object:28027} Dwarven District · {npc:5116} Olmin Burningbeard · {zone:1455} Ironforge · {object:32390} Hall of Arms · {zone:1457} Darnassus
+	-- {npc:5516} Ulfir Ironbeard · {zone:1453} Stormwind · {object:28027} Dwarven District · {npc:5116} Olmin Burningbeard · {zone:1455} Ironforge · {object:32390} Hall of Arms · {zone:1457} Darnassus
 	["At 50 any Alliance hunter trainer offers it: {npc:5516} in {zone:1453}'s {object:28027}, {npc:5116} in {zone:1455}'s {object:32390} or Dorion in {zone:1457}' Cenarion Enclave."] = "Au niveau 50, tout maître des chasseurs de l'Alliance la propose : {npc:5516} dans {object:28027} de {zone:1453}, {npc:5116} dans {object:32390} d'{zone:1455} ou Dorion à l'Enclave cénarienne de {zone:1457}.",
 
 	-- Step 2: The Hunter's Charm (Horde)

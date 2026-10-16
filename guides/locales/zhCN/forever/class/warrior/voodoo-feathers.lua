@@ -10,7 +10,7 @@ return {
 	["Experience at 50, ending in the {area:1417}; Forever removed the Classic item choice."] = "50级时获取经验，最终前往{area:1417}；Forever 取消了经典版的物品选择。",
 	["Experience"] = "经验",
 
-	-- Step 1: A Troubled Spirit (Stormwind City)
+	-- Step 1: A Troubled Spirit (Stormwind)
 	-- {npc:5479} Wu Shen · {object:2100} Old Town · {npc:7572} Fallen Hero of the Horde · {zone:1435} Swamp of Sorrows
 	["At 50, {npc:5479} in {object:2100}, beside the Pig and Whistle, sends you to the {npc:7572} in the {zone:1435}."] = "50级时，{object:2100}酒馆旁的{npc:5479}会让你去{zone:1435}找{npc:7572}。",
 

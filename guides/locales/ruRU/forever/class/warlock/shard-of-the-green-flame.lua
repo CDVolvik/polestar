@@ -23,8 +23,8 @@ return {
 	["The Legashi satyrs of northern {zone:1447} carry {zone:1447}'s essence."] = "Сатиры из племени Легаши на севере зоны {zone:1447} несут эссенцию: {zone:1447}.",
 
 	-- Step 4: The Dark Portal
-	-- {area:72} The Dark Portal · {zone:1419} Blasted Lands
-	["The Felguard Sentries around the {area:72}, in southern {zone:1419}, carry its essence."] = "Караульные-стражи Скверны вокруг места {area:72} на юге зоны {zone:1419} несут его эссенцию.",
+	-- {zone:1419} Blasted Lands
+	["The Felguard Sentries around the Dark Portal, in southern {zone:1419}, carry its essence."] = "",
 
 	-- Step 6: Kroshius
 	-- {npc:14467} Kroshius · {area:1766} Shatter Scar Vale · {item:18626} Fel Fire
@@ -35,4 +35,6 @@ return {
 	-- Step 7: Back to Niby
 	["Back to Niby"] = "Вернитесь к Ниби",
 
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["The Felguard Sentries around the {area:72}, in southern {zone:1419}, carry its essence."] = "Караульные-стражи Скверны вокруг места {area:72} на юге зоны {zone:1419} несут его эссенцию.",
 }

@@ -12,7 +12,7 @@ return {
 	-- Step 1: A Simple Request (Alliance)
 	-- {quest:8233} A Simple Request
 	["{quest:8233} (Alliance)"] = "{quest:8233} (Alliance)",
-	-- {npc:918} Osborne the Night Man · {zone:1453} Stormwind City · {object:2100} Old Town · {zone:1457} Darnassus · {npc:5165} Hulfdan Blackbeard · {zone:1455} Ironforge
+	-- {npc:918} Osborne the Night Man · {zone:1453} Stormwind · {object:2100} Old Town · {zone:1457} Darnassus · {npc:5165} Hulfdan Blackbeard · {zone:1455} Ironforge
 	["At 50 {npc:918} in {zone:1453}'s {object:2100} has it; so do Syurna in {zone:1457} and {npc:5165} and Fenthwick in {zone:1455}."] = "Au niveau 50, {npc:918}, dans {object:2100} de {zone:1453}, la propose ; Syurna à {zone:1457}, {npc:5165} et Fenthwick à {zone:1455} aussi.",
 
 	-- Step 2: A Simple Request (Horde)

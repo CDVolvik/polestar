@@ -9,10 +9,10 @@ return {
 	["A robe or a blouse for Human and Gnome mages in their late 20s."] = "为二十多级的人类和侏儒法师准备的长袍或短衫。",
 
 	-- Step 1: Bink (Ironforge)
-	-- {npc:5144} Bink · {zone:1455} Ironforge · {object:32362} The Mystic Ward · {area:2257} Deeprun Tram · {object:171524} Tinker Town · {zone:1453} Stormwind City
+	-- {npc:5144} Bink · {zone:1455} Ironforge · {object:32362} Mystic Ward · {area:2257} Deeprun Tram · {object:171524} Tinker Town · {zone:1453} Stormwind
 	["{npc:5144} teaches mages in {zone:1455}'s {object:32362}. Take the {area:2257} from {object:171524} to {zone:1453} afterwards."] = "{npc:5144}在{zone:1455}的{object:32362}教导法师。之后从{object:171524}乘{area:2257}前往{zone:1453}。",
 
-	-- Step 2: Jennea Cannon (Stormwind City)
+	-- Step 2: Jennea Cannon (Stormwind)
 	-- {npc:5497} Jennea Cannon · {object:2101} Mage Quarter
 	["{npc:5497} stands in the Wizard's Sanctum, the tower of the {object:2101}."] = "{npc:5497}站在{object:2101}的法师塔里。",
 

@@ -56,7 +56,7 @@ return {
 	-- Step 9: Stranglethorn Vale (1/4)
 	-- {area:35} Booty Bay · {area:392} Ratchet
 	["27 areas to discover here, levels 30-50. {area:35} at the southern tip is a neutral goblin port with a boat to {area:392}."] = "Местностей для открытия: 27, уровни 30-50. {area:35} на южной оконечности – нейтральный гоблинский порт с кораблем сюда: {area:392}.",
-	-- {area:42} Darkshire · {zone:1453} Stormwind City · {zone:1431} Duskwood · {zone:1434} Stranglethorn Vale
+	-- {area:42} Darkshire · {zone:1453} Stormwind · {zone:1431} Duskwood · {zone:1434} Stranglethorn Vale
 	["Fly to {area:42} (or {zone:1453}) and take the road south out of {zone:1431} into northern {zone:1434}."] = "Летите сюда: {area:42} (или {zone:1453}) – и по дороге на юг из зоны {zone:1431} в северную часть зоны {zone:1434}.",
 	-- {zone:1454} Orgrimmar · {zone:1458} Undercity · {area:117} Grom'gol Base Camp
 	["Take the zeppelin from {zone:1454} or the {zone:1458} to {area:117}."] = "Сядьте на дирижабль ({zone:1454} или {zone:1458}). Цель: {area:117}.",

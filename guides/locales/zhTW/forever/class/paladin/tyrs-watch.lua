@@ -31,10 +31,10 @@ return {
 	["{npc:246378} leads the order from inside the keep; {npc:246393} stands beside it."] = "{npc:246378}在要塞內領導騎士團；{npc:246393}站在要塞旁。",
 
 	-- Step 6: Shadowvale
-	-- {quest:91317} The Tarnished · {area:16881} Shadowvale · {area:16616} Whispering Forest · {item:246213} Sturdy Lumber
-	["{quest:91317} hold the ruined village of {area:16881} in the {area:16616}, south-west of the keep. The {item:246213} is piled in the root cellar of one of its houses; Commander Rudolph Gelhardt walks among his Tarnished."] = "{quest:91317}佔據要塞西南方{area:16616}中的廢棄村莊{area:16881}。{item:246213}堆放在其中一間房子的地窖裡；魯道夫‧格爾哈特在他的晦暗者之間走動。",
-	-- {object:181686} Lumber Pile
-	["{object:181686}, in the root cellar"] = "{object:181686}，在地窖裡",
+	-- {quest:91317} The Tarnished · {area:16881} Shadowvale · {area:16616} Whispering Forest · {item:246213} Sturdy Lumber · {npc:259431} Rudolph Gelhardt
+	["{quest:91317} hold the ruined village of {area:16881} in the {area:16616}, south-west of the keep. The {item:246213} is piled in the root cellar of one of its houses; Commander {npc:259431} walks among his Tarnished."] = "",
+	-- {object:554626} Lumber Pile
+	["{object:554626}, in the root cellar"] = "",
 	-- plural, as words: Tarnished Drudges = {npc:259434} Tarnished Drudge
 	["Tarnished Drudges"] = "晦暗苦工",
 	-- plural, as words: Tarnished Zealots = {npc:259433} Tarnished Zealot
@@ -74,4 +74,8 @@ return {
 	-- Step 15: Redemption
 	-- {area:16602} Bandarion Keep · {spell:7328} Redemption
 	["Back to {area:16602}: Billmuth takes the plans, Danitha teaches you {spell:7328}."] = "回到{area:16602}：比爾穆收下計畫，丹妮莎教你{spell:7328}。",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["{object:181686}, in the root cellar"] = "{object:181686}，在地窖裡",
+	-- ["{quest:91317} hold the ruined village of {area:16881} in the {area:16616}, south-west of the keep. The {item:246213} is piled in the root cellar of one of its houses; Commander Rudolph Gelhardt walks among his Tarnished."] = "{quest:91317}佔據要塞西南方{area:16616}中的廢棄村莊{area:16881}。{item:246213}堆放在其中一間房子的地窖裡；魯道夫‧格爾哈特在他的晦暗者之間走動。",
 }

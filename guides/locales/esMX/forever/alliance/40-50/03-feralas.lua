@@ -6,7 +6,7 @@
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Feathermoon Stronghold
-	-- {area:608} Nijel's Point · {zone:1443} Desolace · {zone:1444} Feralas · {area:1108} The Forgotten Coast · {area:1120} Sardor Isle
+	-- {area:608} Nijel's Point · {zone:1443} Desolace · {zone:1444} Feralas · {area:1108} Forgotten Coast · {area:1120} Sardor Isle
 	["From Theramore, fly to {area:608} and ride south out of {zone:1443} into {zone:1444}; the road leads west to the {area:1108} dock, where the boat crosses to Feathermoon on {area:1120}."] = "Desde Theramore, vuela a {area:608} y cabalga al sur, de {zone:1443} a {zone:1444}; el camino lleva al oeste hasta el muelle de {area:1108}, donde el barco cruza a Plumaluna, en {area:1120}.",
 	-- {npc:7877} Latronicus Moonspear
 	["{npc:7877}, at the top of the stronghold"] = "{npc:7877}, en lo alto del bastión",
@@ -29,7 +29,7 @@ return {
 
 	-- Step 6: The courier's boat
 	["The courier's boat"] = "El bote del mensajero",
-	-- {area:1108} The Forgotten Coast
+	-- {area:1108} Forgotten Coast
 	["Take the boat to the {area:1108} and follow the shore south to the wrecked row boat on the beach."] = "Toma el barco a {area:1108} y sigue la orilla al sur hasta el bote de remos destrozado en la playa.",
 
 	-- Step 7: Gordunni ogres
@@ -41,7 +41,7 @@ return {
 	["Ride north into the yeti valley. Every Feral Scar yeti can drop a thick hide; {npc:5346} (level 48) prowls the middle."] = "Cabalga al norte hacia el valle de los yetis. Cualquier yeti Cicatriz Feral puede soltar una piel gruesa; {npc:5346} (nivel 48) merodea por el centro.",
 
 	-- Step 9: Feathermoon Stronghold
-	-- {area:1108} The Forgotten Coast
+	-- {area:1108} Forgotten Coast
 	["Ride back north-west to the {area:1108} dock and take the boat to the island."] = "Cabalga de vuelta al noroeste hasta el muelle de {area:1108} y toma el barco a la isla.",
 
 	-- Step 10: Lord Shalzaru
@@ -54,7 +54,7 @@ return {
 
 	-- Step 12: Grimtotem camp
 	["Grimtotem camp"] = "Campamento Tótem Siniestro",
-	-- {area:1108} The Forgotten Coast · {zone:1444} Feralas · {npc:7956} Kindal Moonweaver
+	-- {area:1108} Forgotten Coast · {zone:1444} Feralas · {npc:7956} Kindal Moonweaver
 	-- plural, as words: Sprite Darters = {npc:5278} Sprite Darter
 	["Boat to the {area:1108} and ride east across {zone:1444} to the Grimtotem camp north of the road. {npc:7956} waits outside it; free the Sprite Darters from the pen in the middle and keep Kindal and at least six of them alive."] = "Toma el barco a {area:1108} y cabalga al este por {zone:1444} hasta el campamento Tótem Siniestro al norte del camino. {npc:7956} espera fuera; libera a los duendes dardo del corral del centro y mantén con vida a Kindal y al menos a seis de ellos.",
 
@@ -102,18 +102,18 @@ return {
 	-- Step 22: Zul'Farrak instead of grinding
 	-- {area:978} Zul'Farrak
 	["{area:978} instead of grinding"] = "{area:978} en lugar de subir de nivel matando",
-	-- {area:978} Zul'Farrak · {zone:1446} Tanaris · {area:1108} The Forgotten Coast
+	-- {area:978} Zul'Farrak · {zone:1446} Tanaris · {area:1108} Forgotten Coast
 	["Running {area:978} instead of grinding gets you there faster in a group. The troll city lies in northern {zone:1446}, the next zone on the route; come back to Zorbin on the {area:1108} afterwards."] = "Hacer {area:978} en grupo en lugar de matar monstruos te lleva allí más rápido. La ciudad trol está en el norte de {zone:1446}, la siguiente zona de la ruta; después vuelve con Zorbin Hipnoviento en {area:1108}.",
 
 	-- Step 23: Grind to 45
 	["Grind to 45"] = "Sube a nivel 45 matando",
-	-- {area:1108} The Forgotten Coast · {area:1105} Feral Scar Vale
+	-- {area:1108} Forgotten Coast · {area:1105} Feral Scar Vale
 	["Boat to the {area:1108} and ride east into {area:1105}. Zorbin's quests on the coast need level 45."] = "Toma el barco a {area:1108} y cabalga al este hacia {area:1105}. Las misiones de Zorbin Hipnoviento en la costa requieren nivel 45.",
 	-- {npc:5292} Feral Scar Yeti · {area:1105} Feral Scar Vale · {zone:1444} Feralas
 	["grind on {npc:5292} at {area:1105}, {zone:1444}"] = "mata {npc:5292} en {area:1105}, {zone:1444}",
 
 	-- Step 24: Zorbin Fandazzle
-	-- {area:1108} The Forgotten Coast
+	-- {area:1108} Forgotten Coast
 	["Ride back to the {area:1108}; the goblin stands by the dock."] = "Cabalga de vuelta a {area:1108}; el goblin está junto al muelle.",
 
 	-- Step 25: Giants and elementals
@@ -124,6 +124,6 @@ return {
 
 	-- Step 26: Zorbin Fandazzle
 	["Zorbin's refills are level 55: skip them."] = "Las recargas de Zorbin Hipnoviento son de nivel 55: omítelas.",
-	-- {area:1108} The Forgotten Coast · {zone:1446} Tanaris
+	-- {area:1108} Forgotten Coast · {zone:1446} Tanaris
 	["You end at the {area:1108} dock: the {zone:1446} guide starts with the trip east from here."] = "Terminas en el muelle de {area:1108}: la guía de {zone:1446} empieza con el viaje al este desde aquí.",
 }

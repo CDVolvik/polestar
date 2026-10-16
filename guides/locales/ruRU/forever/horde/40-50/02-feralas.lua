@@ -155,8 +155,8 @@ return {
 	["Keep riding west to the coast. The Coast Crawl Deepseers and Snapclaws on the beaches drop OOX-22/FE's distress beacon about one kill in forty: if one drops, use it to start the quest."] = "Езжайте дальше на запад к побережью. С береговых глубинников и клешнехватов на пляжах примерно один раз из сорока падает аварийный маяк OOX-22/FE: если выпадет, используйте его, чтобы начать задание.",
 
 	-- Step 34: Homing Robot OOX-22/FE
-	-- {area:1105} Feral Scar Vale · {area:1108} The Forgotten Coast · {area:35} Booty Bay
-	["Only with the distress beacon: the robot sits in a small cave on the north side of {area:1105}. Escort it to the dock on the {area:1108}; yetis and gorillas ambush you on the way. Its reward waits in {area:35} for a later visit."] = "Только с аварийным маяком: робот сидит в небольшой пещере в северной части места {area:1105}. Сопроводите его к причалу ({area:1108}); по пути нападут йети и гориллы. Награда ждет здесь: {area:35} – заберете позже.",
+	-- {area:1105} Feral Scar Vale · {area:35} Booty Bay
+	["Only with the distress beacon: the robot sits in a small cave on the north side of {area:1105}. Escort it to the dock on the Forgotten Coast; yetis and gorillas ambush you on the way. Its reward waits in {area:35} for a later visit."] = "",
 
 	-- Step 35: Hearth to Camp Mojache
 	-- {area:1099} Camp Mojache
@@ -165,7 +165,7 @@ return {
 	-- Step 36: Orgrimmar
 	-- {area:1637} Orgrimmar
 	["Fly to {area:1637}. The Droffers brothers run their shop in the Drag."] = "Летите сюда: {area:1637}. Лавка братьев Дрофферсов – на Волоке.",
-	-- {zone:1425} The Hinterlands
+	-- {zone:1425} Hinterlands
 	["for the {zone:1425}, around level 48"] = "для края {zone:1425}, примерно на 48-м уровне",
 
 	-- Step 37: Zeppelin to Grom'gol
@@ -179,4 +179,7 @@ return {
 	["Fly to {area:75}"] = "Летите сюда: {area:75}",
 	-- {area:75} Stonard
 	["Thysta, the flight master, stands just east of the zeppelin tower. Fly to {area:75}: the next guide starts there."] = "Тиста, распорядитель полетов, стоит чуть к востоку от башни дирижаблей. Летите сюда: {area:75} – там начинается следующее руководство.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Only with the distress beacon: the robot sits in a small cave on the north side of {area:1105}. Escort it to the dock on the {area:1108}; yetis and gorillas ambush you on the way. Its reward waits in {area:35} for a later visit."] = "Только с аварийным маяком: робот сидит в небольшой пещере в северной части места {area:1105}. Сопроводите его к причалу ({area:1108}); по пути нападут йети и гориллы. Награда ждет здесь: {area:35} – заберете позже.",
 }

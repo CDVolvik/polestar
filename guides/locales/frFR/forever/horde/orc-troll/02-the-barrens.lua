@@ -11,8 +11,7 @@ return {
 
 	-- Step 2: Plainstriders and raptors
 	["Plainstriders and raptors"] = "Trotteurs des plaines et raptors",
-	-- {area:380} The Crossroads
-	["Plainstriders and Sunscale raptors roam the plains all around the {area:380}."] = "Les Trotteurs des plaines et les raptors solécaille parcourent les plaines tout autour de {area:380}.",
+	["Plainstriders and Sunscale raptors roam the plains all around the Crossroads."] = "",
 
 	-- Step 4: Zhevra and raptors
 	["Zhevra and raptors"] = "Zhévras et raptors",
@@ -28,8 +27,8 @@ return {
 	["Thun'grim camps beside the road east toward {area:392}."] = "Thun'grim campe au bord de la route à l'est, vers {area:392}.",
 
 	-- Step 7: Kranal Fiss
-	-- {npc:5907} Kranal Fiss · {area:380} The Crossroads
-	["{npc:5907} stands on the ridge north of the Razormane camp, east of the {area:380}."] = "{npc:5907} se tient sur la crête au nord du camp Tranchecrin, à l'est de {area:380}.",
+	-- {npc:5907} Kranal Fiss
+	["{npc:5907} stands on the ridge north of the Razormane camp, east of the Crossroads."] = "",
 
 	-- Step 8: Telf Joolam
 	-- {zone:1411} Durotar · {area:814} Southfury River
@@ -44,9 +43,9 @@ return {
 
 	-- Step 10: Razormane camp
 	["Razormane camp"] = "Camp Tranchecrin",
-	-- {area:380} The Crossroads · {object:58369} Stolen Iron Chest · {item:5026} Fire Tar
+	-- {object:58369} Stolen Iron Chest · {item:5026} Fire Tar
 	-- plural, as words: Savannah Prowlers = {npc:3425} Savannah Prowler
-	["Water Seekers, Thornweavers and Hunters hold the camp east of the {area:380}. The supply crates sit at its eastern end. Warriors: the {object:58369} stands in the camp. Shamans: the quilboar drop the {item:5026}. Kill Savannah Prowlers you pass for their claws."] = "Les Sourciers, Tisseuses d'épines et Chasseurs Tranchecrin tiennent le camp à l'est de {area:380}. Les caisses de ravitaillement sont à son extrémité est. Guerriers : le {object:58369} se trouve dans le camp. Chamans : les huran laissent tomber le {item:5026}. Tuez les Rôdeurs des savanes que vous croisez pour leurs griffes.",
+	["Water Seekers, Thornweavers and Hunters hold the camp east of the Crossroads. The supply crates sit at its eastern end. Warriors: the {object:58369} stands in the camp. Shamans: the quilboar drop the {item:5026}. Kill Savannah Prowlers you pass for their claws."] = "",
 
 	-- Step 11: Telf Joolam
 	-- {item:6636} Fire Sapta · {npc:5893} Minor Manifestation of Fire · {item:6655} Glowing Ember
@@ -72,44 +71,42 @@ return {
 	["Back to the pirate camp: the boots are in the crate marked {object:3767} at the camp's south end, the lens in the Fragile crate just east of it."] = "Retournez au camp des pirates : les bottes sont dans la caisse marquée {object:3767} à l'extrémité sud du camp, la lentille dans la caisse Fragile juste à l'est.",
 
 	-- Step 19: Back to the Crossroads
-	-- {area:380} The Crossroads
-	["Back to the {area:380}"] = "Retour à {area:380}",
-	-- {area:380} The Crossroads
+	["Back to the Crossroads"] = "",
 	-- plural, as words: Savannah Prowlers = {npc:3425} Savannah Prowler
-	["Walk back up the road to the {area:380}. Savannah Prowlers hunt along it and on the plains west of town: finish the claws before you hand them in."] = "Remontez la route jusqu'à {area:380}. Les Rôdeurs des savanes chassent le long de celle-ci et dans les plaines à l'ouest de la ville : terminez les griffes avant de les rendre.",
+	["Walk back up the road to the Crossroads. Savannah Prowlers hunt along it and on the plains west of town: finish the claws before you hand them in."] = "",
 
 	-- Step 20: Regthar Deathgate
-	-- {area:380} The Crossroads
-	["Regthar stands at the Kolkar watch post just west of the {area:380}."] = "Regthar se tient au poste de guet face aux Kolkar, juste à l'ouest de {area:380}.",
+	["Regthar stands at the Kolkar watch post just west of the Crossroads."] = "",
 
 	-- Step 21: Kolkar camps and the Forgotten Pools
-	-- {area:386} The Forgotten Pools
+	-- {area:386} Forgotten Pools
 	["Kolkar camps and the {area:386}"] = "Camps kolkar et {area:386}",
-	-- {quest:855} Centaur Bracers · {area:386} The Forgotten Pools
+	-- {quest:855} Centaur Bracers · {area:386} Forgotten Pools
 	-- plural, as words: Laden Mushrooms = {object:3640} Laden Mushroom · Savannah Prowlers = {npc:3425} Savannah Prowler
-	["The Kolkar camps spread north-west of Regthar; every Kolkar can drop {quest:855}. {area:386} lie in their middle, with Laden Mushrooms around the water. Savannah Prowlers roam the same plains."] = "Les camps kolkar s'étendent au nord-ouest de Regthar ; chaque Kolkar peut laisser tomber {quest:855}. {area:386} se trouvent en leur milieu, avec des Champignons chargés autour de l'eau. Les Rôdeurs des savanes parcourent les mêmes plaines.",
+	["The Kolkar camps spread north-west of Regthar; every Kolkar can drop {quest:855}. The {area:386} lie in their middle, with Laden Mushrooms around the water. Savannah Prowlers roam the same plains."] = "",
 	["Wade into the pools to explore them"] = "Entrez dans les bassins pour les explorer",
+	-- {area:386} Forgotten Pools
+	["The {area:386}"] = "",
 
 	-- Step 23: Witchwing harpies
 	["Witchwing harpies"] = "Harpies Ensorçaile",
-	-- {area:383} The Dry Hills · {area:386} The Forgotten Pools
+	-- {area:383} Dry Hills · {area:386} Forgotten Pools
 	["The harpies nest in the {area:383} north-west of the {area:386}; any of them can drop a talon."] = "Les harpies nichent dans {area:383}, au nord-ouest de {area:386} ; chacune peut laisser tomber une serre.",
 
 	-- Step 24: The Sludge Fen
-	-- {area:382} The Sludge Fen · {object:4141} Control Console · {item:5089} Console Key · {npc:3471} Tinkerer Sniggles
-	["Head east to the Venture Co. research site west of the {area:382}. Use the {object:4141}, close the three valves around the drill, use the console again, then take the {item:5089} from {npc:3471}."] = "Allez à l'est jusqu'au site de recherche de la KapitalRisk, à l'ouest de {area:382}. Utilisez la {object:4141}, fermez les trois vannes autour de la foreuse, réutilisez la console, puis prenez la {item:5089} sur {npc:3471}.",
+	-- {object:4141} Control Console · {item:5089} Console Key · {npc:3471} Tinkerer Sniggles
+	["Head east to the Venture Co. research site west of the Sludge Fen. Use the {object:4141}, close the three valves around the drill, use the console again, then take the {item:5089} from {npc:3471}."] = "",
 
 	-- Step 25: Echeyakee
-	-- {quest:881} Echeyakee · {area:382} The Sludge Fen · {area:380} The Crossroads · {area:392} Ratchet
-	["{quest:881}'s lair lies south of the {area:382}, north-east of the {area:380}. Use the horn Sergra gave you there to call the white lion out. Then hearth to {area:392}."] = "L'antre d'{quest:881} se trouve au sud de {area:382}, au nord-est de {area:380}. Utilisez-y la corne que Sergra vous a donnée pour faire sortir le lion blanc. Puis utilisez votre Pierre de foyer pour aller à {area:392}.",
+	-- {quest:881} Echeyakee · {area:392} Ratchet
+	["{quest:881}'s lair lies south of the Sludge Fen, north-east of the Crossroads. Use the horn Sergra gave you there to call the white lion out. Then hearth to {area:392}."] = "",
 
 	-- Step 27: The Disruption Ends
-	-- {area:380} The Crossroads · {npc:3438} Kreenig Snarlsnout
-	["On the way back to the {area:380}, the Razormane camp again: Geomancers and Defenders hold its eastern half; {npc:3438} walks among them."] = "En revenant vers {area:380}, repassez par le camp Tranchecrin : les Géomanciennes et les Défenseurs Tranchecrin tiennent sa moitié est ; {npc:3438} circule parmi eux.",
+	-- {npc:3438} Kreenig Snarlsnout
+	["On the way back to the Crossroads, the Razormane camp again: Geomancers and Defenders hold its eastern half; {npc:3438} walks among them."] = "",
 
 	-- Step 29: The Stagnant Oasis
-	-- {area:380} The Crossroads
-	["The oasis lies south-east of the {area:380}. Test the seeds at the bubbling fissure in the middle of the water."] = "L'oasis se trouve au sud-est de {area:380}. Testez les graines à la fissure bouillonnante au milieu de l'eau.",
+	["The oasis lies south-east of the Crossroads. Test the seeds at the bubbling fissure in the middle of the water."] = "",
 
 	-- Step 30: Raptor Grounds
 	-- {area:1697} Raptor Grounds
@@ -117,29 +114,43 @@ return {
 	["The {area:1697} lie south-west of the oasis. Sunscale Scytheclaws drop the feathers you use on the three nests."] = "{area:1697} se trouvent au sud-ouest de l'oasis. Les Faucheurs solécaille laissent tomber les plumes à utiliser sur les trois nids.",
 
 	-- Step 32: Lushwater Oasis
-	-- {area:387} Lushwater Oasis · {area:380} The Crossroads
+	-- {area:387} Lushwater Oasis
 	-- plural, as words: Oasis Snapjaws = {npc:3461} Oasis Snapjaw
-	["Oasis Snapjaws crowd the water of {area:387}, south-west of the {area:380}."] = "Les Gueules d'acier des oasis peuplent l'eau de {area:387}, au sud-ouest de {area:380}.",
+	["Oasis Snapjaws crowd the water of {area:387}, south-west of the Crossroads."] = "",
 
 	-- Step 34: Wenikee Boltbucket
-	-- {area:1703} The Mor'shan Rampart
+	-- {area:1703} Mor'shan Rampart
 	["Follow the road north to the {area:1703}; Wenikee stands just south of it."] = "Suivez la route au nord jusqu'à {area:1703} ; Wenikee se tient juste au sud.",
 
 	-- Step 35: Nugget Slugs
-	-- {area:382} The Sludge Fen
 	-- plural, as words: Tool Buckets = {object:161752} Tool Bucket
-	["The Tool Buckets sit around the Venture Co. camp in the {area:382}, east of Wenikee."] = "Les Seaux d'outils sont posés autour du camp de la KapitalRisk dans {area:382}, à l'est de Wenikee.",
+	["The Tool Buckets sit around the Venture Co. camp in the Sludge Fen, east of Wenikee."] = "",
 
 	-- Step 37: Witchwing Slayers
 	-- plural, as words: Witchwing Slayers = {npc:3278} Witchwing Slayer
 	["Witchwing Slayers"] = "Tueuses Ensorçaile",
-	-- {area:383} The Dry Hills
+	-- {area:383} Dry Hills
 	["The Slayers hold the western end of the {area:383}, past the harpies you fought before; they drop the rings."] = "Les Tueuses tiennent l'extrémité ouest de {area:383}, au-delà des harpies déjà combattues ; elles laissent tomber les anneaux.",
-	-- {area:383} The Dry Hills · {zone:1413} The Barrens
+	-- {area:383} Dry Hills · {zone:1413} The Barrens
 	-- plural, as words: Witchwing Slayers = {npc:3278} Witchwing Slayer
 	["grind on Witchwing Slayers at the {area:383}, {zone:1413}"] = "tuez des Tueuses Ensorçaile dans {area:383}, {zone:1413}",
 
 	-- Step 38: The Crossroads
-	-- {area:380} The Crossroads
-	["Back to the {area:380}; the next guide starts here."] = "Retournez à {area:380} ; le guide suivant commence ici.",
+	["Back to the Crossroads; the next guide starts here."] = "",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Back to the {area:380}"] = "Retour à {area:380}",
+	-- ["Back to the {area:380}; the next guide starts here."] = "Retournez à {area:380} ; le guide suivant commence ici.",
+	-- ["Head east to the Venture Co. research site west of the {area:382}. Use the {object:4141}, close the three valves around the drill, use the console again, then take the {item:5089} from {npc:3471}."] = "Allez à l'est jusqu'au site de recherche de la KapitalRisk, à l'ouest de {area:382}. Utilisez la {object:4141}, fermez les trois vannes autour de la foreuse, réutilisez la console, puis prenez la {item:5089} sur {npc:3471}.",
+	-- ["Oasis Snapjaws crowd the water of {area:387}, south-west of the {area:380}."] = "Les Gueules d'acier des oasis peuplent l'eau de {area:387}, au sud-ouest de {area:380}.",
+	-- ["On the way back to the {area:380}, the Razormane camp again: Geomancers and Defenders hold its eastern half; {npc:3438} walks among them."] = "En revenant vers {area:380}, repassez par le camp Tranchecrin : les Géomanciennes et les Défenseurs Tranchecrin tiennent sa moitié est ; {npc:3438} circule parmi eux.",
+	-- ["Plainstriders and Sunscale raptors roam the plains all around the {area:380}."] = "Les Trotteurs des plaines et les raptors solécaille parcourent les plaines tout autour de {area:380}.",
+	-- ["Regthar stands at the Kolkar watch post just west of the {area:380}."] = "Regthar se tient au poste de guet face aux Kolkar, juste à l'ouest de {area:380}.",
+	-- ["The Kolkar camps spread north-west of Regthar; every Kolkar can drop {quest:855}. {area:386} lie in their middle, with Laden Mushrooms around the water. Savannah Prowlers roam the same plains."] = "Les camps kolkar s'étendent au nord-ouest de Regthar ; chaque Kolkar peut laisser tomber {quest:855}. {area:386} se trouvent en leur milieu, avec des Champignons chargés autour de l'eau. Les Rôdeurs des savanes parcourent les mêmes plaines.",
+	-- ["The Tool Buckets sit around the Venture Co. camp in the {area:382}, east of Wenikee."] = "Les Seaux d'outils sont posés autour du camp de la KapitalRisk dans {area:382}, à l'est de Wenikee.",
+	-- ["The oasis lies south-east of the {area:380}. Test the seeds at the bubbling fissure in the middle of the water."] = "L'oasis se trouve au sud-est de {area:380}. Testez les graines à la fissure bouillonnante au milieu de l'eau.",
+	-- ["Walk back up the road to the {area:380}. Savannah Prowlers hunt along it and on the plains west of town: finish the claws before you hand them in."] = "Remontez la route jusqu'à {area:380}. Les Rôdeurs des savanes chassent le long de celle-ci et dans les plaines à l'ouest de la ville : terminez les griffes avant de les rendre.",
+	-- ["Water Seekers, Thornweavers and Hunters hold the camp east of the {area:380}. The supply crates sit at its eastern end. Warriors: the {object:58369} stands in the camp. Shamans: the quilboar drop the {item:5026}. Kill Savannah Prowlers you pass for their claws."] = "Les Sourciers, Tisseuses d'épines et Chasseurs Tranchecrin tiennent le camp à l'est de {area:380}. Les caisses de ravitaillement sont à son extrémité est. Guerriers : le {object:58369} se trouve dans le camp. Chamans : les huran laissent tomber le {item:5026}. Tuez les Rôdeurs des savanes que vous croisez pour leurs griffes.",
+	-- ["{npc:5907} stands on the ridge north of the Razormane camp, east of the {area:380}."] = "{npc:5907} se tient sur la crête au nord du camp Tranchecrin, à l'est de {area:380}.",
+	-- ["{quest:881}'s lair lies south of the {area:382}, north-east of the {area:380}. Use the horn Sergra gave you there to call the white lion out. Then hearth to {area:392}."] = "L'antre d'{quest:881} se trouve au sud de {area:382}, au nord-est de {area:380}. Utilisez-y la corne que Sergra vous a donnée pour faire sortir le lion blanc. Puis utilisez votre Pierre de foyer pour aller à {area:392}.",
 }

@@ -27,13 +27,13 @@ return {
 	["Twitching Antennae from the silithid"] = "실리시드에게서 꿈틀거리는 더듬이",
 
 	-- Step 5: Thun'grim Firegaze
-	-- {area:380} The Crossroads · {quest:1838} Brutal Armor
+	-- {area:380} Crossroads · {quest:1838} Brutal Armor
 	["Thun'grim camps beside the road east of the {area:380}. {quest:1838} is a level 30 quest; you can take it now and gather for it on the way."] = "툰그림은 {area:380} 동쪽 길가에 진을 치고 있습니다. {quest:1838}은(는) 30레벨 퀘스트이지만 지금 받아서 가는 길에 재료를 모을 수 있습니다.",
 
 	-- Step 6: Roogug in Razorfen Kraul
 	-- {area:1717} Razorfen Kraul
 	["Roogug in {area:1717}"] = "{area:1717}의 루구그",
-	-- {area:1717} Razorfen Kraul · {zone:1413} The Barrens · {item:6841} Vial of Phlogiston
+	-- {area:1717} Razorfen Kraul · {zone:1413} Barrens · {item:6841} Vial of Phlogiston
 	["Roogug is an elite quilboar inside {area:1717}, the dungeon at the south end of the {zone:1413}; he drops the {item:6841}. {area:1717} is a dungeon: grouping up is advised."] = "루구그는 {zone:1413} 남쪽 끝의 던전인 {area:1717} 안의 정예 가시멧돼지족이며 {item:6841}을(를) 떨어뜨립니다. {area:1717}은(는) 던전이니 파티를 권장합니다.",
 	-- {item:6841} Vial of Phlogiston
 	["{item:6841}, from Roogug"] = "{item:6841}, 루구그에게서",
@@ -66,7 +66,7 @@ return {
 	["Iron Bars: {npc:8673}"] = "철 주괴: {npc:8673}",
 
 	-- Step 10: Brutal Hauberk
-	-- {area:380} The Crossroads · {quest:1848} Brutal Hauberk
+	-- {area:380} Crossroads · {quest:1848} Brutal Hauberk
 	["Back to Thun'grim beside the road east of the {area:380}. {quest:1848} is the first piece; he then sends you to three crafters for the rest."] = "{area:380} 동쪽 길가의 툰그림에게 돌아가세요. {quest:1848}이(가) 첫 번째 부위이며, 그 후 나머지를 위해 장인 세 명에게 보냅니다.",
 
 	-- Step 11: Ula'elek
@@ -76,7 +76,8 @@ return {
 	-- Step 12: Satyr Hooves
 	-- {area:429} Xavian · {zone:1440} Ashenvale
 	["The {area:429} satyrs camp in eastern {zone:1440}, with the Felmusk satyrs further west; both drop Uncloven Satyr Hooves."] = "{area:429} 사티로스는 {zone:1440} 동부에 진을 치고 있고, 검은유혹의 사티로스는 더 서쪽에 있습니다. 둘 다 사티로스 통발굽을 떨어뜨립니다.",
-	["Uncloven Satyr Hooves"] = "사티로스 통발굽",
+	-- {quest:1842} Satyr Hooves
+	["Uncloven {quest:1842}"] = "",
 
 	-- Step 15: Chimaeric Horn
 	-- {npc:6167} Chimaera Matriarch · {item:6840} Galvanized Horn
@@ -96,4 +97,6 @@ return {
 	-- plural, as words: Sturdy Dragonmaw Shinbones = {item:7134} Sturdy Dragonmaw Shinbone
 	["Sturdy Dragonmaw Shinbones"] = "{item:7134}",
 
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Uncloven Satyr Hooves"] = "사티로스 통발굽",
 }

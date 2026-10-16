@@ -9,8 +9,8 @@ return {
 	["Warlock Dreadsteed"] = "术士恐惧战马",
 	["Your epic mount at 60: summoned anywhere, with no gold spent on an epic horse."] = "60级的史诗坐骑：随处可召唤，无需花金币购买史诗战马。",
 
-	-- Step 1: Mor'zul Bloodbringer (Stormwind City)
-	-- {npc:5520} Spackle Thornberry · {object:2164} The Slaughtered Lamb · {quest:7562} Mor'zul Bloodbringer · {zone:1428} Burning Steppes
+	-- Step 1: Mor'zul Bloodbringer (Stormwind)
+	-- {npc:5520} Spackle Thornberry · {object:2164} Slaughtered Lamb · {quest:7562} Mor'zul Bloodbringer · {zone:1428} Burning Steppes
 	["At 60 {npc:5520} in the {object:2164} sends you to {quest:7562} in the {zone:1428}."] = "60级时，{object:2164}的{npc:5520}会让你去找{zone:1428}的{quest:7562}。",
 
 	-- Step 2: Mor'zul Bloodbringer (Ironforge)
@@ -45,9 +45,9 @@ return {
 
 	-- Step 8: The ritual pieces
 	["The ritual pieces"] = "仪式物品",
-	-- {spell:5896} Shadow Power · {skill:171} Alchemy · {skill:333} Enchanting · {item:11370} Dark Iron Ore · {skill:186} Mining · {area:1584} Blackrock Depths · {zone:1427} Searing Gorge · {skill:393} Skinning · {zone:1428} Burning Steppes
+	-- {skill:171} Alchemy · {skill:333} Enchanting · {item:11370} Dark Iron Ore · {skill:186} Mining · {area:1584} Blackrock Depths · {zone:1427} Searing Gorge · {skill:393} Skinning · {zone:1428} Burning Steppes
 	-- plural, as words: Large Brilliant Shards = {item:14344} Large Brilliant Shard · Black Dragonscales = {item:15416} Black Dragonscale
-	["Gorzeeki wants 10 Elixirs of {spell:5896} ({skill:171}), 6 Large Brilliant Shards ({skill:333}), 25 {item:11370} ({skill:186}, in {area:1584} and the {zone:1427}) and 35 Black Dragonscales ({skill:393}, black dragonkin of the {zone:1428}). Make or gather what your professions allow; buy the rest at the Auction House."] = "戈瑟奇要10瓶暗影之力药剂（{spell:5896}，{skill:171}）、6块{item:14344}（{skill:333}）、25块{item:11370}（{skill:186}，在{area:1584}和{zone:1427}）以及35片{item:15416}（{skill:393}，{zone:1428}的黑龙）。你的专业能做或能采的就自己弄；其余的在拍卖行购买。",
+	["Gorzeeki wants 10 Elixirs of Shadow Power ({skill:171}), 6 Large Brilliant Shards ({skill:333}), 25 {item:11370} ({skill:186}, in {area:1584} and the {zone:1427}) and 35 Black Dragonscales ({skill:393}, black dragonkin of the {zone:1428}). Make or gather what your professions allow; buy the rest at the Auction House."] = "",
 
 	-- Step 9: Arcanite
 	-- plural, as words: Arcanite Bars = {item:12360} Arcanite Bar
@@ -94,6 +94,7 @@ return {
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Gorzeeki wants 10 Elixirs of Shadow Power ({skill:171}), 6 Large Brilliant Shards ({skill:333}), 25 {item:11370} ({skill:186}, in {area:1584} and the {zone:1427}) and 35 Black Dragonscales ({skill:393}, black dragonkin of the {zone:1428}). Make or gather what your professions allow; buy the rest at the Auction House."] = "戈瑟奇要10瓶暗影之力药剂（{skill:171}）、6块大块魔光碎片（{skill:333}）、25块{item:11370}（{skill:186}，在{area:1584}和{zone:1427}）和35片黑龙鳞片（{skill:393}，{zone:1428}的黑龙）。用你的专业能制作或采集的就自己做，其余在拍卖行购买。",
+	-- ["Gorzeeki wants 10 Elixirs of {spell:5896} ({skill:171}), 6 Large Brilliant Shards ({skill:333}), 25 {item:11370} ({skill:186}, in {area:1584} and the {zone:1427}) and 35 Black Dragonscales ({skill:393}, black dragonkin of the {zone:1428}). Make or gather what your professions allow; buy the rest at the Auction House."] = "戈瑟奇要10瓶暗影之力药剂（{spell:5896}，{skill:171}）、6块{item:14344}（{skill:333}）、25块{item:11370}（{skill:186}，在{area:1584}和{zone:1427}）以及35片{item:15416}（{skill:393}，{zone:1428}的黑龙）。你的专业能做或能采的就自己弄；其余的在拍卖行购买。",
 	-- ["Hand the three pieces to Gorzeeki. He then wants 3 {quest:7630} Bars: alchemists transmute them, everyone else buys them at the Auction House."] = "把三件物品交给戈瑟奇。然后他要3块{quest:7630}：炼金师可以转化，其他人在拍卖行购买。",
 	-- ["The owlbeasts of {zone:1452} drop the blood, about one in three: the Ragged and Raging Owlbeasts west of and around {area:2255}, the Crazed, Moontouched and Berserk ones in the east. While you hunt, start on the materials of the next step: the Auction House has them all."] = "{zone:1452}的枭兽掉落鲜血，约三分之一几率：{area:2255}以西和周围的蓬毛枭兽和狂怒的枭兽，以及东部的疯狂的枭兽、月光枭兽和狂暴枭兽。狩猎的同时开始准备下一步的材料：拍卖行都有。",
 }

@@ -15,7 +15,7 @@ return {
 
 	-- Step 2: The Balance of Nature
 	-- {area:256} Aldrassil · {item:3297} Fel Moss
-	-- plural, as words: Young Nightsabers = {npc:2031} Young Nightsaber · Young Thistle Boars = {npc:1984} Young Thistle Boar · Gnarlpine Totems = {item:279082} Gnarlpine Totem
+	-- plural, as words: Young Nightsabers = {npc:2031} Young Nightsaber · Young Thistle Boars = {npc:1984} Young Thistle Boar · Grells = {npc:1988} Grell · Gnarlpine Totems = {item:279082} Gnarlpine Totem
 	["Young Nightsabers and Young Thistle Boars roam around {area:256}. Grells carry {item:3297} in the woods west of the tree, where the Gnarlpine Totems stand."] = "小夜刃豹和小草刺野豬在{area:256}周圍遊蕩。小劣魔帶著{item:3297}，在樹西邊瘤背圖騰矗立的樹林裡。",
 
 	-- Step 3: Back at Aldrassil
@@ -27,8 +27,8 @@ return {
 	["{npc:2082}, on the tree's ramp"] = "{npc:2082}，在樹的坡道上",
 	-- {npc:3595} Shanda
 	["{npc:3595}, inside the tree"] = "{npc:3595}，在樹裡",
-	-- {quest:97979} The Goddess Provides · {spell:1259799} Elune's Light · {spell:20580} Shadowmeld · {npc:3595} Shanda
-	["{quest:97979}: cast {spell:1259799} and {spell:20580}, then hand it back to {npc:3595}"] = "{quest:97979}：施放{spell:1259799}和{spell:20580}，然後交回給{npc:3595}",
+	-- {quest:97979} The Goddess Provides · {spell:1259799} Elune's Light · {npc:3595} Shanda
+	["{quest:97979}: cast {spell:1259799} and Shadowmeld, then hand it back to {npc:3595}"] = "",
 	-- {npc:8583} Dirania Silvershine
 	["{npc:8583}, east of the tree"] = "{npc:8583}，在樹的東邊",
 
@@ -57,7 +57,7 @@ return {
 	-- {quest:917} Webwood Egg
 	["{quest:917} and the antidote"] = "{quest:917}與解毒劑",
 	-- {object:4406} Webwood Eggs · {area:257} Shadowthread Cave · {area:256} Aldrassil
-	-- plural, as words: Hyacinth Mushrooms = {item:10639} Hyacinth Mushroom
+	-- plural, as words: Hyacinth Mushrooms = {item:10639} Hyacinth Mushroom · Grells = {npc:1988} Grell
 	["The {object:4406} lie at the back of {area:257}: take the central path, then left where it splits, up to the high ledge. Hyacinth Mushrooms drop from Grells, Moonpetal Lilies grow by the ponds north of {area:256}."] = "{object:4406}在{area:257}深處：走中間的路，分岔處往左，一路上到高處的岩架。紫藍色蘑菇由小劣魔掉落，月牙百合花生長在{area:256}北邊的池塘旁。",
 
 	-- Step 8: Aldrassil
@@ -117,7 +117,7 @@ return {
 	-- {area:260} Starbreeze Village
 	["East to {area:260}"] = "向東前往{area:260}",
 	-- {area:186} Dolanaar · {object:126158} Tallonkai's Dresser
-	-- plural, as words: Fel Cones = {item:3418} Fel Cone · Webwood Lurkers = {npc:1998} Webwood Lurker
+	-- plural, as words: Fel Cones = {object:1673} Fel Cone · Webwood Lurkers = {npc:1998} Webwood Lurker
 	["Fel Cones lie under the trees all around {area:186} and Zenn. Nightsabers and Webwood Lurkers keep roaming the road east. {object:126158} is in the house on the hill at the east end of the village."] = "魔錐果散落在{area:186}和賽恩周圍的樹下。夜刃豹和樹林潛伏者仍在往東的道路上遊蕩。{object:126158}在村莊東端山丘上的房子裡。",
 	["Nightsabers"] = "夜刃豹",
 	-- plural, as words: Webwood Lurkers = {npc:1998} Webwood Lurker
@@ -185,10 +185,12 @@ return {
 	["{npc:3567}, back in {area:186}"] = "{npc:3567}，回到{area:186}",
 
 	-- Step 30: Sentinel Eralya Leafshadow
-	-- {area:186} Dolanaar · {area:264} The Oracle Glade
+	-- {area:186} Dolanaar · {area:264} Oracle Glade
 	["Take the road north-west from {area:186} towards the {area:264}; she lies hurt beside it."] = "沿著道路從{area:186}向西北前往{area:264}；她受傷躺在路旁。",
 
 	-- Step 31: The Oracle Glade
+	-- {area:264} Oracle Glade
+	["The {area:264}"] = "",
 	-- {object:6752} Strange Fronded Plant
 	["The moonwell is in the middle of the glade. The {object:6752} grows at its north end."] = "月井在林地中央。{object:6752}生長在林地北端。",
 	-- {item:5623} Amethyst Phial
@@ -205,8 +207,8 @@ return {
 
 	-- Step 34: The named harpies
 	["The named harpies"] = "有名字的鷹身人",
-	-- {npc:272044} Windmistress Gaedress · {npc:272046} Witchmother Arysa
-	["Hatescreech and {npc:272044} fly just west of the moonwell, {npc:272046} further north."] = "憎嘯和{npc:272044}在月井西邊飛行，{npc:272046}在更北邊。",
+	-- {npc:272034} Hatescreech · {npc:272044} Windmistress Gaedress · {npc:272046} Witchmother Arysa
+	["{npc:272034} and {npc:272044} fly just west of the moonwell, {npc:272046} further north."] = "",
 
 	-- Step 35: Sentinel Arynia again
 	["Sentinel Arynia again"] = "再次找哨兵阿瑞尼亞",
@@ -232,9 +234,9 @@ return {
 	["{npc:3602}: {npc:4217} in {zone:1457} takes it"] = "{npc:3602}：由{zone:1457}的{npc:4217}接收",
 
 	-- Step 38: Lake Al'Ameth
-	-- {area:186} Dolanaar · {npc:2080} Denalan
+	-- {npc:2080} Denalan
 	-- plural, as words: Lasher Sproutlings = {npc:275703} Lasher Sproutling
-	["South-east of {area:186}, to {npc:2080}. Lasher Sproutlings wander around him on the shore."] = "從{area:186}向東南前往{npc:2080}那裡。{npc:275703}在岸邊他的周圍遊蕩。",
+	["South-east of Dolanaar, to {npc:2080}. Lasher Sproutlings wander around him on the shore."] = "",
 	-- {npc:2080} Denalan · {quest:922} Rellian Greenspyre · {zone:1457} Darnassus
 	["{npc:2080}: {quest:922} in {zone:1457} takes it"] = "{npc:2080}：由{zone:1457}的{quest:922}接收",
 	-- {object:7510} Sprouted Frond
@@ -245,9 +247,9 @@ return {
 	["{area:186} again"] = "再次回到{area:186}",
 
 	-- Step 40: Taming the Beast
-	-- {npc:3601} Dazalar · {item:15908} Taming Rod · {area:186} Dolanaar
+	-- {item:15908} Taming Rod · {area:186} Dolanaar
 	-- plural, as words: Webwood Lurkers = {npc:1998} Webwood Lurker · Nightsaber Stalkers = {npc:2043} Nightsaber Stalker · Strigid Screechers = {npc:1996} Strigid Screecher
-	["Each of {npc:3601}'s quests hands you a {item:15908}: use it on the beast he names, then bring the rod back to him in {area:186}. Webwood Lurkers creep around the village, Nightsaber Stalkers and Strigid Screechers roam the woods south of it."] = "{npc:3601}的每個任務都會給你一根{item:15908}：對他指定的野獸使用，然後把馴獸棒帶回{area:186}給他。樹林潛伏者在村莊周圍潛行，夜刃捕食者和巨翼惡梟在村莊南邊的樹林遊蕩。",
+	["Each of Dazalar's quests hands you a {item:15908}: use it on the beast he names, then bring the rod back to him in {area:186}. Webwood Lurkers creep around the village, Nightsaber Stalkers and Strigid Screechers roam the woods south of it."] = "",
 	-- {npc:1998} Webwood Lurker · {item:15908} Taming Rod
 	["{npc:1998}: tame it with the {item:15908}"] = "{npc:1998}：用{item:15908}馴服牠",
 	-- {npc:2043} Nightsaber Stalker · {item:15908} Taming Rod
@@ -274,8 +276,8 @@ return {
 	["{npc:4092}, in the Temple of the Moon"] = "{npc:4092}，在月神殿裡",
 	-- {npc:7999} Tyrande Whisperwind · {npc:4092} Lariia
 	["{npc:7999}, above {npc:4092}"] = "{npc:7999}，在{npc:4092}上方",
-	-- {npc:11401} Priestess Alathea · {spell:10797} Starshards
-	["{npc:11401}, in the Temple of the Moon: {spell:10797}"] = "{npc:11401}，在月神殿裡：{spell:10797}",
+	-- {npc:11401} Priestess Alathea
+	["{npc:11401}, in the Temple of the Moon: Starshards"] = "",
 
 	-- Step 43: Rut'theran Village
 	-- {area:702} Rut'theran Village · {npc:3838} Vesprystus
@@ -302,9 +304,9 @@ return {
 	["Fly to {area:702} once more and take the portal up to Mathrengyl, then fly back to {area:442} for the boat."] = "再飛往{area:702}一次，搭傳送門上去找瑪斯雷，然後飛回{area:442}搭船。",
 
 	-- Step 49: Auberdine
-	-- {npc:4200} Laird · {zone:1453} Stormwind City
+	-- {npc:4200} Laird · {zone:1453} Stormwind
 	["{npc:4200}'s fish stall is by the docks. Then take the boat to {zone:1453}."] = "{npc:4200}的魚攤在碼頭旁。然後搭船前往{zone:1453}。",
-	-- {zone:1453} Stormwind City
+	-- {zone:1453} Stormwind
 	["Boat to {zone:1453}"] = "搭船前往{zone:1453}",
 	-- {area:17203} Stormwind Harbor · {zone:1429} Elwynn Forest · {zone:1436} Westfall
 	["From {area:17203}, ride through the city gates into {zone:1429} and follow the road west to {zone:1436}."] = "從{area:17203}騎馬穿過城門進入{zone:1429}，沿著道路向西前往{zone:1436}。",
@@ -312,4 +314,11 @@ return {
 	-- Step 50: Defensive Stance
 	-- {object:2100} Old Town · {npc:5480} Ilsa Corbin · {npc:6089} Harry Burlguard · {npc:6090} Bartleby · {object:2152} Pig and Whistle Tavern
 	["From the harbour walk into {object:2100}. {npc:5480} trains warriors there; {npc:6089} and {npc:6090} stand together by the {object:2152}. {npc:6090} fights you for his mug."] = "從港口走進{object:2100}。{npc:5480}在那裡訓練戰士；{npc:6089}和{npc:6090}一起站在{object:2152}旁。{npc:6090}會為了他的杯子和你決鬥。",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Each of {npc:3601}'s quests hands you a {item:15908}: use it on the beast he names, then bring the rod back to him in {area:186}. Webwood Lurkers creep around the village, Nightsaber Stalkers and Strigid Screechers roam the woods south of it."] = "{npc:3601}的每個任務都會給你一根{item:15908}：對他指定的野獸使用，然後把馴獸棒帶回{area:186}給他。樹林潛伏者在村莊周圍潛行，夜刃捕食者和巨翼惡梟在村莊南邊的樹林遊蕩。",
+	-- ["Hatescreech and {npc:272044} fly just west of the moonwell, {npc:272046} further north."] = "憎嘯和{npc:272044}在月井西邊飛行，{npc:272046}在更北邊。",
+	-- ["South-east of {area:186}, to {npc:2080}. Lasher Sproutlings wander around him on the shore."] = "從{area:186}向東南前往{npc:2080}那裡。{npc:275703}在岸邊他的周圍遊蕩。",
+	-- ["{npc:11401}, in the Temple of the Moon: {spell:10797}"] = "{npc:11401}，在月神殿裡：{spell:10797}",
+	-- ["{quest:97979}: cast {spell:1259799} and {spell:20580}, then hand it back to {npc:3595}"] = "{quest:97979}：施放{spell:1259799}和{spell:20580}，然後交回給{npc:3595}",
 }

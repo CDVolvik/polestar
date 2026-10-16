@@ -46,7 +46,7 @@ return {
 	["Ride south to the giant's hut in the middle of the marsh."] = "Reite nach Süden zur Hütte des Riesen mitten im Sumpf.",
 
 	-- Step 10: The Shady Rest Inn
-	-- {zone:1413} The Barrens
+	-- {zone:1413} Barrens
 	["The burned inn stands on the road west, toward the {zone:1413}; the guard's badge lies in the ashes and the hoofprints are in the mud beside the inn."] = "Das abgebrannte Gasthaus Zur süßen Ruh steht an der Straße nach Westen, Richtung {zone:1413}; die Plakette der Wache liegt in der Asche, und die Hufabdrücke sind im Schlamm neben dem Gasthaus.",
 
 	-- Step 11: Theramore
@@ -66,15 +66,14 @@ return {
 	["The deserters camp south of the road, west of Mudcrush's hut."] = "Die Deserteure lagern südlich der Straße, westlich von Mudcrushs Hütte.",
 
 	-- Step 17: The Affray
-	-- {area:392} Ratchet · {area:720} Fray Island · {area:391} The Merchant Coast · {npc:6236} Klannoc Macleod · {npc:6238} Big Will
+	-- {area:392} Ratchet · {area:720} Fray Island · {area:391} Merchant Coast · {npc:6236} Klannoc Macleod · {npc:6238} Big Will
 	["On the ride north to {area:392}, {area:720} lies off the {area:391} south of the town: wade over the sand bar shallows. {npc:6236} sends four challengers and then {npc:6238} (level 33) at you, one at a time."] = "Auf dem Ritt nach Norden nach {area:392} liegt {area:720} vor der {area:391} südlich des Orts: Wate über die Untiefen der Sandbank. {npc:6236} schickt dir nacheinander vier Herausforderer und dann {npc:6238} (Stufe 33) entgegen.",
 	-- {npc:6238} Big Will
 	["Defeat the challengers and {npc:6238}"] = "Besiege die Herausforderer und {npc:6238}",
-	-- {spell:1680} Whirlwind
-	["Klannoc offers The Windwatcher next (1791): the {spell:1680} weapon chain, with an elite at the end, is in the Warrior class guide Whirlwind Weapon."] = "Klannoc bietet als Nächstes Der Windbehüter (1791) an: Die Questreihe um die Waffe für {spell:1680}, mit einem Elite am Ende, steht im Kriegerklassen-Guide „Wirbelwind-Waffe“.",
+	["Klannoc offers The Windwatcher next (1791): the Whirlwind weapon chain, with an elite at the end, is in the Warrior class guide Whirlwind Weapon."] = "",
 
 	-- Step 18: Ratchet
-	-- {zone:1413} The Barrens · {area:392} Ratchet · {npc:16227} Bragok · {area:35} Booty Bay
+	-- {zone:1413} Barrens · {area:392} Ratchet · {npc:16227} Bragok · {area:35} Booty Bay
 	["Ride from Theramore west along the Dustwallow road into the {zone:1413} and north to {area:392} on the coast. Learn the flight path from {npc:16227}, then take the boat to {area:35} from the dock."] = "Reite von Theramore nach Westen über die Straße der Marschen ins {zone:1413} und nach Norden nach {area:392} an der Küste. Hol dir die Flugroute bei {npc:16227}, dann nimm am Steg das Boot nach {area:35}.",
 	-- {area:35} Booty Bay
 	["Boat to {area:35}"] = "Boot nach {area:35}",
@@ -97,7 +96,8 @@ return {
 	["Leave town by the tunnel and follow the coast north; the letter lies in the Bloodsail camp on the beach, where \"Pretty Boy\" Duncan walks."] = "Verlass den Ort durch den Tunnel und folge der Küste nach Norden; der Brief liegt im Lager der Blutsegelbukaniere am Strand, wo Schönling Duncan umhergeht.",
 
 	-- Step 21: Booty Bay
-	["Gazban swims off the north-west coast, on the northern loop"] = "Gazban schwimmt vor der Nordwestküste, auf der nördlichen Runde",
+	-- {npc:2624} Gazban
+	["{npc:2624} swims off the north-west coast, on the northern loop"] = "",
 
 	-- Step 22: Bloodsail pirates
 	["Bloodsail pirates"] = "Piraten der Blutsegelbukaniere",
@@ -158,9 +158,9 @@ return {
 
 	-- Step 35: The north-west coast
 	["The north-west coast"] = "Die Nordwestküste",
-	-- {item:4034} Stone of the Tides
+	-- {npc:2624} Gazban · {item:4034} Stone of the Tides
 	-- plural, as words: Giant Clams = {object:2744} Giant Clam
-	["Ride north-west from the mine to the bay on the north-west coast. The Giant Clams lie on its floor and hold the pearls; Gazban swims among them and drops the {item:4034}."] = "Reite von der Mine nach Nordwesten zur Bucht an der Nordwestküste. Die Riesenmuscheln liegen auf ihrem Grund und enthalten die Perlen; Gazban schwimmt zwischen ihnen und lässt das {item:4034} fallen.",
+	["Ride north-west from the mine to the bay on the north-west coast. The Giant Clams lie on its floor and hold the pearls; {npc:2624} swims among them and drops the {item:4034}."] = "",
 
 	-- Step 36: Rebel Camp
 	-- {npc:217588} Arbor Tarantula
@@ -173,8 +173,8 @@ return {
 	-- {zone:1441} Thousand Needles
 	["Crank's next Zanzil errand starts in {zone:1441}: skip it."] = "Cranks nächster Zanzil-Auftrag beginnt in {zone:1441}: Überspring ihn.",
 
-	-- Step 38: Stormwind City
-	-- {npc:1141} Angus Stern · {object:2169} The Blue Recluse · {npc:5384} Brohann Caskbelly · {object:28027} Dwarven District
+	-- Step 38: Stormwind
+	-- {npc:1141} Angus Stern · {object:2169} Blue Recluse · {npc:5384} Brohann Caskbelly · {object:28027} Dwarven District
 	["{npc:1141} cooks in the {object:2169}; {npc:5384} is in the {object:28027}."] = "{npc:1141} kocht im {object:2169}; {npc:5384} ist im {object:28027}.",
 	-- {npc:5694} High Sorcerer Andromath · {area:1438} Nethergarde Keep
 	["{npc:5694}: for {area:1438}, keep it"] = "{npc:5694}: für {area:1438}, behalte es",
@@ -189,7 +189,7 @@ return {
 	["{npc:384}: other colours, 20g"] = "{npc:384}: andere Farben, 20g",
 
 	-- Step 40: Riding at 40
-	-- {spell:1285849} Galestrider Riding · {npc:4732} Randal Hunter · {area:88} Eastvale Logging Camp · {zone:1429} Elwynn Forest · {zone:1453} Stormwind City · {npc:265756} Genn Fairweather · {area:16638} Valanaar
+	-- {spell:1285849} Galestrider Riding · {npc:4732} Randal Hunter · {area:88} Eastvale Logging Camp · {zone:1429} Elwynn Forest · {zone:1453} Stormwind · {npc:265756} Genn Fairweather · {area:16638} Valanaar
 	["At 40 with 100 gold you can learn to ride, and learning it gives you a mount. No Skyborne riding trainer is known; the Forever client files {spell:1285849} under the one Riding skill, so {npc:4732} at {area:88} in eastern {zone:1429}, the nearest trainer to {zone:1453}, should teach it (unconfirmed). The Galestriders are sold by {npc:265756} in {area:16638} on Zephras Isle; Collectibles, Mounts · Level 40 lists them."] = "Mit 40 und 100 Gold kannst du reiten lernen, und dabei erhältst du ein Reittier. Es ist kein Reitlehrer der Himmelsgeborenen bekannt; der Forever-Client führt {spell:1285849} unter der einen Reitfertigkeit, also sollte {npc:4732} in {area:88} im östlichen {zone:1429}, der nächste Lehrer bei {zone:1453}, es lehren (unbestätigt). Die Windschreiter verkauft {npc:265756} in {area:16638} auf der Insel Zephras; Sammelobjekte, Reittiere · Stufe 40 listet sie.",
 	-- {npc:265756} Genn Fairweather · {area:16638} Valanaar
 	["Galestriders: {npc:265756}, in {area:16638} on Zephras Isle."] = "Windschreiter: {npc:265756}, in {area:16638} auf der Insel Zephras.",
@@ -209,7 +209,7 @@ return {
 	-- Step 43: Warlock: Summon Felsteed
 	-- {quest:3631} Summon Felsteed
 	["Warlock: {quest:3631}"] = "Hexenmeister: {quest:3631}",
-	-- {npc:461} Demisette Cloyce · {object:2164} The Slaughtered Lamb · {npc:6251} Strahad Farsan · {area:392} Ratchet
+	-- {npc:461} Demisette Cloyce · {object:2164} Slaughtered Lamb · {npc:6251} Strahad Farsan · {area:392} Ratchet
 	["{npc:461}, in the {object:2164}: {npc:6251} in {area:392} takes it at the end of the next guide"] = "{npc:461}, im {object:2164}: {npc:6251} in {area:392} nimmt es am Ende des nächsten Guides an",
 
 	-- Step 44: Watcher Biggs
@@ -237,16 +237,16 @@ return {
 	-- {npc:217412} Amaryllis Webb · {quest:93176} My Little Friends
 	["{npc:217412}: {quest:93176}, from 30-40/05-arathi-highlands"] = "{npc:217412}: {quest:93176}, aus 30-40/05-arathi-highlands",
 
-	-- Step 49: Stormwind City
+	-- Step 49: Stormwind
 	-- {npc:5635} Falstad Wildhammer · {area:348} Aerie Peak
 	["for {npc:5635} at {area:348}: keep it"] = "für {npc:5635} in {area:348}: Behalte es",
 
 	-- Step 50: Ironforge
-	-- {area:2257} Deeprun Tram · {object:28027} Dwarven District · {object:32356} Hall of Explorers · {npc:1356} Prospector Stormpike · {npc:2786} Gerrig Bonegrip · {object:32383} The Forlorn Cavern · {area:144} Thelsamar
+	-- {area:2257} Deeprun Tram · {object:28027} Dwarven District · {object:32356} Hall of Explorers · {npc:1356} Prospector Stormpike · {npc:2786} Gerrig Bonegrip · {object:32383} Forlorn Cavern · {area:144} Thelsamar
 	["Take the {area:2257} from the {object:28027}. Roetten is in the Reclaimers' hall by the {object:32356}, {npc:1356} in the hall itself, {npc:2786} in the {object:32383}. The next guide flies on to {area:144}."] = "Nimm die {area:2257} vom {object:28027}. Roetten ist in der Halle der Forscherliga beim {object:32356}, {npc:1356} in der Halle selbst, {npc:2786} im {object:32383}. Der nächste Guide fliegt weiter nach {area:144}.",
 	-- {npc:1356} Prospector Stormpike · {npc:1344} Prospector Ironband · {zone:1432} Loch Modan
 	["{npc:1356}: for {npc:1344} in {zone:1432}, keep it"] = "{npc:1356}: für {npc:1344} in {zone:1432}, behalte es",
-	-- {zone:1453} Stormwind City
+	-- {zone:1453} Stormwind
 	["{zone:1453} has no shaman trainer"] = "{zone:1453} hat keinen Schamanenlehrer",
 
 	-- Step 51: Riding at 40
@@ -260,4 +260,9 @@ return {
 	["At 40 with 100 gold you can learn to ride, and learning it gives you a mount. {npc:7954} teaches Gnomes at {area:189}, just east of {area:131}, beside {npc:7955}'s mechanostriders. Forever may let any race learn from any riding trainer (unconfirmed). Collectibles, Mounts · Level 40 lists every colour."] = "Mit 40 und 100 Gold kannst du reiten lernen, und dabei erhältst du ein Reittier. {npc:7954} lehrt Gnome in {area:189}, gleich östlich von {area:131}, neben den Roboschreitern von {npc:7955}. In Forever kann womöglich jedes Volk bei jedem Reitlehrer lernen (unbestätigt). Sammelobjekte, Reittiere · Stufe 40 listet alle Farben.",
 	-- {npc:7955} Milli Featherwhistle
 	["{npc:7955}: other colours, 20g"] = "{npc:7955}: andere Farben, 20g",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Gazban swims off the north-west coast, on the northern loop"] = "Gazban schwimmt vor der Nordwestküste, auf der nördlichen Runde",
+	-- ["Klannoc offers The Windwatcher next (1791): the {spell:1680} weapon chain, with an elite at the end, is in the Warrior class guide Whirlwind Weapon."] = "Klannoc bietet als Nächstes Der Windbehüter (1791) an: Die Questreihe um die Waffe für {spell:1680}, mit einem Elite am Ende, steht im Kriegerklassen-Guide „Wirbelwind-Waffe“.",
+	-- ["Ride north-west from the mine to the bay on the north-west coast. The Giant Clams lie on its floor and hold the pearls; Gazban swims among them and drops the {item:4034}."] = "Reite von der Mine nach Nordwesten zur Bucht an der Nordwestküste. Die Riesenmuscheln liegen auf ihrem Grund und enthalten die Perlen; Gazban schwimmt zwischen ihnen und lässt das {item:4034} fallen.",
 }

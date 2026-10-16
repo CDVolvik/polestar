@@ -6,13 +6,13 @@
 -- The comments are rewritten by sync.
 return {
 	-- Step 2: The Altar of Zul
-	-- {area:355} The Altar of Zul · {zone:1425} The Hinterlands · {npc:8636} Morta'gya the Keeper
-	["Ride south-east to the {area:355}, the stepped Vilebranch temple in the south of the {zone:1425}, and climb to the top. Qiaga and {npc:8636} (elite, 50) stand up there: touch the top and come straight back down."] = "남동쪽으로 {zone:1425} 남쪽에 있는 썩은가지부족의 계단식 신전 {area:355}(으)로 가서 꼭대기까지 올라가십시오. 문지기 퀴아가와 {npc:8636}(정예, 50)이(가) 그곳에 있습니다: 꼭대기에 닿으면 곧바로 내려오십시오.",
+	-- {area:355} Altar of Zul · {npc:8636} Morta'gya the Keeper
+	["Ride south-east to the {area:355}, the stepped Vilebranch temple in the south of the Hinterlands, and climb to the top. Qiaga and {npc:8636} (elite, 50) stand up there: touch the top and come straight back down."] = "",
 
 	-- Step 3: Skulk Rock
-	-- {area:351} Skulk Rock · {zone:1425} The Hinterlands
+	-- {area:351} Skulk Rock
 	-- plural, as words: Green Sludges = {npc:2655} Green Sludge · Jade Oozes = {npc:2656} Jade Ooze
-	["Ride north to {area:351} in the middle of the {zone:1425}. Green Sludges and Jade Oozes crawl all around it."] = "북쪽으로 {zone:1425} 한가운데의 {area:351}까지 가세요. {npc:2655}와(과) {npc:2656}이(가) 그 주변 곳곳을 기어다닙니다.",
+	["Ride north to {area:351} in the middle of the Hinterlands. Green Sludges and Jade Oozes crawl all around it."] = "",
 
 	-- Step 4: Aerie Peak
 	-- {area:348} Aerie Peak
@@ -98,4 +98,7 @@ return {
 	-- {area:144} Thelsamar · {zone:1427} Searing Gorge · {area:1446} Thorium Point · {zone:1418} Badlands · {area:340} Kargath
 	["Hearth to {area:144}. The {zone:1427} guide starts at {area:1446}: from here, ride south into the {zone:1418}, west past the Horde town of {area:340} and up the trail into the gorge."] = "귀환석으로 {area:144}에 가십시오. {zone:1427} 가이드는 {area:1446}에서 시작합니다: 여기서 남쪽 {zone:1418}(으)로 가서, 서쪽으로 호드 마을 {area:340}을(를) 지나 오솔길을 따라 협곡으로 올라가십시오.",
 
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Ride north to {area:351} in the middle of the {zone:1425}. Green Sludges and Jade Oozes crawl all around it."] = "북쪽으로 {zone:1425} 한가운데의 {area:351}까지 가세요. {npc:2655}와(과) {npc:2656}이(가) 그 주변 곳곳을 기어다닙니다.",
+	-- ["Ride south-east to the {area:355}, the stepped Vilebranch temple in the south of the {zone:1425}, and climb to the top. Qiaga and {npc:8636} (elite, 50) stand up there: touch the top and come straight back down."] = "남동쪽으로 {zone:1425} 남쪽에 있는 썩은가지부족의 계단식 신전 {area:355}(으)로 가서 꼭대기까지 올라가십시오. 문지기 퀴아가와 {npc:8636}(정예, 50)이(가) 그곳에 있습니다: 꼭대기에 닿으면 곧바로 내려오십시오.",
 }

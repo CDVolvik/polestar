@@ -9,8 +9,8 @@ return {
 	["Warlock Dreadsteed"] = "Corcel Medonho de Bruxo",
 	["Your epic mount at 60: summoned anywhere, with no gold spent on an epic horse."] = "Sua montaria épica no nível 60: evocada em qualquer lugar, sem gastar ouro num cavalo épico.",
 
-	-- Step 1: Mor'zul Bloodbringer (Stormwind City)
-	-- {npc:5520} Spackle Thornberry · {object:2164} The Slaughtered Lamb · {quest:7562} Mor'zul Bloodbringer · {zone:1428} Burning Steppes
+	-- Step 1: Mor'zul Bloodbringer (Stormwind)
+	-- {npc:5520} Spackle Thornberry · {object:2164} Slaughtered Lamb · {quest:7562} Mor'zul Bloodbringer · {zone:1428} Burning Steppes
 	["At 60 {npc:5520} in the {object:2164} sends you to {quest:7562} in the {zone:1428}."] = "No nível 60, {npc:5520} no {object:2164} manda você a {quest:7562} nas {zone:1428}.",
 
 	-- Step 2: Mor'zul Bloodbringer (Ironforge)
@@ -45,9 +45,9 @@ return {
 
 	-- Step 8: The ritual pieces
 	["The ritual pieces"] = "As peças do ritual",
-	-- {spell:5896} Shadow Power · {skill:171} Alchemy · {skill:333} Enchanting · {item:11370} Dark Iron Ore · {skill:186} Mining · {area:1584} Blackrock Depths · {zone:1427} Searing Gorge · {skill:393} Skinning · {zone:1428} Burning Steppes
+	-- {skill:171} Alchemy · {skill:333} Enchanting · {item:11370} Dark Iron Ore · {skill:186} Mining · {area:1584} Blackrock Depths · {zone:1427} Searing Gorge · {skill:393} Skinning · {zone:1428} Burning Steppes
 	-- plural, as words: Large Brilliant Shards = {item:14344} Large Brilliant Shard · Black Dragonscales = {item:15416} Black Dragonscale
-	["Gorzeeki wants 10 Elixirs of {spell:5896} ({skill:171}), 6 Large Brilliant Shards ({skill:333}), 25 {item:11370} ({skill:186}, in {area:1584} and the {zone:1427}) and 35 Black Dragonscales ({skill:393}, black dragonkin of the {zone:1428}). Make or gather what your professions allow; buy the rest at the Auction House."] = "Gorzeeki quer 10 Elixires de {spell:5896} ({skill:171}), 6 Estilhaços Brilhantes Grandes ({skill:333}), 25 {item:11370} ({skill:186}, em {area:1584} e em {zone:1427}) e 35 Escamas de Dragão Negro ({skill:393}, dragonídeos negros de {zone:1428}). Faça ou colete o que suas profissões permitirem; compre o resto na Casa de Leilões.",
+	["Gorzeeki wants 10 Elixirs of Shadow Power ({skill:171}), 6 Large Brilliant Shards ({skill:333}), 25 {item:11370} ({skill:186}, in {area:1584} and the {zone:1427}) and 35 Black Dragonscales ({skill:393}, black dragonkin of the {zone:1428}). Make or gather what your professions allow; buy the rest at the Auction House."] = "",
 
 	-- Step 9: Arcanite
 	-- plural, as words: Arcanite Bars = {item:12360} Arcanite Bar
@@ -91,4 +91,7 @@ return {
 	["{area:2577} stands in the ruins of central {zone:1444}; the ritual circle is in its west wing, past {npc:11496}, and the door needs the {item:18249} or a rogue. Use {item:18663} to start; when the bell, the wheel or the candle fades, click it with the {item:18629} (a {item:6265} each). When the demons stop coming, use the {item:18670}, defeat the {npc:14502} and its dreadlord master, and speak to the {npc:14504}. Bring a group."] = "{area:2577} fica nas ruínas do centro de {zone:1444}; o círculo do ritual fica na ala oeste, depois de {npc:11496}, e a porta requer a {item:18249} ou um ladino. Use o {item:18663} para começar; quando o sino, a roda ou a vela enfraquecer, clique nele com a {item:18629} (um {item:6265} cada). Quando os demônios pararem de vir, use os {item:18670}, derrote o {npc:14502} e seu mestre senhor do medo e fale com o {npc:14504}. Leve um grupo.",
 	-- {npc:14504} Dreadsteed Spirit
 	["{npc:14504}: it binds itself to you"] = "{npc:14504}: ele se vincula a você",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Gorzeeki wants 10 Elixirs of {spell:5896} ({skill:171}), 6 Large Brilliant Shards ({skill:333}), 25 {item:11370} ({skill:186}, in {area:1584} and the {zone:1427}) and 35 Black Dragonscales ({skill:393}, black dragonkin of the {zone:1428}). Make or gather what your professions allow; buy the rest at the Auction House."] = "Gorzeeki quer 10 Elixires de {spell:5896} ({skill:171}), 6 Estilhaços Brilhantes Grandes ({skill:333}), 25 {item:11370} ({skill:186}, em {area:1584} e em {zone:1427}) e 35 Escamas de Dragão Negro ({skill:393}, dragonídeos negros de {zone:1428}). Faça ou colete o que suas profissões permitirem; compre o resto na Casa de Leilões.",
 }

@@ -69,5 +69,4 @@ return {
 	["{faction:729} to Exalted"] = "{faction:729}: 확고한 동맹까지",
 	-- {faction:729} Frostwolf Clan
 	["Exalted with the {faction:729} earns a Legacy Point."] = "{faction:729}와(과) 확고한 동맹이 되면 Legacy Point 1점을 얻습니다.",
-
 }

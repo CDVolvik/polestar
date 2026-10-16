@@ -9,24 +9,24 @@ return {
 	-- {spell:2458} Berserker Stance · {spell:1680} Whirlwind
 	["{spell:2458} at 30 and a {spell:1680} axe, sword or warhammer at 40."] = "30級學會{spell:2458}，40級獲得一把{spell:1680}斧、劍或戰錘。",
 
-	-- Step 1: The Islander (Stormwind City)
-	-- {npc:5479} Wu Shen · {object:2100} Old Town · {npc:6236} Klannoc Macleod · {area:720} Fray Island · {zone:1413} The Barrens
+	-- Step 1: The Islander (Stormwind)
+	-- {npc:5479} Wu Shen · {object:2100} Old Town · {npc:6236} Klannoc Macleod · {area:720} Fray Island · {zone:1413} Barrens
 	["At 30, {npc:5479} in {object:2100}, beside the Pig and Whistle, sends you to {npc:6236} on {area:720} in the {zone:1413}."] = "30級時，{object:2100}的{npc:5479}（在Pig and Whistle旁邊）會派你去找{zone:1413}{area:720}的{npc:6236}。",
 
 	-- Step 2: The Islander (Ironforge)
-	-- {npc:5113} Kelv Sternhammer · {zone:1455} Ironforge · {npc:6236} Klannoc Macleod · {area:720} Fray Island · {zone:1413} The Barrens
+	-- {npc:5113} Kelv Sternhammer · {zone:1455} Ironforge · {npc:6236} Klannoc Macleod · {area:720} Fray Island · {zone:1413} Barrens
 	["At 30, {npc:5113}, the warrior trainer of {zone:1455}, sends you to {npc:6236} on {area:720} in the {zone:1413}."] = "30級時，{zone:1455}的戰士訓練師{npc:5113}會派你去找{zone:1413}{area:720}的{npc:6236}。",
 
 	-- Step 3: The Islander (Orgrimmar)
-	-- {npc:3354} Sorek · {object:172958} Valley of Honor · {npc:6236} Klannoc Macleod · {area:720} Fray Island · {zone:1413} The Barrens
+	-- {npc:3354} Sorek · {object:172958} Valley of Honor · {npc:6236} Klannoc Macleod · {area:720} Fray Island · {zone:1413} Barrens
 	["At 30, {npc:3354} in the {object:172958} sends you to {npc:6236} on {area:720} in the {zone:1413}."] = "30級時，{object:172958}的{npc:3354}會派你去找{zone:1413}{area:720}的{npc:6236}。",
 
 	-- Step 4: The Islander (Thunder Bluff)
-	-- {npc:3041} Torm Ragetotem · {zone:1456} Thunder Bluff · {npc:6236} Klannoc Macleod · {area:720} Fray Island · {zone:1413} The Barrens
+	-- {npc:3041} Torm Ragetotem · {zone:1456} Thunder Bluff · {npc:6236} Klannoc Macleod · {area:720} Fray Island · {zone:1413} Barrens
 	["At 30, {npc:3041}, the warrior trainer of {zone:1456}, sends you to {npc:6236} on {area:720} in the {zone:1413}."] = "30級時，{zone:1456}的戰士訓練師{npc:3041}會派你去找{zone:1413}{area:720}的{npc:6236}。",
 
 	-- Step 5: The Islander (Undercity)
-	-- {npc:4595} Baltus Fowler · {zone:1458} Undercity · {npc:6236} Klannoc Macleod · {area:720} Fray Island · {zone:1413} The Barrens
+	-- {npc:4595} Baltus Fowler · {zone:1458} Undercity · {npc:6236} Klannoc Macleod · {area:720} Fray Island · {zone:1413} Barrens
 	["At 30, {npc:4595}, a warrior trainer of the {zone:1458}, sends you to {npc:6236} on {area:720} in the {zone:1413}."] = "30級時，{zone:1458}的戰士訓練師之一{npc:4595}會派你去找{zone:1413}{area:720}的{npc:6236}。",
 
 	-- Step 6: The Affray

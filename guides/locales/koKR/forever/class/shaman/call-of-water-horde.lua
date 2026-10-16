@@ -12,11 +12,11 @@ return {
 	["The {item:5177} that lets you place water totems, and {spell:5394} with it."] = "물의 토템을 놓게 해 주는 {item:5177}와(과), 함께 얻는 {spell:5394}입니다.",
 
 	-- Step 1: Searn Firewarder
-	-- {npc:5892} Searn Firewarder · {object:172957} Valley of Wisdom · {npc:5901} Islen Waterseer · {zone:1413} The Barrens
+	-- {npc:5892} Searn Firewarder · {object:172957} Valley of Wisdom · {npc:5901} Islen Waterseer · {zone:1413} Barrens
 	["At 20 {npc:5892} in the {object:172957} sends you to {npc:5901} in the {zone:1413}."] = "20레벨에 {object:172957}의 {npc:5892}이(가) {zone:1413}의 {npc:5901}에게 보냅니다.",
 
 	-- Step 2: Xanis Flameweaver
-	-- {npc:5906} Xanis Flameweaver · {zone:1456} Thunder Bluff · {npc:5901} Islen Waterseer · {zone:1413} The Barrens
+	-- {npc:5906} Xanis Flameweaver · {zone:1456} Thunder Bluff · {npc:5901} Islen Waterseer · {zone:1413} Barrens
 	["At 20 {npc:5906}, a shaman trainer in {zone:1456}, sends you to {npc:5901} in the {zone:1413}."] = "20레벨에 {zone:1456}의 주술사 상급자 {npc:5906}이(가) {zone:1413}의 {npc:5901}에게 보냅니다.",
 
 	-- Step 3: Islen Waterseer
@@ -38,8 +38,8 @@ return {
 	["Fill the {item:7768} at the {object:107045}"] = "{object:107045}에서 {item:7768} 채우기",
 
 	-- Step 7: The Ruins of Stardust
-	-- {area:418} The Ruins of Stardust · {zone:1440} Ashenvale
-	["The fountain stands in the middle of the {area:418}, in south-western {zone:1440}."] = "샘은 {zone:1440} 남서쪽 {area:418} 한가운데에 있습니다.",
+	-- {zone:1440} Ashenvale
+	["The fountain stands in the middle of the Ruins of Stardust, in south-western {zone:1440}."] = "",
 	-- {item:7767} Empty Blue Waterskin
 	["Fill the {item:7767} at the fountain"] = "샘에서 {item:7767} 채우기",
 
@@ -54,10 +54,13 @@ return {
 	-- Step 10: The Brazier of Everfount
 	-- {object:113791} Brazier of Everfount
 	["The {object:113791}"] = "{object:113791}",
-	-- {area:228} The Sepulcher · {object:113791} Brazier of Everfount · {item:6637} Water Sapta · {npc:5894} Corrupt Minor Manifestation of Water · {npc:5895} Minor Manifestation of Water · {item:7813} Shard of Water
+	-- {area:228} Sepulcher · {object:113791} Brazier of Everfount · {item:6637} Water Sapta · {npc:5894} Corrupt Minor Manifestation of Water · {npc:5895} Minor Manifestation of Water · {item:7813} Shard of Water
 	["Fly to the {area:228}: the {object:113791} stands on the hill just south-west of it. Drink the {item:6637} there, beat the {npc:5894} for its bracers and place them in the brazier, then speak to the {npc:5895} and keep the {item:7813} for Islen."] = "{area:228}(으)로 비행하십시오. {object:113791}은(는) 그 바로 남서쪽 언덕에 있습니다. 그곳에서 {item:6637}을(를) 마시고, {npc:5894}을(를) 쓰러뜨려 손목보호구를 얻어 화로에 넣은 뒤, {npc:5895}와(과) 대화하고 {item:7813}은(는) 이슬렌에게 가져가십시오.",
 
 	-- Step 11: Islen Waterseer
 	-- {npc:5901} Islen Waterseer · {spell:5394} Healing Stream Totem · {item:5177} Water Totem
 	["{npc:5901}: {spell:5394} and your {item:5177}"] = "{npc:5901}: {spell:5394} 및 {item:5177}",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["The fountain stands in the middle of the {area:418}, in south-western {zone:1440}."] = "샘은 {zone:1440} 남서쪽 {area:418} 한가운데에 있습니다.",
 }

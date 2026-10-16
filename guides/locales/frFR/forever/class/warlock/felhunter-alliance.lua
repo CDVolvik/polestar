@@ -10,16 +10,16 @@ return {
 	-- {item:22244} Box of Souls
 	["The felhunter, the demon to bring against spellcasters, and a {item:22244} for your shards."] = "Le chasseur corrompu, le démon à opposer aux lanceurs de sorts, et une {item:22244} pour vos fragments.",
 
-	-- Step 1: Seeking Strahad (Stormwind City)
-	-- {npc:6122} Gakin the Darkbinder · {object:2164} The Slaughtered Lamb · {object:2101} Mage Quarter · {npc:6251} Strahad Farsan · {area:392} Ratchet
+	-- Step 1: Seeking Strahad (Stormwind)
+	-- {npc:6122} Gakin the Darkbinder · {object:2164} Slaughtered Lamb · {object:2101} Mage Quarter · {npc:6251} Strahad Farsan · {area:392} Ratchet
 	["At 30 {npc:6122}, in the cellar of the {object:2164} in the {object:2101}, sends you to {npc:6251} in {area:392}."] = "Au niveau 30, {npc:6122}, dans la cave de l'{object:2164}, dans le {object:2101}, vous envoie voir {npc:6251} à {area:392}.",
 
 	-- Step 2: Seeking Strahad (Ironforge)
-	-- {npc:6120} Lago Blackwrench · {object:32383} The Forlorn Cavern · {npc:6251} Strahad Farsan · {area:392} Ratchet
+	-- {npc:6120} Lago Blackwrench · {object:32383} Forlorn Cavern · {npc:6251} Strahad Farsan · {area:392} Ratchet
 	["At 30 {npc:6120}, in the {object:32383}, sends you to {npc:6251} in {area:392}."] = "Au niveau 30, {npc:6120}, dans la {object:32383}, vous envoie voir {npc:6251} à {area:392}.",
 
 	-- Step 3: Strahad Farsan
-	-- {area:392} Ratchet · {zone:1413} The Barrens · {npc:6251} Strahad Farsan
+	-- {area:392} Ratchet · {zone:1413} Barrens · {npc:6251} Strahad Farsan
 	["{area:392} is on the {zone:1413} coast; {npc:6251} stands on the hill in town."] = "{area:392} se trouve sur la côte des {zone:1413} ; {npc:6251} se tient sur la colline de la ville.",
 
 	-- Step 4: Krom Stoutarm

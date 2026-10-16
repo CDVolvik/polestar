@@ -81,7 +81,9 @@ return {
 	["Inside the cave, keep to the right wall all the way round, over the stream: Yarrog waits at the end."] = "进入洞穴后，一直沿右侧洞壁绕行，越过溪流：亚罗格·刺影在尽头等候。",
 
 	-- Step 18: Felstalker hooves
-	["Felstalker hooves"] = "地狱捕猎者的蹄子",
+	-- {npc:3102} Felstalker
+	["{npc:3102} hooves"] = "",
+	-- plural, as words: Felstalkers = {npc:3102} Felstalker
 	["Felstalkers roam the slope below the cave, on the valley's north side."] = "地狱捕猎者在山谷北侧、洞穴下方的山坡上游荡。",
 
 	-- Step 19: Zureetha Fargaze
@@ -140,7 +142,6 @@ return {
 
 	-- Step 33: Drygulch Ravine
 	-- {area:370} Drygulch Ravine · {npc:3293} Rezlak · {item:277661} Dull Storm Orb
-	-- plural, as words: Savages = {spell:20574} Savage
 	["Savages and Storm Witches nest in {area:370}, east of {npc:3293}. A Storm Witch drops the {item:277661}."] = "尘风暴徒和尘风雷巫盘踞在{npc:3293}东边的{area:370}。尘风雷巫会掉落{item:277661}。",
 
 	-- Step 35: Thunder lizards
@@ -262,7 +263,7 @@ return {
 	["Follow the road north from {area:362} to {zone:1454}'s main gate, just west of {area:817}. {npc:3352} stands with the hunter trainers in the {object:172958}."] = "沿道路从{area:362}向北到{zone:1454}的正门，就在{area:817}西边。{npc:3352}和猎人训练师一起站在{object:172958}。",
 
 	-- Step 64: Far Watch Post
-	-- {area:362} Razor Hill · {area:814} Southfury River · {area:379} Far Watch Post · {zone:1413} The Barrens
+	-- {area:362} Razor Hill · {area:814} Southfury River · {area:379} Far Watch Post · {zone:1413} Barrens
 	["Follow the road west from {area:362} over the {area:814} bridge; {area:379} sits just above it on the {zone:1413} side."] = "沿道路从{area:362}向西过{area:814}的桥；{area:379}就在桥上方的{zone:1413}一侧。",
 
 	-- Step 65: Thunder lizards across the river
@@ -272,6 +273,10 @@ return {
 	["Thunder Lizards and Lightning Hides graze on {area:369} across the bridge; any of them can drop a {item:6486}."] = "{npc:3130}和{npc:3131}在桥对面的{area:369}上吃草；任何一只都可能掉落{item:6486}。",
 
 	-- Step 67: The Crossroads
-	-- {area:379} Far Watch Post · {area:380} The Crossroads · {zone:1413} The Barrens
-	["Follow the road south-west from {area:379} to the {area:380}. {zone:1413} guide starts here."] = "沿道路从{area:379}向西南到{area:380}。{zone:1413}指南从这里开始。",
+	-- {area:379} Far Watch Post · {zone:1413} Barrens
+	["Follow the road south-west from {area:379} to the Crossroads. The {zone:1413} guide starts here."] = "",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Felstalker hooves"] = "地狱捕猎者的蹄子",
+	-- ["Follow the road south-west from {area:379} to the {area:380}. {zone:1413} guide starts here."] = "沿道路从{area:379}向西南到{area:380}。{zone:1413}指南从这里开始。",
 }

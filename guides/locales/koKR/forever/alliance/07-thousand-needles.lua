@@ -8,7 +8,7 @@ return {
 	-- Step 1: Darkshire
 	-- {item:4371} Bronze Tube · {quest:174} Look to the Stars · {npc:3133} Herble Baubbletump · {npc:1448} Neal Allen · {area:150} Menethil Harbor
 	["No {item:4371} for {quest:174}? {npc:3133} sells it in the house beside Viktori, in limited stock; {npc:1448} in {area:150} sells it too."] = "{quest:174}에 쓸 {item:4371}이(가) 없나요? 빅토리 옆집의 {npc:3133}이(가) 한정 수량으로 팔고, {area:150}의 {npc:1448}도 팝니다.",
-	-- {npc:352} Dungar Longdrink · {zone:1453} Stormwind City
+	-- {npc:352} Dungar Longdrink · {zone:1453} Stormwind
 	["From {npc:352} in {zone:1453}"] = "{zone:1453}의 {npc:352}에게서",
 	-- {npc:6790} Innkeeper Trelayne
 	["{npc:6790}, Scarlet Raven Tavern"] = "{npc:6790}, 여관",
@@ -71,7 +71,7 @@ return {
 	["Skeletal Raiders, Healers and Warders hold the west part of the cemetery, just east of Sven's camp."] = "{npc:1110}, 해골 치료사, 해골 문지기가 스벤의 야영지 바로 동쪽, 묘지 서쪽 구역을 차지하고 있습니다.",
 
 	-- Step 13: Sven's Camp
-	-- {npc:1212} Bishop Farthing · {zone:1453} Stormwind City
+	-- {npc:1212} Bishop Farthing · {zone:1453} Stormwind
 	["For {npc:1212} in {zone:1453}, in the next guide"] = "다음 가이드에서 {zone:1453}의 {npc:1212}에게",
 
 	-- Step 14: Defias Strongbox
@@ -79,15 +79,15 @@ return {
 	["The Defias camp lies in the south-west of {zone:1431}, south of {area:94} near the {zone:1436} border. The strongbox stands among the tents."] = "데피아즈단 야영지는 {zone:1431} 남서쪽, {area:94} 남쪽의 {zone:1436} 경계 근처에 있습니다. 금고는 천막들 사이에 있습니다.",
 
 	-- Step 15: Vul'Gol Ogre Mound
-	-- {item:1349} Abercrombie's Crate
-	["Ride east to the ogre mound. {item:1349} sits in the camp at its entrance; Splinter Fist ogres guard it."] = "동쪽의 오우거 소굴로 가세요. {item:1349}은(는) 입구의 야영지에 있으며 망치주먹 오우거가 지킵니다.",
+	-- {object:119} Abercrombie's Crate
+	["Ride east to the ogre mound. {object:119} sits in the camp at its entrance; Splinter Fist ogres guard it."] = "",
 	-- {npc:272273} Lost Watcher · {quest:96138} Merrick's Bow
 	["Only if a {npc:272273} dropped {quest:96138}: right-click it"] = "{npc:272273}이(가) {quest:96138}을(를) 떨어뜨렸을 때만: 오른쪽 클릭하세요",
 
 	-- Step 17: Back to Darkshire
 	-- {area:42} Darkshire
 	["Back to {area:42}"] = "{area:42}(으)로 돌아가기",
-	-- {npc:482} Elling Trias · {zone:1453} Stormwind City
+	-- {npc:482} Elling Trias · {zone:1453} Stormwind
 	["For {npc:482} in {zone:1453}, in the next guide"] = "다음 가이드에서 {zone:1453}의 {npc:482}에게",
 	-- {npc:263} Lord Ello Ebonlocke
 	["{npc:263}, in the town hall"] = "{npc:263}, 마을 회관 안",
@@ -121,15 +121,17 @@ return {
 	["The captain walks the deck of the wrecked ship; his strongbox sits in the hold."] = "선장은 난파선 갑판을 걸어다니고, 그의 금고는 선창에 있습니다.",
 
 	-- Step 23: Glorin Steelbrow
-	-- {npc:1284} Archbishop Benedictus · {zone:1453} Stormwind City
+	-- {npc:1284} Archbishop Benedictus · {zone:1453} Stormwind
 	["For {npc:1284} in {zone:1453}, in the next guide"] = "다음 가이드에서 {zone:1453}의 {npc:1284}에게",
 
 	-- Step 24: Whelgar's Excavation Site
 	["Follow the road east to the excavation site."] = "길을 따라 동쪽의 발굴 현장으로 가세요.",
 
 	-- Step 25: The dig and Sarltooth
-	["The dig and Sarltooth"] = "발굴지와 살투스",
-	["The relics lie in the dig itself. Sarltooth, a big Razormaw, prowls the raptor valley just west of it."] = "유물은 발굴지 안에 있습니다. 커다란 무쇠턱 랩터인 살투스는 그 바로 서쪽의 랩터 계곡을 어슬렁거립니다.",
+	-- {npc:1353} Sarltooth
+	["The dig and {npc:1353}"] = "",
+	-- {npc:1353} Sarltooth
+	["The relics lie in the dig itself. {npc:1353}, a big Razormaw, prowls the raptor valley just west of it."] = "",
 	-- {item:2661} Neru Fragment · {object:331} Loose Soil
 	["{item:2661}: the {object:331}"] = "{item:2661}: {object:331}",
 
@@ -155,7 +157,7 @@ return {
 	["Take the boat from Menethil's pier to {area:513} in {zone:1445}."] = "메네실 부두에서 배를 타고 {zone:1445}의 {area:513}(으)로 가세요.",
 
 	-- Step 31: Takar the Seer
-	-- {zone:1413} The Barrens · {npc:6244} Takar the Seer · {area:378} Camp Taurajo
+	-- {zone:1413} Barrens · {npc:6244} Takar the Seer · {area:378} Camp Taurajo
 	["On the road south through the {zone:1413}, {npc:6244} camps east of the road, north-east of {area:378}; come in from the east and keep clear of the Horde guards."] = "{zone:1413}을(를) 지나 남쪽으로 가는 길에서, {npc:6244}은(는) 길 동쪽, {area:378} 북동쪽에 진을 치고 있습니다. 동쪽에서 접근하고 호드 경비병을 피하세요.",
 	-- {quest:1738} Heartswood · {zone:1440} Ashenvale · {zone:1443} Desolace
 	["{quest:1738}: in {zone:1440}, on the way to {zone:1443}"] = "{quest:1738}: {zone:1443}(으)로 가는 길에 {zone:1440}에서",
@@ -163,7 +165,7 @@ return {
 	["{quest:65602}: the incubus, beside the succubus; the {item:190309} is near the {quest:1738}"] = "{quest:65602}: 서큐버스 옆의 인큐버스. {item:190309}은(는) {quest:1738} 근처에 있습니다",
 
 	-- Step 32: The Great Lift
-	-- {zone:1413} The Barrens · {area:378} Camp Taurajo · {area:485} The Great Lift · {zone:1441} Thousand Needles
+	-- {zone:1413} Barrens · {area:378} Camp Taurajo · {area:485} The Great Lift · {zone:1441} Thousand Needles
 	["From Theramore follow the road west out of Dustwallow into the {zone:1413} and south along it; give {area:378} a wide berth. {area:485} at the {zone:1413}' south end takes you down into {zone:1441}. The journal lies at the foot of the lift."] = "테라모어에서 길을 따라 서쪽으로 먼지진흙 습지대를 빠져나와 {zone:1413}에 들어간 뒤, 길을 따라 남쪽으로 가세요. {area:378}은(는) 멀리 돌아가세요. {zone:1413} 남쪽 끝의 {area:485}을(를) 타면 {zone:1441}(으)로 내려갑니다. 일지는 승강장 아래에 있습니다.",
 	-- {npc:4048} Falfindel Waywarder · {zone:1444} Feralas
 	["For {npc:4048} in {zone:1444}, much later"] = "한참 뒤에 {zone:1444}의 {npc:4048}에게",
@@ -186,4 +188,9 @@ return {
 
 	-- Step 36: Back to Menethil
 	["Back to Menethil"] = "메네실로 돌아가기",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Ride east to the ogre mound. {item:1349} sits in the camp at its entrance; Splinter Fist ogres guard it."] = "동쪽의 오우거 소굴로 가세요. {item:1349}은(는) 입구의 야영지에 있으며 망치주먹 오우거가 지킵니다.",
+	-- ["The dig and Sarltooth"] = "발굴지와 살투스",
+	-- ["The relics lie in the dig itself. Sarltooth, a big Razormaw, prowls the raptor valley just west of it."] = "유물은 발굴지 안에 있습니다. 커다란 무쇠턱 랩터인 살투스는 그 바로 서쪽의 랩터 계곡을 어슬렁거립니다.",
 }

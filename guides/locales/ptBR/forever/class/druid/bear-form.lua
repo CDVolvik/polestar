@@ -12,8 +12,8 @@ return {
 	["Your tanking form: Forever no longer trains {spell:5487}, these quests give it. Opens {area:493} too."] = "Sua forma de tanque: o Forever não ensina mais {spell:5487} no instrutor; estas missões a concedem. Também liberam {area:493}.",
 
 	-- Step 1: Heeding the Call
-	-- {npc:3602} Kal · {area:186} Dolanaar · {zone:1457} Darnassus · {zone:1453} Stormwind City · {npc:4217} Mathrengyl Bearwalker
-	["At 10 a druid's call reaches you: {npc:3602} in {area:186}, Denatharion in {zone:1457} or Theridran in {zone:1453}. Any one of them sends you to {npc:4217} in the Cenarion Enclave of {zone:1457}."] = "No nível 10, o chamado dos druidas chega até você: {npc:3602} em {area:186}, Denatharion em {zone:1457} ou Theridran em {zone:1453}. Qualquer um deles envia você a {npc:4217} no Enclave Cenariano de {zone:1457}.",
+	-- {npc:3602} Kal · {area:186} Dolanaar · {zone:1457} Darnassus · {zone:1453} Stormwind · {npc:4217} Mathrengyl Bearwalker
+	["At 10 a druid's call reaches you: {npc:3602} in {area:186}, Denatharion in {zone:1457} or Theridran in {zone:1453}. Any one of them sends you to {npc:4217} in the Cenarion Enclave of Darnassus."] = "",
 	-- {npc:3602} Kal · {area:186} Dolanaar
 	["{npc:3602}, {area:186}; Denatharion's and Theridran's letters lead to the same place"] = "{npc:3602}, {area:186}; as cartas de Denatharion e Theridran levam ao mesmo lugar",
 
@@ -55,7 +55,7 @@ return {
 	["Speak with the {quest:5930}"] = "Fale com o {quest:5930}",
 
 	-- Step 11: The Moonkin Stone
-	-- {object:177525} Moonkin Stone · {zone:1412} Mulgore · {zone:1413} The Barrens · {item:15710} Cenarion Lunardust · {npc:12144} Lunaclaw Spirit
+	-- {object:177525} Moonkin Stone · {zone:1412} Mulgore · {zone:1413} Barrens · {item:15710} Cenarion Lunardust · {npc:12144} Lunaclaw Spirit
 	["The {object:177525} stands in the pass from {zone:1412} into the {zone:1413}. Use the {item:15710} there, defeat Lunaclaw and speak to the {npc:12144}."] = "A {object:177525} fica na passagem de {zone:1412} para {zone:1413}. Use a {item:15710} lá, derrote Lunagarra e fale com o {npc:12144}.",
 
 	-- Step 12: Body and Heart
@@ -103,10 +103,13 @@ return {
 	["{npc:270459} stands beside {npc:259084} and the Skyborne Portal, west of {area:279}, where the skycutter from {zone:2521} lands. {npc:2543} offers the same quest."] = "{npc:270459} fica ao lado de {npc:259084} e do Portal Celonato, a oeste de {area:279}, onde pousa a nave celeste vinda da {zone:2521}. {npc:2543} oferece a mesma missão.",
 
 	-- Step 21: Sheldras Moontree
-	-- {zone:1453} Stormwind City · {npc:5504} Sheldras Moontree
+	-- {zone:1453} Stormwind · {npc:5504} Sheldras Moontree
 	["The Skyborne Portal takes you to {zone:1453}. {npc:5504} is the city's druid trainer."] = "O Portal Celonato leva você a {zone:1453}. {npc:5504} é o instrutor de druidas da cidade.",
 
 	-- Step 22: Dendrite Starblaze
 	-- {spell:18960} Teleport: Moonglade · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {area:493} Moonglade
 	["Cast {spell:18960}. {npc:11802} is in {area:2361}. Learn the {area:493} flight path while you are here."] = "Lance {spell:18960}. {npc:11802} está em {area:2361}. Aprenda a rota de voo de {area:493} enquanto estiver lá.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["At 10 a druid's call reaches you: {npc:3602} in {area:186}, Denatharion in {zone:1457} or Theridran in {zone:1453}. Any one of them sends you to {npc:4217} in the Cenarion Enclave of {zone:1457}."] = "No nível 10, o chamado dos druidas chega até você: {npc:3602} em {area:186}, Denatharion em {zone:1457} ou Theridran em {zone:1453}. Qualquer um deles envia você a {npc:4217} no Enclave Cenariano de {zone:1457}.",
 }

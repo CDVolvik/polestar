@@ -15,7 +15,7 @@ return {
 	["{npc:5480} trains warriors in {object:2100}; {npc:6089} and {npc:6090} stand together by the {object:2152} there. {npc:6090} fights you for his mug."] = "{npc:5480} entraîne les guerriers dans la {object:2100} ; {npc:6089} et {npc:6090} s'y tiennent ensemble près de la {object:2152}. {npc:6090} vous affronte pour sa chope.",
 
 	-- Step 2: Marshal Haggard
-	-- {npc:294} Marshal Haggard · {zone:1429} Elwynn Forest · {zone:1453} Stormwind City
+	-- {npc:294} Marshal Haggard · {zone:1429} Elwynn Forest · {zone:1453} Stormwind
 	["{npc:294}'s house is in eastern {zone:1429}, south of the road from {zone:1453} to Redridge."] = "La maison de {npc:294} est dans l'est de {zone:1429}, au sud de la route de {zone:1453} vers les Carmines.",
 
 	-- Step 3: Dead-tooth Jack

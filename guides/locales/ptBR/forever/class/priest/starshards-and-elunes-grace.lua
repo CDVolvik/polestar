@@ -16,6 +16,6 @@ return {
 	["At 10, go to {npc:11401} in the Temple of the Moon. Priest trainers elsewhere ({npc:3600} in {area:186}, {npc:377} in {area:87}, {npc:1226} in {area:131}) send you to her with {quest:5628}."] = "No nível 10, vá até {npc:11401} no Templo da Lua. Instrutores de sacerdote de outros lugares ({npc:3600} em {area:186}, {npc:377} em {area:87}, {npc:1226} em {area:131}) mandam você até ela com {quest:5628}.",
 
 	-- Step 2: Elune's Grace
-	-- {npc:11401} Priestess Alathea · {quest:5672} Elune's Grace · {npc:376} High Priestess Laurena · {zone:1453} Stormwind City · {npc:11406} High Priest Rohan · {zone:1455} Ironforge
+	-- {npc:11401} Priestess Alathea · {quest:5672} Elune's Grace · {npc:376} High Priestess Laurena · {zone:1453} Stormwind · {npc:11406} High Priest Rohan · {zone:1455} Ironforge
 	["At 20, {npc:11401} teaches {quest:5672}. {npc:376} in {zone:1453} and {npc:11406} in {zone:1455} send you to her with a quest of the same name."] = "No nível 20, {npc:11401} ensina {quest:5672}. {npc:376} em {zone:1453} e {npc:11406} em {zone:1455} mandam você até ela com uma missão de mesmo nome.",
 }

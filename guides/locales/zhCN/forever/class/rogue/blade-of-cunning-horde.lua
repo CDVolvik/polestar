@@ -19,21 +19,16 @@ return {
 	["{quest:1859} stands in the {object:172960}, the canyon under the {object:172982}. Trolls: take {quest:1963} from him at 10."] = "{quest:1859}站在{object:172960}，也就是{object:172982}下方的峡谷里。巨魔：10级时从他那里接受{quest:1963}。",
 
 	-- Step 3: Tazan
-	["Tazan"] = "塔赞",
-	-- {zone:1413} The Barrens · {area:392} Ratchet
-	["Tazan stands on the {zone:1413} coast south of {area:392}. Kill him for his satchel."] = "塔赞站在{area:392}南边的{zone:1413}海岸。杀死他拿到他的挎包。",
-	-- {item:7209} Tazan's Satchel
-	["{item:7209}: Tazan"] = "{item:7209}：塔赞",
+	-- {npc:6494} Tazan · {zone:1413} Barrens · {area:392} Ratchet
+	["{npc:6494} stands on the {zone:1413} coast south of {area:392}. Kill him for his satchel."] = "",
 
 	-- Step 4: Back to Therzok
 	-- {npc:6446} Therzok
 	["Back to {npc:6446}"] = "回到{npc:6446}那里",
 
 	-- Step 5: Tazan's Key
-	-- {object:172982} Valley of Strength · {item:7208} Tazan's Key · {item:7209} Tazan's Satchel
-	["Gamon drinks in the inn in the {object:172982}. Pick his pocket for {item:7208}, then open {item:7209}."] = "加摩尔在{object:172982}的旅店里喝酒。从他身上偷取{item:7208}，然后打开{item:7209}。",
-	-- {item:7208} Tazan's Key
-	["{item:7208}: Gamon"] = "{item:7208}：加摩尔",
+	-- {npc:6466} Gamon · {object:172982} Valley of Strength · {item:7208} Tazan's Key · {item:7209} Tazan's Satchel
+	["{npc:6466} drinks in the inn in the {object:172982}. Pick his pocket for {item:7208}, then open {item:7209}."] = "",
 	-- {item:7209} Tazan's Satchel
 	["{item:7209}, once you have the key"] = "{item:7209}，拿到钥匙后",
 	-- {item:7295} Tazan's Logbook
@@ -54,7 +49,7 @@ return {
 	["{quest:1885} stands in the {object:36073}."] = "{quest:1885}站在{object:36073}。",
 
 	-- Step 9: Astor Hadren
-	-- {npc:6497} Astor Hadren · {area:228} The Sepulcher
+	-- {npc:6497} Astor Hadren · {area:228} Sepulcher
 	["{npc:6497} stands north-east of the {area:228}. Take his Letter of Introduction from him."] = "{npc:6497}站在{area:228}东北边。从他那里拿到阿斯托的介绍信。",
 
 	-- Step 10: Back to Mennet Carkad
@@ -70,4 +65,11 @@ return {
 	["Mennet and {npc:2425}"] = "米奈特与{npc:2425}",
 	-- {npc:2425} Varimathras · {object:36126} Royal Quarter
 	["Mennet sends the ledger on to {npc:2425} in the Hall of the Dark Lady, the {object:36126}."] = "米奈特会把账本转交给{object:36126}的{npc:2425}。",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Gamon drinks in the inn in the {object:172982}. Pick his pocket for {item:7208}, then open {item:7209}."] = "加摩尔在{object:172982}的旅店里喝酒。从他身上偷取{item:7208}，然后打开{item:7209}。",
+	-- ["Tazan"] = "塔赞",
+	-- ["Tazan stands on the {zone:1413} coast south of {area:392}. Kill him for his satchel."] = "塔赞站在{area:392}南边的{zone:1413}海岸。杀死他拿到他的挎包。",
+	-- ["{item:7208}: Gamon"] = "{item:7208}：加摩尔",
+	-- ["{item:7209}: Tazan"] = "{item:7209}：塔赞",
 }

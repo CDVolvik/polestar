@@ -23,8 +23,7 @@ return {
 	["{zone:1411} coast"] = "{zone:1411} 해안",
 
 	-- Step 6: Fishing: The Barrens (1-50)
-	-- {zone:1413} The Barrens
-	["{zone:1413} oasis"] = "{zone:1413} 오아시스",
+	["Barrens oasis"] = "",
 
 	-- Step 7: Fishing: Tirisfal Glades (1-50)
 	["Vile Fin shore"] = "썩은지느러미 물가",
@@ -86,7 +85,7 @@ return {
 	["Fish in the {area:2521} in {zone:1444} until you catch a {item:16967}; it only bites there."] = "{item:16967}을(를) 낚을 때까지 {zone:1444}의 {area:2521}에서 낚시하세요. 그곳에서만 낚입니다.",
 
 	-- Step 24: Savage Coast Blue Sailfin
-	-- {area:301} The Savage Coast · {zone:1434} Stranglethorn Vale · {item:16969} Savage Coast Blue Sailfin
+	-- {area:301} Savage Coast · {zone:1434} Stranglethorn Vale · {item:16969} Savage Coast Blue Sailfin
 	["Fish in the {area:301}, the north-west shore of {zone:1434} until you catch a {item:16969}; it only bites there."] = "{item:16969}을(를) 낚을 때까지 {zone:1434} 북서쪽 물가인 {area:301}에서 낚시하세요. 그곳에서만 낚입니다.",
 
 	-- Step 25: Misty Reed Mahi Mahi
@@ -102,4 +101,7 @@ return {
 	["Fish the pools along the coast here (eels, snappers, wreckage) until skill 300. {area:35} sells bait and {item:6530} for a small fishing bonus."] = "숙련도 300까지 이곳 해안의 낚시터(장어, 도미, 잔해)에서 낚시하세요. {area:35}에서 미끼와 {item:6530}을(를) 팔며, 낚시 숙련도가 조금 오릅니다.",
 	-- {area:35} Booty Bay
 	["{area:35} coast"] = "{area:35} 해안",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["{zone:1413} oasis"] = "{zone:1413} 오아시스",
 }

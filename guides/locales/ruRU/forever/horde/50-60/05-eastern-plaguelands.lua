@@ -32,16 +32,16 @@ return {
 
 	-- Step 6: Hameya's scroll
 	["Hameya's scroll"] = "Свиток Хамейи",
-	-- {area:2261} The Undercroft · {area:2260} The Marris Stead
+	-- {area:2261} Undercroft · {area:2260} Marris Stead
 	["A torn scroll lies at the entrance of the {area:2261}, the crypt south of the {area:2260}."] = "Рваный свиток лежит у входа сюда: {area:2261} – склеп к югу от места {area:2260}.",
 
 	-- Step 7: Nathanos Blightcaller
-	-- {npc:15193} The Banshee Queen · {area:2260} The Marris Stead
+	-- {npc:15193} The Banshee Queen · {area:2260} Marris Stead
 	["{npc:15193}'s champion holds the {area:2260} farmhouse."] = "Защитник ({npc:15193}) занимает дом на ферме ({area:2260}).",
 
 	-- Step 8: The western hills
 	["The western hills"] = "Западные холмы",
-	-- {area:2260} The Marris Stead · {area:2627} Terrordale
+	-- {area:2260} Marris Stead · {area:2627} Terrordale
 	-- plural, as words: Plaguehound Runts = {npc:8596} Plaguehound Runt · Plaguebats = {npc:8600} Plaguebat · Carrion Grubs = {npc:8603} Carrion Grub
 	["Plaguehound Runts and Plaguebats roam the hills north of the {area:2260}, Carrion Grubs crawl among them; work north toward {area:2627}."] = "Карликовые чумные псы и чумные нетопыри бродят по холмам к северу от места {area:2260}, среди них ползают личинки-падальщики; продвигайтесь на север к месту {area:2627}.",
 
@@ -68,12 +68,12 @@ return {
 	["{item:15447} spoils within ten minutes: kill the town's Scourge quickly and grind the seven pieces with the {item:15454} at once."] = "{item:15447} портится за десять минут: быстро убивайте воинов Плети в городе и сразу перетрите семь кусков предметом {item:15454}.",
 
 	-- Step 14: Nathanos Blightcaller
-	-- {area:2260} The Marris Stead
+	-- {area:2260} Marris Stead
 	["Ride west to the {area:2260}."] = "Езжайте на запад сюда: {area:2260}.",
 
 	-- Step 15: Hameya's mound
 	["Hameya's mound"] = "Курган Хамейи",
-	-- {object:177675} Mound of Dirt · {area:2261} The Undercroft
+	-- {object:177675} Mound of Dirt · {area:2261} Undercroft
 	["The {object:177675} is just behind the {area:2261}."] = "{object:177675} – сразу за местом {area:2261}.",
 
 	-- Step 17: Fly to Thunder Bluff

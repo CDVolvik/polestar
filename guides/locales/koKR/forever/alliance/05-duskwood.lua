@@ -35,7 +35,7 @@ return {
 	["{quest:337}: a rare drop from {zone:1431}'s mobs"] = "{quest:337}: {zone:1431} 몹이 드물게 떨어뜨림",
 
 	-- Step 5: Watcher Dodds
-	-- {npc:888} Watcher Dodds · {area:245} The Yorgen Farmstead
+	-- {npc:888} Watcher Dodds · {area:245} Yorgen Farmstead
 	["{npc:888} stands south of the road, at the {area:245}."] = "{npc:888}은(는) 길 남쪽 {area:245}에 서 있습니다.",
 
 	-- Step 6: Raven Hill
@@ -66,10 +66,10 @@ return {
 	["Rabid Dire Wolves roam the woods around the cemetery and {npc:289}, Starving Dire Wolves the hills north-east of him. Pygmy Venom Web Spiders crawl east of the cemetery and drop the venom. Every ghoul of the cemetery's northern half can drop a fang."] = "광포한 그늘숲늑대는 묘지와 {npc:289} 주변 숲을, 굶주린 그늘숲늑대는 그의 북동쪽 언덕을 돌아다닙니다. 새끼 그물독거미는 묘지 동쪽을 기어다니며 독을 떨어뜨립니다. 묘지 북쪽 절반의 모든 구울이 송곳니를 떨어뜨릴 수 있습니다.",
 
 	-- Step 11: Watcher Dodds
-	-- {area:245} The Yorgen Farmstead
+	-- {area:245} Yorgen Farmstead
 	["Ride back east along the road to the {area:245}."] = "길을 따라 동쪽 {area:245}(으)로 돌아가십시오.",
 
-	-- Step 12: The Yorgen Farmstead
+	-- Step 12: Yorgen Farmstead
 	["The mound of loose dirt lies south of the farmhouse, by the old stump."] = "대충 덮인 흙무더기는 농가 남쪽, 오래된 그루터기 옆에 있습니다.",
 
 	-- Step 14: Blind Mary
@@ -111,7 +111,7 @@ return {
 	["{npc:288} hides in the house at the west end of {area:94}."] = "{npc:288}은(는) {area:94} 서쪽 끝의 집에 숨어 있습니다.",
 
 	-- Step 25: Sven's Camp
-	-- {zone:1453} Stormwind City · {area:17203} Stormwind Harbor · {area:442} Auberdine · {zone:1440} Ashenvale
+	-- {zone:1453} Stormwind · {area:17203} Stormwind Harbor · {area:442} Auberdine · {zone:1440} Ashenvale
 	["Next: {zone:1453} for training, then the boat from {area:17203} to {area:442} for {zone:1440}."] = "다음: 수련을 위해 {zone:1453}(으)로 간 뒤, {area:17203}에서 배를 타고 {area:442}(으)로 가서 {zone:1440}(으)로 향합니다.",
 
 	-- Step 26: Agent Kearnen
@@ -121,10 +121,10 @@ return {
 	["{item:7908}, in the chest"] = "상자 안의 {item:7908}",
 
 	-- Step 27: Master Mathias Shaw
-	-- {zone:1453} Stormwind City · {object:2100} Old Town
+	-- {zone:1453} Stormwind · {object:2100} Old Town
 	["Ride north through Elwynn to {zone:1453}; Mathias Shaw is at SI:7 in {object:2100}."] = "엘윈 숲을 지나 북쪽 {zone:1453}(으)로 달려가십시오. 마티아스 쇼는 {object:2100}의 SI:7에 있습니다.",
-	-- {npc:332} Master Mathias Shaw · {spell:2842} Poisons · {item:18160} Recipe: Thistle Tea
-	["{npc:332}: {spell:2842}, and {item:18160}"] = "{npc:332}: {spell:2842}, {item:18160}",
+	-- {npc:332} Master Mathias Shaw · {item:18160} Recipe: Thistle Tea
+	["{npc:332}: Poisons, and {item:18160}"] = "",
 	-- {quest:2607} The Touch of Zanzil · {npc:7207} Doc Mixilpixil
 	["{quest:2607}: {npc:7207}, in the cellar of the Barracks"] = "{quest:2607}: {npc:7207}, 병영 지하실",
 	-- {npc:7207} Doc Mixilpixil
@@ -132,14 +132,16 @@ return {
 	-- {item:3372} Leaded Vial · {npc:1313} Maria Lumere
 	["{item:3372}: {npc:1313}, Alchemy Supplies"] = "{item:3372}: {npc:1313}, 연금술 용품",
 
-	-- Step 28: Stormwind City
-	-- {zone:1453} Stormwind City · {zone:1429} Elwynn Forest · {area:17203} Stormwind Harbor · {area:442} Auberdine
+	-- Step 28: Stormwind
+	-- {zone:1453} Stormwind · {zone:1429} Elwynn Forest · {area:17203} Stormwind Harbor · {area:442} Auberdine
 	["Train in {zone:1453}, north through {zone:1429}. Then take the boat from {area:17203} to {area:442}."] = "{zone:1429}을(를) 지나 북쪽 {zone:1453}에서 수련하십시오. 그다음 {area:17203}에서 배를 타고 {area:442}(으)로 가십시오.",
 	["Level 22 and 24 spells"] = "레벨 22, 24 주문",
 
 	-- Step 29: Shaman training
 	["Shaman training"] = "주술사 수련",
-	-- {zone:1453} Stormwind City · {area:2257} Deeprun Tram · {object:28027} Dwarven District · {zone:1455} Ironforge · {npc:258098} Eldrun Stormbreaker · {area:442} Auberdine
+	-- {zone:1453} Stormwind · {area:2257} Deeprun Tram · {object:28027} Dwarven District · {zone:1455} Ironforge · {npc:258098} Eldrun Stormbreaker · {area:442} Auberdine
 	["{zone:1453} has no shaman trainer: take the {area:2257} from the {object:28027} to {zone:1455}, train with {npc:258098}, then ride the tram back for the {area:442} boat."] = "{zone:1453}에는 주술사 상급자가 없습니다: {object:28027}에서 {area:2257}을(를) 타고 {zone:1455}(으)로 가서 {npc:258098}에게 수련한 뒤, 지하철로 돌아와 {area:442}행 배를 타십시오.",
 
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["{npc:332}: {spell:2842}, and {item:18160}"] = "{npc:332}: {spell:2842}, {item:18160}",
 }

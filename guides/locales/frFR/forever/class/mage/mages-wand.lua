@@ -8,8 +8,8 @@ return {
 	-- Guide
 	["A wand of your school for the 30s: frost, arcane or fire."] = "Une baguette de votre école pour les niveaux 30 : givre, arcanes ou feu.",
 
-	-- Step 1: Journey to the Marsh (Stormwind City)
-	-- {npc:5497} Jennea Cannon · {zone:1453} Stormwind City · {object:2101} Mage Quarter · {npc:6546} Tabetha · {zone:1455} Ironforge
+	-- Step 1: Journey to the Marsh (Stormwind)
+	-- {npc:5497} Jennea Cannon · {zone:1453} Stormwind · {object:2101} Mage Quarter · {npc:6546} Tabetha · {zone:1455} Ironforge
 	["{npc:5497} in the Wizard's Sanctum, {zone:1453}'s {object:2101}, sends you to {npc:6546}; Bink in {zone:1455} gives the same quest."] = "{npc:5497}, dans la tour du {object:2101} de {zone:1453}, vous envoie voir {npc:6546} ; Bink, à {zone:1455}, donne la même quête.",
 
 	-- Step 2: Journey to the Marsh (Orgrimmar)
@@ -21,7 +21,7 @@ return {
 	["{npc:6546}, a hermit, lives in a cottage deep in the marsh west of Theramore, just north of the {area:508}."] = "{npc:6546}, une ermite, vit dans une chaumière au fond du marais à l'ouest de Theramore, juste au nord des {area:508}.",
 
 	-- Step 4: Magus Tirth
-	-- {npc:6548} Magus Tirth · {area:439} The Shimmering Flats · {zone:1441} Thousand Needles
+	-- {npc:6548} Magus Tirth · {area:439} Shimmering Flats · {zone:1441} Thousand Needles
 	["{npc:6548} spends his days at the race track in the {area:439}, south-east {zone:1441}."] = "{npc:6548} passe ses journées sur la piste de course de {area:439}, au sud-est de {zone:1441}.",
 
 	-- Step 5: "Plucky" Johnson

@@ -16,6 +16,6 @@ return {
 
 	-- Step 2: Durotar Supply and Logistics
 	["Durotar Supply and Logistics"] = "杜洛塔物資流通",
-	-- {area:380} The Crossroads · {npc:256384} Gishah · {zone:1458} Undercity
+	-- {area:380} Crossroads · {npc:256384} Gishah · {zone:1458} Undercity
 	["The Horde camp is just outside the {area:380}. Loot supply crates in the world, fill them and hand them in at the camp for Merchant's Favor; the treat costs 1,500. (Another {npc:256384} stands in the {zone:1458}; this is the one at the camp.)"] = "部落營地就在{area:380}外面。在野外拾取補給箱，裝滿後在營地繳交換取Merchant's Favor；這個點心要價1,500。（另一個{npc:256384}站在{zone:1458}；要找的是營地裡的這位。）",
 }

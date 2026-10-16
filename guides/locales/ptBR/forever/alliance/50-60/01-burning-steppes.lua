@@ -123,7 +123,7 @@ return {
 
 	-- Step 33: Wildkin feathers
 	["Wildkin feathers"] = "Penas de Coruscante",
-	-- {area:1438} Nethergarde Keep · {area:348} Aerie Peak · {zone:1425} The Hinterlands
+	-- {area:1438} Nethergarde Keep · {area:348} Aerie Peak · {zone:1425} Hinterlands
 	-- plural, as words: Wildkin Feathers = {item:10819} Wildkin Feather
 	["Ride back to {area:1438} and fly to {area:348}. The Wildkin Feathers lie on the ground across the {zone:1425}, south and east of {area:348}, where the owlbeasts roam; the mobs here are well below you now."] = "Volte para {area:1438} e voe para {area:348}. As Penas de Coruscante ficam no chão por {zone:1425}, ao sul e a leste de {area:348}, onde as ferujas vagueiam; os monstros daqui agora são de nível bem abaixo do seu.",
 

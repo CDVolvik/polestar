@@ -129,5 +129,4 @@ return {
 	-- Step 28: Runecloth Bandage (260-300)
 	-- {item:14529} Runecloth Bandage
 	["{item:14529} is yellow from 260 (yellow at 260, grey at 320): about 65 crafts to 300. Bandages need no fire: craft them anywhere. {item:14529} stays yellow to 320, so it carries you to 300 without a trip for Heavy Runecloth."] = "{item:14529}: желтый с 260 (желтый с 260, серый с 320) – около 65 изготовлений до 300. Бинтам не нужен огонь: делайте их где угодно. {item:14529} остается желтым до 320, так что доведет вас до 300 без похода за плотными бинтами из рунной ткани.",
-
 }

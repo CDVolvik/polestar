@@ -56,5 +56,4 @@ return {
 	-- Step 12: Norric Lochthane
 	-- {npc:258043} Norric Lochthane · {spell:5394} Healing Stream Totem · {item:5177} Water Totem
 	["{npc:258043}: {spell:5394} and your {item:5177}"] = "{npc:258043}: {spell:5394} и ваш {item:5177}",
-
 }

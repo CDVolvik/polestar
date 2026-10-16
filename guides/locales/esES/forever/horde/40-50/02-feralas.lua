@@ -155,8 +155,8 @@ return {
 	["Keep riding west to the coast. The Coast Crawl Deepseers and Snapclaws on the beaches drop OOX-22/FE's distress beacon about one kill in forty: if one drops, use it to start the quest."] = "Sigue cabalgando hacia el oeste hasta la costa. Los Videnistas y Quebradores Reptacostas de las playas sueltan la baliza de socorro de OOX-22/FE aproximadamente una de cada cuarenta muertes: si cae, úsala para empezar la misión.",
 
 	-- Step 34: Homing Robot OOX-22/FE
-	-- {area:1105} Feral Scar Vale · {area:1108} The Forgotten Coast · {area:35} Booty Bay
-	["Only with the distress beacon: the robot sits in a small cave on the north side of {area:1105}. Escort it to the dock on the {area:1108}; yetis and gorillas ambush you on the way. Its reward waits in {area:35} for a later visit."] = "Solo con la baliza de socorro: el robot está en una cueva pequeña en el lado norte de {area:1105}. Escóltalo hasta el muelle de {area:1108}; yetis y gorilas te tienden emboscadas por el camino. Su recompensa te espera en {area:35} para una visita posterior.",
+	-- {area:1105} Feral Scar Vale · {area:35} Booty Bay
+	["Only with the distress beacon: the robot sits in a small cave on the north side of {area:1105}. Escort it to the dock on the Forgotten Coast; yetis and gorillas ambush you on the way. Its reward waits in {area:35} for a later visit."] = "",
 
 	-- Step 35: Hearth to Camp Mojache
 	-- {area:1099} Camp Mojache
@@ -165,7 +165,7 @@ return {
 	-- Step 36: Orgrimmar
 	-- {area:1637} Orgrimmar
 	["Fly to {area:1637}. The Droffers brothers run their shop in the Drag."] = "Vuela a {area:1637}. Los hermanos Droffers tienen su tienda en La Calle Mayor.",
-	-- {zone:1425} The Hinterlands
+	-- {zone:1425} Hinterlands
 	["for the {zone:1425}, around level 48"] = "para {zone:1425}, hacia el nivel 48",
 
 	-- Step 37: Zeppelin to Grom'gol
@@ -182,4 +182,5 @@ return {
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Fly to {area:1637}. The Droffers brothers run their shop in the {object:172959}."] = "Vuela a {area:1637}. Los hermanos Droffers tienen su tienda en {object:172959}.",
+	-- ["Only with the distress beacon: the robot sits in a small cave on the north side of {area:1105}. Escort it to the dock on the {area:1108}; yetis and gorillas ambush you on the way. Its reward waits in {area:35} for a later visit."] = "Solo con la baliza de socorro: el robot está en una cueva pequeña en el lado norte de {area:1105}. Escóltalo hasta el muelle de {area:1108}; yetis y gorilas te tienden emboscadas por el camino. Su recompensa te espera en {area:35} para una visita posterior.",
 }

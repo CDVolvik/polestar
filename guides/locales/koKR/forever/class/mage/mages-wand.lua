@@ -8,8 +8,8 @@ return {
 	-- Guide
 	["A wand of your school for the 30s: frost, arcane or fire."] = "30레벨대를 위한 자신의 계열 마법봉: 냉기, 비전 또는 화염.",
 
-	-- Step 1: Journey to the Marsh (Stormwind City)
-	-- {npc:5497} Jennea Cannon · {zone:1453} Stormwind City · {object:2101} Mage Quarter · {npc:6546} Tabetha · {zone:1455} Ironforge
+	-- Step 1: Journey to the Marsh (Stormwind)
+	-- {npc:5497} Jennea Cannon · {zone:1453} Stormwind · {object:2101} Mage Quarter · {npc:6546} Tabetha · {zone:1455} Ironforge
 	["{npc:5497} in the Wizard's Sanctum, {zone:1453}'s {object:2101}, sends you to {npc:6546}; Bink in {zone:1455} gives the same quest."] = "{zone:1453} {object:2101}의 마법사의 성소에 있는 {npc:5497}이(가) {npc:6546}에게 보냅니다. {zone:1455}의 빙크도 같은 퀘스트를 줍니다.",
 
 	-- Step 2: Journey to the Marsh (Orgrimmar)
@@ -21,7 +21,7 @@ return {
 	["{npc:6546}, a hermit, lives in a cottage deep in the marsh west of Theramore, just north of the {area:508}."] = "은둔자 {npc:6546}은(는) 테라모어 섬 서쪽 늪 깊숙한 곳, {area:508} 바로 북쪽의 오두막에 삽니다.",
 
 	-- Step 4: Magus Tirth
-	-- {npc:6548} Magus Tirth · {area:439} The Shimmering Flats · {zone:1441} Thousand Needles
+	-- {npc:6548} Magus Tirth · {area:439} Shimmering Flats · {zone:1441} Thousand Needles
 	["{npc:6548} spends his days at the race track in the {area:439}, south-east {zone:1441}."] = "{npc:6548}은(는) {zone:1441} 남동쪽 {area:439}의 경주로에서 지냅니다.",
 
 	-- Step 5: "Plucky" Johnson
@@ -47,5 +47,4 @@ return {
 	-- Step 9: Tabetha's ritual
 	-- {npc:6546} Tabetha
 	["{npc:6546}'s ritual"] = "{npc:6546}의 의식",
-
 }

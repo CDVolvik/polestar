@@ -134,10 +134,10 @@ return {
 
 	-- Step 28: Grind to 51
 	["Grind to 51"] = "刷到51级",
-	-- {area:982} The Noxious Lair · {zone:1446} Tanaris
+	-- {area:982} Noxious Lair · {zone:1446} Tanaris
 	["The Centipaar silithid crawl around the {area:982} in western {zone:1446}, just east of the crater ramp. The Workers are the easiest pulls."] = "森提帕尔异种虫在{zone:1446}西部的{area:982}周围爬行，就在环形山坡道东边。森提帕尔工蝎最容易拉。",
-	-- {npc:5458} Centipaar Worker · {area:982} The Noxious Lair · {zone:1446} Tanaris
-	["grind on {npc:5458} at {area:982}, {zone:1446}"] = "在{zone:1446}的{area:982}刷{npc:5458}",
+	-- {npc:5458} Centipaar Worker · {area:982} Noxious Lair · {zone:1446} Tanaris
+	["grind on {npc:5458} at The {area:982}, {zone:1446}"] = "",
 
 	-- Step 29: Torwa Pathfinder
 	["Ride down the ramp into the crater: Torwa camps at its foot."] = "沿坡道下到环形山：托尔瓦在坡道脚下扎营。",
@@ -169,14 +169,14 @@ return {
 	-- {npc:9616} Laris Geardawdle · {zone:1448} Felwood
 	["{npc:9616}: the oozes are in {zone:1448}, keep it"] = "{npc:9616}：软泥怪在{zone:1448}，留着",
 
-	-- Step 41: The Mystic Ward
+	-- Step 41: Mystic Ward
 	-- {zone:1447} Azshara
 	["Four rune rubbings in {zone:1447}: keep it"] = "{zone:1447}的四个符文拓片：留着",
 	-- {npc:11406} High Priest Rohan · {zone:1447} Azshara
 	["{npc:11406}: for Ogtinc in {zone:1447}, keep it"] = "{npc:11406}：交给{zone:1447}的奥汀克，留着",
 
 	-- Step 42: Royal Historian Archesonus
-	-- {object:171709} The High Seat
+	-- {object:171709} High Seat
 	["Archesonus stands beside King Magni in the {object:171709}."] = "阿克瑟努斯站在{object:171709}中麦格尼国王旁边。",
 	-- {zone:1428} Burning Steppes
 	["The relics are in the {zone:1428}: keep it"] = "圣物在{zone:1428}：留着",
@@ -185,11 +185,12 @@ return {
 	["Bind and train"] = "设置炉石并训练",
 
 	-- Step 44: Xiggs Fuselighter
-	-- {object:32359} The Military Ward
+	-- {object:32359} Military Ward
 	["Xiggs waits in the {object:32359}."] = "西格斯在{object:32359}等候。",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Ride south to {area:537} in the middle of the crater, then east into the eastern jungle. Crystal clusters stand all over the crater, many of them around {area:537}: take a few extra of each colour. {item:11316} Lashers and Threshers drop the petals; the expedition's {item:11113} sits at an abandoned camp in the eastern jungle."] = "向南骑行到环形山中央的{area:537}，然后向东进入东部丛林。水晶簇遍布环形山，很多在{area:537}周围：每种颜色多拿几个。{item:11316}鞭笞者和猛击者掉落花瓣；探险队的{item:11113}在东部丛林的一处废弃营地里。",
 	-- ["The {npc:9684} Mates prowl the jungle west of Torwa. The wrecked raft lies on the shore of the lake there; the small pack sits in the water beside it. Keep the compass, map and key for {npc:8737}. Any beast in the crater may drop {item:11116}: right-click it."] = "{npc:9684}的配偶在托尔瓦西边的丛林中徘徊。失事的木筏在那里的湖岸上；小背包在它旁边的水里。指南针、地图和钥匙留给{npc:8737}。环形山中任何野兽都可能掉落{item:11116}：右键点击它。",
+	-- ["grind on {npc:5458} at {area:982}, {zone:1446}"] = "在{zone:1446}的{area:982}刷{npc:5458}",
 	-- ["{npc:9684} Mates and the raft"] = "{npc:9684}的配偶和木筏",
 }

@@ -134,10 +134,10 @@ return {
 
 	-- Step 28: Grind to 51
 	["Grind to 51"] = "Farmea hasta el 51",
-	-- {area:982} The Noxious Lair · {zone:1446} Tanaris
+	-- {area:982} Noxious Lair · {zone:1446} Tanaris
 	["The Centipaar silithid crawl around the {area:982} in western {zone:1446}, just east of the crater ramp. The Workers are the easiest pulls."] = "Los silítidos Centipaar se arrastran alrededor de {area:982}, en el oeste de {zone:1446}, justo al este de la rampa del cráter. Los trabajadores son los más fáciles de atraer.",
-	-- {npc:5458} Centipaar Worker · {area:982} The Noxious Lair · {zone:1446} Tanaris
-	["grind on {npc:5458} at {area:982}, {zone:1446}"] = "farmea {npc:5458} en {area:982}, {zone:1446}",
+	-- {npc:5458} Centipaar Worker · {area:982} Noxious Lair · {zone:1446} Tanaris
+	["grind on {npc:5458} at The {area:982}, {zone:1446}"] = "",
 
 	-- Step 29: Torwa Pathfinder
 	["Ride down the ramp into the crater: Torwa camps at its foot."] = "Baja por la rampa al cráter: Torwa acampa al pie.",
@@ -169,14 +169,14 @@ return {
 	-- {npc:9616} Laris Geardawdle · {zone:1448} Felwood
 	["{npc:9616}: the oozes are in {zone:1448}, keep it"] = "{npc:9616}: los mocos están en {zone:1448}, guárdala",
 
-	-- Step 41: The Mystic Ward
+	-- Step 41: Mystic Ward
 	-- {zone:1447} Azshara
 	["Four rune rubbings in {zone:1447}: keep it"] = "Cuatro calcos de runas en {zone:1447}: guárdala",
 	-- {npc:11406} High Priest Rohan · {zone:1447} Azshara
 	["{npc:11406}: for Ogtinc in {zone:1447}, keep it"] = "{npc:11406}: para Ogtinc en {zone:1447}, guárdala",
 
 	-- Step 42: Royal Historian Archesonus
-	-- {object:171709} The High Seat
+	-- {object:171709} High Seat
 	["Archesonus stands beside King Magni in the {object:171709}."] = "Archesonus está junto al rey Magni en {object:171709}.",
 	-- {zone:1428} Burning Steppes
 	["The relics are in the {zone:1428}: keep it"] = "Las reliquias están en {zone:1428}: guárdala",
@@ -185,6 +185,9 @@ return {
 	["Bind and train"] = "Vincúlate y entrena",
 
 	-- Step 44: Xiggs Fuselighter
-	-- {object:32359} The Military Ward
+	-- {object:32359} Military Ward
 	["Xiggs waits in the {object:32359}."] = "Xiggs espera en {object:32359}.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["grind on {npc:5458} at {area:982}, {zone:1446}"] = "farmea {npc:5458} en {area:982}, {zone:1446}",
 }

@@ -35,11 +35,10 @@ return {
 	["Humanoids drop {item:2589}; the Undercity Auction House sells it."] = "С гуманоидов падает {item:2589}; его продают на аукционе Подгорода.",
 
 	-- Step 7: Ambermill
-	-- {zone:1458} Undercity · {zone:1421} Silverpine Forest · {area:279} Dalaran · {area:233} Ambermill · {area:228} The Sepulcher · {npc:1867} Dalaran Apprentice · {item:7293} Dalaran Mana Gem
+	-- {zone:1458} Undercity · {zone:1421} Silverpine Forest · {area:279} Dalaran · {area:233} Ambermill · {area:228} Sepulcher · {npc:1867} Dalaran Apprentice · {item:7293} Dalaran Mana Gem
 	["Leave the {zone:1458} and follow the road south through {zone:1421}. The {area:279} mages hold {area:233}, south-east of the {area:228}; every {npc:1867}, Mage, Protector, Warder, Conjuror, Watcher and Wizard can drop a {item:7293}."] = "Покиньте город {zone:1458} и идите по дороге на юг через зону {zone:1421}. Маги ({area:279}) удерживают {area:233}, к юго-востоку от места {area:228}; {item:7293} может выпасть с любого NPC {npc:1867}, а также с даларанских магов, заступников, тюремщиков, окудников, дозорных и волшебников.",
 
 	-- Step 8: Josef Gregorian
 	-- {zone:1458} Undercity · {npc:4576} Josef Gregorian · {npc:11048} Victor Ward · {npc:11049} Rhiannon Davis
 	["Back to the {zone:1458}. {npc:4576}, {npc:11048} and {npc:11049} keep the tailor's shop."] = "Вернитесь в город {zone:1458}. {npc:4576}, {npc:11048} и {npc:11049} держат лавку портного.",
-
 }

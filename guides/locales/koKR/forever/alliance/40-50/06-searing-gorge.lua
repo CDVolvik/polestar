@@ -53,5 +53,4 @@ return {
 	["The dwarf stands by the road at the dig site. Follow him north along the road and fight off the {object:147516} ambushes. When it is over, read the {object:175704} he leaves on the road in {area:1959}."] = "드워프 도리우스 스톤텐더는 발굴현장의 길가에 서 있습니다. 그를 따라 길을 북쪽으로 가며 {object:147516}의 매복을 물리치십시오. 끝나면 {area:1959}의 길에 그가 남긴 {object:175704}을(를) 읽으십시오.",
 	-- {npc:8256} Curator Thorius · {zone:1455} Ironforge
 	["For {npc:8256} in {zone:1455}, later"] = "나중에 {zone:1455}의 {npc:8256}에게",
-
 }

@@ -9,7 +9,7 @@ return {
 	["Fire Hardened Armor"] = "火焰淬煉護甲",
 	["A hauberk at 28, a coif, leggings or gauntlets by race, and a shield on the way."] = "28級的鎖甲衫、依種族而定的頭巾、護腿或護手，以及途中的一面盾牌。",
 
-	-- Step 1: Yorus Barleybrew (Stormwind City)
+	-- Step 1: Yorus Barleybrew (Stormwind)
 	-- {npc:5479} Wu Shen · {object:2100} Old Town · {quest:1698} Yorus Barleybrew
 	["At 20, {npc:5479} in {object:2100}, beside the Pig and Whistle, sends you to {quest:1698} in Redridge."] = "20級時，{object:2100}酒館旁的{npc:5479}會派你去赤脊山找{quest:1698}。",
 
@@ -28,8 +28,8 @@ return {
 	["Enter the {area:98} and come back"] = "進入{area:98}再回來",
 
 	-- Step 5: The Shieldsmith
-	-- {npc:5413} Furen Longbeard · {zone:1453} Stormwind City · {item:6843} Cask of Scalder · {item:6970} Furen's Favor · {quest:1701} Fire Hardened Mail
-	["{npc:5413} works in the Dwarven District of {zone:1453}. He keeps the {item:6843} and gives you {item:6970}, a shield; {quest:1701} is a level 28 quest."] = "{npc:5413}在{zone:1453}的矮人區工作。他會留下{item:6843}並給你{item:6970}，一面盾牌；{quest:1701}是28級任務。",
+	-- {npc:5413} Furen Longbeard · {item:6843} Cask of Scalder · {item:6970} Furen's Favor · {quest:1701} Fire Hardened Mail
+	["{npc:5413} works in the Dwarven District of Stormwind. He keeps the {item:6843} and gives you {item:6970}, a shield; {quest:1701} is a level 28 quest."] = "",
 
 	-- Step 6: Scorched Spider Fangs
 	-- plural, as words: Scorched Spider Fangs = {item:6838} Scorched Spider Fang
@@ -52,7 +52,7 @@ return {
 	-- Step 8: Roogug in Razorfen Kraul
 	-- {area:1717} Razorfen Kraul
 	["Roogug in {area:1717}"] = "{area:1717}的魯古格",
-	-- {area:1717} Razorfen Kraul · {zone:1413} The Barrens · {item:6841} Vial of Phlogiston
+	-- {area:1717} Razorfen Kraul · {zone:1413} Barrens · {item:6841} Vial of Phlogiston
 	["Roogug is an elite quilboar inside {area:1717}, the dungeon at the south end of the {zone:1413}; he drops the {item:6841}. {area:1717} is a dungeon: grouping up is advised."] = "魯古格是{area:1717}裡的精英野豬人，那是位於{zone:1413}南端的地城；他會掉落{item:6841}。{area:1717}是地城：建議組隊。",
 	-- {item:6841} Vial of Phlogiston
 	["{item:6841}, from Roogug"] = "{item:6841}，來自魯古格",
@@ -62,16 +62,16 @@ return {
 	["Back to {npc:5413} in the {object:28027}. He sends you on to a smith of your own race."] = "回到{object:28027}的{npc:5413}處。他會派你去找你自己種族的鐵匠。",
 
 	-- Step 10: Grimand Elmore
-	-- {npc:1416} Grimand Elmore · {zone:1453} Stormwind City
+	-- {npc:1416} Grimand Elmore · {zone:1453} Stormwind
 	["{npc:1416} is in {zone:1453}, a short walk from Furen."] = "{npc:1416}在{zone:1453}，離弗倫不遠。",
 
 	-- Step 11: Burning Blood
-	-- {zone:1431} Duskwood · {quest:1705} Burning Blood · {item:6845} Burning Rock
-	["The Nightbane worgen of {zone:1431} drop the {quest:1705}. Gutspill walks in the far south-east of {zone:1431} and carries the {item:6845}."] = "{zone:1431}的夜行狼人會掉落{quest:1705}。加特斯比爾在{zone:1431}最東南方走動，身上帶著{item:6845}。",
+	-- {zone:1431} Duskwood · {quest:1705} Burning Blood · {npc:6170} Gutspill · {item:6845} Burning Rock
+	["The Nightbane worgen of {zone:1431} drop the {quest:1705}. {npc:6170} walks in the far south-east of {zone:1431} and carries the {item:6845}."] = "",
 	-- {quest:1705} Burning Blood
 	["{quest:1705} from the Nightbane worgen"] = "{quest:1705}，來自夜行狼人",
-	-- {item:6845} Burning Rock
-	["{item:6845} from Gutspill"] = "{item:6845}，來自加特斯比爾",
+	-- {item:6845} Burning Rock · {npc:6170} Gutspill
+	["{item:6845} from {npc:6170}"] = "",
 
 	-- Step 13: Mathiel
 	-- {quest:1703} Mathiel · {zone:1457} Darnassus
@@ -82,10 +82,15 @@ return {
 	["The {quest:1710} lie along the western edge of {zone:1441}."] = "{quest:1710}散落在{zone:1441}西緣。",
 
 	-- Step 16: Klockmort Spannerspan
-	-- {area:2257} Deeprun Tram · {zone:1453} Stormwind City · {zone:1455} Ironforge
+	-- {area:2257} Deeprun Tram · {zone:1453} Stormwind · {zone:1455} Ironforge
 	["Ride the {area:2257} from {zone:1453} to {zone:1455}."] = "從{zone:1453}搭乘{area:2257}前往{zone:1455}。",
 
 	-- Step 17: Iron Coral
 	-- {quest:1708} Iron Coral · {zone:1437} Wetlands · {area:150} Menethil Harbor
 	["The {quest:1708} grows along the {zone:1437}' west coast, south of {area:150}."] = "{quest:1708}生長在{zone:1437}西海岸、{area:150}南邊。",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["The Nightbane worgen of {zone:1431} drop the {quest:1705}. Gutspill walks in the far south-east of {zone:1431} and carries the {item:6845}."] = "{zone:1431}的夜行狼人會掉落{quest:1705}。加特斯比爾在{zone:1431}最東南方走動，身上帶著{item:6845}。",
+	-- ["{item:6845} from Gutspill"] = "{item:6845}，來自加特斯比爾",
+	-- ["{npc:5413} works in the Dwarven District of {zone:1453}. He keeps the {item:6843} and gives you {item:6970}, a shield; {quest:1701} is a level 28 quest."] = "{npc:5413}在{zone:1453}的矮人區工作。他會留下{item:6843}並給你{item:6970}，一面盾牌；{quest:1701}是28級任務。",
 }

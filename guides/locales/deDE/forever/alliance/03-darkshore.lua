@@ -19,9 +19,9 @@ return {
 
 	-- Step 2: The beach
 	["The beach"] = "Der Strand",
-	-- {quest:983} Buzzbox 827 · {quest:4723} Beached Sea Creature
+	-- {quest:983} Buzzbox 827 · {object:175207} Beached Sea Creature
 	-- plural, as words: Tide Crawlers = {npc:2232} Tide Crawler · Darkshore Threshers = {npc:2185} Darkshore Thresher
-	["Tide Crawlers scuttle along the shore below the village; {quest:983} stands on the beach just south of the docks. Darkshore Threshers swim in the shallows. The {quest:4723} lies on the shore just south of the village."] = "Gezeitenkriecher krabbeln unterhalb des Dorfes am Ufer entlang; {quest:983} steht am Strand gleich südlich der Anlegestelle. Drescher der Dunkelküste schwimmen im seichten Wasser. {quest:4723} liegt gleich südlich des Dorfes am Ufer.",
+	["Tide Crawlers scuttle along the shore below the village; {quest:983} stands on the beach just south of the docks. Darkshore Threshers swim in the shallows. The {object:175207} lies on the shore just south of the village."] = "",
 	-- plural, as words: Crawler Legs = {item:5385} Crawler Leg
 	["Crawler Legs"] = "Kriecherbeine",
 	-- plural, as words: Thresher Eyes = {item:5412} Thresher Eye
@@ -148,8 +148,8 @@ return {
 	-- {npc:6667} Gelkak Gyromast
 	-- plural, as words: Giant Foreststriders = {npc:2323} Giant Foreststrider · Raging Reef Crawlers = {npc:2236} Raging Reef Crawler
 	["{npc:6667} hides on the little island off the ruins; Stormscale Beastmistresses walk the shore. The key pieces drop from Giant Foreststriders (top), Greymist murlocs (middle) and Raging Reef Crawlers (bottom)."] = "{npc:6667} versteckt sich auf der kleinen Insel vor den Ruinen; Tierbändigerinnen der Sturmschuppen laufen am Ufer entlang. Die Schlüsselteile droppen Riesige Waldschreiter (oben), Murlocs der Grauflossen (Mitte) und Tobende Riffkriecher (unten).",
-	-- {item:15883} Half Pendant of Aquatic Agility · {object:177790} Strange Lockbox
-	["{item:15883}: the {object:177790} under the water off the north coast, west of the ruins"] = "{item:15883}: die {object:177790} unter Wasser vor der Nordküste, westlich der Ruinen",
+	-- {item:15883} Half Pendant of Aquatic Agility · {object:177792} Strange Lockbox
+	["{item:15883}: the {object:177792} under the water off the north coast, west of the ruins"] = "",
 
 	-- Step 24: The Tower of Althalaxx
 	-- {npc:3661} Balthule Shadowstrike · {zone:1440} Ashenvale
@@ -173,7 +173,7 @@ return {
 	-- Step 27: Lunar Fungus and Earthroot
 	-- {item:15851} Lunar Fungus · {item:2449} Earthroot
 	["{item:15851} and {item:2449}"] = "{item:15851} und {item:2449}",
-	-- {area:442} Auberdine · {item:2449} Earthroot · {skill:182} Herbalism · {zone:1439} Darkshore · {zone:1453} Stormwind City · {npc:1313} Maria Lumere
+	-- {area:442} Auberdine · {item:2449} Earthroot · {skill:182} Herbalism · {zone:1439} Darkshore · {zone:1453} Stormwind · {npc:1313} Maria Lumere
 	-- plural, as words: Lunar Fungal Blooms = {object:177750} Lunar Fungal Bloom
 	["The Lunar Fungal Blooms grow in the moonkin caves in the hills just east of {area:442}; the moonkin there are irritable. {item:2449} needs {skill:182}: herbalists pick it all over {zone:1439}, anyone else brings it from {zone:1453} ({npc:1313}) or the Auction House."] = "Die Lunarfungusblüten wachsen in den Moonkinhöhlen in den Hügeln gleich östlich von {area:442}; die Moonkin dort sind reizbar. {item:2449} erfordert {skill:182}: Kräuterkundige pflücken es überall in {zone:1439}, alle anderen bringen es aus {zone:1453} ({npc:1313}) oder aus dem Auktionshaus mit.",
 
@@ -229,7 +229,7 @@ return {
 	["{npc:3616}, at the Grove"] = "{npc:3616}, am Hain",
 
 	-- Step 36: Volcor
-	-- {npc:3692} Volcor · {area:449} The Master's Glaive
+	-- {npc:3692} Volcor · {area:449} Master's Glaive
 	["{npc:3692} hides in the hills east of the {area:449}. Help him back to the road; he fights on his way out."] = "{npc:3692} versteckt sich in den Hügeln östlich vom Ort {area:449}. Hilf ihm zurück zur Straße; er kämpft sich hinaus.",
 	-- {npc:12298} Sickly Deer · {item:15826} Curative Animal Salve · {zone:1439} Darkshore
 	["{npc:12298}: use the {item:15826} on them; they roam all of {zone:1439}"] = "{npc:12298}: Benutze die {item:15826} an ihnen; sie streifen durch ganz {zone:1439}",
@@ -237,9 +237,9 @@ return {
 	-- Step 37: Auberdine
 	-- {npc:3694} Sentinel Selarin · {npc:3691} Raene Wolfrunner · {area:415} Astranaar · {zone:1440} Ashenvale
 	["{npc:3694}: for {npc:3691} in {area:415}, on the later {zone:1440} leg"] = "{npc:3694}: für {npc:3691} in {area:415}, später auf dem Abschnitt in {zone:1440}",
-	-- {npc:3649} Thundris Windweaver · {npc:1646} Baros Alexston · {zone:1453} Stormwind City
+	-- {npc:3649} Thundris Windweaver · {npc:1646} Baros Alexston · {zone:1453} Stormwind
 	["{npc:3649}: for {npc:1646} in {zone:1453}"] = "{npc:3649}: für {npc:1646} in {zone:1453}",
-	-- {zone:1453} Stormwind City
+	-- {zone:1453} Stormwind
 	["Boat to {zone:1453}"] = "Boot nach {zone:1453}",
 
 	-- Step 38: The Great Cat Spirit
@@ -263,6 +263,10 @@ return {
 	["Back to {npc:11802} in {area:2361}, then fly to {area:702} (by way of {area:442})."] = "Zurück zu {npc:11802} in {area:2361}, dann flieg nach {area:702} (über {area:442}).",
 
 	-- Step 42: To Darnassus
-	-- {area:442} Auberdine · {zone:1453} Stormwind City
+	-- {area:442} Auberdine · {zone:1453} Stormwind
 	["Take the portal up to Mathrengyl, then fly back to {area:442} for the boat to {zone:1453}."] = "Nimm das Portal hinauf zu Mathrengyl und flieg dann zurück nach {area:442} zum Boot nach {zone:1453}.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Tide Crawlers scuttle along the shore below the village; {quest:983} stands on the beach just south of the docks. Darkshore Threshers swim in the shallows. The {quest:4723} lies on the shore just south of the village."] = "Gezeitenkriecher krabbeln unterhalb des Dorfes am Ufer entlang; {quest:983} steht am Strand gleich südlich der Anlegestelle. Drescher der Dunkelküste schwimmen im seichten Wasser. {quest:4723} liegt gleich südlich des Dorfes am Ufer.",
+	-- ["{item:15883}: the {object:177790} under the water off the north coast, west of the ruins"] = "{item:15883}: die {object:177790} unter Wasser vor der Nordküste, westlich der Ruinen",
 }

@@ -55,8 +55,7 @@ return {
 	["Highland Striders roam the hills all around {area:321}; both they and the Thrashers further west drop the eyes."] = "高地阔步龙在{area:321}四周的山丘上游荡；它们和更西边的高地长尾龙都会掉落眼睛。",
 
 	-- Step 11: Drywhisker Gorge
-	-- {area:321} Hammerfall
-	["North-east of {area:321} the Drywhisker kobolds mine the gorge; the Kobolds at the mouth and the Diggers and Surveyors deeper in all drop the Motes of Myzrael."] = "{area:321}东北方，枯须狗头人在峡谷中采矿；峡谷口的枯须狗头人和深处的枯须掘地工、枯须勘探员都会掉落密斯莱尔之尘。",
+	["North-east of Hammerfall the Drywhisker kobolds mine the gorge; the Kobolds at the mouth and the Diggers and Surveyors deeper in all drop the Motes of Myzrael."] = "",
 
 	-- Step 12: Iridescent Shards
 	-- {object:2701} Iridescent Shards
@@ -134,12 +133,12 @@ return {
 	["Ride south-west out of Arathi over {area:880}, south through the {zone:1437} (keep clear of {area:150}) and east into {zone:1432}; the road leaves {zone:1432} to the south into the {zone:1418}. Follow it south to the goblin camp in the {area:1877}."] = "从阿拉希向西南越过{area:880}，向南穿过{zone:1437}（远离{area:150}），向东进入{zone:1432}；道路从{zone:1432}向南通往{zone:1418}。沿路向南到{area:1877}的地精营地。",
 
 	-- Step 29: Valley of Fangs
-	-- {quest:1106} Martek the Exiled · {area:439} The Shimmering Flats
+	-- {quest:1106} Martek the Exiled · {area:439} Shimmering Flats
 	["{quest:1106}: Fizzle's letter from the {area:439}"] = "{quest:1106}：来自{area:439}的菲兹尔的信",
 
 	-- Step 30: The Dustbowl
-	-- {area:1878} The Dustbowl · {area:340} Kargath
-	["Ride west along the road; Lotwil's camp sits in the {area:1878} halfway to {area:340}."] = "沿道路向西骑行；鲁特维尔的营地在前往{area:340}半途的{area:1878}。",
+	-- {area:340} Kargath
+	["Ride west along the road; Lotwil's camp sits in the Dustbowl halfway to {area:340}."] = "",
 
 	-- Step 31: Kargath
 	-- {area:340} Kargath
@@ -156,15 +155,13 @@ return {
 	-- Step 34: Rock Elementals
 	-- plural, as words: Rock Elementals = {npc:92} Rock Elemental
 	["Rock Elementals"] = "石元素",
-	-- {area:1878} The Dustbowl
 	-- plural, as words: Rock Elementals = {npc:92} Rock Elemental
-	["The bigger Rock Elementals stand on the slopes north-west of the {area:1878}; each one drops a slab."] = "更大的石元素站在{area:1878}西北方的山坡上；每个都掉落一块石板。",
+	["The bigger Rock Elementals stand on the slopes north-west of the Dustbowl; each one drops a slab."] = "",
 
 	-- Step 36: Coyotes and buzzards
 	["Coyotes and buzzards"] = "山狗和秃鹫",
-	-- {area:1878} The Dustbowl
 	-- plural, as words: Elder Crag Coyotes = {npc:2729} Elder Crag Coyote · Giant Buzzards = {npc:2831} Giant Buzzard
-	["The Elder Crag Coyotes and Giant Buzzards roam the basin south of the {area:1878}. Coyotes drop both the jawbones and the fangs; only the buzzards drop wings and gizzards."] = "老峭壁山狗和巨型秃鹫在{area:1878}南边的盆地中游荡。山狗掉落颚骨和尖牙；只有秃鹫掉落翅膀和胃。",
+	["The Elder Crag Coyotes and Giant Buzzards roam the basin south of the Dustbowl. Coyotes drop both the jawbones and the fangs; only the buzzards drop wings and gizzards."] = "",
 
 	-- Step 37: Greater Rock Elementals
 	-- plural, as words: Greater Rock Elementals = {npc:2736} Greater Rock Elemental
@@ -212,17 +209,21 @@ return {
 	["Zeppelin tower"] = "飞艇塔",
 
 	-- Step 49: Thunder Bluff
-	-- {area:1638} Thunder Bluff · {zone:1454} Orgrimmar · {npc:3033} Turak Runetotem · {area:1639} Elder Rise · {npc:246344} Alodan the Hopeful · {area:380} The Crossroads
+	-- {area:1638} Thunder Bluff · {zone:1454} Orgrimmar · {npc:3033} Turak Runetotem · {area:1639} Elder Rise · {npc:246344} Alodan the Hopeful · {area:380} Crossroads
 	["Your trainer is in {area:1638}, one flight from {zone:1454}: {npc:3033} (Druids) on {area:1639}, {npc:246344} (Paladins). Fly on to the {area:380} from there."] = "你的训练师在{area:1638}，从{zone:1454}飞一次即到：{area:1639}的{npc:3033}（德鲁伊），{npc:246344}（圣骑士）。然后从那里飞往{area:380}。",
 
+	-- Step 50: The Crossroads
+	-- {area:380} Crossroads
+	["The {area:380}"] = "",
+
 	-- Step 51: Regthar Deathgate
-	-- {area:380} The Crossroads · {area:386} The Forgotten Pools
+	-- {area:380} Crossroads · {area:386} Forgotten Pools
 	["Ride north up the road from the {area:380} to the {area:386}; Regthar keeps watch on the rise above the water."] = "从{area:380}沿道路向北骑到{area:386}；雷戈萨在水边的高地上放哨。",
 	-- {npc:5395} Felgur Twocuts · {zone:1443} Desolace
 	["for {npc:5395} in {zone:1443}, in the next guide"] = "交给{zone:1443}的{npc:5395}，在下一份指南中",
 
 	-- Step 52: Ratchet
-	-- {area:380} The Crossroads · {area:392} Ratchet
+	-- {area:380} Crossroads · {area:392} Ratchet
 	["Ride back south to the {area:380} and fly to {area:392}."] = "向南骑回{area:380}，飞往{area:392}。",
 	-- {item:3713} Soothing Spices · {zone:1445} Dustwallow Marsh
 	["{item:3713}, for \"Swamp Eye\" Jarl in {zone:1445}"] = "{item:3713}，交给{zone:1445}的“沼泽之眼”加尔",
@@ -232,4 +233,10 @@ return {
 	-- Step 53: The Affray
 	-- {area:392} Ratchet · {area:720} Fray Island · {npc:6236} Klannoc Macleod · {npc:6238} Big Will
 	["Ride south along the coast from {area:392} to {area:720}. {npc:6236} stands by the arena: step on the grate to start the fight; the challengers come one at a time, then {npc:6238} (33)."] = "从{area:392}沿海岸向南骑到{area:720}。{npc:6236}站在竞技场旁：踏上格栅开始战斗；挑战者依次上场，然后是{npc:6238}（33级）。",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["North-east of {area:321} the Drywhisker kobolds mine the gorge; the Kobolds at the mouth and the Diggers and Surveyors deeper in all drop the Motes of Myzrael."] = "{area:321}东北方，枯须狗头人在峡谷中采矿；峡谷口的枯须狗头人和深处的枯须掘地工、枯须勘探员都会掉落密斯莱尔之尘。",
+	-- ["Ride west along the road; Lotwil's camp sits in the {area:1878} halfway to {area:340}."] = "沿道路向西骑行；鲁特维尔的营地在前往{area:340}半途的{area:1878}。",
+	-- ["The Elder Crag Coyotes and Giant Buzzards roam the basin south of the {area:1878}. Coyotes drop both the jawbones and the fangs; only the buzzards drop wings and gizzards."] = "老峭壁山狗和巨型秃鹫在{area:1878}南边的盆地中游荡。山狗掉落颚骨和尖牙；只有秃鹫掉落翅膀和胃。",
+	-- ["The bigger Rock Elementals stand on the slopes north-west of the {area:1878}; each one drops a slab."] = "更大的石元素站在{area:1878}西北方的山坡上；每个都掉落一块石板。",
 }

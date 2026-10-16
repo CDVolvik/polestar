@@ -6,13 +6,13 @@
 -- The comments are rewritten by sync.
 return {
 	-- Step 2: The Altar of Zul
-	-- {area:355} The Altar of Zul · {zone:1425} The Hinterlands · {npc:8636} Morta'gya the Keeper
-	["Ride south-east to the {area:355}, the stepped Vilebranch temple in the south of the {zone:1425}, and climb to the top. Qiaga and {npc:8636} (elite, 50) stand up there: touch the top and come straight back down."] = "Chevauchez au sud-est jusqu'à l'{area:355}, le temple à degrés des Vilebranch au sud des {zone:1425}, et montez au sommet. Qiaga la Gardienne et {npc:8636} (élite, 50) s'y tiennent : touchez le sommet et redescendez aussitôt.",
+	-- {area:355} Altar of Zul · {npc:8636} Morta'gya the Keeper
+	["Ride south-east to the {area:355}, the stepped Vilebranch temple in the south of the Hinterlands, and climb to the top. Qiaga and {npc:8636} (elite, 50) stand up there: touch the top and come straight back down."] = "",
 
 	-- Step 3: Skulk Rock
-	-- {area:351} Skulk Rock · {zone:1425} The Hinterlands
+	-- {area:351} Skulk Rock
 	-- plural, as words: Green Sludges = {npc:2655} Green Sludge · Jade Oozes = {npc:2656} Jade Ooze
-	["Ride north to {area:351} in the middle of the {zone:1425}. Green Sludges and Jade Oozes crawl all around it."] = "Chevauchez vers le nord jusqu'à {area:351}, au milieu de {zone:1425}. Des Limaces vertes ({npc:2655}) et des Limons de jade ({npc:2656}) rampent tout autour.",
+	["Ride north to {area:351} in the middle of the Hinterlands. Green Sludges and Jade Oozes crawl all around it."] = "",
 
 	-- Step 4: Aerie Peak
 	-- {area:348} Aerie Peak
@@ -99,5 +99,7 @@ return {
 	["Hearth to {area:144}. The {zone:1427} guide starts at {area:1446}: from here, ride south into the {zone:1418}, west past the Horde town of {area:340} and up the trail into the gorge."] = "Pierre de foyer vers {area:144}. Le guide de la {zone:1427} commence au {area:1446} : depuis ici, chevauchez vers le sud jusqu'aux {zone:1418}, à l'ouest au-delà de la ville horde de {area:340}, puis montez la piste vers la gorge.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Ride north to {area:351} in the middle of the {zone:1425}. Green Sludges and Jade Oozes crawl all around it."] = "Chevauchez vers le nord jusqu'à {area:351}, au milieu de {zone:1425}. Des Limaces vertes ({npc:2655}) et des Limons de jade ({npc:2656}) rampent tout autour.",
 	-- ["Ride north to {area:351} in the middle of the {zone:1425}. Green Sludges and {item:1529} Oozes crawl all around it."] = "Chevauchez vers le nord jusqu'au {area:351} au centre des {zone:1425}. Des Limaces vertes et des Limons de {item:1529} rampent tout autour.",
+	-- ["Ride south-east to the {area:355}, the stepped Vilebranch temple in the south of the {zone:1425}, and climb to the top. Qiaga and {npc:8636} (elite, 50) stand up there: touch the top and come straight back down."] = "Chevauchez au sud-est jusqu'à l'{area:355}, le temple à degrés des Vilebranch au sud des {zone:1425}, et montez au sommet. Qiaga la Gardienne et {npc:8636} (élite, 50) s'y tiennent : touchez le sommet et redescendez aussitôt.",
 }

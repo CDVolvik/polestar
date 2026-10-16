@@ -55,8 +55,8 @@ return {
 
 	-- Step 10: Gilveradin's camp
 	["Gilveradin's camp"] = "基沃拉丁的营地",
-	-- {area:272} Tarren Mill · {zone:1425} The Hinterlands · {npc:7801} Gilveradin Sunchaser · {area:350} Quel'Danil Lodge
-	["Ride north-east from {area:272} into the {zone:1425} and east along the road; {npc:7801} camps on the hill south of the elves' {area:350}."] = "从{area:272}向东北骑进{zone:1425}，再沿道路向东；{npc:7801}在精灵的{area:350}南边的山上扎营。",
+	-- {area:272} Tarren Mill · {npc:7801} Gilveradin Sunchaser · {area:350} Quel'Danil Lodge
+	["Ride north-east from {area:272} into the Hinterlands and east along the road; {npc:7801} camps on the hill south of the elves' {area:350}."] = "",
 
 	-- Step 11: Highvale
 	["Highvale"] = "高原精灵",
@@ -75,8 +75,7 @@ return {
 	["South-west again, the exile hides by the ruins of {area:353}."] = "再次向西南，流放者躲在{area:353}的废墟旁。",
 
 	-- Step 15: Revantusk Village
-	-- {zone:1425} The Hinterlands
-	["Follow the roads east across the {zone:1425} to the troll village on the eastern coast."] = "沿道路向东穿过{zone:1425}，前往东海岸的巨魔村庄。",
+	["Follow the roads east across the Hinterlands to the troll village on the eastern coast."] = "",
 
 	-- Step 16: Saltwater Snapjaws
 	-- plural, as words: Saltwater Snapjaws = {npc:2505} Saltwater Snapjaw
@@ -87,7 +86,7 @@ return {
 	["{item:8704}, a rare drop"] = "{item:8704}，稀有掉落",
 
 	-- Step 17: Rin'ji's Secret
-	-- {area:307} The Overlook Cliffs
+	-- {area:307} Overlook Cliffs
 	["The secret lies on the {area:307}, above the beach."] = "林吉的秘密在海滩上方的{area:307}。",
 	-- {npc:7825} Oran Snakewrithe · {zone:1458} Undercity
 	["for {npc:7825} in the {zone:1458}, around level 50"] = "交给{zone:1458}的{npc:7825}，大约50级时",
@@ -115,7 +114,7 @@ return {
 
 	-- Step 22: OOX-09/HL
 	["OOX-09/HL"] = "OOX-09/HL",
-	-- {area:351} Skulk Rock · {area:307} The Overlook Cliffs · {area:35} Booty Bay
+	-- {area:351} Skulk Rock · {area:307} Overlook Cliffs · {area:35} Booty Bay
 	["Only with the distress beacon: the robot sits at the head of the river west of {area:351}. Escort it east to the shore beyond the {area:307}; its reward waits with Oglethorpe in {area:35}."] = "仅当你有定位器时：机器人在{area:351}西边的河流源头处。护送它向东前往{area:307}另一边的海岸；它的奖励在{area:35}的奥格索普那里。",
 
 	-- Step 23: Silvermane Howlers
@@ -134,15 +133,15 @@ return {
 
 	-- Step 26: Vilebranch soothsayers
 	["Vilebranch soothsayers"] = "邪枝占卜者",
-	-- {area:355} The Altar of Zul · {npc:8636} Morta'gya the Keeper
+	-- {area:355} Altar of Zul · {npc:8636} Morta'gya the Keeper
 	["On the way back east, the Vilebranch soothsayers hold the {area:355}, the troll temple south of the central hills. Qiaga and {npc:8636} (elite, 50) stand at its top: take the soothsayers on the lower steps."] = "在东返途中，邪枝占卜者占据着中部山丘南边的巨魔神殿{area:355}。奇尔加和{npc:8636}（精英，50级）站在神殿顶上：只打下层台阶上的占卜者。",
 
 	-- Step 27: Jintha'Alor
-	-- {area:354} Jintha'Alor · {spell:19478} Tainted Blood · {npc:14757} Elder Torntusk
-	["Huntsman Malkhor's skull lies on a pile below the Vilebranch ruins, his bones on a pile at the foot of {area:354}. The Vessels of {spell:19478} sit on the lower terraces, and {npc:14757} is held at the top. Keep to the paths: the trolls inside are elite."] = "猎户莫克霍尔的颅骨在邪枝废墟下方的一堆骨头上，他的骨头在{area:354}脚下的一堆上。{spell:19478}容器放在下层平台上，{npc:14757}被关在最顶上。沿着小路走：里面的巨魔都是精英。",
+	-- {area:354} Jintha'Alor · {npc:14757} Elder Torntusk
+	["Huntsman Malkhor's skull lies on a pile below the Vilebranch ruins, his bones on a pile at the foot of {area:354}. The Vessels of Tainted Blood sit on the lower terraces, and {npc:14757} is held at the top. Keep to the paths: the trolls inside are elite."] = "",
 	-- {npc:14757} Elder Torntusk · {area:354} Jintha'Alor
 	["{npc:14757}, at the top of {area:354}"] = "{npc:14757}，在{area:354}顶上",
-	-- {area:355} The Altar of Zul
+	-- {area:355} Altar of Zul
 	["His next request, going on to the {area:355}, is for a group."] = "他的下一个请求要前往{area:355}，需要组队。",
 
 	-- Step 29: Aerie Peak
@@ -154,4 +153,9 @@ return {
 	-- Step 30: Revantusk Village
 	-- {area:3317} Revantusk Village
 	["The next guide starts here, at {area:3317}."] = "下一个指南从这里开始，在{area:3317}。",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Follow the roads east across the {zone:1425} to the troll village on the eastern coast."] = "沿道路向东穿过{zone:1425}，前往东海岸的巨魔村庄。",
+	-- ["Huntsman Malkhor's skull lies on a pile below the Vilebranch ruins, his bones on a pile at the foot of {area:354}. The Vessels of {spell:19478} sit on the lower terraces, and {npc:14757} is held at the top. Keep to the paths: the trolls inside are elite."] = "猎户莫克霍尔的颅骨在邪枝废墟下方的一堆骨头上，他的骨头在{area:354}脚下的一堆上。{spell:19478}容器放在下层平台上，{npc:14757}被关在最顶上。沿着小路走：里面的巨魔都是精英。",
+	-- ["Ride north-east from {area:272} into the {zone:1425} and east along the road; {npc:7801} camps on the hill south of the elves' {area:350}."] = "从{area:272}向东北骑进{zone:1425}，再沿道路向东；{npc:7801}在精灵的{area:350}南边的山上扎营。",
 }

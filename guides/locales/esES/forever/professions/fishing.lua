@@ -23,8 +23,7 @@ return {
 	["{zone:1411} coast"] = "Costa de {zone:1411}",
 
 	-- Step 6: Fishing: The Barrens (1-50)
-	-- {zone:1413} The Barrens
-	["{zone:1413} oasis"] = "Oasis de {zone:1413}",
+	["Barrens oasis"] = "",
 
 	-- Step 7: Fishing: Tirisfal Glades (1-50)
 	["Vile Fin shore"] = "Orilla de los Anca Vil",
@@ -86,7 +85,7 @@ return {
 	["Fish in the {area:2521} in {zone:1444} until you catch a {item:16967}; it only bites there."] = "Pesca en {area:2521}, en {zone:1444}, hasta que captures un {item:16967}; solo pica allí.",
 
 	-- Step 24: Savage Coast Blue Sailfin
-	-- {area:301} The Savage Coast · {zone:1434} Stranglethorn Vale · {item:16969} Savage Coast Blue Sailfin
+	-- {area:301} Savage Coast · {zone:1434} Stranglethorn Vale · {item:16969} Savage Coast Blue Sailfin
 	["Fish in the {area:301}, the north-west shore of {zone:1434} until you catch a {item:16969}; it only bites there."] = "Pesca en {area:301}, la orilla noroeste de {zone:1434}, hasta que captures un {item:16969}; solo pica allí.",
 
 	-- Step 25: Misty Reed Mahi Mahi
@@ -102,4 +101,7 @@ return {
 	["Fish the pools along the coast here (eels, snappers, wreckage) until skill 300. {area:35} sells bait and {item:6530} for a small fishing bonus."] = "Pesca en los bancos a lo largo de la costa (anguilas, pargos, restos de naufragio) hasta 300 de habilidad. En {area:35} venden cebo y {item:6530} para una pequeña bonificación de pesca.",
 	-- {area:35} Booty Bay
 	["{area:35} coast"] = "Costa de {area:35}",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["{zone:1413} oasis"] = "Oasis de {zone:1413}",
 }

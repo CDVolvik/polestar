@@ -22,7 +22,7 @@ return {
 	["{npc:259023}: your {item:5178}"] = "{npc:259023}: dein {item:5178}",
 
 	-- Step 3: Charlga Razorflank
-	-- {area:1717} Razorfen Kraul · {zone:1413} The Barrens · {npc:4421} Charlga Razorflank
+	-- {area:1717} Razorfen Kraul · {zone:1413} Barrens · {npc:4421} Charlga Razorflank
 	["{area:1717} is a dungeon at the southern edge of the {zone:1413} (the arrow points at its entrance); {npc:4421} is its last boss. Bring a group."] = "{area:1717} ist ein Dungeon am Südrand von {zone:1413} (der Pfeil zeigt auf den Eingang); {npc:4421} ist der letzte Boss. Bring eine Gruppe mit.",
 	-- {item:274463} Tattered Note · {npc:4421} Charlga Razorflank
 	["{item:274463}, from {npc:4421}"] = "{item:274463}, von {npc:4421}",

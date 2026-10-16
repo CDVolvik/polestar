@@ -37,17 +37,17 @@ return {
 	["The skeleton's next task, Murdaloc, waits until the later {zone:1418} guide at 43."] = "해골의 다음 임무인 멀달록은 43레벨의 이후 {zone:1418} 가이드까지 미룹니다.",
 
 	-- Step 8: Valley of Fangs
-	-- {npc:4454} Fizzle Brassbolts · {area:439} The Shimmering Flats · {zone:1446} Tanaris
+	-- {npc:4454} Fizzle Brassbolts · {area:439} Shimmering Flats · {zone:1446} Tanaris
 	["for {npc:4454} in the {area:439}: the {zone:1446} guide crosses them at 45, keep it"] = "{area:439}의 {npc:4454}에게: {zone:1446} 가이드가 45레벨에 지나갑니다. 보관하십시오",
 
 	-- Step 9: Lotwil Veriatus
-	-- {area:1878} The Dustbowl
+	-- {area:1878} Dustbowl
 	["Ride west into the {area:1878}; Lotwil works by his machines in the middle of it."] = "서쪽 {area:1878}(으)로 가십시오. 로트윌은 그 한가운데 기계 옆에서 일합니다.",
 
 	-- Step 10: Lesser Rock Elementals
 	-- plural, as words: Lesser Rock Elementals = {npc:2735} Lesser Rock Elemental
 	["Lesser Rock Elementals"] = "하급 바위 정령",
-	-- {area:1878} The Dustbowl
+	-- {area:1878} Dustbowl
 	-- plural, as words: Lesser Rock Elementals = {npc:2735} Lesser Rock Elemental
 	["The Lesser Rock Elementals wander the {area:1878} west of Lotwil."] = "하급 바위 정령이 로트윌 서쪽 {area:1878}을(를) 돌아다닙니다.",
 
@@ -157,5 +157,4 @@ return {
 	-- Step 39: Fly to Theramore
 	["Fly to Theramore"] = "테라모어 섬으로 비행",
 	["The next guide starts in Theramore."] = "다음 가이드는 테라모어 섬에서 시작합니다.",
-
 }

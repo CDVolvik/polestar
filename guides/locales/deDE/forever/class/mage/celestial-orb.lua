@@ -10,8 +10,8 @@ return {
 	["{item:7515} and Stave"] = "{item:7515} und Stab",
 	["An off-hand orb or a staff for the late 30s, your pick."] = "Eine Schildhand-Kugel oder ein Stab für die späten 30er, nach deiner Wahl.",
 
-	-- Step 1: Return to the Marsh (Stormwind City)
-	-- {npc:5497} Jennea Cannon · {zone:1453} Stormwind City · {object:2101} Mage Quarter · {npc:6546} Tabetha · {zone:1455} Ironforge
+	-- Step 1: Return to the Marsh (Stormwind)
+	-- {npc:5497} Jennea Cannon · {zone:1453} Stormwind · {object:2101} Mage Quarter · {npc:6546} Tabetha · {zone:1455} Ironforge
 	["{npc:5497} in the Wizard's Sanctum, {zone:1453}'s {object:2101}, sends you back to {npc:6546}; Bink in {zone:1455} gives the same quest."] = "{npc:5497} im Wizard's Sanctum im {object:2101} von {zone:1453} schickt dich zurück zu {npc:6546}; Bink in {zone:1455} gibt dieselbe Quest.",
 
 	-- Step 2: Return to the Marsh (Orgrimmar)

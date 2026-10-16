@@ -83,5 +83,4 @@ return {
 	["9 areas to discover here."] = "이곳에서 발견할 지역 9곳.",
 	-- {zone:2482} Mount Hyjal · {zone:1452} Winterspring · {area:2256} Darkwhisper Gorge
 	["{zone:2482} is reached from {zone:1452} through {area:2256} in the south. It is Forever's endgame leveling zone."] = "{zone:2482}은(는) {zone:1452} 남쪽의 {area:2256}을(를) 지나 갈 수 있습니다. Forever의 최종 레벨업 지역입니다.",
-
 }

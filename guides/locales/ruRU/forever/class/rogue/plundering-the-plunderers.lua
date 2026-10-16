@@ -24,7 +24,7 @@ return {
 	["Undead take the zeppelin from the towers outside the {zone:1458} to {zone:1411}. {npc:3401} and {quest:2379} stand in the {object:172960}, the canyon under the {object:172982}."] = "Нежить летит на дирижабле от башен за пределами города ({zone:1458}) сюда: {zone:1411}. {npc:3401} и {quest:2379} стоят здесь: {object:172960} – ущелье под местом {object:172982}.",
 
 	-- Step 4: Wrenix the Wretched
-	-- {area:392} Ratchet · {zone:1413} The Barrens · {item:7970} E.C.A.C. · {item:5060} Thieves' Tools
+	-- {area:392} Ratchet · {zone:1413} Barrens · {item:7970} E.C.A.C. · {item:5060} Thieves' Tools
 	["Fly or ride to {area:392} on the {zone:1413} coast. Wrenix stands in town with his Gizmotronic Apparatus: buy an {item:7970} and {item:5060} from the apparatus before you go."] = "Летите или езжайте сюда: {area:392} – на побережье ({zone:1413}). Реникс стоит в городе со своим гизмотронным аппаратом: перед уходом купите у аппарата {item:7970} и {item:5060}.",
 
 	-- Step 5: Southsea Treasure
@@ -37,7 +37,7 @@ return {
 	["{npc:7161}: ten {item:7676}"] = "{npc:7161}: десять шт. {item:7676}",
 
 	-- Step 7: Fenwick Thatros
-	-- {zone:1454} Orgrimmar · {zone:1458} Undercity · {quest:1998} Fenwick Thatros · {area:228} The Sepulcher
+	-- {zone:1454} Orgrimmar · {zone:1458} Undercity · {quest:1998} Fenwick Thatros · {area:228} Sepulcher
 	["Take the zeppelin from {zone:1454} to the {zone:1458} and ride south into Silverpine. {quest:1998} stands north-east of the {area:228}."] = "Летите на дирижабле: {zone:1454} → {zone:1458}, затем езжайте на юг, в Серебряный бор. {quest:1998} стоит к северо-востоку от места {area:228}.",
 
 	-- Step 9: Ambermill

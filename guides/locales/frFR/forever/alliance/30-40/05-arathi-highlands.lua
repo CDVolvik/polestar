@@ -26,8 +26,7 @@ return {
 	["The wrecked caravan lies off the road near Biggs."] = "La caravane détruite se trouve en bord de route, près de Biggs.",
 
 	-- Step 7: The Harborage
-	-- {area:657} The Harborage
-	["Follow the road north to the draenei of the {area:657}."] = "Suivez la route vers le nord jusqu'aux draeneï de {area:657}.",
+	["Follow the road north to the draenei of the Harborage."] = "",
 
 	-- Step 8: Fallow Sanctuary
 	-- {area:76} Fallow Sanctuary · {npc:256028} The Lost One
@@ -36,13 +35,13 @@ return {
 	-- Step 9: Galen Goodward
 	["Galen is caged at the north end of the sanctuary. Free him and keep him alive on the walk out; his strongbox waits by the road afterwards."] = "Galen est enfermé dans une cage au nord du sanctuaire. Libérez-le et gardez-le en vie pendant la sortie ; son coffre vous attend ensuite au bord de la route.",
 
-	-- Step 11: Fly to Stormwind City
-	-- {zone:1453} Stormwind City
+	-- Step 11: Fly to Stormwind
+	-- {zone:1453} Stormwind
 	["Fly to {zone:1453}"] = "Prenez un vol pour {zone:1453}",
 	-- {zone:1430} Deadwind Pass · {area:42} Darkshire
 	["Back west through {zone:1430} to {area:42}."] = "Retournez vers l'ouest à travers {zone:1430} jusqu'à {area:42}.",
 
-	-- Step 12: Stormwind City
+	-- Step 12: Stormwind
 	-- {npc:1141} Angus Stern · {area:17203} Stormwind Harbor
 	["{npc:1141}, {area:17203} road"] = "{npc:1141}, route de {area:17203}",
 	-- {npc:12336} Brother Crowley
@@ -51,7 +50,7 @@ return {
 	["{npc:1440}, the Royal Library in the keep"] = "{npc:1440}, la Royal Library du donjon",
 
 	-- Step 13: The Binding
-	-- {npc:6122} Gakin the Darkbinder · {object:2164} The Slaughtered Lamb · {object:2101} Mage Quarter · {item:6913} Heartswood Core · {quest:65602} What Is Love? · {item:190309} Wooden Figurine
+	-- {npc:6122} Gakin the Darkbinder · {object:2164} Slaughtered Lamb · {object:2101} Mage Quarter · {item:6913} Heartswood Core · {quest:65602} What Is Love? · {item:190309} Wooden Figurine
 	["{npc:6122} waits in the {object:2164}'s cellar, in the {object:2101}. Use the {item:6913} at the summoning circle there and defeat the succubus it calls. If you took {quest:65602}, hand him the {item:190309} too, place it at the same circle and defeat the incubus."] = "{npc:6122} attend dans la cave de {object:2164}, dans {object:2101}. Utilisez le {item:6913} sur le cercle d'invocation et vainquez la succube invoquée. Si vous avez pris {quest:65602}, donnez-lui aussi la {item:190309}, placez-la sur le même cercle et vainquez l'incube.",
 	["Subdue the succubus"] = "Soumettez la succube",
 	-- {quest:65602} What Is Love?
@@ -62,7 +61,7 @@ return {
 
 	-- Step 14: Shaman training
 	["Shaman training"] = "Entraînement de chaman",
-	-- {zone:1453} Stormwind City · {area:2257} Deeprun Tram · {object:28027} Dwarven District · {zone:1455} Ironforge · {npc:258098} Eldrun Stormbreaker · {npc:1573} Gryth Thurden · {object:32372} The Great Forge · {area:271} Southshore
+	-- {zone:1453} Stormwind · {area:2257} Deeprun Tram · {object:28027} Dwarven District · {zone:1455} Ironforge · {npc:258098} Eldrun Stormbreaker · {npc:1573} Gryth Thurden · {object:32372} Great Forge · {area:271} Southshore
 	["{zone:1453} has no shaman trainer: take the {area:2257} from the {object:28027} to {zone:1455} and train with {npc:258098}. {npc:1573} in the {object:32372} flies to {area:271} too."] = "{zone:1453} n'a pas de maître chaman : prenez {area:2257} depuis {object:28027} jusqu'à {zone:1455} et entraînez-vous auprès de {npc:258098}. {npc:1573}, dans {object:32372}, propose aussi un vol pour {area:271}.",
 
 	-- Step 15: Fly to Southshore
@@ -158,8 +157,8 @@ return {
 
 	-- Step 42: Crushridge ogres
 	["Crushridge ogres"] = "Ogres Cassecrête",
-	-- {area:280} Strahnbrad · {item:3706} Ensorcelled Parchment · {quest:537} Dark Council
-	["The Crushridge ogres hold the hills north of {area:280}. Farther north, a worn wooden chest holds the {item:3706}; Nagaz of the {quest:537} stands right by it."] = "Les ogres Cassecrête tiennent les collines au nord de {area:280}. Plus au nord, un vieux coffre en bois contient le {item:3706} ; Nagaz, de {quest:537}, se tient juste à côté.",
+	-- {area:280} Strahnbrad · {item:3706} Ensorcelled Parchment · {npc:2320} Nagaz · {quest:537} Dark Council
+	["The Crushridge ogres hold the hills north of {area:280}. Farther north, a worn wooden chest holds the {item:3706}; {npc:2320} of the {quest:537} stands right by it."] = "",
 
 	-- Step 43: Ruins of Alterac
 	-- {area:280} Strahnbrad
@@ -171,13 +170,13 @@ return {
 	["South-west to the Kirin Tor camp on the lake shore west of {area:279}, just over the border into {zone:1421}: the {npc:269127} stands there. Archmage Ansirem stands south-east of it, by the dome."] = "Allez au sud-ouest jusqu'au camp du Kirin Tor sur la rive du lac, à l'ouest de {area:279}, juste après la frontière de {zone:1421} : {npc:269127} s'y tient. L'archimage Ansirem se tient au sud-est, près du dôme.",
 	-- {npc:2542} Catelyn the Blade · {area:35} Booty Bay
 	["For {npc:2542} in {area:35}: keep it"] = "Pour {npc:2542} à {area:35} : gardez-la",
-	-- {npc:252085} Archmage Celindra · {area:279} Dalaran
-	["{npc:252085}, in the City of {area:279}"] = "{npc:252085}, dans la cité de {area:279}",
+	-- {npc:252085} Archmage Celindra
+	["{npc:252085}, in the City of Dalaran"] = "",
 
 	-- Step 45: Southshore
 	-- {item:2321} Fine Thread · {npc:2381} Micha Yance
 	["{item:2321} for Bartolo's cloak, from {npc:2381}, if you have none"] = "{item:2321} pour la cape de Bartolo, chez {npc:2381}, si vous n'en avez pas",
-	-- {npc:1440} Milton Sheaf · {zone:1453} Stormwind City
+	-- {npc:1440} Milton Sheaf · {zone:1453} Stormwind
 	["For {npc:1440} in {zone:1453}: keep it"] = "Pour {npc:1440} à {zone:1453} : gardez-la",
 
 	-- Step 47: Thelsamar
@@ -188,5 +187,8 @@ return {
 	["South-east along the loch to the dig site."] = "Longez le loch vers le sud-est jusqu'au site de fouilles.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Follow the road north to the draenei of the {area:657}."] = "Suivez la route vers le nord jusqu'aux draeneï de {area:657}.",
 	-- ["Summon Succubus"] = "Invoquez la succube",
+	-- ["The Crushridge ogres hold the hills north of {area:280}. Farther north, a worn wooden chest holds the {item:3706}; Nagaz of the {quest:537} stands right by it."] = "Les ogres Cassecrête tiennent les collines au nord de {area:280}. Plus au nord, un vieux coffre en bois contient le {item:3706} ; Nagaz, de {quest:537}, se tient juste à côté.",
+	-- ["{npc:252085}, in the City of {area:279}"] = "{npc:252085}, dans la cité de {area:279}",
 }

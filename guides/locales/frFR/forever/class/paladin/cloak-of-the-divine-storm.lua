@@ -45,8 +45,8 @@ return {
 	-- Step 8: The Spear of Mannoroth
 	-- {object:409311} Spear of Mannoroth
 	["The {object:409311}"] = "{object:409311}",
-	-- {object:409311} Spear of Mannoroth · {area:435} Demon Fall Canyon · {spell:11170} Shatter · {object:409315} Shattered Orb
-	["The {object:409311} stands at the east end of {area:435}. {spell:11170} the orb on it; the {object:409315} appears beside it."] = "{object:409311} se dresse à l'extrémité est de {area:435}. Lancez {spell:11170} sur l'orbe qui s'y trouve ; {object:409315} apparaît à côté.",
+	-- {object:409311} Spear of Mannoroth · {area:435} Demon Fall Canyon · {object:409315} Shattered Orb
+	["The {object:409311} stands at the east end of {area:435}. Shatter the orb on it; the {object:409315} appears beside it."] = "",
 	-- {object:409315} Shattered Orb
 	["from the {object:409315}"] = "sur l'{object:409315}",
 
@@ -57,4 +57,5 @@ return {
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["A rare cloak at 30 from the old Divine Storm story; for now only Alliance paladins can finish it."] = "Une cape rare au niveau 30, issue de l'ancienne histoire de Tempête divine ; pour l'instant, seuls les paladins de l'Alliance peuvent la terminer.",
 	-- ["The {object:409311} stands at the east end of {area:435}. Shatter the orb on it; the {object:409315} appears beside it."] = "{object:409311} se dresse à l'extrémité est de {area:435}. Brisez l'orbe dessus ; l'{object:409315} apparaît à côté.",
+	-- ["The {object:409311} stands at the east end of {area:435}. {spell:11170} the orb on it; the {object:409315} appears beside it."] = "{object:409311} se dresse à l'extrémité est de {area:435}. Lancez {spell:11170} sur l'orbe qui s'y trouve ; {object:409315} apparaît à côté.",
 }

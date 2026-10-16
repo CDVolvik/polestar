@@ -9,8 +9,8 @@ return {
 	["Warlock Dreadsteed"] = "術士恐懼戰馬",
 	["Your epic mount at 60: summoned anywhere, with no gold spent on an epic horse."] = "60級的史詩坐騎：隨處可召喚，不必花金幣買史詩馬。",
 
-	-- Step 1: Mor'zul Bloodbringer (Stormwind City)
-	-- {npc:5520} Spackle Thornberry · {object:2164} The Slaughtered Lamb · {quest:7562} Mor'zul Bloodbringer · {zone:1428} Burning Steppes
+	-- Step 1: Mor'zul Bloodbringer (Stormwind)
+	-- {npc:5520} Spackle Thornberry · {object:2164} Slaughtered Lamb · {quest:7562} Mor'zul Bloodbringer · {zone:1428} Burning Steppes
 	["At 60 {npc:5520} in the {object:2164} sends you to {quest:7562} in the {zone:1428}."] = "60級時，{object:2164}的{npc:5520}會派你去找{zone:1428}的{quest:7562}。",
 
 	-- Step 2: Mor'zul Bloodbringer (Ironforge)
@@ -45,9 +45,9 @@ return {
 
 	-- Step 8: The ritual pieces
 	["The ritual pieces"] = "儀式物品",
-	-- {spell:5896} Shadow Power · {skill:171} Alchemy · {skill:333} Enchanting · {item:11370} Dark Iron Ore · {skill:186} Mining · {area:1584} Blackrock Depths · {zone:1427} Searing Gorge · {skill:393} Skinning · {zone:1428} Burning Steppes
+	-- {skill:171} Alchemy · {skill:333} Enchanting · {item:11370} Dark Iron Ore · {skill:186} Mining · {area:1584} Blackrock Depths · {zone:1427} Searing Gorge · {skill:393} Skinning · {zone:1428} Burning Steppes
 	-- plural, as words: Large Brilliant Shards = {item:14344} Large Brilliant Shard · Black Dragonscales = {item:15416} Black Dragonscale
-	["Gorzeeki wants 10 Elixirs of {spell:5896} ({skill:171}), 6 Large Brilliant Shards ({skill:333}), 25 {item:11370} ({skill:186}, in {area:1584} and the {zone:1427}) and 35 Black Dragonscales ({skill:393}, black dragonkin of the {zone:1428}). Make or gather what your professions allow; buy the rest at the Auction House."] = "戈瑟奇要10瓶{spell:5896}藥劑（{skill:171}）、6個大塊魔光碎片（{skill:333}）、25個{item:11370}（{skill:186}，在{area:1584}和{zone:1427}）和35個黑龍鱗片（{skill:393}，{zone:1428}的黑龍族）。能用你的專業製作或採集的就自己來；其餘在拍賣場購買。",
+	["Gorzeeki wants 10 Elixirs of Shadow Power ({skill:171}), 6 Large Brilliant Shards ({skill:333}), 25 {item:11370} ({skill:186}, in {area:1584} and the {zone:1427}) and 35 Black Dragonscales ({skill:393}, black dragonkin of the {zone:1428}). Make or gather what your professions allow; buy the rest at the Auction House."] = "",
 
 	-- Step 9: Arcanite
 	-- plural, as words: Arcanite Bars = {item:12360} Arcanite Bar
@@ -91,4 +91,7 @@ return {
 	["{area:2577} stands in the ruins of central {zone:1444}; the ritual circle is in its west wing, past {npc:11496}, and the door needs the {item:18249} or a rogue. Use {item:18663} to start; when the bell, the wheel or the candle fades, click it with the {item:18629} (a {item:6265} each). When the demons stop coming, use the {item:18670}, defeat the {npc:14502} and its dreadlord master, and speak to the {npc:14504}. Bring a group."] = "{area:2577}位於{zone:1444}中部的廢墟中；儀式法陣在西區，經過{npc:11496}之後，門需要{item:18249}或盜賊開啟。使用{item:18663}開始；當鈴鐺、輪子或蠟燭消退時，用{item:18629}點擊它（每次一個{item:6265}）。惡魔不再出現後，使用{item:18670}，擊敗{npc:14502}及其恐懼魔王主人，然後與{npc:14504}交談。找小隊一起去。",
 	-- {npc:14504} Dreadsteed Spirit
 	["{npc:14504}: it binds itself to you"] = "{npc:14504}：它會與你綁定",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Gorzeeki wants 10 Elixirs of {spell:5896} ({skill:171}), 6 Large Brilliant Shards ({skill:333}), 25 {item:11370} ({skill:186}, in {area:1584} and the {zone:1427}) and 35 Black Dragonscales ({skill:393}, black dragonkin of the {zone:1428}). Make or gather what your professions allow; buy the rest at the Auction House."] = "戈瑟奇要10瓶{spell:5896}藥劑（{skill:171}）、6個大塊魔光碎片（{skill:333}）、25個{item:11370}（{skill:186}，在{area:1584}和{zone:1427}）和35個黑龍鱗片（{skill:393}，{zone:1428}的黑龍族）。能用你的專業製作或採集的就自己來；其餘在拍賣場購買。",
 }

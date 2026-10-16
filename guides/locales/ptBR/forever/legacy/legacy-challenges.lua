@@ -82,8 +82,8 @@ return {
 	-- Step 15: Adventure: Lord Valthalak
 	-- {npc:16042} Lord Valthalak
 	["Adventure: {npc:16042}"] = "Aventura: {npc:16042}",
-	-- {npc:16042} Lord Valthalak · {npc:16013} Deliana · {zone:1455} Ironforge · {npc:16012} Mokvar · {zone:1454} Orgrimmar · {npc:16033} Bodley · {area:254} Blackrock Mountain · {item:22048} Lord Valthalak's Amulet · {quest:8996} Return to Bodley · {quest:8997} Back to the Beginning
-	["The {npc:16042} questline is a point. It is the level 60 dungeon-set chain: {npc:16013} ({zone:1455}) or {npc:16012} ({zone:1454}) send you through In Search of Anthion and Anthion's Parting Words to {npc:16033} at {area:254}, whose Three Kings of Flame, the Left and Right Pieces of {item:22048}, Final Preparations and Mea Culpa, {npc:16042} end with {quest:8996}. {quest:8997} then leads to the class Saving the Best for Last quests."] = "A série de missões de {npc:16042} vale um ponto. É a cadeia do conjunto de masmorra de nível 60: {npc:16013} ({zone:1455}) ou {npc:16012} ({zone:1454}) mandam você, por À procura de Anthion e As últimas palavras de Anthion, até {npc:16033} em {area:254}, cujas Três reis das chamas, as partes esquerda e direita de {item:22048}, Preparativos finais e Mea Culpa, {npc:16042} terminam com {quest:8996}. {quest:8997} então leva às missões de classe Deixando o melhor para o final.",
+	-- {npc:16042} Lord Valthalak · {npc:16013} Deliana · {zone:1455} Ironforge · {npc:16012} Mokvar · {zone:1454} Orgrimmar · {npc:16033} Bodley · {area:254} Blackrock Mountain · {quest:8996} Return to Bodley · {quest:8997} Back to the Beginning
+	["The {npc:16042} questline is a point. It is the level 60 dungeon-set chain: {npc:16013} ({zone:1455}) or {npc:16012} ({zone:1454}) send you through In Search of Anthion and Anthion's Parting Words to {npc:16033} at {area:254}, whose Three Kings of Flame, the Left and Right Pieces of Lord Valthalak's Amulet, Final Preparations and Mea Culpa, {npc:16042} end with {quest:8996}. {quest:8997} then leads to the class Saving the Best for Last quests."] = "",
 	-- {npc:16033} Bodley · {quest:8996} Return to Bodley
 	["{npc:16033} offers it once {quest:8996} is turned in"] = "{npc:16033} a oferece depois que {quest:8996} for entregue",
 	-- {quest:8996} Return to Bodley
@@ -107,8 +107,8 @@ return {
 	-- {area:718} Wailing Caverns · {npc:3678} Disciple of Naralex
 	["{area:718} (appears after the {npc:3678}'s event)"] = "{area:718} (aparece após o evento do {npc:3678})",
 	-- {area:717} The Stockade
-	["{area:717}: the usual last kill; the {area:717} has no fixed final boss"] = "{area:717}: a última morte usual; {area:717} não tem chefe final fixo",
-	-- {area:16919} The Hall of Thanes · {area:153} Ruins of Lordaeron
+	["{area:717}: the usual last kill; the Stockade has no fixed final boss"] = "",
+	-- {area:16919} Hall of Thanes · {area:153} Ruins of Lordaeron
 	["Forever adds the dungeons {area:16919} and {area:153}; their bosses and brackets are not in our data yet."] = "O Forever adiciona as masmorras {area:16919} e {area:153}; seus chefes e faixas ainda não estão nos nossos dados.",
 
 	-- Step 19: Dungeons: level 26-45
@@ -142,7 +142,7 @@ return {
 
 	-- Step 21: Forever's new dungeons
 	["Forever's new dungeons"] = "As novas masmorras do Forever",
-	-- {area:16919} The Hall of Thanes · {area:153} Ruins of Lordaeron
+	-- {area:16919} Hall of Thanes · {area:153} Ruins of Lordaeron
 	["{area:16919} and {area:153} are new in Forever. Their bosses, levels and Legacy bracket are not in our data, so tick them off yourself."] = "{area:16919} e {area:153} são novas no Forever. Seus chefes, níveis e faixa de Legado não estão nos nossos dados, então marque-as você mesmo.",
 
 	-- Step 22: Raids: Onyxia
@@ -158,4 +158,8 @@ return {
 	-- Step 24: Raids: Barrow Deeps
 	["Raids: Barrow Deeps"] = "Raides: Barrow Deeps",
 	["All 8 Barrow Deeps bosses are a point. Barrow Deeps is a new Forever raid; its bosses are not in our data, so tick it off once all 8 are down."] = "Os 8 chefes de Barrow Deeps, juntos, valem um ponto. Barrow Deeps é uma raide nova do Forever; seus chefes não estão nos nossos dados, então marque-a quando os 8 caírem.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["The {npc:16042} questline is a point. It is the level 60 dungeon-set chain: {npc:16013} ({zone:1455}) or {npc:16012} ({zone:1454}) send you through In Search of Anthion and Anthion's Parting Words to {npc:16033} at {area:254}, whose Three Kings of Flame, the Left and Right Pieces of {item:22048}, Final Preparations and Mea Culpa, {npc:16042} end with {quest:8996}. {quest:8997} then leads to the class Saving the Best for Last quests."] = "A série de missões de {npc:16042} vale um ponto. É a cadeia do conjunto de masmorra de nível 60: {npc:16013} ({zone:1455}) ou {npc:16012} ({zone:1454}) mandam você, por À procura de Anthion e As últimas palavras de Anthion, até {npc:16033} em {area:254}, cujas Três reis das chamas, as partes esquerda e direita de {item:22048}, Preparativos finais e Mea Culpa, {npc:16042} terminam com {quest:8996}. {quest:8997} então leva às missões de classe Deixando o melhor para o final.",
+	-- ["{area:717}: the usual last kill; the {area:717} has no fixed final boss"] = "{area:717}: a última morte usual; {area:717} não tem chefe final fixo",
 }

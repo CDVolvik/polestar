@@ -16,17 +16,19 @@ return {
 	["{npc:3649}: {item:279915}, from Sylessa in Menethil"] = "{npc:3649}: {item:279915} от Силессы (Гавань Менетилов)",
 
 	-- Step 3: Heartswood
-	-- {area:415} Astranaar · {quest:1738} Heartswood · {area:413} Maestra's Post · {quest:65602} What Is Love? · {item:190309} Wooden Figurine · {area:1276} The Talondeep Path
+	-- {area:415} Astranaar · {quest:1738} Heartswood · {area:413} Maestra's Post · {quest:65602} What Is Love? · {item:190309} Wooden Figurine · {area:1276} Talondeep Path
 	["From {area:415} ride north-west into the hills: the {quest:1738} is a glowing tree north of the road to {area:413}. If you took {quest:65602}, the {item:190309} lies in a house among the trees north of {area:413} (26.6,22.0). Then back past {area:415} to the {area:1276}."] = "От места {area:415} езжайте на северо-запад в холмы: {quest:1738} – это светящееся дерево к северу от дороги к месту {area:413}. Если вы взяли задание {quest:65602}, {item:190309} лежит в доме среди деревьев к северу (ориентир: {area:413}) (26.6,22.0). Затем назад мимо места {area:415}. Цель: {area:1276}.",
 	-- {item:190309} Wooden Figurine · {area:413} Maestra's Post
 	["{item:190309}, north of {area:413}"] = "{item:190309}, к северу (ориентир: {area:413})",
 
 	-- Step 4: The Talondeep Path
-	-- {area:415} Astranaar · {area:1276} The Talondeep Path
+	-- {area:1276} Talondeep Path
+	["The {area:1276}"] = "",
+	-- {area:415} Astranaar · {area:1276} Talondeep Path
 	["From {area:415} head south-west to the {area:1276}, a tunnel through the mountains into Stonetalon."] = "От места {area:415} идите на юго-запад. Цель: {area:1276} – туннель сквозь горы в Когтистые горы.",
 
 	-- Step 5: Nijel's Point
-	-- {area:460} Sun Rock Retreat · {area:465} The Charred Vale · {zone:1443} Desolace · {area:608} Nijel's Point
+	-- {area:460} Sun Rock Retreat · {area:465} Charred Vale · {zone:1443} Desolace · {area:608} Nijel's Point
 	["Follow the road west past {area:460} (Horde) and south-west through the {area:465} into {zone:1443}; {area:608} stands at the top of the pass."] = "Идите по дороге на запад мимо места {area:460} (Орда) и на юго-запад через {area:465} в зону {zone:1443}; {area:608} – на вершине перевала.",
 
 	-- Step 6: Sargeron
@@ -43,8 +45,8 @@ return {
 	["Azore's tower stands on the hill west of {area:599}: take his quest first, the sceptre he wants is in the fortress."] = "Башня Азора стоит на холме к западу (ориентир: {area:599}): сначала возьмите его задание – нужный ему скипетр находится в крепости.",
 
 	-- Step 11: Dalinda Malem
-	-- {spell:1294269} Burning Blade · {area:608} Nijel's Point
-	["Dalinda hides inside the {spell:1294269}'s fortress south-west of {area:608}."] = "Далинда прячется в крепости клана {spell:1294269} к юго-западу (ориентир: {area:608}).",
+	-- {area:608} Nijel's Point
+	["Dalinda hides inside the Burning Blade's fortress south-west of {area:608}."] = "",
 
 	-- Step 12: Tyranis and the Seer
 	["Tyranis and the Seer"] = "Тиранис и Провидец",
@@ -53,8 +55,7 @@ return {
 
 	-- Step 13: Escort Dalinda
 	["Escort Dalinda"] = "Сопроводите Далинду",
-	-- {area:599} Thunder Axe Fortress
-	["Out of {area:599}"] = "Выход наружу: {area:599}",
+	["Out of Thunder Axe Fortress"] = "",
 	-- {area:608} Nijel's Point
 	["Lead Dalinda out of the fortress; she walks off once you are clear of it. Vahlarriel takes the turn-in at {area:608} at the end of the guide."] = "Выведите Далинду из крепости; когда вы выберетесь, она уйдет сама. Задание принимает Валлариель ({area:608}) в конце гайда.",
 
@@ -85,4 +86,7 @@ return {
 	-- {area:609} Kolkar Village · {npc:5752} Corporal Melkins
 	["The Kolkar roam the plains around {area:609}; their ears are for {npc:5752}."] = "Кентавры из племени Колкар бродят по равнинам вокруг места {area:609}; их уши – для NPC {npc:5752}.",
 
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Dalinda hides inside the {spell:1294269}'s fortress south-west of {area:608}."] = "Далинда прячется в крепости клана {spell:1294269} к юго-западу (ориентир: {area:608}).",
+	-- ["Out of {area:599}"] = "Выход наружу: {area:599}",
 }

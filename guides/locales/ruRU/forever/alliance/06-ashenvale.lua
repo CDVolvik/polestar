@@ -32,8 +32,8 @@ return {
 	["Escort Kerlonian to {area:413} in {zone:1440}."] = "Проводите Керлониана сюда: {area:413} ({zone:1440}).",
 
 	-- Step 7: Bathran's Haunt
-	-- {area:413} Maestra's Post · {area:411} Bathran's Haunt · {item:5366} Glowing Soul Gem
-	["North of {area:413}, plant bundles lie around the ruins of {area:411}. Dark Strand cultists hold the ruins just south of them: any of them can drop the {item:5366}."] = "К северу от места {area:413} вокруг руин ({area:411}) лежат пучки трав. Сектанты из клана Темной Нити удерживают руины чуть южнее: с любого из них может выпасть {item:5366}.",
+	-- {area:411} Bathran's Haunt · {item:5366} Glowing Soul Gem
+	["North of Maestra's Post, plant bundles lie around the ruins of {area:411}. Dark Strand cultists hold the ruins just south of them: any of them can drop the {item:5366}."] = "",
 	-- {quest:1010} Bathran's Hair
 	["{quest:1010}, from the plant bundles"] = "{quest:1010}, из пучков трав",
 
@@ -47,23 +47,23 @@ return {
 	-- {area:441} Lake Falathim · {item:5463} Glowing Gem
 	["Ride west to the shore of {area:441}. Teronis lies among the Saltspittle murlocs; any murloc can drop the {item:5463}."] = "Скачите на запад к берегу озера ({area:441}). Труп Терониса лежит среди мурлоков из племени Соленой Слюны; с любого мурлока может выпасть {item:5463}.",
 
-	-- Step 11: The Shrine of Aessina
-	-- {npc:3585} Therysil · {area:416} The Shrine of Aessina
+	-- Step 11: Shrine of Aessina
+	-- {npc:3585} Therysil · {area:416} Shrine of Aessina
 	["South of the murlocs, {npc:3585} waits at the {area:416}."] = "К югу от мурлоков {npc:3585} ждет здесь: {area:416}.",
 
 	-- Step 12: Ilkrud Magthrull
-	-- {area:412} The Ruins of Ordil'Aran
+	-- {area:412} Ruins of Ordil'Aran
 	["Ilkrud and his voidwalkers hold the {area:412} south of the shrine. Pull his guards first."] = "Илкруд и его демоны Бездны удерживают {area:412} к югу от святилища. Сначала выманите его стражей.",
 
 	-- Step 13: The Zoram Strand
-	-- {area:414} The Zoram Strand · {npc:3846} Talen
-	["Follow the coast north to the {area:414}. {npc:3846} camps on the beach; Wrathtail nagas fill the shore."] = "Идите вдоль побережья на север сюда: {area:414}. {npc:3846} стоит лагерем на пляже; берег кишит нагами из клана Зловещего Хвоста.",
+	-- {npc:3846} Talen
+	["Follow the coast north to the Zoram Strand. {npc:3846} camps on the beach; Wrathtail nagas fill the shore."] = "",
 	-- {item:5424} Ancient Statuette
 	["{item:5424}, in the ruins on the shore"] = "{item:5424}, в руинах на берегу",
 
 	-- Step 15: Ruuzel
-	-- {quest:1009} Ruuzel · {area:414} The Zoram Strand
-	["{quest:1009} walks the northern tip of the {area:414} with Wrathtail guards."] = "{quest:1009} ходит по северной оконечности места {area:414} со стражами из клана Зловещего Хвоста.",
+	-- {quest:1009} Ruuzel
+	["{quest:1009} walks the northern tip of the Zoram Strand with Wrathtail guards."] = "",
 
 	-- Step 19: Dal Bloodclaw
 	-- {npc:3987} Dal Bloodclaw · {area:415} Astranaar
@@ -74,7 +74,7 @@ return {
 	["The tears glow on the small isle east of {area:415}."] = "Слезы светятся на маленьком островке к востоку от места {area:415}.",
 
 	-- Step 22: Shael'dryn
-	-- {area:419} The Howling Vale · {npc:3916} Shael'dryn
+	-- {area:419} Howling Vale · {npc:3916} Shael'dryn
 	["Follow the road east to the {area:419}; {npc:3916} stands by the moonwell."] = "Идите по дороге на восток сюда: {area:419}; {npc:3916} стоит у лунного колодца.",
 
 	-- Step 23: The Foulweald
@@ -91,11 +91,10 @@ return {
 	["Kill the elementals for 5 Intact Elemental Bracers, then use the {item:5456}"] = "Убивайте элементалей ради 5 неповрежденных браслетов элементаля, затем используйте {item:5456}",
 
 	-- Step 25: The Ruins of Stardust
-	-- {area:421} Mystral Lake
-	["West of {area:421}, the stardust bushes grow among the ruins."] = "К западу от места {area:421} среди руин растут кусты, покрытые звездной пылью.",
+	["West of Mystral Lake, the stardust bushes grow among the ruins."] = "",
 
 	-- Step 27: Windshear Crag
-	-- {area:421} Mystral Lake · {area:1276} The Talondeep Path · {area:461} Windshear Crag · {area:1076} Webwinder Path
+	-- {area:421} Mystral Lake · {area:1276} Talondeep Path · {area:461} Windshear Crag · {area:1076} Webwinder Path
 	["Ride south past {area:421} into the {area:1276} tunnel; it comes out in Stonetalon's {area:461}. Kaela and Gaxim camp on the {area:1076} south-west of the crag."] = "Скачите на юг мимо места {area:421} в туннель ({area:1276}); он выходит здесь: {area:461} (Когтистые горы). Кела и Гаксим стоят лагерем здесь: {area:1076}, к юго-западу от утеса.",
 	-- {npc:4201} Ziz Fizziks
 	["{npc:4201}, in the hut north of them"] = "{npc:4201}, в хижине к северу от них",
@@ -112,7 +111,7 @@ return {
 	-- Step 31: To Menethil Harbor
 	-- {area:150} Menethil Harbor
 	["To {area:150}"] = "В место {area:150}",
-	-- {area:1276} The Talondeep Path
+	-- {area:1276} Talondeep Path
 	["Hearthstone on cooldown? Ride back north through the {area:1276}."] = "Камень возвращения еще не готов? Скачите обратно на север через {area:1276}.",
 	-- {area:150} Menethil Harbor
 	["Boat to {area:150}"] = "Корабль: {area:150}",
@@ -135,8 +134,9 @@ return {
 	["Timber and iron piles lie around the keep and along the harbor's walls."] = "Груды бревен и железа лежат вокруг крепости и вдоль стен гавани.",
 
 	-- Step 35: Bluegill Marsh
+	-- {npc:1259} Gobbler
 	-- plural, as words: Bluegill Murlocs = {npc:1024} Bluegill Murloc
-	["Follow the coast north out of Menethil. Bluegill Murlocs fill the marsh; Gobbler walks with a pack in the middle of it."] = "Идите вдоль побережья на север из Гавани Менетилов. Болото полно мурлоков из племени Синежабрых; Жрун бродит со стаей посреди него.",
+	["Follow the coast north out of Menethil. Bluegill Murlocs fill the marsh; {npc:1259} walks with a pack in the middle of it."] = "",
 
 	-- Step 37: The Bluegill hovels
 	["The Bluegill hovels"] = "Хижины Синежабрых",
@@ -178,17 +178,19 @@ return {
 	-- Step 47: Black Oozes
 	-- plural, as words: Black Oozes = {npc:1032} Black Ooze
 	["Black Oozes"] = "Черные слизнюки",
-	-- {area:1025} The Green Belt · {npc:2111} Sida
+	-- {area:1025} Green Belt · {npc:2111} Sida
 	-- plural, as words: Black Oozes = {npc:1032} Black Ooze
 	["Black Oozes creep through the marsh north of the {area:1025} road, west of Einar's camp. Any ooze may hold {npc:2111}'s bag."] = "Черные слизнюки ползают по болоту к северу от дороги ({area:1025}), к западу от лагеря Эйнара. В любом слизнюке может оказаться сумка NPC {npc:2111}.",
 
 	-- Step 48: The Green Belt
+	-- {area:1025} Green Belt
+	["The {area:1025}"] = "",
 	-- {npc:2093} Einar Stonegrip · {npc:1244} Rethiel the Greenwarden
 	["{npc:2093} camps by the road; {npc:1244} stands farther east, by the river."] = "{npc:2093} стоит лагерем у дороги; {npc:1244} стоит восточнее, у реки.",
 
 	-- Step 49: The Mosshide gnolls
 	["The Mosshide gnolls"] = "Гноллы из стаи Мохошкуров",
-	-- {area:1025} The Green Belt
+	-- {area:1025} Green Belt
 	-- plural, as words: Mosshide Gnolls = {npc:1007} Mosshide Gnoll
 	["Mosshide Gnolls and Mongrels hold the hills south-east of the {area:1025}."] = "Гноллы и полукровки из стаи Мохошкуров удерживают холмы к юго-востоку от места {area:1025}.",
 
@@ -199,7 +201,7 @@ return {
 	-- Step 53: Fen Creepers
 	-- plural, as words: Fen Creepers = {npc:1040} Fen Creeper
 	["Fen Creepers"] = "Трясинные ползуны",
-	-- {area:1025} The Green Belt
+	-- {area:1025} Green Belt
 	-- plural, as words: Fen Creepers = {npc:1040} Fen Creeper
 	["Fen Creepers hide in the marsh pools north-west of the {area:1025}."] = "Трясинные ползуны прячутся в болотных прудах к северо-западу от места {area:1025}.",
 
@@ -209,7 +211,7 @@ return {
 
 	-- Step 56: Dragonmaw camp
 	["Dragonmaw camp"] = "Лагерь Драконьей Пасти",
-	-- {area:1025} The Green Belt · {npc:2092} Pilot Longbeard · {zone:1426} Dun Morogh
+	-- {area:1025} Green Belt · {npc:2092} Pilot Longbeard · {zone:1426} Dun Morogh
 	["The Dragonmaw camp lies south of the road, just west of the {area:1025}: Raiders, Swamprunners and Bonewarders. {npc:2092}'s quest in {zone:1426} needs level 28."] = "Лагерь Драконьей Пасти находится к югу от дороги, чуть западнее места {area:1025}: налетчики, болотные бегуны и костостражи. Для задания NPC {npc:2092} ({zone:1426}) нужен 28-й уровень.",
 	-- {zone:1437} Wetlands
 	-- plural, as words: Dragonmaw Raiders = {npc:1034} Dragonmaw Raider
@@ -222,20 +224,20 @@ return {
 	-- Step 58: Ironforge
 	-- {zone:1437} Wetlands · {area:836} Dun Algaz · {zone:1432} Loch Modan · {zone:1426} Dun Morogh · {area:1537} Ironforge
 	["Ride east along the {zone:1437} road, south through {area:836} into {zone:1432} and west through the tunnel into {zone:1426} to {area:1537}."] = "Скачите на восток по дороге ({zone:1437}), на юг через {area:836} в зону {zone:1432} и на запад через туннель в зону {zone:1426} сюда: {area:1537}.",
-	-- {npc:1573} Gryth Thurden · {object:32372} The Great Forge
+	-- {npc:1573} Gryth Thurden · {object:32372} Great Forge
 	["{npc:1573}, in the {object:32372}"] = "{npc:1573}, {object:32372}",
-	-- {item:5352} Book: The Powers Below · {zone:1439} Darkshore · {npc:2786} Gerrig Bonegrip · {object:32383} The Forlorn Cavern
+	-- {item:5352} Book: The Powers Below · {zone:1439} Darkshore · {npc:2786} Gerrig Bonegrip · {object:32383} Forlorn Cavern
 	["Only with {item:5352} from {zone:1439}: {npc:2786}, the {object:32383}"] = "Только если у вас есть {item:5352} из зоны {zone:1439}: {npc:2786}, {object:32383}",
 
 	-- Step 59: Ironforge priests
 	-- {zone:1455} Ironforge
 	["{zone:1455} priests"] = "Жрецы: {zone:1455}",
-	-- {npc:11406} High Priest Rohan · {npc:258785} High Priestess Mims · {object:32386} Hall of Mysteries · {object:32362} The Mystic Ward
+	-- {npc:11406} High Priest Rohan · {npc:258785} High Priestess Mims · {object:32386} Hall of Mysteries · {object:32362} Mystic Ward
 	["{npc:11406} and {npc:258785} are in the {object:32386}, in the {object:32362}."] = "{npc:11406} и {npc:258785} находятся здесь: {object:32386} ({object:32362}).",
 
 	-- Step 60: Cathedral of Light
 	["Cathedral of Light"] = "Собор Света",
-	-- {area:2257} Deeprun Tram · {object:171524} Tinker Town · {zone:1453} Stormwind City · {object:28027} Dwarven District · {object:2098} Cathedral Square
+	-- {area:2257} Deeprun Tram · {object:171524} Tinker Town · {zone:1453} Stormwind · {object:28027} Dwarven District · {object:2098} Cathedral Square
 	["Take the {area:2257} from {object:171524} to {zone:1453}'s {object:28027}, then walk to the {object:2098}."] = "Сядьте на поезд ({area:2257}) в месте {object:171524} до места {object:28027} ({zone:1453}), затем идите сюда: {object:2098}.",
 	-- {npc:4982} Thomas
 	["{npc:4982}, in the Cathedral of Light"] = "{npc:4982}, в Соборе Света",
@@ -268,4 +270,10 @@ return {
 	-- {area:42} Darkshire
 	["Next: fly to {area:42}."] = "Далее: летите сюда: {area:42}.",
 
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Follow the coast north out of Menethil. Bluegill Murlocs fill the marsh; Gobbler walks with a pack in the middle of it."] = "Идите вдоль побережья на север из Гавани Менетилов. Болото полно мурлоков из племени Синежабрых; Жрун бродит со стаей посреди него.",
+	-- ["Follow the coast north to the {area:414}. {npc:3846} camps on the beach; Wrathtail nagas fill the shore."] = "Идите вдоль побережья на север сюда: {area:414}. {npc:3846} стоит лагерем на пляже; берег кишит нагами из клана Зловещего Хвоста.",
+	-- ["North of {area:413}, plant bundles lie around the ruins of {area:411}. Dark Strand cultists hold the ruins just south of them: any of them can drop the {item:5366}."] = "К северу от места {area:413} вокруг руин ({area:411}) лежат пучки трав. Сектанты из клана Темной Нити удерживают руины чуть южнее: с любого из них может выпасть {item:5366}.",
+	-- ["West of {area:421}, the stardust bushes grow among the ruins."] = "К западу от места {area:421} среди руин растут кусты, покрытые звездной пылью.",
+	-- ["{quest:1009} walks the northern tip of the {area:414} with Wrathtail guards."] = "{quest:1009} ходит по северной оконечности места {area:414} со стражами из клана Зловещего Хвоста.",
 }

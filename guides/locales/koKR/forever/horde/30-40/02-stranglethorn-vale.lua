@@ -127,8 +127,8 @@ return {
 	["Back to {object:3202}."] = "{object:3202}(으)로 돌아가세요.",
 
 	-- Step 30: The Vile Reef
-	-- {object:3202} Grom'gol · {area:104} The Vile Reef · {item:4094} Tablet Shard
-	["North-west of {object:3202} the {area:104} lies under the water off the coast. The {item:4094} rests on the sea floor by the sunken ruins; watch your breath and the murlocs."] = "{object:3202} 북서쪽 해안 앞바다 물속에 {area:104}이(가) 있습니다. {item:4094}은(는) 가라앉은 폐허 옆 바닥에 있습니다. 숨과 멀록을 조심하세요.",
+	-- {area:104} Vile Reef · {item:4094} Tablet Shard
+	["North-west of Grom'gol the {area:104} lies under the water off the coast. The {item:4094} rests on the sea floor by the sunken ruins; watch your breath and the murlocs."] = "",
 
 	-- Step 31: Bloodscalp ruins
 	["Bloodscalp ruins"] = "붉은머리부족 폐허",
@@ -144,8 +144,8 @@ return {
 
 	-- Step 34: Green Hills pages
 	["Green Hills pages"] = "푸른 언덕의 쪽",
-	-- {quest:338} The Green Hills of Stranglethorn
-	["Pages of {quest:338} drop at about 1% each from the Bloodscalp and Skullsplitter trolls; keep every page you loot and look on the auction house for the rest. Barnil takes the chapters later in this guide."] = "{quest:338}의 쪽은 붉은머리부족과 백골가루부족 트롤에게서 각각 약 1% 확률로 떨어집니다. 얻은 쪽은 모두 보관하고 나머지는 경매장에서 찾아보세요. 바닐은 이 가이드 후반에 장을 받습니다.",
+	-- {item:2755} Green Hills of Stranglethorn
+	["Pages of The {item:2755} drop at about 1% each from the Bloodscalp and Skullsplitter trolls; keep every page you loot and look on the auction house for the rest. Barnil takes the chapters later in this guide."] = "",
 
 	-- Step 35: Shadowmaw panthers
 	["Shadowmaw panthers"] = "그림자퓨마",
@@ -153,8 +153,8 @@ return {
 	["The Shadowmaw Panthers (37-38) stalk the jungle east of the Mosh'Ogg hills and north-east towards the lake; they strike from stealth. Loot every Green Hills page you find on the way."] = "그림자퓨마(37-38)는 모쉬오그일족 언덕 동쪽과 북동쪽 호수 방향 정글에 숨어 다니며, 은신 상태에서 공격합니다. 가는 길에 보이는 푸른 언덕의 쪽은 모두 챙기세요.",
 
 	-- Step 36: Green Hills pages
-	-- {quest:338} The Green Hills of Stranglethorn
-	["Pages of {quest:338} drop at about 1% each from the Bloodscalp and Skullsplitter trolls; take what drops and check the Auction House for the rest."] = "{quest:338}의 쪽은 붉은머리부족과 백골가루부족 트롤에게서 각각 약 1% 확률로 떨어집니다. 떨어지는 것은 챙기고 나머지는 경매장에서 확인하세요.",
+	-- {item:2755} Green Hills of Stranglethorn
+	["Pages of The {item:2755} drop at about 1% each from the Bloodscalp and Skullsplitter trolls; take what drops and check the Auction House for the rest."] = "",
 
 	-- Step 39: Jungle Stalkers
 	-- plural, as words: Jungle Stalkers = {npc:687} Jungle Stalker
@@ -185,4 +185,9 @@ return {
 	["Hearth to {area:35}"] = "귀환석으로 {area:35}에 가기",
 	-- {area:272} Tarren Mill · {zone:1417} Arathi Highlands
 	["The next guide flies you north to {area:272} and into the {zone:1417}."] = "다음 가이드에서는 북쪽의 {area:272}(으)로 날아가 {zone:1417}(으)로 갑니다.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["North-west of {object:3202} the {area:104} lies under the water off the coast. The {item:4094} rests on the sea floor by the sunken ruins; watch your breath and the murlocs."] = "{object:3202} 북서쪽 해안 앞바다 물속에 {area:104}이(가) 있습니다. {item:4094}은(는) 가라앉은 폐허 옆 바닥에 있습니다. 숨과 멀록을 조심하세요.",
+	-- ["Pages of {quest:338} drop at about 1% each from the Bloodscalp and Skullsplitter trolls; keep every page you loot and look on the auction house for the rest. Barnil takes the chapters later in this guide."] = "{quest:338}의 쪽은 붉은머리부족과 백골가루부족 트롤에게서 각각 약 1% 확률로 떨어집니다. 얻은 쪽은 모두 보관하고 나머지는 경매장에서 찾아보세요. 바닐은 이 가이드 후반에 장을 받습니다.",
+	-- ["Pages of {quest:338} drop at about 1% each from the Bloodscalp and Skullsplitter trolls; take what drops and check the Auction House for the rest."] = "{quest:338}의 쪽은 붉은머리부족과 백골가루부족 트롤에게서 각각 약 1% 확률로 떨어집니다. 떨어지는 것은 챙기고 나머지는 경매장에서 확인하세요.",
 }

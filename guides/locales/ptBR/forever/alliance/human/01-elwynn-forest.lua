@@ -115,18 +115,20 @@ return {
 	["Speak with {npc:1430}"] = "Fale com {npc:1430}",
 
 	-- Step 23: Maybell Maclure
-	-- {area:87} Goldshire · {area:64} The Maclure Vineyards
+	-- {area:87} Goldshire · {area:64} Maclure Vineyards
 	["Follow the road south out of {area:87} to the {area:64}. Maybell waits by the house."] = "Siga a estrada para o sul, saindo de {area:87}, até {area:64}. Mabel espera junto à casa.",
 
 	-- Step 24: The Fargodeep Mine
+	-- {npc:248464} Nimsy
 	-- plural, as words: Kobold Miners = {npc:40} Kobold Miner
-	["The mine is west of the vineyards. Kobold Miners and Tunnelers fill both levels; Nimsy, a named kobold, holds the picture book in the lower tunnels. Nimsy is elite: grouping up is advised."] = "A mina fica a oeste dos vinhedos. Mineradores e Tuneleiros Kobold enchem os dois níveis; Nimsy, um kobold nomeado, guarda o livro ilustrado nos túneis inferiores. Nimsy é elite: recomenda-se formar um grupo.",
+	["The mine is west of the vineyards. Kobold Miners and Tunnelers fill both levels; {npc:248464}, a named kobold, holds the picture book in the lower tunnels. {npc:248464} is elite: grouping up is advised."] = "",
 	["Walk through the mine"] = "Atravesse a mina",
 	-- plural, as words: Large Candles = {item:772} Large Candle
 	["Large Candles"] = "Velas Grandes",
 	-- plural, as words: Lost Books = {item:248001} Lost Book · Kobold Miners = {npc:40} Kobold Miner
 	["Lost Books: Kobold Miners and Tunnelers"] = "Livros Perdidos: Mineradores e Tuneleiros Kobold",
-	["Fun with Elementals: Nimsy"] = "Diversão com Elementais: Nimsy",
+	-- {npc:248464} Nimsy
+	["Fun with Elementals: {npc:248464}"] = "",
 
 	-- Step 25: Bait ingredients
 	["Bait ingredients"] = "Ingredientes da isca",
@@ -147,7 +149,7 @@ return {
 	["She sits inside the farmhouse."] = "Ela fica sentada dentro da casa da fazenda.",
 
 	-- Step 29: Billy Maclure
-	-- {area:64} The Maclure Vineyards
+	-- {area:64} Maclure Vineyards
 	["Billy plays in the {area:64}, east of the mine."] = "Guinho brinca em {area:64}, a leste da mina.",
 
 	-- Step 30: Boar meat
@@ -169,7 +171,7 @@ return {
 	["{quest:87} is inside the {area:57}, not on the hill above it: go in at the mouth and keep left to the back of the mine floor; don't take the stairs up. Defias Bandits around the vineyards drop a {item:1972} now and then: right-click it."] = "{quest:87} está dentro de {area:57}, não no morro acima dela: entre pela boca e mantenha-se à esquerda até o fundo do piso da mina; não suba as escadas. Bandidos Défias ao redor dos vinhedos soltam uma {item:1972} de vez em quando: clique nela com o botão direito.",
 
 	-- Step 34: Goldshire
-	-- {npc:279} Morgan Pestle · {zone:1453} Stormwind City
+	-- {npc:279} Morgan Pestle · {zone:1453} Stormwind
 	["{npc:279} in {zone:1453} takes it (02-westfall)"] = "{npc:279} em {zone:1453} recebe (02-westfall)",
 
 	-- Step 35: Crystal Lake and the wolves
@@ -193,13 +195,11 @@ return {
 	["{npc:261} guards the bridge on the road east; {npc:248265} stands just across it."] = "{npc:261} guarda a ponte na estrada para o leste; {npc:248265} fica logo do outro lado.",
 
 	-- Step 38: Downstream and Princess
-	-- {quest:91733} Downstream
-	["{quest:91733} and Princess"] = "{quest:91733} e Princesa",
-	-- {item:247813} Waterlogged Saw · {area:62} Brackwell Pumpkin Patch · {npc:390} Porcine Entourage
+	-- {quest:91733} Downstream · {npc:330} Princess
+	["{quest:91733} and {npc:330}"] = "",
+	-- {item:247813} Waterlogged Saw · {npc:330} Princess · {area:62} Brackwell Pumpkin Patch · {npc:390} Porcine Entourage
 	-- plural, as words: Prowlers = {npc:118} Prowler · Young Forest Bears = {npc:822} Young Forest Bear
-	["The {item:247813}, Axe and Toolbox lie in the river south of the bridge. Princess, a big boar, roots in the {area:62} west of the river with her {npc:390}: pull the piglets away first. Kill Prowlers and Young Forest Bears on the way."] = "{item:247813}, o Machado Encharcado e a Caixa de Ferramentas Encharcada estão no rio ao sul da ponte. Princesa, uma javalina grande, fuça em {area:62}, a oeste do rio, com seu {npc:390}: afaste os leitões primeiro. Mate Predadores e Jovens Ursos da Floresta no caminho.",
-	-- {item:1006} Brass Collar
-	["{item:1006}: Princess"] = "{item:1006}: Princesa",
+	["The {item:247813}, Axe and Toolbox lie in the river south of the bridge. {npc:330}, a big boar, roots in the {area:62} west of the river with her {npc:390}: pull the piglets away first. Kill Prowlers and Young Forest Bears on the way."] = "",
 
 	-- Step 40: The Eastvale Logging Camp
 	-- {area:88} Eastvale Logging Camp
@@ -239,7 +239,7 @@ return {
 	["Follow the road west back to {area:87}; Helene and Jason stand on the lake shore before town."] = "Siga a estrada para o oeste de volta a {area:87}; Helene e Jasão ficam na margem do lago antes da cidade.",
 
 	-- Step 49: Maybell Maclure
-	-- {area:64} The Maclure Vineyards
+	-- {area:64} Maclure Vineyards
 	["South down the road to the {area:64}."] = "Para o sul pela estrada até {area:64}.",
 
 	-- Step 50: The Stonefield Farm
@@ -291,17 +291,17 @@ return {
 	-- Step 62: Goldshire
 	-- {area:87} Goldshire
 	["Follow the road west back to {area:87}."] = "Siga a estrada para o oeste de volta a {area:87}.",
-	-- {npc:6121} Remen Marcot · {npc:6122} Gakin the Darkbinder · {zone:1453} Stormwind City
+	-- {npc:6121} Remen Marcot · {npc:6122} Gakin the Darkbinder · {zone:1453} Stormwind
 	["{npc:6121}: {npc:6122} in {zone:1453} takes it"] = "{npc:6121}: {npc:6122} em {zone:1453} recebe",
-	-- {npc:927} Brother Wilhelm · {npc:6171} Duthorian Rall · {zone:1453} Stormwind City
+	-- {npc:927} Brother Wilhelm · {npc:6171} Duthorian Rall · {zone:1453} Stormwind
 	["{npc:927}: {npc:6171} in {zone:1453} takes it"] = "{npc:927}: {npc:6171} em {zone:1453} recebe",
-	-- {npc:377} Priestess Josetta · {npc:376} High Priestess Laurena · {zone:1453} Stormwind City
+	-- {npc:377} Priestess Josetta · {npc:376} High Priestess Laurena · {zone:1453} Stormwind
 	["{npc:377}: {npc:376} in {zone:1453} takes both"] = "{npc:377}: {npc:376} em {zone:1453} recebe as duas",
-	-- {npc:328} Zaldimar Wefhellt · {npc:5497} Jennea Cannon · {zone:1453} Stormwind City
+	-- {npc:328} Zaldimar Wefhellt · {npc:5497} Jennea Cannon · {zone:1453} Stormwind
 	["{npc:328}: {npc:5497} in {zone:1453} takes it"] = "{npc:328}: {npc:5497} em {zone:1453} recebe",
 
 	-- Step 63: Taming the Beast
-	-- {npc:251507} Josephine Carson · {area:87} Goldshire · {item:15908} Taming Rod · {area:64} The Maclure Vineyards · {area:18} Crystal Lake
+	-- {npc:251507} Josephine Carson · {area:87} Goldshire · {item:15908} Taming Rod · {area:64} Maclure Vineyards · {area:18} Crystal Lake
 	-- plural, as words: Rockhide Boars = {npc:524} Rockhide Boar · Young Forest Bears = {npc:822} Young Forest Bear
 	["{npc:251507} stands with the {area:87} trainers. Each of her quests hands you a {item:15908}: use it on the beast she names, then bring the rod back to her. Rockhide Boars and Young Forest Bears roam the hills south of the {area:64}, Gray Forest Wolves the woods east of {area:18}."] = "{npc:251507} fica com os instrutores de {area:87}. Cada missão dela lhe dá um {item:15908}: use-o na fera que ela indicar e traga o bastão de volta. Javalis Couropedra e Jovens Ursos da Floresta vagam pelas colinas ao sul de {area:64}; Lobos Cinza da Floresta, pelo bosque a leste de {area:18}.",
 	-- {npc:524} Rockhide Boar · {item:15908} Taming Rod
@@ -314,28 +314,28 @@ return {
 	["{npc:258930}, beside her: {spell:5149}"] = "{npc:258930}, ao lado dela: {spell:5149}",
 
 	-- Step 64: Jennea Cannon
-	-- {area:87} Goldshire · {zone:1453} Stormwind City · {npc:5497} Jennea Cannon · {object:2101} Mage Quarter · {quest:1861} Mirror Lake
+	-- {area:87} Goldshire · {zone:1453} Stormwind · {npc:5497} Jennea Cannon · {object:2101} Mage Quarter · {quest:1861} Mirror Lake
 	["Follow the road north from {area:87} into {zone:1453}. {npc:5497} stands in the Wizard's Sanctum, the tower of the {object:2101}; she gives you a flask for the {quest:1861} waterfall."] = "Siga a estrada para o norte, de {area:87} até {zone:1453}. {npc:5497} fica no Sacrário dos Teurgos, a torre de {object:2101}; ela lhe dá um frasco para a cachoeira de {quest:1861}.",
 
 	-- Step 65: Mirror Lake
-	-- {zone:1453} Stormwind City · {quest:1861} Mirror Lake · {zone:1436} Westfall · {item:7207} Jennea's Flask
+	-- {zone:1453} Stormwind · {quest:1861} Mirror Lake · {zone:1436} Westfall · {item:7207} Jennea's Flask
 	["Leave {zone:1453} by the main gate. The {quest:1861} waterfall is south-west of the gates, on the way west to {zone:1436}: fill {item:7207} at its base."] = "Saia de {zone:1453} pelo portão principal. A cachoeira de {quest:1861} fica a sudoeste dos portões, no caminho para o oeste rumo a {zone:1436}: encha {item:7207} na base dela.",
 
 	-- Step 66: Gakin the Darkbinder
-	-- {area:87} Goldshire · {zone:1453} Stormwind City · {npc:6122} Gakin the Darkbinder · {object:2164} The Slaughtered Lamb · {object:2101} Mage Quarter
+	-- {area:87} Goldshire · {zone:1453} Stormwind · {npc:6122} Gakin the Darkbinder · {object:2164} Slaughtered Lamb · {object:2101} Mage Quarter
 	["Follow the road north from {area:87} into {zone:1453}. {npc:6122} waits in the cellar of the {object:2164}, in the {object:2101}."] = "Siga a estrada para o norte, de {area:87} até {zone:1453}. {npc:6122} espera no porão de {object:2164}, em {object:2101}.",
 
 	-- Step 67: Surena Caledon
-	-- {area:87} Goldshire · {area:62} Brackwell Pumpkin Patch · {quest:1688} Surena Caledon
-	["Ride back out through {area:87} and east along the road to the {area:62}. {quest:1688} (level 9) stands by its farmhouse."] = "Saia de novo passando por {area:87} e siga a estrada para o leste até {area:62}. {quest:1688} (nível 9) fica junto à casa da fazenda.",
+	-- {area:87} Goldshire · {area:62} Brackwell Pumpkin Patch · {npc:881} Surena Caledon
+	["Ride back out through {area:87} and east along the road to the {area:62}. {npc:881} (level 9) stands by its farmhouse."] = "",
 
 	-- Step 68: The Binding
-	-- {item:6928} Bloodstone Choker · {object:2164} The Slaughtered Lamb
+	-- {item:6928} Bloodstone Choker · {object:2164} Slaughtered Lamb
 	["Back to Gakin. Use the {item:6928} at the summoning circle in the {object:2164}'s cellar and defeat the voidwalker it calls."] = "De volta a Gakin. Use o {item:6928} no círculo de evocação no porão de {object:2164} e derrote o emissário do caos que ele invocar.",
 	["Subdue the voidwalker"] = "Subjugue o emissário do caos",
 
 	-- Step 69: The Tome of Divinity
-	-- {area:87} Goldshire · {zone:1453} Stormwind City · {npc:6171} Duthorian Rall · {npc:6173} Gazin Tenorm · {npc:6174} Stephanie Turner · {object:2100} Old Town · {item:2589} Linen Cloth
+	-- {area:87} Goldshire · {zone:1453} Stormwind · {npc:6171} Duthorian Rall · {npc:6173} Gazin Tenorm · {npc:6174} Stephanie Turner · {object:2100} Old Town · {item:2589} Linen Cloth
 	["Follow the road north from {area:87} into {zone:1453}. {npc:6171} and {npc:6173} are in the Cathedral of Light; {npc:6174} stands in {object:2100} and asks for ten {item:2589} (humanoids drop it; the Auction House sells it)."] = "Siga a estrada para o norte, de {area:87} até {zone:1453}. {npc:6171} e {npc:6173} estão na Catedral da Luz; {npc:6174} fica em {object:2100} e pede dez {item:2589} (humanoides soltam; a Casa de Leilões vende).",
 	-- {quest:2998} Tome of Divinity
 	["From the {quest:2998} he gives you"] = "Do {quest:2998} que ele lhe dá",
@@ -358,4 +358,12 @@ return {
 	-- Step 72: Sentinel Hill
 	-- {zone:1436} Westfall · {area:108} Sentinel Hill
 	["Follow the road west past Westbrook into {zone:1436}, then south along it to {area:108}. Thor, the gryphon master, stands on the hill."] = "Siga a estrada para o oeste, passando pela Ribeira d'Oeste, até {zone:1436}; depois, para o sul por ela até {area:108}. Thor, o mestre de grifos, fica no morro.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Fun with Elementals: Nimsy"] = "Diversão com Elementais: Nimsy",
+	-- ["Ride back out through {area:87} and east along the road to the {area:62}. {quest:1688} (level 9) stands by its farmhouse."] = "Saia de novo passando por {area:87} e siga a estrada para o leste até {area:62}. {quest:1688} (nível 9) fica junto à casa da fazenda.",
+	-- ["The mine is west of the vineyards. Kobold Miners and Tunnelers fill both levels; Nimsy, a named kobold, holds the picture book in the lower tunnels. Nimsy is elite: grouping up is advised."] = "A mina fica a oeste dos vinhedos. Mineradores e Tuneleiros Kobold enchem os dois níveis; Nimsy, um kobold nomeado, guarda o livro ilustrado nos túneis inferiores. Nimsy é elite: recomenda-se formar um grupo.",
+	-- ["The {item:247813}, Axe and Toolbox lie in the river south of the bridge. Princess, a big boar, roots in the {area:62} west of the river with her {npc:390}: pull the piglets away first. Kill Prowlers and Young Forest Bears on the way."] = "{item:247813}, o Machado Encharcado e a Caixa de Ferramentas Encharcada estão no rio ao sul da ponte. Princesa, uma javalina grande, fuça em {area:62}, a oeste do rio, com seu {npc:390}: afaste os leitões primeiro. Mate Predadores e Jovens Ursos da Floresta no caminho.",
+	-- ["{item:1006}: Princess"] = "{item:1006}: Princesa",
+	-- ["{quest:91733} and Princess"] = "{quest:91733} e Princesa",
 }

@@ -6,7 +6,7 @@
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Feathermoon Stronghold
-	-- {area:608} Nijel's Point · {zone:1443} Desolace · {zone:1444} Feralas · {area:1108} The Forgotten Coast · {area:1120} Sardor Isle
+	-- {area:608} Nijel's Point · {zone:1443} Desolace · {zone:1444} Feralas · {area:1108} Forgotten Coast · {area:1120} Sardor Isle
 	["From Theramore, fly to {area:608} and ride south out of {zone:1443} into {zone:1444}; the road leads west to the {area:1108} dock, where the boat crosses to Feathermoon on {area:1120}."] = "Из Терамора летите в {area:608} и езжайте на юг из зоны {zone:1443} в {zone:1444}; дорога ведет на запад к причалу ({area:1108}), откуда корабль идет в Крепость Оперенной Луны ({area:1120}).",
 	-- {npc:7877} Latronicus Moonspear
 	["{npc:7877}, at the top of the stronghold"] = "{npc:7877}, на вершине крепости",
@@ -29,7 +29,7 @@ return {
 
 	-- Step 6: The courier's boat
 	["The courier's boat"] = "Лодка курьера",
-	-- {area:1108} The Forgotten Coast
+	-- {area:1108} Forgotten Coast
 	["Take the boat to the {area:1108} and follow the shore south to the wrecked row boat on the beach."] = "Плывите на корабле сюда: {area:1108}, и идите вдоль берега на юг к разбитой шлюпке на пляже.",
 
 	-- Step 7: Gordunni ogres
@@ -41,7 +41,7 @@ return {
 	["Ride north into the yeti valley. Every Feral Scar yeti can drop a thick hide; {npc:5346} (level 48) prowls the middle."] = "Езжайте на север в долину йети. С любого йети со Свирепого Утеса может выпасть толстая шкура; {npc:5346} (уровень 48) рыщет в центре.",
 
 	-- Step 9: Feathermoon Stronghold
-	-- {area:1108} The Forgotten Coast
+	-- {area:1108} Forgotten Coast
 	["Ride back north-west to the {area:1108} dock and take the boat to the island."] = "Езжайте обратно на северо-запад к причалу ({area:1108}) и плывите на корабле на остров.",
 
 	-- Step 10: Lord Shalzaru
@@ -54,7 +54,7 @@ return {
 
 	-- Step 12: Grimtotem camp
 	["Grimtotem camp"] = "Лагерь Зловещего Тотема",
-	-- {area:1108} The Forgotten Coast · {zone:1444} Feralas · {npc:7956} Kindal Moonweaver
+	-- {area:1108} Forgotten Coast · {zone:1444} Feralas · {npc:7956} Kindal Moonweaver
 	-- plural, as words: Sprite Darters = {npc:5278} Sprite Darter
 	["Boat to the {area:1108} and ride east across {zone:1444} to the Grimtotem camp north of the road. {npc:7956} waits outside it; free the Sprite Darters from the pen in the middle and keep Kindal and at least six of them alive."] = "Плывите на корабле сюда: {area:1108}, и езжайте на восток через {zone:1444} к лагерю Зловещего Тотема к северу от дороги. {npc:7956} ждет снаружи; освободите летучих хамелеонов из загона в центре и сохраните жизнь Киндал и хотя бы шести из них.",
 
@@ -102,18 +102,18 @@ return {
 	-- Step 22: Zul'Farrak instead of grinding
 	-- {area:978} Zul'Farrak
 	["{area:978} instead of grinding"] = "{area:978} вместо гринда",
-	-- {area:978} Zul'Farrak · {zone:1446} Tanaris · {area:1108} The Forgotten Coast
+	-- {area:978} Zul'Farrak · {zone:1446} Tanaris · {area:1108} Forgotten Coast
 	["Running {area:978} instead of grinding gets you there faster in a group. The troll city lies in northern {zone:1446}, the next zone on the route; come back to Zorbin on the {area:1108} afterwards."] = "Прохождение подземелья {area:978} вместо гринда в группе быстрее. Город троллей — на севере зоны {zone:1446}, следующей зоны маршрута; после этого вернитесь к Зорбину ({area:1108}).",
 
 	-- Step 23: Grind to 45
 	["Grind to 45"] = "Гринд до 45",
-	-- {area:1108} The Forgotten Coast · {area:1105} Feral Scar Vale
+	-- {area:1108} Forgotten Coast · {area:1105} Feral Scar Vale
 	["Boat to the {area:1108} and ride east into {area:1105}. Zorbin's quests on the coast need level 45."] = "Плывите на корабле сюда: {area:1108}, и езжайте на восток: {area:1105}. Заданиям Зорбина на побережье нужен 45-й уровень.",
 	-- {npc:5292} Feral Scar Yeti · {area:1105} Feral Scar Vale · {zone:1444} Feralas
 	["grind on {npc:5292} at {area:1105}, {zone:1444}"] = "гринд: {npc:5292}, {area:1105}, {zone:1444}",
 
 	-- Step 24: Zorbin Fandazzle
-	-- {area:1108} The Forgotten Coast
+	-- {area:1108} Forgotten Coast
 	["Ride back to the {area:1108}; the goblin stands by the dock."] = "Езжайте обратно сюда: {area:1108}; гоблин стоит у причала.",
 
 	-- Step 25: Giants and elementals
@@ -124,6 +124,6 @@ return {
 
 	-- Step 26: Zorbin Fandazzle
 	["Zorbin's refills are level 55: skip them."] = "Пополнения Зорбина — 55-го уровня: пропустите их.",
-	-- {area:1108} The Forgotten Coast · {zone:1446} Tanaris
+	-- {area:1108} Forgotten Coast · {zone:1446} Tanaris
 	["You end at the {area:1108} dock: the {zone:1446} guide starts with the trip east from here."] = "Вы заканчиваете у причала ({area:1108}): гайд по зоне {zone:1446} начинается с пути отсюда на восток.",
 }

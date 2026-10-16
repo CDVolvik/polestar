@@ -31,7 +31,7 @@ return {
 	["The Crazed and Withered Ancients north of the moonwell carry the {item:5475}; the worn chest it opens stands among them."] = "달샘 북쪽의 광기어린 고대정령과 부패한 고대정령이 {item:5475}을(를) 지니고 있습니다. 그 열쇠로 여는 낡은 궤짝은 그들 사이에 있습니다.",
 
 	-- Step 6: The Howling Vale
-	-- {area:419} The Howling Vale
+	-- {area:419} Howling Vale
 	["Take the tunnel into the {area:419}; the tome lies in the ruins at its west end."] = "굴을 지나 {area:419}(으)로 들어가십시오. 마법책은 서쪽 끝 폐허에 있습니다.",
 
 	-- Step 8: Anilia
@@ -39,9 +39,8 @@ return {
 	["Follow the road east to the satyr camps of {area:429}; {npc:3920} hides at their edge."] = "길을 따라 동쪽으로 {area:429}의 사티로스 야영지까지 가십시오. {npc:3920}은(는) 야영지 가장자리에 숨어 있습니다.",
 
 	-- Step 9: Geltharis
-	["Geltharis"] = "겔타리스",
-	-- {area:429} Xavian
-	["Geltharis leads the {area:429} satyrs; he carries the branch."] = "겔타리스는 {area:429} 사티로스의 우두머리이며 나뭇가지를 지니고 있습니다.",
+	-- {npc:4619} Geltharis · {area:429} Xavian
+	["{npc:4619} leads the {area:429} satyrs; he carries the branch."] = "",
 
 	-- Step 10: Satyrnaar
 	-- {object:19901} Circle of Imprisonment · {area:430} Satyrnaar
@@ -108,4 +107,8 @@ return {
 	-- Step 35: Deepwater Tavern
 	-- {npc:5082} Vincent Hyal · {npc:4963} Mikhail · {npc:1480} Caitlin Grassman
 	["{npc:5082}, {npc:4963} and Tapoke Jahn are all at Menethil's inn; Tapoke fights you when you talk to {npc:4963}, but gives up once beaten. {npc:1480} stands a short walk north-east of the inn."] = "{npc:5082}, {npc:4963}, \"홀쭉이\" 타포케 잔은 모두 메네실 항구 여관에 있습니다. {npc:4963}와(과) 대화하면 타포케가 덤벼들지만, 쓰러뜨리면 포기합니다. {npc:1480}은(는) 여관에서 북동쪽으로 조금 걸어간 곳에 있습니다.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Geltharis"] = "겔타리스",
+	-- ["Geltharis leads the {area:429} satyrs; he carries the branch."] = "겔타리스는 {area:429} 사티로스의 우두머리이며 나뭇가지를 지니고 있습니다.",
 }

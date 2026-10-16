@@ -22,7 +22,7 @@ return {
 	["{item:7908}, in the {object:123214}"] = "{object:123214} 안의 {item:7908}",
 
 	-- Step 3: Master Mathias Shaw
-	-- {zone:1453} Stormwind City · {object:2100} Old Town
+	-- {zone:1453} Stormwind · {object:2100} Old Town
 	["Ride north through Elwynn to {zone:1453}; Mathias Shaw is at SI:7 in {object:2100}."] = "엘윈 숲을 지나 북쪽 {zone:1453}(으)로 달려가십시오. 마티아스 쇼는 {object:2100}의 SI:7에 있습니다.",
 
 	-- Step 4: Doc Mixilpixil
@@ -32,7 +32,7 @@ return {
 
 	-- Step 5: The cure's ingredients
 	["The cure's ingredients"] = "치료제 재료",
-	-- {zone:1453} Stormwind City · {item:3421} Simple Wildflowers · {item:8431} Spool of Light Chartreuse Silk Thread · {item:3372} Leaded Vial · {item:4371} Bronze Tube
+	-- {zone:1453} Stormwind · {item:3421} Simple Wildflowers · {item:8431} Spool of Light Chartreuse Silk Thread · {item:3372} Leaded Vial · {item:4371} Bronze Tube
 	["Everything is in {zone:1453}: the Gumps sell {item:3421}, the {item:8431} lies in the city, and the nearest vendors sell a {item:3372} and a {item:4371}."] = "모두 {zone:1453}에 있습니다: 검프 남매가 {item:3421}을(를) 팔고, {item:8431}은(는) 도시 안에 놓여 있으며, 가까운 상인이 {item:3372}와(과) {item:4371}을(를) 팝니다.",
 
 	-- Step 6: Back to Doc Mixilpixil

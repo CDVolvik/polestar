@@ -9,7 +9,7 @@ return {
 	["Fire Hardened Armor"] = "Feuergehärtete Rüstung",
 	["A hauberk at 28, a coif, leggings or gauntlets by race, and a shield on the way."] = "Eine Halsberge mit Stufe 28, je nach Volk eine Kettenhaube, Gamaschen oder Stulpen, und unterwegs ein Schild.",
 
-	-- Step 1: Yorus Barleybrew (Stormwind City)
+	-- Step 1: Yorus Barleybrew (Stormwind)
 	-- {npc:5479} Wu Shen · {object:2100} Old Town · {quest:1698} Yorus Barleybrew
 	["At 20, {npc:5479} in {object:2100}, beside the Pig and Whistle, sends you to {quest:1698} in Redridge."] = "Mit Stufe 20 schickt dich {npc:5479} in der {object:2100}, neben dem Pig and Whistle, zu {quest:1698} ins Rotkammgebirge.",
 
@@ -28,8 +28,8 @@ return {
 	["Enter the {area:98} and come back"] = "Betritt die {area:98} und komm zurück",
 
 	-- Step 5: The Shieldsmith
-	-- {npc:5413} Furen Longbeard · {zone:1453} Stormwind City · {item:6843} Cask of Scalder · {item:6970} Furen's Favor · {quest:1701} Fire Hardened Mail
-	["{npc:5413} works in the Dwarven District of {zone:1453}. He keeps the {item:6843} and gives you {item:6970}, a shield; {quest:1701} is a level 28 quest."] = "{npc:5413} arbeitet im Zwergendistrikt von {zone:1453}. Er hat {item:6843} und gibt dir {item:6970}, einen Schild; {quest:1701} ist eine Quest der Stufe 28.",
+	-- {npc:5413} Furen Longbeard · {item:6843} Cask of Scalder · {item:6970} Furen's Favor · {quest:1701} Fire Hardened Mail
+	["{npc:5413} works in the Dwarven District of Stormwind. He keeps the {item:6843} and gives you {item:6970}, a shield; {quest:1701} is a level 28 quest."] = "",
 
 	-- Step 6: Scorched Spider Fangs
 	-- plural, as words: Scorched Spider Fangs = {item:6838} Scorched Spider Fang
@@ -52,7 +52,7 @@ return {
 	-- Step 8: Roogug in Razorfen Kraul
 	-- {area:1717} Razorfen Kraul
 	["Roogug in {area:1717}"] = "Roogug im Gebiet {area:1717}",
-	-- {area:1717} Razorfen Kraul · {zone:1413} The Barrens · {item:6841} Vial of Phlogiston
+	-- {area:1717} Razorfen Kraul · {zone:1413} Barrens · {item:6841} Vial of Phlogiston
 	["Roogug is an elite quilboar inside {area:1717}, the dungeon at the south end of the {zone:1413}; he drops the {item:6841}. {area:1717} is a dungeon: grouping up is advised."] = "Roogug ist ein Elite-Stacheleber im Gebiet {area:1717}, dem Dungeon am Südende von {zone:1413}; er lässt die {item:6841} fallen. {area:1717} ist ein Dungeon: Eine Gruppe wird empfohlen.",
 	-- {item:6841} Vial of Phlogiston
 	["{item:6841}, from Roogug"] = "{item:6841}, von Roogug",
@@ -62,16 +62,16 @@ return {
 	["Back to {npc:5413} in the {object:28027}. He sends you on to a smith of your own race."] = "Zurück zu {npc:5413} im {object:28027}. Er schickt dich weiter zu einem Schmied deines eigenen Volkes.",
 
 	-- Step 10: Grimand Elmore
-	-- {npc:1416} Grimand Elmore · {zone:1453} Stormwind City
+	-- {npc:1416} Grimand Elmore · {zone:1453} Stormwind
 	["{npc:1416} is in {zone:1453}, a short walk from Furen."] = "{npc:1416} ist in {zone:1453}, ein kurzes Stück von Furen entfernt.",
 
 	-- Step 11: Burning Blood
-	-- {zone:1431} Duskwood · {quest:1705} Burning Blood · {item:6845} Burning Rock
-	["The Nightbane worgen of {zone:1431} drop the {quest:1705}. Gutspill walks in the far south-east of {zone:1431} and carries the {item:6845}."] = "Die Worgen der Nachtheuler in {zone:1431} lassen das {quest:1705} fallen. Gutspill streift im äußersten Südosten von {zone:1431} umher und trägt den {item:6845}.",
+	-- {zone:1431} Duskwood · {quest:1705} Burning Blood · {npc:6170} Gutspill · {item:6845} Burning Rock
+	["The Nightbane worgen of {zone:1431} drop the {quest:1705}. {npc:6170} walks in the far south-east of {zone:1431} and carries the {item:6845}."] = "",
 	-- {quest:1705} Burning Blood
 	["{quest:1705} from the Nightbane worgen"] = "{quest:1705} von den Worgen der Nachtheuler",
-	-- {item:6845} Burning Rock
-	["{item:6845} from Gutspill"] = "{item:6845} von Gutspill",
+	-- {item:6845} Burning Rock · {npc:6170} Gutspill
+	["{item:6845} from {npc:6170}"] = "",
 
 	-- Step 13: Mathiel
 	-- {quest:1703} Mathiel · {zone:1457} Darnassus
@@ -82,10 +82,15 @@ return {
 	["The {quest:1710} lie along the western edge of {zone:1441}."] = "Die {quest:1710} liegen am Westrand von {zone:1441}.",
 
 	-- Step 16: Klockmort Spannerspan
-	-- {area:2257} Deeprun Tram · {zone:1453} Stormwind City · {zone:1455} Ironforge
+	-- {area:2257} Deeprun Tram · {zone:1453} Stormwind · {zone:1455} Ironforge
 	["Ride the {area:2257} from {zone:1453} to {zone:1455}."] = "Fahr mit der Bahn {area:2257} von {zone:1453} nach {zone:1455}.",
 
 	-- Step 17: Iron Coral
 	-- {quest:1708} Iron Coral · {zone:1437} Wetlands · {area:150} Menethil Harbor
 	["The {quest:1708} grows along the {zone:1437}' west coast, south of {area:150}."] = "Die {quest:1708} wächst an der Westküste von {zone:1437}, südlich des Gebiets {area:150}.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["The Nightbane worgen of {zone:1431} drop the {quest:1705}. Gutspill walks in the far south-east of {zone:1431} and carries the {item:6845}."] = "Die Worgen der Nachtheuler in {zone:1431} lassen das {quest:1705} fallen. Gutspill streift im äußersten Südosten von {zone:1431} umher und trägt den {item:6845}.",
+	-- ["{item:6845} from Gutspill"] = "{item:6845} von Gutspill",
+	-- ["{npc:5413} works in the Dwarven District of {zone:1453}. He keeps the {item:6843} and gives you {item:6970}, a shield; {quest:1701} is a level 28 quest."] = "{npc:5413} arbeitet im Zwergendistrikt von {zone:1453}. Er hat {item:6843} und gibt dir {item:6970}, einen Schild; {quest:1701} ist eine Quest der Stufe 28.",
 }

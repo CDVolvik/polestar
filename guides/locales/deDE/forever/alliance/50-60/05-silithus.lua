@@ -31,7 +31,7 @@ return {
 
 	-- Step 5: The crater
 	["The crater"] = "Der Krater",
-	-- {area:538} Lakkari Tar Pits · {area:537} Fire Plume Ridge · {area:540} The Slithering Scar · {item:11018} Un'Goro Soil
+	-- {area:538} Lakkari Tar Pits · {area:537} Fire Plume Ridge · {area:540} Slithering Scar · {item:11018} Un'Goro Soil
 	-- plural, as words: Tar Beasts = {npc:6517} Tar Beast
 	["Tar Beasts wallow in the {area:538}; the fire elementals of {area:537} in the middle carry the ash; the Gorishi wasps of the {area:540} in the south carry the gland. Every creature in the crater can drop {item:11018}."] = "Teerbestien suhlen sich in {area:538}; die Feuerelementare des {area:537} in der Mitte tragen die Asche; die Wespen der Gorishi in {area:540} im Süden tragen die Drüse. Jede Kreatur im Krater kann {item:11018} fallen lassen.",
 
@@ -71,8 +71,8 @@ return {
 	["Ride back to {area:3425} and fly to {area:392}."] = "Reite zurück nach {area:3425} und flieg nach {area:392}.",
 
 	-- Step 17: Stormwind City
-	-- {area:392} Ratchet · {area:35} Booty Bay · {zone:1453} Stormwind City
-	["Take the boat from {area:392} to {area:35} and fly to {zone:1453}."] = "Nimm das Boot von {area:392} nach {area:35} und flieg nach {zone:1453}.",
+	-- {area:392} Ratchet · {area:35} Booty Bay
+	["Take the boat from {area:392} to {area:35} and fly to Stormwind."] = "",
 	-- {npc:3520} Ol' Emma
 	["{npc:3520}, who walks the canals"] = "{npc:3520}, der an den Kanälen entlanggeht",
 	-- {npc:10778} Janice Felstone
@@ -104,7 +104,7 @@ return {
 	-- Step 22: Scourge Champions
 	-- plural, as words: Scourge Champions = {npc:8529} Scourge Champion
 	["Scourge Champions"] = "Champions der Geißel",
-	-- {area:2270} The Noxious Glade · {area:2268} Light's Hope Chapel · {item:13156} Mystic Crystal
+	-- {area:2270} Noxious Glade · {area:2268} Light's Hope Chapel · {item:13156} Mystic Crystal
 	-- plural, as words: Scourge Champions = {npc:8529} Scourge Champion
 	["Scourge Champions (59) roam the {area:2270}, north of {area:2268}. Pass Carlin's {item:13156} over each one you kill: the skulls that resonate are the ones he wants. Pull them one at a time."] = "Champions der Geißel (59) streifen durch {area:2270}, nördlich der {area:2268}. Halte Carlins {item:13156} über jeden, den du tötest: Die Schädel, die mitschwingen, sind die, die er will. Zieh sie einzeln.",
 	-- {item:13155} Resonating Skull
@@ -119,16 +119,21 @@ return {
 	["Ride north to the {area:2277}'s north-eastern edge."] = "Reite nach Norden zum nordöstlichen Rand von {area:2277}.",
 
 	-- Step 25: The Undercroft
-	-- {area:2261} The Undercroft · {npc:11886} Mercutio Filthgorger
-	["Ride south-west to the {area:2261}. The mound of dirt lies inside. {npc:11886} is elite: grouping up is advised."] = "Reite nach Südwesten zur {area:2261}. Der Erdhaufen liegt drinnen. {npc:11886} ist Elite: Eine Gruppe wird empfohlen.",
+	-- {npc:11886} Mercutio Filthgorger
+	["Ride south-west to the Undercroft. The mound of dirt lies inside. {npc:11886} is elite: grouping up is advised."] = "",
 	-- {item:14613} Taelan's Hammer · {npc:11886} Mercutio Filthgorger
 	["{item:14613}, from {npc:11886}"] = "{item:14613}, von {npc:11886}",
 
 	-- Step 26: The Fungal Vale
-	-- {npc:8532} Diseased Flayer · {area:2258} The Fungal Vale · {zone:1423} Eastern Plaguelands
-	["grind on {npc:8532} at the {area:2258}, {zone:1423}"] = "Grinde an {npc:8532} im {area:2258}, {zone:1423}",
+	-- {npc:8532} Diseased Flayer · {zone:1423} Eastern Plaguelands
+	["grind on {npc:8532} at the Fungal Vale, {zone:1423}"] = "",
 
 	-- Step 27: Ratchet
 	-- {area:392} Ratchet
 	["The next guide starts here in {area:392}."] = "Der nächste Guide beginnt hier in {area:392}.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Ride south-west to the {area:2261}. The mound of dirt lies inside. {npc:11886} is elite: grouping up is advised."] = "Reite nach Südwesten zur {area:2261}. Der Erdhaufen liegt drinnen. {npc:11886} ist Elite: Eine Gruppe wird empfohlen.",
+	-- ["Take the boat from {area:392} to {area:35} and fly to {zone:1453}."] = "Nimm das Boot von {area:392} nach {area:35} und flieg nach {zone:1453}.",
+	-- ["grind on {npc:8532} at the {area:2258}, {zone:1423}"] = "Grinde an {npc:8532} im {area:2258}, {zone:1423}",
 }

@@ -24,7 +24,7 @@ return {
 	["Undead take the zeppelin from the towers outside the {zone:1458} to {zone:1411}. {npc:3401} and {quest:2379} stand in the {object:172960}, the canyon under the {object:172982}."] = "Los no-muertos toman el zepelín de las torres a las afueras de {zone:1458} a {zone:1411}. {npc:3401} y {quest:2379} están en {object:172960}, el cañón bajo {object:172982}.",
 
 	-- Step 4: Wrenix the Wretched
-	-- {area:392} Ratchet · {zone:1413} The Barrens · {item:7970} E.C.A.C. · {item:5060} Thieves' Tools
+	-- {area:392} Ratchet · {zone:1413} Barrens · {item:7970} E.C.A.C. · {item:5060} Thieves' Tools
 	["Fly or ride to {area:392} on the {zone:1413} coast. Wrenix stands in town with his Gizmotronic Apparatus: buy an {item:7970} and {item:5060} from the apparatus before you go."] = "Vuela o cabalga a {area:392}, en la costa de {zone:1413}. Desdio está en el pueblo con su Aparato Gizmotrónico: compra un {item:7970} y {item:5060} en el aparato antes de irte.",
 
 	-- Step 5: Southsea Treasure
@@ -37,7 +37,7 @@ return {
 	["{npc:7161}: ten {item:7676}"] = "{npc:7161}: diez {item:7676}",
 
 	-- Step 7: Fenwick Thatros
-	-- {zone:1454} Orgrimmar · {zone:1458} Undercity · {quest:1998} Fenwick Thatros · {area:228} The Sepulcher
+	-- {zone:1454} Orgrimmar · {zone:1458} Undercity · {quest:1998} Fenwick Thatros · {area:228} Sepulcher
 	["Take the zeppelin from {zone:1454} to the {zone:1458} and ride south into Silverpine. {quest:1998} stands north-east of the {area:228}."] = "Toma el zepelín de {zone:1454} a {zone:1458} y cabalga al sur hacia Argénteos. {quest:1998} está al noreste de {area:228}.",
 
 	-- Step 9: Ambermill

@@ -45,8 +45,8 @@ return {
 	-- Step 8: The Spear of Mannoroth
 	-- {object:409311} Spear of Mannoroth
 	["The {object:409311}"] = "{object:409311}",
-	-- {object:409311} Spear of Mannoroth · {area:435} Demon Fall Canyon · {spell:11170} Shatter · {object:409315} Shattered Orb
-	["The {object:409311} stands at the east end of {area:435}. {spell:11170} the orb on it; the {object:409315} appears beside it."] = "{object:409311}은(는) {area:435} 동쪽 끝에 서 있습니다. 그 위의 구슬에 {spell:11170}을(를) 사용하면 옆에 {object:409315}이(가) 나타납니다.",
+	-- {object:409311} Spear of Mannoroth · {area:435} Demon Fall Canyon · {object:409315} Shattered Orb
+	["The {object:409311} stands at the east end of {area:435}. Shatter the orb on it; the {object:409315} appears beside it."] = "",
 	-- {object:409315} Shattered Orb
 	["from the {object:409315}"] = "{object:409315}에서",
 
@@ -54,4 +54,6 @@ return {
 	-- {area:413} Maestra's Post
 	["Back to {area:413}."] = "{area:413}(으)로 돌아가십시오.",
 
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["The {object:409311} stands at the east end of {area:435}. {spell:11170} the orb on it; the {object:409315} appears beside it."] = "{object:409311}은(는) {area:435} 동쪽 끝에 서 있습니다. 그 위의 구슬에 {spell:11170}을(를) 사용하면 옆에 {object:409315}이(가) 나타납니다.",
 }

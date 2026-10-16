@@ -6,7 +6,7 @@
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Mirage Raceway
-	-- {area:1108} The Forgotten Coast · {area:489} Thalanaar · {zone:1441} Thousand Needles · {area:2240} Mirage Raceway · {area:439} The Shimmering Flats · {npc:4454} Fizzle Brassbolts · {npc:4630} Pozzik · {npc:4709} Zamek
+	-- {area:1108} Forgotten Coast · {area:489} Thalanaar · {zone:1441} Thousand Needles · {area:2240} Mirage Raceway · {area:439} Shimmering Flats · {npc:4454} Fizzle Brassbolts · {npc:4630} Pozzik · {npc:4709} Zamek
 	["From the {area:1108} dock, boat to Feathermoon and fly to {area:489}, then ride east through {zone:1441} to the {area:2240} on the {area:439}. {npc:4454} and {npc:4630} are in the camps beside the track; {npc:4709} stands by the goblin camp."] = "{area:1108} 부두에서 배를 타고 페더문 요새로 가서 {area:489}(으)로 날아간 다음, {zone:1441}을(를) 지나 동쪽 {area:439}의 {area:2240}까지 가십시오. {npc:4454}와(과) {npc:4630}은(는) 경주로 옆 야영지에 있고, {npc:4709}은(는) 고블린 야영지 옆에 서 있습니다.",
 	["He runs off to keep Rizzle busy"] = "그는 리즐 브라스볼츠의 주의를 끌러 달려갑니다",
 
@@ -16,7 +16,7 @@ return {
 	["While {npc:4709} keeps Rizzle talking, his plans lie unguarded in the gnome camp across the track."] = "{npc:4709}이(가) 리즐 브라스볼츠와 이야기하는 동안, 경주로 건너편 노움 야영지의 설계도는 무방비 상태입니다.",
 
 	-- Step 4: Gadgetzan
-	-- {area:439} The Shimmering Flats · {zone:1446} Tanaris · {area:976} Gadgetzan
+	-- {area:439} Shimmering Flats · {zone:1446} Tanaris · {area:976} Gadgetzan
 	["Ride south-east off the {area:439} into {zone:1446}. {area:976} is just inside the border."] = "{area:439}에서 남동쪽 {zone:1446}(으)로 가십시오. {area:976}은(는) 경계 바로 안쪽에 있습니다.",
 	-- {quest:2864} Tran'rek
 	["{quest:2864}, north side of town"] = "{quest:2864}, 마을 북쪽",
@@ -95,7 +95,7 @@ return {
 	["Ride back west to {area:976}."] = "서쪽 {area:976}(으)로 돌아가십시오.",
 	-- {npc:11758} Andi Lynn
 	["{npc:11758}, on the east side of town"] = "{npc:11758}, 마을 동쪽",
-	-- {npc:7583} Sprinkle · {zone:1425} The Hinterlands
+	-- {npc:7583} Sprinkle · {zone:1425} Hinterlands
 	["{npc:7583}'s next ingredient grows in the {zone:1425}, and the route never brings it back: skip it."] = "{npc:7583}의 다음 재료는 {zone:1425}에서 자라고, 경로상 다시 가져오지 않습니다: 건너뛰십시오.",
 
 	-- Step 21: Caliph Scorpidsting
@@ -103,8 +103,8 @@ return {
 	["Ride south-east to {area:985}. Caliph stands in the middle of the southern Wastewander camp: clear around him first."] = "남동쪽 {area:985}(으)로 가십시오. 칼리프 스콜피드스팅은 남쪽 사막유랑단 야영지 한가운데에 서 있습니다: 주변부터 정리하십시오.",
 
 	-- Step 22: The Gaping Chasm
-	-- {area:1938} Broken Pillar · {area:981} The Gaping Chasm
-	["Ride south past the {area:1938} to the {area:981}, the Hazzali tunnels; Scrimshank's gear lies deep inside."] = "남쪽으로 {area:1938}을(를) 지나 하잘리 굴인 {area:981}(으)로 가십시오. 슈섕크의 측량 장비는 깊숙한 곳에 있습니다.",
+	-- {area:1938} Broken Pillar
+	["Ride south past the {area:1938} to the Gaping Chasm, the Hazzali tunnels; Scrimshank's gear lies deep inside."] = "",
 
 	-- Step 23: Gadgetzan
 	-- {area:976} Gadgetzan
@@ -117,6 +117,10 @@ return {
 	["Fly from {area:976} to Theramore, take the boat to {area:150} and fly to {area:1537}. Train."] = "{area:976}에서 테라모어 섬으로 날아가, 배를 타고 {area:150}(으)로 간 다음 {area:1537}(으)로 날아가십시오. 기술을 배우십시오.",
 
 	-- Step 25: Aerie Peak
-	-- {area:348} Aerie Peak · {zone:1425} The Hinterlands
-	["Fly to {area:348}. {zone:1425} guide starts here."] = "{area:348}(으)로 날아가십시오. {zone:1425} 가이드는 여기서 시작합니다.",
+	-- {area:348} Aerie Peak · {zone:1425} Hinterlands
+	["Fly to {area:348}. The {zone:1425} guide starts here."] = "",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Fly to {area:348}. {zone:1425} guide starts here."] = "{area:348}(으)로 날아가십시오. {zone:1425} 가이드는 여기서 시작합니다.",
+	-- ["Ride south past the {area:1938} to the {area:981}, the Hazzali tunnels; Scrimshank's gear lies deep inside."] = "남쪽으로 {area:1938}을(를) 지나 하잘리 굴인 {area:981}(으)로 가십시오. 슈섕크의 측량 장비는 깊숙한 곳에 있습니다.",
 }

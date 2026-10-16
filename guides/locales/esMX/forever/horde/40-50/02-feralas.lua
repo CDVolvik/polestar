@@ -155,8 +155,8 @@ return {
 	["Keep riding west to the coast. The Coast Crawl Deepseers and Snapclaws on the beaches drop OOX-22/FE's distress beacon about one kill in forty: if one drops, use it to start the quest."] = "Sigue cabalgando al oeste hasta la costa. Los Videnistas Reptacostas ({npc:5328}) y Quebradores de las playas sueltan el localizador de emergencia de OOX-22/FE en una de cada cuarenta muertes: si cae, úsalo para iniciar la misión.",
 
 	-- Step 34: Homing Robot OOX-22/FE
-	-- {area:1105} Feral Scar Vale · {area:1108} The Forgotten Coast · {area:35} Booty Bay
-	["Only with the distress beacon: the robot sits in a small cave on the north side of {area:1105}. Escort it to the dock on the {area:1108}; yetis and gorillas ambush you on the way. Its reward waits in {area:35} for a later visit."] = "Solo con el localizador de emergencia: el robot está en una pequeña cueva en el lado norte de {area:1105}. Escóltalo hasta el muelle de {area:1108}; los yetis y gorilas te emboscan en el camino. Su recompensa te espera en {area:35} para una visita posterior.",
+	-- {area:1105} Feral Scar Vale · {area:35} Booty Bay
+	["Only with the distress beacon: the robot sits in a small cave on the north side of {area:1105}. Escort it to the dock on the Forgotten Coast; yetis and gorillas ambush you on the way. Its reward waits in {area:35} for a later visit."] = "",
 
 	-- Step 35: Hearth to Camp Mojache
 	-- {area:1099} Camp Mojache
@@ -165,7 +165,7 @@ return {
 	-- Step 36: Orgrimmar
 	-- {area:1637} Orgrimmar
 	["Fly to {area:1637}. The Droffers brothers run their shop in the Drag."] = "Vuela a {area:1637}. Los hermanos Droffers atienden su tienda en la calle comercial de la ciudad.",
-	-- {zone:1425} The Hinterlands
+	-- {zone:1425} Hinterlands
 	["for the {zone:1425}, around level 48"] = "para {zone:1425}, alrededor del nivel 48",
 
 	-- Step 37: Zeppelin to Grom'gol
@@ -179,4 +179,7 @@ return {
 	["Fly to {area:75}"] = "Vuela a {area:75}",
 	-- {area:75} Stonard
 	["Thysta, the flight master, stands just east of the zeppelin tower. Fly to {area:75}: the next guide starts there."] = "Thysta, la maestra de vuelo, está justo al este de la torre de zepelín. Vuela a {area:75}: la siguiente guía empieza allí.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Only with the distress beacon: the robot sits in a small cave on the north side of {area:1105}. Escort it to the dock on the {area:1108}; yetis and gorillas ambush you on the way. Its reward waits in {area:35} for a later visit."] = "Solo con el localizador de emergencia: el robot está en una pequeña cueva en el lado norte de {area:1105}. Escóltalo hasta el muelle de {area:1108}; los yetis y gorilas te emboscan en el camino. Su recompensa te espera en {area:35} para una visita posterior.",
 }

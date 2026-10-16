@@ -37,17 +37,17 @@ return {
 	["The skeleton's next task, Murdaloc, waits until the later {zone:1418} guide at 43."] = "A próxima tarefa do esqueleto, Murdaloc, fica para o guia posterior de {zone:1418}, no nível 43.",
 
 	-- Step 8: Valley of Fangs
-	-- {npc:4454} Fizzle Brassbolts · {area:439} The Shimmering Flats · {zone:1446} Tanaris
+	-- {npc:4454} Fizzle Brassbolts · {area:439} Shimmering Flats · {zone:1446} Tanaris
 	["for {npc:4454} in the {area:439}: the {zone:1446} guide crosses them at 45, keep it"] = "para {npc:4454} em {area:439}: o guia de {zone:1446} passa por lá no nível 45; guarde-a",
 
 	-- Step 9: Lotwil Veriatus
-	-- {area:1878} The Dustbowl
+	-- {area:1878} Dustbowl
 	["Ride west into the {area:1878}; Lotwil works by his machines in the middle of it."] = "Cavalgue para o oeste até {area:1878}; Lotwil trabalha junto às máquinas dele, no meio da área.",
 
 	-- Step 10: Lesser Rock Elementals
 	-- plural, as words: Lesser Rock Elementals = {npc:2735} Lesser Rock Elemental
 	["Lesser Rock Elementals"] = "Elementais Inferiores da Rocha",
-	-- {area:1878} The Dustbowl
+	-- {area:1878} Dustbowl
 	-- plural, as words: Lesser Rock Elementals = {npc:2735} Lesser Rock Elemental
 	["The Lesser Rock Elementals wander the {area:1878} west of Lotwil."] = "Os Elementais Inferiores da Rocha vagam por {area:1878}, a oeste de Lotwil.",
 

@@ -10,7 +10,7 @@ return {
 	["Your first lockpicking job at 16: {npc:6966}'s lockbox at {quest:2282}, for {quest:2300}."] = "Seu primeiro serviço de arrombamento no nível 16: o cofre de {npc:6966} em {quest:2282}, para a {quest:2300}.",
 
 	-- Step 1: SI:7 (Goldshire)
-	-- {npc:917} Keryn Sylvius · {area:87} Goldshire · {npc:6946} Renzik "The Shiv" · {zone:1453} Stormwind City
+	-- {npc:917} Keryn Sylvius · {area:87} Goldshire · {npc:6946} Renzik "The Shiv" · {zone:1453} Stormwind
 	["At 16 {npc:917}, the rogue trainer in the Lion's Pride Inn in {area:87}, sends you to {npc:6946} in {zone:1453}."] = "No nível 16, {npc:917}, o instrutor de ladinos na Estalagem Orgulho do Leão, em {area:87}, envia você a {npc:6946} em {zone:1453}.",
 
 	-- Step 2: To Hulfdan! (Kharanos)
@@ -30,10 +30,13 @@ return {
 	["Ride east through {zone:1429} into Redridge, or fly to {area:69}. {npc:6966} waits on the west side of {area:69} and gives you {item:5060}."] = "Siga para o leste por {zone:1429} até as Montanhas Cristarrubra, ou voe até {area:69}. {npc:6966} espera no lado oeste de {area:69} e dá a você {item:5060}.",
 
 	-- Step 7: Alther's Mill
-	-- {quest:2282} Alther's Mill · {area:69} Lakeshire · {item:7869} Lucius's Lockbox
-	["{quest:2282} stands east of {area:69}, up off the road. Open {item:7869} there."] = "{quest:2282} fica a leste de {area:69}, acima da estrada. Abra o {item:7869} lá.",
+	-- {quest:2282} Alther's Mill · {area:69} Lakeshire · {object:121264} Lucius's Lockbox
+	["{quest:2282} stands east of {area:69}, up off the road. Open {object:121264} there."] = "",
 
 	-- Step 8: Back to Lucius
 	-- {npc:6966} Lucius
 	["Back to {npc:6966}"] = "De volta a {npc:6966}",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["{quest:2282} stands east of {area:69}, up off the road. Open {item:7869} there."] = "{quest:2282} fica a leste de {area:69}, acima da estrada. Abra o {item:7869} lá.",
 }

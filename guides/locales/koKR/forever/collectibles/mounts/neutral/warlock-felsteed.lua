@@ -9,8 +9,8 @@ return {
 	["Warlock Felsteed"] = "흑마법사 지옥마",
 	["Your own mount at 40, summoned anywhere, with no gold spent on a riding horse."] = "40레벨에 얻는 나만의 탈것입니다. 어디서나 소환할 수 있고, 말에 골드를 쓸 필요가 없습니다.",
 
-	-- Step 1: Summon Felsteed (Stormwind City)
-	-- {npc:461} Demisette Cloyce · {object:2164} The Slaughtered Lamb · {object:2101} Mage Quarter · {npc:6251} Strahad Farsan · {area:392} Ratchet
+	-- Step 1: Summon Felsteed (Stormwind)
+	-- {npc:461} Demisette Cloyce · {object:2164} Slaughtered Lamb · {object:2101} Mage Quarter · {npc:6251} Strahad Farsan · {area:392} Ratchet
 	["At 40 {npc:461} in the {object:2164}, in the {object:2101}, sends you to {npc:6251} in {area:392}."] = "40레벨이 되면 {object:2101} 안 {object:2164}의 {npc:461}이(가) {area:392}의 {npc:6251}에게 보냅니다.",
 
 	-- Step 2: Summon Felsteed (Ironforge)
@@ -28,6 +28,6 @@ return {
 	-- Step 5: Strahad Farsan in Ratchet
 	-- {npc:6251} Strahad Farsan · {area:392} Ratchet
 	["{npc:6251} in {area:392}"] = "{area:392}의 {npc:6251}",
-	-- {area:392} Ratchet · {zone:1413} The Barrens · {area:380} The Crossroads · {area:35} Booty Bay · {npc:6251} Strahad Farsan · {quest:3631} Summon Felsteed
+	-- {area:392} Ratchet · {zone:1413} Barrens · {area:380} Crossroads · {area:35} Booty Bay · {npc:6251} Strahad Farsan · {quest:3631} Summon Felsteed
 	["{area:392} is on the {zone:1413} coast east of the {area:380}; from the Alliance side, take the boat from {area:35}. {npc:6251}'s follow-up teaches {quest:3631}."] = "{area:392}은(는) {area:380} 동쪽 {zone:1413} 해안에 있습니다. 얼라이언스는 {area:35}에서 배를 타십시오. {npc:6251}의 후속 퀘스트가 {quest:3631}을(를) 가르칩니다.",
 }

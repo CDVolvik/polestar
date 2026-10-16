@@ -128,8 +128,7 @@ return {
 	["Free Darrowshire Spirits: talk to them"] = "Libérez des Esprits de Darrowshire ({npc:11064}) : parlez-leur",
 
 	-- Step 30: The Undercroft
-	-- {area:2261} The Undercroft
-	["Zaeldarr is elite: grouping up is advised. He waits at the bottom of the {area:2261}, the crypt in the south-west of the zone."] = "Zaeldarr le Banni est élite : il est conseillé de grouper. Il attend au fond de {area:2261}, la crypte au sud-ouest de la zone.",
+	["Zaeldarr is elite: grouping up is advised. He waits at the bottom of the Undercroft, the crypt in the south-west of the zone."] = "",
 
 	-- Step 31: Augustus the Touched
 	-- {area:2627} Terrordale
@@ -142,4 +141,5 @@ return {
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Free {area:2262} Spirits: talk to them"] = "Libérez les Esprits de {area:2262} : parlez-leur",
 	-- ["The Scourge around {area:2264}, west of the chapel, drop both kinds of Scourgestone; {area:2262} Spirits rise from them: talk to each one to free it."] = "Le Fléau autour de {area:2264}, à l'ouest de la chapelle, laisse les deux sortes de Pierres du Fléau ; des Esprits de {area:2262} s'en élèvent : parlez à chacun pour le libérer.",
+	-- ["Zaeldarr is elite: grouping up is advised. He waits at the bottom of the {area:2261}, the crypt in the south-west of the zone."] = "Zaeldarr le Banni est élite : il est conseillé de grouper. Il attend au fond de {area:2261}, la crypte au sud-ouest de la zone.",
 }

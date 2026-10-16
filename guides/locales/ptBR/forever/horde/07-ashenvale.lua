@@ -43,14 +43,13 @@ return {
 	["Back west to Zoram'gar before heading east for good."] = "De volta a oeste até Zoram'gar antes de seguir para o leste de vez.",
 
 	-- Step 9: Ursangous
-	["Ursangous"] = "Ursangous",
-	-- {area:415} Astranaar · {area:418} The Ruins of Stardust · {area:421} Mystral Lake
-	["Follow the main road east past {area:415} (Alliance: keep to the road). Ursangous, a big grizzly, roams the {area:418} south of the road, west of {area:421}. His paw starts the next hunt quest."] = "Siga a estrada principal para leste passando {area:415} (Aliança: fique na estrada). Ursangous, um urso-pardo grande, vaga pelas {area:418} ao sul da estrada, a oeste do {area:421}. A pata dele inicia a próxima missão de caça.",
+	-- {area:415} Astranaar · {npc:12678} Ursangous · {area:418} Ruins of Stardust · {area:421} Mystral Lake
+	["Follow the main road east past {area:415} (Alliance: keep to the road). {npc:12678}, a big grizzly, roams the {area:418} south of the road, west of {area:421}. His paw starts the next hunt quest."] = "",
 
-	-- Step 10: The Ruins of Stardust fountain
-	-- {area:418} The Ruins of Stardust
+	-- Step 10: Ruins of Stardust fountain
+	-- {area:418} Ruins of Stardust
 	["{area:418} fountain"] = "Fonte das {area:418}",
-	-- {area:418} The Ruins of Stardust · {item:7767} Empty Blue Waterskin
+	-- {area:418} Ruins of Stardust · {item:7767} Empty Blue Waterskin
 	["The fountain stands in the middle of the {area:418}: use the {item:7767} there."] = "A fonte fica no meio das {area:418}: use o {item:7767} lá.",
 
 	-- Step 11: Alonso
@@ -58,9 +57,8 @@ return {
 	["{npc:210995}, a Forever addition, stands on the west shore of {area:421} with three quick Dragonslayer quests."] = "{npc:210995}, uma novidade do Forever, fica na margem oeste do {area:421} com três missões rápidas de Matadragões.",
 
 	-- Step 12: Tideress
-	["Tideress"] = "Mareante",
-	-- {area:421} Mystral Lake · {item:16408} Befouled Water Globe
-	["Tideress, a corrupted water elemental, drifts in {area:421}. Her {item:16408} starts a quest for Splintertree."] = "Mareante, um elemental da água corrompido, flutua no {area:421}. O {item:16408} dela inicia uma missão para o Posto Machadada.",
+	-- {npc:12759} Tideress · {area:421} Mystral Lake · {item:16408} Befouled Water Globe
+	["{npc:12759}, a corrupted water elemental, drifts in {area:421}. Her {item:16408} starts a quest for Splintertree."] = "",
 
 	-- Step 13: King of the Foulweald
 	-- {area:421} Mystral Lake · {item:16972} Karang's Banner · {object:178206} Foulweald Totem Mound · {npc:12918} Chief Murgut
@@ -81,17 +79,16 @@ return {
 	["{npc:12718}: only if you carry the manual pages"] = "{npc:12718}: só se você tiver as páginas do manual",
 
 	-- Step 17: Sharptalon
-	["Sharptalon"] = "Garraguda",
-	["Sharptalon, a big nightsaber, prowls the woods south-east of the Warsong lumber camp. Her claw starts the next hunt quest."] = "Garraguda, uma grande sabre-noturno, ronda a mata a sudeste do Acampamento de Lenhadores Brado Guerreiro. A garra dela inicia a próxima missão de caça.",
+	-- {npc:12676} Sharptalon
+	["{npc:12676}, a big nightsaber, prowls the woods south-east of the Warsong lumber camp. Her claw starts the next hunt quest."] = "",
 
 	-- Step 18: Felmusk satyrs
 	["Felmusk satyrs"] = "Sátiros Malmíscar",
 	["North-west of Splintertree, the Felmusk satyrs camp in the woods. Every satyr can drop horns."] = "A noroeste do Posto Machadada, os sátiros Malmíscar acampam na mata. Todo sátiro pode deixar cair chifres.",
 
 	-- Step 19: Shadumbra
-	["Shadumbra"] = "Shadumbra",
-	-- {area:426} Raynewood Retreat
-	["Shadumbra, a shadow panther, stalks the woods around {area:426}, west of the Felmusk camp. Her head starts the next hunt quest."] = "Shadumbra, uma pantera das sombras, ronda a mata em volta do {area:426}, a oeste do acampamento Malmíscar. A cabeça dela inicia a próxima missão de caça.",
+	-- {npc:12677} Shadumbra · {area:426} Raynewood Retreat
+	["{npc:12677}, a shadow panther, stalks the woods around {area:426}, west of the Felmusk camp. Her head starts the next hunt quest."] = "",
 
 	-- Step 20: Mystral Lake
 	-- {area:421} Mystral Lake
@@ -127,13 +124,15 @@ return {
 	["Back south to the camp, then up into {area:1638} for the flight to {area:378}."] = "De volta ao sul até o acampamento, depois suba até {area:1638} para o voo até o {area:378}.",
 
 	-- Step 27: Brine
-	-- {area:1638} Thunder Bluff · {area:378} Camp Taurajo · {npc:5899} Brine · {area:1718} The Great Lift
+	-- {area:1638} Thunder Bluff · {area:378} Camp Taurajo · {npc:5899} Brine · {area:1718} Great Lift
 	["Fly from {area:1638} to {area:378}. {npc:5899}'s hut stands on the ridge above the quilboar watering hole south of the camp, on the road to the {area:1718}."] = "Voe de {area:1638} até o {area:378}. A cabana de {npc:5899} fica na crista acima do bebedouro dos javalis ao sul do acampamento, na estrada para o {area:1718}.",
 	-- {npc:5901} Islen Waterseer · {area:392} Ratchet
 	["for {npc:5901}, south of {area:392}: next guide"] = "para {npc:5901}, ao sul de {area:392}: próximo guia",
 
 	-- Step 28: The Great Lift
-	-- {area:1638} Thunder Bluff · {area:378} Camp Taurajo · {area:1718} The Great Lift · {zone:1413} The Barrens
+	-- {area:1718} Great Lift
+	["The {area:1718}"] = "",
+	-- {area:1638} Thunder Bluff · {area:378} Camp Taurajo · {area:1718} Great Lift · {zone:1413} Barrens
 	["Fly from {area:1638} to {area:378} and take the road south to the {area:1718} at the bottom of the {zone:1413}."] = "Voe de {area:1638} até o {area:378} e pegue a estrada para o sul até o {area:1718}, no extremo sul de {zone:1413}.",
 	-- {npc:10079} Brave Moonhorn
 	["{npc:10079}, at the top of the lift"] = "{npc:10079}, no alto do elevador",
@@ -213,4 +212,14 @@ return {
 	-- Step 47: Freewind Post
 	-- {zone:1454} Orgrimmar
 	["The next guide flies on from here to {zone:1454}."] = "O próximo guia voa daqui para {zone:1454}.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Follow the main road east past {area:415} (Alliance: keep to the road). Ursangous, a big grizzly, roams the {area:418} south of the road, west of {area:421}. His paw starts the next hunt quest."] = "Siga a estrada principal para leste passando {area:415} (Aliança: fique na estrada). Ursangous, um urso-pardo grande, vaga pelas {area:418} ao sul da estrada, a oeste do {area:421}. A pata dele inicia a próxima missão de caça.",
+	-- ["Shadumbra"] = "Shadumbra",
+	-- ["Shadumbra, a shadow panther, stalks the woods around {area:426}, west of the Felmusk camp. Her head starts the next hunt quest."] = "Shadumbra, uma pantera das sombras, ronda a mata em volta do {area:426}, a oeste do acampamento Malmíscar. A cabeça dela inicia a próxima missão de caça.",
+	-- ["Sharptalon"] = "Garraguda",
+	-- ["Sharptalon, a big nightsaber, prowls the woods south-east of the Warsong lumber camp. Her claw starts the next hunt quest."] = "Garraguda, uma grande sabre-noturno, ronda a mata a sudeste do Acampamento de Lenhadores Brado Guerreiro. A garra dela inicia a próxima missão de caça.",
+	-- ["Tideress"] = "Mareante",
+	-- ["Tideress, a corrupted water elemental, drifts in {area:421}. Her {item:16408} starts a quest for Splintertree."] = "Mareante, um elemental da água corrompido, flutua no {area:421}. O {item:16408} dela inicia uma missão para o Posto Machadada.",
+	-- ["Ursangous"] = "Ursangous",
 }

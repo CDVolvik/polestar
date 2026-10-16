@@ -21,5 +21,4 @@ return {
 	-- Step 3: Back to Kibler
 	-- {npc:10260} Kibler
 	["Back to {npc:10260}"] = "{npc:10260}에게 돌아가기",
-
 }

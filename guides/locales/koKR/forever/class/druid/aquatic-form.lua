@@ -22,11 +22,11 @@ return {
 	["At the {area:2362}"] = "{area:2362}에서",
 
 	-- Step 3: Half Pendant of Aquatic Agility
-	-- {area:2361} Nighthaven · {area:442} Auberdine · {object:177790} Strange Lockbox · {area:443} Ruins of Mathystra
-	["Fly from {area:2361} to {area:442}. The {object:177790} lies under the water off the north coast, west of the {area:443}."] = "{area:2361}에서 {area:442}(으)로 날아가세요. {object:177790}은(는) {area:443} 서쪽, 북쪽 해안 앞 물속에 있습니다.",
+	-- {area:2361} Nighthaven · {area:442} Auberdine · {object:177792} Strange Lockbox · {area:443} Ruins of Mathystra
+	["Fly from {area:2361} to {area:442}. The {object:177792} lies under the water off the north coast, west of the {area:443}."] = "",
 
 	-- Step 4: Half Pendant of Aquatic Endurance
-	-- {area:442} Auberdine · {zone:1453} Stormwind City · {area:108} Sentinel Hill · {object:177790} Strange Lockbox
+	-- {area:442} Auberdine · {zone:1453} Stormwind · {area:108} Sentinel Hill · {object:177790} Strange Lockbox
 	["Take the boat from {area:442} to {zone:1453} and fly to {area:108}. Ride north-west to the coast: the {object:177790} lies on the sea floor off the shore."] = "{area:442}에서 배를 타고 {zone:1453}(으)로 간 뒤 {area:108}(으)로 날아가세요. 북서쪽 해안으로 가면 {object:177790}이(가) 해안 앞바다 바닥에 있습니다.",
 
 	-- Step 5: Pendant of the Sea Lion
@@ -49,15 +49,18 @@ return {
 	["Cast {spell:18960}. {npc:11802} is in {area:2361}. The Shrine Baubles lie on the bed of {area:656} and fade within minutes: swim one straight to the {area:2362} on the north-west shore, use it there and speak to {npc:11799}."] = "{spell:18960}을(를) 시전하세요. {npc:11802}은(는) {area:2361}에 있습니다. {item:15877}은(는) {area:656} 바닥에 있으며 몇 분 안에 사라집니다. 하나를 들고 북서쪽 기슭의 {area:2362}까지 곧장 헤엄쳐 가서 사용하고 {npc:11799}와(과) 대화하세요.",
 
 	-- Step 9: Half Pendant of Aquatic Endurance
-	-- {npc:11798} Bunthen Plainswind · {zone:1456} Thunder Bluff · {zone:1454} Orgrimmar · {zone:1420} Tirisfal Glades · {zone:1421} Silverpine Forest · {zone:1458} Undercity · {object:177790} Strange Lockbox · {area:240} The Dead Field · {area:228} The Sepulcher
+	-- {npc:11798} Bunthen Plainswind · {zone:1456} Thunder Bluff · {zone:1454} Orgrimmar · {zone:1420} Tirisfal Glades · {zone:1421} Silverpine Forest · {zone:1458} Undercity · {object:177790} Strange Lockbox · {area:240} Dead Field · {area:228} Sepulcher
 	["Take {npc:11798}'s flight to {zone:1456}, fly to {zone:1454} and take the zeppelin to {zone:1420}; {zone:1421} is south of the {zone:1458}. The {object:177790} lies on the coast west of the {area:240}, north of the {area:228}."] = "{npc:11798}의 비행편으로 {zone:1456}에 간 뒤, {zone:1454}(으)로 날아가 비행선을 타고 {zone:1420}(으)로 가세요. {zone:1421}은(는) {zone:1458} 남쪽에 있습니다. {object:177790}은(는) {area:228} 북쪽, {area:240} 서쪽 해안에 있습니다.",
 
 	-- Step 10: Half Pendant of Aquatic Agility
-	-- {object:177790} Strange Lockbox · {area:382} The Sludge Fen · {area:380} The Crossroads
-	["The {object:177790} lies at the north edge of the {area:382}, by the Venture Co. tower, north of the {area:380}."] = "{object:177790}은(는) {area:380} 북쪽, {area:382} 북쪽 가장자리의 투자개발회사 탑 옆에 있습니다.",
+	-- {object:177792} Strange Lockbox · {area:382} Sludge Fen · {area:380} Crossroads
+	["The {object:177792} lies at the north edge of the {area:382}, by the Venture Co. tower, north of the {area:380}."] = "",
 
 	-- Step 11: Pendant of the Sea Lion
 	-- {spell:18960} Teleport: Moonglade · {item:15885} Pendant of the Sea Lion · {area:2362} Shrine of Remulos · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {npc:11798} Bunthen Plainswind · {area:1638} Thunder Bluff
 	["Cast {spell:18960}. Join the two halves into the {item:15885} near the {area:2362}, on the north-west shore of the lake, then see {npc:11802} in {area:2361}. {npc:11798} flies druids to {area:1638}."] = "{spell:18960}을(를) 시전하세요. 호수 북서쪽 기슭의 {area:2362} 근처에서 반쪽 두 개를 합쳐 {item:15885}을(를) 만든 뒤, {area:2361}의 {npc:11802}을(를) 만나세요. {npc:11798}이(가) 드루이드를 {area:1638}(으)로 태워 줍니다.",
 
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Fly from {area:2361} to {area:442}. The {object:177790} lies under the water off the north coast, west of the {area:443}."] = "{area:2361}에서 {area:442}(으)로 날아가세요. {object:177790}은(는) {area:443} 서쪽, 북쪽 해안 앞 물속에 있습니다.",
+	-- ["The {object:177790} lies at the north edge of the {area:382}, by the Venture Co. tower, north of the {area:380}."] = "{object:177790}은(는) {area:380} 북쪽, {area:382} 북쪽 가장자리의 투자개발회사 탑 옆에 있습니다.",
 }

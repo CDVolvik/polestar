@@ -10,8 +10,8 @@ return {
 	["{item:7515} and Stave"] = "{item:7515}와(과) 천상의 지팡이",
 	["An off-hand orb or a staff for the late 30s, your pick."] = "30대 후반용 보조장비 구슬이나 지팡이 중 선택.",
 
-	-- Step 1: Return to the Marsh (Stormwind City)
-	-- {npc:5497} Jennea Cannon · {zone:1453} Stormwind City · {object:2101} Mage Quarter · {npc:6546} Tabetha · {zone:1455} Ironforge
+	-- Step 1: Return to the Marsh (Stormwind)
+	-- {npc:5497} Jennea Cannon · {zone:1453} Stormwind · {object:2101} Mage Quarter · {npc:6546} Tabetha · {zone:1455} Ironforge
 	["{npc:5497} in the Wizard's Sanctum, {zone:1453}'s {object:2101}, sends you back to {npc:6546}; Bink in {zone:1455} gives the same quest."] = "{zone:1453} {object:2101}의 마법사의 성소에 있는 {npc:5497}이(가) 당신을 {npc:6546}에게 다시 보냅니다. {zone:1455}의 빙크도 같은 퀘스트를 줍니다.",
 
 	-- Step 2: Return to the Marsh (Orgrimmar)

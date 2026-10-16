@@ -6,7 +6,7 @@
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Mirage Raceway
-	-- {area:1108} The Forgotten Coast · {area:489} Thalanaar · {zone:1441} Thousand Needles · {area:2240} Mirage Raceway · {area:439} The Shimmering Flats · {npc:4454} Fizzle Brassbolts · {npc:4630} Pozzik · {npc:4709} Zamek
+	-- {area:1108} Forgotten Coast · {area:489} Thalanaar · {zone:1441} Thousand Needles · {area:2240} Mirage Raceway · {area:439} Shimmering Flats · {npc:4454} Fizzle Brassbolts · {npc:4630} Pozzik · {npc:4709} Zamek
 	["From the {area:1108} dock, boat to Feathermoon and fly to {area:489}, then ride east through {zone:1441} to the {area:2240} on the {area:439}. {npc:4454} and {npc:4630} are in the camps beside the track; {npc:4709} stands by the goblin camp."] = "Nimm vom Steg im Gebiet {area:1108} das Boot nach Feathermoon und flieg nach {area:489}, dann reite nach Osten durch {zone:1441} zur {area:2240} im Gebiet {area:439}. {npc:4454} und {npc:4630} sind in den Lagern neben der Rennstrecke; {npc:4709} steht beim Goblinlager.",
 	["He runs off to keep Rizzle busy"] = "Er läuft los, um Rizzle abzulenken",
 
@@ -16,7 +16,7 @@ return {
 	["While {npc:4709} keeps Rizzle talking, his plans lie unguarded in the gnome camp across the track."] = "Während {npc:4709} Rizzle in ein Gespräch verwickelt, liegen dessen Pläne unbewacht im Gnomenlager auf der anderen Seite der Rennstrecke.",
 
 	-- Step 4: Gadgetzan
-	-- {area:439} The Shimmering Flats · {zone:1446} Tanaris · {area:976} Gadgetzan
+	-- {area:439} Shimmering Flats · {zone:1446} Tanaris · {area:976} Gadgetzan
 	["Ride south-east off the {area:439} into {zone:1446}. {area:976} is just inside the border."] = "Reite vom Gebiet {area:439} nach Südosten nach {zone:1446}. {area:976} liegt gleich hinter der Grenze.",
 	-- {quest:2864} Tran'rek
 	["{quest:2864}, north side of town"] = "{quest:2864}, an der Nordseite der Stadt",
@@ -95,7 +95,7 @@ return {
 	["Ride back west to {area:976}."] = "Reite zurück nach Westen nach {area:976}.",
 	-- {npc:11758} Andi Lynn
 	["{npc:11758}, on the east side of town"] = "{npc:11758}, an der Ostseite der Stadt",
-	-- {npc:7583} Sprinkle · {zone:1425} The Hinterlands
+	-- {npc:7583} Sprinkle · {zone:1425} Hinterlands
 	["{npc:7583}'s next ingredient grows in the {zone:1425}, and the route never brings it back: skip it."] = "Die nächste Zutat von {npc:7583} wächst im {zone:1425}, und die Route führt dich nie wieder dorthin: Überspring sie.",
 
 	-- Step 21: Caliph Scorpidsting
@@ -103,8 +103,8 @@ return {
 	["Ride south-east to {area:985}. Caliph stands in the middle of the southern Wastewander camp: clear around him first."] = "Reite nach Südosten zum {area:985}. Kalif steht in der Mitte des südlichen Lagers der Wüstenläufer: Räum zuerst um ihn herum.",
 
 	-- Step 22: The Gaping Chasm
-	-- {area:1938} Broken Pillar · {area:981} The Gaping Chasm
-	["Ride south past the {area:1938} to the {area:981}, the Hazzali tunnels; Scrimshank's gear lies deep inside."] = "Reite nach Süden an der {area:1938} vorbei zu den Tunneln der Hazzali ({area:981}); Scrimshanks Ausrüstung liegt tief darin.",
+	-- {area:1938} Broken Pillar
+	["Ride south past the {area:1938} to the Gaping Chasm, the Hazzali tunnels; Scrimshank's gear lies deep inside."] = "",
 
 	-- Step 23: Gadgetzan
 	-- {area:976} Gadgetzan
@@ -117,6 +117,10 @@ return {
 	["Fly from {area:976} to Theramore, take the boat to {area:150} and fly to {area:1537}. Train."] = "Flieg von {area:976} nach Theramore, nimm das Boot zum Ort {area:150} und flieg nach {area:1537}. Trainiere.",
 
 	-- Step 25: Aerie Peak
-	-- {area:348} Aerie Peak · {zone:1425} The Hinterlands
-	["Fly to {area:348}. {zone:1425} guide starts here."] = "Flieg nach {area:348}. Der Guide für {zone:1425} beginnt hier.",
+	-- {area:348} Aerie Peak · {zone:1425} Hinterlands
+	["Fly to {area:348}. The {zone:1425} guide starts here."] = "",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Fly to {area:348}. {zone:1425} guide starts here."] = "Flieg nach {area:348}. Der Guide für {zone:1425} beginnt hier.",
+	-- ["Ride south past the {area:1938} to the {area:981}, the Hazzali tunnels; Scrimshank's gear lies deep inside."] = "Reite nach Süden an der {area:1938} vorbei zu den Tunneln der Hazzali ({area:981}); Scrimshanks Ausrüstung liegt tief darin.",
 }

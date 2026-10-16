@@ -9,10 +9,10 @@ return {
 	["A robe or a blouse for Human and Gnome mages in their late 20s."] = "20대 후반 인간과 노움 마법사를 위한 로브 또는 블라우스입니다.",
 
 	-- Step 1: Bink (Ironforge)
-	-- {npc:5144} Bink · {zone:1455} Ironforge · {object:32362} The Mystic Ward · {area:2257} Deeprun Tram · {object:171524} Tinker Town · {zone:1453} Stormwind City
+	-- {npc:5144} Bink · {zone:1455} Ironforge · {object:32362} Mystic Ward · {area:2257} Deeprun Tram · {object:171524} Tinker Town · {zone:1453} Stormwind
 	["{npc:5144} teaches mages in {zone:1455}'s {object:32362}. Take the {area:2257} from {object:171524} to {zone:1453} afterwards."] = "{npc:5144}은(는) {zone:1455}의 {object:32362}에서 마법사를 가르칩니다. 이후 {object:171524}에서 {area:2257}을(를) 타고 {zone:1453}(으)로 가십시오.",
 
-	-- Step 2: Jennea Cannon (Stormwind City)
+	-- Step 2: Jennea Cannon (Stormwind)
 	-- {npc:5497} Jennea Cannon · {object:2101} Mage Quarter
 	["{npc:5497} stands in the Wizard's Sanctum, the tower of the {object:2101}."] = "{npc:5497}은(는) {object:2101}의 탑인 마법사의 성소에 있습니다.",
 

@@ -22,8 +22,8 @@ return {
 
 	-- Step 3: The four elements
 	["The four elements"] = "Os quatro elementos",
-	-- {item:7069} Elemental Air · {zone:1417} Arathi Highlands
-	["One each of {item:7069}, Fire, Earth and Water. The Exiles of {zone:1417} drop them, one element each, about one kill in ten: Thundering (air), Burning (fire), Rumbling (earth) and Cresting (water). Or buy them at the auction house."] = "Um de cada: {item:7069}, Fogo, Terra e Água Elemental. Os Exilados de {zone:1417} os soltam, um elemento cada, em cerca de uma morte em dez: Trovejantes (ar), em Chamas (fogo), Tonitruantes (terra) e Vagalhantes (água). Ou compre na Casa de Leilões.",
+	-- {item:7069} Elemental Air
+	["One each of {item:7069}, Fire, Earth and Water. The Exiles of Arathi Highlands drop them, one element each, about one kill in ten: Thundering (air), Burning (fire), Rumbling (earth) and Cresting (water). Or buy them at the auction house."] = "",
 	-- {item:7069} Elemental Air
 	-- plural, as words: Thundering Exiles = {npc:2762} Thundering Exile
 	["{item:7069}: Thundering Exiles"] = "{item:7069}: Exilados Trovejantes",
@@ -50,6 +50,9 @@ return {
 	-- Step 7: The Sunken Temple
 	-- {area:1417} Sunken Temple
 	["The {area:1417}"] = "{area:1417}",
-	-- {area:1417} Sunken Temple · {area:1477} The Temple of Atal'Hakkar · {area:74} Pool of Tears · {npc:5716} Zul'Lor · {item:20606} Amber Voodoo Feather
+	-- {area:1417} Sunken Temple · {area:1477} Temple of Atal'Hakkar · {area:74} Pool of Tears · {npc:5716} Zul'Lor · {item:20606} Amber Voodoo Feather
 	["The {area:1417} ({area:1477}) lies under the {area:74}; the arrow points at its entrance. Gasher or {npc:5716} drop the {item:20606}, Hukku or Mijan the Blue, Zolo or Loro the Green: all six are elite trolls inside. Bring a group."] = "O {area:1417} ({area:1477}) fica sob o {area:74}; a seta aponta para a entrada. Talho ou {npc:5716} soltam a {item:20606}, Hukkah ou Mirran a azul, Zolo ou Lorro a verde: os seis são trolls elite lá dentro. Leve um grupo.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["One each of {item:7069}, Fire, Earth and Water. The Exiles of {zone:1417} drop them, one element each, about one kill in ten: Thundering (air), Burning (fire), Rumbling (earth) and Cresting (water). Or buy them at the auction house."] = "Um de cada: {item:7069}, Fogo, Terra e Água Elemental. Os Exilados de {zone:1417} os soltam, um elemento cada, em cerca de uma morte em dez: Trovejantes (ar), em Chamas (fogo), Tonitruantes (terra) e Vagalhantes (água). Ou compre na Casa de Leilões.",
 }

@@ -48,5 +48,4 @@ return {
 	-- Step 9: Back to Dendrite
 	-- {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {npc:11798} Bunthen Plainswind · {area:1638} Thunder Bluff
 	["Back to {npc:11802} in {area:2361}, then take {npc:11798}'s flight to {area:1638}."] = "{area:2361}의 {npc:11802}에게 돌아간 뒤 {npc:11798}의 비행편으로 {area:1638}에 가십시오.",
-
 }

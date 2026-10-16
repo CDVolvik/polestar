@@ -23,8 +23,8 @@ return {
 	["The Legashi satyrs of northern {zone:1447} carry {zone:1447}'s essence."] = "{zone:1447} 북쪽의 레가쉬 사티로스가 {zone:1447}의 정수를 가지고 있습니다.",
 
 	-- Step 4: The Dark Portal
-	-- {area:72} The Dark Portal · {zone:1419} Blasted Lands
-	["The Felguard Sentries around the {area:72}, in southern {zone:1419}, carry its essence."] = "{zone:1419} 남쪽 {area:72} 주변의 지옥군단병 보초가 그 정수를 가지고 있습니다.",
+	-- {zone:1419} Blasted Lands
+	["The Felguard Sentries around the Dark Portal, in southern {zone:1419}, carry its essence."] = "",
 
 	-- Step 6: Kroshius
 	-- {npc:14467} Kroshius · {area:1766} Shatter Scar Vale · {item:18626} Fel Fire
@@ -35,4 +35,6 @@ return {
 	-- Step 7: Back to Niby
 	["Back to Niby"] = "나이비에게 돌아가기",
 
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["The Felguard Sentries around the {area:72}, in southern {zone:1419}, carry its essence."] = "{zone:1419} 남쪽 {area:72} 주변의 지옥군단병 보초가 그 정수를 가지고 있습니다.",
 }

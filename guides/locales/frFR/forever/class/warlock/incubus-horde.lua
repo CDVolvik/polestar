@@ -36,7 +36,7 @@ return {
 	["{npc:185333} works as a tailor for the {area:279} wizards at {area:233}, in eastern {zone:1421}. Take her heart."] = "{npc:185333} travaille comme couturière pour les sorciers de {area:279} à {area:233}, dans l'est de la {zone:1421}. Prenez son cœur.",
 
 	-- Step 7: Isaac Pearson
-	-- {npc:185334} Isaac Pearson · {area:392} Ratchet · {zone:1413} The Barrens · {zone:1411} Durotar
+	-- {npc:185334} Isaac Pearson · {area:392} Ratchet · {zone:1413} Barrens · {zone:1411} Durotar
 	["{npc:185334} works in {area:392}, on the {zone:1413} coast. Take the zeppelin to {zone:1411} and ride or fly on to {area:392}."] = "{npc:185334} travaille à {area:392}, sur la côte des {zone:1413}. Prenez le zeppelin jusqu'à {zone:1411}, puis continuez à monture ou en vol jusqu'à {area:392}.",
 
 	-- Step 8: The Binding (Undercity)

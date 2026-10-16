@@ -72,7 +72,7 @@ return {
 	-- Step 16: Dungeon instead of grinding
 	["Dungeon instead of grinding"] = "사냥 대신 던전",
 	-- {area:2279} Stratholme · {area:2057} Scholomance · {area:1584} Blackrock Depths
-	["Optional. Running {area:2279}, {area:2057}, Lower Blackrock Spire or {area:1584} with a group instead of grinding gets you there faster."] ="선택 사항. 사냥 대신 파티로 {area:2279}, {area:2057}, 검은바위 첨탑 하층, {area:1584}을(를) 돌면 더 빨리 도달합니다.",
+	["Optional. Running {area:2279}, {area:2057}, Lower Blackrock Spire or {area:1584} with a group instead of grinding gets you there faster."] = "선택 사항. 사냥 대신 파티로 {area:2279}, {area:2057}, 검은바위 첨탑 하층, {area:1584}을(를) 돌면 더 빨리 도달합니다.",
 	["Optional: with a group, a 55-60 dungeon replaces the grind below."] = "선택 사항: 파티가 있으면 55-60 던전으로 아래 사냥을 대신하세요.",
 
 	-- Step 17: Grind to 60

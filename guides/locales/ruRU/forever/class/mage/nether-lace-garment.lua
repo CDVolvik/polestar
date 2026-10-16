@@ -33,7 +33,6 @@ return {
 	["The {quest:1945}, dryads, gather near the {area:426} in central {zone:1440}."] = "{quest:1945}, дриады, собираются у места {area:426} в центре зоны {zone:1440}.",
 
 	-- Step 6: Kil'hala
-	-- {npc:3484} Kil'hala · {area:380} The Crossroads
+	-- {npc:3484} Kil'hala · {area:380} Crossroads
 	["{npc:3484}, a troll tailor, works at the {area:380}."] = "{npc:3484}, портниха-тролль, работает здесь: {area:380}.",
-
 }

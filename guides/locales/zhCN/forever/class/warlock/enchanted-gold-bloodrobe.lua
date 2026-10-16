@@ -9,8 +9,8 @@ return {
 	-- {npc:6266} Menara Voidrender
 	["A rare cloth robe for your 30s, which {npc:6266} makes from the parts you bring her."] = "一件适合30多级的稀有布甲长袍，{npc:6266}会用你带来的材料制作。",
 
-	-- Step 1: In Search of Menara Voidrender (Stormwind City)
-	-- {npc:461} Demisette Cloyce · {object:2164} The Slaughtered Lamb · {object:2101} Mage Quarter · {npc:6266} Menara Voidrender · {area:392} Ratchet
+	-- Step 1: In Search of Menara Voidrender (Stormwind)
+	-- {npc:461} Demisette Cloyce · {object:2164} Slaughtered Lamb · {object:2101} Mage Quarter · {npc:6266} Menara Voidrender · {area:392} Ratchet
 	["At 31 {npc:461} in the {object:2164}, in the {object:2101}, sends you to {npc:6266} in {area:392}."] = "31级时，{object:2101}{object:2164}的{npc:461}会让你去找{area:392}的{npc:6266}。",
 
 	-- Step 2: In Search of Menara Voidrender (Ironforge)
@@ -43,9 +43,9 @@ return {
 	-- Step 9: Desolace demons
 	-- {zone:1443} Desolace
 	["{zone:1443} demons"] = "{zone:1443}的恶魔",
-	-- {area:603} Sargeron · {zone:1443} Desolace · {area:602} Mannoroc Coven
+	-- {area:603} Sargeron · {zone:1443} Desolace
 	-- plural, as words: Lesser Infernals = {npc:4676} Lesser Infernal
-	["The Hatefury satyrs of {area:603}, in north-eastern {zone:1443}, carry the blood; the Lesser Infernals of {area:602}, in the south, the stone."] = "{zone:1443}东北部{area:603}的怨怒萨特携带鲜血；南部{area:602}的次级地狱火携带石头。",
+	["The Hatefury satyrs of {area:603}, in north-eastern {zone:1443}, carry the blood; the Lesser Infernals of Mannoroc Coven, in the south, the stone."] = "",
 	["Vials of Hatefury Blood"] = "怨怒萨特之血",
 
 	-- Step 10: Menara again
@@ -64,4 +64,7 @@ return {
 	-- {item:6265} Soul Shard
 	["Back to Menara with the thread, the coal and a {item:6265}. Wait while she completes the robe, then speak to her again."] = "带着金线、煤块和一块{item:6265}回到梅纳拉处。等她完成长袍，然后再次与她交谈。",
 	["Wait for the robe"] = "等待长袍",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["The Hatefury satyrs of {area:603}, in north-eastern {zone:1443}, carry the blood; the Lesser Infernals of {area:602}, in the south, the stone."] = "{zone:1443}东北部{area:603}的怨怒萨特携带鲜血；南部{area:602}的次级地狱火携带石头。",
 }

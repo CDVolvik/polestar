@@ -37,17 +37,17 @@ return {
 	["The skeleton's next task, Murdaloc, waits until the later {zone:1418} guide at 43."] = "Die nächste Aufgabe des Skeletts, Murdaloc, wartet bis zum späteren Guide für das {zone:1418} mit 43.",
 
 	-- Step 8: Valley of Fangs
-	-- {npc:4454} Fizzle Brassbolts · {area:439} The Shimmering Flats · {zone:1446} Tanaris
+	-- {npc:4454} Fizzle Brassbolts · {area:439} Shimmering Flats · {zone:1446} Tanaris
 	["for {npc:4454} in the {area:439}: the {zone:1446} guide crosses them at 45, keep it"] = "für {npc:4454} in {area:439}: Der Guide für {zone:1446} kommt mit 45 dort vorbei, behalte sie",
 
 	-- Step 9: Lotwil Veriatus
-	-- {area:1878} The Dustbowl
+	-- {area:1878} Dustbowl
 	["Ride west into the {area:1878}; Lotwil works by his machines in the middle of it."] = "Reite nach Westen in {area:1878}; Lotwil arbeitet mitten darin an seinen Maschinen.",
 
 	-- Step 10: Lesser Rock Elementals
 	-- plural, as words: Lesser Rock Elementals = {npc:2735} Lesser Rock Elemental
 	["Lesser Rock Elementals"] = "Kleine Felselementare",
-	-- {area:1878} The Dustbowl
+	-- {area:1878} Dustbowl
 	-- plural, as words: Lesser Rock Elementals = {npc:2735} Lesser Rock Elemental
 	["The Lesser Rock Elementals wander the {area:1878} west of Lotwil."] = "Die Kleinen Felselementare streifen durch {area:1878} westlich von Lotwil.",
 

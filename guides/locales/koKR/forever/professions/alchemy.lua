@@ -131,14 +131,14 @@ return {
 	["Kill the mobs that drop it at the farm spot Polestar picks for your level and faction. The Auction House works too."] = "Polestar가 레벨과 진영에 맞춰 고른 사냥터에서 이것을 떨어뜨리는 몹을 처치하세요. 경매장도 됩니다.",
 
 	-- Step 27: Wild Steelbloom (Alliance)
-	-- {item:3355} Wild Steelbloom
-	["{item:3355} (Alliance)"] = "{item:3355} (얼라이언스)",
-	-- {item:3355} Wild Steelbloom · {skill:182} Herbalism
-	["Pick {item:3355} with {skill:182}; this is the densest patch in the data. The Auction House works too."] = "{skill:182}(으)로 {item:3355}을(를) 채집하세요. 데이터상 가장 밀집된 곳입니다. 경매장도 됩니다.",
+	-- {object:1623} Wild Steelbloom
+	["{object:1623} (Alliance)"] = "",
+	-- {object:1623} Wild Steelbloom · {skill:182} Herbalism
+	["Pick {object:1623} with {skill:182}; this is the densest patch in the data. The Auction House works too."] = "",
 
 	-- Step 28: Wild Steelbloom (Horde)
-	-- {item:3355} Wild Steelbloom
-	["{item:3355} (Horde)"] = "{item:3355} (호드)",
+	-- {object:1623} Wild Steelbloom
+	["{object:1623} (Horde)"] = "",
 
 	-- Step 29: Kingsblood (Alliance)
 	-- {item:3356} Kingsblood
@@ -161,14 +161,14 @@ return {
 	["{item:3357} (Horde)"] = "{item:3357} (호드)",
 
 	-- Step 33: Goldthorn (Alliance)
-	-- {item:3821} Goldthorn
-	["{item:3821} (Alliance)"] = "{item:3821} (얼라이언스)",
-	-- {item:3821} Goldthorn · {skill:182} Herbalism
-	["Pick {item:3821} with {skill:182}; this is the densest patch in the data. The Auction House works too."] = "{skill:182}(으)로 {item:3821}을(를) 채집하세요. 데이터상 가장 밀집된 곳입니다. 경매장도 됩니다.",
+	-- {object:2046} Goldthorn
+	["{object:2046} (Alliance)"] = "",
+	-- {object:2046} Goldthorn · {skill:182} Herbalism
+	["Pick {object:2046} with {skill:182}; this is the densest patch in the data. The Auction House works too."] = "",
 
 	-- Step 34: Goldthorn (Horde)
-	-- {item:3821} Goldthorn
-	["{item:3821} (Horde)"] = "{item:3821} (호드)",
+	-- {object:2046} Goldthorn
+	["{object:2046} (Horde)"] = "",
 
 	-- Step 35: Oily Blackmouth (Alliance)
 	-- {item:6358} Oily Blackmouth
@@ -323,4 +323,12 @@ return {
 	["{spell:17554} to 300"] = "{spell:17554}: 300까지",
 	-- {skill:171} Alchemy
 	["Orange (a point every craft) until 280, yellow until 300, green until 320. {skill:171} 300 is a Legacy System milestone."] = "280까지 주황색(만들 때마다 1점), 300까지 노란색, 320까지 초록색입니다. {skill:171} 300은 유산 시스템 단계입니다.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Pick {item:3355} with {skill:182}; this is the densest patch in the data. The Auction House works too."] = "{skill:182}(으)로 {item:3355}을(를) 채집하세요. 데이터상 가장 밀집된 곳입니다. 경매장도 됩니다.",
+	-- ["Pick {item:3821} with {skill:182}; this is the densest patch in the data. The Auction House works too."] = "{skill:182}(으)로 {item:3821}을(를) 채집하세요. 데이터상 가장 밀집된 곳입니다. 경매장도 됩니다.",
+	-- ["{item:3355} (Alliance)"] = "{item:3355} (얼라이언스)",
+	-- ["{item:3355} (Horde)"] = "{item:3355} (호드)",
+	-- ["{item:3821} (Alliance)"] = "{item:3821} (얼라이언스)",
+	-- ["{item:3821} (Horde)"] = "{item:3821} (호드)",
 }

@@ -13,7 +13,7 @@ return {
 	["{area:1446}, on the scaffolds in the north-west of {zone:1427}, is the Brotherhood's outpost. The {faction:59} starts out Neutral. Forever's Legacy Diplomat perk increases reputation gains."] = "{zone:1427} 북서쪽 비계 위의 {area:1446}이(가) 대장조합의 전초기지입니다. {faction:59}은(는) 중립에서 시작합니다. Forever의 외교관 Legacy 특전은 평판 획득량을 늘려 줍니다.",
 
 	-- Step 2: Secret Plans: Fiery Flux
-	-- {area:1443} The Slag Pit · {object:147516} Dark Iron · {item:18945} Dark Iron Residue
+	-- {area:1443} Slag Pit · {object:147516} Dark Iron · {item:18945} Dark Iron Residue
 	["The plans lie in the {area:1443} of the Cauldron, guarded by {object:147516} dwarves. {object:147516} dwarves also drop {item:18945}, which Burninate takes for Gaining Acceptance."] = "조제법은 용광로의 {area:1443}에 있으며, {object:147516} 드워프가 지킵니다. {object:147516} 드워프는 {item:18945}도 떨어뜨리는데, 버니네이트가 인정받기 퀘스트로 이를 받습니다.",
 
 	-- Step 3: Back to Burninate
@@ -23,7 +23,7 @@ return {
 	-- {item:18942} Fiery Flux
 	["{item:18942} supplies to Friendly"] = "{item:18942} 보급품: 약간 우호적까지",
 	-- {item:3356} Kingsblood · {item:4234} Heavy Leather · {item:18944} Incendosaur Scale · {zone:1427} Searing Gorge
-	-- plural, as words: Iron Bars = {item:3575} Iron Bar
+	-- plural, as words: Iron Bars = {item:3575} Iron Bar · Incendosaurs = {npc:9318} Incendosaur
 	["Restoring Fiery Flux Supplies repeats in three versions: {item:3356}, Iron Bars or {item:4234}, each with Coal and an {item:18944}. Incendosaurs (level 47-49) in the north of {zone:1427} drop a scale every time; Burninate himself sells Coal."] = "불꽃 융해촉진제 보급품은 {item:3356}, {item:3575}, {item:4234} 세 가지 버전으로 반복되며, 각각 석탄과 {item:18944}이(가) 필요합니다. {zone:1427} 북부의 인센도사우루스(47-49레벨)는 매번 비늘을 떨어뜨립니다. 석탄은 버니네이트가 직접 팝니다.",
 	-- {npc:14624} Master Smith Burninate
 	["{npc:14624}: Restoring Fiery Flux Supplies"] = "{npc:14624}: 불꽃 융해촉진제 보급품",

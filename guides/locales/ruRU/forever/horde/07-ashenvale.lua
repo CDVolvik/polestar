@@ -43,14 +43,13 @@ return {
 	["Back west to Zoram'gar before heading east for good."] = "Вернитесь на запад в форт Зорам'гар, прежде чем окончательно уйти на восток.",
 
 	-- Step 9: Ursangous
-	["Ursangous"] = "Топтыжень",
-	-- {area:415} Astranaar · {area:418} The Ruins of Stardust · {area:421} Mystral Lake
-	["Follow the main road east past {area:415} (Alliance: keep to the road). Ursangous, a big grizzly, roams the {area:418} south of the road, west of {area:421}. His paw starts the next hunt quest."] = "Идите по главной дороге на восток мимо места {area:415} (Альянс: держитесь дороги). Топтыжень, большой медведь-гризли, бродит здесь: {area:418} – к югу от дороги, к западу от места {area:421}. Его лапа начинает следующее охотничье задание.",
+	-- {area:415} Astranaar · {npc:12678} Ursangous · {area:418} Ruins of Stardust · {area:421} Mystral Lake
+	["Follow the main road east past {area:415} (Alliance: keep to the road). {npc:12678}, a big grizzly, roams the {area:418} south of the road, west of {area:421}. His paw starts the next hunt quest."] = "",
 
-	-- Step 10: The Ruins of Stardust fountain
-	-- {area:418} The Ruins of Stardust
+	-- Step 10: Ruins of Stardust fountain
+	-- {area:418} Ruins of Stardust
 	["{area:418} fountain"] = "Фонтан: {area:418}",
-	-- {area:418} The Ruins of Stardust · {item:7767} Empty Blue Waterskin
+	-- {area:418} Ruins of Stardust · {item:7767} Empty Blue Waterskin
 	["The fountain stands in the middle of the {area:418}: use the {item:7767} there."] = "Фонтан стоит посреди места {area:418}: используйте там {item:7767}.",
 
 	-- Step 11: Alonso
@@ -58,9 +57,8 @@ return {
 	["{npc:210995}, a Forever addition, stands on the west shore of {area:421} with three quick Dragonslayer quests."] = "{npc:210995}, добавленный в Forever, стоит на западном берегу ({area:421}) с тремя быстрыми заданиями драконоборцев.",
 
 	-- Step 12: Tideress
-	["Tideress"] = "Приливница",
-	-- {area:421} Mystral Lake · {item:16408} Befouled Water Globe
-	["Tideress, a corrupted water elemental, drifts in {area:421}. Her {item:16408} starts a quest for Splintertree."] = "Приливница, оскверненная водная элементаль, плавает здесь: {area:421}. Ее {item:16408} начинает задание для заставы Расщепленного Дерева.",
+	-- {npc:12759} Tideress · {area:421} Mystral Lake · {item:16408} Befouled Water Globe
+	["{npc:12759}, a corrupted water elemental, drifts in {area:421}. Her {item:16408} starts a quest for Splintertree."] = "",
 
 	-- Step 13: King of the Foulweald
 	-- {area:421} Mystral Lake · {item:16972} Karang's Banner · {object:178206} Foulweald Totem Mound · {npc:12918} Chief Murgut
@@ -81,17 +79,16 @@ return {
 	["{npc:12718}: only if you carry the manual pages"] = "{npc:12718}: только если у вас есть страницы руководства",
 
 	-- Step 17: Sharptalon
-	["Sharptalon"] = "Острокоготь",
-	["Sharptalon, a big nightsaber, prowls the woods south-east of the Warsong lumber camp. Her claw starts the next hunt quest."] = "Острокоготь, большая ночная саблезубая кошка, рыщет в лесу к юго-востоку от Лесозаготовок Песни Войны. Ее коготь начинает следующее охотничье задание.",
+	-- {npc:12676} Sharptalon
+	["{npc:12676}, a big nightsaber, prowls the woods south-east of the Warsong lumber camp. Her claw starts the next hunt quest."] = "",
 
 	-- Step 18: Felmusk satyrs
 	["Felmusk satyrs"] = "Сатиры из племени Мускуса Скверны",
 	["North-west of Splintertree, the Felmusk satyrs camp in the woods. Every satyr can drop horns."] = "К северо-западу от заставы Расщепленного Дерева в лесу стоит лагерь сатиров из племени Мускуса Скверны. Рога могут упасть с любого сатира.",
 
 	-- Step 19: Shadumbra
-	["Shadumbra"] = "Тенумбра",
-	-- {area:426} Raynewood Retreat
-	["Shadumbra, a shadow panther, stalks the woods around {area:426}, west of the Felmusk camp. Her head starts the next hunt quest."] = "Тенумбра, теневая пантера, рыщет в лесу вокруг места {area:426}, к западу от лагеря сатиров. Ее голова начинает следующее охотничье задание.",
+	-- {npc:12677} Shadumbra · {area:426} Raynewood Retreat
+	["{npc:12677}, a shadow panther, stalks the woods around {area:426}, west of the Felmusk camp. Her head starts the next hunt quest."] = "",
 
 	-- Step 20: Mystral Lake
 	-- {area:421} Mystral Lake
@@ -127,13 +124,15 @@ return {
 	["Back south to the camp, then up into {area:1638} for the flight to {area:378}."] = "Назад на юг к лагерю, затем наверх: {area:1638} – для полета в {area:378}.",
 
 	-- Step 27: Brine
-	-- {area:1638} Thunder Bluff · {area:378} Camp Taurajo · {npc:5899} Brine · {area:1718} The Great Lift
+	-- {area:1638} Thunder Bluff · {area:378} Camp Taurajo · {npc:5899} Brine · {area:1718} Great Lift
 	["Fly from {area:1638} to {area:378}. {npc:5899}'s hut stands on the ridge above the quilboar watering hole south of the camp, on the road to the {area:1718}."] = "Летите из места {area:1638}: {area:378}. Хижина: {npc:5899} – на гребне над водопоем свинобразов к югу от лагеря, на дороге к месту {area:1718}.",
 	-- {npc:5901} Islen Waterseer · {area:392} Ratchet
 	["for {npc:5901}, south of {area:392}: next guide"] = "для NPC {npc:5901}, к югу от поселения {area:392}: следующий гайд",
 
 	-- Step 28: The Great Lift
-	-- {area:1638} Thunder Bluff · {area:378} Camp Taurajo · {area:1718} The Great Lift · {zone:1413} The Barrens
+	-- {area:1718} Great Lift
+	["The {area:1718}"] = "",
+	-- {area:1638} Thunder Bluff · {area:378} Camp Taurajo · {area:1718} Great Lift · {zone:1413} Barrens
 	["Fly from {area:1638} to {area:378} and take the road south to the {area:1718} at the bottom of the {zone:1413}."] = "Летите из места {area:1638}: {area:378} – и идите по дороге на юг: {area:1718}, в самом низу зоны {zone:1413}.",
 	-- {npc:10079} Brave Moonhorn
 	["{npc:10079}, at the top of the lift"] = "{npc:10079}, наверху у подъемника",
@@ -213,4 +212,14 @@ return {
 	-- Step 47: Freewind Post
 	-- {zone:1454} Orgrimmar
 	["The next guide flies on from here to {zone:1454}."] = "Отсюда следующий гайд летит в {zone:1454}.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Follow the main road east past {area:415} (Alliance: keep to the road). Ursangous, a big grizzly, roams the {area:418} south of the road, west of {area:421}. His paw starts the next hunt quest."] = "Идите по главной дороге на восток мимо места {area:415} (Альянс: держитесь дороги). Топтыжень, большой медведь-гризли, бродит здесь: {area:418} – к югу от дороги, к западу от места {area:421}. Его лапа начинает следующее охотничье задание.",
+	-- ["Shadumbra"] = "Тенумбра",
+	-- ["Shadumbra, a shadow panther, stalks the woods around {area:426}, west of the Felmusk camp. Her head starts the next hunt quest."] = "Тенумбра, теневая пантера, рыщет в лесу вокруг места {area:426}, к западу от лагеря сатиров. Ее голова начинает следующее охотничье задание.",
+	-- ["Sharptalon"] = "Острокоготь",
+	-- ["Sharptalon, a big nightsaber, prowls the woods south-east of the Warsong lumber camp. Her claw starts the next hunt quest."] = "Острокоготь, большая ночная саблезубая кошка, рыщет в лесу к юго-востоку от Лесозаготовок Песни Войны. Ее коготь начинает следующее охотничье задание.",
+	-- ["Tideress"] = "Приливница",
+	-- ["Tideress, a corrupted water elemental, drifts in {area:421}. Her {item:16408} starts a quest for Splintertree."] = "Приливница, оскверненная водная элементаль, плавает здесь: {area:421}. Ее {item:16408} начинает задание для заставы Расщепленного Дерева.",
+	-- ["Ursangous"] = "Топтыжень",
 }

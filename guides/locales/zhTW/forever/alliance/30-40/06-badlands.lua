@@ -37,17 +37,17 @@ return {
 	["The skeleton's next task, Murdaloc, waits until the later {zone:1418} guide at 43."] = "骷髏的下一個任務「莫達洛克」要等到43級的{zone:1418}指南再做。",
 
 	-- Step 8: Valley of Fangs
-	-- {npc:4454} Fizzle Brassbolts · {area:439} The Shimmering Flats · {zone:1446} Tanaris
+	-- {npc:4454} Fizzle Brassbolts · {area:439} Shimmering Flats · {zone:1446} Tanaris
 	["for {npc:4454} in the {area:439}: the {zone:1446} guide crosses them at 45, keep it"] = "給{area:439}的{npc:4454}：{zone:1446}指南會在45級時經過那裡，保留此任務",
 
 	-- Step 9: Lotwil Veriatus
-	-- {area:1878} The Dustbowl
+	-- {area:1878} Dustbowl
 	["Ride west into the {area:1878}; Lotwil works by his machines in the middle of it."] = "向西騎進{area:1878}；魯特維爾在中央的機器旁工作。",
 
 	-- Step 10: Lesser Rock Elementals
 	-- plural, as words: Lesser Rock Elementals = {npc:2735} Lesser Rock Elemental
 	["Lesser Rock Elementals"] = "次級石元素",
-	-- {area:1878} The Dustbowl
+	-- {area:1878} Dustbowl
 	-- plural, as words: Lesser Rock Elementals = {npc:2735} Lesser Rock Elemental
 	["The Lesser Rock Elementals wander the {area:1878} west of Lotwil."] = "次級石元素在魯特維爾西邊的{area:1878}遊蕩。",
 

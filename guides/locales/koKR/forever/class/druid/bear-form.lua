@@ -12,8 +12,8 @@ return {
 	["Your tanking form: Forever no longer trains {spell:5487}, these quests give it. Opens {area:493} too."] = "방어 전담 변신: Forever에서는 더 이상 {spell:5487}을(를) 훈련으로 배울 수 없고, 이 퀘스트들로 얻습니다. {area:493}도 열립니다.",
 
 	-- Step 1: Heeding the Call
-	-- {npc:3602} Kal · {area:186} Dolanaar · {zone:1457} Darnassus · {zone:1453} Stormwind City · {npc:4217} Mathrengyl Bearwalker
-	["At 10 a druid's call reaches you: {npc:3602} in {area:186}, Denatharion in {zone:1457} or Theridran in {zone:1453}. Any one of them sends you to {npc:4217} in the Cenarion Enclave of {zone:1457}."] = "10레벨이 되면 드루이드의 부름이 옵니다: {area:186}의 {npc:3602}, {zone:1457}의 데나타리온, {zone:1453}의 테리드란. 누구든 {zone:1457} 세나리온 자치령의 {npc:4217}에게 보냅니다.",
+	-- {npc:3602} Kal · {area:186} Dolanaar · {zone:1457} Darnassus · {zone:1453} Stormwind · {npc:4217} Mathrengyl Bearwalker
+	["At 10 a druid's call reaches you: {npc:3602} in {area:186}, Denatharion in {zone:1457} or Theridran in {zone:1453}. Any one of them sends you to {npc:4217} in the Cenarion Enclave of Darnassus."] = "",
 	-- {npc:3602} Kal · {area:186} Dolanaar
 	["{npc:3602}, {area:186}; Denatharion's and Theridran's letters lead to the same place"] = "{npc:3602}, {area:186}. 데나타리온과 테리드란의 편지도 같은 곳으로 안내합니다",
 
@@ -55,7 +55,7 @@ return {
 	["Speak with the {quest:5930}"] = "{quest:5930}와(과) 대화하세요",
 
 	-- Step 11: The Moonkin Stone
-	-- {object:177525} Moonkin Stone · {zone:1412} Mulgore · {zone:1413} The Barrens · {item:15710} Cenarion Lunardust · {npc:12144} Lunaclaw Spirit
+	-- {object:177525} Moonkin Stone · {zone:1412} Mulgore · {zone:1413} Barrens · {item:15710} Cenarion Lunardust · {npc:12144} Lunaclaw Spirit
 	["The {object:177525} stands in the pass from {zone:1412} into the {zone:1413}. Use the {item:15710} there, defeat Lunaclaw and speak to the {npc:12144}."] = "{object:177525}은(는) {zone:1412}에서 {zone:1413}(으)로 이어지는 고갯길에 있습니다. 그곳에서 {item:15710}을(를) 사용하고, 초승달발톱을 쓰러뜨린 뒤 {npc:12144}와(과) 대화하세요.",
 
 	-- Step 12: Body and Heart
@@ -103,11 +103,13 @@ return {
 	["{npc:270459} stands beside {npc:259084} and the Skyborne Portal, west of {area:279}, where the skycutter from {zone:2521} lands. {npc:2543} offers the same quest."] = "{npc:270459}은(는) {area:279} 서쪽, {zone:2521}에서 오는 비행정이 내리는 곳에 {npc:259084}, 스카이본 차원문과 함께 있습니다. {npc:2543}도 같은 퀘스트를 줍니다.",
 
 	-- Step 21: Sheldras Moontree
-	-- {zone:1453} Stormwind City · {npc:5504} Sheldras Moontree
+	-- {zone:1453} Stormwind · {npc:5504} Sheldras Moontree
 	["The Skyborne Portal takes you to {zone:1453}. {npc:5504} is the city's druid trainer."] = "스카이본 차원문은 {zone:1453}(으)로 연결됩니다. {npc:5504}은(는) 이 도시의 드루이드 상급자입니다.",
 
 	-- Step 22: Dendrite Starblaze
 	-- {spell:18960} Teleport: Moonglade · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {area:493} Moonglade
 	["Cast {spell:18960}. {npc:11802} is in {area:2361}. Learn the {area:493} flight path while you are here."] = "{spell:18960}을(를) 시전하세요. {npc:11802}은(는) {area:2361}에 있습니다. 여기 있는 동안 {area:493} 비행 경로를 배우세요.",
 
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["At 10 a druid's call reaches you: {npc:3602} in {area:186}, Denatharion in {zone:1457} or Theridran in {zone:1453}. Any one of them sends you to {npc:4217} in the Cenarion Enclave of {zone:1457}."] = "10레벨이 되면 드루이드의 부름이 옵니다: {area:186}의 {npc:3602}, {zone:1457}의 데나타리온, {zone:1453}의 테리드란. 누구든 {zone:1457} 세나리온 자치령의 {npc:4217}에게 보냅니다.",
 }

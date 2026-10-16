@@ -8,8 +8,8 @@ return {
 	-- Guide
 	["A wand of your school for the 30s: frost, arcane or fire."] = "Жезл вашей школы на 30+ уровне: лед, тайная магия или огонь.",
 
-	-- Step 1: Journey to the Marsh (Stormwind City)
-	-- {npc:5497} Jennea Cannon · {zone:1453} Stormwind City · {object:2101} Mage Quarter · {npc:6546} Tabetha · {zone:1455} Ironforge
+	-- Step 1: Journey to the Marsh (Stormwind)
+	-- {npc:5497} Jennea Cannon · {zone:1453} Stormwind · {object:2101} Mage Quarter · {npc:6546} Tabetha · {zone:1455} Ironforge
 	["{npc:5497} in the Wizard's Sanctum, {zone:1453}'s {object:2101}, sends you to {npc:6546}; Bink in {zone:1455} gives the same quest."] = "{npc:5497} в святилище магов ({zone:1453}, {object:2101}) отправляет вас к NPC {npc:6546}; Бинк ({zone:1455}) дает то же задание.",
 
 	-- Step 2: Journey to the Marsh (Orgrimmar)
@@ -21,7 +21,7 @@ return {
 	["{npc:6546}, a hermit, lives in a cottage deep in the marsh west of Theramore, just north of the {area:508}."] = "{npc:6546}, отшельница, живет в домике в глубине болота к западу от Терамора, чуть севернее: {area:508}.",
 
 	-- Step 4: Magus Tirth
-	-- {npc:6548} Magus Tirth · {area:439} The Shimmering Flats · {zone:1441} Thousand Needles
+	-- {npc:6548} Magus Tirth · {area:439} Shimmering Flats · {zone:1441} Thousand Needles
 	["{npc:6548} spends his days at the race track in the {area:439}, south-east {zone:1441}."] = "{npc:6548} проводит дни на гоночной трассе: {area:439}, юго-восток зоны {zone:1441}.",
 
 	-- Step 5: "Plucky" Johnson
@@ -47,5 +47,4 @@ return {
 	-- Step 9: Tabetha's ritual
 	-- {npc:6546} Tabetha
 	["{npc:6546}'s ritual"] = "Ритуал: {npc:6546}",
-
 }

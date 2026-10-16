@@ -6,7 +6,7 @@
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Feathermoon Stronghold
-	-- {area:608} Nijel's Point · {zone:1443} Desolace · {zone:1444} Feralas · {area:1108} The Forgotten Coast · {area:1120} Sardor Isle
+	-- {area:608} Nijel's Point · {zone:1443} Desolace · {zone:1444} Feralas · {area:1108} Forgotten Coast · {area:1120} Sardor Isle
 	["From Theramore, fly to {area:608} and ride south out of {zone:1443} into {zone:1444}; the road leads west to the {area:1108} dock, where the boat crosses to Feathermoon on {area:1120}."] = "从塞拉摩岛飞往{area:608}，向南骑出{zone:1443}进入{zone:1444}；道路向西通往{area:1108}的码头，船会渡海前往{area:1120}的羽月要塞。",
 	-- {npc:7877} Latronicus Moonspear
 	["{npc:7877}, at the top of the stronghold"] = "{npc:7877}，在要塞顶层",
@@ -29,7 +29,7 @@ return {
 
 	-- Step 6: The courier's boat
 	["The courier's boat"] = "信使的船",
-	-- {area:1108} The Forgotten Coast
+	-- {area:1108} Forgotten Coast
 	["Take the boat to the {area:1108} and follow the shore south to the wrecked row boat on the beach."] = "乘船前往{area:1108}，沿海岸向南走到海滩上失事的小船。",
 
 	-- Step 7: Gordunni ogres
@@ -41,7 +41,7 @@ return {
 	["Ride north into the yeti valley. Every Feral Scar yeti can drop a thick hide; {npc:5346} (level 48) prowls the middle."] = "向北骑进雪人山谷。每个深痕雪人都可能掉落厚毛皮；{npc:5346}（48级）在中间潜行。",
 
 	-- Step 9: Feathermoon Stronghold
-	-- {area:1108} The Forgotten Coast
+	-- {area:1108} Forgotten Coast
 	["Ride back north-west to the {area:1108} dock and take the boat to the island."] = "向西北骑回{area:1108}的码头，乘船前往岛上。",
 
 	-- Step 10: Lord Shalzaru
@@ -54,7 +54,7 @@ return {
 
 	-- Step 12: Grimtotem camp
 	["Grimtotem camp"] = "恐怖图腾营地",
-	-- {area:1108} The Forgotten Coast · {zone:1444} Feralas · {npc:7956} Kindal Moonweaver
+	-- {area:1108} Forgotten Coast · {zone:1444} Feralas · {npc:7956} Kindal Moonweaver
 	-- plural, as words: Sprite Darters = {npc:5278} Sprite Darter
 	["Boat to the {area:1108} and ride east across {zone:1444} to the Grimtotem camp north of the road. {npc:7956} waits outside it; free the Sprite Darters from the pen in the middle and keep Kindal and at least six of them alive."] = "乘船前往{area:1108}，向东骑过{zone:1444}，到道路北边的恐怖图腾营地。{npc:7956}在营地外等候；解救中间围栏里的{npc:5278}，保证辛达尔·月纹和至少六只精灵龙存活。",
 
@@ -102,18 +102,18 @@ return {
 	-- Step 22: Zul'Farrak instead of grinding
 	-- {area:978} Zul'Farrak
 	["{area:978} instead of grinding"] = "用{area:978}代替刷怪",
-	-- {area:978} Zul'Farrak · {zone:1446} Tanaris · {area:1108} The Forgotten Coast
+	-- {area:978} Zul'Farrak · {zone:1446} Tanaris · {area:1108} Forgotten Coast
 	["Running {area:978} instead of grinding gets you there faster in a group. The troll city lies in northern {zone:1446}, the next zone on the route; come back to Zorbin on the {area:1108} afterwards."] = "组队刷{area:978}代替刷怪升级更快。巨魔城市在{zone:1446}北部，也就是路线的下一个区域；之后回到{area:1108}找索尔宾·范达瑟。",
 
 	-- Step 23: Grind to 45
 	["Grind to 45"] = "刷到45级",
-	-- {area:1108} The Forgotten Coast · {area:1105} Feral Scar Vale
+	-- {area:1108} Forgotten Coast · {area:1105} Feral Scar Vale
 	["Boat to the {area:1108} and ride east into {area:1105}. Zorbin's quests on the coast need level 45."] = "乘船前往{area:1108}，向东骑进{area:1105}。索尔宾·范达瑟在海岸的任务需要45级。",
 	-- {npc:5292} Feral Scar Yeti · {area:1105} Feral Scar Vale · {zone:1444} Feralas
 	["grind on {npc:5292} at {area:1105}, {zone:1444}"] = "在{zone:1444}的{area:1105}刷{npc:5292}",
 
 	-- Step 24: Zorbin Fandazzle
-	-- {area:1108} The Forgotten Coast
+	-- {area:1108} Forgotten Coast
 	["Ride back to the {area:1108}; the goblin stands by the dock."] = "骑回{area:1108}；那个地精站在码头旁。",
 
 	-- Step 25: Giants and elementals
@@ -124,6 +124,6 @@ return {
 
 	-- Step 26: Zorbin Fandazzle
 	["Zorbin's refills are level 55: skip them."] = "索尔宾·范达瑟的补充任务是55级：跳过。",
-	-- {area:1108} The Forgotten Coast · {zone:1446} Tanaris
+	-- {area:1108} Forgotten Coast · {zone:1446} Tanaris
 	["You end at the {area:1108} dock: the {zone:1446} guide starts with the trip east from here."] = "你在{area:1108}的码头结束：{zone:1446}指南从这里向东出发开始。",
 }

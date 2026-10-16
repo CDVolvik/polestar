@@ -10,8 +10,8 @@ return {
 	["Experience at 50 through {zone:1447} and the {area:1417}; Forever removed the Classic item choice."] = "Erfahrung mit Stufe 50 durch {zone:1447} und den {area:1417}; Forever hat die Gegenstandsauswahl aus Classic entfernt.",
 	["Experience"] = "Erfahrung",
 
-	-- Step 1: Magecraft (Stormwind City)
-	-- {npc:331} Maginor Dumas · {zone:1453} Stormwind City · {object:2101} Mage Quarter · {zone:1455} Ironforge
+	-- Step 1: Magecraft (Stormwind)
+	-- {npc:331} Maginor Dumas · {zone:1453} Stormwind · {object:2101} Mage Quarter · {zone:1455} Ironforge
 	["{npc:331}, the Master Mage, stands in the Wizard's Sanctum in {zone:1453}'s {object:2101}; Dink in {zone:1455} gives the same quest."] = "{npc:331}, der Meistermagier, steht im Magiersanktum im Gebiet {object:2101} in {zone:1453}; Dink in {zone:1455} gibt dieselbe Quest.",
 
 	-- Step 2: Magecraft (Orgrimmar)
@@ -46,7 +46,7 @@ return {
 
 	-- Step 8: Morphaz
 	["Morphaz"] = "Morphaz",
-	-- {area:1477} The Temple of Atal'Hakkar · {area:1417} Sunken Temple · {area:74} Pool of Tears · {item:20085} Arcane Shard
+	-- {area:1477} Temple of Atal'Hakkar · {area:1417} Sunken Temple · {area:74} Pool of Tears · {item:20085} Arcane Shard
 	["Morphaz, a green drake, waits deep in the {area:1477}, the {area:1417} in the {area:74}: a group of five, level 50-54. Kill him for the {item:20085}."] = "Morphaz, ein grüner Drache, wartet tief im Gebiet {area:1477}, dem {area:1417} im {area:74}: eine Gruppe aus fünf, Stufe 50-54. Töte ihn für den {item:20085}.",
 	-- {item:20085} Arcane Shard
 	["{item:20085}: Morphaz"] = "{item:20085}: Morphaz",

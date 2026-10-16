@@ -27,8 +27,8 @@ return {
 	["A new {item:279996}, for the four titan watchers around the {zone:1437}"] = "新的{item:279996}，用於{zone:1437}周圍的四個泰坦守望者",
 
 	-- Step 5: The Green Belt
-	-- {area:1025} The Green Belt · {npc:270637} Howin Kindfeather · {npc:1244} Rethiel the Greenwarden
-	["Follow the road north-east into the {area:1025}: {npc:270637} camps beside it, {npc:1244} a short way east."] = "沿著道路向東北進入{area:1025}：{npc:270637}在路旁紮營，{npc:1244}在東邊不遠處。",
+	-- {npc:270637} Howin Kindfeather · {npc:1244} Rethiel the Greenwarden
+	["Follow the road north-east into the Green Belt: {npc:270637} camps beside it, {npc:1244} a short way east."] = "",
 	-- {npc:1244} Rethiel the Greenwarden · {quest:98283} Carnage
 	["{npc:1244}: {quest:98283}, an elite raptor"] = "{npc:1244}：{quest:98283}，一隻精英迅猛龍",
 
@@ -41,27 +41,27 @@ return {
 	["{object:671518}: for {npc:2104}"] = "{object:671518}：給{npc:2104}",
 
 	-- Step 7: Golm
-	["Golm"] = "高爾姆",
-	-- {item:279996} Goaz Stone
-	["Golm stands in the south-eastern hills: use the {item:279996} beside it."] = "高爾姆站在東南方的山丘上：在它旁邊使用{item:279996}。",
+	-- {npc:271462} Golm · {item:279996} Goaz Stone
+	["{npc:271462} stands in the south-eastern hills: use the {item:279996} beside it."] = "",
 
 	-- Step 8: Dragonmaw Gates
-	-- {area:1038} Dragonmaw Gates · {npc:271373} Subdued Dragonspawn · {item:279996} Goaz Stone
-	["North-east to the {area:1038}: the {npc:271373} are held there, and Ados stands at the gates (use the {item:279996})."] = "向東北前往{area:1038}：{npc:271373}被關在那裡，阿度斯站在大門旁（使用{item:279996}）。",
+	-- {area:1038} Dragonmaw Gates · {npc:271373} Subdued Dragonspawn · {npc:271338} Ados · {item:279996} Goaz Stone
+	["North-east to the {area:1038}: the {npc:271373} are held there, and {npc:271338} stands at the gates (use the {item:279996})."] = "",
 
 	-- Step 9: Whelps, raptors and Neru
-	["Whelps, raptors and Neru"] = "雛龍、迅猛龍與奈爾魯",
-	-- {area:1025} The Green Belt · {item:279996} Goaz Stone · {quest:98283} Carnage
+	-- {npc:271458} Neru
+	["Whelps, raptors and {npc:271458}"] = "",
+	-- {npc:271458} Neru · {item:279996} Goaz Stone · {quest:98283} Carnage
 	-- plural, as words: Maddened Rotclaws = {npc:271334} Maddened Rotclaw
-	["Red whelps fill the hills west of the gates, Maddened Rotclaws the {area:1025}, Razormaws the northern slopes; Neru stands in the north-east (use the {item:279996}).\n{quest:98283} is elite: grouping up is advised."] = "紅色雛龍遍布大門西邊的山丘，{npc:271334}在{area:1025}，刺喉龍在北面山坡；奈爾魯站在東北方（使用{item:279996}）。\n{quest:98283}是精英：建議組隊。",
+	["Red whelps fill the hills west of the gates, Maddened Rotclaws the Green Belt, Razormaws the northern slopes; {npc:271458} stands in the north-east (use the {item:279996}).\n{quest:98283} is elite: grouping up is advised."] = "",
 
 	-- Step 10: The Green Belt
 	-- {zone:1455} Ironforge
 	["For King Magni in {zone:1455}, at the end of this guide"] = "給{zone:1455}的國王麥格尼·銅鬚，在本指南結尾",
 
 	-- Step 11: Dun Modr
-	-- {area:205} Dun Modr · {item:279996} Goaz Stone · {npc:271481} Captive Fire Elemental · {npc:1072} Roggo Harlbarrow
-	["North along the road to {area:205}. Modr stands in the ruins (use the {item:279996}); the {npc:271481} is held on the west side: lead it out to {npc:1072}."] = "沿著道路向北前往{area:205}。莫德爾站在遺跡中（使用{item:279996}）；{npc:271481}被關在西側：把它帶出去交給{npc:1072}。",
+	-- {area:205} Dun Modr · {npc:271460} Modr · {item:279996} Goaz Stone · {npc:271481} Captive Fire Elemental · {npc:1072} Roggo Harlbarrow
+	["North along the road to {area:205}. {npc:271460} stands in the ruins (use the {item:279996}); the {npc:271481} is held on the west side: lead it out to {npc:1072}."] = "",
 
 	-- Step 12: The Villards
 	["The Villards"] = "韋拉德一家",
@@ -138,9 +138,8 @@ return {
 	-- {area:287} Hillsbrad
 	["{area:287} town hall"] = "{area:287}市政廳",
 
-	-- Step 28: Fly to Stormwind City
-	-- {zone:1453} Stormwind City
-	["Fly to {zone:1453}"] = "飛往{zone:1453}",
+	-- Step 28: Fly to Stormwind
+	["Fly to Stormwind"] = "",
 	-- {npc:2432} Darla Harris · {area:271} Southshore
 	["From {npc:2432} in {area:271}"] = "來自{area:271}的{npc:2432}",
 
@@ -153,25 +152,36 @@ return {
 	["Dashel waits in the Pig and Whistle tavern in {object:2100}; he and his two thugs fight you, but stop once beaten."] = "達舍爾在{object:2100}的酒館裡等候；他和他的兩個打手會跟你打，但被打敗後就會停手。",
 
 	-- Step 31: The Islander
-	-- {npc:5479} Wu Shen · {object:2100} Old Town · {npc:6236} Klannoc Macleod · {area:720} Fray Island · {zone:1413} The Barrens · {area:392} Ratchet
+	-- {npc:5479} Wu Shen · {object:2100} Old Town · {npc:6236} Klannoc Macleod · {area:720} Fray Island · {zone:1413} Barrens · {area:392} Ratchet
 	["{npc:5479} trains warriors in {object:2100}, beside the Pig and Whistle. {npc:6236} waits on {area:720} in the {zone:1413}, on the way to {area:392} much later (40-50/01)."] = "{npc:5479}在{object:2100}的酒館旁訓練戰士。{npc:6236}在{zone:1413}的{area:720}等候，要很久以後前往{area:392}的途中才會經過（40-50/01）。",
 
 	-- Step 33: Cathedral of Light
 	["Cathedral of Light"] = "光明大教堂",
 
 	-- Step 34: Mage Quarter
-	-- {npc:2708} Archmage Malin · {object:2164} The Slaughtered Lamb · {npc:211033} Garion Wendell · {npc:5081} Connor Rivers · {object:2101} Mage Quarter
+	-- {npc:2708} Archmage Malin · {object:2164} Slaughtered Lamb · {npc:211033} Garion Wendell · {npc:5081} Connor Rivers · {object:2101} Mage Quarter
 	["{npc:2708} is in the {object:2164}; {npc:211033} near the canal; {npc:5081} south of the {object:2101}."] = "{npc:2708}在{object:2164}；{npc:211033}在運河附近；{npc:5081}在{object:2101}南邊。",
 
 	-- Step 36: Druid training
 	["Druid training"] = "德魯伊訓練",
-	-- {zone:1455} Ironforge · {npc:5504} Sheldras Moontree · {zone:1453} Stormwind City
-	["{zone:1455} has no druid trainer: train with {npc:5504} in {zone:1453} before the tram."] = "{zone:1455}沒有德魯伊訓練師：搭地鐵前先在{zone:1453}向{npc:5504}學習。",
+	-- {zone:1455} Ironforge · {npc:5504} Sheldras Moontree
+	["{zone:1455} has no druid trainer: train with {npc:5504} in Stormwind before the tram."] = "",
 
 	-- Step 37: Deeprun Tram
 	-- {area:2257} Deeprun Tram · {object:28027} Dwarven District · {zone:1455} Ironforge
 	["Take the {area:2257} from the {object:28027} to {zone:1455}."] = "從{object:28027}搭乘{area:2257}前往{zone:1455}。",
-	-- {npc:2784} King Magni Bronzebeard · {object:171709} The High Seat
+	-- {npc:2784} King Magni Bronzebeard · {object:171709} High Seat
 	["{npc:2784}, the {object:171709}"] = "{npc:2784}，{object:171709}",
 	["Level 30 and 32 spells"] = "30級和32級法術",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Fly to {zone:1453}"] = "飛往{zone:1453}",
+	-- ["Follow the road north-east into the {area:1025}: {npc:270637} camps beside it, {npc:1244} a short way east."] = "沿著道路向東北進入{area:1025}：{npc:270637}在路旁紮營，{npc:1244}在東邊不遠處。",
+	-- ["Golm"] = "高爾姆",
+	-- ["Golm stands in the south-eastern hills: use the {item:279996} beside it."] = "高爾姆站在東南方的山丘上：在它旁邊使用{item:279996}。",
+	-- ["North along the road to {area:205}. Modr stands in the ruins (use the {item:279996}); the {npc:271481} is held on the west side: lead it out to {npc:1072}."] = "沿著道路向北前往{area:205}。莫德爾站在遺跡中（使用{item:279996}）；{npc:271481}被關在西側：把它帶出去交給{npc:1072}。",
+	-- ["North-east to the {area:1038}: the {npc:271373} are held there, and Ados stands at the gates (use the {item:279996})."] = "向東北前往{area:1038}：{npc:271373}被關在那裡，阿度斯站在大門旁（使用{item:279996}）。",
+	-- ["Red whelps fill the hills west of the gates, Maddened Rotclaws the {area:1025}, Razormaws the northern slopes; Neru stands in the north-east (use the {item:279996}).\n{quest:98283} is elite: grouping up is advised."] = "紅色雛龍遍布大門西邊的山丘，{npc:271334}在{area:1025}，刺喉龍在北面山坡；奈爾魯站在東北方（使用{item:279996}）。\n{quest:98283}是精英：建議組隊。",
+	-- ["Whelps, raptors and Neru"] = "雛龍、迅猛龍與奈爾魯",
+	-- ["{zone:1455} has no druid trainer: train with {npc:5504} in {zone:1453} before the tram."] = "{zone:1455}沒有德魯伊訓練師：搭地鐵前先在{zone:1453}向{npc:5504}學習。",
 }

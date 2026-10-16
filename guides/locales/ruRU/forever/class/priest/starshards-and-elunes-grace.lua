@@ -16,6 +16,6 @@ return {
 	["At 10, go to {npc:11401} in the Temple of the Moon. Priest trainers elsewhere ({npc:3600} in {area:186}, {npc:377} in {area:87}, {npc:1226} in {area:131}) send you to her with {quest:5628}."] = "На 10-м уровне идите в Храм Луны: {npc:11401}. Учителя жрецов в других местах ({npc:3600} – {area:186}, {npc:377} – {area:87}, {npc:1226} – {area:131}) отправляют вас к ней с заданием «{quest:5628}».",
 
 	-- Step 2: Elune's Grace
-	-- {npc:11401} Priestess Alathea · {quest:5672} Elune's Grace · {npc:376} High Priestess Laurena · {zone:1453} Stormwind City · {npc:11406} High Priest Rohan · {zone:1455} Ironforge
+	-- {npc:11401} Priestess Alathea · {quest:5672} Elune's Grace · {npc:376} High Priestess Laurena · {zone:1453} Stormwind · {npc:11406} High Priest Rohan · {zone:1455} Ironforge
 	["At 20, {npc:11401} teaches {quest:5672}. {npc:376} in {zone:1453} and {npc:11406} in {zone:1455} send you to her with a quest of the same name."] = "На 20-м уровне {npc:11401} обучает: {quest:5672}. {npc:376} ({zone:1453}) и {npc:11406} ({zone:1455}) отправляют вас к ней с одноименным заданием.",
 }

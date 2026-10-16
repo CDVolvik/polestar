@@ -22,11 +22,11 @@ return {
 	["At the {area:2362}"] = "У святилища: {area:2362}",
 
 	-- Step 3: Half Pendant of Aquatic Agility
-	-- {area:2361} Nighthaven · {area:442} Auberdine · {object:177790} Strange Lockbox · {area:443} Ruins of Mathystra
-	["Fly from {area:2361} to {area:442}. The {object:177790} lies under the water off the north coast, west of the {area:443}."] = "Летите отсюда: {area:2361}, сюда: {area:442}. {object:177790} лежит под водой у северного побережья, к западу от места {area:443}.",
+	-- {area:2361} Nighthaven · {area:442} Auberdine · {object:177792} Strange Lockbox · {area:443} Ruins of Mathystra
+	["Fly from {area:2361} to {area:442}. The {object:177792} lies under the water off the north coast, west of the {area:443}."] = "",
 
 	-- Step 4: Half Pendant of Aquatic Endurance
-	-- {area:442} Auberdine · {zone:1453} Stormwind City · {area:108} Sentinel Hill · {object:177790} Strange Lockbox
+	-- {area:442} Auberdine · {zone:1453} Stormwind · {area:108} Sentinel Hill · {object:177790} Strange Lockbox
 	["Take the boat from {area:442} to {zone:1453} and fly to {area:108}. Ride north-west to the coast: the {object:177790} lies on the sea floor off the shore."] = "Плывите на корабле из места {area:442} в город {zone:1453} и летите сюда: {area:108}. Скачите на северо-запад к побережью: {object:177790} лежит на морском дне недалеко от берега.",
 
 	-- Step 5: Pendant of the Sea Lion
@@ -49,15 +49,18 @@ return {
 	["Cast {spell:18960}. {npc:11802} is in {area:2361}. The Shrine Baubles lie on the bed of {area:656} and fade within minutes: swim one straight to the {area:2362} on the north-west shore, use it there and speak to {npc:11799}."] = "Примените {spell:18960}. {npc:11802} находится здесь: {area:2361}. Безделушки из святилища лежат на дне озера ({area:656}) и через несколько минут исчезают: плывите с одной прямо к святилищу на северо-западном берегу ({area:2362}), используйте ее там и поговорите: {npc:11799}.",
 
 	-- Step 9: Half Pendant of Aquatic Endurance
-	-- {npc:11798} Bunthen Plainswind · {zone:1456} Thunder Bluff · {zone:1454} Orgrimmar · {zone:1420} Tirisfal Glades · {zone:1421} Silverpine Forest · {zone:1458} Undercity · {object:177790} Strange Lockbox · {area:240} The Dead Field · {area:228} The Sepulcher
+	-- {npc:11798} Bunthen Plainswind · {zone:1456} Thunder Bluff · {zone:1454} Orgrimmar · {zone:1420} Tirisfal Glades · {zone:1421} Silverpine Forest · {zone:1458} Undercity · {object:177790} Strange Lockbox · {area:240} Dead Field · {area:228} Sepulcher
 	["Take {npc:11798}'s flight to {zone:1456}, fly to {zone:1454} and take the zeppelin to {zone:1420}; {zone:1421} is south of the {zone:1458}. The {object:177790} lies on the coast west of the {area:240}, north of the {area:228}."] = "Летите с помощью NPC {npc:11798} в город {zone:1456}, затем в город {zone:1454} и на дирижабле в зону {zone:1420}; зона {zone:1421} к югу от города {zone:1458}. {object:177790} лежит на побережье к западу от места {area:240}, к северу от места {area:228}.",
 
 	-- Step 10: Half Pendant of Aquatic Agility
-	-- {object:177790} Strange Lockbox · {area:382} The Sludge Fen · {area:380} The Crossroads
-	["The {object:177790} lies at the north edge of the {area:382}, by the Venture Co. tower, north of the {area:380}."] = "{object:177790} лежит на северной окраине места {area:382}, у башни Торговой компании, к северу от места {area:380}.",
+	-- {object:177792} Strange Lockbox · {area:382} Sludge Fen · {area:380} Crossroads
+	["The {object:177792} lies at the north edge of the {area:382}, by the Venture Co. tower, north of the {area:380}."] = "",
 
 	-- Step 11: Pendant of the Sea Lion
 	-- {spell:18960} Teleport: Moonglade · {item:15885} Pendant of the Sea Lion · {area:2362} Shrine of Remulos · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {npc:11798} Bunthen Plainswind · {area:1638} Thunder Bluff
 	["Cast {spell:18960}. Join the two halves into the {item:15885} near the {area:2362}, on the north-west shore of the lake, then see {npc:11802} in {area:2361}. {npc:11798} flies druids to {area:1638}."] = "Примените {spell:18960}. Соедините две половинки, чтобы получить предмет {item:15885}, у святилища ({area:2362}) на северо-западном берегу озера, затем поговорите: {npc:11802} ({area:2361}). {npc:11798} отвозит друидов сюда: {area:1638}.",
 
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Fly from {area:2361} to {area:442}. The {object:177790} lies under the water off the north coast, west of the {area:443}."] = "Летите отсюда: {area:2361}, сюда: {area:442}. {object:177790} лежит под водой у северного побережья, к западу от места {area:443}.",
+	-- ["The {object:177790} lies at the north edge of the {area:382}, by the Venture Co. tower, north of the {area:380}."] = "{object:177790} лежит на северной окраине места {area:382}, у башни Торговой компании, к северу от места {area:380}.",
 }

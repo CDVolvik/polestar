@@ -23,8 +23,7 @@ return {
 	["{zone:1411} coast"] = "Побережье: {zone:1411}",
 
 	-- Step 6: Fishing: The Barrens (1-50)
-	-- {zone:1413} The Barrens
-	["{zone:1413} oasis"] = "{zone:1413}: оазис",
+	["Barrens oasis"] = "",
 
 	-- Step 7: Fishing: Tirisfal Glades (1-50)
 	["Vile Fin shore"] = "Берег Злобного Плавника",
@@ -86,7 +85,7 @@ return {
 	["Fish in the {area:2521} in {zone:1444} until you catch a {item:16967}; it only bites there."] = "Рыбачьте здесь: {area:2521} ({zone:1444}), пока не поймаете: {item:16967}; она клюет только там.",
 
 	-- Step 24: Savage Coast Blue Sailfin
-	-- {area:301} The Savage Coast · {zone:1434} Stranglethorn Vale · {item:16969} Savage Coast Blue Sailfin
+	-- {area:301} Savage Coast · {zone:1434} Stranglethorn Vale · {item:16969} Savage Coast Blue Sailfin
 	["Fish in the {area:301}, the north-west shore of {zone:1434} until you catch a {item:16969}; it only bites there."] = "Рыбачьте здесь: {area:301}, северо-западный берег зоны {zone:1434}, пока не поймаете: {item:16969}; она клюет только там.",
 
 	-- Step 25: Misty Reed Mahi Mahi
@@ -102,4 +101,7 @@ return {
 	["Fish the pools along the coast here (eels, snappers, wreckage) until skill 300. {area:35} sells bait and {item:6530} for a small fishing bonus."] = "Рыбачьте в косяках вдоль побережья (угри, луцианы, обломки) до навыка 300. В порту {area:35} продают наживку – {item:6530} – для небольшого бонуса к рыбной ловле.",
 	-- {area:35} Booty Bay
 	["{area:35} coast"] = "Побережье: {area:35}",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["{zone:1413} oasis"] = "{zone:1413}: оазис",
 }

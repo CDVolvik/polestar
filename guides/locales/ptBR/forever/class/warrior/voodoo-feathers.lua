@@ -10,7 +10,7 @@ return {
 	["Experience at 50, ending in the {area:1417}; Forever removed the Classic item choice."] = "Experiência no nível 50, terminando no {area:1417}; o Forever removeu o item à escolha do Classic.",
 	["Experience"] = "Experiência",
 
-	-- Step 1: A Troubled Spirit (Stormwind City)
+	-- Step 1: A Troubled Spirit (Stormwind)
 	-- {npc:5479} Wu Shen · {object:2100} Old Town · {npc:7572} Fallen Hero of the Horde · {zone:1435} Swamp of Sorrows
 	["At 50, {npc:5479} in {object:2100}, beside the Pig and Whistle, sends you to the {npc:7572} in the {zone:1435}."] = "No nível 50, {npc:5479}, em {object:2100}, ao lado da Taberna do Javatusco Saltitante, envia você ao {npc:7572} no {zone:1435}.",
 

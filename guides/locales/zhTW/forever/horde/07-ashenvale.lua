@@ -43,14 +43,13 @@ return {
 	["Back west to Zoram'gar before heading east for good."] = "在永久往東之前，先向西回到左拉姆加。",
 
 	-- Step 9: Ursangous
-	["Ursangous"] = "烏薩苟斯",
-	-- {area:415} Astranaar · {area:418} The Ruins of Stardust · {area:421} Mystral Lake
-	["Follow the main road east past {area:415} (Alliance: keep to the road). Ursangous, a big grizzly, roams the {area:418} south of the road, west of {area:421}. His paw starts the next hunt quest."] = "沿著主要道路向東經過{area:415}（聯盟據點：沿著道路走）。烏薩苟斯是一頭大灰熊，在道路南邊、{area:421}西邊的{area:418}遊蕩。牠的爪子會開始下一個狩獵任務。",
+	-- {area:415} Astranaar · {npc:12678} Ursangous · {area:418} Ruins of Stardust · {area:421} Mystral Lake
+	["Follow the main road east past {area:415} (Alliance: keep to the road). {npc:12678}, a big grizzly, roams the {area:418} south of the road, west of {area:421}. His paw starts the next hunt quest."] = "",
 
-	-- Step 10: The Ruins of Stardust fountain
-	-- {area:418} The Ruins of Stardust
+	-- Step 10: Ruins of Stardust fountain
+	-- {area:418} Ruins of Stardust
 	["{area:418} fountain"] = "{area:418}的噴泉",
-	-- {area:418} The Ruins of Stardust · {item:7767} Empty Blue Waterskin
+	-- {area:418} Ruins of Stardust · {item:7767} Empty Blue Waterskin
 	["The fountain stands in the middle of the {area:418}: use the {item:7767} there."] = "噴泉位於{area:418}中央：在那裡使用{item:7767}。",
 
 	-- Step 11: Alonso
@@ -58,9 +57,8 @@ return {
 	["{npc:210995}, a Forever addition, stands on the west shore of {area:421} with three quick Dragonslayer quests."] = "{npc:210995}是 Forever 新增的角色，站在{area:421}西岸，有三個快速的屠龍者任務。",
 
 	-- Step 12: Tideress
-	["Tideress"] = "泰德雷斯",
-	-- {area:421} Mystral Lake · {item:16408} Befouled Water Globe
-	["Tideress, a corrupted water elemental, drifts in {area:421}. Her {item:16408} starts a quest for Splintertree."] = "泰德雷斯是一隻被腐化的水元素，在{area:421}中漂浮。她的{item:16408}會開始一個交給碎木崗哨的任務。",
+	-- {npc:12759} Tideress · {area:421} Mystral Lake · {item:16408} Befouled Water Globe
+	["{npc:12759}, a corrupted water elemental, drifts in {area:421}. Her {item:16408} starts a quest for Splintertree."] = "",
 
 	-- Step 13: King of the Foulweald
 	-- {area:421} Mystral Lake · {item:16972} Karang's Banner · {object:178206} Foulweald Totem Mound · {npc:12918} Chief Murgut
@@ -81,17 +79,16 @@ return {
 	["{npc:12718}: only if you carry the manual pages"] = "{npc:12718}：只有在你帶著手冊書頁時",
 
 	-- Step 17: Sharptalon
-	["Sharptalon"] = "沙普塔隆",
-	["Sharptalon, a big nightsaber, prowls the woods south-east of the Warsong lumber camp. Her claw starts the next hunt quest."] = "沙普塔隆是一隻大型夜刃豹，在戰歌伐木營地東南方的樹林中徘徊。她的爪子會開始下一個狩獵任務。",
+	-- {npc:12676} Sharptalon
+	["{npc:12676}, a big nightsaber, prowls the woods south-east of the Warsong lumber camp. Her claw starts the next hunt quest."] = "",
 
 	-- Step 18: Felmusk satyrs
 	["Felmusk satyrs"] = "魔草薩特",
 	["North-west of Splintertree, the Felmusk satyrs camp in the woods. Every satyr can drop horns."] = "在碎木崗哨西北方，魔草薩特在樹林中紮營。每個薩特都可能掉落角。",
 
 	-- Step 19: Shadumbra
-	["Shadumbra"] = "薩杜布拉",
-	-- {area:426} Raynewood Retreat
-	["Shadumbra, a shadow panther, stalks the woods around {area:426}, west of the Felmusk camp. Her head starts the next hunt quest."] = "薩杜布拉是一隻暗影豹，在魔草營地西邊的{area:426}周圍的樹林中潛行。她的頭顱會開始下一個狩獵任務。",
+	-- {npc:12677} Shadumbra · {area:426} Raynewood Retreat
+	["{npc:12677}, a shadow panther, stalks the woods around {area:426}, west of the Felmusk camp. Her head starts the next hunt quest."] = "",
 
 	-- Step 20: Mystral Lake
 	-- {area:421} Mystral Lake
@@ -127,13 +124,15 @@ return {
 	["Back south to the camp, then up into {area:1638} for the flight to {area:378}."] = "向南回到營地，然後上到{area:1638}搭乘飛往{area:378}的飛行路線。",
 
 	-- Step 27: Brine
-	-- {area:1638} Thunder Bluff · {area:378} Camp Taurajo · {npc:5899} Brine · {area:1718} The Great Lift
+	-- {area:1638} Thunder Bluff · {area:378} Camp Taurajo · {npc:5899} Brine · {area:1718} Great Lift
 	["Fly from {area:1638} to {area:378}. {npc:5899}'s hut stands on the ridge above the quilboar watering hole south of the camp, on the road to the {area:1718}."] = "從{area:1638}飛往{area:378}。{npc:5899}的小屋在營地南邊野豬人飲水處上方的山脊上，位於前往{area:1718}的路上。",
 	-- {npc:5901} Islen Waterseer · {area:392} Ratchet
 	["for {npc:5901}, south of {area:392}: next guide"] = "給{area:392}南邊的{npc:5901}：下一份指南",
 
 	-- Step 28: The Great Lift
-	-- {area:1638} Thunder Bluff · {area:378} Camp Taurajo · {area:1718} The Great Lift · {zone:1413} The Barrens
+	-- {area:1718} Great Lift
+	["The {area:1718}"] = "",
+	-- {area:1638} Thunder Bluff · {area:378} Camp Taurajo · {area:1718} Great Lift · {zone:1413} Barrens
 	["Fly from {area:1638} to {area:378} and take the road south to the {area:1718} at the bottom of the {zone:1413}."] = "從{area:1638}飛往{area:378}，沿著道路向南前往{zone:1413}底端的{area:1718}。",
 	-- {npc:10079} Brave Moonhorn
 	["{npc:10079}, at the top of the lift"] = "{npc:10079}，在升降梯頂端",
@@ -213,4 +212,14 @@ return {
 	-- Step 47: Freewind Post
 	-- {zone:1454} Orgrimmar
 	["The next guide flies on from here to {zone:1454}."] = "下一份指南會從這裡飛往{zone:1454}。",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Follow the main road east past {area:415} (Alliance: keep to the road). Ursangous, a big grizzly, roams the {area:418} south of the road, west of {area:421}. His paw starts the next hunt quest."] = "沿著主要道路向東經過{area:415}（聯盟據點：沿著道路走）。烏薩苟斯是一頭大灰熊，在道路南邊、{area:421}西邊的{area:418}遊蕩。牠的爪子會開始下一個狩獵任務。",
+	-- ["Shadumbra"] = "薩杜布拉",
+	-- ["Shadumbra, a shadow panther, stalks the woods around {area:426}, west of the Felmusk camp. Her head starts the next hunt quest."] = "薩杜布拉是一隻暗影豹，在魔草營地西邊的{area:426}周圍的樹林中潛行。她的頭顱會開始下一個狩獵任務。",
+	-- ["Sharptalon"] = "沙普塔隆",
+	-- ["Sharptalon, a big nightsaber, prowls the woods south-east of the Warsong lumber camp. Her claw starts the next hunt quest."] = "沙普塔隆是一隻大型夜刃豹，在戰歌伐木營地東南方的樹林中徘徊。她的爪子會開始下一個狩獵任務。",
+	-- ["Tideress"] = "泰德雷斯",
+	-- ["Tideress, a corrupted water elemental, drifts in {area:421}. Her {item:16408} starts a quest for Splintertree."] = "泰德雷斯是一隻被腐化的水元素，在{area:421}中漂浮。她的{item:16408}會開始一個交給碎木崗哨的任務。",
+	-- ["Ursangous"] = "烏薩苟斯",
 }

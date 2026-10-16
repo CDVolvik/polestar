@@ -26,6 +26,9 @@ return {
 	["he hands you the {item:18746}"] = "他會交給你{item:18746}",
 
 	-- Step 4: The Great Ossuary
-	-- {area:2057} Scholomance · {area:2298} Caer Darrow · {zone:1422} Western Plaguelands · {item:18746} Divination Scryer · {object:179746} The Great Ossuary · {npc:14516} Death Knight Darkreaver
-	["{area:2057} lies under {area:2298}, the island town in the south-east of the {zone:1422}. Use the {item:18746} in the heart of the {object:179746}'s basement, beat the spirits it calls, then {npc:14516}. All are elite: bring a group."] = "{area:2057}位於{zone:1422}東南方的島嶼城鎮{area:2298}之下。在{object:179746}地下室的中心使用{item:18746}，擊敗它召喚出的靈魂，然後擊敗{npc:14516}。全都是精英：找小隊一起去。",
+	-- {area:2057} Scholomance · {area:2298} Caer Darrow · {zone:1422} Western Plaguelands · {item:18746} Divination Scryer · {npc:14516} Death Knight Darkreaver
+	["{area:2057} lies under {area:2298}, the island town in the south-east of the {zone:1422}. Use the {item:18746} in the heart of the Great Ossuary's basement, beat the spirits it calls, then {npc:14516}. All are elite: bring a group."] = "",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["{area:2057} lies under {area:2298}, the island town in the south-east of the {zone:1422}. Use the {item:18746} in the heart of the {object:179746}'s basement, beat the spirits it calls, then {npc:14516}. All are elite: bring a group."] = "{area:2057}位於{zone:1422}東南方的島嶼城鎮{area:2298}之下。在{object:179746}地下室的中心使用{item:18746}，擊敗它召喚出的靈魂，然後擊敗{npc:14516}。全都是精英：找小隊一起去。",
 }

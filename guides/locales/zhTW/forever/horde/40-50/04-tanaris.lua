@@ -18,12 +18,11 @@ return {
 	["the {object:150075} in the square"] = "廣場上的{object:150075}",
 
 	-- Step 3: Sandsorrow Watch
-	-- {area:976} Gadgetzan · {item:8584} Untapped Dowsing Widget
-	["West of {area:976}, use the {item:8584} beside the water hole in the troll camp."] = "在{area:976}西邊，於食人妖營地的水池旁使用{item:8584}。",
+	-- {item:8584} Untapped Dowsing Widget
+	["West of Gadgetzan, use the {item:8584} beside the water hole in the troll camp."] = "",
 
 	-- Step 5: Caliph Scorpidsting
-	-- {area:976} Gadgetzan
-	["South-east of {area:976} the Wastewander bandits camp in the dunes; Caliph stands in the eastern camp."] = "在{area:976}東南方，廢土強盜在沙丘間紮營；卡利夫站在東邊的營地裡。",
+	["South-east of Gadgetzan the Wastewander bandits camp in the dunes; Caliph stands in the eastern camp."] = "",
 
 	-- Step 6: Marvon Rivetseeker
 	-- {area:1938} Broken Pillar · {item:9978} Gahz'ridian Detector · {area:983} Dunemaul Compound
@@ -33,8 +32,8 @@ return {
 	["West, the Centipaar insects swarm around their hives; any of them drops the parts."] = "往西，森提帕爾蟲子在牠們的蟲巢周圍聚集；牠們都會掉落肢體。",
 
 	-- Step 8: Dunemaul Compound
-	-- {area:982} The Noxious Lair · {npc:12046} Gor'marok the Ravager · {quest:3161} Gahz'ridian
-	["South of the {area:982} the Dunemaul ogres hold their compound, with {npc:12046} at its eastern end. Dig up {quest:3161} ornaments between the fights."] = "{area:982}南邊，砂槌巨魔佔據他們的營地，{npc:12046}在營地東端。在戰鬥之間挖出{quest:3161}飾品。",
+	-- {npc:12046} Gor'marok the Ravager · {quest:3161} Gahz'ridian
+	["South of the Noxious Lair the Dunemaul ogres hold their compound, with {npc:12046} at its eastern end. Dig up {quest:3161} ornaments between the fights."] = "",
 
 	-- Step 9: Thistleshrub Valley
 	-- {zone:1446} Tanaris
@@ -51,7 +50,7 @@ return {
 	-- Step 11: Gadgetzan
 	-- {area:976} Gadgetzan
 	["Ride south-west to {area:976}."] = "向西南騎往{area:976}。",
-	-- {item:8526} Violet Tragan · {zone:1425} The Hinterlands
+	-- {item:8526} Violet Tragan · {zone:1425} Hinterlands
 	["the {item:8526} grows in the {zone:1425}, around level 48"] = "{item:8526}生長在{zone:1425}，大約48級",
 
 	-- Step 12: Marvon Rivetseeker
@@ -157,4 +156,9 @@ return {
 	-- Step 32: Thorium Point
 	-- {area:1446} Thorium Point · {area:75} Stonard
 	["Ride back north to {area:1446}. Stay here: the next guide starts with the flight to {area:75}."] = "向北騎回{area:1446}。留在這裡：下一份指南從飛往{area:75}開始。",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["South of the {area:982} the Dunemaul ogres hold their compound, with {npc:12046} at its eastern end. Dig up {quest:3161} ornaments between the fights."] = "{area:982}南邊，砂槌巨魔佔據他們的營地，{npc:12046}在營地東端。在戰鬥之間挖出{quest:3161}飾品。",
+	-- ["South-east of {area:976} the Wastewander bandits camp in the dunes; Caliph stands in the eastern camp."] = "在{area:976}東南方，廢土強盜在沙丘間紮營；卡利夫站在東邊的營地裡。",
+	-- ["West of {area:976}, use the {item:8584} beside the water hole in the troll camp."] = "在{area:976}西邊，於食人妖營地的水池旁使用{item:8584}。",
 }

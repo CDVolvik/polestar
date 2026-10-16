@@ -111,13 +111,12 @@ return {
 	["Take the zeppelin from the tower outside {area:1637} to {zone:1420} and ride into the {zone:1458}. Lady Sylvanas holds the {object:36126}."] = "Toma el zepelín desde la torre afuera de {area:1637} hasta {zone:1420} y cabalga hacia {zone:1458}. Lady Sylvanas ocupa {object:36126}.",
 
 	-- Step 26: The Bulwark
-	-- {area:152} The Bulwark
-	["Ride east along the road to the {area:152} on the border."] = "Cabalga al este por el camino hasta {area:152}, en la frontera.",
+	["Ride east along the road to the Bulwark on the border."] = "",
 
 	-- Step 27: Felstone Field
-	-- {npc:10778} Janice Felstone · {area:152} The Bulwark · {npc:11075} Cauldron Lord Bilemaw
+	-- {npc:10778} Janice Felstone · {npc:11075} Cauldron Lord Bilemaw
 	-- plural, as words: Jabbering Ghouls = {npc:10801} Jabbering Ghoul
-	["{npc:10778}'s farm is the first one east of the {area:152}. Jabbering Ghouls on the farm carry the other half of her charm; {npc:11075} guards the cauldron in the field."] = "La granja de {npc:10778} es la primera al este de {area:152}. Los Necrófagos farfullantes ({npc:10801}) de la granja llevan la otra mitad de su amuleto; {npc:11075} custodia el caldero del campo.",
+	["{npc:10778}'s farm is the first one east of the Bulwark. Jabbering Ghouls on the farm carry the other half of her charm; {npc:11075} guards the cauldron in the field."] = "",
 
 	-- Step 28: Andorhal watchtowers and silos
 	["Andorhal watchtowers and silos"] = "Torres de vigilancia y silos de Andorhal",
@@ -162,19 +161,19 @@ return {
 	-- Step 36: Scourge Champions
 	-- plural, as words: Scourge Champions = {npc:8529} Scourge Champion
 	["Scourge Champions"] = "Campeones de la Plaga ({npc:8529})",
-	-- {area:2270} The Noxious Glade · {item:13156} Mystic Crystal
+	-- {area:2270} Noxious Glade · {item:13156} Mystic Crystal
 	-- plural, as words: Scourge Champions = {npc:8529} Scourge Champion
 	["Scourge Champions roam the {area:2270}, north of the chapel. Pass Carlin's {item:13156} over each one you kill: the skulls that resonate are the ones he wants."] = "Los Campeones de la Plaga ({npc:8529}) recorren {area:2270}, al norte de la capilla. Pasa {item:13156} de Carlin sobre cada uno que mates: los cráneos que resuenan son los que él quiere.",
 
 	-- Step 38: Pamela and the Undercroft
-	-- {area:2261} The Undercroft
+	-- {area:2261} Undercroft
 	["Pamela and the {area:2261}"] = "Pamela y {area:2261}",
-	-- {area:2262} Darrowshire · {npc:11886} Mercutio Filthgorger · {area:2261} The Undercroft
+	-- {area:2262} Darrowshire · {npc:11886} Mercutio Filthgorger · {area:2261} Undercroft
 	["Ride to {area:2262} in the south-west; Pamela plays among the houses. {npc:11886} lurks in the {area:2261}, the crypt just west of the town."] = "Cabalga hasta {area:2262}, en el suroeste; Pamela juega entre las casas. {npc:11886} acecha en {area:2261}, la cripta justo al oeste del pueblo.",
 	["Pamela's own errand is not on this route. Skip it."] = "El encargo de Pamela no está en esta ruta. Omítelo.",
 
 	-- Step 39: Nathanos Blightcaller
-	-- {npc:15193} The Banshee Queen · {area:2260} The Marris Stead · {area:2261} The Undercroft
+	-- {npc:15193} The Banshee Queen · {area:2260} Marris Stead · {area:2261} Undercroft
 	["{npc:15193}'s champion holds the {area:2260} farmhouse, north of the {area:2261}."] = "El campeón de {npc:15193} ocupa la granja de {area:2260}, al norte de {area:2261}.",
 	["Nathanos' errands are not on this route. Skip them."] = "Los encargos de Nathanos no están en esta ruta. Omítelos.",
 
@@ -185,10 +184,16 @@ return {
 	-- Step 41: Chromie
 	-- {npc:10667} Chromie
 	["Ride south-west to {npc:10667} in Andorhal."] = "Cabalga al suroeste hasta {npc:10667}, en Andorhal.",
-	-- {npc:10667} Chromie · {area:2262} Darrowshire
-	["{npc:10667}'s Battle of {area:2262} ends against elites. Skip it."] = "La Batalla de {area:2262} de {npc:10667} termina contra élites. Omítela.",
+	-- {npc:10667} Chromie
+	["{npc:10667}'s Battle of Darrowshire ends against elites. Skip it."] = "",
 
 	-- Step 42: The Bulwark
-	-- {area:152} The Bulwark · {zone:1458} Undercity
-	["West to the {area:152}. The next guide starts in the {zone:1458}, a short ride west."] = "Al oeste hasta {area:152}. La siguiente guía empieza en {zone:1458}, a poca distancia al oeste.",
+	-- {zone:1458} Undercity
+	["West to the Bulwark. The next guide starts in the {zone:1458}, a short ride west."] = "",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Ride east along the road to the {area:152} on the border."] = "Cabalga al este por el camino hasta {area:152}, en la frontera.",
+	-- ["West to the {area:152}. The next guide starts in the {zone:1458}, a short ride west."] = "Al oeste hasta {area:152}. La siguiente guía empieza en {zone:1458}, a poca distancia al oeste.",
+	-- ["{npc:10667}'s Battle of {area:2262} ends against elites. Skip it."] = "La Batalla de {area:2262} de {npc:10667} termina contra élites. Omítela.",
+	-- ["{npc:10778}'s farm is the first one east of the {area:152}. Jabbering Ghouls on the farm carry the other half of her charm; {npc:11075} guards the cauldron in the field."] = "La granja de {npc:10778} es la primera al este de {area:152}. Los Necrófagos farfullantes ({npc:10801}) de la granja llevan la otra mitad de su amuleto; {npc:11075} custodia el caldero del campo.",
 }

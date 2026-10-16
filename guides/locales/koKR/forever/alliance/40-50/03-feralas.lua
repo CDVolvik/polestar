@@ -6,7 +6,7 @@
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Feathermoon Stronghold
-	-- {area:608} Nijel's Point · {zone:1443} Desolace · {zone:1444} Feralas · {area:1108} The Forgotten Coast · {area:1120} Sardor Isle
+	-- {area:608} Nijel's Point · {zone:1443} Desolace · {zone:1444} Feralas · {area:1108} Forgotten Coast · {area:1120} Sardor Isle
 	["From Theramore, fly to {area:608} and ride south out of {zone:1443} into {zone:1444}; the road leads west to the {area:1108} dock, where the boat crosses to Feathermoon on {area:1120}."] = "테라모어 섬에서 {area:608}(으)로 날아간 다음, 남쪽으로 {zone:1443}을(를) 벗어나 {zone:1444}(으)로 가십시오. 길은 서쪽 {area:1108} 부두로 이어지고, 그곳에서 배를 타고 {area:1120}의 페더문 요새로 건너갑니다.",
 	-- {npc:7877} Latronicus Moonspear
 	["{npc:7877}, at the top of the stronghold"] = "{npc:7877}, 요새 꼭대기",
@@ -29,7 +29,7 @@ return {
 
 	-- Step 6: The courier's boat
 	["The courier's boat"] = "전령의 배",
-	-- {area:1108} The Forgotten Coast
+	-- {area:1108} Forgotten Coast
 	["Take the boat to the {area:1108} and follow the shore south to the wrecked row boat on the beach."] = "배를 타고 {area:1108}(으)로 가서 해안을 따라 남쪽으로, 해변에 부서진 나룻배까지 가십시오.",
 
 	-- Step 7: Gordunni ogres
@@ -41,7 +41,7 @@ return {
 	["Ride north into the yeti valley. Every Feral Scar yeti can drop a thick hide; {npc:5346} (level 48) prowls the middle."] = "북쪽 설인 골짜기로 들어가십시오. 원시설인은 모두 두꺼운 설인 가죽을 떨어뜨릴 수 있습니다. {npc:5346}(48레벨)은(는) 한가운데를 배회합니다.",
 
 	-- Step 9: Feathermoon Stronghold
-	-- {area:1108} The Forgotten Coast
+	-- {area:1108} Forgotten Coast
 	["Ride back north-west to the {area:1108} dock and take the boat to the island."] = "북서쪽 {area:1108} 부두로 돌아가 배를 타고 섬으로 가십시오.",
 
 	-- Step 10: Lord Shalzaru
@@ -54,7 +54,7 @@ return {
 
 	-- Step 12: Grimtotem camp
 	["Grimtotem camp"] = "그림토템 야영지",
-	-- {area:1108} The Forgotten Coast · {zone:1444} Feralas · {npc:7956} Kindal Moonweaver
+	-- {area:1108} Forgotten Coast · {zone:1444} Feralas · {npc:7956} Kindal Moonweaver
 	-- plural, as words: Sprite Darters = {npc:5278} Sprite Darter
 	["Boat to the {area:1108} and ride east across {zone:1444} to the Grimtotem camp north of the road. {npc:7956} waits outside it; free the Sprite Darters from the pen in the middle and keep Kindal and at least six of them alive."] = "배를 타고 {area:1108}(으)로 가서 {zone:1444}을(를) 가로질러 동쪽, 길 북쪽의 그림토템 주둔지까지 가십시오. {npc:7956}은(는) 그 밖에서 기다립니다. 한가운데 우리에서 화살요정용을 풀어 주고, 킨달과 화살요정용을 적어도 여섯 마리 살려 두십시오.",
 
@@ -102,18 +102,18 @@ return {
 	-- Step 22: Zul'Farrak instead of grinding
 	-- {area:978} Zul'Farrak
 	["{area:978} instead of grinding"] = "사냥 대신 {area:978}",
-	-- {area:978} Zul'Farrak · {zone:1446} Tanaris · {area:1108} The Forgotten Coast
+	-- {area:978} Zul'Farrak · {zone:1446} Tanaris · {area:1108} Forgotten Coast
 	["Running {area:978} instead of grinding gets you there faster in a group. The troll city lies in northern {zone:1446}, the next zone on the route; come back to Zorbin on the {area:1108} afterwards."] = "파티로 사냥 대신 {area:978}을(를) 돌면 더 빨리 도달합니다. 트롤 도시는 경로상 다음 지역인 {zone:1446} 북쪽에 있습니다. 그 후 {area:1108}의 조브린 팬대즐에게 돌아오십시오.",
 
 	-- Step 23: Grind to 45
 	["Grind to 45"] = "45레벨까지 사냥",
-	-- {area:1108} The Forgotten Coast · {area:1105} Feral Scar Vale
+	-- {area:1108} Forgotten Coast · {area:1105} Feral Scar Vale
 	["Boat to the {area:1108} and ride east into {area:1105}. Zorbin's quests on the coast need level 45."] = "배를 타고 {area:1108}(으)로 가서 동쪽 {area:1105}(으)로 가십시오. 해안에 있는 조브린 팬대즐의 퀘스트는 45레벨이 필요합니다.",
 	-- {npc:5292} Feral Scar Yeti · {area:1105} Feral Scar Vale · {zone:1444} Feralas
 	["grind on {npc:5292} at {area:1105}, {zone:1444}"] = "{zone:1444} {area:1105}에서 {npc:5292} 사냥",
 
 	-- Step 24: Zorbin Fandazzle
-	-- {area:1108} The Forgotten Coast
+	-- {area:1108} Forgotten Coast
 	["Ride back to the {area:1108}; the goblin stands by the dock."] = "{area:1108}(으)로 돌아가십시오. 고블린은 부두 옆에 있습니다.",
 
 	-- Step 25: Giants and elementals
@@ -124,6 +124,6 @@ return {
 
 	-- Step 26: Zorbin Fandazzle
 	["Zorbin's refills are level 55: skip them."] = "조브린 팬대즐의 재충전 퀘스트는 55레벨입니다: 건너뛰십시오.",
-	-- {area:1108} The Forgotten Coast · {zone:1446} Tanaris
+	-- {area:1108} Forgotten Coast · {zone:1446} Tanaris
 	["You end at the {area:1108} dock: the {zone:1446} guide starts with the trip east from here."] = "{area:1108} 부두에서 끝납니다: {zone:1446} 가이드는 여기서 동쪽으로 가는 길로 시작합니다.",
 }

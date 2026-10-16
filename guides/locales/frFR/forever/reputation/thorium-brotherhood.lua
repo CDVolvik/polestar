@@ -13,7 +13,7 @@ return {
 	["{area:1446}, on the scaffolds in the north-west of {zone:1427}, is the Brotherhood's outpost. The {faction:59} starts out Neutral. Forever's Legacy Diplomat perk increases reputation gains."] = "{area:1446}, sur les échafaudages au nord-ouest de {zone:1427}, est l'avant-poste de la Confrérie. Votre réputation auprès de {faction:59} commence à Neutre. L'atout Diplomate du système d'héritage de Forever augmente les gains de réputation.",
 
 	-- Step 2: Secret Plans: Fiery Flux
-	-- {area:1443} The Slag Pit · {object:147516} Dark Iron · {item:18945} Dark Iron Residue
+	-- {area:1443} Slag Pit · {object:147516} Dark Iron · {item:18945} Dark Iron Residue
 	["The plans lie in the {area:1443} of the Cauldron, guarded by {object:147516} dwarves. {object:147516} dwarves also drop {item:18945}, which Burninate takes for Gaining Acceptance."] = "Les plans se trouvent dans {area:1443} du Chaudron, gardés par des nains {object:147516}. Les nains {object:147516} lâchent aussi {item:18945}, que Burninate prend pour Se faire accepter.",
 
 	-- Step 3: Back to Burninate
@@ -23,7 +23,7 @@ return {
 	-- {item:18942} Fiery Flux
 	["{item:18942} supplies to Friendly"] = "Réserves de {item:18942} jusqu'à Amical",
 	-- {item:3356} Kingsblood · {item:4234} Heavy Leather · {item:18944} Incendosaur Scale · {zone:1427} Searing Gorge
-	-- plural, as words: Iron Bars = {item:3575} Iron Bar
+	-- plural, as words: Iron Bars = {item:3575} Iron Bar · Incendosaurs = {npc:9318} Incendosaur
 	["Restoring Fiery Flux Supplies repeats in three versions: {item:3356}, Iron Bars or {item:4234}, each with Coal and an {item:18944}. Incendosaurs (level 47-49) in the north of {zone:1427} drop a scale every time; Burninate himself sells Coal."] = "Réapprovisionnement en flux embrasé se répète en trois versions : {item:3356}, Barres de fer ({item:3575}) ou {item:4234}, chacune avec du Charbon et une {item:18944}. Les Incendosaures (niveau 47-49) du nord de la {zone:1427} lâchent une écaille à chaque fois ; Burninate lui-même vend le Charbon.",
 	-- {npc:14624} Master Smith Burninate
 	["{npc:14624}: Restoring Fiery Flux Supplies"] = "{npc:14624} : Réapprovisionnement en flux embrasé",

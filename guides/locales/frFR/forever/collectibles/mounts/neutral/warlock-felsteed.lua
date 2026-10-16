@@ -9,8 +9,8 @@ return {
 	["Warlock Felsteed"] = "Palefroi corrompu (démoniste)",
 	["Your own mount at 40, summoned anywhere, with no gold spent on a riding horse."] = "Votre propre monture au niveau 40, invocable partout, sans dépenser d'or pour un cheval.",
 
-	-- Step 1: Summon Felsteed (Stormwind City)
-	-- {npc:461} Demisette Cloyce · {object:2164} The Slaughtered Lamb · {object:2101} Mage Quarter · {npc:6251} Strahad Farsan · {area:392} Ratchet
+	-- Step 1: Summon Felsteed (Stormwind)
+	-- {npc:461} Demisette Cloyce · {object:2164} Slaughtered Lamb · {object:2101} Mage Quarter · {npc:6251} Strahad Farsan · {area:392} Ratchet
 	["At 40 {npc:461} in the {object:2164}, in the {object:2101}, sends you to {npc:6251} in {area:392}."] = "Au niveau 40, {npc:461}, à {object:2164} dans le {object:2101}, vous envoie voir {npc:6251} à {area:392}.",
 
 	-- Step 2: Summon Felsteed (Ironforge)
@@ -28,6 +28,6 @@ return {
 	-- Step 5: Strahad Farsan in Ratchet
 	-- {npc:6251} Strahad Farsan · {area:392} Ratchet
 	["{npc:6251} in {area:392}"] = "{npc:6251} à {area:392}",
-	-- {area:392} Ratchet · {zone:1413} The Barrens · {area:380} The Crossroads · {area:35} Booty Bay · {npc:6251} Strahad Farsan · {quest:3631} Summon Felsteed
+	-- {area:392} Ratchet · {zone:1413} Barrens · {area:380} Crossroads · {area:35} Booty Bay · {npc:6251} Strahad Farsan · {quest:3631} Summon Felsteed
 	["{area:392} is on the {zone:1413} coast east of the {area:380}; from the Alliance side, take the boat from {area:35}. {npc:6251}'s follow-up teaches {quest:3631}."] = "{area:392} se trouve sur la côte des {zone:1413}, à l'est de {area:380} ; côté Alliance, prenez le bateau à {area:35}. La suite de {npc:6251} enseigne {quest:3631}.",
 }

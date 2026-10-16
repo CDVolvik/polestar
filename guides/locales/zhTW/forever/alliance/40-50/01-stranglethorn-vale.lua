@@ -46,7 +46,7 @@ return {
 	["Ride south to the giant's hut in the middle of the marsh."] = "向南騎往沼澤中央巨人的小屋。",
 
 	-- Step 10: The Shady Rest Inn
-	-- {zone:1413} The Barrens
+	-- {zone:1413} Barrens
 	["The burned inn stands on the road west, toward the {zone:1413}; the guard's badge lies in the ashes and the hoofprints are in the mud beside the inn."] = "燒毀的旅店位於西邊通往{zone:1413}的道路上；衛兵的徽章就在灰燼中，蹄印則在旅店旁的泥地上。",
 
 	-- Step 11: Theramore
@@ -66,15 +66,14 @@ return {
 	["The deserters camp south of the road, west of Mudcrush's hut."] = "逃兵在道路南邊、馬德克拉什小屋西邊紮營。",
 
 	-- Step 17: The Affray
-	-- {area:392} Ratchet · {area:720} Fray Island · {area:391} The Merchant Coast · {npc:6236} Klannoc Macleod · {npc:6238} Big Will
+	-- {area:392} Ratchet · {area:720} Fray Island · {area:391} Merchant Coast · {npc:6236} Klannoc Macleod · {npc:6238} Big Will
 	["On the ride north to {area:392}, {area:720} lies off the {area:391} south of the town: wade over the sand bar shallows. {npc:6236} sends four challengers and then {npc:6238} (level 33) at you, one at a time."] = "往北騎向{area:392}的途中，{area:720}位於城鎮南邊的{area:391}外海：涉水走過沙洲淺灘。{npc:6236}會派出四名挑戰者，然後是{npc:6238}（33級），一次一個。",
 	-- {npc:6238} Big Will
 	["Defeat the challengers and {npc:6238}"] = "擊敗挑戰者和{npc:6238}",
-	-- {spell:1680} Whirlwind
-	["Klannoc offers The Windwatcher next (1791): the {spell:1680} weapon chain, with an elite at the end, is in the Warrior class guide Whirlwind Weapon."] = "克蘭諾克接著會提供捕風者（1791）：{spell:1680}武器任務線的最後有一個精英，收錄在戰士職業指南中。",
+	["Klannoc offers The Windwatcher next (1791): the Whirlwind weapon chain, with an elite at the end, is in the Warrior class guide Whirlwind Weapon."] = "",
 
 	-- Step 18: Ratchet
-	-- {zone:1413} The Barrens · {area:392} Ratchet · {npc:16227} Bragok · {area:35} Booty Bay
+	-- {zone:1413} Barrens · {area:392} Ratchet · {npc:16227} Bragok · {area:35} Booty Bay
 	["Ride from Theramore west along the Dustwallow road into the {zone:1413} and north to {area:392} on the coast. Learn the flight path from {npc:16227}, then take the boat to {area:35} from the dock."] = "從塞拉摩沿著塵泥沼澤的道路向西騎進{zone:1413}，再向北前往海岸邊的{area:392}。向{npc:16227}取得飛行路線，然後在碼頭搭船前往{area:35}。",
 	-- {area:35} Booty Bay
 	["Boat to {area:35}"] = "搭船前往{area:35}",
@@ -97,7 +96,8 @@ return {
 	["Leave town by the tunnel and follow the coast north; the letter lies in the Bloodsail camp on the beach, where \"Pretty Boy\" Duncan walks."] = "從隧道離開城鎮，沿著海岸向北走；信件在海灘上的血帆營地裡，「帥小子」鄧肯在那裡走動。",
 
 	-- Step 21: Booty Bay
-	["Gazban swims off the north-west coast, on the northern loop"] = "加茲班在西北海岸外游動，在北部環線上",
+	-- {npc:2624} Gazban
+	["{npc:2624} swims off the north-west coast, on the northern loop"] = "",
 
 	-- Step 22: Bloodsail pirates
 	["Bloodsail pirates"] = "血帆海盜",
@@ -158,9 +158,9 @@ return {
 
 	-- Step 35: The north-west coast
 	["The north-west coast"] = "西北海岸",
-	-- {item:4034} Stone of the Tides
+	-- {npc:2624} Gazban · {item:4034} Stone of the Tides
 	-- plural, as words: Giant Clams = {object:2744} Giant Clam
-	["Ride north-west from the mine to the bay on the north-west coast. The Giant Clams lie on its floor and hold the pearls; Gazban swims among them and drops the {item:4034}."] = "從礦坑向西北騎往西北海岸的海灣。巨型蚌殼躺在海底，裡面有珍珠；加茲班在牠們之間游動，會掉落{item:4034}。",
+	["Ride north-west from the mine to the bay on the north-west coast. The Giant Clams lie on its floor and hold the pearls; {npc:2624} swims among them and drops the {item:4034}."] = "",
 
 	-- Step 36: Rebel Camp
 	-- {npc:217588} Arbor Tarantula
@@ -173,8 +173,8 @@ return {
 	-- {zone:1441} Thousand Needles
 	["Crank's next Zanzil errand starts in {zone:1441}: skip it."] = "克蘭克的下一個贊吉爾任務從{zone:1441}開始：跳過。",
 
-	-- Step 38: Stormwind City
-	-- {npc:1141} Angus Stern · {object:2169} The Blue Recluse · {npc:5384} Brohann Caskbelly · {object:28027} Dwarven District
+	-- Step 38: Stormwind
+	-- {npc:1141} Angus Stern · {object:2169} Blue Recluse · {npc:5384} Brohann Caskbelly · {object:28027} Dwarven District
 	["{npc:1141} cooks in the {object:2169}; {npc:5384} is in the {object:28027}."] = "{npc:1141}在{object:2169}烹飪；{npc:5384}在{object:28027}。",
 	-- {npc:5694} High Sorcerer Andromath · {area:1438} Nethergarde Keep
 	["{npc:5694}: for {area:1438}, keep it"] = "{npc:5694}：給{area:1438}，保留此任務",
@@ -189,7 +189,7 @@ return {
 	["{npc:384}: other colours, 20g"] = "{npc:384}：其他顏色，20金",
 
 	-- Step 40: Riding at 40
-	-- {spell:1285849} Galestrider Riding · {npc:4732} Randal Hunter · {area:88} Eastvale Logging Camp · {zone:1429} Elwynn Forest · {zone:1453} Stormwind City · {npc:265756} Genn Fairweather · {area:16638} Valanaar
+	-- {spell:1285849} Galestrider Riding · {npc:4732} Randal Hunter · {area:88} Eastvale Logging Camp · {zone:1429} Elwynn Forest · {zone:1453} Stormwind · {npc:265756} Genn Fairweather · {area:16638} Valanaar
 	["At 40 with 100 gold you can learn to ride, and learning it gives you a mount. No Skyborne riding trainer is known; the Forever client files {spell:1285849} under the one Riding skill, so {npc:4732} at {area:88} in eastern {zone:1429}, the nearest trainer to {zone:1453}, should teach it (unconfirmed). The Galestriders are sold by {npc:265756} in {area:16638} on Zephras Isle; Collectibles, Mounts · Level 40 lists them."] = "40級且有100金幣時就能學騎術，學會後會得到一匹坐騎。目前沒有已知的天裔精靈騎術訓練師；Forever 用戶端把{spell:1285849}歸在唯一的騎術技能下，所以離{zone:1453}最近的訓練師，也就是{zone:1429}東部{area:88}的{npc:4732}，應該能教（未確認）。逐風者由微風島{area:16638}的{npc:265756}販售；收藏品的「坐騎 · 40級」列出了牠們。",
 	-- {npc:265756} Genn Fairweather · {area:16638} Valanaar
 	["Galestriders: {npc:265756}, in {area:16638} on Zephras Isle."] = "逐風者：{npc:265756}，在微風島的{area:16638}。",
@@ -209,7 +209,7 @@ return {
 	-- Step 43: Warlock: Summon Felsteed
 	-- {quest:3631} Summon Felsteed
 	["Warlock: {quest:3631}"] = "術士：{quest:3631}",
-	-- {npc:461} Demisette Cloyce · {object:2164} The Slaughtered Lamb · {npc:6251} Strahad Farsan · {area:392} Ratchet
+	-- {npc:461} Demisette Cloyce · {object:2164} Slaughtered Lamb · {npc:6251} Strahad Farsan · {area:392} Ratchet
 	["{npc:461}, in the {object:2164}: {npc:6251} in {area:392} takes it at the end of the next guide"] = "{npc:461}，在{object:2164}：由{area:392}的{npc:6251}在下一份指南結尾接收",
 
 	-- Step 44: Watcher Biggs
@@ -237,16 +237,16 @@ return {
 	-- {npc:217412} Amaryllis Webb · {quest:93176} My Little Friends
 	["{npc:217412}: {quest:93176}, from 30-40/05-arathi-highlands"] = "{npc:217412}：{quest:93176}，來自30-40級的阿拉希高地指南",
 
-	-- Step 49: Stormwind City
+	-- Step 49: Stormwind
 	-- {npc:5635} Falstad Wildhammer · {area:348} Aerie Peak
 	["for {npc:5635} at {area:348}: keep it"] = "給{area:348}的{npc:5635}：保留此任務",
 
 	-- Step 50: Ironforge
-	-- {area:2257} Deeprun Tram · {object:28027} Dwarven District · {object:32356} Hall of Explorers · {npc:1356} Prospector Stormpike · {npc:2786} Gerrig Bonegrip · {object:32383} The Forlorn Cavern · {area:144} Thelsamar
+	-- {area:2257} Deeprun Tram · {object:28027} Dwarven District · {object:32356} Hall of Explorers · {npc:1356} Prospector Stormpike · {npc:2786} Gerrig Bonegrip · {object:32383} Forlorn Cavern · {area:144} Thelsamar
 	["Take the {area:2257} from the {object:28027}. Roetten is in the Reclaimers' hall by the {object:32356}, {npc:1356} in the hall itself, {npc:2786} in the {object:32383}. The next guide flies on to {area:144}."] = "從{object:28027}搭乘{area:2257}。羅頓在{object:32356}旁的尋物公司大廳裡，{npc:1356}在大廳本身，{npc:2786}在{object:32383}。下一份指南會飛往{area:144}。",
 	-- {npc:1356} Prospector Stormpike · {npc:1344} Prospector Ironband · {zone:1432} Loch Modan
 	["{npc:1356}: for {npc:1344} in {zone:1432}, keep it"] = "{npc:1356}：給{zone:1432}的{npc:1344}，保留此任務",
-	-- {zone:1453} Stormwind City
+	-- {zone:1453} Stormwind
 	["{zone:1453} has no shaman trainer"] = "{zone:1453}沒有薩滿訓練師",
 
 	-- Step 51: Riding at 40
@@ -260,4 +260,9 @@ return {
 	["At 40 with 100 gold you can learn to ride, and learning it gives you a mount. {npc:7954} teaches Gnomes at {area:189}, just east of {area:131}, beside {npc:7955}'s mechanostriders. Forever may let any race learn from any riding trainer (unconfirmed). Collectibles, Mounts · Level 40 lists every colour."] = "40級且有100金幣時就能學騎術，學會後會得到一匹坐騎。{npc:7954}在{area:189}教導地精，就在{area:131}東邊，旁邊是{npc:7955}的機械陸行鳥。Forever 可能允許任何種族向任何騎術訓練師學習（未確認）。收藏品的「坐騎 · 40級」列出所有顏色。",
 	-- {npc:7955} Milli Featherwhistle
 	["{npc:7955}: other colours, 20g"] = "{npc:7955}：其他顏色，20金",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Gazban swims off the north-west coast, on the northern loop"] = "加茲班在西北海岸外游動，在北部環線上",
+	-- ["Klannoc offers The Windwatcher next (1791): the {spell:1680} weapon chain, with an elite at the end, is in the Warrior class guide Whirlwind Weapon."] = "克蘭諾克接著會提供捕風者（1791）：{spell:1680}武器任務線的最後有一個精英，收錄在戰士職業指南中。",
+	-- ["Ride north-west from the mine to the bay on the north-west coast. The Giant Clams lie on its floor and hold the pearls; Gazban swims among them and drops the {item:4034}."] = "從礦坑向西北騎往西北海岸的海灣。巨型蚌殼躺在海底，裡面有珍珠；加茲班在牠們之間游動，會掉落{item:4034}。",
 }

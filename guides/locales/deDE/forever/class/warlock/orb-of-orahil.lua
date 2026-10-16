@@ -9,8 +9,8 @@ return {
 	["Orb of Orahil"] = "Kugel von Orahil",
 	["An off-hand orb or a staff for your late 30s, down the felhound's or the infernal's path, your pick."] = "Eine Kugel für die Nebenhand oder ein Stab für Ende 30, über den Weg des Teufelshunds oder der Höllenbestie, deine Wahl.",
 
-	-- Step 1: Knowledge of the Orb of Orahil (Stormwind City)
-	-- {npc:461} Demisette Cloyce · {object:2164} The Slaughtered Lamb · {object:2101} Mage Quarter · {npc:6266} Menara Voidrender · {area:392} Ratchet
+	-- Step 1: Knowledge of the Orb of Orahil (Stormwind)
+	-- {npc:461} Demisette Cloyce · {object:2164} Slaughtered Lamb · {object:2101} Mage Quarter · {npc:6266} Menara Voidrender · {area:392} Ratchet
 	["At 35 {npc:461} in the {object:2164}, in the {object:2101}, sends you to {npc:6266} in {area:392}."] = "Mit 35 schickt dich {npc:461} in {object:2164} in {object:2101} zu {npc:6266} in {area:392}.",
 
 	-- Step 2: Knowledge of the Orb of Orahil (Ironforge)

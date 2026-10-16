@@ -35,7 +35,7 @@ return {
 	["{quest:337}: a rare drop from {zone:1431}'s mobs"] = "{quest:337}: botín raro de los enemigos de {zone:1431}",
 
 	-- Step 5: Watcher Dodds
-	-- {npc:888} Watcher Dodds · {area:245} The Yorgen Farmstead
+	-- {npc:888} Watcher Dodds · {area:245} Yorgen Farmstead
 	["{npc:888} stands south of the road, at the {area:245}."] = "{npc:888} está al sur del camino, en {area:245}.",
 
 	-- Step 6: Raven Hill
@@ -66,10 +66,10 @@ return {
 	["Rabid Dire Wolves roam the woods around the cemetery and {npc:289}, Starving Dire Wolves the hills north-east of him. Pygmy Venom Web Spiders crawl east of the cemetery and drop the venom. Every ghoul of the cemetery's northern half can drop a fang."] = "Los lobos temibles rabiosos deambulan por el bosque alrededor del cementerio y de {npc:289}; los lobos temibles famélicos, por las colinas al noreste de él. Las telarácnidas venenosas pigmeas se arrastran al este del cementerio y sueltan el veneno. Cualquier necrófago de la mitad norte del cementerio puede soltar un colmillo.",
 
 	-- Step 11: Watcher Dodds
-	-- {area:245} The Yorgen Farmstead
+	-- {area:245} Yorgen Farmstead
 	["Ride back east along the road to the {area:245}."] = "Cabalga de vuelta al este por el camino hasta {area:245}.",
 
-	-- Step 12: The Yorgen Farmstead
+	-- Step 12: Yorgen Farmstead
 	["The mound of loose dirt lies south of the farmhouse, by the old stump."] = "El montón de tierra está al sur de la granja, junto al viejo tocón.",
 
 	-- Step 14: Blind Mary
@@ -111,7 +111,7 @@ return {
 	["{npc:288} hides in the house at the west end of {area:94}."] = "{npc:288} se esconde en la casa del extremo oeste de {area:94}.",
 
 	-- Step 25: Sven's Camp
-	-- {zone:1453} Stormwind City · {area:17203} Stormwind Harbor · {area:442} Auberdine · {zone:1440} Ashenvale
+	-- {zone:1453} Stormwind · {area:17203} Stormwind Harbor · {area:442} Auberdine · {zone:1440} Ashenvale
 	["Next: {zone:1453} for training, then the boat from {area:17203} to {area:442} for {zone:1440}."] = "Siguiente: {zone:1453} para entrenar, y luego el barco de {area:17203} a {area:442} para ir a {zone:1440}.",
 
 	-- Step 26: Agent Kearnen
@@ -121,10 +121,10 @@ return {
 	["{item:7908}, in the chest"] = "{item:7908}, en el cofre",
 
 	-- Step 27: Master Mathias Shaw
-	-- {zone:1453} Stormwind City · {object:2100} Old Town
+	-- {zone:1453} Stormwind · {object:2100} Old Town
 	["Ride north through Elwynn to {zone:1453}; Mathias Shaw is at SI:7 in {object:2100}."] = "Cabalga al norte por Elwynn hasta {zone:1453}; Mathias Shaw está en el IV:7 en {object:2100}.",
-	-- {npc:332} Master Mathias Shaw · {spell:2842} Poisons · {item:18160} Recipe: Thistle Tea
-	["{npc:332}: {spell:2842}, and {item:18160}"] = "{npc:332}: {spell:2842} y {item:18160}",
+	-- {npc:332} Master Mathias Shaw · {item:18160} Recipe: Thistle Tea
+	["{npc:332}: Poisons, and {item:18160}"] = "",
 	-- {quest:2607} The Touch of Zanzil · {npc:7207} Doc Mixilpixil
 	["{quest:2607}: {npc:7207}, in the cellar of the Barracks"] = "{quest:2607}: {npc:7207}, en el sótano del Cuartel",
 	-- {npc:7207} Doc Mixilpixil
@@ -132,13 +132,16 @@ return {
 	-- {item:3372} Leaded Vial · {npc:1313} Maria Lumere
 	["{item:3372}: {npc:1313}, Alchemy Supplies"] = "{item:3372}: {npc:1313}, suministros de alquimia",
 
-	-- Step 28: Stormwind City
-	-- {zone:1453} Stormwind City · {zone:1429} Elwynn Forest · {area:17203} Stormwind Harbor · {area:442} Auberdine
+	-- Step 28: Stormwind
+	-- {zone:1453} Stormwind · {zone:1429} Elwynn Forest · {area:17203} Stormwind Harbor · {area:442} Auberdine
 	["Train in {zone:1453}, north through {zone:1429}. Then take the boat from {area:17203} to {area:442}."] = "Entrena en {zone:1453}, al norte por {zone:1429}. Luego toma el barco de {area:17203} a {area:442}.",
 	["Level 22 and 24 spells"] = "Hechizos de nivel 22 y 24",
 
 	-- Step 29: Shaman training
 	["Shaman training"] = "Entrenamiento de chamán",
-	-- {zone:1453} Stormwind City · {area:2257} Deeprun Tram · {object:28027} Dwarven District · {zone:1455} Ironforge · {npc:258098} Eldrun Stormbreaker · {area:442} Auberdine
+	-- {zone:1453} Stormwind · {area:2257} Deeprun Tram · {object:28027} Dwarven District · {zone:1455} Ironforge · {npc:258098} Eldrun Stormbreaker · {area:442} Auberdine
 	["{zone:1453} has no shaman trainer: take the {area:2257} from the {object:28027} to {zone:1455}, train with {npc:258098}, then ride the tram back for the {area:442} boat."] = "{zone:1453} no tiene instructor de chamanes: toma el {area:2257} desde {object:28027} hasta {zone:1455}, entrena con {npc:258098} y luego regresa en el tranvía para tomar el barco a {area:442}.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["{npc:332}: {spell:2842}, and {item:18160}"] = "{npc:332}: {spell:2842} y {item:18160}",
 }

@@ -127,8 +127,8 @@ return {
 	["Back to {object:3202}."] = "返回{object:3202}。",
 
 	-- Step 30: The Vile Reef
-	-- {object:3202} Grom'gol · {area:104} The Vile Reef · {item:4094} Tablet Shard
-	["North-west of {object:3202} the {area:104} lies under the water off the coast. The {item:4094} rests on the sea floor by the sunken ruins; watch your breath and the murlocs."] = "{area:104}位於{object:3202}西北方的外海水下。{item:4094}在沉沒遺跡旁的海底；注意你的呼吸和魚人。",
+	-- {area:104} Vile Reef · {item:4094} Tablet Shard
+	["North-west of Grom'gol the {area:104} lies under the water off the coast. The {item:4094} rests on the sea floor by the sunken ruins; watch your breath and the murlocs."] = "",
 
 	-- Step 31: Bloodscalp ruins
 	["Bloodscalp ruins"] = "血頂遺跡",
@@ -144,8 +144,8 @@ return {
 
 	-- Step 34: Green Hills pages
 	["Green Hills pages"] = "荊棘谷的青山書頁",
-	-- {quest:338} The Green Hills of Stranglethorn
-	["Pages of {quest:338} drop at about 1% each from the Bloodscalp and Skullsplitter trolls; keep every page you loot and look on the auction house for the rest. Barnil takes the chapters later in this guide."] = "{quest:338}的每一頁從血頂和劈顱食人妖身上的掉落率約為1%；保留你拾取的每一頁，其餘的到拍賣場找。巴尼爾會在本指南稍後收下這些章節。",
+	-- {item:2755} Green Hills of Stranglethorn
+	["Pages of The {item:2755} drop at about 1% each from the Bloodscalp and Skullsplitter trolls; keep every page you loot and look on the auction house for the rest. Barnil takes the chapters later in this guide."] = "",
 
 	-- Step 35: Shadowmaw panthers
 	["Shadowmaw panthers"] = "深喉獵豹",
@@ -153,8 +153,8 @@ return {
 	["The Shadowmaw Panthers (37-38) stalk the jungle east of the Mosh'Ogg hills and north-east towards the lake; they strike from stealth. Loot every Green Hills page you find on the way."] = "深喉獵豹（37-38級）在莫什奧格山丘東邊以及往東北通往湖泊的叢林中潛行；牠們會從潛行中發動攻擊。沿途拾取你找到的每一頁荊棘谷的青山。",
 
 	-- Step 36: Green Hills pages
-	-- {quest:338} The Green Hills of Stranglethorn
-	["Pages of {quest:338} drop at about 1% each from the Bloodscalp and Skullsplitter trolls; take what drops and check the Auction House for the rest."] = "{quest:338}的每一頁從血頂和劈顱食人妖身上的掉落率約為1%；拿下掉落的書頁，其餘的到拍賣場看看。",
+	-- {item:2755} Green Hills of Stranglethorn
+	["Pages of The {item:2755} drop at about 1% each from the Bloodscalp and Skullsplitter trolls; take what drops and check the Auction House for the rest."] = "",
 
 	-- Step 39: Jungle Stalkers
 	-- plural, as words: Jungle Stalkers = {npc:687} Jungle Stalker
@@ -185,4 +185,9 @@ return {
 	["Hearth to {area:35}"] = "使用爐石前往{area:35}",
 	-- {area:272} Tarren Mill · {zone:1417} Arathi Highlands
 	["The next guide flies you north to {area:272} and into the {zone:1417}."] = "下一份指南會帶你向北飛往{area:272}，然後進入{zone:1417}。",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["North-west of {object:3202} the {area:104} lies under the water off the coast. The {item:4094} rests on the sea floor by the sunken ruins; watch your breath and the murlocs."] = "{area:104}位於{object:3202}西北方的外海水下。{item:4094}在沉沒遺跡旁的海底；注意你的呼吸和魚人。",
+	-- ["Pages of {quest:338} drop at about 1% each from the Bloodscalp and Skullsplitter trolls; keep every page you loot and look on the auction house for the rest. Barnil takes the chapters later in this guide."] = "{quest:338}的每一頁從血頂和劈顱食人妖身上的掉落率約為1%；保留你拾取的每一頁，其餘的到拍賣場找。巴尼爾會在本指南稍後收下這些章節。",
+	-- ["Pages of {quest:338} drop at about 1% each from the Bloodscalp and Skullsplitter trolls; take what drops and check the Auction House for the rest."] = "{quest:338}的每一頁從血頂和劈顱食人妖身上的掉落率約為1%；拿下掉落的書頁，其餘的到拍賣場看看。",
 }

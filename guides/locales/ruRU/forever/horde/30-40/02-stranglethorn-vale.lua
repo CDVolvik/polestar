@@ -127,8 +127,8 @@ return {
 	["Back to {object:3202}."] = "Вернитесь: {object:3202}.",
 
 	-- Step 30: The Vile Reef
-	-- {object:3202} Grom'gol · {area:104} The Vile Reef · {item:4094} Tablet Shard
-	["North-west of {object:3202} the {area:104} lies under the water off the coast. The {item:4094} rests on the sea floor by the sunken ruins; watch your breath and the murlocs."] = "К северо-западу от места {object:3202} под водой у побережья лежит {area:104}. {item:4094} лежит на морском дне у затонувших руин; следите за дыханием и мурлоками.",
+	-- {area:104} Vile Reef · {item:4094} Tablet Shard
+	["North-west of Grom'gol the {area:104} lies under the water off the coast. The {item:4094} rests on the sea floor by the sunken ruins; watch your breath and the murlocs."] = "",
 
 	-- Step 31: Bloodscalp ruins
 	["Bloodscalp ruins"] = "Руины Кровавого Скальпа",
@@ -144,8 +144,8 @@ return {
 
 	-- Step 34: Green Hills pages
 	["Green Hills pages"] = "Страницы «Зеленых холмов»",
-	-- {quest:338} The Green Hills of Stranglethorn
-	["Pages of {quest:338} drop at about 1% each from the Bloodscalp and Skullsplitter trolls; keep every page you loot and look on the auction house for the rest. Barnil takes the chapters later in this guide."] = "Страницы книги «{quest:338}» падают с шансом около 1% каждая с троллей из племен Кровавого Скальпа и Дробителей Черепов; сохраняйте каждую найденную страницу, а остальные поищите на аукционе. Барнил принимает главы позже в этом гайде.",
+	-- {item:2755} Green Hills of Stranglethorn
+	["Pages of The {item:2755} drop at about 1% each from the Bloodscalp and Skullsplitter trolls; keep every page you loot and look on the auction house for the rest. Barnil takes the chapters later in this guide."] = "",
 
 	-- Step 35: Shadowmaw panthers
 	["Shadowmaw panthers"] = "Тенебрюхие пантеры",
@@ -153,8 +153,8 @@ return {
 	["The Shadowmaw Panthers (37-38) stalk the jungle east of the Mosh'Ogg hills and north-east towards the lake; they strike from stealth. Loot every Green Hills page you find on the way."] = "Тенебрюхие пантеры (37-38) крадутся по джунглям к востоку от холмов Мош'Огг и на северо-восток к озеру; они нападают из невидимости. Собирайте по пути каждую страницу «Зеленых холмов».",
 
 	-- Step 36: Green Hills pages
-	-- {quest:338} The Green Hills of Stranglethorn
-	["Pages of {quest:338} drop at about 1% each from the Bloodscalp and Skullsplitter trolls; take what drops and check the Auction House for the rest."] = "Страницы книги «{quest:338}» падают с шансом около 1% каждая с троллей из племен Кровавого Скальпа и Дробителей Черепов; берите, что выпадет, а остальное ищите на аукционе.",
+	-- {item:2755} Green Hills of Stranglethorn
+	["Pages of The {item:2755} drop at about 1% each from the Bloodscalp and Skullsplitter trolls; take what drops and check the Auction House for the rest."] = "",
 
 	-- Step 39: Jungle Stalkers
 	-- plural, as words: Jungle Stalkers = {npc:687} Jungle Stalker
@@ -185,4 +185,9 @@ return {
 	["Hearth to {area:35}"] = "Используйте Камень возвращения: {area:35}",
 	-- {area:272} Tarren Mill · {zone:1417} Arathi Highlands
 	["The next guide flies you north to {area:272} and into the {zone:1417}."] = "Следующий гайд ведет вас на север в {area:272} и в {zone:1417}.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["North-west of {object:3202} the {area:104} lies under the water off the coast. The {item:4094} rests on the sea floor by the sunken ruins; watch your breath and the murlocs."] = "К северо-западу от места {object:3202} под водой у побережья лежит {area:104}. {item:4094} лежит на морском дне у затонувших руин; следите за дыханием и мурлоками.",
+	-- ["Pages of {quest:338} drop at about 1% each from the Bloodscalp and Skullsplitter trolls; keep every page you loot and look on the auction house for the rest. Barnil takes the chapters later in this guide."] = "Страницы книги «{quest:338}» падают с шансом около 1% каждая с троллей из племен Кровавого Скальпа и Дробителей Черепов; сохраняйте каждую найденную страницу, а остальные поищите на аукционе. Барнил принимает главы позже в этом гайде.",
+	-- ["Pages of {quest:338} drop at about 1% each from the Bloodscalp and Skullsplitter trolls; take what drops and check the Auction House for the rest."] = "Страницы книги «{quest:338}» падают с шансом около 1% каждая с троллей из племен Кровавого Скальпа и Дробителей Черепов; берите, что выпадет, а остальное ищите на аукционе.",
 }

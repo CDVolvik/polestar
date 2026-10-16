@@ -16,6 +16,6 @@ return {
 
 	-- Step 2: Durotar Supply and Logistics
 	["Durotar Supply and Logistics"] = "Logística e Suprimentos de Durotar",
-	-- {area:380} The Crossroads · {npc:256384} Gishah · {zone:1458} Undercity
+	-- {area:380} Crossroads · {npc:256384} Gishah · {zone:1458} Undercity
 	["The Horde camp is just outside the {area:380}. Loot supply crates in the world, fill them and hand them in at the camp for Merchant's Favor; the treat costs 1,500. (Another {npc:256384} stands in the {zone:1458}; this is the one at the camp.)"] = "O acampamento da Horda fica logo fora de {area:380}. Saqueie caixas de suprimentos pelo mundo, encha-as e entregue-as no acampamento por Favor Mercantil; o petisco custa 1.500. (Outro {npc:256384} fica em {zone:1458}; este é o do acampamento.)",
 }

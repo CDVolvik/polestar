@@ -9,8 +9,8 @@ return {
 	-- {npc:14470} Impsy
 	["A staff, off-hand or robe for your 50s; {npc:14470}'s own errand, not a step of the Dreadsteed chain."] = "50多級用的法杖、副手或長袍；{npc:14470}自己的差事，不屬於恐懼戰馬任務鏈。",
 
-	-- Step 1: An Imp's Request (Stormwind City)
-	-- {npc:461} Demisette Cloyce · {object:2164} The Slaughtered Lamb · {object:2101} Mage Quarter · {npc:14470} Impsy · {zone:1448} Felwood
+	-- Step 1: An Imp's Request (Stormwind)
+	-- {npc:461} Demisette Cloyce · {object:2164} Slaughtered Lamb · {object:2101} Mage Quarter · {npc:14470} Impsy · {zone:1448} Felwood
 	["At 50 {npc:461} in the {object:2164}, in the {object:2101}, sends you to {npc:14470} in {zone:1448}."] = "50級時，{object:2101}{object:2164}的{npc:461}會派你去找{zone:1448}的{npc:14470}。",
 
 	-- Step 2: An Imp's Request (Ironforge)

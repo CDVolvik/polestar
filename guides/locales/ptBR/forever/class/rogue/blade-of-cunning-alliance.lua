@@ -11,11 +11,11 @@ return {
 	["A dagger at 10 from your home town's rogue quests."] = "Uma adaga no nível 10, das missões de ladino da sua cidade natal.",
 
 	-- Step 1: Seek out SI: 7
-	-- {npc:917} Keryn Sylvius · {area:87} Goldshire · {npc:332} Master Mathias Shaw · {zone:1453} Stormwind City
+	-- {npc:917} Keryn Sylvius · {area:87} Goldshire · {npc:332} Master Mathias Shaw · {zone:1453} Stormwind
 	["At 10 {npc:917}, the rogue trainer in the Lion's Pride Inn in {area:87}, gives you a package for {npc:332} in {zone:1453}."] = "No nível 10, {npc:917}, o instrutor de ladinos na Estalagem Orgulho do Leão em {area:87}, dá a você um pacote para {npc:332} em {zone:1453}.",
 
 	-- Step 2: Master Mathias Shaw
-	-- {zone:1453} Stormwind City · {object:2100} Old Town
+	-- {zone:1453} Stormwind · {object:2100} Old Town
 	["Ride north to {zone:1453}; Mathias Shaw is at SI:7 in {object:2100}."] = "Cavalgue para o norte até {zone:1453}; Mestre Mathias Shaw está na AVIN, em {object:2100}.",
 
 	-- Step 3: Defias Dockmaster

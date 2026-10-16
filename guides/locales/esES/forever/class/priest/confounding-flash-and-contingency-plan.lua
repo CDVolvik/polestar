@@ -11,10 +11,10 @@ return {
 	["The Gnome priest spells, new in Forever: one at 10, one at 20."] = "Los hechizos de sacerdote gnomo, nuevos en Forever: uno a nivel 10 y otro a nivel 20.",
 
 	-- Step 1: Confounding Flash
-	-- {npc:258785} High Priestess Mims · {object:32386} Hall of Mysteries · {zone:1455} Ironforge · {object:32362} The Mystic Ward · {npc:1226} Maxan Anvol · {area:131} Kharanos · {npc:377} Priestess Josetta · {area:87} Goldshire · {npc:376} High Priestess Laurena · {zone:1453} Stormwind City
+	-- {npc:258785} High Priestess Mims · {object:32386} Hall of Mysteries · {zone:1455} Ironforge · {object:32362} Mystic Ward · {npc:1226} Maxan Anvol · {area:131} Kharanos · {npc:377} Priestess Josetta · {area:87} Goldshire · {npc:376} High Priestess Laurena · {zone:1453} Stormwind
 	["At 10, go to {npc:258785} in the {object:32386}, in {zone:1455}'s {object:32362}. {npc:1226} in {area:131}, {npc:377} in {area:87} and {npc:376} in {zone:1453} send you to her with a quest of the same name (its text may say {zone:1453}: Mims is in {zone:1455})."] = "A nivel 10, ve con {npc:258785} en {object:32386}, en {object:32362} de {zone:1455}. {npc:1226} en {area:131}, {npc:377} en {area:87} y {npc:376} en {zone:1453} te envían con ella con una misión del mismo nombre (su texto puede decir {zone:1453}: Mims está en {zone:1455}).",
 
 	-- Step 2: Contingency Plan
-	-- {npc:258785} High Priestess Mims · {quest:94818} Contingency Plan · {npc:376} High Priestess Laurena · {zone:1453} Stormwind City
+	-- {npc:258785} High Priestess Mims · {quest:94818} Contingency Plan · {npc:376} High Priestess Laurena · {zone:1453} Stormwind
 	["At 20, {npc:258785} teaches {quest:94818}. {npc:376} in {zone:1453} sends you to her with a quest of the same name."] = "A nivel 20, {npc:258785} enseña {quest:94818}. {npc:376} en {zone:1453} te envía con ella con una misión del mismo nombre.",
 }

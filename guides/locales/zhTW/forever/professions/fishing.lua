@@ -23,8 +23,7 @@ return {
 	["{zone:1411} coast"] = "{zone:1411}海岸",
 
 	-- Step 6: Fishing: The Barrens (1-50)
-	-- {zone:1413} The Barrens
-	["{zone:1413} oasis"] = "{zone:1413}綠洲",
+	["Barrens oasis"] = "",
 
 	-- Step 7: Fishing: Tirisfal Glades (1-50)
 	["Vile Fin shore"] = "邪鰭魚人海岸",
@@ -86,7 +85,7 @@ return {
 	["Fish in the {area:2521} in {zone:1444} until you catch a {item:16967}; it only bites there."] = "在{zone:1444}的{area:2521}釣魚，直到釣到{item:16967}；它只在那裡上鉤。",
 
 	-- Step 24: Savage Coast Blue Sailfin
-	-- {area:301} The Savage Coast · {zone:1434} Stranglethorn Vale · {item:16969} Savage Coast Blue Sailfin
+	-- {area:301} Savage Coast · {zone:1434} Stranglethorn Vale · {item:16969} Savage Coast Blue Sailfin
 	["Fish in the {area:301}, the north-west shore of {zone:1434} until you catch a {item:16969}; it only bites there."] = "在{zone:1434}西北岸的{area:301}釣魚，直到釣到{item:16969}；它只在那裡上鉤。",
 
 	-- Step 25: Misty Reed Mahi Mahi
@@ -102,4 +101,7 @@ return {
 	["Fish the pools along the coast here (eels, snappers, wreckage) until skill 300. {area:35} sells bait and {item:6530} for a small fishing bonus."] = "在這裡沿岸的魚群（鰻魚、笛鯛、殘骸）釣魚，直到技能達到300。{area:35}販售魚餌和{item:6530}，可稍微提高釣魚加成。",
 	-- {area:35} Booty Bay
 	["{area:35} coast"] = "{area:35}海岸",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["{zone:1413} oasis"] = "{zone:1413}綠洲",
 }

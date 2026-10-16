@@ -6,7 +6,7 @@
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Thelsamar
-	-- {npc:1573} Gryth Thurden · {object:32372} The Great Forge
+	-- {npc:1573} Gryth Thurden · {object:32372} Great Forge
 	["{npc:1573}, the {object:32372}"] = "{npc:1573}, {object:32372}",
 
 	-- Step 2: Hammertoe's Digsite
@@ -53,8 +53,8 @@ return {
 	["Raleigh's next errand is in the {area:796}: skip it."] = "랄레이의 다음 심부름은 {area:796}에 있으니 건너뛰십시오.",
 
 	-- Step 11: Aerie Peak
-	-- {area:271} Southshore · {zone:1425} The Hinterlands · {area:348} Aerie Peak · {quest:1450} Gryphon Master Talonaxe · {npc:7884} Fraggar Thundermantle
-	["Ride north-east out of {area:271} on the road into the {zone:1425}; {area:348} sits just past the border. Falstad holds court at the top, {quest:1450} tends the aviary and {npc:7884} stands by the inn."] = "길을 따라 북동쪽으로 {area:271}을(를) 빠져나가 {zone:1425}(으)로 가십시오. {area:348}은(는) 경계 바로 너머에 있습니다. 폴스타트 와일드해머는 꼭대기에, {quest:1450}은(는) 그리핀 둥지에, {npc:7884}은(는) 여관 옆에 있습니다.",
+	-- {area:271} Southshore · {area:348} Aerie Peak · {quest:1450} Gryphon Master Talonaxe · {npc:7884} Fraggar Thundermantle
+	["Ride north-east out of {area:271} on the road into the Hinterlands; {area:348} sits just past the border. Falstad holds court at the top, {quest:1450} tends the aviary and {npc:7884} stands by the inn."] = "",
 
 	-- Step 12: Rhapsody Shindigger
 	-- {area:348} Aerie Peak
@@ -69,8 +69,7 @@ return {
 	["Fraggar keeps paying for necklaces: hand in any extras"] = "프라가르는 목걸이를 계속 받습니다. 남는 것은 제출하십시오",
 	-- {npc:5636} Gryphon Master Talonaxe
 	["{npc:5636}, beside the flight master at the top"] = "{npc:5636}, 꼭대기의 비행 조련사 옆",
-	-- {zone:1425} The Hinterlands
-	["Talonaxe's next task waits for a later {zone:1425} guide."] = "탈론액스의 다음 임무는 이후 {zone:1425} 가이드에서 합니다.",
+	["Talonaxe's next task waits for a later Hinterlands guide."] = "",
 
 	-- Step 15: Menethil Harbor
 	["Take the boat to Theramore from the far pier."] = "가장 먼 부두에서 테라모어 섬행 배를 타십시오.",
@@ -88,6 +87,10 @@ return {
 
 	-- Step 18: On to Feathermoon
 	["On to Feathermoon"] = "페더문 요새로",
-	-- {area:608} Nijel's Point · {zone:1443} Desolace · {zone:1444} Feralas · {area:1108} The Forgotten Coast · {area:1116} Feathermoon Stronghold
+	-- {area:608} Nijel's Point · {zone:1443} Desolace · {zone:1444} Feralas · {area:1108} Forgotten Coast · {area:1116} Feathermoon Stronghold
 	["Fly to {area:608}, ride south through {zone:1443} into {zone:1444} and follow the road to the dock on the {area:1108}; the boat crosses to {area:1116}, where the next guide starts."] = "{area:608}(으)로 비행한 뒤 남쪽으로 {zone:1443}을(를) 지나 {zone:1444}(으)로 가서 {area:1108}의 부두까지 길을 따라가십시오. 배가 {area:1116}(으)로 건너가며, 그곳에서 다음 가이드가 시작합니다.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Ride north-east out of {area:271} on the road into the {zone:1425}; {area:348} sits just past the border. Falstad holds court at the top, {quest:1450} tends the aviary and {npc:7884} stands by the inn."] = "길을 따라 북동쪽으로 {area:271}을(를) 빠져나가 {zone:1425}(으)로 가십시오. {area:348}은(는) 경계 바로 너머에 있습니다. 폴스타트 와일드해머는 꼭대기에, {quest:1450}은(는) 그리핀 둥지에, {npc:7884}은(는) 여관 옆에 있습니다.",
+	-- ["Talonaxe's next task waits for a later {zone:1425} guide."] = "탈론액스의 다음 임무는 이후 {zone:1425} 가이드에서 합니다.",
 }

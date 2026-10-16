@@ -24,9 +24,9 @@ return {
 	-- Step 4: Polymorph Clones
 	-- plural, as words: Polymorph Clones = {npc:16479} Polymorph Clone
 	["Polymorph Clones"] = "Clones de métamorphose",
-	-- {item:23250} Prismatic Shell · {area:1221} Ruins of Eldarath · {spell:118} Polymorph
+	-- {item:23250} Prismatic Shell · {area:1221} Ruins of Eldarath
 	-- plural, as words: Polymorph Clones = {npc:16479} Polymorph Clone
-	["Carry the {item:23250} back to the {area:1221}. {spell:118} a Spitelash naga and wait a few seconds: it splits into small Polymorph Clones. Kill the clones quickly; the shell collects their essence."] = "Rapportez {item:23250} aux {area:1221}. Lancez {spell:118} sur un naga Irequeue et attendez quelques secondes : il se divise en petits Clones de métamorphose ({npc:16479}). Tuez vite les clones ; le coquillage recueille leur essence.",
+	["Carry the {item:23250} back to the {area:1221}. Polymorph a Spitelash naga and wait a few seconds: it splits into small Polymorph Clones. Kill the clones quickly; the shell collects their essence."] = "",
 
 	-- Step 5: Fragmented Magic
 	-- {npc:8379} Archmage Xylem · {spell:118} Polymorph
@@ -35,5 +35,6 @@ return {
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["A new look for Polymorph: it turns the target into a pig rather than a sheep."] = "Une nouvelle apparence pour Métamorphose : la cible devient un cochon au lieu d'un mouton.",
 	-- ["Carry the {item:23250} back to the {area:1221}. Polymorph a Spitelash naga and wait a few seconds: it splits into small Polymorph Clones. Kill the clones quickly; the shell collects their essence."] = "Rapportez la {item:23250} aux {area:1221}. Lancez Métamorphose sur un naga fouette-bile et attendez quelques secondes : il se divise en petits Clones de métamorphose. Tuez vite les clones ; la coquille recueille leur essence.",
+	-- ["Carry the {item:23250} back to the {area:1221}. {spell:118} a Spitelash naga and wait a few seconds: it splits into small Polymorph Clones. Kill the clones quickly; the shell collects their essence."] = "Rapportez {item:23250} aux {area:1221}. Lancez {spell:118} sur un naga Irequeue et attendez quelques secondes : il se divise en petits Clones de métamorphose ({npc:16479}). Tuez vite les clones ; le coquillage recueille leur essence.",
 	-- ["{npc:8379}: Polymorph (pig)"] = "{npc:8379} : Métamorphose (cochon)",
 }

@@ -9,8 +9,8 @@ return {
 	-- {npc:14470} Impsy
 	["A staff, off-hand or robe for your 50s; {npc:14470}'s own errand, not a step of the Dreadsteed chain."] = "50대용 지팡이, 보조장비, 로브. {npc:14470}의 개인 심부름으로, 공포마 연계 퀘스트의 단계가 아닙니다.",
 
-	-- Step 1: An Imp's Request (Stormwind City)
-	-- {npc:461} Demisette Cloyce · {object:2164} The Slaughtered Lamb · {object:2101} Mage Quarter · {npc:14470} Impsy · {zone:1448} Felwood
+	-- Step 1: An Imp's Request (Stormwind)
+	-- {npc:461} Demisette Cloyce · {object:2164} Slaughtered Lamb · {object:2101} Mage Quarter · {npc:14470} Impsy · {zone:1448} Felwood
 	["At 50 {npc:461} in the {object:2164}, in the {object:2101}, sends you to {npc:14470} in {zone:1448}."] = "50레벨에 {object:2101}에 있는 {object:2164}의 {npc:461}이(가) 당신을 {zone:1448}의 {npc:14470}에게 보냅니다.",
 
 	-- Step 2: An Imp's Request (Ironforge)

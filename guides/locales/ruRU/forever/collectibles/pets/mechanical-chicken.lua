@@ -13,7 +13,7 @@ return {
 
 	-- Step 2: Rescue OOX-22/FE
 	["Rescue OOX-22/FE"] = "Спасите КПX-22/FE",
-	-- {area:1105} Feral Scar Vale · {area:1108} The Forgotten Coast · {area:35} Booty Bay
+	-- {area:1105} Feral Scar Vale · {area:1108} Forgotten Coast · {area:35} Booty Bay
 	["Take the beacon to OOX-22/FE in a cave near {area:1105}, then escort it to the dock on the {area:1108}. Its turn-in is in {area:35}; keep it for later."] = "Отнесите маячок к КПX-22/FE в пещеру у места {area:1105}, затем сопроводите робота до причала (локация: {area:1108}). Задание сдается в месте {area:35}; оставьте его на потом.",
 	["Escort OOX-22/FE"] = "Сопроводите КПX-22/FE",
 
@@ -30,9 +30,9 @@ return {
 	["Escort OOX-17/TN"] = "Сопроводите КПХ-17/TN",
 
 	-- Step 5: OOX-09/HL Distress Beacon in the Hinterlands
-	-- {item:8704} OOX-09/HL Distress Beacon · {zone:1425} The Hinterlands
+	-- {item:8704} OOX-09/HL Distress Beacon · {zone:1425} Hinterlands
 	["{item:8704} in the {zone:1425}"] = "{item:8704} — зона {zone:1425}",
-	-- {zone:1425} The Hinterlands
+	-- {zone:1425} Hinterlands
 	["Most {zone:1425} mobs can drop OOX-09/HL's beacon (about 1-2.5% per kill in our data)."] = "Маячок КПХ-9/HL может выпасть с большинства существ зоны {zone:1425} (по нашим данным примерно 1-2,5% за убийство).",
 
 	-- Step 6: Rescue OOX-09/HL

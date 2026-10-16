@@ -16,6 +16,6 @@ return {
 
 	-- Step 2: Durotar Supply and Logistics
 	["Durotar Supply and Logistics"] = "Versorgung und Logistik Durotar",
-	-- {area:380} The Crossroads · {npc:256384} Gishah · {zone:1458} Undercity
+	-- {area:380} Crossroads · {npc:256384} Gishah · {zone:1458} Undercity
 	["The Horde camp is just outside the {area:380}. Loot supply crates in the world, fill them and hand them in at the camp for Merchant's Favor; the treat costs 1,500. (Another {npc:256384} stands in the {zone:1458}; this is the one at the camp.)"] = "Das Lager der Horde liegt gleich außerhalb von {area:380}. Plündere Vorratskisten in der Welt, füll sie und gib sie im Lager ab für Merchant's Favor; das Leckerli kostet 1.500. (Ein weiterer {npc:256384} steht in {zone:1458}; gemeint ist der im Lager.)",
 }

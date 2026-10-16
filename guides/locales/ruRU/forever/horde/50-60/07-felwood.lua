@@ -86,5 +86,4 @@ return {
 	["In {zone:1454}: fly from {area:2255}"] = "В городе {zone:1454}: летите из места {area:2255}",
 	-- {zone:1456} Thunder Bluff · {area:2255} Everlook
 	["In {zone:1456}: fly from {area:2255}"] = "В городе {zone:1456}: летите из места {area:2255}",
-
 }

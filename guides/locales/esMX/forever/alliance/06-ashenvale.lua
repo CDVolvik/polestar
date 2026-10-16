@@ -32,8 +32,8 @@ return {
 	["Escort Kerlonian to {area:413} in {zone:1440}."] = "Escolta a Kerlonian hasta {area:413}, en {zone:1440}.",
 
 	-- Step 7: Bathran's Haunt
-	-- {area:413} Maestra's Post · {area:411} Bathran's Haunt · {item:5366} Glowing Soul Gem
-	["North of {area:413}, plant bundles lie around the ruins of {area:411}. Dark Strand cultists hold the ruins just south of them: any of them can drop the {item:5366}."] = "Al norte de {area:413} hay manojos de plantas alrededor de las ruinas de {area:411}. Los cultores de la Facción Oscura ocupan las ruinas justo al sur: cualquiera puede soltar la {item:5366}.",
+	-- {area:411} Bathran's Haunt · {item:5366} Glowing Soul Gem
+	["North of Maestra's Post, plant bundles lie around the ruins of {area:411}. Dark Strand cultists hold the ruins just south of them: any of them can drop the {item:5366}."] = "",
 	-- {quest:1010} Bathran's Hair
 	["{quest:1010}, from the plant bundles"] = "{quest:1010}, de los manojos de plantas",
 
@@ -47,23 +47,23 @@ return {
 	-- {area:441} Lake Falathim · {item:5463} Glowing Gem
 	["Ride west to the shore of {area:441}. Teronis lies among the Saltspittle murlocs; any murloc can drop the {item:5463}."] = "Cabalga al oeste hasta la orilla de {area:441}. Teronis yace entre los múrlocs Gapo Salino; cualquier múrloc puede soltar la {item:5463}.",
 
-	-- Step 11: The Shrine of Aessina
-	-- {npc:3585} Therysil · {area:416} The Shrine of Aessina
+	-- Step 11: Shrine of Aessina
+	-- {npc:3585} Therysil · {area:416} Shrine of Aessina
 	["South of the murlocs, {npc:3585} waits at the {area:416}."] = "Al sur de los múrlocs, {npc:3585} espera en {area:416}.",
 
 	-- Step 12: Ilkrud Magthrull
-	-- {area:412} The Ruins of Ordil'Aran
+	-- {area:412} Ruins of Ordil'Aran
 	["Ilkrud and his voidwalkers hold the {area:412} south of the shrine. Pull his guards first."] = "Ilkrud y sus abisarios ocupan {area:412}, al sur del santuario. Atrae primero a sus guardias.",
 
 	-- Step 13: The Zoram Strand
-	-- {area:414} The Zoram Strand · {npc:3846} Talen
-	["Follow the coast north to the {area:414}. {npc:3846} camps on the beach; Wrathtail nagas fill the shore."] = "Sigue la costa al norte hasta {area:414}. {npc:3846} acampa en la playa; las nagas Colafuria llenan la orilla.",
+	-- {npc:3846} Talen
+	["Follow the coast north to the Zoram Strand. {npc:3846} camps on the beach; Wrathtail nagas fill the shore."] = "",
 	-- {item:5424} Ancient Statuette
 	["{item:5424}, in the ruins on the shore"] = "{item:5424}, en las ruinas de la orilla",
 
 	-- Step 15: Ruuzel
-	-- {quest:1009} Ruuzel · {area:414} The Zoram Strand
-	["{quest:1009} walks the northern tip of the {area:414} with Wrathtail guards."] = "{quest:1009} recorre el extremo norte de {area:414} con guardias Colafuria.",
+	-- {quest:1009} Ruuzel
+	["{quest:1009} walks the northern tip of the Zoram Strand with Wrathtail guards."] = "",
 
 	-- Step 19: Dal Bloodclaw
 	-- {npc:3987} Dal Bloodclaw · {area:415} Astranaar
@@ -74,7 +74,7 @@ return {
 	["The tears glow on the small isle east of {area:415}."] = "Las lágrimas brillan en el islote al este de {area:415}.",
 
 	-- Step 22: Shael'dryn
-	-- {area:419} The Howling Vale · {npc:3916} Shael'dryn
+	-- {area:419} Howling Vale · {npc:3916} Shael'dryn
 	["Follow the road east to the {area:419}; {npc:3916} stands by the moonwell."] = "Sigue el camino al este hasta {area:419}; {npc:3916} está junto al pozo de la luna.",
 
 	-- Step 23: The Foulweald
@@ -91,11 +91,10 @@ return {
 	["Kill the elementals for 5 Intact Elemental Bracers, then use the {item:5456}"] = "Mata a los elementales hasta tener 5 Brazales elementales intactos ({item:12220}) y luego usa el {item:5456}",
 
 	-- Step 25: The Ruins of Stardust
-	-- {area:421} Mystral Lake
-	["West of {area:421}, the stardust bushes grow among the ruins."] = "Al oeste de {area:421}, los arbustos de polvo estelar crecen entre las ruinas.",
+	["West of Mystral Lake, the stardust bushes grow among the ruins."] = "",
 
 	-- Step 27: Windshear Crag
-	-- {area:421} Mystral Lake · {area:1276} The Talondeep Path · {area:461} Windshear Crag · {area:1076} Webwinder Path
+	-- {area:421} Mystral Lake · {area:1276} Talondeep Path · {area:461} Windshear Crag · {area:1076} Webwinder Path
 	["Ride south past {area:421} into the {area:1276} tunnel; it comes out in Stonetalon's {area:461}. Kaela and Gaxim camp on the {area:1076} south-west of the crag."] = "Cabalga al sur pasando {area:421} hasta el túnel de {area:1276}; sale en {area:461}, en la Sierra Espolón. Kaela y Gaxim acampan en {area:1076}, al suroeste del risco.",
 	-- {npc:4201} Ziz Fizziks
 	["{npc:4201}, in the hut north of them"] = "{npc:4201}, en la choza al norte de ellos",
@@ -112,7 +111,7 @@ return {
 	-- Step 31: To Menethil Harbor
 	-- {area:150} Menethil Harbor
 	["To {area:150}"] = "A {area:150}",
-	-- {area:1276} The Talondeep Path
+	-- {area:1276} Talondeep Path
 	["Hearthstone on cooldown? Ride back north through the {area:1276}."] = "¿Tu piedra de hogar está en tiempo de reutilización? Cabalga de vuelta al norte por {area:1276}.",
 	-- {area:150} Menethil Harbor
 	["Boat to {area:150}"] = "Barco a {area:150}",
@@ -135,8 +134,9 @@ return {
 	["Timber and iron piles lie around the keep and along the harbor's walls."] = "Hay pilas de madera y de hierro alrededor del castillo y a lo largo de las murallas del puerto.",
 
 	-- Step 35: Bluegill Marsh
+	-- {npc:1259} Gobbler
 	-- plural, as words: Bluegill Murlocs = {npc:1024} Bluegill Murloc
-	["Follow the coast north out of Menethil. Bluegill Murlocs fill the marsh; Gobbler walks with a pack in the middle of it."] = "Sigue la costa al norte saliendo de Menethil. Los Múrlocs Branquiazul ({npc:1024}) llenan el pantano; Engullidor camina con un grupo en medio de él.",
+	["Follow the coast north out of Menethil. Bluegill Murlocs fill the marsh; {npc:1259} walks with a pack in the middle of it."] = "",
 
 	-- Step 37: The Bluegill hovels
 	["The Bluegill hovels"] = "Las chozas Branquiazul",
@@ -178,17 +178,19 @@ return {
 	-- Step 47: Black Oozes
 	-- plural, as words: Black Oozes = {npc:1032} Black Ooze
 	["Black Oozes"] = "Mocos negros ({npc:1032})",
-	-- {area:1025} The Green Belt · {npc:2111} Sida
+	-- {area:1025} Green Belt · {npc:2111} Sida
 	-- plural, as words: Black Oozes = {npc:1032} Black Ooze
 	["Black Oozes creep through the marsh north of the {area:1025} road, west of Einar's camp. Any ooze may hold {npc:2111}'s bag."] = "Los Mocos negros ({npc:1032}) se arrastran por el pantano al norte del camino de {area:1025}, al oeste del campamento de Eina. Cualquier moco puede tener la bolsa de {npc:2111}.",
 
 	-- Step 48: The Green Belt
+	-- {area:1025} Green Belt
+	["The {area:1025}"] = "",
 	-- {npc:2093} Einar Stonegrip · {npc:1244} Rethiel the Greenwarden
 	["{npc:2093} camps by the road; {npc:1244} stands farther east, by the river."] = "{npc:2093} acampa junto al camino; {npc:1244} está más al este, junto al río.",
 
 	-- Step 49: The Mosshide gnolls
 	["The Mosshide gnolls"] = "Los gnolls Pellejomusgo",
-	-- {area:1025} The Green Belt
+	-- {area:1025} Green Belt
 	-- plural, as words: Mosshide Gnolls = {npc:1007} Mosshide Gnoll
 	["Mosshide Gnolls and Mongrels hold the hills south-east of the {area:1025}."] = "Los Gnolls Pellejomusgo ({npc:1007}) y los Bastardos Pellejomusgo ocupan las colinas al sureste de {area:1025}.",
 
@@ -199,7 +201,7 @@ return {
 	-- Step 53: Fen Creepers
 	-- plural, as words: Fen Creepers = {npc:1040} Fen Creeper
 	["Fen Creepers"] = "Trepadores del pantano ({npc:1040})",
-	-- {area:1025} The Green Belt
+	-- {area:1025} Green Belt
 	-- plural, as words: Fen Creepers = {npc:1040} Fen Creeper
 	["Fen Creepers hide in the marsh pools north-west of the {area:1025}."] = "Los Trepadores del pantano ({npc:1040}) se esconden en las charcas al noroeste de {area:1025}.",
 
@@ -209,7 +211,7 @@ return {
 
 	-- Step 56: Dragonmaw camp
 	["Dragonmaw camp"] = "Campamento Faucedraco",
-	-- {area:1025} The Green Belt · {npc:2092} Pilot Longbeard · {zone:1426} Dun Morogh
+	-- {area:1025} Green Belt · {npc:2092} Pilot Longbeard · {zone:1426} Dun Morogh
 	["The Dragonmaw camp lies south of the road, just west of the {area:1025}: Raiders, Swamprunners and Bonewarders. {npc:2092}'s quest in {zone:1426} needs level 28."] = "El campamento Faucedraco está al sur del camino, justo al oeste de {area:1025}: Asaltantes, Correpantanos y Guardahuesos. La misión de {npc:2092} en {zone:1426} requiere nivel 28.",
 	-- {zone:1437} Wetlands
 	-- plural, as words: Dragonmaw Raiders = {npc:1034} Dragonmaw Raider
@@ -222,20 +224,20 @@ return {
 	-- Step 58: Ironforge
 	-- {zone:1437} Wetlands · {area:836} Dun Algaz · {zone:1432} Loch Modan · {zone:1426} Dun Morogh · {area:1537} Ironforge
 	["Ride east along the {zone:1437} road, south through {area:836} into {zone:1432} and west through the tunnel into {zone:1426} to {area:1537}."] = "Cabalga al este por el camino de {zone:1437}, al sur por {area:836} hasta {zone:1432} y al oeste por el túnel hasta {zone:1426}, hasta {area:1537}.",
-	-- {npc:1573} Gryth Thurden · {object:32372} The Great Forge
+	-- {npc:1573} Gryth Thurden · {object:32372} Great Forge
 	["{npc:1573}, in the {object:32372}"] = "{npc:1573}, en {object:32372}",
-	-- {item:5352} Book: The Powers Below · {zone:1439} Darkshore · {npc:2786} Gerrig Bonegrip · {object:32383} The Forlorn Cavern
+	-- {item:5352} Book: The Powers Below · {zone:1439} Darkshore · {npc:2786} Gerrig Bonegrip · {object:32383} Forlorn Cavern
 	["Only with {item:5352} from {zone:1439}: {npc:2786}, the {object:32383}"] = "Solo con {item:5352} de {zone:1439}: {npc:2786}, {object:32383}",
 
 	-- Step 59: Ironforge priests
 	-- {zone:1455} Ironforge
 	["{zone:1455} priests"] = "Sacerdotes de {zone:1455}",
-	-- {npc:11406} High Priest Rohan · {npc:258785} High Priestess Mims · {object:32386} Hall of Mysteries · {object:32362} The Mystic Ward
+	-- {npc:11406} High Priest Rohan · {npc:258785} High Priestess Mims · {object:32386} Hall of Mysteries · {object:32362} Mystic Ward
 	["{npc:11406} and {npc:258785} are in the {object:32386}, in the {object:32362}."] = "{npc:11406} y {npc:258785} están en {object:32386}, en {object:32362}.",
 
 	-- Step 60: Cathedral of Light
 	["Cathedral of Light"] = "La catedral",
-	-- {area:2257} Deeprun Tram · {object:171524} Tinker Town · {zone:1453} Stormwind City · {object:28027} Dwarven District · {object:2098} Cathedral Square
+	-- {area:2257} Deeprun Tram · {object:171524} Tinker Town · {zone:1453} Stormwind · {object:28027} Dwarven District · {object:2098} Cathedral Square
 	["Take the {area:2257} from {object:171524} to {zone:1453}'s {object:28027}, then walk to the {object:2098}."] = "Toma {area:2257} desde {object:171524} hasta {object:28027} de {zone:1453} y luego camina hasta {object:2098}.",
 	-- {npc:4982} Thomas
 	["{npc:4982}, in the Cathedral of Light"] = "{npc:4982}, en la catedral",
@@ -267,4 +269,11 @@ return {
 	-- Step 65: Trade District
 	-- {area:42} Darkshire
 	["Next: fly to {area:42}."] = "Siguiente: vuela a {area:42}.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Follow the coast north out of Menethil. Bluegill Murlocs fill the marsh; Gobbler walks with a pack in the middle of it."] = "Sigue la costa al norte saliendo de Menethil. Los Múrlocs Branquiazul ({npc:1024}) llenan el pantano; Engullidor camina con un grupo en medio de él.",
+	-- ["Follow the coast north to the {area:414}. {npc:3846} camps on the beach; Wrathtail nagas fill the shore."] = "Sigue la costa al norte hasta {area:414}. {npc:3846} acampa en la playa; las nagas Colafuria llenan la orilla.",
+	-- ["North of {area:413}, plant bundles lie around the ruins of {area:411}. Dark Strand cultists hold the ruins just south of them: any of them can drop the {item:5366}."] = "Al norte de {area:413} hay manojos de plantas alrededor de las ruinas de {area:411}. Los cultores de la Facción Oscura ocupan las ruinas justo al sur: cualquiera puede soltar la {item:5366}.",
+	-- ["West of {area:421}, the stardust bushes grow among the ruins."] = "Al oeste de {area:421}, los arbustos de polvo estelar crecen entre las ruinas.",
+	-- ["{quest:1009} walks the northern tip of the {area:414} with Wrathtail guards."] = "{quest:1009} recorre el extremo norte de {area:414} con guardias Colafuria.",
 }

@@ -11,11 +11,11 @@ return {
 	["A dagger at 10 from your home town's rogue quests."] = "10級時從家鄉盜賊任務獲得的匕首。",
 
 	-- Step 1: Seek out SI: 7
-	-- {npc:917} Keryn Sylvius · {area:87} Goldshire · {npc:332} Master Mathias Shaw · {zone:1453} Stormwind City
+	-- {npc:917} Keryn Sylvius · {area:87} Goldshire · {npc:332} Master Mathias Shaw · {zone:1453} Stormwind
 	["At 10 {npc:917}, the rogue trainer in the Lion's Pride Inn in {area:87}, gives you a package for {npc:332} in {zone:1453}."] = "10級時，{area:87}旅店裡的盜賊訓練師{npc:917}會給你一個包裹，交給{zone:1453}的{npc:332}。",
 
 	-- Step 2: Master Mathias Shaw
-	-- {zone:1453} Stormwind City · {object:2100} Old Town
+	-- {zone:1453} Stormwind · {object:2100} Old Town
 	["Ride north to {zone:1453}; Mathias Shaw is at SI:7 in {object:2100}."] = "向北騎往{zone:1453}；馬迪亞斯·肖爾在{object:2100}的軍情七處。",
 
 	-- Step 3: Defias Dockmaster

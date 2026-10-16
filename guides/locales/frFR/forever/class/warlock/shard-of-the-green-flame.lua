@@ -23,8 +23,8 @@ return {
 	["The Legashi satyrs of northern {zone:1447} carry {zone:1447}'s essence."] = "Les satyres Legashi du nord d'{zone:1447} portent l'essence d'{zone:1447}.",
 
 	-- Step 4: The Dark Portal
-	-- {area:72} The Dark Portal · {zone:1419} Blasted Lands
-	["The Felguard Sentries around the {area:72}, in southern {zone:1419}, carry its essence."] = "Les Gangregardes sentinelles autour de la {area:72}, au sud des {zone:1419}, portent son essence.",
+	-- {zone:1419} Blasted Lands
+	["The Felguard Sentries around the Dark Portal, in southern {zone:1419}, carry its essence."] = "",
 
 	-- Step 6: Kroshius
 	-- {npc:14467} Kroshius · {area:1766} Shatter Scar Vale · {item:18626} Fel Fire
@@ -36,5 +36,6 @@ return {
 	["Back to Niby"] = "Retournez voir Niby",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["The Felguard Sentries around the {area:72}, in southern {zone:1419}, carry its essence."] = "Les Gangregardes sentinelles autour de la {area:72}, au sud des {zone:1419}, portent son essence.",
 	-- ["The {area:1763} Legionnaires, a short way west of Niby, carry {area:1763}'s essence."] = "Les Légionnaires de {area:1763}, un peu à l'ouest de Niby, portent l'essence de {area:1763}.",
 }

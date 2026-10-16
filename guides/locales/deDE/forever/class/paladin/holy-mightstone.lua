@@ -13,7 +13,7 @@ return {
 	["{npc:928} is in the Cathedral of Light."] = "{npc:928} ist in der Kathedrale des Lichts.",
 
 	-- Step 2: Brandur Ironhammer
-	-- {npc:5149} Brandur Ironhammer · {object:32362} The Mystic Ward
+	-- {npc:5149} Brandur Ironhammer · {object:32362} Mystic Ward
 	["{npc:5149} is in the {object:32362}."] = "{npc:5149} ist in {object:32362}.",
 
 	-- Step 3: Chillwind Camp

@@ -100,7 +100,7 @@ return {
 	["Fly from {area:1998} to the Sanctuary's end of the road, or ride south along it."] = "从{area:1998}飞往道路上避难所那一端，或沿路向南骑行。",
 	-- {zone:1457} Darnassus
 	["The vial is filled in {zone:1457}: keep it"] = "药瓶在{zone:1457}装满：留着",
-	-- {zone:1413} The Barrens
+	-- {zone:1413} Barrens
 	["Ends in the {zone:1413}: keep it"] = "在{zone:1413}结束：留着",
 
 	-- Step 20: Everlook

@@ -13,7 +13,7 @@ return {
 	-- Step 1: The Hunter's Charm (Alliance)
 	-- {quest:8151} The Hunter's Charm
 	["{quest:8151} (Alliance)"] = "{quest:8151} (얼라이언스)",
-	-- {npc:5516} Ulfir Ironbeard · {zone:1453} Stormwind City · {object:28027} Dwarven District · {npc:5116} Olmin Burningbeard · {zone:1455} Ironforge · {object:32390} Hall of Arms · {zone:1457} Darnassus
+	-- {npc:5516} Ulfir Ironbeard · {zone:1453} Stormwind · {object:28027} Dwarven District · {npc:5116} Olmin Burningbeard · {zone:1455} Ironforge · {object:32390} Hall of Arms · {zone:1457} Darnassus
 	["At 50 any Alliance hunter trainer offers it: {npc:5516} in {zone:1453}'s {object:28027}, {npc:5116} in {zone:1455}'s {object:32390} or Dorion in {zone:1457}' Cenarion Enclave."] = "50레벨이 되면 얼라이언스 사냥꾼 상급자 누구나 이 퀘스트를 줍니다: {zone:1453} {object:28027}의 {npc:5516}, {zone:1455} {object:32390}의 {npc:5116}, {zone:1457} 세나리온 자치령의 도리온.",
 
 	-- Step 2: The Hunter's Charm (Horde)
@@ -43,5 +43,4 @@ return {
 	["Morphaz is an elite dragon boss inside the {area:1417}, a five-player dungeon: bring a group. The temple stands in the middle of the {area:74}; swim down into it to reach the entrance. Horde: fly to {area:75}; Alliance: fly to {area:42} or {area:1438} and ride on."] = "몰파즈는 5인 던전인 {area:1417} 안의 정예 용 우두머리입니다. 파티를 데려가세요. 사원은 {area:74} 한가운데에 있으며, 물속으로 헤엄쳐 내려가면 입구가 나옵니다. 호드는 {area:75}(으)로, 얼라이언스는 {area:42}나 {area:1438}(으)로 날아간 뒤 말을 타고 가세요.",
 	-- {item:20019} Tooth of Morphaz · {area:1417} Sunken Temple
 	["{item:20019}, inside the {area:1417}"] = "{item:20019}, {area:1417} 안",
-
 }

@@ -150,7 +150,7 @@ return {
 	["{npc:260093} trains Paladins in the {area:1497}."] = "{npc:260093} entraîne les paladins à {area:1497}.",
 
 	-- Step 34: Brazier of Everfount
-	-- {area:1497} Undercity · {area:228} The Sepulcher · {object:113791} Brazier of Everfount · {npc:5895} Minor Manifestation of Water · {item:7813} Shard of Water · {area:272} Tarren Mill
+	-- {area:1497} Undercity · {area:228} Sepulcher · {object:113791} Brazier of Everfount · {npc:5895} Minor Manifestation of Water · {item:7813} Shard of Water · {area:272} Tarren Mill
 	["Do your shopping in the {area:1497} first, then fly to the {area:228}. The {object:113791} stands on the hill just south-west of it: beat the Corrupt Manifestation of Water beside it, place its bracers in the brazier, speak to the {npc:5895} and keep the {item:7813} for Islen. Fly on to {area:272} from the {area:228}."] = "Faites d'abord vos achats à {area:1497}, puis volez jusqu'au {area:228}. {object:113791} se dresse sur la colline juste au sud-ouest : battez la Manifestation d'eau corrompue mineure à côté, placez ses bracelets dans le brasero, parlez à {npc:5895} et gardez {item:7813} pour Islen. Volez ensuite jusqu'à {area:272} depuis le {area:228}.",
 	-- {npc:5901} Islen Waterseer
 	["for {npc:5901}: from Stranglethorn, next guide"] = "pour {npc:5901} : depuis Strangleronce, guide suivant",
@@ -168,7 +168,7 @@ return {
 	["{item:3703}, for {npc:2333}"] = "{item:3703}, pour {npc:2333}",
 	-- {npc:2770} Tallow · {area:321} Hammerfall
 	["{npc:2770}: for {area:321} in Arathi, later on the route"] = "{npc:2770} : pour {area:321} en Arathi, plus loin sur l'itinéraire",
-	-- {npc:2229} Krusk · {zone:1413} The Barrens
+	-- {npc:2229} Krusk · {zone:1413} Barrens
 	["{npc:2229}: for the {zone:1413}, later on the route"] = "{npc:2229} : pour {zone:1413}, plus loin sur l'itinéraire",
 
 	-- Step 37: Daggerspine naga
@@ -216,9 +216,9 @@ return {
 	-- Step 45: The Dalaran traitors
 	-- {area:279} Dalaran
 	["The {area:279} traitors"] = "Les traîtres de {area:279}",
-	-- {area:279} Dalaran · {npc:2414} Kegan Darkmar
+	-- {area:279} Dalaran · {npc:2411} Ricter · {npc:2412} Alina · {npc:2413} Dermot · {npc:2414} Kegan Darkmar
 	-- plural, as words: Worn Stone Tokens = {item:3714} Worn Stone Token
-	["Head west along the foot of the mountains to the violet dome of {area:279}. Ricter, Alina and Dermot (33-34) stand together inside the crater's eastern rim, {npc:2414} (35) a little west of them; each carries one Bloodstone piece. The Shield Guards and Theurgists (31-32) around them drop the Worn Stone Tokens."] = "Allez vers l'ouest au pied des montagnes jusqu'au dôme violet de {area:279}. Ricter, Alina et Dermot (33-34) se tiennent ensemble à l'intérieur du bord est du cratère, {npc:2414} (35) un peu à l'ouest ; chacun porte un morceau de pierre de sang. Les Défenseurs et Théurges de Dalaran (31-32) autour d'eux lâchent les Runes gravées usées ({item:3714}).",
+	["Head west along the foot of the mountains to the violet dome of {area:279}. {npc:2411}, {npc:2412} and {npc:2413} (33-34) stand together inside the crater's eastern rim, {npc:2414} (35) a little west of them; each carries one Bloodstone piece. The Shield Guards and Theurgists (31-32) around them drop the Worn Stone Tokens."] = "",
 
 	-- Step 46: Tarren Mill
 	-- {area:272} Tarren Mill
@@ -242,6 +242,7 @@ return {
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Do your shopping in the {area:1497} first, then fly to the {area:228}. The {object:113791} stands on the hill just south-west of it: beat the Corrupt {npc:11256} beside it, place its bracers in the brazier, speak to the {npc:5895} and keep the {item:7813} for Islen. Fly on to {area:272} from the {area:228}."] = "Faites d'abord vos achats à {area:1497}, puis prenez un vol pour {area:228}. Le {object:113791} se dresse sur la colline juste au sud-ouest : vainquez la {npc:11256} corrompue à côté, placez ses brassards dans le brasero, parlez à la {npc:5895} et gardez l'{item:7813} pour Islen. Depuis {area:228}, prenez un vol pour {area:272}.",
+	-- ["Head west along the foot of the mountains to the violet dome of {area:279}. Ricter, Alina and Dermot (33-34) stand together inside the crater's eastern rim, {npc:2414} (35) a little west of them; each carries one Bloodstone piece. The Shield Guards and Theurgists (31-32) around them drop the Worn Stone Tokens."] = "Allez vers l'ouest au pied des montagnes jusqu'au dôme violet de {area:279}. Ricter, Alina et Dermot (33-34) se tiennent ensemble à l'intérieur du bord est du cratère, {npc:2414} (35) un peu à l'ouest ; chacun porte un morceau de pierre de sang. Les Défenseurs et Théurges de Dalaran (31-32) autour d'eux lâchent les Runes gravées usées ({item:3714}).",
 	-- ["Head west along the foot of the mountains to the violet dome of {area:279}. Ricter, Alina and Dermot (33-34) stand together inside the crater's eastern rim, {npc:2414} (35) a little west of them; each carries one Bloodstone piece. The Shield Guards and Theurgists (31-32) around them drop the Worn {quest:556}."] = "Allez à l'ouest au pied des montagnes jusqu'au dôme violet de {area:279}. Ricter, Alina et Dermot (33-34) se tiennent ensemble au bord est du cratère, {npc:2414} (35) un peu à l'ouest d'eux ; chacun porte un fragment de pierre de sang. Les Défenseurs et Théurges de Dalaran (31-32) autour d'eux laissent tomber les runes usées pour {quest:556}.",
 	-- ["Ride west to {area:599}. Beat a Burning Blade cultist down, then use the {item:6436} on it before it dies to fill one {item:6435}. They also drop a {item:20310} now and then (1-5%); if one drops, read it."] = "Allez à l'ouest jusqu'à {area:599}. Affaiblissez un Sectateur de la Lame ardente, puis utilisez la {item:6436} sur lui avant sa mort pour obtenir une {item:6435}. Ils laissent parfois tomber une {item:20310} (1-5 %) : si vous en obtenez une, lisez-la.",
 	-- ["{npc:5639} waits in the {object:172959}; {npc:5640} stands in the {object:172961} on the west side of the city. Skyborne: {npc:4949} waits in Grommash Hold, in the {object:172957}."] = "{npc:5639} attend dans {object:172959} ; {npc:5640} se tient dans {object:172961}, à l'ouest de la ville. Skyborne : {npc:4949} attend à Grommash Hold, dans {object:172957}.",

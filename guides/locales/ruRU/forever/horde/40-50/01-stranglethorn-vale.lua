@@ -34,8 +34,8 @@ return {
 	-- Step 6: The Wild Shore
 	-- {area:43} Wild Shore
 	["The {area:43}"] = "{area:43}",
-	-- {area:35} Booty Bay · {area:43} Wild Shore
-	["South of {area:35} the Bloodsail swashbucklers camp on the {area:43}; the charts and the orders lie in their tents. Any Bloodsail can carry snuff and Dizzy's eye, so keep killing until you have both."] = "К югу от места {area:35} висельники из шайки Кровавого Паруса стоят лагерем здесь: {area:43}; карты и приказы лежат в их палатках. Нюхательный табак и глаз Диззи может нести любой пират Кровавого Паруса: убивайте, пока не получите оба.",
+	-- {area:43} Wild Shore
+	["South of Booty Bay the Bloodsail swashbucklers camp on the {area:43}; the charts and the orders lie in their tents. Any Bloodsail can carry snuff and Dizzy's eye, so keep killing until you have both."] = "",
 
 	-- Step 8: The Bloodsail ships
 	["The Bloodsail ships"] = "Корабли Кровавого Паруса",
@@ -66,7 +66,7 @@ return {
 	-- Step 15: Grom'gol Base Camp
 	-- {object:3202} Grom'gol
 	["Ride north-west to {object:3202}."] = "Езжайте на северо-запад сюда: {object:3202}.",
-	-- {zone:1425} The Hinterlands
+	-- {zone:1425} Hinterlands
 	["for later: the {zone:1425}, around level 48"] = "на потом: {zone:1425}, примерно на 48-м уровне",
 
 	-- Step 16: Nesingwary's Expedition
@@ -89,9 +89,9 @@ return {
 	["The stalker raptors hunt the jungle south of {object:3202}, out towards the west coast."] = "Ящеры-ловчие охотятся в джунглях к югу от места {object:3202}, ближе к западному побережью.",
 
 	-- Step 20: Naga shore and the Holy Spring
-	-- {object:759} The Holy Spring
+	-- {object:759} Holy Spring
 	["Naga shore and the {object:759}"] = "Берег наг и {object:759}",
-	-- {object:759} The Holy Spring
+	-- {object:759} Holy Spring
 	["Follow the coast south. The naga explorers wade along the shore and carry the reed bundles; the {object:759} bubbles in the hills just east of them."] = "Идите вдоль берега на юг. Наги-исследователи бродят по берегу и носят связки тростника; {object:759} бурлит в холмах чуть к востоку.",
 
 	-- Step 21: Booty Bay
@@ -136,7 +136,7 @@ return {
 	-- Step 30: Into the Swamp of Sorrows
 	-- {zone:1435} Swamp of Sorrows
 	["Into the {zone:1435}"] = "В край {zone:1435}",
-	-- {zone:1431} Duskwood · {zone:1430} Deadwind Pass · {npc:1776} Magtoor · {area:657} The Harborage
+	-- {zone:1431} Duskwood · {zone:1430} Deadwind Pass · {npc:1776} Magtoor · {area:657} Harborage
 	["Keep riding north into {zone:1431}, then east along the road through {zone:1430} into the swamp. {npc:1776} waits at the {area:657}, the draenei camp near the way in from {zone:1430}."] = "Езжайте дальше на север в край {zone:1431}, затем на восток по дороге через край {zone:1430} в болото. {npc:1776} ждет здесь: {area:657} – лагерь дренеев у въезда со стороны края {zone:1430}.",
 
 	-- Step 31: Stonard
@@ -166,7 +166,9 @@ return {
 	["The crocolisks wallow in the pools around Galen's camp and south towards {area:75}; about one in four drops a flank."] = "Кроколиски лежат в лужах вокруг лагеря Галена и к югу, к месту {area:75}; бок падает примерно с каждого четвертого.",
 
 	-- Step 37: The Harborage
-	-- {area:657} The Harborage · {zone:1430} Deadwind Pass
+	-- {area:657} Harborage
+	["The {area:657}"] = "",
+	-- {area:657} Harborage · {zone:1430} Deadwind Pass
 	["Ride west along the road to the draenei camp at the {area:657}, near the way in from {zone:1430}."] = "Езжайте на запад по дороге к лагерю дренеев ({area:657}), у въезда со стороны края {zone:1430}.",
 
 	-- Step 38: Misty Reed Post
@@ -180,4 +182,7 @@ return {
 	-- Step 40: Misty Reed Post
 	-- {zone:1446} Tanaris
 	["The next guide starts here and takes you to {zone:1446}."] = "Следующее руководство начинается здесь и ведет в край {zone:1446}.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["South of {area:35} the Bloodsail swashbucklers camp on the {area:43}; the charts and the orders lie in their tents. Any Bloodsail can carry snuff and Dizzy's eye, so keep killing until you have both."] = "К югу от места {area:35} висельники из шайки Кровавого Паруса стоят лагерем здесь: {area:43}; карты и приказы лежат в их палатках. Нюхательный табак и глаз Диззи может нести любой пират Кровавого Паруса: убивайте, пока не получите оба.",
 }

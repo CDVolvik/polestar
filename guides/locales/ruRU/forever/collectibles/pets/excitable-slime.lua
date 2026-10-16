@@ -10,5 +10,4 @@ return {
 	["Find the {npc:269452}, a critter in the {zone:1458} canals, and /dance with it until it offers WRIGGLE. Buy {item:278265} from a vendor in the canals and bring it back; if the slime seems tired, dance with it again."] = "Найдите зверька в каналах ({zone:1458}) – это {npc:269452} – и танцуйте с ним (/dance), пока он не предложит задание. Купите {item:278265} у торговца в каналах и принесите обратно; если слизень выглядит уставшим, станцуйте с ним снова.",
 	-- {item:278265} Nutritious Slime Sludge · {npc:4612} Boyle
 	["{item:278265}: {npc:4612}, in the canals beside the slime"] = "{item:278265}: {npc:4612}, в каналах рядом со слизнем",
-
 }

@@ -10,8 +10,8 @@ return {
 	["{item:7515} and Stave"] = "{item:7515}與手杖",
 	["An off-hand orb or a staff for the late 30s, your pick."] = "30多級後段的副手寶珠或法杖，任你挑選。",
 
-	-- Step 1: Return to the Marsh (Stormwind City)
-	-- {npc:5497} Jennea Cannon · {zone:1453} Stormwind City · {object:2101} Mage Quarter · {npc:6546} Tabetha · {zone:1455} Ironforge
+	-- Step 1: Return to the Marsh (Stormwind)
+	-- {npc:5497} Jennea Cannon · {zone:1453} Stormwind · {object:2101} Mage Quarter · {npc:6546} Tabetha · {zone:1455} Ironforge
 	["{npc:5497} in the Wizard's Sanctum, {zone:1453}'s {object:2101}, sends you back to {npc:6546}; Bink in {zone:1455} gives the same quest."] = "{zone:1453}{object:2101}法師塔裡的{npc:5497}會派你回去找{npc:6546}；{zone:1455}的彬克也提供同一個任務。",
 
 	-- Step 2: Return to the Marsh (Orgrimmar)

@@ -16,16 +16,17 @@ return {
 	["Fill the {item:7768} at the {object:107045} beside the inn"] = "여관 옆의 {object:107045}에서 {item:7768}을(를) 채우세요",
 
 	-- Step 2: Serge Hinott
-	-- {zone:1413} The Barrens · {npc:2391} Serge Hinott · {area:272} Tarren Mill · {spell:2842} Poisons
-	["Only if Gallywix fell in the {zone:1413} (Mission: Possible But Not Probable): {npc:2391} stands in {area:272}. Wait beside him while he brews the cure, then take your reward: {spell:2842}."] ="{zone:1413}에서 갤리윅스를 처치했을 때만(미션 임파서블: 잘하면 가능): {npc:2391}은(는) {area:272}에 있습니다. 해독제를 만드는 동안 옆에서 기다린 뒤 보상을 받으세요: {spell:2842}.",
-	-- {spell:2842} Poisons
-	["No Gallywix yet? The Class guide {spell:2842} (Horde) runs the chain from Shenthul again, with a group for Gallywix."] ="아직 갤리윅스를 처치하지 않았나요? 직업 가이드 {spell:2842} (호드)에서 셴툴부터 연계 퀘스트를 다시 진행하며, 갤리윅스는 파티와 함께 처치합니다.",
+	-- {npc:2391} Serge Hinott · {area:272} Tarren Mill
+	["Only if Gallywix fell in the Barrens (Mission: Possible But Not Probable): {npc:2391} stands in {area:272}. Wait beside him while he brews the cure, then take your reward: Poisons."] = "",
+	-- {npc:2391} Serge Hinott
+	["{npc:2391}: Poisons"] = "",
+	["No Gallywix yet? The Class guide Poisons (Horde) runs the chain from Shenthul again, with a group for Gallywix."] = "",
 
 	-- Step 3: Bears, creepers and lions
 	["Bears, creepers and lions"] = "곰, 거미, 사자",
-	-- {area:272} Tarren Mill · {item:3477} Creeper Ichor
+	-- {item:3477} Creeper Ichor
 	-- plural, as words: Gray Bears = {npc:2351} Gray Bear · Forest Moss Creepers = {npc:2350} Forest Moss Creeper · Starving Mountain Lions = {npc:2384} Starving Mountain Lion
-	["West of {area:272}, Gray Bears, Forest Moss Creepers and Starving Mountain Lions roam the hills on the way down to the farms. The creepers drop {item:3477} rarely; you need only one."] = "{area:272} 서쪽, 농장으로 내려가는 길의 언덕에 회색곰, 숲이끼거미, 굶주린 산사자가 돌아다닙니다. 숲이끼거미는 {item:3477}을(를) 드물게 떨어뜨리며, 하나만 있으면 됩니다.",
+	["West of Tarren Mill, Gray Bears, Forest Moss Creepers and Starving Mountain Lions roam the hills on the way down to the farms. The creepers drop {item:3477} rarely; you need only one."] = "",
 
 	-- Step 4: Hillsbrad Fields
 	-- {area:287} Hillsbrad · {npc:232} Farmer Ray · {npc:2403} Farmer Getz · {npc:2451} Farmer Kalaba
@@ -72,8 +73,8 @@ return {
 
 	-- Step 14: The smithy
 	["The smithy"] = "대장간",
-	-- {area:287} Hillsbrad · {npc:2404} Blacksmith Verringtan · {item:3564} Shipment of Iron · {npc:2449} Citizen Wilkes
-	["The smithy stands in the middle of {area:287} town. {npc:2404} and his apprentices work at the forge; the {item:3564} is stacked beside it. {npc:2449} walks the street north of it."] = "대장간은 {area:287} 마을 한가운데에 있습니다. {npc:2404}와(과) 견습생들이 화로에서 일하고, {item:3564}은(는) 그 옆에 쌓여 있습니다. {npc:2449}은(는) 그 북쪽 거리를 걸어 다닙니다.",
+	-- {area:287} Hillsbrad · {npc:2404} Blacksmith Verringtan · {object:1736} Shipment of Iron · {npc:2449} Citizen Wilkes
+	["The smithy stands in the middle of {area:287} town. {npc:2404} and his apprentices work at the forge; the {object:1736} is stacked beside it. {npc:2449} walks the street north of it."] = "",
 
 	-- Step 16: Town hall
 	["Town hall"] = "마을 회관",
@@ -86,7 +87,7 @@ return {
 
 	-- Step 20: Master Apothecary Faranell
 	-- {npc:2055} Master Apothecary Faranell
-	["{npc:2055}, in the Apothecarium"] ="연금술 실험실의 {npc:2055}",
+	["{npc:2055}, in the Apothecarium"] = "연금술 실험실의 {npc:2055}",
 	-- {area:287} Hillsbrad
 	["Keep it: the {area:287} coast, later on the route"] = "보관하세요: 경로 후반의 {area:287} 해안",
 
@@ -114,19 +115,26 @@ return {
 	-- {area:359} Bael Modan · {npc:3421} Feegly the Exiled · {object:3646} General Twinbraid's Strongbox
 	["Follow the road south to the dwarf dig site at {area:359}. {npc:3421} hides at the south edge of the dig; {object:3646} sits at the bottom of the excavation."] = "길을 따라 남쪽의 {area:359} 드워프 발굴지로 가세요. {npc:3421}은(는) 발굴지 남쪽 가장자리에 숨어 있고, {object:3646}은(는) 발굴 구덩이 바닥에 있습니다.",
 
-	-- Step 26: The Great Lift
-	-- {area:359} Bael Modan · {npc:12576} Grish Longrunner · {area:1718} The Great Lift
-	["South-west of {area:359}, {npc:12576} waits at the top of the {area:1718}."] = "{area:359} 남서쪽, {area:1718} 꼭대기에서 {npc:12576}이(가) 기다립니다.",
+	-- Step 26: Great Lift
+	-- {npc:12576} Grish Longrunner · {area:1718} Great Lift
+	["South-west of Bael Modan, {npc:12576} waits at the top of the {area:1718}."] = "",
 
-	-- Step 27: The Merchant Coast
+	-- Step 27: Merchant Coast
 	-- {area:378} Camp Taurajo · {area:392} Ratchet · {quest:874} Mahren Skyseer
 	["Hearth to {area:378} and fly to {area:392}. {quest:874} camps on the shore north of {area:392}."] = "귀환석으로 {area:378}에 간 뒤 {area:392}(으)로 날아가세요. {quest:874}은(는) {area:392} 북쪽 해안에 야영하고 있습니다.",
 
 	-- Step 28: Isha Awak
-	-- {quest:873} Isha Awak · {area:391} The Merchant Coast
+	-- {quest:873} Isha Awak · {area:391} Merchant Coast
 	["{quest:873}, a big threshadon, swims in the shallows off the {area:391}, east of Mahren."] = "큰 쓰레샤돈인 {quest:873}은(는) 마렌 동쪽, {area:391} 앞바다 얕은 곳에서 헤엄칩니다.",
 
 	-- Step 29: Ratchet
 	-- {npc:3442} Sputtervalve · {area:392} Ratchet
 	["{npc:3442}, by the docks in {area:392}"] = "{area:392} 부두 옆의 {npc:3442}",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["No Gallywix yet? The Class guide {spell:2842} (Horde) runs the chain from Shenthul again, with a group for Gallywix."] = "아직 갤리윅스를 처치하지 않았나요? 직업 가이드 {spell:2842} (호드)에서 셴툴부터 연계 퀘스트를 다시 진행하며, 갤리윅스는 파티와 함께 처치합니다.",
+	-- ["Only if Gallywix fell in the {zone:1413} (Mission: Possible But Not Probable): {npc:2391} stands in {area:272}. Wait beside him while he brews the cure, then take your reward: {spell:2842}."] = "{zone:1413}에서 갤리윅스를 처치했을 때만(미션 임파서블: 잘하면 가능): {npc:2391}은(는) {area:272}에 있습니다. 해독제를 만드는 동안 옆에서 기다린 뒤 보상을 받으세요: {spell:2842}.",
+	-- ["South-west of {area:359}, {npc:12576} waits at the top of the {area:1718}."] = "{area:359} 남서쪽, {area:1718} 꼭대기에서 {npc:12576}이(가) 기다립니다.",
+	-- ["The smithy stands in the middle of {area:287} town. {npc:2404} and his apprentices work at the forge; the {item:3564} is stacked beside it. {npc:2449} walks the street north of it."] = "대장간은 {area:287} 마을 한가운데에 있습니다. {npc:2404}와(과) 견습생들이 화로에서 일하고, {item:3564}은(는) 그 옆에 쌓여 있습니다. {npc:2449}은(는) 그 북쪽 거리를 걸어 다닙니다.",
+	-- ["West of {area:272}, Gray Bears, Forest Moss Creepers and Starving Mountain Lions roam the hills on the way down to the farms. The creepers drop {item:3477} rarely; you need only one."] = "{area:272} 서쪽, 농장으로 내려가는 길의 언덕에 회색곰, 숲이끼거미, 굶주린 산사자가 돌아다닙니다. 숲이끼거미는 {item:3477}을(를) 드물게 떨어뜨리며, 하나만 있으면 됩니다.",
 }

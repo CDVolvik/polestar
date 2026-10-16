@@ -44,8 +44,8 @@ return {
 	["The incense burns out in ten minutes: run straight east along the southern hills to the {object:660739}."] = "O incenso se apaga em dez minutos: corra direto para o leste pelas colinas do sul até a {object:660739}.",
 
 	-- Step 10: Brambleblade Ravine
-	-- {npc:8554} Chief Sharptusk Thornmantle · {item:4851} Dirt-stained Map
-	["Battleboars graze north of the shrine; the Bristleback quilboar hold the ravine to the north-east. {npc:8554} stands at its eastern end, and the {item:4851} lies on the ground in the camp."] = "Javaliços pastam ao norte do santuário; os javatuscos Costagulha ocupam a ravina a nordeste. {npc:8554} fica no extremo leste dela, e o {item:4851} está no chão do acampamento.",
+	-- {npc:8554} Chief Sharptusk Thornmantle · {object:3076} Dirt-stained Map
+	["Battleboars graze north of the shrine; the Bristleback quilboar hold the ravine to the north-east. {npc:8554} stands at its eastern end, and the {object:3076} lies on the ground in the camp."] = "",
 
 	-- Step 11: Camp Narache
 	["Back west to the camp."] = "Volte para oeste até o acampamento.",
@@ -122,13 +122,13 @@ return {
 	["Morin camps by the {area:396} south-east of Bloodhoof."] = "Morin acampa junto ao {area:396}, a sudeste de Casco Sangrento.",
 
 	-- Step 30: Longwalker Malah
-	-- {area:821} The Rolling Plains
+	-- {area:821} Rolling Plains
 	["Malah stands on the {area:821} a little east of the well."] = "Malah fica nas {area:821}, um pouco a leste do poço.",
 
 	-- Step 31: Galak centaurs and Prairie Wolf Alphas
 	-- plural, as words: Prairie Wolf Alphas = {npc:2960} Prairie Wolf Alpha
 	["Galak centaurs and Prairie Wolf Alphas"] = "Centauros Galath e Lobos-da-pradaria Alfa",
-	-- {area:821} The Rolling Plains
+	-- {area:821} Rolling Plains
 	-- plural, as words: Prairie Wolf Alphas = {npc:2960} Prairie Wolf Alpha
 	["The Galak centaurs camp on the plains north of the {area:821}; Herak leads them. Prairie Wolf Alphas roam among the wolves."] = "Os centauros Galath acampam nas planícies ao norte de {area:821}; Herak os lidera. Os Lobos-da-pradaria Alfa vagam entre os lobos.",
 
@@ -197,11 +197,11 @@ return {
 	["Use the {item:278078} at the ceremonial mat and burner on the south-facing cliff of {area:1641}."] = "Use o {item:278078} no tapete cerimonial e no incensário do penhasco virado para o sul do {area:1641}.",
 	-- {item:278078} Prepared Incense · {area:1641} Hunter Rise
 	["Spread the {item:278078} off {area:1641}"] = "Espalhe o {item:278078} do alto do {area:1641}",
-	-- {npc:3441} Melor Stonehoof · {quest:860} Sergra Darkthorn · {area:380} The Crossroads
+	-- {npc:3441} Melor Stonehoof · {quest:860} Sergra Darkthorn · {area:380} Crossroads
 	["{npc:3441}: for {quest:860} at the {area:380}"] = "{npc:3441}: para {quest:860} em {area:380}",
 
 	-- Step 50: Elder Rise
-	-- {npc:5769} Arch Druid Hamuul Runetotem · {npc:3448} Tonga Runetotem · {area:380} The Crossroads
+	-- {npc:5769} Arch Druid Hamuul Runetotem · {npc:3448} Tonga Runetotem · {area:380} Crossroads
 	["{npc:5769}: for {npc:3448} at the {area:380}"] = "{npc:5769}: para {npc:3448} em {area:380}",
 
 	-- Step 52: Turak Runetotem
@@ -229,10 +229,15 @@ return {
 	["The stone stands in the pass out of {zone:1412}, on your way east. Use the {item:15710} there and defeat Lunaclaw."] = "A pedra fica no desfiladeiro que sai de {zone:1412}, no seu caminho para o leste. Use o {item:15710} lá e derrote Lunagarra.",
 
 	-- Step 57: The Crossroads
-	-- {zone:1412} Mulgore · {area:380} The Crossroads · {quest:860} Sergra Darkthorn · {npc:3448} Tonga Runetotem · {zone:1413} The Barrens
+	-- {area:380} Crossroads
+	["The {area:380}"] = "",
+	-- {zone:1412} Mulgore · {area:380} Crossroads · {quest:860} Sergra Darkthorn · {npc:3448} Tonga Runetotem · {zone:1413} The Barrens
 	["Leave {zone:1412} by the south-eastern pass and follow the road to the {area:380}. {quest:860} stands by the inn, {npc:3448} at the south gate. {zone:1413} guide starts here."] = "Saia de {zone:1412} pelo desfiladeiro sudeste e siga a estrada até {area:380}. {quest:860} fica junto à estalagem, {npc:3448} no portão sul. O guia de {zone:1413} começa aqui.",
 
 	-- Step 58: Class turn-ins in Thunder Bluff
 	-- {area:1638} Thunder Bluff
 	["Class turn-ins in {area:1638}"] = "Entregas de classe em {area:1638}",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Battleboars graze north of the shrine; the Bristleback quilboar hold the ravine to the north-east. {npc:8554} stands at its eastern end, and the {item:4851} lies on the ground in the camp."] = "Javaliços pastam ao norte do santuário; os javatuscos Costagulha ocupam a ravina a nordeste. {npc:8554} fica no extremo leste dela, e o {item:4851} está no chão do acampamento.",
 }

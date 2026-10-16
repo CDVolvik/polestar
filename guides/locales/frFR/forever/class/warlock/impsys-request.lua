@@ -9,8 +9,8 @@ return {
 	-- {npc:14470} Impsy
 	["A staff, off-hand or robe for your 50s; {npc:14470}'s own errand, not a step of the Dreadsteed chain."] = "Un bâton, une main gauche ou une robe pour vos niveaux 50 ; une mission propre à {npc:14470}, pas une étape de la chaîne du Destrier de l'effroi.",
 
-	-- Step 1: An Imp's Request (Stormwind City)
-	-- {npc:461} Demisette Cloyce · {object:2164} The Slaughtered Lamb · {object:2101} Mage Quarter · {npc:14470} Impsy · {zone:1448} Felwood
+	-- Step 1: An Imp's Request (Stormwind)
+	-- {npc:461} Demisette Cloyce · {object:2164} Slaughtered Lamb · {object:2101} Mage Quarter · {npc:14470} Impsy · {zone:1448} Felwood
 	["At 50 {npc:461} in the {object:2164}, in the {object:2101}, sends you to {npc:14470} in {zone:1448}."] = "Au niveau 50, {npc:461}, à {object:2164}, dans {object:2101}, vous envoie voir {npc:14470} en {zone:1448}.",
 
 	-- Step 2: An Imp's Request (Ironforge)

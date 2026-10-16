@@ -10,7 +10,7 @@ return {
 	["Exploration: {zone:1414} 30-45"] = "探索：{zone:1414} 30-45",
 
 	-- Step 1: Desolace (1/2)
-	-- {zone:1413} The Barrens · {zone:1443} Desolace · {zone:1445} Dustwallow Marsh
+	-- {zone:1413} Barrens · {zone:1443} Desolace · {zone:1445} Dustwallow Marsh
 	["Picks up west of the {zone:1413}, in {zone:1443}, and ends in {zone:1445}. 15 areas to discover here, levels 30-39."] = "從{zone:1413}西邊的{zone:1443}接續，在{zone:1445}結束。這裡有15個區域要發現，等級30-39。",
 	["Exploring the entire world map on one character is a Forever Legacy Challenge (1 account-wide Legacy Point)."] = "單一角色探索整張世界地圖是一項Forever傳承挑戰（1點帳號共用傳承點數）。",
 	-- {zone:1442} Stonetalon Mountains · {zone:1443} Desolace · {area:608} Nijel's Point
@@ -35,7 +35,7 @@ return {
 	["16 areas to discover here, levels 41-60."] = "這裡有16個區域要發現，等級41-60。",
 	-- {zone:1443} Desolace · {zone:1444} Feralas
 	["Go back into southern {zone:1443}; the road continues south into {zone:1444}."] = "回到{zone:1443}南部；道路繼續向南通往{zone:1444}。",
-	-- {area:1116} Feathermoon Stronghold · {area:1120} Sardor Isle · {area:1108} The Forgotten Coast
+	-- {area:1116} Feathermoon Stronghold · {area:1120} Sardor Isle · {area:1108} Forgotten Coast
 	["{area:1116} on {area:1120} is the Alliance town (boat from the {area:1108})."] = "{area:1120}上的{area:1116}是聯盟城鎮（從{area:1108}搭船）。",
 	-- {area:1099} Camp Mojache
 	["{area:1099} in the east is the Horde town."] = "東部的{area:1099}是部落城鎮。",
@@ -44,12 +44,14 @@ return {
 	-- {area:1099} Camp Mojache
 	["Flight path here: {area:1099} (Shyn)."] = "此處飛行路線：{area:1099}（夏恩）。",
 	["level 60 area, well above this guide's range"] = "60級區域，遠高於本指南的等級範圍",
+	-- {area:1108} Forgotten Coast
+	["The {area:1108}"] = "",
 
 	-- Step 6: Dustwallow Marsh
 	["7 areas to discover here, levels 36-61."] = "這裡有7個區域要發現，等級36-61。",
 	-- {area:150} Menethil Harbor · {area:513} Theramore Isle
 	["Fly to Theramore (or take the boat from {area:150}); {area:513} is the Alliance town."] = "飛往塞拉摩島（或從{area:150}搭船）；{area:513}是聯盟城鎮。",
-	-- {zone:1445} Dustwallow Marsh · {zone:1413} The Barrens · {area:496} Brackenwall Village
+	-- {zone:1445} Dustwallow Marsh · {zone:1413} Barrens · {area:496} Brackenwall Village
 	["{zone:1445} is east of the southern {zone:1413}; {area:496} in the north-west is the Horde town."] = "{zone:1445}在{zone:1413}南部的東邊；西北部的{area:496}是部落城鎮。",
 	["Flight path here: Theramore (Baldruc)."] = "此處飛行路線：塞拉摩島（巴德拉克）。",
 	-- {area:496} Brackenwall Village
