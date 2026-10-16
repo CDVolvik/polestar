@@ -64,9 +64,10 @@ do
 	end
 end`;
 
-function run({ locale = 'frFR', pack = PACK, before = '', guide = false, script }) {
+function run({ locale = 'frFR', pack = PACK, before = '', guide = false, stubs = ['stub_world.lua'], saved, script }) {
 	return runAddon({
-		stubs: ['stub_world.lua'],
+		stubs,
+		saved,
 		before: `${locale ? `function GetLocale() return ${JSON.stringify(locale)} end` : ''}
 ${NO_INTERFACE_FILE}
 ${pack.stubLua}
@@ -145,6 +146,40 @@ emit({ N.Localised(), N.Quest(176) or false, N.Npc(448) or false, N.Object(68) o
 		});
 		assert.deepEqual(out, [false, false, false, false, false, true, 0, 0, 0], String(locale));
 	}
+});
+
+test('a name the client shows in play (target, mouseover, an NPC or object window) is kept per language and wins over the pack\'s, next session too', () => {
+	const stubs = ['stub_world.lua', 'stub_rares.lua'];
+	const [first, saved] = run({
+		stubs,
+		script: `
+local R = stub.rares
+R.unit("target", { npc = 448, name = "Lardeur (client)" }); stub.fire("PLAYER_TARGET_CHANGED")
+R.unit("mouseover", { npc = 1, name = "Pas dans le pack" }); stub.fire("UPDATE_MOUSEOVER_UNIT")
+R.unit("mouseover", { npc = 2, name = "Mon familier", controlled = true }); stub.fire("UPDATE_MOUSEOVER_UNIT")
+R.unit("npc", { object = 68, name = "Avis (client)" }); stub.fire("QUEST_DETAIL")
+emit({ N.Npc(448), N.Npc(1), N.Npc(2) or false, N.Object(68), N.Cached("npc", 448), N.Get("npc", 1) })
+emit(PolestarDB.names.frFR)`,
+	});
+	assert.deepEqual(first, ['Lardeur (client)', 'Pas dans le pack', false, 'Avis (client)', 'Lardeur (client)', 'Pas dans le pack']);
+	assert.deepEqual(saved, { npc: { 448: 'Lardeur (client)', 1: 'Pas dans le pack' }, object: { 68: 'Avis (client)' } });
+	const [next] = run({
+		stubs,
+		saved: { Polestar: 'PolestarDB = { schema = 1, settings = {}, names = { frFR = { npc = { [448] = "Lardeur (client)" } }, deDE = { npc = { [6] = "Kobold (deDE)" } } } }' },
+		script: 'emit({ N.Npc(448), N.Npc(6) })',
+	});
+	assert.deepEqual(next, ['Lardeur (client)', 'Vermine kobold'], 'the French name learned last session; another language\'s ignored');
+	const [english] = run({
+		locale: null,
+		stubs,
+		script: 'stub.rares.unit("target", { npc = 448, name = "Hogger" }); stub.fire("PLAYER_TARGET_CHANGED"); emit({ N.Npc(448) or false, PolestarDB.names == nil })',
+	});
+	assert.deepEqual(english, [false, true], 'an English client keeps nothing');
+});
+
+test('a pack may add other kinds of names, read by Names.Get', () => {
+	const [out] = run({ script: 'N.Add("frFR", "map", { [36] = "Les Mortemines" }); N.Add("deDE", "map", { [43] = "x" }); emit({ N.Get("map", 36), N.Get("map", 43) or false, N.Get("npc", 448), N.Get("nope", 1) or false })' });
+	assert.deepEqual(out, ['Les Mortemines', false, 'Lardeur', false]);
 });
 
 test('the names pack is optional: never reported missing, named when it is from another version', () => {

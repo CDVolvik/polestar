@@ -8,26 +8,33 @@
 --
 --   Names.Quest(id) / Names.Npc(id) / Names.Object(id) / Names.Item(id) -> name | nil
 --     The client's own name first (a quest's title, C_QuestLog; an item's,
---     C_Item; the client has none for NPCs and objects), then the names pack
---     of its language, Polestar_Names_<locale> (built by `node
---     tools/polestar.js i18n names`, loaded on demand on the first ask), else
---     nil. Always nil on an English client (enUS, enGB), which loads nothing.
---     A quest or item the client has not cached is asked for, once a session;
---     when the asked names arrive (QUEST_DATA_LOAD_RESULT,
+--     C_Item; an NPC's or object's as the client named it in play, below),
+--     then the names pack of its language, Polestar_Names_<locale> (built by
+--     `node tools/polestar.js i18n names`, loaded on demand on the first
+--     ask), else nil. Always nil on an English client (enUS, enGB), which
+--     loads nothing. A quest or item the client has not cached is asked for,
+--     once a session; when the asked names arrive (QUEST_DATA_LOAD_RESULT,
 --     ITEM_DATA_LOAD_RESULT) one STEP_UPDATED redraws the guide window.
+--   Names.Get(kind, id) -> name | nil   -- the four above by kind, and any
+--     other kind a pack adds (its table only)
 --   Names.Cached(kind, id) -> name | nil   -- the same, never asking the
 --     server; an item's name from the pack only (Lookup indexes thousands)
+--   Names.Learn(unit) -> name | nil   -- remembers the name the client shows
+--     for an NPC or a quest-giving object (by its GUID's id), per client
+--     language, in PolestarDB.names; done on target, mouseover, nameplates
+--     and NPC windows. A learned name comes before the pack's.
 --   Names.Localised() -> bool   -- not an English client
 --   Names.Ready() -> bool       -- the pack is in, or will not load this session
 --   Names.PackName() -> "Polestar_Names_<locale>" | nil (English)
---   Names.Add(locale, kind, { [id] = name })   -- the pack's files; kind: quest npc object item
+--   Names.Add(locale, kind, { [id] = name })   -- the pack's files; kind:
+--     quest npc object item, or another a pack adds
 
 local ADDON, ns = ...
 
 local Names = {}
 ns.Names = Names
 
-local type, pairs = type, pairs
+local type, pairs, tonumber = type, pairs, tonumber
 
 local ENGLISH = { enUS = true, enGB = true }
 local locale = (GetLocale and GetLocale()) or "enUS"
@@ -35,6 +42,10 @@ local localised = not ENGLISH[locale]
 local PACK = localised and ("Polestar_Names_" .. locale) or nil
 
 local tables = { quest = {}, npc = {}, object = {}, item = {} }
+-- Names the client showed in play: { npc = { [id] = name }, object = {...} },
+-- this client language's part of PolestarDB.names, bound once saved
+-- variables are in (ADDON_LOADED).
+local learned
 local ready = not localised -- the pack is in, or will not load this session
 -- Ids asked of the server: 1 while waiting, 2 once answered. Never asked twice.
 local asked = { quest = {}, item = {} }
@@ -46,8 +57,12 @@ function Names.Ready() return ready end
 function Names.PackName() return PACK end
 
 function Names.Add(loc, kind, t)
+	if loc ~= locale or type(kind) ~= "string" or type(t) ~= "table" then return end
 	local into = tables[kind]
-	if loc ~= locale or not into or type(t) ~= "table" then return end
+	if not into then
+		into = {}
+		tables[kind] = into
+	end
 	for id, name in pairs(t) do
 		if type(id) == "number" and type(name) == "string" and name ~= "" then into[id] = name end
 	end
@@ -94,7 +109,13 @@ end
 
 local function fromPack(kind, id)
 	if not ready then load() end
-	return tables[kind][id]
+	local t = tables[kind]
+	return t and t[id]
+end
+
+local function fromPlay(kind, id)
+	local t = learned and learned[kind]
+	return t and t[id]
 end
 
 local function ask(kind, id)
@@ -126,21 +147,66 @@ end
 
 function Names.Npc(id)
 	if not valid(id) then return nil end
-	return fromPack("npc", id)
+	return fromPlay("npc", id) or fromPack("npc", id)
 end
 
 function Names.Object(id)
 	if not valid(id) then return nil end
-	return fromPack("object", id)
+	return fromPlay("object", id) or fromPack("object", id)
+end
+
+local BY_KIND = { quest = Names.Quest, item = Names.Item, npc = Names.Npc, object = Names.Object }
+
+function Names.Get(kind, id)
+	local fn = BY_KIND[kind]
+	if fn then return fn(id) end
+	if not valid(id) then return nil end
+	return fromPack(kind, id)
 end
 
 function Names.Cached(kind, id)
-	if not valid(id) or not tables[kind] then return nil end
+	if not valid(id) then return nil end
 	if kind == "quest" then
 		local t = ns.Compat.GetQuestTitle(id)
 		if t then return t end
 	end
-	return fromPack(kind, id)
+	return fromPlay(kind, id) or fromPack(kind, id)
+end
+
+-- The client names an NPC (or a quest-giving object, through the "npc"
+-- unit) in its own language: that name is the truth, kept over the pack's.
+local LEARN_KIND = { Creature = "npc", Vehicle = "npc", GameObject = "object" }
+
+function Names.Learn(unit)
+	if not (localised and learned and UnitGUID and UnitName) then return nil end
+	local C = ns.Compat
+	local guid = C.Readable(UnitGUID(unit))
+	if type(guid) ~= "string" then return nil end
+	local gk, _, _, _, _, sid = strsplit("-", guid)
+	local kind, id = LEARN_KIND[gk], tonumber(sid)
+	if not (kind and id) then return nil end
+	if kind == "npc" and UnitPlayerControlled and C.Readable(UnitPlayerControlled(unit)) then return nil end
+	local name = C.Readable(UnitName(unit))
+	if type(name) ~= "string" or name == "" or name == UNKNOWNOBJECT then return nil end
+	local t = learned[kind]
+	if t[id] ~= name then
+		t[id] = name
+		scheduleRedraw()
+	end
+	return name
+end
+
+local function bindLearned()
+	local db = ns.DB()
+	if type(db.names) ~= "table" then db.names = {} end
+	local mine = db.names[locale]
+	if type(mine) ~= "table" then
+		mine = {}
+		db.names[locale] = mine
+	end
+	if type(mine.npc) ~= "table" then mine.npc = {} end
+	if type(mine.object) ~= "table" then mine.object = {} end
+	learned = mine
 end
 
 local function arrived(kind, id, success)
@@ -154,4 +220,12 @@ if localised then
 	ns.RegisterEvent("QUEST_DATA_LOAD_RESULT", function(_, id, success) arrived("quest", id, success) end)
 	ns.RegisterEvent("ITEM_DATA_LOAD_RESULT", function(_, id, success) arrived("item", id, success) end)
 	ns.RegisterEvent("PLAYER_REGEN_ENABLED", function() if deferred and not ready then load() end end)
+	ns.OnInit(bindLearned)
+	ns.RegisterEvent("PLAYER_TARGET_CHANGED", function() Names.Learn("target") end)
+	ns.RegisterEvent("UPDATE_MOUSEOVER_UNIT", function() Names.Learn("mouseover") end)
+	ns.RegisterEvent("NAME_PLATE_UNIT_ADDED", function(_, unit) Names.Learn(unit) end)
+	local function talking() if not Names.Learn("npc") then Names.Learn("questnpc") end end
+	for _, e in pairs({ "GOSSIP_SHOW", "QUEST_GREETING", "QUEST_DETAIL", "QUEST_PROGRESS", "QUEST_COMPLETE", "MERCHANT_SHOW", "TRAINER_SHOW" }) do
+		ns.RegisterEvent(e, talking)
+	end
 end
