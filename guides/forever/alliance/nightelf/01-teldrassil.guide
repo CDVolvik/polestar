@@ -20,6 +20,10 @@ next forever/alliance/02-westfall
 # -> boat to Auberdine -> boat to Stormwind -> Westfall.
 #
 # Deviations from the export, each a shorter walk with the same quests:
+# - The Balance of Nature (456) is taken from Conservator Ilthalaine before
+#   The Woodland Protector (458) from Melithar: Ilthalaine stands about 19
+#   yards from where you start, Melithar about 104. Same walk (about 247
+#   yards to Tarindrella either way), without passing him by.
 # - The Relics of Wakening (483) is done on the one trip into Ban'ethil
 #   Barrow Den with Oben Rageclaw and Lynessa: Starbreeze (475, 476) and the
 #   dresser (2438) come before the west loop instead of after it.
@@ -52,6 +56,13 @@ next forever/alliance/02-westfall
 #   handed in, now goes to Rellian on that walk, just south of the Enclave.
 #   Measured with sim compare against this guide without them: 0.09 h
 #   sooner to 60 and to 30, 0.02 h later to 20.
+# - Town visits are walked in the order you pass the NPCs: at Aldrassil,
+#   Ilthalaine's second Balance of Nature (457) and Gilshalan (916) before
+#   climbing to Shanda; in Dolanaar, Syral before the inn on arrival, Zarrin
+#   first coming back from the lake, Kyra and Corithras first after the
+#   hearth, and after Ursal the Empty Vial (Narret Shadowgrove, beside
+#   Byancie) and Laurna before Athridas, the inn and Corithras. At the Oracle
+#   Glade, Arynia at the moonwell before the plant at its north end.
 #
 # Order changes for the hand-made quest chains (a follow-up is offered only
 # after its prerequisite is turned in):
@@ -98,9 +109,11 @@ next forever/alliance/02-westfall
 #   spell: not taken.
 # - Warrior: the Defensive Stance quests (1638, 1639, 1640, 1665) on arrival
 #   in Stormwind by the boat.
-# - Level 1 class letters are taken: every class's sigil from Conservator
-#   Ilthalaine (3116-3120) goes to its trainer at Aldrassil once The Balance
-#   of Nature is handed in.
+# - Level 1 class letters are taken: every class's sigil (3116-3120) is
+#   taken from Conservator Ilthalaine once The Balance of Nature is handed
+#   in, and handed to its trainer on the next visit to Aldrassil, after
+#   Shadowthread Cave, right before the class training: a level 2 character
+#   has little to train yet.
 # - Druid, later: Aquatic Form and Cat Form in 03-darkshore and
 #   06-ashenvale.
 #
@@ -110,8 +123,8 @@ next forever/alliance/02-westfall
 
 step Aldrassil
   tip You start at the foot of Aldrassil, the great tree of Shadowglen.
-  accept 458                                  -- Melithar Staghelm, by the path
   accept 456                                  -- Conservator Ilthalaine
+  accept 458                                  -- Melithar Staghelm, by the path
   turnin 458                                  -- Tarindrella, south of the tree
   accept 459
   accept 97977
@@ -121,27 +134,23 @@ step The Balance of Nature
   kill 2031 quest 456.1
   kill 1984 quest 456.2
   collect 3297 quest 459.1
-  interact 668482 quest 97977.1               -- Gnarlpine Totem
+  collect 279082 quest 97977.1
 
 step Back at Aldrassil
   turnin 459                                  -- Tarindrella
   turnin 97977
   turnin 456                                  -- Conservator Ilthalaine
   accept 3116 only Warrior                    -- Conservator Ilthalaine: Simple Sigil
-  turnin 3116 only Warrior                    -- Alyissia, the warrior trainer
   accept 3117 only Hunter                     -- Conservator Ilthalaine: a sigil for Ayanna Everstride
-  turnin 3117 only Hunter                     -- Ayanna Everstride, the hunter trainer
   accept 3118 only Rogue                      -- Conservator Ilthalaine: Encrypted Sigil
-  turnin 3118 only Rogue                      -- Frahun Shadewhisper, the rogue trainer
   accept 3119 only Priest                     -- Conservator Ilthalaine: Hallowed Sigil
-  turnin 3119 only Priest                     -- Shanda, the priest trainer, inside the tree
   accept 3120 only Druid                      -- Conservator Ilthalaine: Verdant Sigil
-  turnin 3120 only Druid                      -- Mardant Strongoak, the druid trainer at Aldrassil
-  accept 97979                                -- Shanda, inside the tree
-  turnin 97979
-  accept 457
-  accept 4495                                 -- Dirania Silvershine, east of the tree
+  accept 457                                  -- Conservator Ilthalaine
   accept 916                                  -- Gilshalan Windwalker, on the tree's ramp
+  accept 97979                                -- Shanda, inside the tree
+  note "The Goddess Provides: cast Elune's Light and Shadowmeld, then hand it back to Shanda"
+  turnin 97979
+  accept 4495                                 -- Dirania Silvershine, east of the tree
 
 step North to Shadowthread Cave
   tip Mangy Nightsabers and Thistle Boars roam north of Aldrassil, on the way to the cave. Iverron waits in the trees west of the cave mouth; Githyiss the Vile sits deep inside.
@@ -160,6 +169,11 @@ step Aldrassil
   turnin 457                                  -- Conservator Ilthalaine
   turnin 3519                                 -- Dirania Silvershine
   accept 3521
+  turnin 3116 only Warrior                    -- Alyissia, the warrior trainer
+  turnin 3117 only Hunter                     -- Ayanna Everstride, the hunter trainer
+  turnin 3118 only Rogue                      -- Frahun Shadewhisper, the rogue trainer
+  turnin 3119 only Priest                     -- Shanda, the priest trainer, inside the tree
+  turnin 3120 only Druid                      -- Mardant Strongoak, the druid trainer at Aldrassil
   train class
 
 # Shadowthread Cave: "The eggs are at 57,26 / The cave is at 57,32"
@@ -202,9 +216,9 @@ step Porthannius
 step Dolanaar
   tip Follow the road south-west out of Shadowglen to Dolanaar.
   turnin 96630                                -- Lyreena Duskblade, by the campfire
+  accept 997                                  -- Syral Bladeleaf
   turnin 2159                                 -- Innkeeper Keldamyr
   sethome "Dolanaar" npc 6736                 -- Innkeeper Keldamyr
-  accept 997                                  -- Syral Bladeleaf
   turnin 928                                  -- Corithras Moonrage, south of the inn
   accept 929
   train class
@@ -267,10 +281,10 @@ step Lake Al'Ameth
   turnin 919
 
 step Dolanaar
-  turnin 87288                                -- Aldia
   turnin 4161                                 -- Zarrin
   turnin 476                                  -- Athridas Bearmantle
   accept 483
+  turnin 87288                                -- Aldia
   turnin 2438                                 -- Tallonkai Swiftroot
   accept 2459
   accept 487                                  -- Moon Priestess Amara, on the road west of the village
@@ -323,13 +337,13 @@ step Gnarlpine Hold
 
 step Hearth to Dolanaar
   hearth "Dolanaar"
-  turnin 487                                  -- Moon Priestess Amara
-  turnin 932                                  -- Tallonkai Swiftroot
   turnin 99053                                -- Sentinel Kyra Starsong
-  turnin 483                                  -- Athridas Bearmantle
-  accept 486
   turnin 933                                  -- Corithras Moonrage
   accept 7383
+  turnin 487                                  -- Moon Priestess Amara
+  turnin 932                                  -- Tallonkai Swiftroot
+  turnin 483                                  -- Athridas Bearmantle
+  accept 486
 
 step Ferocitas the Dream Eater
   tip Gnarlpine Mystics and Ferocitas camp north-east of Starbreeze Village. Ferocitas drops the Gnarlpine Necklace: open it for the jewel.
@@ -347,8 +361,8 @@ step Sentinel Eralya Leafshadow
 step The Oracle Glade
   tip The moonwell is in the middle of the glade. The Strange Fronded Plant grows at its north end.
   collect 18151 quest 7383.1 @38.4,34.1       -- Use the Amethyst Phial at the moonwell
-  accept 931                                  -- Strange Fronded Plant
   accept 937                                  -- Sentinel Arynia Cloudsbreak, by the moonwell
+  accept 931                                  -- Strange Fronded Plant
 
 step Bloodfeather harpies
   tip The Bloodfeather harpies nest on the slopes west and north of the glade.
@@ -378,13 +392,14 @@ step Dolanaar
   tip North-east from Ursal's den, back to Dolanaar.
   turnin 99047                                -- Byancie
   accept 99050
-  buy 159 x1 npc 6736                         -- Refreshing Spring Water from Innkeeper Keldamyr, for Byancie
+  buy 3371 x1 npc 3614                        -- Empty Vial from Narret Shadowgrove, beside Byancie
+  accept 5629 only Priest                     -- Laurna Morninglight: Priestess Alathea in Darnassus takes it
   turnin 486                                  -- Athridas Bearmantle
+  buy 159 x1 npc 6736                         -- Refreshing Spring Water from Innkeeper Keldamyr, for Byancie
+  accept 6063 only Hunter                     -- Dazalar
   turnin 7383                                 -- Corithras Moonrage
   accept 935                                  -- Fandral in Darnassus takes it
-  accept 6063 only Hunter                     -- Dazalar
   accept 5925 only Druid                      -- Kal: Mathrengyl Bearwalker in Darnassus takes it
-  accept 5629 only Priest                     -- Laurna Morninglight: Priestess Alathea in Darnassus takes it
   train class
 
 step Lake Al'Ameth

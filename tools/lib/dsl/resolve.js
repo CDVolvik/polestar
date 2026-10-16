@@ -21,6 +21,7 @@ const { blockingPrereqs } = require('../data/prereqs');
 const { clusterPoints, scaleOf } = require('../questdb/cluster');
 const { groupOf } = require('./group');
 const { goalHeight } = require('./heights');
+const { goalArea, goalNode } = require('./places');
 
 // A collect's sources are named only for an item that few creatures or
 // objects drop (at 2% or more, with spawns); past this it drops everywhere.
@@ -1179,12 +1180,17 @@ function resolveGoal(g, zoneMap, prev, data, err, warn, ctx = { sides: ['Allianc
 	}
 	if (g.r !== undefined) goal.r = g.r;
 	if (g.optional) goal.optional = true;
+	// `turnin ... direct`: handed in from the giver's window with no accept.
+	if (g.direct) goal.direct = true;
 	// Group content (group.js): the author's `group [N]`, else derived.
 	setIf(goal, 'group', groupOf(goal, g.group, ctx.sides, data));
 	setIf(goal, 'only', onlyOf(g.only));
 	setIf(goal, 'note', g.note);
 	// The height of the NPC or object the goal's point stands for (heights.js).
 	setIf(goal, 'z', goalHeight(data, goal));
+	// The area its place name stands for, and a getfp's taxi node (places.js).
+	setIf(goal, 'area', goalArea(data, goal));
+	setIf(goal, 'node', goalNode(data, goal, ctx.sides));
 
 	if ((v === 'kill' || v === 'collect' || v === 'interact' || v === 'use') && goal.x === undefined && !goal.candidates && !g.nearest) {
 		warn(ln, `\`${v}\` has no coordinates (no known spawns; add @x,y)`, 'add @x,y where the player finds the target (the map coordinates the game shows), so the arrow can lead there');

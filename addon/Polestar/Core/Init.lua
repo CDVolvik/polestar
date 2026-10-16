@@ -42,12 +42,50 @@ local pcall, type, pairs, select, tostring = pcall, type, pairs, select, tostrin
 local L = setmetatable({}, { __index = function(_, key) return key end })
 ns.L = L
 
--- A word with more than one meaning ("Back": the welcome's button and the
--- cloak slot) gets a key per meaning, so each can be translated on its own:
--- ns.LC("slot", "Back") is the translation of "slot: Back", and "Back" while
--- there is none.
+-- A word with more than one meaning ("Chest": a dungeon boss that is a loot
+-- chest, or a gear slot) gets a key per meaning, so each can be translated on
+-- its own: ns.LC("boss", "Chest") is the translation of "boss: Chest", and
+-- "Chest" while there is none.
 function ns.LC(context, text)
 	return rawget(L, context .. ": " .. text) or text
+end
+
+-- The interface's translations made with AI (tools/lib/i18n/locales.js,
+-- status "ai"; tests/i18n.test.js keeps the two lists equal).
+ns.AI_LOCALES = { esES = true, koKR = true, ptBR = true, ruRU = true, zhCN = true, zhTW = true }
+
+-- True when this client reads an AI-made translation: its locale is one of
+-- AI_LOCALES and its file filled L. Options' About then says so.
+function ns.AITranslation()
+	return (GetLocale and ns.AI_LOCALES[GetLocale()] == true and next(L) ~= nil) or false
+end
+
+-- Game terms in the client's own words, so they read as the game writes them
+-- in every language (docs/ARCHITECTURE.md, "Localisation"); nil where the
+-- client has none. A reputation standing, 1 (Hated) to 8 (Exalted), in the
+-- character's gender where the language has one.
+function ns.StandingName(n)
+	if type(n) ~= "number" then return nil end
+	local tag = "FACTION_STANDING_LABEL" .. n
+	if type(_G[tag]) ~= "string" then return nil end
+	return GetText and GetText(tag, UnitSex and UnitSex("player")) or _G[tag]
+end
+
+-- An item quality, 0 (Poor) to 6 (Artifact).
+function ns.QualityName(q)
+	if type(q) ~= "number" then return nil end
+	local s = _G["ITEM_QUALITY" .. q .. "_DESC"]
+	if type(s) == "string" and s ~= "" then return s end
+	return nil
+end
+
+-- A faction: "Alliance" or "A", "Horde" or "H".
+local FACTION_TAG = { Alliance = "FACTION_ALLIANCE", A = "FACTION_ALLIANCE", Horde = "FACTION_HORDE", H = "FACTION_HORDE" }
+function ns.FactionName(f)
+	local tag = FACTION_TAG[f]
+	local s = tag and _G[tag]
+	if type(s) == "string" and s ~= "" then return s end
+	return nil
 end
 
 -- Text that prints literally in a FontString: every `|` (the client's escape
@@ -102,6 +140,54 @@ local function call(fn, ...)
 	end
 end
 ns.SafeCall = call
+
+-- A frame of Polestar's that goes under the game's own UI (the world map's
+-- canvas, the minimap, a quest reward or talent button): made with no parent,
+-- then set under it. The gamepad interface hooks CreateFrame and, when the
+-- parent is inside one of its open panels (the world map, the quest frame,
+-- the talents...), rebuilds that panel's button list inside the caller's
+-- code: called from Polestar, the panel is left tainted and the next gamepad
+-- action there is blocked. SetParent is not hooked. Every Polestar frame
+-- whose parent is a game frame, or is under one, is made through this.
+function ns.CreateFrameUnder(kind, name, parent, template)
+	local f = CreateFrame(kind, name, nil, template)
+	if parent then f:SetParent(parent) end
+	return f
+end
+
+-- Forever's Gamepad interface style (Options, Gamepad, Enable Gamepad UI).
+-- Its navigation (Blizzard_GamepadSmartNavigation, FrameControlsManager)
+-- opens, closes and focuses the game's windows, popups, menus and chat box
+-- from Blizzard's code, and in the same execution makes protected calls
+-- (SetPreferredGamepadInteractTarget, RunBinding). When addon code runs in
+-- that flow (a slash command the chat box calls before it closes, a menu or
+-- popup shown, a window closed, a hook on a button it focuses), the calls
+-- are blocked, and the "AddOn blocked" popup's own gamepad handling blocks
+-- the next one, until the client freezes. With it on, Polestar keeps to its
+-- own windows: every reach into the game's UI asks ns.GamepadUI() first
+-- (the list: docs/ARCHITECTURE.md, "Gamepad interface"; the test:
+-- tests/gamepad-ui.test.js). The style is read once, as the addon loads:
+-- the client reloads the UI when it changes, and the slash commands are
+-- registered then. Both the API and the CVar are read, as the CVar is set
+-- before any addon loads.
+local function readGamepadUI()
+	local E = Enum and Enum.InputDeviceInterfaceType
+	if not (E and E.Gamepad) then return false end
+	local S = C_InputInterfaceStyle
+	if S and S.GetCurrentStyle and S.GetCurrentStyle() == E.Gamepad then return true end
+	local get = (C_CVar and C_CVar.GetCVar) or GetCVar
+	return get and tonumber(get("InputDeviceInterfaceStyle")) == E.Gamepad or false
+end
+local gamepadUI = readGamepadUI()
+function ns.GamepadUI() return gamepadUI end
+
+-- A Polestar window that Escape closes: listed in UISpecialFrames, which
+-- the gamepad interface's menus also read and close, so not with it on
+-- (the window's own close button, and B where it takes the gamepad).
+function ns.CloseOnEscape(name)
+	if gamepadUI or not (UISpecialFrames and name) then return end
+	tinsert(UISpecialFrames, name)
+end
 
 local function compact(list)
 	local j = 0
@@ -390,7 +476,10 @@ function ns.Debug(...)
 end
 
 ---------------------------------------------------------------------------
--- Slash commands: /polestar and /pole
+-- Slash commands: /polestar and /pole. Not with the gamepad interface: the
+-- chat box calls a command's function and then closes itself in that
+-- function's taint, which blocks the gamepad's actions (ns.GamepadUI).
+-- The minimap button and the key bindings open Polestar then.
 ---------------------------------------------------------------------------
 
 local commands, commandOrder = {}, {}
@@ -409,9 +498,7 @@ local function showHelp()
 	end
 end
 
-SLASH_POLESTAR1 = "/polestar"
-SLASH_POLESTAR2 = "/pole"
-SlashCmdList.POLESTAR = function(msg)
+function ns.RunCommand(msg)
 	local name, rest = (msg or ""):match("^%s*(%S*)%s*(.-)%s*$")
 	if name == "" then
 		ns.Fire("TOGGLE_FRAME")
@@ -429,4 +516,9 @@ SlashCmdList.POLESTAR = function(msg)
 		return
 	end
 	call(c.fn, rest)
+end
+if not gamepadUI then
+	SLASH_POLESTAR1 = "/polestar"
+	SLASH_POLESTAR2 = "/pole"
+	SlashCmdList.POLESTAR = ns.RunCommand
 end

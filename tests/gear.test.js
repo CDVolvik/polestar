@@ -202,6 +202,28 @@ test('proficiency and level: plate waits for 40, cloth-only classes cannot wear 
 	assert.equal(priest, true);
 });
 
+// #107: rogues can train swords, but only from a weapon master.
+test('a weapon the class can train but the character has not learned is no upgrade until the skill is learned', () => {
+	const [r] = run(`
+		w.learnSkill(173, "Daggers", 1, 150)
+		local before = G.CompareToEquipped("item:9030")
+		local b = { up = G.IsUpgrade("item:9030"), usable = before.usable, reason = before.reason }
+		w.learnSkill(43, "Swords", 1, 150)
+		local after = G.CompareToEquipped("item:9030")
+		emit({ before = b, after = { up = G.IsUpgrade("item:9030"), usable = after.usable, reason = after.reason } })
+	`, { cls: 'ROGUE', className: 'Rogue', classID: 4 });
+	assert.deepEqual(r.before, { up: false, usable: false, reason: 'skill' });
+	assert.equal(r.after.usable, true);
+	assert.equal(r.after.up, true);
+	assert.equal(r.after.reason, undefined);
+});
+
+test('without weapon skill data the class weapon list decides, as before', () => {
+	const [r] = run(`local c = G.CompareToEquipped("item:9030"); emit({ G.IsUpgrade("item:9030"), c.usable })`,
+		{ cls: 'ROGUE', className: 'Rogue', classID: 4 });
+	assert.deepEqual(r, [true, true]);
+});
+
 test('spec: automatic from the talent spread, the chosen primary tree, the class default before any point, a chosen spec wins', () => {
 	const [none, primary, talents, chosen, back] = run(`
 		emit({ G.GetSpec() })
@@ -254,7 +276,7 @@ test('tooltip line: upgrade and downgrade percentages, empty slot, later level; 
 	assert.ok(colors[1][0] > colors[1][1], 'downgrade is red');
 });
 
-test('tooltip line: the slot is named by its own key, so "Back" and "Chest" translate apart from the button and the boss chest', () => {
+test('tooltip line: the slot is the client\'s own word (BACKSLOT, CHESTSLOT), apart from the Back button and the boss chest', () => {
 	const [back, chest] = run(
 		`
 		Polestar.ItemDB.Register(nil, { [9041] = "16 25 20 2 4 1 sta8", [9060] = "5 20 15 2 4 3 str5 sta3 armor200", [9061] = "5 25 20 2 4 3 str10 sta4 armor260" })
@@ -263,7 +285,7 @@ test('tooltip line: the slot is named by its own key, so "Back" and "Chest" tran
 		emit(g.showTooltip(GameTooltip, "item:9041"))
 		emit(g.showTooltip(GameTooltip, "item:9061"))
 	`,
-		{ before: fakeLocale('frFR', { Back: 'Atrás', Chest: 'Cofre', 'slot: Back': 'Espalda', 'slot: Chest': 'Pecho' }) },
+		{ before: `${fakeLocale('itIT', { Back: 'Atrás', Chest: 'Cofre', 'boss: Chest': 'Arca' })}\nBACKSLOT, CHESTSLOT = "Espalda", "Pecho"` },
 	);
 	assert.match(back[0], /^Polestar · Arms \| .*upgrade · Espalda$/);
 	assert.match(chest[0], /^Polestar · Arms \| .*upgrade · Pecho$/);

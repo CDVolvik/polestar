@@ -246,6 +246,33 @@ function Compat.GetOfferedQuests(source)
 	return out
 end
 
+-- Quests the open gossip or greeting window lists as active (in the log, or
+-- just accepted: the window refreshes a moment before the quest log does), as
+-- a list of quest IDs, or nil when the client cannot say. source: "gossip"
+-- (C_GossipInfo.GetActiveQuests) or "greeting" (GetNumActiveQuests /
+-- GetActiveQuestID, as QuestFrame.lua's greeting panel reads them).
+function Compat.GetActiveQuests(source)
+	local out = {}
+	if source == "gossip" then
+		local G = C_GossipInfo
+		if not (G and G.GetActiveQuests) then return nil end
+		local list = G.GetActiveQuests() or {}
+		for i = 1, #list do
+			local q = list[i].questID
+			if q then out[#out + 1] = q end
+		end
+	elseif source == "greeting" then
+		if not (GetNumActiveQuests and GetActiveQuestID) then return nil end
+		for i = 1, GetNumActiveQuests() or 0 do
+			local q = GetActiveQuestID(i)
+			if q then out[#out + 1] = q end
+		end
+	else
+		return nil
+	end
+	return out
+end
+
 -- Classic grey level (no XP from quests at or below it), used when the
 -- client gives no trivial range.
 local function greyLevel(level)
@@ -342,6 +369,23 @@ function Compat.RequestItem(itemID)
 	return false
 end
 
+-- An item's name from its id in the client's language, or nil while the item
+-- is not cached (RequestItem asks for it).
+function Compat.GetItemName(itemID)
+	local fn = type(itemID) == "number" and C_Item and C_Item.GetItemNameByID
+	if not fn then return nil end
+	local ok, name = pcall(fn, itemID)
+	if ok and type(name) == "string" and name ~= "" and not isSecret(name) then return name end
+	return nil
+end
+
+-- Asks the server for a quest's data (QUEST_DATA_LOAD_RESULT fires with the
+-- quest ID when it arrives); GetQuestTitle answers for it from then on.
+function Compat.RequestQuest(questID)
+	local fn = type(questID) == "number" and C_QuestLog and C_QuestLog.RequestLoadQuestByID
+	if fn then pcall(fn, questID) end
+end
+
 -- A spell's chat link, or nil.
 function Compat.SpellLink(spellID)
 	local fn = type(spellID) == "number" and ((C_Spell and C_Spell.GetSpellLink) or GetSpellLink)
@@ -374,6 +418,16 @@ function Compat.GetMapName(uiMapID)
 	return info and info.name or nil
 end
 
+-- An AreaTable area's name in the client's language (C_Map.GetAreaInfo),
+-- as GetZoneText, GetSubZoneText and GetBindLocation name it there; nil
+-- without the API, for an unknown area or while the value is secret.
+function Compat.GetAreaName(areaID)
+	if type(areaID) ~= "number" or not (C_Map and C_Map.GetAreaInfo) then return nil end
+	local ok, name = pcall(C_Map.GetAreaInfo, areaID)
+	if not ok or isSecret(name) or type(name) ~= "string" or name == "" then return nil end
+	return name
+end
+
 -- A map's name to show: the client's, else the Codex zone's; nil when
 -- neither knows the map. Asks ns.Compat, so a stand-in Compat answers too.
 function Compat.MapName(uiMapID)
@@ -391,9 +445,13 @@ end
 -- leaves the map frame tainted, so every later open in combat is blocked and
 -- the quest pins are lost until a reload (Shortest Path Forever 1.8.0, #92;
 -- docs/NAV_QA.md C3); it is only the
--- fallback on a client without C_Map.OpenWorldMap. Never in combat.
+-- fallback on a client without C_Map.OpenWorldMap. Never in combat, and
+-- never with the gamepad interface (ns.GamepadUI): the map opened from
+-- addon code joins the gamepad's focus in Polestar's name, and its close
+-- is blocked. The button that would open it is not shown then.
 --   Compat.CanOpenWorldMap() -> bool ; Compat.OpenWorldMap(uiMapID) -> opened
 local function worldMapOpener()
+	if ns.GamepadUI() then return nil end
 	if C_Map and C_Map.OpenWorldMap then return C_Map.OpenWorldMap end
 	return OpenWorldMap
 end

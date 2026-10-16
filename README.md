@@ -105,7 +105,7 @@ started from Shortest Path Forever's by Cillian Berragan) and a travel planner, 
 markers on the map, an upgrade indicator on item tooltips, a search for where
 any item, mount or pet comes from, a dungeon quest journal, rare alerts and
 the quality-of-life helpers a long leveling session needs. Its interface is
-in English, German and Latin American Spanish.
+in English, French, German and Latin American Spanish.
 
 The leveling routes are not hand-picked. A simulator models every quest
 Forever offers a faction, plays millions of complete 1-60 routes for each
@@ -379,6 +379,12 @@ steps and detours, the steps to fix first.
 `/polestar options`, grouped by what you came to do: Guide, Appearance, Map,
 Questing, Discovery, Quality of Life, Guide packs, Recorder and About, with a
 search that finds any setting.
+
+With the game's gamepad interface on (Options, Gamepad, Enable Gamepad UI)
+there are no slash commands: the game blocks gamepad actions after any
+addon command typed in chat, until the game freezes. Polestar's minimap
+button (on by default then) and its key bindings open the guide and the
+settings instead, and Polestar keeps out of the game's own windows.
 
 <details>
 <summary><b>Every slash command</b></summary>
@@ -830,6 +836,10 @@ saved you a minute. Questions and ideas are welcome on the
   `node tools/polestar.js preview` renders them for review.
 - **Recordings** are the most useful contribution of all: play a guide with
   the Recorder on and attach `record report` for the steps that felt slow.
+- **With an AI agent?** It reads [AGENTS.md](AGENTS.md) in a clone. To have
+  Polestar's skills everywhere, install them:
+  `npx skills add fitzforge/polestar -g`, or the Claude Code and Codex
+  plugins in [CONTRIBUTING.md](CONTRIBUTING.md#installing-the-skills).
 
 Contributions are accepted under the GPL-3.0, the project's licence.
 

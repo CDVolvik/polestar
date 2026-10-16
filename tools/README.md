@@ -79,12 +79,22 @@ without QuestieDB.
 | `media` | Regenerates the addon's textures from `tools/media/*.js` |
 | `readme brand` / `readme charts` | Redraws the README's art: the banners, emblem, logo, download and CurseForge buttons and the CurseForge avatar / the route charts (needs `data/sim`); both also export the CurseForge listing's PNGs when `rsvg-convert` is installed |
 
+### Translating
+
+| Command | What it does |
+|---|---|
+| `i18n` | The interface translations ([docs/TRANSLATING.md](../docs/TRANSLATING.md)): `status`, `check`, `sync`, `keys`, `import`; and `names`, the names addons `addon/Polestar_Names_<locale>` |
+
 ### Releasing
 
 | Command | What it does |
 |---|---|
 | `version` | Shows, or sets, the version in `package.json`, `guides/pack.json` and every addon TOC |
 | `pack` | Writes the release zips and `SHA256SUMS` to `dist/`; given a guide pack, that pack's zip |
+| `changelog add` / `check` / `show` / `build <version>` | The changelog fragments in `changes/`: writes one from `--text` or stdin / checks every fragment (CI) / prints them as the release will / assembles them into CHANGELOG.md under `## <version> (<date>)` and deletes them; `--root` works on another checkout |
+| `release scope` | Lists the paths since the last `vX.Y.Z` tag (or `--base`, or `--files -`) that a patch release may not carry; exit 1 when there are any. The `Base branch` check runs it on pull requests into `hotfix/` |
+| `release patch <version> --root <checkout>` | A patch release's build in a `hotfix/` checkout, with that checkout's tools: scope, the last release's data addons back, version, lint, compile, and the compiled guides that changed |
+| `release notes <version>` | Drafts the GitHub, CurseForge and Discord notes from the version's CHANGELOG.md section into `dist/` |
 
 The release steps are in [docs/RELEASING.md](../docs/RELEASING.md).
 
@@ -118,6 +128,7 @@ The release steps are in [docs/RELEASING.md](../docs/RELEASING.md).
 | `generated.js` | Writes or checks a command's generated files |
 | `game/` | The game's rules, once for every tool: `xp.js` (XP to level, quest and kill XP, the client's QuestXP table) and `races.js` (races, classes and their mask bits) |
 | `gear/` | `gear build`: Forever item stats, reward choices, weight bands |
+| `i18n/` | `i18n`: the locales (`locales.js`), key extraction (`keys.js`), the format check (`check.js`), reading and editing locale files (`files.js`), the glossary (`glossary.js`, `glossary/<locale>.json`) and each locale's state (`project.js`), adapted from Ding! by Yendi; the names addons (`names.js`: DingDB's pin, the ids Polestar's data names, the merge with pfQuest's locale files and the emitted addons) |
 | `itemdb/` | `itemdb build`: item stats from the client tables |
 | `lua.js` | Runs Lua 5.1 for the tools (reading SavedVariables and other addons' data) |
 | `maps/` | `maps build` (zone levels) and `maps overlays` |
@@ -152,11 +163,11 @@ file's language written by `header()` in `lib/generated.js`:
 | `data/forever/*.json` (quests, npcs, objects, items, zones, map-frames, factions, races, meta) | `data build` | pfQuest, QuestieDB from the installed client, client tables from wago.tools, `data/recordings/*.json`; cached in `data/sources/` | local | `meta.json` records the sources and when |
 | `data/forever/spawnz.json` | `data build` | CMaNGOS classic-db's `creature` and `gameobject` spawns on maps 0 and 1 (the pinned dump, cached in `data/sources/cmangos/`, the rows kept as `spawnz.json` beside it); left out with one warning when `--offline` has no cached dump | local | `meta.json` records classic-db's revision; `compile` reads it for goal heights (`z`) and prints how many goals got one |
 | `data/forever/dungeons.json` | `dungeons build` | the installed dungeon journal addon, `data/forever` | local | none |
-| `data/forever/professions.json` | `profession build` | client tables, `data/forever` items, npcs, objects | local | none |
+| `data/forever/professions.json` | `profession build` | Forever client tables (Classic Era fills their gaps), `data/forever` items, npcs, objects | local | none |
 | `data/forever/trainers.json` | `trainers build` | `train` goals under `guides/`, `data/recordings`, the curated list, `npcs.json` | local | none |
 | `addon/Polestar/Core/ClassTrainers.lua` | `trainers build` | the same | yes | rerun |
 | `addon/Polestar/Talents/Builds.lua` | `talents build` | `talents/forever/*.json`, Forever trait tables from wago.tools (build pinned in `tools/commands/talents.js`) | yes | `talents check`; `tests/talents-build.test.js` runs it when the tables are cached |
-| `data/forever/travel.json` | `travel build` | client tables (Era and Forever), CMaNGOS classic-db (`data/sources/cmangos/`), `data/forever` map-frames, zones, npcs, objects, `data/recordings` | local | none |
+| `data/forever/travel.json` | `travel build` | client tables (Era and Forever), the newest cached Forever AreaTable (`data/sources/wago/`, the inns' areas), CMaNGOS classic-db (`data/sources/cmangos/`), `data/forever` map-frames, zones, npcs, objects, `data/recordings` | local | none |
 | `addon/Polestar/Nav/TravelData.lua` | `travel build` | the same | yes | rerun; `tests/travel-build.test.js` loads the committed file; `tests/nav-transit.test.js` builds and loads the timetables |
 | `addon/Polestar/Maps/FlightPaths.lua` | `travel build` | client TaxiPathNode | yes | rerun; `tests/nav-route-lines.test.js` loads the committed file |
 | `addon/Polestar_Travel/` | `travel build` | the local crossings file `data/local/crossings.json` | local | `tests/travel-crossings.test.js` validates the crossings file |
@@ -171,7 +182,8 @@ file's language written by `header()` in `lib/generated.js`:
 | `guides/forever/exploration/*.guide` (7) | `exploration build` | client map tables, `data/forever` zones, map-frames, travel | yes | `exploration check`; `tests/exploration.test.js` |
 | `guides/forever/professions/` mining, herbalism, skinning, cooking, first-aid, fishing | `profession gathering build` | `data/forever` professions, items, npcs, objects | yes | `profession gathering check`; `tests/profession-gathering.test.js` |
 | `guides/forever/professions/` alchemy, blacksmithing, enchanting, engineering, leatherworking, tailoring | `profession draft <Profession> --out` | `data/forever` including professions | yes | rerun |
-| `addon/Polestar_Guides/` | `compile` | `guides/**/*.guide`, `guides/pack.json`, `data/forever` (including trainers, travel, professions, factions, races; never `dungeons.json`) | yes | rerun; `tests/guides-parse.test.js` fails when a guide is added, renamed or removed without `compile` |
+| `addon/Polestar_Guides/` | `compile` | `guides/**/*.guide`, `guides/pack.json`, `data/forever` (including trainers, travel, professions, factions, races; never `dungeons.json`), the newest cached Forever AreaTable in `data/sources/wago/` (place areas) | yes | rerun; `tests/guides-parse.test.js` fails when a guide is added, renamed or removed without `compile` |
+| `addon/Polestar_Names_<locale>/` (9) | `i18n names` | DingDB pinned in `tools/lib/i18n/names.js` (cloned into `data/sources/ding`), pfQuest's `db/<locale>` (`data/sources/pfQuest`), the ids of `addon/Polestar_Guides/Guides.lua`, `addon/Polestar_QuestDB/` and `data/forever/codex/` | yes (always in the release zip) | rerun after `compile`, `questdb build` or `codex build` add ids; `tests/i18n-names.test.js` |
 | `addon/Polestar/Media/Nav/*.tga`, `addon/Polestar/Media/UI/*.tga` | `media` | `tools/media/*.js`, `tools/lib/tga.js`, `tools/media/fonts` (no data) | yes | rerun: the output is byte-identical, and CI fails when it differs from the committed files; `tests/media-refs.test.js` checks the addon names every texture |
 | `docs/preview/*.svg` | `preview` | the addon's Lua (Core, Theme, Nav, Quests, Gear, Maps, QoL, Lookup, Dungeons, Rares, UI), its generated files included; `tests/lua` (the client stubs, `stub_ui.lua`'s sample guides), `tests/fixtures`, among them six compiled Horde guides frozen in `tests/fixtures/preview/guides.lua`; no reference data and not the shipped `addon/Polestar_Guides`, so a guide recompile never changes the renders. `POLESTAR_CLIENT_ART` (with `POLESTAR_DUNGEONS_PACK`) renders local art and data into its own folder, never here | yes | rerun: the output is byte-identical, and CI fails when it differs from the committed files or a render is missing; a full run removes the renders of scenes that are gone |
 | `docs/assets/{banner-dark,banner-light,emblem,logo,download,curseforge,avatar}.svg` | `readme brand` | the emblem geometry, the wordmark fonts, the CurseForge mark | yes | rerun |

@@ -14,7 +14,7 @@ const path = require('node:path');
 const { spawnSync } = require('node:child_process');
 
 const ROOT = path.join(__dirname, '..');
-const PATHS = ['addon', 'guides', 'docs', 'skills', 'tools/templates', 'README.md', 'CONTRIBUTING.md', 'CHANGELOG.md', 'THIRD_PARTY.md', 'LICENSE-EXCEPTION.md'];
+const PATHS = ['addon', 'guides', 'docs', 'skills', 'tools/templates', 'README.md', 'CONTRIBUTING.md', 'CHANGELOG.md', 'changes', 'THIRD_PARTY.md', 'LICENSE-EXCEPTION.md'];
 // Names of other guide products, kept as hashes so the repository never
 // spells them: SHA-256 of each name's lower-case form.
 const NAME_HASHES = new Set([
@@ -66,11 +66,15 @@ function scan() {
 
 const where = (file, text, index) => `${path.relative(ROOT, file)}:${text.slice(0, index).split('\n').length}`;
 
+// The names addons hold the game's own names in each language, not Polestar's
+// words: a Portuguese NPC may share a first name with a product.
+const GAME_NAMES = /[/\\]addon[/\\]Polestar_Names_[A-Za-z]{4}[/\\]Names\.lua$/;
+
 test('no other guide product is named', () => {
 	const files = scan();
 	assert.ok(files.length > 20, `expected the addon, docs and template files, got ${files.length}`);
 	const hits = [];
-	for (const { file, text } of files) {
+	for (const { file, text } of files.filter((f) => !GAME_NAMES.test(f.file))) {
 		for (const { token, index } of namedTokens(text, NAME_HASHES)) hits.push(`${where(file, text, index)}: ${token}`);
 	}
 	assert.deepEqual(hits, []);

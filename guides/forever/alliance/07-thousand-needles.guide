@@ -46,6 +46,8 @@ next forever/alliance/30-40/01-hillsbrad-foothills
 #   quests of the new consensus's 30-31 visit. The new consensus visits
 #   Thousand Needles later (32.6, after Hillsbrad); the Shimmering Flats stay
 #   here, between the Wetlands and the hearth, as before.
+# - Mirage Raceway: Zherin and Pozzik, first on the way in from the salt
+#   flats, before Fizzle, Wizzle and Kravel.
 #
 # Dropped for flow: A Noble Brew (335, 2450 XP): the Musquash Root sits in
 # the far south-east of the Wetlands, a long detour off the route, and the
@@ -70,6 +72,7 @@ next forever/alliance/30-40/01-hillsbrad-foothills
 
 step Darkshire
   zone Duskwood
+  tip No Bronze Tube for Look to the Stars? Herble Baubbletump sells it in the house beside Viktori, in limited stock; Neal Allen in Menethil Harbor sells it too.
   fly "Darkshire"                         -- From Dungar Longdrink in Stormwind
   sethome "Darkshire" npc 6790            -- Innkeeper Trelayne, Scarlet Raven Tavern
   turnin 1243                             -- Watcher Backus, at the north entrance of town
@@ -78,6 +81,7 @@ step Darkshire
   turnin 66                               -- Clerk Daltry, in the town hall
   accept 58                               -- Commander Althea Ebonlocke
   accept 173                              -- Calor, by the town hall
+  buy 4371 x1 npc 3133 optional           -- Bronze Tube, from Herble Baubbletump, if you have none
   turnin 174                              -- Viktori Prism'Antras, at the east end of town
   accept 175
 
@@ -284,12 +288,12 @@ step The salt flats
   kill 4150 quest 1175                    -- Saltstone Gazer
 
 step Mirage Raceway
+  turnin 1175                             -- Trackmaster Zherin
+  turnin 1176                             -- Pozzik
   turnin 1104                             -- Fizzle Brassbolts
   turnin 1105                             -- Wizzle Brassbolts
   accept 1106                             -- Fizzle Brassbolts: for Martek in the Badlands, later
   turnin 1110                             -- Kravel Koalbeard
-  turnin 1176                             -- Pozzik
-  turnin 1175                             -- Trackmaster Zherin
 
 # ---------------------------------------------------------------- Back to Menethil
 

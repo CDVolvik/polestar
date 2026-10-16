@@ -229,7 +229,7 @@ local function folderOf(g, mine)
 		local lo, hi = band(g)
 		local f = g.faction
 		local rank = f == nil and 3 or (f == mine and 0 or (FACTION_ORDER[f] or 4))
-		local label = (f and L[f] or L["Leveling"]) .. " " .. UI.LevelRange(lo, hi)
+		local label = (f and ns.FactionName(f) or L["Leveling"]) .. " " .. UI.LevelRange(lo, hi)
 		return label, string.format("%02d%d%03d", CATEGORY_RANK.Leveling, rank, lo)
 	end
 	return L[c], string.format("%02d", CATEGORY_RANK[c] or 99) .. c
@@ -687,8 +687,10 @@ local function factRow(i)
 	if f then return f end
 	f = {}
 	f.Label = W.Text(details, "small", "textMuted")
-	f.Label:SetWidth(FACT_W)
+	f.Label:SetWidth(FACT_W - 8) -- 8px clear of the value; a long label wraps
+	f.Label:SetWordWrap(true)
 	f.Label:SetJustifyH("LEFT")
+	f.Label:SetJustifyV("TOP")
 	f.Value = W.Text(details, "note", "text")
 	f.Value:SetWidth(DETAIL_W - DPAD * 2 - FACT_W)
 	f.Value:SetJustifyH("LEFT")
@@ -998,7 +1000,7 @@ local function renderDetails(byId, tabs, active)
 	local lv = UI.LevelRange(g.minLevel, g.maxLevel)
 	if lv then addChip(L["Levels"] .. " " .. lv, "accent") end
 	if g.group == true then addChip(L["Group"], "dungeon") end
-	addChip(g.faction and L[g.faction] or L["Both factions"])
+	addChip(ns.FactionName(g.faction) or L["Both factions"])
 	if type(g.races) == "table" then for _, race in ipairs(g.races) do addChip(UI.RaceName(race)) end end
 	if type(g.classes) == "table" then for _, cl in ipairs(g.classes) do addChip(UI.ClassName(cl)) end end
 	for i = n + 1, #d.Chips do d.Chips[i]:Hide() end
@@ -1064,11 +1066,20 @@ local function renderDetails(byId, tabs, active)
 	d.FactRule:SetShown(#facts > 0)
 	local shownFacts, shownRewards, nTiles = {}, {}, 0
 	if #facts > 0 then y = y + 1 + 16 end
+	-- The label column: FACT_W, or wider by what a label's longest word
+	-- needs ("Choisissez-en"), so a label wraps between words only.
+	local factW = FACT_W
+	for i, f in ipairs(facts) do
+		for word in f[1]:gmatch("%S+") do factW = max(factW, math.ceil(W.TextWidth(factRow(i).Label, word)) + 8) end
+	end
+	local valueW = DETAIL_W - DPAD * 2 - factW
 	for i, f in ipairs(facts) do
 		local row = factRow(i)
+		row.Label:SetWidth(factW - 8)
 		row.Label:SetText(f[1])
 		row.Label:ClearAllPoints()
 		row.Label:Show()
+		row.Value:SetWidth(valueW)
 		if f.rewards then
 			-- The label sits on the first tile's text line.
 			row.Label:SetPoint("TOPLEFT", d, "TOPLEFT", DPAD, -(y + (REWARD_H - row.Label:GetStringHeight()) / 2))
@@ -1077,8 +1088,10 @@ local function renderDetails(byId, tabs, active)
 			for k, e in ipairs(f.rewards) do
 				nTiles = nTiles + 1
 				local t = rewardTile(nTiles)
+				t:SetWidth(valueW)
+				t.Name:SetWidth(valueW - REWARD_H - 8)
 				t:ClearAllPoints()
-				t:SetPoint("TOPLEFT", d, "TOPLEFT", DPAD + FACT_W, -y)
+				t:SetPoint("TOPLEFT", d, "TOPLEFT", DPAD + factW, -y)
 				names[k] = paintReward(t, e)
 				shownRewards[#shownRewards + 1] = { kind = e.item and "item" or e.spell and "spell" or "text", id = e.item or e.spell, name = names[k], choice = e.choice and true or nil }
 				t:Show()
@@ -1091,7 +1104,7 @@ local function renderDetails(byId, tabs, active)
 			if type(f[2]) == "table" then fitZones(row.Value, f[2]) else row.Value:SetText(f[2]) end
 			row.Label:SetPoint("TOPLEFT", d, "TOPLEFT", DPAD, -(y + 1))
 			row.Value:ClearAllPoints()
-			row.Value:SetPoint("TOPLEFT", d, "TOPLEFT", DPAD + FACT_W, -y)
+			row.Value:SetPoint("TOPLEFT", d, "TOPLEFT", DPAD + factW, -y)
 			row.Value:Show()
 			y = y + max(row.Value:GetStringHeight(), row.Label:GetStringHeight()) + FACT_GAP
 			shownFacts[i] = { f[1], row.Value:GetText() }
@@ -1230,7 +1243,7 @@ local function navTips(filter)
 	for _, b in ipairs(win.navButtons) do
 		local tip
 		if b:IsShown() and b.psEmpty and query == "" and filter ~= "All" and b.psKey ~= "Favorites" then
-			tip = string.format(L["None for %s; switch the filter to All."], L[filter])
+			tip = string.format(L["None for %s; switch the filter to All."], ns.FactionName(filter))
 		end
 		b.psTip = tip
 		if tip and not b.psPickerTip then
@@ -1435,7 +1448,7 @@ function P.Render()
 			subtitle = n == 1 and string.format(L["1 result for \226\128\156%s\226\128\157"], query)
 				or string.format(L["%d results for \226\128\156%s\226\128\157"], n, query)
 		else
-			local parts = { filter == "All" and L["All factions"] or L[filter], n == 1 and L["1 guide"] or string.format(L["%d guides"], n) }
+			local parts = { filter == "All" and L["All factions"] or ns.FactionName(filter), n == 1 and L["1 guide"] or string.format(L["%d guides"], n) }
 			local open = tabs and #tabs or 0
 			if open > 0 then parts[#parts + 1] = string.format(L["%d open"], open) end
 			subtitle = table.concat(parts, DOT)
@@ -1701,7 +1714,7 @@ local function build()
 		b.Selected = W.Fill(b, "panelAlt", "BACKGROUND", 0)
 		b.Label = W.Text(b, "small", "textMuted")
 		b.Label:SetPoint("CENTER", b, "CENTER", 0, 0)
-		b.Label:SetText(f == "All" and L["All"] or L[f])
+		b.Label:SetText(f == "All" and L["All"] or ns.FactionName(f))
 		b:SetWidth(floor(b.Label:GetStringWidth() + 20 + 0.5))
 		b:SetPoint("RIGHT", win.TabRow, "RIGHT", x, 0)
 		b:SetScript("OnClick", function(self) ns.Set("ui.pickerFaction", self.psKey) end)
@@ -1740,6 +1753,12 @@ function UI.ShowPicker(opts)
 	end
 	if settings then settings:Hide() end
 end
+
+-- A new font measures the rail, the sidebar and the details' label column
+-- anew: the hub on screen renders again.
+W.OnFontChanged(function()
+	if win and win:IsShown() then P.Render() end
+end)
 
 function P.SetQuery(text)
 	if not win then build() end
