@@ -40,7 +40,7 @@ local GuideTexts = {}
 ns.GuideTexts = GuideTexts
 
 local type, pairs, ipairs, tonumber, next = type, pairs, ipairs, tonumber, next
-local gsub, find, upper = string.gsub, string.find, string.upper
+local find, sub, upper = string.find, string.sub, string.upper
 
 local ENGLISH = { enUS = true, enGB = true }
 local locale = (GetLocale and GetLocale()) or "enUS"
@@ -85,14 +85,32 @@ local function localName(kind, id, en)
 	return ns.Names.Cached(kind, id)
 end
 
+-- A token's English in its sentence (tools/lib/dsl/tokens.js englishIn): a
+-- name starting "The " drops it after the text's own "the", and reads "the"
+-- inside a sentence. before: the text up to the token.
+local function englishIn(name, before)
+	if sub(name, 1, 4) ~= "The " then return name end
+	local tail = sub(before, -5)
+	if find(tail, "^[Tt]he $") or find(tail, "[^%w][Tt]he $") then return sub(name, 5) end
+	if before == "" or find(before, "[%.!%?:;\n]%s*$") then return name end
+	return "t" .. sub(name, 2)
+end
+
 local function fill(s, names, live)
 	if not find(s, "{", 1, true) then return s end
-	return (gsub(s, "{(%l+):(%d+)}", function(kind, id)
+	local out, at = "", 1
+	while true do
+		local a, b, kind, id = find(s, "{(%l+):(%d+)}", at)
+		if not a then break end
+		out = out .. sub(s, at, a - 1)
 		local en = names[kind .. ":" .. id]
-		if not en then return nil end -- not a token of this guide: left as written
-		local name = live and not english and localName(kind, tonumber(id), en) or nil
-		return valid(name) and name or en
-	end))
+		local name = en and live and not english and localName(kind, tonumber(id), en) or nil
+		if valid(name) then out = out .. name
+		elseif en then out = out .. englishIn(en, out)
+		else out = out .. sub(s, a, b) end -- not a token of this guide: left as written
+		at = b + 1
+	end
+	return out .. sub(s, at)
 end
 
 local function render(def, entry, en, live)

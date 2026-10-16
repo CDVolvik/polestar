@@ -49,6 +49,9 @@ const WORLD_AREA = 4;
 const WORLD_DATA = 5;
 const SOURCES = ['step', 'guide', 'zoneArea', 'worldZone', 'worldArea', 'worldData'];
 const MIN_NAME = 3;
+// Kinds whose names are matched without a leading "The" (and a zone's or
+// area's without its trailing "City").
+const ALIAS_KINDS = new Set(['area', 'zone', 'npc', 'object']);
 
 const LETTER = /[\p{L}\p{N}]/u;
 
@@ -160,18 +163,32 @@ class NameIndex {
 
 	add(kind, id, name, prio) {
 		name = str(name) && name.trim();
-		if (!name || name.length < MIN_NAME || !Number.isInteger(id) || id <= 0) return;
-		if (!/^[\p{Lu}\p{N}]/u.test(name)) return;
-		if (kind !== 'skill' && !name.includes(' ') && this.common.has(name.toLowerCase())) return;
-		const had = this.seen.get(name);
+		if (!name || !Number.isInteger(id) || id <= 0) return;
+		this.put(name, name, kind, id, prio);
+		if (!ALIAS_KINDS.has(kind)) return;
+		// "Molsen Farm" for the game's "The Molsen Farm" (an English client
+		// reads its article as the sentence needs it: fillTokens),
+		// "Stormwind" for "Stormwind City": the token shows the game's whole
+		// name. A worse source than the name itself.
+		const bare = /^The (.+)$/.exec(name);
+		if (bare) this.put(bare[1], name, kind, id, prio + 0.5);
+		const city = (kind === 'zone' || kind === 'area') && /^(.+) City$/.exec(name);
+		if (city) this.put(city[1], name, kind, id, prio + 0.5);
+	}
+
+	// `match`: the words looked for; `english`: the token's English.
+	put(match, english, kind, id, prio) {
+		if (match.length < MIN_NAME || !/^[\p{Lu}\p{N}]/u.test(match)) return;
+		if (kind !== 'skill' && !match.includes(' ') && this.common.has(match.toLowerCase())) return;
+		const had = this.seen.get(match);
 		if (had && (had.prio < prio || (had.prio === prio && had.id <= id))) return;
-		const entry = { name, kind, id, prio };
-		const start = name.slice(0, MIN_NAME);
+		const entry = { name: match, english, kind, id, prio };
+		const start = match.slice(0, MIN_NAME);
 		if (!this.byStart.has(start)) this.byStart.set(start, []);
 		const list = this.byStart.get(start);
 		if (had) list.splice(list.indexOf(had), 1, entry);
 		else list.push(entry);
-		this.seen.set(name, entry);
+		this.seen.set(match, entry);
 		this.sorted = false;
 	}
 
@@ -312,7 +329,7 @@ function tokeniseText(text, indexes, accept = () => true) {
 			const e = longestAt(indexes, text, i);
 			if (e && accept(e)) {
 				flush();
-				parts.push({ token: `{${e.kind}:${e.id}}`, name: e.name, used: { kind: e.kind, id: e.id, name: e.name, prio: e.prio } });
+				parts.push({ token: `{${e.kind}:${e.id}}`, name: e.name, used: { kind: e.kind, id: e.id, name: e.english, prio: Math.floor(e.prio) } });
 				i += e.name.length;
 				continue;
 			}
@@ -376,7 +393,7 @@ function tokeniseGuides(guides, data) {
 		// One English per token: a second spelling of the same id stays words.
 		const accept = (e) => {
 			const k = `${e.kind}:${e.id}`;
-			return !(k in names) || names[k] === e.name;
+			return !(k in names) || names[k] === e.english;
 		};
 		const replace = (text, holder, key, indexes, ln) => {
 			const r = tokeniseText(text, indexes, accept);
@@ -419,15 +436,33 @@ function tokeniseGuides(guides, data) {
 	return { guides: out, stats, problems };
 }
 
+// A token's English in its sentence: a name the game starts with "The"
+// ("The Molsen Farm") drops it after the text's own "the", and reads "the"
+// inside a sentence. `before`: the text up to the token.
+function englishIn(name, before) {
+	if (!name.startsWith('The ')) return name;
+	if (/(^|[^\p{L}\p{N}])[Tt]he $/u.test(before)) return name.slice(4);
+	if (/(^|[.!?:;\n]\s*)$/u.test(before)) return name;
+	return `t${name.slice(1)}`;
+}
+
 // A text with its tokens filled by `names` (a guide's), as an English client
-// reads it.
+// reads it (Core/GuideTexts.lua fills them the same way).
 function fillTokens(text, names) {
-	return String(text).replace(TOKEN_RE, (m, kind, id) => (names && names[`${kind}:${id}`]) || m);
+	let out = '';
+	let at = 0;
+	for (const m of String(text).matchAll(new RegExp(TOKEN_RE.source, 'g'))) {
+		out += text.slice(at, m.index);
+		const en = names && names[`${m[1]}:${m[2]}`];
+		out += en ? englishIn(en, out) : m[0];
+		at = m.index + m[0].length;
+	}
+	return out + String(text).slice(at);
 }
 
 // The tokens of a text, in order: ["npc:234", ...].
 function tokensOf(text) {
-	return [...String(text).matchAll(TOKEN_RE)].map((m) => `${m[1]}:${m[2]}`);
+	return [...String(text).matchAll(new RegExp(TOKEN_RE.source, 'g'))].map((m) => `${m[1]}:${m[2]}`);
 }
 
 // Whether a text is nothing but tokens, digits, spaces and punctuation

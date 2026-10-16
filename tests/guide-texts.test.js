@@ -195,3 +195,11 @@ test('a token the author wrote must name something the data has', () => {
 	const r = buildPack({ ...commandPack({ pack: dir }), contextDir: null }, { dataDir: DATA_DIR });
 	assert.deepEqual(r.diag.errors.map((d) => d.message), ['{npc:999999}: the data has no npc 999999']);
 });
+
+test('a name the game starts with "The" reads as its sentence needs it on an English client', () => {
+	const { fillTokens } = require('../tools/lib/dsl/tokens');
+	const names = { 'area:918': 'The Molsen Farm' };
+	assert.equal(fillTokens('{area:918}', names), 'The Molsen Farm');
+	assert.equal(fillTokens('West of {area:918}. {area:918} is quiet.', names), 'West of the Molsen Farm. The Molsen Farm is quiet.');
+	assert.equal(fillTokens('Back to the {area:918}', names), 'Back to the Molsen Farm');
+});
