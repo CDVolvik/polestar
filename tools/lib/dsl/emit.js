@@ -191,6 +191,8 @@ function emitTextsToc(manifest, locale, language, iface) {
 		`## Interface: ${iface}`,
 		`## Title: ${manifest.title} (${locale})`,
 		`## Notes: ${language} texts of ${manifest.title}. Loaded on demand on a ${language} client.`,
+		// Polestar's own pack: the AddOns list in every client language too.
+		...(manifest.id === 'guides' ? require('../i18n/toc').tocLines(`Polestar_Guides_${locale}`) : []),
 		`## Author: ${manifest.author}`,
 		`## Version: ${manifest.version}`,
 		'## Category: Quests',
