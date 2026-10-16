@@ -497,7 +497,8 @@ as the pack's translation into the client's language (else the English)
 with each token filled: `Names.Cached` for quests, NPCs, objects and items
 (never asking the server), `Names.Get` for spells, factions and areas, the
 client's map name for a zone, `L` for a profession; else the token's
-English. A guide's `folder` and the pack's title and notes are the pack's own
+English, whose leading "The " follows the sentence (dropped after the text's
+own "the", "the" inside a sentence). A guide's `folder` and the pack's title and notes are the pack's own
 texts; a folder named after a class reads as `LOCALIZED_CLASS_NAMES_MALE`'s.
 
 ```

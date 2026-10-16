@@ -221,7 +221,8 @@ step's `title` and `note`; a goal's `note` and `text`) are written
 each as the game names it in the client's language (Polestar.Names, the
 client's map and area names, the profession's translation), else as the
 guide's `names` give it, so an English client reads the text as its author
-wrote it. The compiler writes the tokens (GUIDE_FORMAT.md, "Names in
+wrote it; an English name starting "The " drops it right after a "the" of the
+text and reads "the" inside a sentence. The compiler writes the tokens (GUIDE_FORMAT.md, "Names in
 texts"); an older Polestar would show them as written, hence the format.
 
 ### `RegisterPack(meta)`

@@ -237,7 +237,12 @@ collect sources, smart-target candidates, rewards, reagents, quest objectives,
 spells, factions, professions), then the whole guide's, the zones of its maps
 and the AreaTable areas in them, then any zone and any open-world area whose
 name is unique, the professions and their reagents, and any NPC, object or
-item of the data whose name has two words or an apostrophe. A name in its
+item of the data whose name has two words or an apostrophe. A place, NPC or
+object the game names with a leading "The" matches without it ("Molsen
+Farm" is the game's "The Molsen Farm"), and a zone or area ending "City"
+without that ("Stormwind"): the token shows the game's whole name, and an
+English client reads its "The" as the sentence needs it ("west of the Molsen
+Farm", "back to the Molsen Farm", "The Molsen Farm" opening one). A name in its
 English plural ("Harvest Watchers"), in lower case ("the Jansen Stead") or
 inside a longer word stays words, as does a one-word name the pack's texts
 also use as a lower-case word ("Barracks"), and two names a space apart (a
