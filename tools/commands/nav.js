@@ -54,8 +54,8 @@ aids    the arrow's aids from the grid (tools/lib/nav/aids.js): zone
         reference crossings file (--reference, default
         data/local/crossings.json; read only).
 pack    Polestar's walking maps of maps 0 (Eastern Kingdoms) and 1
-        (Kalimdor) from the grid (--dir, default data/local/nav; it must be
-        the current grid version) in Shortest Path Forever's walking-map format
+        (Kalimdor) from the grid (--dir, default data/local/nav; grid version
+        3 or 4) in Shortest Path Forever's walking-map format
         (tools/lib/nav/pack.js, a port of his gen_nav.py and pack_nav.py), with
         Chokepoints.lua (lifts, bridges, gates, tunnels, cave and building
         mouths, passes; tools/lib/nav/chokepoints.js), into
@@ -369,9 +369,9 @@ async function packCmd(argv) {
 	if (o.date !== undefined && !/^\d{4}-\d\d-\d\d$/.test(String(o.date))) throw usageError('--date needs YYYY-MM-DD');
 	const dir = o.dir ? path.resolve(o.dir) : DEFAULT_DIR;
 	if (!fs.existsSync(path.join(dir, 'index.json'))) throw Object.assign(new Error('no navigation grid: run `node tools/polestar.js nav build`'), { exit: 1 });
-	const { VERSION } = require('../lib/nav/grid/format');
+	const { TILE_VERSIONS } = require('../lib/nav/grid/format');
 	const version = JSON.parse(fs.readFileSync(path.join(dir, 'index.json'), 'utf8')).version;
-	if (version !== VERSION) throw Object.assign(new Error(`${dir} is grid version ${version}, this code reads ${VERSION}: rebuild it with \`node tools/polestar.js nav build\``), { exit: 1 });
+	if (!TILE_VERSIONS.includes(version)) throw Object.assign(new Error(`${dir} is grid version ${version}, this code reads ${TILE_VERSIONS.join(' or ')}: rebuild it with \`node tools/polestar.js nav build\``), { exit: 1 });
 	const files = await packNav({ dir, cells, continents: OWN_MAPS, places: packPlaces(dir), date: o.date, log: (m) => console.error(m) });
 	const { written, removed } = shipPack(files, out);
 	const bytes = [...files.values()].reduce((s, c) => s + Buffer.byteLength(c), 0);

@@ -6,6 +6,8 @@
 //   const nav = openNav({ dir: 'data/local/nav', cacheTiles = 256 });
 //   nav.available                 false without a build (every call then answers null / { ok: false })
 //   nav.index                     index.json (format.js), or null
+//   Reads grids of tile versions 3 and 4 (format.js TILE_VERSIONS; a version
+//   3 tile's tslope is null).
 //
 //   nav.snap({ c, wx, wy, z?, prefer = 'any', radius = 20 })
 //     -> { c, wx, wy, z, tile: { col, row }, cell: { i, j }, layer, entry, region, flags } | null

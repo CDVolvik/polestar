@@ -280,5 +280,5 @@ test('pack: a tile the grid lists but cannot read (missing, truncated, another v
 	const raw = zlib.gunzipSync(fs.readFileSync(tile(older)));
 	raw.writeUInt32LE(2, 4); // the tile format's version
 	fs.writeFileSync(tile(older), zlib.gzipSync(raw));
-	await assert.rejects(packNav({ dir: older, cells: 67 }), /^Error: pack: tile 0\/33_32: nav tile version 2, expected 3$/);
+	await assert.rejects(packNav({ dir: older, cells: 67 }), /^Error: pack: tile 0\/33_32: nav tile version 2, expected 3 or 4$/);
 });
