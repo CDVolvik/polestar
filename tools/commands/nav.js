@@ -10,7 +10,9 @@
 // (tools/lib/nav/pack.js, chokepoints.js); `nav vendor` / `nav check` copy
 // his walking router and his other maps there and hold them to UPSTREAM.json
 // and PACK.json (tools/lib/nav/vendor.js; docs/ARCHITECTURE.md, "In-game
-// walking routes").
+// walking routes"). `nav eval` runs that router standalone on a folder's
+// maps over a route corpus and a per-zone goal sweep, and judges two folders
+// against the walking maps' acceptance checks (tools/lib/nav/eval).
 
 const fs = require('node:fs');
 const path = require('node:path');
@@ -26,6 +28,7 @@ const usage = `usage: node tools/polestar.js nav build [--continents 0,1] [--for
        node tools/polestar.js nav pack [--cells N] [--date <YYYY-MM-DD>] [--dir <grid dir>] [--out <dir>] | nav pack --check [--out <dir>]
        node tools/polestar.js nav vendor <shortest-path-forever checkout> [--out <dir>] [--date <YYYY-MM-DD>]
        node tools/polestar.js nav check [--out <dir>]
+       node tools/polestar.js nav eval [--nav <Polestar_Nav dir>] [--baseline <dir or eval .json>] [--routes <file>] [--sweep] [--out <file.json>]
 
 build   the navigation grid of every continent map-frames.json names (or
         --continents): client geometry per ADT tile through the CASC cache
@@ -82,7 +85,19 @@ vendor  copies Shortest Path Forever's walking router (Routing/PathGrid.lua,
         removed; no other file in the folder is touched (Polestar's packed
         maps stay). Update CREDITS.md's commit line by hand.
 check   the vendored files match UPSTREAM.json and the transform, the packed
-        maps PACK.json, and Nav/Nav.xml lists both.`;
+        maps PACK.json, and Nav/Nav.xml lists both.
+eval    the walking router run standalone (LuaJIT, else Lua 5.1; a folder
+        without its own Routing takes the repository's) on a folder's maps
+        (--nav, default addon/Polestar_Nav): the route corpus (--routes,
+        default tools/lib/nav/eval/routes.json) with each route's metrics
+        (yards, seconds, the share of the drawn line our grid at
+        data/local/nav3 cannot walk, off-road share, yards in hostile hubs,
+        steepest climb, indoor yards; a layer not built yet reads n/a) and
+        expectations; --sweep also searches, per zone with located guide
+        goals and per side, from the zone's flight master (else its first
+        goal) to every goal. --baseline runs the same on another folder (or
+        reads an earlier --out report) and judges the acceptance checks
+        A1-A8; exit 1 when one fails. --out writes the whole report.`;
 
 const usageError = (msg) => Object.assign(new Error(msg), { exit: 2 });
 
@@ -365,7 +380,56 @@ async function packCmd(argv) {
 	return 0;
 }
 
-const SUBCOMMANDS = { build, path: route, aids, pack: packCmd, vendor: vendorCmd, check: checkCmd };
+// The walking router on a folder's maps: the route corpus, the goal sweep, and the acceptance checks against a
+// baseline (tools/lib/nav/eval).
+async function evalCmd(argv) {
+	const { opts: o, positional, error } = parseArgs(argv, { flags: ['--sweep'], options: ['--nav', '--baseline', '--routes', '--out'] });
+	if (error || positional.length) throw usageError(error || `unexpected argument "${positional[0]}"`);
+	const { evaluate, loadCorpus, findInterpreter } = require('../lib/nav/eval/run');
+	const { loadLayers } = require('../lib/nav/eval/metrics');
+	const { compare, summarize } = require('../lib/nav/eval/compare');
+	const { Geo } = require('../lib/planner/geo');
+	const { openNav } = require('../lib/nav/path');
+	const navDir = o.nav ? path.resolve(o.nav) : NAV_ADDON;
+	const corpus = loadCorpus(o.routes ? path.resolve(o.routes) : undefined);
+	const geo = new Geo(readJson(path.join(DATA, 'map-frames.json')), readJson(path.join(DATA, 'zones.json')));
+	const gridDir = path.join(ROOT, 'data', 'local', 'nav3');
+	const grid = fs.existsSync(path.join(gridDir, 'index.json')) ? openNav({ dir: gridDir }) : null;
+	if (!grid) console.error(`nav eval: no grid at ${path.relative(ROOT, gridDir)}: blocked shares are n/a`);
+	const taxi = o.sweep ? readJson(path.join(DATA, 'travel.json')).taxi.nodes : null;
+	const guides = o.sweep ? fs.readFileSync(path.join(ROOT, 'addon', 'Polestar_Guides', 'Guides.lua'), 'utf8') : null;
+	const common = { corpus, sweep: !!o.sweep, geo, taxi, guides, grid, layers: loadLayers(), lua: findInterpreter(), log: (m) => console.error(m) };
+	const fmtSummary = (label, s) => {
+		const sides = Object.entries(s.sweep).map(([p, v]) => `${p} ${v.reachable}/${v.targets} goals in ${v.zones} zones`).join(', ');
+		return `${label}: routes ${s.ok}/${s.routes} found, blocked share ${s.blockedShare === null ? 'n/a' : `${(100 * s.blockedShare).toFixed(1)}%`}, median cold search ${s.medianMs} ms${sides ? `; sweep: ${sides}` : ''}`;
+	};
+	const report = evaluate({ navDir, ...common });
+	for (const r of report.routes) {
+		const m = r.metrics;
+		const verdicts = r.verdicts.map((v) => `${v.pass === null ? 'n/a' : v.pass ? 'ok' : 'FAIL'} ${v.detail}`).join('; ');
+		console.log(`${r.kind.padEnd(9)} ${r.id}: ${r.result.ok ? `${m.yards} yd, ${m.seconds} s, blocked ${m.blocked === null ? 'n/a' : `${(100 * m.blocked).toFixed(1)}%`}, climb ${m.maxClimbDeg} deg, ${r.result.ms} ms` : `not found (${r.result.reason})`}${verdicts ? ` [${verdicts}]` : ''}`);
+	}
+	console.log(fmtSummary(path.relative(process.cwd(), navDir) || '.', report.summary));
+	let code = 0;
+	if (o.baseline) {
+		const where = path.resolve(o.baseline);
+		const base = where.endsWith('.json') ? readJson(where) : evaluate({ navDir: where, ...common });
+		if (!base.summary) base.summary = summarize(base);
+		console.log(fmtSummary(`baseline ${path.relative(process.cwd(), where) || '.'}`, base.summary));
+		report.baseline = { navDir: base.navDir, summary: base.summary };
+		report.compare = compare(base, report);
+		for (const c of report.compare.checks) console.log(`${c.id} ${c.pass === null ? 'n/a ' : c.pass ? 'pass' : 'FAIL'} ${c.detail}`);
+		console.log(report.compare.pass ? 'nav eval: no acceptance check fails' : 'nav eval: an acceptance check fails');
+		if (!report.compare.pass) code = 1;
+	}
+	if (o.out) {
+		fs.writeFileSync(path.resolve(o.out), JSON.stringify(report) + '\n');
+		console.log(`nav eval: report in ${o.out}`);
+	}
+	return code;
+}
+
+const SUBCOMMANDS = { build, path: route, aids, pack: packCmd, vendor: vendorCmd, check: checkCmd, eval: evalCmd };
 
 async function run(argv) {
 	const [sub, ...rest] = argv;
