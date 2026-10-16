@@ -263,8 +263,9 @@ use it. Polestar's travel planner still picks the flights, boats and
 Hearthstone; the router that started from his walks every leg between them.
 It keeps to roads where they are not much longer, round steep slopes, and out
 of the other faction's towns; when a walk must enter one (a quest inside
-Southshore for a Horde character), its journey step reads "Hostile town:
-Southshore" and the arrow says so once as the walk starts.
+Southshore for a Horde character), the arrow says "Hostile town: Southshore"
+once as the walk starts, and the walk's journey step reads the same when the
+route has more steps.
 
 The router ships with Polestar as the `Polestar_Nav` folder. Polestar's
 walking router started from Shortest Path Forever v1.16.0 by Cillian
