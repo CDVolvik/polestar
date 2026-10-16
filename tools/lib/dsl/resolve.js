@@ -14,7 +14,7 @@ const FIND_ID_HINT = 'find the id with `polestar find <name>`, or give its name 
 
 const { buildCandidates } = require('./candidates');
 const { farmSpots } = require('./farmspots');
-const { applicable, raceSides } = require('./conditions');
+const { applicable, raceSides, characterKeys, whoLabel } = require('./conditions');
 const { objectiveLabel } = require('./data');
 const { checkLocation } = require('./places');
 const { blockingPrereqs } = require('../data/prereqs');
@@ -514,6 +514,31 @@ function resolveGuide(ast, data, diag, opts = {}) {
 		if (i >= 0) usedMaps.splice(i, 1);
 		usedMaps.unshift(m);
 	};
+	// A `zone` line holds for the steps after it, also when its step is for
+	// some characters only: a Druid trip's `zone Moonglade` would hold for the
+	// rest of a Darkshore guide. Typed coordinates without `map` are on the zone
+	// in effect, so they warn when characters who see them skip the step that
+	// set it and are in another zone (the last `zone` line of the steps they
+	// see, or the header's).
+	const classesOf = (race, side) => data.raceClasses(race, side);
+	const headLayer = { factions: h.faction ? [h.faction] : null, races: h.races || null, classes: h.classes || null };
+	const setters = ast.steps.filter((s) => s.zone).map((s) => ({ spec: s.zone, only: s.only, who: characterKeys([headLayer, s.only], classesOf) }));
+	const zoneOfOthers = (s, g) => {
+		const own = setters.find((z) => z.spec === g.zone);
+		const here = resolveZone(g.zone);
+		if (!own || !here) return null;
+		for (const k of characterKeys([headLayer, s.only, g.only], classesOf)) {
+			if (own.who.has(k)) continue;
+			let spec = h.zone || null;
+			for (const z of setters) {
+				if (z.spec.line > g.line) break;
+				if (z.who.has(k)) spec = z.spec;
+			}
+			const there = resolveZone(spec);
+			if (there && there.id !== here.id) return { here, there, own };
+		}
+		return null;
+	};
 	const frameDefault = { frame: h.coords || 'era', explicit: h.coords !== undefined };
 	// Per skill line, in step order: the last `skill`/`until` target and the last rank trained.
 	const profProgress = new Map();
@@ -562,6 +587,16 @@ function resolveGuide(ast, data, diag, opts = {}) {
 				warn(
 					g.line,
 					`coordinates on map ${name(goal.map)}, but this step's zone is ${name(zoneId)} and the guide never sets zone ${goal.map}; check the target, or add \`zone map ${goal.map}\` if the route really goes there`,
+				);
+			}
+			const other = g.explicitCoords && g.coordMap === undefined ? zoneOfOthers(s, g) : null;
+			if (other) {
+				const o = other.own.only || {};
+				const who = whoLabel({ faction: o.factions ? o.factions.join('/') : null, races: o.races, classes: o.classes });
+				warn(
+					g.line,
+					`coordinates on ${other.here.name}, the zone line ${g.zone.line} sets in a step for ${who} only; the others who see this goal are in ${other.there.name}`,
+					`add \`zone ${other.there.name}\` to this step (or to the first step after the ${who} ones), or \`map ${other.there.id}\` to the goal`,
 				);
 			}
 			if (zoneId !== null) use(zoneId);
