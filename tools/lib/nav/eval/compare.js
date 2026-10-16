@@ -16,13 +16,16 @@
 // A check is n/a (pass null) while a measurement it needs is null (a layer not built, a router without hubs):
 // false when any part fails, else null when any part is n/a, else true.
 //   A1 every `reported` route ok in cand with its expectations; no route ok in base unreachable in cand
-//   A2-A5 the expectations of the hub, road, slope and building routes; A4 also: the slope routes' mean
-//     steepest climb in cand at most base's
+//   A2-A5 the expectations of the hub, road, slope and building routes; A4 also: no route ok in cand climbs a step
+//     steeper than CLIMB_LIMIT (the baseline's own over-limit routes are listed, never a pass), and the slope
+//     routes' mean steepest climb in cand at most base's
 //   A6 sweep: no target reachable in base unreachable in cand
 //   A7 weighted blocked share (by drawn length, routes ok in both) cand <= base
 //   A8 median cold search ms (routes ok in both) cand <= 1.5 x base
 
 const { lineLength } = require('./metrics');
+
+const CLIMB_LIMIT = 50; // deg: the walk limit no drawn step of any route may climb
 
 const OPS = {
 	'<=': (a, b) => a <= b,
@@ -166,10 +169,15 @@ function compare(base, cand) {
 			const xs = rep.routes.filter((r) => r.kind === 'slope' && r.result.ok && r.metrics).map((r) => r.metrics.maxClimbDeg);
 			return xs.length ? xs.reduce((s, x) => s + x, 0) / xs.length : null;
 		};
+		const over = (rep) => rep.routes.filter((r) => r.result.ok && r.metrics && r.metrics.maxClimbDeg > CLIMB_LIMIT).map((r) => `${r.id} ${r.metrics.maxClimbDeg}`);
+		const candOver = over(cand);
+		const baseOver = over(base);
 		const b = climb(base);
 		const c = climb(cand);
 		const mean = b === null || c === null ? null : c <= b + 1e-9;
-		a4.pass = verdict([a4.pass, mean]);
+		a4.pass = verdict([a4.pass, candOver.length === 0, mean]);
+		a4.detail += `; ${candOver.length} routes climb over ${CLIMB_LIMIT} deg${candOver.length ? ` (${candOver.join(', ')})` : ''}`;
+		a4.detail += `; baseline: ${baseOver.length}${baseOver.length ? ` (${baseOver.join(', ')})` : ''}`;
 		a4.detail += `; mean steepest climb ${c === null ? 'n/a' : c.toFixed(1)} deg (baseline ${b === null ? 'n/a' : b.toFixed(1)})`;
 		checks.push(a4);
 	}

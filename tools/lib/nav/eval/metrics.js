@@ -15,10 +15,12 @@
 // points under 1 yd apart on the ground, a lift's rise, are skipped).
 // offRoad: the share of the drawn line on columns whose road weight is under
 // half (roads layer, data/local/nav-layers/roads/<c>/<col>_<row>.bin, one
-// byte per grid column, index j * 256 + i); hubYards: yards inside each
-// side's hub disks (hubs.json, per continent [{ id, side, name, disks:
-// [[x, y, r]] }]); indoorYards: yards on indoor ground (layers.indoor(c, x,
-// y, z) -> bool, from the ground classes). Each null until its layer exists.
+// byte per grid column, index j * 256 + i); hubYards: per side, the yards a
+// player of that side walks inside hubs hostile to it (hubYards.Horde: yards
+// in Alliance hubs; hubs.json, per continent [{ id, side (the owner), name,
+// disks: [[x, y, r]] }]); indoorYards: yards on indoor ground
+// (layers.indoor(c, x, y, z) -> bool, from the ground classes). Each null
+// until its layer exists.
 
 const fs = require('node:fs');
 const path = require('node:path');
@@ -30,6 +32,7 @@ const RUN = 7; // yd/s: a cost in running yards over seconds
 const PIECE = 8; // yd: blocked-share pieces (0.2.4's eval)
 const SAMPLE = 2; // yd: layer samples along the line
 const ROAD = 128; // road weight from which a column is road (half the alpha)
+const HOSTILE_TO = { Alliance: 'Horde', Horde: 'Alliance' }; // a hub's owner -> the side it is hostile to
 
 const flat = (a, b) => Math.hypot(b[0] - a[0], b[1] - a[1]);
 
@@ -107,10 +110,14 @@ function metrics(result, { grid = null, layers = {}, map = result.map } = {}) {
 	if (layers.hubs) {
 		hubYards = { Alliance: 0, Horde: 0 };
 		const hubs = layers.hubs[map] || layers.hubs[String(map)] || [];
+		// A hub's side is its owner; its yards count for the other side (a Horde player in an Alliance hub).
 		along(pts, (x, y, z, L) => {
 			const inside = new Set();
-			for (const h of hubs) if (!inside.has(h.side) && h.disks.some(([hx, hy, r]) => Math.hypot(x - hx, y - hy) <= r)) inside.add(h.side);
-			for (const side of inside) if (side in hubYards) hubYards[side] += L;
+			for (const h of hubs) {
+				const hostileTo = HOSTILE_TO[h.side];
+				if (hostileTo && !inside.has(hostileTo) && h.disks.some(([hx, hy, r]) => Math.hypot(x - hx, y - hy) <= r)) inside.add(hostileTo);
+			}
+			for (const side of inside) hubYards[side] += L;
 		});
 		for (const side of Object.keys(hubYards)) hubYards[side] = +hubYards[side].toFixed(1);
 	}

@@ -77,9 +77,14 @@ test('metrics: yards from the drawn line, the steepest climb between points; blo
 	assert.equal(m.seconds, 10);
 	assert.equal(m.maxClimbDeg, 45);
 	assert.deepEqual([m.blocked, m.offRoad, m.hubYards, m.indoorYards], [null, null, null, null]);
-	const hubs = metrics({ ok: true, cost: 100, pts: [[0, 0, 0], [100, 0, 0]] }, { grid: null, layers: { hubs: { 0: [{ id: 1, side: 'Alliance', name: 'A', disks: [[50, 0, 10]] }] } }, map: 0 });
-	assert.ok(Math.abs(hubs.hubYards.Alliance - 20) <= 1, `${hubs.hubYards.Alliance}`);
-	assert.equal(hubs.hubYards.Horde, 0);
+	// hubYards.<side>: yards a player of that side walks in hubs hostile to it (a hub's side is its owner).
+	const hubsLayer = { hubs: { 0: [{ id: 1, side: 'Alliance', name: 'Southshore', disks: [[50, 0, 10]] }, { id: 2, side: 'Horde', name: 'Tarren Mill', disks: [[0, 0, 10]] }] } };
+	const through = metrics({ ok: true, cost: 100, pts: [[20, 0, 0], [100, 0, 0]] }, { grid: null, layers: hubsLayer, map: 0 });
+	assert.ok(Math.abs(through.hubYards.Horde - 20) <= 1, `a Horde player through the Alliance hub: ${through.hubYards.Horde}`);
+	assert.equal(through.hubYards.Alliance, 0, 'an Alliance player in its own hub counts nothing');
+	const home = metrics({ ok: true, cost: 30, pts: [[0, 0, 0], [30, 0, 0]] }, { grid: null, layers: hubsLayer, map: 0 });
+	assert.equal(home.hubYards.Horde, 0, 'a Horde walk out of its own hub counts 0');
+	assert.ok(Math.abs(home.hubYards.Alliance - 10) <= 1, `an Alliance player in the Horde hub: ${home.hubYards.Alliance}`);
 });
 
 test('compare: A1 fails when a route that was ok becomes unreachable; the same maps pass; checks without data are n/a', () => {
@@ -96,6 +101,19 @@ test('compare: A1 fails when a route that was ok becomes unreachable; the same m
 	const sweep = (costs) => ({ routes: [], sweep: [{ id: '0|1429|Alliance', zone: 1429, profile: 'Alliance', targets: [[1, 2, null], [3, 4, null]], costs }] });
 	assert.equal(compare(sweep([10, 20]), sweep([10, false])).checks.find((c) => c.id === 'A6').pass, false);
 	assert.equal(compare(sweep([10, false]), sweep([12, 30])).checks.find((c) => c.id === 'A6').pass, true);
+});
+
+test('compare: A4 fails when any route found on the candidate climbs a step over 50 deg, and lists it beside the baseline\'s own', () => {
+	const { compare } = require('../tools/lib/nav/eval/compare');
+	const route = (id, kind, climb) => ({ id, kind, profile: null, expect: [], result: { ok: true, cost: 70, ms: 10, pts: [[0, 0, 0], [70, 0, 0]] }, metrics: { yards: 70, seconds: 10, blocked: 0, offRoad: null, hubYards: null, maxClimbDeg: climb, indoorYards: null } });
+	const base = { routes: [route('ref-a', 'reference', 55), route('ref-b', 'reference', 20)], sweep: [] };
+	const cand = { routes: [route('ref-a', 'reference', 30), route('ref-b', 'reference', 52.5)], sweep: [] };
+	const a4 = compare(base, cand).checks.find((c) => c.id === 'A4');
+	assert.equal(a4.pass, false);
+	assert.match(a4.detail, /1 routes climb over 50 deg \(ref-b 52\.5\)/);
+	assert.match(a4.detail, /baseline: 1 \(ref-a 55\)/);
+	const fixed = { routes: [route('ref-a', 'reference', 30), route('ref-b', 'reference', 20)], sweep: [] };
+	assert.notEqual(compare(base, fixed).checks.find((c) => c.id === 'A4').pass, false, 'the baseline over the limit never fails a candidate under it');
 });
 
 const noGrid = needs('map-frames.json', 'zones.json') || (fs.existsSync(path.join(ROOT, 'data', 'local', 'nav3', 'index.json')) ? false : 'no grid at data/local/nav3');
