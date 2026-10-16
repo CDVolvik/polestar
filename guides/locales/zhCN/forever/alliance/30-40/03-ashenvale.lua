@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (simplified) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (simplified) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Astranaar
@@ -94,7 +95,8 @@ return {
 	["Take the boat to {area:150} from {area:442}'s docks."] = "从{area:442}的码头乘船前往{area:150}。",
 
 	-- Step 31: Glorin Steelbrow
-	["Glorin stands on the upper floor of Menethil's keep."] = "戈罗林·钢眉站在米奈希尔城堡的上层。",
+	-- {npc:1217} Glorin Steelbrow
+	["{npc:1217} stands on the upper floor of Menethil's keep."] = "{npc:1217}站在米奈希尔城堡的上层。",
 
 	-- Step 32: Waterlogged Chest
 	["The wreck of the Flying Osprey lies in the shallows south of the keep."] = "Flying Osprey号的残骸在城堡南边的浅水中。",
@@ -105,10 +107,9 @@ return {
 	["The Bluegill murlocs on the beach south-west of Menethil carry the ingots."] = "米奈希尔港西南方海滩上的蓝腮鱼人带着锭。",
 
 	-- Step 35: Deepwater Tavern
-	-- {npc:5082} Vincent Hyal · {npc:4963} Mikhail · {npc:1480} Caitlin Grassman
-	["{npc:5082}, {npc:4963} and Tapoke Jahn are all at Menethil's inn; Tapoke fights you when you talk to {npc:4963}, but gives up once beaten. {npc:1480} stands a short walk north-east of the inn."] = "{npc:5082}、{npc:4963}和Tapoke Jahn都在米奈希尔港的旅店里；你和{npc:4963}交谈时Tapoke会和你打，但被打败后就会放弃。{npc:1480}在旅店东北方不远处。",
+	-- {npc:5082} Vincent Hyal · {npc:4963} Mikhail · {npc:4962} Tapoke "Slim" Jahn · {npc:1480} Caitlin Grassman
+	["{npc:5082}, {npc:4963} and Tapoke Jahn are all at Menethil's inn; {npc:4962} fights you when you talk to {npc:4963}, but gives up once beaten. {npc:1480} stands a short walk north-east of the inn."] = "{npc:5082}、{npc:4963}和{npc:4962} Jahn都在米奈希尔港的旅店里；你和{npc:4963}交谈时Tapoke会和你打，但被打败后就会放弃。{npc:1480}在旅店东北方不远处。",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Geltharis"] = "加萨里斯",
-	-- ["Geltharis leads the {area:429} satyrs; he carries the branch."] = "加萨里斯率领{area:429}的萨特；树枝在他身上。",
 }

@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in German (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in German words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Darkshire
@@ -22,8 +23,8 @@ return {
 	["{npc:633}, at the south end of town"] = "{npc:633}, am Südende des Orts",
 
 	-- Step 2: Viktori Prism'Antras
-	-- {npc:3133} Herble Baubbletump
-	["Viktori's house stands at the east end of town. {npc:3133} sells engineering goods in the house beside it."] = "Viktoris Haus steht am Ostende des Orts. {npc:3133} verkauft Ingenieursbedarf im Haus daneben.",
+	-- {npc:276} Viktori Prism'Antras · {npc:3133} Herble Baubbletump
+	["{npc:276}'s house stands at the east end of town. {npc:3133} sells engineering goods in the house beside it."] = "{npc:276}s Haus steht am Ostende des Orts. {npc:3133} verkauft Ingenieursbedarf im Haus daneben.",
 	-- {item:4371} Bronze Tube · {npc:3133} Herble Baubbletump · {npc:1448} Neal Allen · {area:150} Menethil Harbor
 	["{item:4371}, from {npc:3133}: limited stock. Sold out? {npc:1448} in {area:150} sells it too."] = "{item:4371}, von {npc:3133}: begrenzter Vorrat. Ausverkauft? {npc:1448} in {area:150} verkauft sie auch.",
 
@@ -52,8 +53,8 @@ return {
 	["The cemetery lies north of the village. Skeletal Horrors and Skeletal Fiends walk its southern half. {npc:522}, an elite, wanders the graves: keep away from him."] = "Der Friedhof liegt nördlich des Dorfs. Skelettschrecken und Skelettsatanskreaturen wandeln in seiner südlichen Hälfte. {npc:522}, ein Elite, wandert zwischen den Gräbern: Halte dich von ihm fern.",
 
 	-- Step 8: Sven's Camp
-	-- {npc:893} Lars
-	["Follow the road north-west past the cemetery to Sven's camp on the far west edge of the forest. {npc:893} stands beside Sven."] = "Folge der Straße nach Nordwesten am Friedhof vorbei zu Svens Lager am äußersten Westrand des Waldes. {npc:893} steht neben Sven.",
+	-- {npc:311} Sven Yorgen · {npc:893} Lars
+	["Follow the road north-west past the cemetery to {npc:311}'s camp on the far west edge of the forest. {npc:893} stands beside {npc:311}."] = "Folge der Straße nach Nordwesten am Friedhof vorbei zu {npc:311}s Lager am äußersten Westrand des Waldes. {npc:893} steht neben {npc:311}.",
 
 	-- Step 9: Abercrombie
 	-- {area:492} Raven Hill Cemetery
@@ -121,7 +122,7 @@ return {
 	["{item:7908}, in the chest"] = "{item:7908}, in der Truhe",
 
 	-- Step 27: Master Mathias Shaw
-	-- {zone:1453} Stormwind · {object:2100} Old Town
+	-- {zone:1453} Stormwind · {object:2100} Old Town (no name in this language: may be words)
 	["Ride north through Elwynn to {zone:1453}; Mathias Shaw is at SI:7 in {object:2100}."] = "Reite nach Norden durch den Wald von Elwynn nach {zone:1453}; Mathias Shaw ist bei SI:7 in {object:2100}.",
 	-- {npc:332} Master Mathias Shaw · {item:18160} Recipe: Thistle Tea
 	["{npc:332}: Poisons, and {item:18160}"] = "{npc:332}: Gifte und {item:18160}",
@@ -139,7 +140,7 @@ return {
 
 	-- Step 29: Shaman training
 	["Shaman training"] = "Schamanentraining",
-	-- {zone:1453} Stormwind · {area:2257} Deeprun Tram · {object:28027} Dwarven District · {zone:1455} Ironforge · {npc:258098} Eldrun Stormbreaker · {area:442} Auberdine
+	-- {zone:1453} Stormwind · {area:2257} Deeprun Tram · {object:28027} Dwarven District (no name in this language: may be words) · {zone:1455} Ironforge · {npc:258098} Eldrun Stormbreaker · {area:442} Auberdine
 	["{zone:1453} has no shaman trainer: take the {area:2257} from the {object:28027} to {zone:1455}, train with {npc:258098}, then ride the tram back for the {area:442} boat."] = "{zone:1453} hat keinen Schamanenlehrer: Nimm die {area:2257} vom {object:28027} nach {zone:1455}, trainiere bei {npc:258098} und fahr dann mit der Bahn zurück zum Boot nach {area:442}.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.

@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in French (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in French words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Zoram'gar Outpost
@@ -27,8 +28,8 @@ return {
 	["The Sapphires are blue crystals on the walls of the tunnels leading to the {area:2797} portal, underground and outside the instance: swim down from the pit, under the wall, into the cave. The satyrs and naga in the tunnels are elite: grouping up is advised. The crystals respawn quickly, so there is no need to go deep."] = "Les Saphirs d'Aku'Mai sont des cristaux bleus sur les parois des tunnels menant au portail de {area:2797}, sous terre et hors de l'instance : plongez depuis la fosse, passez sous le mur et entrez dans la grotte. Les satyres et nagas des tunnels sont élites : il est conseillé de grouper. Les cristaux réapparaissent vite, inutile d'aller loin.",
 
 	-- Step 5: Zoram'gar Outpost
-	-- {area:2797} Blackfathom Deeps
-	["Je'neu offers a {area:2797} quest next; leave it unless you have a group."] = "Je'neu Sancrea propose ensuite une quête à {area:2797} ; laissez-la sauf si vous avez un groupe.",
+	-- {npc:12736} Je'neu Sancrea · {area:2797} Blackfathom Deeps
+	["{npc:12736} offers a {area:2797} quest next; leave it unless you have a group."] = "{npc:12736} Sancrea propose ensuite une quête à {area:2797} ; laissez-la sauf si vous avez un groupe.",
 
 	-- Step 6: Thistlefur Village
 	["East of Zoram'gar, the Thistlefur furbolgs fill the village and the hills around their hold."] = "À l'est de Zoram'gar, les furbolgs Crin-de-Chardon occupent le village et les collines autour de leur antre.",
@@ -61,7 +62,7 @@ return {
 	["{npc:12759}, a corrupted water elemental, drifts in {area:421}. Her {item:16408} starts a quest for Splintertree."] = "{npc:12759}, un élémentaire d'eau corrompu, dérive dans {area:421}. Son objet {item:16408} lance une quête pour Bois-brisé.",
 
 	-- Step 13: King of the Foulweald
-	-- {area:421} Mystral Lake · {item:16972} Karang's Banner · {object:178206} Foulweald Totem Mound · {npc:12918} Chief Murgut
+	-- {area:421} Mystral Lake · {item:16972} Karang's Banner · {object:178206} Foulweald Totem Mound (no name in this language: may be words) · {npc:12918} Chief Murgut
 	["The Foulweald furbolgs hold the woods east of {area:421}, south of the road. Place {item:16972} on the {object:178206} and guard it: the furbolgs come to tear it down. {npc:12918} comes last; his totem drops in the basket."] = "Les furbolgs Vile-sylve tiennent les bois à l'est de {area:421}, au sud de la route. Placez {item:16972} sur {object:178206} et gardez-le : les furbolgs viennent l'abattre. {npc:12918} arrive en dernier ; son totem tombe dans la corbeille.",
 
 	-- Step 14: Torek's Assault
@@ -129,9 +130,7 @@ return {
 	-- {npc:5901} Islen Waterseer · {area:392} Ratchet
 	["for {npc:5901}, south of {area:392}: next guide"] = "pour {npc:5901}, au sud de {area:392} : guide suivant",
 
-	-- Step 28: The Great Lift
-	-- {area:1718} Great Lift
-	["The {area:1718}"] = "{area:1718}",
+	-- Step 28: Great Lift
 	-- {area:1638} Thunder Bluff · {area:378} Camp Taurajo · {area:1718} Great Lift · {zone:1413} Barrens
 	["Fly from {area:1638} to {area:378} and take the road south to the {area:1718} at the bottom of the {zone:1413}."] = "Prenez le vol de {area:1638} à {area:378} et suivez la route vers le sud jusqu'à {area:1718}, tout au sud de {zone:1413}.",
 	-- {npc:10079} Brave Moonhorn
@@ -144,7 +143,8 @@ return {
 	["{npc:10377}, by the wind rider master"] = "{npc:10377}, près du maître des coursiers du vent",
 	-- {npc:4877} Jandia · {area:487} Roguefeather Den
 	["{npc:4877}, the trade supplies vendor: the Screeching harpies of {area:487}"] = "{npc:4877}, la marchande de fournitures d'artisanat : les Harpies hurlantes de {area:487}",
-	["The Wanted poster beside Cliffwatcher"] = "L'avis de recherche près de Garde-falaise Longhorn",
+	-- {npc:10537} Cliffwatcher Longhorn
+	["The Wanted poster beside {npc:10537}"] = "L'avis de recherche près de {npc:10537}",
 
 	-- Step 30: Alien Egg
 	["Take the lift down. The egg lies in a nest on the canyon floor in one of three spots: south-east of the mesas (52.3,55.2), east (56.4,50.4) or south-west (37.6,56.1)."] = "Descendez par l'ascenseur. L'œuf repose dans un nid au fond du canyon, à l'un de trois endroits : au sud-est des mesas (52.3,55.2), à l'est (56.4,50.4) ou au sud-ouest (37.6,56.1).",
@@ -172,15 +172,15 @@ return {
 
 	-- Step 36: Lakota Windsong
 	-- {area:2097} Darkcloud Pinnacle · {npc:10646} Lakota Windsong · {npc:10896} Arnak Grimtotem
-	["Climb the path to the top of {area:2097}. {npc:10646} is held captive beside {npc:10896} (29): clear the guards and Arnak first, then free her and protect her on the walk down; Grimtotem ambushers come at you on the way."] = "Montez le chemin jusqu'au sommet de {area:2097}. {npc:10646} est retenue captive près de {npc:10896} (29) : éliminez d'abord les gardes et Arnak, puis libérez-la et protégez-la pendant la descente ; des embusqués du Totem sinistre vous attaquent en route.",
+	["Climb the path to the top of {area:2097}. {npc:10646} is held captive beside {npc:10896} (29): clear the guards and {npc:10896} first, then free her and protect her on the walk down; Grimtotem ambushers come at you on the way."] = "Montez le chemin jusqu'au sommet de {area:2097}. {npc:10646} est retenue captive près de {npc:10896} (29) : éliminez d'abord les gardes et {npc:10896}, puis libérez-la et protégez-la pendant la descente ; des embusqués du Totem sinistre vous attaquent en route.",
 
 	-- Step 37: Whitereach Post
 	-- {area:2237} Whitereach Post
 	["Follow the canyon west to {area:2237}."] = "Suivez le canyon vers l'ouest jusqu'à {area:2237}.",
-	-- {area:1638} Thunder Bluff
-	["Motega's next quest, Sacred Fire, ends in {area:1638}, off this route. Skip it."] = "La quête suivante de Motega, Feu sacré, se termine à {area:1638}, hors de cet itinéraire. Passez-la.",
-	-- {npc:10720} Galak Assassin
-	["Kill the {npc:10720} that comes for Kanati"] = "Tuez {npc:10720} qui s'en prend à Kanati",
+	-- {npc:10428} Motega Firemane · {area:1638} Thunder Bluff
+	["{npc:10428}'s next quest, Sacred Fire, ends in {area:1638}, off this route. Skip it."] = "La quête suivante de {npc:10428}, Feu sacré, se termine à {area:1638}, hors de cet itinéraire. Passez-la.",
+	-- {npc:10720} Galak Assassin · {npc:10638} Kanati Greycloud
+	["Kill the {npc:10720} that comes for {npc:10638}"] = "Tuez {npc:10720} qui s'en prend à {npc:10638}",
 
 	-- Step 38: Highperch
 	-- {area:482} Highperch · {npc:10427} Pao'ka Swiftmountain · {area:2237} Whitereach Post
@@ -191,8 +191,8 @@ return {
 	["South of Darkcloud, the harpies of {area:487}. {npc:4490} (31) walks among them: thin out the harpies around her before you pull her. The Screeching Harpies, Roguefeathers and Windcallers there are {npc:4877}'s."] = "Au sud de Noir-nuage, les harpies de {area:487}. {npc:4490} (31) circule parmi elles : éclaircissez les harpies autour d'elle avant de l'attirer. Les Harpies hurlantes, Volplumes hurlantes et Imploratrices célestes hurlantes de ce lieu sont pour {npc:4877}.",
 
 	-- Step 43: Rok'Alim the Pounder
-	-- {area:482} Highperch · {npc:4499} Rok'Alim the Pounder
-	["Rok'Alim, a hard-hitting rock elemental, walks the cliffs of {area:482}. {npc:4499} is elite: grouping up is advised."] = "Rok'Alim, un élémentaire de roche qui frappe fort, arpente les falaises de {area:482}. {npc:4499} est élite : il est conseillé de grouper.",
+	-- {npc:4499} Rok'Alim the Pounder · {area:482} Highperch
+	["{npc:4499}, a hard-hitting rock elemental, walks the cliffs of {area:482}. {npc:4499} is elite: grouping up is advised."] = "{npc:4499}, un élémentaire de roche qui frappe fort, arpente les falaises de {area:482}. {npc:4499} est élite : il est conseillé de grouper.",
 
 	-- Step 44: Mirage Raceway
 	-- {area:2240} Mirage Raceway
@@ -214,14 +214,9 @@ return {
 	["The next guide flies on from here to {zone:1454}."] = "Le guide suivant part d'ici en vol vers {zone:1454}.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Follow the main road east past {area:415} (Alliance: keep to the road). Ursangous, a big grizzly, roams the {area:418} south of the road, west of {area:421}. His paw starts the next hunt quest."] = "Suivez la route principale vers l'est après {area:415} (Alliance : restez sur la route). Ursangous, un grand grizzly, rôde dans {area:418}, au sud de la route, à l'ouest de {area:421}. Sa patte lance la quête de chasse suivante.",
 	-- ["Shadumbra"] = "Shadumbra",
-	-- ["Shadumbra, a shadow panther, stalks the woods around {area:426}, west of the Felmusk camp. Her head starts the next hunt quest."] = "Shadumbra, une panthère des ombres, rôde dans les bois autour de {area:426}, à l'ouest du camp Gangremusc. Sa tête lance la quête de chasse suivante.",
 	-- ["Sharptalon"] = "Serres-tranchantes",
-	-- ["Sharptalon, a big nightsaber, prowls the woods south-east of the Warsong lumber camp. Her claw starts the next hunt quest."] = "Serres-tranchantes, un grand sabre-de-nuit, rôde dans les bois au sud-est du Camp de bûcherons chanteguerre. Sa griffe lance la quête de chasse suivante.",
+	-- ["The {area:1718}"] = "{area:1718}",
 	-- ["Tideress"] = "Maréen",
-	-- ["Tideress, a corrupted water elemental, drifts in {area:421}. Her {item:16408} starts a quest for Splintertree."] = "Maréen, un élémentaire d'eau corrompu, dérive dans {area:421}. Son objet {item:16408} lance une quête pour Bois-brisé.",
 	-- ["Ursangous"] = "Ursangous",
-	-- ["{area:17044} Toxin Samples, from the Gnawed Corpses"] = "Échantillons de toxine de {area:17044}, sur les Gnawed Corpses",
-	-- ["{item:273181}, from {area:17044} Spinners"] = "{item:273181}, sur les Spinners de {area:17044}",
 }

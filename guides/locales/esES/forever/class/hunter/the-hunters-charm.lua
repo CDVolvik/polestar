@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Spanish (Spain) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Spanish (Spain) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -13,13 +14,13 @@ return {
 	-- Step 1: The Hunter's Charm (Alliance)
 	-- {quest:8151} The Hunter's Charm
 	["{quest:8151} (Alliance)"] = "{quest:8151} (Alianza)",
-	-- {npc:5516} Ulfir Ironbeard · {zone:1453} Stormwind · {object:28027} Dwarven District · {npc:5116} Olmin Burningbeard · {zone:1455} Ironforge · {object:32390} Hall of Arms · {zone:1457} Darnassus
+	-- {npc:5516} Ulfir Ironbeard · {zone:1453} Stormwind · {object:28027} Dwarven District (no name in this language: may be words) · {npc:5116} Olmin Burningbeard · {zone:1455} Ironforge · {object:32390} Hall of Arms (no name in this language: may be words) · {zone:1457} Darnassus
 	["At 50 any Alliance hunter trainer offers it: {npc:5516} in {zone:1453}'s {object:28027}, {npc:5116} in {zone:1455}'s {object:32390} or Dorion in {zone:1457}' Cenarion Enclave."] = "A nivel 50 cualquier instructor de cazadores de la Alianza la ofrece: {npc:5516} en {object:28027} de {zone:1453}, {npc:5116} en {object:32390} de {zone:1455} o Dorion en el Enclave Cenarion de {zone:1457}.",
 
 	-- Step 2: The Hunter's Charm (Horde)
 	-- {quest:8151} The Hunter's Charm
 	["{quest:8151} (Horde)"] = "{quest:8151} (Horda)",
-	-- {npc:3352} Ormak Grimshot · {zone:1454} Orgrimmar · {object:172958} Valley of Honor · {npc:3039} Holt Thunderhorn · {area:1641} Hunter Rise · {zone:1456} Thunder Bluff
+	-- {npc:3352} Ormak Grimshot · {zone:1454} Orgrimmar · {object:172958} Valley of Honor (no name in this language: may be words) · {npc:3039} Holt Thunderhorn · {area:1641} Hunter Rise · {zone:1456} Thunder Bluff
 	["At 50 any Horde hunter trainer offers it: {npc:3352} in {zone:1454}'s {object:172958} or {npc:3039} on {area:1641} in {zone:1456}."] = "A nivel 50 cualquier instructor de cazadores de la Horda la ofrece: {npc:3352} en {object:172958} de {zone:1454} o {npc:3039} en {area:1641}, en {zone:1456}.",
 
 	-- Step 3: Ogtinc
@@ -46,5 +47,4 @@ return {
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["At 50 any Alliance hunter trainer offers it: {npc:5516} in {zone:1453}'s {object:28027}, {npc:5116} in {zone:1455}'s {object:32390} or Dorion in {zone:1457}' {area:1658}."] = "A nivel 50 cualquier instructor de cazadores de la Alianza la ofrece: {npc:5516} en {object:28027} de {zone:1453}, {npc:5116} en {object:32390} de {zone:1455} o Dorion en {area:1658} de {zone:1457}.",
-	-- ["Mosshoof Coursers graze all over {zone:1447}; one in a dozen or so drops a pair of Perfect {quest:8153}."] = "Los Maledictores Pezuñamusgo pastan por todo {zone:1447}; más o menos uno de cada doce suelta un par de Cuernos perfectos para {quest:8153}.",
 }

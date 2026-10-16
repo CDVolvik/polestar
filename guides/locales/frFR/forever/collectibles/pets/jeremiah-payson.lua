@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in French (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in French words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -15,7 +16,4 @@ return {
 	-- {item:10393} Cockroach
 	["{item:10393}, 50s"] = "{item:10393}, 50 pa",
 	["50s"] = "50 pa",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["{npc:8403} sells three cockroaches in the {zone:1458} (50s each); the Plagued and {zone:1458} Cockroaches are new in Forever. Each pet item teaches its companion when you use it; the goals stay ticked afterwards."] = "{npc:8403} vend trois cafards à {zone:1458} (50 pa chacun) ; le Cafard pestiféré et le Cafard de {zone:1458} sont nouveaux dans Forever. Chaque objet de mascotte apprend sa mascotte quand vous l'utilisez ; les objectifs restent cochés ensuite.",
 }

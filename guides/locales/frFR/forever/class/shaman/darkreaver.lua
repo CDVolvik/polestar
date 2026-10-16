@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in French (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in French words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -11,7 +12,7 @@ return {
 	["200 Horde reputation"] = "200 de réputation Horde",
 
 	-- Step 1: Sagorne Creststrider
-	-- {npc:13417} Sagorne Creststrider · {object:172957} Valley of Wisdom
+	-- {npc:13417} Sagorne Creststrider · {object:172957} Valley of Wisdom (no name in this language: may be words)
 	["At 58 {npc:13417}, the shaman trainer in the {object:172957}, asks for two rare diamonds."] = "Au niveau 58, {npc:13417}, le maître des chamans de {object:172957}, demande deux diamants rares.",
 
 	-- Step 2: Two diamonds
@@ -26,8 +27,8 @@ return {
 	["he hands you the {item:18746}"] = "il vous remet {item:18746}",
 
 	-- Step 4: The Great Ossuary
-	-- {area:2057} Scholomance · {area:2298} Caer Darrow · {zone:1422} Western Plaguelands · {item:18746} Divination Scryer · {npc:14516} Death Knight Darkreaver
-	["{area:2057} lies under {area:2298}, the island town in the south-east of the {zone:1422}. Use the {item:18746} in the heart of the Great Ossuary's basement, beat the spirits it calls, then {npc:14516}. All are elite: bring a group."] = "{area:2057} se trouve sous {area:2298}, la ville sur l'île au sud-est des {zone:1422}. Utilisez {item:18746} au cœur du sous-sol du Grand ossuaire, battez les esprits qu'il appelle, puis {npc:14516}. Tous sont élites : venez en groupe.",
+	-- {area:2057} Scholomance · {area:2298} Caer Darrow · {zone:1422} Western Plaguelands · {item:18746} Divination Scryer · {object:179746} The Great Ossuary (no name in this language: may be words) · {npc:14516} Death Knight Darkreaver
+	["{area:2057} lies under {area:2298}, the island town in the south-east of the {zone:1422}. Use the {item:18746} in the heart of the {object:179746}'s basement, beat the spirits it calls, then {npc:14516}. All are elite: bring a group."] = "{area:2057} se trouve sous {area:2298}, la ville sur l'île au sud-est des {zone:1422}. Utilisez {item:18746} au cœur du sous-sol du Grand ossuaire, battez les esprits qu'il appelle, puis {npc:14516}. Tous sont élites : venez en groupe.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["{area:2057} lies under {area:2298}, the island town in the south-east of the {zone:1422}. Use the {item:18746} in the heart of the {object:179746}'s basement, beat the spirits it calls, then {npc:14516}. All are elite: bring a group."] = "{area:2057} se trouve sous {area:2298}, la ville sur l'île au sud-est des {zone:1422}. Utilisez {item:18746} au cœur du sous-sol de {object:179746}, battez les esprits qu'il appelle, puis {npc:14516}. Tous sont élites : venez en groupe.",

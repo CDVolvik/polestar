@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Portuguese (Brazil) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Portuguese (Brazil) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -16,17 +17,17 @@ return {
 	["At 20 {npc:258098}, the shaman trainer in {zone:1455}, sends you to {npc:258043} in {zone:1432}."] = "No nível 20, {npc:258098}, o instrutor de xamãs em {zone:1455}, envia você a {npc:258043} em {zone:1432}.",
 
 	-- Step 2: Norric Lochthane
-	-- {area:146} Stonewrought Dam
-	["Norric's burrow hut stands on the north-western edge of the loch, south of {area:146}."] = "A cabana-toca de Norric fica na margem noroeste do lago, ao sul de {area:146}.",
+	-- {npc:258043} Norric Lochthane · {area:146} Stonewrought Dam
+	["{npc:258043}'s burrow hut stands on the north-western edge of the loch, south of {area:146}."] = "A cabana-toca de {npc:258043} fica na margem noroeste do lago, ao sul de {area:146}.",
 
 	-- Step 3: Hervdana Saegrund
-	-- {zone:1437} Wetlands
-	["Hervdana's family lives in a cave beneath the southern falls of the {zone:1437}."] = "A família de Hervdana mora numa caverna sob as cachoeiras do sul de {zone:1437}.",
+	-- {npc:258203} Hervdana Saegrund · {zone:1437} Wetlands
+	["{npc:258203}'s family lives in a cave beneath the southern falls of the {zone:1437}."] = "A família de {npc:258203} mora numa caverna sob as cachoeiras do sul de {zone:1437}.",
 
 	-- Step 4: The brown waterskin
 	["The brown waterskin"] = "O odre marrom",
-	-- {item:265732} Unfilled Brown Waterskin
-	["Fill the {item:265732} at the bottom of the waterfalls below Hervdana's cave, where the fresh water meets the brackish."] = "Encha o {item:265732} no pé das cachoeiras abaixo da caverna de Hervdana, onde a água doce encontra a salobra.",
+	-- {item:265732} Unfilled Brown Waterskin · {npc:258203} Hervdana Saegrund
+	["Fill the {item:265732} at the bottom of the waterfalls below {npc:258203}'s cave, where the fresh water meets the brackish."] = "Encha o {item:265732} no pé das cachoeiras abaixo da caverna de {npc:258203}, onde a água doce encontra a salobra.",
 
 	-- Step 6: The red waterskin
 	["The red waterskin"] = "O odre vermelho",
@@ -36,12 +37,12 @@ return {
 
 	-- Step 8: The blue waterskin
 	["The blue waterskin"] = "O odre azul",
-	-- {area:150} Menethil Harbor · {area:442} Auberdine · {area:271} Southshore · {area:415} Astranaar · {item:265772} Unfilled Blue Waterskin
-	["Hervdana: take the boat from {area:150} to {area:442} (it stops in {area:271} on the way), then go south to {area:415}. Fill the {item:265772} in the lake around the town."] = "Hervdana: pegue o Barco de {area:150} para {area:442} (ele para em {area:271} no caminho), depois vá para o sul até {area:415}. Encha o {item:265772} no lago em volta da cidade.",
+	-- {npc:258203} Hervdana Saegrund · {area:150} Menethil Harbor · {area:442} Auberdine · {area:271} Southshore · {area:415} Astranaar · {item:265772} Unfilled Blue Waterskin
+	["{npc:258203}: take the boat from {area:150} to {area:442} (it stops in {area:271} on the way), then go south to {area:415}. Fill the {item:265772} in the lake around the town."] = "{npc:258203}: pegue o Barco de {area:150} para {area:442} (ele para em {area:271} no caminho), depois vá para o sul até {area:415}. Encha o {item:265772} no lago em volta da cidade.",
 
 	-- Step 9: Hervdana Saegrund
-	-- {item:7810} Vial of Purest Water
-	["the {item:7810}, for Norric"] = "o {item:7810}, para Norric",
+	-- {item:7810} Vial of Purest Water · {npc:258043} Norric Lochthane
+	["the {item:7810}, for {npc:258043}"] = "o {item:7810}, para {npc:258043}",
 
 	-- Step 10: Norric Lochthane
 	-- {npc:258043} Norric Lochthane · {item:6637} Water Sapta

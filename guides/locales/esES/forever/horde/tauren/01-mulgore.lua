@@ -3,11 +3,12 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Spanish (Spain) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Spanish (Spain) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Camp Narache
-	-- {area:221} Camp Narache
-	["You start on the mesa of {area:221}. Grull and the chief stand by the big tent in the middle."] = "Empiezas en la meseta de {area:221}. Grull y el jefe están junto a la gran tienda del centro.",
+	-- {area:221} Camp Narache · {npc:2980} Grull Hawkwind
+	["You start on the mesa of {area:221}. {npc:2980} and the chief stand by the big tent in the middle."] = "Empiezas en la meseta de {area:221}. {npc:2980} y el jefe están junto a la gran tienda del centro.",
 
 	-- Step 2: The Hunt Begins
 	["Plainstriders roam the grass all around the camp."] = "Los zancudos de llanura recorren la hierba alrededor del campamento.",
@@ -27,13 +28,13 @@ return {
 	["{npc:2991} sits by the tent on the camp's eastern edge; the {item:4755} stands next to her."] = "{npc:2991} está sentada junto a la tienda del borde este del campamento; {item:4755} está a su lado.",
 
 	-- Step 6: The Hunt Continues
-	-- {npc:6775} Antur Fallow
+	-- {npc:6775} Antur Fallow · {npc:2980} Grull Hawkwind
 	-- plural, as words: Mountain Cougars = {npc:2961} Mountain Cougar
-	["{npc:6775} stands at the west end of the camp, at the north-west corner of the hills where the Mountain Cougars prowl: take his quest, hunt the cougars from there south and east, then come back up to Grull."] = "{npc:6775} está en el extremo oeste del campamento, en la esquina noroeste de las colinas donde rondan los pumas monteses: acepta su misión, caza los pumas desde allí hacia el sur y el este y vuelve con Grull.",
+	["{npc:6775} stands at the west end of the camp, at the north-west corner of the hills where the Mountain Cougars prowl: take his quest, hunt the cougars from there south and east, then come back up to {npc:2980}."] = "{npc:6775} está en el extremo oeste del campamento, en la esquina noroeste de las colinas donde rondan los pumas monteses: acepta su misión, caza los pumas desde allí hacia el sur y el este y vuelve con {npc:2980}.",
 
 	-- Step 7: Grull Hawkwind
-	-- {npc:3209} Brave Windfeather
-	["{npc:3209}, next to Grull"] = "{npc:3209}, junto a Grull",
+	-- {npc:3209} Brave Windfeather · {npc:2980} Grull Hawkwind
+	["{npc:3209}, next to {npc:2980}"] = "{npc:3209}, junto a {npc:2980}",
 
 	-- Step 8: Seer Graytongue
 	["Follow the path south out of camp to the Seer's tent at the foot of the hills."] = "Sigue el sendero hacia el sur fuera del campamento hasta la tienda del profeta, al pie de las colinas.",
@@ -91,8 +92,8 @@ return {
 
 	-- Step 22: Back to Bloodhoof
 	["Back to Bloodhoof"] = "Vuelve al Poblado Pezuña de Sangre",
-	-- {npc:2993} Baine Bloodhoof · {zone:1456} Thunder Bluff
-	["{npc:2993}, for Cairne in {zone:1456}"] = "{npc:2993}, para Cairne en {zone:1456}",
+	-- {npc:2993} Baine Bloodhoof · {npc:3057} Cairne Bloodhoof · {zone:1456} Thunder Bluff
+	["{npc:2993}, for {npc:3057} in {zone:1456}"] = "{npc:2993}, para {npc:3057} en {zone:1456}",
 	-- {npc:2948} Mull Thunderhorn · {zone:1456} Thunder Bluff
 	["{npc:2948}, for Hamuul in {zone:1456}"] = "{npc:2948}, para Hamuul en {zone:1456}",
 
@@ -102,8 +103,8 @@ return {
 	["{npc:3063}'s quest: beat three Novice Warriors (or players in duels) next to him."] = "Misión de {npc:3063}: vence a tres guerreros novicios (o a jugadores en duelos) a su lado.",
 
 	-- Step 25: Ahab Wheathoof
-	-- {item:287505} Tender Strider Meat
-	["Ahab stands at the north edge of the village. Kyle wants {item:287505} from plainstriders."] = "Ahab está en el borde norte del poblado. Kyle quiere {item:287505} de zancudos de llanura.",
+	-- {npc:277182} Ahab Wheathoof · {item:287505} Tender Strider Meat
+	["{npc:277182} stands at the north edge of the village. Kyle wants {item:287505} from plainstriders."] = "{npc:277182} está en el borde norte del poblado. Kyle quiere {item:287505} de zancudos de llanura.",
 
 	-- Step 26: Thunderhorn Water Well
 	-- {item:4809} Ambercorn · {quest:766} Mazzranache · {quest:761} Swoop Hunting
@@ -118,12 +119,12 @@ return {
 	["Swoops glide over the plains all around Bloodhoof."] = "Los aguilones planean sobre las llanuras alrededor del Poblado Pezuña de Sangre.",
 
 	-- Step 29: Morin Cloudstalker
-	-- {area:396} Winterhoof Water Well
-	["Morin camps by the {area:396} south-east of Bloodhoof."] = "Morin acampa junto a {area:396}, al sureste del Poblado Pezuña de Sangre.",
+	-- {npc:2988} Morin Cloudstalker · {area:396} Winterhoof Water Well
+	["{npc:2988} camps by the {area:396} south-east of Bloodhoof."] = "{npc:2988} acampa junto a {area:396}, al sureste del Poblado Pezuña de Sangre.",
 
 	-- Step 30: Longwalker Malah
-	-- {area:821} Rolling Plains
-	["Malah stands on the {area:821} a little east of the well."] = "Malah está en {area:821}, un poco al este del pozo.",
+	-- {npc:275789} Malah Longwind · {area:821} Rolling Plains
+	["{npc:275789} stands on the {area:821} a little east of the well."] = "{npc:275789} está en {area:821}, un poco al este del pozo.",
 
 	-- Step 31: Galak centaurs and Prairie Wolf Alphas
 	-- plural, as words: Prairie Wolf Alphas = {npc:2960} Prairie Wolf Alpha
@@ -177,12 +178,12 @@ return {
 	["Flatland Prowlers roam the plains around {area:225}"] = "Los merodeadores de las estepas recorren las llanuras alrededor de {area:225}",
 
 	-- Step 46: Thunder Bluff
-	-- {npc:2995} Tal
-	["Ride a lift up to the mesas. {npc:2995} keeps the wind riders on the central rise; Cairne stands in the great tent there."] = "Sube en un elevador a las mesetas. {npc:2995} cuida de los jinetes del viento en el alto central; Cairne está en la gran tienda de allí.",
+	-- {npc:2995} Tal · {npc:3057} Cairne Bloodhoof
+	["Ride a lift up to the mesas. {npc:2995} keeps the wind riders on the central rise; {npc:3057} stands in the great tent there."] = "Sube en un elevador a las mesetas. {npc:2995} cuida de los jinetes del viento en el alto central; {npc:3057} está en la gran tienda de allí.",
 
 	-- Step 47: Traditions of the Bluff
-	-- {npc:269068} Eylah Sunhorn · {npc:3005} Mahu · {item:278078} Prepared Incense
-	["{npc:269068} wants tauren incense: buy its four parts from Nida the herbalist, Nata the enchanting supplier, {npc:3005} the leatherworking supplier and Naal the cooking supplier, then combine them into {item:278078}."] = "{npc:269068} quiere incienso tauren: compra sus cuatro partes a Nida, la herbolaria; a Nata, proveedora de encantamiento; a {npc:3005}, proveedora de peletería, y a Naal, proveedor de cocina; luego combínalas en {item:278078}.",
+	-- {npc:269068} Eylah Sunhorn · {npc:3014} Nida Winterhoof · {npc:3012} Nata Dawnstrider · {npc:3005} Mahu · {npc:3027} Naal Mistrunner · {item:278078} Prepared Incense
+	["{npc:269068} wants tauren incense: buy its four parts from {npc:3014} the herbalist, {npc:3012} the enchanting supplier, {npc:3005} the leatherworking supplier and {npc:3027} the cooking supplier, then combine them into {item:278078}."] = "{npc:269068} quiere incienso tauren: compra sus cuatro partes a {npc:3014}, la herbolaria; a {npc:3012}, proveedora de encantamiento; a {npc:3005}, proveedora de peletería, y a {npc:3027}, proveedor de cocina; luego combínalas en {item:278078}.",
 	-- {item:278079} Bundle of Herbs · {npc:3014} Nida Winterhoof
 	["{item:278079}, from {npc:3014}"] = "{item:278079}, de {npc:3014}",
 	-- {item:278080} Bundle of Dried Cedar Twigs · {npc:3012} Nata Dawnstrider
@@ -205,8 +206,8 @@ return {
 	["{npc:5769}: for {npc:3448} at the {area:380}"] = "{npc:5769}: para {npc:3448} en {area:380}",
 
 	-- Step 52: Turak Runetotem
-	-- {npc:6746} Innkeeper Pala · {area:1639} Elder Rise
-	["{npc:6746} on the central rise sends you to Turak on {area:1639}."] = "{npc:6746}, en el alto central, te envía con Turak en {area:1639}.",
+	-- {npc:6746} Innkeeper Pala · {npc:3033} Turak Runetotem · {area:1639} Elder Rise
+	["{npc:6746} on the central rise sends you to {npc:3033} on {area:1639}."] = "{npc:6746}, en el alto central, te envía con {npc:3033} en {area:1639}.",
 
 	-- Step 53: Moonglade
 	-- {spell:18960} Teleport: Moonglade · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {quest:5930} Great Bear Spirit
@@ -223,14 +224,12 @@ return {
 	["Tame it with the {item:15908}"] = "Domestícalo con {item:15908}",
 
 	-- Step 56: The Moonkin Stone
-	-- {object:177525} Moonkin Stone
+	-- {object:177525} Moonkin Stone (no name in this language: may be words)
 	["The {object:177525}"] = "{object:177525}",
 	-- {zone:1412} Mulgore · {item:15710} Cenarion Lunardust
 	["The stone stands in the pass out of {zone:1412}, on your way east. Use the {item:15710} there and defeat Lunaclaw."] = "La piedra está en el paso que sale de {zone:1412}, de camino al este. Usa {item:15710} allí y derrota a Garraluna.",
 
-	-- Step 57: The Crossroads
-	-- {area:380} Crossroads
-	["The {area:380}"] = "{area:380}",
+	-- Step 57: Crossroads
 	-- {zone:1412} Mulgore · {area:380} Crossroads · {quest:860} Sergra Darkthorn · {npc:3448} Tonga Runetotem · {zone:1413} The Barrens
 	["Leave {zone:1412} by the south-eastern pass and follow the road to the {area:380}. {quest:860} stands by the inn, {npc:3448} at the south gate. {zone:1413} guide starts here."] = "Sal de {zone:1412} por el paso del sureste y sigue el camino hasta {area:380}. {quest:860} está junto a la posada, y {npc:3448}, en la puerta sur. Aquí empieza la guía de {zone:1413}.",
 
@@ -239,11 +238,9 @@ return {
 	["Class turn-ins in {area:1638}"] = "Entregas de clase en {area:1638}",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["/sit by Kaga's campfire until you get Boosted Rest"] = "/sentarse junto a la hoguera de Kaga hasta que obtengas el beneficio de descanso potenciado",
 	-- ["Battleboars graze north of the shrine; the Bristleback quilboar hold the ravine to the north-east. {npc:8554} stands at its eastern end, and the {item:4851} lies on the ground in the camp."] = "Los jabaguerreros pastan al norte del santuario; los jabaespines Lomopelo ocupan el barranco del noreste. {npc:8554} está en su extremo este, y {item:4851} está en el suelo del campamento.",
-	-- ["Cast Teleport: {quest:5922}. {npc:11802} is in {area:2361}; the {quest:5930} sits in the north-western woods."] = "Lanza Teletransporte: {quest:5922}. {npc:11802} está en {area:2361}; {quest:5930} está en los bosques del noroeste.",
-	-- ["Follow the road north out of {area:220}. {npc:265810} waits on the road just south of {area:222}; /sit by her campfire until you get Boosted Rest."] = "Sigue el camino hacia el norte fuera de {area:220}. {npc:265810} espera en el camino justo al sur de {area:222}; /sentarse junto a su hoguera hasta que obtengas el beneficio de descanso potenciado.",
 	-- ["Galak centaurs and {npc:2958} Alphas"] = "Centauros Galak y alfas de {npc:2958}",
 	-- ["Tame Beast"] = "Domesticar bestia",
 	-- ["The Galak centaurs camp on the plains north of the {area:821}; Herak leads them. {npc:2958} Alphas roam among the wolves."] = "Los centauros Galak acampan en las llanuras al norte de {area:821}; Herak el Saqueador los dirige. Los alfas de {npc:2958} rondan entre los lobos.",
+	-- ["The {area:380}"] = "{area:380}",
 }

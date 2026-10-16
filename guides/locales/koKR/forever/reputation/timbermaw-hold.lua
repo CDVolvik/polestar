@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Korean words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -10,7 +11,7 @@ return {
 
 	-- Step 1: Grazle
 	-- {faction:576} Timbermaw Hold
-	["{faction:576} starts out Hostile, and its furbolgs in the tunnels attack until you reach Unfriendly. Every Deadwood and Winterfall furbolg you kill raises it, so the quests below pay twice. Forever's Legacy Diplomat perk increases reputation gains."] = "{faction:576} 평판은 적대적에서 시작하며, 약간 적대적이 될 때까지 동굴의 나무구렁일족 퍼볼그가 공격합니다. 마른가지일족과 눈사태일족 퍼볼그를 처치할 때마다 평판이 오르므로 아래 퀘스트는 두 배로 보상합니다. Forever의 유산 외교관 특성으로 평판 획득량이 늘어납니다.",
+	["{faction:576} starts out Hostile, and its furbolgs in the tunnels attack until you reach Unfriendly. Every Deadwood and Winterfall furbolg you kill raises it, so the quests below pay twice. Forever's Legacy Diplomat perk increases reputation gains."] = "{faction:576} 평판은 적대적에서 시작하며, 약간 적대적이 될 때까지 동굴의 나무구렁일족 퍼볼그가 공격합니다. 마른가지일족과 눈사태일족 퍼볼그를 처치할 때마다 평판이 오르므로 아래 퀘스트는 두 배로 보상합니다. Forever의 외교관 유산 특전은 평판 획득량을 늘려 줍니다.",
 
 	-- Step 2: Deadwood Village
 	-- {zone:1448} Felwood · {item:21377} Deadwood Headdress Feather · {npc:11554} Grazle · {npc:15395} Nafien

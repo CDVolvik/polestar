@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Portuguese (Brazil) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Portuguese (Brazil) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Learn Fishing
@@ -23,16 +24,17 @@ return {
 	["{zone:1411} coast"] = "Costa de {zone:1411}",
 
 	-- Step 6: Fishing: The Barrens (1-50)
-	["Barrens oasis"] = "Oásis dos Sertões",
+	-- {zone:1413} The Barrens
+	["{zone:1413} oasis"] = "Oásis dos {zone:1413}",
 
 	-- Step 7: Fishing: Tirisfal Glades (1-50)
 	["Vile Fin shore"] = "Costa dos Pinavil",
 
 	-- Step 8: Journeyman Fishing
 	-- {skill:356} Fishing
-	["Journeyman {skill:356}"] = "{skill:356} Artesão",
+	["Journeyman {skill:356}"] = "{skill:356} (Profissional)",
 	-- {skill:356} Fishing
-	["Journeyman {skill:356} raises the cap to 150; it needs skill 50 and character level 10. The arrow picks the nearest {skill:356} trainer of your faction."] = "{skill:356} Artesão eleva o limite para 150; exige perícia 50 e nível de personagem 10. A seta escolhe o instrutor de {skill:356} da sua facção mais próximo.",
+	["Journeyman {skill:356} raises the cap to 150; it needs skill 50 and character level 10. The arrow picks the nearest {skill:356} trainer of your faction."] = "{skill:356} Profissional eleva o limite para 150; exige perícia 50 e nível de personagem 10. A seta escolhe o instrutor de {skill:356} da sua facção mais próximo.",
 
 	-- Step 9: Fishing: Westfall (50-125)
 	["Fish the pools and open water here until skill 125. Pools (floating debris, schools of fish) also drop extra loot."] = "Pesque nos cardumes e em águas abertas aqui até a perícia 125. Os cardumes (destroços flutuantes, bancos de peixes) também dão saque extra.",
@@ -45,11 +47,11 @@ return {
 
 	-- Step 14: Expert Fishing
 	-- {skill:356} Fishing
-	["Expert {skill:356}"] = "{skill:356} Especialista",
+	["Expert {skill:356}"] = "{skill:356} (Perito)",
 	-- {skill:356} Fishing · {npc:2626} Old Man Heming · {item:16083} Expert Fishing - The Bass and You · {area:35} Booty Bay · {zone:1434} Stranglethorn Vale
-	["Expert {skill:356} (cap 225) is a book, not a trainer rank: {npc:2626} sells {item:16083} in {area:35}, at the south tip of {zone:1434}, to both factions. Buy it and read it; it needs skill 125 and level 20."] = "{skill:356} Especialista (limite 225) é um livro, não um nível de instrutor: {npc:2626} vende {item:16083} em {area:35}, na ponta sul de {zone:1434}, para as duas facções. Compre e leia; exige perícia 125 e nível 20.",
+	["Expert {skill:356} (cap 225) is a book, not a trainer rank: {npc:2626} sells {item:16083} in {area:35}, at the south tip of {zone:1434}, to both factions. Buy it and read it; it needs skill 125 and level 20."] = "{skill:356} (Perito) (limite 225) é um livro, não um nível de instrutor: {npc:2626} vende {item:16083} em {area:35}, na ponta sul de {zone:1434}, para as duas facções. Compre e leia; exige perícia 125 e nível 20.",
 	-- {item:16083} Expert Fishing - The Bass and You · {skill:356} Fishing
-	["Buy and read {item:16083} (Expert {skill:356})"] = "Compre e leia {item:16083} ({skill:356} Especialista)",
+	["Buy and read {item:16083} (Expert {skill:356})"] = "Compre e leia {item:16083} ({skill:356} (Perito))",
 
 	-- Step 15: Fishing: Wetlands (125-225)
 	["Fish the pools here until skill 225. If fish keep getting away, fish easier water until your skill catches up."] = "Pesque nos cardumes aqui até a perícia 225. Se os peixes continuarem escapando, pesque em águas mais fáceis até sua perícia alcançar.",
@@ -94,7 +96,7 @@ return {
 
 	-- Step 26: Nat Pagle
 	-- {skill:356} Fishing
-	["Artisan {skill:356}"] = "{skill:356} Artífice",
+	["Artisan {skill:356}"] = "{skill:356} (Artífice)",
 
 	-- Step 27: Fishing: Stranglethorn Vale (225-300)
 	-- {area:35} Booty Bay · {item:6530} Nightcrawlers

@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Spanish (Latin America) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Spanish (Latin America) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -22,14 +23,15 @@ return {
 	-- {quest:98394} The Great Cat Spirit · {npc:272054} Avatar of Saeyleenan · {area:2363} Stormrage Barrow Dens · {item:280680} Relic of the Silent Shadow
 	["{quest:98394} (Night Elves) waits on the southern hill above the bridge, the {npc:272054} (Skyborne) south of the twin bridges. The relics lie in the {area:2363} east of the lake: leave your form, click the statue at the entrance for five minutes of stealth, keep clear of the spirits inside and take one of each relic; the {item:280680} lies at the foot of the white cat statue. A relic gives no loot while another player is looting it: wait a moment and try again."] = "{quest:98394} (elfos de la noche) espera en la colina sur sobre el puente; {npc:272054} (Cielonato), al sur de los puentes gemelos. Las reliquias están en {area:2363}, al este del lago: sal de tu forma, haz clic en la estatua de la entrada para obtener cinco minutos de sigilo, mantente lejos de los espíritus del interior y toma una de cada reliquia; {item:280680} está al pie de la estatua del gato blanco. Una reliquia no da botín mientras otro jugador la está saqueando: espera un momento y vuelve a intentarlo.",
 
-	-- Step 4: Back to Dendrite
-	["Back to Dendrite"] = "Regresa con Dendrite",
+	-- Step 4: Back to Dendrite Starblaze
+	-- {npc:11802} Dendrite Starblaze
+	["Back to {npc:11802}"] = "Regresa con {npc:11802}",
 	-- {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {area:702} Rut'theran Village
 	["Back to {npc:11802} in {area:2361}, then fly to {area:702}."] = "Regresa con {npc:11802} en {area:2361} y luego vuela a {area:702}.",
 
 	-- Step 5: To Darnassus
-	-- {area:1658} Cenarion Enclave
-	["Take the portal up to Mathrengyl in the {area:1658}."] = "Toma el portal para subir con Mathrengyl en {area:1658}.",
+	-- {npc:4217} Mathrengyl Bearwalker · {area:1658} Cenarion Enclave
+	["Take the portal up to {npc:4217} in the {area:1658}."] = "Toma el portal para subir con {npc:4217} en {area:1658}.",
 
 	-- Step 6: The Great Cat Spirit
 	-- {npc:3033} Turak Runetotem · {area:1639} Elder Rise
@@ -45,7 +47,7 @@ return {
 	-- {quest:98342} The Great Cat Spirit · {npc:272054} Avatar of Saeyleenan · {area:2363} Stormrage Barrow Dens · {item:280680} Relic of the Silent Shadow
 	["{quest:98342} (Tauren) waits on the southern hill above the bridge, the {npc:272054} (Skyborne) south of the twin bridges. The relics lie in the {area:2363} east of the lake: leave your form, click the statue at the entrance for five minutes of stealth, keep clear of the spirits inside and take one of each relic; the {item:280680} lies at the foot of the white cat statue. A relic gives no loot while another player is looting it: wait a moment and try again."] = "{quest:98342} (taurens) espera en la colina sur sobre el puente; {npc:272054} (Cielonato), al sur de los puentes gemelos. Las reliquias están en {area:2363}, al este del lago: sal de tu forma, haz clic en la estatua de la entrada para obtener cinco minutos de sigilo, mantente lejos de los espíritus del interior y toma una de cada reliquia; {item:280680} está al pie de la estatua del gato blanco. Una reliquia no da botín mientras otro jugador la está saqueando: espera un momento y vuelve a intentarlo.",
 
-	-- Step 9: Back to Dendrite
+	-- Step 9: Back to Dendrite Starblaze
 	-- {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {npc:11798} Bunthen Plainswind · {area:1638} Thunder Bluff
 	["Back to {npc:11802} in {area:2361}, then take {npc:11798}'s flight to {area:1638}."] = "Regresa con {npc:11802} en {area:2361} y luego toma el vuelo de {npc:11798} a {area:1638}.",
 }

@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (simplified) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (simplified) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -83,7 +84,4 @@ return {
 	["9 areas to discover here."] = "这里有9个区域待发现。",
 	-- {zone:2482} Mount Hyjal · {zone:1452} Winterspring · {area:2256} Darkwhisper Gorge
 	["{zone:2482} is reached from {zone:1452} through {area:2256} in the south. It is Forever's endgame leveling zone."] = "从{zone:1452}经由南部的{area:2256}到达{zone:2482}。这是 Forever 的终局升级地区。",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Take the {area:1769} tunnel in northern {zone:1448} through to {zone:1450} (druids: Teleport: {zone:1450}). {area:2361} is neutral."] = "穿过{zone:1448}北部的{area:1769}隧道前往{zone:1450}（德鲁伊：传送：{zone:1450}）。{area:2361}是中立的。",
 }

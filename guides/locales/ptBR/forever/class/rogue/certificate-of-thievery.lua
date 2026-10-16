@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Portuguese (Brazil) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Portuguese (Brazil) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -22,8 +23,8 @@ return {
 	["At 16 {npc:3599} in {area:186} sends you to {quest:2259} in {zone:1457}."] = "No nível 16, {npc:3599}, em {area:186}, envia você a {quest:2259} em {zone:1457}.",
 
 	-- Step 5: Renzik "The Shiv"
-	-- {npc:332} Master Mathias Shaw · {quest:2300} SI:7 · {object:2100} Old Town · {area:2257} Deeprun Tram · {zone:1455} Ironforge · {area:442} Auberdine · {area:17203} Stormwind Harbor
-	["Renzik stands beside {npc:332} at {quest:2300} in {object:2100}. Dwarves and Gnomes take the {area:2257} from {zone:1455}; Night Elves take the boat from {area:442} to {area:17203}."] = "Renzik fica ao lado de {npc:332} na {quest:2300}, em {object:2100}. Anões e Gnomos pegam o {area:2257} em {zone:1455}; Elfos Noturnos pegam o Barco de {area:442} para {area:17203}.",
+	-- {npc:6946} Renzik "The Shiv" · {npc:332} Master Mathias Shaw · {quest:2300} SI:7 · {object:2100} Old Town (no name in this language: may be words) · {area:2257} Deeprun Tram · {zone:1455} Ironforge · {area:442} Auberdine · {area:17203} Stormwind Harbor
+	["{npc:6946} stands beside {npc:332} at {quest:2300} in {object:2100}. Dwarves and Gnomes take the {area:2257} from {zone:1455}; Night Elves take the boat from {area:442} to {area:17203}."] = "{npc:6946} fica ao lado de {npc:332} na {quest:2300}, em {object:2100}. Anões e Gnomos pegam o {area:2257} em {zone:1455}; Elfos Noturnos pegam o Barco de {area:442} para {area:17203}.",
 
 	-- Step 6: Lucius
 	-- {zone:1429} Elwynn Forest · {area:69} Lakeshire · {npc:6966} Lucius · {item:5060} Thieves' Tools
@@ -36,6 +37,4 @@ return {
 	-- Step 8: Back to Lucius
 	-- {npc:6966} Lucius
 	["Back to {npc:6966}"] = "De volta a {npc:6966}",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
 }

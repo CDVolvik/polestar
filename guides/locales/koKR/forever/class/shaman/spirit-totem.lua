@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Korean words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -13,7 +14,7 @@ return {
 	["Experience and gold"] = "경험치와 골드",
 
 	-- Step 1: Sagorne Creststrider
-	-- {npc:13417} Sagorne Creststrider · {object:172957} Valley of Wisdom · {npc:6176} Bath'rah the Windwatcher
+	-- {npc:13417} Sagorne Creststrider · {object:172957} Valley of Wisdom (no name in this language: may be words) · {npc:6176} Bath'rah the Windwatcher
 	["At 50 {npc:13417}, the shaman trainer in the {object:172957}, sends you to {npc:6176}."] = "50레벨에 {object:172957}의 주술사 상급자 {npc:13417}이(가) {npc:6176}에게 보냅니다.",
 
 	-- Step 2: Beram Skychaser
@@ -38,8 +39,8 @@ return {
 	["{item:7070}: Cresting Exiles"] = "{item:7070}: 떠도는 물의 정령",
 
 	-- Step 4: Bath'rah the Windwatcher
-	-- {zone:1416} Alterac Mountains · {area:272} Tarren Mill
-	["Bath'rah camps in the east of {zone:1416}, north-east of {area:272}."] = "바스라는 {area:272} 북동쪽, {zone:1416} 동부에 야영하고 있습니다.",
+	-- {npc:6176} Bath'rah the Windwatcher · {zone:1416} Alterac Mountains · {area:272} Tarren Mill
+	["{npc:6176} camps in the east of {zone:1416}, north-east of {area:272}."] = "{npc:6176}은(는) {area:272} 북동쪽, {zone:1416} 동부에 야영하고 있습니다.",
 
 	-- Step 5: Spider eye and bear claw
 	["Spider eye and bear claw"] = "거미 눈과 곰 발톱",

@@ -3,13 +3,14 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Portuguese (Brazil) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Portuguese (Brazil) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Apprentice Blacksmithing
 	-- {skill:164} Blacksmithing
 	["Apprentice {skill:164}"] = "{skill:164} (Aprendiz)",
 	-- {skill:164} Blacksmithing
-	["{skill:164} runs alongside leveling. Forever's Legacy System rewards crafting professions at skill 150, 225 and 300 (the Journeyman, Expert and Artisan caps), so each of those checkpoints counts. Materials for 1-75 are worth about 17s in all."] = "{skill:164} acompanha a evolução de nível. O Sistema de Legado do Forever recompensa profissões de criação na perícia 150, 225 e 300 (os limites de Oficial, Perito e Artífice), então cada um desses marcos conta. Os materiais de 1-75 valem cerca de 17p no total.",
+	["{skill:164} runs alongside leveling. Forever's Legacy System rewards crafting professions at skill 150, 225 and 300 (the Journeyman, Expert and Artisan caps), so each of those checkpoints counts. Materials for 1-75 are worth about 17s in all."] = "{skill:164} acompanha a evolução de nível. O Sistema de Legado do Forever recompensa profissões de criação na perícia 150, 225 e 300 (os limites de Profissional, Perito e Artífice), então cada um desses marcos conta. Os materiais de 1-75 valem cerca de 17p no total.",
 
 	-- Step 2: Rough Stone (Alliance)
 	-- {item:2835} Rough Stone
@@ -39,9 +40,9 @@ return {
 
 	-- Step 7: Journeyman Blacksmithing
 	-- {skill:164} Blacksmithing
-	["Journeyman {skill:164}"] = "{skill:164} (Oficial)",
+	["Journeyman {skill:164}"] = "{skill:164} (Profissional)",
 	-- {skill:164} Blacksmithing
-	["Journeyman needs character level 10 and {skill:164} 50; it raises the cap to 150. Materials for 75-150 are worth about 9g 41s in all."] = "Oficial requer nível de personagem 10 e {skill:164} 50; eleva o limite para 150. Os materiais de 75-150 valem cerca de 9o 41p no total.",
+	["Journeyman needs character level 10 and {skill:164} 50; it raises the cap to 150. Materials for 75-150 are worth about 9g 41s in all."] = "Profissional requer nível de personagem 10 e {skill:164} 50; eleva o limite para 150. Os materiais de 75-150 valem cerca de 9o 41p no total.",
 	-- {item:5956} Blacksmith Hammer
 	["{item:5956}: a tool, keep it in your bags"] = "{item:5956}: uma ferramenta, mantenha-a nas bolsas",
 

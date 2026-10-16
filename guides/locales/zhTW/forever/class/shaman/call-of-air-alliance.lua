@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (traditional) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (traditional) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -16,8 +17,8 @@ return {
 	["At 30 {npc:258098}, the shaman trainer in {zone:1455}, sends you to {npc:259023} in {zone:1417}."] = "30級時，{zone:1455}的薩滿訓練師{npc:258098}會派你去找{zone:1417}的{npc:259023}。",
 
 	-- Step 2: Veyric Thunderhame
-	-- {zone:1417} Arathi Highlands
-	["Veyric camps in the northern hills of {zone:1417}."] = "維里克在{zone:1417}北部的山丘紮營。",
+	-- {npc:259023} Veyric Thunderhame · {zone:1417} Arathi Highlands
+	["{npc:259023} camps in the northern hills of {zone:1417}."] = "{npc:259023}在{zone:1417}北部的山丘紮營。",
 	-- {npc:259023} Veyric Thunderhame · {item:5178} Air Totem
 	["{npc:259023}: your {item:5178}"] = "{npc:259023}：你的{item:5178}",
 
@@ -57,14 +58,14 @@ return {
 
 	-- Step 10: The steam pools
 	["The steam pools"] = "蒸氣池",
-	-- {item:268582} Corrupted Totems · {zone:1441} Thousand Needles · {npc:216474} Ravaging Tempest · {quest:96135} Heed My Call
-	["Veyric hands you the {item:268582}: place them at the steam pools of {zone:1441} and defeat the {npc:216474} they call. {quest:96135} is an elite quest: grouping up is advised."] = "維里克會給你{item:268582}：把它們放在{zone:1441}的蒸氣池，擊敗它們召來的{npc:216474}。{quest:96135}是精英任務：建議組隊。",
+	-- {npc:259023} Veyric Thunderhame · {item:268582} Corrupted Totems · {zone:1441} Thousand Needles · {npc:216474} Ravaging Tempest · {quest:96135} Heed My Call
+	["{npc:259023} hands you the {item:268582}: place them at the steam pools of {zone:1441} and defeat the {npc:216474} they call. {quest:96135} is an elite quest: grouping up is advised."] = "{npc:259023}會給你{item:268582}：把它們放在{zone:1441}的蒸氣池，擊敗它們召來的{npc:216474}。{quest:96135}是精英任務：建議組隊。",
 	-- {item:212792} Eye of the Tempest · {npc:216474} Ravaging Tempest
 	["{item:212792}, from the {npc:216474}"] = "{item:212792}，來自{npc:216474}",
 
 	-- Step 12: Bath'rah the Windwatcher
-	-- {zone:1416} Alterac Mountains · {area:272} Tarren Mill
-	["Bath'rah camps in the east of {zone:1416}, north-east of {area:272}."] = "巴斯拉在{zone:1416}東部、{area:272}東北方紮營。",
+	-- {npc:6176} Bath'rah the Windwatcher · {zone:1416} Alterac Mountains · {area:272} Tarren Mill
+	["{npc:6176} camps in the east of {zone:1416}, north-east of {area:272}."] = "{npc:6176}在{zone:1416}東部、{area:272}東北方紮營。",
 	-- {npc:6176} Bath'rah the Windwatcher · {item:280696} Elementalist's Guard
 	["{npc:6176}: the {item:280696} and your weapon"] = "{npc:6176}：{item:280696}和你的武器",
 }

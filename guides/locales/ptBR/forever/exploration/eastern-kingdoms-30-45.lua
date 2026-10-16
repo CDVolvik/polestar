@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Portuguese (Brazil) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Portuguese (Brazil) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -39,7 +40,7 @@ return {
 
 	-- Step 5: Badlands (1/2)
 	["14 areas to discover here, levels 36-45."] = "14 áreas a descobrir aqui, níveis 36-45.",
-	-- {area:880} Thandol Span · {zone:1437} Wetlands · {object:1668} Dun Algaz · {zone:1432} Loch Modan · {zone:1418} Badlands
+	-- {area:880} Thandol Span · {zone:1437} Wetlands · {object:1668} Dun Algaz (no name in this language: may be words) · {zone:1432} Loch Modan · {zone:1418} Badlands
 	["Cross the {area:880} south into the {zone:1437}, go through the {object:1668} pass into {zone:1432} and take the road south out of {zone:1432} into the {zone:1418}."] = "Atravesse {area:880} para o sul até {zone:1437}, passe pelo desfiladeiro de {object:1668} até {zone:1432} e pegue a estrada para o sul saindo de {zone:1432} até {zone:1418}.",
 	-- {area:144} Thelsamar · {zone:1432} Loch Modan
 	["Faster: fly to {area:144} in {zone:1432}."] = "Mais rápido: voe para {area:144} em {zone:1432}.",
@@ -62,7 +63,7 @@ return {
 	["Take the zeppelin from {zone:1454} or the {zone:1458} to {area:117}."] = "Pegue o zepelim de {zone:1454} ou de {zone:1458} para {area:117}.",
 	-- {area:35} Booty Bay
 	["Flight path here: {area:35} (Gyll)."] = "Rota de voo aqui: {area:35} (Gyll).",
-	-- {area:35} Booty Bay · {object:3202} Grom'gol
+	-- {area:35} Booty Bay · {object:3202} Grom'gol (no name in this language: may be words)
 	["Flight paths here: {area:35} (Gringer), {object:3202} (Thysta)."] = "Rotas de voo aqui: {area:35} (Gringer), {object:3202} (Thysta).",
 
 	-- Step 10: Stranglethorn Vale (2/4)

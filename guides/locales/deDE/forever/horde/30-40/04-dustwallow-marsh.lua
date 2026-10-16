@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in German (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in German words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Fly to Camp Taurajo
@@ -52,12 +53,12 @@ return {
 	["Ride east back to the {area:497}."] = "Reite nach Osten zurück zum {area:497}.",
 	-- {item:3853} Moonsteel Broadsword · {skill:164} Blacksmithing
 	["only if you carry a {item:3853} ({skill:164} or the Auction House)"] = "nur, wenn du ein {item:3853} dabeihast ({skill:164} oder Auktionshaus)",
-	-- {object:20985} Loose Dirt
-	["{object:20985}, now that Nazeer has read the report"] = "{object:20985}, jetzt wo Nazeer den Bericht gelesen hat",
+	-- {object:20985} Loose Dirt · {npc:4791} Nazeer Bloodpike
+	["{object:20985}, now that {npc:4791} has read the report"] = "{object:20985}, jetzt wo {npc:4791} den Bericht gelesen hat",
 
 	-- Step 12: Brackenwall Village
 	["Ride back west to Brackenwall with the head."] = "Reite mit dem Kopf zurück nach Westen nach Brackenwall.",
-	-- {npc:2519} Kin'weelay · {object:3202} Grom'gol
+	-- {npc:2519} Kin'weelay · {object:3202} Grom'gol (no name in this language: may be words)
 	["For {npc:2519} at {object:3202}, in the next guide"] = "Für {npc:2519} in {object:3202}, im nächsten Guide",
 
 	-- Step 13: Hearth to Ratchet
@@ -65,24 +66,24 @@ return {
 	["Hearth to {area:392}"] = "Ruhestein nach {area:392}",
 
 	-- Step 15: Melizza Brimbuzzle
-	-- {area:607} Valley of Spears
-	["Ride north-east to the {area:607}. Melizza is held in the Maraudine centaur camp; free her and escort her out east of the valley."] = "Reite nach Nordosten ins Tal ({area:607}). Melizza wird im Zentaurenlager der Maraudine festgehalten; befreie sie und eskortiere sie nach Osten aus dem Tal hinaus.",
+	-- {area:607} Valley of Spears · {npc:12277} Melizza Brimbuzzle
+	["Ride north-east to the {area:607}. {npc:12277} is held in the Maraudine centaur camp; free her and escort her out east of the valley."] = "Reite nach Nordosten ins Tal ({area:607}). {npc:12277} wird im Zentaurenlager der Maraudine festgehalten; befreie sie und eskortiere sie nach Osten aus dem Tal hinaus.",
 
 	-- Step 16: Kodo Graveyard
-	-- {area:596} Kodo Graveyard
-	["Hornizz waits at the goblin camp on the west side of the {area:596}."] = "Hornizz wartet im Goblinlager auf der Westseite des Friedhofs ({area:596}).",
+	-- {npc:6019} Hornizz Brimbuzzle · {area:596} Kodo Graveyard
+	["{npc:6019} waits at the goblin camp on the west side of the {area:596}."] = "{npc:6019} wartet im Goblinlager auf der Westseite des Friedhofs ({area:596}).",
 
 	-- Step 17: Gizelton Caravan
 	-- {npc:11626} Rigger Gizelton · {area:602} Mannoroc Coven
 	["{npc:11626}'s caravan stops on the road at the edge of {area:602}. Escort it east past the coven; demons attack it twice."] = "Die Karawane von {npc:11626} hält auf der Straße am Rand von {area:602}. Eskortiere sie nach Osten am Koven vorbei; Dämonen greifen sie zweimal an.",
 
 	-- Step 18: Scrabblescrew's Camp
-	-- {area:596} Kodo Graveyard
-	["The caravan ends at Smeed's camp on the east side of the {area:596}."] = "Die Karawane endet in Smeeds Lager auf der Ostseite des Friedhofs ({area:596}).",
+	-- {npc:11596} Smeed Scrabblescrew · {area:596} Kodo Graveyard
+	["The caravan ends at {npc:11596}'s camp on the east side of the {area:596}."] = "Die Karawane endet in {npc:11596}s Lager auf der Ostseite des Friedhofs ({area:596}).",
 
 	-- Step 19: Ghost Walker Post
-	-- {npc:5395} Felgur Twocuts · {npc:5412} Gurda Wildmane
-	["{npc:5395} and {npc:5412} stand in the post just west of Smeed's camp."] = "{npc:5395} und {npc:5412} stehen im Posten gleich westlich von Smeeds Lager.",
+	-- {npc:5395} Felgur Twocuts · {npc:5412} Gurda Wildmane · {npc:11596} Smeed Scrabblescrew
+	["{npc:5395} and {npc:5412} stand in the post just west of {npc:11596}'s camp."] = "{npc:5395} und {npc:5412} stehen im Posten gleich westlich von {npc:11596}s Lager.",
 
 	-- Step 20: Kormek's Hut
 	["Ride north up the road to the hut by the road north of the graveyard."] = "Reite die Straße hinauf nach Norden zur Hütte an der Straße nördlich des Friedhofs.",
@@ -93,8 +94,8 @@ return {
 	["Pick up the kodo bones scattered across the graveyard, and use the {item:15848} among the bones: the ghosts it draws drop the ghost-o-plasm."] = "Sammle die über den Friedhof verstreuten Kodoknochen und benutze die {item:15848} zwischen den Knochen: Die angelockten Geister lassen das Geisterplasma fallen.",
 
 	-- Step 24: Thunder Axe Fortress
-	-- {spell:1294269} Burning Blade · {area:2407} Kormek's Hut · {item:14523} Demon Pick · {npc:11876} Demon Spirit · {item:13542} Demon Box
-	["The {spell:1294269} hold the fortress north-west of {area:2407}. Use the {item:14523} on the {npc:11876} in the fortress to get the {item:13542}."] = "Die {spell:1294269} hält die Festung nordwestlich von {area:2407}. Benutze {item:14523} an {npc:11876} in der Festung, um {item:13542} zu bekommen.",
+	-- {area:2407} Kormek's Hut · {item:14523} Demon Pick · {npc:11876} Demon Spirit · {item:13542} Demon Box
+	["The Burning Blade hold the fortress north-west of {area:2407}. Use the {item:14523} on the {npc:11876} in the fortress to get the {item:13542}."] = "Die Burning Blade hält die Festung nordwestlich von {area:2407}. Benutze {item:14523} an {npc:11876} in der Festung, um {item:13542} zu bekommen.",
 
 	-- Step 25: Ethel Rethor
 	-- {npc:11863} Azore Aldamort · {area:2405} Ethel Rethor

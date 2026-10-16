@@ -3,13 +3,14 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (traditional) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (traditional) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
 	["The Alliance paladin's rare two-handed mace for the 20s, with a shield on the way."] = "聯盟聖騎士 20 多級的稀有雙手錘，途中還能拿到一面盾牌。",
 
 	-- Step 1: The Tome of Valor (Ironforge)
-	-- {npc:6179} Tiza Battleforge · {object:32362} Mystic Ward · {item:6776} Tome of Valor · {npc:6171} Duthorian Rall · {zone:1453} Stormwind · {zone:1455} Ironforge
+	-- {npc:6179} Tiza Battleforge · {object:32362} Mystic Ward (no name in this language: may be words) · {item:6776} Tome of Valor · {npc:6171} Duthorian Rall · {zone:1453} Stormwind · {zone:1455} Ironforge
 	["At 20 {npc:6179} in the {object:32362} gives you the {item:6776}; it sends you to {npc:6171} in {zone:1453}'s Cathedral of Light. Take the tram from {zone:1455} to {zone:1453}."] = "20 級時，{object:32362}的{npc:6179}會給你{item:6776}；它會引導你去找{zone:1453}光明大教堂的{npc:6171}。從{zone:1455}搭地鐵前往{zone:1453}。",
 
 	-- Step 2: The Tome of Valor
@@ -38,10 +39,11 @@ return {
 	-- {object:92420} Bailor's Ore
 	["{object:92420} crate"] = "{object:92420}箱子",
 
-	-- Step 8: Back to Bailor
-	["Back to Bailor"] = "回到白洛爾那裡",
-	-- {item:6993} Jordan's Refined Ore Shipment
-	["Bailor turns the ore into {item:6993}."] = "白洛爾會把礦石做成{item:6993}。",
+	-- Step 8: Back to Bailor Stonehand
+	-- {npc:6241} Bailor Stonehand
+	["Back to {npc:6241}"] = "回到{npc:6241}那裡",
+	-- {npc:6241} Bailor Stonehand · {item:6993} Jordan's Refined Ore Shipment
+	["{npc:6241} turns the ore into {item:6993}."] = "{npc:6241}會把礦石做成{item:6993}。",
 
 	-- Step 9: Whitestone Oak Lumber
 	-- {area:1581} The Deadmines · {area:20} Moonbrook
@@ -71,8 +73,8 @@ return {
 	-- Step 13: The Purified Kor Gem
 	-- {item:7083} Purified Kor Gem
 	["The {item:7083}"] = "{item:7083}",
-	-- {area:442} Auberdine
-	["Back to Thundris in {area:442}: he purifies the gem."] = "回到{area:442}找桑迪斯：他會淨化寶石。",
+	-- {npc:3649} Thundris Windweaver · {area:442} Auberdine
+	["Back to {npc:3649} in {area:442}: he purifies the gem."] = "回到{area:442}找{npc:3649}：他會淨化寶石。",
 
 	-- Step 14: Verigan's Fist
 	-- {npc:6181} Jordan Stilwell · {zone:1455} Ironforge

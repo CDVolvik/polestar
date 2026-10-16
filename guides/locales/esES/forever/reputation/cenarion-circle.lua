@@ -3,14 +3,15 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Spanish (Spain) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Spanish (Spain) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
-	["Cenarion Circle Reputation"] = "Reputación con el Círculo Cenarion",
+	["Cenarion Circle Reputation"] = "Reputación: Círculo Cenarion",
 
 	-- Step 1: Cenarion Hold
 	-- {area:3425} Cenarion Hold · {zone:1451} Silithus · {npc:15270} Huum Wildmane · {faction:609} Cenarion Circle
-	["{area:3425} is the walled town in north-central {zone:1451}. Bor and {npc:15270} stand together inside. The {faction:609} starts out Neutral. Forever's Legacy Diplomat perk increases reputation gains."] = "{area:3425} es el pueblo amurallado del centro-norte de {zone:1451}. Bor y {npc:15270} están juntos dentro. El {faction:609} empieza en Neutral. La ventaja Diplomático del legado de Forever aumenta la reputación obtenida.",
+	["{area:3425} is the walled town in north-central {zone:1451}. Bor and {npc:15270} stand together inside. The {faction:609} starts out Neutral. Forever's Legacy Diplomat perk increases reputation gains."] = "{area:3425} es el pueblo amurallado del centro-norte de {zone:1451}. Bor y {npc:15270} están juntos dentro. El {faction:609} empieza en Neutral. La ventaja de Legado Diplomático de Forever aumenta la reputación obtenida.",
 	-- {quest:8320} Twilight Geolords
 	["{quest:8320} needs level 60"] = "{quest:8320} requiere nivel 60",
 
@@ -53,7 +54,4 @@ return {
 	["{faction:609} to Exalted"] = "{faction:609} hasta Exaltado",
 	-- {area:3454} Ruins of Ahn'Qiraj
 	["Keep running the {area:3454} and turning in Abyssal Council insignia until Exalted."] = "Sigue haciendo {area:3454} y entregando insignias del Consejo Abisal hasta Exaltado.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["{faction:609} Reputation"] = "Reputación con {faction:609}",
 }

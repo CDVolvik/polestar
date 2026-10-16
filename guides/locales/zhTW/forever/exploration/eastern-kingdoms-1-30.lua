@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (traditional) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (traditional) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -42,8 +43,8 @@ return {
 
 	-- Step 9: Dun Morogh (1/3)
 	["18 areas to discover here, levels 4-12."] = "此處有18個區域待發現，等級4-12。",
-	-- {area:2257} Deeprun Tram · {object:28027} Dwarven District · {zone:1455} Ironforge
-	["Take the {area:2257} from Stormwind's {object:28027} to {zone:1455} (or fly to {zone:1455}), then leave the city through its gates."] = "從暴風城的{object:28027}搭乘{area:2257}前往{zone:1455}（或飛往{zone:1455}），然後從城門離開城市。",
+	-- {area:2257} Deeprun Tram · {zone:1453} Stormwind City · {object:28027} Dwarven District (no name in this language: may be words) · {zone:1455} Ironforge
+	["Take the {area:2257} from {zone:1453}'s {object:28027} to {zone:1455} (or fly to {zone:1455}), then leave the city through its gates."] = "從{zone:1453}的{object:28027}搭乘{area:2257}前往{zone:1455}（或飛往{zone:1455}），然後從城門離開城市。",
 
 	-- Step 12: Loch Modan (1/2)
 	["11 areas to discover here, levels 10-18."] = "此處有11個區域待發現，等級10-18。",
@@ -75,9 +76,7 @@ return {
 	-- {area:287} Hillsbrad · {area:285} Southpoint Tower · {zone:1421} Silverpine Forest · {area:228} Sepulcher
 	["Follow the road west from {area:287} past {area:285} into {zone:1421}, Horde country with Horde guards at the {area:228}."] = "沿著道路從{area:287}向西經過{area:285}進入{zone:1421}，這是部落的地盤，{area:228}有部落衛兵。",
 	-- {area:228} Sepulcher
-	["Horde guards: touch the edge of The {area:228} and move on"] = "部落衛兵：碰到{area:228}的邊緣就離開",
-	-- {area:228} Sepulcher
-	["The {area:228}"] = "{area:228}",
+	["Horde guards: touch the edge of {area:228} and move on"] = "部落衛兵：碰到{area:228}的邊緣就離開",
 
 	-- Step 20: Tirisfal Glades (1/3)
 	["17 areas to discover here, levels 5-10."] = "此處有17個區域待發現，等級5-10。",
@@ -104,7 +103,7 @@ return {
 	-- {zone:1421} Silverpine Forest · {zone:1420} Tirisfal Glades · {area:159} Brill
 	["{zone:1421} is south of {zone:1420}: follow the road south from {area:159}."] = "{zone:1421}在{zone:1420}的南邊：從{area:159}沿著道路往南走。",
 	-- {area:228} Sepulcher · {npc:2226} Karos Razok
-	["Flight path here: The {area:228} ({npc:2226})."] = "此處的飛行路線：{area:228}（{npc:2226}）。",
+	["Flight path here: {area:228} ({npc:2226})."] = "此處的飛行路線：{area:228}（{npc:2226}）。",
 
 	-- Step 28: Hillsbrad Foothills (1/2)
 	-- {zone:1424} Hillsbrad Foothills · {area:285} Southpoint Tower · {area:272} Tarren Mill · {area:271} Southshore
@@ -162,8 +161,8 @@ return {
 
 	-- Step 41: Elwynn Forest (1/2)
 	["12 areas to discover here, levels 5-10."] = "此處有12個區域待發現，等級5-10。",
-	-- {zone:1429} Elwynn Forest · {zone:1436} Westfall · {zone:1431} Duskwood · {area:87} Goldshire · {area:9} Northshire Valley
-	["{zone:1429} is north of {zone:1436} and {zone:1431}. {area:87}, {area:9} and Stormwind's gates are Alliance ground with guards."] = "{zone:1429}在{zone:1436}和{zone:1431}的北邊。{area:87}、{area:9}和暴風城的城門是有衛兵的聯盟地盤。",
+	-- {zone:1429} Elwynn Forest · {zone:1436} Westfall · {zone:1431} Duskwood · {area:87} Goldshire · {area:9} Northshire Valley · {zone:1453} Stormwind City
+	["{zone:1429} is north of {zone:1436} and {zone:1431}. {area:87}, {area:9} and {zone:1453}'s gates are Alliance ground with guards."] = "{zone:1429}在{zone:1436}和{zone:1431}的北邊。{area:87}、{area:9}和{zone:1453}的城門是有衛兵的聯盟地盤。",
 	-- {zone:1453} Stormwind City
 	["Alliance guards: touch the edge of {zone:1453} and move on; any one of these names counts"] = "聯盟衛兵：碰到{zone:1453}的邊緣就離開；以下任一名稱皆算",
 	-- {area:9} Northshire Valley
@@ -181,5 +180,6 @@ return {
 	-- ["Flight path here: {area:228} ({npc:2226})."] = "此處的飛行路線：{area:228}（{npc:2226}）。",
 	-- ["Horde guards: touch the edge of {area:228} and move on"] = "部落衛兵：碰到{area:228}的邊緣就離開",
 	-- ["Take the {area:2257} from {zone:1453}'s {object:28027} to {zone:1455} (or fly to {zone:1455}), then leave the city through its gates."] = "從{zone:1453}的{object:28027}搭乘{area:2257}前往{zone:1455}（或飛往{zone:1455}），然後從城門離開城市。",
+	-- ["The {area:228}"] = "{area:228}",
 	-- ["{zone:1429} is north of {zone:1436} and {zone:1431}. {area:87}, {area:9} and {zone:1453}'s gates are Alliance ground with guards."] = "{zone:1429}在{zone:1436}和{zone:1431}的北邊。{area:87}、{area:9}和{zone:1453}的城門是有衛兵的聯盟地盤。",
 }

@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Spanish (Spain) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Spanish (Spain) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -58,7 +59,7 @@ return {
 
 	-- Step 10: PvP: battleground reputations (Alliance)
 	["PvP: battleground reputations (Alliance)"] = "JcJ: reputaciones de campos de batalla (Alianza)",
-	["Exalted with each battleground faction is worth a point (4 in all; this page shows three, see the note). Follow the Polestar Reputation guides Warsong Gulch Reputation, Arathi Basin Reputation and Alterac Valley Reputation. The Diplomat Legacy perk increases reputation gains."] = "Exaltado con cada facción de campo de batalla vale un punto (4 en total; esta página muestra tres, mira la nota). Sigue las guías de reputación de Polestar Reputación de la Garganta Grito de Guerra, Reputación de la Cuenca de Arathi y Reputación del Valle de Alterac. La ventaja de Legado Diplomático aumenta la reputación obtenida.",
+	["Exalted with each battleground faction is worth a point (4 in all; this page shows three, see the note). Follow the Polestar Reputation guides Warsong Gulch Reputation, Arathi Basin Reputation and Alterac Valley Reputation. The Diplomat Legacy perk increases reputation gains."] = "Exaltado con cada facción de campo de batalla vale un punto (4 en total; esta página muestra tres, mira la nota). Sigue las guías de reputación de Polestar Reputación: Garganta Grito de Guerra, Reputación: Cuenca de Arathi y Reputación: Valle de Alterac. La ventaja de Legado Diplomático aumenta la reputación obtenida.",
 	-- {zone:1460} Warsong Gulch · {zone:1461} Arathi Basin · {zone:1459} Alterac Valley
 	["Blizzard counts four battleground reputations, but our faction data has three per side ({zone:1460}, {zone:1461}, {zone:1459}). The fourth is likely tied to Forever's new PvP content; check the in-game Legacy panel."] = "Blizzard cuenta cuatro reputaciones de campos de batalla, pero nuestros datos de facciones tienen tres por bando ({zone:1460}, {zone:1461}, {zone:1459}). La cuarta probablemente está ligada al nuevo contenido JcJ de Forever; consulta el panel de Legado del juego.",
 
@@ -107,7 +108,7 @@ return {
 	-- {area:718} Wailing Caverns · {npc:3678} Disciple of Naralex
 	["{area:718} (appears after the {npc:3678}'s event)"] = "{area:718} (aparece tras el evento del {npc:3678})",
 	-- {area:717} The Stockade
-	["{area:717}: the usual last kill; the Stockade has no fixed final boss"] = "{area:717}: la última muerte habitual; Las Mazmorras no tienen un jefe final fijo",
+	["{area:717}: the usual last kill; the {area:717} has no fixed final boss"] = "{area:717}: la última muerte habitual; {area:717} no tienen un jefe final fijo",
 	-- {area:16919} Hall of Thanes · {area:153} Ruins of Lordaeron
 	["Forever adds the dungeons {area:16919} and {area:153}; their bosses and brackets are not in our data yet."] = "Forever añade las mazmorras {area:16919} y {area:153}; sus jefes y tramos aún no están en nuestros datos.",
 
@@ -160,7 +161,6 @@ return {
 	["All 8 Barrow Deeps bosses are a point. Barrow Deeps is a new Forever raid; its bosses are not in our data, so tick it off once all 8 are down."] = "Los 8 jefes de Barrow Deeps valen un punto. Barrow Deeps es una banda nueva de Forever; sus jefes no están en nuestros datos, así que márcala cuando caigan los 8.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Exalted with each battleground faction is worth a point (4 in all; this page shows three, see the note). Follow the Polestar Reputation guides {zone:1460} Reputation, {zone:1461} Reputation and {zone:1459} Reputation. The Diplomat Legacy perk increases reputation gains."] = "Exaltado con cada facción de campo de batalla vale un punto (4 en total; esta página muestra tres, mira la nota). Sigue las guías de Reputación de Polestar Reputación de {zone:1460}, Reputación de {zone:1461} y Reputación de {zone:1459}. La ventaja de Legado Diplomático aumenta la reputación obtenida.",
 	-- ["The {npc:16042} questline is a point. It is the level 60 dungeon-set chain: {npc:16013} ({zone:1455}) or {npc:16012} ({zone:1454}) send you through In Search of Anthion and Anthion's Parting Words to {npc:16033} at {area:254}, whose Three Kings of Flame, the Left and Right Pieces of {item:22048}, Final Preparations and Mea Culpa, {npc:16042} end with {quest:8996}. {quest:8997} then leads to the class Saving the Best for Last quests."] = "La cadena de {npc:16042} vale un punto. Es la cadena del conjunto de mazmorra de nivel 60: {npc:16013} ({zone:1455}) o {npc:16012} ({zone:1454}) te envían con Buscando a Anthion y La despedida de Anthion hasta {npc:16033} en {area:254}, cuyas Tres reyes de Fuego, La parte izquierda y La parte derecha de {item:22048}, Últimos preparativos y Mea Culpa, {npc:16042} terminan con {quest:8996}. Después, {quest:8997} lleva a las misiones de clase Guardar lo mejor para el final.",
 	-- ["{area:2577} East"] = "{area:2577} Este",
 	-- ["{area:2577} North"] = "{area:2577} Norte",

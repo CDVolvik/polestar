@@ -519,7 +519,9 @@ Polestar.RegisterGuideTexts(locale, packId, { pack = {...}, guides = { [id] = {.
   refreshes every guide; a refresh after login fires `GUIDES_REGISTERED`, so
   the guide window, the menus and search read the new texts.
 - **English clients** fill the tokens once at registration and keep nothing
-  else; no texts addon loads.
+  else; no texts addon loads. A text in the guide's `written` (one spelling
+  a name otherwise than its token's English, "Dendrite" for Dendrite
+  Starblaze) reads as the author's words there.
 - `Data.CheckInstall` checks the client's texts addon of our pack like the
   names pack: never missing, named when its version differs.
 

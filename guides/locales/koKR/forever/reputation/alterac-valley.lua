@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Korean words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -12,7 +13,7 @@ return {
 	-- {faction:730} Stormpike Guard
 	["{faction:730} to Friendly"] = "{faction:730}: 약간 우호적까지",
 	-- {faction:730} Stormpike Guard · {area:2959} Dun Baldar · {zone:1459} Alterac Valley · {quest:7223} Armor Scraps · {npc:13257} Murgot Deepforge
-	["The {faction:730} holds {area:2959} in the north of {zone:1459}. Destroying towers, taking graveyards and mines, and killing captains and generals all pay reputation to the whole team. Loot {quest:7223} from fallen enemies for {npc:13257}. Forever's Legacy Diplomat perk increases reputation gains."] = "{faction:730}은(는) {zone:1459} 북쪽의 {area:2959}을(를) 지키고 있습니다. 탑 파괴, 무덤과 광산 점령, 대위와 장군 처치는 모두 팀 전체에 평판을 줍니다. 쓰러진 적에게서 {quest:7223}을(를) 획득해 {npc:13257}에게 가져가십시오. Forever의 Legacy Diplomat 특전은 평판 획득량을 늘려 줍니다.",
+	["The {faction:730} holds {area:2959} in the north of {zone:1459}. Destroying towers, taking graveyards and mines, and killing captains and generals all pay reputation to the whole team. Loot {quest:7223} from fallen enemies for {npc:13257}. Forever's Legacy Diplomat perk increases reputation gains."] = "{faction:730}은(는) {zone:1459} 북쪽의 {area:2959}을(를) 지키고 있습니다. 탑 파괴, 무덤과 광산 점령, 대위와 장군 처치는 모두 팀 전체에 평판을 줍니다. 쓰러진 적에게서 {quest:7223}을(를) 획득해 {npc:13257}에게 가져가십시오. Forever의 외교관 유산 특전은 평판 획득량을 늘려 줍니다.",
 	-- {npc:12096} Stormpike Quartermaster · {item:17542} Coldtooth Supplies
 	["{npc:12096}: Irondeep and {item:17542} from the mines"] = "{npc:12096}: 광산에서 얻은 깊은무쇠 광산 보급품과 {item:17542}",
 
@@ -37,13 +38,13 @@ return {
 	-- {faction:730} Stormpike Guard
 	["{faction:730} to Exalted"] = "{faction:730}: 확고한 동맹까지",
 	-- {faction:730} Stormpike Guard
-	["Exalted with the {faction:730} earns a Legacy Point."] = "{faction:730}와(과) 확고한 동맹이 되면 Legacy Point 1점을 얻습니다.",
+	["Exalted with the {faction:730} earns a Legacy Point."] = "{faction:730}와(과) 확고한 동맹이 되면 유산 점수 1점을 얻습니다.",
 
 	-- Step 5: Frostwolf Clan to Friendly
 	-- {faction:729} Frostwolf Clan
 	["{faction:729} to Friendly"] = "{faction:729}: 약간 우호적까지",
 	-- {faction:729} Frostwolf Clan · {area:2978} Frostwolf Keep · {zone:1459} Alterac Valley · {item:17422} Armor Scraps · {npc:13176} Smith Regzar
-	["The {faction:729} holds {area:2978} in the south of {zone:1459}. Destroying towers, taking graveyards and mines, and killing captains and generals all pay reputation to the whole team. Loot {item:17422} from fallen enemies for {npc:13176}. Forever's Legacy Diplomat perk increases reputation gains."] = "{faction:729}은(는) {zone:1459} 남쪽의 {area:2978}을(를) 지키고 있습니다. 탑 파괴, 무덤과 광산 점령, 대위와 장군 처치는 모두 팀 전체에 평판을 줍니다. 쓰러진 적에게서 {item:17422}을(를) 획득해 {npc:13176}에게 가져가십시오. Forever의 Legacy Diplomat 특전은 평판 획득량을 늘려 줍니다.",
+	["The {faction:729} holds {area:2978} in the south of {zone:1459}. Destroying towers, taking graveyards and mines, and killing captains and generals all pay reputation to the whole team. Loot {item:17422} from fallen enemies for {npc:13176}. Forever's Legacy Diplomat perk increases reputation gains."] = "{faction:729}은(는) {zone:1459} 남쪽의 {area:2978}을(를) 지키고 있습니다. 탑 파괴, 무덤과 광산 점령, 대위와 장군 처치는 모두 팀 전체에 평판을 줍니다. 쓰러진 적에게서 {item:17422}을(를) 획득해 {npc:13176}에게 가져가십시오. Forever의 외교관 유산 특전은 평판 획득량을 늘려 줍니다.",
 	-- {npc:12097} Frostwolf Quartermaster · {item:17522} Irondeep Supplies
 	["{npc:12097}: Coldtooth and {item:17522} from the mines"] = "{npc:12097}: 광산에서 얻은 얼음이빨 광산 보급품과 {item:17522}",
 
@@ -68,5 +69,5 @@ return {
 	-- {faction:729} Frostwolf Clan
 	["{faction:729} to Exalted"] = "{faction:729}: 확고한 동맹까지",
 	-- {faction:729} Frostwolf Clan
-	["Exalted with the {faction:729} earns a Legacy Point."] = "{faction:729}와(과) 확고한 동맹이 되면 Legacy Point 1점을 얻습니다.",
+	["Exalted with the {faction:729} earns a Legacy Point."] = "{faction:729}와(과) 확고한 동맹이 되면 유산 점수 1점을 얻습니다.",
 }

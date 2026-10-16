@@ -3,13 +3,14 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Spanish (Spain) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Spanish (Spain) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
 	-- {item:18608} Benediction
 	["{item:18608} and Anathema"] = "{item:18608} y Anatema",
-	-- {item:18608} Benediction
-	["Eris's splinter and the two Eyes make {item:18608}, the epic priest staff that turns into Anathema."] = "La astilla de Eris y los dos Ojos forman {item:18608}, el bastón épico de sacerdote que se convierte en Anatema.",
+	-- {npc:14494} Eris Havenfire · {item:18608} Benediction
+	["{npc:14494}'s splinter and the two Eyes make {item:18608}, the epic priest staff that turns into Anathema."] = "La astilla de {npc:14494} y los dos Ojos forman {item:18608}, el bastón épico de sacerdote que se convierte en Anatema.",
 
 	-- Step 1: The Eye of Shadow
 	-- {item:18646} The Eye of Divinity · {object:179703} Cache of the Firelord · {npc:12018} Majordomo Executus · {area:2717} Molten Core · {item:18665} The Eye of Shadow · {npc:12397} Lord Kazzak
@@ -28,7 +29,4 @@ return {
 	-- Step 4: Benediction
 	-- {item:18608} Benediction
 	["With both Eyes in your bags: {item:18608}"] = "Con ambos Ojos en tus bolsas: {item:18608}",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Save 50 peasants before 15 die. Kill the skeletons that attack them, cure their diseases (the purple ones first) and heal the wounded with Renew. Friends may buff you beforehand but must stay out of the fight, or a demon appears and kills everyone."] = "Salva a 50 campesinos antes de que mueran 15. Mata a los esqueletos que los atacan, cura sus enfermedades (primero los morados) y sana a los heridos con Renovar. Tus amigos pueden darte beneficios antes, pero deben quedarse fuera del combate o aparecerá un demonio que matará a todos.",
 }

@@ -3,13 +3,14 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (traditional) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (traditional) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Apprentice Blacksmithing
 	-- {skill:164} Blacksmithing
 	["Apprentice {skill:164}"] = "初級{skill:164}",
 	-- {skill:164} Blacksmithing
-	["{skill:164} runs alongside leveling. Forever's Legacy System rewards crafting professions at skill 150, 225 and 300 (the Journeyman, Expert and Artisan caps), so each of those checkpoints counts. Materials for 1-75 are worth about 17s in all."] = "{skill:164}可以邊升級邊練。永恆的傳承系統會在專業技能150、225和300（中級、高級和專家的上限）時給予製造專業獎勵，所以每個階段都很重要。1-75所需材料總價約17銀。",
+	["{skill:164} runs alongside leveling. Forever's Legacy System rewards crafting professions at skill 150, 225 and 300 (the Journeyman, Expert and Artisan caps), so each of those checkpoints counts. Materials for 1-75 are worth about 17s in all."] = "{skill:164}可以邊升級邊練。永恆的傳承系統會在專業技能150、225和300（中級、高級和專家級的上限）時給予製造專業獎勵，所以每個階段都很重要。1-75所需材料總價約17銀。",
 
 	-- Step 2: Rough Stone (Alliance)
 	-- {item:2835} Rough Stone
@@ -223,9 +224,9 @@ return {
 
 	-- Step 45: Artisan Blacksmithing
 	-- {skill:164} Blacksmithing
-	["Artisan {skill:164}"] = "專家{skill:164}",
+	["Artisan {skill:164}"] = "專家級{skill:164}",
 	-- {skill:164} Blacksmithing
-	["Artisan needs character level 35 and {skill:164} 200; it raises the cap to 300. Materials for 225-300 are worth about 942g in all."] = "專家需要角色等級35且{skill:164}200點；上限提高到300。225-300所需材料總價約942金。",
+	["Artisan needs character level 35 and {skill:164} 200; it raises the cap to 300. Materials for 225-300 are worth about 942g in all."] = "專家級需要角色等級35且{skill:164}200點；上限提高到300。225-300所需材料總價約942金。",
 
 	-- Step 46: Plans: Sentinel's Sabatons
 	-- {item:250562} Sentinel's Sabatons · {skill:164} Blacksmithing

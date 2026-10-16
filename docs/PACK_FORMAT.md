@@ -221,7 +221,9 @@ step's `title` and `note`; a goal's `note` and `text`) are written
 each as the game names it in the client's language (Polestar.Names, the
 client's map and area names, the profession's translation), else as the
 guide's `names` give it, so an English client reads the text as its author
-wrote it. The compiler writes the tokens (GUIDE_FORMAT.md, "Names in
+wrote it (a text that spells a name otherwise, "Dendrite" for Dendrite
+Starblaze, is in the guide's `written` with the author's words). The
+compiler writes the tokens (GUIDE_FORMAT.md, "Names in
 texts"); an older Polestar would show them as written, hence the format.
 
 ### `RegisterPack(meta)`
@@ -290,6 +292,7 @@ Guide keys (the compiler writes them in this order):
 | `version` | no | number |
 | `group` | no | `true` (format 2): a goal of the guide's route that is not `optional` needs a group; the guide menu shows a "Group" chip |
 | `names` | no | format 3: `{ ["npc:240"] = "Marshal Dughan", ... }`, the English of every name token the guide's texts hold (a token it lacks is shown as written) |
+| `written` | no | format 3: `{ ["Back to {npc:3649}"] = "Back to Dendrite", ... }`, a text whose names its tokens' English in `names` would spell otherwise, with the author's words an English client reads |
 | `steps` | yes | list of steps, at least one |
 
 Step keys: `title` (optional), `note` (optional, player-facing), `only`

@@ -217,6 +217,10 @@ return {
   The comment above the line lists them with their English. Keep every token
   of the English, as many times, wherever the sentence needs it; add none.
   A text that is only names (a step titled after its NPC) has no line.
+- A token marked `(no name in this language: may be words)` is an object no
+  source names in your language (a district's sign, a tavern): the game would
+  show it in English. Write its name in your words instead; `i18n guides
+  check` accepts the translation without that token.
 - A name the text uses in the English plural stays words ("Harvest
   Watchers"): the comment `-- plural, as words: Harvest Watchers = {npc:115}
   Harvest Watcher` gives its NPC. Translate the plural yourself from the

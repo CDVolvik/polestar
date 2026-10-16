@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (traditional) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (traditional) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Learn First Aid
@@ -96,17 +97,17 @@ return {
 	-- Step 20: Trauma
 	["Trauma"] = "創傷",
 	-- {skill:129} First Aid · {quest:6624} Triage · {zone:1455} Ironforge
-	["Artisan {skill:129} comes from the {quest:6624} quest. It needs skill 225 and level 40; the {skill:129} trainer in {zone:1455} sends you to the doctor in Theramore."] = "專家{skill:129}來自{quest:6624}任務。需要技能225和等級40；{zone:1455}的{skill:129}訓練師會派你去找塞拉摩的醫生。",
+	["Artisan {skill:129} comes from the {quest:6624} quest. It needs skill 225 and level 40; the {skill:129} trainer in {zone:1455} sends you to the doctor in Theramore."] = "專家級{skill:129}來自{quest:6624}任務。需要技能225和等級40；{zone:1455}的{skill:129}訓練師會派你去找塞拉摩的醫生。",
 
 	-- Step 21: Trauma
 	-- {skill:129} First Aid · {quest:6622} Triage · {zone:1454} Orgrimmar · {area:321} Hammerfall
-	["Artisan {skill:129} comes from the {quest:6622} quest. It needs skill 225 and level 40; the {skill:129} trainer in {zone:1454} sends you to the doctor in {area:321}."] = "專家{skill:129}來自{quest:6622}任務。需要技能225和等級40；{zone:1454}的{skill:129}訓練師會派你去找{area:321}的醫生。",
+	["Artisan {skill:129} comes from the {quest:6622} quest. It needs skill 225 and level 40; the {skill:129} trainer in {zone:1454} sends you to the doctor in {area:321}."] = "專家級{skill:129}來自{quest:6622}任務。需要技能225和等級40；{zone:1454}的{skill:129}訓練師會派你去找{area:321}的醫生。",
 
 	-- Step 22: Triage
 	-- {quest:6624} Triage
 	["{quest:6624}: treat the wounded soldiers in the doctor's tent with the bandages the doctor gives you, the most critical first, before any of them die."] = "{quest:6624}：用醫生給你的繃帶治療醫生帳篷裡的受傷士兵，先治療最危急的，別讓任何一個死掉。",
 	-- {skill:129} First Aid
-	["Artisan {skill:129}"] = "專家{skill:129}",
+	["Artisan {skill:129}"] = "專家級{skill:129}",
 
 	-- Step 23: Triage
 	-- {quest:6622} Triage
@@ -118,7 +119,7 @@ return {
 
 	-- Step 26: Runecloth Bandage
 	-- {spell:18629} Runecloth Bandage · {quest:6622} Triage · {npc:12939} Doctor Gustaf VanHowzen · {npc:12920} Doctor Gregory Victor · {area:321} Hammerfall
-	["{spell:18629} (skill 260) is an Artisan recipe: only the {quest:6622} doctor teaches it ({npc:12939} in Theramore, {npc:12920} in {area:321})."] = "{spell:18629}（技能260）是專家配方：只有{quest:6622}的醫生會教（塞拉摩的{npc:12939}，{area:321}的{npc:12920}）。",
+	["{spell:18629} (skill 260) is an Artisan recipe: only the {quest:6622} doctor teaches it ({npc:12939} in Theramore, {npc:12920} in {area:321})."] = "{spell:18629}（技能260）是專家級配方：只有{quest:6622}的醫生會教（塞拉摩的{npc:12939}，{area:321}的{npc:12920}）。",
 
 	-- Step 27: Runecloth Bandage: cloth
 	-- {item:14529} Runecloth Bandage

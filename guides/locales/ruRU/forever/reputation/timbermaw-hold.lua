@@ -3,14 +3,15 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Russian (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Russian words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
-	["Timbermaw Hold Reputation"] = "Репутация: Крепость Древобрюхов",
+	["Timbermaw Hold Reputation"] = "Репутация: Древобрюхи",
 
 	-- Step 1: Grazle
 	-- {faction:576} Timbermaw Hold
-	["{faction:576} starts out Hostile, and its furbolgs in the tunnels attack until you reach Unfriendly. Every Deadwood and Winterfall furbolg you kill raises it, so the quests below pay twice. Forever's Legacy Diplomat perk increases reputation gains."] = "{faction:576}: репутация начинается с враждебности, и фурболги в туннелях нападают, пока вы не достигнете неприязни. Каждый убитый фурболг из племен Мертвого Леса и Зимней Спячки повышает ее, так что задания ниже окупаются дважды. Бонус Forever «Legacy Diplomat» увеличивает получаемую репутацию.",
+	["{faction:576} starts out Hostile, and its furbolgs in the tunnels attack until you reach Unfriendly. Every Deadwood and Winterfall furbolg you kill raises it, so the quests below pay twice. Forever's Legacy Diplomat perk increases reputation gains."] = "{faction:576}: репутация начинается с враждебности, и фурболги в туннелях нападают, пока вы не достигнете неприязни. Каждый убитый фурболг из племен Мертвого Леса и Зимней Спячки повышает ее, так что задания ниже окупаются дважды. Бонус наследия Forever «Дипломат» увеличивает получаемую репутацию.",
 
 	-- Step 2: Deadwood Village
 	-- {zone:1448} Felwood · {item:21377} Deadwood Headdress Feather · {npc:11554} Grazle · {npc:15395} Nafien
