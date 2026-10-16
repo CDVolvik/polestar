@@ -33,12 +33,51 @@ const TABLES = [
 	'SpellName',
 ];
 
-const CLASSES = { PALADIN: { skillLine: 184, name: 'Paladin' } };
+// Each class's tree, by its class skill line (SkillLineXTraitTree).
+const CLASSES = {
+	DRUID: { skillLine: 574, name: 'Druid' },
+	HUNTER: { skillLine: 50, name: 'Hunter' },
+	MAGE: { skillLine: 237, name: 'Mage' },
+	PALADIN: { skillLine: 184, name: 'Paladin' },
+	PRIEST: { skillLine: 613, name: 'Priest' },
+	ROGUE: { skillLine: 38, name: 'Rogue' },
+	SHAMAN: { skillLine: 373, name: 'Shaman' },
+	WARLOCK: { skillLine: 354, name: 'Warlock' },
+	WARRIOR: { skillLine: 26, name: 'Warrior' },
+};
 const FIRST_LEVEL = 10; // the first talent point
 const COLUMN_GAP = 1200; // PosX distance that separates two spec columns
-const SAME_X = 100; // PosX within this is one column of a spec
+const SAME_X = 100; // PosX (or PosY) within this is one column (or row) of a spec
 
 const num = (v) => Number(v) || 0;
+
+// A stray copy of a talent: a node with the same spell as another node of its
+// tree, placed far off the tree's grid (more than STRAY_FAR times the other
+// nodes' furthest PosX or PosY). In 1.60.1.70374 the Hunter tree has Lightning
+// Reflexes twice (node 104982 at PosX 102800, ten times the real one's 10280)
+// and the Priest tree Holy Specialization twice (node 105865 at PosY 21300,
+// below the Shadow column). Kept, they would make a fourth spec column or an
+// extra row; they are left out of the snapshot.
+const STRAY_FAR = 2;
+function strays(nodes) {
+	const ids = Object.keys(nodes).map(Number);
+	const bySpell = new Map();
+	for (const id of ids) {
+		const spell = nodes[id].spell;
+		if (!bySpell.has(spell)) bySpell.set(spell, []);
+		bySpell.get(spell).push(id);
+	}
+	const out = [];
+	for (const id of ids) {
+		const n = nodes[id];
+		if (!n.spell || bySpell.get(n.spell).length < 2) continue;
+		const others = ids.filter((o) => o !== id).map((o) => nodes[o]);
+		const maxX = Math.max(...others.map((o) => o.x));
+		const maxY = Math.max(...others.map((o) => o.y));
+		if (n.x > STRAY_FAR * maxX || n.y > STRAY_FAR * maxY) out.push(id);
+	}
+	return out.sort((a, b) => a - b);
+}
 
 // Clusters sorted values: a new cluster wherever the gap exceeds `gap`.
 function clusters(values, gap) {
@@ -51,7 +90,7 @@ function clusters(values, gap) {
 	return out;
 }
 
-// -> { treeID, nodes: { id: { entry, max, spell, name, spec, row, col } }, specs: [[ids]], groups, gates, edges }
+// -> { treeID, strays: [ids left out], nodes: { id: { entry, max, spell, name, spec, row, col } }, specs: [[ids]], groups, gates, edges }
 function treeFacts(tables, cls) {
 	const info = CLASSES[cls];
 	if (!info) throw new Error(`talents: no tree known for class ${cls}`);
@@ -74,15 +113,17 @@ function treeFacts(tables, cls) {
 		const name = (def && def.OverrideName_lang) || spells.get(spell) || '';
 		nodes[id] = { entry: num(entry.ID), max: num(entry.MaxRanks), spell, name, x: num(r.PosX), y: num(r.PosY) };
 	}
+	const dropped = strays(nodes);
+	for (const id of dropped) delete nodes[id];
 	const all = Object.values(nodes);
 	const specCols = clusters(all.map((n) => n.x), COLUMN_GAP);
-	const rows = [...new Set(all.map((n) => n.y))].sort((a, b) => a - b);
+	const rows = clusters(all.map((n) => n.y), SAME_X); // PosY a few units apart (Warlock's 2120 and 2130) is one row
 	const specs = specCols.map(() => []);
 	for (const [id, n] of Object.entries(nodes)) {
 		const s = specCols.findIndex((c) => c.includes(n.x));
 		const cols = clusters(specCols[s], SAME_X);
 		n.spec = s + 1;
-		n.row = rows.indexOf(n.y) + 1;
+		n.row = rows.findIndex((r) => r.includes(n.y)) + 1;
 		n.col = cols.findIndex((c) => c.includes(n.x)) + 1;
 		specs[s].push(num(id));
 	}
@@ -112,7 +153,7 @@ function treeFacts(tables, cls) {
 	const edges = tables.TraitEdge.filter((r) => nodes[num(r.LeftTraitNodeID)] && nodes[num(r.RightTraitNodeID)])
 		.map((r) => ({ from: num(r.LeftTraitNodeID), to: num(r.RightTraitNodeID) }))
 		.sort((a, b) => a.to - b.to || a.from - b.from);
-	return { cls, treeID, nodes, specs, groups, gates, edges };
+	return { cls, treeID, strays: dropped, nodes, specs, groups, gates, edges };
 }
 
 // A plan's picks by name -> node IDs. tree names the column (source.order).
@@ -162,10 +203,11 @@ function luaStr(s) {
 	return `"${String(s).replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/\n/g, '\\n')}"`;
 }
 
-// The summary and the per-level notes are our prose: literal L["..."] keys, so
-// `i18n keys` lists them and each client reads its language's.
-function emitLua(header, facts, source, builds, prereq = PREREQ_RULE) {
-	const L = [header, '', 'local ADDON, ns = ...', 'local T = ns.Talents', 'local L = ns.L', '', 'T.Register({'];
+// One class's T.Register({ ... }) call, as lines. The summary and the
+// per-level notes are our prose: literal L["..."] keys, so `i18n keys` lists
+// them and each client reads its language's.
+function emitRegister(facts, source, builds, prereq = PREREQ_RULE) {
+	const L = ['T.Register({'];
 	L.push(`\tclass = ${luaStr(source.class)}, tree = ${facts.treeID}, prereq = ${luaStr(prereq)},`);
 	L.push(`\tsource = ${luaStr(source.source)}, url = ${luaStr(source.sourceUrl)},`);
 	L.push(`\tsummary = L[${luaStr(source.summary)}],`);
@@ -200,8 +242,20 @@ function emitLua(header, facts, source, builds, prereq = PREREQ_RULE) {
 		for (const lv of Object.keys(b.notes).map(Number).sort((x, y) => x - y)) L.push(`\t\t\t\t[${lv}] = L[${luaStr(b.notes[lv])}],`);
 		L.push('\t\t\t},', '\t\t},');
 	}
-	L.push('\t},', '})', '');
+	L.push('\t},', '})');
+	return L;
+}
+
+// parts: [{ facts, source, builds }], one T.Register per class, in order.
+function emitLuaAll(header, parts, prereq = PREREQ_RULE) {
+	const L = [header, '', 'local ADDON, ns = ...', 'local T = ns.Talents', 'local L = ns.L'];
+	for (const p of parts) L.push('', ...emitRegister(p.facts, p.source, p.builds, prereq));
+	L.push('');
 	return L.join('\n');
+}
+
+function emitLua(header, facts, source, builds, prereq = PREREQ_RULE) {
+	return emitLuaAll(header, [{ facts, source, builds }], prereq);
 }
 
 // source (talents/forever/<class>.json) + tables -> { lua, errors, facts, builds }
@@ -218,4 +272,26 @@ function buildTalents(source, tables, { header, prereq = PREREQ_RULE } = {}) {
 	return { facts, builds, errors, lua: emitLua(header || '-- Talents', facts, source, builds, prereq) };
 }
 
-module.exports = { PREREQ_RULE, TABLES, CLASSES, FIRST_LEVEL, treeFacts, resolveBuild, replay, buildTalents, emitLua };
+// Several classes' sources -> one Builds.lua: { lua, errors, results }.
+// Sources are sorted by class so the file does not depend on read order; a
+// class may have one source.
+function buildAllTalents(sources, tables, { header, prereq = PREREQ_RULE } = {}) {
+	const errors = [];
+	const seen = new Set();
+	const sorted = [...sources].sort((a, b) => (a.class < b.class ? -1 : a.class > b.class ? 1 : 0));
+	const results = [];
+	for (const source of sorted) {
+		if (seen.has(source.class)) {
+			errors.push(`${source.class}: more than one plan file`);
+			continue;
+		}
+		seen.add(source.class);
+		const r = buildTalents(source, tables, { header, prereq });
+		errors.push(...r.errors.map((e) => `${source.class} ${e}`));
+		results.push({ source, ...r });
+	}
+	const lua = emitLuaAll(header || '-- Talents', results.map((r) => ({ facts: r.facts, source: r.source, builds: r.builds })), prereq);
+	return { lua, errors, results };
+}
+
+module.exports = { PREREQ_RULE, TABLES, CLASSES, FIRST_LEVEL, STRAY_FAR, strays, treeFacts, resolveBuild, replay, buildTalents, buildAllTalents, emitLua, emitLuaAll };
