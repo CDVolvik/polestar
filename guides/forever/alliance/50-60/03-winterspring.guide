@@ -151,6 +151,7 @@ step Jaron's supplies
 
 step Darkwhisper Gorge
   tip Follow Donova's directions to the mouth of Darkwhisper Gorge, past the Frostmaul giants: pass them one at a time.
+  goto 59.8,74.2 "Darkwhisper Gorge"
   complete 4842
 
 # ---------------------------------------------------------------- Back west

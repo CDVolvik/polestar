@@ -126,6 +126,7 @@ step Ameth'Aran
 
 step The red crystal
   tip Climb the eastern mountains east of Ameth'Aran; the Mysterious Red Crystal sits on a ledge.
+  interact 175524 quest 4811.1                -- Mysterious Red Crystal
   complete 4811
 
 step Bashal'Aran
@@ -197,7 +198,7 @@ step Blackwood furbolgs
 
 step The Ancient Flame
   tip The flame burns in the south of Ameth'Aran.
-  complete 957
+  interact 16393 quest 957.1                  -- Ancient Flame
 
 step The southern beaches
   tip Follow the coast south past Ameth'Aran: one Beached Sea Creature lies on the shore west of the Grove, another further south near Remtravel's Excavation.

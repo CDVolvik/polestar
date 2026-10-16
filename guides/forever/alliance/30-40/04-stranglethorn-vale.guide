@@ -194,7 +194,7 @@ step Booty Bay
 
 step The haunted island
   tip Follow the west coast north; the haunted island lies off the shore west of Nesingwary's camp. Just reach it.
-  complete 578
+  complete 578 @20.8,23.2
 
 step Nesingwary's Expedition
   tip Barnil collects the Green Hills of Stranglethorn: the pages drop from almost every humanoid in the jungle. Turn the pages into chapters as you go.

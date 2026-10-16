@@ -84,7 +84,7 @@ step Dartol's Rod
 
 step The Howling Vale
   tip Take the tunnel into the Howling Vale; the tome lies in the ruins at its west end.
-  complete 1022
+  interact 19027 quest 1022.1         -- Tome of Mel'Thandris
 
 step Shael'dryn
   turnin 1026
@@ -138,7 +138,9 @@ step Xavian satyrs
 
 step Insane druids
   tip The three druids stand together at the Forsaken camp south of Forest Song.
-  complete 1012
+  kill 3940 quest 1012.1              -- Taneel Darkwood
+  kill 3941 quest 1012.2              -- Uthil Mooncall
+  kill 3942 quest 1012.3              -- Mavoris Cloudsbreak
 
 step Forest Song
   turnin 1012                         -- Kayneth Stillwind
