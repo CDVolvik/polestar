@@ -267,8 +267,9 @@ Southshore for a Horde character), the arrow says "Hostile town: Southshore"
 once as the walk starts, and the walk's journey step reads the same when the
 route has more steps. **Route style** (Options, Guide, Arrow & routes) picks
 how it walks: Fastest takes the shortest way over hills and across fields,
-Balanced (the default) is the above, and Roads stays on roads even when
-they're longer.
+Balanced (the default) keeps to roads that aren't much longer and goes round
+hills, and Roads stays on roads even when they're longer. Every style keeps
+out of the other faction's towns.
 
 The router ships with Polestar as the `Polestar_Nav` folder. Polestar's
 walking router started from Shortest Path Forever v1.16.0 by Cillian
