@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Korean words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Into Un'Goro Crater
@@ -10,7 +11,8 @@ return {
 	["Into {zone:1449}"] = "{zone:1449}(으)로",
 	-- {area:1938} Broken Pillar · {zone:1449} Un'Goro Crater · {area:541} Marshal's Refuge
 	["From the {area:1938} ride west to the long ramp that winds down into {zone:1449}, then follow the crater's north wall to {area:541}, a camp in the cliff caves. Everyone here is neutral."] = "{area:1938}에서 서쪽으로 가 {zone:1449}(으)로 구불구불 내려가는 긴 비탈길을 타고, 분화구 북쪽 벽을 따라 절벽 동굴 속 야영지인 {area:541}(으)로 가세요. 이곳 주민은 모두 중립입니다.",
-	["The wooden sign beside Spraggle"] = "스프래글 옆의 나무 표지판",
+	-- {npc:9997} Spraggle
+	["The wooden sign beside {npc:9997}"] = "{npc:9997} 옆의 나무 표지판",
 	-- {npc:9117} J.D. Collie
 	["{npc:9117}, at the back of the cave"] = "동굴 안쪽의 {npc:9117}",
 
@@ -55,7 +57,8 @@ return {
 	["The raft lies on the shore of the south-eastern lake; the small pack sits in the water beside it."] = "뗏목은 남동쪽 호숫가에 있고, 작은 배낭은 그 옆 물속에 있습니다.",
 
 	-- Step 9: Torwa Pathfinder
-	["Torwa camps in the south-east corner of the crater."] = "토르와는 분화구 남동쪽 구석에 있습니다.",
+	-- {npc:9619} Torwa Pathfinder
+	["{npc:9619} camps in the south-east corner of the crater."] = "{npc:9619}은(는) 분화구 남동쪽 구석에 있습니다.",
 
 	-- Step 10: Fresh Threshadon Carcass
 	["North of Torwa, a dead Threshadon lies by the water."] = "토르와 북쪽 물가에 죽은 트레샤돈이 있습니다.",
@@ -63,8 +66,9 @@ return {
 	-- Step 12: Lar'korwi Mates
 	-- plural, as words: Lar'korwi Mates = {npc:9683} Lar'korwi Mate
 	["Lar'korwi Mates"] = "라르코르위의 짝",
+	-- {npc:9619} Torwa Pathfinder
 	-- plural, as words: Lar'korwi Mates = {npc:9683} Lar'korwi Mate
-	["The Lar'korwi Mates prowl the jungle north-west of Torwa."] = "라르코르위의 짝은 토르와 북서쪽 정글을 배회합니다.",
+	["The Lar'korwi Mates prowl the jungle north-west of {npc:9619}."] = "라르코르위의 짝은 {npc:9619} 북서쪽 정글을 배회합니다.",
 
 	-- Step 13: Torwa Pathfinder
 	-- {npc:9684} Lar'korwi
@@ -124,12 +128,12 @@ return {
 	["Ride down the east side of the crater to the pylon on the eastern cliffs."] = "분화구 동쪽을 따라 내려가 동쪽 절벽의 수정탑으로 가세요.",
 
 	-- Step 24: Lar'korwi
-	-- {npc:9684} Lar'korwi
-	["{npc:9684}'s lair is just south of the pylon. Use Torwa's bait there; {npc:9684} is level 56 and hits hard, so start at full health."] = "{npc:9684}의 소굴은 수정탑 바로 남쪽에 있습니다. 그곳에서 토르와의 미끼를 사용하세요. {npc:9684}은(는) 레벨 56이고 공격이 강하니 생명력을 가득 채우고 시작하세요.",
+	-- {npc:9684} Lar'korwi · {npc:9619} Torwa Pathfinder
+	["{npc:9684}'s lair is just south of the pylon. Use {npc:9619}'s bait there; {npc:9684} is level 56 and hits hard, so start at full health."] = "{npc:9684}의 소굴은 수정탑 바로 남쪽에 있습니다. 그곳에서 {npc:9619}의 미끼를 사용하세요. {npc:9684}은(는) 레벨 56이고 공격이 강하니 생명력을 가득 채우고 시작하세요.",
 
 	-- Step 25: Torwa Pathfinder
-	-- {npc:9622} U'cha
-	["Torwa now asks for {npc:9622}'s pelt, back in the north-east cave: skip it."] = "이제 토르와가 북동쪽 동굴에 있는 {npc:9622}의 가죽을 요구합니다. 건너뛰세요.",
+	-- {npc:9619} Torwa Pathfinder · {npc:9622} U'cha
+	["{npc:9619} now asks for {npc:9622}'s pelt, back in the north-east cave: skip it."] = "이제 {npc:9619}이(가) 북동쪽 동굴에 있는 {npc:9622}의 가죽을 요구합니다. 건너뛰세요.",
 
 	-- Step 26: Western Pylon
 	["Western Pylon"] = "서쪽 수정탑",
@@ -164,17 +168,17 @@ return {
 	["Pestlezugg's next quest needs the {npc:10041}, an elite boss. Skip it."] = "페슬저그의 다음 퀘스트는 정예 우두머리 {npc:10041}이(가) 필요합니다. 건너뛰세요.",
 
 	-- Step 33: Orgrimmar
-	-- {area:1637} Orgrimmar · {object:3202} Grom'gol · {zone:1458} Undercity
+	-- {area:1637} Orgrimmar · {object:3202} Grom'gol (no name in this language: may be words) · {zone:1458} Undercity
 	["Fly to {area:1637} and train before the {object:3202} zeppelin: the {zone:1458} stop later in this guide has no Hunter or Shaman trainer."] = "{object:3202}행 비행선을 타기 전에 {area:1637}(으)로 날아가 기술을 배우세요. 이 가이드 후반의 {zone:1458}에는 사냥꾼과 주술사 상급자가 없습니다.",
 
 	-- Step 34: Thunder Bluff
-	-- {area:1638} Thunder Bluff · {npc:3033} Turak Runetotem · {area:1639} Elder Rise · {area:1637} Orgrimmar · {object:3202} Grom'gol
+	-- {area:1638} Thunder Bluff · {npc:3033} Turak Runetotem · {area:1639} Elder Rise · {area:1637} Orgrimmar · {object:3202} Grom'gol (no name in this language: may be words)
 	["Fly to {area:1638} and train with {npc:3033} on {area:1639}, then fly to {area:1637} for the {object:3202} zeppelin."] = "{area:1638}(으)로 날아가 {area:1639}의 {npc:3033}에게 기술을 배운 뒤, {area:1637}(으)로 날아가 {object:3202}행 비행선을 타세요.",
 
 	-- Step 35: Fly to Kargath
 	-- {area:340} Kargath
 	["Fly to {area:340}"] = "{area:340}(으)로 비행",
-	-- {area:1637} Orgrimmar · {object:3202} Grom'gol · {area:340} Kargath · {zone:1418} Badlands
+	-- {area:1637} Orgrimmar · {object:3202} Grom'gol (no name in this language: may be words) · {area:340} Kargath · {zone:1418} Badlands
 	["Fly to {area:1637}, take the zeppelin to {object:3202} and fly from there to {area:340}, built into the cliffs on the {zone:1418}' west edge."] = "{area:1637}(으)로 날아가 {object:3202}행 비행선을 탄 뒤, 그곳에서 {zone:1418} 서쪽 끝 절벽에 지어진 {area:340}(으)로 날아가세요.",
 
 	-- Step 36: Into the Searing Gorge
@@ -192,9 +196,9 @@ return {
 	-- Step 38: Black Broodlings
 	-- plural, as words: Black Broodlings = {npc:7047} Black Broodling
 	["Black Broodlings"] = "검은 새끼용",
-	-- {area:251} Flame Crest · {item:12284} Draco-Incarcinatrix 900
+	-- {area:251} Flame Crest · {npc:10267} Tinkee · {item:12284} Draco-Incarcinatrix 900
 	-- plural, as words: Black Broodlings = {npc:7047} Black Broodling
-	["Black Broodlings nest in the hills just east of {area:251}. Use Tinkee's {item:12284} on a broodling when it is almost dead to capture its essence."] = "검은 새끼용은 {area:251} 바로 동쪽 언덕에 둥지를 틉니다. 새끼용이 거의 죽었을 때 팅키의 {item:12284}을(를) 사용해 정수를 포획하세요.",
+	["Black Broodlings nest in the hills just east of {area:251}. Use {npc:10267}'s {item:12284} on a broodling when it is almost dead to capture its essence."] = "검은 새끼용은 {area:251} 바로 동쪽 언덕에 둥지를 틉니다. 새끼용이 거의 죽었을 때 {npc:10267}의 {item:12284}을(를) 사용해 정수를 포획하세요.",
 
 	-- Step 39: Sha'ni Proudtusk
 	-- {quest:3821} Dreadmaul Rock · {npc:9136} Sha'ni Proudtusk
@@ -212,30 +216,30 @@ return {
 	-- Step 42: Flame Crest
 	-- {area:251} Flame Crest
 	["Back north-east to {area:251}."] = "북동쪽 {area:251}(으)로 돌아가세요.",
-	-- {quest:4808} Felnok Steelspring · {area:2255} Everlook · {zone:1452} Winterspring
-	["Keep Tinkee's letter: {quest:4808} is in {area:2255}, {zone:1452}."] = "팅키의 편지는 보관하세요. {quest:4808}은(는) {zone:1452}의 {area:2255}에 있습니다.",
+	-- {npc:10267} Tinkee · {quest:4808} Felnok Steelspring · {area:2255} Everlook · {zone:1452} Winterspring
+	["Keep {npc:10267}'s letter: {quest:4808} is in {area:2255}, {zone:1452}."] = "{npc:10267}의 편지는 보관하세요. {quest:4808}은(는) {zone:1452}의 {area:2255}에 있습니다.",
 
 	-- Step 43: Kargath
 	-- {area:1584} Blackrock Depths
 	["Theodora's next errand goes to Lotwil east of town and then into {area:1584}: skip it."] = "테오도라의 다음 심부름은 마을 동쪽의 로트윌을 거쳐 {area:1584}(으)로 이어집니다. 건너뛰세요.",
 
 	-- Step 44: Undercity
-	-- {npc:10879} Harbinger Balthazad · {object:36078} Trade Quarter
+	-- {npc:10879} Harbinger Balthazad · {object:36078} Trade Quarter (no name in this language: may be words)
 	["{npc:10879}, the {object:36078}, beside the bat master"] = "{object:36078}, 박쥐 조련사 옆의 {npc:10879}",
-	-- {npc:6522} Andron Gant · {object:36073} Rogues' Quarter
+	-- {npc:6522} Andron Gant · {object:36073} Rogues' Quarter (no name in this language: may be words)
 	["{npc:6522}, the {object:36073}"] = "{object:36073}의 {npc:6522}",
 	-- {npc:8390} Chemist Cuely · {zone:1447} Azshara
 	["{npc:8390}, the Apothecarium: the vials fill in {zone:1447} later"] = "연금술 실험실의 {npc:8390}: 약병은 나중에 {zone:1447}에서 채웁니다",
 
 	-- Step 45: The Bulwark
-	-- {zone:1458} Undercity · {zone:1420} Tirisfal Glades
-	["Leave the {zone:1458} and ride east along the road through {zone:1420} to the Bulwark, the Forsaken fort on the border."] = "{zone:1458}을(를) 나와 길을 따라 동쪽으로 {zone:1420}을(를) 지나 경계의 포세이큰 요새인 보루로 가세요.",
+	-- {zone:1458} Undercity · {zone:1420} Tirisfal Glades · {area:152} The Bulwark
+	["Leave the {zone:1458} and ride east along the road through {zone:1420} to the {area:152}, the Forsaken fort on the border."] = "{zone:1458}을(를) 나와 길을 따라 동쪽으로 {zone:1420}을(를) 지나 경계의 포세이큰 요새인 {area:152}로 가세요.",
 	-- {object:176092} Box of Incendiaries · {quest:5096} Scarlet Diversions · {quest:5401} Argent Dawn Commission
 	["Take a {object:176092} from the crate next to Derrington for {quest:5096}, done on the way back. Equip the {quest:5401}: Scourgestones only drop while you wear it."] = "{quest:5096}을(를) 위해 델링턴 옆 상자에서 {object:176092}을(를) 챙기세요. 돌아오는 길에 완료합니다. {quest:5401}을(를) 착용하세요. 착용 중에만 스컬지석이 나옵니다.",
 
 	-- Step 46: Augustus the Touched
-	-- {zone:1422} Western Plaguelands · {zone:1423} Eastern Plaguelands · {area:2627} Terrordale
-	["Follow the road east through the {zone:1422} and across the river into the {zone:1423}; leave it north for {area:2627}, the ruined town in the north-west. Augustus sits in a hut at its edge."] = "길을 따라 동쪽으로 {zone:1422}을(를) 지나 강을 건너 {zone:1423}(으)로 가세요. 북서쪽의 폐허 마을 {area:2627}(으)로 가려면 길에서 북쪽으로 벗어나세요. 아우구스투스는 마을 가장자리의 오두막에 있습니다.",
+	-- {zone:1422} Western Plaguelands · {zone:1423} Eastern Plaguelands · {area:2627} Terrordale · {npc:12384} Augustus the Touched
+	["Follow the road east through the {zone:1422} and across the river into the {zone:1423}; leave it north for {area:2627}, the ruined town in the north-west. {npc:12384} sits in a hut at its edge."] = "길을 따라 동쪽으로 {zone:1422}을(를) 지나 강을 건너 {zone:1423}(으)로 가세요. 북서쪽의 폐허 마을 {area:2627}(으)로 가려면 길에서 북쪽으로 벗어나세요. {npc:12384}은(는) 마을 가장자리의 오두막에 있습니다.",
 
 	-- Step 47: Augustus' Receipt Book
 	-- {area:2627} Terrordale
@@ -254,25 +258,26 @@ return {
 	-- Step 51: Darrowshire Spirits
 	-- plural, as words: Darrowshire Spirits = {npc:11064} Darrowshire Spirit
 	["Darrowshire Spirits"] = "다로우샤이어 영혼",
-	-- {npc:11064} Darrowshire Spirit · {area:2262} Darrowshire
-	["With Carlin's quest in your log, slain Scourge sometimes leave a {npc:11064}; talk to it to free it. Kill undead on the ride south-west to {area:2262}."] = "카를린의 퀘스트가 있으면 처치한 스컬지가 가끔 {npc:11064}을(를) 남깁니다. 말을 걸어 풀어 주세요. 남서쪽 {area:2262}(으)로 가는 길에 언데드를 처치하세요.",
+	-- {npc:11063} Carlin · {npc:11064} Darrowshire Spirit · {area:2262} Darrowshire
+	["With {npc:11063}'s quest in your log, slain Scourge sometimes leave a {npc:11064}; talk to it to free it. Kill undead on the ride south-west to {area:2262}."] = "{npc:11063}의 퀘스트가 있으면 처치한 스컬지가 가끔 {npc:11064}을(를) 남깁니다. 말을 걸어 풀어 주세요. 남서쪽 {area:2262}(으)로 가는 길에 언데드를 처치하세요.",
 	-- plural, as words: Darrowshire Spirits = {npc:11064} Darrowshire Spirit
 	["Free Darrowshire Spirits: talk to them"] = "다로우샤이어 영혼 해방: 말 걸기",
 
 	-- Step 52: Pamela Redpath
-	-- {area:2262} Darrowshire
-	["Pamela's ghost stands in the ruins of {area:2262}, in the south-west."] = "파멜라의 유령은 남서쪽 {area:2262} 폐허에 있습니다.",
+	-- {npc:10926} Pamela Redpath · {area:2262} Darrowshire
+	["{npc:10926}'s ghost stands in the ruins of {area:2262}, in the south-west."] = "{npc:10926}의 유령은 남서쪽 {area:2262} 폐허에 있습니다.",
 
 	-- Step 53: Pamela's Doll
-	["The doll's head and its two sides lie in the houses around Pamela; join them from your bags."] = "인형의 머리와 양쪽 몸통은 파멜라 주변 집들에 있습니다. 가방에서 합치세요.",
+	-- {npc:10926} Pamela Redpath
+	["The doll's head and its two sides lie in the houses around {npc:10926}; join them from your bags."] = "인형의 머리와 양쪽 몸통은 {npc:10926} 주변 집들에 있습니다. 가방에서 합치세요.",
 
 	-- Step 54: Pamela Redpath
 	-- {quest:5152} Auntie Marlene · {area:197} Sorrow Hill · {zone:1422} Western Plaguelands
 	["Keep {quest:5152}: Marlene lives at {area:197} in the {zone:1422}."] = "{quest:5152}은(는) 보관하세요. 말레네는 {zone:1422}의 {area:197}에 삽니다.",
 
 	-- Step 55: Zaeldarr the Outcast
-	-- {area:2262} Darrowshire
-	["Zaeldarr lurks just west of {area:2262}."] = "잴다르는 {area:2262} 바로 서쪽에 숨어 있습니다.",
+	-- {npc:12250} Zaeldarr · {area:2262} Darrowshire
+	["{npc:12250} lurks just west of {area:2262}."] = "{npc:12250}은(는) {area:2262} 바로 서쪽에 숨어 있습니다.",
 
 	-- Step 56: Back to Light's Hope Chapel
 	-- {area:2268} Light's Hope Chapel

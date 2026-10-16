@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Russian (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Russian words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Fly to the Undercity
@@ -12,8 +13,8 @@ return {
 	["From {area:2268}'s flight master, fly to the {area:1497}."] = "От распорядителя полетов ({area:2268}) летите сюда: {area:1497}.",
 
 	-- Step 2: Janice Felstone
-	-- {area:1497} Undercity · {zone:1420} Tirisfal Glades · {area:152} Bulwark
-	["Leave the {area:1497} and ride east along the road through {zone:1420}, past the {area:152}. Felstone Farm is the first farm along the road; Janice waits in the house."] = "Покиньте город {area:1497} и езжайте на восток по дороге через край {zone:1420}, мимо места {area:152}. Ферма Фелстоунов – первая ферма у дороги; Джанис ждет в доме.",
+	-- {area:1497} Undercity · {zone:1420} Tirisfal Glades · {area:152} Bulwark · {npc:10778} Janice Felstone
+	["Leave the {area:1497} and ride east along the road through {zone:1420}, past the {area:152}. Felstone Farm is the first farm along the road; {npc:10778} waits in the house."] = "Покиньте город {area:1497} и езжайте на восток по дороге через край {zone:1420}, мимо места {area:152}. Ферма Фелстоунов – первая ферма у дороги; {npc:10778} ждет в доме.",
 	-- {object:175894} Janice's Parcel
 	["{object:175894}, beside the house"] = "{object:175894}, у дома",
 	-- {npc:10781} Royal Overseer Bauhaus · {area:1497} Undercity
@@ -35,8 +36,8 @@ return {
 	["He camps by the {area:202}, south-east of {area:200}."] = "Он стоит лагерем у места {area:202}, к юго-востоку от места {area:200}.",
 
 	-- Step 6: Sorrow Hill
-	-- {area:202} Writhing Haunt · {area:197} Sorrow Hill · {npc:10936} Joseph Redpath
-	["Ride south past the {area:202} to {area:197}; Marlene's house stands by the road, and {npc:10936}'s monument is in the graveyard behind it. Kill the Diseased Wolves you meet in the fields on the way."] = "Езжайте на юг мимо места {area:202} сюда: {area:197}; дом Марлен стоит у дороги, а памятник ({npc:10936}) – на кладбище за ним. По пути убивайте больных волков в полях.",
+	-- {area:202} Writhing Haunt · {area:197} Sorrow Hill · {npc:10927} Marlene · {npc:10936} Joseph Redpath
+	["Ride south past the {area:202} to {area:197}; {npc:10927}'s house stands by the road, and {npc:10936}'s monument is in the graveyard behind it. Kill the Diseased Wolves you meet in the fields on the way."] = "Езжайте на юг мимо места {area:202} сюда: {area:197}; дом {npc:10927} стоит у дороги, а памятник ({npc:10936}) – на кладбище за ним. По пути убивайте больных волков в полях.",
 	-- {npc:10840} Argent Officer Pureheart
 	["{npc:10840}, at the graveyard's south end"] = "{npc:10840}, в южной части кладбища",
 	-- {quest:5142} Little Pamela · {area:2262} Darrowshire
@@ -75,8 +76,8 @@ return {
 	["Tirion's hunts are in the {zone:1423}: keep them for later."] = "Охоты Тириона – здесь: {zone:1423}: сохраните их на потом.",
 
 	-- Step 15: Kirsta Deepshadow
-	-- {area:192} Northridge Lumber Camp
-	["Ride west to the {area:192}; Kirsta hides on the hill north-east of it."] = "Езжайте на запад сюда: {area:192}; Криста прячется на холме к северо-востоку.",
+	-- {area:192} Northridge Lumber Camp · {npc:11610} Kirsta Deepshadow
+	["Ride west to the {area:192}; {npc:11610} hides on the hill north-east of it."] = "Езжайте на запад сюда: {area:192}; {npc:11610} прячется на холме к северо-востоку.",
 
 	-- Step 16: Scarlet Crusade
 	["Scarlet Crusade"] = "Алый орден",
@@ -85,12 +86,13 @@ return {
 
 	-- Step 18: Radley and Durgen
 	["Radley and Durgen"] = "Рэдли и Дурген",
-	-- {npc:11613} Huntsman Radley · {npc:11611} Cavalier Durgen · {area:190} Hearthglen
-	["{npc:11613} stands east of the lumber camp; {npc:11611} guards the road north-east of Kirsta, toward {area:190}."] = "{npc:11613} стоит к востоку от лесопилки; {npc:11611} охраняет дорогу к северо-востоку от Кристы, в сторону места {area:190}.",
+	-- {npc:11613} Huntsman Radley · {npc:11611} Cavalier Durgen · {npc:11610} Kirsta Deepshadow · {area:190} Hearthglen
+	["{npc:11613} stands east of the lumber camp; {npc:11611} guards the road north-east of {npc:11610}, toward {area:190}."] = "{npc:11613} стоит к востоку от лесопилки; {npc:11611} охраняет дорогу к северо-востоку от {npc:11610}, в сторону места {area:190}.",
 
 	-- Step 20: Northridge Lumber Camp
+	-- {npc:11610} Kirsta Deepshadow
 	-- plural, as words: Scarlet Knights = {npc:1833} Scarlet Knight
-	["Kirsta's last task needs level 53. The Scarlet Knights and Magi (54-55) working the lumber camp just south-west of her are the closest camp."] = "Последнее задание Кристы требует 53-го уровня. Рыцари и волхвы из Алого ордена (54-55) на лесопилке чуть к юго-западу от нее – ближайшее место.",
+	["{npc:11610}'s last task needs level 53. The Scarlet Knights and Magi (54-55) working the lumber camp just south-west of her are the closest camp."] = "Последнее задание {npc:11610} требует 53-го уровня. Рыцари и волхвы из Алого ордена (54-55) на лесопилке чуть к юго-западу от нее – ближайшее место.",
 	-- {area:192} Northridge Lumber Camp · {zone:1422} Western Plaguelands
 	-- plural, as words: Scarlet Knights = {npc:1833} Scarlet Knight
 	["grind on Scarlet Knights at {area:192}, {zone:1422}"] = "бейте рыцарей из Алого ордена: {area:192}, {zone:1422}",
@@ -99,12 +101,11 @@ return {
 	-- {area:190} Hearthglen
 	["{area:190}'s Scarlets are level 58-60. Ride in to the high point marked on your map, look over the town, and get out."] = "Воины Алого ордена ({area:190}) – 58-60 уровня. Доберитесь до отмеченной на карте высокой точки, осмотрите город и уходите.",
 
-	-- Step 24: The Bulwark
-	-- {area:152} Bulwark
-	["The {area:152}"] = "{area:152}",
+	-- Step 24: Bulwark
 	-- {area:152} Bulwark
 	["Ride south-west past Felstone Farm and follow the road west back to the {area:152}."] = "Езжайте на юго-запад мимо фермы Фелстоунов и по дороге на запад обратно сюда: {area:152}.",
-	["Derrington's watchtowers, Vandis' cauldron and Mickey's barrel are done on a later visit: keep them."] = "Сторожевые башни Деррингтона, котел Вандис и бочка Микки – в следующий визит: сохраните эти задания.",
+	-- {npc:11615} Mickey
+	["Derrington's watchtowers, Vandis' cauldron and {npc:11615}'s barrel are done on a later visit: keep them."] = "Сторожевые башни Деррингтона, котел Вандис и бочка {npc:11615} – в следующий визит: сохраните эти задания.",
 
 	-- Step 25: To Felwood
 	-- {zone:1448} Felwood
@@ -143,8 +144,8 @@ return {
 	-- Step 32: The Jaedenar moonwell
 	-- {area:1763} Jaedenar
 	["The {area:1763} moonwell"] = "Лунный колодец: {area:1763}",
-	-- {area:1763} Jaedenar
-	["Back north to {area:1763}. Fill Greta's canteen at the corrupted moonwell in the middle of the southern camp."] = "Назад на север сюда: {area:1763}. Наполните флягу Греты у оскверненного лунного колодца в центре южного лагеря.",
+	-- {area:1763} Jaedenar · {npc:10922} Greta
+	["Back north to {area:1763}. Fill {npc:10922}'s canteen at the corrupted moonwell in the middle of the southern camp."] = "Назад на север сюда: {area:1763}. Наполните флягу {npc:10922} у оскверненного лунного колодца в центре южного лагеря.",
 
 	-- Step 33: Rakaiah
 	-- {npc:11018} Arko'narin · {npc:9518} Rakaiah · {area:1763} Jaedenar · {npc:11020} Remains of Trey Lightforge
@@ -158,13 +159,14 @@ return {
 
 	-- Step 35: The Jadefire moonwell
 	["The Jadefire moonwell"] = "Лунный колодец Нефритового Пламени",
-	-- {area:1763} Jaedenar
-	["Ride back south past {area:1763} to the corrupted moonwell of the Jadefire satyrs and fill Winna's flasket there."] = "Возвращайтесь на юг мимо места {area:1763} к оскверненному лунному колодцу сатиров Нефритового Пламени и наполните там фляжку Винны.",
+	-- {area:1763} Jaedenar · {npc:9996} Winna
+	["Ride back south past {area:1763} to the corrupted moonwell of the Jadefire satyrs and fill {npc:9996}'s flasket there."] = "Возвращайтесь на юг мимо места {area:1763} к оскверненному лунному колодцу сатиров Нефритового Пламени и наполните там фляжку {npc:9996}.",
 
 	-- Step 37: Winna's kitten
-	["Winna's kitten"] = "Котенок Винны",
-	-- {npc:10042} Corrupted Saber
-	["Take the kitten to the same moonwell and release it there; once it has turned into a {npc:10042}, bring it back to Winna and click on it to hand it over."] = "Отнесите котенка к тому же лунному колодцу и выпустите его; когда он превратится в монстра {npc:10042}, приведите его к Винне и щелкните по нему, чтобы передать.",
+	-- {npc:9996} Winna
+	["{npc:9996}'s kitten"] = "Котенок {npc:9996}",
+	-- {npc:10042} Corrupted Saber · {npc:9996} Winna
+	["Take the kitten to the same moonwell and release it there; once it has turned into a {npc:10042}, bring it back to {npc:9996} and click on it to hand it over."] = "Отнесите котенка к тому же лунному колодцу и выпустите его; когда он превратится в монстра {npc:10042}, приведите его к {npc:9996} и щелкните по нему, чтобы передать.",
 	["Jadefire moonwell"] = "Лунный колодец Нефритового Пламени",
 
 	-- Step 39: Shatter Scar Vale
@@ -226,5 +228,5 @@ return {
 	["Walk into the {area:1769} tunnel beside {npc:15395} and never attack the Timbermaw furbolgs inside. The tunnel opens into {zone:1452}; follow the road east to {area:2255}, the goblin town where the next guide starts."] = "Войдите в туннель ({area:1769}) рядом с персонажем {npc:15395} и не нападайте на фурболгов Древобрюхов внутри. Туннель выходит в край {zone:1452}; езжайте по дороге на восток сюда: {area:2255} – гоблинский город, где начинается следующее руководство.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["East of {area:1997}, the cratered vale where the Entropic Beasts and Horrors roam. Kill two of each, then walk to each of the three fel-water craters."] = "К востоку от места {area:1997} – долина с кратерами, где бродят энтропические звери ({npc:9878}) и ужасы. Убейте по два каждого, затем подойдите к каждому из трех кратеров с водой Скверны.",
+	-- ["The {area:152}"] = "{area:152}",
 }

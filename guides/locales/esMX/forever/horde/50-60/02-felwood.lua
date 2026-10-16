@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Spanish (Latin America) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Spanish (Latin America) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Fly to the Undercity
@@ -12,8 +13,8 @@ return {
 	["From {area:2268}'s flight master, fly to the {area:1497}."] = "Desde el maestro de vuelo de {area:2268}, vuela a {area:1497}.",
 
 	-- Step 2: Janice Felstone
-	-- {area:1497} Undercity · {zone:1420} Tirisfal Glades · {area:152} Bulwark
-	["Leave the {area:1497} and ride east along the road through {zone:1420}, past the {area:152}. Felstone Farm is the first farm along the road; Janice waits in the house."] = "Sal de {area:1497} y cabalga al este por el camino a través de {zone:1420}, pasando {area:152}. La granja de Piedramácula es la primera granja del camino; Janice espera en la casa.",
+	-- {area:1497} Undercity · {zone:1420} Tirisfal Glades · {area:152} Bulwark · {npc:10778} Janice Felstone
+	["Leave the {area:1497} and ride east along the road through {zone:1420}, past the {area:152}. Felstone Farm is the first farm along the road; {npc:10778} waits in the house."] = "Sal de {area:1497} y cabalga al este por el camino a través de {zone:1420}, pasando {area:152}. La granja de Piedramácula es la primera granja del camino; {npc:10778} espera en la casa.",
 	-- {object:175894} Janice's Parcel
 	["{object:175894}, beside the house"] = "{object:175894}, junto a la casa",
 	-- {npc:10781} Royal Overseer Bauhaus · {area:1497} Undercity
@@ -35,8 +36,8 @@ return {
 	["He camps by the {area:202}, south-east of {area:200}."] = "Acampa junto a {area:202}, al sureste de {area:200}.",
 
 	-- Step 6: Sorrow Hill
-	-- {area:202} Writhing Haunt · {area:197} Sorrow Hill · {npc:10936} Joseph Redpath
-	["Ride south past the {area:202} to {area:197}; Marlene's house stands by the road, and {npc:10936}'s monument is in the graveyard behind it. Kill the Diseased Wolves you meet in the fields on the way."] = "Cabalga al sur pasando {area:202} hasta {area:197}; la casa de Marlene está junto al camino, y el monumento de {npc:10936} está en el cementerio detrás. Mata los lobos malsanos que encuentres en los campos por el camino.",
+	-- {area:202} Writhing Haunt · {area:197} Sorrow Hill · {npc:10927} Marlene · {npc:10936} Joseph Redpath
+	["Ride south past the {area:202} to {area:197}; {npc:10927}'s house stands by the road, and {npc:10936}'s monument is in the graveyard behind it. Kill the Diseased Wolves you meet in the fields on the way."] = "Cabalga al sur pasando {area:202} hasta {area:197}; la casa de {npc:10927} está junto al camino, y el monumento de {npc:10936} está en el cementerio detrás. Mata los lobos malsanos que encuentres en los campos por el camino.",
 	-- {npc:10840} Argent Officer Pureheart
 	["{npc:10840}, at the graveyard's south end"] = "{npc:10840}, en el extremo sur del cementerio",
 	-- {quest:5142} Little Pamela · {area:2262} Darrowshire
@@ -75,8 +76,8 @@ return {
 	["Tirion's hunts are in the {zone:1423}: keep them for later."] = "Las cacerías de Tirion están en {zone:1423}: guárdalas para más adelante.",
 
 	-- Step 15: Kirsta Deepshadow
-	-- {area:192} Northridge Lumber Camp
-	["Ride west to the {area:192}; Kirsta hides on the hill north-east of it."] = "Cabalga al oeste hasta {area:192}; Kirsta se esconde en la colina al noreste.",
+	-- {area:192} Northridge Lumber Camp · {npc:11610} Kirsta Deepshadow
+	["Ride west to the {area:192}; {npc:11610} hides on the hill north-east of it."] = "Cabalga al oeste hasta {area:192}; {npc:11610} se esconde en la colina al noreste.",
 
 	-- Step 16: Scarlet Crusade
 	["Scarlet Crusade"] = "Cruzada Escarlata",
@@ -85,12 +86,13 @@ return {
 
 	-- Step 18: Radley and Durgen
 	["Radley and Durgen"] = "Radley y Durgen",
-	-- {npc:11613} Huntsman Radley · {npc:11611} Cavalier Durgen · {area:190} Hearthglen
-	["{npc:11613} stands east of the lumber camp; {npc:11611} guards the road north-east of Kirsta, toward {area:190}."] = "{npc:11613} está al este del aserradero; {npc:11611} vigila el camino al noreste de Kirsta, hacia {area:190}.",
+	-- {npc:11613} Huntsman Radley · {npc:11611} Cavalier Durgen · {npc:11610} Kirsta Deepshadow · {area:190} Hearthglen
+	["{npc:11613} stands east of the lumber camp; {npc:11611} guards the road north-east of {npc:11610}, toward {area:190}."] = "{npc:11613} está al este del aserradero; {npc:11611} vigila el camino al noreste de {npc:11610}, hacia {area:190}.",
 
 	-- Step 20: Northridge Lumber Camp
+	-- {npc:11610} Kirsta Deepshadow
 	-- plural, as words: Scarlet Knights = {npc:1833} Scarlet Knight
-	["Kirsta's last task needs level 53. The Scarlet Knights and Magi (54-55) working the lumber camp just south-west of her are the closest camp."] = "La última tarea de Kirsta requiere nivel 53. Los caballeros y magus Escarlata (54-55) que trabajan en el aserradero justo al suroeste de ella son el campamento más cercano.",
+	["{npc:11610}'s last task needs level 53. The Scarlet Knights and Magi (54-55) working the lumber camp just south-west of her are the closest camp."] = "La última tarea de {npc:11610} requiere nivel 53. Los caballeros y magus Escarlata (54-55) que trabajan en el aserradero justo al suroeste de ella son el campamento más cercano.",
 	-- {area:192} Northridge Lumber Camp · {zone:1422} Western Plaguelands
 	-- plural, as words: Scarlet Knights = {npc:1833} Scarlet Knight
 	["grind on Scarlet Knights at {area:192}, {zone:1422}"] = "farmea caballeros Escarlata en {area:192}, {zone:1422}",
@@ -99,12 +101,11 @@ return {
 	-- {area:190} Hearthglen
 	["{area:190}'s Scarlets are level 58-60. Ride in to the high point marked on your map, look over the town, and get out."] = "Los Escarlata de {area:190} son de nivel 58-60. Entra cabalgando hasta el punto alto marcado en tu mapa, observa el pueblo y sal.",
 
-	-- Step 24: The Bulwark
-	-- {area:152} Bulwark
-	["The {area:152}"] = "{area:152}",
+	-- Step 24: Bulwark
 	-- {area:152} Bulwark
 	["Ride south-west past Felstone Farm and follow the road west back to the {area:152}."] = "Cabalga al suroeste pasando la granja de Piedramácula y sigue el camino al oeste de vuelta a {area:152}.",
-	["Derrington's watchtowers, Vandis' cauldron and Mickey's barrel are done on a later visit: keep them."] = "Las atalayas de Derrington, la caldera de Vandis y la barrica de Mickey se hacen en una visita posterior: guárdalas.",
+	-- {npc:11615} Mickey
+	["Derrington's watchtowers, Vandis' cauldron and {npc:11615}'s barrel are done on a later visit: keep them."] = "Las atalayas de Derrington, la caldera de Vandis y la barrica de {npc:11615} se hacen en una visita posterior: guárdalas.",
 
 	-- Step 25: To Felwood
 	-- {zone:1448} Felwood
@@ -143,8 +144,8 @@ return {
 	-- Step 32: The Jaedenar moonwell
 	-- {area:1763} Jaedenar
 	["The {area:1763} moonwell"] = "El pozo de la luna de {area:1763}",
-	-- {area:1763} Jaedenar
-	["Back north to {area:1763}. Fill Greta's canteen at the corrupted moonwell in the middle of the southern camp."] = "De vuelta al norte a {area:1763}. Llena la cantimplora de Greta en el pozo de la luna corrupto en medio del campamento sur.",
+	-- {area:1763} Jaedenar · {npc:10922} Greta
+	["Back north to {area:1763}. Fill {npc:10922}'s canteen at the corrupted moonwell in the middle of the southern camp."] = "De vuelta al norte a {area:1763}. Llena la cantimplora de {npc:10922} en el pozo de la luna corrupto en medio del campamento sur.",
 
 	-- Step 33: Rakaiah
 	-- {npc:11018} Arko'narin · {npc:9518} Rakaiah · {area:1763} Jaedenar · {npc:11020} Remains of Trey Lightforge
@@ -158,13 +159,14 @@ return {
 
 	-- Step 35: The Jadefire moonwell
 	["The Jadefire moonwell"] = "El pozo de la luna Fuego de Jade",
-	-- {area:1763} Jaedenar
-	["Ride back south past {area:1763} to the corrupted moonwell of the Jadefire satyrs and fill Winna's flasket there."] = "Cabalga de vuelta al sur pasando {area:1763} hasta el pozo de la luna corrupto de los sátiros Fuego de Jade y llena allí el frasquito de Winna.",
+	-- {area:1763} Jaedenar · {npc:9996} Winna
+	["Ride back south past {area:1763} to the corrupted moonwell of the Jadefire satyrs and fill {npc:9996}'s flasket there."] = "Cabalga de vuelta al sur pasando {area:1763} hasta el pozo de la luna corrupto de los sátiros Fuego de Jade y llena allí el frasquito de {npc:9996}.",
 
 	-- Step 37: Winna's kitten
-	["Winna's kitten"] = "El gatito de Winna",
-	-- {npc:10042} Corrupted Saber
-	["Take the kitten to the same moonwell and release it there; once it has turned into a {npc:10042}, bring it back to Winna and click on it to hand it over."] = "Lleva al gatito al mismo pozo de la luna y suéltalo allí; cuando se haya convertido en un {npc:10042}, llévaselo a Winna y haz clic en él para entregarlo.",
+	-- {npc:9996} Winna
+	["{npc:9996}'s kitten"] = "El gatito de {npc:9996}",
+	-- {npc:10042} Corrupted Saber · {npc:9996} Winna
+	["Take the kitten to the same moonwell and release it there; once it has turned into a {npc:10042}, bring it back to {npc:9996} and click on it to hand it over."] = "Lleva al gatito al mismo pozo de la luna y suéltalo allí; cuando se haya convertido en un {npc:10042}, llévaselo a {npc:9996} y haz clic en él para entregarlo.",
 	["Jadefire moonwell"] = "Pozo de la luna Fuego de Jade",
 
 	-- Step 39: Shatter Scar Vale
@@ -226,5 +228,5 @@ return {
 	["Walk into the {area:1769} tunnel beside {npc:15395} and never attack the Timbermaw furbolgs inside. The tunnel opens into {zone:1452}; follow the road east to {area:2255}, the goblin town where the next guide starts."] = "Entra en el túnel de {area:1769} junto a {npc:15395} y nunca ataques a los fúrbolgs Fauces de Madera de dentro. El túnel sale a {zone:1452}; sigue el camino al este hasta {area:2255}, el pueblo goblin donde empieza la siguiente guía.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["East of {area:1997}, the cratered vale where the Entropic Beasts and Horrors roam. Kill two of each, then walk to each of the three fel-water craters."] = "Al este de {area:1997}, la cañada de cráteres donde deambulan las bestias entrópicas y los horrores. Mata dos de cada uno y luego camina hasta cada uno de los tres cráteres de agua vil.",
+	-- ["The {area:152}"] = "{area:152}",
 }

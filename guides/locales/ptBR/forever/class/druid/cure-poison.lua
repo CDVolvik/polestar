@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Portuguese (Brazil) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Portuguese (Brazil) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -51,7 +52,7 @@ return {
 	["Cast {spell:18960}. {npc:11802} is in {area:2361}. {npc:11798} flies druids to {area:1638}; fly on to the {area:380} from there."] = "Lance {spell:18960}. {npc:11802} está em {area:2361}. {npc:11798} leva druidas voando a {area:1638}; de lá, siga voando até {area:380}.",
 
 	-- Step 12: Dreadmist Peak
-	-- {area:380} Crossroads · {area:384} Dreadmist Peak · {item:15842} Empty Dreadmist Peak Sampler · {object:19464} Dreadmist Peak Pool
+	-- {area:380} Crossroads · {area:384} Dreadmist Peak · {item:15842} Empty Dreadmist Peak Sampler · {object:19464} Dreadmist Peak Pool (no name in this language: may be words)
 	["From the {area:380} ride north to {area:384} and fill the {item:15842} at the {object:19464}."] = "De {area:380} cavalgue para o norte até {area:384} e encha o {item:15842} no {object:19464}.",
 
 	-- Step 13: Tonga Runetotem

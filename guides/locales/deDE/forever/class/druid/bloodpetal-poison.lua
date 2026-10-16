@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in German (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in German words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -13,8 +14,8 @@ return {
 	["Cast {spell:18960}. {npc:12042} stands in {area:2361}; your class trainer offers the same quest."] = "Wirke {spell:18960}. {npc:12042} steht in {area:2361}; dein Klassenlehrer bietet dieselbe Quest an.",
 
 	-- Step 2: Torwa Pathfinder
-	-- {area:976} Gadgetzan · {zone:1449} Un'Goro Crater
-	["Fly to {area:976}, ride west to the long ramp down into {zone:1449}: Torwa camps at its foot, in the south-east corner of the crater."] = "Flieg nach {area:976} und reite nach Westen zur langen Rampe hinab in den {zone:1449}: Torwa lagert an ihrem Fuß, in der Südostecke des Kraters.",
+	-- {area:976} Gadgetzan · {zone:1449} Un'Goro Crater · {npc:9619} Torwa
+	["Fly to {area:976}, ride west to the long ramp down into {zone:1449}: {npc:9619} camps at its foot, in the south-east corner of the crater."] = "Flieg nach {area:976} und reite nach Westen zur langen Rampe hinab in den {zone:1449}: {npc:9619} lagert an ihrem Fuß, in der Südostecke des Kraters.",
 
 	-- Step 3: Gorishi Stings and Bloodcap
 	-- {item:22434} Bloodcap
@@ -38,6 +39,6 @@ return {
 	["{area:1477} lies in the {area:74} in the {zone:1435}. {npc:8580} guards the bottom of the temple: a dungeon boss, so bring a group."] = "{area:1477} liegt im {area:74} in den {zone:1435}. {npc:8580} bewacht den Grund des Tempels: ein Dungeonboss, also bring eine Gruppe mit.",
 
 	-- Step 8: A Better Ingredient
-	-- {zone:1449} Un'Goro Crater
-	["Back to Torwa in the south-east corner of {zone:1449}."] = "Zurück zu Torwa in der Südostecke des {zone:1449}.",
+	-- {npc:9619} Torwa · {zone:1449} Un'Goro Crater
+	["Back to {npc:9619} in the south-east corner of {zone:1449}."] = "Zurück zu {npc:9619} in der Südostecke des {zone:1449}.",
 }

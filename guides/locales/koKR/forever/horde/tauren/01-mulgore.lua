@@ -3,16 +3,17 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Korean words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Camp Narache
-	-- {area:221} Camp Narache
-	["You start on the mesa of {area:221}. Grull and the chief stand by the big tent in the middle."] = "{area:221}의 고원에서 시작합니다. 그룰과 족장은 한가운데 큰 천막 옆에 서 있습니다.",
+	-- {area:221} Camp Narache · {npc:2980} Grull
+	["You start on the mesa of {area:221}. {npc:2980} and the chief stand by the big tent in the middle."] = "{area:221}의 고원에서 시작합니다. {npc:2980}와(과) 족장은 한가운데 큰 천막 옆에 서 있습니다.",
 
 	-- Step 2: The Hunt Begins
 	["Plainstriders roam the grass all around the camp."] = "초원타조는 야영지 주변 풀밭 곳곳을 돌아다닙니다.",
 
-	-- Step 3: Grull Hawkwind
+	-- Step 3: Grull
 	-- {npc:3059} Harutt Thunderhorn
 	["{npc:3059}, the warrior trainer"] = "전사 상급자 {npc:3059}",
 	-- {npc:3061} Lanka Farshot
@@ -27,20 +28,20 @@ return {
 	["{npc:2991} sits by the tent on the camp's eastern edge; the {item:4755} stands next to her."] = "{npc:2991}은(는) 야영지 동쪽 가장자리 천막 옆에 앉아 있으며, {item:4755}은(는) 그 옆에 있습니다.",
 
 	-- Step 6: The Hunt Continues
-	-- {npc:6775} Antur Fallow
+	-- {npc:6775} Antur Fallow · {npc:2980} Grull
 	-- plural, as words: Mountain Cougars = {npc:2961} Mountain Cougar
-	["{npc:6775} stands at the west end of the camp, at the north-west corner of the hills where the Mountain Cougars prowl: take his quest, hunt the cougars from there south and east, then come back up to Grull."] = "{npc:6775}은(는) 야영지 서쪽 끝, 산지퓨마가 돌아다니는 언덕의 북서쪽 모퉁이에 서 있습니다. 그의 퀘스트를 받고, 거기서부터 남쪽과 동쪽으로 퓨마를 사냥한 뒤 그룰에게 돌아오세요.",
+	["{npc:6775} stands at the west end of the camp, at the north-west corner of the hills where the Mountain Cougars prowl: take his quest, hunt the cougars from there south and east, then come back up to {npc:2980}."] = "{npc:6775}은(는) 야영지 서쪽 끝, 산지퓨마가 돌아다니는 언덕의 북서쪽 모퉁이에 서 있습니다. 그의 퀘스트를 받고, 거기서부터 남쪽과 동쪽으로 퓨마를 사냥한 뒤 {npc:2980}에게 돌아오세요.",
 
-	-- Step 7: Grull Hawkwind
-	-- {npc:3209} Brave Windfeather
-	["{npc:3209}, next to Grull"] = "그룰 옆의 {npc:3209}",
+	-- Step 7: Grull
+	-- {npc:3209} Brave Windfeather · {npc:2980} Grull
+	["{npc:3209}, next to {npc:2980}"] = "{npc:2980} 옆의 {npc:3209}",
 
 	-- Step 8: Seer Graytongue
 	["Follow the path south out of camp to the Seer's tent at the foot of the hills."] = "길을 따라 야영지에서 남쪽으로 나가 언덕 기슭의 예언자 천막으로 가세요.",
 
 	-- Step 9: The shrine of An'she and Mu'sha
 	["The shrine of An'she and Mu'sha"] = "안셰와 무샤의 제단",
-	-- {object:660739} Ritual Fire
+	-- {object:660739} Ritual Fire (no name in this language: may be words)
 	["The incense burns out in ten minutes: run straight east along the southern hills to the {object:660739}."] = "향은 10분 안에 다 탑니다. 남쪽 언덕을 따라 곧장 동쪽의 {object:660739}(으)로 달려가세요.",
 
 	-- Step 10: Brambleblade Ravine
@@ -91,8 +92,8 @@ return {
 
 	-- Step 22: Back to Bloodhoof
 	["Back to Bloodhoof"] = "블러드후프 마을로 돌아가기",
-	-- {npc:2993} Baine Bloodhoof · {zone:1456} Thunder Bluff
-	["{npc:2993}, for Cairne in {zone:1456}"] = "{zone:1456}의 케른에게 갈 {npc:2993}",
+	-- {npc:2993} Baine Bloodhoof · {npc:3057} Cairne · {zone:1456} Thunder Bluff
+	["{npc:2993}, for {npc:3057} in {zone:1456}"] = "{zone:1456}의 {npc:3057}에게 갈 {npc:2993}",
 	-- {npc:2948} Mull Thunderhorn · {zone:1456} Thunder Bluff
 	["{npc:2948}, for Hamuul in {zone:1456}"] = "{zone:1456}의 하물에게 갈 {npc:2948}",
 
@@ -102,8 +103,8 @@ return {
 	["{npc:3063}'s quest: beat three Novice Warriors (or players in duels) next to him."] = "{npc:3063}의 퀘스트: 그 옆에서 풋내기 전사 세 명(또는 결투로 플레이어)을 이기세요.",
 
 	-- Step 25: Ahab Wheathoof
-	-- {item:287505} Tender Strider Meat
-	["Ahab stands at the north edge of the village. Kyle wants {item:287505} from plainstriders."] = "아합은 마을 북쪽 가장자리에 서 있습니다. 카일은 초원타조에게서 얻는 {item:287505}을(를) 원합니다.",
+	-- {npc:277182} Ahab Wheathoof · {item:287505} Tender Strider Meat
+	["{npc:277182} stands at the north edge of the village. Kyle wants {item:287505} from plainstriders."] = "{npc:277182}은(는) 마을 북쪽 가장자리에 서 있습니다. 카일은 초원타조에게서 얻는 {item:287505}을(를) 원합니다.",
 
 	-- Step 26: Thunderhorn Water Well
 	-- {item:4809} Ambercorn · {quest:766} Mazzranache · {quest:761} Swoop Hunting
@@ -118,12 +119,12 @@ return {
 	["Swoops glide over the plains all around Bloodhoof."] = "검독수리는 블러드후프 마을 주변 평원 곳곳을 활공합니다.",
 
 	-- Step 29: Morin Cloudstalker
-	-- {area:396} Winterhoof Water Well
-	["Morin camps by the {area:396} south-east of Bloodhoof."] = "모린은 블러드후프 마을 남동쪽의 {area:396} 옆에 야영하고 있습니다.",
+	-- {npc:2988} Morin Cloudstalker · {area:396} Winterhoof Water Well
+	["{npc:2988} camps by the {area:396} south-east of Bloodhoof."] = "{npc:2988}은(는) 블러드후프 마을 남동쪽의 {area:396} 옆에 야영하고 있습니다.",
 
 	-- Step 30: Longwalker Malah
-	-- {area:821} Rolling Plains
-	["Malah stands on the {area:821} a little east of the well."] = "말라는 우물 조금 동쪽의 {area:821}에 서 있습니다.",
+	-- {npc:275789} Malah · {area:821} Rolling Plains
+	["{npc:275789} stands on the {area:821} a little east of the well."] = "{npc:275789}은(는) 우물 조금 동쪽의 {area:821}에 서 있습니다.",
 
 	-- Step 31: Galak centaurs and Prairie Wolf Alphas
 	-- plural, as words: Prairie Wolf Alphas = {npc:2960} Prairie Wolf Alpha
@@ -177,19 +178,19 @@ return {
 	["Flatland Prowlers roam the plains around {area:225}"] = "굶주린 평원퓨마는 {area:225} 주변 평원을 돌아다닙니다",
 
 	-- Step 46: Thunder Bluff
-	-- {npc:2995} Tal
-	["Ride a lift up to the mesas. {npc:2995} keeps the wind riders on the central rise; Cairne stands in the great tent there."] = "승강기를 타고 고원으로 올라가세요. {npc:2995}은(는) 중앙 고지에서 윈드라이더를 돌보고, 케른은 그곳 큰 천막에 서 있습니다.",
+	-- {npc:2995} Tal · {npc:3057} Cairne
+	["Ride a lift up to the mesas. {npc:2995} keeps the wind riders on the central rise; {npc:3057} stands in the great tent there."] = "승강기를 타고 고원으로 올라가세요. {npc:2995}은(는) 중앙 고지에서 윈드라이더를 돌보고, {npc:3057}은(는) 그곳 큰 천막에 서 있습니다.",
 
 	-- Step 47: Traditions of the Bluff
-	-- {npc:269068} Eylah Sunhorn · {npc:3005} Mahu · {item:278078} Prepared Incense
-	["{npc:269068} wants tauren incense: buy its four parts from Nida the herbalist, Nata the enchanting supplier, {npc:3005} the leatherworking supplier and Naal the cooking supplier, then combine them into {item:278078}."] = "{npc:269068}은(는) 타우렌 향을 원합니다. 약초 상인 니다, 마법부여 재료 상인 나타, 가죽세공 재료 상인 {npc:3005}, 요리 재료 상인 나알에게서 재료 네 가지를 사서 {item:278078}(으)로 합치세요.",
-	-- {item:278079} Bundle of Herbs · {npc:3014} Nida Winterhoof
+	-- {npc:269068} Eylah Sunhorn · {npc:3014} Nida · {npc:3012} Nata · {npc:3005} Mahu · {npc:3027} Naal · {item:278078} Prepared Incense
+	["{npc:269068} wants tauren incense: buy its four parts from {npc:3014} the herbalist, {npc:3012} the enchanting supplier, {npc:3005} the leatherworking supplier and {npc:3027} the cooking supplier, then combine them into {item:278078}."] = "{npc:269068}은(는) 타우렌 향을 원합{npc:3014}. 약초 상인 니다, 마법부여 재료 상인 {npc:3012}, 가죽세공 재료 상인 {npc:3005}, 요리 재료 상인 {npc:3027}에게서 재료 네 가지를 사서 {item:278078}(으)로 합치세요.",
+	-- {item:278079} Bundle of Herbs · {npc:3014} Nida
 	["{item:278079}, from {npc:3014}"] = "{npc:3014}에게서 사는 {item:278079}",
-	-- {item:278080} Bundle of Dried Cedar Twigs · {npc:3012} Nata Dawnstrider
+	-- {item:278080} Bundle of Dried Cedar Twigs · {npc:3012} Nata
 	["{item:278080}, from {npc:3012}"] = "{npc:3012}에게서 사는 {item:278080}",
 	-- {item:278081} Sinew Thread · {npc:3005} Mahu
 	["{item:278081}, from {npc:3005}"] = "{npc:3005}에게서 사는 {item:278081}",
-	-- {item:278083} Ceremonial Flint and Tinder · {npc:3027} Naal Mistrunner
+	-- {item:278083} Ceremonial Flint and Tinder · {npc:3027} Naal
 	["{item:278083}, from {npc:3027}"] = "{npc:3027}에게서 사는 {item:278083}",
 
 	-- Step 48: Hunter Rise
@@ -205,8 +206,8 @@ return {
 	["{npc:5769}: for {npc:3448} at the {area:380}"] = "{npc:5769}: {area:380}의 {npc:3448}에게",
 
 	-- Step 52: Turak Runetotem
-	-- {npc:6746} Innkeeper Pala · {area:1639} Elder Rise
-	["{npc:6746} on the central rise sends you to Turak on {area:1639}."] = "중앙 고지의 {npc:6746}이(가) {area:1639}의 투락에게 보냅니다.",
+	-- {npc:6746} Innkeeper Pala · {npc:3033} Turak Runetotem · {area:1639} Elder Rise
+	["{npc:6746} on the central rise sends you to {npc:3033} on {area:1639}."] = "중앙 고지의 {npc:6746}이(가) {area:1639}의 {npc:3033}에게 보냅니다.",
 
 	-- Step 53: Moonglade
 	-- {spell:18960} Teleport: Moonglade · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {quest:5930} Great Bear Spirit
@@ -223,14 +224,12 @@ return {
 	["Tame it with the {item:15908}"] = "{item:15908}(으)로 길들이기",
 
 	-- Step 56: The Moonkin Stone
-	-- {object:177525} Moonkin Stone
+	-- {object:177525} Moonkin Stone (no name in this language: may be words)
 	["The {object:177525}"] = "{object:177525}",
 	-- {zone:1412} Mulgore · {item:15710} Cenarion Lunardust
 	["The stone stands in the pass out of {zone:1412}, on your way east. Use the {item:15710} there and defeat Lunaclaw."] = "돌은 동쪽으로 가는 길에 있는 {zone:1412} 출구 고갯길에 있습니다. 그곳에서 {item:15710}을(를) 사용하고 초승달발톱을 물리치세요.",
 
-	-- Step 57: The Crossroads
-	-- {area:380} Crossroads
-	["The {area:380}"] = "{area:380}",
+	-- Step 57: Crossroads
 	-- {zone:1412} Mulgore · {area:380} Crossroads · {quest:860} Sergra Darkthorn · {npc:3448} Tonga Runetotem · {zone:1413} The Barrens
 	["Leave {zone:1412} by the south-eastern pass and follow the road to the {area:380}. {quest:860} stands by the inn, {npc:3448} at the south gate. {zone:1413} guide starts here."] = "남동쪽 고갯길로 {zone:1412}을(를) 나가 길을 따라 {area:380}(으)로 가세요. {quest:860}은(는) 여관 옆에, {npc:3448}은(는) 남문에 서 있습니다. {zone:1413} 가이드는 여기서 시작합니다.",
 
@@ -240,4 +239,5 @@ return {
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Battleboars graze north of the shrine; the Bristleback quilboar hold the ravine to the north-east. {npc:8554} stands at its eastern end, and the {item:4851} lies on the ground in the camp."] = "전투멧돼지는 제단 북쪽에서 풀을 뜯고, 뾰족털 가시멧돼지는 북동쪽 협곡을 차지하고 있습니다. {npc:8554}은(는) 협곡 동쪽 끝에 서 있고, {item:4851}은(는) 야영지 바닥에 있습니다.",
+	-- ["The {area:380}"] = "{area:380}",
 }

@@ -3,13 +3,14 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (traditional) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (traditional) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Apprentice Engineering
 	-- {skill:202} Engineering
 	["Apprentice {skill:202}"] = "初級{skill:202}",
 	-- {skill:202} Engineering
-	["{skill:202} runs alongside leveling. Forever's Legacy System rewards crafting professions at skill 150, 225 and 300 (the Journeyman, Expert and Artisan caps), so each of those checkpoints counts. Materials for 1-75 are worth about 62s in all."] = "{skill:202}可與升級同步進行。Forever 的傳承系統會在技能 150、225 和 300（中級、高級和專家的上限）時獎勵製造專業，因此每個檢查點都很重要。1-75 的材料總值約 62s。",
+	["{skill:202} runs alongside leveling. Forever's Legacy System rewards crafting professions at skill 150, 225 and 300 (the Journeyman, Expert and Artisan caps), so each of those checkpoints counts. Materials for 1-75 are worth about 62s in all."] = "{skill:202}可與升級同步進行。Forever 的傳承系統會在技能 150、225 和 300（中級、高級和專家級的上限）時獎勵製造專業，因此每個檢查點都很重要。1-75 的材料總值約 62s。",
 	-- {item:5956} Blacksmith Hammer
 	["{item:5956}: a tool, keep it in your bags"] = "{item:5956}：工具，請留在背包中",
 
@@ -248,9 +249,9 @@ return {
 
 	-- Step 48: Artisan Engineering
 	-- {skill:202} Engineering
-	["Artisan {skill:202}"] = "專家{skill:202}",
+	["Artisan {skill:202}"] = "專家級{skill:202}",
 	-- {skill:202} Engineering
-	["Artisan needs character level 35 and {skill:202} 200; it raises the cap to 300. Materials for 225-300 are worth about 67g in all."] = "專家需要角色等級 35 且{skill:202} 200；上限提高到 300。225-300 的材料總值約 67g。",
+	["Artisan needs character level 35 and {skill:202} 200; it raises the cap to 300. Materials for 225-300 are worth about 67g in all."] = "專家級需要角色等級 35 且{skill:202} 200；上限提高到 300。225-300 的材料總值約 67g。",
 
 	-- Step 49: Schematic: Thorium Widget
 	-- {item:15994} Thorium Widget · {skill:202} Engineering

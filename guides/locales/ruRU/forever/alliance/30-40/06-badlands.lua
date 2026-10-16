@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Russian (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Russian words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Hammertoe's Digsite
@@ -23,8 +24,8 @@ return {
 	["Ryedol's next errand goes into {area:1517}: skip it."] = "Следующее поручение Ржанца ведет сюда: {area:1517}. Пропустите его.",
 
 	-- Step 5: Valley of Fangs
-	-- {npc:2817} Rigglefuzz · {area:1877} Valley of Fangs · {zone:1418} Badlands
-	["Martek and {npc:2817} camp together in the {area:1877}, in the middle of the {zone:1418}."] = "Мартек и {npc:2817} стоят лагерем вместе ({area:1877}), в центре зоны {zone:1418}.",
+	-- {npc:4618} Martek · {npc:2817} Rigglefuzz · {area:1877} Valley of Fangs · {zone:1418} Badlands
+	["{npc:4618} and {npc:2817} camp together in the {area:1877}, in the middle of the {zone:1418}."] = "{npc:4618} и {npc:2817} стоят лагерем вместе ({area:1877}), в центре зоны {zone:1418}.",
 	["The clams lie on Stranglethorn's north-west coast, in the next guide: keep it"] = "Моллюски – на северо-западном побережье Тернистой долины, в следующем гайде: сохраните задание",
 
 	-- Step 6: Ogres and buzzards
@@ -41,21 +42,22 @@ return {
 	["for {npc:4454} in the {area:439}: the {zone:1446} guide crosses them at 45, keep it"] = "для NPC {npc:4454} ({area:439}): гайд по зоне {zone:1446} проходит там на 45-м уровне, сохраните задание",
 
 	-- Step 9: Lotwil Veriatus
-	-- {area:1878} Dustbowl
-	["Ride west into the {area:1878}; Lotwil works by his machines in the middle of it."] = "Езжайте на запад. Цель: {area:1878}; в ее центре у своих машин работает Лотвиль.",
+	-- {area:1878} Dustbowl · {npc:2921} Lotwil Veriatus
+	["Ride west into the {area:1878}; {npc:2921} works by his machines in the middle of it."] = "Езжайте на запад. Цель: {area:1878}; в ее центре у своих машин работает {npc:2921}.",
 
 	-- Step 10: Lesser Rock Elementals
 	-- plural, as words: Lesser Rock Elementals = {npc:2735} Lesser Rock Elemental
 	["Lesser Rock Elementals"] = "Младшие каменные элементали",
-	-- {area:1878} Dustbowl
+	-- {area:1878} Dustbowl · {npc:2921} Lotwil Veriatus
 	-- plural, as words: Lesser Rock Elementals = {npc:2735} Lesser Rock Elemental
-	["The Lesser Rock Elementals wander the {area:1878} west of Lotwil."] = "Младшие каменные элементали бродят здесь: {area:1878}, к западу от Лотвиля.",
+	["The Lesser Rock Elementals wander the {area:1878} west of {npc:2921}."] = "Младшие каменные элементали бродят здесь: {area:1878}, к западу от {npc:2921}.",
 
 	-- Step 12: Rock Elementals
 	-- plural, as words: Rock Elementals = {npc:92} Rock Elemental
 	["Rock Elementals"] = "Каменные элементали",
+	-- {npc:2921} Lotwil Veriatus
 	-- plural, as words: Rock Elementals = {npc:92} Rock Elemental · Giant Buzzards = {npc:2831} Giant Buzzard · Elder Crag Coyotes = {npc:2729} Elder Crag Coyote
-	["The Rock Elementals roam south-east of Lotwil; Giant Buzzards and Elder Crag Coyotes share the plain to their west."] = "Каменные элементали бродят к юго-востоку от Лотвиля; на равнине к западу от них – гигантские канюки и старые скальные койоты.",
+	["The Rock Elementals roam south-east of {npc:2921}; Giant Buzzards and Elder Crag Coyotes share the plain to their west."] = "Каменные элементали бродят к юго-востоку от {npc:2921}; на равнине к западу от них – гигантские канюки и старые скальные койоты.",
 
 	-- Step 14: Greater Rock Elementals
 	-- plural, as words: Greater Rock Elementals = {npc:2736} Greater Rock Elemental
@@ -65,11 +67,12 @@ return {
 	["The Greater Rock Elementals (level 42) walk the far south-west corner below {area:342}; pull them one at a time. The Dustbelcher Wyrmhunters and Maulers at {area:342} also drop scrap."] = "Большие каменные элементали (42-й уровень) ходят в дальнем юго-западном углу, под местом {area:342}; выманивайте по одному. Лом падает и с охотников на драконов и извергов из клана Гнилобрюхов ({area:342}).",
 
 	-- Step 15: Lotwil Veriatus
-	-- {npc:2920} Lucien Tosselwrench
-	["{npc:2920}, beside Lotwil"] = "{npc:2920}, рядом с Лотвилем",
+	-- {npc:2920} Lucien Tosselwrench · {npc:2921} Lotwil Veriatus
+	["{npc:2920}, beside {npc:2921}"] = "{npc:2920}, рядом с {npc:2921}",
 	-- {item:2868} Patterned Bronze Bracers
 	["only if you carry {item:2868} (a blacksmith's craft)"] = "только если у вас есть {item:2868} (изделие кузнеца)",
-	["Lotwil's next test needs crafted gear: skip it."] = "Для следующего испытания Лотвиля нужно изготовленное снаряжение: пропустите его.",
+	-- {npc:2921} Lotwil Veriatus
+	["{npc:2921}'s next test needs crafted gear: skip it."] = "Для следующего испытания {npc:2921} нужно изготовленное снаряжение: пропустите его.",
 
 	-- Step 16: The Ancient Chest
 	-- {object:126260} Ancient Chest
@@ -101,23 +104,24 @@ return {
 	["Follow the road west across the north of {zone:1443} to the ruins of {area:2405}; the wrecked ship's chest lies on the shore just west of them."] = "Идите по дороге на запад через север зоны {zone:1443} к руинам ({area:2405}); сундук с разбитого корабля лежит на берегу чуть западнее.",
 
 	-- Step 24: Azore Aldamort
-	["Azore's tower stands on the hill east of the wreck."] = "Башня Азора стоит на холме к востоку от обломков корабля.",
+	-- {npc:11863} Azore Aldamort
+	["{npc:11863}'s tower stands on the hill east of the wreck."] = "Башня {npc:11863} стоит на холме к востоку от обломков корабля.",
 
 	-- Step 25: Lord Kragaru
-	-- {npc:12369} Lord Kragaru
-	["{npc:12369}, a centaur chieftain, camps on the north-west coast, north of Azore's tower."] = "{npc:12369}, вождь кентавров, стоит лагерем на северо-западном побережье, к северу от башни Азора.",
+	-- {npc:12369} Lord Kragaru · {npc:11863} Azore Aldamort
+	["{npc:12369}, a centaur chieftain, camps on the north-west coast, north of {npc:11863}'s tower."] = "{npc:12369}, вождь кентавров, стоит лагерем на северо-западном побережье, к северу от башни {npc:11863}.",
 
 	-- Step 27: Nijel's Point
-	-- {item:6245} Karnitol's Satchel
-	["Kreldig's next task, {item:6245}, is a drop on the far coast: skip it."] = "Следующее задание Крелдига, {item:6245}, – добыча на дальнем побережье: пропустите его.",
+	-- {npc:5638} Kreldig · {item:6245} Karnitol's Satchel
+	["{npc:5638}'s next task, {item:6245}, is a drop on the far coast: skip it."] = "Следующее задание {npc:5638}, {item:6245}, – добыча на дальнем побережье: пропустите его.",
 
 	-- Step 28: Bibbly F'utzbuckle
 	-- {area:2407} Kormek's Hut
 	["Follow the road south to {area:2407}."] = "Идите по дороге на юг. Цель: {area:2407}.",
 
 	-- Step 29: Kodo Graveyard
-	-- {area:596} Kodo Graveyard · {area:2407} Kormek's Hut · {object:176751} Kodo Bones · {npc:217590} Flesh Picker
-	["Hornizz stands at the edge of the {area:596}, south-west of {area:2407}; {object:176751} lie among the skeletons. A {npc:217590} crawls about the graveyard: catch one with the Entomology Starter Kit, then tick it off."] = "Хормиц стоит на краю места {area:596}, к юго-западу (ориентир: {area:2407}); {object:176751} лежат среди скелетов. По кладбищу ползает {npc:217590}: поймайте одного с помощью набора начинающего энтомолога и отметьте цель.",
+	-- {npc:6019} Hornizz · {area:596} Kodo Graveyard · {area:2407} Kormek's Hut · {object:176751} Kodo Bones · {npc:217590} Flesh Picker
+	["{npc:6019} stands at the edge of the {area:596}, south-west of {area:2407}; {object:176751} lie among the skeletons. A {npc:217590} crawls about the graveyard: catch one with the Entomology Starter Kit, then tick it off."] = "{npc:6019} стоит на краю места {area:596}, к юго-западу (ориентир: {area:2407}); {object:176751} лежат среди скелетов. По кладбищу ползает {npc:217590}: поймайте одного с помощью набора начинающего энтомолога и отметьте цель.",
 	-- {npc:217590} Flesh Picker
 	["{npc:217590}: catch it, for My Little Friends"] = "{npc:217590}: поймайте для задания «Мои маленькие друзья»",
 
@@ -127,12 +131,14 @@ return {
 	["The Maraudine centaurs hold the {area:607} west of the graveyard; every kind drops the totems."] = "Кентавры из племени Мародин занимают {area:607} к западу от кладбища; тотемы падают со всех.",
 
 	-- Step 31: Melizza Brimbuzzle
-	["Melizza is held in the centaur camp west of the graveyard. Free her and keep her alive on the walk out; she stops by the graveyard."] = "Мелиццу держат в лагере кентавров к западу от кладбища. Освободите ее и защищайте по пути наружу; она остановится у кладбища.",
-	["escort Melizza back toward the graveyard"] = "сопроводите Мелиццу обратно к кладбищу",
+	-- {npc:12277} Melizza Brimbuzzle
+	["{npc:12277} is held in the centaur camp west of the graveyard. Free her and keep her alive on the walk out; she stops by the graveyard."] = "{npc:12277} держат в лагере кентавров к западу от кладбища. Освободите ее и защищайте по пути наружу; она остановится у кладбища.",
+	-- {npc:12277} Melizza Brimbuzzle
+	["escort {npc:12277} back toward the graveyard"] = "сопроводите {npc:12277} обратно к кладбищу",
 
 	-- Step 33: Gizelton Caravan
-	-- {npc:11626} Rigger Gizelton · {area:606} Gelkis Village · {area:602} Mannoroc Coven · {area:596} Kodo Graveyard
-	["{npc:11626}'s caravan stops on the road east of {area:606}. Take the quest and walk with the kodos past the {area:602}, killing the demons that jump them; talk to Smeed at his camp east of the {area:596} afterwards."] = "Караван (это {npc:11626}) останавливается на дороге к востоку (ориентир: {area:606}). Возьмите задание и идите с кодо мимо места {area:602}, убивая нападающих демонов; потом поговорите со Смидом в его лагере к востоку (ориентир: {area:596}).",
+	-- {npc:11626} Rigger Gizelton · {area:606} Gelkis Village · {area:602} Mannoroc Coven · {npc:11596} Smeed · {area:596} Kodo Graveyard
+	["{npc:11626}'s caravan stops on the road east of {area:606}. Take the quest and walk with the kodos past the {area:602}, killing the demons that jump them; talk to {npc:11596} at his camp east of the {area:596} afterwards."] = "Караван (это {npc:11626}) останавливается на дороге к востоку (ориентир: {area:606}). Возьмите задание и идите с кодо мимо места {area:602}, убивая нападающих демонов; потом поговорите со {npc:11596} в его лагере к востоку (ориентир: {area:596}).",
 
 	-- Step 34: Mannoroc Coven
 	-- {area:602} Mannoroc Coven · {zone:1443} Desolace

@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Russian (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Russian words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Into Un'Goro Crater
@@ -10,7 +11,8 @@ return {
 	["Into {zone:1449}"] = "В край {zone:1449}",
 	-- {area:1938} Broken Pillar · {zone:1449} Un'Goro Crater · {area:541} Marshal's Refuge
 	["From the {area:1938} ride west to the long ramp that winds down into {zone:1449}, then follow the crater's north wall to {area:541}, a camp in the cliff caves. Everyone here is neutral."] = "От места {area:1938} езжайте на запад к длинному извилистому спуску в край {zone:1449}, затем вдоль северной стены кратера сюда: {area:541} – лагерь в пещерах скалы. Все здесь нейтральны.",
-	["The wooden sign beside Spraggle"] = "Деревянная табличка рядом с Мучей",
+	-- {npc:9997} Spraggle
+	["The wooden sign beside {npc:9997}"] = "Деревянная табличка рядом с {npc:9997}",
 	-- {npc:9117} J.D. Collie
 	["{npc:9117}, at the back of the cave"] = "{npc:9117}, в глубине пещеры",
 
@@ -55,7 +57,8 @@ return {
 	["The raft lies on the shore of the south-eastern lake; the small pack sits in the water beside it."] = "Плот лежит на берегу юго-восточного озера; небольшой рюкзак – в воде рядом.",
 
 	-- Step 9: Torwa Pathfinder
-	["Torwa camps in the south-east corner of the crater."] = "Торва стоит лагерем в юго-восточном углу кратера.",
+	-- {npc:9619} Torwa Pathfinder
+	["{npc:9619} camps in the south-east corner of the crater."] = "{npc:9619} стоит лагерем в юго-восточном углу кратера.",
 
 	-- Step 10: Fresh Threshadon Carcass
 	["North of Torwa, a dead Threshadon lies by the water."] = "К северу от Торвы у воды лежит мертвый жесткозуб.",
@@ -63,8 +66,9 @@ return {
 	-- Step 12: Lar'korwi Mates
 	-- plural, as words: Lar'korwi Mates = {npc:9683} Lar'korwi Mate
 	["Lar'korwi Mates"] = "Самки Лар'корви",
+	-- {npc:9619} Torwa Pathfinder
 	-- plural, as words: Lar'korwi Mates = {npc:9683} Lar'korwi Mate
-	["The Lar'korwi Mates prowl the jungle north-west of Torwa."] = "Самки Лар'корви бродят по джунглям к северо-западу от Торвы.",
+	["The Lar'korwi Mates prowl the jungle north-west of {npc:9619}."] = "Самки Лар'корви бродят по джунглям к северо-западу от {npc:9619}.",
 
 	-- Step 13: Torwa Pathfinder
 	-- {npc:9684} Lar'korwi
@@ -124,12 +128,12 @@ return {
 	["Ride down the east side of the crater to the pylon on the eastern cliffs."] = "Спуститесь по восточной части кратера к пилону на восточных скалах.",
 
 	-- Step 24: Lar'korwi
-	-- {npc:9684} Lar'korwi
-	["{npc:9684}'s lair is just south of the pylon. Use Torwa's bait there; {npc:9684} is level 56 and hits hard, so start at full health."] = "Логово ({npc:9684}) – чуть к югу от пилона. Используйте там приманку Торвы; {npc:9684} – 56-го уровня и бьет сильно, начинайте с полным здоровьем.",
+	-- {npc:9684} Lar'korwi · {npc:9619} Torwa Pathfinder
+	["{npc:9684}'s lair is just south of the pylon. Use {npc:9619}'s bait there; {npc:9684} is level 56 and hits hard, so start at full health."] = "Логово ({npc:9684}) – чуть к югу от пилона. Используйте там приманку {npc:9619}; {npc:9684} – 56-го уровня и бьет сильно, начинайте с полным здоровьем.",
 
 	-- Step 25: Torwa Pathfinder
-	-- {npc:9622} U'cha
-	["Torwa now asks for {npc:9622}'s pelt, back in the north-east cave: skip it."] = "Теперь Торва просит шкуру ({npc:9622}) из северо-восточной пещеры: пропустите.",
+	-- {npc:9619} Torwa Pathfinder · {npc:9622} U'cha
+	["{npc:9619} now asks for {npc:9622}'s pelt, back in the north-east cave: skip it."] = "Теперь {npc:9619} просит шкуру ({npc:9622}) из северо-восточной пещеры: пропустите.",
 
 	-- Step 26: Western Pylon
 	["Western Pylon"] = "Западный пилон",
@@ -164,17 +168,17 @@ return {
 	["Pestlezugg's next quest needs the {npc:10041}, an elite boss. Skip it."] = "Следующее задание Пестычинса требует убить элитного босса ({npc:10041}). Пропустите.",
 
 	-- Step 33: Orgrimmar
-	-- {area:1637} Orgrimmar · {object:3202} Grom'gol · {zone:1458} Undercity
+	-- {area:1637} Orgrimmar · {object:3202} Grom'gol (no name in this language: may be words) · {zone:1458} Undercity
 	["Fly to {area:1637} and train before the {object:3202} zeppelin: the {zone:1458} stop later in this guide has no Hunter or Shaman trainer."] = "Летите сюда: {area:1637} и обучитесь до дирижабля ({object:3202}): там ({zone:1458}), куда вы попадете позже, нет учителей охотников и шаманов.",
 
 	-- Step 34: Thunder Bluff
-	-- {area:1638} Thunder Bluff · {npc:3033} Turak Runetotem · {area:1639} Elder Rise · {area:1637} Orgrimmar · {object:3202} Grom'gol
+	-- {area:1638} Thunder Bluff · {npc:3033} Turak Runetotem · {area:1639} Elder Rise · {area:1637} Orgrimmar · {object:3202} Grom'gol (no name in this language: may be words)
 	["Fly to {area:1638} and train with {npc:3033} on {area:1639}, then fly to {area:1637} for the {object:3202} zeppelin."] = "Летите сюда: {area:1638}, учитель: {npc:3033} ({area:1639}), затем летите сюда: {area:1637} к дирижаблю ({object:3202}).",
 
 	-- Step 35: Fly to Kargath
 	-- {area:340} Kargath
 	["Fly to {area:340}"] = "Летите сюда: {area:340}",
-	-- {area:1637} Orgrimmar · {object:3202} Grom'gol · {area:340} Kargath · {zone:1418} Badlands
+	-- {area:1637} Orgrimmar · {object:3202} Grom'gol (no name in this language: may be words) · {area:340} Kargath · {zone:1418} Badlands
 	["Fly to {area:1637}, take the zeppelin to {object:3202} and fly from there to {area:340}, built into the cliffs on the {zone:1418}' west edge."] = "Летите сюда: {area:1637}, садитесь на дирижабль ({object:3202}) и оттуда летите сюда: {area:340} – крепость в скалах у западного края ({zone:1418}).",
 
 	-- Step 36: Into the Searing Gorge
@@ -192,9 +196,9 @@ return {
 	-- Step 38: Black Broodlings
 	-- plural, as words: Black Broodlings = {npc:7047} Black Broodling
 	["Black Broodlings"] = "Детеныши черного дракона",
-	-- {area:251} Flame Crest · {item:12284} Draco-Incarcinatrix 900
+	-- {area:251} Flame Crest · {npc:10267} Tinkee · {item:12284} Draco-Incarcinatrix 900
 	-- plural, as words: Black Broodlings = {npc:7047} Black Broodling
-	["Black Broodlings nest in the hills just east of {area:251}. Use Tinkee's {item:12284} on a broodling when it is almost dead to capture its essence."] = "Детеныши черного дракона гнездятся на холмах чуть к востоку от места {area:251}. Примените предмет Тинки ({item:12284}) на почти убитом детеныше, чтобы поймать его сущность.",
+	["Black Broodlings nest in the hills just east of {area:251}. Use {npc:10267}'s {item:12284} on a broodling when it is almost dead to capture its essence."] = "Детеныши черного дракона гнездятся на холмах чуть к востоку от места {area:251}. Примените предмет {npc:10267} ({item:12284}) на почти убитом детеныше, чтобы поймать его сущность.",
 
 	-- Step 39: Sha'ni Proudtusk
 	-- {quest:3821} Dreadmaul Rock · {npc:9136} Sha'ni Proudtusk
@@ -212,30 +216,30 @@ return {
 	-- Step 42: Flame Crest
 	-- {area:251} Flame Crest
 	["Back north-east to {area:251}."] = "Назад на северо-восток сюда: {area:251}.",
-	-- {quest:4808} Felnok Steelspring · {area:2255} Everlook · {zone:1452} Winterspring
-	["Keep Tinkee's letter: {quest:4808} is in {area:2255}, {zone:1452}."] = "Сохраните письмо Тинки: {quest:4808} – здесь: {area:2255}, {zone:1452}.",
+	-- {npc:10267} Tinkee · {quest:4808} Felnok Steelspring · {area:2255} Everlook · {zone:1452} Winterspring
+	["Keep {npc:10267}'s letter: {quest:4808} is in {area:2255}, {zone:1452}."] = "Сохраните письмо {npc:10267}: {quest:4808} – здесь: {area:2255}, {zone:1452}.",
 
 	-- Step 43: Kargath
 	-- {area:1584} Blackrock Depths
 	["Theodora's next errand goes to Lotwil east of town and then into {area:1584}: skip it."] = "Следующее поручение Теодоры ведет к Лотвилю к востоку от города, а затем сюда: {area:1584}: пропустите.",
 
 	-- Step 44: Undercity
-	-- {npc:10879} Harbinger Balthazad · {object:36078} Trade Quarter
+	-- {npc:10879} Harbinger Balthazad · {object:36078} Trade Quarter (no name in this language: may be words)
 	["{npc:10879}, the {object:36078}, beside the bat master"] = "{npc:10879}, {object:36078}, рядом с распорядителем полетов",
-	-- {npc:6522} Andron Gant · {object:36073} Rogues' Quarter
+	-- {npc:6522} Andron Gant · {object:36073} Rogues' Quarter (no name in this language: may be words)
 	["{npc:6522}, the {object:36073}"] = "{npc:6522}, {object:36073}",
 	-- {npc:8390} Chemist Cuely · {zone:1447} Azshara
 	["{npc:8390}, the Apothecarium: the vials fill in {zone:1447} later"] = "{npc:8390}, Район Фармацевтов: склянки наполните позже ({zone:1447})",
 
 	-- Step 45: The Bulwark
-	-- {zone:1458} Undercity · {zone:1420} Tirisfal Glades
-	["Leave the {zone:1458} and ride east along the road through {zone:1420} to the Bulwark, the Forsaken fort on the border."] = "Покиньте город {zone:1458} и езжайте на восток по дороге через край {zone:1420} к Бастиону – форту Отрекшихся на границе.",
+	-- {zone:1458} Undercity · {zone:1420} Tirisfal Glades · {area:152} The Bulwark
+	["Leave the {zone:1458} and ride east along the road through {zone:1420} to the {area:152}, the Forsaken fort on the border."] = "Покиньте город {zone:1458} и езжайте на восток по дороге через край {zone:1420} к {area:152} – форту Отрекшихся на границе.",
 	-- {object:176092} Box of Incendiaries · {quest:5096} Scarlet Diversions · {quest:5401} Argent Dawn Commission
 	["Take a {object:176092} from the crate next to Derrington for {quest:5096}, done on the way back. Equip the {quest:5401}: Scourgestones only drop while you wear it."] = "Возьмите {object:176092} из ящика рядом с Деррингтоном для задания {quest:5096} – выполните его на обратном пути. Наденьте {quest:5401}: камни Плети падают, только пока он надет.",
 
 	-- Step 46: Augustus the Touched
-	-- {zone:1422} Western Plaguelands · {zone:1423} Eastern Plaguelands · {area:2627} Terrordale
-	["Follow the road east through the {zone:1422} and across the river into the {zone:1423}; leave it north for {area:2627}, the ruined town in the north-west. Augustus sits in a hut at its edge."] = "Езжайте по дороге на восток через край {zone:1422} и за реку в край {zone:1423}; сверните на север сюда: {area:2627} – разрушенный город на северо-западе. Август сидит в хижине на его краю.",
+	-- {zone:1422} Western Plaguelands · {zone:1423} Eastern Plaguelands · {area:2627} Terrordale · {npc:12384} Augustus the Touched
+	["Follow the road east through the {zone:1422} and across the river into the {zone:1423}; leave it north for {area:2627}, the ruined town in the north-west. {npc:12384} sits in a hut at its edge."] = "Езжайте по дороге на восток через край {zone:1422} и за реку в край {zone:1423}; сверните на север сюда: {area:2627} – разрушенный город на северо-западе. {npc:12384} сидит в хижине на его краю.",
 
 	-- Step 47: Augustus' Receipt Book
 	-- {area:2627} Terrordale
@@ -254,25 +258,26 @@ return {
 	-- Step 51: Darrowshire Spirits
 	-- plural, as words: Darrowshire Spirits = {npc:11064} Darrowshire Spirit
 	["Darrowshire Spirits"] = "Духи Дарроушира",
-	-- {npc:11064} Darrowshire Spirit · {area:2262} Darrowshire
-	["With Carlin's quest in your log, slain Scourge sometimes leave a {npc:11064}; talk to it to free it. Kill undead on the ride south-west to {area:2262}."] = "Пока у вас есть задание Карлина, после убитых воинов Плети иногда остается {npc:11064}; поговорите с ним, чтобы освободить. Убивайте нежить по пути на юго-запад сюда: {area:2262}.",
+	-- {npc:11063} Carlin · {npc:11064} Darrowshire Spirit · {area:2262} Darrowshire
+	["With {npc:11063}'s quest in your log, slain Scourge sometimes leave a {npc:11064}; talk to it to free it. Kill undead on the ride south-west to {area:2262}."] = "Пока у вас есть задание {npc:11063}, после убитых воинов Плети иногда остается {npc:11064}; поговорите с ним, чтобы освободить. Убивайте нежить по пути на юго-запад сюда: {area:2262}.",
 	-- plural, as words: Darrowshire Spirits = {npc:11064} Darrowshire Spirit
 	["Free Darrowshire Spirits: talk to them"] = "Освободите духов Дарроушира: поговорите с ними",
 
 	-- Step 52: Pamela Redpath
-	-- {area:2262} Darrowshire
-	["Pamela's ghost stands in the ruins of {area:2262}, in the south-west."] = "Призрак Памелы стоит в руинах ({area:2262}) на юго-западе.",
+	-- {npc:10926} Pamela Redpath · {area:2262} Darrowshire
+	["{npc:10926}'s ghost stands in the ruins of {area:2262}, in the south-west."] = "Призрак {npc:10926} стоит в руинах ({area:2262}) на юго-западе.",
 
 	-- Step 53: Pamela's Doll
-	["The doll's head and its two sides lie in the houses around Pamela; join them from your bags."] = "Голова куклы и две ее половины лежат в домах вокруг Памелы; соедините их в сумках.",
+	-- {npc:10926} Pamela Redpath
+	["The doll's head and its two sides lie in the houses around {npc:10926}; join them from your bags."] = "Голова куклы и две ее половины лежат в домах вокруг {npc:10926}; соедините их в сумках.",
 
 	-- Step 54: Pamela Redpath
 	-- {quest:5152} Auntie Marlene · {area:197} Sorrow Hill · {zone:1422} Western Plaguelands
 	["Keep {quest:5152}: Marlene lives at {area:197} in the {zone:1422}."] = "Сохраните задание {quest:5152}: Марлен живет здесь: {area:197}, {zone:1422}.",
 
 	-- Step 55: Zaeldarr the Outcast
-	-- {area:2262} Darrowshire
-	["Zaeldarr lurks just west of {area:2262}."] = "Зельдарр прячется чуть к западу от места {area:2262}.",
+	-- {npc:12250} Zaeldarr · {area:2262} Darrowshire
+	["{npc:12250} lurks just west of {area:2262}."] = "{npc:12250} прячется чуть к западу от места {area:2262}.",
 
 	-- Step 56: Back to Light's Hope Chapel
 	-- {area:2268} Light's Hope Chapel

@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Korean words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -16,17 +17,17 @@ return {
 	["At 20 {npc:258098}, the shaman trainer in {zone:1455}, sends you to {npc:258043} in {zone:1432}."] = "20레벨에 {zone:1455}의 주술사 상급자 {npc:258098}이(가) {zone:1432}의 {npc:258043}에게 보냅니다.",
 
 	-- Step 2: Norric Lochthane
-	-- {area:146} Stonewrought Dam
-	["Norric's burrow hut stands on the north-western edge of the loch, south of {area:146}."] = "노릭의 굴 오두막은 호수 북서쪽 가장자리, {area:146} 남쪽에 있습니다.",
+	-- {npc:258043} Norric Lochthane · {area:146} Stonewrought Dam
+	["{npc:258043}'s burrow hut stands on the north-western edge of the loch, south of {area:146}."] = "{npc:258043}의 굴 오두막은 호수 북서쪽 가장자리, {area:146} 남쪽에 있습니다.",
 
 	-- Step 3: Hervdana Saegrund
-	-- {zone:1437} Wetlands
-	["Hervdana's family lives in a cave beneath the southern falls of the {zone:1437}."] = "헤르브다나의 가족은 {zone:1437} 남쪽 폭포 아래 동굴에 삽니다.",
+	-- {npc:258203} Hervdana Saegrund · {zone:1437} Wetlands
+	["{npc:258203}'s family lives in a cave beneath the southern falls of the {zone:1437}."] = "{npc:258203}의 가족은 {zone:1437} 남쪽 폭포 아래 동굴에 삽니다.",
 
 	-- Step 4: The brown waterskin
 	["The brown waterskin"] = "갈색 물주머니",
-	-- {item:265732} Unfilled Brown Waterskin
-	["Fill the {item:265732} at the bottom of the waterfalls below Hervdana's cave, where the fresh water meets the brackish."] = "헤르브다나의 동굴 아래 폭포 밑, 민물과 바닷물이 만나는 곳에서 {item:265732}을(를) 채우십시오.",
+	-- {item:265732} Unfilled Brown Waterskin · {npc:258203} Hervdana Saegrund
+	["Fill the {item:265732} at the bottom of the waterfalls below {npc:258203}'s cave, where the fresh water meets the brackish."] = "{npc:258203}의 동굴 아래 폭포 밑, 민물과 바닷물이 만나는 곳에서 {item:265732}을(를) 채우십시오.",
 
 	-- Step 6: The red waterskin
 	["The red waterskin"] = "붉은 물주머니",
@@ -36,12 +37,12 @@ return {
 
 	-- Step 8: The blue waterskin
 	["The blue waterskin"] = "파란 물주머니",
-	-- {area:150} Menethil Harbor · {area:442} Auberdine · {area:271} Southshore · {area:415} Astranaar · {item:265772} Unfilled Blue Waterskin
-	["Hervdana: take the boat from {area:150} to {area:442} (it stops in {area:271} on the way), then go south to {area:415}. Fill the {item:265772} in the lake around the town."] = "헤르브다나: {area:150}에서 배를 타고 {area:442}(으)로 간 뒤(도중에 {area:271}에 들릅니다), 남쪽의 {area:415}(으)로 가십시오. 마을을 둘러싼 호수에서 {item:265772}을(를) 채우십시오.",
+	-- {npc:258203} Hervdana Saegrund · {area:150} Menethil Harbor · {area:442} Auberdine · {area:271} Southshore · {area:415} Astranaar · {item:265772} Unfilled Blue Waterskin
+	["{npc:258203}: take the boat from {area:150} to {area:442} (it stops in {area:271} on the way), then go south to {area:415}. Fill the {item:265772} in the lake around the town."] = "{npc:258203}: {area:150}에서 배를 타고 {area:442}(으)로 간 뒤(도중에 {area:271}에 들릅니다), 남쪽의 {area:415}(으)로 가십시오. 마을을 둘러싼 호수에서 {item:265772}을(를) 채우십시오.",
 
 	-- Step 9: Hervdana Saegrund
-	-- {item:7810} Vial of Purest Water
-	["the {item:7810}, for Norric"] = "{item:7810}, 노릭에게 줄 것",
+	-- {item:7810} Vial of Purest Water · {npc:258043} Norric Lochthane
+	["the {item:7810}, for {npc:258043}"] = "{item:7810}, {npc:258043}에게 줄 것",
 
 	-- Step 10: Norric Lochthane
 	-- {npc:258043} Norric Lochthane · {item:6637} Water Sapta

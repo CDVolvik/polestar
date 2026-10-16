@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (traditional) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (traditional) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Theramore
@@ -63,14 +64,16 @@ return {
 	["only if you carry a {item:3853} (a blacksmith's craft)"] = "只有在你帶著{item:3853}（鐵匠製作）時",
 
 	-- Step 15: Balos Jacken
-	["The deserters camp south of the road, west of Mudcrush's hut."] = "逃兵在道路南邊、馬德克拉什小屋西邊紮營。",
+	-- {npc:4503} Mudcrush Durtfeet
+	["The deserters camp south of the road, west of {npc:4503}'s hut."] = "逃兵在道路南邊、{npc:4503}小屋西邊紮營。",
 
 	-- Step 17: The Affray
 	-- {area:392} Ratchet · {area:720} Fray Island · {area:391} Merchant Coast · {npc:6236} Klannoc Macleod · {npc:6238} Big Will
 	["On the ride north to {area:392}, {area:720} lies off the {area:391} south of the town: wade over the sand bar shallows. {npc:6236} sends four challengers and then {npc:6238} (level 33) at you, one at a time."] = "往北騎向{area:392}的途中，{area:720}位於城鎮南邊的{area:391}外海：涉水走過沙洲淺灘。{npc:6236}會派出四名挑戰者，然後是{npc:6238}（33級），一次一個。",
 	-- {npc:6238} Big Will
 	["Defeat the challengers and {npc:6238}"] = "擊敗挑戰者和{npc:6238}",
-	["Klannoc offers The Windwatcher next (1791): the Whirlwind weapon chain, with an elite at the end, is in the Warrior class guide Whirlwind Weapon."] = "克蘭諾克接著會提供捕風者（1791）：旋風斬武器任務線的最後有一個精英，收錄在戰士職業指南「旋風斬武器」中。",
+	-- {npc:6236} Klannoc Macleod
+	["{npc:6236} offers The Windwatcher next (1791): the Whirlwind weapon chain, with an elite at the end, is in the Warrior class guide Whirlwind Weapon."] = "{npc:6236}接著會提供捕風者（1791）：旋風斬武器任務線的最後有一個精英，收錄在戰士職業指南「旋風斬武器」中。",
 
 	-- Step 18: Ratchet
 	-- {zone:1413} Barrens · {area:392} Ratchet · {npc:16227} Bragok · {area:35} Booty Bay
@@ -79,7 +82,7 @@ return {
 	["Boat to {area:35}"] = "搭船前往{area:35}",
 
 	-- Step 19: Booty Bay
-	-- {object:56910} The Salty Sailor Tavern
+	-- {object:56910} The Salty Sailor Tavern (no name in this language: may be words)
 	["{object:56910} is the tall building over the harbour; most of the quest givers are on its floors or the docks below."] = "{object:56910}是港口上方的高大建築；大多數任務給予者都在它的各樓層或下方的碼頭。",
 	-- {zone:1446} Tanaris
 	["for Stoley in {zone:1446}: keep it"] = "給{zone:1446}的斯杜雷：保留此任務",
@@ -101,8 +104,8 @@ return {
 
 	-- Step 22: Bloodsail pirates
 	["Bloodsail pirates"] = "血帆海盜",
-	-- {area:43} Wild Shore · {area:35} Booty Bay
-	["Every Bloodsail drops Snuff and one of them carries Dizzy's eye; the Swashbucklers walk the shore just north of town. The charts and orders lie in the pirate camp on the {area:43}, south of {area:35}."] = "每個血帆海盜都會掉落鼻煙，其中一個帶著迪茲的眼睛；血帆流氓在城鎮北邊的岸上走動。海圖和命令在{area:35}南邊{area:43}的海盜營地裡。",
+	-- {npc:2493} Dizzy · {area:43} Wild Shore · {area:35} Booty Bay
+	["Every Bloodsail drops Snuff and one of them carries {npc:2493}'s eye; the Swashbucklers walk the shore just north of town. The charts and orders lie in the pirate camp on the {area:43}, south of {area:35}."] = "每個血帆海盜都會掉落鼻煙，其中一個帶著{npc:2493}的眼睛；血帆流氓在城鎮北邊的岸上走動。海圖和命令在{area:35}南邊{area:43}的海盜營地裡。",
 
 	-- Step 24: The Bloodsail captains
 	["The Bloodsail captains"] = "血帆船長",
@@ -133,8 +136,9 @@ return {
 	["for {npc:2616} in Theramore: keep it"] = "給塞拉摩的{npc:2616}：保留此任務",
 
 	-- Step 30: Maury and Jon-Jon
-	["Maury and Jon-Jon"] = "瑪雷與喬喬",
-	-- {npc:2535} Maury "Club Foot" Wilkins · {npc:2536} Jon-Jon the Crow
+	-- {npc:2535} Maury · {npc:2536} Jon-Jon
+	["{npc:2535} and {npc:2536}"] = "{npc:2535}與{npc:2536}",
+	-- {npc:2535} Maury · {npc:2536} Jon-Jon
 	["Ride north to the hills west of the road. {npc:2535} and {npc:2536} stand together just north of Zanzil's village."] = "向北騎往道路西邊的山丘。{npc:2535}和{npc:2536}一起站在贊吉爾村莊北邊。",
 
 	-- Step 31: Zanzil's village
@@ -170,15 +174,15 @@ return {
 
 	-- Step 37: Booty Bay
 	["MacKinley's next task sends you after elite ogres: skip it."] = "馬克基雷的下一個任務要你去打精英巨魔：跳過。",
-	-- {zone:1441} Thousand Needles
-	["Crank's next Zanzil errand starts in {zone:1441}: skip it."] = "克蘭克的下一個贊吉爾任務從{zone:1441}開始：跳過。",
+	-- {npc:2498} Crank · {zone:1441} Thousand Needles
+	["{npc:2498}'s next Zanzil errand starts in {zone:1441}: skip it."] = "{npc:2498}的下一個贊吉爾任務從{zone:1441}開始：跳過。",
 
 	-- Step 38: Stormwind
-	-- {npc:1141} Angus Stern · {object:2169} Blue Recluse · {npc:5384} Brohann Caskbelly · {object:28027} Dwarven District
+	-- {npc:1141} Angus Stern · {object:2169} Blue Recluse (no name in this language: may be words) · {npc:5384} Brohann Caskbelly · {object:28027} Dwarven District (no name in this language: may be words)
 	["{npc:1141} cooks in the {object:2169}; {npc:5384} is in the {object:28027}."] = "{npc:1141}在{object:2169}烹飪；{npc:5384}在{object:28027}。",
 	-- {npc:5694} High Sorcerer Andromath · {area:1438} Nethergarde Keep
 	["{npc:5694}: for {area:1438}, keep it"] = "{npc:5694}：給{area:1438}，保留此任務",
-	-- {npc:1440} Milton Sheaf · {object:2117} Stormwind Keep
+	-- {npc:1440} Milton Sheaf · {object:2117} Stormwind Keep (no name in this language: may be words)
 	["{npc:1440}, the Royal Library in {object:2117}"] = "{npc:1440}，在{object:2117}的皇家圖書館",
 
 	-- Step 39: Riding at 40
@@ -209,7 +213,7 @@ return {
 	-- Step 43: Warlock: Summon Felsteed
 	-- {quest:3631} Summon Felsteed
 	["Warlock: {quest:3631}"] = "術士：{quest:3631}",
-	-- {npc:461} Demisette Cloyce · {object:2164} Slaughtered Lamb · {npc:6251} Strahad Farsan · {area:392} Ratchet
+	-- {npc:461} Demisette Cloyce · {object:2164} Slaughtered Lamb (no name in this language: may be words) · {npc:6251} Strahad Farsan · {area:392} Ratchet
 	["{npc:461}, in the {object:2164}: {npc:6251} in {area:392} takes it at the end of the next guide"] = "{npc:461}，在{object:2164}：由{area:392}的{npc:6251}在下一份指南結尾接收",
 
 	-- Step 44: Watcher Biggs
@@ -242,8 +246,8 @@ return {
 	["for {npc:5635} at {area:348}: keep it"] = "給{area:348}的{npc:5635}：保留此任務",
 
 	-- Step 50: Ironforge
-	-- {area:2257} Deeprun Tram · {object:28027} Dwarven District · {object:32356} Hall of Explorers · {npc:1356} Prospector Stormpike · {npc:2786} Gerrig Bonegrip · {object:32383} Forlorn Cavern · {area:144} Thelsamar
-	["Take the {area:2257} from the {object:28027}. Roetten is in the Reclaimers' hall by the {object:32356}, {npc:1356} in the hall itself, {npc:2786} in the {object:32383}. The next guide flies on to {area:144}."] = "從{object:28027}搭乘{area:2257}。羅頓在{object:32356}旁的尋物公司大廳裡，{npc:1356}在大廳本身，{npc:2786}在{object:32383}。下一份指南會飛往{area:144}。",
+	-- {area:2257} Deeprun Tram · {object:28027} Dwarven District (no name in this language: may be words) · {npc:5637} Roetten · {object:32356} Hall of Explorers (no name in this language: may be words) · {npc:1356} Prospector Stormpike · {npc:2786} Gerrig Bonegrip · {object:32383} Forlorn Cavern (no name in this language: may be words) · {area:144} Thelsamar
+	["Take the {area:2257} from the {object:28027}. {npc:5637} is in the Reclaimers' hall by the {object:32356}, {npc:1356} in the hall itself, {npc:2786} in the {object:32383}. The next guide flies on to {area:144}."] = "從{object:28027}搭乘{area:2257}。{npc:5637}在{object:32356}旁的尋物公司大廳裡，{npc:1356}在大廳本身，{npc:2786}在{object:32383}。下一份指南會飛往{area:144}。",
 	-- {npc:1356} Prospector Stormpike · {npc:1344} Prospector Ironband · {zone:1432} Loch Modan
 	["{npc:1356}: for {npc:1344} in {zone:1432}, keep it"] = "{npc:1356}：給{zone:1432}的{npc:1344}，保留此任務",
 	-- {zone:1453} Stormwind
@@ -262,7 +266,5 @@ return {
 	["{npc:7955}: other colours, 20g"] = "{npc:7955}：其他顏色，20金",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Gazban swims off the north-west coast, on the northern loop"] = "加茲班在西北海岸外游動，在北部環線上",
 	-- ["Klannoc offers The Windwatcher next (1791): the {spell:1680} weapon chain, with an elite at the end, is in the Warrior class guide Whirlwind Weapon."] = "克蘭諾克接著會提供捕風者（1791）：{spell:1680}武器任務線的最後有一個精英，收錄在戰士職業指南中。",
-	-- ["Ride north-west from the mine to the bay on the north-west coast. The Giant Clams lie on its floor and hold the pearls; Gazban swims among them and drops the {item:4034}."] = "從礦坑向西北騎往西北海岸的海灣。巨型蚌殼躺在海底，裡面有珍珠；加茲班在牠們之間游動，會掉落{item:4034}。",
 }

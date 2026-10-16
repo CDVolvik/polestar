@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Spanish (Spain) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Spanish (Spain) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Fly to Orgrimmar
@@ -12,7 +13,7 @@ return {
 	["From {area:484}, fly to {area:1637}."] = "Desde {area:484}, vuela a {area:1637}.",
 
 	-- Step 2: Alliance Relations
-	-- {npc:5639} Craven Drok · {npc:5640} Keldran · {object:172961} Valley of Spirits · {npc:4949} Thrall · {object:172957} Valley of Wisdom
+	-- {npc:5639} Craven Drok · {npc:5640} Keldran · {object:172961} Valley of Spirits (no name in this language: may be words) · {npc:4949} Thrall · {object:172957} Valley of Wisdom (no name in this language: may be words)
 	["{npc:5639} waits in the Drag; {npc:5640} stands in the {object:172961} on the west side of the city. Skyborne: {npc:4949} waits in Grommash Hold, in the {object:172957}."] = "{npc:5639} espera en La Calle Mayor; {npc:5640} está en {object:172961}, en el lado oeste de la ciudad. Cielonato: {npc:4949} espera en el Fuerte Grommash, en {object:172957}.",
 	-- {npc:4949} Thrall
 	["{npc:4949}, Grommash Hold, if you carry it"] = "{npc:4949}, Fuerte Grommash, si la llevas",
@@ -28,7 +29,7 @@ return {
 	-- Step 5: Orgrimmar class quests
 	-- {zone:1454} Orgrimmar
 	["{zone:1454} class quests"] = "Misiones de clase en {zone:1454}",
-	-- {npc:5892} Searn Firewarder · {object:172957} Valley of Wisdom
+	-- {npc:5892} Searn Firewarder · {object:172957} Valley of Wisdom (no name in this language: may be words)
 	["{npc:5892} stands in the {object:172957}."] = "{npc:5892} está en {object:172957}.",
 
 	-- Step 6: Ratchet
@@ -40,8 +41,8 @@ return {
 	["Fly to {area:484}. {npc:5905} hides in a small cave in the canyon wall north-east of the post."] = "Vuela a {area:484}. {npc:5905} se esconde en una pequeña cueva en la pared del cañón, al noreste del poblado.",
 	-- {npc:5905} Prate Cloudseer · {item:5178} Air Totem
 	["{npc:5905}: your {item:5178}"] = "{npc:5905}: tu {item:5178}",
-	-- {area:1717} Razorfen Kraul
-	["Prate also starts Elemental Aid ({area:1717}), the 33-40 chain to The Tempest's Weapons: forever/class/shaman/call-of-air-horde."] = "Prate también inicia Elemental Aid ({area:1717}), la cadena de 33-40 hasta las armas de la Tempestad: forever/class/shaman/call-of-air-horde.",
+	-- {npc:5905} Prate Cloudseer · {area:1717} Razorfen Kraul
+	["{npc:5905} also starts Elemental Aid ({area:1717}), the 33-40 chain to The Tempest's Weapons: forever/class/shaman/call-of-air-horde."] = "{npc:5905} también inicia Elemental Aid ({area:1717}), la cadena de 33-40 hasta las armas de la Tempestad: forever/class/shaman/call-of-air-horde.",
 
 	-- Step 8: Fly to Sun Rock Retreat
 	-- {area:460} Sun Rock Retreat
@@ -53,16 +54,16 @@ return {
 	["Follow the road south-west out of Sun Rock into {zone:1443} and on south past {area:608}. {npc:11625}'s kodo caravan waits by the road north of {area:609}; if it has already left, ride on."] = "Sigue el camino al suroeste desde el Refugio Roca del Sol hacia {zone:1443} y continúa al sur, pasado {area:608}. La caravana de kodos de {npc:11625} espera junto al camino al norte de {area:609}; si ya se ha ido, sigue adelante.",
 
 	-- Step 10: Bodyguard for Hire
-	-- {area:609} Kolkar Village · {area:2617} Scrabblescrew's Camp · {area:597} Ghost Walker Post
-	["The caravan rolls south past {area:609}. Kolkar raiders ambush it in waves: kill them before they reach Cork. It stops by {area:2617}, east of {area:597}."] = "La caravana avanza al sur, pasado {area:609}. Los asaltantes kolkar la emboscan en oleadas: mátalos antes de que lleguen a Cork. Se detiene junto a {area:2617}, al este de {area:597}.",
+	-- {area:609} Kolkar Village · {npc:11625} Cork Gizelton · {area:2617} Scrabblescrew's Camp · {area:597} Ghost Walker Post
+	["The caravan rolls south past {area:609}. Kolkar raiders ambush it in waves: kill them before they reach {npc:11625}. It stops by {area:2617}, east of {area:597}."] = "La caravana avanza al sur, pasado {area:609}. Los asaltantes kolkar la emboscan en oleadas: mátalos antes de que lleguen a {npc:11625}. Se detiene junto a {area:2617}, al este de {area:597}.",
 
 	-- Step 12: Ghost Walker Post
-	-- {npc:5641} Takata Steelblade · {npc:4498} Maurin Bonesplitter · {area:596} Kodo Graveyard
-	["Felgur stands in the post; {npc:5641} and {npc:4498} wait on the rise west of it, above the {area:596}."] = "Felgur Doscortes está en el campamento; {npc:5641} y {npc:4498} esperan en la loma al oeste, sobre {area:596}.",
+	-- {npc:5395} Felgur · {npc:5641} Takata Steelblade · {npc:4498} Maurin Bonesplitter · {area:596} Kodo Graveyard
+	["{npc:5395} stands in the post; {npc:5641} and {npc:4498} wait on the rise west of it, above the {area:596}."] = "{npc:5395} está en el campamento; {npc:5641} y {npc:4498} esperan en la loma al oeste, sobre {area:596}.",
 
 	-- Step 13: Kodo Roundup
-	-- {item:13892} Kodo Kombobulator · {npc:4702} Ancient Kodo
-	["Use Smeed's {item:13892} on an Aged, Dying or {npc:4702} in the graveyard and walk the tamed kodo back to Smeed. Five kodos, one at a time."] = "Usa el {item:13892} de Smeed en un Kodo envejecido, moribundo o {npc:4702} del cementerio y lleva el kodo domado de vuelta con Smeed. Cinco kodos, de uno en uno.",
+	-- {npc:11596} Smeed · {item:13892} Kodo Kombobulator · {npc:4702} Ancient Kodo
+	["Use {npc:11596}'s {item:13892} on an Aged, Dying or {npc:4702} in the graveyard and walk the tamed kodo back to {npc:11596}. Five kodos, one at a time."] = "Usa el {item:13892} de {npc:11596} en un Kodo envejecido, moribundo o {npc:4702} del cementerio y lleva el kodo domado de vuelta con {npc:11596}. Cinco kodos, de uno en uno.",
 
 	-- Step 14: Khan Dez'hepah
 	-- {area:609} Kolkar Village · {quest:1365} Khan Dez'hepah
@@ -73,13 +74,13 @@ return {
 	["North along the eastern hills, the satyrs hold the ruins of {area:603}. The Shadowstalkers walk unseen; the four kinds you need do not."] = "Al norte, por las colinas del este, los sátiros ocupan las ruinas de {area:603}. Los acechasombras caminan invisibles; los cuatro tipos que necesitas, no.",
 
 	-- Step 16: Thunder Axe Fortress
-	-- {area:599} Thunder Axe Fortress · {spell:1294269} Burning Blade · {item:6436} Burning Gem · {item:6435} Infused Burning Gem · {item:20310} Flayed Demon Skin
-	["Ride west to {area:599}. Beat a {spell:1294269} cultist down, then use the {item:6436} on it before it dies to fill one {item:6435}. They also drop a {item:20310} now and then (1-5%); if one drops, read it."] = "Ve al oeste hasta {area:599}. Debilita a un fiel de {spell:1294269} y usa la {item:6436} sobre él antes de que muera para llenar una {item:6435}. A veces también sueltan una {item:20310} (1-5%); si cae, léela.",
+	-- {area:599} Thunder Axe Fortress · {item:6436} Burning Gem · {item:6435} Infused Burning Gem · {item:20310} Flayed Demon Skin
+	["Ride west to {area:599}. Beat a Burning Blade cultist down, then use the {item:6436} on it before it dies to fill one {item:6435}. They also drop a {item:20310} now and then (1-5%); if one drops, read it."] = "Ve al oeste hasta {area:599}. Debilita a un fiel de Filo Ardiente y usa la {item:6436} sobre él antes de que muera para llenar una {item:6435}. A veces también sueltan una {item:20310} (1-5%); si cae, léela.",
 
 	-- Step 17: Ghost Walker Post
 	["Ride back south to the post."] = "Vuelve al sur al campamento.",
-	-- {quest:1431} Alliance Relations · {zone:1454} Orgrimmar
-	["Takata's next {quest:1431} sends you back to {zone:1454} for nothing: leave it."] = "La siguiente misión de Takata, {quest:1431}, te manda de vuelta a {zone:1454} para nada: déjala.",
+	-- {npc:5641} Takata Steelblade · {quest:1431} Alliance Relations · {zone:1454} Orgrimmar
+	["{npc:5641}'s next {quest:1431} sends you back to {zone:1454} for nothing: leave it."] = "La siguiente misión de {npc:5641}, {quest:1431}, te manda de vuelta a {zone:1454} para nada: déjala.",
 
 	-- Step 18: Kolkar ears
 	["Kolkar ears"] = "Orejas kolkar",
@@ -122,7 +123,8 @@ return {
 
 	-- Step 27: Ghost Walker Post
 	["Ride south-east to the post."] = "Ve al sureste hasta el campamento.",
-	["Takata's next errand sends you after a demon lord with an elite guard: skip it."] = "El siguiente encargo de Takata te manda a por un señor demoníaco con escolta élite: omítelo.",
+	-- {npc:5641} Takata Steelblade
+	["{npc:5641}'s next errand sends you after a demon lord with an elite guard: skip it."] = "El siguiente encargo de {npc:5641} te manda a por un señor demoníaco con escolta élite: omítelo.",
 
 	-- Step 28: Gelkis Village
 	["Ride south-west towards Shadowprey. The Gelkis centaurs (32-35) around their village are a good camp; fight them until level 32."] = "Ve al suroeste hacia la Aldea Cazasombras. Los centauros Gelkis (32-35) alrededor de su poblado son un buen sitio para subir; lucha contra ellos hasta el nivel 32.",
@@ -150,8 +152,8 @@ return {
 	["{npc:260093} trains Paladins in the {area:1497}."] = "{npc:260093} entrena a los paladines en {area:1497}.",
 
 	-- Step 34: Brazier of Everfount
-	-- {area:1497} Undercity · {area:228} Sepulcher · {object:113791} Brazier of Everfount · {npc:5895} Minor Manifestation of Water · {item:7813} Shard of Water · {area:272} Tarren Mill
-	["Do your shopping in the {area:1497} first, then fly to the {area:228}. The {object:113791} stands on the hill just south-west of it: beat the Corrupt Manifestation of Water beside it, place its bracers in the brazier, speak to the {npc:5895} and keep the {item:7813} for Islen. Fly on to {area:272} from the {area:228}."] = "Haz primero tus compras en {area:1497} y luego vuela a {area:228}. {object:113791} está en la colina justo al suroeste: derrota a la Manifestación menor de agua corrupta que hay a su lado, coloca sus brazales en el blandón, habla con la {npc:5895} y guarda el {item:7813} para Islen. Desde {area:228}, sigue volando a {area:272}.",
+	-- {area:1497} Undercity · {area:228} Sepulcher · {object:113791} Brazier of Everfount · {npc:5895} Minor Manifestation of Water · {item:7813} Shard of Water · {npc:5901} Islen Waterseer · {area:272} Tarren Mill
+	["Do your shopping in the {area:1497} first, then fly to the {area:228}. The {object:113791} stands on the hill just south-west of it: beat the Corrupt Manifestation of Water beside it, place its bracers in the brazier, speak to the {npc:5895} and keep the {item:7813} for {npc:5901}. Fly on to {area:272} from the {area:228}."] = "Haz primero tus compras en {area:1497} y luego vuela a {area:228}. {object:113791} está en la colina justo al suroeste: derrota a la Manifestación menor de agua corrupta que hay a su lado, coloca sus brazales en el blandón, habla con la {npc:5895} y guarda el {item:7813} para {npc:5901}. Desde {area:228}, sigue volando a {area:272}.",
 	-- {npc:5901} Islen Waterseer
 	["for {npc:5901}: from Stranglethorn, next guide"] = "para {npc:5901}: desde Tuercespina, siguiente guía",
 
@@ -196,7 +198,7 @@ return {
 	-- {area:272} Tarren Mill
 	["Back to {area:272}"] = "De vuelta a {area:272}",
 	["Hearth back (or ride north if it is on cooldown)."] = "Usa la piedra de hogar para volver (o ve a caballo al norte si está en tiempo de reutilización).",
-	-- {object:1729} Tainted Keg · {object:1728} Dusty Rug
+	-- {object:1729} Tainted Keg (no name in this language: may be words) · {object:1728} Dusty Rug
 	["Place the {object:1729} on the {object:1728} beside the inn"] = "Coloca el {object:1729} sobre la {object:1728} junto a la posada",
 
 	-- Step 42: Henchman Valik
@@ -237,9 +239,6 @@ return {
 	-- Step 49: Fly to the Undercity
 	-- {area:1497} Undercity
 	["Fly to the {area:1497}"] = "Vuela a {area:1497}",
-	-- {area:1497} Undercity · {object:3202} Grom'gol
+	-- {area:1497} Undercity · {object:3202} Grom'gol (no name in this language: may be words)
 	["The next guide starts in the {area:1497}, at the {object:3202} zeppelin."] = "La siguiente guía empieza en {area:1497}, en el zepelín de {object:3202}.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Head west along the foot of the mountains to the violet dome of {area:279}. Ricter, Alina and Dermot (33-34) stand together inside the crater's eastern rim, {npc:2414} (35) a little west of them; each carries one Bloodstone piece. The Shield Guards and Theurgists (31-32) around them drop the Worn Stone Tokens."] = "Ve al oeste por el pie de las montañas hasta la cúpula violeta de {area:279}. Ricter, Alina y Dermot (33-34) están juntos dentro del borde este del cráter, y {npc:2414} (35), un poco al oeste de ellos; cada uno lleva una pieza de Petrosangre. Los Guardias escuderos y Teurgistas Dalaran (31-32) de su alrededor sueltan las Muestras de piedra desgastada.",
 }

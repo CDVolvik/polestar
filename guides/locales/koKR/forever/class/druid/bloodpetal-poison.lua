@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Korean words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -13,8 +14,8 @@ return {
 	["Cast {spell:18960}. {npc:12042} stands in {area:2361}; your class trainer offers the same quest."] = "{spell:18960}을(를) 시전하세요. {npc:12042}은(는) {area:2361}에 서 있습니다. 직업 상급자도 같은 퀘스트를 줍니다.",
 
 	-- Step 2: Torwa Pathfinder
-	-- {area:976} Gadgetzan · {zone:1449} Un'Goro Crater
-	["Fly to {area:976}, ride west to the long ramp down into {zone:1449}: Torwa camps at its foot, in the south-east corner of the crater."] = "{area:976}(으)로 날아가 서쪽으로 {zone:1449}(으)로 내려가는 긴 비탈까지 가세요. 토르와는 그 아래, 분화구 남동쪽 구석에 진을 치고 있습니다.",
+	-- {area:976} Gadgetzan · {zone:1449} Un'Goro Crater · {npc:9619} Torwa
+	["Fly to {area:976}, ride west to the long ramp down into {zone:1449}: {npc:9619} camps at its foot, in the south-east corner of the crater."] = "{area:976}(으)로 날아가 서쪽으로 {zone:1449}(으)로 내려가는 긴 비탈까지 가세요. {npc:9619}은(는) 그 아래, 분화구 남동쪽 구석에 진을 치고 있습니다.",
 
 	-- Step 3: Gorishi Stings and Bloodcap
 	-- {item:22434} Bloodcap
@@ -38,6 +39,6 @@ return {
 	["{area:1477} lies in the {area:74} in the {zone:1435}. {npc:8580} guards the bottom of the temple: a dungeon boss, so bring a group."] = "{area:1477}은(는) {zone:1435}의 {area:74}에 있습니다. {npc:8580}이(가) 사원 아래층을 지킵니다. 던전 우두머리이니 파티를 데려가세요.",
 
 	-- Step 8: A Better Ingredient
-	-- {zone:1449} Un'Goro Crater
-	["Back to Torwa in the south-east corner of {zone:1449}."] = "{zone:1449} 남동쪽 구석의 토르와에게 돌아가세요.",
+	-- {npc:9619} Torwa · {zone:1449} Un'Goro Crater
+	["Back to {npc:9619} in the south-east corner of {zone:1449}."] = "{zone:1449} 남동쪽 구석의 {npc:9619}에게 돌아가세요.",
 }

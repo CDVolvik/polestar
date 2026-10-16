@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Spanish (Latin America) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Spanish (Latin America) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Fly to Stonard
@@ -44,7 +45,7 @@ return {
 	["Ride north back to {area:75} and fly to the {area:1497}."] = "Regresa cabalgando al norte a {area:75} y vuela a {area:1497}.",
 
 	-- Step 8: Undercity
-	-- {npc:7825} Oran Snakewrithe · {object:36126} Royal Quarter
+	-- {npc:7825} Oran Snakewrithe · {object:36126} Royal Quarter (no name in this language: may be words)
 	["{npc:7825}, the {object:36126}"] = "{npc:7825}, {object:36126}",
 	-- {npc:6741} Innkeeper Norman · {zone:1456} Thunder Bluff
 	["{npc:6741}: for {zone:1456}, around level 50"] = "{npc:6741}: para {zone:1456}, alrededor del nivel 50",
@@ -54,9 +55,10 @@ return {
 	["Fly to {area:272}"] = "Vuela a {area:272}",
 
 	-- Step 10: Gilveradin's camp
-	["Gilveradin's camp"] = "Campamento de Gilveradin",
-	-- {area:272} Tarren Mill · {npc:7801} Gilveradin Sunchaser · {area:350} Quel'Danil Lodge
-	["Ride north-east from {area:272} into the Hinterlands and east along the road; {npc:7801} camps on the hill south of the elves' {area:350}."] = "Cabalga al noreste desde {area:272} hacia Tierras del Interior y al este por el camino; {npc:7801} acampa en la colina al sur de {area:350}, de los elfos.",
+	-- {npc:7801} Gilveradin
+	["{npc:7801}'s camp"] = "Campamento de {npc:7801}",
+	-- {area:272} Tarren Mill · {zone:1425} The Hinterlands · {npc:7801} Gilveradin · {area:350} Quel'Danil Lodge
+	["Ride north-east from {area:272} into the {zone:1425} and east along the road; {npc:7801} camps on the hill south of the elves' {area:350}."] = "Cabalga al noreste desde {area:272} hacia {zone:1425} y al este por el camino; {npc:7801} acampa en la colina al sur de {area:350}, de los elfos.",
 
 	-- Step 11: Highvale
 	["Highvale"] = "Vallealto",
@@ -75,7 +77,8 @@ return {
 	["South-west again, the exile hides by the ruins of {area:353}."] = "De nuevo al suroeste, el exiliado se esconde junto a las ruinas de {area:353}.",
 
 	-- Step 15: Revantusk Village
-	["Follow the roads east across the Hinterlands to the troll village on the eastern coast."] = "Sigue los caminos al este cruzando Tierras del Interior hasta el poblado trol de la costa este.",
+	-- {zone:1425} The Hinterlands
+	["Follow the roads east across the {zone:1425} to the troll village on the eastern coast."] = "Sigue los caminos al este cruzando {zone:1425} hasta el poblado trol de la costa este.",
 
 	-- Step 16: Saltwater Snapjaws
 	-- plural, as words: Saltwater Snapjaws = {npc:2505} Saltwater Snapjaw
@@ -104,9 +107,9 @@ return {
 
 	-- Step 20: The central hills
 	["The central hills"] = "Las colinas centrales",
-	-- {area:351} Skulk Rock · {item:9618} Wildkin Muisek Vessel
+	-- {area:351} Skulk Rock · {item:9618} Wildkin Muisek Vessel · {npc:14738} Otho
 	-- plural, as words: Silvermane Stalkers = {npc:2926} Silvermane Stalker · Savage Owlbeasts = {npc:2929} Savage Owlbeast · Razorbeak Skylords = {npc:2659} Razorbeak Skylord · Long Elegant Feathers = {item:4589} Long Elegant Feather
-	["The Silvermane Stalkers, Savage Owlbeasts and Razorbeak Skylords share the hills between the temples and {area:351}. Use the {item:9618} on the owlbeasts you kill. The Skylords also drop Long Elegant Feathers: keep ten for Otho's second message."] = "Los Acechadores melenargenta ({npc:2926}), las Lechubestias salvajes ({npc:2929}) y los Señores del Cielo Picovaja ({npc:2659}) comparten las colinas entre los templos y {area:351}. Usa {item:9618} en las lechubestias que mates. Los Señores del Cielo también sueltan Plumas elegantes largas ({item:4589}): guarda diez para el segundo mensaje de Otho.",
+	["The Silvermane Stalkers, Savage Owlbeasts and Razorbeak Skylords share the hills between the temples and {area:351}. Use the {item:9618} on the owlbeasts you kill. The Skylords also drop Long Elegant Feathers: keep ten for {npc:14738}'s second message."] = "Los Acechadores melenargenta ({npc:2926}), las Lechubestias salvajes ({npc:2929}) y los Señores del Cielo Picovaja ({npc:2659}) comparten las colinas entre los templos y {area:351}. Usa {item:9618} en las lechubestias que mates. Los Señores del Cielo también sueltan Plumas elegantes largas ({item:4589}): guarda diez para el segundo mensaje de {npc:14738}.",
 
 	-- Step 21: Skulk Rock
 	-- {item:8684} Hinterlands Honey Ripple · {area:351} Skulk Rock

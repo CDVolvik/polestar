@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (simplified) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (simplified) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Auberdine
@@ -257,14 +258,15 @@ return {
 	-- {quest:98394} The Great Cat Spirit · {npc:272054} Avatar of Saeyleenan · {area:493} Moonglade · {area:2363} Stormrage Barrow Dens
 	["{quest:98394} (Night Elves) and the {npc:272054} (Skyborne) wait in southern {area:493}. The three relics lie in the {area:2363}, east of them. Reports from the first weeks say a relic gives no loot while another player is looting it: wait a moment and try again."] = "{quest:98394}（暗夜精灵）和{npc:272054}（天裔）在{area:493}南部等候。三件遗物在它们东边的{area:2363}里。最初几周的报告称：其他玩家正在拾取某件遗物时，你拾取不到东西：稍等片刻再试。",
 
-	-- Step 41: Back to Dendrite
-	["Back to Dendrite"] = "返回德迪利特·星焰处",
+	-- Step 41: Back to Dendrite Starblaze
+	-- {npc:11802} Dendrite Starblaze
+	["Back to {npc:11802}"] = "返回{npc:11802}处",
 	-- {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {area:702} Rut'theran Village · {area:442} Auberdine
 	["Back to {npc:11802} in {area:2361}, then fly to {area:702} (by way of {area:442})."] = "返回{area:2361}的{npc:11802}，然后飞往{area:702}（途经{area:442}）。",
 
 	-- Step 42: To Darnassus
-	-- {area:442} Auberdine · {zone:1453} Stormwind
-	["Take the portal up to Mathrengyl, then fly back to {area:442} for the boat to {zone:1453}."] = "乘传送门上去找玛斯雷·驭熊者，然后飞回{area:442}乘船前往{zone:1453}。",
+	-- {npc:4217} Mathrengyl Bearwalker · {area:442} Auberdine · {zone:1453} Stormwind
+	["Take the portal up to {npc:4217}, then fly back to {area:442} for the boat to {zone:1453}."] = "乘传送门上去找{npc:4217}，然后飞回{area:442}乘船前往{zone:1453}。",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Tide Crawlers scuttle along the shore below the village; {quest:983} stands on the beach just south of the docks. Darkshore Threshers swim in the shallows. The {quest:4723} lies on the shore just south of the village."] = "{npc:2232}在村子下方的岸边爬行；{quest:983}立在码头南边的海滩上。{npc:2185}在浅水中游动。{quest:4723}躺在村子南边的岸上。",

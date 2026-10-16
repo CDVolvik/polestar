@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Spanish (Spain) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Spanish (Spain) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Astranaar
@@ -58,9 +59,9 @@ return {
 	["Rusty chests lie around the Shadethicket furbolg camps west of the Forsaken; open them until one holds the pommel."] = "Hay cofres oxidados alrededor de los campamentos furbolg Sombramatorral al oeste de los Renegados; ábrelos hasta que uno tenga el pomo.",
 
 	-- Step 14: Fallen Sky Lake
-	-- {npc:3931} Shadethicket Oracle · {quest:1035} Fallen Sky Lake · {object:669176} Gleaming Crescent Pendant
+	-- {npc:3931} Shadethicket Oracle · {quest:1035} Fallen Sky Lake · {object:669176} Gleaming Crescent Pendant (no name in this language: may be words)
 	["The {npc:3931} walks the shore of {quest:1035}, south-west of the chests; the {object:669176} lies north of the lake, on the way."] = "El {npc:3931} recorre la orilla del {quest:1035}, al suroeste de los cofres; el {object:669176} está al norte del lago, de camino.",
-	-- {object:669176} Gleaming Crescent Pendant · {npc:3961} Maliynn · {area:415} Astranaar
+	-- {object:669176} Gleaming Crescent Pendant (no name in this language: may be words) · {npc:3961} Maliynn · {area:415} Astranaar
 	["{object:669176}: for {npc:3961} in {area:415}"] = "{object:669176}: para {npc:3961} en {area:415}",
 
 	-- Step 16: Xavian satyrs
@@ -94,7 +95,8 @@ return {
 	["Take the boat to {area:150} from {area:442}'s docks."] = "Toma el barco a {area:150} en los muelles de {area:442}.",
 
 	-- Step 31: Glorin Steelbrow
-	["Glorin stands on the upper floor of Menethil's keep."] = "Glorin está en la planta superior del torreón de Menethil.",
+	-- {npc:1217} Glorin Steelbrow
+	["{npc:1217} stands on the upper floor of Menethil's keep."] = "{npc:1217} está en la planta superior del torreón de Menethil.",
 
 	-- Step 32: Waterlogged Chest
 	["The wreck of the Flying Osprey lies in the shallows south of the keep."] = "El pecio del Flying Osprey está en las aguas poco profundas al sur del torreón.",
@@ -105,10 +107,9 @@ return {
 	["The Bluegill murlocs on the beach south-west of Menethil carry the ingots."] = "Los múrlocs Branquiazul de la playa al suroeste de Menethil llevan los lingotes.",
 
 	-- Step 35: Deepwater Tavern
-	-- {npc:5082} Vincent Hyal · {npc:4963} Mikhail · {npc:1480} Caitlin Grassman
-	["{npc:5082}, {npc:4963} and Tapoke Jahn are all at Menethil's inn; Tapoke fights you when you talk to {npc:4963}, but gives up once beaten. {npc:1480} stands a short walk north-east of the inn."] = "{npc:5082}, {npc:4963} y Tapoke \"El Flaco\" Jahn están en la posada de Menethil; Tapoke te ataca cuando hablas con {npc:4963}, pero se rinde al ser derrotado. {npc:1480} está a poca distancia al noreste de la posada.",
+	-- {npc:5082} Vincent Hyal · {npc:4963} Mikhail · {npc:4962} Tapoke · {npc:1480} Caitlin Grassman
+	["{npc:5082}, {npc:4963} and Tapoke Jahn are all at Menethil's inn; {npc:4962} fights you when you talk to {npc:4963}, but gives up once beaten. {npc:1480} stands a short walk north-east of the inn."] = "{npc:5082}, {npc:4963} y {npc:4962} están en la posada de Menethil; Tapoke te ataca cuando hablas con {npc:4963}, pero se rinde al ser derrotado. {npc:1480} está a poca distancia al noreste de la posada.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Geltharis"] = "Geltharis",
-	-- ["Geltharis leads the {area:429} satyrs; he carries the branch."] = "Geltharis lidera a los sátiros de {area:429}; él lleva la rama.",
 }

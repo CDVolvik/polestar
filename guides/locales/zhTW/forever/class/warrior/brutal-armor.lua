@@ -3,13 +3,14 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (traditional) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (traditional) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
 	["Four armor pieces at 30 (hauberk, helm, gauntlets, legguards) and a shield on the way."] = "30級時的四件護甲（鎖甲、頭盔、護手、護腿），途中還有一面盾牌。",
 
 	-- Step 1: Speak with Ruga (Orgrimmar)
-	-- {npc:3354} Sorek · {object:172958} Valley of Honor · {npc:6394} Ruga Ragetotem · {area:378} Camp Taurajo
+	-- {npc:3354} Sorek · {object:172958} Valley of Honor (no name in this language: may be words) · {npc:6394} Ruga Ragetotem · {area:378} Camp Taurajo
 	["At 20, {npc:3354} in the {object:172958} sends you to {npc:6394} in {area:378}."] = "20級時，{object:172958}的{npc:3354}會派你去找{area:378}的{npc:6394}。",
 
 	-- Step 2: Speak with Ruga (Thunder Bluff)
@@ -27,8 +28,8 @@ return {
 	["Twitching Antennae from the silithid"] = "從異種蠍身上取得顫抖的觸角",
 
 	-- Step 5: Thun'grim Firegaze
-	-- {area:380} Crossroads · {quest:1838} Brutal Armor
-	["Thun'grim camps beside the road east of the {area:380}. {quest:1838} is a level 30 quest; you can take it now and gather for it on the way."] = "索恩格瑞姆在{area:380}東邊的路旁紮營。{quest:1838}是30級任務；你可以現在接下，順路收集材料。",
+	-- {npc:5878} Thun'grim Firegaze · {area:380} Crossroads · {quest:1838} Brutal Armor
+	["{npc:5878} camps beside the road east of the {area:380}. {quest:1838} is a level 30 quest; you can take it now and gather for it on the way."] = "{npc:5878}在{area:380}東邊的路旁紮營。{quest:1838}是30級任務；你可以現在接下，順路收集材料。",
 
 	-- Step 6: Roogug in Razorfen Kraul
 	-- {area:1717} Razorfen Kraul
@@ -66,8 +67,8 @@ return {
 	["Iron Bars: {npc:8673}"] = "鐵錠：{npc:8673}",
 
 	-- Step 10: Brutal Hauberk
-	-- {area:380} Crossroads · {quest:1848} Brutal Hauberk
-	["Back to Thun'grim beside the road east of the {area:380}. {quest:1848} is the first piece; he then sends you to three crafters for the rest."] = "回到{area:380}東邊路旁的索恩格瑞姆那裡。{quest:1848}是第一件；接著他會派你去找三位工匠製作其餘部件。",
+	-- {npc:5878} Thun'grim Firegaze · {area:380} Crossroads · {quest:1848} Brutal Hauberk
+	["Back to {npc:5878} beside the road east of the {area:380}. {quest:1848} is the first piece; he then sends you to three crafters for the rest."] = "回到{area:380}東邊路旁的{npc:5878}那裡。{quest:1848}是第一件；接著他會派你去找三位工匠製作其餘部件。",
 
 	-- Step 11: Ula'elek
 	-- {npc:6408} Ula'elek · {area:367} Sen'jin Village · {zone:1411} Durotar
@@ -96,7 +97,4 @@ return {
 	["The Dragonmaw orcs camp in the middle of the {zone:1437}, south of the road; Raiders, Swamprunners, Centurions, Shadowwarders and Bonewarders all drop the Sturdy Dragonmaw Shinbones."] = "龍喉獸人在{zone:1437}中部、道路南邊紮營；龍喉襲擊者、龍喉沼澤行者、龍喉百夫長、龍喉暗影守衛和龍喉白骨守衛都會掉落結實的龍喉脛骨。",
 	-- plural, as words: Sturdy Dragonmaw Shinbones = {item:7134} Sturdy Dragonmaw Shinbone
 	["Sturdy Dragonmaw Shinbones"] = "結實的龍喉脛骨",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Uncloven Satyr Hooves"] = "完整的薩特之蹄",
 }

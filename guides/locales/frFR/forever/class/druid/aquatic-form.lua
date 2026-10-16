@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in French (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in French words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -36,8 +37,8 @@ return {
 	["{item:15885}: join the halves at the shrine"] = "{item:15885} : assemblez les moitiés au sanctuaire",
 
 	-- Step 6: Aquatic Form
-	-- {area:1658} Cenarion Enclave
-	["Take the portal up to Mathrengyl in the {area:1658}."] = "Prenez le portail qui monte jusqu'à Mathrengyl, dans l'{area:1658}.",
+	-- {npc:4217} Mathrengyl Bearwalker · {area:1658} Cenarion Enclave
+	["Take the portal up to {npc:4217} in the {area:1658}."] = "Prenez le portail qui monte jusqu'à {npc:4217}, dans l'{area:1658}.",
 
 	-- Step 7: A Lesson to Learn
 	-- {npc:3033} Turak Runetotem · {area:1639} Elder Rise
@@ -65,6 +66,4 @@ return {
 	-- ["Cast Teleport: {zone:1450}. Join the two halves into the {item:15885} near the {area:2362}, on the north-west shore of the lake, then see {npc:11802} in {area:2361}. {npc:11798} flies druids to {area:1638}."] = "Lancez Téléportation : {zone:1450}. Assemblez les deux moitiés pour obtenir {item:15885} près du {area:2362}, sur la rive nord-ouest du lac, puis allez voir {npc:11802} à {area:2361}. {npc:11798} emmène les druides en vol jusqu'à {area:1638}.",
 	-- ["Cast Teleport: {zone:1450}. {npc:11802} is in {area:2361}. Shrine Baubles lie in the containers on the floor of {area:656}, below {area:2361}: take one to the {area:2362} on the north-west shore, use it there and speak to {npc:11799}."] = "Lancez Téléportation : {zone:1450}. {npc:11802} se trouve à {area:2361}. Les Colifichets du sanctuaire reposent dans les conteneurs au fond du {area:656}, en contrebas d'{area:2361} : apportez-en une au {area:2362}, sur la rive nord-ouest, utilisez-la là-bas et parlez à {npc:11799}.",
 	-- ["Cast Teleport: {zone:1450}. {npc:11802} is in {area:2361}. The Shrine Baubles lie on the bed of {area:656} and fade within minutes: swim one straight to the {area:2362} on the north-west shore, use it there and speak to {npc:11799}."] = "Lancez Téléportation : {zone:1450}. {npc:11802} se trouve à {area:2361}. Les Colifichets du sanctuaire reposent au fond du {area:656} et disparaissent en quelques minutes : nagez directement avec l'une d'elles jusqu'au {area:2362}, sur la rive nord-ouest, utilisez-la là-bas et parlez à {npc:11799}.",
-	-- ["Fly from {area:2361} to {area:442}. The {object:177790} lies under the water off the north coast, west of the {area:443}."] = "Volez d'{area:2361} à {area:442}. L'{object:177790} se trouve sous l'eau au large de la côte nord, à l'ouest des {area:443}.",
-	-- ["The {object:177790} lies at the north edge of the {area:382}, by the Venture Co. tower, north of the {area:380}."] = "L'{object:177790} se trouve à la lisière nord de {area:382}, près de la tour de la KapitalRisk, au nord de {area:380}.",
 }

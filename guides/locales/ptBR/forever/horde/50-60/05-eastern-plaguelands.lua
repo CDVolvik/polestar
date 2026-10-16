@@ -3,12 +3,13 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Portuguese (Brazil) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Portuguese (Brazil) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Fly to Light's Hope Chapel
 	-- {area:2268} Light's Hope Chapel
 	["Fly to {area:2268}"] = "Voe para a {area:2268}",
-	-- {object:1661} The Undercity · {object:36078} Trade Quarter
+	-- {object:1661} The Undercity (no name in this language: may be words) · {object:36078} Trade Quarter (no name in this language: may be words)
 	["{object:1661}'s flight master is in the {object:36078}'s west tower, outside the walls."] = "O mestre de voo de {object:1661} fica na torre oeste do {object:36078}, fora das muralhas.",
 
 	-- Step 2: Light's Hope Chapel
@@ -97,8 +98,8 @@ return {
 	["Only if a {quest:8471} dropped for you: {npc:11558} waits at the {zone:1448} entrance of {area:1769}, and speaks to you only at Neutral with the Timbermaw."] = "Só se {quest:8471} caiu para você: {npc:11558} espera na entrada de {area:1769} pelo lado de {zone:1448}, e só fala com você com reputação Neutra com os Presamatos.",
 
 	-- Step 22: Rabine Saturna
-	-- {area:1769} Timbermaw Hold · {zone:1450} Moonglade · {area:2361} Nighthaven
-	["Go through {area:1769} and take the {zone:1450} branch of the tunnel. Rabine is in {area:2361}."] = "Atravesse {area:1769} e pegue o ramo do túnel para {zone:1450}. Rabine está em {area:2361}.",
+	-- {area:1769} Timbermaw Hold · {zone:1450} Moonglade · {npc:11801} Rabine · {area:2361} Nighthaven
+	["Go through {area:1769} and take the {zone:1450} branch of the tunnel. {npc:11801} is in {area:2361}."] = "Atravesse {area:1769} e pegue o ramo do túnel para {zone:1450}. {npc:11801} está em {area:2361}.",
 	-- {zone:1451} Silithus
 	["Both quests lead to {zone:1451}: keep them."] = "As duas missões levam a {zone:1451}: guarde-as.",
 
@@ -134,8 +135,8 @@ return {
 	["{quest:3914} goes back to Linken in Un'Goro: keep it."] = "{quest:3914} volta para Linken na Cratera Un'Goro: guarde-a.",
 
 	-- Step 29: Marvon Rivetseeker
-	-- {area:1336} Lost Rigger Cove · {area:976} Gadgetzan
-	["Marvon camps by the {area:1336} road, south of {area:976}."] = "Marvon acampa junto à estrada da {area:1336}, ao sul de {area:976}.",
+	-- {npc:7771} Marvon Rivetseeker · {area:1336} Lost Rigger Cove · {area:976} Gadgetzan
+	["{npc:7771} camps by the {area:1336} road, south of {area:976}."] = "{npc:7771} acampa junto à estrada da {area:1336}, ao sul de {area:976}.",
 
 	-- Step 30: Hippogryph eggs
 	["Hippogryph eggs"] = "Ovos de hipogrifo",

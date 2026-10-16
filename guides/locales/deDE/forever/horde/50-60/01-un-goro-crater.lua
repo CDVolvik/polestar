@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in German (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in German words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Into Un'Goro Crater
@@ -10,7 +11,8 @@ return {
 	["Into {zone:1449}"] = "Hinab in den {zone:1449}",
 	-- {area:1938} Broken Pillar · {zone:1449} Un'Goro Crater · {area:541} Marshal's Refuge
 	["From the {area:1938} ride west to the long ramp that winds down into {zone:1449}, then follow the crater's north wall to {area:541}, a camp in the cliff caves. Everyone here is neutral."] = "Reite von der {area:1938} nach Westen zur langen Rampe, die sich in den {zone:1449} hinabwindet, und folge dann der Nordwand des Kraters nach {area:541}, einem Lager in den Klippenhöhlen. Alle hier sind neutral.",
-	["The wooden sign beside Spraggle"] = "Das Holzschild neben Spraggle",
+	-- {npc:9997} Spraggle
+	["The wooden sign beside {npc:9997}"] = "Das Holzschild neben {npc:9997}",
 	-- {npc:9117} J.D. Collie
 	["{npc:9117}, at the back of the cave"] = "{npc:9117}, hinten in der Höhle",
 
@@ -55,7 +57,8 @@ return {
 	["The raft lies on the shore of the south-eastern lake; the small pack sits in the water beside it."] = "Das Floß liegt am Ufer des südöstlichen Sees; das kleine Bündel liegt daneben im Wasser.",
 
 	-- Step 9: Torwa Pathfinder
-	["Torwa camps in the south-east corner of the crater."] = "Torwa lagert in der Südostecke des Kraters.",
+	-- {npc:9619} Torwa Pathfinder
+	["{npc:9619} camps in the south-east corner of the crater."] = "{npc:9619} lagert in der Südostecke des Kraters.",
 
 	-- Step 10: Fresh Threshadon Carcass
 	["North of Torwa, a dead Threshadon lies by the water."] = "Nördlich von Torwa liegt ein toter Dreschadon am Wasser.",
@@ -63,8 +66,9 @@ return {
 	-- Step 12: Lar'korwi Mates
 	-- plural, as words: Lar'korwi Mates = {npc:9683} Lar'korwi Mate
 	["Lar'korwi Mates"] = "Lar'korwi-Weibchen",
+	-- {npc:9619} Torwa Pathfinder
 	-- plural, as words: Lar'korwi Mates = {npc:9683} Lar'korwi Mate
-	["The Lar'korwi Mates prowl the jungle north-west of Torwa."] = "Die Lar'korwi-Weibchen streifen durch den Dschungel nordwestlich von Torwa.",
+	["The Lar'korwi Mates prowl the jungle north-west of {npc:9619}."] = "Die Lar'korwi-Weibchen streifen durch den Dschungel nordwestlich von {npc:9619}.",
 
 	-- Step 13: Torwa Pathfinder
 	-- {npc:9684} Lar'korwi
@@ -124,12 +128,12 @@ return {
 	["Ride down the east side of the crater to the pylon on the eastern cliffs."] = "Reite die Ostseite des Kraters hinab zum Pylon auf den östlichen Klippen.",
 
 	-- Step 24: Lar'korwi
-	-- {npc:9684} Lar'korwi
-	["{npc:9684}'s lair is just south of the pylon. Use Torwa's bait there; {npc:9684} is level 56 and hits hard, so start at full health."] = "Der Unterschlupf von {npc:9684} liegt gleich südlich des Pylons. Benutze dort Torwas Köder; {npc:9684} ist Stufe 56 und schlägt hart zu, also fang mit voller Gesundheit an.",
+	-- {npc:9684} Lar'korwi · {npc:9619} Torwa Pathfinder
+	["{npc:9684}'s lair is just south of the pylon. Use {npc:9619}'s bait there; {npc:9684} is level 56 and hits hard, so start at full health."] = "Der Unterschlupf von {npc:9684} liegt gleich südlich des Pylons. Benutze dort {npc:9619}s Köder; {npc:9684} ist Stufe 56 und schlägt hart zu, also fang mit voller Gesundheit an.",
 
 	-- Step 25: Torwa Pathfinder
-	-- {npc:9622} U'cha
-	["Torwa now asks for {npc:9622}'s pelt, back in the north-east cave: skip it."] = "Torwa will jetzt das Fell von {npc:9622}, zurück in der nordöstlichen Höhle: Überspringe es.",
+	-- {npc:9619} Torwa Pathfinder · {npc:9622} U'cha
+	["{npc:9619} now asks for {npc:9622}'s pelt, back in the north-east cave: skip it."] = "{npc:9619} will jetzt das Fell von {npc:9622}, zurück in der nordöstlichen Höhle: Überspringe es.",
 
 	-- Step 26: Western Pylon
 	["Western Pylon"] = "Westlicher Kristallpylon",
@@ -164,17 +168,17 @@ return {
 	["Pestlezugg's next quest needs the {npc:10041}, an elite boss. Skip it."] = "Pestlezuggs nächste Quest braucht die {npc:10041}, einen Elite-Boss. Überspringe sie.",
 
 	-- Step 33: Orgrimmar
-	-- {area:1637} Orgrimmar · {object:3202} Grom'gol · {zone:1458} Undercity
+	-- {area:1637} Orgrimmar · {object:3202} Grom'gol (no name in this language: may be words) · {zone:1458} Undercity
 	["Fly to {area:1637} and train before the {object:3202} zeppelin: the {zone:1458} stop later in this guide has no Hunter or Shaman trainer."] = "Flieg nach {area:1637} und trainiere vor dem Zeppelin nach {object:3202}: Der Halt in {zone:1458} später in diesem Guide hat keinen Jäger- oder Schamanenlehrer.",
 
 	-- Step 34: Thunder Bluff
-	-- {area:1638} Thunder Bluff · {npc:3033} Turak Runetotem · {area:1639} Elder Rise · {area:1637} Orgrimmar · {object:3202} Grom'gol
+	-- {area:1638} Thunder Bluff · {npc:3033} Turak Runetotem · {area:1639} Elder Rise · {area:1637} Orgrimmar · {object:3202} Grom'gol (no name in this language: may be words)
 	["Fly to {area:1638} and train with {npc:3033} on {area:1639}, then fly to {area:1637} for the {object:3202} zeppelin."] = "Flieg nach {area:1638} und trainiere bei {npc:3033} im Gebiet {area:1639}; flieg dann nach {area:1637} zum Zeppelin nach {object:3202}.",
 
 	-- Step 35: Fly to Kargath
 	-- {area:340} Kargath
 	["Fly to {area:340}"] = "Flieg nach {area:340}",
-	-- {area:1637} Orgrimmar · {object:3202} Grom'gol · {area:340} Kargath · {zone:1418} Badlands
+	-- {area:1637} Orgrimmar · {object:3202} Grom'gol (no name in this language: may be words) · {area:340} Kargath · {zone:1418} Badlands
 	["Fly to {area:1637}, take the zeppelin to {object:3202} and fly from there to {area:340}, built into the cliffs on the {zone:1418}' west edge."] = "Flieg nach {area:1637}, nimm den Zeppelin nach {object:3202} und flieg von dort nach {area:340}, das in die Klippen am Westrand des Gebiets {zone:1418} gebaut ist.",
 
 	-- Step 36: Into the Searing Gorge
@@ -192,9 +196,9 @@ return {
 	-- Step 38: Black Broodlings
 	-- plural, as words: Black Broodlings = {npc:7047} Black Broodling
 	["Black Broodlings"] = "Schwarze Brutlinge",
-	-- {area:251} Flame Crest · {item:12284} Draco-Incarcinatrix 900
+	-- {area:251} Flame Crest · {npc:10267} Tinkee · {item:12284} Draco-Incarcinatrix 900
 	-- plural, as words: Black Broodlings = {npc:7047} Black Broodling
-	["Black Broodlings nest in the hills just east of {area:251}. Use Tinkee's {item:12284} on a broodling when it is almost dead to capture its essence."] = "Schwarze Brutlinge nisten in den Hügeln gleich östlich vom {area:251}. Benutze Tinkees {item:12284} an einem fast toten Brutling, um seine Essenz einzufangen.",
+	["Black Broodlings nest in the hills just east of {area:251}. Use {npc:10267}'s {item:12284} on a broodling when it is almost dead to capture its essence."] = "Schwarze Brutlinge nisten in den Hügeln gleich östlich vom {area:251}. Benutze {npc:10267}s {item:12284} an einem fast toten Brutling, um seine Essenz einzufangen.",
 
 	-- Step 39: Sha'ni Proudtusk
 	-- {quest:3821} Dreadmaul Rock · {npc:9136} Sha'ni Proudtusk
@@ -212,30 +216,30 @@ return {
 	-- Step 42: Flame Crest
 	-- {area:251} Flame Crest
 	["Back north-east to {area:251}."] = "Zurück nach Nordosten zum {area:251}.",
-	-- {quest:4808} Felnok Steelspring · {area:2255} Everlook · {zone:1452} Winterspring
-	["Keep Tinkee's letter: {quest:4808} is in {area:2255}, {zone:1452}."] = "Behalte Tinkees Brief: {quest:4808} ist in {area:2255}, {zone:1452}.",
+	-- {npc:10267} Tinkee · {quest:4808} Felnok Steelspring · {area:2255} Everlook · {zone:1452} Winterspring
+	["Keep {npc:10267}'s letter: {quest:4808} is in {area:2255}, {zone:1452}."] = "Behalte {npc:10267}s Brief: {quest:4808} ist in {area:2255}, {zone:1452}.",
 
 	-- Step 43: Kargath
 	-- {area:1584} Blackrock Depths
 	["Theodora's next errand goes to Lotwil east of town and then into {area:1584}: skip it."] = "Theodoras nächster Auftrag führt zu Lotwil östlich der Stadt und dann in die {area:1584}: Überspringe ihn.",
 
 	-- Step 44: Undercity
-	-- {npc:10879} Harbinger Balthazad · {object:36078} Trade Quarter
+	-- {npc:10879} Harbinger Balthazad · {object:36078} Trade Quarter (no name in this language: may be words)
 	["{npc:10879}, the {object:36078}, beside the bat master"] = "{npc:10879}, {object:36078}, neben dem Fledermausführer",
-	-- {npc:6522} Andron Gant · {object:36073} Rogues' Quarter
+	-- {npc:6522} Andron Gant · {object:36073} Rogues' Quarter (no name in this language: may be words)
 	["{npc:6522}, the {object:36073}"] = "{npc:6522}, {object:36073}",
 	-- {npc:8390} Chemist Cuely · {zone:1447} Azshara
 	["{npc:8390}, the Apothecarium: the vials fill in {zone:1447} later"] = "{npc:8390}, im Apothekarium: Die Phiolen füllst du später in {zone:1447}",
 
 	-- Step 45: The Bulwark
-	-- {zone:1458} Undercity · {zone:1420} Tirisfal Glades
-	["Leave the {zone:1458} and ride east along the road through {zone:1420} to the Bulwark, the Forsaken fort on the border."] = "Verlass {zone:1458} und reite auf der Straße nach Osten durch {zone:1420} zum Bollwerk, der Festung der Verlassenen an der Grenze.",
+	-- {zone:1458} Undercity · {zone:1420} Tirisfal Glades · {area:152} The Bulwark
+	["Leave the {zone:1458} and ride east along the road through {zone:1420} to the {area:152}, the Forsaken fort on the border."] = "Verlass {zone:1458} und reite auf der Straße nach Osten durch {zone:1420} zum {area:152}, der Festung der Verlassenen an der Grenze.",
 	-- {object:176092} Box of Incendiaries · {quest:5096} Scarlet Diversions · {quest:5401} Argent Dawn Commission
 	["Take a {object:176092} from the crate next to Derrington for {quest:5096}, done on the way back. Equip the {quest:5401}: Scourgestones only drop while you wear it."] = "Nimm einen {object:176092} aus der Kiste neben Derrington für {quest:5096}, die du auf dem Rückweg erledigst. Leg die {quest:5401} an: Geißelsteine fallen nur, solange du sie trägst.",
 
 	-- Step 46: Augustus the Touched
-	-- {zone:1422} Western Plaguelands · {zone:1423} Eastern Plaguelands · {area:2627} Terrordale
-	["Follow the road east through the {zone:1422} and across the river into the {zone:1423}; leave it north for {area:2627}, the ruined town in the north-west. Augustus sits in a hut at its edge."] = "Folge der Straße nach Osten durch das Gebiet {zone:1422} und über den Fluss ins Gebiet {zone:1423}; verlass es nach Norden zum {area:2627}, der zerstörten Stadt im Nordwesten. Augustus sitzt in einer Hütte an ihrem Rand.",
+	-- {zone:1422} Western Plaguelands · {zone:1423} Eastern Plaguelands · {area:2627} Terrordale · {npc:12384} Augustus the Touched
+	["Follow the road east through the {zone:1422} and across the river into the {zone:1423}; leave it north for {area:2627}, the ruined town in the north-west. {npc:12384} sits in a hut at its edge."] = "Folge der Straße nach Osten durch das Gebiet {zone:1422} und über den Fluss ins Gebiet {zone:1423}; verlass es nach Norden zum {area:2627}, der zerstörten Stadt im Nordwesten. {npc:12384} sitzt in einer Hütte an ihrem Rand.",
 
 	-- Step 47: Augustus' Receipt Book
 	-- {area:2627} Terrordale
@@ -254,25 +258,26 @@ return {
 	-- Step 51: Darrowshire Spirits
 	-- plural, as words: Darrowshire Spirits = {npc:11064} Darrowshire Spirit
 	["Darrowshire Spirits"] = "Geister von Darrowshire",
-	-- {npc:11064} Darrowshire Spirit · {area:2262} Darrowshire
-	["With Carlin's quest in your log, slain Scourge sometimes leave a {npc:11064}; talk to it to free it. Kill undead on the ride south-west to {area:2262}."] = "Mit Carlins Quest im Questlog hinterlässt erschlagene Geißel manchmal einen {npc:11064}; sprich mit ihm, um ihn zu befreien. Töte Untote auf dem Ritt nach Südwesten nach {area:2262}.",
+	-- {npc:11063} Carlin · {npc:11064} Darrowshire Spirit · {area:2262} Darrowshire
+	["With {npc:11063}'s quest in your log, slain Scourge sometimes leave a {npc:11064}; talk to it to free it. Kill undead on the ride south-west to {area:2262}."] = "Mit {npc:11063}s Quest im Questlog hinterlässt erschlagene Geißel manchmal einen {npc:11064}; sprich mit ihm, um ihn zu befreien. Töte Untote auf dem Ritt nach Südwesten nach {area:2262}.",
 	-- plural, as words: Darrowshire Spirits = {npc:11064} Darrowshire Spirit
 	["Free Darrowshire Spirits: talk to them"] = "Befreie Geister von Darrowshire: Sprich mit ihnen",
 
 	-- Step 52: Pamela Redpath
-	-- {area:2262} Darrowshire
-	["Pamela's ghost stands in the ruins of {area:2262}, in the south-west."] = "Pamelas Geist steht in den Ruinen von {area:2262} im Südwesten.",
+	-- {npc:10926} Pamela Redpath · {area:2262} Darrowshire
+	["{npc:10926}'s ghost stands in the ruins of {area:2262}, in the south-west."] = "{npc:10926}s Geist steht in den Ruinen von {area:2262} im Südwesten.",
 
 	-- Step 53: Pamela's Doll
-	["The doll's head and its two sides lie in the houses around Pamela; join them from your bags."] = "Der Kopf der Puppe und ihre beiden Seiten liegen in den Häusern um Pamela; füge sie in deinen Taschen zusammen.",
+	-- {npc:10926} Pamela Redpath
+	["The doll's head and its two sides lie in the houses around {npc:10926}; join them from your bags."] = "Der Kopf der Puppe und ihre beiden Seiten liegen in den Häusern um {npc:10926}; füge sie in deinen Taschen zusammen.",
 
 	-- Step 54: Pamela Redpath
 	-- {quest:5152} Auntie Marlene · {area:197} Sorrow Hill · {zone:1422} Western Plaguelands
 	["Keep {quest:5152}: Marlene lives at {area:197} in the {zone:1422}."] = "Behalte {quest:5152}: Marlene wohnt am {area:197} im Gebiet {zone:1422}.",
 
 	-- Step 55: Zaeldarr the Outcast
-	-- {area:2262} Darrowshire
-	["Zaeldarr lurks just west of {area:2262}."] = "Zaeldarr lauert gleich westlich von {area:2262}.",
+	-- {npc:12250} Zaeldarr · {area:2262} Darrowshire
+	["{npc:12250} lurks just west of {area:2262}."] = "{npc:12250} lauert gleich westlich von {area:2262}.",
 
 	-- Step 56: Back to Light's Hope Chapel
 	-- {area:2268} Light's Hope Chapel

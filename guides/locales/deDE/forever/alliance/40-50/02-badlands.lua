@@ -3,10 +3,11 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in German (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in German words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Thelsamar
-	-- {npc:1573} Gryth Thurden · {object:32372} Great Forge
+	-- {npc:1573} Gryth Thurden · {object:32372} Great Forge (no name in this language: may be words)
 	["{npc:1573}, the {object:32372}"] = "{npc:1573}, {object:32372}",
 
 	-- Step 2: Hammertoe's Digsite
@@ -53,23 +54,27 @@ return {
 	["Raleigh's next errand is in the {area:796}: skip it."] = "Raleighs nächster Auftrag ist im {area:796}: Überspring ihn.",
 
 	-- Step 11: Aerie Peak
-	-- {area:271} Southshore · {area:348} Aerie Peak · {quest:1450} Gryphon Master Talonaxe · {npc:7884} Fraggar Thundermantle
-	["Ride north-east out of {area:271} on the road into the Hinterlands; {area:348} sits just past the border. Falstad holds court at the top, {quest:1450} tends the aviary and {npc:7884} stands by the inn."] = "Reite auf der Straße nach Nordosten aus {area:271} ins Hinterland; {area:348} liegt gleich hinter der Grenze. Falstad hält oben Hof, {quest:1450} kümmert sich um den Greifenhorst und {npc:7884} steht beim Gasthaus.",
+	-- {area:271} Southshore · {zone:1425} The Hinterlands · {area:348} Aerie Peak · {npc:5635} Falstad · {quest:1450} Gryphon Master Talonaxe · {npc:7884} Fraggar Thundermantle
+	["Ride north-east out of {area:271} on the road into the {zone:1425}; {area:348} sits just past the border. {npc:5635} holds court at the top, {quest:1450} tends the aviary and {npc:7884} stands by the inn."] = "Reite auf der Straße nach Nordosten aus {area:271} ins {zone:1425}; {area:348} liegt gleich hinter der Grenze. {npc:5635} hält oben Hof, {quest:1450} kümmert sich um den Greifenhorst und {npc:7884} steht beim Gasthaus.",
 
 	-- Step 12: Rhapsody Shindigger
-	-- {area:348} Aerie Peak
-	["Rhapsody camps on the road east of {area:348}."] = "Rhapsody lagert an der Straße östlich von {area:348}.",
-	["Rhapsody's cocktail needs parts from Kalimdor: skip it."] = "Rhapsodys Cocktail braucht Zutaten aus Kalimdor: Überspring ihn.",
+	-- {npc:5634} Rhapsody · {area:348} Aerie Peak
+	["{npc:5634} camps on the road east of {area:348}."] = "{npc:5634} lagert an der Straße östlich von {area:348}.",
+	-- {npc:5634} Rhapsody
+	["{npc:5634}'s cocktail needs parts from Kalimdor: skip it."] = "{npc:5634}s Cocktail braucht Zutaten aus Kalimdor: Überspring ihn.",
 
 	-- Step 13: Witherbark villages
 	["Witherbark villages"] = "Dörfer der Witherbark",
-	["The first two cages stand together in the Witherbark village south of Rhapsody; the third is in the next village to the east. Every Witherbark troll can drop a necklace."] = "Die ersten beiden Käfige stehen zusammen im Dorf der Witherbark südlich von Rhapsody; der dritte ist im nächsten Dorf östlich davon. Jeder Troll der Witherbark kann eine Halskette fallen lassen.",
+	-- {npc:5634} Rhapsody
+	["The first two cages stand together in the Witherbark village south of {npc:5634}; the third is in the next village to the east. Every Witherbark troll can drop a necklace."] = "Die ersten beiden Käfige stehen zusammen im Dorf der Witherbark südlich von {npc:5634}; der dritte ist im nächsten Dorf östlich davon. Jeder Troll der Witherbark kann eine Halskette fallen lassen.",
 
 	-- Step 14: Aerie Peak
-	["Fraggar keeps paying for necklaces: hand in any extras"] = "Fraggar zahlt weiter für Halsketten: Gib alle übrigen ab",
+	-- {npc:7884} Fraggar Thundermantle
+	["{npc:7884} keeps paying for necklaces: hand in any extras"] = "{npc:7884} zahlt weiter für Halsketten: Gib alle übrigen ab",
 	-- {npc:5636} Gryphon Master Talonaxe
 	["{npc:5636}, beside the flight master at the top"] = "{npc:5636}, oben neben dem Flugmeister",
-	["Talonaxe's next task waits for a later Hinterlands guide."] = "Talonaxes nächste Aufgabe wartet auf einen späteren Guide für das Hinterland.",
+	-- {zone:1425} The Hinterlands
+	["Talonaxe's next task waits for a later {zone:1425} guide."] = "Talonaxes nächste Aufgabe wartet auf einen späteren Guide für das {zone:1425}.",
 
 	-- Step 15: Menethil Harbor
 	["Take the boat to Theramore from the far pier."] = "Nimm vom hinteren Pier das Schiff nach Theramore.",

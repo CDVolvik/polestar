@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (simplified) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (simplified) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -86,6 +87,5 @@ return {
 	-- ["Cast Teleport: {zone:1450} and see {npc:11802}, then take {npc:11798}'s flight to {area:1638}."] = "施放传送：{zone:1450}，找{npc:11802}，然后乘{npc:11798}的飞行前往{area:1638}。",
 	-- ["Cast Teleport: {zone:1450}. {npc:11802} is in {area:2361}. Then fly to {area:442}."] = "施放传送：{zone:1450}。{npc:11802}在{area:2361}。然后飞往{area:442}。",
 	-- ["Cast Teleport: {zone:1450}. {npc:11802} is in {area:2361}. {npc:11798} flies druids to {area:1638}; fly on to the {area:380} from there."] = "施放传送：{zone:1450}。{npc:11802}在{area:2361}。{npc:11798}会载德鲁伊飞往{area:1638}；再从那里飞往{area:380}。",
-	-- ["Lost {zone:1413} Kodos roam the plains north and west of the {area:380} and around the {area:388}; each drops a horn. Herbalists find {item:2449} all over the northern {zone:1413}."] = "落单的草原科多兽在{area:380}北边和西边的平原以及{area:388}周围游荡；每只掉落一个兽角。草药师在{zone:1413}北部各处都能找到{item:2449}。",
 	-- ["The Lunar Fungal Blooms grow in the moonkin caves in the hills just east of {area:442}; the moonkin there are irritable. {item:2449} needs {skill:182}: herbalists pick it all over {zone:1439}, anyone else buys it from {npc:1313} ({skill:171} Supplies) in {zone:1453} or on the Auction House."] = "月光蘑菇花生长在{area:442}东边山丘的枭兽洞穴里；那里的枭兽很暴躁。{item:2449}需要{skill:182}：草药师在{zone:1439}各处都能采到，其他人可以在{zone:1453}向{npc:1313}（{skill:171}用品）购买，或在拍卖行购买。",
 }

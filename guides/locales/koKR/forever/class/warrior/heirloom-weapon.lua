@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Korean words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -10,8 +11,8 @@ return {
 	["{spell:71} and a one-hand weapon of your choice at 10."] = "10레벨에 {spell:71}과(와) 원하는 한손 무기 하나.",
 
 	-- Step 1: Ulag the Cleaver
-	-- {npc:1496} Deathguard Dillinger · {area:159} Brill
-	["{npc:1496} stands in {area:159}. Ulag waits in the mausoleum on the hill just north of town: open the gate and fight him."] = "{npc:1496}은(는) {area:159}에 있습니다. 울라그는 마을 바로 북쪽 언덕의 묘지에서 기다립니다. 문을 열고 그와 싸우십시오.",
+	-- {npc:1496} Deathguard Dillinger · {area:159} Brill · {npc:6390} Ulag
+	["{npc:1496} stands in {area:159}. {npc:6390} waits in the mausoleum on the hill just north of town: open the gate and fight him."] = "{npc:1496}은(는) {area:159}에 있습니다. {npc:6390}은(는) 마을 바로 북쪽 언덕의 묘지에서 기다립니다. 문을 열고 그와 싸우십시오.",
 
 	-- Step 2: Coleman Farthing
 	-- {npc:1500} Coleman Farthing · {area:2119} Gallows' End Tavern · {area:159} Brill

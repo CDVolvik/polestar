@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Korean words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Learn Mining
@@ -42,9 +43,9 @@ return {
 
 	-- Step 8: Journeyman Mining
 	-- {skill:186} Mining
-	["Journeyman {skill:186}"] = "중급 {skill:186}",
+	["Journeyman {skill:186}"] = "수습 {skill:186}",
 	-- {skill:186} Mining
-	["Journeyman {skill:186} raises the cap to 150; it needs skill 50 and character level 10. The arrow picks the nearest {skill:186} trainer of your faction."] = "중급 {skill:186}은(는) 최대 숙련도를 150(으)로 올립니다. 숙련도 50, 캐릭터 레벨 10이(가) 필요합니다. 화살표는 진영의 가장 가까운 {skill:186} 상급자를 가리킵니다.",
+	["Journeyman {skill:186} raises the cap to 150; it needs skill 50 and character level 10. The arrow picks the nearest {skill:186} trainer of your faction."] = "수습 {skill:186}은(는) 최대 숙련도를 150(으)로 올립니다. 숙련도 50, 캐릭터 레벨 10이(가) 필요합니다. 화살표는 진영의 가장 가까운 {skill:186} 상급자를 가리킵니다.",
 
 	-- Step 9: Copper: Elwynn Forest (50-65) cont.
 	-- {zone:1429} Elwynn Forest
@@ -106,9 +107,9 @@ return {
 
 	-- Step 19: Expert Mining
 	-- {skill:186} Mining
-	["Expert {skill:186}"] = "고급 {skill:186}",
+	["Expert {skill:186}"] = "숙련 {skill:186}",
 	-- {skill:186} Mining
-	["Expert {skill:186} raises the cap to 225; it needs skill 125 and character level 20. The arrow picks the nearest {skill:186} trainer of your faction."] = "고급 {skill:186}은(는) 최대 숙련도를 225(으)로 올립니다. 숙련도 125, 캐릭터 레벨 20이(가) 필요합니다. 화살표는 진영의 가장 가까운 {skill:186} 상급자를 가리킵니다.",
+	["Expert {skill:186} raises the cap to 225; it needs skill 125 and character level 20. The arrow picks the nearest {skill:186} trainer of your faction."] = "숙련 {skill:186}은(는) 최대 숙련도를 225(으)로 올립니다. 숙련도 125, 캐릭터 레벨 20이(가) 필요합니다. 화살표는 진영의 가장 가까운 {skill:186} 상급자를 가리킵니다.",
 
 	-- Step 20: Iron: Duskwood (125-155)
 	-- {zone:1431} Duskwood
@@ -151,13 +152,13 @@ return {
 	["Mine every Iron (125, green), Gold (155, yellow), Mithril (175, yellow) node you pass and circle the waypoints until {skill:186} 230. Smelt the ore at a forge when your bags fill: smelting also raises {skill:186}. Zone level 35-45."] = "지나가는 철(125, 초록색), 금(155, 노란색), 미스릴(175, 노란색) 광맥을 모두 캐고, {skill:186} 230까지 경유지를 도세요. 가방이 차면 제련소에서 광석을 제련하세요. 제련도 {skill:186}을(를) 올립니다. 지역 레벨 35-45.",
 
 	-- Step 26: Dark Iron & Truesilver: Searing Gorge (230-245)
-	-- {object:147516} Dark Iron · {zone:1427} Searing Gorge
+	-- {object:147516} Dark Iron (no name in this language: may be words) · {zone:1427} Searing Gorge
 	["{object:147516} & Truesilver: {zone:1427} (230-245)"] = "{object:147516} 및 진은: {zone:1427} (230-245)",
-	-- {object:147516} Dark Iron · {skill:186} Mining
+	-- {object:147516} Dark Iron (no name in this language: may be words) · {skill:186} Mining
 	["Mine every Gold (155, green), Mithril (175, green), {object:147516} (230, orange), Truesilver (230, orange) node you pass and circle the waypoints until {skill:186} 245. Smelt the ore at a forge when your bags fill: smelting also raises {skill:186}. Zone level 43-50."] = "지나가는 금(155, 초록색), 미스릴(175, 초록색), {object:147516}(230, 주황색), 진은(230, 주황색) 광맥을 모두 캐고, {skill:186} 245까지 경유지를 도세요. 가방이 차면 제련소에서 광석을 제련하세요. 제련도 {skill:186}을(를) 올립니다. 지역 레벨 43-50.",
-	-- {object:147516} Dark Iron
+	-- {object:147516} Dark Iron (no name in this language: may be words)
 	["Truesilver, {object:147516}"] = "진은, {object:147516}",
-	-- {object:147516} Dark Iron
+	-- {object:147516} Dark Iron (no name in this language: may be words)
 	["{object:147516}, Gold"] = "{object:147516}, 금",
 
 	-- Step 27: Truesilver & Small Thorium: Blasted Lands (245-275)
@@ -169,8 +170,8 @@ return {
 	-- Step 28: Rich Thorium: Burning Steppes (275-300)
 	-- {zone:1428} Burning Steppes
 	["Rich Thorium: {zone:1428} (275-300)"] = "풍부한 토륨: {zone:1428} (275-300)",
-	-- {object:147516} Dark Iron · {skill:186} Mining
+	-- {object:147516} Dark Iron (no name in this language: may be words) · {skill:186} Mining
 	["Mine every {object:147516} (230, yellow), Truesilver (230, yellow), Small Thorium (245, yellow), Rich Thorium (275, orange) node you pass and circle the waypoints until {skill:186} 300. Smelt the ore at a forge when your bags fill: smelting also raises {skill:186}. Zone level 50-58."] = "지나가는 {object:147516}(230, 노란색), 진은(230, 노란색), 작은 토륨(245, 노란색), 풍부한 토륨(275, 주황색) 광맥을 모두 캐고, {skill:186} 300까지 경유지를 도세요. 가방이 차면 제련소에서 광석을 제련하세요. 제련도 {skill:186}을(를) 올립니다. 지역 레벨 50-58.",
-	-- {object:147516} Dark Iron
+	-- {object:147516} Dark Iron (no name in this language: may be words)
 	["{object:147516}, Rich Thorium"] = "{object:147516}, 풍부한 토륨",
 }

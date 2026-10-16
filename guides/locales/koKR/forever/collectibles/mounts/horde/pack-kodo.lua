@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Korean words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Durotar Supply and Logistics
@@ -12,6 +13,6 @@ return {
 	["Durotar Supply and Logistics camp"] = "듀로타 보급 및 병참국 야영지",
 
 	-- Step 2: Pack Kodo
-	["The reins need level 60 and Journeyman Riding to ride (Forever client); you can buy them earlier."] = "고삐를 타려면 60레벨과 중급 탈것 타기가 필요합니다(Forever 클라이언트). 구매는 그 전에도 할 수 있습니다.",
+	["The reins need level 60 and Journeyman Riding to ride (Forever client); you can buy them earlier."] = "고삐를 타려면 60레벨과 수습 타기가 필요합니다(Forever 클라이언트). 구매는 그 전에도 할 수 있습니다.",
 	["6,000 Merchant's Favor"] = "Merchant's Favor 6,000",
 }

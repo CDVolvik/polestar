@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (simplified) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (simplified) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Undertaker Mordo
@@ -35,11 +36,12 @@ return {
 	["The {area:154} trainers stand around the church"] = "{area:154}的训练师站在教堂周围",
 
 	-- Step 5: Aramis and Venya
-	["Aramis and Venya"] = "阿拉米斯·锤手和温雅·玛山德",
-	-- {npc:244808} Aramis Hammerhand · {npc:5667} Venya Marthand
+	-- {npc:244808} Aramis · {npc:5667} Venya
+	["{npc:244808} and {npc:5667}"] = "{npc:244808}和{npc:5667}",
+	-- {npc:244808} Aramis · {npc:5667} Venya
 	["{npc:244808} and {npc:5667} stand beside the church."] = "{npc:244808}和{npc:5667}站在教堂旁。",
-	-- {npc:1569} Shadow Priest Sarvis
-	["{npc:1569}: the scroll for Aramis"] = "{npc:1569}：给阿拉米斯·锤手的卷轴",
+	-- {npc:1569} Shadow Priest Sarvis · {npc:244808} Aramis
+	["{npc:1569}: the scroll for {npc:244808}"] = "{npc:1569}：给{npc:244808}的卷轴",
 
 	-- Step 6: Rattlecages, scavengers and duskbats
 	["Rattlecages, scavengers and duskbats"] = "骷髅、食腐狼和夜行蝙蝠",
@@ -68,7 +70,8 @@ return {
 	-- Step 11: Night Web's Hollow
 	-- plural, as words: Young Night Web Spiders = {npc:1504} Young Night Web Spider · Night Web Spiders = {npc:1505} Night Web Spider
 	["Head west to the cave. The Young Night Web Spiders sit outside; the Night Web Spiders and the Webbed Victims are inside."] = "向西前往洞穴。{npc:1504}在洞外；{npc:1505}和被网住的被遗忘者在洞内。",
-	["Free six Webbed Victims inside the cave for Aramis"] = "为阿拉米斯·锤手解救洞内六名被网住的被遗忘者",
+	-- {npc:244808} Aramis
+	["Free six Webbed Victims inside the cave for {npc:244808}"] = "为{npc:244808}解救洞内六名被网住的被遗忘者",
 	["Webbed Victims"] = "被网住的被遗忘者",
 
 	-- Step 12: Back to Deathknell
@@ -147,8 +150,10 @@ return {
 	["Ask {npc:10666} for his report"] = "向{npc:10666}索取报告",
 
 	-- Step 29: Calvin Montague
-	["Walk on west to Calvin and talk to him: he wants a duel."] = "继续向西走到卡尔文·蒙泰古处并与他交谈：他想和你决斗。",
-	["Beat Calvin in the duel"] = "在决斗中击败卡尔文·蒙泰古",
+	-- {npc:6784} Calvin Montague
+	["Walk on west to {npc:6784} and talk to him: he wants a duel."] = "继续向西走到{npc:6784}处并与他交谈：他想和你决斗。",
+	-- {npc:6784} Calvin Montague
+	["Beat {npc:6784} in the duel"] = "在决斗中击败{npc:6784}",
 
 	-- Step 30: Hearth to Brill
 	-- {area:159} Brill
@@ -207,9 +212,9 @@ return {
 	["Back up the road to {area:159}."] = "沿道路返回{area:159}。",
 
 	-- Step 39: Agamand Mills
-	-- {area:157} Agamand Mills · {npc:1657} Devlin Agamand · {npc:1656} Thurman Agamand · {item:2839} A Letter to Yvette
+	-- {area:157} Agamand Mills · {npc:1657} Devlin Agamand · {npc:1656} Thurman Agamand · {item:2839} A Letter to Yvette · {npc:3549} Shelene Rhobart
 	-- plural, as words: Cracked Skull Soldiers = {npc:1523} Cracked Skull Soldier · Darkeye Bonecasters = {npc:1522} Darkeye Bonecaster · Duskbats = {npc:1512} Duskbat
-	["Follow the road north-west to {area:157}. {npc:1657} walks the graveyard south of the mills; Nissa, Gregor and {npc:1656} haunt the mills themselves. Rattlecage and Cracked Skull Soldiers drop the ribs, Darkeye Bonecasters the skulls, and any of them may drop {item:2839}. From here on, kill the Duskbats and Darkhounds you pass: Shelene wants their wings and hides."] = "沿道路向西北到{area:157}。{npc:1657}在磨坊南边的墓地里游荡；妮萨·阿加曼德、格里高·阿加曼德和{npc:1656}在磨坊里出没。断骨士兵和{npc:1523}掉落肋骨，{npc:1522}掉落头骨，其中任何一个都可能掉落{item:2839}。从这里开始，击杀路过的夜行蝙蝠和黑暗犬：舍伦尼·洛巴尔特需要它们的翅膀和皮。",
+	["Follow the road north-west to {area:157}. {npc:1657} walks the graveyard south of the mills; Nissa, Gregor and {npc:1656} haunt the mills themselves. Rattlecage and Cracked Skull Soldiers drop the ribs, Darkeye Bonecasters the skulls, and any of them may drop {item:2839}. From here on, kill the Duskbats and Darkhounds you pass: {npc:3549} wants their wings and hides."] = "沿道路向西北到{area:157}。{npc:1657}在磨坊南边的墓地里游荡；妮萨·阿加曼德、格里高·阿加曼德和{npc:1656}在磨坊里出没。断骨士兵和{npc:1523}掉落肋骨，{npc:1522}掉落头骨，其中任何一个都可能掉落{item:2839}。从这里开始，击杀路过的夜行蝙蝠和黑暗犬：{npc:3549}需要它们的翅膀和皮。",
 	-- {item:2839} A Letter to Yvette
 	["{item:2839}, a rare drop"] = "{item:2839}，稀有掉落",
 	["Only if the letter dropped"] = "仅当信件已掉落",
@@ -228,7 +233,8 @@ return {
 	-- {npc:275954} Bareth Dawnstone
 	-- plural, as words: Scarlet Warriors = {npc:1535} Scarlet Warrior
 	["Scarlet Warriors guard the outpost just west of the pumpkin fields. {npc:275954} is held inside: talk to him and stay with him until he is out."] = "{npc:1535}守卫着南瓜田西边不远处的前哨。{npc:275954}被关在里面：和他交谈，一直跟着他直到他离开。",
-	["Escort Bareth out of the outpost"] = "护送巴雷斯·晨石离开前哨",
+	-- {npc:275954} Bareth Dawnstone
+	["Escort {npc:275954} out of the outpost"] = "护送{npc:275954}离开前哨",
 
 	-- Step 43: Vile Fin shore
 	["Vile Fin shore"] = "邪鳍海岸",
@@ -237,8 +243,8 @@ return {
 	-- Step 44: Paladin: Whispering Forest
 	-- {area:16616} Whispering Forest
 	["Paladin: {area:16616}"] = "圣骑士：{area:16616}",
-	-- {area:16616} Whispering Forest
-	["Head west into the {area:16616}; Hilda and Ephram camp at its edge."] = "向西进入{area:16616}；破坏者希尔达和埃弗拉姆·巴巴罗在森林边缘扎营。",
+	-- {area:16616} Whispering Forest · {npc:246389} Hilda · {npc:259190} Ephram
+	["Head west into the {area:16616}; {npc:246389} and {npc:259190} camp at its edge."] = "向西进入{area:16616}；{npc:246389}和{npc:259190}在森林边缘扎营。",
 
 	-- Step 45: Shadowvale
 	-- {area:16881} Shadowvale · {item:286269} Glowing Crystal Fragment
@@ -254,15 +260,15 @@ return {
 	["{npc:2128}: {npc:4568} in the {zone:1458} takes it"] = "{npc:2128}：交给{zone:1458}的{npc:4568}",
 
 	-- Step 49: Ulag the Cleaver
-	-- {npc:1496} Deathguard Dillinger · {area:159} Brill
-	["{npc:1496} stands in {area:159}. Ulag waits in the mausoleum on the hill just north of town: open the gate and fight him."] = "{npc:1496}站在{area:159}。切割者奥拉格在镇子北边山丘上的陵墓里等候：打开大门与他战斗。",
+	-- {npc:1496} Deathguard Dillinger · {area:159} Brill · {npc:6390} Ulag
+	["{npc:1496} stands in {area:159}. {npc:6390} waits in the mausoleum on the hill just north of town: open the gate and fight him."] = "{npc:1496}站在{area:159}。{npc:6390}在镇子北边山丘上的陵墓里等候：打开大门与他战斗。",
 
 	-- Step 50: Carendin Halgar
-	-- {area:159} Brill · {area:153} Ruins of Lordaeron · {zone:1458} Undercity · {npc:5675} Carendin Halgar · {object:36082} Magic Quarter
+	-- {area:159} Brill · {area:153} Ruins of Lordaeron · {zone:1458} Undercity · {npc:5675} Carendin Halgar · {object:36082} Magic Quarter (no name in this language: may be words)
 	["Walk south from {area:159} to the {area:153} and down into the {zone:1458}. {npc:5675} stands in the {object:36082}. The Scarlet camp is just west of the ruins."] = "从{area:159}向南走到{area:153}，再往下进入{zone:1458}。{npc:5675}站在{object:36082}。血色营地就在废墟西边。",
 
 	-- Step 51: Anastasia Hartwell
-	-- {area:159} Brill · {area:153} Ruins of Lordaeron · {zone:1458} Undercity · {npc:4568} Anastasia Hartwell · {object:36082} Magic Quarter
+	-- {area:159} Brill · {area:153} Ruins of Lordaeron · {zone:1458} Undercity · {npc:4568} Anastasia Hartwell · {object:36082} Magic Quarter (no name in this language: may be words)
 	["Walk south from {area:159} to the {area:153} and down into the {zone:1458}. {npc:4568} stands in the {object:36082}. The Scarlet camp is just west of the ruins."] = "从{area:159}向南走到{area:153}，再往下进入{zone:1458}。{npc:4568}站在{object:36082}。血色营地就在废墟西边。",
 
 	-- Step 52: The Scarlet camp
@@ -279,8 +285,8 @@ return {
 	["Take the road south-east out of {area:159}; Terrence stands on it short of the zeppelin towers."] = "沿东南方的道路离开{area:159}；亡灵卫兵特伦斯站在飞艇塔之前的路上。",
 
 	-- Step 56: Hadric Harlson
-	-- {npc:1495} Deathguard Linnea
-	["Hadric stands at {npc:1495}'s camp."] = "哈德里克·哈尔森站在{npc:1495}的营地。",
+	-- {npc:267009} Hadric Harlson · {npc:1495} Deathguard Linnea
+	["{npc:267009} stands at {npc:1495}'s camp."] = "{npc:267009}站在{npc:1495}的营地。",
 
 	-- Step 57: Balnir Farmstead
 	-- {quest:96897} The Cult of the Damned
@@ -330,31 +336,28 @@ return {
 	["Back to {area:159}."] = "返回{area:159}。",
 
 	-- Step 66: Leonid Barthalomew
-	-- {area:157} Agamand Mills · {area:16616} Whispering Forest
-	["Follow the road west past {area:157} to the {area:16616}. Leonid stands just north of Hilda's camp."] = "沿道路向西经过{area:157}到{area:16616}。莱尼德·巴萨罗梅站在破坏者希尔达营地北边不远处。",
+	-- {area:157} Agamand Mills · {area:16616} Whispering Forest · {npc:246389} Hilda
+	["Follow the road west past {area:157} to the {area:16616}. Leonid stands just north of {npc:246389}'s camp."] = "沿道路向西经过{area:157}到{area:16616}。莱尼德·巴萨罗梅站在{npc:246389}营地北边不远处。",
 	-- {npc:246378} Danitha Morr
 	["Listen to Leonid and {npc:246378}, then talk to him again"] = "听莱尼德·巴萨罗梅和{npc:246378}说话，然后再次与他交谈",
 
 	-- Step 68: The Undercity
-	-- {object:1661} The Undercity · {area:153} Ruins of Lordaeron · {npc:5675} Carendin Halgar · {object:36082} Magic Quarter · {item:6284} Runes of Summoning · {npc:4606} Aelthalyste · {object:36070} War Quarter · {npc:4568} Anastasia Hartwell
+	-- {object:1661} The Undercity (no name in this language: may be words) · {area:153} Ruins of Lordaeron · {npc:5675} Carendin Halgar · {object:36082} Magic Quarter (no name in this language: may be words) · {item:6284} Runes of Summoning · {npc:4606} Aelthalyste · {object:36070} War Quarter (no name in this language: may be words) · {npc:4568} Anastasia Hartwell
 	["{object:1661} is under the {area:153}, beside the zeppelin towers. {npc:5675} is in the {object:36082}: use the {item:6284} on the summoning circle beside him and defeat the voidwalker. {npc:4606} is in the {object:36070}. {npc:4568} is in the {object:36082} too."] = "{object:1661}在{area:153}下方，飞艇塔旁边。{npc:5675}在{object:36082}：在他旁边的召唤法阵上使用{item:6284}，击败虚空行者。{npc:4606}在{object:36070}。{npc:4568}也在{object:36082}。",
 
 	-- Step 69: Zeppelin to Durotar
 	-- {zone:1411} Durotar
 	["Zeppelin to {zone:1411}"] = "乘飞艇前往{zone:1411}",
-	-- {area:159} Brill · {area:153} Ruins of Lordaeron · {zone:1454} Orgrimmar · {object:3202} Grom'gol
+	-- {area:159} Brill · {area:153} Ruins of Lordaeron · {zone:1454} Orgrimmar · {object:3202} Grom'gol (no name in this language: may be words)
 	["Walk south-east from {area:159} to the zeppelin towers outside the {area:153} and board the zeppelin to {zone:1454} (the other one goes to {object:3202})."] = "从{area:159}向东南走到{area:153}外的飞艇塔，登上前往{zone:1454}的飞艇（另一艘前往{object:3202}）。",
 	["Zeppelin tower"] = "飞艇塔",
 
 	-- Step 70: The Crossroads
-	-- {zone:1454} Orgrimmar · {zone:1411} Durotar · {area:815} Southfury River · {area:379} Far Watch Post
-	["The zeppelin lands at the tower just north-east of {zone:1454}'s main gate. Follow the road south into {zone:1411}, cross the {area:815} bridge below {area:379} and follow the road west to the Crossroads."] = "飞艇停靠在{zone:1454}正门东北方的塔上。沿道路向南进入{zone:1411}，从{area:379}下方过{area:815}的桥，然后沿道路向西到十字路口。",
+	-- {zone:1454} Orgrimmar · {zone:1411} Durotar · {area:815} Southfury River · {area:379} Far Watch Post · {area:380} The Crossroads
+	["The zeppelin lands at the tower just north-east of {zone:1454}'s main gate. Follow the road south into {zone:1411}, cross the {area:815} bridge below {area:379} and follow the road west to the {area:380}."] = "飞艇停靠在{zone:1454}正门东北方的塔上。沿道路向南进入{zone:1411}，从{area:379}下方过{area:815}的桥，然后沿道路向西到{area:380}。",
 	-- {npc:3615} Devrak
 	["{npc:3615}, the wind rider master"] = "{npc:3615}，双足飞龙管理员",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["The spiders lurk in the woods at the far east end of the glades. Riptear, a rogue abomination, wanders just north-west of them. Riptear is elite: grouping up is advised."] = "蜘蛛潜伏在林地最东端的树林里。Riptear是一个失控的憎恶，在它们西北方不远处游荡。Riptear是精英：建议组队。",
 	-- ["The zeppelin lands at the tower just north-east of {zone:1454}'s main gate. Follow the road south into {zone:1411}, cross the {area:815} bridge below {area:379} and follow the road west to the {area:380}."] = "飞艇停靠在{zone:1454}正门东北方的塔上。沿道路向南进入{zone:1411}，从{area:379}下方过{area:815}的桥，然后沿道路向西到{area:380}。",
-	-- ["{item:286326}, from Riptear"] = "{item:286326}，来自Riptear",
-	-- ["{npc:1495}: Riptear, an elite abomination in the east"] = "{npc:1495}：Riptear，东边的一个精英憎恶",
 }

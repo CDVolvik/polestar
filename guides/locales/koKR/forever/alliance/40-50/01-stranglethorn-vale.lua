@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Korean words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Theramore
@@ -63,14 +64,16 @@ return {
 	["only if you carry a {item:3853} (a blacksmith's craft)"] = "{item:3853}(대장장이 제작품)을 가지고 있을 때만",
 
 	-- Step 15: Balos Jacken
-	["The deserters camp south of the road, west of Mudcrush's hut."] = "탈영병들은 머드크러쉬의 오두막 서쪽, 길 남쪽에 진을 치고 있습니다.",
+	-- {npc:4503} Mudcrush Durtfeet
+	["The deserters camp south of the road, west of {npc:4503}'s hut."] = "탈영병들은 {npc:4503}의 오두막 서쪽, 길 남쪽에 진을 치고 있습니다.",
 
 	-- Step 17: The Affray
 	-- {area:392} Ratchet · {area:720} Fray Island · {area:391} Merchant Coast · {npc:6236} Klannoc Macleod · {npc:6238} Big Will
 	["On the ride north to {area:392}, {area:720} lies off the {area:391} south of the town: wade over the sand bar shallows. {npc:6236} sends four challengers and then {npc:6238} (level 33) at you, one at a time."] = "{area:392}(으)로 북쪽으로 가는 길에, {area:720}은(는) 마을 남쪽 {area:391} 앞바다에 있습니다. 모래톱 얕은 물을 걸어서 건너가세요. {npc:6236}이(가) 도전자 넷을, 이어서 {npc:6238}(33레벨)을(를) 하나씩 보냅니다.",
 	-- {npc:6238} Big Will
 	["Defeat the challengers and {npc:6238}"] = "도전자들과 {npc:6238} 물리치기",
-	["Klannoc offers The Windwatcher next (1791): the Whirlwind weapon chain, with an elite at the end, is in the Warrior class guide Whirlwind Weapon."] = "클라녹은 다음으로 바람의감시자(1791)를 줍니다. 끝에 정예가 나오는 소용돌이 무기 퀘스트 연계는 전사 직업 가이드 소용돌이 무기에 있습니다.",
+	-- {npc:6236} Klannoc Macleod
+	["{npc:6236} offers The Windwatcher next (1791): the Whirlwind weapon chain, with an elite at the end, is in the Warrior class guide Whirlwind Weapon."] = "{npc:6236}은(는) 다음으로 바람의감시자(1791)를 줍니다. 끝에 정예가 나오는 소용돌이 무기 퀘스트 연계는 전사 직업 가이드 소용돌이 무기에 있습니다.",
 
 	-- Step 18: Ratchet
 	-- {zone:1413} Barrens · {area:392} Ratchet · {npc:16227} Bragok · {area:35} Booty Bay
@@ -79,7 +82,7 @@ return {
 	["Boat to {area:35}"] = "배를 타고 {area:35}(으)로",
 
 	-- Step 19: Booty Bay
-	-- {object:56910} The Salty Sailor Tavern
+	-- {object:56910} The Salty Sailor Tavern (no name in this language: may be words)
 	["{object:56910} is the tall building over the harbour; most of the quest givers are on its floors or the docks below."] = "{object:56910}은(는) 항구 위의 높은 건물입니다. 퀘스트 제공자 대부분이 그 층들이나 아래 부두에 있습니다.",
 	-- {zone:1446} Tanaris
 	["for Stoley in {zone:1446}: keep it"] = "{zone:1446}의 스톨리에게 줄 것: 보관하세요",
@@ -101,8 +104,8 @@ return {
 
 	-- Step 22: Bloodsail pirates
 	["Bloodsail pirates"] = "붉은해적단 해적",
-	-- {area:43} Wild Shore · {area:35} Booty Bay
-	["Every Bloodsail drops Snuff and one of them carries Dizzy's eye; the Swashbucklers walk the shore just north of town. The charts and orders lie in the pirate camp on the {area:43}, south of {area:35}."] = "붉은해적단은 모두 코담배를 떨어뜨리고, 그중 하나가 디지의 눈을 가지고 있습니다. 붉은해적단 칼잡이는 마을 바로 북쪽 해안을 걸어다닙니다. 해도와 명령서는 {area:35} 남쪽 {area:43}의 해적 야영지에 있습니다.",
+	-- {npc:2493} Dizzy · {area:43} Wild Shore · {area:35} Booty Bay
+	["Every Bloodsail drops Snuff and one of them carries {npc:2493}'s eye; the Swashbucklers walk the shore just north of town. The charts and orders lie in the pirate camp on the {area:43}, south of {area:35}."] = "붉은해적단은 모두 코담배를 떨어뜨리고, 그중 하나가 {npc:2493}의 눈을 가지고 있습니다. 붉은해적단 칼잡이는 마을 바로 북쪽 해안을 걸어다닙니다. 해도와 명령서는 {area:35} 남쪽 {area:43}의 해적 야영지에 있습니다.",
 
 	-- Step 24: The Bloodsail captains
 	["The Bloodsail captains"] = "붉은해적단 선장들",
@@ -133,8 +136,9 @@ return {
 	["for {npc:2616} in Theramore: keep it"] = "테라모어의 {npc:2616}에게 줄 것: 보관하세요",
 
 	-- Step 30: Maury and Jon-Jon
-	["Maury and Jon-Jon"] = "모리와 존존",
-	-- {npc:2535} Maury "Club Foot" Wilkins · {npc:2536} Jon-Jon the Crow
+	-- {npc:2535} Maury · {npc:2536} Jon-Jon
+	["{npc:2535} and {npc:2536}"] = "{npc:2535}와(과) {npc:2536}",
+	-- {npc:2535} Maury · {npc:2536} Jon-Jon
 	["Ride north to the hills west of the road. {npc:2535} and {npc:2536} stand together just north of Zanzil's village."] = "북쪽으로 길 서쪽 언덕에 가세요. {npc:2535}와(과) {npc:2536}은(는) 잔질의 마을 바로 북쪽에 함께 서 있습니다.",
 
 	-- Step 31: Zanzil's village
@@ -170,15 +174,15 @@ return {
 
 	-- Step 37: Booty Bay
 	["MacKinley's next task sends you after elite ogres: skip it."] = "맥킨리의 다음 임무는 정예 오우거를 잡으러 보냅니다. 건너뛰세요.",
-	-- {zone:1441} Thousand Needles
-	["Crank's next Zanzil errand starts in {zone:1441}: skip it."] = "크랭크의 다음 잔질 심부름은 {zone:1441}에서 시작합니다. 건너뛰세요.",
+	-- {npc:2498} Crank · {zone:1441} Thousand Needles
+	["{npc:2498}'s next Zanzil errand starts in {zone:1441}: skip it."] = "{npc:2498}의 다음 잔질 심부름은 {zone:1441}에서 시작합니다. 건너뛰세요.",
 
 	-- Step 38: Stormwind
-	-- {npc:1141} Angus Stern · {object:2169} Blue Recluse · {npc:5384} Brohann Caskbelly · {object:28027} Dwarven District
+	-- {npc:1141} Angus Stern · {object:2169} Blue Recluse (no name in this language: may be words) · {npc:5384} Brohann Caskbelly · {object:28027} Dwarven District (no name in this language: may be words)
 	["{npc:1141} cooks in the {object:2169}; {npc:5384} is in the {object:28027}."] = "{npc:1141}은(는) {object:2169}에서 요리하고, {npc:5384}은(는) {object:28027}에 있습니다.",
 	-- {npc:5694} High Sorcerer Andromath · {area:1438} Nethergarde Keep
 	["{npc:5694}: for {area:1438}, keep it"] = "{npc:5694}: {area:1438}에 쓸 것, 보관하세요",
-	-- {npc:1440} Milton Sheaf · {object:2117} Stormwind Keep
+	-- {npc:1440} Milton Sheaf · {object:2117} Stormwind Keep (no name in this language: may be words)
 	["{npc:1440}, the Royal Library in {object:2117}"] = "{npc:1440}, {object:2117}의 왕실 도서관",
 
 	-- Step 39: Riding at 40
@@ -190,7 +194,7 @@ return {
 
 	-- Step 40: Riding at 40
 	-- {spell:1285849} Galestrider Riding · {npc:4732} Randal Hunter · {area:88} Eastvale Logging Camp · {zone:1429} Elwynn Forest · {zone:1453} Stormwind · {npc:265756} Genn Fairweather · {area:16638} Valanaar
-	["At 40 with 100 gold you can learn to ride, and learning it gives you a mount. No Skyborne riding trainer is known; the Forever client files {spell:1285849} under the one Riding skill, so {npc:4732} at {area:88} in eastern {zone:1429}, the nearest trainer to {zone:1453}, should teach it (unconfirmed). The Galestriders are sold by {npc:265756} in {area:16638} on Zephras Isle; Collectibles, Mounts · Level 40 lists them."] = "40레벨에 100골드가 있으면 탈것 타기를 배울 수 있으며, 배우면 탈것도 하나 받습니다. Skyborne 탈것 상급자는 알려져 있지 않습니다. Forever 클라이언트는 {spell:1285849}을(를) 하나의 탈것 타기 기술로 분류하므로, {zone:1453}에서 가장 가까운 {zone:1429} 동부 {area:88}의 {npc:4732}이(가) 가르칠 것입니다(확인되지 않음). 돌풍타조는 제프라스 섬 {area:16638}의 {npc:265756}이(가) 팝니다. 수집품, 탈것 · 레벨 40에 나옵니다.",
+	["At 40 with 100 gold you can learn to ride, and learning it gives you a mount. No Skyborne riding trainer is known; the Forever client files {spell:1285849} under the one Riding skill, so {npc:4732} at {area:88} in eastern {zone:1429}, the nearest trainer to {zone:1453}, should teach it (unconfirmed). The Galestriders are sold by {npc:265756} in {area:16638} on Zephras Isle; Collectibles, Mounts · Level 40 lists them."] = "40레벨에 100골드가 있으면 탈것 타기를 배울 수 있으며, 배우면 탈것도 하나 받습니다. 스카이본 탈것 상급자는 알려져 있지 않습니다. Forever 클라이언트는 {spell:1285849}을(를) 하나의 탈것 타기 기술로 분류하므로, {zone:1453}에서 가장 가까운 {zone:1429} 동부 {area:88}의 {npc:4732}이(가) 가르칠 것입니다(확인되지 않음). 돌풍타조는 제프라스 섬 {area:16638}의 {npc:265756}이(가) 팝니다. 수집품, 탈것 · 레벨 40에 나옵니다.",
 	-- {npc:265756} Genn Fairweather · {area:16638} Valanaar
 	["Galestriders: {npc:265756}, in {area:16638} on Zephras Isle."] = "돌풍타조: 제프라스 섬 {area:16638}의 {npc:265756}.",
 
@@ -209,7 +213,7 @@ return {
 	-- Step 43: Warlock: Summon Felsteed
 	-- {quest:3631} Summon Felsteed
 	["Warlock: {quest:3631}"] = "흑마법사: {quest:3631}",
-	-- {npc:461} Demisette Cloyce · {object:2164} Slaughtered Lamb · {npc:6251} Strahad Farsan · {area:392} Ratchet
+	-- {npc:461} Demisette Cloyce · {object:2164} Slaughtered Lamb (no name in this language: may be words) · {npc:6251} Strahad Farsan · {area:392} Ratchet
 	["{npc:461}, in the {object:2164}: {npc:6251} in {area:392} takes it at the end of the next guide"] = "{npc:461}, {object:2164} 안: 다음 가이드 끝에 {area:392}의 {npc:6251}이(가) 받습니다",
 
 	-- Step 44: Watcher Biggs
@@ -242,8 +246,8 @@ return {
 	["for {npc:5635} at {area:348}: keep it"] = "{area:348}의 {npc:5635}에게 줄 것: 보관하세요",
 
 	-- Step 50: Ironforge
-	-- {area:2257} Deeprun Tram · {object:28027} Dwarven District · {object:32356} Hall of Explorers · {npc:1356} Prospector Stormpike · {npc:2786} Gerrig Bonegrip · {object:32383} Forlorn Cavern · {area:144} Thelsamar
-	["Take the {area:2257} from the {object:28027}. Roetten is in the Reclaimers' hall by the {object:32356}, {npc:1356} in the hall itself, {npc:2786} in the {object:32383}. The next guide flies on to {area:144}."] = "{object:28027}에서 {area:2257}을(를) 타세요. 로이튼은 {object:32356} 옆 개척자 연맹 전당에, {npc:1356}은(는) 전당 안에, {npc:2786}은(는) {object:32383}에 있습니다. 다음 가이드에서 {area:144}(으)로 날아갑니다.",
+	-- {area:2257} Deeprun Tram · {object:28027} Dwarven District (no name in this language: may be words) · {npc:5637} Roetten · {object:32356} Hall of Explorers (no name in this language: may be words) · {npc:1356} Prospector Stormpike · {npc:2786} Gerrig Bonegrip · {object:32383} Forlorn Cavern (no name in this language: may be words) · {area:144} Thelsamar
+	["Take the {area:2257} from the {object:28027}. {npc:5637} is in the Reclaimers' hall by the {object:32356}, {npc:1356} in the hall itself, {npc:2786} in the {object:32383}. The next guide flies on to {area:144}."] = "{object:28027}에서 {area:2257}을(를) 타세요. {npc:5637}은(는) {object:32356} 옆 개척자 연맹 전당에, {npc:1356}은(는) 전당 안에, {npc:2786}은(는) {object:32383}에 있습니다. 다음 가이드에서 {area:144}(으)로 날아갑니다.",
 	-- {npc:1356} Prospector Stormpike · {npc:1344} Prospector Ironband · {zone:1432} Loch Modan
 	["{npc:1356}: for {npc:1344} in {zone:1432}, keep it"] = "{npc:1356}: {zone:1432}의 {npc:1344}에게 줄 것, 보관하세요",
 	-- {zone:1453} Stormwind
@@ -262,7 +266,5 @@ return {
 	["{npc:7955}: other colours, 20g"] = "{npc:7955}: 다른 색상, 20골드",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Gazban swims off the north-west coast, on the northern loop"] = "가즈반은 북쪽 순환 경로 중 북서쪽 해안 앞바다에서 헤엄칩니다",
 	-- ["Klannoc offers The Windwatcher next (1791): the {spell:1680} weapon chain, with an elite at the end, is in the Warrior class guide Whirlwind Weapon."] = "클라녹은 다음으로 바람의감시자(1791)를 줍니다. 끝에 정예가 나오는 {spell:1680} 무기 퀘스트 연계는 전사 직업 가이드 소용돌이 무기에 있습니다.",
-	-- ["Ride north-west from the mine to the bay on the north-west coast. The Giant Clams lie on its floor and hold the pearls; Gazban swims among them and drops the {item:4034}."] = "광산에서 북서쪽으로 북서 해안의 만까지 가세요. 바닥에 있는 {object:2744}에 진주가 들어 있습니다. 가즈반이 그 사이를 헤엄치며 {item:4034}을(를) 떨어뜨립니다.",
 }

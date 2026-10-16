@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Korean words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -12,7 +13,7 @@ return {
 	-- Step 1: Alterac Mountains (1/2)
 	-- {zone:1424} Hillsbrad Foothills
 	["Picks up in {zone:1424}, where the 1-30 guide leaves the Horde and passes the Alliance. 15 areas to discover here, levels 27-39."] = "1-30 가이드가 호드를 남겨 두고 얼라이언스가 지나가는 {zone:1424}에서 이어집니다. 이곳에서 발견할 지역은 15곳, 27-39레벨입니다.",
-	["Exploring the entire world map on one character is a Forever Legacy Challenge (1 account-wide Legacy Point)."] = "한 캐릭터로 세계 지도 전체를 탐험하는 것은 Forever Legacy Challenge입니다(계정 공통 Legacy Point 1점).",
+	["Exploring the entire world map on one character is a Forever Legacy Challenge (1 account-wide Legacy Point)."] = "한 캐릭터로 세계 지도 전체를 탐험하는 것은 Forever 유산 도전입니다(계정 공통 유산 점수 1점).",
 	-- {area:271} Southshore · {zone:1424} Hillsbrad Foothills · {zone:1416} Alterac Mountains
 	["Fly to {area:271} in {zone:1424} and walk north into the {zone:1416}."] = "{zone:1424}의 {area:271}(으)로 비행한 뒤 북쪽 {zone:1416}(으)로 걸어가십시오.",
 	-- {area:272} Tarren Mill · {zone:1424} Hillsbrad Foothills · {zone:1416} Alterac Mountains
@@ -39,7 +40,7 @@ return {
 
 	-- Step 5: Badlands (1/2)
 	["14 areas to discover here, levels 36-45."] = "이곳에서 발견할 지역은 14곳, 36-45레벨입니다.",
-	-- {area:880} Thandol Span · {zone:1437} Wetlands · {object:1668} Dun Algaz · {zone:1432} Loch Modan · {zone:1418} Badlands
+	-- {area:880} Thandol Span · {zone:1437} Wetlands · {object:1668} Dun Algaz (no name in this language: may be words) · {zone:1432} Loch Modan · {zone:1418} Badlands
 	["Cross the {area:880} south into the {zone:1437}, go through the {object:1668} pass into {zone:1432} and take the road south out of {zone:1432} into the {zone:1418}."] = "남쪽으로 {area:880}을(를) 건너 {zone:1437}(으)로 간 뒤, {object:1668} 고개를 지나 {zone:1432}(으)로 가서 남쪽 길로 {zone:1432}을(를) 빠져나가 {zone:1418}(으)로 가십시오.",
 	-- {area:144} Thelsamar · {zone:1432} Loch Modan
 	["Faster: fly to {area:144} in {zone:1432}."] = "더 빠른 방법: {zone:1432}의 {area:144}(으)로 비행하십시오.",
@@ -62,7 +63,7 @@ return {
 	["Take the zeppelin from {zone:1454} or the {zone:1458} to {area:117}."] = "{zone:1454} 또는 {zone:1458}에서 비행선을 타고 {area:117}(으)로 가십시오.",
 	-- {area:35} Booty Bay
 	["Flight path here: {area:35} (Gyll)."] = "이곳의 비행 경로: {area:35} (가일).",
-	-- {area:35} Booty Bay · {object:3202} Grom'gol
+	-- {area:35} Booty Bay · {object:3202} Grom'gol (no name in this language: may be words)
 	["Flight paths here: {area:35} (Gringer), {object:3202} (Thysta)."] = "이곳의 비행 경로: {area:35} (그링거), {object:3202} (시스타).",
 
 	-- Step 10: Stranglethorn Vale (2/4)

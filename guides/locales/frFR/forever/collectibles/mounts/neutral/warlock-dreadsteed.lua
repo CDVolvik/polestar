@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in French (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in French words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -10,7 +11,7 @@ return {
 	["Your epic mount at 60: summoned anywhere, with no gold spent on an epic horse."] = "Votre monture épique au niveau 60 : invoquée n'importe où, sans dépenser d'or pour un cheval épique.",
 
 	-- Step 1: Mor'zul Bloodbringer (Stormwind)
-	-- {npc:5520} Spackle Thornberry · {object:2164} Slaughtered Lamb · {quest:7562} Mor'zul Bloodbringer · {zone:1428} Burning Steppes
+	-- {npc:5520} Spackle Thornberry · {object:2164} Slaughtered Lamb (no name in this language: may be words) · {quest:7562} Mor'zul Bloodbringer · {zone:1428} Burning Steppes
 	["At 60 {npc:5520} in the {object:2164} sends you to {quest:7562} in the {zone:1428}."] = "Au niveau 60, {npc:5520}, à {object:2164}, vous envoie voir {quest:7562} dans les {zone:1428}.",
 
 	-- Step 2: Mor'zul Bloodbringer (Ironforge)
@@ -18,16 +19,16 @@ return {
 	["At 60 {npc:6382} in {zone:1455} sends you to {quest:7562} in the {zone:1428}."] = "Au niveau 60, {npc:6382}, à {zone:1455}, vous envoie voir {quest:7562} dans les {zone:1428}.",
 
 	-- Step 3: Mor'zul Bloodbringer (Orgrimmar)
-	-- {npc:5815} Kurgul · {object:172960} Cleft of Shadow · {quest:7562} Mor'zul Bloodbringer · {zone:1428} Burning Steppes
+	-- {npc:5815} Kurgul · {object:172960} Cleft of Shadow (no name in this language: may be words) · {quest:7562} Mor'zul Bloodbringer · {zone:1428} Burning Steppes
 	["At 60 {npc:5815} in the {object:172960} sends you to {quest:7562} in the {zone:1428}."] = "Au niveau 60, {npc:5815}, dans {object:172960}, vous envoie voir {quest:7562} dans les {zone:1428}.",
 
 	-- Step 4: Mor'zul Bloodbringer (Undercity)
-	-- {npc:5753} Martha Strain · {object:36082} Magic Quarter · {quest:7562} Mor'zul Bloodbringer · {zone:1428} Burning Steppes
+	-- {npc:5753} Martha Strain · {object:36082} Magic Quarter (no name in this language: may be words) · {quest:7562} Mor'zul Bloodbringer · {zone:1428} Burning Steppes
 	["At 60 {npc:5753} in the {object:36082} sends you to {quest:7562} in the {zone:1428}."] = "Au niveau 60, {npc:5753}, dans le {object:36082}, vous envoie voir {quest:7562} dans les {zone:1428}.",
 
 	-- Step 5: Mor'zul Bloodbringer
 	-- {quest:7562} Mor'zul Bloodbringer · {npc:14437} Gorzeeki Wildeyes · {area:255} Altar of Storms · {zone:1428} Burning Steppes · {area:254} Blackrock Mountain
-	["{quest:7562} and his goblin {npc:14437} camp at the {area:255}, in the north-west of the {zone:1428}, west of {area:254}. The chain is long, costs gold at Gorzeeki's and ends in two dungeons."] = "{quest:7562} et son gobelin {npc:14437} campent à l'{area:255}, au nord-ouest des {zone:1428}, à l'ouest du {area:254}. La chaîne est longue, coûte de l'or chez Gorzeeki et se termine dans deux donjons.",
+	["{quest:7562} and his goblin {npc:14437} camp at the {area:255}, in the north-west of the {zone:1428}, west of {area:254}. The chain is long, costs gold at {npc:14437}'s and ends in two dungeons."] = "{quest:7562} et son gobelin {npc:14437} campent à l'{area:255}, au nord-ouest des {zone:1428}, à l'ouest du {area:254}. La chaîne est longue, coûte de l'or chez {npc:14437} et se termine dans deux donjons.",
 
 	-- Step 6: Raging Beast's Blood
 	-- {zone:1452} Winterspring · {area:2255} Everlook · {spell:417141} Berserk
@@ -35,23 +36,24 @@ return {
 	["The owlbeasts of {zone:1452} drop the blood, about one in three: the Ragged and Raging Owlbeasts west of and around {area:2255}, the Crazed, Moontouched and {spell:417141} ones in the east. While you hunt, start on the materials of the next step: the Auction House has them all."] = "Les chouettards de {zone:1452} lâchent le sang, environ une fois sur trois : les Chouettards éreintés et enragés ({npc:7451}) à l'ouest et autour de {area:2255}, les affolés, lunaires et {spell:417141} à l'est. Pendant votre chasse, commencez les matériaux de l'étape suivante : l'hôtel des ventes les a tous.",
 
 	-- Step 7: Wildeyes
-	-- {item:18591} Case of Blood · {npc:14437} Gorzeeki Wildeyes · {zone:1448} Felwood
+	-- {npc:14436} Mor'zul · {item:18591} Case of Blood · {npc:14437} Gorzeeki Wildeyes · {zone:1448} Felwood
 	-- plural, as words: Shadowy Potions = {item:18802} Shadowy Potion
-	["Back to Mor'zul, then hand his {item:18591} to {npc:14437} beside him. Mor'zul then asks for three ritual pieces and Gorzeeki sends you to {zone:1448}: buy two Shadowy Potions from Gorzeeki for that trip."] = "Retournez voir Mor'zul, puis remettez son {item:18591} à {npc:14437}, à côté de lui. Mor'zul demande ensuite trois éléments rituels et Gorzeeki vous envoie à {zone:1448} : achetez deux Potions des ténèbres à Gorzeeki pour ce voyage.",
+	["Back to {npc:14436}, then hand his {item:18591} to {npc:14437} beside him. {npc:14436} then asks for three ritual pieces and {npc:14437} sends you to {zone:1448}: buy two Shadowy Potions from {npc:14437} for that trip."] = "Retournez voir {npc:14436}, puis remettez son {item:18591} à {npc:14437}, à côté de lui. {npc:14436} demande ensuite trois éléments rituels et {npc:14437} vous envoie à {zone:1448} : achetez deux Potions des ténèbres à {npc:14437} pour ce voyage.",
 	-- {item:18591} Case of Blood
 	["he gives you the {item:18591}"] = "il vous donne {item:18591}",
-	-- {item:18802} Shadowy Potion
-	["{item:18802}, from Gorzeeki"] = "{item:18802}, chez Gorzeeki",
+	-- {item:18802} Shadowy Potion · {npc:14437} Gorzeeki Wildeyes
+	["{item:18802}, from {npc:14437}"] = "{item:18802}, chez {npc:14437}",
 
 	-- Step 8: The ritual pieces
 	["The ritual pieces"] = "Les éléments rituels",
-	-- {skill:171} Alchemy · {skill:333} Enchanting · {item:11370} Dark Iron Ore · {skill:186} Mining · {area:1584} Blackrock Depths · {zone:1427} Searing Gorge · {skill:393} Skinning · {zone:1428} Burning Steppes
+	-- {npc:14437} Gorzeeki Wildeyes · {skill:171} Alchemy · {skill:333} Enchanting · {item:11370} Dark Iron Ore · {skill:186} Mining · {area:1584} Blackrock Depths · {zone:1427} Searing Gorge · {skill:393} Skinning · {zone:1428} Burning Steppes
 	-- plural, as words: Large Brilliant Shards = {item:14344} Large Brilliant Shard · Black Dragonscales = {item:15416} Black Dragonscale
-	["Gorzeeki wants 10 Elixirs of Shadow Power ({skill:171}), 6 Large Brilliant Shards ({skill:333}), 25 {item:11370} ({skill:186}, in {area:1584} and the {zone:1427}) and 35 Black Dragonscales ({skill:393}, black dragonkin of the {zone:1428}). Make or gather what your professions allow; buy the rest at the Auction House."] = "Gorzeeki veut 10 Elixirs de Puissance de l'ombre ({skill:171}), 6 Grands éclats brillants ({skill:333}), 25 {item:11370} ({skill:186}, dans les {area:1584} et la {zone:1427}) et 35 Ecailles de dragon noir ({skill:393}, sur les draconiens noirs des {zone:1428}). Fabriquez ou récoltez ce que vos métiers permettent ; achetez le reste à l'hôtel des ventes.",
+	["{npc:14437} wants 10 Elixirs of Shadow Power ({skill:171}), 6 Large Brilliant Shards ({skill:333}), 25 {item:11370} ({skill:186}, in {area:1584} and the {zone:1427}) and 35 Black Dragonscales ({skill:393}, black dragonkin of the {zone:1428}). Make or gather what your professions allow; buy the rest at the Auction House."] = "{npc:14437} veut 10 Elixirs de Puissance de l'ombre ({skill:171}), 6 Grands éclats brillants ({skill:333}), 25 {item:11370} ({skill:186}, dans les {area:1584} et la {zone:1427}) et 35 Ecailles de dragon noir ({skill:393}, sur les draconiens noirs des {zone:1428}). Fabriquez ou récoltez ce que vos métiers permettent ; achetez le reste à l'hôtel des ventes.",
 
 	-- Step 9: Arcanite
+	-- {npc:14437} Gorzeeki Wildeyes
 	-- plural, as words: Arcanite Bars = {item:12360} Arcanite Bar
-	["Hand the three pieces to Gorzeeki. He then wants 3 Arcanite Bars: alchemists transmute them, everyone else buys them at the Auction House."] = "Remettez les trois morceaux à Gorzeeki. Il veut ensuite 3 Barres d'arcanite ({item:12360}) : les alchimistes les transmutent, les autres les achètent à l'hôtel des ventes.",
+	["Hand the three pieces to {npc:14437}. He then wants 3 Arcanite Bars: alchemists transmute them, everyone else buys them at the Auction House."] = "Remettez les trois éléments à {npc:14437}. Il veut ensuite 3 Barres d'arcanite (L'arcanite) : les alchimistes les transmutent, les autres les achètent à l'hôtel des ventes.",
 
 	-- Step 10: Lord Banehollow
 	-- {area:1763} Jaedenar · {zone:1448} Felwood · {item:18802} Shadowy Potion · {quest:7623} Lord Banehollow · {area:1770} Shadow Hold
@@ -68,8 +70,8 @@ return {
 	["{item:18687}, from {npc:14522}"] = "{item:18687}, chez {npc:14522}",
 
 	-- Step 13: Imp Delivery
-	-- {item:18688} Imp in a Jar · {area:2057} Scholomance
-	["Back to Gorzeeki with the stardust. He gives you the {item:18688} for the {area:2057}."] = "Retournez voir Gorzeeki avec la poussière d'étoile. Il vous donne {item:18688} pour {area:2057}.",
+	-- {npc:14437} Gorzeeki Wildeyes · {item:18688} Imp in a Jar · {area:2057} Scholomance
+	["Back to {npc:14437} with the stardust. He gives you the {item:18688} for the {area:2057}."] = "Retournez voir {npc:14437} avec la poussière d'étoile. Il vous donne {item:18688} pour {area:2057}.",
 
 	-- Step 14: The Scholomance
 	-- {area:2057} Scholomance
@@ -80,9 +82,9 @@ return {
 	["Use the {item:18688} at the alchemy lab"] = "Utilisez {item:18688} au laboratoire d'alchimie",
 
 	-- Step 15: Dreadsteed of Xoroth
-	-- {item:18663} J'eevee's Jar · {item:18629} Black Lodestone · {item:18670} Xorothian Glyphs
+	-- {npc:14437} Gorzeeki Wildeyes · {npc:14436} Mor'zul · {item:18663} J'eevee's Jar · {item:18629} Black Lodestone · {item:18670} Xorothian Glyphs
 	-- plural, as words: Soul Shards = {item:6265} Soul Shard
-	["Back to Gorzeeki, then Mor'zul hands you his instructions for the ritual. Buy {item:18663}, the {item:18629} and the {item:18670} from Gorzeeki, and carry ten or more Soul Shards."] = "Retournez voir Gorzeeki, puis Mor'zul vous remet ses instructions pour le rituel. Achetez {item:18663}, {item:18629} et {item:18670} à Gorzeeki, et emportez au moins dix Fragments d'âme.",
+	["Back to {npc:14437}, then {npc:14436} hands you his instructions for the ritual. Buy {item:18663}, the {item:18629} and the {item:18670} from {npc:14437}, and carry ten or more Soul Shards."] = "Retournez voir {npc:14437}, puis {npc:14436} vous remet ses instructions pour le rituel. Achetez {item:18663}, {item:18629} et {item:18670} à {npc:14437}, et emportez au moins dix Fragments d'âme.",
 
 	-- Step 16: The ritual in Dire Maul
 	-- {area:2577} Dire Maul
@@ -93,8 +95,5 @@ return {
 	["{npc:14504}: it binds itself to you"] = "{npc:14504} : il se lie à vous",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Gorzeeki wants 10 Elixirs of Shadow Power ({skill:171}), 6 Large Brilliant Shards ({skill:333}), 25 {item:11370} ({skill:186}, in {area:1584} and the {zone:1427}) and 35 Black Dragonscales ({skill:393}, black dragonkin of the {zone:1428}). Make or gather what your professions allow; buy the rest at the Auction House."] = "Gorzeeki veut 10 Elixirs de Puissance de l'ombre ({skill:171}), 6 Grands éclats brillants ({skill:333}), 25 {item:11370} ({skill:186}, dans les {area:1584} et la {zone:1427}) et 35 Ecailles de dragon noir ({skill:393}, sur les draconiens noirs des {zone:1428}). Fabriquez ou récoltez ce que vos métiers permettent ; achetez le reste à l'hôtel des ventes.",
 	-- ["Gorzeeki wants 10 Elixirs of {spell:5896} ({skill:171}), 6 Large Brilliant Shards ({skill:333}), 25 {item:11370} ({skill:186}, in {area:1584} and the {zone:1427}) and 35 Black Dragonscales ({skill:393}, black dragonkin of the {zone:1428}). Make or gather what your professions allow; buy the rest at the Auction House."] = "Gorzeeki veut 10 Elixirs de {spell:5896} ({skill:171}), 6 Grands éclats brillants ({item:14344}) ({skill:333}), 25 {item:11370} ({skill:186}, à {area:1584} et dans {zone:1427}) et 35 Ecailles de dragon noir ({item:15416}) ({skill:393}, sur les draconiens noirs de {zone:1428}). Fabriquez ou récoltez ce que vos métiers permettent ; achetez le reste à l'hôtel des ventes.",
-	-- ["Hand the three pieces to Gorzeeki. He then wants 3 {quest:7630} Bars: alchemists transmute them, everyone else buys them at the Auction House."] = "Remettez les trois éléments à Gorzeeki. Il veut ensuite 3 Barres d'arcanite ({quest:7630}) : les alchimistes les transmutent, les autres les achètent à l'hôtel des ventes.",
-	-- ["The owlbeasts of {zone:1452} drop the blood, about one in three: the Ragged and Raging Owlbeasts west of and around {area:2255}, the Crazed, Moontouched and Berserk ones in the east. While you hunt, start on the materials of the next step: the Auction House has them all."] = "Les chouettards de {zone:1452} laissent tomber le sang, environ une fois sur trois : les Chouettards éreintés et les Chouettards enragés à l'ouest et autour d'{area:2255}, les Chouettards affolés, lunaires et berserks à l'est. Pendant la chasse, commencez à réunir les composants de l'étape suivante : l'hôtel des ventes les a tous.",
 }

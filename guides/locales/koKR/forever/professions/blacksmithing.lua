@@ -3,13 +3,14 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Korean words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Apprentice Blacksmithing
 	-- {skill:164} Blacksmithing
 	["Apprentice {skill:164}"] = "초급 {skill:164}",
 	-- {skill:164} Blacksmithing
-	["{skill:164} runs alongside leveling. Forever's Legacy System rewards crafting professions at skill 150, 225 and 300 (the Journeyman, Expert and Artisan caps), so each of those checkpoints counts. Materials for 1-75 are worth about 17s in all."] = "{skill:164}은(는) 레벨업과 함께 진행합니다. Forever의 유산 시스템은 제작 전문 기술 숙련도 150, 225, 300(중급, 고급, 전문 최대치)에 보상을 주므로, 각 단계가 중요합니다. 1-75 재료는 모두 약 17실버입니다.",
+	["{skill:164} runs alongside leveling. Forever's Legacy System rewards crafting professions at skill 150, 225 and 300 (the Journeyman, Expert and Artisan caps), so each of those checkpoints counts. Materials for 1-75 are worth about 17s in all."] = "{skill:164}은(는) 레벨업과 함께 진행합니다. Forever의 유산 시스템은 제작 전문 기술 숙련도 150, 225, 300(수습, 숙련, 전문 최대치)에 보상을 주므로, 각 단계가 중요합니다. 1-75 재료는 모두 약 17실버입니다.",
 
 	-- Step 2: Rough Stone (Alliance)
 	-- {item:2835} Rough Stone
@@ -39,9 +40,9 @@ return {
 
 	-- Step 7: Journeyman Blacksmithing
 	-- {skill:164} Blacksmithing
-	["Journeyman {skill:164}"] = "중급 {skill:164}",
+	["Journeyman {skill:164}"] = "수습 {skill:164}",
 	-- {skill:164} Blacksmithing
-	["Journeyman needs character level 10 and {skill:164} 50; it raises the cap to 150. Materials for 75-150 are worth about 9g 41s in all."] = "중급은(는) 캐릭터 레벨 10, {skill:164} 50이(가) 필요하며 최대 숙련도를 150(으)로 올립니다. 75-150 재료는 모두 약 9골드 41실버입니다.",
+	["Journeyman needs character level 10 and {skill:164} 50; it raises the cap to 150. Materials for 75-150 are worth about 9g 41s in all."] = "수습은(는) 캐릭터 레벨 10, {skill:164} 50이(가) 필요하며 최대 숙련도를 150(으)로 올립니다. 75-150 재료는 모두 약 9골드 41실버입니다.",
 	-- {item:5956} Blacksmith Hammer
 	["{item:5956}: a tool, keep it in your bags"] = "{item:5956}: 도구이니 가방에 넣어 두세요",
 
@@ -126,9 +127,9 @@ return {
 
 	-- Step 24: Expert Blacksmithing
 	-- {skill:164} Blacksmithing
-	["Expert {skill:164}"] = "고급 {skill:164}",
+	["Expert {skill:164}"] = "숙련 {skill:164}",
 	-- {skill:164} Blacksmithing
-	["Expert needs character level 20 and {skill:164} 125; it raises the cap to 225. Materials for 150-225 are worth about 42g in all."] = "고급은(는) 캐릭터 레벨 20, {skill:164} 125이(가) 필요하며 최대 숙련도를 225(으)로 올립니다. 150-225 재료는 모두 약 42골드입니다.",
+	["Expert needs character level 20 and {skill:164} 125; it raises the cap to 225. Materials for 150-225 are worth about 42g in all."] = "숙련은(는) 캐릭터 레벨 20, {skill:164} 125이(가) 필요하며 최대 숙련도를 225(으)로 올립니다. 150-225 재료는 모두 약 42골드입니다.",
 
 	-- Step 25: Medium Leather (Alliance)
 	-- {item:2319} Medium Leather

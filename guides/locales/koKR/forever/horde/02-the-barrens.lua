@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Korean words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: The Crossroads
@@ -15,7 +16,8 @@ return {
 
 	-- Step 2: Plainstriders and raptors
 	["Plainstriders and raptors"] = "초원타조와 랩터",
-	["Plainstriders and Sunscale raptors roam the plains all around the Crossroads, thickest to the north."] = "초원타조와 열대초원랩터가 크로스로드 주변 평원 곳곳을 돌아다니며, 북쪽에 가장 많습니다.",
+	-- {area:380} The Crossroads
+	["Plainstriders and Sunscale raptors roam the plains all around the {area:380}, thickest to the north."] = "초원타조와 열대초원랩터가 {area:380} 주변 평원 곳곳을 돌아다니며, 북쪽에 가장 많습니다.",
 
 	-- Step 4: The Zhevra
 	-- plural, as words: Zhevra Runners = {npc:3242} Zhevra Runner
@@ -42,8 +44,8 @@ return {
 	["Thunder Lizards and Lightning Hides graze just across the bridge below {area:379}."] = "천둥도마뱀과 번개도마뱀은 {area:379} 아래 다리 바로 건너편에서 풀을 뜯습니다.",
 
 	-- Step 11: Telf Joolam
-	-- {area:379} Far Watch Post
-	["Telf waits on the riverbank south of {area:379}, across the bridge."] = "텔프는 다리 건너 {area:379} 남쪽 강기슭에서 기다립니다.",
+	-- {npc:5900} Telf Joolam · {area:379} Far Watch Post
+	["{npc:5900} waits on the riverbank south of {area:379}, across the bridge."] = "{npc:5900}은(는) 다리 건너 {area:379} 남쪽 강기슭에서 기다립니다.",
 
 	-- Step 12: Dustwind Gulch cultists
 	-- {area:1898} Dustwind Gulch
@@ -53,8 +55,8 @@ return {
 	["Burning Blade Cultists hold {area:1898} in northern {zone:1411}; they drop the {item:6652}. The {item:5026} comes from the Razormane on your next visit to their camp."] = "불타는칼날단 이교도는 {zone:1411} 북부의 {area:1898}을(를) 차지하고 있으며, {item:6652}을(를) 떨어뜨립니다. {item:5026}은(는) 다음에 서슬갈기일족 야영지에 갈 때 그들에게서 얻습니다.",
 
 	-- Step 13: Thun'grim Firegaze
-	-- {area:392} Ratchet · {object:58369} Stolen Iron Chest
-	["Thun'grim camps beside the road from the Crossroads to {area:392}. The {object:58369} sits in the south of the Razormane camp just north of him."] = "툰그림은 크로스로드에서 {area:392}(으)로 가는 길가에 야영하고 있습니다. {object:58369}은(는) 그 바로 북쪽, 서슬갈기일족 야영지 남쪽에 있습니다.",
+	-- {npc:5878} Thun'grim · {area:380} The Crossroads · {area:392} Ratchet · {object:58369} Stolen Iron Chest
+	["{npc:5878} camps beside the road from the {area:380} to {area:392}. The {object:58369} sits in the south of the Razormane camp just north of him."] = "{npc:5878}은(는) {area:380}에서 {area:392}(으)로 가는 길가에 야영하고 있습니다. {object:58369}은(는) 그 바로 북쪽, 서슬갈기일족 야영지 남쪽에 있습니다.",
 
 	-- Step 14: Ratchet
 	-- {area:392} Ratchet
@@ -73,15 +75,16 @@ return {
 	["Back down the beach, past the pirate camp: the crate of boots and the fragile crate with the lens sit at its south end."] = "해적 야영지를 지나 해변을 따라 다시 내려가세요. 장화 상자와 렌즈가 든 깨지기 쉬운 상자는 해변 남쪽 끝에 있습니다.",
 
 	-- Step 19: The Crossroads
-	["Walk back west along the road to the Crossroads."] = "길을 따라 서쪽의 크로스로드로 돌아가세요.",
+	-- {area:380} The Crossroads
+	["Walk back west along the road to the {area:380}."] = "길을 따라 서쪽의 {area:380}로 돌아가세요.",
 
 	-- Step 20: The Disruption Ends
 	-- {npc:3438} Kreenig Snarlsnout
 	["Back to the Razormane camp. Geomancers and Defenders hold its eastern half; {npc:3438} walks among them."] = "서슬갈기일족 야영지로 돌아가세요. 동쪽 절반은 흙점쟁이와 파수병이 차지하고 있으며, {npc:3438}은(는) 그들 사이를 돌아다닙니다.",
 
 	-- Step 21: Telf Joolam
-	-- {item:6636} Fire Sapta · {npc:5893} Minor Manifestation of Fire · {item:6655} Glowing Ember
-	["Telf makes {item:6636} from the tar and pouch. Use it by the brazier next to him to reveal the {npc:5893}, kill it for the {item:6655}, then place the ember in the brazier."] = "텔프가 타르와 주머니로 {item:6636}을(를) 만들어 줍니다. 그 옆의 화로 곁에서 사용해 {npc:5893}을(를) 드러내고, 처치해 {item:6655}을(를) 얻은 뒤 잉걸불을 화로에 넣으세요.",
+	-- {npc:5900} Telf Joolam · {item:6636} Fire Sapta · {npc:5893} Minor Manifestation of Fire · {item:6655} Glowing Ember
+	["{npc:5900} makes {item:6636} from the tar and pouch. Use it by the brazier next to him to reveal the {npc:5893}, kill it for the {item:6655}, then place the ember in the brazier."] = "{npc:5900}이(가) 타르와 주머니로 {item:6636}을(를) 만들어 줍니다. 그 옆의 화로 곁에서 사용해 {npc:5893}을(를) 드러내고, 처치해 {item:6655}을(를) 얻은 뒤 잉걸불을 화로에 넣으세요.",
 
 	-- Step 22: Kranal Fiss
 	-- {npc:5907} Kranal Fiss · {npc:2523} Searing Totem · {item:5176} Fire Totem · {item:263412} Totem of Charged Flames
@@ -97,26 +100,28 @@ return {
 	-- {npc:3442} Sputtervalve · {area:392} Ratchet
 	["{npc:3442} in {area:392}: later, on the way"] = "{area:392}의 {npc:3442}: 나중에 가는 길에",
 
-	-- Step 25: The Dry Hills
-	-- {area:383} Dry Hills
-	["The {area:383}"] = "{area:383}",
+	-- Step 25: Dry Hills
 	-- {area:383} Dry Hills · {quest:819} Chen's Empty Keg
 	["West to the {area:383}. The Witchwing harpies nest all over them; any of them can drop a talon. {quest:819} lies in their hills."] = "서쪽의 {area:383}(으)로 가세요. 칼날바람하피가 곳곳에 둥지를 틀고 있으며, 누구나 발톱을 떨어뜨릴 수 있습니다. {quest:819}은(는) 그 언덕에 있습니다.",
 
 	-- Step 26: Regthar Deathgate
-	["South to Regthar's watch post on the Kolkar border."] = "남쪽으로 콜카르일족 경계의 렉타르 감시 초소로 가세요.",
+	-- {npc:3389} Regthar Deathgate
+	["South to {npc:3389}'s watch post on the Kolkar border."] = "남쪽으로 콜카르일족 경계의 {npc:3389} 감시 초소로 가세요.",
 
 	-- Step 27: The Forgotten Pools
+	-- {npc:3389} Regthar Deathgate
 	-- plural, as words: Laden Mushrooms = {object:3640} Laden Mushroom
-	["The pools lie just north of Regthar. Walk into the water to explore them; the Laden Mushrooms for Helbrim grow around them. Kill every Kolkar you pass for bracers."] = "웅덩이는 렉타르 바로 북쪽에 있습니다. 물에 들어가 탐험하세요. 헬브림에게 줄 숙성한 버섯은 그 주변에 자랍니다. 지나가며 만나는 콜카르일족은 모두 처치해 손목보호대를 얻으세요.",
+	["The pools lie just north of {npc:3389}. Walk into the water to explore them; the Laden Mushrooms for Helbrim grow around them. Kill every Kolkar you pass for bracers."] = "웅덩이는 {npc:3389} 바로 북쪽에 있습니다. 물에 들어가 탐험하세요. 헬브림에게 줄 숙성한 버섯은 그 주변에 자랍니다. 지나가며 만나는 콜카르일족은 모두 처치해 손목보호대를 얻으세요.",
 
 	-- Step 28: Kolkar camps
 	["Kolkar camps"] = "콜카르일족 야영지",
+	-- {npc:3389} Regthar Deathgate
 	-- plural, as words: Kolkar Wranglers = {npc:3272} Kolkar Wrangler
-	["Kolkar Wranglers and Stormers hold the camps south of Regthar."] = "콜카르일족 사냥꾼과 번개술사는 렉타르 남쪽 야영지를 차지하고 있습니다.",
+	["Kolkar Wranglers and Stormers hold the camps south of {npc:3389}."] = "콜카르일족 사냥꾼과 번개술사는 {npc:3389} 남쪽 야영지를 차지하고 있습니다.",
 
 	-- Step 31: The Stagnant Oasis
-	["South-east of the Crossroads. Test the seeds at the bubbling fissure on the oasis' east bank."] = "크로스로드 남동쪽입니다. 오아시스 동쪽 기슭의 부글거리는 균열에서 씨앗을 시험하세요.",
+	-- {area:380} The Crossroads
+	["South-east of the {area:380}. Test the seeds at the bubbling fissure on the oasis' east bank."] = "{area:380} 남동쪽입니다. 오아시스 동쪽 기슭의 부글거리는 균열에서 씨앗을 시험하세요.",
 
 	-- Step 32: Raptor nests
 	["Raptor nests"] = "랩터 둥지",
@@ -132,9 +137,9 @@ return {
 	["Back west along the road."] = "길을 따라 서쪽으로 돌아가세요.",
 
 	-- Step 35: Lushwater Oasis
-	-- {area:387} Lushwater Oasis · {area:388} Stagnant Oasis
+	-- {area:387} Lushwater Oasis · {area:380} The Crossroads · {area:388} Stagnant Oasis
 	-- plural, as words: Oasis Snapjaws = {npc:3461} Oasis Snapjaw
-	["Oasis Snapjaws crawl around {area:387}, south-west of the Crossroads, and around the {area:388}."] = "오아시스 무쇠턱거북은 크로스로드 남서쪽의 {area:387}와(과) {area:388} 주변을 기어다닙니다.",
+	["Oasis Snapjaws crawl around {area:387}, south-west of the {area:380}, and around the {area:388}."] = "오아시스 무쇠턱거북은 {area:380} 남서쪽의 {area:387}와(과) {area:388} 주변을 기어다닙니다.",
 
 	-- Step 36: The Crossroads
 	-- {quest:3301} Mura Runetotem · {area:228} Sepulcher · {zone:1421} Silverpine Forest
@@ -146,25 +151,26 @@ return {
 	["The Witchwing Slayers hold the western {area:383}; they wear the rings."] = "칼날바람일족 암살자는 {area:383} 서부를 차지하고 있으며, 반지를 끼고 있습니다.",
 
 	-- Step 38: Wenikee Boltbucket
-	-- {area:1703} Mor'shan Rampart
-	["East to the {area:1703}; Wenikee stands at the camp just south of it."] = "동쪽의 {area:1703}(으)로 가세요. 웨니키는 그 바로 남쪽 야영지에 있습니다.",
+	-- {area:1703} Mor'shan Rampart · {npc:9316} Wenikee
+	["East to the {area:1703}; {npc:9316} stands at the camp just south of it."] = "동쪽의 {area:1703}(으)로 가세요. {npc:9316}은(는) 그 바로 남쪽 야영지에 있습니다.",
 
 	-- Step 39: Nugget Slugs
-	-- {area:382} Sludge Fen
-	["The tool buckets with the slugs lie around the Venture Co. drill site in the {area:382}, east of Wenikee."] = "민달팽이가 든 공구 양동이는 웨니키 동쪽, {area:382}의 투자개발회사 시추 현장 주변에 있습니다.",
+	-- {area:382} Sludge Fen · {npc:9316} Wenikee
+	["The tool buckets with the slugs lie around the Venture Co. drill site in the {area:382}, east of {npc:9316}."] = "민달팽이가 든 공구 양동이는 {npc:9316} 동쪽, {area:382}의 투자개발회사 시추 현장 주변에 있습니다.",
 
-	-- Step 40: Wenikee Boltbucket
+	-- Step 40: Wenikee
 	-- {quest:3923} Rilli Greasygob · {zone:1454} Orgrimmar
 	["Keep it: {quest:3923} stands outside {zone:1454}; a later guide hands it in"] = "보관하세요: {quest:3923}은(는) {zone:1454} 밖에 있으며, 나중 가이드에서 완료합니다",
 
 	-- Step 41: The Crossroads
-	-- {zone:1454} Orgrimmar · {zone:1420} Tirisfal Glades
-	["Walk back south to the Crossroads. The next guide starts here and takes you to {zone:1454} and the zeppelin to {zone:1420}."] = "남쪽의 크로스로드로 걸어서 돌아가세요. 다음 가이드는 여기서 시작해 {zone:1454}와(과) {zone:1420}행 비행선으로 안내합니다.",
+	-- {area:380} The Crossroads · {zone:1454} Orgrimmar · {zone:1420} Tirisfal Glades
+	["Walk back south to the {area:380}. The next guide starts here and takes you to {zone:1454} and the zeppelin to {zone:1420}."] = "남쪽의 {area:380}로 걸어서 돌아가세요. 다음 가이드는 여기서 시작해 {zone:1454}와(과) {zone:1420}행 비행선으로 안내합니다.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Oasis Snapjaws crawl around {area:387}, south-west of the {area:380}, and around the {area:388}."] = "오아시스 무쇠턱거북은 {area:380} 남서쪽의 {area:387}와(과) {area:388} 주변을 기어다닙니다.",
 	-- ["Plainstriders and Sunscale raptors roam the plains all around the {area:380}, thickest to the north."] = "초원타조와 열대초원랩터가 {area:380} 주변 평원 곳곳을 돌아다니며, 북쪽에 가장 많습니다.",
 	-- ["South-east of the {area:380}. Test the seeds at the bubbling fissure on the oasis' east bank."] = "{area:380} 남동쪽입니다. 오아시스 동쪽 기슭의 부글거리는 균열에서 씨앗을 시험하세요.",
+	-- ["The {area:383}"] = "{area:383}",
 	-- ["Thun'grim camps beside the road from the {area:380} to {area:392}. The {object:58369} sits in the south of the Razormane camp just north of him."] = "툰그림은 {area:380}에서 {area:392}(으)로 가는 길가에 야영하고 있습니다. {object:58369}은(는) 그 바로 북쪽, 서슬갈기일족 야영지 남쪽에 있습니다.",
 	-- ["Walk back south to the {area:380}. The next guide starts here and takes you to {zone:1454} and the zeppelin to {zone:1420}."] = "남쪽의 {area:380}(으)로 걸어서 돌아가세요. 다음 가이드는 여기서 시작해 {zone:1454}와(과) {zone:1420}행 비행선으로 안내합니다.",
 	-- ["Walk back west along the road to the {area:380}."] = "길을 따라 서쪽의 {area:380}(으)로 돌아가세요.",

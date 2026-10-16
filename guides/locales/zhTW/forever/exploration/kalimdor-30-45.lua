@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (traditional) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (traditional) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -44,8 +45,6 @@ return {
 	-- {area:1099} Camp Mojache
 	["Flight path here: {area:1099} (Shyn)."] = "此處飛行路線：{area:1099}（夏恩）。",
 	["level 60 area, well above this guide's range"] = "60級區域，遠高於本指南的等級範圍",
-	-- {area:1108} Forgotten Coast
-	["The {area:1108}"] = "{area:1108}",
 
 	-- Step 6: Dustwallow Marsh
 	["7 areas to discover here, levels 36-61."] = "這裡有7個區域要發現，等級36-61。",
@@ -60,4 +59,7 @@ return {
 	["Horde town: Alliance characters only need to touch its edge (guards); any one of these names counts"] = "部落城鎮：聯盟角色只需碰到邊緣即可（有守衛）；這些名稱中任何一個都算數",
 	["level 61 area, well above this guide's range"] = "61級區域，遠高於本指南的等級範圍",
 	["Alliance town: Horde characters only need to touch its edge (guards); any one of these names counts"] = "聯盟城鎮：部落角色只需碰到邊緣即可（有守衛）；這些名稱中任何一個都算數",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["The {area:1108}"] = "{area:1108}",
 }

@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Korean words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Thendal Grove
@@ -29,12 +30,11 @@ return {
 	["{npc:251389}, in the watchtower"] = "감시탑 안의 {npc:251389}",
 	-- {npc:251379} Dorii Brightwhisper · {item:282416} Glowing Recall Crystal
 	["{npc:251379}, the mage trainer: read the {item:282416} first"] = "마법사 상급자 {npc:251379}: 먼저 {item:282416}을(를) 읽으세요",
-	-- {quest:92485} A Student of Nature
-	["Rorian: {quest:92485}"] = "로리안: {quest:92485}",
-	-- {npc:251373} Xyton Silverwind
-	["{npc:251373}, the druid trainer, on the ground floor of the tree behind Rorian"] = "드루이드 상급자 {npc:251373}: 로리안 뒤편 나무의 1층",
+	-- {npc:251373} Xyton Silverwind · {npc:251361} Rorian the Dayseeker
+	["{npc:251373}, the druid trainer, on the ground floor of the tree behind {npc:251361}"] = "드루이드 상급자 {npc:251373}: {npc:251361} 뒤편 나무의 1층",
 	["The class trainers stand together in the grove"] = "직업 상급자들은 숲에 함께 모여 있습니다",
-	["Listen to Halaan"] = "할란의 말을 들으세요",
+	-- {npc:257554} Halaan
+	["Listen to {npc:257554}"] = "{npc:257554}의 말을 들으세요",
 	-- {spell:1259416} Walk on Air
 	["Use {spell:1259416}"] = "{spell:1259416} 사용",
 
@@ -42,16 +42,16 @@ return {
 	-- {npc:251404} Cirrusfly Queen
 	-- plural, as words: Raw Windstones = {object:613286} Raw Windstone
 	["Raw Windstones and the {npc:251404}"] = "바람석 원석과 {npc:251404}",
-	-- {quest:92463} The Cirrusfly Queen
+	-- {quest:92463} The Cirrusfly Queen · {npc:249363} Yala
 	-- plural, as words: Raw Windstones = {object:613286} Raw Windstone
-	["The Raw Windstones glitter on the ground just south of the grove. {quest:92463} hovers over the meadow further east, on the way to Yala."] = "바람석 원석은 숲 바로 남쪽 땅에서 반짝입니다. {quest:92463}은(는) 더 동쪽, 얄라에게 가는 길의 초원 위를 맴돕니다.",
+	["The Raw Windstones glitter on the ground just south of the grove. {quest:92463} hovers over the meadow further east, on the way to {npc:249363}."] = "바람석 원석은 숲 바로 남쪽 땅에서 반짝입니다. {quest:92463}은(는) 더 동쪽, {npc:249363}에게 가는 길의 초원 위를 맴돕니다.",
 
-	-- Step 5: Yala Windwatcher
-	-- {npc:249363} Yala Windwatcher · {npc:251143} Roiling Winds · {object:460002} Ley Line
+	-- Step 5: Yala
+	-- {npc:249363} Yala · {npc:251143} Roiling Winds · {object:460002} Ley Line (no name in this language: may be words) · {spell:1259705} Read Leyline
 	-- plural, as words: Al'Aketh Converts = {npc:251160} Al'Aketh Convert
-	["{npc:249363} keeps watch east of the grove. The {npc:251143} and Al'Aketh Converts gather just north of her; the {object:460002} rises further north: cast your Read Ley Line racial ability at it."] = "{npc:249363}은(는) 숲 동쪽에서 망을 봅니다. {npc:251143}와(과) {npc:251160}이(가) 그녀 바로 북쪽에 모여 있고, {object:460002}은(는) 더 북쪽에서 솟아오릅니다. 그곳에 종족 능력 Read Ley Line을(를) 시전하세요.",
-	-- {object:460002} Ley Line
-	["Cast Read Ley Line at the {object:460002}"] = "{object:460002}에 Read Ley Line 시전",
+	["{npc:249363} keeps watch east of the grove. The {npc:251143} and Al'Aketh Converts gather just north of her; the {object:460002} rises further north: cast your {spell:1259705} racial ability at it."] = "{npc:249363}은(는) 숲 동쪽에서 망을 봅니다. {npc:251143}와(과) {npc:251160}이(가) 그녀 바로 북쪽에 모여 있고, 지맥은 더 북쪽에서 솟아오릅니다. 그곳에 종족 능력 {spell:1259705}을(를) 시전하세요.",
+	-- {spell:1259705} Read Leyline · {object:460002} Ley Line (no name in this language: may be words)
+	["Cast {spell:1259705} at the {object:460002}"] = "지맥에 {spell:1259705} 시전",
 
 	-- Step 6: Thendal Grove turn-ins
 	-- {area:16622} Thendal Grove
@@ -79,8 +79,8 @@ return {
 	["Speak with {npc:251903} and {npc:254089}, north-west of the village"] = "마을 북서쪽의 {npc:251903}, {npc:254089}와(과) 대화하세요",
 
 	-- Step 11: Raan Wildwind
-	-- {spell:1229451} Boosted Rest
-	["/sit by Raan's campfire until you get {spell:1229451}"] = "{spell:1229451} 효과를 얻을 때까지 란의 모닥불 옆에 앉으세요(/앉기)",
+	-- {npc:263664} Raan Wildwind · {spell:1229451} Boosted Rest
+	["/sit by {npc:263664}'s campfire until you get {spell:1229451}"] = "{spell:1229451} 효과를 얻을 때까지 {npc:263664}의 모닥불 옆에 앉으세요(/앉기)",
 
 	-- Step 12: Village quests
 	["Village quests"] = "마을 퀘스트",
@@ -126,7 +126,7 @@ return {
 
 	-- Step 22: Vulgara the Insatiable
 	-- {npc:254589} Vulgara the Insatiable
-	["Vulgara lurks in the hills south-west of the village, on the way back. {npc:254589} is elite: grouping up is advised."] = "불가라는 돌아가는 길에, 마을 남서쪽 언덕에 숨어 있습니다. {npc:254589}은(는) 정예이므로 파티를 권장합니다.",
+	["{npc:254589} lurks in the hills south-west of the village, on the way back. {npc:254589} is elite: grouping up is advised."] = "{npc:254589}는 돌아가는 길에, 마을 남서쪽 언덕에 숨어 있습니다. {npc:254589}은(는) 정예이므로 파티를 권장합니다.",
 
 	-- Step 23: Windshaper Novice Seers
 	-- plural, as words: Windshaper Novice Seers = {npc:257532} Windshaper Novice Seer
@@ -174,8 +174,9 @@ return {
 	-- plural, as words: Ripe Stormapples = {item:253591} Ripe Stormapple · Hungry Bandits = {npc:252802} Hungry Bandit · Ornery Galestriders = {npc:251707} Ornery Galestrider
 	["Ripe Stormapples and Hungry Bandits are in the orchard by the farm, {quest:92683} in the fields north-east of it, Ornery Galestriders all around. The {npc:250929} stands in the field north-east of the farm."] = "잘 익은 폭풍사과와 굶주린 좀도둑은 농장 옆 과수원에, {quest:92683}은(는) 농장 북동쪽 들판에 있고, 심술궂은 돌풍타조는 사방에 있습니다. {npc:250929}은(는) 농장 북동쪽 들판에 서 있습니다.",
 
-	-- Step 31: Aamelia again
-	["Aamelia again"] = "다시 아멜리아",
+	-- Step 31: Aamelia Windfield again
+	-- {npc:252800} Aamelia Windfield
+	["{npc:252800} again"] = "다시 {npc:252800}",
 
 	-- Step 32: Bandit Highwaymen
 	["Bandit Highwaymen"] = "산적 노상강도",
@@ -183,8 +184,8 @@ return {
 
 	-- Step 33: Standing our ground
 	["Standing our ground"] = "자리를 지키며",
-	-- {npc:252863} Ferauu the Bludgeon
-	["Stand with Aamelia against {npc:252863}"] = "아멜리아와 함께 {npc:252863}에 맞서 싸우세요",
+	-- {npc:252800} Aamelia Windfield · {npc:252863} Ferauu the Bludgeon
+	["Stand with {npc:252800} against {npc:252863}"] = "{npc:252800}와(과) 함께 {npc:252863}에 맞서 싸우세요",
 
 	-- Step 34: Valanaar turn-ins
 	-- {area:16638} Valanaar
@@ -195,9 +196,9 @@ return {
 	["{npc:252373}, the mage trainer"] = "마법사 상급자 {npc:252373}",
 
 	-- Step 35: Taming the Beast
-	-- {item:15908} Taming Rod · {area:16638} Valanaar · {area:16626} Gustberry Lowlands
+	-- {item:15908} Taming Rod · {area:16638} Valanaar · {area:16626} Gustberry Lowlands · {npc:254411} Quel'dora
 	-- plural, as words: Windsong Crawlers = {npc:254588} Windsong Crawler · Vuldren Alphas = {npc:250874} Vuldren Alpha · Ornery Galestriders = {npc:251707} Ornery Galestrider
-	["Each of Quel'ana's quests hands you a {item:15908}: use it on the beast she names, then bring the rod back to her in {area:16638}. Windsong Crawlers line the shore west of town; Vuldren Alphas and Ornery Galestriders roam the {area:16626} around the Windfield farm. Her sister Quel'dora stands beside her."] = "퀠라나의 퀘스트는 각각 {item:15908}을(를) 줍니다. 그녀가 말한 야수에게 사용한 뒤, 막대를 {area:16638}에 있는 그녀에게 다시 가져가세요. 바람노래 집게발은 마을 서쪽 해안에 늘어서 있고, 벌드렌 우두머리와 심술궂은 돌풍타조는 윈드필드 농장 주변 {area:16626}을(를) 돌아다닙니다. 그녀의 자매 퀠도라가 곁에 서 있습니다.",
+	["Each of Quel'ana's quests hands you a {item:15908}: use it on the beast she names, then bring the rod back to her in {area:16638}. Windsong Crawlers line the shore west of town; Vuldren Alphas and Ornery Galestriders roam the {area:16626} around the Windfield farm. Her sister {npc:254411} stands beside her."] = "퀠라나의 퀘스트는 각각 {item:15908}을(를) 줍니다. 그녀가 말한 야수에게 사용한 뒤, 막대를 {area:16638}에 있는 그녀에게 다시 가져가세요. 바람노래 집게발은 마을 서쪽 해안에 늘어서 있고, 벌드렌 우두머리와 심술궂은 돌풍타조는 윈드필드 농장 주변 {area:16626}을(를) 돌아다닙니다. 그녀의 자매 {npc:254411}이(가) 곁에 서 있습니다.",
 	-- {npc:254588} Windsong Crawler · {item:15908} Taming Rod
 	["{npc:254588}: tame it with the {item:15908}"] = "{npc:254588}: {item:15908}(으)로 길들이세요",
 	-- {item:15908} Taming Rod
@@ -234,8 +235,8 @@ return {
 
 	-- Step 42: Desperate times
 	["Desperate times"] = "절박한 시기",
-	-- {npc:251968} Ayessa Dawnsinger
-	["Rally Valennia, {npc:251968} (west of town) and Elaadrin"] = "발레니아, {npc:251968}(마을 서쪽), 엘라드린을 모으세요",
+	-- {npc:251968} Ayessa Dawnsinger · {npc:252475} Elaadrin Evengale
+	["Rally Valennia, {npc:251968} (west of town) and {npc:252475}"] = "발레니아, {npc:251968}(마을 서쪽), {npc:252475}을(를) 모으세요",
 	["Meet Valennia at the gate"] = "성문에서 발레니아를 만나세요",
 
 	-- Step 43: Strength and Mercy
@@ -245,9 +246,9 @@ return {
 	-- Step 44: The Shrine of Akir
 	-- {area:16629} Shrine of Akir
 	["The {area:16629}"] = "{area:16629}",
-	-- {area:16629} Shrine of Akir · {npc:253576} Hyusaa Quickbreeze
-	["Fight north to the {area:16629}. Guardians, Spiritcallers and Blademasters hold the approach; {npc:253576} waits at the shrine's door, Valennia inside the inner sanctum."] = "싸우며 북쪽 {area:16629}(으)로 가세요. 알아케스 수호자, 알아케스 영혼소환사, 알아케스 검귀가 진입로를 지키고 있습니다. {npc:253576}은(는) 사당 문 앞에서, 발레니아는 안쪽 성소에서 기다립니다.",
-	-- {npc:253590} Valennia Stormfist
+	-- {area:16629} Shrine of Akir · {npc:253576} Hyusaa Quickbreeze · {npc:253590} Valennia
+	["Fight north to the {area:16629}. Guardians, Spiritcallers and Blademasters hold the approach; {npc:253576} waits at the shrine's door, {npc:253590} inside the inner sanctum."] = "싸우며 북쪽 {area:16629}(으)로 가세요. 알아케스 수호자, 알아케스 영혼소환사, 알아케스 검귀가 진입로를 지키고 있습니다. {npc:253576}은(는) 사당 문 앞에서, {npc:253590}은(는) 안쪽 성소에서 기다립니다.",
+	-- {npc:253590} Valennia
 	["{npc:253590}, in the sanctum"] = "성소 안의 {npc:253590}",
 	-- {item:263993} Skybreaker Bulwark · {npc:257196} Zaal Stormshield
 	["{item:263993}: {npc:257196}, west of the shrine's approach"] = "{item:263993}: 사당 진입로 서쪽의 {npc:257196}",
@@ -257,26 +258,28 @@ return {
 	["Head north into {area:16631}. {npc:257944} camps in its east."] = "북쪽 {area:16631}(으)로 가세요. {npc:257944}은(는) 그 동쪽에 야영합니다.",
 
 	-- Step 46: Shadowgale Forest
-	-- {item:265105} Lady's Tear Moss
+	-- {npc:257944} Elegael Thornpaw · {item:265105} Lady's Tear Moss
 	-- plural, as words: Al'Aketh Stormchasers = {npc:252664} Al'Aketh Stormchaser
-	["Al'Aketh Stormchasers and Footsoldiers camp just north of Elegael and drop the heirloom; the Shrieklings west of her drop the feathers and talons; the {item:265105} grows along the stream west of her."] = "알아케스 폭풍추격자와 알아케스 보병이 엘레게일 바로 북쪽에 야영하며 가보를 떨어뜨립니다. 그녀 서쪽의 괴성조는 깃털과 갈퀴발톱을 떨어뜨리고, {item:265105}은(는) 그녀 서쪽 개울을 따라 자랍니다.",
+	["Al'Aketh Stormchasers and Footsoldiers camp just north of {npc:257944} and drop the heirloom; the Shrieklings west of her drop the feathers and talons; the {item:265105} grows along the stream west of her."] = "알아케스 폭풍추격자와 알아케스 보병이 {npc:257944} 바로 북쪽에 야영하며 가보를 떨어뜨립니다. 그녀 서쪽의 괴성조는 깃털과 갈퀴발톱을 떨어뜨리고, {item:265105}은(는) 그녀 서쪽 개울을 따라 자랍니다.",
 
-	-- Step 47: Elegael again
-	["Elegael again"] = "다시 엘레게일",
+	-- Step 47: Elegael Thornpaw again
+	-- {npc:257944} Elegael Thornpaw
+	["{npc:257944} again"] = "다시 {npc:257944}",
 
 	-- Step 48: Vayn Moongaze
-	-- {npc:254151} Vayn Moongaze · {npc:258130} Jorel Windsinger · {npc:258134} Naaleos Leafwhisper · {npc:253622} Commander Haalien · {quest:94490} Ripped Missive
-	["{npc:254151}, {npc:258130} and {npc:258134} are north-east of Elegael; {npc:253622} stands east of them. Haalien also drops a {quest:94490}."] = "{npc:254151}, {npc:258130}, {npc:258134}은(는) 엘레게일 북동쪽에 있고, {npc:253622}은(는) 그들 동쪽에 서 있습니다. 할리엔은 {quest:94490}도 떨어뜨립니다.",
-	["Heal 7 druids in the Nightfang Den, then find Jorel"] = "Nightfang Den에서 드루이드 7명을 치유한 뒤 조렐을 찾으세요",
+	-- {npc:254151} Vayn Moongaze · {npc:258130} Jorel Windsinger · {npc:258134} Naaleos Leafwhisper · {npc:257944} Elegael Thornpaw · {npc:253622} Commander Haalien · {quest:94490} Ripped Missive
+	["{npc:254151}, {npc:258130} and {npc:258134} are north-east of {npc:257944}; {npc:253622} stands east of them. Haalien also drops a {quest:94490}."] = "{npc:254151}, {npc:258130}, {npc:258134}은(는) {npc:257944} 북동쪽에 있고, {npc:253622}은(는) 그들 동쪽에 서 있습니다. 할리엔은 {quest:94490}도 떨어뜨립니다.",
+	-- {npc:258130} Jorel Windsinger
+	["Heal 7 druids in the Nightfang Den, then find {npc:258130}"] = "Nightfang Den에서 드루이드 7명을 치유한 뒤 {npc:258130}을(를) 찾으세요",
 
 	-- Step 49: Elegael Thornpaw, the missive
 	-- {npc:257944} Elegael Thornpaw
 	["{npc:257944}, the missive"] = "{npc:257944}: 전갈",
 
 	-- Step 50: The Strange Hermit
-	-- {quest:93159} The Strange Hermit
+	-- {quest:93159} The Strange Hermit · {npc:257944} Elegael Thornpaw
 	-- plural, as words: Zephyrseed Cones = {object:613238} Zephyrseed Cone
-	["{quest:93159} lives west of Elegael. The Zephyrseed Cones lie in the woods between his hut and Elegael."] = "{quest:93159}은(는) 엘레게일 서쪽에 삽니다. {object:613238}은(는) 그의 오두막과 엘레게일 사이 숲에 있습니다.",
+	["{quest:93159} lives west of {npc:257944}. The Zephyrseed Cones lie in the woods between his hut and {npc:257944}."] = "{quest:93159}은(는) {npc:257944} 서쪽에 삽니다. {object:613238}은(는) 그의 오두막과 {npc:257944} 사이 숲에 있습니다.",
 
 	-- Step 51: The refugees' camp
 	["The refugees' camp"] = "피난민 야영지",
@@ -305,13 +308,13 @@ return {
 	["Skycutter to {area:279}"] = "비행정으로 {area:279}에 가기",
 
 	-- Step 56: Denaaris Stargale
-	-- {zone:1453} Stormwind
-	["Denaaris stands beside the Skyborne Portal where the zeppelin lands. The portal takes you to {zone:1453}."] = "데나리스는 비행선이 내리는 곳의 스카이본 차원문 옆에 서 있습니다. 차원문은 {zone:1453}(으)로 연결됩니다.",
-	-- {npc:270459} Alfina Nightgaze · {npc:5504} Sheldras Moontree · {zone:1453} Stormwind
-	["{npc:270459}, beside Denaaris: for {npc:5504} in {zone:1453}"] = "데나리스 옆의 {npc:270459}: {zone:1453}의 {npc:5504}용",
+	-- {npc:259084} Denaaris Stargale · {zone:1453} Stormwind
+	["{npc:259084} stands beside the Skyborne Portal where the zeppelin lands. The portal takes you to {zone:1453}."] = "{npc:259084}은(는) 비행선이 내리는 곳의 스카이본 차원문 옆에 서 있습니다. 차원문은 {zone:1453}(으)로 연결됩니다.",
+	-- {npc:270459} Alfina Nightgaze · {npc:259084} Denaaris Stargale · {npc:5504} Sheldras Moontree · {zone:1453} Stormwind
+	["{npc:270459}, beside {npc:259084}: for {npc:5504} in {zone:1453}"] = "{npc:259084} 옆의 {npc:270459}: {zone:1453}의 {npc:5504}용",
 
 	-- Step 57: Stormwind Keep
-	-- {object:2117} Stormwind Keep · {zone:1436} Westfall
+	-- {object:2117} Stormwind Keep (no name in this language: may be words) · {zone:1436} Westfall
 	["Bolvar Fordragon stands in the throne room of {object:2117}, at the north end of the city. Then leave by the main gate for {zone:1436}."] = "볼바르 폴드라곤은 도시 북쪽 끝 {object:2117}의 왕좌실에 서 있습니다. 그런 다음 정문으로 나가 {zone:1436}(으)로 가세요.",
 	-- {npc:234} Gryan Stoutmantle · {area:108} Sentinel Hill
 	["For {npc:234} at {area:108}"] = "{area:108}의 {npc:234}용",
@@ -321,7 +324,7 @@ return {
 	["{npc:5504}, {zone:1453}'s druid trainer, teaches you {spell:18960}. {npc:11802}'s welcome waits for your {spell:499} trip at the end of {zone:1439}."] = "{zone:1453}의 드루이드 상급자 {npc:5504}이(가) {spell:18960}을(를) 가르쳐 줍니다. {npc:11802}의 환영 인사는 {zone:1439} 끝의 {spell:499} 여정에서 기다립니다.",
 
 	-- Step 59: Jennea Cannon
-	-- {npc:5497} Jennea Cannon · {object:2101} Mage Quarter · {quest:1861} Mirror Lake
+	-- {npc:5497} Jennea Cannon · {object:2101} Mage Quarter (no name in this language: may be words) · {quest:1861} Mirror Lake
 	["{npc:5497} stands in the Wizard's Sanctum, the tower of the {object:2101}; she gives you a flask for the {quest:1861} waterfall."] = "{npc:5497}은(는) {object:2101}의 탑인 마법사의 성소에 있습니다. 그녀는 {quest:1861} 폭포에 쓸 병을 줍니다.",
 
 	-- Step 60: Mirror Lake
@@ -329,5 +332,7 @@ return {
 	["Leave {zone:1453} by the main gate. The {quest:1861} waterfall is south-west of the gates, on the way west to {zone:1436}: fill {item:7207} at its base."] = "정문으로 {zone:1453}을(를) 나가세요. {quest:1861} 폭포는 성문 남서쪽, 서쪽 {zone:1436}(으)로 가는 길에 있습니다. 폭포 아래에서 {item:7207}을(를) 채우세요.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["North-west of {area:16638} along the road: {npc:273017} watches the {quest:98512}; the dead cultist lies just north of him."] = "{area:16638} 북서쪽 길가: {npc:273017}이(가) {quest:98512}을(를) 감시하고 있고, 죽은 광신도는 그 바로 북쪽에 쓰러져 있습니다.",
+	-- ["Cast Read Ley Line at the {object:460002}"] = "{object:460002}에 Read Ley Line 시전",
+	-- ["Rorian: {quest:92485}"] = "로리안: {quest:92485}",
+	-- ["{npc:249363} keeps watch east of the grove. The {npc:251143} and Al'Aketh Converts gather just north of her; the {object:460002} rises further north: cast your Read Ley Line racial ability at it."] = "{npc:249363}은(는) 숲 동쪽에서 망을 봅니다. {npc:251143}와(과) {npc:251160}이(가) 그녀 바로 북쪽에 모여 있고, {object:460002}은(는) 더 북쪽에서 솟아오릅니다. 그곳에 종족 능력 Read Ley Line을(를) 시전하세요.",
 }

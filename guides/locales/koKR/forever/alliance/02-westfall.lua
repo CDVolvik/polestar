@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Korean words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Sentinel Hill
@@ -12,8 +13,8 @@ return {
 	["{npc:523}; skip the free flight it offers"] = "{npc:523}; 제공되는 무료 비행은 건너뛰십시오",
 
 	-- Step 2: Saldean's Farm
-	-- {npc:233} Farmer Saldean · {npc:253395} Ozwin Ironsprocket
-	["Follow the road north. {npc:233} stands outside, Salma in the house, {npc:253395} in the barn to the west."] = "길을 따라 북쪽으로 가십시오. {npc:233}은(는) 밖에, 살마 살딘은 집 안에, {npc:253395}은(는) 서쪽 헛간에 있습니다.",
+	-- {npc:233} Farmer Saldean · {npc:235} Salma · {npc:253395} Ozwin Ironsprocket
+	["Follow the road north. {npc:233} stands outside, {npc:235} in the house, {npc:253395} in the barn to the west."] = "길을 따라 북쪽으로 가십시오. {npc:233}은(는) 밖에, {npc:235}은(는) 집 안에, {npc:253395}은(는) 서쪽 헛간에 있습니다.",
 
 	-- Step 3: The Jansen Stead
 	["Further north along the road. The Furlbrows sit by their burned farm. Collect the oats from the Sacks of Oats in the fields as you go and fill the vial at the stead's well."] = "길을 따라 더 북쪽으로 가십시오. 펄브로우 부부가 불탄 농장 옆에 앉아 있습니다. 가는 길에 밭의 귀리 부대에서 귀리를 모으고, 농장 우물에서 약병을 채우십시오.",
@@ -62,8 +63,9 @@ return {
 
 	-- Step 9: The gnoll hills
 	["The gnoll hills"] = "놀 언덕",
+	-- {area:916} The Jansen Stead
 	-- plural, as words: Riverpaw Gnolls = {npc:117} Riverpaw Gnoll
-	["Riverpaw Gnolls and Scouts roam the hills between the coast and the Jansen Stead."] = "갈퀴발 놀과 갈퀴발일족 정찰병이 해안과 얀센 농장 사이 언덕을 돌아다닙니다.",
+	["Riverpaw Gnolls and Scouts roam the hills between the coast and the {area:916}."] = "갈퀴발 놀과 갈퀴발일족 정찰병이 해안과 {area:916} 사이 언덕을 돌아다닙니다.",
 	-- plural, as words: Gnoll Paws = {item:725} Gnoll Paw
 	["Gnoll Paws"] = "놀의 앞발",
 
@@ -91,11 +93,11 @@ return {
 	["Hearthstone on cooldown? Follow the road north-east."] = "귀환석이 재사용 대기 중이라면 북동쪽 길을 따라가십시오.",
 	-- {npc:266} Wiley the Black · {area:69} Lakeshire
 	["For {npc:266} in {area:69}, Redridge"] = "붉은마루 산맥 {area:69}의 {npc:266}에게",
-	-- {npc:11026} Sprite Jumpsprocket · {zone:1453} Stormwind · {object:28027} Dwarven District
+	-- {npc:11026} Sprite Jumpsprocket · {zone:1453} Stormwind · {object:28027} Dwarven District (no name in this language: may be words)
 	["For {npc:11026} in {zone:1453}'s {object:28027}"] = "{zone:1453} {object:28027}의 {npc:11026}에게",
 
 	-- Step 17: Defensive Stance
-	-- {zone:1453} Stormwind · {npc:5480} Ilsa Corbin · {object:2100} Old Town · {npc:6089} Harry Burlguard · {npc:6090} Bartleby · {object:2152} Pig and Whistle Tavern
+	-- {zone:1453} Stormwind · {npc:5480} Ilsa Corbin · {object:2100} Old Town (no name in this language: may be words) · {npc:6089} Harry Burlguard · {npc:6090} Bartleby · {object:2152} Pig and Whistle Tavern (no name in this language: may be words)
 	["Fly or ride to {zone:1453}. {npc:5480} trains warriors in {object:2100}; {npc:6089} and {npc:6090} stand together by the {object:2152} there. {npc:6090} fights you for his mug."] = "{zone:1453}(으)로 비행하거나 이동하십시오. {npc:5480}은(는) {object:2100}에서 전사를 가르치며, {npc:6089}와(과) {npc:6090}은(는) 그곳 {object:2152} 옆에 함께 있습니다. {npc:6090}이(가) 자기 잔을 걸고 결투를 합니다.",
 
 	-- Step 18: High Priestess Laurena
@@ -104,11 +106,11 @@ return {
 
 	-- Step 19: Shaman training
 	["Shaman training"] = "주술사 수련",
-	-- {zone:1453} Stormwind · {area:2257} Deeprun Tram · {object:28027} Dwarven District · {zone:1455} Ironforge · {npc:258098} Eldrun Stormbreaker
+	-- {zone:1453} Stormwind · {area:2257} Deeprun Tram · {object:28027} Dwarven District (no name in this language: may be words) · {zone:1455} Ironforge · {npc:258098} Eldrun Stormbreaker
 	["Ride to {zone:1453}. It has no shaman trainer: take the {area:2257} from the {object:28027} to {zone:1455}, train with {npc:258098}, then ride the tram back for the boat."] = "{zone:1453}(으)로 가십시오. 주술사 상급자가 없으니 {object:28027}에서 {area:2257}을(를) 타고 {zone:1455}(으)로 가서 {npc:258098}에게 수련한 뒤, 전차를 타고 돌아와 배를 타십시오.",
 
 	-- Step 20: Stormwind
-	-- {zone:1453} Stormwind · {object:2100} Old Town · {object:2101} Mage Quarter · {npc:11026} Sprite Jumpsprocket · {object:28027} Dwarven District · {npc:279} Morgan Pestle · {object:2096} Trade District
+	-- {zone:1453} Stormwind · {object:2100} Old Town (no name in this language: may be words) · {object:2101} Mage Quarter (no name in this language: may be words) · {npc:11026} Sprite Jumpsprocket · {object:28027} Dwarven District (no name in this language: may be words) · {npc:279} Morgan Pestle · {object:2096} Trade District (no name in this language: may be words)
 	["Fly or ride to {zone:1453}. Trainers: {object:2100} (Warriors, Rogues), the Cathedral (Paladins, Priests), the {object:2101} (Mages, Warlocks), the Park (Druids). {npc:11026} works in the {object:28027}, {npc:279} in the {object:2096}."] = "{zone:1453}(으)로 날아가거나 말을 타고 가세요. 상급자: {object:2100}(전사, 도적), 대성당(성기사, 사제), {object:2101}(마법사, 흑마법사), 공원(드루이드). {npc:11026}은(는) {object:28027}에서, {npc:279}은(는) {object:2096}에서 일합니다.",
 	["Level 12, 14 and 16 spells"] = "12, 14, 16레벨 주문",
 	-- {item:2449} Earthroot · {zone:1439} Darkshore · {npc:1313} Maria Lumere
@@ -117,13 +119,11 @@ return {
 	["{npc:5497}, Wizard's Sanctum: {quest:1861}"] = "{npc:5497}, 마법사의 성소: {quest:1861}",
 
 	-- Step 21: Fishin' Time
-	-- {npc:5494} Catherine Leland · {object:2096} Trade District · {npc:267118} Gilbert Gray
+	-- {npc:5494} Catherine Leland · {object:2096} Trade District (no name in this language: may be words) · {npc:267118} Gilbert Gray
 	["{npc:5494} sells fishing supplies along the canal just west of the {object:2096}; {npc:267118} fishes at the harbor, on the way to the boat."] = "{npc:5494}은(는) {object:2096} 바로 서쪽 운하를 따라 낚시 용품을 판매합니다. {npc:267118}은(는) 배로 가는 길의 항구에서 낚시를 합니다.",
 	-- {item:6529} Shiny Bauble · {npc:5494} Catherine Leland
 	["{item:6529}, from {npc:5494}"] = "{item:6529}, {npc:5494}에게서",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["North of {area:918}. Defias Trappers and Smugglers camp outside the mine, Kobold Diggers work inside. {object:290} stands by the ruined house east of the mine."] = "{area:918} 북쪽입니다. 데피아즈단 덫사냥꾼과 데피아즈단 밀수업자가 광산 밖에 진을 치고, 코볼트 채굴꾼이 안에서 일합니다. {object:290}은(는) 광산 동쪽의 폐가 옆에 있습니다.",
 	-- ["Riverpaw Gnolls and Scouts roam the hills between the coast and the {area:916}."] = "갈퀴발 놀과 갈퀴발일족 정찰병이 해안과 {area:916} 사이 언덕을 돌아다닙니다.",
-	-- ["West of {area:918}, toward the coast. Riverpaw Miners work the quarry."] = "{area:918} 서쪽, 해안 방향입니다. 갈퀴발일족 광부가 채석장에서 일합니다.",
 }

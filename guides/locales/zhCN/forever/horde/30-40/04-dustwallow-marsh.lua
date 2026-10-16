@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (simplified) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (simplified) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Fly to Camp Taurajo
@@ -52,12 +53,12 @@ return {
 	["Ride east back to the {area:497}."] = "向东骑回{area:497}。",
 	-- {item:3853} Moonsteel Broadsword · {skill:164} Blacksmithing
 	["only if you carry a {item:3853} ({skill:164} or the Auction House)"] = "仅当你带着{item:3853}时（{skill:164}或拍卖行）",
-	-- {object:20985} Loose Dirt
-	["{object:20985}, now that Nazeer has read the report"] = "{object:20985}，现在纳泽尔已经读过报告了",
+	-- {object:20985} Loose Dirt · {npc:4791} Nazeer
+	["{object:20985}, now that {npc:4791} has read the report"] = "{object:20985}，现在{npc:4791}已经读过报告了",
 
 	-- Step 12: Brackenwall Village
 	["Ride back west to Brackenwall with the head."] = "带着头颅向西骑回蕨墙村。",
-	-- {npc:2519} Kin'weelay · {object:3202} Grom'gol
+	-- {npc:2519} Kin'weelay · {object:3202} Grom'gol (no name in this language: may be words)
 	["For {npc:2519} at {object:3202}, in the next guide"] = "交给{object:3202}的{npc:2519}，在下一个指南中",
 
 	-- Step 13: Hearth to Ratchet
@@ -65,24 +66,24 @@ return {
 	["Hearth to {area:392}"] = "用炉石回到{area:392}",
 
 	-- Step 15: Melizza Brimbuzzle
-	-- {area:607} Valley of Spears
-	["Ride north-east to the {area:607}. Melizza is held in the Maraudine centaur camp; free her and escort her out east of the valley."] = "向东北骑往{area:607}。梅丽萨被关在玛洛迪半人马的营地里；救出她，护送她从山谷东边出去。",
+	-- {area:607} Valley of Spears · {npc:12277} Melizza Brimbuzzle
+	["Ride north-east to the {area:607}. {npc:12277} is held in the Maraudine centaur camp; free her and escort her out east of the valley."] = "向东北骑往{area:607}。{npc:12277}被关在玛洛迪半人马的营地里；救出她，护送她从山谷东边出去。",
 
 	-- Step 16: Kodo Graveyard
-	-- {area:596} Kodo Graveyard
-	["Hornizz waits at the goblin camp on the west side of the {area:596}."] = "霍恩尼兹在{area:596}西侧的地精营地里等候。",
+	-- {npc:6019} Hornizz · {area:596} Kodo Graveyard
+	["{npc:6019} waits at the goblin camp on the west side of the {area:596}."] = "{npc:6019}在{area:596}西侧的地精营地里等候。",
 
 	-- Step 17: Gizelton Caravan
 	-- {npc:11626} Rigger Gizelton · {area:602} Mannoroc Coven
 	["{npc:11626}'s caravan stops on the road at the edge of {area:602}. Escort it east past the coven; demons attack it twice."] = "{npc:11626}的商队停在{area:602}边缘的路上。护送商队向东经过集会所；恶魔会袭击两次。",
 
 	-- Step 18: Scrabblescrew's Camp
-	-- {area:596} Kodo Graveyard
-	["The caravan ends at Smeed's camp on the east side of the {area:596}."] = "商队终点是{area:596}东侧斯米德的营地。",
+	-- {npc:11596} Smeed · {area:596} Kodo Graveyard
+	["The caravan ends at {npc:11596}'s camp on the east side of the {area:596}."] = "商队终点是{area:596}东侧{npc:11596}的营地。",
 
 	-- Step 19: Ghost Walker Post
-	-- {npc:5395} Felgur Twocuts · {npc:5412} Gurda Wildmane
-	["{npc:5395} and {npc:5412} stand in the post just west of Smeed's camp."] = "{npc:5395}和{npc:5412}站在斯米德营地正西的哨站里。",
+	-- {npc:5395} Felgur Twocuts · {npc:5412} Gurda Wildmane · {npc:11596} Smeed
+	["{npc:5395} and {npc:5412} stand in the post just west of {npc:11596}'s camp."] = "{npc:5395}和{npc:5412}站在{npc:11596}营地正西的哨站里。",
 
 	-- Step 20: Kormek's Hut
 	["Ride north up the road to the hut by the road north of the graveyard."] = "沿道路向北骑往坟场北边路旁的小屋。",
@@ -93,8 +94,8 @@ return {
 	["Pick up the kodo bones scattered across the graveyard, and use the {item:15848} among the bones: the ghosts it draws drop the ghost-o-plasm."] = "捡起散落在坟场各处的科多兽骨，并在骨头间使用{item:15848}：被吸引来的幽灵会掉落幽灵电浆。",
 
 	-- Step 24: Thunder Axe Fortress
-	-- {spell:1294269} Burning Blade · {area:2407} Kormek's Hut · {item:14523} Demon Pick · {npc:11876} Demon Spirit · {item:13542} Demon Box
-	["The {spell:1294269} hold the fortress north-west of {area:2407}. Use the {item:14523} on the {npc:11876} in the fortress to get the {item:13542}."] = "{spell:1294269}占据着{area:2407}西北的要塞。在要塞里对{npc:11876}使用{item:14523}，获得{item:13542}。",
+	-- {area:2407} Kormek's Hut · {item:14523} Demon Pick · {npc:11876} Demon Spirit · {item:13542} Demon Box
+	["The Burning Blade hold the fortress north-west of {area:2407}. Use the {item:14523} on the {npc:11876} in the fortress to get the {item:13542}."] = "火刃氏族占据着{area:2407}西北的要塞。在要塞里对{npc:11876}使用{item:14523}，获得{item:13542}。",
 
 	-- Step 25: Ethel Rethor
 	-- {npc:11863} Azore Aldamort · {area:2405} Ethel Rethor

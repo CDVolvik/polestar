@@ -3,11 +3,12 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in French (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in French words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Layo Starstrike
-	-- {area:3077} Valor's Rest · {zone:1451} Silithus
-	["The pass from Un'Goro comes out at {area:3077}, the graveyard in north-east {zone:1451}. Layo stands among the graves."] = "Le col venant d'Un'Goro débouche sur {area:3077}, le cimetière du nord-est de {zone:1451}. Layo se tient parmi les tombes.",
+	-- {area:3077} Valor's Rest · {zone:1451} Silithus · {npc:13220} Layo Starstrike
+	["The pass from Un'Goro comes out at {area:3077}, the graveyard in north-east {zone:1451}. {npc:13220} stands among the graves."] = "Le col venant d'Un'Goro débouche sur {area:3077}, le cimetière du nord-est de {zone:1451}. {npc:13220} se tient parmi les tombes.",
 
 	-- Step 2: The Spirits of Southwind
 	-- {area:2738} Southwind Village · {object:179565} Dusty Reliquary · {npc:11801} Rabine Saturna
@@ -107,16 +108,17 @@ return {
 	["Fly to {area:1637} and train."] = "Volez jusqu'à {area:1637} et entraînez-vous.",
 
 	-- Step 25: The Undercity
-	-- {area:1637} Orgrimmar · {zone:1420} Tirisfal Glades · {zone:1458} Undercity · {object:36126} Royal Quarter
+	-- {area:1637} Orgrimmar · {zone:1420} Tirisfal Glades · {zone:1458} Undercity · {object:36126} Royal Quarter (no name in this language: may be words)
 	["Take the zeppelin from the tower outside {area:1637} to {zone:1420} and ride into the {zone:1458}. Lady Sylvanas holds the {object:36126}."] = "Prenez le zeppelin depuis la tour à l'extérieur d'{area:1637} jusqu'à {zone:1420} et entrez dans {zone:1458}. Dame Sylvanas règne sur le {object:36126}.",
 
 	-- Step 26: The Bulwark
-	["Ride east along the road to the Bulwark on the border."] = "Suivez la route vers l'est jusqu'à la Barricade, à la frontière.",
+	-- {area:152} The Bulwark
+	["Ride east along the road to the {area:152} on the border."] = "Suivez la route vers l'est jusqu'à la {area:152}, à la frontière.",
 
 	-- Step 27: Felstone Field
-	-- {npc:10778} Janice Felstone · {npc:11075} Cauldron Lord Bilemaw
+	-- {npc:10778} Janice Felstone · {area:152} The Bulwark · {npc:11075} Cauldron Lord Bilemaw
 	-- plural, as words: Jabbering Ghouls = {npc:10801} Jabbering Ghoul
-	["{npc:10778}'s farm is the first one east of the Bulwark. Jabbering Ghouls on the farm carry the other half of her charm; {npc:11075} guards the cauldron in the field."] = "La ferme de {npc:10778} est la première à l'est de la Barricade. Les Goules jacassantes de la ferme portent l'autre moitié de son talisman ; {npc:11075} garde le chaudron dans le champ.",
+	["{npc:10778}'s farm is the first one east of the {area:152}. Jabbering Ghouls on the farm carry the other half of her charm; {npc:11075} guards the cauldron in the field."] = "La ferme de {npc:10778} est la première à l'est de la {area:152}. Les Goules jacassantes de la ferme portent l'autre moitié de son talisman ; {npc:11075} garde le chaudron dans le champ.",
 
 	-- Step 28: Andorhal watchtowers and silos
 	["Andorhal watchtowers and silos"] = "Tours de guet et silos d'Andorhal",
@@ -148,12 +150,12 @@ return {
 	["The libram lies further north, on the way to {area:190}."] = "Le libram se trouve plus au nord, sur la route de {area:190}.",
 
 	-- Step 33: Tirion Fordring
-	-- {area:2619} Thondroril River
-	["Ride east to Tirion's hut by the {area:2619} and hear him out."] = "Allez vers l'est jusqu'à la cabane de Tirion, au bord de {area:2619}, et écoutez-le.",
+	-- {npc:1855} Tirion Fordring · {area:2619} Thondroril River
+	["Ride east to {npc:1855}'s hut by the {area:2619} and hear him out."] = "Allez vers l'est jusqu'à la cabane de {npc:1855}, au bord de {area:2619}, et écoutez-le.",
 
 	-- Step 34: Redpath's Shield
-	-- {area:201} Gahrron's Withering
-	["The shield lies at {area:201}, south of Tirion's hut."] = "Le bouclier se trouve à {area:201}, au sud de la cabane de Tirion.",
+	-- {area:201} Gahrron's Withering · {npc:1855} Tirion Fordring
+	["The shield lies at {area:201}, south of {npc:1855}'s hut."] = "Le bouclier se trouve à {area:201}, au sud de la cabane de {npc:1855}.",
 
 	-- Step 35: Light's Hope Chapel
 	["Ride east across the plaguelands to the chapel."] = "Traversez les maleterres vers l'est jusqu'à la chapelle.",
@@ -161,25 +163,29 @@ return {
 	-- Step 36: Scourge Champions
 	-- plural, as words: Scourge Champions = {npc:8529} Scourge Champion
 	["Scourge Champions"] = "Champions du Fléau",
-	-- {area:2270} Noxious Glade · {item:13156} Mystic Crystal
+	-- {area:2270} Noxious Glade · {npc:11063} Carlin · {item:13156} Mystic Crystal
 	-- plural, as words: Scourge Champions = {npc:8529} Scourge Champion
-	["Scourge Champions roam the {area:2270}, north of the chapel. Pass Carlin's {item:13156} over each one you kill: the skulls that resonate are the ones he wants."] = "Les Champions du Fléau parcourent {area:2270}, au nord de la chapelle. Passez {item:13156} de Carlin sur chacun de ceux que vous tuez : les crânes qui résonnent sont ceux qu'il veut.",
+	["Scourge Champions roam the {area:2270}, north of the chapel. Pass {npc:11063}'s {item:13156} over each one you kill: the skulls that resonate are the ones he wants."] = "Les Champions du Fléau parcourent {area:2270}, au nord de la chapelle. Passez {item:13156} de {npc:11063} sur chacun de ceux que vous tuez : les crânes qui résonnent sont ceux qu'il veut.",
 
 	-- Step 38: Pamela and the Undercroft
-	-- {area:2261} Undercroft
-	["Pamela and the {area:2261}"] = "Pamela et {area:2261}",
-	-- {area:2262} Darrowshire · {npc:11886} Mercutio Filthgorger · {area:2261} Undercroft
-	["Ride to {area:2262} in the south-west; Pamela plays among the houses. {npc:11886} lurks in the {area:2261}, the crypt just west of the town."] = "Allez jusqu'à {area:2262}, au sud-ouest ; Pamela joue entre les maisons. {npc:11886} rôde dans {area:2261}, la crypte juste à l'ouest du village.",
-	["Pamela's own errand is not on this route. Skip it."] = "La quête propre à Pamela ne fait pas partie de cet itinéraire. Passez-la.",
+	-- {npc:10926} Pamela · {area:2261} Undercroft
+	["{npc:10926} and the {area:2261}"] = "{npc:10926} et {area:2261}",
+	-- {area:2262} Darrowshire · {npc:10926} Pamela · {npc:11886} Mercutio Filthgorger · {area:2261} Undercroft
+	["Ride to {area:2262} in the south-west; {npc:10926} plays among the houses. {npc:11886} lurks in the {area:2261}, the crypt just west of the town."] = "Allez jusqu'à {area:2262}, au sud-ouest ; {npc:10926} joue entre les maisons. {npc:11886} rôde dans {area:2261}, la crypte juste à l'ouest du village.",
+	-- {npc:10926} Pamela
+	["{npc:10926}'s own errand is not on this route. Skip it."] = "La quête propre à {npc:10926} ne fait pas partie de cet itinéraire. Passez-la.",
 
 	-- Step 39: Nathanos Blightcaller
 	-- {npc:15193} The Banshee Queen · {area:2260} Marris Stead · {area:2261} Undercroft
 	["{npc:15193}'s champion holds the {area:2260} farmhouse, north of the {area:2261}."] = "Le champion de {npc:15193} occupe la maison de {area:2260}, au nord de la crypte ({area:2261}).",
-	["Nathanos' errands are not on this route. Skip them."] = "Les quêtes de Nathanos ne font pas partie de cet itinéraire. Passez-les.",
+	-- {npc:11878} Nathanos Blightcaller
+	["{npc:11878}' errands are not on this route. Skip them."] = "Les quêtes de {npc:11878} ne font pas partie de cet itinéraire. Passez-les.",
 
 	-- Step 40: Tirion Fordring
-	["Ride north-west to Tirion's hut."] = "Allez vers le nord-ouest jusqu'à la cabane de Tirion.",
-	["Tirion's next task, Of Lost Honor, is not on this route. Skip it."] = "La tâche suivante de Tirion, De l'honneur perdu, ne fait pas partie de cet itinéraire. Passez-la.",
+	-- {npc:1855} Tirion Fordring
+	["Ride north-west to {npc:1855}'s hut."] = "Allez vers le nord-ouest jusqu'à la cabane de {npc:1855}.",
+	-- {npc:1855} Tirion Fordring
+	["{npc:1855}'s next task, Of Lost Honor, is not on this route. Skip it."] = "La tâche suivante de {npc:1855}, De l'honneur perdu, ne fait pas partie de cet itinéraire. Passez-la.",
 
 	-- Step 41: Chromie
 	-- {npc:10667} Chromie
@@ -188,13 +194,12 @@ return {
 	["{npc:10667}'s Battle of Darrowshire ends against elites. Skip it."] = "La bataille de Comté-de-Darrow, quête de {npc:10667}, se termine contre des élites. Passez-la.",
 
 	-- Step 42: The Bulwark
-	-- {zone:1458} Undercity
-	["West to the Bulwark. The next guide starts in the {zone:1458}, a short ride west."] = "Vers l'ouest jusqu'à la Barricade. Le prochain guide commence à {zone:1458}, un peu plus à l'ouest.",
+	-- {area:152} The Bulwark · {zone:1458} Undercity
+	["West to the {area:152}. The next guide starts in the {zone:1458}, a short ride west."] = "Vers l'ouest jusqu'à la {area:152}. Le prochain guide commence à {zone:1458}, un peu plus à l'ouest.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Back to Southwind and climb the tower. Stirring the hive at the top brings out {area:2742} Ambushers; one carries the {item:17346}."] = "Retournez à Sudevent et montez dans la tour. Remuer la ruche au sommet fait sortir des Embusquées de la {area:2742} ; l'une d'elles porte {item:17346}.",
 	-- ["Ride east along the road to the {area:152} on the border."] = "Suivez la route vers l'est jusqu'à {area:152}, à la frontière.",
 	-- ["West to the {area:152}. The next guide starts in the {zone:1458}, a short ride west."] = "Vers l'ouest jusqu'à {area:152}. Le prochain guide commence à {zone:1458}, un peu plus à l'ouest.",
-	-- ["{npc:10667}'s Battle of {area:2262} ends against elites. Skip it."] = "La bataille du {area:2262}, quête de {npc:10667}, se termine contre des élites. Passez-la.",
 	-- ["{npc:10778}'s farm is the first one east of the {area:152}. Jabbering Ghouls on the farm carry the other half of her charm; {npc:11075} guards the cauldron in the field."] = "La ferme de {npc:10778} est la première à l'est de {area:152}. Les Goules jacassantes de la ferme portent l'autre moitié de son talisman ; {npc:11075} garde le chaudron dans le champ.",
 }

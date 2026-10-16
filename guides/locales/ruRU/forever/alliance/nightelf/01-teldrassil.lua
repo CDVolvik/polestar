@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Russian (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Russian words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Aldrassil
@@ -89,8 +90,8 @@ return {
 	["{npc:3515}, south of the inn"] = "{npc:3515} – к югу от таверны",
 
 	-- Step 13: Zenn Foulhoof
-	-- {area:186} Dolanaar · {area:260} Starbreeze Village
-	["Zenn sits by the road just east of {area:186}, on the way to {area:260}."] = "Зенн сидит у дороги чуть восточнее места {area:186}, по пути сюда: {area:260}.",
+	-- {npc:2150} Zenn Foulhoof · {area:186} Dolanaar · {area:260} Starbreeze Village
+	["{npc:2150} sits by the road just east of {area:186}, on the way to {area:260}."] = "{npc:2150} сидит у дороги чуть восточнее места {area:186}, по пути сюда: {area:260}.",
 
 	-- Step 14: Zenn's Bidding and the Starbreeze moonwell
 	-- {quest:488} Zenn's Bidding
@@ -108,17 +109,17 @@ return {
 	["{area:186} quests"] = "Задания: {area:186}",
 
 	-- Step 16: The Great Outdoors
-	-- {spell:1229451} Boosted Rest
-	["/sit by Lyreena's campfire until you get {spell:1229451}"] = "Сядьте (/sit) у костра Лирины, пока не получите эффект «{spell:1229451}»",
+	-- {npc:265811} Lyreena Duskblade · {spell:1229451} Boosted Rest
+	["/sit by {npc:265811}'s campfire until you get {spell:1229451}"] = "Сядьте (/sit) у костра {npc:265811}, пока не получите эффект «{spell:1229451}»",
 	-- {npc:6286} Zarrin
 	["Speak with {npc:6286}, south of the inn"] = "Поговорите с персонажем {npc:6286} к югу от таверны",
 
 	-- Step 17: East to Starbreeze Village
 	-- {area:260} Starbreeze Village
 	["East to {area:260}"] = "На восток: {area:260}",
-	-- {area:186} Dolanaar · {object:126158} Tallonkai's Dresser
+	-- {area:186} Dolanaar · {npc:2150} Zenn Foulhoof · {object:126158} Tallonkai's Dresser
 	-- plural, as words: Fel Cones = {object:1673} Fel Cone · Webwood Lurkers = {npc:1998} Webwood Lurker
-	["Fel Cones lie under the trees all around {area:186} and Zenn. Nightsabers and Webwood Lurkers keep roaming the road east. {object:126158} is in the house on the hill at the east end of the village."] = "Шишки Скверны лежат под деревьями вокруг места {area:186} и Зенна. На дороге на восток по-прежнему бродят ночные саблезубы и чащобные тенетники. {object:126158} – в доме на холме в восточной части деревни.",
+	["Fel Cones lie under the trees all around {area:186} and {npc:2150}. Nightsabers and Webwood Lurkers keep roaming the road east. {object:126158} is in the house on the hill at the east end of the village."] = "Шишки Скверны лежат под деревьями вокруг места {area:186} и {npc:2150}. На дороге на восток по-прежнему бродят ночные саблезубы и чащобные тенетники. {object:126158} – в доме на холме в восточной части деревни.",
 	["Nightsabers"] = "Ночные саблезубы",
 	-- plural, as words: Webwood Lurkers = {npc:1998} Webwood Lurker
 	["Webwood Lurkers"] = "Чащобные тенетники",
@@ -188,9 +189,7 @@ return {
 	-- {area:186} Dolanaar · {area:264} Oracle Glade
 	["Take the road north-west from {area:186} towards the {area:264}; she lies hurt beside it."] = "Идите по дороге на северо-запад ({area:186} → {area:264}); она лежит раненая у дороги.",
 
-	-- Step 31: The Oracle Glade
-	-- {area:264} Oracle Glade
-	["The {area:264}"] = "{area:264}",
+	-- Step 31: Oracle Glade
 	-- {object:6752} Strange Fronded Plant
 	["The moonwell is in the middle of the glade. The {object:6752} grows at its north end."] = "Лунный колодец – в центре поляны. {object:6752} растет в ее северной части.",
 	-- {item:5623} Amethyst Phial
@@ -212,7 +211,7 @@ return {
 
 	-- Step 35: Sentinel Arynia again
 	["Sentinel Arynia again"] = "Снова часовой Арания",
-	-- {object:673378} Oracle Tree Bark
+	-- {object:673378} Oracle Tree Bark (no name in this language: may be words)
 	["{object:673378}, just west of the moonwell"] = "{object:673378} – чуть западнее лунного колодца",
 
 	-- Step 36: Ursal the Mauler
@@ -280,8 +279,8 @@ return {
 	["{npc:11401}, in the Temple of the Moon: Starshards"] = "{npc:11401} – в Храме Луны: Звездные осколки",
 
 	-- Step 43: Rut'theran Village
-	-- {area:702} Rut'theran Village · {npc:3838} Vesprystus
-	["Take the portal down to {area:702}. Nessa stands on the dock, {npc:3838} by the hippogryphs."] = "Спуститесь через портал: {area:702}. Несса стоит на пристани, {npc:3838} – у гиппогрифов.",
+	-- {area:702} Rut'theran Village · {npc:10118} Nessa · {npc:3838} Vesprystus
+	["Take the portal down to {area:702}. {npc:10118} stands on the dock, {npc:3838} by the hippogryphs."] = "Спуститесь через портал: {area:702}. {npc:10118} стоит на пристани, {npc:3838} – у гиппогрифов.",
 
 	-- Step 45: Moonglade
 	-- {area:442} Auberdine · {spell:18960} Teleport: Moonglade · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {quest:5929} Great Bear Spirit · {area:493} Moonglade · {area:702} Rut'theran Village
@@ -290,18 +289,18 @@ return {
 	["Speak with the {quest:5929}"] = "Поговорите: {quest:5929}",
 
 	-- Step 46: Back to Darnassus
-	-- {area:702} Rut'theran Village · {area:1658} Cenarion Enclave
-	["Take the portal up from {area:702} to Mathrengyl in the {area:1658}."] = "Поднимитесь через портал ({area:702}) к Матренгилу ({area:1658}).",
+	-- {area:702} Rut'theran Village · {npc:4217} Mathrengyl Bearwalker · {area:1658} Cenarion Enclave
+	["Take the portal up from {area:702} to {npc:4217} in the {area:1658}."] = "Поднимитесь через портал ({area:702}) к {npc:4217} ({area:1658}).",
 
 	-- Step 47: The Moonkin Stone
-	-- {object:177525} Moonkin Stone
+	-- {object:177525} Moonkin Stone (no name in this language: may be words)
 	["The {object:177525}"] = "{object:177525}",
-	-- {area:702} Rut'theran Village · {area:442} Auberdine · {object:177525} Moonkin Stone · {item:15208} Cenarion Moondust · {npc:12144} Lunaclaw Spirit
+	-- {area:702} Rut'theran Village · {area:442} Auberdine · {object:177525} Moonkin Stone (no name in this language: may be words) · {item:15208} Cenarion Moondust · {npc:12144} Lunaclaw Spirit
 	["Go back down to {area:702} and fly to {area:442}. The {object:177525} stands in the hills just east of the village: use the {item:15208} there, defeat Lunaclaw and speak to the {npc:12144}."] = "Спуститесь обратно: {area:702}, затем летите сюда: {area:442}. {object:177525} стоит на холмах чуть восточнее деревни: используйте там {item:15208}, победите Лунокогтя и поговорите: {npc:12144}.",
 
 	-- Step 48: Body and Heart
-	-- {area:702} Rut'theran Village · {area:442} Auberdine
-	["Fly to {area:702} once more and take the portal up to Mathrengyl, then fly back to {area:442} for the boat."] = "Еще раз летите сюда: {area:702} – и поднимитесь через портал к Матренгилу, затем летите обратно ({area:442}) к кораблю.",
+	-- {area:702} Rut'theran Village · {npc:4217} Mathrengyl Bearwalker · {area:442} Auberdine
+	["Fly to {area:702} once more and take the portal up to {npc:4217}, then fly back to {area:442} for the boat."] = "Еще раз летите сюда: {area:702} – и поднимитесь через портал к {npc:4217}, затем летите обратно ({area:442}) к кораблю.",
 
 	-- Step 49: Auberdine
 	-- {npc:4200} Laird · {zone:1453} Stormwind
@@ -312,13 +311,12 @@ return {
 	["From {area:17203}, ride through the city gates into {zone:1429} and follow the road west to {zone:1436}."] = "От места {area:17203} езжайте через городские ворота в зону {zone:1429} и по дороге на запад: {zone:1436}.",
 
 	-- Step 50: Defensive Stance
-	-- {object:2100} Old Town · {npc:5480} Ilsa Corbin · {npc:6089} Harry Burlguard · {npc:6090} Bartleby · {object:2152} Pig and Whistle Tavern
+	-- {object:2100} Old Town (no name in this language: may be words) · {npc:5480} Ilsa Corbin · {npc:6089} Harry Burlguard · {npc:6090} Bartleby · {object:2152} Pig and Whistle Tavern (no name in this language: may be words)
 	["From the harbour walk into {object:2100}. {npc:5480} trains warriors there; {npc:6089} and {npc:6090} stand together by the {object:2152}. {npc:6090} fights you for his mug."] = "Из гавани идите сюда: {object:2100}. Там воинов обучает {npc:5480}; {npc:6089} и {npc:6090} стоят вместе у таверны ({object:2152}). {npc:6090} сражается с вами за свою кружку.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Each of {npc:3601}'s quests hands you a {item:15908}: use it on the beast he names, then bring the rod back to him in {area:186}. Webwood Lurkers creep around the village, Nightsaber Stalkers and Strigid Screechers roam the woods south of it."] = "Каждое задание ({npc:3601}) дает вам предмет {item:15908}: примените его на названном звере, затем верните жезл ему ({area:186}). Чащобные тенетники ползают вокруг деревни, ночные саблезубы-охотники и совы-крикуны бродят по лесу к югу от нее.",
-	-- ["Hatescreech and {npc:272044} fly just west of the moonwell, {npc:272046} further north."] = "Злобовизг и {npc:272044} летают чуть западнее лунного колодца, {npc:272046} – дальше к северу.",
-	-- ["South-east of {area:186}, to {npc:2080}. Lasher Sproutlings wander around him on the shore."] = "К юго-востоку от места {area:186}: {npc:2080}. Вокруг него на берегу бродят плеточники-ростки.",
+	-- ["The {area:264}"] = "{area:264}",
 	-- ["{npc:11401}, in the Temple of the Moon: {spell:10797}"] = "{npc:11401} – в Храме Луны: {spell:10797}",
 	-- ["{quest:97979}: cast {spell:1259799} and {spell:20580}, then hand it back to {npc:3595}"] = "{quest:97979}: примените «{spell:1259799}» и «{spell:20580}», затем сдайте задание: {npc:3595}",
 }

@@ -1042,7 +1042,7 @@ L["Faction filter"] = "Фильтр фракции"
 L["Class"] = "Класс"
 L["Professions"] = "Профессии"
 L["Exploration"] = "Исследование"
-L["Legacy"] = "Устаревшие"
+L["Legacy"] = "Наследие"
 L["Collectibles"] = "Коллекции"
 L["Sections"] = "Разделы"
 

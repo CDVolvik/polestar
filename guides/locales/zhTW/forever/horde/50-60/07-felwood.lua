@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (traditional) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (traditional) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Zeppelin to Orgrimmar
@@ -16,8 +17,8 @@ return {
 	["The {area:2479}"] = "{area:2479}",
 	-- {area:431} Splintertree Post · {zone:1440} Ashenvale · {zone:1448} Felwood · {area:2479} Emerald Sanctuary
 	["Fly to {area:431} and ride north-west along the road out of {zone:1440} into {zone:1448}. The {area:2479} is the druids' camp just past the border."] = "飛往{area:431}，沿著道路向西北離開{zone:1440}進入{zone:1448}。{area:2479}就是過了邊界不遠的德魯伊營地。",
-	-- {item:11173} Irontree Heart · {zone:1448} Felwood
-	["Eridan's Silver Heart needs an {item:11173} from northern {zone:1448} and a ride back here. Skip it."] = "艾瑞丹的「銀爪鐵心」需要{zone:1448}北部的{item:11173}，還要騎回這裡。跳過。",
+	-- {npc:9116} Eridan · {item:11173} Irontree Heart · {zone:1448} Felwood
+	["{npc:9116}'s Silver Heart needs an {item:11173} from northern {zone:1448} and a ride back here. Skip it."] = "{npc:9116}的「銀爪鐵心」需要{zone:1448}北部的{item:11173}，還要騎回這裡。跳過。",
 
 	-- Step 3: Dousing the Flames of Protection
 	-- {area:1763} Jaedenar
@@ -36,12 +37,12 @@ return {
 	-- Step 7: Bloodvenom Post
 	-- {area:1763} Jaedenar · {area:1997} Bloodvenom Post
 	["Ride north along the road, past {area:1763}, to {area:1997}."] = "沿著道路向北騎，經過{area:1763}，前往{area:1997}。",
-	-- {quest:4741} Wild Guardians · {zone:1452} Winterspring
-	["Trull's next {quest:4741} would bring you back here from {zone:1452}. Skip it."] = "特盧爾接下來的{quest:4741}會讓你從{zone:1452}跑回這裡。跳過。",
+	-- {npc:10306} Trull · {quest:4741} Wild Guardians · {zone:1452} Winterspring
+	["{npc:10306}'s next {quest:4741} would bring you back here from {zone:1452}. Skip it."] = "{npc:10306}接下來的{quest:4741}會讓你從{zone:1452}跑回這裡。跳過。",
 
 	-- Step 8: Toxic Horrors
-	-- {quest:5086} Toxic Horrors · {zone:1448} Felwood · {area:1767} Irontree Woods
-	["Only if Donova gave you {quest:5086}: ride north up the {zone:1448} road to {area:1767}; the {quest:5086} ooze between the trees."] = "僅限多諾瓦給了你{quest:5086}時：沿著{zone:1448}的道路向北騎往{area:1767}；{quest:5086}在樹林間蠕動。",
+	-- {npc:9298} Donova · {quest:5086} Toxic Horrors · {zone:1448} Felwood · {area:1767} Irontree Woods
+	["Only if {npc:9298} gave you {quest:5086}: ride north up the {zone:1448} road to {area:1767}; the {quest:5086} ooze between the trees."] = "僅限{npc:9298}給了你{quest:5086}時：沿著{zone:1448}的道路向北騎往{area:1767}；{quest:5086}在樹林間蠕動。",
 
 	-- Step 9: Meilosh
 	-- {quest:6031} Runecloth · {area:1769} Timbermaw Hold · {npc:11557} Meilosh
@@ -52,18 +53,18 @@ return {
 	["Through the Timbermaw tunnel to {zone:1450}. {npc:11939} reads in a house in {area:2361}."] = "穿過木喉隧道前往{zone:1450}。{npc:11939}在{area:2361}的一間房子裡看書。",
 
 	-- Step 11: Rabine Saturna
-	-- {area:2577} Dire Maul
-	["Rabine's Shards of the Felvine needs {area:2577}. Skip it."] = "拉比恩的「魔藤碎片」需要{area:2577}。跳過。",
+	-- {npc:11801} Rabine Saturna · {area:2577} Dire Maul
+	["{npc:11801}'s Shards of the Felvine needs {area:2577}. Skip it."] = "{npc:11801}的「魔藤碎片」需要{area:2577}。跳過。",
 
-	-- Step 13: Donova Snowden
-	-- {zone:1452} Winterspring
-	["Back into the Timbermaw tunnel and take the {zone:1452} exit; Donova camps by the hot springs just outside."] = "回到木喉隧道，從{zone:1452}出口出去；多諾瓦就在出口外的溫泉旁紮營。",
+	-- Step 13: Donova
+	-- {zone:1452} Winterspring · {npc:9298} Donova
+	["Back into the Timbermaw tunnel and take the {zone:1452} exit; {npc:9298} camps by the hot springs just outside."] = "回到木喉隧道，從{zone:1452}出口出去；{npc:9298}就在出口外的溫泉旁紮營。",
 
 	-- Step 14: Winterfall Runners
-	-- {quest:5087} Winterfall Runners · {area:1769} Timbermaw Hold · {area:2244} Winterfall Village
-	["Only if you carry {quest:5087}: the runners walk the road from {area:1769} toward {area:2244} in small groups; wait by the road near Donova and kill them as they pass. Each one carries a crate."] = "僅限你帶著{quest:5087}時：信使們成小群從{area:1769}沿著道路走向{area:2244}；在多諾瓦附近的路旁等候，趁他們經過時擊殺。每個信使都帶著一個箱子。",
-	-- {npc:10738} High Chief Winterfall
-	["Donova next sends you after {npc:10738}, an elite in his cave. Skip it."] = "多諾瓦接著會派你去對付洞穴裡的精英{npc:10738}。跳過。",
+	-- {quest:5087} Winterfall Runners · {area:1769} Timbermaw Hold · {area:2244} Winterfall Village · {npc:9298} Donova
+	["Only if you carry {quest:5087}: the runners walk the road from {area:1769} toward {area:2244} in small groups; wait by the road near {npc:9298} and kill them as they pass. Each one carries a crate."] = "僅限你帶著{quest:5087}時：信使們成小群從{area:1769}沿著道路走向{area:2244}；在{npc:9298}附近的路旁等候，趁他們經過時擊殺。每個信使都帶著一個箱子。",
+	-- {npc:9298} Donova · {npc:10738} High Chief Winterfall
+	["{npc:9298} next sends you after {npc:10738}, an elite in his cave. Skip it."] = "{npc:9298}接著會派你去對付洞穴裡的精英{npc:10738}。跳過。",
 
 	-- Step 15: Everlook
 	-- {area:2255} Everlook

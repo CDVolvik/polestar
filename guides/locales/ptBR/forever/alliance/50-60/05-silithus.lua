@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Portuguese (Brazil) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Portuguese (Brazil) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Gadgetzan
@@ -54,7 +55,8 @@ return {
 	["Ride east to {npc:13220}."] = "Siga para o leste até {npc:13220}.",
 
 	-- Step 12: Southwind Village
-	["The tortured druids and sentinels haunt the ruined village south-west of Layo."] = "Os Druidas Torturados e as Sentinelas Torturadas assombram a aldeia em ruínas a sudoeste de Layo Golpestela.",
+	-- {npc:13220} Layo Starstrike
+	["The tortured druids and sentinels haunt the ruined village south-west of {npc:13220}."] = "Os Druidas Torturados e as Sentinelas Torturadas assombram a aldeia em ruínas a sudoeste de {npc:13220}.",
 
 	-- Step 14: The Hive'Ashi tower
 	-- {area:2742} Hive'Ashi
@@ -71,8 +73,8 @@ return {
 	["Ride back to {area:3425} and fly to {area:392}."] = "Volte para {area:3425} e voe para {area:392}.",
 
 	-- Step 17: Stormwind City
-	-- {area:392} Ratchet · {area:35} Booty Bay
-	["Take the boat from {area:392} to {area:35} and fly to Stormwind."] = "Pegue o barco de {area:392} para {area:35} e voe para Ventobravo.",
+	-- {area:392} Ratchet · {area:35} Booty Bay · {zone:1453} Stormwind City
+	["Take the boat from {area:392} to {area:35} and fly to {zone:1453}."] = "Pegue o barco de {area:392} para {area:35} e voe para {zone:1453}.",
 	-- {npc:3520} Ol' Emma
 	["{npc:3520}, who walks the canals"] = "{npc:3520}, que anda pelos canais",
 	-- {npc:10778} Janice Felstone
@@ -104,9 +106,9 @@ return {
 	-- Step 22: Scourge Champions
 	-- plural, as words: Scourge Champions = {npc:8529} Scourge Champion
 	["Scourge Champions"] = "Campeões do Flagelo",
-	-- {area:2270} Noxious Glade · {area:2268} Light's Hope Chapel · {item:13156} Mystic Crystal
+	-- {area:2270} Noxious Glade · {area:2268} Light's Hope Chapel · {npc:11063} Carlin · {item:13156} Mystic Crystal
 	-- plural, as words: Scourge Champions = {npc:8529} Scourge Champion
-	["Scourge Champions (59) roam the {area:2270}, north of {area:2268}. Pass Carlin's {item:13156} over each one you kill: the skulls that resonate are the ones he wants. Pull them one at a time."] = "Os Campeões do Flagelo (59) vagueiam por {area:2270}, ao norte de {area:2268}. Passe o {item:13156} de Carlin Trilharrubra sobre cada um que você matar: os crânios que ressoam são os que ele quer. Puxe-os um de cada vez.",
+	["Scourge Champions (59) roam the {area:2270}, north of {area:2268}. Pass {npc:11063}'s {item:13156} over each one you kill: the skulls that resonate are the ones he wants. Pull them one at a time."] = "Os Campeões do Flagelo (59) vagueiam por {area:2270}, ao norte de {area:2268}. Passe o {item:13156} de {npc:11063} sobre cada um que você matar: os crânios que ressoam são os que ele quer. Puxe-os um de cada vez.",
 	-- {item:13155} Resonating Skull
 	-- plural, as words: Scourge Champions = {npc:8529} Scourge Champion
 	["{item:13155}, from the Scourge Champions"] = "{item:13155}, dos Campeões do Flagelo",
@@ -119,18 +121,16 @@ return {
 	["Ride north to the {area:2277}'s north-eastern edge."] = "Siga para o norte até a borda nordeste de {area:2277}.",
 
 	-- Step 25: The Undercroft
-	-- {npc:11886} Mercutio Filthgorger
-	["Ride south-west to the Undercroft. The mound of dirt lies inside. {npc:11886} is elite: grouping up is advised."] = "Siga para o sudoeste até a Chácara Secreta. O monte de terra fica lá dentro. {npc:11886} é elite: recomenda-se formar um grupo.",
+	-- {area:2261} The Undercroft · {npc:11886} Mercutio Filthgorger
+	["Ride south-west to the {area:2261}. The mound of dirt lies inside. {npc:11886} is elite: grouping up is advised."] = "Siga para o sudoeste até a {area:2261}. O monte de terra fica lá dentro. {npc:11886} é elite: recomenda-se formar um grupo.",
 	-- {item:14613} Taelan's Hammer · {npc:11886} Mercutio Filthgorger
 	["{item:14613}, from {npc:11886}"] = "{item:14613}, de {npc:11886}",
 
 	-- Step 26: The Fungal Vale
-	-- {npc:8532} Diseased Flayer · {zone:1423} Eastern Plaguelands
-	["grind on {npc:8532} at the Fungal Vale, {zone:1423}"] = "farme {npc:8532} no Vale Fungi, {zone:1423}",
+	-- {npc:8532} Diseased Flayer · {area:2258} The Fungal Vale · {zone:1423} Eastern Plaguelands
+	["grind on {npc:8532} at the {area:2258}, {zone:1423}"] = "farme {npc:8532} no {area:2258}, {zone:1423}",
 
 	-- Step 27: Ratchet
 	-- {area:392} Ratchet
 	["The next guide starts here in {area:392}."] = "O próximo guia começa aqui, em {area:392}.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
 }

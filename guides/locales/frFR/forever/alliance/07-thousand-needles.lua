@@ -3,11 +3,12 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in French (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in French words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Darkshire
-	-- {item:4371} Bronze Tube · {quest:174} Look to the Stars · {npc:3133} Herble Baubbletump · {npc:1448} Neal Allen · {area:150} Menethil Harbor
-	["No {item:4371} for {quest:174}? {npc:3133} sells it in the house beside Viktori, in limited stock; {npc:1448} in {area:150} sells it too."] = "Pas de {item:4371} pour {quest:174} ? {npc:3133} en vend dans la maison voisine de celle de Viktori, en stock limité ; {npc:1448} à {area:150} en vend aussi.",
+	-- {item:4371} Bronze Tube · {quest:174} Look to the Stars · {npc:3133} Herble Baubbletump · {npc:276} Viktori · {npc:1448} Neal Allen · {area:150} Menethil Harbor
+	["No {item:4371} for {quest:174}? {npc:3133} sells it in the house beside {npc:276}, in limited stock; {npc:1448} in {area:150} sells it too."] = "Pas de {item:4371} pour {quest:174} ? {npc:3133} en vend dans la maison voisine de celle de {npc:276}, en stock limité ; {npc:1448} à {area:150} en vend aussi.",
 	-- {npc:352} Dungar Longdrink · {zone:1453} Stormwind
 	["From {npc:352} in {zone:1453}"] = "De {npc:352} à {zone:1453}",
 	-- {npc:6790} Innkeeper Trelayne
@@ -20,7 +21,7 @@ return {
 	["{npc:663}, by the town hall"] = "{npc:663}, près de l'hôtel de ville",
 	-- {item:4371} Bronze Tube · {npc:3133} Herble Baubbletump
 	["{item:4371}, from {npc:3133}, if you have none"] = "{item:4371}, chez {npc:3133}, si vous n'en avez pas",
-	-- {npc:276} Viktori Prism'Antras
+	-- {npc:276} Viktori
 	["{npc:276}, at the east end of town"] = "{npc:276}, à l'extrémité est de la ville",
 
 	-- Step 2: Nightbane Shadow Weavers
@@ -62,13 +63,15 @@ return {
 	["The Plague Spreaders walk the northern half of the {area:492}. {npc:522}, an elite, wanders the graves: keep away from him."] = "Les Répandeurs de peste errent dans la moitié nord de {area:492}. {npc:522}, un élite, rôde parmi les tombes : tenez-vous à l'écart.",
 
 	-- Step 11: Sven's Camp
-	["Sven's Camp"] = "Le camp de Sven",
+	-- {npc:311} Sven
+	["{npc:311}'s Camp"] = "Le camp de {npc:311}",
 
 	-- Step 12: Raven Hill Cemetery, west
 	-- {area:492} Raven Hill Cemetery
 	["{area:492}, west"] = "{area:492}, ouest",
+	-- {npc:311} Sven
 	-- plural, as words: Skeletal Raiders = {npc:1110} Skeletal Raider
-	["Skeletal Raiders, Healers and Warders hold the west part of the cemetery, just east of Sven's camp."] = "Les Écumeurs, Soigneurs et Gardiens squelettes tiennent la partie ouest du cimetière, juste à l'est du camp de Sven.",
+	["Skeletal Raiders, Healers and Warders hold the west part of the cemetery, just east of {npc:311}'s camp."] = "Les Écumeurs, Soigneurs et Gardiens squelettes tiennent la partie ouest du cimetière, juste à l'est du camp de {npc:311}.",
 
 	-- Step 13: Sven's Camp
 	-- {npc:1212} Bishop Farthing · {zone:1453} Stormwind
@@ -136,7 +139,8 @@ return {
 	["{item:2661}: the {object:331}"] = "{item:2661} : le {object:331}",
 
 	-- Step 26: Ormer and Whelgar
-	["Ormer and Whelgar"] = "Ormer et Whelgar",
+	-- {npc:1078} Ormer
+	["{npc:1078} and Whelgar"] = "{npc:1078} et Whelgar",
 
 	-- Step 27: Dragonmaw camp
 	["Dragonmaw camp"] = "Camp Dragonmaw",
@@ -190,8 +194,5 @@ return {
 	["Back to Menethil"] = "Retour à Menethil",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Follow the coast north to the wrecked ship. Cursed Sailors walk the beach, Cursed Marines the deck; {npc:1159} stands on the beach by the bow. Giant {zone:1437} Crocolisks lurk on the coast just north of it."] = "Suivez la côte vers le nord jusqu'au navire échoué. Les Marins maudits errent sur la plage, les Soldats de marine maudits sur le pont ; {npc:1159} se tient sur la plage près de la proue. Les Crocilisques géants de {zone:1437} rôdent sur la côte juste au nord.",
 	-- ["Ride east to the ogre mound. {item:1349} sits in the camp at its entrance; Splinter Fist ogres guard it."] = "Chevauchez vers l'est jusqu'au tertre des ogres. {item:1349} se trouve dans le camp à son entrée ; des ogres Brisepoing la gardent.",
-	-- ["The dig and Sarltooth"] = "Les fouilles et Grondecroc",
-	-- ["The relics lie in the dig itself. Sarltooth, a big Razormaw, prowls the raptor valley just west of it."] = "Les reliques se trouvent dans les fouilles mêmes. Grondecroc, un grand raptor Razormaw, rôde dans la vallée des raptors juste à l'ouest.",
 }

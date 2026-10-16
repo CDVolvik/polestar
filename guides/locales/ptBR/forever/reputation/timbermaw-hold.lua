@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Portuguese (Brazil) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Portuguese (Brazil) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -10,7 +11,7 @@ return {
 
 	-- Step 1: Grazle
 	-- {faction:576} Timbermaw Hold
-	["{faction:576} starts out Hostile, and its furbolgs in the tunnels attack until you reach Unfriendly. Every Deadwood and Winterfall furbolg you kill raises it, so the quests below pay twice. Forever's Legacy Diplomat perk increases reputation gains."] = "{faction:576} começa Hostil, e seus pelursos nos túneis atacam até você chegar a Inamistoso. Cada pelurso Lenha Morta e Invernoso que você mata aumenta a reputação, então as missões abaixo rendem em dobro. O benefício Diplomata de Legado do Forever aumenta os ganhos de reputação.",
+	["{faction:576} starts out Hostile, and its furbolgs in the tunnels attack until you reach Unfriendly. Every Deadwood and Winterfall furbolg you kill raises it, so the quests below pay twice. Forever's Legacy Diplomat perk increases reputation gains."] = "{faction:576} começa Hostil, e seus pelursos nos túneis atacam até você chegar a Inamistoso. Cada pelurso Lenha Morta e Invernoso que você mata aumenta a reputação, então as missões abaixo rendem em dobro. A vantagem de Legado Diplomata do Forever aumenta os ganhos de reputação.",
 
 	-- Step 2: Deadwood Village
 	-- {zone:1448} Felwood · {item:21377} Deadwood Headdress Feather · {npc:11554} Grazle · {npc:15395} Nafien

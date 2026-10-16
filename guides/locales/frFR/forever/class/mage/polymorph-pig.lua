@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in French (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in French words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -31,10 +32,4 @@ return {
 	-- Step 5: Fragmented Magic
 	-- {npc:8379} Archmage Xylem · {spell:118} Polymorph
 	["{npc:8379}: {spell:118} (pig)"] = "{npc:8379} : {spell:118} (cochon)",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["A new look for Polymorph: it turns the target into a pig rather than a sheep."] = "Une nouvelle apparence pour Métamorphose : la cible devient un cochon au lieu d'un mouton.",
-	-- ["Carry the {item:23250} back to the {area:1221}. Polymorph a Spitelash naga and wait a few seconds: it splits into small Polymorph Clones. Kill the clones quickly; the shell collects their essence."] = "Rapportez la {item:23250} aux {area:1221}. Lancez Métamorphose sur un naga fouette-bile et attendez quelques secondes : il se divise en petits Clones de métamorphose. Tuez vite les clones ; la coquille recueille leur essence.",
-	-- ["Carry the {item:23250} back to the {area:1221}. {spell:118} a Spitelash naga and wait a few seconds: it splits into small Polymorph Clones. Kill the clones quickly; the shell collects their essence."] = "Rapportez {item:23250} aux {area:1221}. Lancez {spell:118} sur un naga Irequeue et attendez quelques secondes : il se divise en petits Clones de métamorphose ({npc:16479}). Tuez vite les clones ; le coquillage recueille leur essence.",
-	-- ["{npc:8379}: Polymorph (pig)"] = "{npc:8379} : Métamorphose (cochon)",
 }

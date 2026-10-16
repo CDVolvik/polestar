@@ -3,18 +3,19 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (traditional) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (traditional) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: To Orgrimmar
 	-- {area:1637} Orgrimmar
 	["To {area:1637}"] = "前往{area:1637}",
-	-- {area:380} Crossroads · {area:1637} Orgrimmar · {npc:3310} Doras · {object:172982} Valley of Strength
+	-- {area:380} Crossroads · {area:1637} Orgrimmar · {npc:3310} Doras · {object:172982} Valley of Strength (no name in this language: may be words)
 	["From the {area:380}, follow the road north-east to {area:1637} and walk in by the main gate. {npc:3310}, the wind rider master, stands on the tower in the {object:172982}."] = "從{area:380}沿著道路向東北前往{area:1637}，從正門走進去。雙足飛龍管理員{npc:3310}站在{object:172982}的塔上。",
 
 	-- Step 2: Orgrimmar class quests
 	-- {zone:1454} Orgrimmar
 	["{zone:1454} class quests"] = "{zone:1454}職業任務",
-	-- {npc:6018} Ur'kyo · {object:172961} Valley of Spirits
+	-- {npc:6018} Ur'kyo · {object:172961} Valley of Spirits (no name in this language: may be words)
 	["{npc:6018} stands in the {object:172961} on the city's west side."] = "{npc:6018}站在城市西側的{object:172961}。",
 
 	-- Step 3: Thunder Bluff
@@ -35,7 +36,7 @@ return {
 	-- Step 5: Zeppelin to Tirisfal Glades
 	-- {zone:1420} Tirisfal Glades
 	["Zeppelin to {zone:1420}"] = "搭飛艇前往{zone:1420}",
-	-- {zone:1454} Orgrimmar · {zone:1420} Tirisfal Glades · {object:3202} Grom'gol
+	-- {zone:1454} Orgrimmar · {zone:1420} Tirisfal Glades · {object:3202} Grom'gol (no name in this language: may be words)
 	["The zeppelin towers stand just outside {zone:1454}'s main gate. Take the zeppelin to {zone:1420} (the other one goes to {object:3202})."] = "飛艇塔就在{zone:1454}正門外。搭乘前往{zone:1420}的飛艇（另一艘前往{object:3202}）。",
 	["Zeppelin tower"] = "飛艇塔",
 
@@ -49,35 +50,33 @@ return {
 	["The zeppelin lands at the towers outside the {area:153}. Walk west along the road past the ruins and south into {zone:1421}; follow the road to the {area:228}."] = "飛艇停靠在{area:153}外的塔。沿著道路向西經過廢墟，再往南進入{zone:1421}；沿著道路前往{area:228}。",
 	["Road to Silverpine"] = "前往銀松森林的道路",
 
-	-- Step 8: The Sepulcher
-	-- {area:228} Sepulcher
-	["The {area:228}"] = "{area:228}",
+	-- Step 8: Sepulcher
 	-- {area:228} Sepulcher · {npc:2226} Karos Razok
-	["The {area:228} is the Forsaken crypt-town in the middle of the forest. Everyone you need stands around the crypt entrance; {npc:2226}, the bat handler, is just east of it."] = "{area:228}是森林中央的被遺忘者墓穴城鎮。你需要找的人都站在墓穴入口周圍；蝙蝠管理員{npc:2226}就在入口東邊。",
+	["{area:228} is the Forsaken crypt-town in the middle of the forest. Everyone you need stands around the crypt entrance; {npc:2226}, the bat handler, is just east of it."] = "{area:228}是森林中央的被遺忘者墓穴城鎮。你需要找的人都站在墓穴入口周圍；蝙蝠管理員{npc:2226}就在入口東邊。",
 
 	-- Step 9: Border Crossings
 	-- {object:1627} Dalaran Crate
 	["Follow the road south. The {object:1627} sits beside it, north of Pyrewood."] = "沿著道路向南走。{object:1627}在路旁，位於焚木村北邊。",
 
-	-- Step 10: The Sepulcher
+	-- Step 10: Sepulcher
 	-- {area:233} Ambermill
 	["{area:233} comes later, on the southern loop"] = "{area:233}稍後在南方路線時前往",
 
 	-- Step 11: The Dead Field
-	-- {area:228} Sepulcher · {npc:1983} Nightlash
-	["North of the {area:228}. {npc:1983} haunts the Dead Field: kill it, then walk across the field."] = "在{area:228}北邊。{npc:1983}在亡者農場出沒：殺了它，然後走過整片田地。",
+	-- {area:228} Sepulcher · {npc:1983} Nightlash · {area:240} The Dead Field
+	["North of the {area:228}. {npc:1983} haunts the {area:240}: kill it, then walk across the field."] = "在{area:228}北邊。{npc:1983}在{area:240}出沒：殺了它，然後走過整片田地。",
 
 	-- Step 12: Strange Lockbox
-	-- {object:177790} Strange Lockbox · {item:15882} Half Pendant of Aquatic Endurance · {quest:30} Trial of the Sea Lion
-	["The {object:177790} lies on the coast west of the Dead Field. It holds the {item:15882} for {quest:30}."] = "{object:177790}在亡者農場西邊的海岸上。裡面有{quest:30}要的{item:15882}。",
+	-- {object:177790} Strange Lockbox · {area:240} The Dead Field · {item:15882} Half Pendant of Aquatic Endurance · {quest:30} Trial of the Sea Lion
+	["The {object:177790} lies on the coast west of the {area:240}. It holds the {item:15882} for {quest:30}."] = "{object:177790}在{area:240}西邊的海岸上。裡面有{quest:30}要的{item:15882}。",
 
 	-- Step 13: Malden's Orchard
 	-- {area:238} Malden's Orchard
 	["Follow the road north-east to the Yoricks' house at {area:238}."] = "沿著道路向東北前往{area:238}的尤瑞克家。",
 
 	-- Step 14: Escorting Erland
-	-- {npc:1978} Deathstalker Erland
-	["{npc:1978} waits north-east of the house. Escort him back to Rane; worgs attack on the way."] = "{npc:1978}在房子東北方等候。護送他回到蘭妮那裡；途中會有座狼攻擊。",
+	-- {npc:1978} Deathstalker Erland · {npc:1950} Rane
+	["{npc:1978} waits north-east of the house. Escort him back to {npc:1950}; worgs attack on the way."] = "{npc:1978}在房子東北方等候。護送他回到{npc:1950}那裡；途中會有座狼攻擊。",
 
 	-- Step 16: Worgs and murlocs
 	["Worgs and murlocs"] = "座狼與魚人",
@@ -106,7 +105,7 @@ return {
 	-- {object:112888} Dusty Shelf
 	["{object:112888}, inside the keep"] = "{object:112888}，在城堡裡",
 
-	-- Step 22: The Sepulcher
+	-- Step 22: Sepulcher
 	-- {area:228} Sepulcher
 	["Swim back and follow the road west to the {area:228}."] = "游回去，沿著道路向西前往{area:228}。",
 	-- {npc:2121} Shadow Priest Allister · {quest:516} Beren's Peril
@@ -121,8 +120,8 @@ return {
 	-- Step 24: Moonrage Bloodhowlers
 	-- plural, as words: Moonrage Bloodhowlers = {npc:1924} Moonrage Bloodhowler
 	["Moonrage Bloodhowlers"] = "月怒血嘯者",
-	-- {quest:98298} Arugal's Folly · {area:233} Ambermill · {item:280375} Worgen Bits
-	["Only if Dalar gave you {quest:98298}: the Bloodhowlers prowl the woods south-west of {area:233}, east of Pyrewood; they drop the {item:280375}."] = "僅限達拉給了你{quest:98298}時：血嘯者在{area:233}西南方、焚木村東邊的樹林中徘徊；牠們會掉落{item:280375}。",
+	-- {npc:1938} Dalar Dawnweaver · {quest:98298} Arugal's Folly · {area:233} Ambermill · {item:280375} Worgen Bits
+	["Only if {npc:1938} gave you {quest:98298}: the Bloodhowlers prowl the woods south-west of {area:233}, east of Pyrewood; they drop the {item:280375}."] = "僅限{npc:1938}給了你{quest:98298}時：血嘯者在{area:233}西南方、焚木村東邊的樹林中徘徊；牠們會掉落{item:280375}。",
 
 	-- Step 25: The refugees
 	["The refugees"] = "難民",
@@ -159,11 +158,11 @@ return {
 	["Follow the road north out of Silverpine into {zone:1420} and east to the zeppelin towers outside the {area:153}. Take the zeppelin to {zone:1454}."] = "沿著道路向北離開銀松森林進入{zone:1420}，向東前往{area:153}外的飛艇塔。搭乘前往{zone:1454}的飛艇。",
 
 	-- Step 32: Valley of Strength
-	-- {npc:268701} Thatog · {object:172982} Valley of Strength · {object:173016} Borstan's Firepit
+	-- {npc:268701} Thatog · {object:172982} Valley of Strength (no name in this language: may be words) · {object:173016} Borstan's Firepit (no name in this language: may be words)
 	["Walk in through the main gate. {npc:268701} stands in the {object:172982}; {object:173016} is a few steps north."] = "從正門走進去。{npc:268701}站在{object:172982}；{object:173016}往北走幾步就到。",
 
 	-- Step 33: Cleft of Shadow
-	-- {object:172960} Cleft of Shadow · {object:172982} Valley of Strength · {npc:3216} Neeru Fireblade
+	-- {object:172960} Cleft of Shadow (no name in this language: may be words) · {object:172982} Valley of Strength (no name in this language: may be words) · {npc:3216} Neeru Fireblade
 	["The {object:172960} is the canyon under the {object:172982}; {npc:3216} stands at its far end."] = "{object:172960}是{object:172982}下方的峽谷；{npc:3216}站在峽谷盡頭。",
 
 	-- Step 34: The Drag
@@ -171,11 +170,11 @@ return {
 	["{npc:3348} and {npc:3347} run the alchemy shop in the Drag; {npc:11046} is next door."] = "{npc:3348}和{npc:3347}在the Drag經營煉金店；{npc:11046}在隔壁。",
 
 	-- Step 35: Valley of Honor
-	-- {object:172958} Valley of Honor
+	-- {object:172958} Valley of Honor (no name in this language: may be words)
 	["The cattails and speargrass grow along the water in the {object:172958}, east of the Drag."] = "香蒲和長矛草沿著the Drag東邊{object:172958}的水邊生長。",
 
 	-- Step 37: Valley of Wisdom
-	-- {npc:268684} Thra · {npc:268682} Migi · {object:172957} Valley of Wisdom · {npc:3310} Doras · {object:172982} Valley of Strength
+	-- {npc:268684} Thra · {npc:268682} Migi · {object:172957} Valley of Wisdom (no name in this language: may be words) · {npc:3310} Doras · {object:172982} Valley of Strength (no name in this language: may be words)
 	-- plural, as words: Smooth Boulders = {item:277952} Smooth Boulder
 	["{npc:268684} and {npc:268682} sit behind Grommash Hold in the {object:172957}; the Smooth Boulders lie around them. Train while you are in the city (Druids and Paladins have no trainer here). The next guide starts at {npc:3310}, the wind rider master in the {object:172982}."] = "{npc:268684}和{npc:268682}坐在{object:172957}的Grommash Hold後面；光滑巨石就在他們周圍。趁在城裡時訓練（德魯伊和聖騎士在這裡沒有訓練師）。下一份指南從{object:172982}的雙足飛龍管理員{npc:3310}開始。",
 	-- {npc:4949} Thrall
@@ -191,6 +190,7 @@ return {
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["North of the {area:228}. Nightlash haunts the {area:240}: kill it, then walk across the field."] = "在{area:228}北邊。奈塔拉什在{area:240}出沒：殺了它，然後走過整片田地。",
+	-- ["The {area:228}"] = "{area:228}",
 	-- ["The {object:177790} lies on the coast west of the {area:240}. It holds the {item:15882} for {quest:30}."] = "{object:177790}在{area:240}西邊的海岸上。裡面有{quest:30}要的{item:15882}。",
 	-- ["{area:228} is the Forsaken crypt-town in the middle of the forest. Everyone you need stands around the crypt entrance; {npc:2226}, the bat handler, is just east of it."] = "{area:228}是森林中央的被遺忘者墓穴城鎮。你需要找的人都站在墓穴入口周圍；蝙蝠管理員{npc:2226}就在入口東邊。",
 }

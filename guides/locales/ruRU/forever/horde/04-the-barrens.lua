@@ -3,12 +3,13 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Russian (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Russian words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Fly to Ratchet
 	-- {area:392} Ratchet
 	["Fly to {area:392}"] = "Лететь: {area:392}",
-	-- {object:172982} Valley of Strength
+	-- {object:172982} Valley of Strength (no name in this language: may be words)
 	["Doras, the wind rider master, stands on the tower in the {object:172982}."] = "Дорас, распорядитель ветрокрылов, стоит на башне ({object:172982}).",
 
 	-- Step 2: Ratchet
@@ -41,9 +42,7 @@ return {
 	-- plural, as words: Sunscale Scytheclaws = {npc:3256} Sunscale Scytheclaw
 	["Sunscale Scytheclaws hunt the plains south of the {area:380}, around the {area:1697}; they drop the horns. Hand them in on your next pass through {area:392}."] = "Яркочешуйчатые смертехваты охотятся на равнинах к югу (ориентир: {area:380}), вокруг места {area:1697}; с них падают рога. Сдайте их, когда в следующий раз будете здесь: {area:392}.",
 
-	-- Step 9: The Crossroads
-	-- {area:380} Crossroads
-	["The {area:380}"] = "{area:380}",
+	-- Step 9: Crossroads
 	-- {npc:3429} Thork · {area:1703} Mor'shan Rampart
 	["{npc:3429}. Keep it: Kadrak at the {area:1703}, next guide"] = "{npc:3429}. Сохраните задание: Кадрак ({area:1703}), следующий гайд",
 	-- {npc:3428} Korran · {area:390} Field of Giants
@@ -67,23 +66,23 @@ return {
 	["grind on Thunderhawk Hatchlings south-west of the {area:380}"] = "убивайте птенцов грозового змея к юго-западу (ориентир: {area:380})",
 
 	-- Step 12: Orgrimmar
-	-- {area:1637} Orgrimmar · {npc:3354} Sorek · {object:172958} Valley of Honor · {npc:5892} Searn Firewarder · {object:172957} Valley of Wisdom
+	-- {area:1637} Orgrimmar · {npc:3354} Sorek · {object:172958} Valley of Honor (no name in this language: may be words) · {npc:5892} Searn Firewarder · {object:172957} Valley of Wisdom (no name in this language: may be words)
 	["Fly to {area:1637} to train your level 20 ranks. {npc:3354} is in the {object:172958}, {npc:5892} in the {object:172957}."] = "Летите сюда: {area:1637} – изучить ранги 20-го уровня. {npc:3354} – здесь: {object:172958}; {npc:5892} – здесь: {object:172957}.",
 
 	-- Step 13: Gan'rul Bloodeye
-	-- {object:172960} Cleft of Shadow · {object:172982} Valley of Strength
+	-- {object:172960} Cleft of Shadow (no name in this language: may be words) · {object:172982} Valley of Strength (no name in this language: may be words)
 	["The {object:172960} is the canyon under the {object:172982}."] = "{object:172960} – ущелье под местом {object:172982}.",
 	-- {npc:5909} Cazul
 	["{npc:5909}, a few steps away"] = "{npc:5909}, в нескольких шагах",
 
 	-- Step 14: Shenthul
-	-- {npc:3401} Shenthul · {object:172960} Cleft of Shadow · {quest:2460} The Shattered Salute
+	-- {npc:3401} Shenthul · {object:172960} Cleft of Shadow (no name in this language: may be words) · {quest:2460} The Shattered Salute
 	["{npc:3401} stands in the {object:172960}. Target him and type /salute to finish {quest:2460}."] = "{npc:3401} стоит здесь: {object:172960}. Выберите его целью и введите /salute, чтобы выполнить задание {quest:2460}.",
 	-- {quest:2458} Deep Cover · {npc:7233} Taskmaster Fizzule · {area:382} Sludge Fen
 	["{quest:2458}: {npc:7233}, by the {area:382}"] = "{quest:2458}: {npc:7233}, у места {area:382}",
 
 	-- Step 15: Ur'kyo
-	-- {npc:6018} Ur'kyo · {object:172961} Valley of Spirits
+	-- {npc:6018} Ur'kyo · {object:172961} Valley of Spirits (no name in this language: may be words)
 	["{npc:6018} stands in the {object:172961}, on the city's west side."] = "{npc:6018} стоит здесь: {object:172961}, в западной части города.",
 	-- {npc:6018} Ur'kyo · {npc:4606} Aelthalyste · {zone:1458} Undercity
 	["{npc:6018}: {npc:4606} in the {zone:1458}, two guides on"] = "{npc:6018}: {npc:4606} ({zone:1458}), через два гайда",
@@ -97,11 +96,12 @@ return {
 	["Back to the {area:380}"] = "Назад: {area:380}",
 
 	-- Step 18: Regthar Deathgate
-	-- {area:380} Crossroads
-	["Regthar stands at the Kolkar watch post just west of the {area:380}."] = "Ретгар стоит у дозорного поста против кентавров Колкар чуть западнее места {area:380}.",
+	-- {npc:3389} Regthar Deathgate · {area:380} Crossroads
+	["{npc:3389} stands at the Kolkar watch post just west of the {area:380}."] = "{npc:3389} стоит у дозорного поста против кентавров Колкар чуть западнее места {area:380}.",
 
 	-- Step 19: Barak Kodobane
-	["Barak stands in the Kolkar camp north-west of Regthar."] = "Барак стоит в лагере племени Колкар к северо-западу от Ретгара.",
+	-- {npc:3394} Barak Kodobane · {npc:3389} Regthar Deathgate
+	["{npc:3394} stands in the Kolkar camp north-west of {npc:3389}."] = "{npc:3394} стоит в лагере племени Колкар к северо-западу от {npc:3389}.",
 	-- {item:15852} Kodo Horn
 	-- plural, as words: Lost Barrens Kodos = {npc:3234} Lost Barrens Kodo
 	["{item:15852}: Lost Barrens Kodos on the plains around the Kolkar camp"] = "{item:15852}: потерявшиеся степные кодо ({npc:3234}) на равнинах вокруг лагеря Колкар",
@@ -109,16 +109,14 @@ return {
 	["{item:2449}: herbalists pick it here"] = "{item:2449}: травники собирают здесь",
 
 	-- Step 21: Ken'zigla
-	-- {npc:4197} Ken'zigla · {area:2539} Malaka'jin
-	["{npc:4197} lives in {area:2539}, the troll village just inside Stonetalon at the end of the road west from Regthar."] = "{npc:4197} живет здесь: {area:2539} – деревня троллей сразу на входе в Когтистые горы, в конце дороги на запад от Ретгара.",
+	-- {npc:4197} Ken'zigla · {area:2539} Malaka'jin · {npc:3389} Regthar Deathgate
+	["{npc:4197} lives in {area:2539}, the troll village just inside Stonetalon at the end of the road west from {npc:3389}."] = "{npc:4197} живет здесь: {area:2539} – деревня троллей сразу на входе в Когтистые горы, в конце дороги на запад от {npc:3389}.",
 
 	-- Step 22: Vrang Wildgore
 	-- {area:383} Dry Hills · {npc:3682} Vrang Wildgore · {npc:261366} Walton
-	["North to the {area:383}. {npc:3682} camps below the hills; {npc:261366}, the hermit on the ridge behind him, has work for you only once Vrang sends you up."] = "На север. Цель: {area:383}. {npc:3682} стоит лагерем под холмами; у отшельника на гребне за ним ({npc:261366}) найдется работа, только когда Вранг отправит вас наверх.",
+	["North to the {area:383}. {npc:3682} camps below the hills; {npc:261366}, the hermit on the ridge behind him, has work for you only once {npc:3682} sends you up."] = "На север. Цель: {area:383}. {npc:3682} стоит лагерем под холмами; у отшельника на гребне за ним ({npc:261366}) найдется работа, только когда {npc:3682} отправит вас наверх.",
 
-	-- Step 23: The Dry Hills
-	-- {area:383} Dry Hills
-	["The {area:383}"] = "{area:383}",
+	-- Step 23: Dry Hills
 	-- {quest:876} Serena Bloodfeather
 	-- plural, as words: Savannah Patriarchs = {npc:3241} Savannah Patriarch · Sprung Traps = {object:640104} Sprung Trap
 	["Savannah Patriarchs roam the plains east of the hills, and the Sprung Traps lie among them. {quest:876} leads the Witchwing harpies in the hills to the west."] = "Патриархи саванны бродят по равнинам к востоку от холмов, среди них лежат сработавшие ловушки. {quest:876} ведет гарпий из стаи Зачарованного Крыла на холмах к западу.",
@@ -164,8 +162,8 @@ return {
 	["He gives you the {item:15826}"] = "Он даст вам {item:15826}",
 
 	-- Step 35: Verog the Dervish
-	-- {area:388} Stagnant Oasis · {area:380} Crossroads
-	["Verog walks among the Kolkar at the {area:388} south-east of the {area:380}."] = "Верог ходит среди кентавров из племени Колкар ({area:388}) к юго-востоку от места {area:380}.",
+	-- {npc:3395} Verog · {area:388} Stagnant Oasis · {area:380} Crossroads
+	["{npc:3395} walks among the Kolkar at the {area:388} south-east of the {area:380}."] = "{npc:3395} ходит среди кентавров из племени Колкар ({area:388}) к юго-востоку от места {area:380}.",
 	-- {npc:12296} Sickly Gazelle · {item:15826} Curative Animal Salve · {area:380} Crossroads
 	["{npc:12296}: use the {item:15826} on them; they roam the plains all around the {area:380}"] = "{npc:12296}: используйте на них {item:15826}; они бродят по равнинам вокруг места {area:380}",
 
@@ -184,28 +182,28 @@ return {
 
 	-- Step 38: Grunt Dogran
 	["Dogran is chained up in the quilboar camp west of the road."] = "Догран закован в цепи в лагере свинобразов к западу от дороги.",
-	-- {zone:1454} Orgrimmar
-	["Keep it: Gan'rul in {zone:1454}, at the end of this guide"] = "Сохраните: Ган'рул ({zone:1454}), в конце этого гайда",
+	-- {npc:5875} Gan'rul Bloodeye · {zone:1454} Orgrimmar
+	["Keep it: {npc:5875} in {zone:1454}, at the end of this guide"] = "Сохраните: {npc:5875} ({zone:1454}), в конце этого гайда",
 
 	-- Step 40: Stolen Silver
 	-- {area:385} Northwatch Hold
 	["East across the plains toward the coast: the stolen silver lies in a raptor nest north-west of {area:385}."] = "На восток через равнины к побережью: украденное серебро лежит в гнезде ящеров к северо-западу (ориентир: {area:385}).",
 
 	-- Step 41: Islen Waterseer
-	-- {area:392} Ratchet
-	["Islen waits on the hill south of {area:392}, on your way north."] = "Ислен ждет на холме к югу (ориентир: {area:392}), по пути на север.",
+	-- {npc:5901} Islen Waterseer · {area:392} Ratchet
+	["{npc:5901} waits on the hill south of {area:392}, on your way north."] = "{npc:5901} ждет на холме к югу (ориентир: {area:392}), по пути на север.",
 
 	-- Step 43: Ishamuhale
 	-- {quest:882} Ishamuhale · {area:392} Ratchet · {area:380} Crossroads
 	["{quest:882}, a big Sunscale raptor, hunts the plains north of the road from {area:392} to the {area:380}."] = "{quest:882}, крупный яркочешуйчатый ящер, охотится на равнинах к северу от дороги между местами {area:392} и {area:380}.",
 
-	-- Step 44: The Crossroads
+	-- Step 44: Crossroads
 	-- {npc:3432} Mankrik · {quest:95774} Her Name Is Olgra · {quest:4921} Lost in Battle
 	["{npc:3432} offers {quest:95774} once {quest:4921} is handed in"] = "{npc:3432} предложит {quest:95774}, когда будет сдано задание {quest:4921}",
 
 	-- Step 46: Hezrul Bloodmark
-	-- {area:387} Lushwater Oasis · {area:380} Crossroads
-	["Hezrul leads the Kolkar on the west shore of {area:387}, south of Regthar. Hand his head to Regthar on your last {area:380} stop."] = "Хэрзул ведет кентавров из племени Колкар на западном берегу ({area:387}) к югу от Ретгара. Отдайте его голову Ретгару при последнем заходе сюда: {area:380}.",
+	-- {npc:3396} Hezrul · {area:387} Lushwater Oasis · {npc:3389} Regthar Deathgate · {area:380} Crossroads
+	["{npc:3396} leads the Kolkar on the west shore of {area:387}, south of {npc:3389}. Hand his head to {npc:3389} on your last {area:380} stop."] = "{npc:3396} ведет кентавров из племени Колкар на западном берегу ({area:387}) к югу от {npc:3389}. Отдайте его голову {npc:3389} при последнем заходе сюда: {area:380}.",
 
 	-- Step 47: Olgra's Adornments
 	-- {area:458} Gold Road · {area:378} Camp Taurajo · {item:277277} Olgra's Adornments · {npc:3432} Mankrik · {area:380} Crossroads
@@ -233,23 +231,23 @@ return {
 	["South of Camp Taurajo the Silithid Mounds dot the {area:390}; the eggs lie in them, and Silithid Swarmers come out to defend them. Silithid Harvesters are rare: if you see one, kill it for its head."] = "К югу от Лагеря Таурахо по местности {area:390} разбросаны курганы силитидов; в них лежат яйца, а на защиту выходят членистоноги Силитида. Силитиды-жнецы редки: если увидите одного, убейте его ради головы.",
 
 	-- Step 54: Gann Stonespire
-	-- {area:359} Bael Modan
-	["Gann waits in a small camp further south, on the road toward {area:359}."] = "Ганн ждет в небольшом лагере дальше к югу, на дороге к месту {area:359}.",
-	-- {npc:14242} Sulhasa
-	["{npc:14242}, up in the tree just east of Gann"] = "{npc:14242}, на дереве чуть восточнее Ганна",
-	-- {npc:5899} Brine
-	["{npc:5899}, just west of Gann"] = "{npc:5899}, чуть западнее Ганна",
+	-- {npc:3341} Gann Stonespire · {area:359} Bael Modan
+	["{npc:3341} waits in a small camp further south, on the road toward {area:359}."] = "{npc:3341} ждет в небольшом лагере дальше к югу, на дороге к месту {area:359}.",
+	-- {npc:14242} Sulhasa · {npc:3341} Gann Stonespire
+	["{npc:14242}, up in the tree just east of {npc:3341}"] = "{npc:14242}, на дереве чуть восточнее {npc:3341}",
+	-- {npc:5899} Brine · {npc:3341} Gann Stonespire
+	["{npc:5899}, just west of {npc:3341}"] = "{npc:5899}, чуть западнее {npc:3341}",
 	-- {item:7766} Empty Brown Waterskin
 	["Fill the {item:7766} at the quilboar watering hole"] = "Наполните {item:7766} у водопоя свинобразов",
 	-- {object:107045} Spring Well · {area:272} Tarren Mill
 	["Keep it: the {object:107045} is beside {area:272}"] = "Сохраните: {object:107045} – рядом с местом {area:272}",
 
 	-- Step 55: Blackthorn Ridge
-	-- {area:1701} Blackthorn Ridge · {npc:3436} Kuz · {npc:3434} Nak · {npc:3435} Lok Orcbane · {npc:5859} Hagg Taurenbane · {npc:3238} Stormhide · {quest:885} Washte Pawne
+	-- {area:1701} Blackthorn Ridge · {npc:3436} Kuz · {npc:3434} Nak · {npc:3435} Lok Orcbane · {npc:5859} Hagg Taurenbane · {npc:3238} Stormhide · {npc:3341} Gann Stonespire · {quest:885} Washte Pawne
 	-- plural, as words: Hecklefang Stalkers = {npc:4128} Hecklefang Stalker
-	["West of Gann, the Razormane hold {area:1701}. {npc:3436} is on the east side, {npc:3434} to the south, {npc:3435} at the west end. Lok (25) and the Warfrenzies (24-25) are a few levels above you; {npc:5859}, a rare elite, sometimes walks the ridge: leave him. Pathfinders and Stalkers drop the Backstabber, Seers the Wand, Warfrenzies the War Shield. {npc:3238} lizards and Hecklefang Stalkers roam the plain between Gann and the ridge. {quest:885}, a rare red wind serpent, flies over the ridge: its feather starts a quest."] = "К западу от Ганна племя Иглогривых занимает {area:1701}. {npc:3436} – на восточной стороне, {npc:3434} – на юге, {npc:3435} – в западном конце. Лок (25) и бешенеры (24-25) на несколько уровней выше вас; по гребню иногда ходит редкий элитный {npc:5859}: не трогайте его. Кинжал падает с землепроходцев и ловчих, жезл – с ясновидцев, боевой щит – с бешенеров. Ящеры ({npc:3238}) и многозубые ловцы бродят по равнине между Ганном и гребнем. Над гребнем летает редкий красный ветрокрылый змей {quest:885}: его перо начинает задание.",
-	-- {npc:3238} Stormhide
-	["{npc:3238}, on the plain between Gann and the ridge"] = "{npc:3238}, на равнине между Ганном и гребнем",
+	["West of Gann, the Razormane hold {area:1701}. {npc:3436} is on the east side, {npc:3434} to the south, {npc:3435} at the west end. Lok (25) and the Warfrenzies (24-25) are a few levels above you; {npc:5859}, a rare elite, sometimes walks the ridge: leave him. Pathfinders and Stalkers drop the Backstabber, Seers the Wand, Warfrenzies the War Shield. {npc:3238} lizards and Hecklefang Stalkers roam the plain between {npc:3341} and the ridge. {quest:885}, a rare red wind serpent, flies over the ridge: its feather starts a quest."] = "К западу от {npc:3341} племя Иглогривых занимает {area:1701}. {npc:3436} – на восточной стороне, {npc:3434} – на юге, {npc:3435} – в западном конце. Лок (25) и бешенеры (24-25) на несколько уровней выше вас; по гребню иногда ходит редкий элитный {npc:5859}: не трогайте его. Кинжал падает с землепроходцев и ловчих, жезл – с ясновидцев, боевой щит – с бешенеров. Ящеры ({npc:3238}) и многозубые ловцы бродят по равнине между Ганном и гребнем. Над гребнем летает редкий красный ветрокрылый змей {quest:885}: его перо начинает задание.",
+	-- {npc:3238} Stormhide · {npc:3341} Gann Stonespire
+	["{npc:3238}, on the plain between {npc:3341} and the ridge"] = "{npc:3238}, на равнине между {npc:3341} и гребнем",
 
 	-- Step 56: Bael Modan
 	-- {area:359} Bael Modan · {npc:3392} Prospector Khazgorm
@@ -272,8 +270,8 @@ return {
 	["Twitching Antennae from the silithid"] = "Дергающиеся усики с силитидов",
 
 	-- Step 66: Thun'grim Firegaze
-	-- {area:380} Crossroads
-	["Thun'grim camps beside the road east of the {area:380}."] = "Тун'грим стоит лагерем у дороги к востоку (ориентир: {area:380}).",
+	-- {npc:5878} Thun'grim Firegaze · {area:380} Crossroads
+	["{npc:5878} camps beside the road east of the {area:380}."] = "{npc:5878} стоит лагерем у дороги к востоку (ориентир: {area:380}).",
 	-- {quest:1838} Brutal Armor · {area:1717} Razorfen Kraul
 	["He offers {quest:1838} next (1838, level 30): it needs {area:1717} and sends you all over Kalimdor and the Eastern Kingdoms. The Warrior class guide {quest:1838} covers it."] = "Затем он предложит {quest:1838} (1838, 30-й уровень): для него нужно место {area:1717}, и оно отправит вас по всему Калимдору и Восточным королевствам. Его описывает классовый гайд воина «{quest:1838}».",
 
@@ -286,7 +284,7 @@ return {
 	["{npc:246344} teaches Paladins in {area:1638}. You have no flight path there yet: fly to {area:378}, ride west through {zone:1412} and up a lift, and take the flight path from {npc:2995} on the central rise."] = "{npc:246344} обучает паладинов ({area:1638}). Маршрута полета туда у вас еще нет: летите сюда: {area:378}, езжайте на запад через зону {zone:1412}, поднимитесь на подъемнике и получите маршрут полета у NPC {npc:2995} на центральном возвышении.",
 
 	-- Step 69: The Binding
-	-- {npc:5875} Gan'rul Bloodeye · {object:172960} Cleft of Shadow · {item:6626} Dogran's Pendant
+	-- {npc:5875} Gan'rul Bloodeye · {object:172960} Cleft of Shadow (no name in this language: may be words) · {item:6626} Dogran's Pendant
 	["{npc:5875} stands in the {object:172960}. Use {item:6626} on the summoning circle there and defeat the succubus to bind her."] = "{npc:5875} стоит здесь: {object:172960}. Используйте {item:6626} на круге призыва и победите суккуба, чтобы подчинить ее.",
 
 	-- Step 70: Shenthul
@@ -302,8 +300,8 @@ return {
 	["Cast {spell:18960}. Tauren: join the two pendant halves at the {area:2362}, on the north-west shore of the lake, before you see {npc:11802} in {area:2361}."] = "Примените {spell:18960}. Таурены: соедините две половинки подвески здесь: {area:2362}, на северо-западном берегу озера, прежде чем идти к NPC {npc:11802} ({area:2361}).",
 	-- {item:15885} Pendant of the Sea Lion · {area:2362} Shrine of Remulos
 	["{item:15885}: use a half at the {area:2362}"] = "{item:15885}: используйте половинку здесь: {area:2362}",
-	-- {npc:11802} Dendrite Starblaze
-	["{npc:11802}: the welcome from Turak"] = "{npc:11802}: приветствие от Тюрака",
+	-- {npc:11802} Dendrite Starblaze · {npc:3033} Turak Runetotem
+	["{npc:11802}: the welcome from {npc:3033}"] = "{npc:11802}: приветствие от {npc:3033}",
 
 	-- Step 73: The Stormrage Barrow Dens
 	-- {area:2363} Stormrage Barrow Dens
@@ -320,11 +318,9 @@ return {
 	["Fly back to the {area:380}. The next guide starts here and takes the road north to the {area:1703} and {zone:1440}."] = "Летите обратно. Цель: {area:380}. Отсюда начинается следующий гайд: дорога на север к месту {area:1703} и в зону {zone:1440}.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Assist Walton: stay by him when {npc:261367} and the {area:21} marines come up the ridge"] = "Помогите Уолтону: держитесь рядом, когда на гребень поднимутся {npc:261367} и солдаты ({area:21})",
 	-- ["Bruuz"] = "Брууз",
-	-- ["Bruuz swims in the harbour just off {area:392}'s docks. Bruuz is elite: grouping up is advised."] = "Брууз плавает в гавани прямо у причалов ({area:392}). Брууз – элита: лучше собрать группу.",
-	-- ["South of {area:378} the Silithid Mounds dot the {area:390}; the eggs lie in them, and Silithid Swarmers come out to defend them. Silithid Harvesters are rare: if you see one, kill it for its head."] = "К югу от места {area:378} по местности {area:390} разбросаны курганы силитидов; в них лежат яйца, а на защиту выходят членистоноги Силитида. Силитиды-жнецы редки: если увидите одного, убейте его ради головы.",
+	-- ["The {area:380}"] = "{area:380}",
+	-- ["The {area:383}"] = "{area:383}",
 	-- ["The {object:177790} lies at the north edge of the {area:382}, by the Venture Co. tower. It holds the {item:15883} for {quest:30}."] = "{object:177790} лежит у северного края места {area:382}, у башни Торговой компании. В нем – {item:15883} для задания {quest:30}.",
-	-- ["West of Gann, the Razormane hold {area:1701}. Kuz is on the east side, Nak to the south, {npc:3435} at the west end. Lok (25) and the Warfrenzies (24-25) are a few levels above you; {npc:5859}, a rare elite, sometimes walks the ridge: leave him. Pathfinders and Stalkers drop the Backstabber, Seers the Wand, Warfrenzies the War Shield. {npc:3238} lizards and Hecklefang Stalkers roam the plain between Gann and the ridge. {quest:885}, a rare red wind serpent, flies over the ridge: its feather starts a quest."] = "К западу от Ганна племя Иглогривых занимает {area:1701}. Каз – на восточной стороне, Нак – на юге, {npc:3435} – в западном конце. Лок (25) и бешенеры (24-25) на несколько уровней выше вас; по гребню иногда ходит редкий элитный {npc:5859}: не трогайте его. Кинжал падает с землепроходцев и ловчих, жезл – с ясновидцев, боевой щит – с бешенеров. Ящеры ({npc:3238}) и многозубые ловцы бродят по равнине между Ганном и гребнем. Над гребнем летает редкий красный ветрокрылый змей {quest:885}: его перо начинает задание.",
 	-- ["{npc:2391} in {area:272} teaches {spell:2842}: keep it"] = "{npc:2391} ({area:272}) обучает: {spell:2842} – сохраните задание",
 }

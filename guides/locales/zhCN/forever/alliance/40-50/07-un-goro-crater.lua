@@ -3,27 +3,29 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (simplified) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (simplified) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Gadgetzan
-	-- {area:144} Thelsamar · {area:150} Menethil Harbor · {area:976} Gadgetzan
-	["From {area:144} fly to {area:150}, take the boat to Theramore and fly on to {area:976}. Torwa's first quest in the crater needs level 48: finish the level here if you are short."] = "从{area:144}飞往{area:150}，乘船前往塞拉摩，再飞往{area:976}。托尔瓦在环形山的第一个任务需要48级：等级不够就在这里练满。",
+	-- {area:144} Thelsamar · {area:150} Menethil Harbor · {area:976} Gadgetzan · {npc:9619} Torwa
+	["From {area:144} fly to {area:150}, take the boat to Theramore and fly on to {area:976}. {npc:9619}'s first quest in the crater needs level 48: finish the level here if you are short."] = "从{area:144}飞往{area:150}，乘船前往塞拉摩，再飞往{area:976}。{npc:9619}在环形山的第一个任务需要48级：等级不够就在这里练满。",
 	-- {area:976} Gadgetzan
 	["grind on the Wastewanderers or Dunemaul ogres around {area:976}"] = "在{area:976}周围刷废土强盗或砂槌食人魔",
 
-	-- Step 2: Torwa Pathfinder
-	-- {area:976} Gadgetzan · {zone:1449} Un'Goro Crater
-	["Ride west out of {area:976} to the long ramp down into {zone:1449}. Torwa camps at the foot of the ramp, in the south-east corner of the crater."] = "向西骑出{area:976}，到达通往{zone:1449}的长坡道。托尔瓦在坡道脚下扎营，位于环形山的东南角。",
+	-- Step 2: Torwa
+	-- {area:976} Gadgetzan · {zone:1449} Un'Goro Crater · {npc:9619} Torwa
+	["Ride west out of {area:976} to the long ramp down into {zone:1449}. {npc:9619} camps at the foot of the ramp, in the south-east corner of the crater."] = "向西骑出{area:976}，到达通往{zone:1449}的长坡道。{npc:9619}在坡道脚下扎营，位于环形山的东南角。",
 
 	-- Step 3: Fresh Threshadon Carcass
-	["The dead Threshadon lies by the water north of Torwa."] = "死去的蛇颈龙躺在托尔瓦北边的水边。",
+	-- {npc:9619} Torwa
+	["The dead Threshadon lies by the water north of {npc:9619}."] = "死去的蛇颈龙躺在{npc:9619}北边的水边。",
 
 	-- Step 5: Lar'korwi Mates and the raft
 	-- plural, as words: Lar'korwi Mates = {npc:9683} Lar'korwi Mate
 	["Lar'korwi Mates and the raft"] = "{npc:9683}和木筏",
-	-- {npc:8737} Linken · {item:11116} A Mangled Journal
+	-- {npc:9619} Torwa · {npc:8737} Linken · {item:11116} A Mangled Journal
 	-- plural, as words: Lar'korwi Mates = {npc:9683} Lar'korwi Mate
-	["The Lar'korwi Mates prowl the jungle west of Torwa. The wrecked raft lies on the shore of the lake there; the small pack sits in the water beside it. Keep the compass, map and key for {npc:8737}. Any beast in the crater may drop {item:11116}: right-click it."] = "{npc:9683}在托尔瓦·寻路者西边的丛林里潜行。失事的木筏在那里的湖岸上；小背包就在旁边的水里。把罗盘、地图和钥匙留给{npc:8737}。陨石坑里的任何野兽都可能掉落{item:11116}：右键点击它。",
+	["The Lar'korwi Mates prowl the jungle west of {npc:9619}. The wrecked raft lies on the shore of the lake there; the small pack sits in the water beside it. Keep the compass, map and key for {npc:8737}. Any beast in the crater may drop {item:11116}: right-click it."] = "拉克维的配偶在{npc:9619}西边的丛林中徘徊。失事的木筏在那里的湖岸上；小背包在它旁边的水里。指南针、地图和钥匙留给{npc:8737}。环形山中任何野兽都可能掉落{item:11116}：右键点击它。",
 
 	-- Step 7: Marshal's Refuge
 	-- {area:541} Marshal's Refuge · {object:157936} Un'Goro Dirt Pile
@@ -35,7 +37,8 @@ return {
 	["{npc:9117}, at the back of the cave"] = "{npc:9117}，在洞穴深处",
 
 	-- Step 8: Karna Remtravel
-	["Karna stands just outside the refuge."] = "卡尔纳站在避难所外面。",
+	-- {npc:9618} Karna Remtravel
+	["{npc:9618} stands just outside the refuge."] = "{npc:9618}站在避难所外面。",
 
 	-- Step 9: Fire Plume Ridge and the eastern jungle
 	-- {area:537} Fire Plume Ridge
@@ -56,8 +59,8 @@ return {
 
 	-- Step 12: Grind to 50
 	["Grind to 50"] = "刷到50级",
-	-- {area:1943} Ironstone Plateau · {npc:9622} U'cha
-	["The gorillas of {area:1943} come in small groups and drop nothing for you yet; Torwa's pelt quest comes later. Stay out of the deepest cave: {npc:9622} is level 55."] = "{area:1943}的猩猩成小群出现，目前不会给你掉落任何东西；托尔瓦的毛皮任务稍后才有。别进最深的洞：{npc:9622}是55级。",
+	-- {area:1943} Ironstone Plateau · {npc:9619} Torwa · {npc:9622} U'cha
+	["The gorillas of {area:1943} come in small groups and drop nothing for you yet; {npc:9619}'s pelt quest comes later. Stay out of the deepest cave: {npc:9622} is level 55."] = "{area:1943}的猩猩成小群出现，目前不会给你掉落任何东西；{npc:9619}的毛皮任务稍后才有。别进最深的洞：{npc:9622}是55级。",
 	-- {npc:6514} Un'Goro Gorilla · {area:1943} Ironstone Plateau · {zone:1449} Un'Goro Crater
 	["grind on {npc:6514} at {area:1943}, {zone:1449}"] = "在{zone:1449}的{area:1943}刷{npc:6514}",
 
@@ -72,8 +75,8 @@ return {
 
 	-- Step 14: Northern Pylon
 	["Northern Pylon"] = "北部水晶塔",
-	-- {npc:9166} Pterrordax · {npc:9998} Shizzle
-	["The pylon stands on the slope east of the refuge. {npc:9166} circle the slopes around it: they count for Spraggle and drop {npc:9998}'s scales."] = "水晶塔立在避难所东边的山坡上。{npc:9166}在周围山坡上盘旋：它们计入斯普拉格的任务，并掉落{npc:9998}要的鳞片。",
+	-- {npc:9166} Pterrordax · {npc:9997} Spraggle Frock · {npc:9998} Shizzle
+	["The pylon stands on the slope east of the refuge. {npc:9166} circle the slopes around it: they count for {npc:9997} and drop {npc:9998}'s scales."] = "水晶塔立在避难所东边的山坡上。{npc:9166}在周围山坡上盘旋：它们计入{npc:9997}的任务，并掉落{npc:9998}要的鳞片。",
 
 	-- Step 15: The east side
 	["The east side"] = "东侧",
@@ -85,14 +88,15 @@ return {
 	["Eastern Pylon"] = "东部水晶塔",
 	["The pylon stands on the eastern cliffs."] = "水晶塔立在东部悬崖上。",
 
-	-- Step 17: Torwa Pathfinder
-	["Ride south along the eastern cliffs to Torwa at the foot of the ramp."] = "沿东部悬崖向南骑行，到坡道脚下找托尔瓦。",
+	-- Step 17: Torwa
+	-- {npc:9619} Torwa
+	["Ride south along the eastern cliffs to {npc:9619} at the foot of the ramp."] = "沿东部悬崖向南骑行，到坡道脚下找{npc:9619}。",
 	["The pelts come after loop 2, on the gorilla plateau"] = "毛皮在第二圈之后，在猩猩高地上",
 
 	-- Step 18: The Gorishi hive
 	["The Gorishi hive"] = "格里什虫巢",
-	-- {quest:3764} Un'Goro Soil · {npc:9166} Pterrordax
-	["Ride west from Torwa: the silithid hive fills the south of the crater. Use the Scraping Vial on a hatchery, a chamber with hanging larvae. Gorishi wasps and workers drop {quest:3764}; {npc:9166} nest on the southern cliffs if you still need kills."] = "从托尔瓦向西骑行：异种虫巢穴占据环形山南部。对孵化室（挂着幼虫的房间）使用采集瓶。格里什异种蝎和格里什工蝎掉落{quest:3764}；如果还需要击杀，{npc:9166}在南部悬崖筑巢。",
+	-- {npc:9619} Torwa · {quest:3764} Un'Goro Soil · {npc:9166} Pterrordax
+	["Ride west from {npc:9619}: the silithid hive fills the south of the crater. Use the Scraping Vial on a hatchery, a chamber with hanging larvae. Gorishi wasps and workers drop {quest:3764}; {npc:9166} nest on the southern cliffs if you still need kills."] = "从{npc:9619}向西骑行：异种虫巢穴占据环形山南部。对孵化室（挂着幼虫的房间）使用采集瓶。格里什异种蝎和格里什工蝎掉落{quest:3764}；如果还需要击杀，{npc:9166}在南部悬崖筑巢。",
 
 	-- Step 19: Bones and equipment
 	["Bones and equipment"] = "骨头和设备",
@@ -111,11 +115,11 @@ return {
 	["{npc:9998}, at the refuge's entrance"] = "{npc:9998}，在避难所入口",
 
 	-- Step 22: Spraggle Frock
-	-- {npc:9999} Ringo
-	["Spraggle's friend {npc:9999} has gone missing."] = "斯普拉格的朋友{npc:9999}失踪了。",
+	-- {npc:9997} Spraggle Frock · {npc:9999} Ringo
+	["{npc:9997}'s friend {npc:9999} has gone missing."] = "{npc:9997}的朋友{npc:9999}失踪了。",
 
 	-- Step 23: Ironstone Plateau
-	-- {area:1943} Ironstone Plateau · {area:541} Marshal's Refuge · {npc:9619} Torwa Pathfinder · {npc:9622} U'cha
+	-- {area:1943} Ironstone Plateau · {area:541} Marshal's Refuge · {npc:9619} Torwa · {npc:9622} U'cha
 	["The gorillas live on {area:1943}, east of {area:541}. Keep their pelts for {npc:9619}. Stay out of the deepest cave: {npc:9622} is level 55."] = "猩猩生活在{area:541}东边的{area:1943}。毛皮留给{npc:9619}。别进最深的洞：{npc:9622}是55级。",
 
 	-- Step 24: Ringo
@@ -137,14 +141,15 @@ return {
 	-- {area:982} Noxious Lair · {zone:1446} Tanaris
 	["The Centipaar silithid crawl around the {area:982} in western {zone:1446}, just east of the crater ramp. The Workers are the easiest pulls."] = "森提帕尔异种虫在{zone:1446}西部的{area:982}周围爬行，就在环形山坡道东边。森提帕尔工蝎最容易拉。",
 	-- {npc:5458} Centipaar Worker · {area:982} Noxious Lair · {zone:1446} Tanaris
-	["grind on {npc:5458} at The {area:982}, {zone:1446}"] = "在{zone:1446}的{area:982}刷{npc:5458}",
+	["grind on {npc:5458} at {area:982}, {zone:1446}"] = "在{zone:1446}的{area:982}刷{npc:5458}",
 
-	-- Step 29: Torwa Pathfinder
-	["Ride down the ramp into the crater: Torwa camps at its foot."] = "沿坡道下到环形山：托尔瓦在坡道脚下扎营。",
+	-- Step 29: Torwa
+	-- {npc:9619} Torwa
+	["Ride down the ramp into the crater: {npc:9619} camps at its foot."] = "沿坡道下到环形山：{npc:9619}在坡道脚下扎营。",
 
 	-- Step 30: Lar'korwi
-	-- {npc:9684} Lar'korwi · {item:11568} Torwa's Pouch
-	["{npc:9684}'s lair lies in the jungle north of Torwa, below the eastern cliffs: use {item:11568} there. {npc:9684} is level 56: start at full health."] = "{npc:9684}的巢穴在托尔瓦北边的丛林中，东部悬崖下方：在那里使用{item:11568}。{npc:9684}是56级：满血开打。",
+	-- {npc:9684} Lar'korwi · {npc:9619} Torwa · {item:11568} Torwa's Pouch
+	["{npc:9684}'s lair lies in the jungle north of {npc:9619}, below the eastern cliffs: use {item:11568} there. {npc:9684} is level 56: start at full health."] = "{npc:9684}的巢穴在{npc:9619}北边的丛林中，东部悬崖下方：在那里使用{item:11568}。{npc:9684}是56级：满血开打。",
 
 	-- Step 32: U'cha
 	-- {npc:9622} U'cha
@@ -158,8 +163,9 @@ return {
 	-- {area:537} Fire Plume Ridge · {npc:10541} Krakle's Thermometer
 	["Ride east to {area:537}, climb it and use {npc:10541} at the lava vents near the top."] = "向东骑行到{area:537}，爬上去，在山顶附近的熔岩喷口使用{npc:10541}。",
 
-	-- Step 36: Torwa Pathfinder
-	["Cross the south of the crater to Torwa by the ramp."] = "穿过环形山南部，到坡道旁找托尔瓦。",
+	-- Step 36: Torwa
+	-- {npc:9619} Torwa
+	["Cross the south of the crater to {npc:9619} by the ramp."] = "穿过环形山南部，到坡道旁找{npc:9619}。",
 
 	-- Step 38: Ironforge
 	-- {area:144} Thelsamar · {area:1537} Ironforge
@@ -176,7 +182,7 @@ return {
 	["{npc:11406}: for Ogtinc in {zone:1447}, keep it"] = "{npc:11406}：交给{zone:1447}的奥汀克，留着",
 
 	-- Step 42: Royal Historian Archesonus
-	-- {object:171709} High Seat
+	-- {object:171709} High Seat (no name in this language: may be words)
 	["Archesonus stands beside King Magni in the {object:171709}."] = "阿克瑟努斯站在{object:171709}中麦格尼国王旁边。",
 	-- {zone:1428} Burning Steppes
 	["The relics are in the {zone:1428}: keep it"] = "圣物在{zone:1428}：留着",
@@ -185,12 +191,10 @@ return {
 	["Bind and train"] = "设置炉石并训练",
 
 	-- Step 44: Xiggs Fuselighter
-	-- {object:32359} Military Ward
+	-- {object:32359} Military Ward (no name in this language: may be words)
 	["Xiggs waits in the {object:32359}."] = "西格斯在{object:32359}等候。",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Ride south to {area:537} in the middle of the crater, then east into the eastern jungle. Crystal clusters stand all over the crater, many of them around {area:537}: take a few extra of each colour. {item:11316} Lashers and Threshers drop the petals; the expedition's {item:11113} sits at an abandoned camp in the eastern jungle."] = "向南骑行到环形山中央的{area:537}，然后向东进入东部丛林。水晶簇遍布环形山，很多在{area:537}周围：每种颜色多拿几个。{item:11316}鞭笞者和猛击者掉落花瓣；探险队的{item:11113}在东部丛林的一处废弃营地里。",
-	-- ["The {npc:9684} Mates prowl the jungle west of Torwa. The wrecked raft lies on the shore of the lake there; the small pack sits in the water beside it. Keep the compass, map and key for {npc:8737}. Any beast in the crater may drop {item:11116}: right-click it."] = "{npc:9684}的配偶在托尔瓦西边的丛林中徘徊。失事的木筏在那里的湖岸上；小背包在它旁边的水里。指南针、地图和钥匙留给{npc:8737}。环形山中任何野兽都可能掉落{item:11116}：右键点击它。",
 	-- ["grind on {npc:5458} at {area:982}, {zone:1446}"] = "在{zone:1446}的{area:982}刷{npc:5458}",
-	-- ["{npc:9684} Mates and the raft"] = "{npc:9684}的配偶和木筏",
 }

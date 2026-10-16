@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Portuguese (Brazil) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Portuguese (Brazil) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Learn Mining
@@ -42,9 +43,9 @@ return {
 
 	-- Step 8: Journeyman Mining
 	-- {skill:186} Mining
-	["Journeyman {skill:186}"] = "{skill:186} Artesão",
+	["Journeyman {skill:186}"] = "{skill:186} (Profissional)",
 	-- {skill:186} Mining
-	["Journeyman {skill:186} raises the cap to 150; it needs skill 50 and character level 10. The arrow picks the nearest {skill:186} trainer of your faction."] = "{skill:186} Artesão eleva o limite para 150; requer perícia 50 e nível de personagem 10. A seta escolhe o instrutor de {skill:186} mais próximo da sua facção.",
+	["Journeyman {skill:186} raises the cap to 150; it needs skill 50 and character level 10. The arrow picks the nearest {skill:186} trainer of your faction."] = "{skill:186} Profissional eleva o limite para 150; requer perícia 50 e nível de personagem 10. A seta escolhe o instrutor de {skill:186} mais próximo da sua facção.",
 
 	-- Step 9: Copper: Elwynn Forest (50-65) cont.
 	-- {zone:1429} Elwynn Forest
@@ -106,9 +107,9 @@ return {
 
 	-- Step 19: Expert Mining
 	-- {skill:186} Mining
-	["Expert {skill:186}"] = "{skill:186} Especialista",
+	["Expert {skill:186}"] = "{skill:186} (Perito)",
 	-- {skill:186} Mining
-	["Expert {skill:186} raises the cap to 225; it needs skill 125 and character level 20. The arrow picks the nearest {skill:186} trainer of your faction."] = "{skill:186} Especialista eleva o limite para 225; requer perícia 125 e nível de personagem 20. A seta escolhe o instrutor de {skill:186} mais próximo da sua facção.",
+	["Expert {skill:186} raises the cap to 225; it needs skill 125 and character level 20. The arrow picks the nearest {skill:186} trainer of your faction."] = "{skill:186} (Perito) eleva o limite para 225; requer perícia 125 e nível de personagem 20. A seta escolhe o instrutor de {skill:186} mais próximo da sua facção.",
 
 	-- Step 20: Iron: Duskwood (125-155)
 	-- {zone:1431} Duskwood
@@ -140,7 +141,7 @@ return {
 
 	-- Step 24: Artisan Mining
 	-- {skill:186} Mining
-	["Artisan {skill:186}"] = "{skill:186} Artífice",
+	["Artisan {skill:186}"] = "{skill:186} (Artífice)",
 	-- {skill:186} Mining
 	["Artisan {skill:186} raises the cap to 300; it needs skill 200 and character level 35. The arrow picks the nearest {skill:186} trainer of your faction."] = "{skill:186} Artífice eleva o limite para 300; requer perícia 200 e nível de personagem 35. A seta escolhe o instrutor de {skill:186} mais próximo da sua facção.",
 
@@ -151,13 +152,13 @@ return {
 	["Mine every Iron (125, green), Gold (155, yellow), Mithril (175, yellow) node you pass and circle the waypoints until {skill:186} 230. Smelt the ore at a forge when your bags fill: smelting also raises {skill:186}. Zone level 35-45."] = "Minere cada jazida de Ferro (125, verde), Ouro (155, amarelo), Mithril (175, amarelo) pelo caminho e percorra os pontos de rota até {skill:186} 230. Funda o minério numa forja quando as bolsas encherem: fundir também eleva {skill:186}. Zona de nível 35-45.",
 
 	-- Step 26: Dark Iron & Truesilver: Searing Gorge (230-245)
-	-- {object:147516} Dark Iron · {zone:1427} Searing Gorge
+	-- {object:147516} Dark Iron (no name in this language: may be words) · {zone:1427} Searing Gorge
 	["{object:147516} & Truesilver: {zone:1427} (230-245)"] = "{object:147516} e Veraprata: {zone:1427} (230-245)",
-	-- {object:147516} Dark Iron · {skill:186} Mining
+	-- {object:147516} Dark Iron (no name in this language: may be words) · {skill:186} Mining
 	["Mine every Gold (155, green), Mithril (175, green), {object:147516} (230, orange), Truesilver (230, orange) node you pass and circle the waypoints until {skill:186} 245. Smelt the ore at a forge when your bags fill: smelting also raises {skill:186}. Zone level 43-50."] = "Minere cada jazida de Ouro (155, verde), Mithril (175, verde), {object:147516} (230, laranja), Veraprata (230, laranja) pelo caminho e percorra os pontos de rota até {skill:186} 245. Funda o minério numa forja quando as bolsas encherem: fundir também eleva {skill:186}. Zona de nível 43-50.",
-	-- {object:147516} Dark Iron
+	-- {object:147516} Dark Iron (no name in this language: may be words)
 	["Truesilver, {object:147516}"] = "Veraprata, {object:147516}",
-	-- {object:147516} Dark Iron
+	-- {object:147516} Dark Iron (no name in this language: may be words)
 	["{object:147516}, Gold"] = "{object:147516}, Ouro",
 
 	-- Step 27: Truesilver & Small Thorium: Blasted Lands (245-275)
@@ -169,8 +170,8 @@ return {
 	-- Step 28: Rich Thorium: Burning Steppes (275-300)
 	-- {zone:1428} Burning Steppes
 	["Rich Thorium: {zone:1428} (275-300)"] = "Tório Abundante: {zone:1428} (275-300)",
-	-- {object:147516} Dark Iron · {skill:186} Mining
+	-- {object:147516} Dark Iron (no name in this language: may be words) · {skill:186} Mining
 	["Mine every {object:147516} (230, yellow), Truesilver (230, yellow), Small Thorium (245, yellow), Rich Thorium (275, orange) node you pass and circle the waypoints until {skill:186} 300. Smelt the ore at a forge when your bags fill: smelting also raises {skill:186}. Zone level 50-58."] = "Minere cada jazida de {object:147516} (230, amarelo), Veraprata (230, amarelo), Tório Escasso (245, amarelo), Tório Abundante (275, laranja) pelo caminho e percorra os pontos de rota até {skill:186} 300. Funda o minério numa forja quando as bolsas encherem: fundir também eleva {skill:186}. Zona de nível 50-58.",
-	-- {object:147516} Dark Iron
+	-- {object:147516} Dark Iron (no name in this language: may be words)
 	["{object:147516}, Rich Thorium"] = "{object:147516}, Tório Abundante",
 }

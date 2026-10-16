@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Russian (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Russian words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Zoram'gar Outpost
@@ -27,8 +28,8 @@ return {
 	["The Sapphires are blue crystals on the walls of the tunnels leading to the {area:2797} portal, underground and outside the instance: swim down from the pit, under the wall, into the cave. The satyrs and naga in the tunnels are elite: grouping up is advised. The crystals respawn quickly, so there is no need to go deep."] = "Сапфиры – синие кристаллы на стенах туннелей, ведущих к порталу ({area:2797}), под землей и вне подземелья: нырните из ямы под стену в пещеру. Сатиры и наги в туннелях – элита: лучше собрать группу. Кристаллы быстро появляются снова, так что глубоко идти не нужно.",
 
 	-- Step 5: Zoram'gar Outpost
-	-- {area:2797} Blackfathom Deeps
-	["Je'neu offers a {area:2797} quest next; leave it unless you have a group."] = "Затем Дже'неу предложит задание ({area:2797}); не берите без группы.",
+	-- {npc:12736} Je'neu · {area:2797} Blackfathom Deeps
+	["{npc:12736} offers a {area:2797} quest next; leave it unless you have a group."] = "Затем {npc:12736} предложит задание ({area:2797}); не берите без группы.",
 
 	-- Step 6: Thistlefur Village
 	["East of Zoram'gar, the Thistlefur furbolgs fill the village and the hills around their hold."] = "К востоку от форта Зорам'гар фурболги из племени Колючего Меха заполняют деревню и холмы вокруг своего логова.",
@@ -61,7 +62,7 @@ return {
 	["{npc:12759}, a corrupted water elemental, drifts in {area:421}. Her {item:16408} starts a quest for Splintertree."] = "{npc:12759}, оскверненная водная элементаль, плавает здесь: {area:421}. Ее {item:16408} начинает задание для заставы Расщепленного Дерева.",
 
 	-- Step 13: King of the Foulweald
-	-- {area:421} Mystral Lake · {item:16972} Karang's Banner · {object:178206} Foulweald Totem Mound · {npc:12918} Chief Murgut
+	-- {area:421} Mystral Lake · {item:16972} Karang's Banner · {object:178206} Foulweald Totem Mound (no name in this language: may be words) · {npc:12918} Chief Murgut
 	["The Foulweald furbolgs hold the woods east of {area:421}, south of the road. Place {item:16972} on the {object:178206} and guard it: the furbolgs come to tear it down. {npc:12918} comes last; his totem drops in the basket."] = "Фурболги из племени Гиблой Чащи занимают лес к востоку от места {area:421}, к югу от дороги. Установите {item:16972} на {object:178206} и охраняйте: фурболги придут его сломать. {npc:12918} придет последним; его тотем падает в корзину.",
 
 	-- Step 14: Torek's Assault
@@ -129,9 +130,7 @@ return {
 	-- {npc:5901} Islen Waterseer · {area:392} Ratchet
 	["for {npc:5901}, south of {area:392}: next guide"] = "для NPC {npc:5901}, к югу от поселения {area:392}: следующий гайд",
 
-	-- Step 28: The Great Lift
-	-- {area:1718} Great Lift
-	["The {area:1718}"] = "{area:1718}",
+	-- Step 28: Great Lift
 	-- {area:1638} Thunder Bluff · {area:378} Camp Taurajo · {area:1718} Great Lift · {zone:1413} Barrens
 	["Fly from {area:1638} to {area:378} and take the road south to the {area:1718} at the bottom of the {zone:1413}."] = "Летите из места {area:1638}: {area:378} – и идите по дороге на юг: {area:1718}, в самом низу зоны {zone:1413}.",
 	-- {npc:10079} Brave Moonhorn
@@ -144,7 +143,8 @@ return {
 	["{npc:10377}, by the wind rider master"] = "{npc:10377}, у распорядителя полетов",
 	-- {npc:4877} Jandia · {area:487} Roguefeather Den
 	["{npc:4877}, the trade supplies vendor: the Screeching harpies of {area:487}"] = "{npc:4877}, торговец товарами: визгливые гарпии ({area:487})",
-	["The Wanted poster beside Cliffwatcher"] = "Плакат «Разыскивается» рядом с Дозорным утесов",
+	-- {npc:10537} Cliffwatcher
+	["The Wanted poster beside {npc:10537}"] = "Плакат «Разыскивается» рядом с {npc:10537} утесов",
 
 	-- Step 30: Alien Egg
 	["Take the lift down. The egg lies in a nest on the canyon floor in one of three spots: south-east of the mesas (52.3,55.2), east (56.4,50.4) or south-west (37.6,56.1)."] = "Спуститесь на подъемнике. Яйцо лежит в гнезде на дне каньона в одном из трех мест: к юго-востоку от столовых гор (52.3,55.2), к востоку (56.4,50.4) или к юго-западу (37.6,56.1).",
@@ -172,15 +172,15 @@ return {
 
 	-- Step 36: Lakota Windsong
 	-- {area:2097} Darkcloud Pinnacle · {npc:10646} Lakota Windsong · {npc:10896} Arnak Grimtotem
-	["Climb the path to the top of {area:2097}. {npc:10646} is held captive beside {npc:10896} (29): clear the guards and Arnak first, then free her and protect her on the walk down; Grimtotem ambushers come at you on the way."] = "Поднимитесь по тропе на вершину: {area:2097}. {npc:10646} в плену рядом с NPC {npc:10896} (29): сначала уберите стражу и Арнака, затем освободите ее и защищайте на спуске; по пути нападут засадники Зловещего Тотема.",
+	["Climb the path to the top of {area:2097}. {npc:10646} is held captive beside {npc:10896} (29): clear the guards and {npc:10896} first, then free her and protect her on the walk down; Grimtotem ambushers come at you on the way."] = "Поднимитесь по тропе на вершину: {area:2097}. {npc:10646} в плену рядом с NPC {npc:10896} (29): сначала уберите стражу и {npc:10896}, затем освободите ее и защищайте на спуске; по пути нападут засадники Зловещего Тотема.",
 
 	-- Step 37: Whitereach Post
 	-- {area:2237} Whitereach Post
 	["Follow the canyon west to {area:2237}."] = "Идите по каньону на запад: {area:2237}.",
-	-- {area:1638} Thunder Bluff
-	["Motega's next quest, Sacred Fire, ends in {area:1638}, off this route. Skip it."] = "Следующее задание Мотеги, «Священное пламя», заканчивается в {area:1638}, вне маршрута. Пропустите его.",
-	-- {npc:10720} Galak Assassin
-	["Kill the {npc:10720} that comes for Kanati"] = "Убейте NPC {npc:10720}, который придет за Канати",
+	-- {npc:10428} Motega · {area:1638} Thunder Bluff
+	["{npc:10428}'s next quest, Sacred Fire, ends in {area:1638}, off this route. Skip it."] = "Следующее задание {npc:10428}, «Священное пламя», заканчивается в {area:1638}, вне маршрута. Пропустите его.",
+	-- {npc:10720} Galak Assassin · {npc:10638} Kanati
+	["Kill the {npc:10720} that comes for {npc:10638}"] = "Убейте NPC {npc:10720}, который придет за {npc:10638}",
 
 	-- Step 38: Highperch
 	-- {area:482} Highperch · {npc:10427} Pao'ka Swiftmountain · {area:2237} Whitereach Post
@@ -191,8 +191,8 @@ return {
 	["South of Darkcloud, the harpies of {area:487}. {npc:4490} (31) walks among them: thin out the harpies around her before you pull her. The Screeching Harpies, Roguefeathers and Windcallers there are {npc:4877}'s."] = "К югу от Пика Темного Облака – гарпии: {area:487}. {npc:4490} (31) ходит среди них: проредите гарпий вокруг нее, прежде чем тянуть ее. Визгливые гарпии, бродяжницы и призывательницы ветров там – для NPC {npc:4877}.",
 
 	-- Step 43: Rok'Alim the Pounder
-	-- {area:482} Highperch · {npc:4499} Rok'Alim the Pounder
-	["Rok'Alim, a hard-hitting rock elemental, walks the cliffs of {area:482}. {npc:4499} is elite: grouping up is advised."] = "Рок'Алим, сильно бьющий каменный элементаль, ходит по утесам: {area:482}. {npc:4499} – элита: лучше собрать группу.",
+	-- {npc:4499} Rok'Alim the Pounder · {area:482} Highperch
+	["{npc:4499}, a hard-hitting rock elemental, walks the cliffs of {area:482}. {npc:4499} is elite: grouping up is advised."] = "{npc:4499}, сильно бьющий каменный элементаль, ходит по утесам: {area:482}. {npc:4499} – элита: лучше собрать группу.",
 
 	-- Step 44: Mirage Raceway
 	-- {area:2240} Mirage Raceway
@@ -214,12 +214,9 @@ return {
 	["The next guide flies on from here to {zone:1454}."] = "Отсюда следующий гайд летит в {zone:1454}.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Follow the main road east past {area:415} (Alliance: keep to the road). Ursangous, a big grizzly, roams the {area:418} south of the road, west of {area:421}. His paw starts the next hunt quest."] = "Идите по главной дороге на восток мимо места {area:415} (Альянс: держитесь дороги). Топтыжень, большой медведь-гризли, бродит здесь: {area:418} – к югу от дороги, к западу от места {area:421}. Его лапа начинает следующее охотничье задание.",
 	-- ["Shadumbra"] = "Тенумбра",
-	-- ["Shadumbra, a shadow panther, stalks the woods around {area:426}, west of the Felmusk camp. Her head starts the next hunt quest."] = "Тенумбра, теневая пантера, рыщет в лесу вокруг места {area:426}, к западу от лагеря сатиров. Ее голова начинает следующее охотничье задание.",
 	-- ["Sharptalon"] = "Острокоготь",
-	-- ["Sharptalon, a big nightsaber, prowls the woods south-east of the Warsong lumber camp. Her claw starts the next hunt quest."] = "Острокоготь, большая ночная саблезубая кошка, рыщет в лесу к юго-востоку от Лесозаготовок Песни Войны. Ее коготь начинает следующее охотничье задание.",
+	-- ["The {area:1718}"] = "{area:1718}",
 	-- ["Tideress"] = "Приливница",
-	-- ["Tideress, a corrupted water elemental, drifts in {area:421}. Her {item:16408} starts a quest for Splintertree."] = "Приливница, оскверненная водная элементаль, плавает здесь: {area:421}. Ее {item:16408} начинает задание для заставы Расщепленного Дерева.",
 	-- ["Ursangous"] = "Топтыжень",
 }

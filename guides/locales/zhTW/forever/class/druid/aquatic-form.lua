@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (traditional) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (traditional) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -36,8 +37,8 @@ return {
 	["{item:15885}: join the halves at the shrine"] = "{item:15885}：在神殿組合兩半",
 
 	-- Step 6: Aquatic Form
-	-- {area:1658} Cenarion Enclave
-	["Take the portal up to Mathrengyl in the {area:1658}."] = "搭傳送門上去，到{area:1658}找瑪斯雷。",
+	-- {npc:4217} Mathrengyl Bearwalker · {area:1658} Cenarion Enclave
+	["Take the portal up to {npc:4217} in the {area:1658}."] = "搭傳送門上去，到{area:1658}找{npc:4217}。",
 
 	-- Step 7: A Lesson to Learn
 	-- {npc:3033} Turak Runetotem · {area:1639} Elder Rise
@@ -59,8 +60,4 @@ return {
 	-- Step 11: Pendant of the Sea Lion
 	-- {spell:18960} Teleport: Moonglade · {item:15885} Pendant of the Sea Lion · {area:2362} Shrine of Remulos · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {npc:11798} Bunthen Plainswind · {area:1638} Thunder Bluff
 	["Cast {spell:18960}. Join the two halves into the {item:15885} near the {area:2362}, on the north-west shore of the lake, then see {npc:11802} in {area:2361}. {npc:11798} flies druids to {area:1638}."] = "施放{spell:18960}。在湖的西北岸、{area:2362}附近把兩半組合成{item:15885}，然後去{area:2361}找{npc:11802}。{npc:11798}會載德魯伊飛往{area:1638}。",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Fly from {area:2361} to {area:442}. The {object:177790} lies under the water off the north coast, west of the {area:443}."] = "從{area:2361}飛往{area:442}。{object:177790}在北岸外的水下，{area:443}西邊。",
-	-- ["The {object:177790} lies at the north edge of the {area:382}, by the Venture Co. tower, north of the {area:380}."] = "{object:177790}在{area:382}北緣、風險投資公司的塔旁，{area:380}北邊。",
 }

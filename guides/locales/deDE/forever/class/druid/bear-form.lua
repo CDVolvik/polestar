@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in German (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in German words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -29,14 +30,14 @@ return {
 	["Speak with the {quest:5929}"] = "Sprich mit dem {quest:5929}",
 
 	-- Step 5: The Moonkin Stone
-	-- {object:177525} Moonkin Stone
+	-- {object:177525} Moonkin Stone (no name in this language: may be words)
 	["The {object:177525}"] = "Der {object:177525}",
-	-- {area:702} Rut'theran Village · {area:442} Auberdine · {object:177525} Moonkin Stone · {item:15208} Cenarion Moondust · {npc:12144} Lunaclaw Spirit
+	-- {area:702} Rut'theran Village · {area:442} Auberdine · {object:177525} Moonkin Stone (no name in this language: may be words) · {item:15208} Cenarion Moondust · {npc:12144} Lunaclaw Spirit
 	["Fly from {area:702} to {area:442}. The {object:177525} stands in the hills just east of the village: use the {item:15208} there, defeat Lunaclaw and speak to the {npc:12144}."] = "Flieg von {area:702} nach {area:442}. Der {object:177525} steht in den Hügeln direkt östlich des Dorfes: Benutze dort den {item:15208}, besiege Mondklaue und sprich mit dem {npc:12144}.",
 
 	-- Step 6: Body and Heart
-	-- {area:702} Rut'theran Village
-	["Fly back to {area:702} and take the portal up to Mathrengyl."] = "Flieg zurück nach {area:702} und nimm das Portal hinauf zu Mathrengyl.",
+	-- {area:702} Rut'theran Village · {npc:4217} Mathrengyl Bearwalker
+	["Fly back to {area:702} and take the portal up to {npc:4217}."] = "Flieg zurück nach {area:702} und nimm das Portal hinauf zu {npc:4217}.",
 
 	-- Step 7: Heeding the Call
 	-- {npc:3064} Gennia Runetotem · {area:222} Bloodhoof Village · {npc:6746} Innkeeper Pala · {zone:1456} Thunder Bluff · {npc:6929} Innkeeper Gryshka · {zone:1454} Orgrimmar · {npc:3033} Turak Runetotem · {area:1639} Elder Rise
@@ -55,7 +56,7 @@ return {
 	["Speak with the {quest:5930}"] = "Sprich mit dem {quest:5930}",
 
 	-- Step 11: The Moonkin Stone
-	-- {object:177525} Moonkin Stone · {zone:1412} Mulgore · {zone:1413} Barrens · {item:15710} Cenarion Lunardust · {npc:12144} Lunaclaw Spirit
+	-- {object:177525} Moonkin Stone (no name in this language: may be words) · {zone:1412} Mulgore · {zone:1413} Barrens · {item:15710} Cenarion Lunardust · {npc:12144} Lunaclaw Spirit
 	["The {object:177525} stands in the pass from {zone:1412} into the {zone:1413}. Use the {item:15710} there, defeat Lunaclaw and speak to the {npc:12144}."] = "Der {object:177525} steht im Pass von {zone:1412} ins {zone:1413}. Benutze dort den {item:15710}, besiege Mondklaue und sprich mit dem {npc:12144}.",
 
 	-- Step 12: Body and Heart
@@ -109,7 +110,4 @@ return {
 	-- Step 22: Dendrite Starblaze
 	-- {spell:18960} Teleport: Moonglade · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {area:493} Moonglade
 	["Cast {spell:18960}. {npc:11802} is in {area:2361}. Learn the {area:493} flight path while you are here."] = "Wirke {spell:18960}. {npc:11802} ist in {area:2361}. Hol dir hier gleich die Flugroute von {area:493}.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["At 10 a druid's call reaches you: {npc:3602} in {area:186}, Denatharion in {zone:1457} or Theridran in {zone:1453}. Any one of them sends you to {npc:4217} in the Cenarion Enclave of {zone:1457}."] = "Mit Stufe 10 erreicht dich der Ruf eines Druiden: {npc:3602} in {area:186}, Denatharion in {zone:1457} oder Theridran in {zone:1453}. Jeder von ihnen schickt dich zu {npc:4217} in der Enklave des Cenarius in {zone:1457}.",
 }

@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Portuguese (Brazil) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Portuguese (Brazil) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -10,7 +11,7 @@ return {
 	["Your epic mount at 60, summoned at will: the faster step up from the Warhorse."] = "Sua montaria épica no nível 60, evocada quando quiser: o passo mais rápido depois do Cavalo de Guerra.",
 
 	-- Step 1: Lord Grayson Shadowbreaker (Ironforge)
-	-- {npc:5149} Brandur Ironhammer · {object:32362} Mystic Ward · {quest:7638} Lord Grayson Shadowbreaker · {zone:1453} Stormwind
+	-- {npc:5149} Brandur Ironhammer · {object:32362} Mystic Ward (no name in this language: may be words) · {quest:7638} Lord Grayson Shadowbreaker · {zone:1453} Stormwind
 	["At 60 {npc:5149} in the {object:32362} sends you to {quest:7638} in {zone:1453}'s Cathedral of Light."] = "No nível 60, {npc:5149} na {object:32362} manda você a {quest:7638} na Catedral da Luz de {zone:1453}.",
 
 	-- Step 2: Lord Grayson Shadowbreaker
@@ -20,7 +21,7 @@ return {
 	["{npc:6171}, Cathedral of Light"] = "{npc:6171}, Catedral da Luz",
 
 	-- Step 3: High Priest Rohan
-	-- {npc:11406} High Priest Rohan · {zone:1455} Ironforge · {object:32362} Mystic Ward
+	-- {npc:11406} High Priest Rohan · {zone:1455} Ironforge · {object:32362} Mystic Ward (no name in this language: may be words)
 	["{npc:11406} is in {zone:1455}'s {object:32362}. Bring 150 gold: the censer is yours for a donation."] = "{npc:11406} está na {object:32362} de {zone:1455}. Leve 150 de ouro: o incensário é seu por uma doação.",
 	-- {npc:11406} High Priest Rohan
 	["{npc:11406}: 150 gold"] = "{npc:11406}: 150 de ouro",
@@ -35,12 +36,13 @@ return {
 	["Terrordale Spirits"] = "Espíritos da Várzea do Medo",
 
 	-- Step 7: Grimand Elmore
-	-- {npc:1416} Grimand Elmore · {zone:1453} Stormwind · {object:28027} Dwarven District
+	-- {npc:1416} Grimand Elmore · {zone:1453} Stormwind · {object:28027} Dwarven District (no name in this language: may be words)
 	["{npc:1416} works in {zone:1453}'s {object:28027}."] = "{npc:1416} trabalha no {object:28027} de {zone:1453}.",
 
-	-- Step 8: Grimand's materials
-	["Grimand's materials"] = "Materiais de Grimand",
-	-- {item:14047} Runecloth · {item:8836} Arthas' Tears · {zone:1448} Felwood · {skill:171} Alchemy · {zone:1453} Stormwind · {object:2096} Trade District
+	-- Step 8: Grimand Elmore's materials
+	-- {npc:1416} Grimand Elmore
+	["{npc:1416}'s materials"] = "Materiais de {npc:1416}",
+	-- {item:14047} Runecloth · {item:8836} Arthas' Tears · {zone:1448} Felwood · {skill:171} Alchemy · {zone:1453} Stormwind · {object:2096} Trade District (no name in this language: may be words)
 	-- plural, as words: Arcanite Bars = {item:12360} Arcanite Bar
 	["{item:14047} drops from humanoids around level 50 and up; {item:8836} is an herb of the Plaguelands and {zone:1448}; Arcanite Bars are an {skill:171} transmute. The Auction House in {zone:1453}'s {object:2096} sells all three, and so do crafters."] = "{item:14047} cai de humanoides a partir do nível 50; {item:8836} é uma erva das Terras Pestilentas e de {zone:1448}; Barras de Arcanita são uma transmutação de {skill:171}. A Casa de Leilões no {object:2096} de {zone:1453} vende os três, assim como os artesãos.",
 	-- plural, as words: Arcanite Bars = {item:12360} Arcanite Bar
@@ -54,7 +56,8 @@ return {
 	["Supply Crates, inside"] = "Caixotes de Suprimentos, lá dentro",
 
 	-- Step 10: Grimand Elmore
-	["Bring 150 gold for Grimand along with the materials."] = "Leve 150 de ouro para Grimand junto com os materiais.",
+	-- {npc:1416} Grimand Elmore
+	["Bring 150 gold for {npc:1416} along with the materials."] = "Leve 150 de ouro para {npc:1416} junto com os materiais.",
 	-- {npc:1416} Grimand Elmore
 	["{npc:1416}: 150 gold"] = "{npc:1416}: 150 de ouro",
 
@@ -65,7 +68,7 @@ return {
 	-- Step 12: Enriched Manna Biscuits
 	-- plural, as words: Enriched Manna Biscuits = {item:13724} Enriched Manna Biscuit
 	["Enriched Manna Biscuits"] = "Biscoitos de Maná Enriquecidos",
-	-- {object:2160} The Argent Dawn · {object:92525} Argent Dawn · {npc:10857} Argent Quartermaster Lightspark · {area:3197} Chillwind Camp · {npc:11536} Quartermaster Miranda Breechlock · {area:2268} Light's Hope Chapel · {npc:10856} Argent Quartermaster Hasana · {area:813} Bulwark
+	-- {object:2160} The Argent Dawn (no name in this language: may be words) · {object:92525} Argent Dawn (no name in this language: may be words) · {npc:10857} Argent Quartermaster Lightspark · {area:3197} Chillwind Camp · {npc:11536} Quartermaster Miranda Breechlock · {area:2268} Light's Hope Chapel · {npc:10856} Argent Quartermaster Hasana · {area:813} Bulwark
 	["{object:2160} quartermasters sell the biscuits in fives once the {object:92525} is Friendly with you: {npc:10857} at {area:3197}, {npc:11536} at {area:2268}, {npc:10856} at the {area:813}."] = "Os intendentes da {object:2160} vendem os biscoitos de cinco em cinco quando a {object:92525} for Amistosa com você: {npc:10857} no {area:3197}, {npc:11536} na {area:2268}, {npc:10856} no {area:813}.",
 	-- {npc:10857} Argent Quartermaster Lightspark · {area:3197} Chillwind Camp
 	-- plural, as words: Enriched Manna Biscuits = {item:13724} Enriched Manna Biscuit
@@ -91,8 +94,6 @@ return {
 	["he hands you the {item:18746}"] = "ele lhe entrega o {item:18746}",
 
 	-- Step 18: The Great Ossuary
-	-- {area:2057} Scholomance · {area:2298} Caer Darrow · {zone:1422} Western Plaguelands · {item:18746} Divination Scryer · {npc:14516} Death Knight Darkreaver · {item:18799} Charger's Redeemed Soul · {item:18792} Blessed Arcanite Barding
-	["{area:2057} lies under {area:2298}, the island town in the south-east of the {zone:1422}. Use the {item:18746} in the heart of the Great Ossuary's basement, defeat the spirits it calls and then {npc:14516}, and give his Fallen Charger the {item:18799} and the {item:18792}. All are elite: bring a group. If the attempt fails, Lord Grayson gives you a new scryer through Again Into the Great Ossuary."] = "{area:2057} fica embaixo de {area:2298}, a cidade na ilha do sudeste das {zone:1422}. Use o {item:18746} no centro do porão do Grande Ossuário, derrote os espíritos que ele chama e depois {npc:14516}, e dê ao Corcel Caído dele a {item:18799} e a {item:18792}. Todos são elite: leve um grupo. Se a tentativa falhar, Lorde Grayson lhe dá um novo vidente pela missão De volta ao Grande Ossuário.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- {area:2057} Scholomance · {area:2298} Caer Darrow · {zone:1422} Western Plaguelands · {item:18746} Divination Scryer · {object:179746} The Great Ossuary (no name in this language: may be words) · {npc:14516} Death Knight Darkreaver · {item:18799} Charger's Redeemed Soul · {item:18792} Blessed Arcanite Barding
+	["{area:2057} lies under {area:2298}, the island town in the south-east of the {zone:1422}. Use the {item:18746} in the heart of the {object:179746}'s basement, defeat the spirits it calls and then {npc:14516}, and give his Fallen Charger the {item:18799} and the {item:18792}. All are elite: bring a group. If the attempt fails, Lord Grayson gives you a new scryer through Again Into the {object:179746}."] = "{area:2057} fica embaixo de {area:2298}, a cidade na ilha do sudeste das {zone:1422}. Use o {item:18746} no centro do porão do Grande Ossuário, derrote os espíritos que ele chama e depois {npc:14516}, e dê ao Corcel Caído dele a {item:18799} e a {item:18792}. Todos são elite: leve um grupo. Se a tentativa falhar, Lorde Grayson lhe dá um novo vidente pela missão De volta ao Grande Ossuário.",
 }

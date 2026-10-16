@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (traditional) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (traditional) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -18,15 +19,15 @@ return {
 	["{npc:246378} leads the Paladins of Tyr's Watch from inside {area:16602}, on the bluffs north-west of the {area:156}."] = "{npc:246378}在{area:156}西北方崖頂上的{area:16602}內領導 Tyr's Watch 的聖騎士。",
 
 	-- Step 2: The Sepulcher
-	-- {zone:1421} Silverpine Forest · {npc:248840} Trevan Rol · {npc:259611} Deathguard Baldren
-	["Ride south through {zone:1421} to the Sepulcher. {npc:248840} stands in the town; {npc:259611} keeps watch near its entrance."] = "向南騎過{zone:1421}前往瑟伯切爾。{npc:248840}站在鎮上；{npc:259611}在入口附近守望。",
+	-- {zone:1421} Silverpine Forest · {area:228} The Sepulcher · {npc:248840} Trevan Rol · {npc:259611} Deathguard Baldren
+	["Ride south through {zone:1421} to the {area:228}. {npc:248840} stands in the town; {npc:259611} keeps watch near its entrance."] = "向南騎過{zone:1421}前往{area:228}。{npc:248840}站在鎮上；{npc:259611}在入口附近守望。",
 
 	-- Step 3: The pyre on Fenris Isle
 	-- {area:172} Fenris Isle
 	["The pyre on {area:172}"] = "{area:172}上的火葬堆",
-	-- {area:172} Fenris Isle
-	["{area:172} lies in the lake east of the Sepulcher. The charred remains are on its shore."] = "{area:172}位於瑟伯切爾東邊的湖中。燒焦的遺骸就在島的岸邊。",
-	-- {object:566037} Charred Remains
+	-- {area:172} Fenris Isle · {area:228} The Sepulcher
+	["{area:172} lies in the lake east of the {area:228}. The charred remains are on its shore."] = "{area:172}位於{area:228}東邊的湖中。燒焦的遺骸就在島的岸邊。",
+	-- {object:566037} Charred Remains (no name in this language: may be words)
 	["from the {object:566037}"] = "來自{object:566037}",
 
 	-- Step 4: Fenris Keep
@@ -36,20 +37,21 @@ return {
 	["{item:267412}, from the Rot Hide gnolls"] = "{item:267412}，來自腐皮豺狼人",
 
 	-- Step 5: Free Lumina
-	["Free Lumina"] = "救出露蜜娜",
+	-- {npc:248755} Lumina
+	["Free {npc:248755}"] = "救出{npc:248755}",
 	["Free her with the key, then stay close while she fights her way out of the keep."] = "用鑰匙救出她，然後在她殺出要塞時待在她身邊。",
 
-	-- Step 6: Back to the Sepulcher
-	["Back to the Sepulcher"] = "返回瑟伯切爾",
-	-- {area:235} Fenris Keep
-	["Once she is clear of {area:235}, Lumina waits for you in the Sepulcher. Speak with her again to hear what really happened on the road."] = "一旦她離開了{area:235}，露蜜娜會在瑟伯切爾等你。再次與她交談，聽聽路上到底發生了什麼事。",
-	-- {npc:259620} Lumina Windsinger
-	["{npc:259620}, the Sepulcher"] = "{npc:259620}，瑟伯切爾",
+	-- Step 6: Back to the The Sepulcher
+	-- {area:228} The Sepulcher
+	["Back to the {area:228}"] = "返回{area:228}",
+	-- {area:235} Fenris Keep · {npc:259620} Lumina · {area:228} The Sepulcher
+	["Once she is clear of {area:235}, {npc:259620} waits for you in the {area:228}. Speak with her again to hear what really happened on the road."] = "一旦她離開了{area:235}，{npc:259620}會在{area:228}等你。再次與她交談，聽聽路上到底發生了什麼事。",
+	-- {npc:259620} Lumina · {area:228} The Sepulcher
+	["{npc:259620}, the {area:228}"] = "{npc:259620}，{area:228}",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Back to the {area:228}"] = "返回{area:228}",
 	-- ["Once she is clear of {area:235}, Lumina waits for you in the {area:228}. Speak with her again to hear what really happened on the road."] = "一旦她離開了{area:235}，露蜜娜會在{area:228}等你。再次與她交談，聽聽路上到底發生了什麼事。",
-	-- ["Rescuing Lumina Windsinger"] = "拯救露蜜娜‧風詠",
 	-- ["Ride south through {zone:1421} to the {area:228}. {npc:248840} stands in the town; {npc:259611} keeps watch near its entrance."] = "向南騎過{zone:1421}前往{area:228}。{npc:248840}站在鎮上；{npc:259611}在入口附近守望。",
 	-- ["{area:172} lies in the lake east of the {area:228}. The charred remains are on its shore."] = "{area:172}位於{area:228}東邊的湖中。燒焦的遺骸就在島的岸邊。",
 	-- ["{npc:259620}, the {area:228}"] = "{npc:259620}，{area:228}",

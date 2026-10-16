@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in German (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in German words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -12,7 +13,7 @@ return {
 	-- Step 1: Tanaris (1/3)
 	-- {zone:1446} Tanaris · {zone:1445} Dustwallow Marsh · {zone:1414} Kalimdor
 	["Starts in {zone:1446}, south of {zone:1445}. The last area of this guide completes the {zone:1414} map. 20 areas to discover here, levels 40-50."] = "Beginnt in {zone:1446}, südlich der {zone:1445}. Das letzte Gebiet dieses Guides vervollständigt die Karte von {zone:1414}. Hier gibt es 20 Gebiete zu entdecken, Stufe 40-50.",
-	["Exploring the entire world map on one character is a Forever Legacy Challenge (1 account-wide Legacy Point)."] = "Die ganze Weltkarte mit einem Charakter zu erkunden ist eine Forever-Legacy-Herausforderung (1 accountweiter Legacy-Punkt).",
+	["Exploring the entire world map on one character is a Forever Legacy Challenge (1 account-wide Legacy Point)."] = "Die ganze Weltkarte mit einem Charakter zu erkunden ist eine Forever-Vermächtnisherausforderung (1 accountweiter Vermächtnispunkt).",
 	-- {zone:1446} Tanaris · {zone:1445} Dustwallow Marsh · {zone:1441} Thousand Needles · {area:976} Gadgetzan
 	["{zone:1446} is south of {zone:1445} and {zone:1441}. {area:976} is a neutral goblin town."] = "{zone:1446} liegt südlich der {zone:1445} und von {zone:1441}. {area:976} ist eine neutrale Goblinstadt.",
 	-- {area:976} Gadgetzan · {npc:7823} Bera Stonehammer

@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in French (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in French words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Fly to Ratchet
@@ -34,8 +35,8 @@ return {
 	-- Step 6: The Wild Shore
 	-- {area:43} Wild Shore
 	["The {area:43}"] = "{area:43}",
-	-- {area:43} Wild Shore
-	["South of Booty Bay the Bloodsail swashbucklers camp on the {area:43}; the charts and the orders lie in their tents. Any Bloodsail can carry snuff and Dizzy's eye, so keep killing until you have both."] = "Au sud de Baie-du-Butin, les bretteurs de la Voile sanglante campent sur {area:43} ; les cartes et les ordres se trouvent dans leurs tentes. Tout pirate de la Voile sanglante peut porter le tabac et l'œil de Dizzy : continuez jusqu'à avoir les deux.",
+	-- {area:43} Wild Shore · {npc:2493} Dizzy
+	["South of Booty Bay the Bloodsail swashbucklers camp on the {area:43}; the charts and the orders lie in their tents. Any Bloodsail can carry snuff and {npc:2493}'s eye, so keep killing until you have both."] = "Au sud de Baie-du-Butin, les bretteurs de la Voile sanglante campent sur {area:43} ; les cartes et les ordres se trouvent dans leurs tentes. Tout pirate de la Voile sanglante peut porter le tabac et l'œil de {npc:2493} : continuez jusqu'à avoir les deux.",
 
 	-- Step 8: The Bloodsail ships
 	["The Bloodsail ships"] = "Les navires de la Voile sanglante",
@@ -53,7 +54,8 @@ return {
 	["The gorillas roam the valley around Unbagwa. The elders drop the giblets; any of them can drop a fang."] = "Les gorilles parcourent la vallée autour d'Unbagwa. Les anciens laissent tomber les abats ; tous peuvent laisser tomber un croc.",
 
 	-- Step 12: Mokk the Savage
-	["Hand Unbagwa the fangs and stay by him: he calls three waves of gorillas, then Mokk. Fight them one at a time."] = "Donnez les crocs à Unbagwa et restez près de lui : il appelle trois vagues de gorilles, puis Mokk. Combattez-les un par un.",
+	-- {npc:1514} Mokk the Savage
+	["Hand Unbagwa the fangs and stay by him: he calls three waves of gorillas, then {npc:1514}. Fight them one at a time."] = "Donnez les crocs à Unbagwa et restez près de lui : il appelle trois vagues de gorilles, puis {npc:1514}. Combattez-les un par un.",
 
 	-- Step 13: Zanzil's camps
 	["Zanzil's camps"] = "Les camps de Zanzil",
@@ -64,7 +66,7 @@ return {
 	["Further north, the goblins of the Venture Co. dig at the mine east of the road; miners, foremen, surveyors and tinkerers all drop the crystals."] = "Plus au nord, les gobelins de la KapitalRisk creusent la mine à l'est de la route ; mineurs, contremaîtres, géomètres et bricoleurs laissent tous tomber les cristaux.",
 
 	-- Step 15: Grom'gol Base Camp
-	-- {object:3202} Grom'gol
+	-- {object:3202} Grom'gol (no name in this language: may be words)
 	["Ride north-west to {object:3202}."] = "Chevauchez vers le nord-ouest jusqu'à {object:3202}.",
 	-- {zone:1425} Hinterlands
 	["for later: the {zone:1425}, around level 48"] = "pour plus tard : {zone:1425}, vers le niveau 48",
@@ -74,18 +76,18 @@ return {
 
 	-- Step 17: Zul'Kunda
 	["Zul'Kunda"] = "Ruines de Zul'Kunda",
-	-- {npc:1061} Gan'zulah
-	["West of the expedition, the Bloodscalp chiefs {npc:1061} and Nezzliok stand together in the ruins of Zul'Kunda. Clear their guards first, then pull them."] = "À l'ouest de l'expédition, les chefs Bloodscalp {npc:1061} et Nezzliok se tiennent ensemble dans les Ruines de Zul'Kunda. Éliminez d'abord leurs gardes, puis attirez-les.",
+	-- {npc:1061} Gan'zulah · {npc:1062} Nezzliok
+	["West of the expedition, the Bloodscalp chiefs {npc:1061} and {npc:1062} stand together in the ruins of Zul'Kunda. Clear their guards first, then pull them."] = "À l'ouest de l'expédition, les chefs Bloodscalp {npc:1061} et {npc:1062} se tiennent ensemble dans les Ruines de Zul'Kunda. Éliminez d'abord leurs gardes, puis attirez-les.",
 
 	-- Step 18: Hearth to Grom'gol
-	-- {object:3202} Grom'gol
+	-- {object:3202} Grom'gol (no name in this language: may be words)
 	["Hearth to {object:3202}"] = "Pierre de foyer vers {object:3202}",
 	-- {object:2076} Bubbling Cauldron · {npc:2497} Nimboya
 	["the {object:2076}, beside {npc:2497}"] = "le {object:2076}, à côté de {npc:2497}",
 
 	-- Step 19: Jungle stalkers
 	["Jungle stalkers"] = "Traqueurs de la jungle",
-	-- {object:3202} Grom'gol
+	-- {object:3202} Grom'gol (no name in this language: may be words)
 	["The stalker raptors hunt the jungle south of {object:3202}, out towards the west coast."] = "Les raptors traqueurs chassent dans la jungle au sud de {object:3202}, vers la côte ouest.",
 
 	-- Step 20: Naga shore and the Holy Spring
@@ -100,8 +102,8 @@ return {
 
 	-- Step 22: Pirate ghosts
 	["Pirate ghosts"] = "Pirates fantômes",
-	-- {area:35} Booty Bay
-	["The three ghostly pirates haunt the jungle north of {area:35}, near Zanzil's camps: Maury and Jon-Jon stand together, Chucky further east."] = "Les trois pirates fantômes hantent la jungle au nord de {area:35}, près des camps de Zanzil : Maury et Jon-Jon se tiennent ensemble, Chucky plus à l'est.",
+	-- {area:35} Booty Bay · {npc:2535} Maury · {npc:2536} Jon-Jon · {npc:2537} Chucky
+	["The three ghostly pirates haunt the jungle north of {area:35}, near Zanzil's camps: {npc:2535} and {npc:2536} stand together, {npc:2537} further east."] = "Les trois pirates fantômes hantent la jungle au nord de {area:35}, près des camps de Zanzil : {npc:2535} et {npc:2536} se tiennent ensemble, {npc:2537} plus à l'est.",
 
 	-- Step 23: Zul'Mamwe
 	["Zul'Mamwe"] = "Ruines de Zul'Mamwe",
@@ -113,11 +115,11 @@ return {
 	["The next trophy skulls stand in the small ruins just north of the warriors' camp."] = "Les crânes trophées suivants se trouvent dans les petites ruines juste au nord du camp des guerriers.",
 
 	-- Step 25: Ziata'jai Ruins
-	-- {object:3202} Grom'gol
+	-- {object:3202} Grom'gol (no name in this language: may be words)
 	["The last skulls are in the ruins a short ride west, on the way back to {object:3202}."] = "Les derniers crânes sont dans les ruines un peu à l'ouest, sur le chemin du retour vers {object:3202}.",
 
 	-- Step 26: Grom'gol Base Camp
-	-- {object:3202} Grom'gol
+	-- {object:3202} Grom'gol (no name in this language: may be words)
 	["Ride west to {object:3202}."] = "Chevauchez vers l'ouest jusqu'à {object:3202}.",
 	-- {object:2076} Bubbling Cauldron
 	["the {object:2076}"] = "le {object:2076}",
@@ -127,7 +129,7 @@ return {
 	["Hearth to {area:35}"] = "Pierre de foyer vers {area:35}",
 
 	-- Step 28: Fly to Grom'gol
-	-- {object:3202} Grom'gol
+	-- {object:3202} Grom'gol (no name in this language: may be words)
 	["Fly to {object:3202}"] = "Vol pour {object:3202}",
 
 	-- Step 29: Nesingwary's Expedition
@@ -162,12 +164,10 @@ return {
 
 	-- Step 36: Sawtooth crocolisks
 	["Sawtooth crocolisks"] = "Crocilisques Dents-de-scie",
-	-- {area:75} Stonard
-	["The crocolisks wallow in the pools around Galen's camp and south towards {area:75}; about one in four drops a flank."] = "Les crocilisques se vautrent dans les mares autour du camp de Galen et vers le sud jusqu'à {area:75} ; environ un sur quatre laisse tomber un flanc.",
+	-- {npc:5391} Galen Goodward · {area:75} Stonard
+	["The crocolisks wallow in the pools around {npc:5391}'s camp and south towards {area:75}; about one in four drops a flank."] = "Les crocilisques se vautrent dans les mares autour du camp de {npc:5391} et vers le sud jusqu'à {area:75} ; environ un sur quatre laisse tomber un flanc.",
 
-	-- Step 37: The Harborage
-	-- {area:657} Harborage
-	["The {area:657}"] = "{area:657}",
+	-- Step 37: Harborage
 	-- {area:657} Harborage · {zone:1430} Deadwind Pass
 	["Ride west along the road to the draenei camp at the {area:657}, near the way in from {zone:1430}."] = "Chevauchez vers l'ouest le long de la route jusqu'au camp draeneï de {area:657}, près de l'entrée depuis {zone:1430}.",
 
@@ -184,5 +184,5 @@ return {
 	["The next guide starts here and takes you to {zone:1446}."] = "Le guide suivant commence ici et vous emmène en {zone:1446}.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["South of {area:35} the Bloodsail swashbucklers camp on the {area:43}; the charts and the orders lie in their tents. Any Bloodsail can carry snuff and Dizzy's eye, so keep killing until you have both."] = "Au sud de {area:35}, les bretteurs de la Voile sanglante campent sur {area:43} ; les cartes et les ordres se trouvent dans leurs tentes. Tout pirate de la Voile sanglante peut porter le tabac et l'œil de Dizzy : continuez jusqu'à avoir les deux.",
+	-- ["The {area:657}"] = "{area:657}",
 }

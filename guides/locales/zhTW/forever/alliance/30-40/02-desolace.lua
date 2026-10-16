@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (traditional) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (traditional) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Menethil Harbor
@@ -21,9 +22,7 @@ return {
 	-- {item:190309} Wooden Figurine · {area:413} Maestra's Post
 	["{item:190309}, north of {area:413}"] = "{item:190309}，在{area:413}北邊",
 
-	-- Step 4: The Talondeep Path
-	-- {area:1276} Talondeep Path
-	["The {area:1276}"] = "{area:1276}",
+	-- Step 4: Talondeep Path
 	-- {area:415} Astranaar · {area:1276} Talondeep Path
 	["From {area:415} head south-west to the {area:1276}, a tunnel through the mountains into Stonetalon."] = "從{area:415}向西南前往{area:1276}，這是一條穿過山脈通往石爪山脈的隧道。",
 
@@ -41,23 +40,25 @@ return {
 	["The chest lies in the ruins south-west of {area:608}."] = "箱子在{area:608}西南方的廢墟中。",
 
 	-- Step 10: Azore Aldamort
-	-- {area:599} Thunder Axe Fortress
-	["Azore's tower stands on the hill west of {area:599}: take his quest first, the sceptre he wants is in the fortress."] = "阿佐爾的塔位於{area:599}西邊的山丘上：先接他的任務，他要的權杖就在要塞裡。",
+	-- {npc:11863} Azore Aldamort · {area:599} Thunder Axe Fortress
+	["{npc:11863}'s tower stands on the hill west of {area:599}: take his quest first, the sceptre he wants is in the fortress."] = "{npc:11863}的塔位於{area:599}西邊的山丘上：先接他的任務，他要的權杖就在要塞裡。",
 
 	-- Step 11: Dalinda Malem
-	-- {area:608} Nijel's Point
-	["Dalinda hides inside the Burning Blade's fortress south-west of {area:608}."] = "黛琳達躲在{area:608}西南方火刃的要塞裡。",
+	-- {npc:5644} Dalinda Malem · {area:608} Nijel's Point
+	["{npc:5644} hides inside the Burning Blade's fortress south-west of {area:608}."] = "{npc:5644}躲在{area:608}西南方火刃的要塞裡。",
 
 	-- Step 12: Tyranis and the Seer
-	["Tyranis and the Seer"] = "泰拉尼斯與先知",
-	-- {spell:1294269} Burning Blade · {npc:13019} Burning Blade Seer
-	["Her brother Tyranis (36) walks the fortress with the {spell:1294269} cultists (30-33): pull him alone. The {npc:13019} keeps the sceptre in the fortress's main building."] = "她的哥哥泰拉尼斯（36級）和{spell:1294269}教徒（30-33級）一起在要塞裡走動：單獨把他拉出來。{npc:13019}把權杖放在要塞的主建築裡。",
+	-- {npc:5643} Tyranis
+	["{npc:5643} and the Seer"] = "{npc:5643}與先知",
+	-- {npc:5643} Tyranis · {npc:13019} Burning Blade Seer
+	["Her brother {npc:5643} (36) walks the fortress with the Burning Blade cultists (30-33): pull him alone. The {npc:13019} keeps the sceptre in the fortress's main building."] = "她的哥哥{npc:5643}（36級）和燃刃氏族教徒（30-33級）一起在要塞裡走動：單獨把他拉出來。{npc:13019}把權杖放在要塞的主建築裡。",
 
-	-- Step 13: Escort Dalinda
-	["Escort Dalinda"] = "護送黛琳達",
+	-- Step 13: Escort Dalinda Malem
+	-- {npc:5644} Dalinda Malem
+	["Escort {npc:5644}"] = "護送{npc:5644}",
 	["Out of Thunder Axe Fortress"] = "離開雷斧堡壘",
-	-- {area:608} Nijel's Point
-	["Lead Dalinda out of the fortress; she walks off once you are clear of it. Vahlarriel takes the turn-in at {area:608} at the end of the guide."] = "帶黛琳達走出要塞；離開要塞後她就會自行離去。指南結尾時在{area:608}向瓦拉里爾繳交。",
+	-- {npc:5644} Dalinda Malem · {npc:5642} Vahlarriel Demonslayer · {area:608} Nijel's Point
+	["Lead {npc:5644} out of the fortress; she walks off once you are clear of it. {npc:5642} takes the turn-in at {area:608} at the end of the guide."] = "帶{npc:5644}走出要塞；離開要塞後她就會自行離去。指南結尾時在{area:608}向{npc:5642}繳交。",
 
 	-- Step 15: Scorpashi venom
 	["Scorpashi venom"] = "荒土蠍毒液",
@@ -74,19 +75,18 @@ return {
 	["Walk with the caravan south past {area:609}; Kolkar ambushers jump it on the way. Stay close until it stops at {area:2617}. The ambushers are 34-35 and come in waves: skip it if you are below 33."] = "跟著車隊向南經過{area:609}；途中科卡爾伏擊者會襲擊車隊。待在附近直到它停在{area:2617}。伏擊者是34-35級，而且分波出現：如果你低於33級就跳過。",
 
 	-- Step 18: Smeed Scrabblescrew
-	-- {area:609} Kolkar Village · {area:596} Kodo Graveyard
-	["Smeed's camp is on the road south of {area:609}, by the {area:596}."] = "斯米德的營地在{area:609}南邊的路上，位於{area:596}旁。",
+	-- {npc:11596} Smeed Scrabblescrew · {area:609} Kolkar Village · {area:596} Kodo Graveyard
+	["{npc:11596}'s camp is on the road south of {area:609}, by the {area:596}."] = "{npc:11596}的營地在{area:609}南邊的路上，位於{area:596}旁。",
 
 	-- Step 19: Kodo Graveyard
-	-- {item:13892} Kodo Kombobulator · {npc:4700} Aged Kodo
+	-- {npc:11596} Smeed Scrabblescrew · {item:13892} Kodo Kombobulator · {npc:4700} Aged Kodo
 	-- plural, as words: Aged Kodos = {npc:4700} Aged Kodo
-	["Use Smeed's {item:13892} on an {npc:4700} and walk the tamed kodo back to his camp, five times; Aged Kodos also drop the hides."] = "對{npc:4700}使用斯米德的{item:13892}，把馴服的科多獸帶回他的營地，共五次；老邁的科多獸也會掉落獸皮。",
+	["Use {npc:11596}'s {item:13892} on an {npc:4700} and walk the tamed kodo back to his camp, five times; Aged Kodos also drop the hides."] = "對{npc:4700}使用{npc:11596}的{item:13892}，把馴服的科多獸帶回他的營地，共五次；老邁的科多獸也會掉落獸皮。",
 
 	-- Step 21: Kolkar Village
 	-- {area:609} Kolkar Village · {npc:5752} Corporal Melkins
 	["The Kolkar roam the plains around {area:609}; their ears are for {npc:5752}."] = "科卡爾半人馬在{area:609}周圍的平原上遊蕩；牠們的耳朵是給{npc:5752}的。",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Dalinda hides inside the {spell:1294269}'s fortress south-west of {area:608}."] = "黛琳達躲在{area:608}西南方{spell:1294269}的要塞裡。",
-	-- ["Out of {area:599}"] = "離開{area:599}",
+	-- ["The {area:1276}"] = "{area:1276}",
 }

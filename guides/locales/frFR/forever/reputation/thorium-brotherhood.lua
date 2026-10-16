@@ -3,17 +3,18 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in French (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in French words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
-	["Thorium Brotherhood Reputation"] = "Réputation Confrérie du thorium",
+	["Thorium Brotherhood Reputation"] = "Réputation : Confrérie du thorium",
 
 	-- Step 1: Master Smith Burninate
 	-- {area:1446} Thorium Point · {zone:1427} Searing Gorge · {faction:59} Thorium Brotherhood
-	["{area:1446}, on the scaffolds in the north-west of {zone:1427}, is the Brotherhood's outpost. The {faction:59} starts out Neutral. Forever's Legacy Diplomat perk increases reputation gains."] = "{area:1446}, sur les échafaudages au nord-ouest de {zone:1427}, est l'avant-poste de la Confrérie. Votre réputation auprès de {faction:59} commence à Neutre. L'atout Diplomate du système d'héritage de Forever augmente les gains de réputation.",
+	["{area:1446}, on the scaffolds in the north-west of {zone:1427}, is the Brotherhood's outpost. The {faction:59} starts out Neutral. Forever's Legacy Diplomat perk increases reputation gains."] = "{area:1446}, sur les échafaudages au nord-ouest de {zone:1427}, est l'avant-poste de la Confrérie. Votre réputation auprès de {faction:59} commence à Neutre. L'atout Diplomate de l'Héritage de Forever augmente les gains de réputation.",
 
 	-- Step 2: Secret Plans: Fiery Flux
-	-- {area:1443} Slag Pit · {object:147516} Dark Iron · {item:18945} Dark Iron Residue
+	-- {area:1443} Slag Pit · {object:147516} Dark Iron (no name in this language: may be words) · {item:18945} Dark Iron Residue
 	["The plans lie in the {area:1443} of the Cauldron, guarded by {object:147516} dwarves. {object:147516} dwarves also drop {item:18945}, which Burninate takes for Gaining Acceptance."] = "Les plans se trouvent dans {area:1443} du Chaudron, gardés par des nains {object:147516}. Les nains {object:147516} lâchent aussi {item:18945}, que Burninate prend pour Se faire accepter.",
 
 	-- Step 3: Back to Burninate
@@ -51,10 +52,4 @@ return {
 	["{faction:59} to Exalted"] = "{faction:59} jusqu'à Exalté",
 	-- {area:2717} Molten Core · {item:11099} Dark Iron Ore
 	["Keep turning in {area:2717} materials and {item:11099} at Lokhtos until Exalted."] = "Continuez à rendre des matériaux de {area:2717} et du {item:11099} auprès de Lokhtos jusqu'à Exalté.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Restoring {item:18942} Supplies repeats in three versions: {item:3356}, Iron Bars or {item:4234}, each with Coal and an {item:18944}. Incendosaurs (level 47-49) in the north of {zone:1427} drop a scale every time; Burninate himself sells Coal."] = "Réapprovisionnement en {item:18942} se répète en trois versions : {item:3356}, Barres de fer ou {item:4234}, chacune avec du Charbon et {item:18944}. Les Incendosaures (niveau 47-49) au nord de {zone:1427} lâchent une écaille à chaque fois ; Burninate vend lui-même le Charbon.",
-	-- ["{faction:59} Reputation"] = "Réputation : {faction:59}",
-	-- ["{npc:12944} trades in the Grim Guzzler inside {area:1584}. His Favor Amongst the Brotherhood turn-ins take {item:11099} (mined from {object:147516} Deposits with {skill:186}), {item:11382}, {item:17010}, {item:17011} and {item:17012}. {npc:14387} at the {area:1445} entrance offers attunement to the {area:2717}."] = "{npc:12944} commerce au Sinistre écluseur, dans {area:1584}. Ses quêtes Faveur auprès de la Confrérie prennent {item:11099} (extrait des gisements de {object:147516} avec {skill:186}), {item:11382}, {item:17010}, {item:17011} et {item:17012}. {npc:14387}, à l'entrée de {area:1445}, propose l'harmonisation pour {area:2717}.",
-	-- ["{npc:14624}: Restoring {item:18942} Supplies"] = "{npc:14624} : Réapprovisionnement en {item:18942}",
 }

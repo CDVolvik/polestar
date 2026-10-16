@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Korean words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -10,7 +11,7 @@ return {
 
 	-- Step 1: Clavicus Knavingham: A Donation of Wool
 	-- {npc:14722} Clavicus Knavingham · {faction:72} Stormwind · {zone:1453} Stormwind City · {item:14047} Runecloth · {quest:7796} Additional Runecloth
-	["{npc:14722} takes cloth for {faction:72} in {zone:1453}. The first donations of Wool, Silk, Mageweave and {item:14047} (60 cloth each) are done once and give the most reputation per cloth; after them, {quest:7796} repeats until Exalted. Exalted with another race's city lets you buy that race's mounts. Forever's Legacy Diplomat perk increases reputation gains."] = "{zone:1453}의 {npc:14722}이(가) {faction:72}을(를) 위한 옷감을 받습니다. 양모, 비단, 마법 직물, {item:14047}의 첫 기부(각 60개)는 한 번만 할 수 있으며 옷감당 평판이 가장 높습니다. 그 후에는 확고한 동맹까지 {quest:7796}이(가) 반복됩니다. 다른 종족의 도시와 확고한 동맹이 되면 그 종족의 탈것을 구매할 수 있습니다. Forever의 Legacy Diplomat 특전은 평판 획득량을 늘려 줍니다.",
+	["{npc:14722} takes cloth for {faction:72} in {zone:1453}. The first donations of Wool, Silk, Mageweave and {item:14047} (60 cloth each) are done once and give the most reputation per cloth; after them, {quest:7796} repeats until Exalted. Exalted with another race's city lets you buy that race's mounts. Forever's Legacy Diplomat perk increases reputation gains."] = "{zone:1453}의 {npc:14722}이(가) {faction:72}을(를) 위한 옷감을 받습니다. 양모, 비단, 마법 직물, {item:14047}의 첫 기부(각 60개)는 한 번만 할 수 있으며 옷감당 평판이 가장 높습니다. 그 후에는 확고한 동맹까지 {quest:7796}이(가) 반복됩니다. 다른 종족의 도시와 확고한 동맹이 되면 그 종족의 탈것을 구매할 수 있습니다. Forever의 외교관 유산 특전은 평판 획득량을 늘려 줍니다.",
 
 	-- Step 2: Wool Cloth
 	-- plural, as words: Riverpaw Bandits = {npc:452} Riverpaw Bandit
@@ -23,7 +24,7 @@ return {
 	["Dunemaul ogres (level 45-48) drop it here. The Auction House works too."] = "이곳의 모래망치 오우거(45-48레벨)가 떨어뜨립니다. 경매장도 이용할 수 있습니다.",
 
 	-- Step 8: Runecloth
-	-- {object:92525} Argent Dawn
+	-- {object:92525} Argent Dawn (no name in this language: may be words)
 	-- plural, as words: Dark Adepts = {npc:8546} Dark Adept
 	["Dark Adepts and Shadowmages (level 58-60) drop it here; every Scourge kill here also counts toward the {object:92525} (see that guide). The Auction House works too."] = "이곳의 암흑의 수행사제와 어둠마법사(58-60레벨)가 떨어뜨립니다. 이곳의 스컬지 처치는 {object:92525}에도 집계됩니다(해당 가이드 참고). 경매장도 이용할 수 있습니다.",
 

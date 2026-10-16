@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Portuguese (Brazil) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Portuguese (Brazil) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -33,7 +34,7 @@ return {
 	-- Step 6: Shadowvale
 	-- {quest:91317} The Tarnished · {area:16881} Shadowvale · {area:16616} Whispering Forest · {item:246213} Sturdy Lumber · {npc:259431} Rudolph Gelhardt
 	["{quest:91317} hold the ruined village of {area:16881} in the {area:16616}, south-west of the keep. The {item:246213} is piled in the root cellar of one of its houses; Commander {npc:259431} walks among his Tarnished."] = "{quest:91317} ocupam a aldeia em ruínas de {area:16881}, em {area:16616}, a sudoeste da fortaleza. A {item:246213} está empilhada no porão de uma das casas; o comandante {npc:259431} anda entre seus Manchados.",
-	-- {object:554626} Lumber Pile
+	-- {object:554626} Lumber Pile (no name in this language: may be words)
 	["{object:554626}, in the root cellar"] = "{object:554626}, no porão",
 	-- plural, as words: Tarnished Drudges = {npc:259434} Tarnished Drudge
 	["Tarnished Drudges"] = "Labutadores Manchados",
@@ -44,22 +45,23 @@ return {
 	["Back to the keep"] = "Volte à fortaleza",
 
 	-- Step 8: A Lesson in Divinity
-	["Danitha offers the first Lesson in Divinity at level 12."] = "Danitha oferece a primeira missão Uma lição de divindade no nível 12.",
+	-- {npc:246378} Danitha Morr
+	["{npc:246378} offers the first Lesson in Divinity at level 12."] = "{npc:246378} oferece a primeira missão Uma lição de divindade no nível 12.",
 
 	-- Step 9: The Undercity
-	-- {area:159} Brill · {area:153} Ruins of Lordaeron · {zone:1458} Undercity · {npc:10181} Lady Sylvanas Windrunner · {object:36126} Royal Quarter · {npc:257648} Tanis Alderwood · {object:36078} Trade Quarter
+	-- {area:159} Brill · {area:153} Ruins of Lordaeron · {zone:1458} Undercity · {npc:10181} Lady Sylvanas Windrunner · {object:36126} Royal Quarter (no name in this language: may be words) · {npc:257648} Tanis Alderwood · {object:36078} Trade Quarter (no name in this language: may be words)
 	["Walk south from {area:159} to the {area:153} and down into the {zone:1458}. {npc:10181} holds court in the {object:36126}; {npc:257648} begs in the {object:36078}."] = "Ande para o sul de {area:159} até as {area:153} e desça até a {zone:1458}. {npc:10181} reina no {object:36126}; {npc:257648} mendiga no {object:36078}.",
 
 	-- Step 10: Linen Cloth
-	-- {item:2589} Linen Cloth
+	-- {npc:257648} Tanis Alderwood · {item:2589} Linen Cloth
 	-- plural, as words: Scarlet Zealots = {npc:1537} Scarlet Zealot · Scarlet Friars = {npc:1538} Scarlet Friar
-	["Tanis needs 10 {item:2589}. Scarlet Zealots and Scarlet Friars drop it about three times in ten; bring it along if you already carry some."] = "Tanis precisa de 10 {item:2589}. Zelotes Escarlates e Frades Escarlates soltam cerca de três vezes em dez; traga se já tiver.",
+	["{npc:257648} needs 10 {item:2589}. Scarlet Zealots and Scarlet Friars drop it about three times in ten; bring it along if you already carry some."] = "{npc:257648} precisa de 10 {item:2589}. Zelotes Escarlates e Frades Escarlates soltam cerca de três vezes em dez; traga se já tiver.",
 
 	-- Step 12: The Symbol of Life
 	-- {item:6866} Symbol of Life
 	["The {item:6866}"] = "{item:6866}",
-	-- {area:16602} Bandarion Keep · {item:6866} Symbol of Life · {npc:257655} Deathguard Billmuth
-	["Back to {area:16602}. Danitha gives you the {item:6866}; {npc:257655} waits downstairs in the keep."] = "Volte a {area:16602}. Danitha lhe dá o {item:6866}; {npc:257655} espera no andar de baixo da fortaleza.",
+	-- {area:16602} Bandarion Keep · {npc:246378} Danitha Morr · {item:6866} Symbol of Life · {npc:257655} Deathguard Billmuth
+	["Back to {area:16602}. {npc:246378} gives you the {item:6866}; {npc:257655} waits downstairs in the keep."] = "Volte a {area:16602}. {npc:246378} lhe dá o {item:6866}; {npc:257655} espera no andar de baixo da fortaleza.",
 
 	-- Step 13: Deathguard Falgan
 	-- {area:812} Venomweb Vale · {item:6866} Symbol of Life · {npc:257663} Deathguard Falgan · {npc:246378} Danitha Morr
@@ -72,8 +74,6 @@ return {
 	["The Scarlet Crusaders camped around {area:812} carry the attack plans."] = "Os Cruzados Escarlates acampados em volta de {area:812} carregam os planos de ataque.",
 
 	-- Step 15: Redemption
-	-- {area:16602} Bandarion Keep · {spell:7328} Redemption
-	["Back to {area:16602}: Billmuth takes the plans, Danitha teaches you {spell:7328}."] = "Volte a {area:16602}: Billmuth fica com os planos, Danitha lhe ensina {spell:7328}.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- {area:16602} Bandarion Keep · {npc:246378} Danitha Morr · {spell:7328} Redemption
+	["Back to {area:16602}: Billmuth takes the plans, {npc:246378} teaches you {spell:7328}."] = "Volte a {area:16602}: Billmuth fica com os planos, {npc:246378} lhe ensina {spell:7328}.",
 }

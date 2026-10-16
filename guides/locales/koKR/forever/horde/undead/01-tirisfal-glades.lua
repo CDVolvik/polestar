@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Korean words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Undertaker Mordo
@@ -35,11 +36,12 @@ return {
 	["The {area:154} trainers stand around the church"] = "{area:154}의 상급자들은 교회 주변에 있습니다",
 
 	-- Step 5: Aramis and Venya
-	["Aramis and Venya"] = "아라미스와 벤야",
-	-- {npc:244808} Aramis Hammerhand · {npc:5667} Venya Marthand
+	-- {npc:244808} Aramis · {npc:5667} Venya
+	["{npc:244808} and {npc:5667}"] = "{npc:244808}와(과) {npc:5667}",
+	-- {npc:244808} Aramis · {npc:5667} Venya
 	["{npc:244808} and {npc:5667} stand beside the church."] = "{npc:244808}와(과) {npc:5667}이(가) 교회 옆에 서 있습니다.",
-	-- {npc:1569} Shadow Priest Sarvis
-	["{npc:1569}: the scroll for Aramis"] = "{npc:1569}: 아라미스에게 줄 두루마리",
+	-- {npc:1569} Shadow Priest Sarvis · {npc:244808} Aramis
+	["{npc:1569}: the scroll for {npc:244808}"] = "{npc:1569}: {npc:244808}에게 줄 두루마리",
 
 	-- Step 6: Rattlecages, scavengers and duskbats
 	["Rattlecages, scavengers and duskbats"] = "해골, 승냥이, 그늘박쥐",
@@ -68,7 +70,8 @@ return {
 	-- Step 11: Night Web's Hollow
 	-- plural, as words: Young Night Web Spiders = {npc:1504} Young Night Web Spider · Night Web Spiders = {npc:1505} Night Web Spider
 	["Head west to the cave. The Young Night Web Spiders sit outside; the Night Web Spiders and the Webbed Victims are inside."] = "서쪽 동굴로 가세요. 새끼 검은그물거미는 밖에 있고, 검은그물거미와 거미줄에 갇힌 희생자는 안에 있습니다.",
-	["Free six Webbed Victims inside the cave for Aramis"] = "아라미스를 위해 동굴 안에서 거미줄에 갇힌 희생자 6명을 구출하세요",
+	-- {npc:244808} Aramis
+	["Free six Webbed Victims inside the cave for {npc:244808}"] = "{npc:244808}을(를) 위해 동굴 안에서 거미줄에 갇힌 희생자 6명을 구출하세요",
 	["Webbed Victims"] = "거미줄에 갇힌 희생자",
 
 	-- Step 12: Back to Deathknell
@@ -147,8 +150,10 @@ return {
 	["Ask {npc:10666} for his report"] = "{npc:10666}에게 보고를 요청하세요",
 
 	-- Step 29: Calvin Montague
-	["Walk on west to Calvin and talk to him: he wants a duel."] = "서쪽의 캘빈 몬테그에게 가서 말을 거세요. 결투를 원합니다.",
-	["Beat Calvin in the duel"] = "결투에서 캘빈 몬테그를 이기세요",
+	-- {npc:6784} Calvin Montague
+	["Walk on west to {npc:6784} and talk to him: he wants a duel."] = "서쪽의 {npc:6784}에게 가서 말을 거세요. 결투를 원합니다.",
+	-- {npc:6784} Calvin Montague
+	["Beat {npc:6784} in the duel"] = "결투에서 {npc:6784}을(를) 이기세요",
 
 	-- Step 30: Hearth to Brill
 	-- {area:159} Brill
@@ -207,9 +212,9 @@ return {
 	["Back up the road to {area:159}."] = "길을 따라 {area:159}(으)로 돌아가세요.",
 
 	-- Step 39: Agamand Mills
-	-- {area:157} Agamand Mills · {npc:1657} Devlin Agamand · {npc:1656} Thurman Agamand · {item:2839} A Letter to Yvette
+	-- {area:157} Agamand Mills · {npc:1657} Devlin Agamand · {npc:1656} Thurman Agamand · {item:2839} A Letter to Yvette · {npc:3549} Shelene Rhobart
 	-- plural, as words: Cracked Skull Soldiers = {npc:1523} Cracked Skull Soldier · Darkeye Bonecasters = {npc:1522} Darkeye Bonecaster · Duskbats = {npc:1512} Duskbat
-	["Follow the road north-west to {area:157}. {npc:1657} walks the graveyard south of the mills; Nissa, Gregor and {npc:1656} haunt the mills themselves. Rattlecage and Cracked Skull Soldiers drop the ribs, Darkeye Bonecasters the skulls, and any of them may drop {item:2839}. From here on, kill the Duskbats and Darkhounds you pass: Shelene wants their wings and hides."] = "길을 따라 북서쪽 {area:157}(으)로 가세요. {npc:1657}은(는) 방앗간 남쪽 묘지를 걸어 다니고, 니사, 그레고르, {npc:1656}은(는) 방앗간 안에 출몰합니다. 덜그럭거리는 해골병사와 금이간 해골병사는 갈비뼈를, 검은눈 해골마법사는 두개골을 떨어뜨리며, 누구든 {item:2839}을(를) 떨어뜨릴 수 있습니다. 지금부터 지나가며 그늘박쥐와 암흑사냥개를 처치하세요. 셸렌에게 날개와 가죽이 필요합니다.",
+	["Follow the road north-west to {area:157}. {npc:1657} walks the graveyard south of the mills; Nissa, Gregor and {npc:1656} haunt the mills themselves. Rattlecage and Cracked Skull Soldiers drop the ribs, Darkeye Bonecasters the skulls, and any of them may drop {item:2839}. From here on, kill the Duskbats and Darkhounds you pass: {npc:3549} wants their wings and hides."] = "길을 따라 북서쪽 {area:157}(으)로 가세요. {npc:1657}은(는) 방앗간 남쪽 묘지를 걸어 다니고, 니사, 그레고르, {npc:1656}은(는) 방앗간 안에 출몰합니다. 덜그럭거리는 해골병사와 금이간 해골병사는 갈비뼈를, 검은눈 해골마법사는 두개골을 떨어뜨리며, 누구든 {item:2839}을(를) 떨어뜨릴 수 있습니다. 지금부터 지나가며 그늘박쥐와 암흑사냥개를 처치하세요. {npc:3549}에게 날개와 가죽이 필요합니다.",
 	-- {item:2839} A Letter to Yvette
 	["{item:2839}, a rare drop"] = "희귀 획득품 {item:2839}",
 	["Only if the letter dropped"] = "편지를 얻었을 때만",
@@ -228,7 +233,8 @@ return {
 	-- {npc:275954} Bareth Dawnstone
 	-- plural, as words: Scarlet Warriors = {npc:1535} Scarlet Warrior
 	["Scarlet Warriors guard the outpost just west of the pumpkin fields. {npc:275954} is held inside: talk to him and stay with him until he is out."] = "붉은십자군 전사가 호박밭 바로 서쪽 전초기지를 지킵니다. {npc:275954}이(가) 안에 갇혀 있습니다. 말을 걸고 빠져나올 때까지 함께 있으세요.",
-	["Escort Bareth out of the outpost"] = "바레스를 전초기지 밖으로 호위하세요",
+	-- {npc:275954} Bareth Dawnstone
+	["Escort {npc:275954} out of the outpost"] = "{npc:275954}을(를) 전초기지 밖으로 호위하세요",
 
 	-- Step 43: Vile Fin shore
 	["Vile Fin shore"] = "썩은지느러미 물가",
@@ -237,8 +243,8 @@ return {
 	-- Step 44: Paladin: Whispering Forest
 	-- {area:16616} Whispering Forest
 	["Paladin: {area:16616}"] = "성기사: {area:16616}",
-	-- {area:16616} Whispering Forest
-	["Head west into the {area:16616}; Hilda and Ephram camp at its edge."] = "서쪽 {area:16616}(으)로 가세요. 퀘스트 제공자들이 숲 가장자리에서 야영합니다.",
+	-- {area:16616} Whispering Forest · {npc:246389} Hilda · {npc:259190} Ephram
+	["Head west into the {area:16616}; {npc:246389} and {npc:259190} camp at its edge."] = "서쪽 {area:16616}(으)로 가세요. {npc:246389}와(과) {npc:259190}이(가) 숲 가장자리에서 야영합니다.",
 
 	-- Step 45: Shadowvale
 	-- {area:16881} Shadowvale · {item:286269} Glowing Crystal Fragment
@@ -254,15 +260,15 @@ return {
 	["{npc:2128}: {npc:4568} in the {zone:1458} takes it"] = "{npc:2128}: {zone:1458}의 {npc:4568}에게 가져가세요",
 
 	-- Step 49: Ulag the Cleaver
-	-- {npc:1496} Deathguard Dillinger · {area:159} Brill
-	["{npc:1496} stands in {area:159}. Ulag waits in the mausoleum on the hill just north of town: open the gate and fight him."] = "{npc:1496}은(는) {area:159}에 있습니다. 울라그는 마을 바로 북쪽 언덕의 묘지에서 기다립니다. 문을 열고 그와 싸우십시오.",
+	-- {npc:1496} Deathguard Dillinger · {area:159} Brill · {npc:6390} Ulag
+	["{npc:1496} stands in {area:159}. {npc:6390} waits in the mausoleum on the hill just north of town: open the gate and fight him."] = "{npc:1496}은(는) {area:159}에 있습니다. {npc:6390}은(는) 마을 바로 북쪽 언덕의 묘지에서 기다립니다. 문을 열고 그와 싸우십시오.",
 
 	-- Step 50: Carendin Halgar
-	-- {area:159} Brill · {area:153} Ruins of Lordaeron · {zone:1458} Undercity · {npc:5675} Carendin Halgar · {object:36082} Magic Quarter
+	-- {area:159} Brill · {area:153} Ruins of Lordaeron · {zone:1458} Undercity · {npc:5675} Carendin Halgar · {object:36082} Magic Quarter (no name in this language: may be words)
 	["Walk south from {area:159} to the {area:153} and down into the {zone:1458}. {npc:5675} stands in the {object:36082}. The Scarlet camp is just west of the ruins."] = "{area:159}에서 남쪽 {area:153}(으)로 가서 {zone:1458}(으)로 내려가세요. {npc:5675}은(는) {object:36082}에 있습니다. 붉은십자군 야영지는 폐허 바로 서쪽입니다.",
 
 	-- Step 51: Anastasia Hartwell
-	-- {area:159} Brill · {area:153} Ruins of Lordaeron · {zone:1458} Undercity · {npc:4568} Anastasia Hartwell · {object:36082} Magic Quarter
+	-- {area:159} Brill · {area:153} Ruins of Lordaeron · {zone:1458} Undercity · {npc:4568} Anastasia Hartwell · {object:36082} Magic Quarter (no name in this language: may be words)
 	["Walk south from {area:159} to the {area:153} and down into the {zone:1458}. {npc:4568} stands in the {object:36082}. The Scarlet camp is just west of the ruins."] = "{area:159}에서 남쪽 {area:153}(으)로 가서 {zone:1458}(으)로 내려가세요. {npc:4568}은(는) {object:36082}에 있습니다. 붉은십자군 야영지는 폐허 바로 서쪽입니다.",
 
 	-- Step 52: The Scarlet camp
@@ -279,8 +285,8 @@ return {
 	["Take the road south-east out of {area:159}; Terrence stands on it short of the zeppelin towers."] = "남동쪽 길로 {area:159}을(를) 나가세요. 죽음의경비병 테렌스가 비행선 탑 조금 못 미쳐 서 있습니다.",
 
 	-- Step 56: Hadric Harlson
-	-- {npc:1495} Deathguard Linnea
-	["Hadric stands at {npc:1495}'s camp."] = "헨드릭 할슨은 {npc:1495}의 야영지에 있습니다.",
+	-- {npc:267009} Hadric Harlson · {npc:1495} Deathguard Linnea
+	["{npc:267009} stands at {npc:1495}'s camp."] = "{npc:267009}은(는) {npc:1495}의 야영지에 있습니다.",
 
 	-- Step 57: Balnir Farmstead
 	-- {quest:96897} The Cult of the Damned
@@ -330,31 +336,28 @@ return {
 	["Back to {area:159}."] = "{area:159}(으)로 돌아가세요.",
 
 	-- Step 66: Leonid Barthalomew
-	-- {area:157} Agamand Mills · {area:16616} Whispering Forest
-	["Follow the road west past {area:157} to the {area:16616}. Leonid stands just north of Hilda's camp."] = "길을 따라 서쪽으로 {area:157}을(를) 지나 {area:16616}(으)로 가세요. 리어니드 바돌로매는 야영지 바로 북쪽에 있습니다.",
+	-- {area:157} Agamand Mills · {area:16616} Whispering Forest · {npc:246389} Hilda
+	["Follow the road west past {area:157} to the {area:16616}. Leonid stands just north of {npc:246389}'s camp."] = "길을 따라 서쪽으로 {area:157}을(를) 지나 {area:16616}(으)로 가세요. 리어니드 바돌로매는 {npc:246389}의 야영지 바로 북쪽에 있습니다.",
 	-- {npc:246378} Danitha Morr
 	["Listen to Leonid and {npc:246378}, then talk to him again"] = "리어니드와 {npc:246378}의 대화를 들은 뒤 그에게 다시 말을 거세요",
 
 	-- Step 68: The Undercity
-	-- {object:1661} The Undercity · {area:153} Ruins of Lordaeron · {npc:5675} Carendin Halgar · {object:36082} Magic Quarter · {item:6284} Runes of Summoning · {npc:4606} Aelthalyste · {object:36070} War Quarter · {npc:4568} Anastasia Hartwell
+	-- {object:1661} The Undercity (no name in this language: may be words) · {area:153} Ruins of Lordaeron · {npc:5675} Carendin Halgar · {object:36082} Magic Quarter (no name in this language: may be words) · {item:6284} Runes of Summoning · {npc:4606} Aelthalyste · {object:36070} War Quarter (no name in this language: may be words) · {npc:4568} Anastasia Hartwell
 	["{object:1661} is under the {area:153}, beside the zeppelin towers. {npc:5675} is in the {object:36082}: use the {item:6284} on the summoning circle beside him and defeat the voidwalker. {npc:4606} is in the {object:36070}. {npc:4568} is in the {object:36082} too."] = "{object:1661}은(는) 비행선 탑 옆 {area:153} 아래에 있습니다. {npc:5675}은(는) {object:36082}에 있습니다. 그 옆의 소환진에서 {item:6284}을(를) 사용하고 공허방랑자를 물리치세요. {npc:4606}은(는) {object:36070}에 있습니다. {npc:4568}도 {object:36082}에 있습니다.",
 
 	-- Step 69: Zeppelin to Durotar
 	-- {zone:1411} Durotar
 	["Zeppelin to {zone:1411}"] = "비행선으로 {zone:1411}에 가기",
-	-- {area:159} Brill · {area:153} Ruins of Lordaeron · {zone:1454} Orgrimmar · {object:3202} Grom'gol
+	-- {area:159} Brill · {area:153} Ruins of Lordaeron · {zone:1454} Orgrimmar · {object:3202} Grom'gol (no name in this language: may be words)
 	["Walk south-east from {area:159} to the zeppelin towers outside the {area:153} and board the zeppelin to {zone:1454} (the other one goes to {object:3202})."] = "{area:159}에서 남동쪽으로 {area:153} 밖의 비행선 탑으로 가서 {zone:1454}행 비행선에 타세요(다른 하나는 {object:3202}(으)로 갑니다).",
 	["Zeppelin tower"] = "비행선 탑",
 
 	-- Step 70: The Crossroads
-	-- {zone:1454} Orgrimmar · {zone:1411} Durotar · {area:815} Southfury River · {area:379} Far Watch Post
-	["The zeppelin lands at the tower just north-east of {zone:1454}'s main gate. Follow the road south into {zone:1411}, cross the {area:815} bridge below {area:379} and follow the road west to the Crossroads."] = "비행선은 {zone:1454} 정문 바로 북동쪽 탑에 내립니다. 길을 따라 남쪽 {zone:1411}(으)로 가서, {area:379} 아래 {area:815} 다리를 건넌 뒤 서쪽 길을 따라 크로스로드로 가세요.",
+	-- {zone:1454} Orgrimmar · {zone:1411} Durotar · {area:815} Southfury River · {area:379} Far Watch Post · {area:380} The Crossroads
+	["The zeppelin lands at the tower just north-east of {zone:1454}'s main gate. Follow the road south into {zone:1411}, cross the {area:815} bridge below {area:379} and follow the road west to the {area:380}."] = "비행선은 {zone:1454} 정문 바로 북동쪽 탑에 내립니다. 길을 따라 남쪽 {zone:1411}(으)로 가서, {area:379} 아래 {area:815} 다리를 건넌 뒤 서쪽 길을 따라 {area:380}로 가세요.",
 	-- {npc:3615} Devrak
 	["{npc:3615}, the wind rider master"] = "와이번 조련사 {npc:3615}",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["The spiders lurk in the woods at the far east end of the glades. Riptear, a rogue abomination, wanders just north-west of them. Riptear is elite: grouping up is advised."] = "거미는 숲 동쪽 맨 끝의 수풀에 숨어 있습니다. 떠돌이 누더기골렘 너덜토막이 그 바로 북서쪽을 배회합니다. 너덜토막은 정예이니 파티를 권장합니다.",
 	-- ["The zeppelin lands at the tower just north-east of {zone:1454}'s main gate. Follow the road south into {zone:1411}, cross the {area:815} bridge below {area:379} and follow the road west to the {area:380}."] = "비행선은 {zone:1454} 정문 바로 북동쪽 탑에 내립니다. 길을 따라 남쪽 {zone:1411}(으)로 가서, {area:379} 아래 {area:815} 다리를 건넌 뒤 서쪽 길을 따라 {area:380}(으)로 가세요.",
-	-- ["{item:286326}, from Riptear"] = "너덜토막에게서 {item:286326}",
-	-- ["{npc:1495}: Riptear, an elite abomination in the east"] = "{npc:1495}: 동쪽의 정예 누더기골렘 너덜토막",
 }

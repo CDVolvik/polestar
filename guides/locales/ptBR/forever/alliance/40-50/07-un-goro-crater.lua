@@ -3,27 +3,29 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Portuguese (Brazil) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Portuguese (Brazil) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Gadgetzan
-	-- {area:144} Thelsamar · {area:150} Menethil Harbor · {area:976} Gadgetzan
-	["From {area:144} fly to {area:150}, take the boat to Theramore and fly on to {area:976}. Torwa's first quest in the crater needs level 48: finish the level here if you are short."] = "De {area:144}, voe para {area:150}, pegue o barco para Theramore e voe até {area:976}. A primeira missão de Torwa na cratera exige nível 48: complete o nível aqui se faltar.",
+	-- {area:144} Thelsamar · {area:150} Menethil Harbor · {area:976} Gadgetzan · {npc:9619} Torwa
+	["From {area:144} fly to {area:150}, take the boat to Theramore and fly on to {area:976}. {npc:9619}'s first quest in the crater needs level 48: finish the level here if you are short."] = "De {area:144}, voe para {area:150}, pegue o barco para Theramore e voe até {area:976}. A primeira missão de {npc:9619} na cratera exige nível 48: complete o nível aqui se faltar.",
 	-- {area:976} Gadgetzan
 	["grind on the Wastewanderers or Dunemaul ogres around {area:976}"] = "mate Errantes ou ogros Dunamalho ao redor de {area:976}",
 
-	-- Step 2: Torwa Pathfinder
-	-- {area:976} Gadgetzan · {zone:1449} Un'Goro Crater
-	["Ride west out of {area:976} to the long ramp down into {zone:1449}. Torwa camps at the foot of the ramp, in the south-east corner of the crater."] = "Siga para o oeste, saindo de {area:976}, até a longa rampa que desce para {zone:1449}. Torwa acampa ao pé da rampa, no canto sudeste da cratera.",
+	-- Step 2: Torwa
+	-- {area:976} Gadgetzan · {zone:1449} Un'Goro Crater · {npc:9619} Torwa
+	["Ride west out of {area:976} to the long ramp down into {zone:1449}. {npc:9619} camps at the foot of the ramp, in the south-east corner of the crater."] = "Siga para o oeste, saindo de {area:976}, até a longa rampa que desce para {zone:1449}. {npc:9619} acampa ao pé da rampa, no canto sudeste da cratera.",
 
 	-- Step 3: Fresh Threshadon Carcass
-	["The dead Threshadon lies by the water north of Torwa."] = "O Manguadonte morto fica junto à água, ao norte de Torwa.",
+	-- {npc:9619} Torwa
+	["The dead Threshadon lies by the water north of {npc:9619}."] = "O Manguadonte morto fica junto à água, ao norte de {npc:9619}.",
 
 	-- Step 5: Lar'korwi Mates and the raft
 	-- plural, as words: Lar'korwi Mates = {npc:9683} Lar'korwi Mate
 	["Lar'korwi Mates and the raft"] = "Lar'korwi Fêmeas e a jangada",
-	-- {npc:8737} Linken · {item:11116} A Mangled Journal
+	-- {npc:9619} Torwa · {npc:8737} Linken · {item:11116} A Mangled Journal
 	-- plural, as words: Lar'korwi Mates = {npc:9683} Lar'korwi Mate
-	["The Lar'korwi Mates prowl the jungle west of Torwa. The wrecked raft lies on the shore of the lake there; the small pack sits in the water beside it. Keep the compass, map and key for {npc:8737}. Any beast in the crater may drop {item:11116}: right-click it."] = "As Lar'korwi Fêmeas rondam a selva a oeste de Torwa. A jangada destruída fica na margem do lago ali; a mochila pequena está na água ao lado. Guarde a bússola, o mapa e a chave para {npc:8737}. Qualquer fera da cratera pode deixar cair {item:11116}: clique com o botão direito nele.",
+	["The Lar'korwi Mates prowl the jungle west of {npc:9619}. The wrecked raft lies on the shore of the lake there; the small pack sits in the water beside it. Keep the compass, map and key for {npc:8737}. Any beast in the crater may drop {item:11116}: right-click it."] = "As Lar'korwi Fêmeas rondam a selva a oeste de {npc:9619}. A jangada destruída fica na margem do lago ali; a mochila pequena está na água ao lado. Guarde a bússola, o mapa e a chave para {npc:8737}. Qualquer fera da cratera pode deixar cair {item:11116}: clique com o botão direito nele.",
 
 	-- Step 7: Marshal's Refuge
 	-- {area:541} Marshal's Refuge · {object:157936} Un'Goro Dirt Pile
@@ -35,7 +37,8 @@ return {
 	["{npc:9117}, at the back of the cave"] = "{npc:9117}, no fundo da caverna",
 
 	-- Step 8: Karna Remtravel
-	["Karna stands just outside the refuge."] = "Karna fica logo fora do refúgio.",
+	-- {npc:9618} Karna Remtravel
+	["{npc:9618} stands just outside the refuge."] = "{npc:9618} fica logo fora do refúgio.",
 
 	-- Step 9: Fire Plume Ridge and the eastern jungle
 	-- {area:537} Fire Plume Ridge
@@ -56,8 +59,8 @@ return {
 
 	-- Step 12: Grind to 50
 	["Grind to 50"] = "Suba até o nível 50",
-	-- {area:1943} Ironstone Plateau · {npc:9622} U'cha
-	["The gorillas of {area:1943} come in small groups and drop nothing for you yet; Torwa's pelt quest comes later. Stay out of the deepest cave: {npc:9622} is level 55."] = "Os gorilas de {area:1943} vêm em pequenos grupos e ainda não deixam cair nada para você; a missão das peles de Torwa vem depois. Fique fora da caverna mais funda: {npc:9622} é nível 55.",
+	-- {area:1943} Ironstone Plateau · {npc:9619} Torwa · {npc:9622} U'cha
+	["The gorillas of {area:1943} come in small groups and drop nothing for you yet; {npc:9619}'s pelt quest comes later. Stay out of the deepest cave: {npc:9622} is level 55."] = "Os gorilas de {area:1943} vêm em pequenos grupos e ainda não deixam cair nada para você; a missão das peles de {npc:9619} vem depois. Fique fora da caverna mais funda: {npc:9622} é nível 55.",
 	-- {npc:6514} Un'Goro Gorilla · {area:1943} Ironstone Plateau · {zone:1449} Un'Goro Crater
 	["grind on {npc:6514} at {area:1943}, {zone:1449}"] = "mate {npc:6514} em {area:1943}, {zone:1449}",
 
@@ -72,8 +75,8 @@ return {
 
 	-- Step 14: Northern Pylon
 	["Northern Pylon"] = "Torre de Cristal Norte",
-	-- {npc:9166} Pterrordax · {npc:9998} Shizzle
-	["The pylon stands on the slope east of the refuge. {npc:9166} circle the slopes around it: they count for Spraggle and drop {npc:9998}'s scales."] = "A torre fica na encosta a leste do refúgio. {npc:9166} sobrevoam as encostas ao redor: contam para Espraga e deixam cair as escamas de {npc:9998}.",
+	-- {npc:9166} Pterrordax · {npc:9997} Spraggle Frock · {npc:9998} Shizzle
+	["The pylon stands on the slope east of the refuge. {npc:9166} circle the slopes around it: they count for {npc:9997} and drop {npc:9998}'s scales."] = "A torre fica na encosta a leste do refúgio. {npc:9166} sobrevoam as encostas ao redor: contam para {npc:9997} e deixam cair as escamas de {npc:9998}.",
 
 	-- Step 15: The east side
 	["The east side"] = "O lado leste",
@@ -85,14 +88,15 @@ return {
 	["Eastern Pylon"] = "Torre de Cristal Leste",
 	["The pylon stands on the eastern cliffs."] = "A torre fica nos penhascos leste.",
 
-	-- Step 17: Torwa Pathfinder
-	["Ride south along the eastern cliffs to Torwa at the foot of the ramp."] = "Siga para o sul pelos penhascos leste até Torwa, ao pé da rampa.",
+	-- Step 17: Torwa
+	-- {npc:9619} Torwa
+	["Ride south along the eastern cliffs to {npc:9619} at the foot of the ramp."] = "Siga para o sul pelos penhascos leste até {npc:9619}, ao pé da rampa.",
 	["The pelts come after loop 2, on the gorilla plateau"] = "As peles vêm depois do circuito 2, no planalto dos gorilas",
 
 	-- Step 18: The Gorishi hive
 	["The Gorishi hive"] = "A colmeia Gorishi",
-	-- {quest:3764} Un'Goro Soil · {npc:9166} Pterrordax
-	["Ride west from Torwa: the silithid hive fills the south of the crater. Use the Scraping Vial on a hatchery, a chamber with hanging larvae. Gorishi wasps and workers drop {quest:3764}; {npc:9166} nest on the southern cliffs if you still need kills."] = "Siga para o oeste a partir de Torwa: a colmeia silitídea ocupa o sul da cratera. Use o Frasco para Amostra numa câmara de incubação, uma câmara com larvas penduradas. Vespas e Trabalhadoras Gorishi deixam cair {quest:3764}; {npc:9166} fazem ninho nos penhascos sul, se ainda precisar de abates.",
+	-- {npc:9619} Torwa · {quest:3764} Un'Goro Soil · {npc:9166} Pterrordax
+	["Ride west from {npc:9619}: the silithid hive fills the south of the crater. Use the Scraping Vial on a hatchery, a chamber with hanging larvae. Gorishi wasps and workers drop {quest:3764}; {npc:9166} nest on the southern cliffs if you still need kills."] = "Siga para o oeste a partir de {npc:9619}: a colmeia silitídea ocupa o sul da cratera. Use o Frasco para Amostra numa câmara de incubação, uma câmara com larvas penduradas. Vespas e Trabalhadoras Gorishi deixam cair {quest:3764}; {npc:9166} fazem ninho nos penhascos sul, se ainda precisar de abates.",
 
 	-- Step 19: Bones and equipment
 	["Bones and equipment"] = "Ossos e equipamentos",
@@ -111,11 +115,11 @@ return {
 	["{npc:9998}, at the refuge's entrance"] = "{npc:9998}, na entrada do refúgio",
 
 	-- Step 22: Spraggle Frock
-	-- {npc:9999} Ringo
-	["Spraggle's friend {npc:9999} has gone missing."] = "{npc:9999}, amigo de Espraga, desapareceu.",
+	-- {npc:9997} Spraggle Frock · {npc:9999} Ringo
+	["{npc:9997}'s friend {npc:9999} has gone missing."] = "{npc:9999}, amigo de {npc:9997}, desapareceu.",
 
 	-- Step 23: Ironstone Plateau
-	-- {area:1943} Ironstone Plateau · {area:541} Marshal's Refuge · {npc:9619} Torwa Pathfinder · {npc:9622} U'cha
+	-- {area:1943} Ironstone Plateau · {area:541} Marshal's Refuge · {npc:9619} Torwa · {npc:9622} U'cha
 	["The gorillas live on {area:1943}, east of {area:541}. Keep their pelts for {npc:9619}. Stay out of the deepest cave: {npc:9622} is level 55."] = "Os gorilas vivem em {area:1943}, a leste de {area:541}. Guarde as peles para {npc:9619}. Fique fora da caverna mais funda: {npc:9622} é nível 55.",
 
 	-- Step 24: Ringo
@@ -137,14 +141,15 @@ return {
 	-- {area:982} Noxious Lair · {zone:1446} Tanaris
 	["The Centipaar silithid crawl around the {area:982} in western {zone:1446}, just east of the crater ramp. The Workers are the easiest pulls."] = "Os silitídeos Centiparte rastejam ao redor de {area:982}, no oeste de {zone:1446}, logo a leste da rampa da cratera. Os Trabalhadores são os mais fáceis de puxar.",
 	-- {npc:5458} Centipaar Worker · {area:982} Noxious Lair · {zone:1446} Tanaris
-	["grind on {npc:5458} at The {area:982}, {zone:1446}"] = "mate {npc:5458} em {area:982}, {zone:1446}",
+	["grind on {npc:5458} at {area:982}, {zone:1446}"] = "mate {npc:5458} em {area:982}, {zone:1446}",
 
-	-- Step 29: Torwa Pathfinder
-	["Ride down the ramp into the crater: Torwa camps at its foot."] = "Desça a rampa para a cratera: Torwa acampa ao pé dela.",
+	-- Step 29: Torwa
+	-- {npc:9619} Torwa
+	["Ride down the ramp into the crater: {npc:9619} camps at its foot."] = "Desça a rampa para a cratera: {npc:9619} acampa ao pé dela.",
 
 	-- Step 30: Lar'korwi
-	-- {npc:9684} Lar'korwi · {item:11568} Torwa's Pouch
-	["{npc:9684}'s lair lies in the jungle north of Torwa, below the eastern cliffs: use {item:11568} there. {npc:9684} is level 56: start at full health."] = "O covil de {npc:9684} fica na selva ao norte de Torwa, abaixo dos penhascos leste: use {item:11568} ali. {npc:9684} é nível 56: comece com a vida cheia.",
+	-- {npc:9684} Lar'korwi · {npc:9619} Torwa · {item:11568} Torwa's Pouch
+	["{npc:9684}'s lair lies in the jungle north of {npc:9619}, below the eastern cliffs: use {item:11568} there. {npc:9684} is level 56: start at full health."] = "O covil de {npc:9684} fica na selva ao norte de {npc:9619}, abaixo dos penhascos leste: use {item:11568} ali. {npc:9684} é nível 56: comece com a vida cheia.",
 
 	-- Step 32: U'cha
 	-- {npc:9622} U'cha
@@ -158,8 +163,9 @@ return {
 	-- {area:537} Fire Plume Ridge · {npc:10541} Krakle's Thermometer
 	["Ride east to {area:537}, climb it and use {npc:10541} at the lava vents near the top."] = "Siga para o leste até {area:537}, suba e use {npc:10541} nas aberturas de lava perto do topo.",
 
-	-- Step 36: Torwa Pathfinder
-	["Cross the south of the crater to Torwa by the ramp."] = "Atravesse o sul da cratera até Torwa, junto à rampa.",
+	-- Step 36: Torwa
+	-- {npc:9619} Torwa
+	["Cross the south of the crater to {npc:9619} by the ramp."] = "Atravesse o sul da cratera até {npc:9619}, junto à rampa.",
 
 	-- Step 38: Ironforge
 	-- {area:144} Thelsamar · {area:1537} Ironforge
@@ -176,7 +182,7 @@ return {
 	["{npc:11406}: for Ogtinc in {zone:1447}, keep it"] = "{npc:11406}: para Ogtinc, em {zone:1447}, guarde",
 
 	-- Step 42: Royal Historian Archesonus
-	-- {object:171709} High Seat
+	-- {object:171709} High Seat (no name in this language: may be words)
 	["Archesonus stands beside King Magni in the {object:171709}."] = "Arquefilis fica ao lado do Rei Magni, em {object:171709}.",
 	-- {zone:1428} Burning Steppes
 	["The relics are in the {zone:1428}: keep it"] = "As relíquias estão em {zone:1428}: guarde",
@@ -185,8 +191,6 @@ return {
 	["Bind and train"] = "Vincule e treine",
 
 	-- Step 44: Xiggs Fuselighter
-	-- {object:32359} Military Ward
+	-- {object:32359} Military Ward (no name in this language: may be words)
 	["Xiggs waits in the {object:32359}."] = "Xisto espera em {object:32359}.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
 }

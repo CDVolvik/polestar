@@ -3,10 +3,11 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in French (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in French words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
-	["Warsong Gulch Reputation"] = "Réputation du goulet des Chanteguerres",
+	["Warsong Gulch Reputation"] = "Réputation : Goulet des Chanteguerres",
 
 	-- Step 1: Silverwing Sentinels to Friendly
 	-- {faction:890} Silverwing Sentinels
@@ -61,11 +62,4 @@ return {
 	["{faction:889} to Exalted"] = "{faction:889} jusqu'à Exalté",
 	-- {faction:889} Warsong Outriders
 	["Exalted with the {faction:889} earns a Legacy Point."] = "Être Exalté auprès des {faction:889} rapporte un point d'Héritage.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Keep playing {zone:1460} and capturing flags. On Call to Arms: {zone:1460} weekends the {npc:15350} in the capitals takes three {zone:1460} Marks of Honor for extra reputation."] = "Continuez à jouer au {zone:1460} et à capturer des drapeaux. Lors des week-ends L'appel du combat : {zone:1460}, le {npc:15350} des capitales prend trois Marques d'honneur du {zone:1460} contre de la réputation en plus.",
-	-- ["Keep playing {zone:1460} and capturing flags. On Call to Arms: {zone:1460} weekends the {npc:15351} in the capitals takes three {zone:1460} Marks of Honor for extra reputation."] = "Continuez à jouer au {zone:1460} et à capturer des drapeaux. Lors des week-ends L'appel du combat : {zone:1460}, le {npc:15351} des capitales prend trois Marques d'honneur du {zone:1460} contre de la réputation en plus.",
-	-- ["{npc:14733} takes {zone:1460} Marks of Honor for Vanquish the Invaders!, once per level bracket (data); check them live."] = "{npc:14733} prend des Marques d'honneur du {zone:1460} pour Triomphez des envahisseurs !, une fois par tranche de niveau (données) ; vérifiez en jeu.",
-	-- ["{npc:14781} takes {zone:1460} Marks of Honor for Quell the Silverwing Usurpers, once per level bracket (data); check them live."] = "{npc:14781} prend des Marques d'honneur du {zone:1460} pour Écrasez les usurpateurs d'Aile-argent, une fois par tranche de niveau (données) ; vérifiez en jeu.",
-	-- ["{zone:1460} Reputation"] = "Réputation {zone:1460}",
 }

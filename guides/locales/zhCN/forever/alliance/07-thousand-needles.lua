@@ -3,11 +3,12 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (simplified) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (simplified) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Darkshire
-	-- {item:4371} Bronze Tube · {quest:174} Look to the Stars · {npc:3133} Herble Baubbletump · {npc:1448} Neal Allen · {area:150} Menethil Harbor
-	["No {item:4371} for {quest:174}? {npc:3133} sells it in the house beside Viktori, in limited stock; {npc:1448} in {area:150} sells it too."] = "{quest:174}缺少{item:4371}？{npc:3133}在维克托旁边的房子里出售，存货有限；{area:150}的{npc:1448}也有售。",
+	-- {item:4371} Bronze Tube · {quest:174} Look to the Stars · {npc:3133} Herble Baubbletump · {npc:276} Viktori · {npc:1448} Neal Allen · {area:150} Menethil Harbor
+	["No {item:4371} for {quest:174}? {npc:3133} sells it in the house beside {npc:276}, in limited stock; {npc:1448} in {area:150} sells it too."] = "{quest:174}缺少{item:4371}？{npc:3133}在{npc:276}旁边的房子里出售，存货有限；{area:150}的{npc:1448}也有售。",
 	-- {npc:352} Dungar Longdrink · {zone:1453} Stormwind
 	["From {npc:352} in {zone:1453}"] = "来自{zone:1453}的{npc:352}",
 	-- {npc:6790} Innkeeper Trelayne
@@ -20,7 +21,7 @@ return {
 	["{npc:663}, by the town hall"] = "{npc:663}，在市政厅旁",
 	-- {item:4371} Bronze Tube · {npc:3133} Herble Baubbletump
 	["{item:4371}, from {npc:3133}, if you have none"] = "如果没有{item:4371}，向{npc:3133}购买",
-	-- {npc:276} Viktori Prism'Antras
+	-- {npc:276} Viktori
 	["{npc:276}, at the east end of town"] = "{npc:276}，在镇子东端",
 
 	-- Step 2: Nightbane Shadow Weavers
@@ -62,13 +63,15 @@ return {
 	["The Plague Spreaders walk the northern half of the {area:492}. {npc:522}, an elite, wanders the graves: keep away from him."] = "瘟疫食尸鬼在{area:492}北半部游荡。精英{npc:522}在墓地间徘徊：离他远点。",
 
 	-- Step 11: Sven's Camp
-	["Sven's Camp"] = "斯温的营地",
+	-- {npc:311} Sven
+	["{npc:311}'s Camp"] = "{npc:311}的营地",
 
 	-- Step 12: Raven Hill Cemetery, west
 	-- {area:492} Raven Hill Cemetery
 	["{area:492}, west"] = "{area:492}，西部",
+	-- {npc:311} Sven
 	-- plural, as words: Skeletal Raiders = {npc:1110} Skeletal Raider
-	["Skeletal Raiders, Healers and Warders hold the west part of the cemetery, just east of Sven's camp."] = "骷髅袭击者、骷髅医师和骷髅看守占据墓地西部，就在斯温营地东边。",
+	["Skeletal Raiders, Healers and Warders hold the west part of the cemetery, just east of {npc:311}'s camp."] = "骷髅袭击者、骷髅医师和骷髅看守占据墓地西部，就在{npc:311}营地东边。",
 
 	-- Step 13: Sven's Camp
 	-- {npc:1212} Bishop Farthing · {zone:1453} Stormwind
@@ -136,7 +139,8 @@ return {
 	["{item:2661}: the {object:331}"] = "{item:2661}：{object:331}",
 
 	-- Step 26: Ormer and Whelgar
-	["Ormer and Whelgar"] = "奥莫尔和维尔加",
+	-- {npc:1078} Ormer
+	["{npc:1078} and Whelgar"] = "{npc:1078}和维尔加",
 
 	-- Step 27: Dragonmaw camp
 	["Dragonmaw camp"] = "龙喉营地",
@@ -190,8 +194,5 @@ return {
 	["Back to Menethil"] = "回到米奈希尔",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Follow the coast north to the wrecked ship. Cursed Sailors walk the beach, Cursed Marines the deck; {npc:1159} stands on the beach by the bow. Giant {zone:1437} Crocolisks lurk on the coast just north of it."] = "沿海岸向北前往沉船。被诅咒的水手在沙滩上游荡，被诅咒的水兵在甲板上；{npc:1159}站在船头旁的沙滩上。巨型{zone:1437}鳄鱼潜伏在其北边不远的海岸上。",
 	-- ["Ride east to the ogre mound. {item:1349} sits in the camp at its entrance; Splinter Fist ogres guard it."] = "向东骑行到沃古尔食人魔山。{item:1349}在入口处的营地里；裂拳食人魔守卫着它。",
-	-- ["The dig and Sarltooth"] = "挖掘场和萨尔图斯",
-	-- ["The relics lie in the dig itself. Sarltooth, a big Razormaw, prowls the raptor valley just west of it."] = "圣物就在挖掘场里。萨尔图斯是一只大型刺喉龙，在挖掘场西边不远的迅猛龙山谷中徘徊。",
 }

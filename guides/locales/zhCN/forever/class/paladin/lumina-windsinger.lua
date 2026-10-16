@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (simplified) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (simplified) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -18,14 +19,14 @@ return {
 	["{npc:246378} leads the Paladins of Tyr's Watch from inside {area:16602}, on the bluffs north-west of the {area:156}."] = "{npc:246378}在{area:156}西北的悬崖上，于{area:16602}内领导Tyr's Watch的圣骑士。",
 
 	-- Step 2: The Sepulcher
-	-- {zone:1421} Silverpine Forest · {npc:248840} Trevan Rol · {npc:259611} Deathguard Baldren
-	["Ride south through {zone:1421} to the Sepulcher. {npc:248840} stands in the town; {npc:259611} keeps watch near its entrance."] = "向南穿过{zone:1421}前往瑟伯切尔。{npc:248840}站在镇里；{npc:259611}在入口附近守望。",
+	-- {zone:1421} Silverpine Forest · {area:228} The Sepulcher · {npc:248840} Trevan Rol · {npc:259611} Deathguard Baldren
+	["Ride south through {zone:1421} to the {area:228}. {npc:248840} stands in the town; {npc:259611} keeps watch near its entrance."] = "向南穿过{zone:1421}前往{area:228}。{npc:248840}站在镇里；{npc:259611}在入口附近守望。",
 
 	-- Step 3: The pyre on Fenris Isle
 	-- {area:172} Fenris Isle
 	["The pyre on {area:172}"] = "{area:172}上的火堆",
-	-- {area:172} Fenris Isle
-	["{area:172} lies in the lake east of the Sepulcher. The charred remains are on its shore."] = "{area:172}位于瑟伯切尔东边的湖中。烧焦的遗骸就在岛的岸边。",
+	-- {area:172} Fenris Isle · {area:228} The Sepulcher
+	["{area:172} lies in the lake east of the {area:228}. The charred remains are on its shore."] = "{area:172}位于{area:228}东边的湖中。烧焦的遗骸就在岛的岸边。",
 	-- {object:566037} Charred Remains
 	["from the {object:566037}"] = "来自{object:566037}",
 
@@ -36,20 +37,21 @@ return {
 	["{item:267412}, from the Rot Hide gnolls"] = "{item:267412}，来自腐皮豺狼人",
 
 	-- Step 5: Free Lumina
-	["Free Lumina"] = "解救卢米娜",
+	-- {npc:248755} Lumina
+	["Free {npc:248755}"] = "解救{npc:248755}",
 	["Free her with the key, then stay close while she fights her way out of the keep."] = "用钥匙放她出来，然后在她杀出要塞时紧跟着她。",
 
-	-- Step 6: Back to the Sepulcher
-	["Back to the Sepulcher"] = "回到瑟伯切尔",
-	-- {area:235} Fenris Keep
-	["Once she is clear of {area:235}, Lumina waits for you in the Sepulcher. Speak with her again to hear what really happened on the road."] = "离开{area:235}后，卢米娜会在瑟伯切尔等你。再次与她交谈，听听路上到底发生了什么。",
-	-- {npc:259620} Lumina Windsinger
-	["{npc:259620}, the Sepulcher"] = "{npc:259620}，瑟伯切尔",
+	-- Step 6: Back to the The Sepulcher
+	-- {area:228} The Sepulcher
+	["Back to the {area:228}"] = "回到{area:228}",
+	-- {area:235} Fenris Keep · {npc:259620} Lumina · {area:228} The Sepulcher
+	["Once she is clear of {area:235}, {npc:259620} waits for you in the {area:228}. Speak with her again to hear what really happened on the road."] = "离开{area:235}后，{npc:259620}会在{area:228}等你。再次与她交谈，听听路上到底发生了什么。",
+	-- {npc:259620} Lumina · {area:228} The Sepulcher
+	["{npc:259620}, the {area:228}"] = "{npc:259620}，{area:228}",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Back to the {area:228}"] = "回到{area:228}",
 	-- ["Once she is clear of {area:235}, Lumina waits for you in the {area:228}. Speak with her again to hear what really happened on the road."] = "离开{area:235}后，卢米娜会在{area:228}等你。再次与她交谈，听听路上到底发生了什么。",
-	-- ["Rescuing Lumina Windsinger"] = "营救卢米娜·风歌",
 	-- ["Ride south through {zone:1421} to the {area:228}. {npc:248840} stands in the town; {npc:259611} keeps watch near its entrance."] = "向南穿过{zone:1421}前往{area:228}。{npc:248840}站在镇里；{npc:259611}在入口附近守望。",
 	-- ["{area:172} lies in the lake east of the {area:228}. The charred remains are on its shore."] = "{area:172}位于{area:228}东边的湖中。烧焦的遗骸就在岛的岸边。",
 	-- ["{npc:259620}, the {area:228}"] = "{npc:259620}，{area:228}",

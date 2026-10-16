@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Portuguese (Brazil) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Portuguese (Brazil) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -36,8 +37,8 @@ return {
 	["{item:15885}: join the halves at the shrine"] = "{item:15885}: junte as metades no santuário",
 
 	-- Step 6: Aquatic Form
-	-- {area:1658} Cenarion Enclave
-	["Take the portal up to Mathrengyl in the {area:1658}."] = "Pegue o portal até Mathrengyl no {area:1658}.",
+	-- {npc:4217} Mathrengyl Bearwalker · {area:1658} Cenarion Enclave
+	["Take the portal up to {npc:4217} in the {area:1658}."] = "Pegue o portal até {npc:4217} no {area:1658}.",
 
 	-- Step 7: A Lesson to Learn
 	-- {npc:3033} Turak Runetotem · {area:1639} Elder Rise
@@ -59,6 +60,4 @@ return {
 	-- Step 11: Pendant of the Sea Lion
 	-- {spell:18960} Teleport: Moonglade · {item:15885} Pendant of the Sea Lion · {area:2362} Shrine of Remulos · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {npc:11798} Bunthen Plainswind · {area:1638} Thunder Bluff
 	["Cast {spell:18960}. Join the two halves into the {item:15885} near the {area:2362}, on the north-west shore of the lake, then see {npc:11802} in {area:2361}. {npc:11798} flies druids to {area:1638}."] = "Lance {spell:18960}. Junte as duas metades no {item:15885} perto de {area:2362}, na margem noroeste do lago, e depois fale com {npc:11802} em {area:2361}. {npc:11798} leva druidas voando até {area:1638}.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
 }

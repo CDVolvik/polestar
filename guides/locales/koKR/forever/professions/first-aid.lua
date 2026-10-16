@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Korean words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Learn First Aid
@@ -23,9 +24,9 @@ return {
 
 	-- Step 4: Journeyman First Aid
 	-- {skill:129} First Aid
-	["Journeyman {skill:129}"] = "중급 {skill:129}",
+	["Journeyman {skill:129}"] = "수습 {skill:129}",
 	-- {skill:129} First Aid · {spell:3276} Heavy Linen Bandage
-	["Journeyman {skill:129} raises the cap to 150; it needs skill 50 and character level 10: the arrow picks the nearest {skill:129} trainer of your faction. Learn {spell:3276} on the same visit."] = "중급 {skill:129}은(는) 최대 숙련도를 150으로 올립니다. 숙련도 50, 캐릭터 레벨 10이 필요합니다. 화살표가 진영의 가장 가까운 {skill:129} 상급자를 가리킵니다. 같은 방문에 {spell:3276}도 배우세요.",
+	["Journeyman {skill:129} raises the cap to 150; it needs skill 50 and character level 10: the arrow picks the nearest {skill:129} trainer of your faction. Learn {spell:3276} on the same visit."] = "수습 {skill:129}은(는) 최대 숙련도를 150으로 올립니다. 숙련도 50, 캐릭터 레벨 10이 필요합니다. 화살표가 진영의 가장 가까운 {skill:129} 상급자를 가리킵니다. 같은 방문에 {spell:3276}도 배우세요.",
 
 	-- Step 5: Heavy Linen Bandage: cloth
 	-- {item:2581} Heavy Linen Bandage
@@ -55,11 +56,11 @@ return {
 
 	-- Step 11: Expert First Aid
 	-- {skill:129} First Aid
-	["Expert {skill:129}"] = "고급 {skill:129}",
+	["Expert {skill:129}"] = "숙련 {skill:129}",
 	-- {skill:129} First Aid · {item:16084} Expert First Aid - Under Wraps · {item:8544} Mageweave Bandage
-	["Expert {skill:129} raises the cap to 225; it needs skill 125 and character level 20: it is a book, {item:16084}; the arrow picks its nearest seller for your faction. Buy it and read it. The same vendor sells the Heavy Silk and {item:8544} manuals: buy both now, you read them at 180 and 210."] = "고급 {skill:129}은(는) 최대 숙련도를 225로 올립니다. 숙련도 125, 캐릭터 레벨 20이 필요합니다. 책 {item:16084}(으)로 배우며, 화살표가 진영의 가장 가까운 판매 상인을 가리킵니다. 사서 읽으세요. 같은 상인이 두꺼운 비단 붕대와 {item:8544} 교본도 팝니다. 지금 둘 다 사 두고 180과 210에 읽으세요.",
+	["Expert {skill:129} raises the cap to 225; it needs skill 125 and character level 20: it is a book, {item:16084}; the arrow picks its nearest seller for your faction. Buy it and read it. The same vendor sells the Heavy Silk and {item:8544} manuals: buy both now, you read them at 180 and 210."] = "숙련 {skill:129}은(는) 최대 숙련도를 225로 올립니다. 숙련도 125, 캐릭터 레벨 20이 필요합니다. 책 {item:16084}(으)로 배우며, 화살표가 진영의 가장 가까운 판매 상인을 가리킵니다. 사서 읽으세요. 같은 상인이 두꺼운 비단 붕대와 {item:8544} 교본도 팝니다. 지금 둘 다 사 두고 180과 210에 읽으세요.",
 	-- {item:16084} Expert First Aid - Under Wraps · {skill:129} First Aid
-	["Buy and read {item:16084} (Expert {skill:129})"] = "{item:16084} 사서 읽기 (고급 {skill:129})",
+	["Buy and read {item:16084} (Expert {skill:129})"] = "{item:16084} 사서 읽기 (숙련 {skill:129})",
 
 	-- Step 13: Heavy Wool Bandage (125-150)
 	-- {spell:3278} Heavy Wool Bandage

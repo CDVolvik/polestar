@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Portuguese (Brazil) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Portuguese (Brazil) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: The Crossroads
@@ -15,7 +16,8 @@ return {
 
 	-- Step 2: Plainstriders and raptors
 	["Plainstriders and raptors"] = "Pinotes e raptores",
-	["Plainstriders and Sunscale raptors roam the plains all around the Crossroads, thickest to the north."] = "Pinotes e raptores Helióscamo vagam pelas planícies em volta da Encruzilhada, mais densos ao norte.",
+	-- {area:380} The Crossroads
+	["Plainstriders and Sunscale raptors roam the plains all around the {area:380}, thickest to the north."] = "Pinotes e raptores Helióscamo vagam pelas planícies em volta da {area:380}, mais densos ao norte.",
 
 	-- Step 4: The Zhevra
 	-- plural, as words: Zhevra Runners = {npc:3242} Zhevra Runner
@@ -42,8 +44,8 @@ return {
 	["Thunder Lizards and Lightning Hides graze just across the bridge below {area:379}."] = "Lagartos Trovejantes e Pelegos de Relâmpago pastam logo depois da ponte, abaixo de {area:379}.",
 
 	-- Step 11: Telf Joolam
-	-- {area:379} Far Watch Post
-	["Telf waits on the riverbank south of {area:379}, across the bridge."] = "Telf espera na margem do rio ao sul de {area:379}, do outro lado da ponte.",
+	-- {npc:5900} Telf Joolam · {area:379} Far Watch Post
+	["{npc:5900} waits on the riverbank south of {area:379}, across the bridge."] = "{npc:5900} espera na margem do rio ao sul de {area:379}, do outro lado da ponte.",
 
 	-- Step 12: Dustwind Gulch cultists
 	-- {area:1898} Dustwind Gulch
@@ -53,8 +55,8 @@ return {
 	["Burning Blade Cultists hold {area:1898} in northern {zone:1411}; they drop the {item:6652}. The {item:5026} comes from the Razormane on your next visit to their camp."] = "Sectários da Lâmina Ardente ocupam {area:1898}, no norte de {zone:1411}; eles deixam cair o {item:6652}. O {item:5026} vem dos Crinavalha na sua próxima visita ao acampamento deles.",
 
 	-- Step 13: Thun'grim Firegaze
-	-- {area:392} Ratchet · {object:58369} Stolen Iron Chest
-	["Thun'grim camps beside the road from the Crossroads to {area:392}. The {object:58369} sits in the south of the Razormane camp just north of him."] = "Thun'grim acampa junto à estrada da Encruzilhada para {area:392}. O {object:58369} fica no sul do acampamento Crinavalha, logo ao norte dele.",
+	-- {npc:5878} Thun'grim · {area:380} The Crossroads · {area:392} Ratchet · {object:58369} Stolen Iron Chest
+	["{npc:5878} camps beside the road from the {area:380} to {area:392}. The {object:58369} sits in the south of the Razormane camp just north of him."] = "{npc:5878} acampa junto à estrada da {area:380} para {area:392}. O {object:58369} fica no sul do acampamento Crinavalha, logo ao norte dele.",
 
 	-- Step 14: Ratchet
 	-- {area:392} Ratchet
@@ -73,15 +75,16 @@ return {
 	["Back down the beach, past the pirate camp: the crate of boots and the fragile crate with the lens sit at its south end."] = "Volte pela praia, depois do acampamento pirata: o caixote de botas e o caixote frágil com a lente ficam na ponta sul.",
 
 	-- Step 19: The Crossroads
-	["Walk back west along the road to the Crossroads."] = "Volte para oeste pela estrada até a Encruzilhada.",
+	-- {area:380} The Crossroads
+	["Walk back west along the road to the {area:380}."] = "Volte para oeste pela estrada até a {area:380}.",
 
 	-- Step 20: The Disruption Ends
 	-- {npc:3438} Kreenig Snarlsnout
 	["Back to the Razormane camp. Geomancers and Defenders hold its eastern half; {npc:3438} walks among them."] = "De volta ao acampamento Crinavalha. Geomantes e Defensores ocupam a metade leste; {npc:3438} anda entre eles.",
 
 	-- Step 21: Telf Joolam
-	-- {item:6636} Fire Sapta · {npc:5893} Minor Manifestation of Fire · {item:6655} Glowing Ember
-	["Telf makes {item:6636} from the tar and pouch. Use it by the brazier next to him to reveal the {npc:5893}, kill it for the {item:6655}, then place the ember in the brazier."] = "Telf faz {item:6636} com o piche e o bornal. Use-o junto ao braseiro ao lado dele para revelar o {npc:5893}, mate-o pela {item:6655} e depois coloque a brasa no braseiro.",
+	-- {npc:5900} Telf Joolam · {item:6636} Fire Sapta · {npc:5893} Minor Manifestation of Fire · {item:6655} Glowing Ember
+	["{npc:5900} makes {item:6636} from the tar and pouch. Use it by the brazier next to him to reveal the {npc:5893}, kill it for the {item:6655}, then place the ember in the brazier."] = "{npc:5900} faz {item:6636} com o piche e o bornal. Use-o junto ao braseiro ao lado dele para revelar o {npc:5893}, mate-o pela {item:6655} e depois coloque a brasa no braseiro.",
 
 	-- Step 22: Kranal Fiss
 	-- {npc:5907} Kranal Fiss · {npc:2523} Searing Totem · {item:5176} Fire Totem · {item:263412} Totem of Charged Flames
@@ -97,26 +100,28 @@ return {
 	-- {npc:3442} Sputtervalve · {area:392} Ratchet
 	["{npc:3442} in {area:392}: later, on the way"] = "{npc:3442} em {area:392}: depois, no caminho",
 
-	-- Step 25: The Dry Hills
-	-- {area:383} Dry Hills
-	["The {area:383}"] = "{area:383}",
+	-- Step 25: Dry Hills
 	-- {area:383} Dry Hills · {quest:819} Chen's Empty Keg
 	["West to the {area:383}. The Witchwing harpies nest all over them; any of them can drop a talon. {quest:819} lies in their hills."] = "Para oeste até {area:383}. As harpias Asabruxa fazem ninho por toda parte; qualquer uma pode deixar cair uma garra. {quest:819} fica nas colinas delas.",
 
 	-- Step 26: Regthar Deathgate
-	["South to Regthar's watch post on the Kolkar border."] = "Para o sul até o posto de vigia de Regthar, na fronteira kolkar.",
+	-- {npc:3389} Regthar Deathgate
+	["South to {npc:3389}'s watch post on the Kolkar border."] = "Para o sul até o posto de vigia de {npc:3389}, na fronteira kolkar.",
 
 	-- Step 27: The Forgotten Pools
+	-- {npc:3389} Regthar Deathgate
 	-- plural, as words: Laden Mushrooms = {object:3640} Laden Mushroom
-	["The pools lie just north of Regthar. Walk into the water to explore them; the Laden Mushrooms for Helbrim grow around them. Kill every Kolkar you pass for bracers."] = "Os poços ficam logo ao norte de Regthar. Entre na água para explorá-los; os Cogumelos Carregados para Hermógenes crescem em volta deles. Mate todo kolkar que encontrar pelas braçadeiras.",
+	["The pools lie just north of {npc:3389}. Walk into the water to explore them; the Laden Mushrooms for Helbrim grow around them. Kill every Kolkar you pass for bracers."] = "Os poços ficam logo ao norte de {npc:3389}. Entre na água para explorá-los; os Cogumelos Carregados para Hermógenes crescem em volta deles. Mate todo kolkar que encontrar pelas braçadeiras.",
 
 	-- Step 28: Kolkar camps
 	["Kolkar camps"] = "Acampamentos kolkar",
+	-- {npc:3389} Regthar Deathgate
 	-- plural, as words: Kolkar Wranglers = {npc:3272} Kolkar Wrangler
-	["Kolkar Wranglers and Stormers hold the camps south of Regthar."] = "Cavalgantes e Tempestários Kolkar ocupam os acampamentos ao sul de Regthar.",
+	["Kolkar Wranglers and Stormers hold the camps south of {npc:3389}."] = "Cavalgantes e Tempestários Kolkar ocupam os acampamentos ao sul de {npc:3389}.",
 
 	-- Step 31: The Stagnant Oasis
-	["South-east of the Crossroads. Test the seeds at the bubbling fissure on the oasis' east bank."] = "A sudeste da Encruzilhada. Teste as sementes na fenda borbulhante da margem leste do oásis.",
+	-- {area:380} The Crossroads
+	["South-east of the {area:380}. Test the seeds at the bubbling fissure on the oasis' east bank."] = "A sudeste da {area:380}. Teste as sementes na fenda borbulhante da margem leste do oásis.",
 
 	-- Step 32: Raptor nests
 	["Raptor nests"] = "Ninhos de raptor",
@@ -132,9 +137,9 @@ return {
 	["Back west along the road."] = "Volte para oeste pela estrada.",
 
 	-- Step 35: Lushwater Oasis
-	-- {area:387} Lushwater Oasis · {area:388} Stagnant Oasis
+	-- {area:387} Lushwater Oasis · {area:380} The Crossroads · {area:388} Stagnant Oasis
 	-- plural, as words: Oasis Snapjaws = {npc:3461} Oasis Snapjaw
-	["Oasis Snapjaws crawl around {area:387}, south-west of the Crossroads, and around the {area:388}."] = "Mordeliscas do Oásis rastejam em volta de {area:387}, a sudoeste da Encruzilhada, e em volta de {area:388}.",
+	["Oasis Snapjaws crawl around {area:387}, south-west of the {area:380}, and around the {area:388}."] = "Mordeliscas do Oásis rastejam em volta de {area:387}, a sudoeste da {area:380}, e em volta de {area:388}.",
 
 	-- Step 36: The Crossroads
 	-- {quest:3301} Mura Runetotem · {area:228} Sepulcher · {zone:1421} Silverpine Forest
@@ -146,20 +151,21 @@ return {
 	["The Witchwing Slayers hold the western {area:383}; they wear the rings."] = "As Asabruxas Matadoras ocupam o oeste de {area:383}; elas usam os anéis.",
 
 	-- Step 38: Wenikee Boltbucket
-	-- {area:1703} Mor'shan Rampart
-	["East to the {area:1703}; Wenikee stands at the camp just south of it."] = "Para leste até {area:1703}; Juntatudy fica no acampamento logo ao sul.",
+	-- {area:1703} Mor'shan Rampart · {npc:9316} Wenikee
+	["East to the {area:1703}; {npc:9316} stands at the camp just south of it."] = "Para leste até {area:1703}; {npc:9316} fica no acampamento logo ao sul.",
 
 	-- Step 39: Nugget Slugs
-	-- {area:382} Sludge Fen
-	["The tool buckets with the slugs lie around the Venture Co. drill site in the {area:382}, east of Wenikee."] = "Os baldes de ferramentas com as lesmas ficam em volta da perfuração da Empreendimentos S.A. em {area:382}, a leste de Juntatudy.",
+	-- {area:382} Sludge Fen · {npc:9316} Wenikee
+	["The tool buckets with the slugs lie around the Venture Co. drill site in the {area:382}, east of {npc:9316}."] = "Os baldes de ferramentas com as lesmas ficam em volta da perfuração da Empreendimentos S.A. em {area:382}, a leste de {npc:9316}.",
 
-	-- Step 40: Wenikee Boltbucket
+	-- Step 40: Wenikee
 	-- {quest:3923} Rilli Greasygob · {zone:1454} Orgrimmar
 	["Keep it: {quest:3923} stands outside {zone:1454}; a later guide hands it in"] = "Guarde-o: {quest:3923} fica do lado de fora de {zone:1454}; um guia posterior o entrega",
 
 	-- Step 41: The Crossroads
-	-- {zone:1454} Orgrimmar · {zone:1420} Tirisfal Glades
-	["Walk back south to the Crossroads. The next guide starts here and takes you to {zone:1454} and the zeppelin to {zone:1420}."] = "Volte para o sul até a Encruzilhada. O próximo guia começa aqui e leva você a {zone:1454} e ao zepelim para {zone:1420}.",
+	-- {area:380} The Crossroads · {zone:1454} Orgrimmar · {zone:1420} Tirisfal Glades
+	["Walk back south to the {area:380}. The next guide starts here and takes you to {zone:1454} and the zeppelin to {zone:1420}."] = "Volte para o sul até a {area:380}. O próximo guia começa aqui e leva você a {zone:1454} e ao zepelim para {zone:1420}.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["The {area:383}"] = "{area:383}",
 }

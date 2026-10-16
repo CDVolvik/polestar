@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in French (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in French words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -58,7 +59,7 @@ return {
 
 	-- Step 10: PvP: battleground reputations (Alliance)
 	["PvP: battleground reputations (Alliance)"] = "JcJ : réputations des champs de bataille (Alliance)",
-	["Exalted with each battleground faction is worth a point (4 in all; this page shows three, see the note). Follow the Polestar Reputation guides Warsong Gulch Reputation, Arathi Basin Reputation and Alterac Valley Reputation. The Diplomat Legacy perk increases reputation gains."] = "Exalté auprès de chaque faction de champ de bataille vaut un point (4 en tout ; cette page en montre trois, voir la note). Suivez les guides de réputation Polestar Réputation du goulet des Chanteguerres, Réputation du Bassin Arathi et Réputation de la vallée d'Alterac. L'avantage d'Héritage Diplomate augmente les gains de réputation.",
+	["Exalted with each battleground faction is worth a point (4 in all; this page shows three, see the note). Follow the Polestar Reputation guides Warsong Gulch Reputation, Arathi Basin Reputation and Alterac Valley Reputation. The Diplomat Legacy perk increases reputation gains."] = "Exalté auprès de chaque faction de champ de bataille vaut un point (4 en tout ; cette page en montre trois, voir la note). Suivez les guides de réputation Polestar Réputation : Goulet des Chanteguerres, Réputation : Bassin Arathi et Réputation : Vallée d'Alterac. L'atout Diplomate de l'Héritage augmente les gains de réputation.",
 	-- {zone:1460} Warsong Gulch · {zone:1461} Arathi Basin · {zone:1459} Alterac Valley
 	["Blizzard counts four battleground reputations, but our faction data has three per side ({zone:1460}, {zone:1461}, {zone:1459}). The fourth is likely tied to Forever's new PvP content; check the in-game Legacy panel."] = "Blizzard compte quatre réputations de champ de bataille, mais nos données de factions en ont trois par camp ({zone:1460}, {zone:1461}, {zone:1459}). La quatrième est sans doute liée au nouveau contenu JcJ de Forever ; vérifiez le panneau d'Héritage en jeu.",
 
@@ -107,7 +108,7 @@ return {
 	-- {area:718} Wailing Caverns · {npc:3678} Disciple of Naralex
 	["{area:718} (appears after the {npc:3678}'s event)"] = "{area:718} (apparaît après l'événement du {npc:3678})",
 	-- {area:717} The Stockade
-	["{area:717}: the usual last kill; the Stockade has no fixed final boss"] = "{area:717} : le dernier boss habituel ; la Prison n'a pas de boss final fixe",
+	["{area:717}: the usual last kill; the {area:717} has no fixed final boss"] = "{area:717} : le dernier boss habituel ; la {area:717} n'a pas de boss final fixe",
 	-- {area:16919} Hall of Thanes · {area:153} Ruins of Lordaeron
 	["Forever adds the dungeons {area:16919} and {area:153}; their bosses and brackets are not in our data yet."] = "Forever ajoute les donjons {area:16919} et {area:153} ; leurs boss et tranches ne sont pas encore dans nos données.",
 

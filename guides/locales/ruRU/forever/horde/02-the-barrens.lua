@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Russian (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Russian words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: The Crossroads
@@ -15,7 +16,8 @@ return {
 
 	-- Step 2: Plainstriders and raptors
 	["Plainstriders and raptors"] = "Долгоноги и ящеры",
-	["Plainstriders and Sunscale raptors roam the plains all around the Crossroads, thickest to the north."] = "Равнинные долгоноги и яркочешуйчатые ящеры бродят по равнинам вокруг Перекрестка, гуще всего к северу.",
+	-- {area:380} The Crossroads
+	["Plainstriders and Sunscale raptors roam the plains all around the {area:380}, thickest to the north."] = "Равнинные долгоноги и яркочешуйчатые ящеры бродят по равнинам вокруг места {area:380}, гуще всего к северу.",
 
 	-- Step 4: The Zhevra
 	-- plural, as words: Zhevra Runners = {npc:3242} Zhevra Runner
@@ -42,8 +44,8 @@ return {
 	["Thunder Lizards and Lightning Hides graze just across the bridge below {area:379}."] = "Рокочущие ящерицы ({npc:3130}) и бурешкуры ({npc:3131}) пасутся сразу за мостом ниже заставы {area:379}.",
 
 	-- Step 11: Telf Joolam
-	-- {area:379} Far Watch Post
-	["Telf waits on the riverbank south of {area:379}, across the bridge."] = "Телф ждет на берегу реки к югу от заставы {area:379}, за мостом.",
+	-- {npc:5900} Telf Joolam · {area:379} Far Watch Post
+	["{npc:5900} waits on the riverbank south of {area:379}, across the bridge."] = "{npc:5900} ждет на берегу реки к югу от заставы {area:379}, за мостом.",
 
 	-- Step 12: Dustwind Gulch cultists
 	-- {area:1898} Dustwind Gulch
@@ -53,8 +55,8 @@ return {
 	["Burning Blade Cultists hold {area:1898} in northern {zone:1411}; they drop the {item:6652}. The {item:5026} comes from the Razormane on your next visit to their camp."] = "Сектанты из клана Пылающего Клинка ({npc:3199}) удерживают {area:1898} на севере зоны {zone:1411}; с них падает {item:6652}. {item:5026} добудете у Иглогривых в следующий заход в их лагерь.",
 
 	-- Step 13: Thun'grim Firegaze
-	-- {area:392} Ratchet · {object:58369} Stolen Iron Chest
-	["Thun'grim camps beside the road from the Crossroads to {area:392}. The {object:58369} sits in the south of the Razormane camp just north of him."] = "Тун'грим разбил лагерь у дороги от Перекрестка к месту {area:392}. {object:58369} стоит на юге лагеря Иглогривых, сразу к северу от него.",
+	-- {npc:5878} Thun'grim · {area:380} The Crossroads · {area:392} Ratchet · {object:58369} Stolen Iron Chest
+	["{npc:5878} camps beside the road from the {area:380} to {area:392}. The {object:58369} sits in the south of the Razormane camp just north of him."] = "{npc:5878} разбил лагерь у дороги от места {area:380} к месту {area:392}. {object:58369} стоит на юге лагеря Иглогривых, сразу к северу от него.",
 
 	-- Step 14: Ratchet
 	-- {area:392} Ratchet
@@ -73,15 +75,16 @@ return {
 	["Back down the beach, past the pirate camp: the crate of boots and the fragile crate with the lens sit at its south end."] = "Обратно вниз по пляжу, мимо лагеря пиратов: ящик с сапогами и хрупкий ящик с линзой стоят на его южном краю.",
 
 	-- Step 19: The Crossroads
-	["Walk back west along the road to the Crossroads."] = "Вернитесь по дороге на запад к Перекрестку.",
+	-- {area:380} The Crossroads
+	["Walk back west along the road to the {area:380}."] = "Вернитесь по дороге на запад к месту {area:380}.",
 
 	-- Step 20: The Disruption Ends
 	-- {npc:3438} Kreenig Snarlsnout
 	["Back to the Razormane camp. Geomancers and Defenders hold its eastern half; {npc:3438} walks among them."] = "Назад в лагерь Иглогривых. Геоманты и защитники держат его восточную половину; среди них ходит {npc:3438}.",
 
 	-- Step 21: Telf Joolam
-	-- {item:6636} Fire Sapta · {npc:5893} Minor Manifestation of Fire · {item:6655} Glowing Ember
-	["Telf makes {item:6636} from the tar and pouch. Use it by the brazier next to him to reveal the {npc:5893}, kill it for the {item:6655}, then place the ember in the brazier."] = "Телф делает из смолы и мешочка предмет {item:6636}. Используйте его у жаровни рядом с ним, чтобы появился {npc:5893}; убейте его ради предмета {item:6655}, затем положите уголек в жаровню.",
+	-- {npc:5900} Telf Joolam · {item:6636} Fire Sapta · {npc:5893} Minor Manifestation of Fire · {item:6655} Glowing Ember
+	["{npc:5900} makes {item:6636} from the tar and pouch. Use it by the brazier next to him to reveal the {npc:5893}, kill it for the {item:6655}, then place the ember in the brazier."] = "{npc:5900} делает из смолы и мешочка предмет {item:6636}. Используйте его у жаровни рядом с ним, чтобы появился {npc:5893}; убейте его ради предмета {item:6655}, затем положите уголек в жаровню.",
 
 	-- Step 22: Kranal Fiss
 	-- {npc:5907} Kranal Fiss · {npc:2523} Searing Totem · {item:5176} Fire Totem · {item:263412} Totem of Charged Flames
@@ -97,26 +100,28 @@ return {
 	-- {npc:3442} Sputtervalve · {area:392} Ratchet
 	["{npc:3442} in {area:392}: later, on the way"] = "{npc:3442} ({area:392}): позже, по пути",
 
-	-- Step 25: The Dry Hills
-	-- {area:383} Dry Hills
-	["The {area:383}"] = "{area:383}",
+	-- Step 25: Dry Hills
 	-- {area:383} Dry Hills · {quest:819} Chen's Empty Keg
 	["West to the {area:383}. The Witchwing harpies nest all over them; any of them can drop a talon. {quest:819} lies in their hills."] = "На запад: {area:383}. Гарпии из стаи Зачарованного Крыла гнездятся повсюду; коготь может упасть с любой. {quest:819} лежит в этих холмах.",
 
 	-- Step 26: Regthar Deathgate
-	["South to Regthar's watch post on the Kolkar border."] = "На юг к сторожевому посту Регтара на границе с Колкар.",
+	-- {npc:3389} Regthar Deathgate
+	["South to {npc:3389}'s watch post on the Kolkar border."] = "На юг к сторожевому посту NPC {npc:3389} на границе с Колкар.",
 
 	-- Step 27: The Forgotten Pools
+	-- {npc:3389} Regthar Deathgate
 	-- plural, as words: Laden Mushrooms = {object:3640} Laden Mushroom
-	["The pools lie just north of Regthar. Walk into the water to explore them; the Laden Mushrooms for Helbrim grow around them. Kill every Kolkar you pass for bracers."] = "Пруды – сразу к северу от Регтара. Зайдите в воду, чтобы исследовать их; спелые грибы ({object:3640}) для Хелбрима растут вокруг. Убивайте всех встречных Колкар ради наручей.",
+	["The pools lie just north of {npc:3389}. Walk into the water to explore them; the Laden Mushrooms for Helbrim grow around them. Kill every Kolkar you pass for bracers."] = "Пруды – сразу к северу от NPC {npc:3389}. Зайдите в воду, чтобы исследовать их; спелые грибы ({object:3640}) для Хелбрима растут вокруг. Убивайте всех встречных Колкар ради наручей.",
 
 	-- Step 28: Kolkar camps
 	["Kolkar camps"] = "Лагеря Колкар",
+	-- {npc:3389} Regthar Deathgate
 	-- plural, as words: Kolkar Wranglers = {npc:3272} Kolkar Wrangler
-	["Kolkar Wranglers and Stormers hold the camps south of Regthar."] = "Пастухи ({npc:3272}) и буревестницы из племени Колкар занимают лагеря к югу от Регтара.",
+	["Kolkar Wranglers and Stormers hold the camps south of {npc:3389}."] = "Пастухи ({npc:3272}) и буревестницы из племени Колкар занимают лагеря к югу от NPC {npc:3389}.",
 
 	-- Step 31: The Stagnant Oasis
-	["South-east of the Crossroads. Test the seeds at the bubbling fissure on the oasis' east bank."] = "К юго-востоку от Перекрестка. Проверьте семена у бурлящей расщелины на восточном берегу оазиса.",
+	-- {area:380} The Crossroads
+	["South-east of the {area:380}. Test the seeds at the bubbling fissure on the oasis' east bank."] = "К юго-востоку от места {area:380}. Проверьте семена у бурлящей расщелины на восточном берегу оазиса.",
 
 	-- Step 32: Raptor nests
 	["Raptor nests"] = "Гнезда ящеров",
@@ -132,9 +137,9 @@ return {
 	["Back west along the road."] = "Назад на запад по дороге.",
 
 	-- Step 35: Lushwater Oasis
-	-- {area:387} Lushwater Oasis · {area:388} Stagnant Oasis
+	-- {area:387} Lushwater Oasis · {area:380} The Crossroads · {area:388} Stagnant Oasis
 	-- plural, as words: Oasis Snapjaws = {npc:3461} Oasis Snapjaw
-	["Oasis Snapjaws crawl around {area:387}, south-west of the Crossroads, and around the {area:388}."] = "Оазисные хрустогрызы ползают вокруг места {area:387}, к юго-западу от Перекрестка, и вокруг места {area:388}.",
+	["Oasis Snapjaws crawl around {area:387}, south-west of the {area:380}, and around the {area:388}."] = "Оазисные хрустогрызы ползают вокруг места {area:387}, к юго-западу от места {area:380}, и вокруг места {area:388}.",
 
 	-- Step 36: The Crossroads
 	-- {quest:3301} Mura Runetotem · {area:228} Sepulcher · {zone:1421} Silverpine Forest
@@ -146,25 +151,26 @@ return {
 	["The Witchwing Slayers hold the western {area:383}; they wear the rings."] = "Душегубки из стаи Зачарованного Крыла ({npc:3278}) держат запад местности {area:383}; кольца – у них.",
 
 	-- Step 38: Wenikee Boltbucket
-	-- {area:1703} Mor'shan Rampart
-	["East to the {area:1703}; Wenikee stands at the camp just south of it."] = "На восток: {area:1703}; Венаки стоит в лагере сразу к югу.",
+	-- {area:1703} Mor'shan Rampart · {npc:9316} Wenikee
+	["East to the {area:1703}; {npc:9316} stands at the camp just south of it."] = "На восток: {area:1703}; {npc:9316} стоит в лагере сразу к югу.",
 
 	-- Step 39: Nugget Slugs
-	-- {area:382} Sludge Fen
-	["The tool buckets with the slugs lie around the Venture Co. drill site in the {area:382}, east of Wenikee."] = "Ведра с инструментами и слизнями лежат вокруг буровой площадки Торговой компании ({area:382}), к востоку от Венаки.",
+	-- {area:382} Sludge Fen · {npc:9316} Wenikee
+	["The tool buckets with the slugs lie around the Venture Co. drill site in the {area:382}, east of {npc:9316}."] = "Ведра с инструментами и слизнями лежат вокруг буровой площадки Торговой компании ({area:382}), к востоку от {npc:9316}.",
 
-	-- Step 40: Wenikee Boltbucket
+	-- Step 40: Wenikee
 	-- {quest:3923} Rilli Greasygob · {zone:1454} Orgrimmar
 	["Keep it: {quest:3923} stands outside {zone:1454}; a later guide hands it in"] = "Сохраните: {quest:3923} стоит у ворот города {zone:1454}; сдадите в одном из следующих гайдов",
 
 	-- Step 41: The Crossroads
-	-- {zone:1454} Orgrimmar · {zone:1420} Tirisfal Glades
-	["Walk back south to the Crossroads. The next guide starts here and takes you to {zone:1454} and the zeppelin to {zone:1420}."] = "Вернитесь на юг к Перекрестку. Отсюда начинается следующий гайд; он ведет в {zone:1454} и к дирижаблю в зону {zone:1420}.",
+	-- {area:380} The Crossroads · {zone:1454} Orgrimmar · {zone:1420} Tirisfal Glades
+	["Walk back south to the {area:380}. The next guide starts here and takes you to {zone:1454} and the zeppelin to {zone:1420}."] = "Вернитесь на юг к месту {area:380}. Отсюда начинается следующий гайд; он ведет в {zone:1454} и к дирижаблю в зону {zone:1420}.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Oasis Snapjaws crawl around {area:387}, south-west of the {area:380}, and around the {area:388}."] = "Оазисные хрустогрызы ({npc:3461}) ползают вокруг места {area:387}, к юго-западу от поселения {area:380}, и вокруг места {area:388}.",
 	-- ["Plainstriders and Sunscale raptors roam the plains all around the {area:380}, thickest to the north."] = "Равнинные долгоноги и яркочешуйчатые ящеры бродят по равнинам вокруг поселения {area:380}, гуще всего к северу.",
 	-- ["South-east of the {area:380}. Test the seeds at the bubbling fissure on the oasis' east bank."] = "К юго-востоку от поселения {area:380}. Проверьте семена у бурлящей расщелины на восточном берегу оазиса.",
+	-- ["The {area:383}"] = "{area:383}",
 	-- ["Thun'grim camps beside the road from the {area:380} to {area:392}. The {object:58369} sits in the south of the Razormane camp just north of him."] = "Тун'грим разбил лагерь у дороги из поселения {area:380} в {area:392}. {object:58369} стоит на юге лагеря Иглогривых, сразу к северу от него.",
 	-- ["Walk back south to the {area:380}. The next guide starts here and takes you to {zone:1454} and the zeppelin to {zone:1420}."] = "Вернитесь на юг: {area:380}. Отсюда начинается следующий гайд; он ведет в {zone:1454} и к дирижаблю в зону {zone:1420}.",
 	-- ["Walk back west along the road to the {area:380}."] = "Вернитесь по дороге на запад: {area:380}.",

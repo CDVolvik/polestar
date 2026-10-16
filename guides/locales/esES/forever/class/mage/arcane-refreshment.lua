@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Spanish (Spain) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Spanish (Spain) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -22,7 +23,4 @@ return {
 
 	-- Step 3: Back to Lydros
 	["Back to Lydros"] = "De vuelta con Lydros",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Hydrospawn, a water elemental, lives in the Warpwood Quarter ({area:2577} East): chase the imp Pusillin until he turns to fight, clear the satyr room, then take the spiral ramp down to the pool."] = "Hidromilecio, un elemental de agua, vive en el Barrio Alabeo ({area:2577} Este): persigue al diablillo Pusillín hasta que se vuelva para luchar, limpia la sala de los sátiros y baja por la rampa en espiral hasta el estanque.",
 }

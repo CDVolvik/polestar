@@ -3,13 +3,14 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in German (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in German words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Apprentice Alchemy
 	-- {skill:171} Alchemy
 	["Apprentice {skill:171}"] = "Lehrling: {skill:171}",
 	-- {skill:171} Alchemy
-	["{skill:171} runs alongside leveling. Forever's Legacy System rewards crafting professions at skill 150, 225 and 300 (the Journeyman, Expert and Artisan caps), so each of those checkpoints counts. Materials for 1-75 are worth about 68s in all."] = "{skill:171} läuft neben dem Leveln. Forevers Legacy-System belohnt Herstellungsberufe bei Fertigkeit 150, 225 und 300 (die Obergrenzen von Geselle, Experte und Fachmann), also zählt jeder dieser Meilensteine. Die Materialien für 1-75 sind insgesamt etwa 68s wert.",
+	["{skill:171} runs alongside leveling. Forever's Legacy System rewards crafting professions at skill 150, 225 and 300 (the Journeyman, Expert and Artisan caps), so each of those checkpoints counts. Materials for 1-75 are worth about 68s in all."] = "{skill:171} läuft neben dem Leveln. Forevers Vermächtnissystem belohnt Herstellungsberufe bei Fertigkeit 150, 225 und 300 (die Obergrenzen von Geselle, Experte und Fachmann), also zählt jeder dieser Meilensteine. Die Materialien für 1-75 sind insgesamt etwa 68s wert.",
 
 	-- Step 2: Silverleaf (Alliance)
 	-- {item:765} Silverleaf
@@ -118,7 +119,7 @@ return {
 	-- {item:6051} Holy Protection Potion
 	["{item:6051} to 150"] = "{item:6051} bis 150",
 	-- {skill:171} Alchemy
-	["Orange (a point every craft) until 130, yellow until 150, green until 170. {skill:171} 150 is a Legacy System milestone."] = "Orange (jede Herstellung ein Punkt) bis 130, gelb bis 150, grün bis 170. {skill:171} 150 ist ein Meilenstein des Legacy-Systems.",
+	["Orange (a point every craft) until 130, yellow until 150, green until 170. {skill:171} 150 is a Legacy System milestone."] = "Orange (jede Herstellung ein Punkt) bis 130, gelb bis 150, grün bis 170. {skill:171} 150 ist ein Meilenstein des Vermächtnissystems.",
 	["from the recipe in your bags"] = "aus dem Rezept in deinen Taschen",
 
 	-- Step 25: Expert Alchemy
@@ -238,7 +239,7 @@ return {
 	-- {spell:11450} Elixir of Defense
 	["{spell:11450} to 225"] = "{spell:11450} bis 225",
 	-- {skill:171} Alchemy
-	["Yellow until 235, green until 255: not every craft gives a point. {skill:171} 225 is a Legacy System milestone."] = "Gelb bis 235, grün bis 255: nicht jede Herstellung gibt einen Punkt. {skill:171} 225 ist ein Meilenstein des Legacy-Systems.",
+	["Yellow until 235, green until 255: not every craft gives a point. {skill:171} 225 is a Legacy System milestone."] = "Gelb bis 235, grün bis 255: nicht jede Herstellung gibt einen Punkt. {skill:171} 225 ist ein Meilenstein des Vermächtnissystems.",
 
 	-- Step 48: Artisan Alchemy
 	-- {skill:171} Alchemy
@@ -322,7 +323,7 @@ return {
 	-- {spell:17554} Elixir of Greater Defense
 	["{spell:17554} to 300"] = "{spell:17554} bis 300",
 	-- {skill:171} Alchemy
-	["Orange (a point every craft) until 280, yellow until 300, green until 320. {skill:171} 300 is a Legacy System milestone."] = "Orange (jede Herstellung ein Punkt) bis 280, gelb bis 300, grün bis 320. {skill:171} 300 ist ein Meilenstein des Legacy-Systems.",
+	["Orange (a point every craft) until 280, yellow until 300, green until 320. {skill:171} 300 is a Legacy System milestone."] = "Orange (jede Herstellung ein Punkt) bis 280, gelb bis 300, grün bis 320. {skill:171} 300 ist ein Meilenstein des Vermächtnissystems.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Pick {item:3355} with {skill:182}; this is the densest patch in the data. The Auction House works too."] = "Pflücke {item:3355} mit {skill:182}; hier ist das dichteste Vorkommen laut Daten. Im Auktionshaus gibt es sie auch.",

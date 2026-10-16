@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Spanish (Latin America) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Spanish (Latin America) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Menethil Harbor
@@ -21,9 +22,7 @@ return {
 	-- {item:190309} Wooden Figurine · {area:413} Maestra's Post
 	["{item:190309}, north of {area:413}"] = "{item:190309}, al norte de {area:413}",
 
-	-- Step 4: The Talondeep Path
-	-- {area:1276} Talondeep Path
-	["The {area:1276}"] = "{area:1276}",
+	-- Step 4: Talondeep Path
 	-- {area:415} Astranaar · {area:1276} Talondeep Path
 	["From {area:415} head south-west to the {area:1276}, a tunnel through the mountains into Stonetalon."] = "Desde {area:415}, dirígete al suroeste hasta {area:1276}, un túnel a través de las montañas hacia Sierra Espolón.",
 
@@ -41,23 +40,25 @@ return {
 	["The chest lies in the ruins south-west of {area:608}."] = "El cofre está en las ruinas al suroeste de {area:608}.",
 
 	-- Step 10: Azore Aldamort
-	-- {area:599} Thunder Axe Fortress
-	["Azore's tower stands on the hill west of {area:599}: take his quest first, the sceptre he wants is in the fortress."] = "La torre de Azore está en la colina al oeste de {area:599}: acepta primero su misión; el cetro que quiere está en la fortaleza.",
+	-- {npc:11863} Azore Aldamort · {area:599} Thunder Axe Fortress
+	["{npc:11863}'s tower stands on the hill west of {area:599}: take his quest first, the sceptre he wants is in the fortress."] = "La torre de {npc:11863} está en la colina al oeste de {area:599}: acepta primero su misión; el cetro que quiere está en la fortaleza.",
 
 	-- Step 11: Dalinda Malem
-	-- {area:608} Nijel's Point
-	["Dalinda hides inside the Burning Blade's fortress south-west of {area:608}."] = "Dalinda se esconde dentro de la fortaleza del Filo Ardiente, al suroeste de {area:608}.",
+	-- {npc:5644} Dalinda Malem · {area:608} Nijel's Point
+	["{npc:5644} hides inside the Burning Blade's fortress south-west of {area:608}."] = "{npc:5644} se esconde dentro de la fortaleza del Filo Ardiente, al suroeste de {area:608}.",
 
 	-- Step 12: Tyranis and the Seer
-	["Tyranis and the Seer"] = "Tyranis y el vidente",
-	-- {spell:1294269} Burning Blade · {npc:13019} Burning Blade Seer
-	["Her brother Tyranis (36) walks the fortress with the {spell:1294269} cultists (30-33): pull him alone. The {npc:13019} keeps the sceptre in the fortress's main building."] = "Su hermano Tyranis (36) recorre la fortaleza con los cultistas de {spell:1294269} (30-33): atráelo solo. {npc:13019} guarda el cetro en el edificio principal de la fortaleza.",
+	-- {npc:5643} Tyranis
+	["{npc:5643} and the Seer"] = "{npc:5643} y el vidente",
+	-- {npc:5643} Tyranis · {npc:13019} Burning Blade Seer
+	["Her brother {npc:5643} (36) walks the fortress with the Burning Blade cultists (30-33): pull him alone. The {npc:13019} keeps the sceptre in the fortress's main building."] = "Su hermano {npc:5643} (36) recorre la fortaleza con los cultistas de Filo Ardiente (30-33): atráelo solo. {npc:13019} guarda el cetro en el edificio principal de la fortaleza.",
 
-	-- Step 13: Escort Dalinda
-	["Escort Dalinda"] = "Escolta a Dalinda",
+	-- Step 13: Escort Dalinda Malem
+	-- {npc:5644} Dalinda Malem
+	["Escort {npc:5644}"] = "Escolta a {npc:5644}",
 	["Out of Thunder Axe Fortress"] = "Fuera de la Fortaleza del Hacha de Trueno",
-	-- {area:608} Nijel's Point
-	["Lead Dalinda out of the fortress; she walks off once you are clear of it. Vahlarriel takes the turn-in at {area:608} at the end of the guide."] = "Saca a Dalinda de la fortaleza; se va por su cuenta una vez fuera. Vahlarriel recibe la entrega en {area:608} al final de la guía.",
+	-- {npc:5644} Dalinda Malem · {npc:5642} Vahlarriel Demonslayer · {area:608} Nijel's Point
+	["Lead {npc:5644} out of the fortress; she walks off once you are clear of it. {npc:5642} takes the turn-in at {area:608} at the end of the guide."] = "Saca a {npc:5644} de la fortaleza; se va por su cuenta una vez fuera. {npc:5642} recibe la entrega en {area:608} al final de la guía.",
 
 	-- Step 15: Scorpashi venom
 	["Scorpashi venom"] = "Veneno de Scorpashi",
@@ -74,19 +75,18 @@ return {
 	["Walk with the caravan south past {area:609}; Kolkar ambushers jump it on the way. Stay close until it stops at {area:2617}. The ambushers are 34-35 and come in waves: skip it if you are below 33."] = "Camina con la caravana hacia el sur pasando por {area:609}; los emboscadores Kolkar la atacan en el camino. Mantente cerca hasta que se detenga en {area:2617}. Los emboscadores son de nivel 34-35 y llegan en oleadas: omítelo si eres de nivel inferior a 33.",
 
 	-- Step 18: Smeed Scrabblescrew
-	-- {area:609} Kolkar Village · {area:596} Kodo Graveyard
-	["Smeed's camp is on the road south of {area:609}, by the {area:596}."] = "El campamento de Smeed está en el camino al sur de {area:609}, junto a {area:596}.",
+	-- {npc:11596} Smeed Scrabblescrew · {area:609} Kolkar Village · {area:596} Kodo Graveyard
+	["{npc:11596}'s camp is on the road south of {area:609}, by the {area:596}."] = "El campamento de {npc:11596} está en el camino al sur de {area:609}, junto a {area:596}.",
 
 	-- Step 19: Kodo Graveyard
-	-- {item:13892} Kodo Kombobulator · {npc:4700} Aged Kodo
+	-- {npc:11596} Smeed Scrabblescrew · {item:13892} Kodo Kombobulator · {npc:4700} Aged Kodo
 	-- plural, as words: Aged Kodos = {npc:4700} Aged Kodo
-	["Use Smeed's {item:13892} on an {npc:4700} and walk the tamed kodo back to his camp, five times; Aged Kodos also drop the hides."] = "Usa {item:13892} de Smeed en un {npc:4700} y lleva al kodo domado hasta su campamento, cinco veces; los Kodos envejecidos también sueltan las pieles.",
+	["Use {npc:11596}'s {item:13892} on an {npc:4700} and walk the tamed kodo back to his camp, five times; Aged Kodos also drop the hides."] = "Usa {item:13892} de {npc:11596} en un {npc:4700} y lleva al kodo domado hasta su campamento, cinco veces; los Kodos envejecidos también sueltan las pieles.",
 
 	-- Step 21: Kolkar Village
 	-- {area:609} Kolkar Village · {npc:5752} Corporal Melkins
 	["The Kolkar roam the plains around {area:609}; their ears are for {npc:5752}."] = "Los Kolkar recorren las llanuras alrededor de {area:609}; sus orejas son para {npc:5752}.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Dalinda hides inside the {spell:1294269}'s fortress south-west of {area:608}."] = "Dalinda se esconde dentro de la fortaleza de {spell:1294269}, al suroeste de {area:608}.",
-	-- ["Out of {area:599}"] = "Fuera de {area:599}",
+	-- ["The {area:1276}"] = "{area:1276}",
 }

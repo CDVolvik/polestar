@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Spanish (Spain) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Spanish (Spain) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Theramore
@@ -63,14 +64,16 @@ return {
 	["only if you carry a {item:3853} (a blacksmith's craft)"] = "solo si llevas una {item:3853} (la fabrica un herrero)",
 
 	-- Step 15: Balos Jacken
-	["The deserters camp south of the road, west of Mudcrush's hut."] = "Los desertores acampan al sur del camino, al oeste de la cabaña de Fangolpe.",
+	-- {npc:4503} Mudcrush Durtfeet
+	["The deserters camp south of the road, west of {npc:4503}'s hut."] = "Los desertores acampan al sur del camino, al oeste de la cabaña de {npc:4503}.",
 
 	-- Step 17: The Affray
 	-- {area:392} Ratchet · {area:720} Fray Island · {area:391} Merchant Coast · {npc:6236} Klannoc Macleod · {npc:6238} Big Will
 	["On the ride north to {area:392}, {area:720} lies off the {area:391} south of the town: wade over the sand bar shallows. {npc:6236} sends four challengers and then {npc:6238} (level 33) at you, one at a time."] = "De camino al norte hacia {area:392}, la {area:720} está frente a {area:391}, al sur del pueblo: cruza vadeando los bajíos del banco de arena. {npc:6236} te envía cuatro aspirantes y luego a {npc:6238} (nivel 33), de uno en uno.",
 	-- {npc:6238} Big Will
 	["Defeat the challengers and {npc:6238}"] = "Derrota a los aspirantes y a {npc:6238}",
-	["Klannoc offers The Windwatcher next (1791): the Whirlwind weapon chain, with an elite at the end, is in the Warrior class guide Whirlwind Weapon."] = "Klannoc ofrece después El Cazavientos (1791): la cadena del arma torbellino, con un élite al final, está en la guía de clase de guerrero Arma torbellino.",
+	-- {npc:6236} Klannoc Macleod
+	["{npc:6236} offers The Windwatcher next (1791): the Whirlwind weapon chain, with an elite at the end, is in the Warrior class guide Whirlwind Weapon."] = "{npc:6236} ofrece después El Cazavientos (1791): la cadena del arma torbellino, con un élite al final, está en la guía de clase de guerrero Arma torbellino.",
 
 	-- Step 18: Ratchet
 	-- {zone:1413} Barrens · {area:392} Ratchet · {npc:16227} Bragok · {area:35} Booty Bay
@@ -79,7 +82,7 @@ return {
 	["Boat to {area:35}"] = "Barco a {area:35}",
 
 	-- Step 19: Booty Bay
-	-- {object:56910} The Salty Sailor Tavern
+	-- {object:56910} The Salty Sailor Tavern (no name in this language: may be words)
 	["{object:56910} is the tall building over the harbour; most of the quest givers are on its floors or the docks below."] = "{object:56910} es el edificio alto sobre el puerto; la mayoría de los PNJ de misiones están en sus pisos o en los muelles de abajo.",
 	-- {zone:1446} Tanaris
 	["for Stoley in {zone:1446}: keep it"] = "para Stoley, en {zone:1446}: guárdalo",
@@ -101,8 +104,8 @@ return {
 
 	-- Step 22: Bloodsail pirates
 	["Bloodsail pirates"] = "Piratas Velasangre",
-	-- {area:43} Wild Shore · {area:35} Booty Bay
-	["Every Bloodsail drops Snuff and one of them carries Dizzy's eye; the Swashbucklers walk the shore just north of town. The charts and orders lie in the pirate camp on the {area:43}, south of {area:35}."] = "Todos los Velasangre sueltan Barril de tabaco y uno de ellos lleva el ojo de Dizzy; los Aventureros recorren la orilla justo al norte del pueblo. Las cartas de navegación y las órdenes están en el campamento pirata de la {area:43}, al sur de {area:35}.",
+	-- {npc:2493} Dizzy · {area:43} Wild Shore · {area:35} Booty Bay
+	["Every Bloodsail drops Snuff and one of them carries {npc:2493}'s eye; the Swashbucklers walk the shore just north of town. The charts and orders lie in the pirate camp on the {area:43}, south of {area:35}."] = "Todos los Velasangre sueltan Barril de tabaco y uno de ellos lleva el ojo de {npc:2493}; los Aventureros recorren la orilla justo al norte del pueblo. Las cartas de navegación y las órdenes están en el campamento pirata de la {area:43}, al sur de {area:35}.",
 
 	-- Step 24: The Bloodsail captains
 	["The Bloodsail captains"] = "Los capitanes Velasangre",
@@ -133,8 +136,9 @@ return {
 	["for {npc:2616} in Theramore: keep it"] = "para {npc:2616}, en Theramore: guárdalo",
 
 	-- Step 30: Maury and Jon-Jon
-	["Maury and Jon-Jon"] = "Maury y Jon-Jon",
-	-- {npc:2535} Maury "Club Foot" Wilkins · {npc:2536} Jon-Jon the Crow
+	-- {npc:2535} Maury · {npc:2536} Jon-Jon
+	["{npc:2535} and {npc:2536}"] = "{npc:2535} y {npc:2536}",
+	-- {npc:2535} Maury · {npc:2536} Jon-Jon
 	["Ride north to the hills west of the road. {npc:2535} and {npc:2536} stand together just north of Zanzil's village."] = "Ve al norte hasta las colinas al oeste del camino. {npc:2535} y {npc:2536} están juntos justo al norte del poblado de Zanzil.",
 
 	-- Step 31: Zanzil's village
@@ -170,15 +174,15 @@ return {
 
 	-- Step 37: Booty Bay
 	["MacKinley's next task sends you after elite ogres: skip it."] = "La siguiente tarea de MacKinley te manda a por ogros élite: omítela.",
-	-- {zone:1441} Thousand Needles
-	["Crank's next Zanzil errand starts in {zone:1441}: skip it."] = "El siguiente encargo de Loquillo sobre Zanzil empieza en {zone:1441}: omítelo.",
+	-- {npc:2498} Crank · {zone:1441} Thousand Needles
+	["{npc:2498}'s next Zanzil errand starts in {zone:1441}: skip it."] = "El siguiente encargo de {npc:2498} sobre Zanzil empieza en {zone:1441}: omítelo.",
 
 	-- Step 38: Stormwind
-	-- {npc:1141} Angus Stern · {object:2169} Blue Recluse · {npc:5384} Brohann Caskbelly · {object:28027} Dwarven District
+	-- {npc:1141} Angus Stern · {object:2169} Blue Recluse (no name in this language: may be words) · {npc:5384} Brohann Caskbelly · {object:28027} Dwarven District (no name in this language: may be words)
 	["{npc:1141} cooks in the {object:2169}; {npc:5384} is in the {object:28027}."] = "{npc:1141} cocina en {object:2169}; {npc:5384} está en el {object:28027}.",
 	-- {npc:5694} High Sorcerer Andromath · {area:1438} Nethergarde Keep
 	["{npc:5694}: for {area:1438}, keep it"] = "{npc:5694}: para el {area:1438}; guárdalo",
-	-- {npc:1440} Milton Sheaf · {object:2117} Stormwind Keep
+	-- {npc:1440} Milton Sheaf · {object:2117} Stormwind Keep (no name in this language: may be words)
 	["{npc:1440}, the Royal Library in {object:2117}"] = "{npc:1440}, el Archivo Real en {object:2117}",
 
 	-- Step 39: Riding at 40
@@ -209,7 +213,7 @@ return {
 	-- Step 43: Warlock: Summon Felsteed
 	-- {quest:3631} Summon Felsteed
 	["Warlock: {quest:3631}"] = "Brujo: {quest:3631}",
-	-- {npc:461} Demisette Cloyce · {object:2164} Slaughtered Lamb · {npc:6251} Strahad Farsan · {area:392} Ratchet
+	-- {npc:461} Demisette Cloyce · {object:2164} Slaughtered Lamb (no name in this language: may be words) · {npc:6251} Strahad Farsan · {area:392} Ratchet
 	["{npc:461}, in the {object:2164}: {npc:6251} in {area:392} takes it at the end of the next guide"] = "{npc:461}, en {object:2164}: {npc:6251}, en {area:392}, la recoge al final de la siguiente guía",
 
 	-- Step 44: Watcher Biggs
@@ -242,8 +246,8 @@ return {
 	["for {npc:5635} at {area:348}: keep it"] = "para {npc:5635}, en {area:348}: guárdalo",
 
 	-- Step 50: Ironforge
-	-- {area:2257} Deeprun Tram · {object:28027} Dwarven District · {object:32356} Hall of Explorers · {npc:1356} Prospector Stormpike · {npc:2786} Gerrig Bonegrip · {object:32383} Forlorn Cavern · {area:144} Thelsamar
-	["Take the {area:2257} from the {object:28027}. Roetten is in the Reclaimers' hall by the {object:32356}, {npc:1356} in the hall itself, {npc:2786} in the {object:32383}. The next guide flies on to {area:144}."] = "Toma el {area:2257} desde el {object:28027}. Roetten está en la sala de los Reclaimers junto a {object:32356}, {npc:1356} en la propia sala y {npc:2786} en {object:32383}. La siguiente guía continúa en vuelo hasta {area:144}.",
+	-- {area:2257} Deeprun Tram · {object:28027} Dwarven District (no name in this language: may be words) · {npc:5637} Roetten · {object:32356} Hall of Explorers (no name in this language: may be words) · {npc:1356} Prospector Stormpike · {npc:2786} Gerrig Bonegrip · {object:32383} Forlorn Cavern (no name in this language: may be words) · {area:144} Thelsamar
+	["Take the {area:2257} from the {object:28027}. {npc:5637} is in the Reclaimers' hall by the {object:32356}, {npc:1356} in the hall itself, {npc:2786} in the {object:32383}. The next guide flies on to {area:144}."] = "Toma el {area:2257} desde el {object:28027}. {npc:5637} está en la sala de los Reclaimers junto a {object:32356}, {npc:1356} en la propia sala y {npc:2786} en {object:32383}. La siguiente guía continúa en vuelo hasta {area:144}.",
 	-- {npc:1356} Prospector Stormpike · {npc:1344} Prospector Ironband · {zone:1432} Loch Modan
 	["{npc:1356}: for {npc:1344} in {zone:1432}, keep it"] = "{npc:1356}: para {npc:1344}, en {zone:1432}; guárdalo",
 	-- {zone:1453} Stormwind
@@ -262,10 +266,6 @@ return {
 	["{npc:7955}: other colours, 20g"] = "{npc:7955}: otros colores, 20 o",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["At 40 with 100 gold you can learn to ride, and learning it gives you a mount. No Skyborne riding trainer is known; the Forever client files Galestrider Riding under the one Riding skill, so {npc:4732} at {area:88} in eastern {zone:1429}, the nearest trainer to {zone:1453}, should teach it (unconfirmed). The Galestriders are sold by {npc:265756} in {area:16638} on Zephras Isle; Collectibles, Mounts · Level 40 lists them."] = "A nivel 40 y con 100 de oro puedes aprender equitación, y al aprenderla recibes una montura. No se conoce ningún instructor de equitación cielonato; el cliente de Forever incluye la equitación de zancavendavales en la única habilidad de Equitación, así que {npc:4732}, en el {area:88}, en el este de {zone:1429}, el instructor más cercano a {zone:1453}, debería enseñarla (sin confirmar). Los zancavendavales los vende {npc:265756} en {area:16638}, en la Isla de Zephras; Coleccionables, Monturas · Nivel 40, los muestra.",
-	-- ["Gazban swims off the north-west coast, on the northern loop"] = "Gazban nada frente a la costa noroeste, en la vuelta por el norte",
-	-- ["Klannoc offers The Windwatcher next (1791): the Whirlwind weapon chain, with an elite at the end, is in the Warrior class guide Whirlwind Weapon."] = "Klannoc ofrece después El Cazavientos (1791): la cadena del arma torbellino, con un élite al final, está en la guía de clase de guerrero Arma torbellino.",
 	-- ["Klannoc offers The Windwatcher next (1791): the {spell:1680} weapon chain, with an elite at the end, is in the Warrior class guide Whirlwind Weapon."] = "Klannoc ofrece después El Cazavientos (1791): la cadena del arma de {spell:1680}, con un élite al final, está en la guía de clase de guerrero Arma torbellino.",
-	-- ["Ride north-west from the mine to the bay on the north-west coast. The Giant Clams lie on its floor and hold the pearls; Gazban swims among them and drops the {item:4034}."] = "Ve al noroeste desde la mina hasta la bahía de la costa noroeste. Las Almejas gigantes están en el fondo y guardan las perlas; Gazban nada entre ellas y suelta la {item:4034}.",
 	-- ["{npc:6236}: Berserker Stance"] = "{npc:6236}: Actitud rabiosa",
 }

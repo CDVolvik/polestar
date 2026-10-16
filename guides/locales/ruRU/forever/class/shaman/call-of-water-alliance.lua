@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Russian (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Russian words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -16,17 +17,17 @@ return {
 	["At 20 {npc:258098}, the shaman trainer in {zone:1455}, sends you to {npc:258043} in {zone:1432}."] = "На 20-м уровне {npc:258098}, учитель шаманов ({zone:1455}), отправляет вас к NPC {npc:258043} ({zone:1432}).",
 
 	-- Step 2: Norric Lochthane
-	-- {area:146} Stonewrought Dam
-	["Norric's burrow hut stands on the north-western edge of the loch, south of {area:146}."] = "Землянка Норрика стоит на северо-западном берегу озера, к югу от места {area:146}.",
+	-- {npc:258043} Norric Lochthane · {area:146} Stonewrought Dam
+	["{npc:258043}'s burrow hut stands on the north-western edge of the loch, south of {area:146}."] = "Землянка {npc:258043} стоит на северо-западном берегу озера, к югу от места {area:146}.",
 
 	-- Step 3: Hervdana Saegrund
-	-- {zone:1437} Wetlands
-	["Hervdana's family lives in a cave beneath the southern falls of the {zone:1437}."] = "Семья Гервданы живет в пещере под южными водопадами зоны {zone:1437}.",
+	-- {npc:258203} Hervdana Saegrund · {zone:1437} Wetlands
+	["{npc:258203}'s family lives in a cave beneath the southern falls of the {zone:1437}."] = "Семья {npc:258203} живет в пещере под южными водопадами зоны {zone:1437}.",
 
 	-- Step 4: The brown waterskin
 	["The brown waterskin"] = "Коричневый бурдюк",
-	-- {item:265732} Unfilled Brown Waterskin
-	["Fill the {item:265732} at the bottom of the waterfalls below Hervdana's cave, where the fresh water meets the brackish."] = "Наполните {item:265732} у подножия водопадов под пещерой Гервданы, где пресная вода встречается с солоноватой.",
+	-- {item:265732} Unfilled Brown Waterskin · {npc:258203} Hervdana Saegrund
+	["Fill the {item:265732} at the bottom of the waterfalls below {npc:258203}'s cave, where the fresh water meets the brackish."] = "Наполните {item:265732} у подножия водопадов под пещерой {npc:258203}, где пресная вода встречается с солоноватой.",
 
 	-- Step 6: The red waterskin
 	["The red waterskin"] = "Красный бурдюк",
@@ -36,12 +37,12 @@ return {
 
 	-- Step 8: The blue waterskin
 	["The blue waterskin"] = "Синий бурдюк",
-	-- {area:150} Menethil Harbor · {area:442} Auberdine · {area:271} Southshore · {area:415} Astranaar · {item:265772} Unfilled Blue Waterskin
-	["Hervdana: take the boat from {area:150} to {area:442} (it stops in {area:271} on the way), then go south to {area:415}. Fill the {item:265772} in the lake around the town."] = "Гервдана: плывите на корабле: {area:150} → {area:442} (по пути он заходит сюда: {area:271}), затем идите на юг: {area:415}. Наполните {item:265772} в озере вокруг городка.",
+	-- {npc:258203} Hervdana Saegrund · {area:150} Menethil Harbor · {area:442} Auberdine · {area:271} Southshore · {area:415} Astranaar · {item:265772} Unfilled Blue Waterskin
+	["{npc:258203}: take the boat from {area:150} to {area:442} (it stops in {area:271} on the way), then go south to {area:415}. Fill the {item:265772} in the lake around the town."] = "{npc:258203}: плывите на корабле: {area:150} → {area:442} (по пути он заходит сюда: {area:271}), затем идите на юг: {area:415}. Наполните {item:265772} в озере вокруг городка.",
 
 	-- Step 9: Hervdana Saegrund
-	-- {item:7810} Vial of Purest Water
-	["the {item:7810}, for Norric"] = "{item:7810} для Норрика",
+	-- {item:7810} Vial of Purest Water · {npc:258043} Norric Lochthane
+	["the {item:7810}, for {npc:258043}"] = "{item:7810} для {npc:258043}",
 
 	-- Step 10: Norric Lochthane
 	-- {npc:258043} Norric Lochthane · {item:6637} Water Sapta

@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (simplified) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (simplified) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Pack
@@ -11,11 +12,11 @@ return {
 
 	-- Folders
 	["Companion pets · Drops"] = "小宠物 · 掉落",
-	["Companion pets · Legacy"] = "小宠物 · 绝版",
+	["Companion pets · Legacy"] = "小宠物 · 传承",
 	["Companion pets · Quests"] = "小宠物 · 任务",
 	["Companion pets · Vendors"] = "小宠物 · 商人",
 	["Mounts · Drops"] = "坐骑 · 掉落",
-	["Mounts · Legacy"] = "坐骑 · 绝版",
+	["Mounts · Legacy"] = "坐骑 · 传承",
 	["Mounts · Level 40"] = "坐骑 · 40级",
 	["Mounts · Level 60"] = "坐骑 · 60级",
 	["Mounts · PvP"] = "坐骑 · PvP",

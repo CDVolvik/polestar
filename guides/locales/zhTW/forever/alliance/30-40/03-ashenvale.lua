@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (traditional) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (traditional) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Astranaar
@@ -94,7 +95,8 @@ return {
 	["Take the boat to {area:150} from {area:442}'s docks."] = "從{area:442}的碼頭搭船前往{area:150}。",
 
 	-- Step 31: Glorin Steelbrow
-	["Glorin stands on the upper floor of Menethil's keep."] = "戈羅林站在米奈希爾城堡的上層。",
+	-- {npc:1217} Glorin Steelbrow
+	["{npc:1217} stands on the upper floor of Menethil's keep."] = "{npc:1217}站在米奈希爾城堡的上層。",
 
 	-- Step 32: Waterlogged Chest
 	["The wreck of the Flying Osprey lies in the shallows south of the keep."] = "沉船殘骸在城堡南邊的淺水處。",
@@ -105,10 +107,9 @@ return {
 	["The Bluegill murlocs on the beach south-west of Menethil carry the ingots."] = "米奈希爾西南方海灘上的藍腮魚人帶著鐵錠。",
 
 	-- Step 35: Deepwater Tavern
-	-- {npc:5082} Vincent Hyal · {npc:4963} Mikhail · {npc:1480} Caitlin Grassman
-	["{npc:5082}, {npc:4963} and Tapoke Jahn are all at Menethil's inn; Tapoke fights you when you talk to {npc:4963}, but gives up once beaten. {npc:1480} stands a short walk north-east of the inn."] = "{npc:5082}、{npc:4963}和塔伯克·賈恩都在米奈希爾的旅店；你和{npc:4963}說話時塔伯克會攻擊你，但被打敗後就會投降。{npc:1480}站在旅店東北方不遠處。",
+	-- {npc:5082} Vincent Hyal · {npc:4963} Mikhail · {npc:4962} Tapoke · {npc:1480} Caitlin Grassman
+	["{npc:5082}, {npc:4963} and Tapoke Jahn are all at Menethil's inn; {npc:4962} fights you when you talk to {npc:4963}, but gives up once beaten. {npc:1480} stands a short walk north-east of the inn."] = "{npc:5082}、{npc:4963}和{npc:4962}·賈恩都在米奈希爾的旅店；你和{npc:4963}說話時塔伯克會攻擊你，但被打敗後就會投降。{npc:1480}站在旅店東北方不遠處。",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Geltharis"] = "加薩里斯",
-	-- ["Geltharis leads the {area:429} satyrs; he carries the branch."] = "加薩里斯率領{area:429}的薩特；樹枝在他身上。",
 }

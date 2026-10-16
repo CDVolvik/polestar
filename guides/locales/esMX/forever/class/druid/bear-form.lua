@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Spanish (Latin America) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Spanish (Latin America) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -29,14 +30,14 @@ return {
 	["Speak with the {quest:5929}"] = "Habla con el {quest:5929}",
 
 	-- Step 5: The Moonkin Stone
-	-- {object:177525} Moonkin Stone
+	-- {object:177525} Moonkin Stone (no name in this language: may be words)
 	["The {object:177525}"] = "{object:177525}",
-	-- {area:702} Rut'theran Village · {area:442} Auberdine · {object:177525} Moonkin Stone · {item:15208} Cenarion Moondust · {npc:12144} Lunaclaw Spirit
+	-- {area:702} Rut'theran Village · {area:442} Auberdine · {object:177525} Moonkin Stone (no name in this language: may be words) · {item:15208} Cenarion Moondust · {npc:12144} Lunaclaw Spirit
 	["Fly from {area:702} to {area:442}. The {object:177525} stands in the hills just east of the village: use the {item:15208} there, defeat Lunaclaw and speak to the {npc:12144}."] = "Vuela de {area:702} a {area:442}. {object:177525} está en las colinas justo al este del pueblo: usa ahí el {item:15208}, derrota a Garraluna y habla con {npc:12144}.",
 
 	-- Step 6: Body and Heart
-	-- {area:702} Rut'theran Village
-	["Fly back to {area:702} and take the portal up to Mathrengyl."] = "Regresa en vuelo a {area:702} y toma el portal para subir con Mathrengyl.",
+	-- {area:702} Rut'theran Village · {npc:4217} Mathrengyl Bearwalker
+	["Fly back to {area:702} and take the portal up to {npc:4217}."] = "Regresa en vuelo a {area:702} y toma el portal para subir con {npc:4217}.",
 
 	-- Step 7: Heeding the Call
 	-- {npc:3064} Gennia Runetotem · {area:222} Bloodhoof Village · {npc:6746} Innkeeper Pala · {zone:1456} Thunder Bluff · {npc:6929} Innkeeper Gryshka · {zone:1454} Orgrimmar · {npc:3033} Turak Runetotem · {area:1639} Elder Rise
@@ -55,7 +56,7 @@ return {
 	["Speak with the {quest:5930}"] = "Habla con el {quest:5930}",
 
 	-- Step 11: The Moonkin Stone
-	-- {object:177525} Moonkin Stone · {zone:1412} Mulgore · {zone:1413} Barrens · {item:15710} Cenarion Lunardust · {npc:12144} Lunaclaw Spirit
+	-- {object:177525} Moonkin Stone (no name in this language: may be words) · {zone:1412} Mulgore · {zone:1413} Barrens · {item:15710} Cenarion Lunardust · {npc:12144} Lunaclaw Spirit
 	["The {object:177525} stands in the pass from {zone:1412} into the {zone:1413}. Use the {item:15710} there, defeat Lunaclaw and speak to the {npc:12144}."] = "{object:177525} está en el paso de {zone:1412} a {zone:1413}. Usa ahí el {item:15710}, derrota a Garraluna y habla con {npc:12144}.",
 
 	-- Step 12: Body and Heart
@@ -64,17 +65,17 @@ return {
 
 	-- Step 13: Skyboat from Dalaran
 	-- {area:279} Dalaran
-	["Skyboat from {area:279}"] = "Aeronave desde {area:279}",
+	["Skyboat from {area:279}"] = "Barco celeste desde {area:279}",
 	-- {spell:5487} Bear Form · {zone:2521} Zephras Isle · {area:279} Dalaran
-	["{spell:5487} is taught on {zone:2521}. Skip this if you are still on the isle; otherwise take the skyboat from the north side of {area:279}."] = "{spell:5487} se enseña en {zone:2521}. Omite esto si sigues en la isla; si no, toma la aeronave desde el lado norte de {area:279}.",
+	["{spell:5487} is taught on {zone:2521}. Skip this if you are still on the isle; otherwise take the skyboat from the north side of {area:279}."] = "{spell:5487} se enseña en {zone:2521}. Omite esto si sigues en la isla; si no, toma el barco celeste desde el lado norte de {area:279}.",
 	-- {zone:2521} Zephras Isle
-	["Skyboat to {zone:2521}"] = "Aeronave a {zone:2521}",
+	["Skyboat to {zone:2521}"] = "Barco celeste a {zone:2521}",
 
 	-- Step 14: Skyboat from Thunder Bluff
 	-- {zone:1456} Thunder Bluff
-	["Skyboat from {zone:1456}"] = "Aeronave desde {zone:1456}",
+	["Skyboat from {zone:1456}"] = "Barco celeste desde {zone:1456}",
 	-- {spell:5487} Bear Form · {zone:2521} Zephras Isle · {area:17045} Skywatcher Plateau · {zone:1456} Thunder Bluff
-	["{spell:5487} is taught on {zone:2521}. Skip this if you are still on the isle; otherwise take the skyboat from the cliffs south of {area:17045}, north of {zone:1456}."] = "{spell:5487} se enseña en {zone:2521}. Omite esto si sigues en la isla; si no, toma la aeronave desde los acantilados al sur de {area:17045}, al norte de {zone:1456}.",
+	["{spell:5487} is taught on {zone:2521}. Skip this if you are still on the isle; otherwise take the skyboat from the cliffs south of {area:17045}, north of {zone:1456}."] = "{spell:5487} se enseña en {zone:2521}. Omite esto si sigues en la isla; si no, toma el barco celeste desde los acantilados al sur de {area:17045}, al norte de {zone:1456}.",
 
 	-- Step 15: Lotheluum Starbreeze
 	-- {npc:252359} Lotheluum Starbreeze · {area:16638} Valanaar
@@ -109,7 +110,4 @@ return {
 	-- Step 22: Dendrite Starblaze
 	-- {spell:18960} Teleport: Moonglade · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {area:493} Moonglade
 	["Cast {spell:18960}. {npc:11802} is in {area:2361}. Learn the {area:493} flight path while you are here."] = "Lanza {spell:18960}. {npc:11802} está en {area:2361}. Aprende la ruta de vuelo de {area:493} mientras estás aquí.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["At 10 a druid's call reaches you: {npc:3602} in {area:186}, Denatharion in {zone:1457} or Theridran in {zone:1453}. Any one of them sends you to {npc:4217} in the Cenarion Enclave of {zone:1457}."] = "A nivel 10 te llega el llamado de un druida: {npc:3602} en {area:186}, Denatharion en {zone:1457} o Theridran en {zone:1453}. Cualquiera te envía con {npc:4217} en el Enclave Cenarion de {zone:1457}.",
 }

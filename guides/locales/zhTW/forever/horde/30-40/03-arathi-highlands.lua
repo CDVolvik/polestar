@@ -3,18 +3,19 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (traditional) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (traditional) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Fly to Grom'gol
-	-- {object:3202} Grom'gol
+	-- {object:3202} Grom'gol (no name in this language: may be words)
 	["Fly to {object:3202}"] = "飛往{object:3202}",
-	-- {area:35} Booty Bay · {object:3202} Grom'gol · {object:1661} The Undercity
+	-- {area:35} Booty Bay · {object:3202} Grom'gol (no name in this language: may be words) · {object:1661} The Undercity (no name in this language: may be words)
 	["From {area:35}, fly to {object:3202}. {object:1661} zeppelin leaves from the tower on the west side of the camp."] = "從{area:35}飛往{object:3202}。前往{object:1661}的飛艇從營地西側的塔出發。",
 	-- {zone:1458} Undercity
 	["Zeppelin to the {zone:1458}"] = "搭飛艇前往{zone:1458}",
 
 	-- Step 2: Orgrimmar
-	-- {object:1661} The Undercity · {zone:1454} Orgrimmar · {zone:1458} Undercity
+	-- {object:1661} The Undercity (no name in this language: may be words) · {zone:1454} Orgrimmar · {zone:1458} Undercity
 	["{object:1661} has no Hunter or Shaman trainer: take the {zone:1454} zeppelin from the same tower instead and train in the city, then take the {zone:1458} zeppelin from the tower outside {zone:1454}'s main gate."] = "{object:1661}沒有獵人或薩滿訓練師：改從同一座塔搭乘前往{zone:1454}的飛艇，在城裡學習，然後在{zone:1454}正門外的塔搭乘前往{zone:1458}的飛艇。",
 
 	-- Step 3: Thunder Bluff
@@ -24,7 +25,7 @@ return {
 	-- Step 4: Undercity trainers
 	-- {zone:1458} Undercity
 	["{zone:1458} trainers"] = "{zone:1458}的訓練師",
-	-- {zone:1458} Undercity · {object:36070} War Quarter · {object:36073} Rogues' Quarter · {object:36082} Magic Quarter · {npc:260093} Garen Largo
+	-- {zone:1458} Undercity · {object:36070} War Quarter (no name in this language: may be words) · {object:36073} Rogues' Quarter (no name in this language: may be words) · {object:36082} Magic Quarter (no name in this language: may be words) · {npc:260093} Garen Largo
 	["Train while you are in the {zone:1458}: the trainers stand in the {object:36070}, the {object:36073} and the {object:36082} (Paladins: {npc:260093})."] = "趁你在{zone:1458}時學習：訓練師都在{object:36070}、{object:36073}和{object:36082}（聖騎士：{npc:260093}）。",
 
 	-- Step 5: Fly to Tarren Mill
@@ -64,7 +65,7 @@ return {
 	-- Step 13: The Stone of East Binding
 	-- {object:2691} Stone of East Binding
 	["The {object:2691}"] = "{object:2691}",
-	-- {object:180105} Circle of Binding · {area:321} Hammerfall
+	-- {object:180105} Circle of Binding (no name in this language: may be words) · {area:321} Hammerfall
 	["Each {object:180105} is a ring of standing stones; the key sits on the stone at its heart. The eastern circle is on the hills north-west of {area:321}."] = "每個{object:180105}都是一圈立石；鑰匙放在中央的石頭上。東邊的法陣在{area:321}西北方的山丘上。",
 
 	-- Step 14: Witherbark Village
@@ -137,8 +138,8 @@ return {
 	["{quest:1106}: Fizzle's letter from the {area:439}"] = "{quest:1106}：來自{area:439}的菲茲爾·銅栓的信",
 
 	-- Step 30: The Dustbowl
-	-- {area:340} Kargath
-	["Ride west along the road; Lotwil's camp sits in the Dustbowl halfway to {area:340}."] = "沿著道路向西騎；魯特維爾的營地在前往{area:340}半路上的漫塵盆地。",
+	-- {npc:2921} Lotwil · {area:1878} The Dustbowl · {area:340} Kargath
+	["Ride west along the road; {npc:2921}'s camp sits in the {area:1878} halfway to {area:340}."] = "沿著道路向西騎；{npc:2921}的營地在前往{area:340}半路上的{area:1878}。",
 
 	-- Step 31: Kargath
 	-- {area:340} Kargath
@@ -149,19 +150,22 @@ return {
 	-- Step 32: Lesser Rock Elementals
 	-- plural, as words: Lesser Rock Elementals = {npc:2735} Lesser Rock Elemental
 	["Lesser Rock Elementals"] = "次級石元素",
+	-- {npc:2921} Lotwil · {npc:6868} Jarkal
 	-- plural, as words: Rock Elemental Shards = {item:7848} Rock Elemental Shard
-	["The small elementals drift across the flats just west of Lotwil's camp. Every rock elemental in the zone can drop Jarkal's Rock Elemental Shards: keep them."] = "小型元素在魯特維爾營地西邊的平地上漂移。本區每個石元素都可能掉落加卡爾要的石元素的碎片：保留它們。",
+	["The small elementals drift across the flats just west of {npc:2921}'s camp. Every rock elemental in the zone can drop {npc:6868}'s Rock Elemental Shards: keep them."] = "小型元素在{npc:2921}營地西邊的平地上漂移。本區每個石元素都可能掉落{npc:6868}要的石元素的碎片：保留它們。",
 
 	-- Step 34: Rock Elementals
 	-- plural, as words: Rock Elementals = {npc:92} Rock Elemental
 	["Rock Elementals"] = "石元素",
+	-- {area:1878} The Dustbowl
 	-- plural, as words: Rock Elementals = {npc:92} Rock Elemental
-	["The bigger Rock Elementals stand on the slopes north-west of the Dustbowl; each one drops a slab."] = "較大的石元素站在漫塵盆地西北方的山坡上；每一隻都會掉落一塊石板。",
+	["The bigger Rock Elementals stand on the slopes north-west of the {area:1878}; each one drops a slab."] = "較大的石元素站在{area:1878}西北方的山坡上；每一隻都會掉落一塊石板。",
 
 	-- Step 36: Coyotes and buzzards
 	["Coyotes and buzzards"] = "山狗與禿鷲",
+	-- {area:1878} The Dustbowl
 	-- plural, as words: Elder Crag Coyotes = {npc:2729} Elder Crag Coyote · Giant Buzzards = {npc:2831} Giant Buzzard
-	["The Elder Crag Coyotes and Giant Buzzards roam the basin south of the Dustbowl. Coyotes drop both the jawbones and the fangs; only the buzzards drop wings and gizzards."] = "老峭壁山狗和巨型禿鷲在漫塵盆地南邊的盆地中遊蕩。山狗會掉落顎骨和尖牙；只有禿鷲會掉落翅膀和砂囊。",
+	["The Elder Crag Coyotes and Giant Buzzards roam the basin south of the {area:1878}. Coyotes drop both the jawbones and the fangs; only the buzzards drop wings and gizzards."] = "老峭壁山狗和巨型禿鷲在{area:1878}南邊的盆地中遊蕩。山狗會掉落顎骨和尖牙；只有禿鷲會掉落翅膀和砂囊。",
 
 	-- Step 37: Greater Rock Elementals
 	-- plural, as words: Greater Rock Elementals = {npc:2736} Greater Rock Elemental
@@ -187,7 +191,8 @@ return {
 	["Theldurin sits among the dwarven ruins at {area:345}, south of the {area:1877}."] = "塞爾杜林坐在{area:1877}南邊{area:345}的矮人遺跡中。",
 
 	-- Step 43: Valley of Fangs
-	["Follow the road north; Martek's camp is on the way."] = "沿著道路向北走；馬特克的營地就在路上。",
+	-- {npc:4618} Martek
+	["Follow the road north; {npc:4618}'s camp is on the way."] = "沿著道路向北走；{npc:4618}的營地就在路上。",
 
 	-- Step 44: Ancient Chest
 	-- {area:1517} Uldaman
@@ -204,7 +209,7 @@ return {
 	-- Step 47: Zeppelin to Orgrimmar
 	-- {zone:1454} Orgrimmar
 	["Zeppelin to {zone:1454}"] = "搭飛艇前往{zone:1454}",
-	-- {zone:1454} Orgrimmar · {object:3202} Grom'gol
+	-- {zone:1454} Orgrimmar · {object:3202} Grom'gol (no name in this language: may be words)
 	["Take the {zone:1454} zeppelin from the tower on the west side of {object:3202}."] = "在{object:3202}西側的塔搭乘前往{zone:1454}的飛艇。",
 	["Zeppelin tower"] = "飛艇塔",
 
@@ -212,13 +217,9 @@ return {
 	-- {area:1638} Thunder Bluff · {zone:1454} Orgrimmar · {npc:3033} Turak Runetotem · {area:1639} Elder Rise · {npc:246344} Alodan the Hopeful · {area:380} Crossroads
 	["Your trainer is in {area:1638}, one flight from {zone:1454}: {npc:3033} (Druids) on {area:1639}, {npc:246344} (Paladins). Fly on to the {area:380} from there."] = "你的訓練師在{area:1638}，從{zone:1454}飛一趟即可抵達：{npc:3033}（德魯伊）在{area:1639}，{npc:246344}（聖騎士）。然後從那裡飛往{area:380}。",
 
-	-- Step 50: The Crossroads
-	-- {area:380} Crossroads
-	["The {area:380}"] = "{area:380}",
-
 	-- Step 51: Regthar Deathgate
-	-- {area:380} Crossroads · {area:386} Forgotten Pools
-	["Ride north up the road from the {area:380} to the {area:386}; Regthar keeps watch on the rise above the water."] = "沿著道路從{area:380}向北騎往{area:386}；雷戈薩在水邊上方的高地守望。",
+	-- {area:380} Crossroads · {area:386} Forgotten Pools · {npc:3389} Regthar
+	["Ride north up the road from the {area:380} to the {area:386}; {npc:3389} keeps watch on the rise above the water."] = "沿著道路從{area:380}向北騎往{area:386}；{npc:3389}在水邊上方的高地守望。",
 	-- {npc:5395} Felgur Twocuts · {zone:1443} Desolace
 	["for {npc:5395} in {zone:1443}, in the next guide"] = "給{zone:1443}的{npc:5395}，在下一份指南中",
 
@@ -235,8 +236,8 @@ return {
 	["Ride south along the coast from {area:392} to {area:720}. {npc:6236} stands by the arena: step on the grate to start the fight; the challengers come one at a time, then {npc:6238} (33)."] = "從{area:392}沿著海岸向南騎往{area:720}。{npc:6236}站在競技場旁：踏上格柵開始戰鬥；挑戰者會一次一個上場，最後是{npc:6238}（33級）。",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["North-east of {area:321} the Drywhisker kobolds mine the gorge; the Kobolds at the mouth and the Diggers and Surveyors deeper in all drop the Motes of Myzrael."] = "在{area:321}東北方，枯鬚狗頭人在峽谷中挖礦；峽谷口的枯鬚狗頭人以及深處的枯鬚掘地工和枯鬚勘探員都會掉落密斯賴爾之塵。",
 	-- ["Ride west along the road; Lotwil's camp sits in the {area:1878} halfway to {area:340}."] = "沿著道路向西騎；魯特維爾的營地在前往{area:340}半路上的{area:1878}。",
 	-- ["The Elder Crag Coyotes and Giant Buzzards roam the basin south of the {area:1878}. Coyotes drop both the jawbones and the fangs; only the buzzards drop wings and gizzards."] = "老峭壁山狗和巨型禿鷲在{area:1878}南邊的盆地中遊蕩。山狗會掉落顎骨和尖牙；只有禿鷲會掉落翅膀和砂囊。",
 	-- ["The bigger Rock Elementals stand on the slopes north-west of the {area:1878}; each one drops a slab."] = "較大的石元素站在{area:1878}西北方的山坡上；每一隻都會掉落一塊石板。",
+	-- ["The {area:380}"] = "{area:380}",
 }

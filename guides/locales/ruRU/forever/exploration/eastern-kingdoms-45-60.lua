@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Russian (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Russian words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -51,10 +52,10 @@ return {
 
 	-- Step 7: The Hinterlands (1/2)
 	["14 areas to discover here, levels 41-49."] = "Здесь нужно открыть 14 местностей, 41-49 уровни.",
-	-- {area:348} Aerie Peak · {area:271} Southshore · {zone:1424} Hillsbrad Foothills
-	["Fly to {area:348} if you have it; otherwise fly to {area:271} and walk north-east from {zone:1424} into the Hinterlands."] = "Летите сюда: {area:348}, если маршрут есть; иначе летите сюда: {area:271} – и идите на северо-восток ({zone:1424} → Внутренние земли).",
-	-- {area:3317} Revantusk Village · {area:272} Tarren Mill · {zone:1424} Hillsbrad Foothills
-	["Fly to {area:3317} if you have it; otherwise fly to {area:272} and walk east from {zone:1424} into the Hinterlands."] = "Летите сюда: {area:3317}, если маршрут есть; иначе летите сюда: {area:272} – и идите на восток ({zone:1424} → Внутренние земли).",
+	-- {area:348} Aerie Peak · {area:271} Southshore · {zone:1424} Hillsbrad Foothills · {zone:1425} The Hinterlands
+	["Fly to {area:348} if you have it; otherwise fly to {area:271} and walk north-east from {zone:1424} into the {zone:1425}."] = "Летите сюда: {area:348}, если маршрут есть; иначе летите сюда: {area:271} – и идите на северо-восток ({zone:1424} → {zone:1425}).",
+	-- {area:3317} Revantusk Village · {area:272} Tarren Mill · {zone:1424} Hillsbrad Foothills · {zone:1425} The Hinterlands
+	["Fly to {area:3317} if you have it; otherwise fly to {area:272} and walk east from {zone:1424} into the {zone:1425}."] = "Летите сюда: {area:3317}, если маршрут есть; иначе летите сюда: {area:272} – и идите на восток ({zone:1424} → {zone:1425}).",
 	-- {area:348} Aerie Peak · {npc:8018} Guthrum Thunderfist
 	["Flight path here: {area:348} ({npc:8018})."] = "Маршрут полета здесь: {area:348} ({npc:8018}).",
 	-- {area:3317} Revantusk Village

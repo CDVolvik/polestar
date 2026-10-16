@@ -3,21 +3,22 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Spanish (Latin America) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Spanish (Latin America) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
-	["Argent Dawn Reputation"] = "Reputación con El Alba Argenta",
+	["Argent Dawn Reputation"] = "Reputación: El Alba Argenta",
 
 	-- Step 1: Argent Dawn Commission (Alliance)
 	-- {quest:5401} Argent Dawn Commission
 	["{quest:5401} (Alliance)"] = "{quest:5401} (Alianza)",
-	-- {object:2160} The Argent Dawn · {npc:10840} Argent Officer Pureheart · {area:3197} Chillwind Camp · {quest:5401} Argent Dawn Commission
+	-- {object:2160} The Argent Dawn (no name in this language: may be words) · {npc:10840} Argent Officer Pureheart · {area:3197} Chillwind Camp · {quest:5401} Argent Dawn Commission
 	["{object:2160} starts out Neutral. Take the Commission from {npc:10840} at {area:3197} and wear it: in Classic, Scourgestones only drop while the {quest:5401} trinket is equipped. Forever's Legacy Diplomat perk increases reputation gains."] = "{object:2160} empieza en Neutral. Toma la comisión de {npc:10840} en {area:3197} y llévala equipada: en Classic, las Piedras de la Plaga solo caen mientras tienes equipado el abalorio {quest:5401}. La ventaja Diplomático del Legado de Forever aumenta la reputación obtenida.",
 
 	-- Step 2: Argent Dawn Commission (Horde)
 	-- {quest:5401} Argent Dawn Commission
 	["{quest:5401} (Horde)"] = "{quest:5401} (Horda)",
-	-- {object:2160} The Argent Dawn · {npc:10839} Argent Officer Garush · {area:813} The Bulwark · {quest:5401} Argent Dawn Commission
+	-- {object:2160} The Argent Dawn (no name in this language: may be words) · {npc:10839} Argent Officer Garush · {area:813} The Bulwark · {quest:5401} Argent Dawn Commission
 	["{object:2160} starts out Neutral. Take the Commission from {npc:10839} at {area:813} and wear it: in Classic, Scourgestones only drop while the {quest:5401} trinket is equipped. Forever's Legacy Diplomat perk increases reputation gains."] = "{object:2160} empieza en Neutral. Toma la comisión de {npc:10839} en {area:813} y llévala equipada: en Classic, las Piedras de la Plaga solo caen mientras tienes equipado el abalorio {quest:5401}. La ventaja Diplomático del Legado de Forever aumenta la reputación obtenida.",
 
 	-- Step 3: Minion's Scourgestones to Friendly

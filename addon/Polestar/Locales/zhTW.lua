@@ -1042,7 +1042,7 @@ L["Faction filter"] = "陣營篩選"
 L["Class"] = "職業"
 L["Professions"] = "專業"
 L["Exploration"] = "探索"
-L["Legacy"] = "舊版"
+L["Legacy"] = "傳承"
 L["Collectibles"] = "收藏品"
 L["Sections"] = "區段"
 

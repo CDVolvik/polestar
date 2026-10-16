@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Korean words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Everlook
@@ -20,18 +21,19 @@ return {
 	["The ruins lie around the frozen lake south of {area:2253}. Pick up the four relic fragments lying in the ruins and the Moontouched Feathers on the ground where the wildkin roam."] = "폐허는 {area:2253} 남쪽의 얼어붙은 호수 주변에 있습니다. 폐허에 놓인 유물 조각 네 개를 줍고, 올빼미야수가 돌아다니는 땅에서 달빛 깃든 깃털을 주우세요.",
 
 	-- Step 4: Donova Snowden
-	["Follow the road west to Donova's camp beside the hot springs."] = "길을 따라 서쪽으로 온천 옆 도노바의 야영지까지 가세요.",
+	-- {npc:9298} Donova Snowden
+	["Follow the road west to {npc:9298}'s camp beside the hot springs."] = "길을 따라 서쪽으로 온천 옆 {npc:9298}의 야영지까지 가세요.",
 	-- {zone:1444} Feralas
 	["Keep it: Gregan in {zone:1444} brews the elixir later"] = "보관하세요: 나중에 {zone:1444}의 그레간이 비약을 만듭니다",
 
 	-- Step 5: Salfa
-	-- {npc:11556} Salfa · {area:1769} Timbermaw Hold
-	["{npc:11556} guards the mouth of {area:1769}, north-west of Donova."] = "{npc:11556}은(는) 도노바 북서쪽의 {area:1769} 입구를 지킵니다.",
+	-- {npc:11556} Salfa · {area:1769} Timbermaw Hold · {npc:9298} Donova Snowden
+	["{npc:11556} guards the mouth of {area:1769}, north-west of {npc:9298}."] = "{npc:11556}은(는) {npc:9298} 북서쪽의 {area:1769} 입구를 지킵니다.",
 
 	-- Step 6: The Winterfall camp
 	["The Winterfall camp"] = "눈사태일족 야영지",
-	-- {npc:11556} Salfa · {item:12771} Empty Firewater Flask · {quest:8471} Winterfall Ritual Totem · {quest:6031} Runecloth
-	["The western Winterfall camp sits in the hills between {npc:11556} and Donova. Any furbolg here can drop an {item:12771} (about one in ten) and, rarely, a {quest:8471}: right-click whichever drops. Keep the {quest:6031} the furbolgs drop for Meilosh."] = "서쪽 눈사태일족 야영지는 {npc:11556}와(과) 도노바 사이의 언덕에 있습니다. 이곳의 펄볼그는 누구든 {item:12771}(약 10분의 1 확률)을, 드물게 {quest:8471}을(를) 떨어뜨릴 수 있습니다. 떨어진 것을 오른쪽 클릭하세요. 펄볼그가 떨어뜨리는 {quest:6031}은(는) 메일로쉬를 위해 보관하세요.",
+	-- {npc:11556} Salfa · {npc:9298} Donova Snowden · {item:12771} Empty Firewater Flask · {quest:8471} Winterfall Ritual Totem · {quest:6031} Runecloth
+	["The western Winterfall camp sits in the hills between {npc:11556} and {npc:9298}. Any furbolg here can drop an {item:12771} (about one in ten) and, rarely, a {quest:8471}: right-click whichever drops. Keep the {quest:6031} the furbolgs drop for Meilosh."] = "서쪽 눈사태일족 야영지는 {npc:11556}와(과) {npc:9298} 사이의 언덕에 있습니다. 이곳의 펄볼그는 누구든 {item:12771}(약 10분의 1 확률)을, 드물게 {quest:8471}을(를) 떨어뜨릴 수 있습니다. 떨어진 것을 오른쪽 클릭하세요. 펄볼그가 떨어뜨리는 {quest:6031}은(는) 메일로쉬를 위해 보관하세요.",
 	-- {item:12771} Empty Firewater Flask
 	["{item:12771}, a rare drop"] = "{item:12771}, 드문 전리품",
 	-- {quest:8471} Winterfall Ritual Totem
@@ -77,20 +79,24 @@ return {
 	["{npc:10978}: {npc:7583} and {npc:10977} come later"] = "{npc:10978}: {npc:7583}와(과) {npc:10977}은(는) 나중에",
 
 	-- Step 14: Starfall Village
-	["Ride west along the road to Jaron."] = "길을 따라 서쪽으로 야론에게 가세요.",
+	-- {npc:10301} Jaron
+	["Ride west along the road to {npc:10301}."] = "길을 따라 서쪽으로 {npc:10301}에게 가세요.",
 
 	-- Step 15: Jaron's camp
-	["Jaron's camp"] = "야론의 야영지",
-	-- {area:2245} Mazthoril
-	["Ride south-east down the valley to Jaron's damaged crate in the snow at {area:2245}, with his wrecked wagon just east of it."] = "계곡을 따라 남동쪽으로 내려가 {area:2245}의 눈 속에 있는 야론의 부서진 상자로 가세요. 부서진 마차가 그 바로 동쪽에 있습니다.",
+	-- {npc:10301} Jaron
+	["{npc:10301}'s camp"] = "{npc:10301}의 야영지",
+	-- {npc:10301} Jaron · {area:2245} Mazthoril
+	["Ride south-east down the valley to {npc:10301}'s damaged crate in the snow at {area:2245}, with his wrecked wagon just east of it."] = "계곡을 따라 남동쪽으로 내려가 {area:2245}의 눈 속에 있는 {npc:10301}의 부서진 상자로 가세요. 부서진 마차가 그 바로 동쪽에 있습니다.",
 
 	-- Step 16: Jaron's supplies
-	["Jaron's supplies"] = "야론의 보급품",
-	["Pick up the supplies around the wagon and take Jaron's amulet back from the owlbeasts nearby."] = "마차 주변의 보급품을 줍고, 근처 올빼미야수에게서 야론의 목걸이를 되찾으세요.",
+	-- {npc:10301} Jaron
+	["{npc:10301}'s supplies"] = "{npc:10301}의 보급품",
+	-- {npc:10301} Jaron
+	["Pick up the supplies around the wagon and take {npc:10301}'s amulet back from the owlbeasts nearby."] = "마차 주변의 보급품을 줍고, 근처 올빼미야수에게서 {npc:10301}의 목걸이를 되찾으세요.",
 
 	-- Step 17: Darkwhisper Gorge
-	-- {area:2256} Darkwhisper Gorge
-	["Follow Donova's directions to the mouth of {area:2256}, past the Frostmaul giants: pass them one at a time."] = "도노바의 안내를 따라 서리망치거인들을 지나 {area:2256} 입구로 가세요. 거인은 하나씩 지나가세요.",
+	-- {npc:9298} Donova Snowden · {area:2256} Darkwhisper Gorge
+	["Follow {npc:9298}'s directions to the mouth of {area:2256}, past the Frostmaul giants: pass them one at a time."] = "{npc:9298}의 안내를 따라 서리망치거인들을 지나 {area:2256} 입구로 가세요. 거인은 하나씩 지나가세요.",
 
 	-- Step 18: Starfall Village
 	["Ride north-west back to the village."] = "북서쪽으로 마을까지 돌아가세요.",
@@ -103,11 +109,12 @@ return {
 	["Walk through {area:1769} to {zone:1448} and fly on to the Eastern Kingdoms ({area:442}, the boat to {area:150}). Fly to {area:271} and ride north up the road through Alterac to {area:3197}."] = "{area:1769}을(를) 지나 {zone:1448}(으)로 간 뒤 동부 왕국으로 날아가세요({area:442}, {area:150}행 배). {area:271}(으)로 날아가 알터랙을 지나는 길을 따라 북쪽으로 {area:3197}까지 가세요.",
 
 	-- Step 24: Pamela Redpath
-	-- {zone:1423} Eastern Plaguelands · {area:2262} Darrowshire
-	["Follow the southern road east into the {zone:1423}; the ruins of {area:2262} lie south of it. Pamela's ghost plays by the ruined house at the south end."] = "남쪽 길을 따라 동쪽으로 {zone:1423}에 들어가세요. {area:2262}의 폐허는 그 남쪽에 있습니다. 파멜라의 유령은 남쪽 끝의 무너진 집 옆에서 놀고 있습니다.",
+	-- {zone:1423} Eastern Plaguelands · {area:2262} Darrowshire · {npc:10926} Pamela Redpath
+	["Follow the southern road east into the {zone:1423}; the ruins of {area:2262} lie south of it. {npc:10926}'s ghost plays by the ruined house at the south end."] = "남쪽 길을 따라 동쪽으로 {zone:1423}에 들어가세요. {area:2262}의 폐허는 그 남쪽에 있습니다. {npc:10926}의 유령은 남쪽 끝의 무너진 집 옆에서 놀고 있습니다.",
 
-	-- Step 25: Pamela's doll
-	["Pamela's doll"] = "파멜라의 인형",
+	-- Step 25: Pamela Redpath's doll
+	-- {npc:10926} Pamela Redpath
+	["{npc:10926}'s doll"] = "{npc:10926}의 인형",
 	-- {area:2262} Darrowshire
 	["The three pieces of the doll lie in the ruined houses of {area:2262}; picking one up can call out ghosts. Combine them into the doll."] = "인형 조각 세 개는 {area:2262}의 무너진 집들에 있습니다. 하나를 주울 때 유령이 나타날 수 있습니다. 조각을 합쳐 인형을 만드세요.",
 
@@ -117,8 +124,8 @@ return {
 
 	-- Step 27: Light's Hope Chapel
 	["Follow the road east across the zone to the chapel."] = "길을 따라 동쪽으로 지역을 가로질러 예배당까지 가세요.",
-	-- {npc:11038} Caretaker Alen
-	["{npc:11038}: Zaeldarr is a level 54 elite"] = "{npc:11038}: 잴다르는 54레벨 정예입니다",
+	-- {npc:11038} Caretaker Alen · {npc:12250} Zaeldarr
+	["{npc:11038}: {npc:12250} is a level 54 elite"] = "{npc:11038}: {npc:12250}은(는) 54레벨 정예입니다",
 
 	-- Step 28: Corin's Crossing
 	-- {area:2264} Corin's Crossing
@@ -128,11 +135,12 @@ return {
 	["Free Darrowshire Spirits: talk to them"] = "{npc:11064} 해방: 대화하기",
 
 	-- Step 30: The Undercroft
-	["Zaeldarr is elite: grouping up is advised. He waits at the bottom of the Undercroft, the crypt in the south-west of the zone."] = "잴다르는 정예이니 파티를 권장합니다. 그는 지역 남서쪽의 지하실인 지하 납골당의 맨 아래에서 기다립니다.",
+	-- {npc:12250} Zaeldarr · {area:2261} The Undercroft
+	["{npc:12250} is elite: grouping up is advised. He waits at the bottom of the {area:2261}, the crypt in the south-west of the zone."] = "{npc:12250}은(는) 정예이니 파티를 권장합니다. 그는 지역 남서쪽의 지하실인 {area:2261}의 맨 아래에서 기다립니다.",
 
 	-- Step 31: Augustus the Touched
-	-- {area:2627} Terrordale
-	["Ride north to {area:2627}. Augustus lives in the ruined hut, and his receipt book lies in the ruined inn nearby."] = "북쪽으로 {area:2627}까지 가세요. 아우구스투스는 무너진 오두막에 살고, 그의 영수증 장부는 근처의 무너진 여관에 있습니다.",
+	-- {area:2627} Terrordale · {npc:12384} Augustus the Touched
+	["Ride north to {area:2627}. {npc:12384} lives in the ruined hut, and his receipt book lies in the ruined inn nearby."] = "북쪽으로 {area:2627}까지 가세요. {npc:12384}은(는) 무너진 오두막에 살고, 그의 영수증 장부는 근처의 무너진 여관에 있습니다.",
 
 	-- Step 32: Light's Hope Chapel
 	-- {area:3197} Chillwind Camp

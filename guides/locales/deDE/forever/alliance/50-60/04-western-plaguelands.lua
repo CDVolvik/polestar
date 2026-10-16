@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in German (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in German words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Chillwind Camp
@@ -10,8 +11,8 @@ return {
 	["{npc:11616}: the termites come later, in {area:2627}"] = "{npc:11616}: Die Termiten kommen später, im {area:2627}",
 
 	-- Step 2: Marlene Redpath
-	-- {npc:10936} Joseph Redpath
-	["Marlene's farmhouse stands on the hill east of the camp; {npc:10936}'s monument is just north of it."] = "Marlenes Bauernhaus steht auf dem Hügel östlich des Lagers; das Denkmal von {npc:10936} liegt gleich nördlich davon.",
+	-- {npc:10927} Marlene Redpath · {npc:10936} Joseph Redpath
+	["{npc:10927}'s farmhouse stands on the hill east of the camp; {npc:10936}'s monument is just north of it."] = "{npc:10927}s Bauernhaus steht auf dem Hügel östlich des Lagers; das Denkmal von {npc:10936} liegt gleich nördlich davon.",
 	-- {item:12894} Joseph's Wedding Ring
 	["{item:12894}, at the monument"] = "{item:12894}, am Denkmal",
 
@@ -21,8 +22,8 @@ return {
 	["Skeletal Flayers and Slavering Ghouls roam the fields north of the camp; all the Scourge here drop Scourgestones."] = "Skelettschinder und Sabbernde Ghule streifen über die Felder nördlich des Lagers; die ganze Geißel hier droppt Geißelsteine.",
 
 	-- Step 4: Mulgris Deepriver
-	-- {area:202} Writhing Haunt
-	["Mulgris stands by the farm at the {area:202}, north-east of the fields."] = "Mulgris steht beim Hof am Ort {area:202}, nordöstlich der Felder.",
+	-- {npc:10739} Mulgris Deepriver · {area:202} Writhing Haunt
+	["{npc:10739} stands by the farm at the {area:202}, north-east of the fields."] = "{npc:10739} steht beim Hof am Ort {area:202}, nordöstlich der Felder.",
 
 	-- Step 5: Diseased Wolves
 	["Diseased Wolves"] = "Kranke Wölfe",
@@ -41,8 +42,8 @@ return {
 	["{object:175924}, in the farmhouse"] = "{object:175924}, im Bauernhaus",
 
 	-- Step 10: Janice Felstone
-	-- {area:199} Felstone Field · {area:200} Dalson's Tears
-	["Janice's ghost wanders by the farmhouse of {area:199}, west of {area:200}; her parcel lies inside."] = "Janices Geist wandert beim Bauernhaus im {area:199} umher, westlich von {area:200}; ihr Paket liegt drinnen.",
+	-- {npc:10778} Janice Felstone · {area:199} Felstone Field · {area:200} Dalson's Tears
+	["{npc:10778}'s ghost wanders by the farmhouse of {area:199}, west of {area:200}; her parcel lies inside."] = "{npc:10778}s Geist wandert beim Bauernhaus im {area:199} umher, westlich von {area:200}; ihr Paket liegt drinnen.",
 	-- {zone:1453} Stormwind
 	["For {zone:1453}: keep it"] = "Für {zone:1453}: Behalte es",
 
@@ -87,8 +88,8 @@ return {
 	-- Step 18: Writhing Haunt cauldron
 	-- {area:202} Writhing Haunt
 	["{area:202} cauldron"] = "Kessel: {area:202}",
-	-- {area:202} Writhing Haunt
-	["The cauldron sits at the {area:202}, by Mulgris' farm."] = "Der Kessel steht am Ort {area:202}, bei Mulgris' Hof.",
+	-- {area:202} Writhing Haunt · {npc:10739} Mulgris Deepriver
+	["The cauldron sits at the {area:202}, by {npc:10739}' farm."] = "Der Kessel steht am Ort {area:202}, bei {npc:10739}' Hof.",
 	-- {npc:1796} Freezing Ghoul · {area:202} Writhing Haunt · {zone:1422} Western Plaguelands
 	["grind on {npc:1796} at the {area:202}, {zone:1422}"] = "grinde an {npc:1796} am Ort {area:202}, {zone:1422}",
 
@@ -130,7 +131,8 @@ return {
 	["More watches"] = "Mehr Uhren",
 
 	-- Step 30: Kirsta Deepshadow
-	["Ride north up the road to the Northridge lumber mill; Kirsta hides at the camp's edge."] = "Reite auf der Straße nach Norden zum Holzlager Northridge; Kirsta versteckt sich am Rand des Lagers.",
+	-- {npc:11610} Kirsta Deepshadow
+	["Ride north up the road to the Northridge lumber mill; {npc:11610} hides at the camp's edge."] = "Reite auf der Straße nach Norden zum Holzlager Northridge; {npc:11610} versteckt sich am Rand des Lagers.",
 
 	-- Step 31: The Scarlet Crusade
 	["The Scarlet Crusade"] = "Der Scharlachrote Kreuzzug",
@@ -140,8 +142,8 @@ return {
 
 	-- Step 33: Radley and Durgen
 	["Radley and Durgen"] = "Radley und Durgen",
-	-- {npc:11613} Huntsman Radley · {npc:11611} Cavalier Durgen · {area:190} Hearthglen
-	["{npc:11613} walks the Northridge camp east of Kirsta; {npc:11611} guards the tower at {area:190}'s southern approach."] = "{npc:11613} läuft durch das Holzlager Northridge östlich von Kirsta; {npc:11611} bewacht den Turm am südlichen Zugang von {area:190}.",
+	-- {npc:11613} Huntsman Radley · {npc:11610} Kirsta Deepshadow · {npc:11611} Cavalier Durgen · {area:190} Hearthglen
+	["{npc:11613} walks the Northridge camp east of {npc:11610}; {npc:11611} guards the tower at {area:190}'s southern approach."] = "{npc:11613} läuft durch das Holzlager Northridge östlich von {npc:11610}; {npc:11611} bewacht den Turm am südlichen Zugang von {area:190}.",
 
 	-- Step 35: Hearthglen overlook
 	-- {area:190} Hearthglen
@@ -150,7 +152,8 @@ return {
 	["Climb the hill west of {area:190} to look down on the town."] = "Steig auf den Hügel westlich von {area:190} und blick auf die Stadt hinunter.",
 
 	-- Step 37: Tirion Fordring
-	["Ride east to the border river: Tirion lives in a small hut on the bank."] = "Reite nach Osten zum Grenzfluss: Tirion lebt in einer kleinen Hütte am Ufer.",
+	-- {npc:1855} Tirion Fordring
+	["Ride east to the border river: {npc:1855} lives in a small hut on the bank."] = "Reite nach Osten zum Grenzfluss: {npc:1855} lebt in einer kleinen Hütte am Ufer.",
 
 	-- Step 38: Gahrron's Withering cauldron
 	-- {area:201} Gahrron's Withering
@@ -186,22 +189,23 @@ return {
 	["{npc:11140} stands by Augustus' hut in {area:2627}."] = "{npc:11140} steht bei der Hütte von Augustus im {area:2627}.",
 
 	-- Step 46: Tirion Fordring
-	["Cross the river west to Tirion's hut."] = "Überquere den Fluss nach Westen zu Tirions Hütte.",
+	-- {npc:1855} Tirion Fordring
+	["Cross the river west to {npc:1855}'s hut."] = "Überquere den Fluss nach Westen zu {npc:1855}s Hütte.",
 	["Listen to his story"] = "Hör dir seine Geschichte an",
 	-- {npc:11886} Mercutio Filthgorger
 	["{npc:11886} is elite: grouping up is advised"] = "{npc:11886} ist Elite: Eine Gruppe wird empfohlen",
 
 	-- Step 47: Davil's Libram
-	-- {item:12954} Davil's Libram · {area:190} Hearthglen
-	["{item:12954} lies in the town hall of {area:190}, west of Tirion: the Scarlet guards stand close together."] = "{item:12954} liegt im Rathaus von {area:190}, westlich von Tirion: Die scharlachroten Wachen stehen dicht beieinander.",
+	-- {item:12954} Davil's Libram · {area:190} Hearthglen · {npc:1855} Tirion Fordring
+	["{item:12954} lies in the town hall of {area:190}, west of {npc:1855}: the Scarlet guards stand close together."] = "{item:12954} liegt im Rathaus von {area:190}, westlich von {npc:1855}: Die scharlachroten Wachen stehen dicht beieinander.",
 
 	-- Step 48: Redpath's Shield
 	-- {item:12955} Redpath's Shield · {area:201} Gahrron's Withering
 	["{item:12955} lies east of the barn at {area:201}."] = "{item:12955} liegt östlich der Scheune bei {area:201}.",
 
 	-- Step 49: The Undercroft
-	-- {object:177667} Torn Scroll · {npc:12248} Infiltrator Hameya
-	["Cross the river east to the Undercroft, the crypt in the south-west of the zone. The {object:177667} lies inside: its key is on {npc:12248} in the far north-east, done in the next guide."] = "Überquere den Fluss nach Osten zum Tiefgewölbe, der Gruft im Südwesten des Gebiets. {object:177667} liegt drinnen: Ihr Schlüssel ist bei {npc:12248} ganz im Nordosten, was im nächsten Guide erledigt wird.",
+	-- {area:2261} The Undercroft · {object:177667} Torn Scroll · {npc:12248} Infiltrator Hameya
+	["Cross the river east to the {area:2261}, the crypt in the south-west of the zone. The {object:177667} lies inside: its key is on {npc:12248} in the far north-east, done in the next guide."] = "Überquere den Fluss nach Osten zum {area:2261}, der Gruft im Südwesten des Gebiets. {object:177667} liegt drinnen: Ihr Schlüssel ist bei {npc:12248} ganz im Nordosten, was im nächsten Guide erledigt wird.",
 
 	-- Step 50: Darnassus
 	-- {area:3197} Chillwind Camp · {area:150} Menethil Harbor · {area:442} Auberdine · {area:702} Rut'theran Village · {zone:1457} Darnassus
@@ -235,8 +239,8 @@ return {
 	["{npc:7900}: keep it for {zone:1446}"] = "{npc:7900}: Behalte es für {zone:1446}",
 
 	-- Step 55: Zorbin Fandazzle
-	-- {area:1119} Twin Colossals
-	["Take the boat to the mainland and ride north-east to Zorbin's camp by the {area:1119}."] = "Nimm das Boot zum Festland und reite nach Nordosten zu Zorbins Lager beim Ort {area:1119}.",
+	-- {npc:14637} Zorbin Fandazzle · {area:1119} Twin Colossals
+	["Take the boat to the mainland and ride north-east to {npc:14637}'s camp by the {area:1119}."] = "Nimm das Boot zum Festland und reite nach Nordosten zu {npc:14637}s Lager beim Ort {area:1119}.",
 
 	-- Step 56: Zapped giants and sea elementals
 	["Zapped giants and sea elementals"] = "Geschrumpfte Riesen und Meereselementare",
@@ -244,8 +248,8 @@ return {
 	["The shrunken giants roam the {area:1119}; the sea elementals wade along the coast to the west."] = "Die geschrumpften Riesen streifen durch das Gebiet {area:1119}; die Meereselementare waten westlich davon an der Küste entlang.",
 
 	-- Step 58: Gregan Brewspewer
-	-- {area:1119} Twin Colossals · {item:11243} Videre Elixir
-	["Gregan's camp lies north of the {area:1119}. He sells the {item:11243} once he has his bait."] = "Gregans Lager liegt nördlich vom Ort {area:1119}. Er verkauft das {item:11243}, sobald er seinen Köder hat.",
+	-- {npc:7775} Gregan Brewspewer · {area:1119} Twin Colossals · {item:11243} Videre Elixir
+	["{npc:7775}'s camp lies north of the {area:1119}. He sells the {item:11243} once he has his bait."] = "{npc:7775}s Lager liegt nördlich vom Ort {area:1119}. Er verkauft das {item:11243}, sobald er seinen Köder hat.",
 
 	-- Step 59: Ratchet
 	-- {area:392} Ratchet

@@ -3,18 +3,19 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Korean words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Fly to Grom'gol
-	-- {object:3202} Grom'gol
+	-- {object:3202} Grom'gol (no name in this language: may be words)
 	["Fly to {object:3202}"] = "{object:3202}(으)로 날아가기",
-	-- {area:35} Booty Bay · {object:3202} Grom'gol · {object:1661} The Undercity
+	-- {area:35} Booty Bay · {object:3202} Grom'gol (no name in this language: may be words) · {object:1661} The Undercity (no name in this language: may be words)
 	["From {area:35}, fly to {object:3202}. {object:1661} zeppelin leaves from the tower on the west side of the camp."] = "{area:35}에서 {object:3202}(으)로 날아가세요. {object:1661}행 비행선은 야영지 서쪽 탑에서 출발합니다.",
 	-- {zone:1458} Undercity
 	["Zeppelin to the {zone:1458}"] = "{zone:1458}행 비행선",
 
 	-- Step 2: Orgrimmar
-	-- {object:1661} The Undercity · {zone:1454} Orgrimmar · {zone:1458} Undercity
+	-- {object:1661} The Undercity (no name in this language: may be words) · {zone:1454} Orgrimmar · {zone:1458} Undercity
 	["{object:1661} has no Hunter or Shaman trainer: take the {zone:1454} zeppelin from the same tower instead and train in the city, then take the {zone:1458} zeppelin from the tower outside {zone:1454}'s main gate."] = "{object:1661}에는 사냥꾼과 주술사 상급자가 없습니다. 대신 같은 탑에서 {zone:1454}행 비행선을 타고 도시에서 기술을 배운 뒤, {zone:1454} 정문 밖의 탑에서 {zone:1458}행 비행선을 타세요.",
 
 	-- Step 3: Thunder Bluff
@@ -24,7 +25,7 @@ return {
 	-- Step 4: Undercity trainers
 	-- {zone:1458} Undercity
 	["{zone:1458} trainers"] = "{zone:1458} 상급자",
-	-- {zone:1458} Undercity · {object:36070} War Quarter · {object:36073} Rogues' Quarter · {object:36082} Magic Quarter · {npc:260093} Garen Largo
+	-- {zone:1458} Undercity · {object:36070} War Quarter (no name in this language: may be words) · {object:36073} Rogues' Quarter (no name in this language: may be words) · {object:36082} Magic Quarter (no name in this language: may be words) · {npc:260093} Garen Largo
 	["Train while you are in the {zone:1458}: the trainers stand in the {object:36070}, the {object:36073} and the {object:36082} (Paladins: {npc:260093})."] = "{zone:1458}에 있는 동안 기술을 배우세요. 상급자는 {object:36070}, {object:36073}, {object:36082}에 있습니다(성기사: {npc:260093}).",
 
 	-- Step 5: Fly to Tarren Mill
@@ -64,7 +65,7 @@ return {
 	-- Step 13: The Stone of East Binding
 	-- {object:2691} Stone of East Binding
 	["The {object:2691}"] = "{object:2691}",
-	-- {object:180105} Circle of Binding · {area:321} Hammerfall
+	-- {object:180105} Circle of Binding (no name in this language: may be words) · {area:321} Hammerfall
 	["Each {object:180105} is a ring of standing stones; the key sits on the stone at its heart. The eastern circle is on the hills north-west of {area:321}."] = "각 {object:180105}은(는) 선돌이 둥글게 늘어선 곳으로, 열쇠는 한가운데 돌 위에 있습니다. 동쪽 결속의 원은 {area:321} 북서쪽 언덕에 있습니다.",
 
 	-- Step 14: Witherbark Village
@@ -137,8 +138,8 @@ return {
 	["{quest:1106}: Fizzle's letter from the {area:439}"] = "{quest:1106}: {area:439}에서 받은 피즐의 편지",
 
 	-- Step 30: The Dustbowl
-	-- {area:340} Kargath
-	["Ride west along the road; Lotwil's camp sits in the Dustbowl halfway to {area:340}."] = "길을 따라 서쪽으로 가세요. 로트윌의 야영지는 {area:340}(으)로 가는 중간쯤, 먼지받이에 있습니다.",
+	-- {npc:2921} Lotwil · {area:1878} The Dustbowl · {area:340} Kargath
+	["Ride west along the road; {npc:2921}'s camp sits in the {area:1878} halfway to {area:340}."] = "길을 따라 서쪽으로 가세요. {npc:2921}의 야영지는 {area:340}(으)로 가는 중간쯤, {area:1878}에 있습니다.",
 
 	-- Step 31: Kargath
 	-- {area:340} Kargath
@@ -149,19 +150,22 @@ return {
 	-- Step 32: Lesser Rock Elementals
 	-- plural, as words: Lesser Rock Elementals = {npc:2735} Lesser Rock Elemental
 	["Lesser Rock Elementals"] = "하급 바위 정령",
+	-- {npc:2921} Lotwil · {npc:6868} Jarkal
 	-- plural, as words: Rock Elemental Shards = {item:7848} Rock Elemental Shard
-	["The small elementals drift across the flats just west of Lotwil's camp. Every rock elemental in the zone can drop Jarkal's Rock Elemental Shards: keep them."] = "작은 정령들은 로트윌의 야영지 바로 서쪽 평지를 떠다닙니다. 이 지역의 바위 정령은 모두 자칼에게 줄 바위 정령 파편을 떨어뜨릴 수 있습니다. 보관하세요.",
+	["The small elementals drift across the flats just west of {npc:2921}'s camp. Every rock elemental in the zone can drop {npc:6868}'s Rock Elemental Shards: keep them."] = "작은 정령들은 {npc:2921}의 야영지 바로 서쪽 평지를 떠다닙니다. 이 지역의 바위 정령은 모두 {npc:6868}에게 줄 바위 정령 파편을 떨어뜨릴 수 있습니다. 보관하세요.",
 
 	-- Step 34: Rock Elementals
 	-- plural, as words: Rock Elementals = {npc:92} Rock Elemental
 	["Rock Elementals"] = "바위 정령",
+	-- {area:1878} The Dustbowl
 	-- plural, as words: Rock Elementals = {npc:92} Rock Elemental
-	["The bigger Rock Elementals stand on the slopes north-west of the Dustbowl; each one drops a slab."] = "더 큰 바위 정령은 먼지받이 북서쪽 비탈에 서 있습니다. 각각 석판을 떨어뜨립니다.",
+	["The bigger Rock Elementals stand on the slopes north-west of the {area:1878}; each one drops a slab."] = "더 큰 바위 정령은 {area:1878} 북서쪽 비탈에 서 있습니다. 각각 석판을 떨어뜨립니다.",
 
 	-- Step 36: Coyotes and buzzards
 	["Coyotes and buzzards"] = "코요테와 대머리수리",
+	-- {area:1878} The Dustbowl
 	-- plural, as words: Elder Crag Coyotes = {npc:2729} Elder Crag Coyote · Giant Buzzards = {npc:2831} Giant Buzzard
-	["The Elder Crag Coyotes and Giant Buzzards roam the basin south of the Dustbowl. Coyotes drop both the jawbones and the fangs; only the buzzards drop wings and gizzards."] = "덩치큰 바위산코요테와 거대한 대머리수리는 먼지받이 남쪽 분지를 돌아다닙니다. 코요테는 턱뼈와 송곳니를 모두 떨어뜨리고, 날개와 모래주머니는 대머리수리만 떨어뜨립니다.",
+	["The Elder Crag Coyotes and Giant Buzzards roam the basin south of the {area:1878}. Coyotes drop both the jawbones and the fangs; only the buzzards drop wings and gizzards."] = "덩치큰 바위산코요테와 거대한 대머리수리는 {area:1878} 남쪽 분지를 돌아다닙니다. 코요테는 턱뼈와 송곳니를 모두 떨어뜨리고, 날개와 모래주머니는 대머리수리만 떨어뜨립니다.",
 
 	-- Step 37: Greater Rock Elementals
 	-- plural, as words: Greater Rock Elementals = {npc:2736} Greater Rock Elemental
@@ -187,7 +191,8 @@ return {
 	["Theldurin sits among the dwarven ruins at {area:345}, south of the {area:1877}."] = "텔두린은 {area:1877} 남쪽, {area:345}의 드워프 폐허 사이에 앉아 있습니다.",
 
 	-- Step 43: Valley of Fangs
-	["Follow the road north; Martek's camp is on the way."] = "길을 따라 북쪽으로 가세요. 마르텍의 야영지가 가는 길에 있습니다.",
+	-- {npc:4618} Martek
+	["Follow the road north; {npc:4618}'s camp is on the way."] = "길을 따라 북쪽으로 가세요. {npc:4618}의 야영지가 가는 길에 있습니다.",
 
 	-- Step 44: Ancient Chest
 	-- {area:1517} Uldaman
@@ -204,7 +209,7 @@ return {
 	-- Step 47: Zeppelin to Orgrimmar
 	-- {zone:1454} Orgrimmar
 	["Zeppelin to {zone:1454}"] = "{zone:1454}행 비행선",
-	-- {zone:1454} Orgrimmar · {object:3202} Grom'gol
+	-- {zone:1454} Orgrimmar · {object:3202} Grom'gol (no name in this language: may be words)
 	["Take the {zone:1454} zeppelin from the tower on the west side of {object:3202}."] = "{object:3202} 서쪽 탑에서 {zone:1454}행 비행선을 타세요.",
 	["Zeppelin tower"] = "비행선 탑",
 
@@ -212,13 +217,9 @@ return {
 	-- {area:1638} Thunder Bluff · {zone:1454} Orgrimmar · {npc:3033} Turak Runetotem · {area:1639} Elder Rise · {npc:246344} Alodan the Hopeful · {area:380} Crossroads
 	["Your trainer is in {area:1638}, one flight from {zone:1454}: {npc:3033} (Druids) on {area:1639}, {npc:246344} (Paladins). Fly on to the {area:380} from there."] = "직업 상급자는 {zone:1454}에서 비행 한 번 거리의 {area:1638}에 있습니다: {area:1639}의 {npc:3033}(드루이드), {npc:246344}(성기사). 그곳에서 {area:380}(으)로 날아가세요.",
 
-	-- Step 50: The Crossroads
-	-- {area:380} Crossroads
-	["The {area:380}"] = "{area:380}",
-
 	-- Step 51: Regthar Deathgate
-	-- {area:380} Crossroads · {area:386} Forgotten Pools
-	["Ride north up the road from the {area:380} to the {area:386}; Regthar keeps watch on the rise above the water."] = "{area:380}에서 길을 따라 북쪽의 {area:386}(으)로 가세요. 렉타르는 물 위쪽 언덕에서 망을 보고 있습니다.",
+	-- {area:380} Crossroads · {area:386} Forgotten Pools · {npc:3389} Regthar
+	["Ride north up the road from the {area:380} to the {area:386}; {npc:3389} keeps watch on the rise above the water."] = "{area:380}에서 길을 따라 북쪽의 {area:386}(으)로 가세요. {npc:3389}은(는) 물 위쪽 언덕에서 망을 보고 있습니다.",
 	-- {npc:5395} Felgur Twocuts · {zone:1443} Desolace
 	["for {npc:5395} in {zone:1443}, in the next guide"] = "다음 가이드에서 {zone:1443}의 {npc:5395}에게",
 
@@ -235,8 +236,8 @@ return {
 	["Ride south along the coast from {area:392} to {area:720}. {npc:6236} stands by the arena: step on the grate to start the fight; the challengers come one at a time, then {npc:6238} (33)."] = "{area:392}에서 해안을 따라 남쪽의 {area:720}(으)로 가세요. {npc:6236}은(는) 투기장 옆에 서 있습니다. 쇠창살을 밟으면 싸움이 시작됩니다. 도전자가 한 명씩 나온 뒤 {npc:6238}(33)이(가) 나옵니다.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["North-east of {area:321} the Drywhisker kobolds mine the gorge; the Kobolds at the mouth and the Diggers and Surveyors deeper in all drop the Motes of Myzrael."] = "{area:321} 북동쪽 골짜기에서 마른수염 코볼트가 채굴하고 있습니다. 입구의 코볼트와 안쪽의 채굴꾼, 흙점쟁이 모두 미즈라엘의 결정 파편을 떨어뜨립니다.",
 	-- ["Ride west along the road; Lotwil's camp sits in the {area:1878} halfway to {area:340}."] = "길을 따라 서쪽으로 가세요. 로트윌의 야영지는 {area:340}(으)로 가는 중간쯤, {area:1878}에 있습니다.",
 	-- ["The Elder Crag Coyotes and Giant Buzzards roam the basin south of the {area:1878}. Coyotes drop both the jawbones and the fangs; only the buzzards drop wings and gizzards."] = "덩치큰 바위산코요테와 거대한 대머리수리는 {area:1878} 남쪽 분지를 돌아다닙니다. 코요테는 턱뼈와 송곳니를 모두 떨어뜨리고, 날개와 모래주머니는 대머리수리만 떨어뜨립니다.",
 	-- ["The bigger Rock Elementals stand on the slopes north-west of the {area:1878}; each one drops a slab."] = "더 큰 바위 정령은 {area:1878} 북서쪽 비탈에 서 있습니다. 각각 석판을 떨어뜨립니다.",
+	-- ["The {area:380}"] = "{area:380}",
 }
