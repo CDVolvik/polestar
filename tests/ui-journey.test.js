@@ -267,6 +267,12 @@ test('review P3-11: at the dock, a boat leaving within the boarding window shows
 
 test('a walk that enters a hostile town says so under its step: "Hostile town: Southshore"', () => {
 	const [s] = run(`
+		-- Travel.HubText's wording (the panel asks Nav.travel for it).
+		Polestar.Nav.travel.HubText = function(leg)
+			local names = {}
+			for _, h in ipairs(leg.hubs or {}) do names[#names + 1] = h.name end
+			return #names > 0 and ("Hostile town: " .. table.concat(names, ", ")) or nil
+		end
 		R.legs[3].hubs = { { id = 12, name = "Southshore" } }
 		R.legs[1].hubs = { { id = 13, name = "Tarren Mill" }, { id = 14, name = "Hammerfall" } }
 		Polestar.Fire("ROUTE_CHANGED", R.legs)

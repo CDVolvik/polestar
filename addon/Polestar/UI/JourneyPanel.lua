@@ -135,16 +135,11 @@ local function glyphOf(leg)
 end
 
 -- "Hostile town: <names>" for a walk whose path enters the other faction's
--- towns (leg.hubs = { { id, name }, ... }, Nav/Travel.lua), else nil.
+-- towns (leg.hubs, Nav.travel.HubText), else nil.
 local function hubText(leg)
-	local hubs = leg.kind == "walk" and leg.hubs
-	if type(hubs) ~= "table" then return nil end
-	local names = {}
-	for _, h in ipairs(hubs) do
-		if type(h) == "table" and nonEmpty(h.name) then names[#names + 1] = h.name end
-	end
-	if #names == 0 then return nil end
-	return format(L["Hostile town: %s"], table.concat(names, ", "))
+	if leg.kind ~= "walk" then return nil end
+	local T = ns.Nav and ns.Nav.travel
+	return T and T.HubText and T.HubText(leg) or nil
 end
 
 ---------------------------------------------------------------------------

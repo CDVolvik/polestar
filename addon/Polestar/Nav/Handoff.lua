@@ -151,6 +151,28 @@ local function look()
 	setYielding(on)
 end
 
+-- A journey of Polestar's left running in Shortest Path Forever from when
+-- handing off was on (0.2.4's default): with the option off it is cancelled
+-- once, at the first PLAYER_ENTERING_WORLD (or when combat ends), so the two
+-- never guide at once. With the option on it stays: the hand-off takes it.
+local leftoverDone, leftoverOwed = false, false
+local function cancelLeftover()
+	if leftoverDone then return end
+	local A = api()
+	if not A or engaged() then
+		leftoverDone, leftoverOwed = true, false
+		return
+	end
+	if inCombat() then
+		leftoverOwed = true
+		return
+	end
+	leftoverDone, leftoverOwed = true, false
+	if type(A.CurrentStop) ~= "function" then return end
+	local ok, stop = pcall(A.CurrentStop, OWNER)
+	if ok and stop ~= nil then pcall(A.Cancel, OWNER) end
+end
+
 local function dead()
 	if not UnitIsDeadOrGhost then return false end
 	local v = UnitIsDeadOrGhost("player")
@@ -439,13 +461,17 @@ ns.RegisterEvent("PLAYER_ENTERING_WORLD", function()
 	wasEngaged = engaged()
 	subscribe()
 	sync(true)
-	if not wasEngaged then look() end
+	if not wasEngaged then
+		cancelLeftover()
+		look()
+	end
 end)
 ns.RegisterEvent("ZONE_CHANGED_NEW_AREA", function()
 	if pending or refused then sync(true) end
 end)
 ns.RegisterEvent("PLAYER_REGEN_ENABLED", function()
 	if pending then sync() end
+	if leftoverOwed then cancelLeftover() end
 	if lookOwed then look() end
 end)
 -- Dead or a ghost, nothing is sent; alive again, the target goes as it is.

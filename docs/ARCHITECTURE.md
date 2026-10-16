@@ -1476,6 +1476,9 @@ called, as its `minor` grows) the two never guide at once:
   ends Polestar guides again (`Nav.Reapply()`, the TomTom stand-in with it).
   `Nav.SayHandedOff()` then says "Shortest Path Forever is guiding a journey
   of its own. Polestar's arrow comes back when it ends."
+  A journey of Polestar's left running in it from 0.2.4 (which handed off by
+  default) is cancelled once with the option off, at the first
+  `PLAYER_ENTERING_WORLD` (in combat, when combat ends).
 
 ```lua
 Polestar.Nav.HandedOff() -> bool   -- the one predicate: handing off (installed, on, the last stop not refused), or yielding
@@ -2319,8 +2322,8 @@ what is shown and timed.
   wx, wy }, to = { c, wx, wy }, seconds }` (one reused table) and its cost in
   the planner's seconds; a number >= 0 back replaces the cost, the time stays.
 - Hostile towns: `Find`'s `job.hubs` goes on the walk's leg as `leg.hubs`
-  (`Travel.SplitWalk` for the arrow's walk: the unsplit leg or the piece
-  walked now; `Travel.PricePaths` for later walks). The journey panel shows
+  (`Travel.SplitWalk` for the arrow's walk: the unsplit leg, or
+  on every piece of a split one; `Travel.PricePaths` for later walks; a fresh search with the same towns, by id, changes nothing). The journey panel shows
   "Hostile town: <name>" (names joined by commas) under the step in the
   warning colour, and the arrow says it once under its label for 8 s when the
   walk starts (`Travel.TakeWarning`: once per walk end and towns, until the

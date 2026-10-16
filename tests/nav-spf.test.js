@@ -1391,3 +1391,47 @@ test('hostile towns: a walk whose path enters one carries it (leg.hubs); the arr
 	assert.equal(out.after, 'Walk to the flight master', 'said once, then the step alone');
 	assert.equal(out.again, 'Walk to the flight master', 'a fresh plan of the same walk does not say it again');
 });
+
+test('hostile towns: every piece of a split walk carries them, so the step after a chokepoint still says so', () => {
+	const [out] = run(`
+		fake.hubs = { { id = 12, name = "Southshore" } }
+		${SPLIT}
+		fake.hubs = nil
+		local T = N.travel
+		local legs, ci = N.GetRoute()
+		local first = T.HubText(legs[ci])
+		nav.place(0, -160)
+		N.Sample()
+		legs, ci = N.GetRoute()
+		emit({ first = first, ci = ci, after = T.HubText(legs[ci]) or false })`);
+	assert.equal(out.first, 'Hostile town: Southshore');
+	assert.ok(out.ci > 1, 'past the bridge');
+	assert.equal(out.after, 'Hostile town: Southshore');
+});
+
+test('hostile towns: a fresh search of the same walk with the same towns changes nothing (no ROUTE_CHANGED)', () => {
+	const [out] = run(`${CROSSING}
+		nav.place(900, 800)
+		target(600, -300)
+		N.Sample()
+		fake.settle(fake.of(true)[1], function(x, y) return math.floor(math.sqrt((x - 600) ^ 2 + (y + 300) ^ 2) * 1.1) end)
+		fake.hubs = { { id = 12, name = "Southshore" } }
+		fake.answer(fake.of(false)[1], 900, 800, 900, 900)
+		local changes = 0
+		Polestar.On("ROUTE_CHANGED", function() changes = changes + 1 end)
+		-- Stray, so the arrow searches again; back on the spot when the answer comes.
+		nav.place(950, 850)
+		N.Sample()
+		stub.advance(3)
+		N.Sample()
+		local finds = fake.of(false)
+		local again = finds[#finds]
+		nav.place(900, 800)
+		fake.hubs = { { id = 12, name = "Southshore" } } -- the same towns, a new table
+		fake.answer(again, 900, 800, 900, 900)
+		local legs, ci = N.GetRoute()
+		emit({ searches = #finds, changes = changes, hubs = N.travel.HubText(legs[ci]) })`, { many: true });
+	assert.ok(out.searches >= 3, 'searched again');
+	assert.equal(out.changes, 0);
+	assert.equal(out.hubs, 'Hostile town: Southshore');
+});

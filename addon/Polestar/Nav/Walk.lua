@@ -66,7 +66,7 @@
 -- job.yards[i] (the no-profile path's yards per graph edge: low for a walk
 -- that goes round a hostile town inside one cluster). Find's job.hubs, the
 -- hostile towns the drawn line enters, go to the walk's leg (leg.hubs:
--- Travel.SplitWalk for the arrow's walk, Travel.PricePaths for later ones).
+-- Travel.SplitWalk for the arrow's walk, every piece of a split one; Travel.PricePaths for later ones).
 
 local ADDON, ns = ...
 local Nav = ns.Nav

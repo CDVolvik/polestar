@@ -706,3 +706,31 @@ test('without Subscribe (minor 0) his journey is noticed on Nav\'s tick', () => 
 	`, { saved: FRESH, spf: SPF_MINOR0 });
 	assert.deepEqual(out, [true, false]);
 });
+
+// A journey of Polestar's left running in Shortest Path Forever from 0.2.4,
+// which handed off by default (Ruling 27 of pathing v2).
+const LEFTOVER = `${SPF}
+spf.owner, spf.stops, spf.index = "Polestar", { { map = 9000, x = 0.5, y = 0.5 } }, 1
+`;
+
+test('a Polestar journey left over from 0.2.4 is cancelled once at login with the option off, after combat in a fight, never with it on', () => {
+	const script = `
+		nav.setWaypoint(copy(FARLAND))
+		local r = { cancels = spf.cancels(), owner = spf.owner or false }
+		stub.inCombat = false
+		stub.fire("PLAYER_REGEN_ENABLED")
+		stub.runTimers()
+		r.after = spf.cancels()
+		r.guides = arrowShown() or (stub.advance(0.3) or arrowShown())
+		r.handedOff = N.HandedOff()
+		emit(r)`;
+	const [off] = run(script, { saved: FRESH, spf: LEFTOVER });
+	assert.deepEqual(off, { cancels: 1, owner: false, after: 1, guides: true, handedOff: false }, 'option off: one Cancel, Polestar guides');
+	const [fight] = run(script, { saved: FRESH, spf: `${LEFTOVER}\nstub.inCombat = true\n` });
+	assert.equal(fight.cancels, 0, 'in combat at login: nothing called');
+	assert.equal(fight.after, 1, 'the cancel once combat ends');
+	assert.equal(fight.handedOff, false);
+	const [on] = run(script, { spf: LEFTOVER });
+	assert.equal(on.cancels, 0, 'option on: the hand-off keeps it');
+	assert.equal(on.after, 0);
+});

@@ -1166,6 +1166,16 @@ function Travel.WalkCostHook(fn)
 	if type(fn) == "function" then walkHooks[#walkHooks + 1] = fn end
 end
 
+-- The same hostile towns, by id, in order (a fresh search gives a new table).
+local function sameHubs(a, b)
+	local na, nb = a and #a or 0, b and #b or 0
+	if na ~= nb then return false end
+	for i = 1, na do
+		if type(a[i]) ~= "table" or type(b[i]) ~= "table" or a[i].id ~= b[i].id then return false end
+	end
+	return true
+end
+
 -- "Hostile town: <names>" for a walk whose engine path enters the other
 -- faction's towns (leg.hubs, from Find's job.hubs), else nil.
 function Travel.HubText(leg)
@@ -1650,7 +1660,7 @@ end
 -- takes the path's measure (yards, seconds), its straight estimate kept in
 -- straightYards/straightSeconds for Travel.RestoreWalk (second review).
 -- `hubs` = the other faction's towns the path enters (Find's job.hubs): on
--- the unsplit walk, or on the piece the player walks now.
+-- the unsplit walk, or on every piece of the split one (the walk enters them).
 -- -> true when the route changed.
 function Travel.SplitWalk(c, x, y, stops, total, hubs)
 	local leg = legs and legs[ci]
@@ -1667,7 +1677,7 @@ function Travel.SplitWalk(c, x, y, stops, total, hubs)
 	if #kept == 0 and not parent then
 		if type(total) ~= "number" or total ~= total or total < 0 or total == huge then return false end
 		local py, ps = floor(total + 0.5), floor(total / RUN_SPEED + 0.5)
-		if leg.yards == py and leg.seconds == ps and leg.hubs == hubs then return false end
+		if leg.yards == py and leg.seconds == ps and sameHubs(leg.hubs, hubs) then return false end
 		if not leg.straightSeconds then leg.straightYards, leg.straightSeconds = leg.yards, leg.seconds end
 		leg.yards, leg.seconds, leg.hubs = py, ps, hubs
 		relink()
@@ -1685,7 +1695,7 @@ function Travel.SplitWalk(c, x, y, stops, total, hubs)
 			choke = { kind = s.kind, name = present(s.to) or present(s.name) or stopZone(s, c) },
 			radius = s.r, seg = s.seg, tail = total - s.along, parent = P,
 			yards = floor(s.along - doneYards + 0.5), seconds = secs - doneSecs,
-			hubs = #pieces == 0 and hubs or nil,
+			hubs = hubs,
 		}
 		doneYards, doneSecs, from = s.along, secs, at
 		if s.kind == "lift" then
@@ -1707,7 +1717,7 @@ function Travel.SplitWalk(c, x, y, stops, total, hubs)
 		kind = "walk", from = from, to = whole.to, label = whole.label, step = whole.step,
 		radius = whole.radius, waypoint = whole.waypoint, tail = 0, parent = P,
 		yards = floor(total - doneYards + 0.5), seconds = totalSecs - doneSecs,
-		hubs = #pieces == 0 and hubs or nil,
+		hubs = hubs,
 	}
 
 	local m = ci
