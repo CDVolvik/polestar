@@ -269,7 +269,9 @@ Polestar.RunCommand(msg)       -- what /polestar runs; registered as a slash com
 ```
 
 With Forever's Gamepad interface on (Options, Gamepad, Enable Gamepad UI;
-`C_InputInterfaceStyle`, CVar `InputDeviceInterfaceStyle`), its navigation
+`C_InputInterfaceStyle`, which decides: the CVar `InputDeviceInterfaceStyle`
+can stay at Gamepad with the keyboard and mouse, so it is read only on a
+client without the API), its navigation
 (`Blizzard_GamepadSmartNavigation`, `FrameControlsManager`) opens, closes
 and focuses the game's windows, popups, menus and chat box from Blizzard's
 code, and in the same execution makes protected calls

@@ -385,11 +385,12 @@ end
 -- registered with Forever's gamepad interface on: the chat box calls a
 -- command and then closes itself in the command's taint, which blocks the
 -- gamepad's actions until a reload (Polestar's Core/Init.lua, ns.GamepadUI).
+-- The API is the answer; the CVar can stay "1" with the keyboard and mouse.
 local function gamepadUI()
 	local E = Enum and Enum.InputDeviceInterfaceType
 	if not (E and E.Gamepad) then return false end
 	local S = C_InputInterfaceStyle
-	if S and S.GetCurrentStyle and S.GetCurrentStyle() == E.Gamepad then return true end
+	if S and S.GetCurrentStyle then return S.GetCurrentStyle() == E.Gamepad end
 	local get = (C_CVar and C_CVar.GetCVar) or GetCVar
 	return get and tonumber(get("InputDeviceInterfaceStyle")) == E.Gamepad or false
 end
