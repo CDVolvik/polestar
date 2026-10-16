@@ -1456,3 +1456,30 @@ test('hostile towns: the arrow says them once for a split walk, not again at eac
 	assert.ok(out.ci > 1, 'past the bridge');
 	assert.equal(out.again, false, 'not said again at the next step');
 });
+
+test('hostile towns: a walk that is the whole route (a target inside Southshore) says so once on the arrow too', () => {
+	const [out] = run(`
+		local r = {}
+		nav.place(0, 0)
+		target(0, -600, "Quest in Southshore")
+		N.Sample()
+		fake.hubs = { { id = 12, name = "Southshore" } }
+		fake.resolve(0, 0, 100, -100, 100, -500, 0, -600)
+		fake.hubs = nil
+		local legs = N.GetRoute()
+		r.nlegs = legs and #legs or 0
+		r.active = N.travel.Active()
+		stub.advance(0.3)
+		r.said = N.arrow.labelText:GetText()
+		stub.advance(15)
+		r.after = N.arrow.labelText:GetText()
+		N.travel.Replan()
+		stub.advance(0.3)
+		r.again = N.arrow.labelText:GetText()
+		emit(r)`);
+	assert.equal(out.nlegs, 1, 'a lone walk');
+	assert.equal(out.active, false, 'no route to follow');
+	assert.equal(out.said, 'Quest in Southshore\nHostile town: Southshore');
+	assert.equal(out.after, 'Quest in Southshore', 'said once, then the target alone');
+	assert.equal(out.again, 'Quest in Southshore', 'a fresh plan of the same walk does not say it again');
+});

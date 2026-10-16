@@ -176,6 +176,7 @@ local lastDist, closeSpeed = nil, 0
 local pulse = 0
 local showEta = true
 local routeSeen = -1  -- Travel.version the label shows; -1 = the target's own label
+local loneSeen = -1   -- Travel.version a lone walk's warning was last asked for
 local WARN_SECONDS = 8 -- a walk's "Hostile town" warning stays under its step this long
 local warning, warnUntil -- the warning being said (Travel.TakeWarning) and until when (GetTime)
 local style = "3d"    -- nav.arrowStyle
@@ -327,11 +328,14 @@ end
 -- The label line follows the route: the current leg's instruction while a
 -- route is active, the target's label otherwise. A walk entering the other
 -- faction's towns says so once, as it starts (Travel.TakeWarning), for
--- WARN_SECONDS.
+-- WARN_SECONDS: under the step, or under the target's label when the walk
+-- is the whole route.
 local function syncLabel(T, routed)
-	if warning and (not routed or GetTime() >= warnUntil) then
+	local leg = not routed and T ~= nil and T.CurrentLeg and T.CurrentLeg()
+	local lone = leg and leg.kind == "walk" or false
+	if warning and (not (routed or lone) or GetTime() >= warnUntil) then
 		warning = nil
-		if routeSeen ~= -1 then routeSeen = -2 end
+		routeSeen = -2
 	end
 	if routed then
 		if T.version ~= routeSeen then
@@ -341,10 +345,19 @@ local function syncLabel(T, routed)
 			labelText:SetText(routeLabel(T))
 			if mode == "instruction" then mode = nil end
 		end
-	elseif routeSeen ~= -1 then
+		return
+	end
+	if lone and T.version ~= loneSeen then
+		loneSeen = T.version
+		local w = T.TakeWarning and T.TakeWarning()
+		if w then warning, warnUntil, routeSeen = w, GetTime() + WARN_SECONDS, -2 end
+	end
+	if routeSeen ~= -1 then
 		routeSeen = -1
 		local target = Nav.GetTarget()
-		labelText:SetText(target and target.label or "")
+		local text = target and target.label or ""
+		if warning then text = text ~= "" and (text .. "\n" .. warning) or warning end
+		labelText:SetText(text)
 	end
 end
 
@@ -528,7 +541,7 @@ end
 
 function Arrow:OnTarget(target)
 	labelText:SetText(target and target.label or "")
-	mode, hasAngle, routeSeen, warning = nil, false, -1, nil
+	mode, hasAngle, routeSeen, loneSeen, warning = nil, false, -1, -1, nil
 	self:Refresh()
 end
 
