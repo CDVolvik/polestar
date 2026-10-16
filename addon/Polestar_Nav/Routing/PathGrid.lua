@@ -927,10 +927,11 @@ local function smooth(st, P, profile)
 	local out, a = { keep[1] }, 1
 	while a < #keep do
 		local b = a + 1
-		-- The costliest node of the path from keep[a] to keep[j], and whether it entered a hostile hub, grown with j.
+		-- The costliest node of the path after keep[a] up to keep[j], and whether it entered a hostile hub, grown with
+		-- j: the anchor's own node is never stepped into, by the path or by the straight segment (sight).
 		local limit, hostile, last
 		if classed then
-			limit, hostile, last = 0, false, keep[a] - 1
+			limit, hostile, last = 0, false, keep[a]
 		end
 		for j = a + 2, #keep do
 			local p, q = keep[a], keep[j]

@@ -453,6 +453,17 @@ test('straightening keeps a drawn line on the road round a bend: a 90 degree ben
 	}
 });
 
+test('straightening prices a segment by the path after its anchor: a start on steep ground does not let the line cut the steep ground inside a road\'s bend', () => {
+	const { cells, to } = bend(12, 12, 0, 3);
+	cells.set(X0 * C + Y0, { val: 1, cls: 3 }); // the start, the first anchor, on steep ground
+	const got = route(OURS, mapFiles(cells, true), [q('none', 'find'), q('horde', 'find', '{ profile = "Horde" }')], { to });
+	for (const id of ['none', 'horde']) {
+		const off = [...crossed(got[id])].filter((g) => g !== X0 * C + Y0 && cells.get(g).cls !== 1);
+		assert.deepEqual(off, [], `${id}: past the start, every cell the drawn line passes is road`);
+		assert.ok(got[id].points.length >= 3, `${id}: the bend is drawn`);
+	}
+});
+
 test('straightening never cuts into a hostile hub the path went round; a profile it is not hostile to straightens the same corner', () => {
 	const { cells, hubs, hub } = rim();
 	const got = route(OURS, mapFiles(cells, true, { hubs }), [q('horde', 'find', '{ profile = "Horde" }'), q('alliance', 'find', '{ profile = "Alliance" }'), q('none', 'find')], { to: HUB_TO });
