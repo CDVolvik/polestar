@@ -317,6 +317,30 @@ test('step key: the route\'s own goals come before optional ones, and an NPC nam
 	assert.deepEqual(out[4], ['nil', 'nil'], 'a tab is a control character too: no macro');
 });
 
+test('mark target: off by default; on, the target button and step key put a skull on a live hostile mob and a star on a friendly NPC, and never take one off', () => {
+	const out = run(`
+		local t, s = PolestarTargetButton, PolestarStepButton
+		q.step({ { t = "kill", target = "Kobold Vermin", quest = 7, oi = 1 } })
+		emit({ t:GetAttribute("macrotext"), s:GetAttribute("macrotext") })
+		set("markTarget", true)
+		emit({ t:GetAttribute("macrotext"), s:GetAttribute("macrotext") })
+		q.step({ { t = "turnin", quest = 9, npc = 240, npcName = "Marshal Dughan" } })
+		emit(s:GetAttribute("macrotext"))
+		set("markTarget", false)
+		emit(s:GetAttribute("macrotext"))
+		local long = {}
+		for i = 1, 5 do long[i] = string.rep("N", 50) .. i end
+		emit(Polestar.QoL.Buttons.TargetMacro(long, 1, "mob"))
+	`);
+	assert.deepEqual(out[0], ['/targetexact Kobold Vermin', '/targetexact Kobold Vermin'], 'off by default');
+	const skull = '/targetexact Kobold Vermin\n/tm [@target,harm,nodead] !8';
+	assert.deepEqual(out[1], [skull, skull]);
+	assert.equal(out[2], '/targetexact Marshal Dughan\n/tm [@target,help,nodead] !1');
+	assert.equal(out[3], '/targetexact Marshal Dughan', 'turned off again');
+	assert.ok(out[4].length <= 255, 'fits a macro');
+	assert.ok(out[4].endsWith('N1\n/tm [@target,harm,nodead] !8'), 'the preferred name and the mark stay when names are dropped');
+});
+
 // Every CLICK binding in Bindings.xml shows its label in the key bindings
 // window, and the step key's button is there from login (the travel button is
 // made with the route's first cast leg: tests/nav-prompts.test.js).

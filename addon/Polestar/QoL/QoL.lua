@@ -39,6 +39,7 @@ local defaults = {
 	itemButton = true,       -- quest item button
 	targetButton = true,     -- target macro button
 	hearthButton = true,     -- Hearthstone button while a hearth goal is active
+	markTarget = false,      -- raid icon on what the target button and step key target
 	buttonScale = 1,
 	xpTracker = true,
 	sellJunk = true,

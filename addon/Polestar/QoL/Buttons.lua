@@ -18,6 +18,9 @@
 --     act on, in guide order (a use goal's item, a hearth goal's Hearthstone,
 --     a kill or collect's mobs, an NPC goal's NPC by name), else the quest
 --     item. Independent of the three buttons' settings.
+--   Mark target (off by default): the target button and the step key end
+--     their macro with /tm, a skull on a live hostile target, a star on a
+--     friendly NPC; "!" leaves the icon alone when it is already there.
 --
 -- The buttons hang off one holder: hearth above the item, target below. A
 -- left-drag on any of them moves the set (out of combat); the position is
@@ -453,9 +456,12 @@ function Buttons.TargetNames(view, raw)
 	return names
 end
 
+local MARK = { mob = "/tm [@target,harm,nodead] !8", npc = "/tm [@target,help,nodead] !1" }
+
 -- "/targetexact" lines with names[preferred] last, so it wins when present.
--- A name that is not MacroSafeName never becomes a line.
-function Buttons.TargetMacro(list, preferred)
+-- A name that is not MacroSafeName never becomes a line. mark: "mob" or
+-- "npc" adds that /tm line at the end, kept when names are dropped to fit.
+function Buttons.TargetMacro(list, preferred, mark)
 	local n = #list
 	if n == 0 then return nil end
 	local lines = {}
@@ -464,20 +470,23 @@ function Buttons.TargetMacro(list, preferred)
 		if Buttons.MacroSafeName(list[idx]) then lines[#lines + 1] = "/targetexact " .. list[idx] end
 	end
 	if #lines == 0 then return nil end
-	local text = concat(lines, "\n")
+	local tail = MARK[mark] and ("\n" .. MARK[mark]) or ""
+	local text = concat(lines, "\n") .. tail
 	while #text > MACRO_LIMIT and #lines > 1 do
 		table.remove(lines, 1)
-		text = concat(lines, "\n")
+		text = concat(lines, "\n") .. tail
 	end
 	return text
 end
+
+local function marking() return QoL.On("markTarget") end
 
 local target = { list = {}, sig = nil, cycle = 1 }
 
 local function applyTarget(b)
 	QoL.Secure("target", function()
 		local list = target.list
-		local text = Buttons.TargetMacro(list, target.cycle)
+		local text = Buttons.TargetMacro(list, target.cycle, marking() and "mob")
 		b:SetAttribute("type", text and "macro" or nil)
 		b:SetAttribute("macrotext", text)
 		b.applied = list[target.cycle]
@@ -545,9 +554,9 @@ local function applyStep(b)
 	QoL.Secure("step", function()
 		local text, item
 		if step.kind == "target" then
-			text = Buttons.TargetMacro(step.list, step.cycle)
+			text = Buttons.TargetMacro(step.list, step.cycle, marking() and "mob")
 		elseif step.kind == "npc" then
-			text = Buttons.TargetMacro({ step.value }, 1)
+			text = Buttons.TargetMacro({ step.value }, 1, marking() and "npc")
 		elseif step.kind == "item" then
 			item = "item:" .. step.value
 		end
@@ -571,7 +580,9 @@ local function refresh()
 	applyItem(hearthButton, QoL.On("hearthButton") and view and Buttons.WantsHearth(view) and Client.HEARTHSTONE or nil)
 
 	local list = QoL.On("targetButton") and view and Buttons.TargetNames(view, raw) or {}
-	local sig = concat(list, "\n")
+	-- The mark setting is part of both signatures, so turning it re-applies.
+	local mark = marking() and "mark\n" or ""
+	local sig = mark .. concat(list, "\n")
 	if sig ~= target.sig then
 		target.sig = sig
 		local copy = {}
@@ -583,7 +594,7 @@ local function refresh()
 
 	local kind, value = nil, nil
 	if view then kind, value = Buttons.StepAction(view, raw) end
-	local stepSig = kind == "target" and ("target\n" .. concat(value, "\n")) or (tostring(kind) .. "\n" .. tostring(value))
+	local stepSig = mark .. (kind == "target" and ("target\n" .. concat(value, "\n")) or (tostring(kind) .. "\n" .. tostring(value)))
 	if stepSig ~= step.sig then
 		step.sig, step.kind, step.cycle = stepSig, kind, 1
 		local copy = {}

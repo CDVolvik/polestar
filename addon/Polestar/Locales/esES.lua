@@ -694,6 +694,8 @@ L["XP tracker"] = "Rastreador de XP"
 L["XP per hour, time, kills and quests to level, and level splits (/pole xp)."] = "XP por hora, tiempo, enemigos y misiones que faltan para subir de nivel, y tiempo por nivel (/pole xp)."
 L["Reset session"] = "Reiniciar sesión"
 L["Start this session's XP per hour from zero."] = "Reinicia el cálculo de XP por hora de esta sesión."
+-- L["Mark what they target"] = ""
+-- L["The target button and the step key put a skull on the mob and a star on the NPC they target. Your party sees the icons; in a raid only the leader and assistants can set them."] = ""
 
 -- Lookup/Sources.lua
 L["Alliance only"] = "Solo Alianza"
