@@ -28,11 +28,6 @@ function veilSoft() {
 	return c;
 }
 
-// A capsule for toggle tracks and pills: 32 x 16, nine-sliced 8 / 0 / 8 / 0.
-function capsule() {
-	return new Canvas(32, 16).fill(sdf.box(16, 8, 15.5, 7.5, 7.5), WHITE);
-}
-
 // The arrival ring and the transport alert's ring: radius 24 and stroke 3 on
 // the handoff's 60-unit grid, drawn at 128 px.
 const K = 128 / 60;
@@ -45,11 +40,6 @@ function arriveCheck() {
 	const p = [[19, 31], [27, 39], [42, 22]].map(([x, y]) => [x * K, y * K]);
 	const w = (5 * K) / 2;
 	return new Canvas(128, 128).fill(sdf.union(sdf.segment(p[0][0], p[0][1], p[1][0], p[1][1], w), sdf.segment(p[1][0], p[1][1], p[2][0], p[2][1], w)), WHITE);
-}
-
-// Objective areas on the map: a disc with soft edges.
-function areaSoft() {
-	return new Canvas(128, 128).fill(sdf.circle(64, 64, 40), WHITE, { feather: 44 });
 }
 
 // The dart of both skins: the polygon 30,4 52,54 30,42 8,54 on the 60 grid,
@@ -106,10 +96,8 @@ function generate(addonRoot) {
 	const dir = path.join(addonRoot, 'Media', 'UI');
 	const out = [];
 	out.push(veilSoft().write(path.join(dir, 'veil-soft.tga')));
-	out.push(capsule().write(path.join(dir, 'capsule.tga')));
 	out.push(ring().write(path.join(dir, 'skin-ring.tga')));
 	out.push(arriveCheck().write(path.join(dir, 'skin-check.tga')));
-	out.push(areaSoft().write(path.join(dir, 'area-soft.tga')));
 	out.push(dart().write(path.join(dir, 'dart.tga')));
 	out.push(dartEdge().write(path.join(dir, 'dart-edge.tga')));
 	out.push(dartGold().write(path.join(dir, 'dart-gold.tga')));

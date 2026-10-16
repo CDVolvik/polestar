@@ -816,6 +816,8 @@ L["Search"] = "Buscar"
 L["Dusk"] = "Crepúsculo"
 L["Night"] = "Noche"
 L["Graphite"] = "Grafito"
+-- L["Halo"] = ""
+-- L["Blizzard"] = ""
 
 -- Theme/Widgets.lua
 L["Click to copy"] = "Haz clic para copiar"
@@ -1239,7 +1241,6 @@ L["Background opacity"] = "Opacidad del fondo"
 L["The background opacity of every Polestar window: how much of the world shows through. Right-click to reset."] = "La opacidad del fondo de cada ventana de Polestar: cuánto del mundo se ve a través. Clic derecho para restablecer."
 L["Type & motion"] = "Tipografía y movimiento"
 L["Font"] = "Fuente"
-L["The game's own font (the default), Inter, or EllesmereUI's."] = "La fuente propia del juego (predeterminada), Inter o la de EllesmereUI."
 L["Game font"] = "Fuente del juego"
 L["Match EllesmereUI font"] = "Usar la fuente de EllesmereUI"
 L["Follow EllesmereUI's font, live. Choosing another font turns this off."] = "Sigue la fuente de EllesmereUI en vivo. Elegir otra fuente lo desactiva."
@@ -1359,6 +1360,11 @@ L["Keep the bottom edge in place, so longer steps extend the window up."] = "Man
 -- L["Talents"] = ""
 -- L["Talent plan"] = ""
 -- L["This translation was made with AI. Help improve it on Discord."] = ""
+-- L["The skin's font (the default: the game's own, Fira Sans in Halo), the game's, Inter, Fira Sans, or EllesmereUI's."] = ""
+-- L["The skin's font"] = ""
+-- L["Skin"] = ""
+-- L["Polestar's own look (the default), Halo (no frame, a soft dark veil, Fira Sans) or Blizzard (the game's own frames, buttons and font). Style, compact mode and the colours you pick work in each."] = ""
+-- L["The skin's arrow"] = ""
 
 -- UI/Packs.lua
 L["turned off in the AddOns list"] = "desactivado en la lista de AddOns"
@@ -1797,3 +1803,4 @@ L["Leveling, professions, reputations, mounts and pets."] = "Subir de nivel, pro
 -- L["quality: Legendary"] = "Legendario"
 -- L["quality: Artifact"] = "Artefacto"
 -- L["quality: Rare"] = "Raro"
+-- L["The game's own font (the default), Inter, or EllesmereUI's."] = "La fuente propia del juego (predeterminada), Inter o la de EllesmereUI."

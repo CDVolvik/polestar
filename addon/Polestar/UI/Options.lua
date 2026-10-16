@@ -148,6 +148,9 @@ end
 O.ResetPositions = resetPositions
 
 local function borderOff() return not ns.Get("ui.border") end
+-- Settings of the house style alone: the Halo and Blizzard skins bring their own grounds,
+-- no starlit band and no drop shadow (Theme.lua, "Skins").
+local function houseOnly() return Theme.SkinKey() ~= "polestar" end
 local function px(v) return string.format(L["%d px"], floor(v + 0.5)) end
 -- Guidance options with no effect while Shortest Path Forever guides (Nav/Handoff.lua).
 local function H(c)
@@ -249,14 +252,14 @@ local BUILTIN = {
 			needs = function() return Theme.IsEllesmere() end },
 	} },
 	{ page = LOOK, tab = L["Colour & type"], section = L["Background"], controls = {
-		{ kind = "dropdown", key = "ui.scheme", label = L["Colour scheme"],
+		{ kind = "dropdown", key = "ui.scheme", label = L["Colour scheme"], disabled = houseOnly,
 			help = L["How deep the night runs. Dusk is the default, Night the darkest, Graphite a neutral grey; EllesmereUI takes its panel colour and accent."],
 			choices = function() return Theme.SchemeChoices() end },
-		{ kind = "color", key = "ui.bgColor", label = L["Background colour"],
+		{ kind = "color", key = "ui.bgColor", label = L["Background colour"], disabled = houseOnly,
 			help = L["The ground of every Polestar window. Right-click to go back to the scheme's. Text always stays legible: a colour too light for it is darkened."],
 			shown = function() return Theme.Color("bg") end,
 			source = function() return O.SchemeLabel() end },
-		{ kind = "slider", key = "ui.brightness", label = L["Brightness"], min = -1, max = 1, step = 0.05, format = O.Signed,
+		{ kind = "slider", key = "ui.brightness", label = L["Brightness"], disabled = houseOnly, min = -1, max = 1, step = 0.05, format = O.Signed,
 			help = L["Lifts or lowers every background together. Right-click to reset."] },
 		{ kind = "slider", key = "ui.bgOpacity", label = L["Background opacity"], min = 0, max = 1, step = 0.05, format = percent,
 			help = L["The background opacity of every Polestar window: how much of the world shows through. Right-click to reset."] },
@@ -300,8 +303,8 @@ local BUILTIN = {
 			help = L["The border takes your accent colour. Picking your own border colour turns this off."] },
 		{ kind = "slider", key = "ui.borderSize", label = L["Border thickness"], min = 1, max = 4, step = 1, format = px, disabled = borderOff,
 			help = L["In screen pixels; a thicker border grows outward. Right-click to reset."] },
-		{ kind = "toggle", key = "ui.band", label = L["Starlit band"], help = L["The night sky with its stars across the top of every window. Off: the plain background."] },
-		{ kind = "toggle", key = "ui.shadow", label = L["Window shadow"], help = L["The soft shadow under every window."] },
+		{ kind = "toggle", key = "ui.band", label = L["Starlit band"], disabled = houseOnly, help = L["The night sky with its stars across the top of every window. Off: the plain background."] },
+		{ kind = "toggle", key = "ui.shadow", label = L["Window shadow"], disabled = houseOnly, help = L["The soft shadow under every window."] },
 	} },
 	{ page = LOOK, tab = L["Windows"], section = L["Guide window"], controls = {
 		{ kind = "dropdown", key = "ui.style", label = L["Style"], help = L["Transparent drops every background and border; text is outlined and the controls appear when you hover the window."],

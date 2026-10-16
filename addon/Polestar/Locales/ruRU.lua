@@ -159,6 +159,8 @@ L["Open the Guide packs page"] = "Открыть страницу пакетов
 L["Dusk"] = "Сумерки"
 L["Night"] = "Ночь"
 L["Graphite"] = "Графит"
+-- L["Halo"] = ""
+-- L["Blizzard"] = ""
 
 -- Theme/Widgets.lua
 L["Click to copy"] = "Щелкните, чтобы скопировать"
@@ -1450,7 +1452,6 @@ L["Background opacity"] = "Непрозрачность фона"
 L["The background opacity of every Polestar window: how much of the world shows through. Right-click to reset."] = "Непрозрачность фона всех окон Polestar: сколько мира видно сквозь них. ПКМ — сброс."
 L["Type & motion"] = "Шрифт и анимация"
 L["Font"] = "Шрифт"
-L["The game's own font (the default), Inter, or EllesmereUI's."] = "Шрифт игры (по умолчанию), Inter или шрифт EllesmereUI."
 L["Game font"] = "Шрифт игры"
 L["Match EllesmereUI font"] = "Шрифт EllesmereUI"
 L["Follow EllesmereUI's font, live. Choosing another font turns this off."] = "Следовать шрифту EllesmereUI в реальном времени. Выбор другого шрифта отключает это."
@@ -1560,6 +1561,11 @@ L["Reload UI"] = "Перезагрузить UI"
 L["Search settings"] = "Поиск настроек"
 L["Open Polestar settings"] = "Открыть настройки Polestar"
 L["Close the game menu to see Polestar's settings (it cannot be closed for you in combat)."] = "Закройте игровое меню, чтобы увидеть настройки Polestar (в бою его нельзя закрыть за вас)."
+-- L["The skin's font (the default: the game's own, Fira Sans in Halo), the game's, Inter, Fira Sans, or EllesmereUI's."] = ""
+-- L["The skin's font"] = ""
+-- L["Skin"] = ""
+-- L["Polestar's own look (the default), Halo (no frame, a soft dark veil, Fira Sans) or Blizzard (the game's own frames, buttons and font). Style, compact mode and the colours you pick work in each."] = ""
+-- L["The skin's arrow"] = ""
 
 -- Rares/Rares.lua
 L["Raid warning"] = "Предупреждение рейда"
@@ -1761,3 +1767,6 @@ L["Demonology"] = "Демонология"
 L["Destruction"] = "Разрушение"
 L["Balance"] = "Баланс"
 L["Feral"] = "Сила зверя"
+
+-- No longer in the code (its English changed or it went away): reuse or delete.
+-- L["The game's own font (the default), Inter, or EllesmereUI's."] = "Шрифт игры (по умолчанию), Inter или шрифт EllesmereUI."

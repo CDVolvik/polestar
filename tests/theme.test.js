@@ -428,3 +428,92 @@ test('W.Link: an address in the accent with no box; under the cursor the text co
 	assert.equal(out.clicked, 1);
 	assert.equal(out.grew, 'a much longer address than before');
 });
+
+// The skins (Theme.lua, "Skins"): the handoff's tokens as given, their fonts,
+// sizes and glyphs, and a window repainted from one skin to the next and back.
+test('skins: Polestar by default; Halo and Blizzard bring their tokens, fonts, sizes and glyphs; your own accent still wins', () => {
+	const [out] = run(`
+		local function c(name) return { T.Color(name) } end
+		local out = { key = T.SkinKey(), choices = {} }
+		for i, ch in ipairs(T.SkinChoices()) do out.choices[i] = ch.value end
+		out.houseRow, out.houseHero = T.Metric("row", 40), select(2, T.FontSpec("hero"))
+		Polestar.Set("ui.skin", "halo")
+		out.halo = { key = T.SkinKey(), accent = c("accent"), text = c("text"), textDim = c("textDim"), npc = c("npc"), quest = c("quest"),
+			veil = c("veil"), veilWindow = c("veilWindow"), menuBg = c("menuBg"), accentLine = c("accentLine"), manual = c("manual"),
+			skipped = c("skipped"), success = c("success"), row = T.Metric("row", 40), font = { T.FontSpec("hero") }, icon = T.Icon("bug") }
+		Polestar.Set("ui.accent", { 0.2, 0.6, 1 })
+		out.ownAccent = c("accent")
+		Polestar.Set("ui.accent", nil)
+		Polestar.Set("ui.font", "inter")
+		out.haloInter = (T.FontSpec("body"))
+		Polestar.Set("ui.font", nil)
+		Polestar.Set("ui.skin", "blizzard")
+		out.bliz = { key = T.SkinKey(), title = c("title"), text = c("text"), success = c("success"), arrive = c("arrive"),
+			selected = c("selected"), row = T.Metric("row", 40), font = (T.FontSpec("body")), menuRow = T.Metric("menuRow", 26) }
+		Polestar.Set("ui.skin", "nonsense")
+		out.unknown = T.SkinKey()
+		emit(out)`);
+	const r = (cs) => round(cs);
+	assert.equal(out.key, 'polestar');
+	assert.deepEqual(out.choices, ['polestar', 'halo', 'blizzard']);
+	assert.equal(out.houseRow, 40);
+	assert.equal(out.houseHero, 26, 'the house ladder is unchanged');
+	const h = out.halo;
+	assert.equal(h.key, 'halo');
+	assert.deepEqual(r(h.accent), [1, 0.82, 0, 1], '#FFD100');
+	assert.deepEqual(r(h.text), [0.957, 0.937, 0.902, 1], '#F4EFE6');
+	assert.deepEqual(r(h.textDim), [0.761, 0.725, 0.663, 1], '#C2B9A9');
+	assert.deepEqual(r(h.npc), [0.549, 0.796, 1, 1], '#8CCBFF');
+	assert.deepEqual(r(h.quest), [1, 0.878, 0.478, 1], '#FFE07A');
+	assert.deepEqual(r(h.veil), [0.031, 0.024, 0.016, 0.6], '#080604 at 60 %');
+	assert.equal(r(h.veilWindow)[3], 0.84);
+	assert.equal(r(h.menuBg)[3], 0.97);
+	assert.deepEqual(r(h.accentLine), [1, 0.82, 0, 0.35]);
+	assert.deepEqual(r(h.manual), [0.706, 0.612, 1, 1], '#B49CFF');
+	assert.deepEqual(r(h.skipped), [0.361, 0.784, 0.839, 1], '#5CC8D6');
+	assert.deepEqual(r(h.success), [0.373, 0.816, 0.408, 1], '#5FD068');
+	assert.equal(h.row, 34);
+	assert.deepEqual(h.font, ['Interface\\AddOns\\Polestar\\Media\\Fonts\\FiraSans-SemiBold.ttf', 24, ''], 'Fira Sans, Hero 24');
+	assert.equal(h.icon, 'flag', 'the report flag');
+	assert.deepEqual(round(out.ownAccent).slice(0, 3), [0.2, 0.6, 1], 'your own accent wins in a skin');
+	assert.equal(out.haloInter, 'Interface\\AddOns\\Polestar\\Media\\Fonts\\Inter-Medium.ttf', 'a font picked by hand wins');
+	const b = out.bliz;
+	assert.equal(b.key, 'blizzard');
+	assert.deepEqual(r(b.title), [1, 0.82, 0, 1], 'NORMAL_FONT_COLOR');
+	assert.deepEqual(r(b.text), [1, 1, 1, 1], 'HIGHLIGHT_FONT_COLOR');
+	assert.deepEqual(r(b.success), [0.118, 1, 0, 1], '#1EFF00');
+	assert.deepEqual(r(b.arrive), [0.345, 0.753, 0.29, 1], '#58C04A');
+	assert.deepEqual(r(b.selected), [0.431, 0.588, 1, 0.28], "the options list's blue selection");
+	assert.equal(b.row, 28);
+	assert.equal(b.menuRow, 22);
+	assert.equal(b.font, 'Fonts\\FRIZQT__.TTF', "the game's font");
+	assert.equal(out.unknown, 'polestar', 'an unknown skin is the house style');
+});
+
+test('skins: a window repaints from the house style to Halo (veil, no fill) to Blizzard (gradient) and back, live', () => {
+	const [out] = run(`
+		local f = CreateFrame("Frame", nil, UIParent)
+		f:SetSize(200, 100)
+		T.Skin(f, "window")
+		local function state()
+			local d = f.psSkin
+			return { bg = d.bg ~= nil and d.bg:IsShown(), veil = d.veil ~= nil and d.veil:IsShown(),
+				border = f.psBorder ~= nil and f.psBorder[1]:IsShown(), shadow = f.psShadow ~= nil and f.psShadow:IsShown() }
+		end
+		local out = { house = state() }
+		Polestar.Set("ui.skin", "halo")
+		out.halo = state()
+		local v = f.psSkin.veil
+		local _, _, _, a = v.parts[5]:GetVertexColor()
+		out.veilAlpha = a
+		Polestar.Set("ui.skin", "blizzard")
+		out.bliz = state()
+		Polestar.Set("ui.skin", "polestar")
+		out.back = state()
+		emit(out)`);
+	assert.deepEqual(out.house, { bg: true, veil: false, border: true, shadow: true });
+	assert.deepEqual(out.halo, { bg: false, veil: true, border: false, shadow: false }, 'Halo: the soft veil alone');
+	assert.equal(Math.round(out.veilAlpha * 100) / 100, 0.84, 'the big windows\' veil');
+	assert.deepEqual({ bg: out.bliz.bg, veil: out.bliz.veil }, { bg: true, veil: false });
+	assert.deepEqual(out.back, out.house, 'back to the house style, as it was');
+});

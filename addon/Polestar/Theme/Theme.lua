@@ -143,7 +143,7 @@ end
 Theme.HexColor = hex
 
 -- Skins (ui.skin): "polestar", the house style above (the default), and
--- the two directions of the design handoff (docs/SKINS.md):
+-- the two directions of the design handoff (docs/ARCHITECTURE.md, "Skins"):
 --   "halo"      Forever · Halo: no frame, a dark veil with soft edges under
 --               the text, an off-white ladder, the game's gold, Fira Sans
 --   "blizzard"  Forever · Blizzard: Polestar as one of the game's windows,

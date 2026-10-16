@@ -1138,7 +1138,44 @@ Polestar.Theme.Skin(frame, kind)          -- "window","panel","inset","button","
 Polestar.Theme.Media(name) -> texturePath -- e.g. "icon-accept", "check", "white", "glow"
 Polestar.Theme.OnChanged(fn)              -- fn() on any scheme/colour/font change
 Polestar.Theme.IsEllesmere() -> bool
+Polestar.Theme.SkinKey() -> "polestar" | "halo" | "blizzard"   -- ui.skin
+Polestar.Theme.SkinChoices() -> { { value, text }, ... }
+Polestar.Theme.Metric(key, house) -> n   -- a size in the skin in use; `house` in the house style
+Polestar.Theme.Icon(name) -> name        -- a glyph a skin draws its own way ("bug" -> "flag")
+Polestar.Theme.FontKey() -> "game" | "inter" | "fira"   -- ui.font, "skin" resolved
 ```
+
+**Skins** (`ui.skin`, Appearance > Windows > Frame): `polestar`, the house
+style everything below describes (the default), and the two directions of the
+design handoff, `halo` (Forever · Halo: no frame, a dark veil with soft edges,
+an off-white ladder, the game's gold, Fira Sans) and `blizzard` (Forever ·
+Blizzard: the client's own frames and textures, its font and text colours). A
+skin brings:
+- its palette (`Theme.SKIN_PALETTES`: the handoff's tokens as given, washes
+  included); the scheme, ground colour, brightness, band and shadow are the
+  house style's (their options are greyed out in a skin); the player's own
+  accent, window border and arrow colours win in every skin. Tokens the skins
+  added (`textOff`, `title`, `link`, `todo`, `later`, `manual`, `skipped`,
+  `arrive`, `veil`, `veilWindow`, `menuBg`, `inputBg`, `control`,
+  `accentLine`, `padSelect`, `chipAccent`, `separator`, `rowLine`, `icon`,
+  `iconHover`, `buttonText`, `personName`, `tabRest`) exist in the house
+  style too, as their house equivalents;
+- its paints (`Theme.SKIN_PAINT`, falling back to the house paint): Halo's
+  veil (Media/UI/veil-soft, nine slices laid 24 units out), Blizzard's
+  `NineSliceUtil` layouts (`ButtonFrameTemplateNoPortrait`,
+  `TooltipDefaultLayout`, `InsetFrameTemplate`) and `UI-Panel-Button-*`. A
+  frame painted in another skin is cleared first, so a switch and back leaves it
+  as it was;
+- its fonts (`ui.font` "skin", the default: the game's in the house style and
+  Blizzard, Fira Sans in Halo), its type sizes and text shadow;
+- its sizes (`Theme.Metric`): setting rows, buttons, menus, dropdowns,
+  sliders, the guide window (`readMetrics` / `GF.ApplySkin`), the shell
+  (`W.SHELL` reads them) and the guide menu. The big windows take them as they
+  are built.
+
+The arrow follows the skin (`nav.arrowStyle` "skin", the default: 3D in the
+house style, the `halo` and `blizzard` darts otherwise; Nav/Arrow.lua). The
+skins' textures are drawn by `tools/media/skins.js`.
 
 **Colour schemes** (`ui.scheme`, `Theme.SCHEMES`): Dusk (default: Night's
 navy lifted to dusk), Night (the original deep navy-black, values unchanged),
@@ -1167,7 +1204,8 @@ scheme.
   every ground is darkened together by the least lightness that restores it.
 - Ground opacity: `ui.bgOpacity` for every window skin.
 - Font: EllesmereUI's when `ui.matchFont` (default off) and installed, else
-  `ui.font` (`game` by default | `inter`; CJK clients always the game font).
+  `ui.font` (`skin` by default: the skin's | `game` | `inter` | `fira`; CJK
+  clients always the game font).
 - Settings from before schemes: a stored accent equal to the old gold default
   is dropped at load (Theme.lua's `migrate`); any other stays the user's own.
 - Window frame (the `window` skin of every top-level window, live):

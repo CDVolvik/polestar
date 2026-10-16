@@ -753,7 +753,6 @@ L["Background opacity"] = "Hintergrund-Deckkraft"
 L["The background opacity of every Polestar window: how much of the world shows through. Right-click to reset."] = "Die Deckkraft des Hintergrunds jedes Polestar-Fensters: wie viel von der Welt durchscheint. Rechtsklick zum Zurücksetzen."
 L["Type & motion"] = "Schrift & Bewegung"
 L["Font"] = "Schrift"
-L["The game's own font (the default), Inter, or EllesmereUI's."] = "Die Schrift des Spiels (Standard), Inter oder die von EllesmereUI."
 L["Game font"] = "Spielschrift"
 L["Match EllesmereUI font"] = "EllesmereUI-Schrift übernehmen"
 L["Follow EllesmereUI's font, live. Choosing another font turns this off."] = "Folgt der Schrift von EllesmereUI, live. Wählst du eine andere Schrift, schaltet sich das aus."
@@ -906,6 +905,11 @@ L["Close the game menu to see Polestar's settings (it cannot be closed for you i
 -- L["Talents"] = ""
 -- L["Talent plan"] = ""
 -- L["This translation was made with AI. Help improve it on Discord."] = ""
+-- L["The skin's font (the default: the game's own, Fira Sans in Halo), the game's, Inter, Fira Sans, or EllesmereUI's."] = ""
+-- L["The skin's font"] = ""
+-- L["Skin"] = ""
+-- L["Polestar's own look (the default), Halo (no frame, a soft dark veil, Fira Sans) or Blizzard (the game's own frames, buttons and font). Style, compact mode and the colours you pick work in each."] = ""
+-- L["The skin's arrow"] = ""
 
 -- UI/Dungeons.lua
 L["Ready to turn in"] = "Bereit zur Abgabe"
@@ -1727,6 +1731,10 @@ L["Take"] = "Nimm"
 -- L["Keep this plan"] = ""
 -- L["Follow this plan whatever spec gear advice uses."] = ""
 
+-- Theme/Theme.lua
+-- L["Halo"] = ""
+-- L["Blizzard"] = ""
+
 -- No longer in the code (its English changed or it went away): reuse or delete.
 -- L["The arrow's target and the areas it spawns in."] = "Das Ziel des Pfeils und die Gebiete, in denen es spawnt."
 -- L["The arrow's target, the stops of its travel route, the step's other goals and the areas their mobs and objects spawn in."] = "Das Ziel des Pfeils, die Stationen seiner Reiseroute, die anderen Ziele des Schritts und die Gebiete, in denen ihre Mobs und Objekte spawnen."
@@ -1763,3 +1771,4 @@ L["Take"] = "Nimm"
 -- L["slot: Waist"] = "Taille"
 -- L["slot: Wrist"] = "Handgelenke"
 -- L["Dungeon journal"] = "Dungeonkompendium"
+-- L["The game's own font (the default), Inter, or EllesmereUI's."] = "Die Schrift des Spiels (Standard), Inter oder die von EllesmereUI."
