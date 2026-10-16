@@ -99,6 +99,11 @@ function goalNames(goal, data) {
 	add('faction', goal.faction, goal.factionName);
 	add('skill', goal.skillLine, goal.skill);
 	add('skill', goal.profLine, goal.profName);
+	// A collect's sources (resolve.js fromId, fromAlsoId: the kind of fromKind).
+	if (goal.fromKind === 'npc' || goal.fromKind === 'object') {
+		add(goal.fromKind, goal.fromId, goal.from);
+		add(goal.fromKind, goal.fromAlsoId, goal.fromAlso);
+	}
 	for (const c of goal.candidates || []) add('npc', c.npc, c.npcName, true);
 	for (const r of goal.reagents || []) add('item', r.item, r.itemName);
 	for (const list of [goal.rewards && goal.rewards.items, goal.rewards && goal.rewards.choices]) {
@@ -158,6 +163,8 @@ function forEachText(guide, fn, { steps = true } = {}) {
 // ("Darnassus's Mystic Ward"), a profession rank, nor a word opening its
 // sentence ("Assist Walton"); "<Capitalised> of" counts anywhere ("Elixirs
 // of Agility").
+// A profession's rank before its name ("Apprentice {skill:182}"): the rank is words.
+const RANKS = new Set(['Apprentice', 'Journeyman', 'Expert', 'Artisan']);
 function capitalBefore(before) {
 	const of = /(^|[^\p{L}\p{N}'’-])\p{Lu}[\p{L}\p{N}'’-]*[ \t]+of[ \t]+$/u.test(before);
 	if (of) return true;
@@ -234,8 +241,11 @@ class NameIndex {
 			if (e.kind === 'spell') {
 				// A spell owning something is a name of its own ("Blizzard's designers", "Burning Blade's").
 				if (/^['’]s\b/u.test(text.slice(end))) continue;
-				// A one-word spell opening a sentence or taking an object is a verb ("Shatter the crystal").
-				if (!e.name.includes(' ') && (opensSentence(text.slice(0, i)) || /^[ \t]+(the|a|an|your|its|their|it|them|him|her)\b/u.test(text.slice(end)))) continue;
+				// A one-word spell of the client's table taking an object, or opening a
+				// sentence that goes on in lower case, is a verb ("Shatter the
+				// crystal", "Polymorph a naga"); a guide's own spells are names.
+				const rest = text.slice(end);
+				if (!e.name.includes(' ') && e.prio >= WORLD_SPELL && (/^[ \t]+(the|a|an|your|its|their|it|them|him|her)\b/u.test(rest) || (opensSentence(text.slice(0, i)) && /^[ \t]+\p{Ll}/u.test(rest)))) continue;
 			}
 			if (plural ? text[end] === 's' && !isWordChar(text[end + 1]) : !isWordChar(text[end])) return e;
 		}
@@ -486,8 +496,11 @@ function tokeniseGuides(guides, data) {
 	const aliases = []; // names matched without their "The" or "City"
 	const out = guides.map((guide) => {
 		const base = guideIndex(guide, data, common);
-		// One-word class and profession abilities ("Polymorph", "Whirlwind") only where the guide teaches them.
-		const worlds = guide.category === 'Class' || guide.category === 'Professions' ? [world, abilities] : [world];
+		// One-word class and profession abilities ("Polymorph", "Whirlwind") where
+		// the guide teaches them; elsewhere only right after "cast" or "your"
+		// ("cast your Skysight racial ability").
+		const cast = { at: (text, i, plural) => (/\b(cast|your)[ \t]+$/iu.test(text.slice(Math.max(0, i - 6), i)) ? abilities.at(text, i, plural) : null) };
+		const worlds = [world, guide.category === 'Class' || guide.category === 'Professions' ? abilities : cast];
 		const copy = { ...guide, steps: guide.steps.map((s) => ({ ...s, goals: s.goals.map((g) => ({ ...g })) })) };
 		for (const k of GUIDE_LISTS) if (Array.isArray(copy[k])) copy[k] = copy[k].slice();
 		if (Array.isArray(copy.reward)) copy.reward = copy.reward.map((r) => ({ ...r }));
@@ -496,7 +509,8 @@ function tokeniseGuides(guides, data) {
 		// One English per token: a second spelling of the same id stays words.
 		const accept = (e) => {
 			const k = `${e.kind}:${e.id}`;
-			return !(k in names) || names[k] === e.name;
+			if (!(k in names)) names[k] = e.name; // taken now: a second spelling in the same text stays words
+			return names[k] === e.name;
 		};
 		const replace = (text, holder, key, indexes, ln) => {
 			const r = tokeniseText(text, indexes, accept);

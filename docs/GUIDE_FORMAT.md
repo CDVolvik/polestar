@@ -238,10 +238,14 @@ spells, factions, professions), then the whole guide's, the zones of its maps
 and the AreaTable areas in them, then any zone and any open-world area whose
 name is unique, the professions and their reagents, and any NPC, object or
 item of the data whose name has two words or an apostrophe, then the
-client's spell names (the newest cached Forever `SpellName` table: any spell
-of two words or more, or with an apostrophe or colon, and one-word class and
-profession abilities; none another thing of the game shares, and no
-profession rank spells). A place, NPC or
+client's spell names (the Forever `SpellName` table of the client build
+`meta.json` names, cached beside the data: any spell of two words or more, or
+with an apostrophe or colon; a one-word class or profession ability only in
+Class and Professions guides, or after "cast" or "your"; none another thing
+of the game shares, no profession rank spell, no spell owning something
+("Blizzard's designers"), and no one-word spell used as a verb: taking an
+object or opening a sentence that goes on in lower case, "Polymorph a
+naga"). A place, NPC or
 object the game names with a leading "The" matches without it ("Molsen
 Farm" is the game's "The Molsen Farm"), and a zone or area ending "City"
 without that ("Stormwind"): other languages show the game's name there, and
@@ -250,8 +254,9 @@ one way; another spelling of it stays words). A name in its
 English plural ("Harvest Watchers"), in lower case ("the Jansen Stead") or
 inside a longer word stays words, as does a name right next to a capitalised
 word or before "of <Capitalised>" that would make it a longer name the data
-lacks ("Rot Hide" gnolls, "Young Wetlands Crocolisks", "Cleft of Shadow"; a
-possessive, a profession rank or a sentence's opening word does not count),
+lacks ("Rot Hide" gnolls, "Young Wetlands Crocolisks", "Cleft of Shadow",
+"Elixirs of Shadow Power"; a possessive, a profession rank or a sentence's
+opening word does not count),
 and a one-word name the pack's texts
 also use as a lower-case word ("Barracks"), and two names a space apart (a
 name the data lacks, "Longshore Murloc Gills"). You may write a token
