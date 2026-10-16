@@ -62,9 +62,9 @@ return {
 
 	-- Step 12: Lar'korwi Mates
 	-- plural, as words: Lar'korwi Mates = {npc:9683} Lar'korwi Mate
-	["Lar'korwi Mates"] = "",
+	["Lar'korwi Mates"] = "Compañeras de Lar'korwi ({npc:9683})",
 	-- plural, as words: Lar'korwi Mates = {npc:9683} Lar'korwi Mate
-	["The Lar'korwi Mates prowl the jungle north-west of Torwa."] = "",
+	["The Lar'korwi Mates prowl the jungle north-west of Torwa."] = "Las Compañeras de Lar'korwi ({npc:9683}) merodean la selva al noroeste de Torwa.",
 
 	-- Step 13: Torwa Pathfinder
 	-- {npc:9684} Lar'korwi
@@ -225,7 +225,7 @@ return {
 	-- {npc:6522} Andron Gant · {object:36073} Rogues' Quarter
 	["{npc:6522}, the {object:36073}"] = "{npc:6522}, en {object:36073}",
 	-- {npc:8390} Chemist Cuely · {zone:1447} Azshara
-	["{npc:8390}, the Apothecarium: the vials fill in {zone:1447} later"] = "",
+	["{npc:8390}, the Apothecarium: the vials fill in {zone:1447} later"] = "{npc:8390}, la botica real: los viales se llenan después en {zone:1447}",
 
 	-- Step 45: The Bulwark
 	-- {zone:1458} Undercity · {zone:1420} Tirisfal Glades · {area:152} The Bulwark
@@ -253,11 +253,11 @@ return {
 
 	-- Step 51: Darrowshire Spirits
 	-- plural, as words: Darrowshire Spirits = {npc:11064} Darrowshire Spirit
-	["Darrowshire Spirits"] = "",
+	["Darrowshire Spirits"] = "Espíritus de Villa Darrow ({npc:11064})",
 	-- {npc:11064} Darrowshire Spirit · {area:2262} Darrowshire
 	["With Carlin's quest in your log, slain Scourge sometimes leave a {npc:11064}; talk to it to free it. Kill undead on the ride south-west to {area:2262}."] = "Con la misión de Carlin en tu registro, la Plaga que matas a veces deja un {npc:11064}; habla con él para liberarlo. Mata no-muertos en el camino al suroeste hacia {area:2262}.",
 	-- plural, as words: Darrowshire Spirits = {npc:11064} Darrowshire Spirit
-	["Free Darrowshire Spirits: talk to them"] = "",
+	["Free Darrowshire Spirits: talk to them"] = "Libera a los Espíritus de Villa Darrow ({npc:11064}): habla con ellos",
 
 	-- Step 52: Pamela Redpath
 	-- {area:2262} Darrowshire
@@ -278,11 +278,4 @@ return {
 	-- {area:2268} Light's Hope Chapel
 	["Back to {area:2268}"] = "De vuelta a {area:2268}",
 	["The next guide starts here, at the chapel's flight master."] = "La siguiente guía empieza aquí, en el maestro de vuelo de la capilla.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Free {area:2262} Spirits: talk to them"] = "Libera Espíritus de {area:2262}: habla con ellos",
-	-- ["The {npc:9684} Mates prowl the jungle north-west of Torwa."] = "Las Compañeras de {npc:9684} merodean en la selva al noroeste de Torwa.",
-	-- ["{area:2262} Spirits"] = "Espíritus de {area:2262}",
-	-- ["{npc:8390}, the {object:36072}: the vials fill in {zone:1447} later"] = "{npc:8390}, en {object:36072}: los viales se llenan en {zone:1447} más adelante",
-	-- ["{npc:9684} Mates"] = "Compañeras de {npc:9684}",
 }

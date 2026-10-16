@@ -7,7 +7,7 @@
 return {
 	-- Step 1: Journeyman Riding
 	-- {skill:762} Riding
-	["Journeyman {skill:762}"] = "",
+	["Journeyman {skill:762}"] = "中級{skill:762}",
 	-- {skill:762} Riding
 	["The reins need level 60 and Journeyman {skill:762} (Forever client). Train it at your race's riding trainer; see the Level 60 mount guides."] = "",
 

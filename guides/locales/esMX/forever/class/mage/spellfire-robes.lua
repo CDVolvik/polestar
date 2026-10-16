@@ -24,7 +24,7 @@ return {
 	-- Step 4: The alchemist shop
 	["The alchemist shop"] = "La tienda del alquimista",
 	-- {item:7308} Cantation of Manifestation · {npc:6492} Rift Spawn · {item:7247} Chest of Containment Coffers
-	["Algernon's alchemist shop is in the Apothecarium. Use the {item:7308} there to make the {npc:6492} visible, subdue one with your spells, then use the {item:7247} to throw down a coffer and capture it."] = "",
+	["Algernon's alchemist shop is in the Apothecarium. Use the {item:7308} there to make the {npc:6492} visible, subdue one with your spells, then use the {item:7247} to throw down a coffer and capture it."] = "La tienda de alquimia de Algernon está en el barrio de los boticarios de Entrañas. Usa ahí el {item:7308} para hacer visible al {npc:6492}, somete a uno con tus hechizos y luego usa el {item:7247} para lanzar un cofre y capturarlo.",
 
 	-- Step 5: Back to Anastasia Hartwell
 	-- {npc:4568} Anastasia Hartwell
@@ -32,7 +32,7 @@ return {
 
 	-- Step 6: Linen Cloth
 	-- {item:2589} Linen Cloth
-	["Humanoids drop {item:2589}; the Undercity Auction House sells it."] = "",
+	["Humanoids drop {item:2589}; the Undercity Auction House sells it."] = "Los humanoides sueltan {item:2589}; la casa de subastas de Entrañas lo vende.",
 
 	-- Step 7: Ambermill
 	-- {zone:1458} Undercity · {zone:1421} Silverpine Forest · {area:279} Dalaran · {area:233} Ambermill · {area:228} The Sepulcher · {npc:1867} Dalaran Apprentice · {item:7293} Dalaran Mana Gem
@@ -41,8 +41,4 @@ return {
 	-- Step 8: Josef Gregorian
 	-- {zone:1458} Undercity · {npc:4576} Josef Gregorian · {npc:11048} Victor Ward · {npc:11049} Rhiannon Davis
 	["Back to the {zone:1458}. {npc:4576}, {npc:11048} and {npc:11049} keep the tailor's shop."] = "Vuelve a {zone:1458}. {npc:4576}, {npc:11048} y {npc:11049} atienden la sastrería.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Algernon's alchemist shop is in the {object:36072}. Use the {item:7308} there to make the {npc:6492} visible, subdue one with your spells, then use the {item:7247} to throw down a coffer and capture it."] = "La tienda de alquimia de Algernon está en {object:36072}. Usa ahí el {item:7308} para hacer visible al {npc:6492}, somete a uno con tus hechizos y luego usa el {item:7247} para lanzar una arca y capturarlo.",
-	-- ["Humanoids drop {item:2589}; the {zone:1458} Auction House sells it."] = "Los humanoides sueltan {item:2589}; la casa de subastas de {zone:1458} lo vende.",
 }

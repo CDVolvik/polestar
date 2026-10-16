@@ -32,7 +32,7 @@ return {
 
 	-- Step 6: Shadowvale
 	-- {quest:91317} The Tarnished · {area:16881} Shadowvale · {area:16616} Whispering Forest · {item:246213} Sturdy Lumber
-	["{quest:91317} hold the ruined village of {area:16881} in the {area:16616}, south-west of the keep. The {item:246213} is piled in the root cellar of one of its houses; Commander Rudolph Gelhardt walks among his Tarnished."] = "",
+	["{quest:91317} hold the ruined village of {area:16881} in the {area:16616}, south-west of the keep. The {item:246213} is piled in the root cellar of one of its houses; Commander Rudolph Gelhardt walks among his Tarnished."] = "{quest:91317} tiennent le village en ruine de {area:16881} dans {area:16616}, au sud-ouest du donjon. {item:246213} est empilé dans la cave à légumes de l'une de ses maisons ; le commandant Rudolph Gelhardt marche parmi ses Ternis.",
 	-- {object:181686} Lumber Pile
 	["{object:181686}, in the root cellar"] = "{object:181686}, dans le cellier",
 	-- plural, as words: Tarnished Drudges = {npc:259434} Tarnished Drudge

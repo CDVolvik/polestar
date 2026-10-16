@@ -109,7 +109,7 @@ return {
 	["The wreck of the Third Fleet"] = "El naufragio de la Tercera Flota",
 	-- {npc:1159} First Mate Snellig
 	-- plural, as words: Cursed Sailors = {npc:1157} Cursed Sailor · Cursed Marines = {npc:1158} Cursed Marine · Giant Wetlands Crocolisks = {npc:2089} Giant Wetlands Crocolisk
-	["Follow the coast north to the wrecked ship. Cursed Sailors walk the beach, Cursed Marines the deck; {npc:1159} stands on the beach by the bow. Giant Wetlands Crocolisks lurk on the coast just north of it."] = "",
+	["Follow the coast north to the wrecked ship. Cursed Sailors walk the beach, Cursed Marines the deck; {npc:1159} stands on the beach by the bow. Giant Wetlands Crocolisks lurk on the coast just north of it."] = "Sigue la costa al norte hasta el barco naufragado. Los marineros malditos ({npc:1157}) recorren la playa y los marinos malditos ({npc:1158}), la cubierta; {npc:1159} está en la playa junto a la proa. Los crocoliscos gigantes de Los Humedales ({npc:2089}) acechan en la costa, justo al norte.",
 
 	-- Step 20: Bluegill Raiders
 	-- plural, as words: Bluegill Raiders = {npc:1418} Bluegill Raider

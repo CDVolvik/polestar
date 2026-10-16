@@ -6,7 +6,7 @@
 -- The comments are rewritten by sync.
 return {
 	-- Guide
-	["Argent Dawn Reputation"] = "",
+	["Argent Dawn Reputation"] = "Réputation Aube d'argent",
 
 	-- Step 1: Argent Dawn Commission (Alliance)
 	-- {quest:5401} Argent Dawn Commission

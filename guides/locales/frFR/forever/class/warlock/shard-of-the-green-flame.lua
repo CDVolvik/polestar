@@ -16,7 +16,7 @@ return {
 	-- Step 2: Jaedenar
 	-- {area:1763} Jaedenar
 	-- plural, as words: Jaedenar Legionnaires = {npc:9862} Jaedenar Legionnaire
-	["The Jaedenar Legionnaires, a short way west of Niby, carry {area:1763}'s essence."] = "",
+	["The Jaedenar Legionnaires, a short way west of Niby, carry {area:1763}'s essence."] = "Les Légionnaires de Jaedenar ({npc:9862}), un peu à l'ouest de Niby, portent l'essence de {area:1763}.",
 
 	-- Step 3: Azshara
 	-- {zone:1447} Azshara

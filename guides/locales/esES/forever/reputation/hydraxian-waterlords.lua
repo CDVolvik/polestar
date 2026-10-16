@@ -6,7 +6,7 @@
 -- The comments are rewritten by sync.
 return {
 	-- Guide
-	["Hydraxian Waterlords Reputation"] = "",
+	["Hydraxian Waterlords Reputation"] = "Reputación con los Señores del Agua de Hydraxis",
 
 	-- Step 1: Duke Hydraxis
 	-- {npc:13278} Duke Hydraxis · {zone:1447} Azshara · {faction:749} Hydraxian Waterlords
@@ -28,7 +28,7 @@ return {
 
 	-- Step 5: Eye of the Emberseer
 	-- {npc:9816} Pyroguard Emberseer · {quest:6821} Eye of the Emberseer
-	["{npc:9816} in Upper Blackrock Spire drops the {quest:6821}. This needs a raid group."] = "",
+	["{npc:9816} in Upper Blackrock Spire drops the {quest:6821}. This needs a raid group."] = "{npc:9816}, en la Cumbre de Roca Negra superior, suelta {quest:6821}. Requiere un grupo de banda.",
 
 	-- Step 6: The Molten Core
 	-- {npc:11668} Firelord · {npc:11658} Molten Giant · {npc:11673} Ancient Core Hound · {npc:12101} Lava Surger · {area:2717} Molten Core

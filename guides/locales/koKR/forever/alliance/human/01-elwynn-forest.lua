@@ -95,13 +95,13 @@ return {
 	-- {npc:263399} Sam Sarsaparilla · {npc:6306} Helene Peltskinner · {npc:383} Jason Mathers · {npc:1651} Lee Brown · {area:18} Crystal Lake
 	["{npc:263399} camps north-east of the inn; {npc:6306}, {npc:383} and {npc:1651} stand on the shore of {area:18} east of town."] = "{npc:263399}은(는) 여관 북동쪽에 야영하고 있으며, {npc:6306}, {npc:383}, {npc:1651}은(는) 마을 동쪽 {area:18} 호숫가에 있습니다.",
 	-- {spell:1229451} Boosted Rest
-	["Sit (/sit) by his campfire until you have {spell:1229451}"] = "",
+	["Sit (/sit) by his campfire until you have {spell:1229451}"] = "{spell:1229451} 효과를 얻을 때까지 그의 모닥불 옆에 앉으세요(/앉기)",
 	-- {npc:6306} Helene Peltskinner
 	["{npc:6306}: skinners only, the pelts are skinned"] = "{npc:6306}: 무두질 전용, 가죽은 무두질로 얻습니다",
 
 	-- Step 18: Crystal Lake
 	-- plural, as words: Fishing Traps = {object:694772} Fishing Trap
-	["The Fishing Traps sit along the west shore of the lake."] = "",
+	["The Fishing Traps sit along the west shore of the lake."] = "{object:694772}은(는) 호수 서쪽 기슭을 따라 놓여 있습니다.",
 
 	-- Step 20: The murloc camp
 	["The murloc camp"] = "멀록 야영지",
@@ -311,7 +311,7 @@ return {
 	-- {npc:822} Young Forest Bear · {item:15908} Taming Rod
 	["{npc:822}: tame it with the {item:15908}"] = "{npc:822}: {item:15908}(으)로 길들이기",
 	-- {npc:258930} Isaac Chan · {spell:5149} Beast Training
-	["{npc:258930}, beside her: {spell:5149}"] = "",
+	["{npc:258930}, beside her: {spell:5149}"] = "{npc:258930}, 그녀 옆: {spell:5149}",
 
 	-- Step 64: Jennea Cannon
 	-- {area:87} Goldshire · {zone:1453} Stormwind City · {npc:5497} Jennea Cannon · {object:2101} Mage Quarter · {quest:1861} Mirror Lake

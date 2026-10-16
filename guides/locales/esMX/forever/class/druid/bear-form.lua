@@ -13,7 +13,7 @@ return {
 
 	-- Step 1: Heeding the Call
 	-- {npc:3602} Kal · {area:186} Dolanaar · {zone:1457} Darnassus · {zone:1453} Stormwind City · {npc:4217} Mathrengyl Bearwalker
-	["At 10 a druid's call reaches you: {npc:3602} in {area:186}, Denatharion in {zone:1457} or Theridran in {zone:1453}. Any one of them sends you to {npc:4217} in the Cenarion Enclave of {zone:1457}."] = "",
+	["At 10 a druid's call reaches you: {npc:3602} in {area:186}, Denatharion in {zone:1457} or Theridran in {zone:1453}. Any one of them sends you to {npc:4217} in the Cenarion Enclave of {zone:1457}."] = "A nivel 10 te llega el llamado de un druida: {npc:3602} en {area:186}, Denatharion en {zone:1457} o Theridran en {zone:1453}. Cualquiera te envía con {npc:4217} en el Enclave Cenarion de {zone:1457}.",
 	-- {npc:3602} Kal · {area:186} Dolanaar
 	["{npc:3602}, {area:186}; Denatharion's and Theridran's letters lead to the same place"] = "{npc:3602}, {area:186}; las cartas de Denatharion y Theridran llevan al mismo lugar",
 
@@ -24,7 +24,7 @@ return {
 
 	-- Step 3: Moonglade
 	-- {spell:18960} Teleport: Moonglade · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {quest:5929} Great Bear Spirit · {area:493} Moonglade · {area:702} Rut'theran Village · {area:442} Auberdine · {zone:1457} Darnassus
-	["Cast {spell:18960}. {npc:11802} is in {area:2361}; the {quest:5929} sits in the woods to the north-west. Learn the {area:493} flight path, then fly to {area:702} (by way of {area:442}) and take the portal up to {zone:1457}."] = "",
+	["Cast {spell:18960}. {npc:11802} is in {area:2361}; the {quest:5929} sits in the woods to the north-west. Learn the {area:493} flight path, then fly to {area:702} (by way of {area:442}) and take the portal up to {zone:1457}."] = "Lanza {spell:18960}. {npc:11802} está en {area:2361}; {quest:5929} está en el bosque al noroeste. Aprende la ruta de vuelo de {area:493}, luego vuela a {area:702} (pasando por {area:442}) y toma el portal hacia {zone:1457}.",
 	-- {quest:5929} Great Bear Spirit
 	["Speak with the {quest:5929}"] = "Habla con el {quest:5929}",
 
@@ -50,7 +50,7 @@ return {
 
 	-- Step 9: Moonglade
 	-- {spell:18960} Teleport: Moonglade · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {quest:5930} Great Bear Spirit · {npc:11798} Bunthen Plainswind · {area:1638} Thunder Bluff
-	["Cast {spell:18960}. {npc:11802} is in {area:2361}; the {quest:5930} sits in the woods to the north-west. {npc:11798} in {area:2361} flies druids to {area:1638}."] = "",
+	["Cast {spell:18960}. {npc:11802} is in {area:2361}; the {quest:5930} sits in the woods to the north-west. {npc:11798} in {area:2361} flies druids to {area:1638}."] = "Lanza {spell:18960}. {npc:11802} está en {area:2361}; {quest:5930} está en el bosque al noroeste. {npc:11798}, en {area:2361}, lleva a los druidas volando a {area:1638}.",
 	-- {quest:5930} Great Bear Spirit
 	["Speak with the {quest:5930}"] = "Habla con el {quest:5930}",
 
@@ -100,19 +100,13 @@ return {
 
 	-- Step 20: Child of Nature
 	-- {npc:270459} Alfina Nightgaze · {npc:259084} Denaaris Stargale · {area:279} Dalaran · {zone:2521} Zephras Isle · {npc:2543} Archmage Ansirem Runeweaver
-	["{npc:270459} stands beside {npc:259084} and the Skyborne Portal, west of {area:279}, where the skycutter from {zone:2521} lands. {npc:2543} offers the same quest."] = "{npc:270459} está junto a {npc:259084} y el portal Skyborne, al oeste de {area:279}, donde aterriza el aerocorte de {zone:2521}. {npc:2543} ofrece la misma misión.",
+	["{npc:270459} stands beside {npc:259084} and the Skyborne Portal, west of {area:279}, where the skycutter from {zone:2521} lands. {npc:2543} offers the same quest."] = "{npc:270459} está junto a {npc:259084} y el portal Cielonato, al oeste de {area:279}, donde aterriza el aerocorte de {zone:2521}. {npc:2543} ofrece la misma misión.",
 
 	-- Step 21: Sheldras Moontree
 	-- {zone:1453} Stormwind City · {npc:5504} Sheldras Moontree
-	["The Skyborne Portal takes you to {zone:1453}. {npc:5504} is the city's druid trainer."] = "El portal Skyborne te lleva a {zone:1453}. {npc:5504} es el instructor de druidas de la ciudad.",
+	["The Skyborne Portal takes you to {zone:1453}. {npc:5504} is the city's druid trainer."] = "El portal Cielonato te lleva a {zone:1453}. {npc:5504} es el instructor de druidas de la ciudad.",
 
 	-- Step 22: Dendrite Starblaze
 	-- {spell:18960} Teleport: Moonglade · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {area:493} Moonglade
-	["Cast {spell:18960}. {npc:11802} is in {area:2361}. Learn the {area:493} flight path while you are here."] = "",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["At 10 a druid's call reaches you: {npc:3602} in {area:186}, Denatharion in {zone:1457} or Theridran in {zone:1453}. Any one of them sends you to {npc:4217} in the {area:1658} of {zone:1457}."] = "A nivel 10 te llega el llamado de un druida: {npc:3602} en {area:186}, Denatharion en {zone:1457} o Theridran en {zone:1453}. Cualquiera te envía con {npc:4217} en {area:1658} de {zone:1457}.",
-	-- ["Cast Teleport: {area:493}. {npc:11802} is in {area:2361}. Learn the {area:493} flight path while you are here."] = "Lanza Teletransporte: {area:493}. {npc:11802} está en {area:2361}. Aprende la ruta de vuelo de {area:493} mientras estás aquí.",
-	-- ["Cast Teleport: {area:493}. {npc:11802} is in {area:2361}; the {quest:5929} sits in the woods to the north-west. Learn the {area:493} flight path, then fly to {area:702} (by way of {area:442}) and take the portal up to {zone:1457}."] = "Lanza Teletransporte: {area:493}. {npc:11802} está en {area:2361}; el {quest:5929} está en el bosque al noroeste. Aprende la ruta de vuelo de {area:493}, luego vuela a {area:702} (pasando por {area:442}) y toma el portal hacia {zone:1457}.",
-	-- ["Cast Teleport: {quest:5922}. {npc:11802} is in {area:2361}; the {quest:5930} sits in the woods to the north-west. {npc:11798} in {area:2361} flies druids to {area:1638}."] = "Lanza Teletransporte: {quest:5922}. {npc:11802} está en {area:2361}; el {quest:5930} está en el bosque al noroeste. {npc:11798}, en {area:2361}, lleva a los druidas en vuelo a {area:1638}.",
+	["Cast {spell:18960}. {npc:11802} is in {area:2361}. Learn the {area:493} flight path while you are here."] = "Lanza {spell:18960}. {npc:11802} está en {area:2361}. Aprende la ruta de vuelo de {area:493} mientras estás aquí.",
 }

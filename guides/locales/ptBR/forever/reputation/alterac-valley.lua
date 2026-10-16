@@ -6,7 +6,7 @@
 -- The comments are rewritten by sync.
 return {
 	-- Guide
-	["Alterac Valley Reputation"] = "",
+	["Alterac Valley Reputation"] = "Reputação: Vale Alterac",
 
 	-- Step 1: Stormpike Guard to Friendly
 	-- {faction:730} Stormpike Guard
@@ -52,7 +52,7 @@ return {
 	["{faction:729} to Honored"] = "{faction:729} até Honrado",
 	-- {zone:1459} Alterac Valley · {npc:13176} Smith Regzar · {item:17306} Stormpike Soldier's Blood · {npc:13236} Primalist Thurloga · {npc:13256} Lokholar the Ice Lord · {npc:13441} Frostwolf Wolf Rider Commander
 	-- plural, as words: Alterac Ram Hides = {item:17642} Alterac Ram Hide
-	["Keep winning {zone:1459}. More Booty! ({npc:13176}), {item:17306} for {npc:13236} (it summons {npc:13256}) and Alterac Ram Hides for the {npc:13441} all repeat."] = "",
+	["Keep winning {zone:1459}. More Booty! ({npc:13176}), {item:17306} for {npc:13236} (it summons {npc:13256}) and Alterac Ram Hides for the {npc:13441} all repeat."] = "Continue vencendo em {zone:1459}. Mais espólios! ({npc:13176}), {item:17306} para {npc:13236} (invoca {npc:13256}) e Pelegos de Carneiro de Alterac para o {npc:13441} são todas repetíveis.",
 	-- {npc:13176} Smith Regzar
 	["{npc:13176}: More Booty!"] = "{npc:13176}: Mais espólios!",
 	-- {npc:13236} Primalist Thurloga
@@ -69,8 +69,4 @@ return {
 	["{faction:729} to Exalted"] = "{faction:729} até Exaltado",
 	-- {faction:729} Frostwolf Clan
 	["Exalted with the {faction:729} earns a Legacy Point."] = "Exaltado com {faction:729} rende um Ponto de Legado.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Keep winning {zone:1459}. More Booty! ({npc:13176}), {item:17306} for {npc:13236} (it summons {npc:13256}) and {npc:10990} Hides for the {npc:13441} all repeat."] = "Continue vencendo em {zone:1459}. Mais espólios! ({npc:13176}), {item:17306} para {npc:13236} (ele invoca {npc:13256}) e Pelegos de {npc:10990} para {npc:13441} são todas repetíveis.",
-	-- ["{zone:1459} Reputation"] = "Reputação: {zone:1459}",
 }

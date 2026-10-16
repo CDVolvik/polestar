@@ -14,7 +14,7 @@ return {
 	-- {quest:8151} The Hunter's Charm
 	["{quest:8151} (Alliance)"] = "{quest:8151} (Alianza)",
 	-- {npc:5516} Ulfir Ironbeard · {zone:1453} Stormwind City · {object:28027} Dwarven District · {npc:5116} Olmin Burningbeard · {zone:1455} Ironforge · {object:32390} Hall of Arms · {zone:1457} Darnassus
-	["At 50 any Alliance hunter trainer offers it: {npc:5516} in {zone:1453}'s {object:28027}, {npc:5116} in {zone:1455}'s {object:32390} or Dorion in {zone:1457}' Cenarion Enclave."] = "",
+	["At 50 any Alliance hunter trainer offers it: {npc:5516} in {zone:1453}'s {object:28027}, {npc:5116} in {zone:1455}'s {object:32390} or Dorion in {zone:1457}' Cenarion Enclave."] = "A nivel 50 cualquier instructor de cazadores de la Alianza la ofrece: {npc:5516} en {object:28027} de {zone:1453}, {npc:5116} en {object:32390} de {zone:1455} o Dorion en el Enclave Cenarion de {zone:1457}.",
 
 	-- Step 2: The Hunter's Charm (Horde)
 	-- {quest:8151} The Hunter's Charm
@@ -29,7 +29,7 @@ return {
 	-- Step 4: Courser Antlers
 	-- {zone:1447} Azshara
 	-- plural, as words: Mosshoof Coursers = {npc:8761} Mosshoof Courser · Perfect Courser Antlers = {item:20017} Perfect Courser Antler
-	["Mosshoof Coursers graze all over {zone:1447}; one in a dozen or so drops a pair of Perfect Courser Antlers."] = "",
+	["Mosshoof Coursers graze all over {zone:1447}; one in a dozen or so drops a pair of Perfect Courser Antlers."] = "Los maledictores Pezuñamusgo ({npc:8761}) pastan por todo {zone:1447}; más o menos uno de cada doce suelta un par de cuernos perfectos ({item:20017}).",
 
 	-- Step 6: Wavethrashing
 	-- {zone:1447} Azshara

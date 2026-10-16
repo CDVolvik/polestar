@@ -6,18 +6,18 @@
 -- The comments are rewritten by sync.
 return {
 	-- Pack
-	["Polestar Guides"] = "",
-	["Leveling, profession, reputation and collectible guides for Polestar."] = "",
+	["Polestar Guides"] = "Polestar 指南",
+	["Leveling, profession, reputation and collectible guides for Polestar."] = "Polestar 的升級、專業、聲望與收藏品指南。",
 
 	-- Folders
-	["Companion pets · Drops"] = "",
-	["Companion pets · Legacy"] = "",
-	["Companion pets · Quests"] = "",
-	["Companion pets · Vendors"] = "",
-	["Mounts · Drops"] = "",
-	["Mounts · Legacy"] = "",
-	["Mounts · Level 40"] = "",
-	["Mounts · Level 60"] = "",
-	["Mounts · PvP"] = "",
-	["Mounts · Reputation"] = "",
+	["Companion pets · Drops"] = "寵物 · 掉落",
+	["Companion pets · Legacy"] = "寵物 · 傳承",
+	["Companion pets · Quests"] = "寵物 · 任務",
+	["Companion pets · Vendors"] = "寵物 · 商人",
+	["Mounts · Drops"] = "坐騎 · 掉落",
+	["Mounts · Legacy"] = "坐騎 · 傳承",
+	["Mounts · Level 40"] = "坐騎 · 40級",
+	["Mounts · Level 60"] = "坐騎 · 60級",
+	["Mounts · PvP"] = "坐騎 · PvP",
+	["Mounts · Reputation"] = "坐騎 · 聲望",
 }

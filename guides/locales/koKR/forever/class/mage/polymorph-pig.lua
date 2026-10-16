@@ -7,7 +7,7 @@
 return {
 	-- Guide
 	-- {spell:118} Polymorph
-	["A new look for {spell:118}: it turns the target into a pig rather than a sheep."] = "",
+	["A new look for {spell:118}: it turns the target into a pig rather than a sheep."] = "{spell:118}의 새 모습: 대상을 양 대신 돼지로 바꿉니다.",
 
 	-- Step 1: Sanath Lim-yo
 	-- {area:3137} Talrendis Point · {area:1237} Valormok · {npc:8395} Sanath Lim-yo · {npc:8379} Archmage Xylem · {zone:1447} Azshara · {area:1221} Ruins of Eldarath
@@ -26,11 +26,11 @@ return {
 	["Polymorph Clones"] = "변이된 복제생물",
 	-- {item:23250} Prismatic Shell · {area:1221} Ruins of Eldarath · {spell:118} Polymorph
 	-- plural, as words: Polymorph Clones = {npc:16479} Polymorph Clone
-	["Carry the {item:23250} back to the {area:1221}. {spell:118} a Spitelash naga and wait a few seconds: it splits into small Polymorph Clones. Kill the clones quickly; the shell collects their essence."] = "",
+	["Carry the {item:23250} back to the {area:1221}. {spell:118} a Spitelash naga and wait a few seconds: it splits into small Polymorph Clones. Kill the clones quickly; the shell collects their essence."] = "{item:23250}을(를) {area:1221}(으)로 다시 가져가세요. 원한의꼬리일족 나가에게 {spell:118}을(를) 걸고 몇 초 기다리면 작은 {npc:16479}(으)로 갈라집니다. 복제생물을 빨리 처치하세요. 껍데기가 그 정수를 모읍니다.",
 
 	-- Step 5: Fragmented Magic
 	-- {npc:8379} Archmage Xylem · {spell:118} Polymorph
-	["{npc:8379}: {spell:118} (pig)"] = "",
+	["{npc:8379}: {spell:118} (pig)"] = "{npc:8379}: {spell:118}(돼지)",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["A new look for Polymorph: it turns the target into a pig rather than a sheep."] = "변이의 새 모습: 대상을 양 대신 돼지로 바꿉니다.",

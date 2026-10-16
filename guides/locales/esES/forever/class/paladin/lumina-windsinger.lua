@@ -6,7 +6,7 @@
 -- The comments are rewritten by sync.
 return {
 	-- Guide
-	["Rescuing Lumina Windsinger"] = "",
+	["Rescuing Lumina Windsinger"] = "Rescatar a Lumina Windsinger",
 	-- {item:268484} Moonsilver Blade
 	["No item yet: a Forsaken paladin rescue story; its sequel, the {item:268484}, cannot be finished yet."] = "Aún sin objeto: una historia de rescate del paladín renegado; su continuación, la {item:268484}, todavía no se puede terminar.",
 	-- {zone:1458} Undercity
@@ -30,9 +30,9 @@ return {
 
 	-- Step 4: Fenris Keep
 	-- {quest:91862} Lumina Windsinger · {area:235} Fenris Keep
-	["{quest:91862} is caged inside {area:235}, at the north end of the isle. The Rot Hide gnolls around her carry the key."] = "",
+	["{quest:91862} is caged inside {area:235}, at the north end of the isle. The Rot Hide gnolls around her carry the key."] = "{quest:91862} está enjaulada dentro de {area:235}, en el extremo norte de la isla. Los gnolls Putrepellejo que la rodean llevan la llave.",
 	-- {item:267412} Fenris Isle Key
-	["{item:267412}, from the Rot Hide gnolls"] = "",
+	["{item:267412}, from the Rot Hide gnolls"] = "{item:267412}, de los gnolls Putrepellejo",
 
 	-- Step 5: Free Lumina
 	["Free Lumina"] = "Libera a Lumina",

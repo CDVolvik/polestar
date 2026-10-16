@@ -66,12 +66,12 @@ return {
 	-- {npc:12738} Nori Pridedrift
 	["Grelin and {npc:12738} camp at the south-west edge of the valley, below the troll cave."] = "Грелин и {npc:12738} стоят лагерем на юго-западной окраине долины, под пещерой троллей.",
 	-- plural, as words: Frostmane Troll Whelps = {npc:706} Frostmane Troll Whelp
-	["A few Frostmane Troll Whelps if you are short"] = "",
+	["A few Frostmane Troll Whelps if you are short"] = "Еще несколько троллей-подростков из племени Мерзлогривов, если не хватает",
 
 	-- Step 10: The troll cave
 	["The troll cave"] = "Пещера троллей",
 	-- plural, as words: Frostmane Troll Whelps = {npc:706} Frostmane Troll Whelp
-	["Frostmane Troll Whelps fill the slopes south and east of Grelin's camp."] = "",
+	["Frostmane Troll Whelps fill the slopes south and east of Grelin's camp."] = "Тролли-подростки из племени Мерзлогривов заполняют склоны к югу и востоку от лагеря Грелина.",
 	-- plural, as words: Feather Charms = {item:6753} Feather Charm · Frostmane Novices = {npc:946} Frostmane Novice
 	["Feather Charms, from the Frostmane Novices"] = "Обереги из перьев, с новобранцев племени Мерзлогривов",
 
@@ -100,7 +100,7 @@ return {
 	-- {npc:12738} Nori Pridedrift
 	["{npc:12738}, next to him"] = "{npc:12738}, рядом с ним",
 	-- plural, as words: Iceclaw Bear Pendants = {item:264356} Iceclaw Bear Pendant · Frostmane Troll Whelps = {npc:706} Frostmane Troll Whelp
-	["Iceclaw Bear Pendants, from the Frostmane Troll Whelps on the slopes above the camp"] = "",
+	["Iceclaw Bear Pendants, from the Frostmane Troll Whelps on the slopes above the camp"] = "Подвески медведя-ледокогтя, с троллей-подростков из племени Мерзлогривов на склонах над лагерем",
 
 	-- Step 16: Call of Earth
 	-- {npc:257446} Teo Hammerstorm · {area:77} Anvilmar · {item:6635} Earth Sapta · {npc:5891} Minor Manifestation of Earth · {item:6656} Rough Quartz
@@ -178,7 +178,7 @@ return {
 
 	-- Step 35: Kharanos
 	-- {npc:1373} Jarven Thunderbrew · {item:2686} Thunder Ale · {npc:1247} Innkeeper Belm · {spell:8553} Barleybrew Scalder
-	["{npc:1373} guards the {item:2686} barrels in the distillery basement. Buy a {item:2686} from {npc:1247}, click the guarded barrel, then hand the ale to Jarven from his quest window (there is no quest to accept); after that, the unguarded barrel takes the {spell:8553}."] = "",
+	["{npc:1373} guards the {item:2686} barrels in the distillery basement. Buy a {item:2686} from {npc:1247}, click the guarded barrel, then hand the ale to Jarven from his quest window (there is no quest to accept); after that, the unguarded barrel takes the {spell:8553}."] = "{npc:1373} охраняет бочки ({item:2686}) в подвале пивоварни. Купите {item:2686} у NPC {npc:1247}, щелкните по охраняемой бочке, затем отдайте эль Ярвену через окно его задания (принимать задание не нужно); после этого в неохраняемую бочку можно положить: {spell:8553}.",
 	-- {item:2686} Thunder Ale · {npc:1247} Innkeeper Belm
 	["{item:2686}, from {npc:1247} in the distillery"] = "{item:2686}, у NPC {npc:1247} в пивоварне",
 	-- {object:269} Guarded Thunder Ale Barrel
@@ -291,7 +291,7 @@ return {
 	["{item:5026}: Tunnel Rat Geomancers"] = "{item:5026}: геоманты-туннельщики",
 
 	-- Step 62: The Fire Spirit Stone
-	["The Fire Spirit Stone"] = "",
+	["The Fire Spirit Stone"] = "Камень духа огня",
 	-- {item:6636} Fire Sapta · {npc:5893} Minor Manifestation of Fire · {item:6655} Glowing Ember · {object:61934} Brazier of the Dormant Flame · {object:148418} Eternal Flame
 	["Braldir gives you the {item:6636}. Climb to the peak above his camp, drink the Sapta beside the Spirit Stone and defeat the {npc:5893}, then place its {item:6655} in the {object:61934}, atop the Shrine of {object:148418}."] = "Бралдир дает вам {item:6636}. Поднимитесь на вершину над его лагерем, выпейте сапту рядом с камнем духов и победите NPC {npc:5893}, затем положите {item:6655} сюда: {object:61934}, на вершине святилища ({object:148418}).",
 	-- {item:6636} Fire Sapta
@@ -314,7 +314,7 @@ return {
 	["Spies and Bonesnappers"] = "Шпионы и костегрызы",
 	-- {area:212} Helm's Bed Lake · {item:274268} Dark Iron Map
 	-- plural, as words: Rockjaw Bonesnappers = {npc:1117} Rockjaw Bonesnapper
-	["Rockjaw Bonesnappers prowl the quarry and {area:212}; Dark Iron Spies sneak around the lake shore. One spy drops the {item:274268}."] = "",
+	["Rockjaw Bonesnappers prowl the quarry and {area:212}; Dark Iron Spies sneak around the lake shore. One spy drops the {item:274268}."] = "Костегрызы из племени Каменной Челюсти бродят по карьеру и у места {area:212}; шпионы из клана Черного Железа крадутся по берегу озера. С одного из шпионов падает {item:274268}.",
 
 	-- Step 68: Tundra MacGrann
 	-- {npc:1266} Tundra MacGrann · {area:801} Chill Breeze Valley · {npc:1271} Old Icebeard
@@ -328,11 +328,11 @@ return {
 
 	-- Step 70: Narm Faulk
 	-- {zone:1455} Ironforge · {area:212} Helm's Bed Lake · {npc:6177} Narm Faulk · {item:6866} Symbol of Life
-	["Ride back out of {zone:1455} and east along the road to {area:212}. {npc:6177} lies dead by its shore: use the {item:6866} on him. The Dark Iron Spies sneaking around the lake carry the script."] = "",
+	["Ride back out of {zone:1455} and east along the road to {area:212}. {npc:6177} lies dead by its shore: use the {item:6866} on him. The Dark Iron Spies sneaking around the lake carry the script."] = "Выезжайте из города {zone:1455} и скачите на восток по дороге сюда: {area:212}. {npc:6177} лежит мертвым у берега: используйте на нем {item:6866}. Записи носят шпионы из клана Черного Железа, крадущиеся вокруг озера.",
 	-- {item:6866} Symbol of Life · {npc:6177} Narm Faulk
 	["Use the {item:6866} on {npc:6177}"] = "Используйте {item:6866} на NPC {npc:6177}",
 	-- {item:6847} Dark Iron Script
-	["{item:6847}: Dark Iron Spies"] = "",
+	["{item:6847}: Dark Iron Spies"] = "{item:6847}: шпионы из клана Черного Железа",
 
 	-- Step 71: Muiredon Battleforge
 	-- {npc:6179} Tiza Battleforge
@@ -385,19 +385,4 @@ return {
 	-- {zone:1453} Stormwind City · {quest:1861} Mirror Lake · {zone:1436} Westfall · {item:7207} Jennea's Flask
 	["Leave {zone:1453} by the main gate. The {quest:1861} waterfall is south-west of the gates, on the way west to {zone:1436}: fill {item:7207} at its base."] = "Выйдите из города {zone:1453} через главные ворота. Водопад ({quest:1861}) находится к юго-западу от ворот, по пути на запад в зону {zone:1436}: наполните {item:7207} у его подножия.",
 
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["A few {npc:1120} Whelps if you are short"] = "Еще несколько троллей-подростков ({npc:1120}), если не хватает",
-	-- ["Defensive Stance"] = "Оборонительная стойка",
-	-- ["Iceclaw Bear Pendants, from the {npc:1120} Whelps on the slopes above the camp"] = "Подвески медведя-ледокогтя, с троллей-подростков ({npc:1120}) на склонах над лагерем",
-	-- ["Ride back out of {zone:1455} and east along the road to {area:212}. {npc:6177} lies dead by its shore: use the {item:6866} on him. The {object:147516} Spies sneaking around the lake carry the script."] = "Выезжайте из города {zone:1455} и скачите на восток по дороге сюда: {area:212}. {npc:6177} лежит мертвым у берега: используйте на нем {item:6866}. Записи носят шпионы ({object:147516}), крадущиеся вокруг озера.",
-	-- ["Rockjaw Bonesnappers prowl the quarry and {area:212}; {object:147516} Spies sneak around the lake shore. One spy drops the {item:274268}."] = "Костегрызы из племени Каменной Челюсти бродят по карьеру и у места {area:212}; шпионы ({object:147516}) крадутся по берегу озера. С одного из шпионов падает {item:274268}.",
-	-- ["Summon Voidwalker"] = "Призыв демона Бездны",
-	-- ["Tame Beast"] = "Приручение зверя",
-	-- ["The {npc:5896} Stone"] = "Камень духа: {npc:5896}",
-	-- ["{item:6847}: {object:147516} Spies"] = "{item:6847}: шпионы ({object:147516})",
-	-- ["{npc:10090}: Beast Training"] = "{npc:10090}: Дрессировка",
-	-- ["{npc:1120} Whelps fill the slopes south and east of Grelin's camp."] = "Тролли-подростки ({npc:1120}) заполняют склоны к югу и востоку от лагеря Грелина.",
-	-- ["{npc:1373} guards the {item:2686} barrels in the distillery basement. Buy a {item:2686} from {npc:1247}, click the guarded barrel, then hand the ale to Jarven from his quest window (there is no quest to accept); after that, the unguarded barrel takes the Barleybrew Scalder."] = "{npc:1373} охраняет бочки ({item:2686}) в подвале пивоварни. Купите {item:2686} у NPC {npc:1247}, щелкните по охраняемой бочке, затем отдайте эль Ярвену через окно его задания (принимать задание не нужно); после этого в неохраняемую бочку можно положить бочонок Пивовара Скальдера.",
-	-- ["{npc:460}: Summon Imp"] = "{npc:460}: Призыв беса",
-	-- ["{npc:6089}: Defensive Stance"] = "{npc:6089}: Оборонительная стойка",
 }

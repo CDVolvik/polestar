@@ -7,7 +7,7 @@
 return {
 	-- Guide
 	-- {spell:407778} Divine Storm
-	["A rare cloak at 30 from the old {spell:407778} story; for now only Alliance paladins can finish it."] = "",
+	["A rare cloak at 30 from the old {spell:407778} story; for now only Alliance paladins can finish it."] = "Une cape rare au niveau 30, tirée de l'ancienne histoire de {spell:407778} ; pour l'instant, seuls les paladins de l'Alliance peuvent la terminer.",
 
 	-- Step 1: The Strange Orb
 	["The Strange Orb"] = "Strange Orb",
@@ -46,7 +46,7 @@ return {
 	-- {object:409311} Spear of Mannoroth
 	["The {object:409311}"] = "{object:409311}",
 	-- {object:409311} Spear of Mannoroth · {area:435} Demon Fall Canyon · {spell:11170} Shatter · {object:409315} Shattered Orb
-	["The {object:409311} stands at the east end of {area:435}. {spell:11170} the orb on it; the {object:409315} appears beside it."] = "",
+	["The {object:409311} stands at the east end of {area:435}. {spell:11170} the orb on it; the {object:409315} appears beside it."] = "{object:409311} se dresse à l'extrémité est de {area:435}. Lancez {spell:11170} sur l'orbe qui s'y trouve ; {object:409315} apparaît à côté.",
 	-- {object:409315} Shattered Orb
 	["from the {object:409315}"] = "sur l'{object:409315}",
 

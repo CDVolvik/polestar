@@ -6,7 +6,7 @@
 -- The comments are rewritten by sync.
 return {
 	-- Guide
-	["Timbermaw Hold Reputation"] = "",
+	["Timbermaw Hold Reputation"] = "Réputation Les Grumegueules",
 
 	-- Step 1: Grazle
 	-- {faction:576} Timbermaw Hold

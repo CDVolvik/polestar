@@ -14,7 +14,7 @@ return {
 	-- {quest:8151} The Hunter's Charm
 	["{quest:8151} (Alliance)"] = "{quest:8151} (얼라이언스)",
 	-- {npc:5516} Ulfir Ironbeard · {zone:1453} Stormwind City · {object:28027} Dwarven District · {npc:5116} Olmin Burningbeard · {zone:1455} Ironforge · {object:32390} Hall of Arms · {zone:1457} Darnassus
-	["At 50 any Alliance hunter trainer offers it: {npc:5516} in {zone:1453}'s {object:28027}, {npc:5116} in {zone:1455}'s {object:32390} or Dorion in {zone:1457}' Cenarion Enclave."] = "",
+	["At 50 any Alliance hunter trainer offers it: {npc:5516} in {zone:1453}'s {object:28027}, {npc:5116} in {zone:1455}'s {object:32390} or Dorion in {zone:1457}' Cenarion Enclave."] = "50레벨이 되면 얼라이언스 사냥꾼 상급자 누구나 이 퀘스트를 줍니다: {zone:1453} {object:28027}의 {npc:5516}, {zone:1455} {object:32390}의 {npc:5116}, {zone:1457} 세나리온 자치령의 도리온.",
 
 	-- Step 2: The Hunter's Charm (Horde)
 	-- {quest:8151} The Hunter's Charm
@@ -29,7 +29,7 @@ return {
 	-- Step 4: Courser Antlers
 	-- {zone:1447} Azshara
 	-- plural, as words: Mosshoof Coursers = {npc:8761} Mosshoof Courser · Perfect Courser Antlers = {item:20017} Perfect Courser Antler
-	["Mosshoof Coursers graze all over {zone:1447}; one in a dozen or so drops a pair of Perfect Courser Antlers."] = "",
+	["Mosshoof Coursers graze all over {zone:1447}; one in a dozen or so drops a pair of Perfect Courser Antlers."] = "{npc:8761}은(는) {zone:1447} 곳곳에서 풀을 뜯습니다. 열두 마리 중 하나꼴로 {item:20017} 한 쌍을 떨어뜨립니다.",
 
 	-- Step 6: Wavethrashing
 	-- {zone:1447} Azshara

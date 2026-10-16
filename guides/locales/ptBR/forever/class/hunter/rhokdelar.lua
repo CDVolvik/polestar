@@ -51,7 +51,7 @@ return {
 
 	-- Step 9: Rhok'delar and Lok'delar
 	-- {item:18707} Ancient Rune Etched Stave · {item:18724} Enchanted Black Dragon Sinew · {item:18715} Lok'delar, Stave of the Ancient Keepers · {spell:425121} Icy Veins
-	["Not confirmed in Forever. In Classic, using the {item:18707} with the {item:18724} in your bags made Rhok'delar, and Vartrus then gave {item:18715} ({spell:425121})."] = "",
+	["Not confirmed in Forever. In Classic, using the {item:18707} with the {item:18724} in your bags made Rhok'delar, and Vartrus then gave {item:18715} ({spell:425121})."] = "Não confirmado no Forever. No Classic, usar o {item:18707} com o {item:18724} nas bolsas criava Rhok'delar, e Vartrus então dava {item:18715} ({spell:425121}).",
 	-- {item:18707} Ancient Rune Etched Stave
 	["{item:18707}, by Vartrus"] = "{item:18707}, por Vartrus",
 	-- {npc:14524} Vartrus the Ancient
@@ -63,7 +63,4 @@ return {
 	["Hastat's quiver needs the {item:18704}. Azuregos, a world boss for a raid, roams the south of {zone:1447} and drops it most of the time; the Cobalt dragonkin of {zone:1452} drop it very rarely. Skip the rest of this guide if you do not want the quiver."] = "A aljava de Hastat requer o {item:18704}. Azuregos, um chefe mundial para raide, vaga pelo sul de {zone:1447} e o deixa cair na maioria das vezes; os dragonídeos Cobalto de {zone:1452} o deixam cair muito raramente. Pule o resto deste guia se não quiser a aljava.",
 	-- {item:18704} Mature Blue Dragon Sinew
 	["{item:18704}, from Azuregos"] = "{item:18704}, de Azuregos",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Not confirmed in Forever. In Classic, using the {item:18707} with the {item:18724} in your bags made Rhok'delar, and Vartrus then gave {item:18715} (Icy Veins)."] = "Não confirmado no Forever. No Classic, usar o {item:18707} com o {item:18724} nas bolsas criava Rhok'delar, e Vartrus então dava {item:18715} (Icy Veins).",
 }

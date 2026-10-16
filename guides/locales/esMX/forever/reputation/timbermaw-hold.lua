@@ -6,7 +6,7 @@
 -- The comments are rewritten by sync.
 return {
 	-- Guide
-	["Timbermaw Hold Reputation"] = "",
+	["Timbermaw Hold Reputation"] = "Reputación con el Bastión Fauces de Madera",
 
 	-- Step 1: Grazle
 	-- {faction:576} Timbermaw Hold
@@ -68,7 +68,4 @@ return {
 	-- {faction:576} Timbermaw Hold
 	["{faction:576} to Exalted"] = "{faction:576} hasta Exaltado",
 	["Keep turning in feathers and beads until Exalted."] = "Sigue entregando plumas y cuentas hasta Exaltado.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["{faction:576} Reputation"] = "Reputación con {faction:576}",
 }

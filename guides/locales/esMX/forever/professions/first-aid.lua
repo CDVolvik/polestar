@@ -128,8 +128,5 @@ return {
 
 	-- Step 28: Runecloth Bandage (260-300)
 	-- {item:14529} Runecloth Bandage
-	["{item:14529} is yellow from 260 (yellow at 260, grey at 320): about 65 crafts to 300. Bandages need no fire: craft them anywhere. {item:14529} stays yellow to 320, so it carries you to 300 without a trip for Heavy Runecloth."] = "",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["{item:14529} is yellow from 260 (yellow at 260, grey at 320): about 65 crafts to 300. Bandages need no fire: craft them anywhere. {item:14529} stays yellow to 320, so it carries you to 300 without a trip for Heavy {item:14047}."] = "{item:14529} es amarillo desde 260 (amarillo en 260, gris en 320): unas 65 creaciones hasta 300. Las vendas no necesitan fuego: créalas en cualquier lugar. {item:14529} sigue amarillo hasta 320, así que te lleva hasta 300 sin viajar por la venda gruesa de {item:14047}.",
+	["{item:14529} is yellow from 260 (yellow at 260, grey at 320): about 65 crafts to 300. Bandages need no fire: craft them anywhere. {item:14529} stays yellow to 320, so it carries you to 300 without a trip for Heavy Runecloth."] = "{item:14529} es amarilla desde 260 (amarilla en 260, gris en 320): unas 65 creaciones hasta 300. Las vendas no necesitan fuego: fabrícalas en cualquier lugar. {item:14529} sigue amarilla hasta 320, así que te lleva a 300 sin ir a aprender la Venda de paño rúnico gruesa.",
 }

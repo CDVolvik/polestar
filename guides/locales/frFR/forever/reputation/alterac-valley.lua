@@ -6,7 +6,7 @@
 -- The comments are rewritten by sync.
 return {
 	-- Guide
-	["Alterac Valley Reputation"] = "",
+	["Alterac Valley Reputation"] = "Réputation de la vallée d'Alterac",
 
 	-- Step 1: Stormpike Guard to Friendly
 	-- {faction:730} Stormpike Guard
@@ -52,7 +52,7 @@ return {
 	["{faction:729} to Honored"] = "{faction:729} : Honoré",
 	-- {zone:1459} Alterac Valley · {npc:13176} Smith Regzar · {item:17306} Stormpike Soldier's Blood · {npc:13236} Primalist Thurloga · {npc:13256} Lokholar the Ice Lord · {npc:13441} Frostwolf Wolf Rider Commander
 	-- plural, as words: Alterac Ram Hides = {item:17642} Alterac Ram Hide
-	["Keep winning {zone:1459}. More Booty! ({npc:13176}), {item:17306} for {npc:13236} (it summons {npc:13256}) and Alterac Ram Hides for the {npc:13441} all repeat."] = "",
+	["Keep winning {zone:1459}. More Booty! ({npc:13176}), {item:17306} for {npc:13236} (it summons {npc:13256}) and Alterac Ram Hides for the {npc:13441} all repeat."] = "Continuez à gagner {zone:1459}. Plus de butin ! ({npc:13176}), {item:17306} pour {npc:13236} (il invoque {npc:13256}) et les Peaux de bélier d'Alterac ({item:17642}) pour {npc:13441} se répètent tous.",
 	-- {npc:13176} Smith Regzar
 	["{npc:13176}: More Booty!"] = "{npc:13176} : Plus de butin !",
 	-- {npc:13236} Primalist Thurloga

@@ -123,9 +123,9 @@ return {
 	-- Step 28: Corin's Crossing
 	-- {area:2264} Corin's Crossing
 	-- plural, as words: Darrowshire Spirits = {npc:11064} Darrowshire Spirit
-	["The Scourge around {area:2264}, west of the chapel, drop both kinds of Scourgestone; Darrowshire Spirits rise from them: talk to each one to free it."] = "",
+	["The Scourge around {area:2264}, west of the chapel, drop both kinds of Scourgestone; Darrowshire Spirits rise from them: talk to each one to free it."] = "예배당 서쪽, {area:2264} 주변의 스컬지는 두 종류의 스컬지석을 모두 떨어뜨립니다. 그들에게서 {npc:11064}이(가) 솟아오르니 하나하나 대화해 풀어 주세요.",
 	-- plural, as words: Darrowshire Spirits = {npc:11064} Darrowshire Spirit
-	["Free Darrowshire Spirits: talk to them"] = "",
+	["Free Darrowshire Spirits: talk to them"] = "{npc:11064} 해방: 대화하기",
 
 	-- Step 30: The Undercroft
 	-- {area:2261} The Undercroft

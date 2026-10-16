@@ -26,7 +26,7 @@ return {
 	["Ride into {zone:1447}"] = "Въезжайте: {zone:1447}",
 	-- {npc:11548} Loh'atu · {area:1235} Shadowsong Shrine · {area:3137} Talrendis Point
 	-- plural, as words: Azshara Sentinels = {npc:11276} Azshara Sentinel
-	["Ride east along the road out of Splintertree. {npc:11548} waits at the {area:1235} just off the road, a few steps west of the Alliance's {area:3137}: come in from the west and keep clear of the Azshara Sentinels and Jarrodenus (elite)."] = "",
+	["Ride east along the road out of Splintertree. {npc:11548} waits at the {area:1235} just off the road, a few steps west of the Alliance's {area:3137}: come in from the west and keep clear of the Azshara Sentinels and Jarrodenus (elite)."] = "Езжайте на восток по дороге от Заставы Расщепленного Дерева. {npc:11548} ждет здесь: {area:1235}, чуть в стороне от дороги, в нескольких шагах к западу от места {area:3137} (Альянс): подходите с запада и держитесь подальше от часовых Азшары и Джарродена (элита).",
 
 	-- Step 5: Highborne and Haldarr satyrs
 	["Highborne and Haldarr satyrs"] = "Высокорожденные и сатиры из племени Халдарр",
@@ -40,7 +40,7 @@ return {
 	-- {area:1237} Valormok
 	["Follow the road north to {area:1237}, the Horde camp."] = "Идите по дороге на север: {area:1237}, лагерь Орды.",
 	-- {npc:8395} Sanath Lim-yo
-	["{npc:8395}, at the east edge of the camp: no experience, only a teleport to Azshara Tower"] = "",
+	["{npc:8395}, at the east edge of the camp: no experience, only a teleport to Azshara Tower"] = "{npc:8395}, на восточном краю лагеря: опыта нет, только телепорт в башню Азшары",
 
 	-- Step 8: Undamaged Hippogryph Feathers
 	-- plural, as words: Undamaged Hippogryph Feathers = {item:10450} Undamaged Hippogryph Feather
@@ -103,7 +103,7 @@ return {
 	-- {zone:1454} Orgrimmar
 	["Take the zeppelin back to {zone:1454}."] = "Летите на дирижабле обратно: {zone:1454}.",
 	-- {npc:6986} Dran Droffers
-	["{npc:6986}, the Drag"] = "",
+	["{npc:6986}, the Drag"] = "{npc:6986}, Волок",
 	-- {npc:8659} Jes'rimon · {object:172960} Cleft of Shadow
 	["{npc:8659}, the {object:172960}"] = "{npc:8659}, {object:172960}",
 	-- {npc:8659} Jes'rimon · {quest:3504} Betrayed · {area:1237} Valormok
@@ -168,8 +168,4 @@ return {
 	-- {quest:3444} The Stone Circle
 	["Keep {quest:3444}: Marvon's chest is opened on a later visit."] = "Сохраните {quest:3444}: сундук Марвона откроется при следующем визите.",
 
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Ride east along the road out of Splintertree. {npc:11548} waits at the {area:1235} just off the road, a few steps west of the Alliance's {area:3137}: come in from the west and keep clear of the {zone:1447} Sentinels and Jarrodenus (elite)."] = "Езжайте на восток по дороге от Заставы Расщепленного Дерева. {npc:11548} ждет здесь: {area:1235}, чуть в стороне от дороги, в нескольких шагах к западу от места {area:3137} (Альянс): подходите с запада и держитесь подальше от часовых ({zone:1447}) и Джарродена (элита).",
-	-- ["{npc:6986}, the {object:172959}"] = "{npc:6986}, {object:172959}",
-	-- ["{npc:8395}, at the east edge of the camp: no experience, only a teleport to {zone:1447} Tower"] = "{npc:8395}, на восточном краю лагеря: опыта нет, только телепорт в башню ({zone:1447})",
 }

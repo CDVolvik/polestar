@@ -32,7 +32,7 @@ return {
 	["The red waterskin"] = "L'outre rouge",
 	-- {area:71} Stonewatch Falls · {area:68} Lake Everstill · {item:265747} Unfilled Red Waterskin
 	-- plural, as words: Murloc Nightcrawlers = {npc:544} Murloc Nightcrawler
-	["{area:71} pour out of {area:68} at the east end of Redridge. Fill the {item:265747} at their foot, where the Murloc Nightcrawlers gather."] = "",
+	["{area:71} pour out of {area:68} at the east end of Redridge. Fill the {item:265747} at their foot, where the Murloc Nightcrawlers gather."] = "{area:71} se déversent du {area:68} à l'extrémité est des Carmines. Remplissez {item:265747} à leur pied, là où se rassemblent les Marcheurs de l'ombre murlocs ({npc:544}).",
 
 	-- Step 8: The blue waterskin
 	["The blue waterskin"] = "L'outre bleue",

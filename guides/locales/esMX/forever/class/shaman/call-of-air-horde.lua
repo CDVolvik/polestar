@@ -21,7 +21,7 @@ return {
 
 	-- Step 3: Prate Cloudseer
 	-- {area:484} Freewind Post · {npc:5905} Prate Cloudseer · {quest:1531} Call of Air
-	["Fly to {area:484}. {npc:5905} hides in a small cave in the canyon wall north-east of the post. Skyborne: your own {quest:1531} (96136) ends with her too."] = "Vuela a {area:484}. {npc:5905} se esconde en una pequeña cueva en la pared del cañón al noreste del poblado. Skyborne: tu propia {quest:1531} (96136) también termina con ella.",
+	["Fly to {area:484}. {npc:5905} hides in a small cave in the canyon wall north-east of the post. Skyborne: your own {quest:1531} (96136) ends with her too."] = "Vuela a {area:484}. {npc:5905} se esconde en una pequeña cueva en la pared del cañón al noreste del poblado. Cielonatos: tu propia {quest:1531} (96136) también termina con ella.",
 	-- {npc:5905} Prate Cloudseer · {item:5178} Air Totem
 	["{npc:5905}: your {item:5178}"] = "{npc:5905}: tu {item:5178}",
 

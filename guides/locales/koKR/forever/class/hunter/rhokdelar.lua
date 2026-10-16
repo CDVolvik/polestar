@@ -51,7 +51,7 @@ return {
 
 	-- Step 9: Rhok'delar and Lok'delar
 	-- {item:18707} Ancient Rune Etched Stave · {item:18724} Enchanted Black Dragon Sinew · {item:18715} Lok'delar, Stave of the Ancient Keepers · {spell:425121} Icy Veins
-	["Not confirmed in Forever. In Classic, using the {item:18707} with the {item:18724} in your bags made Rhok'delar, and Vartrus then gave {item:18715} ({spell:425121})."] = "",
+	["Not confirmed in Forever. In Classic, using the {item:18707} with the {item:18724} in your bags made Rhok'delar, and Vartrus then gave {item:18715} ({spell:425121})."] = "Forever에서는 확인되지 않았습니다. 클래식에서는 {item:18724}을(를) 가방에 넣고 {item:18707}을(를) 사용하면 라크델라 - 고대수호자의 장궁이 만들어졌고, 그 뒤 고대정령 바르투스가 {item:18715}({spell:425121})을(를) 주었습니다.",
 	-- {item:18707} Ancient Rune Etched Stave
 	["{item:18707}, by Vartrus"] = "{item:18707}, 바르투스 곁에서",
 	-- {npc:14524} Vartrus the Ancient

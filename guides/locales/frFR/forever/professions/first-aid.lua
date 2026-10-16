@@ -128,7 +128,7 @@ return {
 
 	-- Step 28: Runecloth Bandage (260-300)
 	-- {item:14529} Runecloth Bandage
-	["{item:14529} is yellow from 260 (yellow at 260, grey at 320): about 65 crafts to 300. Bandages need no fire: craft them anywhere. {item:14529} stays yellow to 320, so it carries you to 300 without a trip for Heavy Runecloth."] = "",
+	["{item:14529} is yellow from 260 (yellow at 260, grey at 320): about 65 crafts to 300. Bandages need no fire: craft them anywhere. {item:14529} stays yellow to 320, so it carries you to 300 without a trip for Heavy Runecloth."] = "{item:14529} est jaune à partir de 260 (jaune à 260, gris à 320) : environ 65 fabrications jusqu'à 300. Les bandages n'ont pas besoin de feu : fabriquez-les n'importe où. {item:14529} reste jaune jusqu'à 320 ; il vous mène donc à 300 sans aller chercher le Bandage épais en étoffe runique.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["{item:14529} is yellow from 260 (yellow at 260, grey at 320): about 65 crafts to 300. Bandages need no fire: craft them anywhere. {item:14529} stays yellow to 320, so it carries you to 300 without a trip for Heavy {item:14047}."] = "{item:14529} est jaune dès 260 (jaune à 260, gris à 320) : environ 65 fabrications jusqu'à 300. Les bandages ne demandent pas de feu : fabriquez-les n'importe où. {item:14529} reste jaune jusqu'à 320 : il vous mène à 300 sans trajet pour le bandage épais en {item:14047}.",

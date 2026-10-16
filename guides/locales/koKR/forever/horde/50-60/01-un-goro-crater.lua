@@ -62,9 +62,9 @@ return {
 
 	-- Step 12: Lar'korwi Mates
 	-- plural, as words: Lar'korwi Mates = {npc:9683} Lar'korwi Mate
-	["Lar'korwi Mates"] = "",
+	["Lar'korwi Mates"] ="라르코르위의 짝",
 	-- plural, as words: Lar'korwi Mates = {npc:9683} Lar'korwi Mate
-	["The Lar'korwi Mates prowl the jungle north-west of Torwa."] = "",
+	["The Lar'korwi Mates prowl the jungle north-west of Torwa."] ="라르코르위의 짝은 토르와 북서쪽 정글을 배회합니다.",
 
 	-- Step 13: Torwa Pathfinder
 	-- {npc:9684} Lar'korwi
@@ -225,7 +225,7 @@ return {
 	-- {npc:6522} Andron Gant · {object:36073} Rogues' Quarter
 	["{npc:6522}, the {object:36073}"] = "{object:36073}의 {npc:6522}",
 	-- {npc:8390} Chemist Cuely · {zone:1447} Azshara
-	["{npc:8390}, the Apothecarium: the vials fill in {zone:1447} later"] = "",
+	["{npc:8390}, the Apothecarium: the vials fill in {zone:1447} later"] ="연금술 실험실의 {npc:8390}: 약병은 나중에 {zone:1447}에서 채웁니다",
 
 	-- Step 45: The Bulwark
 	-- {zone:1458} Undercity · {zone:1420} Tirisfal Glades · {area:152} The Bulwark
@@ -253,11 +253,11 @@ return {
 
 	-- Step 51: Darrowshire Spirits
 	-- plural, as words: Darrowshire Spirits = {npc:11064} Darrowshire Spirit
-	["Darrowshire Spirits"] = "",
+	["Darrowshire Spirits"] ="다로우샤이어 영혼",
 	-- {npc:11064} Darrowshire Spirit · {area:2262} Darrowshire
 	["With Carlin's quest in your log, slain Scourge sometimes leave a {npc:11064}; talk to it to free it. Kill undead on the ride south-west to {area:2262}."] = "카를린의 퀘스트가 있으면 처치한 스컬지가 가끔 {npc:11064}을(를) 남깁니다. 말을 걸어 풀어 주세요. 남서쪽 {area:2262}(으)로 가는 길에 언데드를 처치하세요.",
 	-- plural, as words: Darrowshire Spirits = {npc:11064} Darrowshire Spirit
-	["Free Darrowshire Spirits: talk to them"] = "",
+	["Free Darrowshire Spirits: talk to them"] ="다로우샤이어 영혼 해방: 말 걸기",
 
 	-- Step 52: Pamela Redpath
 	-- {area:2262} Darrowshire
@@ -280,9 +280,4 @@ return {
 	["The next guide starts here, at the chapel's flight master."] = "다음 가이드는 여기 예배당의 비행 조련사에서 시작합니다.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Free {area:2262} Spirits: talk to them"] = "{area:2262} 영혼 해방: 말 걸기",
-	-- ["The {npc:9684} Mates prowl the jungle north-west of Torwa."] = "{npc:9684}의 짝은 토르와 북서쪽 정글을 배회합니다.",
-	-- ["{area:2262} Spirits"] = "{area:2262} 영혼",
-	-- ["{npc:8390}, the {object:36072}: the vials fill in {zone:1447} later"] = "{object:36072}의 {npc:8390}: 약병은 나중에 {zone:1447}에서 채웁니다",
-	-- ["{npc:9684} Mates"] = "{npc:9684}의 짝",
 }

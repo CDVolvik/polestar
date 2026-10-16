@@ -6,7 +6,7 @@
 -- The comments are rewritten by sync.
 return {
 	-- Guide
-	["Ironforge Reputation"] = "",
+	["Ironforge Reputation"] = "Reputación con Forjaz",
 
 	-- Step 1: Mistina Steelshield: A Donation of Wool
 	-- {npc:14723} Mistina Steelshield · {faction:47} Ironforge · {item:14047} Runecloth · {quest:7806} Additional Runecloth
@@ -51,7 +51,4 @@ return {
 	-- {quest:7806} Additional Runecloth · {faction:47} Ironforge · {item:14047} Runecloth · {zone:1423} Eastern Plaguelands
 	-- plural, as words: Dark Adepts = {npc:8546} Dark Adept
 	["Keep handing in {quest:7806} until {faction:47} is Exalted. {item:14047}: Dark Adepts and Shadowmages (level 58-60) in {zone:1423}, or the Auction House."] = "Sigue entregando {quest:7806} hasta ser Exaltado con {faction:47}. {item:14047}: Adeptos oscuros y Magos oscuros (nivel 58-60) en {zone:1423}, o la casa de subastas.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["{faction:47} Reputation"] = "Reputación con {faction:47}",
 }

@@ -6,7 +6,7 @@
 -- The comments are rewritten by sync.
 return {
 	-- Guide
-	["Stormwind Reputation"] = "",
+	["Stormwind Reputation"] = "Réputation Hurlevent",
 
 	-- Step 1: Clavicus Knavingham: A Donation of Wool
 	-- {npc:14722} Clavicus Knavingham · {faction:72} Stormwind · {zone:1453} Stormwind City · {item:14047} Runecloth · {quest:7796} Additional Runecloth

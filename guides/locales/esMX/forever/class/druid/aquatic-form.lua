@@ -15,7 +15,7 @@ return {
 	-- Step 2: Trial of the Lake
 	-- {spell:18960} Teleport: Moonglade · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {area:656} Lake Elune'ara · {area:2362} Shrine of Remulos · {npc:11799} Tajarri
 	-- plural, as words: Shrine Baubles = {item:15877} Shrine Bauble
-	["Cast {spell:18960}. {npc:11802} is in {area:2361}. Shrine Baubles lie in the containers on the floor of {area:656}, below {area:2361}: take one to the {area:2362} on the north-west shore, use it there and speak to {npc:11799}."] = "",
+	["Cast {spell:18960}. {npc:11802} is in {area:2361}. Shrine Baubles lie in the containers on the floor of {area:656}, below {area:2361}: take one to the {area:2362} on the north-west shore, use it there and speak to {npc:11799}."] = "Lanza {spell:18960}. {npc:11802} está en {area:2361}. Los Adornos de altar ({item:15877}) están en los contenedores del fondo de {area:656}, debajo de {area:2361}: lleva uno a {area:2362}, en la orilla noroeste, úsalo ahí y habla con {npc:11799}.",
 	-- {item:15877} Shrine Bauble · {object:177785} Bauble Container
 	["{item:15877}, from a {object:177785} in the lake"] = "{item:15877}, de un {object:177785} en el lago",
 	-- {area:2362} Shrine of Remulos
@@ -31,7 +31,7 @@ return {
 
 	-- Step 5: Pendant of the Sea Lion
 	-- {spell:18960} Teleport: Moonglade · {item:15885} Pendant of the Sea Lion · {area:2362} Shrine of Remulos · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {area:702} Rut'theran Village
-	["Cast {spell:18960}. Join the two halves into the {item:15885} near the {area:2362}, on the north-west shore of the lake, then see {npc:11802} in {area:2361}. Fly to {area:702} afterwards."] = "",
+	["Cast {spell:18960}. Join the two halves into the {item:15885} near the {area:2362}, on the north-west shore of the lake, then see {npc:11802} in {area:2361}. Fly to {area:702} afterwards."] = "Lanza {spell:18960}. Une las dos mitades en el {item:15885} cerca de {area:2362}, en la orilla noroeste del lago, y luego ve con {npc:11802} en {area:2361}. Después vuela a {area:702}.",
 	-- {item:15885} Pendant of the Sea Lion
 	["{item:15885}: join the halves at the shrine"] = "{item:15885}: une las mitades en el santuario",
 
@@ -46,7 +46,7 @@ return {
 	-- Step 8: Trial of the Lake
 	-- {spell:18960} Teleport: Moonglade · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {area:656} Lake Elune'ara · {area:2362} Shrine of Remulos · {npc:11799} Tajarri
 	-- plural, as words: Shrine Baubles = {item:15877} Shrine Bauble
-	["Cast {spell:18960}. {npc:11802} is in {area:2361}. The Shrine Baubles lie on the bed of {area:656} and fade within minutes: swim one straight to the {area:2362} on the north-west shore, use it there and speak to {npc:11799}."] = "",
+	["Cast {spell:18960}. {npc:11802} is in {area:2361}. The Shrine Baubles lie on the bed of {area:656} and fade within minutes: swim one straight to the {area:2362} on the north-west shore, use it there and speak to {npc:11799}."] = "Lanza {spell:18960}. {npc:11802} está en {area:2361}. Los Adornos de altar ({item:15877}) están en el fondo de {area:656} y desaparecen en minutos: nada con uno directo a {area:2362}, en la orilla noroeste, úsalo ahí y habla con {npc:11799}.",
 
 	-- Step 9: Half Pendant of Aquatic Endurance
 	-- {npc:11798} Bunthen Plainswind · {zone:1456} Thunder Bluff · {zone:1454} Orgrimmar · {zone:1420} Tirisfal Glades · {zone:1421} Silverpine Forest · {zone:1458} Undercity · {object:177790} Strange Lockbox · {area:240} The Dead Field · {area:228} The Sepulcher
@@ -58,11 +58,5 @@ return {
 
 	-- Step 11: Pendant of the Sea Lion
 	-- {spell:18960} Teleport: Moonglade · {item:15885} Pendant of the Sea Lion · {area:2362} Shrine of Remulos · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {npc:11798} Bunthen Plainswind · {area:1638} Thunder Bluff
-	["Cast {spell:18960}. Join the two halves into the {item:15885} near the {area:2362}, on the north-west shore of the lake, then see {npc:11802} in {area:2361}. {npc:11798} flies druids to {area:1638}."] = "",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Cast Teleport: {zone:1450}. Join the two halves into the {item:15885} near the {area:2362}, on the north-west shore of the lake, then see {npc:11802} in {area:2361}. Fly to {area:702} afterwards."] = "Lanza Teletransportación: {zone:1450}. Une las dos mitades en el {item:15885} cerca del {area:2362}, en la orilla noroeste del lago, y luego ve con {npc:11802} en {area:2361}. Después vuela a {area:702}.",
-	-- ["Cast Teleport: {zone:1450}. Join the two halves into the {item:15885} near the {area:2362}, on the north-west shore of the lake, then see {npc:11802} in {area:2361}. {npc:11798} flies druids to {area:1638}."] = "Lanza Teletransportación: {zone:1450}. Une las dos mitades en el {item:15885} cerca del {area:2362}, en la orilla noroeste del lago, y luego ve con {npc:11802} en {area:2361}. {npc:11798} lleva a los druidas volando a {area:1638}.",
-	-- ["Cast Teleport: {zone:1450}. {npc:11802} is in {area:2361}. Shrine Baubles lie in the containers on the floor of {area:656}, below {area:2361}: take one to the {area:2362} on the north-west shore, use it there and speak to {npc:11799}."] = "Lanza Teletransportación: {zone:1450}. {npc:11802} está en {area:2361}. Los Adornos de altar están en los contenedores del fondo del {area:656}, debajo de {area:2361}: lleva uno al {area:2362} en la orilla noroeste, úsalo ahí y habla con {npc:11799}.",
-	-- ["Cast Teleport: {zone:1450}. {npc:11802} is in {area:2361}. The Shrine Baubles lie on the bed of {area:656} and fade within minutes: swim one straight to the {area:2362} on the north-west shore, use it there and speak to {npc:11799}."] = "Lanza Teletransportación: {zone:1450}. {npc:11802} está en {area:2361}. Los Adornos de altar están en el fondo del {area:656} y desaparecen en minutos: nada con uno directo al {area:2362} en la orilla noroeste, úsalo ahí y habla con {npc:11799}.",
+	["Cast {spell:18960}. Join the two halves into the {item:15885} near the {area:2362}, on the north-west shore of the lake, then see {npc:11802} in {area:2361}. {npc:11798} flies druids to {area:1638}."] = "Lanza {spell:18960}. Une las dos mitades en el {item:15885} cerca de {area:2362}, en la orilla noroeste del lago, y luego ve con {npc:11802} en {area:2361}. {npc:11798} lleva a los druidas volando a {area:1638}.",
 }

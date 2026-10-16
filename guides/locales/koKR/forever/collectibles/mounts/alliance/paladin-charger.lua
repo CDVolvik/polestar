@@ -32,7 +32,7 @@ return {
 	-- {area:2627} Terrordale · {zone:1423} Eastern Plaguelands · {zone:1422} Western Plaguelands · {item:18752} Exorcism Censer
 	["{area:2627} lies in the far north-west of the {zone:1423}, by the {zone:1422} border. Use the {item:18752} there to drive out the spirits, then defeat them."] = "{area:2627}은(는) {zone:1423} 북서쪽 끝, {zone:1422} 경계 옆에 있습니다. 그곳에서 {item:18752}을(를) 사용해 영혼을 몰아낸 뒤 물리치세요.",
 	-- plural, as words: Terrordale Spirits = {npc:14564} Terrordale Spirit
-	["Terrordale Spirits"] = "",
+	["Terrordale Spirits"] = "{npc:14564}",
 
 	-- Step 7: Grimand Elmore
 	-- {npc:1416} Grimand Elmore · {zone:1453} Stormwind City · {object:28027} Dwarven District

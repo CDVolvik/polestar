@@ -51,7 +51,7 @@ return {
 
 	-- Step 9: Rhok'delar and Lok'delar
 	-- {item:18707} Ancient Rune Etched Stave · {item:18724} Enchanted Black Dragon Sinew · {item:18715} Lok'delar, Stave of the Ancient Keepers · {spell:425121} Icy Veins
-	["Not confirmed in Forever. In Classic, using the {item:18707} with the {item:18724} in your bags made Rhok'delar, and Vartrus then gave {item:18715} ({spell:425121})."] = "",
+	["Not confirmed in Forever. In Classic, using the {item:18707} with the {item:18724} in your bags made Rhok'delar, and Vartrus then gave {item:18715} ({spell:425121})."] = "Sin confirmar en Forever. En Classic, usar {item:18707} con {item:18724} en las bolsas creaba Rhok'delar, y Vartrus te daba entonces {item:18715} ({spell:425121}).",
 	-- {item:18707} Ancient Rune Etched Stave
 	["{item:18707}, by Vartrus"] = "{item:18707}, de Vartrus",
 	-- {npc:14524} Vartrus the Ancient

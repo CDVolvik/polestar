@@ -32,7 +32,7 @@ return {
 	-- Step 6: Raging Beast's Blood
 	-- {zone:1452} Winterspring · {area:2255} Everlook · {spell:417141} Berserk
 	-- plural, as words: Raging Owlbeasts = {npc:7451} Raging Owlbeast
-	["The owlbeasts of {zone:1452} drop the blood, about one in three: the Ragged and Raging Owlbeasts west of and around {area:2255}, the Crazed, Moontouched and {spell:417141} ones in the east. While you hunt, start on the materials of the next step: the Auction House has them all."] = "",
+	["The owlbeasts of {zone:1452} drop the blood, about one in three: the Ragged and Raging Owlbeasts west of and around {area:2255}, the Crazed, Moontouched and {spell:417141} ones in the east. While you hunt, start on the materials of the next step: the Auction House has them all."] = "{zone:1452}의 올빼미야수는 세 마리 중 한 마리꼴로 피를 떨어뜨립니다: {area:2255} 서쪽과 주변의 털복숭이 올빼미야수와 {npc:7451}, 동쪽의 광기어린 올빼미야수, 달빛 깃든 올빼미야수, {spell:417141} 올빼미야수. 사냥하는 동안 다음 단계의 재료도 준비하세요. 경매장에 모두 있습니다.",
 
 	-- Step 7: Wildeyes
 	-- {item:18591} Case of Blood · {npc:14437} Gorzeeki Wildeyes · {zone:1448} Felwood
@@ -47,11 +47,11 @@ return {
 	["The ritual pieces"] = "의식 재료",
 	-- {spell:5896} Shadow Power · {skill:171} Alchemy · {skill:333} Enchanting · {item:11370} Dark Iron Ore · {skill:186} Mining · {area:1584} Blackrock Depths · {zone:1427} Searing Gorge · {skill:393} Skinning · {zone:1428} Burning Steppes
 	-- plural, as words: Large Brilliant Shards = {item:14344} Large Brilliant Shard · Black Dragonscales = {item:15416} Black Dragonscale
-	["Gorzeeki wants 10 Elixirs of {spell:5896} ({skill:171}), 6 Large Brilliant Shards ({skill:333}), 25 {item:11370} ({skill:186}, in {area:1584} and the {zone:1427}) and 35 Black Dragonscales ({skill:393}, black dragonkin of the {zone:1428}). Make or gather what your professions allow; buy the rest at the Auction House."] = "",
+	["Gorzeeki wants 10 Elixirs of {spell:5896} ({skill:171}), 6 Large Brilliant Shards ({skill:333}), 25 {item:11370} ({skill:186}, in {area:1584} and the {zone:1427}) and 35 Black Dragonscales ({skill:393}, black dragonkin of the {zone:1428}). Make or gather what your professions allow; buy the rest at the Auction House."] = "고르지키는 {spell:5896}의 비약 10개({skill:171}), {item:14344} 6개({skill:333}), {item:11370} 25개({skill:186}, {area:1584}와(과) {zone:1427}), {item:15416} 35개({skill:393}, {zone:1428}의 검은용족)를 원합니다. 전문 기술로 만들거나 모을 수 있는 것은 직접 하고, 나머지는 경매장에서 사세요.",
 
 	-- Step 9: Arcanite
 	-- plural, as words: Arcanite Bars = {item:12360} Arcanite Bar
-	["Hand the three pieces to Gorzeeki. He then wants 3 Arcanite Bars: alchemists transmute them, everyone else buys them at the Auction House."] = "",
+	["Hand the three pieces to Gorzeeki. He then wants 3 Arcanite Bars: alchemists transmute them, everyone else buys them at the Auction House."] = "세 조각을 고르지키에게 건네세요. 그다음 {item:12360} 3개를 원합니다. 연금술사는 변환으로 만들고, 그 외에는 경매장에서 사세요.",
 
 	-- Step 10: Lord Banehollow
 	-- {area:1763} Jaedenar · {zone:1448} Felwood · {item:18802} Shadowy Potion · {quest:7623} Lord Banehollow · {area:1770} Shadow Hold

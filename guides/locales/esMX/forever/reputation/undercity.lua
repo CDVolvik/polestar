@@ -6,7 +6,7 @@
 -- The comments are rewritten by sync.
 return {
 	-- Guide
-	["Undercity Reputation"] = "",
+	["Undercity Reputation"] = "Reputación con Entrañas",
 
 	-- Step 1: Ralston Farnsley: A Donation of Wool
 	-- {npc:14729} Ralston Farnsley · {faction:68} Undercity · {item:14047} Runecloth · {quest:7819} Additional Runecloth
@@ -52,7 +52,4 @@ return {
 	-- {quest:7819} Additional Runecloth · {faction:68} Undercity · {item:14047} Runecloth · {zone:1423} Eastern Plaguelands
 	-- plural, as words: Dark Adepts = {npc:8546} Dark Adept
 	["Keep handing in {quest:7819} until {faction:68} is Exalted. {item:14047}: Dark Adepts and Shadowmages (level 58-60) in {zone:1423}, or the Auction House."] = "Sigue entregando {quest:7819} hasta ser Exaltado con {faction:68}. {item:14047}: Adeptos oscuros y Magos oscuros (nivel 58-60) en {zone:1423}, o la casa de subastas.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["{faction:68} Reputation"] = "Reputación con {faction:68}",
 }

@@ -6,7 +6,7 @@
 -- The comments are rewritten by sync.
 return {
 	-- Guide
-	["Arathi Basin Reputation"] = "",
+	["Arathi Basin Reputation"] = "아라시 분지 평판",
 
 	-- Step 1: League of Arathor to Friendly
 	["League of Arathor to Friendly"] = "아라소르 연맹: 약간 우호적까지",
@@ -19,7 +19,7 @@ return {
 	-- Step 2: League of Arathor to Honored
 	["League of Arathor to Honored"] = "아라소르 연맹: 우호적까지",
 	-- {zone:1461} Arathi Basin · {npc:15351} Alliance Brigadier General
-	["Keep playing {zone:1461}. On Call to Arms: {zone:1461} weekends the {npc:15351} in the capitals takes three Arathi Basin Marks of Honor for extra reputation."] = "",
+	["Keep playing {zone:1461}. On Call to Arms: {zone:1461} weekends the {npc:15351} in the capitals takes three Arathi Basin Marks of Honor for extra reputation."] = "{zone:1461}을(를) 계속 플레이하세요. 전장 이벤트: {zone:1461} 주말에는 수도의 {npc:15351}이(가) 아라시 분지 명예 훈장 3개를 받고 추가 평판을 줍니다.",
 	-- {npc:15127} Samuel Hawke
 	["{npc:15127} hands out one Arathor care package by level"] = "{npc:15127}이(가) 레벨에 따라 아라소르 구급품 하나를 줍니다",
 
@@ -45,7 +45,7 @@ return {
 	-- {faction:510} The Defilers
 	["{faction:510} to Honored"] = "{faction:510}: 우호적까지",
 	-- {zone:1461} Arathi Basin · {npc:15350} Horde Warbringer
-	["Keep playing {zone:1461}. On Call to Arms: {zone:1461} weekends the {npc:15350} in the capitals takes three Arathi Basin Marks of Honor for extra reputation."] = "",
+	["Keep playing {zone:1461}. On Call to Arms: {zone:1461} weekends the {npc:15350} in the capitals takes three Arathi Basin Marks of Honor for extra reputation."] = "{zone:1461}을(를) 계속 플레이하세요. 전장 이벤트: {zone:1461} 주말에는 수도의 {npc:15350}이(가) 아라시 분지 명예 훈장 3개를 받고 추가 평판을 줍니다.",
 	-- {npc:15126} Rutherford Twing
 	["{npc:15126} hands out one Defiler's care package by level"] = "{npc:15126}이(가) 레벨에 따라 파멸단 구급품 하나를 줍니다",
 

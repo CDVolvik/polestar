@@ -95,13 +95,13 @@ return {
 	-- {npc:263399} Sam Sarsaparilla · {npc:6306} Helene Peltskinner · {npc:383} Jason Mathers · {npc:1651} Lee Brown · {area:18} Crystal Lake
 	["{npc:263399} camps north-east of the inn; {npc:6306}, {npc:383} and {npc:1651} stand on the shore of {area:18} east of town."] = "{npc:263399} стоит лагерем к северо-востоку от таверны; {npc:6306}, {npc:383} и {npc:1651} стоят на берегу к востоку от городка ({area:18}).",
 	-- {spell:1229451} Boosted Rest
-	["Sit (/sit) by his campfire until you have {spell:1229451}"] = "",
+	["Sit (/sit) by his campfire until you have {spell:1229451}"] = "Сядьте (/sit) у его костра, пока не получите эффект «{spell:1229451}»",
 	-- {npc:6306} Helene Peltskinner
 	["{npc:6306}: skinners only, the pelts are skinned"] = "{npc:6306}: только для снятия шкур, шкуры нужно снимать",
 
 	-- Step 18: Crystal Lake
 	-- plural, as words: Fishing Traps = {object:694772} Fishing Trap
-	["The Fishing Traps sit along the west shore of the lake."] = "",
+	["The Fishing Traps sit along the west shore of the lake."] = "Ловушки ({object:694772}) стоят вдоль западного берега озера.",
 
 	-- Step 20: The murloc camp
 	["The murloc camp"] = "Лагерь мурлоков",
@@ -311,7 +311,7 @@ return {
 	-- {npc:822} Young Forest Bear · {item:15908} Taming Rod
 	["{npc:822}: tame it with the {item:15908}"] = "{npc:822}: приручите с помощью предмета {item:15908}",
 	-- {npc:258930} Isaac Chan · {spell:5149} Beast Training
-	["{npc:258930}, beside her: {spell:5149}"] = "",
+	["{npc:258930}, beside her: {spell:5149}"] = "{npc:258930}, рядом с ней: {spell:5149}",
 
 	-- Step 64: Jennea Cannon
 	-- {area:87} Goldshire · {zone:1453} Stormwind City · {npc:5497} Jennea Cannon · {object:2101} Mage Quarter · {quest:1861} Mirror Lake
@@ -359,11 +359,4 @@ return {
 	-- {zone:1436} Westfall · {area:108} Sentinel Hill
 	["Follow the road west past Westbrook into {zone:1436}, then south along it to {area:108}. Thor, the gryphon master, stands on the hill."] = "Идите по дороге на запад мимо гарнизона у Западного ручья в зону {zone:1436}, затем по ней на юг. Цель: {area:108}. Укротитель грифонов Тор стоит на холме.",
 
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Sit (/sit) by his campfire until you have Boosted Rest"] = "Сядьте (/sit) у его костра, пока не получите «Усиленный отдых»",
-	-- ["Summon Voidwalker"] = "Призыв демона Бездны",
-	-- ["Tame Beast"] = "Приручение зверя",
-	-- ["The {skill:356} Traps sit along the west shore of the lake."] = "Ловушки (навык: {skill:356}) стоят вдоль западного берега озера.",
-	-- ["{npc:258930}, beside her: Beast Training"] = "{npc:258930}, рядом с ней: Дрессировка",
-	-- ["{npc:459}: Summon Imp"] = "{npc:459}: Призыв беса",
 }

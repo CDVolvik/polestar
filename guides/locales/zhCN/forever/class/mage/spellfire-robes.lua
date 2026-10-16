@@ -24,7 +24,7 @@ return {
 	-- Step 4: The alchemist shop
 	["The alchemist shop"] = "炼金商店",
 	-- {item:7308} Cantation of Manifestation · {npc:6492} Rift Spawn · {item:7247} Chest of Containment Coffers
-	["Algernon's alchemist shop is in the Apothecarium. Use the {item:7308} there to make the {npc:6492} visible, subdue one with your spells, then use the {item:7247} to throw down a coffer and capture it."] = "",
+	["Algernon's alchemist shop is in the Apothecarium. Use the {item:7308} there to make the {npc:6492} visible, subdue one with your spells, then use the {item:7247} to throw down a coffer and capture it."] = "奥格诺恩的炼金商店在幽暗城的炼金区。在那里使用{item:7308}让{npc:6492}现形，用法术制服一只，然后使用{item:7247}扔下一个箱子将其捕获。",
 
 	-- Step 5: Back to Anastasia Hartwell
 	-- {npc:4568} Anastasia Hartwell
@@ -32,7 +32,7 @@ return {
 
 	-- Step 6: Linen Cloth
 	-- {item:2589} Linen Cloth
-	["Humanoids drop {item:2589}; the Undercity Auction House sells it."] = "",
+	["Humanoids drop {item:2589}; the Undercity Auction House sells it."] = "人型生物会掉落{item:2589}；幽暗城拍卖行也有出售。",
 
 	-- Step 7: Ambermill
 	-- {zone:1458} Undercity · {zone:1421} Silverpine Forest · {area:279} Dalaran · {area:233} Ambermill · {area:228} The Sepulcher · {npc:1867} Dalaran Apprentice · {item:7293} Dalaran Mana Gem

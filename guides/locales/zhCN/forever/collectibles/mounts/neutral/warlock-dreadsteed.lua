@@ -32,7 +32,7 @@ return {
 	-- Step 6: Raging Beast's Blood
 	-- {zone:1452} Winterspring · {area:2255} Everlook · {spell:417141} Berserk
 	-- plural, as words: Raging Owlbeasts = {npc:7451} Raging Owlbeast
-	["The owlbeasts of {zone:1452} drop the blood, about one in three: the Ragged and Raging Owlbeasts west of and around {area:2255}, the Crazed, Moontouched and {spell:417141} ones in the east. While you hunt, start on the materials of the next step: the Auction House has them all."] = "",
+	["The owlbeasts of {zone:1452} drop the blood, about one in three: the Ragged and Raging Owlbeasts west of and around {area:2255}, the Crazed, Moontouched and {spell:417141} ones in the east. While you hunt, start on the materials of the next step: the Auction House has them all."] = "{zone:1452}的枭兽会掉落血液，大约三只掉一次：{area:2255}西边及周围的蓬毛枭兽和{npc:7451}，东边的疯狂的枭兽、月光枭兽和{spell:417141}枭兽。打怪时就开始准备下一步的材料：拍卖行都有。",
 
 	-- Step 7: Wildeyes
 	-- {item:18591} Case of Blood · {npc:14437} Gorzeeki Wildeyes · {zone:1448} Felwood
@@ -47,11 +47,11 @@ return {
 	["The ritual pieces"] = "仪式物品",
 	-- {spell:5896} Shadow Power · {skill:171} Alchemy · {skill:333} Enchanting · {item:11370} Dark Iron Ore · {skill:186} Mining · {area:1584} Blackrock Depths · {zone:1427} Searing Gorge · {skill:393} Skinning · {zone:1428} Burning Steppes
 	-- plural, as words: Large Brilliant Shards = {item:14344} Large Brilliant Shard · Black Dragonscales = {item:15416} Black Dragonscale
-	["Gorzeeki wants 10 Elixirs of {spell:5896} ({skill:171}), 6 Large Brilliant Shards ({skill:333}), 25 {item:11370} ({skill:186}, in {area:1584} and the {zone:1427}) and 35 Black Dragonscales ({skill:393}, black dragonkin of the {zone:1428}). Make or gather what your professions allow; buy the rest at the Auction House."] = "",
+	["Gorzeeki wants 10 Elixirs of {spell:5896} ({skill:171}), 6 Large Brilliant Shards ({skill:333}), 25 {item:11370} ({skill:186}, in {area:1584} and the {zone:1427}) and 35 Black Dragonscales ({skill:393}, black dragonkin of the {zone:1428}). Make or gather what your professions allow; buy the rest at the Auction House."] = "戈瑟奇要10瓶暗影之力药剂（{spell:5896}，{skill:171}）、6块{item:14344}（{skill:333}）、25块{item:11370}（{skill:186}，在{area:1584}和{zone:1427}）以及35片{item:15416}（{skill:393}，{zone:1428}的黑龙）。你的专业能做或能采的就自己弄；其余的在拍卖行购买。",
 
 	-- Step 9: Arcanite
 	-- plural, as words: Arcanite Bars = {item:12360} Arcanite Bar
-	["Hand the three pieces to Gorzeeki. He then wants 3 Arcanite Bars: alchemists transmute them, everyone else buys them at the Auction House."] = "",
+	["Hand the three pieces to Gorzeeki. He then wants 3 Arcanite Bars: alchemists transmute them, everyone else buys them at the Auction House."] = "把三件物品交给戈瑟奇。然后他还要3根{item:12360}：炼金师可以转化，其他人在拍卖行购买。",
 
 	-- Step 10: Lord Banehollow
 	-- {area:1763} Jaedenar · {zone:1448} Felwood · {item:18802} Shadowy Potion · {quest:7623} Lord Banehollow · {area:1770} Shadow Hold

@@ -164,7 +164,7 @@ return {
 
 	-- Step 36: Orgrimmar
 	-- {area:1637} Orgrimmar
-	["Fly to {area:1637}. The Droffers brothers run their shop in the Drag."] = "",
+	["Fly to {area:1637}. The Droffers brothers run their shop in the Drag."] = "Volez jusqu'à {area:1637}. Les frères Droffers tiennent leur boutique dans la Herse.",
 	-- {zone:1425} The Hinterlands
 	["for the {zone:1425}, around level 48"] = "pour {zone:1425}, vers le niveau 48",
 

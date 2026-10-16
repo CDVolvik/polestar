@@ -115,10 +115,10 @@ return {
 	-- plural, as words: Gnawed Corpses = {npc:264096} Gnawed Corpse
 	["North of the camp, spiders overrun the burial ground at {area:17044}. Use {npc:264074}'s {item:273015} on the Gnawed Corpses; the Spinners drop the {item:273181}. {npc:264082} sits at the north end: her {item:273658} starts {quest:96294}."] = "Ao norte do acampamento, aranhas infestam o cemitério em {area:17044}. Use o {item:273015} de {npc:264074} nos Cadáveres Roídos; as Tecelãs deixam cair a {item:273181}. {npc:264082} fica no extremo norte: o {item:273658} dela inicia {quest:96294}.",
 	-- plural, as words: Gloomrise Toxin Samples = {item:273001} Gloomrise Toxin Sample · Gnawed Corpses = {npc:264096} Gnawed Corpse
-	["Gloomrise Toxin Samples, from the Gnawed Corpses"] = "",
+	["Gloomrise Toxin Samples, from the Gnawed Corpses"] = "Amostras de Toxina de Penumbrascente, dos Cadáveres Roídos ({npc:264096})",
 	-- {item:273181} Crystalline Silk
 	-- plural, as words: Gloomrise Spinners = {npc:264081} Gloomrise Spinner
-	["{item:273181}, from Gloomrise Spinners"] = "",
+	["{item:273181}, from Gloomrise Spinners"] = "{item:273181}, das Tecelãs de Penumbrascente ({npc:264081})",
 	-- {item:273658} Bloody Parchment · {npc:264082} Broodmother Valraxx
 	["{item:273658}, from {npc:264082}"] = "{item:273658}, de {npc:264082}",
 
@@ -213,8 +213,4 @@ return {
 	-- Step 47: Freewind Post
 	-- {zone:1454} Orgrimmar
 	["The next guide flies on from here to {zone:1454}."] = "O próximo guia voa daqui para {zone:1454}.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["{area:17044} Toxin Samples, from the Gnawed Corpses"] = "Amostras de Toxina de {area:17044}, dos Cadáveres Roídos",
-	-- ["{item:273181}, from {area:17044} Spinners"] = "{item:273181}, das Tecelãs de {area:17044}",
 }

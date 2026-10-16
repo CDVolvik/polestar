@@ -32,7 +32,7 @@ return {
 	-- {area:796} Scarlet Monastery · {zone:1420} Tirisfal Glades · {npc:6487} Arcanist Doan
 	["Tirth sold the book to the Scarlet Brotherhood. The {area:796} stands in north-eastern {zone:1420}; take the Library wing. The book juts out of the wall on the left as you enter the Athenaeum, before {npc:6487}."] = "Tirth a vendu le livre à la Croisade écarlate. Le {area:796} se dresse au nord-est de {zone:1420} ; prenez l'aile de la Bibliothèque. Le livre dépasse du mur à gauche en entrant dans l'Athenaeum, avant {npc:6487}.",
 	-- {quest:1951} Rituals of Power
-	["{quest:1951}: Scarlet Monastery Library"] = "",
+	["{quest:1951}: Scarlet Monastery Library"] = "{quest:1951} : bibliothèque du Monastère écarlate",
 
 	-- Step 7: Back to Tabetha
 	-- {npc:6546} Tabetha

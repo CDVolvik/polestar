@@ -17,9 +17,9 @@ return {
 
 	-- Step 2: Serge Hinott
 	-- {zone:1413} The Barrens · {npc:2391} Serge Hinott · {area:272} Tarren Mill · {spell:2842} Poisons
-	["Only if Gallywix fell in the {zone:1413} (Mission: Possible But Not Probable): {npc:2391} stands in {area:272}. Wait beside him while he brews the cure, then take your reward: {spell:2842}."] = "",
+	["Only if Gallywix fell in the {zone:1413} (Mission: Possible But Not Probable): {npc:2391} stands in {area:272}. Wait beside him while he brews the cure, then take your reward: {spell:2842}."] = "Solo si Gallywix cayó en {zone:1413} (Misión: posible, pero no probable): {npc:2391} está en {area:272}. Espera a su lado mientras prepara la cura y recoge tu recompensa: {spell:2842}.",
 	-- {spell:2842} Poisons
-	["No Gallywix yet? The Class guide {spell:2842} (Horde) runs the chain from Shenthul again, with a group for Gallywix."] = "",
+	["No Gallywix yet? The Class guide {spell:2842} (Horde) runs the chain from Shenthul again, with a group for Gallywix."] = "¿Aún no has acabado con Gallywix? La guía de clase {spell:2842} (Horda) repite la cadena desde Shenthul, con un grupo para Gallywix.",
 
 	-- Step 3: Bears, creepers and lions
 	["Bears, creepers and lions"] = "Osos, trepamusgos y leones",
@@ -86,7 +86,7 @@ return {
 
 	-- Step 20: Master Apothecary Faranell
 	-- {npc:2055} Master Apothecary Faranell
-	["{npc:2055}, in the Apothecarium"] = "",
+	["{npc:2055}, in the Apothecarium"] = "{npc:2055}, en el Apothecarium",
 	-- {area:287} Hillsbrad
 	["Keep it: the {area:287} coast, later on the route"] = "Guárdala: la costa de {area:287}, más adelante en la ruta",
 

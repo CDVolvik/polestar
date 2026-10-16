@@ -63,7 +63,7 @@ return {
 	-- Step 11: Moonglade
 	["1 area to discover here, level 15."] = "Aquí hay 1 zona por descubrir, nivel 15.",
 	-- {area:1769} Timbermaw Hold · {zone:1448} Felwood · {zone:1450} Moonglade · {spell:18960} Teleport: Moonglade · {area:2361} Nighthaven
-	["Take the {area:1769} tunnel in northern {zone:1448} through to {zone:1450} (druids: {spell:18960}). {area:2361} is neutral."] = "",
+	["Take the {area:1769} tunnel in northern {zone:1448} through to {zone:1450} (druids: {spell:18960}). {area:2361} is neutral."] = "Cruza el túnel de {area:1769}, en el norte de {zone:1448}, hasta {zone:1450} (druidas: {spell:18960}). {area:2361} es neutral.",
 	-- {zone:1450} Moonglade
 	["Flight path here: {zone:1450} (Sindrayl)."] = "Ruta de vuelo aquí: {zone:1450} (Sindrayl).",
 	-- {zone:1450} Moonglade

@@ -11,7 +11,7 @@ return {
 	-- Step 1: PvP rank 11
 	["PvP rank 11"] = "Rang JcJ 11",
 	-- {spell:1299382} Rank Points · {spell:436438} Lieutenant General
-	["Forever's PvP ranks come from {spell:1299382} earned in battlegrounds and world PvP, with a weekly cap; {spell:436438} (rank 11) unlocks the Black War mounts. Polestar cannot read your rank, so this step waits for level 40 and the riding skill."] = "",
+	["Forever's PvP ranks come from {spell:1299382} earned in battlegrounds and world PvP, with a weekly cap; {spell:436438} (rank 11) unlocks the Black War mounts. Polestar cannot read your rank, so this step waits for level 40 and the riding skill."] = "Les rangs JcJ de Forever viennent des {spell:1299382} gagnés en champs de bataille et en JcJ sauvage, avec un plafond hebdomadaire ; {spell:436438} (rang 11) débloque les montures de guerre noires. Polestar ne peut pas lire votre rang : cette étape attend donc le niveau 40 et la compétence de monte.",
 
 	-- Step 2: Raider Bork
 	-- {npc:12796} Raider Bork · {area:2917} Hall of Legends · {zone:1454} Orgrimmar · {object:172958} Valley of Honor · {npc:12799} Sergeant Ba'sha

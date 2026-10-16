@@ -6,7 +6,7 @@
 -- The comments are rewritten by sync.
 return {
 	-- Guide
-	["Undercity Reputation"] = "",
+	["Undercity Reputation"] = "Reputación con Entrañas",
 
 	-- Step 1: Ralston Farnsley: A Donation of Wool
 	-- {npc:14729} Ralston Farnsley · {faction:68} Undercity · {item:14047} Runecloth · {quest:7819} Additional Runecloth

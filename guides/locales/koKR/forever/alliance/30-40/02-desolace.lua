@@ -44,12 +44,12 @@ return {
 
 	-- Step 11: Dalinda Malem
 	-- {spell:1294269} Burning Blade · {area:608} Nijel's Point
-	["Dalinda hides inside the {spell:1294269}'s fortress south-west of {area:608}."] = "",
+	["Dalinda hides inside the {spell:1294269}'s fortress south-west of {area:608}."] = "달린다는 {area:608} 남서쪽에 있는 {spell:1294269}의 요새 안에 숨어 있습니다.",
 
 	-- Step 12: Tyranis and the Seer
-	["Tyranis and the Seer"] = "티라니스와 {npc:13019}",
+	["Tyranis and the Seer"] = "티라니스와 현자",
 	-- {spell:1294269} Burning Blade · {npc:13019} Burning Blade Seer
-	["Her brother Tyranis (36) walks the fortress with the {spell:1294269} cultists (30-33): pull him alone. The {npc:13019} keeps the sceptre in the fortress's main building."] = "",
+	["Her brother Tyranis (36) walks the fortress with the {spell:1294269} cultists (30-33): pull him alone. The {npc:13019} keeps the sceptre in the fortress's main building."] = "그녀의 오빠 티라니스(36)는 {spell:1294269} 사교도(30-33)와 함께 요새를 돌아다닙니다. 그만 따로 끌어오세요. {npc:13019}은(는) 요새 본관에 홀을 가지고 있습니다.",
 
 	-- Step 13: Escort Dalinda
 	["Escort Dalinda"] = "달린다 호위",

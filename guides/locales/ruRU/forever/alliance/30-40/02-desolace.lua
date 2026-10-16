@@ -44,12 +44,12 @@ return {
 
 	-- Step 11: Dalinda Malem
 	-- {spell:1294269} Burning Blade · {area:608} Nijel's Point
-	["Dalinda hides inside the {spell:1294269}'s fortress south-west of {area:608}."] = "",
+	["Dalinda hides inside the {spell:1294269}'s fortress south-west of {area:608}."] = "Далинда прячется в крепости клана {spell:1294269} к юго-западу (ориентир: {area:608}).",
 
 	-- Step 12: Tyranis and the Seer
 	["Tyranis and the Seer"] = "Тиранис и Провидец",
 	-- {spell:1294269} Burning Blade · {npc:13019} Burning Blade Seer
-	["Her brother Tyranis (36) walks the fortress with the {spell:1294269} cultists (30-33): pull him alone. The {npc:13019} keeps the sceptre in the fortress's main building."] = "",
+	["Her brother Tyranis (36) walks the fortress with the {spell:1294269} cultists (30-33): pull him alone. The {npc:13019} keeps the sceptre in the fortress's main building."] = "Ее брат Тиранис (36) ходит по крепости с культистами ({spell:1294269}, 30-33): выманите его одного. {npc:13019} хранит скипетр в главном здании крепости.",
 
 	-- Step 13: Escort Dalinda
 	["Escort Dalinda"] = "Сопроводите Далинду",
@@ -85,7 +85,4 @@ return {
 	-- {area:609} Kolkar Village · {npc:5752} Corporal Melkins
 	["The Kolkar roam the plains around {area:609}; their ears are for {npc:5752}."] = "Кентавры из племени Колкар бродят по равнинам вокруг места {area:609}; их уши – для NPC {npc:5752}.",
 
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Dalinda hides inside the Burning Blade's fortress south-west of {area:608}."] = "Далинда прячется в крепости клана Пылающего Клинка к юго-западу (ориентир: {area:608}).",
-	-- ["Her brother Tyranis (36) walks the fortress with the Burning Blade cultists (30-33): pull him alone. The {npc:13019} keeps the sceptre in the fortress's main building."] = "Ее брат Тиранис (36) ходит по крепости с культистами клана Пылающего Клинка (30-33): выманите его одного. {npc:13019} хранит скипетр в главном здании крепости.",
 }

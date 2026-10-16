@@ -91,10 +91,10 @@ return {
 
 	-- Step 19: Rot Blossoms
 	-- plural, as words: Rot Blossoms = {item:1598} Rot Blossom
-	["Rot Blossoms"] = "",
+	["Rot Blossoms"] = "Flores podridas ({item:1598})",
 	-- {area:42} Darkshire · {area:121} Tranquil Gardens Cemetery
 	-- plural, as words: Skeletal Horrors = {npc:202} Skeletal Horror · Rot Blossoms = {item:1598} Rot Blossom
-	["Skeletal Horrors walk the hillside between {area:42} and the {area:121}, south-east of town; they drop the Rot Blossoms."] = "",
+	["Skeletal Horrors walk the hillside between {area:42} and the {area:121}, south-east of town; they drop the Rot Blossoms."] = "Los horrores esqueléticos ({npc:202}) recorren la ladera entre {area:42} y el {area:121}, al sureste del pueblo; sueltan las flores podridas ({item:1598}).",
 
 	-- Step 21: Abercrombie
 	["Ride west to the hermit once more."] = "Ve otra vez al oeste hasta el ermitaño.",
@@ -124,13 +124,13 @@ return {
 	-- {zone:1453} Stormwind City · {object:2100} Old Town
 	["Ride north through Elwynn to {zone:1453}; Mathias Shaw is at SI:7 in {object:2100}."] = "Ve al norte por el Bosque de Elwynn hasta {zone:1453}; Mathias Shaw está en el SI:7, en {object:2100}.",
 	-- {npc:332} Master Mathias Shaw · {spell:2842} Poisons · {item:18160} Recipe: Thistle Tea
-	["{npc:332}: {spell:2842}, and {item:18160}"] = "",
+	["{npc:332}: {spell:2842}, and {item:18160}"] = "{npc:332}: {spell:2842} y {item:18160}",
 	-- {quest:2607} The Touch of Zanzil · {npc:7207} Doc Mixilpixil
 	["{quest:2607}: {npc:7207}, in the cellar of the Barracks"] = "{quest:2607}: {npc:7207}, en el sótano del Cuartel",
 	-- {npc:7207} Doc Mixilpixil
 	["/lay down beside {npc:7207}"] = "Usa /lay para tumbarte junto a {npc:7207}",
 	-- {item:3372} Leaded Vial · {npc:1313} Maria Lumere
-	["{item:3372}: {npc:1313}, Alchemy Supplies"] = "",
+	["{item:3372}: {npc:1313}, Alchemy Supplies"] = "{item:3372}: {npc:1313}, Suministros de alquimia",
 
 	-- Step 28: Stormwind City
 	-- {zone:1453} Stormwind City · {zone:1429} Elwynn Forest · {area:17203} Stormwind Harbor · {area:442} Auberdine

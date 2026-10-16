@@ -59,7 +59,7 @@ return {
 
 	-- Step 9: Aramis and Venya
 	-- {quest:90902} Rediscovering the Light · {npc:259377} Injured Deathguard · {spell:635} Holy Light
-	["Paladins: {quest:90902} is done once you have healed five {npc:259377} around the church with {spell:635}."] = "",
+	["Paladins: {quest:90902} is done once you have healed five {npc:259377} around the church with {spell:635}."] = "Paladins : {quest:90902} est terminée une fois que vous avez soigné cinq {npc:259377} autour de l'église avec {spell:635}.",
 
 	-- Step 10: Scavenging Deathknell
 	-- {object:164662} Equipment Boxes · {area:154} Deathknell
@@ -133,7 +133,7 @@ return {
 	-- Step 26: Eleanor Shackleton
 	["Eleanor camps just south-west of town."] = "Eleanor campe juste au sud-ouest du village.",
 	-- {spell:1229451} Boosted Rest
-	["/sit by her campfire until you get {spell:1229451}"] = "",
+	["/sit by her campfire until you get {spell:1229451}"] = "/sit près de son feu de camp jusqu'à obtenir {spell:1229451}",
 
 	-- Step 27: Fields west of Brill
 	-- {area:159} Brill
@@ -176,15 +176,15 @@ return {
 	["Greater Duskbats fly over the fields around {area:159} and along the road north."] = "Les Grandes chauves-souris du crépuscule volent au-dessus des champs autour de {area:159} et le long de la route du nord.",
 
 	-- Step 33: Rot Hide graveyards
-	["Rot Hide graveyards"] = "",
+	["Rot Hide graveyards"] = "Cimetières des Poil-Putride",
 	-- {area:159} Brill
 	-- plural, as words: Rot Hide Graverobbers = {npc:1941} Rot Hide Graverobber
-	["The Rot Hide Graverobbers dig through the graveyards north of {area:159}; all the Rot Hides drop the ichor."] = "",
+	["The Rot Hide Graverobbers dig through the graveyards north of {area:159}; all the Rot Hides drop the ichor."] = "Les Profanateurs Poil-Putride ({npc:1941}) fouillent les cimetières au nord de {area:159} ; tous les Poil-Putride lâchent l'ichor.",
 
 	-- Step 34: Maggot Eye
 	-- {npc:1753} Maggot Eye
 	-- plural, as words: Rot Hide Mongrels = {npc:1675} Rot Hide Mongrel
-	["The Rot Hide Mongrels hold the hills further north. {npc:1753} (level 11) stands in their camp on the hill south of the shore: clear the gnolls around him first."] = "",
+	["The Rot Hide Mongrels hold the hills further north. {npc:1753} (level 11) stands in their camp on the hill south of the shore: clear the gnolls around him first."] = "Les Bâtards Poil-Putride ({npc:1675}) tiennent les collines plus au nord. {npc:1753} (niveau 11) se tient dans leur camp sur la colline au sud du rivage : éliminez d'abord les gnolls autour de lui.",
 
 	-- Step 35: Vile Fin murlocs
 	["Vile Fin murlocs"] = "Murlocs Aileron noir",
@@ -243,7 +243,7 @@ return {
 	-- Step 45: Shadowvale
 	-- {area:16881} Shadowvale · {item:286269} Glowing Crystal Fragment
 	-- plural, as words: Shadowvale Lurchers = {npc:260428} Shadowvale Lurcher
-	["{area:16881} is the hollow at the west edge of the glades. The Shadowvale Lurchers and Mystics drop the bones; the bottles lie on the ground among them, and the {item:286269} is at the south end."] = "",
+	["{area:16881} is the hollow at the west edge of the glades. The Shadowvale Lurchers and Mystics drop the bones; the bottles lie on the ground among them, and the {item:286269} is at the south end."] = "{area:16881} est le creux à la lisière ouest des clairières. Les Titubeurs ({npc:260428}) et Mystiques d'Ombreval lâchent les os ; les bouteilles sont au sol parmi eux, et {item:286269} est à l'extrémité sud.",
 
 	-- Step 48: Brill
 	-- {npc:1560} Yvette Farthing

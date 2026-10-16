@@ -111,7 +111,7 @@ return {
 	-- plural, as words: Dust Stormers = {npc:11744} Dust Stormer · Desert Rumblers = {npc:11746} Desert Rumbler
 	["The Twilight's Hammer dig fills the north-west corner: tablet fragments lie on the ground and the Dust Stormers and Desert Rumblers carry them too. Every cultist can drop an {item:20404}: keep twenty, ten for {npc:15306} and ten for {npc:15194} later."] = "Les fouilles du Marteau du crépuscule occupent le coin nord-ouest : des fragments de tablette jonchent le sol, et les Tempétueux de poussière et Grondeurs du désert en portent aussi. Tout sectateur peut laisser tomber un {item:20404} : gardez-en vingt, dix pour {npc:15306} et dix pour {npc:15194} plus tard.",
 	-- plural, as words: Twilight Tablet Fragments = {item:20378} Twilight Tablet Fragment
-	["Twilight Tablet Fragments"] = "",
+	["Twilight Tablet Fragments"] = "Fragments de la Tablette du crépuscule ({item:20378})",
 	["Twilight's Hammer cultists"] = "Sectateurs du Marteau du crépuscule",
 	-- {quest:8323} True Believers
 	["Ten more for {quest:8323}"] = "Dix de plus pour {quest:8323}",
@@ -273,7 +273,7 @@ return {
 	["Grind to 60"] = "Monter au niveau 60",
 	-- {area:2627} Terrordale
 	-- plural, as words: Terrordale Spirits = {npc:14564} Terrordale Spirit
-	["Cross the river east of Tirion into {area:2627}. The Terrordale Spirits haunt the woods there."] = "",
+	["Cross the river east of Tirion into {area:2627}. The Terrordale Spirits haunt the woods there."] = "Traversez la rivière à l'est de Tirion pour entrer à {area:2627}. Les Esprits de Val-Terreur ({npc:14564}) hantent les bois là-bas.",
 	-- {npc:14564} Terrordale Spirit · {area:2627} Terrordale · {zone:1423} Eastern Plaguelands
 	["grind on {npc:14564} at {area:2627}, {zone:1423}"] = "tuez des {npc:14564} à {area:2627}, {zone:1423}",
 

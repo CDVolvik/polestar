@@ -11,7 +11,7 @@ return {
 	-- Step 1: Learn to ride
 	["Learn to ride"] = "Apprendre à monter",
 	-- {skill:762} Riding · {spell:1285849} Galestrider Riding
-	["Galestriders need level 40 and {skill:762} ({spell:1285849} comes with it in the Forever client). Any riding trainer of your faction teaches it; see the Level 40 mount guides for where."] = "",
+	["Galestriders need level 40 and {skill:762} ({spell:1285849} comes with it in the Forever client). Any riding trainer of your faction teaches it; see the Level 40 mount guides for where."] = "Les trotteurs des trombes demandent le niveau 40 et {skill:762} ({spell:1285849} vient avec dans le client Forever). Tout maître de monte de votre faction l'enseigne ; voir les guides de montures de niveau 40 pour savoir où.",
 
 	-- Step 2: Skyboat from Dalaran
 	-- {area:279} Dalaran

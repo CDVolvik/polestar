@@ -32,7 +32,7 @@ return {
 	-- {area:2627} Terrordale · {zone:1423} Eastern Plaguelands · {zone:1422} Western Plaguelands · {item:18752} Exorcism Censer
 	["{area:2627} lies in the far north-west of the {zone:1423}, by the {zone:1422} border. Use the {item:18752} there to drive out the spirits, then defeat them."] = "{area:2627} fica no extremo noroeste das {zone:1423}, na divisa com as {zone:1422}. Use o {item:18752} lá para expulsar os espíritos e depois derrote-os.",
 	-- plural, as words: Terrordale Spirits = {npc:14564} Terrordale Spirit
-	["Terrordale Spirits"] = "",
+	["Terrordale Spirits"] = "Espíritos da Várzea do Medo",
 
 	-- Step 7: Grimand Elmore
 	-- {npc:1416} Grimand Elmore · {zone:1453} Stormwind City · {object:28027} Dwarven District
@@ -92,8 +92,5 @@ return {
 
 	-- Step 18: The Great Ossuary
 	-- {area:2057} Scholomance · {area:2298} Caer Darrow · {zone:1422} Western Plaguelands · {item:18746} Divination Scryer · {object:179746} The Great Ossuary · {npc:14516} Death Knight Darkreaver · {item:18799} Charger's Redeemed Soul · {item:18792} Blessed Arcanite Barding
-	["{area:2057} lies under {area:2298}, the island town in the south-east of the {zone:1422}. Use the {item:18746} in the heart of the {object:179746}'s basement, defeat the spirits it calls and then {npc:14516}, and give his Fallen Charger the {item:18799} and the {item:18792}. All are elite: bring a group. If the attempt fails, Lord Grayson gives you a new scryer through Again Into the {object:179746}."] = "{area:2057} fica embaixo de {area:2298}, a cidade na ilha do sudeste das {zone:1422}. Use o {item:18746} no centro do porão do {object:179746}, derrote os espíritos que ele chama e depois {npc:14516}, e dê ao Corcel Caído dele a {item:18799} e a {item:18792}. Todos são elite: leve um grupo. Se a tentativa falhar, Lorde Grayson lhe dá um novo vidente por meio de De volta ao Grande Ossário.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["{area:2627} Spirits"] = "Espíritos de {area:2627}",
+	["{area:2057} lies under {area:2298}, the island town in the south-east of the {zone:1422}. Use the {item:18746} in the heart of the {object:179746}'s basement, defeat the spirits it calls and then {npc:14516}, and give his Fallen Charger the {item:18799} and the {item:18792}. All are elite: bring a group. If the attempt fails, Lord Grayson gives you a new scryer through Again Into the {object:179746}."] = "{area:2057} fica embaixo de {area:2298}, a cidade na ilha do sudeste das {zone:1422}. Use o {item:18746} no centro do porão do {object:179746}, derrote os espíritos que ele chama e depois {npc:14516}, e dê ao Corcel Caído dele a {item:18799} e a {item:18792}. Todos são elite: leve um grupo. Se a tentativa falhar, Lorde Grayson lhe dá um novo vidente pela missão De volta ao {object:179746}.",
 }

@@ -101,7 +101,7 @@ return {
 	["The {area:247}"] = "{area:247}",
 	-- {area:340} Kargath · {zone:1427} Searing Gorge · {object:173265} Wooden Outhouse · {item:4306} Silk Cloth
 	-- plural, as words: Dark Iron Geologists = {npc:5839} Dark Iron Geologist
-	["Take the pass out of {area:340}'s west side into the {zone:1427}, then ride south-west to the dig site. The {object:173265} stands at its southern end; the Dark Iron Geologists dig just north of it. Bring 15 {item:4306} (the Auction House sells it)."] = "",
+	["Take the pass out of {area:340}'s west side into the {zone:1427}, then ride south-west to the dig site. The {object:173265} stands at its southern end; the Dark Iron Geologists dig just north of it. Bring 15 {item:4306} (the Auction House sells it)."] = "Prenez le col à l'ouest de {area:340} pour entrer dans la {zone:1427}, puis chevauchez vers le sud-ouest jusqu'au site de fouilles. {object:173265} se dresse à son extrémité sud ; les Géologues Sombrefer ({npc:5839}) creusent juste au nord. Apportez 15 {item:4306} (l'hôtel des ventes en vend).",
 	-- {object:173265} Wooden Outhouse
 	["the {object:173265}"] = "les {object:173265}",
 
@@ -118,7 +118,7 @@ return {
 	-- Step 24: The Cauldron
 	-- {item:11818} Grimesilt Outhouse Key
 	-- plural, as words: Heavy War Golems = {npc:5854} Heavy War Golem · Blazing Elementals = {npc:5850} Blazing Elemental · Dark Iron Taskmasters = {npc:5846} Dark Iron Taskmaster
-	["Heavy War Golems patrol the Cauldron below Kalaran and drop the oil; the Magma and Blazing Elementals drifting among them drop the hearts. The Dark Iron Taskmasters and Slavers drive the slaves on the paths; a Slaver may drop the {item:11818}: keep it."] = "",
+	["Heavy War Golems patrol the Cauldron below Kalaran and drop the oil; the Magma and Blazing Elementals drifting among them drop the hearts. The Dark Iron Taskmasters and Slavers drive the slaves on the paths; a Slaver may drop the {item:11818}: keep it."] = "Les Golems de guerre lourds ({npc:5854}) patrouillent dans le Chaudron sous Velarok et lâchent l'huile ; les Elémentaires de magma et flamboyants ({npc:5850}) qui dérivent parmi eux lâchent les cœurs. Les Sous-chefs Sombrefer ({npc:5846}) et les Esclavagistes mènent les esclaves sur les chemins ; un Esclavagiste peut lâcher {item:11818} : gardez-la.",
 	-- {item:11818} Grimesilt Outhouse Key
 	["{item:11818}, a rare drop"] = "{item:11818}, butin rare",
 
@@ -126,7 +126,7 @@ return {
 	["The Steamsmiths' furnaces"] = "Les fourneaux des Forge-vapeur",
 	-- {item:10551} Thorium Plated Dagger · {item:18959} Smithing Tuyere
 	-- plural, as words: Dark Iron Steamsmiths = {npc:5840} Dark Iron Steamsmith
-	["The Dark Iron Steamsmiths work the furnaces in the middle of the Cauldron; half of them carry a {item:10551}, one in ten the {item:18959}. Slaves, Slavers and Taskmasters carry daggers too."] = "",
+	["The Dark Iron Steamsmiths work the furnaces in the middle of the Cauldron; half of them carry a {item:10551}, one in ten the {item:18959}. Slaves, Slavers and Taskmasters carry daggers too."] = "Les Forge-vapeur Sombrefer ({npc:5840}) travaillent aux fourneaux au milieu du Chaudron ; la moitié porte une {item:10551}, un sur dix {item:18959}. Esclaves, Esclavagistes et Sous-chefs portent aussi des dagues.",
 
 	-- Step 27: Kalaran Windblade
 	-- {item:10552} Symbol of Ragnaros
@@ -145,10 +145,10 @@ return {
 
 	-- Step 30: Dark Iron Lookouts
 	-- plural, as words: Dark Iron Lookouts = {npc:8566} Dark Iron Lookout
-	["Dark Iron Lookouts"] = "",
+	["Dark Iron Lookouts"] = "Guetteurs Sombrefer ({npc:8566})",
 	-- {item:18960} Lookout's Spyglass
 	-- plural, as words: Dark Iron Lookouts = {npc:8566} Dark Iron Lookout
-	["The Dark Iron Lookouts stand on the ridges around the sentry towers south of the Cauldron; about one in ten carries the {item:18960}."] = "",
+	["The Dark Iron Lookouts stand on the ridges around the sentry towers south of the Cauldron; about one in ten carries the {item:18960}."] = "Les Guetteurs Sombrefer ({npc:8566}) se tiennent sur les crêtes autour des tours de guet au sud du Chaudron ; environ un sur dix porte {item:18960}.",
 
 	-- Step 31: The Key to Freedom
 	-- {item:11818} Grimesilt Outhouse Key · {object:173265} Wooden Outhouse

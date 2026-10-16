@@ -6,7 +6,7 @@
 -- The comments are rewritten by sync.
 return {
 	-- Guide
-	["Timbermaw Hold Reputation"] = "",
+	["Timbermaw Hold Reputation"] = "Reputación con el Bastión de los Fauces de Madera",
 
 	-- Step 1: Grazle
 	-- {faction:576} Timbermaw Hold

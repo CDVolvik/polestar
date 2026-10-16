@@ -66,12 +66,12 @@ return {
 	-- {npc:12738} Nori Pridedrift
 	["Grelin and {npc:12738} camp at the south-west edge of the valley, below the troll cave."] = "Grelin y {npc:12738} acampan en el borde suroeste del valle, bajo la cueva de los trols.",
 	-- plural, as words: Frostmane Troll Whelps = {npc:706} Frostmane Troll Whelp
-	["A few Frostmane Troll Whelps if you are short"] = "",
+	["A few Frostmane Troll Whelps if you are short"] = "Algunas crías de trol Peloescarcha ({npc:706}) si te faltan",
 
 	-- Step 10: The troll cave
 	["The troll cave"] = "La cueva de los trols",
 	-- plural, as words: Frostmane Troll Whelps = {npc:706} Frostmane Troll Whelp
-	["Frostmane Troll Whelps fill the slopes south and east of Grelin's camp."] = "",
+	["Frostmane Troll Whelps fill the slopes south and east of Grelin's camp."] = "Las crías de trol Peloescarcha ({npc:706}) llenan las laderas al sur y al este del campamento de Grelin.",
 	-- plural, as words: Feather Charms = {item:6753} Feather Charm · Frostmane Novices = {npc:946} Frostmane Novice
 	["Feather Charms, from the Frostmane Novices"] = "Talismanes de plumas, de los Novicios Peloescarcha",
 
@@ -100,7 +100,7 @@ return {
 	-- {npc:12738} Nori Pridedrift
 	["{npc:12738}, next to him"] = "{npc:12738}, a su lado",
 	-- plural, as words: Iceclaw Bear Pendants = {item:264356} Iceclaw Bear Pendant · Frostmane Troll Whelps = {npc:706} Frostmane Troll Whelp
-	["Iceclaw Bear Pendants, from the Frostmane Troll Whelps on the slopes above the camp"] = "",
+	["Iceclaw Bear Pendants, from the Frostmane Troll Whelps on the slopes above the camp"] = "Colgantes de oso garrahielo ({item:264356}), de las crías de trol Peloescarcha ({npc:706}) de las laderas sobre el campamento",
 
 	-- Step 16: Call of Earth
 	-- {npc:257446} Teo Hammerstorm · {area:77} Anvilmar · {item:6635} Earth Sapta · {npc:5891} Minor Manifestation of Earth · {item:6656} Rough Quartz
@@ -178,7 +178,7 @@ return {
 
 	-- Step 35: Kharanos
 	-- {npc:1373} Jarven Thunderbrew · {item:2686} Thunder Ale · {npc:1247} Innkeeper Belm · {spell:8553} Barleybrew Scalder
-	["{npc:1373} guards the {item:2686} barrels in the distillery basement. Buy a {item:2686} from {npc:1247}, click the guarded barrel, then hand the ale to Jarven from his quest window (there is no quest to accept); after that, the unguarded barrel takes the {spell:8553}."] = "",
+	["{npc:1373} guards the {item:2686} barrels in the distillery basement. Buy a {item:2686} from {npc:1247}, click the guarded barrel, then hand the ale to Jarven from his quest window (there is no quest to accept); after that, the unguarded barrel takes the {spell:8553}."] = "{npc:1373} vigila los barriles de {item:2686} del sótano de la destilería. Compra una {item:2686} a {npc:1247}, haz clic en el barril vigilado y luego entrégale la cerveza a Jarven desde su ventana de misión (no hay misión que aceptar); después, el barril sin vigilar acepta {spell:8553}.",
 	-- {item:2686} Thunder Ale · {npc:1247} Innkeeper Belm
 	["{item:2686}, from {npc:1247} in the distillery"] = "{item:2686}, de {npc:1247} en la destilería",
 	-- {object:269} Guarded Thunder Ale Barrel
@@ -291,7 +291,7 @@ return {
 	["{item:5026}: Tunnel Rat Geomancers"] = "{item:5026}: Geománticos Ratatúnel",
 
 	-- Step 62: The Fire Spirit Stone
-	["The Fire Spirit Stone"] = "",
+	["The Fire Spirit Stone"] = "La piedra del espíritu de fuego",
 	-- {item:6636} Fire Sapta · {npc:5893} Minor Manifestation of Fire · {item:6655} Glowing Ember · {object:61934} Brazier of the Dormant Flame · {object:148418} Eternal Flame
 	["Braldir gives you the {item:6636}. Climb to the peak above his camp, drink the Sapta beside the Spirit Stone and defeat the {npc:5893}, then place its {item:6655} in the {object:61934}, atop the Shrine of {object:148418}."] = "Braldir te da el {item:6636}. Sube a la cima sobre su campamento, bebe el sapta junto a la piedra de espíritu y derrota a la {npc:5893}; después coloca su {item:6655} en el {object:61934}, en lo alto del santuario de la {object:148418}.",
 	-- {item:6636} Fire Sapta
@@ -314,7 +314,7 @@ return {
 	["Spies and Bonesnappers"] = "Espías y quebrantahuesos",
 	-- {area:212} Helm's Bed Lake · {item:274268} Dark Iron Map
 	-- plural, as words: Rockjaw Bonesnappers = {npc:1117} Rockjaw Bonesnapper
-	["Rockjaw Bonesnappers prowl the quarry and {area:212}; Dark Iron Spies sneak around the lake shore. One spy drops the {item:274268}."] = "",
+	["Rockjaw Bonesnappers prowl the quarry and {area:212}; Dark Iron Spies sneak around the lake shore. One spy drops the {item:274268}."] = "Los quebrantahuesos Mentueso ({npc:1117}) merodean por la cantera y {area:212}; los espías Hierro Negro se mueven a escondidas por la orilla del lago. Un espía suelta el {item:274268}.",
 
 	-- Step 68: Tundra MacGrann
 	-- {npc:1266} Tundra MacGrann · {area:801} Chill Breeze Valley · {npc:1271} Old Icebeard
@@ -328,11 +328,11 @@ return {
 
 	-- Step 70: Narm Faulk
 	-- {zone:1455} Ironforge · {area:212} Helm's Bed Lake · {npc:6177} Narm Faulk · {item:6866} Symbol of Life
-	["Ride back out of {zone:1455} and east along the road to {area:212}. {npc:6177} lies dead by its shore: use the {item:6866} on him. The Dark Iron Spies sneaking around the lake carry the script."] = "",
+	["Ride back out of {zone:1455} and east along the road to {area:212}. {npc:6177} lies dead by its shore: use the {item:6866} on him. The Dark Iron Spies sneaking around the lake carry the script."] = "Sal de {zone:1455} y cabalga al este por el camino hasta {area:212}. {npc:6177} yace muerto en su orilla: usa el {item:6866} en él. Los espías Hierro Negro que rondan el lago llevan el guion.",
 	-- {item:6866} Symbol of Life · {npc:6177} Narm Faulk
 	["Use the {item:6866} on {npc:6177}"] = "Usa el {item:6866} en {npc:6177}",
 	-- {item:6847} Dark Iron Script
-	["{item:6847}: Dark Iron Spies"] = "",
+	["{item:6847}: Dark Iron Spies"] = "{item:6847}: espías Hierro Negro",
 
 	-- Step 71: Muiredon Battleforge
 	-- {npc:6179} Tiza Battleforge

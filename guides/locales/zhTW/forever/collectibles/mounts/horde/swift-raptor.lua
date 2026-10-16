@@ -10,7 +10,7 @@ return {
 
 	-- Step 1: Journeyman Riding
 	-- {skill:762} Riding
-	["Journeyman {skill:762}"] = "",
+	["Journeyman {skill:762}"] = "中級{skill:762}",
 	-- {npc:7953} Xar'Ti · {npc:7952} Zjolnir · {area:367} Sen'jin Village · {zone:1411} Durotar · {skill:762} Riding
 	["{npc:7953} and {npc:7952}'s raptors are in {area:367} on the {zone:1411} coast. At 60 {npc:7953} teaches Journeyman {skill:762} (1,000g per Blizzard's designers); Blizzard says learning riding grants a mount. The Forever client sells each swift raptor for 200g at level 60."] = "",
 	-- {npc:7953} Xar'Ti

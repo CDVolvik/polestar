@@ -11,7 +11,7 @@ return {
 	-- Step 1: PvP rank 11
 	["PvP rank 11"] = "PvP 계급 11",
 	-- {spell:1299382} Rank Points
-	["Forever's PvP ranks come from {spell:1299382} earned in battlegrounds and world PvP, with a weekly cap; Commander (rank 11) unlocks the Black War mounts. Polestar cannot read your rank, so this step waits for level 40 and the riding skill."] = "",
+	["Forever's PvP ranks come from {spell:1299382} earned in battlegrounds and world PvP, with a weekly cap; Commander (rank 11) unlocks the Black War mounts. Polestar cannot read your rank, so this step waits for level 40 and the riding skill."] = "Forever의 PvP 계급은 전장과 필드 PvP에서 얻는 {spell:1299382}(으)로 오르며, 주간 상한이 있습니다. 사령관(11계급)이 되면 검은 전투 탈것이 열립니다. Polestar는 계급을 읽을 수 없으므로 이 단계는 40레벨과 탈것 숙련을 기다립니다.",
 
 	-- Step 2: Lieutenant Karter
 	-- {npc:12783} Lieutenant Karter · {area:2918} Champions' Hall · {zone:1453} Stormwind City · {object:2100} Old Town · {npc:12805} Officer Areyn

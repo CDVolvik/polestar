@@ -95,8 +95,5 @@ return {
 
 	-- Step 21: Prompt Potion Runner
 	-- {npc:11044} Doctor Martin Felben
-	["{npc:11044}, in the Apothecarium"] = "",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["{npc:11044}, in the {object:36072}"] = "{npc:11044}, no {object:36072}",
+	["{npc:11044}, in the Apothecarium"] = "{npc:11044}, no Apothecarium",
 }

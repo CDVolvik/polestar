@@ -6,7 +6,7 @@
 -- The comments are rewritten by sync.
 return {
 	-- Guide
-	["Arathi Basin Reputation"] = "",
+	["Arathi Basin Reputation"] = "Reputação: Bacia Arathi",
 
 	-- Step 1: League of Arathor to Friendly
 	["League of Arathor to Friendly"] = "A Liga de Arathor até Respeitado",
@@ -19,7 +19,7 @@ return {
 	-- Step 2: League of Arathor to Honored
 	["League of Arathor to Honored"] = "A Liga de Arathor até Honrado",
 	-- {zone:1461} Arathi Basin · {npc:15351} Alliance Brigadier General
-	["Keep playing {zone:1461}. On Call to Arms: {zone:1461} weekends the {npc:15351} in the capitals takes three Arathi Basin Marks of Honor for extra reputation."] = "",
+	["Keep playing {zone:1461}. On Call to Arms: {zone:1461} weekends the {npc:15351} in the capitals takes three Arathi Basin Marks of Honor for extra reputation."] = "Continue jogando {zone:1461}. Nos fins de semana de Chamado às Armas: {zone:1461}, o {npc:15351} nas capitais aceita três Marcas de Honra da Bacia Arathi por reputação extra.",
 	-- {npc:15127} Samuel Hawke
 	["{npc:15127} hands out one Arathor care package by level"] = "{npc:15127} entrega um Kit de Sobrevivência de Arathor por nível",
 
@@ -45,7 +45,7 @@ return {
 	-- {faction:510} The Defilers
 	["{faction:510} to Honored"] = "{faction:510} até Honrado",
 	-- {zone:1461} Arathi Basin · {npc:15350} Horde Warbringer
-	["Keep playing {zone:1461}. On Call to Arms: {zone:1461} weekends the {npc:15350} in the capitals takes three Arathi Basin Marks of Honor for extra reputation."] = "",
+	["Keep playing {zone:1461}. On Call to Arms: {zone:1461} weekends the {npc:15350} in the capitals takes three Arathi Basin Marks of Honor for extra reputation."] = "Continue jogando {zone:1461}. Nos fins de semana de Chamado às Armas: {zone:1461}, o {npc:15350} nas capitais aceita três Marcas de Honra da Bacia Arathi por reputação extra.",
 	-- {npc:15126} Rutherford Twing
 	["{npc:15126} hands out one Defiler's care package by level"] = "{npc:15126} entrega um Kit de Sobrevivência do Profanador por nível",
 
@@ -58,9 +58,4 @@ return {
 	["{faction:510} to Exalted"] = "{faction:510} até Exaltado",
 	-- {faction:510} The Defilers
 	["Exalted with {faction:510} earns a Legacy Point."] = "Exaltado com {faction:510} rende um Ponto de Legado.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Keep playing {zone:1461}. On Call to Arms: {zone:1461} weekends the {npc:15350} in the capitals takes three {zone:1461} Marks of Honor for extra reputation."] = "Continue jogando {zone:1461}. Nos fins de semana de Chamado às armas: {zone:1461}, {npc:15350} nas capitais aceita três Marcas de Honra da {zone:1461} por reputação extra.",
-	-- ["Keep playing {zone:1461}. On Call to Arms: {zone:1461} weekends the {npc:15351} in the capitals takes three {zone:1461} Marks of Honor for extra reputation."] = "Continue jogando {zone:1461}. Nos fins de semana de Chamado às armas: {zone:1461}, {npc:15351} nas capitais aceita três Marcas de Honra da {zone:1461} por reputação extra.",
-	-- ["{zone:1461} Reputation"] = "Reputação: {zone:1461}",
 }

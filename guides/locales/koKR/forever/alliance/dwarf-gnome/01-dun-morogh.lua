@@ -66,12 +66,12 @@ return {
 	-- {npc:12738} Nori Pridedrift
 	["Grelin and {npc:12738} camp at the south-west edge of the valley, below the troll cave."] = "그렐린과 {npc:12738}은(는) 트롤 동굴 아래, 골짜기 남서쪽 가장자리에 진을 치고 있습니다.",
 	-- plural, as words: Frostmane Troll Whelps = {npc:706} Frostmane Troll Whelp
-	["A few Frostmane Troll Whelps if you are short"] = "",
+	["A few Frostmane Troll Whelps if you are short"] = "부족하면 {npc:706} 몇 마리",
 
 	-- Step 10: The troll cave
 	["The troll cave"] = "트롤 동굴",
 	-- plural, as words: Frostmane Troll Whelps = {npc:706} Frostmane Troll Whelp
-	["Frostmane Troll Whelps fill the slopes south and east of Grelin's camp."] = "",
+	["Frostmane Troll Whelps fill the slopes south and east of Grelin's camp."] = "{npc:706}은(는) 그렐린의 야영지 남쪽과 동쪽 비탈에 가득합니다.",
 	-- plural, as words: Feather Charms = {item:6753} Feather Charm · Frostmane Novices = {npc:946} Frostmane Novice
 	["Feather Charms, from the Frostmane Novices"] = "깃털 부적, 서리갈기부족 견습마법사에게서",
 
@@ -100,7 +100,7 @@ return {
 	-- {npc:12738} Nori Pridedrift
 	["{npc:12738}, next to him"] = "{npc:12738}, 그의 옆",
 	-- plural, as words: Iceclaw Bear Pendants = {item:264356} Iceclaw Bear Pendant · Frostmane Troll Whelps = {npc:706} Frostmane Troll Whelp
-	["Iceclaw Bear Pendants, from the Frostmane Troll Whelps on the slopes above the camp"] = "",
+	["Iceclaw Bear Pendants, from the Frostmane Troll Whelps on the slopes above the camp"] = "{item:264356}, 야영지 위 비탈의 {npc:706}에게서",
 
 	-- Step 16: Call of Earth
 	-- {npc:257446} Teo Hammerstorm · {area:77} Anvilmar · {item:6635} Earth Sapta · {npc:5891} Minor Manifestation of Earth · {item:6656} Rough Quartz
@@ -178,7 +178,7 @@ return {
 
 	-- Step 35: Kharanos
 	-- {npc:1373} Jarven Thunderbrew · {item:2686} Thunder Ale · {npc:1247} Innkeeper Belm · {spell:8553} Barleybrew Scalder
-	["{npc:1373} guards the {item:2686} barrels in the distillery basement. Buy a {item:2686} from {npc:1247}, click the guarded barrel, then hand the ale to Jarven from his quest window (there is no quest to accept); after that, the unguarded barrel takes the {spell:8553}."] = "",
+	["{npc:1373} guards the {item:2686} barrels in the distillery basement. Buy a {item:2686} from {npc:1247}, click the guarded barrel, then hand the ale to Jarven from his quest window (there is no quest to accept); after that, the unguarded barrel takes the {spell:8553}."] = "{npc:1373}은(는) 양조장 지하실에서 {item:2686} 통을 지킵니다. {npc:1247}에게서 {item:2686}을(를) 사서 지키는 통을 클릭한 뒤, 야벤의 퀘스트 창에서 맥주를 건네세요(수락할 퀘스트는 없습니다). 그 후에는 지키지 않는 통에서 {spell:8553}을(를) 가져갈 수 있습니다.",
 	-- {item:2686} Thunder Ale · {npc:1247} Innkeeper Belm
 	["{item:2686}, from {npc:1247} in the distillery"] = "{item:2686}, 양조장 안 {npc:1247}에게서",
 	-- {object:269} Guarded Thunder Ale Barrel
@@ -291,7 +291,7 @@ return {
 	["{item:5026}: Tunnel Rat Geomancers"] = "{item:5026}: 동굴쥐일족 흙점쟁이",
 
 	-- Step 62: The Fire Spirit Stone
-	["The Fire Spirit Stone"] = "",
+	["The Fire Spirit Stone"] = "불의 정령석",
 	-- {item:6636} Fire Sapta · {npc:5893} Minor Manifestation of Fire · {item:6655} Glowing Ember · {object:61934} Brazier of the Dormant Flame · {object:148418} Eternal Flame
 	["Braldir gives you the {item:6636}. Climb to the peak above his camp, drink the Sapta beside the Spirit Stone and defeat the {npc:5893}, then place its {item:6655} in the {object:61934}, atop the Shrine of {object:148418}."] = "Braldir가 {item:6636}을(를) 줍니다. 그의 야영지 위 봉우리로 올라가 정령석 옆에서 삽타를 마시고 {npc:5893}을(를) 물리친 뒤, {object:148418} 제단 꼭대기의 {object:61934}에 {item:6655}을(를) 넣으세요.",
 	-- {item:6636} Fire Sapta
@@ -314,7 +314,7 @@ return {
 	["Spies and Bonesnappers"] = "첩자와 뼈다귀싸움꾼",
 	-- {area:212} Helm's Bed Lake · {item:274268} Dark Iron Map
 	-- plural, as words: Rockjaw Bonesnappers = {npc:1117} Rockjaw Bonesnapper
-	["Rockjaw Bonesnappers prowl the quarry and {area:212}; Dark Iron Spies sneak around the lake shore. One spy drops the {item:274268}."] = "",
+	["Rockjaw Bonesnappers prowl the quarry and {area:212}; Dark Iron Spies sneak around the lake shore. One spy drops the {item:274268}."] = "{npc:1117}은(는) 채석장과 {area:212}을(를) 어슬렁거리고, 검은무쇠단 비밀요원은 호숫가를 몰래 돌아다닙니다. 비밀요원 하나가 {item:274268}을(를) 떨어뜨립니다.",
 
 	-- Step 68: Tundra MacGrann
 	-- {npc:1266} Tundra MacGrann · {area:801} Chill Breeze Valley · {npc:1271} Old Icebeard
@@ -328,11 +328,11 @@ return {
 
 	-- Step 70: Narm Faulk
 	-- {zone:1455} Ironforge · {area:212} Helm's Bed Lake · {npc:6177} Narm Faulk · {item:6866} Symbol of Life
-	["Ride back out of {zone:1455} and east along the road to {area:212}. {npc:6177} lies dead by its shore: use the {item:6866} on him. The Dark Iron Spies sneaking around the lake carry the script."] = "",
+	["Ride back out of {zone:1455} and east along the road to {area:212}. {npc:6177} lies dead by its shore: use the {item:6866} on him. The Dark Iron Spies sneaking around the lake carry the script."] = "{zone:1455}에서 나와 길을 따라 동쪽으로 {area:212}까지 가세요. {npc:6177}은(는) 호숫가에 죽어 있습니다. 그에게 {item:6866}을(를) 사용하세요. 호수 주변을 몰래 돌아다니는 검은무쇠단 비밀요원이 문서를 가지고 있습니다.",
 	-- {item:6866} Symbol of Life · {npc:6177} Narm Faulk
 	["Use the {item:6866} on {npc:6177}"] = "{npc:6177}에게 {item:6866}을(를) 사용하세요",
 	-- {item:6847} Dark Iron Script
-	["{item:6847}: Dark Iron Spies"] = "",
+	["{item:6847}: Dark Iron Spies"] = "{item:6847}: 검은무쇠단 비밀요원",
 
 	-- Step 71: Muiredon Battleforge
 	-- {npc:6179} Tiza Battleforge

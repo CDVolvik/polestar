@@ -11,7 +11,7 @@ return {
 	-- Step 1: Learn to ride
 	["Learn to ride"] = "탈것 타기 배우기",
 	-- {skill:762} Riding · {spell:1285849} Galestrider Riding
-	["Galestriders need level 40 and {skill:762} ({spell:1285849} comes with it in the Forever client). Any riding trainer of your faction teaches it; see the Level 40 mount guides for where."] = "",
+	["Galestriders need level 40 and {skill:762} ({spell:1285849} comes with it in the Forever client). Any riding trainer of your faction teaches it; see the Level 40 mount guides for where."] = "돌풍타조에는 40레벨과 {skill:762}이(가) 필요합니다(Forever 클라이언트에서는 {spell:1285849}이(가) 함께 따라옵니다). 같은 진영의 탈것 상급자라면 누구나 가르칩니다. 위치는 40레벨 탈것 가이드를 보세요.",
 
 	-- Step 2: Skyboat from Dalaran
 	-- {area:279} Dalaran

@@ -55,7 +55,7 @@ return {
 	-- plural, as words: Rock Elementals = {npc:92} Rock Elemental
 	["Rock Elementals"] = "Elementales de roca",
 	-- plural, as words: Rock Elementals = {npc:92} Rock Elemental · Giant Buzzards = {npc:2831} Giant Buzzard · Elder Crag Coyotes = {npc:2729} Elder Crag Coyote
-	["The Rock Elementals roam south-east of Lotwil; Giant Buzzards and Elder Crag Coyotes share the plain to their west."] = "",
+	["The Rock Elementals roam south-east of Lotwil; Giant Buzzards and Elder Crag Coyotes share the plain to their west."] = "Los Elementales de roca ({npc:92}) recorren el sureste de Lotwil; {npc:2831} y {npc:2729} comparten la llanura al oeste.",
 
 	-- Step 14: Greater Rock Elementals
 	-- plural, as words: Greater Rock Elementals = {npc:2736} Greater Rock Elemental
@@ -157,7 +157,4 @@ return {
 	-- Step 39: Fly to Theramore
 	["Fly to Theramore"] = "Vuela a Isla Theramore",
 	["The next guide starts in Theramore."] = "La siguiente guía empieza en Isla Theramore.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["{item:7337} Elementals roam south-east of Lotwil; Giant Buzzards and Elder Crag Coyotes share the plain to their west."] = "Los Elementales de {item:7337} recorren el sureste de Lotwil; las Águilas ratoneras gigantes y los Coyotes del risco mayores comparten la llanura al oeste.",
 }

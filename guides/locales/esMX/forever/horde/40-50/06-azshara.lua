@@ -26,7 +26,7 @@ return {
 	["Ride into {zone:1447}"] = "Cabalga hacia {zone:1447}",
 	-- {npc:11548} Loh'atu · {area:1235} Shadowsong Shrine · {area:3137} Talrendis Point
 	-- plural, as words: Azshara Sentinels = {npc:11276} Azshara Sentinel
-	["Ride east along the road out of Splintertree. {npc:11548} waits at the {area:1235} just off the road, a few steps west of the Alliance's {area:3137}: come in from the west and keep clear of the Azshara Sentinels and Jarrodenus (elite)."] = "",
+	["Ride east along the road out of Splintertree. {npc:11548} waits at the {area:1235} just off the road, a few steps west of the Alliance's {area:3137}: come in from the west and keep clear of the Azshara Sentinels and Jarrodenus (elite)."] = "Cabalga al este por el camino desde Puesto del Hachazo. {npc:11548} espera en {area:1235}, a un lado del camino, a unos pasos al oeste de {area:3137} de la Alianza: llega desde el oeste y mantente lejos de los Centinelas de Azshara ({npc:11276}) y de Jarrodenus (élite).",
 
 	-- Step 5: Highborne and Haldarr satyrs
 	["Highborne and Haldarr satyrs"] = "Altonato y sátiros Haldarr",
@@ -40,7 +40,7 @@ return {
 	-- {area:1237} Valormok
 	["Follow the road north to {area:1237}, the Horde camp."] = "Sigue el camino al norte hasta {area:1237}, el campamento de la Horda.",
 	-- {npc:8395} Sanath Lim-yo
-	["{npc:8395}, at the east edge of the camp: no experience, only a teleport to Azshara Tower"] = "",
+	["{npc:8395}, at the east edge of the camp: no experience, only a teleport to Azshara Tower"] = "{npc:8395}, en el borde este del campamento: no da experiencia, solo un teletransporte a una torre de Azshara",
 
 	-- Step 8: Undamaged Hippogryph Feathers
 	-- plural, as words: Undamaged Hippogryph Feathers = {item:10450} Undamaged Hippogryph Feather
@@ -103,7 +103,7 @@ return {
 	-- {zone:1454} Orgrimmar
 	["Take the zeppelin back to {zone:1454}."] = "Toma el zepelín de vuelta a {zone:1454}.",
 	-- {npc:6986} Dran Droffers
-	["{npc:6986}, the Drag"] = "",
+	["{npc:6986}, the Drag"] = "{npc:6986}, calle comercial de Orgrimmar",
 	-- {npc:8659} Jes'rimon · {object:172960} Cleft of Shadow
 	["{npc:8659}, the {object:172960}"] = "{npc:8659}, en {object:172960}",
 	-- {npc:8659} Jes'rimon · {quest:3504} Betrayed · {area:1237} Valormok
@@ -167,9 +167,4 @@ return {
 	["Ride south along the road to the {area:1938}; {npc:7771} camps beside it. From here the road west leads down into {zone:1449}, where the next guide starts."] = "Cabalga al sur por el camino hasta {area:1938}; {npc:7771} acampa al lado. Desde aquí, el camino al oeste baja a {zone:1449}, donde empieza la siguiente guía.",
 	-- {quest:3444} The Stone Circle
 	["Keep {quest:3444}: Marvon's chest is opened on a later visit."] = "Guarda {quest:3444}: el cofre de Marvon se abre en una visita posterior.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Ride east along the road out of Splintertree. {npc:11548} waits at the {area:1235} just off the road, a few steps west of the Alliance's {area:3137}: come in from the west and keep clear of the {zone:1447} Sentinels and Jarrodenus (elite)."] = "Cabalga al este por el camino desde Puesto del Hachazo. {npc:11548} espera en {area:1235}, junto al camino, a pocos pasos al oeste de {area:3137} de la Alianza: llega desde el oeste y aléjate de las Centinelas de {zone:1447} y de Jarrodenus (élite).",
-	-- ["{npc:6986}, the {object:172959}"] = "{npc:6986}, en {object:172959}",
-	-- ["{npc:8395}, at the east edge of the camp: no experience, only a teleport to {zone:1447} Tower"] = "{npc:8395}, en el borde este del campamento: no da experiencia, solo un teletransporte a la Torre de {zone:1447}",
 }

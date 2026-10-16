@@ -32,7 +32,7 @@ return {
 	["The red waterskin"] = "El odre rojo",
 	-- {area:71} Stonewatch Falls · {area:68} Lake Everstill · {item:265747} Unfilled Red Waterskin
 	-- plural, as words: Murloc Nightcrawlers = {npc:544} Murloc Nightcrawler
-	["{area:71} pour out of {area:68} at the east end of Redridge. Fill the {item:265747} at their foot, where the Murloc Nightcrawlers gather."] = "",
+	["{area:71} pour out of {area:68} at the east end of Redridge. Fill the {item:265747} at their foot, where the Murloc Nightcrawlers gather."] = "{area:71} brotan de {area:68}, en el extremo este de las Montañas Crestagrana. Llena {item:265747} a su pie, donde se reúnen los reptanoches múrloc.",
 
 	-- Step 8: The blue waterskin
 	["The blue waterskin"] = "El odre azul",

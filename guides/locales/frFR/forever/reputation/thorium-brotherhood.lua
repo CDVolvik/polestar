@@ -6,7 +6,7 @@
 -- The comments are rewritten by sync.
 return {
 	-- Guide
-	["Thorium Brotherhood Reputation"] = "",
+	["Thorium Brotherhood Reputation"] = "Réputation Confrérie du thorium",
 
 	-- Step 1: Master Smith Burninate
 	-- {area:1446} Thorium Point · {zone:1427} Searing Gorge · {faction:59} Thorium Brotherhood
@@ -24,16 +24,16 @@ return {
 	["{item:18942} supplies to Friendly"] = "Réserves de {item:18942} jusqu'à Amical",
 	-- {item:3356} Kingsblood · {item:4234} Heavy Leather · {item:18944} Incendosaur Scale · {zone:1427} Searing Gorge
 	-- plural, as words: Iron Bars = {item:3575} Iron Bar
-	["Restoring Fiery Flux Supplies repeats in three versions: {item:3356}, Iron Bars or {item:4234}, each with Coal and an {item:18944}. Incendosaurs (level 47-49) in the north of {zone:1427} drop a scale every time; Burninate himself sells Coal."] = "",
+	["Restoring Fiery Flux Supplies repeats in three versions: {item:3356}, Iron Bars or {item:4234}, each with Coal and an {item:18944}. Incendosaurs (level 47-49) in the north of {zone:1427} drop a scale every time; Burninate himself sells Coal."] = "Réapprovisionnement en flux embrasé se répète en trois versions : {item:3356}, Barres de fer ({item:3575}) ou {item:4234}, chacune avec du Charbon et une {item:18944}. Les Incendosaures (niveau 47-49) du nord de la {zone:1427} lâchent une écaille à chaque fois ; Burninate lui-même vend le Charbon.",
 	-- {npc:14624} Master Smith Burninate
-	["{npc:14624}: Restoring Fiery Flux Supplies"] = "",
+	["{npc:14624}: Restoring Fiery Flux Supplies"] = "{npc:14624} : Réapprovisionnement en flux embrasé",
 
 	-- Step 5: Lokhtos Darkbargainer to Honored
 	-- {npc:12944} Lokhtos Darkbargainer
 	["{npc:12944} to Honored"] = "{npc:12944} jusqu'à Honoré",
 	-- {npc:12944} Lokhtos Darkbargainer · {area:1584} Blackrock Depths · {item:11099} Dark Iron Ore · {skill:186} Mining · {item:11382} Blood of the Mountain · {item:17010} Fiery Core · {item:17011} Lava Core · {item:17012} Core Leather · {npc:14387} Lothos Riftwaker · {area:1445} Blackrock Mountain · {area:2717} Molten Core
 	-- plural, as words: Dark Iron Deposits = {object:165658} Dark Iron Deposit
-	["{npc:12944} trades in the Grim Guzzler inside {area:1584}. His Favor Amongst the Brotherhood turn-ins take {item:11099} (mined from Dark Iron Deposits with {skill:186}), {item:11382}, {item:17010}, {item:17011} and {item:17012}. {npc:14387} at the {area:1445} entrance offers attunement to the {area:2717}."] = "",
+	["{npc:12944} trades in the Grim Guzzler inside {area:1584}. His Favor Amongst the Brotherhood turn-ins take {item:11099} (mined from Dark Iron Deposits with {skill:186}), {item:11382}, {item:17010}, {item:17011} and {item:17012}. {npc:14387} at the {area:1445} entrance offers attunement to the {area:2717}."] = "{npc:12944} commerce au Sinistre dévoreur, dans les {area:1584}. Ses remises Faveur auprès de la Confrérie prennent du {item:11099} (extrait des Gisements de sombrefer ({object:165658}) avec {skill:186}), du {item:11382}, des {item:17010}, des {item:17011} et du {item:17012}. {npc:14387}, à l'entrée du {area:1445}, propose l'harmonisation au {area:2717}.",
 	-- {item:11099} Dark Iron Ore
 	["{item:11099}: Favor Amongst the Brotherhood, {item:11099} at Lokhtos, repeatable."] = "{item:11099} : Faveur auprès de la Confrérie, {item:11099}, auprès de Lokhtos, répétable.",
 

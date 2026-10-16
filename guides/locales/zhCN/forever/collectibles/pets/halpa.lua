@@ -8,12 +8,12 @@ return {
 	-- Guide
 	-- {npc:8401} Halpa
 	-- plural, as words: Prairie Dogs = {npc:2620} Prairie Dog
-	["{npc:8401}'s Prairie Dogs"] = "",
+	["{npc:8401}'s Prairie Dogs"] = "{npc:8401}的{npc:2620}",
 
 	-- Step 1: Halpa
 	-- {npc:8401} Halpa · {zone:1456} Thunder Bluff
-	["{npc:8401} sells three whistles in {zone:1456} (50s each); the two ground squirrels are new in Forever. Each pet item teaches its companion when you use it; the goals stay ticked afterwards."] = "",
+	["{npc:8401} sells three whistles in {zone:1456} (50s each); the two ground squirrels are new in Forever. Each pet item teaches its companion when you use it; the goals stay ticked afterwards."] = "{npc:8401}在{zone:1456}出售三种哨子（每个50银）；两种地松鼠是Forever 新增的。每件宠物物品使用后会教会你对应的小伙伴；之后目标会保持勾选。",
 	-- {item:10394} Prairie Dog Whistle
-	["{item:10394}, 50s"] = "",
-	["50s"] = "",
+	["{item:10394}, 50s"] = "{item:10394}，50银",
+	["50s"] = "50银",
 }

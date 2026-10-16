@@ -11,7 +11,7 @@ return {
 
 	-- Step 1: Zephras Isle (1/3)
 	-- {zone:2521} Zephras Isle · {area:17221} Skywall
-	["{zone:2521} is the Skyborne starting island, a world of its own in {area:17221}; anyone may visit, and its map counts towards exploring the world. 20 areas to discover here, levels 3-12."] = "{zone:2521} es la isla inicial de los Cielonato, un mundo propio en {area:17221}; cualquiera puede visitarla, y su mapa cuenta para explorar el mundo. 20 zonas por descubrir aquí, niveles 3-12.",
+	["{zone:2521} is the Skyborne starting island, a world of its own in {area:17221}; anyone may visit, and its map counts towards exploring the world. 20 areas to discover here, levels 3-12."] = "{zone:2521} es la isla inicial de los Cielonatos, un mundo propio en {area:17221}; cualquiera puede visitarla, y su mapa cuenta para explorar el mundo. 20 zonas por descubrir aquí, niveles 3-12.",
 	["Exploring the entire world map on one character is a Forever Legacy Challenge (1 account-wide Legacy Point)."] = "Explorar todo el mapa del mundo con un solo personaje es un Desafío de legado de Forever (1 Punto de legado para toda la cuenta).",
 	["Skyborne start here. Everyone else takes a skyboat, about every five minutes; either faction may take either one."] = "Los Cielonato empiezan aquí. Los demás toman un aerobarco, más o menos cada cinco minutos; cualquier facción puede tomar cualquiera de los dos.",
 	-- {area:279} Dalaran · {zone:1416} Alterac Mountains · {zone:1456} Thunder Bluff

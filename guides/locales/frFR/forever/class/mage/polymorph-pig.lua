@@ -7,7 +7,7 @@
 return {
 	-- Guide
 	-- {spell:118} Polymorph
-	["A new look for {spell:118}: it turns the target into a pig rather than a sheep."] = "",
+	["A new look for {spell:118}: it turns the target into a pig rather than a sheep."] = "Une nouvelle apparence pour {spell:118} : la cible se transforme en cochon plutôt qu'en mouton.",
 
 	-- Step 1: Sanath Lim-yo
 	-- {area:3137} Talrendis Point · {area:1237} Valormok · {npc:8395} Sanath Lim-yo · {npc:8379} Archmage Xylem · {zone:1447} Azshara · {area:1221} Ruins of Eldarath
@@ -26,11 +26,11 @@ return {
 	["Polymorph Clones"] = "Clones de métamorphose",
 	-- {item:23250} Prismatic Shell · {area:1221} Ruins of Eldarath · {spell:118} Polymorph
 	-- plural, as words: Polymorph Clones = {npc:16479} Polymorph Clone
-	["Carry the {item:23250} back to the {area:1221}. {spell:118} a Spitelash naga and wait a few seconds: it splits into small Polymorph Clones. Kill the clones quickly; the shell collects their essence."] = "",
+	["Carry the {item:23250} back to the {area:1221}. {spell:118} a Spitelash naga and wait a few seconds: it splits into small Polymorph Clones. Kill the clones quickly; the shell collects their essence."] = "Rapportez {item:23250} aux {area:1221}. Lancez {spell:118} sur un naga Irequeue et attendez quelques secondes : il se divise en petits Clones de métamorphose ({npc:16479}). Tuez vite les clones ; le coquillage recueille leur essence.",
 
 	-- Step 5: Fragmented Magic
 	-- {npc:8379} Archmage Xylem · {spell:118} Polymorph
-	["{npc:8379}: {spell:118} (pig)"] = "",
+	["{npc:8379}: {spell:118} (pig)"] = "{npc:8379} : {spell:118} (cochon)",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["A new look for Polymorph: it turns the target into a pig rather than a sheep."] = "Une nouvelle apparence pour Métamorphose : la cible devient un cochon au lieu d'un mouton.",

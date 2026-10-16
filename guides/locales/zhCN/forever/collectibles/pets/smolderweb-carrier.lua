@@ -16,7 +16,7 @@ return {
 	["Lower {area:1583}"] = "{area:1583}下层",
 	-- {area:1583} Blackrock Spire · {npc:10596} Mother Smolderweb
 	-- plural, as words: Spire Spider Eggs = {item:12530} Spire Spider Egg
-	["Lower {area:1583} is a group of five, level 55-60. Collect 15 Spire Spider Eggs from the nests near {npc:10596}."] = "",
+	["Lower {area:1583} is a group of five, level 55-60. Collect 15 Spire Spider Eggs from the nests near {npc:10596}."] = "{area:1583}下层是五人小队地下城，55-60级。在{npc:10596}附近的巢穴中收集15个{item:12530}。",
 
 	-- Step 3: Back to Kibler
 	-- {npc:10260} Kibler

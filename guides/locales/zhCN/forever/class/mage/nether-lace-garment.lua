@@ -20,7 +20,7 @@ return {
 	-- {object:174797} Xavian Waterfall
 	["The {object:174797}"] = "{object:174797}",
 	-- {area:429} Xavian · {zone:1440} Ashenvale · {spell:9052} Fill Deino's Flask
-	["Satyrs hold the ruins of {area:429} in eastern {zone:1440}. {spell:9052} at the bottom of the highest waterfall."] = "",
+	["Satyrs hold the ruins of {area:429} in eastern {zone:1440}. {spell:9052} at the bottom of the highest waterfall."] = "萨特占据着{zone:1440}东部的{area:429}废墟。在最高的瀑布底部{spell:9052}。",
 
 	-- Step 4: Back to Deino
 	-- {npc:5885} Deino

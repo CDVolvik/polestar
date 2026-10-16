@@ -10,7 +10,7 @@ return {
 
 	-- Step 1: Journeyman Riding
 	-- {skill:762} Riding
-	["Journeyman {skill:762}"] = "",
+	["Journeyman {skill:762}"] = "中級{skill:762}",
 	-- {item:13335} Deathcharger's Reins · {skill:762} Riding
 	["{item:13335} needs level 60 and Journeyman {skill:762} to ride (Forever client). Train it at your race's riding trainer; see the Level 60 mount guides."] = "",
 

@@ -72,7 +72,7 @@ return {
 	-- Step 16: Dungeon instead of grinding
 	["Dungeon instead of grinding"] = "Masmorra em vez de matar monstros",
 	-- {area:2279} Stratholme · {area:2057} Scholomance · {area:1584} Blackrock Depths
-	["Optional. Running {area:2279}, {area:2057}, Lower Blackrock Spire or {area:1584} with a group instead of grinding gets you there faster."] = "",
+	["Optional. Running {area:2279}, {area:2057}, Lower Blackrock Spire or {area:1584} with a group instead of grinding gets you there faster."] = "Opcional. Fazer {area:2279}, {area:2057}, o Pico da Rocha Negra Inferior ou {area:1584} em grupo, em vez de matar monstros, leva você lá mais rápido.",
 	["Optional: with a group, a 55-60 dungeon replaces the grind below."] = "Opcional: em grupo, uma masmorra 55-60 substitui a matança abaixo.",
 
 	-- Step 17: Grind to 60
@@ -86,7 +86,4 @@ return {
 	["In {zone:1454}: fly from {area:2255}"] = "Em {zone:1454}: voe de {area:2255}",
 	-- {zone:1456} Thunder Bluff · {area:2255} Everlook
 	["In {zone:1456}: fly from {area:2255}"] = "Em {zone:1456}: voe de {area:2255}",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Optional. Running {area:2279}, {area:2057}, Lower {area:1583} or {area:1584} with a group instead of grinding gets you there faster."] = "Opcional. Fazer {area:2279}, {area:2057}, {area:1583} Inferior ou {area:1584} em grupo, em vez de matar monstros, leva você lá mais rápido.",
 }

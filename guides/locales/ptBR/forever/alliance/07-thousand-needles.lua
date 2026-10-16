@@ -109,7 +109,7 @@ return {
 	["The wreck of the Third Fleet"] = "O naufrágio da Terceira Frota",
 	-- {npc:1159} First Mate Snellig
 	-- plural, as words: Cursed Sailors = {npc:1157} Cursed Sailor · Cursed Marines = {npc:1158} Cursed Marine · Giant Wetlands Crocolisks = {npc:2089} Giant Wetlands Crocolisk
-	["Follow the coast north to the wrecked ship. Cursed Sailors walk the beach, Cursed Marines the deck; {npc:1159} stands on the beach by the bow. Giant Wetlands Crocolisks lurk on the coast just north of it."] = "",
+	["Follow the coast north to the wrecked ship. Cursed Sailors walk the beach, Cursed Marines the deck; {npc:1159} stands on the beach by the bow. Giant Wetlands Crocolisks lurk on the coast just north of it."] = "Siga a costa para o norte até o navio naufragado. Marinheiros Amaldiçoados andam pela praia, Fuzileiros Amaldiçoados pelo convés; {npc:1159} fica na praia, junto à proa. Crocoliscos do Pantanal Gigantes espreitam na costa logo ao norte.",
 
 	-- Step 20: Bluegill Raiders
 	-- plural, as words: Bluegill Raiders = {npc:1418} Bluegill Raider
@@ -186,7 +186,4 @@ return {
 
 	-- Step 36: Back to Menethil
 	["Back to Menethil"] = "De volta a Menethil",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Follow the coast north to the wrecked ship. Cursed Sailors walk the beach, Cursed Marines the deck; {npc:1159} stands on the beach by the bow. Giant {zone:1437} Crocolisks lurk on the coast just north of it."] = "Siga a costa para o norte até o navio naufragado. Marinheiros Amaldiçoados andam pela praia, Fuzileiros Amaldiçoados pelo convés; {npc:1159} fica na praia, junto à proa. Crocoliscos do {zone:1437} Gigantes espreitam na costa logo ao norte.",
 }

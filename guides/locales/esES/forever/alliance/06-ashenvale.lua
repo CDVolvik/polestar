@@ -7,7 +7,7 @@
 return {
 	-- Step 1: Aquatic Form
 	-- {area:17203} Stormwind Harbor · {area:442} Auberdine · {item:15885} Pendant of the Sea Lion · {spell:18960} Teleport: Moonglade · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {area:702} Rut'theran Village
-	["Take the boat from {area:17203} to {area:442}. Join the two half pendants into the {item:15885} and cast {spell:18960}: {npc:11802} is in {area:2361}. Then fly to {area:702} (by way of {area:442})."] = "",
+	["Take the boat from {area:17203} to {area:442}. Join the two half pendants into the {item:15885} and cast {spell:18960}: {npc:11802} is in {area:2361}. Then fly to {area:702} (by way of {area:442})."] = "Toma el barco de {area:17203} a {area:442}. Une las dos mitades del colgante en {item:15885} y lanza {spell:18960}: {npc:11802} está en {area:2361}. Después vuela a {area:702} (pasando por {area:442}).",
 	-- {item:15885} Pendant of the Sea Lion
 	["{item:15885}: join the two halves"] = "{item:15885}: une las dos mitades",
 
@@ -80,7 +80,7 @@ return {
 	-- Step 23: The Foulweald
 	["The Foulweald"] = "Los fúrbolgs Maderiza",
 	-- {area:415} Astranaar
-	["The Foulweald furbolgs live in the woods south of the road, south-east of {area:415}. The Den Watcher and the Ursas guard the den."] = "",
+	["The Foulweald furbolgs live in the woods south of the road, south-east of {area:415}. The Den Watcher and the Ursas guard the den."] = "Los fúrbolgs Maderiza viven en el bosque al sur del camino, al sureste de {area:415}. El Vigilante del cubil Maderiza y los ursas Maderiza guardan el cubil.",
 
 	-- Step 24: Mystral Lake
 	-- {npc:3885} Sentinel Velene Starstrike · {area:420} Silverwind Refuge · {area:421} Mystral Lake · {npc:210995} Alonso
@@ -88,7 +88,7 @@ return {
 	["{npc:3885} stands at the {area:420} on the east shore of {area:421}; {npc:210995} camps on its west shore. Befouled Water Elementals wade in the lake between them."] = "{npc:3885} está en {area:420}, en la orilla este de {area:421}; {npc:210995} acampa en su orilla oeste. Los Elementales de agua podrida vadean el lago entre ellos.",
 	-- {item:5456} Divining Scroll
 	-- plural, as words: Intact Elemental Bracers = {item:12220} Intact Elemental Bracer
-	["Kill the elementals for 5 Intact Elemental Bracers, then use the {item:5456}"] = "",
+	["Kill the elementals for 5 Intact Elemental Bracers, then use the {item:5456}"] = "Mata a los elementales para conseguir 5 brazales elementales intactos ({item:12220}) y luego usa el {item:5456}",
 
 	-- Step 25: The Ruins of Stardust
 	-- {area:421} Mystral Lake
@@ -115,7 +115,7 @@ return {
 	-- {area:1276} The Talondeep Path
 	["Hearthstone on cooldown? Ride back north through the {area:1276}."] = "¿Piedra de hogar en reutilización? Cabalga de vuelta al norte por {area:1276}.",
 	-- {area:150} Menethil Harbor
-	["Boat to {area:150}"] = "",
+	["Boat to {area:150}"] = "Barco a {area:150}",
 
 	-- Step 32: Menethil Harbor
 	-- {npc:1242} Karl Boran
@@ -156,7 +156,7 @@ return {
 	-- Step 40: Young crocolisks
 	["Young crocolisks"] = "Crocoliscos jóvenes",
 	-- plural, as words: Young Wetlands Crocolisks = {npc:1417} Young Wetlands Crocolisk
-	["Follow the road east. Young Wetlands Crocolisks lurk in the pools north of the excavation site."] = "",
+	["Follow the road east. Young Wetlands Crocolisks lurk in the pools north of the excavation site."] = "Sigue el camino al este. Los crocoliscos jóvenes de Los Humedales ({npc:1417}) acechan en las charcas al norte de la excavación.",
 
 	-- Step 41: Whelgar's Excavation Site
 	["The excavation site sits on the hill south of the road."] = "La excavación está en la colina al sur del camino.",

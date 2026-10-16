@@ -6,7 +6,7 @@
 -- The comments are rewritten by sync.
 return {
 	-- Guide
-	["Alterac Valley Reputation"] = "",
+	["Alterac Valley Reputation"] = "알터랙 계곡 평판",
 
 	-- Step 1: Stormpike Guard to Friendly
 	-- {faction:730} Stormpike Guard
@@ -52,7 +52,7 @@ return {
 	["{faction:729} to Honored"] = "{faction:729}: 우호적까지",
 	-- {zone:1459} Alterac Valley · {npc:13176} Smith Regzar · {item:17306} Stormpike Soldier's Blood · {npc:13236} Primalist Thurloga · {npc:13256} Lokholar the Ice Lord · {npc:13441} Frostwolf Wolf Rider Commander
 	-- plural, as words: Alterac Ram Hides = {item:17642} Alterac Ram Hide
-	["Keep winning {zone:1459}. More Booty! ({npc:13176}), {item:17306} for {npc:13236} (it summons {npc:13256}) and Alterac Ram Hides for the {npc:13441} all repeat."] = "",
+	["Keep winning {zone:1459}. More Booty! ({npc:13176}), {item:17306} for {npc:13236} (it summons {npc:13256}) and Alterac Ram Hides for the {npc:13441} all repeat."] = "{zone:1459}에서 계속 승리하세요. 추가 전리품!({npc:13176}), {npc:13236}에게 주는 {item:17306}({npc:13256} 소환), {npc:13441}에게 주는 {item:17642}은(는) 모두 반복할 수 있습니다.",
 	-- {npc:13176} Smith Regzar
 	["{npc:13176}: More Booty!"] = "{npc:13176}: 추가 전리품!",
 	-- {npc:13236} Primalist Thurloga

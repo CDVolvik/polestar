@@ -267,7 +267,7 @@ return {
 
 	-- Step 67: Zesty Clam Meat
 	-- {item:7974} Zesty Clam Meat
-	["{item:7974} has no drop data: buy it at the Gadgetzan Auction House, next to Dirge, or open clams looted from coastal creatures."] = "",
+	["{item:7974} has no drop data: buy it at the Gadgetzan Auction House, next to Dirge, or open clams looted from coastal creatures."] = "{item:7974} no tiene datos de botín: cómprala en la casa de subastas de Gadgetzan, junto a Dirge Hojágil, o abre las almejas que sueltan las criaturas de la costa.",
 
 	-- Step 68: Dirge Quikcleave
 	-- {skill:185} Cooking

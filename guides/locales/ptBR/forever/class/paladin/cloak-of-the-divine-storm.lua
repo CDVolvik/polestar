@@ -7,7 +7,7 @@
 return {
 	-- Guide
 	-- {spell:407778} Divine Storm
-	["A rare cloak at 30 from the old {spell:407778} story; for now only Alliance paladins can finish it."] = "",
+	["A rare cloak at 30 from the old {spell:407778} story; for now only Alliance paladins can finish it."] = "Um manto raro no nível 30, da antiga história de {spell:407778}; por enquanto só paladinos da Aliança podem concluí-la.",
 
 	-- Step 1: The Strange Orb
 	["The Strange Orb"] = "O Orbe Estranho",
@@ -46,15 +46,11 @@ return {
 	-- {object:409311} Spear of Mannoroth
 	["The {object:409311}"] = "A {object:409311}",
 	-- {object:409311} Spear of Mannoroth · {area:435} Demon Fall Canyon · {spell:11170} Shatter · {object:409315} Shattered Orb
-	["The {object:409311} stands at the east end of {area:435}. {spell:11170} the orb on it; the {object:409315} appears beside it."] = "",
+	["The {object:409311} stands at the east end of {area:435}. {spell:11170} the orb on it; the {object:409315} appears beside it."] = "A {object:409311} fica na ponta leste de {area:435}. {spell:11170} no orbe dela; o {object:409315} aparece ao lado.",
 	-- {object:409315} Shattered Orb
 	["from the {object:409315}"] = "do {object:409315}",
 
 	-- Step 9: Return to Delgren
 	-- {area:413} Maestra's Post
 	["Back to {area:413}."] = "De volta a {area:413}.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["A rare cloak at 30 from the old Divine Storm story; for now only Alliance paladins can finish it."] = "Um manto raro no nível 30, da antiga história da Tempestade Divina; por enquanto só paladinos da Aliança podem concluí-la.",
-	-- ["The {object:409311} stands at the east end of {area:435}. Shatter the orb on it; the {object:409315} appears beside it."] = "A {object:409311} fica na ponta leste de {area:435}. Quebre o orbe nela; o {object:409315} aparece ao lado.",
 }

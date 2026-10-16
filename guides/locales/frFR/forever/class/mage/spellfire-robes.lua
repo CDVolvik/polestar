@@ -24,7 +24,7 @@ return {
 	-- Step 4: The alchemist shop
 	["The alchemist shop"] = "La boutique d'alchimie",
 	-- {item:7308} Cantation of Manifestation · {npc:6492} Rift Spawn · {item:7247} Chest of Containment Coffers
-	["Algernon's alchemist shop is in the Apothecarium. Use the {item:7308} there to make the {npc:6492} visible, subdue one with your spells, then use the {item:7247} to throw down a coffer and capture it."] = "",
+	["Algernon's alchemist shop is in the Apothecarium. Use the {item:7308} there to make the {npc:6492} visible, subdue one with your spells, then use the {item:7247} to throw down a coffer and capture it."] = "La boutique d'alchimiste d'Algernon se trouve dans l'Apothicarium. Utilisez-y {item:7308} pour rendre {npc:6492} visible, maîtrisez-en un avec vos sorts, puis utilisez {item:7247} pour jeter un coffret au sol et le capturer.",
 
 	-- Step 5: Back to Anastasia Hartwell
 	-- {npc:4568} Anastasia Hartwell
@@ -32,7 +32,7 @@ return {
 
 	-- Step 6: Linen Cloth
 	-- {item:2589} Linen Cloth
-	["Humanoids drop {item:2589}; the Undercity Auction House sells it."] = "",
+	["Humanoids drop {item:2589}; the Undercity Auction House sells it."] = "Les humanoïdes lâchent {item:2589} ; l'hôtel des ventes de Fossoyeuse en vend.",
 
 	-- Step 7: Ambermill
 	-- {zone:1458} Undercity · {zone:1421} Silverpine Forest · {area:279} Dalaran · {area:233} Ambermill · {area:228} The Sepulcher · {npc:1867} Dalaran Apprentice · {item:7293} Dalaran Mana Gem

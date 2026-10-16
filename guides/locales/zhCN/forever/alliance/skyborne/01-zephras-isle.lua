@@ -36,7 +36,7 @@ return {
 	["The class trainers stand together in the grove"] = "职业训练师都聚在林地里",
 	["Listen to Halaan"] = "聆听哈兰",
 	-- {spell:1259416} Walk on Air
-	["Use {spell:1259416}"] = "",
+	["Use {spell:1259416}"] = "使用{spell:1259416}",
 
 	-- Step 4: Raw Windstones and the Cirrusfly Queen
 	-- {npc:251404} Cirrusfly Queen
@@ -49,9 +49,9 @@ return {
 	-- Step 5: Yala Windwatcher
 	-- {npc:249363} Yala Windwatcher · {npc:251143} Roiling Winds · {object:460002} Ley Line
 	-- plural, as words: Al'Aketh Converts = {npc:251160} Al'Aketh Convert
-	["{npc:249363} keeps watch east of the grove. The {npc:251143} and Al'Aketh Converts gather just north of her; the {object:460002} rises further north: cast your Read Ley Line racial ability at it."] = "",
+	["{npc:249363} keeps watch east of the grove. The {npc:251143} and Al'Aketh Converts gather just north of her; the {object:460002} rises further north: cast your Read Ley Line racial ability at it."] = "{npc:249363}在林地东边守望。{npc:251143}和{npc:251160}聚集在她北边不远处；{object:460002}在更北边升起：对它施放你的种族技能Read Ley Line。",
 	-- {object:460002} Ley Line
-	["Cast Read Ley Line at the {object:460002}"] = "",
+	["Cast Read Ley Line at the {object:460002}"] = "对{object:460002}施放Read Ley Line",
 
 	-- Step 6: Thendal Grove turn-ins
 	-- {area:16622} Thendal Grove
@@ -80,7 +80,7 @@ return {
 
 	-- Step 11: Raan Wildwind
 	-- {spell:1229451} Boosted Rest
-	["/sit by Raan's campfire until you get {spell:1229451}"] = "",
+	["/sit by Raan's campfire until you get {spell:1229451}"] = "在拉安·狂风的营火旁/sit，直到获得{spell:1229451}",
 
 	-- Step 12: Village quests
 	["Village quests"] = "村庄任务",
@@ -103,7 +103,7 @@ return {
 
 	-- Step 17: Falaath Village
 	-- {npc:257065} Missionary Jasaan · {quest:92529} Falaath Village · {spell:1254832} Mark of Akir
-	["{npc:257065} waits at the entrance to {quest:92529}, south of Shen'dar. The {spell:1254832} lets you walk in among the faithful."] = "",
+	["{npc:257065} waits at the entrance to {quest:92529}, south of Shen'dar. The {spell:1254832} lets you walk in among the faithful."] = "{npc:257065}在{quest:92529}入口等候，位于申达尔村南边。{spell:1254832}让你能混入信徒之中。",
 	["Search the wardrobe"] = "搜查衣柜",
 
 	-- Step 19: Havoc in Falaath
@@ -274,7 +274,7 @@ return {
 	-- Step 50: The Strange Hermit
 	-- {quest:93159} The Strange Hermit
 	-- plural, as words: Zephyrseed Cones = {object:613238} Zephyrseed Cone
-	["{quest:93159} lives west of Elegael. The Zephyrseed Cones lie in the woods between his hut and Elegael."] = "",
+	["{quest:93159} lives west of Elegael. The Zephyrseed Cones lie in the woods between his hut and Elegael."] = "{quest:93159}住在Elegael Thornpaw西边。{object:613238}散落在他的小屋和Elegael Thornpaw之间的树林里。",
 
 	-- Step 51: The refugees' camp
 	["The refugees' camp"] = "难民营地",
@@ -316,7 +316,7 @@ return {
 
 	-- Step 58: Sheldras Moontree
 	-- {npc:5504} Sheldras Moontree · {zone:1453} Stormwind City · {spell:18960} Teleport: Moonglade · {npc:11802} Dendrite Starblaze · {spell:499} Cat Form · {zone:1439} Darkshore
-	["{npc:5504}, {zone:1453}'s druid trainer, teaches you {spell:18960}. {npc:11802}'s welcome waits for your {spell:499} trip at the end of {zone:1439}."] = "",
+	["{npc:5504}, {zone:1453}'s druid trainer, teaches you {spell:18960}. {npc:11802}'s welcome waits for your {spell:499} trip at the end of {zone:1439}."] = "{zone:1453}的德鲁伊训练师{npc:5504}会教你{spell:18960}。{npc:11802}的问候要等到{zone:1439}结尾的{spell:499}之旅时再去。",
 
 	-- Step 59: Jennea Cannon
 	-- {npc:5497} Jennea Cannon · {object:2101} Mage Quarter · {quest:1861} Mirror Lake

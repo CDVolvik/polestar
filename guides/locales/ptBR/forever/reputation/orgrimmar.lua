@@ -6,7 +6,7 @@
 -- The comments are rewritten by sync.
 return {
 	-- Guide
-	["Orgrimmar Reputation"] = "",
+	["Orgrimmar Reputation"] = "Reputação: Orgrimmar",
 
 	-- Step 1: Rashona Straglash: A Donation of Wool
 	-- {npc:14726} Rashona Straglash · {faction:76} Orgrimmar · {item:14047} Runecloth · {quest:7832} Additional Runecloth
@@ -52,7 +52,4 @@ return {
 	-- {quest:7832} Additional Runecloth · {faction:76} Orgrimmar · {item:14047} Runecloth · {zone:1423} Eastern Plaguelands
 	-- plural, as words: Dark Adepts = {npc:8546} Dark Adept
 	["Keep handing in {quest:7832} until {faction:76} is Exalted. {item:14047}: Dark Adepts and Shadowmages (level 58-60) in {zone:1423}, or the Auction House."] = "Continue entregando {quest:7832} até ficar Exaltado com {faction:76}. {item:14047}: Adeptos das Trevas e Umbramantes (nível 58-60) em {zone:1423}, ou a Casa de Leilões.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["{faction:76} Reputation"] = "Reputação: {faction:76}",
 }

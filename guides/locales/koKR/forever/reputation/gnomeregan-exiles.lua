@@ -6,7 +6,7 @@
 -- The comments are rewritten by sync.
 return {
 	-- Guide
-	["Gnomeregan Exiles Reputation"] = "",
+	["Gnomeregan Exiles Reputation"] = "놈리건 평판",
 
 	-- Step 1: Bubulo Acerbus: A Donation of Wool
 	-- {npc:14724} Bubulo Acerbus · {faction:54} Gnomeregan Exiles · {object:171524} Tinker Town · {zone:1455} Ironforge · {item:14047} Runecloth · {quest:7812} Additional Runecloth

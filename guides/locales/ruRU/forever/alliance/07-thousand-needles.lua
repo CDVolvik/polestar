@@ -109,7 +109,7 @@ return {
 	["The wreck of the Third Fleet"] = "Обломки Третьей флотилии",
 	-- {npc:1159} First Mate Snellig
 	-- plural, as words: Cursed Sailors = {npc:1157} Cursed Sailor · Cursed Marines = {npc:1158} Cursed Marine · Giant Wetlands Crocolisks = {npc:2089} Giant Wetlands Crocolisk
-	["Follow the coast north to the wrecked ship. Cursed Sailors walk the beach, Cursed Marines the deck; {npc:1159} stands on the beach by the bow. Giant Wetlands Crocolisks lurk on the coast just north of it."] = "",
+	["Follow the coast north to the wrecked ship. Cursed Sailors walk the beach, Cursed Marines the deck; {npc:1159} stands on the beach by the bow. Giant Wetlands Crocolisks lurk on the coast just north of it."] = "Идите вдоль побережья на север к разбитому кораблю. Проклятые матросы бродят по пляжу, проклятые стражи бухты – по палубе; {npc:1159} стоит на пляже у носа корабля. Огромные болотные кроколиски прячутся на побережье сразу к северу от него.",
 
 	-- Step 20: Bluegill Raiders
 	-- plural, as words: Bluegill Raiders = {npc:1418} Bluegill Raider
@@ -187,6 +187,4 @@ return {
 	-- Step 36: Back to Menethil
 	["Back to Menethil"] = "Назад в Гавань Менетилов",
 
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Follow the coast north to the wrecked ship. Cursed Sailors walk the beach, Cursed Marines the deck; {npc:1159} stands on the beach by the bow. Giant {zone:1437} Crocolisks lurk on the coast just north of it."] = "Идите вдоль побережья на север к разбитому кораблю. Проклятые матросы бродят по пляжу, проклятые стражи бухты – по палубе; {npc:1159} стоит на пляже у носа корабля. Огромные болотные кроколиски прячутся на побережье сразу к северу от него ({zone:1437}).",
 }

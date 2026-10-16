@@ -15,7 +15,7 @@ return {
 
 	-- Step 2: Dendrite Starblaze
 	-- {spell:18960} Teleport: Moonglade · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven
-	["Cast {spell:18960}. {npc:11802} is in {area:2361}; learn the flight path there if you do not have it."] = "",
+	["Cast {spell:18960}. {npc:11802} is in {area:2361}; learn the flight path there if you do not have it."] = "Lance {spell:18960}. {npc:11802} está em {area:2361}; aprenda a rota de voo de lá se ainda não a tiver.",
 
 	-- Step 3: The relics of the Barrow Dens
 	["The relics of the Barrow Dens"] = "As relíquias dos Templos de Tempesfúria",
@@ -37,7 +37,7 @@ return {
 
 	-- Step 7: Dendrite Starblaze
 	-- {spell:18960} Teleport: Moonglade · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven
-	["Cast {spell:18960}. {npc:11802} is in {area:2361}."] = "",
+	["Cast {spell:18960}. {npc:11802} is in {area:2361}."] = "Lance {spell:18960}. {npc:11802} está em {area:2361}.",
 
 	-- Step 8: The Stormrage Barrow Dens
 	-- {area:2363} Stormrage Barrow Dens
@@ -48,8 +48,4 @@ return {
 	-- Step 9: Back to Dendrite
 	-- {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {npc:11798} Bunthen Plainswind · {area:1638} Thunder Bluff
 	["Back to {npc:11802} in {area:2361}, then take {npc:11798}'s flight to {area:1638}."] = "De volta a {npc:11802} em {area:2361}, depois pegue o voo de {npc:11798} para {area:1638}.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Cast Teleport: {area:493}. {npc:11802} is in {area:2361}."] = "Lance Teleportar: {area:493}. {npc:11802} está em {area:2361}.",
-	-- ["Cast Teleport: {area:493}. {npc:11802} is in {area:2361}; learn the flight path there if you do not have it."] = "Lance Teleportar: {area:493}. {npc:11802} está em {area:2361}; aprenda a rota de voo lá se não a tiver.",
 }

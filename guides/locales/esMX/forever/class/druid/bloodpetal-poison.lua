@@ -10,7 +10,7 @@ return {
 
 	-- Step 1: Loganaar
 	-- {spell:18960} Teleport: Moonglade · {npc:12042} Loganaar · {area:2361} Nighthaven
-	["Cast {spell:18960}. {npc:12042} stands in {area:2361}; your class trainer offers the same quest."] = "",
+	["Cast {spell:18960}. {npc:12042} stands in {area:2361}; your class trainer offers the same quest."] = "Lanza {spell:18960}. {npc:12042} está en {area:2361}; tu instructor de clase ofrece la misma misión.",
 
 	-- Step 2: Torwa Pathfinder
 	-- {area:976} Gadgetzan · {zone:1449} Un'Goro Crater
@@ -40,7 +40,4 @@ return {
 	-- Step 8: A Better Ingredient
 	-- {zone:1449} Un'Goro Crater
 	["Back to Torwa in the south-east corner of {zone:1449}."] = "Vuelve con Torwa en la esquina sureste de {zone:1449}.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Cast Teleport: {zone:1450}. {npc:12042} stands in {area:2361}; your class trainer offers the same quest."] = "Lanza Teletransportación: {zone:1450}. {npc:12042} está en {area:2361}; tu instructor de clase ofrece la misma misión.",
 }

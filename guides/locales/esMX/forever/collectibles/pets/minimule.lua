@@ -15,10 +15,7 @@ return {
 	["1,500 Merchant's Favor"] = "1,500 de Merchant's Favor",
 
 	-- Step 2: Durotar Supply and Logistics
-	["Durotar Supply and Logistics"] = "",
+	["Durotar Supply and Logistics"] = "Logística y suministros de Durotar",
 	-- {area:380} The Crossroads · {npc:256384} Gishah · {zone:1458} Undercity
 	["The Horde camp is just outside the {area:380}. Loot supply crates in the world, fill them and hand them in at the camp for Merchant's Favor; the treat costs 1,500. (Another {npc:256384} stands in the {zone:1458}; this is the one at the camp.)"] = "El campamento de la Horda está justo a las afueras de {area:380}. Saquea cajas de suministros por el mundo, llénalas y entrégalas en el campamento a cambio de Merchant's Favor; la golosina cuesta 1,500. (Hay otro {npc:256384} en {zone:1458}; este es el del campamento.)",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["{zone:1411} Supply and Logistics"] = "Logística y suministros de {zone:1411}",
 }

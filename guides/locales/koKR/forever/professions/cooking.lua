@@ -267,7 +267,7 @@ return {
 
 	-- Step 67: Zesty Clam Meat
 	-- {item:7974} Zesty Clam Meat
-	["{item:7974} has no drop data: buy it at the Gadgetzan Auction House, next to Dirge, or open clams looted from coastal creatures."] = "",
+	["{item:7974} has no drop data: buy it at the Gadgetzan Auction House, next to Dirge, or open clams looted from coastal creatures."] = "{item:7974}은(는) 획득 데이터가 없습니다. 가젯잔 경매장(더지 퀵클레이브 옆)에서 사거나, 해안 생물에게서 얻은 조개를 여세요.",
 
 	-- Step 68: Dirge Quikcleave
 	-- {skill:185} Cooking
@@ -291,6 +291,4 @@ return {
 	-- {item:12218} Monster Omelet · {object:29784} Basic Campfire · {skill:185} Cooking
 	["{item:12218} is orange from 240 (yellow at 265, grey at 305): about 105 crafts to 300. Cook at any fire: {object:29784} comes with {skill:185}."] = "{item:12218}은(는) 240부터 주황색입니다(노란색 265, 회색 305). 300까지 약 105번 만드세요. 아무 불에서나 요리하세요. {object:29784}은(는) {skill:185}와(과) 함께 배웁니다.",
 
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["{item:7974} has no drop data: buy it at the {object:175904} House, next to Dirge, or open clams looted from coastal creatures."] = "{item:7974}은(는) 획득 데이터가 없습니다. 더지 옆의 {object:175904}에서 사거나, 해안 생물에게서 얻은 조개를 여세요.",
 }

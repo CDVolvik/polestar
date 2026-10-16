@@ -47,13 +47,13 @@ return {
 
 	-- Step 8: Hillsbrad Miners
 	-- plural, as words: Hillsbrad Miners = {npc:2269} Hillsbrad Miner
-	["Hillsbrad Miners"] = "",
+	["Hillsbrad Miners"] = "Mineradores de Eira dos Montes",
 	-- {zone:1424} Hillsbrad Foothills · {item:7127} Powdered Azurite · {zone:1454} Orgrimmar · {zone:1420} Tirisfal Glades · {zone:1421} Silverpine Forest
 	-- plural, as words: Hillsbrad Miners = {npc:2269} Hillsbrad Miner
-	["The Hillsbrad Miners work the mine in the west of {zone:1424}; they drop the {item:7127}. Take the zeppelin from {zone:1454} to {zone:1420} and ride south through {zone:1421}."] = "",
+	["The Hillsbrad Miners work the mine in the west of {zone:1424}; they drop the {item:7127}. Take the zeppelin from {zone:1454} to {zone:1420} and ride south through {zone:1421}."] = "Os Mineradores de Eira dos Montes trabalham na mina no oeste de {zone:1424}; eles deixam cair a {item:7127}. Pegue o zepelim de {zone:1454} até {zone:1420} e cavalgue para o sul por {zone:1421}.",
 	-- {item:7127} Powdered Azurite
 	-- plural, as words: Hillsbrad Miners = {npc:2269} Hillsbrad Miner
-	["{item:7127} from the Hillsbrad Miners"] = "",
+	["{item:7127} from the Hillsbrad Miners"] = "{item:7127} dos Mineradores de Eira dos Montes",
 
 	-- Step 9: Iron Bars
 	-- plural, as words: Iron Bars = {item:3575} Iron Bar
@@ -75,8 +75,8 @@ return {
 
 	-- Step 12: Satyr Hooves
 	-- {area:429} Xavian · {zone:1440} Ashenvale
-	["The {area:429} satyrs camp in eastern {zone:1440}, with the Felmusk satyrs further west; both drop Uncloven Satyr Hooves."] = "",
-	["Uncloven Satyr Hooves"] = "",
+	["The {area:429} satyrs camp in eastern {zone:1440}, with the Felmusk satyrs further west; both drop Uncloven Satyr Hooves."] = "Os sátiros de {area:429} acampam no leste de {zone:1440}, com os sátiros Malmíscar mais a oeste; ambos deixam cair Cascos Não Fendidos de Sátiro.",
+	["Uncloven Satyr Hooves"] = "Cascos Não Fendidos de Sátiro",
 
 	-- Step 15: Chimaeric Horn
 	-- {npc:6167} Chimaera Matriarch · {item:6840} Galvanized Horn
@@ -92,16 +92,7 @@ return {
 	-- Step 18: Dragonmaw Shinbones
 	-- {zone:1437} Wetlands
 	-- plural, as words: Sturdy Dragonmaw Shinbones = {item:7134} Sturdy Dragonmaw Shinbone
-	["The Dragonmaw orcs camp in the middle of the {zone:1437}, south of the road; Raiders, Swamprunners, Centurions, Shadowwarders and Bonewarders all drop the Sturdy Dragonmaw Shinbones."] = "",
+	["The Dragonmaw orcs camp in the middle of the {zone:1437}, south of the road; Raiders, Swamprunners, Centurions, Shadowwarders and Bonewarders all drop the Sturdy Dragonmaw Shinbones."] = "Os orcs Presa do Dragão acampam no meio de {zone:1437}, ao sul da estrada; Saqueadores, Corre-brejos, Centuriões, Guarda-sombras e Guarda-ossos deixam cair Tíbias Firmes de Presa do Dragão.",
 	-- plural, as words: Sturdy Dragonmaw Shinbones = {item:7134} Sturdy Dragonmaw Shinbone
-	["Sturdy Dragonmaw Shinbones"] = "",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Sturdy {quest:1846}"] = "{quest:1846} Firmes",
-	-- ["The Dragonmaw orcs camp in the middle of the {zone:1437}, south of the road; Raiders, Swamprunners, Centurions, Shadowwarders and Bonewarders all drop the Sturdy {quest:1846}."] = "Os orcs Presa do Dragão acampam no meio do {zone:1437}, ao sul da estrada; Saqueadores, Corre-brejos, Centuriões, Guarda-sombras e Guarda-ossos deixam cair {quest:1846} Firmes.",
-	-- ["The {area:287} Miners work the mine in the west of {zone:1424}; they drop the {item:7127}. Take the zeppelin from {zone:1454} to {zone:1420} and ride south through {zone:1421}."] = "Os Mineradores de {area:287} trabalham na mina no oeste do {zone:1424}; eles deixam cair a {item:7127}. Pegue o zepelim de {zone:1454} até {zone:1420} e cavalgue para o sul por {zone:1421}.",
-	-- ["The {area:429} satyrs camp in eastern {zone:1440}, with the Felmusk satyrs further west; both drop Uncloven {quest:1842}."] = "Os sátiros de {area:429} acampam no leste de {zone:1440}, com os sátiros Malmíscar mais a oeste; ambos deixam cair {quest:1842} Não Fendidos.",
-	-- ["Uncloven {quest:1842}"] = "{quest:1842} Não Fendidos",
-	-- ["{area:287} Miners"] = "Mineradores de {area:287}",
-	-- ["{item:7127} from the {area:287} Miners"] = "{item:7127} dos Mineradores de {area:287}",
+	["Sturdy Dragonmaw Shinbones"] = "Tíbias Firmes de Presa do Dragão",
 }

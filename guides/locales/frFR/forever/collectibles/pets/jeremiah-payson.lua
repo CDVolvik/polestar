@@ -11,7 +11,7 @@ return {
 
 	-- Step 1: Jeremiah Payson
 	-- {npc:8403} Jeremiah Payson · {zone:1458} Undercity
-	["{npc:8403} sells three cockroaches in the {zone:1458} (50s each); the Plagued and Undercity Cockroaches are new in Forever. Each pet item teaches its companion when you use it; the goals stay ticked afterwards."] = "",
+	["{npc:8403} sells three cockroaches in the {zone:1458} (50s each); the Plagued and Undercity Cockroaches are new in Forever. Each pet item teaches its companion when you use it; the goals stay ticked afterwards."] = "{npc:8403} vend trois cafards à {zone:1458} (50 pa chacun) ; le Cafard pestiféré et le Cafard de Fossoyeuse sont nouveaux dans Forever. Chaque objet de mascotte apprend sa mascotte quand vous l'utilisez ; les objectifs restent cochés ensuite.",
 	-- {item:10393} Cockroach
 	["{item:10393}, 50s"] = "{item:10393}, 50 pa",
 	["50s"] = "50 pa",

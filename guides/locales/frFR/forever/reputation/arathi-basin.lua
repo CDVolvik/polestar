@@ -6,7 +6,7 @@
 -- The comments are rewritten by sync.
 return {
 	-- Guide
-	["Arathi Basin Reputation"] = "",
+	["Arathi Basin Reputation"] = "Réputation du Bassin Arathi",
 
 	-- Step 1: League of Arathor to Friendly
 	["League of Arathor to Friendly"] = "La Ligue d'Arathor : Amical",
@@ -19,7 +19,7 @@ return {
 	-- Step 2: League of Arathor to Honored
 	["League of Arathor to Honored"] = "La Ligue d'Arathor : Honoré",
 	-- {zone:1461} Arathi Basin · {npc:15351} Alliance Brigadier General
-	["Keep playing {zone:1461}. On Call to Arms: {zone:1461} weekends the {npc:15351} in the capitals takes three Arathi Basin Marks of Honor for extra reputation."] = "",
+	["Keep playing {zone:1461}. On Call to Arms: {zone:1461} weekends the {npc:15351} in the capitals takes three Arathi Basin Marks of Honor for extra reputation."] = "Continuez à jouer au {zone:1461}. Pendant les week-ends de l'Appel aux armes du {zone:1461}, {npc:15351} des capitales prend trois Marques d'honneur du bassin d'Arathi contre un supplément de réputation.",
 	-- {npc:15127} Samuel Hawke
 	["{npc:15127} hands out one Arathor care package by level"] = "{npc:15127} remet un colis d'Arathor par tranche de niveau",
 
@@ -45,7 +45,7 @@ return {
 	-- {faction:510} The Defilers
 	["{faction:510} to Honored"] = "{faction:510} : Honoré",
 	-- {zone:1461} Arathi Basin · {npc:15350} Horde Warbringer
-	["Keep playing {zone:1461}. On Call to Arms: {zone:1461} weekends the {npc:15350} in the capitals takes three Arathi Basin Marks of Honor for extra reputation."] = "",
+	["Keep playing {zone:1461}. On Call to Arms: {zone:1461} weekends the {npc:15350} in the capitals takes three Arathi Basin Marks of Honor for extra reputation."] = "Continuez à jouer au {zone:1461}. Pendant les week-ends de l'Appel aux armes du {zone:1461}, {npc:15350} des capitales prend trois Marques d'honneur du bassin d'Arathi contre un supplément de réputation.",
 	-- {npc:15126} Rutherford Twing
 	["{npc:15126} hands out one Defiler's care package by level"] = "{npc:15126} remet un colis des Profanateurs par tranche de niveau",
 

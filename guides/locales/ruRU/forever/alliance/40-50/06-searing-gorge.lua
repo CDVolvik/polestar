@@ -44,7 +44,7 @@ return {
 	["The Grimesilt outhouse"] = "Нужник Карьера Грязнули",
 	-- {area:247} Grimesilt Dig Site · {item:4306} Silk Cloth
 	-- plural, as words: Dark Iron Geologists = {npc:5839} Dark Iron Geologist
-	["Ride east across the Cauldron to the {area:247} in the south-east. The prisoner in the wooden outhouse wants 15 {item:4306} and eight dead Dark Iron Geologists from the dig site around it. The outhouse also opens with the key, if you found one."] = "",
+	["Ride east across the Cauldron to the {area:247} in the south-east. The prisoner in the wooden outhouse wants 15 {item:4306} and eight dead Dark Iron Geologists from the dig site around it. The outhouse also opens with the key, if you found one."] = "Езжайте на восток через Котлован на юго-восток: {area:247}. Пленнику в деревянном нужнике нужны 15 шт. {item:4306} и восемь убитых геологов из клана Черного Железа с карьера вокруг. Нужник также открывается ключом, если вы его нашли.",
 	-- {zone:1446} Tanaris · {zone:1435} Swamp of Sorrows · {zone:1445} Dustwallow Marsh
 	["The prisoner's next task, Ledger from {zone:1446}, sends you to the {zone:1435} and {zone:1445}: skip it."] = "Следующее задание пленника, «Учетная книга из Танариса» ({zone:1446}), ведет в {zone:1435} и {zone:1445}: пропустите.",
 
@@ -54,6 +54,4 @@ return {
 	-- {npc:8256} Curator Thorius · {zone:1455} Ironforge
 	["For {npc:8256} in {zone:1455}, later"] = "Для NPC {npc:8256} ({zone:1455}), позже",
 
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Ride east across the Cauldron to the {area:247} in the south-east. The prisoner in the wooden outhouse wants 15 {item:4306} and eight dead {object:147516} Geologists from the dig site around it. The outhouse also opens with the key, if you found one."] = "Езжайте на восток через Котлован к месту {area:247} на юго-востоке. Пленнику в деревянном нужнике нужны 15 шт. {item:4306} и восемь убитых геологов ({object:147516}) с карьера вокруг. Нужник также открывается ключом, если вы его нашли.",
 }

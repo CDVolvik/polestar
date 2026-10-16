@@ -62,9 +62,9 @@ return {
 
 	-- Step 12: Lar'korwi Mates
 	-- plural, as words: Lar'korwi Mates = {npc:9683} Lar'korwi Mate
-	["Lar'korwi Mates"] = "",
+	["Lar'korwi Mates"] = "Fêmeas de Lar'korwi",
 	-- plural, as words: Lar'korwi Mates = {npc:9683} Lar'korwi Mate
-	["The Lar'korwi Mates prowl the jungle north-west of Torwa."] = "",
+	["The Lar'korwi Mates prowl the jungle north-west of Torwa."] = "As Fêmeas de Lar'korwi rondam a selva a noroeste de Torwa.",
 
 	-- Step 13: Torwa Pathfinder
 	-- {npc:9684} Lar'korwi
@@ -225,7 +225,7 @@ return {
 	-- {npc:6522} Andron Gant · {object:36073} Rogues' Quarter
 	["{npc:6522}, the {object:36073}"] = "{npc:6522}, {object:36073}",
 	-- {npc:8390} Chemist Cuely · {zone:1447} Azshara
-	["{npc:8390}, the Apothecarium: the vials fill in {zone:1447} later"] = "",
+	["{npc:8390}, the Apothecarium: the vials fill in {zone:1447} later"] = "{npc:8390}, no Apothecarium: os frascos são enchidos em {zone:1447} depois",
 
 	-- Step 45: The Bulwark
 	-- {zone:1458} Undercity · {zone:1420} Tirisfal Glades · {area:152} The Bulwark
@@ -253,11 +253,11 @@ return {
 
 	-- Step 51: Darrowshire Spirits
 	-- plural, as words: Darrowshire Spirits = {npc:11064} Darrowshire Spirit
-	["Darrowshire Spirits"] = "",
+	["Darrowshire Spirits"] = "Espíritos da Vila das Flechas",
 	-- {npc:11064} Darrowshire Spirit · {area:2262} Darrowshire
 	["With Carlin's quest in your log, slain Scourge sometimes leave a {npc:11064}; talk to it to free it. Kill undead on the ride south-west to {area:2262}."] = "Com a missão de Carlin no registro, o Flagelo abatido às vezes deixa {npc:11064}; fale com ele para libertá-lo. Mate mortos-vivos no caminho para o sudoeste até {area:2262}.",
 	-- plural, as words: Darrowshire Spirits = {npc:11064} Darrowshire Spirit
-	["Free Darrowshire Spirits: talk to them"] = "",
+	["Free Darrowshire Spirits: talk to them"] = "Liberte os Espíritos da Vila das Flechas: fale com eles",
 
 	-- Step 52: Pamela Redpath
 	-- {area:2262} Darrowshire
@@ -278,11 +278,4 @@ return {
 	-- {area:2268} Light's Hope Chapel
 	["Back to {area:2268}"] = "Volte para {area:2268}",
 	["The next guide starts here, at the chapel's flight master."] = "O próximo guia começa aqui, no mestre de voo da capela.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Free {area:2262} Spirits: talk to them"] = "Liberte Espíritos de {area:2262}: fale com eles",
-	-- ["The {npc:9684} Mates prowl the jungle north-west of Torwa."] = "As Fêmeas de {npc:9684} rondam a selva a noroeste de Torwa.",
-	-- ["{area:2262} Spirits"] = "Espíritos de {area:2262}",
-	-- ["{npc:8390}, the {object:36072}: the vials fill in {zone:1447} later"] = "{npc:8390}, {object:36072}: os frascos são enchidos em {zone:1447} depois",
-	-- ["{npc:9684} Mates"] = "Fêmeas de {npc:9684}",
 }

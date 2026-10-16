@@ -31,7 +31,7 @@ return {
 
 	-- Step 8: Journeyman Fishing
 	-- {skill:356} Fishing
-	["Journeyman {skill:356}"] = "",
+	["Journeyman {skill:356}"] = "中級{skill:356}",
 	-- {skill:356} Fishing
 	["Journeyman {skill:356} raises the cap to 150; it needs skill 50 and character level 10. The arrow picks the nearest {skill:356} trainer of your faction."] = "",
 
@@ -46,7 +46,7 @@ return {
 
 	-- Step 14: Expert Fishing
 	-- {skill:356} Fishing
-	["Expert {skill:356}"] = "",
+	["Expert {skill:356}"] = "高級{skill:356}",
 	-- {skill:356} Fishing · {npc:2626} Old Man Heming · {item:16083} Expert Fishing - The Bass and You · {area:35} Booty Bay · {zone:1434} Stranglethorn Vale
 	["Expert {skill:356} (cap 225) is a book, not a trainer rank: {npc:2626} sells {item:16083} in {area:35}, at the south tip of {zone:1434}, to both factions. Buy it and read it; it needs skill 125 and level 20."] = "",
 	-- {item:16083} Expert Fishing - The Bass and You · {skill:356} Fishing
@@ -95,7 +95,7 @@ return {
 
 	-- Step 26: Nat Pagle
 	-- {skill:356} Fishing
-	["Artisan {skill:356}"] = "",
+	["Artisan {skill:356}"] = "專家{skill:356}",
 
 	-- Step 27: Fishing: Stranglethorn Vale (225-300)
 	-- {area:35} Booty Bay · {item:6530} Nightcrawlers

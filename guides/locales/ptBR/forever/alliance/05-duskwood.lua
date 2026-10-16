@@ -91,10 +91,10 @@ return {
 
 	-- Step 19: Rot Blossoms
 	-- plural, as words: Rot Blossoms = {item:1598} Rot Blossom
-	["Rot Blossoms"] = "",
+	["Rot Blossoms"] = "Flores do Mal",
 	-- {area:42} Darkshire · {area:121} Tranquil Gardens Cemetery
 	-- plural, as words: Skeletal Horrors = {npc:202} Skeletal Horror · Rot Blossoms = {item:1598} Rot Blossom
-	["Skeletal Horrors walk the hillside between {area:42} and the {area:121}, south-east of town; they drop the Rot Blossoms."] = "",
+	["Skeletal Horrors walk the hillside between {area:42} and the {area:121}, south-east of town; they drop the Rot Blossoms."] = "Horrores Descarnados andam pela encosta entre {area:42} e {area:121}, a sudeste da cidade; eles deixam cair as Flores do Mal.",
 
 	-- Step 21: Abercrombie
 	["Ride west to the hermit once more."] = "Siga para o oeste até o eremita mais uma vez.",
@@ -124,13 +124,13 @@ return {
 	-- {zone:1453} Stormwind City · {object:2100} Old Town
 	["Ride north through Elwynn to {zone:1453}; Mathias Shaw is at SI:7 in {object:2100}."] = "Siga para o norte pela Floresta de Elwynn até {zone:1453}; Mathias Shaw fica no SI:7, em {object:2100}.",
 	-- {npc:332} Master Mathias Shaw · {spell:2842} Poisons · {item:18160} Recipe: Thistle Tea
-	["{npc:332}: {spell:2842}, and {item:18160}"] = "",
+	["{npc:332}: {spell:2842}, and {item:18160}"] = "{npc:332}: {spell:2842} e {item:18160}",
 	-- {quest:2607} The Touch of Zanzil · {npc:7207} Doc Mixilpixil
 	["{quest:2607}: {npc:7207}, in the cellar of the Barracks"] = "{quest:2607}: {npc:7207}, no porão do Quartel",
 	-- {npc:7207} Doc Mixilpixil
 	["/lay down beside {npc:7207}"] = "/lay down ao lado de {npc:7207}",
 	-- {item:3372} Leaded Vial · {npc:1313} Maria Lumere
-	["{item:3372}: {npc:1313}, Alchemy Supplies"] = "",
+	["{item:3372}: {npc:1313}, Alchemy Supplies"] = "{item:3372}: {npc:1313}, Suprimentos de Alquimia",
 
 	-- Step 28: Stormwind City
 	-- {zone:1453} Stormwind City · {zone:1429} Elwynn Forest · {area:17203} Stormwind Harbor · {area:442} Auberdine
@@ -141,10 +141,4 @@ return {
 	["Shaman training"] = "Treinamento de xamã",
 	-- {zone:1453} Stormwind City · {area:2257} Deeprun Tram · {object:28027} Dwarven District · {zone:1455} Ironforge · {npc:258098} Eldrun Stormbreaker · {area:442} Auberdine
 	["{zone:1453} has no shaman trainer: take the {area:2257} from the {object:28027} to {zone:1455}, train with {npc:258098}, then ride the tram back for the {area:442} boat."] = "{zone:1453} não tem instrutor de xamã: pegue o {area:2257} no {object:28027} até {zone:1455}, treine com {npc:258098} e volte de metrô para pegar o barco de {area:442}.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Skeletal Horrors walk the hillside between {area:42} and the {area:121}, south-east of town; they drop the {npc:14235} Blossoms."] = "Horrores Descarnados andam pela encosta entre {area:42} e {area:121}, a sudeste da cidade; eles deixam cair as Flores de {npc:14235}.",
-	-- ["{item:3372}: {npc:1313}, {skill:171} Supplies"] = "{item:3372}: {npc:1313}, Suprimentos de {skill:171}",
-	-- ["{npc:14235} Blossoms"] = "Flores de {npc:14235}",
-	-- ["{npc:332}: Poisons, and {item:18160}"] = "{npc:332}: Venenos e {item:18160}",
 }

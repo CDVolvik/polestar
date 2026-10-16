@@ -95,13 +95,13 @@ return {
 	-- {npc:263399} Sam Sarsaparilla · {npc:6306} Helene Peltskinner · {npc:383} Jason Mathers · {npc:1651} Lee Brown · {area:18} Crystal Lake
 	["{npc:263399} camps north-east of the inn; {npc:6306}, {npc:383} and {npc:1651} stand on the shore of {area:18} east of town."] = "{npc:263399} acampa a nordeste da estalagem; {npc:6306}, {npc:383} e {npc:1651} ficam na margem de {area:18}, a leste da cidade.",
 	-- {spell:1229451} Boosted Rest
-	["Sit (/sit) by his campfire until you have {spell:1229451}"] = "",
+	["Sit (/sit) by his campfire until you have {spell:1229451}"] = "Sente-se (/sit) junto à fogueira dele até ganhar {spell:1229451}",
 	-- {npc:6306} Helene Peltskinner
 	["{npc:6306}: skinners only, the pelts are skinned"] = "{npc:6306}: só para esfoladores; as peles são esfoladas",
 
 	-- Step 18: Crystal Lake
 	-- plural, as words: Fishing Traps = {object:694772} Fishing Trap
-	["The Fishing Traps sit along the west shore of the lake."] = "",
+	["The Fishing Traps sit along the west shore of the lake."] = "As armadilhas ({object:694772}) ficam ao longo da margem oeste do lago.",
 
 	-- Step 20: The murloc camp
 	["The murloc camp"] = "O acampamento murloc",
@@ -311,7 +311,7 @@ return {
 	-- {npc:822} Young Forest Bear · {item:15908} Taming Rod
 	["{npc:822}: tame it with the {item:15908}"] = "{npc:822}: dome-o com o {item:15908}",
 	-- {npc:258930} Isaac Chan · {spell:5149} Beast Training
-	["{npc:258930}, beside her: {spell:5149}"] = "",
+	["{npc:258930}, beside her: {spell:5149}"] = "{npc:258930}, ao lado dela: {spell:5149}",
 
 	-- Step 64: Jennea Cannon
 	-- {area:87} Goldshire · {zone:1453} Stormwind City · {npc:5497} Jennea Cannon · {object:2101} Mage Quarter · {quest:1861} Mirror Lake
@@ -358,12 +358,4 @@ return {
 	-- Step 72: Sentinel Hill
 	-- {zone:1436} Westfall · {area:108} Sentinel Hill
 	["Follow the road west past Westbrook into {zone:1436}, then south along it to {area:108}. Thor, the gryphon master, stands on the hill."] = "Siga a estrada para o oeste, passando pela Ribeira d'Oeste, até {zone:1436}; depois, para o sul por ela até {area:108}. Thor, o mestre de grifos, fica no morro.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Sit (/sit) by his campfire until you have Boosted Rest"] = "Sente-se (/sit) junto à fogueira dele até ganhar Boosted Rest",
-	-- ["Summon Voidwalker"] = "Evocar Emissário do Caos",
-	-- ["Tame Beast"] = "Domar Fera",
-	-- ["The {skill:356} Traps sit along the west shore of the lake."] = "As armadilhas de {skill:356} ficam ao longo da margem oeste do lago.",
-	-- ["{npc:258930}, beside her: Beast Training"] = "{npc:258930}, ao lado dela: Adestramento de Feras",
-	-- ["{npc:459}: Summon Imp"] = "{npc:459}: Evocar Diabrete",
 }

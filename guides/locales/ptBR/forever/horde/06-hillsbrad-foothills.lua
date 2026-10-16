@@ -17,9 +17,9 @@ return {
 
 	-- Step 2: Serge Hinott
 	-- {zone:1413} The Barrens · {npc:2391} Serge Hinott · {area:272} Tarren Mill · {spell:2842} Poisons
-	["Only if Gallywix fell in the {zone:1413} (Mission: Possible But Not Probable): {npc:2391} stands in {area:272}. Wait beside him while he brews the cure, then take your reward: {spell:2842}."] = "",
+	["Only if Gallywix fell in the {zone:1413} (Mission: Possible But Not Probable): {npc:2391} stands in {area:272}. Wait beside him while he brews the cure, then take your reward: {spell:2842}."] = "Só se Gallywix caiu em {zone:1413} (Missão: possível, mas não provável): {npc:2391} fica em {area:272}. Espere ao lado dele enquanto prepara a cura e pegue sua recompensa: {spell:2842}.",
 	-- {spell:2842} Poisons
-	["No Gallywix yet? The Class guide {spell:2842} (Horde) runs the chain from Shenthul again, with a group for Gallywix."] = "",
+	["No Gallywix yet? The Class guide {spell:2842} (Horde) runs the chain from Shenthul again, with a group for Gallywix."] = "Ainda sem Gallywix? O guia de classe {spell:2842} (Horda) refaz a cadeia a partir de Shenthul, com um grupo para Gallywix.",
 
 	-- Step 3: Bears, creepers and lions
 	["Bears, creepers and lions"] = "Ursos, rastejantes e leões",
@@ -86,7 +86,7 @@ return {
 
 	-- Step 20: Master Apothecary Faranell
 	-- {npc:2055} Master Apothecary Faranell
-	["{npc:2055}, in the Apothecarium"] = "",
+	["{npc:2055}, in the Apothecarium"] = "{npc:2055}, no Apothecarium",
 	-- {area:287} Hillsbrad
 	["Keep it: the {area:287} coast, later on the route"] = "Guarde: o litoral de {area:287}, mais adiante na rota",
 
@@ -129,10 +129,4 @@ return {
 	-- Step 29: Ratchet
 	-- {npc:3442} Sputtervalve · {area:392} Ratchet
 	["{npc:3442}, by the docks in {area:392}"] = "{npc:3442}, perto das docas em {area:392}",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["No Gallywix yet? The Class guide Poisons (Horde) runs the chain from Shenthul again, with a group for Gallywix."] = "Ainda sem Gallywix? O guia de classe Venenos (Horda) refaz a cadeia a partir de Shenthul, com um grupo para Gallywix.",
-	-- ["Only if Gallywix fell in the {zone:1413} (Mission: Possible But Not Probable): {npc:2391} stands in {area:272}. Wait beside him while he brews the cure, then take your reward: Poisons."] = "Só se Gallywix caiu em {zone:1413} (Missão: possível, mas não provável): {npc:2391} fica em {area:272}. Espere ao lado dele enquanto prepara a cura e pegue sua recompensa: Venenos.",
-	-- ["{npc:2055}, in the {object:36072}"] = "{npc:2055}, em {object:36072}",
-	-- ["{npc:2391}: Poisons"] = "{npc:2391}: Venenos",
 }

@@ -16,7 +16,7 @@ return {
 
 	-- Step 2: Hydrospawn
 	["Hydrospawn"] = "Hydrogénos",
-	["Hydrospawn, a water elemental, lives in the Warpwood Quarter (Dire Maul East): chase the imp Pusillin until he turns to fight, clear the satyr room, then take the spiral ramp down to the pool."] = "",
+	["Hydrospawn, a water elemental, lives in the Warpwood Quarter (Dire Maul East): chase the imp Pusillin until he turns to fight, clear the satyr room, then take the spiral ramp down to the pool."] = "Hydrogénos, un élémentaire d'eau, vit dans le quartier Crochebois (Hache-tripes Est) : poursuivez le diablotin Pusillin jusqu'à ce qu'il se retourne pour combattre, nettoyez la salle des satyres, puis descendez la rampe en spirale jusqu'au bassin.",
 	-- {item:18299} Hydrospawn Essence
 	["{item:18299}: Hydrospawn"] = "{item:18299} : Hydrogénos",
 

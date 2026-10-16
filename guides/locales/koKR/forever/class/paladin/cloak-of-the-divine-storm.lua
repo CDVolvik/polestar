@@ -7,7 +7,7 @@
 return {
 	-- Guide
 	-- {spell:407778} Divine Storm
-	["A rare cloak at 30 from the old {spell:407778} story; for now only Alliance paladins can finish it."] = "",
+	["A rare cloak at 30 from the old {spell:407778} story; for now only Alliance paladins can finish it."] = "옛 {spell:407778} 이야기에서 이어지는 30레벨 희귀 망토입니다. 지금은 얼라이언스 성기사만 완료할 수 있습니다.",
 
 	-- Step 1: The Strange Orb
 	["The Strange Orb"] = "Strange Orb",
@@ -46,7 +46,7 @@ return {
 	-- {object:409311} Spear of Mannoroth
 	["The {object:409311}"] = "{object:409311}",
 	-- {object:409311} Spear of Mannoroth · {area:435} Demon Fall Canyon · {spell:11170} Shatter · {object:409315} Shattered Orb
-	["The {object:409311} stands at the east end of {area:435}. {spell:11170} the orb on it; the {object:409315} appears beside it."] = "",
+	["The {object:409311} stands at the east end of {area:435}. {spell:11170} the orb on it; the {object:409315} appears beside it."] = "{object:409311}은(는) {area:435} 동쪽 끝에 서 있습니다. 그 위의 구슬에 {spell:11170}을(를) 사용하면 옆에 {object:409315}이(가) 나타납니다.",
 	-- {object:409315} Shattered Orb
 	["from the {object:409315}"] = "{object:409315}에서",
 

@@ -6,7 +6,7 @@
 -- The comments are rewritten by sync.
 return {
 	-- Guide
-	["Cenarion Circle Reputation"] = "",
+	["Cenarion Circle Reputation"] = "Reputação: Círculo Cenariano",
 
 	-- Step 1: Cenarion Hold
 	-- {area:3425} Cenarion Hold · {zone:1451} Silithus · {npc:15270} Huum Wildmane · {faction:609} Cenarion Circle
@@ -53,7 +53,4 @@ return {
 	["{faction:609} to Exalted"] = "{faction:609} até Exaltado",
 	-- {area:3454} Ruins of Ahn'Qiraj
 	["Keep running the {area:3454} and turning in Abyssal Council insignia until Exalted."] = "Continue fazendo {area:3454} e entregando insígnias do Conselho Abissal até Exaltado.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["{faction:609} Reputation"] = "Reputação com {faction:609}",
 }

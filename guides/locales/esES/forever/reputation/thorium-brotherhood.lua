@@ -6,7 +6,7 @@
 -- The comments are rewritten by sync.
 return {
 	-- Guide
-	["Thorium Brotherhood Reputation"] = "",
+	["Thorium Brotherhood Reputation"] = "Reputación con la Hermandad del torio",
 
 	-- Step 1: Master Smith Burninate
 	-- {area:1446} Thorium Point · {zone:1427} Searing Gorge · {faction:59} Thorium Brotherhood
@@ -24,16 +24,16 @@ return {
 	["{item:18942} supplies to Friendly"] = "Suministros de {item:18942} hasta Amistoso",
 	-- {item:3356} Kingsblood · {item:4234} Heavy Leather · {item:18944} Incendosaur Scale · {zone:1427} Searing Gorge
 	-- plural, as words: Iron Bars = {item:3575} Iron Bar
-	["Restoring Fiery Flux Supplies repeats in three versions: {item:3356}, Iron Bars or {item:4234}, each with Coal and an {item:18944}. Incendosaurs (level 47-49) in the north of {zone:1427} drop a scale every time; Burninate himself sells Coal."] = "",
+	["Restoring Fiery Flux Supplies repeats in three versions: {item:3356}, Iron Bars or {item:4234}, each with Coal and an {item:18944}. Incendosaurs (level 47-49) in the north of {zone:1427} drop a scale every time; Burninate himself sells Coal."] = "Fabricar fluido ardiente se repite en tres versiones: con {item:3356}, Lingotes de hierro o {item:4234}, cada una con Carbón y una {item:18944}. Los Incendosaurios (nivel 47-49) del norte de {zone:1427} sueltan siempre una escama; el propio Cremación vende Carbón.",
 	-- {npc:14624} Master Smith Burninate
-	["{npc:14624}: Restoring Fiery Flux Supplies"] = "",
+	["{npc:14624}: Restoring Fiery Flux Supplies"] = "{npc:14624}: Fabricar fluido ardiente",
 
 	-- Step 5: Lokhtos Darkbargainer to Honored
 	-- {npc:12944} Lokhtos Darkbargainer
 	["{npc:12944} to Honored"] = "{npc:12944} hasta Honorable",
 	-- {npc:12944} Lokhtos Darkbargainer · {area:1584} Blackrock Depths · {item:11099} Dark Iron Ore · {skill:186} Mining · {item:11382} Blood of the Mountain · {item:17010} Fiery Core · {item:17011} Lava Core · {item:17012} Core Leather · {npc:14387} Lothos Riftwaker · {area:1445} Blackrock Mountain · {area:2717} Molten Core
 	-- plural, as words: Dark Iron Deposits = {object:165658} Dark Iron Deposit
-	["{npc:12944} trades in the Grim Guzzler inside {area:1584}. His Favor Amongst the Brotherhood turn-ins take {item:11099} (mined from Dark Iron Deposits with {skill:186}), {item:11382}, {item:17010}, {item:17011} and {item:17012}. {npc:14387} at the {area:1445} entrance offers attunement to the {area:2717}."] = "",
+	["{npc:12944} trades in the Grim Guzzler inside {area:1584}. His Favor Amongst the Brotherhood turn-ins take {item:11099} (mined from Dark Iron Deposits with {skill:186}), {item:11382}, {item:17010}, {item:17011} and {item:17012}. {npc:14387} at the {area:1445} entrance offers attunement to the {area:2717}."] = "{npc:12944} comercia en el Tragapenas, dentro de {area:1584}. Sus entregas de El favor de la Hermandad piden {item:11099} (extraído de Depósitos de los Hierro Negro con {skill:186}), {item:11382}, {item:17010}, {item:17011} y {item:17012}. {npc:14387}, en la entrada de {area:1445}, ofrece la armonización con {area:2717}.",
 	-- {item:11099} Dark Iron Ore
 	["{item:11099}: Favor Amongst the Brotherhood, {item:11099} at Lokhtos, repeatable."] = "{item:11099}: El favor de la Hermandad, {item:11099} con Lokhtos, repetible.",
 

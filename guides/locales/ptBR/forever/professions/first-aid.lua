@@ -128,8 +128,5 @@ return {
 
 	-- Step 28: Runecloth Bandage (260-300)
 	-- {item:14529} Runecloth Bandage
-	["{item:14529} is yellow from 260 (yellow at 260, grey at 320): about 65 crafts to 300. Bandages need no fire: craft them anywhere. {item:14529} stays yellow to 320, so it carries you to 300 without a trip for Heavy Runecloth."] = "",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["{item:14529} is yellow from 260 (yellow at 260, grey at 320): about 65 crafts to 300. Bandages need no fire: craft them anywhere. {item:14529} stays yellow to 320, so it carries you to 300 without a trip for Heavy {item:14047}."] = "{item:14529} fica amarelo a partir de 260 (amarelo em 260, cinza em 320): cerca de 65 criações até 300. Bandagens não precisam de fogo: faça-as em qualquer lugar. {item:14529} fica amarelo até 320, então leva você até 300 sem uma ida para buscar a Bandagem Grossa de {item:14047}.",
+	["{item:14529} is yellow from 260 (yellow at 260, grey at 320): about 65 crafts to 300. Bandages need no fire: craft them anywhere. {item:14529} stays yellow to 320, so it carries you to 300 without a trip for Heavy Runecloth."] = "{item:14529} fica amarelo a partir de 260 (amarelo em 260, cinza em 320): cerca de 65 criações até 300. Bandagens não precisam de fogo: faça-as em qualquer lugar. {item:14529} fica amarelo até 320, então leva você até 300 sem uma ida para buscar Bandagem Grossa de Runatrama.",
 }

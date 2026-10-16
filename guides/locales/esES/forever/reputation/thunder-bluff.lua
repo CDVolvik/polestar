@@ -6,7 +6,7 @@
 -- The comments are rewritten by sync.
 return {
 	-- Guide
-	["Thunder Bluff Reputation"] = "",
+	["Thunder Bluff Reputation"] = "Reputación con Cima del Trueno",
 
 	-- Step 1: Rumstag Proudstrider: A Donation of Wool
 	-- {npc:14728} Rumstag Proudstrider · {faction:81} Thunder Bluff · {item:14047} Runecloth · {quest:7825} Additional Runecloth

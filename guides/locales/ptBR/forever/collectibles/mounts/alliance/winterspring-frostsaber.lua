@@ -13,7 +13,4 @@ return {
 	["The Forever client lists it at 200g and level 60, and asks for no riding rank."] = "O cliente Forever cobra 200g e nível 60, e não exige patamar de montaria.",
 	-- {npc:10618} Rivern Frostwind
 	["{npc:10618}, 200g"] = "{npc:10618}, 200g",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["{zone:1452} Frostsaber"] = "Sabre-de-gelo de {zone:1452}",
 }

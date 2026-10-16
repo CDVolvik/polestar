@@ -115,10 +115,10 @@ return {
 	-- plural, as words: Gnawed Corpses = {npc:264096} Gnawed Corpse
 	["North of the camp, spiders overrun the burial ground at {area:17044}. Use {npc:264074}'s {item:273015} on the Gnawed Corpses; the Spinners drop the {item:273181}. {npc:264082} sits at the north end: her {item:273658} starts {quest:96294}."] = "Au nord du camp, des araignées envahissent le cimetière de {area:17044}. Utilisez {item:273015} de {npc:264074} sur les Gnawed Corpses ; les Spinners laissent {item:273181}. {npc:264082} se tient au nord : son objet {item:273658} lance {quest:96294}.",
 	-- plural, as words: Gloomrise Toxin Samples = {item:273001} Gloomrise Toxin Sample · Gnawed Corpses = {npc:264096} Gnawed Corpse
-	["Gloomrise Toxin Samples, from the Gnawed Corpses"] = "",
+	["Gloomrise Toxin Samples, from the Gnawed Corpses"] = "Échantillons de toxine de la cime du Chagrin ({item:273001}), sur les Cadavres rongés ({npc:264096})",
 	-- {item:273181} Crystalline Silk
 	-- plural, as words: Gloomrise Spinners = {npc:264081} Gloomrise Spinner
-	["{item:273181}, from Gloomrise Spinners"] = "",
+	["{item:273181}, from Gloomrise Spinners"] = "{item:273181}, sur les Tisseuses de la cime du Chagrin ({npc:264081})",
 	-- {item:273658} Bloody Parchment · {npc:264082} Broodmother Valraxx
 	["{item:273658}, from {npc:264082}"] = "{item:273658}, sur {npc:264082}",
 

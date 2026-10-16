@@ -32,7 +32,7 @@ return {
 	["The red waterskin"] = "붉은 물주머니",
 	-- {area:71} Stonewatch Falls · {area:68} Lake Everstill · {item:265747} Unfilled Red Waterskin
 	-- plural, as words: Murloc Nightcrawlers = {npc:544} Murloc Nightcrawler
-	["{area:71} pour out of {area:68} at the east end of Redridge. Fill the {item:265747} at their foot, where the Murloc Nightcrawlers gather."] = "",
+	["{area:71} pour out of {area:68} at the east end of Redridge. Fill the {item:265747} at their foot, where the Murloc Nightcrawlers gather."] = "{area:71}은(는) 붉은마루 동쪽 끝의 {area:68}에서 쏟아져 내립니다. {npc:544}이(가) 모여 있는 폭포 아래에서 {item:265747}을(를) 채우세요.",
 
 	-- Step 8: The blue waterskin
 	["The blue waterskin"] = "파란 물주머니",

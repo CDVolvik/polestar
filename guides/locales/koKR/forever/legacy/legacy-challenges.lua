@@ -58,7 +58,7 @@ return {
 
 	-- Step 10: PvP: battleground reputations (Alliance)
 	["PvP: battleground reputations (Alliance)"] = "PvP: 전장 평판 (얼라이언스)",
-	["Exalted with each battleground faction is worth a point (4 in all; this page shows three, see the note). Follow the Polestar Reputation guides Warsong Gulch Reputation, Arathi Basin Reputation and Alterac Valley Reputation. The Diplomat Legacy perk increases reputation gains."] = "",
+	["Exalted with each battleground faction is worth a point (4 in all; this page shows three, see the note). Follow the Polestar Reputation guides Warsong Gulch Reputation, Arathi Basin Reputation and Alterac Valley Reputation. The Diplomat Legacy perk increases reputation gains."] = "각 전장 세력과 확고한 동맹이 되면 1점입니다(총 4점, 이 페이지에는 3개만 나옵니다. 참고를 보세요). Polestar 평판 가이드 전쟁노래 협곡 평판, 아라시 분지 평판, 알터랙 계곡 평판을 따르세요. 외교관 Legacy 특전은 평판 획득량을 늘려 줍니다.",
 	-- {zone:1460} Warsong Gulch · {zone:1461} Arathi Basin · {zone:1459} Alterac Valley
 	["Blizzard counts four battleground reputations, but our faction data has three per side ({zone:1460}, {zone:1461}, {zone:1459}). The fourth is likely tied to Forever's new PvP content; check the in-game Legacy panel."] = "블리자드는 전장 평판 4개를 계산하지만, 우리 세력 데이터에는 진영마다 3개({zone:1460}, {zone:1461}, {zone:1459})만 있습니다. 네 번째는 Forever의 새 PvP 콘텐츠와 관련된 것으로 보입니다. 게임 내 Legacy 창을 확인하십시오.",
 
@@ -132,9 +132,9 @@ return {
 	["Lower {area:1583}"] = "{area:1583} 하층",
 	-- {area:1583} Blackrock Spire
 	["Upper {area:1583}"] = "{area:1583} 상층",
-	["Dire Maul East"] = "",
-	["Dire Maul West"] = "",
-	["Dire Maul North"] = "",
+	["Dire Maul East"] = "혈투의 전장 동쪽",
+	["Dire Maul West"] = "혈투의 전장 서쪽",
+	["Dire Maul North"] = "혈투의 전장 북쪽",
 	-- {area:2279} Stratholme
 	["{area:2279}, Live side"] = "{area:2279}, 산 자 구역",
 	-- {area:2279} Stratholme

@@ -111,7 +111,7 @@ return {
 	-- plural, as words: Dust Stormers = {npc:11744} Dust Stormer · Desert Rumblers = {npc:11746} Desert Rumbler
 	["The Twilight's Hammer dig fills the north-west corner: tablet fragments lie on the ground and the Dust Stormers and Desert Rumblers carry them too. Every cultist can drop an {item:20404}: keep twenty, ten for {npc:15306} and ten for {npc:15194} later."] = "La excavación del Martillo Crepuscular ocupa la esquina noroeste: hay fragmentos de tablilla en el suelo, y los agitadores sirocosos y estruendores del desierto también los llevan. Cualquier sectario puede soltar un {item:20404}: guarda veinte, diez para {npc:15306} y diez para {npc:15194} más adelante.",
 	-- plural, as words: Twilight Tablet Fragments = {item:20378} Twilight Tablet Fragment
-	["Twilight Tablet Fragments"] = "",
+	["Twilight Tablet Fragments"] = "{item:20378}",
 	["Twilight's Hammer cultists"] = "Sectarios del Martillo Crepuscular",
 	-- {quest:8323} True Believers
 	["Ten more for {quest:8323}"] = "Diez más para {quest:8323}",
@@ -273,7 +273,7 @@ return {
 	["Grind to 60"] = "Farmea hasta el 60",
 	-- {area:2627} Terrordale
 	-- plural, as words: Terrordale Spirits = {npc:14564} Terrordale Spirit
-	["Cross the river east of Tirion into {area:2627}. The Terrordale Spirits haunt the woods there."] = "",
+	["Cross the river east of Tirion into {area:2627}. The Terrordale Spirits haunt the woods there."] = "Cruza el río al este de Tirión hacia {area:2627}. Los Espíritus del Valle del Terror ({npc:14564}) rondan el bosque de allí.",
 	-- {npc:14564} Terrordale Spirit · {area:2627} Terrordale · {zone:1423} Eastern Plaguelands
 	["grind on {npc:14564} at {area:2627}, {zone:1423}"] = "farmea {npc:14564} en {area:2627}, {zone:1423}",
 
@@ -290,8 +290,4 @@ return {
 	["Shaman training"] = "Entrenamiento de chamán",
 	-- {zone:1453} Stormwind City · {area:2257} Deeprun Tram · {object:28027} Dwarven District · {zone:1455} Ironforge · {npc:258098} Eldrun Stormbreaker
 	["{zone:1453} has no shaman trainer: take the {area:2257} from the {object:28027} to {zone:1455} and train your level 60 spells with {npc:258098}."] = "{zone:1453} no tiene instructor de chamanes: toma el {area:2257} desde {object:28027} hasta {zone:1455} y entrena tus hechizos de nivel 60 con {npc:258098}.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Cross the river east of Tirion into {area:2627}. The {area:2627} Spirits haunt the woods there."] = "Cruza el río al este de Tirion hacia {area:2627}. Los espíritus de {area:2627} rondan el bosque de allí.",
-	-- ["{object:210335} Fragments"] = "Fragmentos de {object:210335}",
 }

@@ -7,81 +7,81 @@
 return {
 	-- Step 1: Menethil Harbor
 	-- {zone:1455} Ironforge · {npc:1573} Gryth Thurden
-	["From {zone:1455}'s {npc:1573}"] = "",
+	["From {zone:1455}'s {npc:1573}"] = "从{zone:1455}的{npc:1573}处",
 
 	-- Step 2: Auberdine
 	-- {area:442} Auberdine · {npc:3649} Thundris Windweaver
-	["Take the boat to {area:442} from Menethil's docks. {npc:3649} stands in {area:442}, north of the flight master."] = "",
+	["Take the boat to {area:442} from Menethil's docks. {npc:3649} stands in {area:442}, north of the flight master."] = "从米奈希尔港码头乘船前往{area:442}。{npc:3649}在{area:442}飞行管理员北边。",
 	-- {npc:3649} Thundris Windweaver · {item:279915} Nord'el
-	["{npc:3649}: {item:279915}, from Sylessa in Menethil"] = "",
+	["{npc:3649}: {item:279915}, from Sylessa in Menethil"] = "{npc:3649}：{item:279915}，来自米奈希尔港的Sylessa",
 
 	-- Step 3: Heartswood
 	-- {area:415} Astranaar · {quest:1738} Heartswood · {area:413} Maestra's Post · {quest:65602} What Is Love? · {item:190309} Wooden Figurine · {area:1276} The Talondeep Path
-	["From {area:415} ride north-west into the hills: the {quest:1738} is a glowing tree north of the road to {area:413}. If you took {quest:65602}, the {item:190309} lies in a house among the trees north of {area:413} (26.6,22.0). Then back past {area:415} to the {area:1276}."] = "",
+	["From {area:415} ride north-west into the hills: the {quest:1738} is a glowing tree north of the road to {area:413}. If you took {quest:65602}, the {item:190309} lies in a house among the trees north of {area:413} (26.6,22.0). Then back past {area:415} to the {area:1276}."] = "从{area:415}向西北骑进山丘：{quest:1738}是通往{area:413}的道路北边一棵发光的树。如果你接了{quest:65602}，{item:190309}在{area:413}北边树林中的一座房子里（26.6,22.0）。然后经过{area:415}返回{area:1276}。",
 	-- {item:190309} Wooden Figurine · {area:413} Maestra's Post
-	["{item:190309}, north of {area:413}"] = "",
+	["{item:190309}, north of {area:413}"] = "{item:190309}，在{area:413}北边",
 
 	-- Step 4: The Talondeep Path
 	-- {area:415} Astranaar · {area:1276} The Talondeep Path
-	["From {area:415} head south-west to the {area:1276}, a tunnel through the mountains into Stonetalon."] = "",
+	["From {area:415} head south-west to the {area:1276}, a tunnel through the mountains into Stonetalon."] = "从{area:415}向西南到{area:1276}，这是一条穿过山脉通往石爪山脉的隧道。",
 
 	-- Step 5: Nijel's Point
 	-- {area:460} Sun Rock Retreat · {area:465} The Charred Vale · {zone:1443} Desolace · {area:608} Nijel's Point
-	["Follow the road west past {area:460} (Horde) and south-west through the {area:465} into {zone:1443}; {area:608} stands at the top of the pass."] = "",
+	["Follow the road west past {area:460} (Horde) and south-west through the {area:465} into {zone:1443}; {area:608} stands at the top of the pass."] = "沿道路向西经过{area:460}（部落），再向西南穿过{area:465}进入{zone:1443}；{area:608}在山口顶部。",
 
 	-- Step 6: Sargeron
 	-- {area:603} Sargeron · {area:608} Nijel's Point
-	["The Hatefury satyrs hold the ruins of {area:603}, east of {area:608}."] = "",
+	["The Hatefury satyrs hold the ruins of {area:603}, east of {area:608}."] = "怨怒萨特占据着{area:608}东边的{area:603}废墟。",
 
 	-- Step 8: Malem chest
-	["Malem chest"] = "",
+	["Malem chest"] = "玛雷姆的箱子",
 	-- {area:608} Nijel's Point
-	["The chest lies in the ruins south-west of {area:608}."] = "",
+	["The chest lies in the ruins south-west of {area:608}."] = "箱子在{area:608}西南方的废墟里。",
 
 	-- Step 10: Azore Aldamort
 	-- {area:599} Thunder Axe Fortress
-	["Azore's tower stands on the hill west of {area:599}: take his quest first, the sceptre he wants is in the fortress."] = "",
+	["Azore's tower stands on the hill west of {area:599}: take his quest first, the sceptre he wants is in the fortress."] = "阿佐尔·奥达蒙特的塔在{area:599}西边的山丘上：先接他的任务，他要的权杖在要塞里。",
 
 	-- Step 11: Dalinda Malem
 	-- {spell:1294269} Burning Blade · {area:608} Nijel's Point
-	["Dalinda hides inside the {spell:1294269}'s fortress south-west of {area:608}."] = "",
+	["Dalinda hides inside the {spell:1294269}'s fortress south-west of {area:608}."] = "黛琳达·玛雷姆躲在{area:608}西南方{spell:1294269}的要塞里。",
 
 	-- Step 12: Tyranis and the Seer
-	["Tyranis and the Seer"] = "",
+	["Tyranis and the Seer"] = "泰拉尼斯·玛雷姆和先知",
 	-- {spell:1294269} Burning Blade · {npc:13019} Burning Blade Seer
-	["Her brother Tyranis (36) walks the fortress with the {spell:1294269} cultists (30-33): pull him alone. The {npc:13019} keeps the sceptre in the fortress's main building."] = "",
+	["Her brother Tyranis (36) walks the fortress with the {spell:1294269} cultists (30-33): pull him alone. The {npc:13019} keeps the sceptre in the fortress's main building."] = "她的哥哥泰拉尼斯·玛雷姆（36级）和{spell:1294269}的祭司（30-33级）在要塞里巡逻：单独把他拉出来。{npc:13019}把权杖放在要塞的主建筑里。",
 
 	-- Step 13: Escort Dalinda
-	["Escort Dalinda"] = "",
+	["Escort Dalinda"] = "护送黛琳达·玛雷姆",
 	-- {area:599} Thunder Axe Fortress
-	["Out of {area:599}"] = "",
+	["Out of {area:599}"] = "离开{area:599}",
 	-- {area:608} Nijel's Point
-	["Lead Dalinda out of the fortress; she walks off once you are clear of it. Vahlarriel takes the turn-in at {area:608} at the end of the guide."] = "",
+	["Lead Dalinda out of the fortress; she walks off once you are clear of it. Vahlarriel takes the turn-in at {area:608} at the end of the guide."] = "带黛琳达·玛雷姆离开要塞；离开要塞后她会自行离去。指南结尾在{area:608}向瓦拉里尔·屠魔者交任务。",
 
 	-- Step 15: Scorpashi venom
-	["Scorpashi venom"] = "",
+	["Scorpashi venom"] = "荒土蝎子毒液",
 	-- {area:2407} Kormek's Hut
-	["The Scorpashi scorpids hunt the hills around {area:2407} on the road south."] = "",
+	["The Scorpashi scorpids hunt the hills around {area:2407} on the road south."] = "荒土蝎子在南边道路上的{area:2407}周围山丘上捕猎。",
 
 	-- Step 16: Cork Gizelton
 	-- {area:2407} Kormek's Hut
-	["The Gizelton Caravan waits at {area:2407}."] = "",
+	["The Gizelton Caravan waits at {area:2407}."] = "基泽尔顿车队在{area:2407}等候。",
 
 	-- Step 17: Escort the caravan
-	["Escort the caravan"] = "",
+	["Escort the caravan"] = "护送车队",
 	-- {area:609} Kolkar Village · {area:2617} Scrabblescrew's Camp
-	["Walk with the caravan south past {area:609}; Kolkar ambushers jump it on the way. Stay close until it stops at {area:2617}. The ambushers are 34-35 and come in waves: skip it if you are below 33."] = "",
+	["Walk with the caravan south past {area:609}; Kolkar ambushers jump it on the way. Stay close until it stops at {area:2617}. The ambushers are 34-35 and come in waves: skip it if you are below 33."] = "跟着车队向南经过{area:609}；途中科卡尔伏击者会袭击车队。一直跟在旁边，直到它停在{area:2617}。伏击者为34-35级，分批出现：低于33级就跳过。",
 
 	-- Step 18: Smeed Scrabblescrew
 	-- {area:609} Kolkar Village · {area:596} Kodo Graveyard
-	["Smeed's camp is on the road south of {area:609}, by the {area:596}."] = "",
+	["Smeed's camp is on the road south of {area:609}, by the {area:596}."] = "斯米德·瑟卡布斯库的营地在{area:609}南边的路上，{area:596}旁。",
 
 	-- Step 19: Kodo Graveyard
 	-- {item:13892} Kodo Kombobulator · {npc:4700} Aged Kodo
 	-- plural, as words: Aged Kodos = {npc:4700} Aged Kodo
-	["Use Smeed's {item:13892} on an {npc:4700} and walk the tamed kodo back to his camp, five times; Aged Kodos also drop the hides."] = "",
+	["Use Smeed's {item:13892} on an {npc:4700} and walk the tamed kodo back to his camp, five times; Aged Kodos also drop the hides."] = "对一只{npc:4700}使用斯米德·瑟卡布斯库的{item:13892}，然后带着驯服的科多兽走回他的营地，共五次；{npc:4700}也会掉落皮。",
 
 	-- Step 21: Kolkar Village
 	-- {area:609} Kolkar Village · {npc:5752} Corporal Melkins
-	["The Kolkar roam the plains around {area:609}; their ears are for {npc:5752}."] = "",
+	["The Kolkar roam the plains around {area:609}; their ears are for {npc:5752}."] = "科卡尔半人马在{area:609}周围的平原上游荡；它们的耳朵交给{npc:5752}。",
 }

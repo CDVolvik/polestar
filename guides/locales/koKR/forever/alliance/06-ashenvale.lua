@@ -7,7 +7,7 @@
 return {
 	-- Step 1: Aquatic Form
 	-- {area:17203} Stormwind Harbor · {area:442} Auberdine · {item:15885} Pendant of the Sea Lion · {spell:18960} Teleport: Moonglade · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {area:702} Rut'theran Village
-	["Take the boat from {area:17203} to {area:442}. Join the two half pendants into the {item:15885} and cast {spell:18960}: {npc:11802} is in {area:2361}. Then fly to {area:702} (by way of {area:442})."] = "",
+	["Take the boat from {area:17203} to {area:442}. Join the two half pendants into the {item:15885} and cast {spell:18960}: {npc:11802} is in {area:2361}. Then fly to {area:702} (by way of {area:442})."] = "{area:17203}에서 배를 타고 {area:442}(으)로 가세요. 반쪽 펜던트 두 개를 합쳐 {item:15885}을(를) 만들고 {spell:18960}을(를) 시전하세요. {npc:11802}은(는) {area:2361}에 있습니다. 그런 다음 ({area:442}을(를) 거쳐) {area:702}(으)로 날아가세요.",
 	-- {item:15885} Pendant of the Sea Lion
 	["{item:15885}: join the two halves"] = "{item:15885}: 반쪽 두 개를 합치기",
 
@@ -80,7 +80,7 @@ return {
 	-- Step 23: The Foulweald
 	["The Foulweald"] = "썩은나무 숲",
 	-- {area:415} Astranaar
-	["The Foulweald furbolgs live in the woods south of the road, south-east of {area:415}. The Den Watcher and the Ursas guard the den."] = "",
+	["The Foulweald furbolgs live in the woods south of the road, south-east of {area:415}. The Den Watcher and the Ursas guard the den."] = "썩은나무일족 펄볼그는 길 남쪽, {area:415} 남동쪽 숲에 삽니다. 썩은나무일족 보초와 썩은나무일족 펄볼그가 굴을 지킵니다.",
 
 	-- Step 24: Mystral Lake
 	-- {npc:3885} Sentinel Velene Starstrike · {area:420} Silverwind Refuge · {area:421} Mystral Lake · {npc:210995} Alonso
@@ -88,7 +88,7 @@ return {
 	["{npc:3885} stands at the {area:420} on the east shore of {area:421}; {npc:210995} camps on its west shore. Befouled Water Elementals wade in the lake between them."] = "{npc:3885}은(는) {area:421} 동쪽 기슭의 {area:420}에 서 있고, {npc:210995}은(는) 서쪽 기슭에 진을 치고 있습니다. 타락한 물의 정령이 그 사이 호수를 걸어다닙니다.",
 	-- {item:5456} Divining Scroll
 	-- plural, as words: Intact Elemental Bracers = {item:12220} Intact Elemental Bracer
-	["Kill the elementals for 5 Intact Elemental Bracers, then use the {item:5456}"] = "",
+	["Kill the elementals for 5 Intact Elemental Bracers, then use the {item:5456}"] = "정령을 처치해 {item:12220} 5개를 모은 뒤 {item:5456}을(를) 사용하세요",
 
 	-- Step 25: The Ruins of Stardust
 	-- {area:421} Mystral Lake
@@ -115,7 +115,7 @@ return {
 	-- {area:1276} The Talondeep Path
 	["Hearthstone on cooldown? Ride back north through the {area:1276}."] = "귀환석이 재사용 대기 중인가요? {area:1276}을(를) 지나 북쪽으로 돌아가세요.",
 	-- {area:150} Menethil Harbor
-	["Boat to {area:150}"] = "",
+	["Boat to {area:150}"] = "배를 타고 {area:150}(으)로",
 
 	-- Step 32: Menethil Harbor
 	-- {npc:1242} Karl Boran
@@ -156,7 +156,7 @@ return {
 	-- Step 40: Young crocolisks
 	["Young crocolisks"] = "새끼 악어",
 	-- plural, as words: Young Wetlands Crocolisks = {npc:1417} Young Wetlands Crocolisk
-	["Follow the road east. Young Wetlands Crocolisks lurk in the pools north of the excavation site."] = "",
+	["Follow the road east. Young Wetlands Crocolisks lurk in the pools north of the excavation site."] = "길을 따라 동쪽으로 가세요. {npc:1417}은(는) 발굴 현장 북쪽 웅덩이에 숨어 있습니다.",
 
 	-- Step 41: Whelgar's Excavation Site
 	["The excavation site sits on the hill south of the road."] = "발굴 현장은 길 남쪽 언덕 위에 있습니다.",

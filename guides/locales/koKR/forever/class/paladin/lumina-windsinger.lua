@@ -6,7 +6,7 @@
 -- The comments are rewritten by sync.
 return {
 	-- Guide
-	["Rescuing Lumina Windsinger"] = "",
+	["Rescuing Lumina Windsinger"] = "Lumina Windsinger 구출",
 	-- {item:268484} Moonsilver Blade
 	["No item yet: a Forsaken paladin rescue story; its sequel, the {item:268484}, cannot be finished yet."] = "아직 아이템 없음: 포세이큰 성기사 구출 이야기입니다. 후속인 {item:268484}은(는) 아직 완료할 수 없습니다.",
 	-- {zone:1458} Undercity
@@ -30,9 +30,9 @@ return {
 
 	-- Step 4: Fenris Keep
 	-- {quest:91862} Lumina Windsinger · {area:235} Fenris Keep
-	["{quest:91862} is caged inside {area:235}, at the north end of the isle. The Rot Hide gnolls around her carry the key."] = "",
+	["{quest:91862} is caged inside {area:235}, at the north end of the isle. The Rot Hide gnolls around her carry the key."] = "{quest:91862}은(는) 섬 북쪽 끝 {area:235} 안에 갇혀 있습니다. 그녀 주변의 썩은가죽일족 놀이 열쇠를 가지고 있습니다.",
 	-- {item:267412} Fenris Isle Key
-	["{item:267412}, from the Rot Hide gnolls"] = "",
+	["{item:267412}, from the Rot Hide gnolls"] = "{item:267412}, 썩은가죽일족 놀에게서",
 
 	-- Step 5: Free Lumina
 	["Free Lumina"] = "Lumina 풀어주기",
@@ -47,7 +47,7 @@ return {
 	["{npc:259620}, the {area:228}"] = "{npc:259620}, {area:228}",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Rescuing {quest:91862}"] = "{quest:91862} 구출",
+	-- ["Rescuing {quest:91862}"] = "Lumina Windsinger 구출",
 	-- ["{item:267412}, from the {npc:14235} Hide gnolls"] = "{item:267412}, 썩은가죽 놀({npc:14235})에게서",
 	-- ["{quest:91862} is caged inside {area:235}, at the north end of the isle. {npc:14235} Hide gnolls around her carry the key."] = "{quest:91862}은(는) 섬 북쪽 끝 {area:235} 안에 갇혀 있습니다. 그녀 주변의 썩은가죽 놀({npc:14235})이 열쇠를 가지고 있습니다.",
 }

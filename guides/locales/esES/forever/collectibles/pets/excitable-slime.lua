@@ -7,7 +7,7 @@
 return {
 	-- Step 1: WRIGGLE.
 	-- {npc:269452} Excitable Slime · {zone:1458} Undercity · {item:278265} Nutritious Slime Sludge
-	["Find the {npc:269452}, a critter in the {zone:1458} canals, and /dance with it until it offers WRIGGLE. Buy {item:278265} from a vendor in the canals and bring it back; if the slime seems tired, dance with it again."] = "",
+	["Find the {npc:269452}, a critter in the {zone:1458} canals, and /dance with it until it offers WRIGGLE. Buy {item:278265} from a vendor in the canals and bring it back; if the slime seems tired, dance with it again."] = "Busca el {npc:269452}, una alimaña de los canales de {zone:1458}, y usa /bailar con él hasta que te ofrezca CONTONEOS. Compra {item:278265} a un vendedor de los canales y tráeselo; si el cieno parece cansado, vuelve a bailar con él.",
 	-- {item:278265} Nutritious Slime Sludge · {npc:4612} Boyle
 	["{item:278265}: {npc:4612}, in the canals beside the slime"] = "{item:278265}: {npc:4612}, en los canales junto al cieno",
 

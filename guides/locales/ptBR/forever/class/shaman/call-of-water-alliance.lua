@@ -32,7 +32,7 @@ return {
 	["The red waterskin"] = "O odre vermelho",
 	-- {area:71} Stonewatch Falls · {area:68} Lake Everstill · {item:265747} Unfilled Red Waterskin
 	-- plural, as words: Murloc Nightcrawlers = {npc:544} Murloc Nightcrawler
-	["{area:71} pour out of {area:68} at the east end of Redridge. Fill the {item:265747} at their foot, where the Murloc Nightcrawlers gather."] = "",
+	["{area:71} pour out of {area:68} at the east end of Redridge. Fill the {item:265747} at their foot, where the Murloc Nightcrawlers gather."] = "{area:71} jorram de {area:68} no extremo leste de Cristarrubra. Encha o {item:265747} no pé delas, onde se reúnem os Reptantes Murloc.",
 
 	-- Step 8: The blue waterskin
 	["The blue waterskin"] = "O odre azul",
@@ -56,7 +56,4 @@ return {
 	-- Step 12: Norric Lochthane
 	-- {npc:258043} Norric Lochthane · {spell:5394} Healing Stream Totem · {item:5177} Water Totem
 	["{npc:258043}: {spell:5394} and your {item:5177}"] = "{npc:258043}: {spell:5394} e seu {item:5177}",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["{area:71} pour out of {area:68} at the east end of Redridge. Fill the {item:265747} at their foot, where the Murloc {item:6530} gather."] = "{area:71} jorram de {area:68} no extremo leste das Montanhas Cristarrubra. Encha o {item:265747} no pé delas, onde se reúnem os murlocs {item:6530}.",
 }

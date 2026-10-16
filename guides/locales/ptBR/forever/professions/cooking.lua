@@ -267,7 +267,7 @@ return {
 
 	-- Step 67: Zesty Clam Meat
 	-- {item:7974} Zesty Clam Meat
-	["{item:7974} has no drop data: buy it at the Gadgetzan Auction House, next to Dirge, or open clams looted from coastal creatures."] = "",
+	["{item:7974} has no drop data: buy it at the Gadgetzan Auction House, next to Dirge, or open clams looted from coastal creatures."] = "{item:7974} não tem dados de saque: compre na Casa de Leilões de Geringontzan, ao lado de Funesto, ou abra mariscos saqueados de criaturas costeiras.",
 
 	-- Step 68: Dirge Quikcleave
 	-- {skill:185} Cooking
@@ -290,7 +290,4 @@ return {
 	-- Step 74: Monster Omelet (240-300)
 	-- {item:12218} Monster Omelet · {object:29784} Basic Campfire · {skill:185} Cooking
 	["{item:12218} is orange from 240 (yellow at 265, grey at 305): about 105 crafts to 300. Cook at any fire: {object:29784} comes with {skill:185}."] = "{item:12218} fica laranja a partir de 240 (amarelo em 265, cinza em 305): cerca de 105 criações até 300. Cozinhe em qualquer fogo: {object:29784} vem com {skill:185}.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["{item:7974} has no drop data: buy it at the {object:175904} House, next to Dirge, or open clams looted from coastal creatures."] = "{item:7974} não tem dados de saque: compre na Casa de Leilões ({object:175904}), ao lado de Funesto, ou abra mariscos saqueados de criaturas costeiras.",
 }

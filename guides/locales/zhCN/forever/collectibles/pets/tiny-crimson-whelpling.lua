@@ -7,8 +7,8 @@
 return {
 	-- Step 1: Wetlands whelps
 	-- {zone:1437} Wetlands
-	["{zone:1437} whelps"] = "",
+	["{zone:1437} whelps"] = "{zone:1437}的雏龙",
 	-- {zone:1437} Wetlands
 	-- plural, as words: Flamesnorting Whelps = {npc:1044} Flamesnorting Whelp
-	["The Red, Crimson and Flamesnorting Whelps (levels 23-26) in the eastern {zone:1437} drop it about once in 600-1,600 kills in our data."] = "",
+	["The Red, Crimson and Flamesnorting Whelps (levels 23-26) in the eastern {zone:1437} drop it about once in 600-1,600 kills in our data."] = "{zone:1437}东部的红色雏龙、深红雏龙和{npc:1044}（23-26级）会掉落它，我们的数据显示大约600-1,600次击杀掉一次。",
 }

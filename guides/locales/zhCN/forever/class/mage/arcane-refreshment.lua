@@ -16,7 +16,7 @@ return {
 
 	-- Step 2: Hydrospawn
 	["Hydrospawn"] = "海多斯博恩",
-	["Hydrospawn, a water elemental, lives in the Warpwood Quarter (Dire Maul East): chase the imp Pusillin until he turns to fight, clear the satyr room, then take the spiral ramp down to the pool."] = "",
+	["Hydrospawn, a water elemental, lives in the Warpwood Quarter (Dire Maul East): chase the imp Pusillin until he turns to fight, clear the satyr room, then take the spiral ramp down to the pool."] = "水元素海多斯博恩住在厄运之槌东区：追赶小鬼普希林直到他转身迎战，清掉萨特房间，然后沿螺旋坡道下到水池。",
 	-- {item:18299} Hydrospawn Essence
 	["{item:18299}: Hydrospawn"] = "{item:18299}：海多斯博恩",
 

@@ -32,7 +32,7 @@ return {
 
 	-- Step 6: Shadowvale
 	-- {quest:91317} The Tarnished · {area:16881} Shadowvale · {area:16616} Whispering Forest · {item:246213} Sturdy Lumber
-	["{quest:91317} hold the ruined village of {area:16881} in the {area:16616}, south-west of the keep. The {item:246213} is piled in the root cellar of one of its houses; Commander Rudolph Gelhardt walks among his Tarnished."] = "",
+	["{quest:91317} hold the ruined village of {area:16881} in the {area:16616}, south-west of the keep. The {item:246213} is piled in the root cellar of one of its houses; Commander Rudolph Gelhardt walks among his Tarnished."] = "{quest:91317} ocupan la aldea en ruinas de {area:16881}, en {area:16616}, al suroeste del fuerte. {item:246213} está apilada en el sótano de una de sus casas; el comandante Rudolph Gelhardt camina entre sus mancillados.",
 	-- {object:181686} Lumber Pile
 	["{object:181686}, in the root cellar"] = "{object:181686}, en el sótano",
 	-- plural, as words: Tarnished Drudges = {npc:259434} Tarnished Drudge
@@ -74,7 +74,4 @@ return {
 	-- Step 15: Redemption
 	-- {area:16602} Bandarion Keep · {spell:7328} Redemption
 	["Back to {area:16602}: Billmuth takes the plans, Danitha teaches you {spell:7328}."] = "Regresa a {area:16602}: Billmuth recibe los planes y Danitha te enseña {spell:7328}.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["{quest:91317} hold the ruined village of {area:16881} in the {area:16616}, south-west of the keep. The {item:246213} is piled in the root cellar of one of its houses; Commander {npc:259431} walks among his Tarnished."] = "{quest:91317} ocupan la aldea en ruinas de {area:16881}, en {area:16616}, al suroeste del fuerte. {item:246213} está apilada en el sótano de una de sus casas; el comandante {npc:259431} camina entre sus Mancillados.",
 }

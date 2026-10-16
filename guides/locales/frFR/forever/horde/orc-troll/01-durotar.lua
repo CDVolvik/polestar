@@ -113,7 +113,7 @@ return {
 	-- {npc:265809} Brakk
 	["{npc:265809}'s campfire"] = "Feu de camp de {npc:265809}",
 	-- {npc:265809} Brakk · {area:362} Razor Hill · {spell:1229451} Boosted Rest
-	["{npc:265809} camps just south of {area:362}. Sit by his campfire (/sit) until the {spell:1229451} buff appears."] = "",
+	["{npc:265809} camps just south of {area:362}. Sit by his campfire (/sit) until the {spell:1229451} buff appears."] = "{npc:265809} campe juste au sud de {area:362}. Asseyez-vous près de son feu de camp (/sit) jusqu'à ce que l'amélioration {spell:1229451} apparaisse.",
 
 	-- Step 25: Razor Hill
 	-- {npc:266940} Turroc
@@ -178,7 +178,7 @@ return {
 	-- Step 43: South-east shore
 	["South-east shore"] = "Rivage sud-est",
 	-- plural, as words: Durotar Tigers = {npc:3121} Durotar Tiger
-	["Wade back west to the shore south of Sen'jin. Durotar Tigers roam it and the Taillasher eggs sit in nests along the beach."] = "",
+	["Wade back west to the shore south of Sen'jin. Durotar Tigers roam it and the Taillasher eggs sit in nests along the beach."] = "Revenez à gué vers l'ouest jusqu'au rivage au sud de Sen'jin. Des Tigres de Durotar ({npc:3121}) y rôdent et les Oeufs de fouette-queue reposent dans des nids le long de la plage.",
 
 	-- Step 45: Kolkar Crag
 	-- {area:366} Kolkar Crag · {npc:275811} Pal'juh
@@ -196,7 +196,7 @@ return {
 
 	-- Step 48: Fizzle Darkstorm
 	-- {spell:1294269} Burning Blade · {area:369} Thunder Ridge · {area:362} Razor Hill · {npc:3099} Dire Mottled Boar · {item:15908} Taming Rod
-	["Fizzle holds the {spell:1294269} camp on {area:369}, north-west of {area:362}. Hunters: tame a {npc:3099} with the {item:15908} on the way."] = "",
+	["Fizzle holds the {spell:1294269} camp on {area:369}, north-west of {area:362}. Hunters: tame a {npc:3099} with the {item:15908} on the way."] = "Fizzle tient le camp de {spell:1294269} sur les {area:369}, au nord-ouest de {area:362}. Chasseurs : apprivoisez un {npc:3099} avec {item:15908} en chemin.",
 	-- {item:15908} Taming Rod
 	["Tame it with the {item:15908}"] = "Apprivoisez-le avec le {item:15908}",
 
@@ -218,7 +218,7 @@ return {
 
 	-- Step 54: Skull Rock
 	-- {spell:1294269} Burning Blade · {quest:827} Skull Rock · {item:4871} Searing Collar · {npc:3204} Gazz'uz · {item:4903} Eye of Burning Shadow
-	["{spell:1294269} cultists hold the caves of {quest:827}; any of them drops a {item:4871}. {npc:3204}, a level 14 warlock, stands deep inside and drops the {item:4903}."] = "",
+	["{spell:1294269} cultists hold the caves of {quest:827}; any of them drops a {item:4871}. {npc:3204}, a level 14 warlock, stands deep inside and drops the {item:4903}."] = "Les sectateurs de {spell:1294269} tiennent les grottes de {quest:827} ; chacun peut lâcher un {item:4871}. {npc:3204}, un démoniste de niveau 14, se tient tout au fond et lâche {item:4903}.",
 
 	-- Step 55: Tablet of Verga
 	-- {object:58595} Burning Blade Stash · {area:817} Skull Rock
@@ -255,7 +255,7 @@ return {
 	-- plural, as words: Armored Scorpids = {npc:3126} Armored Scorpid
 	["Armored Scorpids crawl over the plains west of {area:362}. Tame one, then return to {npc:3171}."] = "Les Scorpides blindés rampent dans les plaines à l'ouest de {area:362}. Apprivoisez-en un, puis retournez voir {npc:3171}.",
 	-- {npc:3171} Thotar · {npc:3352} Ormak Grimshot · {zone:1454} Orgrimmar · {spell:5149} Beast Training
-	["{npc:3171}: {npc:3352} in {zone:1454} teaches {spell:5149}"] = "",
+	["{npc:3171}: {npc:3352} in {zone:1454} teaches {spell:5149}"] = "{npc:3171} : {npc:3352}, à {zone:1454}, enseigne {spell:5149}",
 
 	-- Step 63: Ormak Grimshot
 	-- {area:362} Razor Hill · {zone:1454} Orgrimmar · {area:817} Skull Rock · {npc:3352} Ormak Grimshot · {object:172958} Valley of Honor

@@ -16,7 +16,7 @@ return {
 
 	-- Step 2: Hydrospawn
 	["Hydrospawn"] = "Hidromilecio",
-	["Hydrospawn, a water elemental, lives in the Warpwood Quarter (Dire Maul East): chase the imp Pusillin until he turns to fight, clear the satyr room, then take the spiral ramp down to the pool."] = "",
+	["Hydrospawn, a water elemental, lives in the Warpwood Quarter (Dire Maul East): chase the imp Pusillin until he turns to fight, clear the satyr room, then take the spiral ramp down to the pool."] = "Hidromilecio, un elemental de agua, vive en el Barrio Alabeo (La Masacre Este): persigue al diablillo Pusillín hasta que se vuelva para luchar, limpia la sala de los sátiros y baja por la rampa en espiral hasta el estanque.",
 	-- {item:18299} Hydrospawn Essence
 	["{item:18299}: Hydrospawn"] = "{item:18299}: Hidromilecio",
 

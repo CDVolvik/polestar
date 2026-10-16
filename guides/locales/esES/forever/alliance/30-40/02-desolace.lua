@@ -44,12 +44,12 @@ return {
 
 	-- Step 11: Dalinda Malem
 	-- {spell:1294269} Burning Blade · {area:608} Nijel's Point
-	["Dalinda hides inside the {spell:1294269}'s fortress south-west of {area:608}."] = "",
+	["Dalinda hides inside the {spell:1294269}'s fortress south-west of {area:608}."] = "Dalinda Malem se esconde en la fortaleza del {spell:1294269}, al suroeste de {area:608}.",
 
 	-- Step 12: Tyranis and the Seer
 	["Tyranis and the Seer"] = "Tyranis Malem y el Vidente",
 	-- {spell:1294269} Burning Blade · {npc:13019} Burning Blade Seer
-	["Her brother Tyranis (36) walks the fortress with the {spell:1294269} cultists (30-33): pull him alone. The {npc:13019} keeps the sceptre in the fortress's main building."] = "",
+	["Her brother Tyranis (36) walks the fortress with the {spell:1294269} cultists (30-33): pull him alone. The {npc:13019} keeps the sceptre in the fortress's main building."] = "Su hermano Tyranis Malem (36) recorre la fortaleza con los sectarios del {spell:1294269} (30-33): atráelo solo. El {npc:13019} guarda el cetro en el edificio principal de la fortaleza.",
 
 	-- Step 13: Escort Dalinda
 	["Escort Dalinda"] = "Escolta a Dalinda Malem",

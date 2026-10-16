@@ -23,7 +23,7 @@ return {
 
 	-- Step 3: The Balance of Light and Shadow
 	-- {spell:139} Renew
-	["Save 50 peasants before 15 die. Kill the skeletons that attack them, cure their diseases (the purple ones first) and heal the wounded with {spell:139}. Friends may buff you beforehand but must stay out of the fight, or a demon appears and kills everyone."] = "",
+	["Save 50 peasants before 15 die. Kill the skeletons that attack them, cure their diseases (the purple ones first) and heal the wounded with {spell:139}. Friends may buff you beforehand but must stay out of the fight, or a demon appears and kills everyone."] = "Sauvez 50 paysans avant que 15 ne meurent. Tuez les squelettes qui les attaquent, guérissez leurs maladies (les violettes d'abord) et soignez les blessés avec {spell:139}. Des amis peuvent vous donner des améliorations avant, mais doivent rester hors du combat, sinon un démon apparaît et tue tout le monde.",
 
 	-- Step 4: Benediction
 	-- {item:18608} Benediction

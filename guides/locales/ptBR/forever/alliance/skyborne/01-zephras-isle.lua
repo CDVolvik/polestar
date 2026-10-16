@@ -36,7 +36,7 @@ return {
 	["The class trainers stand together in the grove"] = "Os instrutores de classe ficam juntos no bosque",
 	["Listen to Halaan"] = "Escute Halaan",
 	-- {spell:1259416} Walk on Air
-	["Use {spell:1259416}"] = "",
+	["Use {spell:1259416}"] = "Use {spell:1259416}",
 
 	-- Step 4: Raw Windstones and the Cirrusfly Queen
 	-- {npc:251404} Cirrusfly Queen
@@ -49,9 +49,9 @@ return {
 	-- Step 5: Yala Windwatcher
 	-- {npc:249363} Yala Windwatcher · {npc:251143} Roiling Winds · {object:460002} Ley Line
 	-- plural, as words: Al'Aketh Converts = {npc:251160} Al'Aketh Convert
-	["{npc:249363} keeps watch east of the grove. The {npc:251143} and Al'Aketh Converts gather just north of her; the {object:460002} rises further north: cast your Read Ley Line racial ability at it."] = "",
+	["{npc:249363} keeps watch east of the grove. The {npc:251143} and Al'Aketh Converts gather just north of her; the {object:460002} rises further north: cast your Read Ley Line racial ability at it."] = "{npc:249363} vigia a leste do bosque. Os {npc:251143} e os Convertidos Al'Aketh se reúnem logo ao norte dela; o {object:460002} se ergue mais ao norte: use nele sua habilidade racial.",
 	-- {object:460002} Ley Line
-	["Cast Read Ley Line at the {object:460002}"] = "",
+	["Cast Read Ley Line at the {object:460002}"] = "Use sua habilidade racial no {object:460002}",
 
 	-- Step 6: Thendal Grove turn-ins
 	-- {area:16622} Thendal Grove
@@ -80,7 +80,7 @@ return {
 
 	-- Step 11: Raan Wildwind
 	-- {spell:1229451} Boosted Rest
-	["/sit by Raan's campfire until you get {spell:1229451}"] = "",
+	["/sit by Raan's campfire until you get {spell:1229451}"] = "Use /sentar junto à fogueira de Raan até receber {spell:1229451}",
 
 	-- Step 12: Village quests
 	["Village quests"] = "Missões da aldeia",
@@ -103,7 +103,7 @@ return {
 
 	-- Step 17: Falaath Village
 	-- {npc:257065} Missionary Jasaan · {quest:92529} Falaath Village · {spell:1254832} Mark of Akir
-	["{npc:257065} waits at the entrance to {quest:92529}, south of Shen'dar. The {spell:1254832} lets you walk in among the faithful."] = "",
+	["{npc:257065} waits at the entrance to {quest:92529}, south of Shen'dar. The {spell:1254832} lets you walk in among the faithful."] = "{npc:257065} espera na entrada de {quest:92529}, ao sul de Shen'dar. {spell:1254832} permite que você ande entre os fiéis.",
 	["Search the wardrobe"] = "Revire o guarda-roupa",
 
 	-- Step 19: Havoc in Falaath
@@ -274,7 +274,7 @@ return {
 	-- Step 50: The Strange Hermit
 	-- {quest:93159} The Strange Hermit
 	-- plural, as words: Zephyrseed Cones = {object:613238} Zephyrseed Cone
-	["{quest:93159} lives west of Elegael. The Zephyrseed Cones lie in the woods between his hut and Elegael."] = "",
+	["{quest:93159} lives west of Elegael. The Zephyrseed Cones lie in the woods between his hut and Elegael."] = "{quest:93159} mora a oeste de Elegael. As Pinhas de Semente-de-zéfiro ficam na mata entre a cabana dele e Elegael.",
 
 	-- Step 51: The refugees' camp
 	["The refugees' camp"] = "O acampamento dos refugiados",
@@ -316,7 +316,7 @@ return {
 
 	-- Step 58: Sheldras Moontree
 	-- {npc:5504} Sheldras Moontree · {zone:1453} Stormwind City · {spell:18960} Teleport: Moonglade · {npc:11802} Dendrite Starblaze · {spell:499} Cat Form · {zone:1439} Darkshore
-	["{npc:5504}, {zone:1453}'s druid trainer, teaches you {spell:18960}. {npc:11802}'s welcome waits for your {spell:499} trip at the end of {zone:1439}."] = "",
+	["{npc:5504}, {zone:1453}'s druid trainer, teaches you {spell:18960}. {npc:11802}'s welcome waits for your {spell:499} trip at the end of {zone:1439}."] = "{npc:5504}, instrutor de druidas de {zone:1453}, ensina {spell:18960}. As boas-vindas de {npc:11802} aguardam sua viagem de {spell:499} no fim de {zone:1439}.",
 
 	-- Step 59: Jennea Cannon
 	-- {npc:5497} Jennea Cannon · {object:2101} Mage Quarter · {quest:1861} Mirror Lake
@@ -325,17 +325,4 @@ return {
 	-- Step 60: Mirror Lake
 	-- {zone:1453} Stormwind City · {quest:1861} Mirror Lake · {zone:1436} Westfall · {item:7207} Jennea's Flask
 	["Leave {zone:1453} by the main gate. The {quest:1861} waterfall is south-west of the gates, on the way west to {zone:1436}: fill {item:7207} at its base."] = "Saia de {zone:1453} pelo portão principal. A cachoeira do {quest:1861} fica a sudoeste dos portões, no caminho para {zone:1436}, a oeste: encha o {item:7207} na base dela.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["/sit by Raan's campfire until you get Boosted Rest"] = "Use /sentar junto à fogueira de Raan até receber Descanso Aprimorado",
-	-- ["Cast Read {object:460002} at the {object:460002}"] = "Use Ler {object:460002} no {object:460002}",
-	-- ["Tame Beast"] = "Domar Fera",
-	-- ["Use Walk on Air"] = "Use Andar no Ar",
-	-- ["{npc:249363} keeps watch east of the grove. The {npc:251143} and Al'Aketh Converts gather just north of her; the {object:460002} rises further north: cast your Read {object:460002} racial ability at it."] = "{npc:249363} vigia a leste do bosque. Os {npc:251143} e os Convertidos Al'Aketh se reúnem logo ao norte dela; o {object:460002} se ergue mais ao norte: use nele sua habilidade racial Ler {object:460002}.",
-	-- ["{npc:252377}: Defensive Stance"] = "{npc:252377}: Postura Defensiva",
-	-- ["{npc:254411}: Beast Training"] = "{npc:254411}: Treinamento de Feras",
-	-- ["{npc:255853}: Bear Form"] = "{npc:255853}: Forma de Urso",
-	-- ["{npc:257065} waits at the entrance to {quest:92529}, south of Shen'dar. The Mark of Akir lets you walk in among the faithful."] = "{npc:257065} espera na entrada da {quest:92529}, ao sul de Shen'dar. A Marca de Akir permite que você entre entre os fiéis.",
-	-- ["{npc:5504}, {zone:1453}'s druid trainer, teaches you Teleport: {quest:94914}. {npc:11802}'s welcome waits for your Cat Form trip at the end of {zone:1439}."] = "{npc:5504}, instrutor de druidas de {zone:1453}, ensina Teletransporte: {quest:94914}. As boas-vindas de {npc:11802} aguardam sua viagem da Forma de Felino no fim de {zone:1439}.",
-	-- ["{quest:93159} lives west of Elegael. The {item:257128} Cones lie in the woods between his hut and Elegael."] = "{quest:93159} mora a oeste de Elegael. As Pinhas de {item:257128} ficam na mata entre a cabana dele e Elegael.",
 }

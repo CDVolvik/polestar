@@ -19,7 +19,7 @@ return {
 
 	-- Step 3: Thunder Bluff
 	-- {spell:18960} Teleport: Moonglade · {npc:11798} Bunthen Plainswind · {area:1638} Thunder Bluff · {npc:3033} Turak Runetotem · {area:1639} Elder Rise · {zone:1454} Orgrimmar · {zone:1458} Undercity
-	["Cast {spell:18960} and take {npc:11798}'s flight to {area:1638}; {npc:3033} trains you on {area:1639}. Then fly to {zone:1454} and take the {zone:1458} zeppelin from the tower outside the main gate."] = "",
+	["Cast {spell:18960} and take {npc:11798}'s flight to {area:1638}; {npc:3033} trains you on {area:1639}. Then fly to {zone:1454} and take the {zone:1458} zeppelin from the tower outside the main gate."] = "施放{spell:18960}，乘{npc:11798}的飞行路线前往{area:1638}；{npc:3033}在{area:1639}训练你。然后飞往{zone:1454}，在正门外的塔上乘坐前往{zone:1458}的飞艇。",
 
 	-- Step 4: Undercity trainers
 	-- {zone:1458} Undercity
@@ -151,7 +151,7 @@ return {
 	-- plural, as words: Lesser Rock Elementals = {npc:2735} Lesser Rock Elemental
 	["Lesser Rock Elementals"] = "次级石元素",
 	-- plural, as words: Rock Elemental Shards = {item:7848} Rock Elemental Shard
-	["The small elementals drift across the flats just west of Lotwil's camp. Every rock elemental in the zone can drop Jarkal's Rock Elemental Shards: keep them."] = "",
+	["The small elementals drift across the flats just west of Lotwil's camp. Every rock elemental in the zone can drop Jarkal's Rock Elemental Shards: keep them."] = "小型元素在鲁特维尔营地正西的平地上飘荡。这个地区的每个石元素都可能掉落加卡尔要的石元素的碎片：留着它们。",
 
 	-- Step 34: Rock Elementals
 	-- plural, as words: Rock Elementals = {npc:92} Rock Elemental

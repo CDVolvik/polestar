@@ -179,7 +179,7 @@ return {
 	-- Step 44: Terrordale
 	-- {area:2627} Terrordale · {item:15042} Empty Termite Jar
 	-- plural, as words: Plaguehound Runts = {npc:8596} Plaguehound Runt · Plaguebats = {npc:8600} Plaguebat · Carrion Grubs = {npc:8603} Carrion Grub · Frenzied Plaguehounds = {npc:8598} Frenzied Plaguehound
-	["Ride west to {area:2627}. Plaguehound Runts, Plaguebats and Carrion Grubs roam its woods; fill the {item:15042} at the big termite mounds and kill the Frenzied Plaguehounds further north."] = "",
+	["Ride west to {area:2627}. Plaguehound Runts, Plaguebats and Carrion Grubs roam its woods; fill the {item:15042} at the big termite mounds and kill the Frenzied Plaguehounds further north."] = "Cabalga al oeste hasta {area:2627}. Los cachorros de can de la Peste ({npc:8596}), los murcipestes ({npc:8600}) y las larvas carroñeras ({npc:8603}) rondan sus bosques; llena la {item:15042} en los grandes termiteros y mata a los canes de la Peste demenciados ({npc:8598}) más al norte.",
 
 	-- Step 45: Egan
 	-- {npc:11140} Egan · {area:2627} Terrordale

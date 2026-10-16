@@ -32,7 +32,7 @@ return {
 	-- {area:2627} Terrordale · {zone:1423} Eastern Plaguelands · {zone:1422} Western Plaguelands · {item:18752} Exorcism Censer
 	["{area:2627} lies in the far north-west of the {zone:1423}, by the {zone:1422} border. Use the {item:18752} there to drive out the spirits, then defeat them."] = "{area:2627} se trouve à l'extrême nord-ouest de {zone:1423}, près de la frontière de {zone:1422}. Utilisez-y {item:18752} pour faire sortir les esprits, puis vainquez-les.",
 	-- plural, as words: Terrordale Spirits = {npc:14564} Terrordale Spirit
-	["Terrordale Spirits"] = "",
+	["Terrordale Spirits"] = "Esprits de Val-Terreur ({npc:14564})",
 
 	-- Step 7: Grimand Elmore
 	-- {npc:1416} Grimand Elmore · {zone:1453} Stormwind City · {object:28027} Dwarven District

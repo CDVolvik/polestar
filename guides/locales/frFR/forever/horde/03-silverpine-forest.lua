@@ -24,7 +24,7 @@ return {
 	-- Step 4: Trial of the Lake
 	-- {spell:18960} Teleport: Moonglade · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {area:656} Lake Elune'ara · {area:2362} Shrine of Remulos · {npc:11799} Tajarri
 	-- plural, as words: Shrine Baubles = {item:15877} Shrine Bauble
-	["Cast {spell:18960}; {npc:11802} is in {area:2361}. The Shrine Baubles lie on the bed of {area:656} and fade within minutes: swim one straight to the {area:2362} on the north-west shore, use it there and speak to {npc:11799}."] = "",
+	["Cast {spell:18960}; {npc:11802} is in {area:2361}. The Shrine Baubles lie on the bed of {area:656} and fade within minutes: swim one straight to the {area:2362} on the north-west shore, use it there and speak to {npc:11799}."] = "Lancez {spell:18960} ; {npc:11802} est à {area:2361}. Les Colifichets du sanctuaire ({item:15877}) reposent au fond du {area:656} et disparaissent en quelques minutes : nagez avec l'un d'eux directement jusqu'au {area:2362} sur la rive nord-ouest, utilisez-le là-bas et parlez à {npc:11799}.",
 	-- {quest:6127} The Principal Source · {area:384} Dreadmist Peak
 	["{quest:6127}: {area:384}, next guide"] = "{quest:6127} : {area:384}, guide suivant",
 	-- {npc:11799} Tajarri · {area:2362} Shrine of Remulos
@@ -96,7 +96,7 @@ return {
 
 	-- Step 21: Fenris Isle
 	-- {area:172} Fenris Isle · {area:235} Fenris Keep
-	["Follow the lake shore south-east and swim out to {area:172}. Rot Hide gnolls cover the island; every type drops ichor. Stay out of {area:235} on its north side unless you go for the optional niche: the gnolls there are level 18-22."] = "",
+	["Follow the lake shore south-east and swim out to {area:172}. Rot Hide gnolls cover the island; every type drops ichor. Stay out of {area:235} on its north side unless you go for the optional niche: the gnolls there are level 18-22."] = "Longez la rive du lac vers le sud-est et nagez jusqu'à l'{area:172}. Les gnolls Poil-Putride couvrent l'île ; chaque type lâche de l'ichor. N'entrez pas dans le {area:235} au nord, sauf pour la niche facultative : les gnolls y sont de niveau 18-22.",
 	-- {item:3317} A Talking Head
 	["{item:3317}: a rare drop from the gnolls"] = "{item:3317} : butin rare des gnolls",
 	-- {object:1599} Shallow Grave
@@ -162,15 +162,15 @@ return {
 
 	-- Step 33: Cleft of Shadow
 	-- {object:172960} Cleft of Shadow · {object:172982} Valley of Strength · {npc:3216} Neeru Fireblade
-	["The {object:172960} is the canyon under the {object:172982}; {npc:3216} stands at its far end."] = "",
+	["The {object:172960} is the canyon under the {object:172982}; {npc:3216} stands at its far end."] = "{object:172960} est le canyon sous {object:172982} ; {npc:3216} se tient tout au fond.",
 
 	-- Step 34: The Drag
 	-- {npc:3348} Kor'geld · {npc:3347} Yelmak · {npc:11046} Whuut
-	["{npc:3348} and {npc:3347} run the alchemy shop in the Drag; {npc:11046} is next door."] = "",
+	["{npc:3348} and {npc:3347} run the alchemy shop in the Drag; {npc:11046} is next door."] = "{npc:3348} et {npc:3347} tiennent la boutique d'alchimie de la Herse ; {npc:11046} est juste à côté.",
 
 	-- Step 35: Valley of Honor
 	-- {object:172958} Valley of Honor
-	["The cattails and speargrass grow along the water in the {object:172958}, east of the Drag."] = "",
+	["The cattails and speargrass grow along the water in the {object:172958}, east of the Drag."] = "Les massettes et les herbes-lances poussent au bord de l'eau dans {object:172958}, à l'est de la Herse.",
 
 	-- Step 37: Valley of Wisdom
 	-- {npc:268684} Thra · {npc:268682} Migi · {object:172957} Valley of Wisdom · {npc:3310} Doras · {object:172982} Valley of Strength

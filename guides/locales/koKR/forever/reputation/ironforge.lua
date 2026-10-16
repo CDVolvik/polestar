@@ -6,7 +6,7 @@
 -- The comments are rewritten by sync.
 return {
 	-- Guide
-	["Ironforge Reputation"] = "",
+	["Ironforge Reputation"] = "아이언포지 평판",
 
 	-- Step 1: Mistina Steelshield: A Donation of Wool
 	-- {npc:14723} Mistina Steelshield · {faction:47} Ironforge · {item:14047} Runecloth · {quest:7806} Additional Runecloth

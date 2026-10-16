@@ -47,13 +47,13 @@ return {
 
 	-- Step 8: Hillsbrad Miners
 	-- plural, as words: Hillsbrad Miners = {npc:2269} Hillsbrad Miner
-	["Hillsbrad Miners"] = "",
+	["Hillsbrad Miners"] = "Mineros de Trabalomas",
 	-- {zone:1424} Hillsbrad Foothills · {item:7127} Powdered Azurite · {zone:1454} Orgrimmar · {zone:1420} Tirisfal Glades · {zone:1421} Silverpine Forest
 	-- plural, as words: Hillsbrad Miners = {npc:2269} Hillsbrad Miner
-	["The Hillsbrad Miners work the mine in the west of {zone:1424}; they drop the {item:7127}. Take the zeppelin from {zone:1454} to {zone:1420} and ride south through {zone:1421}."] = "",
+	["The Hillsbrad Miners work the mine in the west of {zone:1424}; they drop the {item:7127}. Take the zeppelin from {zone:1454} to {zone:1420} and ride south through {zone:1421}."] = "Los mineros de Trabalomas trabajan en la mina del oeste de {zone:1424}; sueltan {item:7127}. Toma el zepelín de {zone:1454} a {zone:1420} y cabalga al sur por {zone:1421}.",
 	-- {item:7127} Powdered Azurite
 	-- plural, as words: Hillsbrad Miners = {npc:2269} Hillsbrad Miner
-	["{item:7127} from the Hillsbrad Miners"] = "",
+	["{item:7127} from the Hillsbrad Miners"] = "{item:7127} de los mineros de Trabalomas",
 
 	-- Step 9: Iron Bars
 	-- plural, as words: Iron Bars = {item:3575} Iron Bar
@@ -75,8 +75,8 @@ return {
 
 	-- Step 12: Satyr Hooves
 	-- {area:429} Xavian · {zone:1440} Ashenvale
-	["The {area:429} satyrs camp in eastern {zone:1440}, with the Felmusk satyrs further west; both drop Uncloven Satyr Hooves."] = "",
-	["Uncloven Satyr Hooves"] = "",
+	["The {area:429} satyrs camp in eastern {zone:1440}, with the Felmusk satyrs further west; both drop Uncloven Satyr Hooves."] = "Los sátiros de {area:429} acampan al este de {zone:1440}, con los sátiros Putredores más al oeste; ambos sueltan Capuchas de sátiro sin rajar.",
+	["Uncloven Satyr Hooves"] = "Capuchas de sátiro sin rajar",
 
 	-- Step 15: Chimaeric Horn
 	-- {npc:6167} Chimaera Matriarch · {item:6840} Galvanized Horn
@@ -92,9 +92,9 @@ return {
 	-- Step 18: Dragonmaw Shinbones
 	-- {zone:1437} Wetlands
 	-- plural, as words: Sturdy Dragonmaw Shinbones = {item:7134} Sturdy Dragonmaw Shinbone
-	["The Dragonmaw orcs camp in the middle of the {zone:1437}, south of the road; Raiders, Swamprunners, Centurions, Shadowwarders and Bonewarders all drop the Sturdy Dragonmaw Shinbones."] = "",
+	["The Dragonmaw orcs camp in the middle of the {zone:1437}, south of the road; Raiders, Swamprunners, Centurions, Shadowwarders and Bonewarders all drop the Sturdy Dragonmaw Shinbones."] = "Los orcos Faucedraco acampan en medio de {zone:1437}, al sur del camino; Asaltantes, Correpantanos, Centuriones, Pastores y Guardahuesos sueltan Tibias de Faucedraco robustas.",
 	-- plural, as words: Sturdy Dragonmaw Shinbones = {item:7134} Sturdy Dragonmaw Shinbone
-	["Sturdy Dragonmaw Shinbones"] = "",
+	["Sturdy Dragonmaw Shinbones"] = "Tibias de Faucedraco robustas",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Sturdy {quest:1846}"] = "Tibias de Faucedraco robustas para {quest:1846}",

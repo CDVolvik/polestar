@@ -7,7 +7,7 @@
 return {
 	-- Guide
 	-- {spell:118} Polymorph
-	["A new look for {spell:118}: it turns the target into a pig rather than a sheep."] = "",
+	["A new look for {spell:118}: it turns the target into a pig rather than a sheep."] = "Um novo visual para {spell:118}: transforma o alvo em porco em vez de ovelha.",
 
 	-- Step 1: Sanath Lim-yo
 	-- {area:3137} Talrendis Point · {area:1237} Valormok · {npc:8395} Sanath Lim-yo · {npc:8379} Archmage Xylem · {zone:1447} Azshara · {area:1221} Ruins of Eldarath
@@ -26,14 +26,9 @@ return {
 	["Polymorph Clones"] = "Clones Polimorfados",
 	-- {item:23250} Prismatic Shell · {area:1221} Ruins of Eldarath · {spell:118} Polymorph
 	-- plural, as words: Polymorph Clones = {npc:16479} Polymorph Clone
-	["Carry the {item:23250} back to the {area:1221}. {spell:118} a Spitelash naga and wait a few seconds: it splits into small Polymorph Clones. Kill the clones quickly; the shell collects their essence."] = "",
+	["Carry the {item:23250} back to the {area:1221}. {spell:118} a Spitelash naga and wait a few seconds: it splits into small Polymorph Clones. Kill the clones quickly; the shell collects their essence."] = "Leve a {item:23250} de volta para {area:1221}. Use {spell:118} numa naga Iralisca e espere alguns segundos: ela se divide em pequenos Clones Polimorfados. Mate os clones rápido; a concha coleta a essência deles.",
 
 	-- Step 5: Fragmented Magic
 	-- {npc:8379} Archmage Xylem · {spell:118} Polymorph
-	["{npc:8379}: {spell:118} (pig)"] = "",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["A new look for Polymorph: it turns the target into a pig rather than a sheep."] = "Um novo visual para Polimorfia: transforma o alvo em porco em vez de ovelha.",
-	-- ["Carry the {item:23250} back to the {area:1221}. Polymorph a Spitelash naga and wait a few seconds: it splits into small Polymorph Clones. Kill the clones quickly; the shell collects their essence."] = "Leve a {item:23250} de volta às {area:1221}. Use Polimorfia numa naga Iralisca e espere alguns segundos: ela se divide em pequenos Clones Polimorfados. Mate os clones rápido; a concha coleta a essência deles.",
-	-- ["{npc:8379}: Polymorph (pig)"] = "{npc:8379}: Polimorfia (porco)",
+	["{npc:8379}: {spell:118} (pig)"] = "{npc:8379}: {spell:118} (porco)",
 }

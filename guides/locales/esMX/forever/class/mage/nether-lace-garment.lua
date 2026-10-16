@@ -20,7 +20,7 @@ return {
 	-- {object:174797} Xavian Waterfall
 	["The {object:174797}"] = "{object:174797}",
 	-- {area:429} Xavian · {zone:1440} Ashenvale · {spell:9052} Fill Deino's Flask
-	["Satyrs hold the ruins of {area:429} in eastern {zone:1440}. {spell:9052} at the bottom of the highest waterfall."] = "",
+	["Satyrs hold the ruins of {area:429} in eastern {zone:1440}. {spell:9052} at the bottom of the highest waterfall."] = "Los sátiros ocupan las ruinas de {area:429}, al este de {zone:1440}. Usa {spell:9052} al pie de la cascada más alta.",
 
 	-- Step 4: Back to Deino
 	-- {npc:5885} Deino
@@ -35,7 +35,4 @@ return {
 	-- Step 6: Kil'hala
 	-- {npc:3484} Kil'hala · {area:380} The Crossroads
 	["{npc:3484}, a troll tailor, works at the {area:380}."] = "{npc:3484}, una sastre trol, trabaja en {area:380}.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Satyrs hold the ruins of {area:429} in eastern {zone:1440}. Fill {item:7269} at the bottom of the highest waterfall."] = "Los sátiros ocupan las ruinas de {area:429}, al este de {zone:1440}. Llena el {item:7269} al pie de la cascada más alta.",
 }

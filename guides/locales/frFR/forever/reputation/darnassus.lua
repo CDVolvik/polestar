@@ -6,7 +6,7 @@
 -- The comments are rewritten by sync.
 return {
 	-- Guide
-	["Darnassus Reputation"] = "",
+	["Darnassus Reputation"] = "Réputation Darnassus",
 
 	-- Step 1: Raedon Duskstriker: A Donation of Wool
 	-- {npc:14725} Raedon Duskstriker · {faction:69} Darnassus · {item:14047} Runecloth · {quest:7801} Additional Runecloth

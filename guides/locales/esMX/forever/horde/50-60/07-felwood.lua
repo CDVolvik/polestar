@@ -72,7 +72,7 @@ return {
 	-- Step 16: Dungeon instead of grinding
 	["Dungeon instead of grinding"] = "Calabozo en vez de matar monstruos",
 	-- {area:2279} Stratholme · {area:2057} Scholomance · {area:1584} Blackrock Depths
-	["Optional. Running {area:2279}, {area:2057}, Lower Blackrock Spire or {area:1584} with a group instead of grinding gets you there faster."] = "",
+	["Optional. Running {area:2279}, {area:2057}, Lower Blackrock Spire or {area:1584} with a group instead of grinding gets you there faster."] = "Opcional. Hacer {area:2279}, {area:2057}, la parte baja de Cumbre de Roca Negra o {area:1584} en grupo en lugar de farmear te lleva allí más rápido.",
 	["Optional: with a group, a 55-60 dungeon replaces the grind below."] = "Opcional: en grupo, un calabozo de nivel 55-60 sustituye a la matanza de abajo.",
 
 	-- Step 17: Grind to 60
@@ -86,7 +86,4 @@ return {
 	["In {zone:1454}: fly from {area:2255}"] = "En {zone:1454}: vuela desde {area:2255}",
 	-- {zone:1456} Thunder Bluff · {area:2255} Everlook
 	["In {zone:1456}: fly from {area:2255}"] = "En {zone:1456}: vuela desde {area:2255}",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Optional. Running {area:2279}, {area:2057}, Lower {area:1583} or {area:1584} with a group instead of grinding gets you there faster."] = "Opcional. Hacer {area:2279}, {area:2057}, {area:1583} Inferior o {area:1584} en grupo en vez de matar monstruos te lleva ahí más rápido.",
 }

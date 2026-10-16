@@ -7,10 +7,10 @@
 return {
 	-- Step 1: Wintersaber Trainers
 	-- {npc:10618} Rivern Frostwind · {area:2241} Frostsaber Rock · {zone:1452} Winterspring
-	["{npc:10618} at {area:2241} in northern {zone:1452} offers the repeatable Frostsaber Provisions, Winterfall Intrusion and Rampaging Giants (level 58); they are the whole road to Exalted, so expect weeks of turn-ins."] = "",
+	["{npc:10618} at {area:2241} in northern {zone:1452} offers the repeatable Frostsaber Provisions, Winterfall Intrusion and Rampaging Giants (level 58); they are the whole road to Exalted, so expect weeks of turn-ins."] = "{zone:1452}北部{area:2241}的{npc:10618}提供可重复任务“霜刃豹的食物”、“冬泉熊怪的侵扰”和“狂暴的巨人”（58级）；它们就是通往崇拜的全部途径，所以要做好交好几周任务的准备。",
 
 	-- Step 2: Reins of the Winterspring Frostsaber
-	["The Forever client lists it at 200g and level 60, and asks for no riding rank."] = "",
+	["The Forever client lists it at 200g and level 60, and asks for no riding rank."] = "Forever 客户端中售价200金，需要60级，不要求骑术等级。",
 	-- {npc:10618} Rivern Frostwind
-	["{npc:10618}, 200g"] = "",
+	["{npc:10618}, 200g"] = "{npc:10618}，200金",
 }

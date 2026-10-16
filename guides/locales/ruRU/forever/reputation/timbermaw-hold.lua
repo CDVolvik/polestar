@@ -6,7 +6,7 @@
 -- The comments are rewritten by sync.
 return {
 	-- Guide
-	["Timbermaw Hold Reputation"] = "",
+	["Timbermaw Hold Reputation"] = "Репутация: Крепость Древобрюхов",
 
 	-- Step 1: Grazle
 	-- {faction:576} Timbermaw Hold
@@ -69,6 +69,4 @@ return {
 	["{faction:576} to Exalted"] = "{faction:576}: до превознесения",
 	["Keep turning in feathers and beads until Exalted."] = "Сдавайте перья и бусины до превознесения.",
 
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["{faction:576} Reputation"] = "Репутация: {faction:576}",
 }

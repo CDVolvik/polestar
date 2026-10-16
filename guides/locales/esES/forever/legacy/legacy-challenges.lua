@@ -58,7 +58,7 @@ return {
 
 	-- Step 10: PvP: battleground reputations (Alliance)
 	["PvP: battleground reputations (Alliance)"] = "JcJ: reputaciones de campos de batalla (Alianza)",
-	["Exalted with each battleground faction is worth a point (4 in all; this page shows three, see the note). Follow the Polestar Reputation guides Warsong Gulch Reputation, Arathi Basin Reputation and Alterac Valley Reputation. The Diplomat Legacy perk increases reputation gains."] = "",
+	["Exalted with each battleground faction is worth a point (4 in all; this page shows three, see the note). Follow the Polestar Reputation guides Warsong Gulch Reputation, Arathi Basin Reputation and Alterac Valley Reputation. The Diplomat Legacy perk increases reputation gains."] = "Exaltado con cada facción de campo de batalla vale un punto (4 en total; esta página muestra tres, mira la nota). Sigue las guías de reputación de Polestar Reputación de la Garganta Grito de Guerra, Reputación de la Cuenca de Arathi y Reputación del Valle de Alterac. La ventaja de Legado Diplomático aumenta la reputación obtenida.",
 	-- {zone:1460} Warsong Gulch · {zone:1461} Arathi Basin · {zone:1459} Alterac Valley
 	["Blizzard counts four battleground reputations, but our faction data has three per side ({zone:1460}, {zone:1461}, {zone:1459}). The fourth is likely tied to Forever's new PvP content; check the in-game Legacy panel."] = "Blizzard cuenta cuatro reputaciones de campos de batalla, pero nuestros datos de facciones tienen tres por bando ({zone:1460}, {zone:1461}, {zone:1459}). La cuarta probablemente está ligada al nuevo contenido JcJ de Forever; consulta el panel de Legado del juego.",
 
@@ -132,9 +132,9 @@ return {
 	["Lower {area:1583}"] = "{area:1583} inferior",
 	-- {area:1583} Blackrock Spire
 	["Upper {area:1583}"] = "{area:1583} superior",
-	["Dire Maul East"] = "",
-	["Dire Maul West"] = "",
-	["Dire Maul North"] = "",
+	["Dire Maul East"] = "La Masacre Este",
+	["Dire Maul West"] = "La Masacre Oeste",
+	["Dire Maul North"] = "La Masacre Norte",
 	-- {area:2279} Stratholme
 	["{area:2279}, Live side"] = "{area:2279}, lado vivo",
 	-- {area:2279} Stratholme

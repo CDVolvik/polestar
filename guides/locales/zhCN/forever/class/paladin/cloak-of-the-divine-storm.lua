@@ -7,7 +7,7 @@
 return {
 	-- Guide
 	-- {spell:407778} Divine Storm
-	["A rare cloak at 30 from the old {spell:407778} story; for now only Alliance paladins can finish it."] = "",
+	["A rare cloak at 30 from the old {spell:407778} story; for now only Alliance paladins can finish it."] = "来自旧版{spell:407778}故事的30级稀有披风；目前只有联盟圣骑士能完成。",
 
 	-- Step 1: The Strange Orb
 	["The Strange Orb"] = "Strange Orb",
@@ -22,7 +22,7 @@ return {
 
 	-- Step 3: Katherine the Pure
 	-- {npc:5492} Katherine the Pure
-	["{npc:5492} is in the Cathedral of Light."] = "",
+	["{npc:5492} is in the Cathedral of Light."] = "{npc:5492}在光明大教堂。",
 
 	-- Step 4: Ursula Deline
 	-- {object:2101} Mage Quarter · {npc:5495} Ursula Deline
@@ -46,7 +46,7 @@ return {
 	-- {object:409311} Spear of Mannoroth
 	["The {object:409311}"] = "{object:409311}",
 	-- {object:409311} Spear of Mannoroth · {area:435} Demon Fall Canyon · {spell:11170} Shatter · {object:409315} Shattered Orb
-	["The {object:409311} stands at the east end of {area:435}. {spell:11170} the orb on it; the {object:409315} appears beside it."] = "",
+	["The {object:409311} stands at the east end of {area:435}. {spell:11170} the orb on it; the {object:409315} appears beside it."] = "{object:409311}矗立在{area:435}东端。对上面的宝珠施放{spell:11170}；{object:409315}会出现在旁边。",
 	-- {object:409315} Shattered Orb
 	["from the {object:409315}"] = "来自{object:409315}",
 

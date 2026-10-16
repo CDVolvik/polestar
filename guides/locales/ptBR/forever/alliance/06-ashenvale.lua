@@ -7,7 +7,7 @@
 return {
 	-- Step 1: Aquatic Form
 	-- {area:17203} Stormwind Harbor · {area:442} Auberdine · {item:15885} Pendant of the Sea Lion · {spell:18960} Teleport: Moonglade · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {area:702} Rut'theran Village
-	["Take the boat from {area:17203} to {area:442}. Join the two half pendants into the {item:15885} and cast {spell:18960}: {npc:11802} is in {area:2361}. Then fly to {area:702} (by way of {area:442})."] = "",
+	["Take the boat from {area:17203} to {area:442}. Join the two half pendants into the {item:15885} and cast {spell:18960}: {npc:11802} is in {area:2361}. Then fly to {area:702} (by way of {area:442})."] = "Pegue o navio de {area:17203} até {area:442}. Junte as duas metades do pingente no {item:15885} e lance {spell:18960}: {npc:11802} está em {area:2361}. Depois voe até {area:702} (passando por {area:442}).",
 	-- {item:15885} Pendant of the Sea Lion
 	["{item:15885}: join the two halves"] = "{item:15885}: junte as duas metades",
 
@@ -80,7 +80,7 @@ return {
 	-- Step 23: The Foulweald
 	["The Foulweald"] = "Os Torpeflora",
 	-- {area:415} Astranaar
-	["The Foulweald furbolgs live in the woods south of the road, south-east of {area:415}. The Den Watcher and the Ursas guard the den."] = "",
+	["The Foulweald furbolgs live in the woods south of the road, south-east of {area:415}. The Den Watcher and the Ursas guard the den."] = "Os furbolgs Torpeflora vivem na mata ao sul da estrada, a sudeste de {area:415}. O Vigia do Covil Torpeflora e os Ursinos Torpeflora guardam o covil.",
 
 	-- Step 24: Mystral Lake
 	-- {npc:3885} Sentinel Velene Starstrike · {area:420} Silverwind Refuge · {area:421} Mystral Lake · {npc:210995} Alonso
@@ -88,7 +88,7 @@ return {
 	["{npc:3885} stands at the {area:420} on the east shore of {area:421}; {npc:210995} camps on its west shore. Befouled Water Elementals wade in the lake between them."] = "{npc:3885} fica no {area:420}, na margem leste do {area:421}; {npc:210995} acampa na margem oeste. Elementais da Água Contaminados vagam pelo lago entre eles.",
 	-- {item:5456} Divining Scroll
 	-- plural, as words: Intact Elemental Bracers = {item:12220} Intact Elemental Bracer
-	["Kill the elementals for 5 Intact Elemental Bracers, then use the {item:5456}"] = "",
+	["Kill the elementals for 5 Intact Elemental Bracers, then use the {item:5456}"] = "Mate os elementais por 5 Braçadeiras Elementais Intactas e depois use o {item:5456}",
 
 	-- Step 25: The Ruins of Stardust
 	-- {area:421} Mystral Lake
@@ -115,7 +115,7 @@ return {
 	-- {area:1276} The Talondeep Path
 	["Hearthstone on cooldown? Ride back north through the {area:1276}."] = "Pedra de Regresso em recarga? Volte para o norte pela {area:1276}.",
 	-- {area:150} Menethil Harbor
-	["Boat to {area:150}"] = "",
+	["Boat to {area:150}"] = "Navio para {area:150}",
 
 	-- Step 32: Menethil Harbor
 	-- {npc:1242} Karl Boran
@@ -156,7 +156,7 @@ return {
 	-- Step 40: Young crocolisks
 	["Young crocolisks"] = "Crocoliscos jovens",
 	-- plural, as words: Young Wetlands Crocolisks = {npc:1417} Young Wetlands Crocolisk
-	["Follow the road east. Young Wetlands Crocolisks lurk in the pools north of the excavation site."] = "",
+	["Follow the road east. Young Wetlands Crocolisks lurk in the pools north of the excavation site."] = "Siga a estrada para leste. Crocoliscos do Pantanal Jovens espreitam nas poças ao norte do sítio de escavação.",
 
 	-- Step 41: Whelgar's Excavation Site
 	["The excavation site sits on the hill south of the road."] = "O sítio de escavação fica na colina ao sul da estrada.",
@@ -267,11 +267,4 @@ return {
 	-- Step 65: Trade District
 	-- {area:42} Darkshire
 	["Next: fly to {area:42}."] = "Próximo: voe até {area:42}.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Follow the road east. Young {zone:1437} Crocolisks lurk in the pools north of the excavation site."] = "Siga a estrada para leste. Crocoliscos do {zone:1437} Jovens espreitam nas poças ao norte do sítio de escavação.",
-	-- ["Kill the elementals for 5 Intact {quest:1016}, then use the {item:5456}"] = "Mate os elementais por 5 {quest:1016} Intactas e depois use o {item:5456}",
-	-- ["Take the boat from {area:17203} to {area:442}. Join the two half pendants into the {item:15885} and cast Teleport: {zone:1450}: {npc:11802} is in {area:2361}. Then fly to {area:702} (by way of {area:442})."] = "Pegue o navio de {area:17203} até {area:442}. Junte as duas metades do pingente no {item:15885} e lance Teleporte: {zone:1450}: {npc:11802} está em {area:2361}. Depois voe até {area:702} (passando por {area:442}).",
-	-- ["The Foulweald furbolgs live in the woods south of the road, south-east of {area:415}. {area:364} Watcher and the Ursas guard the den."] = "Os furbolgs Torpeflora vivem na mata ao sul da estrada, a sudeste de {area:415}. O vigia de {area:364} e os Ursinos guardam o covil.",
-	-- ["{object:176364} Harbor"] = "{object:176364}",
 }

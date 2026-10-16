@@ -164,7 +164,7 @@ return {
 
 	-- Step 36: Orgrimmar
 	-- {area:1637} Orgrimmar
-	["Fly to {area:1637}. The Droffers brothers run their shop in the Drag."] = "",
+	["Fly to {area:1637}. The Droffers brothers run their shop in the Drag."] = "Voe para {area:1637}. Os irmãos Droffers têm sua loja no Drag.",
 	-- {zone:1425} The Hinterlands
 	["for the {zone:1425}, around level 48"] = "para {zone:1425}, por volta do nível 48",
 
@@ -179,7 +179,4 @@ return {
 	["Fly to {area:75}"] = "Voe para {area:75}",
 	-- {area:75} Stonard
 	["Thysta, the flight master, stands just east of the zeppelin tower. Fly to {area:75}: the next guide starts there."] = "Thysta, a mestre de voo, fica logo a leste da torre do zepelim. Voe para {area:75}: o próximo guia começa lá.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Fly to {area:1637}. The Droffers brothers run their shop in the {object:172959}."] = "Voe para {area:1637}. Os irmãos Droffers têm sua loja em {object:172959}.",
 }

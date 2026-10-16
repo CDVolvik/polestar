@@ -6,7 +6,7 @@
 -- The comments are rewritten by sync.
 return {
 	-- Guide
-	["Arathi Basin Reputation"] = "",
+	["Arathi Basin Reputation"] = "Reputación de la Cuenca de Arathi",
 
 	-- Step 1: League of Arathor to Friendly
 	["League of Arathor to Friendly"] = "Liga de Arathor a Amistoso",
@@ -19,7 +19,7 @@ return {
 	-- Step 2: League of Arathor to Honored
 	["League of Arathor to Honored"] = "Liga de Arathor a Honorable",
 	-- {zone:1461} Arathi Basin · {npc:15351} Alliance Brigadier General
-	["Keep playing {zone:1461}. On Call to Arms: {zone:1461} weekends the {npc:15351} in the capitals takes three Arathi Basin Marks of Honor for extra reputation."] = "",
+	["Keep playing {zone:1461}. On Call to Arms: {zone:1461} weekends the {npc:15351} in the capitals takes three Arathi Basin Marks of Honor for extra reputation."] = "Sigue jugando en {zone:1461}. Los fines de semana de Llamada a las armas: {zone:1461}, el {npc:15351} de las capitales acepta tres Marcas de honor de la Cuenca de Arathi a cambio de reputación extra.",
 	-- {npc:15127} Samuel Hawke
 	["{npc:15127} hands out one Arathor care package by level"] = "{npc:15127} entrega un paquete de curación de Arathor según tu nivel",
 
@@ -45,7 +45,7 @@ return {
 	-- {faction:510} The Defilers
 	["{faction:510} to Honored"] = "{faction:510} a Honorable",
 	-- {zone:1461} Arathi Basin · {npc:15350} Horde Warbringer
-	["Keep playing {zone:1461}. On Call to Arms: {zone:1461} weekends the {npc:15350} in the capitals takes three Arathi Basin Marks of Honor for extra reputation."] = "",
+	["Keep playing {zone:1461}. On Call to Arms: {zone:1461} weekends the {npc:15350} in the capitals takes three Arathi Basin Marks of Honor for extra reputation."] = "Sigue jugando en {zone:1461}. Los fines de semana de Llamada a las armas: {zone:1461}, el {npc:15350} de las capitales acepta tres Marcas de honor de la Cuenca de Arathi a cambio de reputación extra.",
 	-- {npc:15126} Rutherford Twing
 	["{npc:15126} hands out one Defiler's care package by level"] = "{npc:15126} entrega un paquete de cuidados de Rapiñador según tu nivel",
 

@@ -24,7 +24,7 @@ return {
 	-- Step 4: The alchemist shop
 	["The alchemist shop"] = "연금술 상점",
 	-- {item:7308} Cantation of Manifestation · {npc:6492} Rift Spawn · {item:7247} Chest of Containment Coffers
-	["Algernon's alchemist shop is in the Apothecarium. Use the {item:7308} there to make the {npc:6492} visible, subdue one with your spells, then use the {item:7247} to throw down a coffer and capture it."] = "",
+	["Algernon's alchemist shop is in the Apothecarium. Use the {item:7308} there to make the {npc:6492} visible, subdue one with your spells, then use the {item:7247} to throw down a coffer and capture it."] = "알게르논의 연금술 상점은 연금술 실험실에 있습니다. 그곳에서 {item:7308}을(를) 사용해 {npc:6492}을(를) 드러내고, 주문으로 약화시킨 뒤 {item:7247}을(를) 사용해 상자를 던져 포획하세요.",
 
 	-- Step 5: Back to Anastasia Hartwell
 	-- {npc:4568} Anastasia Hartwell
@@ -32,7 +32,7 @@ return {
 
 	-- Step 6: Linen Cloth
 	-- {item:2589} Linen Cloth
-	["Humanoids drop {item:2589}; the Undercity Auction House sells it."] = "",
+	["Humanoids drop {item:2589}; the Undercity Auction House sells it."] = "인간형 몹이 {item:2589}을(를) 떨어뜨립니다. 언더시티 경매장에서도 팝니다.",
 
 	-- Step 7: Ambermill
 	-- {zone:1458} Undercity · {zone:1421} Silverpine Forest · {area:279} Dalaran · {area:233} Ambermill · {area:228} The Sepulcher · {npc:1867} Dalaran Apprentice · {item:7293} Dalaran Mana Gem

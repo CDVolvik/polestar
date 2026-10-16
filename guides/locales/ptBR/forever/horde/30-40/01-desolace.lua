@@ -13,7 +13,7 @@ return {
 
 	-- Step 2: Alliance Relations
 	-- {npc:5639} Craven Drok · {npc:5640} Keldran · {object:172961} Valley of Spirits · {npc:4949} Thrall · {object:172957} Valley of Wisdom
-	["{npc:5639} waits in the Drag; {npc:5640} stands in the {object:172961} on the west side of the city. Skyborne: {npc:4949} waits in Grommash Hold, in the {object:172957}."] = "",
+	["{npc:5639} waits in the Drag; {npc:5640} stands in the {object:172961} on the west side of the city. Skyborne: {npc:4949} waits in Grommash Hold, in the {object:172957}."] = "{npc:5639} espera no Drag; {npc:5640} fica no {object:172961}, no lado oeste da cidade. Skyborne: {npc:4949} espera na Fortaleza Grommash, no {object:172957}.",
 	-- {npc:4949} Thrall
 	["{npc:4949}, Grommash Hold, if you carry it"] = "{npc:4949}, Fortaleza Grommash, se você a tiver",
 
@@ -74,7 +74,7 @@ return {
 
 	-- Step 16: Thunder Axe Fortress
 	-- {area:599} Thunder Axe Fortress · {spell:1294269} Burning Blade · {item:6436} Burning Gem · {item:6435} Infused Burning Gem · {item:20310} Flayed Demon Skin
-	["Ride west to {area:599}. Beat a {spell:1294269} cultist down, then use the {item:6436} on it before it dies to fill one {item:6435}. They also drop a {item:20310} now and then (1-5%); if one drops, read it."] = "",
+	["Ride west to {area:599}. Beat a {spell:1294269} cultist down, then use the {item:6436} on it before it dies to fill one {item:6435}. They also drop a {item:20310} now and then (1-5%); if one drops, read it."] = "Cavalgue para oeste até {area:599}. Deixe um sectário da {spell:1294269} com pouca vida e use a {item:6436} nele antes que morra para encher uma {item:6435}. Eles também deixam cair uma {item:20310} de vez em quando (1-5%); se cair, leia-a.",
 
 	-- Step 17: Ghost Walker Post
 	["Ride back south to the post."] = "Cavalgue de volta para o sul até o posto.",
@@ -151,7 +151,7 @@ return {
 
 	-- Step 34: Brazier of Everfount
 	-- {area:1497} Undercity · {area:228} The Sepulcher · {object:113791} Brazier of Everfount · {npc:5895} Minor Manifestation of Water · {item:7813} Shard of Water · {area:272} Tarren Mill
-	["Do your shopping in the {area:1497} first, then fly to the {area:228}. The {object:113791} stands on the hill just south-west of it: beat the Corrupt Manifestation of Water beside it, place its bracers in the brazier, speak to the {npc:5895} and keep the {item:7813} for Islen. Fly on to {area:272} from the {area:228}."] = "",
+	["Do your shopping in the {area:1497} first, then fly to the {area:228}. The {object:113791} stands on the hill just south-west of it: beat the Corrupt Manifestation of Water beside it, place its bracers in the brazier, speak to the {npc:5895} and keep the {item:7813} for Islen. Fly on to {area:272} from the {area:228}."] = "Faça suas compras em {area:1497} primeiro, depois voe até {area:228}. O {object:113791} fica na colina logo a sudoeste dele: derrote a Manifestação Menor Corrompida da Água ao lado, coloque as braçadeiras dela no braseiro, fale com a {npc:5895} e guarde o {item:7813} para Islen. De {area:228}, voe até {area:272}.",
 	-- {npc:5901} Islen Waterseer
 	["for {npc:5901}: from Stranglethorn, next guide"] = "para {npc:5901}: do Espinhaço, próximo guia",
 
@@ -218,7 +218,7 @@ return {
 	["The {area:279} traitors"] = "Os traidores de {area:279}",
 	-- {area:279} Dalaran · {npc:2414} Kegan Darkmar
 	-- plural, as words: Worn Stone Tokens = {item:3714} Worn Stone Token
-	["Head west along the foot of the mountains to the violet dome of {area:279}. Ricter, Alina and Dermot (33-34) stand together inside the crater's eastern rim, {npc:2414} (35) a little west of them; each carries one Bloodstone piece. The Shield Guards and Theurgists (31-32) around them drop the Worn Stone Tokens."] = "",
+	["Head west along the foot of the mountains to the violet dome of {area:279}. Ricter, Alina and Dermot (33-34) stand together inside the crater's eastern rim, {npc:2414} (35) a little west of them; each carries one Bloodstone piece. The Shield Guards and Theurgists (31-32) around them drop the Worn Stone Tokens."] = "Siga para oeste ao pé das montanhas até a cúpula violeta de {area:279}. Ricter, Alina e Dermot (33-34) ficam juntos dentro da borda leste da cratera, {npc:2414} (35) um pouco a oeste deles; cada um leva uma peça de Pedra-sangrenta. Os Escudeiros e Teurgos (31-32) em volta deles deixam cair as Fichas de Pedra Gasta.",
 
 	-- Step 46: Tarren Mill
 	-- {area:272} Tarren Mill
@@ -239,10 +239,4 @@ return {
 	["Fly to the {area:1497}"] = "Voar para {area:1497}",
 	-- {area:1497} Undercity · {object:3202} Grom'gol
 	["The next guide starts in the {area:1497}, at the {object:3202} zeppelin."] = "O próximo guia começa em {area:1497}, no zepelim de {object:3202}.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Do your shopping in the {area:1497} first, then fly to the {area:228}. The {object:113791} stands on the hill just south-west of it: beat the Corrupt {npc:11256} beside it, place its bracers in the brazier, speak to the {npc:5895} and keep the {item:7813} for Islen. Fly on to {area:272} from the {area:228}."] = "Faça suas compras em {area:1497} primeiro, depois voe até o {area:228}. O {object:113791} fica na colina logo a sudoeste dele: derrote a {npc:11256} Corrompida ao lado, coloque as braçadeiras dela no braseiro, fale com a {npc:5895} e guarde o {item:7813} para Islen. Do {area:228}, voe até {area:272}.",
-	-- ["Head west along the foot of the mountains to the violet dome of {area:279}. Ricter, Alina and Dermot (33-34) stand together inside the crater's eastern rim, {npc:2414} (35) a little west of them; each carries one Bloodstone piece. The Shield Guards and Theurgists (31-32) around them drop the Worn {quest:556}."] = "Siga para oeste ao pé das montanhas até a cúpula violeta de {area:279}. Ricter, Alina e Dermot (33-34) ficam juntos dentro da borda leste da cratera, {npc:2414} (35) um pouco a oeste deles; cada um leva uma peça de Pedra-sangrenta. Os Escudeiros e Teurgos (31-32) em volta deles deixam cair as {quest:556} Gastas.",
-	-- ["Ride west to {area:599}. Beat a Burning Blade cultist down, then use the {item:6436} on it before it dies to fill one {item:6435}. They also drop a {item:20310} now and then (1-5%); if one drops, read it."] = "Cavalgue para oeste até a {area:599}. Deixe um sectário da Lâmina Ardente com pouca vida e use a {item:6436} nele antes que morra para encher uma {item:6435}. Eles também deixam cair uma {item:20310} de vez em quando (1-5%); se cair, leia-a.",
-	-- ["{npc:5639} waits in the {object:172959}; {npc:5640} stands in the {object:172961} on the west side of the city. Skyborne: {npc:4949} waits in Grommash Hold, in the {object:172957}."] = "{npc:5639} espera na {object:172959}; {npc:5640} fica no {object:172961}, no lado oeste da cidade. Nascido nos Céus: {npc:4949} espera na Fortaleza Grommash, no {object:172957}.",
 }

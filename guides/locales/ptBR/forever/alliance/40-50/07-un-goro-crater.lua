@@ -20,10 +20,10 @@ return {
 
 	-- Step 5: Lar'korwi Mates and the raft
 	-- plural, as words: Lar'korwi Mates = {npc:9683} Lar'korwi Mate
-	["Lar'korwi Mates and the raft"] = "",
+	["Lar'korwi Mates and the raft"] = "Lar'korwi Fêmeas e a jangada",
 	-- {npc:8737} Linken · {item:11116} A Mangled Journal
 	-- plural, as words: Lar'korwi Mates = {npc:9683} Lar'korwi Mate
-	["The Lar'korwi Mates prowl the jungle west of Torwa. The wrecked raft lies on the shore of the lake there; the small pack sits in the water beside it. Keep the compass, map and key for {npc:8737}. Any beast in the crater may drop {item:11116}: right-click it."] = "",
+	["The Lar'korwi Mates prowl the jungle west of Torwa. The wrecked raft lies on the shore of the lake there; the small pack sits in the water beside it. Keep the compass, map and key for {npc:8737}. Any beast in the crater may drop {item:11116}: right-click it."] = "As Lar'korwi Fêmeas rondam a selva a oeste de Torwa. A jangada destruída fica na margem do lago ali; a mochila pequena está na água ao lado. Guarde a bússola, o mapa e a chave para {npc:8737}. Qualquer fera da cratera pode deixar cair {item:11116}: clique com o botão direito nele.",
 
 	-- Step 7: Marshal's Refuge
 	-- {area:541} Marshal's Refuge · {object:157936} Un'Goro Dirt Pile
@@ -42,7 +42,7 @@ return {
 	["{area:537} and the eastern jungle"] = "{area:537} e a selva leste",
 	-- {area:537} Fire Plume Ridge · {item:11113} Crate of Foodstuffs
 	-- plural, as words: Bloodpetal Lashers = {npc:6509} Bloodpetal Lasher
-	["Ride south to {area:537} in the middle of the crater, then east into the eastern jungle. Crystal clusters stand all over the crater, many of them around {area:537}: take a few extra of each colour. Bloodpetal Lashers and Threshers drop the petals; the expedition's {item:11113} sits at an abandoned camp in the eastern jungle."] = "",
+	["Ride south to {area:537} in the middle of the crater, then east into the eastern jungle. Crystal clusters stand all over the crater, many of them around {area:537}: take a few extra of each colour. Bloodpetal Lashers and Threshers drop the petals; the expedition's {item:11113} sits at an abandoned camp in the eastern jungle."] = "Siga para o sul até {area:537}, no meio da cratera, e depois para o leste, até a selva leste. Há agrupamentos de cristais por toda a cratera, muitos ao redor de {area:537}: pegue alguns a mais de cada cor. Açoitadeiras Pétala Sangrenta e Látegas Pétala Sangrenta deixam cair as pétalas; o {item:11113} da expedição está num acampamento abandonado na selva leste.",
 
 	-- Step 10: A-Me 01
 	-- {area:1943} Ironstone Plateau
@@ -187,9 +187,4 @@ return {
 	-- Step 44: Xiggs Fuselighter
 	-- {object:32359} The Military Ward
 	["Xiggs waits in the {object:32359}."] = "Xisto espera em {object:32359}.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Ride south to {area:537} in the middle of the crater, then east into the eastern jungle. Crystal clusters stand all over the crater, many of them around {area:537}: take a few extra of each colour. {item:11316} Lashers and Threshers drop the petals; the expedition's {item:11113} sits at an abandoned camp in the eastern jungle."] = "Siga para o sul até {area:537}, no meio da cratera, e depois para o leste, até a selva leste. Há agrupamentos de cristais por toda a cratera, muitos ao redor de {area:537}: pegue alguns a mais de cada cor. Açoitadeiras e Látegas de {item:11316} deixam cair as pétalas; o {item:11113} da expedição está num acampamento abandonado na selva leste.",
-	-- ["The {npc:9684} Mates prowl the jungle west of Torwa. The wrecked raft lies on the shore of the lake there; the small pack sits in the water beside it. Keep the compass, map and key for {npc:8737}. Any beast in the crater may drop {item:11116}: right-click it."] = "As Fêmeas de {npc:9684} rondam a selva a oeste de Torwa. A jangada destruída fica na margem do lago ali; a mochila pequena está na água ao lado. Guarde a bússola, o mapa e a chave para {npc:8737}. Qualquer fera da cratera pode deixar cair {item:11116}: clique com o botão direito nele.",
-	-- ["{npc:9684} Mates and the raft"] = "Fêmeas de {npc:9684} e a jangada",
 }

@@ -6,7 +6,7 @@
 -- The comments are rewritten by sync.
 return {
 	-- Guide
-	["Darkspear Trolls Reputation"] = "",
+	["Darkspear Trolls Reputation"] = "검은창 트롤 평판",
 
 	-- Step 1: Vehena: A Donation of Wool
 	-- {npc:14727} Vehena · {faction:530} Darkspear Trolls · {object:172961} Valley of Spirits · {zone:1454} Orgrimmar · {item:14047} Runecloth · {quest:7837} Additional Runecloth

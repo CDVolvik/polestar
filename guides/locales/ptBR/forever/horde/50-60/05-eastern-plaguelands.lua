@@ -43,7 +43,7 @@ return {
 	["The western hills"] = "As colinas do oeste",
 	-- {area:2260} The Marris Stead · {area:2627} Terrordale
 	-- plural, as words: Plaguehound Runts = {npc:8596} Plaguehound Runt · Plaguebats = {npc:8600} Plaguebat · Carrion Grubs = {npc:8603} Carrion Grub
-	["Plaguehound Runts and Plaguebats roam the hills north of the {area:2260}, Carrion Grubs crawl among them; work north toward {area:2627}."] = "",
+	["Plaguehound Runts and Plaguebats roam the hills north of the {area:2260}, Carrion Grubs crawl among them; work north toward {area:2627}."] = "Cães Pestilentos Miúdos e Quirópragos vagam pelas colinas ao norte de {area:2260}, e Vermes Carniceiros rastejam entre eles; avance para o norte rumo a {area:2627}.",
 
 	-- Step 9: Egan
 	-- {npc:11140} Egan · {area:2627} Terrordale
@@ -147,7 +147,4 @@ return {
 	["On to {zone:1451}"] = "Rumo a {zone:1451}",
 	-- {area:541} Marshal's Refuge · {zone:1451} Silithus · {area:3077} Valor's Rest
 	["Fly to {area:541}, then ride south-west through Un'Goro to the pass into {zone:1451}. The next guide opens at {area:3077}, where the pass comes out."] = "Voe para o {area:541}, depois siga para sudoeste pela Cratera Un'Goro até o desfiladeiro que leva a {zone:1451}. O próximo guia começa em {area:3077}, onde o desfiladeiro termina.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["{npc:8597} Runts and Plaguebats roam the hills north of the {area:2260}, Carrion Grubs crawl among them; work north toward {area:2627}."] = "Filhotes de {npc:8597} e Quirópragos vagam pelas colinas ao norte da {area:2260}, e Vermes Carniceiros rastejam entre eles; avance para o norte rumo à {area:2627}.",
 }

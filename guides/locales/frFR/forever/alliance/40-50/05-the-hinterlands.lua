@@ -12,7 +12,7 @@ return {
 	-- Step 3: Skulk Rock
 	-- {area:351} Skulk Rock · {zone:1425} The Hinterlands
 	-- plural, as words: Green Sludges = {npc:2655} Green Sludge · Jade Oozes = {npc:2656} Jade Ooze
-	["Ride north to {area:351} in the middle of the {zone:1425}. Green Sludges and Jade Oozes crawl all around it."] = "",
+	["Ride north to {area:351} in the middle of the {zone:1425}. Green Sludges and Jade Oozes crawl all around it."] = "Chevauchez vers le nord jusqu'à {area:351}, au milieu de {zone:1425}. Des Limaces vertes ({npc:2655}) et des Limons de jade ({npc:2656}) rampent tout autour.",
 
 	-- Step 4: Aerie Peak
 	-- {area:348} Aerie Peak

@@ -16,12 +16,9 @@ return {
 	["Lower {area:1583}"] = "{area:1583} inferior",
 	-- {area:1583} Blackrock Spire · {npc:10596} Mother Smolderweb
 	-- plural, as words: Spire Spider Eggs = {item:12530} Spire Spider Egg
-	["Lower {area:1583} is a group of five, level 55-60. Collect 15 Spire Spider Eggs from the nests near {npc:10596}."] = "",
+	["Lower {area:1583} is a group of five, level 55-60. Collect 15 Spire Spider Eggs from the nests near {npc:10596}."] = "{area:1583} inferior es para un grupo de cinco, nivel 55-60. Recoge 15 Huevos de araña de la cumbre ({item:12530}) de los nidos cerca de {npc:10596}.",
 
 	-- Step 3: Back to Kibler
 	-- {npc:10260} Kibler
 	["Back to {npc:10260}"] = "Regresa con {npc:10260}",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Lower {area:1583} is a group of five, level 55-60. Collect 15 {npc:10374} Eggs from the nests near {npc:10596}."] = "{area:1583} inferior es para un grupo de cinco, nivel 55-60. Recoge 15 huevos de {npc:10374} de los nidos cerca de {npc:10596}.",
 }

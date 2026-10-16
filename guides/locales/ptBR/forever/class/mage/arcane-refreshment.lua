@@ -16,13 +16,10 @@ return {
 
 	-- Step 2: Hydrospawn
 	["Hydrospawn"] = "Rebentágua",
-	["Hydrospawn, a water elemental, lives in the Warpwood Quarter (Dire Maul East): chase the imp Pusillin until he turns to fight, clear the satyr room, then take the spiral ramp down to the pool."] = "",
+	["Hydrospawn, a water elemental, lives in the Warpwood Quarter (Dire Maul East): chase the imp Pusillin until he turns to fight, clear the satyr room, then take the spiral ramp down to the pool."] = "Rebentágua, um elemental da água, vive no Warpwood Quarter (Gládio Cruel Leste): persiga o diabrete Pusillin até ele se virar para lutar, limpe a sala dos sátiros e desça a rampa em espiral até o lago.",
 	-- {item:18299} Hydrospawn Essence
 	["{item:18299}: Hydrospawn"] = "{item:18299}: Rebentágua",
 
 	-- Step 3: Back to Lydros
 	["Back to Lydros"] = "De volta a Lydros",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Hydrospawn, a water elemental, lives in the Warpwood Quarter ({area:2577} East): chase the imp Pusillin until he turns to fight, clear the satyr room, then take the spiral ramp down to the pool."] = "Rebentágua, um elemental da água, vive no Bairro Lenhatorta ({area:2577} Leste): persiga o diabrete Pusillin até ele se virar para lutar, limpe a sala dos sátiros e desça a rampa em espiral até o lago.",
 }

@@ -267,7 +267,7 @@ return {
 
 	-- Step 67: Zesty Clam Meat
 	-- {item:7974} Zesty Clam Meat
-	["{item:7974} has no drop data: buy it at the Gadgetzan Auction House, next to Dirge, or open clams looted from coastal creatures."] = "",
+	["{item:7974} has no drop data: buy it at the Gadgetzan Auction House, next to Dirge, or open clams looted from coastal creatures."] = "{item:7974}沒有掉落資料：在迪爾格·奎克里弗旁邊的加基森拍賣場購買，或打開從海岸生物身上拾取的蚌殼。",
 
 	-- Step 68: Dirge Quikcleave
 	-- {skill:185} Cooking
@@ -290,7 +290,4 @@ return {
 	-- Step 74: Monster Omelet (240-300)
 	-- {item:12218} Monster Omelet · {object:29784} Basic Campfire · {skill:185} Cooking
 	["{item:12218} is orange from 240 (yellow at 265, grey at 305): about 105 crafts to 300. Cook at any fire: {object:29784} comes with {skill:185}."] = "{item:12218}從240起為橘色（265變黃，305變灰）：製作約105次到300。在任何火堆旁都能烹飪：{object:29784}隨{skill:185}一起學會。",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["{item:7974} has no drop data: buy it at the {object:175904} House, next to Dirge, or open clams looted from coastal creatures."] = "{item:7974}沒有掉落資料：在迪爾格旁邊的{object:175904}購買，或打開從海岸生物身上拾取的蚌殼。",
 }

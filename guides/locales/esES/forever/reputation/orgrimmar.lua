@@ -6,7 +6,7 @@
 -- The comments are rewritten by sync.
 return {
 	-- Guide
-	["Orgrimmar Reputation"] = "",
+	["Orgrimmar Reputation"] = "Reputación con Orgrimmar",
 
 	-- Step 1: Rashona Straglash: A Donation of Wool
 	-- {npc:14726} Rashona Straglash · {faction:76} Orgrimmar · {item:14047} Runecloth · {quest:7832} Additional Runecloth

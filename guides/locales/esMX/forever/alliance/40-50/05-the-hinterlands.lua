@@ -12,7 +12,7 @@ return {
 	-- Step 3: Skulk Rock
 	-- {area:351} Skulk Rock · {zone:1425} The Hinterlands
 	-- plural, as words: Green Sludges = {npc:2655} Green Sludge · Jade Oozes = {npc:2656} Jade Ooze
-	["Ride north to {area:351} in the middle of the {zone:1425}. Green Sludges and Jade Oozes crawl all around it."] = "",
+	["Ride north to {area:351} in the middle of the {zone:1425}. Green Sludges and Jade Oozes crawl all around it."] = "Cabalga al norte hasta {area:351}, en el centro de {zone:1425}. Los Lodos verdes ({npc:2655}) y los Mocos de jade ({npc:2656}) se arrastran por todo el lugar.",
 
 	-- Step 4: Aerie Peak
 	-- {area:348} Aerie Peak
@@ -97,7 +97,4 @@ return {
 	["Back to {area:144}"] = "De vuelta a {area:144}",
 	-- {area:144} Thelsamar · {zone:1427} Searing Gorge · {area:1446} Thorium Point · {zone:1418} Badlands · {area:340} Kargath
 	["Hearth to {area:144}. The {zone:1427} guide starts at {area:1446}: from here, ride south into the {zone:1418}, west past the Horde town of {area:340} and up the trail into the gorge."] = "Usa la Piedra de hogar para volver a {area:144}. La guía de {zone:1427} empieza en {area:1446}: desde aquí, cabalga al sur hacia {zone:1418}, al oeste pasando el pueblo de la Horda de {area:340} y sube por el sendero hasta la garganta.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Ride north to {area:351} in the middle of the {zone:1425}. Green Sludges and {item:1529} Oozes crawl all around it."] = "Cabalga al norte hasta {area:351}, en el centro de {zone:1425}. Los lodos verdes y los mocos de {item:1529} se arrastran por todo el lugar.",
 }

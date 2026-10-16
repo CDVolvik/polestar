@@ -30,7 +30,7 @@ return {
 	-- Step 6: Va'xug Firefure
 	-- {npc:267214} Va'xug Firefure · {area:415} Astranaar
 	-- plural, as words: Shadowhorn Stags = {npc:3817} Shadowhorn Stag · Ashenvale Bears = {npc:3809} Ashenvale Bear
-	["On the ride west, {npc:267214} is stuck in a ravine south of the main road, south-east of {area:415}. Shadowhorn Stags and Ashenvale Bears roam the woods all around it."] = "",
+	["On the ride west, {npc:267214} is stuck in a ravine south of the main road, south-east of {area:415}. Shadowhorn Stags and Ashenvale Bears roam the woods all around it."] = "Cabalgando al oeste, {npc:267214} está atrapado en un barranco al sur del camino principal, al sureste de {area:415}. Los Venados Necraste ({npc:3817}) y los Osos de Vallefresno ({npc:3809}) deambulan por el bosque a su alrededor.",
 
 	-- Step 7: A Void Path
 	-- {npc:271181} Eye of Kilrogg
@@ -150,7 +150,4 @@ return {
 	-- Step 28: Tarren Mill
 	-- {area:272} Tarren Mill
 	["Follow the road east along the river, then north-east up into the hills to {area:272}."] = "Sigue el camino al este junto al río y luego al noreste, subiendo a las colinas, hasta {area:272}.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["On the ride west, {npc:267214} is stuck in a ravine south of the main road, south-east of {area:415}. Shadowhorn Stags and {zone:1440} Bears roam the woods all around it."] = "Cabalgando al oeste, {npc:267214} está atrapado en un barranco al sur del camino principal, al sureste de {area:415}. Los venados Necraste y los osos de {zone:1440} deambulan por el bosque a su alrededor.",
 }

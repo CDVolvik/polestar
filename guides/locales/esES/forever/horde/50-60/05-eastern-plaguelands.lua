@@ -43,7 +43,7 @@ return {
 	["The western hills"] = "Las colinas del oeste",
 	-- {area:2260} The Marris Stead · {area:2627} Terrordale
 	-- plural, as words: Plaguehound Runts = {npc:8596} Plaguehound Runt · Plaguebats = {npc:8600} Plaguebat · Carrion Grubs = {npc:8603} Carrion Grub
-	["Plaguehound Runts and Plaguebats roam the hills north of the {area:2260}, Carrion Grubs crawl among them; work north toward {area:2627}."] = "",
+	["Plaguehound Runts and Plaguebats roam the hills north of the {area:2260}, Carrion Grubs crawl among them; work north toward {area:2627}."] = "Los Cachorros de can de la Peste y los Murcipestes recorren las colinas al norte de {area:2260}, y las Larvas carroñeras se arrastran entre ellos; avanza hacia el norte, hacia {area:2627}.",
 
 	-- Step 9: Egan
 	-- {npc:11140} Egan · {area:2627} Terrordale

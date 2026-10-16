@@ -15,7 +15,4 @@ return {
 	["55 Legacy Points"] = "55 Pontos de Legado",
 	-- {item:281060} Replica Ironforge Air Rifle · {npc:268840} Spectral Bear Cub · {item:277717} Spectral Bear Tabard
 	["Legacy Points are account-wide: each Legacy Challenge (a class reaching 25, 45 and 60, professions, PvP, exploring) is worth one. The Progress Track gives the {item:281060} at 15, the {npc:268840} at 25, the {item:277717} at 40 and the reins at 55. How rewards are delivered is not known yet (perhaps by mail); this goal ticks once the reins are in your bags."] = "Pontos de Legado valem para a conta toda: cada Desafio de Legado (uma classe chegando a 25, 45 e 60, profissões, JxJ, exploração) vale um. A Trilha de Progresso dá a {item:281060} com 15, o {npc:268840} com 25, o {item:277717} com 40 e as rédeas com 55. Como as recompensas são entregues ainda não se sabe (talvez por correio); este objetivo é marcado quando as rédeas estiverem nas suas bolsas.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Spectral Bear"] = "Urso Espectral",
 }

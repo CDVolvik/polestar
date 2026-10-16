@@ -7,7 +7,7 @@
 return {
 	-- Guide
 	-- {spell:2842} Poisons
-	["{spell:2842} (Horde)"] = "",
+	["{spell:2842} (Horde)"] = "{spell:2842}（部落）",
 	-- {spell:2842} Poisons · {item:7676} Thistle Tea
 	["Forever teaches {spell:2842} through this chain, not the trainer; the {item:7676} recipe comes with it."] = "",
 
