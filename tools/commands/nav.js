@@ -8,9 +8,10 @@
 // `nav pack` writes Polestar's walking maps of Eastern Kingdoms and Kalimdor
 // from the grid into addon/Polestar_Nav in Shortest Path Forever's format
 // (tools/lib/nav/pack.js, chokepoints.js); `nav vendor` / `nav check` copy
-// his walking router and his other maps there and hold them to UPSTREAM.json
-// and PACK.json (tools/lib/nav/vendor.js; docs/ARCHITECTURE.md, "In-game
-// walking routes"). `nav eval` runs that router standalone on a folder's
+// his map of Zephras Isle there and hold the folder to UPSTREAM.json and
+// PACK.json (tools/lib/nav/vendor.js; docs/ARCHITECTURE.md, "In-game walking
+// routes"); the walking router (Routing/) is Polestar's, started from his.
+// `nav eval` runs that router standalone on a folder's
 // maps over a route corpus and a per-zone goal sweep, and judges two folders
 // against the walking maps' acceptance checks (tools/lib/nav/eval).
 
@@ -65,9 +66,8 @@ pack    Polestar's walking maps of maps 0 (Eastern Kingdoms) and 1
         cells (default 128, 4.17 yd); --date dates the generated headers
         (default today; the same grid, cells and date give the same bytes).
         --check only compares the folder with PACK.json.
-vendor  copies Shortest Path Forever's walking router (Routing/PathGrid.lua,
-        Routing/Path.lua, Routing/PathJobs.lua) and his walking maps of the
-        maps Polestar does not pack (Nav/Nav2991*.lua, Zephras Isle) from a
+vendor  copies Shortest Path Forever's walking maps of the maps Polestar
+        does not pack (Nav/Nav2991*.lua, Zephras Isle) from a
         clean git checkout whose origin is
         https://github.com/cjber/shortest-path-forever (https or ssh; any
         uncommitted or untracked change, or another origin, is refused)
@@ -83,7 +83,8 @@ vendor  copies Shortest Path Forever's walking router (Routing/PathGrid.lua,
         date, sha256 of every vendored file) and Nav/Nav.xml. Files the
         previous UPSTREAM.json listed that the new commit no longer has are
         removed; no other file in the folder is touched (Polestar's packed
-        maps stay). Update CREDITS.md's commit line by hand.
+        maps and the walking router in Routing/, Polestar's since 2026-10-16,
+        stay). Update CREDITS.md's commit line by hand.
 check   the vendored files match UPSTREAM.json and the transform, the packed
         maps PACK.json, and Nav/Nav.xml lists both.
 eval    the walking router run standalone (LuaJIT, else Lua 5.1; a folder
@@ -454,4 +455,4 @@ async function run(argv) {
 	}
 }
 
-module.exports = { name: 'nav', summary: "Terrain navigation from the client geometry (build the grid, route between map points) and Shortest Path Forever's vendored walking router (Polestar_Nav)", usage, run };
+module.exports = { name: 'nav', summary: "Terrain navigation from the client geometry (build the grid, route between map points) and Polestar's walking router with its maps (Polestar_Nav)", usage, run };

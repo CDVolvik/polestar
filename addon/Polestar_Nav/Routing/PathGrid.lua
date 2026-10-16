@@ -1,4 +1,9 @@
--- Polestar_Nav: Routing/PathGrid.lua from Shortest Path Forever (https://github.com/cjber/shortest-path-forever) at b1ad5bd4bf579c781937af0e25f5233cc94b3726, Copyright (C) 2026 Cillian Berragan, GPL-3.0-or-later. Modified for Polestar on 2026-10-16 by `node tools/polestar.js nav vendor`: the data global is PolestarPathData.
+-- Polestar's walking router. Started from Shortest Path Forever v1.16.0 (b1ad5bd) by Cillian Berragan (GPL-3.0-or-later); modified for Polestar since 2026-10-16.
+-- Routing/PathGrid.lua: Copyright (C) 2026 Cillian Berragan (https://github.com/cjber/shortest-path-forever); Polestar's
+-- changes Copyright (c) 2026 The Polestar authors. This program is free software: you can redistribute it and/or modify
+-- it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3
+-- of the License, or (at your option) any later version. It is distributed WITHOUT ANY WARRANTY; see the GNU General
+-- Public License in this folder's LICENSE.
 ---@class SPFNamespace
 local ns = select(2, ...)
 
@@ -8,6 +13,8 @@ local ns = select(2, ...)
 -- Coordinates are UnitPosition's frame (x north, y west).
 -- A cell holds its base surface and, where surfaces overlap (a tunnel under a mountain, a city under ruins, both
 -- ends of a lift), floors above or below it. A node is a local cell (the base surface) or C * C + a floor's index.
+-- A map of format 2 also carries a ground class byte per node (the class field, Routing/Costs.lua); format 1 maps
+-- (0.2.4's) have none and are class 0 everywhere.
 -- This file holds the decoded maps, their memory ceilings, frame slicing and string-pulling; Path.lua searches them
 -- and PathJobs.lua schedules the searches.
 ---@class SPFPath
@@ -85,9 +92,19 @@ end
 
 local states = {}
 
+-- A field's string for cluster key (k + 1), decoded on first use; nil when the map lacks it (format 1 has no class
+-- field) or the cluster has none.
 local function unpackField(data, field, key)
-	if data[field][key] or not data.packed then
-		return data[field][key]
+	local loose = data[field]
+	if loose == nil then
+		if not (data.packed and data.packed[field]) then
+			return nil
+		end
+		loose = {}
+		data[field] = loose
+	end
+	if loose[key] or not data.packed then
+		return loose[key]
 	end
 	local blocks = data.packed[field][key]
 	if not blocks then
@@ -104,8 +121,13 @@ local function unpackField(data, field, key)
 		chunks[i] = raw
 	end
 	local raw = table.concat(chunks)
-	data[field][key] = raw
+	loose[key] = raw
 	return raw
+end
+
+-- Does a map's data carry ground classes (format 2)?
+local function Classed(D)
+	return D.class ~= nil or (D.packed ~= nil and D.packed.class ~= nil)
 end
 
 local function State(map)
@@ -131,6 +153,7 @@ local function State(map)
 			cs = TILE / C,
 			swim = D.swim,
 			zstep = D.zstep,
+			classed = Classed(D), -- format 2: Path.lua prices steps by class and the heuristic by Costs.MIN
 			sizes = {},
 			used = {}, -- [k] = last use, for eviction
 			decoded = 0,
@@ -139,6 +162,7 @@ local function State(map)
 			z = {}, -- [k][node + 1] = height of a walkable node
 			at = {}, -- [k][node + 1] = a floor's local cell; [k][-(lc + 1)] = the cell's first floor node
 			links = {}, -- [k][node + 1] = { direction + 8 * (layer + 1), ... } steps besides the base grid's
+			cls = {}, -- [k][node + 1] = ground class byte (Routing/Costs.lua); ZERO for a cluster without classes
 			graphUsed = {},
 			graphSize = {},
 			nodes = {}, -- [k] = entrance ids (k * 4096 + i)
@@ -319,6 +343,42 @@ local function decodeFloors(st, k, val, z, chunks)
 	return at, links
 end
 
+-- Every node of a cluster without classes (a format 1 map, or a format 2 cluster the field skips) is class 0. Shared
+-- and never written: a search reads it like a decoded class array.
+local ZERO = setmetatable({}, {
+	__index = function()
+		return 0
+	end,
+	__newindex = function()
+		error("PathGrid: the shared class-0 table is read-only")
+	end,
+})
+
+-- The class field of a cluster: one byte per node in node order, run-length like the grid field (a symbol >= 48
+-- repeats the previous value (symbol - 47) more times); nodes past its end (floors it does not cover) are class 0.
+local function decodeClasses(s, nodes)
+	local cls, n, value = {}, 0, 0
+	for i = 1, #s do
+		if i % 256 == 0 then
+			slice()
+		end
+		local sym = B64[byte(s, i)]
+		if sym < 48 then
+			value, n = sym, n + 1
+			cls[n] = value
+		else
+			for _ = 48, sym do
+				n = n + 1
+				cls[n] = value
+			end
+		end
+	end
+	for i = n + 1, nodes do
+		cls[i] = 0
+	end
+	return cls
+end
+
 local function decodeGrid(st, k)
 	Path.decodes = (Path.decodes or 0) + 1
 	local chunks = unpackField(st.D, "grid", k + 1)
@@ -334,6 +394,11 @@ local function decodeGrid(st, k)
 	end
 	local floors = unpackField(st.D, "floor", k + 1)
 	if st.D.packed and st.D.packed.floor[k + 1] and not floors then
+		st.val[k] = false
+		return false
+	end
+	local classes = st.classed and unpackField(st.D, "class", k + 1)
+	if st.classed and st.D.packed and st.D.packed.class and st.D.packed.class[k + 1] and not classes then
 		st.val[k] = false
 		return false
 	end
@@ -397,18 +462,18 @@ local function decodeGrid(st, k)
 	local z = {}
 	decodeHeights(st, val, z, height)
 	local at, links = decodeFloors(st, k, val, z, floors)
-	return val, m, z, at, links
+	return val, m, z, at, links, classes and decodeClasses(classes, #val) or ZERO
 end
 
 -- Lua 5.1 array slots occupy 16 bytes and grow by powers of two. Charge sparse floor/link hashes
 -- conservatively too; this is a memory ceiling across continents, not a cluster count estimate.
 local useClock, decodedKB, decodedCount = 0, 0, 0
-local function gridSize(val, at, links)
+local function gridSize(val, at, links, cls)
 	local capacity = 1
 	while capacity < #val do
 		capacity = capacity * 2
 	end
-	local bytes = capacity * 16 * 3 + 5 * 64
+	local bytes = capacity * 16 * (cls == ZERO and 3 or 4) + 5 * 64
 	for _ in pairs(at) do
 		bytes = bytes + 64
 	end
@@ -422,6 +487,7 @@ local function evict(st, oldest)
 	decodedKB, decodedCount = decodedKB - st.sizes[oldest], decodedCount - 1
 	st.sizes[oldest], st.used[oldest] = nil, nil
 	st.val[oldest], st.moves[oldest], st.z[oldest], st.at[oldest], st.links[oldest] = nil, nil, nil, nil, nil
+	st.cls[oldest] = nil
 	st.decoded = st.decoded - 1
 end
 
@@ -447,8 +513,8 @@ end
 local function grid(st, k)
 	local val = st.val[k]
 	if val == nil then
-		local m, z, at, links
-		val, m, z, at, links = decodeGrid(st, k)
+		local m, z, at, links, cls
+		val, m, z, at, links, cls = decodeGrid(st, k)
 		-- Decoding may yield; only complete grids are published to concurrent searches.
 		if st.val[k] ~= nil then
 			return grid(st, k)
@@ -456,13 +522,16 @@ local function grid(st, k)
 		if not val then
 			return false
 		end
-		local size = gridSize(val, at, links)
+		local size = gridSize(val, at, links, cls)
 		trim(st, size)
-		st.val[k], st.moves[k], st.z[k], st.at[k], st.links[k] = val, m, z, at, links
+		st.val[k], st.moves[k], st.z[k], st.at[k], st.links[k], st.cls[k] = val, m, z, at, links, cls
 		st.sizes[k], st.decoded, decodedKB = size, st.decoded + 1, decodedKB + size
 		decodedCount = decodedCount + 1
 		if st.D.packed then
 			st.D.grid[k + 1], st.D.height[k + 1], st.D.floor[k + 1] = nil, nil, nil
+			if st.D.class then
+				st.D.class[k + 1] = nil
+			end
 		end
 	end
 	if val then
@@ -840,6 +909,9 @@ local function Idle()
 		end
 		if st.D.packed then
 			st.D.grid, st.D.height, st.D.floor = {}, {}, {}
+			if st.classed then
+				st.D.class = {}
+			end
 		end
 	end
 	trimGraphs()
@@ -849,6 +921,9 @@ local function Reset()
 	for _, st in pairs(states) do
 		if st.D.packed then
 			st.D.graph, st.D.grid, st.D.height, st.D.floor = {}, {}, {}, {}
+			if st.classed then
+				st.D.class = {}
+			end
 		end
 	end
 	states = {}
@@ -877,6 +952,7 @@ ns.PathGrid = {
 	Deadline = Deadline,
 	Expansions = Expansions,
 	State = State,
+	Classed = Classed,
 	surface = surface,
 	grid = grid,
 	cellOf = cellOf,

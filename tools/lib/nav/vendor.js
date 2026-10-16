@@ -1,25 +1,30 @@
 'use strict';
-// Shortest Path Forever's walking router, vendored into addon/Polestar_Nav
-// (docs/ARCHITECTURE.md, "In-game walking routes (Polestar_Nav)"). Cillian
-// Berragan wrote it (https://github.com/cjber/shortest-path-forever,
-// GPL-3.0-or-later) and agreed to Polestar using it. Copies his
-// Routing/PathGrid.lua, Path.lua, PathJobs.lua and the walking maps of the
-// maps Polestar does not pack itself (OWN_MAPS are `nav pack`'s, pack.js)
-// with one mechanical change: the data global ShortestPathForeverPathData
-// becomes PolestarPathData, so Polestar always reads its own copy of the
-// maps and never Shortest Path Forever's (whose engine evicts decoded entries
-// from its tables mid-search). Each file gains one header line naming its
-// upstream file, commit, copyright and licence and the date of the change
-// (the dated notice of GPLv3 section 5a). Writes UPSTREAM.json ({ repo,
-// commit, version, vendored: date, files: { path: sha256 } } of the vendored
-// files) and Nav/Nav.xml (navXml: the packed maps of PACK.json, then the
-// vendored ones, then the chokepoints).
+// Shortest Path Forever's walking map of Zephras Isle, vendored into
+// addon/Polestar_Nav (docs/ARCHITECTURE.md, "In-game walking routes
+// (Polestar_Nav)"). Cillian Berragan baked it
+// (https://github.com/cjber/shortest-path-forever, GPL-3.0-or-later) and
+// agreed to Polestar using his work. Copies the walking maps of the maps
+// Polestar does not pack itself (OWN_MAPS are `nav pack`'s, pack.js) with one
+// mechanical change: the data global ShortestPathForeverPathData becomes
+// PolestarPathData, so Polestar always reads its own copy of the maps and
+// never Shortest Path Forever's (whose engine evicts decoded entries from its
+// tables mid-search). Each file gains one header line naming its upstream
+// file, commit, copyright and licence and the date of the change (the dated
+// notice of GPLv3 section 5a). Writes UPSTREAM.json ({ repo, commit, version,
+// vendored: date, files: { path: sha256 } } of the vendored files) and
+// Nav/Nav.xml (navXml: the packed maps of PACK.json, then the vendored ones,
+// then the chokepoints).
+//
+// The walking router (Routing/) is not vendored: it started from his v1.16.0
+// and Polestar maintains it since 2026-10-16, so `nav vendor` never copies,
+// removes or checks anything under Routing/, even where an older
+// UPSTREAM.json listed it.
 //
 // Safety: the checkout must be clean with origin github.com/cjber/
 // shortest-path-forever (upstreamMeta); the output folder must hold an
 // UPSTREAM.json or be new and empty, and only files its UPSTREAM.json listed
-// are ever removed, so Polestar's own files there (API.lua, the packed maps,
-// Chokepoints.lua, PACK.json) are never touched.
+// are ever removed, so Polestar's own files there (Routing/, API.lua, the
+// packed maps, Chokepoints.lua, PACK.json) are never touched.
 //
 // Map file names come from upstream's Nav.xml; only Nav<id>[_<part>].lua
 // names are accepted, so a checkout cannot make the tool read or write
@@ -37,7 +42,6 @@ const { spawnSync } = require('node:child_process');
 const REPO = 'https://github.com/cjber/shortest-path-forever';
 const OLD_GLOBAL = 'ShortestPathForeverPathData';
 const NEW_GLOBAL = 'PolestarPathData';
-const ROUTING = ['Routing/PathGrid.lua', 'Routing/Path.lua', 'Routing/PathJobs.lua'];
 const NAV_XML = 'Nav/Nav.xml';
 const HEADER = '-- Polestar_Nav: ';
 const MAP_NAME = /^Nav\w*\.lua$/;
@@ -48,8 +52,8 @@ const ownMap = (name) => OWN_MAPS.some((m) => new RegExp(`^Nav${m}(_\\d+)?\\.lua
 
 const sha256 = (text) => crypto.createHash('sha256').update(text).digest('hex');
 
-// The upstream files to vendor, in load order: the routing code, then the
-// map files its Nav.xml lists for maps not in OWN_MAPS.
+// The upstream files to vendor, in load order: the map files its Nav.xml
+// lists for maps not in OWN_MAPS.
 function upstreamFiles(srcDir) {
 	const xml = path.join(srcDir, ...NAV_XML.split('/'));
 	if (!fs.existsSync(xml)) throw new Error(`${srcDir} has no ${NAV_XML}: not a Shortest Path Forever checkout`);
@@ -57,16 +61,16 @@ function upstreamFiles(srcDir) {
 	const bad = names.filter((n) => !MAP_NAME.test(n));
 	if (bad.length) throw new Error(`${NAV_XML} lists files that are not map files (Nav<name>.lua in Nav/): ${bad.map((n) => JSON.stringify(n)).join(', ')}`);
 	if (!names.length) throw new Error(`${NAV_XML} lists no map files`);
-	const files = [...ROUTING, ...names.filter((n) => !ownMap(n)).map((n) => `Nav/${n}`)];
+	const files = names.filter((n) => !ownMap(n)).map((n) => `Nav/${n}`);
 	for (const rel of files) {
 		if (!fs.existsSync(path.join(srcDir, ...rel.split('/')))) throw new Error(`${srcDir} has no ${rel}`);
 	}
 	return files;
 }
 
-// A vendored file's path is Routing/<one of ours> or a map file of a map we do not pack.
+// A vendored file's path is a map file of a map we do not pack (Routing/ is ours).
 function vendoredPath(rel) {
-	return ROUTING.includes(rel) || (rel.startsWith('Nav/') && MAP_NAME.test(rel.slice(4)) && !ownMap(rel.slice(4)));
+	return rel.startsWith('Nav/') && MAP_NAME.test(rel.slice(4)) && !ownMap(rel.slice(4));
 }
 
 // Nav/Nav.xml of an addon folder: the packed maps (PACK.json, in its order),
@@ -163,7 +167,7 @@ function previousFiles(addonDir) {
 	return Object.keys(manifest.files).filter(vendoredPath);
 }
 
-// Copies srcDir's router into addonDir. `meta` ({ commit, version }) defaults
+// Copies srcDir's walking maps into addonDir. `meta` ({ commit, version }) defaults
 // to the checkout's (upstreamMeta); `date` (YYYY-MM-DD, the notices' date) to
 // today. Removes only files the previous UPSTREAM.json listed (and that are
 // still his: the maps of OWN_MAPS are ours since `nav pack`) that the new
@@ -198,10 +202,10 @@ function vendor(srcDir, addonDir, meta = upstreamMeta(srcDir), date = new Date()
 }
 
 // What differs between addonDir and its UPSTREAM.json: changed, missing and
-// unlisted vendored files under Routing/ and Nav/ (the packed maps, the
-// chokepoints and Nav.xml are pack.js checkPack's), and a vendored file the
-// transform would change. [] when it matches. A missing or unreadable UPSTREAM.json is
-// the one problem reported.
+// unlisted vendored files under Nav/ (the packed maps, the chokepoints and
+// Nav.xml are pack.js checkPack's; Routing/ is Polestar's and checked against
+// nothing), and a vendored file the transform would change. [] when it
+// matches. A missing or unreadable UPSTREAM.json is the one problem reported.
 function checkVendored(addonDir) {
 	const problems = [];
 	const file = path.join(addonDir, 'UPSTREAM.json');
@@ -229,7 +233,7 @@ function checkVendored(addonDir) {
 		if (sha256(text) !== want) problems.push(`${rel} differs from UPSTREAM.json`);
 		else if (transform(rel, text, manifest.commit, manifest.vendored) !== text) problems.push(`${rel} is not what the transform gives`);
 	}
-	for (const dir of ['Routing', 'Nav']) {
+	for (const dir of ['Nav']) {
 		const abs = path.join(addonDir, dir);
 		for (const name of fs.existsSync(abs) ? fs.readdirSync(abs) : []) {
 			const rel = `${dir}/${name}`;
@@ -240,4 +244,4 @@ function checkVendored(addonDir) {
 	return problems;
 }
 
-module.exports = { REPO, OLD_GLOBAL, NEW_GLOBAL, ROUTING, OWN_MAPS, upstreamFiles, transform, upstreamMeta, vendor, checkVendored, navXml };
+module.exports = { REPO, OLD_GLOBAL, NEW_GLOBAL, OWN_MAPS, upstreamFiles, transform, upstreamMeta, vendor, checkVendored, navXml };

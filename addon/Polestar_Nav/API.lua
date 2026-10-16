@@ -1,13 +1,15 @@
--- Polestar_Nav's handoff to Polestar: the global Polestar_NavEngine is Shortest
--- Path Forever's Path table (Routing/), which Polestar's Nav keeps as
--- ns.Nav.Path. Its calls are upstream's: Find(map, from, to, callback,
--- waterWalking), FindCost, FindMany, Cancel(job), Busy(), with points in
--- UnitPosition's frame (x north, y west, z optional) and map the instance map
--- ID (0 Eastern Kingdoms, 1 Kalimdor, 2991 Zephras Isle). The maps of 0 and 1
--- are Polestar's own (`nav pack`, PACK.json: 128 cells a tile, 4.17 yd), 2991
--- is his. The engine reads only PolestarPathData, our own copy of the maps,
--- never an installed Shortest Path Forever's tables (its engine evicts
--- decoded entries while ours may be searching them). Added here:
+-- Polestar_Nav's handoff to Polestar: the global Polestar_NavEngine is the
+-- walking router's Path table (Routing/, Polestar's router, started from
+-- Shortest Path Forever v1.16.0 by Cillian Berragan), which Polestar's Nav
+-- keeps as ns.Nav.Path. Its calls are Shortest Path Forever's: Find(map, from,
+-- to, callback, opts), FindCost, FindMany, Cancel(job), Busy(), where opts is
+-- the waterWalking flag or { waterWalking, profile } (Routing/Path.lua), with
+-- points in UnitPosition's frame (x north, y west, z optional) and map the
+-- instance map ID (0 Eastern Kingdoms, 1 Kalimdor, 2991 Zephras Isle). The
+-- maps of 0 and 1 are Polestar's own (`nav pack`, PACK.json: 128 cells a tile,
+-- 4.17 yd), 2991 is his. The engine reads only PolestarPathData, our own copy
+-- of the maps, never an installed Shortest Path Forever's tables (its engine
+-- evicts decoded entries while ours may be searching them). Added here:
 --
 --   Path.Available(map) -> true when walking routes can be found on that map
 --

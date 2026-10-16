@@ -1,7 +1,7 @@
 -- Walking paths: the arrow follows real paths on the ground instead of a
--- straight line, from the walking engine of Shortest Path Forever by Cillian
--- Berragan (https://github.com/cjber/shortest-path-forever, GPL-3.0-or-later),
--- vendored in the load-on-demand addon Polestar_Nav.
+-- straight line, from Polestar's walking router in the load-on-demand addon
+-- Polestar_Nav, started from the walking engine of Shortest Path Forever by
+-- Cillian Berragan (https://github.com/cjber/shortest-path-forever, GPL-3.0-or-later).
 -- Portions Copyright (C) 2026 Cillian Berragan (Shortest Path Forever, GPL-3.0-or-later); adapted for Polestar, 2026-10-15.
 -- Portions Copyright (C) 2026 Cillian Berragan (Shortest Path Forever v1.16.0, Journey/JourneySearch.lua's goal batch, GPL-3.0-or-later); adapted for Polestar, 2026-10-16.
 --

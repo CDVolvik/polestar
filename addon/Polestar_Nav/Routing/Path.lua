@@ -1,12 +1,19 @@
--- Polestar_Nav: Routing/Path.lua from Shortest Path Forever (https://github.com/cjber/shortest-path-forever) at b1ad5bd4bf579c781937af0e25f5233cc94b3726, Copyright (C) 2026 Cillian Berragan, GPL-3.0-or-later. Modified for Polestar on 2026-10-16 by `node tools/polestar.js nav vendor`: the data global is PolestarPathData.
+-- Polestar's walking router. Started from Shortest Path Forever v1.16.0 (b1ad5bd) by Cillian Berragan (GPL-3.0-or-later); modified for Polestar since 2026-10-16.
+-- Routing/Path.lua: Copyright (C) 2026 Cillian Berragan (https://github.com/cjber/shortest-path-forever); Polestar's
+-- changes Copyright (c) 2026 The Polestar authors. This program is free software: you can redistribute it and/or modify
+-- it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3
+-- of the License, or (at your option) any later version. It is distributed WITHOUT ANY WARRANTY; see the GNU General
+-- Public License in this folder's LICENSE.
 ---@class SPFNamespace
 local ns = select(2, ...)
 
 -- Walking searches over PathGrid.lua's decoded maps: HPA* between ADT-tile clusters, an 8 yd grid inside them, and
--- FindMany's abstract Dijkstra. PathJobs.lua slices them over frames.
+-- FindMany's abstract Dijkstra. PathJobs.lua slices them over frames. On a map with ground classes (format 2) a grid
+-- step costs its length times Costs.Mult(the class of the node it enters, the player's profile), times the swim
+-- factor in water, and the A* heuristics scale by Costs.MIN; a map without them (format 1) routes as before classes.
 ---@class SPFPath
 local Path = ns.Path
-local Grid = ns.PathGrid
+local Grid, Costs = ns.PathGrid, ns.Costs
 local tick, Deadline, Expansions, State, surface, grid =
 	Grid.tick, Grid.Deadline, Grid.Expansions, Grid.State, Grid.surface, Grid.grid
 local cellOf, nodesOf, metadata, adjacent = Grid.cellOf, Grid.nodesOf, Grid.metadata, Grid.adjacent
@@ -20,6 +27,36 @@ local START, GOAL = -1, -2
 
 local floor, sqrt, huge, max, abs = math.floor, math.sqrt, math.huge, math.max, math.abs
 local yield = coroutine.yield
+
+-- Class multipliers by class byte for a profile ("Alliance", "Horde" or none), built once each.
+local mults = {}
+-- A search's step multipliers on map state st for profile: nil on a map without classes (every step costs its length),
+-- and the heuristics' factor (Costs.MIN with classes, else 1, so a format 1 map searches exactly as before).
+local function weights(st, profile)
+	if not st.classed then
+		return nil, 1
+	end
+	local tag = Costs.Profile(profile) or ""
+	local mult = mults[tag]
+	if not mult then
+		mult = { tag = tag }
+		for c = 0, 47 do -- every byte a run-length literal can hold
+			mult[c] = Costs.Mult(c, Costs.Profile(profile))
+		end
+		mults[tag] = mult
+	end
+	return mult, Costs.MIN
+end
+
+-- The fifth argument of Find, FindCost and FindMany (the fourth of FindSync and FindManySync): a boolean is the
+-- waterWalking flag every caller passed before profiles; a table is opts { waterWalking = boolean, profile =
+-- "Alliance" | "Horde" | nil }. -> waterWalking, profile
+local function options(opts)
+	if type(opts) == "table" then
+		return opts.waterWalking, opts.profile
+	end
+	return opts, nil
+end
 
 -- Binary min-heap on parallel arrays, reset per search.
 local hk, hv, hn = {}, {}, 0
@@ -61,20 +98,21 @@ local function pop()
 	return top
 end
 
--- Grid search inside one cluster, entering water costing swim times its length. tree holds g/parent keyed by
--- node + 1. With goal set it is A*, otherwise Dijkstra that stops once every node in targets (a set of nodes) is
--- settled.
+-- Grid search inside one cluster, entering water costing swim times its length and, with mult (weights), a node of
+-- class c mult[c] times it. tree holds g/parent keyed by node + 1. With goal set it is A*, otherwise Dijkstra that
+-- stops once every node in targets (a set of nodes) is settled.
 local function Tree()
 	return { g = {}, par = {}, stamp = {}, closed = {}, gen = 0 }
 end
 -- One grid search loop; splitting moves its retained arrays to upvalues on the hot path
-local function search(st, k, swim, source, tree, goal, targets, left)
+local function search(st, k, swim, mult, source, tree, goal, targets, left)
 	local val = grid(st, k)
 	-- Search only enters populated grids, through snapped endpoints or decoded entrances.
 	---@cast val number[]
 	-- A paused search retains these arrays even if another job evicts its cluster.
-	local m, z, at, links = st.moves[k], st.z[k], st.at[k], st.links[k]
+	local m, z, at, links, cls = st.moves[k], st.z[k], st.at[k], st.links[k], mult and st.cls[k]
 	local C, cs = st.C, st.cs
+	local hs = cs * (mult and Costs.MIN or 1) -- the cheapest yard: the heuristic never overstates
 	local N = C * C
 	local g, par, stamp, closed = tree.g, tree.par, tree.stamp, tree.closed
 	tree.gen = tree.gen + 1
@@ -93,7 +131,7 @@ local function search(st, k, swim, source, tree, goal, targets, left)
 	local u, ux, uy, gu
 	local function relax(v, length)
 		local i = v + 1
-		local gv = gu + length * cs * (val[i] == 2 and swim or 1)
+		local gv = gu + length * cs * (cls and mult[cls[i]] or 1) * (val[i] == 2 and swim or 1)
 		if stamp[i] ~= gen or gv < g[i] then
 			g[i], par[i], stamp[i] = gv, u, gen
 			local h = 0
@@ -106,7 +144,7 @@ local function search(st, k, swim, source, tree, goal, targets, left)
 				if ay < 0 then
 					ay = -ay
 				end
-				h = (ax > ay and ax + (SQRT2 - 1) * ay or ay + (SQRT2 - 1) * ax) * cs
+				h = (ax > ay and ax + (SQRT2 - 1) * ay or ay + (SQRT2 - 1) * ax) * hs
 			end
 			push(gv + h, v)
 		end
@@ -196,7 +234,7 @@ local trees = { S = Tree(), G = Tree(), R = Tree() }
 local ag, apar, astamp, aclosed, agen = {}, {}, {}, {}, 0
 
 -- Endpoint searches: grid Dijkstra to the cluster's entrances.
-local function endpoint(st, swim, tree, k, node)
+local function endpoint(st, swim, mult, tree, k, node)
 	local targets, left = {}, 0
 	for _, id in ipairs(nodesOf(st, k)) do
 		local e = entrance(st, id)
@@ -204,13 +242,13 @@ local function endpoint(st, swim, tree, k, node)
 			targets[e], left = true, left + 1
 		end
 	end
-	search(st, k, swim, node, tree, nil, targets, left)
+	search(st, k, swim, mult, node, tree, nil, targets, left)
 end
 -- An endpoint on a rooftop or ledge the grid cannot leave moves to the nearest node that reaches an entrance,
 -- down a ledge but never up one or onto another level.
-local function settle(st, swim, tree, k, node)
+local function settle(st, swim, mult, tree, k, node)
 	local C = st.C
-	endpoint(st, swim, tree, k, node)
+	endpoint(st, swim, mult, tree, k, node)
 	local function connected()
 		for _, id in ipairs(nodesOf(st, k)) do
 			local e = entrance(st, id)
@@ -241,7 +279,7 @@ local function settle(st, swim, tree, k, node)
 					local rise = near and st.z[k][near + 1] - h
 					if near and rise <= ZTOL and rise >= -DROP and not reached(tree, near) then
 						tries, node = tries + 1, near
-						endpoint(st, swim, tree, k, node)
+						endpoint(st, swim, mult, tree, k, node)
 						if connected() then
 							return node
 						end
@@ -276,14 +314,15 @@ local function pointNode(st, point)
 end
 
 -- Fixed places recur in both batches and in later journeys. Keep their small entrance-cost vectors and only the
--- last eight grid trees; cap the cache so moving start positions cannot grow it for the entire play session.
-local function connect(st, swim, k, node)
+-- last eight grid trees; cap the cache so moving start positions cannot grow it for the entire play session. A
+-- connection is priced for one profile on a map with classes (mult.tag), for every profile on one without.
+local function connect(st, swim, mult, k, node)
 	nodesOf(st, k)
-	local key = k .. ":" .. node .. ":" .. swim
+	local key = k .. ":" .. node .. ":" .. swim .. ":" .. (mult and mult.tag or "")
 	local entry = st.ends[key]
 	if not entry then
 		local tree = Tree()
-		node = settle(st, swim, tree, k, node)
+		node = settle(st, swim, mult, tree, k, node)
 		entry = { node = node, edges = connections(st, tree, k), tree = tree }
 		-- A handful of local trees removes repeated endpoint searches without retaining a continent's grids.
 		st.endTrees = st.endTrees or {}
@@ -303,7 +342,7 @@ end
 -- any surface at its spot, so it starts from each one within a cell of it at a distinct height and the search keeps
 -- the cheapest: a street beside or over a canal is not walked from the canal bed. Returns each surface's connection,
 -- the entrance costs merged by minimum and, per entrance, the surface it came from.
-local function connectPoint(st, swim, k, node, h)
+local function connectPoint(st, swim, mult, k, node, h)
 	local nodes = { node }
 	if not h then
 		local values = grid(st, k)
@@ -344,7 +383,7 @@ local function connectPoint(st, swim, k, node, h)
 	end
 	local ends, merged, via = {}, {}, {}
 	for _, start in ipairs(nodes) do
-		local n, edges, tree = connect(st, swim, k, start)
+		local n, edges, tree = connect(st, swim, mult, k, start)
 		ends[#ends + 1] = { node = n, tree = tree }
 		for id, cost in pairs(edges) do
 			if not merged[id] or cost < merged[id] then
@@ -355,7 +394,7 @@ local function connectPoint(st, swim, k, node, h)
 	return ends, merged, via
 end
 -- Sliced A* and refinement share scratch trees; splitting adds hot-path calls and upvalues
-local function run(map, from, to, waterWalking, costOnly)
+local function run(map, from, to, waterWalking, costOnly, profile)
 	local st = State(map)
 	if not st then
 		return nil, "nodata"
@@ -365,6 +404,7 @@ local function run(map, from, to, waterWalking, costOnly)
 	if waterWalking then
 		swim, cost2 = 1, 2
 	end
+	local mult, hmin = weights(st, profile)
 	local sk, sc = locate(st, from.x, from.y)
 	local gk, gc = locate(st, to.x, to.y)
 	if not sk or not gk then
@@ -377,9 +417,9 @@ local function run(map, from, to, waterWalking, costOnly)
 	local C = st.C
 
 	local S, G = trees.S, trees.G
-	local starts, source, sourceVia = connectPoint(st, swim, sk, sc, from.z)
-	local goals, target, targetVia = connectPoint(st, swim, gk, gc, to.z)
-	local key = table.concat({ sk, sc, gk, gc, swim, from.z and 1 or 0, to.z and 1 or 0 }, ":")
+	local starts, source, sourceVia = connectPoint(st, swim, mult, sk, sc, from.z)
+	local goals, target, targetVia = connectPoint(st, swim, mult, gk, gc, to.z)
+	local key = table.concat({ sk, sc, gk, gc, swim, from.z and 1 or 0, to.z and 1 or 0, mult and mult.tag or "" }, ":")
 	st.paths = st.paths or {}
 	local cached = st.paths[key]
 	local hops, cost, directFrom, directTo
@@ -391,7 +431,7 @@ local function run(map, from, to, waterWalking, costOnly)
 		if sk == gk then
 			for _, a in ipairs(starts) do
 				for _, b in ipairs(goals) do
-					if search(st, sk, swim, a.node, S, b.node) and (not direct or S.g[b.node + 1] < direct) then
+					if search(st, sk, swim, mult, a.node, S, b.node) and (not direct or S.g[b.node + 1] < direct) then
 						direct, directFrom, directTo = S.g[b.node + 1], a.node, b.node
 					end
 				end
@@ -418,11 +458,12 @@ local function run(map, from, to, waterWalking, costOnly)
 			local k, lc = floor(id / 4096), metadata(st, id)
 			return x0 + (floor(k / st.ny) * C + floor(lc / C) + 0.5) * cs, y0 + ((k % st.ny) * C + lc % C + 0.5) * cs
 		end
-		-- Rounded graph edges and snapping must not let the heuristic overstate the remaining cost.
+		-- Rounded graph edges, snapping and, with classes, a yard cheaper than running (Costs.MIN) must not let the
+		-- heuristic overstate the remaining cost.
 		local goalCell = cellOf(st, gk, gc)
 		local goalX = x0 + (floor(gk / st.ny) * C + floor(goalCell / C) + 0.5) * cs
 		local goalY = y0 + (gk % st.ny * C + goalCell % C + 0.5) * cs
-		local lower = max(0, 1 - 0.5 / cs)
+		local lower = max(0, 1 - 0.5 / cs) * hmin
 		local function h(id)
 			local x, y = world(id)
 			local dx, dy = abs(x - goalX), abs(y - goalY)
@@ -518,14 +559,14 @@ local function run(map, from, to, waterWalking, costOnly)
 	for i = #hops, 2, -1 do
 		local a, b = hops[i], hops[i - 1]
 		if a == START and b == GOAL then
-			search(st, sk, swim, directFrom, S, directTo)
+			search(st, sk, swim, mult, directFrom, S, directTo)
 			local nodes = trace(S, directTo, {})
 			addAll(sk, nodes, #nodes, 1, -1)
 		elseif a == START then
 			local start = sourceVia[b]
 			local tree = start.tree
 			if not tree or not reached(tree, entrance(st, b)) then
-				search(st, sk, swim, start.node, S, entrance(st, b))
+				search(st, sk, swim, mult, start.node, S, entrance(st, b))
 				tree = S
 			end
 			local nodes = trace(tree, entrance(st, b), {})
@@ -534,7 +575,7 @@ local function run(map, from, to, waterWalking, costOnly)
 			local goal = targetVia[a]
 			local tree = goal.tree
 			if not tree or not reached(tree, entrance(st, a)) then
-				search(st, gk, swim, goal.node, G, entrance(st, a))
+				search(st, gk, swim, mult, goal.node, G, entrance(st, a))
 				tree = G
 			end
 			local nodes = trace(tree, entrance(st, a), {})
@@ -542,7 +583,7 @@ local function run(map, from, to, waterWalking, costOnly)
 		else
 			local ka, kb = floor(a / 4096), floor(b / 4096)
 			local ea, eb = entrance(st, a), entrance(st, b)
-			if ka == kb and search(st, ka, swim, ea, R, eb) then
+			if ka == kb and search(st, ka, swim, mult, ea, R, eb) then
 				local nodes = trace(R, eb, {})
 				addAll(ka, nodes, #nodes, 1, -1)
 			else -- neighbouring entrances across a cluster border
@@ -584,7 +625,7 @@ end
 
 -- Lazy terminal-node connections let nearby targets settle without first searching every faraway endpoint.
 -- One sliced Dijkstra owns the heap swap and frontier locals across endpoint searches
-local function runMany(map, from, targets, waterWalking, reverse, job)
+local function runMany(map, from, targets, waterWalking, reverse, job, profile)
 	local costs = job and job.costs or {}
 	local function failed(reason)
 		for i = 1, #targets do
@@ -618,7 +659,8 @@ local function runMany(map, from, targets, waterWalking, reverse, job)
 		end
 	end
 	local swim, cost2 = waterWalking and 1 or st.swim, waterWalking and 2 or 1
-	local starts, source = connectPoint(st, swim, sk, sc, from.z)
+	local mult = weights(st, profile)
+	local starts, source = connectPoint(st, swim, mult, sk, sc, from.z)
 	local clusters, links, dist, closed, left = {}, {}, {}, {}, #targets
 	for i, point in ipairs(targets) do
 		local k = locate(st, point.x, point.y)
@@ -652,7 +694,7 @@ local function runMany(map, from, targets, waterWalking, reverse, job)
 			local _, node = pointNode(st, targets[i])
 			if node then
 				local goals
-				goals, ends[i] = connectPoint(st, swim, k, node, targets[i].z)
+				goals, ends[i] = connectPoint(st, swim, mult, k, node, targets[i].z)
 				for _, a in ipairs(k == sk and starts or {}) do
 					for _, b in ipairs(goals) do
 						-- Both trees search outward from their endpoint; a reverse batch walks to the source.
@@ -665,7 +707,7 @@ local function runMany(map, from, targets, waterWalking, reverse, job)
 							cost = 0
 						elseif tree and reached(tree, last) then
 							cost = tree.g[last + 1]
-						elseif search(st, k, swim, first, trees.R, last) then
+						elseif search(st, k, swim, mult, first, trees.R, last) then
 							cost = trees.R.g[last + 1]
 						end
 						if cost and (not direct[i] or cost < direct[i]) then
@@ -742,7 +784,8 @@ end
 -- Eight-direction grid distance is a lower bound even across clusters. Costs omit snapping and height
 -- and round each abstract edge to yards. Each endpoint can snap
 -- SNAP cells and then move SNAP more off a ledge; each nonzero grid step is at least cs before rounding.
--- This bound is in running yards for both water modes, before the planner divides by walkSpeed.
+-- This bound is in running yards for both water modes, before the planner divides by walkSpeed; on a map with classes
+-- a yard may cost as little as Costs.MIN of one, and the bound scales by it.
 ---@param map number
 ---@param from SPFPoint
 ---@param to SPFPoint
@@ -757,7 +800,8 @@ function Path.LowerBound(map, from, to)
 	local cs = TILE / D.cells
 	local dx, dy = abs(from.x - to.x), abs(from.y - to.y)
 	local gap = dx > dy and dx + (SQRT2 - 1) * dy or dy + (SQRT2 - 1) * dx
-	return max(0, gap - (4 * SNAP + 1) * SQRT2 * cs) * max(0, 1 - 0.5 / cs)
+	local cheapest = Grid.Classed(D) and Costs.MIN or 1
+	return max(0, gap - (4 * SNAP + 1) * SQRT2 * cs) * max(0, 1 - 0.5 / cs) * cheapest
 end
 
 ---@param job SPFPathJob?
@@ -786,9 +830,9 @@ local function start(job)
 	end
 	Expansions(0)
 	if job.targets then
-		return runMany(job.map, job.from, job.targets, job.waterWalking, job.reverse, job)
+		return runMany(job.map, job.from, job.targets, job.waterWalking, job.reverse, job, job.profile)
 	end
-	return run(job.map, job.from, job.to, job.waterWalking, job.costOnly)
+	return run(job.map, job.from, job.to, job.waterWalking, job.costOnly, job.profile)
 end
 
 local spare
@@ -813,10 +857,11 @@ end
 ---@param map number
 ---@param from SPFPoint
 ---@param to SPFPoint
----@param waterWalking? boolean
-function Path.FindSync(map, from, to, waterWalking)
+---@param opts? boolean|{ waterWalking: boolean?, profile: string? } waterWalking, or opts (options above)
+function Path.FindSync(map, from, to, opts)
 	Deadline(huge)
-	local job = { map = map, from = from, to = to, waterWalking = waterWalking }
+	local waterWalking, profile = options(opts)
+	local job = { map = map, from = from, to = to, waterWalking = waterWalking, profile = profile }
 	local co = coroutine.create(start)
 	local saved = scratch()
 	local ok, points, cost = coroutine.resume(co, job)
@@ -832,13 +877,14 @@ end
 ---@param map number
 ---@param from SPFPoint
 ---@param targets SPFPoint[]
----@param waterWalking? boolean
+---@param opts? boolean|{ waterWalking: boolean?, profile: string? } waterWalking, or opts (options above)
 ---@param reverse? boolean
-function Path.FindManySync(map, from, targets, waterWalking, reverse)
+function Path.FindManySync(map, from, targets, opts, reverse)
 	Deadline(huge)
 	Expansions(0)
 	local saved = scratch()
-	local costs, reason = runMany(map, from, targets, waterWalking, reverse)
+	local waterWalking, profile = options(opts)
+	local costs, reason = runMany(map, from, targets, waterWalking, reverse, nil, profile)
 	scratch(saved)
 	return costs, reason, Expansions()
 end
@@ -847,6 +893,7 @@ end
 ---@class SPFPathSearch
 ns.PathSearch = {
 	start = start,
+	options = options,
 	scratch = scratch,
 	Spare = function(saved)
 		spare = saved

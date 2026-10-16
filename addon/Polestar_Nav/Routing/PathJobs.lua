@@ -1,4 +1,9 @@
--- Polestar_Nav: Routing/PathJobs.lua from Shortest Path Forever (https://github.com/cjber/shortest-path-forever) at b1ad5bd4bf579c781937af0e25f5233cc94b3726, Copyright (C) 2026 Cillian Berragan, GPL-3.0-or-later. Modified for Polestar on 2026-10-16 by `node tools/polestar.js nav vendor`: the data global is PolestarPathData.
+-- Polestar's walking router. Started from Shortest Path Forever v1.16.0 (b1ad5bd) by Cillian Berragan (GPL-3.0-or-later); modified for Polestar since 2026-10-16.
+-- Routing/PathJobs.lua: Copyright (C) 2026 Cillian Berragan (https://github.com/cjber/shortest-path-forever); Polestar's
+-- changes Copyright (c) 2026 The Polestar authors. This program is free software: you can redistribute it and/or modify
+-- it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3
+-- of the License, or (at your option) any later version. It is distributed WITHOUT ANY WARRANTY; see the GNU General
+-- Public License in this folder's LICENSE.
 ---@class SPFNamespace
 local ns = select(2, ...)
 
@@ -8,7 +13,7 @@ local ns = select(2, ...)
 local Path = ns.Path
 local Grid, Search = ns.PathGrid, ns.PathSearch
 local clock, Deadline, Expansions = Grid.clock, Grid.Deadline, Grid.Expansions
-local start, scratch, Spare = Search.start, Search.scratch, Search.Spare
+local start, scratch, Spare, options = Search.start, Search.scratch, Search.Spare, Search.options
 
 -- Round-robin slices share one frame budget, including callbacks that replan from newly settled costs.
 local queue = {}
@@ -125,19 +130,24 @@ end
 -- on). callback(points, cost, job) or callback(nil, reason, job): points are { map, x, y, z } from the start to the
 -- goal, with points.wet the drawn yards over water. Cost is the abstract route in running yards, not the smoothed
 -- polyline length; a swum grid yard counts as the data's swim (so routes keep out of water) unless waterWalking, when
--- water is ground. reason is "nodata", "outside", "offmesh", "unreachable" or "error". Returns a Cancel handle.
+-- water is ground. On a map with ground classes a yard counts as Costs.Mult(its class, opts.profile) of one. reason is
+-- "nodata", "outside", "offmesh", "unreachable" or "error". opts is the waterWalking flag (a boolean, as every caller
+-- before profiles passes it) or { waterWalking = boolean, profile = "Alliance" | "Horde" | nil }. Returns a Cancel
+-- handle.
 ---@param map number
 ---@param from SPFPoint
 ---@param to SPFPoint
 ---@param callback fun(points: SPFWalkPoints?, cost: number|string, job: SPFPathJob)
----@param waterWalking? boolean
+---@param opts? boolean|{ waterWalking: boolean?, profile: string? }
 ---@return SPFPathJob
-function Path.Find(map, from, to, callback, waterWalking)
+function Path.Find(map, from, to, callback, opts)
+	local waterWalking, profile = options(opts)
 	return enqueue({
 		map = map,
 		from = from,
 		to = to,
 		waterWalking = waterWalking,
+		profile = profile,
 		callback = callback,
 	})
 end
@@ -148,10 +158,10 @@ end
 ---@param from SPFPoint
 ---@param to SPFPoint
 ---@param callback fun(cost: number?, reason: string?, job: SPFPathJob)
----@param waterWalking? boolean
+---@param opts? boolean|{ waterWalking: boolean?, profile: string? } as Find's
 ---@return SPFPathJob
-function Path.FindCost(map, from, to, callback, waterWalking)
-	local job = Path.Find(map, from, to, callback, waterWalking)
+function Path.FindCost(map, from, to, callback, opts)
+	local job = Path.Find(map, from, to, callback, opts)
 	job.costOnly = true
 	return job
 end
@@ -164,16 +174,18 @@ end
 ---@param from SPFPoint
 ---@param targets SPFPoint[]
 ---@param callback fun(costs: (number|false)[], reason: string?, job: SPFPathJob)
----@param waterWalking? boolean
+---@param opts? boolean|{ waterWalking: boolean?, profile: string? } as Find's
 ---@param reverse? boolean
 ---@param progress? fun(costs: (number|false)[], reason: nil, job: SPFPathJob)
 ---@return SPFPathJob
-function Path.FindMany(map, from, targets, callback, waterWalking, reverse, progress)
+function Path.FindMany(map, from, targets, callback, opts, reverse, progress)
+	local waterWalking, profile = options(opts)
 	return enqueue({
 		map = map,
 		from = from,
 		targets = targets,
 		waterWalking = waterWalking,
+		profile = profile,
 		reverse = reverse,
 		progress = progress,
 		costs = {},
