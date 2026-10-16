@@ -1,0 +1,11 @@
+-- Korean (koKR): the guide forever/collectibles/pets/magus-tirth (forever/collectibles/pets/magus-tirth.guide).
+-- Written by `node tools/polestar.js i18n guides sync koKR`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
+-- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
+-- name there in Korean (the English is listed above the line). The comments are rewritten by sync.
+return {
+	-- Step 1: Magus Tirth
+	-- {npc:6548} Magus Tirth · {area:2240} Mirage Raceway · {area:439} The Shimmering Flats · {zone:1441} Thousand Needles · {item:11023} Ancona Chicken
+	["{npc:6548} at the {area:2240}, in the {area:439} of south-eastern {zone:1441}, sells the {item:11023} (1g). Each pet item teaches its companion when you use it; the goals stay ticked afterwards."] = "",
+	-- {item:11023} Ancona Chicken
+	["{item:11023}, 1g"] = "",
+}

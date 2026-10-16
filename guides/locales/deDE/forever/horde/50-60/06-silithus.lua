@@ -1,0 +1,191 @@
+-- German (deDE): the guide forever/horde/50-60/06-silithus (forever/horde/50-60/06-silithus.guide).
+-- Written by `node tools/polestar.js i18n guides sync deDE`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
+-- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
+-- name there in German (the English is listed above the line). The comments are rewritten by sync.
+return {
+	-- Step 1: Layo Starstrike
+	-- {area:3077} Valor's Rest · {zone:1451} Silithus
+	["The pass from Un'Goro comes out at {area:3077}, the graveyard in north-east {zone:1451}. Layo stands among the graves."] = "",
+
+	-- Step 2: The Spirits of Southwind
+	-- {area:2738} Southwind Village · {object:179565} Dusty Reliquary · {npc:11801} Rabine Saturna
+	["Ride south-west to the ruins of {area:2738}. The {object:179565} for {npc:11801} sits inside one of the ruined houses."] = "",
+
+	-- Step 4: Hive in the Tower
+	-- {area:2742} Hive'Ashi · {item:17346} Encrusted Silithid Object
+	["Back to Southwind and climb the tower. Stirring the hive at the top brings out {area:2742} Ambushers; one carries the {item:17346}."] = "",
+
+	-- Step 5: Cenarion Hold
+	["Ride west to the walled hold in the middle of the desert."] = "",
+
+	-- Step 6: Dredge and scorpids
+	["Dredge and scorpids"] = "",
+	-- plural, as words: Dredge Strikers = {npc:11740} Dredge Striker · Stonelash Scorpids = {npc:11735} Stonelash Scorpid · Sand Skitterers = {npc:11738} Sand Skitterer
+	["Dredge Strikers, Stonelash Scorpids and Sand Skitterers share the sands just north of the hold."] = "",
+
+	-- Step 7: Twilight Base Camp
+	-- plural, as words: Dust Stormers = {npc:11744} Dust Stormer · Desert Rumblers = {npc:11746} Desert Rumbler
+	["The glowing tablet fragments lie around the Twilight camp in the far north-west; the Dust Stormers and Desert Rumblers there drop them too."] = "",
+
+	-- Step 9: Hermit Ortell
+	-- {area:3447} Ortell's Hideout
+	["Ride south-east to {area:3447} under the Un'Goro cliffs."] = "",
+
+	-- Step 10: General Kirika
+	-- {area:2744} Hive'Regal
+	["Ride west to the Horde camp north of {area:2744}."] = "",
+
+	-- Step 11: Scouring the Desert
+	["Silithyst geysers erupt across the southern desert. Walk into the Silithyst one leaves behind and carry it to the Horde's Silithyst Extractor at Kirika's camp; fighting or mounting drops it."] = "",
+
+	-- Step 12: Flayers and Rock Stalkers
+	-- plural, as words: Rock Stalkers = {npc:11739} Rock Stalker
+	["Flayers and Rock Stalkers"] = "",
+	-- plural, as words: Stonelash Flayers = {npc:11737} Stonelash Flayer · Rock Stalkers = {npc:11739} Rock Stalker
+	["Stonelash Flayers and Rock Stalkers roam the dunes south-west of Kirika's camp."] = "",
+
+	-- Step 13: Twilight Vanguard
+	["Twilight Vanguard"] = "",
+	-- {npc:11803} Twilight Keeper Exeter · {npc:15306} Bor Wildmane
+	-- plural, as words: Encrypted Twilight Texts = {item:20404} Encrypted Twilight Text
+	["{npc:11803} walks the Vanguard camp in the far south-west. Every cultist here drops Encrypted Twilight Texts, quest or not: collect twenty, ten for {npc:15306} and ten for Ortell."] = "",
+
+	-- Step 14: Dredge Crushers and Pincers
+	-- plural, as words: Dredge Crushers = {npc:11741} Dredge Crusher
+	["Dredge Crushers and Pincers"] = "",
+	-- plural, as words: Dredge Crushers = {npc:11741} Dredge Crusher · Stonelash Pincers = {npc:11736} Stonelash Pincer
+	["Head north along the western dunes; Dredge Crushers and Stonelash Pincers range from here back toward the hold."] = "",
+
+	-- Step 15: Twilight Post
+	-- {npc:15200} Twilight Keeper Mayna
+	["{npc:15200} holds the camp in the west."] = "",
+
+	-- Step 16: Twilight Outpost
+	-- {npc:11804} Twilight Keeper Havunth · {area:3425} Cenarion Hold
+	-- plural, as words: Encrypted Twilight Texts = {item:20404} Encrypted Twilight Text
+	["{npc:11804} stands in the outpost west of {area:3425}. Top your Encrypted Twilight Texts up to twenty on the cultists here."] = "",
+
+	-- Step 17: Cenarion Hold
+	-- {npc:15306} Bor Wildmane
+	["{npc:15306}, on the west side of the Hold"] = "",
+
+	-- Step 18: Noggle's Lost Satchel
+	["The satchel lies in the mountains of the far south, past Bronzebeard's Encampment. Deathclasp, an elite scorpid, patrols near it: grab it while he is away."] = "",
+
+	-- Step 19: Hermit Ortell
+	-- {area:3447} Ortell's Hideout
+	["Ride north-east to {area:3447}."] = "",
+	["The spare texts from the cultists"] = "",
+
+	-- Step 20: Back to Cenarion Hold
+	-- {area:3425} Cenarion Hold
+	["Back to {area:3425}"] = "",
+	-- {area:2744} Hive'Regal
+	["Mar'alith's Dearest Natalia needs level 58 and leads into {area:2744} among elites. Skip it."] = "",
+
+	-- Step 21: Layo Starstrike
+	-- {area:3077} Valor's Rest · {zone:1451} Silithus
+	["Ride north-east to {area:3077}; you leave {zone:1451} through the pass beside it."] = "",
+
+	-- Step 22: Marshal's Refuge
+	-- {area:541} Marshal's Refuge · {npc:8737} Linken · {npc:9117} J.D. Collie
+	["Through the pass and east along the northern cliffs to {area:541}. {npc:8737} stands by the cave; {npc:9117} is inside it."] = "",
+	-- {npc:10980} Umi's Mechanical Yeti · {npc:10977} Quixxil
+	["Use {npc:10980} on {npc:10977}"] = "",
+	-- {quest:3942} Linken's Memory · {npc:9116} Eridan Bluewind · {area:2479} Emerald Sanctuary · {zone:1448} Felwood
+	["Keep {quest:3942}: {npc:9116} is at the {area:2479}, on the next guide's way through {zone:1448}."] = "",
+
+	-- Step 23: Gadgetzan
+	-- {area:976} Gadgetzan · {object:142071} Egg-O-Matic
+	["Fly to {area:976}. The {object:142071} stands in the middle of town."] = "",
+
+	-- Step 24: Orgrimmar
+	-- {area:1637} Orgrimmar
+	["Fly to {area:1637} and train."] = "",
+
+	-- Step 25: The Undercity
+	-- {area:1637} Orgrimmar · {zone:1420} Tirisfal Glades · {zone:1458} Undercity · {object:36126} Royal Quarter
+	["Take the zeppelin from the tower outside {area:1637} to {zone:1420} and ride into the {zone:1458}. Lady Sylvanas holds the {object:36126}."] = "",
+
+	-- Step 26: The Bulwark
+	-- {area:152} The Bulwark
+	["Ride east along the road to the {area:152} on the border."] = "",
+
+	-- Step 27: Felstone Field
+	-- {npc:10778} Janice Felstone · {area:152} The Bulwark · {npc:11075} Cauldron Lord Bilemaw
+	-- plural, as words: Jabbering Ghouls = {npc:10801} Jabbering Ghoul
+	["{npc:10778}'s farm is the first one east of the {area:152}. Jabbering Ghouls on the farm carry the other half of her charm; {npc:11075} guards the cauldron in the field."] = "",
+
+	-- Step 28: Andorhal watchtowers and silos
+	["Andorhal watchtowers and silos"] = "",
+	-- {npc:10667} Chromie · {item:12815} Beacon Torch · {item:12627} Temporal Displacer
+	-- plural, as words: Temporal Parasites = {npc:10717} Temporal Parasite
+	["Ride south into Andorhal. {npc:10667} waits in the ruined inn on the west side of town. Stand in the doorway of each of the four towers with the {item:12815} to mark it; keep to the edges of town. Use the {item:12627} by the silos in the middle of town to bring out Temporal Parasites."] = "",
+	-- {npc:10904} Andorhal Tower Three · {item:12815} Beacon Torch
+	["Mark {npc:10904} with the {item:12815}"] = "",
+	-- {npc:10903} Andorhal Tower Two · {item:12815} Beacon Torch
+	["Mark {npc:10903} with the {item:12815}"] = "",
+	-- {npc:10902} Andorhal Tower One · {item:12815} Beacon Torch
+	["Mark {npc:10902} with the {item:12815}"] = "",
+	-- {npc:10905} Andorhal Tower Four · {item:12815} Beacon Torch
+	["Mark {npc:10905} with the {item:12815}"] = "",
+
+	-- Step 29: The Bulwark
+	-- {item:14619} Skeletal Fragments · {quest:838} Scholomance
+	["Dithers offers {item:14619} ({quest:838}). Skip it."] = "",
+
+	-- Step 30: Dalson's Tears
+	-- {npc:11077} Cauldron Lord Malvinious · {area:200} Dalson's Tears
+	["East along the road, {npc:11077} guards the cauldron at {area:200}."] = "",
+
+	-- Step 31: Northridge Lumber Camp
+	["North to the lumber camp; set the termite barrel down in the middle of the mill."] = "",
+
+	-- Step 32: Davil's Libram
+	-- {area:190} Hearthglen
+	["The libram lies further north, on the way to {area:190}."] = "",
+
+	-- Step 33: Tirion Fordring
+	-- {area:2619} Thondroril River
+	["Ride east to Tirion's hut by the {area:2619} and hear him out."] = "",
+
+	-- Step 34: Redpath's Shield
+	-- {area:201} Gahrron's Withering
+	["The shield lies at {area:201}, south of Tirion's hut."] = "",
+
+	-- Step 35: Light's Hope Chapel
+	["Ride east across the plaguelands to the chapel."] = "",
+
+	-- Step 36: Scourge Champions
+	-- plural, as words: Scourge Champions = {npc:8529} Scourge Champion
+	["Scourge Champions"] = "",
+	-- {area:2270} The Noxious Glade · {item:13156} Mystic Crystal
+	-- plural, as words: Scourge Champions = {npc:8529} Scourge Champion
+	["Scourge Champions roam the {area:2270}, north of the chapel. Pass Carlin's {item:13156} over each one you kill: the skulls that resonate are the ones he wants."] = "",
+
+	-- Step 38: Pamela and the Undercroft
+	-- {area:2261} The Undercroft
+	["Pamela and the {area:2261}"] = "",
+	-- {area:2262} Darrowshire · {npc:11886} Mercutio Filthgorger · {area:2261} The Undercroft
+	["Ride to {area:2262} in the south-west; Pamela plays among the houses. {npc:11886} lurks in the {area:2261}, the crypt just west of the town."] = "",
+	["Pamela's own errand is not on this route. Skip it."] = "",
+
+	-- Step 39: Nathanos Blightcaller
+	-- {npc:15193} The Banshee Queen · {area:2260} The Marris Stead · {area:2261} The Undercroft
+	["{npc:15193}'s champion holds the {area:2260} farmhouse, north of the {area:2261}."] = "",
+	["Nathanos' errands are not on this route. Skip them."] = "",
+
+	-- Step 40: Tirion Fordring
+	["Ride north-west to Tirion's hut."] = "",
+	["Tirion's next task, Of Lost Honor, is not on this route. Skip it."] = "",
+
+	-- Step 41: Chromie
+	-- {npc:10667} Chromie
+	["Ride south-west to {npc:10667} in Andorhal."] = "",
+	-- {npc:10667} Chromie · {area:2262} Darrowshire
+	["{npc:10667}'s Battle of {area:2262} ends against elites. Skip it."] = "",
+
+	-- Step 42: The Bulwark
+	-- {area:152} The Bulwark · {zone:1458} Undercity
+	["West to the {area:152}. The next guide starts in the {zone:1458}, a short ride west."] = "",
+}

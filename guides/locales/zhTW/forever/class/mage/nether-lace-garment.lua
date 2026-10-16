@@ -1,0 +1,36 @@
+-- Chinese (traditional) (zhTW): the guide forever/class/mage/nether-lace-garment (forever/class/mage/nether-lace-garment.guide).
+-- Written by `node tools/polestar.js i18n guides sync zhTW`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
+-- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
+-- name there in Chinese (traditional) (the English is listed above the line). The comments are rewritten by sync.
+return {
+	-- Guide
+	["A robe or a tunic for Undead and Troll mages in their late 20s."] = "",
+
+	-- Step 1: Anastasia Hartwell
+	-- {npc:4568} Anastasia Hartwell · {zone:1458} Undercity · {object:36082} Magic Quarter · {zone:1454} Orgrimmar · {zone:1420} Tirisfal Glades
+	["{npc:4568} stands in the {zone:1458}'s {object:36082}. Trolls take the zeppelin from {zone:1454} to {zone:1420} for her."] = "",
+
+	-- Step 2: Deino
+	-- {zone:1454} Orgrimmar · {npc:5885} Deino
+	["Take the zeppelin to {zone:1454}. {npc:5885} is one of {zone:1454}'s mage trainers."] = "",
+
+	-- Step 3: The Xavian Waterfall
+	-- {object:174797} Xavian Waterfall
+	["The {object:174797}"] = "",
+	-- {area:429} Xavian · {zone:1440} Ashenvale · {item:7269} Deino's Flask
+	["Satyrs hold the ruins of {area:429} in eastern {zone:1440}. Fill {item:7269} at the bottom of the highest waterfall."] = "",
+
+	-- Step 4: Back to Deino
+	-- {npc:5885} Deino
+	["Back to {npc:5885}"] = "",
+
+	-- Step 5: The Laughing Sisters
+	-- {quest:1945} Laughing Sisters
+	["The {quest:1945}"] = "",
+	-- {quest:1945} Laughing Sisters · {area:426} Raynewood Retreat · {zone:1440} Ashenvale
+	["The {quest:1945}, dryads, gather near the {area:426} in central {zone:1440}."] = "",
+
+	-- Step 6: Kil'hala
+	-- {npc:3484} Kil'hala · {area:380} The Crossroads
+	["{npc:3484}, a troll tailor, works at the {area:380}."] = "",
+}

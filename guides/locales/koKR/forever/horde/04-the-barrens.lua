@@ -1,0 +1,319 @@
+-- Korean (koKR): the guide forever/horde/04-the-barrens (forever/horde/04-the-barrens.guide).
+-- Written by `node tools/polestar.js i18n guides sync koKR`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
+-- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
+-- name there in Korean (the English is listed above the line). The comments are rewritten by sync.
+return {
+	-- Step 1: Fly to Ratchet
+	-- {area:392} Ratchet
+	["Fly to {area:392}"] = "",
+	-- {object:172982} Valley of Strength
+	["Doras, the wind rider master, stands on the tower in the {object:172982}."] = "",
+
+	-- Step 2: Ratchet
+	-- {npc:3442} Sputtervalve · {quest:1483} Ziz Fizziks
+	["{npc:3442}, beside the wind rider master. Keep it: {quest:1483} is in Stonetalon, later"] = "",
+	-- {object:3972} WANTED
+	["{object:3972} poster"] = "",
+	-- {npc:3453} Wharfmaster Dizzywig
+	["{npc:3453}, on the dock"] = "",
+
+	-- Step 3: Bruuz
+	["Bruuz"] = "",
+	-- {area:392} Ratchet
+	["Bruuz swims in the harbour just off {area:392}'s docks. Bruuz is elite: grouping up is advised."] = "",
+
+	-- Step 4: Baron Longshore
+	-- {area:392} Ratchet · {npc:3467} Baron Longshore
+	["The pirates camp on the beach south of {area:392}; {npc:3467} stands at its southern end."] = "",
+
+	-- Step 5: Northwatch Hold
+	-- {area:385} Northwatch Hold · {npc:3393} Captain Fairmount
+	-- plural, as words: Theramore Marines = {npc:3385} Theramore Marine
+	["{area:385}, on the coast further south. The Theramore Marines and Preservers (15-16) drop the medals; {npc:3393} (20) and the two cannoneers (19) stand in the keep and on its walls, and they are why the hold waits until now."] = "",
+
+	-- Step 6: Free From the Hold
+	-- {npc:3465} Gilthares Firebough · {area:392} Ratchet
+	["{npc:3465} is chained inside the hold. Talk to him to start the escort and stay close: Theramore soldiers attack on the way out. He walks you back to {area:392}."] = "",
+
+	-- Step 8: Raptor Horns
+	-- {area:380} The Crossroads · {area:1697} Raptor Grounds · {area:392} Ratchet
+	-- plural, as words: Sunscale Scytheclaws = {npc:3256} Sunscale Scytheclaw
+	["Sunscale Scytheclaws hunt the plains south of the {area:380}, around the {area:1697}; they drop the horns. Hand them in on your next pass through {area:392}."] = "",
+
+	-- Step 9: The Crossroads
+	-- {npc:3429} Thork · {area:1703} The Mor'shan Rampart
+	["{npc:3429}. Keep it: Kadrak at the {area:1703}, next guide"] = "",
+	-- {npc:3428} Korran · {area:390} Field of Giants
+	["{npc:3428}: the eggs are in the {area:390}, later"] = "",
+	-- {npc:3429} Thork
+	["{npc:3429}, at the top of the tower"] = "",
+
+	-- Step 10: Dreadmist Peak
+	-- {area:380} The Crossroads · {area:384} Dreadmist Peak · {item:15842} Empty Dreadmist Peak Sampler · {object:19464} Dreadmist Peak Pool · {npc:3448} Tonga Runetotem · {skill:182} Herbalism · {npc:3490} Hula'mahi · {item:2449} Earthroot
+	["Ride north from the {area:380} to {area:384} and fill the {item:15842} at the {object:19464}, then back to {npc:3448} in the {area:380}. No {skill:182}? {npc:3490} beside him sells {item:2449}, three at a time until he restocks."] = "",
+	-- {item:2449} Earthroot · {npc:3490} Hula'mahi
+	["{item:2449} from {npc:3490}; herbalists pick it on the plains"] = "",
+
+	-- Step 11: Level 20
+	["Level 20"] = "",
+	-- {zone:1454} Orgrimmar · {npc:3354} Sorek · {npc:5892} Searn Firewarder · {area:380} The Crossroads · {area:388} The Stagnant Oasis
+	-- plural, as words: Thunderhawk Hatchlings = {npc:3247} Thunderhawk Hatchling
+	["The level-20 class quests in {zone:1454} ({npc:3354}, {npc:5892}, the Warlock and Rogue trainers) are only offered from level 20, so finish the level here before you fly. The Thunderhawk Hatchlings (18) on the plains south-west of the {area:380} and the Kolkar (14-15) at the {area:388} are the nearest mobs worth killing; you need well under a level."] = "",
+	-- {area:380} The Crossroads
+	-- plural, as words: Thunderhawk Hatchlings = {npc:3247} Thunderhawk Hatchling
+	["grind on Thunderhawk Hatchlings south-west of the {area:380}"] = "",
+
+	-- Step 12: Orgrimmar
+	-- {area:1637} Orgrimmar · {npc:3354} Sorek · {object:172958} Valley of Honor · {npc:5892} Searn Firewarder · {object:172957} Valley of Wisdom
+	["Fly to {area:1637} to train your level 20 ranks. {npc:3354} is in the {object:172958}, {npc:5892} in the {object:172957}."] = "",
+
+	-- Step 13: Gan'rul Bloodeye
+	-- {area:263} The Cleft · {object:172982} Valley of Strength
+	["{area:263} of Shadow is the canyon under the {object:172982}."] = "",
+	-- {npc:5909} Cazul
+	["{npc:5909}, a few steps away"] = "",
+
+	-- Step 14: Shenthul
+	-- {npc:3401} Shenthul · {object:172960} Cleft of Shadow · {quest:2460} The Shattered Salute
+	["{npc:3401} stands in the {object:172960}. Target him and type /salute to finish {quest:2460}."] = "",
+	-- {quest:2458} Deep Cover · {npc:7233} Taskmaster Fizzule · {area:382} The Sludge Fen
+	["{quest:2458}: {npc:7233}, by the {area:382}"] = "",
+
+	-- Step 15: Ur'kyo
+	-- {npc:6018} Ur'kyo · {object:172961} Valley of Spirits
+	["{npc:6018} stands in the {object:172961}, on the city's west side."] = "",
+	-- {npc:6018} Ur'kyo · {npc:4606} Aelthalyste · {zone:1458} Undercity
+	["{npc:6018}: {npc:4606} in the {zone:1458}, two guides on"] = "",
+
+	-- Step 16: Thunder Bluff
+	-- {area:1638} Thunder Bluff · {npc:3033} Turak Runetotem · {area:1639} Elder Rise
+	["Fly to {area:1638} and train your level 20 ranks: {npc:3033} is on {area:1639}."] = "",
+
+	-- Step 17: Back to the Crossroads
+	-- {area:380} The Crossroads
+	["Back to the {area:380}"] = "",
+
+	-- Step 18: Regthar Deathgate
+	-- {area:380} The Crossroads
+	["Regthar stands at the Kolkar watch post just west of the {area:380}."] = "",
+
+	-- Step 19: Barak Kodobane
+	["Barak stands in the Kolkar camp north-west of Regthar."] = "",
+	-- {item:15852} Kodo Horn · {zone:1413} The Barrens
+	-- plural, as words: Lost Barrens Kodos = {npc:3234} Lost Barrens Kodo
+	["{item:15852}: Lost {zone:1413} Kodos on the plains around the Kolkar camp"] = "",
+	-- {item:2449} Earthroot
+	["{item:2449}: herbalists pick it here"] = "",
+
+	-- Step 21: Ken'zigla
+	-- {npc:4197} Ken'zigla · {area:2539} Malaka'jin
+	["{npc:4197} lives in {area:2539}, the troll village just inside Stonetalon at the end of the road west from Regthar."] = "",
+
+	-- Step 22: Vrang Wildgore
+	-- {area:383} The Dry Hills · {npc:3682} Vrang Wildgore · {npc:261366} Walton
+	["North to the {area:383}. {npc:3682} camps below the hills; {npc:261366}, the hermit on the ridge behind him, has work for you only once Vrang sends you up."] = "",
+
+	-- Step 23: The Dry Hills
+	-- {quest:876} Serena Bloodfeather
+	-- plural, as words: Savannah Patriarchs = {npc:3241} Savannah Patriarch · Sprung Traps = {object:640104} Sprung Trap
+	["Savannah Patriarchs roam the plains east of the hills, and the Sprung Traps lie among them. {quest:876} leads the Witchwing harpies in the hills to the west."] = "",
+
+	-- Step 26: Trouble in the Valley
+	-- {npc:262119} Corporal Adamore · {npc:261366} Walton
+	["{npc:262119} and his marines hold the wrecked caravan south of {npc:261366}."] = "",
+
+	-- Step 27: Walton
+	-- {npc:261366} Walton · {npc:261367} Terry Longdrink · {area:21} Kul Tiras
+	["Assist {npc:261366}: stay by him when {npc:261367} and the {area:21} marines come up the ridge"] = "",
+
+	-- Step 28: Strange Lockbox
+	-- {object:177790} Strange Lockbox · {area:382} The Sludge Fen · {item:15883} Half Pendant of Aquatic Agility · {quest:30} Trial of the Sea Lion
+	["The {object:177790} lies at the north edge of the {area:382}, by the Venture Co. tower. It holds the {item:15883} for {quest:30}."] = "",
+
+	-- Step 29: Ignition
+	-- {area:382} The Sludge Fen · {npc:3439} Wizzlecrank's Shredder · {npc:3445} Supervisor Lugwizzle
+	["East to the {area:382}. {npc:3439} stands inside the Venture Co. camp; {npc:3445} carries the key."] = "",
+
+	-- Step 30: The Escape
+	-- {npc:3442} Sputtervalve · {area:392} Ratchet
+	["Wizzlecrank drives his shredder out of the camp: stay with him and kill whatever attacks him. {npc:3442} takes it in {area:392}."] = "",
+
+	-- Step 31: Taskmaster Fizzule
+	-- {area:382} The Sludge Fen
+	["Fizzule runs the Venture Co. camp at the east end of the {area:382}. He attacks strangers: target him and /salute before he does."] = "",
+
+	-- Step 32: Mission: Possible But Not Probable
+	-- {npc:7287} Foreman Silixiz
+	["Stay stealthed: {npc:7287} carries the key to the tower; Gallywix and his lockbox are at the top. Gallywix is elite: grouping up is advised."] = "",
+	["Venture Co. tower"] = "",
+
+	-- Step 33: Boulder Lode Mine
+	-- {item:5097} Cats Eye Emerald
+	-- plural, as words: Venture Co. Overseers = {npc:3286} Venture Co. Overseer
+	["The Venture Co. Overseers and Enforcers at the mine in the north-east corner of the zone drop the {item:5097}."] = "",
+
+	-- Step 34: Hearth to the Crossroads
+	-- {area:380} The Crossroads
+	["Hearth to the {area:380}"] = "",
+	-- {item:15826} Curative Animal Salve
+	["He gives you the {item:15826}"] = "",
+
+	-- Step 35: Verog the Dervish
+	-- {area:388} The Stagnant Oasis · {area:380} The Crossroads
+	["Verog walks among the Kolkar at the {area:388} south-east of the {area:380}."] = "",
+	-- {npc:12296} Sickly Gazelle · {item:15826} Curative Animal Salve · {area:380} The Crossroads
+	["{npc:12296}: use the {item:15826} on them; they roam the plains all around the {area:380}"] = "",
+
+	-- Step 36: Camp Taurajo
+	-- {area:458} Gold Road · {area:378} Camp Taurajo
+	["Follow the {area:458} south to {area:378}."] = "",
+	-- {npc:3430} Mangletooth
+	["{npc:3430}, in the cage"] = "",
+	-- {npc:3433} Tatternack Steelforge
+	["{npc:3433}, at the north edge of the camp"] = "",
+
+	-- Step 37: Bristleback camps
+	["Bristleback camps"] = "",
+	-- {area:378} Camp Taurajo · {area:458} Gold Road · {npc:3432} Mankrik · {item:5075} Blood Shard · {quest:883} Lakota'mani
+	["The Bristleback quilboar camps spread over the plains north of {area:378}, either side of the {area:458}. Every Bristleback drops a tusk; {npc:3432}'s wife lies at the north edge. Keep one {item:5075}. {quest:883}, a grey kodo, sometimes wanders here: his hoof starts a quest."] = "",
+
+	-- Step 38: Grunt Dogran
+	["Dogran is chained up in the quilboar camp west of the road."] = "",
+	-- {zone:1454} Orgrimmar
+	["Keep it: Gan'rul in {zone:1454}, at the end of this guide"] = "",
+
+	-- Step 40: Stolen Silver
+	-- {area:385} Northwatch Hold
+	["East across the plains toward the coast: the stolen silver lies in a raptor nest north-west of {area:385}."] = "",
+
+	-- Step 41: Islen Waterseer
+	-- {area:392} Ratchet
+	["Islen waits on the hill south of {area:392}, on your way north."] = "",
+
+	-- Step 43: Ishamuhale
+	-- {quest:882} Ishamuhale · {area:392} Ratchet · {area:380} The Crossroads
+	["{quest:882}, a big Sunscale raptor, hunts the plains north of the road from {area:392} to the {area:380}."] = "",
+
+	-- Step 44: The Crossroads
+	-- {npc:3432} Mankrik · {quest:95774} Her Name Is Olgra · {quest:4921} Lost in Battle
+	["{npc:3432} offers {quest:95774} once {quest:4921} is handed in"] = "",
+
+	-- Step 46: Hezrul Bloodmark
+	-- {area:387} Lushwater Oasis · {area:380} The Crossroads
+	["Hezrul leads the Kolkar on the west shore of {area:387}, south of Regthar. Hand his head to Regthar on your last {area:380} stop."] = "",
+
+	-- Step 47: Olgra's Adornments
+	-- {area:458} Gold Road · {area:378} Camp Taurajo · {item:277277} Olgra's Adornments · {npc:3432} Mankrik · {area:380} The Crossroads
+	-- plural, as words: Razormane Raiders = {npc:268624} Razormane Raider
+	["On the way back down the {area:458} to {area:378}: the Razormane Raiders among the Bristleback camps, either side of the road north of the camp, carry {item:277277}. Hand them to {npc:3432} on your last {area:380} stop."] = "",
+
+	-- Step 48: Camp Taurajo
+	-- {area:458} Gold Road · {area:378} Camp Taurajo
+	["Down the {area:458} to {area:378} again."] = "",
+	-- {npc:12696} Senani Thunderheart · {zone:1440} Ashenvale
+	["Keep it: {npc:12696} in {zone:1440}, next guide"] = "",
+
+	-- Step 49: Enraged Thunder Lizards
+	-- {area:378} Camp Taurajo · {quest:884} Owatanka
+	["Thunderheads graze on the plains just south of {area:378}. {quest:884}, a blue thunder lizard, roams among them: his Tailspike starts a quest."] = "",
+
+	-- Step 51: Cry of the Thunderhawk
+	-- plural, as words: Thunderhawk Cloudscrapers = {npc:3424} Thunderhawk Cloudscraper
+	["Thunderhawk Cloudscrapers circle over the same plains south of the camp."] = "",
+
+	-- Step 53: Field of Giants
+	-- {area:378} Camp Taurajo · {area:390} Field of Giants
+	-- plural, as words: Silithid Mounds = {object:3685} Silithid Mound · Silithid Swarmers = {npc:3252} Silithid Swarmer · Silithid Harvesters = {npc:3253} Silithid Harvester
+	["South of {area:378} the Silithid Mounds dot the {area:390}; the eggs lie in them, and Silithid Swarmers come out to defend them. Silithid Harvesters are rare: if you see one, kill it for its head."] = "",
+
+	-- Step 54: Gann Stonespire
+	-- {area:359} Bael Modan
+	["Gann waits in a small camp further south, on the road toward {area:359}."] = "",
+	-- {npc:14242} Sulhasa
+	["{npc:14242}, up in the tree just east of Gann"] = "",
+	-- {npc:5899} Brine
+	["{npc:5899}, just west of Gann"] = "",
+	-- {item:7766} Empty Brown Waterskin
+	["Fill the {item:7766} at the quilboar watering hole"] = "",
+	-- {object:107045} Spring Well · {area:272} Tarren Mill
+	["Keep it: the {object:107045} is beside {area:272}"] = "",
+
+	-- Step 55: Blackthorn Ridge
+	-- {area:1701} Blackthorn Ridge · {npc:3435} Lok Orcbane · {npc:5859} Hagg Taurenbane · {npc:3238} Stormhide · {quest:885} Washte Pawne
+	-- plural, as words: Hecklefang Stalkers = {npc:4128} Hecklefang Stalker
+	["West of Gann, the Razormane hold {area:1701}. Kuz is on the east side, Nak to the south, {npc:3435} at the west end. Lok (25) and the Warfrenzies (24-25) are a few levels above you; {npc:5859}, a rare elite, sometimes walks the ridge: leave him. Pathfinders and Stalkers drop the Backstabber, Seers the Wand, Warfrenzies the War Shield. {npc:3238} lizards and Hecklefang Stalkers roam the plain between Gann and the ridge. {quest:885}, a rare red wind serpent, flies over the ridge: its feather starts a quest."] = "",
+	-- {npc:3238} Stormhide
+	["{npc:3238}, on the plain between Gann and the ridge"] = "",
+
+	-- Step 56: Bael Modan
+	-- {area:359} Bael Modan · {npc:3392} Prospector Khazgorm
+	["South of Gann, the Bael'dun dwarves dig at {area:359}. Excavators and Foremen work the pit; {npc:3392} (26) carries the journal: pull him alone."] = "",
+
+	-- Step 58: Bael'dun fortress
+	["Bael'dun fortress"] = "",
+	-- plural, as words: Bael'dun Soldiers = {npc:3376} Bael'dun Soldier
+	["The Bael'dun Soldiers, Riflemen and Officers guard the fortress on the east side of the dig; all three items drop from them."] = "",
+
+	-- Step 60: The flying machine
+	["The flying machine"] = "",
+	["The dwarves' flying machine sits on its platform inside the dig site."] = "",
+
+	-- Step 62: Twitching Antennae
+	["Twitching Antennae"] = "",
+	-- {area:390} Field of Giants · {area:378} Camp Taurajo
+	-- plural, as words: Silithid Swarmers = {npc:3252} Silithid Swarmer
+	["The antennae vanish fifteen minutes after they drop, so gather them now, on the way back north: kill the Silithid Swarmers and Creepers at the {area:390}' mounds until you have five, then hearth to {area:378} straight away."] = "",
+	["Twitching Antennae from the silithid"] = "",
+
+	-- Step 66: Thun'grim Firegaze
+	-- {area:380} The Crossroads
+	["Thun'grim camps beside the road east of the {area:380}."] = "",
+	-- {quest:1838} Brutal Armor · {area:1717} Razorfen Kraul
+	["He offers {quest:1838} next (1838, level 30): it needs {area:1717} and sends you all over Kalimdor and the Eastern Kingdoms. The Warrior class guide {quest:1838} covers it."] = "",
+
+	-- Step 67: Orgrimmar
+	-- {area:1637} Orgrimmar
+	["Fly to {area:1637} to train."] = "",
+
+	-- Step 68: Thunder Bluff
+	-- {npc:246344} Alodan the Hopeful · {area:1638} Thunder Bluff · {area:378} Camp Taurajo · {zone:1412} Mulgore · {npc:2995} Tal
+	["{npc:246344} teaches Paladins in {area:1638}. You have no flight path there yet: fly to {area:378}, ride west through {zone:1412} and up a lift, and take the flight path from {npc:2995} on the central rise."] = "",
+
+	-- Step 69: The Binding
+	-- {npc:5875} Gan'rul Bloodeye · {object:172960} Cleft of Shadow · {item:6626} Dogran's Pendant
+	["{npc:5875} stands in the {object:172960}. Use {item:6626} on the summoning circle there and defeat the succubus to bind her."] = "",
+
+	-- Step 70: Shenthul
+	-- {npc:2391} Serge Hinott · {area:272} Tarren Mill
+	["{npc:2391} in {area:272} teaches Poisons: keep it"] = "",
+
+	-- Step 71: The Great Cat Spirit
+	-- {area:1638} Thunder Bluff · {npc:3033} Turak Runetotem · {area:1639} Elder Rise
+	["Fly to {area:1638} to train: {npc:3033} is on {area:1639}."] = "",
+
+	-- Step 72: Moonglade
+	-- {quest:94913} Moonglade · {area:2362} Shrine of Remulos · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven
+	["Cast Teleport: {quest:94913}. Tauren: join the two pendant halves at the {area:2362}, on the north-west shore of the lake, before you see {npc:11802} in {area:2361}."] = "",
+	-- {item:15885} Pendant of the Sea Lion · {area:2362} Shrine of Remulos
+	["{item:15885}: use a half at the {area:2362}"] = "",
+	-- {npc:11802} Dendrite Starblaze
+	["{npc:11802}: the welcome from Turak"] = "",
+
+	-- Step 73: The Stormrage Barrow Dens
+	-- {area:2363} Stormrage Barrow Dens
+	["The {area:2363}"] = "",
+	-- {npc:11957} Great Cat Spirit · {npc:272054} Avatar of Saeyleenan · {item:280680} Relic of the Silent Shadow
+	["Tauren: the {npc:11957} waits on the southern hill above the bridge. Skyborne: the {npc:272054} stands south of the twin bridges. Then the dens east of the lake: leave your form, click the statue at the entrance for five minutes of stealth, keep clear of the spirits inside and take one of each relic; the {item:280680} lies at the foot of the white cat statue."] = "",
+
+	-- Step 75: Turak Runetotem
+	-- {npc:11798} Bunthen Plainswind · {area:2361} Nighthaven
+	["{npc:11798} in {area:2361} flies druids there"] = "",
+	-- {npc:3033} Turak Runetotem
+	["{npc:3033}: Cure Poison"] = "",
+	-- {npc:3033} Turak Runetotem
+	["{npc:3033}: Cat Form"] = "",
+
+	-- Step 76: Back to the Crossroads
+	-- {area:380} The Crossroads · {area:1703} The Mor'shan Rampart · {zone:1440} Ashenvale
+	["Fly back to the {area:380}. The next guide starts here and takes the road north to the {area:1703} and {zone:1440}."] = "",
+}

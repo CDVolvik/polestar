@@ -1,0 +1,14 @@
+-- Korean (koKR): the guide forever/collectibles/mounts/alliance/stormpike-battle-charger (forever/collectibles/mounts/alliance/stormpike-battle-charger.guide).
+-- Written by `node tools/polestar.js i18n guides sync koKR`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
+-- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
+-- name there in Korean (the English is listed above the line). The comments are rewritten by sync.
+return {
+	-- Step 1: Stormpike Guard
+	-- {area:2839} Alterac Valley · {faction:730} Stormpike Guard · {npc:13217} Thanthaldis Snowgleam · {zone:1416} Alterac Mountains · {area:287} Hillsbrad · {npc:13216} Gaelden Hammersmith
+	["{area:2839} (level 51+) raises {faction:730}: win, capture towers and graveyards, and hand in the battleground's turn-ins. {npc:13217} waits outside the battleground on the {zone:1416} border above {area:287}; {npc:13216} inside {area:2839} sells the same mount."] = "",
+
+	-- Step 2: Stormpike Battle Charger
+	["The Forever client lists it at 200g and level 60, and asks for no riding rank."] = "",
+	-- {npc:13217} Thanthaldis Snowgleam
+	["{npc:13217}, 200g"] = "",
+}

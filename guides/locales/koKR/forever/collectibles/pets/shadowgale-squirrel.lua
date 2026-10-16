@@ -1,0 +1,26 @@
+-- Korean (koKR): the guide forever/collectibles/pets/shadowgale-squirrel (forever/collectibles/pets/shadowgale-squirrel.guide).
+-- Written by `node tools/polestar.js i18n guides sync koKR`, which keeps every translation (docs/TRANSLATING.md, "Guide texts").
+-- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
+-- name there in Korean (the English is listed above the line). The comments are rewritten by sync.
+return {
+	-- Step 1: Skyboat from Dalaran
+	-- {area:279} Dalaran
+	["Skyboat from {area:279}"] = "",
+	-- {zone:2521} Zephras Isle · {area:279} Dalaran · {zone:1456} Thunder Bluff
+	["{zone:2521} is the Skyborne starting island; anyone may visit. A skyboat leaves the north side of {area:279} about every five minutes (another flies from north of {zone:1456}; either faction may take either). Skip this if you are already on the island."] = "",
+	-- {zone:2521} Zephras Isle
+	["Skyboat to {zone:2521}"] = "",
+
+	-- Step 2: Skyboat from Thunder Bluff
+	-- {zone:1456} Thunder Bluff
+	["Skyboat from {zone:1456}"] = "",
+	-- {zone:2521} Zephras Isle · {area:17045} Skywatcher Plateau · {zone:1456} Thunder Bluff · {area:279} Dalaran
+	["{zone:2521} is the Skyborne starting island; anyone may visit. A skyboat leaves the cliffs south of {area:17045}, north of {zone:1456}, about every five minutes (another flies from {area:279}; either faction may take either). Skip this if you are already on the island."] = "",
+
+	-- Step 3: Revered with the Nightclaw Druids
+	-- {faction:2758} Nightclaw Druids
+	["Revered with the {faction:2758}"] = "",
+	-- {npc:254151} Vayn Moongaze · {faction:2758} Nightclaw Druids
+	["{npc:254151} sells the squirrel (50s) once you are Revered with the {faction:2758}."] = "",
+	["50s"] = "",
+}
