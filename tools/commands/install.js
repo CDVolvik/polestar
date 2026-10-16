@@ -9,7 +9,7 @@ const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
 const { parseArgs, resolvePath, printDiagnostics, plural } = require('../lib/cli');
-const { releaseAddons, packDirRefusal, writePackDir } = require('../lib/dsl/project');
+const { releaseAddons, packDirRefusal, textsDirRefusal, writePackDir } = require('../lib/dsl/project');
 const { ROOT } = require('../lib/paths');
 const { detectAddonsDirs, pickAddonsDir, isDir } = require('../lib/addons');
 const { PACK_OPTIONS, PACK_USAGE, otherPack, noDataConflict, noDataCache, buildPack, folderIn } = require('../lib/pack/build');
@@ -220,7 +220,14 @@ function installPack(other, opts, ctx) {
 		console.log(`built ${src} (${plural(built.guides.length, 'guide')})`);
 		return null;
 	};
-	return installFolders([{ src, name, owned: generatedPack(built.manifest.id) }], opts, ctx, prepare);
+	// The pack's texts addons (one per language it translates) sit beside it.
+	const texts = [...new Set(Object.keys(built.files).filter((f) => f.startsWith('../')).map((f) => f.split('/')[1]))].sort();
+	const owned = (target) => {
+		const refusal = textsDirRefusal(target, built.manifest.id);
+		return refusal && `${target}: ${refusal}`;
+	};
+	const folders = [{ src, name, owned: generatedPack(built.manifest.id) }, ...texts.map((t) => ({ src: path.join(path.dirname(src), t), name: t, owned }))];
+	return installFolders(folders, opts, ctx, prepare);
 }
 
 // `env` and `native` ({ platform, root }) stand in for the environment and the

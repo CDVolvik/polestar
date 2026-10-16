@@ -120,7 +120,7 @@ test('parseEntity reads the page entry location and boss flag; wowheadWants asks
 	assert.deepEqual(want.object, [123329, 169243]);
 });
 
-const LUA_FILES = { name: 'Polestar', files: ['Core/Init.lua', 'Core/Compat.lua', 'Core/Data.lua', 'Core/Guides.lua', 'Lookup/Codex.lua'] };
+const LUA_FILES = { name: 'Polestar', files: ['Core/Init.lua', 'Core/Compat.lua', 'Core/Data.lua', 'Core/Names.lua', 'Core/GuideTexts.lua', 'Core/Guides.lua', 'Lookup/Codex.lua'] };
 
 test('the pack carries chest bosses and roles; an encounter boss keeps the old bare npc ref', () => {
 	const codex = sampleCodex();
