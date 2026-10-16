@@ -99,6 +99,7 @@ L["rare"] = "редкий"
 L["%s or %s"] = "%s или %s"
 L["Kill %s for %s"] = "Убить %s и добыть %s"
 L["Collect %s from %s"] = "Собрать %s с %s"
+-- L["Riding"] = ""
 
 -- Core/Closes.lua
 L["Taking %s closes %s for good."] = "Взяв %s, вы навсегда закроете %s."
@@ -174,11 +175,11 @@ L["Close"] = "Закрыть"
 
 -- Nav/Nav.lua
 L["Waypoint"] = "Путевая точка"
-L["Shortest Path Forever is guiding. Turn off \"Guide with Shortest Path Forever when it's installed\" (Options, Arrow & routes) to use Polestar's arrow."] = "Ведет Shortest Path Forever. Отключите «Вести через Shortest Path Forever, если он установлен» (Настройки, Стрелка и маршруты), чтобы использовать стрелку Polestar."
 L["Greyed out while Shortest Path Forever guides: it does this itself."] = "Недоступно, пока ведет Shortest Path Forever: он делает это сам."
 L["Waypoint arrow: show, hide, reset"] = "Стрелка: показать, скрыть, сбросить"
 L["Usage: /polestar way <x> <y> [label]"] = "Использование: /polestar way <x> <y> [метка]"
 L["Point the arrow at x y on your current map (no argument clears it)"] = "Навести стрелку на x y на текущей карте (без аргументов — сбросить)"
+-- L["Shortest Path Forever is guiding. Turn off \"Guide with Shortest Path Forever when it's installed\" (Options, Integrations) to use Polestar's arrow."] = ""
 
 -- Nav/Arrow.lua
 L["Search here"] = "Ищите здесь"
@@ -1862,3 +1863,10 @@ L["The guide window holds the gamepad until B: the D-pad picks a line, A points 
 -- L["Polestar: %s"] = ""
 -- L["Show planned turn-ins in Questie"] = ""
 -- L["Completed quests in Questie's tracker show their Polestar turn-in step. Earlier, skipped and unplanned hand-ins are flagged."] = ""
+
+-- Talents/Builds.lua
+-- L["Holy"] = ""
+-- L["Protection"] = ""
+
+-- No longer in the code (its English changed or it went away): reuse or delete.
+-- L["Shortest Path Forever is guiding. Turn off \"Guide with Shortest Path Forever when it's installed\" (Options, Arrow & routes) to use Polestar's arrow."] = "Ведет Shortest Path Forever. Отключите «Вести через Shortest Path Forever, если он установлен» (Настройки, Стрелка и маршруты), чтобы использовать стрелку Polestar."

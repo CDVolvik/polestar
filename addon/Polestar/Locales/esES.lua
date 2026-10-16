@@ -99,6 +99,7 @@ L["rare"] = "raro"
 L["%s or %s"] = "%s o %s"
 L["Kill %s for %s"] = "Mata a %s para obtener %s"
 L["Collect %s from %s"] = "Consigue %s de %s"
+-- L["Riding"] = ""
 
 -- Core/Closes.lua
 L["Taking %s closes %s for good."] = "Aceptar %s bloquea %s para siempre."
@@ -174,11 +175,11 @@ L["Close"] = "Cerrar"
 
 -- Nav/Nav.lua
 L["Waypoint"] = "Punto de ruta"
-L["Shortest Path Forever is guiding. Turn off \"Guide with Shortest Path Forever when it's installed\" (Options, Arrow & routes) to use Polestar's arrow."] = "Shortest Path Forever está guiando. Desactiva \"Guiar con Shortest Path Forever si está instalado\" (Opciones, Flecha y rutas) para usar la flecha de Polestar."
 L["Greyed out while Shortest Path Forever guides: it does this itself."] = "Atenuado mientras guía Shortest Path Forever: lo hace él mismo."
 L["Waypoint arrow: show, hide, reset"] = "Flecha de punto de ruta: mostrar, ocultar, restablecer"
 L["Usage: /polestar way <x> <y> [label]"] = "Uso: /polestar way <x> <y> [etiqueta]"
 L["Point the arrow at x y on your current map (no argument clears it)"] = "Apuntar la flecha a x y en tu mapa actual (sin argumentos la borra)"
+-- L["Shortest Path Forever is guiding. Turn off \"Guide with Shortest Path Forever when it's installed\" (Options, Integrations) to use Polestar's arrow."] = ""
 
 -- Nav/Arrow.lua
 L["Search here"] = "Busca aquí"
@@ -1862,3 +1863,10 @@ L["The guide window holds the gamepad until B: the D-pad picks a line, A points 
 -- L["Polestar: %s"] = ""
 -- L["Show planned turn-ins in Questie"] = ""
 -- L["Completed quests in Questie's tracker show their Polestar turn-in step. Earlier, skipped and unplanned hand-ins are flagged."] = ""
+
+-- Talents/Builds.lua
+-- L["Holy"] = ""
+-- L["Protection"] = ""
+
+-- No longer in the code (its English changed or it went away): reuse or delete.
+-- L["Shortest Path Forever is guiding. Turn off \"Guide with Shortest Path Forever when it's installed\" (Options, Arrow & routes) to use Polestar's arrow."] = "Shortest Path Forever está guiando. Desactiva \"Guiar con Shortest Path Forever si está instalado\" (Opciones, Flecha y rutas) para usar la flecha de Polestar."

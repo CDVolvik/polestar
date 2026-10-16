@@ -94,6 +94,7 @@ L["Craft"] = "Fertige"
 L["Reach %s with"] = "Erreiche %s bei"
 L["Explore"] = "Erkunde"
 -- L["Complete"] = ""
+-- L["Riding"] = ""
 
 -- Core/Guides.lua
 L["Needs Polestar %s or newer."] = "Benötigt Polestar %s oder neuer."
@@ -180,8 +181,8 @@ L["Waypoint"] = "Wegpunkt"
 L["Waypoint arrow: show, hide, reset"] = "Wegpunkt-Pfeil: anzeigen, ausblenden, zurücksetzen"
 L["Usage: /polestar way <x> <y> [label]"] = "Verwendung: /polestar way <x> <y> [Name]"
 L["Point the arrow at x y on your current map (no argument clears it)"] = "Pfeil auf x y der aktuellen Karte richten (ohne Angabe wird er gelöscht)"
-L["Shortest Path Forever is guiding. Turn off \"Guide with Shortest Path Forever when it's installed\" (Options, Arrow & routes) to use Polestar's arrow."] = "Shortest Path Forever führt. Schalte „Mit Shortest Path Forever führen, wenn es installiert ist“ (Optionen, Pfeil & Routen) aus, um Polestars Pfeil zu benutzen."
 L["Greyed out while Shortest Path Forever guides: it does this itself."] = "Ausgegraut, solange Shortest Path Forever führt: Es erledigt das selbst."
+-- L["Shortest Path Forever is guiding. Turn off \"Guide with Shortest Path Forever when it's installed\" (Options, Integrations) to use Polestar's arrow."] = ""
 
 -- Nav/Travel.lua
 L["Go to %s"] = "Geh nach %s"
@@ -1828,6 +1829,10 @@ L["The guide window holds the gamepad until B: the D-pad picks a line, A points 
 -- L["Show planned turn-ins in Questie"] = ""
 -- L["Completed quests in Questie's tracker show their Polestar turn-in step. Earlier, skipped and unplanned hand-ins are flagged."] = ""
 
+-- Talents/Builds.lua
+-- L["Holy"] = ""
+-- L["Protection"] = ""
+
 -- No longer in the code (its English changed or it went away): reuse or delete.
 -- L["The arrow's target and the areas it spawns in."] = "Das Ziel des Pfeils und die Gebiete, in denen es spawnt."
 -- L["The arrow's target, the stops of its travel route, the step's other goals and the areas their mobs and objects spawn in."] = "Das Ziel des Pfeils, die Stationen seiner Reiseroute, die anderen Ziele des Schritts und die Gebiete, in denen ihre Mobs und Objekte spawnen."
@@ -1864,3 +1869,4 @@ L["The guide window holds the gamepad until B: the D-pad picks a line, A points 
 -- L["slot: Waist"] = "Taille"
 -- L["slot: Wrist"] = "Handgelenke"
 -- L["Dungeon journal"] = "Dungeonkompendium"
+-- L["Shortest Path Forever is guiding. Turn off \"Guide with Shortest Path Forever when it's installed\" (Options, Arrow & routes) to use Polestar's arrow."] = "Shortest Path Forever führt. Schalte „Mit Shortest Path Forever führen, wenn es installiert ist“ (Optionen, Pfeil & Routen) aus, um Polestars Pfeil zu benutzen."
