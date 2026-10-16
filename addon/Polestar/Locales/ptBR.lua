@@ -99,6 +99,7 @@ L["rare"] = "raro"
 L["%s or %s"] = "%s ou %s"
 L["Kill %s for %s"] = "Matar %s para obter %s"
 L["Collect %s from %s"] = "Coletar %s de %s"
+-- L["Riding"] = ""
 
 -- Core/Closes.lua
 L["Taking %s closes %s for good."] = "Pegar %s fecha %s para sempre."
@@ -1568,6 +1569,9 @@ L["Search settings"] = "Buscar opções"
 L["Open Polestar settings"] = "Abrir opções do Polestar"
 L["Close the game menu to see Polestar's settings (it cannot be closed for you in combat)."] = "Feche o menu do jogo para ver as opções do Polestar (em combate ele não pode ser fechado por você)."
 L["Close the game menu to see Polestar's settings."] = "Feche o menu do jogo para ver as opções do Polestar."
+-- L["Integrations"] = ""
+-- L["Settings for other addons Polestar works with, shown when they are installed."] = ""
+-- L["None of the addons Polestar works with is installed."] = ""
 
 -- Rares/Rares.lua
 L["Raid warning"] = "Aviso de raide"
@@ -1840,9 +1844,31 @@ L["The guide"] = "O guia"
 L["Quest buttons"] = "Botões de missão"
 L["The guide window holds the gamepad until B: the D-pad picks a line, A points the arrow there or uses the item, X shows its details, LB and RB change steps, Y minimizes the window. A window that opened by itself, such as a route choice, waits for this button before it takes the gamepad."] = "A janela do guia mantém o controle até B: o direcional escolhe uma linha, A aponta a seta para lá ou usa o item, X mostra os detalhes, LB e RB trocam de etapa, Y minimiza a janela. Uma janela que abriu sozinha, como uma escolha de rota, espera por este botão antes de tomar o controle."
 
+-- Core/RoutePlan.lua
+-- L["step %d"] = ""
+-- L["%s · %s"] = ""
+-- L["Turn in at this step · %s"] = ""
+-- L["Turn in at %s"] = ""
+-- L["Earlier turn-in · %s — check"] = ""
+-- L["Skipped turn-in · %s — check"] = ""
+-- L["Turn-in plan depends on your next route choice"] = ""
+-- L["Next guide is not loaded; turn-in plan unavailable"] = ""
+-- L["No turn-in in this route"] = ""
+-- L["Select a guide to see its turn-in plan"] = ""
+-- L["%s (optional)"] = ""
+
+-- UI/QuestieTurnIns.lua
+-- L["Polestar: %s"] = ""
+-- L["Show planned turn-ins in Questie"] = ""
+-- L["Completed quests in Questie's tracker show their Polestar turn-in step. Earlier, skipped and unplanned hand-ins are flagged."] = ""
+
 -- Nav/Handoff.lua
 -- L["Hand guiding to Shortest Path Forever"] = ""
 -- L["Shortest Path Forever's arrow, route and journey take you to each goal. Polestar's arrow, route lines, journey steps, travel button, transport alerts, map clicks and /way step aside; the guide window and map pins stay. Off: Polestar guides, and steps aside only while a journey you started in Shortest Path Forever runs."] = ""
+
+-- Talents/Builds.lua
+-- L["Holy"] = ""
+-- L["Protection"] = ""
 
 -- No longer in the code (its English changed or it went away): reuse or delete.
 -- L["Shortest Path Forever is guiding. Turn off \"Guide with Shortest Path Forever when it's installed\" (Options, Arrow & routes) to use Polestar's arrow."] = "Shortest Path Forever está guiando. Desative \"Guiar com Shortest Path Forever quando instalado\" (Opções, Seta e rotas) para usar a seta do Polestar."

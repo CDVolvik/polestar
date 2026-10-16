@@ -10,12 +10,32 @@ const { ROOT } = require('../lib/paths');
 const { LOCALES, LOCALE_CODES, checkLocale } = require('../lib/i18n/locales');
 const { localeState, syncFiles, rel } = require('../lib/i18n/project');
 
-const ADDON = path.join(ROOT, 'addon', 'Polestar');
+// The addons with interface translations, each with Locales/<locale>.lua:
+// Polestar's own (loaded by Core/Core.xml) and the Recorder's (its TOC).
+const ADDONS = {
+	Polestar: { dir: path.join(ROOT, 'addon', 'Polestar'), title: "Polestar's interface strings" },
+	Polestar_Recorder: { dir: path.join(ROOT, 'addon', 'Polestar_Recorder'), title: "Polestar Recorder's interface strings" },
+};
+const ADDON = ADDONS.Polestar.dir;
+
+// --addon <name> -> that addon; else every addon, or Polestar's alone for
+// the commands that read one (status, keys, import).
+function addons(opts, { one = false } = {}) {
+	if (opts.addon) {
+		const a = ADDONS[opts.addon];
+		if (!a) throw new Error(`unknown addon "${opts.addon}" (${Object.keys(ADDONS).join(', ')})`);
+		return [a];
+	}
+	return one ? [ADDONS.Polestar] : Object.values(ADDONS);
+}
 
 const usage = `usage: node tools/polestar.js i18n <status|check|sync|keys|import|fit|names> [options]
 
 Polestar's interface translations (docs/TRANSLATING.md): one file per
-locale, addon/Polestar/Locales/<locale>.lua. Locales: ${LOCALE_CODES.join(', ')}.
+locale, addon/Polestar/Locales/<locale>.lua, and the same for the Recorder,
+addon/Polestar_Recorder/Locales/<locale>.lua. Locales: ${LOCALE_CODES.join(', ')}.
+check and sync read both addons; status, keys and import read Polestar's
+unless --addon names the other.
 
   i18n status                per locale: its language, status (reviewed or
                              ai), translators, and how many keys it
@@ -33,7 +53,8 @@ locale, addon/Polestar/Locales/<locale>.lua. Locales: ${LOCALE_CODES.join(', ')}
                              group, and moves translations of keys it lost to
                              a commented block at the end. Never rewrites a
                              translation. A locale named that has no file
-                             gets one, loaded from Core/Core.xml.
+                             gets one, loaded from Core/Core.xml (the
+                             Recorder's TOC lists its own).
   i18n keys                  every interface key with where it is used.
   i18n import <locale> <file.lua>...
                              merges translations written apart (a file that
@@ -75,7 +96,9 @@ options:
   --guides <file>   names: the compiled guides (default addon/Polestar_Guides/Guides.lua)
   --questdb <dir>   names: the built quest database (default addon/Polestar_QuestDB)
   --codex <dir>     names: the Codex's data (default data/forever/codex)
-  --out <dir>       names: where the addon folders go (default addon/)`;
+  --out <dir>       names: where the addon folders go (default addon/)
+  --addon <name>    status, check, sync, keys, import: Polestar or
+                    Polestar_Recorder only`;
 
 function locales(positional) {
 	if (!positional.length) return LOCALE_CODES.slice();
@@ -87,14 +110,14 @@ function count(o) {
 }
 
 // Locales/<x>.lua files that are not one of LOCALES.
-function strayFiles() {
-	const dir = path.join(ADDON, 'Locales');
+function strayFiles(addonDir) {
+	const dir = path.join(addonDir, 'Locales');
 	if (!fs.existsSync(dir)) return [];
 	return fs.readdirSync(dir).filter((f) => f.endsWith('.lua') && !LOCALES[f.replace(/\.lua$/, '')]).map((f) => path.join(dir, f));
 }
 
 function runStatus(opts) {
-	const st = localeState(ADDON, LOCALE_CODES);
+	const st = localeState(addons(opts, { one: true })[0].dir, LOCALE_CODES);
 	const total = st.keys.size;
 	const rows = LOCALE_CODES.map((locale) => {
 		const s = st.locales[locale];
@@ -125,29 +148,36 @@ function runStatus(opts) {
 
 function runCheck(opts, positional) {
 	const list = locales(positional);
-	const st = localeState(ADDON, list);
-	const report = { ok: true, keys: st.keys.size, locales: {} };
+	const report = { ok: true, keys: 0, locales: {}, addons: {} };
 	let failures = 0;
 	const fail = (msg) => {
 		failures++;
 		if (!opts.json) console.error(`error: ${msg}`);
 	};
-	if (!positional.length) for (const f of strayFiles()) fail(`${rel(f)}: not a locale Polestar ships (tools/lib/i18n/locales.js)`);
-	for (const locale of list) {
-		const s = st.locales[locale];
-		const file = rel(s.file);
-		const r = { file, exists: s.exists, translated: count(s.translated), missing: s.missing.length, stale: Object.keys(s.stale), problems: s.problems, warnings: s.warnings, error: s.error };
-		report.locales[locale] = r;
-		if (!s.exists) {
-			if (!opts.json) console.log(`${locale}: no file yet (\`node tools/polestar.js i18n sync ${locale}\` starts one)`);
-			continue;
-		}
-		if (s.error) fail(`${file}: ${s.error}`);
-		for (const k of r.stale) fail(`${file}: stale key ${JSON.stringify(k)} (not in the code; \`i18n sync ${locale}\` moves it to the end as a comment)`);
-		for (const p of s.problems) fail(`${file}: ${JSON.stringify(p.key)}: ${p.problem}`);
-		if (!opts.json) {
-			for (const w of s.warnings) console.warn(`warning: ${file}: ${JSON.stringify(w.key)} = ${JSON.stringify(w.value)}: the glossary says "${w.term}" for ${w.id}`);
-			console.log(`${locale}: ${r.translated}/${st.keys.size} translated, ${r.missing} missing${r.stale.length ? `, ${r.stale.length} stale` : ''}${s.warnings.length ? `, ${plural(s.warnings.length, 'glossary warning')}` : ''}`);
+	const all = addons(opts);
+	for (const [i, addon] of all.entries()) {
+		const st = localeState(addon.dir, list);
+		const part = { keys: st.keys.size, locales: {} };
+		report.addons[path.basename(addon.dir)] = part;
+		if (i === 0) Object.assign(report, part);
+		if (all.length > 1 && !opts.json) console.log(`${path.basename(addon.dir)}:`);
+		if (!positional.length) for (const f of strayFiles(addon.dir)) fail(`${rel(f)}: not a locale Polestar ships (tools/lib/i18n/locales.js)`);
+		for (const locale of list) {
+			const s = st.locales[locale];
+			const file = rel(s.file);
+			const r = { file, exists: s.exists, translated: count(s.translated), missing: s.missing.length, stale: Object.keys(s.stale), problems: s.problems, warnings: s.warnings, error: s.error };
+			part.locales[locale] = r;
+			if (!s.exists) {
+				if (!opts.json) console.log(`${locale}: no file yet (\`node tools/polestar.js i18n sync ${locale}\` starts one)`);
+				continue;
+			}
+			if (s.error) fail(`${file}: ${s.error}`);
+			for (const k of r.stale) fail(`${file}: stale key ${JSON.stringify(k)} (not in the code; \`i18n sync ${locale}\` moves it to the end as a comment)`);
+			for (const p of s.problems) fail(`${file}: ${JSON.stringify(p.key)}: ${p.problem}`);
+			if (!opts.json) {
+				for (const w of s.warnings) console.warn(`warning: ${file}: ${JSON.stringify(w.key)} = ${JSON.stringify(w.value)}: the glossary says "${w.term}" for ${w.id}`);
+				console.log(`${locale}: ${r.translated}/${st.keys.size} translated, ${r.missing} missing${r.stale.length ? `, ${r.stale.length} stale` : ''}${s.warnings.length ? `, ${plural(s.warnings.length, 'glossary warning')}` : ''}`);
+			}
 		}
 	}
 	report.ok = failures === 0;
@@ -173,6 +203,8 @@ function loadInCoreXml(locale) {
 	return true;
 }
 
+// A new Polestar locale file is loaded from Core/Core.xml; another addon's
+// TOC lists its files.
 function writeSync(files) {
 	let written = 0;
 	for (const [file, r] of Object.entries(files)) {
@@ -180,24 +212,29 @@ function writeSync(files) {
 		fs.mkdirSync(path.dirname(file), { recursive: true });
 		const created = !fs.existsSync(file);
 		fs.writeFileSync(file, r.text);
-		if (created && loadInCoreXml(path.basename(file, '.lua'))) console.log(`Core/Core.xml loads ${rel(file)}`);
+		const own = path.dirname(file) === path.join(ADDON, 'Locales');
+		if (created && own && loadInCoreXml(path.basename(file, '.lua'))) console.log(`Core/Core.xml loads ${rel(file)}`);
+		if (created && !own) console.log(`${rel(file)} is new: list it in its addon's TOC`);
 		written++;
 	}
 	return written;
 }
 
 function runSync(opts, positional) {
-	const list = positional.length ? locales(positional) : LOCALE_CODES.filter((l) => fs.existsSync(path.join(ADDON, 'Locales', `${l}.lua`)));
-	const st = localeState(ADDON, list);
 	let code = 0;
-	for (const locale of list) {
-		const s = st.locales[locale];
-		if (s.error) {
-			console.error(`error: ${rel(s.file)}: ${s.error}; fix it first (nothing written for ${locale})`);
-			code = 1;
+	const files = {};
+	for (const addon of addons(opts)) {
+		const list = positional.length ? locales(positional) : LOCALE_CODES.filter((l) => fs.existsSync(path.join(addon.dir, 'Locales', `${l}.lua`)));
+		const st = localeState(addon.dir, list);
+		for (const locale of list) {
+			const s = st.locales[locale];
+			if (s.error) {
+				console.error(`error: ${rel(s.file)}: ${s.error}; fix it first (nothing written for ${locale})`);
+				code = 1;
+			}
 		}
+		Object.assign(files, syncFiles(st, { create: positional.length ? list : [], title: addon.title }));
 	}
-	const files = syncFiles(st, { create: positional.length ? list : [] });
 	for (const [file, r] of Object.entries(files)) {
 		const parts = [];
 		if (r.added.length) parts.push(`${plural(r.added.length, 'key')} added`);
@@ -211,7 +248,7 @@ function runSync(opts, positional) {
 
 function runKeys(opts) {
 	const { extractKeys } = require('../lib/i18n/keys');
-	const keys = extractKeys(ADDON);
+	const keys = extractKeys(addons(opts, { one: true })[0].dir);
 	const where = (w) => w.map((x) => (x.data ? `${x.file} (data)` : `${x.file}:${x.line}`));
 	if (opts.json) {
 		console.log(JSON.stringify(Object.fromEntries([...keys].map(([k, w]) => [k, where(w)])), null, 1));
@@ -231,7 +268,8 @@ function runImport(opts, positional) {
 	checkLocale(locale);
 	const { readLocaleFiles } = require('../lib/i18n/files');
 	const { formatProblems } = require('../lib/i18n/check');
-	const st = localeState(ADDON, [locale]);
+	const addon = addons(opts, { one: true })[0];
+	const st = localeState(addon.dir, [locale]);
 	const s = st.locales[locale];
 	if (s.error) throw new Error(`${rel(s.file)}: ${s.error}`);
 	const fill = {};
@@ -258,7 +296,7 @@ function runImport(opts, positional) {
 			fill[k] = v;
 		}
 	}
-	const out = syncFiles(st, { create: [locale], fill: { [locale]: fill }, retire: { [locale]: retire } });
+	const out = syncFiles(st, { create: [locale], fill: { [locale]: fill }, retire: { [locale]: retire }, title: addon.title });
 	writeSync(out);
 	const r = out[s.file];
 	console.log(`${locale}: ${plural(r.filled.length, 'translation')} imported into ${rel(s.file)}`
@@ -350,7 +388,7 @@ async function runFit(opts, positional) {
 async function run(argv) {
 	const { opts, positional, error } = parseArgs(argv, {
 		flags: ['--json', '--markdown', '--no-questie', '--offline'],
-		options: ['--ding', '--pfquest', '--guides', '--questdb', '--codex', '--out', '--slack'],
+		options: ['--ding', '--pfquest', '--guides', '--questdb', '--codex', '--out', '--slack', '--addon'],
 	});
 	const [sub, ...rest] = positional;
 	if (error || !sub) {

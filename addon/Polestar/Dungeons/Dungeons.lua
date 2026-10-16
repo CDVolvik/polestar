@@ -102,6 +102,63 @@ local function ready()
 	return (Dungeons.Load())
 end
 
+-- A page's quest, NPC, object and item names in the client's language
+-- (Polestar.Names), in place: quest titles, start and finish points, items
+-- (rewards, starting items, keys), boss names and the quests' boss lists.
+-- English stays where the language has no name.
+local ITEM_KEYS = { item = true, startItem = true, items = true }
+local NAMED = { npc = true, object = true, item = true }
+
+local function localise(N, t, key)
+	local itemWas = type(t.item) == "table" and t.item.name
+	for k, v in pairs(t) do
+		if type(v) == "table" then localise(N, v, type(k) == "number" and key or k) end
+	end
+	local id = t.id
+	if type(id) == "number" then
+		if t.title then
+			t.title = N.Quest(id) or t.title
+		elseif t.name then
+			local kind = NAMED[t.kind] and t.kind or (ITEM_KEYS[key] and "item")
+			if kind then t.name = N.Get(kind, id) or t.name end
+		end
+	elseif itemWas and t.name == itemWas then
+		t.name = t.item.name -- a key named after its item
+	end
+	if type(t.item) == "number" and t.itemName then t.itemName = N.Item(t.item) or t.itemName end
+end
+
+local function localisePage(p)
+	local N = ns.Names
+	if not (N and N.Localised()) then return end
+	local bossName = {}
+	for _, b in ipairs(p.bosses) do
+		local was = b.name
+		b.name = N.Encounter(b.encounter) or N.Npc(b.npc) or N.Object(b.object) or was
+		if was then bossName[was] = b.name end
+		for _, q in ipairs(b.quests or {}) do
+			if type(q.item) == "number" and q.itemName then q.itemName = N.Item(q.item) or q.itemName end
+		end
+	end
+	-- An attunement named after its goal quest takes that quest's title.
+	local goalStep = {}
+	for _, a in ipairs(p.attunement) do
+		local g = type(a.goal) == "table" and a.goal[1]
+		for _, s in ipairs(a.steps or {}) do
+			if g and s.kind == "quest" and s.id == g and s.title == a.name then goalStep[a] = s end
+		end
+	end
+	for _, group in ipairs({ p.quests, p.chain, p.attunement }) do
+		localise(N, group)
+		for _, q in pairs(group) do
+			if type(q) == "table" and type(q.bosses) == "table" then
+				for i, name in ipairs(q.bosses) do q.bosses[i] = bossName[name] or name end
+			end
+		end
+	end
+	for a, s in pairs(goalStep) do a.name = s.title end
+end
+
 -- key -> page | nil, compiled from its source in an empty environment.
 local function page(key)
 	if key == nil or not ready() then return nil end
@@ -117,9 +174,24 @@ local function page(key)
 	p.chain = p.chain or {}
 	p.bosses = p.bosses or {}
 	p.attunement = p.attunement or {}
+	localisePage(p)
 	openKey, openPage = key, p
 	return p
 end
+
+-- The open page holds translated names: decode it again after the names
+-- pack arrives late, or when a name it carries is learned anew.
+ns.On("NAMES_LOADED", function() openKey, openPage = nil, nil end)
+ns.On("NAME_LEARNED", function(_, id)
+	local src = openKey and sources[openKey]
+	if type(src) ~= "string" then return end
+	for _, field in ipairs({ "id=", "npc=", "object=" }) do
+		if find(src, field .. id .. ",", 1, true) or find(src, field .. id .. "}", 1, true) then
+			openKey, openPage = nil, nil
+			return
+		end
+	end
+end)
 
 ---------------------------------------------------------------------------
 -- Reading

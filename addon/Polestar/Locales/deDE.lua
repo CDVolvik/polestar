@@ -94,6 +94,7 @@ L["Craft"] = "Fertige"
 L["Reach %s with"] = "Erreiche %s bei"
 L["Explore"] = "Erkunde"
 -- L["Complete"] = ""
+-- L["Riding"] = ""
 
 -- Core/Guides.lua
 L["Needs Polestar %s or newer."] = "Benötigt Polestar %s oder neuer."
@@ -916,6 +917,9 @@ L["Talents"] = "Talente"
 L["Talent plan"] = "Talentplan"
 -- L["This translation was made with AI. Help improve it on Discord."] = ""
 L["Close the game menu to see Polestar's settings."] = "Schließe das Spielmenü, um Polestars Einstellungen zu sehen."
+-- L["Integrations"] = ""
+-- L["Settings for other addons Polestar works with, shown when they are installed."] = ""
+-- L["None of the addons Polestar works with is installed."] = ""
 
 -- UI/Dungeons.lua
 L["Ready to turn in"] = "Bereit zur Abgabe"
@@ -1805,9 +1809,31 @@ L["The guide"] = "Der Guide"
 L["Quest buttons"] = "Quest-Buttons"
 L["The guide window holds the gamepad until B: the D-pad picks a line, A points the arrow there or uses the item, X shows its details, LB and RB change steps, Y minimizes the window. A window that opened by itself, such as a route choice, waits for this button before it takes the gamepad."] = "Das Guide-Fenster behält das Gamepad bis B: Das Steuerkreuz wählt eine Zeile, A richtet den Pfeil dorthin oder benutzt den Gegenstand, X zeigt Details, LB und RB wechseln den Schritt, Y minimiert das Fenster. Ein Fenster, das sich von selbst geöffnet hat, etwa eine Routenwahl, wartet auf diese Taste, bevor es das Gamepad übernimmt."
 
+-- Core/RoutePlan.lua
+-- L["step %d"] = ""
+-- L["%s · %s"] = ""
+-- L["Turn in at this step · %s"] = ""
+-- L["Turn in at %s"] = ""
+-- L["Earlier turn-in · %s — check"] = ""
+-- L["Skipped turn-in · %s — check"] = ""
+-- L["Turn-in plan depends on your next route choice"] = ""
+-- L["Next guide is not loaded; turn-in plan unavailable"] = ""
+-- L["No turn-in in this route"] = ""
+-- L["Select a guide to see its turn-in plan"] = ""
+-- L["%s (optional)"] = ""
+
+-- UI/QuestieTurnIns.lua
+-- L["Polestar: %s"] = ""
+-- L["Show planned turn-ins in Questie"] = ""
+-- L["Completed quests in Questie's tracker show their Polestar turn-in step. Earlier, skipped and unplanned hand-ins are flagged."] = ""
+
 -- Nav/Handoff.lua
 -- L["Hand guiding to Shortest Path Forever"] = ""
 -- L["Shortest Path Forever's arrow, route and journey take you to each goal. Polestar's arrow, route lines, journey steps, travel button, transport alerts, map clicks and /way step aside; the guide window and map pins stay. Off: Polestar guides, and steps aside only while a journey you started in Shortest Path Forever runs."] = ""
+
+-- Talents/Builds.lua
+-- L["Holy"] = ""
+-- L["Protection"] = ""
 
 -- No longer in the code (its English changed or it went away): reuse or delete.
 -- L["The arrow's target and the areas it spawns in."] = "Das Ziel des Pfeils und die Gebiete, in denen es spawnt."

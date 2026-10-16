@@ -766,13 +766,13 @@ local function paintReward(t, e)
 	if e.item then
 		W.PrefetchItem(e.item)
 		icon = C.ItemIcon and C.ItemIcon(e.item)
-		name = e.itemName or (L["Item"] .. " " .. e.item)
+		name = ns.Names.Item(e.item) or e.itemName or (L["Item"] .. " " .. e.item)
 		local q = (C.GetItemQuality and C.GetItemQuality(e.item)) or e.quality
 		hex = q and C.ItemQualityHex and C.ItemQualityHex(q)
 	elseif e.spell then
 		W.PrefetchSpell(e.spell)
 		icon = C.SpellIcon and C.SpellIcon(e.spell)
-		name = e.spellName or (L["Spell"] .. " " .. e.spell)
+		name = ns.Names.Spell(e.spell) or e.spellName or (L["Spell"] .. " " .. e.spell)
 	else
 		name = e.text or ""
 	end

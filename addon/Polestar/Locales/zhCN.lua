@@ -99,6 +99,7 @@ L["rare"] = "稀有"
 L["%s or %s"] = "%s 或 %s"
 L["Kill %s for %s"] = "为 %2$s 击杀 %1$s"
 L["Collect %s from %s"] = "从 %2$s 收集 %1$s"
+-- L["Riding"] = ""
 
 -- Core/Closes.lua
 L["Taking %s closes %s for good."] = "接受 %s 会永久关闭 %s。"
@@ -1568,6 +1569,9 @@ L["Search settings"] = "搜索设置"
 L["Open Polestar settings"] = "打开 Polestar 设置"
 L["Close the game menu to see Polestar's settings (it cannot be closed for you in combat)."] = "关闭游戏菜单以查看 Polestar 设置（战斗中无法自动为你关闭）。"
 L["Close the game menu to see Polestar's settings."] = "关闭游戏菜单以查看 Polestar 设置。"
+-- L["Integrations"] = ""
+-- L["Settings for other addons Polestar works with, shown when they are installed."] = ""
+-- L["None of the addons Polestar works with is installed."] = ""
 
 -- Rares/Rares.lua
 L["Raid warning"] = "团队通知"
@@ -1840,9 +1844,31 @@ L["The guide"] = "指南"
 L["Quest buttons"] = "任务按钮"
 L["The guide window holds the gamepad until B: the D-pad picks a line, A points the arrow there or uses the item, X shows its details, LB and RB change steps, Y minimizes the window. A window that opened by itself, such as a route choice, waits for this button before it takes the gamepad."] = "指南窗口会占用手柄直到按 B：方向键选择一行，A 将箭头指向该处或使用物品，X 显示详情，LB 和 RB 切换步骤，Y 最小化窗口。自行打开的窗口（例如路线选择）会等你按下此按钮后才接管手柄。"
 
+-- Core/RoutePlan.lua
+-- L["step %d"] = ""
+-- L["%s · %s"] = ""
+-- L["Turn in at this step · %s"] = ""
+-- L["Turn in at %s"] = ""
+-- L["Earlier turn-in · %s — check"] = ""
+-- L["Skipped turn-in · %s — check"] = ""
+-- L["Turn-in plan depends on your next route choice"] = ""
+-- L["Next guide is not loaded; turn-in plan unavailable"] = ""
+-- L["No turn-in in this route"] = ""
+-- L["Select a guide to see its turn-in plan"] = ""
+-- L["%s (optional)"] = ""
+
+-- UI/QuestieTurnIns.lua
+-- L["Polestar: %s"] = ""
+-- L["Show planned turn-ins in Questie"] = ""
+-- L["Completed quests in Questie's tracker show their Polestar turn-in step. Earlier, skipped and unplanned hand-ins are flagged."] = ""
+
 -- Nav/Handoff.lua
 -- L["Hand guiding to Shortest Path Forever"] = ""
 -- L["Shortest Path Forever's arrow, route and journey take you to each goal. Polestar's arrow, route lines, journey steps, travel button, transport alerts, map clicks and /way step aside; the guide window and map pins stay. Off: Polestar guides, and steps aside only while a journey you started in Shortest Path Forever runs."] = ""
+
+-- Talents/Builds.lua
+-- L["Holy"] = ""
+-- L["Protection"] = ""
 
 -- No longer in the code (its English changed or it went away): reuse or delete.
 -- L["Shortest Path Forever is guiding. Turn off \"Guide with Shortest Path Forever when it's installed\" (Options, Arrow & routes) to use Polestar's arrow."] = "Shortest Path Forever 正在导航。要使用 Polestar 的箭头，请关闭“安装 Shortest Path Forever 时由其导航”（选项 > 箭头与路线）。"

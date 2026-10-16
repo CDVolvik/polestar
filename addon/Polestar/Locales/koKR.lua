@@ -99,6 +99,7 @@ L["rare"] = "희귀"
 L["%s or %s"] = "%s 또는 %s"
 L["Kill %s for %s"] = "%s 처치 (%s 획득)"
 L["Collect %s from %s"] = "%s 수집 (출처: %s)"
+-- L["Riding"] = ""
 
 -- Core/Closes.lua
 L["Taking %s closes %s for good."] = "%s 퀘스트를 받으면 %s 퀘스트는 영영 받을 수 없습니다."
@@ -1568,6 +1569,9 @@ L["Search settings"] = "설정 검색"
 L["Open Polestar settings"] = "Polestar 설정 열기"
 L["Close the game menu to see Polestar's settings (it cannot be closed for you in combat)."] = "Polestar 설정을 보려면 게임 메뉴를 닫으십시오 (전투 중에는 자동으로 닫을 수 없습니다)."
 L["Close the game menu to see Polestar's settings."] = "Polestar 설정을 보려면 게임 메뉴를 닫으십시오."
+-- L["Integrations"] = ""
+-- L["Settings for other addons Polestar works with, shown when they are installed."] = ""
+-- L["None of the addons Polestar works with is installed."] = ""
 
 -- Rares/Rares.lua
 L["Raid warning"] = "공격대 경보"
@@ -1840,9 +1844,31 @@ L["The guide"] = "가이드"
 L["Quest buttons"] = "퀘스트 버튼"
 L["The guide window holds the gamepad until B: the D-pad picks a line, A points the arrow there or uses the item, X shows its details, LB and RB change steps, Y minimizes the window. A window that opened by itself, such as a route choice, waits for this button before it takes the gamepad."] = "가이드 창은 B를 누를 때까지 게임패드를 차지합니다. 방향 패드로 줄 선택, A로 화살표 지정 또는 아이템 사용, X로 상세 보기, LB와 RB로 단계 전환, Y로 창 최소화. 경로 선택처럼 저절로 열린 창은 이 버튼을 눌러야 게임패드를 가져갑니다."
 
+-- Core/RoutePlan.lua
+-- L["step %d"] = ""
+-- L["%s · %s"] = ""
+-- L["Turn in at this step · %s"] = ""
+-- L["Turn in at %s"] = ""
+-- L["Earlier turn-in · %s — check"] = ""
+-- L["Skipped turn-in · %s — check"] = ""
+-- L["Turn-in plan depends on your next route choice"] = ""
+-- L["Next guide is not loaded; turn-in plan unavailable"] = ""
+-- L["No turn-in in this route"] = ""
+-- L["Select a guide to see its turn-in plan"] = ""
+-- L["%s (optional)"] = ""
+
+-- UI/QuestieTurnIns.lua
+-- L["Polestar: %s"] = ""
+-- L["Show planned turn-ins in Questie"] = ""
+-- L["Completed quests in Questie's tracker show their Polestar turn-in step. Earlier, skipped and unplanned hand-ins are flagged."] = ""
+
 -- Nav/Handoff.lua
 -- L["Hand guiding to Shortest Path Forever"] = ""
 -- L["Shortest Path Forever's arrow, route and journey take you to each goal. Polestar's arrow, route lines, journey steps, travel button, transport alerts, map clicks and /way step aside; the guide window and map pins stay. Off: Polestar guides, and steps aside only while a journey you started in Shortest Path Forever runs."] = ""
+
+-- Talents/Builds.lua
+-- L["Holy"] = ""
+-- L["Protection"] = ""
 
 -- No longer in the code (its English changed or it went away): reuse or delete.
 -- L["Shortest Path Forever is guiding. Turn off \"Guide with Shortest Path Forever when it's installed\" (Options, Arrow & routes) to use Polestar's arrow."] = "Shortest Path Forever가 가이드 중입니다. Polestar 화살표를 쓰려면 \"설치 시 Shortest Path Forever로 가이드\"를 끄십시오(설정, 화살표 및 경로)."

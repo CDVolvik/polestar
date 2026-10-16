@@ -899,17 +899,25 @@ local function standingName(n)
 	return ns.StandingName(n) or tostring(n)
 end
 
--- "first aid" -> "First Aid", for goals that only carry a skill line ID.
+-- A skill goal's profession or skill in the client's language: the client's
+-- skill-line name (by goal.skillLine, or the line of its English name), else
+-- its English name through L (a Lookup.PROFESSIONS key, or "Riding"), or
+-- "first aid" -> "First Aid" for goals that only carry a skill line ID.
 local skillNames
 local function skillName(goal)
-	if goal.skill then return goal.skill end
+	local C = Compat()
+	local line = goal.skillLine or (goal.skill and C.SKILL_LINES and C.SKILL_LINES[goal.skill:lower()])
+	local client = line and C.GetSkillLineName and C.GetSkillLineName(line)
+	if client then return client end
+	if goal.skill then return L[goal.skill] end
 	if not skillNames then
 		skillNames = {}
-		for name, id in pairs(Compat().SKILL_LINES or {}) do
+		for name, id in pairs(C.SKILL_LINES or {}) do
 			skillNames[id] = name:gsub("(%a)(%w*)", function(a, b) return a:upper() .. b end)
 		end
 	end
-	return goal.skillLine and skillNames[goal.skillLine] or nil
+	local name = goal.skillLine and skillNames[goal.skillLine]
+	return name and L[name] or nil
 end
 
 local function skillRank(goal)
@@ -1574,7 +1582,7 @@ local function describe(goal)
 	elseif t == "train" then
 		local _, npcName = npcOf(goal)
 		if goal.skillLine and rankCap(goal) then
-			local name = skillName(goal) or goal.skill
+			local name = skillName(goal)
 			return L["Train"], name, "skill", fmt(L["at %s"], npcName)
 		end
 		if npcName then return L["Train at"], npcName, "npc", nil end
@@ -1589,19 +1597,19 @@ local function describe(goal)
 	elseif t == "level" then
 		return L["Reach level"], tostring(goal.level), "level", nil
 	elseif t == "skill" then
-		return L["Raise"], goal.skill, "skill", fmt(L["to %d"], goal.level)
+		return L["Raise"], skillName(goal), "skill", fmt(L["to %d"], goal.level)
 	elseif t == "learn" then
 		local _, npcName = npcOf(goal)
-		return L["Learn"], goal.spellName, "spell", fmt(L["from %s"], npcName)
+		return L["Learn"], N.Spell(goal.spell) or goal.spellName, "spell", fmt(L["from %s"], npcName)
 	elseif t == "craft" then
 		local detail
 		if goal.untilSkill then
 			local name = skillName(goal)
 			detail = name and L["until %s %d"]:format(name, goal.untilSkill) or fmt(L["until skill %d"], goal.untilSkill)
 		end
-		return L["Craft"], goal.spellName, "spell", detail
+		return L["Craft"], N.Spell(goal.spell) or goal.spellName, "spell", detail
 	elseif t == "rep" then
-		return L["Reach %s with"]:format(standingName(goal.standing)), goal.factionName, "faction", nil
+		return L["Reach %s with"]:format(standingName(goal.standing)), N.Faction(goal.faction) or goal.factionName, "faction", nil
 	elseif t == "explore" then
 		local mapName = C.GetMapName(goal.map)
 		if goal.text then return L["Explore"], goal.text, "area", mapName end
@@ -2513,12 +2521,18 @@ function ns.RegisterClassTrainerIds(byClass)
 	end
 end
 
--- The best class trainer for the character from where they stand, or nil.
+-- The best class trainer for the character from where they stand, or nil;
+-- its npcName in the client's language where Names has it.
 function Engine.NearestClassTrainer()
 	if #classTrainers.candidates == 0 then return nil end
 	if not player then refreshPlayer() end
 	local p = pickFor(classTrainers)
-	return p.list[p.i]
+	local t = p.list[p.i]
+	if t then
+		t.npcEnglish = t.npcEnglish or t.npcName
+		t.npcName = ns.Names.Npc(t.npc) or t.npcEnglish
+	end
+	return t
 end
 
 -- Whether `npc` is a class trainer of the character's class.
