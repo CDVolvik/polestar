@@ -1115,6 +1115,7 @@ add("ptBR", "quest", {
 [1153]="Uma nova amostra de minério",
 [1154]="Teste de saber",
 [1155]="bug crystal side quest",
+[1156]="Fale com o Alquimista Almofarrista.",
 [1157]="Almofarrista precisa de itens",
 [1158]="Fale com Ravine Saturna.",
 [1159]="Teste de saber",
@@ -2007,9 +2008,9 @@ add("ptBR", "quest", {
 [3784]="Auxílio ao Arquidruida Runa Totem",
 [3785]="Pesquisa de grão-matinal",
 [3786]="Pesquisa de grão-matinal",
-[3787]="O pedido de Jonespyre",
 })
 add("ptBR", "quest", {
+[3787]="O pedido de Jonespyre",
 [3788]="O pedido de Jonespyre",
 [3789]="Auxílio ao Arquidruida Guenelmo",
 [3790]="Auxílio ao Arquidruida Guenelmo",
@@ -3009,9 +3010,9 @@ add("ptBR", "quest", {
 [7463]="Bebida arcana",
 [7481]="Lendas élficas",
 [7482]="Lendas élficas",
-[7483]="Incunábulo de Rapidez",
 })
 add("ptBR", "quest", {
+[7483]="Incunábulo de Rapidez",
 [7484]="Incunábulo de Concentração",
 [7485]="Incunábulo de Proteção",
 [7486]="Recompensa para um herói",
@@ -4011,9 +4012,9 @@ add("ptBR", "quest", {
 [8916]="Uma proposta honesta",
 [8917]="Uma proposta honesta",
 [8918]="Uma proposta honesta",
-[8919]="Uma proposta honesta",
 })
 add("ptBR", "quest", {
+[8919]="Uma proposta honesta",
 [8920]="Uma proposta honesta",
 [8921]="O destilador ectoplásmico",
 [8922]="Um dispositivo sobrenatural",
@@ -5710,15 +5711,16 @@ add("ptBR", "npc", {
 [1482]="Andrea Halberque",
 [1483]="Múcio d'Oeste",
 [1484]="Derina Patego",
+[1485]="[UNUSED] Bazaar Merchant TEST",
 [1487]="Escravizador Punhalasca",
 [1488]="Zumbi Zanzil",
 [1489]="Caçador Zanzil",
 [1490]="Mandingueiro Zanzil",
 [1491]="Naga Zanzil",
 [1492]="Gorlash",
-[1493]="Mok'rash",
 })
 add("ptBR", "npc", {
+[1493]="Mok'rash",
 [1494]="Negolash",
 [1495]="Necroguarda Lina",
 [1496]="Necroguarda Dinis",
@@ -6718,9 +6720,9 @@ add("ptBR", "npc", {
 [2804]="Kurden Sangarra",
 [2805]="Deneb Walker",
 [2806]="Fardo",
-[2808]="Vikki Lonsav",
 })
 add("ptBR", "npc", {
+[2808]="Vikki Lonsav",
 [2810]="Hammon Karwn",
 [2812]="Drovnar Cervafirme",
 [2814]="Narj Cortafundo",
@@ -7720,9 +7722,9 @@ add("ptBR", "npc", {
 [4036]="Espírito Errante das Chamas",
 [4037]="Assolador Ardente",
 [4038]="Destruidor Ardente",
-[4040]="Espreitadora da Caverna",
 })
 add("ptBR", "npc", {
+[4040]="Espreitadora da Caverna",
 [4041]="Basilisco Calcinado",
 [4042]="Basilisco Chamuscado",
 [4043]="Galthuk",
@@ -8722,9 +8724,9 @@ add("ptBR", "npc", {
 [5484]="Irmão Benjamin",
 [5485]="Fazraiz Moitaguhas",
 [5489]="Irmão Josué",
-[5490]="Moitagulhas Roto",
 })
 add("ptBR", "npc", {
+[5490]="Moitagulhas Roto",
 [5491]="Artur, o Fiel",
 [5492]="Katherine, a Pura",
 [5493]="Arnoldo Gurjão",
@@ -9724,9 +9726,9 @@ add("ptBR", "npc", {
 [7765]="Trinca-pedra",
 [7766]="Tyrion",
 [7767]="Caçador Vil Cascasseca",
-[7768]="Prolezinho Cascasseca",
 })
 add("ptBR", "npc", {
+[7768]="Prolezinho Cascasseca",
 [7770]="Piscadinha",
 [7771]="Marlon Catarrebite",
 [7772]="Kalin Volaventos",
@@ -10726,9 +10728,9 @@ add("ptBR", "npc", {
 [10681]="Veterano Evocado da Mão Negra",
 [10682]="Saqueador Kerr",
 [10683]="Fecundador de Viveiro",
-[10684]="Altaneira Arrependida",
 })
 add("ptBR", "npc", {
+[10684]="Altaneira Arrependida",
 [10685]="Suíno",
 [10696]="Defensor da Ponta do Refúgio",
 [10698]="Zumbi Evocado",
@@ -11318,7 +11320,9 @@ add("ptBR", "npc", {
 [11949]="Capitão Balinda Larpétreo",
 [11956]="Espírito do Grande Urso",
 [11957]="Espírito do Grande Felino",
+[11978]="[NÃO UTILIZADO] Neltharion",
 [11979]="Kim Bridenbecker",
+[11980]="[NOT USED] Zuluhed the Whacked",
 [11981]="Flamagor",
 [11982]="Magmadar",
 [11983]="Fogorja",
@@ -11726,11 +11730,11 @@ add("ptBR", "npc", {
 [13358]="Arqueiro Lançatroz",
 [13359]="Arqueiro dos Lobo do Gelo",
 [13377]="Mestre Engenheiro Borogodó",
+})
+add("ptBR", "npc", {
 [13378]="Unidade Retalhadora dos Lobo do Gelo",
 [13396]="Minerador de Ferrofundo",
 [13397]="Peão de Ferrofundo",
-})
-add("ptBR", "npc", {
 [13416]="Unidade Retalhadora de Lançatroz",
 [13417]="Sagorne Monta Crista",
 [13418]="Polyxopo Pechisbeque",
@@ -12728,11 +12732,11 @@ add("ptBR", "npc", {
 [16033]="Bodley",
 [16042]="Lorde Valthalak",
 [16043]="Bokk, Senhor do Magma",
+})
+add("ptBR", "npc", {
 [16059]="Theldren",
 [16060]="Gothik, o Ceifador",
 [16061]="Instrutor Razúvio",
-})
-add("ptBR", "npc", {
 [16062]="Grão-lorde Mograine",
 [16063]="Sir Zeliek",
 [16064]="Thane Korth'azz",
@@ -12913,6 +12917,7 @@ add("ptBR", "npc", {
 [32746]="Gueffon, o Obstinado",
 [32747]="Mendez Noctumbra",
 [35826]="Kaye Toogie",
+[41938]="Totem Sísmico",
 [165189]="Generic Hunter Pet",
 [185317]="Íncubo",
 [185334]="Isaac Pessoa",
@@ -37729,4 +37734,8 @@ add("ptBR", "objective", {
 [6403]="Siga Reginaldo Vilasboas através de Ventobravo. Proteja-o de qualquer ataque!",
 [6566]="Ouça Thrall.",
 [6627]="Responda à pergunta de Braug Espírito Turvo corretamente, depois fale com ele novamente. Quando você estiver pront$Go:a;, ele estará na Cordilheira das Torres de Pedra.",
+[8115]="Level 60 Controle 5 bases na Bacia Arathi ao mesmo tempo e fale novamente com o Marechal-de-campo Oslight na Ponta do Refúgio.",
+[8286]="Adentre as Cavernas do Tempo, em Tanaris, e encontre Anacronos, Prole de Nozdormu.",
+[8519]="Aprenda tudo que puder sobre o passado, depois fale com Anacronos nas Cavernas do Tempo, em Tanaris.",
+[92401]="Level 22 Investigue o desaparecimento de Edward Tececórdio nas Ruínas de Lordaeron.",
 })

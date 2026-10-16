@@ -25,7 +25,7 @@ Wowhead, World of Warcraft: Forever database
 URL: https://www.wowhead.com/forever/ko/ (list pages; tooltips from nether.wowhead.com/forever)
 Read: 2026-10-16 to 2026-10-16
 Public web pages; the game's names only (facts), credited in THIRD_PARTY.md.
-Names taken: 4674 quests, 8936 NPCs, 1045 objects, 530 items.
+Names taken: 4675 quests, 8942 NPCs, 1045 objects, 530 items, 1 quest objective.
 
 DingDB, the game database of Ding! by Yendi (@moust4ki)
 -------------------------------------------------------

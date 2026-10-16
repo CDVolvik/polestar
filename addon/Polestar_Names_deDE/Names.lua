@@ -1112,6 +1112,7 @@ add("deDE", "quest", {
 [1153]="Eine neue Erzprobe",
 [1154]="Test der Lehre",
 [1155]="bug crystal side quest",
+[1156]="<NYI> <TXT> speak to alchemist pestlezugg",
 [1157]="pestlezugg needs items",
 [1158]="speak to rabine saturna",
 [1159]="Test der Lehre",
@@ -2007,9 +2008,9 @@ add("deDE", "quest", {
 [3804]="Morgenkorn nach Thunder Bluff",
 [3821]="Schreckensfels",
 [3822]="Krom'Grul",
-[3823]="Die Feuermagenoger auslöschen",
 })
 add("deDE", "quest", {
+[3823]="Die Feuermagenoger auslöschen",
 [3824]="Gor'tesh der Schläger-Lord",
 [3825]="Ogerkopf auf einem Pfahl = Party",
 [3841]="Waise sucht Zuhause",
@@ -3009,9 +3010,9 @@ add("deDE", "quest", {
 [7490]="Sieg für die Horde",
 [7491]="Für alle sichtbar",
 [7492]="Camp Mojache",
-[7493]="Die Reise beginnt erst",
 })
 add("deDE", "quest", {
+[7493]="Die Reise beginnt erst",
 [7494]="Die Festung Feathermoon",
 [7495]="Sieg für die Allianz",
 [7496]="Gute Zeiten feiern",
@@ -4011,9 +4012,9 @@ add("deDE", "quest", {
 [8927]="Die angemessene Entlohnung",
 [8928]="Ein verschlagener Händler",
 [8929]="Suche nach Anthion",
-[8930]="Suche nach Anthion",
 })
 add("deDE", "quest", {
+[8930]="Suche nach Anthion",
 [8931]="Die angemessene Entlohnung",
 [8932]="Die angemessene Entlohnung",
 [8933]="Die angemessene Entlohnung",
@@ -5013,9 +5014,9 @@ add("deDE", "quest", {
 [97952]="Grundlagen des Zeltens: Schmiedekunst",
 [97953]="Grundlagen des Zeltens: Verzauberkunst",
 [97954]="Grundlagen des Zeltens: Ingenieurskunst",
-[97955]="Grundlagen des Zeltens: Erste Hilfe",
 })
 add("deDE", "quest", {
+[97955]="Grundlagen des Zeltens: Erste Hilfe",
 [97956]="Grundlagen des Zeltens: Angeln",
 [97957]="Grundlagen des Zeltens: Kräuterkunde",
 [97958]="Grundlagen des Zeltens: Lederverarbeitung",
@@ -6163,15 +6164,16 @@ add("deDE", "npc", {
 [1482]="Andrea Halloran",
 [1483]="Murphy West",
 [1484]="Derina Rumdnul",
+[1485]="[UNUSED] Bazaar Merchant TEST",
 [1487]="Versklaver der Splitterfäuste",
 [1488]="Zombie von Zanzil",
 [1489]="Jäger von Zanzil",
 [1490]="Hexendoktor von Zanzil",
 [1491]="Naga von Zanzil",
 [1492]="Gorlash",
-[1493]="Mok'rash",
 })
 add("deDE", "npc", {
+[1493]="Mok'rash",
 [1494]="Negolash",
 [1495]="Todeswache Linnea",
 [1496]="Todeswache Dillinger",
@@ -7171,9 +7173,9 @@ add("deDE", "npc", {
 [2804]="Kurden Bloodclaw",
 [2805]="Deneb Walker",
 [2806]="Bale",
-[2808]="Vikki Lonsav",
 })
 add("deDE", "npc", {
+[2808]="Vikki Lonsav",
 [2810]="Hammon Karwn",
 [2812]="Drovnar Strongbrew",
 [2814]="Narj Deepslice",
@@ -8173,9 +8175,9 @@ add("deDE", "npc", {
 [4036]="Wilder Flammengeist",
 [4037]="Brennender Verheerer",
 [4038]="Brennender Zerstörer",
-[4040]="Höhlenpirscher",
 })
 add("deDE", "npc", {
+[4040]="Höhlenpirscher",
 [4041]="Versengter Basilisk",
 [4042]="Angesengter Basilisk",
 [4043]="Galthuk",
@@ -9175,9 +9177,9 @@ add("deDE", "npc", {
 [5484]="Bruder Benjamin",
 [5485]="Distelwurzelformer",
 [5489]="Bruder Joshua",
-[5490]="Knorriger Distelwandler",
 })
 add("deDE", "npc", {
+[5490]="Knorriger Distelwandler",
 [5491]="Arthur der Treue",
 [5492]="Katharina die Reine",
 [5493]="Arnold Leland",
@@ -10177,9 +10179,9 @@ add("deDE", "npc", {
 [7765]="Felsbeißer",
 [7766]="Tyrion",
 [7767]="Teufelsjäger der Witherbark",
-[7768]="Blutling der Witherbark",
 })
 add("deDE", "npc", {
+[7768]="Blutling der Witherbark",
 [7770]="Winkey",
 [7771]="Marvon Rivetseeker",
 [7772]="Kalin Windflight",
@@ -11179,9 +11181,9 @@ add("deDE", "npc", {
 [10681]="Beschworener Blackhand-Veteran",
 [10682]="Räuber Kerr",
 [10683]="Krähenhorstbrutwächter",
-[10684]="Reuevolle Hochgeborene",
 })
 add("deDE", "npc", {
+[10684]="Reuevolle Hochgeborene",
 [10685]="Schwein",
 [10696]="Verteidiger der Zuflucht",
 [10698]="Beschworener Zombie",
@@ -11771,7 +11773,9 @@ add("deDE", "npc", {
 [11949]="Captain Balinda Stonehearth",
 [11956]="Großer Bärengeist",
 [11957]="Großer Katzengeist",
+[11978]="Neltharion",
 [11979]="Kim Bridenbecker",
+[11980]="[NOT USED] Zuluhed the Whacked",
 [11981]="Flammenmaul",
 [11982]="Magmadar",
 [11983]="Feuerschwinge",
@@ -12179,11 +12183,11 @@ add("deDE", "npc", {
 [13358]="Stormpike-Bogenschütze",
 [13359]="Bogenschütze der Frostwolf",
 [13377]="Meisteringenieur Zinfizzlex",
+})
+add("deDE", "npc", {
 [13378]="Schreddereinheit der Frostwolf",
 [13396]="Irondeep-Minenarbeiter",
 [13397]="Irondeep-Peon",
-})
-add("deDE", "npc", {
 [13416]="Schreddereinheit der Stormpike",
 [13417]="Sagorne Creststrider",
 [13418]="Kaymard Copperpinch",
@@ -13181,11 +13185,11 @@ add("deDE", "npc", {
 [16033]="Bodley",
 [16042]="Lord Valthalak",
 [16043]="Magmafürst Bokk",
+})
+add("deDE", "npc", {
 [16059]="Theldren",
 [16060]="Gothik der Seelenjäger",
 [16061]="Instrukteur Razuvious",
-})
-add("deDE", "npc", {
 [16062]="Hochlord Mograine",
 [16063]="Sire Zeliek",
 [16064]="Thane Korth'azz",
@@ -13404,6 +13408,7 @@ add("deDE", "npc", {
 [35826]="Kaye Toogie",
 [40833]="Tiala Weißmähne",
 [41861]="Fayran Elthas",
+[41938]="Totem des Erdstoßes",
 [43408]="Aili Grünweide",
 [43411]="Lenedil Mondschwinge",
 [49808]="Grenhild Darktalon",
@@ -14182,12 +14187,12 @@ add("deDE", "npc", {
 [262397]="Scharmützler der Laugenschuppen",
 [262469]="Tuu'li",
 [262471]="Xaphod Bizznox",
+})
+add("deDE", "npc", {
 [262492]="Rimblat Earthshatter",
 [262502]="Brix Xizzix",
 [262504]="Schamane des Irdenen Rings",
 [262523]="Windschreiter",
-})
-add("deDE", "npc", {
 [262558]="Palah Thunderhoof",
 [262560]="Hana Lighthoof",
 [263071]="Klingenmeister Kaijo",
@@ -14250,6 +14255,7 @@ add("deDE", "npc", {
 [264797]="Aisarra Nightmeadow",
 [264850]="Falke",
 [264936]="Erdseher Farsen",
+[264937]="Farsens Totem",
 [264943]="Afadra Dunwall",
 [265002]="Geisterhafte Bedienstete",
 [265003]="Thom Filch",
@@ -14402,6 +14408,7 @@ add("deDE", "npc", {
 [268761]="Randal",
 [268762]="Kohlenpfanne der Opfergabe",
 [268763]="Manifestation der Flammen",
+[268765]="Totem des Lavaschwalls",
 [268925]="Nachtelfenkurier",
 [269068]="Eylah Sunhorn",
 [269075]="Schneeleopardenpirscher",
@@ -38903,4 +38910,5 @@ add("deDE", "objective", {
 [8115]="Kontrolliert gleichzeitig fünf Stützpunkte im Arathibecken und kehrt danach zu Feldmarschall Lichtmark in der Zuflucht zurück.",
 [8286]="Reist zu den Höhlen der Zeit in Tanaris und findet Anachronos, Nachkomme Nozdormus.",
 [8519]="Lernt so viel Ihr könnt über die Vergangenheit, sprecht dann mit Anachronos in den Höhlen der Zeit in Tanaris.",
+[92401]="Level 22 Untersucht das Verschwinden von Edward Heartweaver in den Ruinen von Lordaeron.",
 })

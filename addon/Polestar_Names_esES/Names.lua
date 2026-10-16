@@ -1115,6 +1115,7 @@ add("esES", "quest", {
 [1153]="Una nueva muestra de mineral",
 [1154]="Prueba de conocimiento",
 [1155]="bug crystal side quest",
+[1156]="<NYI> <TXT> speak to alchemist pestlezugg",
 [1157]="pestlezugg needs items",
 [1158]="speak to rabine saturna",
 [1159]="Prueba de conocimiento",
@@ -2007,9 +2008,9 @@ add("esES", "quest", {
 [3783]="Yeti... ¿ya hemos llegado?",
 [3784]="Ayuda al archidruida Runatótem",
 [3785]="Investigar la mañagrana",
-[3786]="Investigar la mañagrana",
 })
 add("esES", "quest", {
+[3786]="Investigar la mañagrana",
 [3787]="La petición de Jonguja",
 [3788]="La petición de Jonguja",
 [3789]="Ayuda al archidruida Corzocelada",
@@ -3009,9 +3010,9 @@ add("esES", "quest", {
 [7441]="Pusillín y el ancestro Azj'Tordin",
 [7461]="Locura interior",
 [7462]="El tesoro de los Shen'dralar",
-[7463]="El refresco arcano",
 })
 add("esES", "quest", {
+[7463]="El refresco arcano",
 [7481]="Leyendas élficas",
 [7482]="Leyendas élficas",
 [7483]="El Tratado de Prontitud",
@@ -4011,9 +4012,9 @@ add("esES", "quest", {
 [8912]="Una propuesta seria",
 [8913]="Una propuesta seria",
 [8914]="Una propuesta seria",
-[8915]="Una propuesta seria",
 })
 add("esES", "quest", {
+[8915]="Una propuesta seria",
 [8916]="Una propuesta seria",
 [8917]="Una propuesta seria",
 [8918]="Una propuesta seria",
@@ -5879,15 +5880,16 @@ add("esES", "npc", {
 [1482]="Andrea Halloran",
 [1483]="Murphy Oest",
 [1484]="Derina Rumdnul",
+[1485]="[UNUSED] Bazaar Merchant TEST",
 [1487]="Esclavista Puñastilla",
 [1488]="Zombi Zanzil",
 [1489]="Cazador Zanzil",
 [1490]="Médico brujo Zanzil",
 [1491]="Naga Zanzil",
 [1492]="Gorlash",
-[1493]="Mok'rash",
 })
 add("esES", "npc", {
+[1493]="Mok'rash",
 [1494]="Negolash",
 [1495]="Guardia de la Muerte Linnea",
 [1496]="Guardia de la Muerte Dillinger",
@@ -6887,9 +6889,9 @@ add("esES", "npc", {
 [2804]="Kurden Zarpasangrante",
 [2805]="Deneb Camino",
 [2806]="Bale",
-[2808]="Vikki Lonsav",
 })
 add("esES", "npc", {
+[2808]="Vikki Lonsav",
 [2810]="Hammon Karwn",
 [2812]="Drovanar Brevaforte",
 [2814]="Narj Tajofondo",
@@ -7889,9 +7891,9 @@ add("esES", "npc", {
 [4036]="Pícaro espíritu flameante",
 [4037]="Devastador ardiente",
 [4038]="Destructor ardiente",
-[4040]="Acechador de cuevas",
 })
 add("esES", "npc", {
+[4040]="Acechador de cuevas",
 [4041]="Basilisco agostado",
 [4042]="Basilisco chamuscado",
 [4043]="Galthuk",
@@ -8891,9 +8893,9 @@ add("esES", "npc", {
 [5484]="Hermano Benjamín",
 [5485]="Enraizador Cardizal",
 [5489]="Hermano Joshua",
-[5490]="Cardizal nudoso",
 })
 add("esES", "npc", {
+[5490]="Cardizal nudoso",
 [5491]="Arthur el Leal",
 [5492]="Katherine la Pura",
 [5493]="Arnold Leland",
@@ -9893,9 +9895,9 @@ add("esES", "npc", {
 [7765]="Muerdepiedras",
 [7766]="Tyrion",
 [7767]="Manáfago Secacorteza",
-[7768]="Sangrador Secacorteza",
 })
 add("esES", "npc", {
+[7768]="Sangrador Secacorteza",
 [7770]="Guiñón",
 [7771]="Marvon Buscarroblones",
 [7772]="Kalin Vuelavento",
@@ -10895,9 +10897,9 @@ add("esES", "npc", {
 [10681]="Veterano Puño Negro invocado",
 [10682]="Asaltante Kerr",
 [10683]="Criador de la Torre",
-[10684]="Altonato arrepentido",
 })
 add("esES", "npc", {
+[10684]="Altonato arrepentido",
 [10685]="Puerco",
 [10696]="Defensor de Refugio de la Zaga",
 [10698]="Zombi invocado",
@@ -11487,7 +11489,9 @@ add("esES", "npc", {
 [11949]="Capitán Balinda Corapernal",
 [11956]="Espíritu del gran oso",
 [11957]="Gran espíritu felino",
+[11978]="[NOT USED] Neltharion",
 [11979]="Kim Bridenbecker",
+[11980]="[NOT USED] Zuluhed the Whacked",
 [11981]="Flamagor",
 [11982]="Magmadar",
 [11983]="Faucefogo",
@@ -11895,11 +11899,11 @@ add("esES", "npc", {
 [13358]="Arquero de Pico Tormenta",
 [13359]="Arquero Lobo Gélido",
 [13377]="Maestro ingeniero Zinfizzlex",
+})
+add("esES", "npc", {
 [13378]="Unidad machacadora Lobo Gélido",
 [13396]="Minero Ferrohondo",
 [13397]="Peón Ferrohondo",
-})
-add("esES", "npc", {
 [13416]="Unidad machacadora Pico Tormenta",
 [13417]="Sagorne Zancresta",
 [13418]="Kaymard Cobrellizco",
@@ -12897,11 +12901,11 @@ add("esES", "npc", {
 [16033]="Bodley",
 [16042]="Lord Valthalak",
 [16043]="Señor del Magma Bokk",
+})
+add("esES", "npc", {
 [16059]="Theldren",
 [16060]="Gothik el Cosechador",
 [16061]="Instructor Razuvious",
-})
-add("esES", "npc", {
 [16062]="Alto Señor Mograine",
 [16063]="Sir Zeliek",
 [16064]="Señor feudal Korth'azz",
@@ -13118,6 +13122,7 @@ add("esES", "npc", {
 [32748]="Bimble Chispadedos",
 [34365]="Supervisora de huérfanos Aria",
 [35826]="Kaye Estrecha",
+[41938]="Tótem de tremor",
 [49808]="Grenhild Garfaoscura",
 [165189]="Mascota de cazador genérica",
 [185317]="Íncubo",
@@ -13694,6 +13699,7 @@ add("esES", "npc", {
 [264712]="Suma sacerdotisa Lorthuna",
 [264850]="Halcón",
 [264936]="Videnterra Farsen",
+[264937]="Tótem de Farsen",
 [264943]="Afadra Murocre",
 [265002]="Auxiliar fantasmal",
 [265003]="Thom Filch",
@@ -13813,6 +13819,7 @@ add("esES", "npc", {
 [268745]="Mayhoa Pezuñacielo",
 [268761]="Randal",
 [268762]="Blandón de ofrendas",
+[268765]="Tótem emanador de lava",
 [268925]="Mensajera elfa de la noche",
 [269068]="Eylah Solecuerno",
 [269075]="Leopardo de la nieve merodeador",
@@ -13896,14 +13903,14 @@ add("esES", "npc", {
 [272273]="Vigía perdido",
 [272284]="Defensora perdida",
 [272291]="Caballero perdido",
+})
+add("esES", "npc", {
 [272309]="Tux",
 [272310]="Mocha",
 [272450]="Vieja Macarena",
 [272526]="Glix Xizzix",
 [272614]="Capi",
 [272633]="Nuara Tiemblapezuña",
-})
-add("esES", "npc", {
 [272914]="Gato",
 [272944]="Perro",
 [273003]="Cachorro de huargo",
@@ -38210,4 +38217,5 @@ add("esES", "objective", {
 [8115]="Toma el control de 5 bases a la vez en la Cuenca de Arathi y vuelve entonces junto al mariscal de campo Uluz en el Refugio de la Zaga.",
 [8286]="Ve a las Cavernas del Tiempo en Tanaris y encuentra a Anacronos, del Linaje de Nozdormu.",
 [8519]="Aprende todo lo que puedas del pasado y habla con Anacronos en las Cavernas del Tiempo de Tanaris.|n",
+[92401]="Level 22 Investiga la desaparición de Edward Tejecorazón en las Ruinas de Lordaeron.",
 })

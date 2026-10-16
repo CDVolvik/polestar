@@ -1116,6 +1116,7 @@ add("frFR", "quest", {
 [1153]="Un nouveau minerai",
 [1154]="L'épreuve de la Connaissance",
 [1155]="bug crystal side quest",
+[1156]="<NYI> <TXT> speak to alchemist pestlezugg",
 [1157]="pestlezugg needs items",
 [1158]="speak to rabine saturna",
 [1159]="L'épreuve de la Connaissance",
@@ -2007,9 +2008,9 @@ add("frFR", "quest", {
 [3782]="La recherche sur la Fibre d'aurore",
 [3783]="Yéti ? Y es-tu ?",
 [3784]="L'aide à l'archidruide Runetotem",
-[3785]="Recherches sur la Fibre d'aurore",
 })
 add("frFR", "quest", {
+[3785]="Recherches sur la Fibre d'aurore",
 [3786]="Recherches sur la Fibre d'aurore",
 [3787]="La requête de Jonespyre",
 [3788]="La requête de Jonespyre",
@@ -3009,9 +3010,9 @@ add("frFR", "quest", {
 [7426]="L'amour d'un homme",
 [7427]="On recherche : PLUS DE NAINS !",
 [7428]="On recherche : PLUS D'ORCS !",
-[7429]="Libérez Knot !",
 })
 add("frFR", "quest", {
+[7429]="Libérez Knot !",
 [7441]="Pusillin et l'Ancien Azj'Tordin",
 [7461]="Folie intérieure",
 [7462]="Le trésor des Shen'dralar",
@@ -4011,9 +4012,9 @@ add("frFR", "quest", {
 [8907]="Une proposition sérieuse",
 [8908]="Une proposition sérieuse",
 [8909]="Une proposition sérieuse",
-[8910]="Une proposition sérieuse",
 })
 add("frFR", "quest", {
+[8910]="Une proposition sérieuse",
 [8911]="Une proposition sérieuse",
 [8912]="Une proposition sérieuse",
 [8913]="Une proposition sérieuse",
@@ -5982,15 +5983,16 @@ add("frFR", "npc", {
 [1482]="Andrea Halloran",
 [1483]="Murphy West",
 [1484]="Derina Rumdnul",
+[1485]="[UNUSED] Bazaar Merchant TEST",
 [1487]="Esclavagiste Brisepoing",
 [1488]="Zombie Zanzil",
 [1489]="Chasseur Zanzil",
 [1490]="Sorcier-docteur Zanzil",
 [1491]="Naga Zanzil",
 [1492]="Gorlash",
-[1493]="Mok'rash",
 })
 add("frFR", "npc", {
+[1493]="Mok'rash",
 [1494]="Negolash",
 [1495]="Garde noir Linnea",
 [1496]="Garde noir Dillinger",
@@ -6990,9 +6992,9 @@ add("frFR", "npc", {
 [2804]="Kurden Bloodclaw",
 [2805]="Deneb Walker",
 [2806]="Bale",
-[2808]="Vikki Lonsav",
 })
 add("frFR", "npc", {
+[2808]="Vikki Lonsav",
 [2810]="Hammon Karwn",
 [2812]="Drovnar Strongbrew",
 [2814]="Narj Deepslice",
@@ -7992,9 +7994,9 @@ add("frFR", "npc", {
 [4036]="Esprit flamboyant insoumis",
 [4037]="Ravageur ardent",
 [4038]="Destructeur ardent",
-[4040]="Traqueuse des grottes",
 })
 add("frFR", "npc", {
+[4040]="Traqueuse des grottes",
 [4041]="Basilic cramoisi",
 [4042]="Basilic flamboyant",
 [4043]="Galthuk",
@@ -8994,9 +8996,9 @@ add("frFR", "npc", {
 [5484]="Frère Benjamin",
 [5485]="Chardonnier taille-racine",
 [5489]="Frère Joshua",
-[5490]="Chardonnier noueux",
 })
 add("frFR", "npc", {
+[5490]="Chardonnier noueux",
 [5491]="Arthur le Fidèle",
 [5492]="Katherine la Pure",
 [5493]="Arnold Leland",
@@ -9996,9 +9998,9 @@ add("frFR", "npc", {
 [7765]="Croque-roc",
 [7766]="Tyrion",
 [7767]="Chasseur corrompu Witherbark",
-[7768]="Sanglant Witherbark",
 })
 add("frFR", "npc", {
+[7768]="Sanglant Witherbark",
 [7770]="Winkey",
 [7771]="Marvon Rivetseeker",
 [7772]="Kalin Windflight",
@@ -10998,9 +11000,9 @@ add("frFR", "npc", {
 [10681]="Vétéran Blackhand invoqué",
 [10682]="Ecumeur Kerr",
 [10683]="Démolisseur de la colonie",
-[10684]="Bien-née pénitente",
 })
 add("frFR", "npc", {
+[10684]="Bien-née pénitente",
 [10685]="Pourceau",
 [10696]="Défenseur du Refuge de l'Ornière",
 [10698]="Zombie invoqué",
@@ -11590,7 +11592,9 @@ add("frFR", "npc", {
 [11949]="Capitaine Balinda Stonehearth",
 [11956]="Esprit du Grand ours",
 [11957]="Esprit du Grand félin",
+[11978]="[INUTILISÉ] Neltharion",
 [11979]="Kim Bridenbecker",
+[11980]="[NOT USED] Zuluhed the Whacked",
 [11981]="Flamegor",
 [11982]="Magmadar",
 [11983]="Gueule-de-feu",
@@ -11998,11 +12002,11 @@ add("frFR", "npc", {
 [13358]="Archer Stormpike",
 [13359]="Archer Frostwolf",
 [13377]="Maître ingénieur Zinfizzlex",
+})
+add("frFR", "npc", {
 [13378]="Déchiqueteur Frostwolf",
 [13396]="Mineur de Gouffrefer",
 [13397]="Péon de Gouffrefer",
-})
-add("frFR", "npc", {
 [13416]="Déchiqueteur Stormpike",
 [13417]="Sagorne Creststrider",
 [13418]="Kaymard Copperpinch",
@@ -13000,11 +13004,11 @@ add("frFR", "npc", {
 [16033]="Bodley",
 [16042]="Seigneur Valthalak",
 [16043]="Seigneur-magma Bokk",
+})
+add("frFR", "npc", {
 [16059]="Theldren",
 [16060]="Gothik le Moissonneur",
 [16061]="Instructeur Razuvious",
-})
-add("frFR", "npc", {
 [16062]="Généralissime Mograine",
 [16063]="Sire Zeliek",
 [16064]="Thane Korth'azz",
@@ -13221,6 +13225,7 @@ add("frFR", "npc", {
 [32748]="Bourlingue Doigtincelle",
 [34365]="Directrice de l'orphelinat Aria",
 [35826]="Kaye Toogie",
+[41938]="Totem de séisme",
 [49808]="Grenhild Sombreserre",
 [165189]="Generic Hunter Pet",
 [185317]="Incube",
@@ -13912,6 +13917,7 @@ add("frFR", "npc", {
 [264712]="Grande prêtresse Lorthuna",
 [264850]="Faucon",
 [264936]="Terre-voyant Farsen",
+[264937]="Totem de Farsen",
 [264943]="Afadra Mur-de-Dun",
 [265002]="Domestique fantomatique",
 [265003]="Thom Filch",
@@ -14000,13 +14006,13 @@ add("frFR", "npc", {
 [267474]="Bélier blanc",
 [267475]="Bélier gris",
 [267674]="Cheval bai",
+})
+add("frFR", "npc", {
 [267677]="Jument alezane",
 [267678]="Pinto",
 [267683]="Mécanotrotteur rouge",
 [267684]="Mécanotrotteur vert",
 [267687]="Mécanotrotteur bleu",
-})
-add("frFR", "npc", {
 [267688]="Mécanotrotteur brut",
 [267936]="Gamin réfugié",
 [268238]="Nordun Fixevision",
@@ -14041,6 +14047,7 @@ add("frFR", "npc", {
 [268761]="Randal",
 [268762]="Brasero d'offrande",
 [268763]="Manifestation des flammes",
+[268765]="Totem de jet de lave",
 [268831]="Rôdeur des vallées",
 [268925]="Messagère elfe de la nuit",
 [269068]="Eylah Cornesol",
@@ -38514,4 +38521,5 @@ add("frFR", "objective", {
 [8115]="Contrôlez 5 bases du bassin d'Arathi simultanément, puis revenez voir le grand maréchal Oslight au Refuge de l'Ornière.",
 [8286]="Rendez-vous dans les Grottes du temps en Tanaris et trouvez Anachronos, la progéniture de Nozdormu.",
 [8519]="Apprenez tout ce que vous pouvez au sujet du passé, puis parlez à Anachronos dans les Grottes du temps à Tanaris.",
+[92401]="Level 22 Enquêtez sur la disparition d’Edward Tissecœur dans les ruines de Lordaeron.",
 })
