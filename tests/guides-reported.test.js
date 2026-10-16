@@ -375,12 +375,14 @@ test('Hotline\'s report: Walton and Vrang\'s quests come in the order the game o
 // a follow-up at the same visit as the quest before it and the giver did not
 // offer it: Baine's chain in Mulgore (Kori, #112) and Mull's report (#51),
 // Bandarion Keep (whiteswag, #128) and Linnea's second Rear Guard Patrol (#51)
-// in Tirisfal, Alther's Mill in Redridge (#126's report) and The State of the
-// Mines in Westfall (SouthernStyleSims, #143). Each accept comes after every
-// quest it follows is handed in; 99156 may be left out, never taken early.
+// in Tirisfal, Alther's Mill in Redridge (#126's report), The State of the
+// Mines in Westfall (SouthernStyleSims, #143) and Scout Support in Hillsbrad
+// (Taako, #148). Each accept comes after every quest it follows is handed in;
+// 99156 may be left out, never taken early.
 
 const WESTFALL = 'forever/alliance/02-westfall.guide';
 const REDRIDGE = 'forever/alliance/04-redridge-mountains.guide';
+const HILLSBRAD_HORDE = 'forever/horde/06-hillsbrad-foothills.guide';
 
 test('Forever follow-ups are taken only once the quests before them are handed in', { skip }, () => {
 	for (const [guide, quest, after, optional] of [
@@ -393,6 +395,7 @@ test('Forever follow-ups are taken only once the quests before them are handed i
 		[TIRISFAL, 99156, [356], true],
 		[REDRIDGE, 98386, [89]],
 		[WESTFALL, 92745, [92742]],
+		[HILLSBRAD_HORDE, 98094, [528]],
 	]) {
 		const list = goals(guide);
 		const take = list.findIndex(({ goal }) => is('accept', quest)(goal));

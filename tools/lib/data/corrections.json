@@ -377,6 +377,17 @@
 			},
 			"note": "Traditions of the Bluff (Thunder Bluff): Wowhead Forever https://www.wowhead.com/forever/quest=97485 lists \"Prepared Incense\" (item=278078, 1) and \"Spread incense\" (1, kill credit npc=269255 \"[DNT] Kill Credit: Spread Incense\", which has no spawns: https://www.wowhead.com/forever/npc=269255); item=278078 is used \"over the southern cliff of Hunter Rise\" (https://www.wowhead.com/forever/item=278078); a quest comment (2026-09-20) places the ceremonial site at Thunder Bluff 53.3,87.9. Checked 2026-10-13. The spread is an event at that site (no spawns for the credit NPC); Thunder Bluff's frame is the same in Era and Forever. QuestieDB 1.0.5 has no objectives."
 		},
+		"98094": {
+			"set": {
+				"pre": [
+					528
+				],
+				"preAny": [
+					528
+				]
+			},
+			"note": "Scout Support (Hillsbrad, High Executor Darthalia, for Deathstalker Masoj) is offered only after Battle of Hillsbrad part II 528: a Wowhead Forever comment on https://www.wowhead.com/forever/quest=98094 (\"Prerequisite is 528 (part II)\"), checked 2026-10-16. Issue #148 (Taako): Darthalia did not offer it with 527 turned in and 528 open. QuestieDB 1.0.5 has no prerequisite."
+		},
 		"98386": {
 			"set": {
 				"pre": [

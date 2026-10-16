@@ -8,7 +8,8 @@ section: players
   Cleansing; in Tirisfal, Bandarion Keep when The Cult of the Damned and
   Remnants of War are handed in; in Redridge, Alther's Mill after The
   Everstill Bridge; in Westfall, The State of the Mines after Testing the
-  Wells, with the mines and the quarry on the way to the western farms.
-  Tirisfal no longer takes the second Rear Guard Patrol (Riptear): Linnea
-  offers it only after the east loop (thanks Kori, whiteswag, Smuve and
-  SouthernStyleSims).
+  Wells, with the mines and the quarry on the way to the western farms; in
+  Hillsbrad, Scout Support after Battle of Hillsbrad part II, with the
+  peasants now done before the Durnholde trip. Tirisfal no longer takes the
+  second Rear Guard Patrol (Riptear): Linnea offers it only after the east
+  loop (thanks Kori, whiteswag, Smuve, SouthernStyleSims and Taako).

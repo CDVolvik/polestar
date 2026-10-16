@@ -23537,6 +23537,29 @@ do
 						{ t = "turnin", quest = 527, title = "Battle of Hillsbrad", npc = 2215, npcName = "High Executor Darthalia", map = 1424, x = 62.33, y = 20.45, z = 54.5, f = "e", note = "High Executor Darthalia" },
 						{ t = "accept", quest = 528, title = "Battle of Hillsbrad", npc = 2215, npcName = "High Executor Darthalia", minLevel = 19, qlvl = 25, pre = { 527 }, preTitles = { [527] = "Battle of Hillsbrad" }, map = 1424, x = 62.33, y = 20.45, z = 54.5, f = "e" },
 						{ t = "accept", quest = 546, title = "Souvenirs of Death", npc = 2418, npcName = "Deathguard Samsa", minLevel = 20, qlvl = 25, pre = { 527 }, preTitles = { [527] = "Battle of Hillsbrad" }, map = 1424, x = 62.11, y = 19.7, z = 55.4, f = "e", note = "Deathguard Samsa" },
+					},
+				},
+				{
+					title = "Stanley",
+					note = "Stanley is Farmer Ray's dog, at the northern farmhouse in Hillsbrad Fields.",
+					goals = {
+						{ t = "turnin", quest = 502, title = "Elixir of Pain", npc = 2274, npcName = "Stanley", map = 1424, x = 32.66, y = 35.32, z = 54.8, f = "e" },
+					},
+				},
+				{
+					title = "Peasants and skulls",
+					note = "The Peasants work the fields south of the farmhouses. Every Hillsbrad human drops skulls; the Peasants drop them most often.",
+					goals = {
+						{ t = "kill", quest = 528, title = "Battle of Hillsbrad", target = "Hillsbrad Peasant", npc = 2267, count = 15, oi = 1, map = 1424, x = 30.27, y = 40.31, z = 56.9, f = "e", spots = { { x = 30.2, y = 41.7, r = 47, n = 4 }, { x = 35, y = 46, r = 52, n = 9 }, { x = 30.8, y = 45.4, r = 15, n = 1, alt = true }, { x = 35.4, y = 42, r = 15, n = 1, alt = true } } },
+						{ t = "collect", quest = 546, title = "Souvenirs of Death", item = 3692, itemName = "Hillsbrad Human Skull", count = 30, oi = 1, map = 1424, x = 30.3, y = 40.3, f = "e", note = "Hillsbrad Human Skull: the Peasants in the fields" },
+					},
+				},
+				{
+					title = "Tarren Mill",
+					goals = {
+						{ t = "turnin", quest = 528, title = "Battle of Hillsbrad", npc = 2215, npcName = "High Executor Darthalia", map = 1424, x = 62.33, y = 20.45, z = 54.5, f = "e", note = "High Executor Darthalia" },
+						{ t = "accept", quest = 529, title = "Battle of Hillsbrad", npc = 2215, npcName = "High Executor Darthalia", minLevel = 19, qlvl = 26, pre = { 528 }, preTitles = { [528] = "Battle of Hillsbrad" }, map = 1424, x = 62.33, y = 20.45, z = 54.5, f = "e" },
+						{ t = "turnin", quest = 546, title = "Souvenirs of Death", npc = 2418, npcName = "Deathguard Samsa", map = 1424, x = 62.11, y = 19.7, z = 55.4, f = "e", note = "Deathguard Samsa" },
 						{ t = "accept", quest = 98094, title = "Scout Support", npc = 2215, npcName = "High Executor Darthalia", minLevel = 19, qlvl = 25, map = 1424, x = 62.33, y = 20.45, z = 54.5, f = "e", note = "High Executor Darthalia: orders for Deathstalker Masoj, on the way to Durnholde" },
 					},
 				},
@@ -23578,29 +23601,6 @@ do
 						{ t = "turnin", quest = 498, title = "The Rescue", npc = 2229, npcName = "Krusk", map = 1424, x = 63.24, y = 20.66, z = 56.3, f = "e", note = "Krusk" },
 						{ t = "turnin", quest = 509, title = "Elixir of Agony", npc = 2216, npcName = "Apothecary Lydon", map = 1424, x = 61.44, y = 19.06, z = 57.6, f = "e", note = "Apothecary Lydon" },
 						{ t = "accept", quest = 513, title = "Elixir of Agony", npc = 2216, npcName = "Apothecary Lydon", minLevel = 24, qlvl = 28, pre = { 509 }, preTitles = { [509] = "Elixir of Agony" }, map = 1424, x = 61.44, y = 19.06, z = 57.6, f = "e", note = "Master Apothecary Faranell, in the Undercity" },
-					},
-				},
-				{
-					title = "Stanley",
-					note = "Stanley is Farmer Ray's dog, at the northern farmhouse in Hillsbrad Fields.",
-					goals = {
-						{ t = "turnin", quest = 502, title = "Elixir of Pain", npc = 2274, npcName = "Stanley", map = 1424, x = 32.66, y = 35.32, z = 54.8, f = "e" },
-					},
-				},
-				{
-					title = "Peasants and skulls",
-					note = "The Peasants work the fields south of the farmhouses. Every Hillsbrad human drops skulls; the Peasants drop them most often.",
-					goals = {
-						{ t = "kill", quest = 528, title = "Battle of Hillsbrad", target = "Hillsbrad Peasant", npc = 2267, count = 15, oi = 1, map = 1424, x = 30.27, y = 40.31, z = 56.9, f = "e", spots = { { x = 30.2, y = 41.7, r = 47, n = 4 }, { x = 35, y = 46, r = 52, n = 9 }, { x = 30.8, y = 45.4, r = 15, n = 1, alt = true }, { x = 35.4, y = 42, r = 15, n = 1, alt = true } } },
-						{ t = "collect", quest = 546, title = "Souvenirs of Death", item = 3692, itemName = "Hillsbrad Human Skull", count = 30, oi = 1, map = 1424, x = 30.3, y = 40.3, f = "e", note = "Hillsbrad Human Skull: the Peasants in the fields" },
-					},
-				},
-				{
-					title = "Tarren Mill",
-					goals = {
-						{ t = "turnin", quest = 528, title = "Battle of Hillsbrad", npc = 2215, npcName = "High Executor Darthalia", map = 1424, x = 62.33, y = 20.45, z = 54.5, f = "e", note = "High Executor Darthalia" },
-						{ t = "accept", quest = 529, title = "Battle of Hillsbrad", npc = 2215, npcName = "High Executor Darthalia", minLevel = 19, qlvl = 26, pre = { 528 }, preTitles = { [528] = "Battle of Hillsbrad" }, map = 1424, x = 62.33, y = 20.45, z = 54.5, f = "e" },
-						{ t = "turnin", quest = 546, title = "Souvenirs of Death", npc = 2418, npcName = "Deathguard Samsa", map = 1424, x = 62.11, y = 19.7, z = 55.4, f = "e", note = "Deathguard Samsa" },
 					},
 				},
 				{
