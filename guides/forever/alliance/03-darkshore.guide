@@ -192,6 +192,7 @@ step Trial of the Lake
 # ---------------------------------------------------------------- Second loop
 
 step Blackwood furbolgs
+  zone Darkshore
   tip Blackwood Pathfinders and Windtalkers hold the camp south-east of Auberdine.
   kill 2167 quest 985
   kill 2324 quest 985
@@ -376,7 +377,7 @@ step Auberdine
   accept 990                                  -- Sentinel Selarin: for Raene Wolfrunner in Astranaar, on the later Ashenvale leg
   accept 97914                                -- Thundris Windweaver: for Baros Alexston in Stormwind
   vendor nearest
-  goto 32.4,43.8 "Boat to Stormwind"
+  goto 30.76,40.92 "Boat to Stormwind"
 
 # ---------------------------------------------------------------- Druids: Cat Form
 

@@ -558,3 +558,49 @@ test("Fitz's playtest: every goto at a boat, zeppelin or tram stop is on its dec
 	assert.ok(checked >= 10, `the guides' transport gotos are found (${checked})`);
 	assert.deepEqual([...offenders], [], 'transport gotos with no deck or pier within 8 yd');
 });
+
+// --- Typed coordinates on the wrong map (Fitz's playtest: Darkshore's "Boat to
+// Stormwind" pointed into Moonglade). Coordinates without `map` are on the zone
+// in effect, and a `zone` line holds for the steps after it, even when its step
+// is for some characters only: the Night Elf Druids' Moonglade trip set zone
+// Moonglade for the rest of Darkshore, and a Paladin trip set Thunder Bluff for
+// the Barrens Warlocks' summoning circle in Orgrimmar. Each such goal is on the
+// zone every character who sees it is in: the last `zone` line of the steps
+// that character sees.
+
+test("Fitz's playtest: typed coordinates are on the zone of every character who sees them", { skip: skip || needs('races.json') }, () => {
+	const { characterKeys } = require('../tools/lib/dsl/conditions');
+	const races = JSON.parse(fs.readFileSync(path.join(DATA, 'races.json'), 'utf8'));
+	const classesOf = (race, side) => (races[race] && races[race][side] ? races[race][side].classes : null);
+	const offenders = [];
+	for (const guide of allGuides()) {
+		const g = compiled(guide);
+		const ast = g._ast;
+		const lines = fs.readFileSync(path.join(OFFICIAL_DIR, guide), 'utf8').split(/\r?\n/);
+		const zoneAt = (ln) => (ln ? lines[ln - 1].trim() : 'no zone');
+		const head = { factions: ast.header.faction ? [ast.header.faction] : null, races: ast.header.races || null, classes: ast.header.classes || null };
+		// Every step's `zone` lines, with who sees the step.
+		const zoneLines = ast.steps.flatMap((s, i) => {
+			const end = i + 1 < ast.steps.length ? ast.steps[i + 1].line : lines.length + 1;
+			const who = characterKeys([head, s.only], classesOf);
+			const out = [];
+			for (let ln = s.line + 1; ln < end; ln++) if (/^\s+zone\b/.test(lines[ln - 1])) out.push({ ln, who });
+			return out;
+		});
+		ast.steps.forEach((s, si) => {
+			s.goals.forEach((ag, gi) => {
+				if (!ag.explicitCoords || ag.coordMap !== undefined) return;
+				const compiledZone = zoneAt(ag.zone && ag.zone.line);
+				const elsewhere = new Set();
+				for (const k of characterKeys([head, s.only, ag.only], classesOf)) {
+					let ln = ast.header.zone ? ast.header.zone.line : null;
+					for (const z of zoneLines) if (z.ln < ag.line && z.who.has(k)) ln = z.ln;
+					if (zoneAt(ln) !== compiledZone) elsewhere.add(zoneAt(ln));
+				}
+				const goal = g.steps[si].goals[gi];
+				if (elsewhere.size) offenders.push(`${guide}:${ag.line} (${goal.t} ${goal.x},${goal.y}) is on ${compiledZone}, for characters in ${[...elsewhere].join(', ')}`);
+			});
+		});
+	}
+	assert.deepEqual(offenders, [], 'typed coordinates on a zone some of their characters are not in');
+});
