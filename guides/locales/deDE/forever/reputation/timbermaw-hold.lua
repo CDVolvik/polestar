@@ -6,7 +6,7 @@
 -- The comments are rewritten by sync.
 return {
 	-- Guide
-	["Timbermaw Hold Reputation"] = "",
+	["Timbermaw Hold Reputation"] = "Ruf: Holzschlundfeste",
 
 	-- Step 1: Grazle
 	-- {faction:576} Timbermaw Hold
@@ -68,7 +68,4 @@ return {
 	-- {faction:576} Timbermaw Hold
 	["{faction:576} to Exalted"] = "{faction:576} bis Ehrfürchtig",
 	["Keep turning in feathers and beads until Exalted."] = "Gib weiter Federn und Perlen ab, bis Ehrfürchtig.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["{faction:576} Reputation"] = "Ruf bei {faction:576}",
 }

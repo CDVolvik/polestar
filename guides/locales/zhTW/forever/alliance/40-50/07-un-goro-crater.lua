@@ -20,10 +20,10 @@ return {
 
 	-- Step 5: Lar'korwi Mates and the raft
 	-- plural, as words: Lar'korwi Mates = {npc:9683} Lar'korwi Mate
-	["Lar'korwi Mates and the raft"] = "",
+	["Lar'korwi Mates and the raft"] = "拉克維的配偶與木筏",
 	-- {npc:8737} Linken · {item:11116} A Mangled Journal
 	-- plural, as words: Lar'korwi Mates = {npc:9683} Lar'korwi Mate
-	["The Lar'korwi Mates prowl the jungle west of Torwa. The wrecked raft lies on the shore of the lake there; the small pack sits in the water beside it. Keep the compass, map and key for {npc:8737}. Any beast in the crater may drop {item:11116}: right-click it."] = "",
+	["The Lar'korwi Mates prowl the jungle west of Torwa. The wrecked raft lies on the shore of the lake there; the small pack sits in the water beside it. Keep the compass, map and key for {npc:8737}. Any beast in the crater may drop {item:11116}: right-click it."] = "拉克維的配偶在托爾瓦西邊的叢林中徘徊。破碎的木筏在那裡的湖岸上；小包就在旁邊的水裡。把指南針、地圖和鑰匙留給{npc:8737}。環形山的任何野獸都可能掉落{item:11116}：右鍵點擊它。",
 
 	-- Step 7: Marshal's Refuge
 	-- {area:541} Marshal's Refuge · {object:157936} Un'Goro Dirt Pile
@@ -42,7 +42,7 @@ return {
 	["{area:537} and the eastern jungle"] = "{area:537}與東部叢林",
 	-- {area:537} Fire Plume Ridge · {item:11113} Crate of Foodstuffs
 	-- plural, as words: Bloodpetal Lashers = {npc:6509} Bloodpetal Lasher
-	["Ride south to {area:537} in the middle of the crater, then east into the eastern jungle. Crystal clusters stand all over the crater, many of them around {area:537}: take a few extra of each colour. Bloodpetal Lashers and Threshers drop the petals; the expedition's {item:11113} sits at an abandoned camp in the eastern jungle."] = "",
+	["Ride south to {area:537} in the middle of the crater, then east into the eastern jungle. Crystal clusters stand all over the crater, many of them around {area:537}: take a few extra of each colour. Bloodpetal Lashers and Threshers drop the petals; the expedition's {item:11113} sits at an abandoned camp in the eastern jungle."] = "向南騎往環形山中央的{area:537}，然後向東進入東部叢林。水晶簇遍布整個環形山，許多在{area:537}周圍：每種顏色多拿幾個。血瓣花鞭笞者和血瓣花猛擊者會掉落花瓣；探險隊的{item:11113}在東部叢林中一處廢棄的營地裡。",
 
 	-- Step 10: A-Me 01
 	-- {area:1943} Ironstone Plateau
@@ -187,9 +187,4 @@ return {
 	-- Step 44: Xiggs Fuselighter
 	-- {object:32359} The Military Ward
 	["Xiggs waits in the {object:32359}."] = "希格斯在{object:32359}等候。",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Ride south to {area:537} in the middle of the crater, then east into the eastern jungle. Crystal clusters stand all over the crater, many of them around {area:537}: take a few extra of each colour. {item:11316} Lashers and Threshers drop the petals; the expedition's {item:11113} sits at an abandoned camp in the eastern jungle."] = "向南騎往環形山中央的{area:537}，再向東進入東部叢林。水晶簇遍布整個環形山，{area:537}周圍尤其多：每種顏色都多拿幾個。{item:11316}鞭笞者和猛擊者會掉落花瓣；探險隊的{item:11113}在東部叢林的一處廢棄營地。",
-	-- ["The {npc:9684} Mates prowl the jungle west of Torwa. The wrecked raft lies on the shore of the lake there; the small pack sits in the water beside it. Keep the compass, map and key for {npc:8737}. Any beast in the crater may drop {item:11116}: right-click it."] = "{npc:9684}的配偶在托爾瓦西邊的叢林中徘徊。失事的木筏在那裡的湖岸上；小背包就在旁邊的水中。把羅盤、地圖和鑰匙留給{npc:8737}。環形山中任何野獸都可能掉落{item:11116}：右鍵點擊它。",
-	-- ["{npc:9684} Mates and the raft"] = "{npc:9684}的配偶與木筏",
 }

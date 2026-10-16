@@ -278,6 +278,4 @@ return {
 	-- {area:392} Ratchet · {area:976} Gadgetzan
 	["The next guide starts here in {area:392} and flies on to {area:976}."] = "다음 가이드는 여기 {area:392}에서 시작해 {area:976}(으)로 날아갑니다.",
 
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Ride west to {area:2627}. {npc:8597} Runts, Plaguebats and Carrion Grubs roam its woods; fill the {item:15042} at the big termite mounds and kill the Frenzied Plaguehounds further north."] = "서쪽 {area:2627}(으)로 가세요. 숲에는 새끼 {npc:8597}, 역병박쥐, 청소부구더기가 돌아다닙니다. 큰 흰개미집에서 {item:15042}을(를) 채우고, 더 북쪽에서 광포한 역병사냥개를 처치하세요.",
 }

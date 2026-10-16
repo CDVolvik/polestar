@@ -7,7 +7,7 @@
 return {
 	-- Step 1: Aquatic Form
 	-- {area:17203} Stormwind Harbor · {area:442} Auberdine · {item:15885} Pendant of the Sea Lion · {spell:18960} Teleport: Moonglade · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {area:702} Rut'theran Village
-	["Take the boat from {area:17203} to {area:442}. Join the two half pendants into the {item:15885} and cast {spell:18960}: {npc:11802} is in {area:2361}. Then fly to {area:702} (by way of {area:442})."] = "",
+	["Take the boat from {area:17203} to {area:442}. Join the two half pendants into the {item:15885} and cast {spell:18960}: {npc:11802} is in {area:2361}. Then fly to {area:702} (by way of {area:442})."] = "Nimm das Schiff vom {area:17203} nach {area:442}. Füge die beiden Anhängerhälften zu {item:15885} zusammen und wirke {spell:18960}: {npc:11802} ist in {area:2361}. Flieg dann nach {area:702} (über {area:442}).",
 	-- {item:15885} Pendant of the Sea Lion
 	["{item:15885}: join the two halves"] = "{item:15885}: Füge die beiden Hälften zusammen",
 
@@ -80,7 +80,7 @@ return {
 	-- Step 23: The Foulweald
 	["The Foulweald"] = "Die Fäulnisklauen",
 	-- {area:415} Astranaar
-	["The Foulweald furbolgs live in the woods south of the road, south-east of {area:415}. The Den Watcher and the Ursas guard the den."] = "",
+	["The Foulweald furbolgs live in the woods south of the road, south-east of {area:415}. The Den Watcher and the Ursas guard the den."] = "Die Furbolgs der Fäulnisklauen leben in den Wäldern südlich der Straße, südöstlich von {area:415}. Der Höhlenbehüter und die Ursas bewachen die Höhle.",
 
 	-- Step 24: Mystral Lake
 	-- {npc:3885} Sentinel Velene Starstrike · {area:420} Silverwind Refuge · {area:421} Mystral Lake · {npc:210995} Alonso
@@ -88,7 +88,7 @@ return {
 	["{npc:3885} stands at the {area:420} on the east shore of {area:421}; {npc:210995} camps on its west shore. Befouled Water Elementals wade in the lake between them."] = "{npc:3885} steht bei {area:420} am Ostufer von {area:421}; {npc:210995} lagert an dessen Westufer. Beschmutzte Wasserelementare waten im See dazwischen.",
 	-- {item:5456} Divining Scroll
 	-- plural, as words: Intact Elemental Bracers = {item:12220} Intact Elemental Bracer
-	["Kill the elementals for 5 Intact Elemental Bracers, then use the {item:5456}"] = "",
+	["Kill the elementals for 5 Intact Elemental Bracers, then use the {item:5456}"] = "Töte die Elementare für 5 intakte Elementararmschienen und benutze dann {item:5456}",
 
 	-- Step 25: The Ruins of Stardust
 	-- {area:421} Mystral Lake
@@ -115,7 +115,7 @@ return {
 	-- {area:1276} The Talondeep Path
 	["Hearthstone on cooldown? Ride back north through the {area:1276}."] = "Ruhestein noch nicht bereit? Reite nach Norden zurück durch {area:1276}.",
 	-- {area:150} Menethil Harbor
-	["Boat to {area:150}"] = "",
+	["Boat to {area:150}"] = "Schiff nach {area:150}",
 
 	-- Step 32: Menethil Harbor
 	-- {npc:1242} Karl Boran
@@ -156,7 +156,7 @@ return {
 	-- Step 40: Young crocolisks
 	["Young crocolisks"] = "Junge Krokilisken",
 	-- plural, as words: Young Wetlands Crocolisks = {npc:1417} Young Wetlands Crocolisk
-	["Follow the road east. Young Wetlands Crocolisks lurk in the pools north of the excavation site."] = "",
+	["Follow the road east. Young Wetlands Crocolisks lurk in the pools north of the excavation site."] = "Folge der Straße nach Osten. Junge Sumpflandkrokilisken lauern in den Tümpeln nördlich der Ausgrabungsstätte.",
 
 	-- Step 41: Whelgar's Excavation Site
 	["The excavation site sits on the hill south of the road."] = "Die Ausgrabungsstätte liegt auf dem Hügel südlich der Straße.",
@@ -267,11 +267,4 @@ return {
 	-- Step 65: Trade District
 	-- {area:42} Darkshire
 	["Next: fly to {area:42}."] = "Als Nächstes: Flieg nach {area:42}.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Follow the road east. Young {zone:1437} Crocolisks lurk in the pools north of the excavation site."] = "Folge der Straße nach Osten. Junge {zone:1437}krokilisken lauern in den Tümpeln nördlich der Ausgrabungsstätte.",
-	-- ["Kill the elementals for 5 Intact {quest:1016}, then use the {item:5456}"] = "Töte die Elementare für 5 intakte Elementararmschienen ({quest:1016}) und benutze dann {item:5456}",
-	-- ["Take the boat from {area:17203} to {area:442}. Join the two half pendants into the {item:15885} and cast Teleport: {zone:1450}: {npc:11802} is in {area:2361}. Then fly to {area:702} (by way of {area:442})."] = "Nimm das Schiff vom {area:17203} nach {area:442}. Füge die beiden Anhängerhälften zu {item:15885} zusammen und wirke Teleportieren: {zone:1450}: {npc:11802} ist in {area:2361}. Flieg dann nach {area:702} (über {area:442}).",
-	-- ["The Foulweald furbolgs live in the woods south of the road, south-east of {area:415}. {area:364} Watcher and the Ursas guard the den."] = "Die Furbolgs der Fäulnisklauen leben in den Wäldern südlich der Straße, südöstlich von {area:415}. Der Höhlenbehüter und die Ursas bewachen {area:364}.",
-	-- ["{object:176364} Harbor"] = "{object:176364}",
 }

@@ -150,7 +150,4 @@ return {
 	-- Step 28: Tarren Mill
 	-- {area:272} Tarren Mill
 	["Follow the road east along the river, then north-east up into the hills to {area:272}."] = "沿河边道路向东，然后向东北爬进山丘到{area:272}。",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["On the ride west, {npc:267214} is stuck in a ravine south of the main road, south-east of {area:415}. Shadowhorn Stags and {zone:1440} Bears roam the woods all around it."] = "向西骑行途中，{npc:267214}被困在主路南边、{area:415}东南方的一道峡谷里。黑角鹿和{zone:1440}熊在周围的树林中游荡。",
 }

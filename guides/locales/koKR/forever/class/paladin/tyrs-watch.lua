@@ -75,6 +75,4 @@ return {
 	-- {area:16602} Bandarion Keep · {spell:7328} Redemption
 	["Back to {area:16602}: Billmuth takes the plans, Danitha teaches you {spell:7328}."] = "{area:16602}(으)로 돌아가십시오. Billmuth가 계획을 받고, 다니타가 {spell:7328}을(를) 가르칩니다.",
 
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["{quest:91317} hold the ruined village of {area:16881} in the {area:16616}, south-west of the keep. The {item:246213} is piled in the root cellar of one of its houses; Commander {npc:259431} walks among his Tarnished."] = "{quest:91317}이(가) 요새 남서쪽 {area:16616}의 폐허가 된 마을 {area:16881}을(를) 장악하고 있습니다. {item:246213}은(는) 한 집의 뿌리 저장고에 쌓여 있으며, 사령관 {npc:259431}이(가) 자신의 부하들 사이를 돌아다닙니다.",
 }

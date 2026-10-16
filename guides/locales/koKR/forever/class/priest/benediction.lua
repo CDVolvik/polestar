@@ -29,6 +29,4 @@ return {
 	-- {item:18608} Benediction
 	["With both Eyes in your bags: {item:18608}"] = "두 눈을 가방에 넣고: {item:18608}",
 
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Save 50 peasants before 15 die. Kill the skeletons that attack them, cure their diseases (the purple ones first) and heal the wounded with Renew. Friends may buff you beforehand but must stay out of the fight, or a demon appears and kills everyone."] = "농부 15명이 죽기 전에 50명을 구하십시오. 그들을 공격하는 해골을 처치하고, 질병을 치료하고(보라색부터), 부상자는 소생으로 치유하십시오. 친구들은 미리 강화 효과를 걸어 줄 수 있지만 전투에는 끼어들면 안 됩니다. 그러면 악마가 나타나 모두를 죽입니다.",
 }

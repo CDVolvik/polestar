@@ -24,7 +24,7 @@ return {
 	-- Step 4: The alchemist shop
 	["The alchemist shop"] = "Лавка алхимика",
 	-- {item:7308} Cantation of Manifestation · {npc:6492} Rift Spawn · {item:7247} Chest of Containment Coffers
-	["Algernon's alchemist shop is in the Apothecarium. Use the {item:7308} there to make the {npc:6492} visible, subdue one with your spells, then use the {item:7247} to throw down a coffer and capture it."] = "",
+	["Algernon's alchemist shop is in the Apothecarium. Use the {item:7308} there to make the {npc:6492} visible, subdue one with your spells, then use the {item:7247} to throw down a coffer and capture it."] = "Алхимическая лавка Алжернона находится в квартале аптекарей Подгорода. Используйте там {item:7308}, чтобы сделать видимым NPC {npc:6492}, ослабьте одного своими заклинаниями, затем используйте {item:7247}, чтобы бросить шкатулку и поймать его.",
 
 	-- Step 5: Back to Anastasia Hartwell
 	-- {npc:4568} Anastasia Hartwell
@@ -32,7 +32,7 @@ return {
 
 	-- Step 6: Linen Cloth
 	-- {item:2589} Linen Cloth
-	["Humanoids drop {item:2589}; the Undercity Auction House sells it."] = "",
+	["Humanoids drop {item:2589}; the Undercity Auction House sells it."] = "С гуманоидов падает {item:2589}; его продают на аукционе Подгорода.",
 
 	-- Step 7: Ambermill
 	-- {zone:1458} Undercity · {zone:1421} Silverpine Forest · {area:279} Dalaran · {area:233} Ambermill · {area:228} The Sepulcher · {npc:1867} Dalaran Apprentice · {item:7293} Dalaran Mana Gem
@@ -42,7 +42,4 @@ return {
 	-- {zone:1458} Undercity · {npc:4576} Josef Gregorian · {npc:11048} Victor Ward · {npc:11049} Rhiannon Davis
 	["Back to the {zone:1458}. {npc:4576}, {npc:11048} and {npc:11049} keep the tailor's shop."] = "Вернитесь в город {zone:1458}. {npc:4576}, {npc:11048} и {npc:11049} держат лавку портного.",
 
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Algernon's alchemist shop is in the {object:36072}. Use the {item:7308} there to make the {npc:6492} visible, subdue one with your spells, then use the {item:7247} to throw down a coffer and capture it."] = "Алхимическая лавка Алжернона находится здесь: {object:36072}. Используйте там {item:7308}, чтобы сделать видимым NPC {npc:6492}, ослабьте одного своими заклинаниями, затем используйте {item:7247}, чтобы бросить шкатулку и поймать его.",
-	-- ["Humanoids drop {item:2589}; the {zone:1458} Auction House sells it."] = "С гуманоидов падает {item:2589}; его продают на аукционе ({zone:1458}).",
 }

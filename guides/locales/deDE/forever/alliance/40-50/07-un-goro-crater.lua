@@ -20,10 +20,10 @@ return {
 
 	-- Step 5: Lar'korwi Mates and the raft
 	-- plural, as words: Lar'korwi Mates = {npc:9683} Lar'korwi Mate
-	["Lar'korwi Mates and the raft"] = "",
+	["Lar'korwi Mates and the raft"] = "Lar'korwi-Weibchen und das Floß",
 	-- {npc:8737} Linken · {item:11116} A Mangled Journal
 	-- plural, as words: Lar'korwi Mates = {npc:9683} Lar'korwi Mate
-	["The Lar'korwi Mates prowl the jungle west of Torwa. The wrecked raft lies on the shore of the lake there; the small pack sits in the water beside it. Keep the compass, map and key for {npc:8737}. Any beast in the crater may drop {item:11116}: right-click it."] = "",
+	["The Lar'korwi Mates prowl the jungle west of Torwa. The wrecked raft lies on the shore of the lake there; the small pack sits in the water beside it. Keep the compass, map and key for {npc:8737}. Any beast in the crater may drop {item:11116}: right-click it."] = "Die Lar'korwi-Weibchen streifen durch den Dschungel westlich von Torwa. Das zerstörte Floß liegt dort am Seeufer; das kleine Bündel liegt daneben im Wasser. Behalte Kompass, Karte und Schlüssel für {npc:8737}. Jedes Wildtier im Krater kann {item:11116} fallen lassen: Rechtsklick darauf.",
 
 	-- Step 7: Marshal's Refuge
 	-- {area:541} Marshal's Refuge · {object:157936} Un'Goro Dirt Pile
@@ -42,7 +42,7 @@ return {
 	["{area:537} and the eastern jungle"] = "{area:537} und der östliche Dschungel",
 	-- {area:537} Fire Plume Ridge · {item:11113} Crate of Foodstuffs
 	-- plural, as words: Bloodpetal Lashers = {npc:6509} Bloodpetal Lasher
-	["Ride south to {area:537} in the middle of the crater, then east into the eastern jungle. Crystal clusters stand all over the crater, many of them around {area:537}: take a few extra of each colour. Bloodpetal Lashers and Threshers drop the petals; the expedition's {item:11113} sits at an abandoned camp in the eastern jungle."] = "",
+	["Ride south to {area:537} in the middle of the crater, then east into the eastern jungle. Crystal clusters stand all over the crater, many of them around {area:537}: take a few extra of each colour. Bloodpetal Lashers and Threshers drop the petals; the expedition's {item:11113} sits at an abandoned camp in the eastern jungle."] = "Reite nach Süden zum {area:537} in der Mitte des Kraters, dann nach Osten in den östlichen Dschungel. Kristallhaufen stehen überall im Krater, viele davon um den {area:537}: Nimm von jeder Farbe ein paar extra. Blutblütenpeitscher und Blutblütendrescher lassen die Blütenblätter fallen; die {item:11113} der Expedition liegt in einem verlassenen Lager im östlichen Dschungel.",
 
 	-- Step 10: A-Me 01
 	-- {area:1943} Ironstone Plateau
@@ -187,9 +187,4 @@ return {
 	-- Step 44: Xiggs Fuselighter
 	-- {object:32359} The Military Ward
 	["Xiggs waits in the {object:32359}."] = "Xiggs wartet im {object:32359}.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Ride south to {area:537} in the middle of the crater, then east into the eastern jungle. Crystal clusters stand all over the crater, many of them around {area:537}: take a few extra of each colour. {item:11316} Lashers and Threshers drop the petals; the expedition's {item:11113} sits at an abandoned camp in the eastern jungle."] = "Reite nach Süden zum {area:537} in der Mitte des Kraters, dann nach Osten in den östlichen Dschungel. Kristallhaufen stehen überall im Krater, viele davon um den {area:537}: Nimm von jeder Farbe ein paar extra. Blutblütenpeitscher und -drescher ({item:11316}) lassen die Blütenblätter fallen; die {item:11113} der Expedition liegt in einem verlassenen Lager im östlichen Dschungel.",
-	-- ["The {npc:9684} Mates prowl the jungle west of Torwa. The wrecked raft lies on the shore of the lake there; the small pack sits in the water beside it. Keep the compass, map and key for {npc:8737}. Any beast in the crater may drop {item:11116}: right-click it."] = "Die {npc:9684}-Weibchen streifen durch den Dschungel westlich von Torwa. Das zerstörte Floß liegt dort am Seeufer; das kleine Bündel liegt daneben im Wasser. Behalte Kompass, Karte und Schlüssel für {npc:8737}. Jedes Wildtier im Krater kann {item:11116} fallen lassen: Rechtsklick darauf.",
-	-- ["{npc:9684} Mates and the raft"] = "{npc:9684}-Weibchen und das Floß",
 }

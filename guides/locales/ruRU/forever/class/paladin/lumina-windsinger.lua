@@ -6,7 +6,7 @@
 -- The comments are rewritten by sync.
 return {
 	-- Guide
-	["Rescuing Lumina Windsinger"] = "",
+	["Rescuing Lumina Windsinger"] = "Спасение Люмины Виндсингер",
 	-- {item:268484} Moonsilver Blade
 	["No item yet: a Forsaken paladin rescue story; its sequel, the {item:268484}, cannot be finished yet."] = "Предмета пока нет: история о спасении для паладина Отрекшихся; ее продолжение, {item:268484}, пока нельзя завершить.",
 	-- {zone:1458} Undercity
@@ -30,24 +30,20 @@ return {
 
 	-- Step 4: Fenris Keep
 	-- {quest:91862} Lumina Windsinger · {area:235} Fenris Keep
-	["{quest:91862} is caged inside {area:235}, at the north end of the isle. The Rot Hide gnolls around her carry the key."] = "",
+	["{quest:91862} is caged inside {area:235}, at the north end of the isle. The Rot Hide gnolls around her carry the key."] = "{quest:91862} заперта в клетке здесь: {area:235}, северный край острова. Ключ у гноллов из стаи Гнилошкуров вокруг нее.",
 	-- {item:267412} Fenris Isle Key
-	["{item:267412}, from the Rot Hide gnolls"] = "",
+	["{item:267412}, from the Rot Hide gnolls"] = "{item:267412} – с гноллов из стаи Гнилошкуров",
 
 	-- Step 5: Free Lumina
-	["Free Lumina"] = "Освободите Lumina",
+	["Free Lumina"] = "Освободите Люмину",
 	["Free her with the key, then stay close while she fights her way out of the keep."] = "Освободите ее ключом и держитесь рядом, пока она пробивается из крепости.",
 
 	-- Step 6: Back to the Sepulcher
 	-- {area:228} The Sepulcher
 	["Back to the {area:228}"] = "Вернитесь: {area:228}",
 	-- {area:235} Fenris Keep · {area:228} The Sepulcher
-	["Once she is clear of {area:235}, Lumina waits for you in the {area:228}. Speak with her again to hear what really happened on the road."] = "Когда она выберется из места {area:235}, Lumina ждет вас здесь: {area:228}. Поговорите с ней снова, чтобы узнать, что на самом деле случилось в дороге.",
+	["Once she is clear of {area:235}, Lumina waits for you in the {area:228}. Speak with her again to hear what really happened on the road."] = "Когда она выберется из места {area:235}, Люмина ждет вас здесь: {area:228}. Поговорите с ней снова, чтобы узнать, что на самом деле случилось в дороге.",
 	-- {npc:259620} Lumina Windsinger · {area:228} The Sepulcher
 	["{npc:259620}, the {area:228}"] = "{npc:259620}, {area:228}",
 
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Rescuing {quest:91862}"] = "Спасение: {quest:91862}",
-	-- ["{item:267412}, from the {npc:14235} Hide gnolls"] = "{item:267412} — с гноллов из стаи Гнилошкуров ({npc:14235})",
-	-- ["{quest:91862} is caged inside {area:235}, at the north end of the isle. {npc:14235} Hide gnolls around her carry the key."] = "{quest:91862} заперта в клетке здесь: {area:235}, северный край острова. Ключ у гноллов из стаи Гнилошкуров ({npc:14235}) вокруг нее.",
 }

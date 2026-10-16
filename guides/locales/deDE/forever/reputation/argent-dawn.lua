@@ -6,7 +6,7 @@
 -- The comments are rewritten by sync.
 return {
 	-- Guide
-	["Argent Dawn Reputation"] = "",
+	["Argent Dawn Reputation"] = "Ruf: Argentumdämmerung",
 
 	-- Step 1: Argent Dawn Commission (Alliance)
 	-- {quest:5401} Argent Dawn Commission
@@ -48,7 +48,4 @@ return {
 	["{faction:529} to Exalted"] = "{faction:529} bis Ehrfürchtig",
 	-- {area:2279} Stratholme · {area:2057} Scholomance · {item:12843} Corruptor's Scourgestone · {area:2268} Light's Hope Chapel
 	["Keep running {area:2279} and {area:2057} and turning in every {item:12843} at {area:2268} until Exalted."] = "Lauf weiter {area:2279} und {area:2057} und gib jeden {item:12843} in der {area:2268} ab, bis du ehrfürchtig bist.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["{faction:529} Reputation"] = "Ruf: {faction:529}",
 }

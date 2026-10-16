@@ -92,8 +92,4 @@ return {
 	-- {npc:14504} Dreadsteed Spirit
 	["{npc:14504}: it binds itself to you"] = "{npc:14504}: 당신에게 귀속됩니다",
 
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Gorzeeki wants 10 Elixirs of Shadow Power ({skill:171}), 6 Large Brilliant Shards ({skill:333}), 25 {item:11370} ({skill:186}, in {area:1584} and the {zone:1427}) and 35 Black Dragonscales ({skill:393}, black dragonkin of the {zone:1428}). Make or gather what your professions allow; buy the rest at the Auction House."] = "고르지키는 암흑 강화의 비약 10개({skill:171}), 눈부신 큰 결정 6개({skill:333}), {item:11370} 25개({skill:186}, {area:1584}와(과) {zone:1427}), 검은용 비늘 35개({skill:393}, {zone:1428}의 검은용족)를 원합니다. 전문 기술로 가능한 것은 만들거나 모으고, 나머지는 경매장에서 사세요.",
-	-- ["Hand the three pieces to Gorzeeki. He then wants 3 {quest:7630} Bars: alchemists transmute them, everyone else buys them at the Auction House."] = "재료 세 가지를 고르지키에게 건네세요. 그 후 그는 {quest:7630} 주괴 3개를 원합니다. 연금술사는 변환으로 만들고, 그 외에는 경매장에서 사세요.",
-	-- ["The owlbeasts of {zone:1452} drop the blood, about one in three: the Ragged and Raging Owlbeasts west of and around {area:2255}, the Crazed, Moontouched and Berserk ones in the east. While you hunt, start on the materials of the next step: the Auction House has them all."] = "{zone:1452}의 올빼미야수가 약 3분의 1 확률로 피를 떨어뜨립니다. {area:2255} 서쪽과 주변의 털복숭이 올빼미야수와 흉포한 올빼미야수, 동쪽의 광기어린, 달빛 깃든, 광포한 올빼미야수입니다. 사냥하는 동안 다음 단계 재료도 모으기 시작하세요. 경매장에서 모두 구할 수 있습니다.",
 }

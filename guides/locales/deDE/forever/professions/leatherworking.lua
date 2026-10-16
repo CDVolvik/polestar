@@ -200,7 +200,7 @@ return {
 	-- {skill:165} Leatherworking
 	["{skill:165} materials for 150-225"] = "Materialien für {skill:165} 150-225",
 	-- {skill:171} Alchemy · {spell:3188} Elixir of Ogre Strength
-	["{skill:171}: {spell:3188} (or the Auction House)"] = "",
+	["{skill:171}: {spell:3188} (or the Auction House)"] = "{skill:171}: {spell:3188} (oder das Auktionshaus)",
 	-- {skill:171} Alchemy · {item:3389} Elixir of Defense
 	["{skill:171}: {item:3389} (or the Auction House)"] = "{skill:171}: {item:3389} (oder das Auktionshaus)",
 	-- {skill:333} Enchanting
@@ -321,7 +321,4 @@ return {
 	["{item:15094} to 300"] = "{item:15094} bis 300",
 	-- {skill:165} Leatherworking
 	["Orange (a point every craft) until 285, yellow until 295, green until 305. {skill:165} 300 is a Legacy System milestone."] = "Orange (jede Herstellung ein Punkt) bis 285, gelb bis 295, grün bis 305. {skill:165} 300 ist ein Meilenstein des Vermächtnis-Systems.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["{skill:171}: Elixir of Ogre Strength (or the Auction House)"] = "{skill:171}: Elixier der Ogerstärke (oder das Auktionshaus)",
 }

@@ -159,9 +159,4 @@ return {
 	["Raids: Barrow Deeps"] = "공격대: Barrow Deeps",
 	["All 8 Barrow Deeps bosses are a point. Barrow Deeps is a new Forever raid; its bosses are not in our data, so tick it off once all 8 are down."] = "Barrow Deeps 우두머리 8명을 모두 처치하면 1점입니다. Barrow Deeps은(는) Forever의 새 공격대이며 우두머리가 우리 데이터에 없으니, 8명을 모두 처치하면 직접 체크하십시오.",
 
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Exalted with each battleground faction is worth a point (4 in all; this page shows three, see the note). Follow the Polestar Reputation guides {zone:1460} Reputation, {zone:1461} Reputation and {zone:1459} Reputation. The Diplomat Legacy perk increases reputation gains."] = "각 전장 세력과 확고한 동맹이 되면 1점입니다(총 4개, 이 페이지에는 3개만 있으니 참고 사항을 확인하십시오). Polestar 평판 가이드 {zone:1460} 평판, {zone:1461} 평판, {zone:1459} 평판을 따르십시오. Legacy 특전 Diplomat은 평판 획득량을 늘려 줍니다.",
-	-- ["{area:2577} East"] = "{area:2577} 동부",
-	-- ["{area:2577} North"] = "{area:2577} 북부",
-	-- ["{area:2577} West"] = "{area:2577} 서부",
 }

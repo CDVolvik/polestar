@@ -124,9 +124,4 @@ return {
 	-- {item:6529} Shiny Bauble · {npc:5494} Catherine Leland
 	["{item:6529}, from {npc:5494}"] = "{item:6529}, {npc:5494}에게서",
 
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Defensive Stance"] = "방어 태세",
-	-- ["Fly or ride to {zone:1453}. Trainers: {object:2100} (Warriors, Rogues), the Cathedral (Paladins, Priests), the {object:2101} (Mages, Warlocks), the {object:23299} (Druids). {npc:11026} works in the {object:28027}, {npc:279} in the {object:2096}."] = "{zone:1453}(으)로 비행하거나 이동하십시오. 상급자: {object:2100}(전사, 도적), 대성당(성기사, 사제), {object:2101}(마법사, 흑마법사), {object:23299}(드루이드). {npc:11026}은(는) {object:28027}에, {npc:279}은(는) {object:2096}에 있습니다.",
-	-- ["{item:2449} for Gathering the Cure (6123) in {zone:1439}: {npc:1313}, {skill:171} Supplies; herbalists pick it there instead"] = "{zone:1439}의 약재 모으기(6123)용 {item:2449}: {npc:1313}, {skill:171} 용품점. 약초채집가는 현지에서 채집하십시오",
-	-- ["{npc:6089}: Defensive Stance"] = "{npc:6089}: 방어 태세",
 }

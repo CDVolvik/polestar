@@ -29,7 +29,7 @@ return {
 
 	-- Step 5: The Shieldsmith
 	-- {npc:5413} Furen Longbeard · {zone:1453} Stormwind City · {item:6843} Cask of Scalder · {item:6970} Furen's Favor · {quest:1701} Fire Hardened Mail
-	["{npc:5413} works in the Dwarven District of {zone:1453}. He keeps the {item:6843} and gives you {item:6970}, a shield; {quest:1701} is a level 28 quest."] = "",
+	["{npc:5413} works in the Dwarven District of {zone:1453}. He keeps the {item:6843} and gives you {item:6970}, a shield; {quest:1701} is a level 28 quest."] = "{npc:5413} arbeitet im Zwergendistrikt von {zone:1453}. Er hat {item:6843} und gibt dir {item:6970}, einen Schild; {quest:1701} ist eine Quest der Stufe 28.",
 
 	-- Step 6: Scorched Spider Fangs
 	-- plural, as words: Scorched Spider Fangs = {item:6838} Scorched Spider Fang
@@ -88,7 +88,4 @@ return {
 	-- Step 17: Iron Coral
 	-- {quest:1708} Iron Coral · {zone:1437} Wetlands · {area:150} Menethil Harbor
 	["The {quest:1708} grows along the {zone:1437}' west coast, south of {area:150}."] = "Die {quest:1708} wächst an der Westküste von {zone:1437}, südlich des Gebiets {area:150}.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["{npc:5413} works in the {object:28027} of {zone:1453}. He keeps the {item:6843} and gives you {item:6970}, a shield; {quest:1701} is a level 28 quest."] = "{npc:5413} arbeitet im {object:28027} von {zone:1453}. Er hat das {item:6843} und gibt dir {item:6970}, einen Schild; {quest:1701} ist eine Quest der Stufe 28.",
 }

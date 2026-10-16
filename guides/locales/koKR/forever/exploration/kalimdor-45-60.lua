@@ -84,6 +84,4 @@ return {
 	-- {zone:2482} Mount Hyjal · {zone:1452} Winterspring · {area:2256} Darkwhisper Gorge
 	["{zone:2482} is reached from {zone:1452} through {area:2256} in the south. It is Forever's endgame leveling zone."] = "{zone:2482}은(는) {zone:1452} 남쪽의 {area:2256}을(를) 지나 갈 수 있습니다. Forever의 최종 레벨업 지역입니다.",
 
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Take the {area:1769} tunnel in northern {zone:1448} through to {zone:1450} (druids: Teleport: {zone:1450}). {area:2361} is neutral."] = "{zone:1448} 북부의 {area:1769} 굴을 지나 {zone:1450}(으)로 가십시오(드루이드: 순간이동: {zone:1450}). {area:2361}은(는) 중립입니다.",
 }

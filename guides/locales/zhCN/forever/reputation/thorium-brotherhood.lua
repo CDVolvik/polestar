@@ -6,7 +6,7 @@
 -- The comments are rewritten by sync.
 return {
 	-- Guide
-	["Thorium Brotherhood Reputation"] = "",
+	["Thorium Brotherhood Reputation"] = "瑟银兄弟会声望",
 
 	-- Step 1: Master Smith Burninate
 	-- {area:1446} Thorium Point · {zone:1427} Searing Gorge · {faction:59} Thorium Brotherhood
@@ -24,16 +24,16 @@ return {
 	["{item:18942} supplies to Friendly"] = "{item:18942}补给刷到友善",
 	-- {item:3356} Kingsblood · {item:4234} Heavy Leather · {item:18944} Incendosaur Scale · {zone:1427} Searing Gorge
 	-- plural, as words: Iron Bars = {item:3575} Iron Bar
-	["Restoring Fiery Flux Supplies repeats in three versions: {item:3356}, Iron Bars or {item:4234}, each with Coal and an {item:18944}. Incendosaurs (level 47-49) in the north of {zone:1427} drop a scale every time; Burninate himself sells Coal."] = "",
+	["Restoring Fiery Flux Supplies repeats in three versions: {item:3356}, Iron Bars or {item:4234}, each with Coal and an {item:18944}. Incendosaurs (level 47-49) in the north of {zone:1427} drop a scale every time; Burninate himself sells Coal."] = "“炽热助熔剂的补给”有三个可重复版本：{item:3356}、{item:3575}或{item:4234}，每个都需要煤块和一个{item:18944}。{zone:1427}北部的熏火龙（47-49级）每次都会掉落鳞片；博恩奈特本人出售煤块。",
 	-- {npc:14624} Master Smith Burninate
-	["{npc:14624}: Restoring Fiery Flux Supplies"] = "",
+	["{npc:14624}: Restoring Fiery Flux Supplies"] = "{npc:14624}：炽热助熔剂的补给",
 
 	-- Step 5: Lokhtos Darkbargainer to Honored
 	-- {npc:12944} Lokhtos Darkbargainer
 	["{npc:12944} to Honored"] = "{npc:12944}：刷到尊敬",
 	-- {npc:12944} Lokhtos Darkbargainer · {area:1584} Blackrock Depths · {item:11099} Dark Iron Ore · {skill:186} Mining · {item:11382} Blood of the Mountain · {item:17010} Fiery Core · {item:17011} Lava Core · {item:17012} Core Leather · {npc:14387} Lothos Riftwaker · {area:1445} Blackrock Mountain · {area:2717} Molten Core
 	-- plural, as words: Dark Iron Deposits = {object:165658} Dark Iron Deposit
-	["{npc:12944} trades in the Grim Guzzler inside {area:1584}. His Favor Amongst the Brotherhood turn-ins take {item:11099} (mined from Dark Iron Deposits with {skill:186}), {item:11382}, {item:17010}, {item:17011} and {item:17012}. {npc:14387} at the {area:1445} entrance offers attunement to the {area:2717}."] = "",
+	["{npc:12944} trades in the Grim Guzzler inside {area:1584}. His Favor Amongst the Brotherhood turn-ins take {item:11099} (mined from Dark Iron Deposits with {skill:186}), {item:11382}, {item:17010}, {item:17011} and {item:17012}. {npc:14387} at the {area:1445} entrance offers attunement to the {area:2717}."] = "{npc:12944}在{area:1584}内的黑铁酒吧做买卖。他的“兄弟会的好感”任务收取{item:11099}（用{skill:186}从{object:165658}开采）、{item:11382}、{item:17010}、{item:17011}和{item:17012}。{area:1445}入口处的{npc:14387}提供{area:2717}的进入资格。",
 	-- {item:11099} Dark Iron Ore
 	["{item:11099}: Favor Amongst the Brotherhood, {item:11099} at Lokhtos, repeatable."] = "{item:11099}：在罗克图斯处交还“兄弟会的好感 - 黑铁矿石”（{item:11099}），可重复。",
 

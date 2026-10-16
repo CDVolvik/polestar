@@ -70,7 +70,4 @@ return {
 	-- {faction:729} Frostwolf Clan
 	["Exalted with the {faction:729} earns a Legacy Point."] = "{faction:729}와(과) 확고한 동맹이 되면 Legacy Point 1점을 얻습니다.",
 
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Keep winning {zone:1459}. More Booty! ({npc:13176}), {item:17306} for {npc:13236} (it summons {npc:13256}) and {npc:10990} Hides for the {npc:13441} all repeat."] = "{zone:1459}에서 계속 승리하십시오. 추가 전리품! 제출({npc:13176}), {npc:13236}에게 {item:17306} 제출({npc:13256} 소환), {npc:13441}에게 {npc:10990} 통가죽 제출은 모두 반복할 수 있습니다.",
-	-- ["{zone:1459} Reputation"] = "{zone:1459} 평판",
 }

@@ -96,12 +96,4 @@ return {
 	-- plural, as words: Sturdy Dragonmaw Shinbones = {item:7134} Sturdy Dragonmaw Shinbone
 	["Sturdy Dragonmaw Shinbones"] = "{item:7134}",
 
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Sturdy {quest:1846}"] = "단단한 {quest:1846}",
-	-- ["The Dragonmaw orcs camp in the middle of the {zone:1437}, south of the road; Raiders, Swamprunners, Centurions, Shadowwarders and Bonewarders all drop the Sturdy {quest:1846}."] = "용아귀부족 오크는 {zone:1437} 중부, 길 남쪽에 진을 치고 있습니다. 약탈자, 늪길잡이, 백인대장, 어둠보초병, 해골감시자 모두 단단한 {quest:1846}을(를) 떨어뜨립니다.",
-	-- ["The {area:287} Miners work the mine in the west of {zone:1424}; they drop the {item:7127}. Take the zeppelin from {zone:1454} to {zone:1420} and ride south through {zone:1421}."] = "{area:287} 광부는 {zone:1424} 서쪽 광산에서 일하며 {item:7127}을(를) 떨어뜨립니다. {zone:1454}에서 비행선을 타고 {zone:1420}(으)로 간 뒤 남쪽으로 {zone:1421}을(를) 지나가세요.",
-	-- ["The {area:429} satyrs camp in eastern {zone:1440}, with the Felmusk satyrs further west; both drop Uncloven {quest:1842}."] = "{area:429} 사티로스는 {zone:1440} 동부에, 검은유혹의 사티로스는 더 서쪽에 진을 치고 있습니다. 둘 다 갈라지지 않은 {quest:1842}을(를) 떨어뜨립니다.",
-	-- ["Uncloven {quest:1842}"] = "갈라지지 않은 {quest:1842}",
-	-- ["{area:287} Miners"] = "{area:287} 광부",
-	-- ["{item:7127} from the {area:287} Miners"] = "{area:287} 광부에게서 {item:7127}",
 }

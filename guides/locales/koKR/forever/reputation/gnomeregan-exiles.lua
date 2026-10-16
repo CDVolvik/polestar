@@ -52,6 +52,4 @@ return {
 	-- plural, as words: Dark Adepts = {npc:8546} Dark Adept
 	["Keep handing in {quest:7812} until {faction:54} is Exalted. {item:14047}: Dark Adepts and Shadowmages (level 58-60) in {zone:1423}, or the Auction House."] = "{faction:54}와(과) 확고한 동맹이 될 때까지 {quest:7812}을(를) 계속 제출하십시오. {item:14047}: {zone:1423}의 암흑의 수행사제와 어둠마법사(레벨 58-60) 또는 경매장.",
 
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["{faction:54} Reputation"] = "{faction:54} 평판",
 }

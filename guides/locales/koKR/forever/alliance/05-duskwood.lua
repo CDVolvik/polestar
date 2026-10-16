@@ -142,9 +142,4 @@ return {
 	-- {zone:1453} Stormwind City · {area:2257} Deeprun Tram · {object:28027} Dwarven District · {zone:1455} Ironforge · {npc:258098} Eldrun Stormbreaker · {area:442} Auberdine
 	["{zone:1453} has no shaman trainer: take the {area:2257} from the {object:28027} to {zone:1455}, train with {npc:258098}, then ride the tram back for the {area:442} boat."] = "{zone:1453}에는 주술사 상급자가 없습니다: {object:28027}에서 {area:2257}을(를) 타고 {zone:1455}(으)로 가서 {npc:258098}에게 수련한 뒤, 지하철로 돌아와 {area:442}행 배를 타십시오.",
 
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Skeletal Horrors walk the hillside between {area:42} and the {area:121}, south-east of town; they drop the {npc:14235} Blossoms."] = "해골 병사가 마을 남동쪽, {area:42}와(과) {area:121} 사이의 언덕을 돌아다니며 {npc:14235}의 꽃을 떨어뜨립니다.",
-	-- ["{item:3372}: {npc:1313}, {skill:171} Supplies"] = "{item:3372}: {npc:1313}, {skill:171} 용품",
-	-- ["{npc:14235} Blossoms"] = "{npc:14235}의 꽃",
-	-- ["{npc:332}: Poisons, and {item:18160}"] = "{npc:332}: 독, 그리고 {item:18160}",
 }

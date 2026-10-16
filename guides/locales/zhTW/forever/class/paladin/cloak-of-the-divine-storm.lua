@@ -22,7 +22,7 @@ return {
 
 	-- Step 3: Katherine the Pure
 	-- {npc:5492} Katherine the Pure
-	["{npc:5492} is in the Cathedral of Light."] = "{npc:5492}在聖光大教堂內。",
+	["{npc:5492} is in the Cathedral of Light."] = "{npc:5492}在光明大教堂內。",
 
 	-- Step 4: Ursula Deline
 	-- {object:2101} Mage Quarter · {npc:5495} Ursula Deline

@@ -79,7 +79,7 @@ return {
 	-- Step 19: Kodo Graveyard
 	-- {item:13892} Kodo Kombobulator · {npc:4700} Aged Kodo
 	-- plural, as words: Aged Kodos = {npc:4700} Aged Kodo
-	["Use Smeed's {item:13892} on an {npc:4700} and walk the tamed kodo back to his camp, five times; Aged Kodos also drop the hides."] = "对一只{npc:4700}使用斯米德·瑟卡布斯库的{item:13892}，然后带着驯服的科多兽走回他的营地，共五次；{npc:4700}也会掉落皮。",
+	["Use Smeed's {item:13892} on an {npc:4700} and walk the tamed kodo back to his camp, five times; Aged Kodos also drop the hides."] = "对一只{npc:4700}使用斯米德·瑟卡布斯库的{item:13892}，然后带着驯服的科多兽走回他的营地，共五次；老迈的科多兽也会掉落皮。",
 
 	-- Step 21: Kolkar Village
 	-- {area:609} Kolkar Village · {npc:5752} Corporal Melkins

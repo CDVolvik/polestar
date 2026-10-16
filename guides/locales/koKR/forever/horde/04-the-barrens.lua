@@ -314,6 +314,4 @@ return {
 	-- Step 76: Back to the Crossroads
 	-- {area:380} The Crossroads · {area:1703} The Mor'shan Rampart · {zone:1440} Ashenvale
 	["Fly back to the {area:380}. The next guide starts here and takes the road north to the {area:1703} and {zone:1440}."] = "{area:380}(으)로 비행해 돌아가십시오. 다음 가이드는 여기서 시작해 북쪽 길로 {area:1703}와(과) {zone:1440}(으)로 갑니다.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
 }

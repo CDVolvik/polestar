@@ -385,19 +385,4 @@ return {
 	-- {zone:1453} Stormwind City · {quest:1861} Mirror Lake · {zone:1436} Westfall · {item:7207} Jennea's Flask
 	["Leave {zone:1453} by the main gate. The {quest:1861} waterfall is south-west of the gates, on the way west to {zone:1436}: fill {item:7207} at its base."] = "정문으로 {zone:1453}을(를) 나가세요. {quest:1861} 폭포는 성문 남서쪽, 서쪽 {zone:1436}(으)로 가는 길에 있습니다. 폭포 아래에서 {item:7207}을(를) 채우세요.",
 
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["A few {npc:1120} Whelps if you are short"] = "모자라면 어린 {npc:1120} 몇 마리",
-	-- ["Defensive Stance"] = "방어 태세",
-	-- ["Iceclaw Bear Pendants, from the {npc:1120} Whelps on the slopes above the camp"] = "얼음발톱 곰 펜던트, 야영지 위 비탈의 어린 {npc:1120}에게서",
-	-- ["Ride back out of {zone:1455} and east along the road to {area:212}. {npc:6177} lies dead by its shore: use the {item:6866} on him. The {object:147516} Spies sneaking around the lake carry the script."] = "{zone:1455} 밖으로 나가 길을 따라 동쪽으로 {area:212}까지 가세요. {npc:6177}은(는) 호숫가에 죽어 있습니다. 그에게 {item:6866}을(를) 사용하세요. 호수 주변을 몰래 돌아다니는 {object:147516} 첩자가 문서를 지니고 있습니다.",
-	-- ["Rockjaw Bonesnappers prowl the quarry and {area:212}; {object:147516} Spies sneak around the lake shore. One spy drops the {item:274268}."] = "바위턱일족 뼈다귀싸움꾼은 채석장과 {area:212}을(를) 배회하고, {object:147516} 첩자가 호숫가를 몰래 돌아다닙니다. 첩자 하나가 {item:274268}을(를) 떨어뜨립니다.",
-	-- ["Summon Voidwalker"] = "공허방랑자 소환",
-	-- ["Tame Beast"] = "야수 길들이기",
-	-- ["The {npc:5896} Stone"] = "{npc:5896}의 돌",
-	-- ["{item:6847}: {object:147516} Spies"] = "{item:6847}: {object:147516} 첩자",
-	-- ["{npc:10090}: Beast Training"] = "{npc:10090}: 야수 조련",
-	-- ["{npc:1120} Whelps fill the slopes south and east of Grelin's camp."] = "어린 {npc:1120}이(가) 그렐린의 야영지 남쪽과 동쪽 비탈에 가득합니다.",
-	-- ["{npc:1373} guards the {item:2686} barrels in the distillery basement. Buy a {item:2686} from {npc:1247}, click the guarded barrel, then hand the ale to Jarven from his quest window (there is no quest to accept); after that, the unguarded barrel takes the Barleybrew Scalder."] = "{npc:1373}은(는) 양조장 지하실의 {item:2686} 통을 지킵니다. {npc:1247}에게서 {item:2686}을(를) 사서 지켜지는 통을 클릭한 뒤, 자벤의 퀘스트 창에서 맥주를 건네세요(수락할 퀘스트는 없습니다). 그 후 지키는 이 없는 통에 발리브루 스칼더를 넣으세요.",
-	-- ["{npc:460}: Summon Imp"] = "{npc:460}: 임프 소환",
-	-- ["{npc:6089}: Defensive Stance"] = "{npc:6089}: 방어 태세",
 }

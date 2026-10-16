@@ -6,7 +6,7 @@
 -- The comments are rewritten by sync.
 return {
 	-- Guide
-	["Thorium Brotherhood Reputation"] = "",
+	["Thorium Brotherhood Reputation"] = "Ruf: Thoriumbruderschaft",
 
 	-- Step 1: Master Smith Burninate
 	-- {area:1446} Thorium Point · {zone:1427} Searing Gorge · {faction:59} Thorium Brotherhood
@@ -24,16 +24,16 @@ return {
 	["{item:18942} supplies to Friendly"] = "Nachschub an {item:18942} bis Freundlich",
 	-- {item:3356} Kingsblood · {item:4234} Heavy Leather · {item:18944} Incendosaur Scale · {zone:1427} Searing Gorge
 	-- plural, as words: Iron Bars = {item:3575} Iron Bar
-	["Restoring Fiery Flux Supplies repeats in three versions: {item:3356}, Iron Bars or {item:4234}, each with Coal and an {item:18944}. Incendosaurs (level 47-49) in the north of {zone:1427} drop a scale every time; Burninate himself sells Coal."] = "",
+	["Restoring Fiery Flux Supplies repeats in three versions: {item:3356}, Iron Bars or {item:4234}, each with Coal and an {item:18944}. Incendosaurs (level 47-49) in the north of {zone:1427} drop a scale every time; Burninate himself sells Coal."] = "Nachschub an feurigem Fluxus wiederholt sich in drei Versionen: {item:3356}, Eisenbarren oder {item:4234}, jeweils mit Kohle und {item:18944}. Incendosaurier (Stufe 47-49) im Norden der {zone:1427} lassen jedes Mal eine Schuppe fallen; Burninate selbst verkauft Kohle.",
 	-- {npc:14624} Master Smith Burninate
-	["{npc:14624}: Restoring Fiery Flux Supplies"] = "",
+	["{npc:14624}: Restoring Fiery Flux Supplies"] = "{npc:14624}: Nachschub an feurigem Fluxus",
 
 	-- Step 5: Lokhtos Darkbargainer to Honored
 	-- {npc:12944} Lokhtos Darkbargainer
 	["{npc:12944} to Honored"] = "{npc:12944} bis Wohlwollend",
 	-- {npc:12944} Lokhtos Darkbargainer · {area:1584} Blackrock Depths · {item:11099} Dark Iron Ore · {skill:186} Mining · {item:11382} Blood of the Mountain · {item:17010} Fiery Core · {item:17011} Lava Core · {item:17012} Core Leather · {npc:14387} Lothos Riftwaker · {area:1445} Blackrock Mountain · {area:2717} Molten Core
 	-- plural, as words: Dark Iron Deposits = {object:165658} Dark Iron Deposit
-	["{npc:12944} trades in the Grim Guzzler inside {area:1584}. His Favor Amongst the Brotherhood turn-ins take {item:11099} (mined from Dark Iron Deposits with {skill:186}), {item:11382}, {item:17010}, {item:17011} and {item:17012}. {npc:14387} at the {area:1445} entrance offers attunement to the {area:2717}."] = "",
+	["{npc:12944} trades in the Grim Guzzler inside {area:1584}. His Favor Amongst the Brotherhood turn-ins take {item:11099} (mined from Dark Iron Deposits with {skill:186}), {item:11382}, {item:17010}, {item:17011} and {item:17012}. {npc:14387} at the {area:1445} entrance offers attunement to the {area:2717}."] = "{npc:12944} handelt im Grimmigen Säufer in {area:1584}. Seine Abgaben „Gunst der Bruderschaft“ nehmen {item:11099} (mit {skill:186} aus Dunkeleisenablagerungen abgebaut), {item:11382}, {item:17010}, {item:17011} und {item:17012}. {npc:14387} am Eingang des {area:1445} bietet die Einstimmung auf den {area:2717} an.",
 	-- {item:11099} Dark Iron Ore
 	["{item:11099}: Favor Amongst the Brotherhood, {item:11099} at Lokhtos, repeatable."] = "{item:11099}: Gunst der Bruderschaft, {item:11099} bei Lokhtos Darkbargainer, wiederholbar.",
 
@@ -51,10 +51,4 @@ return {
 	["{faction:59} to Exalted"] = "{faction:59} bis Ehrfürchtig",
 	-- {area:2717} Molten Core · {item:11099} Dark Iron Ore
 	["Keep turning in {area:2717} materials and {item:11099} at Lokhtos until Exalted."] = "Gib weiter Materialien aus dem {area:2717} und {item:11099} bei Lokhtos Darkbargainer ab, bis du ehrfürchtig bist.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Restoring {item:18942} Supplies repeats in three versions: {item:3356}, Iron Bars or {item:4234}, each with Coal and an {item:18944}. Incendosaurs (level 47-49) in the north of {zone:1427} drop a scale every time; Burninate himself sells Coal."] = "„Nachschub an {item:18942}“ wiederholt sich in drei Versionen: {item:3356}, Eisenbarren oder {item:4234}, jeweils mit Kohle und einer {item:18944}. Incendosaurier (Stufe 47-49) im Norden der {zone:1427} lassen jedes Mal eine Schuppe fallen; Meisterschmied Burninate verkauft selbst Kohle.",
-	-- ["{faction:59} Reputation"] = "Ruf: {faction:59}",
-	-- ["{npc:12944} trades in the Grim Guzzler inside {area:1584}. His Favor Amongst the Brotherhood turn-ins take {item:11099} (mined from {object:147516} Deposits with {skill:186}), {item:11382}, {item:17010}, {item:17011} and {item:17012}. {npc:14387} at the {area:1445} entrance offers attunement to the {area:2717}."] = "{npc:12944} handelt im 'Grimmigen Säufer' in {area:1584}. Seine Abgaben „Gunst der Bruderschaft“ nehmen {item:11099} (mit {skill:186} aus Ablagerungen von {object:147516} abgebaut), {item:11382}, {item:17010}, {item:17011} und {item:17012}. {npc:14387} am Eingang des {area:1445} bietet die Einstimmung auf den {area:2717} an.",
-	-- ["{npc:14624}: Restoring {item:18942} Supplies"] = "{npc:14624}: Nachschub an {item:18942}",
 }

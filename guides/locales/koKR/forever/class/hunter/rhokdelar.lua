@@ -64,6 +64,4 @@ return {
 	-- {item:18704} Mature Blue Dragon Sinew
 	["{item:18704}, from Azuregos"] = "{item:18704}, 아주어고스에게서",
 
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Not confirmed in Forever. In Classic, using the {item:18707} with the {item:18724} in your bags made Rhok'delar, and Vartrus then gave {item:18715} (Icy Veins)."] = "Forever에서는 미확인입니다. 클래식에서는 가방에 {item:18724}이(가) 있는 상태에서 {item:18707}을(를) 사용하면 라크델라가 만들어졌고, 그 후 바르투스가 {item:18715}을(를) 주었습니다(Icy Veins).",
 }

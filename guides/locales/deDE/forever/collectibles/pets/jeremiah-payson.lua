@@ -11,11 +11,8 @@ return {
 
 	-- Step 1: Jeremiah Payson
 	-- {npc:8403} Jeremiah Payson · {zone:1458} Undercity
-	["{npc:8403} sells three cockroaches in the {zone:1458} (50s each); the Plagued and Undercity Cockroaches are new in Forever. Each pet item teaches its companion when you use it; the goals stay ticked afterwards."] = "",
+	["{npc:8403} sells three cockroaches in the {zone:1458} (50s each); the Plagued and Undercity Cockroaches are new in Forever. Each pet item teaches its companion when you use it; the goals stay ticked afterwards."] = "{npc:8403} verkauft drei Kakerlaken in {zone:1458} (je 50s); die Verseuchte Kakerlake und die Kakerlake von Undercity sind neu in Forever. Jeder Haustiergegenstand lehrt dich beim Benutzen seinen Begleiter; die Ziele bleiben danach abgehakt.",
 	-- {item:10393} Cockroach
 	["{item:10393}, 50s"] = "{item:10393}, 50s",
 	["50s"] = "50s",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["{npc:8403} sells three cockroaches in the {zone:1458} (50s each); the Plagued and {zone:1458} Cockroaches are new in Forever. Each pet item teaches its companion when you use it; the goals stay ticked afterwards."] = "{npc:8403} verkauft drei Kakerlaken in {zone:1458} (je 50s); die Verseuchte Kakerlake und die Kakerlake von {zone:1458} sind neu in Forever. Jeder Haustier-Gegenstand lehrt dir beim Benutzen seinen Begleiter; die Ziele bleiben danach abgehakt.",
 }

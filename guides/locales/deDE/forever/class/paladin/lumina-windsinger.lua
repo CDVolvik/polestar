@@ -6,7 +6,7 @@
 -- The comments are rewritten by sync.
 return {
 	-- Guide
-	["Rescuing Lumina Windsinger"] = "",
+	["Rescuing Lumina Windsinger"] = "Lumina Windsinger retten",
 	-- {item:268484} Moonsilver Blade
 	["No item yet: a Forsaken paladin rescue story; its sequel, the {item:268484}, cannot be finished yet."] = "Noch kein Gegenstand: eine Rettungsgeschichte für Paladine der Verlassenen; die Fortsetzung, die {item:268484}, kann noch nicht abgeschlossen werden.",
 	-- {zone:1458} Undercity
@@ -30,9 +30,9 @@ return {
 
 	-- Step 4: Fenris Keep
 	-- {quest:91862} Lumina Windsinger · {area:235} Fenris Keep
-	["{quest:91862} is caged inside {area:235}, at the north end of the isle. The Rot Hide gnolls around her carry the key."] = "",
+	["{quest:91862} is caged inside {area:235}, at the north end of the isle. The Rot Hide gnolls around her carry the key."] = "{quest:91862} ist in {area:235} eingesperrt, am Nordende der Insel. Die Gnolle der Moderfelle um sie herum tragen den Schlüssel.",
 	-- {item:267412} Fenris Isle Key
-	["{item:267412}, from the Rot Hide gnolls"] = "",
+	["{item:267412}, from the Rot Hide gnolls"] = "{item:267412}, von den Gnollen der Moderfelle",
 
 	-- Step 5: Free Lumina
 	["Free Lumina"] = "Befreie Lumina",
@@ -45,9 +45,4 @@ return {
 	["Once she is clear of {area:235}, Lumina waits for you in the {area:228}. Speak with her again to hear what really happened on the road."] = "Sobald sie aus {area:235} heraus ist, wartet Lumina im Ort {area:228} auf dich. Sprich erneut mit ihr, um zu erfahren, was auf der Straße wirklich geschah.",
 	-- {npc:259620} Lumina Windsinger · {area:228} The Sepulcher
 	["{npc:259620}, the {area:228}"] = "{npc:259620}, {area:228}",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Rescuing {quest:91862}"] = "Die Rettung von {quest:91862}",
-	-- ["{item:267412}, from the {npc:14235} Hide gnolls"] = "{item:267412}, von den Gnollen der Sippe {npc:14235}",
-	-- ["{quest:91862} is caged inside {area:235}, at the north end of the isle. {npc:14235} Hide gnolls around her carry the key."] = "{quest:91862} ist in {area:235} eingesperrt, am Nordende der Insel. Gnolle der Sippe {npc:14235} um sie herum tragen den Schlüssel.",
 }

@@ -27,7 +27,7 @@ return {
 
 	-- Step 5: Mor'zul Bloodbringer
 	-- {quest:7562} Mor'zul Bloodbringer · {npc:14437} Gorzeeki Wildeyes · {area:255} Altar of Storms · {zone:1428} Burning Steppes · {area:254} Blackrock Mountain
-	["{quest:7562} and his goblin {npc:14437} camp at the {area:255}, in the north-west of the {zone:1428}, west of {area:254}. The chain is long, costs gold at Gorzeeki's and ends in two dungeons."] = "{quest:7562}和他的地精{npc:14437}在{zone:1428}西北部、{area:254}西邊的{area:255}紮營。這條任務鏈很長，要在戈瑟奇那裡花金幣，最後在兩個地城結束。",
+	["{quest:7562} and his goblin {npc:14437} camp at the {area:255}, in the north-west of the {zone:1428}, west of {area:254}. The chain is long, costs gold at Gorzeeki's and ends in two dungeons."] = "{quest:7562}和他的哥布林{npc:14437}在{zone:1428}西北部、{area:254}西邊的{area:255}紮營。這條任務鏈很長，要在戈瑟奇那裡花金幣，最後在兩個地城結束。",
 
 	-- Step 6: Raging Beast's Blood
 	-- {zone:1452} Winterspring · {area:2255} Everlook · {spell:417141} Berserk

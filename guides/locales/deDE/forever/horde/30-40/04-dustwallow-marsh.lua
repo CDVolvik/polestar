@@ -94,7 +94,7 @@ return {
 
 	-- Step 24: Thunder Axe Fortress
 	-- {spell:1294269} Burning Blade · {area:2407} Kormek's Hut · {item:14523} Demon Pick · {npc:11876} Demon Spirit · {item:13542} Demon Box
-	["The {spell:1294269} hold the fortress north-west of {area:2407}. Use the {item:14523} on the {npc:11876} in the fortress to get the {item:13542}."] = "",
+	["The {spell:1294269} hold the fortress north-west of {area:2407}. Use the {item:14523} on the {npc:11876} in the fortress to get the {item:13542}."] = "Die {spell:1294269} hält die Festung nordwestlich von {area:2407}. Benutze {item:14523} an {npc:11876} in der Festung, um {item:13542} zu bekommen.",
 
 	-- Step 25: Ethel Rethor
 	-- {npc:11863} Azore Aldamort · {area:2405} Ethel Rethor
@@ -126,7 +126,4 @@ return {
 	["Hearth to Shadowprey"] = "Ruhestein nach Shadowprey",
 	-- {zone:1434} Stranglethorn Vale
 	["The next guide takes you back to {zone:1434}."] = "Der nächste Guide bringt dich zurück ins {zone:1434}.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["The Burning Blade hold the fortress north-west of {area:2407}. Use the {item:14523} on the {npc:11876} in the fortress to get the {item:13542}."] = "Die Burning Blade hält die Festung nordwestlich von {area:2407}. Benutze die {item:14523} am {npc:11876} in der Festung, um die {item:13542} zu bekommen.",
 }

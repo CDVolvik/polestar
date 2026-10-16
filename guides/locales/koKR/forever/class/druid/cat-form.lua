@@ -49,7 +49,4 @@ return {
 	-- {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {npc:11798} Bunthen Plainswind · {area:1638} Thunder Bluff
 	["Back to {npc:11802} in {area:2361}, then take {npc:11798}'s flight to {area:1638}."] = "{area:2361}의 {npc:11802}에게 돌아간 뒤 {npc:11798}의 비행편으로 {area:1638}에 가십시오.",
 
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Cast Teleport: {area:493}. {npc:11802} is in {area:2361}."] = "순간이동: {area:493}을(를) 시전하십시오. {npc:11802}은(는) {area:2361}에 있습니다.",
-	-- ["Cast Teleport: {area:493}. {npc:11802} is in {area:2361}; learn the flight path there if you do not have it."] = "순간이동: {area:493}을(를) 시전하십시오. {npc:11802}은(는) {area:2361}에 있습니다. 비행 경로가 없다면 그곳에서 배우십시오.",
 }

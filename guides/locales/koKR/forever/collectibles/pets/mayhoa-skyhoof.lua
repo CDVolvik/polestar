@@ -10,6 +10,4 @@ return {
 	["{npc:268745} walks a long loop through {zone:1454} (from the {object:172982} to the Drag); the waypoint is one point on her path. The carrier costs 60s. Each pet item teaches its companion when you use it; the goals stay ticked afterwards."] = "{npc:268745}은(는) {zone:1454}을(를) 길게 한 바퀴 돕니다({object:172982}에서 골목길까지). 경유지는 그 경로의 한 지점입니다. 운반통은 60실버입니다. 애완동물 아이템은 사용하면 그 애완동물을 배웁니다. 목표는 그 후에도 완료 표시가 유지됩니다.",
 	["60s"] = "60실버",
 
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["{npc:268745} walks a long loop through {zone:1454} (from the {object:172982} to the {object:172959}); the waypoint is one point on her path. The carrier costs 60s. Each pet item teaches its companion when you use it; the goals stay ticked afterwards."] = "{npc:268745}은(는) {zone:1454}을(를) 크게 돌아다닙니다({object:172982}에서 {object:172959}까지). 경유지는 경로상의 한 지점입니다. 이동장은 60실버입니다. 애완동물 아이템을 사용하면 해당 동물을 배우며, 목표는 그 후에도 체크된 상태로 남습니다.",
 }

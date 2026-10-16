@@ -32,7 +32,7 @@ return {
 	-- {area:2627} Terrordale · {zone:1423} Eastern Plaguelands · {zone:1422} Western Plaguelands · {item:18752} Exorcism Censer
 	["{area:2627} lies in the far north-west of the {zone:1423}, by the {zone:1422} border. Use the {item:18752} there to drive out the spirits, then defeat them."] = "{area:2627} liegt ganz im Nordwesten von {zone:1423}, an der Grenze zu {zone:1422}. Benutze dort {item:18752}, um die Geister auszutreiben, und besiege sie dann.",
 	-- plural, as words: Terrordale Spirits = {npc:14564} Terrordale Spirit
-	["Terrordale Spirits"] = "",
+	["Terrordale Spirits"] = "Schreckenstalgeister",
 
 	-- Step 7: Grimand Elmore
 	-- {npc:1416} Grimand Elmore · {zone:1453} Stormwind City · {object:28027} Dwarven District
@@ -93,7 +93,4 @@ return {
 	-- Step 18: The Great Ossuary
 	-- {area:2057} Scholomance · {area:2298} Caer Darrow · {zone:1422} Western Plaguelands · {item:18746} Divination Scryer · {object:179746} The Great Ossuary · {npc:14516} Death Knight Darkreaver · {item:18799} Charger's Redeemed Soul · {item:18792} Blessed Arcanite Barding
 	["{area:2057} lies under {area:2298}, the island town in the south-east of the {zone:1422}. Use the {item:18746} in the heart of the {object:179746}'s basement, defeat the spirits it calls and then {npc:14516}, and give his Fallen Charger the {item:18799} and the {item:18792}. All are elite: bring a group. If the attempt fails, Lord Grayson gives you a new scryer through Again Into the {object:179746}."] = "{area:2057} liegt unter {area:2298}, der Inselstadt im Südosten von {zone:1422}. Benutze {item:18746} mitten im Keller von {object:179746}, besiege die gerufenen Geister und dann {npc:14516} und gib seinem gefallenen Streitross {item:18799} und {item:18792}. Alle sind Elite: Nimm eine Gruppe mit. Scheitert der Versuch, gibt dir Lord Grayson mit einer Quest, die dich erneut zu {object:179746} schickt, ein neues Wahrsagegerät.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["{area:2627} Spirits"] = "Geister in {area:2627}",
 }

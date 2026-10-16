@@ -44,7 +44,4 @@ return {
 	-- {item:20019} Tooth of Morphaz · {area:1417} Sunken Temple
 	["{item:20019}, inside the {area:1417}"] = "{item:20019}, {area:1417} 안",
 
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["At 50 any Alliance hunter trainer offers it: {npc:5516} in {zone:1453}'s {object:28027}, {npc:5116} in {zone:1455}'s {object:32390} or Dorion in {zone:1457}' {area:1658}."] = "50레벨이 되면 얼라이언스 사냥꾼 상급자 누구나 이 퀘스트를 줍니다. {zone:1453} {object:28027}의 {npc:5516}, {zone:1455} {object:32390}의 {npc:5116}, {zone:1457} {area:1658}의 도리온.",
-	-- ["Mosshoof Coursers graze all over {zone:1447}; one in a dozen or so drops a pair of Perfect {quest:8153}."] = "덩치큰 이끼발굽순록은 {zone:1447} 곳곳에서 풀을 뜯습니다. 열두 마리 중 한 마리 정도가 완전한 {quest:8153} 한 쌍을 떨어뜨립니다.",
 }

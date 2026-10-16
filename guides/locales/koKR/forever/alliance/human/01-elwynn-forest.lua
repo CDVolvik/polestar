@@ -359,11 +359,4 @@ return {
 	-- {zone:1436} Westfall · {area:108} Sentinel Hill
 	["Follow the road west past Westbrook into {zone:1436}, then south along it to {area:108}. Thor, the gryphon master, stands on the hill."] = "길을 따라 서쪽으로 서부 주둔지를 지나 {zone:1436}(으)로 간 뒤, 남쪽으로 따라가 {area:108}(으)로 가십시오. 그리폰 조련사 토르가 언덕 위에 있습니다.",
 
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Sit (/sit) by his campfire until you have Boosted Rest"] = "Boosted Rest가 생길 때까지 그의 모닥불 옆에 앉으십시오(/sit)",
-	-- ["Summon Voidwalker"] = "공허방랑자 소환",
-	-- ["Tame Beast"] = "야수 길들이기",
-	-- ["The {skill:356} Traps sit along the west shore of the lake."] = "{skill:356} 덫은 호수 서쪽 기슭을 따라 있습니다.",
-	-- ["{npc:258930}, beside her: Beast Training"] = "{npc:258930}, 그녀 옆: 야수 조련",
-	-- ["{npc:459}: Summon Imp"] = "{npc:459}: 임프 소환",
 }

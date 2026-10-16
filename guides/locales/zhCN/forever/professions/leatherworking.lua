@@ -200,7 +200,7 @@ return {
 	-- {skill:165} Leatherworking
 	["{skill:165} materials for 150-225"] = "{skill:165}150-225的材料",
 	-- {skill:171} Alchemy · {spell:3188} Elixir of Ogre Strength
-	["{skill:171}: {spell:3188} (or the Auction House)"] = "",
+	["{skill:171}: {spell:3188} (or the Auction House)"] = "{skill:171}：{spell:3188}（或拍卖行）",
 	-- {skill:171} Alchemy · {item:3389} Elixir of Defense
 	["{skill:171}: {item:3389} (or the Auction House)"] = "{skill:171}：{item:3389}（或拍卖行）",
 	-- {skill:333} Enchanting

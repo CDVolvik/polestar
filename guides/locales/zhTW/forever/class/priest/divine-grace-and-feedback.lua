@@ -13,7 +13,7 @@ return {
 
 	-- Step 1: Divine Grace
 	-- {npc:376} High Priestess Laurena · {npc:377} Priestess Josetta · {area:87} Goldshire
-	["At 10, go to {npc:376} in the Cathedral of Light. {npc:377} in {area:87} sends you to her with a quest of the same name."] = "10級時，前往聖光大教堂找{npc:376}。{area:87}的{npc:377}會用同名任務派你去找她。",
+	["At 10, go to {npc:376} in the Cathedral of Light. {npc:377} in {area:87} sends you to her with a quest of the same name."] = "10級時，前往光明大教堂找{npc:376}。{area:87}的{npc:377}會用同名任務派你去找她。",
 
 	-- Step 2: Arcane Feedback
 	-- {npc:376} High Priestess Laurena · {spell:13896} Feedback · {npc:11406} High Priest Rohan · {zone:1455} Ironforge · {npc:11401} Priestess Alathea · {zone:1457} Darnassus

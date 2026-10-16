@@ -37,7 +37,7 @@ return {
 	["{item:6997}, in the {object:92423}"] = "{item:6997}，在{object:92423}里",
 
 	-- Step 8: Rods of Channeling
-	["Rods of Channeling"] = "{item:6930}",
+	["Rods of Channeling"] = "导能魔棒",
 	-- {zone:1437} Wetlands
 	-- plural, as words: Dragonmaw Bonewarders = {npc:1057} Dragonmaw Bonewarder
 	["The Dragonmaw Bonewarders and Shadowwarders hold the hills east of the road through the {zone:1437}: the rods drop from them."] = "{npc:1057}和龙喉暗影守卫占据着穿过{zone:1437}的道路东边的山丘：魔棒由它们掉落。",

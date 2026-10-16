@@ -69,6 +69,4 @@ return {
 	["{faction:576} to Exalted"] = "{faction:576}: 확고한 동맹까지",
 	["Keep turning in feathers and beads until Exalted."] = "확고한 동맹이 될 때까지 깃털과 구슬을 계속 제출하세요.",
 
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["{faction:576} Reputation"] = "{faction:576} 평판",
 }

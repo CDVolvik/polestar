@@ -158,6 +158,4 @@ return {
 	["Fly to Theramore"] = "테라모어 섬으로 비행",
 	["The next guide starts in Theramore."] = "다음 가이드는 테라모어 섬에서 시작합니다.",
 
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["{item:7337} Elementals roam south-east of Lotwil; Giant Buzzards and Elder Crag Coyotes share the plain to their west."] = "{item:7337} 정령이 로트윌 남동쪽을 돌아다니며, 거대한 대머리수리와 덩치큰 바위산코요테가 그 서쪽 평원에 있습니다.",
 }

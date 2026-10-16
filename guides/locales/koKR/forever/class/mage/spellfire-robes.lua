@@ -42,7 +42,4 @@ return {
 	-- {zone:1458} Undercity · {npc:4576} Josef Gregorian · {npc:11048} Victor Ward · {npc:11049} Rhiannon Davis
 	["Back to the {zone:1458}. {npc:4576}, {npc:11048} and {npc:11049} keep the tailor's shop."] = "{zone:1458}(으)로 돌아가세요. {npc:4576}, {npc:11048}, {npc:11049}이(가) 재봉 상점을 운영합니다.",
 
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Algernon's alchemist shop is in the {object:36072}. Use the {item:7308} there to make the {npc:6492} visible, subdue one with your spells, then use the {item:7247} to throw down a coffer and capture it."] = "알게르논의 연금술 상점은 {object:36072}에 있습니다. 그곳에서 {item:7308}을(를) 사용해 {npc:6492}이(가) 보이게 한 뒤, 주문으로 하나를 제압하고 {item:7247}을(를) 사용해 금고를 던져 포획하세요.",
-	-- ["Humanoids drop {item:2589}; the {zone:1458} Auction House sells it."] = "인간형 몹이 {item:2589}을(를) 떨어뜨립니다. {zone:1458} 경매장에서도 팝니다.",
 }

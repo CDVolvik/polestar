@@ -129,6 +129,4 @@ return {
 	-- Step 29: Ratchet
 	-- {npc:3442} Sputtervalve · {area:392} Ratchet
 	["{npc:3442}, by the docks in {area:392}"] = "{area:392} 부두 옆의 {npc:3442}",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
 }

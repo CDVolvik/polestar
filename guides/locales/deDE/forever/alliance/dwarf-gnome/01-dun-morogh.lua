@@ -66,12 +66,12 @@ return {
 	-- {npc:12738} Nori Pridedrift
 	["Grelin and {npc:12738} camp at the south-west edge of the valley, below the troll cave."] = "Grelin und {npc:12738} lagern am Südwestrand des Tals, unterhalb der Trollhöhle.",
 	-- plural, as words: Frostmane Troll Whelps = {npc:706} Frostmane Troll Whelp
-	["A few Frostmane Troll Whelps if you are short"] = "",
+	["A few Frostmane Troll Whelps if you are short"] = "Ein paar Trollwelpen der Frostmane, falls dir welche fehlen",
 
 	-- Step 10: The troll cave
 	["The troll cave"] = "Die Trollhöhle",
 	-- plural, as words: Frostmane Troll Whelps = {npc:706} Frostmane Troll Whelp
-	["Frostmane Troll Whelps fill the slopes south and east of Grelin's camp."] = "",
+	["Frostmane Troll Whelps fill the slopes south and east of Grelin's camp."] = "Trollwelpen der Frostmane füllen die Hänge südlich und östlich von Grelins Lager.",
 	-- plural, as words: Feather Charms = {item:6753} Feather Charm · Frostmane Novices = {npc:946} Frostmane Novice
 	["Feather Charms, from the Frostmane Novices"] = "Federglücksbringer, von den Novizen der Frostmane",
 
@@ -100,7 +100,7 @@ return {
 	-- {npc:12738} Nori Pridedrift
 	["{npc:12738}, next to him"] = "{npc:12738}, neben ihm",
 	-- plural, as words: Iceclaw Bear Pendants = {item:264356} Iceclaw Bear Pendant · Frostmane Troll Whelps = {npc:706} Frostmane Troll Whelp
-	["Iceclaw Bear Pendants, from the Frostmane Troll Whelps on the slopes above the camp"] = "",
+	["Iceclaw Bear Pendants, from the Frostmane Troll Whelps on the slopes above the camp"] = "Eiskrallenbärenanhänger, von den Trollwelpen der Frostmane an den Hängen über dem Lager",
 
 	-- Step 16: Call of Earth
 	-- {npc:257446} Teo Hammerstorm · {area:77} Anvilmar · {item:6635} Earth Sapta · {npc:5891} Minor Manifestation of Earth · {item:6656} Rough Quartz
@@ -178,7 +178,7 @@ return {
 
 	-- Step 35: Kharanos
 	-- {npc:1373} Jarven Thunderbrew · {item:2686} Thunder Ale · {npc:1247} Innkeeper Belm · {spell:8553} Barleybrew Scalder
-	["{npc:1373} guards the {item:2686} barrels in the distillery basement. Buy a {item:2686} from {npc:1247}, click the guarded barrel, then hand the ale to Jarven from his quest window (there is no quest to accept); after that, the unguarded barrel takes the {spell:8553}."] = "",
+	["{npc:1373} guards the {item:2686} barrels in the distillery basement. Buy a {item:2686} from {npc:1247}, click the guarded barrel, then hand the ale to Jarven from his quest window (there is no quest to accept); after that, the unguarded barrel takes the {spell:8553}."] = "{npc:1373} bewacht die Fässer mit {item:2686} im Keller der Brauerei. Kauf {item:2686} bei {npc:1247}, klick das bewachte Fass an und gib das Ale dann über sein Questfenster an Jarven (es gibt keine Quest anzunehmen); danach nimmt das unbewachte Fass {spell:8553} auf.",
 	-- {item:2686} Thunder Ale · {npc:1247} Innkeeper Belm
 	["{item:2686}, from {npc:1247} in the distillery"] = "{item:2686}, von {npc:1247} in der Brauerei",
 	-- {object:269} Guarded Thunder Ale Barrel
@@ -291,7 +291,7 @@ return {
 	["{item:5026}: Tunnel Rat Geomancers"] = "{item:5026}: Geomanten der Tunnelratten",
 
 	-- Step 62: The Fire Spirit Stone
-	["The Fire Spirit Stone"] = "",
+	["The Fire Spirit Stone"] = "Der Geisterstein des Feuers",
 	-- {item:6636} Fire Sapta · {npc:5893} Minor Manifestation of Fire · {item:6655} Glowing Ember · {object:61934} Brazier of the Dormant Flame · {object:148418} Eternal Flame
 	["Braldir gives you the {item:6636}. Climb to the peak above his camp, drink the Sapta beside the Spirit Stone and defeat the {npc:5893}, then place its {item:6655} in the {object:61934}, atop the Shrine of {object:148418}."] = "Braldir gibt dir {item:6636}. Klettere auf den Gipfel über seinem Lager, trink das Sapta neben dem Geisterstein und besiege {npc:5893}, dann leg {item:6655} in {object:61934} oben auf dem Schrein von {object:148418}.",
 	-- {item:6636} Fire Sapta
@@ -314,7 +314,7 @@ return {
 	["Spies and Bonesnappers"] = "Spione und Knochenknacker",
 	-- {area:212} Helm's Bed Lake · {item:274268} Dark Iron Map
 	-- plural, as words: Rockjaw Bonesnappers = {npc:1117} Rockjaw Bonesnapper
-	["Rockjaw Bonesnappers prowl the quarry and {area:212}; Dark Iron Spies sneak around the lake shore. One spy drops the {item:274268}."] = "",
+	["Rockjaw Bonesnappers prowl the quarry and {area:212}; Dark Iron Spies sneak around the lake shore. One spy drops the {item:274268}."] = "Knochenknacker der Felsenkiefer streifen durch den Steinbruch und um {area:212}; Spione der Dunkeleisenzwerge schleichen am Seeufer umher. Ein Spion lässt {item:274268} fallen.",
 
 	-- Step 68: Tundra MacGrann
 	-- {npc:1266} Tundra MacGrann · {area:801} Chill Breeze Valley · {npc:1271} Old Icebeard
@@ -328,11 +328,11 @@ return {
 
 	-- Step 70: Narm Faulk
 	-- {zone:1455} Ironforge · {area:212} Helm's Bed Lake · {npc:6177} Narm Faulk · {item:6866} Symbol of Life
-	["Ride back out of {zone:1455} and east along the road to {area:212}. {npc:6177} lies dead by its shore: use the {item:6866} on him. The Dark Iron Spies sneaking around the lake carry the script."] = "",
+	["Ride back out of {zone:1455} and east along the road to {area:212}. {npc:6177} lies dead by its shore: use the {item:6866} on him. The Dark Iron Spies sneaking around the lake carry the script."] = "Reite zurück aus {zone:1455} hinaus und auf der Straße nach Osten zu {area:212}. {npc:6177} liegt tot an dessen Ufer: Benutze {item:6866} an ihm. Die Spione der Dunkeleisenzwerge, die um den See schleichen, tragen die Schrift.",
 	-- {item:6866} Symbol of Life · {npc:6177} Narm Faulk
 	["Use the {item:6866} on {npc:6177}"] = "Benutze {item:6866} an {npc:6177}",
 	-- {item:6847} Dark Iron Script
-	["{item:6847}: Dark Iron Spies"] = "",
+	["{item:6847}: Dark Iron Spies"] = "{item:6847}: Spione der Dunkeleisenzwerge",
 
 	-- Step 71: Muiredon Battleforge
 	-- {npc:6179} Tiza Battleforge
@@ -384,20 +384,4 @@ return {
 	-- Step 80: Mirror Lake
 	-- {zone:1453} Stormwind City · {quest:1861} Mirror Lake · {zone:1436} Westfall · {item:7207} Jennea's Flask
 	["Leave {zone:1453} by the main gate. The {quest:1861} waterfall is south-west of the gates, on the way west to {zone:1436}: fill {item:7207} at its base."] = "Verlass {zone:1453} durchs Haupttor. Der Wasserfall von {quest:1861} liegt südwestlich der Tore, auf dem Weg nach Westen nach {zone:1436}: Füll {item:7207} an seinem Fuß.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["A few {npc:1120} Whelps if you are short"] = "Ein paar Trollwelpen ({npc:1120}), falls dir welche fehlen",
-	-- ["Defensive Stance"] = "Verteidigungshaltung",
-	-- ["Iceclaw Bear Pendants, from the {npc:1120} Whelps on the slopes above the camp"] = "Eiskrallenbärenanhänger, von den Trollwelpen ({npc:1120}) an den Hängen über dem Lager",
-	-- ["Ride back out of {zone:1455} and east along the road to {area:212}. {npc:6177} lies dead by its shore: use the {item:6866} on him. The {object:147516} Spies sneaking around the lake carry the script."] = "Reite zurück aus {zone:1455} hinaus und auf der Straße nach Osten zu {area:212}. {npc:6177} liegt tot an dessen Ufer: Benutze {item:6866} an ihm. Die Spione ({object:147516}), die um den See schleichen, tragen die Schrift.",
-	-- ["Rockjaw Bonesnappers prowl the quarry and {area:212}; {object:147516} Spies sneak around the lake shore. One spy drops the {item:274268}."] = "Knochenknacker der Felsenkiefer streifen durch den Steinbruch und um {area:212}; Spione ({object:147516}) schleichen am Seeufer umher. Ein Spion lässt {item:274268} fallen.",
-	-- ["Summon Voidwalker"] = "Leerwandler beschwören",
-	-- ["Tame Beast"] = "Wildtier zähmen",
-	-- ["The {npc:5896} Stone"] = "Der {npc:5896}stein",
-	-- ["{item:6847}: {object:147516} Spies"] = "{item:6847}: Spione ({object:147516})",
-	-- ["{npc:10090}: Beast Training"] = "{npc:10090}: Wildtierausbildung",
-	-- ["{npc:1120} Whelps fill the slopes south and east of Grelin's camp."] = "Trollwelpen ({npc:1120}) füllen die Hänge südlich und östlich von Grelins Lager.",
-	-- ["{npc:1373} guards the {item:2686} barrels in the distillery basement. Buy a {item:2686} from {npc:1247}, click the guarded barrel, then hand the ale to Jarven from his quest window (there is no quest to accept); after that, the unguarded barrel takes the Barleybrew Scalder."] = "{npc:1373} bewacht die Fässer mit {item:2686} im Keller der Brauerei. Kauf {item:2686} bei {npc:1247}, klick das bewachte Fass an und gib das Ale dann über sein Questfenster an Jarven (es gibt keine Quest anzunehmen); danach nimmt das unbewachte Fass das Gerstenbräu auf.",
-	-- ["{npc:460}: Summon Imp"] = "{npc:460}: Wichtel beschwören",
-	-- ["{npc:6089}: Defensive Stance"] = "{npc:6089}: Verteidigungshaltung",
 }

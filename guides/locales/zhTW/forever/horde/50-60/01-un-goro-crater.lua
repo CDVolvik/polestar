@@ -49,7 +49,7 @@ return {
 	-- Step 7: The Gorishi hive
 	["The Gorishi hive"] = "格里什蟲巢",
 	-- {npc:9166} Pterrordax · {npc:9998} Shizzle
-	["The silithid hive fills the south of the crater. Gorishi wasps and workers drop the scent gland; use the Scraping Vial on the egg mass inside the first chamber. The Hive Queen at the bottom is an elite boss: stay out of her chamber. {npc:9166} nest on the cliffs above the hive; their scales are for {npc:9998}."] = "異種蟲巢佔滿環形山南部。格里什異種蠍和格里什工蠍會掉落香味腺體；在第一個巢室內的卵堆上使用採集瓶。底部的格里什蜂后是精英首領：不要進入她的巢室。{npc:9166}在蟲巢上方的懸崖築巢；牠們的鱗片交給{npc:9998}。",
+	["The silithid hive fills the south of the crater. Gorishi wasps and workers drop the scent gland; use the Scraping Vial on the egg mass inside the first chamber. The Hive Queen at the bottom is an elite boss: stay out of her chamber. {npc:9166} nest on the cliffs above the hive; their scales are for {npc:9998}."] = "異種蠍巢穴佔滿環形山南部。格里什異種蠍和格里什工蠍會掉落香味腺體；在第一個巢室內的卵堆上使用採集瓶。底部的格里什蜂后是精英首領：不要進入她的巢室。{npc:9166}在蟲巢上方的懸崖築巢；牠們的鱗片交給{npc:9998}。",
 
 	-- Step 8: A Wrecked Raft
 	["The raft lies on the shore of the south-eastern lake; the small pack sits in the water beside it."] = "木筏在東南方湖泊的岸邊；小包就在旁邊的水裡。",

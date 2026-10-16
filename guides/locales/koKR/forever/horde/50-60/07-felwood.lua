@@ -86,6 +86,4 @@ return {
 	["In {zone:1454}: fly from {area:2255}"] = "{zone:1454}에서: {area:2255}에서 비행",
 	-- {zone:1456} Thunder Bluff · {area:2255} Everlook
 	["In {zone:1456}: fly from {area:2255}"] = "{zone:1456}에서: {area:2255}에서 비행",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
 }

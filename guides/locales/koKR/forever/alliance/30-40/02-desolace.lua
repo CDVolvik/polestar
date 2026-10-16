@@ -85,7 +85,4 @@ return {
 	-- {area:609} Kolkar Village · {npc:5752} Corporal Melkins
 	["The Kolkar roam the plains around {area:609}; their ears are for {npc:5752}."] = "콜카르일족이 {area:609} 주변 평원을 돌아다닙니다. 귀는 {npc:5752}에게 가져가십시오.",
 
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Dalinda hides inside the Burning Blade's fortress south-west of {area:608}."] = "달린다는 {area:608} 남서쪽 불타는칼날단 요새 안에 숨어 있습니다.",
-	-- ["Her brother Tyranis (36) walks the fortress with the Burning Blade cultists (30-33): pull him alone. The {npc:13019} keeps the sceptre in the fortress's main building."] = "그녀의 오빠 티라니스(36)는 불타는칼날단 이교도(30-33)와 함께 요새를 돌아다닙니다. 그만 따로 끌어오십시오. {npc:13019}은(는) 요새 본관에 홀을 가지고 있습니다.",
 }

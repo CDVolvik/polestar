@@ -62,10 +62,4 @@ return {
 	-- {faction:889} Warsong Outriders
 	["Exalted with the {faction:889} earns a Legacy Point."] = "{faction:889}와(과) 확고한 동맹이 되면 Legacy Point를 1 얻습니다.",
 
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Keep playing {zone:1460} and capturing flags. On Call to Arms: {zone:1460} weekends the {npc:15350} in the capitals takes three {zone:1460} Marks of Honor for extra reputation."] = "{zone:1460}에서 계속 플레이하며 깃발을 점령하십시오. Call to Arms: {zone:1460} 주말에는 수도의 {npc:15350}이(가) {zone:1460} 명예 훈장 3개를 받고 추가 평판을 줍니다.",
-	-- ["Keep playing {zone:1460} and capturing flags. On Call to Arms: {zone:1460} weekends the {npc:15351} in the capitals takes three {zone:1460} Marks of Honor for extra reputation."] = "{zone:1460}에서 계속 플레이하며 깃발을 점령하십시오. Call to Arms: {zone:1460} 주말에는 수도의 {npc:15351}이(가) {zone:1460} 명예 훈장 3개를 받고 추가 평판을 줍니다.",
-	-- ["{npc:14733} takes {zone:1460} Marks of Honor for Vanquish the Invaders!, once per level bracket (data); check them live."] = "{npc:14733}이(가) 침략자 처단! 퀘스트로 {zone:1460} 명예 훈장을 받습니다. 레벨 구간마다 한 번씩입니다(데이터 기준). 게임에서 직접 확인하십시오.",
-	-- ["{npc:14781} takes {zone:1460} Marks of Honor for Quell the Silverwing Usurpers, once per level bracket (data); check them live."] = "{npc:14781}이(가) 은빛날개 분쟁 진압 퀘스트로 {zone:1460} 명예 훈장을 받습니다. 레벨 구간마다 한 번씩입니다(데이터 기준). 게임에서 직접 확인하십시오.",
-	-- ["{zone:1460} Reputation"] = "{zone:1460} 평판",
 }

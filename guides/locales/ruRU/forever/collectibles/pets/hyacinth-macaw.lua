@@ -6,8 +6,8 @@
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Bloodsail pirates
-	["Bloodsail pirates"] = "",
+	["Bloodsail pirates"] = "Пираты из шайки Кровавого Паруса",
 	-- {area:35} Booty Bay
-	["Every Bloodsail pirate on the southern Stranglethorn coast can drop it, but only about once in 2,500-5,000 kills in our data. Expect a very long grind. The waypoint is the Bloodsail camp north of {area:35}, among the Swashbucklers and Raiders."] = "",
-	["Bloodsail camps"] = "",
+	["Every Bloodsail pirate on the southern Stranglethorn coast can drop it, but only about once in 2,500-5,000 kills in our data. Expect a very long grind. The waypoint is the Bloodsail camp north of {area:35}, among the Swashbucklers and Raiders."] = "Он может упасть с любого пирата из шайки Кровавого Паруса на южном побережье Тернистой долины, но, по нашим данным, лишь примерно раз на 2500–5000 убийств. Приготовьтесь к очень долгому фарму. Путевая точка – лагерь Кровавого Паруса к северу от места {area:35}, среди висельников и налетчиков.",
+	["Bloodsail camps"] = "Лагеря Кровавого Паруса",
 }

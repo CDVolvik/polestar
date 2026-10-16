@@ -48,6 +48,4 @@ return {
 	-- {npc:6546} Tabetha
 	["{npc:6546}'s ritual"] = "{npc:6546}의 의식",
 
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["{quest:1951}: {area:796} Library"] = "{quest:1951}: {area:796} 도서관",
 }

@@ -6,14 +6,14 @@
 -- The comments are rewritten by sync.
 return {
 	-- Guide
-	["Paladin Warhorse"] = "",
-	["Your first mount at 40, summoned at will: a paladin buys no horse."] = "",
+	["Paladin Warhorse"] = "Боевой конь паладина",
+	["Your first mount at 40, summoned at will: a paladin buys no horse."] = "Ваш первый транспорт на 40-м уровне, призываемый когда угодно: паладину не нужно покупать коня.",
 
 	-- Step 1: The Tome of Nobility (Ironforge)
 	-- {npc:5149} Brandur Ironhammer · {object:32362} The Mystic Ward · {npc:6171} Duthorian Rall · {zone:1453} Stormwind City · {zone:1455} Ironforge
-	["At 40 {npc:5149} in the {object:32362} sends you to {npc:6171} in {zone:1453}'s Cathedral of Light. Take the tram from {zone:1455} to {zone:1453}."] = "",
+	["At 40 {npc:5149} in the {object:32362} sends you to {npc:6171} in {zone:1453}'s Cathedral of Light. Take the tram from {zone:1455} to {zone:1453}."] = "На 40-м уровне {npc:5149} ({object:32362}) отправляет вас к персонажу {npc:6171} в Собор Света ({zone:1453}). Поезжайте на метро: {zone:1455} → {zone:1453}.",
 
 	-- Step 2: Summon Warhorse
 	-- {npc:6171} Duthorian Rall · {item:6779} Tome of Nobility · {spell:13819} Summon Warhorse
-	["{npc:6171} stands in the Cathedral of Light. Turning in the {item:6779} teaches {spell:13819}; Paladins do not buy a mount."] = "",
+	["{npc:6171} stands in the Cathedral of Light. Turning in the {item:6779} teaches {spell:13819}; Paladins do not buy a mount."] = "{npc:6171} стоит в Соборе Света. Сдав предмет {item:6779}, вы изучите заклинание «{spell:13819}»; паладины не покупают транспорт.",
 }

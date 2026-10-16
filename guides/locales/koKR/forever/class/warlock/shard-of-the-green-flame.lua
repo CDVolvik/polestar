@@ -35,6 +35,4 @@ return {
 	-- Step 7: Back to Niby
 	["Back to Niby"] = "나이비에게 돌아가기",
 
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["The {area:1763} Legionnaires, a short way west of Niby, carry {area:1763}'s essence."] = "나이비에게서 조금 서쪽의 {area:1763} 부대원이 {area:1763}의 정수를 가지고 있습니다.",
 }

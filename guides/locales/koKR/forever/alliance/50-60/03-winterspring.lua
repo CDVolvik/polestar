@@ -139,7 +139,4 @@ return {
 	-- {area:3197} Chillwind Camp
 	["The next guide starts here and flies to {area:3197}."] = "다음 가이드는 여기서 시작해 {area:3197}(으)로 날아갑니다.",
 
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Free {area:2262} Spirits: talk to them"] = "{area:2262} 영혼 해방: 말을 거세요",
-	-- ["The Scourge around {area:2264}, west of the chapel, drop both kinds of Scourgestone; {area:2262} Spirits rise from them: talk to each one to free it."] = "예배당 서쪽 {area:2264} 주변의 스컬지가 두 종류의 스컬지석을 모두 떨어뜨립니다. 그들에게서 {area:2262} 영혼이 일어납니다. 각각에게 말을 걸어 풀어주세요.",
 }

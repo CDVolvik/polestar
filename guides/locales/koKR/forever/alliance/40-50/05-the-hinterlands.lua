@@ -98,6 +98,4 @@ return {
 	-- {area:144} Thelsamar · {zone:1427} Searing Gorge · {area:1446} Thorium Point · {zone:1418} Badlands · {area:340} Kargath
 	["Hearth to {area:144}. The {zone:1427} guide starts at {area:1446}: from here, ride south into the {zone:1418}, west past the Horde town of {area:340} and up the trail into the gorge."] = "귀환석으로 {area:144}에 가십시오. {zone:1427} 가이드는 {area:1446}에서 시작합니다: 여기서 남쪽 {zone:1418}(으)로 가서, 서쪽으로 호드 마을 {area:340}을(를) 지나 오솔길을 따라 협곡으로 올라가십시오.",
 
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Ride north to {area:351} in the middle of the {zone:1425}. Green Sludges and {item:1529} Oozes crawl all around it."] = "북쪽으로 {zone:1425} 한가운데의 {area:351}(으)로 가십시오. 녹색 녹괴물과 {item:1529} 수액괴물이 그 주변을 기어다닙니다.",
 }

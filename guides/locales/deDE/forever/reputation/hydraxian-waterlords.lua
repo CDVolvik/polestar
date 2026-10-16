@@ -6,7 +6,7 @@
 -- The comments are rewritten by sync.
 return {
 	-- Guide
-	["Hydraxian Waterlords Reputation"] = "",
+	["Hydraxian Waterlords Reputation"] = "Ruf: Hydraxianer",
 
 	-- Step 1: Duke Hydraxis
 	-- {npc:13278} Duke Hydraxis · {zone:1447} Azshara · {faction:749} Hydraxian Waterlords
@@ -28,7 +28,7 @@ return {
 
 	-- Step 5: Eye of the Emberseer
 	-- {npc:9816} Pyroguard Emberseer · {quest:6821} Eye of the Emberseer
-	["{npc:9816} in Upper Blackrock Spire drops the {quest:6821}. This needs a raid group."] = "",
+	["{npc:9816} in Upper Blackrock Spire drops the {quest:6821}. This needs a raid group."] = "{npc:9816} in der Oberen Blackrockspitze lässt {quest:6821} fallen. Dafür brauchst du eine Schlachtzugsgruppe.",
 
 	-- Step 6: The Molten Core
 	-- {npc:11668} Firelord · {npc:11658} Molten Giant · {npc:11673} Ancient Core Hound · {npc:12101} Lava Surger · {area:2717} Molten Core
@@ -53,8 +53,4 @@ return {
 	["{faction:749} to Exalted"] = "{faction:749} bis Ehrfürchtig",
 	-- {area:2717} Molten Core
 	["Keep clearing the {area:2717} until Exalted."] = "Säubere weiter den {area:2717}, bis du ehrfürchtig bist.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["{faction:749} Reputation"] = "Ruf: {faction:749}",
-	-- ["{npc:9816} in Upper {area:1583} drops the {quest:6821}. This needs a raid group."] = "{npc:9816} im oberen Teil der {area:1583} lässt {quest:6821} fallen. Dafür brauchst du eine Schlachtzugsgruppe.",
 }

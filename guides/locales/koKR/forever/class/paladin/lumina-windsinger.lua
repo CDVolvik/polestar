@@ -46,8 +46,4 @@ return {
 	-- {npc:259620} Lumina Windsinger · {area:228} The Sepulcher
 	["{npc:259620}, the {area:228}"] = "{npc:259620}, {area:228}",
 
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Rescuing {quest:91862}"] = "Lumina Windsinger 구출",
-	-- ["{item:267412}, from the {npc:14235} Hide gnolls"] = "{item:267412}, 썩은가죽 놀({npc:14235})에게서",
-	-- ["{quest:91862} is caged inside {area:235}, at the north end of the isle. {npc:14235} Hide gnolls around her carry the key."] = "{quest:91862}은(는) 섬 북쪽 끝 {area:235} 안에 갇혀 있습니다. 그녀 주변의 썩은가죽 놀({npc:14235})이 열쇠를 가지고 있습니다.",
 }

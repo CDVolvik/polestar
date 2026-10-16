@@ -151,7 +151,7 @@ return {
 
 	-- Step 34: Brazier of Everfount
 	-- {area:1497} Undercity · {area:228} The Sepulcher · {object:113791} Brazier of Everfount · {npc:5895} Minor Manifestation of Water · {item:7813} Shard of Water · {area:272} Tarren Mill
-	["Do your shopping in the {area:1497} first, then fly to the {area:228}. The {object:113791} stands on the hill just south-west of it: beat the Corrupt Manifestation of Water beside it, place its bracers in the brazier, speak to the {npc:5895} and keep the {item:7813} for Islen. Fly on to {area:272} from the {area:228}."] = "Сначала сделайте покупки ({area:1497}), затем летите сюда: {area:228}. {object:113791} стоит на холме чуть к юго-западу: одолейте оскверненное проявление воды рядом, положите его наручи в жаровню, поговорите с персонажем {npc:5895} и сохраните {item:7813} для Айслен. Оттуда летите дальше: {area:272}.",
+	["Do your shopping in the {area:1497} first, then fly to the {area:228}. The {object:113791} stands on the hill just south-west of it: beat the Corrupt Manifestation of Water beside it, place its bracers in the brazier, speak to the {npc:5895} and keep the {item:7813} for Islen. Fly on to {area:272} from the {area:228}."] = "Сначала сделайте покупки ({area:1497}), затем летите сюда: {area:228}. {object:113791} стоит на холме чуть к юго-западу: одолейте оскверненное проявление воды рядом, положите его наручи в жаровню, поговорите с персонажем {npc:5895} и сохраните {item:7813} для Айслен. Из места {area:228} летите дальше: {area:272}.",
 	-- {npc:5901} Islen Waterseer
 	["for {npc:5901}: from Stranglethorn, next guide"] = "для персонажа {npc:5901}: из Тернистой долины, в следующем руководстве",
 

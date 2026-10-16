@@ -23,6 +23,4 @@ return {
 	-- Step 3: Back to Lydros
 	["Back to Lydros"] = "리드로스에게 돌아가기",
 
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Hydrospawn, a water elemental, lives in the Warpwood Quarter ({area:2577} East): chase the imp Pusillin until he turns to fight, clear the satyr room, then take the spiral ramp down to the pool."] = "물의 정령 히드로스폰은 굽이나무 지구({area:2577} 동쪽)에 있습니다. 임프 푸실린이 돌아서서 싸울 때까지 쫓아가고, 사티로스 방을 정리한 뒤 나선형 경사로를 따라 연못으로 내려가십시오.",
 }

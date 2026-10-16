@@ -7,7 +7,7 @@
 return {
 	-- Guide
 	-- {spell:118} Polymorph
-	["A new look for {spell:118}: it turns the target into a pig rather than a sheep."] = "",
+	["A new look for {spell:118}: it turns the target into a pig rather than a sheep."] = "Ein neues Aussehen für {spell:118}: Das Ziel wird in ein Schwein statt in ein Schaf verwandelt.",
 
 	-- Step 1: Sanath Lim-yo
 	-- {area:3137} Talrendis Point · {area:1237} Valormok · {npc:8395} Sanath Lim-yo · {npc:8379} Archmage Xylem · {zone:1447} Azshara · {area:1221} Ruins of Eldarath
@@ -26,14 +26,9 @@ return {
 	["Polymorph Clones"] = "Verwandelte Kopien",
 	-- {item:23250} Prismatic Shell · {area:1221} Ruins of Eldarath · {spell:118} Polymorph
 	-- plural, as words: Polymorph Clones = {npc:16479} Polymorph Clone
-	["Carry the {item:23250} back to the {area:1221}. {spell:118} a Spitelash naga and wait a few seconds: it splits into small Polymorph Clones. Kill the clones quickly; the shell collects their essence."] = "",
+	["Carry the {item:23250} back to the {area:1221}. {spell:118} a Spitelash naga and wait a few seconds: it splits into small Polymorph Clones. Kill the clones quickly; the shell collects their essence."] = "Bring {item:23250} zurück zu {area:1221}. Belege einen Naga der Grollflossen mit {spell:118} und warte ein paar Sekunden: Er teilt sich in kleine Verwandelte Kopien. Töte die Kopien schnell; die Muschel sammelt ihre Essenz.",
 
 	-- Step 5: Fragmented Magic
 	-- {npc:8379} Archmage Xylem · {spell:118} Polymorph
-	["{npc:8379}: {spell:118} (pig)"] = "",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["A new look for Polymorph: it turns the target into a pig rather than a sheep."] = "Ein neues Aussehen für Verwandlung: Das Ziel wird in ein Schwein statt in ein Schaf verwandelt.",
-	-- ["Carry the {item:23250} back to the {area:1221}. Polymorph a Spitelash naga and wait a few seconds: it splits into small Polymorph Clones. Kill the clones quickly; the shell collects their essence."] = "Bring die {item:23250} zurück ins Gebiet {area:1221}. Verwandle einen Naga der Grollflossen und warte ein paar Sekunden: Er teilt sich in kleine Verwandelte Kopien. Töte die Kopien schnell; die Muschel sammelt ihre Essenz.",
-	-- ["{npc:8379}: Polymorph (pig)"] = "{npc:8379}: Verwandlung: Schwein",
+	["{npc:8379}: {spell:118} (pig)"] = "{npc:8379}: {spell:118} (Schwein)",
 }

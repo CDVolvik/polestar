@@ -191,10 +191,10 @@ return {
 
 	-- Step 38: Black Broodlings
 	-- plural, as words: Black Broodlings = {npc:7047} Black Broodling
-	["Black Broodlings"] = "Черные дракончики ({npc:7047})",
+	["Black Broodlings"] = "Детеныши черного дракона",
 	-- {area:251} Flame Crest · {item:12284} Draco-Incarcinatrix 900
 	-- plural, as words: Black Broodlings = {npc:7047} Black Broodling
-	["Black Broodlings nest in the hills just east of {area:251}. Use Tinkee's {item:12284} on a broodling when it is almost dead to capture its essence."] = "Черные дракончики ({npc:7047}) гнездятся на холмах чуть к востоку от места {area:251}. Примените предмет Тинки ({item:12284}) на почти убитом дракончике, чтобы поймать его сущность.",
+	["Black Broodlings nest in the hills just east of {area:251}. Use Tinkee's {item:12284} on a broodling when it is almost dead to capture its essence."] = "Детеныши черного дракона гнездятся на холмах чуть к востоку от места {area:251}. Примените предмет Тинки ({item:12284}) на почти убитом детеныше, чтобы поймать его сущность.",
 
 	-- Step 39: Sha'ni Proudtusk
 	-- {quest:3821} Dreadmaul Rock · {npc:9136} Sha'ni Proudtusk

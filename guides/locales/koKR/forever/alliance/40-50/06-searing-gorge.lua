@@ -54,6 +54,4 @@ return {
 	-- {npc:8256} Curator Thorius · {zone:1455} Ironforge
 	["For {npc:8256} in {zone:1455}, later"] = "나중에 {zone:1455}의 {npc:8256}에게",
 
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Ride east across the Cauldron to the {area:247} in the south-east. The prisoner in the wooden outhouse wants 15 {item:4306} and eight dead {object:147516} Geologists from the dig site around it. The outhouse also opens with the key, if you found one."] = "용광로를 가로질러 동쪽, 남동쪽의 {area:247}(으)로 가십시오. 나무 간이화장실에 갇힌 포로는 {item:4306} 15개와 주변 발굴현장의 {object:147516} 지질학자 여덟 명 처치를 원합니다. 열쇠를 찾았다면 그것으로도 간이화장실을 열 수 있습니다.",
 }

@@ -11,7 +11,7 @@ return {
 	-- Step 1: Learn to ride
 	["Learn to ride"] = "Научитесь ездить верхом",
 	-- {skill:762} Riding · {spell:1285849} Galestrider Riding
-	["Galestriders need level 40 and {skill:762} ({spell:1285849} comes with it in the Forever client). Any riding trainer of your faction teaches it; see the Level 40 mount guides for where."] = "",
+	["Galestriders need level 40 and {skill:762} ({spell:1285849} comes with it in the Forever client). Any riding trainer of your faction teaches it; see the Level 40 mount guides for where."] = "Для буреногов нужны 40-й уровень и навык {skill:762} (в клиенте Forever вместе с ним идет «{spell:1285849}»). Обучает любой учитель верховой езды вашей фракции; где именно – см. гайды по транспорту 40-го уровня.",
 
 	-- Step 2: Skyboat from Dalaran
 	-- {area:279} Dalaran
@@ -32,6 +32,4 @@ return {
 	["{npc:265756} is in {area:16638}, the island's harbour town, near the skyboat docks. The Forever client lists each Galestrider at 20g; choose one."] = "{npc:265756} – здесь: {area:16638}, портовый город острова, у причалов небесных кораблей. В клиенте Forever каждый буреног стоит 20з; выберите одного.",
 	["20g"] = "20з",
 
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Galestriders need level 40 and {skill:762} (Galestrider {skill:762} comes with it in the Forever client). Any riding trainer of your faction teaches it; see the Level 40 mount guides for where."] = "Для буреногов нужны 40-й уровень и навык {skill:762} (в клиенте Forever вместе с ним идет {skill:762} для буреногов). Обучает любой учитель верховой езды вашей фракции; где именно – см. гайды по транспорту 40-го уровня.",
 }

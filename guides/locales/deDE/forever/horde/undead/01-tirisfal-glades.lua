@@ -59,7 +59,7 @@ return {
 
 	-- Step 9: Aramis and Venya
 	-- {quest:90902} Rediscovering the Light · {npc:259377} Injured Deathguard · {spell:635} Holy Light
-	["Paladins: {quest:90902} is done once you have healed five {npc:259377} around the church with {spell:635}."] = "",
+	["Paladins: {quest:90902} is done once you have healed five {npc:259377} around the church with {spell:635}."] = "Paladine: {quest:90902} ist erledigt, sobald du fünf {npc:259377} rund um die Kirche mit {spell:635} geheilt hast.",
 
 	-- Step 10: Scavenging Deathknell
 	-- {object:164662} Equipment Boxes · {area:154} Deathknell
@@ -133,7 +133,7 @@ return {
 	-- Step 26: Eleanor Shackleton
 	["Eleanor camps just south-west of town."] = "Eleanor lagert direkt südwestlich des Ortes.",
 	-- {spell:1229451} Boosted Rest
-	["/sit by her campfire until you get {spell:1229451}"] = "",
+	["/sit by her campfire until you get {spell:1229451}"] = "/sit an ihrem Lagerfeuer, bis du {spell:1229451} bekommst",
 
 	-- Step 27: Fields west of Brill
 	-- {area:159} Brill
@@ -176,15 +176,15 @@ return {
 	["Greater Duskbats fly over the fields around {area:159} and along the road north."] = "Große Nachtsauger fliegen über die Felder um {area:159} und entlang der Straße nach Norden.",
 
 	-- Step 33: Rot Hide graveyards
-	["Rot Hide graveyards"] = "",
+	["Rot Hide graveyards"] = "Friedhöfe der Moderfelle",
 	-- {area:159} Brill
 	-- plural, as words: Rot Hide Graverobbers = {npc:1941} Rot Hide Graverobber
-	["The Rot Hide Graverobbers dig through the graveyards north of {area:159}; all the Rot Hides drop the ichor."] = "",
+	["The Rot Hide Graverobbers dig through the graveyards north of {area:159}; all the Rot Hides drop the ichor."] = "Die Grabräuber der Moderfelle graben auf den Friedhöfen nördlich von {area:159}; alle Moderfelle lassen das Sekret fallen.",
 
 	-- Step 34: Maggot Eye
 	-- {npc:1753} Maggot Eye
 	-- plural, as words: Rot Hide Mongrels = {npc:1675} Rot Hide Mongrel
-	["The Rot Hide Mongrels hold the hills further north. {npc:1753} (level 11) stands in their camp on the hill south of the shore: clear the gnolls around him first."] = "",
+	["The Rot Hide Mongrels hold the hills further north. {npc:1753} (level 11) stands in their camp on the hill south of the shore: clear the gnolls around him first."] = "Die Bastarde der Moderfelle halten die Hügel weiter nördlich. {npc:1753} (Stufe 11) steht in ihrem Lager auf dem Hügel südlich des Ufers: Räum zuerst die Gnolle um ihn herum weg.",
 
 	-- Step 35: Vile Fin murlocs
 	["Vile Fin murlocs"] = "Murlocs der Finsterflossen",
@@ -243,7 +243,7 @@ return {
 	-- Step 45: Shadowvale
 	-- {area:16881} Shadowvale · {item:286269} Glowing Crystal Fragment
 	-- plural, as words: Shadowvale Lurchers = {npc:260428} Shadowvale Lurcher
-	["{area:16881} is the hollow at the west edge of the glades. The Shadowvale Lurchers and Mystics drop the bones; the bottles lie on the ground among them, and the {item:286269} is at the south end."] = "",
+	["{area:16881} is the hollow at the west edge of the glades. The Shadowvale Lurchers and Mystics drop the bones; the bottles lie on the ground among them, and the {item:286269} is at the south end."] = "{area:16881} ist die Senke am Westrand von Tirisfal. Die Schattentalschlinger und Schattentalmystiker lassen die Knochen fallen; die Flaschen liegen zwischen ihnen am Boden, und {item:286269} ist am Südende.",
 
 	-- Step 48: Brill
 	-- {npc:1560} Yvette Farthing
@@ -349,16 +349,4 @@ return {
 	["The zeppelin lands at the tower just north-east of {zone:1454}'s main gate. Follow the road south into {zone:1411}, cross the {area:815} bridge below {area:379} and follow the road west to the {area:380}."] = "Der Zeppelin landet am Turm direkt nordöstlich des Haupttors von {zone:1454}. Folge der Straße nach Süden nach {zone:1411}, überquere die Brücke über {area:815} unterhalb von {area:379} und folge der Straße nach Westen zu {area:380}.",
 	-- {npc:3615} Devrak
 	["{npc:3615}, the wind rider master"] = "{npc:3615}, der Windreitermeister",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["/sit by her campfire until you get Boosted Rest"] = "/sit an ihrem Lagerfeuer, bis du Boosted Rest bekommst",
-	-- ["Paladins: {quest:90902} is done once you have healed five {npc:259377} around the church with Holy Light."] = "Paladine: {quest:90902} ist erledigt, sobald du fünf {npc:259377} rund um die Kirche mit Heiliges Licht geheilt hast.",
-	-- ["{area:16881} is the hollow at the west edge of the glades. The {area:16881} Lurchers and Mystics drop the bones; the bottles lie on the ground among them, and the {item:286269} is at the south end."] = "{area:16881} ist die Senke am Westrand von Tirisfal. Die Schlinger und Mystiker von {area:16881} lassen die Knochen fallen; die Flaschen liegen zwischen ihnen am Boden, und das {item:286269} ist am Südende.",
-	-- ["{npc:14235} Hide Mongrels hold the hills further north. {npc:1753} (level 11) stands in their camp on the hill south of the shore: clear the gnolls around him first."] = "Bastarde der Moderfelle ({npc:14235}) halten die Hügel weiter nördlich. {npc:1753} (Stufe 11) steht in ihrem Lager auf dem Hügel südlich des Ufers: Räum zuerst die Gnolle um ihn herum weg.",
-	-- ["{npc:14235} Hide graveyards"] = "Friedhöfe der Moderfelle ({npc:14235})",
-	-- ["{npc:14235} Hide {quest:358} dig through the graveyards north of {area:159}; all the {npc:14235} Hides drop the ichor."] = "Die Moderfelle ({npc:14235}) graben für {quest:358} auf den Friedhöfen nördlich von {area:159}; alle Moderfelle ({npc:14235}) lassen das Sekret fallen.",
-	-- ["{npc:1496}: Defensive Stance"] = "{npc:1496}: Verteidigungshaltung",
-	-- ["{npc:244808}: Holy Light"] = "{npc:244808}: Heiliges Licht",
-	-- ["{npc:5667}: Summon Imp"] = "{npc:5667}: Wichtel beschwören",
-	-- ["{npc:5675}: Summon Voidwalker"] = "{npc:5675}: Leerwandler beschwören",
 }

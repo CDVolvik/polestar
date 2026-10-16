@@ -9,6 +9,4 @@ return {
 	-- {npc:217412} Amaryllis Webb · {npc:217588} Arbor Tarantula · {npc:217590} Flesh Picker · {npc:217589} Hay Weevil
 	["{npc:217412} gives you an Entomology Starter Kit: use its items to catch an {npc:217588}, a Hay Weevil Specimen and a {npc:217590}. This quest is named as the weevil's source but gives only money as its reward; the pet may come from the {npc:217589} you catch. If you lose the kit, she sells another."] = "{npc:217412}이(가) 초보 곤충학자의 도구를 줍니다. 그 아이템으로 {npc:217588}, 건초 바구미 표본, {npc:217590}을(를) 잡으세요. 이 퀘스트는 바구미의 획득처로 나오지만 보상은 돈뿐입니다. 애완동물은 잡은 {npc:217589}에게서 얻을 수도 있습니다. 도구를 잃어버리면 그녀가 다시 팝니다.",
 
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["{npc:217412} gives you an Entomology Starter Kit: use its items to catch an {npc:217588}, a {npc:217589} Specimen and a {npc:217590}. This quest is named as the weevil's source but gives only money as its reward; the pet may come from the {npc:217589} you catch. If you lose the kit, she sells another."] = "{npc:217412}이(가) Entomology Starter Kit을(를) 줍니다: 그 안의 아이템으로 {npc:217588}, {npc:217589} 표본, {npc:217590}을(를) 잡으십시오. 이 퀘스트는 바구미의 출처로 표시되지만 보상은 돈뿐입니다. 애완동물은 잡은 {npc:217589}에게서 나올 수도 있습니다. 도구를 잃어버리면 그녀에게서 다시 살 수 있습니다.",
 }

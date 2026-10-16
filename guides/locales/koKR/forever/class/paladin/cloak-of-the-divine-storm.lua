@@ -54,7 +54,4 @@ return {
 	-- {area:413} Maestra's Post
 	["Back to {area:413}."] = "{area:413}(으)로 돌아가십시오.",
 
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["A rare cloak at 30 from the old Divine Storm story; for now only Alliance paladins can finish it."] = "옛 천상의 폭풍 이야기에서 얻는 30레벨 희귀 망토. 현재는 얼라이언스 성기사만 완료할 수 있습니다.",
-	-- ["The {object:409311} stands at the east end of {area:435}. Shatter the orb on it; the {object:409315} appears beside it."] = "{object:409311}은(는) {area:435} 동쪽 끝에 있습니다. 그 위에서 보주를 깨뜨리면 옆에 {object:409315}이(가) 나타납니다.",
 }

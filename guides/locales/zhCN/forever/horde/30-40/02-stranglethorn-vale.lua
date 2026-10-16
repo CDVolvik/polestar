@@ -117,7 +117,7 @@ return {
 	["The Mosh'Ogg ogres camp in the hills just east of {object:3202}. Kill one Brute and one Witch Doctor (36-37); pull them one at a time."] = "莫什奥格食人魔在{object:3202}正东的山丘上扎营。杀死一个莫什奥格蛮兵和一个莫什奥格巫医（36-37级）；一次引一个。",
 
 	-- Step 28: Shadowmaw jungle and the Snapjaw river
-	["Shadowmaw jungle and the Snapjaw river"] = "深喉丛林和钳嘴河",
+	["Shadowmaw jungle and the Snapjaw river"] = "深喉猎豹的丛林和钳嘴鳄鱼的河流",
 	-- {npc:2495} Drizzlik
 	-- plural, as words: Shadowmaw Panthers = {npc:684} Shadowmaw Panther · Snapjaw Crocolisks = {npc:1152} Snapjaw Crocolisk
 	["East of the ogres, Shadowmaw Panthers (37-38) stalk unseen until they strike; the Stranglethorn Tigresses roam the same ground and now and then drop a pristine fang. Snapjaw Crocolisks line the river just west of the jungle; keep their skins for {npc:2495}."] = "在食人魔东边，深喉猎豹（37-38级）在攻击前都是隐形的；荆棘谷雌虎在同一片地方游荡，偶尔掉落雌虎的牙齿。钳嘴鳄鱼分布在丛林正西的河边；留着它们的皮交给{npc:2495}。",

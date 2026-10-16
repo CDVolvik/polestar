@@ -266,11 +266,4 @@ return {
 	-- {area:442} Auberdine · {zone:1453} Stormwind City
 	["Take the portal up to Mathrengyl, then fly back to {area:442} for the boat to {zone:1453}."] = "차원문을 타고 마스렌길 베어워커에게 올라간 다음, {area:442}(으)로 날아가 {zone:1453}행 배를 타십시오.",
 
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Cast Teleport: {area:493}. {npc:11802} is in {area:2361}. Shrine Baubles lie in the containers on the floor of {area:656}, below {area:2361}: take one to the {area:2362} in the north-west, use it there and speak to {npc:11799}. Then fly back to {area:442} from {area:2361}."] = "순간이동: 달의 숲을 시전하십시오({area:493}). {npc:11802}은(는) {area:2361}에 있습니다. 제단 구슬은 {area:2361} 아래 {area:656} 바닥의 상자에 있습니다. 하나를 북서쪽의 {area:2362}(으)로 가져가 사용하고 {npc:11799}와(과) 대화하십시오. 그다음 {area:2361}에서 {area:442}(으)로 날아 돌아가십시오.",
-	-- ["Cast Teleport: {area:493}. {npc:11802} is in {area:2361}; learn the flight path there if you do not have it."] = "순간이동: 달의 숲을 시전하십시오({area:493}). {npc:11802}은(는) {area:2361}에 있습니다. 비행 경로가 없다면 그곳에서 익히십시오.",
-	-- ["The cave lies south of the falls: Scaber Stalks grow all through it, the {item:5270} at the very back. {area:364} Mother lairs in the hills south of the falls; {object:177624} lies at the satyr camp north of her."] = "동굴은 폭포 남쪽에 있습니다. 껄껄이그물버섯은 동굴 전체에 자라고, {item:5270}은(는) 맨 안쪽에 있습니다. 우두머리 엉겅퀴곰({area:364})은 폭포 남쪽 언덕에 살고, {object:177624}은(는) 그 북쪽의 사티로스 야영지에 있습니다.",
-	-- ["Tide Crawlers scuttle along the shore below the village; {quest:983} stands on the beach just south of the docks. {zone:1439} Threshers swim in the shallows. The {quest:4723} lies on the shore just south of the village."] = "왕바닷게가 마을 아래 해안을 따라 기어다닙니다. {quest:983}은(는) 부두 바로 남쪽 해변에 서 있습니다. {zone:1439} 트레샤돈이 얕은 물에서 헤엄칩니다. {quest:4723}은(는) 마을 바로 남쪽 해안에 있습니다.",
-	-- ["{npc:4217}: Cat Form"] = "{npc:4217}: 표범 변신",
-	-- ["{npc:4217}: Cure Poison"] = "{npc:4217}: 해독",
 }

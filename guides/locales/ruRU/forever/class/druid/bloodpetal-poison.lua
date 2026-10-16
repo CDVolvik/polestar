@@ -10,7 +10,7 @@ return {
 
 	-- Step 1: Loganaar
 	-- {spell:18960} Teleport: Moonglade · {npc:12042} Loganaar · {area:2361} Nighthaven
-	["Cast {spell:18960}. {npc:12042} stands in {area:2361}; your class trainer offers the same quest."] = "",
+	["Cast {spell:18960}. {npc:12042} stands in {area:2361}; your class trainer offers the same quest."] = "Примените {spell:18960}. {npc:12042} стоит здесь: {area:2361}; ваш учитель класса дает то же задание.",
 
 	-- Step 2: Torwa Pathfinder
 	-- {area:976} Gadgetzan · {zone:1449} Un'Goro Crater
@@ -41,6 +41,4 @@ return {
 	-- {zone:1449} Un'Goro Crater
 	["Back to Torwa in the south-east corner of {zone:1449}."] = "Вернитесь к Землепроходцу Торве в юго-восточный угол кратера: {zone:1449}.",
 
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Cast Teleport: {zone:1450}. {npc:12042} stands in {area:2361}; your class trainer offers the same quest."] = "Произнесите «Телепортация: {zone:1450}». {npc:12042} стоит здесь: {area:2361}; ваш учитель класса дает то же задание.",
 }

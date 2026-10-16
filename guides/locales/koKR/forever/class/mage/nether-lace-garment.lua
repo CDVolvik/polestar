@@ -36,6 +36,4 @@ return {
 	-- {npc:3484} Kil'hala · {area:380} The Crossroads
 	["{npc:3484}, a troll tailor, works at the {area:380}."] = "트롤 재봉사 {npc:3484}은(는) {area:380}에서 일합니다.",
 
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Satyrs hold the ruins of {area:429} in eastern {zone:1440}. Fill {item:7269} at the bottom of the highest waterfall."] = "사티로스가 {zone:1440} 동쪽의 {area:429} 폐허를 차지하고 있습니다. 가장 높은 폭포 아래에서 {item:7269}을(를) 채우십시오.",
 }

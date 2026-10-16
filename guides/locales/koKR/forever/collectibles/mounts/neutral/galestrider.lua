@@ -32,6 +32,4 @@ return {
 	["{npc:265756} is in {area:16638}, the island's harbour town, near the skyboat docks. The Forever client lists each Galestrider at 20g; choose one."] = "{npc:265756}은(는) 섬의 항구 마을인 {area:16638}의 하늘배 선착장 근처에 있습니다. Forever 클라이언트에서 돌풍타조는 각 20골드입니다. 하나를 고르십시오.",
 	["20g"] = "20골드",
 
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Galestriders need level 40 and {skill:762} (Galestrider {skill:762} comes with it in the Forever client). Any riding trainer of your faction teaches it; see the Level 40 mount guides for where."] = "돌풍타조를 타려면 40레벨과 {skill:762}이(가) 필요합니다(Forever 클라이언트에서는 돌풍타조 {skill:762}이(가) 함께 주어집니다). 자기 진영의 탈것 상급자라면 누구나 가르칩니다. 위치는 40레벨 탈것 가이드를 참고하십시오.",
 }

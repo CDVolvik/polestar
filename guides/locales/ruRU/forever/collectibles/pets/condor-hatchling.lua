@@ -7,5 +7,5 @@
 return {
 	-- Step 1: Lord Condar
 	-- {npc:14268} Lord Condar · {zone:1432} Loch Modan
-	["{npc:14268} is a rare level 15-16 condor in south-eastern {zone:1432}; early kill counts give about 0.2% per kill, so expect many respawns."] = "",
+	["{npc:14268} is a rare level 15-16 condor in south-eastern {zone:1432}; early kill counts give about 0.2% per kill, so expect many respawns."] = "{npc:14268} – редкий кондор 15-16 уровня на юго-востоке зоны {zone:1432}; по ранним подсчетам шанс около 0,2% за убийство, так что ждите много возрождений.",
 }

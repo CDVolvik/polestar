@@ -36,7 +36,7 @@ return {
 	["The class trainers stand together in the grove"] = "Die Klassenlehrer stehen zusammen im Hain",
 	["Listen to Halaan"] = "Hör Halaan zu",
 	-- {spell:1259416} Walk on Air
-	["Use {spell:1259416}"] = "",
+	["Use {spell:1259416}"] = "Benutze {spell:1259416}",
 
 	-- Step 4: Raw Windstones and the Cirrusfly Queen
 	-- {npc:251404} Cirrusfly Queen
@@ -49,9 +49,9 @@ return {
 	-- Step 5: Yala Windwatcher
 	-- {npc:249363} Yala Windwatcher · {npc:251143} Roiling Winds · {object:460002} Ley Line
 	-- plural, as words: Al'Aketh Converts = {npc:251160} Al'Aketh Convert
-	["{npc:249363} keeps watch east of the grove. The {npc:251143} and Al'Aketh Converts gather just north of her; the {object:460002} rises further north: cast your Read Ley Line racial ability at it."] = "",
+	["{npc:249363} keeps watch east of the grove. The {npc:251143} and Al'Aketh Converts gather just north of her; the {object:460002} rises further north: cast your Read Ley Line racial ability at it."] = "{npc:249363} hält östlich des Hains Wache. {npc:251143} und Konvertiten der Al'Aketh sammeln sich direkt nördlich von ihr; {object:460002} erhebt sich weiter nördlich: Wirk dort deine Volksfähigkeit zum Lesen von Leylinien.",
 	-- {object:460002} Ley Line
-	["Cast Read Ley Line at the {object:460002}"] = "",
+	["Cast Read Ley Line at the {object:460002}"] = "Lies {object:460002} mit deiner Volksfähigkeit",
 
 	-- Step 6: Thendal Grove turn-ins
 	-- {area:16622} Thendal Grove
@@ -80,7 +80,7 @@ return {
 
 	-- Step 11: Raan Wildwind
 	-- {spell:1229451} Boosted Rest
-	["/sit by Raan's campfire until you get {spell:1229451}"] = "",
+	["/sit by Raan's campfire until you get {spell:1229451}"] = "/sit an Raans Lagerfeuer, bis du {spell:1229451} bekommst",
 
 	-- Step 12: Village quests
 	["Village quests"] = "Dorfquests",
@@ -103,7 +103,7 @@ return {
 
 	-- Step 17: Falaath Village
 	-- {npc:257065} Missionary Jasaan · {quest:92529} Falaath Village · {spell:1254832} Mark of Akir
-	["{npc:257065} waits at the entrance to {quest:92529}, south of Shen'dar. The {spell:1254832} lets you walk in among the faithful."] = "",
+	["{npc:257065} waits at the entrance to {quest:92529}, south of Shen'dar. The {spell:1254832} lets you walk in among the faithful."] = "{npc:257065} wartet am Eingang von {quest:92529}, südlich von Shen'dar. Mit {spell:1254832} kannst du dich unter die Gläubigen mischen.",
 	["Search the wardrobe"] = "Durchsuche den Kleiderschrank",
 
 	-- Step 19: Havoc in Falaath
@@ -274,7 +274,7 @@ return {
 	-- Step 50: The Strange Hermit
 	-- {quest:93159} The Strange Hermit
 	-- plural, as words: Zephyrseed Cones = {object:613238} Zephyrseed Cone
-	["{quest:93159} lives west of Elegael. The Zephyrseed Cones lie in the woods between his hut and Elegael."] = "",
+	["{quest:93159} lives west of Elegael. The Zephyrseed Cones lie in the woods between his hut and Elegael."] = "{quest:93159} lebt westlich von Elegael. Die Zephyrzapfen liegen im Wald zwischen seiner Hütte und Elegael.",
 
 	-- Step 51: The refugees' camp
 	["The refugees' camp"] = "Das Flüchtlingslager",
@@ -316,7 +316,7 @@ return {
 
 	-- Step 58: Sheldras Moontree
 	-- {npc:5504} Sheldras Moontree · {zone:1453} Stormwind City · {spell:18960} Teleport: Moonglade · {npc:11802} Dendrite Starblaze · {spell:499} Cat Form · {zone:1439} Darkshore
-	["{npc:5504}, {zone:1453}'s druid trainer, teaches you {spell:18960}. {npc:11802}'s welcome waits for your {spell:499} trip at the end of {zone:1439}."] = "",
+	["{npc:5504}, {zone:1453}'s druid trainer, teaches you {spell:18960}. {npc:11802}'s welcome waits for your {spell:499} trip at the end of {zone:1439}."] = "{npc:5504}, der Druidenlehrer von {zone:1453}, lehrt dich {spell:18960}. Der Willkommensgruß von {npc:11802} wartet am Ende von {zone:1439} auf deine Reise für {spell:499}.",
 
 	-- Step 59: Jennea Cannon
 	-- {npc:5497} Jennea Cannon · {object:2101} Mage Quarter · {quest:1861} Mirror Lake
@@ -325,17 +325,4 @@ return {
 	-- Step 60: Mirror Lake
 	-- {zone:1453} Stormwind City · {quest:1861} Mirror Lake · {zone:1436} Westfall · {item:7207} Jennea's Flask
 	["Leave {zone:1453} by the main gate. The {quest:1861} waterfall is south-west of the gates, on the way west to {zone:1436}: fill {item:7207} at its base."] = "Verlass {zone:1453} durch das Haupttor. Der Wasserfall am {quest:1861} liegt südwestlich der Tore, auf dem Weg nach Westen nach {zone:1436}: Fülle {item:7207} an seinem Fuß.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["/sit by Raan's campfire until you get Boosted Rest"] = "/sit an Raans Lagerfeuer, bis du Boosted Rest bekommst",
-	-- ["Cast Read {object:460002} at the {object:460002}"] = "Lies die {object:460002} mit deiner Volksfähigkeit an der {object:460002}",
-	-- ["Tame Beast"] = "Wildtier zähmen",
-	-- ["Use Walk on Air"] = "Benutze Walk on Air",
-	-- ["{npc:249363} keeps watch east of the grove. The {npc:251143} and Al'Aketh Converts gather just north of her; the {object:460002} rises further north: cast your Read {object:460002} racial ability at it."] = "{npc:249363} hält östlich des Hains Wache. Die {npc:251143} und Konvertiten der Al'Aketh sammeln sich direkt nördlich von ihr; die {object:460002} erhebt sich weiter nördlich: Wirk dort deine Volksfähigkeit, um die {object:460002} zu lesen.",
-	-- ["{npc:252377}: Defensive Stance"] = "{npc:252377}: Verteidigungshaltung",
-	-- ["{npc:254411}: Beast Training"] = "{npc:254411}: Wildtierausbildung",
-	-- ["{npc:255853}: Bear Form"] = "{npc:255853}: Bärengestalt",
-	-- ["{npc:257065} waits at the entrance to {quest:92529}, south of Shen'dar. The Mark of Akir lets you walk in among the faithful."] = "{npc:257065} wartet am Eingang von {quest:92529}, südlich von Shen'dar. Mit dem Mal von Akir kannst du dich unter die Gläubigen mischen.",
-	-- ["{npc:5504}, {zone:1453}'s druid trainer, teaches you Teleport: {quest:94914}. {npc:11802}'s welcome waits for your Cat Form trip at the end of {zone:1439}."] = "{npc:5504}, der Druidenlehrer von {zone:1453}, lehrt dich Teleportieren: {quest:94914}. Der Willkommensgruß von {npc:11802} wartet am Ende von {zone:1439} auf deine Reise in Katzengestalt.",
-	-- ["{quest:93159} lives west of Elegael. The {item:257128} Cones lie in the woods between his hut and Elegael."] = "{quest:93159} lebt westlich von Elegael. Die Zapfen der {item:257128} liegen im Wald zwischen seiner Hütte und Elegael.",
 }

@@ -186,7 +186,4 @@ return {
 
 	-- Step 48: Ironband's Excavation Site
 	["South-east along the loch to the dig site."] = "Nach Südosten am See entlang zur Ausgrabungsstätte.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Summon Succubus"] = "Sukkubus beschwören",
 }

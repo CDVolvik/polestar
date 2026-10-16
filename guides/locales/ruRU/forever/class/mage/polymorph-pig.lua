@@ -7,7 +7,7 @@
 return {
 	-- Guide
 	-- {spell:118} Polymorph
-	["A new look for {spell:118}: it turns the target into a pig rather than a sheep."] = "",
+	["A new look for {spell:118}: it turns the target into a pig rather than a sheep."] = "Новый вид заклинания «{spell:118}»: цель становится свиньей, а не овцой.",
 
 	-- Step 1: Sanath Lim-yo
 	-- {area:3137} Talrendis Point · {area:1237} Valormok · {npc:8395} Sanath Lim-yo · {npc:8379} Archmage Xylem · {zone:1447} Azshara · {area:1221} Ruins of Eldarath
@@ -26,14 +26,10 @@ return {
 	["Polymorph Clones"] = "Клонированные овцы",
 	-- {item:23250} Prismatic Shell · {area:1221} Ruins of Eldarath · {spell:118} Polymorph
 	-- plural, as words: Polymorph Clones = {npc:16479} Polymorph Clone
-	["Carry the {item:23250} back to the {area:1221}. {spell:118} a Spitelash naga and wait a few seconds: it splits into small Polymorph Clones. Kill the clones quickly; the shell collects their essence."] = "",
+	["Carry the {item:23250} back to the {area:1221}. {spell:118} a Spitelash naga and wait a few seconds: it splits into small Polymorph Clones. Kill the clones quickly; the shell collects their essence."] = "Отнесите {item:23250} обратно сюда: {area:1221}. Примените «{spell:118}» на нагу из клана Бича Злобы и подождите несколько секунд: она распадется на маленьких клонированных овец. Быстро убейте клонов; раковина соберет их сущность.",
 
 	-- Step 5: Fragmented Magic
 	-- {npc:8379} Archmage Xylem · {spell:118} Polymorph
-	["{npc:8379}: {spell:118} (pig)"] = "",
+	["{npc:8379}: {spell:118} (pig)"] = "{npc:8379}: {spell:118} (свинья)",
 
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["A new look for Polymorph: it turns the target into a pig rather than a sheep."] = "Новый вид Превращения: цель становится свиньей, а не овцой.",
-	-- ["Carry the {item:23250} back to the {area:1221}. Polymorph a Spitelash naga and wait a few seconds: it splits into small Polymorph Clones. Kill the clones quickly; the shell collects their essence."] = "Отнесите {item:23250} обратно сюда: {area:1221}. Превратите нагу из клана Бича Злобы и подождите несколько секунд: она распадется на маленьких клонированных овец. Быстро убейте клонов; раковина соберет их сущность.",
-	-- ["{npc:8379}: Polymorph (pig)"] = "{npc:8379}: Превращение (свинья)",
 }

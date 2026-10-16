@@ -22,6 +22,4 @@ return {
 	-- {npc:10260} Kibler
 	["Back to {npc:10260}"] = "{npc:10260}에게 돌아가기",
 
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Lower {area:1583} is a group of five, level 55-60. Collect 15 {npc:10374} Eggs from the nests near {npc:10596}."] = "{area:1583} 하층은 레벨 55-60, 5인 파티 던전입니다. {npc:10596} 근처 둥지에서 {npc:10374} 알 15개를 모으십시오.",
 }

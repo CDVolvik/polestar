@@ -16,6 +16,4 @@ return {
 	["{item:10393}, 50s"] = "{item:10393}, 50실버",
 	["50s"] = "50실버",
 
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["{npc:8403} sells three cockroaches in the {zone:1458} (50s each); the Plagued and {zone:1458} Cockroaches are new in Forever. Each pet item teaches its companion when you use it; the goals stay ticked afterwards."] = "{npc:8403}이(가) {zone:1458}에서 바퀴벌레 세 종류를 판매합니다(각 50실버). 역병 걸린 바퀴벌레와 {zone:1458} 바퀴벌레는 Forever에 새로 추가되었습니다. 애완동물 아이템을 사용하면 해당 동물을 배우며, 목표는 그 후에도 체크된 상태로 남습니다.",
 }

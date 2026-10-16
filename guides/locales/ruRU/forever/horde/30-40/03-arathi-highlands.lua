@@ -131,7 +131,7 @@ return {
 	-- {zone:1418} Badlands
 	["Into the {zone:1418}"] = "В край {zone:1418}",
 	-- {area:880} Thandol Span · {zone:1437} Wetlands · {area:150} Menethil Harbor · {zone:1432} Loch Modan · {zone:1418} Badlands · {area:1877} Valley of Fangs
-	["Ride south-west out of Arathi over {area:880}, south through the {zone:1437} (keep clear of {area:150}) and east into {zone:1432}; the road leaves {zone:1432} to the south into the {zone:1418}. Follow it south to the goblin camp in the {area:1877}."] = "Езжайте на юго-запад из Арати через место {area:880}, на юг через край {zone:1437} (обходите место {area:150}) и на восток в край {zone:1432}; дорога ведет на юг в край {zone:1418}. Следуйте по ней на юг к лагерю гоблинов ({area:1877}).",
+	["Ride south-west out of Arathi over {area:880}, south through the {zone:1437} (keep clear of {area:150}) and east into {zone:1432}; the road leaves {zone:1432} to the south into the {zone:1418}. Follow it south to the goblin camp in the {area:1877}."] = "Езжайте на юго-запад из Арати через место {area:880}, на юг через край {zone:1437} (обходите место {area:150}) и на восток в край {zone:1432}; из края {zone:1432} дорога ведет на юг в край {zone:1418}. Следуйте по ней на юг к лагерю гоблинов ({area:1877}).",
 
 	-- Step 29: Valley of Fangs
 	-- {quest:1106} Martek the Exiled · {area:439} The Shimmering Flats

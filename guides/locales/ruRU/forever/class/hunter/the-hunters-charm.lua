@@ -14,7 +14,7 @@ return {
 	-- {quest:8151} The Hunter's Charm
 	["{quest:8151} (Alliance)"] = "{quest:8151} (Альянс)",
 	-- {npc:5516} Ulfir Ironbeard · {zone:1453} Stormwind City · {object:28027} Dwarven District · {npc:5116} Olmin Burningbeard · {zone:1455} Ironforge · {object:32390} Hall of Arms · {zone:1457} Darnassus
-	["At 50 any Alliance hunter trainer offers it: {npc:5516} in {zone:1453}'s {object:28027}, {npc:5116} in {zone:1455}'s {object:32390} or Dorion in {zone:1457}' Cenarion Enclave."] = "",
+	["At 50 any Alliance hunter trainer offers it: {npc:5516} in {zone:1453}'s {object:28027}, {npc:5116} in {zone:1455}'s {object:32390} or Dorion in {zone:1457}' Cenarion Enclave."] = "На 50-м уровне его дает любой учитель охотников Альянса: {npc:5516} ({zone:1453}, {object:28027}), {npc:5116} ({zone:1455}, {object:32390}) или Дорион ({zone:1457}, Анклав Кенария).",
 
 	-- Step 2: The Hunter's Charm (Horde)
 	-- {quest:8151} The Hunter's Charm
@@ -29,7 +29,7 @@ return {
 	-- Step 4: Courser Antlers
 	-- {zone:1447} Azshara
 	-- plural, as words: Mosshoof Coursers = {npc:8761} Mosshoof Courser · Perfect Courser Antlers = {item:20017} Perfect Courser Antler
-	["Mosshoof Coursers graze all over {zone:1447}; one in a dozen or so drops a pair of Perfect Courser Antlers."] = "",
+	["Mosshoof Coursers graze all over {zone:1447}; one in a dozen or so drops a pair of Perfect Courser Antlers."] = "Мохоногие олени пасутся по всей зоне {zone:1447}; примерно с одного из дюжины падает пара великолепных рогов бегового оленя.",
 
 	-- Step 6: Wavethrashing
 	-- {zone:1447} Azshara
@@ -44,7 +44,4 @@ return {
 	-- {item:20019} Tooth of Morphaz · {area:1417} Sunken Temple
 	["{item:20019}, inside the {area:1417}"] = "{item:20019}, внутри подземелья {area:1417}",
 
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["At 50 any Alliance hunter trainer offers it: {npc:5516} in {zone:1453}'s {object:28027}, {npc:5116} in {zone:1455}'s {object:32390} or Dorion in {zone:1457}' {area:1658}."] = "На 50-м уровне его дает любой учитель охотников Альянса: {npc:5516} ({zone:1453}, {object:28027}), {npc:5116} ({zone:1455}, {object:32390}) или Дорион ({zone:1457}, {area:1658}).",
-	-- ["Mosshoof Coursers graze all over {zone:1447}; one in a dozen or so drops a pair of Perfect {quest:8153}."] = "Мохоногие олени пасутся по всей зоне {zone:1447}; примерно один из дюжины оставляет пару великолепных рогов бегового оленя (задание: {quest:8153}).",
 }

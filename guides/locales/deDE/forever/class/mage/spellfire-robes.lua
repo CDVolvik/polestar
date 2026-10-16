@@ -24,7 +24,7 @@ return {
 	-- Step 4: The alchemist shop
 	["The alchemist shop"] = "Der Alchemieladen",
 	-- {item:7308} Cantation of Manifestation · {npc:6492} Rift Spawn · {item:7247} Chest of Containment Coffers
-	["Algernon's alchemist shop is in the Apothecarium. Use the {item:7308} there to make the {npc:6492} visible, subdue one with your spells, then use the {item:7247} to throw down a coffer and capture it."] = "",
+	["Algernon's alchemist shop is in the Apothecarium. Use the {item:7308} there to make the {npc:6492} visible, subdue one with your spells, then use the {item:7247} to throw down a coffer and capture it."] = "Algernons Alchemieladen ist im Apothekarium. Benutze dort {item:7308}, um {npc:6492} sichtbar zu machen, bezwinge eine mit deinen Zaubern und benutze dann {item:7247}, um ein Kästchen hinzuwerfen und sie einzufangen.",
 
 	-- Step 5: Back to Anastasia Hartwell
 	-- {npc:4568} Anastasia Hartwell
@@ -32,7 +32,7 @@ return {
 
 	-- Step 6: Linen Cloth
 	-- {item:2589} Linen Cloth
-	["Humanoids drop {item:2589}; the Undercity Auction House sells it."] = "",
+	["Humanoids drop {item:2589}; the Undercity Auction House sells it."] = "Humanoide lassen {item:2589} fallen; das Auktionshaus von Undercity verkauft es.",
 
 	-- Step 7: Ambermill
 	-- {zone:1458} Undercity · {zone:1421} Silverpine Forest · {area:279} Dalaran · {area:233} Ambermill · {area:228} The Sepulcher · {npc:1867} Dalaran Apprentice · {item:7293} Dalaran Mana Gem
@@ -41,8 +41,4 @@ return {
 	-- Step 8: Josef Gregorian
 	-- {zone:1458} Undercity · {npc:4576} Josef Gregorian · {npc:11048} Victor Ward · {npc:11049} Rhiannon Davis
 	["Back to the {zone:1458}. {npc:4576}, {npc:11048} and {npc:11049} keep the tailor's shop."] = "Zurück nach {zone:1458}. {npc:4576}, {npc:11048} und {npc:11049} führen die Schneiderei.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Algernon's alchemist shop is in the {object:36072}. Use the {item:7308} there to make the {npc:6492} visible, subdue one with your spells, then use the {item:7247} to throw down a coffer and capture it."] = "Algernons Alchemieladen ist im {object:36072}. Benutze dort {item:7308}, um die {npc:6492} sichtbar zu machen, bezwinge eine mit deinen Zaubern und benutze dann {item:7247}, um ein Kästchen hinzuwerfen und sie einzufangen.",
-	-- ["Humanoids drop {item:2589}; the {zone:1458} Auction House sells it."] = "Humanoide lassen {item:2589} fallen; das Auktionshaus von {zone:1458} verkauft es.",
 }

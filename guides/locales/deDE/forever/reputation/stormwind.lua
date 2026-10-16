@@ -6,7 +6,7 @@
 -- The comments are rewritten by sync.
 return {
 	-- Guide
-	["Stormwind Reputation"] = "",
+	["Stormwind Reputation"] = "Ruf: Sturmwind",
 
 	-- Step 1: Clavicus Knavingham: A Donation of Wool
 	-- {npc:14722} Clavicus Knavingham · {faction:72} Stormwind · {zone:1453} Stormwind City · {item:14047} Runecloth · {quest:7796} Additional Runecloth
@@ -51,7 +51,4 @@ return {
 	-- {quest:7796} Additional Runecloth · {faction:72} Stormwind · {item:14047} Runecloth · {zone:1423} Eastern Plaguelands
 	-- plural, as words: Dark Adepts = {npc:8546} Dark Adept
 	["Keep handing in {quest:7796} until {faction:72} is Exalted. {item:14047}: Dark Adepts and Shadowmages (level 58-60) in {zone:1423}, or the Auction House."] = "Gib weiter {quest:7796} ab, bis du bei {faction:72} Ehrfürchtig bist. {item:14047}: Dunkle Adepten und Schattenmagier (Stufe 58-60) in {zone:1423} oder das Auktionshaus.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["{faction:72} Reputation"] = "Ruf bei {faction:72}",
 }

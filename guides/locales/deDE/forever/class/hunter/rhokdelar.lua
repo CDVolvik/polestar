@@ -51,7 +51,7 @@ return {
 
 	-- Step 9: Rhok'delar and Lok'delar
 	-- {item:18707} Ancient Rune Etched Stave · {item:18724} Enchanted Black Dragon Sinew · {item:18715} Lok'delar, Stave of the Ancient Keepers · {spell:425121} Icy Veins
-	["Not confirmed in Forever. In Classic, using the {item:18707} with the {item:18724} in your bags made Rhok'delar, and Vartrus then gave {item:18715} ({spell:425121})."] = "",
+	["Not confirmed in Forever. In Classic, using the {item:18707} with the {item:18724} in your bags made Rhok'delar, and Vartrus then gave {item:18715} ({spell:425121})."] = "In Forever nicht bestätigt. In Classic ergab {item:18707} mit {item:18724} in den Taschen benutzt Rhok'delar, und Vartrus der Uralte gab dann {item:18715} ({spell:425121}).",
 	-- {item:18707} Ancient Rune Etched Stave
 	["{item:18707}, by Vartrus"] = "{item:18707}, bei Vartrus dem Uralten",
 	-- {npc:14524} Vartrus the Ancient
@@ -63,7 +63,4 @@ return {
 	["Hastat's quiver needs the {item:18704}. Azuregos, a world boss for a raid, roams the south of {zone:1447} and drops it most of the time; the Cobalt dragonkin of {zone:1452} drop it very rarely. Skip the rest of this guide if you do not want the quiver."] = "Der Köcher von Hastat dem Uralten braucht {item:18704}. Azuregos, ein Weltboss für einen Schlachtzug, streift durch den Süden von {zone:1447} und lässt sie meistens fallen; die kobaltblauen Drachkin in {zone:1452} nur sehr selten. Überspringe den Rest dieses Guides, wenn du den Köcher nicht willst.",
 	-- {item:18704} Mature Blue Dragon Sinew
 	["{item:18704}, from Azuregos"] = "{item:18704}, von Azuregos",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Not confirmed in Forever. In Classic, using the {item:18707} with the {item:18724} in your bags made Rhok'delar, and Vartrus then gave {item:18715} (Icy Veins)."] = "In Forever nicht bestätigt. In Classic ergab {item:18707} mit {item:18724} in den Taschen benutzt Rhok'delar, und Vartrus der Uralte gab dann {item:18715} (Icy Veins).",
 }

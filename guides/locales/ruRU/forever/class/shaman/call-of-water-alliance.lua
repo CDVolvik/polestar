@@ -17,31 +17,31 @@ return {
 
 	-- Step 2: Norric Lochthane
 	-- {area:146} Stonewrought Dam
-	["Norric's burrow hut stands on the north-western edge of the loch, south of {area:146}."] = "Землянка Norric стоит на северо-западном берегу озера, к югу от места {area:146}.",
+	["Norric's burrow hut stands on the north-western edge of the loch, south of {area:146}."] = "Землянка Норрика стоит на северо-западном берегу озера, к югу от места {area:146}.",
 
 	-- Step 3: Hervdana Saegrund
 	-- {zone:1437} Wetlands
-	["Hervdana's family lives in a cave beneath the southern falls of the {zone:1437}."] = "Семья Hervdana живет в пещере под южными водопадами зоны {zone:1437}.",
+	["Hervdana's family lives in a cave beneath the southern falls of the {zone:1437}."] = "Семья Гервданы живет в пещере под южными водопадами зоны {zone:1437}.",
 
 	-- Step 4: The brown waterskin
 	["The brown waterskin"] = "Коричневый бурдюк",
 	-- {item:265732} Unfilled Brown Waterskin
-	["Fill the {item:265732} at the bottom of the waterfalls below Hervdana's cave, where the fresh water meets the brackish."] = "Наполните {item:265732} у подножия водопадов под пещерой Hervdana, где пресная вода встречается с солоноватой.",
+	["Fill the {item:265732} at the bottom of the waterfalls below Hervdana's cave, where the fresh water meets the brackish."] = "Наполните {item:265732} у подножия водопадов под пещерой Гервданы, где пресная вода встречается с солоноватой.",
 
 	-- Step 6: The red waterskin
 	["The red waterskin"] = "Красный бурдюк",
 	-- {area:71} Stonewatch Falls · {area:68} Lake Everstill · {item:265747} Unfilled Red Waterskin
 	-- plural, as words: Murloc Nightcrawlers = {npc:544} Murloc Nightcrawler
-	["{area:71} pour out of {area:68} at the east end of Redridge. Fill the {item:265747} at their foot, where the Murloc Nightcrawlers gather."] = "",
+	["{area:71} pour out of {area:68} at the east end of Redridge. Fill the {item:265747} at their foot, where the Murloc Nightcrawlers gather."] = "{area:71} вытекает из места {area:68} на восточном краю Красногорья. Наполните {item:265747} у подножия, где собираются мурлоки-следопыты.",
 
 	-- Step 8: The blue waterskin
 	["The blue waterskin"] = "Синий бурдюк",
 	-- {area:150} Menethil Harbor · {area:442} Auberdine · {area:271} Southshore · {area:415} Astranaar · {item:265772} Unfilled Blue Waterskin
-	["Hervdana: take the boat from {area:150} to {area:442} (it stops in {area:271} on the way), then go south to {area:415}. Fill the {item:265772} in the lake around the town."] = "Hervdana: плывите на корабле из места {area:150} в {area:442} (по пути он заходит в {area:271}), затем идите на юг в {area:415}. Наполните {item:265772} в озере вокруг городка.",
+	["Hervdana: take the boat from {area:150} to {area:442} (it stops in {area:271} on the way), then go south to {area:415}. Fill the {item:265772} in the lake around the town."] = "Гервдана: плывите на корабле: {area:150} → {area:442} (по пути он заходит сюда: {area:271}), затем идите на юг: {area:415}. Наполните {item:265772} в озере вокруг городка.",
 
 	-- Step 9: Hervdana Saegrund
 	-- {item:7810} Vial of Purest Water
-	["the {item:7810}, for Norric"] = "{item:7810} для Norric",
+	["the {item:7810}, for Norric"] = "{item:7810} для Норрика",
 
 	-- Step 10: Norric Lochthane
 	-- {npc:258043} Norric Lochthane · {item:6637} Water Sapta
@@ -57,6 +57,4 @@ return {
 	-- {npc:258043} Norric Lochthane · {spell:5394} Healing Stream Totem · {item:5177} Water Totem
 	["{npc:258043}: {spell:5394} and your {item:5177}"] = "{npc:258043}: {spell:5394} и ваш {item:5177}",
 
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["{area:71} pour out of {area:68} at the east end of Redridge. Fill the {item:265747} at their foot, where the Murloc {item:6530} gather."] = "{area:71} вытекает из места {area:68} на восточном краю Красногорья. Наполните {item:265747} у подножия, где собираются мурлоки ({item:6530}).",
 }

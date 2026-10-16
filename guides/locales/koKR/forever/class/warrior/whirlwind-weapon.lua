@@ -68,6 +68,4 @@ return {
 	-- {item:6894} Whirlwind Heart · {quest:1712} Cyclonian
 	["{item:6894} from {quest:1712}"] = "{item:6894}, {quest:1712}에게서",
 
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["{spell:2458} at 30 and a Whirlwind axe, sword or warhammer at 40."] = "30레벨에 {spell:2458}, 40레벨에 소용돌이 도끼, 검 또는 전투망치.",
 }

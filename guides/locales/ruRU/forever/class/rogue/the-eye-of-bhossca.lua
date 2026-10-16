@@ -20,10 +20,10 @@ return {
 	-- {zone:1420} Tirisfal Glades
 	["The monastery stands in the far north-east of {zone:1420}. Go in alone; C advises a disguise from the monastery's grounds before you enter."] = "Монастырь стоит на крайнем северо-востоке зоны {zone:1420}. Идите один; C советует добыть маскировку на территории монастыря перед входом.",
 	-- {area:796} Scarlet Monastery
-	["Find the Eye of Bhossca inside the {area:796}."] = "Найдите Eye of Bhossca внутри: {area:796}.",
+	["Find the Eye of Bhossca inside the {area:796}."] = "Найдите Глаз Бхосски внутри: {area:796}.",
 
 	-- Step 3: Back to the dead drop
 	["Back to the dead drop"] = "Вернитесь к тайнику",
 	-- {object:410369} Dead Drop
-	["Place the eye in the {object:410369} near Pyrewood. C's payment is the second Eye of Bhossca quest at the same chest."] = "Положите око сюда: {object:410369}, у Погребальных Костров. Плата от C — второе задание «The Eye of Bhossca» у того же сундука.",
+	["Place the eye in the {object:410369} near Pyrewood. C's payment is the second Eye of Bhossca quest at the same chest."] = "Положите глаз сюда: {object:410369}, у Погребальных Костров. Плата от C – второе задание о Глазе Бхосски у того же сундука.",
 }

@@ -6,10 +6,10 @@
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Black whelps
-	["Black whelps"] = "",
+	["Black whelps"] = "Черные дракончики",
 	-- {area:511} Wyrmbog · {zone:1445} Dustwallow Marsh · {zone:1418} Badlands
 	-- plural, as words: Searing Whelps = {npc:4324} Searing Whelp · Scalding Whelps = {npc:2725} Scalding Whelp
-	["The Searing Whelps of the {area:511} in southern {zone:1445} (level 42) and the Scalding Whelps of eastern {zone:1418} (level 41) drop it about once in 900 kills in our data. The waypoint is the {area:511}; the {zone:1418} whelps are the same grind."] = "",
+	["The Searing Whelps of the {area:511} in southern {zone:1445} (level 42) and the Scalding Whelps of eastern {zone:1418} (level 41) drop it about once in 900 kills in our data. The waypoint is the {area:511}; the {zone:1418} whelps are the same grind."] = "По нашим данным, он падает примерно раз на 900 убийств с опаляющих дракончиков ({area:511}, юг зоны {zone:1445}; 42-й уровень) и обжигающих дракончиков на востоке зоны {zone:1418} (41-й уровень). Путевая точка указывает сюда: {area:511}; дракончики зоны {zone:1418} – такой же вариант.",
 	-- {area:511} Wyrmbog
-	["The {area:511}"] = "",
+	["The {area:511}"] = "{area:511}",
 }

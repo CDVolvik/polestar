@@ -278,6 +278,4 @@ return {
 	-- {area:2268} Light's Hope Chapel
 	["Back to {area:2268}"] = "{area:2268}(으)로 돌아가기",
 	["The next guide starts here, at the chapel's flight master."] = "다음 가이드는 여기 예배당의 비행 조련사에서 시작합니다.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
 }

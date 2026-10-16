@@ -59,8 +59,4 @@ return {
 	-- {faction:510} The Defilers
 	["Exalted with {faction:510} earns a Legacy Point."] = "{faction:510}와(과) 확고한 동맹이 되면 Legacy Point 1점을 얻습니다.",
 
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Keep playing {zone:1461}. On Call to Arms: {zone:1461} weekends the {npc:15350} in the capitals takes three {zone:1461} Marks of Honor for extra reputation."] = "{zone:1461}을(를) 계속 플레이하십시오. 전투의 부름: {zone:1461} 주말에는 수도에 있는 {npc:15350}이(가) {zone:1461} 명예 훈장 3개를 받고 추가 평판을 줍니다.",
-	-- ["Keep playing {zone:1461}. On Call to Arms: {zone:1461} weekends the {npc:15351} in the capitals takes three {zone:1461} Marks of Honor for extra reputation."] = "{zone:1461}을(를) 계속 플레이하십시오. 전투의 부름: {zone:1461} 주말에는 수도에 있는 {npc:15351}이(가) {zone:1461} 명예 훈장 3개를 받고 추가 평판을 줍니다.",
-	-- ["{zone:1461} Reputation"] = "{zone:1461} 평판",
 }

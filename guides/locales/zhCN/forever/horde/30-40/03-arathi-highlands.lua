@@ -232,9 +232,4 @@ return {
 	-- Step 53: The Affray
 	-- {area:392} Ratchet · {area:720} Fray Island · {npc:6236} Klannoc Macleod · {npc:6238} Big Will
 	["Ride south along the coast from {area:392} to {area:720}. {npc:6236} stands by the arena: step on the grate to start the fight; the challengers come one at a time, then {npc:6238} (33)."] = "从{area:392}沿海岸向南骑到{area:720}。{npc:6236}站在竞技场旁：踏上格栅开始战斗；挑战者依次上场，然后是{npc:6238}（33级）。",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Cast Teleport: {zone:1450} and take {npc:11798}'s flight to {area:1638}; {npc:3033} trains you on {area:1639}. Then fly to {zone:1454} and take the {zone:1458} zeppelin from the tower outside the main gate."] = "施放传送：{zone:1450}，乘{npc:11798}的飞行前往{area:1638}；{npc:3033}在{area:1639}训练你。然后飞往{zone:1454}，从正门外的塔楼乘飞艇前往{zone:1458}。",
-	-- ["The small elementals drift across the flats just west of Lotwil's camp. Every rock elemental in the zone can drop Jarkal's {npc:92} Shards: keep them."] = "小石元素在鲁特维尔营地西边不远的平地上飘荡。该地区所有石元素都可能掉落加卡尔要的{npc:92}碎片：留着。",
-	-- ["{npc:6236}: Berserker Stance"] = "{npc:6236}：狂暴姿态",
 }

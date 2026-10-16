@@ -13,7 +13,4 @@ return {
 	["The Forever client lists it at 200g and level 60, and asks for no riding rank."] = "Der Forever-Client listet ihn für 200g ab Stufe 60 und verlangt keinen Reitrang.",
 	-- {npc:13219} Jekyll Flandring
 	["{npc:13219}, 200g"] = "{npc:13219}, 200g",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Frostwolf Howler"] = "Frostwolfheuler",
 }

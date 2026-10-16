@@ -268,10 +268,4 @@ return {
 	-- {area:42} Darkshire
 	["Next: fly to {area:42}."] = "다음: {area:42}(으)로 날아가세요.",
 
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Follow the road east. Young {zone:1437} Crocolisks lurk in the pools north of the excavation site."] = "길을 따라 동쪽으로 가세요. 새끼 습지악어가 {zone:1437} 발굴 현장 북쪽 웅덩이에 숨어 있습니다.",
-	-- ["Kill the elementals for 5 Intact {quest:1016}, then use the {item:5456}"] = "정령을 처치해 온전한 {quest:1016} 5개를 모은 뒤 {item:5456}을(를) 사용하세요.",
-	-- ["Take the boat from {area:17203} to {area:442}. Join the two half pendants into the {item:15885} and cast Teleport: {zone:1450}: {npc:11802} is in {area:2361}. Then fly to {area:702} (by way of {area:442})."] = "{area:17203}에서 배를 타고 {area:442}(으)로 가세요. 펜던트 반쪽 두 개를 합쳐 {item:15885}을(를) 만들고 순간이동: {zone:1450}을(를) 시전하세요. {npc:11802}은(는) {area:2361}에 있습니다. 그런 다음 ({area:442}을(를) 거쳐) {area:702}(으)로 날아가세요.",
-	-- ["The Foulweald furbolgs live in the woods south of the road, south-east of {area:415}. {area:364} Watcher and the Ursas guard the den."] = "썩은나무일족 펄볼그는 {area:415} 남동쪽, 길 남쪽의 숲에 삽니다. {area:364} 보초와 펄볼그들이 굴을 지킵니다.",
-	-- ["{object:176364} Harbor"] = "{object:176364} 항구",
 }
