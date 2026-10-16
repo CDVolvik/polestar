@@ -6,7 +6,7 @@
 const { FORMAT, NEEDS, TOC_MARKER, TOC_TITLE_PREFIX } = require('../pack/format');
 const { header } = require('../generated');
 
-const GUIDE_KEYS = ['id', 'pack', 'title', 'faction', 'races', 'classes', 'minLevel', 'maxLevel', 'category', 'folder', 'keywords', 'collects', 'reward', 'why', 'zone', 'zoneName', 'next', 'nextChoices', 'pitch', 'pros', 'cons', 'author', 'version', 'group', 'names', 'steps'];
+const GUIDE_KEYS = ['id', 'pack', 'title', 'faction', 'races', 'classes', 'minLevel', 'maxLevel', 'category', 'folder', 'keywords', 'collects', 'reward', 'why', 'zone', 'zoneName', 'next', 'nextChoices', 'pitch', 'pros', 'cons', 'author', 'version', 'group', 'names', 'written', 'steps'];
 const STEP_KEYS = ['title', 'note', 'only', 'goals'];
 // Keys only the profession/reputation/exploration/achievement verbs use sit
 // where no other goal has a value, so adding them left older output unchanged.
@@ -128,9 +128,10 @@ function emitGuide(guide, sourceRel) {
 				out.push('\t\t\t\t},');
 			}
 			out.push('\t\t\t},');
-		} else if (k === 'names') {
-			// The English of the texts' name tokens (tools/lib/dsl/tokens.js), "kind:id" -> name.
-			out.push(`\t\t\tnames = { ${Object.keys(v).sort().map((t) => `[${luaString(t)}] = ${luaString(v[t])}`).join(', ')} },`);
+		} else if (k === 'names' || k === 'written') {
+			// The English of the texts' name tokens (tools/lib/dsl/tokens.js), "kind:id" -> name;
+			// written: the author's words of a text that spells a name otherwise, tokenised text -> words.
+			out.push(`\t\t\t${k} = { ${Object.keys(v).sort().map((t) => `[${luaString(t)}] = ${luaString(v[t])}`).join(', ')} },`);
 		} else if (Array.isArray(v)) out.push(`\t\t\t${k} = ${list(v, LIST_KEYS[k] || null)},`);
 		else out.push(`\t\t\t${k} = ${scalar(v)},`);
 	}

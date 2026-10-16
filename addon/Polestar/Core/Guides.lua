@@ -296,10 +296,13 @@ local function validate(def)
 		end
 	end
 	if def.why ~= nil and not isStr(def.why) then return "bad why" end
-	if def.names ~= nil then
-		if type(def.names) ~= "table" then return "bad names" end
-		for k, v in pairs(def.names) do
-			if not (isStr(k) and isStr(v)) then return "bad names" end
+	for _, key in ipairs({ "names", "written" }) do
+		local map = def[key]
+		if map ~= nil then
+			if type(map) ~= "table" then return "bad " .. key end
+			for k, v in pairs(map) do
+				if not (isStr(k) and isStr(v)) then return "bad " .. key end
+			end
 		end
 	end
 	for _, key in ipairs({ "races", "classes", "nextChoices", "pros", "cons", "keywords" }) do

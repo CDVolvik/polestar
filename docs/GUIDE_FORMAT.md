@@ -245,12 +245,17 @@ Class and Professions guides, or after "cast" or "your"; none another thing
 of the game shares, no profession rank spell, no spell owning something
 ("Blizzard's designers"), and no one-word spell used as a verb: taking an
 object or opening a sentence that goes on in lower case, "Polymorph a
-naga"). A place, NPC or
+naga"; nor a name of a faction of the client's `Faction` table, "Burning
+Blade"). A place, NPC or
 object the game names with a leading "The" matches without it ("Molsen
 Farm" is the game's "The Molsen Farm"), and a zone or area ending "City"
-without that ("Stormwind"): other languages show the game's name there, and
-an English client reads the author's own words (a guide spells each such name
-one way; another spelling of it stays words). A name in its
+without that ("Stormwind"). An NPC of the step's or the guide's own goals
+also matches by its first name ("Dalinda" for Dalinda Malem) where that
+word has four letters or more, no other NPC of the step (or guide) shares it,
+no other NPC of the data starts with it ("Defias" stays words), and the word
+after it is not the rest of the NPC's name ("Lashtail raptors"). Other
+languages show the game's name there, and an English client reads the
+author's own words (the compiled guide's `written`). A name in its
 English plural ("Harvest Watchers"), in lower case ("the Jansen Stead") or
 inside a longer word stays words, as does a name right next to a capitalised
 word or before "of <Capitalised>" that would make it a longer name the data
