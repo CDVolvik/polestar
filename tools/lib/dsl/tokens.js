@@ -596,16 +596,20 @@ function tokeniseGuides(guides, data) {
 		const seen = new Map(); // tokenised text -> the author's words
 		const written = {};
 		// Any spelling of a name is its token; the first one is the token's
-		// English in `names`.
+		// English in `names`, the NPC's whole name for a first name (what a
+		// client without the NPC's name shows; `written` keeps the author's
+		// words for English).
 		const any = (e) => {
 			const k = `${e.kind}:${e.id}`;
-			if (!(k in names)) names[k] = e.name;
+			if (!(k in names)) names[k] = e.next ? e.english : e.name;
 			return true;
 		};
 		// Only the token's English: for a text whose tokens read like another
 		// text's of other words ("Back to Dendrite", "Back to Dendrite
-		// Starblaze"), which `written` cannot tell apart.
+		// Starblaze"), which `written` cannot tell apart. A first name stays
+		// words there.
 		const same = (e) => {
+			if (e.next) return false;
 			const k = `${e.kind}:${e.id}`;
 			if (!(k in names)) names[k] = e.name;
 			return names[k] === e.name;
