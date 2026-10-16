@@ -66,6 +66,7 @@ const CLASS_SPECS = {
 	DRUID: ['Balance', 'Feral Combat', 'Restoration'],
 	MAGE: ['Arcane', 'Fire', 'Frost'],
 	PALADIN: ['Holy', 'Protection', 'Retribution'],
+	PRIEST: ['Discipline', 'Holy', 'Shadow'],
 	ROGUE: ['Assassination', 'Combat', 'Subtlety'],
 	SHAMAN: ['Elemental', 'Enhancement', 'Restoration'],
 	WARLOCK: ['Affliction', 'Demonology', 'Destruction'],
