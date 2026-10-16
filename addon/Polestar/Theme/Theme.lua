@@ -810,7 +810,11 @@ local CJK = { zhCN = true, zhTW = true, koKR = true }
 -- The face in use: "game", "inter" or "fira" (ui.font; "skin" follows the skin).
 function Theme.FontKey()
 	local f = get("ui.font")
-	if f == nil or f == "skin" or not (f == "game" or FAMILIES[f]) then f = SKIN_FONT[Theme.SkinKey()] end
+	local skin = Theme.SkinKey()
+	-- No setting at all (a Nav-only load, before UI registers its defaults):
+	-- Inter in the house style, as before skins.
+	if f == nil and skin == "polestar" then return "inter" end
+	if f == nil or f == "skin" or not (f == "game" or FAMILIES[f]) then f = SKIN_FONT[skin] end
 	return f
 end
 
