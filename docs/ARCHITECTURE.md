@@ -172,7 +172,7 @@ switch). `welcomeSeen` (UI/Welcome.lua) is the version of the welcome last
 seen: in `PolestarDB`, the account has had its welcome (later characters skip
 its Set up page); in `PolestarCharDB`, this character has (0 while due).
 `behavior.suggestFrom` (default `"guides"`) is the pack suggestions come from.
-Modules keep their own keys beside these (`rares`, `instances` account-wide;
+Modules keep their own keys beside these (`rares`, `instances`, `names` account-wide;
 `ui`, `routes`, `classTrainLevel`, `classTrainVisit`, `qol`, `flightTimes`,
 `flightNow`, `instanceRuns` per character), each described in its section or file header.
 
@@ -265,7 +265,11 @@ where it appears, so `i18n keys` and a translator find every key: a table of
 labels holds `L["Home"]`, not `"Home"` translated later through
 `L[VIEW_LABEL[v]]`. `L[variable]` is left only for text that comes from data
 (a guide's category, race and class names, profession and spec names, the
-release stage), each listed in `DATA_KEYS` (`tools/lib/i18n/keys.js`).
+talent plans' spec names, the release stage), each listed in `DATA_KEYS`
+(`tools/lib/i18n/keys.js`, which also reads Gear/Weights.lua's spec labels
+and Talents/Builds.lua's `specs`). The optional Recorder has its own `ns.L`
+and `Locales/<locale>.lua` (listed in its TOC); `i18n check` and `sync`
+cover it too.
 
 `Polestar.AI_LOCALES` names the languages whose translation is AI-made
 (`status: "ai"` in locales.js; `tests/i18n.test.js` keeps the two equal). On
@@ -274,29 +278,52 @@ Options > About says so, with the Discord invite.
 
 ### Names
 
-`Polestar.Names` (`Core/Names.lua`) names quests, NPCs, objects and items in
+`Polestar.Names` (`Core/Names.lua`) names quests, NPCs, objects, items,
+spells, factions, areas, instances, flight points and dungeon encounters in
 the client's language. The guides and data packs keep their English; where a
 name is shown or matched, the caller asks Names first and keeps its English
 when the answer is nil:
 
 ```
 Names.Quest(id) / Names.Npc(id) / Names.Object(id) / Names.Item(id) -> name | nil
+Names.Spell(id) / Names.Faction(id) / Names.Area(areaID) / Names.Instance(mapID)
+  / Names.Taxi(id) / Names.Encounter(id) -> name | nil
+Names.Get(kind, id) -> name | nil      -- the above by kind: quest npc object item
+                                       -- spell faction area map taxi encounter,
+                                       -- else the kind's pack table
 Names.Cached(kind, id) -> name | nil   -- never asks the server; items from the pack only
+Names.Learn(unit) -> name | nil        -- keeps the name the client shows for unit
 Names.Localised() -> bool              -- false on enUS and enGB
 Names.Ready() -> bool                  -- the pack is in, or will not load this session
 Names.PackName() -> "Polestar_Names_<locale>" | nil
-Names.Add(locale, kind, { [id] = name })   -- the pack's files only
+Names.Add(locale, kind, { [id] = name })   -- the pack's files only; any kind
 ```
 
 - **Order.** The client's own name first, where the client has an API by id:
-  a quest's title (`Compat.GetQuestTitle`, `C_QuestLog.GetTitleForQuestID`)
-  and an item's name (`Compat.GetItemName`, `C_Item.GetItemNameByID`). The
-  client has none for NPCs and objects. Then the names pack of the client's
+  a quest's title (`Compat.GetQuestTitle`, `C_QuestLog.GetTitleForQuestID`),
+  an item's name (`Compat.GetItemName`, `C_Item.GetItemNameByID`), a spell's
+  (`C_Spell.GetSpellName`, `GetSpellInfo`), a faction's (`C_Reputation`,
+  `GetFactionInfoByID`; a faction the character has not met falls to the
+  pack) and an area's (`Compat.GetAreaName`). An instance is the pack's
+  first (`map`, Map.csv), then `GetRealZoneText(mapID)` when that names
+  somewhere other than the current zone (an older client ignores the
+  argument). Flight points (`taxi`) and encounters are the pack's only.
+  Then the names pack of the client's
   language, `Polestar_Names_<GetLocale()>`, loaded through `Data.Pack` on the
   first ask (refused in combat, it loads when combat ends, fires
   `NAMES_LOADED` and redraws the guide window once; a missing
   folder is final for the session and harmless). Then nil. On an English
   client every answer is nil and nothing loads.
+- **Learned in play.** The client has no API for NPC or object names by id,
+  but it names the units it shows: on `PLAYER_TARGET_CHANGED`,
+  `UPDATE_MOUSEOVER_UNIT`, `NAME_PLATE_UNIT_ADDED` and the NPC windows
+  (`GOSSIP_SHOW`, `QUEST_GREETING`, `QUEST_DETAIL`, `QUEST_PROGRESS`,
+  `QUEST_COMPLETE`, `MERCHANT_SHOW`, `TRAINER_SHOW`: the `npc` unit, a
+  quest-giving object's GUID too) `Names.Learn` keeps the unit's name by its
+  GUID's id in `PolestarDB.names[<locale>].npc` / `.object` (account-wide,
+  per client language; player-controlled units are skipped). `Names.Npc`
+  and `Names.Object` answer a learned name before the pack's; a new or
+  changed one redraws the guide window once.
 - **Asking the server.** A quest or item the client has not cached is asked
   for once a session (`Compat.RequestQuest`, `Compat.RequestItem`); the
   pack's name, or the English, shows meanwhile. When asked names arrive
@@ -304,12 +331,22 @@ Names.Add(locale, kind, { [id] = name })   -- the pack's files only
   per burst refills the guide window's rows.
 - **Consumers.** The guide window's labels (`Engine` `describe`, the quest
   title order: on a non-English client the client's title before the guide's
-  English one), the target button's `/targetexact` (`QoL/Buttons.lua`), the
+  English one; skill goals' professions through `L`, learn and craft goals'
+  spells and rep goals' factions by id; the class trainer of
+  `Engine.NearestClassTrainer`), the target button's `/targetexact`
+  (`QoL/Buttons.lua`), the
   quest database's names (`QuestDB.GetQuestTitle`, `EntityName`, `GetNpc`,
   `GetItem`, `GetItemDroppers`, `GetObjectiveMobs`: tooltips and the target
   button's droppers), objective matching (`Quests/Tracker.lua`: a client line
   is matched on the translated name before falling back to order, and object
-  tooltips find their objectives by the translated name), and `Search`: on a
+  tooltips find their objectives by the translated name), the Codex's
+  records (`Codex.Item/Npc/Object/Quest`, an instance's bosses and
+  `Codex.Name` for those kinds: so Lookup, its sources, the item-tooltip
+  spotter and Rares read them translated), a dungeon page as it is decoded
+  (`Dungeons/Dungeons.lua`: quest titles, start and finish points, reward and
+  starting items, keys, bosses by encounter, NPC or object, attunement
+  names), the gear advice's leveling data (`ItemDB.ItemName`, `Quest`,
+  `Sources`), and `Search`: on a
   non-English client each Codex kind's index gets, once, a line per id whose
   translated name (or, for zones, the client's map name) differs, a match
   counts an id once and is listed under its translated name. The collect

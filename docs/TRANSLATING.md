@@ -24,7 +24,9 @@ Spain's and Latin America's clients use different words for game terms
 
 ## The file
 
-Each language has one file, `addon/Polestar/Locales/<locale>.lua`:
+Each language has one file, `addon/Polestar/Locales/<locale>.lua`, and one
+for the optional Recorder's few chat lines,
+`addon/Polestar_Recorder/Locales/<locale>.lua`, written the same way:
 
 ```lua
 -- German (deDE). ...
@@ -93,8 +95,11 @@ for your language from
   gained to the file, commented out at the end of its file's group, and moves
   translations of texts the code lost to the block at the end. It never
   changes a line that holds a translation. A language named that has no file
-  gets one, loaded from `addon/Polestar/Core/Core.xml`. Without a locale it
-  updates every existing file.
+  gets one, loaded from `addon/Polestar/Core/Core.xml` (a new Recorder file
+  goes in `Polestar_Recorder.toc` by hand). Without a locale it updates every
+  existing file. It covers Polestar and the Recorder; `--addon
+  Polestar_Recorder` (or `Polestar`) limits it, and `status`, `keys` and
+  `import` to that one (Polestar's by default).
 - `node tools/polestar.js i18n check [<locale>...]` lists each language's
   translated and missing counts and fails on a file Lua cannot load, a stale
   key (a translated text the code no longer has, outside the end block), a key
@@ -130,7 +135,10 @@ game's own. A client in another language reads them from the client where it
 has them (quest titles, item names) and from Polestar's names addon of its
 language, `Polestar_Names_<locale>` (DingDB's names, by Yendi, then pfQuest's
 for the ones DingDB lacks), loaded only on that client. A name neither has
-stays English. docs/ARCHITECTURE.md, "Names", has the details.
+stays English. The client is the truth: a name it shows in play (an NPC
+targeted, moused over or talked to, a quest-giving object opened) is kept,
+per language, and shown from then on. docs/ARCHITECTURE.md, "Names", has
+the details.
 
 - `node tools/polestar.js i18n names [<locale>...]` rebuilds the addons from
   DingDB (cloned into `data/sources/ding` at the commit pinned in
