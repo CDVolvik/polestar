@@ -93,6 +93,8 @@ test('Ratchet, the Barrens: the 62 yd walk along the north-east road across the 
 	const got = walk(from, to, 'Horde');
 	assert.ok(got, 'the engine finds a walk');
 	const pts = got.points;
+	const last = pts[pts.length - 1];
+	assert.ok(Math.hypot(last[0] - to.x, last[1] - to.y) < 10, 'to the spot');
 	let yards = 0;
 	for (let i = 1; i < pts.length; i++) yards += Math.hypot(pts[i][0] - pts[i - 1][0], pts[i][1] - pts[i - 1][1]);
 	const straight = Math.hypot(to.x - from.x, to.y - from.y);
