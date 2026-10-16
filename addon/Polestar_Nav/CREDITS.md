@@ -35,20 +35,14 @@ priced by the ground class of the node it enters and the player's faction
 (`Routing/Costs.lua`, Polestar's). Each keeps his copyright and the GPL notice
 under a header line saying where it started.
 
-**The map of Zephras Isle.** `Nav/Nav2991*.lua` is his, vendored: the data
-global is `PolestarPathData` and one header line names its upstream file and
-commit, his copyright and licence, and the date it was copied for Polestar
-(2026-10-16). `UPSTREAM.json` records the commit, that date and the sha256 of
-both files; `node tools/polestar.js nav vendor <checkout>` redoes the copy
-from a newer commit with the same mechanical change (it never touches
-`Routing/`), and `nav check` (and `tests/nav-vendor.test.js`) checks it.
+## Polestar's walking maps, grown from his format
 
-## Polestar's walking maps, in his format
-
-The walking maps of Eastern Kingdoms (`Nav/Nav0*.lua`) and Kalimdor
-(`Nav/Nav1*.lua`) are Polestar's: its navigation grid, built from the
+The walking maps of Eastern Kingdoms (`Nav/Nav0*.lua`), Kalimdor
+(`Nav/Nav1*.lua`) and Zephras Isle (`Nav/Nav2991*.lua`, his until
+2026-10-16) are Polestar's: its navigation grid, built from the
 Forever client's terrain, water and model collision (`nav build`), written in
-his map format by `tools/lib/nav/pack.js`, a port of his
+Polestar's map format 2 (his format plus a ground class per surface and
+per-faction graph costs) by `tools/lib/nav/pack.js`, which started as a port of his
 `tools/baker/gen_nav.py` and `tools/pack_nav.py` (Portions Copyright (C) 2026
 Cillian Berragan, GPL-3.0-or-later, used with his permission). They cut each
 map tile into 128 x 128 cells (4.17 yd, his are 8 yd), so the routes keep to

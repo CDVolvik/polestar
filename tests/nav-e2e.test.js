@@ -9,7 +9,7 @@
 // character in Goldshire is guided to the Fargodeep Mine; the engine's path
 // must come back through Nav/Walk.lua, Nav/Travel.lua and Nav.Sample to the
 // arrow. Every other arrow test fakes the engine (tests/nav-spf.test.js) and
-// the other real-engine tests call it directly (tests/nav-vendor.test.js): a
+// the other real-engine tests call it directly (tests/nav-maps.test.js): a
 // frame mismatch between the two (north/west swapped, a uiMapID for the
 // instance id, a dropped height) passes those and fails only here. Checks
 // name their docs/NAV_QA.md rows.
@@ -31,7 +31,7 @@ function skipReason() {
 	}
 	const data = needs('map-frames.json', 'zones.json');
 	if (data) return data;
-	if (!fs.existsSync(path.join(ADDONS, 'Polestar_Nav', 'Nav', 'Nav.xml'))) return 'addon/Polestar_Nav has no walking maps (node tools/polestar.js nav pack and nav vendor)';
+	if (!fs.existsSync(path.join(ADDONS, 'Polestar_Nav', 'Nav', 'Nav.xml'))) return 'addon/Polestar_Nav has no walking maps (node tools/polestar.js nav pack)';
 	if (!fs.existsSync(path.join(ADDONS, 'Polestar_Guides', 'MapFrames.lua'))) return 'addon/Polestar_Guides/MapFrames.lua not built (node tools/polestar.js compile)';
 	return false;
 }
@@ -123,7 +123,7 @@ local function offPath(points, x, y)
 	end
 	return best
 end
-local GOLDSHIRE = { -9444.062, 77.667, 57.353 } -- UnitPosition in front of the Lion's Pride Inn (tests/nav-vendor.test.js)
+local GOLDSHIRE = { -9444.062, 77.667, 57.353 } -- UnitPosition in front of the Lion's Pride Inn (tests/nav-maps.test.js)
 local LOWER_MOUTH = { -9791.249, 164.438, 27.373 } -- the Fargodeep Mine's lower mouth, likewise
 -- Goldshire, guided to the Fargodeep Mine (Elwynn, Era 39.5,82.4); frames run until the path is in.
 local function guide(map, x, y, label)
@@ -599,7 +599,7 @@ test('a corrupted grid block of the map leaves the straight arrow for that walk,
 	assert.ok(out.toTarget < 1, `the arrow points at the goal itself (${out.toTarget})`);
 });
 
-test('every one of the 49 zones the guides walk in routes on the shipped maps (one walk between two of its located goals, 80-400 yd apart), and Zephras Isle on his', { skip }, () => {
+test('every one of the 49 zones the guides walk in routes on the shipped maps (one walk between two of its located goals, 80-400 yd apart), and Zephras Isle too', { skip }, () => {
 	const { Geo } = require('../tools/lib/planner/geo');
 	const geo = new Geo(JSON.parse(fs.readFileSync(path.join(DATA, 'map-frames.json'), 'utf8')), JSON.parse(fs.readFileSync(path.join(DATA, 'zones.json'), 'utf8')));
 	const src = fs.readFileSync(path.join(ADDONS, 'Polestar_Guides', 'Guides.lua'), 'utf8');
@@ -650,7 +650,7 @@ emit(out)`,
 	assert.deepEqual(zones.map((z) => z.map), ZONES, 'the zones tested');
 	assert.equal(out.n, ZONES.length);
 	assert.deepEqual(Object.values(out.failed), [], 'every zone routes');
-	assert.ok(typeof out.zephras === 'number' && out.zephras > 100, `Zephras Isle routes on his map (${out.zephras})`);
+	assert.ok(typeof out.zephras === 'number' && out.zephras > 100, `Zephras Isle routes on its map (${out.zephras})`);
 });
 
 // Fitz, 2026-10-16: a map marker near Astranaar; the route landed at a flight

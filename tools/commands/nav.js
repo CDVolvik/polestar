@@ -5,12 +5,12 @@
 // `nav path` routes between two map points on it (tools/lib/nav/path.js);
 // `nav aids` generates the arrow's crossings, open borders and approach
 // chains from it and measures them (tools/lib/nav/aids.js, arrow.js).
-// `nav pack` writes Polestar's walking maps of Eastern Kingdoms and Kalimdor
-// from the grid into addon/Polestar_Nav in Shortest Path Forever's format
-// (tools/lib/nav/pack.js, chokepoints.js); `nav vendor` / `nav check` copy
-// his map of Zephras Isle there and hold the folder to UPSTREAM.json and
-// PACK.json (tools/lib/nav/vendor.js; docs/ARCHITECTURE.md, "In-game walking
-// routes"); the walking router (Routing/) is Polestar's, started from his.
+// `nav pack` writes Polestar's walking maps of Eastern Kingdoms, Kalimdor and
+// Zephras Isle from the grid and the ground layers into addon/Polestar_Nav
+// (maps format 2; tools/lib/nav/pack.js, chokepoints.js) and `nav check`
+// holds the folder to its PACK.json (docs/ARCHITECTURE.md, "In-game walking
+// routes"); the walking router (Routing/) is Polestar's, started from
+// Shortest Path Forever's.
 // `nav eval` runs that router standalone on a folder's
 // maps over a route corpus and a per-zone goal sweep, and judges two folders
 // against the walking maps' acceptance checks (tools/lib/nav/eval).
@@ -26,8 +26,7 @@ const NAV_ADDON = path.join(ROOT, 'addon', 'Polestar_Nav');
 const usage = `usage: node tools/polestar.js nav build [--continents 0,1] [--force] [--offline] [--workers N] [--out <dir>] [--product <p>]
        node tools/polestar.js nav path <map> <x>,<y> <map> <x>,<y> [--class C] [--level N] [--frame era|forever] [--json] [--dir <dir>]
        node tools/polestar.js nav aids [--out <file>] [--lua <file>] [--report] [--continents 0,1] [--workers N] [--reference <file>] [--dir <dir>]
-       node tools/polestar.js nav pack [--cells N] [--date <YYYY-MM-DD>] [--dir <grid dir>] [--out <dir>] | nav pack --check [--out <dir>]
-       node tools/polestar.js nav vendor <shortest-path-forever checkout> [--out <dir>] [--date <YYYY-MM-DD>]
+       node tools/polestar.js nav pack [--cells N] [--date <YYYY-MM-DD>] [--dir <grid dir>] [--layers <dir>] [--out <dir>] | nav pack --check [--out <dir>]
        node tools/polestar.js nav check [--out <dir>]
        node tools/polestar.js nav eval [--nav <Polestar_Nav dir>] [--baseline <dir or eval .json>] [--routes <file>] [--sweep] [--out <file.json>]
        node tools/polestar.js nav layers roads [--c 0|1] [--allowlist] [--offline] [--product <p>]
@@ -56,39 +55,23 @@ aids    the arrow's aids from the grid (tools/lib/nav/aids.js): zone
         aids-report.json and aids-report.md next to --out, comparing with the
         reference crossings file (--reference, default
         data/local/crossings.json; read only).
-pack    Polestar's walking maps of maps 0 (Eastern Kingdoms) and 1
-        (Kalimdor) from the grid (--dir, default data/local/nav; grid version
-        3 or 4) in Shortest Path Forever's walking-map format
-        (tools/lib/nav/pack.js, a port of his gen_nav.py and pack_nav.py), with
-        Chokepoints.lua (lifts, bridges, gates, tunnels, cave and building
+pack    Polestar's walking maps of maps 0 (Eastern Kingdoms), 1 (Kalimdor)
+        and 2991 (Zephras Isle) from the grid (--dir, default data/local/nav;
+        grid version 3 or 4, 4 for the slope classes) and the ground layers
+        (--layers, default data/local/nav-layers: roads and hubs, from nav
+        layers), in maps format 2: a ground class per surface (road, gentle
+        or steep slope, indoor, indoor city, Alliance and Horde hubs) and
+        every graph edge priced per faction (tools/lib/nav/pack.js, grown
+        from a port of Shortest Path Forever's gen_nav.py and pack_nav.py),
+        with Chokepoints.lua (lifts, bridges, gates, tunnels, cave and building
         mouths, passes; tools/lib/nav/chokepoints.js), into
-        addon/Polestar_Nav (--out): Nav/Nav0*.lua, Nav/Nav1*.lua,
+        addon/Polestar_Nav (--out): Nav/Nav<map>*.lua,
         Nav/Chokepoints.lua, PACK.json (grid build, cells, date, sizes, sha256
         of every file) and Nav/Nav.xml. --cells cuts each ADT tile into N x N
         cells (default 128, 4.17 yd); --date dates the generated headers
-        (default today; the same grid, cells and date give the same bytes).
-        --check only compares the folder with PACK.json.
-vendor  copies Shortest Path Forever's walking maps of the maps Polestar
-        does not pack (Nav/Nav2991*.lua, Zephras Isle) from a
-        clean git checkout whose origin is
-        https://github.com/cjber/shortest-path-forever (https or ssh; any
-        uncommitted or untracked change, or another origin, is refused)
-        into addon/Polestar_Nav (--out: a folder with an UPSTREAM.json, or a
-        new, empty one), by Cillian Berragan,
-        GPL-3.0-or-later. The only change is mechanical: the data global
-        ShortestPathForeverPathData becomes PolestarPathData (Polestar always
-        reads its own copy of the maps), and each file gets a header line
-        naming its upstream file, commit, his copyright and licence and the
-        date of the change (GPLv3 section 5a; --date, default today). Only
-        map files named Nav<name>.lua are taken from Nav.xml; any other name
-        stops the copy. Writes UPSTREAM.json (repo, commit, version, vendored
-        date, sha256 of every vendored file) and Nav/Nav.xml. Files the
-        previous UPSTREAM.json listed that the new commit no longer has are
-        removed; no other file in the folder is touched (Polestar's packed
-        maps and the walking router in Routing/, Polestar's since 2026-10-16,
-        stay). Update CREDITS.md's commit line by hand.
-check   the vendored files match UPSTREAM.json and the transform, the packed
-        maps PACK.json, and Nav/Nav.xml lists both.
+        (default today; the same grid, layers, cells and date give the same
+        bytes). --check only compares the folder with PACK.json.
+check   the walking maps match PACK.json and Nav/Nav.xml lists them.
 eval    the walking router run standalone (LuaJIT, else Lua 5.1; a folder
         without its own Routing takes the repository's) on a folder's maps
         (--nav, default addon/Polestar_Nav): the route corpus (--routes,
@@ -321,36 +304,16 @@ async function aids(argv) {
 	return 0;
 }
 
-async function vendorCmd(argv) {
-	const { opts: o, positional, error } = parseArgs(argv, { flags: [], options: ['--out', '--date'] });
-	if (error) throw usageError(error);
-	if (positional.length !== 1) throw usageError('nav vendor needs the Shortest Path Forever checkout');
-	const { vendor } = require('../lib/nav/vendor');
-	const out = o.out ? path.resolve(o.out) : NAV_ADDON;
-	let res;
-	try {
-		const src = path.resolve(positional[0]);
-		res = o.date ? vendor(src, out, undefined, o.date) : vendor(src, out);
-	} catch (e) {
-		console.error(`nav vendor failed: ${e.message}`);
-		return 1;
-	}
-	console.log(`vendored ${Object.keys(res.files).length} files from Shortest Path Forever ${res.version || '(no version)'} at ${res.commit} into ${path.relative(process.cwd(), out) || '.'}`);
-	for (const rel of res.removed) console.log(`removed ${rel} (no longer upstream)`);
-	return 0;
-}
-
 async function checkCmd(argv) {
 	const { opts: o, positional, error } = parseArgs(argv, { flags: [], options: ['--out'] });
 	if (error) throw usageError(error);
 	if (positional.length) throw usageError('nav check takes no folder argument');
-	const { checkVendored } = require('../lib/nav/vendor');
 	const { checkPack } = require('../lib/nav/pack');
 	const out = o.out ? path.resolve(o.out) : NAV_ADDON;
-	const problems = [...checkVendored(out), ...checkPack(out)];
+	const problems = checkPack(out);
 	for (const p of problems) console.error(`nav check: ${p}`);
 	if (problems.length) return 1;
-	console.log('nav check: the vendored files match UPSTREAM.json and the packed maps PACK.json');
+	console.log('nav check: the walking maps match PACK.json');
 	return 0;
 }
 
@@ -359,25 +322,47 @@ async function checkCmd(argv) {
 function packPlaces(dir) {
 	const { Geo } = require('../lib/planner/geo');
 	const { areaNames } = require('../lib/nav/chokepoints');
-	const { parseCsv } = require('../lib/data/csv');
 	const optional = (file) => (fs.existsSync(file) ? JSON.parse(fs.readFileSync(file, 'utf8')) : null);
-	const wago = path.join(SOURCES, 'wago');
-	const builds = fs.existsSync(wago) ? fs.readdirSync(wago).filter((b) => fs.existsSync(path.join(wago, b, 'AreaTable.csv'))) : [];
-	if (!builds.length) throw Object.assign(new Error(`no AreaTable.csv under ${wago} (node tools/polestar.js data build)`), { exit: 1 });
-	builds.sort((a, b) => a.localeCompare(b, 'en', { numeric: true }));
 	return {
 		aids: optional(path.join(dir, 'aids.json')),
 		lifts: optional(path.join(dir, 'lifts.json')) || {},
 		geo: new Geo(readJson(path.join(DATA, 'map-frames.json')), readJson(path.join(DATA, 'zones.json'))),
-		areas: areaNames(parseCsv(fs.readFileSync(path.join(wago, builds[builds.length - 1], 'AreaTable.csv'), 'utf8'))),
+		areas: areaNames(areaTableRows()),
 	};
 }
 
+// The client's AreaTable rows (the newest build under data/sources/wago).
+function areaTableRows() {
+	const { parseCsv } = require('../lib/data/csv');
+	const wago = path.join(SOURCES, 'wago');
+	const builds = fs.existsSync(wago) ? fs.readdirSync(wago).filter((b) => fs.existsSync(path.join(wago, b, 'AreaTable.csv'))) : [];
+	if (!builds.length) throw Object.assign(new Error(`no AreaTable.csv under ${wago} (node tools/polestar.js data build)`), { exit: 1 });
+	builds.sort((a, b) => a.localeCompare(b, 'en', { numeric: true }));
+	return parseCsv(fs.readFileSync(path.join(wago, builds[builds.length - 1], 'AreaTable.csv'), 'utf8'));
+}
+
+// The ground layers the maps' classes come from (pack.js readLayers): roads and hubs from `nav layers` in dir, the
+// capitals by the AreaTable and the zone map around a chunk (data/forever map-frames and zones).
+function packLayers(dir) {
+	const { readLayers } = require('../lib/nav/pack');
+	const { Frames } = require('../lib/travel/geo');
+	const zonesJson = readJson(path.join(DATA, 'zones.json'));
+	const frames = new Frames(readJson(path.join(DATA, 'map-frames.json')).era, zonesJson);
+	const zoneAt = (c, x, y) => {
+		const z = frames.containing(c, x, y).map((m) => zonesJson[String(m.map)]).find((m) => m && m.areaId);
+		return z ? Number(z.areaId) : 0;
+	};
+	try {
+		return readLayers({ dir, areaTable: areaTableRows(), zoneAt });
+	} catch (e) {
+		throw Object.assign(e, { exit: 1 });
+	}
+}
+
 async function packCmd(argv) {
-	const { opts: o, positional, error } = parseArgs(argv, { flags: ['--check'], options: ['--cells', '--out', '--dir', '--date'] });
+	const { opts: o, positional, error } = parseArgs(argv, { flags: ['--check'], options: ['--cells', '--out', '--dir', '--date', '--layers'] });
 	if (error || positional.length) throw usageError(error || `unexpected argument "${positional[0]}"`);
-	const { packNav, shipPack, checkPack } = require('../lib/nav/pack');
-	const { OWN_MAPS } = require('../lib/nav/vendor');
+	const { packNav, shipPack, checkPack, MAPS } = require('../lib/nav/pack');
 	const out = o.out ? path.resolve(o.out) : NAV_ADDON;
 	if (o.check) {
 		const problems = checkPack(out);
@@ -394,7 +379,8 @@ async function packCmd(argv) {
 	const { TILE_VERSIONS } = require('../lib/nav/grid/format');
 	const version = JSON.parse(fs.readFileSync(path.join(dir, 'index.json'), 'utf8')).version;
 	if (!TILE_VERSIONS.includes(version)) throw Object.assign(new Error(`${dir} is grid version ${version}, this code reads ${TILE_VERSIONS.join(' or ')}: rebuild it with \`node tools/polestar.js nav build\``), { exit: 1 });
-	const files = await packNav({ dir, cells, continents: OWN_MAPS, places: packPlaces(dir), date: o.date, log: (m) => console.error(m) });
+	const layers = packLayers(o.layers ? path.resolve(o.layers) : path.join(ROOT, 'data', 'local', 'nav-layers'));
+	const files = await packNav({ dir, cells, continents: MAPS, places: packPlaces(dir), layers, date: o.date, log: (m) => console.error(m) });
 	const { written, removed } = shipPack(files, out);
 	const bytes = [...files.values()].reduce((s, c) => s + Buffer.byteLength(c), 0);
 	console.log(`nav pack: ${written.length} files, ${(bytes / 1e6).toFixed(1)} MB at ${cells} cells per tile in ${path.relative(process.cwd(), out) || '.'}`);
@@ -549,7 +535,7 @@ async function hubsLayer(argv) {
 	return 0;
 }
 
-const SUBCOMMANDS = { build, path: route, aids, pack: packCmd, vendor: vendorCmd, check: checkCmd, eval: evalCmd, layers: layersCmd };
+const SUBCOMMANDS = { build, path: route, aids, pack: packCmd, check: checkCmd, eval: evalCmd, layers: layersCmd };
 
 async function run(argv) {
 	const [sub, ...rest] = argv;

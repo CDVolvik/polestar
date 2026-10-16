@@ -3,7 +3,8 @@
 // drawn line against our grid and the ground layers.
 //
 //   metrics(result, { grid, layers, map }) -> null when not ok, else
-//     { yards, seconds, blocked, offRoad, hubYards: { Alliance, Horde }, maxClimbDeg, indoorYards }
+//     { yards, seconds, blocked, offRoad, hubYards: { Alliance, Horde }, hubYardsAway: { Alliance, Horde },
+//       endHubs: { Alliance: [name], Horde: [name] }, maxClimbDeg, indoorYards }
 //   loadLayers(dir = data/local/nav-layers) -> { roads, hubs } (each null when not built)
 //
 // yards: the router's own (job.yards) when it gives them, else the drawn
@@ -13,25 +14,36 @@
 // pieces, nav.los between consecutive piece ends; null without a grid.
 // maxClimbDeg: the steepest uphill between consecutive points (degrees;
 // points under 1 yd apart on the ground, a lift's rise, are skipped).
-// offRoad: the share of the drawn line on columns whose road weight is under
-// half (roads layer, data/local/nav-layers/roads/<c>/<col>_<row>.bin, one
-// byte per grid column, index j * 256 + i); hubYards: per side, the yards a
+// offRoad: the share of the drawn line (by its SAMPLE yd pieces) with no road
+// column within NEAR_ROAD yd (a player that close to the painted road is on
+// it, and the drawn line is straightened over 4.17 yd cells); a road column
+// has road weight ROAD or more (roads layer,
+// data/local/nav-layers/roads/<c>/<col>_<row>.bin, one byte per grid column,
+// index j * 256 + i); hubYards: per side, the yards a
 // player of that side walks inside hubs hostile to it (hubYards.Horde: yards
 // in Alliance hubs; hubs.json, per continent [{ id, side (the owner), name,
-// disks: [[x, y, r]] }]); indoorYards: yards on indoor ground
+// disks: [[x, y, r]] }]); hubYardsAway: the same without the hubs an end
+// of the line lies in (endHubs, per side the names of those hubs hostile to
+// it: a route to a town of the other side enters it on purpose); indoorYards: yards on indoor ground
 // (layers.indoor(c, x, y, z) -> bool, from the ground classes). Each null
 // until its layer exists.
 
 const fs = require('node:fs');
 const path = require('node:path');
 const { ROOT } = require('../../paths');
-const { cellOf, tileKey, TILE_CELLS } = require('../grid/format');
+const { cellOf, tileKey, TILE_CELLS, CELL } = require('../grid/format');
 
 const LAYERS = path.join(ROOT, 'data', 'local', 'nav-layers');
 const RUN = 7; // yd/s: a cost in running yards over seconds
 const PIECE = 8; // yd: blocked-share pieces (0.2.4's eval)
 const SAMPLE = 2; // yd: layer samples along the line
 const ROAD = 128; // road weight from which a column is road (half the alpha)
+const NEAR_ROAD = 4; // yd: a line piece this close to a road column is on the road
+// Offsets (yd) of the columns around a point within NEAR_ROAD.
+const AROUND = [];
+for (let dx = -Math.ceil(NEAR_ROAD / CELL); dx <= Math.ceil(NEAR_ROAD / CELL); dx++) {
+	for (let dy = -Math.ceil(NEAR_ROAD / CELL); dy <= Math.ceil(NEAR_ROAD / CELL); dy++) if (Math.hypot(dx, dy) * CELL <= NEAR_ROAD) AROUND.push([dx * CELL, dy * CELL]);
+}
 const HOSTILE_TO = { Alliance: 'Horde', Horde: 'Alliance' }; // a hub's owner -> the side it is hostile to
 
 const flat = (a, b) => Math.hypot(b[0] - a[0], b[1] - a[1]);
@@ -99,27 +111,47 @@ function metrics(result, { grid = null, layers = {}, map = result.map } = {}) {
 		let off = 0;
 		let known = 0;
 		along(pts, (x, y, z, L) => {
-			const w = layers.roads(map, x, y);
-			if (w === null) return;
+			if (layers.roads(map, x, y) === null) return;
 			known += L;
-			if (w < ROAD) off += L;
+			if (!AROUND.some(([dx, dy]) => (layers.roads(map, x + dx, y + dy) || 0) >= ROAD)) off += L;
 		});
 		offRoad = known ? off / known : null;
 	}
 	let hubYards = null;
+	let hubYardsAway = null;
+	let endHubs = null;
 	if (layers.hubs) {
 		hubYards = { Alliance: 0, Horde: 0 };
+		hubYardsAway = { Alliance: 0, Horde: 0 };
+		endHubs = { Alliance: [], Horde: [] };
 		const hubs = layers.hubs[map] || layers.hubs[String(map)] || [];
+		const holds = (h, x, y) => h.disks.some(([hx, hy, r]) => Math.hypot(x - hx, y - hy) <= r);
+		// The hubs an end of the line lies in, by the side they are hostile to.
+		const atEnd = new Set();
+		for (const p of pts.length ? [pts[0], pts[pts.length - 1]] : []) {
+			for (const h of hubs) {
+				if (!HOSTILE_TO[h.side] || atEnd.has(h) || !holds(h, p[0], p[1])) continue;
+				atEnd.add(h);
+				endHubs[HOSTILE_TO[h.side]].push(h.name);
+			}
+		}
 		// A hub's side is its owner; its yards count for the other side (a Horde player in an Alliance hub).
 		along(pts, (x, y, z, L) => {
 			const inside = new Set();
+			const away = new Set();
 			for (const h of hubs) {
 				const hostileTo = HOSTILE_TO[h.side];
-				if (hostileTo && !inside.has(hostileTo) && h.disks.some(([hx, hy, r]) => Math.hypot(x - hx, y - hy) <= r)) inside.add(hostileTo);
+				if (!hostileTo || (inside.has(hostileTo) && away.has(hostileTo)) || !holds(h, x, y)) continue;
+				inside.add(hostileTo);
+				if (!atEnd.has(h)) away.add(hostileTo);
 			}
 			for (const side of inside) hubYards[side] += L;
+			for (const side of away) hubYardsAway[side] += L;
 		});
-		for (const side of Object.keys(hubYards)) hubYards[side] = +hubYards[side].toFixed(1);
+		for (const side of Object.keys(hubYards)) {
+			hubYards[side] = +hubYards[side].toFixed(1);
+			hubYardsAway[side] = +hubYardsAway[side].toFixed(1);
+		}
 	}
 	let indoorYards = null;
 	if (layers.indoor) {
@@ -135,6 +167,8 @@ function metrics(result, { grid = null, layers = {}, map = result.map } = {}) {
 		blocked: grid && grid.available !== false ? +blockedShare(grid, map, pts).toFixed(4) : null,
 		offRoad: offRoad === null ? null : +offRoad.toFixed(4),
 		hubYards,
+		hubYardsAway,
+		endHubs,
 		maxClimbDeg: maxClimb(pts),
 		indoorYards,
 	};

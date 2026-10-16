@@ -90,6 +90,37 @@ test('metrics: yards from the drawn line, the steepest climb between points; blo
 	const home = metrics({ ok: true, cost: 30, pts: [[0, 0, 0], [30, 0, 0]] }, { grid: null, layers: hubsLayer, map: 0 });
 	assert.equal(home.hubYards.Horde, 0, 'a Horde walk out of its own hub counts 0');
 	assert.ok(Math.abs(home.hubYards.Alliance - 10) <= 1, `an Alliance player in the Horde hub: ${home.hubYards.Alliance}`);
+	// hubYardsAway: the same without the hubs an end lies in (endHubs, by the side they are hostile to).
+	assert.deepEqual(through.endHubs, { Alliance: [], Horde: [] });
+	assert.equal(through.hubYardsAway.Horde, through.hubYards.Horde, 'both ends outside: every hostile yard counts');
+	assert.deepEqual(home.endHubs, { Alliance: ['Tarren Mill'], Horde: [] });
+	assert.equal(home.hubYardsAway.Alliance, 0, 'an Alliance walk out of the Horde hub it starts in');
+	const into = metrics({ ok: true, cost: 70, pts: [[-30, 0, 0], [50, 0, 0]] }, { grid: null, layers: hubsLayer, map: 0 });
+	assert.deepEqual(into.endHubs, { Alliance: [], Horde: ['Southshore'] });
+	assert.ok(Math.abs(into.hubYards.Horde - 10) <= 1 && into.hubYardsAway.Horde === 0, `into Southshore: ${into.hubYards.Horde} in all, ${into.hubYardsAway.Horde} away`);
+});
+
+test('metrics: offRoad counts a piece of the line with a road column within 4 yd as on the road', () => {
+	const { metrics } = require('../tools/lib/nav/eval/metrics');
+	// A road 2 yd wide along y = 0 (weight 200), plain ground (0) elsewhere.
+	const layers = { roads: (c, x, y) => (Math.abs(y) < 1 ? 200 : 0) };
+	const at = (y) => metrics({ ok: true, cost: 100, pts: [[0, y, 0], [100, y, 0]] }, { grid: null, layers, map: 0 }).offRoad;
+	assert.equal(at(0), 0, 'on the road');
+	assert.equal(at(3), 0, '3 yd beside it: on it');
+	assert.equal(at(7), 1, '7 yd beside it: off it');
+	const half = metrics({ ok: true, cost: 100, pts: [[0, 0, 0], [50, 0, 0], [50, 50, 0]] }, { grid: null, layers, map: 0 }).offRoad;
+	assert.ok(Math.abs(half - 0.46) < 0.03, `the second half leaves the road: ${half}`);
+});
+
+test('compare: a hub route with an end inside a hostile hub is held to its yards in the other hostile hubs (A2)', () => {
+	const { evaluateExpectations } = require('../tools/lib/nav/eval/compare');
+	const expect = [{ type: 'metric', metric: 'hubYards.Horde', op: '==', value: 0 }];
+	const route = (away, ends) => ({ expect, result: { ok: true }, metrics: { hubYards: { Alliance: 0, Horde: 48.2 }, hubYardsAway: { Alliance: 0, Horde: away }, endHubs: { Alliance: [], Horde: ends } } });
+	const [inside] = evaluateExpectations(route(0, ['Southshore']));
+	assert.equal(inside.pass, true);
+	assert.match(inside.detail, /^hubYardsAway\.Horde 0 \(want == 0\) \(an end inside Southshore; 48\.2 yd in all\)$/);
+	assert.equal(evaluateExpectations(route(5, ['Southshore']))[0].pass, false, 'another hostile hub on the way fails');
+	assert.equal(evaluateExpectations(route(0, []))[0].pass, false, 'both ends outside: every hostile yard fails');
 });
 
 test('compare: A1 fails when a route that was ok becomes unreachable; the same maps pass; checks without data are n/a', () => {
@@ -148,4 +179,23 @@ test('the route corpus: ids unique, every kind present, 20+ reference routes; ev
 	}
 	assert.ok(converted >= 16, `${converted} zone-map ends`);
 	assert.deepEqual(far, [], 'every converted end within 10 yd of a walkable surface');
+});
+
+test('the route corpus: a hub route marked `outside` has both ends at least that far outside every hub hostile to its profile', { skip: needs('map-frames.json', 'zones.json') || (fs.existsSync(path.join(ROOT, 'data', 'local', 'nav-layers', 'hubs.json')) ? false : 'no hubs layer (nav layers hubs)') }, () => {
+	const { loadCorpus, resolveRoutes } = require('../tools/lib/nav/eval/run');
+	const { Geo } = require('../tools/lib/planner/geo');
+	const hubs = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'local', 'nav-layers', 'hubs.json'), 'utf8'));
+	const geo = new Geo(JSON.parse(fs.readFileSync(path.join(DATA, 'map-frames.json'), 'utf8')), JSON.parse(fs.readFileSync(path.join(DATA, 'zones.json'), 'utf8')));
+	const corpus = loadCorpus();
+	const marked = corpus.routes.filter((r) => r.outside);
+	assert.ok(marked.length >= 2, 'strict twins of the hub routes');
+	for (const [i, r] of resolveRoutes(marked, geo).entries()) {
+		const want = marked[i].outside;
+		const hostile = (hubs[r.map] || []).filter((h) => h.side !== r.profile);
+		for (const end of ['from', 'to']) {
+			const [wx, wy] = r[end];
+			const gap = Math.min(...hostile.flatMap((h) => h.disks.map(([x, y, rad]) => Math.hypot(wx - x, wy - y) - rad)));
+			assert.ok(gap >= want, `${r.id} ${end}: ${gap.toFixed(1)} yd outside the nearest hostile hub disk (want >= ${want})`);
+		}
+	}
 });

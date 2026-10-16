@@ -3744,9 +3744,10 @@ fileDataID from wago.tools into `data/sources/casc` (local, never shipped):
   the per-tile graph otherwise, then smooths the path; `los` tests a
   straight walkable line. `nav path` prints one route.
 - **Packing for the in-game engine** (`nav pack`, `tools/lib/nav/pack.js`,
-  rules in its header): the grid in Shortest Path Forever's walking-map
-  format (his baker's HPA* and encodings, ported), so the router in
-  `Polestar_Nav` (started from his engine) routes on it. Each SPF cell (128 per tile by default, 4.17
+  rules in its header): the grid as Polestar's walking maps (format 2,
+  grown from Shortest Path Forever's walking-map format: his baker's HPA*
+  and encodings, ported), which the router in `Polestar_Nav` (started from
+  his engine) routes on. Each SPF cell (128 per tile by default, 4.17
   yd) holds the connected pieces of our surfaces in its columns (base plus
   floors; a wall inside a cell keeps its sides apart); a step between cells
   is open only where one of our links crosses it, so walls and cliffs close
@@ -3766,9 +3767,16 @@ fileDataID from wago.tools into `data/sources/casc` (local, never shipped):
   hops are both shorter (gen_nav.py's 2% rule let two entrances a few yards
   apart at the end of a long walk prune each other's edge, cutting a region
   in two; it cut 14 guide goals off with faces held back, Thunder Bluff's
-  among them). A route down a face goes round as well; slopes under 50° still
-  cost only their flat length in his search (a height-aware step cost is his
-  engine's to add). `chokepoints.js` adds `Chokepoints.lua`
+  among them). A route down a face goes round as well. Every surface
+  carries a ground class byte (normal, road, gentle slope, steep slope,
+  indoor, indoor city, plus an Alliance and a Horde hub bit): the steepest
+  terrain triangle under it (grid format 4's tslope) against the slope
+  bands, the indoor flag (indoor city where the chunk's area or the zone
+  map around it is a capital, AreaTable `Flags_0 & 0x100`), the roads layer
+  and the hubs layer (`nav layers`, a hub bit on every cell a hub disk
+  touches); `Routing/Costs.lua` (mirrored in `tools/lib/nav/costs.js`)
+  prices a step by it, per faction, and every graph edge carries its cost
+  for Alliance, Horde and no profile and its yards. `chokepoints.js` adds `Chokepoints.lua`
   (`PolestarNavChokepoints[map]`: lift landings, bridges, gates at passages,
   tunnels, cave and building mouths, passes, each named by its AreaTable
   area) for the journey's named walk steps.

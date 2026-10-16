@@ -84,7 +84,7 @@ Replace `0.2.0` with the new version throughout.
    rm -rf dist && node tools/polestar.js pack
    (cd dist && sha256sum -c SHA256SUMS)
    unzip -l dist/Polestar-0.2.0.zip      # Polestar_Codex/ with its LICENSE-DATA.txt, and Polestar_Nav/ with its LICENSE and CREDITS.md, are listed
-   node tools/polestar.js nav check      # Polestar_Nav matches its UPSTREAM.json
+   node tools/polestar.js nav check      # Polestar_Nav's walking maps match its PACK.json
    ```
 
 5. Smoke-test the zips as a player gets them: unpack both into an empty

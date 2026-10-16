@@ -3,7 +3,7 @@
 		"nav eval's route corpus (tools/lib/nav/eval/run.js resolves it, compare.js judges it).",
 		"An end is a world point [x, y, z|null] on the route's map (0 Eastern Kingdoms, 1 Kalimdor; UnitPosition's frame), or a zone-map point { uiMap, x, y } in the live frame (the map coordinates players see), converted by map-frames.json.",
 		"kind: reference (0.2.4's measured routes, NavPack's queries-eval.txt and queries-fix.txt: every route line; a|lift|n id is one leg of a lift route, lost|zone|a|b and lostback|zone|a|b a guide goal the face rule first cut off (NavPack), walked from and to the nearest goal of its zone still joined), reported (#98), hub, road, building, slope.",
-		"expect: compare.js evaluateExpectations; a metric that needs a layer not built yet is n/a. Raptor Horns' face middle: 8 yd from the start towards the end, z 90."
+		"expect: compare.js evaluateExpectations; a metric that needs a layer not built yet is n/a; hubYards.<side> of a route with an end inside a hub hostile to that side reads the yards in the other hostile hubs (hubYardsAway). outside: both ends lie at least that many yards outside every hub disk hostile to the profile (tests/nav-eval.test.js checks it against hubs.json), so such a route is held to 0 yd in all of them. Raptor Horns' face middle: 8 yd from the start towards the end, z 90."
 	],
 	"routes": [
 		{"id":"kharanos-frostmane","kind":"reference","map":0,"from":[-5617.25,-497.892,401.493],"to":[-5551.583,575.758,395.231],"profile":null,"expect":[]},
@@ -95,6 +95,8 @@
 		{"id":"hub-tarrenmill-southshore-road","kind":"hub","from":{"uiMap":1424,"x":62,"y":20},"to":{"uiMap":1424,"x":52,"y":50},"profile":"Horde","expect":[{"type":"metric","metric":"hubYards.Horde","op":"==","value":0}]},
 		{"id":"hub-tarrenmill-inside-southshore","kind":"hub","from":{"uiMap":1424,"x":62,"y":20},"to":{"uiMap":1424,"x":51,"y":58},"profile":"Horde","expect":[{"type":"ok"},{"type":"hubs","includes":"Southshore"}]},
 		{"id":"hub-astranaar-crossroads-south","kind":"hub","from":{"uiMap":1440,"x":36.6,"y":49.6},"to":{"uiMap":1413,"x":51,"y":35},"profile":"Alliance","expect":[{"type":"metric","metric":"hubYards.Alliance","op":"==","value":0}]},
+		{"id":"hub-crossroads-astranaar-west-outside","kind":"hub","outside":60,"from":{"uiMap":1413,"x":51.5,"y":30.3},"to":{"uiMap":1440,"x":32,"y":50},"profile":"Horde","expect":[{"type":"metric","metric":"hubYards.Horde","op":"==","value":0}]},
+		{"id":"hub-tarrenmill-southshore-north-outside","kind":"hub","outside":60,"from":{"uiMap":1424,"x":62,"y":20},"to":{"uiMap":1424,"x":52,"y":44},"profile":"Horde","expect":[{"type":"metric","metric":"hubYards.Horde","op":"==","value":0}]},
 		{"id":"road-goldshire-sentinelhill","kind":"road","from":{"uiMap":1429,"x":42,"y":65},"to":{"uiMap":1436,"x":56.5,"y":47.5},"profile":null,"expect":[{"type":"metric","metric":"offRoad","op":"<=","value":0.2}]},
 		{"id":"road-crossroads-ratchet","kind":"road","from":{"uiMap":1413,"x":51.5,"y":30.3},"to":{"uiMap":1413,"x":62.7,"y":37.4},"profile":null,"expect":[{"type":"metric","metric":"offRoad","op":"<=","value":0.2}]},
 		{"id":"building-stormwind-trade-cathedral","kind":"building","from":{"uiMap":1453,"x":60,"y":70},"to":{"uiMap":1453,"x":52,"y":45},"profile":null,"expect":[{"type":"metric","metric":"indoorYards","op":"==","value":0}]},
