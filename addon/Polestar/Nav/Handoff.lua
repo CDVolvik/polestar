@@ -125,7 +125,8 @@ end
 
 -- With the option off: does Shortest Path Forever run a journey that is not
 -- Polestar's (Active, and no current stop of Polestar's)? Never asked in
--- combat: the question waits for its end. While a leftover journey's cancel
+-- combat: the question waits for its end. While a leftover journey's cancel,
+-- or the cancel of Polestar's journey after the hand-off was turned off,
 -- waits for it too, that journey may still guide: Polestar steps aside.
 local function look()
 	local A = api()
@@ -134,7 +135,7 @@ local function look()
 		setYielding(false)
 		return
 	end
-	if leftoverOwed then
+	if leftoverOwed or (live and pending) then
 		lookOwed = true
 		setYielding(true)
 		return

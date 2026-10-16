@@ -765,7 +765,7 @@ test('a /reload in combat: nothing of his API is called, Subscribe included, and
 	assert.deepEqual(out, { fight: '', subs: 0, after: 1 }, 'subscribed once combat ends');
 });
 
-test('the hand-off turned off in a fight: its journey is cancelled when the fight ends, never in it', () => {
+test('the hand-off turned off in a fight: Polestar stays stepped aside while its journey runs there, cancelled when the fight ends, never in it; then Polestar guides', () => {
 	const [out] = run(`
 		nav.setWaypoint(copy(FARLAND))
 		local r = { owner = spf.owner or false }
@@ -774,12 +774,16 @@ test('the hand-off turned off in a fight: its journey is cancelled when the figh
 		local m, x, y = nav.mapPoint(-850, -300)
 		nav.setWaypoint({ map = m, x = x, y = y, label = "Docks road", stepIndex = 1, goalIndex = 2, kind = "goto", r = 8 })
 		stub.runTimers()
+		stub.advance(0.3)
+		r.inFight = { N.HandedOff(), arrowShown() }
 		r.fight = table.concat(spf.fight, ",")
 		stub.inCombat = false
 		stub.fire("PLAYER_REGEN_ENABLED")
+		stub.advance(0.3)
 		r.cancels, r.ownerAfter = spf.cancels(), spf.owner or false
+		r.after = { N.HandedOff(), arrowShown() }
 		emit(r)`, { spf: `${SPF}${COUNT_FIGHT}` });
-	assert.deepEqual(out, { owner: 'Polestar', fight: '', cancels: 1, ownerAfter: false });
+	assert.deepEqual(out, { owner: 'Polestar', inFight: [true, false], fight: '', cancels: 1, ownerAfter: false, after: [false, true] });
 });
 
 test('a /reload in combat with a 0.2.4 journey left over: Polestar steps aside until the fight ends and the journey is cancelled, so the two never guide at once', () => {
