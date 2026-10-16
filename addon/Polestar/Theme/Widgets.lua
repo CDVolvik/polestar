@@ -661,7 +661,9 @@ local function settingRow(parent, label, desc)
 	row.Rule = W.Divider(row, false, 0.6)
 	row.Rule:SetPoint("BOTTOMLEFT", row, "BOTTOMLEFT", 0, 0)
 	row.Rule:SetPoint("BOTTOMRIGHT", row, "BOTTOMRIGHT", 0, 0)
-	row.Label = W.Text(row, "body", "text")
+	-- A setting's label: the text colour, gold in the game's looks (the
+	-- Settings panel's GameFontNormal).
+	row.Label = W.Text(row, "body", "rowLabel")
 	row.Label:SetText(label)
 	row.Label:SetPoint("LEFT", row, "LEFT", 12, 0)
 	row.psLabel, row.psDesc = label, desc
@@ -863,7 +865,11 @@ function W.SkinSlider(self)
 		self.Value:SetWidth(Theme.Metric("valueW", VALUE_W))
 	end
 	self.Thumb:SetTexCoord(0, 1, 0, 1)
-	if Theme.KitSlider(self, s, self.Thumb) then
+	-- A row's label ends short of the slider: further in the game's looks,
+	-- where the back stepper stands left of the track.
+	local kitDrawn = Theme.KitSlider(self, s, self.Thumb)
+	if self.psRow and self.Label then self.Label:SetPoint("RIGHT", s, "LEFT", kitDrawn and -20 or -10, 0) end
+	if kitDrawn then
 		-- The game's looks: their own track and thumb, the value in gold.
 		self.Track:Hide()
 		self.Fill:Hide()
@@ -1149,6 +1155,9 @@ local function dropdownRefresh(self)
 	local size = bliz and 22 or Theme.Metric("chevron", 12)
 	b.Arrow:SetTexture(bliz and DROPDOWN_ARROW or Theme.Media("chevron-down"))
 	b.Arrow:SetTexCoord(0, 1, 0, 1)
+	b.Arrow:SetAlpha(1)
+	-- The Settings panel's dropdown centres its value.
+	b.Label:SetJustifyH((Theme.Kit() and Theme.Kit().dropdown) and "CENTER" or "LEFT")
 	b.Arrow:SetSize(size, size)
 	-- The game's looks: their own arrow button.
 	Theme.KitDropArrow(b.Arrow)
@@ -1468,10 +1477,14 @@ local function scrollUpdate(sf)
 		return
 	end
 	bar:Show()
-	local h = max(24, view * view / content)
+	-- A game look's scroll bar keeps its arrow buttons at the ends
+	-- (bar.psInset, Theme/GameSkins.lua): the thumb runs between them.
+	local inset = bar.psInset or 0
+	local track = max(1, view - 2 * inset)
+	local h = max(24, track * view / content)
 	bar.Thumb:SetHeight(h)
 	bar.Thumb:ClearAllPoints()
-	bar.Thumb:SetPoint("TOPRIGHT", bar, "TOPRIGHT", 0, -(view - h) * (cur / range))
+	bar.Thumb:SetPoint("TOPRIGHT", bar, "TOPRIGHT", 0, -(inset + (track - h) * (cur / range)))
 end
 
 local function scrollDrag(bar)
@@ -1481,9 +1494,10 @@ local function scrollDrag(bar)
 	local view = sf.psView or sf:GetHeight()
 	local range = max(0, (sf.psContent or 0) - view)
 	local h = bar.Thumb:GetHeight()
-	if view - h <= 0 then return end
+	local track = view - 2 * (bar.psInset or 0)
+	if track - h <= 0 then return end
 	local dy = (bar.psStartY - y / scale)
-	sf:SetVerticalScroll(min(range, max(0, bar.psStartScroll + dy * range / (view - h))))
+	sf:SetVerticalScroll(min(range, max(0, bar.psStartScroll + dy * range / (track - h))))
 	scrollUpdate(sf)
 end
 
@@ -1517,8 +1531,9 @@ function W.Scroll(parent)
 	bar:SetScript("OnMouseUp", function(self) self:SetScript("OnUpdate", nil) end)
 	-- Escape can hide the window mid-drag, before any mouse-up arrives.
 	bar:SetScript("OnHide", function(self) self:SetScript("OnUpdate", nil) end)
-	bar:SetScript("OnEnter", function(self) self.Thumb:SetWidth(4) end)
-	bar:SetScript("OnLeave", function(self) self.Thumb:SetWidth(2) end)
+	-- The house thumb widens under the cursor; a game look's keeps its art.
+	bar:SetScript("OnEnter", function(self) if not Theme.Kit() then self.Thumb:SetWidth(4) end end)
+	bar:SetScript("OnLeave", function(self) if not Theme.Kit() then self.Thumb:SetWidth(2) end end)
 	bar:Hide()
 	sf.Bar = bar
 	Theme.Skin(bar, "scrollbar")
@@ -1662,11 +1677,11 @@ function W.ShellNav(f, items, active, onSelect)
 		b.Selected:SetShown(on)
 		b.Bar:SetShown(on)
 		-- The game's looks mark the row with their own selection art.
-		if Theme.KitRowLit(b, on, "navLit", 6) then
+		if Theme.KitRowLit(b, on, "navLit", 10) then
 			b.Selected:Hide()
 			b.Bar:Hide()
 		end
-		W.Color(b.Label, on and "text" or (empty and "textMuted" or "textDim"))
+		W.Color(b.Label, on and "text" or (empty and "textMuted" or "navRest"))
 		W.Color(b.Icon, on and "accent" or (empty and "textMuted" or "textDim"))
 		b:SetAlpha((empty and not on) and 0.55 or 1)
 		b.psEmpty = empty
@@ -1748,10 +1763,18 @@ function W.ShellTabs(f, tabs, active, onSelect)
 		local t = shellTab(f, i)
 		t.psKey = tabs[i].key
 		t.Label:SetText(tabs[i].label)
-		t:SetWidth(floor(t.Label:GetStringWidth() + 24 + 0.5))
 		local on = tabs[i].key == active
 		Theme.SetTabSelected(t, on)
-		W.Color(t.Label, on and "text" or "textDim")
+		-- The game's looks: MinimalTabTemplate, its small label on the art,
+		-- the tab 40 wider than it; the house tab 24 wider, its label centred.
+		local kit = Theme.KitTab(t, on, t.Label)
+		if not kit then
+			t.Label:ClearAllPoints()
+			t.Label:SetPoint("CENTER", t, "CENTER", 0, 0)
+		end
+		Theme.Font(t.Label, kit and "small" or "label")
+		t:SetWidth(floor(t.Label:GetStringWidth() + (kit and 40 or 24) + 0.5))
+		W.Color(t.Label, on and "text" or (kit and "tabRest" or "textDim"))
 		t:ClearAllPoints()
 		t:SetPoint("BOTTOMLEFT", f.TabRow, "BOTTOMLEFT", x, 0)
 		t:Show()
@@ -1994,6 +2017,12 @@ function W.Shell(name, opts)
 	f.Subtitle:SetSpacing(2)
 	f.Close = W.IconButton(head, "close", 28, L["Close"], function() f:Hide() end, 14)
 	f.Close:SetPoint("TOPRIGHT", head, "TOPRIGHT", -12, -12)
+	-- The game's looks put the close button on the window frame's corner.
+	f.Close:SetShown(not Theme.Kit())
+	Theme.OnChanged(function() f.Close:SetShown(not Theme.Kit()) end)
+	-- The window frame's own close button (the game's looks) stands for this
+	-- one: paint again now that it exists.
+	Theme.Repaint(f)
 
 	-- Tab row: tabs sit on its bottom hairline.
 	f.TabRow = CreateFrame("Frame", nil, main)

@@ -528,18 +528,21 @@ test("skins: WoW Forever draws the client's atlas, Blizzard the retail sheet, Cl
 			local d = f.psSkin
 			return { bg = d.bg ~= nil and d.bg:IsShown(), veil = d.veil ~= nil and d.veil:IsShown(),
 				border = f.psBorder ~= nil and f.psBorder[1]:IsShown(), shadow = f.psShadow ~= nil and f.psShadow:IsShown(),
-				metal = d.kit ~= nil and d.kit.metal ~= nil and d.kit.metal[1]:IsShown() or false,
+				metal = d.kit ~= nil and d.kit.metalArt ~= nil and d.kit.metal:IsShown() and d.kit.metalArt[1]:IsShown() or false,
 				dialog = d.kit ~= nil and d.kit.dialog ~= nil and d.kit.dialog:IsShown() or false }
 		end
 		local out = { house = state() }
 		Polestar.Set("ui.skin", "forever")
 		out.forever = state()
-		out.foreverCorner = f.psSkin.kit.metal[1].texture
+		out.foreverCorner = f.psSkin.kit.metalArt[1].texture
 		out.title = f.psSkin.kit.title:GetText()
 		out.game = T.GameSkin()
+		-- The frame's own close button and drag strip; the shell's close steps aside.
+		out.close = { frame = f.psSkin.kit.closeButton:IsShown(), shell = f.Close:IsShown() }
+		out.drag = f.psSkin.kit.drag:IsShown()
 		Polestar.Set("ui.skin", "blizzard")
 		out.blizzard = state()
-		out.blizzardCorner = f.psSkin.kit.metal[1].texture
+		out.blizzardCorner = f.psSkin.kit.metalArt[1].texture
 		Polestar.Set("ui.skin", "classic")
 		out.classic = state()
 		out.classicEdge = f.psSkin.kit.dialog.backdrop and f.psSkin.kit.dialog.backdrop.edgeFile
@@ -554,6 +557,8 @@ test("skins: WoW Forever draws the client's atlas, Blizzard the retail sheet, Cl
 	assert.equal(out.foreverCorner, 'atlas:UI-Frame-Metal-CornerTopLeft', "Forever: the client's own art for the atlas");
 	assert.equal(out.title, 'Polestar', 'the title on the metal bar');
 	assert.equal(out.game, true);
+	assert.deepEqual(out.close, { frame: true, shell: false }, 'the close button sits on the frame corner');
+	assert.equal(out.drag, true, 'the title bar drags the window');
 	assert.equal(out.blizzardCorner, 2406979, 'Blizzard: the retail sheet by file ID (Theme/GameArt.lua)');
 	assert.equal(out.forever.metal, true);
 	assert.equal(out.blizzard.metal, true);

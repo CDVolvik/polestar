@@ -1207,29 +1207,40 @@ game's looks; Nav/Arrow.lua). The skins' textures are drawn by
 
 **The game's looks** (Theme/GameSkins.lua) draw Polestar in the client's art,
 the three looks EllesmereUI offers on the Forever client (its visual spec
-only; nothing of that addon is used). Each is a kit of parts by role
-(`Theme.KITS`), drawn by `Theme.Kit*` helpers the widgets and the guide window
-call, and kept in `frame.psSkin.kit` so a skin change hides them:
-- `forever` (WoW Forever): atlas elements by name; the Forever client draws
-  its own art for them. The micro menu box's bronze line round the guide
-  window and the toasts (`psLight`), the heavy bronze metal round the big
-  windows (laid outside them, the title on its bar), the quest tracker's header
-  rods behind the focus, tertiary plates under icon buttons, list cards, the
-  options tabs, minimal check boxes and sliders, the 128 red buttons.
-- `blizzard` (Blizzard Style): the same elements in their retail art, which
-  still ships with the client but which SetAtlas does not draw there: by file
-  ID and coordinates from `Theme/GameArt.lua`, generated from the client's
-  atlas tables by `node tools/polestar.js media game-art`
-  (tools/media/game-art.js). No frame round the guide window (a black body
-  under a 20-unit fade, the damage meter's header bar under the tabs), the
-  retail metal round the big windows.
-- `classic` (Classic WoW UI): the vanilla files. The tooltip tile under the
-  chat tab's 5-unit rim round the guide window, the dialog box and its header
-  plate round the big windows (BackdropTemplate), tooltip borders on panels,
-  the panel buttons, `UI-CheckBox-*`, the slider bar, the option tabs, the
-  cast bar's frame round the progress bar.
+only; nothing of that addon is used), composed as the client's own FrameXML
+composes its windows: SharedUIPanelTemplates (ButtonFrameTemplateNoPortrait,
+InsetFrameTemplate, UIPanelButtonTemplate, UIPanelCloseButton), the
+NineSliceLayouts with the Forever client's offset overrides, and the Settings
+panel's controls (MinimalTab, the minimal check box, MinimalSliderWithSteppers,
+WowStyle2Dropdown, MinimalScrollBar, the MenuStyle1 menu ground). Each look is
+a kit of parts by role (`Theme.KITS`), drawn by `Theme.Kit*` helpers the
+widgets and the guide window call, and kept in `frame.psSkin.kit` so a skin
+change hides them:
+- the big windows (shells, dialogs) are the template's Bg: its metal frame
+  lies outside them, with the title bar above (a drag strip and the title on
+  it) and the close button on its corner; rock under the content, the
+  sidebar an inset, gold setting labels and list rows (`rowLabel`,
+  `navRest`);
+- the guide window and the toasts (`psLight`) keep EllesmereUI's small-window
+  looks: Forever's bronze micro menu line, Blizzard's black body under a fade
+  with the damage meter's header bar, Classic's tooltip tile under the chat
+  tab's rim;
+- atlases the client draws sliced (UiTextureAtlasElementSliceData) are cut at
+  the same margins (`ns.GameArtSlice`).
 
-No client art is copied into the addon; the kits name files and atlases.
+Sources: `forever` names atlas elements (the Forever client draws its own
+-c60 art for them); `blizzard` draws the same elements in their retail art,
+which still ships with the client but which SetAtlas does not draw there, by
+file ID and coordinates from `Theme/GameArt.lua` (generated with the slice
+margins by `node tools/polestar.js media game-art`, tools/media/game-art.js);
+`classic` names the vanilla files (the dialog box and tooltips through
+BackdropTemplate).
+
+No client art is copied into the addon; the kits name files and atlases. With
+POLESTAR_CLIENT_ART holding the client's UI textures decoded to <fileID>.tga
+plus atlases.json and files.json, `node tools/polestar.js preview` draws them
+(SetAtlas, GetAtlasInfo and file paths resolve) and renders the local-only
+`skins-game-*` scenes into that folder.
 
 **Colour schemes** (`ui.scheme`, `Theme.SCHEMES`): Dusk (default: Night's
 navy lifted to dusk), Night (the original deep navy-black, values unchanged),

@@ -178,6 +178,7 @@ local SKIN_PALETTES = {
 		success = hex("5FD068"), arrive = hex("5FD068"), todo = hex("FFD100"), warning = hex("FF9A3C"),
 		later = hex("FF9A3C"), danger = hex("FF9A3C"), manual = hex("B49CFF"), skipped = hex("5CC8D6"),
 		icon = hex("C2B9A9"), iconHover = hex("F4EFE6"), buttonText = hex("F4EFE6"), personName = hex("8CCBFF"), tabRest = hex("C2B9A9"),
+		rowLabel = hex("F4EFE6"), navRest = hex("C2B9A9"),
 		link = hex("8CCBFF"), npc = hex("8CCBFF"), quest = hex("FFE07A"), place = hex("F5AD85"),
 		rare = hex("FF8052"), dungeon = hex("A385FF"), discord = hex("5865F2"),
 	},
@@ -200,6 +201,7 @@ local SKIN_PALETTES = {
 		success = hex("1EFF00"), arrive = hex("58C04A"), todo = hex("FFD100"), warning = hex("FF8040"),
 		later = hex("FF8040"), danger = hex("FF8040"), manual = hex("C77DFF"), skipped = hex("71D5FF"),
 		icon = hex("FFD100"), iconHover = hex("FFD100"), buttonText = hex("FFD100"), personName = hex("FFD100"), tabRest = hex("A38D58"),
+		rowLabel = hex("FFFFFF"), navRest = hex("CCCCCC"),
 		link = hex("FFD100"), npc = hex("FFFFFF"), discord = hex("5865F2"),
 	},
 }
@@ -215,19 +217,21 @@ local function gamePalette(over)
 end
 SKIN_PALETTES.forever = gamePalette({
 	bg = hex("000000", 0.96), bgBottom = hex("000000", 0.96), sidebar = hex("000000", 0.25),
-	textDim = hex("AE9D81"), tabRest = hex("AE9D81"), icon = hex("CEB282"), iconHover = hex("F2D199"),
+	textDim = hex("AE9D81"), tabRest = hex("FFD100"), icon = hex("CEB282"), iconHover = hex("F2D199"),
+	-- The Settings panel's labels and its list's rows: GameFontNormal, gold.
+	rowLabel = hex("FFD100"), navRest = hex("FFD100"),
 	separator = hex("AE9D81", 0.35), divider = hex("AE9D81", 0.35), accentLine = hex("AE9D81", 0.5),
 	border = hex("5C4A30"), windowEdge = hex("5C4A30"), hover = hex("FFD100", 0.1), selected = hex("FFD100", 0.14),
 })
 SKIN_PALETTES.blizzard = gamePalette({
 	bg = hex("000000", 0.96), bgBottom = hex("000000", 0.96), sidebar = hex("000000", 0.25),
-	icon = hex("E8E8E8"), iconHover = hex("FFFFFF"), tabRest = hex("B3B3B3"),
+	icon = hex("E8E8E8"), iconHover = hex("FFFFFF"), tabRest = hex("FFD100"), rowLabel = hex("FFD100"), navRest = hex("FFD100"),
 	separator = hex("FFD100", 0.35), divider = hex("FFFFFF", 0.15), accentLine = hex("FFD100", 0.45),
 	border = hex("404040"), windowEdge = hex("404040"), hover = hex("FFFFFF", 0.08), selected = hex("FFD100", 0.14),
 })
 SKIN_PALETTES.classic = gamePalette({
 	bg = hex("101010", 0.85), bgBottom = hex("101010", 0.85), sidebar = hex("000000", 0),
-	icon = hex("FFD100"), iconHover = hex("FFFFFF"), tabRest = hex("FFD100"),
+	icon = hex("FFD100"), iconHover = hex("FFFFFF"), tabRest = hex("FFD100"), rowLabel = hex("FFD100"), navRest = hex("FFD100"),
 	separator = hex("969696", 0.45), divider = hex("969696", 0.45), accentLine = hex("969696", 0.6),
 	border = hex("696969"), windowEdge = hex("696969"), hover = hex("FFFFFF", 0.08), selected = hex("FFD100", 0.14),
 })
@@ -503,7 +507,7 @@ local HOUSE_EXTRA = {
 	textOff = "textMuted", title = "text", link = "npc", todo = "accent", later = "warning", arrive = "success",
 	manual = "item", skipped = "spell", separator = "divider", rowLine = "divider", veil = "bg", veilWindow = "bg",
 	menuBg = "panel", control = "panelAlt", icon = "textDim", iconHover = "text", buttonText = "text",
-	personName = "npc", tabRest = "textDim",
+	personName = "npc", tabRest = "textDim", rowLabel = "text", navRest = "textDim",
 }
 
 -- A skin's palette, with the player's own accent, window border and arrow
@@ -1191,13 +1195,31 @@ local HOUSE_PAINT = {
 		d.bar:SetVertexColor(Theme.Accent())
 		d.bar:SetShown(f.psSelected and true or false)
 		hoverWash(f)
+		-- Back from a game look's tab, whose label sat on its art.
+		local label = rawget(f, "Label")
+		if f.psKitLabel and label then
+			label:ClearAllPoints()
+			label:SetPoint("CENTER", f, "CENTER", 0, 0)
+			f.psKitLabel = nil
+		end
 	end,
 	close = function(f)
 		glyph(f, "close", 14):SetVertexColor(Theme.Color("textDim"))
 		hoverWash(f):SetVertexColor(Theme.Wash("hover"))
 	end,
 	scrollbar = function(f)
+		-- Back from a game look's scroll bar (Theme/GameSkins.lua): the slim
+		-- white thumb over the whole bar.
 		local thumb = f.thumb or f.psThumb
+		if f.psInset then
+			f.psInset = nil
+			f:SetWidth(6)
+			if thumb and thumb.SetTexture then
+				thumb:SetTexture(Theme.Media("white"))
+				thumb:SetTexCoord(0, 1, 0, 1)
+				thumb:SetWidth(2)
+			end
+		end
 		if thumb and thumb.SetVertexColor then thumb:SetVertexColor(Theme.Wash("thumb")) end
 	end,
 }
