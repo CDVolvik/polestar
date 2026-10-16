@@ -333,9 +333,10 @@ test('mark target: off by default; on, the target button and step key put a skul
 		emit(Polestar.QoL.Buttons.TargetMacro(long, 1, "mob"))
 	`);
 	assert.deepEqual(out[0], ['/targetexact Kobold Vermin', '/targetexact Kobold Vermin'], 'off by default');
-	const skull = '/targetexact Kobold Vermin\n/tm [@target,harm,nodead] !8';
+	// Cleared first: when no name is in range, nothing is left targeted to mark.
+	const skull = '/cleartarget\n/targetexact Kobold Vermin\n/tm [@target,harm,nodead] !8';
 	assert.deepEqual(out[1], [skull, skull]);
-	assert.equal(out[2], '/targetexact Marshal Dughan\n/tm [@target,help,nodead] !1');
+	assert.equal(out[2], '/cleartarget\n/targetexact Marshal Dughan\n/tm [@target,help,nodead] !1');
 	assert.equal(out[3], '/targetexact Marshal Dughan', 'turned off again');
 	assert.ok(out[4].length <= 255, 'fits a macro');
 	assert.ok(out[4].endsWith('N1\n/tm [@target,harm,nodead] !8'), 'the preferred name and the mark stay when names are dropped');

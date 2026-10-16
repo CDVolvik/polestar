@@ -611,7 +611,7 @@ L["Trainers"] = "Instructores"
 L["Learn new spells"] = "Aprender hechizos nuevos"
 L["Learns every spell a class trainer offers that you can afford, and prints the total. Profession trainers are left alone. Hold Shift to skip."] = "Aprende cada hechizo que ofrece un instructor de clase y que puedas pagar, y muestra el total. No toca a los instructores de profesiones. Mantén presionado Mayús para omitirlo."
 -- L["Mark what they target"] = ""
--- L["The target button and the step key put a skull on the mob and a star on the NPC they target. Your party sees the icons; in a raid only the leader and assistants can set them."] = ""
+-- L["The target button and the step key put a skull on the mob and a star on the NPC they target; a press that finds neither clears your target. Your party sees the icons; in a raid only the leader and assistants can set them."] = ""
 
 -- QoL/QoL.lua
 L["%dh %02dm"] = "%dh %02dm"

@@ -695,7 +695,7 @@ L["XP per hour, time, kills and quests to level, and level splits (/pole xp)."] 
 L["Reset session"] = "重置本次記錄"
 L["Start this session's XP per hour from zero."] = "將本次的每小時經驗從零開始計算。"
 -- L["Mark what they target"] = ""
--- L["The target button and the step key put a skull on the mob and a star on the NPC they target. Your party sees the icons; in a raid only the leader and assistants can set them."] = ""
+-- L["The target button and the step key put a skull on the mob and a star on the NPC they target; a press that finds neither clears your target. Your party sees the icons; in a raid only the leader and assistants can set them."] = ""
 
 -- Lookup/Sources.lua
 L["Alliance only"] = "僅限聯盟"

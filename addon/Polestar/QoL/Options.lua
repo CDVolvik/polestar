@@ -32,7 +32,7 @@ register(QUESTING, L["Buttons"], L["Action buttons"], {
 	{ kind = "toggle", key = "qol.hearthButton", label = L["Hearthstone button"],
 		help = L["Shows your Hearthstone while the guide says to hearth. Bindable."] },
 	{ kind = "toggle", key = "qol.markTarget", label = L["Mark what they target"],
-		help = L["The target button and the step key put a skull on the mob and a star on the NPC they target. Your party sees the icons; in a raid only the leader and assistants can set them."] },
+		help = L["The target button and the step key put a skull on the mob and a star on the NPC they target; a press that finds neither clears your target. Your party sees the icons; in a raid only the leader and assistants can set them."] },
 	{ kind = "slider", key = "qol.buttonScale", label = L["Button size"], min = 0.6, max = 1.6, step = 0.05, format = function(v) return math.floor(v * 100 + 0.5) .. "%" end,
 		help = L["Scale of the quest item, Hearthstone and target buttons. Drag one to move them all."] },
 	{ kind = "button", label = L["Reset button positions"], help = L["Put the buttons back in their default spot."],

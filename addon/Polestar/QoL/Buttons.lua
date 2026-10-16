@@ -18,9 +18,10 @@
 --     act on, in guide order (a use goal's item, a hearth goal's Hearthstone,
 --     a kill or collect's mobs, an NPC goal's NPC by name), else the quest
 --     item. Independent of the three buttons' settings.
---   Mark target (off by default): the target button and the step key end
---     their macro with /tm, a skull on a live hostile target, a star on a
---     friendly NPC; "!" leaves the icon alone when it is already there.
+--   Mark target (off by default): the target button and the step key clear
+--     the target first and end their macro with /tm, a skull on a live
+--     hostile target, a star on a friendly NPC; "!" leaves the icon alone
+--     when it is already there.
 --
 -- The buttons hang off one holder: hearth above the item, target below. A
 -- left-drag on any of them moves the set (out of combat); the position is
@@ -470,11 +471,13 @@ function Buttons.TargetMacro(list, preferred, mark)
 		if Buttons.MacroSafeName(list[idx]) then lines[#lines + 1] = "/targetexact " .. list[idx] end
 	end
 	if #lines == 0 then return nil end
+	-- Cleared first, so when no name is in range the old target is not marked.
+	local head = MARK[mark] and "/cleartarget\n" or ""
 	local tail = MARK[mark] and ("\n" .. MARK[mark]) or ""
-	local text = concat(lines, "\n") .. tail
+	local text = head .. concat(lines, "\n") .. tail
 	while #text > MACRO_LIMIT and #lines > 1 do
 		table.remove(lines, 1)
-		text = concat(lines, "\n") .. tail
+		text = head .. concat(lines, "\n") .. tail
 	end
 	return text
 end
