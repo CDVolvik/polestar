@@ -2288,7 +2288,7 @@ Polestar_Nav.toc        LoadOnDemand, Dependencies: Polestar
   API.lua               Polestar_NavEngine = the Path table, plus Available(map); the memory ceilings
 ```
 
-**Memory.** The packed maps (format 2, all three) are 33.3 MB of files; loaded,
+**Memory.** The packed maps (format 2, all three) are 33.4 MB of files; loaded,
 the Lua heap holds about 34 MB (0.2.4's format 1 maps 28 MB; his own three maps were about 12 MB). A search decodes the clusters (ADT tiles) it
 crosses: by the engine's own accounting (`PathGrid.lua` gridSize, an upper
 bound) about 3.3 MB a cluster on average: 15.8 MB for Kharanos to
@@ -4303,7 +4303,14 @@ fileDataID from wago.tools into `data/sources/casc` (local, never shipped):
   between two parts of the map (union-find over every other join, then the
   face links gentlest first), so nothing reachable before is lost and a
   face with a way round is walked round; closing them all cut off 84 guide
-  goals. An intra-cluster edge is pruned only for a two-hop path whose
+  goals. A cluster (one tile) border gets his entrances, one in every run
+  of crossings between the same two regions (~38 crossings at 128 cells, a
+  cell crossing straight and both ways diagonally, so about every 54 yd on
+  open ground), and one more on every road crossing it with none of his
+  within 8 yd: every walk across a border goes through an entrance, and
+  where the border crossed Ratchet's north-east road 35 yd from the main
+  road with the one entrance on the main road, walks left the road along
+  the border (Fitz's report, 2026-10-16). An intra-cluster edge is pruned only for a two-hop path whose
   hops are both shorter (gen_nav.py's 2% rule let two entrances a few yards
   apart at the end of a long walk prune each other's edge, cutting a region
   in two; it cut 14 guide goals off with faces held back, Thunder Bluff's

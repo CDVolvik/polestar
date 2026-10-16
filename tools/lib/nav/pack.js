@@ -43,6 +43,17 @@
 // none: a step costs its length times the class's multiplier, times swim in
 // water) and its yards.
 //
+// Entrances (his rule, plus roads decided 2026-10-16, Ruling 31). A cluster
+// border's crossings are grouped by the region on each side; his rule puts
+// one entrance in every run of ENTRANCE_YD-in-cells crossings, at its middle
+// (a straight crossing first). Every walk across the border goes through an
+// entrance, so a road crossing it between two of them was walked off: Fitz
+// at Ratchet, where the border crosses the north-east road 35 yd from the
+// main road and the one entrance sat on the main road, saw his walk leave
+// the road along the border. So each run of road crossings (both cells road)
+// gets an entrance of its own at its middle, unless one of his lies within
+// ROAD_NEAR_YD of the run.
+//
 // Cells (decided here). SPF's cluster is one ADT tile cut into C x C cells
 // (C = `cells`), x north, y west; our tile is 256 x 256 columns (format.js),
 // column (i, j) falls in cell (floor((255.5 - j) C / 256), floor((255.5 - i)
@@ -112,6 +123,7 @@ const COST_MAX = 64 ** 3 - 1; // a graph edge's cost per profile: 3 symbols (a h
 const YARDS_MAX = 64 ** 2 - 1; // its yards: 2 symbols
 const AREA_CAPITAL = 0x100; // AreaTable Flags_0: a capital city (layers/hubs.js); 0x138 on the six capitals
 const ENTRANCE_YD = (20 * T) / 67; // gen_nav.py's 20-cell entrance runs at 67 cells, in yards
+const ROAD_NEAR_YD = 8; // a road crossing a border gets its own entrance unless a chunk entrance is this near its run
 const PRUNE = 1.02; // drop an intra edge when a two-hop path is within 2% (and both hops are shorter: never cuts a region)
 const ZQ = 2; // base heights are stored to this step (yd)
 const MIN_REGION = 1000; // walkable surfaces a region needs to be packed (path.js SNAP_REGION)
@@ -917,8 +929,10 @@ function clusterMoves(cg, k) {
 	return { N, value, cls, off, to: Int32Array.from(to), len: Float64Array.from(len), local, global };
 }
 
-// gen_nav.py grid_hpa: regions per cluster, entrances per border group every
-// ENTRANCE_YD, intra-cluster edges by Dijkstra per profile, pruned.
+// gen_nav.py grid_hpa: regions per cluster, entrances per border group (the crossings between one region on
+// each side) every `run` crossings (ENTRANCE_YD in cells; a cell crosses straight and both ways diagonally, so on
+// open ground that is an entrance about every ENTRANCE_YD / 3), plus one on each road crossing the border away
+// from those (Polestar's, 2026-10-16), intra-cluster edges by Dijkstra per profile, pruned.
 // An edge is { a, b, ab, ba, yab, yba }: ab the costs from a to b (Costs.PROFILES order: Alliance, Horde, none),
 // each priced as the router prices a grid step (its length times Costs.mult of the node it enters, times SWIM in
 // water), ba the way back, yab and yba the yards walked along the cost-best way with no profile.
@@ -926,6 +940,8 @@ function buildHpa(cg, log = () => {}) {
 	const { C, NX, NY, GH } = cg;
 	const CS = T / C;
 	const run = Math.max(1, Math.round(ENTRANCE_YD / CS));
+	const near = Math.max(1, Math.round(ROAD_NEAR_YD / CS));
+	const isRoad = (n) => (cg.nodeClass(n) & 7) === CLASS.ROAD;
 	const ks = [...cg.clusters.keys()].sort((a, b) => a - b);
 	const moves = new Map();
 	const region = new Map(); // k -> Int32Array local -> region (local root)
@@ -1003,19 +1019,39 @@ function buildHpa(cg, log = () => {}) {
 					push(`${regionOf(u)},${regionOf(w)}`, [t, Number(wx !== ux && wy !== uy), u, w]);
 				}
 			}
+			// A group's entrances: one per chunk of `run` crossings, at its middle (a straight crossing first), then one
+			// per run of road crossings (both cells road, along the border without a gap) that no chunk entrance lies
+			// within `near` cells of: a road crossing the border far from the chunk's middle otherwise sends every walk
+			// along it out along the border to that entrance (Fitz at Ratchet, 2026-10-16).
+			const pick = (list) => {
+				const mid = list[list.length >> 1][0];
+				let best = list[0];
+				for (const c of list) if (c[1] < best[1] || (c[1] === best[1] && Math.abs(c[0] - mid) < Math.abs(best[0] - mid))) best = c;
+				return best;
+			};
+			const place = ([, diagonal, u, v]) => {
+				const len = CS * (diagonal ? Math.SQRT2 : 1);
+				const into = (w) => MULTS.map((mt) => len * mt[cg.nodeClass(w)] * (cg.nodeValue(w) === 2 ? SWIM : 1));
+				edges.set(`${u},${v}`, { a: u, b: v, ab: into(v), ba: into(u), yab: len, yba: len });
+				addNode(u);
+				addNode(v);
+			};
 			for (const crossings of groups.values()) {
 				crossings.sort((a, b) => a[0] - b[0] || a[1] - b[1] || a[2] - b[2] || a[3] - b[3]);
+				const placed = [];
 				for (let i = 0; i < crossings.length; i += run) {
-					const chunk = crossings.slice(i, i + run);
-					const mid = chunk[chunk.length >> 1][0];
-					let best = chunk[0];
-					for (const c of chunk) if (c[1] < best[1] || (c[1] === best[1] && Math.abs(c[0] - mid) < Math.abs(best[0] - mid))) best = c;
-					const [, diagonal, u, v] = best;
-					const len = CS * (diagonal ? Math.SQRT2 : 1);
-					const into = (w) => MULTS.map((mt) => len * mt[cg.nodeClass(w)] * (cg.nodeValue(w) === 2 ? SWIM : 1));
-					edges.set(`${u},${v}`, { a: u, b: v, ab: into(v), ba: into(u), yab: len, yba: len });
-					addNode(u);
-					addNode(v);
+					const best = pick(crossings.slice(i, i + run));
+					placed.push(best[0]);
+					place(best);
+				}
+				const roads = crossings.filter((c) => isRoad(c[2]) && isRoad(c[3]));
+				for (let i = 0; i < roads.length; ) {
+					let j = i + 1;
+					while (j < roads.length && roads[j][0] - roads[j - 1][0] <= 1) j++;
+					const t0 = roads[i][0] - near;
+					const t1 = roads[j - 1][0] + near;
+					if (!placed.some((t) => t >= t0 && t <= t1)) place(pick(roads.slice(i, j)));
+					i = j;
 				}
 			}
 		}

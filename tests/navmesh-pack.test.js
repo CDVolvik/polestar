@@ -507,6 +507,36 @@ test('pack: a floor across a tile border is an entrance on its own cell and laye
 	}
 });
 
+test('pack: a road crossing a tile border is an entrance where it crosses, one per road, none added beside a chunk entrance (Fitz, Ratchet, 2026-10-16)', async () => {
+	// Two flat tiles (32 west of 33); the border's chunk entrances fall every ~13 cells (cells 19, 32, ..., 70 north
+	// of the tiles' south edge). Road A crosses at cells ~25-26, between two of them; road B at cells ~70, on one.
+	const a = new Scene({ col: 32 });
+	const b = new Scene({ col: 33 });
+	const dir = await gridOf(a, b);
+	const cellY = (gx) => ADT - (gx + 0.5) * (ADT / 128); // local y of cell row gx's centre
+	const road = Buffer.alloc(256 * 256);
+	for (const y of [cellY(25.5), cellY(70)]) for (let j = Math.floor((y - 4) / CELL); j < Math.ceil((y + 4) / CELL); j++) for (let i = 0; i < 256; i++) road[j * 256 + i] = 255;
+	const plain = (await cellGridFromDir({ dir, c: 0, C: 128 })).cg;
+	const { cg } = await cellGridFromDir({ dir, c: 0, C: 128, layers: { roads: () => road } });
+	const crossings = (g) => {
+		const out = new Map();
+		for (const [key, e] of buildHpa(g).edges) if (g.clusterOfCell(g.cellOf(e.a)) !== g.clusterOfCell(g.cellOf(e.b))) out.set(key, e);
+		return out;
+	};
+	const before = crossings(plain);
+	const after = crossings(cg);
+	const isRoad = (n) => (cg.nodeClass(n) & 7) === Costs.CLASS.ROAD;
+	const row = (n) => Math.floor(cg.cellOf(n) / cg.GH) % 128;
+	for (const [key, e] of before) assert.ok(after.has(key), `the chunk entrance at cell ${row(e.a)} stays`);
+	assert.ok(![...before.values()].some((e) => isRoad(e.a) && row(e.a) < 40), 'road A crosses away from every chunk entrance');
+	assert.ok([...before.values()].some((e) => isRoad(e.a) && isRoad(e.b) && Math.abs(row(e.a) - 70) <= 1), 'road B crosses on a chunk entrance');
+	const added = [...after].filter(([key]) => !before.has(key)).map(([, e]) => e);
+	assert.equal(added.length, 1, `one entrance added (at cells ${added.map((e) => row(e.a)).join(', ')})`);
+	assert.ok(isRoad(added[0].a) && isRoad(added[0].b), 'on the road on both sides');
+	assert.ok(Math.abs(row(added[0].a) - 25.5) <= 1.5, `in road A's crossing (cell ${row(added[0].a)})`);
+	assert.equal(row(added[0].a), row(added[0].b), 'the straight crossing');
+});
+
 test('pack: shipPack writes the files, PACK.json and Nav.xml; checkPack finds a changed, missing or unlisted file; the same date gives the same bytes', async () => {
 	const { shipPack, checkPack } = require('../tools/lib/nav/pack');
 	const dir = await gridOf(new Scene());
