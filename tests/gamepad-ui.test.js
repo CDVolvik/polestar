@@ -24,12 +24,21 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { runAddon, ADDONS } = require('./helpers/lua');
 
-function load(gamepad) {
+// cvar: the InputDeviceInterfaceStyle CVar's value (the client's API answers
+// for the style; the CVar can stay "1" with the keyboard and mouse).
+function load(gamepad, cvar) {
 	return runAddon({
 		stubs: ['stub_world.lua'],
 		before: `
 Enum.InputDeviceInterfaceType = { Mkb = 0, Gamepad = 1 }
 C_InputInterfaceStyle = { GetCurrentStyle = function() return ${gamepad ? 1 : 0} end }
+${cvar ? `C_CVar = C_CVar or {}
+do
+	local get = C_CVar.GetCVar
+	C_CVar.GetCVar = function(name) if name == "InputDeviceInterfaceStyle" then return ${JSON.stringify(cvar)} end return get and get(name) end
+	local global = GetCVar
+	GetCVar = function(name) if name == "InputDeviceInterfaceStyle" then return ${JSON.stringify(cvar)} end return global and global(name) end
+end` : ''}
 __menus = {}
 Menu = { ModifyMenu = function(tag) __menus[#__menus + 1] = tag end }
 C_Map.OpenWorldMap = function() end
@@ -47,6 +56,7 @@ for _, name in ipairs(UISpecialFrames) do
 end
 emit({
 	gamepad = Polestar.GamepadUI(),
+	padActive = Polestar.Gamepad.IsActive(),
 	slash = SlashCmdList.POLESTAR ~= nil and SLASH_POLESTAR1 ~= nil,
 	way = SLASH_POLESTARWAY1 ~= nil,
 	recorderSlash = SlashCmdList.POLESTARREC ~= nil,
@@ -69,6 +79,17 @@ test('with the keyboard and mouse Polestar registers its slash commands, menu en
 	);
 	assert.equal(r.menus, 2, 'the world map and minimap tracking menus');
 	assert.ok(r.special > 0, 'its windows close with Escape');
+});
+
+// A client playing with the keyboard and mouse whose style CVar still reads
+// "1" (Gamepad): the interface's own answer wins, so nothing of the gamepad
+// shows (no hint bar, no button chips) and the slash commands stay.
+test('the keyboard and mouse interface wins over a style CVar left at Gamepad', () => {
+	const r = load(false, '1');
+	assert.deepEqual(
+		{ gamepad: r.gamepad, padActive: r.padActive, slash: r.slash, recorderSlash: r.recorderSlash, minimapButton: r.minimapButton },
+		{ gamepad: false, padActive: false, slash: true, recorderSlash: true, minimapButton: false },
+	);
 });
 
 test('with the gamepad interface Polestar keeps to its own windows, and its minimap button is the way in', () => {
