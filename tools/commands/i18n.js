@@ -97,10 +97,12 @@ options:
                     client's own font)
   --markdown        status: a Markdown table
   --no-questie      names: leave DingDB out (its base data is QuestieDB's)
+  --no-tables       names: leave the client tables out (otherwise a missing
+                    table stops the build)
   --offline         names: no downloads; the cached clones, tables and pages
   --dry-run         names: count the Wowhead requests a run would make; write nothing
   --limit <n>       names: at most n Wowhead tooltip requests this run
-  --delay <ms>      names: between Wowhead requests (default 2500)
+  --delay <ms>      names: between Wowhead requests (default 2500, at least 2000)
   --build <version> names: this Forever client build (default the newest wago.tools lists)
   --sources <dir>   names: the client-table and Wowhead cache (default data/sources)
   --ding <dir>      names: this DingDB checkout (default data/sources/ding)
@@ -351,31 +353,43 @@ async function runNames(opts, positional) {
 	const pf = loadPfQuestNames(pfInfo.dir, [...wanted, 'enUS']);
 	const dingNames = ding ? names.readDing(ding, wanted) : null;
 
-	// The client's tables in each language: Forever's, then the Era client's items.
-	const tables = await loadClientNames({ sourcesDir, locales: wanted, forever: opts.build, offline, log });
-	for (const w of tables.warnings) warn(w);
-	const wago = tables.urls.length ? tables.names : null;
-	const wagoInfo = wago ? { builds: tables.builds, urls: tables.urls } : null;
+	// The client's tables in each language: Forever's, then the Era client's
+	// items. Missing tables stop the build (--no-tables leaves them out).
+	let wago = null;
+	let wagoInfo = null;
+	const english = {};
+	if (!opts.noTables) {
+		const tables = await loadClientNames({ sourcesDir, locales: wanted, forever: opts.build, offline, log });
+		wago = tables.names;
+		wagoInfo = { builds: tables.builds, urls: tables.urls };
+		for (const [kind, m] of Object.entries(tables.english)) for (const [id, n] of m) names.addEnglish(english, kind, id, n);
+	}
+	// The data's English names: a name equal to one of them is no translation.
+	for (const [kind, file] of Object.entries({ quest: 'quests.json', npc: 'npcs.json', object: 'objects.json', item: 'items.json' })) {
+		const f = path.join(codex, file);
+		if (!fs.existsSync(f)) continue;
+		for (const [id, r] of Object.entries(JSON.parse(fs.readFileSync(f, 'utf8')))) names.addEnglish(english, kind, Number(id), r && (r.name || r.title));
+	}
 
 	// Wowhead: the list ranges holding an id (items: only those some
 	// language's client table lacks), then tooltips for the rest.
 	const want = {};
 	for (const kind of names.NAME_KINDS) want[kind] = ids[kind];
 	if (wago) want.item = new Set([...ids.item].filter((id) => wanted.some((l) => !(wago[l] && wago[l].item && wago[l].item.has(id)))));
-	const delayMs = opts.delay ? Number(opts.delay) : undefined;
-	const http = politeClient({ delayMs: delayMs ?? wh.DELAY_MS, retryPauseMs: 30000, maxFailures: 5, userAgent: 'Mozilla/5.0 (polestar-names-build)', log: (m) => console.error(m) });
+	const delayMs = Math.max(wh.MIN_DELAY_MS, opts.delay ? Number(opts.delay) : wh.DELAY_MS);
+	const http = politeClient({ delayMs, retryPauseMs: 30000, maxFailures: 5, userAgent: 'Mozilla/5.0 (polestar-names-build)', log: (m) => console.error(m) });
 	const lists = await wh.fetchListNames({ sourcesDir, locales: wanted, want, client: http, dryRun, offline, log: (m) => console.error(m) });
 	for (const f of lists.failed.slice(0, 20)) warn(`Wowhead ${f.locale} ${f.url}: ${f.error}`);
 	if (lists.missingEnglish.length) warn(`no cached English Wowhead list for ${lists.missingEnglish.join(', ')} (run codex wowhead once): those kinds get tooltips only`);
 	const loadAll = () => Object.fromEntries(wanted.map((l) => [l, wh.loadWowheadNames(sourcesDir, l)]));
 	let whNames = loadAll();
-	let out = names.buildNames({ locales: wanted, ids, ding: dingNames, pf, wago, wowhead: whNames });
+	let out = names.buildNames({ locales: wanted, ids, ding: dingNames, pf, wago, wowhead: whNames, english });
 	const tooltips = {};
 	let stragglers = 0;
 	for (const l of wanted) {
 		const byType = {};
 		for (const kind of names.NAME_KINDS) {
-			const left = [...ids[kind]].filter((id) => !out[l].names[kind].has(id) && !whNames[l].listed[kind].has(id));
+			const left = [...ids[kind]].filter((id) => !out[l].names[kind].has(id) && !out[l].english[kind].has(id) && !whNames[l].listed[kind].has(id));
 			if (left.length) byType[kind] = left;
 		}
 		const objectives = [...ids.objective].filter((id) => !out[l].names.objective.has(id));
@@ -391,14 +405,22 @@ async function runNames(opts, positional) {
 	}
 	if (tips.fetched) {
 		whNames = loadAll();
-		out = names.buildNames({ locales: wanted, ids, ding: dingNames, pf, wago, wowhead: whNames });
+		out = names.buildNames({ locales: wanted, ids, ding: dingNames, pf, wago, wowhead: whNames, english });
+	}
+	for (const l of wanted) {
+		for (const kind of ['map', 'faction', 'taxi']) {
+			if (wago && ids[kind] && ids[kind].size && !out[l].names[kind].size) throw new Error(`${l}: no ${kind} names from the client tables (${ids[kind].size} wanted); nothing written`);
+		}
 	}
 	const outDir = abs(opts.out) || names.DEFAULTS.out;
 	const sources = { wago: wagoInfo, wowhead: Object.fromEntries(wanted.map((l) => [l, whNames[l]])), ding, pf: pfInfo };
 	if (!Object.values(sources.wowhead).some((x) => x.fetched)) sources.wowhead = null;
 	const written = names.writeNamesAddons(out, outDir, { sources });
 	const idCount = (k) => (ids[k] === null ? null : ids[k].size);
-	const lacking = (l) => Object.fromEntries(names.PACK_KINDS.filter((k) => ids[k]).map((k) => [k, [...ids[k]].filter((id) => !out[l].names[k].has(id)).length]));
+	// Ids with no name in a language, and those whose every name there is the
+	// English one (not stored: the English shows, as the game does).
+	const lacking = (l) => Object.fromEntries(names.PACK_KINDS.filter((k) => ids[k]).map((k) => [k, [...ids[k]].filter((id) => !out[l].names[k].has(id) && !out[l].english[k].has(id)).length]));
+	const sameAsEnglish = (l) => Object.fromEntries(names.PACK_KINDS.filter((k) => ids[k]).map((k) => [k, out[l].english[k].size]));
 	if (opts.json) {
 		const kinds = (f) => Object.fromEntries(names.PACK_KINDS.map((k) => [k, f(k)]));
 		console.log(JSON.stringify({
@@ -409,7 +431,7 @@ async function runNames(opts, positional) {
 			pfquest: { revision: pfInfo.revision },
 			locales: Object.fromEntries(wanted.map((l) => {
 				const w = written.find((x) => x.locale === l);
-				return [l, { names: kinds((k) => out[l].names[k].size), lacking: lacking(l), from: out[l].from, bytes: w ? w.bytes : 0 }];
+				return [l, { names: kinds((k) => out[l].names[k].size), lacking: lacking(l), sameAsEnglish: sameAsEnglish(l), from: out[l].from, bytes: w ? w.bytes : 0 }];
 			})),
 		}, null, 2));
 		return 0;
@@ -429,7 +451,7 @@ async function runNames(opts, positional) {
 		const fromLine = names.SOURCE_KEYS.map((s) => `${SOURCE_WORDS[s]} ${from[s]}`).join(', ');
 		const miss = lacking(l);
 		console.log(w
-			? `${l}: ${idLine(sizes)} (${fromLine}); none for ${idLine(miss)}; ${path.relative(process.cwd(), w.dir) || '.'}, ${(w.bytes / 1024).toFixed(0)} KB`
+			? `${l}: ${idLine(sizes)} (${fromLine}); the English one for ${idLine(sameAsEnglish(l))}; none for ${idLine(miss)}; ${path.relative(process.cwd(), w.dir) || '.'}, ${(w.bytes / 1024).toFixed(0)} KB`
 			: `${l}: no names; no folder`);
 	}
 	return 0;
@@ -470,7 +492,7 @@ async function runFit(opts, positional) {
 
 async function run(argv) {
 	const { opts, positional, error } = parseArgs(argv, {
-		flags: ['--json', '--markdown', '--no-questie', '--offline', '--dry-run'],
+		flags: ['--json', '--markdown', '--no-questie', '--no-tables', '--offline', '--dry-run'],
 		options: ['--ding', '--pfquest', '--guides', '--questdb', '--codex', '--travel', '--chokepoints', '--out', '--limit', '--delay', '--build', '--sources', '--slack', '--addon'],
 	});
 	const [sub, ...rest] = positional;

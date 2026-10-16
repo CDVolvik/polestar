@@ -14,9 +14,12 @@
 // Forever's ItemSparse holds only part of the Classic items (the rest load
 // from the server): for those, the Classic Era client's ItemSparse, whose
 // items Forever kept. Forever's newest items are in neither: Wowhead names
-// those.
+// those. Areas need nothing here: the client names them by id
+// (C_Map.GetAreaInfo, Compat.GetAreaName) from the same AreaTable.
 
-const { cachedTable, pickBuild } = require('../data/wago');
+const fs = require('node:fs');
+const path = require('node:path');
+const { cachedTable, compareVersions, PRODUCTS } = require('../data/wago');
 
 const TABLES = {
 	item: { table: 'ItemSparse', field: 'Display_lang' },
@@ -26,8 +29,9 @@ const TABLES = {
 	taxi: { table: 'TaxiNodes', field: 'Name_lang' },
 };
 const KINDS = Object.keys(TABLES);
-// The kinds the Era client's tables fill in behind Forever's.
-const ERA_KINDS = ['item'];
+// Each product's kinds: Forever's every one, the Era client's items behind them.
+const PRODUCT_KINDS = { forever: KINDS, era: ['item'] };
+const BUILDS_URL = 'https://wago.tools/api/builds';
 
 async function fetchText(fetchImpl, url) {
 	const res = await fetchImpl(url, { headers: { 'user-agent': 'polestar-names-build' } });
@@ -35,15 +39,38 @@ async function fetchText(fetchImpl, url) {
 	return res.text();
 }
 
-// One build's tables of kinds in English and each language: { names: {
-// [locale]: { kind: Map id -> name, same: { kind: Set of the ids whose name
-// is the English one } } }, urls: [url patterns], warnings }. A string the
-// same as the English one is often one the client left untranslated (a test
-// item, a new name): `same` lets the build prefer another source's
-// translation for it.
+const tableFile = (sourcesDir, build, locale, table) => path.join(sourcesDir, 'wago', build, ...(locale ? [locale] : []), `${table}.csv`);
+
+// The cached builds of product holding every table of kinds in English and
+// in every locale, newest first.
+function completeBuilds(sourcesDir, product, kinds, locales) {
+	const root = path.join(sourcesDir, 'wago');
+	if (!fs.existsSync(root)) return [];
+	const tables = kinds.map((k) => TABLES[k].table);
+	return fs.readdirSync(root)
+		.filter((b) => /^\d+(\.\d+)+$/.test(b) && PRODUCTS[product].family.test(b))
+		.filter((b) => [null, ...locales].every((l) => tables.every((t) => fs.existsSync(tableFile(sourcesDir, b, l, t)))))
+		.sort(compareVersions)
+		.reverse();
+}
+
+// The newest build wago.tools lists for product, or null.
+async function listedBuild(fetchImpl, product) {
+	try {
+		const builds = JSON.parse(await fetchText(fetchImpl, BUILDS_URL));
+		const list = (builds[PRODUCTS[product].key] || []).map((b) => b.version).filter((v) => typeof v === 'string' && PRODUCTS[product].family.test(v));
+		return list.sort(compareVersions).pop() || null;
+	} catch {
+		return null;
+	}
+}
+
+// One build's tables of kinds in English and each language:
+// { names: { [locale]: { kind: Map id -> name } }, english: { kind: Map }, urls }.
+// Throws when a table can be neither read from the cache nor fetched.
 async function loadTables({ sourcesDir, build, locales, kinds, offline, fetchImpl, log }) {
-	const out = { names: {}, urls: [], warnings: [] };
-	const read = async (locale, table, field) => {
+	const read = async (locale, kind) => {
+		const { table, field } = TABLES[kind];
 		const rows = await cachedTable({ sourcesDir, build, table, locale, offline, get: (url) => fetchText(fetchImpl, url), log });
 		const m = new Map();
 		for (const r of rows) {
@@ -53,67 +80,59 @@ async function loadTables({ sourcesDir, build, locales, kinds, offline, fetchImp
 		}
 		return m;
 	};
-	const english = {};
+	const out = { names: {}, english: {}, urls: [] };
 	for (const kind of kinds) {
-		try {
-			english[kind] = await read(null, TABLES[kind].table, TABLES[kind].field);
-		} catch (err) {
-			english[kind] = new Map();
-			out.warnings.push(`wago.tools ${build}: no English ${TABLES[kind].table} (${err.message})`);
-		}
+		out.english[kind] = await read(null, kind);
+		out.urls.push(`https://wago.tools/db2/${TABLES[kind].table}/csv?build=${build}&locale=<locale>`);
 	}
 	for (const locale of locales) {
-		const byKind = (out.names[locale] = { same: {} });
-		for (const kind of kinds) {
-			const { table, field } = TABLES[kind];
-			byKind[kind] = new Map();
-			byKind.same[kind] = new Set();
-			try {
-				byKind[kind] = await read(locale, table, field);
-			} catch (err) {
-				out.warnings.push(`wago.tools ${build} ${locale}: no ${table} (${err.message})`);
-				continue;
-			}
-			const url = `https://wago.tools/db2/${table}/csv?build=${build}&locale=<locale>`;
-			if (!out.urls.includes(url)) out.urls.push(url);
-			for (const [id, name] of byKind[kind]) if (english[kind].get(id) === name) byKind.same[kind].add(id);
-		}
+		out.names[locale] = {};
+		for (const kind of kinds) out.names[locale][kind] = await read(locale, kind);
 	}
 	return out;
 }
 
-// The client tables of each language: Forever's (build `forever`, else the
-// newest wago.tools lists), then the Era client's items (build `era`, else
-// the newest) for the ids Forever's lack. A product neither listed nor
-// cached is left out with a warning.
-// -> { names: { [locale]: { kind: Map id -> name } }, builds: { forever, era }, urls, warnings }
+// The client tables of each language: Forever's, then the Era client's items
+// for the ids Forever's lack. Each product's build: `forever`/`era` when
+// given; else the newest wago.tools lists (offline: none), falling back to
+// the newest cached build holding every table this reads in English and in
+// every language asked. A product with no such build throws: a pack without
+// its instances, factions and flight points is never written silently.
+// -> { names: { [locale]: { kind: Map id -> name } }, english: { kind: Map },
+// builds: { forever, era }, urls }
 async function loadClientNames({ sourcesDir, locales, forever, era, offline = false, fetchImpl = globalThis.fetch, log = () => {} }) {
-	const out = { names: Object.fromEntries(locales.map((l) => [l, { ...Object.fromEntries(KINDS.map((k) => [k, new Map()])), same: Object.fromEntries(KINDS.map((k) => [k, new Set()])) }])), builds: {}, urls: [], warnings: [] };
-	for (const [product, build, kinds] of [['forever', forever, KINDS], ['era', era, ERA_KINDS]]) {
-		let picked;
-		try {
-			picked = await pickBuild({ sourcesDir, build, offline, fetchImpl, product, tables: ['UiMap'] });
-		} catch (err) {
-			out.warnings.push(`no ${product} client tables: ${err.message}`);
-			continue;
-		}
-		out.warnings.push(...picked.warnings);
-		const got = await loadTables({ sourcesDir, build: picked.build, locales, kinds, offline, fetchImpl, log });
-		out.warnings.push(...got.warnings);
-		if (!got.urls.length) continue;
-		out.builds[product] = picked.build;
-		out.urls.push(...got.urls);
-		for (const l of locales) {
-			for (const k of kinds) {
-				for (const [id, name] of got.names[l][k]) {
-					if (out.names[l][k].has(id)) continue;
-					out.names[l][k].set(id, name);
-					if (got.names[l].same[k].has(id)) out.names[l].same[k].add(id);
-				}
+	const out = {
+		names: Object.fromEntries(locales.map((l) => [l, Object.fromEntries(KINDS.map((k) => [k, new Map()]))])),
+		english: Object.fromEntries(KINDS.map((k) => [k, new Map()])),
+		builds: {},
+		urls: [],
+	};
+	for (const [product, given] of [['forever', forever], ['era', era]]) {
+		const kinds = PRODUCT_KINDS[product];
+		const tries = given ? [given] : [...new Set([offline ? null : await listedBuild(fetchImpl, product), ...completeBuilds(sourcesDir, product, kinds, locales)].filter(Boolean))];
+		let got = null;
+		let build = null;
+		const errors = [];
+		for (const b of tries) {
+			try {
+				got = await loadTables({ sourcesDir, build: b, locales, kinds, offline, fetchImpl, log });
+				build = b;
+				break;
+			} catch (err) {
+				errors.push(`${b}: ${err.message}`);
 			}
+		}
+		if (!got) {
+			throw new Error(`no ${product} client tables (${kinds.map((k) => TABLES[k].table).join(', ')}) for ${locales.join(', ')}${errors.length ? `: ${errors.join('; ')}` : ' cached'}; run once online, or pass the build`);
+		}
+		out.builds[product] = build;
+		out.urls.push(...got.urls);
+		for (const k of kinds) for (const [id, n] of got.english[k]) if (!out.english[k].has(id)) out.english[k].set(id, n);
+		for (const l of locales) {
+			for (const k of kinds) for (const [id, n] of got.names[l][k]) if (!out.names[l][k].has(id)) out.names[l][k].set(id, n);
 		}
 	}
 	return out;
 }
 
-module.exports = { TABLES, KINDS, ERA_KINDS, loadClientNames };
+module.exports = { TABLES, KINDS, PRODUCT_KINDS, loadClientNames, completeBuilds };

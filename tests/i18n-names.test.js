@@ -63,8 +63,8 @@ test('DingDB names come first and pfQuest fills the gaps; a pfQuest name that is
 		quest: { wago: 0, wowhead: 0, ding: 2, pfquest: 1 }, npc: { wago: 0, wowhead: 0, ding: 2, pfquest: 1 },
 		object: { wago: 0, wowhead: 0, ding: 1, pfquest: 1 }, item: { wago: 0, wowhead: 0, ding: 2, pfquest: 1 },
 	});
-	assert.deepEqual(obj(out.esMX.names.npc), { 240: 'Alguacil Dughan', 448: 'Hogger' }, 'pfQuest has no esMX: DingDB only');
-	assert.deepEqual(obj(out.deDE.names.npc), { 6: 'Koboldungeziefer', 448: 'Hogger' });
+	assert.deepEqual(obj(out.esMX.names.npc), { 240: 'Alguacil Dughan' }, 'pfQuest has no esMX: DingDB only; its "Hogger", the English name, is not stored');
+	assert.deepEqual(obj(out.deDE.names.npc), { 6: 'Koboldungeziefer' });
 	assert.equal(out.koKR.names.npc.size, 0, 'a locale neither source has stays empty');
 	assert.deepEqual([...fr.names.npc.keys()], [6, 240, 448], 'sorted by id');
 });
@@ -165,14 +165,21 @@ test('--no-questie: pfQuest only, no DingDB credit; a language left without name
 
 test('node tools/polestar.js i18n names writes the folders and reports what each language has', () => {
 	const out = tmpdir();
-	// --offline with an empty cache: no client tables, no Wowhead pages.
-	const r = polestar(['i18n', 'names', '--json', '--offline', '--sources', tmpdir(), '--no-questie', '--pfquest', PF, '--guides', INPUTS.guides, '--questdb', INPUTS.questdb, '--codex', INPUTS.codex, '--out', out]);
+	const args = ['i18n', 'names', '--json', '--offline', '--sources', tmpdir(), '--no-questie', '--pfquest', PF, '--guides', INPUTS.guides, '--questdb', INPUTS.questdb, '--codex', INPUTS.codex, '--out', out];
+	// --offline with an empty cache: no client tables stops the build, nothing written...
+	const missing = polestar(args);
+	assert.notEqual(missing.status, 0);
+	assert.match(missing.stderr, /no forever client tables/);
+	assert.deepEqual(fs.readdirSync(out), []);
+	// ...unless they are left out on purpose.
+	const r = polestar([...args, '--no-tables']);
 	assert.equal(r.status, 0, r.stderr);
 	const report = JSON.parse(r.stdout);
 	assert.equal(report.ding, null);
 	assert.equal(report.wago, null);
 	assert.deepEqual(Object.fromEntries(names.NAME_KINDS.map((k) => [k, report.locales.frFR.names[k]])), { quest: 2, npc: 2, object: 1, item: 1 });
-	assert.deepEqual(report.locales.frFR.lacking.npc, report.ids.npc - 2, 'what each language lacks');
+	assert.deepEqual([report.locales.frFR.sameAsEnglish.npc, report.locales.frFR.lacking.npc], [1, report.ids.npc - 3],
+		'what each language lacks, apart from Marshal McBride, whose only French name is the English one');
 	assert.deepEqual(fs.readdirSync(out).sort(), ['Polestar_Names_deDE', 'Polestar_Names_frFR']);
 	const lua = fs.readFileSync(path.join(out, 'Polestar_Names_frFR', 'Names.lua'), 'utf8');
 	assert.ok(lua.includes('[448]="Lardeur (pfQuest)"'), 'the pfQuest name, written for the addon');

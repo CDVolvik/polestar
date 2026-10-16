@@ -313,19 +313,40 @@ return ids`,
 
 // --- Merging ------------------------------------------------------------------
 
-const clean = (s) => (typeof s === 'string' ? s.trim() : '');
+// A name as it is written into the pack: every run of white space (a line
+// break too) one space, none at the ends.
+const clean = (s) => (typeof s === 'string' ? s.replace(/\s+/g, ' ').trim() : '');
 // pfQuest's objective text: its $B line breaks as spaces (other $ tokens stay).
-const objectiveText = (s) => clean(s).replace(/\$[Bb]/g, ' ').replace(/[ \t]+/g, ' ').trim();
+const objectiveText = (s) => clean(typeof s === 'string' ? s.replace(/\$[Bb]/g, ' ') : s);
+// Markers of content the game does not use (test, placeholder, retired), in
+// English and the client languages: a name holding one is no name.
+const PLACEHOLDER = /\[(?:PH|TMP|UNUSED|NOT USED|DEPRECATED|NYI|DNT|INUTILIS[ÉE]|P[ÉE]RIM[ÉE]|OBSOLETO|VERALTET)\]|<(?:NYI|TXT|UNUSED|PH|TMP|DEPRECATED)>|\((?:PH|TMP|NYI|DNT|UNUSED|DEPRECATED|TEST|JEFFTEST|OLD\d*|тест|시험용|测试|測試)\)|^zzOLD|\bDEPRECATED\b/iu;
+const usable = (s) => Boolean(s) && !PLACEHOLDER.test(s);
+
+// English names to tell a translation from a string left in English:
+// { kind: Map id -> name | Set of names }. addEnglish merges into one.
+function addEnglish(english, kind, id, name) {
+	const n = clean(name);
+	if (!n) return;
+	const m = (english[kind] = english[kind] || new Map());
+	const had = m.get(id);
+	if (had instanceof Set) had.add(n);
+	else m.set(id, new Set(had ? [had, n] : [n]));
+}
 
 // ids: usedIds' with extraIds' kinds; ding: readDing's result or null
 // (--no-questie); pf: loadPfQuestNames' with enUS among its locales; wago:
 // loadClientNames' names ({ [locale]: { item, map, encounter, faction, taxi } })
-// or null; wowhead: { [locale]: loadWowheadNames' } or null. A Wowhead name
-// that is its English one comes after DingDB's and pfQuest's: it may be a
-// string the client left untranslated.
+// or null; wowhead: { [locale]: loadWowheadNames' } or null; english: the
+// English names (addEnglish), with pfQuest's enUS and Wowhead's English lists
+// beside them. Per id the first source with a name that is no English name
+// wins, so any real translation beats a string some source left in English;
+// an id whose names are all English gets none (the English shows anyway). A
+// name with a placeholder marker is none.
 // -> { [locale]: { names: { kind: Map id -> name } (sorted by id),
+// english: { kind: Set of the ids whose every name is English },
 // from: { kind: { wago, wowhead, ding, pfquest } } } }
-function buildNames({ locales = LOCALE_CODES, ids, ding = null, pf = null, wago = null, wowhead = null }) {
+function buildNames({ locales = LOCALE_CODES, ids, ding = null, pf = null, wago = null, wowhead = null, english = {} }) {
 	const out = {};
 	const en = pf && pf.enUS;
 	for (const locale of locales) {
@@ -334,48 +355,37 @@ function buildNames({ locales = LOCALE_CODES, ids, ding = null, pf = null, wago 
 		const d = ding && ding[locale];
 		const p = pf && pf[locale];
 		const names = Object.fromEntries(PACK_KINDS.map((k) => [k, new Map()]));
+		const englishOnly = Object.fromEntries(PACK_KINDS.map((k) => [k, new Set()]));
 		const from = Object.fromEntries(PACK_KINDS.map((k) => [k, Object.fromEntries(SOURCE_KEYS.map((s) => [s, 0]))]));
 		for (const kind of PACK_KINDS) {
 			let list = ids[kind];
 			if (list === undefined) continue;
 			// null: every id the client table has (encounters).
 			if (list === null) list = w && w[kind] ? w[kind].keys() : [];
-			const pfKind = (k, id) => {
-				const m = k && k[kind];
+			const get = (src, id) => {
+				const m = src && src[kind];
 				return m ? m.get(id) : undefined;
 			};
+			const text = kind === 'objective' ? objectiveText : clean;
 			for (const id of [...list].sort((a, b) => a - b)) {
-				let name = '';
-				let src = null;
-				const take = (s, v) => {
-					if (!name && clean(v)) {
-						name = clean(v);
-						src = s;
-					}
-				};
-				if (kind === 'objective') {
-					take('wowhead', h && h.objective && h.objective.get(id));
-					const pn = objectiveText(pfKind(p, id));
-					if (pn && !(en && objectiveText(pfKind(en, id)) === pn)) take('pfquest', pn);
-				} else {
-					const wn = w && w[kind] && w[kind].get(id);
-					const wagoSame = wn && w.same && w.same[kind] && w.same[kind].has(id);
-					if (!wagoSame) take('wago', wn);
-					const hn = h && h.names && h.names[kind] && h.names[kind].get(id);
-					const sameAsEnglish = hn && h.same && h.same[kind] && h.same[kind].has(id);
-					if (!sameAsEnglish) take('wowhead', hn);
-					take('ding', d && d[kind] && d[kind].get(id));
-					const pn = clean(pfKind(p, id));
-					if (pn && !(en && clean(pfKind(en, id)) === pn)) take('pfquest', pn);
-					if (wagoSame) take('wago', wn);
-					if (sameAsEnglish) take('wowhead', hn);
+				const englishNames = new Set();
+				for (const v of [get(english, id), get(en, id), get(h && h.english, id)]) {
+					for (const n of v instanceof Set ? v : [v]) if (text(n)) englishNames.add(text(n));
 				}
-				if (!name) continue;
-				names[kind].set(id, name);
-				from[kind][src]++;
+				const candidates = kind === 'objective'
+					? [['wowhead', h && h.objective && h.objective.get(id)], ['pfquest', get(p, id)]]
+					: [['wago', get(w, id)], ['wowhead', get(h && h.names, id)], ['ding', get(d, id)], ['pfquest', get(p, id)]];
+				const named = candidates.map(([s, v]) => [s, text(v)]).filter(([, v]) => usable(v));
+				const hit = named.find(([, v]) => !englishNames.has(v));
+				if (!hit) {
+					if (named.length) englishOnly[kind].add(id);
+					continue;
+				}
+				names[kind].set(id, hit[1]);
+				from[kind][hit[0]]++;
 			}
 		}
-		out[locale] = { names, from };
+		out[locale] = { names, english: englishOnly, from };
 	}
 	return out;
 }
@@ -527,5 +537,5 @@ function writeNamesAddons(out, addonsDir, { sources, version, iface } = {}) {
 
 module.exports = {
 	DING, NAME_KINDS, EXTRA_KINDS, PACK_KINDS, SOURCE_KEYS, ADDON_PREFIX, DEFAULTS,
-	ensureDing, readDing, usedIds, extraIds, buildNames, emitNamesAddon, writeNamesAddons, total, sourceLabel,
+	ensureDing, readDing, usedIds, extraIds, buildNames, addEnglish, clean, emitNamesAddon, writeNamesAddons, total, sourceLabel,
 };

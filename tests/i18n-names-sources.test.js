@@ -148,3 +148,60 @@ test('the extra ids: instance maps, factions, flight points, lift objects and th
 	assert.equal(extra.encounter, null, 'every encounter the client has');
 	assert.deepEqual(sorted(names.extraIds({ codex: path.join(dir, 'none'), travel: path.join(dir, 'none.lua'), chokepoints }).map), [], 'missing inputs leave a kind empty');
 });
+
+test('a name some source left in English never beats a translation, whichever source has it; an id named only in English gets none', () => {
+	const m = (o) => new Map(Object.entries(o).map(([k, v]) => [Number(k), v]));
+	const ids = { quest: new Set(), npc: new Set([1, 2, 3, 4]), object: new Set(), item: new Set([10]) };
+	const english = {};
+	for (const [id, n] of [[1, 'Dolanaar Sentinel'], [2, 'Hogger'], [3, 'Grund Drokda'], [4, 'Alba Fairmoon']]) names.addEnglish(english, 'npc', id, n);
+	names.addEnglish(english, 'item', 10, 'Squirrel Nut');
+	const wago = { zhCN: { item: m({ 10: 'Squirrel Nut' }) } };
+	const wowhead = { zhCN: { names: { npc: m({ 1: 'Dolanaar Sentinel', 4: '阿尔巴·晴月' }) } } };
+	const ding = { zhCN: { npc: m({ 1: '泰达希尔卫兵', 2: 'Hogger', 3: 'Grund Drokda' }), item: m({}) } };
+	const pf = { zhCN: { npc: m({ 2: '霍格' }), item: m({ 10: '松鼠坚果' }) }, enUS: { npc: m({}), item: m({}) } };
+	const out = names.buildNames({ locales: ['zhCN'], ids, ding, pf, wago, wowhead, english }).zhCN;
+	assert.deepEqual(Object.fromEntries(out.names.npc), { 1: '泰达希尔卫兵', 2: '霍格', 4: '阿尔巴·晴月' }, 'Wowhead\'s and DingDB\'s English give way to the next translation');
+	assert.deepEqual(Object.fromEntries(out.names.item), { 10: '松鼠坚果' }, 'the client table\'s English too');
+	assert.deepEqual([...out.english.npc], [3], 'named only in English: nothing stored, the English shows');
+});
+
+test('names are written with one space for every run of white space, line breaks too; placeholder and test names are none', () => {
+	assert.equal(names.clean('  Avis de\n recherche\t:  "Lardeur" '), 'Avis de recherche : "Lardeur"');
+	const m = (o) => new Map(Object.entries(o).map(([k, v]) => [Number(k), v]));
+	const ids = { quest: new Set(), npc: new Set(), object: new Set(), item: new Set([1, 2, 3, 4, 5, 6, 7]), objective: new Set([9]) };
+	const pf = {
+		frFR: {
+			item: m({ 1: '[PH] Épée', 2: 'Épée [PÉRIMÉ]', 3: 'Bâton (DNT)', 4: '<NYI> Bottes', 5: 'Hache\nde  guerre', 6: '[INUTILISÉ] Anneau', 7: 'Bouclier (test)' }),
+			objective: m({ 9: 'Tuez$Bles kobolds.' }),
+		},
+		enUS: { item: m({}), objective: m({}) },
+	};
+	const out = names.buildNames({ locales: ['frFR'], ids, pf }).frFR;
+	assert.deepEqual(Object.fromEntries(out.names.item), { 5: 'Hache de guerre' });
+	assert.equal(out.names.objective.get(9), 'Tuez les kobolds.');
+});
+
+test('the client tables come from a build holding every table in English and every language asked; none stops the build', async () => {
+	const { loadClientNames } = require('../tools/lib/i18n/names-wago');
+	const sourcesDir = tmpdir('polestar-names-wago-');
+	const csv = (rows, field) => `ID,${field}\n${rows.map(([id, n]) => `${id},${n}`).join('\n')}\n`;
+	const TABLES = { ItemSparse: 'Display_lang', Map: 'MapName_lang', DungeonEncounter: 'Name_lang', Faction: 'Name_lang', TaxiNodes: 'Name_lang' };
+	const write = (build, locale, tables, names_) => {
+		for (const t of tables) {
+			const dir = path.join(sourcesDir, 'wago', build, ...(locale ? [locale] : []));
+			fs.mkdirSync(dir, { recursive: true });
+			fs.writeFileSync(path.join(dir, `${t}.csv`), csv([[1, names_[t] || `${t} ${locale || 'en'}`]], TABLES[t]));
+		}
+	};
+	const all = Object.keys(TABLES);
+	// 1.60.1.2 is newer but lacks ruRU's TaxiNodes: 1.60.1.1 is the one read.
+	for (const l of [null, 'ruRU']) write('1.60.1.1', l, all, {});
+	write('1.60.1.2', null, all, {});
+	write('1.60.1.2', 'ruRU', all.filter((t) => t !== 'TaxiNodes'), {});
+	for (const l of [null, 'ruRU']) write('1.15.9.1', l, ['ItemSparse'], { ItemSparse: l ? 'Эра' : 'Era' });
+	const got = await loadClientNames({ sourcesDir, locales: ['ruRU'], offline: true });
+	assert.deepEqual(got.builds, { forever: '1.60.1.1', era: '1.15.9.1' });
+	assert.equal(got.names.ruRU.taxi.get(1), 'TaxiNodes ruRU');
+	assert.equal(got.english.map.get(1), 'Map en');
+	await assert.rejects(loadClientNames({ sourcesDir, locales: ['deDE'], offline: true }), /no forever client tables/);
+});

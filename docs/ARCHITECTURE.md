@@ -464,14 +464,20 @@ Names.Add(locale, kind, { [id] = name })   -- the pack's files only; any kind
   them, per id the first source with a name winning: the client's own
   tables in that language (wago.tools with `&locale=`: Forever's ItemSparse,
   Map, DungeonEncounter, Faction and TaxiNodes, then the Era client's
-  ItemSparse for the items Forever's lacks), Wowhead's Forever database in
-  that language (its list pages for the id ranges holding a wanted id, then
-  tooltips for ids no list holds; one request at a time, cached in
-  `data/sources/wowhead/names`; a bracketed name is no translation), DingDB
-  (cloned into `data/sources/ding`, pinned to a commit and its files'
-  sha256s: `DING` in `tools/lib/i18n/names.js`), then pfQuest's
-  `db/<locale>` (no esMX). Only the ids the compiled guides, the quest
-  database, the Codex's data and the travel data name are kept.
+  ItemSparse for the items Forever's lacks; the newest build holding every
+  one in English and each language, and none stops the build), Wowhead's
+  Forever database in that language (its list pages for the id ranges
+  holding a wanted id, then tooltips for ids no list holds; one request at a
+  time, at least 2 s apart, cached in `data/sources/wowhead/names`; a
+  bracketed name is no translation), DingDB (cloned into
+  `data/sources/ding`, pinned to a commit and its files' sha256s: `DING` in
+  `tools/lib/i18n/names.js`), then pfQuest's `db/<locale>` (no esMX). A name
+  equal to the English one, from any source, is never stored: a translation
+  from a later source wins, else the English shows as it would; a name
+  marking unused content (`[PH]`, `[UNUSED]`, `(DNT)`, `<NYI>`, `(test)`
+  and their translations) is none. Areas need no pack: the client names
+  them by id (`Compat.GetAreaName`). Only the ids the compiled guides, the
+  quest database, the Codex's data and the travel data name are kept.
   `--no-questie` leaves DingDB out. `Data.CheckInstall` checks the client's
   pack like the other optional data packs: never missing, named when its
   version differs.

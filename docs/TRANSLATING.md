@@ -160,10 +160,15 @@ has the details.
   every file checked against its sha256) and pfQuest's `db/<locale>` (the
   clone `data build` uses). It keeps only the ids the compiled guides, the
   quest database (`questdb build`, or `--questdb <dir>`), the Codex's data
-  (`codex build`, or `--codex <dir>`) and the travel data name. Wowhead is
-  asked one request at a time, 2.5 s apart (`--delay`), and its pages are
-  cached under `data/sources/wowhead/names` for 30 days: a first run for all
-  nine languages takes about an hour, a later one only reads the cache.
+  (`codex build`, or `--codex <dir>`) and the travel data name. A name equal
+  to the English one is not stored (a later source's translation wins), nor
+  is one marking unused content (`[PH]`, `(DNT)`...). The client tables
+  come from the newest build that has them all in English and every
+  language; without one the build stops (`--no-tables` leaves them out on
+  purpose). Wowhead is asked one request at a time, 2.5 s apart (`--delay`,
+  never under 2 s), and its pages are cached under
+  `data/sources/wowhead/names` for 30 days: a first run for all nine
+  languages takes about an hour, a later one only reads the cache.
   `--dry-run` counts the requests, `--limit <n>` caps the tooltips,
   `--offline` reads only the caches, `--no-questie` leaves DingDB out. It
   prints, per language, how many ids of each kind have no name. Commit the

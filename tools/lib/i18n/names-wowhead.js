@@ -34,6 +34,8 @@ const TYPES = ['quest', 'npc', 'object', 'item'];
 const TOOLTIP_LOCALES = { koKR: 1, frFR: 2, deDE: 3, zhCN: 4, esES: 6, ruRU: 7, ptBR: 8, zhTW: 10, esMX: 11 };
 const TOOLTIP = 'https://nether.wowhead.com/forever/tooltip';
 const DELAY_MS = 2500;
+// No run asks faster than this, whatever --delay says.
+const MIN_DELAY_MS = 2000;
 const RETRY_PAUSE_MS = 30000;
 const MAX_FAILURES = 5;
 const MAX_AGE_DAYS = 30;
@@ -85,7 +87,7 @@ function rangesWith(chunks, ids) {
 }
 
 function makeClient({ client, delayMs = DELAY_MS, log, fetchImpl }) {
-	return client || politeClient({ delayMs, retryPauseMs: RETRY_PAUSE_MS, maxFailures: MAX_FAILURES, userAgent: USER_AGENT, log, ...(fetchImpl ? { fetchImpl } : {}) });
+	return client || politeClient({ delayMs: Math.max(MIN_DELAY_MS, delayMs), retryPauseMs: RETRY_PAUSE_MS, maxFailures: MAX_FAILURES, userAgent: USER_AGENT, log, ...(fetchImpl ? { fetchImpl } : {}) });
 }
 
 // The list pages of each language for the ranges holding a wanted id.
@@ -173,26 +175,20 @@ function questObjective(tooltip) {
 }
 
 // Everything cached for one language: { names: { type: Map id -> name },
-// same: { type: Set of the ids whose name is Wowhead's English one },
-// listed: { type: Set of ids a list row holds, named or not }, objective:
-// Map quest id -> text (tooltips), fetched: { first, last } (ISO dates) }.
-// A name the same as the English one may be the language's own (German keeps
-// many proper names) or a string the client left untranslated: `same` lets
-// the build prefer another source's translation for it.
+// english: { type: Map id -> Wowhead's English name } (the build tells a
+// translation from a string left in English by it), listed: { type: Set of
+// ids a list row holds, named or not }, objective: Map quest id -> text
+// (tooltips), fetched: { first, last } (ISO dates) }.
 function loadWowheadNames(sourcesDir, locale) {
 	const names = Object.fromEntries(TYPES.map((t) => [t, new Map()]));
-	const same = Object.fromEntries(TYPES.map((t) => [t, new Set()]));
+	const english = Object.fromEntries(TYPES.map((t) => [t, new Map()]));
 	const listed = Object.fromEntries(TYPES.map((t) => [t, new Set()]));
 	const objective = new Map();
 	const dates = [];
 	for (const type of TYPES) {
-		const english = new Map();
 		const en = readJson(englishListFile(sourcesDir, type));
-		for (const c of (en && en.chunks) || []) for (const r of c.rows || []) if (r.name) english.set(r.id, String(r.name).trim());
-		const take = (id, name) => {
-			names[type].set(id, name);
-			if (english.get(id) === name) same[type].add(id);
-		};
+		for (const c of (en && en.chunks) || []) for (const r of c.rows || []) if (r.name) english[type].set(r.id, String(r.name).trim());
+		const take = (id, name) => names[type].set(id, name);
 		const list = readJson(localeListFile(sourcesDir, locale, type));
 		for (const c of (list && list.chunks) || []) {
 			if (c.fetchedAt) dates.push(c.fetchedAt);
@@ -218,11 +214,11 @@ function loadWowheadNames(sourcesDir, locale) {
 		}
 	}
 	dates.sort();
-	return { names, same, listed, objective, fetched: dates.length ? { first: dates[0], last: dates[dates.length - 1] } : null };
+	return { names, english, listed, objective, fetched: dates.length ? { first: dates[0], last: dates[dates.length - 1] } : null };
 }
 
 module.exports = {
-	TYPES, TOOLTIP_LOCALES, TOOLTIP, DELAY_MS, MAX_AGE_DAYS,
+	TYPES, TOOLTIP_LOCALES, TOOLTIP, DELAY_MS, MIN_DELAY_MS, MAX_AGE_DAYS,
 	fetchListNames, fetchTooltipNames, loadWowheadNames, questObjective, rangesWith, realName,
 	localeListFile, tooltipFile, englishListFile, LISTS,
 };
