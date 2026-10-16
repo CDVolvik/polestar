@@ -28,7 +28,7 @@ const usage = `usage: node tools/polestar.js nav build [--continents 0,1] [--for
        node tools/polestar.js nav aids [--out <file>] [--lua <file>] [--report] [--continents 0,1] [--workers N] [--reference <file>] [--dir <dir>]
        node tools/polestar.js nav pack [--cells N] [--date <YYYY-MM-DD>] [--dir <grid dir>] [--layers <dir>] [--out <dir>] | nav pack --check [--out <dir>]
        node tools/polestar.js nav check [--out <dir>]
-       node tools/polestar.js nav eval [--nav <Polestar_Nav dir>] [--baseline <dir or eval .json>] [--routes <file>] [--sweep] [--out <file.json>]
+       node tools/polestar.js nav eval [--nav <Polestar_Nav dir>] [--baseline <dir or eval .json>] [--routes <file>] [--sweep] [--style fastest|balanced|roads] [--out <file.json>]
        node tools/polestar.js nav layers roads [--c 0|1] [--allowlist] [--offline] [--product <p>]
        node tools/polestar.js nav layers hubs [--dir <grid dir>] [--offline]
 
@@ -85,7 +85,9 @@ eval    the walking router run standalone (LuaJIT, else Lua 5.1; a folder
         goals and per side, from the zone's flight master (else its first
         goal) to every goal. --baseline runs the same on another folder (or
         reads an earlier --out report) and judges the acceptance checks
-        A1-A8; exit 1 when one fails. --out writes the whole report.
+        A1-A8; exit 1 when one fails. --style prices every search in a
+        route style (fastest, balanced or roads; default balanced), the
+        baseline's too. --out writes the whole report.
 layers  the ground layers under data/local/nav-layers. roads: per grid
         column, the share of the ground the client paints with a road
         texture (tools/lib/nav/layers/roads.js), from each tile's tex0 ADT
@@ -407,8 +409,10 @@ async function packCmd(argv) {
 // The walking router on a folder's maps: the route corpus, the goal sweep, and the acceptance checks against a
 // baseline (tools/lib/nav/eval).
 async function evalCmd(argv) {
-	const { opts: o, positional, error } = parseArgs(argv, { flags: ['--sweep'], options: ['--nav', '--baseline', '--routes', '--out'] });
+	const { opts: o, positional, error } = parseArgs(argv, { flags: ['--sweep'], options: ['--nav', '--baseline', '--routes', '--out', '--style'] });
 	if (error || positional.length) throw usageError(error || `unexpected argument "${positional[0]}"`);
+	const style = o.style === undefined ? 'balanced' : o.style;
+	if (!['fastest', 'balanced', 'roads'].includes(style)) throw usageError('--style: fastest, balanced or roads');
 	const { evaluate, loadCorpus, findInterpreter } = require('../lib/nav/eval/run');
 	const { loadLayers, measureIndoor } = require('../lib/nav/eval/metrics');
 	const { compare, summarize } = require('../lib/nav/eval/compare');
@@ -427,10 +431,10 @@ async function evalCmd(argv) {
 	const city = indoorGrid ? require('../lib/nav/pack').cityTest({ areaTable: areaTableRows(), zoneAt: zoneLookup() }) : undefined;
 	const taxi = o.sweep ? readJson(path.join(DATA, 'travel.json')).taxi.nodes : null;
 	const guides = o.sweep ? fs.readFileSync(path.join(ROOT, 'addon', 'Polestar_Guides', 'Guides.lua'), 'utf8') : null;
-	const common = { corpus, sweep: !!o.sweep, geo, taxi, guides, grid, layers: loadLayers(undefined, { indoorGrid, city }), lua: findInterpreter(), log: (m) => console.error(m) };
+	const common = { corpus, sweep: !!o.sweep, style, geo, taxi, guides, grid, layers: loadLayers(undefined, { indoorGrid, city }), lua: findInterpreter(), log: (m) => console.error(m) };
 	const fmtSummary = (label, s) => {
 		const sides = Object.entries(s.sweep).map(([p, v]) => `${p} ${v.reachable}/${v.targets} goals in ${v.zones} zones`).join(', ');
-		return `${label}: routes ${s.ok}/${s.routes} found, blocked share ${s.blockedShare === null ? 'n/a' : `${(100 * s.blockedShare).toFixed(1)}%`}, median cold search ${s.medianMs} ms${sides ? `; sweep: ${sides}` : ''}`;
+		return `${s.style || 'balanced'} ${label}: routes ${s.ok}/${s.routes} found, blocked share ${s.blockedShare === null ? 'n/a' : `${(100 * s.blockedShare).toFixed(1)}%`}, median cold search ${s.medianMs} ms${sides ? `; sweep: ${sides}` : ''}`;
 	};
 	const report = evaluate({ navDir, ...common });
 	for (const r of report.routes) {

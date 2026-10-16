@@ -7,8 +7,8 @@
 -- files.txt: the files to load, one path per line, in the client's order (run.js reads the folder's .toc and its
 -- Nav/Nav.xml): each runs as an addon file does, with ("Polestar_Nav", ns).
 -- queries.jsonl, one JSON object per line ([x, y, z] points in UnitPosition's frame, z null when unknown):
---   {"type":"route","id":..,"map":0,"from":[x,y,z],"to":[x,y,z],"profile":null|"Alliance"|"Horde"}
---   {"type":"many","id":..,"map":0,"from":[x,y,z],"targets":[[x,y,z],...],"profile":..}
+--   {"type":"route","id":..,"map":0,"from":[x,y,z],"to":[x,y,z],"profile":null|"Alliance"|"Horde","style":"fastest"|"balanced"|"roads"}
+--   {"type":"many","id":..,"map":0,"from":[x,y,z],"targets":[[x,y,z],...],"profile":..,"style":..}
 -- out.jsonl: an init line ({"type":"init","files":n,"loadMs":..,"packedKB":..,"profiles":bool}), then one line per
 -- query:
 --   {"type":"route","id","ok","reason","cost","yards","ms","warmMs","kb","pts":[[x,y,z],...],"hubs","wet"}
@@ -18,7 +18,7 @@
 -- the cold search (decoding included), warmMs the same route again, kb Lua memory when the search answered. An error
 -- reported through the client's error handler during a query fails it (ok false, reason "error: ..."); each query
 -- starts with none.
--- The profile reaches the router (opts.profile) only when it prices by profile (Polestar_NavCosts is defined):
+-- The profile and the route style reach the router (opts.profile, opts.style) only when it prices by profile (Polestar_NavCosts is defined):
 -- 0.2.4's router takes a waterWalking flag where opts goes, so it is called without one.
 
 local ENCODING, FILES, QUERIES, OUT = arg[1], arg[2], arg[3], arg[4]
@@ -194,9 +194,9 @@ local function point(map, p)
 	return { map = map, x = p[1], y = p[2], z = p[3] }
 end
 
-local function opts(profile)
+local function opts(profile, style)
 	if profiles then
-		return { profile = profile }
+		return { profile = profile, style = style }
 	end
 	return nil
 end
@@ -209,7 +209,7 @@ local function route(q)
 		local start = clock()
 		Path.Find(q.map, from, to, function(points, cost, job)
 			got = { points = points, cost = cost, job = job, ms = clock() - start, kb = collectgarbage("count") }
-		end, opts(q.profile))
+		end, opts(q.profile, q.style))
 		drain()
 		return got
 	end
@@ -273,7 +273,7 @@ local function many(q)
 	local start = clock()
 	Path.FindMany(q.map, from, targets, function(costs, reason, job)
 		got = { costs = costs, reason = reason, job = job, ms = clock() - start, kb = collectgarbage("count") }
-	end, opts(q.profile))
+	end, opts(q.profile, q.style))
 	drain()
 	local parts, yards = {}, "null"
 	local costs = got and got.costs or {}

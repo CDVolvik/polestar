@@ -296,3 +296,9 @@ test('the route corpus: a hub route marked `outside` has both ends at least that
 		}
 	}
 });
+
+test('nav eval refuses a route style that is none of the three', () => {
+	const r = spawnSync(process.execPath, [path.join(ROOT, 'tools/polestar.js'), 'nav', 'eval', '--style', 'sideways'], { encoding: 'utf8' });
+	assert.equal(r.status, 2);
+	assert.match(r.stderr, /--style: fastest, balanced or roads/);
+});

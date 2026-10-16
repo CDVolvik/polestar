@@ -84,10 +84,10 @@ function runQueries({ navDir, queries, lua = findInterpreter() }) {
 	}
 }
 
-const routeQuery = (r, profile) => ({ type: 'route', id: r.id, map: r.map, from: r.from, to: r.to, profile: r.profile !== undefined ? r.profile : profile });
+const routeQuery = (r, profile, style = 'balanced') => ({ type: 'route', id: r.id, map: r.map, from: r.from, to: r.to, profile: r.profile !== undefined ? r.profile : profile, style });
 
-function runRoutes({ navDir, routes, profile = null, lua }) {
-	const { results } = runQueries({ navDir, lua, queries: routes.map((r) => routeQuery(r, profile)) });
+function runRoutes({ navDir, routes, profile = null, style = 'balanced', lua }) {
+	const { results } = runQueries({ navDir, lua, queries: routes.map((r) => routeQuery(r, profile, style)) });
 	return results.map(({ type, ...r }) => r);
 }
 
@@ -130,7 +130,7 @@ function guideGoals(src, geo) {
 	return byZone;
 }
 
-function sweepQueries({ geo, taxi, guides, profiles = PROFILES }) {
+function sweepQueries({ geo, taxi, guides, profiles = PROFILES, style = 'balanced' }) {
 	const byZone = guideGoals(guides, geo);
 	const queries = [];
 	for (const [zone, goals] of [...byZone].sort((a, b) => a[0] - b[0])) {
@@ -140,18 +140,18 @@ function sweepQueries({ geo, taxi, guides, profiles = PROFILES }) {
 		for (const profile of profiles) {
 			const fm = (taxi || []).find((n) => n.map === zone && n.c === c && TAXI_SIDES[profile].includes(n.faction));
 			const from = fm ? [fm.wx, fm.wy, null] : targets[0];
-			queries.push({ type: 'many', id: `${c}|${zone}|${profile}`, map: c, zone, profile, hub: fm ? fm.name : 'first goal', from, targets });
+			queries.push({ type: 'many', id: `${c}|${zone}|${profile}`, map: c, zone, profile, style, hub: fm ? fm.name : 'first goal', from, targets });
 		}
 	}
 	return queries;
 }
 
-function evaluate({ navDir, corpus, sweep = false, geo, taxi, guides, grid = null, layers = {}, lua = findInterpreter(), log = () => {} }) {
+function evaluate({ navDir, corpus, sweep = false, style = 'balanced', geo, taxi, guides, grid = null, layers = {}, lua = findInterpreter(), log = () => {} }) {
 	const routes = resolveRoutes(corpus.routes, geo);
-	const many = sweep ? sweepQueries({ geo, taxi, guides }) : [];
+	const many = sweep ? sweepQueries({ geo, taxi, guides, style }) : [];
 	log(`nav eval: ${routes.length} routes${sweep ? `, ${many.length} zone sweeps` : ''} on ${navDir} (${lua})`);
 	const t0 = Date.now();
-	const { init, results } = runQueries({ navDir, lua, queries: [...routes.map((r) => routeQuery(r, null)), ...many.map(({ hub, zone, ...q }) => q)] });
+	const { init, results } = runQueries({ navDir, lua, queries: [...routes.map((r) => routeQuery(r, null, style)), ...many.map(({ hub, zone, ...q }) => q)] });
 	log(`nav eval: harness done in ${((Date.now() - t0) / 1000).toFixed(1)} s`);
 	const byId = new Map(results.map((r) => [`${r.type}|${r.id}`, r]));
 	const out = routes.map((r) => {
@@ -164,7 +164,7 @@ function evaluate({ navDir, corpus, sweep = false, geo, taxi, guides, grid = nul
 		const r = byId.get(`many|${q.id}`);
 		return { id: q.id, map: q.map, zone: q.zone, profile: q.profile, hub: q.hub, from: q.from, targets: q.targets, ok: r.ok, reason: r.reason, costs: r.costs, yards: r.yards, ms: r.ms };
 	});
-	const report = { navDir: path.resolve(navDir), lua, init, routes: out, sweep: sw };
+	const report = { navDir: path.resolve(navDir), lua, init, style, routes: out, sweep: sw };
 	report.summary = summarize(report);
 	return report;
 }

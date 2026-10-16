@@ -5,7 +5,7 @@
 // the harness's kb figures and signed off by hand).
 //
 //   evaluateExpectations(route) -> [{ type, pass: true | false | null (n/a), detail }]
-//   summarize(report) -> { routes, ok, blockedShare, medianMs, sweep: { <profile>: { zones, targets, reachable } } }
+//   summarize(report) -> { style, routes, ok, blockedShare, medianMs, sweep: { <profile>: { zones, targets, reachable } } }
 //   compare(base, cand) -> { pass, checks: [{ id: 'A1'..'A8', pass: true | false | null, detail }] }
 //
 // Expectations (routes.json `expect`):
@@ -125,6 +125,7 @@ function summarize(report) {
 	const blocked = blockedOf(routes);
 	const ms = median(routes.filter((r) => r.result.ok).map((r) => r.result.ms));
 	return {
+		style: report.style || 'balanced',
 		routes: routes.length,
 		ok: routes.filter((r) => r.result.ok).length,
 		blockedShare: blocked === null ? null : +blocked.toFixed(4),
