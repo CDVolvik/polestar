@@ -63,6 +63,7 @@ emit(T.Replay(d, { key = "k", picks = { { order = 1, node = 3, rank = 1 } } })[1
 
 // Every class's plans in Builds.lua: three specs, 51 picks each, legal under the snapshot.
 const CLASS_SPECS = {
+	MAGE: ['Arcane', 'Fire', 'Frost'],
 	PALADIN: ['Holy', 'Protection', 'Retribution'],
 	ROGUE: ['Assassination', 'Combat', 'Subtlety'],
 	WARRIOR: ['Arms', 'Fury', 'Protection'],
@@ -509,7 +510,7 @@ emit(english())`, { files: WITH_UI, stubs: ['stub_ui.lua'] });
 test('View: another class sees why there is no plan', () => {
 	const [out] = runAddon({
 		stubs: ['stub_world.lua', 'stub_talents.lua', 'stub_ui.lua'],
-		before: 'stub.talents.class, stub.talents.className = "MAGE", "Mage"',
+		before: 'stub.talents.class, stub.talents.className = "DEATHKNIGHT", "Death Knight"',
 		addons: [{ name: 'Polestar', files: WITH_UI }],
 		login: true,
 		script: 'Polestar.UI.TalentsSection.Show(); emit(Polestar.UI.TalentsSection.Shown().empty)',
