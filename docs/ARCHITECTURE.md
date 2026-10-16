@@ -1918,9 +1918,12 @@ Alliance and Horde hub bits) a grid step costs its length times
 `Costs.Mult(class, profile)` (`Routing/Costs.lua`: normal 1.0, road 0.8,
 gentle 1.3, steep 2.5, indoor 2.0, indoor city 1.0, a hub hostile to the
 profile x20), times the swim factor in water, and the A* heuristics (and
-`Path.LowerBound`) scale by `Costs.MIN` (0.8) to stay admissible. A map of
-format 1 (0.2.4's, no class field) is class 0 everywhere and keeps the 1.0
-heuristic, so it routes exactly as before classes, for any profile.
+`Path.LowerBound`) scale by `Costs.MIN` (0.8) to stay admissible; each graph
+edge carries one cost per profile (`costAlliance`, `costHorde`, `costNone`)
+and its yards (the record layout is at `PathGrid.lua`'s `adjacent`). A map of
+format 1 (0.2.4's, no class field) is class 0 everywhere, has one edge cost
+for every profile and keeps the 1.0 heuristic, so it routes exactly as before
+classes, for any profile.
 
 ```
 Polestar_Nav.toc        LoadOnDemand, Dependencies: Polestar
@@ -1968,9 +1971,10 @@ still builds about 26 MB of packed strings) and never in combat; with
 widened:
 
 ```lua
-Path.Find(map, from, to, callback, opts) -> job      -- callback(points, cost, job) or (nil, reason, job)
-Path.FindCost(map, from, to, callback, opts) -> job  -- callback(cost, reason, job), no drawing points
-Path.FindMany(map, from, targets, callback, opts, reverse, progress) -> job  -- costs[i] or false
+Path.Find(map, from, to, callback, opts) -> job      -- callback(points, cost, job) or (nil, reason, job); job.yards, job.hubs
+Path.FindCost(map, from, to, callback, opts) -> job  -- callback(cost, reason, job), no drawing points; job.yards
+Path.FindMany(map, from, targets, callback, opts, reverse, progress) -> job  -- costs[i] or false; job.yards[i]
+Path.ReuseMany(job, point, profile) -> bool         -- may a batch from job's source serve one from point for profile
 Path.Cancel(job) ; Path.Busy() -> bool ; Path.Available(map) -> bool
 -- opts: a boolean is waterWalking (as every caller passed it before profiles), or
 -- { waterWalking = boolean, profile = "Alliance" | "Horde" | nil } (Costs.Profile(UnitFactionGroup))
@@ -1982,7 +1986,14 @@ Kingdoms, 1 Kalimdor, 2991 Zephras Isle); points are `{ x, y, z }` in
 Results are `{ map, x, y, z }` from start to goal, `points.wet` the yards over
 water; cost is running yards with a swum yard counting the map's `swim`
 (3) unless `waterWalking`, and on a map with classes each yard times its
-class's multiplier for `profile`. Reasons: `nodata`, `outside`, `offmesh`,
+class's multiplier for `profile`. Beside the cost every result carries
+yards: `Find`'s `job.yards` is the drawn line's flat length; `FindCost`'s
+and `FindMany`'s are a second label along the cost-best path (grid step
+lengths and the edges' yards), on a format 1 map the cost itself (its edges
+carry no yards). `Find`'s `job.hubs` = `{ { id, name }, ... }` lists the hubs
+of the map's `hubs` metadata (`{ id, side, name, disks = { { x, y, r }, ...
+} }`) hostile to `profile` that the drawn line enters, each once, in path
+order (`{}` without a profile or hubs). Reasons: `nodata`, `outside`, `offmesh`,
 `unreachable`, `error`. Searches run as coroutines in `C_Timer.After(0)`
 slices of `Path.budget` ms, wait out combat, and drop decoded clusters once
 the queue is empty (`Path.cacheKB`, `Path.graphKB` cap them meanwhile, set

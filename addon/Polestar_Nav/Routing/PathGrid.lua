@@ -13,8 +13,9 @@ local ns = select(2, ...)
 -- Coordinates are UnitPosition's frame (x north, y west).
 -- A cell holds its base surface and, where surfaces overlap (a tunnel under a mountain, a city under ruins, both
 -- ends of a lift), floors above or below it. A node is a local cell (the base surface) or C * C + a floor's index.
--- A map of format 2 also carries a ground class byte per node (the class field, Routing/Costs.lua); format 1 maps
--- (0.2.4's) have none and are class 0 everywhere.
+-- A map of format 2 also carries a ground class byte per node (the class field, Routing/Costs.lua) and graph edges
+-- priced per profile with their yards (adjacent); format 1 maps (0.2.4's) have no classes (class 0 everywhere) and one
+-- edge cost for every profile.
 -- This file holds the decoded maps, their memory ceilings, frame slicing and string-pulling; Path.lua searches them
 -- and PathJobs.lua schedules the searches.
 ---@class SPFPath
@@ -33,6 +34,7 @@ local TILE = 1600 / 3
 local SNAP = 6 -- cells searched around an off-grid endpoint
 local ZTOL = 10 -- an endpoint stands on a surface within this height (yd)
 local CHECK = 64 -- expansions between clock reads
+local EDGE1, EDGE2 = 7, 14 -- symbols in a graph edge record of format 1 and format 2 (adjacent)
 
 local byte, floor, sqrt, huge, max, abs = string.byte, math.floor, math.sqrt, math.huge, math.max, math.abs
 local yield = coroutine.yield
@@ -171,7 +173,7 @@ local function State(map)
 			ncomp = {},
 			ends = {}, -- bounded local connections, shared by successive endpoint batches
 			endCount = 0,
-			nadj = {}, -- [id] = { target, cost swimming, cost walking on water, ... }
+			nadj = {}, -- [id] = decoded edges, adjacent's layout (format 1: 3 values an edge, format 2: 5)
 		}
 		states[map] = st
 	end
@@ -601,9 +603,10 @@ local function decodeGraph(st, k)
 		degree[i + 1] = B64[byte(s, pos + 6)]
 		pos = pos + 7
 	end
+	local width = st.classed and EDGE2 or EDGE1
 	for i = 1, n do
 		st.nadj[ids[i]] = pos
-		pos = pos + degree[i] * 7
+		pos = pos + degree[i] * width
 	end
 	return ids
 end
@@ -626,19 +629,32 @@ local function metadata(st, id)
 end
 
 -- Most entrances in a visited cluster are never expanded. Decode their edges only when needed.
+-- graph[k + 1] is n(2) | n x [cell(3) layer(1) component(2) degree(1)] | the edges in node order, each an edge record:
+--   format 1 (7 symbols): cluster offset(1) ((dx + 1) * 3 + dy + 1), node(2), cost(2) swimming with water at swim,
+--     cost(2) walking on water, in running yards. Decoded: target, cost swimming, cost walking on water.
+--   format 2 (a map with the class field, 14 symbols): cluster offset(1), node(2), costAlliance(3), costHorde(3),
+--     costNone(3), yards(2): the edge's grid path priced under each profile's multipliers (Routing/Costs.lua, no
+--     profile for costNone, water at swim) and its walked length in yards. Decoded: target, costAlliance, costHorde,
+--     costNone, yards. This decoder is the layout's one definition: the packer writes what it reads.
 local function adjacent(st, id)
 	local adj = st.nadj[id]
 	if type(adj) == "number" then
 		local k, pos = floor(id / 4096), adj
 		local s = st.D.graph[k + 1]
 		adj = {}
-		for e = 1, B64[byte(s, 9 + (id % 4096) * 7)] do
+		local classed, n = st.classed, 0
+		for _ = 1, B64[byte(s, 9 + (id % 4096) * 7)] do
 			local offset = B64[byte(s, pos)]
 			local target = k + (floor(offset / 3) - 1) * st.ny + offset % 3 - 1
-			adj[e * 3 - 2] = target * 4096 + num(s, pos + 1, 2)
-			adj[e * 3 - 1] = num(s, pos + 3, 2)
-			adj[e * 3] = num(s, pos + 5, 2)
-			pos = pos + 7
+			adj[n + 1] = target * 4096 + num(s, pos + 1, 2)
+			if classed then
+				adj[n + 2], adj[n + 3], adj[n + 4] = num(s, pos + 3, 3), num(s, pos + 6, 3), num(s, pos + 9, 3)
+				adj[n + 5] = num(s, pos + 12, 2)
+				n, pos = n + 5, pos + EDGE2
+			else
+				adj[n + 2], adj[n + 3] = num(s, pos + 3, 2), num(s, pos + 5, 2)
+				n, pos = n + 3, pos + EDGE1
+			end
 		end
 		st.nadj[id] = adj
 		local capacity = 1

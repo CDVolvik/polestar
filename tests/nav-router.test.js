@@ -8,7 +8,12 @@
 // field (format 1, 0.2.4's) routes exactly as the router did before it
 // priced classes (the base commit's Routing files, from git). The fifth
 // argument of Find, FindCost and FindMany is today's waterWalking flag or an
-// opts table { waterWalking, profile }.
+// opts table { waterWalking, profile }. Every result carries yards beside its
+// cost (Find: the drawn line's length; FindCost, FindMany: a label along the
+// cost-best path, the cost itself on format 1), a format 2 graph edge is
+// priced per profile (hand-made edge records), Find reports the hostile hubs
+// of the map's `hubs` metadata its drawn line enters, and ReuseMany keeps a
+// batch to the profile it was priced for.
 
 const { test } = require('node:test');
 const assert = require('node:assert/strict');
@@ -69,30 +74,46 @@ function runLength(vals) {
 	return out;
 }
 
-// A one-tile map of `cells` (one cluster, no entrances, no floors), written
-// by pack.js as `nav pack` writes a map; with `classes` it carries the
-// format 2 `class` field (one byte per node, run-length, zlib, base64).
-// -> the Lua files, in load order.
-function mapFiles(cells, classes) {
-	const val = new Uint8Array(C * C);
-	const cls = new Array(C * C).fill(0);
-	for (const [l, c] of cells) {
-		val[l] = c.val;
-		cls[l] = c.cls;
+// A map of `cells` (by cell gx * C + gy: one tile, or `nx` tiles along x; no
+// floors), written by pack.js as `nav pack` writes a map; with `classes` it
+// carries the format 2 `class` field (one byte per node, run-length, zlib,
+// base64). `graph` holds a cluster's hand-made graph string by cluster
+// (index k + 1; Routing/PathGrid.lua's adjacent defines the records), `hubs`
+// the metadata's `hubs` list as Lua. -> the Lua files, in load order.
+function mapFiles(cells, classes, { nx = 1, graph = null, hubs = null } = {}) {
+	const tiles = [];
+	for (let k = 0; k < nx; k++) {
+		tiles.push({
+			cl: { val: new Uint8Array(C * C), flags: new Uint8Array(C * C), zq: new Int32Array(C * C), floorStart: 0, floorEnd: 0 },
+			cls: new Array(C * C).fill(0),
+		});
 	}
-	const cl = { val, flags: new Uint8Array(C * C), zq: new Int32Array(C * C), floorStart: 0, floorEnd: 0 };
-	const cg = { C, NX: 1, NY: 1, GW: C, GH: C, CX0: 0, CY0: 0, clusters: new Map([[0, cl]]), linkedOf: new Map() };
+	for (const [g, c] of cells) {
+		const t = tiles[Math.floor(g / (C * C))];
+		const l = g % (C * C);
+		t.cl.val[l] = c.val;
+		t.cls[l] = c.cls;
+	}
+	const cg = { C, NX: nx, NY: 1, GW: nx * C, GH: C, CX0: 0, CY0: 0, clusters: new Map(tiles.map((t, k) => [k, t.cl])), linkedOf: new Map() };
 	const maps = encodeMaps(cg, { nodes: new Map(), edges: new Map() });
 	const { files } = packFiles({ map: MAP, cg, maps, global: 'PolestarPathData', gen: '-- tests/nav-router.test.js' });
+	const block = (s) => zlib.deflateSync(Buffer.from(s, 'ascii'), { level: 9 }).toString('base64');
+	const meta = files[0][1];
+	let edited = meta;
+	const lines = [];
 	if (classes) {
-		const meta = files[0][1];
-		const withField = meta.replace('\tfloor = {},\n', '\tfloor = {},\n\tclass = {},\n').replace(/(\tcounts = \{ [^}]*?) \},/, '$1, class = 1 },').replace('floor = {} },', 'floor = {}, class = {} },');
-		assert.notEqual(withField, meta);
-		files[0][1] = withField;
-		const block = zlib.deflateSync(Buffer.from(runLength(cls), 'ascii'), { level: 9 }).toString('base64');
-		const last = files[files.length - 1];
-		last[1] = last[1].replace('-- stylua: ignore end\n', `data.packed.class[1] = {"${block}"}\n-- stylua: ignore end\n`);
+		edited = edited.replace('\tfloor = {},\n', '\tfloor = {},\n\tclass = {},\n').replace(/(\tcounts = \{ [^}]*?) \},/, `$1, class = ${nx} },`).replace('floor = {} },', 'floor = {}, class = {} },');
+		tiles.forEach((t, k) => lines.push(`data.packed.class[${k + 1}] = {"${block(runLength(t.cls))}"}`));
 	}
+	if (graph) {
+		edited = edited.replace('counts = { graph = 0,', `counts = { graph = ${graph.filter(Boolean).length},`);
+		graph.forEach((s, i) => s && lines.push(`data.packed.graph[${i + 1}] = {"${block(s)}"}`));
+	}
+	if (hubs) edited = edited.replace('\tcounts = {', `\thubs = ${hubs},\n\tcounts = {`);
+	assert.equal(edited === meta, !classes && !graph && !hubs);
+	files[0][1] = edited;
+	const last = files[files.length - 1];
+	last[1] = last[1].replace('-- stylua: ignore end\n', `${lines.map((l) => `${l}\n`).join('')}-- stylua: ignore end\n`);
 	const dir = tmpdir('polestar-router-');
 	return files.map(([name, text]) => {
 		const file = path.join(dir, name);
@@ -101,33 +122,43 @@ function mapFiles(cells, classes) {
 	});
 }
 
+// pack.js's base64 number of `width` symbols.
+const enc = (v, width) => {
+	let s = '';
+	for (let i = 0; i < width; i++) s = B64[Math.floor(v / 64 ** i) % 64] + s;
+	return s;
+};
+
 const lua = (p) => `{ x = ${p.x}, y = ${p.y}, z = ${p.z} }`;
 // One query: kind find (points and cost), cost (FindCost) or many (FindMany's one target); opts the fifth argument, Lua.
 const q = (id, kind, opts = 'nil') => ({ id, kind, opts });
+// Each result keeps the job's yards (FindMany's for its one target) and hubs when the router gives them.
 const CALL = {
-	find: (id, opts) => `Path.Find(${MAP}, A, B, function(points, cost) out[${JSON.stringify(id)}] = { cost = str(cost), points = flat(points) } end, ${opts})`,
-	cost: (id, opts) => `Path.FindCost(${MAP}, A, B, function(cost, reason) out[${JSON.stringify(id)}] = { cost = str(cost or reason) } end, ${opts})`,
-	many: (id, opts) => `Path.FindMany(${MAP}, A, { B }, function(costs, reason) out[${JSON.stringify(id)}] = { cost = str(costs[1] or reason) } end, ${opts})`,
+	find: (id, opts) => `Path.Find(${MAP}, A, B, function(points, cost, job) out[${JSON.stringify(id)}] = { cost = str(cost), points = flat(points), yards = job and str(job.yards), hubs = job and job.hubs } end, ${opts})`,
+	cost: (id, opts) => `Path.FindCost(${MAP}, A, B, function(cost, reason, job) out[${JSON.stringify(id)}] = { cost = str(cost or reason), yards = job and str(job.yards) } end, ${opts})`,
+	many: (id, opts) => `Path.FindMany(${MAP}, A, { B }, function(costs, reason, job) out[${JSON.stringify(id)}] = { cost = str(costs[1] or reason), yards = job and job.yards and str(job.yards[1]) } end, ${opts})`,
 };
 
-// Runs the queries on the map files with the router `addon` (a runAddon entry) -> { [id]: { cost, points? } },
-// costs and coordinates as %.17g strings so two routers compare exactly.
-function route(addon, files, queries) {
+// Runs the queries on the map files with the router `addon` (a runAddon entry) -> { [id]: { cost, points?, yards?,
+// hubs? } }, costs, yards and coordinates as %.17g strings so two routers compare exactly; then `tail` (Lua, may
+// add to out).
+function route(addon, files, queries, { from = FROM, to = TO, tail = '' } = {}) {
 	const script = `
 local Path = Polestar_NavEngine
 local frames = {}
 Path.after = function(fn) frames[#frames + 1] = fn end
-local function str(v) return type(v) == "number" and string.format("%.17g", v) or tostring(v) end
+local function str(v) return type(v) == "number" and string.format("%.17g", v) or (v ~= nil and tostring(v) or nil) end
 local function flat(points)
 	if not points then return nil end
 	local out = {}
 	for i, p in ipairs(points) do out[i] = { str(p.x), str(p.y) } end
 	return out
 end
-local A, B = ${lua(FROM)}, ${lua(TO)}
+local A, B = ${lua(from)}, ${lua(to)}
 local out = {}
 ${queries.map((x) => CALL[x.kind](x.id, x.opts)).join('\n')}
 while #frames > 0 do table.remove(frames, 1)() end
+${tail}
 emit(out)`;
 	const before = files.map((f) => `dofile(${JSON.stringify(f)})`).join('\n');
 	const [out] = runAddon({ stubs: ['stub_encoding.lua'], before, addons: [addon], script }).emitted;
@@ -142,6 +173,9 @@ const close = (r, want, what) => assert.ok(Math.abs(num(r) - want) < 1e-9, `${wh
 // Straight: every drawn point on the strip's row; round: some point up on the U.
 const straight = (r) => r.points.every(([, y]) => Math.abs(Number(y) - FROM.y) < 1e-9);
 const round = (r) => r.points.some(([, y]) => Number(y) < FROM.y - 2 * CS);
+// The drawn line's flat length.
+const drawn = (r) => r.points.reduce((sum, [x, y], i) => (i ? sum + Math.hypot(Number(x) - Number(r.points[i - 1][0]), Number(y) - Number(r.points[i - 1][1])) : 0), 0);
+const yardsNear = (got, want, what, tol = 0.5) => assert.ok(Math.abs(Number(got) - want) <= tol, `${what}: yards ${got}, want ${want} (within ${tol})`);
 
 test('Costs.lua: the ground classes, the multipliers and the faction profiles', () => {
 	const [got] = runAddon({
@@ -250,7 +284,106 @@ test('format 1 (no class field): the same points and costs as the router before 
 		const files = mapFiles(cells, false);
 		const got = route(OURS, files, ours);
 		const want = route(BEFORE, files, theirs);
+		// Yards and hubs are new; the rest is the old router's.
+		for (const r of Object.values(got)) {
+			assert.ok(r.yards !== undefined, `${what}: yards present`);
+			delete r.yards;
+			delete r.hubs;
+		}
 		assert.deepEqual(got, want, `${what}: identical to the router before classes`);
 		close(got.none, what === 'water' ? ROUND(4) : STRAIGHT, `${what}: no classes on format 1`);
 	}
+});
+
+test('format 1: Find\'s yards are the drawn line\'s length, FindCost\'s and FindMany\'s the cost (no per-step classes), and no hubs', () => {
+	for (const [what, cells] of [['road', layout(3, {}, { cls: 1 })], ['water', layout(4, { val: 2 })]]) {
+		const got = route(OURS, mapFiles(cells, false), [q('none', 'find'), q('horde', 'find', '{ profile = "Horde" }'), q('walk', 'find', 'true'),
+			q('cost', 'cost', '{ profile = "Alliance" }'), q('many', 'many', '{ profile = "Horde" }'), q('manyWalk', 'many', 'true')]);
+		for (const id of ['none', 'horde', 'walk']) {
+			yardsNear(got[id].yards, drawn(got[id]), `${what} ${id}`, 1e-9);
+			assert.deepEqual(got[id].hubs, {}, `${what} ${id}: no hubs`);
+		}
+		for (const id of ['cost', 'many', 'manyWalk']) assert.equal(got[id].yards, got[id].cost, `${what} ${id}: yards = cost`);
+	}
+});
+
+test('format 2: yards are the drawn line\'s length under every profile, and FindMany\'s yards (a second label along the cost-best path) match Find\'s', () => {
+	const profiles = [['none', 'nil'], ['alliance', '{ profile = "Alliance" }'], ['horde', '{ profile = "Horde" }']];
+	for (const [what, cells, want] of [
+		['road', layout(3, {}, { cls: 1 }), { none: ROUND(3), alliance: ROUND(3), horde: ROUND(3) }],
+		['hub', layout(4, { cls: 8 }), { none: STRAIGHT, alliance: STRAIGHT, horde: ROUND(4) }],
+	]) {
+		const got = route(OURS, mapFiles(cells, true), profiles.flatMap(([id, opts]) => [q(id, 'find', opts), q(`${id}Many`, 'many', opts), q(`${id}Cost`, 'cost', opts)]));
+		for (const [id] of profiles) {
+			yardsNear(got[id].yards, drawn(got[id]), `${what} ${id}: the drawn length`);
+			yardsNear(got[id].yards, want[id], `${what} ${id}: the way walked`);
+			yardsNear(got[`${id}Many`].yards, Number(got[id].yards), `${what} ${id}: FindMany's yards`);
+			yardsNear(got[`${id}Cost`].yards, Number(got[id].yards), `${what} ${id}: FindCost's yards`);
+		}
+		if (what === 'road') assert.ok(Math.abs(num(got.none) - Number(got.none.yards)) > 10, 'road: the cost is not the yards');
+	}
+});
+
+// Two tiles along x, one strip across their border on row Y0 from gx = C - 12 to C + 12; entrance 0 of each
+// cluster at the border (cluster 0's last row, cluster 1's first), one hand-made format 2 edge each way priced
+// per profile (costAlliance, costHorde, costNone) with its yards.
+const BORDER = { from: at(C - 12, Y0), to: at(C + 12, Y0) };
+function borderFiles(costs, yards) {
+	const cells = new Map();
+	for (let x = C - 12; x <= C + 12; x++) cells.set(x * C + Y0, { val: 1, cls: 0 });
+	// One entrance: cell(3) layer(1) component(2) degree(1), then its edge: offset(1) node(2) costs 3 x (3) yards(2).
+	const cluster = (lx, offset) => enc(1, 2) + enc(lx * C + Y0, 3) + enc(0, 1) + enc(0, 2) + enc(1, 1) + enc(offset, 1) + enc(0, 2) + costs.map((c) => enc(c, 3)).join('') + enc(yards, 2);
+	// Offsets (dx + 1) * 3 + dy + 1: +x from cluster 0 is 7, -x from cluster 1 is 1.
+	return mapFiles(cells, true, { nx: 2, graph: [cluster(C - 1, 7), cluster(0, 1)] });
+}
+
+test('format 2: the graph prices an edge per profile (no profile reads costNone) and adds its yards', () => {
+	const [A, H, N, Y] = [4, 84, 5, 4];
+	const local = 23 * CS; // 11 cells to cluster 0's entrance, 12 from cluster 1's
+	const profiles = [['none', 'nil', N], ['alliance', '{ profile = "Alliance" }', A], ['horde', '{ profile = "Horde" }', H], ['walk', 'true', N]];
+	const got = route(OURS, borderFiles([A, H, N], Y), profiles.flatMap(([id, opts]) => [q(id, 'find', opts), q(`${id}Many`, 'many', opts), q(`${id}Cost`, 'cost', opts)]), BORDER);
+	for (const [id, , edge] of profiles) {
+		for (const kind of ['', 'Many', 'Cost']) {
+			close(got[id + kind], local + edge, `${id}${kind}`);
+		}
+		yardsNear(got[`${id}Many`].yards, local + Y, `${id}Many: the label's yards`, 1e-9);
+		yardsNear(got[`${id}Cost`].yards, local + Y, `${id}Cost: the label's yards`, 1e-9);
+		yardsNear(got[id].yards, 24 * CS, `${id}: the drawn line`, 1e-6);
+		yardsNear(got[`${id}Many`].yards, Number(got[id].yards), `${id}: FindMany's yards match Find's`);
+	}
+});
+
+test('hubs: a Horde route into an Alliance hub reports it (each hub once, in path order), the Alliance and no profile report none', () => {
+	// The strip alone (the only way), its middle and its end inside two Alliance hubs listed end first, a Horde hub
+	// at the start; the hub bits on the strip's cells as the packer would set them.
+	const strip = new Map([...layout(4, { cls: 8 })].filter(([l]) => l % C === Y0));
+	const mid = at(X0 + S / 2, Y0);
+	const hubs = `{
+		{ id = 11, side = "Alliance", name = "Astranaar", disks = { { ${TO.x}, ${TO.y}, 12 }, { ${TO.x - 3}, ${TO.y}, 12 } } },
+		{ id = 12, side = "Alliance", name = "Maestra's Post", disks = { { ${mid.x}, ${mid.y + 6}, 8 } } },
+		{ id = 13, side = "Horde", name = "Splintertree Post", disks = { { ${FROM.x}, ${FROM.y}, 6 } } },
+		{ id = 14, side = "Alliance", name = "Far away", disks = { { ${FROM.x}, ${FROM.y + 60}, 10 } } },
+	}`;
+	const got = route(OURS, mapFiles(strip, true, { hubs }), [q('horde', 'find', '{ profile = "Horde" }'), q('alliance', 'find', '{ profile = "Alliance" }'), q('none', 'find')]);
+	assert.deepEqual(got.horde.hubs, [{ id: 12, name: "Maestra's Post" }, { id: 11, name: 'Astranaar' }], 'Horde: the Alliance hubs entered, in path order, once each');
+	assert.deepEqual(got.alliance.hubs, [{ id: 13, name: 'Splintertree Post' }], 'Alliance: only the Horde hub at the start');
+	assert.deepEqual(got.none.hubs, {}, 'no profile: no hub is hostile');
+	// The same route with only the Alliance hubs: the Alliance player enters none.
+	const own = route(OURS, mapFiles(strip, true, { hubs: hubs.replace(/\n\t\t\{ id = 13[^\n]*/, '') }), [q('alliance', 'find', '{ profile = "Alliance" }'), q('horde', 'find', '{ profile = "Horde" }')]);
+	assert.deepEqual(own.alliance.hubs, {}, 'Alliance: no hub on the same route');
+	assert.equal(own.horde.hubs.length, 2);
+});
+
+test('ReuseMany reuses a batch only for the profile it was priced for', () => {
+	const tail = `
+local job = Path.FindMany(${MAP}, { map = ${MAP}, x = A.x, y = A.y, z = A.z }, { B }, function() end, { profile = "Horde" })
+while #frames > 0 do table.remove(frames, 1)() end
+local here = { map = ${MAP}, x = A.x + 1, y = A.y, z = A.z }
+out.reuse = { horde = Path.ReuseMany(job, here, "Horde"), alliance = Path.ReuseMany(job, here, "Alliance"), none = Path.ReuseMany(job, here), neutral = Path.ReuseMany(job, here, "Neutral") }
+local nojob = Path.FindMany(${MAP}, { map = ${MAP}, x = A.x, y = A.y, z = A.z }, { B }, function() end)
+while #frames > 0 do table.remove(frames, 1)() end
+out.reuseNone = { none = Path.ReuseMany(nojob, here), neutral = Path.ReuseMany(nojob, here, "Neutral"), horde = Path.ReuseMany(nojob, here, "Horde") }`;
+	const got = route(OURS, mapFiles(layout(4), true), [], { tail });
+	assert.deepEqual(got.reuse, { horde: true, alliance: false, none: false, neutral: false });
+	assert.deepEqual(got.reuseNone, { none: true, neutral: true, horde: false });
 });

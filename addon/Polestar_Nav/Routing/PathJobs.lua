@@ -130,10 +130,11 @@ end
 -- on). callback(points, cost, job) or callback(nil, reason, job): points are { map, x, y, z } from the start to the
 -- goal, with points.wet the drawn yards over water. Cost is the abstract route in running yards, not the smoothed
 -- polyline length; a swum grid yard counts as the data's swim (so routes keep out of water) unless waterWalking, when
--- water is ground. On a map with ground classes a yard counts as Costs.Mult(its class, opts.profile) of one. reason is
--- "nodata", "outside", "offmesh", "unreachable" or "error". opts is the waterWalking flag (a boolean, as every caller
--- before profiles passes it) or { waterWalking = boolean, profile = "Alliance" | "Horde" | nil }. Returns a Cancel
--- handle.
+-- water is ground. On a map with ground classes a yard counts as Costs.Mult(its class, opts.profile) of one. job.yards
+-- is the drawn line's flat length and job.hubs the hostile hubs it enters, { { id, name }, ... } (Path.lua's header).
+-- reason is "nodata", "outside", "offmesh", "unreachable" or "error". opts is the waterWalking flag (a boolean, as
+-- every caller before profiles passes it) or { waterWalking = boolean, profile = "Alliance" | "Horde" | nil }.
+-- Returns a Cancel handle.
 ---@param map number
 ---@param from SPFPoint
 ---@param to SPFPoint
@@ -153,7 +154,8 @@ function Path.Find(map, from, to, callback, opts)
 end
 
 -- A candidate can be ruled in or out without refining all its intermediate clusters into drawing points.
--- callback(cost, reason, job) uses the same exact graph cost as Find and FindMany.
+-- callback(cost, reason, job) uses the same exact graph cost as Find and FindMany; job.yards is the yards along the
+-- cost-best path (FindMany's label; the cost itself on a format 1 map), job.hubs absent (nothing is drawn).
 ---@param map number
 ---@param from SPFPoint
 ---@param to SPFPoint
@@ -167,7 +169,8 @@ function Path.FindCost(map, from, to, callback, opts)
 end
 
 -- callback(costs, reason, job) completes once; optional progress(costs, nil, job) runs after each slice.
--- costs[i] is nil until settled, an exact running-yard cost afterwards, or false when unreachable. job.radius
+-- costs[i] is nil until settled, an exact running-yard cost afterwards, or false when unreachable; job.yards[i]
+-- beside it the yards along its cost-best path (equal to costs[i] on a format 1 map). job.radius
 -- bounds every unsettled target, including a popped entrance whose expansion has not finished. Pause/Resume
 -- retain the frontier. Missing data or an invalid source completes with all false plus a reason.
 ---@param map number
@@ -189,6 +192,7 @@ function Path.FindMany(map, from, targets, callback, opts, reverse, progress)
 		reverse = reverse,
 		progress = progress,
 		costs = {},
+		yards = {},
 		radius = 0,
 		revision = 0,
 		callback = callback,
