@@ -330,7 +330,7 @@ test('mark target: off by default; on, the target button and step key put a skul
 		emit(s:GetAttribute("macrotext"))
 		local long = {}
 		for i = 1, 5 do long[i] = string.rep("N", 50) .. i end
-		emit(Polestar.QoL.Buttons.TargetMacro(long, 1, "mob"))
+		emit(Polestar.QoL.Buttons.TargetMacro(long, 1, "/tm [@target,harm,nodead] !8"))
 	`);
 	assert.deepEqual(out[0], ['/targetexact Kobold Vermin', '/targetexact Kobold Vermin'], 'off by default');
 	// Cleared first: when no name is in range, nothing is left targeted to mark.
@@ -340,6 +340,36 @@ test('mark target: off by default; on, the target button and step key put a skul
 	assert.equal(out[3], '/targetexact Marshal Dughan', 'turned off again');
 	assert.ok(out[4].length <= 255, 'fits a macro');
 	assert.ok(out[4].endsWith('N1\n/tm [@target,harm,nodead] !8'), 'the preferred name and the mark stay when names are dropped');
+});
+
+test('mark target: the icon for mobs and for NPCs is a setting; a new one each press skips the other\'s and leaves a marked NPC as it is', () => {
+	const out = run(`
+		local t, s = PolestarTargetButton, PolestarStepButton
+		set("markTarget", true)
+		set("markMob", "7")
+		q.step({ { t = "kill", target = "Kobold Vermin", quest = 7, oi = 1 } })
+		emit(t:GetAttribute("macrotext"))
+		set("markNpc", "cycle")
+		q.step({ { t = "turnin", quest = 9, npc = 240, npcName = "Marshal Dughan" } })
+		local seen = {}
+		for i = 1, 8 do
+			seen[i] = s:GetAttribute("macrotext"):match("[~!]%d$")
+			q.click(s, true)
+			q.click(s, false)
+		end
+		emit(seen)
+		set("markMob", "cycle")
+		q.step({ { t = "kill", target = "Kobold Vermin", quest = 7, oi = 1 } })
+		q.click(t, false)
+		emit({ t:GetAttribute("macrotext"):match("[~!]%d$"), s:GetAttribute("macrotext"):match("[~!]%d$") })
+		set("markNpc", "bogus")
+		q.step({ { t = "turnin", quest = 9, npc = 240, npcName = "Marshal Dughan" } })
+		emit(s:GetAttribute("macrotext"))
+	`);
+	assert.equal(out[0], '/cleartarget\n/targetexact Kobold Vermin\n/tm [@target,harm,nodead] !7');
+	assert.deepEqual(out[1], ['~1', '~2', '~3', '~4', '~5', '~6', '~8', '~1'], 'cycles, skipping the mobs\' icon');
+	assert.deepEqual(out[2], ['~2', '~2'], 'the target button and the step key share the mobs\' cycle');
+	assert.equal(out[3], '/cleartarget\n/targetexact Marshal Dughan\n/tm [@target,help,nodead] !1', 'an unknown setting falls back to the star');
 });
 
 // Every CLICK binding in Bindings.xml shows its label in the key bindings
