@@ -362,14 +362,18 @@ test('mark target: the icon for mobs and for NPCs is a setting; a new one each p
 		q.step({ { t = "kill", target = "Kobold Vermin", quest = 7, oi = 1 } })
 		q.click(t, false)
 		emit({ t:GetAttribute("macrotext"):match("[~!]%d$"), s:GetAttribute("macrotext"):match("[~!]%d$") })
+		-- both cycle: the next NPC gets the next icon, not the mob's
+		q.step({ { t = "turnin", quest = 9, npc = 240, npcName = "Marshal Dughan" } })
+		emit(s:GetAttribute("macrotext"):match("[~!]%d$"))
 		set("markNpc", "bogus")
 		q.step({ { t = "turnin", quest = 9, npc = 240, npcName = "Marshal Dughan" } })
 		emit(s:GetAttribute("macrotext"))
 	`);
 	assert.equal(out[0], '/cleartarget\n/targetexact Kobold Vermin\n/tm [@target,harm,nodead] !7');
 	assert.deepEqual(out[1], ['~1', '~2', '~3', '~4', '~5', '~6', '~8', '~1'], 'cycles, skipping the mobs\' icon');
-	assert.deepEqual(out[2], ['~2', '~2'], 'the target button and the step key share the mobs\' cycle');
-	assert.equal(out[3], '/cleartarget\n/targetexact Marshal Dughan\n/tm [@target,help,nodead] !1', 'an unknown setting falls back to the star');
+	assert.deepEqual(out[2], ['~2', '~2'], 'the target button and the step key share the cycle');
+	assert.equal(out[3], '~2', 'one count for both kinds: the NPC press after the mob\'s goes on from it');
+	assert.equal(out[4],'/cleartarget\n/targetexact Marshal Dughan\n/tm [@target,help,nodead] !1', 'an unknown setting falls back to the star');
 });
 
 // Every CLICK binding in Bindings.xml shows its label in the key bindings

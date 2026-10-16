@@ -461,7 +461,9 @@ local MARK_UNIT = { mob = "[@target,harm,nodead]", npc = "[@target,help,nodead]"
 local MARK_KEY = { mob = "qol.markMob", npc = "qol.markNpc" }
 local MARK_DEFAULT = { mob = 8, npc = 1 }
 local OTHER = { mob = "npc", npc = "mob" }
-local presses = { mob = 0, npc = 0 }
+-- Presses with a cycling mark: one count for both kinds, so when both cycle
+-- an NPC's icon is not the next mob's.
+local presses = 0
 
 -- A mark setting as an icon 1-8, "cycle", or the kind's default.
 local function markSetting(kind)
@@ -474,7 +476,8 @@ end
 -- The /tm line for kind ("mob" or "npc"), nil while marking is off. A fixed
 -- icon uses "!", so pressing again never takes it off. "cycle" puts the next
 -- icon on at each press, skipping the one the other kind keeps, with "~": a
--- unit that already has an icon keeps it.
+-- unit that already has an icon keeps it. In combat the macro cannot change,
+-- so until the fight ends each press puts on the same icon.
 function Buttons.MarkLine(kind)
 	if not kind or not QoL.On("markTarget") then return nil end
 	local icon = markSetting(kind)
@@ -483,13 +486,13 @@ function Buttons.MarkLine(kind)
 	for i = 1, 8 do
 		if i ~= other then icons[#icons + 1] = i end
 	end
-	return "/tm " .. MARK_UNIT[kind] .. " ~" .. icons[presses[kind] % #icons + 1]
+	return "/tm " .. MARK_UNIT[kind] .. " ~" .. icons[presses % #icons + 1]
 end
 
 -- After a press with kind's mark: true when the next press puts on a new icon.
 local function nextMark(kind)
 	if not kind or not QoL.On("markTarget") or markSetting(kind) ~= "cycle" then return false end
-	presses[kind] = presses[kind] + 1
+	presses = presses + 1
 	return true
 end
 
@@ -674,8 +677,8 @@ local function create()
 		if n > 1 then target.cycle = target.cycle % n + 1 end
 		local marked = nextMark("mob")
 		if n > 1 or marked then applyTarget(targetButton) end
-		-- The step key shares the mobs' icon cycle.
-		if marked and step.kind == "target" then applyStep(stepButton) end
+		-- The step key shares the icon cycle.
+		if marked then applyStep(stepButton) end
 	end)
 	-- The step key: a binding only, never shown.
 	stepButton = CreateFrame("Button", "PolestarStepButton", UIParent, "SecureActionButtonTemplate")
@@ -686,10 +689,9 @@ local function create()
 		local n = #step.list
 		local names = step.kind == "target" and n > 1
 		if names then step.cycle = step.cycle % n + 1 end
-		local mark = STEP_MARK[step.kind]
-		local marked = nextMark(mark)
+		local marked = nextMark(STEP_MARK[step.kind])
 		if names or marked then applyStep(self) end
-		if marked and mark == "mob" then applyTarget(targetButton) end
+		if marked then applyTarget(targetButton) end
 	end)
 	Buttons.item, Buttons.hearth, Buttons.target, Buttons.step = itemButton, hearthButton, targetButton, stepButton
 	set = { hearthButton, itemButton, targetButton }
