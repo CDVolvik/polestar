@@ -130,25 +130,28 @@ end
 -- on). callback(points, cost, job) or callback(nil, reason, job): points are { map, x, y, z } from the start to the
 -- goal, with points.wet the drawn yards over water. Cost is the abstract route in running yards, not the smoothed
 -- polyline length; a swum grid yard counts as the data's swim (so routes keep out of water) unless waterWalking, when
--- water is ground. On a map with ground classes a yard counts as Costs.Mult(its class, opts.profile) of one. job.yards
--- is the drawn line's flat length and job.hubs the hostile hubs it enters, { { id, name, areaId }, ... } (Path.lua's header).
--- reason is "nodata", "outside", "offmesh", "unreachable" or "error". opts is the waterWalking flag (a boolean, as
--- every caller before profiles passes it) or { waterWalking = boolean, profile = "Alliance" | "Horde" | nil }.
+-- water is ground. On a map with ground classes a yard counts as Costs.Mult(its class, opts.profile, opts.style) of
+-- one (graph edges at Balanced's baked costs in every style). job.yards is the drawn line's flat length and job.hubs
+-- the hostile hubs it enters, { { id, name, areaId }, ... } (Path.lua's header). reason is "nodata", "outside",
+-- "offmesh", "unreachable" or "error". opts is the waterWalking flag (a boolean, as every caller before profiles
+-- passes it) or { waterWalking = boolean, profile = "Alliance" | "Horde" | nil, style = "fastest" | "balanced" |
+-- "roads" | nil (anything else is Balanced) }.
 -- Returns a Cancel handle.
 ---@param map number
 ---@param from SPFPoint
 ---@param to SPFPoint
 ---@param callback fun(points: SPFWalkPoints?, cost: number|string, job: SPFPathJob)
----@param opts? boolean|{ waterWalking: boolean?, profile: string? }
+---@param opts? boolean|{ waterWalking: boolean?, profile: string?, style: string? }
 ---@return SPFPathJob
 function Path.Find(map, from, to, callback, opts)
-	local waterWalking, profile = options(opts)
+	local waterWalking, profile, style = options(opts)
 	return enqueue({
 		map = map,
 		from = from,
 		to = to,
 		waterWalking = waterWalking,
 		profile = profile,
+		style = style,
 		callback = callback,
 	})
 end
@@ -160,7 +163,7 @@ end
 ---@param from SPFPoint
 ---@param to SPFPoint
 ---@param callback fun(cost: number?, reason: string?, job: SPFPathJob)
----@param opts? boolean|{ waterWalking: boolean?, profile: string? } as Find's
+---@param opts? boolean|{ waterWalking: boolean?, profile: string?, style: string? } as Find's
 ---@return SPFPathJob
 function Path.FindCost(map, from, to, callback, opts)
 	local job = Path.Find(map, from, to, callback, opts)
@@ -177,18 +180,19 @@ end
 ---@param from SPFPoint
 ---@param targets SPFPoint[]
 ---@param callback fun(costs: (number|false)[], reason: string?, job: SPFPathJob)
----@param opts? boolean|{ waterWalking: boolean?, profile: string? } as Find's
+---@param opts? boolean|{ waterWalking: boolean?, profile: string?, style: string? } as Find's
 ---@param reverse? boolean
 ---@param progress? fun(costs: (number|false)[], reason: nil, job: SPFPathJob)
 ---@return SPFPathJob
 function Path.FindMany(map, from, targets, callback, opts, reverse, progress)
-	local waterWalking, profile = options(opts)
+	local waterWalking, profile, style = options(opts)
 	return enqueue({
 		map = map,
 		from = from,
 		targets = targets,
 		waterWalking = waterWalking,
 		profile = profile,
+		style = style,
 		reverse = reverse,
 		progress = progress,
 		costs = {},

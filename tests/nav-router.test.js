@@ -194,6 +194,13 @@ emit({
 		m(8 + 1, "Horde"), m(8 + 1, "Alliance"), m(8 + 1), m(16 + 3, "Alliance"), m(16 + 3, "Horde"), m(16 + 3),
 		m(8 + 16, "Horde"), m(8 + 16, "Alliance"),
 	},
+	style = { K.Style(nil), K.Style("fastest"), K.Style("roads"), K.Style("Sideways"), K.Style("balanced") },
+	styles = {
+		fastest = { mult = { K.STYLES.fastest.MULT[0], K.STYLES.fastest.MULT[1], K.STYLES.fastest.MULT[2], K.STYLES.fastest.MULT[3], K.STYLES.fastest.MULT[4], K.STYLES.fastest.MULT[5] }, min = K.STYLES.fastest.MIN, min2 = K.Min("fastest") },
+		balanced = { mult = { K.STYLES.balanced.MULT[0], K.STYLES.balanced.MULT[1], K.STYLES.balanced.MULT[2], K.STYLES.balanced.MULT[3], K.STYLES.balanced.MULT[4], K.STYLES.balanced.MULT[5] }, min = K.STYLES.balanced.MIN, min2 = K.Min(nil) },
+		roads = { mult = { K.STYLES.roads.MULT[0], K.STYLES.roads.MULT[1], K.STYLES.roads.MULT[2], K.STYLES.roads.MULT[3], K.STYLES.roads.MULT[4], K.STYLES.roads.MULT[5] }, min = K.STYLES.roads.MIN, min2 = K.Min("roads") },
+	},
+	ms = { K.Mult(3, nil, "fastest"), K.Mult(1, nil, "roads"), K.Mult(8, "Horde", "roads"), K.Mult(1, "Horde", "Sideways") },
 })`,
 	}).emitted;
 	assert.deepEqual(got.class, { NORMAL: 0, ROAD: 1, GENTLE: 2, STEEP: 3, INDOOR: 4, CITY: 5 });
@@ -203,6 +210,12 @@ emit({
 	assert.equal(got.min, Math.min(...got.mult), 'MIN is the smallest multiplier: the heuristic stays admissible');
 	assert.deepEqual(got.profiles, ['Alliance', 'Horde', 'nil', 'nil']);
 	assert.deepEqual(got.m, [1, 0.8, 2.5, 2, 1, 16, 0.8, 0.8, 50, 2.5, 2.5, 20, 20]);
+	assert.deepEqual(got.style, ['balanced', 'fastest', 'roads', 'balanced', 'balanced'], 'Costs.Style: anything not a style is balanced');
+	assert.deepEqual(got.styles.fastest, { mult: [1, 1, 1, 1.2, 2, 1], min: 1, min2: 1 });
+	assert.deepEqual(got.styles.balanced, { mult: [1, 0.8, 1.3, 2.5, 2, 1], min: 0.8, min2: 0.8 });
+	assert.deepEqual(got.styles.roads, { mult: [1, 0.5, 1.6, 4, 2, 1], min: 0.5, min2: 0.5 });
+	for (const [s, v] of Object.entries(got.styles)) assert.ok(v.mult.every((m) => v.min <= m), `${s}: MIN is at most every multiplier`);
+	assert.deepEqual(got.ms, [1.2, 0.5, 20, 0.8]);
 	const toc = tocEntries(NAV).map((f) => f.replace(/\\/g, '/'));
 	assert.ok(toc.indexOf('Routing/Costs.lua') >= 0 && toc.indexOf('Routing/Costs.lua') < toc.indexOf('Routing/PathGrid.lua'), 'Costs.lua loads before the other Routing files');
 });
@@ -491,4 +504,55 @@ out.reuseNone = { none = Path.ReuseMany(nojob, here), neutral = Path.ReuseMany(n
 	const got = route(OURS, mapFiles(layout(4), true), [], { tail });
 	assert.deepEqual(got.reuse, { horde: true, alliance: false, none: false, neutral: false });
 	assert.deepEqual(got.reuseNone, { none: true, neutral: true, horde: false });
+});
+
+test('styles: Roads takes a road 1.45 times the straight way that Balanced and Fastest do not; not one 2.12 times; no style or an unknown one is Balanced', () => {
+	const road = { cls: 1 };
+	const styles = [['fastest', '"fastest"'], ['balanced', '"balanced"'], ['roads', '"roads"'], ['none', 'nil'], ['odd', '"Sideways"']];
+	const queries = [...styles.map(([id, s]) => q(id, 'find', `{ profile = "Horde", style = ${s} }`)), q('roadsMany', 'many', '{ style = "roads" }')];
+	assert.ok(ROUND(6) > 1.44 * STRAIGHT && ROUND(6) < 1.46 * STRAIGHT, 'the road is about 145 yd');
+	const near = route(OURS, mapFiles(layout(6, {}, road), true), queries);
+	assert.ok(round(near.roads), 'Roads: the road');
+	close(near.roads, ROUND_AT(6, 0.5), 'Roads prices the road at 0.5');
+	close(near.roadsMany, ROUND_AT(6, 0.5), 'FindMany prices it the same');
+	for (const id of ['fastest', 'balanced', 'none', 'odd']) assert.ok(straight(near[id]), `${id}: straight across`);
+	assert.deepEqual(near.none, near.balanced, 'no style is Balanced');
+	assert.deepEqual(near.odd, near.balanced, 'an unknown style is Balanced');
+	const far = route(OURS, mapFiles(layout(14, {}, road), true), queries);
+	assert.ok(straight(far.roads), 'Roads: not a road 2.12 times as long');
+});
+
+test('styles: Fastest crosses a steep strip that Balanced and Roads go round', () => {
+	const got = route(OURS, mapFiles(layout(4, { cls: 3 }, {}), true), ['fastest', 'balanced', 'roads'].map((s) => q(s, 'find', `{ style = "${s}" }`)));
+	assert.ok(straight(got.fastest), 'Fastest: across');
+	close(got.fastest, (23 * 1.2 + 1) * CS, 'Fastest prices steep ground at 1.2');
+	assert.ok(round(got.balanced), 'Balanced: round');
+	close(got.balanced, ROUND(4), 'round the plain U');
+	assert.ok(round(got.roads), 'Roads: round');
+});
+
+test('styles: a Horde player goes round an Alliance hub in every style', () => {
+	const got = route(OURS, mapFiles(layout(4, { cls: 8 }), true), ['fastest', 'balanced', 'roads'].map((s) => q(s, 'find', `{ profile = "Horde", style = "${s}" }`)));
+	for (const s of ['fastest', 'balanced', 'roads']) assert.ok(round(got[s]), `${s}: round the hostile hub`);
+});
+
+test('styles: a map without classes (format 1) routes the same in every style', () => {
+	const files = mapFiles(layout(3, {}, { cls: 1 }), false);
+	const got = route(OURS, files, ['fastest', 'balanced', 'roads'].map((s) => q(s, 'find', `{ style = "${s}" }`)));
+	assert.deepEqual(got.fastest, got.balanced);
+	assert.deepEqual(got.roads, got.balanced);
+});
+
+test('ReuseMany reuses a batch only for the style it was priced for', () => {
+	const tail = `
+local job = Path.FindMany(${MAP}, { map = ${MAP}, x = A.x, y = A.y, z = A.z }, { B }, function() end, { profile = "Horde", style = "roads" })
+while #frames > 0 do table.remove(frames, 1)() end
+local here = { map = ${MAP}, x = A.x + 1, y = A.y, z = A.z }
+out.reuse = { roads = Path.ReuseMany(job, here, "Horde", "roads"), balanced = Path.ReuseMany(job, here, "Horde", "balanced"), none = Path.ReuseMany(job, here, "Horde") }
+local plain = Path.FindMany(${MAP}, { map = ${MAP}, x = A.x, y = A.y, z = A.z }, { B }, function() end, { profile = "Horde" })
+while #frames > 0 do table.remove(frames, 1)() end
+out.reusePlain = { none = Path.ReuseMany(plain, here, "Horde"), balanced = Path.ReuseMany(plain, here, "Horde", "balanced"), fastest = Path.ReuseMany(plain, here, "Horde", "fastest") }`;
+	const got = route(OURS, mapFiles(layout(4), true), [], { tail });
+	assert.deepEqual(got.reuse, { roads: true, balanced: false, none: false });
+	assert.deepEqual(got.reusePlain, { none: true, balanced: true, fastest: false });
 });

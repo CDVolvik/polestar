@@ -158,7 +158,7 @@ local function State(map)
 			cs = TILE / C,
 			swim = D.swim,
 			zstep = D.zstep,
-			classed = Classed(D), -- format 2: Path.lua prices steps by class and the heuristic by Costs.MIN
+			classed = Classed(D), -- format 2: Path.lua prices steps by class (and style) and the heuristic by its least
 			sizes = {},
 			used = {}, -- [k] = last use, for eviction
 			decoded = 0,
@@ -867,9 +867,9 @@ end
 
 -- Line of sight between two path entries, walking every cell the segment between their cell centres crosses and
 -- following the surface from node to node, so it cannot jump between floors. With limit (a map with classes), every
--- node crossed must also cost no more than limit (Costs.Mult for profile) and, unless hostileOK, carry no hub bit hb
--- (the one hostile to profile; nil for none).
-local function sight(st, P, a, b, water, limit, profile, hb, hostileOK)
+-- node crossed must also cost no more than limit (Costs.Mult for profile in style) and, unless hostileOK, carry no
+-- hub bit hb (the one hostile to profile; nil for none).
+local function sight(st, P, a, b, water, limit, profile, hb, hostileOK, style)
 	local ax, ay, bx, by = P.x[a], P.y[a], P.x[b], P.y[b]
 	local k, node = P.k[a], P.n[a]
 	local dx, dy = bx - ax, by - ay
@@ -894,7 +894,7 @@ local function sight(st, P, a, b, water, limit, profile, hb, hostileOK)
 		end
 		if limit then
 			local c = classOf(st, k, node)
-			if Mult(c, profile) > limit or (hb and not hostileOK and c % (hb + hb) >= hb) then
+			if Mult(c, profile, style) > limit or (hb and not hostileOK and c % (hb + hb) >= hb) then
 				return false
 			end
 		end
@@ -906,10 +906,10 @@ end
 
 -- Collapse a node path to its turns, then pull the string: from each anchor, jump to the furthest point in sight.
 -- Water may only be crossed where the path itself swam. On a map with classes a straight segment replaces the path
--- between two entries only over ground no costlier for profile than the costliest node of that path stretch, and
--- into a hub hostile to profile only where that stretch already entered one: the drawn line (and the hubs it
--- reports) never cuts a road's bend or a hostile hub's rim the cost-best path kept to.
-local function smooth(st, P, profile)
+-- between two entries only over ground no costlier for profile in style than the costliest node of that path
+-- stretch, and into a hub hostile to profile only where that stretch already entered one: the drawn line (and the
+-- hubs it reports) never cuts a road's bend or a hostile hub's rim the cost-best path kept to.
+local function smooth(st, P, profile, style)
 	local PX, PY, PW, PK, PN = P.x, P.y, P.w, P.k, P.n
 	local n = #PX
 	local keep = { 1 }
@@ -938,7 +938,7 @@ local function smooth(st, P, profile)
 			if classed then
 				for i = last + 1, q do
 					local c = classOf(st, PK[i], PN[i])
-					local m = Mult(c, profile)
+					local m = Mult(c, profile, style)
 					if m > limit then
 						limit = m
 					end
@@ -948,7 +948,7 @@ local function smooth(st, P, profile)
 				end
 				last = q
 			end
-			if not sight(st, P, p, q, PW[q] - PW[p] > 0, limit, profile, hb, hostile) then
+			if not sight(st, P, p, q, PW[q] - PW[p] > 0, limit, profile, hb, hostile, style) then
 				break
 			end
 			b = j

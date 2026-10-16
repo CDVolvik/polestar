@@ -2287,19 +2287,41 @@ target the planner prices (`Path.Find` and one reversed `Path.FindMany` per
 target, "Walks priced by the engine" above). On a map of format 2 (a ground
 class byte per node: road, gentle or steep slope, indoor, indoor city, and the
 Alliance and Horde hub bits) a grid step costs its length times
-`Costs.Mult(class, profile)` (`Routing/Costs.lua`: normal 1.0, road 0.8,
-gentle 1.3, steep 2.5, indoor 2.0, indoor city 1.0, a hub hostile to the
-profile x20), times the swim factor in water, and the A* heuristics (and
-`Path.LowerBound`) scale by `Costs.MIN` (0.8) to stay admissible; each graph
-edge carries one cost per profile (`costAlliance`, `costHorde`, `costNone`)
-and its yards (the record layout is at `PathGrid.lua`'s `adjacent`). The
-drawn line straightens the found path (`PathGrid.lua`'s `smooth`) only over
-ground no costlier for the profile than the path stretch it replaces, and
-into a hostile hub only where that stretch already entered one, so it never
-cuts a road's bend or a hostile hub's rim. A map of
-format 1 (0.2.4's, no class field) is class 0 everywhere, has one edge cost
-for every profile and keeps the 1.0 heuristic, so it routes and straightens
-exactly as before classes, for any profile.
+`Costs.Mult(class, profile, style)` (`Routing/Costs.lua`), times the swim
+factor in water. The route style (`Costs.Style`: `"fastest"`, `"balanced"`
+or `"roads"`; nil or any other value is Balanced) picks the multipliers by
+base class, and a hub hostile to the profile multiplies its ground x20 in
+every style:
+
+| style | normal | road | gentle | steep | indoor | indoor city | smallest |
+|---|---|---|---|---|---|---|---|
+| Fastest | 1.0 | 1.0 | 1.0 | 1.2 | 2.0 | 1.0 | 1.0 |
+| Balanced (default) | 1.0 | 0.8 | 1.3 | 2.5 | 2.0 | 1.0 | 0.8 |
+| Roads | 1.0 | 0.5 | 1.6 | 4.0 | 2.0 | 1.0 | 0.5 |
+
+Fastest walks the shortest way (steep ground at 1.2 breaks near ties);
+Balanced takes a road up to 1.25 times the straight way; Roads up to 2
+times, and climbs less. Each graph edge carries one cost per profile
+(`costAlliance`, `costHorde`, `costNone`), baked by the packer at Balanced's
+numbers (`Costs.MULT`, `Costs.HUB`, mirrored in `tools/lib/nav/costs.js`),
+and its yards (the record layout is at `PathGrid.lua`'s `adjacent`): the
+walking maps are the same for every style. The style prices every grid step
+(the searches inside a cluster, the connections of the ends to the graph,
+the refinement of each crossed cluster) and the straightening; the graph
+edges keep Balanced's costs in every style, so which tiles a very long walk
+crosses follows Balanced, and the style shapes the walk inside them. The A*
+heuristics scale by the smallest multiplier they may meet: a search on the
+grid alone by the style's, one that crosses graph edges (and
+`Path.LowerBound(map, from, to, style)`) by the smaller of the style's and
+`Costs.MIN` (0.8), so they stay admissible; Balanced searches exactly as
+before styles. The drawn line straightens the found path
+(`PathGrid.lua`'s `smooth`) only over ground no costlier for the profile in
+the style than the path stretch it replaces, and into a hostile hub only
+where that stretch already entered one, so it never cuts a road's bend or a
+hostile hub's rim. A map of format 1 (0.2.4's, no class field) is class 0
+everywhere, has one edge cost for every profile and keeps the 1.0
+heuristic, so it routes and straightens exactly as before classes, for any
+profile and style.
 
 ```
 Polestar_Nav.toc        LoadOnDemand, Dependencies: Polestar
@@ -2352,10 +2374,11 @@ widened:
 Path.Find(map, from, to, callback, opts) -> job      -- callback(points, cost, job) or (nil, reason, job); job.yards, job.hubs
 Path.FindCost(map, from, to, callback, opts) -> job  -- callback(cost, reason, job), no drawing points; job.yards
 Path.FindMany(map, from, targets, callback, opts, reverse, progress) -> job  -- costs[i] or false; job.yards[i]
-Path.ReuseMany(job, point, profile) -> bool         -- may a batch from job's source serve one from point for profile
+Path.ReuseMany(job, point, profile, style) -> bool  -- may a batch from job's source serve one from point for profile in style
 Path.Cancel(job) ; Path.Busy() -> bool ; Path.Available(map) -> bool
 -- opts: a boolean is waterWalking (as every caller passed it before profiles), or
--- { waterWalking = boolean, profile = "Alliance" | "Horde" | nil } (Costs.Profile(UnitFactionGroup))
+-- { waterWalking = boolean, profile = "Alliance" | "Horde" | nil (Costs.Profile(UnitFactionGroup)),
+--   style = "fastest" | "balanced" | "roads" | nil (Costs.Style: anything else is Balanced) }
 ```
 
 `map` is the instance map ID (`UnitPosition`'s fourth value: 0 Eastern
