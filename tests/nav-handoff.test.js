@@ -734,3 +734,65 @@ test('a Polestar journey left over from 0.2.4 is cancelled once at login with th
 	assert.equal(on.cancels, 0, 'option on: the hand-off keeps it');
 	assert.equal(on.after, 0);
 });
+
+// Every call to his API made in combat, by name (spf.fight).
+const COUNT_FIGHT = `
+spf.fight = {}
+for name, fn in pairs(ShortestPathForever.API) do
+	if type(fn) == "function" then
+		ShortestPathForever.API[name] = function(...)
+			if InCombatLockdown() then table.insert(spf.fight, name) end
+			return fn(...)
+		end
+	end
+end
+`;
+
+test('a /reload in combat: nothing of his API is called, Subscribe included, and an option toggled in the fight waits for its end', () => {
+	const [out] = run(`
+		nav.setWaypoint(copy(FARLAND))
+		local r = {}
+		Polestar.Set("nav.spfHandoff", true)
+		Polestar.Set("nav.spfHandoff", false)
+		stub.runTimers()
+		r.fight = table.concat(spf.fight, ",")
+		r.subs = #spf.subs
+		stub.inCombat = false
+		stub.fire("PLAYER_REGEN_ENABLED")
+		stub.runTimers()
+		r.after = #spf.subs
+		emit(r)`, { saved: FRESH, spf: `${SPF}${COUNT_FIGHT}\nstub.inCombat = true\n` });
+	assert.deepEqual(out, { fight: '', subs: 0, after: 1 }, 'subscribed once combat ends');
+});
+
+test('the hand-off turned off in a fight: its journey is cancelled when the fight ends, never in it', () => {
+	const [out] = run(`
+		nav.setWaypoint(copy(FARLAND))
+		local r = { owner = spf.owner or false }
+		stub.inCombat = true
+		Polestar.Set("nav.spfHandoff", false)
+		local m, x, y = nav.mapPoint(-850, -300)
+		nav.setWaypoint({ map = m, x = x, y = y, label = "Docks road", stepIndex = 1, goalIndex = 2, kind = "goto", r = 8 })
+		stub.runTimers()
+		r.fight = table.concat(spf.fight, ",")
+		stub.inCombat = false
+		stub.fire("PLAYER_REGEN_ENABLED")
+		r.cancels, r.ownerAfter = spf.cancels(), spf.owner or false
+		emit(r)`, { spf: `${SPF}${COUNT_FIGHT}` });
+	assert.deepEqual(out, { owner: 'Polestar', fight: '', cancels: 1, ownerAfter: false });
+});
+
+test('a /reload in combat with a 0.2.4 journey left over: Polestar steps aside until the fight ends and the journey is cancelled, so the two never guide at once', () => {
+	const [out] = run(`
+		nav.setWaypoint(copy(FARLAND))
+		local r = {}
+		stub.advance(1.5)
+		r.fight = { N.HandedOff(), arrowShown(), spf.owner or false, table.concat(spf.fight, ",") }
+		stub.inCombat = false
+		stub.fire("PLAYER_REGEN_ENABLED")
+		stub.advance(0.3)
+		r.after = { N.HandedOff(), arrowShown(), spf.owner or false, spf.cancels() }
+		emit(r)`, { saved: FRESH, spf: `${LEFTOVER}${COUNT_FIGHT}\nstub.inCombat = true\n` });
+	assert.deepEqual(out.fight, [true, false, 'Polestar', ''], 'in the fight: his leftover guides alone');
+	assert.deepEqual(out.after, [false, true, false, 1], 'after it: cancelled once, Polestar guides');
+});

@@ -1478,7 +1478,11 @@ called, as its `minor` grows) the two never guide at once:
   of its own. Polestar's arrow comes back when it ends."
   A journey of Polestar's left running in it from 0.2.4 (which handed off by
   default) is cancelled once with the option off, at the first
-  `PLAYER_ENTERING_WORLD` (in combat, when combat ends).
+  `PLAYER_ENTERING_WORLD` (in combat, when combat ends; until then Polestar
+  steps aside as if yielding, since that journey may still guide).
+  `Subscribe` is called at `PLAYER_ENTERING_WORLD` and when the option
+  changes, never in combat (then once combat ends); turning the option off in
+  combat cancels Polestar's journey there once combat ends.
 
 ```lua
 Polestar.Nav.HandedOff() -> bool   -- the one predicate: handing off (installed, on, the last stop not refused), or yielding
@@ -2324,11 +2328,15 @@ what is shown and timed.
 - Hostile towns: `Find`'s `job.hubs` goes on the walk's leg as `leg.hubs`
   (`Travel.SplitWalk` for the arrow's walk: the unsplit leg, or
   on every piece of a split one; `Travel.PricePaths` for later walks; a fresh search with the same towns, by id, changes nothing). The journey panel shows
-  "Hostile town: <name>" (names joined by commas) under the step in the
-  warning colour, and the arrow says it once under its label for 8 s when the
-  walk starts (`Travel.TakeWarning`: once per walk end and towns, until the
-  target changes). A walk whose target is inside a hostile town warns too:
-  the router enters it because it must, and the player is told.
+  "Hostile town: <name>" (names joined by commas, each name once: two towns
+  can share one) under the step in the warning colour, and the arrow says it
+  once under its label for 8 s when the walk starts (`Travel.TakeWarning`:
+  once per walk end and towns, until the target changes): under the step's
+  instruction on a route, under the target's label when the walk is the whole
+  route (no journey panel then). A walk whose target is inside a hostile town
+  warns too: the router enters it because it must, and the player is told.
+  The names are the packed English ones (the hub records carry a slug id, no
+  area id to look a client name up by).
 
 **Our own maps, always.** The engine reads only `PolestarPathData`, never an
 installed Shortest Path Forever's `ShortestPathForeverPathData`, even when it

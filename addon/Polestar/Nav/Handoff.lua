@@ -92,9 +92,11 @@ local live = false    -- that journey still runs, as far as Polestar knows
 local pending = false -- a stop waits for combat's end or a position
 local worldUp = false -- PLAYER_ENTERING_WORLD seen: nothing is sent before
 local subscribed = false
+local subscribeOwed = false -- Subscribe waits for combat's end
 local wasEngaged
 local yielding = false -- the option off: a journey not Polestar's runs in it, so Polestar steps aside
 local lookOwed = false -- news of its journeys came in combat: looked at when combat ends
+local leftoverDone, leftoverOwed = false, false -- a 0.2.4 journey's cancel (cancelLeftover): done, or owed to combat's end
 
 function Nav.HandedOff()
 	if engaged() then return not refused end
@@ -123,12 +125,18 @@ end
 
 -- With the option off: does Shortest Path Forever run a journey that is not
 -- Polestar's (Active, and no current stop of Polestar's)? Never asked in
--- combat: the question waits for its end.
+-- combat: the question waits for its end. While a leftover journey's cancel
+-- waits for it too, that journey may still guide: Polestar steps aside.
 local function look()
 	local A = api()
 	if not A or engaged() then
 		lookOwed = false
 		setYielding(false)
+		return
+	end
+	if leftoverOwed then
+		lookOwed = true
+		setYielding(true)
 		return
 	end
 	if inCombat() then
@@ -155,7 +163,6 @@ end
 -- handing off was on (0.2.4's default): with the option off it is cancelled
 -- once, at the first PLAYER_ENTERING_WORLD (or when combat ends), so the two
 -- never guide at once. With the option on it stays: the hand-off takes it.
-local leftoverDone, leftoverOwed = false, false
 local function cancelLeftover()
 	if leftoverDone then return end
 	local A = api()
@@ -356,6 +363,11 @@ end
 local function step(force)
 	local A = api()
 	if not engaged() then
+		-- Its journey of ours is cancelled when combat ends (PLAYER_REGEN_ENABLED).
+		if live and inCombat() then
+			pending = true
+			return
+		end
 		cancel(A)
 		sentKey, pending, refusedKey, refused = nil, false, nil, false
 		return
@@ -417,6 +429,11 @@ local function subscribe()
 	if subscribed then return end
 	local A = api()
 	if not (A and type(A.Subscribe) == "function") then return end
+	if inCombat() then
+		subscribeOwed = true
+		return
+	end
+	subscribeOwed = false
 	subscribed = pcall(A.Subscribe, heard) and true or false
 end
 
@@ -470,6 +487,7 @@ ns.RegisterEvent("ZONE_CHANGED_NEW_AREA", function()
 	if pending or refused then sync(true) end
 end)
 ns.RegisterEvent("PLAYER_REGEN_ENABLED", function()
+	if subscribeOwed then subscribe() end
 	if pending then sync() end
 	if leftoverOwed then cancelLeftover() end
 	if lookOwed then look() end
