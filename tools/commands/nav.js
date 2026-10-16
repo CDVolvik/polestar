@@ -108,8 +108,11 @@ layers  the ground layers under data/local/nav-layers. roads: per grid
         wowdev community listfile (downloaded once to
         data/sources/listfile; build time only), for maps 0 and 1 (--c: one
         of them), into roads/<c>/<col>_<row>.bin. --allowlist instead
-        rewrites the allowlist: every texture the maps' tiles use whose
-        tileset path names a road, path, cobble, street or trail (review it).`;
+        rewrites the allowlist from every texture the maps' tiles use:
+        one whose tileset path names a road, path, cobble, street or trail;
+        one naming dirt, footprint, brick or gravel, or listed under
+        reviewed, when its shape is a road's (most of its weight in long,
+        narrow, elongated strips); with every measure (review it).`;
 
 const usageError = (msg) => Object.assign(new Error(msg), { exit: 2 });
 
@@ -454,17 +457,26 @@ async function layersCmd(argv) {
 	const log = (m) => console.error(m);
 	const t0 = Date.now();
 	if (o.allowlist) {
-		const r = await roads.roadAllowlist({ casc, sourcesDir: SOURCES, continents, offline: !!o.offline, log });
 		const file = roads.ALLOWLIST_FILE;
+		const reviewed = fs.existsSync(file) ? JSON.parse(fs.readFileSync(file, 'utf8')).reviewed || [] : [];
+		const r = await roads.roadAllowlist({ casc, sourcesDir: SOURCES, continents, reviewed: reviewed.map((x) => x.texture), offline: !!o.offline, log });
+		const kept = r.shapes.filter((s) => s.kind !== 'other' || s.shapeRoad);
 		const doc = {
-			about: 'Road textures (tileset paths, the _s and _h variants as their base) for the roads layer: every diffuse texture the tex0 ADTs of the listed maps use, named by the wowdev community listfile, whose path matches the pattern. Reviewed by hand; regenerate with node tools/polestar.js nav layers roads --allowlist.',
+			about: 'Road textures (tileset paths, the _s and _h variants as their base) for the roads layer, of the diffuse textures the tex0 ADTs of the listed maps use (names from the wowdev community listfile): every one whose path matches named; one whose path matches ground when its shape is a road\'s; one in reviewed (checked by a person to lie on known roads) when its shape is a road\'s. A shape is a road\'s when at least roadShare of the texture\'s weight lies in strips: 8-connected components of columns where it weighs >= 128 (per tile) at least longYd long (bounding box diagonal), at most narrow columns of mean width (area over half the perimeter) and at least elongated long (diagonal^2 / area, in columns). shapes: the measures of every named, ground and reviewed texture and of every other road-shaped one (kind other: candidates for review; medianWidth: the width half the weight lies under). Regenerate with node tools/polestar.js nav layers roads --allowlist.',
 			build: casc.build,
 			maps: continents,
-			pattern: roads.ROAD_PATTERN.source,
+			named: roads.NAMED_PATTERN.source,
+			ground: roads.GROUND_PATTERN.source,
+			longYd: roads.LONG_YD,
+			narrow: roads.NARROW,
+			elongated: roads.ELONGATED,
+			roadShare: roads.ROAD_SHARE,
+			reviewed,
 			textures: r.textures,
+			shapes: kept.map((s) => ({ texture: s.texture, kind: s.kind, tiles: s.tiles, columns: s.columns, components: s.components, medianWidth: s.medianWidth === null ? null : +s.medianWidth.toFixed(2), share: +s.share.toFixed(3), road: s.road })),
 		};
 		fs.writeFileSync(file, JSON.stringify(doc, null, '\t') + '\n');
-		for (const t of r.textures) console.log(`${String(r.used.get(t)).padStart(5)} tiles  ${t}`);
+		for (const s of [...kept].sort((a, b) => b.share - a.share)) console.log(`${s.road ? 'road' : '    '} ${s.kind.padEnd(6)} ${String(s.columns).padStart(9)} col ${String(s.components).padStart(6)} comp  width ${s.medianWidth === null ? '   -' : s.medianWidth.toFixed(2).padStart(5)}  share ${s.share.toFixed(3)}  ${s.texture}`);
 		console.log(`nav layers roads: ${r.textures.length} road textures of ${r.used.size} used in ${path.relative(ROOT, file)}${r.unnamed.length ? `; ${r.unnamed.length} used fdids the listfile does not name` : ''} (${fmt((Date.now() - t0) / 1000)})`);
 		return 0;
 	}

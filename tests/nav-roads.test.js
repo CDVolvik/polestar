@@ -10,8 +10,10 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const { parseTex0 } = require('../tools/lib/nav/layers/tex0');
-const { tileRoadWeights, isRoadTexture, roadWeights, ROADS_DIR } = require('../tools/lib/nav/layers/roads');
+const { tileRoadWeights, isRoadTexture, roadWeights, shapeOf, roadByShape, ROADS_DIR } = require('../tools/lib/nav/layers/roads');
 const { cellOf } = require('../tools/lib/nav/grid/format');
+const { Geo } = require('../tools/lib/planner/geo');
+const { DATA } = require('../tools/lib/paths');
 
 // --- binary builders ---------------------------------------------------------
 
@@ -145,6 +147,53 @@ test('isRoadTexture: the reviewed allowlist, by path; the _s and _h variants nam
 	assert.equal(isRoadTexture('tileset/barrens/barrensbasegrass_s.blp'), false);
 });
 
+// --- road by shape -----------------------------------------------------------
+
+// Weights w at the columns where fn(i, j).
+const painted = (fn, w = 200) => {
+	const out = new Uint8Array(65536);
+	for (let j = 0; j < 256; j++) for (let i = 0; i < 256; i++) if (fn(i, j)) out[j * 256 + i] = w;
+	return out;
+};
+
+test('shapeOf: a dominant texture\'s components with their area, weight, mean width (area over half the perimeter), length in yards and elongation', () => {
+	const strip = shapeOf(painted((i, j) => i >= 10 && i < 14 && j >= 20 && j < 120));
+	assert.equal(strip.length, 1);
+	assert.equal(strip[0].area, 400);
+	assert.equal(strip[0].weight, 400 * 200);
+	assert.ok(Math.abs(strip[0].width - 400 / 104) < 1e-9);
+	assert.ok(strip[0].length > 200 && strip[0].length < 215, `${strip[0].length}`);
+	assert.ok(Math.abs(strip[0].elongation - (16 + 10000) / 400) < 1e-9);
+	const two = shapeOf(painted((i, j) => (i < 50 && j < 50) || (i === 200 && j === 200)));
+	assert.deepEqual(two.map((s) => s.area).sort((a, b) => a - b), [1, 2500]);
+	assert.equal(shapeOf(painted((i) => i < 50, 127)).length, 0); // under half: not dominant
+});
+
+test('shapeOf: a one-column diagonal road is one component (corners touch), a strip', () => {
+	const diagonal = shapeOf(painted((i, j) => i === j && j < 100));
+	assert.equal(diagonal.length, 1);
+	assert.equal(diagonal[0].area, 100);
+	assert.equal(roadByShape(diagonal).road, true);
+});
+
+test('roadByShape: a pinholed patch is narrow by its perimeter but not elongated: no road', () => {
+	const pinholed = shapeOf(painted((i, j) => i < 60 && j < 60 && !(i % 3 === 1 && j % 3 === 1)));
+	assert.equal(pinholed.length, 1);
+	assert.ok(pinholed[0].width < 6 && pinholed[0].length > 60);
+	assert.ok(pinholed[0].elongation < 10);
+	assert.equal(roadByShape(pinholed).road, false);
+});
+
+test('roadByShape: road when most of the weight lies in long (>= 60 yd) narrow (width <= 6) components', () => {
+	const strips = shapeOf(painted((i, j) => i % 40 < 5 && j < 200));
+	const patches = shapeOf(painted((i, j) => i % 80 < 60 && j % 80 < 60));
+	assert.equal(roadByShape(strips).road, true);
+	assert.equal(roadByShape(patches).road, false);
+	assert.equal(roadByShape(shapeOf(painted((i, j) => i < 5 && j < 10))).road, false); // short
+	assert.equal(roadByShape([...strips, ...patches]).road, false);
+	assert.ok(roadByShape(strips).share > 0.99);
+});
+
 // --- the built layer ---------------------------------------------------------
 
 const built = (c) => fs.existsSync(path.join(ROADS_DIR, String(c)));
@@ -168,4 +217,23 @@ test('the built layer: the Barrens\' Gold Road is road', { skip: !built(1) && 'n
 	let near = 0;
 	for (let dx = -8; dx <= 8; dx++) for (let dy = -8; dy <= 8; dy++) if (Math.hypot(dx, dy) <= 8) near = Math.max(near, weightAt(1, -441 + dx, -2650 + dy));
 	assert.ok(near >= 128);
+});
+
+// Desolace's main road (uiMap 1443) runs north-south at about x 49 from
+// y 49.5 to 54.5 (painted with desolacecracks, a reviewed texture; Main's
+// 55,50 to 50,60 brackets it). Map points convert as nav eval does
+// (Geo.toWorld, frame 'l'); each sample wants a road column within 10 yd
+// east or west of it.
+const FRAMES = path.join(DATA, 'map-frames.json');
+test('the built layer: Desolace\'s main road has road columns along it', { skip: (!built(1) && 'no roads layer for map 1 (node tools/polestar.js nav layers roads --c 1)') || (!fs.existsSync(FRAMES) && 'no data/forever/map-frames.json (node tools/polestar.js data build)') }, () => {
+	const geo = new Geo(JSON.parse(fs.readFileSync(FRAMES, 'utf8')), JSON.parse(fs.readFileSync(path.join(DATA, 'zones.json'), 'utf8')));
+	const misses = [];
+	for (let y = 49.5; y <= 54.5; y += 0.5) {
+		const p = geo.toWorld(1443, 49, y, 'l');
+		assert.equal(p.c, 1);
+		let near = 0;
+		for (let d = -10; d <= 10; d++) near = Math.max(near, weightAt(1, p.wx, p.wy + d));
+		if (near < 128) misses.push(y);
+	}
+	assert.ok(misses.length <= 1, `no road near 49,${misses.join(' 49,')}`);
 });
