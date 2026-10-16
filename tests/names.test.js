@@ -74,7 +74,7 @@ ${pack.stubLua}
 ${CLIENT}
 ${before}`,
 		addons: ['Polestar'],
-		script: `${guide ? GUIDE : ''}
+		script: `${guide === true ? GUIDE : guide || ''}
 stub.login()
 stub.fire("QUEST_LOG_UPDATE"); stub.advance(0.6)
 N = Polestar.Names
@@ -252,6 +252,36 @@ test('an English client keeps the guide\'s English, its quest title before the c
 	assert.deepEqual(view.map((g) => g[0]), ['Wanted: Hogger', 'Kobold Vermin', 'Handful of Oats', 'Wanted Poster', 'Nobody Translated', 'Untranslated Thing', 'Wolves Across the Border']);
 	assert.ok(view[0][1].includes('Marshal Dughan'));
 	assert.equal(view[0][2], 'Marshal Dughan');
+});
+
+test('a collect\'s compiled sources are named in the client\'s language by their ids; English where the pack has no name or the goal no id', () => {
+	const guide = `
+${TEST_PACK}
+${TEST_SOURCE}
+Polestar.RegisterGuide({
+	id = "test/sources", pack = "test", title = "Sources", minLevel = 1, maxLevel = 10,
+	steps = {
+		{ title = "Goldshire", goals = {
+			{ t = "collect", item = 750, itemName = "Tough Wolf Meat", count = 4, map = 1429, x = 48, y = 42, from = "Kobold Vermin", fromId = 6, fromAlso = "Hogger", fromAlsoId = 448, fromKind = "npc" },
+			{ t = "collect", item = 1528, itemName = "Handful of Oats", count = 2, map = 1429, x = 48, y = 42, from = "Wanted Poster", fromId = 68, fromKind = "object" },
+			{ t = "collect", item = 750, itemName = "Tough Wolf Meat", count = 2, map = 1429, x = 48, y = 42, from = "Nobody Translated", fromId = 999, fromKind = "npc", fromFaction = "AH" },
+			{ t = "collect", item = 750, itemName = "Tough Wolf Meat", count = 2, map = 1429, x = 48, y = 42, from = "Kobold Vermin", fromKind = "npc" },
+		} },
+	},
+})`;
+	const script = `
+local v = Polestar.Engine.GetStepView(1)
+local out = {}
+for i, g in ipairs(v.goals) do out[i] = g.text end
+emit(out)`;
+	const [fr] = run({ guide, script });
+	assert.ok(fr[0].includes('Vermine kobold') && fr[0].includes('Lardeur'), fr[0]);
+	assert.ok(fr[1].includes('Avis de recherche'), fr[1]);
+	assert.ok(fr[2].includes('Nobody Translated'), fr[2]);
+	assert.ok(fr[3].includes('Kobold Vermin'), fr[3]);
+	const [en] = run({ locale: null, guide, script });
+	assert.ok(en[0].includes('Kobold Vermin') && en[0].includes('Hogger'), en[0]);
+	assert.ok(en[1].includes('Wanted Poster'), en[1]);
 });
 
 // ---------------------------------------------------------------------------

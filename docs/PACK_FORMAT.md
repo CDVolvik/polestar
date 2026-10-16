@@ -268,7 +268,7 @@ frame; absent: the live frame), `r` (arrival radius in yards), `spots`
 | `turnin` | `quest`, `title` | `npc`/`npcName`, `object`/`objName`, `rewards = { choices = { { item, itemName, quality } }, items = { ... }, xp, money }`, `direct` |
 | `complete` | `quest`, `title` | — |
 | `kill` | `target` | `title`, `npc`, `count`, `quest`, `oi`, `spread` |
-| `collect` | `item`, `itemName` | `title`, `count`, `quest`, `oi`, `spread`, `from`, `fromAlso`, `fromKind`, `fromRank`, `fromFaction`, `candidates` |
+| `collect` | `item`, `itemName` | `title`, `count`, `quest`, `oi`, `spread`, `from`, `fromAlso`, `fromId`, `fromAlsoId`, `fromKind`, `fromRank`, `fromFaction`, `candidates` |
 | `goto` | `map`, `x`, `y` | `text`, `r`, `area` |
 | `talk` | `npc`, `npcName` | — |
 | `interact` | `object`, `objName` | `title`, `quest`, `oi`, `spread` |
@@ -317,6 +317,7 @@ The fields:
 | `spots` | spawn places `{ { x, y, r, n, alt } }`: centre in the goal's map and frame, radius in yards, spawn count; `alt = true` for another place the target spawns, which the arrow takes only when the player moves on to it (the world map marks it) |
 | `spread` | `true` with `spots`: an area objective, searched spot by spot |
 | `from`, `fromAlso`, `fromKind`, `fromRank`, `fromFaction` | a `collect`'s main source: name, a second source of the same kind dropping it at 50% or more, `"npc"` or `"object"`, rank (1 elite, 2 rare elite, 3 boss, 4 rare), faction `"A"`, `"H"` or `"AH"` |
+| `fromId`, `fromAlsoId` | the ids of `from` and `fromAlso` (of kind `fromKind`): Polestar names them in the client's language (`Polestar.Names`), keeping `from`/`fromAlso` where it has no name; older Polestar ignores them |
 | `candidates` | smart targets: `{ { npc, npcName, map, x, y, f, faction, races, classes, lvl, rate, spawns } }`; Polestar picks the nearest usable one at runtime |
 | `rewards` | `{ choices = { { item, itemName, quality } }, items = { ... }, xp, money }` (money in copper) |
 | `direct` | `true` on a `turnin`: the quest is handed in straight from the giver's window and never enters the quest log, so the goal needs no `accept` before it and carries no objectives. Polestar counts it done on the hand-in itself and stores that, so a repeatable stays done after a reload |
