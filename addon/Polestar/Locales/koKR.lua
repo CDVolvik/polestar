@@ -99,6 +99,7 @@ L["rare"] = "희귀"
 L["%s or %s"] = "%s 또는 %s"
 L["Kill %s for %s"] = "%s 처치 (%s 획득)"
 L["Collect %s from %s"] = "%s 수집 (출처: %s)"
+-- L["Riding"] = ""
 
 -- Core/Closes.lua
 L["Taking %s closes %s for good."] = "%s 퀘스트를 받으면 %s 퀘스트는 영영 받을 수 없습니다."
@@ -174,11 +175,11 @@ L["Close"] = "닫기"
 
 -- Nav/Nav.lua
 L["Waypoint"] = "경유지"
-L["Shortest Path Forever is guiding. Turn off \"Guide with Shortest Path Forever when it's installed\" (Options, Arrow & routes) to use Polestar's arrow."] = "Shortest Path Forever가 가이드 중입니다. Polestar 화살표를 쓰려면 \"설치 시 Shortest Path Forever로 가이드\"를 끄십시오(설정, 화살표 및 경로)."
 L["Greyed out while Shortest Path Forever guides: it does this itself."] = "Shortest Path Forever가 가이드 중이면 비활성: 그 애드온이 직접 처리합니다."
 L["Waypoint arrow: show, hide, reset"] = "경유지 화살표: 표시, 숨기기, 초기화"
 L["Usage: /polestar way <x> <y> [label]"] = "사용법: /polestar way <x> <y> [이름]"
 L["Point the arrow at x y on your current map (no argument clears it)"] = "현재 지도의 x y를 화살표로 가리킴 (인수 없으면 지움)"
+-- L["Shortest Path Forever is guiding. Turn off \"Guide with Shortest Path Forever when it's installed\" (Options, Integrations) to use Polestar's arrow."] = ""
 
 -- Nav/Arrow.lua
 L["Search here"] = "여기서 찾기"
@@ -1862,3 +1863,10 @@ L["The guide window holds the gamepad until B: the D-pad picks a line, A points 
 -- L["Polestar: %s"] = ""
 -- L["Show planned turn-ins in Questie"] = ""
 -- L["Completed quests in Questie's tracker show their Polestar turn-in step. Earlier, skipped and unplanned hand-ins are flagged."] = ""
+
+-- Talents/Builds.lua
+-- L["Holy"] = ""
+-- L["Protection"] = ""
+
+-- No longer in the code (its English changed or it went away): reuse or delete.
+-- L["Shortest Path Forever is guiding. Turn off \"Guide with Shortest Path Forever when it's installed\" (Options, Arrow & routes) to use Polestar's arrow."] = "Shortest Path Forever가 가이드 중입니다. Polestar 화살표를 쓰려면 \"설치 시 Shortest Path Forever로 가이드\"를 끄십시오(설정, 화살표 및 경로)."

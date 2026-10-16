@@ -99,6 +99,7 @@ L["rare"] = "raro"
 L["%s or %s"] = "%s ou %s"
 L["Kill %s for %s"] = "Matar %s para obter %s"
 L["Collect %s from %s"] = "Coletar %s de %s"
+-- L["Riding"] = ""
 
 -- Core/Closes.lua
 L["Taking %s closes %s for good."] = "Pegar %s fecha %s para sempre."
@@ -174,11 +175,11 @@ L["Close"] = "Fechar"
 
 -- Nav/Nav.lua
 L["Waypoint"] = "Ponto de rota"
-L["Shortest Path Forever is guiding. Turn off \"Guide with Shortest Path Forever when it's installed\" (Options, Arrow & routes) to use Polestar's arrow."] = "Shortest Path Forever está guiando. Desative \"Guiar com Shortest Path Forever quando instalado\" (Opções, Seta e rotas) para usar a seta do Polestar."
 L["Greyed out while Shortest Path Forever guides: it does this itself."] = "Desativado enquanto Shortest Path Forever guia: ele mesmo faz isso."
 L["Waypoint arrow: show, hide, reset"] = "Seta do ponto de rota: mostrar, ocultar, redefinir"
 L["Usage: /polestar way <x> <y> [label]"] = "Uso: /polestar way <x> <y> [rótulo]"
 L["Point the arrow at x y on your current map (no argument clears it)"] = "Apontar a seta para x y no mapa atual (sem argumento, limpa)"
+-- L["Shortest Path Forever is guiding. Turn off \"Guide with Shortest Path Forever when it's installed\" (Options, Integrations) to use Polestar's arrow."] = ""
 
 -- Nav/Arrow.lua
 L["Search here"] = "Procure aqui"
@@ -1862,3 +1863,10 @@ L["The guide window holds the gamepad until B: the D-pad picks a line, A points 
 -- L["Polestar: %s"] = ""
 -- L["Show planned turn-ins in Questie"] = ""
 -- L["Completed quests in Questie's tracker show their Polestar turn-in step. Earlier, skipped and unplanned hand-ins are flagged."] = ""
+
+-- Talents/Builds.lua
+-- L["Holy"] = ""
+-- L["Protection"] = ""
+
+-- No longer in the code (its English changed or it went away): reuse or delete.
+-- L["Shortest Path Forever is guiding. Turn off \"Guide with Shortest Path Forever when it's installed\" (Options, Arrow & routes) to use Polestar's arrow."] = "Shortest Path Forever está guiando. Desative \"Guiar com Shortest Path Forever quando instalado\" (Opções, Seta e rotas) para usar a seta do Polestar."

@@ -1479,7 +1479,7 @@ Polestar.Pins.MinimapCursor() -> dNorth, dWest | nil      -- yards from the play
   never mirrors into it. Default off: the stand-in has methods only, so an
   addon that finds the global and reads TomTom's settings (`TomTom.db`, its
   profile) would error; the option ("Let other addons set waypoints",
-  Options, Arrow & routes, Other waypoints) says so. With it off nothing sets
+  Options, Integrations, TomTom) says so. With it off nothing sets
   `TomTom` and `/way` is not claimed.
 - **Following TomTom** (`nav.followTomTom`, off; real TomTom only): hooks on
   TomTom's table: `SetCrazyArrow(uid)` points Polestar's arrow at that
@@ -1513,7 +1513,7 @@ Polestar.Pins.MinimapCursor() -> dNorth, dWest | nil      -- yards from the play
 installed (its global `ShortestPathForever.API`, `version` 1, with `Cancel`
 and `NavigateRoute` or `Navigate`; every other function checked before it is
 called, as its `minor` grows) and `nav.spfHandoff` on (the default; Options,
-Arrow & routes, Routes: "Guide with Shortest Path Forever when it's
+Integrations, Shortest Path Forever: "Guide with Shortest Path Forever when it's
 installed", shown only with it installed), Polestar's target is guided by it
 and Polestar's own guidance steps aside, so the two never guide at once.
 

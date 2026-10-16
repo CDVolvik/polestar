@@ -771,7 +771,7 @@ if ns.RegisterOptions then
 	})
 	if not ok and geterrorhandler then geterrorhandler()(err) end
 	ok, err = ns.RegisterOptions({
-		page = L["Guide"], tab = L["Arrow & routes"], section = L["Other waypoints"],
+		page = L["Integrations"], section = "TomTom",
 		controls = {
 			Nav.HandoffOption({ kind = "toggle", key = "nav.answerTomTom", label = L["Let other addons set waypoints"],
 				help = L["Without TomTom installed, waypoints other addons set through TomTom, and /way, point Polestar's arrow. Addons that expect TomTom's own settings may not work with it on."] }),

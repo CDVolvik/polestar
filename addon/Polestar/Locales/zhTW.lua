@@ -99,6 +99,7 @@ L["rare"] = "稀有"
 L["%s or %s"] = "%s 或 %s"
 L["Kill %s for %s"] = "擊殺 %s 以取得 %s"
 L["Collect %s from %s"] = "從 %s 收集 %s"
+-- L["Riding"] = ""
 
 -- Core/Closes.lua
 L["Taking %s closes %s for good."] = "接受 %s 將永久關閉 %s。"
@@ -174,11 +175,11 @@ L["Close"] = "關閉"
 
 -- Nav/Nav.lua
 L["Waypoint"] = "路徑點"
-L["Shortest Path Forever is guiding. Turn off \"Guide with Shortest Path Forever when it's installed\" (Options, Arrow & routes) to use Polestar's arrow."] = "Shortest Path Forever 正在導引。關閉「已安裝時以 Shortest Path Forever 導引」（「選項」>「箭頭與路線」）即可使用 Polestar 的箭頭。"
 L["Greyed out while Shortest Path Forever guides: it does this itself."] = "Shortest Path Forever 導引時停用：它會自行處理。"
 L["Waypoint arrow: show, hide, reset"] = "路徑點箭頭：顯示、隱藏、重置"
 L["Usage: /polestar way <x> <y> [label]"] = "用法：/polestar way <x> <y> [標籤]"
 L["Point the arrow at x y on your current map (no argument clears it)"] = "將箭頭指向目前地圖上的 x y（無參數則清除）"
+-- L["Shortest Path Forever is guiding. Turn off \"Guide with Shortest Path Forever when it's installed\" (Options, Integrations) to use Polestar's arrow."] = ""
 
 -- Nav/Arrow.lua
 L["Search here"] = "在此搜尋"
@@ -1862,3 +1863,10 @@ L["The guide window holds the gamepad until B: the D-pad picks a line, A points 
 -- L["Polestar: %s"] = ""
 -- L["Show planned turn-ins in Questie"] = ""
 -- L["Completed quests in Questie's tracker show their Polestar turn-in step. Earlier, skipped and unplanned hand-ins are flagged."] = ""
+
+-- Talents/Builds.lua
+-- L["Holy"] = ""
+-- L["Protection"] = ""
+
+-- No longer in the code (its English changed or it went away): reuse or delete.
+-- L["Shortest Path Forever is guiding. Turn off \"Guide with Shortest Path Forever when it's installed\" (Options, Arrow & routes) to use Polestar's arrow."] = "Shortest Path Forever 正在導引。關閉「已安裝時以 Shortest Path Forever 導引」（「選項」>「箭頭與路線」）即可使用 Polestar 的箭頭。"

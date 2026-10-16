@@ -100,6 +100,7 @@ L["rare"] = "rare"
 L["%s or %s"] = "%s ou %s"
 L["Kill %s for %s"] = "Tuer %s pour %s"
 L["Collect %s from %s"] = "Ramasser %s sur %s"
+-- L["Riding"] = ""
 
 -- Core/Closes.lua
 L["Taking %s closes %s for good."] = "Prendre %s ferme %s pour de bon."
@@ -175,11 +176,11 @@ L["Close"] = "Fermer"
 
 -- Nav/Nav.lua
 L["Waypoint"] = "Point de passage"
-L["Shortest Path Forever is guiding. Turn off \"Guide with Shortest Path Forever when it's installed\" (Options, Arrow & routes) to use Polestar's arrow."] = "Shortest Path Forever guide. Désactivez « Guider avec Shortest Path Forever s'il est installé » (Options, Flèche et itinéraires) pour utiliser la flèche de Polestar."
 L["Greyed out while Shortest Path Forever guides: it does this itself."] = "Grisé tant que Shortest Path Forever guide : il le fait lui-même."
 L["Waypoint arrow: show, hide, reset"] = "Flèche : afficher, masquer, réinitialiser"
 L["Usage: /polestar way <x> <y> [label]"] = "Usage : /polestar way <x> <y> [libellé]"
 L["Point the arrow at x y on your current map (no argument clears it)"] = "Pointer la flèche sur x y de votre carte (sans argument, l'efface)"
+-- L["Shortest Path Forever is guiding. Turn off \"Guide with Shortest Path Forever when it's installed\" (Options, Integrations) to use Polestar's arrow."] = ""
 
 -- Nav/Arrow.lua
 L["Search here"] = "Cherchez ici"
@@ -1864,6 +1865,10 @@ L["The guide window holds the gamepad until B: the D-pad picks a line, A points 
 -- L["Show planned turn-ins in Questie"] = ""
 -- L["Completed quests in Questie's tracker show their Polestar turn-in step. Earlier, skipped and unplanned hand-ins are flagged."] = ""
 
+-- Talents/Builds.lua
+-- L["Holy"] = ""
+-- L["Protection"] = ""
+
 -- No longer in the code (its English changed or it went away): reuse or delete.
 -- L["Alliance"] = "Alliance"
 -- L["Blood Elf"] = "Elfe de sang"
@@ -1904,3 +1909,4 @@ L["The guide window holds the gamepad until B: the D-pad picks a line, A points 
 -- L["slot: Trinket"] = "Bijou"
 -- L["slot: Waist"] = "Taille"
 -- L["slot: Wrist"] = "Poignets"
+-- L["Shortest Path Forever is guiding. Turn off \"Guide with Shortest Path Forever when it's installed\" (Options, Arrow & routes) to use Polestar's arrow."] = "Shortest Path Forever guide. Désactivez « Guider avec Shortest Path Forever s'il est installé » (Options, Flèche et itinéraires) pour utiliser la flèche de Polestar."
