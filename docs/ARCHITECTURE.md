@@ -3416,7 +3416,10 @@ Polestar.Talents.Show()                                     -- SHOW_TALENTS; /po
   plan's notes are shown as approximate ("Around level N").
 - **Rules.** The source plans are written one point a level from 10 (the
   replay's order); a pick is the next rank of its
-  talent; gates and arrows as the tree has them. Whether an arrow needs its
+  talent; gates and arrows as the tree has them. Of several arrows into one
+  talent any one opens it (the client's SufficientForAvailability edges: the
+  Hunter's Intimidation, from Bestial Swiftness or Bestial Wrath); a line
+  the client only draws (TraitEdge type 0) is no arrow. Whether an arrow needs its
   source at full rank or one rank is `PREREQ_RULE` in
   `tools/lib/talents/build.js` (default `"full"`, unconfirmed in game);
   `Builds.lua` carries it as `prereq` and `Talents.Replay` follows it.

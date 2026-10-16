@@ -14,7 +14,8 @@
 //                        group gated on points spent (CondType 0,
 //                        SpentAmountRequired) in the group TraitNodeGroupID
 //   TraitEdge            LeftTraitNodeID -> RightTraitNodeID (an arrow);
-//                        Type 0 is drawn only (VisualOnly) and gates nothing
+//                        Type 0 is drawn only (VisualOnly) and gates nothing;
+//                        of several arrows into one talent, any one will do
 
 // Whether an arrow needs the talent before it at full rank ("full") or one
 // rank ("started"). Unconfirmed in game: the one switch for the tool's replay
@@ -52,6 +53,7 @@ const SAME_X = 100; // PosX (or PosY) within this is one column (or row) of a sp
 
 const num = (v) => Number(v) || 0;
 const VISUAL_ONLY = 0; // TraitEdge.Type of a line that is not a prerequisite
+const REQUIRED = 3; // TraitEdge.Type of an arrow that must be met
 
 // A stray copy of a talent: a node with the same spell as another node of its
 // tree, placed far off the tree's grid (more than STRAY_FAR times the other
@@ -155,8 +157,14 @@ function treeFacts(tables, cls) {
 	// Type 0 (VisualOnly) draws a line without gating: the Druid tree's
 	// Nature's Splendor -> Nature's Majesty, beside the real arrow back.
 	const edges = tables.TraitEdge.filter((r) => num(r.Type) !== VISUAL_ONLY && nodes[num(r.LeftTraitNodeID)] && nodes[num(r.RightTraitNodeID)])
-		.map((r) => ({ from: num(r.LeftTraitNodeID), to: num(r.RightTraitNodeID) }))
+		.map((r) => ({ from: num(r.LeftTraitNodeID), to: num(r.RightTraitNodeID), type: num(r.Type) }))
 		.sort((a, b) => a.to - b.to || a.from - b.from);
+	// A Required arrow (Type 3) must be met whatever else leads in; the replay
+	// knows only "any one arrow", so a tree that mixes them is refused.
+	for (const e of edges) {
+		if (e.type === REQUIRED && edges.some((o) => o.to === e.to && o !== e)) throw new Error(`talents: node ${e.to} has a Required arrow beside others, which the replay does not model`);
+	}
+	for (const e of edges) delete e.type;
 	return { cls, treeID, strays: dropped, nodes, specs, groups, gates, edges };
 }
 
@@ -192,11 +200,13 @@ function replay(facts, picks, { prereq = PREREQ_RULE } = {}) {
 		if (p.rank !== have + 1) errors.push(`${where}: rank ${p.rank} after ${have}`);
 		if (p.rank > n.max) errors.push(`${where}: rank ${p.rank} of ${n.max}`);
 		for (const g of facts.gates[p.node] || []) if (spent(g.group) < g.need) errors.push(`${where}: needs ${g.need} points in its tree, has ${spent(g.group)}`);
-		for (const e of facts.edges) {
-			if (e.to !== p.node) continue;
-			const from = facts.nodes[e.from];
-			const need = prereq === 'full' ? from.max : 1;
-			if ((ranks[e.from] || 0) < need) errors.push(`${where}: needs ${from.name} ${need}/${from.max}`);
+		// Several arrows into one talent: any one of them opens it (the
+		// client's SufficientForAvailability edges, as the Hunter's
+		// Intimidation, from Bestial Swiftness or Bestial Wrath).
+		const into = facts.edges.filter((e) => e.to === p.node);
+		const need = (e) => (prereq === 'full' ? facts.nodes[e.from].max : 1);
+		if (into.length && !into.some((e) => (ranks[e.from] || 0) >= need(e))) {
+			errors.push(`${where}: needs ${into.map((e) => `${facts.nodes[e.from].name} ${need(e)}/${facts.nodes[e.from].max}`).join(' or ')}`);
 		}
 		ranks[p.node] = p.rank;
 	});

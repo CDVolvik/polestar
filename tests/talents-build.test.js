@@ -69,6 +69,23 @@ test('replay: levels, ranks, tier gates and arrows (full rank, or one rank with 
 	assert.match(replay(f, [p(11, 4, 1)])[0], /expected level 10/);
 });
 
+test('replay: of several arrows into one talent, any one opens it (the Hunter\'s Intimidation)', () => {
+	const t = tables();
+	// Gamma (3) gets a second arrow, from Beta (2), beside its tier gate.
+	t.TraitEdge.push({ LeftTraitNodeID: 2, RightTraitNodeID: 3, Type: 2 }, { LeftTraitNodeID: 4, RightTraitNodeID: 3, Type: 2 });
+	t.TraitNodeGroupXTraitCond = [];
+	const f = treeFacts(t, 'PALADIN');
+	const p = (level, node, rank) => ({ level, node, rank });
+	assert.deepEqual(replay(f, [p(10, 4, 1), p(11, 4, 2), p(12, 4, 3), p(13, 4, 4), p(14, 4, 5), p(15, 3, 1)]), [], 'Delta alone is enough');
+	assert.match(replay(f, [p(10, 3, 1)])[0], /needs Beta 1\/1 or Delta 5\/5/);
+});
+
+test('treeFacts: a Required arrow (type 3) beside another into one talent is refused, not guessed', () => {
+	const t = tables();
+	t.TraitEdge.push({ LeftTraitNodeID: 4, RightTraitNodeID: 2, Type: 3 });
+	assert.throws(() => treeFacts(t, 'PALADIN'), /Required arrow beside others/);
+});
+
 test('buildTalents: the Lua names its rule, the snapshot and each plan, notes by level', () => {
 	const src = { ...SOURCE, builds: [{ key: 'one', spec: 'One', split: '3/0', link: 'L', picks: [pick(10, 'One', 'Alpha', 1, 'Say "hi"'), pick(11, 'One', 'Alpha', 2)] }] };
 	const r = buildTalents(src, tables(), { header: '-- H' });
