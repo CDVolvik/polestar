@@ -24,10 +24,17 @@ next forever/horde/02-the-barrens
 #
 # Optional: A Letter Undelivered (361). A Letter to Yvette drops from the
 # Agamand Mills undead about one kill in 25-30, so its accept and turn-in never
-# block. Rear Guard Patrol (99156, Forever): Riptear, a level 13 elite
-# abomination, wanders the woods next to the Vicious Night Web Spiders of the
-# east loop; the quest is taken and handed in at Linnea's camp, which the route
-# visits before and after that loop.
+# block.
+#
+# Forever chains the quest data has no prerequisites for (#51, #128): Linnea
+# offers the second Rear Guard Patrol (99156) only once the first (356) is
+# handed in, and Hadric offers Bandarion Keep (96899) only once The Cult of
+# the Damned (96897) and Remnants of War (96898) are (Wowhead Forever's
+# Series box for 99156; a Wowhead comment and #128 for 96899). Bandarion Keep
+# is taken when those two are handed in after the east loop. Rear Guard
+# Patrol (99156) is left out: Riptear, a level 13 elite, wanders by the
+# spiders at the far east end of the loop, and handing 356 in first means a
+# walk back to the camp and out again (sim compare: +0.10 h to 20).
 #
 # Deviations from the export (same quest set apart from "Left out"):
 # - Patience (99141): the export accepts and turns it in on the spot; here the
@@ -346,7 +353,6 @@ step Deathguard Linnea
   accept 360
   accept 356
   accept 97558                        -- Shelene Rhobart
-  accept 99156 optional               -- Deathguard Linnea: Riptear, an elite abomination in the east
   collect 286201 quest 99141.2 @65.2,60.3 -- Ask Deathguard Kristof for his report
 
 step Magistrate Sevren
@@ -474,7 +480,6 @@ step Hadric Harlson
   turnin 96895
   accept 96897
   accept 96898
-  accept 96899
 
 step Balnir Farmstead
   tip The Cult of the Damned holds the farm just south-east of the camp. The Necrotic Crystal Fragments lie on the ground among the cultists, and the cultists carry some too.
@@ -495,9 +500,8 @@ step Captain Vachon
   kill 1538 quest 371.2
 
 step Vicious Night Web Spiders
-  tip The spiders lurk in the woods at the far east end of the glades. Riptear, a rogue abomination, wanders just north-west of them. Riptear is elite: grouping up is advised.
+  tip The spiders lurk in the woods at the far east end of the glades.
   collect 2872 quest 369.1
-  collect 286326 quest 99156.1 optional -- Riptear's Heart, from Riptear
 
 step Hides for the Forsaken
   tip Duskbats and Darkhounds roam all along the road back west; finish the wings and hides on the way.
@@ -507,9 +511,9 @@ step Hides for the Forsaken
 step Deathguard Linnea's camp
   turnin 356                          -- Deathguard Linnea
   turnin 97558                        -- Shelene Rhobart
-  turnin 99156 optional               -- Deathguard Linnea
   turnin 96897                        -- Hadric Harlson
   turnin 96898
+  accept 96899
 
 step Brill
   tip Back up the road to Brill.

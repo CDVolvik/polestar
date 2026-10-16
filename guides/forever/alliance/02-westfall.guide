@@ -20,7 +20,16 @@ next forever/alliance/03-darkshore
 # Deviations from the export:
 # - The simulator took Sentinel Hill's quests (102, 12, 153, 92742, 92744,
 #   92745) only on its second pass at 14.8 and then walked the north a
-#   second time; here they are taken on arrival and the north is one loop.
+#   second time; here they are taken on arrival and the north is one loop,
+#   except The State of the Mines (92745, Forever): Alba offers it only once
+#   Testing the Wells (92742) is handed in (#143; the quest data has no
+#   prerequisite for it). It is taken at the Sentinel Hill stop after the
+#   north loop, then Jangolode Mine's kobolds, the Gold Coast Quarry and the
+#   western farms, and handed in at the next stop, where Moonbrook
+#   Espionage (92747) follows. Measured with sim compare (hours to 20, Human
+#   / Dwarf / Night Elf / Skyborne, against the old impossible order): this
+#   way +0.03 / +0.03 / +0.03 / +0.03; handing the vials in from Molsen Farm
+#   in the middle of the loop instead +0.06 / +0.06 / +0.06 / +0.06.
 # - Harvesting the Harvesters (92910) starts from an item the Golems and
 #   Watchers drop: it is picked up on the farms rather than at Alexston.
 # - Left out: Continue to Stormwind (6281): the route accepts it but never
@@ -91,7 +100,6 @@ step Sentinel Hill
   accept 153                                  -- Scout Galiaan
   accept 92742                                -- Alba Fairmoon
   accept 92744
-  accept 92745
 
 # ---------------------------------------------------------------- Saldean's and the Jansen Stead
 
@@ -134,13 +142,8 @@ step Molsen Farm
   collect 731 quest 38.3                      -- Goretusk Snout
   collect 729 quest 38.1                      -- Stringy Vulture Meat: Fleshrippers
 
-step The Gold Coast Quarry
-  tip West of Molsen Farm, toward the coast. Riverpaw Miners work the quarry.
-  kill 1426 quest 92745.2                     -- Riverpaw Miners
-
 step Jangolode Mine
-  tip North of Molsen Farm. Defias Trappers and Smugglers camp outside the mine, Kobold Diggers work inside. Furlbrow's Wardrobe stands by the ruined house east of the mine.
-  kill 1236 quest 92745.1                     -- Kobold Diggers
+  tip North of Molsen Farm. Defias Trappers and Smugglers camp outside the mine. Furlbrow's Wardrobe stands by the ruined house east of the mine.
   kill 504 quest 12
   kill 95 quest 12
   collect 841 quest 64                        -- Furlbrow's Wardrobe
@@ -174,9 +177,18 @@ step Sentinel Hill
   turnin 102                                  -- Captain Danuvin
   turnin 92742                                -- Alba Fairmoon
   turnin 92744
-  turnin 92745
-  accept 92747                                -- Alba Fairmoon
+  accept 92745
   vendor nearest
+
+# ---------------------------------------------------------------- The mines
+
+step Jangolode Mine
+  tip Back north past Molsen Farm to the mine: Kobold Diggers work inside.
+  kill 1236 quest 92745.1                     -- Kobold Diggers
+
+step The Gold Coast Quarry
+  tip South-west to the coast, west of Molsen Farm. Riverpaw Miners work the quarry.
+  kill 1426 quest 92745.2                     -- Riverpaw Miners
 
 # ---------------------------------------------------------------- West and south
 
@@ -189,6 +201,8 @@ step The western farms
 step Sentinel Hill
   turnin 13                                   -- Gryan Stoutmantle
   accept 14
+  turnin 92745                                -- Alba Fairmoon
+  accept 92747
   turnin 153                                  -- Scout Galiaan
 
 step Moonbrook and the Defias hills
