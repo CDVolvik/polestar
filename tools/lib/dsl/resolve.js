@@ -883,6 +883,7 @@ function resolveGoal(g, zoneMap, prev, data, err, warn, ctx = { sides: ['Allianc
 				const rec = top.kind === 'npc' ? data.npc(top.id) : data.object(top.id);
 				if (rec && rec.name) {
 					goal.from = String(rec.name);
+					goal.fromId = top.id;
 					goal.fromKind = top.kind;
 					if (top.kind === 'npc') {
 						if (Number(rec.rank) > 0) goal.fromRank = Number(rec.rank);
@@ -890,7 +891,10 @@ function resolveGoal(g, zoneMap, prev, data, err, warn, ctx = { sides: ['Allianc
 					}
 					const next = named[1];
 					const nrec = next && next.kind === top.kind && next.chance >= 50 && (next.kind === 'npc' ? data.npc(next.id) : data.object(next.id));
-					if (nrec && nrec.name && String(nrec.name) !== goal.from) goal.fromAlso = String(nrec.name);
+					if (nrec && nrec.name && String(nrec.name) !== goal.from) {
+						goal.fromAlso = String(nrec.name);
+						goal.fromAlsoId = next.id;
+					}
 				}
 			}
 			// The 50-yard check only compares with real sources: anything dropping the

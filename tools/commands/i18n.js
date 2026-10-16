@@ -75,27 +75,44 @@ unless --addon names the other.
                              is left out. Fails (exit 1) when a locale has
                              any. CJK is measured 1em wide.
   i18n names [<locale>...]   builds the names addons addon/Polestar_Names_<locale>:
-                             the quest, NPC, object and item names in each
-                             language, from DingDB (pinned commit and sha256s,
-                             cloned into data/sources/ding), then pfQuest's
-                             db/<locale> for the ones it lacks; only the ids
-                             the compiled guides, the quest database and the
-                             Codex's data name. A language left without names
-                             loses its folder.
+                             the names of quests, NPCs, objects, items,
+                             instances, encounters, factions and flight points
+                             (and the objectives of dungeon event quests) in
+                             each language. Per id, the first source with a
+                             name wins: the Forever client's tables
+                             (wago.tools, &locale=), Wowhead's Forever
+                             database in that language (list pages, then
+                             tooltips for the ids no list holds; one request
+                             at a time, cached in data/sources/wowhead/names),
+                             DingDB (pinned commit and sha256s, cloned into
+                             data/sources/ding), then pfQuest's db/<locale>.
+                             Only the ids the compiled guides, the quest
+                             database, the Codex's data and the travel data
+                             name. A language left without names loses its
+                             folder.
 
 options:
   --json            status, check, keys, names, fit: one JSON document on stdout
   --slack <n>       fit: measure every glyph n times wider (1.15: about the
                     client's own font)
   --markdown        status: a Markdown table
-  --no-questie      names: leave DingDB out (its base data is QuestieDB's);
-                    pfQuest only
-  --offline         names: use the cached DingDB and pfQuest clones as they are
+  --no-questie      names: leave DingDB out (its base data is QuestieDB's)
+  --no-tables       names: leave the client tables out (otherwise a missing
+                    table stops the build)
+  --offline         names: no downloads; the cached clones, tables and pages
+  --dry-run         names: count the Wowhead requests a run would make; write nothing
+  --limit <n>       names: at most n Wowhead tooltip requests this run
+  --delay <ms>      names: between Wowhead requests (default 2500, at least 2000)
+  --build <version> names: this Forever client build (default the newest wago.tools lists)
+  --sources <dir>   names: the client-table and Wowhead cache (default data/sources)
   --ding <dir>      names: this DingDB checkout (default data/sources/ding)
   --pfquest <dir>   names: this pfQuest checkout (default data/sources/pfQuest)
   --guides <file>   names: the compiled guides (default addon/Polestar_Guides/Guides.lua)
   --questdb <dir>   names: the built quest database (default addon/Polestar_QuestDB)
   --codex <dir>     names: the Codex's data (default data/forever/codex)
+  --travel <file>   names: the travel data (default addon/Polestar/Nav/TravelData.lua)
+  --chokepoints <file> names: the walking map's chokepoints, for the lifts' objects
+                    (default addon/Polestar_Nav/Nav/Chokepoints.lua)
   --out <dir>       names: where the addon folders go (default addon/)
   --addon <name>    status, check, sync, keys, import: Polestar or
                     Polestar_Recorder only`;
@@ -306,47 +323,135 @@ function runImport(opts, positional) {
 	return bad ? 1 : 0;
 }
 
-const KIND_WORDS = { quest: 'quest', npc: 'NPC', object: 'object', item: 'item' };
+const KIND_WORDS = {
+	quest: 'quest', npc: 'NPC', object: 'object', item: 'item', map: 'instance', encounter: 'encounter',
+	faction: 'faction', taxi: 'flight point', objective: 'quest objective',
+};
+const SOURCE_WORDS = { wago: 'client tables', wowhead: 'Wowhead', ding: 'DingDB', pfquest: 'pfQuest' };
 
-function runNames(opts, positional) {
+async function runNames(opts, positional) {
 	const names = require('../lib/i18n/names');
 	const { ensurePfQuest, loadPfQuestNames } = require('../lib/data/pfquest');
+	const { loadClientNames } = require('../lib/i18n/names-wago');
+	const wh = require('../lib/i18n/names-wowhead');
+	const { politeClient } = require('../lib/codex/wowhead');
 	const wanted = locales(positional);
 	const abs = (p) => (p ? path.resolve(p) : undefined);
 	const log = opts.json ? () => {} : (m) => console.log(m);
-	const ids = names.usedIds({ guides: abs(opts.guides), questdb: abs(opts.questdb), codex: abs(opts.codex) });
-	const pfInfo = ensurePfQuest({ dir: abs(opts.pfquest) || names.DEFAULTS.pfquest, explicit: Boolean(opts.pfquest), offline: Boolean(opts.offline), log });
-	for (const w of pfInfo.warnings) console.error(`warning: ${w}`);
-	const ding = opts.noQuestie ? null : names.ensureDing({ dir: abs(opts.ding) || names.DEFAULTS.ding, explicit: Boolean(opts.ding), offline: Boolean(opts.offline), log });
+	const warn = (m) => console.error(`warning: ${m}`);
+	const offline = Boolean(opts.offline);
+	const dryRun = Boolean(opts.dryRun);
+	const sourcesDir = abs(opts.sources) || names.DEFAULTS.sources;
+	const codex = abs(opts.codex) || names.DEFAULTS.codex;
+	const ids = names.usedIds({ guides: abs(opts.guides), questdb: abs(opts.questdb), codex });
+	const { liftObject, ...extra } = names.extraIds({ codex, travel: abs(opts.travel) || names.DEFAULTS.travel, chokepoints: abs(opts.chokepoints) || names.DEFAULTS.chokepoints });
+	Object.assign(ids, extra);
+	for (const id of liftObject) ids.object.add(id);
+	const pfInfo = ensurePfQuest({ dir: abs(opts.pfquest) || names.DEFAULTS.pfquest, explicit: Boolean(opts.pfquest), offline, log });
+	for (const w of pfInfo.warnings) warn(w);
+	const ding = opts.noQuestie ? null : names.ensureDing({ dir: abs(opts.ding) || names.DEFAULTS.ding, explicit: Boolean(opts.ding), offline, log });
 	const pf = loadPfQuestNames(pfInfo.dir, [...wanted, 'enUS']);
-	const out = names.buildNames({ locales: wanted, ids, ding: ding ? names.readDing(ding, wanted) : null, pf });
+	const dingNames = ding ? names.readDing(ding, wanted) : null;
+
+	// The client's tables in each language: Forever's, then the Era client's
+	// items. Missing tables stop the build (--no-tables leaves them out).
+	let wago = null;
+	let wagoInfo = null;
+	const english = {};
+	if (!opts.noTables) {
+		const tables = await loadClientNames({ sourcesDir, locales: wanted, forever: opts.build, offline, log });
+		wago = tables.names;
+		wagoInfo = { builds: tables.builds, urls: tables.urls };
+		for (const [kind, m] of Object.entries(tables.english)) for (const [id, n] of m) names.addEnglish(english, kind, id, n);
+	}
+	// The data's English names: a name equal to one of them is no translation.
+	for (const [kind, file] of Object.entries({ quest: 'quests.json', npc: 'npcs.json', object: 'objects.json', item: 'items.json' })) {
+		const f = path.join(codex, file);
+		if (!fs.existsSync(f)) continue;
+		for (const [id, r] of Object.entries(JSON.parse(fs.readFileSync(f, 'utf8')))) names.addEnglish(english, kind, Number(id), r && (r.name || r.title));
+	}
+
+	// Wowhead: the list ranges holding an id (items: only those some
+	// language's client table lacks), then tooltips for the rest.
+	const want = {};
+	for (const kind of names.NAME_KINDS) want[kind] = ids[kind];
+	if (wago) want.item = new Set([...ids.item].filter((id) => wanted.some((l) => !(wago[l] && wago[l].item && wago[l].item.has(id)))));
+	const delayMs = Math.max(wh.MIN_DELAY_MS, opts.delay ? Number(opts.delay) : wh.DELAY_MS);
+	const http = politeClient({ delayMs, retryPauseMs: 30000, maxFailures: 5, userAgent: 'Mozilla/5.0 (polestar-names-build)', log: (m) => console.error(m) });
+	const lists = await wh.fetchListNames({ sourcesDir, locales: wanted, want, client: http, dryRun, offline, log: (m) => console.error(m) });
+	for (const f of lists.failed.slice(0, 20)) warn(`Wowhead ${f.locale} ${f.url}: ${f.error}`);
+	if (lists.missingEnglish.length) warn(`no cached English Wowhead list for ${lists.missingEnglish.join(', ')} (run codex wowhead once): those kinds get tooltips only`);
+	const loadAll = () => Object.fromEntries(wanted.map((l) => [l, wh.loadWowheadNames(sourcesDir, l)]));
+	let whNames = loadAll();
+	let out = names.buildNames({ locales: wanted, ids, ding: dingNames, pf, wago, wowhead: whNames, english });
+	const tooltips = {};
+	let stragglers = 0;
+	for (const l of wanted) {
+		const byType = {};
+		for (const kind of names.NAME_KINDS) {
+			const left = [...ids[kind]].filter((id) => !out[l].names[kind].has(id) && !out[l].english[kind].has(id) && !whNames[l].listed[kind].has(id));
+			if (left.length) byType[kind] = left;
+		}
+		const objectives = [...ids.objective].filter((id) => !out[l].names.objective.has(id));
+		if (objectives.length) byType.quest = [...new Set([...(byType.quest || []), ...objectives])].sort((a, b) => a - b);
+		for (const v of Object.values(byType)) stragglers += v.length;
+		tooltips[l] = byType;
+	}
+	const tips = await wh.fetchTooltipNames({ sourcesDir, wanted: tooltips, client: http, dryRun, offline, limit: opts.limit ? Number(opts.limit) : Infinity, log: (m) => console.error(m) });
+	for (const f of tips.failed.slice(0, 20)) warn(`Wowhead ${f.locale} ${f.url}: ${f.error}`);
+	if (dryRun) {
+		console.log(`dry run: ${lists.planned} Wowhead list ranges and ${tips.left} tooltips to fetch (${tips.cached} tooltips cached); nothing written`);
+		return 0;
+	}
+	if (tips.fetched) {
+		whNames = loadAll();
+		out = names.buildNames({ locales: wanted, ids, ding: dingNames, pf, wago, wowhead: whNames, english });
+	}
+	for (const l of wanted) {
+		for (const kind of ['map', 'faction', 'taxi']) {
+			if (wago && ids[kind] && ids[kind].size && !out[l].names[kind].size) throw new Error(`${l}: no ${kind} names from the client tables (${ids[kind].size} wanted); nothing written`);
+		}
+	}
 	const outDir = abs(opts.out) || names.DEFAULTS.out;
-	const written = names.writeNamesAddons(out, outDir, { sources: { ding, pf: pfInfo } });
+	const sources = { wago: wagoInfo, wowhead: Object.fromEntries(wanted.map((l) => [l, whNames[l]])), ding, pf: pfInfo };
+	if (!Object.values(sources.wowhead).some((x) => x.fetched)) sources.wowhead = null;
+	const written = names.writeNamesAddons(out, outDir, { sources });
+	const idCount = (k) => (ids[k] === null ? null : ids[k].size);
+	// Ids with no name in a language, and those whose every name there is the
+	// English one (not stored: the English shows, as the game does).
+	const lacking = (l) => Object.fromEntries(names.PACK_KINDS.filter((k) => ids[k]).map((k) => [k, [...ids[k]].filter((id) => !out[l].names[k].has(id) && !out[l].english[k].has(id)).length]));
+	const sameAsEnglish = (l) => Object.fromEntries(names.PACK_KINDS.filter((k) => ids[k]).map((k) => [k, out[l].english[k].size]));
 	if (opts.json) {
-		const kinds = (m) => Object.fromEntries(names.NAME_KINDS.map((k) => [k, m[k]]));
+		const kinds = (f) => Object.fromEntries(names.PACK_KINDS.map((k) => [k, f(k)]));
 		console.log(JSON.stringify({
-			ids: { ...kinds(Object.fromEntries(names.NAME_KINDS.map((k) => [k, ids[k].size]))), sources: ids.counts },
+			ids: { ...kinds(idCount), sources: ids.counts },
+			wago: wagoInfo ? wagoInfo.builds : null,
+			wowhead: { listRequests: lists.requests, tooltipRequests: tips.requests, tooltipsLeft: tips.left, failed: lists.failed.length + tips.failed.length },
 			ding: ding ? { version: ding.pin.version, commit: ding.pin.commit, revision: ding.revision } : null,
 			pfquest: { revision: pfInfo.revision },
 			locales: Object.fromEntries(wanted.map((l) => {
 				const w = written.find((x) => x.locale === l);
-				return [l, { names: kinds(Object.fromEntries(names.NAME_KINDS.map((k) => [k, out[l].names[k].size]))), from: out[l].from, bytes: w ? w.bytes : 0 }];
+				return [l, { names: kinds((k) => out[l].names[k].size), lacking: lacking(l), sameAsEnglish: sameAsEnglish(l), from: out[l].from, bytes: w ? w.bytes : 0 }];
 			})),
 		}, null, 2));
 		return 0;
 	}
-	const idLine = (c) => names.NAME_KINDS.map((k) => plural(c[k], KIND_WORDS[k])).join(', ');
-	console.log(`ids Polestar's data names: ${idLine(Object.fromEntries(names.NAME_KINDS.map((k) => [k, ids[k].size])))}`);
-	for (const [src, c] of Object.entries(ids.counts)) console.log(`  ${src}: ${idLine(c)}`);
+	const idLine = (c, kinds = names.PACK_KINDS) => kinds.filter((k) => c[k] != null).map((k) => plural(c[k], KIND_WORDS[k])).join(', ');
+	console.log(`ids Polestar's data names: ${idLine(Object.fromEntries(names.PACK_KINDS.map((k) => [k, idCount(k)])))}${ids.encounter === null ? ', every encounter' : ''}`);
+	for (const [src, c] of Object.entries(ids.counts)) console.log(`  ${src}: ${idLine(c, names.NAME_KINDS)}`);
+	console.log(wagoInfo ? `client tables: ${Object.entries(wagoInfo.builds).map(([p, b]) => `${p} ${b}`).join(', ')}` : 'client tables left out');
+	console.log(`Wowhead: ${lists.requests} list and ${tips.requests} tooltip requests this run${tips.left ? `, ${tips.left} tooltips left (--limit)` : ''}`);
 	console.log(ding ? `DingDB ${ding.pin.version} (${ding.pin.commit.slice(0, 7)}): every pinned file matches its sha256` : 'DingDB left out (--no-questie)');
 	console.log(`pfQuest ${pfInfo.revision ? pfInfo.revision.slice(0, 7) : '(revision unknown)'}`);
 	for (const l of wanted) {
 		const b = out[l];
 		const w = written.find((x) => x.locale === l);
-		const from = names.NAME_KINDS.reduce((s, k) => ({ ding: s.ding + b.from[k].ding, pfquest: s.pfquest + b.from[k].pfquest }), { ding: 0, pfquest: 0 });
-		const sizes = Object.fromEntries(names.NAME_KINDS.map((k) => [k, b.names[k].size]));
+		const from = Object.fromEntries(names.SOURCE_KEYS.map((s) => [s, names.PACK_KINDS.reduce((n, k) => n + b.from[k][s], 0)]));
+		const sizes = Object.fromEntries(names.PACK_KINDS.map((k) => [k, b.names[k].size]));
+		const fromLine = names.SOURCE_KEYS.map((s) => `${SOURCE_WORDS[s]} ${from[s]}`).join(', ');
+		const miss = lacking(l);
 		console.log(w
-			? `${l}: ${idLine(sizes)} (DingDB ${from.ding}, pfQuest ${from.pfquest}); ${path.relative(process.cwd(), w.dir) || '.'}, ${(w.bytes / 1024).toFixed(0)} KB`
+			? `${l}: ${idLine(sizes)} (${fromLine}); the English one for ${idLine(sameAsEnglish(l))}; none for ${idLine(miss)}; ${path.relative(process.cwd(), w.dir) || '.'}, ${(w.bytes / 1024).toFixed(0)} KB`
 			: `${l}: no names; no folder`);
 	}
 	return 0;
@@ -387,8 +492,8 @@ async function runFit(opts, positional) {
 
 async function run(argv) {
 	const { opts, positional, error } = parseArgs(argv, {
-		flags: ['--json', '--markdown', '--no-questie', '--offline'],
-		options: ['--ding', '--pfquest', '--guides', '--questdb', '--codex', '--out', '--slack', '--addon'],
+		flags: ['--json', '--markdown', '--no-questie', '--no-tables', '--offline', '--dry-run'],
+		options: ['--ding', '--pfquest', '--guides', '--questdb', '--codex', '--travel', '--chokepoints', '--out', '--limit', '--delay', '--build', '--sources', '--slack', '--addon'],
 	});
 	const [sub, ...rest] = positional;
 	if (error || !sub) {
@@ -402,7 +507,7 @@ async function run(argv) {
 		if (sub === 'keys') return runKeys(opts);
 		if (sub === 'import') return runImport(opts, rest);
 		if (sub === 'fit') return await runFit(opts, rest);
-		if (sub === 'names') return runNames(opts, rest);
+		if (sub === 'names') return await runNames(opts, rest);
 	} catch (e) {
 		console.error(`error: ${e.message}`);
 		return 1;
