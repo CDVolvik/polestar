@@ -84,12 +84,14 @@ local function professionLines()
 	return out
 end
 
+-- A profession's name in the client's language (the Lookup.PROFESSIONS keys,
+-- DATA_KEYS in tools/lib/i18n/keys.js).
 function Nearby.ProfessionName(line)
 	local Lookup = ns.Lookup
 	local name = Lookup and Lookup.ProfessionName and Lookup.ProfessionName(line)
-	if name then return name end
+	if name then return L[name] end
 	for key, l in pairs(ns.Compat.SKILL_LINES or {}) do
-		if l == line then return (key:gsub("^%l", string.upper)) end
+		if l == line then return L[(key:gsub("^%l", string.upper))] end
 	end
 	return tostring(line)
 end

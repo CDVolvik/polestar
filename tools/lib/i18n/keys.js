@@ -168,6 +168,18 @@ function specLabels(addonDir) {
 	return out;
 }
 
+// The spec names of Talents/Builds.lua (`specs = { "...", ... }` per class), shown through
+// L[...] (Talents.Register's specName).
+function talentSpecs(addonDir) {
+	const file = path.join(addonDir, 'Talents', 'Builds.lua');
+	if (!fs.existsSync(file)) return [];
+	const out = [];
+	for (const m of fs.readFileSync(file, 'utf8').matchAll(/\bspecs\s*=\s*\{([^}]*)\}/g)) {
+		for (const s of m[1].matchAll(/"((?:[^"\\]|\\.)*)"/g)) out.push(s[1]);
+	}
+	return out;
+}
+
 function luaFiles(dir, skip) {
 	const out = [];
 	const walk = (abs) => {
@@ -210,6 +222,7 @@ function extractKeys(addonDir) {
 		for (const key of list) add(key, { file, line: 0, data: true });
 	}
 	for (const key of specLabels(addonDir)) add(key, { file: 'Gear/Weights.lua', line: 0, data: true });
+	for (const key of talentSpecs(addonDir)) add(key, { file: 'Talents/Builds.lua', line: 0, data: true });
 	return keys;
 }
 
