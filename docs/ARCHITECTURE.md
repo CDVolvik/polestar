@@ -468,9 +468,9 @@ Names.Add(locale, kind, { [id] = name })   -- the pack's files only; any kind
   Map, DungeonEncounter, Faction and TaxiNodes, then the Era client's
   ItemSparse for the items Forever's lacks; the newest build holding every
   one in English and each language, and none stops the build), Wowhead's
-  Forever database in that language (its list pages for the id ranges
-  holding a wanted id, then tooltips for ids no list holds; one request at a
-  time, at least 2 s apart, cached in `data/sources/wowhead/names`; a
+  Forever database in that language (read from `data/sources/wowhead/names`,
+  the cache an earlier version of the tools fetched; Polestar no longer
+  fetches from Wowhead, and without the cache this source is empty; a
   bracketed name is no translation), DingDB (cloned into
   `data/sources/ding`, pinned to a commit and its files' sha256s: `DING` in
   `tools/lib/i18n/names.js`), then pfQuest's `db/<locale>` (no esMX). A name
@@ -3582,44 +3582,23 @@ built.
   `--local-extras` takes the instances from AtlasLoot and `dungeons.json`
   instead.
 - Wowhead Forever per entity (`tools/lib/codex/wowhead.js`, release build
-  only, lowest precedence). `codex wowhead [--max-age <days>] [--dry-run]`
-  first reads Wowhead's list pages (`/forever/npcs`, `/objects`, `/items`):
-  up to 1,000 rows a request (past that the page says "15,205 NPCs found
-  (1,000 displayed)"), each with id, name, levels, classification, boss
-  flag, `location` and `envChange` (how Forever differs from Classic: new,
-  updated with its change lines, or unchanged). It reads them by id range
-  (the ID filter, 25,000 wide up to 300,000, then open; a range at the cap
-  splits by the count its note gives; a filter starting past the last id is
-  ignored by Wowhead and counts as empty; at most 150 list requests a type),
-  cached per range in `data/sources/wowhead/codex/lists/<type>.json`. On
-  2026-10-14 a first read took 151 requests (NPCs 51 for 15,205 rows,
-  objects 23 for 4,985, items 77 for 22,677: a split range costs its capped
-  parent too), a refresh one per cached range (103). `codex build` reads the
-  NPC rows for one fact only: the level of an NPC neither our data nor a
-  page gives one (286 NPCs); a row's rank, boss flag and place are no page's,
-  so rares, bosses and parity's verdicts read only pages.
-  Then the crawl fetches the NPC and object pages and item tooltips of what
-  `data/local/codex-parity.json` lists as missing or different, and of our
-  instances' bosses, one request at a time (1.5 s apart, lists included, a
-  growing pause on 403/429), caching each entity's facts under
-  `data/sources/wowhead/codex/<npc|object|item|spell>/<id>.json`. A wanted
-  page is fetched when it is not cached, the parser's `VERSION` changed,
-  its list row differs from the one it was fetched with (`listSig`; a page
-  Wowhead had not that a list now shows), or it is older than `--max-age`
-  (7 days, lists too) and an open parity gap (`openGaps`: neither "not in
-  Forever" nor settled with a reason), Forever's own (new or updated) or on
-  no list: a page of an entity Forever left as in Classic is kept. Of the
-  1,704 pages wanted on 2026-10-14, a refresh with every page stale fetches
-  210 (was all 1,704; spell pages have no list) plus the 103 list ranges.
-  `--dry-run` counts the list ranges and pages a run would fetch.
-  `codex build` only reads the cache. From them: an NPC's level, rare rank and
-  spawns where ours lack them (and the rares only Wowhead places), drops and
-  object contents with chance = looted count / looted kills, an NPC's or
-  object's `location` (the areas its page entry names; the parser's
-  `VERSION` per type re-fetches pages an older parser read) and Wowhead's
-  boss flag, and the reputation ("Requires <Faction> - <Standing>") and PvP
-  rank ("(Rank N)") an item's Forever tooltip asks for; objects named like a
-  missing boss (a boss chest) are fetched too. An instance also lists, after
+  only, lowest precedence). Polestar no longer fetches from Wowhead (its
+  terms don't allow automated requests); `codex build` reads what an earlier
+  version of the tools cached under `data/sources/wowhead/codex/`, and
+  builds without it when there is none. The cache holds Wowhead's NPC, object
+  and item list rows by id range (`lists/<type>.json`: id, name, levels,
+  classification, boss flag, `location` and `envChange`, how Forever differs
+  from Classic) and each fetched entity's facts
+  (`<npc|object|item|spell>/<id>.json`). `codex build` reads the NPC rows
+  for one fact only: the level of an NPC neither our data nor a page gives
+  one (286 NPCs); a row's rank, boss flag and place are no page's, so rares,
+  bosses and parity's verdicts read only pages. From the pages: an NPC's
+  level, rare rank and spawns where ours lack them (and the rares only
+  Wowhead places), drops and object contents with chance = looted count /
+  looted kills, an NPC's or object's `location` (the areas its page entry
+  names) and Wowhead's boss flag, and the reputation ("Requires <Faction> -
+  <Standing>") and PvP rank ("(Rank N)") an item's Forever tooltip asks for.
+  An instance also lists, after
   its encounters and by level, the NPCs placed inside that the data or
   Wowhead ranks rare or boss (or flags boss), or that alone drop an item of
   quality 2 or better at 5% or more, each with a `role`: `rare` (ranked
@@ -3807,8 +3786,8 @@ built.
   the Neutral gate) and the world-drop Warbear patterns 15742 and 15754
   (Timbermaw Hold sells 20253 and 20254, gated in `ItemSparse`). An NPC that
   casts a spell creating an item (client `SpellEffect` 24; who casts it,
-  Wowhead Forever's spell page, `codex wowhead` fetching those of items ours
-  has no source for) hands it out: a `gift { npc, spell }` source (Duke
+  Wowhead Forever's spell page in the cache) hands it out: a `gift { npc,
+  spell }` source (Duke
   Hydraxis's Aqual and Eternal Quintessence). 26 Forever rares no
   database ranks yet. The 251 confirmed drop chances the release lacks are
   all cut by an item's 10-dropper cap (the internal build keeps AtlasLoot's
@@ -3965,8 +3944,10 @@ exclusive group: pfQuest `close` united with QuestieDB `exclusiveTo`.
 3. **Wowhead Forever's change notes** (`tools/lib/data/wowhead.js`,
    `--no-wowhead` skips them, as does a build without QuestieDB): the quest
    list of every zone and city page and of the nine class pages (class
-   quests are filed there, not under a zone) on wowhead.com/forever (cached a day in `data/sources/wowhead/zones.json`;
-   `--offline` reads the cache). A quest Wowhead marks updated with "Experience
+   quests are filed there, not under a zone) on wowhead.com/forever, read from
+   `data/sources/wowhead/zones.json`, the cache an earlier version of the
+   tools fetched. Polestar no longer fetches from Wowhead; without the cache
+   this step adds nothing. A quest Wowhead marks updated with "Experience
    X instead of Y", "Level X instead of Y" or "Requires level X instead of Y"
    gets X where its value is still the old Y (for XP, also where it has none),
    and one marked "Renamed from Y" gets Wowhead's Forever name where its title
