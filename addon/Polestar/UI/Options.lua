@@ -18,7 +18,7 @@ local floor, max, min, ipairs, pairs, type = math.floor, math.max, math.min, ipa
 
 local SH = W.SHELL
 local GAP = 24 -- between the two grid columns
-local TILE_H, TILE_GAP = 60, 12
+local TILE_GAP = 12 -- between lines of button tiles
 
 local O = {}
 UI.Options = O
@@ -393,8 +393,21 @@ end
 O.RecorderState = recorderState
 
 local function recorderCommand(arg)
-	local cmd = SlashCmdList and SlashCmdList.POLESTARREC
-	if cmd then cmd(arg) end
+	if PolestarRecorder_Command then PolestarRecorder_Command(arg) end
+end
+
+-- Two widgets side by side in the body's columns at y, sized by
+-- layout(widget, width) -> height and both as tall as the taller. -> height
+local function placePair(view, pair, y, cw, layout)
+	local h = 0
+	for col, w in ipairs(pair) do
+		w:ClearAllPoints()
+		w:SetPoint("TOPLEFT", view, "TOPLEFT", SH.pad + (col - 1) * (cw + GAP), -y)
+		w:Show()
+		h = max(h, layout(w, cw))
+	end
+	for _, w in ipairs(pair) do w:SetHeight(h) end
+	return h
 end
 
 local function buildRecorder(view)
@@ -441,15 +454,8 @@ local function buildRecorder(view)
 		rows.sessions.Value:SetText(st.sessions)
 		rows.events.Value:SetText(st.events)
 		rows.char.Value:SetText(st.char or "\226\128\147")
-		local order = { rows.status, rows.sessions, rows.events, rows.char }
-		for i, r in ipairs(order) do
-			local col, line = (i - 1) % 2, floor((i - 1) / 2)
-			r:ClearAllPoints()
-			r:SetPoint("TOPLEFT", view, "TOPLEFT", SH.pad + col * (cw + GAP), -(y + line * W.ROW_H))
-			r:SetWidth(cw)
-			r:Show()
-		end
-		y = y + 2 * W.ROW_H
+		y = y + placePair(view, { rows.status, rows.sessions }, y, cw, W.LayoutRow)
+		y = y + placePair(view, { rows.events, rows.char }, y, cw, W.LayoutRow)
 		actions:ClearAllPoints()
 		actions:SetPoint("TOPLEFT", view, "TOPLEFT", SH.pad, -y)
 		actions:SetWidth(win.BodyWidth)
@@ -459,13 +465,7 @@ local function buildRecorder(view)
 		toggle.Title:SetText(st.enabled and L["Stop recording"] or L["Start recording"])
 		toggle.psTitle = toggle.Title:GetText()
 		toggle.Desc:SetText(st.enabled and L["Nothing more is written until you start it again."] or L["Write quests, routes and world data for guide authors. Off until you start it."])
-		for i, t in ipairs({ toggle, status }) do
-			t:ClearAllPoints()
-			t:SetPoint("TOPLEFT", view, "TOPLEFT", SH.pad + (i - 1) * (cw + GAP), -y)
-			t:SetWidth(cw)
-			t:Show()
-		end
-		return y + TILE_H + 24
+		return y + placePair(view, { toggle, status }, y, cw, W.LayoutTile) + 24
 	end
 end
 
@@ -617,12 +617,7 @@ local function buildAbout(view)
 		maintH:SetPoint("TOPLEFT", view, "TOPLEFT", SH.pad, -y)
 		maintH:SetWidth(width)
 		y = y + 44 + 4
-		for i, t in ipairs({ resetAll, resetPos }) do
-			t:ClearAllPoints()
-			t:SetPoint("TOPLEFT", view, "TOPLEFT", SH.pad + (i - 1) * (cw + GAP), -y)
-			t:SetWidth(cw)
-		end
-		return y + TILE_H + 24
+		return y + placePair(view, { resetAll, resetPos }, y, cw, W.LayoutTile) + 24
 	end
 end
 
@@ -691,32 +686,24 @@ local function makeControl(parent, c)
 end
 
 -- Lay controls out in a two-column grid from y; settings rows are 40px,
--- button tiles 60px. `cache` maps control spec -> widget. -> new y
+-- button tiles 60px, and a line grows to the tallest of its two (a label
+-- or description that wraps). `cache` maps control spec -> widget. -> new y
 function O.Grid(view, controls, y, cache)
 	local cw = (win.BodyWidth - GAP) / 2
 	local i, n = 1, #controls
 	while i <= n do
 		local tiles = controls[i].kind == "button"
-		local col, line = 0, 0
 		while i <= n and (controls[i].kind == "button") == tiles do
-			local c = controls[i]
-			local w = cache[c]
-			if not w then
-				w = makeControl(view, c)
-				cache[c] = w
+			local pair = {}
+			while #pair < 2 and i <= n and (controls[i].kind == "button") == tiles do
+				local c = controls[i]
+				if not cache[c] then cache[c] = makeControl(view, c) end
+				pair[#pair + 1] = cache[c]
+				i = i + 1
 			end
-			w:ClearAllPoints()
-			w:SetPoint("TOPLEFT", view, "TOPLEFT", SH.pad + col * (cw + GAP), -(y + line * (tiles and (TILE_H + TILE_GAP) or W.ROW_H)))
-			w:SetWidth(cw)
-			w:Show()
-			col = col + 1
-			if col == 2 then
-				col, line = 0, line + 1
-			end
-			i = i + 1
+			y = y + placePair(view, pair, y, cw, tiles and W.LayoutTile or W.LayoutRow) + (tiles and TILE_GAP or 0)
 		end
-		local lines = line + (col > 0 and 1 or 0)
-		y = y + (tiles and (lines * (TILE_H + TILE_GAP) + 4) or (lines * W.ROW_H + 8))
+		y = y + (tiles and 4 or 8)
 	end
 	return y
 end
@@ -1047,6 +1034,26 @@ function UI.ShowOptions(section)
 	O.Select(section or (current and current.key) or pageList[1].key)
 end
 
+-- A new font measures every label, value and description anew: the rail,
+-- the sidebar and the page on screen are laid out again where they are
+-- (other tabs lay out when selected).
+W.OnFontChanged(function()
+	if not (win and win:IsShown()) then return end
+	renderRail()
+	if query ~= "" then
+		W.ShellNav(win, navItems(), nil, function(k) O.Select(k) end)
+		renderSearch()
+		return
+	end
+	O.RefreshNav()
+	local view = O.view
+	if view and view:IsShown() and view.Refresh then
+		local h = view.Refresh()
+		view:SetHeight(h)
+		W.ShellBody(win, h)
+	end
+end)
+
 -- The widgets on a page tab (tests and preview): key -> widget.
 function O.Controls(key, tabName)
 	local p = pageByKey(key)
@@ -1105,10 +1112,14 @@ local function registerSettingsCategory()
 	sub:SetPoint("TOPLEFT", canvas, "TOPLEFT", 16, -80)
 	local open = W.Button(canvas, L["Open Polestar settings"], function()
 		-- Closing the game's Settings panel is protected in combat: from addon
-		-- code it would fail and blame Polestar. Leave it open then.
+		-- code it would fail and blame Polestar. Leave it open then, and with
+		-- the gamepad interface, whose focus a panel closed from addon code
+		-- leaves blocked (ns.GamepadUI): B closes it.
 		local panel = SettingsPanel
 		if panel and panel.IsShown and panel:IsShown() and HideUIPanel then
-			if InCombatLockdown and InCombatLockdown() then
+			if ns.GamepadUI() then
+				ns.Print(L["Close the game menu to see Polestar's settings."])
+			elseif InCombatLockdown and InCombatLockdown() then
 				ns.Print(L["Close the game menu to see Polestar's settings (it cannot be closed for you in combat)."])
 			else
 				HideUIPanel(panel)
