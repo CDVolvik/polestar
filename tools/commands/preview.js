@@ -998,6 +998,27 @@ stub.RunScript(d, "OnTextChanged", true)`,
 		],
 	},
 	{
+		file: 'skins-more.svg',
+		title: 'Skins: the welcome, the journey and the route choice in Halo, then in Blizzard',
+		backdrop: 'terrain',
+		panels: [
+			{ roots: ['PolestarWelcome'], script: 'Polestar.Set("ui.skin", "halo"); Polestar.UI.Welcome.Show("welcome")' },
+			{ roots: GUIDE, script: `Polestar.Set("ui.skin", "halo"); ${JOURNEY}` },
+			{ roots: ROUTE, script: `Polestar.Set("ui.skin", "halo"); ${UNDEAD_CHOICE}` },
+			{ roots: ['PolestarWelcome'], script: 'Polestar.Set("ui.skin", "blizzard"); Polestar.UI.Welcome.Show("welcome")' },
+			{ roots: GUIDE, script: `Polestar.Set("ui.skin", "blizzard"); ${JOURNEY}` },
+			{ roots: ROUTE, script: `Polestar.Set("ui.skin", "blizzard"); ${UNDEAD_CHOICE}` },
+		],
+	},
+	{
+		file: 'skins-dungeons.svg',
+		title: 'Skins: the dungeon journal in Halo and Blizzard',
+		panels: [
+			{ dungeons: true, roots: PICKER, script: dungeonsScene('Polestar.Set("ui.skin", "halo"); Polestar.Dungeons.Open("wailing-caverns")') },
+			{ dungeons: true, roots: PICKER, script: dungeonsScene('Polestar.Set("ui.skin", "blizzard"); Polestar.Dungeons.Open("wailing-caverns")') },
+		],
+	},
+	{
 		file: 'skins-picker.svg',
 		title: 'Skins: the guide menu in Halo and Blizzard',
 		panels: [

@@ -100,7 +100,7 @@ local function D() return ns.Dungeons end
 local secret = ns.Compat.IsSecret
 
 local function mainWidth()
-	local w = hub and (hub:GetWidth() - (hub.psRail or 0) - SH.sidebar - 2) or 0
+	local w = hub and (hub:GetWidth() - (hub.psRail or 0) - (hub.psSidebar or SH.sidebar) - 2) or 0
 	if w <= 0 then w = 878 end
 	return w
 end
