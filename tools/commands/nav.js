@@ -413,6 +413,10 @@ async function evalCmd(argv) {
 	if (error || positional.length) throw usageError(error || `unexpected argument "${positional[0]}"`);
 	const style = o.style === undefined ? 'balanced' : o.style;
 	if (!['fastest', 'balanced', 'roads'].includes(style)) throw usageError('--style: fastest, balanced or roads');
+	// A saved report judged against this run must be in the same style (one from before styles is balanced).
+	const savedBase = o.baseline && path.resolve(o.baseline).endsWith('.json') ? readJson(path.resolve(o.baseline)) : null;
+	const baseStyle = savedBase && ((savedBase.summary && savedBase.summary.style) || savedBase.style || 'balanced');
+	if (savedBase && baseStyle !== style) throw usageError(`--baseline: the report is ${baseStyle}, this run is ${style}`);
 	const { evaluate, loadCorpus, findInterpreter } = require('../lib/nav/eval/run');
 	const { loadLayers, measureIndoor } = require('../lib/nav/eval/metrics');
 	const { compare, summarize } = require('../lib/nav/eval/compare');
@@ -448,7 +452,7 @@ async function evalCmd(argv) {
 	if (o.baseline) {
 		const where = path.resolve(o.baseline);
 		// A report read back is measured again for indoor yards (it may predate the indoor layer).
-		const base = where.endsWith('.json') ? measureIndoor(readJson(where), common.layers) : evaluate({ navDir: where, ...common });
+		const base = savedBase ? measureIndoor(savedBase, common.layers) : evaluate({ navDir: where, ...common });
 		if (!base.summary) base.summary = summarize(base);
 		console.log(fmtSummary(`baseline ${path.relative(process.cwd(), where) || '.'}`, base.summary));
 		report.baseline = { navDir: base.navDir, summary: base.summary };

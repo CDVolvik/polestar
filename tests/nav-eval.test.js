@@ -302,3 +302,12 @@ test('nav eval refuses a route style that is none of the three', () => {
 	assert.equal(r.status, 2);
 	assert.match(r.stderr, /--style: fastest, balanced or roads/);
 });
+
+test('nav eval refuses a saved baseline report in another route style', () => {
+	const dir = tmpdir('nav-eval-style-');
+	const file = path.join(dir, 'base.json');
+	fs.writeFileSync(file, JSON.stringify({ summary: { style: 'balanced' }, routes: [], sweep: [] }));
+	const r = spawnSync(process.execPath, [path.join(ROOT, 'tools/polestar.js'), 'nav', 'eval', '--style', 'roads', '--baseline', file], { encoding: 'utf8' });
+	assert.equal(r.status, 2);
+	assert.match(r.stderr, /--baseline: the report is balanced, this run is roads/);
+});
