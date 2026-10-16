@@ -570,7 +570,7 @@ function Walk.Measure(c, x, y, water, places)
 	-- The places picked, the player's walk, and those the last measure had.
 	local pts, si = {}, nil
 	for _, p in ipairs(pick) do
-		pts[#pts + 1] = { x = p.wx, y = p.wy }
+		pts[#pts + 1] = { x = p.wx, y = p.wy, z = p.z }
 		if p.start then si = #pts end
 	end
 	if e then
@@ -675,16 +675,19 @@ local function arrowPending(legs, ci)
 	return count == 0 and not failed
 end
 
--- Search one later walk (to at height z, when it has one); its answer is kept
--- by key. A search with the height that fails or ends off its floor is asked
--- once more without it.
-local function searchLeg(P, mine, key, from, to, z, ghost)
+-- Search one later walk (to at height z, when it has one; from at its own
+-- height, a dock's board point on a deck); its answer is kept by key. A
+-- search with a height that fails, or that ends off the goal's floor, is
+-- asked once more without either (flat).
+local function searchLeg(P, mine, key, from, to, z, ghost, flat)
 	local T = Nav.travel
-	local ok, handle = pcall(P.Find, from.c, { x = from.wx, y = from.wy }, { x = to.wx, y = to.wy, z = z }, function(points, _, answer)
+	local fz = not flat and from.z or nil
+	if flat then z = nil end
+	local ok, handle = pcall(P.Find, from.c, { x = from.wx, y = from.wy, z = fz }, { x = to.wx, y = to.wy, z = z }, function(points, _, answer)
 		if legToken ~= mine then return end
 		legJob = nil
 		local got = type(points) == "table" and #points > 0
-		if z and (not got or offFloor(points, z)) then return searchLeg(P, mine, key, from, to, nil, ghost) end
+		if (z or fz) and (not got or (z and offFloor(points, z))) then return searchLeg(P, mine, key, from, to, nil, ghost, true) end
 		legToken, legKey = nil, nil
 		local e = false
 		if got then
@@ -713,7 +716,7 @@ local function searchLeg(P, mine, key, from, to, z, ghost)
 		pumpLegs()
 	end, opts(ghost))
 	if not ok then
-		if z then return searchLeg(P, mine, key, from, to, nil, ghost) end
+		if z or fz then return searchLeg(P, mine, key, from, to, nil, ghost, true) end
 		legToken, legKey = nil, nil
 		keepLeg(key, false)
 		return

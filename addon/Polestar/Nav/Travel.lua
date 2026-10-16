@@ -330,7 +330,7 @@ end
 --         table, reused: read it, never keep it); a number >= 0 back replaces
 --         the cost, anything else (or an error) keeps it; times stay,
 --       places = {}: filled with the places a walk to the target can start
---         from on its continent { wx, wy, start }, for Walk.Measure }
+--         from on its continent { wx, wy, z (a dock's board point), start }, for Walk.Measure }
 -- -> legs or nil, reason
 -- leg = { kind = "walk"|"fly"|"boat"|"zeppelin"|"tram"|"portal"|"hearth"|"teleport",
 --         from = point, to = point, label, seconds, rest,   rest = seconds after this leg
@@ -602,7 +602,8 @@ function Nav.PlanRoute(p)
 	if walkCost or places then
 		for v = 1, keys do
 			if v ~= 2 and vc[v] == tg.c and not sealed(v) then
-				if places then places[#places + 1] = { wx = vx[v], wy = vy[v], start = v == 1 or nil } end
+				-- A dock at a board point carries the deck's height (the walk from it starts on the deck).
+				if places then places[#places + 1] = { wx = vx[v], wy = vy[v], z = vkind[v] == DOCK and dockEnd[v].z or nil, start = v == 1 or nil } end
 				if walkCost then
 					local cost, yd = walkCost(vc[v], vx[v], vy[v], v == 1)
 					if type(cost) == "number" then

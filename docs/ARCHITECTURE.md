@@ -1901,7 +1901,10 @@ lies more than 30 yd above or below it, is asked once more without it, and
 that answer stands for the goal (later searches for it, after straying, go
 without it too). A walk to a leg's end with a height of its own (a dock's
 board point) carries that one the same way; walks to other leg ends go
-without a height (docs/NAV_QA.md Z1-Z3).
+without a height (docs/NAV_QA.md Z1-Z3). A later walk from a board point
+(off the boat) starts at the deck's height (`from.z`; asked once more with
+neither height when that fails), and the measure into the target gives each
+dock place its deck height (`FindMany`'s per-target `z`).
 Hand-made walks win: a walk leg from a crossing or chain waypoint, to a
 chain node past its mouth, or from inside a chain (`leg.handmade`), and a
 guide goal whose last located goal before it, across steps, is a `goto`

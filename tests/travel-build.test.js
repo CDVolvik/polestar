@@ -158,7 +158,7 @@ test('with --lua and no --flight-lua the CLI writes FlightPaths.lua beside it, n
 	const before = fs.readFileSync(committed, 'utf8');
 	try {
 		const r = spawnSync(process.execPath, [
-			path.join(ROOT, 'tools', 'polestar.js'), 'travel', 'build', '--offline', '--shipped', 'none',
+			path.join(ROOT, 'tools', 'polestar.js'), 'travel', 'build', '--offline', '--shipped', 'none', '--grid', 'none',
 			'--data', path.join(FIX, 'data'), '--recordings', path.join(FIX, 'recordings'), '--sources', path.join(FIX, 'sources'),
 			'--json', path.join(dir, 'travel.json'), '--lua', path.join(dir, 'TravelData.lua'), '--travel-addon', path.join(dir, 'PT'),
 		], { encoding: 'utf8' });
