@@ -492,9 +492,9 @@ test('skins: Polestar by default; Halo and Blizzard bring their tokens, fonts, s
 
 test('skins: a window repaints from the house style to Halo (veil, no fill) to Blizzard (gradient) and back, live', () => {
 	const [out] = run(`
-		local f = CreateFrame("Frame", nil, UIParent)
-		f:SetSize(200, 100)
-		T.Skin(f, "window")
+		-- A window of Polestar's own (frames a test makes stand for the game's).
+		Polestar.UI.ShowOptions()
+		local f = PolestarOptions
 		local function state()
 			local d = f.psSkin
 			return { bg = d.bg ~= nil and d.bg:IsShown(), veil = d.veil ~= nil and d.veil:IsShown(),
