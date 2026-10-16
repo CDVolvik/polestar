@@ -7,6 +7,7 @@
 //       endHubs: { Alliance: [name], Horde: [name] }, maxClimbDeg, indoorYards, endIndoor }
 //   loadLayers(dir = data/local/nav-layers, { indoorGrid, city }) -> { roads, hubs, indoor } (each null when not built)
 //   indoorLayer(grid, city?) -> indoor(c, x, y, z): true | false | null (no surface there)
+//   measureIndoor(report, layers) -> report with indoorYards and endIndoor measured again on layers.indoor
 //
 // yards: the router's own (job.yards) when it gives them, else the drawn
 // line's length (flat); seconds: cost / 7 (cost is in running yards, 7 yd/s).
@@ -228,4 +229,17 @@ function loadLayers(dir = LAYERS, { indoorGrid = null, city } = {}) {
 	return { roads, hubs, indoor: indoorGrid ? indoorLayer(indoorGrid, city) : null };
 }
 
-module.exports = { metrics, loadLayers, indoorLayer, lineLength, blockedShare, maxClimb };
+// A report read back (an earlier --out, e.g. a baseline measured before the indoor layer existed): each found route's
+// indoorYards and endIndoor measured again on layers.indoor, its other metrics kept. Changes report in place.
+function measureIndoor(report, layers) {
+	if (!layers.indoor) return report;
+	for (const r of report.routes || []) {
+		if (!r.result.ok || !r.metrics) continue;
+		const m = metrics(r.result, { layers: { indoor: layers.indoor }, map: r.map });
+		r.metrics.indoorYards = m.indoorYards;
+		r.metrics.endIndoor = m.endIndoor;
+	}
+	return report;
+}
+
+module.exports = { metrics, loadLayers, indoorLayer, measureIndoor, lineLength, blockedShare, maxClimb };

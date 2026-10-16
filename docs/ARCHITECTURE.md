@@ -2386,9 +2386,12 @@ hostile hubs from `data/local/nav-layers` once built; indoor yards, and
 whether an end lies indoors, from the `FLAG.INDOOR` surfaces of the grid at
 `data/local/nav4`, the capitals apart as the packer's indoor city class);
 `compare.js` judges a candidate folder against `--baseline` (a folder, or
-an earlier `--out` report) on the acceptance checks A1-A8. A5 holds every
-route found with both ends outdoors to no indoor yards and lists each one
-that has some, for a person to judge whether it is the only way (a tunnel).
+an earlier `--out` report, its indoor yards measured again) on the acceptance
+checks A1-A8. A5 holds the building routes (Stormwind's streets, a line
+through Goldshire's inn) and every route found with both ends outdoors to no
+indoor yards; like A4's climbs, each route with some is listed beside the
+baseline's yards, and the baseline's own, for a person to judge the only-way
+ones (a tunnel 0.2.4 walks too).
 
 **Licence.** The folder is GPL-3.0-or-later with his copyright (`LICENSE`,
 `CREDITS.md`). It is code and data of a GPL program, not reference data:

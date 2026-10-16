@@ -410,7 +410,7 @@ async function evalCmd(argv) {
 	const { opts: o, positional, error } = parseArgs(argv, { flags: ['--sweep'], options: ['--nav', '--baseline', '--routes', '--out'] });
 	if (error || positional.length) throw usageError(error || `unexpected argument "${positional[0]}"`);
 	const { evaluate, loadCorpus, findInterpreter } = require('../lib/nav/eval/run');
-	const { loadLayers } = require('../lib/nav/eval/metrics');
+	const { loadLayers, measureIndoor } = require('../lib/nav/eval/metrics');
 	const { compare, summarize } = require('../lib/nav/eval/compare');
 	const { Geo } = require('../lib/planner/geo');
 	const { openNav } = require('../lib/nav/path');
@@ -443,7 +443,8 @@ async function evalCmd(argv) {
 	let code = 0;
 	if (o.baseline) {
 		const where = path.resolve(o.baseline);
-		const base = where.endsWith('.json') ? readJson(where) : evaluate({ navDir: where, ...common });
+		// A report read back is measured again for indoor yards (it may predate the indoor layer).
+		const base = where.endsWith('.json') ? measureIndoor(readJson(where), common.layers) : evaluate({ navDir: where, ...common });
 		if (!base.summary) base.summary = summarize(base);
 		console.log(fmtSummary(`baseline ${path.relative(process.cwd(), where) || '.'}`, base.summary));
 		report.baseline = { navDir: base.navDir, summary: base.summary };

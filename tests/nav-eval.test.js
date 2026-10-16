@@ -229,12 +229,24 @@ test('compare: A5 fails an ok route with both ends outdoors that walks indoors, 
 	const a5 = (routes) => compare({ routes, sweep: [] }, { routes, sweep: [] }).checks.find((c) => c.id === 'A5');
 	const failed = a5([through, round, inside]);
 	assert.equal(failed.pass, false);
-	assert.match(failed.detail, /ref-through: indoorYards 2\d(\.\d)? \(both ends outdoors\)/);
+	assert.match(failed.detail, /ref-through: indoorYards 2\d(\.\d)? \(both ends outdoors; baseline 2\d(\.\d)?\)/);
+	assert.match(failed.detail, /baseline: 1 \(ref-through 2\d(\.\d)?\)/);
 	assert.doesNotMatch(failed.detail, /ref-inside/);
 	const passed = a5([round, inside]);
 	assert.equal(passed.pass, true, passed.detail);
 	assert.match(passed.detail, /1\/1 hold/);
 	assert.equal(a5([{ ...round, metrics: { ...round.metrics, indoorYards: null, endIndoor: null } }]).pass, null, 'no indoor layer: n/a');
+	// Ruling 29 (as Ruling 5's A4): each listed route beside its baseline yards, and the baseline's own listed.
+	const tunnel = a5([through]);
+	const was = compare({ routes: [round], sweep: [] }, { routes: [{ ...through, id: 'ref-round' }], sweep: [] }).checks.find((c) => c.id === 'A5');
+	assert.match(was.detail, /ref-round: indoorYards 2\d(\.\d)? \(both ends outdoors; baseline 0\); baseline: 0$/);
+	assert.match(tunnel.detail, /baseline: 1 \(ref-through/);
+	// A baseline read from an earlier report gets its indoor yards from the layer now (measureIndoor).
+	const { measureIndoor } = require('../tools/lib/nav/eval/metrics');
+	const old = { routes: [{ ...through, metrics: { ...through.metrics, indoorYards: null, endIndoor: null, blocked: 0.5 } }, { ...through, id: 'lost', result: { ok: false }, metrics: null }] };
+	measureIndoor(old, layers);
+	assert.deepEqual([old.routes[0].metrics.indoorYards, old.routes[0].metrics.endIndoor, old.routes[0].metrics.blocked], [through.metrics.indoorYards, false, 0.5]);
+	assert.equal(old.routes[1].metrics, null);
 });
 
 const noGrid = needs('map-frames.json', 'zones.json') || (fs.existsSync(path.join(ROOT, 'data', 'local', 'nav3', 'index.json')) ? false : 'no grid at data/local/nav3');

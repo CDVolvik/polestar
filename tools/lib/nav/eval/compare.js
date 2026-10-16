@@ -191,10 +191,15 @@ function compare(base, cand) {
 		a4.detail += `; mean steepest climb ${c === null ? 'n/a' : c.toFixed(1)} deg (baseline ${b === null ? 'n/a' : b.toFixed(1)})`;
 		checks.push(a4);
 	}
-	// A5: buildings.
+	// A5: buildings. As A4's climbs (Ruling 5): each route walking indoors is listed beside its baseline yards, and the
+	// baseline's own listed, for a person to judge the only-way ones (a tunnel the baseline walks too); never a pass.
 	{
 		const parts = [];
 		const notes = [];
+		const indoorOf = (r) => {
+			const m = r && r.result.ok ? r.metrics : null;
+			return m && typeof m.indoorYards === 'number' && !m.endIndoor && r.kind !== 'building' ? m.indoorYards : null;
+		};
 		for (const r of cand.routes) {
 			if (r.kind === 'building') {
 				for (const v of r.verdicts || evaluateExpectations(r)) {
@@ -212,10 +217,14 @@ function compare(base, cand) {
 			}
 			if (m.endIndoor) continue;
 			parts.push(m.indoorYards === 0);
-			if (m.indoorYards !== 0) notes.push(`${r.id}: indoorYards ${m.indoorYards} (both ends outdoors)`);
+			if (m.indoorYards === 0) continue;
+			const b = baseById.get(r.id);
+			const was = !b ? 'not in the baseline' : !b.result.ok ? 'not found there' : indoorOf(b) === null ? 'n/a' : indoorOf(b);
+			notes.push(`${r.id}: indoorYards ${m.indoorYards} (both ends outdoors; baseline ${was})`);
 		}
+		const baseIn = base.routes.filter((r) => indoorOf(r)).map((r) => `${r.id} ${indoorOf(r)}`);
 		const nulls = parts.filter((p) => p === null).length;
-		const detail = parts.length ? `buildings: ${parts.filter((p) => p === true).length}/${parts.length} hold${nulls ? ` (${nulls} n/a: no indoor layer)` : ''}${notes.length ? `; ${notes.join('; ')}` : ''}` : 'buildings: no routes';
+		const detail = parts.length ? `buildings: ${parts.filter((p) => p === true).length}/${parts.length} hold${nulls ? ` (${nulls} n/a: no indoor layer)` : ''}${notes.length ? `; ${notes.join('; ')}` : ''}; baseline: ${baseIn.length}${baseIn.length ? ` (${baseIn.join(', ')})` : ''}` : 'buildings: no routes';
 		checks.push({ id: 'A5', pass: verdict(parts), detail });
 	}
 

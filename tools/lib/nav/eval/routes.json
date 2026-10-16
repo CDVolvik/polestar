@@ -102,6 +102,7 @@
 		{"id":"road-westfall-sentinelhill-north","kind":"road","map":0,"from":[-10400,990,null],"to":[-9900,988,null],"profile":null,"expect":[{"type":"metric","metric":"offRoad","op":"<=","value":0.2}]},
 		{"id":"road-crossroads-ratchet","kind":"road","from":{"uiMap":1413,"x":51.5,"y":30.3},"to":{"uiMap":1413,"x":62.7,"y":37.4},"profile":null,"expect":[{"type":"metric","metric":"offRoad","op":"<=","value":0.2}]},
 		{"id":"building-stormwind-trade-cathedral","kind":"building","from":{"uiMap":1453,"x":60,"y":70},"to":{"uiMap":1453,"x":52,"y":45},"profile":null,"expect":[{"type":"metric","metric":"indoorYards","op":"==","value":0}]},
+		{"id":"building-goldshire-inn","kind":"building","from":{"uiMap":1429,"x":41.4,"y":66.13},"to":{"uiMap":1429,"x":45.73,"y":66.13},"profile":null,"expect":[{"type":"metric","metric":"indoorYards","op":"==","value":0}]},
 		{"id":"slope-barrens-north-ridge","kind":"slope","from":{"uiMap":1413,"x":49.26,"y":24.99},"to":{"uiMap":1413,"x":49.3,"y":21},"profile":null,"expect":[{"type":"metric","metric":"maxClimbDeg","op":"<=","value":50}]}
 	]
 }
