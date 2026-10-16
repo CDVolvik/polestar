@@ -1840,7 +1840,6 @@ L["Point the arrow"] = "Навести стрелку"
 L["Details"] = "Подробнее"
 L["Minimize"] = "Свернуть"
 L["Back to the game"] = "Вернуться в игру"
-L["Browsing the guide needs a gamepad: turn it on in the game's options and plug one in."] = "Чтобы листать гайд, нужен геймпад: включите его в настройках игры и подключите."
 L["%s, then press a button, or hold one and press another. Tap %s to cancel, hold it to bind %s. %s unbinds."] = "%s, затем нажмите кнопку или зажмите одну и нажмите другую. Нажмите %s для отмены, зажмите, чтобы назначить %s. %s снимает назначение."
 L["%s, then press a button. Tap %s to cancel, hold it to bind %s. %s unbinds."] = "%s, затем нажмите кнопку. Нажмите %s для отмены, зажмите, чтобы назначить %s. %s снимает назначение."
 L["Click, then press a key; Escape cancels. Right-click unbinds."] = "Щелкните, затем нажмите клавишу; Escape — отмена. ПКМ снимает назначение."
@@ -1866,6 +1865,9 @@ L["A bar under the window says what each button does, and B sits on the close bu
 L["The guide"] = "Гайд"
 L["Quest buttons"] = "Кнопки заданий"
 L["The guide window holds the gamepad until B: the D-pad picks a line, A points the arrow there or uses the item, X shows its details, LB and RB change steps, Y minimizes the window. A window that opened by itself, such as a route choice, waits for this button before it takes the gamepad."] = "Окно гайда держит геймпад до нажатия B: крестовина выбирает строку, A наводит туда стрелку или использует предмет, X показывает подробности, LB и RB переключают шаги, Y сворачивает окно. Окно, открывшееся само (например, выбор маршрута), ждет этой кнопки, прежде чем взять геймпад."
+-- L["Browsing the guide needs the game's gamepad interface (Options, Gamepad, Enable Gamepad UI), or Use with the keyboard and mouse on Polestar's Gamepad page with a gamepad plugged in."] = ""
+-- L["Use with the keyboard and mouse"] = ""
+-- L["Off, Polestar uses the gamepad only with the game's gamepad interface (Options, Gamepad, Enable Gamepad UI). On, also with the keyboard and mouse interface, while the gamepad is turned on in the game's options and plugged in."] = ""
 
 -- Core/RoutePlan.lua
 L["step %d"] = "шаг %d"
@@ -1916,3 +1918,4 @@ L["Spare points go to Divine Strength and Holy's Improved Seals for damage, then
 
 -- No longer in the code (its English changed or it went away): reuse or delete.
 -- L["Shortest Path Forever is guiding. Turn off \"Guide with Shortest Path Forever when it's installed\" (Options, Arrow & routes) to use Polestar's arrow."] = "Ведет Shortest Path Forever. Отключите «Вести через Shortest Path Forever, если он установлен» (Настройки, Стрелка и маршруты), чтобы использовать стрелку Polestar."
+-- L["Browsing the guide needs a gamepad: turn it on in the game's options and plug one in."] = "Чтобы листать гайд, нужен геймпад: включите его в настройках игры и подключите."

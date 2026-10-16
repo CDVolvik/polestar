@@ -1839,7 +1839,6 @@ L["Point the arrow"] = "Apuntar la flecha"
 L["Details"] = "Detalles"
 L["Minimize"] = "Minimizar"
 L["Back to the game"] = "Volver al juego"
-L["Browsing the guide needs a gamepad: turn it on in the game's options and plug one in."] = "Para recorrer la guía se necesita un control: actívalo en las opciones del juego y conecta uno."
 L["%s, then press a button, or hold one and press another. Tap %s to cancel, hold it to bind %s. %s unbinds."] = "%s y luego pulsa un botón, o mantén uno y pulsa otro. Toca %s para cancelar, mantenlo para asignar %s. %s quita la asignación."
 L["%s, then press a button. Tap %s to cancel, hold it to bind %s. %s unbinds."] = "%s y luego pulsa un botón. Toca %s para cancelar, mantenlo para asignar %s. %s quita la asignación."
 L["Click, then press a key; Escape cancels. Right-click unbinds."] = "Haz clic y luego pulsa una tecla; Escape cancela. Clic derecho quita la asignación."
@@ -1865,6 +1864,9 @@ L["A bar under the window says what each button does, and B sits on the close bu
 L["The guide"] = "La guía"
 L["Quest buttons"] = "Botones de misión"
 L["The guide window holds the gamepad until B: the D-pad picks a line, A points the arrow there or uses the item, X shows its details, LB and RB change steps, Y minimizes the window. A window that opened by itself, such as a route choice, waits for this button before it takes the gamepad."] = "La ventana de la guía conserva el control hasta B: la cruceta elige una línea, A apunta la flecha allí o usa el objeto, X muestra sus detalles, LB y RB cambian de paso, Y minimiza la ventana. Una ventana que se abrió sola, como la elección de una ruta, espera este botón antes de tomar el control."
+-- L["Browsing the guide needs the game's gamepad interface (Options, Gamepad, Enable Gamepad UI), or Use with the keyboard and mouse on Polestar's Gamepad page with a gamepad plugged in."] = ""
+-- L["Use with the keyboard and mouse"] = ""
+-- L["Off, Polestar uses the gamepad only with the game's gamepad interface (Options, Gamepad, Enable Gamepad UI). On, also with the keyboard and mouse interface, while the gamepad is turned on in the game's options and plugged in."] = ""
 
 -- Core/RoutePlan.lua
 L["step %d"] = "paso %d"
@@ -1949,3 +1951,4 @@ L["Spare points go to Divine Strength and Holy's Improved Seals for damage, then
 -- L["quality: Legendary"] = "Legendario"
 -- L["quality: Artifact"] = "Artefacto"
 -- L["quality: Rare"] = "Raro"
+-- L["Browsing the guide needs a gamepad: turn it on in the game's options and plug one in."] = "Para recorrer la guía se necesita un control: actívalo en las opciones del juego y conecta uno."

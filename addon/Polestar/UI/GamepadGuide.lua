@@ -121,7 +121,7 @@ function G.StartFocus()
 	if not F then return false end
 	if combat() then return false end
 	if not G.IsActive() then
-		ns.Print(L["Browsing the guide needs a gamepad: turn it on in the game's options and plug one in."])
+		ns.Print(L["Browsing the guide needs the game's gamepad interface (Options, Gamepad, Enable Gamepad UI), or Use with the keyboard and mouse on Polestar's Gamepad page with a gamepad plugged in."])
 		return false
 	end
 	if not ns.Get("ui.shown") then ns.Set("ui.shown", true) end
@@ -315,6 +315,8 @@ ns.RegisterOptions({
 			help = L["While a Polestar window is open, the D-pad moves through it, A selects, B closes, LB and RB change tabs, Y restores a default. Out of combat; the game gets every button back when the window closes."] },
 		{ kind = "toggle", key = "gamepad.hints", label = L["Button hints"],
 			help = L["A bar under the window says what each button does, and B sits on the close button."] },
+		{ kind = "toggle", key = "gamepad.withMouse", label = L["Use with the keyboard and mouse"],
+			help = L["Off, Polestar uses the gamepad only with the game's gamepad interface (Options, Gamepad, Enable Gamepad UI). On, also with the keyboard and mouse interface, while the gamepad is turned on in the game's options and plugged in."] },
 	},
 })
 

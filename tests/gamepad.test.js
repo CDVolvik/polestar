@@ -15,8 +15,10 @@ const { runAddon } = require('./helpers/lua');
 const FILES = ['Core/Core.xml', 'Theme/Theme.xml', 'UI/UI.xml'];
 
 // before: Lua run before the addon loads; atLogin: after uistub.install (which
-// marks the welcome seen), before the login.
-function run(script, before = '', atLogin = '') {
+// marks the welcome seen), before the login. The keyboard and mouse
+// interface with a gamepad plugged in, and "Use with the keyboard and
+// mouse" on (withMouse = false: left off, its default).
+function run(script, before = '', atLogin = '', withMouse = true) {
 	return runAddon({
 		stubs: ['stub_ui.lua', 'stub_gamepad.lua'],
 		before,
@@ -24,6 +26,7 @@ function run(script, before = '', atLogin = '') {
 		script: `uistub.install()
 ${atLogin}
 stub.login()
+${withMouse ? 'Polestar.Set("gamepad.withMouse", true)' : ''}
 local G, UI, GF = Polestar.Gamepad, Polestar.UI, Polestar.UI.GuideFrame
 local pad = stub.pad
 local function focused(frame)
@@ -146,6 +149,23 @@ test('a window holds the gamepad only while it is open: the options take the but
 	`);
 	assert.deepEqual(open, { owner: true, overrides: 11, line: 'Button names', b: true });
 	assert.deepEqual(closed, { shown: false, overrides: 0, up: 'game' });
+});
+
+// The game's gamepad turned on and a pad plugged in, the keyboard and mouse
+// interface, "Use with the keyboard and mouse" left off: a mouse player's
+// windows show no focus ring, hint bar or B chip, and take no button; on
+// from the Gamepad page, they do.
+test('with the keyboard and mouse interface the gamepad stays out of Polestar\'s windows until the player asks for it', () => {
+	const [off, on] = run(`
+		UI.ShowOptions("gamepad")
+		stub.advance(0.3)
+		emit({ active = G.IsActive(), owner = G.owner ~= nil, overrides = stub.overrideCount(), hints = PolestarPadHints ~= nil and PolestarPadHints:IsVisible() or false, b = PolestarPadBadge ~= nil and PolestarPadBadge:IsVisible() or false })
+		Polestar.Set("gamepad.withMouse", true)
+		stub.advance(0.3)
+		emit({ active = G.IsActive(), owner = G.owner == PolestarOptions, hints = PolestarPadHints:IsVisible() })
+	`, '', '', false);
+	assert.deepEqual(off, { active: false, owner: false, overrides: 0, hints: false, b: false });
+	assert.deepEqual(on, { active: true, owner: true, hints: true });
 });
 
 test('options with a gamepad: down moves, A switches a toggle, Y restores its default, left / right step a dropdown and a slider, LB / RB change tabs', () => {

@@ -1840,7 +1840,6 @@ L["Point the arrow"] = "指向箭头"
 L["Details"] = "详情"
 L["Minimize"] = "最小化"
 L["Back to the game"] = "返回游戏"
-L["Browsing the guide needs a gamepad: turn it on in the game's options and plug one in."] = "浏览指南需要手柄：请在游戏选项中启用手柄并连接一个手柄。"
 L["%s, then press a button, or hold one and press another. Tap %s to cancel, hold it to bind %s. %s unbinds."] = "%s，然后按一个按钮，或按住一个再按另一个。轻按 %s 取消，按住则绑定 %s。%s 解除绑定。"
 L["%s, then press a button. Tap %s to cancel, hold it to bind %s. %s unbinds."] = "%s，然后按一个按钮。轻按 %s 取消，按住则绑定 %s。%s 解除绑定。"
 L["Click, then press a key; Escape cancels. Right-click unbinds."] = "点击后按一个键；Esc 取消。右键点击解除绑定。"
@@ -1866,6 +1865,9 @@ L["A bar under the window says what each button does, and B sits on the close bu
 L["The guide"] = "指南"
 L["Quest buttons"] = "任务按钮"
 L["The guide window holds the gamepad until B: the D-pad picks a line, A points the arrow there or uses the item, X shows its details, LB and RB change steps, Y minimizes the window. A window that opened by itself, such as a route choice, waits for this button before it takes the gamepad."] = "指南窗口会占用手柄直到按 B：方向键选择一行，A 将箭头指向该处或使用物品，X 显示详情，LB 和 RB 切换步骤，Y 最小化窗口。自行打开的窗口（例如路线选择）会等你按下此按钮后才接管手柄。"
+-- L["Browsing the guide needs the game's gamepad interface (Options, Gamepad, Enable Gamepad UI), or Use with the keyboard and mouse on Polestar's Gamepad page with a gamepad plugged in."] = ""
+-- L["Use with the keyboard and mouse"] = ""
+-- L["Off, Polestar uses the gamepad only with the game's gamepad interface (Options, Gamepad, Enable Gamepad UI). On, also with the keyboard and mouse interface, while the gamepad is turned on in the game's options and plugged in."] = ""
 
 -- Core/RoutePlan.lua
 L["step %d"] = "步骤 %d"
@@ -1916,3 +1918,4 @@ L["Spare points go to Divine Strength and Holy's Improved Seals for damage, then
 
 -- No longer in the code (its English changed or it went away): reuse or delete.
 -- L["Shortest Path Forever is guiding. Turn off \"Guide with Shortest Path Forever when it's installed\" (Options, Arrow & routes) to use Polestar's arrow."] = "Shortest Path Forever 正在导航。要使用 Polestar 的箭头，请关闭“安装 Shortest Path Forever 时由其导航”（选项 > 箭头与路线）。"
+-- L["Browsing the guide needs a gamepad: turn it on in the game's options and plug one in."] = "浏览指南需要手柄：请在游戏选项中启用手柄并连接一个手柄。"
