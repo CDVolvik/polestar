@@ -257,7 +257,7 @@ step Kirsta Deepshadow
 
 step Hearthglen overlook
   tip Climb the hill west of Hearthglen to look down on the town.
-  complete 6025
+  complete 6025 @45.8,18.3
 
 step Kirsta Deepshadow
   turnin 6025

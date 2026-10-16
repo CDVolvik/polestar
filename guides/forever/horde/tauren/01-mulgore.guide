@@ -94,7 +94,8 @@ step Camp Narache
 
 step The Hunt Begins
   tip Plainstriders roam the grass all around the camp.
-  complete 747
+  collect 4739 quest 747.1            -- Plainstrider Meat
+  collect 4740 quest 747.2            -- Plainstrider Feather
 
 step Grull Hawkwind
   turnin 747
@@ -199,7 +200,8 @@ step Bloodhoof Village
 
 step Poison Water
   tip Prairie Wolves and Adult Plainstriders roam the plains around the village.
-  complete 748
+  collect 4758 quest 748.1            -- Prairie Wolf Paw
+  collect 4759 quest 748.2            -- Plainstrider Talon
 
 step Mull Thunderhorn
   turnin 748
@@ -216,8 +218,9 @@ step Mull Thunderhorn
 
 step Chakuyak and Thunderhorn Totem
   tip Chakuyak, a lone wolf, prowls the plains west of the village. Prairie Stalkers and Flatland Cougars roam the plains north and west of it.
-  complete 96130
-  complete 756
+  collect 270302 quest 96130.1        -- Chakuyak's Pelt
+  collect 4801 quest 756.1            -- Stalker Claws
+  collect 4802 quest 756.2            -- Cougar Claws
 
 step Back to Bloodhoof
   turnin 96130                        -- Yaw Sharpmane
@@ -272,7 +275,7 @@ step Bloodhoof Village
 
 step Swoop Hunting
   tip Swoops glide over the plains all around Bloodhoof.
-  complete 761
+  collect 4769 quest 761.1            -- Trophy Swoop Quill
 
 step Morin Cloudstalker
   tip Morin camps by the Winterhoof Water Well south-east of Bloodhoof.
@@ -285,8 +288,10 @@ step Longwalker Malah
 
 step Galak centaurs and Prairie Wolf Alphas
   tip The Galak centaurs camp on the plains north of the Rolling Plains; Herak leads them. Prairie Wolf Alphas roam among the wolves.
-  complete 99080
-  complete 759
+  kill 2967 quest 99080.1             -- Galak Centaur
+  kill 2968 quest 99080.2             -- Galak Outrunner
+  collect 286075 quest 99080.3        -- Herak's Head
+  collect 4803 quest 759.1            -- Prairie Alpha Tooth
 
 step The Ravaged Caravan
   tip The wrecked caravan lies north-west of the centaurs, east of the road to Thunder Bluff.
@@ -302,7 +307,10 @@ step Bloodhoof Village
 
 step Mazzranache
   tip Finish the wolf heart, cougar femur, plainstrider scale and swoop gizzard on the plains around the village.
-  complete 766
+  collect 4804 quest 766.1            -- Prairie Wolf Heart
+  collect 4805 quest 766.2            -- Flatland Cougar Femur
+  collect 4806 quest 766.3            -- Plainstrider Scale
+  collect 4807 quest 766.4            -- Swoop Gizzard
 
 step Maur Raincaller
   turnin 766
@@ -332,7 +340,7 @@ step Wildmane Water Well
 
 step Dangers of the Windfury
   tip The Windfury harpies hold Windfury Ridge, north and west of the well.
-  complete 743
+  collect 4751 quest 743.1            -- Windfury Talon
 
 step Seer Wiserunner
   tip Seer Wiserunner stands at the edge of the Bael'dun Digsite, south of the well.
@@ -340,8 +348,8 @@ step Seer Wiserunner
   accept 773
 
 step Dwarven Digging
-  tip The dwarves of the Bael'dun Digsite carry the Prospector's Picks. Smash them at the forge in Bloodhoof Village.
-  complete 746
+  tip The dwarves of the Bael'dun Digsite carry the Prospector's Picks. Smash them at the dwarves' forge in the digsite.
+  collect 4703 quest 746.1            -- Broken Tools, at the digsite forge
 
 step Sharing the Land
   tip The Palemane gnolls hold Palemane Rock, south of the digsite and west of Bloodhoof. Perith Stormhoof is held in their camp: lead him out.

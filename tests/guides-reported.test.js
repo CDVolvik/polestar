@@ -343,7 +343,7 @@ test(`${DUN_MOROGH}: thmastin's report: Beer Basted Boar Ribs is offered without
 	const ribs = list.filter(({ goal }) => goal.quest === 384);
 	assert.deepEqual(ribs.map(({ goal }) => [goal.t, goal.profLine]), [
 		['accept', undefined],
-		['complete', undefined],
+		['collect', undefined],
 		['turnin', undefined],
 	]);
 	const take = at(list, 'accept 384', is('accept', 384));
@@ -416,4 +416,46 @@ test('a quest with objectives is completed or collected between its accept and i
 		const between = list.slice(accept + 1, turnin).filter(({ goal }) => is(t, quest)(goal));
 		assert.equal(between.length, count, `${guide}: ${count} ${t} goal(s) for ${quest} between its accept and its turn-in`);
 	}
+});
+
+// --- Steps the arrow cannot lead (rikette, #140): an objective step written
+// only as bare `complete` lines has no place, so the arrow points nowhere.
+// The objectives go on kill, collect and interact goals (or a placed
+// `complete` for a place to reach), which the data locates.
+
+test(`${DUN_MOROGH}: rikette's report: the Grizzled Den leads the arrow to the wendigo cave`, { skip }, () => {
+	const list = goals(DUN_MOROGH);
+	const den = list.filter(({ step }) => step.title === 'The Grizzled Den');
+	assert.ok(den.length, 'the Grizzled Den step is in the guide');
+	for (const quest of [98321, 313]) {
+		const goal = den.find(({ goal: g }) => g.quest === quest && g.t === 'collect');
+		assert.ok(goal && located(goal), `the den's objective of ${quest} has a place`);
+		// The cave lies south-west of Kharanos (46,51), around 41-44,47-50.
+		assert.ok(yards(goal.goal, { map: goal.goal.map, x: 42, y: 48.5 }) < 250, `${quest} leads into the den (${goal.goal.x},${goal.goal.y})`);
+	}
+});
+
+// Escorts and events start at their NPC in the step before and follow it, so
+// a bare `complete` is right there: the arrow has the NPC to lead to.
+const FOLLOWS_AN_NPC = new Set([
+	5821, // Bodyguard for Hire: the Gizelton caravan escort (Desolace)
+	665, // Sunken Treasure: escort Doctor Draxlegauge (Arathi Highlands)
+	660, // Hints of a New Plague?: escort Kinelory (Arathi Highlands)
+	4491, // A Little Help From My Friends: escort Ringo (Un'Goro Crater)
+	863, // The Escape: escort Wizzlecrank (The Barrens)
+	7622, // The Balance of Light and Shadow: the event at Eris Havenfire
+]);
+
+test('every step with a quest objective to do has a goal the arrow can lead to', { skip }, () => {
+	const walk = (dir) => fs.readdirSync(dir, { withFileTypes: true }).flatMap((e) => (e.isDirectory() ? walk(path.join(dir, e.name)) : e.name.endsWith('.guide') ? [path.join(dir, e.name)] : []));
+	const offenders = [];
+	for (const file of walk(path.join(OFFICIAL_DIR, 'forever'))) {
+		const guide = path.relative(OFFICIAL_DIR, file);
+		const steps = [...new Set(goals(guide).map(({ step }) => step))];
+		steps.forEach((step, i) => {
+			const open = step.goals.filter((g) => g.t === 'complete' && !FOLLOWS_AN_NPC.has(g.quest));
+			if (open.length && !step.goals.some((g) => g.map != null && g.x != null)) offenders.push(`${guide} step ${i + 1} (${step.title}): complete ${open.map((g) => g.quest).join(', ')}`);
+		});
+	}
+	assert.deepEqual(offenders, [], 'steps whose objectives have no place');
 });

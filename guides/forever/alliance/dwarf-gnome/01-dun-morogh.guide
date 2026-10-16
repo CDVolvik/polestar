@@ -280,8 +280,10 @@ step Steelgrill's Depot
 
 step Boars and bears
   tip Crag Boars and Young Black Bears roam the fields around Kharanos and the depot. Buy the Rhapsody Malt from the innkeeper in the distillery.
-  complete 384
-  complete 317
+  collect 2886 quest 384.1                    -- Crag Boar Rib
+  buy 2894 x1 npc 1247                        -- Rhapsody Malt, from Innkeeper Belm in the distillery
+  collect 769 quest 317.1                     -- Chunk of Boar Meat
+  collect 6952 quest 317.2                    -- Thick Bear Fur
 
 step Kharanos
   turnin 384                                  -- Ragnar Thunderbrew
@@ -295,8 +297,8 @@ step Steelgrill's Depot
 
 step The Grizzled Den
   tip The Grizzled Den is the wendigo cave south-west of Kharanos. Flintfire's shipments lie on the cave floor.
-  complete 98321
-  complete 313
+  collect 280413 quest 98321.1                -- Flintfire's Shipment
+  collect 2671 quest 313.1                    -- Wendigo Mane
 
 step Mountaineer Gretchen
   turnin 98322                                -- Mountaineer Gretchen
@@ -351,7 +353,7 @@ step Rejold Barleybrew
   accept 320
 
 step Frosthowl
-  complete 98326
+  collect 280426 quest 98326.1                -- Sack of Fish
 
 # ---------------------------------------------------------------- Back to Kharanos
 
@@ -374,7 +376,7 @@ step Misty Pine Refuge
 
 step Firewood
   tip The firewood lies in the snow around the frozen lake by the refuge.
-  complete 99159
+  collect 286339 quest 99159.1                -- Mostly Dry Firewood
 
 step Father Gavin
   turnin 99159
@@ -393,7 +395,7 @@ step Father Gavin
 
 step Avala's Core
   tip Avala's Core is by the frozen lake, among the ice elementals.
-  complete 99161
+  collect 286325 quest 99161.1                -- Avala's Core
 
 step Father Gavin
   turnin 99161
@@ -421,12 +423,12 @@ step Foreman Stonebrow and Quarrymaster Thesten
 
 step Stolen Blasting Powder
   tip Rockjaw Ambushers by Helm's Bed Lake, north of the quarry, and Rockjaw Backbreakers further east drop the Stolen Blasting Powder.
-  complete 95214
+  collect 267415 quest 95214.1                -- Stolen Blasting Powder
 
 step Leopards and boars
   tip Snow Leopards and boars roam the snow between the ranch and the quarry. Blacksmiths: Copper Bars come from smelting Copper Ore or the trade vendors.
-  complete 95212
-  complete 95217 optional
+  collect 267414 quest 95212.1                -- Pristine Leopard Pelt
+  collect 267416 quest 95217.1 optional       -- Toughened Boar Hide
 
 step Gol'Bolar Quarry
   turnin 95217 optional                       -- Frast Dokner
@@ -470,7 +472,7 @@ step Taming the Beast
 
 step Shimmerweed
   tip Shimmerweed bushes grow on the hills around Brewnall Village.
-  complete 315
+  collect 2676 quest 315.1                    -- Shimmerweed
 
 step Brewnall Village
   turnin 98326                                -- Gretta Ganter
