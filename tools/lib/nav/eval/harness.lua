@@ -15,7 +15,9 @@
 --   {"type":"many","id","ok","reason","costs":[cost|false,...],"yards":[..]|null,"ms","kb"}
 -- yards and hubs are the router's own (job.yards, job.hubs) when it returns them, null otherwise. A search runs
 -- through Path.Find / Path.FindMany with the frame pump driven here and no frame budget, from cleared caches: ms is
--- the cold search (decoding included), warmMs the same route again, kb Lua memory when the search answered.
+-- the cold search (decoding included), warmMs the same route again, kb Lua memory when the search answered. An error
+-- reported through the client's error handler during a query fails it (ok false, reason "error: ..."); each query
+-- starts with none.
 -- The profile reaches the router (opts.profile) only when it prices by profile (Polestar_NavCosts is defined):
 -- 0.2.4's router takes a waterWalking flag where opts goes, so it is called without one.
 
@@ -211,15 +213,18 @@ local function route(q)
 		drain()
 		return got
 	end
+	errors = {}
 	Path.ClearCaches()
 	collectgarbage("collect")
 	local cold = once()
 	local warm = once()
 	local out = {}
 	if not cold then
-		return string.format('{"type":"route","id":%s,"ok":false,"reason":"no answer","cost":null,"yards":null,"ms":null,"warmMs":null,"kb":null,"pts":[],"hubs":null,"wet":null}', quote(q.id))
+		local reason = #errors > 0 and "error: " .. table.concat(errors, "; ") or "no answer"
+		return string.format('{"type":"route","id":%s,"ok":false,"reason":%s,"cost":null,"yards":null,"ms":null,"warmMs":null,"kb":null,"pts":[],"hubs":null,"wet":null}', quote(q.id), quote(reason))
 	end
-	local ok = cold.points ~= nil
+	-- An error reported during the query (the client's error handler) fails it.
+	local ok = cold.points ~= nil and #errors == 0
 	if ok then
 		for i, p in ipairs(cold.points) do
 			out[i] = string.format("[%s,%s,%s]", num(p.x), num(p.y), num(p.z))
@@ -234,10 +239,9 @@ local function route(q)
 		end
 		hubs = "[" .. table.concat(parts, ",") .. "]"
 	end
-	local reason = ok and "null" or quote(cold.cost)
+	local reason = ok and "null" or quote(cold.points == nil and cold.cost or nil)
 	if #errors > 0 then
 		reason = quote("error: " .. table.concat(errors, "; "))
-		errors = {}
 	end
 	return string.format(
 		'{"type":"route","id":%s,"ok":%s,"reason":%s,"cost":%s,"yards":%s,"ms":%s,"warmMs":%s,"kb":%s,"pts":[%s],"hubs":%s,"wet":%s}',
@@ -262,6 +266,7 @@ local function many(q)
 	for i = 1, n do
 		targets[i] = point(q.map, q.targets[i])
 	end
+	errors = {}
 	Path.ClearCaches()
 	collectgarbage("collect")
 	local got
@@ -287,13 +292,12 @@ local function many(q)
 	local reason = got and got.reason
 	if #errors > 0 then
 		reason = "error: " .. table.concat(errors, "; ")
-		errors = {}
 	end
 	return string.format(
 		'{"type":"many","id":%s,"ok":%s,"reason":%s,"costs":[%s],"yards":%s,"ms":%s,"kb":%s}',
 		quote(q.id),
 		tostring(got ~= nil and reason == nil),
-		quote(got and reason or (not got and "no answer" or nil)),
+		quote(reason or (not got and "no answer" or nil)),
 		table.concat(parts, ","),
 		yards,
 		num(got and got.ms, "%.2f"),

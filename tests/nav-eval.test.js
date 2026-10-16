@@ -75,6 +75,38 @@ test('eval harness: a many query returns one cost per target (false off the map)
 	assert.deepEqual(m.yards, m.costs);
 });
 
+test('eval harness: an error reported during a query makes that query not ok and never reaches the next one', { skip: noLua }, () => {
+	const { runRoutes } = require('../tools/lib/nav/eval/run');
+	const navDir = twoClusterFolder();
+	// The folder's own .toc: the repository's files, then Boom.lua, which reports an error through the client's
+	// error handler on a route from x 111 (answered all the same) and from x 222 (never answered).
+	const toc = fs.readFileSync(path.join(ROOT, 'addon', 'Polestar_Nav', 'Polestar_Nav.toc'), 'utf8');
+	fs.writeFileSync(path.join(navDir, 'Polestar_Nav.toc'), `${toc.trimEnd()}\nBoom.lua\n`);
+	fs.writeFileSync(
+		path.join(navDir, 'Boom.lua'),
+		[
+			'local Path = Polestar_NavEngine',
+			'local find = Path.Find',
+			'Path.Find = function(map, from, to, cb, opts)',
+			'\tif from.x == 111 or from.x == 222 then geterrorhandler()("boom " .. from.x) end',
+			'\tif from.x == 222 then return end',
+			'\treturn find(map, from, to, cb, opts)',
+			'end',
+			'',
+		].join('\n'),
+	);
+	const q = (id, x) => ({ id, map: 0, from: [x, 200, null], to: [300, 800, null] });
+	const [answered, after, unanswered, next] = runRoutes({ navDir, lua, routes: [q('answered', 111), q('after', 200), q('unanswered', 222), q('next', 200)] });
+	assert.equal(answered.ok, false, 'an error during the query: not ok');
+	assert.match(answered.reason, /^error: .*boom 111/);
+	assert.equal(after.ok, true, `the next query is clean (${after.reason})`);
+	assert.equal(after.reason, null);
+	assert.equal(unanswered.ok, false);
+	assert.match(unanswered.reason, /boom 222/);
+	assert.equal(next.ok, true, `no error left over from an unanswered query (${next.reason})`);
+	assert.equal(next.reason, null);
+});
+
 test('metrics: yards from the drawn line, the steepest climb between points; blocked, roads, hubs and indoor null without grid and layers', () => {
 	const { metrics } = require('../tools/lib/nav/eval/metrics');
 	const m = metrics({ ok: true, cost: 70, yards: null, pts: [[0, 0, 0], [30, 40, 0], [30, 50, 10], [30, 60, 0]] }, { grid: null, layers: {} });
