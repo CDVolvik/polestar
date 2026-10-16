@@ -134,10 +134,10 @@ step Back at Aldrassil
   accept 3118 only Rogue                      -- Conservator Ilthalaine: Encrypted Sigil
   turnin 3118 only Rogue                      -- Frahun Shadewhisper, the rogue trainer
   accept 3119 only Priest                     -- Conservator Ilthalaine: Hallowed Sigil
-  turnin 3119 only Priest                     -- Shanda, the priest trainer, inside the tree
+  turnin 3119 only Priest                     -- Shanda, the priest trainer: in at the tree's front entrance and up the ramp
   accept 3120 only Druid                      -- Conservator Ilthalaine: Verdant Sigil
   turnin 3120 only Druid                      -- Mardant Strongoak, the druid trainer at Aldrassil
-  accept 97979                                -- Shanda, inside the tree
+  accept 97979                                -- Shanda: in at the tree's front entrance and up the ramp
   turnin 97979
   accept 457
   accept 4495                                 -- Dirania Silvershine, east of the tree
