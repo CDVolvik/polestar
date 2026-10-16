@@ -182,6 +182,27 @@ test('a pack may add other kinds of names, read by Names.Get', () => {
 	assert.deepEqual(out, ['Les Mortemines', false, 'Lardeur', false]);
 });
 
+test('spells, factions, areas from the client; instances, flight points and encounters from the pack; an instance\'s client name only when it is not just the current zone', () => {
+	const [out] = run({
+		before: `
+C_Spell = { GetSpellName = function(id) return id == 458 and "Cheval bai" or nil end }
+function GetFactionInfoByID(id) if id == 72 then return "Hurlevent" end end
+C_Map.GetAreaInfo = function(id) return id == 12 and "Forêt d'Elwynn" or nil end
+function GetRealZoneText(id) if id == 33 then return "Donjon d'Ombrecroc" end return "Forêt d'Elwynn" end`,
+		script: `
+N.Add("frFR", "faction", { [529] = "Aube d'argent" })
+N.Add("frFR", "map", { [36] = "Les Mortemines" })
+N.Add("frFR", "taxi", { [2] = "Hurlevent, Elwynn" })
+N.Add("frFR", "encounter", { [1144] = "Cercle de la loi" })
+emit({ N.Spell(458), N.Faction(72), N.Faction(529), N.Area(12), N.Instance(36), N.Instance(33), N.Instance(48) or false,
+  N.Get("taxi", 2), N.Get("encounter", 1144), N.Get("map", 36), N.Spell(1) or false })`,
+	});
+	assert.deepEqual(out, ['Cheval bai', 'Hurlevent', "Aube d'argent", "Forêt d'Elwynn", 'Les Mortemines', "Donjon d'Ombrecroc", false,
+		'Hurlevent, Elwynn', 'Cercle de la loi', 'Les Mortemines', false]);
+	const [english] = run({ locale: null, before: 'C_Spell = { GetSpellName = function() return "Brown Horse" end }', script: 'emit({ N.Spell(458) or false, N.Area(12) or false })' });
+	assert.deepEqual(english, [false, false]);
+});
+
 test('the names pack is optional: never reported missing, named when it is from another version', () => {
 	const check = (addons) => run({
 		before: `stub.addons = { { name = "Polestar" }, { name = "Polestar_Guides" }, { name = "Polestar_Codex" }${addons} }`,

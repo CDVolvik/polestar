@@ -15,8 +15,15 @@
 --     loads nothing. A quest or item the client has not cached is asked for,
 --     once a session; when the asked names arrive (QUEST_DATA_LOAD_RESULT,
 --     ITEM_DATA_LOAD_RESULT) one STEP_UPDATED redraws the guide window.
---   Names.Get(kind, id) -> name | nil   -- the four above by kind, and any
---     other kind a pack adds (its table only)
+--   Names.Spell(id)       -- the client's (C_Spell.GetSpellName, GetSpellInfo)
+--   Names.Faction(id)     -- the client's (C_Reputation, GetFactionInfoByID), else the pack's
+--   Names.Instance(mapID) -- the pack's (Map.csv), else GetRealZoneText(mapID)
+--   Names.Area(areaID)    -- the client's (C_Map.GetAreaInfo)
+--   Names.Taxi(id) / Names.Encounter(id)   -- the pack's (TaxiNodes, DungeonEncounter)
+--     each -> name | nil, nil on an English client
+--   Names.Get(kind, id) -> name | nil   -- the above by kind (quest npc object
+--     item spell faction map area taxi encounter), and any other kind a pack
+--     adds (its table only)
 --   Names.Cached(kind, id) -> name | nil   -- the same, never asking the
 --     server; an item's name from the pack only (Lookup indexes thousands)
 --   Names.Learn(unit) -> name | nil   -- remembers the name the client shows
@@ -155,7 +162,64 @@ function Names.Object(id)
 	return fromPlay("object", id) or fromPack("object", id)
 end
 
-local BY_KIND = { quest = Names.Quest, item = Names.Item, npc = Names.Npc, object = Names.Object }
+-- A client API's answer when it is a usable name.
+local function clientName(fn, ...)
+	if not fn then return nil end
+	local ok, name = pcall(fn, ...)
+	if not ok then return nil end
+	if type(name) == "table" then name = name.name end
+	name = ns.Compat.Readable(name)
+	if type(name) ~= "string" or name == "" then return nil end
+	return name
+end
+
+function Names.Spell(id)
+	if not valid(id) then return nil end
+	return clientName(C_Spell and C_Spell.GetSpellName, id) or clientName(GetSpellInfo, id)
+end
+
+-- The client knows a faction the character has not met only by the pack.
+function Names.Faction(id)
+	if not valid(id) then return nil end
+	return clientName(C_Reputation and C_Reputation.GetFactionDataByID, id) or clientName(GetFactionInfoByID, id)
+		or fromPack("faction", id)
+end
+
+-- An instance by its map ID (Map.csv): the pack's (the client's Map table),
+-- else GetRealZoneText(mapID), which an older client answers with the
+-- current zone whatever it is asked: trusted only inside that instance or
+-- when it names somewhere else.
+function Names.Instance(id)
+	if not valid(id) then return nil end
+	local n = fromPack("map", id)
+	if n or not GetRealZoneText then return n end
+	n = clientName(GetRealZoneText, id)
+	if not n then return nil end
+	local here = GetInstanceInfo and select(8, GetInstanceInfo())
+	if here == id or n ~= clientName(GetRealZoneText) then return n end
+	return nil
+end
+
+function Names.Area(id)
+	if not valid(id) then return nil end
+	return ns.Compat.GetAreaName(id)
+end
+
+function Names.Taxi(id)
+	if not valid(id) then return nil end
+	return fromPack("taxi", id)
+end
+
+function Names.Encounter(id)
+	if not valid(id) then return nil end
+	return fromPack("encounter", id)
+end
+
+local BY_KIND = {
+	quest = Names.Quest, item = Names.Item, npc = Names.Npc, object = Names.Object,
+	spell = Names.Spell, faction = Names.Faction, map = Names.Instance, area = Names.Area,
+	taxi = Names.Taxi, encounter = Names.Encounter,
+}
 
 function Names.Get(kind, id)
 	local fn = BY_KIND[kind]
