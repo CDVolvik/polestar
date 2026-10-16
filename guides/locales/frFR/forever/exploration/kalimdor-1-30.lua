@@ -51,7 +51,7 @@ return {
 	-- Step 10: The Barrens (1/4)
 	["25 areas to discover here, levels 10-33."] = "25 zones à découvrir ici, niveaux 10-33.",
 	-- {zone:1440} Ashenvale · {area:380} The Crossroads · {area:378} Camp Taurajo · {area:392} Ratchet
-	["Walk east out of Stonetalon (or south out of {zone:1440}) into the Barrens. {area:380} and {area:378} are Horde towns; {area:392} is a neutral port."] = "",
+	["Walk east out of Stonetalon (or south out of {zone:1440}) into the Barrens. {area:380} and {area:378} are Horde towns; {area:392} is a neutral port."] = "Sortez des Serres-Rocheuses vers l'est (ou de {zone:1440} vers le sud) pour entrer dans les Tarides. {area:380} et {area:378} sont des villes de la Horde ; {area:392} est un port neutre.",
 	-- {area:392} Ratchet
 	["Flight path here: {area:392} (Bragok)."] = "Trajet aérien ici : {area:392} (Bragok).",
 	-- {area:378} Camp Taurajo
@@ -64,7 +64,7 @@ return {
 	-- Step 14: Durotar (1/2)
 	["11 areas to discover here, levels 5-10."] = "11 zones à découvrir ici, niveaux 5-10.",
 	-- {area:814} Southfury River · {zone:1411} Durotar · {area:362} Razor Hill · {area:367} Sen'jin Village · {zone:1454} Orgrimmar
-	["Cross the {area:814} east from the northern Barrens into {zone:1411}: Horde country, with guards at {area:362}, {area:367} and {zone:1454}."] = "",
+	["Cross the {area:814} east from the northern Barrens into {zone:1411}: Horde country, with guards at {area:362}, {area:367} and {zone:1454}."] = "Traversez {area:814} vers l'est depuis le nord des Tarides pour entrer dans {zone:1411} : territoire de la Horde, gardé à {area:362}, à {area:367} et à {zone:1454}.",
 	-- {zone:1454} Orgrimmar
 	["Horde guards: touch the edge of {zone:1454} and move on"] = "Gardes de la Horde : touchez le bord de {zone:1454} et repartez",
 	-- {area:362} Razor Hill
@@ -79,7 +79,7 @@ return {
 	-- Step 16: Mulgore (1/2)
 	["16 areas to discover here, levels 5-10."] = "16 zones à découvrir ici, niveaux 5-10.",
 	-- {area:378} Camp Taurajo · {zone:1412} Mulgore · {area:222} Bloodhoof Village · {zone:1456} Thunder Bluff
-	["Go back west across the Barrens; the road west from {area:378} climbs into {zone:1412}, tauren country with guards at {area:222} and {zone:1456}."] = "",
+	["Go back west across the Barrens; the road west from {area:378} climbs into {zone:1412}, tauren country with guards at {area:222} and {zone:1456}."] = "Retraversez les Tarides vers l'ouest ; la route à l'ouest de {area:378} monte vers {zone:1412}, territoire tauren gardé à {area:222} et à {zone:1456}.",
 	-- {zone:1456} Thunder Bluff
 	["Horde guards: touch the edge of {zone:1456} and move on"] = "Gardes de la Horde : touchez le bord de {zone:1456} et repartez",
 	-- {area:222} Bloodhoof Village
@@ -88,9 +88,9 @@ return {
 	-- Step 18: Thousand Needles (1/2)
 	["9 areas to discover here, levels 24-35."] = "9 zones à découvrir ici, niveaux 24-35.",
 	-- {area:485} Great Lift · {zone:1441} Thousand Needles · {area:484} Freewind Post
-	["From the southern Barrens take the {area:485} down into {zone:1441}. {area:484} is a Horde town."] = "",
+	["From the southern Barrens take the {area:485} down into {zone:1441}. {area:484} is a Horde town."] = "Depuis le sud des Tarides, prenez {area:485} pour descendre dans {zone:1441}. {area:484} est une ville de la Horde.",
 	-- {area:485} Great Lift
-	["The {area:485}"] = "",
+	["The {area:485}"] = "{area:485}",
 
 	-- Step 19: Thousand Needles (2/2)
 	-- {area:484} Freewind Post
@@ -105,9 +105,9 @@ return {
 
 	-- Step 22: The Barrens (1/4)
 	-- {area:814} Southfury River · {zone:1411} Durotar · {area:385} Northwatch Hold
-	["Cross the {area:814} bridges west out of {zone:1411} into the Barrens. {area:385} in the east is an Alliance fort."] = "",
+	["Cross the {area:814} bridges west out of {zone:1411} into the Barrens. {area:385} in the east is an Alliance fort."] = "Franchissez les ponts de {area:814} vers l'ouest pour quitter {zone:1411} et entrer dans les Tarides. {area:385}, à l'est, est un fort de l'Alliance.",
 	-- {area:392} Ratchet · {area:378} Camp Taurajo · {npc:10378} Omusa Thunderhorn
-	["Flight paths here: {area:392} (Bragok), Crossroads (Devrak), {area:378} ({npc:10378})."] = "",
+	["Flight paths here: {area:392} (Bragok), Crossroads (Devrak), {area:378} ({npc:10378})."] = "Trajets aériens ici : {area:392} (Bragok), la Croisée (Devrak), {area:378} ({npc:10378}).",
 
 	-- Step 26: Mulgore (1/2)
 	-- {area:378} Camp Taurajo · {zone:1412} Mulgore
@@ -117,7 +117,7 @@ return {
 
 	-- Step 28: Stonetalon Mountains (1/2)
 	-- {area:1702} Honor's Stand · {zone:1442} Stonetalon Mountains · {area:460} Sun Rock Retreat · {area:467} Stonetalon Peak
-	["Go back into the Barrens and west through {area:1702} into the {zone:1442}. {area:460} is the Horde town; {area:467} in the north is Alliance."] = "",
+	["Go back into the Barrens and west through {area:1702} into the {zone:1442}. {area:460} is the Horde town; {area:467} in the north is Alliance."] = "Retournez dans les Tarides et allez vers l'ouest par {area:1702} jusque dans {zone:1442}. {area:460} est la ville de la Horde ; {area:467}, au nord, est à l'Alliance.",
 	-- {area:460} Sun Rock Retreat
 	["Flight path here: {area:460} (Tharm)."] = "Trajet aérien ici : {area:460} (Tharm).",
 
@@ -158,7 +158,7 @@ return {
 
 	-- Step 37: Thousand Needles (1/2)
 	-- {area:378} Camp Taurajo · {area:485} Great Lift · {zone:1441} Thousand Needles
-	["Fly to {area:378} and walk south through the Barrens to the {area:485} down into {zone:1441}."] = "",
+	["Fly to {area:378} and walk south through the Barrens to the {area:485} down into {zone:1441}."] = "Prenez un vol pour {area:378} et traversez les Tarides vers le sud jusqu'à {area:485}, qui descend dans {zone:1441}.",
 	-- {area:484} Freewind Post
 	["Flight path here: {area:484} (Nyse)."] = "Trajet aérien ici : {area:484} (Nyse).",
 

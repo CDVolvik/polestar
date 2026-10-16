@@ -71,7 +71,7 @@ return {
 
 	-- Step 10: Bellygrub
 	-- {npc:345} Bellygrub · {area:69} Lakeshire
-	["{npc:345} (level 24) roots around the pen just west of {area:69}. Pull him away from the other boars and fight at full health."] = "",
+	["{npc:345} (level 24) roots around the pen just west of {area:69}. Pull him away from the other boars and fight at full health."] = "{npc:345}(24레벨)는 {area:69} 바로 서쪽 우리에서 땅을 파헤칩니다. 다른 멧돼지들과 떨어뜨려 끌어온 뒤 생명력이 가득 찬 상태로 싸우세요.",
 
 	-- Step 12: Lakeshire
 	-- {npc:703} Lieutenant Fangore · {area:1000} Galardell Valley

@@ -15,7 +15,7 @@ return {
 
 	-- Step 2: Plainstriders and raptors
 	["Plainstriders and raptors"] = "Долгоноги и ящеры",
-	["Plainstriders and Sunscale raptors roam the plains all around the Crossroads, thickest to the north."] = "",
+	["Plainstriders and Sunscale raptors roam the plains all around the Crossroads, thickest to the north."] = "Равнинные долгоноги и яркочешуйчатые ящеры бродят по равнинам вокруг Перекрестка, гуще всего к северу.",
 
 	-- Step 4: The Zhevra
 	-- plural, as words: Zhevra Runners = {npc:3242} Zhevra Runner
@@ -54,7 +54,7 @@ return {
 
 	-- Step 13: Thun'grim Firegaze
 	-- {area:392} Ratchet · {object:58369} Stolen Iron Chest
-	["Thun'grim camps beside the road from the Crossroads to {area:392}. The {object:58369} sits in the south of the Razormane camp just north of him."] = "",
+	["Thun'grim camps beside the road from the Crossroads to {area:392}. The {object:58369} sits in the south of the Razormane camp just north of him."] = "Тун'грим разбил лагерь у дороги от Перекрестка к месту {area:392}. {object:58369} стоит на юге лагеря Иглогривых, сразу к северу от него.",
 
 	-- Step 14: Ratchet
 	-- {area:392} Ratchet
@@ -73,7 +73,7 @@ return {
 	["Back down the beach, past the pirate camp: the crate of boots and the fragile crate with the lens sit at its south end."] = "Обратно вниз по пляжу, мимо лагеря пиратов: ящик с сапогами и хрупкий ящик с линзой стоят на его южном краю.",
 
 	-- Step 19: The Crossroads
-	["Walk back west along the road to the Crossroads."] = "",
+	["Walk back west along the road to the Crossroads."] = "Вернитесь по дороге на запад к Перекрестку.",
 
 	-- Step 20: The Disruption Ends
 	-- {npc:3438} Kreenig Snarlsnout
@@ -99,7 +99,7 @@ return {
 
 	-- Step 25: The Dry Hills
 	-- {area:383} Dry Hills
-	["The {area:383}"] = "",
+	["The {area:383}"] = "{area:383}",
 	-- {area:383} Dry Hills · {quest:819} Chen's Empty Keg
 	["West to the {area:383}. The Witchwing harpies nest all over them; any of them can drop a talon. {quest:819} lies in their hills."] = "На запад: {area:383}. Гарпии из стаи Зачарованного Крыла гнездятся повсюду; коготь может упасть с любой. {quest:819} лежит в этих холмах.",
 
@@ -116,7 +116,7 @@ return {
 	["Kolkar Wranglers and Stormers hold the camps south of Regthar."] = "Пастухи ({npc:3272}) и буревестницы из племени Колкар занимают лагеря к югу от Регтара.",
 
 	-- Step 31: The Stagnant Oasis
-	["South-east of the Crossroads. Test the seeds at the bubbling fissure on the oasis' east bank."] = "",
+	["South-east of the Crossroads. Test the seeds at the bubbling fissure on the oasis' east bank."] = "К юго-востоку от Перекрестка. Проверьте семена у бурлящей расщелины на восточном берегу оазиса.",
 
 	-- Step 32: Raptor nests
 	["Raptor nests"] = "Гнезда ящеров",
@@ -134,7 +134,7 @@ return {
 	-- Step 35: Lushwater Oasis
 	-- {area:387} Lushwater Oasis · {area:388} Stagnant Oasis
 	-- plural, as words: Oasis Snapjaws = {npc:3461} Oasis Snapjaw
-	["Oasis Snapjaws crawl around {area:387}, south-west of the Crossroads, and around the {area:388}."] = "",
+	["Oasis Snapjaws crawl around {area:387}, south-west of the Crossroads, and around the {area:388}."] = "Оазисные хрустогрызы ползают вокруг места {area:387}, к юго-западу от Перекрестка, и вокруг места {area:388}.",
 
 	-- Step 36: The Crossroads
 	-- {quest:3301} Mura Runetotem · {area:228} Sepulcher · {zone:1421} Silverpine Forest
@@ -159,7 +159,7 @@ return {
 
 	-- Step 41: The Crossroads
 	-- {zone:1454} Orgrimmar · {zone:1420} Tirisfal Glades
-	["Walk back south to the Crossroads. The next guide starts here and takes you to {zone:1454} and the zeppelin to {zone:1420}."] = "",
+	["Walk back south to the Crossroads. The next guide starts here and takes you to {zone:1454} and the zeppelin to {zone:1420}."] = "Вернитесь на юг к Перекрестку. Отсюда начинается следующий гайд; он ведет в {zone:1454} и к дирижаблю в зону {zone:1420}.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Oasis Snapjaws crawl around {area:387}, south-west of the {area:380}, and around the {area:388}."] = "Оазисные хрустогрызы ({npc:3461}) ползают вокруг места {area:387}, к юго-западу от поселения {area:380}, и вокруг места {area:388}.",

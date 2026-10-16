@@ -82,7 +82,7 @@ return {
 
 	-- Step 18: Felstalker hooves
 	-- {npc:3102} Felstalker
-	["{npc:3102} hooves"] = "",
+	["{npc:3102} hooves"] = "Pezuñas de {npc:3102}",
 	-- plural, as words: Felstalkers = {npc:3102} Felstalker
 	["Felstalkers roam the slope below the cave, on the valley's north side."] = "Los acechadores viles recorren la ladera bajo la cueva, en el lado norte del valle.",
 
@@ -142,7 +142,7 @@ return {
 
 	-- Step 33: Drygulch Ravine
 	-- {area:370} Drygulch Ravine · {npc:3293} Rezlak · {item:277661} Dull Storm Orb
-	["Savages and Storm Witches nest in {area:370}, east of {npc:3293}. A Storm Witch drops the {item:277661}."] = "Los Salvajes ({spell:20574}) y las Brujas de la Tormenta anidan en {area:370}, al este de {npc:3293}. Una Bruja de la Tormenta suelta {item:277661}.",
+	["Savages and Storm Witches nest in {area:370}, east of {npc:3293}. A Storm Witch drops the {item:277661}."] = "Los Salvajes y las Brujas de la Tormenta anidan en {area:370}, al este de {npc:3293}. Una Bruja de la Tormenta suelta {item:277661}.",
 
 	-- Step 35: Thunder lizards
 	["Thunder lizards"] = "Truenagartos",
@@ -274,7 +274,7 @@ return {
 
 	-- Step 67: The Crossroads
 	-- {area:379} Far Watch Post · {zone:1413} Barrens
-	["Follow the road south-west from {area:379} to the Crossroads. The {zone:1413} guide starts here."] = "",
+	["Follow the road south-west from {area:379} to the Crossroads. The {zone:1413} guide starts here."] = "Sigue el camino al suroeste desde {area:379} hasta El Cruce. La guía de {zone:1413} empieza aquí.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Felstalker hooves"] = "Pezuñas de acechador vil",

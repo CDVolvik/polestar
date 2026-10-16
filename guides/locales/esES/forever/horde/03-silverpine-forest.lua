@@ -51,9 +51,9 @@ return {
 
 	-- Step 8: The Sepulcher
 	-- {area:228} Sepulcher
-	["The {area:228}"] = "",
+	["The {area:228}"] = "{area:228}",
 	-- {area:228} Sepulcher · {npc:2226} Karos Razok
-	["The {area:228} is the Forsaken crypt-town in the middle of the forest. Everyone you need stands around the crypt entrance; {npc:2226}, the bat handler, is just east of it."] = "",
+	["The {area:228} is the Forsaken crypt-town in the middle of the forest. Everyone you need stands around the crypt entrance; {npc:2226}, the bat handler, is just east of it."] = "{area:228} es el pueblo-cripta de los Renegados en medio del bosque. Todos los que necesitas están alrededor de la entrada de la cripta; {npc:2226}, el cuidador de murciélagos, está justo al este.",
 
 	-- Step 9: Border Crossings
 	-- {object:1627} Dalaran Crate
@@ -65,11 +65,11 @@ return {
 
 	-- Step 11: The Dead Field
 	-- {area:228} Sepulcher · {npc:1983} Nightlash
-	["North of the {area:228}. {npc:1983} haunts the Dead Field: kill it, then walk across the field."] = "",
+	["North of the {area:228}. {npc:1983} haunts the Dead Field: kill it, then walk across the field."] = "Al norte de {area:228}. {npc:1983} ronda El Campo Muerto: mátalo y luego cruza el campo.",
 
 	-- Step 12: Strange Lockbox
 	-- {object:177790} Strange Lockbox · {item:15882} Half Pendant of Aquatic Endurance · {quest:30} Trial of the Sea Lion
-	["The {object:177790} lies on the coast west of the Dead Field. It holds the {item:15882} for {quest:30}."] = "",
+	["The {object:177790} lies on the coast west of the Dead Field. It holds the {item:15882} for {quest:30}."] = "{object:177790} está en la costa al oeste de El Campo Muerto. Contiene {item:15882} para {quest:30}.",
 
 	-- Step 13: Malden's Orchard
 	-- {area:238} Malden's Orchard

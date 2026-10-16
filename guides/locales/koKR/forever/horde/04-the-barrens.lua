@@ -21,7 +21,7 @@ return {
 
 	-- Step 3: Bruuz
 	-- {npc:209797} Bruuz · {area:392} Ratchet
-	["{npc:209797} swims in the harbour just off {area:392}'s docks. {npc:209797} is elite: grouping up is advised."] = "",
+	["{npc:209797} swims in the harbour just off {area:392}'s docks. {npc:209797} is elite: grouping up is advised."] = "{npc:209797}은(는) {area:392} 부두 바로 앞 항구에서 헤엄칩니다. {npc:209797}은(는) 정예이므로 파티를 권장합니다.",
 
 	-- Step 4: Baron Longshore
 	-- {area:392} Ratchet · {npc:3467} Baron Longshore
@@ -43,7 +43,7 @@ return {
 
 	-- Step 9: The Crossroads
 	-- {area:380} Crossroads
-	["The {area:380}"] = "",
+	["The {area:380}"] = "{area:380}",
 	-- {npc:3429} Thork · {area:1703} Mor'shan Rampart
 	["{npc:3429}. Keep it: Kadrak at the {area:1703}, next guide"] = "{npc:3429}. 보관하십시오: 다음 가이드의 {area:1703}에 있는 카드라크",
 	-- {npc:3428} Korran · {area:390} Field of Giants
@@ -118,7 +118,7 @@ return {
 
 	-- Step 23: The Dry Hills
 	-- {area:383} Dry Hills
-	["The {area:383}"] = "",
+	["The {area:383}"] = "{area:383}",
 	-- {quest:876} Serena Bloodfeather
 	-- plural, as words: Savannah Patriarchs = {npc:3241} Savannah Patriarch · Sprung Traps = {object:640104} Sprung Trap
 	["Savannah Patriarchs roam the plains east of the hills, and the Sprung Traps lie among them. {quest:876} leads the Witchwing harpies in the hills to the west."] = "우두머리 사바나 사자가 언덕 동쪽 평원을 돌아다니며, 용수철 덫은 그들 사이에 있습니다. {quest:876}이(가) 서쪽 언덕의 칼날바람하피를 이끕니다.",
@@ -129,11 +129,11 @@ return {
 
 	-- Step 27: Walton
 	-- {npc:261366} Walton · {npc:261367} Terry Longdrink · {area:21} Kul Tiras
-	["Assist {npc:261366}: stay by him when {npc:261367} and the {area:21} marines come up the ridge"] = "",
+	["Assist {npc:261366}: stay by him when {npc:261367} and the {area:21} marines come up the ridge"] = "{npc:261366} 돕기: {npc:261367}와(과) {area:21} 해병이 능선을 올라오면 그의 곁에 있으세요",
 
 	-- Step 28: Strange Lockbox
 	-- {object:177792} Strange Lockbox · {area:382} Sludge Fen · {item:15883} Half Pendant of Aquatic Agility · {quest:30} Trial of the Sea Lion
-	["The {object:177792} lies at the north edge of the {area:382}, by the Venture Co. tower. It holds the {item:15883} for {quest:30}."] = "",
+	["The {object:177792} lies at the north edge of the {area:382}, by the Venture Co. tower. It holds the {item:15883} for {quest:30}."] = "{object:177792}은(는) {area:382} 북쪽 가장자리, 투자개발회사 탑 옆에 있습니다. {quest:30}용 {item:15883}이(가) 들어 있습니다.",
 
 	-- Step 29: Ignition
 	-- {area:382} Sludge Fen · {npc:3439} Wizzlecrank's Shredder · {npc:3445} Supervisor Lugwizzle
@@ -230,7 +230,7 @@ return {
 	-- Step 53: Field of Giants
 	-- {area:390} Field of Giants
 	-- plural, as words: Silithid Mounds = {object:3685} Silithid Mound · Silithid Swarmers = {npc:3252} Silithid Swarmer · Silithid Harvesters = {npc:3253} Silithid Harvester
-	["South of Camp Taurajo the Silithid Mounds dot the {area:390}; the eggs lie in them, and Silithid Swarmers come out to defend them. Silithid Harvesters are rare: if you see one, kill it for its head."] = "",
+	["South of Camp Taurajo the Silithid Mounds dot the {area:390}; the eggs lie in them, and Silithid Swarmers come out to defend them. Silithid Harvesters are rare: if you see one, kill it for its head."] = "타우라조 야영지 남쪽 {area:390}에 실리시드 흙더미가 흩어져 있습니다. 알은 그 안에 있으며, 우두머리 실리시드가 나와 지킵니다. 여왕 실리시드는 드무니 보이면 처치해 머리를 얻으십시오.",
 
 	-- Step 54: Gann Stonespire
 	-- {area:359} Bael Modan
@@ -247,7 +247,7 @@ return {
 	-- Step 55: Blackthorn Ridge
 	-- {area:1701} Blackthorn Ridge · {npc:3436} Kuz · {npc:3434} Nak · {npc:3435} Lok Orcbane · {npc:5859} Hagg Taurenbane · {npc:3238} Stormhide · {quest:885} Washte Pawne
 	-- plural, as words: Hecklefang Stalkers = {npc:4128} Hecklefang Stalker
-	["West of Gann, the Razormane hold {area:1701}. {npc:3436} is on the east side, {npc:3434} to the south, {npc:3435} at the west end. Lok (25) and the Warfrenzies (24-25) are a few levels above you; {npc:5859}, a rare elite, sometimes walks the ridge: leave him. Pathfinders and Stalkers drop the Backstabber, Seers the Wand, Warfrenzies the War Shield. {npc:3238} lizards and Hecklefang Stalkers roam the plain between Gann and the ridge. {quest:885}, a rare red wind serpent, flies over the ridge: its feather starts a quest."] = "",
+	["West of Gann, the Razormane hold {area:1701}. {npc:3436} is on the east side, {npc:3434} to the south, {npc:3435} at the west end. Lok (25) and the Warfrenzies (24-25) are a few levels above you; {npc:5859}, a rare elite, sometimes walks the ridge: leave him. Pathfinders and Stalkers drop the Backstabber, Seers the Wand, Warfrenzies the War Shield. {npc:3238} lizards and Hecklefang Stalkers roam the plain between Gann and the ridge. {quest:885}, a rare red wind serpent, flies over the ridge: its feather starts a quest."] = "갠 서쪽의 {area:1701}은(는) 서슬갈기일족이 차지하고 있습니다. {npc:3436}은(는) 동쪽에, {npc:3434}은(는) 남쪽에, {npc:3435}은(는) 서쪽 끝에 있습니다. 로크(25)와 서슬갈기일족 광전사(24-25)는 몇 레벨 높습니다. 희귀 정예 {npc:5859}이(가) 가끔 능선을 걸으니 피하십시오. 서슬갈기일족 길잡이와 정찰꾼이 기습용 단검을, 점쟁이가 마법봉을, 광전사가 전투용 방패를 떨어뜨립니다. {npc:3238} 도마뱀과 긴발톱 빗송곳니하이에나가 갠과 능선 사이 평원을 돌아다닙니다. 희귀한 붉은 바람뱀 {quest:885}이(가) 능선 위를 날며, 그 깃털로 퀘스트가 시작됩니다.",
 	-- {npc:3238} Stormhide
 	["{npc:3238}, on the plain between Gann and the ridge"] = "{npc:3238}, 갠과 능선 사이 평원",
 
@@ -291,7 +291,7 @@ return {
 
 	-- Step 70: Shenthul
 	-- {npc:2391} Serge Hinott · {area:272} Tarren Mill
-	["{npc:2391} in {area:272} teaches Poisons: keep it"] = "",
+	["{npc:2391} in {area:272} teaches Poisons: keep it"] = "{area:272}의 {npc:2391}이(가) 독을 가르칩니다: 보관하세요",
 
 	-- Step 71: The Great Cat Spirit
 	-- {area:1638} Thunder Bluff · {npc:3033} Turak Runetotem · {area:1639} Elder Rise

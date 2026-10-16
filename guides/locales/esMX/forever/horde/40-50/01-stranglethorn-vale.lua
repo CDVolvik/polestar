@@ -35,7 +35,7 @@ return {
 	-- {area:43} Wild Shore
 	["The {area:43}"] = "{area:43}",
 	-- {area:43} Wild Shore
-	["South of Booty Bay the Bloodsail swashbucklers camp on the {area:43}; the charts and the orders lie in their tents. Any Bloodsail can carry snuff and Dizzy's eye, so keep killing until you have both."] = "",
+	["South of Booty Bay the Bloodsail swashbucklers camp on the {area:43}; the charts and the orders lie in their tents. Any Bloodsail can carry snuff and Dizzy's eye, so keep killing until you have both."] = "Al sur de Bahía del Botín, los espadachines Velasangre acampan en {area:43}; las cartas y las órdenes están en sus tiendas. Cualquier Velasangre puede llevar tabaco rapé y el ojo de Dizzy, así que sigue matando hasta tener ambos.",
 
 	-- Step 8: The Bloodsail ships
 	["The Bloodsail ships"] = "Los barcos Velasangre",
@@ -167,7 +167,7 @@ return {
 
 	-- Step 37: The Harborage
 	-- {area:657} Harborage
-	["The {area:657}"] = "",
+	["The {area:657}"] = "{area:657}",
 	-- {area:657} Harborage · {zone:1430} Deadwind Pass
 	["Ride west along the road to the draenei camp at the {area:657}, near the way in from {zone:1430}."] = "Cabalga al oeste por el camino hasta el campamento draenei de {area:657}, cerca de la entrada desde {zone:1430}.",
 

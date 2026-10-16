@@ -128,7 +128,7 @@ return {
 	["Free Darrowshire Spirits: talk to them"] = "{npc:11064} 해방: 대화하기",
 
 	-- Step 30: The Undercroft
-	["Zaeldarr is elite: grouping up is advised. He waits at the bottom of the Undercroft, the crypt in the south-west of the zone."] = "",
+	["Zaeldarr is elite: grouping up is advised. He waits at the bottom of the Undercroft, the crypt in the south-west of the zone."] = "잴다르는 정예이니 파티를 권장합니다. 그는 지역 남서쪽의 지하실인 지하 납골당의 맨 아래에서 기다립니다.",
 
 	-- Step 31: Augustus the Touched
 	-- {area:2627} Terrordale

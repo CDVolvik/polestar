@@ -45,7 +45,7 @@ return {
 
 	-- Step 10: Brambleblade Ravine
 	-- {npc:8554} Chief Sharptusk Thornmantle · {object:3076} Dirt-stained Map
-	["Battleboars graze north of the shrine; the Bristleback quilboar hold the ravine to the north-east. {npc:8554} stands at its eastern end, and the {object:3076} lies on the ground in the camp."] = "",
+	["Battleboars graze north of the shrine; the Bristleback quilboar hold the ravine to the north-east. {npc:8554} stands at its eastern end, and the {object:3076} lies on the ground in the camp."] = "전투멧돼지는 제단 북쪽에서 풀을 뜯고, 뾰족털 가시멧돼지는 북동쪽 협곡을 차지하고 있습니다. {npc:8554}은(는) 협곡 동쪽 끝에 서 있고, {object:3076}은(는) 야영지 바닥에 있습니다.",
 
 	-- Step 11: Camp Narache
 	["Back west to the camp."] = "서쪽의 야영지로 돌아가세요.",
@@ -230,7 +230,7 @@ return {
 
 	-- Step 57: The Crossroads
 	-- {area:380} Crossroads
-	["The {area:380}"] = "",
+	["The {area:380}"] = "{area:380}",
 	-- {zone:1412} Mulgore · {area:380} Crossroads · {quest:860} Sergra Darkthorn · {npc:3448} Tonga Runetotem · {zone:1413} The Barrens
 	["Leave {zone:1412} by the south-eastern pass and follow the road to the {area:380}. {quest:860} stands by the inn, {npc:3448} at the south gate. {zone:1413} guide starts here."] = "남동쪽 고갯길로 {zone:1412}을(를) 나가 길을 따라 {area:380}(으)로 가세요. {quest:860}은(는) 여관 옆에, {npc:3448}은(는) 남문에 서 있습니다. {zone:1413} 가이드는 여기서 시작합니다.",
 

@@ -54,7 +54,7 @@ return {
 
 	-- Step 11: Aerie Peak
 	-- {area:271} Southshore · {area:348} Aerie Peak · {quest:1450} Gryphon Master Talonaxe · {npc:7884} Fraggar Thundermantle
-	["Ride north-east out of {area:271} on the road into the Hinterlands; {area:348} sits just past the border. Falstad holds court at the top, {quest:1450} tends the aviary and {npc:7884} stands by the inn."] = "",
+	["Ride north-east out of {area:271} on the road into the Hinterlands; {area:348} sits just past the border. Falstad holds court at the top, {quest:1450} tends the aviary and {npc:7884} stands by the inn."] = "Из места {area:271} езжайте по дороге на северо-восток во Внутренние земли; {area:348} – сразу за границей. Фалстад принимает наверху, у птичника – {quest:1450}, у таверны стоит {npc:7884}.",
 
 	-- Step 12: Rhapsody Shindigger
 	-- {area:348} Aerie Peak
@@ -69,7 +69,7 @@ return {
 	["Fraggar keeps paying for necklaces: hand in any extras"] = "Фраггар продолжает платить за ожерелья: сдайте лишние",
 	-- {npc:5636} Gryphon Master Talonaxe
 	["{npc:5636}, beside the flight master at the top"] = "{npc:5636}, наверху рядом с распорядителем полетов",
-	["Talonaxe's next task waits for a later Hinterlands guide."] = "",
+	["Talonaxe's next task waits for a later Hinterlands guide."] = "Следующее задание Разящего Когтя подождет до более позднего гайда по Внутренним землям.",
 
 	-- Step 15: Menethil Harbor
 	["Take the boat to Theramore from the far pier."] = "Сядьте на корабль до острова Терамор у дальнего причала.",

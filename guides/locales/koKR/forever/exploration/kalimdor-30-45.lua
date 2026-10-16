@@ -45,7 +45,7 @@ return {
 	["Flight path here: {area:1099} (Shyn)."] = "이곳의 비행 경로: {area:1099} (쉬인).",
 	["level 60 area, well above this guide's range"] = "60레벨 지역으로, 이 가이드 범위보다 훨씬 높습니다",
 	-- {area:1108} Forgotten Coast
-	["The {area:1108}"] = "",
+	["The {area:1108}"] = "{area:1108}",
 
 	-- Step 6: Dustwallow Marsh
 	["7 areas to discover here, levels 36-61."] = "이곳에서 발견할 지역은 7곳, 36-61레벨입니다.",

@@ -7,12 +7,12 @@
 return {
 	-- Step 2: The Altar of Zul
 	-- {area:355} Altar of Zul · {npc:8636} Morta'gya the Keeper
-	["Ride south-east to the {area:355}, the stepped Vilebranch temple in the south of the Hinterlands, and climb to the top. Qiaga and {npc:8636} (elite, 50) stand up there: touch the top and come straight back down."] = "",
+	["Ride south-east to the {area:355}, the stepped Vilebranch temple in the south of the Hinterlands, and climb to the top. Qiaga and {npc:8636} (elite, 50) stand up there: touch the top and come straight back down."] = "남동쪽으로 동부 내륙지 남쪽에 있는 썩은가지부족의 계단식 신전 {area:355}(으)로 가서 꼭대기까지 올라가십시오. 문지기 퀴아가와 {npc:8636}(정예, 50)이(가) 그곳에 있습니다: 꼭대기에 닿으면 곧바로 내려오십시오.",
 
 	-- Step 3: Skulk Rock
 	-- {area:351} Skulk Rock
 	-- plural, as words: Green Sludges = {npc:2655} Green Sludge · Jade Oozes = {npc:2656} Jade Ooze
-	["Ride north to {area:351} in the middle of the Hinterlands. Green Sludges and Jade Oozes crawl all around it."] = "",
+	["Ride north to {area:351} in the middle of the Hinterlands. Green Sludges and Jade Oozes crawl all around it."] = "북쪽으로 동부 내륙지 한가운데의 {area:351}까지 가세요. 초록 진흙괴물과 비취 수액괴물이 그 주변 곳곳을 기어다닙니다.",
 
 	-- Step 4: Aerie Peak
 	-- {area:348} Aerie Peak

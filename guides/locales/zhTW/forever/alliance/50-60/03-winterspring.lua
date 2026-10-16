@@ -128,7 +128,7 @@ return {
 	["Free Darrowshire Spirits: talk to them"] = "解放達隆郡居民的靈魂：與他們交談",
 
 	-- Step 30: The Undercroft
-	["Zaeldarr is elite: grouping up is advised. He waits at the bottom of the Undercroft, the crypt in the south-west of the zone."] = "",
+	["Zaeldarr is elite: grouping up is advised. He waits at the bottom of the Undercroft, the crypt in the south-west of the zone."] = "塞達爾是精英：建議組隊。他在本區西南部的地穴墓室最底層等著。",
 
 	-- Step 31: Augustus the Touched
 	-- {area:2627} Terrordale

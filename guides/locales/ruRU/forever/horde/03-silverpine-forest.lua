@@ -51,9 +51,9 @@ return {
 
 	-- Step 8: The Sepulcher
 	-- {area:228} Sepulcher
-	["The {area:228}"] = "",
+	["The {area:228}"] = "{area:228}",
 	-- {area:228} Sepulcher · {npc:2226} Karos Razok
-	["The {area:228} is the Forsaken crypt-town in the middle of the forest. Everyone you need stands around the crypt entrance; {npc:2226}, the bat handler, is just east of it."] = "",
+	["The {area:228} is the Forsaken crypt-town in the middle of the forest. Everyone you need stands around the crypt entrance; {npc:2226}, the bat handler, is just east of it."] = "{area:228} – городок Отрекшихся у склепа посреди леса. Все нужные NPC стоят у входа в склеп; {npc:2226}, укротитель летучих мышей, – чуть к востоку.",
 
 	-- Step 9: Border Crossings
 	-- {object:1627} Dalaran Crate
@@ -65,11 +65,11 @@ return {
 
 	-- Step 11: The Dead Field
 	-- {area:228} Sepulcher · {npc:1983} Nightlash
-	["North of the {area:228}. {npc:1983} haunts the Dead Field: kill it, then walk across the field."] = "",
+	["North of the {area:228}. {npc:1983} haunts the Dead Field: kill it, then walk across the field."] = "К северу от места {area:228}. {npc:1983} бродит по Мертвому полю: убейте ее, затем пройдите через поле.",
 
 	-- Step 12: Strange Lockbox
 	-- {object:177790} Strange Lockbox · {item:15882} Half Pendant of Aquatic Endurance · {quest:30} Trial of the Sea Lion
-	["The {object:177790} lies on the coast west of the Dead Field. It holds the {item:15882} for {quest:30}."] = "",
+	["The {object:177790} lies on the coast west of the Dead Field. It holds the {item:15882} for {quest:30}."] = "{object:177790} лежит на побережье к западу от Мертвого поля. В нем {item:15882} для задания {quest:30}.",
 
 	-- Step 13: Malden's Orchard
 	-- {area:238} Malden's Orchard

@@ -33,7 +33,7 @@ return {
 
 	-- Step 7: Bathran's Haunt
 	-- {area:411} Bathran's Haunt · {item:5366} Glowing Soul Gem
-	["North of Maestra's Post, plant bundles lie around the ruins of {area:411}. Dark Strand cultists hold the ruins just south of them: any of them can drop the {item:5366}."] = "",
+	["North of Maestra's Post, plant bundles lie around the ruins of {area:411}. Dark Strand cultists hold the ruins just south of them: any of them can drop the {item:5366}."] = "Ao norte do Entreposto de Maestra, há feixes de plantas em volta das ruínas de {area:411}. Sectários da Linhagem das Trevas ocupam as ruínas logo ao sul deles: qualquer um pode deixar cair a {item:5366}.",
 	-- {quest:1010} Bathran's Hair
 	["{quest:1010}, from the plant bundles"] = "{quest:1010}, dos feixes de plantas",
 
@@ -57,13 +57,13 @@ return {
 
 	-- Step 13: The Zoram Strand
 	-- {npc:3846} Talen
-	["Follow the coast north to the Zoram Strand. {npc:3846} camps on the beach; Wrathtail nagas fill the shore."] = "",
+	["Follow the coast north to the Zoram Strand. {npc:3846} camps on the beach; Wrathtail nagas fill the shore."] = "Siga a costa para o norte até a Praia de Zoram. {npc:3846} acampa na praia; nagas Iracauda enchem a margem.",
 	-- {item:5424} Ancient Statuette
 	["{item:5424}, in the ruins on the shore"] = "{item:5424}, nas ruínas da margem",
 
 	-- Step 15: Ruuzel
 	-- {quest:1009} Ruuzel
-	["{quest:1009} walks the northern tip of the Zoram Strand with Wrathtail guards."] = "",
+	["{quest:1009} walks the northern tip of the Zoram Strand with Wrathtail guards."] = "{quest:1009} anda pela ponta norte da Praia de Zoram com guardas Iracauda.",
 
 	-- Step 19: Dal Bloodclaw
 	-- {npc:3987} Dal Bloodclaw · {area:415} Astranaar
@@ -91,7 +91,7 @@ return {
 	["Kill the elementals for 5 Intact Elemental Bracers, then use the {item:5456}"] = "Mate os elementais por 5 Braçadeiras Elementais Intactas e depois use o {item:5456}",
 
 	-- Step 25: The Ruins of Stardust
-	["West of Mystral Lake, the stardust bushes grow among the ruins."] = "",
+	["West of Mystral Lake, the stardust bushes grow among the ruins."] = "A oeste do Lago Mistral, os arbustos de poeira estelar crescem entre as ruínas.",
 
 	-- Step 27: Windshear Crag
 	-- {area:421} Mystral Lake · {area:1276} Talondeep Path · {area:461} Windshear Crag · {area:1076} Webwinder Path
@@ -136,7 +136,7 @@ return {
 	-- Step 35: Bluegill Marsh
 	-- {npc:1259} Gobbler
 	-- plural, as words: Bluegill Murlocs = {npc:1024} Bluegill Murloc
-	["Follow the coast north out of Menethil. Bluegill Murlocs fill the marsh; {npc:1259} walks with a pack in the middle of it."] = "",
+	["Follow the coast north out of Menethil. Bluegill Murlocs fill the marsh; {npc:1259} walks with a pack in the middle of it."] = "Siga a costa para o norte saindo de Menethil. Murlocs Guelrazul enchem o pântano; {npc:1259} anda com um bando no meio dele.",
 
 	-- Step 37: The Bluegill hovels
 	["The Bluegill hovels"] = "As choças Guelrazul",
@@ -184,7 +184,7 @@ return {
 
 	-- Step 48: The Green Belt
 	-- {area:1025} Green Belt
-	["The {area:1025}"] = "",
+	["The {area:1025}"] = "{area:1025}",
 	-- {npc:2093} Einar Stonegrip · {npc:1244} Rethiel the Greenwarden
 	["{npc:2093} camps by the road; {npc:1244} stands farther east, by the river."] = "{npc:2093} acampa junto à estrada; {npc:1244} fica mais a leste, junto ao rio.",
 
@@ -271,9 +271,4 @@ return {
 	["Next: fly to {area:42}."] = "Próximo: voe até {area:42}.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Follow the coast north out of Menethil. Bluegill Murlocs fill the marsh; Gobbler walks with a pack in the middle of it."] = "Siga a costa para o norte saindo de Menethil. Murlocs Guelrazul enchem o pântano; Comilão anda com um bando no meio dele.",
-	-- ["Follow the coast north to the {area:414}. {npc:3846} camps on the beach; Wrathtail nagas fill the shore."] = "Siga a costa para o norte até a {area:414}. {npc:3846} acampa na praia; nagas Iracauda enchem a margem.",
-	-- ["North of {area:413}, plant bundles lie around the ruins of {area:411}. Dark Strand cultists hold the ruins just south of them: any of them can drop the {item:5366}."] = "Ao norte de {area:413}, há feixes de plantas em volta das ruínas de {area:411}. Sectários da Linhagem das Trevas ocupam as ruínas logo ao sul deles: qualquer um pode deixar cair a {item:5366}.",
-	-- ["West of {area:421}, the stardust bushes grow among the ruins."] = "A oeste do {area:421}, os arbustos de poeira estelar crescem entre as ruínas.",
-	-- ["{quest:1009} walks the northern tip of the {area:414} with Wrathtail guards."] = "{quest:1009} anda pela ponta norte da {area:414} com guardas Iracauda.",
 }

@@ -73,7 +73,7 @@ return {
 	["Follow the main road south the length of the jungle, past the {object:3202} turn-off, to {area:35} on the southern cape."] = "Идите по главной дороге на юг через все джунгли, мимо поворота на {object:3202}, до южного мыса: {area:35}.",
 	["Gyll, on the top floor by the docks"] = "Гилл – на верхнем этаже у причалов",
 	-- {npc:2832} Nixxrax Fillamug
-	["{npc:2832}, in the Salty Sailor Tavern"] = "",
+	["{npc:2832}, in the Salty Sailor Tavern"] = "{npc:2832} – таверна «Старый моряк»",
 	-- {npc:2495} Drizzlik
 	["{npc:2495}, by the bank"] = "{npc:2495} – у банка",
 	-- {npc:773} Krazek

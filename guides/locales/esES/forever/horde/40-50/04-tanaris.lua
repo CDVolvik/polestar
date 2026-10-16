@@ -19,10 +19,10 @@ return {
 
 	-- Step 3: Sandsorrow Watch
 	-- {item:8584} Untapped Dowsing Widget
-	["West of Gadgetzan, use the {item:8584} beside the water hole in the troll camp."] = "",
+	["West of Gadgetzan, use the {item:8584} beside the water hole in the troll camp."] = "Al oeste de Gadgetzan, usa la {item:8584} junto a la charca del campamento trol.",
 
 	-- Step 5: Caliph Scorpidsting
-	["South-east of Gadgetzan the Wastewander bandits camp in the dunes; Caliph stands in the eastern camp."] = "",
+	["South-east of Gadgetzan the Wastewander bandits camp in the dunes; Caliph stands in the eastern camp."] = "Al sureste de Gadgetzan acampan los Bandidos Deambuladores en las dunas; Caliph Escorpijón está en el campamento del este.",
 
 	-- Step 6: Marvon Rivetseeker
 	-- {area:1938} Broken Pillar · {item:9978} Gahz'ridian Detector · {area:983} Dunemaul Compound
@@ -33,7 +33,7 @@ return {
 
 	-- Step 8: Dunemaul Compound
 	-- {npc:12046} Gor'marok the Ravager · {quest:3161} Gahz'ridian
-	["South of the Noxious Lair the Dunemaul ogres hold their compound, with {npc:12046} at its eastern end. Dig up {quest:3161} ornaments between the fights."] = "",
+	["South of the Noxious Lair the Dunemaul ogres hold their compound, with {npc:12046} at its eastern end. Dig up {quest:3161} ornaments between the fights."] = "Al sur de La Guarida Ponzoñosa, los ogros Machacaduna ocupan su base, con {npc:12046} en el extremo este. Desentierra adornos de {quest:3161} entre combate y combate.",
 
 	-- Step 9: Thistleshrub Valley
 	-- {zone:1446} Tanaris

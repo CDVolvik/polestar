@@ -77,7 +77,7 @@ return {
 	-- {area:429} Xavian · {zone:1440} Ashenvale
 	["The {area:429} satyrs camp in eastern {zone:1440}, with the Felmusk satyrs further west; both drop Uncloven Satyr Hooves."] = "Die Satyrn von {area:429} lagern im Osten von {zone:1440}, die Satyrn der Teufelshufe weiter westlich; beide lassen Ungespaltene Satyrhufe fallen.",
 	-- {quest:1842} Satyr Hooves
-	["Uncloven {quest:1842}"] = "",
+	["Uncloven {quest:1842}"] = "Ungespaltene {quest:1842}",
 
 	-- Step 15: Chimaeric Horn
 	-- {npc:6167} Chimaera Matriarch · {item:6840} Galvanized Horn

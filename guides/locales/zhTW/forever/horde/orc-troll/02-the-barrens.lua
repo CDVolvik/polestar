@@ -11,7 +11,7 @@ return {
 
 	-- Step 2: Plainstriders and raptors
 	["Plainstriders and raptors"] = "平原陸行鳥與迅猛龍",
-	["Plainstriders and Sunscale raptors roam the plains all around the Crossroads."] = "",
+	["Plainstriders and Sunscale raptors roam the plains all around the Crossroads."] = "平原陸行鳥和赤鱗迅猛龍在十字路口周圍的平原上遊蕩。",
 
 	-- Step 4: Zhevra and raptors
 	["Zhevra and raptors"] = "斑馬與迅猛龍",
@@ -28,7 +28,7 @@ return {
 
 	-- Step 7: Kranal Fiss
 	-- {npc:5907} Kranal Fiss
-	["{npc:5907} stands on the ridge north of the Razormane camp, east of the Crossroads."] = "",
+	["{npc:5907} stands on the ridge north of the Razormane camp, east of the Crossroads."] = "{npc:5907}站在鋼鬃營地北邊的山脊上，位於十字路口東邊。",
 
 	-- Step 8: Telf Joolam
 	-- {zone:1411} Durotar · {area:814} Southfury River
@@ -45,7 +45,7 @@ return {
 	["Razormane camp"] = "鋼鬃營地",
 	-- {object:58369} Stolen Iron Chest · {item:5026} Fire Tar
 	-- plural, as words: Savannah Prowlers = {npc:3425} Savannah Prowler
-	["Water Seekers, Thornweavers and Hunters hold the camp east of the Crossroads. The supply crates sit at its eastern end. Warriors: the {object:58369} stands in the camp. Shamans: the quilboar drop the {item:5026}. Kill Savannah Prowlers you pass for their claws."] = "",
+	["Water Seekers, Thornweavers and Hunters hold the camp east of the Crossroads. The supply crates sit at its eastern end. Warriors: the {object:58369} stands in the camp. Shamans: the quilboar drop the {item:5026}. Kill Savannah Prowlers you pass for their claws."] = "鋼鬃尋水者、鋼鬃織棘者和鋼鬃獵手佔據十字路口東邊的營地。補給箱放在營地東端。戰士：{object:58369}在營地裡。薩滿：野豬人會掉落{item:5026}。順路擊殺草原徘徊者取得爪子。",
 
 	-- Step 11: Telf Joolam
 	-- {item:6636} Fire Sapta · {npc:5893} Minor Manifestation of Fire · {item:6655} Glowing Ember
@@ -71,22 +71,22 @@ return {
 	["Back to the pirate camp: the boots are in the crate marked {object:3767} at the camp's south end, the lens in the Fragile crate just east of it."] = "回到海盜營地：靴子在營地南端標有{object:3767}的箱子裡，鏡片在它東邊不遠的易碎箱子裡。",
 
 	-- Step 19: Back to the Crossroads
-	["Back to the Crossroads"] = "",
+	["Back to the Crossroads"] = "返回十字路口",
 	-- plural, as words: Savannah Prowlers = {npc:3425} Savannah Prowler
-	["Walk back up the road to the Crossroads. Savannah Prowlers hunt along it and on the plains west of town: finish the claws before you hand them in."] = "",
+	["Walk back up the road to the Crossroads. Savannah Prowlers hunt along it and on the plains west of town: finish the claws before you hand them in."] = "沿道路走回十字路口。草原徘徊者在路邊和城鎮西邊的平原上狩獵：繳交前先收集完爪子。",
 
 	-- Step 20: Regthar Deathgate
-	["Regthar stands at the Kolkar watch post just west of the Crossroads."] = "",
+	["Regthar stands at the Kolkar watch post just west of the Crossroads."] = "雷戈薩·死門站在十字路口西邊不遠的科卡爾半人馬哨站。",
 
 	-- Step 21: Kolkar camps and the Forgotten Pools
 	-- {area:386} Forgotten Pools
 	["Kolkar camps and the {area:386}"] = "科卡爾半人馬營地與{area:386}",
 	-- {quest:855} Centaur Bracers · {area:386} Forgotten Pools
 	-- plural, as words: Laden Mushrooms = {object:3640} Laden Mushroom · Savannah Prowlers = {npc:3425} Savannah Prowler
-	["The Kolkar camps spread north-west of Regthar; every Kolkar can drop {quest:855}. The {area:386} lie in their middle, with Laden Mushrooms around the water. Savannah Prowlers roam the same plains."] = "",
+	["The Kolkar camps spread north-west of Regthar; every Kolkar can drop {quest:855}. The {area:386} lie in their middle, with Laden Mushrooms around the water. Savannah Prowlers roam the same plains."] = "科卡爾半人馬營地分布在雷戈薩西北方；每個科卡爾半人馬都可能掉落{quest:855}。{area:386}在營地中央，水邊有豐滿的蘑菇。草原徘徊者在同一片平原遊蕩。",
 	["Wade into the pools to explore them"] = "涉水進入水池探索",
 	-- {area:386} Forgotten Pools
-	["The {area:386}"] = "",
+	["The {area:386}"] = "{area:386}",
 
 	-- Step 23: Witchwing harpies
 	["Witchwing harpies"] = "巫翼鷹身人",
@@ -95,18 +95,18 @@ return {
 
 	-- Step 24: The Sludge Fen
 	-- {object:4141} Control Console · {item:5089} Console Key · {npc:3471} Tinkerer Sniggles
-	["Head east to the Venture Co. research site west of the Sludge Fen. Use the {object:4141}, close the three valves around the drill, use the console again, then take the {item:5089} from {npc:3471}."] = "",
+	["Head east to the Venture Co. research site west of the Sludge Fen. Use the {object:4141}, close the three valves around the drill, use the console again, then take the {item:5089} from {npc:3471}."] = "向東前往淤泥沼澤西邊的風險投資公司研究站。使用{object:4141}，關閉鑽機周圍的三個閥門，再次使用控制台，然後從{npc:3471}身上取得{item:5089}。",
 
 	-- Step 25: Echeyakee
 	-- {quest:881} Echeyakee · {area:392} Ratchet
-	["{quest:881}'s lair lies south of the Sludge Fen, north-east of the Crossroads. Use the horn Sergra gave you there to call the white lion out. Then hearth to {area:392}."] = "",
+	["{quest:881}'s lair lies south of the Sludge Fen, north-east of the Crossroads. Use the horn Sergra gave you there to call the white lion out. Then hearth to {area:392}."] = "{quest:881}的巢穴在淤泥沼澤南邊、十字路口東北方。在那裡使用瑟格拉給你的號角把白獅引出來。然後用爐石回到{area:392}。",
 
 	-- Step 27: The Disruption Ends
 	-- {npc:3438} Kreenig Snarlsnout
-	["On the way back to the Crossroads, the Razormane camp again: Geomancers and Defenders hold its eastern half; {npc:3438} walks among them."] = "",
+	["On the way back to the Crossroads, the Razormane camp again: Geomancers and Defenders hold its eastern half; {npc:3438} walks among them."] = "在返回十字路口的路上，再去一次鋼鬃營地：鋼鬃地卜師和鋼鬃防禦者佔據營地東半部；{npc:3438}在他們之間走動。",
 
 	-- Step 29: The Stagnant Oasis
-	["The oasis lies south-east of the Crossroads. Test the seeds at the bubbling fissure in the middle of the water."] = "",
+	["The oasis lies south-east of the Crossroads. Test the seeds at the bubbling fissure in the middle of the water."] = "綠洲在十字路口東南方。在水中央冒泡的裂縫測試種子。",
 
 	-- Step 30: Raptor Grounds
 	-- {area:1697} Raptor Grounds
@@ -116,7 +116,7 @@ return {
 	-- Step 32: Lushwater Oasis
 	-- {area:387} Lushwater Oasis
 	-- plural, as words: Oasis Snapjaws = {npc:3461} Oasis Snapjaw
-	["Oasis Snapjaws crowd the water of {area:387}, south-west of the Crossroads."] = "",
+	["Oasis Snapjaws crowd the water of {area:387}, south-west of the Crossroads."] = "綠洲鉗嘴龜擠滿了十字路口西南方{area:387}的水域。",
 
 	-- Step 34: Wenikee Boltbucket
 	-- {area:1703} Mor'shan Rampart
@@ -124,7 +124,7 @@ return {
 
 	-- Step 35: Nugget Slugs
 	-- plural, as words: Tool Buckets = {object:161752} Tool Bucket
-	["The Tool Buckets sit around the Venture Co. camp in the Sludge Fen, east of Wenikee."] = "",
+	["The Tool Buckets sit around the Venture Co. camp in the Sludge Fen, east of Wenikee."] = "工具籃放在維妮東邊、淤泥沼澤的風險投資公司營地周圍。",
 
 	-- Step 37: Witchwing Slayers
 	-- plural, as words: Witchwing Slayers = {npc:3278} Witchwing Slayer
@@ -136,7 +136,7 @@ return {
 	["grind on Witchwing Slayers at the {area:383}, {zone:1413}"] = "在{zone:1413}的{area:383}刷巫翼殺戮者",
 
 	-- Step 38: The Crossroads
-	["Back to the Crossroads; the next guide starts here."] = "",
+	["Back to the Crossroads; the next guide starts here."] = "返回十字路口；下一份指南從這裡開始。",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Back to the {area:380}"] = "返回{area:380}",

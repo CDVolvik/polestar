@@ -70,7 +70,7 @@ return {
 	["On the ride north to {area:392}, {area:720} lies off the {area:391} south of the town: wade over the sand bar shallows. {npc:6236} sends four challengers and then {npc:6238} (level 33) at you, one at a time."] = "En remontant vers {area:392}, {area:720} se trouve au large de {area:391}, au sud de la ville : traversez à gué les hauts-fonds du banc de sable. {npc:6236} vous envoie quatre adversaires puis {npc:6238} (niveau 33), un à la fois.",
 	-- {npc:6238} Big Will
 	["Defeat the challengers and {npc:6238}"] = "Vainquez les adversaires et {npc:6238}",
-	["Klannoc offers The Windwatcher next (1791): the Whirlwind weapon chain, with an elite at the end, is in the Warrior class guide Whirlwind Weapon."] = "",
+	["Klannoc offers The Windwatcher next (1791): the Whirlwind weapon chain, with an elite at the end, is in the Warrior class guide Whirlwind Weapon."] = "Klannoc propose ensuite La Vigie des vents (1791) : la suite de l'arme Tourbillon, avec un élite à la fin, se trouve dans le guide de classe Guerrier Arme Tourbillon.",
 
 	-- Step 18: Ratchet
 	-- {zone:1413} Barrens · {area:392} Ratchet · {npc:16227} Bragok · {area:35} Booty Bay
@@ -97,7 +97,7 @@ return {
 
 	-- Step 21: Booty Bay
 	-- {npc:2624} Gazban
-	["{npc:2624} swims off the north-west coast, on the northern loop"] = "",
+	["{npc:2624} swims off the north-west coast, on the northern loop"] = "{npc:2624} nage au large de la côte nord-ouest, lors de la boucle nord",
 
 	-- Step 22: Bloodsail pirates
 	["Bloodsail pirates"] = "Pirates de la Voile sanglante",
@@ -160,7 +160,7 @@ return {
 	["The north-west coast"] = "La côte nord-ouest",
 	-- {npc:2624} Gazban · {item:4034} Stone of the Tides
 	-- plural, as words: Giant Clams = {object:2744} Giant Clam
-	["Ride north-west from the mine to the bay on the north-west coast. The Giant Clams lie on its floor and hold the pearls; {npc:2624} swims among them and drops the {item:4034}."] = "",
+	["Ride north-west from the mine to the bay on the north-west coast. The Giant Clams lie on its floor and hold the pearls; {npc:2624} swims among them and drops the {item:4034}."] = "Chevauchez vers le nord-ouest depuis la mine jusqu'à la baie de la côte nord-ouest. Les Palourdes géantes reposent au fond et contiennent les perles ; {npc:2624} nage parmi elles et laisse tomber la {item:4034}.",
 
 	-- Step 36: Rebel Camp
 	-- {npc:217588} Arbor Tarantula

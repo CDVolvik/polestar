@@ -250,7 +250,7 @@ return {
 	-- Step 54: Taming the Beast
 	-- {item:15908} Taming Rod · {area:131} Kharanos
 	-- plural, as words: Large Crag Boars = {npc:1126} Large Crag Boar · Snow Leopards = {npc:1201} Snow Leopard · Ice Claw Bears = {npc:1196} Ice Claw Bear
-	["Each of Grif Wildheart's quests hands you a {item:15908}: use it on the beast he names, then bring the rod back to him at the {area:131} smithy. Large Crag Boars, Snow Leopards and Ice Claw Bears all roam the fields just south and east of {area:131}."] = "",
+	["Each of Grif Wildheart's quests hands you a {item:15908}: use it on the beast he names, then bring the rod back to him at the {area:131} smithy. Large Crag Boars, Snow Leopards and Ice Claw Bears all roam the fields just south and east of {area:131}."] = "Cada missão de Grif Selvacuore lhe dá um {item:15908}: use-o na fera que ele indicar e depois leve o bastão de volta a ele na ferraria de {area:131}. Rochetuscos Grandes, Leopardos da Neve e Ursos Garra de Gelo vagam pelos campos logo ao sul e a leste de {area:131}.",
 	-- {npc:1126} Large Crag Boar · {item:15908} Taming Rod
 	["{npc:1126}: tame it with the {item:15908}"] = "{npc:1126}: dome-o com o {item:15908}",
 	-- {npc:1201} Snow Leopard · {item:15908} Taming Rod
@@ -292,7 +292,7 @@ return {
 	-- Step 62: The Fire Spirit Stone
 	["The Fire Spirit Stone"] = "A Pedra do Espírito de Fogo",
 	-- {item:6636} Fire Sapta · {npc:5893} Minor Manifestation of Fire · {item:6655} Glowing Ember · {object:61934} Brazier of the Dormant Flame
-	["Braldir gives you the {item:6636}. Climb to the peak above his camp, drink the Sapta beside the Spirit Stone and defeat the {npc:5893}, then place its {item:6655} in the {object:61934}, atop the Shrine of Eternal Flame."] = "",
+	["Braldir gives you the {item:6636}. Climb to the peak above his camp, drink the Sapta beside the Spirit Stone and defeat the {npc:5893}, then place its {item:6655} in the {object:61934}, atop the Shrine of Eternal Flame."] = "Braldir lhe dá a {item:6636}. Suba ao pico acima do acampamento dele, beba a Sapta ao lado da Pedra Espiritual e derrote a {npc:5893}, depois coloque a {item:6655} dela no {object:61934}, no alto do Santuário da Chama Eterna.",
 	-- {item:6636} Fire Sapta
 	["{item:6636}, beside the Spirit Stone"] = "{item:6636}, ao lado da Pedra Espiritual",
 
@@ -369,7 +369,7 @@ return {
 
 	-- Step 77: Surena Caledon
 	-- {zone:1453} Stormwind · {area:87} Goldshire · {area:62} Brackwell Pumpkin Patch · {npc:881} Surena Caledon
-	["Leave {zone:1453} by the main gate, go south to {area:87} and east along the road to the {area:62}. {npc:881} (level 9) stands by its farmhouse."] = "",
+	["Leave {zone:1453} by the main gate, go south to {area:87} and east along the road to the {area:62}. {npc:881} (level 9) stands by its farmhouse."] = "Saia de {zone:1453} pelo portão principal, vá para o sul até {area:87} e para leste pela estrada até a {area:62}. {npc:881} (nível 9) fica junto à casa da fazenda.",
 
 	-- Step 78: The Binding
 	-- {item:6928} Bloodstone Choker · {object:2164} Slaughtered Lamb · {zone:1436} Westfall · {area:87} Goldshire
@@ -385,7 +385,4 @@ return {
 	["Leave {zone:1453} by the main gate. The {quest:1861} waterfall is south-west of the gates, on the way west to {zone:1436}: fill {item:7207} at its base."] = "Saia de {zone:1453} pelo portão principal. A cachoeira do {quest:1861} fica a sudoeste dos portões, no caminho para oeste até {zone:1436}: encha o {item:7207} na base dela.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Braldir gives you the {item:6636}. Climb to the peak above his camp, drink the Sapta beside the Spirit Stone and defeat the {npc:5893}, then place its {item:6655} in the {object:61934}, atop the Shrine of {object:148418}."] = "Braldir lhe dá a {item:6636}. Suba ao pico acima do acampamento dele, beba a Sapta ao lado da Pedra Espiritual e derrote a {npc:5893}, depois coloque a {item:6655} dela no {object:61934}, no alto do Santuário da {object:148418}.",
-	-- ["Each of {npc:1231}'s quests hands you a {item:15908}: use it on the beast he names, then bring the rod back to him at the {area:131} smithy. Large Crag Boars, Snow Leopards and Ice Claw Bears all roam the fields just south and east of {area:131}."] = "Cada missão de {npc:1231} lhe dá um {item:15908}: use-o na fera que ele indicar e depois leve o bastão de volta a ele na ferraria de {area:131}. Rochetuscos Grandes, Leopardos da Neve e Ursos Garra de Gelo vagam pelos campos logo ao sul e a leste de {area:131}.",
-	-- ["Leave {zone:1453} by the main gate, go south to {area:87} and east along the road to the {area:62}. {quest:1688} (level 9) stands by its farmhouse."] = "Saia de {zone:1453} pelo portão principal, vá para o sul até {area:87} e para leste pela estrada até a {area:62}. {quest:1688} (nível 9) fica junto à casa da fazenda.",
 }

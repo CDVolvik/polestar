@@ -250,7 +250,7 @@ return {
 	-- Step 54: Taming the Beast
 	-- {item:15908} Taming Rod · {area:131} Kharanos
 	-- plural, as words: Large Crag Boars = {npc:1126} Large Crag Boar · Snow Leopards = {npc:1201} Snow Leopard · Ice Claw Bears = {npc:1196} Ice Claw Bear
-	["Each of Grif Wildheart's quests hands you a {item:15908}: use it on the beast he names, then bring the rod back to him at the {area:131} smithy. Large Crag Boars, Snow Leopards and Ice Claw Bears all roam the fields just south and east of {area:131}."] = "",
+	["Each of Grif Wildheart's quests hands you a {item:15908}: use it on the beast he names, then bring the rod back to him at the {area:131} smithy. Large Crag Boars, Snow Leopards and Ice Claw Bears all roam the fields just south and east of {area:131}."] = "Cada misión de Grif Corazón Salvaje te da una {item:15908}: úsala en la bestia que indica y luego llévale la fusta a la herrería de {area:131}. Los Grandes jabalíes del risco, los Leopardos de la nieve y los Osos zarpahelada recorren los campos justo al sur y al este de {area:131}.",
 	-- {npc:1126} Large Crag Boar · {item:15908} Taming Rod
 	["{npc:1126}: tame it with the {item:15908}"] = "{npc:1126}: domestícalo con la {item:15908}",
 	-- {npc:1201} Snow Leopard · {item:15908} Taming Rod
@@ -292,7 +292,7 @@ return {
 	-- Step 62: The Fire Spirit Stone
 	["The Fire Spirit Stone"] = "La piedra del espíritu de fuego",
 	-- {item:6636} Fire Sapta · {npc:5893} Minor Manifestation of Fire · {item:6655} Glowing Ember · {object:61934} Brazier of the Dormant Flame
-	["Braldir gives you the {item:6636}. Climb to the peak above his camp, drink the Sapta beside the Spirit Stone and defeat the {npc:5893}, then place its {item:6655} in the {object:61934}, atop the Shrine of Eternal Flame."] = "",
+	["Braldir gives you the {item:6636}. Climb to the peak above his camp, drink the Sapta beside the Spirit Stone and defeat the {npc:5893}, then place its {item:6655} in the {object:61934}, atop the Shrine of Eternal Flame."] = "Braldir te da el {item:6636}. Sube a la cima sobre su campamento, bebe el sapta junto a la piedra de espíritu y derrota a la {npc:5893}; después coloca su {item:6655} en el {object:61934}, en lo alto del santuario de la Llama eterna.",
 	-- {item:6636} Fire Sapta
 	["{item:6636}, beside the Spirit Stone"] = "{item:6636}, junto a la piedra de espíritu",
 
@@ -369,7 +369,7 @@ return {
 
 	-- Step 77: Surena Caledon
 	-- {zone:1453} Stormwind · {area:87} Goldshire · {area:62} Brackwell Pumpkin Patch · {npc:881} Surena Caledon
-	["Leave {zone:1453} by the main gate, go south to {area:87} and east along the road to the {area:62}. {npc:881} (level 9) stands by its farmhouse."] = "",
+	["Leave {zone:1453} by the main gate, go south to {area:87} and east along the road to the {area:62}. {npc:881} (level 9) stands by its farmhouse."] = "Sal de {zone:1453} por la puerta principal, ve al sur hasta {area:87} y al este por el camino hasta {area:62}. {npc:881} (nivel 9) está junto a su granja.",
 
 	-- Step 78: The Binding
 	-- {item:6928} Bloodstone Choker · {object:2164} Slaughtered Lamb · {zone:1436} Westfall · {area:87} Goldshire

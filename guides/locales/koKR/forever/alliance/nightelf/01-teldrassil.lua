@@ -28,7 +28,7 @@ return {
 	-- {npc:3595} Shanda
 	["{npc:3595}, inside the tree"] = "나무 안의 {npc:3595}",
 	-- {quest:97979} The Goddess Provides · {spell:1259799} Elune's Light · {npc:3595} Shanda
-	["{quest:97979}: cast {spell:1259799} and Shadowmeld, then hand it back to {npc:3595}"] = "",
+	["{quest:97979}: cast {spell:1259799} and Shadowmeld, then hand it back to {npc:3595}"] = "{quest:97979}: {spell:1259799}와(과) 그림자 숨기를 시전한 뒤 {npc:3595}에게 완료하세요",
 	-- {npc:8583} Dirania Silvershine
 	["{npc:8583}, east of the tree"] = "나무 동쪽의 {npc:8583}",
 
@@ -190,7 +190,7 @@ return {
 
 	-- Step 31: The Oracle Glade
 	-- {area:264} Oracle Glade
-	["The {area:264}"] = "",
+	["The {area:264}"] = "{area:264}",
 	-- {object:6752} Strange Fronded Plant
 	["The moonwell is in the middle of the glade. The {object:6752} grows at its north end."] = "달샘은 숲 한가운데에 있습니다. {object:6752}은(는) 북쪽 끝에 자랍니다.",
 	-- {item:5623} Amethyst Phial
@@ -208,7 +208,7 @@ return {
 	-- Step 34: The named harpies
 	["The named harpies"] = "이름 있는 하피",
 	-- {npc:272034} Hatescreech · {npc:272044} Windmistress Gaedress · {npc:272046} Witchmother Arysa
-	["{npc:272034} and {npc:272044} fly just west of the moonwell, {npc:272046} further north."] = "",
+	["{npc:272034} and {npc:272044} fly just west of the moonwell, {npc:272046} further north."] = "{npc:272034}와(과) {npc:272044}은(는) 달샘 바로 서쪽에, {npc:272046}은(는) 더 북쪽에 날아다닙니다.",
 
 	-- Step 35: Sentinel Arynia again
 	["Sentinel Arynia again"] = "다시 파수꾼 아리니아 클라우드브레이크",
@@ -236,7 +236,7 @@ return {
 	-- Step 38: Lake Al'Ameth
 	-- {npc:2080} Denalan
 	-- plural, as words: Lasher Sproutlings = {npc:275703} Lasher Sproutling
-	["South-east of Dolanaar, to {npc:2080}. Lasher Sproutlings wander around him on the shore."] = "",
+	["South-east of Dolanaar, to {npc:2080}. Lasher Sproutlings wander around him on the shore."] = "돌라나르 남동쪽의 {npc:2080}에게 가세요. 덩굴손 묘목이 물가에서 그 주변을 돌아다닙니다.",
 	-- {npc:2080} Denalan · {quest:922} Rellian Greenspyre · {zone:1457} Darnassus
 	["{npc:2080}: {quest:922} in {zone:1457} takes it"] = "{npc:2080}: {zone:1457}의 {quest:922}에게 가져가세요",
 	-- {object:7510} Sprouted Frond
@@ -249,7 +249,7 @@ return {
 	-- Step 40: Taming the Beast
 	-- {item:15908} Taming Rod · {area:186} Dolanaar
 	-- plural, as words: Webwood Lurkers = {npc:1998} Webwood Lurker · Nightsaber Stalkers = {npc:2043} Nightsaber Stalker · Strigid Screechers = {npc:1996} Strigid Screecher
-	["Each of Dazalar's quests hands you a {item:15908}: use it on the beast he names, then bring the rod back to him in {area:186}. Webwood Lurkers creep around the village, Nightsaber Stalkers and Strigid Screechers roam the woods south of it."] = "",
+	["Each of Dazalar's quests hands you a {item:15908}: use it on the beast he names, then bring the rod back to him in {area:186}. Webwood Lurkers creep around the village, Nightsaber Stalkers and Strigid Screechers roam the woods south of it."] = "다잘라의 퀘스트마다 {item:15908}을(를) 줍니다. 그가 말한 야수에게 사용한 뒤 {area:186}의 그에게 막대를 가져가세요. 나무그물 늑대거미는 마을 주변을 기어 다니고, 긴발톱 흑호와 비명소리 스트리기드 올빼미는 마을 남쪽 숲을 돌아다닙니다.",
 	-- {npc:1998} Webwood Lurker · {item:15908} Taming Rod
 	["{npc:1998}: tame it with the {item:15908}"] = "{npc:1998}: {item:15908}(으)로 길들이세요",
 	-- {npc:2043} Nightsaber Stalker · {item:15908} Taming Rod
@@ -277,7 +277,7 @@ return {
 	-- {npc:7999} Tyrande Whisperwind · {npc:4092} Lariia
 	["{npc:7999}, above {npc:4092}"] = "{npc:4092} 위층의 {npc:7999}",
 	-- {npc:11401} Priestess Alathea
-	["{npc:11401}, in the Temple of the Moon: Starshards"] = "",
+	["{npc:11401}, in the Temple of the Moon: Starshards"] = "달의 신전의 {npc:11401}: 별조각",
 
 	-- Step 43: Rut'theran Village
 	-- {area:702} Rut'theran Village · {npc:3838} Vesprystus

@@ -229,7 +229,7 @@ return {
 
 	-- Step 45: The Bulwark
 	-- {zone:1458} Undercity · {zone:1420} Tirisfal Glades
-	["Leave the {zone:1458} and ride east along the road through {zone:1420} to the Bulwark, the Forsaken fort on the border."] = "",
+	["Leave the {zone:1458} and ride east along the road through {zone:1420} to the Bulwark, the Forsaken fort on the border."] = "離開{zone:1458}，沿著道路向東穿過{zone:1420}前往邊境上的被遺忘者要塞亡靈壁壘。",
 	-- {object:176092} Box of Incendiaries · {quest:5096} Scarlet Diversions · {quest:5401} Argent Dawn Commission
 	["Take a {object:176092} from the crate next to Derrington for {quest:5096}, done on the way back. Equip the {quest:5401}: Scourgestones only drop while you wear it."] = "從德靈頓旁邊的箱子拿一個{object:176092}，用於{quest:5096}，在回程時完成。裝備{quest:5401}：只有穿戴時才會掉落天譴石。",
 

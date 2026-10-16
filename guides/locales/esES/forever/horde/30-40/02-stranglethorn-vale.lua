@@ -128,7 +128,7 @@ return {
 
 	-- Step 30: The Vile Reef
 	-- {area:104} Vile Reef · {item:4094} Tablet Shard
-	["North-west of Grom'gol the {area:104} lies under the water off the coast. The {item:4094} rests on the sea floor by the sunken ruins; watch your breath and the murlocs."] = "",
+	["North-west of Grom'gol the {area:104} lies under the water off the coast. The {item:4094} rests on the sea floor by the sunken ruins; watch your breath and the murlocs."] = "Al noroeste de Campamento Grom'gol, {area:104} está bajo el agua, frente a la costa. {item:4094} reposa en el fondo del mar junto a las ruinas hundidas; vigila tu respiración y a los múrlocs.",
 
 	-- Step 31: Bloodscalp ruins
 	["Bloodscalp ruins"] = "Ruinas Cabellesangre",
@@ -145,7 +145,7 @@ return {
 	-- Step 34: Green Hills pages
 	["Green Hills pages"] = "Páginas de Las verdes colinas",
 	-- {item:2755} Green Hills of Stranglethorn
-	["Pages of The {item:2755} drop at about 1% each from the Bloodscalp and Skullsplitter trolls; keep every page you loot and look on the auction house for the rest. Barnil takes the chapters later in this guide."] = "",
+	["Pages of The {item:2755} drop at about 1% each from the Bloodscalp and Skullsplitter trolls; keep every page you loot and look on the auction house for the rest. Barnil takes the chapters later in this guide."] = "Las páginas de {item:2755} caen con un 1% aprox. cada una de los trols Cabellesangre y Machacacráneos; guarda cada página que consigas y busca el resto en la casa de subastas. Barnil Jarropetra recoge los capítulos más adelante en esta guía.",
 
 	-- Step 35: Shadowmaw panthers
 	["Shadowmaw panthers"] = "Panteras Faucesombría",
@@ -154,7 +154,7 @@ return {
 
 	-- Step 36: Green Hills pages
 	-- {item:2755} Green Hills of Stranglethorn
-	["Pages of The {item:2755} drop at about 1% each from the Bloodscalp and Skullsplitter trolls; take what drops and check the Auction House for the rest."] = "",
+	["Pages of The {item:2755} drop at about 1% each from the Bloodscalp and Skullsplitter trolls; take what drops and check the Auction House for the rest."] = "Las páginas de {item:2755} caen con un 1% aprox. cada una de los trols Cabellesangre y Machacacráneos; recoge lo que caiga y busca el resto en la casa de subastas.",
 
 	-- Step 39: Jungle Stalkers
 	-- plural, as words: Jungle Stalkers = {npc:687} Jungle Stalker

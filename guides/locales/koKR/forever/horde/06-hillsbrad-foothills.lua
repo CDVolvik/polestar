@@ -17,16 +17,16 @@ return {
 
 	-- Step 2: Serge Hinott
 	-- {npc:2391} Serge Hinott · {area:272} Tarren Mill
-	["Only if Gallywix fell in the Barrens (Mission: Possible But Not Probable): {npc:2391} stands in {area:272}. Wait beside him while he brews the cure, then take your reward: Poisons."] = "",
+	["Only if Gallywix fell in the Barrens (Mission: Possible But Not Probable): {npc:2391} stands in {area:272}. Wait beside him while he brews the cure, then take your reward: Poisons."] = "불모의 땅에서 갤리윅스를 처치했을 때만(미션 임파서블: 잘하면 가능): {npc:2391}은(는) {area:272}에 있습니다. 해독제를 만드는 동안 옆에서 기다린 뒤 보상을 받으세요: 독.",
 	-- {npc:2391} Serge Hinott
-	["{npc:2391}: Poisons"] = "",
-	["No Gallywix yet? The Class guide Poisons (Horde) runs the chain from Shenthul again, with a group for Gallywix."] = "",
+	["{npc:2391}: Poisons"] = "{npc:2391}: 독",
+	["No Gallywix yet? The Class guide Poisons (Horde) runs the chain from Shenthul again, with a group for Gallywix."] = "아직 갤리윅스를 처치하지 않았나요? 직업 가이드 독 (호드)에서 셴툴부터 연계 퀘스트를 다시 진행하며, 갤리윅스는 파티와 함께 처치합니다.",
 
 	-- Step 3: Bears, creepers and lions
 	["Bears, creepers and lions"] = "곰, 거미, 사자",
 	-- {item:3477} Creeper Ichor
 	-- plural, as words: Gray Bears = {npc:2351} Gray Bear · Forest Moss Creepers = {npc:2350} Forest Moss Creeper · Starving Mountain Lions = {npc:2384} Starving Mountain Lion
-	["West of Tarren Mill, Gray Bears, Forest Moss Creepers and Starving Mountain Lions roam the hills on the way down to the farms. The creepers drop {item:3477} rarely; you need only one."] = "",
+	["West of Tarren Mill, Gray Bears, Forest Moss Creepers and Starving Mountain Lions roam the hills on the way down to the farms. The creepers drop {item:3477} rarely; you need only one."] = "타렌 밀농장 서쪽, 농장으로 내려가는 길의 언덕에 회색곰, 숲이끼거미, 굶주린 산사자가 돌아다닙니다. 숲이끼거미는 {item:3477}을(를) 드물게 떨어뜨리며, 하나만 있으면 됩니다.",
 
 	-- Step 4: Hillsbrad Fields
 	-- {area:287} Hillsbrad · {npc:232} Farmer Ray · {npc:2403} Farmer Getz · {npc:2451} Farmer Kalaba
@@ -74,7 +74,7 @@ return {
 	-- Step 14: The smithy
 	["The smithy"] = "대장간",
 	-- {area:287} Hillsbrad · {npc:2404} Blacksmith Verringtan · {object:1736} Shipment of Iron · {npc:2449} Citizen Wilkes
-	["The smithy stands in the middle of {area:287} town. {npc:2404} and his apprentices work at the forge; the {object:1736} is stacked beside it. {npc:2449} walks the street north of it."] = "",
+	["The smithy stands in the middle of {area:287} town. {npc:2404} and his apprentices work at the forge; the {object:1736} is stacked beside it. {npc:2449} walks the street north of it."] = "대장간은 {area:287} 마을 한가운데에 있습니다. {npc:2404}와(과) 견습생들이 화로에서 일하고, {object:1736}은(는) 그 옆에 쌓여 있습니다. {npc:2449}은(는) 그 북쪽 거리를 걸어 다닙니다.",
 
 	-- Step 16: Town hall
 	["Town hall"] = "마을 회관",
@@ -117,7 +117,7 @@ return {
 
 	-- Step 26: Great Lift
 	-- {npc:12576} Grish Longrunner · {area:1718} Great Lift
-	["South-west of Bael Modan, {npc:12576} waits at the top of the {area:1718}."] = "",
+	["South-west of Bael Modan, {npc:12576} waits at the top of the {area:1718}."] = "바엘 모단 남서쪽, {area:1718} 꼭대기에서 {npc:12576}이(가) 기다립니다.",
 
 	-- Step 27: Merchant Coast
 	-- {area:378} Camp Taurajo · {area:392} Ratchet · {quest:874} Mahren Skyseer

@@ -156,7 +156,7 @@ return {
 
 	-- Step 34: Homing Robot OOX-22/FE
 	-- {area:1105} Feral Scar Vale · {area:35} Booty Bay
-	["Only with the distress beacon: the robot sits in a small cave on the north side of {area:1105}. Escort it to the dock on the Forgotten Coast; yetis and gorillas ambush you on the way. Its reward waits in {area:35} for a later visit."] = "",
+	["Only with the distress beacon: the robot sits in a small cave on the north side of {area:1105}. Escort it to the dock on the Forgotten Coast; yetis and gorillas ambush you on the way. Its reward waits in {area:35} for a later visit."] = "Só com o sinalizador de socorro: o robô fica numa pequena caverna no lado norte de {area:1105}. Escolte-o até o cais na Costa Esquecida; yetis e gorilas emboscam você no caminho. A recompensa espera em {area:35} para uma visita futura.",
 
 	-- Step 35: Hearth to Camp Mojache
 	-- {area:1099} Camp Mojache
@@ -181,5 +181,4 @@ return {
 	["Thysta, the flight master, stands just east of the zeppelin tower. Fly to {area:75}: the next guide starts there."] = "Thysta, a mestre de voo, fica logo a leste da torre do zepelim. Voe para {area:75}: o próximo guia começa lá.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Only with the distress beacon: the robot sits in a small cave on the north side of {area:1105}. Escort it to the dock on the {area:1108}; yetis and gorillas ambush you on the way. Its reward waits in {area:35} for a later visit."] = "Só com o sinalizador de socorro: o robô fica numa pequena caverna no lado norte de {area:1105}. Escolte-o até o cais em {area:1108}; yetis e gorilas emboscam você no caminho. A recompensa espera em {area:35} para uma visita futura.",
 }

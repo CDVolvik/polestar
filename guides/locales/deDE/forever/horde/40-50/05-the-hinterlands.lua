@@ -56,7 +56,7 @@ return {
 	-- Step 10: Gilveradin's camp
 	["Gilveradin's camp"] = "Gilveradins Lager",
 	-- {area:272} Tarren Mill · {npc:7801} Gilveradin Sunchaser · {area:350} Quel'Danil Lodge
-	["Ride north-east from {area:272} into the Hinterlands and east along the road; {npc:7801} camps on the hill south of the elves' {area:350}."] = "",
+	["Ride north-east from {area:272} into the Hinterlands and east along the road; {npc:7801} camps on the hill south of the elves' {area:350}."] = "Reite von {area:272} nach Nordosten ins Hinterland und auf der Straße nach Osten; {npc:7801} lagert auf dem Hügel südlich der {area:350} der Elfen.",
 
 	-- Step 11: Highvale
 	["Highvale"] = "Hochtal",
@@ -75,7 +75,7 @@ return {
 	["South-west again, the exile hides by the ruins of {area:353}."] = "Wieder nach Südwesten: Der Verbannte versteckt sich bei den Ruinen von {area:353}.",
 
 	-- Step 15: Revantusk Village
-	["Follow the roads east across the Hinterlands to the troll village on the eastern coast."] = "",
+	["Follow the roads east across the Hinterlands to the troll village on the eastern coast."] = "Folge den Straßen nach Osten durch das Hinterland zum Trolldorf an der Ostküste.",
 
 	-- Step 16: Saltwater Snapjaws
 	-- plural, as words: Saltwater Snapjaws = {npc:2505} Saltwater Snapjaw
@@ -138,7 +138,7 @@ return {
 
 	-- Step 27: Jintha'Alor
 	-- {area:354} Jintha'Alor · {npc:14757} Elder Torntusk
-	["Huntsman Malkhor's skull lies on a pile below the Vilebranch ruins, his bones on a pile at the foot of {area:354}. The Vessels of Tainted Blood sit on the lower terraces, and {npc:14757} is held at the top. Keep to the paths: the trolls inside are elite."] = "",
+	["Huntsman Malkhor's skull lies on a pile below the Vilebranch ruins, his bones on a pile at the foot of {area:354}. The Vessels of Tainted Blood sit on the lower terraces, and {npc:14757} is held at the top. Keep to the paths: the trolls inside are elite."] = "Malkors Schädel liegt auf einem Haufen unterhalb der Ruinen der Vilebranch, Malkors Knochen auf einem Haufen am Fuß von {area:354}. Die Gefäße mit besudelten Blut stehen auf den unteren Terrassen, und {npc:14757} wird oben festgehalten. Bleib auf den Wegen: Die Trolle drinnen sind Elite.",
 	-- {npc:14757} Elder Torntusk · {area:354} Jintha'Alor
 	["{npc:14757}, at the top of {area:354}"] = "{npc:14757}, oben in {area:354}",
 	-- {area:355} Altar of Zul

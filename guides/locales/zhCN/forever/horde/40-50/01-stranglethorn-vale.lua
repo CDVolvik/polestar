@@ -35,7 +35,7 @@ return {
 	-- {area:43} Wild Shore
 	["The {area:43}"] = "{area:43}",
 	-- {area:43} Wild Shore
-	["South of Booty Bay the Bloodsail swashbucklers camp on the {area:43}; the charts and the orders lie in their tents. Any Bloodsail can carry snuff and Dizzy's eye, so keep killing until you have both."] = "",
+	["South of Booty Bay the Bloodsail swashbucklers camp on the {area:43}; the charts and the orders lie in their tents. Any Bloodsail can carry snuff and Dizzy's eye, so keep killing until you have both."] = "在藏宝海湾南边，血帆流氓在{area:43}扎营；血帆海图和血帆计划书就在他们的帐篷里。任何血帆海盗都可能携带鼻烟和迪兹的眼睛，所以一直杀到两样都拿到为止。",
 
 	-- Step 8: The Bloodsail ships
 	["The Bloodsail ships"] = "血帆海盗船",
@@ -167,7 +167,7 @@ return {
 
 	-- Step 37: The Harborage
 	-- {area:657} Harborage
-	["The {area:657}"] = "",
+	["The {area:657}"] = "{area:657}",
 	-- {area:657} Harborage · {zone:1430} Deadwind Pass
 	["Ride west along the road to the draenei camp at the {area:657}, near the way in from {zone:1430}."] = "沿道路向西骑往{area:657}的德莱尼营地，靠近{zone:1430}的入口。",
 

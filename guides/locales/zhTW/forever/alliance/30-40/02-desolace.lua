@@ -23,7 +23,7 @@ return {
 
 	-- Step 4: The Talondeep Path
 	-- {area:1276} Talondeep Path
-	["The {area:1276}"] = "",
+	["The {area:1276}"] = "{area:1276}",
 	-- {area:415} Astranaar · {area:1276} Talondeep Path
 	["From {area:415} head south-west to the {area:1276}, a tunnel through the mountains into Stonetalon."] = "從{area:415}向西南前往{area:1276}，這是一條穿過山脈通往石爪山脈的隧道。",
 
@@ -46,7 +46,7 @@ return {
 
 	-- Step 11: Dalinda Malem
 	-- {area:608} Nijel's Point
-	["Dalinda hides inside the Burning Blade's fortress south-west of {area:608}."] = "",
+	["Dalinda hides inside the Burning Blade's fortress south-west of {area:608}."] = "黛琳達躲在{area:608}西南方火刃的要塞裡。",
 
 	-- Step 12: Tyranis and the Seer
 	["Tyranis and the Seer"] = "泰拉尼斯與先知",
@@ -55,7 +55,7 @@ return {
 
 	-- Step 13: Escort Dalinda
 	["Escort Dalinda"] = "護送黛琳達",
-	["Out of Thunder Axe Fortress"] = "",
+	["Out of Thunder Axe Fortress"] = "離開雷斧堡壘",
 	-- {area:608} Nijel's Point
 	["Lead Dalinda out of the fortress; she walks off once you are clear of it. Vahlarriel takes the turn-in at {area:608} at the end of the guide."] = "帶黛琳達走出要塞；離開要塞後她就會自行離去。指南結尾時在{area:608}向瓦拉里爾繳交。",
 

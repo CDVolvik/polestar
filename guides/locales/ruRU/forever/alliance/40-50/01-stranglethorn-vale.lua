@@ -70,7 +70,7 @@ return {
 	["On the ride north to {area:392}, {area:720} lies off the {area:391} south of the town: wade over the sand bar shallows. {npc:6236} sends four challengers and then {npc:6238} (level 33) at you, one at a time."] = "По пути на север в {area:392}: {area:720} лежит у берега ({area:391}) к югу от города, перейдите вброд по отмели. {npc:6236} по одному выпускает против вас четырех соперников, а затем – {npc:6238} (33-й уровень).",
 	-- {npc:6238} Big Will
 	["Defeat the challengers and {npc:6238}"] = "Победите соперников и NPC {npc:6238}",
-	["Klannoc offers The Windwatcher next (1791): the Whirlwind weapon chain, with an elite at the end, is in the Warrior class guide Whirlwind Weapon."] = "",
+	["Klannoc offers The Windwatcher next (1791): the Whirlwind weapon chain, with an elite at the end, is in the Warrior class guide Whirlwind Weapon."] = "Затем Кланнок предлагает задание «Ветростраж» (1791): цепочка оружия Вихря с элитным противником в конце описана в классовом гайде воина «Оружие Смерча».",
 
 	-- Step 18: Ratchet
 	-- {zone:1413} Barrens · {area:392} Ratchet · {npc:16227} Bragok · {area:35} Booty Bay
@@ -97,7 +97,7 @@ return {
 
 	-- Step 21: Booty Bay
 	-- {npc:2624} Gazban
-	["{npc:2624} swims off the north-west coast, on the northern loop"] = "",
+	["{npc:2624} swims off the north-west coast, on the northern loop"] = "{npc:2624} плавает у северо-западного побережья, на северном круге",
 
 	-- Step 22: Bloodsail pirates
 	["Bloodsail pirates"] = "Пираты из шайки Кровавого Паруса",
@@ -160,7 +160,7 @@ return {
 	["The north-west coast"] = "Северо-западное побережье",
 	-- {npc:2624} Gazban · {item:4034} Stone of the Tides
 	-- plural, as words: Giant Clams = {object:2744} Giant Clam
-	["Ride north-west from the mine to the bay on the north-west coast. The Giant Clams lie on its floor and hold the pearls; {npc:2624} swims among them and drops the {item:4034}."] = "",
+	["Ride north-west from the mine to the bay on the north-west coast. The Giant Clams lie on its floor and hold the pearls; {npc:2624} swims among them and drops the {item:4034}."] = "Езжайте от шахты на северо-запад к заливу на северо-западном побережье. На его дне лежат гигантские моллюски с жемчугом; среди них плавает {npc:2624}, с него падает {item:4034}.",
 
 	-- Step 36: Rebel Camp
 	-- {npc:217588} Arbor Tarantula

@@ -23,7 +23,7 @@ return {
 	-- Step 3: The four elements
 	["The four elements"] = "四種元素",
 	-- {item:7069} Elemental Air
-	["One each of {item:7069}, Fire, Earth and Water. The Exiles of Arathi Highlands drop them, one element each, about one kill in ten: Thundering (air), Burning (fire), Rumbling (earth) and Cresting (water). Or buy them at the auction house."] = "",
+	["One each of {item:7069}, Fire, Earth and Water. The Exiles of Arathi Highlands drop them, one element each, about one kill in ten: Thundering (air), Burning (fire), Rumbling (earth) and Cresting (water). Or buy them at the auction house."] = "{item:7069}、元素火焰、元素大地和元素之水各一個。阿拉希高地的流亡者會掉落，每種流亡者掉落一種元素，大約每十次擊殺掉一個：雷霆流亡者（空氣）、燃燒流亡者（火焰）、隆隆流亡者（大地）和浪潮流亡者（水）。或者在拍賣場購買。",
 	-- {item:7069} Elemental Air
 	-- plural, as words: Thundering Exiles = {npc:2762} Thundering Exile
 	["{item:7069}: Thundering Exiles"] = "{item:7069}：雷霆流放者",

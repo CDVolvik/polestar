@@ -55,7 +55,7 @@ return {
 	["Highland Striders roam the hills all around {area:321}; both they and the Thrashers further west drop the eyes."] = "줄무늬 고원랩터는 {area:321} 주변 언덕 곳곳을 돌아다닙니다. 이들과 더 서쪽의 외뿔 고원랩터 모두 눈알을 떨어뜨립니다.",
 
 	-- Step 11: Drywhisker Gorge
-	["North-east of Hammerfall the Drywhisker kobolds mine the gorge; the Kobolds at the mouth and the Diggers and Surveyors deeper in all drop the Motes of Myzrael."] = "",
+	["North-east of Hammerfall the Drywhisker kobolds mine the gorge; the Kobolds at the mouth and the Diggers and Surveyors deeper in all drop the Motes of Myzrael."] = "해머폴 북동쪽 골짜기에서 마른수염 코볼트가 채굴하고 있습니다. 입구의 코볼트와 안쪽의 채굴꾼, 흙점쟁이 모두 미즈라엘의 결정 파편을 떨어뜨립니다.",
 
 	-- Step 12: Iridescent Shards
 	-- {object:2701} Iridescent Shards
@@ -138,7 +138,7 @@ return {
 
 	-- Step 30: The Dustbowl
 	-- {area:340} Kargath
-	["Ride west along the road; Lotwil's camp sits in the Dustbowl halfway to {area:340}."] = "",
+	["Ride west along the road; Lotwil's camp sits in the Dustbowl halfway to {area:340}."] = "길을 따라 서쪽으로 가세요. 로트윌의 야영지는 {area:340}(으)로 가는 중간쯤, 먼지받이에 있습니다.",
 
 	-- Step 31: Kargath
 	-- {area:340} Kargath
@@ -156,12 +156,12 @@ return {
 	-- plural, as words: Rock Elementals = {npc:92} Rock Elemental
 	["Rock Elementals"] = "바위 정령",
 	-- plural, as words: Rock Elementals = {npc:92} Rock Elemental
-	["The bigger Rock Elementals stand on the slopes north-west of the Dustbowl; each one drops a slab."] = "",
+	["The bigger Rock Elementals stand on the slopes north-west of the Dustbowl; each one drops a slab."] = "더 큰 바위 정령은 먼지받이 북서쪽 비탈에 서 있습니다. 각각 석판을 떨어뜨립니다.",
 
 	-- Step 36: Coyotes and buzzards
 	["Coyotes and buzzards"] = "코요테와 대머리수리",
 	-- plural, as words: Elder Crag Coyotes = {npc:2729} Elder Crag Coyote · Giant Buzzards = {npc:2831} Giant Buzzard
-	["The Elder Crag Coyotes and Giant Buzzards roam the basin south of the Dustbowl. Coyotes drop both the jawbones and the fangs; only the buzzards drop wings and gizzards."] = "",
+	["The Elder Crag Coyotes and Giant Buzzards roam the basin south of the Dustbowl. Coyotes drop both the jawbones and the fangs; only the buzzards drop wings and gizzards."] = "덩치큰 바위산코요테와 거대한 대머리수리는 먼지받이 남쪽 분지를 돌아다닙니다. 코요테는 턱뼈와 송곳니를 모두 떨어뜨리고, 날개와 모래주머니는 대머리수리만 떨어뜨립니다.",
 
 	-- Step 37: Greater Rock Elementals
 	-- plural, as words: Greater Rock Elementals = {npc:2736} Greater Rock Elemental
@@ -214,7 +214,7 @@ return {
 
 	-- Step 50: The Crossroads
 	-- {area:380} Crossroads
-	["The {area:380}"] = "",
+	["The {area:380}"] = "{area:380}",
 
 	-- Step 51: Regthar Deathgate
 	-- {area:380} Crossroads · {area:386} Forgotten Pools

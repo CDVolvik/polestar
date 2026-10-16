@@ -229,7 +229,7 @@ return {
 
 	-- Step 45: The Bulwark
 	-- {zone:1458} Undercity · {zone:1420} Tirisfal Glades
-	["Leave the {zone:1458} and ride east along the road through {zone:1420} to the Bulwark, the Forsaken fort on the border."] = "",
+	["Leave the {zone:1458} and ride east along the road through {zone:1420} to the Bulwark, the Forsaken fort on the border."] = "Saia de {zone:1458} e siga para o leste pela estrada através de {zone:1420} até o Baluarte, o forte dos Renegados na fronteira.",
 	-- {object:176092} Box of Incendiaries · {quest:5096} Scarlet Diversions · {quest:5401} Argent Dawn Commission
 	["Take a {object:176092} from the crate next to Derrington for {quest:5096}, done on the way back. Equip the {quest:5401}: Scourgestones only drop while you wear it."] = "Pegue {object:176092} no caixote ao lado de Arcabuz para {quest:5096}, feita na volta. Equipe {quest:5401}: Pedras do Flagelo só caem enquanto você a usa.",
 
@@ -280,5 +280,4 @@ return {
 	["The next guide starts here, at the chapel's flight master."] = "O próximo guia começa aqui, no mestre de voo da capela.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Leave the {zone:1458} and ride east along the road through {zone:1420} to the {area:152}, the Forsaken fort on the border."] = "Saia de {zone:1458} e siga para o leste pela estrada através de {zone:1420} até {area:152}, o forte dos Renegados na fronteira.",
 }

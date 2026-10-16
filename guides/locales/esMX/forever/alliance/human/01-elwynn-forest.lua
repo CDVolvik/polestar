@@ -121,14 +121,14 @@ return {
 	-- Step 24: The Fargodeep Mine
 	-- {npc:248464} Nimsy
 	-- plural, as words: Kobold Miners = {npc:40} Kobold Miner
-	["The mine is west of the vineyards. Kobold Miners and Tunnelers fill both levels; {npc:248464}, a named kobold, holds the picture book in the lower tunnels. {npc:248464} is elite: grouping up is advised."] = "",
+	["The mine is west of the vineyards. Kobold Miners and Tunnelers fill both levels; {npc:248464}, a named kobold, holds the picture book in the lower tunnels. {npc:248464} is elite: grouping up is advised."] = "La mina está al oeste de los viñedos. Los Mineros kóbold ({npc:40}) y los Tuneladores kóbold llenan ambos niveles; {npc:248464}, un kóbold con nombre, tiene el libro ilustrado en los túneles inferiores. {npc:248464} es de élite: se recomienda ir en grupo.",
 	["Walk through the mine"] = "Recorre la mina",
 	-- plural, as words: Large Candles = {item:772} Large Candle
 	["Large Candles"] = "Velas grandes",
 	-- plural, as words: Lost Books = {item:248001} Lost Book · Kobold Miners = {npc:40} Kobold Miner
 	["Lost Books: Kobold Miners and Tunnelers"] = "Libros perdidos: Mineros kóbold y Tuneladores kóbold",
 	-- {npc:248464} Nimsy
-	["Fun with Elementals: {npc:248464}"] = "",
+	["Fun with Elementals: {npc:248464}"] = "Diversión con elementales: {npc:248464}",
 
 	-- Step 25: Bait ingredients
 	["Bait ingredients"] = "Ingredientes para el cebo",
@@ -196,10 +196,10 @@ return {
 
 	-- Step 38: Downstream and Princess
 	-- {quest:91733} Downstream · {npc:330} Princess
-	["{quest:91733} and {npc:330}"] = "",
+	["{quest:91733} and {npc:330}"] = "{quest:91733} y {npc:330}",
 	-- {item:247813} Waterlogged Saw · {npc:330} Princess · {area:62} Brackwell Pumpkin Patch · {npc:390} Porcine Entourage
 	-- plural, as words: Prowlers = {npc:118} Prowler · Young Forest Bears = {npc:822} Young Forest Bear
-	["The {item:247813}, Axe and Toolbox lie in the river south of the bridge. {npc:330}, a big boar, roots in the {area:62} west of the river with her {npc:390}: pull the piglets away first. Kill Prowlers and Young Forest Bears on the way."] = "",
+	["The {item:247813}, Axe and Toolbox lie in the river south of the bridge. {npc:330}, a big boar, roots in the {area:62} west of the river with her {npc:390}: pull the piglets away first. Kill Prowlers and Young Forest Bears on the way."] = "{item:247813}, el hacha y la caja de herramientas están en el río al sur del puente. {npc:330}, una jabalina grande, hoza en {area:62}, al oeste del río, con su {npc:390}: aleja primero a los lechones. Mata Merodeadores ({npc:118}) y Osos del bosque jóvenes ({npc:822}) por el camino.",
 
 	-- Step 40: The Eastvale Logging Camp
 	-- {area:88} Eastvale Logging Camp
@@ -327,7 +327,7 @@ return {
 
 	-- Step 67: Surena Caledon
 	-- {area:87} Goldshire · {area:62} Brackwell Pumpkin Patch · {npc:881} Surena Caledon
-	["Ride back out through {area:87} and east along the road to the {area:62}. {npc:881} (level 9) stands by its farmhouse."] = "",
+	["Ride back out through {area:87} and east along the road to the {area:62}. {npc:881} (level 9) stands by its farmhouse."] = "Cabalga de vuelta por {area:87} y hacia el este por el camino hasta {area:62}. {npc:881} (nivel 9) está junto a la casa de la granja.",
 
 	-- Step 68: The Binding
 	-- {item:6928} Bloodstone Choker · {object:2164} Slaughtered Lamb

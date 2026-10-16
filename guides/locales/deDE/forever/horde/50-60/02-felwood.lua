@@ -101,7 +101,7 @@ return {
 
 	-- Step 24: The Bulwark
 	-- {area:152} Bulwark
-	["The {area:152}"] = "",
+	["The {area:152}"] = "{area:152}",
 	-- {area:152} Bulwark
 	["Ride south-west past Felstone Farm and follow the road west back to the {area:152}."] = "Reite nach Südwesten am Teufelssteinhof vorbei und folge der Straße nach Westen zurück zum {area:152}.",
 	["Derrington's watchtowers, Vandis' cauldron and Mickey's barrel are done on a later visit: keep them."] = "Derringtons Wachtürme, Vandis' Kessel und Mickeys Fass erledigst du bei einem späteren Besuch: Behalte sie.",
@@ -169,7 +169,7 @@ return {
 
 	-- Step 39: Shatter Scar Vale
 	-- plural, as words: Entropic Beasts = {npc:9878} Entropic Beast
-	["East of Bloodvenom Post, the cratered vale where the Entropic Beasts and Horrors roam. Kill two of each, then walk to each of the three fel-water craters."] = "",
+	["East of Bloodvenom Post, the cratered vale where the Entropic Beasts and Horrors roam. Kill two of each, then walk to each of the three fel-water craters."] = "Östlich vom Blutgiftposten liegt das kraterübersäte Tal, wo die Entropischen Bestien und Schrecken umherstreifen. Töte je zwei davon und geh dann zu jedem der drei Krater mit Teufelswasser.",
 	["Southern crater"] = "Südlicher Krater",
 	["Western crater"] = "Westlicher Krater",
 	["Northern crater"] = "Nördlicher Krater",

@@ -70,7 +70,7 @@ return {
 	["On the ride north to {area:392}, {area:720} lies off the {area:391} south of the town: wade over the sand bar shallows. {npc:6236} sends four challengers and then {npc:6238} (level 33) at you, one at a time."] = "{area:392}(으)로 북쪽으로 가는 길에, {area:720}은(는) 마을 남쪽 {area:391} 앞바다에 있습니다. 모래톱 얕은 물을 걸어서 건너가세요. {npc:6236}이(가) 도전자 넷을, 이어서 {npc:6238}(33레벨)을(를) 하나씩 보냅니다.",
 	-- {npc:6238} Big Will
 	["Defeat the challengers and {npc:6238}"] = "도전자들과 {npc:6238} 물리치기",
-	["Klannoc offers The Windwatcher next (1791): the Whirlwind weapon chain, with an elite at the end, is in the Warrior class guide Whirlwind Weapon."] = "",
+	["Klannoc offers The Windwatcher next (1791): the Whirlwind weapon chain, with an elite at the end, is in the Warrior class guide Whirlwind Weapon."] = "클라녹은 다음으로 바람의감시자(1791)를 줍니다. 끝에 정예가 나오는 소용돌이 무기 퀘스트 연계는 전사 직업 가이드 소용돌이 무기에 있습니다.",
 
 	-- Step 18: Ratchet
 	-- {zone:1413} Barrens · {area:392} Ratchet · {npc:16227} Bragok · {area:35} Booty Bay
@@ -97,7 +97,7 @@ return {
 
 	-- Step 21: Booty Bay
 	-- {npc:2624} Gazban
-	["{npc:2624} swims off the north-west coast, on the northern loop"] = "",
+	["{npc:2624} swims off the north-west coast, on the northern loop"] = "{npc:2624}은(는) 북쪽 순환 경로 중 북서쪽 해안 앞바다에서 헤엄칩니다",
 
 	-- Step 22: Bloodsail pirates
 	["Bloodsail pirates"] = "붉은해적단 해적",
@@ -160,7 +160,7 @@ return {
 	["The north-west coast"] = "북서쪽 해안",
 	-- {npc:2624} Gazban · {item:4034} Stone of the Tides
 	-- plural, as words: Giant Clams = {object:2744} Giant Clam
-	["Ride north-west from the mine to the bay on the north-west coast. The Giant Clams lie on its floor and hold the pearls; {npc:2624} swims among them and drops the {item:4034}."] = "",
+	["Ride north-west from the mine to the bay on the north-west coast. The Giant Clams lie on its floor and hold the pearls; {npc:2624} swims among them and drops the {item:4034}."] = "광산에서 북서쪽으로 북서 해안의 만까지 가세요. 바닥에 있는 거대한 대합에 진주가 들어 있습니다. {npc:2624}이(가) 그 사이를 헤엄치며 {item:4034}을(를) 떨어뜨립니다.",
 
 	-- Step 36: Rebel Camp
 	-- {npc:217588} Arbor Tarantula

@@ -101,7 +101,7 @@ return {
 
 	-- Step 24: The Bulwark
 	-- {area:152} Bulwark
-	["The {area:152}"] = "",
+	["The {area:152}"] = "{area:152}",
 	-- {area:152} Bulwark
 	["Ride south-west past Felstone Farm and follow the road west back to the {area:152}."] = "Езжайте на юго-запад мимо фермы Фелстоунов и по дороге на запад обратно сюда: {area:152}.",
 	["Derrington's watchtowers, Vandis' cauldron and Mickey's barrel are done on a later visit: keep them."] = "Сторожевые башни Деррингтона, котел Вандис и бочка Микки – в следующий визит: сохраните эти задания.",
@@ -169,7 +169,7 @@ return {
 
 	-- Step 39: Shatter Scar Vale
 	-- plural, as words: Entropic Beasts = {npc:9878} Entropic Beast
-	["East of Bloodvenom Post, the cratered vale where the Entropic Beasts and Horrors roam. Kill two of each, then walk to each of the three fel-water craters."] = "",
+	["East of Bloodvenom Post, the cratered vale where the Entropic Beasts and Horrors roam. Kill two of each, then walk to each of the three fel-water craters."] = "К востоку от Заставы Отравленной Крови – долина с кратерами, где бродят энтропические звери и ужасы. Убейте по два каждого, затем подойдите к каждому из трех кратеров с водой Скверны.",
 	["Southern crater"] = "Южный кратер",
 	["Western crater"] = "Западный кратер",
 	["Northern crater"] = "Северный кратер",

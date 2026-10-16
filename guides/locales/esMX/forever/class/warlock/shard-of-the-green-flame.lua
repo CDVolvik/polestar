@@ -24,7 +24,7 @@ return {
 
 	-- Step 4: The Dark Portal
 	-- {zone:1419} Blasted Lands
-	["The Felguard Sentries around the Dark Portal, in southern {zone:1419}, carry its essence."] = "",
+	["The Felguard Sentries around the Dark Portal, in southern {zone:1419}, carry its essence."] = "Los Avizores guardia vil alrededor de El Portal Oscuro, en el sur de {zone:1419}, llevan su esencia.",
 
 	-- Step 6: Kroshius
 	-- {npc:14467} Kroshius · {area:1766} Shatter Scar Vale · {item:18626} Fel Fire

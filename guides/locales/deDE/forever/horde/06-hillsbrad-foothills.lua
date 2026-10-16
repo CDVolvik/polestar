@@ -17,16 +17,16 @@ return {
 
 	-- Step 2: Serge Hinott
 	-- {npc:2391} Serge Hinott · {area:272} Tarren Mill
-	["Only if Gallywix fell in the Barrens (Mission: Possible But Not Probable): {npc:2391} stands in {area:272}. Wait beside him while he brews the cure, then take your reward: Poisons."] = "",
+	["Only if Gallywix fell in the Barrens (Mission: Possible But Not Probable): {npc:2391} stands in {area:272}. Wait beside him while he brews the cure, then take your reward: Poisons."] = "Nur wenn Gallywix im Brachland gefallen ist (Mission: möglich, aber nicht sehr wahrscheinlich): {npc:2391} steht in {area:272}. Warte bei ihm, während er das Heilmittel braut, und hol dir dann deine Belohnung: Gifte.",
 	-- {npc:2391} Serge Hinott
-	["{npc:2391}: Poisons"] = "",
-	["No Gallywix yet? The Class guide Poisons (Horde) runs the chain from Shenthul again, with a group for Gallywix."] = "",
+	["{npc:2391}: Poisons"] = "{npc:2391}: Gifte",
+	["No Gallywix yet? The Class guide Poisons (Horde) runs the chain from Shenthul again, with a group for Gallywix."] = "Noch kein Gallywix? Der Klassenguide Gifte (Horde) führt die Questreihe ab Shenthul erneut, mit einer Gruppe für Gallywix.",
 
 	-- Step 3: Bears, creepers and lions
 	["Bears, creepers and lions"] = "Bären, Krabbler und Löwen",
 	-- {item:3477} Creeper Ichor
 	-- plural, as words: Gray Bears = {npc:2351} Gray Bear · Forest Moss Creepers = {npc:2350} Forest Moss Creeper · Starving Mountain Lions = {npc:2384} Starving Mountain Lion
-	["West of Tarren Mill, Gray Bears, Forest Moss Creepers and Starving Mountain Lions roam the hills on the way down to the farms. The creepers drop {item:3477} rarely; you need only one."] = "",
+	["West of Tarren Mill, Gray Bears, Forest Moss Creepers and Starving Mountain Lions roam the hills on the way down to the farms. The creepers drop {item:3477} rarely; you need only one."] = "Westlich von Tarrens Mühle streifen Graubären, Waldmooskrabbler und Verhungernde Berglöwen auf dem Weg hinunter zu den Höfen durch die Hügel. Die Krabbler droppen {item:3477} selten; du brauchst nur eins.",
 
 	-- Step 4: Hillsbrad Fields
 	-- {area:287} Hillsbrad · {npc:232} Farmer Ray · {npc:2403} Farmer Getz · {npc:2451} Farmer Kalaba
@@ -74,7 +74,7 @@ return {
 	-- Step 14: The smithy
 	["The smithy"] = "Die Schmiede",
 	-- {area:287} Hillsbrad · {npc:2404} Blacksmith Verringtan · {object:1736} Shipment of Iron · {npc:2449} Citizen Wilkes
-	["The smithy stands in the middle of {area:287} town. {npc:2404} and his apprentices work at the forge; the {object:1736} is stacked beside it. {npc:2449} walks the street north of it."] = "",
+	["The smithy stands in the middle of {area:287} town. {npc:2404} and his apprentices work at the forge; the {object:1736} is stacked beside it. {npc:2449} walks the street north of it."] = "Die Schmiede steht mitten im Ort {area:287}. {npc:2404} und seine Lehrlinge arbeiten an der Esse; die {object:1736} ist daneben gestapelt. {npc:2449} läuft die Straße nördlich davon entlang.",
 
 	-- Step 16: Town hall
 	["Town hall"] = "Rathaus",
@@ -117,7 +117,7 @@ return {
 
 	-- Step 26: Great Lift
 	-- {npc:12576} Grish Longrunner · {area:1718} Great Lift
-	["South-west of Bael Modan, {npc:12576} waits at the top of the {area:1718}."] = "",
+	["South-west of Bael Modan, {npc:12576} waits at the top of the {area:1718}."] = "Südwestlich von Bael Modan wartet {npc:12576} oben am Aufzug ({area:1718}).",
 
 	-- Step 27: Merchant Coast
 	-- {area:378} Camp Taurajo · {area:392} Ratchet · {quest:874} Mahren Skyseer

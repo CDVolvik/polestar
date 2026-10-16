@@ -80,7 +80,7 @@ return {
 
 	-- Step 15: Vul'Gol Ogre Mound
 	-- {object:119} Abercrombie's Crate
-	["Ride east to the ogre mound. {object:119} sits in the camp at its entrance; Splinter Fist ogres guard it."] = "",
+	["Ride east to the ogre mound. {object:119} sits in the camp at its entrance; Splinter Fist ogres guard it."] = "Ve al este hasta el túmulo de los ogros. {object:119} está en el campamento de la entrada; lo vigilan ogros Puñastilla.",
 	-- {npc:272273} Lost Watcher · {quest:96138} Merrick's Bow
 	["Only if a {npc:272273} dropped {quest:96138}: right-click it"] = "Solo si un {npc:272273} soltó {quest:96138}: haz clic derecho en él",
 
@@ -129,9 +129,9 @@ return {
 
 	-- Step 25: The dig and Sarltooth
 	-- {npc:1353} Sarltooth
-	["The dig and {npc:1353}"] = "",
+	["The dig and {npc:1353}"] = "La excavación y {npc:1353}",
 	-- {npc:1353} Sarltooth
-	["The relics lie in the dig itself. {npc:1353}, a big Razormaw, prowls the raptor valley just west of it."] = "",
+	["The relics lie in the dig itself. {npc:1353}, a big Razormaw, prowls the raptor valley just west of it."] = "Las reliquias están en la propia excavación. {npc:1353}, un Tajobuche grande, merodea por el valle de los raptores, justo al oeste.",
 	-- {item:2661} Neru Fragment · {object:331} Loose Soil
 	["{item:2661}: the {object:331}"] = "{item:2661}: el {object:331}",
 

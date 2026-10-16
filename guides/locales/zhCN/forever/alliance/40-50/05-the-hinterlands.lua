@@ -7,12 +7,12 @@
 return {
 	-- Step 2: The Altar of Zul
 	-- {area:355} Altar of Zul · {npc:8636} Morta'gya the Keeper
-	["Ride south-east to the {area:355}, the stepped Vilebranch temple in the south of the Hinterlands, and climb to the top. Qiaga and {npc:8636} (elite, 50) stand up there: touch the top and come straight back down."] = "",
+	["Ride south-east to the {area:355}, the stepped Vilebranch temple in the south of the Hinterlands, and climb to the top. Qiaga and {npc:8636} (elite, 50) stand up there: touch the top and come straight back down."] = "向东南骑到{area:355}，即辛特兰南部的邪枝阶梯神庙，爬到顶上。奇尔加和{npc:8636}（精英，50级）站在上面：摸到顶层就直接下来。",
 
 	-- Step 3: Skulk Rock
 	-- {area:351} Skulk Rock
 	-- plural, as words: Green Sludges = {npc:2655} Green Sludge · Jade Oozes = {npc:2656} Jade Ooze
-	["Ride north to {area:351} in the middle of the Hinterlands. Green Sludges and Jade Oozes crawl all around it."] = "",
+	["Ride north to {area:351} in the middle of the Hinterlands. Green Sludges and Jade Oozes crawl all around it."] = "向北骑到辛特兰中部的{area:351}。{npc:2655}和{npc:2656}在周围爬行。",
 
 	-- Step 4: Aerie Peak
 	-- {area:348} Aerie Peak

@@ -28,7 +28,7 @@ return {
 	-- {npc:3595} Shanda
 	["{npc:3595}, inside the tree"] = "{npc:3595}, dentro da árvore",
 	-- {quest:97979} The Goddess Provides · {spell:1259799} Elune's Light · {npc:3595} Shanda
-	["{quest:97979}: cast {spell:1259799} and Shadowmeld, then hand it back to {npc:3595}"] = "",
+	["{quest:97979}: cast {spell:1259799} and Shadowmeld, then hand it back to {npc:3595}"] = "{quest:97979}: lance {spell:1259799} e Fusão Sombria e depois entregue a {npc:3595}",
 	-- {npc:8583} Dirania Silvershine
 	["{npc:8583}, east of the tree"] = "{npc:8583}, a leste da árvore",
 
@@ -190,7 +190,7 @@ return {
 
 	-- Step 31: The Oracle Glade
 	-- {area:264} Oracle Glade
-	["The {area:264}"] = "",
+	["The {area:264}"] = "{area:264}",
 	-- {object:6752} Strange Fronded Plant
 	["The moonwell is in the middle of the glade. The {object:6752} grows at its north end."] = "O poço lunar fica no meio da clareira. {object:6752} cresce no extremo norte dela.",
 	-- {item:5623} Amethyst Phial
@@ -208,7 +208,7 @@ return {
 	-- Step 34: The named harpies
 	["The named harpies"] = "As harpias nomeadas",
 	-- {npc:272034} Hatescreech · {npc:272044} Windmistress Gaedress · {npc:272046} Witchmother Arysa
-	["{npc:272034} and {npc:272044} fly just west of the moonwell, {npc:272046} further north."] = "",
+	["{npc:272034} and {npc:272044} fly just west of the moonwell, {npc:272046} further north."] = "{npc:272034} e {npc:272044} voam logo a oeste do poço lunar, {npc:272046} mais ao norte.",
 
 	-- Step 35: Sentinel Arynia again
 	["Sentinel Arynia again"] = "Sentinela Arynia de novo",
@@ -236,7 +236,7 @@ return {
 	-- Step 38: Lake Al'Ameth
 	-- {npc:2080} Denalan
 	-- plural, as words: Lasher Sproutlings = {npc:275703} Lasher Sproutling
-	["South-east of Dolanaar, to {npc:2080}. Lasher Sproutlings wander around him on the shore."] = "",
+	["South-east of Dolanaar, to {npc:2080}. Lasher Sproutlings wander around him on the shore."] = "A sudeste de Dolanaar, até {npc:2080}. Brotos de Açoitadeira vagueiam ao redor dele na margem.",
 	-- {npc:2080} Denalan · {quest:922} Rellian Greenspyre · {zone:1457} Darnassus
 	["{npc:2080}: {quest:922} in {zone:1457} takes it"] = "{npc:2080}: {quest:922}, em {zone:1457}, a recebe",
 	-- {object:7510} Sprouted Frond
@@ -249,7 +249,7 @@ return {
 	-- Step 40: Taming the Beast
 	-- {item:15908} Taming Rod · {area:186} Dolanaar
 	-- plural, as words: Webwood Lurkers = {npc:1998} Webwood Lurker · Nightsaber Stalkers = {npc:2043} Nightsaber Stalker · Strigid Screechers = {npc:1996} Strigid Screecher
-	["Each of Dazalar's quests hands you a {item:15908}: use it on the beast he names, then bring the rod back to him in {area:186}. Webwood Lurkers creep around the village, Nightsaber Stalkers and Strigid Screechers roam the woods south of it."] = "",
+	["Each of Dazalar's quests hands you a {item:15908}: use it on the beast he names, then bring the rod back to him in {area:186}. Webwood Lurkers creep around the village, Nightsaber Stalkers and Strigid Screechers roam the woods south of it."] = "Cada missão de Dazalar lhe dá um {item:15908}: use-o na fera indicada e depois leve o bastão de volta para ele em {area:186}. Tocaieiras Lenhateia rastejam ao redor da aldeia; Espreitadores Sabre-da-noite e Guinchadoras Estrígidas vagueiam pelo bosque ao sul dela.",
 	-- {npc:1998} Webwood Lurker · {item:15908} Taming Rod
 	["{npc:1998}: tame it with the {item:15908}"] = "{npc:1998}: dome-a com o {item:15908}",
 	-- {npc:2043} Nightsaber Stalker · {item:15908} Taming Rod
@@ -277,7 +277,7 @@ return {
 	-- {npc:7999} Tyrande Whisperwind · {npc:4092} Lariia
 	["{npc:7999}, above {npc:4092}"] = "{npc:7999}, acima de {npc:4092}",
 	-- {npc:11401} Priestess Alathea
-	["{npc:11401}, in the Temple of the Moon: Starshards"] = "",
+	["{npc:11401}, in the Temple of the Moon: Starshards"] = "{npc:11401}, no Templo da Lua: Estilhaços Estelares",
 
 	-- Step 43: Rut'theran Village
 	-- {area:702} Rut'theran Village · {npc:3838} Vesprystus
@@ -316,9 +316,4 @@ return {
 	["From the harbour walk into {object:2100}. {npc:5480} trains warriors there; {npc:6089} and {npc:6090} stand together by the {object:2152}. {npc:6090} fights you for his mug."] = "Do porto, entre em {object:2100}. {npc:5480} treina guerreiros ali; {npc:6089} e {npc:6090} ficam juntos perto de {object:2152}. {npc:6090} luta com você pela caneca dele.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Each of {npc:3601}'s quests hands you a {item:15908}: use it on the beast he names, then bring the rod back to him in {area:186}. Webwood Lurkers creep around the village, Nightsaber Stalkers and Strigid Screechers roam the woods south of it."] = "Cada missão de {npc:3601} lhe dá um {item:15908}: use-o na fera indicada e depois leve o bastão de volta para ele em {area:186}. Tocaieiras Lenhateia rastejam ao redor da aldeia; Espreitadores Sabre-da-noite e Guinchadoras Estrígidas vagueiam pelo bosque ao sul dela.",
-	-- ["Hatescreech and {npc:272044} fly just west of the moonwell, {npc:272046} further north."] = "Guinchódio e {npc:272044} voam logo a oeste do poço lunar, {npc:272046} mais ao norte.",
-	-- ["South-east of {area:186}, to {npc:2080}. Lasher Sproutlings wander around him on the shore."] = "A sudeste de {area:186}, até {npc:2080}. Brotos de Açoitadeira vagueiam ao redor dele na margem.",
-	-- ["{npc:11401}, in the Temple of the Moon: {spell:10797}"] = "{npc:11401}, no Templo da Lua: {spell:10797}",
-	-- ["{quest:97979}: cast {spell:1259799} and {spell:20580}, then hand it back to {npc:3595}"] = "{quest:97979}: lance {spell:1259799} e {spell:20580} e depois entregue a {npc:3595}",
 }

@@ -29,7 +29,7 @@ return {
 
 	-- Step 5: The Shieldsmith
 	-- {npc:5413} Furen Longbeard · {item:6843} Cask of Scalder · {item:6970} Furen's Favor · {quest:1701} Fire Hardened Mail
-	["{npc:5413} works in the Dwarven District of Stormwind. He keeps the {item:6843} and gives you {item:6970}, a shield; {quest:1701} is a level 28 quest."] = "",
+	["{npc:5413} works in the Dwarven District of Stormwind. He keeps the {item:6843} and gives you {item:6970}, a shield; {quest:1701} is a level 28 quest."] = "{npc:5413}은(는) 스톰윈드 드워프 지구에서 일합니다. 그가 {item:6843}을(를) 가지고 있으며 방패인 {item:6970}을(를) 줍니다. {quest:1701}은(는) 28레벨 퀘스트입니다.",
 
 	-- Step 6: Scorched Spider Fangs
 	-- plural, as words: Scorched Spider Fangs = {item:6838} Scorched Spider Fang
@@ -67,11 +67,11 @@ return {
 
 	-- Step 11: Burning Blood
 	-- {zone:1431} Duskwood · {quest:1705} Burning Blood · {npc:6170} Gutspill · {item:6845} Burning Rock
-	["The Nightbane worgen of {zone:1431} drop the {quest:1705}. {npc:6170} walks in the far south-east of {zone:1431} and carries the {item:6845}."] = "",
+	["The Nightbane worgen of {zone:1431} drop the {quest:1705}. {npc:6170} walks in the far south-east of {zone:1431} and carries the {item:6845}."] = "{zone:1431}의 파멸의어둠일족 늑대인간이 {quest:1705}을(를) 떨어뜨립니다. {npc:6170}은(는) {zone:1431} 남동쪽 끝을 돌아다니며 {item:6845}을(를) 가지고 있습니다.",
 	-- {quest:1705} Burning Blood
 	["{quest:1705} from the Nightbane worgen"] = "{quest:1705}, 파멸의어둠일족 늑대인간에게서",
 	-- {item:6845} Burning Rock · {npc:6170} Gutspill
-	["{item:6845} from {npc:6170}"] = "",
+	["{item:6845} from {npc:6170}"] = "{item:6845}, {npc:6170}에게서",
 
 	-- Step 13: Mathiel
 	-- {quest:1703} Mathiel · {zone:1457} Darnassus

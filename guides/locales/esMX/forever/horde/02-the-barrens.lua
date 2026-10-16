@@ -15,7 +15,7 @@ return {
 
 	-- Step 2: Plainstriders and raptors
 	["Plainstriders and raptors"] = "Zancudos y raptores",
-	["Plainstriders and Sunscale raptors roam the plains all around the Crossroads, thickest to the north."] = "",
+	["Plainstriders and Sunscale raptors roam the plains all around the Crossroads, thickest to the north."] = "Los zancudos de llanura y los raptores Solescama deambulan por las llanuras alrededor de El Cruce, sobre todo al norte.",
 
 	-- Step 4: The Zhevra
 	-- plural, as words: Zhevra Runners = {npc:3242} Zhevra Runner
@@ -54,7 +54,7 @@ return {
 
 	-- Step 13: Thun'grim Firegaze
 	-- {area:392} Ratchet · {object:58369} Stolen Iron Chest
-	["Thun'grim camps beside the road from the Crossroads to {area:392}. The {object:58369} sits in the south of the Razormane camp just north of him."] = "",
+	["Thun'grim camps beside the road from the Crossroads to {area:392}. The {object:58369} sits in the south of the Razormane camp just north of him."] = "Thun'grim acampa junto al camino de El Cruce a {area:392}. {object:58369} está en el sur del campamento Crines de Acero, justo al norte de él.",
 
 	-- Step 14: Ratchet
 	-- {area:392} Ratchet
@@ -73,7 +73,7 @@ return {
 	["Back down the beach, past the pirate camp: the crate of boots and the fragile crate with the lens sit at its south end."] = "De vuelta playa abajo, pasando el campamento pirata: la caja de botas y la caja frágil con la lente están en su extremo sur.",
 
 	-- Step 19: The Crossroads
-	["Walk back west along the road to the Crossroads."] = "",
+	["Walk back west along the road to the Crossroads."] = "Regresa al oeste por el camino hasta El Cruce.",
 
 	-- Step 20: The Disruption Ends
 	-- {npc:3438} Kreenig Snarlsnout
@@ -99,7 +99,7 @@ return {
 
 	-- Step 25: The Dry Hills
 	-- {area:383} Dry Hills
-	["The {area:383}"] = "",
+	["The {area:383}"] = "{area:383}",
 	-- {area:383} Dry Hills · {quest:819} Chen's Empty Keg
 	["West to the {area:383}. The Witchwing harpies nest all over them; any of them can drop a talon. {quest:819} lies in their hills."] = "Al oeste, a {area:383}. Las arpías Alabruja anidan por todas partes; cualquiera puede soltar una garra. {quest:819} está en sus colinas.",
 
@@ -116,7 +116,7 @@ return {
 	["Kolkar Wranglers and Stormers hold the camps south of Regthar."] = "Los retadores y agitadoras Kolkar ocupan los campamentos al sur de Regthar.",
 
 	-- Step 31: The Stagnant Oasis
-	["South-east of the Crossroads. Test the seeds at the bubbling fissure on the oasis' east bank."] = "",
+	["South-east of the Crossroads. Test the seeds at the bubbling fissure on the oasis' east bank."] = "Al sureste de El Cruce. Prueba las semillas en la fisura burbujeante de la orilla este del oasis.",
 
 	-- Step 32: Raptor nests
 	["Raptor nests"] = "Nidos de raptor",
@@ -134,7 +134,7 @@ return {
 	-- Step 35: Lushwater Oasis
 	-- {area:387} Lushwater Oasis · {area:388} Stagnant Oasis
 	-- plural, as words: Oasis Snapjaws = {npc:3461} Oasis Snapjaw
-	["Oasis Snapjaws crawl around {area:387}, south-west of the Crossroads, and around the {area:388}."] = "",
+	["Oasis Snapjaws crawl around {area:387}, south-west of the Crossroads, and around the {area:388}."] = "Los Quijafortes de oasis ({npc:3461}) se arrastran alrededor de {area:387}, al suroeste de El Cruce, y alrededor de {area:388}.",
 
 	-- Step 36: The Crossroads
 	-- {quest:3301} Mura Runetotem · {area:228} Sepulcher · {zone:1421} Silverpine Forest
@@ -159,7 +159,7 @@ return {
 
 	-- Step 41: The Crossroads
 	-- {zone:1454} Orgrimmar · {zone:1420} Tirisfal Glades
-	["Walk back south to the Crossroads. The next guide starts here and takes you to {zone:1454} and the zeppelin to {zone:1420}."] = "",
+	["Walk back south to the Crossroads. The next guide starts here and takes you to {zone:1454} and the zeppelin to {zone:1420}."] = "Regresa al sur hasta El Cruce. La siguiente guía empieza aquí y te lleva a {zone:1454} y al zepelín a {zone:1420}.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Oasis Snapjaws crawl around {area:387}, south-west of the {area:380}, and around the {area:388}."] = "Los quijafortes de oasis se arrastran alrededor de {area:387}, al suroeste de {area:380}, y alrededor de {area:388}.",

@@ -76,7 +76,7 @@ return {
 
 	-- Step 13: The Slithering Scar
 	-- {npc:10041} Gorishi Hive Queen
-	["Take the road west down into the crater and ride to the Slithering Scar, the silithid cave in the south. The {npc:10041} waits in its deepest chamber."] = "",
+	["Take the road west down into the crater and ride to the Slithering Scar, the silithid cave in the south. The {npc:10041} waits in its deepest chamber."] = "Toma el camino al oeste que baja al cráter y cabalga hasta La Cicatriz Serpenteante, la cueva silítida del sur. {npc:10041} espera en su cámara más profunda.",
 
 	-- Step 14: Fire Plume Ridge
 	-- {area:537} Fire Plume Ridge · {item:14644} Skeleton Key Mold

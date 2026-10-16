@@ -35,7 +35,7 @@ return {
 	-- {area:43} Wild Shore
 	["The {area:43}"] = "{area:43}",
 	-- {area:43} Wild Shore
-	["South of Booty Bay the Bloodsail swashbucklers camp on the {area:43}; the charts and the orders lie in their tents. Any Bloodsail can carry snuff and Dizzy's eye, so keep killing until you have both."] = "",
+	["South of Booty Bay the Bloodsail swashbucklers camp on the {area:43}; the charts and the orders lie in their tents. Any Bloodsail can carry snuff and Dizzy's eye, so keep killing until you have both."] = "К югу от Пиратской бухты висельники из шайки Кровавого Паруса стоят лагерем здесь: {area:43}; карты и приказы лежат в их палатках. Нюхательный табак и глаз Диззи может нести любой пират Кровавого Паруса: убивайте, пока не получите оба.",
 
 	-- Step 8: The Bloodsail ships
 	["The Bloodsail ships"] = "Корабли Кровавого Паруса",
@@ -167,7 +167,7 @@ return {
 
 	-- Step 37: The Harborage
 	-- {area:657} Harborage
-	["The {area:657}"] = "",
+	["The {area:657}"] = "{area:657}",
 	-- {area:657} Harborage · {zone:1430} Deadwind Pass
 	["Ride west along the road to the draenei camp at the {area:657}, near the way in from {zone:1430}."] = "Езжайте на запад по дороге к лагерю дренеев ({area:657}), у въезда со стороны края {zone:1430}.",
 

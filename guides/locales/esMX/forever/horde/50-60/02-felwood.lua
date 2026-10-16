@@ -101,7 +101,7 @@ return {
 
 	-- Step 24: The Bulwark
 	-- {area:152} Bulwark
-	["The {area:152}"] = "",
+	["The {area:152}"] = "{area:152}",
 	-- {area:152} Bulwark
 	["Ride south-west past Felstone Farm and follow the road west back to the {area:152}."] = "Cabalga al suroeste pasando la granja de Piedramácula y sigue el camino al oeste de vuelta a {area:152}.",
 	["Derrington's watchtowers, Vandis' cauldron and Mickey's barrel are done on a later visit: keep them."] = "Las atalayas de Derrington, la caldera de Vandis y la barrica de Mickey se hacen en una visita posterior: guárdalas.",
@@ -169,7 +169,7 @@ return {
 
 	-- Step 39: Shatter Scar Vale
 	-- plural, as words: Entropic Beasts = {npc:9878} Entropic Beast
-	["East of Bloodvenom Post, the cratered vale where the Entropic Beasts and Horrors roam. Kill two of each, then walk to each of the three fel-water craters."] = "",
+	["East of Bloodvenom Post, the cratered vale where the Entropic Beasts and Horrors roam. Kill two of each, then walk to each of the three fel-water craters."] = "Al este de Puesto del Veneno, la cañada de cráteres donde deambulan las bestias entrópicas ({npc:9878}) y los horrores. Mata dos de cada uno y luego camina hasta cada uno de los tres cráteres de agua vil.",
 	["Southern crater"] = "Cráter sur",
 	["Western crater"] = "Cráter oeste",
 	["Northern crater"] = "Cráter norte",

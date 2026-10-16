@@ -44,7 +44,7 @@ return {
 
 	-- Step 9: Ursangous
 	-- {area:415} Astranaar · {npc:12678} Ursangous · {area:418} Ruins of Stardust · {area:421} Mystral Lake
-	["Follow the main road east past {area:415} (Alliance: keep to the road). {npc:12678}, a big grizzly, roams the {area:418} south of the road, west of {area:421}. His paw starts the next hunt quest."] = "",
+	["Follow the main road east past {area:415} (Alliance: keep to the road). {npc:12678}, a big grizzly, roams the {area:418} south of the road, west of {area:421}. His paw starts the next hunt quest."] = "Sigue el camino principal al este, pasando {area:415} (Alianza: no te salgas del camino). {npc:12678}, un gran oso pardo, ronda {area:418} al sur del camino, al oeste de {area:421}. Su pata inicia la siguiente misión de cacería.",
 
 	-- Step 10: Ruins of Stardust fountain
 	-- {area:418} Ruins of Stardust
@@ -58,7 +58,7 @@ return {
 
 	-- Step 12: Tideress
 	-- {npc:12759} Tideress · {area:421} Mystral Lake · {item:16408} Befouled Water Globe
-	["{npc:12759}, a corrupted water elemental, drifts in {area:421}. Her {item:16408} starts a quest for Splintertree."] = "",
+	["{npc:12759}, a corrupted water elemental, drifts in {area:421}. Her {item:16408} starts a quest for Splintertree."] = "{npc:12759}, un elemental de agua corrupto, flota en {area:421}. Su {item:16408} inicia una misión para Puesto del Hachazo.",
 
 	-- Step 13: King of the Foulweald
 	-- {area:421} Mystral Lake · {item:16972} Karang's Banner · {object:178206} Foulweald Totem Mound · {npc:12918} Chief Murgut
@@ -80,7 +80,7 @@ return {
 
 	-- Step 17: Sharptalon
 	-- {npc:12676} Sharptalon
-	["{npc:12676}, a big nightsaber, prowls the woods south-east of the Warsong lumber camp. Her claw starts the next hunt quest."] = "",
+	["{npc:12676}, a big nightsaber, prowls the woods south-east of the Warsong lumber camp. Her claw starts the next hunt quest."] = "{npc:12676}, una gran sable de la noche, merodea el bosque al sureste del Aserradero Grito de Guerra. Su garra inicia la siguiente misión de cacería.",
 
 	-- Step 18: Felmusk satyrs
 	["Felmusk satyrs"] = "Sátiros Putredor",
@@ -88,7 +88,7 @@ return {
 
 	-- Step 19: Shadumbra
 	-- {npc:12677} Shadumbra · {area:426} Raynewood Retreat
-	["{npc:12677}, a shadow panther, stalks the woods around {area:426}, west of the Felmusk camp. Her head starts the next hunt quest."] = "",
+	["{npc:12677}, a shadow panther, stalks the woods around {area:426}, west of the Felmusk camp. Her head starts the next hunt quest."] = "{npc:12677}, una pantera de las sombras, acecha el bosque alrededor de {area:426}, al oeste del campamento Putredor. Su cabeza inicia la siguiente misión de cacería.",
 
 	-- Step 20: Mystral Lake
 	-- {area:421} Mystral Lake
@@ -131,7 +131,7 @@ return {
 
 	-- Step 28: The Great Lift
 	-- {area:1718} Great Lift
-	["The {area:1718}"] = "",
+	["The {area:1718}"] = "{area:1718}",
 	-- {area:1638} Thunder Bluff · {area:378} Camp Taurajo · {area:1718} Great Lift · {zone:1413} Barrens
 	["Fly from {area:1638} to {area:378} and take the road south to the {area:1718} at the bottom of the {zone:1413}."] = "Vuela de {area:1638} a {area:378} y toma el camino al sur hasta {area:1718}, al fondo de {zone:1413}.",
 	-- {npc:10079} Brave Moonhorn

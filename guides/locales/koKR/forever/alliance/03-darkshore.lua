@@ -21,7 +21,7 @@ return {
 	["The beach"] = "해변",
 	-- {quest:983} Buzzbox 827 · {object:175207} Beached Sea Creature
 	-- plural, as words: Tide Crawlers = {npc:2232} Tide Crawler · Darkshore Threshers = {npc:2185} Darkshore Thresher
-	["Tide Crawlers scuttle along the shore below the village; {quest:983} stands on the beach just south of the docks. Darkshore Threshers swim in the shallows. The {object:175207} lies on the shore just south of the village."] = "",
+	["Tide Crawlers scuttle along the shore below the village; {quest:983} stands on the beach just south of the docks. Darkshore Threshers swim in the shallows. The {object:175207} lies on the shore just south of the village."] = "왕바닷게는 마을 아래 해안을 따라 기어다니고, {quest:983}은(는) 부두 바로 남쪽 해변에 서 있습니다. 어둠의해안 트레샤돈은 얕은 물에서 헤엄칩니다. {object:175207}은(는) 마을 바로 남쪽 해안에 놓여 있습니다.",
 	-- plural, as words: Crawler Legs = {item:5385} Crawler Leg
 	["Crawler Legs"] = "집게다리",
 	-- plural, as words: Thresher Eyes = {item:5412} Thresher Eye
@@ -149,7 +149,7 @@ return {
 	-- plural, as words: Giant Foreststriders = {npc:2323} Giant Foreststrider · Raging Reef Crawlers = {npc:2236} Raging Reef Crawler
 	["{npc:6667} hides on the little island off the ruins; Stormscale Beastmistresses walk the shore. The key pieces drop from Giant Foreststriders (top), Greymist murlocs (middle) and Raging Reef Crawlers (bottom)."] = "{npc:6667}은(는) 폐허 앞바다의 작은 섬에 숨어 있고, 폭풍비늘 야수조련사가 해안을 거닙니다. 열쇠 조각은 거대한 숲타조(윗부분), 잿빛안개멀록(가운데), 사나운 모래톱게(아랫부분)에게서 떨어집니다.",
 	-- {item:15883} Half Pendant of Aquatic Agility · {object:177792} Strange Lockbox
-	["{item:15883}: the {object:177792} under the water off the north coast, west of the ruins"] = "",
+	["{item:15883}: the {object:177792} under the water off the north coast, west of the ruins"] = "{item:15883}: 폐허 서쪽, 북쪽 해안 앞바다 물속의 {object:177792}",
 
 	-- Step 24: The Tower of Althalaxx
 	-- {npc:3661} Balthule Shadowstrike · {zone:1440} Ashenvale

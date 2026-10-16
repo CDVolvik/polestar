@@ -52,9 +52,9 @@ return {
 	-- Step 7: The Hinterlands (1/2)
 	["14 areas to discover here, levels 41-49."] = "이곳에서 발견할 지역 14곳, 레벨 41-49.",
 	-- {area:348} Aerie Peak · {area:271} Southshore · {zone:1424} Hillsbrad Foothills
-	["Fly to {area:348} if you have it; otherwise fly to {area:271} and walk north-east from {zone:1424} into the Hinterlands."] = "",
+	["Fly to {area:348} if you have it; otherwise fly to {area:271} and walk north-east from {zone:1424} into the Hinterlands."] = "{area:348} 비행 경로가 있으면 그곳으로 비행하고, 없으면 {area:271}(으)로 비행한 뒤 {zone:1424}에서 북동쪽 동부 내륙지로 걸어가십시오.",
 	-- {area:3317} Revantusk Village · {area:272} Tarren Mill · {zone:1424} Hillsbrad Foothills
-	["Fly to {area:3317} if you have it; otherwise fly to {area:272} and walk east from {zone:1424} into the Hinterlands."] = "",
+	["Fly to {area:3317} if you have it; otherwise fly to {area:272} and walk east from {zone:1424} into the Hinterlands."] = "{area:3317} 비행 경로가 있으면 그곳으로 비행하고, 없으면 {area:272}(으)로 비행한 뒤 {zone:1424}에서 동쪽 동부 내륙지로 걸어가십시오.",
 	-- {area:348} Aerie Peak · {npc:8018} Guthrum Thunderfist
 	["Flight path here: {area:348} ({npc:8018})."] = "이곳의 비행 경로: {area:348}({npc:8018}).",
 	-- {area:3317} Revantusk Village

@@ -227,7 +227,7 @@ return {
 	-- Step 41: The dead cultist
 	["The dead cultist"] = "Le cultiste mort",
 	-- {npc:273017} Fendaal Windstone · {quest:98512} Al'Aketh Assassins
-	["North-west of Valanaar along the road: {npc:273017} watches the {quest:98512}; the dead cultist lies just north of him."] = "",
+	["North-west of Valanaar along the road: {npc:273017} watches the {quest:98512}; the dead cultist lies just north of him."] = "Au nord-ouest de Valanaar, le long de la route : {npc:273017} surveille {quest:98512} ; le cultiste mort gît juste au nord.",
 	["Search the dead cultist"] = "Fouiller le cultiste mort",
 	-- {npc:258443} Ur'endra
 	["{npc:258443}, in the highlands south-west of the cultist"] = "{npc:258443}, dans les hautes-terres au sud-ouest du cultiste",

@@ -70,7 +70,7 @@ return {
 	["On the ride north to {area:392}, {area:720} lies off the {area:391} south of the town: wade over the sand bar shallows. {npc:6236} sends four challengers and then {npc:6238} (level 33) at you, one at a time."] = "Auf dem Ritt nach Norden nach {area:392} liegt {area:720} vor der {area:391} südlich des Orts: Wate über die Untiefen der Sandbank. {npc:6236} schickt dir nacheinander vier Herausforderer und dann {npc:6238} (Stufe 33) entgegen.",
 	-- {npc:6238} Big Will
 	["Defeat the challengers and {npc:6238}"] = "Besiege die Herausforderer und {npc:6238}",
-	["Klannoc offers The Windwatcher next (1791): the Whirlwind weapon chain, with an elite at the end, is in the Warrior class guide Whirlwind Weapon."] = "",
+	["Klannoc offers The Windwatcher next (1791): the Whirlwind weapon chain, with an elite at the end, is in the Warrior class guide Whirlwind Weapon."] = "Klannoc bietet als Nächstes Der Windbehüter (1791) an: Die Questreihe um die Waffe für Wirbelwind, mit einem Elite am Ende, steht im Kriegerklassen-Guide „Wirbelwaffe“.",
 
 	-- Step 18: Ratchet
 	-- {zone:1413} Barrens · {area:392} Ratchet · {npc:16227} Bragok · {area:35} Booty Bay
@@ -97,7 +97,7 @@ return {
 
 	-- Step 21: Booty Bay
 	-- {npc:2624} Gazban
-	["{npc:2624} swims off the north-west coast, on the northern loop"] = "",
+	["{npc:2624} swims off the north-west coast, on the northern loop"] = "{npc:2624} schwimmt vor der Nordwestküste, auf der nördlichen Runde",
 
 	-- Step 22: Bloodsail pirates
 	["Bloodsail pirates"] = "Piraten der Blutsegelbukaniere",
@@ -160,7 +160,7 @@ return {
 	["The north-west coast"] = "Die Nordwestküste",
 	-- {npc:2624} Gazban · {item:4034} Stone of the Tides
 	-- plural, as words: Giant Clams = {object:2744} Giant Clam
-	["Ride north-west from the mine to the bay on the north-west coast. The Giant Clams lie on its floor and hold the pearls; {npc:2624} swims among them and drops the {item:4034}."] = "",
+	["Ride north-west from the mine to the bay on the north-west coast. The Giant Clams lie on its floor and hold the pearls; {npc:2624} swims among them and drops the {item:4034}."] = "Reite von der Mine nach Nordwesten zur Bucht an der Nordwestküste. Die Riesenmuscheln liegen auf ihrem Grund und enthalten die Perlen; {npc:2624} schwimmt zwischen ihnen und lässt {item:4034} fallen.",
 
 	-- Step 36: Rebel Camp
 	-- {npc:217588} Arbor Tarantula

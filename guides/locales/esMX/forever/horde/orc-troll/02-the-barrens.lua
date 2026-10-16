@@ -11,7 +11,7 @@ return {
 
 	-- Step 2: Plainstriders and raptors
 	["Plainstriders and raptors"] = "Zancudos y raptores",
-	["Plainstriders and Sunscale raptors roam the plains all around the Crossroads."] = "",
+	["Plainstriders and Sunscale raptors roam the plains all around the Crossroads."] = "Los zancudos de llanura y los raptores Solescama deambulan por las llanuras alrededor de El Cruce.",
 
 	-- Step 4: Zhevra and raptors
 	["Zhevra and raptors"] = "Zhebras y raptores",
@@ -28,7 +28,7 @@ return {
 
 	-- Step 7: Kranal Fiss
 	-- {npc:5907} Kranal Fiss
-	["{npc:5907} stands on the ridge north of the Razormane camp, east of the Crossroads."] = "",
+	["{npc:5907} stands on the ridge north of the Razormane camp, east of the Crossroads."] = "{npc:5907} está en la loma al norte del campamento Crines de Acero, al este de El Cruce.",
 
 	-- Step 8: Telf Joolam
 	-- {zone:1411} Durotar · {area:814} Southfury River
@@ -45,7 +45,7 @@ return {
 	["Razormane camp"] = "Campamento Crines de Acero",
 	-- {object:58369} Stolen Iron Chest · {item:5026} Fire Tar
 	-- plural, as words: Savannah Prowlers = {npc:3425} Savannah Prowler
-	["Water Seekers, Thornweavers and Hunters hold the camp east of the Crossroads. The supply crates sit at its eastern end. Warriors: the {object:58369} stands in the camp. Shamans: the quilboar drop the {item:5026}. Kill Savannah Prowlers you pass for their claws."] = "",
+	["Water Seekers, Thornweavers and Hunters hold the camp east of the Crossroads. The supply crates sit at its eastern end. Warriors: the {object:58369} stands in the camp. Shamans: the quilboar drop the {item:5026}. Kill Savannah Prowlers you pass for their claws."] = "Los buscaquas, tejespinas y cazadores ocupan el campamento al este de El Cruce. Las cajas de suministros están en su extremo este. Guerreros: {object:58369} está en el campamento. Chamanes: los jabaespines sueltan {item:5026}. Mata a los Merodeadores de la sabana ({npc:3425}) que encuentres para obtener sus garras.",
 
 	-- Step 11: Telf Joolam
 	-- {item:6636} Fire Sapta · {npc:5893} Minor Manifestation of Fire · {item:6655} Glowing Ember
@@ -71,22 +71,22 @@ return {
 	["Back to the pirate camp: the boots are in the crate marked {object:3767} at the camp's south end, the lens in the Fragile crate just east of it."] = "De vuelta al campamento pirata: las botas están en la caja marcada {object:3767}, en el extremo sur del campamento, y la lente en la caja Frágil justo al este.",
 
 	-- Step 19: Back to the Crossroads
-	["Back to the Crossroads"] = "",
+	["Back to the Crossroads"] = "De vuelta a El Cruce",
 	-- plural, as words: Savannah Prowlers = {npc:3425} Savannah Prowler
-	["Walk back up the road to the Crossroads. Savannah Prowlers hunt along it and on the plains west of town: finish the claws before you hand them in."] = "",
+	["Walk back up the road to the Crossroads. Savannah Prowlers hunt along it and on the plains west of town: finish the claws before you hand them in."] = "Regresa por el camino hasta El Cruce. Los Merodeadores de la sabana ({npc:3425}) cazan a lo largo del camino y en las llanuras al oeste del pueblo: termina las garras antes de entregarlas.",
 
 	-- Step 20: Regthar Deathgate
-	["Regthar stands at the Kolkar watch post just west of the Crossroads."] = "",
+	["Regthar stands at the Kolkar watch post just west of the Crossroads."] = "Regthar está en el puesto de vigilancia Kolkar, justo al oeste de El Cruce.",
 
 	-- Step 21: Kolkar camps and the Forgotten Pools
 	-- {area:386} Forgotten Pools
 	["Kolkar camps and the {area:386}"] = "Campamentos Kolkar y {area:386}",
 	-- {quest:855} Centaur Bracers · {area:386} Forgotten Pools
 	-- plural, as words: Laden Mushrooms = {object:3640} Laden Mushroom · Savannah Prowlers = {npc:3425} Savannah Prowler
-	["The Kolkar camps spread north-west of Regthar; every Kolkar can drop {quest:855}. The {area:386} lie in their middle, with Laden Mushrooms around the water. Savannah Prowlers roam the same plains."] = "",
+	["The Kolkar camps spread north-west of Regthar; every Kolkar can drop {quest:855}. The {area:386} lie in their middle, with Laden Mushrooms around the water. Savannah Prowlers roam the same plains."] = "Los campamentos Kolkar se extienden al noroeste de Regthar; cualquier Kolkar puede soltar {quest:855}. {area:386} están en medio, con Champiñones cargados ({object:3640}) alrededor del agua. Los Merodeadores de la sabana ({npc:3425}) recorren las mismas llanuras.",
 	["Wade into the pools to explore them"] = "Métete en las pozas para explorarlas",
 	-- {area:386} Forgotten Pools
-	["The {area:386}"] = "",
+	["The {area:386}"] = "{area:386}",
 
 	-- Step 23: Witchwing harpies
 	["Witchwing harpies"] = "Arpías Alabruja",
@@ -95,18 +95,18 @@ return {
 
 	-- Step 24: The Sludge Fen
 	-- {object:4141} Control Console · {item:5089} Console Key · {npc:3471} Tinkerer Sniggles
-	["Head east to the Venture Co. research site west of the Sludge Fen. Use the {object:4141}, close the three valves around the drill, use the console again, then take the {item:5089} from {npc:3471}."] = "",
+	["Head east to the Venture Co. research site west of the Sludge Fen. Use the {object:4141}, close the three valves around the drill, use the console again, then take the {item:5089} from {npc:3471}."] = "Ve al este hasta el sitio de investigación de Ventura y Cía. al oeste de El Fangal. Usa {object:4141}, cierra las tres válvulas alrededor del taladro, usa la consola de nuevo y luego toma {item:5089} de {npc:3471}.",
 
 	-- Step 25: Echeyakee
 	-- {quest:881} Echeyakee · {area:392} Ratchet
-	["{quest:881}'s lair lies south of the Sludge Fen, north-east of the Crossroads. Use the horn Sergra gave you there to call the white lion out. Then hearth to {area:392}."] = "",
+	["{quest:881}'s lair lies south of the Sludge Fen, north-east of the Crossroads. Use the horn Sergra gave you there to call the white lion out. Then hearth to {area:392}."] = "La guarida de {quest:881} está al sur de El Fangal, al noreste de El Cruce. Usa allí el cuerno que te dio Sergra para hacer salir al león blanco. Luego usa tu piedra de hogar para ir a {area:392}.",
 
 	-- Step 27: The Disruption Ends
 	-- {npc:3438} Kreenig Snarlsnout
-	["On the way back to the Crossroads, the Razormane camp again: Geomancers and Defenders hold its eastern half; {npc:3438} walks among them."] = "",
+	["On the way back to the Crossroads, the Razormane camp again: Geomancers and Defenders hold its eastern half; {npc:3438} walks among them."] = "De regreso a El Cruce, otra vez el campamento Crines de Acero: las Geománticas y los Defensores ocupan su mitad este; {npc:3438} camina entre ellos.",
 
 	-- Step 29: The Stagnant Oasis
-	["The oasis lies south-east of the Crossroads. Test the seeds at the bubbling fissure in the middle of the water."] = "",
+	["The oasis lies south-east of the Crossroads. Test the seeds at the bubbling fissure in the middle of the water."] = "El oasis está al sureste de El Cruce. Prueba las semillas en la fisura burbujeante en medio del agua.",
 
 	-- Step 30: Raptor Grounds
 	-- {area:1697} Raptor Grounds
@@ -116,7 +116,7 @@ return {
 	-- Step 32: Lushwater Oasis
 	-- {area:387} Lushwater Oasis
 	-- plural, as words: Oasis Snapjaws = {npc:3461} Oasis Snapjaw
-	["Oasis Snapjaws crowd the water of {area:387}, south-west of the Crossroads."] = "",
+	["Oasis Snapjaws crowd the water of {area:387}, south-west of the Crossroads."] = "Los Quijafortes de oasis ({npc:3461}) llenan el agua de {area:387}, al suroeste de El Cruce.",
 
 	-- Step 34: Wenikee Boltbucket
 	-- {area:1703} Mor'shan Rampart
@@ -124,7 +124,7 @@ return {
 
 	-- Step 35: Nugget Slugs
 	-- plural, as words: Tool Buckets = {object:161752} Tool Bucket
-	["The Tool Buckets sit around the Venture Co. camp in the Sludge Fen, east of Wenikee."] = "",
+	["The Tool Buckets sit around the Venture Co. camp in the Sludge Fen, east of Wenikee."] = "Los Cubos de herramientas ({object:161752}) están alrededor del campamento de Ventura y Cía. en El Fangal, al este de Wenikee.",
 
 	-- Step 37: Witchwing Slayers
 	-- plural, as words: Witchwing Slayers = {npc:3278} Witchwing Slayer
@@ -136,7 +136,7 @@ return {
 	["grind on Witchwing Slayers at the {area:383}, {zone:1413}"] = "farmea Destripadoras Alabruja ({npc:3278}) en {area:383}, {zone:1413}",
 
 	-- Step 38: The Crossroads
-	["Back to the Crossroads; the next guide starts here."] = "",
+	["Back to the Crossroads; the next guide starts here."] = "De vuelta a El Cruce; la siguiente guía empieza aquí.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Back to the {area:380}"] = "De vuelta a {area:380}",

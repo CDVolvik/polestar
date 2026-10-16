@@ -198,7 +198,7 @@ return {
 	-- {area:159} Brill · {npc:3549} Shelene Rhobart
 	["Follow the road south-east from {area:159} past the zeppelin towers. Linnea, Kristof and {npc:3549} camp by the road."] = "{area:159}에서 남동쪽 길을 따라 비행선 탑을 지나가세요. 리니아, 크리스토프, {npc:3549}이(가) 길가에서 야영합니다.",
 	-- {npc:1495} Deathguard Linnea · {npc:276020} Riptear
-	["{npc:1495}: {npc:276020}, an elite abomination in the east"] = "",
+	["{npc:1495}: {npc:276020}, an elite abomination in the east"] = "{npc:1495}: 동쪽의 정예 누더기골렘 {npc:276020}",
 	-- {npc:251001} Deathguard Kristof
 	["Ask {npc:251001} for his report"] = "{npc:251001}에게 보고를 요청하세요",
 
@@ -304,9 +304,9 @@ return {
 	-- plural, as words: Vicious Night Web Spiders = {npc:1555} Vicious Night Web Spider
 	["Vicious Night Web Spiders"] = "흉포한 검은그물거미",
 	-- {npc:276020} Riptear
-	["The spiders lurk in the woods at the far east end of the glades. {npc:276020}, a rogue abomination, wanders just north-west of them. {npc:276020} is elite: grouping up is advised."] = "",
+	["The spiders lurk in the woods at the far east end of the glades. {npc:276020}, a rogue abomination, wanders just north-west of them. {npc:276020} is elite: grouping up is advised."] = "거미는 숲 동쪽 맨 끝의 수풀에 숨어 있습니다. 떠돌이 누더기골렘 {npc:276020}이(가) 그 바로 북서쪽을 배회합니다. {npc:276020}은(는) 정예이니 파티를 권장합니다.",
 	-- {item:286326} Riptear's Heart · {npc:276020} Riptear
-	["{item:286326}, from {npc:276020}"] = "",
+	["{item:286326}, from {npc:276020}"] = "{npc:276020}에게서 {item:286326}",
 
 	-- Step 61: Hides for the Forsaken
 	-- plural, as words: Duskbats = {npc:1512} Duskbat
@@ -348,7 +348,7 @@ return {
 
 	-- Step 70: The Crossroads
 	-- {zone:1454} Orgrimmar · {zone:1411} Durotar · {area:815} Southfury River · {area:379} Far Watch Post
-	["The zeppelin lands at the tower just north-east of {zone:1454}'s main gate. Follow the road south into {zone:1411}, cross the {area:815} bridge below {area:379} and follow the road west to the Crossroads."] = "",
+	["The zeppelin lands at the tower just north-east of {zone:1454}'s main gate. Follow the road south into {zone:1411}, cross the {area:815} bridge below {area:379} and follow the road west to the Crossroads."] = "비행선은 {zone:1454} 정문 바로 북동쪽 탑에 내립니다. 길을 따라 남쪽 {zone:1411}(으)로 가서, {area:379} 아래 {area:815} 다리를 건넌 뒤 서쪽 길을 따라 크로스로드로 가세요.",
 	-- {npc:3615} Devrak
 	["{npc:3615}, the wind rider master"] = "와이번 조련사 {npc:3615}",
 

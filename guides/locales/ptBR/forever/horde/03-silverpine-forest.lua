@@ -51,9 +51,9 @@ return {
 
 	-- Step 8: The Sepulcher
 	-- {area:228} Sepulcher
-	["The {area:228}"] = "",
+	["The {area:228}"] = "{area:228}",
 	-- {area:228} Sepulcher · {npc:2226} Karos Razok
-	["The {area:228} is the Forsaken crypt-town in the middle of the forest. Everyone you need stands around the crypt entrance; {npc:2226}, the bat handler, is just east of it."] = "",
+	["The {area:228} is the Forsaken crypt-town in the middle of the forest. Everyone you need stands around the crypt entrance; {npc:2226}, the bat handler, is just east of it."] = "{area:228} é a cidade-cripta dos Renegados no meio da floresta. Todos de quem você precisa ficam em volta da entrada da cripta; {npc:2226}, o adestrador de morcegos, fica logo a leste dela.",
 
 	-- Step 9: Border Crossings
 	-- {object:1627} Dalaran Crate
@@ -65,11 +65,11 @@ return {
 
 	-- Step 11: The Dead Field
 	-- {area:228} Sepulcher · {npc:1983} Nightlash
-	["North of the {area:228}. {npc:1983} haunts the Dead Field: kill it, then walk across the field."] = "",
+	["North of the {area:228}. {npc:1983} haunts the Dead Field: kill it, then walk across the field."] = "Ao norte do {area:228}. {npc:1983} assombra o Campo Morto: mate-o e depois atravesse o campo.",
 
 	-- Step 12: Strange Lockbox
 	-- {object:177790} Strange Lockbox · {item:15882} Half Pendant of Aquatic Endurance · {quest:30} Trial of the Sea Lion
-	["The {object:177790} lies on the coast west of the Dead Field. It holds the {item:15882} for {quest:30}."] = "",
+	["The {object:177790} lies on the coast west of the Dead Field. It holds the {item:15882} for {quest:30}."] = "O {object:177790} fica na costa a oeste do Campo Morto. Ele guarda a {item:15882} para {quest:30}.",
 
 	-- Step 13: Malden's Orchard
 	-- {area:238} Malden's Orchard
@@ -190,7 +190,4 @@ return {
 	["Speak with {npc:10540}, in Grommash Hold"] = "Fale com {npc:10540}, na Fortaleza Grommash",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["North of the {area:228}. Nightlash haunts the {area:240}: kill it, then walk across the field."] = "Ao norte do {area:228}. Vergasta assombra o {area:240}: mate-o e depois atravesse o campo.",
-	-- ["The {object:177790} lies on the coast west of the {area:240}. It holds the {item:15882} for {quest:30}."] = "O {object:177790} fica na costa a oeste do {area:240}. Ele guarda a {item:15882} para {quest:30}.",
-	-- ["{area:228} is the Forsaken crypt-town in the middle of the forest. Everyone you need stands around the crypt entrance; {npc:2226}, the bat handler, is just east of it."] = "{area:228} é a cidade-cripta dos Renegados no meio da floresta. Todos de quem você precisa ficam em volta da entrada da cripta; {npc:2226}, o adestrador de morcegos, fica logo a leste dela.",
 }

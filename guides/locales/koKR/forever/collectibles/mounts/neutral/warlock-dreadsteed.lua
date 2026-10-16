@@ -47,7 +47,7 @@ return {
 	["The ritual pieces"] = "의식 재료",
 	-- {skill:171} Alchemy · {skill:333} Enchanting · {item:11370} Dark Iron Ore · {skill:186} Mining · {area:1584} Blackrock Depths · {zone:1427} Searing Gorge · {skill:393} Skinning · {zone:1428} Burning Steppes
 	-- plural, as words: Large Brilliant Shards = {item:14344} Large Brilliant Shard · Black Dragonscales = {item:15416} Black Dragonscale
-	["Gorzeeki wants 10 Elixirs of Shadow Power ({skill:171}), 6 Large Brilliant Shards ({skill:333}), 25 {item:11370} ({skill:186}, in {area:1584} and the {zone:1427}) and 35 Black Dragonscales ({skill:393}, black dragonkin of the {zone:1428}). Make or gather what your professions allow; buy the rest at the Auction House."] = "",
+	["Gorzeeki wants 10 Elixirs of Shadow Power ({skill:171}), 6 Large Brilliant Shards ({skill:333}), 25 {item:11370} ({skill:186}, in {area:1584} and the {zone:1427}) and 35 Black Dragonscales ({skill:393}, black dragonkin of the {zone:1428}). Make or gather what your professions allow; buy the rest at the Auction House."] = "고르지키는 어둠의 힘 비약 10개({skill:171}), 큰 반짝이는 결정 6개({skill:333}), {item:11370} 25개({skill:186}, {area:1584}와(과) {zone:1427}), 검은용 비늘 35개({skill:393}, {zone:1428}의 검은용족)를 원합니다. 전문 기술로 만들거나 모을 수 있는 것은 직접 하고, 나머지는 경매장에서 사세요.",
 
 	-- Step 9: Arcanite
 	-- plural, as words: Arcanite Bars = {item:12360} Arcanite Bar

@@ -55,7 +55,7 @@ return {
 	["Highland Striders roam the hills all around {area:321}; both they and the Thrashers further west drop the eyes."] = "高地闊步龍在{area:321}周圍的山丘上遊蕩；牠們和更西邊的高地長尾龍都會掉落眼睛。",
 
 	-- Step 11: Drywhisker Gorge
-	["North-east of Hammerfall the Drywhisker kobolds mine the gorge; the Kobolds at the mouth and the Diggers and Surveyors deeper in all drop the Motes of Myzrael."] = "",
+	["North-east of Hammerfall the Drywhisker kobolds mine the gorge; the Kobolds at the mouth and the Diggers and Surveyors deeper in all drop the Motes of Myzrael."] = "在落錘鎮東北方，枯鬚狗頭人在峽谷中挖礦；峽谷口的枯鬚狗頭人以及深處的枯鬚掘地工和枯鬚勘探員都會掉落密斯賴爾之塵。",
 
 	-- Step 12: Iridescent Shards
 	-- {object:2701} Iridescent Shards
@@ -138,7 +138,7 @@ return {
 
 	-- Step 30: The Dustbowl
 	-- {area:340} Kargath
-	["Ride west along the road; Lotwil's camp sits in the Dustbowl halfway to {area:340}."] = "",
+	["Ride west along the road; Lotwil's camp sits in the Dustbowl halfway to {area:340}."] = "沿著道路向西騎；魯特維爾的營地在前往{area:340}半路上的漫塵盆地。",
 
 	-- Step 31: Kargath
 	-- {area:340} Kargath
@@ -156,12 +156,12 @@ return {
 	-- plural, as words: Rock Elementals = {npc:92} Rock Elemental
 	["Rock Elementals"] = "石元素",
 	-- plural, as words: Rock Elementals = {npc:92} Rock Elemental
-	["The bigger Rock Elementals stand on the slopes north-west of the Dustbowl; each one drops a slab."] = "",
+	["The bigger Rock Elementals stand on the slopes north-west of the Dustbowl; each one drops a slab."] = "較大的石元素站在漫塵盆地西北方的山坡上；每一隻都會掉落一塊石板。",
 
 	-- Step 36: Coyotes and buzzards
 	["Coyotes and buzzards"] = "山狗與禿鷲",
 	-- plural, as words: Elder Crag Coyotes = {npc:2729} Elder Crag Coyote · Giant Buzzards = {npc:2831} Giant Buzzard
-	["The Elder Crag Coyotes and Giant Buzzards roam the basin south of the Dustbowl. Coyotes drop both the jawbones and the fangs; only the buzzards drop wings and gizzards."] = "",
+	["The Elder Crag Coyotes and Giant Buzzards roam the basin south of the Dustbowl. Coyotes drop both the jawbones and the fangs; only the buzzards drop wings and gizzards."] = "老峭壁山狗和巨型禿鷲在漫塵盆地南邊的盆地中遊蕩。山狗會掉落顎骨和尖牙；只有禿鷲會掉落翅膀和砂囊。",
 
 	-- Step 37: Greater Rock Elementals
 	-- plural, as words: Greater Rock Elementals = {npc:2736} Greater Rock Elemental
@@ -214,7 +214,7 @@ return {
 
 	-- Step 50: The Crossroads
 	-- {area:380} Crossroads
-	["The {area:380}"] = "",
+	["The {area:380}"] = "{area:380}",
 
 	-- Step 51: Regthar Deathgate
 	-- {area:380} Crossroads · {area:386} Forgotten Pools

@@ -76,7 +76,7 @@ return {
 
 	-- Step 13: The Slithering Scar
 	-- {npc:10041} Gorishi Hive Queen
-	["Take the road west down into the crater and ride to the Slithering Scar, the silithid cave in the south. The {npc:10041} waits in its deepest chamber."] = "",
+	["Take the road west down into the crater and ride to the Slithering Scar, the silithid cave in the south. The {npc:10041} waits in its deepest chamber."] = "Pegue a estrada para o oeste, desça até a cratera e siga até a Fenda Coleante, a caverna dos silitídeos no sul. {npc:10041} espera na câmara mais profunda.",
 
 	-- Step 14: Fire Plume Ridge
 	-- {area:537} Fire Plume Ridge · {item:14644} Skeleton Key Mold
@@ -292,5 +292,4 @@ return {
 	["{zone:1453} has no shaman trainer: take the {area:2257} from the {object:28027} to {zone:1455} and train your level 60 spells with {npc:258098}."] = "{zone:1453} não tem instrutor de xamã: pegue o {area:2257} de {object:28027} para {zone:1455} e treine seus feitiços de nível 60 com {npc:258098}.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Take the road west down into the crater and ride to the {area:540}, the silithid cave in the south. The {npc:10041} waits in its deepest chamber."] = "Pegue a estrada para o oeste, desça até a cratera e siga até {area:540}, a caverna dos silitídeos no sul. {npc:10041} espera na câmara mais profunda.",
 }

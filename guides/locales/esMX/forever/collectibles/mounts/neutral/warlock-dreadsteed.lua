@@ -47,7 +47,7 @@ return {
 	["The ritual pieces"] = "Las piezas del ritual",
 	-- {skill:171} Alchemy · {skill:333} Enchanting · {item:11370} Dark Iron Ore · {skill:186} Mining · {area:1584} Blackrock Depths · {zone:1427} Searing Gorge · {skill:393} Skinning · {zone:1428} Burning Steppes
 	-- plural, as words: Large Brilliant Shards = {item:14344} Large Brilliant Shard · Black Dragonscales = {item:15416} Black Dragonscale
-	["Gorzeeki wants 10 Elixirs of Shadow Power ({skill:171}), 6 Large Brilliant Shards ({skill:333}), 25 {item:11370} ({skill:186}, in {area:1584} and the {zone:1427}) and 35 Black Dragonscales ({skill:393}, black dragonkin of the {zone:1428}). Make or gather what your professions allow; buy the rest at the Auction House."] = "",
+	["Gorzeeki wants 10 Elixirs of Shadow Power ({skill:171}), 6 Large Brilliant Shards ({skill:333}), 25 {item:11370} ({skill:186}, in {area:1584} and the {zone:1427}) and 35 Black Dragonscales ({skill:393}, black dragonkin of the {zone:1428}). Make or gather what your professions allow; buy the rest at the Auction House."] = "Gorzeeki quiere 10 Elixires de poder de las Sombras ({skill:171}), 6 Fragmentos luminosos grandes ({item:14344}, {skill:333}), 25 {item:11370} ({skill:186}, en {area:1584} y {zone:1427}) y 35 Dragontinas negras ({item:15416}, {skill:393}, dracónidos negros de {zone:1428}). Fabrica o recolecta lo que te permitan tus profesiones; compra el resto en la casa de subastas.",
 
 	-- Step 9: Arcanite
 	-- plural, as words: Arcanite Bars = {item:12360} Arcanite Bar

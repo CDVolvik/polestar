@@ -52,9 +52,9 @@ return {
 	-- Step 7: The Hinterlands (1/2)
 	["14 areas to discover here, levels 41-49."] = "这里有14个区域待发现，41-49级。",
 	-- {area:348} Aerie Peak · {area:271} Southshore · {zone:1424} Hillsbrad Foothills
-	["Fly to {area:348} if you have it; otherwise fly to {area:271} and walk north-east from {zone:1424} into the Hinterlands."] = "",
+	["Fly to {area:348} if you have it; otherwise fly to {area:271} and walk north-east from {zone:1424} into the Hinterlands."] = "如果有{area:348}的飞行路线就飞过去；否则飞往{area:271}，从{zone:1424}向东北步行进入辛特兰。",
 	-- {area:3317} Revantusk Village · {area:272} Tarren Mill · {zone:1424} Hillsbrad Foothills
-	["Fly to {area:3317} if you have it; otherwise fly to {area:272} and walk east from {zone:1424} into the Hinterlands."] = "",
+	["Fly to {area:3317} if you have it; otherwise fly to {area:272} and walk east from {zone:1424} into the Hinterlands."] = "如果有{area:3317}的飞行路线就飞过去；否则飞往{area:272}，从{zone:1424}向东步行进入辛特兰。",
 	-- {area:348} Aerie Peak · {npc:8018} Guthrum Thunderfist
 	["Flight path here: {area:348} ({npc:8018})."] = "飞行路线：{area:348}（{npc:8018}）。",
 	-- {area:3317} Revantusk Village

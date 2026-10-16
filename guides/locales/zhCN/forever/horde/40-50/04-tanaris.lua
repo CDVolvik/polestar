@@ -19,10 +19,10 @@ return {
 
 	-- Step 3: Sandsorrow Watch
 	-- {item:8584} Untapped Dowsing Widget
-	["West of Gadgetzan, use the {item:8584} beside the water hole in the troll camp."] = "",
+	["West of Gadgetzan, use the {item:8584} beside the water hole in the troll camp."] = "在加基森西边，在巨魔营地的水坑旁使用{item:8584}。",
 
 	-- Step 5: Caliph Scorpidsting
-	["South-east of Gadgetzan the Wastewander bandits camp in the dunes; Caliph stands in the eastern camp."] = "",
+	["South-east of Gadgetzan the Wastewander bandits camp in the dunes; Caliph stands in the eastern camp."] = "在加基森东南，废土强盗在沙丘里扎营；卡利夫站在东边的营地里。",
 
 	-- Step 6: Marvon Rivetseeker
 	-- {area:1938} Broken Pillar · {item:9978} Gahz'ridian Detector · {area:983} Dunemaul Compound
@@ -33,7 +33,7 @@ return {
 
 	-- Step 8: Dunemaul Compound
 	-- {npc:12046} Gor'marok the Ravager · {quest:3161} Gahz'ridian
-	["South of the Noxious Lair the Dunemaul ogres hold their compound, with {npc:12046} at its eastern end. Dig up {quest:3161} ornaments between the fights."] = "",
+	["South of the Noxious Lair the Dunemaul ogres hold their compound, with {npc:12046} at its eastern end. Dig up {quest:3161} ornaments between the fights."] = "在腐化之巢南边，砂槌食人魔占据着他们的营地，{npc:12046}在营地东端。在战斗间隙挖出{quest:3161}饰物。",
 
 	-- Step 9: Thistleshrub Valley
 	-- {zone:1446} Tanaris

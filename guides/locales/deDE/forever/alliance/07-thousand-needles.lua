@@ -80,7 +80,7 @@ return {
 
 	-- Step 15: Vul'Gol Ogre Mound
 	-- {object:119} Abercrombie's Crate
-	["Ride east to the ogre mound. {object:119} sits in the camp at its entrance; Splinter Fist ogres guard it."] = "",
+	["Ride east to the ogre mound. {object:119} sits in the camp at its entrance; Splinter Fist ogres guard it."] = "Reite nach Osten zum Ogerhügel. {object:119} steht im Lager an seinem Eingang; Oger der Splitterfäuste bewachen sie.",
 	-- {npc:272273} Lost Watcher · {quest:96138} Merrick's Bow
 	["Only if a {npc:272273} dropped {quest:96138}: right-click it"] = "Nur falls ein {npc:272273} {quest:96138} fallen ließ: Rechtsklick darauf",
 
@@ -129,9 +129,9 @@ return {
 
 	-- Step 25: The dig and Sarltooth
 	-- {npc:1353} Sarltooth
-	["The dig and {npc:1353}"] = "",
+	["The dig and {npc:1353}"] = "Die Ausgrabung und {npc:1353}",
 	-- {npc:1353} Sarltooth
-	["The relics lie in the dig itself. {npc:1353}, a big Razormaw, prowls the raptor valley just west of it."] = "",
+	["The relics lie in the dig itself. {npc:1353}, a big Razormaw, prowls the raptor valley just west of it."] = "Die Relikte liegen in der Ausgrabung selbst. {npc:1353}, ein großer Scharfzahn, streift durch das Raptorental gleich westlich davon.",
 	-- {item:2661} Neru Fragment · {object:331} Loose Soil
 	["{item:2661}: the {object:331}"] = "{item:2661}: die {object:331}",
 

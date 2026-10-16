@@ -128,7 +128,7 @@ return {
 	["Free Darrowshire Spirits: talk to them"] = "Освободите духов Дарроушира: поговорите с ними",
 
 	-- Step 30: The Undercroft
-	["Zaeldarr is elite: grouping up is advised. He waits at the bottom of the Undercroft, the crypt in the south-west of the zone."] = "",
+	["Zaeldarr is elite: grouping up is advised. He waits at the bottom of the Undercroft, the crypt in the south-west of the zone."] = "Зельдарр — элитный: лучше собрать группу. Он ждет на самом дне Крипты — склепа на юго-западе зоны.",
 
 	-- Step 31: Augustus the Touched
 	-- {area:2627} Terrordale

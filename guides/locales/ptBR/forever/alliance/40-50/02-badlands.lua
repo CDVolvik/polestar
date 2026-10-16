@@ -54,7 +54,7 @@ return {
 
 	-- Step 11: Aerie Peak
 	-- {area:271} Southshore · {area:348} Aerie Peak · {quest:1450} Gryphon Master Talonaxe · {npc:7884} Fraggar Thundermantle
-	["Ride north-east out of {area:271} on the road into the Hinterlands; {area:348} sits just past the border. Falstad holds court at the top, {quest:1450} tends the aviary and {npc:7884} stands by the inn."] = "",
+	["Ride north-east out of {area:271} on the road into the Hinterlands; {area:348} sits just past the border. Falstad holds court at the top, {quest:1450} tends the aviary and {npc:7884} stands by the inn."] = "Saia de {area:271} para o nordeste pela estrada até as Terras Agrestes; {area:348} fica logo depois da divisa. Falstad recebe a corte no alto, {quest:1450} cuida do aviário e {npc:7884} fica junto à estalagem.",
 
 	-- Step 12: Rhapsody Shindigger
 	-- {area:348} Aerie Peak
@@ -69,7 +69,7 @@ return {
 	["Fraggar keeps paying for necklaces: hand in any extras"] = "Explodar continua pagando pelos colares: entregue os que sobrarem",
 	-- {npc:5636} Gryphon Master Talonaxe
 	["{npc:5636}, beside the flight master at the top"] = "{npc:5636}, ao lado do mestre de voo, no alto",
-	["Talonaxe's next task waits for a later Hinterlands guide."] = "",
+	["Talonaxe's next task waits for a later Hinterlands guide."] = "A próxima tarefa de Garra-de-acha fica para um guia posterior das Terras Agrestes.",
 
 	-- Step 15: Menethil Harbor
 	["Take the boat to Theramore from the far pier."] = "Pegue o barco para a Ilha Theramore no píer mais distante.",
@@ -91,6 +91,4 @@ return {
 	["Fly to {area:608}, ride south through {zone:1443} into {zone:1444} and follow the road to the dock on the {area:1108}; the boat crosses to {area:1116}, where the next guide starts."] = "Voe para {area:608}, cavalgue para o sul por {zone:1443} até {zone:1444} e siga a estrada até o cais em {area:1108}; o barco atravessa até {area:1116}, onde começa o próximo guia.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Ride north-east out of {area:271} on the road into the {zone:1425}; {area:348} sits just past the border. Falstad holds court at the top, {quest:1450} tends the aviary and {npc:7884} stands by the inn."] = "Saia de {area:271} para o nordeste pela estrada até {zone:1425}; {area:348} fica logo depois da divisa. Falstad recebe a corte no alto, {quest:1450} cuida do aviário e {npc:7884} fica junto à estalagem.",
-	-- ["Talonaxe's next task waits for a later {zone:1425} guide."] = "A próxima tarefa de Garra-de-acha fica para um guia posterior de {zone:1425}.",
 }

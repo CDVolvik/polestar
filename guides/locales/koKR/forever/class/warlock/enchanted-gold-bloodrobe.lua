@@ -45,7 +45,7 @@ return {
 	["{zone:1443} demons"] = "{zone:1443}의 악마",
 	-- {area:603} Sargeron · {zone:1443} Desolace
 	-- plural, as words: Lesser Infernals = {npc:4676} Lesser Infernal
-	["The Hatefury satyrs of {area:603}, in north-eastern {zone:1443}, carry the blood; the Lesser Infernals of Mannoroc Coven, in the south, the stone."] = "",
+	["The Hatefury satyrs of {area:603}, in north-eastern {zone:1443}, carry the blood; the Lesser Infernals of Mannoroc Coven, in the south, the stone."] = "{zone:1443} 북동쪽 {area:603}의 서릿발분노 사티로스가 피를, 남쪽 만노로크 소굴의 하급 지옥불정령이 돌을 가지고 있습니다.",
 	["Vials of Hatefury Blood"] = "서릿발분노의 사티로스 피",
 
 	-- Step 10: Menara again

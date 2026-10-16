@@ -77,7 +77,7 @@ return {
 	-- {area:429} Xavian · {zone:1440} Ashenvale
 	["The {area:429} satyrs camp in eastern {zone:1440}, with the Felmusk satyrs further west; both drop Uncloven Satyr Hooves."] = "{area:429} 사티로스는 {zone:1440} 동부에 진을 치고 있고, 검은유혹의 사티로스는 더 서쪽에 있습니다. 둘 다 사티로스 통발굽을 떨어뜨립니다.",
 	-- {quest:1842} Satyr Hooves
-	["Uncloven {quest:1842}"] = "",
+	["Uncloven {quest:1842}"] = "통발굽 {quest:1842}",
 
 	-- Step 15: Chimaeric Horn
 	-- {npc:6167} Chimaera Matriarch · {item:6840} Galvanized Horn

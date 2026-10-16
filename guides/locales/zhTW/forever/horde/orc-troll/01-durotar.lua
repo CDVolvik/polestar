@@ -82,7 +82,7 @@ return {
 
 	-- Step 18: Felstalker hooves
 	-- {npc:3102} Felstalker
-	["{npc:3102} hooves"] = "",
+	["{npc:3102} hooves"] = "{npc:3102}的蹄子",
 	-- plural, as words: Felstalkers = {npc:3102} Felstalker
 	["Felstalkers roam the slope below the cave, on the valley's north side."] = "地獄捕獵者在洞穴下方的山坡上遊蕩，位於山谷北側。",
 
@@ -274,7 +274,7 @@ return {
 
 	-- Step 67: The Crossroads
 	-- {area:379} Far Watch Post · {zone:1413} Barrens
-	["Follow the road south-west from {area:379} to the Crossroads. The {zone:1413} guide starts here."] = "",
+	["Follow the road south-west from {area:379} to the Crossroads. The {zone:1413} guide starts here."] = "沿著道路從{area:379}向西南前往十字路口。{zone:1413}指南從這裡開始。",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Felstalker hooves"] = "地獄捕獵者的蹄子",

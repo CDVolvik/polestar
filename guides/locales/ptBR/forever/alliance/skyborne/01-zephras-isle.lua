@@ -227,7 +227,7 @@ return {
 	-- Step 41: The dead cultist
 	["The dead cultist"] = "O sectário morto",
 	-- {npc:273017} Fendaal Windstone · {quest:98512} Al'Aketh Assassins
-	["North-west of Valanaar along the road: {npc:273017} watches the {quest:98512}; the dead cultist lies just north of him."] = "",
+	["North-west of Valanaar along the road: {npc:273017} watches the {quest:98512}; the dead cultist lies just north of him."] = "A noroeste de Valanaar, pela estrada: {npc:273017} vigia os {quest:98512}; o sectário morto jaz logo ao norte dele.",
 	["Search the dead cultist"] = "Reviste o sectário morto",
 	-- {npc:258443} Ur'endra
 	["{npc:258443}, in the highlands south-west of the cultist"] = "{npc:258443}, no planalto a sudoeste do sectário",
@@ -329,5 +329,4 @@ return {
 	["Leave {zone:1453} by the main gate. The {quest:1861} waterfall is south-west of the gates, on the way west to {zone:1436}: fill {item:7207} at its base."] = "Saia de {zone:1453} pelo portão principal. A cachoeira do {quest:1861} fica a sudoeste dos portões, no caminho para {zone:1436}, a oeste: encha o {item:7207} na base dela.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["North-west of {area:16638} along the road: {npc:273017} watches the {quest:98512}; the dead cultist lies just north of him."] = "A noroeste de {area:16638}, pela estrada: {npc:273017} vigia os {quest:98512}; o sectário morto jaz logo ao norte dele.",
 }

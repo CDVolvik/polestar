@@ -73,7 +73,7 @@ return {
 	["Follow the main road south the length of the jungle, past the {object:3202} turn-off, to {area:35} on the southern cape."] = "沿主要道路向南穿過整片叢林，經過{object:3202}岔路，到達南端海角的{area:35}。",
 	["Gyll, on the top floor by the docks"] = "蓋爾，在碼頭旁的頂樓",
 	-- {npc:2832} Nixxrax Fillamug
-	["{npc:2832}, in the Salty Sailor Tavern"] = "",
+	["{npc:2832}, in the Salty Sailor Tavern"] = "{npc:2832}，在老水手酒館",
 	-- {npc:2495} Drizzlik
 	["{npc:2495}, by the bank"] = "{npc:2495}，在銀行旁",
 	-- {npc:773} Krazek

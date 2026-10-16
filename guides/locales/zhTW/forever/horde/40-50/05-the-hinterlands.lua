@@ -56,7 +56,7 @@ return {
 	-- Step 10: Gilveradin's camp
 	["Gilveradin's camp"] = "基沃拉丁的營地",
 	-- {area:272} Tarren Mill · {npc:7801} Gilveradin Sunchaser · {area:350} Quel'Danil Lodge
-	["Ride north-east from {area:272} into the Hinterlands and east along the road; {npc:7801} camps on the hill south of the elves' {area:350}."] = "",
+	["Ride north-east from {area:272} into the Hinterlands and east along the road; {npc:7801} camps on the hill south of the elves' {area:350}."] = "從{area:272}向東北騎進辛特蘭，再沿道路向東；{npc:7801}在精靈的{area:350}南邊的山丘上紮營。",
 
 	-- Step 11: Highvale
 	["Highvale"] = "高原精靈",
@@ -75,7 +75,7 @@ return {
 	["South-west again, the exile hides by the ruins of {area:353}."] = "再往西南，流放者躲在{area:353}的廢墟旁。",
 
 	-- Step 15: Revantusk Village
-	["Follow the roads east across the Hinterlands to the troll village on the eastern coast."] = "",
+	["Follow the roads east across the Hinterlands to the troll village on the eastern coast."] = "沿道路向東穿過辛特蘭，前往東海岸的食人妖村落。",
 
 	-- Step 16: Saltwater Snapjaws
 	-- plural, as words: Saltwater Snapjaws = {npc:2505} Saltwater Snapjaw
@@ -138,7 +138,7 @@ return {
 
 	-- Step 27: Jintha'Alor
 	-- {area:354} Jintha'Alor · {npc:14757} Elder Torntusk
-	["Huntsman Malkhor's skull lies on a pile below the Vilebranch ruins, his bones on a pile at the foot of {area:354}. The Vessels of Tainted Blood sit on the lower terraces, and {npc:14757} is held at the top. Keep to the paths: the trolls inside are elite."] = "",
+	["Huntsman Malkhor's skull lies on a pile below the Vilebranch ruins, his bones on a pile at the foot of {area:354}. The Vessels of Tainted Blood sit on the lower terraces, and {npc:14757} is held at the top. Keep to the paths: the trolls inside are elite."] = "獵戶莫克霍爾的顱骨在邪枝廢墟下方的一堆東西上，他的骨頭在{area:354}山腳的另一堆上。污染之血之瓶放在下層平台，{npc:14757}被關在頂端。走在小路上：裡面的食人妖是精英。",
 	-- {npc:14757} Elder Torntusk · {area:354} Jintha'Alor
 	["{npc:14757}, at the top of {area:354}"] = "{npc:14757}，在{area:354}頂端",
 	-- {area:355} Altar of Zul

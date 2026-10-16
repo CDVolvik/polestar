@@ -128,7 +128,7 @@ return {
 	["Free Darrowshire Spirits: talk to them"] = "Befreie Geister von Darrowshire: Sprich mit ihnen",
 
 	-- Step 30: The Undercroft
-	["Zaeldarr is elite: grouping up is advised. He waits at the bottom of the Undercroft, the crypt in the south-west of the zone."] = "",
+	["Zaeldarr is elite: grouping up is advised. He waits at the bottom of the Undercroft, the crypt in the south-west of the zone."] = "Zaeldarr ist Elite: Eine Gruppe wird empfohlen. Er wartet ganz unten im Tiefgewölbe, der Krypta im Südwesten des Gebiets.",
 
 	-- Step 31: Augustus the Touched
 	-- {area:2627} Terrordale

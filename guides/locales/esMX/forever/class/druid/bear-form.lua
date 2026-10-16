@@ -13,7 +13,7 @@ return {
 
 	-- Step 1: Heeding the Call
 	-- {npc:3602} Kal · {area:186} Dolanaar · {zone:1457} Darnassus · {zone:1453} Stormwind · {npc:4217} Mathrengyl Bearwalker
-	["At 10 a druid's call reaches you: {npc:3602} in {area:186}, Denatharion in {zone:1457} or Theridran in {zone:1453}. Any one of them sends you to {npc:4217} in the Cenarion Enclave of Darnassus."] = "",
+	["At 10 a druid's call reaches you: {npc:3602} in {area:186}, Denatharion in {zone:1457} or Theridran in {zone:1453}. Any one of them sends you to {npc:4217} in the Cenarion Enclave of Darnassus."] = "A nivel 10 te llega el llamado de un druida: {npc:3602} en {area:186}, Denatharion en {zone:1457} o Theridran en {zone:1453}. Cualquiera te envía con {npc:4217} en el Enclave Cenarion de Darnassus.",
 	-- {npc:3602} Kal · {area:186} Dolanaar
 	["{npc:3602}, {area:186}; Denatharion's and Theridran's letters lead to the same place"] = "{npc:3602}, {area:186}; las cartas de Denatharion y Theridran llevan al mismo lugar",
 

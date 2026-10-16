@@ -23,7 +23,7 @@ return {
 
 	-- Step 4: The Talondeep Path
 	-- {area:1276} Talondeep Path
-	["The {area:1276}"] = "",
+	["The {area:1276}"] = "{area:1276}",
 	-- {area:415} Astranaar · {area:1276} Talondeep Path
 	["From {area:415} head south-west to the {area:1276}, a tunnel through the mountains into Stonetalon."] = "Reite von {area:415} nach Südwesten zum {area:1276}, einem Tunnel durch die Berge ins Steinkrallengebirge.",
 
@@ -46,7 +46,7 @@ return {
 
 	-- Step 11: Dalinda Malem
 	-- {area:608} Nijel's Point
-	["Dalinda hides inside the Burning Blade's fortress south-west of {area:608}."] = "",
+	["Dalinda hides inside the Burning Blade's fortress south-west of {area:608}."] = "Dalinda versteckt sich in der Festung der Burning Blade südwestlich von {area:608}.",
 
 	-- Step 12: Tyranis and the Seer
 	["Tyranis and the Seer"] = "Tyranis und der Seher",
@@ -55,7 +55,7 @@ return {
 
 	-- Step 13: Escort Dalinda
 	["Escort Dalinda"] = "Dalinda eskortieren",
-	["Out of Thunder Axe Fortress"] = "",
+	["Out of Thunder Axe Fortress"] = "Raus aus der Festung Thunder Axe",
 	-- {area:608} Nijel's Point
 	["Lead Dalinda out of the fortress; she walks off once you are clear of it. Vahlarriel takes the turn-in at {area:608} at the end of the guide."] = "Führ Dalinda aus der Festung; sie geht ihrer Wege, sobald ihr draußen seid. Vahlarriel nimmt die Abgabe am Ende des Guides in {area:608} entgegen.",
 

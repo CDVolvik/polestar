@@ -55,7 +55,7 @@ return {
 	["Highland Striders roam the hills all around {area:321}; both they and the Thrashers further west drop the eyes."] = "Долгоноги нагорья бродят по холмам вокруг места {area:321}; глаза падают и с них, и с твердозубов дальше к западу.",
 
 	-- Step 11: Drywhisker Gorge
-	["North-east of Hammerfall the Drywhisker kobolds mine the gorge; the Kobolds at the mouth and the Diggers and Surveyors deeper in all drop the Motes of Myzrael."] = "",
+	["North-east of Hammerfall the Drywhisker kobolds mine the gorge; the Kobolds at the mouth and the Diggers and Surveyors deeper in all drop the Motes of Myzrael."] = "К северо-востоку от Павшего Молота кобольды из племени Сухоусов копают в ущелье; с кобольдов у входа и с землекопов и геодезистов в глубине падает «Мощь Мизраэли».",
 
 	-- Step 12: Iridescent Shards
 	-- {object:2701} Iridescent Shards
@@ -138,7 +138,7 @@ return {
 
 	-- Step 30: The Dustbowl
 	-- {area:340} Kargath
-	["Ride west along the road; Lotwil's camp sits in the Dustbowl halfway to {area:340}."] = "",
+	["Ride west along the road; Lotwil's camp sits in the Dustbowl halfway to {area:340}."] = "Езжайте на запад по дороге; лагерь Лотвиля – в Знойных Песках, на полпути к месту {area:340}.",
 
 	-- Step 31: Kargath
 	-- {area:340} Kargath
@@ -156,12 +156,12 @@ return {
 	-- plural, as words: Rock Elementals = {npc:92} Rock Elemental
 	["Rock Elementals"] = "Каменные элементали",
 	-- plural, as words: Rock Elementals = {npc:92} Rock Elemental
-	["The bigger Rock Elementals stand on the slopes north-west of the Dustbowl; each one drops a slab."] = "",
+	["The bigger Rock Elementals stand on the slopes north-west of the Dustbowl; each one drops a slab."] = "Каменные элементали покрупнее стоят на склонах к северо-западу от Знойных Песков; с каждого падает плита.",
 
 	-- Step 36: Coyotes and buzzards
 	["Coyotes and buzzards"] = "Койоты и канюки",
 	-- plural, as words: Elder Crag Coyotes = {npc:2729} Elder Crag Coyote · Giant Buzzards = {npc:2831} Giant Buzzard
-	["The Elder Crag Coyotes and Giant Buzzards roam the basin south of the Dustbowl. Coyotes drop both the jawbones and the fangs; only the buzzards drop wings and gizzards."] = "",
+	["The Elder Crag Coyotes and Giant Buzzards roam the basin south of the Dustbowl. Coyotes drop both the jawbones and the fangs; only the buzzards drop wings and gizzards."] = "Старые скальные койоты и гигантские канюки бродят по низине к югу от Знойных Песков. С койотов падают и челюсти, и клыки; крылья и желудки – только с канюков.",
 
 	-- Step 37: Greater Rock Elementals
 	-- plural, as words: Greater Rock Elementals = {npc:2736} Greater Rock Elemental
@@ -214,7 +214,7 @@ return {
 
 	-- Step 50: The Crossroads
 	-- {area:380} Crossroads
-	["The {area:380}"] = "",
+	["The {area:380}"] = "{area:380}",
 
 	-- Step 51: Regthar Deathgate
 	-- {area:380} Crossroads · {area:386} Forgotten Pools

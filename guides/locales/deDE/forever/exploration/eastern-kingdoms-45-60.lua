@@ -52,9 +52,9 @@ return {
 	-- Step 7: The Hinterlands (1/2)
 	["14 areas to discover here, levels 41-49."] = "Hier gibt es 14 Gebiete zu entdecken, Stufe 41-49.",
 	-- {area:348} Aerie Peak · {area:271} Southshore · {zone:1424} Hillsbrad Foothills
-	["Fly to {area:348} if you have it; otherwise fly to {area:271} and walk north-east from {zone:1424} into the Hinterlands."] = "",
+	["Fly to {area:348} if you have it; otherwise fly to {area:271} and walk north-east from {zone:1424} into the Hinterlands."] = "Flieg nach {area:348}, falls du die Route hast; sonst flieg nach {area:271} und lauf nach Nordosten vom {zone:1424} ins Hinterland.",
 	-- {area:3317} Revantusk Village · {area:272} Tarren Mill · {zone:1424} Hillsbrad Foothills
-	["Fly to {area:3317} if you have it; otherwise fly to {area:272} and walk east from {zone:1424} into the Hinterlands."] = "",
+	["Fly to {area:3317} if you have it; otherwise fly to {area:272} and walk east from {zone:1424} into the Hinterlands."] = "Flieg nach {area:3317}, falls du die Route hast; sonst flieg nach {area:272} und lauf nach Osten vom {zone:1424} ins Hinterland.",
 	-- {area:348} Aerie Peak · {npc:8018} Guthrum Thunderfist
 	["Flight path here: {area:348} ({npc:8018})."] = "Flugroute hier: {area:348} ({npc:8018}).",
 	-- {area:3317} Revantusk Village

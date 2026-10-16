@@ -70,7 +70,7 @@ return {
 	["On the ride north to {area:392}, {area:720} lies off the {area:391} south of the town: wade over the sand bar shallows. {npc:6236} sends four challengers and then {npc:6238} (level 33) at you, one at a time."] = "De camino al norte a {area:392}, {area:720} está frente a {area:391}, al sur del pueblo: cruza vadeando los bajíos del banco de arena. {npc:6236} te envía cuatro retadores y luego a {npc:6238} (nivel 33), de uno en uno.",
 	-- {npc:6238} Big Will
 	["Defeat the challengers and {npc:6238}"] = "Derrota a los retadores y a {npc:6238}",
-	["Klannoc offers The Windwatcher next (1791): the Whirlwind weapon chain, with an elite at the end, is in the Warrior class guide Whirlwind Weapon."] = "",
+	["Klannoc offers The Windwatcher next (1791): the Whirlwind weapon chain, with an elite at the end, is in the Warrior class guide Whirlwind Weapon."] = "Klannoc ofrece después El Vigía del viento (1791): la cadena del arma de Torbellino, con un élite al final, está en la guía de clase de guerrero Arma Torbellino.",
 
 	-- Step 18: Ratchet
 	-- {zone:1413} Barrens · {area:392} Ratchet · {npc:16227} Bragok · {area:35} Booty Bay
@@ -97,7 +97,7 @@ return {
 
 	-- Step 21: Booty Bay
 	-- {npc:2624} Gazban
-	["{npc:2624} swims off the north-west coast, on the northern loop"] = "",
+	["{npc:2624} swims off the north-west coast, on the northern loop"] = "{npc:2624} nada frente a la costa noroeste, en el circuito norte",
 
 	-- Step 22: Bloodsail pirates
 	["Bloodsail pirates"] = "Piratas Velasangre",
@@ -160,7 +160,7 @@ return {
 	["The north-west coast"] = "La costa noroeste",
 	-- {npc:2624} Gazban · {item:4034} Stone of the Tides
 	-- plural, as words: Giant Clams = {object:2744} Giant Clam
-	["Ride north-west from the mine to the bay on the north-west coast. The Giant Clams lie on its floor and hold the pearls; {npc:2624} swims among them and drops the {item:4034}."] = "",
+	["Ride north-west from the mine to the bay on the north-west coast. The Giant Clams lie on its floor and hold the pearls; {npc:2624} swims among them and drops the {item:4034}."] = "Cabalga al noroeste desde la mina hasta la bahía de la costa noroeste. Las almejas gigantes ({object:2744}) están en su fondo y guardan las perlas; {npc:2624} nada entre ellas y suelta {item:4034}.",
 
 	-- Step 36: Rebel Camp
 	-- {npc:217588} Arbor Tarantula

@@ -128,7 +128,7 @@ return {
 	["Free Darrowshire Spirits: talk to them"] = "Liberte os Espíritos da Vila das Flechas: fale com eles",
 
 	-- Step 30: The Undercroft
-	["Zaeldarr is elite: grouping up is advised. He waits at the bottom of the Undercroft, the crypt in the south-west of the zone."] = "",
+	["Zaeldarr is elite: grouping up is advised. He waits at the bottom of the Undercroft, the crypt in the south-west of the zone."] = "Zaeldarr é elite: é recomendado formar grupo. Ele espera no fundo da Chácara Secreta, a cripta no sudoeste da zona.",
 
 	-- Step 31: Augustus the Touched
 	-- {area:2627} Terrordale
@@ -139,5 +139,4 @@ return {
 	["The next guide starts here and flies to {area:3197}."] = "O próximo guia começa aqui e voa para o {area:3197}.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Zaeldarr is elite: grouping up is advised. He waits at the bottom of the {area:2261}, the crypt in the south-west of the zone."] = "Zaeldarr é elite: é recomendado formar grupo. Ele espera no fundo da {area:2261}, a cripta no sudoeste da zona.",
 }

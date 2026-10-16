@@ -56,7 +56,7 @@ return {
 	-- Step 10: Gilveradin's camp
 	["Gilveradin's camp"] = "Campamento de Gilveradin",
 	-- {area:272} Tarren Mill · {npc:7801} Gilveradin Sunchaser · {area:350} Quel'Danil Lodge
-	["Ride north-east from {area:272} into the Hinterlands and east along the road; {npc:7801} camps on the hill south of the elves' {area:350}."] = "",
+	["Ride north-east from {area:272} into the Hinterlands and east along the road; {npc:7801} camps on the hill south of the elves' {area:350}."] = "Cabalga al noreste desde {area:272} hacia Tierras del Interior y al este por el camino; {npc:7801} acampa en la colina al sur de {area:350}, de los elfos.",
 
 	-- Step 11: Highvale
 	["Highvale"] = "Vallealto",
@@ -75,7 +75,7 @@ return {
 	["South-west again, the exile hides by the ruins of {area:353}."] = "De nuevo al suroeste, el exiliado se esconde junto a las ruinas de {area:353}.",
 
 	-- Step 15: Revantusk Village
-	["Follow the roads east across the Hinterlands to the troll village on the eastern coast."] = "",
+	["Follow the roads east across the Hinterlands to the troll village on the eastern coast."] = "Sigue los caminos al este cruzando Tierras del Interior hasta el poblado trol de la costa este.",
 
 	-- Step 16: Saltwater Snapjaws
 	-- plural, as words: Saltwater Snapjaws = {npc:2505} Saltwater Snapjaw
@@ -138,7 +138,7 @@ return {
 
 	-- Step 27: Jintha'Alor
 	-- {area:354} Jintha'Alor · {npc:14757} Elder Torntusk
-	["Huntsman Malkhor's skull lies on a pile below the Vilebranch ruins, his bones on a pile at the foot of {area:354}. The Vessels of Tainted Blood sit on the lower terraces, and {npc:14757} is held at the top. Keep to the paths: the trolls inside are elite."] = "",
+	["Huntsman Malkhor's skull lies on a pile below the Vilebranch ruins, his bones on a pile at the foot of {area:354}. The Vessels of Tainted Blood sit on the lower terraces, and {npc:14757} is held at the top. Keep to the paths: the trolls inside are elite."] = "La calavera del cazador Malkhor está en un montón bajo las ruinas Vilrama, y sus huesos en otro montón al pie de {area:354}. Las vasijas de sangre corrupta están en las terrazas inferiores y {npc:14757} está cautivo en la cima. No te salgas de los senderos: los trols de adentro son élite.",
 	-- {npc:14757} Elder Torntusk · {area:354} Jintha'Alor
 	["{npc:14757}, at the top of {area:354}"] = "{npc:14757}, en la cima de {area:354}",
 	-- {area:355} Altar of Zul

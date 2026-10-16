@@ -128,7 +128,7 @@ return {
 
 	-- Step 30: The Vile Reef
 	-- {area:104} Vile Reef · {item:4094} Tablet Shard
-	["North-west of Grom'gol the {area:104} lies under the water off the coast. The {item:4094} rests on the sea floor by the sunken ruins; watch your breath and the murlocs."] = "",
+	["North-west of Grom'gol the {area:104} lies under the water off the coast. The {item:4094} rests on the sea floor by the sunken ruins; watch your breath and the murlocs."] = "{area:104}位于格罗姆高营地西北的近海水下。{item:4094}躺在沉没废墟旁的海底；注意呼吸和鱼人。",
 
 	-- Step 31: Bloodscalp ruins
 	["Bloodscalp ruins"] = "血顶废墟",
@@ -145,7 +145,7 @@ return {
 	-- Step 34: Green Hills pages
 	["Green Hills pages"] = "荆棘谷的青山书页",
 	-- {item:2755} Green Hills of Stranglethorn
-	["Pages of The {item:2755} drop at about 1% each from the Bloodscalp and Skullsplitter trolls; keep every page you loot and look on the auction house for the rest. Barnil takes the chapters later in this guide."] = "",
+	["Pages of The {item:2755} drop at about 1% each from the Bloodscalp and Skullsplitter trolls; keep every page you loot and look on the auction house for the rest. Barnil takes the chapters later in this guide."] = "{item:2755}的每一页从血顶巨魔和劈颅巨魔身上的掉率约为1%；留着拾取到的每一页，其余的去拍卖行找。巴尼尔会在本指南稍后收取各章节。",
 
 	-- Step 35: Shadowmaw panthers
 	["Shadowmaw panthers"] = "深喉猎豹",
@@ -154,7 +154,7 @@ return {
 
 	-- Step 36: Green Hills pages
 	-- {item:2755} Green Hills of Stranglethorn
-	["Pages of The {item:2755} drop at about 1% each from the Bloodscalp and Skullsplitter trolls; take what drops and check the Auction House for the rest."] = "",
+	["Pages of The {item:2755} drop at about 1% each from the Bloodscalp and Skullsplitter trolls; take what drops and check the Auction House for the rest."] = "{item:2755}的每一页从血顶巨魔和劈颅巨魔身上的掉率约为1%；拿上掉落的，其余的去拍卖行找。",
 
 	-- Step 39: Jungle Stalkers
 	-- plural, as words: Jungle Stalkers = {npc:687} Jungle Stalker

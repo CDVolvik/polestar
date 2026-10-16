@@ -59,9 +59,9 @@ return {
 
 	-- Step 10: Azuregos
 	-- {item:18704} Mature Blue Dragon Sinew · {npc:6109} Azuregos · {zone:1447} Azshara · {zone:1452} Winterspring
-	["Hastat's quiver needs the {item:18704}. {npc:6109}, a world boss for a raid, roams the south of {zone:1447} and drops it most of the time; the Cobalt dragonkin of {zone:1452} drop it very rarely. Skip the rest of this guide if you do not want the quiver."] = "",
+	["Hastat's quiver needs the {item:18704}. {npc:6109}, a world boss for a raid, roams the south of {zone:1447} and drops it most of the time; the Cobalt dragonkin of {zone:1452} drop it very rarely. Skip the rest of this guide if you do not want the quiver."] = "하스타트의 화살통에는 {item:18704}이(가) 필요합니다. 공격대용 필드 우두머리인 {npc:6109}은(는) {zone:1447} 남부를 돌아다니며 대부분 이것을 떨어뜨립니다. {zone:1452}의 푸른비늘 용족은 매우 드물게 떨어뜨립니다. 화살통을 원하지 않으면 이 가이드의 나머지는 건너뛰세요.",
 	-- {item:18704} Mature Blue Dragon Sinew · {npc:6109} Azuregos
-	["{item:18704}, from {npc:6109}"] = "",
+	["{item:18704}, from {npc:6109}"] = "{item:18704}, {npc:6109}에게서",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Azuregos"] = "아주어고스",

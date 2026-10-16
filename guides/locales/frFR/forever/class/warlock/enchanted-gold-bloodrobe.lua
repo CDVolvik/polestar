@@ -45,7 +45,7 @@ return {
 	["{zone:1443} demons"] = "Démons de {zone:1443}",
 	-- {area:603} Sargeron · {zone:1443} Desolace
 	-- plural, as words: Lesser Infernals = {npc:4676} Lesser Infernal
-	["The Hatefury satyrs of {area:603}, in north-eastern {zone:1443}, carry the blood; the Lesser Infernals of Mannoroc Coven, in the south, the stone."] = "",
+	["The Hatefury satyrs of {area:603}, in north-eastern {zone:1443}, carry the blood; the Lesser Infernals of Mannoroc Coven, in the south, the stone."] = "Les satyres Fielfurie de {area:603}, dans le nord-est de {zone:1443}, portent le sang ; les Infernaux mineurs du Convent de Mannoroc, au sud, la pierre.",
 	["Vials of Hatefury Blood"] = "Fioles de sang de Fielfurie",
 
 	-- Step 10: Menara again

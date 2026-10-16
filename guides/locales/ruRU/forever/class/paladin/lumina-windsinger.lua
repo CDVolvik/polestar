@@ -7,7 +7,7 @@
 return {
 	-- Guide
 	-- {quest:91862} Lumina Windsinger
-	["Rescuing {quest:91862}"] = "",
+	["Rescuing {quest:91862}"] = "Спасение: {quest:91862}",
 	-- {item:268484} Moonsilver Blade
 	["No item yet: a Forsaken paladin rescue story; its sequel, the {item:268484}, cannot be finished yet."] = "Предмета пока нет: история о спасении для паладина Отрекшихся; ее продолжение, {item:268484}, пока нельзя завершить.",
 	-- {zone:1458} Undercity
@@ -19,13 +19,13 @@ return {
 
 	-- Step 2: The Sepulcher
 	-- {zone:1421} Silverpine Forest · {npc:248840} Trevan Rol · {npc:259611} Deathguard Baldren
-	["Ride south through {zone:1421} to the Sepulcher. {npc:248840} stands in the town; {npc:259611} keeps watch near its entrance."] = "",
+	["Ride south through {zone:1421} to the Sepulcher. {npc:248840} stands in the town; {npc:259611} keeps watch near its entrance."] = "Езжайте на юг через {zone:1421} к Гробнице. {npc:248840} стоит в поселении; {npc:259611} стоит на страже у входа.",
 
 	-- Step 3: The pyre on Fenris Isle
 	-- {area:172} Fenris Isle
 	["The pyre on {area:172}"] = "Погребальный костер: {area:172}",
 	-- {area:172} Fenris Isle
-	["{area:172} lies in the lake east of the Sepulcher. The charred remains are on its shore."] = "",
+	["{area:172} lies in the lake east of the Sepulcher. The charred remains are on its shore."] = "{area:172} — остров в озере к востоку от Гробницы. Обугленные останки лежат на его берегу.",
 	-- {object:566037} Charred Remains
 	["from the {object:566037}"] = "Объект: {object:566037}",
 
@@ -40,11 +40,11 @@ return {
 	["Free her with the key, then stay close while she fights her way out of the keep."] = "Освободите ее ключом и держитесь рядом, пока она пробивается из крепости.",
 
 	-- Step 6: Back to the Sepulcher
-	["Back to the Sepulcher"] = "",
+	["Back to the Sepulcher"] = "Вернитесь в Гробницу",
 	-- {area:235} Fenris Keep
-	["Once she is clear of {area:235}, Lumina waits for you in the Sepulcher. Speak with her again to hear what really happened on the road."] = "",
+	["Once she is clear of {area:235}, Lumina waits for you in the Sepulcher. Speak with her again to hear what really happened on the road."] = "Когда она выберется из места {area:235}, Люмина ждет вас в Гробнице. Поговорите с ней снова, чтобы узнать, что на самом деле случилось в дороге.",
 	-- {npc:259620} Lumina Windsinger
-	["{npc:259620}, the Sepulcher"] = "",
+	["{npc:259620}, the Sepulcher"] = "{npc:259620}, Гробница",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Back to the {area:228}"] = "Вернитесь: {area:228}",

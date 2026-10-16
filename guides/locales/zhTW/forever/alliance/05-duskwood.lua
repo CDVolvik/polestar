@@ -124,7 +124,7 @@ return {
 	-- {zone:1453} Stormwind · {object:2100} Old Town
 	["Ride north through Elwynn to {zone:1453}; Mathias Shaw is at SI:7 in {object:2100}."] = "向北騎過艾爾文森林前往{zone:1453}；馬迪亞斯·肖爾在{object:2100}的軍情七處。",
 	-- {npc:332} Master Mathias Shaw · {item:18160} Recipe: Thistle Tea
-	["{npc:332}: Poisons, and {item:18160}"] = "",
+	["{npc:332}: Poisons, and {item:18160}"] = "{npc:332}：毒藥，以及{item:18160}",
 	-- {quest:2607} The Touch of Zanzil · {npc:7207} Doc Mixilpixil
 	["{quest:2607}: {npc:7207}, in the cellar of the Barracks"] = "{quest:2607}：{npc:7207}，在兵營地下室",
 	-- {npc:7207} Doc Mixilpixil

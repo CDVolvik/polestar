@@ -54,7 +54,7 @@ return {
 
 	-- Step 11: Aerie Peak
 	-- {area:271} Southshore · {area:348} Aerie Peak · {quest:1450} Gryphon Master Talonaxe · {npc:7884} Fraggar Thundermantle
-	["Ride north-east out of {area:271} on the road into the Hinterlands; {area:348} sits just past the border. Falstad holds court at the top, {quest:1450} tends the aviary and {npc:7884} stands by the inn."] = "",
+	["Ride north-east out of {area:271} on the road into the Hinterlands; {area:348} sits just past the border. Falstad holds court at the top, {quest:1450} tends the aviary and {npc:7884} stands by the inn."] = "길을 따라 북동쪽으로 {area:271}을(를) 빠져나가 동부 내륙지로 가십시오. {area:348}은(는) 경계 바로 너머에 있습니다. 폴스타트 와일드해머는 꼭대기에, {quest:1450}은(는) 그리핀 둥지에, {npc:7884}은(는) 여관 옆에 있습니다.",
 
 	-- Step 12: Rhapsody Shindigger
 	-- {area:348} Aerie Peak
@@ -69,7 +69,7 @@ return {
 	["Fraggar keeps paying for necklaces: hand in any extras"] = "프라가르는 목걸이를 계속 받습니다. 남는 것은 제출하십시오",
 	-- {npc:5636} Gryphon Master Talonaxe
 	["{npc:5636}, beside the flight master at the top"] = "{npc:5636}, 꼭대기의 비행 조련사 옆",
-	["Talonaxe's next task waits for a later Hinterlands guide."] = "",
+	["Talonaxe's next task waits for a later Hinterlands guide."] = "탈론액스의 다음 임무는 이후 동부 내륙지 가이드에서 합니다.",
 
 	-- Step 15: Menethil Harbor
 	["Take the boat to Theramore from the far pier."] = "가장 먼 부두에서 테라모어 섬행 배를 타십시오.",

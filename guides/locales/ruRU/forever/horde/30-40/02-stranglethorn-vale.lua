@@ -128,7 +128,7 @@ return {
 
 	-- Step 30: The Vile Reef
 	-- {area:104} Vile Reef · {item:4094} Tablet Shard
-	["North-west of Grom'gol the {area:104} lies under the water off the coast. The {item:4094} rests on the sea floor by the sunken ruins; watch your breath and the murlocs."] = "",
+	["North-west of Grom'gol the {area:104} lies under the water off the coast. The {item:4094} rests on the sea floor by the sunken ruins; watch your breath and the murlocs."] = "К северо-западу от Лагеря Гром'гол под водой у побережья лежит {area:104}. {item:4094} лежит на морском дне у затонувших руин; следите за дыханием и мурлоками.",
 
 	-- Step 31: Bloodscalp ruins
 	["Bloodscalp ruins"] = "Руины Кровавого Скальпа",
@@ -145,7 +145,7 @@ return {
 	-- Step 34: Green Hills pages
 	["Green Hills pages"] = "Страницы «Зеленых холмов»",
 	-- {item:2755} Green Hills of Stranglethorn
-	["Pages of The {item:2755} drop at about 1% each from the Bloodscalp and Skullsplitter trolls; keep every page you loot and look on the auction house for the rest. Barnil takes the chapters later in this guide."] = "",
+	["Pages of The {item:2755} drop at about 1% each from the Bloodscalp and Skullsplitter trolls; keep every page you loot and look on the auction house for the rest. Barnil takes the chapters later in this guide."] = "Страницы книги «{item:2755}» падают с шансом около 1% каждая с троллей из племен Кровавого Скальпа и Дробителей Черепов; сохраняйте каждую найденную страницу, а остальные поищите на аукционе. Барнил принимает главы позже в этом гайде.",
 
 	-- Step 35: Shadowmaw panthers
 	["Shadowmaw panthers"] = "Тенебрюхие пантеры",
@@ -154,7 +154,7 @@ return {
 
 	-- Step 36: Green Hills pages
 	-- {item:2755} Green Hills of Stranglethorn
-	["Pages of The {item:2755} drop at about 1% each from the Bloodscalp and Skullsplitter trolls; take what drops and check the Auction House for the rest."] = "",
+	["Pages of The {item:2755} drop at about 1% each from the Bloodscalp and Skullsplitter trolls; take what drops and check the Auction House for the rest."] = "Страницы книги «{item:2755}» падают с шансом около 1% каждая с троллей из племен Кровавого Скальпа и Дробителей Черепов; берите, что выпадет, а остальное ищите на аукционе.",
 
 	-- Step 39: Jungle Stalkers
 	-- plural, as words: Jungle Stalkers = {npc:687} Jungle Stalker

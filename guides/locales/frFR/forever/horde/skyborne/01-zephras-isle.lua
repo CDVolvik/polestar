@@ -87,7 +87,7 @@ return {
 
 	-- Step 16: Leaving Thendal Village
 	-- {area:16635} Thendal Village
-	["Leaving {area:16635}"] = "",
+	["Leaving {area:16635}"] = "Départ de {area:16635}",
 
 	-- Step 17: Call of Earth
 	-- {npc:251374} Windshaper Boro · {area:16988} Rise of Spirits · {item:6635} Earth Sapta · {npc:251166} Minor Manifestation of Earth · {item:6656} Rough Quartz
@@ -208,10 +208,10 @@ return {
 	-- Step 39: Wind Hollows and Construct Parts
 	-- {object:616467} Construct Parts
 	-- plural, as words: Wind Hollows = {npc:251676} Wind Hollow
-	["Wind Hollows and {object:616467}"] = "",
+	["Wind Hollows and {object:616467}"] = "Creux du vent et {object:616467}",
 	-- {area:16638} Valanaar · {object:616467} Construct Parts
 	-- plural, as words: Wind Hollows = {npc:251676} Wind Hollow
-	["Wind Hollows drift over the lowlands around {area:16638}. The first {object:616467} lie west of the orchard road."] = "",
+	["Wind Hollows drift over the lowlands around {area:16638}. The first {object:616467} lie west of the orchard road."] = "Des Creux du vent dérivent au-dessus des plaines autour de {area:16638}. Les premières {object:616467} se trouvent à l'ouest de la route du verger.",
 
 	-- Step 41: Windfield Orchard
 	-- {area:16663} Windfield Orchard · {area:16638} Valanaar
@@ -227,11 +227,11 @@ return {
 	-- Step 44: Bandit Highwaymen
 	["Bandit Highwaymen"] = "Bandits de grand chemin",
 	-- {object:616468} Construct Parts · {area:16638} Valanaar
-	["The highwaymen hold the hills north-east of the orchard. More {object:616468} lie near the road to {area:16638}."] = "",
+	["The highwaymen hold the hills north-east of the orchard. More {object:616468} lie near the road to {area:16638}."] = "Les bandits de grand chemin tiennent les collines au nord-est du verger. D'autres {object:616468} se trouvent près de la route de {area:16638}.",
 
 	-- Step 45: Standing Our Ground
 	-- {npc:252800} Aamelia Windfield
-	["Tell {npc:252800} you're ready"] = "",
+	["Tell {npc:252800} you're ready"] = "Dites à {npc:252800} que vous êtes prêt",
 
 	-- Step 46: Alvarion and Riaani
 	["Alvarion and Riaani"] = "Alvarion et Riaani",
@@ -291,7 +291,7 @@ return {
 	-- Step 60: Kuramaa
 	-- {area:16623} Shen'dar Highlands · {npc:268605} Kuramaa
 	-- plural, as words: Windsong Crawlers = {npc:254588} Windsong Crawler
-	["Back to Olariaan, then west into the {area:16623}: {npc:268605}'s home is in the hills south of the Windsong Crawlers' lakes."] = "",
+	["Back to Olariaan, then west into the {area:16623}: {npc:268605}'s home is in the hills south of the Windsong Crawlers' lakes."] = "Retournez voir Olariaan, puis allez vers l'ouest dans les {area:16623} : la demeure de {npc:268605} est dans les collines au sud des lacs des Clampants chantevent.",
 
 	-- Step 61: The Eternal Flame
 	-- {object:148418} Eternal Flame
@@ -411,7 +411,7 @@ return {
 
 	-- Step 84: The Crossroads
 	-- {zone:1456} Thunder Bluff · {area:222} Bloodhoof Village · {zone:1413} Barrens · {area:458} Gold Road
-	["Leave {zone:1456} by a lift and follow the road south past {area:222} and through the eastern pass into the {zone:1413}; from the pass, take the {area:458} north to the Crossroads, the Horde town in the middle of the {zone:1413}."] = "",
+	["Leave {zone:1456} by a lift and follow the road south past {area:222} and through the eastern pass into the {zone:1413}; from the pass, take the {area:458} north to the Crossroads, the Horde town in the middle of the {zone:1413}."] = "Quittez {zone:1456} par un ascenseur et suivez la route vers le sud en passant {area:222}, puis le col oriental pour entrer dans {zone:1413} ; depuis le col, prenez la {area:458} vers le nord jusqu'à la Croisée, la ville de la Horde au milieu de {zone:1413}.",
 	-- {npc:3615} Devrak
 	["{npc:3615}, the wind rider master"] = "{npc:3615}, le maître des coursiers du vent",
 

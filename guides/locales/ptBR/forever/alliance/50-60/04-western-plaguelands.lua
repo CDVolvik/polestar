@@ -201,7 +201,7 @@ return {
 
 	-- Step 49: The Undercroft
 	-- {object:177667} Torn Scroll · {npc:12248} Infiltrator Hameya
-	["Cross the river east to the Undercroft, the crypt in the south-west of the zone. The {object:177667} lies inside: its key is on {npc:12248} in the far north-east, done in the next guide."] = "",
+	["Cross the river east to the Undercroft, the crypt in the south-west of the zone. The {object:177667} lies inside: its key is on {npc:12248} in the far north-east, done in the next guide."] = "Atravesse o rio para o leste até a Chácara Secreta, a cripta no sudoeste da zona. O {object:177667} está lá dentro: a chave está com {npc:12248}, no extremo nordeste, no próximo guia.",
 
 	-- Step 50: Darnassus
 	-- {area:3197} Chillwind Camp · {area:150} Menethil Harbor · {area:442} Auberdine · {area:702} Rut'theran Village · {zone:1457} Darnassus
@@ -279,5 +279,4 @@ return {
 	["The next guide starts here in {area:392} and flies on to {area:976}."] = "O próximo guia começa aqui em {area:392} e voa para {area:976}.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Cross the river east to the {area:2261}, the crypt in the south-west of the zone. The {object:177667} lies inside: its key is on {npc:12248} in the far north-east, done in the next guide."] = "Atravesse o rio para o leste até {area:2261}, a cripta no sudoeste da zona. O {object:177667} está lá dentro: a chave está com {npc:12248}, no extremo nordeste, no próximo guia.",
 }

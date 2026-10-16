@@ -27,8 +27,7 @@ return {
 
 	-- Step 4: The Great Ossuary
 	-- {area:2057} Scholomance · {area:2298} Caer Darrow · {zone:1422} Western Plaguelands · {item:18746} Divination Scryer · {npc:14516} Death Knight Darkreaver
-	["{area:2057} lies under {area:2298}, the island town in the south-east of the {zone:1422}. Use the {item:18746} in the heart of the Great Ossuary's basement, beat the spirits it calls, then {npc:14516}. All are elite: bring a group."] = "",
+	["{area:2057} lies under {area:2298}, the island town in the south-east of the {zone:1422}. Use the {item:18746} in the heart of the Great Ossuary's basement, beat the spirits it calls, then {npc:14516}. All are elite: bring a group."] = "{area:2057} fica embaixo de {area:2298}, a cidade na ilha do sudeste das {zone:1422}. Use o {item:18746} no centro do porão do Grande Ossuário, derrote os espíritos que ele chama e depois {npc:14516}. Todos são elite: leve um grupo.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["{area:2057} lies under {area:2298}, the island town in the south-east of the {zone:1422}. Use the {item:18746} in the heart of the {object:179746}'s basement, beat the spirits it calls, then {npc:14516}. All are elite: bring a group."] = "{area:2057} fica embaixo de {area:2298}, a cidade na ilha do sudeste das {zone:1422}. Use o {item:18746} no centro do porão do {object:179746}, derrote os espíritos que ele chama e depois {npc:14516}. Todos são elite: leve um grupo.",
 }

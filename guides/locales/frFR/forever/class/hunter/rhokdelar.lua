@@ -59,9 +59,9 @@ return {
 
 	-- Step 10: Azuregos
 	-- {item:18704} Mature Blue Dragon Sinew · {npc:6109} Azuregos · {zone:1447} Azshara · {zone:1452} Winterspring
-	["Hastat's quiver needs the {item:18704}. {npc:6109}, a world boss for a raid, roams the south of {zone:1447} and drops it most of the time; the Cobalt dragonkin of {zone:1452} drop it very rarely. Skip the rest of this guide if you do not want the quiver."] = "",
+	["Hastat's quiver needs the {item:18704}. {npc:6109}, a world boss for a raid, roams the south of {zone:1447} and drops it most of the time; the Cobalt dragonkin of {zone:1452} drop it very rarely. Skip the rest of this guide if you do not want the quiver."] = "Le carquois de Hastat exige le {item:18704}. {npc:6109}, un boss mondial pour un raid, rôde au sud d'{zone:1447} et le lâche la plupart du temps ; les draconiens cobalt du {zone:1452} le lâchent très rarement. Passez le reste de ce guide si vous ne voulez pas le carquois.",
 	-- {item:18704} Mature Blue Dragon Sinew · {npc:6109} Azuregos
-	["{item:18704}, from {npc:6109}"] = "",
+	["{item:18704}, from {npc:6109}"] = "{item:18704}, sur {npc:6109}",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Azuregos"] = "Azuregos",

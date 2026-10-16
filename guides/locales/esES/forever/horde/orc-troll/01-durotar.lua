@@ -82,7 +82,7 @@ return {
 
 	-- Step 18: Felstalker hooves
 	-- {npc:3102} Felstalker
-	["{npc:3102} hooves"] = "",
+	["{npc:3102} hooves"] = "Pezuñas de {npc:3102}",
 	-- plural, as words: Felstalkers = {npc:3102} Felstalker
 	["Felstalkers roam the slope below the cave, on the valley's north side."] = "Los acechadores viles recorren la ladera bajo la cueva, en el lado norte del valle.",
 
@@ -274,7 +274,7 @@ return {
 
 	-- Step 67: The Crossroads
 	-- {area:379} Far Watch Post · {zone:1413} Barrens
-	["Follow the road south-west from {area:379} to the Crossroads. The {zone:1413} guide starts here."] = "",
+	["Follow the road south-west from {area:379} to the Crossroads. The {zone:1413} guide starts here."] = "Sigue el camino hacia el suroeste desde {area:379} hasta El Cruce. Aquí empieza la guía de {zone:1413}.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Burning Blade cultists hold the caves of {quest:827}; any of them drops a {item:4871}. {npc:3204}, a level 14 warlock, stands deep inside and drops the {item:4903}."] = "Los fieles Filo Ardiente ocupan las cuevas de {quest:827}; cualquiera de ellos suelta {item:4871}. {npc:3204}, un brujo de nivel 14, está en lo más hondo y suelta {item:4903}.",

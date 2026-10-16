@@ -227,7 +227,7 @@ return {
 	-- Step 41: The dead cultist
 	["The dead cultist"] = "죽은 광신도",
 	-- {npc:273017} Fendaal Windstone · {quest:98512} Al'Aketh Assassins
-	["North-west of Valanaar along the road: {npc:273017} watches the {quest:98512}; the dead cultist lies just north of him."] = "",
+	["North-west of Valanaar along the road: {npc:273017} watches the {quest:98512}; the dead cultist lies just north of him."] = "발라나르 북서쪽 길가: {npc:273017}이(가) {quest:98512}을(를) 감시하고 있고, 죽은 광신도는 그 바로 북쪽에 쓰러져 있습니다.",
 	["Search the dead cultist"] = "죽은 광신도를 조사하세요",
 	-- {npc:258443} Ur'endra
 	["{npc:258443}, in the highlands south-west of the cultist"] = "광신도 남서쪽 고원의 {npc:258443}",

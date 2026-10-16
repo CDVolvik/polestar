@@ -51,9 +51,9 @@ return {
 
 	-- Step 8: The Sepulcher
 	-- {area:228} Sepulcher
-	["The {area:228}"] = "",
+	["The {area:228}"] = "{area:228}",
 	-- {area:228} Sepulcher · {npc:2226} Karos Razok
-	["The {area:228} is the Forsaken crypt-town in the middle of the forest. Everyone you need stands around the crypt entrance; {npc:2226}, the bat handler, is just east of it."] = "",
+	["The {area:228} is the Forsaken crypt-town in the middle of the forest. Everyone you need stands around the crypt entrance; {npc:2226}, the bat handler, is just east of it."] = "{area:228} ist die Gruftstadt der Verlassenen mitten im Wald. Alle, die du brauchst, stehen um den Grufteingang; {npc:2226}, der Fledermausführer, steht gleich östlich davon.",
 
 	-- Step 9: Border Crossings
 	-- {object:1627} Dalaran Crate
@@ -65,11 +65,11 @@ return {
 
 	-- Step 11: The Dead Field
 	-- {area:228} Sepulcher · {npc:1983} Nightlash
-	["North of the {area:228}. {npc:1983} haunts the Dead Field: kill it, then walk across the field."] = "",
+	["North of the {area:228}. {npc:1983} haunts the Dead Field: kill it, then walk across the field."] = "Nördlich von {area:228}. {npc:1983} spukt auf dem Todesfeld: Töte sie und geh dann über das Feld.",
 
 	-- Step 12: Strange Lockbox
 	-- {object:177790} Strange Lockbox · {item:15882} Half Pendant of Aquatic Endurance · {quest:30} Trial of the Sea Lion
-	["The {object:177790} lies on the coast west of the Dead Field. It holds the {item:15882} for {quest:30}."] = "",
+	["The {object:177790} lies on the coast west of the Dead Field. It holds the {item:15882} for {quest:30}."] = "Die {object:177790} liegt an der Küste westlich vom Todesfeld. Sie enthält den {item:15882} für {quest:30}.",
 
 	-- Step 13: Malden's Orchard
 	-- {area:238} Malden's Orchard

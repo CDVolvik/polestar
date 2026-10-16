@@ -128,7 +128,7 @@ return {
 
 	-- Step 30: The Vile Reef
 	-- {area:104} Vile Reef · {item:4094} Tablet Shard
-	["North-west of Grom'gol the {area:104} lies under the water off the coast. The {item:4094} rests on the sea floor by the sunken ruins; watch your breath and the murlocs."] = "",
+	["North-west of Grom'gol the {area:104} lies under the water off the coast. The {item:4094} rests on the sea floor by the sunken ruins; watch your breath and the murlocs."] = "Au nord-ouest de Grom'gol, {area:104} s'étend sous l'eau au large de la côte. L'{item:4094} repose au fond de la mer près des ruines englouties ; surveillez votre souffle et les murlocs.",
 
 	-- Step 31: Bloodscalp ruins
 	["Bloodscalp ruins"] = "Ruines Bloodscalp",
@@ -145,7 +145,7 @@ return {
 	-- Step 34: Green Hills pages
 	["Green Hills pages"] = "Pages des Vertes collines",
 	-- {item:2755} Green Hills of Stranglethorn
-	["Pages of The {item:2755} drop at about 1% each from the Bloodscalp and Skullsplitter trolls; keep every page you loot and look on the auction house for the rest. Barnil takes the chapters later in this guide."] = "",
+	["Pages of The {item:2755} drop at about 1% each from the Bloodscalp and Skullsplitter trolls; keep every page you loot and look on the auction house for the rest. Barnil takes the chapters later in this guide."] = "Les pages de {item:2755} tombent à environ 1 % chacune sur les trolls Bloodscalp et Skullsplitter ; gardez chaque page ramassée et cherchez le reste à l'hôtel des ventes. Barnil prend les chapitres plus loin dans ce guide.",
 
 	-- Step 35: Shadowmaw panthers
 	["Shadowmaw panthers"] = "Panthères Ombregueule",
@@ -154,7 +154,7 @@ return {
 
 	-- Step 36: Green Hills pages
 	-- {item:2755} Green Hills of Stranglethorn
-	["Pages of The {item:2755} drop at about 1% each from the Bloodscalp and Skullsplitter trolls; take what drops and check the Auction House for the rest."] = "",
+	["Pages of The {item:2755} drop at about 1% each from the Bloodscalp and Skullsplitter trolls; take what drops and check the Auction House for the rest."] = "Les pages de {item:2755} tombent à environ 1 % chacune sur les trolls Bloodscalp et Skullsplitter ; prenez ce qui tombe et cherchez le reste à l'hôtel des ventes.",
 
 	-- Step 39: Jungle Stalkers
 	-- plural, as words: Jungle Stalkers = {npc:687} Jungle Stalker

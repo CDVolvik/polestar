@@ -7,12 +7,12 @@
 return {
 	-- Step 2: The Altar of Zul
 	-- {area:355} Altar of Zul · {npc:8636} Morta'gya the Keeper
-	["Ride south-east to the {area:355}, the stepped Vilebranch temple in the south of the Hinterlands, and climb to the top. Qiaga and {npc:8636} (elite, 50) stand up there: touch the top and come straight back down."] = "",
+	["Ride south-east to the {area:355}, the stepped Vilebranch temple in the south of the Hinterlands, and climb to the top. Qiaga and {npc:8636} (elite, 50) stand up there: touch the top and come straight back down."] = "Cavalgue para o sudeste até {area:355}, o templo escalonado Ramatorpe no sul das Terras Agrestes, e suba até o topo. Qiaga e {npc:8636} (elite, 50) ficam lá em cima: toque o topo e desça logo.",
 
 	-- Step 3: Skulk Rock
 	-- {area:351} Skulk Rock
 	-- plural, as words: Green Sludges = {npc:2655} Green Sludge · Jade Oozes = {npc:2656} Jade Ooze
-	["Ride north to {area:351} in the middle of the Hinterlands. Green Sludges and Jade Oozes crawl all around it."] = "",
+	["Ride north to {area:351} in the middle of the Hinterlands. Green Sludges and Jade Oozes crawl all around it."] = "Cavalgue para o norte até {area:351}, no meio das Terras Agrestes. Lodos Verdes e Gosmas Jade rastejam por toda a volta.",
 
 	-- Step 4: Aerie Peak
 	-- {area:348} Aerie Peak
@@ -99,6 +99,4 @@ return {
 	["Hearth to {area:144}. The {zone:1427} guide starts at {area:1446}: from here, ride south into the {zone:1418}, west past the Horde town of {area:340} and up the trail into the gorge."] = "Use a Pedra de Regresso para {area:144}. O guia de {zone:1427} começa em {area:1446}: daqui, cavalgue para o sul até {zone:1418}, para o oeste passando pela cidade da Horda, {area:340}, e suba a trilha até a garganta.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Ride north to {area:351} in the middle of the {zone:1425}. Green Sludges and Jade Oozes crawl all around it."] = "Cavalgue para o norte até {area:351}, no meio de {zone:1425}. Lodos Verdes e Gosmas Jade rastejam por toda a volta.",
-	-- ["Ride south-east to the {area:355}, the stepped Vilebranch temple in the south of the {zone:1425}, and climb to the top. Qiaga and {npc:8636} (elite, 50) stand up there: touch the top and come straight back down."] = "Cavalgue para o sudeste até {area:355}, o templo escalonado Ramatorpe no sul de {zone:1425}, e suba até o topo. Qiaga e {npc:8636} (elite, 50) ficam lá em cima: toque o topo e desça logo.",
 }

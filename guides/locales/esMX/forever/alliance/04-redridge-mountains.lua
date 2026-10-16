@@ -71,7 +71,7 @@ return {
 
 	-- Step 10: Bellygrub
 	-- {npc:345} Bellygrub · {area:69} Lakeshire
-	["{npc:345} (level 24) roots around the pen just west of {area:69}. Pull him away from the other boars and fight at full health."] = "",
+	["{npc:345} (level 24) roots around the pen just west of {area:69}. Pull him away from the other boars and fight at full health."] = "{npc:345} (nivel 24) hoza en el corral justo al oeste de {area:69}. Apártalo de los otros jabalíes y pelea con la salud completa.",
 
 	-- Step 12: Lakeshire
 	-- {npc:703} Lieutenant Fangore · {area:1000} Galardell Valley

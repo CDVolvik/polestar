@@ -28,7 +28,7 @@ return {
 	-- {npc:3595} Shanda
 	["{npc:3595}, inside the tree"] = "{npc:3595}，在樹裡",
 	-- {quest:97979} The Goddess Provides · {spell:1259799} Elune's Light · {npc:3595} Shanda
-	["{quest:97979}: cast {spell:1259799} and Shadowmeld, then hand it back to {npc:3595}"] = "",
+	["{quest:97979}: cast {spell:1259799} and Shadowmeld, then hand it back to {npc:3595}"] = "{quest:97979}：施放{spell:1259799}和影遁，然後交回給{npc:3595}",
 	-- {npc:8583} Dirania Silvershine
 	["{npc:8583}, east of the tree"] = "{npc:8583}，在樹的東邊",
 
@@ -190,7 +190,7 @@ return {
 
 	-- Step 31: The Oracle Glade
 	-- {area:264} Oracle Glade
-	["The {area:264}"] = "",
+	["The {area:264}"] = "{area:264}",
 	-- {object:6752} Strange Fronded Plant
 	["The moonwell is in the middle of the glade. The {object:6752} grows at its north end."] = "月井在林地中央。{object:6752}生長在林地北端。",
 	-- {item:5623} Amethyst Phial
@@ -208,7 +208,7 @@ return {
 	-- Step 34: The named harpies
 	["The named harpies"] = "有名字的鷹身人",
 	-- {npc:272034} Hatescreech · {npc:272044} Windmistress Gaedress · {npc:272046} Witchmother Arysa
-	["{npc:272034} and {npc:272044} fly just west of the moonwell, {npc:272046} further north."] = "",
+	["{npc:272034} and {npc:272044} fly just west of the moonwell, {npc:272046} further north."] = "{npc:272034}和{npc:272044}在月井西邊飛行，{npc:272046}在更北邊。",
 
 	-- Step 35: Sentinel Arynia again
 	["Sentinel Arynia again"] = "再次找哨兵阿瑞尼亞",
@@ -236,7 +236,7 @@ return {
 	-- Step 38: Lake Al'Ameth
 	-- {npc:2080} Denalan
 	-- plural, as words: Lasher Sproutlings = {npc:275703} Lasher Sproutling
-	["South-east of Dolanaar, to {npc:2080}. Lasher Sproutlings wander around him on the shore."] = "",
+	["South-east of Dolanaar, to {npc:2080}. Lasher Sproutlings wander around him on the shore."] = "從多蘭納爾向東南前往{npc:2080}那裡。鞭笞者幼苗在岸邊他的周圍遊蕩。",
 	-- {npc:2080} Denalan · {quest:922} Rellian Greenspyre · {zone:1457} Darnassus
 	["{npc:2080}: {quest:922} in {zone:1457} takes it"] = "{npc:2080}：由{zone:1457}的{quest:922}接收",
 	-- {object:7510} Sprouted Frond
@@ -249,7 +249,7 @@ return {
 	-- Step 40: Taming the Beast
 	-- {item:15908} Taming Rod · {area:186} Dolanaar
 	-- plural, as words: Webwood Lurkers = {npc:1998} Webwood Lurker · Nightsaber Stalkers = {npc:2043} Nightsaber Stalker · Strigid Screechers = {npc:1996} Strigid Screecher
-	["Each of Dazalar's quests hands you a {item:15908}: use it on the beast he names, then bring the rod back to him in {area:186}. Webwood Lurkers creep around the village, Nightsaber Stalkers and Strigid Screechers roam the woods south of it."] = "",
+	["Each of Dazalar's quests hands you a {item:15908}: use it on the beast he names, then bring the rod back to him in {area:186}. Webwood Lurkers creep around the village, Nightsaber Stalkers and Strigid Screechers roam the woods south of it."] = "達札拉的每個任務都會給你一根{item:15908}：對他指定的野獸使用，然後把馴獸棒帶回{area:186}給他。樹林潛伏者在村莊周圍潛行，夜刃捕食者和巨翼惡梟在村莊南邊的樹林遊蕩。",
 	-- {npc:1998} Webwood Lurker · {item:15908} Taming Rod
 	["{npc:1998}: tame it with the {item:15908}"] = "{npc:1998}：用{item:15908}馴服牠",
 	-- {npc:2043} Nightsaber Stalker · {item:15908} Taming Rod
@@ -277,7 +277,7 @@ return {
 	-- {npc:7999} Tyrande Whisperwind · {npc:4092} Lariia
 	["{npc:7999}, above {npc:4092}"] = "{npc:7999}，在{npc:4092}上方",
 	-- {npc:11401} Priestess Alathea
-	["{npc:11401}, in the Temple of the Moon: Starshards"] = "",
+	["{npc:11401}, in the Temple of the Moon: Starshards"] = "{npc:11401}，在月神殿裡：星辰碎片",
 
 	-- Step 43: Rut'theran Village
 	-- {area:702} Rut'theran Village · {npc:3838} Vesprystus

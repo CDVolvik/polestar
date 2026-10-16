@@ -101,7 +101,7 @@ return {
 
 	-- Step 24: The Bulwark
 	-- {area:152} Bulwark
-	["The {area:152}"] = "",
+	["The {area:152}"] = "{area:152}",
 	-- {area:152} Bulwark
 	["Ride south-west past Felstone Farm and follow the road west back to the {area:152}."] = "Cavalgue para sudoeste, passando pela fazenda Pedravil, e siga a estrada para o oeste de volta a {area:152}.",
 	["Derrington's watchtowers, Vandis' cauldron and Mickey's barrel are done on a later visit: keep them."] = "As torres de vigia de Arcabuz, o caldeirão de Vandis e o barril de Guel ficam para uma visita posterior: guarde-as.",
@@ -169,7 +169,7 @@ return {
 
 	-- Step 39: Shatter Scar Vale
 	-- plural, as words: Entropic Beasts = {npc:9878} Entropic Beast
-	["East of Bloodvenom Post, the cratered vale where the Entropic Beasts and Horrors roam. Kill two of each, then walk to each of the three fel-water craters."] = "",
+	["East of Bloodvenom Post, the cratered vale where the Entropic Beasts and Horrors roam. Kill two of each, then walk to each of the three fel-water craters."] = "A leste do Posto Peçonha, o vale de crateras onde vagam as Feras e os Horrores Entrópicos. Mate dois de cada, depois vá até cada uma das três crateras de água vil.",
 	["Southern crater"] = "Cratera do sul",
 	["Western crater"] = "Cratera do oeste",
 	["Northern crater"] = "Cratera do norte",
@@ -226,5 +226,4 @@ return {
 	["Walk into the {area:1769} tunnel beside {npc:15395} and never attack the Timbermaw furbolgs inside. The tunnel opens into {zone:1452}; follow the road east to {area:2255}, the goblin town where the next guide starts."] = "Entre no túnel de {area:1769} ao lado de {npc:15395} e nunca ataque os furbolgs Presamatos lá dentro. O túnel dá em {zone:1452}; siga a estrada para o leste até {area:2255}, a cidade goblin onde o próximo guia começa.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["East of {area:1997}, the cratered vale where the Entropic Beasts and Horrors roam. Kill two of each, then walk to each of the three fel-water craters."] = "A leste de {area:1997}, o vale de crateras onde vagam as Feras e os Horrores Entrópicos. Mate dois de cada, depois vá até cada uma das três crateras de água vil.",
 }

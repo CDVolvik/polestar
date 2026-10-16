@@ -77,7 +77,7 @@ return {
 	-- {area:429} Xavian · {zone:1440} Ashenvale
 	["The {area:429} satyrs camp in eastern {zone:1440}, with the Felmusk satyrs further west; both drop Uncloven Satyr Hooves."] = "Les satyres de {area:429} campent dans l'est d'{zone:1440}, les satyres Gangremusc plus à l'ouest ; les deux lâchent des Sabots fendus de satyre.",
 	-- {quest:1842} Satyr Hooves
-	["Uncloven {quest:1842}"] = "",
+	["Uncloven {quest:1842}"] = "{quest:1842} fendus",
 
 	-- Step 15: Chimaeric Horn
 	-- {npc:6167} Chimaera Matriarch · {item:6840} Galvanized Horn

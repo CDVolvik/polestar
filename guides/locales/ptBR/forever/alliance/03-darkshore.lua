@@ -21,7 +21,7 @@ return {
 	["The beach"] = "A praia",
 	-- {quest:983} Buzzbox 827 · {object:175207} Beached Sea Creature
 	-- plural, as words: Tide Crawlers = {npc:2232} Tide Crawler · Darkshore Threshers = {npc:2185} Darkshore Thresher
-	["Tide Crawlers scuttle along the shore below the village; {quest:983} stands on the beach just south of the docks. Darkshore Threshers swim in the shallows. The {object:175207} lies on the shore just south of the village."] = "",
+	["Tide Crawlers scuttle along the shore below the village; {quest:983} stands on the beach just south of the docks. Darkshore Threshers swim in the shallows. The {object:175207} lies on the shore just south of the village."] = "Maretiscos correm pela costa abaixo do vilarejo; {quest:983} fica na praia logo ao sul das docas. Manguais da Costa Negra nadam nas águas rasas. A {object:175207} está na costa logo ao sul do vilarejo.",
 	-- plural, as words: Crawler Legs = {item:5385} Crawler Leg
 	["Crawler Legs"] = "Patas de Rastejante",
 	-- plural, as words: Thresher Eyes = {item:5412} Thresher Eye
@@ -149,7 +149,7 @@ return {
 	-- plural, as words: Giant Foreststriders = {npc:2323} Giant Foreststrider · Raging Reef Crawlers = {npc:2236} Raging Reef Crawler
 	["{npc:6667} hides on the little island off the ruins; Stormscale Beastmistresses walk the shore. The key pieces drop from Giant Foreststriders (top), Greymist murlocs (middle) and Raging Reef Crawlers (bottom)."] = "{npc:6667} se esconde na ilhota em frente às ruínas; Senhoras das Feras Escamarraio andam pela costa. As partes da chave caem de Florestruzes Gigantes (topo), murlocs Brumagris (meio) e Tiscorais Furiosos (base).",
 	-- {item:15883} Half Pendant of Aquatic Agility · {object:177792} Strange Lockbox
-	["{item:15883}: the {object:177792} under the water off the north coast, west of the ruins"] = "",
+	["{item:15883}: the {object:177792} under the water off the north coast, west of the ruins"] = "{item:15883}: o {object:177792} debaixo d'água na costa norte, a oeste das ruínas",
 
 	-- Step 24: The Tower of Althalaxx
 	-- {npc:3661} Balthule Shadowstrike · {zone:1440} Ashenvale
@@ -267,6 +267,4 @@ return {
 	["Take the portal up to Mathrengyl, then fly back to {area:442} for the boat to {zone:1453}."] = "Pegue o portal para subir até Mathrengyl e depois voe de volta para {area:442} para o barco para {zone:1453}.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Tide Crawlers scuttle along the shore below the village; {quest:983} stands on the beach just south of the docks. Darkshore Threshers swim in the shallows. The {quest:4723} lies on the shore just south of the village."] = "Maretiscos correm pela costa abaixo do vilarejo; {quest:983} fica na praia logo ao sul das docas. Manguais da Costa Negra nadam nas águas rasas. A {quest:4723} está na costa logo ao sul do vilarejo.",
-	-- ["{item:15883}: the {object:177790} under the water off the north coast, west of the ruins"] = "{item:15883}: o {object:177790} debaixo d'água na costa norte, a oeste das ruínas",
 }

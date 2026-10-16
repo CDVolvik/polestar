@@ -19,10 +19,10 @@ return {
 
 	-- Step 3: Sandsorrow Watch
 	-- {item:8584} Untapped Dowsing Widget
-	["West of Gadgetzan, use the {item:8584} beside the water hole in the troll camp."] = "",
+	["West of Gadgetzan, use the {item:8584} beside the water hole in the troll camp."] = "A oeste de Geringontzan, use o {item:8584} junto ao poço d'água no acampamento troll.",
 
 	-- Step 5: Caliph Scorpidsting
-	["South-east of Gadgetzan the Wastewander bandits camp in the dunes; Caliph stands in the eastern camp."] = "",
+	["South-east of Gadgetzan the Wastewander bandits camp in the dunes; Caliph stands in the eastern camp."] = "A sudeste de Geringontzan, os bandidos Errantes acampam nas dunas; Califa fica no acampamento leste.",
 
 	-- Step 6: Marvon Rivetseeker
 	-- {area:1938} Broken Pillar · {item:9978} Gahz'ridian Detector · {area:983} Dunemaul Compound
@@ -33,7 +33,7 @@ return {
 
 	-- Step 8: Dunemaul Compound
 	-- {npc:12046} Gor'marok the Ravager · {quest:3161} Gahz'ridian
-	["South of the Noxious Lair the Dunemaul ogres hold their compound, with {npc:12046} at its eastern end. Dig up {quest:3161} ornaments between the fights."] = "",
+	["South of the Noxious Lair the Dunemaul ogres hold their compound, with {npc:12046} at its eastern end. Dig up {quest:3161} ornaments between the fights."] = "Ao sul do Covil Nóxio, os ogros Dunamalho ocupam o complexo, com {npc:12046} no extremo leste. Desenterre ornamentos de {quest:3161} entre as lutas.",
 
 	-- Step 9: Thistleshrub Valley
 	-- {zone:1446} Tanaris
@@ -158,7 +158,4 @@ return {
 	["Ride back north to {area:1446}. Stay here: the next guide starts with the flight to {area:75}."] = "Cavalgue de volta para o norte até {area:1446}. Fique aqui: o próximo guia começa com o voo para {area:75}.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["South of the {area:982} the Dunemaul ogres hold their compound, with {npc:12046} at its eastern end. Dig up {quest:3161} ornaments between the fights."] = "Ao sul do {area:982}, os ogros Dunamalho ocupam o complexo, com {npc:12046} no extremo leste. Desenterre ornamentos de {quest:3161} entre as lutas.",
-	-- ["South-east of {area:976} the Wastewander bandits camp in the dunes; Caliph stands in the eastern camp."] = "A sudeste de {area:976}, os bandidos Errantes acampam nas dunas; Califa fica no acampamento leste.",
-	-- ["West of {area:976}, use the {item:8584} beside the water hole in the troll camp."] = "A oeste de {area:976}, use o {item:8584} junto ao poço d'água no acampamento troll.",
 }

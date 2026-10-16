@@ -43,7 +43,7 @@ return {
 	-- Step 9: Dun Morogh (1/3)
 	["18 areas to discover here, levels 4-12."] = "这里有18个区域待发现，4-12级。",
 	-- {area:2257} Deeprun Tram · {object:28027} Dwarven District · {zone:1455} Ironforge
-	["Take the {area:2257} from Stormwind's {object:28027} to {zone:1455} (or fly to {zone:1455}), then leave the city through its gates."] = "",
+	["Take the {area:2257} from Stormwind's {object:28027} to {zone:1455} (or fly to {zone:1455}), then leave the city through its gates."] = "从暴风城的{object:28027}乘{area:2257}前往{zone:1455}（或飞往{zone:1455}），然后从城门出城。",
 
 	-- Step 12: Loch Modan (1/2)
 	["11 areas to discover here, levels 10-18."] = "这里有11个区域待发现，10-18级。",
@@ -75,9 +75,9 @@ return {
 	-- {area:287} Hillsbrad · {area:285} Southpoint Tower · {zone:1421} Silverpine Forest · {area:228} Sepulcher
 	["Follow the road west from {area:287} past {area:285} into {zone:1421}, Horde country with Horde guards at the {area:228}."] = "从{area:287}沿路向西经过{area:285}进入{zone:1421}，这是部落的地盘，{area:228}有部落卫兵。",
 	-- {area:228} Sepulcher
-	["Horde guards: touch the edge of The {area:228} and move on"] = "",
+	["Horde guards: touch the edge of The {area:228} and move on"] = "部落卫兵：碰到{area:228}的边缘就继续前进",
 	-- {area:228} Sepulcher
-	["The {area:228}"] = "",
+	["The {area:228}"] = "{area:228}",
 
 	-- Step 20: Tirisfal Glades (1/3)
 	["17 areas to discover here, levels 5-10."] = "这里有17个区域待发现，5-10级。",
@@ -104,7 +104,7 @@ return {
 	-- {zone:1421} Silverpine Forest · {zone:1420} Tirisfal Glades · {area:159} Brill
 	["{zone:1421} is south of {zone:1420}: follow the road south from {area:159}."] = "{zone:1421}在{zone:1420}南边：从{area:159}沿路向南走。",
 	-- {area:228} Sepulcher · {npc:2226} Karos Razok
-	["Flight path here: The {area:228} ({npc:2226})."] = "",
+	["Flight path here: The {area:228} ({npc:2226})."] = "飞行路线：{area:228}（{npc:2226}）。",
 
 	-- Step 28: Hillsbrad Foothills (1/2)
 	-- {zone:1424} Hillsbrad Foothills · {area:285} Southpoint Tower · {area:272} Tarren Mill · {area:271} Southshore
@@ -163,7 +163,7 @@ return {
 	-- Step 41: Elwynn Forest (1/2)
 	["12 areas to discover here, levels 5-10."] = "这里有12个区域待发现，5-10级。",
 	-- {zone:1429} Elwynn Forest · {zone:1436} Westfall · {zone:1431} Duskwood · {area:87} Goldshire · {area:9} Northshire Valley
-	["{zone:1429} is north of {zone:1436} and {zone:1431}. {area:87}, {area:9} and Stormwind's gates are Alliance ground with guards."] = "",
+	["{zone:1429} is north of {zone:1436} and {zone:1431}. {area:87}, {area:9} and Stormwind's gates are Alliance ground with guards."] = "{zone:1429}在{zone:1436}和{zone:1431}北边。{area:87}、{area:9}和暴风城的城门是有卫兵的联盟地盘。",
 	-- {zone:1453} Stormwind City
 	["Alliance guards: touch the edge of {zone:1453} and move on; any one of these names counts"] = "联盟卫兵：碰到{zone:1453}的边缘就继续前进；以下任意一个名称都算",
 	-- {area:9} Northshire Valley

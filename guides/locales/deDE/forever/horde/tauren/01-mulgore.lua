@@ -45,7 +45,7 @@ return {
 
 	-- Step 10: Brambleblade Ravine
 	-- {npc:8554} Chief Sharptusk Thornmantle · {object:3076} Dirt-stained Map
-	["Battleboars graze north of the shrine; the Bristleback quilboar hold the ravine to the north-east. {npc:8554} stands at its eastern end, and the {object:3076} lies on the ground in the camp."] = "",
+	["Battleboars graze north of the shrine; the Bristleback quilboar hold the ravine to the north-east. {npc:8554} stands at its eastern end, and the {object:3076} lies on the ground in the camp."] = "Kampfeber grasen nördlich des Schreins; die Stacheleber der Borstennacken halten die Schlucht im Nordosten. {npc:8554} steht an ihrem östlichen Ende, und {object:3076} liegt im Lager auf dem Boden.",
 
 	-- Step 11: Camp Narache
 	["Back west to the camp."] = "Zurück nach Westen zum Lager.",
@@ -230,7 +230,7 @@ return {
 
 	-- Step 57: The Crossroads
 	-- {area:380} Crossroads
-	["The {area:380}"] = "",
+	["The {area:380}"] = "{area:380}",
 	-- {zone:1412} Mulgore · {area:380} Crossroads · {quest:860} Sergra Darkthorn · {npc:3448} Tonga Runetotem · {zone:1413} The Barrens
 	["Leave {zone:1412} by the south-eastern pass and follow the road to the {area:380}. {quest:860} stands by the inn, {npc:3448} at the south gate. {zone:1413} guide starts here."] = "Verlass {zone:1412} durch den südöstlichen Pass und folge der Straße nach {area:380}. {quest:860} steht beim Gasthaus, {npc:3448} am Südtor. Hier beginnt der Guide für das {zone:1413}.",
 

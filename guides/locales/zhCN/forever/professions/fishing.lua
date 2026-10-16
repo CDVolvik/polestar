@@ -23,7 +23,7 @@ return {
 	["{zone:1411} coast"] = "{zone:1411}海岸",
 
 	-- Step 6: Fishing: The Barrens (1-50)
-	["Barrens oasis"] = "",
+	["Barrens oasis"] = "贫瘠之地绿洲",
 
 	-- Step 7: Fishing: Tirisfal Glades (1-50)
 	["Vile Fin shore"] = "邪鳍鱼人的岸边",

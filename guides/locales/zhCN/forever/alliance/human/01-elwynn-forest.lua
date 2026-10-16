@@ -121,14 +121,14 @@ return {
 	-- Step 24: The Fargodeep Mine
 	-- {npc:248464} Nimsy
 	-- plural, as words: Kobold Miners = {npc:40} Kobold Miner
-	["The mine is west of the vineyards. Kobold Miners and Tunnelers fill both levels; {npc:248464}, a named kobold, holds the picture book in the lower tunnels. {npc:248464} is elite: grouping up is advised."] = "",
+	["The mine is west of the vineyards. Kobold Miners and Tunnelers fill both levels; {npc:248464}, a named kobold, holds the picture book in the lower tunnels. {npc:248464} is elite: grouping up is advised."] = "矿洞在葡萄园西边。{npc:40}和狗头人隧道工遍布两层；名为{npc:248464}的狗头人在下层隧道里拿着绘本。{npc:248464}是精英：建议组队。",
 	["Walk through the mine"] = "走过矿洞",
 	-- plural, as words: Large Candles = {item:772} Large Candle
 	["Large Candles"] = "{item:772}",
 	-- plural, as words: Lost Books = {item:248001} Lost Book · Kobold Miners = {npc:40} Kobold Miner
 	["Lost Books: Kobold Miners and Tunnelers"] = "{item:248001}：{npc:40}和狗头人隧道工",
 	-- {npc:248464} Nimsy
-	["Fun with Elementals: {npc:248464}"] = "",
+	["Fun with Elementals: {npc:248464}"] = "绘本：和元素一起玩：{npc:248464}",
 
 	-- Step 25: Bait ingredients
 	["Bait ingredients"] = "鱼饵材料",
@@ -196,10 +196,10 @@ return {
 
 	-- Step 38: Downstream and Princess
 	-- {quest:91733} Downstream · {npc:330} Princess
-	["{quest:91733} and {npc:330}"] = "",
+	["{quest:91733} and {npc:330}"] = "{quest:91733}和{npc:330}",
 	-- {item:247813} Waterlogged Saw · {npc:330} Princess · {area:62} Brackwell Pumpkin Patch · {npc:390} Porcine Entourage
 	-- plural, as words: Prowlers = {npc:118} Prowler · Young Forest Bears = {npc:822} Young Forest Bear
-	["The {item:247813}, Axe and Toolbox lie in the river south of the bridge. {npc:330}, a big boar, roots in the {area:62} west of the river with her {npc:390}: pull the piglets away first. Kill Prowlers and Young Forest Bears on the way."] = "",
+	["The {item:247813}, Axe and Toolbox lie in the river south of the bridge. {npc:330}, a big boar, roots in the {area:62} west of the river with her {npc:390}: pull the piglets away first. Kill Prowlers and Young Forest Bears on the way."] = "{item:247813}、浸水的斧头和浸水的工具箱在桥南边的河里。{npc:330}是一头大野猪，和她的{npc:390}在河西边的{area:62}拱地：先把小猪拉开。沿途击杀{npc:118}和{npc:822}。",
 
 	-- Step 40: The Eastvale Logging Camp
 	-- {area:88} Eastvale Logging Camp
@@ -327,7 +327,7 @@ return {
 
 	-- Step 67: Surena Caledon
 	-- {area:87} Goldshire · {area:62} Brackwell Pumpkin Patch · {npc:881} Surena Caledon
-	["Ride back out through {area:87} and east along the road to the {area:62}. {npc:881} (level 9) stands by its farmhouse."] = "",
+	["Ride back out through {area:87} and east along the road to the {area:62}. {npc:881} (level 9) stands by its farmhouse."] = "骑马穿过{area:87}，沿道路向东到{area:62}。{npc:881}（9级）站在农舍旁。",
 
 	-- Step 68: The Binding
 	-- {item:6928} Bloodstone Choker · {object:2164} Slaughtered Lamb

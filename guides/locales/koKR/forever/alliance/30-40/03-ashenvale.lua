@@ -40,7 +40,7 @@ return {
 
 	-- Step 9: Geltharis
 	-- {npc:4619} Geltharis · {area:429} Xavian
-	["{npc:4619} leads the {area:429} satyrs; he carries the branch."] = "",
+	["{npc:4619} leads the {area:429} satyrs; he carries the branch."] = "{npc:4619}은(는) {area:429} 사티로스의 우두머리이며 나뭇가지를 지니고 있습니다.",
 
 	-- Step 10: Satyrnaar
 	-- {object:19901} Circle of Imprisonment · {area:430} Satyrnaar

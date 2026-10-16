@@ -18,7 +18,7 @@ return {
 	-- {area:2279} Stratholme · {object:175461} Service Entrance · {object:175440} Elders' Square · {zone:1423} Eastern Plaguelands · {npc:10440} Baron Rivendare
 	["{area:2279} is a group of five, level 58-60. The {object:175461} at {object:175440}, in north-western {zone:1423}, leads to the undead side; {npc:10440} waits in the Slaughter House at its end. Our data gives the reins a 0.02% drop chance (pfQuest, Era): one in about five thousand kills. Nothing shows Forever changing it."] = "{area:2279} é para grupo de cinco, nível 58-60. A {object:175461} em {object:175440}, no noroeste das {zone:1423}, leva ao lado morto-vivo; {npc:10440} espera no Abatedouro, no fim dele. Nossos dados dão às rédeas 0,02% de chance de queda (pfQuest, Era): uma em cerca de cinco mil mortes. Nada indica que o Forever mudou isso.",
 	-- {object:175461} Service Entrance
-	["Stratholme {object:175461}"] = "",
+	["Stratholme {object:175461}"] = "Stratholme: {object:175461}",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Stratholme Service Entrance"] = "Stratholme Service Entrance",

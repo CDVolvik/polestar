@@ -229,7 +229,7 @@ return {
 
 	-- Step 45: The Bulwark
 	-- {zone:1458} Undercity · {zone:1420} Tirisfal Glades
-	["Leave the {zone:1458} and ride east along the road through {zone:1420} to the Bulwark, the Forsaken fort on the border."] = "",
+	["Leave the {zone:1458} and ride east along the road through {zone:1420} to the Bulwark, the Forsaken fort on the border."] = "Quittez {zone:1458} et suivez la route vers l'est à travers les {zone:1420} jusqu'à la Barricade, le fort réprouvé de la frontière.",
 	-- {object:176092} Box of Incendiaries · {quest:5096} Scarlet Diversions · {quest:5401} Argent Dawn Commission
 	["Take a {object:176092} from the crate next to Derrington for {quest:5096}, done on the way back. Equip the {quest:5401}: Scourgestones only drop while you wear it."] = "Prenez une {object:176092} dans la caisse à côté de Derrington pour {quest:5096}, à faire au retour. Équipez la {quest:5401} : les Pierres du Fléau ne tombent que si vous la portez.",
 

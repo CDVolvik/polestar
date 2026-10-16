@@ -26,7 +26,7 @@ return {
 	["Polymorph Clones"] = "변이된 복제생물",
 	-- {item:23250} Prismatic Shell · {area:1221} Ruins of Eldarath
 	-- plural, as words: Polymorph Clones = {npc:16479} Polymorph Clone
-	["Carry the {item:23250} back to the {area:1221}. Polymorph a Spitelash naga and wait a few seconds: it splits into small Polymorph Clones. Kill the clones quickly; the shell collects their essence."] = "",
+	["Carry the {item:23250} back to the {area:1221}. Polymorph a Spitelash naga and wait a few seconds: it splits into small Polymorph Clones. Kill the clones quickly; the shell collects their essence."] = "{item:23250}을(를) {area:1221}(으)로 다시 가져가세요. 원한의꼬리일족 나가에게 변이를 걸고 몇 초 기다리면 작은 변이된 복제생물로 갈라집니다. 복제생물을 빨리 처치하세요. 껍데기가 그 정수를 모읍니다.",
 
 	-- Step 5: Fragmented Magic
 	-- {npc:8379} Archmage Xylem · {spell:118} Polymorph

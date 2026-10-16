@@ -250,7 +250,7 @@ return {
 	-- Step 54: Taming the Beast
 	-- {item:15908} Taming Rod · {area:131} Kharanos
 	-- plural, as words: Large Crag Boars = {npc:1126} Large Crag Boar · Snow Leopards = {npc:1201} Snow Leopard · Ice Claw Bears = {npc:1196} Ice Claw Bear
-	["Each of Grif Wildheart's quests hands you a {item:15908}: use it on the beast he names, then bring the rod back to him at the {area:131} smithy. Large Crag Boars, Snow Leopards and Ice Claw Bears all roam the fields just south and east of {area:131}."] = "",
+	["Each of Grif Wildheart's quests hands you a {item:15908}: use it on the beast he names, then bring the rod back to him at the {area:131} smithy. Large Crag Boars, Snow Leopards and Ice Claw Bears all roam the fields just south and east of {area:131}."] = "格瑞夫的每個任務都會給你一根{item:15908}：對他指定的野獸使用，然後把馴獸棒帶回{area:131}鐵匠舖交給他。大峭壁野豬、雪豹和冰爪熊都在{area:131}南邊和東邊的原野上遊蕩。",
 	-- {npc:1126} Large Crag Boar · {item:15908} Taming Rod
 	["{npc:1126}: tame it with the {item:15908}"] = "{npc:1126}：用{item:15908}馴服牠",
 	-- {npc:1201} Snow Leopard · {item:15908} Taming Rod
@@ -292,7 +292,7 @@ return {
 	-- Step 62: The Fire Spirit Stone
 	["The Fire Spirit Stone"] = "火焰靈石",
 	-- {item:6636} Fire Sapta · {npc:5893} Minor Manifestation of Fire · {item:6655} Glowing Ember · {object:61934} Brazier of the Dormant Flame
-	["Braldir gives you the {item:6636}. Climb to the peak above his camp, drink the Sapta beside the Spirit Stone and defeat the {npc:5893}, then place its {item:6655} in the {object:61934}, atop the Shrine of Eternal Flame."] = "",
+	["Braldir gives you the {item:6636}. Climb to the peak above his camp, drink the Sapta beside the Spirit Stone and defeat the {npc:5893}, then place its {item:6655} in the {object:61934}, atop the Shrine of Eternal Flame."] = "布拉迪爾會給你{item:6636}。爬上營地上方的山峰，在靈石旁喝下靈契並擊敗{npc:5893}，然後把牠的{item:6655}放進永恆之火神殿頂端的{object:61934}。",
 	-- {item:6636} Fire Sapta
 	["{item:6636}, beside the Spirit Stone"] = "{item:6636}，在靈石旁邊",
 
@@ -369,7 +369,7 @@ return {
 
 	-- Step 77: Surena Caledon
 	-- {zone:1453} Stormwind · {area:87} Goldshire · {area:62} Brackwell Pumpkin Patch · {npc:881} Surena Caledon
-	["Leave {zone:1453} by the main gate, go south to {area:87} and east along the road to the {area:62}. {npc:881} (level 9) stands by its farmhouse."] = "",
+	["Leave {zone:1453} by the main gate, go south to {area:87} and east along the road to the {area:62}. {npc:881} (level 9) stands by its farmhouse."] = "從正門離開{zone:1453}，向南前往{area:87}，再沿著道路向東前往{area:62}。{npc:881}（9級）站在農舍旁。",
 
 	-- Step 78: The Binding
 	-- {item:6928} Bloodstone Choker · {object:2164} Slaughtered Lamb · {zone:1436} Westfall · {area:87} Goldshire

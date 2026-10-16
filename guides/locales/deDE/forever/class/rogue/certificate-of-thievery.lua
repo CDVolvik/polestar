@@ -31,7 +31,7 @@ return {
 
 	-- Step 7: Alther's Mill
 	-- {quest:2282} Alther's Mill · {area:69} Lakeshire · {object:121264} Lucius's Lockbox
-	["{quest:2282} stands east of {area:69}, up off the road. Open {object:121264} there."] = "",
+	["{quest:2282} stands east of {area:69}, up off the road. Open {object:121264} there."] = "{quest:2282} steht östlich von {area:69}, etwas abseits der Straße. Öffne dort {object:121264}.",
 
 	-- Step 8: Back to Lucius
 	-- {npc:6966} Lucius

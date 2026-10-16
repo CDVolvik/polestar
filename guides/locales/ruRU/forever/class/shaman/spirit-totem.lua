@@ -23,7 +23,7 @@ return {
 	-- Step 3: The four elements
 	["The four elements"] = "Четыре стихии",
 	-- {item:7069} Elemental Air
-	["One each of {item:7069}, Fire, Earth and Water. The Exiles of Arathi Highlands drop them, one element each, about one kill in ten: Thundering (air), Burning (fire), Rumbling (earth) and Cresting (water). Or buy them at the auction house."] = "",
+	["One each of {item:7069}, Fire, Earth and Water. The Exiles of Arathi Highlands drop them, one element each, about one kill in ten: Thundering (air), Burning (fire), Rumbling (earth) and Cresting (water). Or buy them at the auction house."] = "По одному: {item:7069}, огонь, земля и вода. Они падают с изгнанников Нагорья Арати, с каждого своя стихия, примерно в одном случае из десяти: грохочущие изгнанники (воздух), пылающие изгои (огонь), шумные изгнанники (земля) и морские изгои (вода). Или купите на аукционе.",
 	-- {item:7069} Elemental Air
 	-- plural, as words: Thundering Exiles = {npc:2762} Thundering Exile
 	["{item:7069}: Thundering Exiles"] = "{item:7069}: грохочущие изгнанники",

@@ -111,12 +111,12 @@ return {
 	["Take the zeppelin from the tower outside {area:1637} to {zone:1420} and ride into the {zone:1458}. Lady Sylvanas holds the {object:36126}."] = "Pegue o zepelim na torre do lado de fora de {area:1637} até {zone:1420} e entre em {zone:1458}. Lady Sylvana ocupa o {object:36126}.",
 
 	-- Step 26: The Bulwark
-	["Ride east along the road to the Bulwark on the border."] = "",
+	["Ride east along the road to the Bulwark on the border."] = "Cavalgue para leste pela estrada até o Baluarte, na divisa.",
 
 	-- Step 27: Felstone Field
 	-- {npc:10778} Janice Felstone · {npc:11075} Cauldron Lord Bilemaw
 	-- plural, as words: Jabbering Ghouls = {npc:10801} Jabbering Ghoul
-	["{npc:10778}'s farm is the first one east of the Bulwark. Jabbering Ghouls on the farm carry the other half of her charm; {npc:11075} guards the cauldron in the field."] = "",
+	["{npc:10778}'s farm is the first one east of the Bulwark. Jabbering Ghouls on the farm carry the other half of her charm; {npc:11075} guards the cauldron in the field."] = "A fazenda de {npc:10778} é a primeira a leste do Baluarte. Carniçais Grasnantes na fazenda levam a outra metade do amuleto dela; {npc:11075} guarda o caldeirão no campo.",
 
 	-- Step 28: Andorhal watchtowers and silos
 	["Andorhal watchtowers and silos"] = "Torres de vigia e silos de Andorhal",
@@ -185,15 +185,11 @@ return {
 	-- {npc:10667} Chromie
 	["Ride south-west to {npc:10667} in Andorhal."] = "Cavalgue para sudoeste até {npc:10667} em Andorhal.",
 	-- {npc:10667} Chromie
-	["{npc:10667}'s Battle of Darrowshire ends against elites. Skip it."] = "",
+	["{npc:10667}'s Battle of Darrowshire ends against elites. Skip it."] = "A batalha pela Vila das Flechas de {npc:10667} termina contra elites. Pule-a.",
 
 	-- Step 42: The Bulwark
 	-- {zone:1458} Undercity
-	["West to the Bulwark. The next guide starts in the {zone:1458}, a short ride west."] = "",
+	["West to the Bulwark. The next guide starts in the {zone:1458}, a short ride west."] = "Para oeste até o Baluarte. O próximo guia começa em {zone:1458}, a uma curta cavalgada a oeste.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Ride east along the road to the {area:152} on the border."] = "Cavalgue para leste pela estrada até o {area:152}, na divisa.",
-	-- ["West to the {area:152}. The next guide starts in the {zone:1458}, a short ride west."] = "Para oeste até o {area:152}. O próximo guia começa em {zone:1458}, a uma curta cavalgada a oeste.",
-	-- ["{npc:10667}'s Battle of {area:2262} ends against elites. Skip it."] = "A batalha pela {area:2262} de {npc:10667} termina contra elites. Pule-a.",
-	-- ["{npc:10778}'s farm is the first one east of the {area:152}. Jabbering Ghouls on the farm carry the other half of her charm; {npc:11075} guards the cauldron in the field."] = "A fazenda de {npc:10778} é a primeira a leste do {area:152}. Carniçais Grasnantes na fazenda levam a outra metade do amuleto dela; {npc:11075} guarda o caldeirão no campo.",
 }

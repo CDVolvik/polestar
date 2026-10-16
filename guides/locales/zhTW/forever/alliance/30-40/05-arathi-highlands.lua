@@ -26,7 +26,7 @@ return {
 	["The wrecked caravan lies off the road near Biggs."] = "失事的商隊在衛兵比格斯附近的路邊。",
 
 	-- Step 7: The Harborage
-	["Follow the road north to the draenei of the Harborage."] = "",
+	["Follow the road north to the draenei of the Harborage."] = "沿道路向北前往避難營的德萊尼人那裡。",
 
 	-- Step 8: Fallow Sanctuary
 	-- {area:76} Fallow Sanctuary · {npc:256028} The Lost One
@@ -158,7 +158,7 @@ return {
 	-- Step 42: Crushridge ogres
 	["Crushridge ogres"] = "破碎嶺巨魔",
 	-- {area:280} Strahnbrad · {item:3706} Ensorcelled Parchment · {npc:2320} Nagaz · {quest:537} Dark Council
-	["The Crushridge ogres hold the hills north of {area:280}. Farther north, a worn wooden chest holds the {item:3706}; {npc:2320} of the {quest:537} stands right by it."] = "",
+	["The Crushridge ogres hold the hills north of {area:280}. Farther north, a worn wooden chest holds the {item:3706}; {npc:2320} of the {quest:537} stands right by it."] = "破碎嶺巨魔佔據{area:280}北邊的丘陵。再往北，一個破舊的木箱裡有{item:3706}；{quest:537}的{npc:2320}就站在旁邊。",
 
 	-- Step 43: Ruins of Alterac
 	-- {area:280} Strahnbrad
@@ -171,7 +171,7 @@ return {
 	-- {npc:2542} Catelyn the Blade · {area:35} Booty Bay
 	["For {npc:2542} in {area:35}: keep it"] = "給{area:35}的{npc:2542}：先留著",
 	-- {npc:252085} Archmage Celindra
-	["{npc:252085}, in the City of Dalaran"] = "",
+	["{npc:252085}, in the City of Dalaran"] = "{npc:252085}，在達拉然城內",
 
 	-- Step 45: Southshore
 	-- {item:2321} Fine Thread · {npc:2381} Micha Yance

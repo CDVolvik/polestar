@@ -23,7 +23,7 @@ return {
 	-- Step 3: The four elements
 	["The four elements"] = "네 가지 원소",
 	-- {item:7069} Elemental Air
-	["One each of {item:7069}, Fire, Earth and Water. The Exiles of Arathi Highlands drop them, one element each, about one kill in ten: Thundering (air), Burning (fire), Rumbling (earth) and Cresting (water). Or buy them at the auction house."] = "",
+	["One each of {item:7069}, Fire, Earth and Water. The Exiles of Arathi Highlands drop them, one element each, about one kill in ten: Thundering (air), Burning (fire), Rumbling (earth) and Cresting (water). Or buy them at the auction house."] = "{item:7069}, 불, 대지, 물을 하나씩 모으십시오. 아라시 고원의 떠도는 정령들이 각자 원소 하나씩을 약 열 번에 한 번 떨어뜨립니다: 떠도는 천둥 정령(공기), 떠도는 불의 정령(불), 떠도는 바위 정령(대지), 떠도는 물의 정령(물). 경매장에서 구매해도 됩니다.",
 	-- {item:7069} Elemental Air
 	-- plural, as words: Thundering Exiles = {npc:2762} Thundering Exile
 	["{item:7069}: Thundering Exiles"] = "{item:7069}: 떠도는 천둥 정령",

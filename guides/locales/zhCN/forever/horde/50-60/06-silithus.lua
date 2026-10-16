@@ -111,12 +111,12 @@ return {
 	["Take the zeppelin from the tower outside {area:1637} to {zone:1420} and ride into the {zone:1458}. Lady Sylvanas holds the {object:36126}."] = "在{area:1637}外的塔上乘飞艇前往{zone:1420}，再骑进{zone:1458}。希尔瓦娜斯·风行者在{object:36126}。",
 
 	-- Step 26: The Bulwark
-	["Ride east along the road to the Bulwark on the border."] = "",
+	["Ride east along the road to the Bulwark on the border."] = "沿道路向东骑往边境上的亡灵壁垒。",
 
 	-- Step 27: Felstone Field
 	-- {npc:10778} Janice Felstone · {npc:11075} Cauldron Lord Bilemaw
 	-- plural, as words: Jabbering Ghouls = {npc:10801} Jabbering Ghoul
-	["{npc:10778}'s farm is the first one east of the Bulwark. Jabbering Ghouls on the farm carry the other half of her charm; {npc:11075} guards the cauldron in the field."] = "",
+	["{npc:10778}'s farm is the first one east of the Bulwark. Jabbering Ghouls on the farm carry the other half of her charm; {npc:11075} guards the cauldron in the field."] = "{npc:10778}的农场是亡灵壁垒东边的第一座农场。农场上的{npc:10801}携带她护身符的另一半；{npc:11075}守着田里的瘟疫之锅。",
 
 	-- Step 28: Andorhal watchtowers and silos
 	["Andorhal watchtowers and silos"] = "安多哈尔的哨塔和粮仓",
@@ -185,11 +185,11 @@ return {
 	-- {npc:10667} Chromie
 	["Ride south-west to {npc:10667} in Andorhal."] = "向西南骑往安多哈尔的{npc:10667}那里。",
 	-- {npc:10667} Chromie
-	["{npc:10667}'s Battle of Darrowshire ends against elites. Skip it."] = "",
+	["{npc:10667}'s Battle of Darrowshire ends against elites. Skip it."] = "{npc:10667}的达隆郡之战最后要对付精英。跳过它。",
 
 	-- Step 42: The Bulwark
 	-- {zone:1458} Undercity
-	["West to the Bulwark. The next guide starts in the {zone:1458}, a short ride west."] = "",
+	["West to the Bulwark. The next guide starts in the {zone:1458}, a short ride west."] = "向西前往亡灵壁垒。下一个指南从西边不远的{zone:1458}开始。",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Ride east along the road to the {area:152} on the border."] = "沿道路向东骑往边境上的{area:152}。",

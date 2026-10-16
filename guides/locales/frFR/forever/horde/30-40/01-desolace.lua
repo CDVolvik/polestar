@@ -218,7 +218,7 @@ return {
 	["The {area:279} traitors"] = "Les traîtres de {area:279}",
 	-- {area:279} Dalaran · {npc:2411} Ricter · {npc:2412} Alina · {npc:2413} Dermot · {npc:2414} Kegan Darkmar
 	-- plural, as words: Worn Stone Tokens = {item:3714} Worn Stone Token
-	["Head west along the foot of the mountains to the violet dome of {area:279}. {npc:2411}, {npc:2412} and {npc:2413} (33-34) stand together inside the crater's eastern rim, {npc:2414} (35) a little west of them; each carries one Bloodstone piece. The Shield Guards and Theurgists (31-32) around them drop the Worn Stone Tokens."] = "",
+	["Head west along the foot of the mountains to the violet dome of {area:279}. {npc:2411}, {npc:2412} and {npc:2413} (33-34) stand together inside the crater's eastern rim, {npc:2414} (35) a little west of them; each carries one Bloodstone piece. The Shield Guards and Theurgists (31-32) around them drop the Worn Stone Tokens."] = "Allez vers l'ouest au pied des montagnes jusqu'au dôme violet de {area:279}. {npc:2411}, {npc:2412} et {npc:2413} (33-34) se tiennent ensemble à l'intérieur du bord est du cratère, {npc:2414} (35) un peu à l'ouest ; chacun porte un morceau de pierre de sang. Les Défenseurs et Théurges de Dalaran (31-32) autour d'eux lâchent les Runes gravées usées.",
 
 	-- Step 46: Tarren Mill
 	-- {area:272} Tarren Mill

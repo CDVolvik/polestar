@@ -23,7 +23,7 @@ return {
 	["{zone:1411} coast"] = "Побережье: {zone:1411}",
 
 	-- Step 6: Fishing: The Barrens (1-50)
-	["Barrens oasis"] = "",
+	["Barrens oasis"] = "Оазис в Степях",
 
 	-- Step 7: Fishing: Tirisfal Glades (1-50)
 	["Vile Fin shore"] = "Берег Злобного Плавника",

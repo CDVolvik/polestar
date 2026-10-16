@@ -132,13 +132,13 @@ return {
 
 	-- Step 27: Wild Steelbloom (Alliance)
 	-- {object:1623} Wild Steelbloom
-	["{object:1623} (Alliance)"] = "",
+	["{object:1623} (Alliance)"] = "{object:1623} (Alliance)",
 	-- {object:1623} Wild Steelbloom · {skill:182} Herbalism
-	["Pick {object:1623} with {skill:182}; this is the densest patch in the data. The Auction House works too."] = "",
+	["Pick {object:1623} with {skill:182}; this is the densest patch in the data. The Auction House works too."] = "Cueillez {object:1623} avec {skill:182} ; c'est la zone la plus dense selon les données. L'hôtel des ventes convient aussi.",
 
 	-- Step 28: Wild Steelbloom (Horde)
 	-- {object:1623} Wild Steelbloom
-	["{object:1623} (Horde)"] = "",
+	["{object:1623} (Horde)"] = "{object:1623} (Horde)",
 
 	-- Step 29: Kingsblood (Alliance)
 	-- {item:3356} Kingsblood
@@ -162,13 +162,13 @@ return {
 
 	-- Step 33: Goldthorn (Alliance)
 	-- {object:2046} Goldthorn
-	["{object:2046} (Alliance)"] = "",
+	["{object:2046} (Alliance)"] = "{object:2046} (Alliance)",
 	-- {object:2046} Goldthorn · {skill:182} Herbalism
-	["Pick {object:2046} with {skill:182}; this is the densest patch in the data. The Auction House works too."] = "",
+	["Pick {object:2046} with {skill:182}; this is the densest patch in the data. The Auction House works too."] = "Cueillez {object:2046} avec {skill:182} ; c'est la zone la plus dense selon les données. L'hôtel des ventes convient aussi.",
 
 	-- Step 34: Goldthorn (Horde)
 	-- {object:2046} Goldthorn
-	["{object:2046} (Horde)"] = "",
+	["{object:2046} (Horde)"] = "{object:2046} (Horde)",
 
 	-- Step 35: Oily Blackmouth (Alliance)
 	-- {item:6358} Oily Blackmouth

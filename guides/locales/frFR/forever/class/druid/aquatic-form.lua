@@ -23,7 +23,7 @@ return {
 
 	-- Step 3: Half Pendant of Aquatic Agility
 	-- {area:2361} Nighthaven · {area:442} Auberdine · {object:177792} Strange Lockbox · {area:443} Ruins of Mathystra
-	["Fly from {area:2361} to {area:442}. The {object:177792} lies under the water off the north coast, west of the {area:443}."] = "",
+	["Fly from {area:2361} to {area:442}. The {object:177792} lies under the water off the north coast, west of the {area:443}."] = "Volez de {area:2361} à {area:442}. L'{object:177792} se trouve sous l'eau au large de la côte nord, à l'ouest des {area:443}.",
 
 	-- Step 4: Half Pendant of Aquatic Endurance
 	-- {area:442} Auberdine · {zone:1453} Stormwind · {area:108} Sentinel Hill · {object:177790} Strange Lockbox
@@ -54,7 +54,7 @@ return {
 
 	-- Step 10: Half Pendant of Aquatic Agility
 	-- {object:177792} Strange Lockbox · {area:382} Sludge Fen · {area:380} Crossroads
-	["The {object:177792} lies at the north edge of the {area:382}, by the Venture Co. tower, north of the {area:380}."] = "",
+	["The {object:177792} lies at the north edge of the {area:382}, by the Venture Co. tower, north of the {area:380}."] = "L'{object:177792} se trouve à la lisière nord de {area:382}, près de la tour de la KapitalRisk, au nord de {area:380}.",
 
 	-- Step 11: Pendant of the Sea Lion
 	-- {spell:18960} Teleport: Moonglade · {item:15885} Pendant of the Sea Lion · {area:2362} Shrine of Remulos · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {npc:11798} Bunthen Plainswind · {area:1638} Thunder Bluff

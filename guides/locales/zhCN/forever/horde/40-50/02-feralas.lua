@@ -156,7 +156,7 @@ return {
 
 	-- Step 34: Homing Robot OOX-22/FE
 	-- {area:1105} Feral Scar Vale · {area:35} Booty Bay
-	["Only with the distress beacon: the robot sits in a small cave on the north side of {area:1105}. Escort it to the dock on the Forgotten Coast; yetis and gorillas ambush you on the way. Its reward waits in {area:35} for a later visit."] = "",
+	["Only with the distress beacon: the robot sits in a small cave on the north side of {area:1105}. Escort it to the dock on the Forgotten Coast; yetis and gorillas ambush you on the way. Its reward waits in {area:35} for a later visit."] = "仅当你有定位器时：机器人在{area:1105}北侧的一个小山洞里。护送它到被遗忘的海岸的码头；途中会有雪人和猩猩伏击你。它的奖励在{area:35}，留到之后再去领取。",
 
 	-- Step 35: Hearth to Camp Mojache
 	-- {area:1099} Camp Mojache

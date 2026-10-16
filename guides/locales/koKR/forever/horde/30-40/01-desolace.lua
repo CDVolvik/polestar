@@ -218,7 +218,7 @@ return {
 	["The {area:279} traitors"] = "{area:279}의 배신자",
 	-- {area:279} Dalaran · {npc:2411} Ricter · {npc:2412} Alina · {npc:2413} Dermot · {npc:2414} Kegan Darkmar
 	-- plural, as words: Worn Stone Tokens = {item:3714} Worn Stone Token
-	["Head west along the foot of the mountains to the violet dome of {area:279}. {npc:2411}, {npc:2412} and {npc:2413} (33-34) stand together inside the crater's eastern rim, {npc:2414} (35) a little west of them; each carries one Bloodstone piece. The Shield Guards and Theurgists (31-32) around them drop the Worn Stone Tokens."] = "",
+	["Head west along the foot of the mountains to the violet dome of {area:279}. {npc:2411}, {npc:2412} and {npc:2413} (33-34) stand together inside the crater's eastern rim, {npc:2414} (35) a little west of them; each carries one Bloodstone piece. The Shield Guards and Theurgists (31-32) around them drop the Worn Stone Tokens."] = "산기슭을 따라 서쪽으로 {area:279}의 보랏빛 돔으로 가세요. {npc:2411}, {npc:2412}, {npc:2413}(33-34)은(는) 분화구 동쪽 가장자리 안쪽에 함께 서 있고, {npc:2414}(35)은(는) 그 조금 서쪽에 있습니다. 각자 피의 돌 조각을 하나씩 지니고 있습니다. 주변의 수호기사와 사술사(31-32)가 닳은 돌 징표를 떨어뜨립니다.",
 
 	-- Step 46: Tarren Mill
 	-- {area:272} Tarren Mill

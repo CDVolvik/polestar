@@ -73,7 +73,7 @@ return {
 	["Follow the main road south the length of the jungle, past the {object:3202} turn-off, to {area:35} on the southern cape."] = "Siga a estrada principal para o sul por toda a selva, passando o desvio para {object:3202}, até {area:35}, no cabo ao sul.",
 	["Gyll, on the top floor by the docks"] = "Gyll, no último andar, junto às docas",
 	-- {npc:2832} Nixxrax Fillamug
-	["{npc:2832}, in the Salty Sailor Tavern"] = "",
+	["{npc:2832}, in the Salty Sailor Tavern"] = "{npc:2832}, na Taverna do Marujo Salgado",
 	-- {npc:2495} Drizzlik
 	["{npc:2495}, by the bank"] = "{npc:2495}, junto ao banco",
 	-- {npc:773} Krazek
@@ -152,5 +152,4 @@ return {
 	["For Archmage Ansirem in {zone:1416}"] = "Para o Arquimago Ansirem, em {zone:1416}",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["{npc:2832}, in the {object:56910}"] = "{npc:2832}, em {object:56910}",
 }

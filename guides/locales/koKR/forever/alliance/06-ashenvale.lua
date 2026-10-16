@@ -33,7 +33,7 @@ return {
 
 	-- Step 7: Bathran's Haunt
 	-- {area:411} Bathran's Haunt · {item:5366} Glowing Soul Gem
-	["North of Maestra's Post, plant bundles lie around the ruins of {area:411}. Dark Strand cultists hold the ruins just south of them: any of them can drop the {item:5366}."] = "",
+	["North of Maestra's Post, plant bundles lie around the ruins of {area:411}. Dark Strand cultists hold the ruins just south of them: any of them can drop the {item:5366}."] = "마에스트라 주둔지 북쪽, {area:411} 폐허 주변에 식물 꾸러미가 놓여 있습니다. 암흑이교도는 그 바로 남쪽 폐허를 차지하고 있으며, 누구든 {item:5366}을(를) 떨어뜨릴 수 있습니다.",
 	-- {quest:1010} Bathran's Hair
 	["{quest:1010}, from the plant bundles"] = "{quest:1010}, 식물 꾸러미에서",
 
@@ -57,13 +57,13 @@ return {
 
 	-- Step 13: The Zoram Strand
 	-- {npc:3846} Talen
-	["Follow the coast north to the Zoram Strand. {npc:3846} camps on the beach; Wrathtail nagas fill the shore."] = "",
+	["Follow the coast north to the Zoram Strand. {npc:3846} camps on the beach; Wrathtail nagas fill the shore."] = "해안을 따라 북쪽으로 조람 해안까지 가세요. {npc:3846}은(는) 해변에 진을 치고 있고, 해안에는 성난지느러미일족 나가가 가득합니다.",
 	-- {item:5424} Ancient Statuette
 	["{item:5424}, in the ruins on the shore"] = "{item:5424}, 해안의 폐허 안",
 
 	-- Step 15: Ruuzel
 	-- {quest:1009} Ruuzel
-	["{quest:1009} walks the northern tip of the Zoram Strand with Wrathtail guards."] = "",
+	["{quest:1009} walks the northern tip of the Zoram Strand with Wrathtail guards."] = "{quest:1009}은(는) 성난지느러미일족 경비병과 함께 조람 해안의 북쪽 끝을 돌아다닙니다.",
 
 	-- Step 19: Dal Bloodclaw
 	-- {npc:3987} Dal Bloodclaw · {area:415} Astranaar
@@ -91,7 +91,7 @@ return {
 	["Kill the elementals for 5 Intact Elemental Bracers, then use the {item:5456}"] = "정령을 처치해 {item:12220} 5개를 모은 뒤 {item:5456}을(를) 사용하세요",
 
 	-- Step 25: The Ruins of Stardust
-	["West of Mystral Lake, the stardust bushes grow among the ruins."] = "",
+	["West of Mystral Lake, the stardust bushes grow among the ruins."] = "미스트랄 호수 서쪽, 폐허 사이에 별가루 덤불이 자랍니다.",
 
 	-- Step 27: Windshear Crag
 	-- {area:421} Mystral Lake · {area:1276} Talondeep Path · {area:461} Windshear Crag · {area:1076} Webwinder Path
@@ -136,7 +136,7 @@ return {
 	-- Step 35: Bluegill Marsh
 	-- {npc:1259} Gobbler
 	-- plural, as words: Bluegill Murlocs = {npc:1024} Bluegill Murloc
-	["Follow the coast north out of Menethil. Bluegill Murlocs fill the marsh; {npc:1259} walks with a pack in the middle of it."] = "",
+	["Follow the coast north out of Menethil. Bluegill Murlocs fill the marsh; {npc:1259} walks with a pack in the middle of it."] = "해안을 따라 북쪽으로 메네실 항구를 나가세요. 푸른아가미멀록이 늪에 가득하고, {npc:1259}은(는) 그 한가운데에서 무리와 함께 돌아다닙니다.",
 
 	-- Step 37: The Bluegill hovels
 	["The Bluegill hovels"] = "푸른아가미 오두막",
@@ -184,7 +184,7 @@ return {
 
 	-- Step 48: The Green Belt
 	-- {area:1025} Green Belt
-	["The {area:1025}"] = "",
+	["The {area:1025}"] = "{area:1025}",
 	-- {npc:2093} Einar Stonegrip · {npc:1244} Rethiel the Greenwarden
 	["{npc:2093} camps by the road; {npc:1244} stands farther east, by the river."] = "{npc:2093}은(는) 길가에 진을 치고 있고, {npc:1244}은(는) 더 동쪽 강가에 서 있습니다.",
 

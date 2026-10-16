@@ -15,7 +15,7 @@ return {
 
 	-- Step 2: Plainstriders and raptors
 	["Plainstriders and raptors"] = "Pinotes e raptores",
-	["Plainstriders and Sunscale raptors roam the plains all around the Crossroads, thickest to the north."] = "",
+	["Plainstriders and Sunscale raptors roam the plains all around the Crossroads, thickest to the north."] = "Pinotes e raptores Helióscamo vagam pelas planícies em volta da Encruzilhada, mais densos ao norte.",
 
 	-- Step 4: The Zhevra
 	-- plural, as words: Zhevra Runners = {npc:3242} Zhevra Runner
@@ -54,7 +54,7 @@ return {
 
 	-- Step 13: Thun'grim Firegaze
 	-- {area:392} Ratchet · {object:58369} Stolen Iron Chest
-	["Thun'grim camps beside the road from the Crossroads to {area:392}. The {object:58369} sits in the south of the Razormane camp just north of him."] = "",
+	["Thun'grim camps beside the road from the Crossroads to {area:392}. The {object:58369} sits in the south of the Razormane camp just north of him."] = "Thun'grim acampa junto à estrada da Encruzilhada para {area:392}. O {object:58369} fica no sul do acampamento Crinavalha, logo ao norte dele.",
 
 	-- Step 14: Ratchet
 	-- {area:392} Ratchet
@@ -73,7 +73,7 @@ return {
 	["Back down the beach, past the pirate camp: the crate of boots and the fragile crate with the lens sit at its south end."] = "Volte pela praia, depois do acampamento pirata: o caixote de botas e o caixote frágil com a lente ficam na ponta sul.",
 
 	-- Step 19: The Crossroads
-	["Walk back west along the road to the Crossroads."] = "",
+	["Walk back west along the road to the Crossroads."] = "Volte para oeste pela estrada até a Encruzilhada.",
 
 	-- Step 20: The Disruption Ends
 	-- {npc:3438} Kreenig Snarlsnout
@@ -99,7 +99,7 @@ return {
 
 	-- Step 25: The Dry Hills
 	-- {area:383} Dry Hills
-	["The {area:383}"] = "",
+	["The {area:383}"] = "{area:383}",
 	-- {area:383} Dry Hills · {quest:819} Chen's Empty Keg
 	["West to the {area:383}. The Witchwing harpies nest all over them; any of them can drop a talon. {quest:819} lies in their hills."] = "Para oeste até {area:383}. As harpias Asabruxa fazem ninho por toda parte; qualquer uma pode deixar cair uma garra. {quest:819} fica nas colinas delas.",
 
@@ -116,7 +116,7 @@ return {
 	["Kolkar Wranglers and Stormers hold the camps south of Regthar."] = "Cavalgantes e Tempestários Kolkar ocupam os acampamentos ao sul de Regthar.",
 
 	-- Step 31: The Stagnant Oasis
-	["South-east of the Crossroads. Test the seeds at the bubbling fissure on the oasis' east bank."] = "",
+	["South-east of the Crossroads. Test the seeds at the bubbling fissure on the oasis' east bank."] = "A sudeste da Encruzilhada. Teste as sementes na fenda borbulhante da margem leste do oásis.",
 
 	-- Step 32: Raptor nests
 	["Raptor nests"] = "Ninhos de raptor",
@@ -134,7 +134,7 @@ return {
 	-- Step 35: Lushwater Oasis
 	-- {area:387} Lushwater Oasis · {area:388} Stagnant Oasis
 	-- plural, as words: Oasis Snapjaws = {npc:3461} Oasis Snapjaw
-	["Oasis Snapjaws crawl around {area:387}, south-west of the Crossroads, and around the {area:388}."] = "",
+	["Oasis Snapjaws crawl around {area:387}, south-west of the Crossroads, and around the {area:388}."] = "Mordeliscas do Oásis rastejam em volta de {area:387}, a sudoeste da Encruzilhada, e em volta de {area:388}.",
 
 	-- Step 36: The Crossroads
 	-- {quest:3301} Mura Runetotem · {area:228} Sepulcher · {zone:1421} Silverpine Forest
@@ -159,13 +159,7 @@ return {
 
 	-- Step 41: The Crossroads
 	-- {zone:1454} Orgrimmar · {zone:1420} Tirisfal Glades
-	["Walk back south to the Crossroads. The next guide starts here and takes you to {zone:1454} and the zeppelin to {zone:1420}."] = "",
+	["Walk back south to the Crossroads. The next guide starts here and takes you to {zone:1454} and the zeppelin to {zone:1420}."] = "Volte para o sul até a Encruzilhada. O próximo guia começa aqui e leva você a {zone:1454} e ao zepelim para {zone:1420}.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Oasis Snapjaws crawl around {area:387}, south-west of the {area:380}, and around the {area:388}."] = "Mordeliscas do Oásis rastejam em volta de {area:387}, a sudoeste de {area:380}, e em volta de {area:388}.",
-	-- ["Plainstriders and Sunscale raptors roam the plains all around the {area:380}, thickest to the north."] = "Pinotes e raptores Helióscamo vagam pelas planícies em volta de {area:380}, mais densos ao norte.",
-	-- ["South-east of the {area:380}. Test the seeds at the bubbling fissure on the oasis' east bank."] = "A sudeste de {area:380}. Teste as sementes na fenda borbulhante da margem leste do oásis.",
-	-- ["Thun'grim camps beside the road from the {area:380} to {area:392}. The {object:58369} sits in the south of the Razormane camp just north of him."] = "Thun'grim acampa junto à estrada de {area:380} para {area:392}. O {object:58369} fica no sul do acampamento Crinavalha, logo ao norte dele.",
-	-- ["Walk back south to the {area:380}. The next guide starts here and takes you to {zone:1454} and the zeppelin to {zone:1420}."] = "Volte para o sul até {area:380}. O próximo guia começa aqui e leva você a {zone:1454} e ao zepelim para {zone:1420}.",
-	-- ["Walk back west along the road to the {area:380}."] = "Volte para oeste pela estrada até {area:380}.",
 }

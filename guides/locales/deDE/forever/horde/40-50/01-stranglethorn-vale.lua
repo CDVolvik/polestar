@@ -35,7 +35,7 @@ return {
 	-- {area:43} Wild Shore
 	["The {area:43}"] = "{area:43}",
 	-- {area:43} Wild Shore
-	["South of Booty Bay the Bloodsail swashbucklers camp on the {area:43}; the charts and the orders lie in their tents. Any Bloodsail can carry snuff and Dizzy's eye, so keep killing until you have both."] = "",
+	["South of Booty Bay the Bloodsail swashbucklers camp on the {area:43}; the charts and the orders lie in their tents. Any Bloodsail can carry snuff and Dizzy's eye, so keep killing until you have both."] = "Südlich von Booty Bay lagern die Schwadroneure der Blutsegelbukaniere an der {area:43}; die Karten und Befehle liegen in ihren Zelten. Jeder Blutsegelbukanier kann Schnupftabak und Dizzys Auge tragen, also töte weiter, bis du beides hast.",
 
 	-- Step 8: The Bloodsail ships
 	["The Bloodsail ships"] = "Die Schiffe der Blutsegelbukaniere",
@@ -167,7 +167,7 @@ return {
 
 	-- Step 37: The Harborage
 	-- {area:657} Harborage
-	["The {area:657}"] = "",
+	["The {area:657}"] = "{area:657}",
 	-- {area:657} Harborage · {zone:1430} Deadwind Pass
 	["Ride west along the road to the draenei camp at the {area:657}, near the way in from {zone:1430}."] = "Reite auf der Straße nach Westen zum Draeneilager bei {area:657}, nahe dem Weg vom {zone:1430} herein.",
 

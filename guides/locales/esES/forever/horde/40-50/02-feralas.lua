@@ -156,7 +156,7 @@ return {
 
 	-- Step 34: Homing Robot OOX-22/FE
 	-- {area:1105} Feral Scar Vale · {area:35} Booty Bay
-	["Only with the distress beacon: the robot sits in a small cave on the north side of {area:1105}. Escort it to the dock on the Forgotten Coast; yetis and gorillas ambush you on the way. Its reward waits in {area:35} for a later visit."] = "",
+	["Only with the distress beacon: the robot sits in a small cave on the north side of {area:1105}. Escort it to the dock on the Forgotten Coast; yetis and gorillas ambush you on the way. Its reward waits in {area:35} for a later visit."] = "Solo con la baliza de socorro: el robot está en una cueva pequeña en el lado norte de {area:1105}. Escóltalo hasta el muelle de La Costa Olvidada; yetis y gorilas te tienden emboscadas por el camino. Su recompensa te espera en {area:35} para una visita posterior.",
 
 	-- Step 35: Hearth to Camp Mojache
 	-- {area:1099} Camp Mojache

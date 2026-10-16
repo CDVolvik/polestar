@@ -21,7 +21,7 @@ return {
 
 	-- Step 3: Bruuz
 	-- {npc:209797} Bruuz · {area:392} Ratchet
-	["{npc:209797} swims in the harbour just off {area:392}'s docks. {npc:209797} is elite: grouping up is advised."] = "",
+	["{npc:209797} swims in the harbour just off {area:392}'s docks. {npc:209797} is elite: grouping up is advised."] = "{npc:209797}在{area:392}码头外的港湾里游动。{npc:209797}是精英：建议组队。",
 
 	-- Step 4: Baron Longshore
 	-- {area:392} Ratchet · {npc:3467} Baron Longshore
@@ -43,7 +43,7 @@ return {
 
 	-- Step 9: The Crossroads
 	-- {area:380} Crossroads
-	["The {area:380}"] = "",
+	["The {area:380}"] = "{area:380}",
 	-- {npc:3429} Thork · {area:1703} Mor'shan Rampart
 	["{npc:3429}. Keep it: Kadrak at the {area:1703}, next guide"] = "{npc:3429}。留着它：交给{area:1703}的卡德拉克，见下一个指南",
 	-- {npc:3428} Korran · {area:390} Field of Giants
@@ -118,7 +118,7 @@ return {
 
 	-- Step 23: The Dry Hills
 	-- {area:383} Dry Hills
-	["The {area:383}"] = "",
+	["The {area:383}"] = "{area:383}",
 	-- {quest:876} Serena Bloodfeather
 	-- plural, as words: Savannah Patriarchs = {npc:3241} Savannah Patriarch · Sprung Traps = {object:640104} Sprung Trap
 	["Savannah Patriarchs roam the plains east of the hills, and the Sprung Traps lie among them. {quest:876} leads the Witchwing harpies in the hills to the west."] = "草原狮王在山丘东边的平原上游荡，爆炸陷阱就散落在它们中间。{quest:876}率领着西边山丘里的巫翼鹰身人。",
@@ -129,11 +129,11 @@ return {
 
 	-- Step 27: Walton
 	-- {npc:261366} Walton · {npc:261367} Terry Longdrink · {area:21} Kul Tiras
-	["Assist {npc:261366}: stay by him when {npc:261367} and the {area:21} marines come up the ridge"] = "",
+	["Assist {npc:261366}: stay by him when {npc:261367} and the {area:21} marines come up the ridge"] = "协助{npc:261366}：当{npc:261367}和{area:21}水兵走上山脊时，待在他身边",
 
 	-- Step 28: Strange Lockbox
 	-- {object:177792} Strange Lockbox · {area:382} Sludge Fen · {item:15883} Half Pendant of Aquatic Agility · {quest:30} Trial of the Sea Lion
-	["The {object:177792} lies at the north edge of the {area:382}, by the Venture Co. tower. It holds the {item:15883} for {quest:30}."] = "",
+	["The {object:177792} lies at the north edge of the {area:382}, by the Venture Co. tower. It holds the {item:15883} for {quest:30}."] = "{object:177792}位于{area:382}北缘、风险投资公司的塔旁。里面装着{quest:30}所需的{item:15883}。",
 
 	-- Step 29: Ignition
 	-- {area:382} Sludge Fen · {npc:3439} Wizzlecrank's Shredder · {npc:3445} Supervisor Lugwizzle
@@ -230,7 +230,7 @@ return {
 	-- Step 53: Field of Giants
 	-- {area:390} Field of Giants
 	-- plural, as words: Silithid Mounds = {object:3685} Silithid Mound · Silithid Swarmers = {npc:3252} Silithid Swarmer · Silithid Harvesters = {npc:3253} Silithid Harvester
-	["South of Camp Taurajo the Silithid Mounds dot the {area:390}; the eggs lie in them, and Silithid Swarmers come out to defend them. Silithid Harvesters are rare: if you see one, kill it for its head."] = "",
+	["South of Camp Taurajo the Silithid Mounds dot the {area:390}; the eggs lie in them, and Silithid Swarmers come out to defend them. Silithid Harvesters are rare: if you see one, kill it for its head."] = "陶拉祖营地南边，{object:3685}遍布{area:390}；蛋就在土丘里，{npc:3252}会出来保护它们。{npc:3253}很稀有：如果看到，杀死它取下它的头。",
 
 	-- Step 54: Gann Stonespire
 	-- {area:359} Bael Modan
@@ -247,7 +247,7 @@ return {
 	-- Step 55: Blackthorn Ridge
 	-- {area:1701} Blackthorn Ridge · {npc:3436} Kuz · {npc:3434} Nak · {npc:3435} Lok Orcbane · {npc:5859} Hagg Taurenbane · {npc:3238} Stormhide · {quest:885} Washte Pawne
 	-- plural, as words: Hecklefang Stalkers = {npc:4128} Hecklefang Stalker
-	["West of Gann, the Razormane hold {area:1701}. {npc:3436} is on the east side, {npc:3434} to the south, {npc:3435} at the west end. Lok (25) and the Warfrenzies (24-25) are a few levels above you; {npc:5859}, a rare elite, sometimes walks the ridge: leave him. Pathfinders and Stalkers drop the Backstabber, Seers the Wand, Warfrenzies the War Shield. {npc:3238} lizards and Hecklefang Stalkers roam the plain between Gann and the ridge. {quest:885}, a rare red wind serpent, flies over the ridge: its feather starts a quest."] = "",
+	["West of Gann, the Razormane hold {area:1701}. {npc:3436} is on the east side, {npc:3434} to the south, {npc:3435} at the west end. Lok (25) and the Warfrenzies (24-25) are a few levels above you; {npc:5859}, a rare elite, sometimes walks the ridge: leave him. Pathfinders and Stalkers drop the Backstabber, Seers the Wand, Warfrenzies the War Shield. {npc:3238} lizards and Hecklefang Stalkers roam the plain between Gann and the ridge. {quest:885}, a rare red wind serpent, flies over the ridge: its feather starts a quest."] = "在加恩西边，钢鬃野猪人占据着{area:1701}。{npc:3436}在东侧，{npc:3434}在南边，{npc:3435}在西端。洛克（25级）和钢鬃战士（24-25级）比你高几级；稀有精英{npc:5859}有时会在山脊上走动：别惹他。钢鬃探路者和钢鬃捕猎者掉落钢鬃背刺匕首，钢鬃先知掉落烧焦的钢鬃魔杖，钢鬃战士掉落钢鬃大盾。{npc:3238}和{npc:4128}在加恩与山脊之间的平原上游荡。{quest:885}是一条稀有的红色风蛇，在山脊上空飞行：它的羽毛可以开始一个任务。",
 	-- {npc:3238} Stormhide
 	["{npc:3238}, on the plain between Gann and the ridge"] = "{npc:3238}，在加恩与山脊之间的平原上",
 
@@ -291,7 +291,7 @@ return {
 
 	-- Step 70: Shenthul
 	-- {npc:2391} Serge Hinott · {area:272} Tarren Mill
-	["{npc:2391} in {area:272} teaches Poisons: keep it"] = "",
+	["{npc:2391} in {area:272} teaches Poisons: keep it"] = "{area:272}的{npc:2391}教授毒药：留着它",
 
 	-- Step 71: The Great Cat Spirit
 	-- {area:1638} Thunder Bluff · {npc:3033} Turak Runetotem · {area:1639} Elder Rise

@@ -24,7 +24,7 @@ return {
 
 	-- Step 4: The Dark Portal
 	-- {zone:1419} Blasted Lands
-	["The Felguard Sentries around the Dark Portal, in southern {zone:1419}, carry its essence."] = "",
+	["The Felguard Sentries around the Dark Portal, in southern {zone:1419}, carry its essence."] = "{zone:1419}南部黑暗之门周围的地狱卫士斥候身上带着它的精华。",
 
 	-- Step 6: Kroshius
 	-- {npc:14467} Kroshius · {area:1766} Shatter Scar Vale · {item:18626} Fel Fire

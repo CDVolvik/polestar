@@ -101,7 +101,7 @@ return {
 
 	-- Step 24: The Bulwark
 	-- {area:152} Bulwark
-	["The {area:152}"] = "",
+	["The {area:152}"] = "{area:152}",
 	-- {area:152} Bulwark
 	["Ride south-west past Felstone Farm and follow the road west back to the {area:152}."] = "向西南騎過費爾斯通農場，沿著道路向西回到{area:152}。",
 	["Derrington's watchtowers, Vandis' cauldron and Mickey's barrel are done on a later visit: keep them."] = "德靈頓的瞭望塔、范蒂絲的大鍋和米克的木桶會在之後造訪時完成：先保留。",
@@ -169,7 +169,7 @@ return {
 
 	-- Step 39: Shatter Scar Vale
 	-- plural, as words: Entropic Beasts = {npc:9878} Entropic Beast
-	["East of Bloodvenom Post, the cratered vale where the Entropic Beasts and Horrors roam. Kill two of each, then walk to each of the three fel-water craters."] = "",
+	["East of Bloodvenom Post, the cratered vale where the Entropic Beasts and Horrors roam. Kill two of each, then walk to each of the three fel-water craters."] = "在血毒崗哨東邊，熱能野獸和熱能恐獸遊蕩的坑窪山谷。各擊殺兩隻，然後走到三個魔化水坑的每一個。",
 	["Southern crater"] = "南方坑洞",
 	["Western crater"] = "西方坑洞",
 	["Northern crater"] = "北方坑洞",

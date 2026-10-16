@@ -111,12 +111,12 @@ return {
 	["Take the zeppelin from the tower outside {area:1637} to {zone:1420} and ride into the {zone:1458}. Lady Sylvanas holds the {object:36126}."] = "Prenez le zeppelin depuis la tour à l'extérieur d'{area:1637} jusqu'à {zone:1420} et entrez dans {zone:1458}. Dame Sylvanas règne sur le {object:36126}.",
 
 	-- Step 26: The Bulwark
-	["Ride east along the road to the Bulwark on the border."] = "",
+	["Ride east along the road to the Bulwark on the border."] = "Suivez la route vers l'est jusqu'à la Barricade, à la frontière.",
 
 	-- Step 27: Felstone Field
 	-- {npc:10778} Janice Felstone · {npc:11075} Cauldron Lord Bilemaw
 	-- plural, as words: Jabbering Ghouls = {npc:10801} Jabbering Ghoul
-	["{npc:10778}'s farm is the first one east of the Bulwark. Jabbering Ghouls on the farm carry the other half of her charm; {npc:11075} guards the cauldron in the field."] = "",
+	["{npc:10778}'s farm is the first one east of the Bulwark. Jabbering Ghouls on the farm carry the other half of her charm; {npc:11075} guards the cauldron in the field."] = "La ferme de {npc:10778} est la première à l'est de la Barricade. Les Goules jacassantes de la ferme portent l'autre moitié de son talisman ; {npc:11075} garde le chaudron dans le champ.",
 
 	-- Step 28: Andorhal watchtowers and silos
 	["Andorhal watchtowers and silos"] = "Tours de guet et silos d'Andorhal",
@@ -185,11 +185,11 @@ return {
 	-- {npc:10667} Chromie
 	["Ride south-west to {npc:10667} in Andorhal."] = "Allez vers le sud-ouest jusqu'à {npc:10667}, à Andorhal.",
 	-- {npc:10667} Chromie
-	["{npc:10667}'s Battle of Darrowshire ends against elites. Skip it."] = "",
+	["{npc:10667}'s Battle of Darrowshire ends against elites. Skip it."] = "La bataille de Comté-de-Darrow, quête de {npc:10667}, se termine contre des élites. Passez-la.",
 
 	-- Step 42: The Bulwark
 	-- {zone:1458} Undercity
-	["West to the Bulwark. The next guide starts in the {zone:1458}, a short ride west."] = "",
+	["West to the Bulwark. The next guide starts in the {zone:1458}, a short ride west."] = "Vers l'ouest jusqu'à la Barricade. Le prochain guide commence à {zone:1458}, un peu plus à l'ouest.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Back to Southwind and climb the tower. Stirring the hive at the top brings out {area:2742} Ambushers; one carries the {item:17346}."] = "Retournez à Sudevent et montez dans la tour. Remuer la ruche au sommet fait sortir des Embusquées de la {area:2742} ; l'une d'elles porte {item:17346}.",

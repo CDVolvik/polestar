@@ -198,7 +198,7 @@ return {
 	-- {area:159} Brill · {npc:3549} Shelene Rhobart
 	["Follow the road south-east from {area:159} past the zeppelin towers. Linnea, Kristof and {npc:3549} camp by the road."] = "Suivez la route au sud-est de {area:159} au-delà des tours des zeppelins. Linnea, Kristof et {npc:3549} campent au bord de la route.",
 	-- {npc:1495} Deathguard Linnea · {npc:276020} Riptear
-	["{npc:1495}: {npc:276020}, an elite abomination in the east"] = "",
+	["{npc:1495}: {npc:276020}, an elite abomination in the east"] = "{npc:1495} : {npc:276020}, une abomination élite à l'est",
 	-- {npc:251001} Deathguard Kristof
 	["Ask {npc:251001} for his report"] = "Demandez son rapport à {npc:251001}",
 
@@ -304,9 +304,9 @@ return {
 	-- plural, as words: Vicious Night Web Spiders = {npc:1555} Vicious Night Web Spider
 	["Vicious Night Web Spiders"] = "Tisse-nuit vicieuses",
 	-- {npc:276020} Riptear
-	["The spiders lurk in the woods at the far east end of the glades. {npc:276020}, a rogue abomination, wanders just north-west of them. {npc:276020} is elite: grouping up is advised."] = "",
+	["The spiders lurk in the woods at the far east end of the glades. {npc:276020}, a rogue abomination, wanders just north-west of them. {npc:276020} is elite: grouping up is advised."] = "Les araignées rôdent dans les bois à l'extrémité est des clairières. {npc:276020}, une abomination renégate, erre juste au nord-ouest. {npc:276020} est élite : mieux vaut former un groupe.",
 	-- {item:286326} Riptear's Heart · {npc:276020} Riptear
-	["{item:286326}, from {npc:276020}"] = "",
+	["{item:286326}, from {npc:276020}"] = "{item:286326}, sur {npc:276020}",
 
 	-- Step 61: Hides for the Forsaken
 	-- plural, as words: Duskbats = {npc:1512} Duskbat
@@ -348,7 +348,7 @@ return {
 
 	-- Step 70: The Crossroads
 	-- {zone:1454} Orgrimmar · {zone:1411} Durotar · {area:815} Southfury River · {area:379} Far Watch Post
-	["The zeppelin lands at the tower just north-east of {zone:1454}'s main gate. Follow the road south into {zone:1411}, cross the {area:815} bridge below {area:379} and follow the road west to the Crossroads."] = "",
+	["The zeppelin lands at the tower just north-east of {zone:1454}'s main gate. Follow the road south into {zone:1411}, cross the {area:815} bridge below {area:379} and follow the road west to the Crossroads."] = "Le zeppelin arrive à la tour juste au nord-est de la porte principale d'{zone:1454}. Suivez la route vers le sud jusqu'en {zone:1411}, franchissez le pont sur le {area:815} sous {area:379} et suivez la route vers l'ouest jusqu'à la Croisée.",
 	-- {npc:3615} Devrak
 	["{npc:3615}, the wind rider master"] = "{npc:3615}, maître des coursiers du vent",
 

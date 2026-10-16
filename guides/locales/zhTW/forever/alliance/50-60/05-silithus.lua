@@ -72,7 +72,7 @@ return {
 
 	-- Step 17: Stormwind City
 	-- {area:392} Ratchet · {area:35} Booty Bay
-	["Take the boat from {area:392} to {area:35} and fly to Stormwind."] = "",
+	["Take the boat from {area:392} to {area:35} and fly to Stormwind."] = "從{area:392}搭船前往{area:35}，然後飛往暴風城。",
 	-- {npc:3520} Ol' Emma
 	["{npc:3520}, who walks the canals"] = "{npc:3520}，在運河邊走動",
 	-- {npc:10778} Janice Felstone
@@ -120,13 +120,13 @@ return {
 
 	-- Step 25: The Undercroft
 	-- {npc:11886} Mercutio Filthgorger
-	["Ride south-west to the Undercroft. The mound of dirt lies inside. {npc:11886} is elite: grouping up is advised."] = "",
+	["Ride south-west to the Undercroft. The mound of dirt lies inside. {npc:11886} is elite: grouping up is advised."] = "向西南騎往墓室。土堆在裡面。{npc:11886}是精英：建議組隊。",
 	-- {item:14613} Taelan's Hammer · {npc:11886} Mercutio Filthgorger
 	["{item:14613}, from {npc:11886}"] = "{item:14613}，來自{npc:11886}",
 
 	-- Step 26: The Fungal Vale
 	-- {npc:8532} Diseased Flayer · {zone:1423} Eastern Plaguelands
-	["grind on {npc:8532} at the Fungal Vale, {zone:1423}"] = "",
+	["grind on {npc:8532} at the Fungal Vale, {zone:1423}"] = "在{zone:1423}的蘑菇谷擊殺{npc:8532}練等",
 
 	-- Step 27: Ratchet
 	-- {area:392} Ratchet

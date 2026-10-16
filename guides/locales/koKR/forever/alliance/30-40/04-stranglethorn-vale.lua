@@ -73,7 +73,7 @@ return {
 	["Follow the main road south the length of the jungle, past the {object:3202} turn-off, to {area:35} on the southern cape."] = "큰길을 따라 밀림을 끝까지 남쪽으로 가서 {object:3202} 갈림길을 지나 남쪽 곶의 {area:35}에 도착하세요.",
 	["Gyll, on the top floor by the docks"] = "가일, 부두 옆 꼭대기 층",
 	-- {npc:2832} Nixxrax Fillamug
-	["{npc:2832}, in the Salty Sailor Tavern"] = "",
+	["{npc:2832}, in the Salty Sailor Tavern"] = "{npc:2832}, 뱃사공의 선술집 안",
 	-- {npc:2495} Drizzlik
 	["{npc:2495}, by the bank"] = "{npc:2495}, 은행 옆",
 	-- {npc:773} Krazek

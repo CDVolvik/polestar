@@ -198,7 +198,7 @@ return {
 	-- {area:159} Brill · {npc:3549} Shelene Rhobart
 	["Follow the road south-east from {area:159} past the zeppelin towers. Linnea, Kristof and {npc:3549} camp by the road."] = "沿道路从{area:159}向东南经过飞艇塔。亡灵卫兵林奈、亡灵卫兵克里斯托弗和{npc:3549}在路旁扎营。",
 	-- {npc:1495} Deathguard Linnea · {npc:276020} Riptear
-	["{npc:1495}: {npc:276020}, an elite abomination in the east"] = "",
+	["{npc:1495}: {npc:276020}, an elite abomination in the east"] = "{npc:1495}：{npc:276020}，东边的一个精英憎恶",
 	-- {npc:251001} Deathguard Kristof
 	["Ask {npc:251001} for his report"] = "向{npc:251001}索取报告",
 
@@ -220,7 +220,7 @@ return {
 
 	-- Step 41: Tirisfal Pumpkins
 	-- plural, as words: Tirisfal Pumpkins = {object:375} Tirisfal Pumpkin
-	["Tirisfal Pumpkins"] = "{item:2846}",
+	["Tirisfal Pumpkins"] = "{object:375}",
 	["The pumpkins grow in the Scarlet-held fields north-west of Solliden."] = "南瓜生长在索利丹农场西北方、血色十字军占据的田里。",
 
 	-- Step 42: Crusader's Outpost
@@ -304,9 +304,9 @@ return {
 	-- plural, as words: Vicious Night Web Spiders = {npc:1555} Vicious Night Web Spider
 	["Vicious Night Web Spiders"] = "{npc:1555}",
 	-- {npc:276020} Riptear
-	["The spiders lurk in the woods at the far east end of the glades. {npc:276020}, a rogue abomination, wanders just north-west of them. {npc:276020} is elite: grouping up is advised."] = "",
+	["The spiders lurk in the woods at the far east end of the glades. {npc:276020}, a rogue abomination, wanders just north-west of them. {npc:276020} is elite: grouping up is advised."] = "蜘蛛潜伏在林地最东端的树林里。{npc:276020}是一个失控的憎恶，在它们西北方不远处游荡。{npc:276020}是精英：建议组队。",
 	-- {item:286326} Riptear's Heart · {npc:276020} Riptear
-	["{item:286326}, from {npc:276020}"] = "",
+	["{item:286326}, from {npc:276020}"] = "{item:286326}，来自{npc:276020}",
 
 	-- Step 61: Hides for the Forsaken
 	-- plural, as words: Duskbats = {npc:1512} Duskbat
@@ -348,7 +348,7 @@ return {
 
 	-- Step 70: The Crossroads
 	-- {zone:1454} Orgrimmar · {zone:1411} Durotar · {area:815} Southfury River · {area:379} Far Watch Post
-	["The zeppelin lands at the tower just north-east of {zone:1454}'s main gate. Follow the road south into {zone:1411}, cross the {area:815} bridge below {area:379} and follow the road west to the Crossroads."] = "",
+	["The zeppelin lands at the tower just north-east of {zone:1454}'s main gate. Follow the road south into {zone:1411}, cross the {area:815} bridge below {area:379} and follow the road west to the Crossroads."] = "飞艇停靠在{zone:1454}正门东北方的塔上。沿道路向南进入{zone:1411}，从{area:379}下方过{area:815}的桥，然后沿道路向西到十字路口。",
 	-- {npc:3615} Devrak
 	["{npc:3615}, the wind rider master"] = "{npc:3615}，双足飞龙管理员",
 

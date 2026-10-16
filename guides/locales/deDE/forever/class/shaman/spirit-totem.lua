@@ -23,7 +23,7 @@ return {
 	-- Step 3: The four elements
 	["The four elements"] = "Die vier Elemente",
 	-- {item:7069} Elemental Air
-	["One each of {item:7069}, Fire, Earth and Water. The Exiles of Arathi Highlands drop them, one element each, about one kill in ten: Thundering (air), Burning (fire), Rumbling (earth) and Cresting (water). Or buy them at the auction house."] = "",
+	["One each of {item:7069}, Fire, Earth and Water. The Exiles of Arathi Highlands drop them, one element each, about one kill in ten: Thundering (air), Burning (fire), Rumbling (earth) and Cresting (water). Or buy them at the auction house."] = "Je eins von {item:7069}, Elementarfeuer, Elementarerde und Elementarwasser. Die Verbannten im Arathihochland lassen sie fallen, je ein Element pro Art, etwa bei jedem zehnten Kill: Donnernde (Luft), Brennende (Feuer), Rumpelnde (Erde) und Schäumende (Wasser). Oder kauf sie im Auktionshaus.",
 	-- {item:7069} Elemental Air
 	-- plural, as words: Thundering Exiles = {npc:2762} Thundering Exile
 	["{item:7069}: Thundering Exiles"] = "{item:7069}: Donnernde Verbannte",

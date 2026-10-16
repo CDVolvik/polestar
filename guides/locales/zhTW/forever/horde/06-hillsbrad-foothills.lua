@@ -17,16 +17,16 @@ return {
 
 	-- Step 2: Serge Hinott
 	-- {npc:2391} Serge Hinott · {area:272} Tarren Mill
-	["Only if Gallywix fell in the Barrens (Mission: Possible But Not Probable): {npc:2391} stands in {area:272}. Wait beside him while he brews the cure, then take your reward: Poisons."] = "",
+	["Only if Gallywix fell in the Barrens (Mission: Possible But Not Probable): {npc:2391} stands in {area:272}. Wait beside him while he brews the cure, then take your reward: Poisons."] = "只有在你已於貧瘠之地擊敗加里維克斯時（基本不可能的任務）：{npc:2391}站在{area:272}。在他旁邊等他調製解藥，然後領取獎勵：毒藥。",
 	-- {npc:2391} Serge Hinott
-	["{npc:2391}: Poisons"] = "",
-	["No Gallywix yet? The Class guide Poisons (Horde) runs the chain from Shenthul again, with a group for Gallywix."] = "",
+	["{npc:2391}: Poisons"] = "{npc:2391}：毒藥",
+	["No Gallywix yet? The Class guide Poisons (Horde) runs the chain from Shenthul again, with a group for Gallywix."] = "還沒打倒加里維克斯？職業指南「毒藥（部落）」會從申蘇爾那裡重新跑這條任務鏈，並組隊對付加里維克斯。",
 
 	-- Step 3: Bears, creepers and lions
 	["Bears, creepers and lions"] = "熊、食苔蛛和山地獅",
 	-- {item:3477} Creeper Ichor
 	-- plural, as words: Gray Bears = {npc:2351} Gray Bear · Forest Moss Creepers = {npc:2350} Forest Moss Creeper · Starving Mountain Lions = {npc:2384} Starving Mountain Lion
-	["West of Tarren Mill, Gray Bears, Forest Moss Creepers and Starving Mountain Lions roam the hills on the way down to the farms. The creepers drop {item:3477} rarely; you need only one."] = "",
+	["West of Tarren Mill, Gray Bears, Forest Moss Creepers and Starving Mountain Lions roam the hills on the way down to the farms. The creepers drop {item:3477} rarely; you need only one."] = "在塔倫米爾西邊，灰熊、森林食苔蛛和饑餓的山地獅在通往農場的山丘上遊蕩。食苔蛛很少掉落{item:3477}；你只需要一個。",
 
 	-- Step 4: Hillsbrad Fields
 	-- {area:287} Hillsbrad · {npc:232} Farmer Ray · {npc:2403} Farmer Getz · {npc:2451} Farmer Kalaba
@@ -74,7 +74,7 @@ return {
 	-- Step 14: The smithy
 	["The smithy"] = "鐵匠鋪",
 	-- {area:287} Hillsbrad · {npc:2404} Blacksmith Verringtan · {object:1736} Shipment of Iron · {npc:2449} Citizen Wilkes
-	["The smithy stands in the middle of {area:287} town. {npc:2404} and his apprentices work at the forge; the {object:1736} is stacked beside it. {npc:2449} walks the street north of it."] = "",
+	["The smithy stands in the middle of {area:287} town. {npc:2404} and his apprentices work at the forge; the {object:1736} is stacked beside it. {npc:2449} walks the street north of it."] = "鐵匠鋪位於{area:287}鎮中央。{npc:2404}和他的學徒在熔爐邊工作；{object:1736}堆在旁邊。{npc:2449}在鐵匠鋪北邊的街上走動。",
 
 	-- Step 16: Town hall
 	["Town hall"] = "市政廳",
@@ -117,7 +117,7 @@ return {
 
 	-- Step 26: Great Lift
 	-- {npc:12576} Grish Longrunner · {area:1718} Great Lift
-	["South-west of Bael Modan, {npc:12576} waits at the top of the {area:1718}."] = "",
+	["South-west of Bael Modan, {npc:12576} waits at the top of the {area:1718}."] = "在巴爾莫丹西南方，{npc:12576}在{area:1718}頂端等著。",
 
 	-- Step 27: Merchant Coast
 	-- {area:378} Camp Taurajo · {area:392} Ratchet · {quest:874} Mahren Skyseer

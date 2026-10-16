@@ -104,7 +104,7 @@ return {
 
 	-- Step 22: The Gaping Chasm
 	-- {area:1938} Broken Pillar
-	["Ride south past the {area:1938} to the Gaping Chasm, the Hazzali tunnels; Scrimshank's gear lies deep inside."] = "",
+	["Ride south past the {area:1938} to the Gaping Chasm, the Hazzali tunnels; Scrimshank's gear lies deep inside."] = "向南騎過{area:1938}前往大裂口，也就是哈札里的隧道；謝申克的設備在深處。",
 
 	-- Step 23: Gadgetzan
 	-- {area:976} Gadgetzan
@@ -118,7 +118,7 @@ return {
 
 	-- Step 25: Aerie Peak
 	-- {area:348} Aerie Peak · {zone:1425} Hinterlands
-	["Fly to {area:348}. The {zone:1425} guide starts here."] = "",
+	["Fly to {area:348}. The {zone:1425} guide starts here."] = "飛往{area:348}。{zone:1425}指南從這裡開始。",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Fly to {area:348}. {zone:1425} guide starts here."] = "飛往{area:348}。{zone:1425}指南從這裡開始。",

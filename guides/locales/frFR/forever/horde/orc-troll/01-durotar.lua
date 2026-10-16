@@ -82,7 +82,7 @@ return {
 
 	-- Step 18: Felstalker hooves
 	-- {npc:3102} Felstalker
-	["{npc:3102} hooves"] = "",
+	["{npc:3102} hooves"] = "Sabots de {npc:3102}",
 	-- plural, as words: Felstalkers = {npc:3102} Felstalker
 	["Felstalkers roam the slope below the cave, on the valley's north side."] = "Les Traqueurs corrompus parcourent la pente sous la grotte, du côté nord de la vallée.",
 
@@ -274,7 +274,7 @@ return {
 
 	-- Step 67: The Crossroads
 	-- {area:379} Far Watch Post · {zone:1413} Barrens
-	["Follow the road south-west from {area:379} to the Crossroads. The {zone:1413} guide starts here."] = "",
+	["Follow the road south-west from {area:379} to the Crossroads. The {zone:1413} guide starts here."] = "Suivez la route au sud-ouest depuis {area:379} jusqu'à la Croisée. Le guide des {zone:1413} commence ici.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Burning Blade cultists hold the caves of {quest:827}; any of them drops a {item:4871}. {npc:3204}, a level 14 warlock, stands deep inside and drops the {item:4903}."] = "Les sectateurs de la Lame ardente tiennent les grottes de {quest:827} ; chacun d'eux peut laisser tomber un {item:4871}. {npc:3204}, un démoniste de niveau 14, se tient au fond et laisse tomber l'{item:4903}.",

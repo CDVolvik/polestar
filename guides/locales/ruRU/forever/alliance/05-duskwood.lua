@@ -124,7 +124,7 @@ return {
 	-- {zone:1453} Stormwind · {object:2100} Old Town
 	["Ride north through Elwynn to {zone:1453}; Mathias Shaw is at SI:7 in {object:2100}."] = "Езжайте на север через Элвиннский лес в город {zone:1453}; Матиас Шоу – в ШРУ, район {object:2100}.",
 	-- {npc:332} Master Mathias Shaw · {item:18160} Recipe: Thistle Tea
-	["{npc:332}: Poisons, and {item:18160}"] = "",
+	["{npc:332}: Poisons, and {item:18160}"] = "{npc:332}: Яды и {item:18160}",
 	-- {quest:2607} The Touch of Zanzil · {npc:7207} Doc Mixilpixil
 	["{quest:2607}: {npc:7207}, in the cellar of the Barracks"] = "{quest:2607}: {npc:7207}, в подвале казарм",
 	-- {npc:7207} Doc Mixilpixil

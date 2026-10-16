@@ -26,7 +26,7 @@ return {
 	["Polymorph Clones"] = "Clones polimórficos",
 	-- {item:23250} Prismatic Shell · {area:1221} Ruins of Eldarath
 	-- plural, as words: Polymorph Clones = {npc:16479} Polymorph Clone
-	["Carry the {item:23250} back to the {area:1221}. Polymorph a Spitelash naga and wait a few seconds: it splits into small Polymorph Clones. Kill the clones quickly; the shell collects their essence."] = "",
+	["Carry the {item:23250} back to the {area:1221}. Polymorph a Spitelash naga and wait a few seconds: it splits into small Polymorph Clones. Kill the clones quickly; the shell collects their essence."] = "Lleva la {item:23250} de vuelta a {area:1221}. Lanza Polimorfia sobre una naga Látigo de Ira y espera unos segundos: se divide en pequeños Clones polimórficos ({npc:16479}). Mata a los clones rápido; la concha recoge su esencia.",
 
 	-- Step 5: Fragmented Magic
 	-- {npc:8379} Archmage Xylem · {spell:118} Polymorph

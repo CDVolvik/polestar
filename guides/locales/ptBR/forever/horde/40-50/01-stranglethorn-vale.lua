@@ -35,7 +35,7 @@ return {
 	-- {area:43} Wild Shore
 	["The {area:43}"] = "{area:43}",
 	-- {area:43} Wild Shore
-	["South of Booty Bay the Bloodsail swashbucklers camp on the {area:43}; the charts and the orders lie in their tents. Any Bloodsail can carry snuff and Dizzy's eye, so keep killing until you have both."] = "",
+	["South of Booty Bay the Bloodsail swashbucklers camp on the {area:43}; the charts and the orders lie in their tents. Any Bloodsail can carry snuff and Dizzy's eye, so keep killing until you have both."] = "Ao sul de Angra do Butim, os Espadachins da Vela Sangrenta acampam em {area:43}; os mapas e as ordens ficam nas barracas deles. Qualquer pirata da Vela Sangrenta pode levar rapé e o olho do Dizzy, então continue matando até ter os dois.",
 
 	-- Step 8: The Bloodsail ships
 	["The Bloodsail ships"] = "Os navios da Vela Sangrenta",
@@ -167,7 +167,7 @@ return {
 
 	-- Step 37: The Harborage
 	-- {area:657} Harborage
-	["The {area:657}"] = "",
+	["The {area:657}"] = "{area:657}",
 	-- {area:657} Harborage · {zone:1430} Deadwind Pass
 	["Ride west along the road to the draenei camp at the {area:657}, near the way in from {zone:1430}."] = "Cavalgue para o oeste pela estrada até o acampamento draenei em {area:657}, perto da entrada vinda de {zone:1430}.",
 
@@ -184,5 +184,4 @@ return {
 	["The next guide starts here and takes you to {zone:1446}."] = "O próximo guia começa aqui e leva você até {zone:1446}.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["South of {area:35} the Bloodsail swashbucklers camp on the {area:43}; the charts and the orders lie in their tents. Any Bloodsail can carry snuff and Dizzy's eye, so keep killing until you have both."] = "Ao sul de {area:35}, os Espadachins da Vela Sangrenta acampam em {area:43}; os mapas e as ordens ficam nas barracas deles. Qualquer pirata da Vela Sangrenta pode levar rapé e o olho do Dizzy, então continue matando até ter os dois.",
 }

@@ -39,7 +39,7 @@ return {
 
 	-- Step 7: The Ruins of Stardust
 	-- {zone:1440} Ashenvale
-	["The fountain stands in the middle of the Ruins of Stardust, in south-western {zone:1440}."] = "",
+	["The fountain stands in the middle of the Ruins of Stardust, in south-western {zone:1440}."] = "La fontaine se dresse au milieu des ruines de Chimétoile, dans le sud-ouest d'{zone:1440}.",
 	-- {item:7767} Empty Blue Waterskin
 	["Fill the {item:7767} at the fountain"] = "Remplissez l'{item:7767} à la fontaine",
 

@@ -56,7 +56,7 @@ return {
 	-- Step 10: Gilveradin's camp
 	["Gilveradin's camp"] = "길버라딘의 야영지",
 	-- {area:272} Tarren Mill · {npc:7801} Gilveradin Sunchaser · {area:350} Quel'Danil Lodge
-	["Ride north-east from {area:272} into the Hinterlands and east along the road; {npc:7801} camps on the hill south of the elves' {area:350}."] = "",
+	["Ride north-east from {area:272} into the Hinterlands and east along the road; {npc:7801} camps on the hill south of the elves' {area:350}."] = "{area:272}에서 북동쪽 동부 내륙지로 들어가 길을 따라 동쪽으로 가세요. {npc:7801}은(는) 엘프의 {area:350} 남쪽 언덕에 야영하고 있습니다.",
 
 	-- Step 11: Highvale
 	["Highvale"] = "깊은골짜기",
@@ -75,7 +75,7 @@ return {
 	["South-west again, the exile hides by the ruins of {area:353}."] = "다시 남서쪽으로 가면 추방자가 {area:353} 폐허 옆에 숨어 있습니다.",
 
 	-- Step 15: Revantusk Village
-	["Follow the roads east across the Hinterlands to the troll village on the eastern coast."] = "",
+	["Follow the roads east across the Hinterlands to the troll village on the eastern coast."] = "길을 따라 동쪽으로 동부 내륙지를 가로질러 동쪽 해안의 트롤 마을로 가세요.",
 
 	-- Step 16: Saltwater Snapjaws
 	-- plural, as words: Saltwater Snapjaws = {npc:2505} Saltwater Snapjaw
@@ -138,7 +138,7 @@ return {
 
 	-- Step 27: Jintha'Alor
 	-- {area:354} Jintha'Alor · {npc:14757} Elder Torntusk
-	["Huntsman Malkhor's skull lies on a pile below the Vilebranch ruins, his bones on a pile at the foot of {area:354}. The Vessels of Tainted Blood sit on the lower terraces, and {npc:14757} is held at the top. Keep to the paths: the trolls inside are elite."] = "",
+	["Huntsman Malkhor's skull lies on a pile below the Vilebranch ruins, his bones on a pile at the foot of {area:354}. The Vessels of Tainted Blood sit on the lower terraces, and {npc:14757} is held at the top. Keep to the paths: the trolls inside are elite."] = "사냥꾼 마코르의 해골은 썩은가지부족 폐허 아래 더미에, 뼈는 {area:354} 기슭의 더미에 있습니다. 오염된 피가 담긴 용기는 아래쪽 계단식 단에 있고, {npc:14757}은(는) 꼭대기에 갇혀 있습니다. 길에서 벗어나지 마세요. 안쪽의 트롤은 정예입니다.",
 	-- {npc:14757} Elder Torntusk · {area:354} Jintha'Alor
 	["{npc:14757}, at the top of {area:354}"] = "{area:354} 꼭대기의 {npc:14757}",
 	-- {area:355} Altar of Zul

@@ -71,7 +71,7 @@ return {
 
 	-- Step 10: Bellygrub
 	-- {npc:345} Bellygrub · {area:69} Lakeshire
-	["{npc:345} (level 24) roots around the pen just west of {area:69}. Pull him away from the other boars and fight at full health."] = "",
+	["{npc:345} (level 24) roots around the pen just west of {area:69}. Pull him away from the other boars and fight at full health."] = "{npc:345} (nível 24) fuça em volta do chiqueiro logo a oeste de {area:69}. Afaste-o dos outros javalis e lute com a vida cheia.",
 
 	-- Step 12: Lakeshire
 	-- {npc:703} Lieutenant Fangore · {area:1000} Galardell Valley
@@ -118,5 +118,4 @@ return {
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Bellygrub"] = "Ronquifuça",
-	-- ["Bellygrub (level 24) roots around the pen just west of {area:69}. Pull him away from the other boars and fight at full health."] = "Ronquifuça (nível 24) fuça em volta do chiqueiro logo a oeste de {area:69}. Afaste-o dos outros javalis e lute com a vida cheia.",
 }

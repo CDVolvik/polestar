@@ -101,7 +101,7 @@ return {
 
 	-- Step 24: The Bulwark
 	-- {area:152} Bulwark
-	["The {area:152}"] = "",
+	["The {area:152}"] = "{area:152}",
 	-- {area:152} Bulwark
 	["Ride south-west past Felstone Farm and follow the road west back to the {area:152}."] = "남서쪽으로 펠스톤 농장을 지나 길을 따라 서쪽의 {area:152}(으)로 돌아가세요.",
 	["Derrington's watchtowers, Vandis' cauldron and Mickey's barrel are done on a later visit: keep them."] = "데링턴의 감시탑, 반디스의 가마솥, 미키의 통은 나중에 들를 때 처리합니다. 보관하세요.",
@@ -169,7 +169,7 @@ return {
 
 	-- Step 39: Shatter Scar Vale
 	-- plural, as words: Entropic Beasts = {npc:9878} Entropic Beast
-	["East of Bloodvenom Post, the cratered vale where the Entropic Beasts and Horrors roam. Kill two of each, then walk to each of the three fel-water craters."] = "",
+	["East of Bloodvenom Post, the cratered vale where the Entropic Beasts and Horrors roam. Kill two of each, then walk to each of the three fel-water craters."] = "피멍울 초소 동쪽, 혼돈의 불길과 혼돈의 소산물이 돌아다니는 구덩이투성이 골짜기입니다. 각각 두 마리씩 처치한 뒤, 지옥 물 구덩이 세 곳을 모두 걸어서 찾아가세요.",
 	["Southern crater"] = "남쪽 구덩이",
 	["Western crater"] = "서쪽 구덩이",
 	["Northern crater"] = "북쪽 구덩이",

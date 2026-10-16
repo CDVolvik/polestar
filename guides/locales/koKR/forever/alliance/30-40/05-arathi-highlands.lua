@@ -26,7 +26,7 @@ return {
 	["The wrecked caravan lies off the road near Biggs."] = "부서진 대상단 마차는 비그스 근처 길가에 있습니다.",
 
 	-- Step 7: The Harborage
-	["Follow the road north to the draenei of the Harborage."] = "",
+	["Follow the road north to the draenei of the Harborage."] = "길을 따라 북쪽으로 피난처의 드레나이에게 가세요.",
 
 	-- Step 8: Fallow Sanctuary
 	-- {area:76} Fallow Sanctuary · {npc:256028} The Lost One
@@ -158,7 +158,7 @@ return {
 	-- Step 42: Crushridge ogres
 	["Crushridge ogres"] = "산사태 오우거",
 	-- {area:280} Strahnbrad · {item:3706} Ensorcelled Parchment · {npc:2320} Nagaz · {quest:537} Dark Council
-	["The Crushridge ogres hold the hills north of {area:280}. Farther north, a worn wooden chest holds the {item:3706}; {npc:2320} of the {quest:537} stands right by it."] = "",
+	["The Crushridge ogres hold the hills north of {area:280}. Farther north, a worn wooden chest holds the {item:3706}; {npc:2320} of the {quest:537} stands right by it."] = "산사태 오우거는 {area:280} 북쪽 언덕을 차지하고 있습니다. 더 북쪽의 낡은 나무 상자에 {item:3706}이(가) 들어 있고, {quest:537}의 {npc:2320}이(가) 바로 옆에 서 있습니다.",
 
 	-- Step 43: Ruins of Alterac
 	-- {area:280} Strahnbrad
@@ -171,7 +171,7 @@ return {
 	-- {npc:2542} Catelyn the Blade · {area:35} Booty Bay
 	["For {npc:2542} in {area:35}: keep it"] = "{area:35}의 {npc:2542}에게: 보관하세요",
 	-- {npc:252085} Archmage Celindra
-	["{npc:252085}, in the City of Dalaran"] = "",
+	["{npc:252085}, in the City of Dalaran"] = "{npc:252085}, 달라란 도시 안",
 
 	-- Step 45: Southshore
 	-- {item:2321} Fine Thread · {npc:2381} Micha Yance

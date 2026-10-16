@@ -33,7 +33,7 @@ return {
 
 	-- Step 7: Bathran's Haunt
 	-- {area:411} Bathran's Haunt · {item:5366} Glowing Soul Gem
-	["North of Maestra's Post, plant bundles lie around the ruins of {area:411}. Dark Strand cultists hold the ruins just south of them: any of them can drop the {item:5366}."] = "",
+	["North of Maestra's Post, plant bundles lie around the ruins of {area:411}. Dark Strand cultists hold the ruins just south of them: any of them can drop the {item:5366}."] = "Nördlich von Maestras Posten liegen Pflanzenbündel um die Ruinen von {area:411}. Kultisten des dunklen Strangs halten die Ruinen gleich südlich davon: Jeder von ihnen kann {item:5366} fallen lassen.",
 	-- {quest:1010} Bathran's Hair
 	["{quest:1010}, from the plant bundles"] = "{quest:1010}, von den Pflanzenbündeln",
 
@@ -57,13 +57,13 @@ return {
 
 	-- Step 13: The Zoram Strand
 	-- {npc:3846} Talen
-	["Follow the coast north to the Zoram Strand. {npc:3846} camps on the beach; Wrathtail nagas fill the shore."] = "",
+	["Follow the coast north to the Zoram Strand. {npc:3846} camps on the beach; Wrathtail nagas fill the shore."] = "Folge der Küste nach Norden zum Zoramstrand. {npc:3846} lagert am Strand; Naga der Rächerflossen bevölkern das Ufer.",
 	-- {item:5424} Ancient Statuette
 	["{item:5424}, in the ruins on the shore"] = "{item:5424}, in den Ruinen am Ufer",
 
 	-- Step 15: Ruuzel
 	-- {quest:1009} Ruuzel
-	["{quest:1009} walks the northern tip of the Zoram Strand with Wrathtail guards."] = "",
+	["{quest:1009} walks the northern tip of the Zoram Strand with Wrathtail guards."] = "{quest:1009} streift mit Wachen der Rächerflossen über die Nordspitze des Zoramstrands.",
 
 	-- Step 19: Dal Bloodclaw
 	-- {npc:3987} Dal Bloodclaw · {area:415} Astranaar
@@ -91,7 +91,7 @@ return {
 	["Kill the elementals for 5 Intact Elemental Bracers, then use the {item:5456}"] = "Töte die Elementare für 5 intakte Elementararmschienen und benutze dann {item:5456}",
 
 	-- Step 25: The Ruins of Stardust
-	["West of Mystral Lake, the stardust bushes grow among the ruins."] = "",
+	["West of Mystral Lake, the stardust bushes grow among the ruins."] = "Westlich vom Mystralsee wachsen die Sternenstaubbüsche zwischen den Ruinen.",
 
 	-- Step 27: Windshear Crag
 	-- {area:421} Mystral Lake · {area:1276} Talondeep Path · {area:461} Windshear Crag · {area:1076} Webwinder Path
@@ -136,7 +136,7 @@ return {
 	-- Step 35: Bluegill Marsh
 	-- {npc:1259} Gobbler
 	-- plural, as words: Bluegill Murlocs = {npc:1024} Bluegill Murloc
-	["Follow the coast north out of Menethil. Bluegill Murlocs fill the marsh; {npc:1259} walks with a pack in the middle of it."] = "",
+	["Follow the coast north out of Menethil. Bluegill Murlocs fill the marsh; {npc:1259} walks with a pack in the middle of it."] = "Folge der Küste von Menethil aus nach Norden. Murlocs der Blaukiemen füllen den Sumpf; {npc:1259} zieht mit einer Gruppe mitten hindurch.",
 
 	-- Step 37: The Bluegill hovels
 	["The Bluegill hovels"] = "Die Hütten der Blaukiemen",
@@ -184,7 +184,7 @@ return {
 
 	-- Step 48: The Green Belt
 	-- {area:1025} Green Belt
-	["The {area:1025}"] = "",
+	["The {area:1025}"] = "{area:1025}",
 	-- {npc:2093} Einar Stonegrip · {npc:1244} Rethiel the Greenwarden
 	["{npc:2093} camps by the road; {npc:1244} stands farther east, by the river."] = "{npc:2093} lagert an der Straße; {npc:1244} steht weiter östlich am Fluss.",
 

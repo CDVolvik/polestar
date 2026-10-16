@@ -15,7 +15,7 @@ return {
 
 	-- Step 2: Plainstriders and raptors
 	["Plainstriders and raptors"] = "초원타조와 랩터",
-	["Plainstriders and Sunscale raptors roam the plains all around the Crossroads, thickest to the north."] = "",
+	["Plainstriders and Sunscale raptors roam the plains all around the Crossroads, thickest to the north."] = "초원타조와 열대초원랩터가 크로스로드 주변 평원 곳곳을 돌아다니며, 북쪽에 가장 많습니다.",
 
 	-- Step 4: The Zhevra
 	-- plural, as words: Zhevra Runners = {npc:3242} Zhevra Runner
@@ -54,7 +54,7 @@ return {
 
 	-- Step 13: Thun'grim Firegaze
 	-- {area:392} Ratchet · {object:58369} Stolen Iron Chest
-	["Thun'grim camps beside the road from the Crossroads to {area:392}. The {object:58369} sits in the south of the Razormane camp just north of him."] = "",
+	["Thun'grim camps beside the road from the Crossroads to {area:392}. The {object:58369} sits in the south of the Razormane camp just north of him."] = "툰그림은 크로스로드에서 {area:392}(으)로 가는 길가에 야영하고 있습니다. {object:58369}은(는) 그 바로 북쪽, 서슬갈기일족 야영지 남쪽에 있습니다.",
 
 	-- Step 14: Ratchet
 	-- {area:392} Ratchet
@@ -73,7 +73,7 @@ return {
 	["Back down the beach, past the pirate camp: the crate of boots and the fragile crate with the lens sit at its south end."] = "해적 야영지를 지나 해변을 따라 다시 내려가세요. 장화 상자와 렌즈가 든 깨지기 쉬운 상자는 해변 남쪽 끝에 있습니다.",
 
 	-- Step 19: The Crossroads
-	["Walk back west along the road to the Crossroads."] = "",
+	["Walk back west along the road to the Crossroads."] = "길을 따라 서쪽의 크로스로드로 돌아가세요.",
 
 	-- Step 20: The Disruption Ends
 	-- {npc:3438} Kreenig Snarlsnout
@@ -99,7 +99,7 @@ return {
 
 	-- Step 25: The Dry Hills
 	-- {area:383} Dry Hills
-	["The {area:383}"] = "",
+	["The {area:383}"] = "{area:383}",
 	-- {area:383} Dry Hills · {quest:819} Chen's Empty Keg
 	["West to the {area:383}. The Witchwing harpies nest all over them; any of them can drop a talon. {quest:819} lies in their hills."] = "서쪽의 {area:383}(으)로 가세요. 칼날바람하피가 곳곳에 둥지를 틀고 있으며, 누구나 발톱을 떨어뜨릴 수 있습니다. {quest:819}은(는) 그 언덕에 있습니다.",
 
@@ -116,7 +116,7 @@ return {
 	["Kolkar Wranglers and Stormers hold the camps south of Regthar."] = "콜카르일족 사냥꾼과 번개술사는 렉타르 남쪽 야영지를 차지하고 있습니다.",
 
 	-- Step 31: The Stagnant Oasis
-	["South-east of the Crossroads. Test the seeds at the bubbling fissure on the oasis' east bank."] = "",
+	["South-east of the Crossroads. Test the seeds at the bubbling fissure on the oasis' east bank."] = "크로스로드 남동쪽입니다. 오아시스 동쪽 기슭의 부글거리는 균열에서 씨앗을 시험하세요.",
 
 	-- Step 32: Raptor nests
 	["Raptor nests"] = "랩터 둥지",
@@ -134,7 +134,7 @@ return {
 	-- Step 35: Lushwater Oasis
 	-- {area:387} Lushwater Oasis · {area:388} Stagnant Oasis
 	-- plural, as words: Oasis Snapjaws = {npc:3461} Oasis Snapjaw
-	["Oasis Snapjaws crawl around {area:387}, south-west of the Crossroads, and around the {area:388}."] = "",
+	["Oasis Snapjaws crawl around {area:387}, south-west of the Crossroads, and around the {area:388}."] = "오아시스 무쇠턱거북은 크로스로드 남서쪽의 {area:387}와(과) {area:388} 주변을 기어다닙니다.",
 
 	-- Step 36: The Crossroads
 	-- {quest:3301} Mura Runetotem · {area:228} Sepulcher · {zone:1421} Silverpine Forest
@@ -159,7 +159,7 @@ return {
 
 	-- Step 41: The Crossroads
 	-- {zone:1454} Orgrimmar · {zone:1420} Tirisfal Glades
-	["Walk back south to the Crossroads. The next guide starts here and takes you to {zone:1454} and the zeppelin to {zone:1420}."] = "",
+	["Walk back south to the Crossroads. The next guide starts here and takes you to {zone:1454} and the zeppelin to {zone:1420}."] = "남쪽의 크로스로드로 걸어서 돌아가세요. 다음 가이드는 여기서 시작해 {zone:1454}와(과) {zone:1420}행 비행선으로 안내합니다.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Oasis Snapjaws crawl around {area:387}, south-west of the {area:380}, and around the {area:388}."] = "오아시스 무쇠턱거북은 {area:380} 남서쪽의 {area:387}와(과) {area:388} 주변을 기어다닙니다.",

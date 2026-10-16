@@ -111,12 +111,12 @@ return {
 	["Take the zeppelin from the tower outside {area:1637} to {zone:1420} and ride into the {zone:1458}. Lady Sylvanas holds the {object:36126}."] = "Toma el zepelín de la torre de las afueras de {area:1637} a {zone:1420} y cabalga hasta {zone:1458}. Lady Sylvanas Brisaveloz está en el {object:36126}.",
 
 	-- Step 26: The Bulwark
-	["Ride east along the road to the Bulwark on the border."] = "",
+	["Ride east along the road to the Bulwark on the border."] = "Cabalga al este por el camino hasta El Baluarte, en la frontera.",
 
 	-- Step 27: Felstone Field
 	-- {npc:10778} Janice Felstone · {npc:11075} Cauldron Lord Bilemaw
 	-- plural, as words: Jabbering Ghouls = {npc:10801} Jabbering Ghoul
-	["{npc:10778}'s farm is the first one east of the Bulwark. Jabbering Ghouls on the farm carry the other half of her charm; {npc:11075} guards the cauldron in the field."] = "",
+	["{npc:10778}'s farm is the first one east of the Bulwark. Jabbering Ghouls on the farm carry the other half of her charm; {npc:11075} guards the cauldron in the field."] = "La granja de {npc:10778} es la primera al este de El Baluarte. Los Necrófagos farfullantes de la granja llevan la otra mitad de su amuleto; {npc:11075} vigila la caldera del campo.",
 
 	-- Step 28: Andorhal watchtowers and silos
 	["Andorhal watchtowers and silos"] = "Atalayas y silos de Andorhal",
@@ -185,11 +185,11 @@ return {
 	-- {npc:10667} Chromie
 	["Ride south-west to {npc:10667} in Andorhal."] = "Cabalga al suroeste hasta {npc:10667}, en Andorhal.",
 	-- {npc:10667} Chromie
-	["{npc:10667}'s Battle of Darrowshire ends against elites. Skip it."] = "",
+	["{npc:10667}'s Battle of Darrowshire ends against elites. Skip it."] = "La Batalla de Villa Darrow, de {npc:10667}, termina contra élites. Sáltatela.",
 
 	-- Step 42: The Bulwark
 	-- {zone:1458} Undercity
-	["West to the Bulwark. The next guide starts in the {zone:1458}, a short ride west."] = "",
+	["West to the Bulwark. The next guide starts in the {zone:1458}, a short ride west."] = "Al oeste, hasta El Baluarte. La siguiente guía empieza en {zone:1458}, a poca distancia al oeste.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Ride east along the road to the {area:152} on the border."] = "Cabalga al este por el camino hasta {area:152}, en la frontera.",

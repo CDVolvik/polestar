@@ -77,7 +77,7 @@ return {
 	-- {area:429} Xavian · {zone:1440} Ashenvale
 	["The {area:429} satyrs camp in eastern {zone:1440}, with the Felmusk satyrs further west; both drop Uncloven Satyr Hooves."] = "Сатиры ({area:429}) живут на востоке зоны {zone:1440}, а сатиры из племени Мускуса Скверны – западнее; с тех и других падают нераздвоенные копыта сатира.",
 	-- {quest:1842} Satyr Hooves
-	["Uncloven {quest:1842}"] = "",
+	["Uncloven {quest:1842}"] = "Нераздвоенные {quest:1842}",
 
 	-- Step 15: Chimaeric Horn
 	-- {npc:6167} Chimaera Matriarch · {item:6840} Galvanized Horn

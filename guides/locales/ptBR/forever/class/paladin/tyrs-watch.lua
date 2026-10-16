@@ -32,9 +32,9 @@ return {
 
 	-- Step 6: Shadowvale
 	-- {quest:91317} The Tarnished · {area:16881} Shadowvale · {area:16616} Whispering Forest · {item:246213} Sturdy Lumber · {npc:259431} Rudolph Gelhardt
-	["{quest:91317} hold the ruined village of {area:16881} in the {area:16616}, south-west of the keep. The {item:246213} is piled in the root cellar of one of its houses; Commander {npc:259431} walks among his Tarnished."] = "",
+	["{quest:91317} hold the ruined village of {area:16881} in the {area:16616}, south-west of the keep. The {item:246213} is piled in the root cellar of one of its houses; Commander {npc:259431} walks among his Tarnished."] = "{quest:91317} ocupam a aldeia em ruínas de {area:16881}, em {area:16616}, a sudoeste da fortaleza. A {item:246213} está empilhada no porão de uma das casas; o comandante {npc:259431} anda entre seus Manchados.",
 	-- {object:554626} Lumber Pile
-	["{object:554626}, in the root cellar"] = "",
+	["{object:554626}, in the root cellar"] = "{object:554626}, no porão",
 	-- plural, as words: Tarnished Drudges = {npc:259434} Tarnished Drudge
 	["Tarnished Drudges"] = "Labutadores Manchados",
 	-- plural, as words: Tarnished Zealots = {npc:259433} Tarnished Zealot
@@ -76,6 +76,4 @@ return {
 	["Back to {area:16602}: Billmuth takes the plans, Danitha teaches you {spell:7328}."] = "Volte a {area:16602}: Billmuth fica com os planos, Danitha lhe ensina {spell:7328}.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["{object:181686}, in the root cellar"] = "{object:181686}, no porão",
-	-- ["{quest:91317} hold the ruined village of {area:16881} in the {area:16616}, south-west of the keep. The {item:246213} is piled in the root cellar of one of its houses; Commander Rudolph Gelhardt walks among his Tarnished."] = "{quest:91317} ocupam a aldeia em ruínas de {area:16881}, em {area:16616}, a sudoeste da fortaleza. A {item:246213} está empilhada no porão de uma das casas; o comandante Rudolfo Gelhardt anda entre seus Manchados.",
 }

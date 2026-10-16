@@ -70,7 +70,7 @@ return {
 	["On the ride north to {area:392}, {area:720} lies off the {area:391} south of the town: wade over the sand bar shallows. {npc:6236} sends four challengers and then {npc:6238} (level 33) at you, one at a time."] = "往北騎向{area:392}的途中，{area:720}位於城鎮南邊的{area:391}外海：涉水走過沙洲淺灘。{npc:6236}會派出四名挑戰者，然後是{npc:6238}（33級），一次一個。",
 	-- {npc:6238} Big Will
 	["Defeat the challengers and {npc:6238}"] = "擊敗挑戰者和{npc:6238}",
-	["Klannoc offers The Windwatcher next (1791): the Whirlwind weapon chain, with an elite at the end, is in the Warrior class guide Whirlwind Weapon."] = "",
+	["Klannoc offers The Windwatcher next (1791): the Whirlwind weapon chain, with an elite at the end, is in the Warrior class guide Whirlwind Weapon."] = "克蘭諾克接著會提供捕風者（1791）：旋風斬武器任務線的最後有一個精英，收錄在戰士職業指南「旋風斬武器」中。",
 
 	-- Step 18: Ratchet
 	-- {zone:1413} Barrens · {area:392} Ratchet · {npc:16227} Bragok · {area:35} Booty Bay
@@ -97,7 +97,7 @@ return {
 
 	-- Step 21: Booty Bay
 	-- {npc:2624} Gazban
-	["{npc:2624} swims off the north-west coast, on the northern loop"] = "",
+	["{npc:2624} swims off the north-west coast, on the northern loop"] = "{npc:2624}在西北海岸外游動，在北部環線上",
 
 	-- Step 22: Bloodsail pirates
 	["Bloodsail pirates"] = "血帆海盜",
@@ -160,7 +160,7 @@ return {
 	["The north-west coast"] = "西北海岸",
 	-- {npc:2624} Gazban · {item:4034} Stone of the Tides
 	-- plural, as words: Giant Clams = {object:2744} Giant Clam
-	["Ride north-west from the mine to the bay on the north-west coast. The Giant Clams lie on its floor and hold the pearls; {npc:2624} swims among them and drops the {item:4034}."] = "",
+	["Ride north-west from the mine to the bay on the north-west coast. The Giant Clams lie on its floor and hold the pearls; {npc:2624} swims among them and drops the {item:4034}."] = "從礦坑向西北騎往西北海岸的海灣。巨型蚌殼躺在海底，裡面有珍珠；{npc:2624}在牠們之間游動，會掉落{item:4034}。",
 
 	-- Step 36: Rebel Camp
 	-- {npc:217588} Arbor Tarantula

@@ -26,7 +26,7 @@ return {
 	["The wrecked caravan lies off the road near Biggs."] = "Разбитый караван лежит в стороне от дороги рядом с Биггсом.",
 
 	-- Step 7: The Harborage
-	["Follow the road north to the draenei of the Harborage."] = "",
+	["Follow the road north to the draenei of the Harborage."] = "Идите по дороге на север к дренеям Убежища.",
 
 	-- Step 8: Fallow Sanctuary
 	-- {area:76} Fallow Sanctuary · {npc:256028} The Lost One
@@ -158,7 +158,7 @@ return {
 	-- Step 42: Crushridge ogres
 	["Crushridge ogres"] = "Огры из клана Раздробленного Хребта",
 	-- {area:280} Strahnbrad · {item:3706} Ensorcelled Parchment · {npc:2320} Nagaz · {quest:537} Dark Council
-	["The Crushridge ogres hold the hills north of {area:280}. Farther north, a worn wooden chest holds the {item:3706}; {npc:2320} of the {quest:537} stands right by it."] = "",
+	["The Crushridge ogres hold the hills north of {area:280}. Farther north, a worn wooden chest holds the {item:3706}; {npc:2320} of the {quest:537} stands right by it."] = "Огры из клана Раздробленного Хребта удерживают холмы к северу от места {area:280}. Дальше на север в потертом деревянном сундуке лежит {item:3706}; {npc:2320} ({quest:537}) стоит прямо рядом.",
 
 	-- Step 43: Ruins of Alterac
 	-- {area:280} Strahnbrad
@@ -171,7 +171,7 @@ return {
 	-- {npc:2542} Catelyn the Blade · {area:35} Booty Bay
 	["For {npc:2542} in {area:35}: keep it"] = "Для NPC {npc:2542} ({area:35}): сохраните",
 	-- {npc:252085} Archmage Celindra
-	["{npc:252085}, in the City of Dalaran"] = "",
+	["{npc:252085}, in the City of Dalaran"] = "{npc:252085}, в городе Даларан",
 
 	-- Step 45: Southshore
 	-- {item:2321} Fine Thread · {npc:2381} Micha Yance

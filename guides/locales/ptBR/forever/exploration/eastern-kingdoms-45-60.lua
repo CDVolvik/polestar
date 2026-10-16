@@ -52,9 +52,9 @@ return {
 	-- Step 7: The Hinterlands (1/2)
 	["14 areas to discover here, levels 41-49."] = "14 áreas a descobrir aqui, níveis 41-49.",
 	-- {area:348} Aerie Peak · {area:271} Southshore · {zone:1424} Hillsbrad Foothills
-	["Fly to {area:348} if you have it; otherwise fly to {area:271} and walk north-east from {zone:1424} into the Hinterlands."] = "",
+	["Fly to {area:348} if you have it; otherwise fly to {area:271} and walk north-east from {zone:1424} into the Hinterlands."] = "Voe para {area:348} se tiver a rota; senão, voe para {area:271} e caminhe para nordeste do {zone:1424} até as Terras Agrestes.",
 	-- {area:3317} Revantusk Village · {area:272} Tarren Mill · {zone:1424} Hillsbrad Foothills
-	["Fly to {area:3317} if you have it; otherwise fly to {area:272} and walk east from {zone:1424} into the Hinterlands."] = "",
+	["Fly to {area:3317} if you have it; otherwise fly to {area:272} and walk east from {zone:1424} into the Hinterlands."] = "Voe para {area:3317} se tiver a rota; senão, voe para {area:272} e caminhe para leste do {zone:1424} até as Terras Agrestes.",
 	-- {area:348} Aerie Peak · {npc:8018} Guthrum Thunderfist
 	["Flight path here: {area:348} ({npc:8018})."] = "Rota de voo aqui: {area:348} ({npc:8018}).",
 	-- {area:3317} Revantusk Village
@@ -82,6 +82,4 @@ return {
 	["Flight path here: {area:2268} (Georgia)."] = "Rota de voo aqui: {area:2268} (Georgia).",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Fly to {area:3317} if you have it; otherwise fly to {area:272} and walk east from {zone:1424} into the {zone:1425}."] = "Voe para {area:3317} se tiver a rota; senão, voe para {area:272} e caminhe para leste do {zone:1424} até {zone:1425}.",
-	-- ["Fly to {area:348} if you have it; otherwise fly to {area:271} and walk north-east from {zone:1424} into the {zone:1425}."] = "Voe para {area:348} se tiver a rota; senão, voe para {area:271} e caminhe para nordeste do {zone:1424} até {zone:1425}.",
 }

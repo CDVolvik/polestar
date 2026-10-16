@@ -39,7 +39,7 @@ return {
 
 	-- Step 7: The Ruins of Stardust
 	-- {zone:1440} Ashenvale
-	["The fountain stands in the middle of the Ruins of Stardust, in south-western {zone:1440}."] = "",
+	["The fountain stands in the middle of the Ruins of Stardust, in south-western {zone:1440}."] = "A fonte fica no meio das Ruínas de Poeira Estelar, no sudoeste de {zone:1440}.",
 	-- {item:7767} Empty Blue Waterskin
 	["Fill the {item:7767} at the fountain"] = "Encha o {item:7767} na fonte",
 
@@ -62,5 +62,4 @@ return {
 	["{npc:5901}: {spell:5394} and your {item:5177}"] = "{npc:5901}: {spell:5394} e seu {item:5177}",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["The fountain stands in the middle of the {area:418}, in south-western {zone:1440}."] = "A fonte fica no meio das {area:418}, no sudoeste de {zone:1440}.",
 }

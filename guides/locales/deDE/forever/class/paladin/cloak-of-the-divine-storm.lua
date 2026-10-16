@@ -46,7 +46,7 @@ return {
 	-- {object:409311} Spear of Mannoroth
 	["The {object:409311}"] = "Der {object:409311}",
 	-- {object:409311} Spear of Mannoroth · {area:435} Demon Fall Canyon · {object:409315} Shattered Orb
-	["The {object:409311} stands at the east end of {area:435}. Shatter the orb on it; the {object:409315} appears beside it."] = "",
+	["The {object:409311} stands at the east end of {area:435}. Shatter the orb on it; the {object:409315} appears beside it."] = "{object:409311} steht am Ostende von {area:435}. Zerschmettere die Kugel darauf; {object:409315} erscheint daneben.",
 	-- {object:409315} Shattered Orb
 	["from the {object:409315}"] = "von der {object:409315}",
 

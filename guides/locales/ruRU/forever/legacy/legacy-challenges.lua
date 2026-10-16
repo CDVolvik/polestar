@@ -83,7 +83,7 @@ return {
 	-- {npc:16042} Lord Valthalak
 	["Adventure: {npc:16042}"] = "Приключения: {npc:16042}",
 	-- {npc:16042} Lord Valthalak · {npc:16013} Deliana · {zone:1455} Ironforge · {npc:16012} Mokvar · {zone:1454} Orgrimmar · {npc:16033} Bodley · {area:254} Blackrock Mountain · {quest:8996} Return to Bodley · {quest:8997} Back to the Beginning
-	["The {npc:16042} questline is a point. It is the level 60 dungeon-set chain: {npc:16013} ({zone:1455}) or {npc:16012} ({zone:1454}) send you through In Search of Anthion and Anthion's Parting Words to {npc:16033} at {area:254}, whose Three Kings of Flame, the Left and Right Pieces of Lord Valthalak's Amulet, Final Preparations and Mea Culpa, {npc:16042} end with {quest:8996}. {quest:8997} then leads to the class Saving the Best for Last quests."] = "",
+	["The {npc:16042} questline is a point. It is the level 60 dungeon-set chain: {npc:16013} ({zone:1455}) or {npc:16012} ({zone:1454}) send you through In Search of Anthion and Anthion's Parting Words to {npc:16033} at {area:254}, whose Three Kings of Flame, the Left and Right Pieces of Lord Valthalak's Amulet, Final Preparations and Mea Culpa, {npc:16042} end with {quest:8996}. {quest:8997} then leads to the class Saving the Best for Last quests."] = "Цепочка заданий – {npc:16042} – дает очко. Это цепочка комплекта подземелий 60-го уровня: {npc:16013} ({zone:1455}) или {npc:16012} ({zone:1454}) через «В поисках Антиона» и «Прощальные слова Антиона» отправляют к NPC {npc:16033} ({area:254}); его задания «Три властелина огня», левая и правая части амулета Лорда Вальтхалака, «Последние приготовления» и «Mea Culpa» ({npc:16042}) завершаются заданием {quest:8996}. Затем {quest:8997} ведет к классовым заданиям на последнее улучшение комплекта.",
 	-- {npc:16033} Bodley · {quest:8996} Return to Bodley
 	["{npc:16033} offers it once {quest:8996} is turned in"] = "{npc:16033} выдает его после сдачи задания {quest:8996}",
 	-- {quest:8996} Return to Bodley
@@ -107,7 +107,7 @@ return {
 	-- {area:718} Wailing Caverns · {npc:3678} Disciple of Naralex
 	["{area:718} (appears after the {npc:3678}'s event)"] = "{area:718} (появляется после события; NPC – {npc:3678})",
 	-- {area:717} The Stockade
-	["{area:717}: the usual last kill; the Stockade has no fixed final boss"] = "",
+	["{area:717}: the usual last kill; the Stockade has no fixed final boss"] = "{area:717}: обычное последнее убийство; постоянного последнего босса в Тюрьме нет",
 	-- {area:16919} Hall of Thanes · {area:153} Ruins of Lordaeron
 	["Forever adds the dungeons {area:16919} and {area:153}; their bosses and brackets are not in our data yet."] = "Forever добавляет подземелья: {area:16919} и {area:153}; их боссов и диапазонов пока нет в наших данных.",
 

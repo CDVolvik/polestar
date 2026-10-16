@@ -201,7 +201,7 @@ return {
 
 	-- Step 49: The Undercroft
 	-- {object:177667} Torn Scroll · {npc:12248} Infiltrator Hameya
-	["Cross the river east to the Undercroft, the crypt in the south-west of the zone. The {object:177667} lies inside: its key is on {npc:12248} in the far north-east, done in the next guide."] = "",
+	["Cross the river east to the Undercroft, the crypt in the south-west of the zone. The {object:177667} lies inside: its key is on {npc:12248} in the far north-east, done in the next guide."] = "강을 건너 동쪽, 지역 남서쪽의 지하 묘지인 지하 납골당으로 가세요. {object:177667}은(는) 그 안에 있습니다. 열쇠는 북동쪽 끝의 {npc:12248}이(가) 가지고 있으며, 다음 가이드에서 처리합니다.",
 
 	-- Step 50: Darnassus
 	-- {area:3197} Chillwind Camp · {area:150} Menethil Harbor · {area:442} Auberdine · {area:702} Rut'theran Village · {zone:1457} Darnassus

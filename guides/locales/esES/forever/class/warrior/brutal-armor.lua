@@ -77,7 +77,7 @@ return {
 	-- {area:429} Xavian · {zone:1440} Ashenvale
 	["The {area:429} satyrs camp in eastern {zone:1440}, with the Felmusk satyrs further west; both drop Uncloven Satyr Hooves."] = "Los sátiros de {area:429} acampan al este de {zone:1440}, con los sátiros Putredores más al oeste; ambos sueltan Capuchas de sátiro sin rajar.",
 	-- {quest:1842} Satyr Hooves
-	["Uncloven {quest:1842}"] = "",
+	["Uncloven {quest:1842}"] = "Capuchas de sátiro sin rajar para {quest:1842}",
 
 	-- Step 15: Chimaeric Horn
 	-- {npc:6167} Chimaera Matriarch · {item:6840} Galvanized Horn

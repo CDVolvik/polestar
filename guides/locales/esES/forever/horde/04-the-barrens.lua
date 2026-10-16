@@ -21,7 +21,7 @@ return {
 
 	-- Step 3: Bruuz
 	-- {npc:209797} Bruuz · {area:392} Ratchet
-	["{npc:209797} swims in the harbour just off {area:392}'s docks. {npc:209797} is elite: grouping up is advised."] = "",
+	["{npc:209797} swims in the harbour just off {area:392}'s docks. {npc:209797} is elite: grouping up is advised."] = "{npc:209797} nada en el puerto, junto a los muelles de {area:392}. {npc:209797} es élite: se recomienda ir en grupo.",
 
 	-- Step 4: Baron Longshore
 	-- {area:392} Ratchet · {npc:3467} Baron Longshore
@@ -43,7 +43,7 @@ return {
 
 	-- Step 9: The Crossroads
 	-- {area:380} Crossroads
-	["The {area:380}"] = "",
+	["The {area:380}"] = "{area:380}",
 	-- {npc:3429} Thork · {area:1703} Mor'shan Rampart
 	["{npc:3429}. Keep it: Kadrak at the {area:1703}, next guide"] = "{npc:3429}. Guárdala: Kadrak en {area:1703}, en la siguiente guía",
 	-- {npc:3428} Korran · {area:390} Field of Giants
@@ -118,7 +118,7 @@ return {
 
 	-- Step 23: The Dry Hills
 	-- {area:383} Dry Hills
-	["The {area:383}"] = "",
+	["The {area:383}"] = "{area:383}",
 	-- {quest:876} Serena Bloodfeather
 	-- plural, as words: Savannah Patriarchs = {npc:3241} Savannah Patriarch · Sprung Traps = {object:640104} Sprung Trap
 	["Savannah Patriarchs roam the plains east of the hills, and the Sprung Traps lie among them. {quest:876} leads the Witchwing harpies in the hills to the west."] = "Los Patriarcas de la savana recorren las llanuras al este de las colinas, y las Trampas activadas están entre ellos. {quest:876} dirige a las arpías Alabruja en las colinas del oeste.",
@@ -129,11 +129,11 @@ return {
 
 	-- Step 27: Walton
 	-- {npc:261366} Walton · {npc:261367} Terry Longdrink · {area:21} Kul Tiras
-	["Assist {npc:261366}: stay by him when {npc:261367} and the {area:21} marines come up the ridge"] = "",
+	["Assist {npc:261366}: stay by him when {npc:261367} and the {area:21} marines come up the ridge"] = "Ayuda a {npc:261366}: quédate a su lado cuando {npc:261367} y los marinos de {area:21} suban la cresta",
 
 	-- Step 28: Strange Lockbox
 	-- {object:177792} Strange Lockbox · {area:382} Sludge Fen · {item:15883} Half Pendant of Aquatic Agility · {quest:30} Trial of the Sea Lion
-	["The {object:177792} lies at the north edge of the {area:382}, by the Venture Co. tower. It holds the {item:15883} for {quest:30}."] = "",
+	["The {object:177792} lies at the north edge of the {area:382}, by the Venture Co. tower. It holds the {item:15883} for {quest:30}."] = "{object:177792} está en el borde norte de {area:382}, junto a la torre de Ventura y Cía. Contiene {item:15883} para {quest:30}.",
 
 	-- Step 29: Ignition
 	-- {area:382} Sludge Fen · {npc:3439} Wizzlecrank's Shredder · {npc:3445} Supervisor Lugwizzle
@@ -230,7 +230,7 @@ return {
 	-- Step 53: Field of Giants
 	-- {area:390} Field of Giants
 	-- plural, as words: Silithid Mounds = {object:3685} Silithid Mound · Silithid Swarmers = {npc:3252} Silithid Swarmer · Silithid Harvesters = {npc:3253} Silithid Harvester
-	["South of Camp Taurajo the Silithid Mounds dot the {area:390}; the eggs lie in them, and Silithid Swarmers come out to defend them. Silithid Harvesters are rare: if you see one, kill it for its head."] = "",
+	["South of Camp Taurajo the Silithid Mounds dot the {area:390}; the eggs lie in them, and Silithid Swarmers come out to defend them. Silithid Harvesters are rare: if you see one, kill it for its head."] = "Al sur de Campamento Taurajo, los Montículos de silítidos salpican {area:390}; los huevos están en ellos, y los Enjambristas silítidos salen a defenderlos. Los Cosechadores silítidos son raros: si ves uno, mátalo por su cabeza.",
 
 	-- Step 54: Gann Stonespire
 	-- {area:359} Bael Modan
@@ -247,7 +247,7 @@ return {
 	-- Step 55: Blackthorn Ridge
 	-- {area:1701} Blackthorn Ridge · {npc:3436} Kuz · {npc:3434} Nak · {npc:3435} Lok Orcbane · {npc:5859} Hagg Taurenbane · {npc:3238} Stormhide · {quest:885} Washte Pawne
 	-- plural, as words: Hecklefang Stalkers = {npc:4128} Hecklefang Stalker
-	["West of Gann, the Razormane hold {area:1701}. {npc:3436} is on the east side, {npc:3434} to the south, {npc:3435} at the west end. Lok (25) and the Warfrenzies (24-25) are a few levels above you; {npc:5859}, a rare elite, sometimes walks the ridge: leave him. Pathfinders and Stalkers drop the Backstabber, Seers the Wand, Warfrenzies the War Shield. {npc:3238} lizards and Hecklefang Stalkers roam the plain between Gann and the ridge. {quest:885}, a rare red wind serpent, flies over the ridge: its feather starts a quest."] = "",
+	["West of Gann, the Razormane hold {area:1701}. {npc:3436} is on the east side, {npc:3434} to the south, {npc:3435} at the west end. Lok (25) and the Warfrenzies (24-25) are a few levels above you; {npc:5859}, a rare elite, sometimes walks the ridge: leave him. Pathfinders and Stalkers drop the Backstabber, Seers the Wand, Warfrenzies the War Shield. {npc:3238} lizards and Hecklefang Stalkers roam the plain between Gann and the ridge. {quest:885}, a rare red wind serpent, flies over the ridge: its feather starts a quest."] = "Al oeste de Gann, los Crines de Acero ocupan {area:1701}. {npc:3436} está en el lado este, {npc:3434} al sur y {npc:3435} en el extremo oeste. Lok (25) y los Frenéticos bélicos (24-25) te sacan unos niveles; {npc:5859}, un élite raro, a veces recorre la cresta: déjalo. Abrecaminos y Acechadores sueltan el Puñal Crines de Acero; los Profetas, la Varita Crines de Acero carbonizada; los Frenéticos bélicos, el Escudo de guerra Crines de Acero. Lagartos {npc:3238} y Acechadores Dentecenado recorren la llanura entre Gann y la cresta. {quest:885}, una serpiente alada roja rara, vuela sobre la cresta: su pluma inicia una misión.",
 	-- {npc:3238} Stormhide
 	["{npc:3238}, on the plain between Gann and the ridge"] = "{npc:3238}, en la llanura entre Gann y la cresta",
 
@@ -291,7 +291,7 @@ return {
 
 	-- Step 70: Shenthul
 	-- {npc:2391} Serge Hinott · {area:272} Tarren Mill
-	["{npc:2391} in {area:272} teaches Poisons: keep it"] = "",
+	["{npc:2391} in {area:272} teaches Poisons: keep it"] = "{npc:2391}, en {area:272}, enseña Venenos: guárdala",
 
 	-- Step 71: The Great Cat Spirit
 	-- {area:1638} Thunder Bluff · {npc:3033} Turak Runetotem · {area:1639} Elder Rise

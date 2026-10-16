@@ -44,7 +44,7 @@ return {
 
 	-- Step 9: Ursangous
 	-- {area:415} Astranaar · {npc:12678} Ursangous · {area:418} Ruins of Stardust · {area:421} Mystral Lake
-	["Follow the main road east past {area:415} (Alliance: keep to the road). {npc:12678}, a big grizzly, roams the {area:418} south of the road, west of {area:421}. His paw starts the next hunt quest."] = "",
+	["Follow the main road east past {area:415} (Alliance: keep to the road). {npc:12678}, a big grizzly, roams the {area:418} south of the road, west of {area:421}. His paw starts the next hunt quest."] = "Siga a estrada principal para leste passando {area:415} (Aliança: fique na estrada). {npc:12678}, um urso-pardo grande, vaga pelas {area:418} ao sul da estrada, a oeste do {area:421}. A pata dele inicia a próxima missão de caça.",
 
 	-- Step 10: Ruins of Stardust fountain
 	-- {area:418} Ruins of Stardust
@@ -58,7 +58,7 @@ return {
 
 	-- Step 12: Tideress
 	-- {npc:12759} Tideress · {area:421} Mystral Lake · {item:16408} Befouled Water Globe
-	["{npc:12759}, a corrupted water elemental, drifts in {area:421}. Her {item:16408} starts a quest for Splintertree."] = "",
+	["{npc:12759}, a corrupted water elemental, drifts in {area:421}. Her {item:16408} starts a quest for Splintertree."] = "{npc:12759}, um elemental da água corrompido, flutua no {area:421}. O {item:16408} dela inicia uma missão para o Posto Machadada.",
 
 	-- Step 13: King of the Foulweald
 	-- {area:421} Mystral Lake · {item:16972} Karang's Banner · {object:178206} Foulweald Totem Mound · {npc:12918} Chief Murgut
@@ -80,7 +80,7 @@ return {
 
 	-- Step 17: Sharptalon
 	-- {npc:12676} Sharptalon
-	["{npc:12676}, a big nightsaber, prowls the woods south-east of the Warsong lumber camp. Her claw starts the next hunt quest."] = "",
+	["{npc:12676}, a big nightsaber, prowls the woods south-east of the Warsong lumber camp. Her claw starts the next hunt quest."] = "{npc:12676}, uma grande sabre-noturno, ronda a mata a sudeste do Acampamento de Lenhadores Brado Guerreiro. A garra dela inicia a próxima missão de caça.",
 
 	-- Step 18: Felmusk satyrs
 	["Felmusk satyrs"] = "Sátiros Malmíscar",
@@ -88,7 +88,7 @@ return {
 
 	-- Step 19: Shadumbra
 	-- {npc:12677} Shadumbra · {area:426} Raynewood Retreat
-	["{npc:12677}, a shadow panther, stalks the woods around {area:426}, west of the Felmusk camp. Her head starts the next hunt quest."] = "",
+	["{npc:12677}, a shadow panther, stalks the woods around {area:426}, west of the Felmusk camp. Her head starts the next hunt quest."] = "{npc:12677}, uma pantera das sombras, ronda a mata em volta do {area:426}, a oeste do acampamento Malmíscar. A cabeça dela inicia a próxima missão de caça.",
 
 	-- Step 20: Mystral Lake
 	-- {area:421} Mystral Lake
@@ -131,7 +131,7 @@ return {
 
 	-- Step 28: The Great Lift
 	-- {area:1718} Great Lift
-	["The {area:1718}"] = "",
+	["The {area:1718}"] = "{area:1718}",
 	-- {area:1638} Thunder Bluff · {area:378} Camp Taurajo · {area:1718} Great Lift · {zone:1413} Barrens
 	["Fly from {area:1638} to {area:378} and take the road south to the {area:1718} at the bottom of the {zone:1413}."] = "Voe de {area:1638} até o {area:378} e pegue a estrada para o sul até o {area:1718}, no extremo sul de {zone:1413}.",
 	-- {npc:10079} Brave Moonhorn
@@ -214,12 +214,8 @@ return {
 	["The next guide flies on from here to {zone:1454}."] = "O próximo guia voa daqui para {zone:1454}.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Follow the main road east past {area:415} (Alliance: keep to the road). Ursangous, a big grizzly, roams the {area:418} south of the road, west of {area:421}. His paw starts the next hunt quest."] = "Siga a estrada principal para leste passando {area:415} (Aliança: fique na estrada). Ursangous, um urso-pardo grande, vaga pelas {area:418} ao sul da estrada, a oeste do {area:421}. A pata dele inicia a próxima missão de caça.",
 	-- ["Shadumbra"] = "Shadumbra",
-	-- ["Shadumbra, a shadow panther, stalks the woods around {area:426}, west of the Felmusk camp. Her head starts the next hunt quest."] = "Shadumbra, uma pantera das sombras, ronda a mata em volta do {area:426}, a oeste do acampamento Malmíscar. A cabeça dela inicia a próxima missão de caça.",
 	-- ["Sharptalon"] = "Garraguda",
-	-- ["Sharptalon, a big nightsaber, prowls the woods south-east of the Warsong lumber camp. Her claw starts the next hunt quest."] = "Garraguda, uma grande sabre-noturno, ronda a mata a sudeste do Acampamento de Lenhadores Brado Guerreiro. A garra dela inicia a próxima missão de caça.",
 	-- ["Tideress"] = "Mareante",
-	-- ["Tideress, a corrupted water elemental, drifts in {area:421}. Her {item:16408} starts a quest for Splintertree."] = "Mareante, um elemental da água corrompido, flutua no {area:421}. O {item:16408} dela inicia uma missão para o Posto Machadada.",
 	-- ["Ursangous"] = "Ursangous",
 }

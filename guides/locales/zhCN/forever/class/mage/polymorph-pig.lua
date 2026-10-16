@@ -26,7 +26,7 @@ return {
 	["Polymorph Clones"] = "变形克隆",
 	-- {item:23250} Prismatic Shell · {area:1221} Ruins of Eldarath
 	-- plural, as words: Polymorph Clones = {npc:16479} Polymorph Clone
-	["Carry the {item:23250} back to the {area:1221}. Polymorph a Spitelash naga and wait a few seconds: it splits into small Polymorph Clones. Kill the clones quickly; the shell collects their essence."] = "",
+	["Carry the {item:23250} back to the {area:1221}. Polymorph a Spitelash naga and wait a few seconds: it splits into small Polymorph Clones. Kill the clones quickly; the shell collects their essence."] = "把{item:23250}带回{area:1221}。对一只恶鞭纳迦施放变形术并等几秒：它会分裂成小型的{npc:16479}。迅速杀死克隆体；贝壳会收集它们的精华。",
 
 	-- Step 5: Fragmented Magic
 	-- {npc:8379} Archmage Xylem · {spell:118} Polymorph

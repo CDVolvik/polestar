@@ -80,7 +80,7 @@ return {
 
 	-- Step 15: Vul'Gol Ogre Mound
 	-- {object:119} Abercrombie's Crate
-	["Ride east to the ogre mound. {object:119} sits in the camp at its entrance; Splinter Fist ogres guard it."] = "",
+	["Ride east to the ogre mound. {object:119} sits in the camp at its entrance; Splinter Fist ogres guard it."] = "向東騎往巨魔山。{object:119}放在入口處的營地裡；裂拳巨魔守衛著它。",
 	-- {npc:272273} Lost Watcher · {quest:96138} Merrick's Bow
 	["Only if a {npc:272273} dropped {quest:96138}: right-click it"] = "僅限{npc:272273}掉落了{quest:96138}時：右鍵點擊它",
 
@@ -129,9 +129,9 @@ return {
 
 	-- Step 25: The dig and Sarltooth
 	-- {npc:1353} Sarltooth
-	["The dig and {npc:1353}"] = "",
+	["The dig and {npc:1353}"] = "挖掘場與{npc:1353}",
 	-- {npc:1353} Sarltooth
-	["The relics lie in the dig itself. {npc:1353}, a big Razormaw, prowls the raptor valley just west of it."] = "",
+	["The relics lie in the dig itself. {npc:1353}, a big Razormaw, prowls the raptor valley just west of it."] = "文物就在挖掘場裡。{npc:1353}是一隻大型刺喉龍，在挖掘場西邊的迅猛龍山谷徘徊。",
 	-- {item:2661} Neru Fragment · {object:331} Loose Soil
 	["{item:2661}: the {object:331}"] = "{item:2661}：{object:331}",
 

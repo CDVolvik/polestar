@@ -72,7 +72,7 @@ return {
 
 	-- Step 17: Stormwind City
 	-- {area:392} Ratchet · {area:35} Booty Bay
-	["Take the boat from {area:392} to {area:35} and fly to Stormwind."] = "",
+	["Take the boat from {area:392} to {area:35} and fly to Stormwind."] = "{area:392}에서 배를 타고 {area:35}(으)로 간 뒤 스톰윈드로 날아가세요.",
 	-- {npc:3520} Ol' Emma
 	["{npc:3520}, who walks the canals"] = "{npc:3520}, 운하를 걸어다님",
 	-- {npc:10778} Janice Felstone
@@ -120,13 +120,13 @@ return {
 
 	-- Step 25: The Undercroft
 	-- {npc:11886} Mercutio Filthgorger
-	["Ride south-west to the Undercroft. The mound of dirt lies inside. {npc:11886} is elite: grouping up is advised."] = "",
+	["Ride south-west to the Undercroft. The mound of dirt lies inside. {npc:11886} is elite: grouping up is advised."] = "남서쪽으로 지하 납골당까지 가세요. 흙더미는 안쪽에 있습니다. {npc:11886}은(는) 정예이니 파티를 권합니다.",
 	-- {item:14613} Taelan's Hammer · {npc:11886} Mercutio Filthgorger
 	["{item:14613}, from {npc:11886}"] = "{item:14613}, {npc:11886}에게서",
 
 	-- Step 26: The Fungal Vale
 	-- {npc:8532} Diseased Flayer · {zone:1423} Eastern Plaguelands
-	["grind on {npc:8532} at the Fungal Vale, {zone:1423}"] = "",
+	["grind on {npc:8532} at the Fungal Vale, {zone:1423}"] = "{zone:1423} 곰팡이 계곡에서 {npc:8532} 사냥",
 
 	-- Step 27: Ratchet
 	-- {area:392} Ratchet

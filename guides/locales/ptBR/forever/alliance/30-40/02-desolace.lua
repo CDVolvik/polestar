@@ -23,7 +23,7 @@ return {
 
 	-- Step 4: The Talondeep Path
 	-- {area:1276} Talondeep Path
-	["The {area:1276}"] = "",
+	["The {area:1276}"] = "{area:1276}",
 	-- {area:415} Astranaar · {area:1276} Talondeep Path
 	["From {area:415} head south-west to the {area:1276}, a tunnel through the mountains into Stonetalon."] = "De {area:415}, siga para o sudoeste até {area:1276}, um túnel pelas montanhas até a Cordilheira das Torres de Pedra.",
 
@@ -46,7 +46,7 @@ return {
 
 	-- Step 11: Dalinda Malem
 	-- {area:608} Nijel's Point
-	["Dalinda hides inside the Burning Blade's fortress south-west of {area:608}."] = "",
+	["Dalinda hides inside the Burning Blade's fortress south-west of {area:608}."] = "Dalinda se esconde na fortaleza da Lâmina Ardente, a sudoeste de {area:608}.",
 
 	-- Step 12: Tyranis and the Seer
 	["Tyranis and the Seer"] = "Tyranis e o Vidente",
@@ -55,7 +55,7 @@ return {
 
 	-- Step 13: Escort Dalinda
 	["Escort Dalinda"] = "Escolte Dalinda",
-	["Out of Thunder Axe Fortress"] = "",
+	["Out of Thunder Axe Fortress"] = "Para fora da Fortaleza Machado do Trovão",
 	-- {area:608} Nijel's Point
 	["Lead Dalinda out of the fortress; she walks off once you are clear of it. Vahlarriel takes the turn-in at {area:608} at the end of the guide."] = "Leve Dalinda para fora da fortaleza; ela vai embora quando vocês saírem. Vahlarriel recebe a entrega em {area:608}, no fim do guia.",
 
@@ -87,6 +87,5 @@ return {
 	["The Kolkar roam the plains around {area:609}; their ears are for {npc:5752}."] = "Os Kolkar vagam pelas planícies ao redor de {area:609}; as orelhas deles são para {npc:5752}.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Dalinda hides inside the {spell:1294269}'s fortress south-west of {area:608}."] = "Dalinda se esconde na fortaleza da {spell:1294269}, a sudoeste de {area:608}.",
 	-- ["Out of {area:599}"] = "Para fora de {area:599}",
 }

@@ -28,7 +28,7 @@ return {
 
 	-- Step 5: The Green Belt
 	-- {npc:270637} Howin Kindfeather · {npc:1244} Rethiel the Greenwarden
-	["Follow the road north-east into the Green Belt: {npc:270637} camps beside it, {npc:1244} a short way east."] = "",
+	["Follow the road north-east into the Green Belt: {npc:270637} camps beside it, {npc:1244} a short way east."] = "沿道路向东北进入绿带草地：{npc:270637}在路旁扎营，{npc:1244}在东边不远处。",
 	-- {npc:1244} Rethiel the Greenwarden · {quest:98283} Carnage
 	["{npc:1244}: {quest:98283}, an elite raptor"] = "{npc:1244}：{quest:98283}，一只精英迅猛龙",
 
@@ -42,18 +42,18 @@ return {
 
 	-- Step 7: Golm
 	-- {npc:271462} Golm · {item:279996} Goaz Stone
-	["{npc:271462} stands in the south-eastern hills: use the {item:279996} beside it."] = "",
+	["{npc:271462} stands in the south-eastern hills: use the {item:279996} beside it."] = "{npc:271462}站在东南方的山丘上：在它旁边使用{item:279996}。",
 
 	-- Step 8: Dragonmaw Gates
 	-- {area:1038} Dragonmaw Gates · {npc:271373} Subdued Dragonspawn · {npc:271338} Ados · {item:279996} Goaz Stone
-	["North-east to the {area:1038}: the {npc:271373} are held there, and {npc:271338} stands at the gates (use the {item:279996})."] = "",
+	["North-east to the {area:1038}: the {npc:271373} are held there, and {npc:271338} stands at the gates (use the {item:279996})."] = "向东北到{area:1038}：{npc:271373}被关押在那里，{npc:271338}站在大门旁（使用{item:279996}）。",
 
 	-- Step 9: Whelps, raptors and Neru
 	-- {npc:271458} Neru
-	["Whelps, raptors and {npc:271458}"] = "",
+	["Whelps, raptors and {npc:271458}"] = "雏龙、迅猛龙和{npc:271458}",
 	-- {npc:271458} Neru · {item:279996} Goaz Stone · {quest:98283} Carnage
 	-- plural, as words: Maddened Rotclaws = {npc:271334} Maddened Rotclaw
-	["Red whelps fill the hills west of the gates, Maddened Rotclaws the Green Belt, Razormaws the northern slopes; {npc:271458} stands in the north-east (use the {item:279996}).\n{quest:98283} is elite: grouping up is advised."] = "",
+	["Red whelps fill the hills west of the gates, Maddened Rotclaws the Green Belt, Razormaws the northern slopes; {npc:271458} stands in the north-east (use the {item:279996}).\n{quest:98283} is elite: grouping up is advised."] = "大门西边的山丘上满是红色雏龙，绿带草地满是{npc:271334}，北坡是刺喉龙；{npc:271458}站在东北方（使用{item:279996}）。\n{quest:98283}是精英：建议组队。",
 
 	-- Step 10: The Green Belt
 	-- {zone:1455} Ironforge
@@ -61,7 +61,7 @@ return {
 
 	-- Step 11: Dun Modr
 	-- {area:205} Dun Modr · {npc:271460} Modr · {item:279996} Goaz Stone · {npc:271481} Captive Fire Elemental · {npc:1072} Roggo Harlbarrow
-	["North along the road to {area:205}. {npc:271460} stands in the ruins (use the {item:279996}); the {npc:271481} is held on the west side: lead it out to {npc:1072}."] = "",
+	["North along the road to {area:205}. {npc:271460} stands in the ruins (use the {item:279996}); the {npc:271481} is held on the west side: lead it out to {npc:1072}."] = "沿道路向北到{area:205}。{npc:271460}站在废墟里（使用{item:279996}）；{npc:271481}被关在西侧：把它带出去交给{npc:1072}。",
 
 	-- Step 12: The Villards
 	["The Villards"] = "维拉德一家",
@@ -139,7 +139,7 @@ return {
 	["{area:287} town hall"] = "{area:287}市政厅",
 
 	-- Step 28: Fly to Stormwind
-	["Fly to Stormwind"] = "",
+	["Fly to Stormwind"] = "飞往暴风城",
 	-- {npc:2432} Darla Harris · {area:271} Southshore
 	["From {npc:2432} in {area:271}"] = "从{area:271}的{npc:2432}处",
 
@@ -165,7 +165,7 @@ return {
 	-- Step 36: Druid training
 	["Druid training"] = "德鲁伊训练",
 	-- {zone:1455} Ironforge · {npc:5504} Sheldras Moontree
-	["{zone:1455} has no druid trainer: train with {npc:5504} in Stormwind before the tram."] = "",
+	["{zone:1455} has no druid trainer: train with {npc:5504} in Stormwind before the tram."] = "{zone:1455}没有德鲁伊训练师：乘地铁前先在暴风城找{npc:5504}学习。",
 
 	-- Step 37: Deeprun Tram
 	-- {area:2257} Deeprun Tram · {object:28027} Dwarven District · {zone:1455} Ironforge

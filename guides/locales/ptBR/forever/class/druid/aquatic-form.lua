@@ -23,7 +23,7 @@ return {
 
 	-- Step 3: Half Pendant of Aquatic Agility
 	-- {area:2361} Nighthaven · {area:442} Auberdine · {object:177792} Strange Lockbox · {area:443} Ruins of Mathystra
-	["Fly from {area:2361} to {area:442}. The {object:177792} lies under the water off the north coast, west of the {area:443}."] = "",
+	["Fly from {area:2361} to {area:442}. The {object:177792} lies under the water off the north coast, west of the {area:443}."] = "Voe de {area:2361} até {area:442}. O {object:177792} está debaixo d'água perto da costa norte, a oeste das {area:443}.",
 
 	-- Step 4: Half Pendant of Aquatic Endurance
 	-- {area:442} Auberdine · {zone:1453} Stormwind · {area:108} Sentinel Hill · {object:177790} Strange Lockbox
@@ -54,13 +54,11 @@ return {
 
 	-- Step 10: Half Pendant of Aquatic Agility
 	-- {object:177792} Strange Lockbox · {area:382} Sludge Fen · {area:380} Crossroads
-	["The {object:177792} lies at the north edge of the {area:382}, by the Venture Co. tower, north of the {area:380}."] = "",
+	["The {object:177792} lies at the north edge of the {area:382}, by the Venture Co. tower, north of the {area:380}."] = "O {object:177792} está na borda norte do {area:382}, perto da torre da Empreendimentos S.A., ao norte da {area:380}.",
 
 	-- Step 11: Pendant of the Sea Lion
 	-- {spell:18960} Teleport: Moonglade · {item:15885} Pendant of the Sea Lion · {area:2362} Shrine of Remulos · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {npc:11798} Bunthen Plainswind · {area:1638} Thunder Bluff
 	["Cast {spell:18960}. Join the two halves into the {item:15885} near the {area:2362}, on the north-west shore of the lake, then see {npc:11802} in {area:2361}. {npc:11798} flies druids to {area:1638}."] = "Lance {spell:18960}. Junte as duas metades no {item:15885} perto de {area:2362}, na margem noroeste do lago, e depois fale com {npc:11802} em {area:2361}. {npc:11798} leva druidas voando até {area:1638}.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Fly from {area:2361} to {area:442}. The {object:177790} lies under the water off the north coast, west of the {area:443}."] = "Voe de {area:2361} até {area:442}. O {object:177790} está debaixo d'água perto da costa norte, a oeste das {area:443}.",
-	-- ["The {object:177790} lies at the north edge of the {area:382}, by the Venture Co. tower, north of the {area:380}."] = "O {object:177790} está na borda norte do {area:382}, perto da torre da Empreendimentos S.A., ao norte da {area:380}.",
 }

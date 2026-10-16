@@ -29,7 +29,7 @@ return {
 
 	-- Step 5: The Shieldsmith
 	-- {npc:5413} Furen Longbeard · {item:6843} Cask of Scalder · {item:6970} Furen's Favor · {quest:1701} Fire Hardened Mail
-	["{npc:5413} works in the Dwarven District of Stormwind. He keeps the {item:6843} and gives you {item:6970}, a shield; {quest:1701} is a level 28 quest."] = "",
+	["{npc:5413} works in the Dwarven District of Stormwind. He keeps the {item:6843} and gives you {item:6970}, a shield; {quest:1701} is a level 28 quest."] = "{npc:5413} работает в Квартале дворфов Штормграда. У него хранится {item:6843}, и он дает вам щит: {item:6970}. {quest:1701} – задание 28-го уровня.",
 
 	-- Step 6: Scorched Spider Fangs
 	-- plural, as words: Scorched Spider Fangs = {item:6838} Scorched Spider Fang
@@ -67,11 +67,11 @@ return {
 
 	-- Step 11: Burning Blood
 	-- {zone:1431} Duskwood · {quest:1705} Burning Blood · {npc:6170} Gutspill · {item:6845} Burning Rock
-	["The Nightbane worgen of {zone:1431} drop the {quest:1705}. {npc:6170} walks in the far south-east of {zone:1431} and carries the {item:6845}."] = "",
+	["The Nightbane worgen of {zone:1431} drop the {quest:1705}. {npc:6170} walks in the far south-east of {zone:1431} and carries the {item:6845}."] = "С воргенов Ночной Погибели в зоне {zone:1431} падает {quest:1705}. {npc:6170} бродит на крайнем юго-востоке зоны {zone:1431} и несет {item:6845}.",
 	-- {quest:1705} Burning Blood
 	["{quest:1705} from the Nightbane worgen"] = "{quest:1705} — с воргенов Ночной Погибели",
 	-- {item:6845} Burning Rock · {npc:6170} Gutspill
-	["{item:6845} from {npc:6170}"] = "",
+	["{item:6845} from {npc:6170}"] = "{item:6845} — {npc:6170}",
 
 	-- Step 13: Mathiel
 	-- {quest:1703} Mathiel · {zone:1457} Darnassus

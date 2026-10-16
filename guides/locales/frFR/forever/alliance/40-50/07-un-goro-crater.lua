@@ -137,7 +137,7 @@ return {
 	-- {area:982} Noxious Lair · {zone:1446} Tanaris
 	["The Centipaar silithid crawl around the {area:982} in western {zone:1446}, just east of the crater ramp. The Workers are the easiest pulls."] = "Les silithides Centipaar rampent autour de {area:982}, dans l'ouest de {zone:1446}, juste à l'est de la rampe du cratère. Les Ouvriers sont les plus faciles à attirer.",
 	-- {npc:5458} Centipaar Worker · {area:982} Noxious Lair · {zone:1446} Tanaris
-	["grind on {npc:5458} at The {area:982}, {zone:1446}"] = "",
+	["grind on {npc:5458} at The {area:982}, {zone:1446}"] = "tuez des {npc:5458} à {area:982}, {zone:1446}",
 
 	-- Step 29: Torwa Pathfinder
 	["Ride down the ramp into the crater: Torwa camps at its foot."] = "Descendez la rampe dans le cratère : Torwa campe à son pied.",

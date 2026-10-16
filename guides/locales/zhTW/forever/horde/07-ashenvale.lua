@@ -44,7 +44,7 @@ return {
 
 	-- Step 9: Ursangous
 	-- {area:415} Astranaar · {npc:12678} Ursangous · {area:418} Ruins of Stardust · {area:421} Mystral Lake
-	["Follow the main road east past {area:415} (Alliance: keep to the road). {npc:12678}, a big grizzly, roams the {area:418} south of the road, west of {area:421}. His paw starts the next hunt quest."] = "",
+	["Follow the main road east past {area:415} (Alliance: keep to the road). {npc:12678}, a big grizzly, roams the {area:418} south of the road, west of {area:421}. His paw starts the next hunt quest."] = "沿著主要道路向東經過{area:415}（聯盟據點：沿著道路走）。{npc:12678}是一頭大灰熊，在道路南邊、{area:421}西邊的{area:418}遊蕩。牠的爪子會開始下一個狩獵任務。",
 
 	-- Step 10: Ruins of Stardust fountain
 	-- {area:418} Ruins of Stardust
@@ -58,7 +58,7 @@ return {
 
 	-- Step 12: Tideress
 	-- {npc:12759} Tideress · {area:421} Mystral Lake · {item:16408} Befouled Water Globe
-	["{npc:12759}, a corrupted water elemental, drifts in {area:421}. Her {item:16408} starts a quest for Splintertree."] = "",
+	["{npc:12759}, a corrupted water elemental, drifts in {area:421}. Her {item:16408} starts a quest for Splintertree."] = "{npc:12759}是一隻被腐化的水元素，在{area:421}中漂浮。她的{item:16408}會開始一個交給碎木崗哨的任務。",
 
 	-- Step 13: King of the Foulweald
 	-- {area:421} Mystral Lake · {item:16972} Karang's Banner · {object:178206} Foulweald Totem Mound · {npc:12918} Chief Murgut
@@ -80,7 +80,7 @@ return {
 
 	-- Step 17: Sharptalon
 	-- {npc:12676} Sharptalon
-	["{npc:12676}, a big nightsaber, prowls the woods south-east of the Warsong lumber camp. Her claw starts the next hunt quest."] = "",
+	["{npc:12676}, a big nightsaber, prowls the woods south-east of the Warsong lumber camp. Her claw starts the next hunt quest."] = "{npc:12676}是一隻大型夜刃豹，在戰歌伐木營地東南方的樹林中徘徊。她的爪子會開始下一個狩獵任務。",
 
 	-- Step 18: Felmusk satyrs
 	["Felmusk satyrs"] = "魔草薩特",
@@ -88,7 +88,7 @@ return {
 
 	-- Step 19: Shadumbra
 	-- {npc:12677} Shadumbra · {area:426} Raynewood Retreat
-	["{npc:12677}, a shadow panther, stalks the woods around {area:426}, west of the Felmusk camp. Her head starts the next hunt quest."] = "",
+	["{npc:12677}, a shadow panther, stalks the woods around {area:426}, west of the Felmusk camp. Her head starts the next hunt quest."] = "{npc:12677}是一隻暗影豹，在魔草營地西邊的{area:426}周圍的樹林中潛行。她的頭顱會開始下一個狩獵任務。",
 
 	-- Step 20: Mystral Lake
 	-- {area:421} Mystral Lake
@@ -131,7 +131,7 @@ return {
 
 	-- Step 28: The Great Lift
 	-- {area:1718} Great Lift
-	["The {area:1718}"] = "",
+	["The {area:1718}"] = "{area:1718}",
 	-- {area:1638} Thunder Bluff · {area:378} Camp Taurajo · {area:1718} Great Lift · {zone:1413} Barrens
 	["Fly from {area:1638} to {area:378} and take the road south to the {area:1718} at the bottom of the {zone:1413}."] = "從{area:1638}飛往{area:378}，沿著道路向南前往{zone:1413}底端的{area:1718}。",
 	-- {npc:10079} Brave Moonhorn

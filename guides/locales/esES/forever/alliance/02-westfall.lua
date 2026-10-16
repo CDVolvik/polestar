@@ -40,14 +40,14 @@ return {
 	-- {area:113} Gold Coast Quarry
 	["The {area:113}"] = "{area:113}",
 	-- plural, as words: Riverpaw Miners = {npc:1426} Riverpaw Miner
-	["West of Molsen Farm, toward the coast. Riverpaw Miners work the quarry."] = "",
+	["West of Molsen Farm, toward the coast. Riverpaw Miners work the quarry."] = "Al oeste de La Granja de Molsen, hacia la costa. Los Mineros Zarparrío trabajan en la cantera.",
 	-- plural, as words: Riverpaw Miners = {npc:1426} Riverpaw Miner
 	["Riverpaw Miners"] = "Mineros Zarparrío",
 
 	-- Step 7: Jangolode Mine
 	-- {object:290} Furlbrow's Wardrobe
 	-- plural, as words: Defias Trappers = {npc:504} Defias Trapper · Kobold Diggers = {npc:1236} Kobold Digger
-	["North of Molsen Farm. Defias Trappers and Smugglers camp outside the mine, Kobold Diggers work inside. {object:290} stands by the ruined house east of the mine."] = "",
+	["North of Molsen Farm. Defias Trappers and Smugglers camp outside the mine, Kobold Diggers work inside. {object:290} stands by the ruined house east of the mine."] = "Al norte de La Granja de Molsen. Los Tramperos Defias y los Contrabandistas acampan fuera de la mina; los Cavadores kóbold trabajan dentro. {object:290} está junto a la casa en ruinas al este de la mina.",
 	-- plural, as words: Kobold Diggers = {npc:1236} Kobold Digger
 	["Kobold Diggers"] = "Cavadores kóbold",
 	-- {quest:153} Red Leather Bandanas
@@ -63,7 +63,7 @@ return {
 	-- Step 9: The gnoll hills
 	["The gnoll hills"] = "Las colinas de los gnolls",
 	-- plural, as words: Riverpaw Gnolls = {npc:117} Riverpaw Gnoll
-	["Riverpaw Gnolls and Scouts roam the hills between the coast and the Jansen Stead."] = "",
+	["Riverpaw Gnolls and Scouts roam the hills between the coast and the Jansen Stead."] = "Los Gnolls Zarparrío y los Exploradores recorren las colinas entre la costa y La Finca de Jansen.",
 	-- plural, as words: Gnoll Paws = {item:725} Gnoll Paw
 	["Gnoll Paws"] = "Garras gnoll",
 

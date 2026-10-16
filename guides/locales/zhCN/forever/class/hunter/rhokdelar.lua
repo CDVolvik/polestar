@@ -59,9 +59,9 @@ return {
 
 	-- Step 10: Azuregos
 	-- {item:18704} Mature Blue Dragon Sinew · {npc:6109} Azuregos · {zone:1447} Azshara · {zone:1452} Winterspring
-	["Hastat's quiver needs the {item:18704}. {npc:6109}, a world boss for a raid, roams the south of {zone:1447} and drops it most of the time; the Cobalt dragonkin of {zone:1452} drop it very rarely. Skip the rest of this guide if you do not want the quiver."] = "",
+	["Hastat's quiver needs the {item:18704}. {npc:6109}, a world boss for a raid, roams the south of {zone:1447} and drops it most of the time; the Cobalt dragonkin of {zone:1452} drop it very rarely. Skip the rest of this guide if you do not want the quiver."] = "古树哈斯塔特的箭袋需要{item:18704}。{npc:6109}是需要团队的世界首领，在{zone:1447}南部游荡，大多数时候会掉落它；{zone:1452}的深蓝龙族极少掉落。如果不要箭袋，跳过本指南的剩余部分。",
 	-- {item:18704} Mature Blue Dragon Sinew · {npc:6109} Azuregos
-	["{item:18704}, from {npc:6109}"] = "",
+	["{item:18704}, from {npc:6109}"] = "{item:18704}，来自{npc:6109}",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Azuregos"] = "艾索雷葛斯",

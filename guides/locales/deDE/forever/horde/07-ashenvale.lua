@@ -44,7 +44,7 @@ return {
 
 	-- Step 9: Ursangous
 	-- {area:415} Astranaar · {npc:12678} Ursangous · {area:418} Ruins of Stardust · {area:421} Mystral Lake
-	["Follow the main road east past {area:415} (Alliance: keep to the road). {npc:12678}, a big grizzly, roams the {area:418} south of the road, west of {area:421}. His paw starts the next hunt quest."] = "",
+	["Follow the main road east past {area:415} (Alliance: keep to the road). {npc:12678}, a big grizzly, roams the {area:418} south of the road, west of {area:421}. His paw starts the next hunt quest."] = "Folge der Hauptstraße nach Osten an {area:415} vorbei (Allianz: bleib auf der Straße). {npc:12678}, ein großer Grizzly, streift durch die Ruinen ({area:418}) südlich der Straße, westlich von {area:421}. Seine Pranke startet die nächste Jagdquest.",
 
 	-- Step 10: Ruins of Stardust fountain
 	-- {area:418} Ruins of Stardust
@@ -58,7 +58,7 @@ return {
 
 	-- Step 12: Tideress
 	-- {npc:12759} Tideress · {area:421} Mystral Lake · {item:16408} Befouled Water Globe
-	["{npc:12759}, a corrupted water elemental, drifts in {area:421}. Her {item:16408} starts a quest for Splintertree."] = "",
+	["{npc:12759}, a corrupted water elemental, drifts in {area:421}. Her {item:16408} starts a quest for Splintertree."] = "{npc:12759}, ein verderbter Wasserelementar, treibt im {area:421}. Ihr {item:16408} startet eine Quest für den Splintertreeposten.",
 
 	-- Step 13: King of the Foulweald
 	-- {area:421} Mystral Lake · {item:16972} Karang's Banner · {object:178206} Foulweald Totem Mound · {npc:12918} Chief Murgut
@@ -80,7 +80,7 @@ return {
 
 	-- Step 17: Sharptalon
 	-- {npc:12676} Sharptalon
-	["{npc:12676}, a big nightsaber, prowls the woods south-east of the Warsong lumber camp. Her claw starts the next hunt quest."] = "",
+	["{npc:12676}, a big nightsaber, prowls the woods south-east of the Warsong lumber camp. Her claw starts the next hunt quest."] = "{npc:12676}, ein großer Nachtsäbler, streift durch die Wälder südöstlich vom Holzfällerlager der Warsong. Ihre Klaue startet die nächste Jagdquest.",
 
 	-- Step 18: Felmusk satyrs
 	["Felmusk satyrs"] = "Satyrn der Teufelshufe",
@@ -88,7 +88,7 @@ return {
 
 	-- Step 19: Shadumbra
 	-- {npc:12677} Shadumbra · {area:426} Raynewood Retreat
-	["{npc:12677}, a shadow panther, stalks the woods around {area:426}, west of the Felmusk camp. Her head starts the next hunt quest."] = "",
+	["{npc:12677}, a shadow panther, stalks the woods around {area:426}, west of the Felmusk camp. Her head starts the next hunt quest."] = "{npc:12677}, ein Schattenpanther, pirscht durch die Wälder um {area:426}, westlich vom Lager der Teufelshufe. Ihr Kopf startet die nächste Jagdquest.",
 
 	-- Step 20: Mystral Lake
 	-- {area:421} Mystral Lake
@@ -131,7 +131,7 @@ return {
 
 	-- Step 28: The Great Lift
 	-- {area:1718} Great Lift
-	["The {area:1718}"] = "",
+	["The {area:1718}"] = "{area:1718}",
 	-- {area:1638} Thunder Bluff · {area:378} Camp Taurajo · {area:1718} Great Lift · {zone:1413} Barrens
 	["Fly from {area:1638} to {area:378} and take the road south to the {area:1718} at the bottom of the {zone:1413}."] = "Flieg von {area:1638} nach {area:378} und nimm die Straße nach Süden zum Aufzug ({area:1718}) ganz im Süden des {zone:1413}s.",
 	-- {npc:10079} Brave Moonhorn

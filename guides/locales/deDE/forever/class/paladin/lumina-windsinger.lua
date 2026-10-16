@@ -7,7 +7,7 @@
 return {
 	-- Guide
 	-- {quest:91862} Lumina Windsinger
-	["Rescuing {quest:91862}"] = "",
+	["Rescuing {quest:91862}"] = "{quest:91862} retten",
 	-- {item:268484} Moonsilver Blade
 	["No item yet: a Forsaken paladin rescue story; its sequel, the {item:268484}, cannot be finished yet."] = "Noch kein Gegenstand: eine Rettungsgeschichte für Paladine der Verlassenen; die Fortsetzung, die {item:268484}, kann noch nicht abgeschlossen werden.",
 	-- {zone:1458} Undercity
@@ -19,13 +19,13 @@ return {
 
 	-- Step 2: The Sepulcher
 	-- {zone:1421} Silverpine Forest · {npc:248840} Trevan Rol · {npc:259611} Deathguard Baldren
-	["Ride south through {zone:1421} to the Sepulcher. {npc:248840} stands in the town; {npc:259611} keeps watch near its entrance."] = "",
+	["Ride south through {zone:1421} to the Sepulcher. {npc:248840} stands in the town; {npc:259611} keeps watch near its entrance."] = "Reite nach Süden durch {zone:1421} zum Grabmal. {npc:248840} steht im Ort; {npc:259611} hält nahe dem Eingang Wache.",
 
 	-- Step 3: The pyre on Fenris Isle
 	-- {area:172} Fenris Isle
 	["The pyre on {area:172}"] = "Der Scheiterhaufen auf der {area:172}",
 	-- {area:172} Fenris Isle
-	["{area:172} lies in the lake east of the Sepulcher. The charred remains are on its shore."] = "",
+	["{area:172} lies in the lake east of the Sepulcher. The charred remains are on its shore."] = "Die {area:172} liegt im See östlich vom Grabmal. Die verkohlten Überreste sind am Ufer.",
 	-- {object:566037} Charred Remains
 	["from the {object:566037}"] = "von den {object:566037}",
 
@@ -40,11 +40,11 @@ return {
 	["Free her with the key, then stay close while she fights her way out of the keep."] = "Befreie sie mit dem Schlüssel und bleib dann in ihrer Nähe, während sie sich aus der Burg kämpft.",
 
 	-- Step 6: Back to the Sepulcher
-	["Back to the Sepulcher"] = "",
+	["Back to the Sepulcher"] = "Zurück zum Grabmal",
 	-- {area:235} Fenris Keep
-	["Once she is clear of {area:235}, Lumina waits for you in the Sepulcher. Speak with her again to hear what really happened on the road."] = "",
+	["Once she is clear of {area:235}, Lumina waits for you in the Sepulcher. Speak with her again to hear what really happened on the road."] = "Sobald sie aus {area:235} heraus ist, wartet Lumina im Grabmal auf dich. Sprich erneut mit ihr, um zu erfahren, was auf der Straße wirklich geschah.",
 	-- {npc:259620} Lumina Windsinger
-	["{npc:259620}, the Sepulcher"] = "",
+	["{npc:259620}, the Sepulcher"] = "{npc:259620}, das Grabmal",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Back to the {area:228}"] = "Zurück zum Ort {area:228}",

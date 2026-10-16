@@ -87,7 +87,7 @@ return {
 
 	-- Step 16: Leaving Thendal Village
 	-- {area:16635} Thendal Village
-	["Leaving {area:16635}"] = "",
+	["Leaving {area:16635}"] = "離開{area:16635}",
 
 	-- Step 17: Call of Earth
 	-- {npc:251374} Windshaper Boro · {area:16988} Rise of Spirits · {item:6635} Earth Sapta · {npc:251166} Minor Manifestation of Earth · {item:6656} Rough Quartz
@@ -208,10 +208,10 @@ return {
 	-- Step 39: Wind Hollows and Construct Parts
 	-- {object:616467} Construct Parts
 	-- plural, as words: Wind Hollows = {npc:251676} Wind Hollow
-	["Wind Hollows and {object:616467}"] = "",
+	["Wind Hollows and {object:616467}"] = "風之空靈與{object:616467}",
 	-- {area:16638} Valanaar · {object:616467} Construct Parts
 	-- plural, as words: Wind Hollows = {npc:251676} Wind Hollow
-	["Wind Hollows drift over the lowlands around {area:16638}. The first {object:616467} lie west of the orchard road."] = "",
+	["Wind Hollows drift over the lowlands around {area:16638}. The first {object:616467} lie west of the orchard road."] = "風之空靈在{area:16638}周圍的低地上飄蕩。第一批{object:616467}在果園道路的西邊。",
 
 	-- Step 41: Windfield Orchard
 	-- {area:16663} Windfield Orchard · {area:16638} Valanaar
@@ -227,11 +227,11 @@ return {
 	-- Step 44: Bandit Highwaymen
 	["Bandit Highwaymen"] = "強盜路霸",
 	-- {object:616468} Construct Parts · {area:16638} Valanaar
-	["The highwaymen hold the hills north-east of the orchard. More {object:616468} lie near the road to {area:16638}."] = "",
+	["The highwaymen hold the hills north-east of the orchard. More {object:616468} lie near the road to {area:16638}."] = "強盜路霸佔據果園東北方的丘陵。更多{object:616468}在通往{area:16638}的道路附近。",
 
 	-- Step 45: Standing Our Ground
 	-- {npc:252800} Aamelia Windfield
-	["Tell {npc:252800} you're ready"] = "",
+	["Tell {npc:252800} you're ready"] = "告訴{npc:252800}你準備好了",
 
 	-- Step 46: Alvarion and Riaani
 	["Alvarion and Riaani"] = "亞瓦里安與里安尼",
@@ -291,7 +291,7 @@ return {
 	-- Step 60: Kuramaa
 	-- {area:16623} Shen'dar Highlands · {npc:268605} Kuramaa
 	-- plural, as words: Windsong Crawlers = {npc:254588} Windsong Crawler
-	["Back to Olariaan, then west into the {area:16623}: {npc:268605}'s home is in the hills south of the Windsong Crawlers' lakes."] = "",
+	["Back to Olariaan, then west into the {area:16623}: {npc:268605}'s home is in the hills south of the Windsong Crawlers' lakes."] = "回去找歐拉利安，然後向西進入{area:16623}：{npc:268605}的家在風歌蟹所在湖泊南邊的丘陵中。",
 
 	-- Step 61: The Eternal Flame
 	-- {object:148418} Eternal Flame
@@ -411,7 +411,7 @@ return {
 
 	-- Step 84: The Crossroads
 	-- {zone:1456} Thunder Bluff · {area:222} Bloodhoof Village · {zone:1413} Barrens · {area:458} Gold Road
-	["Leave {zone:1456} by a lift and follow the road south past {area:222} and through the eastern pass into the {zone:1413}; from the pass, take the {area:458} north to the Crossroads, the Horde town in the middle of the {zone:1413}."] = "",
+	["Leave {zone:1456} by a lift and follow the road south past {area:222} and through the eastern pass into the {zone:1413}; from the pass, take the {area:458} north to the Crossroads, the Horde town in the middle of the {zone:1413}."] = "搭升降梯離開{zone:1456}，沿道路向南經過{area:222}，穿過東邊的山口進入{zone:1413}；從山口沿{area:458}向北前往十字路口，即{zone:1413}中央的部落城鎮。",
 	-- {npc:3615} Devrak
 	["{npc:3615}, the wind rider master"] = "雙足飛龍管理員{npc:3615}",
 

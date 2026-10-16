@@ -100,7 +100,7 @@ return {
 	-- Step 20: The Charred Vale
 	-- {item:16312} Incendrites
 	-- plural, as words: Gaea Seeds = {item:16205} Gaea Seed
-	["South-west of Sun Rock lies the burned Charred Vale. Plant the Gaea Seeds in the dirt mounds on the valley floor; the fire elementals drop {item:16312}. Bloodfury Harpies and Ambushers nest on the north side, Slayers and Roguefeathers to the south."] = "",
+	["South-west of Sun Rock lies the burned Charred Vale. Plant the Gaea Seeds in the dirt mounds on the valley floor; the fire elementals drop {item:16312}. Bloodfury Harpies and Ambushers nest on the north side, Slayers and Roguefeathers to the south."] = "해바위 야영지 남서쪽에 불타 버린 잿더미 계곡이 있습니다. 골짜기 바닥의 흙더미에 가이아 씨앗을 심으세요. 불의 정령은 {item:16312}을(를) 떨어뜨립니다. 혈폭풍하피와 복병은 북쪽에, 암살자와 약탈자는 남쪽에 둥지를 틀고 있습니다.",
 	-- plural, as words: Gaea Dirt Mounds = {object:177929} Gaea Dirt Mound
 	["Gaea Dirt Mounds"] = "가이아 흙더미",
 	-- {item:277936} Glittering Sunstone

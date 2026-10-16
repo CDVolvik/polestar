@@ -28,7 +28,7 @@ return {
 
 	-- Step 5: The Green Belt
 	-- {npc:270637} Howin Kindfeather · {npc:1244} Rethiel the Greenwarden
-	["Follow the road north-east into the Green Belt: {npc:270637} camps beside it, {npc:1244} a short way east."] = "",
+	["Follow the road north-east into the Green Belt: {npc:270637} camps beside it, {npc:1244} a short way east."] = "Идите по дороге на северо-восток в Зеленый Пояс: рядом с дорогой стоит лагерем {npc:270637}, чуть восточнее – {npc:1244}.",
 	-- {npc:1244} Rethiel the Greenwarden · {quest:98283} Carnage
 	["{npc:1244}: {quest:98283}, an elite raptor"] = "{npc:1244}: {quest:98283}, элитный ящер",
 
@@ -42,18 +42,18 @@ return {
 
 	-- Step 7: Golm
 	-- {npc:271462} Golm · {item:279996} Goaz Stone
-	["{npc:271462} stands in the south-eastern hills: use the {item:279996} beside it."] = "",
+	["{npc:271462} stands in the south-eastern hills: use the {item:279996} beside it."] = "{npc:271462} стоит на юго-восточных холмах: используйте рядом с ним {item:279996}.",
 
 	-- Step 8: Dragonmaw Gates
 	-- {area:1038} Dragonmaw Gates · {npc:271373} Subdued Dragonspawn · {npc:271338} Ados · {item:279996} Goaz Stone
-	["North-east to the {area:1038}: the {npc:271373} are held there, and {npc:271338} stands at the gates (use the {item:279996})."] = "",
+	["North-east to the {area:1038}: the {npc:271373} are held there, and {npc:271338} stands at the gates (use the {item:279996})."] = "На северо-восток. Цель: {area:1038}. Там держат пленников ({npc:271373}), а у ворот стоит {npc:271338} (используйте {item:279996}).",
 
 	-- Step 9: Whelps, raptors and Neru
 	-- {npc:271458} Neru
-	["Whelps, raptors and {npc:271458}"] = "",
+	["Whelps, raptors and {npc:271458}"] = "Дракончики, ящеры и {npc:271458}",
 	-- {npc:271458} Neru · {item:279996} Goaz Stone · {quest:98283} Carnage
 	-- plural, as words: Maddened Rotclaws = {npc:271334} Maddened Rotclaw
-	["Red whelps fill the hills west of the gates, Maddened Rotclaws the Green Belt, Razormaws the northern slopes; {npc:271458} stands in the north-east (use the {item:279996}).\n{quest:98283} is elite: grouping up is advised."] = "",
+	["Red whelps fill the hills west of the gates, Maddened Rotclaws the Green Belt, Razormaws the northern slopes; {npc:271458} stands in the north-east (use the {item:279996}).\n{quest:98283} is elite: grouping up is advised."] = "Красные дракончики – на холмах к западу от ворот, разъяренные гнилокогти – в Зеленом Поясе, острозубы – на северных склонах; {npc:271458} стоит на северо-востоке (используйте {item:279996}).\n{quest:98283} – элитное задание: лучше собрать группу.",
 
 	-- Step 10: The Green Belt
 	-- {zone:1455} Ironforge
@@ -61,7 +61,7 @@ return {
 
 	-- Step 11: Dun Modr
 	-- {area:205} Dun Modr · {npc:271460} Modr · {item:279996} Goaz Stone · {npc:271481} Captive Fire Elemental · {npc:1072} Roggo Harlbarrow
-	["North along the road to {area:205}. {npc:271460} stands in the ruins (use the {item:279996}); the {npc:271481} is held on the west side: lead it out to {npc:1072}."] = "",
+	["North along the road to {area:205}. {npc:271460} stands in the ruins (use the {item:279996}); the {npc:271481} is held on the west side: lead it out to {npc:1072}."] = "По дороге на север. Цель: {area:205}. {npc:271460} стоит в руинах (используйте {item:279996}); {npc:271481} заточен на западной стороне: выведите его к NPC {npc:1072}.",
 
 	-- Step 12: The Villards
 	["The Villards"] = "Вилларды",
@@ -139,7 +139,7 @@ return {
 	["{area:287} town hall"] = "Ратуша: {area:287}",
 
 	-- Step 28: Fly to Stormwind
-	["Fly to Stormwind"] = "",
+	["Fly to Stormwind"] = "Лететь в Штормград",
 	-- {npc:2432} Darla Harris · {area:271} Southshore
 	["From {npc:2432} in {area:271}"] = "У NPC {npc:2432} ({area:271})",
 
@@ -165,7 +165,7 @@ return {
 	-- Step 36: Druid training
 	["Druid training"] = "Обучение друида",
 	-- {zone:1455} Ironforge · {npc:5504} Sheldras Moontree
-	["{zone:1455} has no druid trainer: train with {npc:5504} in Stormwind before the tram."] = "",
+	["{zone:1455} has no druid trainer: train with {npc:5504} in Stormwind before the tram."] = "В городе {zone:1455} нет учителя друидов: обучитесь у NPC {npc:5504} в Штормграде перед поездом.",
 
 	-- Step 37: Deeprun Tram
 	-- {area:2257} Deeprun Tram · {object:28027} Dwarven District · {zone:1455} Ironforge

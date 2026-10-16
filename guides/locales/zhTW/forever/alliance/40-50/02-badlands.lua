@@ -54,7 +54,7 @@ return {
 
 	-- Step 11: Aerie Peak
 	-- {area:271} Southshore · {area:348} Aerie Peak · {quest:1450} Gryphon Master Talonaxe · {npc:7884} Fraggar Thundermantle
-	["Ride north-east out of {area:271} on the road into the Hinterlands; {area:348} sits just past the border. Falstad holds court at the top, {quest:1450} tends the aviary and {npc:7884} stands by the inn."] = "",
+	["Ride north-east out of {area:271} on the road into the Hinterlands; {area:348} sits just past the border. Falstad holds court at the top, {quest:1450} tends the aviary and {npc:7884} stands by the inn."] = "沿道路從{area:271}往東北騎進辛特蘭；{area:348}就在邊界後方。弗斯塔德·蠻錘在頂層主持，{quest:1450}照料獅鷲棲所，{npc:7884}站在旅店旁。",
 
 	-- Step 12: Rhapsody Shindigger
 	-- {area:348} Aerie Peak
@@ -69,7 +69,7 @@ return {
 	["Fraggar keeps paying for necklaces: hand in any extras"] = "弗拉加爾會持續收購項鍊：多的都交出去",
 	-- {npc:5636} Gryphon Master Talonaxe
 	["{npc:5636}, beside the flight master at the top"] = "{npc:5636}，在頂層的飛行管理員旁邊",
-	["Talonaxe's next task waits for a later Hinterlands guide."] = "",
+	["Talonaxe's next task waits for a later Hinterlands guide."] = "沙拉克·鷹斧的下一個任務留到之後的辛特蘭指南。",
 
 	-- Step 15: Menethil Harbor
 	["Take the boat to Theramore from the far pier."] = "從最遠的碼頭搭船前往塞拉摩島。",

@@ -83,7 +83,7 @@ return {
 	-- {npc:16042} Lord Valthalak
 	["Adventure: {npc:16042}"] = "Aventure : {npc:16042}",
 	-- {npc:16042} Lord Valthalak · {npc:16013} Deliana · {zone:1455} Ironforge · {npc:16012} Mokvar · {zone:1454} Orgrimmar · {npc:16033} Bodley · {area:254} Blackrock Mountain · {quest:8996} Return to Bodley · {quest:8997} Back to the Beginning
-	["The {npc:16042} questline is a point. It is the level 60 dungeon-set chain: {npc:16013} ({zone:1455}) or {npc:16012} ({zone:1454}) send you through In Search of Anthion and Anthion's Parting Words to {npc:16033} at {area:254}, whose Three Kings of Flame, the Left and Right Pieces of Lord Valthalak's Amulet, Final Preparations and Mea Culpa, {npc:16042} end with {quest:8996}. {quest:8997} then leads to the class Saving the Best for Last quests."] = "",
+	["The {npc:16042} questline is a point. It is the level 60 dungeon-set chain: {npc:16013} ({zone:1455}) or {npc:16012} ({zone:1454}) send you through In Search of Anthion and Anthion's Parting Words to {npc:16033} at {area:254}, whose Three Kings of Flame, the Left and Right Pieces of Lord Valthalak's Amulet, Final Preparations and Mea Culpa, {npc:16042} end with {quest:8996}. {quest:8997} then leads to the class Saving the Best for Last quests."] = "La suite de quêtes de {npc:16042} vaut un point. C'est la chaîne de l'ensemble de donjon de niveau 60 : {npc:16013} ({zone:1455}) ou {npc:16012} ({zone:1454}) vous envoient, par À la recherche d'Anthion et Les adieux d'Anthion, à {npc:16033} au {area:254}, dont Les trois rois des flammes, les morceaux gauche et droit de l'Amulette du seigneur Valthalak, Derniers préparatifs et Mea culpa, {npc:16042} se terminent par {quest:8996}. {quest:8997} mène ensuite aux quêtes de classe Garder le meilleur pour la fin.",
 	-- {npc:16033} Bodley · {quest:8996} Return to Bodley
 	["{npc:16033} offers it once {quest:8996} is turned in"] = "{npc:16033} la propose une fois {quest:8996} rendue",
 	-- {quest:8996} Return to Bodley
@@ -107,7 +107,7 @@ return {
 	-- {area:718} Wailing Caverns · {npc:3678} Disciple of Naralex
 	["{area:718} (appears after the {npc:3678}'s event)"] = "{area:718} (apparaît après l'événement du {npc:3678})",
 	-- {area:717} The Stockade
-	["{area:717}: the usual last kill; the Stockade has no fixed final boss"] = "",
+	["{area:717}: the usual last kill; the Stockade has no fixed final boss"] = "{area:717} : le dernier boss habituel ; la Prison n'a pas de boss final fixe",
 	-- {area:16919} Hall of Thanes · {area:153} Ruins of Lordaeron
 	["Forever adds the dungeons {area:16919} and {area:153}; their bosses and brackets are not in our data yet."] = "Forever ajoute les donjons {area:16919} et {area:153} ; leurs boss et tranches ne sont pas encore dans nos données.",
 

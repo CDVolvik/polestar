@@ -250,7 +250,7 @@ return {
 	-- Step 54: Taming the Beast
 	-- {item:15908} Taming Rod · {area:131} Kharanos
 	-- plural, as words: Large Crag Boars = {npc:1126} Large Crag Boar · Snow Leopards = {npc:1201} Snow Leopard · Ice Claw Bears = {npc:1196} Ice Claw Bear
-	["Each of Grif Wildheart's quests hands you a {item:15908}: use it on the beast he names, then bring the rod back to him at the {area:131} smithy. Large Crag Boars, Snow Leopards and Ice Claw Bears all roam the fields just south and east of {area:131}."] = "",
+	["Each of Grif Wildheart's quests hands you a {item:15908}: use it on the beast he names, then bring the rod back to him at the {area:131} smithy. Large Crag Boars, Snow Leopards and Ice Claw Bears all roam the fields just south and east of {area:131}."] = "Chaque quête de Grif Wildheart vous donne un {item:15908} : utilisez-le sur la bête qu'il désigne, puis rapportez-lui le bâtonnet à la forge de {area:131}. Les Grands sangliers des rochers, les Léopards des neiges et les Ours Griffeglace parcourent tous les champs juste au sud et à l'est de {area:131}.",
 	-- {npc:1126} Large Crag Boar · {item:15908} Taming Rod
 	["{npc:1126}: tame it with the {item:15908}"] = "{npc:1126} : apprivoisez-le avec le {item:15908}",
 	-- {npc:1201} Snow Leopard · {item:15908} Taming Rod
@@ -292,7 +292,7 @@ return {
 	-- Step 62: The Fire Spirit Stone
 	["The Fire Spirit Stone"] = "La pierre de l'esprit du feu",
 	-- {item:6636} Fire Sapta · {npc:5893} Minor Manifestation of Fire · {item:6655} Glowing Ember · {object:61934} Brazier of the Dormant Flame
-	["Braldir gives you the {item:6636}. Climb to the peak above his camp, drink the Sapta beside the Spirit Stone and defeat the {npc:5893}, then place its {item:6655} in the {object:61934}, atop the Shrine of Eternal Flame."] = "",
+	["Braldir gives you the {item:6636}. Climb to the peak above his camp, drink the Sapta beside the Spirit Stone and defeat the {npc:5893}, then place its {item:6655} in the {object:61934}, atop the Shrine of Eternal Flame."] = "Braldir vous donne {item:6636}. Montez au sommet au-dessus de son camp, buvez le Sapta à côté de la Pierre de l'esprit et vainquez {npc:5893}, puis placez son {item:6655} dans {object:61934}, au sommet de l'autel de la Flamme éternelle.",
 	-- {item:6636} Fire Sapta
 	["{item:6636}, beside the Spirit Stone"] = "{item:6636}, à côté de la Pierre de l'esprit",
 
@@ -369,7 +369,7 @@ return {
 
 	-- Step 77: Surena Caledon
 	-- {zone:1453} Stormwind · {area:87} Goldshire · {area:62} Brackwell Pumpkin Patch · {npc:881} Surena Caledon
-	["Leave {zone:1453} by the main gate, go south to {area:87} and east along the road to the {area:62}. {npc:881} (level 9) stands by its farmhouse."] = "",
+	["Leave {zone:1453} by the main gate, go south to {area:87} and east along the road to the {area:62}. {npc:881} (level 9) stands by its farmhouse."] = "Quittez {zone:1453} par la grande porte, allez au sud jusqu'à {area:87} puis à l'est par la route jusqu'au {area:62}. {npc:881} (niveau 9) se tient près de la ferme.",
 
 	-- Step 78: The Binding
 	-- {item:6928} Bloodstone Choker · {object:2164} Slaughtered Lamb · {zone:1436} Westfall · {area:87} Goldshire

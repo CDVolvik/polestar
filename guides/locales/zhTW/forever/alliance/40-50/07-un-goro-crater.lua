@@ -137,7 +137,7 @@ return {
 	-- {area:982} Noxious Lair · {zone:1446} Tanaris
 	["The Centipaar silithid crawl around the {area:982} in western {zone:1446}, just east of the crater ramp. The Workers are the easiest pulls."] = "森提帕爾異種蟲在{zone:1446}西部的{area:982}周圍爬行，就在環形山坡道東邊。工蠍最容易拉。",
 	-- {npc:5458} Centipaar Worker · {area:982} Noxious Lair · {zone:1446} Tanaris
-	["grind on {npc:5458} at The {area:982}, {zone:1446}"] = "",
+	["grind on {npc:5458} at The {area:982}, {zone:1446}"] = "在{zone:1446}的{area:982}擊殺{npc:5458}練等",
 
 	-- Step 29: Torwa Pathfinder
 	["Ride down the ramp into the crater: Torwa camps at its foot."] = "沿坡道騎下環形山：托爾瓦在坡道底部紮營。",

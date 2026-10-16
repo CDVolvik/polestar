@@ -132,13 +132,13 @@ return {
 
 	-- Step 27: Wild Steelbloom (Alliance)
 	-- {object:1623} Wild Steelbloom
-	["{object:1623} (Alliance)"] = "",
+	["{object:1623} (Alliance)"] = "{object:1623} (얼라이언스)",
 	-- {object:1623} Wild Steelbloom · {skill:182} Herbalism
-	["Pick {object:1623} with {skill:182}; this is the densest patch in the data. The Auction House works too."] = "",
+	["Pick {object:1623} with {skill:182}; this is the densest patch in the data. The Auction House works too."] = "{skill:182}(으)로 {object:1623}을(를) 채집하세요. 데이터상 가장 밀집된 곳입니다. 경매장도 됩니다.",
 
 	-- Step 28: Wild Steelbloom (Horde)
 	-- {object:1623} Wild Steelbloom
-	["{object:1623} (Horde)"] = "",
+	["{object:1623} (Horde)"] = "{object:1623} (호드)",
 
 	-- Step 29: Kingsblood (Alliance)
 	-- {item:3356} Kingsblood
@@ -162,13 +162,13 @@ return {
 
 	-- Step 33: Goldthorn (Alliance)
 	-- {object:2046} Goldthorn
-	["{object:2046} (Alliance)"] = "",
+	["{object:2046} (Alliance)"] = "{object:2046} (얼라이언스)",
 	-- {object:2046} Goldthorn · {skill:182} Herbalism
-	["Pick {object:2046} with {skill:182}; this is the densest patch in the data. The Auction House works too."] = "",
+	["Pick {object:2046} with {skill:182}; this is the densest patch in the data. The Auction House works too."] = "{skill:182}(으)로 {object:2046}을(를) 채집하세요. 데이터상 가장 밀집된 곳입니다. 경매장도 됩니다.",
 
 	-- Step 34: Goldthorn (Horde)
 	-- {object:2046} Goldthorn
-	["{object:2046} (Horde)"] = "",
+	["{object:2046} (Horde)"] = "{object:2046} (호드)",
 
 	-- Step 35: Oily Blackmouth (Alliance)
 	-- {item:6358} Oily Blackmouth

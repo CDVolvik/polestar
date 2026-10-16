@@ -19,10 +19,10 @@ return {
 
 	-- Step 3: Sandsorrow Watch
 	-- {item:8584} Untapped Dowsing Widget
-	["West of Gadgetzan, use the {item:8584} beside the water hole in the troll camp."] = "",
+	["West of Gadgetzan, use the {item:8584} beside the water hole in the troll camp."] = "К западу от Прибамбасска используйте предмет {item:8584} у водопоя в лагере троллей.",
 
 	-- Step 5: Caliph Scorpidsting
-	["South-east of Gadgetzan the Wastewander bandits camp in the dunes; Caliph stands in the eastern camp."] = "",
+	["South-east of Gadgetzan the Wastewander bandits camp in the dunes; Caliph stands in the eastern camp."] = "К юго-востоку от Прибамбасска в дюнах стоят лагерем бандиты Скитальцев Пустыни; Калиф – в восточном лагере.",
 
 	-- Step 6: Marvon Rivetseeker
 	-- {area:1938} Broken Pillar · {item:9978} Gahz'ridian Detector · {area:983} Dunemaul Compound
@@ -33,7 +33,7 @@ return {
 
 	-- Step 8: Dunemaul Compound
 	-- {npc:12046} Gor'marok the Ravager · {quest:3161} Gahz'ridian
-	["South of the Noxious Lair the Dunemaul ogres hold their compound, with {npc:12046} at its eastern end. Dig up {quest:3161} ornaments between the fights."] = "",
+	["South of the Noxious Lair the Dunemaul ogres hold their compound, with {npc:12046} at its eastern end. Dig up {quest:3161} ornaments between the fights."] = "К югу от Ядовитого улья огры клана Песчаного Молота занимают свой лагерь, {npc:12046} – в его восточной части. Между боями выкапывайте украшения ({quest:3161}).",
 
 	-- Step 9: Thistleshrub Valley
 	-- {zone:1446} Tanaris

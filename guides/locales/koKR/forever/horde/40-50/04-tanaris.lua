@@ -19,10 +19,10 @@ return {
 
 	-- Step 3: Sandsorrow Watch
 	-- {item:8584} Untapped Dowsing Widget
-	["West of Gadgetzan, use the {item:8584} beside the water hole in the troll camp."] = "",
+	["West of Gadgetzan, use the {item:8584} beside the water hole in the troll camp."] = "가젯잔 서쪽, 트롤 야영지의 물웅덩이 옆에서 {item:8584}을(를) 사용하세요.",
 
 	-- Step 5: Caliph Scorpidsting
-	["South-east of Gadgetzan the Wastewander bandits camp in the dunes; Caliph stands in the eastern camp."] = "",
+	["South-east of Gadgetzan the Wastewander bandits camp in the dunes; Caliph stands in the eastern camp."] = "가젯잔 남동쪽 모래언덕에 사막유랑단 약탈자가 야영하고 있습니다. 칼리프는 동쪽 야영지에 서 있습니다.",
 
 	-- Step 6: Marvon Rivetseeker
 	-- {area:1938} Broken Pillar · {item:9978} Gahz'ridian Detector · {area:983} Dunemaul Compound
@@ -33,7 +33,7 @@ return {
 
 	-- Step 8: Dunemaul Compound
 	-- {npc:12046} Gor'marok the Ravager · {quest:3161} Gahz'ridian
-	["South of the Noxious Lair the Dunemaul ogres hold their compound, with {npc:12046} at its eastern end. Dig up {quest:3161} ornaments between the fights."] = "",
+	["South of the Noxious Lair the Dunemaul ogres hold their compound, with {npc:12046} at its eastern end. Dig up {quest:3161} ornaments between the fights."] = "맹독의 둥지 남쪽에서 모래망치 오우거가 거주지를 차지하고 있으며, 동쪽 끝에 {npc:12046}이(가) 있습니다. 싸우는 사이사이에 {quest:3161} 장식품을 파내세요.",
 
 	-- Step 9: Thistleshrub Valley
 	-- {zone:1446} Tanaris

@@ -70,7 +70,7 @@ return {
 	["On the ride north to {area:392}, {area:720} lies off the {area:391} south of the town: wade over the sand bar shallows. {npc:6236} sends four challengers and then {npc:6238} (level 33) at you, one at a time."] = "No caminho para o norte até {area:392}, {area:720} fica perto de {area:391}, ao sul da cidade: atravesse a pé o banco de areia. {npc:6236} manda quatro desafiantes e depois {npc:6238} (nível 33) contra você, um de cada vez.",
 	-- {npc:6238} Big Will
 	["Defeat the challengers and {npc:6238}"] = "Derrote os desafiantes e {npc:6238}",
-	["Klannoc offers The Windwatcher next (1791): the Whirlwind weapon chain, with an elite at the end, is in the Warrior class guide Whirlwind Weapon."] = "",
+	["Klannoc offers The Windwatcher next (1791): the Whirlwind weapon chain, with an elite at the end, is in the Warrior class guide Whirlwind Weapon."] = "Em seguida, Klannoc oferece O vigia dos ventos (1791): a série da arma de Redemoinho, com um elite no fim, está no guia de classe de Guerreiro Arma do redemoinho.",
 
 	-- Step 18: Ratchet
 	-- {zone:1413} Barrens · {area:392} Ratchet · {npc:16227} Bragok · {area:35} Booty Bay
@@ -97,7 +97,7 @@ return {
 
 	-- Step 21: Booty Bay
 	-- {npc:2624} Gazban
-	["{npc:2624} swims off the north-west coast, on the northern loop"] = "",
+	["{npc:2624} swims off the north-west coast, on the northern loop"] = "{npc:2624} nada perto da costa noroeste, no circuito norte",
 
 	-- Step 22: Bloodsail pirates
 	["Bloodsail pirates"] = "Piratas da Vela Sangrenta",
@@ -160,7 +160,7 @@ return {
 	["The north-west coast"] = "A costa noroeste",
 	-- {npc:2624} Gazban · {item:4034} Stone of the Tides
 	-- plural, as words: Giant Clams = {object:2744} Giant Clam
-	["Ride north-west from the mine to the bay on the north-west coast. The Giant Clams lie on its floor and hold the pearls; {npc:2624} swims among them and drops the {item:4034}."] = "",
+	["Ride north-west from the mine to the bay on the north-west coast. The Giant Clams lie on its floor and hold the pearls; {npc:2624} swims among them and drops the {item:4034}."] = "Siga para noroeste a partir da mina até a baía na costa noroeste. Os Mariscos Gigantes ficam no fundo dela e guardam as pérolas; {npc:2624} nada entre eles e deixa cair {item:4034}.",
 
 	-- Step 36: Rebel Camp
 	-- {npc:217588} Arbor Tarantula
@@ -262,7 +262,4 @@ return {
 	["{npc:7955}: other colours, 20g"] = "{npc:7955}: outras cores, 20g",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Gazban swims off the north-west coast, on the northern loop"] = "Gazban nada perto da costa noroeste, no circuito norte",
-	-- ["Klannoc offers The Windwatcher next (1791): the {spell:1680} weapon chain, with an elite at the end, is in the Warrior class guide Whirlwind Weapon."] = "Em seguida, Klannoc oferece O vigia dos ventos (1791): a série da arma de {spell:1680}, com um elite no fim, está no guia de classe de Guerreiro Arma do redemoinho.",
-	-- ["Ride north-west from the mine to the bay on the north-west coast. The Giant Clams lie on its floor and hold the pearls; Gazban swims among them and drops the {item:4034}."] = "Siga para noroeste a partir da mina até a baía na costa noroeste. Os Mariscos Gigantes ficam no fundo dela e guardam as pérolas; Gazban nada entre eles e deixa cair {item:4034}.",
 }

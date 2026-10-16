@@ -23,7 +23,7 @@ return {
 	["{zone:1411} coast"] = "{zone:1411} 해안",
 
 	-- Step 6: Fishing: The Barrens (1-50)
-	["Barrens oasis"] = "",
+	["Barrens oasis"] = "불모의 땅 오아시스",
 
 	-- Step 7: Fishing: Tirisfal Glades (1-50)
 	["Vile Fin shore"] = "썩은지느러미 물가",

@@ -13,7 +13,7 @@ return {
 
 	-- Step 1: Heeding the Call
 	-- {npc:3602} Kal · {area:186} Dolanaar · {zone:1457} Darnassus · {zone:1453} Stormwind · {npc:4217} Mathrengyl Bearwalker
-	["At 10 a druid's call reaches you: {npc:3602} in {area:186}, Denatharion in {zone:1457} or Theridran in {zone:1453}. Any one of them sends you to {npc:4217} in the Cenarion Enclave of Darnassus."] = "",
+	["At 10 a druid's call reaches you: {npc:3602} in {area:186}, Denatharion in {zone:1457} or Theridran in {zone:1453}. Any one of them sends you to {npc:4217} in the Cenarion Enclave of Darnassus."] = "No nível 10, o chamado dos druidas chega até você: {npc:3602} em {area:186}, Denatharion em {zone:1457} ou Theridran em {zone:1453}. Qualquer um deles envia você a {npc:4217} no Enclave Cenariano de Darnassus.",
 	-- {npc:3602} Kal · {area:186} Dolanaar
 	["{npc:3602}, {area:186}; Denatharion's and Theridran's letters lead to the same place"] = "{npc:3602}, {area:186}; as cartas de Denatharion e Theridran levam ao mesmo lugar",
 
@@ -111,5 +111,4 @@ return {
 	["Cast {spell:18960}. {npc:11802} is in {area:2361}. Learn the {area:493} flight path while you are here."] = "Lance {spell:18960}. {npc:11802} está em {area:2361}. Aprenda a rota de voo de {area:493} enquanto estiver lá.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["At 10 a druid's call reaches you: {npc:3602} in {area:186}, Denatharion in {zone:1457} or Theridran in {zone:1453}. Any one of them sends you to {npc:4217} in the Cenarion Enclave of {zone:1457}."] = "No nível 10, o chamado dos druidas chega até você: {npc:3602} em {area:186}, Denatharion em {zone:1457} ou Theridran em {zone:1453}. Qualquer um deles envia você a {npc:4217} no Enclave Cenariano de {zone:1457}.",
 }

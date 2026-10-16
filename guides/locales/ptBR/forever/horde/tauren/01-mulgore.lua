@@ -45,7 +45,7 @@ return {
 
 	-- Step 10: Brambleblade Ravine
 	-- {npc:8554} Chief Sharptusk Thornmantle · {object:3076} Dirt-stained Map
-	["Battleboars graze north of the shrine; the Bristleback quilboar hold the ravine to the north-east. {npc:8554} stands at its eastern end, and the {object:3076} lies on the ground in the camp."] = "",
+	["Battleboars graze north of the shrine; the Bristleback quilboar hold the ravine to the north-east. {npc:8554} stands at its eastern end, and the {object:3076} lies on the ground in the camp."] = "Javaliços pastam ao norte do santuário; os javatuscos Costagulha ocupam a ravina a nordeste. {npc:8554} fica no extremo leste dela, e o {object:3076} está no chão do acampamento.",
 
 	-- Step 11: Camp Narache
 	["Back west to the camp."] = "Volte para oeste até o acampamento.",
@@ -230,7 +230,7 @@ return {
 
 	-- Step 57: The Crossroads
 	-- {area:380} Crossroads
-	["The {area:380}"] = "",
+	["The {area:380}"] = "{area:380}",
 	-- {zone:1412} Mulgore · {area:380} Crossroads · {quest:860} Sergra Darkthorn · {npc:3448} Tonga Runetotem · {zone:1413} The Barrens
 	["Leave {zone:1412} by the south-eastern pass and follow the road to the {area:380}. {quest:860} stands by the inn, {npc:3448} at the south gate. {zone:1413} guide starts here."] = "Saia de {zone:1412} pelo desfiladeiro sudeste e siga a estrada até {area:380}. {quest:860} fica junto à estalagem, {npc:3448} no portão sul. O guia de {zone:1413} começa aqui.",
 
@@ -239,5 +239,4 @@ return {
 	["Class turn-ins in {area:1638}"] = "Entregas de classe em {area:1638}",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Battleboars graze north of the shrine; the Bristleback quilboar hold the ravine to the north-east. {npc:8554} stands at its eastern end, and the {item:4851} lies on the ground in the camp."] = "Javaliços pastam ao norte do santuário; os javatuscos Costagulha ocupam a ravina a nordeste. {npc:8554} fica no extremo leste dela, e o {item:4851} está no chão do acampamento.",
 }

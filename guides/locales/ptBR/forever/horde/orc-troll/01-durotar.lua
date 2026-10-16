@@ -82,7 +82,7 @@ return {
 
 	-- Step 18: Felstalker hooves
 	-- {npc:3102} Felstalker
-	["{npc:3102} hooves"] = "",
+	["{npc:3102} hooves"] = "Cascos de {npc:3102}",
 	-- plural, as words: Felstalkers = {npc:3102} Felstalker
 	["Felstalkers roam the slope below the cave, on the valley's north side."] = "Os Espreitadores Vis vagam pela encosta abaixo da caverna, no lado norte do vale.",
 
@@ -274,9 +274,8 @@ return {
 
 	-- Step 67: The Crossroads
 	-- {area:379} Far Watch Post · {zone:1413} Barrens
-	["Follow the road south-west from {area:379} to the Crossroads. The {zone:1413} guide starts here."] = "",
+	["Follow the road south-west from {area:379} to the Crossroads. The {zone:1413} guide starts here."] = "Siga a estrada para sudoeste do {area:379} até a Encruzilhada. O guia de {zone:1413} começa aqui.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Felstalker hooves"] = "Cascos de Espreitador Vil",
-	-- ["Follow the road south-west from {area:379} to the {area:380}. {zone:1413} guide starts here."] = "Siga a estrada para sudoeste do {area:379} até {area:380}. O guia de {zone:1413} começa aqui.",
 }

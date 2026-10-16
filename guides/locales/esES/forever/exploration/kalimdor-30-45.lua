@@ -45,7 +45,7 @@ return {
 	["Flight path here: {area:1099} (Shyn)."] = "Ruta de vuelo aquí: {area:1099} (Shyn).",
 	["level 60 area, well above this guide's range"] = "área de nivel 60, muy por encima del rango de esta guía",
 	-- {area:1108} Forgotten Coast
-	["The {area:1108}"] = "",
+	["The {area:1108}"] = "{area:1108}",
 
 	-- Step 6: Dustwallow Marsh
 	["7 areas to discover here, levels 36-61."] = "7 áreas por descubrir aquí, niveles 36-61.",

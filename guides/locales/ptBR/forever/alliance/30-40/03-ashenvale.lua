@@ -40,7 +40,7 @@ return {
 
 	-- Step 9: Geltharis
 	-- {npc:4619} Geltharis · {area:429} Xavian
-	["{npc:4619} leads the {area:429} satyrs; he carries the branch."] = "",
+	["{npc:4619} leads the {area:429} satyrs; he carries the branch."] = "{npc:4619} lidera os sátiros de {area:429}; ele carrega o galho.",
 
 	-- Step 10: Satyrnaar
 	-- {object:19901} Circle of Imprisonment · {area:430} Satyrnaar
@@ -110,5 +110,4 @@ return {
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Geltharis"] = "Geltharis",
-	-- ["Geltharis leads the {area:429} satyrs; he carries the branch."] = "Geltharis lidera os sátiros de {area:429}; ele carrega o galho.",
 }

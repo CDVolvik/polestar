@@ -80,7 +80,7 @@ return {
 
 	-- Step 15: Vul'Gol Ogre Mound
 	-- {object:119} Abercrombie's Crate
-	["Ride east to the ogre mound. {object:119} sits in the camp at its entrance; Splinter Fist ogres guard it."] = "",
+	["Ride east to the ogre mound. {object:119} sits in the camp at its entrance; Splinter Fist ogres guard it."] = "Siga para o leste até a Gruta de Vul'Gol. {object:119} está no acampamento da entrada; ogros Punhalasca o guardam.",
 	-- {npc:272273} Lost Watcher · {quest:96138} Merrick's Bow
 	["Only if a {npc:272273} dropped {quest:96138}: right-click it"] = "Só se um {npc:272273} deixou cair {quest:96138}: clique com o botão direito nele",
 
@@ -129,9 +129,9 @@ return {
 
 	-- Step 25: The dig and Sarltooth
 	-- {npc:1353} Sarltooth
-	["The dig and {npc:1353}"] = "",
+	["The dig and {npc:1353}"] = "A escavação e {npc:1353}",
 	-- {npc:1353} Sarltooth
-	["The relics lie in the dig itself. {npc:1353}, a big Razormaw, prowls the raptor valley just west of it."] = "",
+	["The relics lie in the dig itself. {npc:1353}, a big Razormaw, prowls the raptor valley just west of it."] = "As relíquias ficam na própria escavação. {npc:1353}, um Rasgaqueixo grande, ronda o vale dos raptores logo a oeste.",
 	-- {item:2661} Neru Fragment · {object:331} Loose Soil
 	["{item:2661}: the {object:331}"] = "{item:2661}: {object:331}",
 
@@ -190,7 +190,5 @@ return {
 	["Back to Menethil"] = "De volta a Menethil",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Ride east to the ogre mound. {item:1349} sits in the camp at its entrance; Splinter Fist ogres guard it."] = "Siga para o leste até a Gruta de Vul'Gol. {item:1349} está no acampamento da entrada; ogros Punhalasca o guardam.",
 	-- ["The dig and Sarltooth"] = "A escavação e Sarilodonte",
-	-- ["The relics lie in the dig itself. Sarltooth, a big Razormaw, prowls the raptor valley just west of it."] = "As relíquias ficam na própria escavação. Sarilodonte, um Rasgaqueixo grande, ronda o vale dos raptores logo a oeste.",
 }

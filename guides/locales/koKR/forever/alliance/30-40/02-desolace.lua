@@ -23,7 +23,7 @@ return {
 
 	-- Step 4: The Talondeep Path
 	-- {area:1276} Talondeep Path
-	["The {area:1276}"] = "",
+	["The {area:1276}"] = "{area:1276}",
 	-- {area:415} Astranaar · {area:1276} Talondeep Path
 	["From {area:415} head south-west to the {area:1276}, a tunnel through the mountains into Stonetalon."] = "{area:415}에서 남서쪽 {area:1276}(으)로 가십시오. 산을 뚫고 돌발톱 산맥으로 이어지는 터널입니다.",
 
@@ -46,7 +46,7 @@ return {
 
 	-- Step 11: Dalinda Malem
 	-- {area:608} Nijel's Point
-	["Dalinda hides inside the Burning Blade's fortress south-west of {area:608}."] = "",
+	["Dalinda hides inside the Burning Blade's fortress south-west of {area:608}."] = "달린다는 {area:608} 남서쪽에 있는 불타는칼날단의 요새 안에 숨어 있습니다.",
 
 	-- Step 12: Tyranis and the Seer
 	["Tyranis and the Seer"] = "티라니스와 현자",
@@ -55,7 +55,7 @@ return {
 
 	-- Step 13: Escort Dalinda
 	["Escort Dalinda"] = "달린다 호위",
-	["Out of Thunder Axe Fortress"] = "",
+	["Out of Thunder Axe Fortress"] = "천둥도끼 요새 밖으로",
 	-- {area:608} Nijel's Point
 	["Lead Dalinda out of the fortress; she walks off once you are clear of it. Vahlarriel takes the turn-in at {area:608} at the end of the guide."] = "달린다를 요새 밖으로 데려가십시오. 요새를 벗어나면 그녀가 떠납니다. 가이드 마지막에 {area:608}에서 발라리엘에게 완료 보고를 하십시오.",
 

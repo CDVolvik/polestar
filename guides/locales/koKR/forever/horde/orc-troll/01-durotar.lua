@@ -82,7 +82,7 @@ return {
 
 	-- Step 18: Felstalker hooves
 	-- {npc:3102} Felstalker
-	["{npc:3102} hooves"] = "",
+	["{npc:3102} hooves"] = "{npc:3102} 발굽",
 	-- plural, as words: Felstalkers = {npc:3102} Felstalker
 	["Felstalkers roam the slope below the cave, on the valley's north side."] = "하급 지옥사냥개는 골짜기 북쪽, 동굴 아래 비탈을 돌아다닙니다.",
 
@@ -142,7 +142,7 @@ return {
 
 	-- Step 33: Drygulch Ravine
 	-- {area:370} Drygulch Ravine · {npc:3293} Rezlak · {item:277661} Dull Storm Orb
-	["Savages and Storm Witches nest in {area:370}, east of {npc:3293}. A Storm Witch drops the {item:277661}."] = "{spell:20574}와(과) 폭풍마녀가 {npc:3293} 동쪽 {area:370}에 둥지를 틀고 있습니다. 폭풍마녀가 {item:277661}을(를) 떨어뜨립니다.",
+	["Savages and Storm Witches nest in {area:370}, east of {npc:3293}. A Storm Witch drops the {item:277661}."] = "먼지바람일족 여전사와 폭풍마녀가 {npc:3293} 동쪽 {area:370}에 둥지를 틀고 있습니다. 폭풍마녀가 {item:277661}을(를) 떨어뜨립니다.",
 
 	-- Step 35: Thunder lizards
 	["Thunder lizards"] = "천둥도마뱀",
@@ -274,7 +274,7 @@ return {
 
 	-- Step 67: The Crossroads
 	-- {area:379} Far Watch Post · {zone:1413} Barrens
-	["Follow the road south-west from {area:379} to the Crossroads. The {zone:1413} guide starts here."] = "",
+	["Follow the road south-west from {area:379} to the Crossroads. The {zone:1413} guide starts here."] = "{area:379}에서 길을 따라 남서쪽 크로스로드로 가세요. {zone:1413} 가이드는 여기서 시작합니다.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Felstalker hooves"] = "하급 지옥사냥개 발굽",

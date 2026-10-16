@@ -106,7 +106,7 @@ return {
 
 	-- Step 26: The Forgotten Coast
 	-- {area:1108} Forgotten Coast
-	["The {area:1108}"] = "",
+	["The {area:1108}"] = "{area:1108}",
 	-- {item:18904} Zorbin's Ultra-Shrinker
 	["Sea elementals and sea sprays wash along the shore around the dock. Zap the giants with {item:18904} first: shrunken, they lose their elite strength. Shore striders wade in the water; the land walkers and cliff giants roam the hills further north."] = "Los elementales de mar y rocíos del mar recorren la orilla alrededor del muelle. Primero dispara a los gigantes con {item:18904}: al encogerse, pierden su fuerza de élite. Los zancaorillas vadean en el agua; los caminatierras y gigantes del risco recorren las colinas más al norte.",
 

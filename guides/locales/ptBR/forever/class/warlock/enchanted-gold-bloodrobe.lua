@@ -45,7 +45,7 @@ return {
 	["{zone:1443} demons"] = "Demônios de {zone:1443}",
 	-- {area:603} Sargeron · {zone:1443} Desolace
 	-- plural, as words: Lesser Infernals = {npc:4676} Lesser Infernal
-	["The Hatefury satyrs of {area:603}, in north-eastern {zone:1443}, carry the blood; the Lesser Infernals of Mannoroc Coven, in the south, the stone."] = "",
+	["The Hatefury satyrs of {area:603}, in north-eastern {zone:1443}, carry the blood; the Lesser Infernals of Mannoroc Coven, in the south, the stone."] = "Os sátiros Furiódio de {area:603}, no nordeste de {zone:1443}, carregam o sangue; os Infernais Menores da Ruínas de Mannoroc, no sul, a pedra.",
 	["Vials of Hatefury Blood"] = "Ampolas de Sangue de Furiódio",
 
 	-- Step 10: Menara again
@@ -66,5 +66,4 @@ return {
 	["Wait for the robe"] = "Espere o manto",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["The Hatefury satyrs of {area:603}, in north-eastern {zone:1443}, carry the blood; the Lesser Infernals of {area:602}, in the south, the stone."] = "Os sátiros Furiódio de {area:603}, no nordeste de {zone:1443}, carregam o sangue; os Infernais Menores de {area:602}, no sul, a pedra.",
 }

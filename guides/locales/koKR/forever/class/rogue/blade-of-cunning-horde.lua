@@ -20,7 +20,7 @@ return {
 
 	-- Step 3: Tazan
 	-- {npc:6494} Tazan · {zone:1413} Barrens · {area:392} Ratchet
-	["{npc:6494} stands on the {zone:1413} coast south of {area:392}. Kill him for his satchel."] = "",
+	["{npc:6494} stands on the {zone:1413} coast south of {area:392}. Kill him for his satchel."] = "{npc:6494}은(는) {area:392} 남쪽 {zone:1413} 해안에 있습니다. 처치해서 가방을 얻으십시오.",
 
 	-- Step 4: Back to Therzok
 	-- {npc:6446} Therzok
@@ -28,7 +28,7 @@ return {
 
 	-- Step 5: Tazan's Key
 	-- {npc:6466} Gamon · {object:172982} Valley of Strength · {item:7208} Tazan's Key · {item:7209} Tazan's Satchel
-	["{npc:6466} drinks in the inn in the {object:172982}. Pick his pocket for {item:7208}, then open {item:7209}."] = "",
+	["{npc:6466} drinks in the inn in the {object:172982}. Pick his pocket for {item:7208}, then open {item:7209}."] = "{npc:6466}은(는) {object:172982}의 여관에서 술을 마십니다. 소매치기로 {item:7208}을(를) 얻은 뒤 {item:7209}을(를) 여십시오.",
 	-- {item:7209} Tazan's Satchel
 	["{item:7209}, once you have the key"] = "{item:7209}, 열쇠를 얻은 뒤",
 	-- {item:7295} Tazan's Logbook

@@ -72,7 +72,7 @@ return {
 
 	-- Step 17: Stormwind City
 	-- {area:392} Ratchet · {area:35} Booty Bay
-	["Take the boat from {area:392} to {area:35} and fly to Stormwind."] = "",
+	["Take the boat from {area:392} to {area:35} and fly to Stormwind."] = "Toma el barco de {area:392} a {area:35} y vuela a Ventormenta.",
 	-- {npc:3520} Ol' Emma
 	["{npc:3520}, who walks the canals"] = "{npc:3520}, que recorre los canales",
 	-- {npc:10778} Janice Felstone
@@ -120,13 +120,13 @@ return {
 
 	-- Step 25: The Undercroft
 	-- {npc:11886} Mercutio Filthgorger
-	["Ride south-west to the Undercroft. The mound of dirt lies inside. {npc:11886} is elite: grouping up is advised."] = "",
+	["Ride south-west to the Undercroft. The mound of dirt lies inside. {npc:11886} is elite: grouping up is advised."] = "Cabalga al suroeste hasta La Subgranja. El montón de tierra está dentro. {npc:11886} es élite: se recomienda ir en grupo.",
 	-- {item:14613} Taelan's Hammer · {npc:11886} Mercutio Filthgorger
 	["{item:14613}, from {npc:11886}"] = "{item:14613}, de {npc:11886}",
 
 	-- Step 26: The Fungal Vale
 	-- {npc:8532} Diseased Flayer · {zone:1423} Eastern Plaguelands
-	["grind on {npc:8532} at the Fungal Vale, {zone:1423}"] = "",
+	["grind on {npc:8532} at the Fungal Vale, {zone:1423}"] = "farmea {npc:8532} en Cuenca Fungal, {zone:1423}",
 
 	-- Step 27: Ratchet
 	-- {area:392} Ratchet

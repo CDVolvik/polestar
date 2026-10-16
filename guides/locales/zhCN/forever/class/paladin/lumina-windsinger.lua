@@ -7,7 +7,7 @@
 return {
 	-- Guide
 	-- {quest:91862} Lumina Windsinger
-	["Rescuing {quest:91862}"] = "",
+	["Rescuing {quest:91862}"] = "营救{quest:91862}",
 	-- {item:268484} Moonsilver Blade
 	["No item yet: a Forsaken paladin rescue story; its sequel, the {item:268484}, cannot be finished yet."] = "暂无物品：一段被遗忘者圣骑士的营救故事；其续篇{item:268484}目前还无法完成。",
 	-- {zone:1458} Undercity
@@ -19,13 +19,13 @@ return {
 
 	-- Step 2: The Sepulcher
 	-- {zone:1421} Silverpine Forest · {npc:248840} Trevan Rol · {npc:259611} Deathguard Baldren
-	["Ride south through {zone:1421} to the Sepulcher. {npc:248840} stands in the town; {npc:259611} keeps watch near its entrance."] = "",
+	["Ride south through {zone:1421} to the Sepulcher. {npc:248840} stands in the town; {npc:259611} keeps watch near its entrance."] = "向南穿过{zone:1421}前往瑟伯切尔。{npc:248840}站在镇里；{npc:259611}在入口附近守望。",
 
 	-- Step 3: The pyre on Fenris Isle
 	-- {area:172} Fenris Isle
 	["The pyre on {area:172}"] = "{area:172}上的火堆",
 	-- {area:172} Fenris Isle
-	["{area:172} lies in the lake east of the Sepulcher. The charred remains are on its shore."] = "",
+	["{area:172} lies in the lake east of the Sepulcher. The charred remains are on its shore."] = "{area:172}位于瑟伯切尔东边的湖中。烧焦的遗骸就在岛的岸边。",
 	-- {object:566037} Charred Remains
 	["from the {object:566037}"] = "来自{object:566037}",
 
@@ -40,11 +40,11 @@ return {
 	["Free her with the key, then stay close while she fights her way out of the keep."] = "用钥匙放她出来，然后在她杀出要塞时紧跟着她。",
 
 	-- Step 6: Back to the Sepulcher
-	["Back to the Sepulcher"] = "",
+	["Back to the Sepulcher"] = "回到瑟伯切尔",
 	-- {area:235} Fenris Keep
-	["Once she is clear of {area:235}, Lumina waits for you in the Sepulcher. Speak with her again to hear what really happened on the road."] = "",
+	["Once she is clear of {area:235}, Lumina waits for you in the Sepulcher. Speak with her again to hear what really happened on the road."] = "离开{area:235}后，卢米娜会在瑟伯切尔等你。再次与她交谈，听听路上到底发生了什么。",
 	-- {npc:259620} Lumina Windsinger
-	["{npc:259620}, the Sepulcher"] = "",
+	["{npc:259620}, the Sepulcher"] = "{npc:259620}，瑟伯切尔",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Back to the {area:228}"] = "回到{area:228}",

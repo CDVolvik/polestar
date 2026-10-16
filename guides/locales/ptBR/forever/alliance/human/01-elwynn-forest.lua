@@ -121,14 +121,14 @@ return {
 	-- Step 24: The Fargodeep Mine
 	-- {npc:248464} Nimsy
 	-- plural, as words: Kobold Miners = {npc:40} Kobold Miner
-	["The mine is west of the vineyards. Kobold Miners and Tunnelers fill both levels; {npc:248464}, a named kobold, holds the picture book in the lower tunnels. {npc:248464} is elite: grouping up is advised."] = "",
+	["The mine is west of the vineyards. Kobold Miners and Tunnelers fill both levels; {npc:248464}, a named kobold, holds the picture book in the lower tunnels. {npc:248464} is elite: grouping up is advised."] = "A mina fica a oeste dos vinhedos. Mineradores e Tuneleiros Kobold enchem os dois níveis; {npc:248464}, um kobold nomeado, guarda o livro ilustrado nos túneis inferiores. {npc:248464} é elite: recomenda-se formar um grupo.",
 	["Walk through the mine"] = "Atravesse a mina",
 	-- plural, as words: Large Candles = {item:772} Large Candle
 	["Large Candles"] = "Velas Grandes",
 	-- plural, as words: Lost Books = {item:248001} Lost Book · Kobold Miners = {npc:40} Kobold Miner
 	["Lost Books: Kobold Miners and Tunnelers"] = "Livros Perdidos: Mineradores e Tuneleiros Kobold",
 	-- {npc:248464} Nimsy
-	["Fun with Elementals: {npc:248464}"] = "",
+	["Fun with Elementals: {npc:248464}"] = "Diversão com Elementais: {npc:248464}",
 
 	-- Step 25: Bait ingredients
 	["Bait ingredients"] = "Ingredientes da isca",
@@ -196,10 +196,10 @@ return {
 
 	-- Step 38: Downstream and Princess
 	-- {quest:91733} Downstream · {npc:330} Princess
-	["{quest:91733} and {npc:330}"] = "",
+	["{quest:91733} and {npc:330}"] = "{quest:91733} e {npc:330}",
 	-- {item:247813} Waterlogged Saw · {npc:330} Princess · {area:62} Brackwell Pumpkin Patch · {npc:390} Porcine Entourage
 	-- plural, as words: Prowlers = {npc:118} Prowler · Young Forest Bears = {npc:822} Young Forest Bear
-	["The {item:247813}, Axe and Toolbox lie in the river south of the bridge. {npc:330}, a big boar, roots in the {area:62} west of the river with her {npc:390}: pull the piglets away first. Kill Prowlers and Young Forest Bears on the way."] = "",
+	["The {item:247813}, Axe and Toolbox lie in the river south of the bridge. {npc:330}, a big boar, roots in the {area:62} west of the river with her {npc:390}: pull the piglets away first. Kill Prowlers and Young Forest Bears on the way."] = "{item:247813}, o Machado Encharcado e a Caixa de Ferramentas Encharcada estão no rio ao sul da ponte. {npc:330}, uma javalina grande, fuça em {area:62}, a oeste do rio, com seu {npc:390}: afaste os leitões primeiro. Mate Predadores e Jovens Ursos da Floresta no caminho.",
 
 	-- Step 40: The Eastvale Logging Camp
 	-- {area:88} Eastvale Logging Camp
@@ -327,7 +327,7 @@ return {
 
 	-- Step 67: Surena Caledon
 	-- {area:87} Goldshire · {area:62} Brackwell Pumpkin Patch · {npc:881} Surena Caledon
-	["Ride back out through {area:87} and east along the road to the {area:62}. {npc:881} (level 9) stands by its farmhouse."] = "",
+	["Ride back out through {area:87} and east along the road to the {area:62}. {npc:881} (level 9) stands by its farmhouse."] = "Saia de novo passando por {area:87} e siga a estrada para o leste até {area:62}. {npc:881} (nível 9) fica junto à casa da fazenda.",
 
 	-- Step 68: The Binding
 	-- {item:6928} Bloodstone Choker · {object:2164} Slaughtered Lamb
@@ -360,10 +360,5 @@ return {
 	["Follow the road west past Westbrook into {zone:1436}, then south along it to {area:108}. Thor, the gryphon master, stands on the hill."] = "Siga a estrada para o oeste, passando pela Ribeira d'Oeste, até {zone:1436}; depois, para o sul por ela até {area:108}. Thor, o mestre de grifos, fica no morro.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Fun with Elementals: Nimsy"] = "Diversão com Elementais: Nimsy",
-	-- ["Ride back out through {area:87} and east along the road to the {area:62}. {quest:1688} (level 9) stands by its farmhouse."] = "Saia de novo passando por {area:87} e siga a estrada para o leste até {area:62}. {quest:1688} (nível 9) fica junto à casa da fazenda.",
-	-- ["The mine is west of the vineyards. Kobold Miners and Tunnelers fill both levels; Nimsy, a named kobold, holds the picture book in the lower tunnels. Nimsy is elite: grouping up is advised."] = "A mina fica a oeste dos vinhedos. Mineradores e Tuneleiros Kobold enchem os dois níveis; Nimsy, um kobold nomeado, guarda o livro ilustrado nos túneis inferiores. Nimsy é elite: recomenda-se formar um grupo.",
-	-- ["The {item:247813}, Axe and Toolbox lie in the river south of the bridge. Princess, a big boar, roots in the {area:62} west of the river with her {npc:390}: pull the piglets away first. Kill Prowlers and Young Forest Bears on the way."] = "{item:247813}, o Machado Encharcado e a Caixa de Ferramentas Encharcada estão no rio ao sul da ponte. Princesa, uma javalina grande, fuça em {area:62}, a oeste do rio, com seu {npc:390}: afaste os leitões primeiro. Mate Predadores e Jovens Ursos da Floresta no caminho.",
 	-- ["{item:1006}: Princess"] = "{item:1006}: Princesa",
-	-- ["{quest:91733} and Princess"] = "{quest:91733} e Princesa",
 }

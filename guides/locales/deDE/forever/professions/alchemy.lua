@@ -132,13 +132,13 @@ return {
 
 	-- Step 27: Wild Steelbloom (Alliance)
 	-- {object:1623} Wild Steelbloom
-	["{object:1623} (Alliance)"] = "",
+	["{object:1623} (Alliance)"] = "{object:1623} (Allianz)",
 	-- {object:1623} Wild Steelbloom · {skill:182} Herbalism
-	["Pick {object:1623} with {skill:182}; this is the densest patch in the data. The Auction House works too."] = "",
+	["Pick {object:1623} with {skill:182}; this is the densest patch in the data. The Auction House works too."] = "Pflücke {object:1623} mit {skill:182}; hier ist das dichteste Vorkommen laut Daten. Im Auktionshaus gibt es das auch.",
 
 	-- Step 28: Wild Steelbloom (Horde)
 	-- {object:1623} Wild Steelbloom
-	["{object:1623} (Horde)"] = "",
+	["{object:1623} (Horde)"] = "{object:1623} (Horde)",
 
 	-- Step 29: Kingsblood (Alliance)
 	-- {item:3356} Kingsblood
@@ -162,13 +162,13 @@ return {
 
 	-- Step 33: Goldthorn (Alliance)
 	-- {object:2046} Goldthorn
-	["{object:2046} (Alliance)"] = "",
+	["{object:2046} (Alliance)"] = "{object:2046} (Allianz)",
 	-- {object:2046} Goldthorn · {skill:182} Herbalism
-	["Pick {object:2046} with {skill:182}; this is the densest patch in the data. The Auction House works too."] = "",
+	["Pick {object:2046} with {skill:182}; this is the densest patch in the data. The Auction House works too."] = "Pflücke {object:2046} mit {skill:182}; hier ist das dichteste Vorkommen laut Daten. Im Auktionshaus gibt es das auch.",
 
 	-- Step 34: Goldthorn (Horde)
 	-- {object:2046} Goldthorn
-	["{object:2046} (Horde)"] = "",
+	["{object:2046} (Horde)"] = "{object:2046} (Horde)",
 
 	-- Step 35: Oily Blackmouth (Alliance)
 	-- {item:6358} Oily Blackmouth
