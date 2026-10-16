@@ -270,9 +270,9 @@ unexplained.
   messages and chat sent without the player asking, hooks on secure
   functions, slash commands that do something other than what they say.
 - **The toolchain.** New dependencies or install scripts, `child_process`,
-  network access to hosts the project does not already use (wago.tools,
-  Wowhead), reading or writing outside the repository (the home folder,
-  tokens, other addons' saved data), changes to `.github/workflows`.
+  network access to hosts the project does not already use (wago.tools),
+  reading or writing outside the repository (the home folder, tokens, other
+  addons' saved data), changes to `.github/workflows`.
 - **Data and guides.** Executable code or links hidden in data, guide or
   locale files.
 

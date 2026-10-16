@@ -154,8 +154,8 @@ has the details.
 
 - `node tools/polestar.js i18n names [<locale>...]` rebuilds the addons. Per
   id the first source with a name wins: the client's own tables in that
-  language (wago.tools), Wowhead's Forever database in that language (its
-  list pages, then a tooltip for an id no list holds), DingDB (cloned into
+  language (wago.tools), Wowhead's Forever database in that language (what
+  is cached under `data/sources/wowhead/names`), DingDB (cloned into
   `data/sources/ding` at the commit pinned in `tools/lib/i18n/names.js`,
   every file checked against its sha256) and pfQuest's `db/<locale>` (the
   clone `data build` uses). It keeps only the ids the compiled guides, the
@@ -165,23 +165,21 @@ has the details.
   is one marking unused content (`[PH]`, `(DNT)`...). The client tables
   come from the newest build that has them all in English and every
   language; without one the build stops (`--no-tables` leaves them out on
-  purpose). Wowhead is asked one request at a time, 2.5 s apart (`--delay`,
-  never under 2 s), and its pages are cached under
-  `data/sources/wowhead/names` for 30 days: a first run for all nine
-  languages takes about an hour, a later one only reads the cache.
-  `--dry-run` counts the requests, `--limit <n>` caps the tooltips,
+  purpose). Polestar no longer fetches from Wowhead (its terms don't allow
+  automated requests): the Wowhead names are read from the cache an earlier
+  version of the tools fetched, and without it that source is empty.
   `--offline` reads only the caches, `--no-questie` leaves DingDB out. It
   prints, per language, how many ids of each kind have no name. Commit the
   folders it writes.
-- A wrong name is fixed at its source: on Wowhead or in the client (it
-  changes there), in DingDB (tell Yendi, then move the pin to his new commit
-  and rebuild) or, for one only pfQuest has, in pfQuest.
+- A wrong name is fixed at its source: in the client (it changes there), in
+  DingDB (tell Yendi, then move the pin to his new commit and rebuild) or,
+  for one only pfQuest has, in pfQuest.
 - To move the pin, read what changed in Ding's `Ding/DB/`, then set the
   commit, version and sha256s of `DING` in `tools/lib/i18n/names.js`; a file
   that differs from its pin stops the build.
-- A new language needs its Wowhead path and tooltip locale id
-  (`LOCALE_PATHS` in `tools/lib/codex/wowhead.js`, `TOOLTIP_LOCALES` in
-  `tools/lib/i18n/names-wowhead.js`), a DingDB file and `DING` pin if Ding
+- A new language needs its Wowhead path (`LOCALE_PATHS` in
+  `tools/lib/codex/wowhead.js`, for the cache and the packs' credit), a
+  DingDB file and `DING` pin if Ding
   has it, its AddOns-list text (`tools/lib/i18n/toc.js`) and the folder's
   entry in the release list (`tools/lib/dsl/project.js` takes every locale of
   `locales.js`).
