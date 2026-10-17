@@ -303,8 +303,8 @@ end
 --             arrow's (current), and how many more were not listed
 --   addonsAt  where the Addons line sits in `lines`
 --   addons    the other addons with their versions, for the issue's field
---   issue     the issue's template, and on a step its title, guide, step
---             and character
+--   issue     on a step, a "Wrong step" issue's title, guide, step and
+--             character
 function R.Details()
 	local on = onScreen()
 	local who = character()
@@ -320,10 +320,8 @@ function R.Details()
 	errorLines(out)
 	if on.view then
 		local title = oneLine(on.title)
-		d.issue = { template = "wrong-step.yml", title = ("Wrong step: %s, step %d"):format(cut(title, 80), on.index),
+		d.issue = { title = ("Wrong step: %s, step %d"):format(cut(title, 80), on.index),
 			guide = cut(title), step = cut(oneLine(on.index .. ": " .. plain(on.view.title or ""))), character = who }
-	else
-		d.issue = { template = "bug-report.yml" }
 	end
 	return d
 end
@@ -448,26 +446,27 @@ end
 
 -- A link that opens a new issue on Polestar's GitHub with the report in
 -- it: GitHub fills the title and the issue form's fields (by their ids in
--- .github/ISSUE_TEMPLATE) from the link's query. A step on screen is a
--- "Wrong step" issue, anything else a "Bug report". `spot`: the right spot
--- the player marked (ns.WhereLines), for the "Wrong step" form's own field.
+-- .github/ISSUE_TEMPLATE) from the link's query. A "Wrong step" issue when
+-- the player marked the right spot on a step (`spot`, ns.WhereLines, for
+-- that form's own field), a "Bug report" otherwise: only the fields the
+-- form has are sent.
 -- The short fields come first, each bounded; the report gets the room they
 -- leave, less the addons field's count line, and the addons what is left.
 function R.IssueURL(description, details, spot)
-	local issue = details.issue
+	local issue = spot and details.issue
 	local desc = tostring(description or ""):match("^%s*(.-)%s*$")
 	local fields = {
-		{ "template", issue.template },
-		{ "title", issue.title or ("Bug: " .. cut(oneLine(desc), 80)) },
+		{ "template", issue and "wrong-step.yml" or "bug-report.yml" },
+		{ "title", issue and issue.title or ("Bug: " .. cut(desc:match("^[^\n]*"), 80)) },
 		{ "version", polestarVersion() },
 	}
 	local body, bodySpot = "steps", spot
-	if issue.template == "wrong-step.yml" then
+	if issue then
 		body, bodySpot = "wrong", nil
 		fields[#fields + 1] = { "guide", issue.guide }
 		fields[#fields + 1] = { "step", issue.step }
 		fields[#fields + 1] = { "character", issue.character }
-		if spot then fields[#fields + 1] = { "where", table.concat(spot, "\n") } end
+		fields[#fields + 1] = { "where", table.concat(spot, "\n") }
 	end
 	local query = {}
 	for _, f in ipairs(fields) do

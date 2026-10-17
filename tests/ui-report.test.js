@@ -232,7 +232,7 @@ test('the hub and the settings carry the Polestar Discord at the foot of the sid
 	assert.deepEqual(out.after, { icon: false, text: 'zone map 1429' }, 'the next text to copy comes without the mark');
 });
 
-test('the report names the other addons that are loaded; "Report bug" gives a link that opens a new GitHub issue with the report, its title, the version and those addons filled in', () => {
+test('the report names the other addons that are loaded; "Report bug" gives a link that opens a new GitHub bug report with the report, its title, the version and those addons filled in; with a marked spot it is a Wrong step issue', () => {
 	const [out] = run(`
 		stub.addons[#stub.addons + 1] = { name = "Details", loaded = true }
 		stub.addons[#stub.addons + 1] = { name = "TomTom", loaded = true }
@@ -248,27 +248,38 @@ test('the report names the other addons that are loaded; "Report bug" gives a li
 		local report = F.Box:GetText()
 		F.Report:Click()
 		local step = { shown = PolestarCopy:IsShown(), url = PolestarCopy.Box:GetText(), focus = stub.focus == PolestarCopy.Box }
+		local spot = { "zone map 1429", "goto 51.23,40.50 live" }
+		local marked = UI.Report.IssueURL(F.Desc:GetText(), F.details, spot)
 		Polestar.Engine.SetGuide(nil)
-		emit({ report = report, step = step, noGuide = UI.Report.IssueURL("Lua error on login", UI.Report.Details()) })`);
+		emit({ report = report, step = step, marked = marked, markedReport = UI.Report.Text(F.Desc:GetText(), F.details),
+			noGuide = UI.Report.IssueURL("Lua error on login\\nthen again", UI.Report.Details(), spot) })`);
 	assert.ok(out.report.split('\n').includes('Addons: Questie, TomTom, Bagnon, Details'), `quest and map addons first, then A to Z: ${out.report}`);
 	assert.equal(out.step.shown, true);
 	assert.equal(out.step.focus, true, 'the link is selected for Ctrl+C');
 	const url = new URL(out.step.url);
 	assert.equal(url.origin + url.pathname, 'https://github.com/fitzforge/polestar/issues/new');
 	const q = Object.fromEntries(url.searchParams);
-	assert.equal(q.template, 'wrong-step.yml');
-	assert.equal(q.title, 'Wrong step: Elwynn Forest, step 3');
-	assert.equal(q.guide, 'Elwynn Forest');
-	assert.equal(q.step, '3: Kobold Camp');
-	assert.equal(q.wrong, out.report, 'the whole report, as the window shows it');
-	assert.match(q.character, /^Human Warrior · level 4/);
+	assert.deepEqual(Object.keys(q).sort(), ['addons', 'steps', 'template', 'title', 'version'], 'only the Bug report form\'s fields');
+	assert.equal(q.template, 'bug-report.yml', 'a step on screen, no spot marked: a bug report');
+	assert.equal(q.title, 'Bug: The vermin were all by the tents.');
+	assert.equal(q.steps, out.report, 'the whole report, as the window shows it, the guide and the step in it');
 	assert.match(q.version, /^(\d+\.\d+\.\d+|dev)/);
 	assert.equal(q.addons, 'Questie 9.1.0\nTomTom 0.1.0-test\nBagnon 0.1.0-test\nDetails 0.1.0-test');
+	const wrong = Object.fromEntries(new URL(out.marked).searchParams);
+	assert.deepEqual(Object.keys(wrong).sort(), ['addons', 'character', 'guide', 'step', 'template', 'title', 'version', 'where', 'wrong']);
+	assert.equal(wrong.template, 'wrong-step.yml', 'a spot marked: a Wrong step issue');
+	assert.equal(wrong.title, 'Wrong step: Elwynn Forest, step 3');
+	assert.equal(wrong.guide, 'Elwynn Forest');
+	assert.equal(wrong.step, '3: Kobold Camp');
+	assert.match(wrong.character, /^Human Warrior · level 4/);
+	assert.equal(wrong.where, 'zone map 1429\ngoto 51.23,40.50 live');
+	assert.equal(wrong.wrong, out.markedReport, 'the report without its Right spot line');
 	const bug = Object.fromEntries(new URL(out.noGuide).searchParams);
-	assert.equal(bug.template, 'bug-report.yml', 'no step on screen: a bug report');
-	assert.equal(bug.title, 'Bug: Lua error on login');
-	assert.match(bug.steps, /^\*\*What went wrong:\*\* Lua error on login\n```\n/);
-	assert.equal(bug.guide, undefined);
+	assert.equal(bug.template, 'bug-report.yml', 'no step on screen: a bug report, spot or not');
+	assert.equal(bug.title, 'Bug: Lua error on login', 'the first line of what the player typed');
+	assert.match(bug.steps, /^\*\*What went wrong:\*\* Lua error on login\nthen again\n```\n/);
+	assert.match(bug.steps, /^Right spot: zone map 1429 · goto 51\.23,40\.50 live$/m, 'with no field for it, the spot stays in the report');
+	assert.equal(bug.where, undefined);
 });
 
 test('with more addons than the link holds, the issue counts them all and lists the ones that fit, quest, map and guide addons first; the link stays short of GitHub\'s limit', () => {
@@ -366,14 +377,4 @@ test('the issue link stays under GitHub\'s limit in every script: goals past the
 		if (locale !== 'enUS') assert.match(q.wrong, /^\.\.\. \d+ goals left out to fit the link$/m, locale);
 		assert.match(q.wrong, /^\[>\] /m, `${locale}: the arrow's goal is kept`);
 	}
-});
-
-test('a bug report\'s title is what the player typed on one line', () => {
-	const [out] = run(`
-		Polestar.Engine.SetGuide(nil)
-		UI.ShowReport()
-		emit({ url = UI.Report.IssueURL("Lua error on login\\nthen again after a reload", PolestarReport.details) })`);
-	const q = Object.fromEntries(new URL(out.url).searchParams);
-	assert.equal(q.template, 'bug-report.yml');
-	assert.equal(q.title, 'Bug: Lua error on login then again after a reload');
 });
