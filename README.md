@@ -243,7 +243,7 @@ map. Renders of every window and state, drawn without the game, are in
 - **Nearby services.** `/polestar near repair` (trainer, a profession,
   class, reagents, vendor, innkeeper, bank, auction, flight, stable) points
   the arrow at the quickest one to reach; the map's tracking menu lists them.
-- **Other addons' waypoints.** Without TomTom, "Let other addons set
+- **Other addons' waypoints** (Options, Integrations, TomTom). Without TomTom, "Let other addons set
   waypoints" (off by default) lets addons that set TomTom waypoints point
   Polestar's arrow and makes `/way` work; addons that expect TomTom's own
   settings may not work with it on. With TomTom, the arrow can follow
@@ -295,7 +295,9 @@ kill or collect area is handed over as an area, so it holds you there until
 the goal is done; if you clear or replace the journey, Polestar leaves it be
 until the guide moves on. With the option off, a journey you start in
 Shortest Path Forever itself still wins: Polestar steps aside the same way
-while it runs, and guides again when it ends.
+while it runs, and guides again when it ends. If Shortest Path Forever
+finds no way to a goal, or turns its journeys off, Polestar's own arrow
+guides you there instead.
 
 ### Quests and the map
 
@@ -353,7 +355,7 @@ and each section says what is missing.
   scale, opacity and colours; reduced motion. Everything applies live,
   without a reload; right-click any setting to reset it.
 - **Fonts**: the game's own by default, or Inter, or EllesmereUI's.
-- **EllesmereUI**: Polestar follows its accent and font by default through
+- **EllesmereUI** (Options, Integrations): Polestar follows its accent and font by default through
   its public skinning API, and where its Quality of Life or Friends module
   does the same job as a Polestar toggle, the toggle starts off.
 

@@ -105,16 +105,47 @@ function packLocales(packDir) {
 }
 
 const TOKEN_ONLY = new RegExp(TOKEN_RE.source, 'g');
+const NAMES_ROOT = path.join(__dirname, '..', '..', '..', 'addon');
+
+// The object ids Polestar's names addon of `locale`
+// (addon/Polestar_Names_<locale>/Names.lua, `i18n names`) names, or null
+// when it has none, cached.
+const NAMED_OBJECTS = new Map();
+function namedObjects(locale) {
+	if (!NAMED_OBJECTS.has(locale)) {
+		const file = path.join(NAMES_ROOT, `Polestar_Names_${locale}`, 'Names.lua');
+		let ids = null;
+		if (fs.existsSync(file)) {
+			ids = new Set();
+			const re = /add\("[A-Za-z]+", "object", \{([\s\S]*?)\n\}\)/g;
+			const text = fs.readFileSync(file, 'utf8');
+			for (let m = re.exec(text); m; m = re.exec(text)) for (const e of m[1].matchAll(/\[(\d+)\]=/g)) ids.add(`object:${e[1]}`);
+		}
+		NAMED_OBJECTS.set(locale, ids);
+	}
+	return NAMED_OBJECTS.get(locale);
+}
+
+// The tokens of `english` a translation into `locale` may write as words: the
+// objects no source names in that language (a district's sign, a tavern),
+// which the game would show in English.
+function unnamedTokens(english, locale) {
+	const named = namedObjects(locale);
+	if (!named) return [];
+	return [...new Set(tokensOf(english))].filter((t) => t.startsWith('object:') && !named.has(t));
+}
 
 // What is wrong with `translation` as the translation of `english`: [message].
 // `plurals`: tokens the English names in the plural, as words (its
 // "plural, as words" comment): the translation may use them as it likes.
-function textProblems(english, translation, plurals = []) {
+// `unnamed`: tokens it may leave out, written as words (unnamedTokens).
+function textProblems(english, translation, plurals = [], unnamed = []) {
 	const out = [];
 	const free = new Set(plurals);
+	const loose = new Set(unnamed);
 	const want = tokensOf(english).sort();
 	const got = tokensOf(translation).filter((t) => !free.has(t) || want.includes(t)).sort();
-	const missing = want.filter((t, i) => want.indexOf(t) === i && got.filter((x) => x === t).length < want.filter((x) => x === t).length);
+	const missing = want.filter((t, i) => want.indexOf(t) === i && !loose.has(t) && got.filter((x) => x === t).length < want.filter((x) => x === t).length);
 	const extra = got.filter((t, i) => got.indexOf(t) === i && want.filter((x) => x === t).length < got.filter((x) => x === t).length);
 	if (missing.length) out.push(`leaves out ${missing.map((t) => `{${t}}`).join(', ')}`);
 	if (extra.length) out.push(`has ${extra.map((t) => `{${t}}`).join(', ')}, which the English has ${extra.length > 1 ? 'fewer times or not at all' : 'fewer times or not at all'}`);
@@ -197,7 +228,7 @@ function guideState(packDir, manifest, guides, locales) {
 				}
 				if (v === '') continue;
 				s.translated[k] = v;
-				for (const problem of textProblems(k, v, (byText.get(k) || []).map(([t]) => t))) s.problems.push({ text: k, problem });
+				for (const problem of textProblems(k, v, (byText.get(k) || []).map(([t]) => t), p.kind === 'guide' ? unnamedTokens(k, p.locale) : [])) s.problems.push({ text: k, problem });
 			}
 			s.retired = retiredEntries(fs.readFileSync(p.file, 'utf8'));
 			const taken = new Set(Object.keys(s.translated));
@@ -218,8 +249,9 @@ function guideState(packDir, manifest, guides, locales) {
 	return out;
 }
 
-function tokenLine(tokens) {
-	return `\t-- ${tokens.map(([t, en]) => `{${t}} ${en}`).join(' · ')}`;
+// `unnamed`: tokens no source names in the file's language (unnamedTokens).
+function tokenLine(tokens, unnamed = new Set()) {
+	return `\t-- ${tokens.map(([t, en]) => `{${t}} ${en}${unnamed.has(t) ? ' (no name in this language: may be words)' : ''}`).join(' · ')}`;
 }
 
 // A texts file whole: header, every text in reading order (translated or
@@ -233,6 +265,7 @@ function writeTextsFile({ locale, kind, id, source, texts, translated, retired }
 		'-- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its',
 		`-- name there in ${lang} (the English is listed above the line). A name the English has in the plural, as words,`,
 		'-- may be written with the singular\'s token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".',
+		`-- A token marked "no name in this language" would show in English: write that name in ${lang} words instead.`,
 		'-- The comments are rewritten by sync.',
 		'return {',
 	];
@@ -243,7 +276,7 @@ function writeTextsFile({ locale, kind, id, source, texts, translated, retired }
 			lines.push(`\t-- ${t.where.replace(/[\r\n]+/g, ' ')}`);
 			where = t.where;
 		}
-		if (t.tokens.length) lines.push(tokenLine(t.tokens));
+		if (t.tokens.length) lines.push(tokenLine(t.tokens, new Set(kind === 'guide' ? unnamedTokens(t.text, locale) : [])));
 		if (t.plurals.length) lines.push(`\t-- plural, as words: ${t.plurals.map(([tok, en]) => `${en}s = {${tok}} ${en}`).join(' · ')}`);
 		lines.push(`\t[${luaString(t.text)}] = ${luaString(translated[t.text] || '')},`);
 	}

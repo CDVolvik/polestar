@@ -100,6 +100,7 @@ L["%s or %s"] = "%s 또는 %s"
 L["Kill %s for %s"] = "%s 처치 (%s 획득)"
 L["Collect %s from %s"] = "%s 수집 (출처: %s)"
 L["Riding"] = "탈것 숙련"
+L["Grey, kept: opens %s"] = "회색, 유지됨: %s 퀘스트를 엽니다"
 
 -- Core/Closes.lua
 L["Taking %s closes %s for good."] = "%s 퀘스트를 받으면 %s 퀘스트는 영영 받을 수 없습니다."
@@ -1045,9 +1046,10 @@ L["Faction filter"] = "진영 필터"
 L["Class"] = "직업"
 L["Professions"] = "전문 기술"
 L["Exploration"] = "탐험"
-L["Legacy"] = "옛 콘텐츠"
+L["Legacy"] = "유산"
 L["Collectibles"] = "수집품"
 L["Sections"] = "섹션"
+L["guide status: Completed"] = "완료됨"
 
 -- UI/Lookup.lua
 L["Companion"] = "애완동물"
@@ -1349,6 +1351,7 @@ L["Copy your report with Ctrl+C (Cmd+C on a Mac), switch to Discord and paste it
 L["Get the invite"] = "초대 링크 받기"
 L["Report problems, ask for help and hear about new guides first. The invite is selected for you: copy it with Ctrl+C (Cmd+C on a Mac) and open it in your browser."] = "문제를 신고하고, 도움을 요청하고, 새 가이드 소식을 먼저 받으십시오. 초대 링크가 선택되어 있습니다: Ctrl+C(Mac은 Cmd+C)로 복사해 브라우저에서 여십시오."
 L["Report problems, ask for help and hear about new guides first."] = "문제를 신고하고, 도움을 요청하고, 새 가이드 소식을 먼저 받으십시오."
+-- L["blocked in %s: %s (%s)"] = ""
 
 -- UI/Packs.lua
 L["turned off in the AddOns list"] = "애드온 목록에서 꺼짐"
@@ -1843,7 +1846,6 @@ L["Point the arrow"] = "화살표 지정"
 L["Details"] = "상세"
 L["Minimize"] = "최소화"
 L["Back to the game"] = "게임으로 돌아가기"
-L["Browsing the guide needs a gamepad: turn it on in the game's options and plug one in."] = "가이드 탐색에는 게임패드가 필요합니다. 게임 설정에서 켜고 게임패드를 연결하십시오."
 L["%s, then press a button, or hold one and press another. Tap %s to cancel, hold it to bind %s. %s unbinds."] = "%s 후 버튼을 누르거나, 하나를 누른 채 다른 버튼을 누르십시오. %s 짧게 누르면 취소, 길게 누르면 %s 지정. %s: 해제."
 L["%s, then press a button. Tap %s to cancel, hold it to bind %s. %s unbinds."] = "%s 후 버튼을 누르십시오. %s 짧게 누르면 취소, 길게 누르면 %s 지정. %s: 해제."
 L["Click, then press a key; Escape cancels. Right-click unbinds."] = "클릭 후 키를 누르십시오. Esc는 취소, 오른쪽 클릭은 해제."
@@ -1869,6 +1871,9 @@ L["A bar under the window says what each button does, and B sits on the close bu
 L["The guide"] = "가이드"
 L["Quest buttons"] = "퀘스트 버튼"
 L["The guide window holds the gamepad until B: the D-pad picks a line, A points the arrow there or uses the item, X shows its details, LB and RB change steps, Y minimizes the window. A window that opened by itself, such as a route choice, waits for this button before it takes the gamepad."] = "가이드 창은 B를 누를 때까지 게임패드를 차지합니다. 방향 패드로 줄 선택, A로 화살표 지정 또는 아이템 사용, X로 상세 보기, LB와 RB로 단계 전환, Y로 창 최소화. 경로 선택처럼 저절로 열린 창은 이 버튼을 눌러야 게임패드를 가져갑니다."
+L["Browsing the guide needs the game's gamepad interface (Options, Gamepad, Enable Gamepad UI), or Use with the keyboard and mouse on Polestar's Gamepad page with a gamepad plugged in."] = "가이드를 넘겨 보려면 게임의 게임패드 인터페이스(게임 설정, 게임패드)가 필요하거나, 게임패드를 연결한 상태에서 Polestar 게임패드 페이지의 '키보드와 마우스와 함께 사용'을 켜야 합니다."
+L["Use with the keyboard and mouse"] = "키보드와 마우스와 함께 사용"
+L["Off, Polestar uses the gamepad only with the game's gamepad interface (Options, Gamepad, Enable Gamepad UI). On, also with the keyboard and mouse interface, while the gamepad is turned on in the game's options and plugged in."] = "끄면 Polestar는 게임의 게임패드 인터페이스(게임 설정, 게임패드)에서만 게임패드를 사용합니다. 켜면 게임 설정에서 게임패드가 켜져 있고 연결되어 있는 동안 키보드와 마우스 인터페이스에서도 사용합니다."
 
 -- Core/RoutePlan.lua
 L["step %d"] = "%d단계"
@@ -1926,3 +1931,4 @@ L["Shortest Path Forever's arrow, route and journey take you to each goal. Poles
 -- L["Shortest Path Forever is guiding. Turn off \"Guide with Shortest Path Forever when it's installed\" (Options, Integrations) to use Polestar's arrow."] = "Shortest Path Forever가 안내 중입니다. Polestar의 화살표를 사용하려면 \"설치 시 Shortest Path Forever로 가이드\"(옵션, 연동)를 끄세요."
 -- L["Guide with Shortest Path Forever when it's installed"] = "설치 시 Shortest Path Forever로 가이드"
 -- L["Shortest Path Forever's arrow, route and journey take you to each goal. Polestar's arrow, route lines, journey steps, travel button, transport alerts, map clicks and /way step aside; the guide window and map pins stay."] = "Shortest Path Forever의 화살표, 경로, 여정이 각 목표로 안내합니다. Polestar의 화살표, 경로선, 여정 단계, 이동 버튼, 교통수단 알림, 지도 클릭, /way는 물러나고 가이드 창과 지도 핀은 남습니다."
+-- L["Browsing the guide needs a gamepad: turn it on in the game's options and plug one in."] = "가이드 탐색에는 게임패드가 필요합니다. 게임 설정에서 켜고 게임패드를 연결하십시오."

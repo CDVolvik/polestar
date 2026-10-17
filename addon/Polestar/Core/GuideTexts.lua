@@ -2,7 +2,8 @@
 -- "Guide texts".
 --
 -- A compiled guide's prose (its title, why, pitch, pros, cons and reward
--- words; each step's title and tip; each goal's note and text) holds the
+-- words; each step's title and tip; each goal's note and text, and a kill of no
+-- NPC's target in words) holds the
 -- game's names as tokens, {kind:id} (tools/lib/dsl/tokens.js), and the
 -- guide's `names` give each token's English. RegisterGuide hands every guide
 -- here before escaping it, and each text is then shown as:
@@ -13,6 +14,9 @@
 --      (Polestar.Names for quests, NPCs, objects, items, spells, factions
 --      and areas; the client's map name for a zone; L for a profession),
 --      else by its English.
+-- An English client reads a text the guide's `written` holds (one that
+-- spells a name otherwise than its token's English: "Dalinda") as the
+-- author's words there.
 -- A guide's `folder` and the pack's title and notes are the pack's own
 -- texts, translated once for every guide; a folder named after a class reads
 -- as the client's name of that class.
@@ -103,6 +107,9 @@ local function fill(s, names, live)
 end
 
 local function render(def, entry, en, live)
+	-- A text that spells a name otherwise than its token's English: an
+	-- English client reads the author's words.
+	if english and entry.written[en] then return entry.written[en] end
 	local t = texts[def.pack]
 	local g = t and t.guides[def.id]
 	return fill(g and g[en] or en, entry.names, live)
@@ -134,7 +141,11 @@ local function collect(def, fields)
 	for _, step in ipairs(def.steps) do
 		for _, f in ipairs(STEP_FIELDS) do add(step, f) end
 		for _, goal in ipairs(step.goals) do
-			if type(goal) == "table" then for _, f in ipairs(GOAL_FIELDS) do add(goal, f) end end
+			if type(goal) == "table" then
+				for _, f in ipairs(GOAL_FIELDS) do add(goal, f) end
+				-- A kill of no NPC names its target in words.
+				if goal.t == "kill" and goal.npc == nil then add(goal, "target") end
+			end
 		end
 	end
 end
@@ -166,11 +177,14 @@ local function apply(def, entry, live, escape)
 end
 
 function GuideTexts.Prepare(def, live)
-	local names = {}
+	local names, written = {}, {}
 	if type(def.names) == "table" then
 		for k, v in pairs(def.names) do if valid(k) and valid(v) then names[k] = v end end
 	end
-	local entry = { names = names, fields = {}, folder = def.folder }
+	if type(def.written) == "table" then
+		for k, v in pairs(def.written) do if valid(k) and valid(v) then written[k] = v end end
+	end
+	local entry = { names = names, written = written, fields = {}, folder = def.folder }
 	collect(def, entry.fields)
 	-- An English client fills the tokens once: nothing ever changes them.
 	if not english then prepared[def] = entry end

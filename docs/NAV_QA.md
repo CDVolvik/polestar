@@ -135,7 +135,9 @@ What tests cannot prove, checked in the client before a release:
    guide steps (a pick-up, a kill area, a hand-in across a boat): only its
    arrow, line and journey show; the kill area stays held while you work it;
    clearing its journey sticks until the step changes; a fight and a death
-   send nothing; the option off brings Polestar's arrow back.
+   send nothing; a goal it finds no way to (its tracker: "No way there from
+   here.") brings Polestar's arrow back; the option off brings Polestar's
+   arrow back.
 6. **Hostile towns (H6):** a Horde character guided to a goal inside
    Southshore (or an Alliance one to Tarren Mill): the journey's walk reads
    "Hostile town: Southshore", the arrow says it once as the walk starts, and

@@ -163,4 +163,4 @@ function buildCandidates(data, entries, opts) {
 	return { candidates: kept.map((a) => a.cand), coverage };
 }
 
-module.exports = { buildCandidates, factionTag, spawnPoints, worldPos, CAP };
+module.exports = { buildCandidates, factionTag, usableBy, spawnPoints, worldPos, CAP };

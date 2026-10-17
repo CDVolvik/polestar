@@ -100,6 +100,7 @@ L["%s or %s"] = "%s 或 %s"
 L["Kill %s for %s"] = "擊殺 %s 以取得 %s"
 L["Collect %s from %s"] = "從 %s 收集 %s"
 L["Riding"] = "騎術"
+L["Grey, kept: opens %s"] = "灰色，保留：開啟%s"
 
 -- Core/Closes.lua
 L["Taking %s closes %s for good."] = "接受 %s 將永久關閉 %s。"
@@ -1045,9 +1046,10 @@ L["Faction filter"] = "陣營篩選"
 L["Class"] = "職業"
 L["Professions"] = "專業"
 L["Exploration"] = "探索"
-L["Legacy"] = "舊版"
+L["Legacy"] = "傳承"
 L["Collectibles"] = "收藏品"
 L["Sections"] = "區段"
+L["guide status: Completed"] = "已完成"
 
 -- UI/Lookup.lua
 L["Companion"] = "小寵物"
@@ -1349,6 +1351,7 @@ L["Copy your report with Ctrl+C (Cmd+C on a Mac), switch to Discord and paste it
 L["Get the invite"] = "取得邀請"
 L["Report problems, ask for help and hear about new guides first. The invite is selected for you: copy it with Ctrl+C (Cmd+C on a Mac) and open it in your browser."] = "回報問題、尋求協助，並搶先得知新指南。邀請連結已為你選取：用 Ctrl+C（Mac 為 Cmd+C）複製並在瀏覽器中開啟。"
 L["Report problems, ask for help and hear about new guides first."] = "回報問題、尋求協助，並搶先得知新指南。"
+-- L["blocked in %s: %s (%s)"] = ""
 
 -- UI/Packs.lua
 L["turned off in the AddOns list"] = "已在插件清單中關閉"
@@ -1843,7 +1846,6 @@ L["Point the arrow"] = "指向箭頭"
 L["Details"] = "詳情"
 L["Minimize"] = "最小化"
 L["Back to the game"] = "回到遊戲"
-L["Browsing the guide needs a gamepad: turn it on in the game's options and plug one in."] = "瀏覽指南需要控制器：請在遊戲選項中啟用並接上控制器。"
 L["%s, then press a button, or hold one and press another. Tap %s to cancel, hold it to bind %s. %s unbinds."] = "%s，然後按一個按鈕，或按住一個再按另一個。輕按 %s 取消，按住則綁定 %s。%s 解除綁定。"
 L["%s, then press a button. Tap %s to cancel, hold it to bind %s. %s unbinds."] = "%s，然後按一個按鈕。輕按 %s 取消，按住則綁定 %s。%s 解除綁定。"
 L["Click, then press a key; Escape cancels. Right-click unbinds."] = "點擊後按一個鍵；Esc 取消。右鍵點擊解除綁定。"
@@ -1869,6 +1871,9 @@ L["A bar under the window says what each button does, and B sits on the close bu
 L["The guide"] = "指南"
 L["Quest buttons"] = "任務按鈕"
 L["The guide window holds the gamepad until B: the D-pad picks a line, A points the arrow there or uses the item, X shows its details, LB and RB change steps, Y minimizes the window. A window that opened by itself, such as a route choice, waits for this button before it takes the gamepad."] = "指南視窗會佔用控制器直到按下 B：方向鍵選擇一行，A 將箭頭指向該處或使用物品，X 顯示詳情，LB 與 RB 切換步驟，Y 最小化視窗。自行開啟的視窗（例如路線選擇）會等到按下此按鈕才取得控制器。"
+L["Browsing the guide needs the game's gamepad interface (Options, Gamepad, Enable Gamepad UI), or Use with the keyboard and mouse on Polestar's Gamepad page with a gamepad plugged in."] = "瀏覽指南需要遊戲的控制器介面（遊戲設定，控制器），或在連接控制器時開啟 Polestar 控制器頁面上的「搭配鍵盤和滑鼠使用」。"
+L["Use with the keyboard and mouse"] = "搭配鍵盤和滑鼠使用"
+L["Off, Polestar uses the gamepad only with the game's gamepad interface (Options, Gamepad, Enable Gamepad UI). On, also with the keyboard and mouse interface, while the gamepad is turned on in the game's options and plugged in."] = "關閉：Polestar 只在遊戲的控制器介面（遊戲設定，控制器）中使用控制器。開啟：在遊戲設定中啟用控制器並已連接時，鍵盤和滑鼠介面下也使用。"
 
 -- Core/RoutePlan.lua
 L["step %d"] = "步驟 %d"
@@ -1926,3 +1931,4 @@ L["Shortest Path Forever's arrow, route and journey take you to each goal. Poles
 -- L["Shortest Path Forever is guiding. Turn off \"Guide with Shortest Path Forever when it's installed\" (Options, Integrations) to use Polestar's arrow."] = "Shortest Path Forever 正在導引。若要使用 Polestar 的箭頭，請關閉\"已安裝時以 Shortest Path Forever 導引\"（選項，整合）。"
 -- L["Guide with Shortest Path Forever when it's installed"] = "已安裝時以 Shortest Path Forever 導引"
 -- L["Shortest Path Forever's arrow, route and journey take you to each goal. Polestar's arrow, route lines, journey steps, travel button, transport alerts, map clicks and /way step aside; the guide window and map pins stay."] = "由 Shortest Path Forever 的箭頭、路線與旅程帶你前往每個目標。Polestar 的箭頭、路線線條、旅程步驟、旅行按鈕、交通提醒、地圖點擊與 /way 會讓開；指南視窗與地圖標記保留。"
+-- L["Browsing the guide needs a gamepad: turn it on in the game's options and plug one in."] = "瀏覽指南需要控制器：請在遊戲選項中啟用並接上控制器。"

@@ -338,8 +338,10 @@ end
 --       known = { [taxiNodeID] = true },
 --       speed = yd/s,
 --       hearth = inn point or nil, hearthName = bind location, noHearth = true: leave it out,
---       skip = { spells = { [id] = true }, transports = { [t] = true }, taxi = { [nodeID] = true } }:
---         left out for this target (skipped legs),
+--       skip = { spells = { [id] = true }, transports = { [t] = true }, taxi = { [nodeID] = true },
+--         cross = { [crossing end] = true } }: left out for this target (skipped legs;
+--         a skipped crossing end lets a start nearer the partner than the ends
+--         are to each other walk straight to the partner),
 --       teleports = { { spell, name, to = point, cast, ready }, ... } or nil,
 --       departure = function(transport, side, after) -> wait, ride (seconds, from
 --         `after` seconds into the trip) or nil: the transports' average waits,
@@ -583,6 +585,7 @@ function Nav.PlanRoute(p)
 
 	-- Explicit walk links: crossing pairs, chain neighbours, attachments.
 	local extra = {}
+	local onCross = {} -- [far end vertex] = true: the start is on that crossing
 	local function link(u, v)
 		if not (u and v) then return end
 		local l = extra[u]
@@ -596,6 +599,31 @@ function Nav.PlanRoute(p)
 	if zoned then
 		for _, e in ipairs(crossEnds) do
 			if crossV[e] and not e.noCross then link(crossV[e], crossV[e.partner]) end
+		end
+		-- A start already on a crossing (walked past its near end, or that end
+		-- skipped and still nearer the far end than the ends are to each other)
+		-- walks on to the far end, never back to the near one: the ends can be
+		-- hundreds of yards apart along a road. Farther off, the near end comes
+		-- first again, so a skip never sends anyone over the zone border elsewhere.
+		if not startIn then
+			local cross = skip and skip.cross
+			-- A start whose walks to a crossing's two ends sum within this of the
+			-- ends' distance is on it. Local here: PlanRoute is at Lua 5.1's 60
+			-- upvalues.
+			local ON_CROSSING = 1.1
+			for _, e in ipairs(crossEnds) do
+				local f = e.partner
+				if crossV[e] and crossV[f] and not e.noCross and vzone[1] ~= nil and vzone[1] == vzone[crossV[e]] then
+					local span = yards(e.c, e.wx, e.wy, f.c, f.wx, f.wy)
+					local toE = yards(p.c, p.wx, p.wy, e.c, e.wx, e.wy)
+					local toF = yards(p.c, p.wx, p.wy, f.c, f.wx, f.wy)
+					local on = toE > e.r and toF < span and toE + toF <= span * ON_CROSSING
+					if on or (cross and cross[e] and toF < span) then
+						link(1, crossV[f])
+						onCross[crossV[f]] = true
+					end
+				end
+			end
 		end
 		for _, ch in ipairs(chains) do
 			local nodes = ch.nodes
@@ -910,6 +938,7 @@ function Nav.PlanRoute(p)
 	local function waypointLabel(before, w, after)
 		local nd = vref[w]
 		if vkind[w] == CROSS then
+			if before == 1 and onCross[w] then return crossCaption(nd.partner) end
 			if before and vkind[before] == CROSS and vref[before].partner == nd then return crossCaption(vref[before]) end
 			if after and vkind[after] == CROSS and vref[after] == nd.partner then return crossCaption(nd) end
 			return L["Walk"]
@@ -1217,7 +1246,7 @@ local planSpeed = RUN_SPEED
 local planAt, planC, planX, planY = 0, nil, 0, 0 -- when and where the route was planned
 local lastMoveCheck = 0
 local skipFor      -- the target the skipped legs below were for
-local skipped = { hearth = false, spells = {}, transports = {}, taxi = {} } -- left out of its plans
+local skipped = { hearth = false, spells = {}, transports = {}, taxi = {}, cross = {} } -- left out of its plans
 local progressYards -- yards left on the current walk leg at the last Aim (nil: not measured)
 local legSince = 0 -- GetTime() when the current leg became current
 local remeasureOwed = false -- the engine's measures came in on a flight or boat: weighed after it
@@ -1455,7 +1484,7 @@ function Travel.Replan()
 	local target = Nav.GetTarget()
 	if skipFor ~= target then
 		skipFor = nil
-		skipped = { hearth = false, spells = {}, transports = {}, taxi = {} }
+		skipped = { hearth = false, spells = {}, transports = {}, taxi = {}, cross = {} }
 	end
 	local pc, px, py
 	legs, pc, px, py = plan(target)
@@ -1860,7 +1889,19 @@ function Travel.SkipLeg()
 	local leg = legs and legs[ci]
 	if not leg then return false end
 	if not Travel.SkipReplans(leg) then
-		if leg.waypoint then dirty = true end
+		-- A crossing's near end: the plans for this target walk on from it, so
+		-- the next plan (moving on, a zone change) near the crossing never sends
+		-- you back to it.
+		local nextLeg = legs[ci + 1]
+		local id, side = nextLeg and nextLeg.crossing, nextLeg and nextLeg.side
+		if leg.waypoint and id then
+			for _, e in ipairs(crossEnds) do
+				if e.id == id and e.side == side then skipped.cross[e] = true end
+			end
+			skipFor = Nav.GetTarget()
+		elseif leg.waypoint then
+			dirty = true
+		end
 		advance()
 		return true
 	end

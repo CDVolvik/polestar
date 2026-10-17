@@ -122,6 +122,12 @@ for your language from
   descriptions wrap, controls size to their text), and a text this still
   lists is a layout bug to report, not yours to shorten. `--slack 1.15`
   measures about as wide as the game's own font.
+- `node tools/polestar.js i18n leaks [<locale>...]` runs the addon in each
+  language and lists the English it leaves on screen, grouped by where it
+  came from ("English left on screen" below). `--scene guide,options` runs
+  only those scenes, `--guide <id>,...` puts other guides in the guide
+  window, `--json` prints one document, `--update-baseline` rewrites the
+  baseline (below).
 
 ## For developers
 
@@ -140,6 +146,87 @@ the display can ask `Polestar.Names` for it. A game term the client names
 translated client fake a language Polestar does not ship:
 `fakeLocale('itIT', { ... })` (`tests/helpers/locale.js`).
 
+## English left on screen
+
+`node tools/polestar.js i18n leaks` checks that nothing English reaches the
+screen on a client in another language, so a new feature cannot add English
+unnoticed. It runs the addon on the client stub (`tests/lua`) in each
+language with the shipped translations, names addon and guide texts, and has
+the client answer in "its language": every name the client itself gives
+(quest titles, item, zone, map, area, spell, faction, class and race names,
+the player's name) comes back as a placeholder holding no word. Scenes then
+drive the windows: the guide window step by step with every tooltip, all
+guides (both with every step shown, whatever class, race or faction it is
+for), the welcome, the picker, Options, Lookup, Dungeons, Rares, talents,
+the journey planner, Polestar's tooltip lines, every slash command, the world
+map and alerts, and the Recorder. Every text the addons put up is recorded
+(font strings and buttons, tooltips, chat, popups, menus) with its scene and
+the line that set it.
+
+A word of three or more Latin letters is English left on screen unless it is
+the language's own or `tools/lib/i18n/leaks-allow.json` allows it:
+
+- **The language's own words.** Russian, Korean and Chinese have none in
+  Latin letters. German, Spanish, French and Portuguese learn the words of
+  their real translations (interface strings and guide texts), after cutting
+  what is the same in every language (products, slash commands and their
+  arguments, tokens, formats): a translation that equals its English, or
+  copies most of it, teaches nothing.
+- **Names the client gave.** Every name `Polestar.Names` returned in the run
+  is the client's, in whole and by its words.
+- **The allow list**: product and people's names (Polestar, Discord, TomTom,
+  the font credits...), terms every client shows in English (XP, PvP, Shift,
+  Ctrl+C), patterns for links, files, versions, slash commands with their
+  documented arguments (`slashArguments` and every registered command; the
+  prose after one is checked), guide ids and format directives, and per
+  language the names and words it writes as English does (Uldaman; German
+  Navigation).
+
+What a scene types (a search, a command's arguments) does not count where a
+text repeats it. Each finding names its source:
+
+- **interface string not translated**: a key the language's file leaves
+  empty (`i18n sync`, then translate it);
+- **guide text not translated**: a guide text its texts file leaves empty
+  (`i18n guides sync`);
+- **name missing from the names pack**: `Polestar.Names` was asked and had no
+  name, so the guide's English showed (`i18n names`);
+- **English name, Polestar.Names not asked**: the code shows a name from a
+  guide or the data without asking `Polestar.Names` for it by its id;
+- **English a translation keeps**: the words are ones a translation of the
+  language writes as in English (a Forever-only place such as Hyjal Summit);
+- **English in the code**: a literal or a data text that does not go through
+  `L`.
+
+`tools/lib/i18n/leaks-baseline.json` lists, per language, what cannot be
+fixed in Polestar yet, each with a reason and the scenes it shows in: names
+as `"kind:id"` (`no-source`: no source of `i18n names` has it, mostly
+Forever's own NPCs, objects and items, which the client shows once the
+player has seen them; `same-as-english`: every source names it as in
+English, which `i18n names` records in `data/local/names-same-as-english.json`
+for the baseline), and texts as `"text:<the text>"` whose English a
+translation keeps (`kept-english`). A text whose only English is such is no
+finding.
+
+It fails (exit 1) on any finding, on a scene that stops with an error, and on
+a baseline entry that no longer shows in English in scenes that all ran (so the file only shrinks: remove the
+entry, or run with `--update-baseline`, which also adds the names and kept
+texts a new guide leaves in English, and never takes English from the code
+or an untranslated string or guide text). `npm test` runs a part of it
+(`tests/i18n-leaks.test.js`: Russian and Simplified Chinese; the guide window
+on three guides, Options, the picker, and Lookup, Dungeons and Rares where
+the Codex and quest database are built), and plants English to show the
+check finds it: an interface string "translated" as its English, English the
+code writes out, dropped guide texts (a paladin's among them) and prose after
+a slash command. Every scene needs the Codex and the quest database built
+(`codex build`, `questdb build`): without them the addon is an incomplete
+install with its own warnings, so the scenes skip, as on CI; run
+`i18n leaks` before a pull request that changes what the addon shows. A text that is right
+to show in Latin letters goes on the allow list with the reason in its group,
+never to make a finding go away. Developer output stays English on purpose:
+the guide lines `/polestar where` prints and the details block of a bug
+report, both read by maintainers, are on the allow list.
+
 ## Game names
 
 Names of quests, NPCs, objects, items, instances, dungeon encounters,
@@ -154,8 +241,8 @@ has the details.
 
 - `node tools/polestar.js i18n names [<locale>...]` rebuilds the addons. Per
   id the first source with a name wins: the client's own tables in that
-  language (wago.tools), Wowhead's Forever database in that language (its
-  list pages, then a tooltip for an id no list holds), DingDB (cloned into
+  language (wago.tools), Wowhead's Forever database in that language (what
+  is cached under `data/sources/wowhead/names`), DingDB (cloned into
   `data/sources/ding` at the commit pinned in `tools/lib/i18n/names.js`,
   every file checked against its sha256) and pfQuest's `db/<locale>` (the
   clone `data build` uses). It keeps only the ids the compiled guides, the
@@ -165,23 +252,20 @@ has the details.
   is one marking unused content (`[PH]`, `(DNT)`...). The client tables
   come from the newest build that has them all in English and every
   language; without one the build stops (`--no-tables` leaves them out on
-  purpose). Wowhead is asked one request at a time, 2.5 s apart (`--delay`,
-  never under 2 s), and its pages are cached under
-  `data/sources/wowhead/names` for 30 days: a first run for all nine
-  languages takes about an hour, a later one only reads the cache.
-  `--dry-run` counts the requests, `--limit <n>` caps the tooltips,
+  purpose). The Wowhead names are read from the cache in
+  `data/sources/wowhead/names/`, and without it that source is empty.
   `--offline` reads only the caches, `--no-questie` leaves DingDB out. It
   prints, per language, how many ids of each kind have no name. Commit the
   folders it writes.
-- A wrong name is fixed at its source: on Wowhead or in the client (it
-  changes there), in DingDB (tell Yendi, then move the pin to his new commit
-  and rebuild) or, for one only pfQuest has, in pfQuest.
+- A wrong name is fixed at its source: in the client (it changes there), in
+  DingDB (tell Yendi, then move the pin to his new commit and rebuild) or,
+  for one only pfQuest has, in pfQuest.
 - To move the pin, read what changed in Ding's `Ding/DB/`, then set the
   commit, version and sha256s of `DING` in `tools/lib/i18n/names.js`; a file
   that differs from its pin stops the build.
-- A new language needs its Wowhead path and tooltip locale id
-  (`LOCALE_PATHS` in `tools/lib/codex/wowhead.js`, `TOOLTIP_LOCALES` in
-  `tools/lib/i18n/names-wowhead.js`), a DingDB file and `DING` pin if Ding
+- A new language needs its Wowhead path (`LOCALE_PATHS` in
+  `tools/lib/codex/wowhead.js`, for the cache and the packs' credit), a
+  DingDB file and `DING` pin if Ding
   has it, its AddOns-list text (`tools/lib/i18n/toc.js`) and the folder's
   entry in the release list (`tools/lib/dsl/project.js` takes every locale of
   `locales.js`).
@@ -220,6 +304,10 @@ return {
   The comment above the line lists them with their English. Keep every token
   of the English, as many times, wherever the sentence needs it; add none.
   A text that is only names (a step titled after its NPC) has no line.
+- A token marked `(no name in this language: may be words)` is an object no
+  source names in your language (a district's sign, a tavern): the game would
+  show it in English. Write its name in your words instead; `i18n guides
+  check` accepts the translation without that token.
 - A name the text uses in the English plural stays words ("Harvest
   Watchers"): the comment `-- plural, as words: Harvest Watchers = {npc:115}
   Harvest Watcher` gives its NPC. Translate the plural yourself from the

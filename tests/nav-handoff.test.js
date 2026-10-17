@@ -58,9 +58,13 @@ end
 
 // ShortestPathForever.API as docs/api.md has it. spf.calls records every call;
 // spf.clear(), spf.replace(owner) and spf.arrive() are the player, another
-// addon and the journey's end; subscribers hear of changes on the next frame.
+// addon and the journey's end; spf.noWay() is its search finding no way to
+// the stop (the journey stays, unguided: Active() false, its tracker "No way
+// there from here."), spf.guide() its guidance on again, spf.corpseRun(on)
+// its own corpse run guiding (Active() true whoever's journey waits behind
+// it); subscribers hear of changes on the next frame.
 const SPF = `
-spf = { calls = {}, ended = {}, subs = {}, journeys = true, reads = 0 }
+spf = { calls = {}, ended = {}, subs = {}, journeys = true, reads = 0, guided = false }
 local A = { version = 1, minor = 1 }
 ShortestPathForever = { API = A }
 local function number(v) return type(v) == "number" and v == v and math.abs(v) < math.huge end
@@ -101,7 +105,7 @@ end
 local function start(owner, stops)
 	if spf.owner and spf.owner ~= owner then spf.ended[spf.owner] = "replaced" end
 	spf.ended[owner] = nil
-	spf.owner, spf.stops, spf.index = owner, stops, 1
+	spf.owner, spf.stops, spf.index, spf.guided = owner, stops, 1, true
 	spf.changed("started")
 end
 function A.NavigateRoute(owner, stops)
@@ -126,7 +130,7 @@ function A.Cancel(owner)
 	spf.changed("ended")
 	return true
 end
-function A.Active() spf.reads = spf.reads + 1; return spf.owner ~= nil end
+function A.Active() spf.reads = spf.reads + 1; return spf.corpse or (spf.owner ~= nil and spf.guided) end
 function A.Ended(owner) return spf.ended[owner] end
 function A.Subscribe(cb)
 	if type(cb) ~= "function" then error("callback must be a function", 2) end
@@ -144,6 +148,18 @@ end
 function spf.arrive()
 	if spf.owner then spf.ended[spf.owner], spf.owner = "arrived", nil end
 	spf.changed("ended")
+end
+function spf.noWay()
+	spf.guided = false
+	spf.changed("active")
+end
+function spf.guide()
+	if spf.owner then spf.guided = true end
+	spf.changed("active")
+end
+function spf.corpseRun(on)
+	spf.corpse = on
+	spf.changed("active")
 end
 function spf.routes()
 	local n = 0
@@ -518,6 +534,140 @@ test('refused (Journeys off in Shortest Path Forever): Polestar guides that targ
 	assert.deepEqual(out.back, [true, 2, 0, 'Polestar', false]);
 });
 
+test('no way there (#235): a stop it took but guides nothing to is guided by Polestar itself, until it guides again', () => {
+	const [out] = run(`
+		nav.setWaypoint(copy(FARLAND))
+		local before = { N.HandedOff(), arrowShown() }
+		spf.noWay()
+		stub.runTimers()
+		stub.advance(0.3)
+		local noWay = { N.HandedOff(), arrowShown(), legs(), sent(), spf.owner, spf.cancels() }
+		-- Its guidance on again (its tracker's header): Polestar steps aside.
+		spf.guide()
+		stub.runTimers()
+		stub.advance(0.3)
+		local back = { N.HandedOff(), arrowShown(), legs(), sent() }
+		-- No way again, and the player clears that journey: Polestar goes on guiding.
+		spf.noWay()
+		stub.runTimers()
+		spf.clear()
+		stub.runTimers()
+		stub.advance(3)
+		local cleared = { N.HandedOff(), arrowShown(), sent() }
+		-- The next target goes and is taken: handed off again.
+		local moved = copy(FARLAND)
+		moved.x = 60
+		nav.setWaypoint(moved)
+		stub.advance(0.3)
+		local taken = { N.HandedOff(), arrowShown(), sent() }
+		-- No way, then another addon's journey replaces it: that one guides.
+		spf.noWay()
+		stub.runTimers()
+		spf.replace("Questie")
+		stub.runTimers()
+		stub.advance(0.3)
+		local replaced = { N.HandedOff(), arrowShown(), spf.owner }
+		emit({ before = before, noWay = noWay, back = back, cleared = cleared, taken = taken, replaced = replaced })
+	`);
+	assert.deepEqual(out.before, [true, false]);
+	assert.deepEqual(out.noWay, [false, true, 3, 1, 'Polestar', 0], 'Polestar guides; its journey is left in place, not resent');
+	assert.deepEqual(out.back, [true, false, 0, 1]);
+	assert.deepEqual(out.cleared, [false, true, 1], 'clearing its unguided journey leaves Polestar guiding');
+	assert.deepEqual(out.taken, [true, false, 2]);
+	assert.deepEqual(out.replaced, [true, false, 'Questie']);
+});
+
+test('no way there without Subscribe (minor 0): found on Nav\'s tick', () => {
+	const [out] = run(`
+		nav.setWaypoint(copy(FARLAND))
+		spf.noWay()
+		stub.advance(1.5)
+		emit({ N.HandedOff(), arrowShown() })
+	`, { spf: SPF_MINOR0 });
+	assert.deepEqual(out, [false, true]);
+});
+
+test('dead or a ghost, its guiding nothing is its corpse run\'s business: Polestar\'s arrow stays out', () => {
+	const [out] = run(`
+		nav.setWaypoint(copy(FARLAND))
+		stub.dead = true
+		stub.fire("PLAYER_DEAD")
+		spf.noWay()
+		stub.runTimers()
+		stub.advance(0.3)
+		local dead = { N.HandedOff(), arrowShown() }
+		stub.dead = false
+		stub.fire("PLAYER_UNGHOST")
+		spf.guide()
+		stub.runTimers()
+		stub.advance(0.3)
+		emit({ dead = dead, alive = { N.HandedOff(), arrowShown(), sent() } })
+	`);
+	assert.deepEqual(out.dead, [true, false]);
+	assert.deepEqual(out.alive, [true, false, 1]);
+});
+
+test('no way, the journey cleared, then the player starts one in it: Polestar steps aside again', () => {
+	const [out] = run(`
+		nav.setWaypoint(copy(FARLAND))
+		spf.noWay()
+		stub.runTimers()
+		spf.clear()
+		stub.runTimers()
+		stub.advance(0.3)
+		local cleared = { N.HandedOff(), arrowShown() }
+		spf.replace("player")
+		stub.runTimers()
+		stub.advance(0.3)
+		emit({ cleared = cleared, player = { N.HandedOff(), arrowShown(), sent() } })
+	`);
+	assert.deepEqual(out.cleared, [false, true]);
+	assert.deepEqual(out.player, [true, false, 1], 'one arrow: its journey guides, Polestar\'s steps aside');
+});
+
+test('no way, then a death: its corpse run guides and Polestar\'s arrow steps aside; alive with still no way, Polestar guides', () => {
+	const [out] = run(`
+		nav.setWaypoint(copy(FARLAND))
+		spf.noWay()
+		stub.runTimers()
+		local noWay = { N.HandedOff(), arrowShown() }
+		stub.dead = true
+		stub.fire("PLAYER_DEAD")
+		N.SetTarget(9000, 20, 20, "Your corpse")
+		spf.corpseRun(true)
+		stub.runTimers()
+		stub.advance(0.3)
+		local dead = { N.HandedOff(), arrowShown() }
+		-- Back in the body: the corpse run ends; its journey to Polestar's stop resumes and still finds no way.
+		stub.dead = false
+		N.ReleaseTarget()
+		spf.corpseRun(false)
+		stub.fire("PLAYER_UNGHOST")
+		stub.runTimers()
+		stub.advance(0.3)
+		emit({ noWay = noWay, dead = dead, alive = { N.HandedOff(), arrowShown(), N.GetTarget().label, sent() } })
+	`);
+	assert.deepEqual(out.noWay, [false, true]);
+	assert.deepEqual(out.dead, [true, false], 'one arrow: its corpse run');
+	assert.deepEqual(out.alive, [false, true, 'Farland camp', 1]);
+});
+
+test('off by default (#235): with it installed Polestar guides and sends nothing; the option shows, off', () => {
+	const [out] = run(`
+		nav.setWaypoint(copy(FARLAND))
+		local s = surfaces()
+		s.handedOff = N.HandedOff()
+		s.shown = option().needs()
+		s.on = Polestar.Get("nav.spfHandoff")
+		s.sent = sent()
+		emit(s)
+	`, { saved: FRESH });
+	assert.deepEqual(out, {
+		arrow: true, route: 3, lines: 3, journey: true, trail: false, walk: true, pack: true, way: true, shim: true,
+		handedOff: false, shown: true, on: false, sent: 0,
+	});
+});
+
 test('the hand-off off: Polestar guides again and its journey is cancelled; on again: the stop goes back', () => {
 	const [out] = run(`
 		nav.setWaypoint(copy(FARLAND))
@@ -711,7 +861,7 @@ test('without Subscribe (minor 0) his journey is noticed on Nav\'s tick', () => 
 // A journey of Polestar's left running in Shortest Path Forever from 0.2.4,
 // which handed off by default (Ruling 27 of pathing v2).
 const LEFTOVER = `${SPF}
-spf.owner, spf.stops, spf.index = "Polestar", { { map = 9000, x = 0.5, y = 0.5 } }, 1
+spf.owner, spf.stops, spf.index, spf.guided = "Polestar", { { map = 9000, x = 0.5, y = 0.5 } }, 1, true
 `;
 
 test('a Polestar journey left over from 0.2.4 is cancelled once at login with the option off, after combat in a fight, never with it on', () => {

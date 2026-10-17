@@ -104,6 +104,7 @@ L["%s or %s"] = "%s o %s"
 L["Kill %s for %s"] = "Mata a %s para obtener %s"
 L["Collect %s from %s"] = "Consigue %s de %s"
 L["Riding"] = "Equitación"
+L["Grey, kept: opens %s"] = "Gris, se mantiene: abre %s"
 
 -- Core/Guides.lua
 L["Needs Polestar %s or newer."] = "Requiere Polestar %s o posterior."
@@ -1483,6 +1484,7 @@ L["Legacy"] = "Legado"
 L["Collectibles"] = "Coleccionables"
 L["Why"] = "Por qué"
 L["Sections"] = "Secciones"
+L["guide status: Completed"] = "Completada"
 
 -- UI/Report.lua
 L["Polestar %s"] = "Polestar %s"
@@ -1516,6 +1518,7 @@ L["Copy your report with Ctrl+C (Cmd+C on a Mac), switch to Discord and paste it
 L["Get the invite"] = "Conseguir la invitación"
 L["Report problems, ask for help and hear about new guides first. The invite is selected for you: copy it with Ctrl+C (Cmd+C on a Mac) and open it in your browser."] = "Informa de problemas, pide ayuda y entérate primero de las guías nuevas. La invitación ya está seleccionada: cópiala con Ctrl+C (Cmd+C en Mac) y ábrela en tu navegador."
 L["Report problems, ask for help and hear about new guides first."] = "Informa de problemas, pide ayuda y entérate primero de las guías nuevas."
+-- L["blocked in %s: %s (%s)"] = ""
 
 -- UI/RouteChoice.lua
 L["Right here"] = "Justo aquí"
@@ -1842,7 +1845,6 @@ L["Point the arrow"] = "Apuntar la flecha"
 L["Details"] = "Detalles"
 L["Minimize"] = "Minimizar"
 L["Back to the game"] = "Volver al juego"
-L["Browsing the guide needs a gamepad: turn it on in the game's options and plug one in."] = "Para recorrer la guía se necesita un control: actívalo en las opciones del juego y conecta uno."
 L["%s, then press a button, or hold one and press another. Tap %s to cancel, hold it to bind %s. %s unbinds."] = "%s y luego pulsa un botón, o mantén uno y pulsa otro. Toca %s para cancelar, mantenlo para asignar %s. %s quita la asignación."
 L["%s, then press a button. Tap %s to cancel, hold it to bind %s. %s unbinds."] = "%s y luego pulsa un botón. Toca %s para cancelar, mantenlo para asignar %s. %s quita la asignación."
 L["Click, then press a key; Escape cancels. Right-click unbinds."] = "Haz clic y luego pulsa una tecla; Escape cancela. Clic derecho quita la asignación."
@@ -1868,6 +1870,9 @@ L["A bar under the window says what each button does, and B sits on the close bu
 L["The guide"] = "La guía"
 L["Quest buttons"] = "Botones de misión"
 L["The guide window holds the gamepad until B: the D-pad picks a line, A points the arrow there or uses the item, X shows its details, LB and RB change steps, Y minimizes the window. A window that opened by itself, such as a route choice, waits for this button before it takes the gamepad."] = "La ventana de la guía conserva el control hasta B: la cruceta elige una línea, A apunta la flecha allí o usa el objeto, X muestra sus detalles, LB y RB cambian de paso, Y minimiza la ventana. Una ventana que se abrió sola, como la elección de una ruta, espera este botón antes de tomar el control."
+L["Browsing the guide needs the game's gamepad interface (Options, Gamepad, Enable Gamepad UI), or Use with the keyboard and mouse on Polestar's Gamepad page with a gamepad plugged in."] = "Para recorrer la guía se necesita la interfaz de control del juego (opciones del juego, Control) o «Usar con teclado y mouse» en la página Control de Polestar, con un control conectado."
+L["Use with the keyboard and mouse"] = "Usar con teclado y mouse"
+L["Off, Polestar uses the gamepad only with the game's gamepad interface (Options, Gamepad, Enable Gamepad UI). On, also with the keyboard and mouse interface, while the gamepad is turned on in the game's options and plugged in."] = "Desactivado: Polestar usa el control solo con la interfaz de control del juego (opciones del juego, Control). Activado: también con la interfaz de teclado y mouse, mientras el control esté activado en las opciones del juego y conectado."
 
 -- Core/RoutePlan.lua
 L["step %d"] = "paso %d"
@@ -1959,3 +1964,4 @@ L["Shortest Path Forever's arrow, route and journey take you to each goal. Poles
 -- L["Shortest Path Forever is guiding. Turn off \"Guide with Shortest Path Forever when it's installed\" (Options, Integrations) to use Polestar's arrow."] = "Shortest Path Forever está guiando. Desactiva \"Guiar con Shortest Path Forever si está instalado\" (Opciones, Integraciones) para usar la flecha de Polestar."
 -- L["Guide with Shortest Path Forever when it's installed"] = "Guiar con Shortest Path Forever si está instalado"
 -- L["Shortest Path Forever's arrow, route and journey take you to each goal. Polestar's arrow, route lines, journey steps, travel button, transport alerts, map clicks and /way step aside; the guide window and map pins stay."] = "La flecha, la ruta y el trayecto de Shortest Path Forever te llevan a cada objetivo. La flecha de Polestar, las líneas de ruta, los pasos del trayecto, el botón de viaje, los avisos de transporte, los clics en el mapa y /way se apartan; la ventana de la guía y los marcadores del mapa se quedan."
+-- L["Browsing the guide needs a gamepad: turn it on in the game's options and plug one in."] = "Para recorrer la guía se necesita un control: actívalo en las opciones del juego y conecta uno."

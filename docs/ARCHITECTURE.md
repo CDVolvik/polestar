@@ -169,7 +169,7 @@ the nearest 5, `opts.compact` writes yards from 1000 as "1.2k yd"
 keeps yards for whoever reads it.
 
 `PolestarDB = { schema = 1, settings = { [section] = { ... } }, packs = { [packId] = { off = true } }, welcomeSeen = 1, gamepad = { chords = { [action] = "PADRSHOULDER+PADDUP" } } }`
-`PolestarCharDB = { schema = 1, guide = id|nil, tabs = { guideId, ... }, activeTab = n, absentAt = { [guideId] = place }, manual = { [guideId] = { ["s:g"] = true|"tick" } }, skipped = { [guideId] = { [stepIndex] = true, ["s:g"] = true } }, pins = { [guideId] = { step, done } }, offers = { [questID] = level }, shapes = { [guideId] = shape }, stepKeys = { [guideId] = { hash, ... } }, flags = { fp = { [name] = true }, ... }, welcomeSeen = 0|1 }`
+`PolestarCharDB = { schema = 1, guide = id|nil, tabs = { guideId, ... }, activeTab = n, absentAt = { [guideId] = place }, manual = { [guideId] = { ["s:g"] = true|"tick" } }, skipped = { [guideId] = { [stepIndex] = true, ["s:g"] = true } }, pins = { [guideId] = { step, done } }, offers = { [questID] = true }, shapes = { [guideId] = shape }, stepKeys = { [guideId] = { hash, ... } }, flags = { fp = { [name] = true }, ... }, welcomeSeen = 0|1 }`
 
 `packs[<id>].off` hides a pack's guides account-wide (the Guide packs page's
 switch). `welcomeSeen` (UI/Welcome.lua) is the version of the welcome last
@@ -225,7 +225,9 @@ instance or on a map without a position it prints why instead.
 ```lua
 Polestar.SafeCall(fn, ...)    -- runs fn; an error is noted, then handed to the error handler
 Polestar.NoteError(err)       -- notes an error Polestar caught (SafeCall, Hooks' callbacks)
-Polestar.Errors() -> { { msg, count }, ... }   -- this session's, oldest first, the last 5 kept
+Polestar.Errors() -> { { msg, count, seq }, ... }   -- this session's, oldest first, the last 5 kept
+Polestar.NoteBlocked(addon, fn)   -- notes a protected call the game blocked from Polestar or Polestar_*
+Polestar.Blocked() -> { { addon, fn, count, at, seq }, ... }   -- this session's, oldest first, the last 5 kept
 Polestar.DiscordURL           -- the Polestar Discord's invite
 ```
 
@@ -234,7 +236,12 @@ runs through `SafeCall`, and Hooks' callbacks through their own `pcall`, so
 the errors Polestar catches are noted by their first line, counted, for the
 report a player copies (UI, "Reporting a problem"). Polestar never replaces
 the game's error handler: wrapping it would shift the stack the game and
-!BugGrabber show for every error.
+!BugGrabber show for every error. Taint is no Lua error: `ADDON_ACTION_BLOCKED`
+and `ADDON_ACTION_FORBIDDEN` (the addon blamed, then the function) go to
+`NoteBlocked`, which keeps those blaming Polestar or a `Polestar_*` addon
+with the addon, how often and the time it last came (`%H:%M:%S`), so a
+report on a broken gamepad or button does not read "Errors: none". `seq`,
+one counter for both lists, says which came last.
 
 ### Frames under the game's UI
 
@@ -469,10 +476,8 @@ Names.Add(locale, kind, { [id] = name })   -- the pack's files only; any kind
   Map, DungeonEncounter, Faction and TaxiNodes, then the Era client's
   ItemSparse for the items Forever's lacks; the newest build holding every
   one in English and each language, and none stops the build), Wowhead's
-  Forever database in that language (its list pages for the id ranges
-  holding a wanted id, then tooltips for ids no list holds; one request at a
-  time, at least 2 s apart, cached in `data/sources/wowhead/names`; a
-  bracketed name is no translation), DingDB (cloned into
+  Forever database in that language (read from `data/sources/wowhead/names`;
+  without that cache this source is empty; a bracketed name is no translation), DingDB (cloned into
   `data/sources/ding`, pinned to a commit and its files' sha256s: `DING` in
   `tools/lib/i18n/names.js`), then pfQuest's `db/<locale>` (no esMX). A name
   equal to the English one, from any source, is never stored: a translation
@@ -522,7 +527,9 @@ Polestar.RegisterGuideTexts(locale, packId, { pack = {...}, guides = { [id] = {.
   refreshes every guide; a refresh after login fires `GUIDES_REGISTERED`, so
   the guide window, the menus and search read the new texts.
 - **English clients** fill the tokens once at registration and keep nothing
-  else; no texts addon loads.
+  else; no texts addon loads. A text in the guide's `written` (one spelling
+  a name otherwise than its token's English, "Dendrite" for Dendrite
+  Starblaze) reads as the author's words there.
 - `Data.CheckInstall` checks the client's texts addon of our pack like the
   names pack: never missing, named when its version differs.
 
@@ -636,6 +643,7 @@ Compat.SpellLink(spellID)              -> link | nil
 Compat.RequestSpell(spellID)           -> bool   (cached; else requested: SPELL_DATA_LOAD_RESULT follows)
 Compat.GetBindLocation()               -> string | nil
 Compat.IsOnTaxi()                      -> bool
+Compat.IsIndoors()                     -> bool   (IsIndoors: in a cave, mine or building)
 Compat.GetCurrentTaxiNode()            -> name of the open taxi map's node | nil
 Compat.GetNpcID(unit)                  -> number | nil   (from UnitGUID)
 Compat.InCombat()                      -> bool
@@ -811,14 +819,14 @@ as on a bag item (`W.ItemClick`: Shift links, Ctrl tries it on, Alt guides;
 | `complete` | `quest`, `title` | — | ready for turn-in or completed |
 | `kill` | `target` | `npc`, `count`, `quest`, `oi` | objective `oi` finished, or quest ready/completed (not while the log lists no objectives yet, right after the accept); without `quest`: manual |
 | `collect` | `item`, `itemName` | `count`, `quest`, `oi` | objective finished / quest ready (as `kill`) / completed; without `quest`: item count ≥ `count` |
-| `goto` | `map`, `x`, `y` | `text`, `r` (default 8 yd), `area` (its name in the client's language shows instead of `text`) | within radius, **or** any later goal in the step is done |
+| `goto` | `map`, `x`, `y` | `text`, `r` (default 8 yd), `area` (its name in the client's language shows instead of `text`) | within radius, **or** gone into its `area` (subzone text equals the client's name of it, not the zone's, while indoors, after being seen elsewhere since the step came up; not for a goto after one into the same area in the step), **or** any later goal in the step is done |
 | `talk` | `npc`, `npcName` | — | gossip/quest frame opened with that NPC during this step; else manual |
 | `interact` | `object`, `objName` | `quest`, `oi` | objective state if `quest`; else manual |
 | `use` | `item`, `itemName` | `quest`, `oi` | objective state if `quest`; else manual |
 | `sethome` | `location` | `npc`, `npcName`, `area` | bound at the goal's inn (`npc`'s, else the inn `location` names, in Nav/Travel.lua's data), by any of: the inn Travel finds for `GetBindLocation()` (`Nav.BoundInn`: the innkeeper learned at bind time in `flags.inn`, else the inn whose `area` the client names so, else its names); `GetBindLocation()` equal to the client's name of that inn's or the goal's `area` (`Compat.GetAreaName`); last, equal to `location` (case-insensitive). Binding at that innkeeper during the step latches it |
 | `hearth` | `location` | `area` | zone or subzone equals the client's name of `area` (without one, `location`), else manual |
 | `getfp` | `location` | `npc`, `npcName`, `node`, `area` | with `node`: that taxi node among the known ones (`flags.taxi`, recorded by Nav/Travel.lua from the flight map); without: taxi map opened at a flight master of that name (persisted in `flags.fp`); else manual |
-| `fly` | `location` | `area` | as `hearth` |
+| `fly` | `location` | `area`, `node` | as `hearth` (`node`: the flight point, named in the client's language where no `area` names the place) |
 | `train` | — | `npc`, `npcName`, `text` | trainer window opened during this step, else manual |
 | `buy` | `item`, `itemName` | `count`, `npc`, `npcName` | item count ≥ `count` (default 1) |
 | `vendor` | — | `npc`, `npcName`, `text` | merchant window opened during this step, else manual |
@@ -1034,7 +1042,7 @@ Polestar.Engine.GetProgress() -> doneSteps, totalSteps
   Shadowbreaker, not the Dwarf's). Prerequisites the data lacks (issue #51)
   mark nothing in advance; the giver's window covers them. The mark is live:
   it does not hold the step, the focus or the arrow, and it goes the moment
-  the prerequisite is done (the guide then goes back to it, as below), not
+  the prerequisite is done (the guide then goes back to it), not
   on an unrelated turn-in. A giver's window that offers the quest (this
   session) beats the data: no mark in advance after that. Beyond
   that, when a gossip/greeting/detail window opens on an `accept` goal's NPC
@@ -1049,12 +1057,19 @@ Polestar.Engine.GetProgress() -> doneSteps, totalSteps
   client pops after a turn-in), or when an item starts it. An unavailable
   accept and the goals of that quest in the
   guide (objectives, complete, turnin) count as skipped, so the guide moves on
-  instead of stalling. The session marks clear on level-up, on any quest
-  turn-in (either can open a quest whose prerequisite the data lacks), and
-  for the quest itself when it is accepted or its giver's window lists it as
-  active; a quest in the log is not saved as refused at logout. The guide
-  goes back to a step the marks had let it pass until its giver says no
-  again. The view carries `unavailable = reason` and `unavailableText`.
+  instead of stalling. The session marks clear on level-up and on any quest
+  turn-in (either can open a quest whose prerequisite the data lacks). In
+  steps a tab has moved past, a `"level"` or `"pre"` mark clears only once
+  the data says the quest is open (level reached, prerequisites done: the
+  guide goes back to it) and otherwise stays with its reason brought up to
+  date; an `"offer"` mark stays (#161), keeping the step passed, so the
+  guide never goes back to a giver who said no for no reason the data
+  knows. Every mark goes for the quest itself when it is accepted, when its
+  giver's window offers it (also from a later step: the guide then goes
+  back to it, the player standing at that giver) or lists it as active.
+  `"offer"` marks are saved at logout (not for a quest in the log) and
+  restored at login at any level. The view carries `unavailable = reason`
+  and `unavailableText`.
   When such marks move the guide past a step during play, the Engine fires
   `STEP_SKIPPED`; the guide window's banner then reads "Skipped <quest>  ·
   <reason>" (one line per quest) until the step changes again, it is
@@ -1311,8 +1326,9 @@ holds at its opening, see "Not yet available"):
 - Before the start (with no start: before the last quest progress), a step
   passes when every open goal is an accept the character cannot take yet
   (level, prerequisite; marked unavailable for the session, so it comes back
-  on level-up or a turn-in), a soft goal (goto, fly, getfp, train, vendor,
-  hearth, sethome, talk, non-quest kill/collect/buy) in a step before the last
+  once the level is reached or the prerequisite done), a soft goal (goto,
+  fly, getfp, train, vendor, hearth, sethome, talk, non-quest
+  kill/collect/buy) in a step before the last
   step with live quest progress (a done quest goal or an objective with some
   progress; class or race steps and goals, and optional goals, are no
   evidence), or a travel goal (goto, fly, hearth, explore) while the player
@@ -1613,7 +1629,7 @@ called, as its `minor` grows) the two never guide at once:
   combat cancels Polestar's journey there once combat ends.
 
 ```lua
-Polestar.Nav.HandedOff() -> bool   -- the one predicate: handing off (installed, on, the last stop not refused), or yielding
+Polestar.Nav.HandedOff() -> bool   -- the one predicate: handing off (installed, on, the last stop not refused, and it guides that stop), or yielding
 Polestar.Nav.Reapply()             -- (Nav.lua) re-plan and tell every module the same target again, unannounced
 Polestar.Nav.handoff.Available() -> bool
 Polestar.Nav.handoff.Yielding() -> bool  -- the option off and a journey not Polestar's runs in it
@@ -1665,6 +1681,16 @@ Polestar.Nav.handoff.Yielding() -> bool  -- the option off and a journey not Pol
   itself (`Nav.HandedOff()` false) and cancels its earlier journey; the next
   target, or a zone change, offers a stop again, and the first one taken hands
   back.
+- **No way there.** A stop it took that it then guides nothing to (its
+  `CurrentStop("Polestar")` set but `Active()` false: its search found no
+  way, `StopGuide` in its `Journey.lua`, the tracker saying "No way there
+  from here."; or its guidance turned off in its tracker): Polestar guides
+  that target itself (`Nav.HandedOff()` false), leaving its journey in place
+  and sending nothing. It is read on `Subscribe`'s news (else Nav's tick) and
+  at death and coming back; it is never set while dead or a ghost (its corpse
+  run). Polestar goes on guiding after that journey ends, and steps aside as
+  soon as it guides anything again (that journey, the player's own, another
+  addon's, its corpse run); the next stop taken hands back.
 - **Off.** Turning `nav.spfHandoff` off cancels the journey and Polestar
   guides again (`Polestar_Nav` loads then), unless a journey not Polestar's
   runs (yield, above); on again sends the stop anew.
@@ -3423,16 +3449,19 @@ Reading flow: `docs/DESIGN.md` ("Intent" and "The Guide Window").
   position when the player set it); where the player stands (zone, subzone,
   `map <id> @x,y live`); other guide packs that are on; and the errors
   (`Polestar.Errors()`, plus with !BugGrabber its errors this session in
-  Polestar's files, `BugGrabber:GetDB()`), the newest three, counted, by
-  their path from the AddOns folder. Every line is cut at 100 bytes, so at
-  its longest the report fits one Discord message (2000 characters). Under
-  it, Discord's mark, "Polestar on Discord" and "Get the invite", which opens
-  the invite (`Polestar.DiscordURL`) in the copy window: the game opens no
-  links for addons, so the report is the only text a member copies. What the
-  player typed stays while the window is reopened on the same step. The
-  hub's and the settings' sidebars carry the Discord's mark at the end of
-  the version line (`UI.Report.SidebarLink(shell)`), which opens the invite like
-  `/polestar discord` (`UI.ShowDiscord`, `SHOW_DISCORD`).
+  Polestar's files, `BugGrabber:GetDB()`) by their path from the AddOns
+  folder, and the calls the game blocked (`Polestar.Blocked()`) as "blocked
+  in <addon>: <function> (<time>)": the newest three of both together, by
+  `seq` (!BugGrabber's count as the newest), each counted. Every line is cut
+  at 100 bytes, so at its longest the report fits one Discord message (2000
+  characters). Under it, Discord's mark, "Polestar on Discord" and "Get the
+  invite", which opens the invite (`Polestar.DiscordURL`) in the copy
+  window: the game opens no links for addons, so the report is the only text
+  a member copies. What the player typed stays while the window is reopened
+  on the same step. The hub's and the settings' sidebars carry the Discord's
+  mark at the end of the version line (`UI.Report.SidebarLink(shell)`),
+  which opens the invite like `/polestar discord` (`UI.ShowDiscord`,
+  `SHOW_DISCORD`).
 - **Per-character UI state** in `CharState().ui`: `recentGuides` (ids, newest
   first, at most 10), `favoriteGuides` (id -> true), `pickerSelected` (id).
 
@@ -3481,7 +3510,8 @@ render: `docs/preview/journey.svg`.
 Ported from Ding! by Yendi (@moust4ki), GPL-3.0, and rebuilt on the Theme.
 No Polestar window takes a button from the game while it is merely shown:
 a window holds the gamepad only while it is the newest one open, out of
-combat, with a gamepad active and `gamepad.navigate` on (focus mode needs
+combat, with a gamepad active (the game's gamepad interface, or
+`gamepad.withMouse` on with the keyboard and mouse) and `gamepad.navigate` on (focus mode needs
 only a gamepad), through a frame that reads the buttons first
 (`PolestarPadInput`, `OnGamePadButtonDown`), so neither the game's gamepad
 interface nor another addon's overrides (Easy Controller, ConsolePort) go
@@ -3520,7 +3550,7 @@ Polestar.Gamepad.Register(frame, spec)  -- navigation while `frame` is shown (th
 --          key = fn(key, w, isRepeat) -> handled, onFocus = fn(w),
 --          close = button | false (where B's chip sits; default frame.Close),
 --          actionLabel / xLabel / resetLabel = fn(w) -> text, backLabel, tabsLabel = text }
-Polestar.Gamepad.IsActive() -> bool        -- Polestar.GamepadUI(), or C_GamePad / GamePadEnable with a device plugged in
+Polestar.Gamepad.IsActive() -> bool        -- Polestar.GamepadUI(); with the keyboard and mouse only with gamepad.withMouse on (off by default) and C_GamePad / GamePadEnable with a device plugged in
 Polestar.Gamepad.Style() -> "xbox" | "playstation"  -- gamepad.glyphs, "auto" reads C_GamePad's labelStyle ("Shapes")
 Polestar.Gamepad.ButtonName(button), KeyName(key) -> text   -- "A" / "Cross", "LT + A", "LB + D-pad up", "Ctrl + N"
 Polestar.Gamepad.Glyph(parent[, name]) -> frame             -- frame:SetKeys(key or { button, ... }) -> width
@@ -3701,6 +3731,12 @@ Polestar.Talents.Show()                                     -- SHOW_TALENTS; /po
   to one per frame on `TRAIT_CONFIG_UPDATED`, `TRAIT_NODE_CHANGED`,
   `TRAIT_TREE_CURRENCY_INFO_UPDATED`, `ACTIVE_TALENT_GROUP_CHANGED`,
   `PLAYER_TALENT_UPDATE` and Gear's spec changes; `TALENTS_UPDATED` follows.
+- **Classes.** One plan file per class (`talents/forever/<class>.json`);
+  `talents build` writes them all into `Builds.lua`, one `T.Register` per
+  class, sorted by class. The tool finds each class's tree by its class skill
+  line (`CLASSES` in `tools/lib/talents/build.js`) and leaves out a stray
+  copy of a talent far off the grid (1.60.1.70374: Hunter node 104982,
+  Lightning Reflexes again; Priest node 105865, Holy Specialization again).
 - **Validation.** `Builds.lua` carries the tree the plans were replayed on.
   At run time each node is matched by ID (same rank count and name), else by
   name and rank count (a moved ID); a planned talent not found makes the plan
@@ -3715,7 +3751,10 @@ Polestar.Talents.Show()                                     -- SHOW_TALENTS; /po
   plan's notes are shown as approximate ("Around level N").
 - **Rules.** The source plans are written one point a level from 10 (the
   replay's order); a pick is the next rank of its
-  talent; gates and arrows as the tree has them. Whether an arrow needs its
+  talent; gates and arrows as the tree has them. Of several arrows into one
+  talent any one opens it (the client's SufficientForAvailability edges: the
+  Hunter's Intimidation, from Bestial Swiftness or Bestial Wrath); a line
+  the client only draws (TraitEdge type 0) is no arrow. Whether an arrow needs its
   source at full rank or one rank is `PREREQ_RULE` in
   `tools/lib/talents/build.js` (default `"full"`, unconfirmed in game);
   `Builds.lua` carries it as `prereq` and `Talents.Replay` follows it.
@@ -3887,44 +3926,22 @@ built.
   `--local-extras` takes the instances from AtlasLoot and `dungeons.json`
   instead.
 - Wowhead Forever per entity (`tools/lib/codex/wowhead.js`, release build
-  only, lowest precedence). `codex wowhead [--max-age <days>] [--dry-run]`
-  first reads Wowhead's list pages (`/forever/npcs`, `/objects`, `/items`):
-  up to 1,000 rows a request (past that the page says "15,205 NPCs found
-  (1,000 displayed)"), each with id, name, levels, classification, boss
-  flag, `location` and `envChange` (how Forever differs from Classic: new,
-  updated with its change lines, or unchanged). It reads them by id range
-  (the ID filter, 25,000 wide up to 300,000, then open; a range at the cap
-  splits by the count its note gives; a filter starting past the last id is
-  ignored by Wowhead and counts as empty; at most 150 list requests a type),
-  cached per range in `data/sources/wowhead/codex/lists/<type>.json`. On
-  2026-10-14 a first read took 151 requests (NPCs 51 for 15,205 rows,
-  objects 23 for 4,985, items 77 for 22,677: a split range costs its capped
-  parent too), a refresh one per cached range (103). `codex build` reads the
-  NPC rows for one fact only: the level of an NPC neither our data nor a
-  page gives one (286 NPCs); a row's rank, boss flag and place are no page's,
-  so rares, bosses and parity's verdicts read only pages.
-  Then the crawl fetches the NPC and object pages and item tooltips of what
-  `data/local/codex-parity.json` lists as missing or different, and of our
-  instances' bosses, one request at a time (1.5 s apart, lists included, a
-  growing pause on 403/429), caching each entity's facts under
-  `data/sources/wowhead/codex/<npc|object|item|spell>/<id>.json`. A wanted
-  page is fetched when it is not cached, the parser's `VERSION` changed,
-  its list row differs from the one it was fetched with (`listSig`; a page
-  Wowhead had not that a list now shows), or it is older than `--max-age`
-  (7 days, lists too) and an open parity gap (`openGaps`: neither "not in
-  Forever" nor settled with a reason), Forever's own (new or updated) or on
-  no list: a page of an entity Forever left as in Classic is kept. Of the
-  1,704 pages wanted on 2026-10-14, a refresh with every page stale fetches
-  210 (was all 1,704; spell pages have no list) plus the 103 list ranges.
-  `--dry-run` counts the list ranges and pages a run would fetch.
-  `codex build` only reads the cache. From them: an NPC's level, rare rank and
-  spawns where ours lack them (and the rares only Wowhead places), drops and
-  object contents with chance = looted count / looted kills, an NPC's or
-  object's `location` (the areas its page entry names; the parser's
-  `VERSION` per type re-fetches pages an older parser read) and Wowhead's
-  boss flag, and the reputation ("Requires <Faction> - <Standing>") and PvP
-  rank ("(Rank N)") an item's Forever tooltip asks for; objects named like a
-  missing boss (a boss chest) are fetched too. An instance also lists, after
+  only, lowest precedence). `codex build` reads the Wowhead Forever facts
+  cached under `data/sources/wowhead/codex/`, and builds without them when
+  there are none. The cache holds Wowhead's NPC, object
+  and item list rows by id range (`lists/<type>.json`: id, name, levels,
+  classification, boss flag, `location` and `envChange`, how Forever differs
+  from Classic) and each fetched entity's facts
+  (`<npc|object|item|spell>/<id>.json`). `codex build` reads the NPC rows
+  for one fact only: the level of an NPC neither our data nor a page gives
+  one (286 NPCs); a row's rank, boss flag and place are no page's, so rares,
+  bosses and parity's verdicts read only pages. From the pages: an NPC's
+  level, rare rank and spawns where ours lack them (and the rares only
+  Wowhead places), drops and object contents with chance = looted count /
+  looted kills, an NPC's or object's `location` (the areas its page entry
+  names) and Wowhead's boss flag, and the reputation ("Requires <Faction> -
+  <Standing>") and PvP rank ("(Rank N)") an item's Forever tooltip asks for.
+  An instance also lists, after
   its encounters and by level, the NPCs placed inside that the data or
   Wowhead ranks rare or boss (or flags boss), or that alone drop an item of
   quality 2 or better at 5% or more, each with a `role`: `rare` (ranked
@@ -4112,8 +4129,8 @@ built.
   the Neutral gate) and the world-drop Warbear patterns 15742 and 15754
   (Timbermaw Hold sells 20253 and 20254, gated in `ItemSparse`). An NPC that
   casts a spell creating an item (client `SpellEffect` 24; who casts it,
-  Wowhead Forever's spell page, `codex wowhead` fetching those of items ours
-  has no source for) hands it out: a `gift { npc, spell }` source (Duke
+  Wowhead Forever's spell page in the cache) hands it out: a `gift { npc,
+  spell }` source (Duke
   Hydraxis's Aqual and Eternal Quintessence). 26 Forever rares no
   database ranks yet. The 251 confirmed drop chances the release lacks are
   all cut by an item's 10-dropper cap (the internal build keeps AtlasLoot's
@@ -4270,8 +4287,9 @@ exclusive group: pfQuest `close` united with QuestieDB `exclusiveTo`.
 3. **Wowhead Forever's change notes** (`tools/lib/data/wowhead.js`,
    `--no-wowhead` skips them, as does a build without QuestieDB): the quest
    list of every zone and city page and of the nine class pages (class
-   quests are filed there, not under a zone) on wowhead.com/forever (cached a day in `data/sources/wowhead/zones.json`;
-   `--offline` reads the cache). A quest Wowhead marks updated with "Experience
+   quests are filed there, not under a zone) on wowhead.com/forever, read from
+   `data/sources/wowhead/zones.json`; without that cache this step adds
+   nothing. A quest Wowhead marks updated with "Experience
    X instead of Y", "Level X instead of Y" or "Requires level X instead of Y"
    gets X where its value is still the old Y (for XP, also where it has none),
    and one marked "Renamed from Y" gets Wowhead's Forever name where its title

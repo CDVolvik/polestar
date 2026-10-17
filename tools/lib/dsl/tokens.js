@@ -17,16 +17,22 @@
 // with its exact case ("Harvest Watchers" keeps its plural English, a
 // sentence's "the Jansen Stead" its lower case); a one-word name that the
 // pack's texts also use as a lower-case word ("Barracks", "barracks") is left
-// alone. A text may hold tokens its author wrote: their kind and id are
-// checked against the data.
+// alone. An NPC of the step's or the guide's own goals is also matched by its
+// first name ("Dalinda" for Dalinda Malem) where that word has four letters
+// or more, no other NPC there shares it, and no other NPC of the data starts
+// with it ("Defias" stays words). A text may hold tokens its author wrote:
+// their kind and id are checked against the data.
 //
 // A goal note that only names the goal's own NPC, object, target or item
 // (`accept 6181 -- Quartermaster Lewis`) is dropped: the goal already shows
 // that name, in the client's language (#133).
 //
 // The guide carries `names = { ["npc:234"] = "Gryan Stoutmantle", ... }`,
-// the English of every token it uses: what an English client shows, and any
-// client without a name for it.
+// the English of every token it uses (its first spelling in the guide): what
+// an English client shows, and any client without a name for it. A text that
+// spells a name otherwise ("Dalinda", "Molsen Farm" for The Molsen Farm) is
+// in `written`, tokenised text -> the author's words, which an English client
+// reads instead.
 
 const fs = require('node:fs');
 const path = require('node:path');
@@ -40,6 +46,9 @@ const GUIDE_FIELDS = ['title', 'why', 'pitch'];
 const GUIDE_LISTS = ['pros', 'cons'];
 const STEP_FIELDS = ['title', 'note'];
 const GOAL_FIELDS = ['note', 'text'];
+// A goal's prose fields: a kill of no NPC (`kill "enemy players for honor"`)
+// names its target in words too.
+const goalFields = (goal) => (goal.t === 'kill' && goal.npc === undefined && str(goal.target) ? [...GOAL_FIELDS, 'target'] : GOAL_FIELDS);
 // Areas of the open world: Eastern Kingdoms (0) and Kalimdor (1).
 const OPEN_WORLD = new Set([0, 1]);
 // Where a name comes from, best first: the step's own goals, the guide's, the
@@ -54,6 +63,8 @@ const WORLD_DATA = 5;
 const WORLD_SPELL = 6;
 const SOURCES = ['step', 'guide', 'zoneArea', 'worldZone', 'worldArea', 'worldData', 'worldSpell'];
 const MIN_NAME = 3;
+// The shortest first name matched for its NPC.
+const MIN_FIRST = 4;
 // Kinds whose names are matched without a leading "The" (and a zone's or
 // area's without its trailing "City").
 const ALIAS_KINDS = new Set(['area', 'zone', 'npc', 'object']);
@@ -154,7 +165,7 @@ function forEachText(guide, fn, { steps = true } = {}) {
 	if (!steps) return;
 	(guide.steps || []).forEach((step, si) => {
 		for (const f of STEP_FIELDS) if (str(step[f])) fn(step[f], step, f, 'step', si);
-		for (const goal of step.goals || []) for (const f of GOAL_FIELDS) if (str(goal[f])) fn(goal[f], goal, f, 'goal', si);
+		for (const goal of step.goals || []) for (const f of goalFields(goal)) if (str(goal[f])) fn(goal[f], goal, f, 'goal', si);
 	});
 }
 
@@ -194,9 +205,9 @@ class NameIndex {
 		this.put(name, name, kind, id, prio);
 		if (!ALIAS_KINDS.has(kind)) return;
 		// "Molsen Farm" for the game's "The Molsen Farm", "Stormwind" for
-		// "Stormwind City": the token's English is the author's words (one
-		// spelling per token and guide), the other languages show the game's
-		// name. A worse source than the name itself.
+		// "Stormwind City": an English client reads the author's words
+		// (`names`, `written`), the other languages the game's name. A worse
+		// source than the name itself.
 		// Without "The" only where the rest still reads as a name: two words or
 		// more, or a place ("The Rot" is no "Rot": "Rot Hide" gnolls).
 		const place = kind === 'zone' || kind === 'area';
@@ -206,13 +217,40 @@ class NameIndex {
 		if (city) this.put(city[1], name, kind, id, prio + 0.5, true);
 	}
 
-	// `match`: the words looked for; `english`: the token's English.
-	put(match, english, kind, id, prio, alias = false) {
+	// The first names of `npcs` ([{ id, name }], the step's or the guide's
+	// own): each first word of four letters or more that one NPC there has, no
+	// other NPC of the data starts with or is called ("Lunaclaw" and Lunaclaw
+	// Spirit), and nothing else of the game is called (the area Terrordale,
+	// the spell Polymorph), of an NPC whose last word the pack's texts do not
+	// use in lower case (a creature: Shadowmaw Panther, Dreadsteed Spirit). A
+	// worse source than a name itself.
+	addFirsts(npcs, prio, data) {
+		const byWord = new Map();
+		for (const { id, name } of npcs) {
+			const words = String(name).trim().split(/\s+/);
+			if (words.length < 2 || words[0].length < MIN_FIRST) continue;
+			if (!byWord.has(words[0])) byWord.set(words[0], new Map());
+			byWord.get(words[0]).set(id, words);
+		}
+		const starts = firstWords(data);
+		const taken = otherNames(data);
+		for (const [word, ids] of byWord) {
+			if (ids.size !== 1 || starts.get(word) !== 1 || taken.has(word.toLowerCase())) continue;
+			const [[id, words]] = ids;
+			const last = words[words.length - 1].toLowerCase();
+			if (this.common.has(last) || this.common.has(`${last}s`)) continue;
+			this.put(word, words.join(' '), 'npc', id, prio + 0.5, true, words[1].toLowerCase());
+		}
+	}
+
+	// `match`: the words looked for; `english`: the token's English; `next`:
+	// for a first name, its NPC's second word (lower case).
+	put(match, english, kind, id, prio, alias = false, next = null) {
 		if (match.length < MIN_NAME || !/^[\p{Lu}\p{N}]/u.test(match)) return;
 		if (kind !== 'skill' && !match.includes(' ') && this.common.has(match.toLowerCase())) return;
 		const had = this.seen.get(match);
 		if (had && (had.prio < prio || (had.prio === prio && had.id <= id))) return;
-		const entry = { name: match, english, kind, id, prio, alias };
+		const entry = { name: match, english, kind, id, prio, alias, next };
 		const start = match.slice(0, MIN_NAME);
 		if (!this.byStart.has(start)) this.byStart.set(start, []);
 		const list = this.byStart.get(start);
@@ -238,6 +276,12 @@ class NameIndex {
 			// lacks ("Rot Hide" gnolls, "Jade Oozes", "Lost Barrens Kodos"): not
 			// this one.
 			if (/^[ \t]+(of[ \t]+)?\p{Lu}/u.test(text.slice(end)) || capitalBefore(text.slice(0, i))) continue;
+			// A first name before its NPC's next word is the creature, not the
+			// NPC ("Lashtail raptors" of Lashtail Raptor).
+			if (e.next) {
+				const w = /^[ \t]+(\p{Ll}[\p{L}'’-]*)/u.exec(text.slice(end));
+				if (w && w[1].startsWith(e.next)) continue;
+			}
 			if (e.kind === 'spell') {
 				// A spell owning something is a name of its own ("Blizzard's designers", "Burning Blade's").
 				if (/^['’]s\b/u.test(text.slice(end))) continue;
@@ -325,6 +369,9 @@ function readSpellNames(data) {
 	for (const t of [data.npcs, data.objects, data.items, data.zones]) for (const x of Object.values(t || {})) if (x && str(x.name)) taken.add(x.name.trim().toLowerCase());
 	for (const q of Object.values(data.quests || {})) if (q && str(q.title)) taken.add(q.title.trim().toLowerCase());
 	for (const f of data.factions.values()) if (f && str(f.name)) taken.add(f.name.trim().toLowerCase());
+	// Every faction of the client's table, those without a reputation too.
+	const factions = path.join(dir, 'Faction.csv');
+	if (fs.existsSync(factions)) for (const r of parseCsv(fs.readFileSync(factions, 'utf8'))) if (str(r.Name_lang)) taken.add(r.Name_lang.trim().toLowerCase());
 	if (data.areas) for (const key of data.areas.byName.keys()) taken.add(key);
 	const best = new Map();
 	for (const r of parseCsv(fs.readFileSync(path.join(dir, 'SpellName.csv'), 'utf8'))) {
@@ -344,6 +391,47 @@ const SPELL_IDS = new WeakMap();
 function spellById(data) {
 	if (!SPELL_IDS.has(data)) SPELL_IDS.set(data, new Map(spellNames(data).map(([n, id]) => [id, n])));
 	return SPELL_IDS.get(data);
+}
+
+// First word of every NPC name -> how many different names start with it
+// (a one-word name counts too), cached per data.
+const FIRST_WORDS = new WeakMap();
+function firstWords(data) {
+	if (!FIRST_WORDS.has(data)) {
+		const names = new Map();
+		for (const rec of Object.values(data.npcs || {})) {
+			const words = rec && str(rec.name) ? rec.name.trim().split(/\s+/) : [];
+			if (!words.length) continue;
+			if (!names.has(words[0])) names.set(words[0], new Set());
+			names.get(words[0]).add(words.join(' '));
+		}
+		FIRST_WORDS.set(data, new Map([...names].map(([w, s]) => [w, s.size])));
+	}
+	return FIRST_WORDS.get(data);
+}
+
+// Lower-case names of the game's zones, areas, objects, items, quests,
+// factions and the client's spells, cached per data: a first name that is one
+// of these is that thing.
+const OTHER_NAMES = new WeakMap();
+function otherNames(data) {
+	if (!OTHER_NAMES.has(data)) {
+		const set = new Set();
+		for (const t of [data.objects, data.items, data.zones]) for (const x of Object.values(t || {})) if (x && str(x.name)) set.add(x.name.trim().toLowerCase());
+		for (const q of Object.values(data.quests || {})) if (q && str(q.title)) set.add(q.title.trim().toLowerCase());
+		for (const f of data.factions.values()) if (f && str(f.name)) set.add(f.name.trim().toLowerCase());
+		if (data.areas) for (const key of data.areas.byName.keys()) set.add(key);
+		for (const [name] of spellNames(data)) set.add(name.toLowerCase());
+		OTHER_NAMES.set(data, set);
+	}
+	return OTHER_NAMES.get(data);
+}
+
+// The { id, name } of each NPC goals name.
+function npcsOf(goals, data) {
+	const out = [];
+	for (const goal of goals) for (const n of goalNames(goal, data)) if (n.kind === 'npc') out.push({ id: n.id, name: n.name });
+	return out;
 }
 
 // The Forever client build the data was built from (meta.json's "World of
@@ -386,6 +474,7 @@ function guideIndex(guide, data, common) {
 			if (Number.isInteger(goal.map)) zones.add(goal.map);
 		}
 	}
+	idx.addFirsts(npcsOf((guide.steps || []).flatMap((s) => s.goals || []), data), GUIDE, data);
 	for (const id of zones) idx.add('zone', id, dataName(data, 'zone', id), GUIDE);
 	if (data.areas) {
 		for (const id of zones) {
@@ -399,6 +488,7 @@ function guideIndex(guide, data, common) {
 function stepIndex(step, data, common) {
 	const idx = new NameIndex(common);
 	for (const goal of step.goals || []) for (const n of goalNames(goal, data)) idx.add(n.kind, n.id, n.name, STEP);
+	idx.addFirsts(npcsOf(step.goals || [], data), STEP, data);
 	return idx;
 }
 
@@ -479,15 +569,15 @@ function selfNote(goal, data) {
 }
 
 // guides (compiled, English) -> { guides, stats, problems }: copies whose
-// prose carries tokens and `names`, with self-naming notes dropped, each with
-// `_plurals` (hidden): tokenised text -> [{ kind, id, name }] named there in
-// the English plural. The
+// prose carries tokens, `names` and `written`, with self-naming notes
+// dropped, each with `_plurals` (hidden): tokenised text -> [{ kind, id, name
+// }] named there in the English plural. The
 // originals are left as they are (lint, sim and the other tools read them).
 // stats: { replaced: { kind: n }, bySource: { step, guide, zoneArea,
 // worldZone, worldArea, worldData }, dropped }; problems: [{ guide, line,
 // message }] for author-written tokens the data does not know; aliases: [{
 // guide, line, words, token, english, text }], each name matched without its
-// "The" or "City".
+// "The" or "City", or by its first name.
 function tokeniseGuides(guides, data) {
 	const common = commonWords(guides);
 	const { idx: world, abilities } = worldIndex(data, common);
@@ -506,14 +596,32 @@ function tokeniseGuides(guides, data) {
 		if (Array.isArray(copy.reward)) copy.reward = copy.reward.map((r) => ({ ...r }));
 		const names = {};
 		const plurals = new Map(); // tokenised text -> plural names in it
-		// One English per token: a second spelling of the same id stays words.
-		const accept = (e) => {
+		const seen = new Map(); // tokenised text -> the author's words
+		const written = {};
+		// Any spelling of a name is its token; the first one is the token's
+		// English in `names`, the NPC's whole name for a first name (what a
+		// client without the NPC's name shows; `written` keeps the author's
+		// words for English).
+		const any = (e) => {
 			const k = `${e.kind}:${e.id}`;
-			if (!(k in names)) names[k] = e.name; // taken now: a second spelling in the same text stays words
+			if (!(k in names)) names[k] = e.next ? e.english : e.name;
+			return true;
+		};
+		// Only the token's English: for a text whose tokens read like another
+		// text's of other words ("Back to Dendrite", "Back to Dendrite
+		// Starblaze"), which `written` cannot tell apart. A first name stays
+		// words there.
+		const same = (e) => {
+			if (e.next) return false;
+			const k = `${e.kind}:${e.id}`;
+			if (!(k in names)) names[k] = e.name;
 			return names[k] === e.name;
 		};
 		const replace = (text, holder, key, indexes, ln) => {
-			const r = tokeniseText(text, indexes, accept);
+			let r = tokeniseText(text, indexes, any);
+			// The English of the tokens the author wrote, for the author's words.
+			for (const u of r.used) if (u.author && !(`${u.kind}:${u.id}` in names) && dataName(data, u.kind, u.id)) names[`${u.kind}:${u.id}`] = dataName(data, u.kind, u.id);
+			if (seen.has(r.text) && seen.get(r.text) !== fillTokens(text, names)) r = tokeniseText(text, indexes, same);
 			for (const u of r.used) {
 				const k = `${u.kind}:${u.id}`;
 				const name = u.name || dataName(data, u.kind, u.id);
@@ -529,6 +637,9 @@ function tokeniseGuides(guides, data) {
 				if (!(k in names)) names[k] = name;
 			}
 			holder[key] = r.text;
+			const english = fillTokens(text, names);
+			seen.set(r.text, english);
+			if (fillTokens(r.text, names) !== english) written[r.text] = english;
 			if (r.plurals.length) plurals.set(r.text, [...(plurals.get(r.text) || []), ...r.plurals]);
 			// A translation may name a plural by its singular's token: the guide carries its English too.
 			for (const pl of r.plurals) if (!(`${pl.kind}:${pl.id}` in names) && pl.english) names[`${pl.kind}:${pl.id}`] = pl.english;
@@ -545,10 +656,11 @@ function tokeniseGuides(guides, data) {
 					delete goal.note;
 					stats.dropped++;
 				}
-				for (const f of GOAL_FIELDS) if (str(goal[f])) replace(goal[f], goal, f, indexes, og._line || orig._line || guideLine);
+				for (const f of goalFields(goal)) if (str(goal[f])) replace(goal[f], goal, f, indexes, og._line || orig._line || guideLine);
 			});
 		});
 		if (Object.keys(names).length) copy.names = Object.fromEntries(Object.keys(names).sort().map((k) => [k, names[k]]));
+		if (Object.keys(written).length) copy.written = Object.fromEntries(Object.keys(written).sort().map((k) => [k, written[k]]));
 		Object.defineProperty(copy, '_ast', { value: guide._ast, enumerable: false });
 		Object.defineProperty(copy, '_plurals', { value: plurals, enumerable: false });
 		return copy;

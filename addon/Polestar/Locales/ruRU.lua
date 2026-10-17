@@ -100,6 +100,7 @@ L["%s or %s"] = "%s или %s"
 L["Kill %s for %s"] = "Убить %s и добыть %s"
 L["Collect %s from %s"] = "Собрать %s с %s"
 L["Riding"] = "Верховая езда"
+L["Grey, kept: opens %s"] = "Серое, оставлено: открывает %s"
 
 -- Core/Closes.lua
 L["Taking %s closes %s for good."] = "Взяв %s, вы навсегда закроете %s."
@@ -1045,9 +1046,10 @@ L["Faction filter"] = "Фильтр фракции"
 L["Class"] = "Класс"
 L["Professions"] = "Профессии"
 L["Exploration"] = "Исследование"
-L["Legacy"] = "Устаревшие"
+L["Legacy"] = "Наследие"
 L["Collectibles"] = "Коллекции"
 L["Sections"] = "Разделы"
+L["guide status: Completed"] = "Завершён"
 
 -- UI/Lookup.lua
 L["Companion"] = "Питомец"
@@ -1349,6 +1351,7 @@ L["Copy your report with Ctrl+C (Cmd+C on a Mac), switch to Discord and paste it
 L["Get the invite"] = "Получить приглашение"
 L["Report problems, ask for help and hear about new guides first. The invite is selected for you: copy it with Ctrl+C (Cmd+C on a Mac) and open it in your browser."] = "Сообщайте о проблемах, просите помощи и первыми узнавайте о новых гайдах. Приглашение выделено: скопируйте его (Ctrl+C, на Mac Cmd+C) и откройте в браузере."
 L["Report problems, ask for help and hear about new guides first."] = "Сообщайте о проблемах, просите помощи и первыми узнавайте о новых гайдах."
+-- L["blocked in %s: %s (%s)"] = ""
 
 -- UI/Packs.lua
 L["turned off in the AddOns list"] = "отключен в списке модификаций"
@@ -1843,7 +1846,6 @@ L["Point the arrow"] = "Навести стрелку"
 L["Details"] = "Подробнее"
 L["Minimize"] = "Свернуть"
 L["Back to the game"] = "Вернуться в игру"
-L["Browsing the guide needs a gamepad: turn it on in the game's options and plug one in."] = "Чтобы листать гайд, нужен геймпад: включите его в настройках игры и подключите."
 L["%s, then press a button, or hold one and press another. Tap %s to cancel, hold it to bind %s. %s unbinds."] = "%s, затем нажмите кнопку или зажмите одну и нажмите другую. Нажмите %s для отмены, зажмите, чтобы назначить %s. %s снимает назначение."
 L["%s, then press a button. Tap %s to cancel, hold it to bind %s. %s unbinds."] = "%s, затем нажмите кнопку. Нажмите %s для отмены, зажмите, чтобы назначить %s. %s снимает назначение."
 L["Click, then press a key; Escape cancels. Right-click unbinds."] = "Щелкните, затем нажмите клавишу; Escape — отмена. ПКМ снимает назначение."
@@ -1869,6 +1871,9 @@ L["A bar under the window says what each button does, and B sits on the close bu
 L["The guide"] = "Гайд"
 L["Quest buttons"] = "Кнопки заданий"
 L["The guide window holds the gamepad until B: the D-pad picks a line, A points the arrow there or uses the item, X shows its details, LB and RB change steps, Y minimizes the window. A window that opened by itself, such as a route choice, waits for this button before it takes the gamepad."] = "Окно гайда держит геймпад до нажатия B: крестовина выбирает строку, A наводит туда стрелку или использует предмет, X показывает подробности, LB и RB переключают шаги, Y сворачивает окно. Окно, открывшееся само (например, выбор маршрута), ждет этой кнопки, прежде чем взять геймпад."
+L["Browsing the guide needs the game's gamepad interface (Options, Gamepad, Enable Gamepad UI), or Use with the keyboard and mouse on Polestar's Gamepad page with a gamepad plugged in."] = "Чтобы листать гайд, нужен интерфейс геймпада игры (настройки игры, Геймпад) или «Использовать с клавиатурой и мышью» на странице «Геймпад» в Polestar при подключенном геймпаде."
+L["Use with the keyboard and mouse"] = "Использовать с клавиатурой и мышью"
+L["Off, Polestar uses the gamepad only with the game's gamepad interface (Options, Gamepad, Enable Gamepad UI). On, also with the keyboard and mouse interface, while the gamepad is turned on in the game's options and plugged in."] = "Выкл.: Polestar использует геймпад только с интерфейсом геймпада игры (настройки игры, Геймпад). Вкл.: также с интерфейсом клавиатуры и мыши, пока геймпад включен в настройках игры и подключен."
 
 -- Core/RoutePlan.lua
 L["step %d"] = "шаг %d"
@@ -1926,3 +1931,4 @@ L["Shortest Path Forever's arrow, route and journey take you to each goal. Poles
 -- L["Shortest Path Forever is guiding. Turn off \"Guide with Shortest Path Forever when it's installed\" (Options, Integrations) to use Polestar's arrow."] = "Сейчас ведет Shortest Path Forever. Чтобы использовать стрелку Polestar, отключите \"Вести через Shortest Path Forever, если он установлен\" (Настройки, Интеграции)."
 -- L["Guide with Shortest Path Forever when it's installed"] = "Вести через Shortest Path Forever, если он установлен"
 -- L["Shortest Path Forever's arrow, route and journey take you to each goal. Polestar's arrow, route lines, journey steps, travel button, transport alerts, map clicks and /way step aside; the guide window and map pins stay."] = "Стрелка, маршрут и путь Shortest Path Forever ведут к каждой цели. Стрелка Polestar, линии маршрута, шаги пути, кнопка пути, оповещения о транспорте, щелчки по карте и /way отключаются; окно гайда и метки на карте остаются."
+-- L["Browsing the guide needs a gamepad: turn it on in the game's options and plug one in."] = "Чтобы листать гайд, нужен геймпад: включите его в настройках игры и подключите."

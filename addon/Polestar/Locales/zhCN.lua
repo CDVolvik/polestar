@@ -100,6 +100,7 @@ L["%s or %s"] = "%s 或 %s"
 L["Kill %s for %s"] = "为 %2$s 击杀 %1$s"
 L["Collect %s from %s"] = "从 %2$s 收集 %1$s"
 L["Riding"] = "骑术"
+L["Grey, kept: opens %s"] = "灰色，保留：开启%s"
 
 -- Core/Closes.lua
 L["Taking %s closes %s for good."] = "接受 %s 会永久关闭 %s。"
@@ -1048,6 +1049,7 @@ L["Exploration"] = "探索"
 L["Legacy"] = "传承"
 L["Collectibles"] = "收藏品"
 L["Sections"] = "分区"
+L["guide status: Completed"] = "已完成"
 
 -- UI/Lookup.lua
 L["Companion"] = "小伙伴"
@@ -1349,6 +1351,7 @@ L["Copy your report with Ctrl+C (Cmd+C on a Mac), switch to Discord and paste it
 L["Get the invite"] = "获取邀请"
 L["Report problems, ask for help and hear about new guides first. The invite is selected for you: copy it with Ctrl+C (Cmd+C on a Mac) and open it in your browser."] = "报告问题、寻求帮助，并第一时间获知新指南。邀请链接已为你选中：按 Ctrl+C（Mac 上为 Cmd+C）复制并在浏览器中打开。"
 L["Report problems, ask for help and hear about new guides first."] = "报告问题、寻求帮助，并第一时间获知新指南。"
+-- L["blocked in %s: %s (%s)"] = ""
 
 -- UI/Packs.lua
 L["turned off in the AddOns list"] = "已在插件列表中关闭"
@@ -1843,7 +1846,6 @@ L["Point the arrow"] = "指向箭头"
 L["Details"] = "详情"
 L["Minimize"] = "最小化"
 L["Back to the game"] = "返回游戏"
-L["Browsing the guide needs a gamepad: turn it on in the game's options and plug one in."] = "浏览指南需要手柄：请在游戏选项中启用手柄并连接一个手柄。"
 L["%s, then press a button, or hold one and press another. Tap %s to cancel, hold it to bind %s. %s unbinds."] = "%s，然后按一个按钮，或按住一个再按另一个。轻按 %s 取消，按住则绑定 %s。%s 解除绑定。"
 L["%s, then press a button. Tap %s to cancel, hold it to bind %s. %s unbinds."] = "%s，然后按一个按钮。轻按 %s 取消，按住则绑定 %s。%s 解除绑定。"
 L["Click, then press a key; Escape cancels. Right-click unbinds."] = "点击后按一个键；Esc 取消。右键点击解除绑定。"
@@ -1869,6 +1871,9 @@ L["A bar under the window says what each button does, and B sits on the close bu
 L["The guide"] = "指南"
 L["Quest buttons"] = "任务按钮"
 L["The guide window holds the gamepad until B: the D-pad picks a line, A points the arrow there or uses the item, X shows its details, LB and RB change steps, Y minimizes the window. A window that opened by itself, such as a route choice, waits for this button before it takes the gamepad."] = "指南窗口会占用手柄直到按 B：方向键选择一行，A 将箭头指向该处或使用物品，X 显示详情，LB 和 RB 切换步骤，Y 最小化窗口。自行打开的窗口（例如路线选择）会等你按下此按钮后才接管手柄。"
+L["Browsing the guide needs the game's gamepad interface (Options, Gamepad, Enable Gamepad UI), or Use with the keyboard and mouse on Polestar's Gamepad page with a gamepad plugged in."] = "浏览指南需要游戏的手柄界面（游戏设置，手柄），或在连接手柄时开启 Polestar 手柄页面上的“配合键盘和鼠标使用”。"
+L["Use with the keyboard and mouse"] = "配合键盘和鼠标使用"
+L["Off, Polestar uses the gamepad only with the game's gamepad interface (Options, Gamepad, Enable Gamepad UI). On, also with the keyboard and mouse interface, while the gamepad is turned on in the game's options and plugged in."] = "关闭：Polestar 只在游戏的手柄界面（游戏设置，手柄）中使用手柄。开启：在游戏设置中启用手柄并已连接时，键盘和鼠标界面下也使用。"
 
 -- Core/RoutePlan.lua
 L["step %d"] = "步骤 %d"
@@ -1926,3 +1931,4 @@ L["Shortest Path Forever's arrow, route and journey take you to each goal. Poles
 -- L["Shortest Path Forever is guiding. Turn off \"Guide with Shortest Path Forever when it's installed\" (Options, Integrations) to use Polestar's arrow."] = "Shortest Path Forever 正在导航。要使用 Polestar 的箭头，请关闭\"安装 Shortest Path Forever 时由其导航\"（选项，整合）。"
 -- L["Guide with Shortest Path Forever when it's installed"] = "安装 Shortest Path Forever 时由其导航"
 -- L["Shortest Path Forever's arrow, route and journey take you to each goal. Polestar's arrow, route lines, journey steps, travel button, transport alerts, map clicks and /way step aside; the guide window and map pins stay."] = "由 Shortest Path Forever 的箭头、路线和行程带你前往每个目标。Polestar 的箭头、路线线条、行程步骤、旅行按钮、交通提醒、地图点击和 /way 将让位；指南窗口和地图标记保留。"
+-- L["Browsing the guide needs a gamepad: turn it on in the game's options and plug one in."] = "浏览指南需要手柄：请在游戏选项中启用手柄并连接一个手柄。"

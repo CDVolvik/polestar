@@ -206,6 +206,23 @@ test('a name written without the game\'s "The" keeps the author\'s words in Engl
 	assert.equal(fillTokens(g.steps[0].note, g.names), 'Ride to Stormwind; ask Marshal McBride.');
 });
 
+test("an NPC of the step named by its first name is its token, and an English client still reads the author's words", () => {
+	const dir = packDir();
+	fs.writeFileSync(path.join(dir, 'guides', 'main.guide'), GUIDE.replace(`tip ${TIP}`, 'tip Marshal McBride stands at the abbey door. Ask Marshal again later.'));
+	const r = build(dir);
+	const g = r.guides[0]._localised;
+	assert.equal(g.steps[0].note, '{npc:197} stands at the abbey door. Ask {npc:197} again later.');
+	const { addons } = install(r);
+	assert.equal(view(addons, r.manifest.folder)[0].note, 'Marshal McBride stands at the abbey door. Ask Marshal again later.');
+	assert.equal(view(addons, r.manifest.folder, { locale: 'frFR', names: FR_NAMES })[0].note, "Maréchal McBride stands at the abbey door. Ask Maréchal McBride again later.");
+});
+
+test('a translation may write as words an object no source names in its language', () => {
+	const { textProblems } = require('../tools/lib/i18n/guides');
+	assert.deepEqual(textProblems('Meet him in the {object:2101}.', 'Retrouvez-le dans le Quartier des mages.', [], ['object:2101']), []);
+	assert.match(textProblems('Meet him in the {object:2101}.', 'Retrouvez-le dans le Quartier des mages.')[0], /leaves out \{object:2101\}/);
+});
+
 test('a name inside a longer proper name the data lacks stays words', () => {
 	const dir = packDir();
 	fs.writeFileSync(path.join(dir, 'guides', 'main.guide'), GUIDE.replace(`tip ${TIP}`, 'tip Young Kobold Vermin Runts sit by Marshal McBride; Kobold Vermin Chiefs too, and Kobold Vermin.'));
