@@ -1173,7 +1173,7 @@ local function setEmpty(kind)
 			empty.Text:SetText(L["Suggested for you"] .. ": |c" .. Theme.Hex("text") .. suggested.title .. "|r")
 			W.SetButtonText(empty.Primary, L["Start guide"])
 			empty.Primary.psAction = function()
-				if E and E.OpenTab then E.OpenTab(id) elseif E and E.SetGuide then E.SetGuide(id) end
+				if E and E.StartGuide then E.StartGuide() elseif E and E.OpenTab then E.OpenTab(id) elseif E and E.SetGuide then E.SetGuide(id) end
 			end
 			empty.Primary:Show()
 			W.SetButtonText(empty.Secondary, L["Browse guides"])

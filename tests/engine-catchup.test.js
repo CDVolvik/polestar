@@ -312,3 +312,15 @@ test('a catch-up goes on to the next guide silently: on a second try, and past a
 	assert.deepEqual(out.first, ['test/mid', 'test/low,test/low2'], 'the first run goes through both');
 	assert.deepEqual(out.again, ['test/mid', 'test/low,test/low2'], 'a second try in the session too');
 });
+
+// Yendi: Start guide with no guide open stopped on "Guide complete" at the
+// end of Dun Morogh, every quest of it done: it goes on to the next guide,
+// as the login's pick does. The list's own open keeps a finished guide.
+test('Start guide goes on through guides with every quest done; the list keeps such a guide open', () => {
+	const allDone = 'stub.world.complete({ 101, 102, 104, 204 }); stub.world.onQuest(206, {})';
+	const saved = { Polestar: 'PolestarDB = { schema = 1, settings = { behavior = { autoSelectGuide = false } } }; PolestarCharDB = nil' };
+	const [start] = run({ before: allDone, saved, script: 'local none = E.GetGuide() == nil; E.StartGuide(); flush(); emit({ none = none, guide = E.GetGuide().id, at = E.GetStepIndex() or false })' });
+	assert.deepEqual(start, { none: true, guide: 'test/mid', at: 5 });
+	const [list] = run({ before: allDone, saved, script: 'E.OpenTab("test/low"); flush(); emit({ guide = E.GetGuide().id, at = E.GetStepIndex() or false })' });
+	assert.deepEqual(list, { guide: 'test/low', at: false });
+});

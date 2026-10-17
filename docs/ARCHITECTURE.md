@@ -1369,7 +1369,10 @@ passes whole (`Own.placedThrough`) and chains to `next`
 as a finished one does, even when the player opened it by hand (which clears
 its `completedFired`, so a guide passed earlier in the session chains again),
 unless every quest of it is done (`Own.allQuestsDone`): a guide all done that
-the player opens stays, finished, for them to look at. The next guide is
+the player opens stays, finished (its travel passed too), for them to look
+at. Start guide (`Engine.StartGuide`: the guide window with no guide, the
+welcome) opens `StartingGuide()` for the player (`OpenTab(id, true, true)`,
+`autoChain`), so it goes on through such guides as the login's pick does. The next guide is
 placed the same way, even when it finished earlier in the session (another
 try): only a guide passed on the same run stops it (`Own.chainSeen`), against
 a loop of `next`. The picker's "done" check (`GetGuideState`) needs every

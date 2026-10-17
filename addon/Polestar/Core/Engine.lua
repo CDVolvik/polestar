@@ -1480,7 +1480,7 @@ local function place()
 		return nil
 	end
 	local out = Own.leftOut[guide.id]
-	local start, later, anyOut
+	local start, later, anyOut, passAll
 	for s = 1, #steps do
 		for _, goal in ipairs(steps[s].goals) do
 			if (goal.t == "accept" or goal.direct) and goal.quest and ((out and out[goal.quest]) or greyNeed(goal) == false) then anyOut = true end
@@ -1509,13 +1509,17 @@ local function place()
 	-- level or a prerequisite: it passes whole, and chains to the next
 	-- (evaluateLoaded).
 	local past = anyOut or (guide.maxLevel ~= nil and level >= guide.maxLevel)
-	-- A guide whose quests are all done, opened by the player, stays: they
-	-- chose to look at it (it shows finished).
 	local through = catchUp and not start and not later and logReady and past
-		and (autoChain or not Own.allQuestsDone(guide))
 	if through then
 		limit = #steps + 1
-		Own.placedThrough[guide.id] = true
+		-- A guide whose quests are all done, opened by the player, stays: they
+		-- chose to look at it (it shows finished, its travel passed too).
+		if autoChain or not Own.allQuestsDone(guide) then
+			Own.placedThrough[guide.id] = true
+		else
+			through = false
+			limit, passAll = #steps + 1, true
+		end
 	end
 	-- The last step before the start with an accept left out: the way there
 	-- (travel, training, a flight point) passes with it.
@@ -1546,7 +1550,7 @@ local function place()
 			for g, goal in ipairs(goals) do
 				local t = goal.t
 				if open(s, g, goal) and not gated(goal)
-					and not ((s < anchor or s < lastOut or through) and (isManual(goal) or latchable(goal) or isBagCount(goal)))
+					and not ((s < anchor or s < lastOut or through or passAll) and (isManual(goal) or latchable(goal) or isBagCount(goal)))
 					and not (here and (t == "goto" or t == "fly" or t == "hearth" or t == "explore")) then
 					passes = false
 					break
@@ -2799,6 +2803,16 @@ function Engine.StartingGuide()
 	return Guides.Suggest()
 end
 
+-- Start guide (the guide window with no guide, the welcome): opens
+-- Engine.StartingGuide() in a new tab, for the catch-up to go through the
+-- guides from there to where the character is, finished ones included. The
+-- tab's index, or nil.
+function Engine.StartGuide()
+	local id = Engine.StartingGuide()
+	if not id then return nil end
+	return Engine.OpenTab(id, true, true)
+end
+
 -- The route a catch-up takes where a guide passed whole offers several: the
 -- option with the most quest work done (Own.doneIn), the recommended one
 -- among equals.
@@ -3191,8 +3205,11 @@ end
 -- Tab API
 ---------------------------------------------------------------------------
 
--- Already open: activates it (unless activate == false). Full: nil.
-function Engine.OpenTab(id, activate)
+-- Already open: activates it (unless activate == false). Full: nil. `auto`:
+-- opened for the player rather than by them (Engine.StartGuide), so a guide
+-- with every quest done passes to the next like any the catch-up goes
+-- through, instead of staying open, finished.
+function Engine.OpenTab(id, activate, auto)
 	local g = id and Guides.Get(id)
 	if not g or not ns.IsLoggedIn() then return nil end
 	local open = tabIndexOf(id)
@@ -3201,7 +3218,9 @@ function Engine.OpenTab(id, activate)
 		return open
 	end
 	if #tabs >= MAX_TABS then return nil end
-	local tab = { guide = g, passedUpTo = 0, autoChain = false, sawIncomplete = false, placing = GetTime() + PLACE_SECONDS }
+	local tab = { guide = g, passedUpTo = 0, autoChain = auto and true or false, sawIncomplete = false, placing = GetTime() + PLACE_SECONDS }
+	-- Finished or passed earlier this session, it may finish and chain again.
+	completedFired[id] = nil
 	tabs[#tabs + 1] = tab
 	local index = #tabs
 	tabsDirty = true
