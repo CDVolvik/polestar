@@ -196,8 +196,10 @@ test('the hub and the settings carry the Polestar Discord at the foot of the sid
 
 test('the report names the other addons that are loaded; "Report bug" gives a link that opens a new GitHub issue with the report, its title, the version and those addons filled in', () => {
 	const [out] = run(`
-		stub.addons[#stub.addons + 1] = { name = "Questie", loaded = true }
+		stub.addons[#stub.addons + 1] = { name = "Details", loaded = true }
 		stub.addons[#stub.addons + 1] = { name = "TomTom", loaded = true }
+		stub.addons[#stub.addons + 1] = { name = "Bagnon", loaded = true }
+		stub.addons[#stub.addons + 1] = { name = "Questie", loaded = true }
 		stub.addons[#stub.addons + 1] = { name = "NotLoaded", loaded = false }
 		stub.addonMeta.Questie = { Version = "9.1.0" }
 		uistub.setGuide(uistub.elwynn, 3)
@@ -210,7 +212,7 @@ test('the report names the other addons that are loaded; "Report bug" gives a li
 		local step = { shown = PolestarCopy:IsShown(), url = PolestarCopy.Box:GetText(), focus = stub.focus == PolestarCopy.Box }
 		Polestar.Engine.SetGuide(nil)
 		emit({ report = report, step = step, noGuide = UI.Report.IssueURL("Lua error on login", UI.Report.Details()) })`);
-	assert.ok(out.report.split('\n').includes('Addons: Questie, TomTom'), out.report);
+	assert.ok(out.report.split('\n').includes('Addons: Questie, TomTom, Bagnon, Details'), `quest and map addons first, then A to Z: ${out.report}`);
 	assert.equal(out.step.shown, true);
 	assert.equal(out.step.focus, true, 'the link is selected for Ctrl+C');
 	const url = new URL(out.step.url);
@@ -223,10 +225,25 @@ test('the report names the other addons that are loaded; "Report bug" gives a li
 	assert.equal(q.wrong, out.report, 'the whole report, as the window shows it');
 	assert.match(q.character, /^Human Warrior · level 4/);
 	assert.match(q.version, /^(\d+\.\d+\.\d+|dev)/);
-	assert.equal(q.addons, 'Questie 9.1.0\nTomTom 0.1.0-test');
+	assert.equal(q.addons, 'Questie 9.1.0\nTomTom 0.1.0-test\nBagnon 0.1.0-test\nDetails 0.1.0-test');
 	const bug = Object.fromEntries(new URL(out.noGuide).searchParams);
 	assert.equal(bug.template, 'bug-report.yml', 'no step on screen: a bug report');
 	assert.equal(bug.title, 'Bug: Lua error on login');
 	assert.match(bug.steps, /^\*\*What went wrong:\*\* Lua error on login\n```\n/);
 	assert.equal(bug.guide, undefined);
+});
+
+test('with more addons than the link holds, the issue counts them all and lists the ones that fit, quest, map and guide addons first; the link stays short of GitHub\'s limit', () => {
+	const [out] = run(`
+		for i = 1, 400 do stub.addons[#stub.addons + 1] = { name = ("Addon%03d"):format(i), loaded = true } end
+		stub.addons[#stub.addons + 1] = { name = "Questie", loaded = true }
+		uistub.setGuide(uistub.elwynn, 3)
+		UI.ShowReport()
+		emit({ url = UI.Report.IssueURL("The vermin were all by the tents.", PolestarReport.details), max = UI.Report.LINK_MAX })`);
+	assert.ok(out.url.length <= out.max, `${out.url.length} characters`);
+	const lines = new URL(out.url).searchParams.get('addons').split('\n');
+	assert.equal(lines[0], 'The player has 401 other addons on. The ones that fit in the link, quest, map and guide addons first:');
+	assert.equal(lines[1], 'Questie 0.1.0-test');
+	assert.equal(lines[2], 'Addon001 0.1.0-test');
+	assert.ok(lines.length > 50 && lines.length < 402, `${lines.length - 1} of 401 listed`);
 });

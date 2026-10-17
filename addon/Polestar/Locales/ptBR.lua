@@ -1349,9 +1349,9 @@ L["Report problems, ask for help and hear about new guides first."] = "Relate pr
 -- L["none"] = ""
 -- L["The link is selected for you: copy it with Ctrl+C (Cmd+C on a Mac), paste it in your browser's address bar and press Enter."] = ""
 -- L["Report a bug on GitHub"] = ""
--- L["Click the button to get a link to GitHub for your web browser, then copy-paste the URL to go to GitHub. If you don't have an account, create one, copy-paste the URL again, and click \"Create\" on the bottom right of your screen. Thanks for helping make the addon better!"] = ""
 -- L["Report bug"] = ""
 -- L["Rather use Discord? Press Copy report, then Ctrl+C (Cmd+C on a Mac), and paste it in the Polestar server. Not in it yet? Get the invite once and open it in your browser."] = ""
+-- L["1. Click Report bug and copy the link.\n2. Paste it in your browser's address bar.\n3. Sign in to GitHub. New to it? Make a free account, then paste the link again.\n4. Everything is filled in. Drag in a screenshot if you have one, then click Create. GitHub emails you when someone replies.\nThanks for helping make Polestar better!"] = ""
 
 -- UI/Packs.lua
 L["turned off in the AddOns list"] = "desativado na lista de AddOns"

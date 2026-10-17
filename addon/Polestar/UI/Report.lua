@@ -185,9 +185,21 @@ local function packsLine()
 	return cut((L["Packs: %s"]):format(table.concat(list, ", ")))
 end
 
+-- Words in an addon's folder name that mark one whose arrows, quest lines or
+-- map pins can look like Polestar's (Questie, TomTom, other guides).
+local SUSPECT = { "quest", "guide", "map", "tomtom", "arrow", "waypoint", "nav", "route" }
+
+local function suspect(name)
+	local n = name:lower()
+	for _, w in ipairs(SUSPECT) do
+		if n:find(w, 1, true) then return true end
+	end
+	return false
+end
+
 -- The other addons that are loaded, "name version" each (`withVersions`)
--- or names only: their arrows, quest lines and frames can look like
--- Polestar's.
+-- or names only: quest, map and guide addons first, then A to Z, so a list
+-- cut short keeps the ones most likely to be the cause.
 local function otherAddons(withVersions)
 	local A = C_AddOns or {}
 	local count = A.GetNumAddOns or GetNumAddOns
@@ -200,9 +212,15 @@ local function otherAddons(withVersions)
 		local name = info(i)
 		if type(name) == "string" and not name:find("^Polestar") and loaded(name) then
 			local v = withVersions and meta and meta(name, "Version")
-			list[#list + 1] = (type(v) == "string" and v ~= "") and (name .. " " .. plain(v)) or name
+			list[#list + 1] = { name = name, first = suspect(name),
+				text = (type(v) == "string" and v ~= "") and (name .. " " .. plain(v)) or name }
 		end
 	end
+	table.sort(list, function(a, b)
+		if a.first ~= b.first then return a.first end
+		return a.name:lower() < b.name:lower()
+	end)
+	for i, a in ipairs(list) do list[i] = a.text end
 	return list
 end
 
@@ -275,19 +293,40 @@ function R.Text(description, details)
 	return table.concat(out, "\n")
 end
 
--- A link that opens a new issue on Polestar's GitHub with the report in
--- it: GitHub fills the title and the issue form's fields (by their ids in
--- .github/ISSUE_TEMPLATE) from the link's query. A step on screen is a
--- "Wrong step" issue, anything else a "Bug report".
 local function encode(s)
 	return (tostring(s):gsub("[^%w%-%._~]", function(c) return ("%%%02X"):format(c:byte()) end))
 end
 
+-- GitHub answers a longer link with an error: measured on 2026-10-16, a
+-- link of 6400 characters opened the form (signed out too, through the
+-- sign-in page) and one of 6700 did not.
+R.LINK_MAX = 6000
+
+-- The addons field: every addon when they fit in `room` characters of the
+-- link, else a line that counts them and as many as fit, in their order.
+local function addonsField(room)
+	local list = otherAddons(true)
+	local all = table.concat(list, "\n")
+	if #encode(all) <= room then return all end
+	local head = ("The player has %d other addons on. The ones that fit in the link, quest, map and guide addons first:"):format(#list)
+	local used = #encode(head)
+	if used > room then return nil end
+	local lines = { head }
+	for _, a in ipairs(list) do
+		used = used + #encode("\n" .. a)
+		if used > room then break end
+		lines[#lines + 1] = a
+	end
+	return table.concat(lines, "\n")
+end
+
+-- A link that opens a new issue on Polestar's GitHub with the report in
+-- it: GitHub fills the title and the issue form's fields (by their ids in
+-- .github/ISSUE_TEMPLATE) from the link's query. A step on screen is a
+-- "Wrong step" issue, anything else a "Bug report".
 function R.IssueURL(description, details)
 	local fields = {
 		version = polestarVersion(),
-		-- Room in the link for a long list, short of GitHub's limit on its length.
-		addons = cut(table.concat(otherAddons(true), "\n"), 2000),
 	}
 	local E = ns.Engine
 	local guide = E and E.GetGuide and E.GetGuide()
@@ -312,9 +351,12 @@ function R.IssueURL(description, details)
 	table.sort(keys)
 	local query = {}
 	for _, k in ipairs(keys) do
-		if fields[k] and fields[k] ~= "" then query[#query + 1] = k .. "=" .. encode(fields[k]) end
+		if fields[k] ~= "" then query[#query + 1] = k .. "=" .. encode(fields[k]) end
 	end
-	return ns.IssueURL .. "?" .. table.concat(query, "&")
+	local url = ns.IssueURL .. "?" .. table.concat(query, "&")
+	local addons = addonsField(R.LINK_MAX - #url - #"&addons=")
+	if addons and addons ~= "" then url = url .. "&addons=" .. encode(addons) end
+	return url
 end
 
 ---------------------------------------------------------------------------
@@ -488,7 +530,7 @@ local function build()
 	F.GitHubNote:SetWidth(BOX_W)
 	F.GitHubNote:SetJustifyH("LEFT")
 	F.GitHubNote:SetWordWrap(true)
-	F.GitHubNote:SetText(L["Click the button to get a link to GitHub for your web browser, then copy-paste the URL to go to GitHub. If you don't have an account, create one, copy-paste the URL again, and click \"Create\" on the bottom right of your screen. Thanks for helping make the addon better!"])
+	F.GitHubNote:SetText(L["1. Click Report bug and copy the link.\n2. Paste it in your browser's address bar.\n3. Sign in to GitHub. New to it? Make a free account, then paste the link again.\n4. Everything is filled in. Drag in a screenshot if you have one, then click Create. GitHub emails you when someone replies.\nThanks for helping make Polestar better!"])
 	F.Report = W.Button(F, L["Report bug"], reportBug, { primary = true })
 
 	F.Box = W.CopyBox(F, { lines = 2 })
