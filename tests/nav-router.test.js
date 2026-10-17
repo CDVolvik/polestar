@@ -712,22 +712,38 @@ out.zones = { strip = z(${MAP}, ${lua(at(X0, Y0))}), u = z(${MAP}, ${lua(at(X0, 
 	assert.equal(zero.zero, 'nil');
 });
 
-test('Path.SurfacesAt: the heights and marks (water 1, indoor 2) of a cell\'s surfaces into the caller\'s table; 0 off the data; decoded only: nil until the cluster is; at most two clusters kept between searches, and through Idle', () => {
+test('Path.SurfacesAt: the heights and marks (water 1, indoor 2) of a cell\'s surfaces into the caller\'s table; 0 off the data; never decodes: nil and one Path.Prefetch job, which decodes under the frame budget; one cluster kept, through Idle, until Path.ReleaseSurfaces', () => {
 	const cells = new Map();
-	for (let k = 0; k < 3; k++) {
+	for (let k = 0; k < 2; k++) {
 		cells.set(k * C * C + 10 * C + 10, { val: 1, cls: 0 });
 		cells.set(k * C * C + 10 * C + 11, { val: 2, cls: 0 });
 		cells.set(k * C * C + 10 * C + 12, { val: 1, cls: 4 });
 		cells.set(k * C * C + 10 * C + 13, { val: 1, cls: 5 + 8 });
 	}
-	const files = mapFiles(cells, true, { nx: 3 });
+	const files = mapFiles(cells, true, { nx: 2 });
 	const tail = `
 local t = { 99, 99, [-1] = 99 }
-local function read(gx, gy, decoded)
-	local n = Path.SurfacesAt(${MAP}, (gx + 0.5) * ${CS}, (gy + 0.5) * ${CS}, t, decoded)
+local function read(gx, gy)
+	local n = Path.SurfacesAt(${MAP}, (gx + 0.5) * ${CS}, (gy + 0.5) * ${CS}, t)
 	return { n = n or "nil", z = n and n > 0 and t[1] or "-", marks = n and n > 0 and t[-1] or "-" }
 end
-out.cold = read(10, 10, true)
+-- Frames run until none is left, each under budget ms, on a clock that moves 0.01 ms a reading; -> how many.
+local function pump(budget)
+	local was, clock, now, n = Path.budget, Path.clock, 0, 0
+	Path.budget = budget or was
+	Path.clock = function() now = now + 0.01 return now end
+	while #frames > 0 do n = n + 1 table.remove(frames, 1)() end
+	Path.budget, Path.clock = was, clock
+	return n
+end
+local d0 = Path.decodes or 0
+out.cold = read(10, 10)
+out.sync = (Path.decodes or 0) - d0
+local x, y = 10.5 * ${CS}, 10.5 * ${CS}
+local job = Path.Prefetch(${MAP}, x, y)
+out.oneJob = job ~= nil and job.prefetch == true and Path.Prefetch(${MAP}, x, y) == job and read(10, 10).n == "nil"
+out.frames = pump(0)
+out.decoded = Path.decodes - d0
 out.ground = read(10, 10)
 out.water = read(10, 11)
 out.indoor = read(10, 12)
@@ -735,19 +751,28 @@ out.city = read(10, 13)
 out.none = read(10, 20)
 out.outside = { n = Path.SurfacesAt(${MAP}, -50, 5, t), nomap = Path.SurfacesAt(99, 5, 5, t) }
 out.kept = t[2]
-local d0 = Path.decodes or 0
+out.done = Path.Prefetch(${MAP}, x, y) == nil
+-- The next cluster: the first goes (the reader keeps one).
 read(${C} + 10, 10)
-read(${2 * C} + 10, 10)
-local d1 = Path.decodes
-out.third = { read(10, 10, true).n, read(${C} + 10, 10, true).n, read(${2 * C} + 10, 10, true).n }
-read(10, 10)
-out.decodes = { d1 - d0, Path.decodes - d1 }
--- A search, then Idle (the queue empty): the two clusters read last stay decoded.
+pump()
+out.next = read(${C} + 10, 10).n
+out.left = read(10, 10).n
+pump()
+-- A search in cluster 0, then Idle: the reader's cluster stays, the other goes.
 Path.Find(${MAP}, A, B, function() end)
-while #frames > 0 do table.remove(frames, 1)() end
-out.idle = { read(10, 10, true).n, read(${C} + 10, 10, true).n, read(${2 * C} + 10, 10, true).n }`;
+pump()
+out.idle = { read(10, 10).n, read(${C} + 10, 10).n }
+pump()
+out.decodes = Path.decodes - d0
+read(10, 10)
+Path.ReleaseSurfaces()
+out.released = read(10, 10).n`;
 	const got = route(OURS, files, [], { tail });
-	assert.deepEqual(got.cold, { n: 'nil', z: '-', marks: '-' }, 'decoded only: nil before the cluster is decoded');
+	assert.deepEqual(got.cold, { n: 'nil', z: '-', marks: '-' }, 'not decoded: nil');
+	assert.equal(got.sync, 0, 'the read itself decodes nothing');
+	assert.equal(got.oneJob, true, 'it queued one Path.Prefetch job; asking again is that job');
+	assert.ok(got.frames > 1, `the job decodes in slices under the frame budget (${got.frames} frames at a 0 ms budget)`);
+	assert.equal(got.decoded, 1);
 	assert.equal(got.ground.n, 1);
 	assert.equal(got.ground.marks, 0);
 	assert.equal(typeof got.ground.z, 'number');
@@ -757,7 +782,10 @@ out.idle = { read(10, 10, true).n, read(${C} + 10, 10, true).n, read(${2 * C} + 
 	assert.equal(got.none.n, 0, 'a cell with no walkable surface');
 	assert.deepEqual(got.outside, { n: 0, nomap: 0 });
 	assert.equal(got.kept, 99, 'entries past n are left as they were');
-	assert.deepEqual(got.third, ['nil', 1, 1], 'reading a third cluster evicts the oldest the reader decoded');
-	assert.deepEqual(got.decodes, [2, 1], 'one decode a new cluster, and the evicted one once more');
-	assert.deepEqual(got.idle, [1, 'nil', 1], 'Idle keeps the two clusters read last; the other went before');
+	assert.equal(got.done, true, 'a decoded cluster needs no job');
+	assert.equal(got.next, 1);
+	assert.equal(got.left, 'nil', 'reading the next cluster dropped the one before');
+	assert.deepEqual(got.idle, [1, 'nil'], 'Idle keeps the reader\'s cluster and drops the rest');
+	assert.equal(got.decodes, 4, 'cluster 0, 1, 0 again, 1 again');
+	assert.equal(got.released, 'nil', 'Path.ReleaseSurfaces drops it');
 });

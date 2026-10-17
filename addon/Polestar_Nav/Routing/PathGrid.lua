@@ -547,25 +547,33 @@ local function grid(st, k)
 	return val
 end
 
--- A cluster for Path.SurfacesAt outside any search, decoded like a search's endpoint (grid), the reader keeping at
--- most two clusters of its own between searches (the one a player stands in and the last one, so walking along a
--- cluster's edge does not decode it again and again). Decoding a third evicts the older of the two, unless a search
--- has used it since (its use stamp moved: the search's now). Idle keeps the two (they become the reader's again):
--- the walking floor reads the player's cluster again within a quarter second, and decoding it is the cost (18-40 ms).
--- So a player walking across a continent holds two decoded clusters, not every one they cross.
-local read = { {}, {} } -- [1] the cluster read last, [2] the one before: { st, k, use }
-local function readGrid(st, k)
-	local old = read[2]
-	local ost, ok = old.st, old.k
-	if ost and states[ost.map] == ost and ost.used[ok] ~= nil and ost.used[ok] == old.use then
-		evict(ost, ok)
+-- The cluster Path.SurfacesAt reads (the player's, for Polestar's walking floor): never decoded by the read itself,
+-- only by Path.Prefetch's job under the frame budget (prefetch, run from PathJobs as a search is). The reader keeps
+-- at most one cluster: the one it read last. Moving to another evicts the old one unless a search has used it since
+-- (its use stamp moved: the search's now, Idle drops it later). Idle keeps it (the floor reads it again within a
+-- quarter second); Path.ReleaseSurfaces drops it when the caller stops reading (Walk.lua: no target, or no arrow
+-- update for 2 s).
+local reader = {} -- { st, k, use }
+local function drop()
+	local st, k = reader.st, reader.k
+	if st and states[st.map] == st and st.used[k] ~= nil and st.used[k] == reader.use then
+		evict(st, k)
 	end
-	local val = grid(st, k)
-	if val then
-		read[2], read[1] = read[1], old
-		old.st, old.k, old.use = st, k, st.used[k]
+	reader.st, reader.k, reader.use = nil, nil, nil
+end
+-- Cluster k of st, decoded, is the reader's.
+local function keepRead(st, k)
+	if reader.st == st and reader.k == k then
+		return
 	end
-	return val
+	drop()
+	reader.st, reader.k, reader.use = st, k, st.used[k]
+end
+-- Path.Prefetch's job: decode cluster k of st (slicing under the job's deadline) and keep it for the reader.
+local function prefetch(st, k)
+	if grid(st, k) then
+		keepRead(st, k)
+	end
 end
 
 -- A node's local cell.
@@ -1057,8 +1065,8 @@ local function smooth(st, P, profile, style, danger)
 	return out
 end
 
--- With no search queued, drop decoded grids (but the two Path.SurfacesAt read last) and local trees and trim the
--- decoded graph to its resting ceiling; exact endpoint costs stay.
+-- With no search queued, drop decoded grids (but the one Path.SurfacesAt reads: the player's) and local trees and
+-- trim the decoded graph to its resting ceiling; exact endpoint costs stay.
 local function Idle()
 	for _, st in pairs(states) do
 		for _, entry in ipairs(st.endTrees or {}) do
@@ -1066,14 +1074,9 @@ local function Idle()
 		end
 		st.endTrees = nil
 		for k in pairs(st.used) do
-			local mine = false
-			for i = 1, 2 do
-				local r = read[i]
-				if r.st == st and r.k == k then
-					r.use, mine = st.used[k], true
-				end
-			end
-			if not mine then
+			if reader.st == st and reader.k == k then
+				reader.use = st.used[k]
+			else
 				evict(st, k)
 			end
 		end
@@ -1097,6 +1100,7 @@ local function Reset()
 		end
 	end
 	states = {}
+	reader.st, reader.k, reader.use = nil, nil, nil
 	decodedKB, decodedCount, graphKB = 0, 0, 0
 end
 
@@ -1125,7 +1129,9 @@ ns.PathGrid = {
 	Classed = Classed,
 	surface = surface,
 	grid = grid,
-	readGrid = readGrid,
+	keepRead = keepRead,
+	prefetch = prefetch,
+	dropRead = drop,
 	cellOf = cellOf,
 	chunkOf = chunkOf,
 	zoneAt = zoneAt,

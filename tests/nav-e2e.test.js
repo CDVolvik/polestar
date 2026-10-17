@@ -334,13 +334,17 @@ test('Z1: a height of 0 from UnitPosition is no height: the walk to Mebok Mizzyr
 	const out = run(t, `
 		local c, sx, sy = C.MapToWorld(1413, 63.07, 37.08, "e")
 		place(1413, sx, sy, 0)
+		-- A first target for a second: the arrow's floor reads the ground here once its cluster is decoded (#234).
+		N.SetTarget(1413, 60, 40, "Ratchet")
+		aim()
+		stub.advance(1)
 		local f = guide(1413, 62.37, 37.62, "Mebok Mizzyrix")
 		local east = 0
 		for _, p in ipairs(f.points) do if sy - p.y > east then east = sy - p.y end end
 		emit({ c = c, z = f.from[3], east = east, n = #f.points })`);
 	assert.equal(out.c, 1);
-	// Never the 0 as a height: the ground under the player, which the walking floor (#234) reads there (one surface).
-	assert.ok(out.z !== 0 && (out.z === undefined || Math.abs(out.z - 12) <= 3), `searched from the ground's height or none (${out.z})`);
+	// Never the 0 as a height: the ground under the player (z 12), which the walking floor (#234) reads there (one surface).
+	assert.ok(Math.abs(out.z - 12) <= 3, `searched from the ground's height (${out.z})`);
 	assert.ok(out.east < 3, `no point of the path is east of the player, towards the harbour (${out.east.toFixed(1)} yd east, ${out.n} points)`);
 });
 

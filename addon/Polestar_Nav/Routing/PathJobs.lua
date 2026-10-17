@@ -159,6 +159,31 @@ function Path.Find(map, from, to, callback, opts)
 	})
 end
 
+-- Decode the cluster under (x, y) on map for Path.SurfacesAt, coroutine-sliced under the frame budget as a search's
+-- clusters are (PathGrid's prefetch: the reader keeps it). One at a time: the same cluster asked again while its job is
+-- queued is that job; another cancels it. Nothing to do (no data there, or decoded already): nil.
+local prefetching
+---@param map number
+---@param x number
+---@param y number
+---@return SPFPathJob?
+function Path.Prefetch(map, x, y)
+	local st = Grid.State(map)
+	local k = st and Grid.locate(st, x, y)
+	if not k or st.val[k] ~= nil then
+		return nil
+	end
+	local p = prefetching
+	if p and not p.done and not p.cancelled then
+		if p.st == st and p.k == k then
+			return p
+		end
+		Path.Cancel(p)
+	end
+	prefetching = enqueue({ map = map, prefetch = true, st = st, k = k })
+	return prefetching
+end
+
 -- A candidate can be ruled in or out without refining all its intermediate clusters into drawing points.
 -- callback(cost, reason, job) uses the same exact graph cost as Find and FindMany; job.yards is the yards along the
 -- cost-best path (FindMany's label; the cost itself on a format 1 map), job.hubs absent (nothing is drawn).

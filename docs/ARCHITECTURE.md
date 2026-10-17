@@ -1994,20 +1994,23 @@ under Tirisfal's outdoor ground); it never overrides a followed floor with
 the indoor state. Known, it follows the surface nearest it, never more than
 4 yd above (a ramp or stairs at mount speed, plus a jump); any drop is a
 fall; none is unknown. It is unknown again on another continent, after more
-than 30 yd between checks (a hearth, teleport, landing, loading screen),
-after moving with no check for 2 s, on a taxi or a transport
+than 30 yd from where it was last read (a hearth, teleport, landing, loading
+screen), after moving with no check for 2 s, on a taxi or a transport
 (`Transit.Riding`), within 8 yd of a lift (`Transit.LiftNear`: it changes
-level without moving), on a ghost state change, and in combat when the
-player's cluster is not decoded (only decoded clusters are read then). The
-arrow's search starts from the client's height when it gives one, else from
-the floor when known, checked within 2 s and read within 5 yd of the player
-(`from.z`); a search with it that finds nothing is asked once more without it
-(and without the goal's height), and that answer stands. The player's place
-in `Walk.Measure` takes the same height. Unknown, every search is as before.
-The reading decodes the player's cluster when it is not (18-40 ms, about
-3 MB; after that a read is a few table lookups), and the router keeps the two
-clusters it read last decoded, through `Idle` too, so a walk across a
-continent holds two, not every one crossed.
+level without moving), on a ghost state change, and on a read that raises.
+The read never decodes: a cell whose cluster is not decoded reads nil and
+queues `Path.Prefetch`, which decodes it under the router's frame budget as a
+search's clusters are (not in combat); meanwhile the floor is kept, checked
+but not read, and followed from there once the cluster is in. The arrow's
+search starts from the client's height when it gives one, else from the
+floor when known, checked within 2 s and read within 5 yd of the player
+(`from.z`); a search with it that finds nothing is asked once more without it,
+keeping the goal's height (one that ends off the goal's floor drops the
+goal's height, Z2, keeping the start), and that answer stands. The player's
+place in `Walk.Measure` takes the same height. Unknown, every search is as
+before. The router keeps the one cluster the floor reads decoded, through
+`Idle` too, until `Path.ReleaseSurfaces()`: `Walk.Clear` (no target) or no
+`Walk.Aim` for 2 s (`Walk:Refresh`).
 Hand-made walks win: a walk leg from a crossing or chain waypoint, to a
 chain node past its mouth, or from inside a chain (`leg.handmade`), and a
 guide goal whose last located goal before it, across steps, is a `goto`
@@ -2533,9 +2536,11 @@ of graph) and `Path.graphRestKB` 6 MB at rest. With no search queued (`Idle`)
 the decoded grids go and the decoded graph is trimmed to 6 MB: measured
 standalone, 33.9 MB with the maps loaded and no search, 41.4 MB after the six
 longest corpus walks (0.2.4: 27.8 MB and 33.4 MB), about 103 MB at the peak of
-a long walk. Since the walking floor (#234) the two clusters `Path.SurfacesAt`
-read last stay decoded at rest too: about 3 MB each (one cluster, decoded in
-18 ms under LuaJIT and 39 ms under Lua 5.1 standalone, allocates 3.1-4.4 MB).
+a long walk. Since the walking floor (#234) the cluster `Path.SurfacesAt`
+reads (the player's) stays decoded at rest while the arrow runs: one cluster,
+3.3 MB on average by the engine's accounting (3.1 MB allocated decoding the
+Den's camp's under LuaJIT); none without a target or 2 s after the arrow's
+last update.
 
 **A map is used whole.** `API.lua` drops a map whose packed tables hold
 fewer entries than its `counts` (a part file missing from the folder, or one
@@ -2561,7 +2566,9 @@ Path.FindCost(map, from, to, callback, opts) -> job  -- callback(cost, reason, j
 Path.FindMany(map, from, targets, callback, opts, reverse, progress) -> job  -- costs[i] or false; job.yards[i]
 Path.ReuseMany(job, point, profile, style, danger) -> bool  -- may a batch from job's source serve one from point for profile in style with danger
 Path.ZoneAt(map, x, y) -> uiMapID | nil  -- a point's zone (the maps' zone field)
-Path.SurfacesAt(map, x, y, out, decoded) -> n | nil  -- the cell's walkable surfaces: out[i] height, out[-i] marks (1 water, 2 indoor); decoded: nil when the cluster is not decoded
+Path.SurfacesAt(map, x, y, out) -> n | nil  -- the cell's walkable surfaces: out[i] height, out[-i] marks (1 water, 2 indoor); nil: its cluster not decoded (a Prefetch is queued)
+Path.Prefetch(map, x, y) -> job | nil  -- decode that cluster under the frame budget for SurfacesAt (one job at a time)
+Path.ReleaseSurfaces()  -- the cluster SurfacesAt reads may go at rest
 Path.Cancel(job) ; Path.Busy() -> bool ; Path.Available(map) -> bool
 -- opts: a boolean is waterWalking (as every caller passed it before profiles), or
 -- { waterWalking = boolean, profile = "Alliance" | "Horde" | nil (Costs.Profile(UnitFactionGroup)),
@@ -2585,8 +2592,10 @@ of the map's `hubs` metadata (`{ id, side, name, areaId, disks = { { x, y, r }, 
 order (`{}` without a profile or hubs). Reasons: `nodata`, `outside`, `offmesh`,
 `unreachable`, `error`. Searches run as coroutines in `C_Timer.After(0)`
 slices of `Path.budget` ms, wait out combat, and drop decoded clusters once
-the queue is empty, but the two `Path.SurfacesAt` read last (the player's floor) (`Path.cacheKB`, `Path.graphKB` cap them meanwhile, and
-`Idle` trims the decoded graph to `Path.graphRestKB`, all set in `API.lua`).
+the queue is empty, except the one `Path.SurfacesAt` reads (the player's
+floor, until `Path.ReleaseSurfaces`). `Path.cacheKB` and `Path.graphKB` cap
+them meanwhile, and `Idle` trims the decoded graph to `Path.graphRestKB`, all
+set in `API.lua`.
 The maps are base64 zlib blocks decoded per cluster with `C_EncodingUtil`.
 `nav check` holds the maps to `PACK.json` (grid build, cells, date, sizes,
 the sha256 of every file), and `Nav.xml` to it.

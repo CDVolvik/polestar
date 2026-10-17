@@ -41,15 +41,18 @@ Polestar_NavEngine = {
 	Busy = function() return false end,
 	Available = function(c) return fake.avail[c] ~= false end,
 	-- The walkable surfaces under (x, y): fake.surfaces(map, x, y) -> { z, ..., [-i] = marks } (none without it;
-	-- marks as Path.SurfacesAt's: 2 indoor, 1 water, 0 when left out); with decoded, nil when fake.undecoded (a
-	-- cluster not decoded, in combat). fake.reads counts the reads.
-	SurfacesAt = function(map, x, y, out, decoded)
-		if decoded and fake.undecoded then return nil end
+	-- marks as Path.SurfacesAt's: 2 indoor, 1 water, 0 when left out); nil while fake.undecoded (the cluster not
+	-- decoded: the router queues its decode), an error with fake.surfacesError. fake.reads counts the reads,
+	-- fake.releases Path.ReleaseSurfaces.
+	SurfacesAt = function(map, x, y, out)
+		if fake.surfacesError then error("bad cluster") end
+		if fake.undecoded then return nil end
 		fake.reads = (fake.reads or 0) + 1
 		local list = fake.surfaces and fake.surfaces(map, x, y) or {}
 		for i, z in ipairs(list) do out[i], out[-i] = z, list[-i] or 0 end
 		return #list
 	end,
+	ReleaseSurfaces = function() fake.releases = (fake.releases or 0) + 1 end,
 }
 fake.opts = opts
 function fake.last() return fake.calls[#fake.calls] end
@@ -2147,4 +2150,92 @@ test('#234 floor: a lift resets it; off the lift, indoors, it seeds on the one i
 	assert.equal(out.doorway, -62, 'the indoor state never overrides a followed floor');
 	assert.equal(out.unread, 'none');
 	assert.equal(out.two, 'none', 'two indoor surfaces apart: unknown');
+});
+
+test('#234 floor: while its cluster is decoding (Path.SurfacesAt nil) the floor is kept where it was read, used within 5 yd of there, lost past 30 yd, and followed again once the cluster is in; an error is unknown', () => {
+	const [out] = run(`${FLOORS}
+		local r = {}
+		fake.surfaces = overhang
+		nav.place(0, 50)
+		r.seed = startZ()
+		fake.undecoded = true
+		walk(0, 47)
+		r.near = startZ()
+		walk(0, 30)
+		r.far = startZ()
+		fake.undecoded = false
+		walk(0, -25)
+		r.under = startZ()
+		-- Reseeded at (0, 50), then 36 yd walked with the cluster still decoding: lost, so under the rock it is unknown.
+		nav.place(0, 50)
+		stub.advance(3)
+		startZ()
+		fake.undecoded = true
+		walk(0, 14)
+		fake.undecoded = false
+		nav.place(0, -20)
+		stub.advance(0.3) N.Sample()
+		r.lost = startZ()
+		nav.place(0, 50)
+		stub.advance(3)
+		startZ()
+		fake.surfacesError = true
+		walk(0, 45)
+		r.error = startZ()
+		emit(r)`);
+	assert.deepEqual(out, { seed: 40, near: 40, far: 'none', under: 40, lost: 'none', error: 'none' });
+});
+
+test('#234 floor: a goal\'s height off its floor is dropped keeping the tracked start; a tracked start that finds nothing is dropped keeping the goal\'s height', () => {
+	const [out] = run(`${FLOORS}
+		local r = {}
+		fake.surfaces = function() return { 40 } end
+		nav.place(0, 50)
+		startZ()
+		local m, x, y = nav.mapPoint(-500, 500)
+		local function ask()
+			local j = fake.last()
+			return { j.from.z or "none", j.to.z or "none" }
+		end
+		N.SetTarget(m, x, y, "Trainer", nil, "trainer", -66)
+		N.Sample()
+		r.first = ask()
+		-- Found, but its last engine point stands 100 yd above the goal.
+		local job, pts = fake.last(), {}
+		for i, p in ipairs({ { 0, 50, 40 }, { -400, 450, 34 }, { -500, 500, -66 } }) do pts[i] = { map = job.map, x = p[1], y = p[2], z = p[3] } end
+		job.callback(pts, 100, job)
+		r.offFloor = ask()
+		N.SetTarget(m, x, y, "Trainer 2", nil, "trainer", -60)
+		N.Sample()
+		fake.fail("unreachable")
+		r.startFailed = ask()
+		emit(r)`);
+	assert.deepEqual(out.first, [40, -66]);
+	assert.deepEqual(out.offFloor, [40, 'none'], 'off the goal\'s floor: the goal\'s height goes, the tracked start stays');
+	assert.deepEqual(out.startFailed, ['none', -60], 'nothing found: the tracked start goes, the goal\'s height stays');
+});
+
+test('#234 floor: the router may drop the floor\'s cluster when the target is cleared or the arrow has not updated for 2 s', () => {
+	const [out] = run(`${FLOORS}
+		local r = {}
+		fake.surfaces = function() return { 40 } end
+		nav.place(0, 50)
+		startZ()
+		fake.releases = 0
+		-- In an instance the arrow samples nothing (no Walk.Aim); the 1 s ticker refreshes.
+		nav.instance = true
+		stub.advance(1.5)
+		Polestar.Nav.Refresh()
+		r.fresh = fake.releases
+		stub.advance(1.6)
+		Polestar.Nav.Refresh()
+		r.stale = fake.releases
+		nav.instance = false
+		N.Sample()
+		N.ClearTarget()
+		r.cleared = fake.releases
+		emit(r)`);
+	assert.equal(out.fresh, 0, 'within 2 s of the arrow\'s last update: kept');
+	assert.equal(out.stale, 1, 'past 2 s: released once');
+	assert.ok(out.cleared >= 2, 'the target cleared: released');
 });

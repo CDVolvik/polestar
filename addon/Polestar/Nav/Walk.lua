@@ -49,17 +49,25 @@
 --     above it (a ramp or stairs at mount speed, plus a jump); any drop (a
 --     fall). None: unknown.
 --   Unknown again: another continent; more than JUMP (30) yards since the
---     last check (a hearth, teleport, landing, loading screen); moving after
+--     last read (a hearth, teleport, landing, loading screen); moving after
 --     more than FRESH (2) seconds without a check; on a taxi, a transport
 --     (Transit.Riding) or within LIFT (8) yards of a lift (Transit.LiftNear:
---     it changes level without moving); a ghost state change; in combat a
---     cluster not decoded (only decoded ones are read then).
+--     it changes level without moving); a ghost state change; a read that
+--     raises an error.
+--   Decoding: the read never decodes. A cell whose cluster is not decoded
+--     reads nil and the router decodes it under its frame budget
+--     (Path.Prefetch, as a search's clusters; not in combat); meanwhile the
+--     floor is kept, checked but not read again, so JUMP and NEAR still
+--     count from where it was last read, and it is followed from there once
+--     the cluster is in. The router keeps that one cluster decoded at rest
+--     until Path.ReleaseSurfaces: Walk.Clear (no target) or no Walk.Aim for
+--     FRESH seconds (Walk:Refresh).
 -- The arrow's search starts from the client's height when it gives one, else
 -- from the floor when it is known, checked within FRESH seconds and read
 -- within NEAR (5) yards of the player; a search with it that finds nothing is
--- asked once more without it (and without the goal's height), and that
--- answer stands. The player's place in Walk.Measure takes the same height.
--- Unknown: searched without a height, as before.
+-- asked once more without it, keeping the goal's height (Z2 still drops the
+-- goal's, keeping the start as it was). The player's place in Walk.Measure
+-- takes the same height. Unknown: searched without a height, as before.
 --
 -- Steps: the walk is split at the lifts Nav/Transit.lua knows, and keeps the
 -- crossings, approach chains and guide gotos the planner already makes legs
@@ -200,6 +208,7 @@ local failed = false
 local failAt, failX, failY = 0, 0, 0
 local geomVersion = 0
 local pumpLegs              -- searches the route's later walks (below)
+local release               -- lets the router drop the floor's cluster (below, "The walking floor")
 
 local function changed()
 	geomVersion = geomVersion + 1
@@ -225,6 +234,7 @@ function Walk.Clear()
 	local had, c, x, y = gc ~= nil, gc, gx, gy
 	cancel()
 	gc, gx, gy, gzFor, gz, count, idx, wanted, failed, hubs = nil, nil, nil, nil, nil, 0, 1, false, false, nil
+	release()
 	if had then
 		restore(c, x, y)
 		changed()
@@ -267,7 +277,8 @@ end
 ---------------------------------------------------------------------------
 -- The walking floor (#234, Ruling 36): Forever gives no player height, so
 -- the height of the surface under the player is followed as they move
--- (Path.SurfacesAt), from Walk.Aim. The rules are in the header ("Floors").
+-- (Path.SurfacesAt), from Walk.Aim. The rules are in the header ("The
+-- player's floor").
 ---------------------------------------------------------------------------
 
 local RISE = 4        -- yards a reading may climb above the floor: a ramp or stairs at mount speed, plus a jump
@@ -283,6 +294,7 @@ local INDOOR = 2      -- Path.SURFACE_INDOOR
 local surf = {}       -- Path.SurfacesAt's out, reused
 local floorZ          -- the floor's height (nil: unknown)
 local fC, fX, fY, fAt, fGhost = nil, 0, 0, -huge, false -- the last check: continent, point read, time, ghost
+local aimAt               -- GetTime of the last Walk.Aim (nil: the reader's cluster released)
 
 -- On a taxi, a transport (Transit.Riding) or at a lift: the floor can change without walking.
 local function carried(pc, px, py)
@@ -335,6 +347,7 @@ end
 
 local function track(P, pc, px, py)
 	local now = GetTime()
+	aimAt = now
 	if pc == fC and now - fAt < EVERY then return end
 	local dx, dy = px - fX, py - fY
 	local d2 = dx * dx + dy * dy
@@ -347,17 +360,35 @@ local function track(P, pc, px, py)
 		fAt = now
 		return
 	end
+	if held then
+		fC, fX, fY, fAt, fGhost = pc, px, py, now, ghost
+		return
+	end
+	-- Decoded clusters only: nil queues the cluster's decode under the router's
+	-- frame budget (Path.Prefetch), and the floor is kept meanwhile, checked
+	-- now but read where it was (so the JUMP and NEAR checks still count from
+	-- there). An error is unknown.
+	local ok, n = pcall(P.SurfacesAt, pc, px, py, surf)
+	if ok and n == nil then
+		fC, fAt, fGhost = pc, now, ghost
+		return
+	end
 	fC, fX, fY, fAt, fGhost = pc, px, py, now, ghost
-	if held then return end
-	-- In combat only a decoded cluster is read (nil: not decoded, so unknown).
-	local n = P.SurfacesAt(pc, px, py, surf, inCombat())
-	if not n then
+	if not ok then
 		floorZ = nil
 	elseif floorZ == nil then
 		floorZ = seed(n)
 	else
 		floorZ = follow(n)
 	end
+end
+
+-- The router may drop the cluster the floor reads (at rest it keeps only
+-- that one): no target, or no Walk.Aim for FRESH seconds.
+release = function()
+	aimAt = nil
+	local P = Nav.Path
+	if P and P.ReleaseSurfaces then pcall(P.ReleaseSurfaces) end
 end
 
 -- The tracked floor under (px, py) on pc: known, checked within FRESH
@@ -398,7 +429,10 @@ local function offFloor(points, z)
 	return false
 end
 
--- flat: the retry without the tracked floor and the goal's height.
+-- flat: the retry without the tracked floor. A search with it that finds
+-- nothing is asked again without it (the goal's height kept); one with the
+-- goal's height that finds nothing or ends off its floor, again without that
+-- (Z2, for good), the start as it was.
 local function ask(P, pc, px, py, flat)
 	wanted = true
 	if inCombat() then return end -- after combat, on the next sample
@@ -419,10 +453,13 @@ local function ask(P, pc, px, py, flat)
 		if token ~= mine then return end
 		token, job = nil, nil
 		local got = type(points) == "table" and #points > 0
-		if (z or tracked) and (not got or (z and offFloor(points, z))) then
-			-- Once more without the heights (the goal's for good); that answer stands.
-			gz = nil
+		if tracked and not got then
 			ask(P, pc, px, py, true)
+			return
+		end
+		if z and (not got or offFloor(points, z)) then
+			gz = nil
+			ask(P, pc, px, py, flat)
 			return
 		end
 		if got then
@@ -441,9 +478,10 @@ local function ask(P, pc, px, py, flat)
 	end, opts(ghost, pc, px, py, gx, gy)) -- a ghost walks on water
 	if not ok then
 		token = nil
-		if z or tracked then
+		if tracked then return ask(P, pc, px, py, true) end
+		if z then
 			gz = nil
-			return ask(P, pc, px, py, true)
+			return ask(P, pc, px, py, flat)
 		end
 		failed, failAt, failX, failY = true, askedAt, px, py
 		return
@@ -1304,6 +1342,8 @@ end)
 
 function Walk:Refresh()
 	if ns.Get("nav.navRouting") and not Nav.Path and not loadTried then load() end
+	-- No arrow update for FRESH seconds (a taxi, an instance, arrived): the floor's cluster may go.
+	if aimAt and GetTime() - aimAt > FRESH then release() end
 	if not engine() then
 		-- Off, or Shortest Path Forever guides: nothing of ours runs.
 		if measuring or measureOwed then cancelMeasure() end

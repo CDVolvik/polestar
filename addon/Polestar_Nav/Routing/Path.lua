@@ -1052,17 +1052,17 @@ end
 -- The walkable surfaces of the cell under a world point on map: its base surface and its floors, base first, each
 -- surface's height in out[i] and its marks in out[-i]: SURFACE_WATER (1) when it is water, plus SURFACE_INDOOR (2)
 -- when its ground class is indoor or an indoor city (Costs.CLASS INDOOR, CITY; never on a map without classes).
--- -> n, 0 outside the map's data, in a cluster without data or a cell with no walkable surface. The caller's out is
--- reused (nothing is allocated; entries past n are left as they were). The cell's cluster is decoded if it is not
--- (PathGrid's readGrid, like a search's endpoint, keeping at most two such clusters between searches); with decoded
--- true none is: nil when it is not decoded (the walking floor's reading in combat, Nav/Walk.lua).
+-- -> n, 0 outside the map's data, in a cluster without data or a cell with no walkable surface; nil while the cell's
+-- cluster is not decoded: the read never decodes, it queues Path.Prefetch for it (decoded under the frame budget, as
+-- a search's clusters are) and a later read finds it. The caller's out is reused (nothing is allocated; entries past
+-- n are left as they were). The cluster read last stays decoded at rest (PathGrid's reader) until
+-- Path.ReleaseSurfaces().
 ---@param map number
 ---@param x number
 ---@param y number
 ---@param out table
----@param decoded? boolean
 ---@return number?
-function Path.SurfacesAt(map, x, y, out, decoded)
+function Path.SurfacesAt(map, x, y, out)
 	local st = State(map)
 	if not st then
 		return 0
@@ -1073,14 +1073,13 @@ function Path.SurfacesAt(map, x, y, out, decoded)
 	end
 	local val = st.val[k]
 	if val == nil then
-		if decoded then
-			return nil
-		end
-		val = Grid.readGrid(st, k)
+		Path.Prefetch(map, x, y)
+		return nil
 	end
 	if not val then
 		return 0
 	end
+	Grid.keepRead(st, k)
 	local z, at, cls, n = st.z[k], st.at[k], st.cls[k], 0
 	if val[lc + 1] ~= 0 then
 		n = 1
@@ -1097,7 +1096,16 @@ function Path.SurfacesAt(map, x, y, out, decoded)
 	return n
 end
 
+-- The cluster Path.SurfacesAt read last is no longer needed decoded at rest (its reader stopped).
+function Path.ReleaseSurfaces()
+	Grid.dropRead()
+end
+
 local function start(job)
+	if job.prefetch then
+		Grid.prefetch(job.st, job.k)
+		return
+	end
 	if job.notify then
 		local owner = job.owner
 		if not owner.cancelled then
