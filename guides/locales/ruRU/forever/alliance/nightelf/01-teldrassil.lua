@@ -131,6 +131,8 @@ return {
 
 	-- Step 20: Dolanaar
 	-- {npc:2151} Moon Priestess Amara
+	["{npc:2151} patrols the road west of the village: if she isn't at the arrow, follow the road until you meet her."] = "",
+	-- {npc:2151} Moon Priestess Amara
 	["{npc:2151}, on the road west of the village"] = "{npc:2151} – на дороге к западу от деревни",
 
 	-- Step 21: Fel Rock's mouth

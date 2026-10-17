@@ -52,9 +52,16 @@ levels 54-57
 zone Western Plaguelands
 next forever/alliance/50-60/05-silithus
 
+# ---------------------------------------------------------------- Light's Hope Chapel
+
+step Light's Hope Chapel
+  zone Eastern Plaguelands
+  sethome "Light's Hope Chapel" npc 16256 -- Jessica Chambers: the last guide binds here, so this usually ticks at once
+
 # ---------------------------------------------------------------- Chillwind Camp
 
 step Chillwind Camp
+  zone Western Plaguelands
   fly "Chillwind Camp"
   accept 5092                         -- Commander Ashlam Valorfist
   accept 5402                         -- Argent Officer Pureheart
@@ -257,7 +264,7 @@ step Kirsta Deepshadow
 
 step Hearthglen overlook
   tip Climb the hill west of Hearthglen to look down on the town.
-  complete 6025
+  complete 6025 @45.8,18.3
 
 step Kirsta Deepshadow
   turnin 6025
