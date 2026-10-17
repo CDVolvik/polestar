@@ -271,8 +271,11 @@ local Own = {}
 
 -- Quests found unavailable at their giver this session (questID ->
 -- { reason, accept }): the giver's window opened without offering them. Such a
--- quest's goals count as skipped until it is taken or done; the marks clear on
--- level-up and on any turn-in, since either can unlock it.
+-- quest's goals count as skipped until it is taken or done, or its giver
+-- offers it. A level-up or a turn-in can unlock it, so they clear the marks
+-- (Own.clearMarks), except the giver's refusals ("offer") of accepts the route
+-- has moved past: the guide never goes back to a giver who said no for no
+-- reason the data knows; seeing that giver again checks afresh.
 local unavailable = {}
 -- Quests a giver's window offered this session (questID -> true): the
 -- giver's word beats a prerequisite the data names (Own.preBlocked).
@@ -347,6 +350,18 @@ local function inPlace(goal)
 	local place = C.GetAreaName and C.GetAreaName(goal.area) or goal.location
 	local zone, sub = C.GetZoneText()
 	return same(zone, place) or same(sub, place)
+end
+
+-- Whether the player stands in a goto's place, by the subzone text: true or
+-- false for a goto whose area (`area`, its label's) the client names, nil
+-- for any other. A zone's name is never a goto's place: a label naming the
+-- zone (the zone text) would put the player there anywhere in it.
+function Own.inSubzone(goal)
+	local C = Compat()
+	local place = goal.area and C.GetAreaName and C.GetAreaName(goal.area)
+	if not place then return nil end
+	local zone, sub = C.GetZoneText()
+	return same(sub, place) and not same(zone, place)
 end
 
 -- Discovered flight paths, CharState().flags.fp; recreated if lost.
@@ -1224,7 +1239,8 @@ end
 -- what they chose to pass. Before the start (or, with none, before the last
 -- quest progress), a step holds unless all its open goals are:
 -- - accepts the character cannot take yet (level, prerequisite): marked
---   unavailable for the session, so they come back on level-up or a turn-in;
+--   unavailable for the session, so they come back when the level is
+--   reached or the prerequisite done (Own.clearMarks);
 -- - goals the quest log cannot vouch for (goto, fly, getfp, train, vendor,
 --   hearth, non-quest kill/collect...) in a step before the last quest
 --   progress (anchorStep): the player is demonstrably past them;
@@ -2211,6 +2227,32 @@ function Own.reached(goal, c, px, py)
 	return dx * dx + dy * dy <= r * r
 end
 
+-- A goto whose label names a subzone (`area`) arrives on going in there, a
+-- cave or mine past its mouth's point (#177): in that subzone and indoors.
+-- Indoors, as a cave's subzone can also cover the ground around and above
+-- it (Fargodeep Mine), where the step's point still leads the way in. Only
+-- once the player was seen elsewhere while the goal was open: being inside
+-- when the goal comes up does not count, nor for a later goto of the step
+-- naming the same place (a waypoint further in). Own.outside: the gotos with
+-- a place the player was seen elsewhere while the goal was open.
+Own.outside = setmetatable({}, { __mode = "k" })
+function Own.enteredPlace(goals, g, goal)
+	local inside = Own.inSubzone(goal)
+	if inside == nil then return false end
+	local C = Compat()
+	inside = inside and C.IsIndoors ~= nil and C.IsIndoors()
+	if not inside then
+		Own.outside[goal] = true
+		return false
+	end
+	if not Own.outside[goal] then return false end
+	for j = 1, g - 1 do
+		local other = goals[j]
+		if other.t == "goto" and other.area == goal.area then return false end
+	end
+	return true
+end
+
 -- Loaded tab: mark arrived goals of the current step; true if any. A "Go to"
 -- naming its step is the area the step's work is in: reaching the place of
 -- any other goal of the step (where the arrow leads) arrives there too.
@@ -2225,6 +2267,7 @@ local function arriveLoaded(c, px, py)
 			local gc, gx, gy = goalWorld(goal)
 			local dx, dy, r = (gx or 0) - px, (gy or 0) - py, goal.r or DEFAULT_RADIUS
 			local here = gc == c and dx * dx + dy * dy <= r * r
+			if not here and goal.t == "goto" and Own.enteredPlace(goals, g, goal) then here = true end
 			if not here and goal.t == "goto" and step.title and goal.text == step.title then
 				for j = 1, #goals do
 					local other = goals[j]
@@ -2685,9 +2728,12 @@ local function evaluateLoaded(active)
 		-- player stands. A spot picked earlier (the step shown as "Then:" or
 		-- looked at ahead, from elsewhere) would otherwise only move at the
 		-- next arrival poll: a second evaluation right after the step change.
+		-- A goto's place counts as entered only from outside seen from now on
+		-- (Own.enteredPlace), also when the player comes back to the step.
 		if current then
 			local c, px, py
 			for _, goal in ipairs(guide.steps[current].goals) do
+				Own.outside[goal] = nil
 				if goal.candidates then picks[goal] = nil end
 				if goal.spots and Spots.chosen[goal] then
 					if px == nil then c, px, py = Compat().GetPlayerWorldPosition() end
@@ -3481,13 +3527,13 @@ ns.RegisterEvent("QUEST_TURNED_IN", function(_, questID)
 		end
 		useActive()
 	end
-	wipe(unavailable)
+	Own.clearMarks()
 	requestUpdate()
 end)
 
 ns.RegisterEvent("PLAYER_LEVEL_UP", function(_, level)
 	if type(level) == "number" and level > levelSeen then levelSeen = level end
-	wipe(unavailable)
+	Own.clearMarks()
 	requestUpdate()
 end)
 
@@ -3525,6 +3571,46 @@ local function unavailableReason(goal)
 	if lvl and (player.level or 1) < lvl then return "level" end
 	if missingPre(goal) then return "pre" end
 	return "offer"
+end
+
+-- A level-up or a turn-in (either can unlock a quest) clears the marks, so
+-- the giver's next window decides afresh. A mark whose accept is in a step a
+-- tab has moved past is cleared only when the data says the quest has just
+-- opened: a "level" or "pre" mark whose level is reached and prerequisites
+-- done (the guide goes back to it, as for #70). A "level" or "pre" mark still
+-- gated stays, its reason brought up to date (a level reached, a
+-- prerequisite still missing). An "offer" mark stays (#161): nothing in the
+-- data explains the refusal, and clearing it would send the guide back to a
+-- giver who said no, from wherever the player is now. It keeps that step
+-- passed until the giver's window offers the quest (checkOffers) or it is
+-- taken; a server gate the data does not know (a higher level) opens the
+-- same way.
+function Own.clearMarks()
+	if not player then
+		wipe(unavailable)
+		return
+	end
+	refreshPlayer() -- the new level: UnitLevel can lag PLAYER_LEVEL_UP
+	local passed = {}
+	for i = 1, #tabs do
+		use(tabs[i])
+		if guide then
+			local stepOf = layoutOf(guide).stepOf
+			for q, u in pairs(unavailable) do
+				local s = stepOf[u.accept]
+				if s and s <= passedUpTo and u.reason ~= "closed" then passed[q] = true end
+			end
+		end
+	end
+	useActive()
+	for q, u in pairs(unavailable) do
+		local now = passed[q] and unavailableReason(u.accept)
+		if now and (u.reason == "offer" or now ~= "offer") then
+			if u.reason ~= "offer" then u.reason = now end
+		else
+			unavailable[q] = nil
+		end
+	end
 end
 
 local function checkOffers(source, startItem)
@@ -3589,17 +3675,19 @@ for _, event in ipairs({ "QUEST_COMPLETE", "QUEST_TURNED_IN" }) do
 	end)
 end
 
--- Quests their giver did not offer survive a reload: saved at logout as
--- CharState().offers[questID] = level, restored at login while the character
--- is still that level (a level-up or a turn-in clears them, as in play), so
--- the guide does not pull the player back to a giver who already said no.
+-- Quests their giver did not offer survive a reload and a relog, at any
+-- level: saved at logout as CharState().offers[questID] = true (older saves
+-- hold a level there, which reads the same) and restored at login, so placing
+-- the guide does not pull the player back to a giver who already said no
+-- (#161). As in play, the giver's window offering the quest clears the mark
+-- (checkOffers).
 function Own.saveOffers()
 	local s = ns.CharState()
 	local out
 	for q, u in pairs(unavailable) do
 		if u.reason == "offer" and not Compat().IsOnQuest(q) then
 			out = out or {}
-			out[q] = player and player.level or levelSeen
+			out[q] = true
 		end
 	end
 	s.offers = out
@@ -3608,10 +3696,9 @@ end
 function Own.restoreOffers()
 	local saved = ns.CharState().offers
 	if type(saved) ~= "table" then return end
-	local level = player and player.level
-	for q, lvl in pairs(saved) do
+	for q in pairs(saved) do
 		q = tonumber(q)
-		if q and lvl == level and not unavailable[q] then
+		if q and not unavailable[q] then
 			for _, t in ipairs(tabs) do
 				local a = layoutOf(t.guide).accepts[q]
 				if a then

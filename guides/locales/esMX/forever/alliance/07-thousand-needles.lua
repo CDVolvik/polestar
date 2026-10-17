@@ -3,11 +3,12 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Spanish (Latin America) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Spanish (Latin America) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Darkshire
-	-- {item:4371} Bronze Tube · {quest:174} Look to the Stars · {npc:3133} Herble Baubbletump · {npc:1448} Neal Allen · {area:150} Menethil Harbor
-	["No {item:4371} for {quest:174}? {npc:3133} sells it in the house beside Viktori, in limited stock; {npc:1448} in {area:150} sells it too."] = "¿No tienes {item:4371} para {quest:174}? {npc:3133} lo vende en la casa junto a la de Viktori, con existencias limitadas; {npc:1448} en {area:150} también lo vende.",
+	-- {item:4371} Bronze Tube · {quest:174} Look to the Stars · {npc:3133} Herble Baubbletump · {npc:276} Viktori Prism'Antras · {npc:1448} Neal Allen · {area:150} Menethil Harbor
+	["No {item:4371} for {quest:174}? {npc:3133} sells it in the house beside {npc:276}, in limited stock; {npc:1448} in {area:150} sells it too."] = "¿No tienes {item:4371} para {quest:174}? {npc:3133} lo vende en la casa junto a la de {npc:276}, con existencias limitadas; {npc:1448} en {area:150} también lo vende.",
 	-- {npc:352} Dungar Longdrink · {zone:1453} Stormwind
 	["From {npc:352} in {zone:1453}"] = "De {npc:352} en {zone:1453}",
 	-- {npc:6790} Innkeeper Trelayne
@@ -61,16 +62,18 @@ return {
 	-- plural, as words: Plague Spreaders = {npc:604} Plague Spreader
 	["The Plague Spreaders walk the northern half of the {area:492}. {npc:522}, an elite, wanders the graves: keep away from him."] = "Los propagadores de peste recorren la mitad norte de {area:492}. {npc:522}, un élite, deambula entre las tumbas: mantente lejos de él.",
 
-	-- Step 11: Sven's Camp
-	["Sven's Camp"] = "Campamento de Sven",
+	-- Step 11: Sven Yorgen's Camp
+	-- {npc:311} Sven Yorgen
+	["{npc:311}'s Camp"] = "Campamento de {npc:311}",
 
 	-- Step 12: Raven Hill Cemetery, west
 	-- {area:492} Raven Hill Cemetery
 	["{area:492}, west"] = "{area:492}, oeste",
+	-- {npc:311} Sven Yorgen
 	-- plural, as words: Skeletal Raiders = {npc:1110} Skeletal Raider
-	["Skeletal Raiders, Healers and Warders hold the west part of the cemetery, just east of Sven's camp."] = "Los asaltantes, sanadores y guardas esqueléticos ocupan la parte oeste del cementerio, justo al este del campamento de Sven.",
+	["Skeletal Raiders, Healers and Warders hold the west part of the cemetery, just east of {npc:311}'s camp."] = "Los asaltantes, sanadores y guardas esqueléticos ocupan la parte oeste del cementerio, justo al este del campamento de {npc:311}.",
 
-	-- Step 13: Sven's Camp
+	-- Step 13: Sven Yorgen's Camp
 	-- {npc:1212} Bishop Farthing · {zone:1453} Stormwind
 	["For {npc:1212} in {zone:1453}, in the next guide"] = "Para {npc:1212} en {zone:1453}, en la siguiente guía",
 
@@ -135,8 +138,9 @@ return {
 	-- {item:2661} Neru Fragment · {object:331} Loose Soil
 	["{item:2661}: the {object:331}"] = "{item:2661}: {object:331}",
 
-	-- Step 26: Ormer and Whelgar
-	["Ormer and Whelgar"] = "Ormer y Whelgar",
+	-- Step 26: Ormer Ironbraid and Whelgar
+	-- {npc:1078} Ormer Ironbraid
+	["{npc:1078} and Whelgar"] = "{npc:1078} y Whelgar",
 
 	-- Step 27: Dragonmaw camp
 	["Dragonmaw camp"] = "Campamento Faucedraco",
@@ -191,6 +195,4 @@ return {
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Ride east to the ogre mound. {item:1349} sits in the camp at its entrance; Splinter Fist ogres guard it."] = "Cabalga al este hasta el Túmulo de Vul'Gol. {item:1349} está en el campamento de su entrada; los ogros Puñastilla lo vigilan.",
-	-- ["The dig and Sarltooth"] = "La excavación y Sarldente",
-	-- ["The relics lie in the dig itself. Sarltooth, a big Razormaw, prowls the raptor valley just west of it."] = "Las reliquias están en la propia excavación. Sarldente, un gran Tajobuche, merodea por el valle de raptores justo al oeste.",
 }

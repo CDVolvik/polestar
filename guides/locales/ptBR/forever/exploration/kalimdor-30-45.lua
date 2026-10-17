@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Portuguese (Brazil) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Portuguese (Brazil) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -44,8 +45,6 @@ return {
 	-- {area:1099} Camp Mojache
 	["Flight path here: {area:1099} (Shyn)."] = "Rota de voo aqui: {area:1099} (Shyn).",
 	["level 60 area, well above this guide's range"] = "área de nível 60, bem acima da faixa deste guia",
-	-- {area:1108} Forgotten Coast
-	["The {area:1108}"] = "{area:1108}",
 
 	-- Step 6: Dustwallow Marsh
 	["7 areas to discover here, levels 36-61."] = "7 áreas a descobrir aqui, níveis 36-61.",
@@ -60,4 +59,7 @@ return {
 	["Horde town: Alliance characters only need to touch its edge (guards); any one of these names counts"] = "Cidade da Horda: personagens da Aliança só precisam tocar a borda (guardas); qualquer um destes nomes vale",
 	["level 61 area, well above this guide's range"] = "área de nível 61, bem acima da faixa deste guia",
 	["Alliance town: Horde characters only need to touch its edge (guards); any one of these names counts"] = "Cidade da Aliança: personagens da Horda só precisam tocar a borda (guardas); qualquer um destes nomes vale",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["The {area:1108}"] = "{area:1108}",
 }

@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Spanish (Spain) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Spanish (Spain) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Feathermoon Stronghold
@@ -56,7 +57,7 @@ return {
 	["Grimtotem camp"] = "Dominios Tótem Siniestro",
 	-- {area:1108} Forgotten Coast · {zone:1444} Feralas · {npc:7956} Kindal Moonweaver
 	-- plural, as words: Sprite Darters = {npc:5278} Sprite Darter
-	["Boat to the {area:1108} and ride east across {zone:1444} to the Grimtotem camp north of the road. {npc:7956} waits outside it; free the Sprite Darters from the pen in the middle and keep Kindal and at least six of them alive."] = "Toma el barco a {area:1108} y cabalga hacia el este por {zone:1444} hasta los Dominios Tótem Siniestro, al norte del camino. {npc:7956} espera fuera; libera a los Duendes dardo del cercado del centro y mantén con vida a Kindal y al menos a seis de ellos.",
+	["Boat to the {area:1108} and ride east across {zone:1444} to the Grimtotem camp north of the road. {npc:7956} waits outside it; free the Sprite Darters from the pen in the middle and keep {npc:7956} and at least six of them alive."] = "Toma el barco a {area:1108} y cabalga hacia el este por {zone:1444} hasta los Dominios Tótem Siniestro, al norte del camino. {npc:7956} espera fuera; libera a los Duendes dardo del cercado del centro y mantén con vida a {npc:7956} y al menos a seis de ellos.",
 
 	-- Step 13: Grimtotem tauren
 	["Grimtotem tauren"] = "Tauren Tótem Siniestro",
@@ -79,36 +80,37 @@ return {
 
 	-- Step 17: Rage Scar yetis
 	["Rage Scar yetis"] = "Yetis Estigmodio",
-	-- {quest:7735} Pristine Yeti Hide
-	["Ride back west along the road, then north into the Rage Scar hills. Every yeti here can drop a hide; one may drop a {quest:7735}, which Pratt pays for too."] = "Vuelve al oeste por el camino y luego al norte hasta las colinas de los Dominios de los Cicatriz de Rabia. Cualquier yeti de aquí puede soltar un pellejo; alguno puede soltar un {quest:7735}, que Pratt McGrubben también paga.",
+	-- {quest:7735} Pristine Yeti Hide · {npc:7852} Pratt McGrubben
+	["Ride back west along the road, then north into the Rage Scar hills. Every yeti here can drop a hide; one may drop a {quest:7735}, which {npc:7852} pays for too."] = "Vuelve al oeste por el camino y luego al norte hasta las colinas de los Dominios de los Cicatriz de Rabia. Cualquier yeti de aquí puede soltar un pellejo; alguno puede soltar un {quest:7735}, que {npc:7852} McGrubben también paga.",
 
 	-- Step 18: Rockbiter
 	-- plural, as words: Land Walkers = {npc:5357} Land Walker · Cliff Giants = {npc:5358} Cliff Giant
 	["Ride west to the friendly mountain giant at the foot of the hills. Land Walkers and Cliff Giants around him are elite: give them room."] = "Cabalga hacia el oeste hasta el gigante de montaña amistoso al pie de las colinas. Los Caminantes de la tierra y los Gigantes del risco que lo rodean son élite: mantén la distancia.",
 
 	-- Step 19: Shay Leafrunner
-	-- {npc:7765} Rockbiter
-	["Shay wanders the hills north of {npc:7765}, among the Northspring harpies; her bell is in the chest beside her."] = "Shay Correhoja deambula por las colinas al norte de {npc:7765}, entre las arpías Nortearroyo; su campana está en el cofre a su lado.",
+	-- {npc:7774} Shay Leafrunner · {npc:7765} Rockbiter
+	["{npc:7774} wanders the hills north of {npc:7765}, among the Northspring harpies; her bell is in the chest beside her."] = "{npc:7774} deambula por las colinas al norte de {npc:7765}, entre las arpías Nortearroyo; su campana está en el cofre a su lado.",
 
-	-- Step 20: Shay's escort
-	["Shay's escort"] = "La escolta de Shay",
-	-- {npc:7765} Rockbiter
-	["Ring the bell whenever Shay stops to wander, and lead her south to {npc:7765}."] = "Toca la campana cada vez que Shay se pare a deambular y llévala hacia el sur hasta {npc:7765}.",
+	-- Step 20: Shay Leafrunner's escort
+	-- {npc:7774} Shay Leafrunner
+	["{npc:7774}'s escort"] = "La escolta de {npc:7774}",
+	-- {npc:7774} Shay Leafrunner · {npc:7765} Rockbiter
+	["Ring the bell whenever {npc:7774} stops to wander, and lead her south to {npc:7765}."] = "Toca la campana cada vez que {npc:7774} se pare a deambular y llévala hacia el sur hasta {npc:7765}.",
 
 	-- Step 21: Feathermoon Stronghold
-	-- {zone:1457} Darnassus · {area:976} Gadgetzan
-	["Shandris then asks you to carry news to {zone:1457}: skip it, {area:976} sends you there instead."] = "Después Shandris te pide que lleves noticias a {zone:1457}: omítelo, {area:976} te enviará allí en su lugar.",
+	-- {npc:3936} Shandris Feathermoon · {zone:1457} Darnassus · {area:976} Gadgetzan
+	["{npc:3936} then asks you to carry news to {zone:1457}: skip it, {area:976} sends you there instead."] = "Después {npc:3936} te pide que lleves noticias a {zone:1457}: omítelo, {area:976} te enviará allí en su lugar.",
 
 	-- Step 22: Zul'Farrak instead of grinding
 	-- {area:978} Zul'Farrak
 	["{area:978} instead of grinding"] = "{area:978} en vez de farmear",
-	-- {area:978} Zul'Farrak · {zone:1446} Tanaris · {area:1108} Forgotten Coast
-	["Running {area:978} instead of grinding gets you there faster in a group. The troll city lies in northern {zone:1446}, the next zone on the route; come back to Zorbin on the {area:1108} afterwards."] = "Hacer {area:978} en grupo en vez de farmear te lleva allí más rápido. La ciudad trol está en el norte de {zone:1446}, la siguiente zona de la ruta; después vuelve con Zorbin Hipnoviento en {area:1108}.",
+	-- {area:978} Zul'Farrak · {zone:1446} Tanaris · {npc:14637} Zorbin Fandazzle · {area:1108} Forgotten Coast
+	["Running {area:978} instead of grinding gets you there faster in a group. The troll city lies in northern {zone:1446}, the next zone on the route; come back to {npc:14637} on the {area:1108} afterwards."] = "Hacer {area:978} en grupo en vez de farmear te lleva allí más rápido. La ciudad trol está en el norte de {zone:1446}, la siguiente zona de la ruta; después vuelve con {npc:14637} en {area:1108}.",
 
 	-- Step 23: Grind to 45
 	["Grind to 45"] = "Farmea hasta el 45",
-	-- {area:1108} Forgotten Coast · {area:1105} Feral Scar Vale
-	["Boat to the {area:1108} and ride east into {area:1105}. Zorbin's quests on the coast need level 45."] = "Toma el barco a {area:1108} y cabalga hacia el este hasta {area:1105}. Las misiones de Zorbin en la costa requieren nivel 45.",
+	-- {area:1108} Forgotten Coast · {area:1105} Feral Scar Vale · {npc:14637} Zorbin Fandazzle
+	["Boat to the {area:1108} and ride east into {area:1105}. {npc:14637}'s quests on the coast need level 45."] = "Toma el barco a {area:1108} y cabalga hacia el este hasta {area:1105}. Las misiones de {npc:14637} en la costa requieren nivel 45.",
 	-- {npc:5292} Feral Scar Yeti · {area:1105} Feral Scar Vale · {zone:1444} Feralas
 	["grind on {npc:5292} at {area:1105}, {zone:1444}"] = "farmea {npc:5292} en {area:1105}, {zone:1444}",
 
@@ -123,7 +125,8 @@ return {
 	["Shore Striders, Deep Striders and Wave Striders (elite giants) wade along the coast north of the dock: zap one with {item:18904} and kill the shrunken giant. Sea Elementals and Sea Sprays drift in the same surf."] = "Zancacostas, Zancaprofundas y Asaltaolas (gigantes élite) vadean la costa al norte del muelle: dispara a uno con {item:18904} y mata al gigante encogido. Elementales marinos y Rocíos del mar flotan entre las mismas olas.",
 
 	-- Step 26: Zorbin Fandazzle
-	["Zorbin's refills are level 55: skip them."] = "Las recargas de Zorbin son de nivel 55: omítelas.",
+	-- {npc:14637} Zorbin Fandazzle
+	["{npc:14637}'s refills are level 55: skip them."] = "Las recargas de {npc:14637} son de nivel 55: omítelas.",
 	-- {area:1108} Forgotten Coast · {zone:1446} Tanaris
 	["You end at the {area:1108} dock: the {zone:1446} guide starts with the trip east from here."] = "Terminas en el muelle de {area:1108}: la guía de {zone:1446} empieza con el viaje hacia el este desde aquí.",
 }

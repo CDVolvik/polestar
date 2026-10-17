@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Korean words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -16,8 +17,8 @@ return {
 	["At 30 {npc:258098}, the shaman trainer in {zone:1455}, sends you to {npc:259023} in {zone:1417}."] = "30레벨에 {zone:1455}의 주술사 상급자 {npc:258098}이(가) {zone:1417}의 {npc:259023}에게 보냅니다.",
 
 	-- Step 2: Veyric Thunderhame
-	-- {zone:1417} Arathi Highlands
-	["Veyric camps in the northern hills of {zone:1417}."] = "베이릭은 {zone:1417} 북쪽 언덕에 야영하고 있습니다.",
+	-- {npc:259023} Veyric Thunderhame · {zone:1417} Arathi Highlands
+	["{npc:259023} camps in the northern hills of {zone:1417}."] = "{npc:259023}은(는) {zone:1417} 북쪽 언덕에 야영하고 있습니다.",
 	-- {npc:259023} Veyric Thunderhame · {item:5178} Air Totem
 	["{npc:259023}: your {item:5178}"] = "{npc:259023}: {item:5178}",
 
@@ -57,14 +58,14 @@ return {
 
 	-- Step 10: The steam pools
 	["The steam pools"] = "증기 웅덩이",
-	-- {item:268582} Corrupted Totems · {zone:1441} Thousand Needles · {npc:216474} Ravaging Tempest · {quest:96135} Heed My Call
-	["Veyric hands you the {item:268582}: place them at the steam pools of {zone:1441} and defeat the {npc:216474} they call. {quest:96135} is an elite quest: grouping up is advised."] = "베이릭이 {item:268582}을(를) 줍니다: {zone:1441}의 증기 웅덩이에 놓고, 토템이 불러낸 {npc:216474}을(를) 처치하십시오. {quest:96135}은(는) 정예 퀘스트이니 파티를 권장합니다.",
+	-- {npc:259023} Veyric Thunderhame · {item:268582} Corrupted Totems · {zone:1441} Thousand Needles · {npc:216474} Ravaging Tempest · {quest:96135} Heed My Call
+	["{npc:259023} hands you the {item:268582}: place them at the steam pools of {zone:1441} and defeat the {npc:216474} they call. {quest:96135} is an elite quest: grouping up is advised."] = "{npc:259023}이(가) {item:268582}을(를) 줍니다: {zone:1441}의 증기 웅덩이에 놓고, 토템이 불러낸 {npc:216474}을(를) 처치하십시오. {quest:96135}은(는) 정예 퀘스트이니 파티를 권장합니다.",
 	-- {item:212792} Eye of the Tempest · {npc:216474} Ravaging Tempest
 	["{item:212792}, from the {npc:216474}"] = "{npc:216474}에게서 얻는 {item:212792}",
 
 	-- Step 12: Bath'rah the Windwatcher
-	-- {zone:1416} Alterac Mountains · {area:272} Tarren Mill
-	["Bath'rah camps in the east of {zone:1416}, north-east of {area:272}."] = "바스라는 {area:272} 북동쪽, {zone:1416} 동부에 야영하고 있습니다.",
+	-- {npc:6176} Bath'rah the Windwatcher · {zone:1416} Alterac Mountains · {area:272} Tarren Mill
+	["{npc:6176} camps in the east of {zone:1416}, north-east of {area:272}."] = "{npc:6176}은(는) {area:272} 북동쪽, {zone:1416} 동부에 야영하고 있습니다.",
 	-- {npc:6176} Bath'rah the Windwatcher · {item:280696} Elementalist's Guard
 	["{npc:6176}: the {item:280696} and your weapon"] = "{npc:6176}: {item:280696}와(과) 무기",
 }

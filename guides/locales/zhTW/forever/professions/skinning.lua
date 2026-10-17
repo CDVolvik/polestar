@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (traditional) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (traditional) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Learn Skinning
@@ -178,9 +179,9 @@ return {
 
 	-- Step 23: Artisan Skinning
 	-- {skill:393} Skinning
-	["Artisan {skill:393}"] = "專家{skill:393}",
+	["Artisan {skill:393}"] = "專家級{skill:393}",
 	-- {skill:393} Skinning
-	["Artisan {skill:393} raises the cap to 300; it needs skill 200 and character level 35. The arrow picks the nearest {skill:393} trainer of your faction."] = "專家{skill:393}將上限提高至 300；需要技能 200 且角色等級 35。箭頭會指向你陣營最近的{skill:393}訓練師。",
+	["Artisan {skill:393} raises the cap to 300; it needs skill 200 and character level 35. The arrow picks the nearest {skill:393} trainer of your faction."] = "專家級{skill:393}將上限提高至 300；需要技能 200 且角色等級 35。箭頭會指向你陣營最近的{skill:393}訓練師。",
 
 	-- Step 24: Beasts 35-42: Badlands (200-225)
 	-- {zone:1418} Badlands

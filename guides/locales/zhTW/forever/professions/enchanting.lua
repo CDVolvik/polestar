@@ -3,13 +3,14 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (traditional) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (traditional) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Apprentice Enchanting
 	-- {skill:333} Enchanting
 	["Apprentice {skill:333}"] = "初級{skill:333}",
 	-- {skill:333} Enchanting
-	["{skill:333} runs alongside leveling. Forever's Legacy System rewards crafting professions at skill 150, 225 and 300 (the Journeyman, Expert and Artisan caps), so each of those checkpoints counts. Materials for 1-75 are worth about 4g 3s in all."] = "{skill:333}可以邊升級邊練。永恆的傳承系統會在專業技能150、225和300（中級、高級和專家的上限）時給予製造專業獎勵，所以每個階段都很重要。1-75所需材料總價約4金3銀。",
+	["{skill:333} runs alongside leveling. Forever's Legacy System rewards crafting professions at skill 150, 225 and 300 (the Journeyman, Expert and Artisan caps), so each of those checkpoints counts. Materials for 1-75 are worth about 4g 3s in all."] = "{skill:333}可以邊升級邊練。永恆的傳承系統會在專業技能150、225和300（中級、高級和專家級的上限）時給予製造專業獎勵，所以每個階段都很重要。1-75所需材料總價約4金3銀。",
 
 	-- Step 2: Enchant Bracer - Inferior Stamina to 25
 	-- {spell:7418} Enchant Bracer - Inferior Stamina
@@ -156,11 +157,11 @@ return {
 
 	-- Step 27: Artisan Enchanting
 	-- {skill:333} Enchanting
-	["Artisan {skill:333}"] = "專家{skill:333}",
+	["Artisan {skill:333}"] = "專家級{skill:333}",
 	-- {skill:333} Enchanting
-	["Artisan needs character level 35 and {skill:333} 200; it raises the cap to 300. Materials for 225-300 are worth about 30s in all."] = "專家需要角色等級35且{skill:333}200點；上限提高到300。225-300所需材料總價約30銀。",
+	["Artisan needs character level 35 and {skill:333} 200; it raises the cap to 300. Materials for 225-300 are worth about 30s in all."] = "專家級需要角色等級35且{skill:333}200點；上限提高到300。225-300所需材料總價約30銀。",
 	-- {npc:11073} Annora · {skill:333} Enchanting · {area:1517} Uldaman · {zone:1418} Badlands
-	["{npc:11073} teaches Artisan {skill:333} inside the {area:1517} dungeon ({zone:1418}); bring a group"] = "{npc:11073}在{area:1517}地城（{zone:1418}）裡教授專家{skill:333}；請組隊前往",
+	["{npc:11073} teaches Artisan {skill:333} inside the {area:1517} dungeon ({zone:1418}); bring a group"] = "{npc:11073}在{area:1517}地城（{zone:1418}）裡教授專家級{skill:333}；請組隊前往",
 
 	-- Step 28: Black Pearl (Alliance)
 	-- {item:7971} Black Pearl

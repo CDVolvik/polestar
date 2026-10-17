@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Portuguese (Brazil) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Portuguese (Brazil) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Learn Herbalism
@@ -17,9 +18,9 @@ return {
 
 	-- Step 8: Journeyman Herbalism
 	-- {skill:182} Herbalism
-	["Journeyman {skill:182}"] = "{skill:182} Artesão",
+	["Journeyman {skill:182}"] = "{skill:182} (Profissional)",
 	-- {skill:182} Herbalism
-	["Journeyman {skill:182} raises the cap to 150; it needs skill 50 and character level 10. The arrow picks the nearest {skill:182} trainer of your faction."] = "{skill:182} Artesão eleva o limite para 150; exige perícia 50 e nível de personagem 10. A seta escolhe o instrutor de {skill:182} da sua facção mais próximo.",
+	["Journeyman {skill:182} raises the cap to 150; it needs skill 50 and character level 10. The arrow picks the nearest {skill:182} trainer of your faction."] = "{skill:182} Profissional eleva o limite para 150; exige perícia 50 e nível de personagem 10. A seta escolhe o instrutor de {skill:182} da sua facção mais próximo.",
 
 	-- Step 9: Briarthorn & Stranglekelp: Westfall (50-100)
 	-- {item:2447} Peacebloom · {item:765} Silverleaf · {item:2449} Earthroot · {item:785} Mageroyal · {item:2450} Briarthorn · {item:3820} Stranglekelp · {skill:182} Herbalism
@@ -47,9 +48,9 @@ return {
 
 	-- Step 17: Expert Herbalism
 	-- {skill:182} Herbalism
-	["Expert {skill:182}"] = "{skill:182} Especialista",
+	["Expert {skill:182}"] = "{skill:182} (Perito)",
 	-- {skill:182} Herbalism
-	["Expert {skill:182} raises the cap to 225; it needs skill 125 and character level 20. The arrow picks the nearest {skill:182} trainer of your faction."] = "{skill:182} Especialista eleva o limite para 225; exige perícia 125 e nível de personagem 20. A seta escolhe o instrutor de {skill:182} da sua facção mais próximo.",
+	["Expert {skill:182} raises the cap to 225; it needs skill 125 and character level 20. The arrow picks the nearest {skill:182} trainer of your faction."] = "{skill:182} (Perito) eleva o limite para 225; exige perícia 125 e nível de personagem 20. A seta escolhe o instrutor de {skill:182} da sua facção mais próximo.",
 
 	-- Step 18: Grave Moss & Kingsblood: Duskwood (125-160)
 	-- {item:785} Mageroyal · {item:2450} Briarthorn · {item:2453} Bruiseweed · {object:1623} Wild Steelbloom · {object:1628} Grave Moss · {item:3356} Kingsblood · {skill:182} Herbalism
@@ -69,7 +70,7 @@ return {
 
 	-- Step 22: Artisan Herbalism
 	-- {skill:182} Herbalism
-	["Artisan {skill:182}"] = "{skill:182} Artífice",
+	["Artisan {skill:182}"] = "{skill:182} (Artífice)",
 	-- {skill:182} Herbalism
 	["Artisan {skill:182} raises the cap to 300; it needs skill 200 and character level 35. The arrow picks the nearest {skill:182} trainer of your faction."] = "{skill:182} Artífice eleva o limite para 300; requer perícia 200 e nível de personagem 35. A seta escolhe o instrutor de {skill:182} mais próximo da sua facção.",
 

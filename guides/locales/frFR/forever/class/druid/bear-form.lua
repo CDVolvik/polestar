@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in French (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in French words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -29,14 +30,14 @@ return {
 	["Speak with the {quest:5929}"] = "Parler à {quest:5929}",
 
 	-- Step 5: The Moonkin Stone
-	-- {object:177525} Moonkin Stone
+	-- {object:177525} Moonkin Stone (no name in this language: may be words)
 	["The {object:177525}"] = "{object:177525}",
-	-- {area:702} Rut'theran Village · {area:442} Auberdine · {object:177525} Moonkin Stone · {item:15208} Cenarion Moondust · {npc:12144} Lunaclaw Spirit
+	-- {area:702} Rut'theran Village · {area:442} Auberdine · {object:177525} Moonkin Stone (no name in this language: may be words) · {item:15208} Cenarion Moondust · {npc:12144} Lunaclaw Spirit
 	["Fly from {area:702} to {area:442}. The {object:177525} stands in the hills just east of the village: use the {item:15208} there, defeat Lunaclaw and speak to the {npc:12144}."] = "Volez de {area:702} à {area:442}. {object:177525} se dresse dans les collines juste à l'est du village : utilisez-y {item:15208}, vainquez Lunegriffe et parlez à {npc:12144}.",
 
 	-- Step 6: Body and Heart
-	-- {area:702} Rut'theran Village
-	["Fly back to {area:702} and take the portal up to Mathrengyl."] = "Retournez en vol à {area:702} et prenez le portail pour rejoindre Mathrengyl.",
+	-- {area:702} Rut'theran Village · {npc:4217} Mathrengyl Bearwalker
+	["Fly back to {area:702} and take the portal up to {npc:4217}."] = "Retournez en vol à {area:702} et prenez le portail pour rejoindre {npc:4217}.",
 
 	-- Step 7: Heeding the Call
 	-- {npc:3064} Gennia Runetotem · {area:222} Bloodhoof Village · {npc:6746} Innkeeper Pala · {zone:1456} Thunder Bluff · {npc:6929} Innkeeper Gryshka · {zone:1454} Orgrimmar · {npc:3033} Turak Runetotem · {area:1639} Elder Rise
@@ -55,7 +56,7 @@ return {
 	["Speak with the {quest:5930}"] = "Parler à {quest:5930}",
 
 	-- Step 11: The Moonkin Stone
-	-- {object:177525} Moonkin Stone · {zone:1412} Mulgore · {zone:1413} Barrens · {item:15710} Cenarion Lunardust · {npc:12144} Lunaclaw Spirit
+	-- {object:177525} Moonkin Stone (no name in this language: may be words) · {zone:1412} Mulgore · {zone:1413} Barrens · {item:15710} Cenarion Lunardust · {npc:12144} Lunaclaw Spirit
 	["The {object:177525} stands in the pass from {zone:1412} into the {zone:1413}. Use the {item:15710} there, defeat Lunaclaw and speak to the {npc:12144}."] = "{object:177525} se dresse dans le col entre {zone:1412} et {zone:1413}. Utilisez-y {item:15710}, vainquez Lunegriffe et parlez à {npc:12144}.",
 
 	-- Step 12: Body and Heart
@@ -64,17 +65,17 @@ return {
 
 	-- Step 13: Skyboat from Dalaran
 	-- {area:279} Dalaran
-	["Skyboat from {area:279}"] = "Vaisseau céleste depuis {area:279}",
+	["Skyboat from {area:279}"] = "Aéronef depuis {area:279}",
 	-- {spell:5487} Bear Form · {zone:2521} Zephras Isle · {area:279} Dalaran
-	["{spell:5487} is taught on {zone:2521}. Skip this if you are still on the isle; otherwise take the skyboat from the north side of {area:279}."] = "{spell:5487} s'apprend sur {zone:2521}. Passez cette étape si vous êtes encore sur l'île ; sinon, prenez le vaisseau céleste au nord de {area:279}.",
+	["{spell:5487} is taught on {zone:2521}. Skip this if you are still on the isle; otherwise take the skyboat from the north side of {area:279}."] = "{spell:5487} s'apprend sur {zone:2521}. Passez cette étape si vous êtes encore sur l'île ; sinon, prenez l'aéronef au nord de {area:279}.",
 	-- {zone:2521} Zephras Isle
-	["Skyboat to {zone:2521}"] = "Vaisseau céleste pour {zone:2521}",
+	["Skyboat to {zone:2521}"] = "Aéronef vers {zone:2521}",
 
 	-- Step 14: Skyboat from Thunder Bluff
 	-- {zone:1456} Thunder Bluff
-	["Skyboat from {zone:1456}"] = "Vaisseau céleste depuis {zone:1456}",
+	["Skyboat from {zone:1456}"] = "Aéronef depuis {zone:1456}",
 	-- {spell:5487} Bear Form · {zone:2521} Zephras Isle · {area:17045} Skywatcher Plateau · {zone:1456} Thunder Bluff
-	["{spell:5487} is taught on {zone:2521}. Skip this if you are still on the isle; otherwise take the skyboat from the cliffs south of {area:17045}, north of {zone:1456}."] = "{spell:5487} s'apprend sur {zone:2521}. Passez cette étape si vous êtes encore sur l'île ; sinon, prenez le vaisseau céleste depuis les falaises au sud de {area:17045}, au nord de {zone:1456}.",
+	["{spell:5487} is taught on {zone:2521}. Skip this if you are still on the isle; otherwise take the skyboat from the cliffs south of {area:17045}, north of {zone:1456}."] = "{spell:5487} s'apprend sur {zone:2521}. Passez cette étape si vous êtes encore sur l'île ; sinon, prenez l'aéronef depuis les falaises au sud de {area:17045}, au nord de {zone:1456}.",
 
 	-- Step 15: Lotheluum Starbreeze
 	-- {npc:252359} Lotheluum Starbreeze · {area:16638} Valanaar
@@ -100,7 +101,7 @@ return {
 
 	-- Step 20: Child of Nature
 	-- {npc:270459} Alfina Nightgaze · {npc:259084} Denaaris Stargale · {area:279} Dalaran · {zone:2521} Zephras Isle · {npc:2543} Archmage Ansirem Runeweaver
-	["{npc:270459} stands beside {npc:259084} and the Skyborne Portal, west of {area:279}, where the skycutter from {zone:2521} lands. {npc:2543} offers the same quest."] = "{npc:270459} se tient à côté de {npc:259084} et du portail éolide, à l'ouest de {area:279}, là où se pose le vaisseau venu de {zone:2521}. {npc:2543} propose la même quête.",
+	["{npc:270459} stands beside {npc:259084} and the Skyborne Portal, west of {area:279}, where the skycutter from {zone:2521} lands. {npc:2543} offers the same quest."] = "{npc:270459} se tient à côté de {npc:259084} et du portail éolide, à l'ouest de {area:279}, là où se pose le fend-ciel venu de {zone:2521}. {npc:2543} propose la même quête.",
 
 	-- Step 21: Sheldras Moontree
 	-- {zone:1453} Stormwind · {npc:5504} Sheldras Moontree
@@ -109,11 +110,4 @@ return {
 	-- Step 22: Dendrite Starblaze
 	-- {spell:18960} Teleport: Moonglade · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {area:493} Moonglade
 	["Cast {spell:18960}. {npc:11802} is in {area:2361}. Learn the {area:493} flight path while you are here."] = "Lancez {spell:18960}. {npc:11802} est à {area:2361}. Apprenez le trajet aérien de {area:493} pendant que vous y êtes.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["At 10 a druid's call reaches you: {npc:3602} in {area:186}, Denatharion in {zone:1457} or Theridran in {zone:1453}. Any one of them sends you to {npc:4217} in the Cenarion Enclave of {zone:1457}."] = "Au niveau 10, l'appel d'un druide vous parvient : {npc:3602} à {area:186}, Denatharion à {zone:1457} ou Theridran à {zone:1453}. N'importe lequel vous envoie voir {npc:4217} à l'Enclave cénarienne de {zone:1457}.",
-	-- ["At 10 a druid's call reaches you: {npc:3602} in {area:186}, Denatharion in {zone:1457} or Theridran in {zone:1453}. Any one of them sends you to {npc:4217} in the {area:1658} of {zone:1457}."] = "Au niveau 10, l'appel d'un druide vous parvient : {npc:3602} à {area:186}, Denatharion à {zone:1457} ou Theridran à {zone:1453}. N'importe lequel vous envoie voir {npc:4217} dans {area:1658} de {zone:1457}.",
-	-- ["Cast Teleport: {area:493}. {npc:11802} is in {area:2361}. Learn the {area:493} flight path while you are here."] = "Lancez Téléportation : {area:493}. {npc:11802} est à {area:2361}. Apprenez le trajet aérien de {area:493} pendant que vous y êtes.",
-	-- ["Cast Teleport: {area:493}. {npc:11802} is in {area:2361}; the {quest:5929} sits in the woods to the north-west. Learn the {area:493} flight path, then fly to {area:702} (by way of {area:442}) and take the portal up to {zone:1457}."] = "Lancez Téléportation : {area:493}. {npc:11802} est à {area:2361} ; {quest:5929} se trouve dans les bois au nord-ouest. Apprenez le trajet aérien de {area:493}, puis volez jusqu'à {area:702} (via {area:442}) et prenez le portail vers {zone:1457}.",
-	-- ["Cast Teleport: {quest:5922}. {npc:11802} is in {area:2361}; the {quest:5930} sits in the woods to the north-west. {npc:11798} in {area:2361} flies druids to {area:1638}."] = "Lancez Téléportation : {quest:5922}. {npc:11802} est à {area:2361} ; {quest:5930} se trouve dans les bois au nord-ouest. {npc:11798}, à {area:2361}, emmène les druides en vol à {area:1638}.",
 }

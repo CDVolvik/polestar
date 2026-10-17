@@ -1020,7 +1020,7 @@ T.Register({
 
 T.Register({
 	class = "ROGUE", tree = 1111, prereq = "full",
-	source = "ForeverDB", url = "https://foreverdb.net/class/Rogue/talents",
+	source = "ForeverDB's leveling builds, adapted to level 30", url = "https://foreverdb.net/class/Rogue/talents",
 	summary = L["Level as Combat with a sword (Riposte, Blade Flurry, Adrenaline Rush) for the steadiest kills, or Assassination with daggers and poisons (Mutilate). Subtlety's Hemorrhage plan suits stealth openers and is slower solo."],
 	specs = { "Assassination", "Combat", "Subtlety" },
 	-- node = { entry, max ranks, spell, spec column, row, column, name }
@@ -1392,7 +1392,7 @@ T.Register({
 				[15] = L["Mental Dexterity turns your Intellect into attack power, so mana gear helps your melee too; it also opens Flurry."],
 				[25] = L["Flurry speeds up your swings after a crit and is the core of Enhancement's damage."],
 				[30] = L["Stormstrike is an instant strike that raises the damage your next spells do."],
-				[35] = L["Maelstrom Weapon makes your next spell faster and cheaper as you hit: a quick heal or Lightning Bolt between swings."],
+				[35] = L["Maelstrom Weapon makes your next Lightning Bolt faster and cheaper as you hit."],
 				[40] = L["Rage of the Farseer is the capstone: a big attack-speed cooldown for elites and pulls."],
 				[41] = L["The last 20 points go to Elemental for stronger Shocks, cheaper casts and more crit from spells."],
 			},
@@ -1570,7 +1570,7 @@ T.Register({
 				[25] = L["Nightfall gives an instant Shadow Bolt now and then while your damage over time ticks."],
 				[30] = L["Siphon Life adds another self-heal over time to the rotation."],
 				[35] = L["Shadow Mastery adds damage to every Shadow spell."],
-				[40] = L["Wrack is the capstone: a strong channel that raises the damage the target takes from your spells."],
+				[40] = L["Wrack is the capstone: a strong channel that raises the damage the target takes from your other Shadow damage-over-time effects by 10%."],
 				[41] = L["The last 20 points go to Demonology: more Stamina, a tougher Voidwalker, quicker summons and Demonic Sacrifice."],
 			},
 		},
@@ -1623,7 +1623,7 @@ T.Register({
 
 T.Register({
 	class = "WARRIOR", tree = 1117, prereq = "full",
-	source = "ForeverDB", url = "https://foreverdb.net/class/Warrior/talents",
+	source = "ForeverDB's leveling builds, adapted to level 30", url = "https://foreverdb.net/class/Warrior/talents",
 	summary = L["Level as Arms with a two-hander (Mortal Strike, Sweeping Strikes) or Fury (Enrage, Death Wish, then Flurry and Bloodthirst with two weapons). Protection is slower alone but ready to tank any dungeon on the way."],
 	specs = { "Arms", "Fury", "Protection" },
 	-- node = { entry, max ranks, spell, spec column, row, column, name }
@@ -1774,7 +1774,7 @@ T.Register({
 				[38] = L["Improved Slam stops Slam from resetting your swing: a free hit between big two-hander swings."],
 				[40] = L["Mortal Strike is the capstone and your hardest-hitting strike for the rest of the climb."],
 				[41] = L["The last 20 points go to Fury: Cruelty and Unbridled Wrath give more crit and more rage."],
-				[56] = L["Enrage finishes the plan: a damage boost after you take hits, which while questing is nearly always."],
+				[56] = L["Enrage finishes the plan: a damage boost that is often up while you take hits."],
 			},
 		},
 		{
@@ -1795,7 +1795,7 @@ T.Register({
 				[10] = L["Cruelty first: more crit for every build, and the way into the Fury tree."],
 				[15] = L["Unbridled Wrath means more rage from every swing, which matters most with two fast weapons."],
 				[20] = L["Piercing Howl stops runners and lets you walk away from a bad pull."],
-				[25] = L["Enrage raises your physical damage after you are hit, so it is up for most of a fight."],
+				[25] = L["Enrage raises your physical damage after you are hit, so it is often up while you take hits."],
 				[30] = L["Death Wish is a big cooldown for elites and a fear breaker; it also opens Flurry."],
 				[31] = L["Dual Wield Specialization: more off-hand damage and rage now that you carry two weapons."],
 				[41] = L["Bloodthirst is the capstone: a strong instant attack and a little run speed between mobs."],

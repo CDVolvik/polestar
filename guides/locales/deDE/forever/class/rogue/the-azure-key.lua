@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in German (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in German words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -12,13 +13,13 @@ return {
 	-- Step 1: A Simple Request (Alliance)
 	-- {quest:8233} A Simple Request
 	["{quest:8233} (Alliance)"] = "{quest:8233} (Allianz)",
-	-- {npc:918} Osborne the Night Man · {zone:1453} Stormwind · {object:2100} Old Town · {zone:1457} Darnassus · {npc:5165} Hulfdan Blackbeard · {zone:1455} Ironforge
+	-- {npc:918} Osborne the Night Man · {zone:1453} Stormwind · {object:2100} Old Town (no name in this language: may be words) · {zone:1457} Darnassus · {npc:5165} Hulfdan Blackbeard · {zone:1455} Ironforge
 	["At 50 {npc:918} in {zone:1453}'s {object:2100} has it; so do Syurna in {zone:1457} and {npc:5165} and Fenthwick in {zone:1455}."] = "Auf Stufe 50 hat {npc:918} in {object:2100} in {zone:1453} sie; ebenso Syurna in {zone:1457} sowie {npc:5165} und Fenthwick in {zone:1455}.",
 
 	-- Step 2: A Simple Request (Horde)
 	-- {quest:8233} A Simple Request
 	["{quest:8233} (Horde)"] = "{quest:8233} (Horde)",
-	-- {npc:3328} Ormok · {object:172960} Cleft of Shadow · {npc:4583} Miles Dexter · {zone:1458} Undercity · {object:36073} Rogues' Quarter
+	-- {npc:3328} Ormok · {object:172960} Cleft of Shadow (no name in this language: may be words) · {npc:4583} Miles Dexter · {zone:1458} Undercity · {object:36073} Rogues' Quarter (no name in this language: may be words)
 	["At 50 {npc:3328} in the {object:172960} has it; so does {npc:4583} in the {zone:1458}'s {object:36073}."] = "Auf Stufe 50 hat {npc:3328} in der {object:172960} sie; ebenso {npc:4583} im {object:36073} von {zone:1458}.",
 
 	-- Step 3: Lord Jorach Ravenholdt

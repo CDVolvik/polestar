@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Spanish (Spain) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Spanish (Spain) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -25,15 +26,16 @@ return {
 	["{npc:6766}: {quest:6701}, repeatable"] = "{npc:6766}: {quest:6701}, repetible",
 
 	-- Step 3: Lord Tomas
-	-- {npc:266216} Lord Tomas · {area:275} Durnholde Keep · {area:287} Hillsbrad
-	["{npc:266216} is inside {area:275}, the Syndicate fortress in eastern {area:287}, south of the manor. Quick and quiet, says Myrokos."] = "{npc:266216} está dentro de {area:275}, la fortaleza del Sindicato en el este de {area:287}, al sur de la mansión. Rápido y en silencio, dice Myrokos.",
+	-- {npc:266216} Lord Tomas · {area:275} Durnholde Keep · {area:287} Hillsbrad · {npc:13085} Myrokos Silentform
+	["{npc:266216} is inside {area:275}, the Syndicate fortress in eastern {area:287}, south of the manor. Quick and quiet, says {npc:13085}."] = "{npc:266216} está dentro de {area:275}, la fortaleza del Sindicato en el este de {area:287}, al sur de la mansión. Rápido y en silencio, dice {npc:13085}.",
 
 	-- Step 5: What's the Big Idea?
-	-- {area:280} Strahnbrad · {zone:1416} Alterac Mountains
-	["At 36, Myrokos sends you after Barton's scouting report. Barton leads a Syndicate party at {area:280}, in the east of the {zone:1416}: pick his pocket, do not kill him."] = "A nivel 36, Myrokos te envía a por el informe de exploración de Barton. Barton dirige un grupo del Sindicato en {area:280}, en el este de {zone:1416}: róbale, no lo mates.",
+	-- {npc:13085} Myrokos Silentform · {area:280} Strahnbrad · {zone:1416} Alterac Mountains
+	["At 36, {npc:13085} sends you after Barton's scouting report. Barton leads a Syndicate party at {area:280}, in the east of the {zone:1416}: pick his pocket, do not kill him."] = "A nivel 36, {npc:13085} te envía a por el informe de exploración de Barton. Barton dirige un grupo del Sindicato en {area:280}, en el este de {zone:1416}: róbale, no lo mates.",
 	-- {item:275482} Barton's Scouting Report
 	["{item:275482}: pickpocket Barton"] = "{item:275482}: róbaselo a Barton",
 
-	-- Step 6: Back to Myrokos
-	["Back to Myrokos"] = "De vuelta con Myrokos",
+	-- Step 6: Back to Myrokos Silentform
+	-- {npc:13085} Myrokos Silentform
+	["Back to {npc:13085}"] = "De vuelta con {npc:13085}",
 }

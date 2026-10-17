@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in German (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in German words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -39,7 +40,7 @@ return {
 
 	-- Step 5: Badlands (1/2)
 	["14 areas to discover here, levels 36-45."] = "Hier gibt es 14 Gebiete zu entdecken, Stufe 36-45.",
-	-- {area:880} Thandol Span · {zone:1437} Wetlands · {object:1668} Dun Algaz · {zone:1432} Loch Modan · {zone:1418} Badlands
+	-- {area:880} Thandol Span · {zone:1437} Wetlands · {object:1668} Dun Algaz (no name in this language: may be words) · {zone:1432} Loch Modan · {zone:1418} Badlands
 	["Cross the {area:880} south into the {zone:1437}, go through the {object:1668} pass into {zone:1432} and take the road south out of {zone:1432} into the {zone:1418}."] = "Überquere {area:880} nach Süden ins {zone:1437}, geh durch den Pass {object:1668} nach {zone:1432} und nimm die Straße nach Süden aus {zone:1432} hinaus ins {zone:1418}.",
 	-- {area:144} Thelsamar · {zone:1432} Loch Modan
 	["Faster: fly to {area:144} in {zone:1432}."] = "Schneller: Flieg nach {area:144} in {zone:1432}.",
@@ -62,7 +63,7 @@ return {
 	["Take the zeppelin from {zone:1454} or the {zone:1458} to {area:117}."] = "Nimm den Zeppelin von {zone:1454} oder {zone:1458} nach {area:117}.",
 	-- {area:35} Booty Bay
 	["Flight path here: {area:35} (Gyll)."] = "Flugroute hier: {area:35} (Gyll).",
-	-- {area:35} Booty Bay · {object:3202} Grom'gol
+	-- {area:35} Booty Bay · {object:3202} Grom'gol (no name in this language: may be words)
 	["Flight paths here: {area:35} (Gringer), {object:3202} (Thysta)."] = "Flugrouten hier: {area:35} (Gringer), {object:3202} (Thysta).",
 
 	-- Step 10: Stranglethorn Vale (2/4)

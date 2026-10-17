@@ -3,11 +3,12 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (traditional) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (traditional) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Thendal Village
-	-- {area:16635} Thendal Village
-	["You wake in {area:16635}, in the north of the isle. Ailee stands by the path, Rorian at the village centre."] = "你在島嶼北部的{area:16635}醒來。艾莉‧遠心站在小徑旁，羅里安在村莊中央。",
+	-- {area:16635} Thendal Village · {npc:251362} Ailee Farheart · {npc:251361} Rorian the Dayseeker
+	["You wake in {area:16635}, in the north of the isle. {npc:251362} stands by the path, {npc:251361} at the village centre."] = "你在島嶼北部的{area:16635}醒來。{npc:251362}站在小徑旁，{npc:251361}在村莊中央。",
 
 	-- Step 2: Thendal Grove
 	-- {npc:250873} Juvenile Vuldren
@@ -20,10 +21,8 @@ return {
 	["{npc:251361}: the {item:4100}"] = "{npc:251361}：{item:4100}",
 	-- {npc:251361} Rorian the Dayseeker
 	["{npc:251361}: a note from your trainer"] = "{npc:251361}：訓練師留給你的字條",
-	-- {item:282418} Humming Recall Crystal
-	["Rorian: examine the {item:282418}"] = "羅里安：檢查{item:282418}",
-	-- {quest:92485} A Student of Nature
-	["Rorian: {quest:92485}"] = "羅里安：{quest:92485}",
+	-- {npc:251361} Rorian the Dayseeker · {item:282418} Humming Recall Crystal
+	["{npc:251361}: examine the {item:282418}"] = "{npc:251361}：檢查{item:282418}",
 	-- {npc:257554} Halaan Hawk-Eye
 	["talk to {npc:257554}"] = "與{npc:257554}交談",
 
@@ -32,8 +31,9 @@ return {
 	-- {spell:1259416} Walk on Air
 	["Climb the watchtower in the village, jump off the top and use {spell:1259416} to float down."] = "爬上村裡的瞭望塔，從塔頂跳下，使用{spell:1259416}飄落地面。",
 
-	-- Step 5: Rorian's errands
-	["Rorian's errands"] = "羅里安的差事",
+	-- Step 5: Rorian the Dayseeker's errands
+	-- {npc:251361} Rorian the Dayseeker
+	["{npc:251361}'s errands"] = "{npc:251361}的差事",
 
 	-- Step 6: Raw Windstones
 	-- plural, as words: Raw Windstones = {object:613286} Raw Windstone
@@ -43,10 +43,10 @@ return {
 
 	-- Step 8: The standing stones
 	["The standing stones"] = "立石",
-	-- {npc:249363} Yala Windwatcher · {area:17678} Thendal Standing Stones · {npc:251143} Roiling Winds · {object:460001} Elemental Convergence · {spell:1259686} Skysight
+	-- {npc:249363} Yala Windwatcher · {area:17678} Thendal Standing Stones · {npc:251143} Roiling Winds · {object:460001} Elemental Convergence (no name in this language: may be words) · {spell:1259686} Skysight
 	-- plural, as words: Al'Aketh Converts = {npc:251160} Al'Aketh Convert
 	["{npc:249363} stands at the {area:17678}, east of the village. {npc:251143} and Al'Aketh Converts gather just north of her. The {object:460001} is just north-east of her: cast your {spell:1259686} racial ability next to it."] = "{npc:249363}站在村莊東邊的{area:17678}。{npc:251143}和奧拉凱斯皈依者聚集在她北邊不遠處。{object:460001}就在她的東北方：在它旁邊施放你的種族技能{spell:1259686}。",
-	-- {spell:1259686} Skysight · {object:460001} Elemental Convergence
+	-- {spell:1259686} Skysight · {object:460001} Elemental Convergence (no name in this language: may be words)
 	["Cast {spell:1259686} near the {object:460001}"] = "在{object:460001}附近施放{spell:1259686}",
 
 	-- Step 9: The Cirrusfly Queen
@@ -63,23 +63,24 @@ return {
 	["{npc:251964}, in the watchtower"] = "{npc:251964}，在瞭望塔內",
 	-- {npc:251374} Windshaper Boro
 	["{npc:251374}, at the village centre"] = "{npc:251374}，在村莊中央",
-	-- {npc:251373} Xyton Silverwind
-	["{npc:251373}, the druid trainer, on the ground floor of the tree behind Rorian"] = "德魯伊訓練師{npc:251373}，在羅里安身後那棵樹的底層",
+	-- {npc:251373} Xyton Silverwind · {npc:251361} Rorian the Dayseeker
+	["{npc:251373}, the druid trainer, on the ground floor of the tree behind {npc:251361}"] = "德魯伊訓練師{npc:251373}，在{npc:251361}身後那棵樹的底層",
 
 	-- Step 11: Windshaper Boro
 	-- {npc:251374} Windshaper Boro
 	["{npc:251374} stands in the village."] = "{npc:251374}站在村莊裡。",
 
 	-- Step 12: Scrawny Ursera
-	-- {npc:250926} Scrawny Ursera
-	["{npc:250926} prowl the slopes south-west of the village, on the way to Hanaa."] = "{npc:250926}在村莊西南方的山坡上徘徊，就在前往哈娜‧夜風的路上。",
+	-- {npc:250926} Scrawny Ursera · {npc:252095} Hanaa Nightwind
+	["{npc:250926} prowl the slopes south-west of the village, on the way to {npc:252095}."] = "{npc:250926}在村莊西南方的山坡上徘徊，就在前往{npc:252095}的路上。",
 
 	-- Step 13: Hanaa Nightwind
-	-- {area:16622} Thendal Grove · {npc:256935} Malduko Cloudcrush
-	["Hanaa waits in {area:16622}, south-west of the village. The Al'Aketh camp is just beyond her; {npc:256935} leads it."] = "哈娜‧夜風在村莊西南方的{area:16622}等你。奧拉凱斯營地就在她後方；由{npc:256935}率領。",
+	-- {npc:252095} Hanaa Nightwind · {area:16622} Thendal Grove · {npc:256935} Malduko Cloudcrush
+	["{npc:252095} waits in {area:16622}, south-west of the village. The Al'Aketh camp is just beyond her; {npc:256935} leads it."] = "{npc:252095}在村莊西南方的{area:16622}等你。奧拉凱斯營地就在她後方；由{npc:256935}率領。",
 
 	-- Step 14: Signet of Akir
-	["The Al'Aketh cultists in the camp beyond Hanaa carry the signet."] = "哈娜後方營地裡的奧拉凱斯教徒身上帶著徽記。",
+	-- {npc:252095} Hanaa Nightwind
+	["The Al'Aketh cultists in the camp beyond {npc:252095} carry the signet."] = "{npc:252095}後方營地裡的奧拉凱斯教徒身上帶著徽記。",
 
 	-- Step 15: Urs'anah
 	-- {npc:251115} Urs'anah
@@ -101,12 +102,13 @@ return {
 	-- {npc:251902} Illaya Amberwind
 	["talk to {npc:251902}"] = "與{npc:251902}交談",
 
-	-- Step 19: Raan's campfire
-	["Raan's campfire"] = "拉恩的營火",
-	-- {spell:1229451} Boosted Rest · {npc:251905} Zerril Softbreeze
-	["Sit by Raan's campfire (type /sit) until you get the {spell:1229451} buff, then find {npc:251905} at the cook fire."] = "坐在拉恩‧荒風的營火旁（輸入 /sit），直到獲得{spell:1229451}增益效果，然後到烹飪火堆旁找{npc:251905}。",
-	-- {spell:1229451} Boosted Rest
-	["/sit by Raan's campfire until you get {spell:1229451}"] = "在拉恩的營火旁 /sit，直到獲得{spell:1229451}",
+	-- Step 19: Raan Wildwind's campfire
+	-- {npc:263664} Raan Wildwind
+	["{npc:263664}'s campfire"] = "{npc:263664}的營火",
+	-- {npc:263664} Raan Wildwind · {spell:1229451} Boosted Rest · {npc:251905} Zerril Softbreeze
+	["Sit by {npc:263664}'s campfire (type /sit) until you get the {spell:1229451} buff, then find {npc:251905} at the cook fire."] = "坐在{npc:263664}的營火旁（輸入 /sit），直到獲得{spell:1229451}增益效果，然後到烹飪火堆旁找{npc:251905}。",
+	-- {npc:263664} Raan Wildwind · {spell:1229451} Boosted Rest
+	["/sit by {npc:263664}'s campfire until you get {spell:1229451}"] = "在{npc:263664}的營火旁 /sit，直到獲得{spell:1229451}",
 	-- {npc:251905} Zerril Softbreeze
 	["talk to {npc:251905}"] = "與{npc:251905}交談",
 
@@ -120,9 +122,9 @@ return {
 	-- Step 21: Prideclaws and Galestriders
 	-- plural, as words: Prideclaws = {npc:251245} Prideclaw
 	["Prideclaws and Galestriders"] = "群爪與逐風者",
-	-- {item:5469} Strider Meat
+	-- {item:5469} Strider Meat · {npc:251905} Zerril Softbreeze
 	-- plural, as words: Prideclaws = {npc:251245} Prideclaw
-	["Prideclaws and Galestriders share the meadows south of the village. Keep the {item:5469} for Zerril; the eggs come later from the hippogryphs."] = "群爪和逐風者共同分布在村莊南邊的草地上。把{item:5469}留給哲里爾；蛋稍後從角鷹獸身上取得。",
+	["Prideclaws and Galestriders share the meadows south of the village. Keep the {item:5469} for {npc:251905}; the eggs come later from the hippogryphs."] = "群爪和逐風者共同分布在村莊南邊的草地上。把{item:5469}留給{npc:251905}；蛋稍後從角鷹獸身上取得。",
 
 	-- Step 22: High Order Apprentices
 	-- plural, as words: High Order Apprentices = {npc:257521} High Order Apprentice
@@ -138,8 +140,9 @@ return {
 	["{area:16624} turn-ins"] = "{area:16624}繳交任務",
 
 	-- Step 25: Vulgara the Insatiable
+	-- {npc:254589} Vulgara the Insatiable
 	-- plural, as words: Prideclaws = {npc:251245} Prideclaw
-	["Vulgara lurks south of the village, among the Prideclaws. Vulgara is elite: grouping up is advised."] = "『貪食者』弗加拉潛伏在村莊南邊的群爪之間。弗加拉是精英：建議組隊。",
+	["{npc:254589} lurks south of the village, among the Prideclaws. {npc:254589} is elite: grouping up is advised."] = "{npc:254589}潛伏在村莊南邊的群爪之間。{npc:254589}是精英：建議組隊。",
 
 	-- Step 26: Falaath Village
 	-- {quest:92529} Falaath Village · {npc:257065} Missionary Jasaan
@@ -179,8 +182,8 @@ return {
 	["Walk north to {area:16624}; finish the {item:5469} on the Galestriders along the way if you are short."] = "向北走到{area:16624}；如果{item:5469}不夠，沿途擊殺逐風者補齊。",
 
 	-- Step 33: To Valanaar
-	-- {area:16638} Valanaar
-	["Take the road south-east to {area:16638}, the Skyborne town on the south coast. Nyalah and Alvarion stand at its western edge."] = "沿道路向東南前往南岸的天裔精靈城鎮{area:16638}。妮雅菈‧亮火和亞瓦里安‧荒原站在城鎮西緣。",
+	-- {area:16638} Valanaar · {npc:257006} Nyalah Brightfire · {npc:252448} Alvarion Windfield
+	["Take the road south-east to {area:16638}, the Skyborne town on the south coast. {npc:257006} and {npc:252448} stand at its western edge."] = "沿道路向東南前往南岸的天裔精靈城鎮{area:16638}。{npc:257006}和{npc:252448}站在城鎮西緣。",
 	-- {npc:252448} Alvarion Windfield
 	["Listen to {npc:252448}'s story"] = "聆聽{npc:252448}的故事",
 
@@ -200,8 +203,8 @@ return {
 	["talk to {npc:251968}"] = "與{npc:251968}交談",
 
 	-- Step 38: Riaani Nightwind
-	-- {area:16626} Gustberry Lowlands
-	["Riaani stands in the {area:16626} just north-west of town."] = "里安尼‧夜風站在城鎮西北方不遠的{area:16626}。",
+	-- {npc:256083} Riaani Nightwind · {area:16626} Gustberry Lowlands
+	["{npc:256083} stands in the {area:16626} just north-west of town."] = "{npc:256083}站在城鎮西北方不遠的{area:16626}。",
 	-- {npc:256083} Riaani Nightwind
 	["Listen to {npc:256083}"] = "聆聽{npc:256083}",
 
@@ -233,20 +236,21 @@ return {
 	-- {npc:252800} Aamelia Windfield
 	["Tell {npc:252800} you're ready"] = "告訴{npc:252800}你準備好了",
 
-	-- Step 46: Alvarion and Riaani
-	["Alvarion and Riaani"] = "亞瓦里安與里安尼",
+	-- Step 46: Alvarion Windfield and Riaani Nightwind
+	-- {npc:252448} Alvarion Windfield · {npc:256083} Riaani Nightwind
+	["{npc:252448} and {npc:256083}"] = "{npc:252448}與{npc:256083}",
 
 	-- Step 47: Taming the Beast
 	-- {npc:252389} Quel'ana Quickgale · {area:16638} Valanaar · {item:15908} Taming Rod · {npc:254588} Windsong Crawler · {npc:251707} Ornery Galestrider · {npc:250874} Vuldren Alpha · {area:16663} Windfield Orchard · {npc:254411} Quel'dora Quickgale
 	["{npc:252389} in {area:16638} hands you a {item:15908} three times: tame a {npc:254588} by the lakes north-west of town, an {npc:251707} in the fields west of town and a {npc:250874} at {area:16663}, returning to her after each. {npc:254411} stands beside her."] = "{area:16638}的{npc:252389}會三次交給你{item:15908}：馴服城鎮西北方湖邊的一隻{npc:254588}、城鎮西邊田野中的一隻{npc:251707}，以及{area:16663}的一隻{npc:250874}，每次完成後回去找她。{npc:254411}站在她身旁。",
 
 	-- Step 48: Belathaan Brightwish
-	-- {area:16638} Valanaar · {area:16629} Shrine of Akir
-	["Belathaan waits on the road north of {area:16638}, towards the {area:16629}."] = "貝拉桑‧亮願在{area:16638}北邊、通往{area:16629}的路上等著。",
+	-- {npc:256247} Belathaan Brightwish · {area:16638} Valanaar · {area:16629} Shrine of Akir
+	["{npc:256247} waits on the road north of {area:16638}, towards the {area:16629}."] = "{npc:256247}在{area:16638}北邊、通往{area:16629}的路上等著。",
 
 	-- Step 50: Lotheluum Starbreeze
-	-- {area:16638} Valanaar
-	["Lotheluum stands on {area:16638}'s east side."] = "洛瑟倫‧星風站在{area:16638}的東側。",
+	-- {npc:252359} Lotheluum Starbreeze · {area:16638} Valanaar
+	["{npc:252359} stands on {area:16638}'s east side."] = "{npc:252359}站在{area:16638}的東側。",
 
 	-- Step 51: The East Pylon Watchtower
 	-- {area:17675} East Pylon Watchtower
@@ -289,15 +293,15 @@ return {
 	["Faladiel stands on the hill west of the falls, north of {area:16638}."] = "天空祭司法拉迪爾站在{area:16638}北邊、瀑布西側的山丘上。",
 
 	-- Step 60: Kuramaa
-	-- {area:16623} Shen'dar Highlands · {npc:268605} Kuramaa
+	-- {npc:268592} Olariaan Swiftburn · {area:16623} Shen'dar Highlands · {npc:268605} Kuramaa
 	-- plural, as words: Windsong Crawlers = {npc:254588} Windsong Crawler
-	["Back to Olariaan, then west into the {area:16623}: {npc:268605}'s home is in the hills south of the Windsong Crawlers' lakes."] = "回去找歐拉利安，然後向西進入{area:16623}：{npc:268605}的家在風歌蟹所在湖泊南邊的丘陵中。",
+	["Back to {npc:268592}, then west into the {area:16623}: {npc:268605}'s home is in the hills south of the Windsong Crawlers' lakes."] = "回去找{npc:268592}，然後向西進入{area:16623}：{npc:268605}的家在風歌蟹所在湖泊南邊的丘陵中。",
 
 	-- Step 61: The Eternal Flame
-	-- {object:148418} Eternal Flame
+	-- {object:148418} Eternal Flame (no name in this language: may be words)
 	["The {object:148418}"] = "{object:148418}",
-	-- {npc:268762} Brazier of Offering · {npc:268679} Brazier of Eternal Flame · {area:16638} Valanaar
-	["Back to Olariaan. Wait for him to light the {npc:268762}, then carry the flame straight to the {npc:268679} beside Sessaria in {area:16638} before the timer runs out."] = "回去找Olariaan。等他點燃{npc:268762}，然後在計時結束前把火焰直接帶到{area:16638}中瑟莎莉雅身旁的{npc:268679}。",
+	-- {npc:268592} Olariaan Swiftburn · {npc:268762} Brazier of Offering · {npc:268679} Brazier of Eternal Flame · {npc:252382} Sessaria Skystride · {area:16638} Valanaar
+	["Back to {npc:268592}. Wait for him to light the {npc:268762}, then carry the flame straight to the {npc:268679} beside {npc:252382} in {area:16638} before the timer runs out."] = "回去找{npc:268592}。等他點燃{npc:268762}，然後在計時結束前把火焰直接帶到{area:16638}中{npc:252382}身旁的{npc:268679}。",
 	-- {npc:252382} Sessaria Skystride · {npc:2523} Searing Totem · {item:5176} Fire Totem · {item:263412} Totem of Charged Flames
 	["{npc:252382}: {npc:2523}, your {item:5176} and the {item:263412}"] = "{npc:252382}：{npc:2523}、你的{item:5176}和{item:263412}",
 
@@ -330,20 +334,21 @@ return {
 	["{npc:257196} holds the {item:263993} on the west side of the shrine."] = "{npc:257196}在神殿西側持有{item:263993}。",
 
 	-- Step 67: Elegael Thornpaw
-	-- {area:16631} Shadowgale Forest
-	["Head north into {area:16631}; Elegael camps at its southern edge."] = "向北進入{area:16631}；伊蕾嘉兒在森林南緣紮營。",
+	-- {area:16631} Shadowgale Forest · {npc:257944} Elegael Thornpaw
+	["Head north into {area:16631}; {npc:257944} camps at its southern edge."] = "向北進入{area:16631}；{npc:257944}在森林南緣紮營。",
 
 	-- Step 68: Shadowgale Forest
-	-- {item:265105} Lady's Tear Moss · {item:265141} Bloody Heirloom
-	["{item:265105} grows around Elegael's camp and Shriekings fly over it. The Al'Aketh camp east of her holds the {item:265141}."] = "{item:265105}生長在伊蕾嘉兒營地周圍，影風始祖鳥在上空飛翔。她東邊的奧拉凱斯營地裡有{item:265141}。",
+	-- {item:265105} Lady's Tear Moss · {npc:257944} Elegael Thornpaw · {item:265141} Bloody Heirloom
+	["{item:265105} grows around {npc:257944}'s camp and Shriekings fly over it. The Al'Aketh camp east of her holds the {item:265141}."] = "{item:265105}生長在{npc:257944}營地周圍，影風始祖鳥在上空飛翔。她東邊的奧拉凱斯營地裡有{item:265141}。",
 
-	-- Step 69: Elegael again
-	["Elegael again"] = "再次找伊蕾嘉兒",
+	-- Step 69: Elegael Thornpaw again
+	-- {npc:257944} Elegael Thornpaw
+	["{npc:257944} again"] = "再次找{npc:257944}",
 
 	-- Step 70: The Al'Aketh camp
 	["The Al'Aketh camp"] = "奧拉凱斯營地",
-	-- {npc:253622} Commander Haalien · {npc:258130} Jorel Windsinger · {npc:258134} Naaleos Leafwhisper · {npc:254151} Vayn Moongaze · {quest:94490} Ripped Missive · {quest:94489} The Wounds of Betrayal
-	["{npc:253622}, {npc:258130} and {npc:258134} are in the cult camp east of Elegael. {npc:254151} stands at its edge. Haalien also drops a {quest:94490}: read it to start the next quest. For {quest:94489}, enter the Nightfang Den, heal 7 injured druids and find Jorel."] = "{npc:253622}、{npc:258130}和{npc:258134}在伊蕾嘉兒東邊的教派營地。{npc:254151}站在營地邊緣。哈利安也會掉落{quest:94490}：閱讀它以開始下一個任務。{quest:94489}：進入Nightfang Den，治療7名受傷的德魯伊並找到喬瑞爾。",
+	-- {npc:253622} Commander Haalien · {npc:258130} Jorel Windsinger · {npc:258134} Naaleos Leafwhisper · {npc:257944} Elegael Thornpaw · {npc:254151} Vayn Moongaze · {quest:94490} Ripped Missive · {quest:94489} The Wounds of Betrayal
+	["{npc:253622}, {npc:258130} and {npc:258134} are in the cult camp east of {npc:257944}. {npc:254151} stands at its edge. Haalien also drops a {quest:94490}: read it to start the next quest. For {quest:94489}, enter the Nightfang Den, heal 7 injured druids and find {npc:258130}."] = "{npc:253622}、{npc:258130}和{npc:258134}在{npc:257944}東邊的教派營地。{npc:254151}站在營地邊緣。哈利安也會掉落{quest:94490}：閱讀它以開始下一個任務。{quest:94489}：進入Nightfang Den，治療7名受傷的德魯伊並找到{npc:258130}。",
 	-- {npc:258130} Jorel Windsinger
 	["Find {npc:258130}"] = "找到{npc:258130}",
 	["Heal the injured druids in the Nightfang Den"] = "在Nightfang Den治療受傷的德魯伊",
@@ -364,8 +369,8 @@ return {
 	["talk to {npc:251684}"] = "與{npc:251684}交談",
 
 	-- Step 74: Confront Lorthuna
-	-- {area:16630} Rohashi Spires
-	["Take the portal up to the {area:16630} and join Elaadrin and Ayessa against the High Priestess."] = "搭乘傳送門上到{area:16630}，與伊拉德林和阿雅莎一起對抗高階女祭司洛舒娜。",
+	-- {area:16630} Rohashi Spires · {npc:252475} Elaadrin Evengale · {npc:251968} Ayessa Dawnsinger
+	["Take the portal up to the {area:16630} and join {npc:252475} and {npc:251968} against the High Priestess."] = "搭乘傳送門上到{area:16630}，與{npc:252475}和{npc:251968}一起對抗高階女祭司洛舒娜。",
 
 	-- Step 77: The airship
 	["The airship"] = "飛艇",
@@ -388,8 +393,8 @@ return {
 	["{area:1638} is beside the landing: ride up a lift and learn the flight path from {npc:2995}, the wind rider master."] = "{area:1638}就在降落處旁：搭升降梯上去，向雙足飛龍管理員{npc:2995}學習飛行路線。",
 
 	-- Step 80: Traditions of the Bluff
-	-- {npc:269068} Eylah Sunhorn · {npc:3005} Mahu · {item:278078} Prepared Incense
-	["{npc:269068} wants tauren incense: buy its four parts from Nida the herbalist, Nata the enchanting supplier, {npc:3005} the leatherworking supplier and Naal the cooking supplier, then combine them into {item:278078}."] = "{npc:269068}想要牛頭人的薰香：向草藥商尼達·冰蹄、附魔供應商納塔·黎明行者、製皮供應商{npc:3005}和烹飪供應商納爾·迷霧行者購買四種材料，然後合成{item:278078}。",
+	-- {npc:269068} Eylah Sunhorn · {npc:3014} Nida Winterhoof · {npc:3012} Nata Dawnstrider · {npc:3005} Mahu · {npc:3027} Naal Mistrunner · {item:278078} Prepared Incense
+	["{npc:269068} wants tauren incense: buy its four parts from {npc:3014} the herbalist, {npc:3012} the enchanting supplier, {npc:3005} the leatherworking supplier and {npc:3027} the cooking supplier, then combine them into {item:278078}."] = "{npc:269068}想要牛頭人的薰香：向草藥商{npc:3014}、附魔供應商{npc:3012}、製皮供應商{npc:3005}和烹飪供應商{npc:3027}購買四種材料，然後合成{item:278078}。",
 	-- {item:278079} Bundle of Herbs · {npc:3014} Nida Winterhoof
 	["{item:278079}, from {npc:3014}"] = "{item:278079}，向{npc:3014}購買",
 	-- {item:278080} Bundle of Dried Cedar Twigs · {npc:3012} Nata Dawnstrider
@@ -410,17 +415,15 @@ return {
 	["{npc:3033} trains druids on {area:1639}. He teaches you {spell:18960}; {npc:11802}'s welcome waits for your {spell:499} trip at about 23 (forever/horde/04-the-barrens)."] = "{npc:3033}在{area:1639}訓練德魯伊。他會教你{spell:18960}；約23級進行{spell:499}之旅時，{npc:11802}的歡迎在等著你（forever/horde/04-the-barrens）。",
 
 	-- Step 84: The Crossroads
-	-- {zone:1456} Thunder Bluff · {area:222} Bloodhoof Village · {zone:1413} Barrens · {area:458} Gold Road
-	["Leave {zone:1456} by a lift and follow the road south past {area:222} and through the eastern pass into the {zone:1413}; from the pass, take the {area:458} north to the Crossroads, the Horde town in the middle of the {zone:1413}."] = "搭升降梯離開{zone:1456}，沿道路向南經過{area:222}，穿過東邊的山口進入{zone:1413}；從山口沿{area:458}向北前往十字路口，即{zone:1413}中央的部落城鎮。",
+	-- {zone:1456} Thunder Bluff · {area:222} Bloodhoof Village · {zone:1413} Barrens · {area:458} Gold Road · {area:380} The Crossroads
+	["Leave {zone:1456} by a lift and follow the road south past {area:222} and through the eastern pass into the {zone:1413}; from the pass, take the {area:458} north to the {area:380}, the Horde town in the middle of the {zone:1413}."] = "搭升降梯離開{zone:1456}，沿道路向南經過{area:222}，穿過東邊的山口進入{zone:1413}；從山口沿{area:458}向北前往{area:380}，即{zone:1413}中央的部落城鎮。",
 	-- {npc:3615} Devrak
 	["{npc:3615}, the wind rider master"] = "雙足飛龍管理員{npc:3615}",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Back to Olariaan, then west into the {area:16623}: Kuramaa's home is in the hills south of the Windsong Crawlers' lakes."] = "回去找Olariaan，然後向西進入{area:16623}：庫拉瑪的家在風歌蟹所在湖泊南邊的丘陵中。",
 	-- ["Kuramaa"] = "庫拉瑪",
 	-- ["Leave {zone:1456} by a lift and follow the road south past {area:222} and through the eastern pass into the {zone:1413}; from the pass, take the {area:458} north to the {area:380}, the Horde town in the middle of the {zone:1413}."] = "搭升降梯離開{zone:1456}，沿道路向南經過{area:222}，穿過東邊的山口進入{zone:1413}；從山口沿{area:458}向北前往{area:380}，即{zone:1413}中央的部落城鎮。",
-	-- ["Leaving Thendal Village"] = "離開坦德爾村",
-	-- ["Tell Aamelia Windfield you're ready"] = "告訴阿梅莉雅‧荒原你準備好了",
+	-- ["Rorian: {quest:92485}"] = "羅里安：{quest:92485}",
 	-- ["The highwaymen hold the hills north-east of the orchard. More {object:616466} lie near the road to {area:16638}."] = "強盜路霸佔據果園東北方的丘陵。更多{object:616466}在通往{area:16638}的道路附近。",
 	-- ["Wind Hollows and {object:616466}"] = "風之空靈與{object:616466}",
 	-- ["Wind Hollows drift over the lowlands around {area:16638}. The first {object:616466} lie west of the orchard road."] = "風之空靈在{area:16638}周圍的低地上飄蕩。第一批{object:616466}在果園道路的西邊。",

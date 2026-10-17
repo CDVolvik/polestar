@@ -3,13 +3,14 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Korean words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Apprentice Alchemy
 	-- {skill:171} Alchemy
 	["Apprentice {skill:171}"] = "초급 {skill:171}",
 	-- {skill:171} Alchemy
-	["{skill:171} runs alongside leveling. Forever's Legacy System rewards crafting professions at skill 150, 225 and 300 (the Journeyman, Expert and Artisan caps), so each of those checkpoints counts. Materials for 1-75 are worth about 68s in all."] = "{skill:171}은(는) 레벨업과 함께 진행합니다. Forever의 유산 시스템은 제작 전문 기술 숙련도 150, 225, 300(중급, 고급, 전문 최대치)에 보상을 주므로, 각 단계가 중요합니다. 1-75 재료는 모두 약 68실버입니다.",
+	["{skill:171} runs alongside leveling. Forever's Legacy System rewards crafting professions at skill 150, 225 and 300 (the Journeyman, Expert and Artisan caps), so each of those checkpoints counts. Materials for 1-75 are worth about 68s in all."] = "{skill:171}은(는) 레벨업과 함께 진행합니다. Forever의 유산 시스템은 제작 전문 기술 숙련도 150, 225, 300(수습, 숙련, 전문 최대치)에 보상을 주므로, 각 단계가 중요합니다. 1-75 재료는 모두 약 68실버입니다.",
 
 	-- Step 2: Silverleaf (Alliance)
 	-- {item:765} Silverleaf
@@ -38,9 +39,9 @@ return {
 
 	-- Step 7: Journeyman Alchemy
 	-- {skill:171} Alchemy
-	["Journeyman {skill:171}"] = "중급 {skill:171}",
+	["Journeyman {skill:171}"] = "수습 {skill:171}",
 	-- {skill:171} Alchemy
-	["Journeyman needs character level 10 and {skill:171} 50; it raises the cap to 150. Materials for 75-150 are worth about 1g 44s in all."] = "중급은(는) 캐릭터 레벨 10, {skill:171} 50이(가) 필요하며 최대 숙련도를 150(으)로 올립니다. 75-150 재료는 모두 약 1골드 44실버입니다.",
+	["Journeyman needs character level 10 and {skill:171} 50; it raises the cap to 150. Materials for 75-150 are worth about 1g 44s in all."] = "수습은(는) 캐릭터 레벨 10, {skill:171} 50이(가) 필요하며 최대 숙련도를 150(으)로 올립니다. 75-150 재료는 모두 약 1골드 44실버입니다.",
 
 	-- Step 8: Recipe: Holy Protection Potion
 	-- {item:6051} Holy Protection Potion · {skill:171} Alchemy
@@ -123,9 +124,9 @@ return {
 
 	-- Step 25: Expert Alchemy
 	-- {skill:171} Alchemy
-	["Expert {skill:171}"] = "고급 {skill:171}",
+	["Expert {skill:171}"] = "숙련 {skill:171}",
 	-- {skill:171} Alchemy
-	["Expert needs character level 20 and {skill:171} 125; it raises the cap to 225. Materials for 150-225 are worth about 3g 65s in all."] = "고급은(는) 캐릭터 레벨 20, {skill:171} 125이(가) 필요하며 최대 숙련도를 225(으)로 올립니다. 150-225 재료는 모두 약 3골드 65실버입니다.",
+	["Expert needs character level 20 and {skill:171} 125; it raises the cap to 225. Materials for 150-225 are worth about 3g 65s in all."] = "숙련은(는) 캐릭터 레벨 20, {skill:171} 125이(가) 필요하며 최대 숙련도를 225(으)로 올립니다. 150-225 재료는 모두 약 3골드 65실버입니다.",
 
 	-- Step 26: Murloc Eye
 	["Kill the mobs that drop it at the farm spot Polestar picks for your level and faction. The Auction House works too."] = "Polestar가 레벨과 진영에 맞춰 고른 사냥터에서 이것을 떨어뜨리는 몹을 처치하세요. 경매장도 됩니다.",

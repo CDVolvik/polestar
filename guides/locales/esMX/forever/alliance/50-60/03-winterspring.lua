@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Spanish (Latin America) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Spanish (Latin America) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Everlook
@@ -20,18 +21,19 @@ return {
 	["The ruins lie around the frozen lake south of {area:2253}. Pick up the four relic fragments lying in the ruins and the Moontouched Feathers on the ground where the wildkin roam."] = "Las ruinas rodean el lago helado al sur de {area:2253}. Recoge los cuatro fragmentos de reliquia que hay en las ruinas y las Plumas Lunadón ({item:12383}) del suelo, donde rondan los lechúcicos.",
 
 	-- Step 4: Donova Snowden
-	["Follow the road west to Donova's camp beside the hot springs."] = "Sigue el camino al oeste hasta el campamento de Donova, junto a las aguas termales.",
+	-- {npc:9298} Donova Snowden
+	["Follow the road west to {npc:9298}'s camp beside the hot springs."] = "Sigue el camino al oeste hasta el campamento de {npc:9298}, junto a las aguas termales.",
 	-- {zone:1444} Feralas
 	["Keep it: Gregan in {zone:1444} brews the elixir later"] = "Guárdalo: Gregan prepara el elixir más adelante en {zone:1444}",
 
 	-- Step 5: Salfa
-	-- {npc:11556} Salfa · {area:1769} Timbermaw Hold
-	["{npc:11556} guards the mouth of {area:1769}, north-west of Donova."] = "{npc:11556} vigila la entrada de {area:1769}, al noroeste de Donova.",
+	-- {npc:11556} Salfa · {area:1769} Timbermaw Hold · {npc:9298} Donova Snowden
+	["{npc:11556} guards the mouth of {area:1769}, north-west of {npc:9298}."] = "{npc:11556} vigila la entrada de {area:1769}, al noroeste de {npc:9298}.",
 
 	-- Step 6: The Winterfall camp
 	["The Winterfall camp"] = "El campamento Nevada",
-	-- {npc:11556} Salfa · {item:12771} Empty Firewater Flask · {quest:8471} Winterfall Ritual Totem · {quest:6031} Runecloth
-	["The western Winterfall camp sits in the hills between {npc:11556} and Donova. Any furbolg here can drop an {item:12771} (about one in ten) and, rarely, a {quest:8471}: right-click whichever drops. Keep the {quest:6031} the furbolgs drop for Meilosh."] = "El campamento Nevada del oeste está en las colinas entre {npc:11556} y Donova. Cualquier fúrbolg de aquí puede soltar un {item:12771} (uno de cada diez, más o menos) y, rara vez, un {quest:8471}: haz clic derecho en lo que suelte. Guarda el {quest:6031} que sueltan los fúrbolgs para Meilosh.",
+	-- {npc:11556} Salfa · {npc:9298} Donova Snowden · {item:12771} Empty Firewater Flask · {quest:8471} Winterfall Ritual Totem · {quest:6031} Runecloth
+	["The western Winterfall camp sits in the hills between {npc:11556} and {npc:9298}. Any furbolg here can drop an {item:12771} (about one in ten) and, rarely, a {quest:8471}: right-click whichever drops. Keep the {quest:6031} the furbolgs drop for Meilosh."] = "El campamento Nevada del oeste está en las colinas entre {npc:11556} y {npc:9298}. Cualquier fúrbolg de aquí puede soltar un {item:12771} (uno de cada diez, más o menos) y, rara vez, un {quest:8471}: haz clic derecho en lo que suelte. Guarda el {quest:6031} que sueltan los fúrbolgs para Meilosh.",
 	-- {item:12771} Empty Firewater Flask
 	["{item:12771}, a rare drop"] = "{item:12771}, botín poco común",
 	-- {quest:8471} Winterfall Ritual Totem
@@ -77,20 +79,24 @@ return {
 	["{npc:10978}: {npc:7583} and {npc:10977} come later"] = "{npc:10978}: {npc:7583} y {npc:10977} vienen después",
 
 	-- Step 14: Starfall Village
-	["Ride west along the road to Jaron."] = "Cabalga al oeste por el camino hasta Jaron.",
+	-- {npc:10301} Jaron Stoneshaper
+	["Ride west along the road to {npc:10301}."] = "Cabalga al oeste por el camino hasta {npc:10301}.",
 
-	-- Step 15: Jaron's camp
-	["Jaron's camp"] = "El campamento de Jaron",
-	-- {area:2245} Mazthoril
-	["Ride south-east down the valley to Jaron's damaged crate in the snow at {area:2245}, with his wrecked wagon just east of it."] = "Cabalga al sureste valle abajo hasta la caja dañada de Jaron en la nieve, en {area:2245}, con su carreta destrozada justo al este.",
+	-- Step 15: Jaron Stoneshaper's camp
+	-- {npc:10301} Jaron Stoneshaper
+	["{npc:10301}'s camp"] = "El campamento de {npc:10301}",
+	-- {npc:10301} Jaron Stoneshaper · {area:2245} Mazthoril
+	["Ride south-east down the valley to {npc:10301}'s damaged crate in the snow at {area:2245}, with his wrecked wagon just east of it."] = "Cabalga al sureste valle abajo hasta la caja dañada de {npc:10301} en la nieve, en {area:2245}, con su carreta destrozada justo al este.",
 
-	-- Step 16: Jaron's supplies
-	["Jaron's supplies"] = "Los suministros de Jaron",
-	["Pick up the supplies around the wagon and take Jaron's amulet back from the owlbeasts nearby."] = "Recoge los suministros alrededor de la carreta y recupera el amuleto de Jaron de las lechubestias cercanas.",
+	-- Step 16: Jaron Stoneshaper's supplies
+	-- {npc:10301} Jaron Stoneshaper
+	["{npc:10301}'s supplies"] = "Los suministros de {npc:10301}",
+	-- {npc:10301} Jaron Stoneshaper
+	["Pick up the supplies around the wagon and take {npc:10301}'s amulet back from the owlbeasts nearby."] = "Recoge los suministros alrededor de la carreta y recupera el amuleto de {npc:10301} de las lechubestias cercanas.",
 
 	-- Step 17: Darkwhisper Gorge
-	-- {area:2256} Darkwhisper Gorge
-	["Follow Donova's directions to the mouth of {area:2256}, past the Frostmaul giants: pass them one at a time."] = "Sigue las indicaciones de Donova hasta la entrada de {area:2256}, pasando a los gigantes Machacahielo: pásalos de uno en uno.",
+	-- {npc:9298} Donova Snowden · {area:2256} Darkwhisper Gorge
+	["Follow {npc:9298}'s directions to the mouth of {area:2256}, past the Frostmaul giants: pass them one at a time."] = "Sigue las indicaciones de {npc:9298} hasta la entrada de {area:2256}, pasando a los gigantes Machacahielo: pásalos de uno en uno.",
 
 	-- Step 18: Starfall Village
 	["Ride north-west back to the village."] = "Cabalga al noroeste de vuelta a la aldea.",
@@ -103,11 +109,12 @@ return {
 	["Walk through {area:1769} to {zone:1448} and fly on to the Eastern Kingdoms ({area:442}, the boat to {area:150}). Fly to {area:271} and ride north up the road through Alterac to {area:3197}."] = "Atraviesa {area:1769} hasta {zone:1448} y sigue volando hacia los Reinos del Este ({area:442}, el barco a {area:150}). Vuela a {area:271} y cabalga al norte por el camino a través de Alterac hasta {area:3197}.",
 
 	-- Step 24: Pamela Redpath
-	-- {zone:1423} Eastern Plaguelands · {area:2262} Darrowshire
-	["Follow the southern road east into the {zone:1423}; the ruins of {area:2262} lie south of it. Pamela's ghost plays by the ruined house at the south end."] = "Sigue el camino del sur al este hacia {zone:1423}; las ruinas de {area:2262} están al sur de él. El fantasma de Pamela juega junto a la casa en ruinas del extremo sur.",
+	-- {zone:1423} Eastern Plaguelands · {area:2262} Darrowshire · {npc:10926} Pamela Redpath
+	["Follow the southern road east into the {zone:1423}; the ruins of {area:2262} lie south of it. {npc:10926}'s ghost plays by the ruined house at the south end."] = "Sigue el camino del sur al este hacia {zone:1423}; las ruinas de {area:2262} están al sur de él. El fantasma de {npc:10926} juega junto a la casa en ruinas del extremo sur.",
 
-	-- Step 25: Pamela's doll
-	["Pamela's doll"] = "La muñeca de Pamela",
+	-- Step 25: Pamela Redpath's doll
+	-- {npc:10926} Pamela Redpath
+	["{npc:10926}'s doll"] = "La muñeca de {npc:10926}",
 	-- {area:2262} Darrowshire
 	["The three pieces of the doll lie in the ruined houses of {area:2262}; picking one up can call out ghosts. Combine them into the doll."] = "Las tres piezas de la muñeca están en las casas en ruinas de {area:2262}; recoger una puede atraer fantasmas. Combínalas para formar la muñeca.",
 
@@ -117,8 +124,8 @@ return {
 
 	-- Step 27: Light's Hope Chapel
 	["Follow the road east across the zone to the chapel."] = "Sigue el camino al este a través de la zona hasta la capilla.",
-	-- {npc:11038} Caretaker Alen
-	["{npc:11038}: Zaeldarr is a level 54 elite"] = "{npc:11038}: Zaeldarr es un élite de nivel 54",
+	-- {npc:11038} Caretaker Alen · {npc:12250} Zaeldarr the Outcast
+	["{npc:11038}: {npc:12250} is a level 54 elite"] = "{npc:11038}: {npc:12250} es un élite de nivel 54",
 
 	-- Step 28: Corin's Crossing
 	-- {area:2264} Corin's Crossing
@@ -128,11 +135,12 @@ return {
 	["Free Darrowshire Spirits: talk to them"] = "Libera Espíritus de Villa Darrow ({npc:11064}): habla con ellos",
 
 	-- Step 30: The Undercroft
-	["Zaeldarr is elite: grouping up is advised. He waits at the bottom of the Undercroft, the crypt in the south-west of the zone."] = "Zaeldarr es élite: se recomienda ir en grupo. Espera en el fondo de La Subgranja, la cripta del suroeste de la zona.",
+	-- {npc:12250} Zaeldarr the Outcast · {area:2261} The Undercroft
+	["{npc:12250} is elite: grouping up is advised. He waits at the bottom of the {area:2261}, the crypt in the south-west of the zone."] = "{npc:12250} es élite: se recomienda ir en grupo. Espera en el fondo de {area:2261}, la cripta del suroeste de la zona.",
 
 	-- Step 31: Augustus the Touched
-	-- {area:2627} Terrordale
-	["Ride north to {area:2627}. Augustus lives in the ruined hut, and his receipt book lies in the ruined inn nearby."] = "Cabalga al norte hasta {area:2627}. Augustus vive en la choza en ruinas, y su libro de recibos está en la posada en ruinas cercana.",
+	-- {area:2627} Terrordale · {npc:12384} Augustus the Touched
+	["Ride north to {area:2627}. {npc:12384} lives in the ruined hut, and his receipt book lies in the ruined inn nearby."] = "Cabalga al norte hasta {area:2627}. {npc:12384} vive en la choza en ruinas, y su libro de recibos está en la posada en ruinas cercana.",
 
 	-- Step 32: Light's Hope Chapel
 	-- {area:3197} Chillwind Camp

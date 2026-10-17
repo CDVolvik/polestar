@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Korean words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -15,7 +16,7 @@ return {
 	["At 10 {npc:917}, the rogue trainer in the Lion's Pride Inn in {area:87}, gives you a package for {npc:332} in {zone:1453}."] = "10레벨에 {area:87} 여관의 도적 상급자 {npc:917}이(가) {zone:1453}의 {npc:332}에게 전할 꾸러미를 줍니다.",
 
 	-- Step 2: Master Mathias Shaw
-	-- {zone:1453} Stormwind · {object:2100} Old Town
+	-- {zone:1453} Stormwind · {object:2100} Old Town (no name in this language: may be words)
 	["Ride north to {zone:1453}; Mathias Shaw is at SI:7 in {object:2100}."] = "북쪽 {zone:1453}(으)로 달려가십시오. 마티아스 쇼는 {object:2100}의 SI:7에 있습니다.",
 
 	-- Step 3: Defias Dockmaster
@@ -36,11 +37,12 @@ return {
 	["{npc:5165} stands in the north of {zone:1455}."] = "{npc:5165}은(는) {zone:1455} 북쪽에 있습니다.",
 
 	-- Step 7: Onin MacHammar
-	-- {area:133} Gnomeregan · {zone:1426} Dun Morogh
-	["Onin waits near {area:133}, in western {zone:1426}."] = "오닌은 {zone:1426} 서부의 {area:133} 근처에서 기다립니다.",
+	-- {npc:6886} Onin MacHammar · {area:133} Gnomeregan · {zone:1426} Dun Morogh
+	["{npc:6886} waits near {area:133}, in western {zone:1426}."] = "{npc:6886}은(는) {zone:1426} 서부의 {area:133} 근처에서 기다립니다.",
 
-	-- Step 8: Back to Hulfdan
-	["Back to Hulfdan"] = "훌프단에게 돌아가기",
+	-- Step 8: Back to Hulfdan Blackbeard
+	-- {npc:5165} Hulfdan Blackbeard
+	["Back to {npc:5165}"] = "{npc:5165}에게 돌아가기",
 
 	-- Step 9: The Apple Falls
 	-- {npc:3599} Jannok Breezesong · {area:186} Dolanaar · {npc:4163} Syurna · {zone:1457} Darnassus

@@ -221,7 +221,9 @@ step's `title` and `note`; a goal's `note` and `text`) are written
 each as the game names it in the client's language (Polestar.Names, the
 client's map and area names, the profession's translation), else as the
 guide's `names` give it, so an English client reads the text as its author
-wrote it. The compiler writes the tokens (GUIDE_FORMAT.md, "Names in
+wrote it (a text that spells a name otherwise, "Dendrite" for Dendrite
+Starblaze, is in the guide's `written` with the author's words). The
+compiler writes the tokens (GUIDE_FORMAT.md, "Names in
 texts"); an older Polestar would show them as written, hence the format.
 
 ### `RegisterPack(meta)`
@@ -290,6 +292,7 @@ Guide keys (the compiler writes them in this order):
 | `version` | no | number |
 | `group` | no | `true` (format 2): a goal of the guide's route that is not `optional` needs a group; the guide menu shows a "Group" chip |
 | `names` | no | format 3: `{ ["npc:240"] = "Marshal Dughan", ... }`, the English of every name token the guide's texts hold (a token it lacks is shown as written) |
+| `written` | no | format 3: `{ ["Back to {npc:3649}"] = "Back to Dendrite", ... }`, a text whose names its tokens' English in `names` would spell otherwise, with the author's words an English client reads |
 | `steps` | yes | list of steps, at least one |
 
 Step keys: `title` (optional), `note` (optional, player-facing), `only`
@@ -355,7 +358,7 @@ The fields:
 | `standing` | 1 Hated to 8 Exalted |
 | `criteria` | an achievement's criterion index |
 | `z` | the height (world z, yards) of the NPC or object the goal's `x`,`y` stands for, so the walking route ends on its floor (an Undercity quarter rather than the street above it). Polestar 0.2.4 and later pass it to the walking engine while the arrow leads to that point (not to a smart target's candidate, nor to a spawn place elsewhere), and ask again without it when the route found with it fails or ends more than 30 yards above or below it. The compiler fills it in (GUIDE_FORMAT.md, "Heights"); a hand-written pack may leave it out. Older Polestar ignores it, so it does not change the format |
-| `area` | the AreaTable area ID (`C_Map.GetAreaInfo`) of the place a `sethome`, `hearth`, `fly` or `getfp` location or a `goto` label names. Polestar 0.2.5 and later complete a `hearth` or `fly` when the zone or subzone text is that area's name in the client's language, accept a `sethome` bind location that reads so, and show that name in place of the English one. The compiler fills it in (GUIDE_FORMAT.md, "Places by ID"); without it the goal matches by its English name. Older Polestar ignores it, so it does not change the format |
+| `area` | the AreaTable area ID (`C_Map.GetAreaInfo`) of the place a `sethome`, `hearth`, `fly` or `getfp` location or a `goto` label names. Polestar 0.2.5 and later complete a `hearth` or `fly` when the zone or subzone text is that area's name in the client's language, accept a `sethome` bind location that reads so, count a `goto` arrived when the player goes indoors in that subzone (a cave or mine past its mouth; never for a zone), and show that name in place of the English one. The compiler fills it in (GUIDE_FORMAT.md, "Places by ID"); without it the goal matches by its English name. Older Polestar ignores it, so it does not change the format |
 | `node` | on `getfp`: the taxi node ID (`C_TaxiMap` `nodeID`) of its flight point. Polestar 0.2.5 and later count the goal done once the flight map lists that node as known, instead of comparing names. Filled in like `area`; older Polestar ignores it |
 | `spots` | spawn places `{ { x, y, r, n, alt } }`: centre in the goal's map and frame, radius in yards, spawn count; `alt = true` for another place the target spawns, which the arrow takes only when the player moves on to it (the world map marks it) |
 | `spread` | `true` with `spots`: an area objective, searched spot by spot |

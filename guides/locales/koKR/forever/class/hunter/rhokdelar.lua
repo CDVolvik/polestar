@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Korean words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -65,6 +66,4 @@ return {
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Azuregos"] = "아주어고스",
-	-- ["Hastat's quiver needs the {item:18704}. Azuregos, a world boss for a raid, roams the south of {zone:1447} and drops it most of the time; the Cobalt dragonkin of {zone:1452} drop it very rarely. Skip the rest of this guide if you do not want the quiver."] = "하스타트의 화살통에는 {item:18704}이(가) 필요합니다. 공격대용 필드 우두머리인 아주어고스는 {zone:1447} 남부를 돌아다니며 대부분 이것을 떨어뜨립니다. {zone:1452}의 푸른비늘 용족은 매우 드물게 떨어뜨립니다. 화살통을 원하지 않으면 이 가이드의 나머지는 건너뛰세요.",
-	-- ["{item:18704}, from Azuregos"] = "{item:18704}, 아주어고스에게서",
 }

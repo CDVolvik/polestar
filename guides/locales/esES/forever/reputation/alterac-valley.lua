@@ -3,10 +3,11 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Spanish (Spain) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Spanish (Spain) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
-	["Alterac Valley Reputation"] = "Reputación del Valle de Alterac",
+	["Alterac Valley Reputation"] = "Reputación: Valle de Alterac",
 
 	-- Step 1: Stormpike Guard to Friendly
 	-- {faction:730} Stormpike Guard
@@ -72,5 +73,4 @@ return {
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Keep winning {zone:1459}. More Booty! ({npc:13176}), {item:17306} for {npc:13236} (it summons {npc:13256}) and {npc:10990} Hides for the {npc:13441} all repeat."] = "Sigue ganando en {zone:1459}. ¡Más botines! ({npc:13176}), {item:17306} para {npc:13236} (invoca a {npc:13256}) y pellejos de {npc:10990} para el {npc:13441}: todas se repiten.",
-	-- ["{zone:1459} Reputation"] = "Reputación de {zone:1459}",
 }

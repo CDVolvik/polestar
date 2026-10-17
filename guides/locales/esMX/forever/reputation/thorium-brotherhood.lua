@@ -3,17 +3,18 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Spanish (Latin America) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Spanish (Latin America) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
-	["Thorium Brotherhood Reputation"] = "Reputación con la Hermandad del Torio",
+	["Thorium Brotherhood Reputation"] = "Reputación: Hermandad del Torio",
 
 	-- Step 1: Master Smith Burninate
 	-- {area:1446} Thorium Point · {zone:1427} Searing Gorge · {faction:59} Thorium Brotherhood
 	["{area:1446}, on the scaffolds in the north-west of {zone:1427}, is the Brotherhood's outpost. The {faction:59} starts out Neutral. Forever's Legacy Diplomat perk increases reputation gains."] = "{area:1446}, en los andamios del noroeste de {zone:1427}, es el puesto de avanzada de la Hermandad. {faction:59} empieza en Neutral. La ventaja Diplomático del Legado de Forever aumenta la reputación obtenida.",
 
 	-- Step 2: Secret Plans: Fiery Flux
-	-- {area:1443} Slag Pit · {object:147516} Dark Iron · {item:18945} Dark Iron Residue
+	-- {area:1443} Slag Pit · {object:147516} Dark Iron (no name in this language: may be words) · {item:18945} Dark Iron Residue
 	["The plans lie in the {area:1443} of the Cauldron, guarded by {object:147516} dwarves. {object:147516} dwarves also drop {item:18945}, which Burninate takes for Gaining Acceptance."] = "Los diseños están en {area:1443} de La Caldera, custodiados por enanos {object:147516}. Los enanos {object:147516} también sueltan {item:18945}, que Burninate acepta para Conseguir aceptación.",
 
 	-- Step 3: Back to Burninate

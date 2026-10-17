@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Spanish (Latin America) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Spanish (Latin America) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Fly to Darkshire
@@ -26,14 +27,16 @@ return {
 	["The wrecked caravan lies off the road near Biggs."] = "La caravana destrozada está fuera del camino, cerca de Biggs.",
 
 	-- Step 7: The Harborage
-	["Follow the road north to the draenei of the Harborage."] = "Sigue el camino al norte hasta los draenei de El Puerto.",
+	-- {area:657} The Harborage
+	["Follow the road north to the draenei of the {area:657}."] = "Sigue el camino al norte hasta los draenei de {area:657}.",
 
 	-- Step 8: Fallow Sanctuary
 	-- {area:76} Fallow Sanctuary · {npc:256028} The Lost One
 	["East along the road to the {area:76}. {npc:256028} mobs drop the crystals; Noboru walks the ruins and drops his cudgel."] = "Al este por el camino hasta {area:76}. Los enemigos {npc:256028} sueltan los cristales; Noboru recorre las ruinas y suelta su garrote.",
 
 	-- Step 9: Galen Goodward
-	["Galen is caged at the north end of the sanctuary. Free him and keep him alive on the walk out; his strongbox waits by the road afterwards."] = "Galen está enjaulado en el extremo norte del santuario. Libéralo y mantenlo con vida durante la salida; después, su caja fuerte espera junto al camino.",
+	-- {npc:5391} Galen Goodward
+	["{npc:5391} is caged at the north end of the sanctuary. Free him and keep him alive on the walk out; his strongbox waits by the road afterwards."] = "{npc:5391} está enjaulado en el extremo norte del santuario. Libéralo y mantenlo con vida durante la salida; después, su caja fuerte espera junto al camino.",
 
 	-- Step 11: Fly to Stormwind
 	-- {zone:1453} Stormwind
@@ -50,18 +53,19 @@ return {
 	["{npc:1440}, the Royal Library in the keep"] = "{npc:1440}, la biblioteca real del castillo",
 
 	-- Step 13: The Binding
-	-- {npc:6122} Gakin the Darkbinder · {object:2164} Slaughtered Lamb · {object:2101} Mage Quarter · {item:6913} Heartswood Core · {quest:65602} What Is Love? · {item:190309} Wooden Figurine
+	-- {npc:6122} Gakin the Darkbinder · {object:2164} Slaughtered Lamb (no name in this language: may be words) · {object:2101} Mage Quarter (no name in this language: may be words) · {item:6913} Heartswood Core · {quest:65602} What Is Love? · {item:190309} Wooden Figurine
 	["{npc:6122} waits in the {object:2164}'s cellar, in the {object:2101}. Use the {item:6913} at the summoning circle there and defeat the succubus it calls. If you took {quest:65602}, hand him the {item:190309} too, place it at the same circle and defeat the incubus."] = "{npc:6122} espera en el sótano de {object:2164}, en {object:2101}. Usa el {item:6913} en el círculo de invocación de allí y derrota a la súcubo que aparece. Si aceptaste {quest:65602}, dale también la {item:190309}, colócala en el mismo círculo y derrota al íncubo.",
 	["Subdue the succubus"] = "Somete a la súcubo",
 	-- {quest:65602} What Is Love?
 	["{quest:65602}, if you took it"] = "{quest:65602}, si la aceptaste",
 	-- {npc:185335} Summoned Incubus
 	["{npc:185335}, at the same circle"] = "{npc:185335}, en el mismo círculo",
-	["Gakin binds the incubus to you"] = "Gakin vincula al íncubo contigo",
+	-- {npc:6122} Gakin the Darkbinder
+	["{npc:6122} binds the incubus to you"] = "{npc:6122} vincula al íncubo contigo",
 
 	-- Step 14: Shaman training
 	["Shaman training"] = "Entrenamiento de chamán",
-	-- {zone:1453} Stormwind · {area:2257} Deeprun Tram · {object:28027} Dwarven District · {zone:1455} Ironforge · {npc:258098} Eldrun Stormbreaker · {npc:1573} Gryth Thurden · {object:32372} Great Forge · {area:271} Southshore
+	-- {zone:1453} Stormwind · {area:2257} Deeprun Tram · {object:28027} Dwarven District (no name in this language: may be words) · {zone:1455} Ironforge · {npc:258098} Eldrun Stormbreaker · {npc:1573} Gryth Thurden · {object:32372} Great Forge (no name in this language: may be words) · {area:271} Southshore
 	["{zone:1453} has no shaman trainer: take the {area:2257} from the {object:28027} to {zone:1455} and train with {npc:258098}. {npc:1573} in the {object:32372} flies to {area:271} too."] = "{zone:1453} no tiene instructor de chamanes: toma {area:2257} desde {object:28027} hasta {zone:1455} y entrena con {npc:258098}. {npc:1573}, en {object:32372}, también vuela a {area:271}.",
 
 	-- Step 15: Fly to Southshore
@@ -149,7 +153,8 @@ return {
 	["Each key lies at one of the Highlands' standing-stone circles: east of the shards, near {area:320} and in the west. The {object:2702} stands west of {area:320}."] = "Cada llave está en uno de los círculos de piedras de las Tierras Altas: al este de los fragmentos, cerca de {area:320} y en el oeste. {object:2702} está al oeste de {area:320}.",
 
 	-- Step 39: Kor'gresh Coldrage
-	["Kor'gresh, an ogre mage, holds the cave at the southern end of the Witherbark valley."] = "Kor'gresh, un mago ogro, ocupa la cueva del extremo sur del valle Secacorteza.",
+	-- {npc:2793} Kor'gresh Coldrage
+	["{npc:2793}, an ogre mage, holds the cave at the southern end of the Witherbark valley."] = "{npc:2793}, un mago ogro, ocupa la cueva del extremo sur del valle Secacorteza.",
 
 	-- Step 41: Alterac Mountains
 	-- {area:271} Southshore · {area:280} Strahnbrad · {npc:2306} Baron Vardus
@@ -174,8 +179,8 @@ return {
 	["{npc:252085}, in the City of Dalaran"] = "{npc:252085}, en la Ciudad de Dalaran",
 
 	-- Step 45: Southshore
-	-- {item:2321} Fine Thread · {npc:2381} Micha Yance
-	["{item:2321} for Bartolo's cloak, from {npc:2381}, if you have none"] = "{item:2321} para la capa de Bartolo, de {npc:2381}, si no tienes",
+	-- {item:2321} Fine Thread · {npc:2438} Bartolo Ginsetti · {npc:2381} Micha Yance
+	["{item:2321} for {npc:2438}'s cloak, from {npc:2381}, if you have none"] = "{item:2321} para la capa de {npc:2438}, de {npc:2381}, si no tienes",
 	-- {npc:1440} Milton Sheaf · {zone:1453} Stormwind
 	["For {npc:1440} in {zone:1453}: keep it"] = "Para {npc:1440} en {zone:1453}: guárdalo",
 
@@ -188,6 +193,4 @@ return {
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Follow the road north to the draenei of the {area:657}."] = "Sigue el camino al norte hasta los draenei de {area:657}.",
-	-- ["The Crushridge ogres hold the hills north of {area:280}. Farther north, a worn wooden chest holds the {item:3706}; Nagaz of the {quest:537} stands right by it."] = "Los ogros Aplastacresta ocupan las colinas al norte de {area:280}. Más al norte, un cofre de madera gastado guarda el {item:3706}; Nagaz, de {quest:537}, está justo a su lado.",
-	-- ["{npc:252085}, in the City of {area:279}"] = "{npc:252085}, en la ciudad de {area:279}",
 }

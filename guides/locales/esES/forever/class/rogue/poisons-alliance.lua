@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Spanish (Spain) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Spanish (Spain) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -12,7 +13,7 @@ return {
 	["Forever teaches {spell:2842} through this chain, not the trainer; the {item:7676} recipe comes with it."] = "En Forever, {spell:2842} se aprende con esta cadena, no con el instructor; incluye la receta de {item:7676}.",
 
 	-- Step 1: Mathias and the Defias
-	-- {npc:332} Master Mathias Shaw · {object:2100} Old Town · {npc:7024} Agent Kearnen · {zone:1436} Westfall
+	-- {npc:332} Master Mathias Shaw · {object:2100} Old Town (no name in this language: may be words) · {npc:7024} Agent Kearnen · {zone:1436} Westfall
 	["At 20 {npc:332} at SI:7 in {object:2100} sends you to {npc:7024} in {zone:1436}."] = "A nivel 20, {npc:332}, en el IV:7 de {object:2100}, te envía con {npc:7024} en {zone:1436}.",
 
 	-- Step 2: Agent Kearnen
@@ -22,7 +23,7 @@ return {
 	["{item:7908}, in the {object:123214}"] = "{item:7908}, en el {object:123214}",
 
 	-- Step 3: Master Mathias Shaw
-	-- {zone:1453} Stormwind · {object:2100} Old Town
+	-- {zone:1453} Stormwind · {object:2100} Old Town (no name in this language: may be words)
 	["Ride north through Elwynn to {zone:1453}; Mathias Shaw is at SI:7 in {object:2100}."] = "Cabalga al norte por el Bosque de Elwynn hasta {zone:1453}; Mathias Shaw está en el IV:7, en {object:2100}.",
 
 	-- Step 4: Doc Mixilpixil

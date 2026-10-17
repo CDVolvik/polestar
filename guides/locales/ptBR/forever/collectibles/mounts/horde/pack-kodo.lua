@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Portuguese (Brazil) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Portuguese (Brazil) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Durotar Supply and Logistics
@@ -12,6 +13,6 @@ return {
 	["Durotar Supply and Logistics camp"] = "Acampamento de Logística e Suprimentos de Durotar",
 
 	-- Step 2: Pack Kodo
-	["The reins need level 60 and Journeyman Riding to ride (Forever client); you can buy them earlier."] = "As rédeas exigem nível 60 e Montaria de Oficial para montar (cliente Forever); dá para comprar antes.",
+	["The reins need level 60 and Journeyman Riding to ride (Forever client); you can buy them earlier."] = "As rédeas exigem nível 60 e Profissional de Montaria para montar (cliente Forever); dá para comprar antes.",
 	["6,000 Merchant's Favor"] = "6.000 de Merchant's Favor",
 }

@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in French (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in French words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -16,20 +17,20 @@ return {
 
 	-- Step 2: Skyboat from Dalaran
 	-- {area:279} Dalaran
-	["Skyboat from {area:279}"] = "Navire volant depuis {area:279}",
+	["Skyboat from {area:279}"] = "Aéronef depuis {area:279}",
 	-- {zone:2521} Zephras Isle · {area:279} Dalaran · {zone:1456} Thunder Bluff
-	["{zone:2521} is the Skyborne starting island; anyone may visit. A skyboat leaves the north side of {area:279} about every five minutes (another flies from north of {zone:1456}; either faction may take either). Skip this if you are already on the island."] = "{zone:2521} est l'île de départ des Skyborne ; tout le monde peut s'y rendre. Un navire volant part du côté nord de {area:279} environ toutes les cinq minutes (un autre part du nord de {zone:1456} ; les deux factions peuvent prendre l'un ou l'autre). Passez ceci si vous êtes déjà sur l'île.",
+	["{zone:2521} is the Skyborne starting island; anyone may visit. A skyboat leaves the north side of {area:279} about every five minutes (another flies from north of {zone:1456}; either faction may take either). Skip this if you are already on the island."] = "{zone:2521} est l'île de départ des Éolides ; tout le monde peut s'y rendre. Un aéronef part du côté nord de {area:279} environ toutes les cinq minutes (un autre part du nord de {zone:1456} ; les deux factions peuvent prendre l'un ou l'autre). Passez ceci si vous êtes déjà sur l'île.",
 	-- {zone:2521} Zephras Isle
-	["Skyboat to {zone:2521}"] = "Navire volant pour {zone:2521}",
+	["Skyboat to {zone:2521}"] = "Aéronef vers {zone:2521}",
 
 	-- Step 3: Skyboat from Thunder Bluff
 	-- {zone:1456} Thunder Bluff
-	["Skyboat from {zone:1456}"] = "Navire volant depuis {zone:1456}",
+	["Skyboat from {zone:1456}"] = "Aéronef depuis {zone:1456}",
 	-- {zone:2521} Zephras Isle · {area:17045} Skywatcher Plateau · {zone:1456} Thunder Bluff · {area:279} Dalaran
-	["{zone:2521} is the Skyborne starting island; anyone may visit. A skyboat leaves the cliffs south of {area:17045}, north of {zone:1456}, about every five minutes (another flies from {area:279}; either faction may take either). Skip this if you are already on the island."] = "{zone:2521} est l'île de départ des Skyborne ; tout le monde peut s'y rendre. Un navire volant part des falaises au sud de {area:17045}, au nord de {zone:1456}, environ toutes les cinq minutes (un autre part de {area:279} ; les deux factions peuvent prendre l'un ou l'autre). Passez ceci si vous êtes déjà sur l'île.",
+	["{zone:2521} is the Skyborne starting island; anyone may visit. A skyboat leaves the cliffs south of {area:17045}, north of {zone:1456}, about every five minutes (another flies from {area:279}; either faction may take either). Skip this if you are already on the island."] = "{zone:2521} est l'île de départ des Éolides ; tout le monde peut s'y rendre. Un aéronef part des falaises au sud de {area:17045}, au nord de {zone:1456}, environ toutes les cinq minutes (un autre part de {area:279} ; les deux factions peuvent prendre l'un ou l'autre). Passez ceci si vous êtes déjà sur l'île.",
 
 	-- Step 4: Genn Fairweather
 	-- {npc:265756} Genn Fairweather · {area:16638} Valanaar
-	["{npc:265756} is in {area:16638}, the island's harbour town, near the skyboat docks. The Forever client lists each Swift Galestrider at 200g; choose one."] = "{npc:265756} est à {area:16638}, la ville portuaire de l'île, près des quais des navires volants. Le client Forever affiche chaque Swift Galestrider à 200 po ; choisissez-en un.",
+	["{npc:265756} is in {area:16638}, the island's harbour town, near the skyboat docks. The Forever client lists each Swift Galestrider at 200g; choose one."] = "{npc:265756} est à {area:16638}, la ville portuaire de l'île, près des quais des aéronefs. Le client Forever affiche chaque Swift Galestrider à 200 po ; choisissez-en un.",
 	["200g"] = "200 po",
 }

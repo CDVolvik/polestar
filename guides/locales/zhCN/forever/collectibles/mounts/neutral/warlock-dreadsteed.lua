@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (simplified) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (simplified) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -10,7 +11,7 @@ return {
 	["Your epic mount at 60: summoned anywhere, with no gold spent on an epic horse."] = "60级的史诗坐骑：随处可召唤，无需花金币购买史诗战马。",
 
 	-- Step 1: Mor'zul Bloodbringer (Stormwind)
-	-- {npc:5520} Spackle Thornberry · {object:2164} Slaughtered Lamb · {quest:7562} Mor'zul Bloodbringer · {zone:1428} Burning Steppes
+	-- {npc:5520} Spackle Thornberry · {object:2164} Slaughtered Lamb (no name in this language: may be words) · {quest:7562} Mor'zul Bloodbringer · {zone:1428} Burning Steppes
 	["At 60 {npc:5520} in the {object:2164} sends you to {quest:7562} in the {zone:1428}."] = "60级时，{object:2164}的{npc:5520}会让你去找{zone:1428}的{quest:7562}。",
 
 	-- Step 2: Mor'zul Bloodbringer (Ironforge)
@@ -18,16 +19,16 @@ return {
 	["At 60 {npc:6382} in {zone:1455} sends you to {quest:7562} in the {zone:1428}."] = "60级时，{zone:1455}的{npc:6382}会让你去找{zone:1428}的{quest:7562}。",
 
 	-- Step 3: Mor'zul Bloodbringer (Orgrimmar)
-	-- {npc:5815} Kurgul · {object:172960} Cleft of Shadow · {quest:7562} Mor'zul Bloodbringer · {zone:1428} Burning Steppes
+	-- {npc:5815} Kurgul · {object:172960} Cleft of Shadow (no name in this language: may be words) · {quest:7562} Mor'zul Bloodbringer · {zone:1428} Burning Steppes
 	["At 60 {npc:5815} in the {object:172960} sends you to {quest:7562} in the {zone:1428}."] = "60级时，{object:172960}的{npc:5815}会让你去找{zone:1428}的{quest:7562}。",
 
 	-- Step 4: Mor'zul Bloodbringer (Undercity)
-	-- {npc:5753} Martha Strain · {object:36082} Magic Quarter · {quest:7562} Mor'zul Bloodbringer · {zone:1428} Burning Steppes
+	-- {npc:5753} Martha Strain · {object:36082} Magic Quarter (no name in this language: may be words) · {quest:7562} Mor'zul Bloodbringer · {zone:1428} Burning Steppes
 	["At 60 {npc:5753} in the {object:36082} sends you to {quest:7562} in the {zone:1428}."] = "60级时，{object:36082}的{npc:5753}会让你去找{zone:1428}的{quest:7562}。",
 
 	-- Step 5: Mor'zul Bloodbringer
 	-- {quest:7562} Mor'zul Bloodbringer · {npc:14437} Gorzeeki Wildeyes · {area:255} Altar of Storms · {zone:1428} Burning Steppes · {area:254} Blackrock Mountain
-	["{quest:7562} and his goblin {npc:14437} camp at the {area:255}, in the north-west of the {zone:1428}, west of {area:254}. The chain is long, costs gold at Gorzeeki's and ends in two dungeons."] = "{quest:7562}和他的地精{npc:14437}在{zone:1428}西北部、{area:254}以西的{area:255}扎营。这条任务线很长，要在戈瑟奇处花费金币，最后要进两个地下城。",
+	["{quest:7562} and his goblin {npc:14437} camp at the {area:255}, in the north-west of the {zone:1428}, west of {area:254}. The chain is long, costs gold at {npc:14437}'s and ends in two dungeons."] = "{quest:7562}和他的地精{npc:14437}在{zone:1428}西北部、{area:254}以西的{area:255}扎营。这条任务线很长，要在{npc:14437}处花费金币，最后要进两个地下城。",
 
 	-- Step 6: Raging Beast's Blood
 	-- {zone:1452} Winterspring · {area:2255} Everlook · {spell:417141} Berserk
@@ -35,23 +36,24 @@ return {
 	["The owlbeasts of {zone:1452} drop the blood, about one in three: the Ragged and Raging Owlbeasts west of and around {area:2255}, the Crazed, Moontouched and {spell:417141} ones in the east. While you hunt, start on the materials of the next step: the Auction House has them all."] = "{zone:1452}的枭兽会掉落血液，大约三只掉一次：{area:2255}西边及周围的蓬毛枭兽和{npc:7451}，东边的疯狂的枭兽、月光枭兽和{spell:417141}枭兽。打怪时就开始准备下一步的材料：拍卖行都有。",
 
 	-- Step 7: Wildeyes
-	-- {item:18591} Case of Blood · {npc:14437} Gorzeeki Wildeyes · {zone:1448} Felwood
+	-- {npc:14436} Mor'zul Bloodbringer · {item:18591} Case of Blood · {npc:14437} Gorzeeki Wildeyes · {zone:1448} Felwood
 	-- plural, as words: Shadowy Potions = {item:18802} Shadowy Potion
-	["Back to Mor'zul, then hand his {item:18591} to {npc:14437} beside him. Mor'zul then asks for three ritual pieces and Gorzeeki sends you to {zone:1448}: buy two Shadowy Potions from Gorzeeki for that trip."] = "回到莫苏尔处，然后把他的{item:18591}交给他身旁的{npc:14437}。接着莫苏尔要三件仪式物品，戈瑟奇会让你去{zone:1448}：为这趟行程从戈瑟奇处买两瓶暗影药水。",
+	["Back to {npc:14436}, then hand his {item:18591} to {npc:14437} beside him. {npc:14436} then asks for three ritual pieces and {npc:14437} sends you to {zone:1448}: buy two Shadowy Potions from {npc:14437} for that trip."] = "回到{npc:14436}处，然后把他的{item:18591}交给他身旁的{npc:14437}。接着{npc:14436}要三件仪式物品，{npc:14437}会让你去{zone:1448}：为这趟行程从{npc:14437}处买两瓶暗影药水。",
 	-- {item:18591} Case of Blood
 	["he gives you the {item:18591}"] = "他会给你{item:18591}",
-	-- {item:18802} Shadowy Potion
-	["{item:18802}, from Gorzeeki"] = "{item:18802}，来自戈瑟奇",
+	-- {item:18802} Shadowy Potion · {npc:14437} Gorzeeki Wildeyes
+	["{item:18802}, from {npc:14437}"] = "{item:18802}，来自{npc:14437}",
 
 	-- Step 8: The ritual pieces
 	["The ritual pieces"] = "仪式物品",
-	-- {skill:171} Alchemy · {skill:333} Enchanting · {item:11370} Dark Iron Ore · {skill:186} Mining · {area:1584} Blackrock Depths · {zone:1427} Searing Gorge · {skill:393} Skinning · {zone:1428} Burning Steppes
+	-- {npc:14437} Gorzeeki Wildeyes · {skill:171} Alchemy · {skill:333} Enchanting · {item:11370} Dark Iron Ore · {skill:186} Mining · {area:1584} Blackrock Depths · {zone:1427} Searing Gorge · {skill:393} Skinning · {zone:1428} Burning Steppes
 	-- plural, as words: Large Brilliant Shards = {item:14344} Large Brilliant Shard · Black Dragonscales = {item:15416} Black Dragonscale
-	["Gorzeeki wants 10 Elixirs of Shadow Power ({skill:171}), 6 Large Brilliant Shards ({skill:333}), 25 {item:11370} ({skill:186}, in {area:1584} and the {zone:1427}) and 35 Black Dragonscales ({skill:393}, black dragonkin of the {zone:1428}). Make or gather what your professions allow; buy the rest at the Auction House."] = "戈瑟奇要10瓶暗影之力药剂（{skill:171}）、6块{item:14344}（{skill:333}）、25块{item:11370}（{skill:186}，在{area:1584}和{zone:1427}）以及35片{item:15416}（{skill:393}，{zone:1428}的黑龙）。你的专业能做或能采的就自己弄；其余的在拍卖行购买。",
+	["{npc:14437} wants 10 Elixirs of Shadow Power ({skill:171}), 6 Large Brilliant Shards ({skill:333}), 25 {item:11370} ({skill:186}, in {area:1584} and the {zone:1427}) and 35 Black Dragonscales ({skill:393}, black dragonkin of the {zone:1428}). Make or gather what your professions allow; buy the rest at the Auction House."] = "{npc:14437}要10瓶暗影之力药剂（{skill:171}）、6块{item:14344}（{skill:333}）、25块{item:11370}（{skill:186}，在{area:1584}和{zone:1427}）以及35片{item:15416}（{skill:393}，{zone:1428}的黑龙）。你的专业能做或能采的就自己弄；其余的在拍卖行购买。",
 
 	-- Step 9: Arcanite
+	-- {npc:14437} Gorzeeki Wildeyes
 	-- plural, as words: Arcanite Bars = {item:12360} Arcanite Bar
-	["Hand the three pieces to Gorzeeki. He then wants 3 Arcanite Bars: alchemists transmute them, everyone else buys them at the Auction House."] = "把三件物品交给戈瑟奇。然后他还要3根{item:12360}：炼金师可以转化，其他人在拍卖行购买。",
+	["Hand the three pieces to {npc:14437}. He then wants 3 Arcanite Bars: alchemists transmute them, everyone else buys them at the Auction House."] = "把三件物品交给{npc:14437}。然后他要3块奥金锭：炼金师可以转化，其他人在拍卖行购买。",
 
 	-- Step 10: Lord Banehollow
 	-- {area:1763} Jaedenar · {zone:1448} Felwood · {item:18802} Shadowy Potion · {quest:7623} Lord Banehollow · {area:1770} Shadow Hold
@@ -68,8 +70,8 @@ return {
 	["{item:18687}, from {npc:14522}"] = "{item:18687}，来自{npc:14522}",
 
 	-- Step 13: Imp Delivery
-	-- {item:18688} Imp in a Jar · {area:2057} Scholomance
-	["Back to Gorzeeki with the stardust. He gives you the {item:18688} for the {area:2057}."] = "带着星尘回到戈瑟奇处。他会给你用于{area:2057}的{item:18688}。",
+	-- {npc:14437} Gorzeeki Wildeyes · {item:18688} Imp in a Jar · {area:2057} Scholomance
+	["Back to {npc:14437} with the stardust. He gives you the {item:18688} for the {area:2057}."] = "带着星尘回到{npc:14437}处。他会给你用于{area:2057}的{item:18688}。",
 
 	-- Step 14: The Scholomance
 	-- {area:2057} Scholomance
@@ -80,9 +82,9 @@ return {
 	["Use the {item:18688} at the alchemy lab"] = "在炼金实验室使用{item:18688}",
 
 	-- Step 15: Dreadsteed of Xoroth
-	-- {item:18663} J'eevee's Jar · {item:18629} Black Lodestone · {item:18670} Xorothian Glyphs
+	-- {npc:14437} Gorzeeki Wildeyes · {npc:14436} Mor'zul Bloodbringer · {item:18663} J'eevee's Jar · {item:18629} Black Lodestone · {item:18670} Xorothian Glyphs
 	-- plural, as words: Soul Shards = {item:6265} Soul Shard
-	["Back to Gorzeeki, then Mor'zul hands you his instructions for the ritual. Buy {item:18663}, the {item:18629} and the {item:18670} from Gorzeeki, and carry ten or more Soul Shards."] = "回到戈瑟奇处，然后莫苏尔会交给你仪式说明。从戈瑟奇处购买{item:18663}、{item:18629}和{item:18670}，并携带十个或更多灵魂碎片。",
+	["Back to {npc:14437}, then {npc:14436} hands you his instructions for the ritual. Buy {item:18663}, the {item:18629} and the {item:18670} from {npc:14437}, and carry ten or more Soul Shards."] = "回到{npc:14437}处，然后{npc:14436}会交给你仪式说明。从{npc:14437}处购买{item:18663}、{item:18629}和{item:18670}，并携带十个或更多灵魂碎片。",
 
 	-- Step 16: The ritual in Dire Maul
 	-- {area:2577} Dire Maul
@@ -93,8 +95,5 @@ return {
 	["{npc:14504}: it binds itself to you"] = "{npc:14504}：它会与你绑定",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Gorzeeki wants 10 Elixirs of Shadow Power ({skill:171}), 6 Large Brilliant Shards ({skill:333}), 25 {item:11370} ({skill:186}, in {area:1584} and the {zone:1427}) and 35 Black Dragonscales ({skill:393}, black dragonkin of the {zone:1428}). Make or gather what your professions allow; buy the rest at the Auction House."] = "戈瑟奇要10瓶暗影之力药剂（{skill:171}）、6块大块魔光碎片（{skill:333}）、25块{item:11370}（{skill:186}，在{area:1584}和{zone:1427}）和35片黑龙鳞片（{skill:393}，{zone:1428}的黑龙）。用你的专业能制作或采集的就自己做，其余在拍卖行购买。",
 	-- ["Gorzeeki wants 10 Elixirs of {spell:5896} ({skill:171}), 6 Large Brilliant Shards ({skill:333}), 25 {item:11370} ({skill:186}, in {area:1584} and the {zone:1427}) and 35 Black Dragonscales ({skill:393}, black dragonkin of the {zone:1428}). Make or gather what your professions allow; buy the rest at the Auction House."] = "戈瑟奇要10瓶暗影之力药剂（{spell:5896}，{skill:171}）、6块{item:14344}（{skill:333}）、25块{item:11370}（{skill:186}，在{area:1584}和{zone:1427}）以及35片{item:15416}（{skill:393}，{zone:1428}的黑龙）。你的专业能做或能采的就自己弄；其余的在拍卖行购买。",
-	-- ["Hand the three pieces to Gorzeeki. He then wants 3 {quest:7630} Bars: alchemists transmute them, everyone else buys them at the Auction House."] = "把三件物品交给戈瑟奇。然后他要3块{quest:7630}：炼金师可以转化，其他人在拍卖行购买。",
-	-- ["The owlbeasts of {zone:1452} drop the blood, about one in three: the Ragged and Raging Owlbeasts west of and around {area:2255}, the Crazed, Moontouched and Berserk ones in the east. While you hunt, start on the materials of the next step: the Auction House has them all."] = "{zone:1452}的枭兽掉落鲜血，约三分之一几率：{area:2255}以西和周围的蓬毛枭兽和狂怒的枭兽，以及东部的疯狂的枭兽、月光枭兽和狂暴枭兽。狩猎的同时开始准备下一步的材料：拍卖行都有。",
 }

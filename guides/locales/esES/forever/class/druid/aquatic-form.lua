@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Spanish (Spain) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Spanish (Spain) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -36,8 +37,8 @@ return {
 	["{item:15885}: join the halves at the shrine"] = "{item:15885}: une las mitades en el altar",
 
 	-- Step 6: Aquatic Form
-	-- {area:1658} Cenarion Enclave
-	["Take the portal up to Mathrengyl in the {area:1658}."] = "Toma el portal para subir hasta Mathrengyl en {area:1658}.",
+	-- {npc:4217} Mathrengyl Bearwalker · {area:1658} Cenarion Enclave
+	["Take the portal up to {npc:4217} in the {area:1658}."] = "Toma el portal para subir hasta {npc:4217} en {area:1658}.",
 
 	-- Step 7: A Lesson to Learn
 	-- {npc:3033} Turak Runetotem · {area:1639} Elder Rise
@@ -65,6 +66,4 @@ return {
 	-- ["Cast Teleport: {zone:1450}. Join the two halves into the {item:15885} near the {area:2362}, on the north-west shore of the lake, then see {npc:11802} in {area:2361}. {npc:11798} flies druids to {area:1638}."] = "Lanza Teletransporte: {zone:1450}. Une las dos mitades en {item:15885} cerca del {area:2362}, en la orilla noroeste del lago, y luego ve a ver a {npc:11802} en {area:2361}. {npc:11798} lleva a los druidas a {area:1638}.",
 	-- ["Cast Teleport: {zone:1450}. {npc:11802} is in {area:2361}. Shrine Baubles lie in the containers on the floor of {area:656}, below {area:2361}: take one to the {area:2362} on the north-west shore, use it there and speak to {npc:11799}."] = "Lanza Teletransporte: {zone:1450}. {npc:11802} está en {area:2361}. Los Adornos de altar están en los contenedores del fondo de {area:656}, bajo {area:2361}: lleva uno al {area:2362}, en la orilla noroeste, úsalo allí y habla con {npc:11799}.",
 	-- ["Cast Teleport: {zone:1450}. {npc:11802} is in {area:2361}. The Shrine Baubles lie on the bed of {area:656} and fade within minutes: swim one straight to the {area:2362} on the north-west shore, use it there and speak to {npc:11799}."] = "Lanza Teletransporte: {zone:1450}. {npc:11802} está en {area:2361}. Los Adornos de altar están en el fondo de {area:656} y desaparecen en pocos minutos: lleva uno a nado directamente al {area:2362}, en la orilla noroeste, úsalo allí y habla con {npc:11799}.",
-	-- ["Fly from {area:2361} to {area:442}. The {object:177790} lies under the water off the north coast, west of the {area:443}."] = "Vuela de {area:2361} a {area:442}. La {object:177790} está bajo el agua frente a la costa norte, al oeste de {area:443}.",
-	-- ["The {object:177790} lies at the north edge of the {area:382}, by the Venture Co. tower, north of the {area:380}."] = "La {object:177790} está en el borde norte de {area:382}, junto a la torre de Ventura y Cía., al norte de {area:380}.",
 }

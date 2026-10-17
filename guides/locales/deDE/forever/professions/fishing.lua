@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in German (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in German words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Learn Fishing
@@ -23,7 +24,8 @@ return {
 	["{zone:1411} coast"] = "Küste von {zone:1411}",
 
 	-- Step 6: Fishing: The Barrens (1-50)
-	["Barrens oasis"] = "Oase im Brachland",
+	-- {zone:1413} The Barrens
+	["{zone:1413} oasis"] = "Oase im {zone:1413}",
 
 	-- Step 7: Fishing: Tirisfal Glades (1-50)
 	["Vile Fin shore"] = "Ufer der Finsterflossen",

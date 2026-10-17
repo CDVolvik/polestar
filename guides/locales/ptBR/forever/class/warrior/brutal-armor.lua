@@ -3,13 +3,14 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Portuguese (Brazil) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Portuguese (Brazil) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
 	["Four armor pieces at 30 (hauberk, helm, gauntlets, legguards) and a shield on the way."] = "Quatro peças de armadura no nível 30 (camisão, elmo, manoplas, perneiras) e um escudo no caminho.",
 
 	-- Step 1: Speak with Ruga (Orgrimmar)
-	-- {npc:3354} Sorek · {object:172958} Valley of Honor · {npc:6394} Ruga Ragetotem · {area:378} Camp Taurajo
+	-- {npc:3354} Sorek · {object:172958} Valley of Honor (no name in this language: may be words) · {npc:6394} Ruga Ragetotem · {area:378} Camp Taurajo
 	["At 20, {npc:3354} in the {object:172958} sends you to {npc:6394} in {area:378}."] = "No nível 20, {npc:3354} no {object:172958} manda você a {npc:6394} no {area:378}.",
 
 	-- Step 2: Speak with Ruga (Thunder Bluff)
@@ -27,8 +28,8 @@ return {
 	["Twitching Antennae from the silithid"] = "Antenas Agitadas dos silitídeos",
 
 	-- Step 5: Thun'grim Firegaze
-	-- {area:380} Crossroads · {quest:1838} Brutal Armor
-	["Thun'grim camps beside the road east of the {area:380}. {quest:1838} is a level 30 quest; you can take it now and gather for it on the way."] = "Thun'grim acampa junto à estrada a leste da {area:380}. {quest:1838} é uma missão de nível 30; você pode pegá-la agora e coletar para ela no caminho.",
+	-- {npc:5878} Thun'grim Firegaze · {area:380} Crossroads · {quest:1838} Brutal Armor
+	["{npc:5878} camps beside the road east of the {area:380}. {quest:1838} is a level 30 quest; you can take it now and gather for it on the way."] = "{npc:5878} acampa junto à estrada a leste da {area:380}. {quest:1838} é uma missão de nível 30; você pode pegá-la agora e coletar para ela no caminho.",
 
 	-- Step 6: Roogug in Razorfen Kraul
 	-- {area:1717} Razorfen Kraul
@@ -66,8 +67,8 @@ return {
 	["Iron Bars: {npc:8673}"] = "Barras de Ferro: {npc:8673}",
 
 	-- Step 10: Brutal Hauberk
-	-- {area:380} Crossroads · {quest:1848} Brutal Hauberk
-	["Back to Thun'grim beside the road east of the {area:380}. {quest:1848} is the first piece; he then sends you to three crafters for the rest."] = "De volta a Thun'grim, junto à estrada a leste da {area:380}. {quest:1848} é a primeira peça; depois ele manda você a três artesãos para o resto.",
+	-- {npc:5878} Thun'grim Firegaze · {area:380} Crossroads · {quest:1848} Brutal Hauberk
+	["Back to {npc:5878} beside the road east of the {area:380}. {quest:1848} is the first piece; he then sends you to three crafters for the rest."] = "De volta a {npc:5878}, junto à estrada a leste da {area:380}. {quest:1848} é a primeira peça; depois ele manda você a três artesãos para o resto.",
 
 	-- Step 11: Ula'elek
 	-- {npc:6408} Ula'elek · {area:367} Sen'jin Village · {zone:1411} Durotar
@@ -96,7 +97,4 @@ return {
 	["The Dragonmaw orcs camp in the middle of the {zone:1437}, south of the road; Raiders, Swamprunners, Centurions, Shadowwarders and Bonewarders all drop the Sturdy Dragonmaw Shinbones."] = "Os orcs Presa do Dragão acampam no meio de {zone:1437}, ao sul da estrada; Saqueadores, Corre-brejos, Centuriões, Guarda-sombras e Guarda-ossos deixam cair Tíbias Firmes de Presa do Dragão.",
 	-- plural, as words: Sturdy Dragonmaw Shinbones = {item:7134} Sturdy Dragonmaw Shinbone
 	["Sturdy Dragonmaw Shinbones"] = "Tíbias Firmes de Presa do Dragão",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Uncloven Satyr Hooves"] = "Cascos Não Fendidos de Sátiro",
 }

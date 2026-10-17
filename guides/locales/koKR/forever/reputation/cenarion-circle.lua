@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Korean words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -10,7 +11,7 @@ return {
 
 	-- Step 1: Cenarion Hold
 	-- {area:3425} Cenarion Hold · {zone:1451} Silithus · {npc:15270} Huum Wildmane · {faction:609} Cenarion Circle
-	["{area:3425} is the walled town in north-central {zone:1451}. Bor and {npc:15270} stand together inside. The {faction:609} starts out Neutral. Forever's Legacy Diplomat perk increases reputation gains."] = "{area:3425}은(는) {zone:1451} 중북부의 성벽 마을입니다. 보르 와일드메인과 {npc:15270}이(가) 안에 함께 있습니다. {faction:609} 평판은 중립에서 시작합니다. Forever의 Legacy Diplomat 특전은 평판 획득량을 늘려 줍니다.",
+	["{area:3425} is the walled town in north-central {zone:1451}. Bor and {npc:15270} stand together inside. The {faction:609} starts out Neutral. Forever's Legacy Diplomat perk increases reputation gains."] = "{area:3425}은(는) {zone:1451} 중북부의 성벽 마을입니다. 보르 와일드메인과 {npc:15270}이(가) 안에 함께 있습니다. {faction:609} 평판은 중립에서 시작합니다. Forever의 외교관 유산 특전은 평판 획득량을 늘려 줍니다.",
 	-- {quest:8320} Twilight Geolords
 	["{quest:8320} needs level 60"] = "{quest:8320}은(는) 60레벨 필요",
 
