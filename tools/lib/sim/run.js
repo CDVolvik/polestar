@@ -192,6 +192,10 @@ function compileRun(world, { race, cls = null, raceBits = {}, family = 'solo' } 
 	const qXp = new Float64Array(Q); // recorded full reward, 0 = estimate, -1 = none (repeatable)
 	const qGiver = new Int32Array(Q);
 	const qEnder = new Int32Array(Q);
+	// Every giver and ender of a quest that has several (world gAlt/eAlt): qi -> Map('npc:<id>' -> point).
+	const qGiverAlt = new Map();
+	const qEnderAlt = new Map();
+	const altPts = (alt) => new Map(Object.entries(alt).map(([k, p]) => [k, usePt(p)]));
 	const qAccept = new Int32Array(Q).fill(-1);
 	const qTask0 = new Int32Array(Q);
 	const qTask1 = new Int32Array(Q);
@@ -317,6 +321,11 @@ function compileRun(world, { race, cls = null, raceBits = {}, family = 'solo' } 
 	for (const d of dungeons) usePt(d.pt);
 	const startPt = usePt(start.pt);
 	const innRunPt = world.inns.map((n) => usePt(n.pt));
+	// Other givers and enders last, so every other point keeps its index.
+	quests.forEach((q, i) => {
+		if (q.gAlt) qGiverAlt.set(i, altPts(q.gAlt));
+		if (q.eAlt) qEnderAlt.set(i, altPts(q.eAlt));
+	});
 
 	// ---- point geometry, flight masters and inns at points ----
 	const N = world.nodes.length;
@@ -378,7 +387,7 @@ function compileRun(world, { race, cls = null, raceBits = {}, family = 'solo' } 
 		faction, race, cls, world,
 		start: { pt: startPt, zone: start.zone, quest: start.quest },
 		quests, qIndex, Q,
-		qLevel, qMinLevel, qExcl0, qExcl1, exclList: Int32Array.from(exclList), qTier, qXp, qGiver, qEnder, qAccept, qTask0, qTask1, qPre0, qPre1, qAll0, qAll1, allList: Int32Array.from(allList),
+		qLevel, qMinLevel, qExcl0, qExcl1, exclList: Int32Array.from(exclList), qTier, qXp, qGiver, qEnder, qGiverAlt, qEnderAlt, qAccept, qTask0, qTask1, qPre0, qPre1, qAll0, qAll1, allList: Int32Array.from(allList),
 		qParent, qAfter0, qAfter1, afterList: Int32Array.from(afterList),
 		preList: Int32Array.from(preList),
 		taskPt: Int32Array.from(taskPt), taskW0: Int32Array.from(taskW0), taskW1: Int32Array.from(taskW1),
