@@ -176,13 +176,15 @@ function referencedFrames(guides, data) {
 // <folder>.toc, Pack.lua, MapFrames.lua, Guides.lua and LICENSE-DATA.txt,
 // plus LICENSE.txt holding `license` (the pack's LICENSE file) when given.
 // LICENSE-DATA.txt names meta.json's sources, and CMaNGOS classic-db when a
-// goal carries a height (heights.js) and meta.json does not name it already.
+// goal, smart-target candidate or spawn spot carries a height (heights.js)
+// and meta.json does not name it already.
 // `translations` (tools/lib/i18n/guides.js packTranslations: { [locale]: {
 // pack, guides } }) add a texts addon per language beside the folder,
 // named `../<folder>_<locale>/<file>` (writePackDir writes them there).
 function buildPackFiles({ guides, manifest, data, license = null, translations = {} }) {
 	const sources = (data.meta && Array.isArray(data.meta.sources) && data.meta.sources) || [];
-	const meta = heightCounts(guides).withZ && !sources.some((s) => s && s.name === HEIGHTS_SOURCE.name) ? { ...data.meta, sources: [...sources, HEIGHTS_SOURCE] } : data.meta;
+	const h = heightCounts(guides);
+	const meta = h.withZ + h.candidatesWithZ + h.spotsWithZ && !sources.some((s) => s && s.name === HEIGHTS_SOURCE.name) ? { ...data.meta, sources: [...sources, HEIGHTS_SOURCE] } : data.meta;
 	const iface = coreInterface();
 	const files = {
 		[`${manifest.folder}.toc`]: emitToc(manifest, iface),
@@ -253,9 +255,9 @@ function packDirRefusal(dir, packId = null) {
 		return fs.existsSync(dir) ? 'it is not a folder' : null;
 	}
 	if (!entries.length) return null;
-	if (!isGeneratedDir(dir)) return `it is not a generated guide pack (no TOC with the "${GENERATED_MARKER}" line); move it away first`;
+	if (!isGeneratedDir(dir)) return `it is not a generated community addon (no TOC with the "${GENERATED_MARKER}" line); move it away first`;
 	const owner = packId ? generatedPackId(dir) : null;
-	if (owner && owner !== packId) return `it holds the guide pack "${owner}", not "${packId}"; set "folder" in pack.json to a folder name of your own`;
+	if (owner && owner !== packId) return `it holds the community addon "${owner}", not "${packId}"; set "folder" in pack.json to a folder name of your own`;
 	return null;
 }
 
@@ -321,12 +323,12 @@ function textsDirRefusal(dir, packId) {
 	const text = toc ? fs.readFileSync(path.join(dir, toc), 'utf8') : '';
 	const m = text.includes(GENERATED_MARKER) && TEXTS_ID_LINE.exec(text);
 	if (!m) return `it is not a generated texts addon (no TOC with the "${GENERATED_MARKER}" line); move it away first`;
-	if (packId && m[1] !== packId) return `it holds the texts of the guide pack "${m[1]}", not "${packId}"`;
+	if (packId && m[1] !== packId) return `it holds the texts of the community addon "${m[1]}", not "${packId}"`;
 	return null;
 }
 
 // Addon folders of the release: always these (Polestar_Nav is committed:
-// Shortest Path Forever's walking router, `nav vendor`), plus the generated
+// Polestar's walking router and maps, `nav pack`), plus the generated
 // data addons when they have been built (each skipped while its folder or TOC
 // is missing; `pack` refuses a release without the Codex, which Lookup,
 // Dungeons and Rares read: tools/lib/codex/pack.js releaseRefusal), the names

@@ -588,9 +588,10 @@ function Guides.SuggestSource() return "guides" end
 function Guides.GuideMatches(g, player) return uistub.realGuides.GuideMatches(g, player) end
 
 local Nav = {}
-function Nav.SetTarget(map, x, y, label, f)
+function Nav.SetTarget(map, x, y, label, f, stop, z)
 	record("SetTarget", map, x, y, label, f)
-	uistub.target = { map = map, x = x, y = y, label = label, f = f }
+	-- `stop` and `z` sit after a nil `f` for most callers, so they are kept here, not in the call record.
+	uistub.target = { map = map, x = x, y = y, label = label, f = f, stop = stop, z = z }
 	Polestar.Fire("WAYPOINT_CHANGED", uistub.target)
 end
 function Nav.ClearTarget() record("ClearTarget"); uistub.target = nil end
@@ -640,7 +641,7 @@ function uistub.install(opts)
 	end
 	Polestar.Engine = Engine
 	-- The real registry stays reachable for pages that show its records
-	-- (the Guide packs page): Polestar.Guides = uistub.realGuides.
+	-- (the Community guides page): Polestar.Guides = uistub.realGuides.
 	if Polestar.Guides ~= Guides then uistub.realGuides = Polestar.Guides end
 	Polestar.Guides = Guides
 	if not opts.noNav then Polestar.Nav = Nav end

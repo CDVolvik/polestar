@@ -47,6 +47,17 @@ local SH = W.SHELL
 local WIN_W = 1120 + SH.rail -- the section rail, then the three panes
 local DETAIL_W = 372 -- the details pane, right
 local MID_W = WIN_W - SH.rail - SH.sidebar - 2 - DETAIL_W -- the list pane, middle
+
+local SIDE_W = SH.sidebar -- the sidebar, left of the list
+
+-- The skin's sizes (Theme.Metric; DIRECTION_B_HALO.md §3: 1100 x 640 beside the rail,
+-- a 230 sidebar, a 380 details pane), read as the window is built.
+local function readSizes()
+	WIN_W = Theme.Metric("pickerW", 1120) + SH.rail
+	DETAIL_W = Theme.Metric("pickerDetail", 372)
+	SIDE_W = Theme.Metric("pickerSidebar", SH.sidebar)
+	MID_W = WIN_W - SH.rail - SIDE_W - 2 - DETAIL_W
+end
 local ROW_X = 12 -- where list rows' grounds start in the middle pane
 local TEXT_X = SH.pad - ROW_X -- text inside a row, on the column's x=32 edge
 local ROW_H, FOLDER_H, CARD_H, CARD_GAP = 28, 32, 78, 10
@@ -91,7 +102,7 @@ P.CATEGORY_ICON = CATEGORY_ICON
 local categoryOf = UI.Category
 
 -- Community guide packs: their guides are not in our categories but under
--- the "Guide packs" heading, one entry per pack (key "pack:<id>"); All,
+-- the "Community guides" heading, one entry per pack (key "pack:<id>"); All,
 -- Favorites and search cover every shown guide.
 local PACK = "pack:"
 
@@ -1221,10 +1232,10 @@ local function navItems(counts, total)
 		if exists[c] then items[#items + 1] = { key = c, label = L[c], icon = CATEGORY_ICON[c], count = counts[c] or 0 } end
 	end
 	items[#items + 1] = { key = "Favorites", label = L["Favourites"], icon = CATEGORY_ICON.Favorites, count = counts.Favorites or 0 }
-	-- Guide packs: one entry per shown pack with guides, "<title> · <author>".
+	-- Community guides: one entry per shown pack with guides, "<title> · <author>".
 	if #packs > 0 then
 		table.sort(packs, function(a, b) return (a.title or a.id):lower() < (b.title or b.id):lower() end)
-		items[#items + 1] = { key = "", heading = true, label = L["Guide packs"] }
+		items[#items + 1] = { key = "", heading = true, label = L["Community guides"] }
 		for _, r in ipairs(packs) do
 			local label = r.title or r.id
 			if r.author then label = label .. DOT .. r.author end
@@ -1540,8 +1551,8 @@ function P.Render()
 		if n == 0 and not (query ~= "" and UI.LookupCount and UI.LookupCount() > 0) then
 			if #(ns.Guides and ns.Guides.List and ns.Guides.List() or {}) == 0 then
 				empty = (UI.Packs and UI.Packs.AnySwitchedOff())
-					and L["No guides shown: the guide packs are switched off. Turn one on under Options, Guide packs (/polestar packs)."]
-					or L["No guides installed. Enable Polestar Guides or a guide pack in the AddOns list on the character screen, then reload."]
+					and L["No guides shown: the community addons are switched off. Turn one on under Options, Community guides (/polestar packs)."]
+					or L["No guides installed. Enable Polestar Guides or a community addon in the AddOns list on the character screen, then reload."]
 			elseif query ~= "" then
 				empty = string.format(L["No guides match \226\128\156%s\226\128\157."], query)
 			elseif category == "Favorites" then
@@ -1676,8 +1687,10 @@ local function onSearch(text)
 end
 
 local function build()
+	readSizes()
 	win = W.Shell("PolestarPicker", {
-		width = WIN_W, rail = true, title = L["Guides"], scalePath = "ui.menuScale", searchPlaceholder = HUB_SEARCH,
+		width = WIN_W, height = Theme.Metric("pickerH", SH.height), sidebar = SIDE_W,
+		rail = true, title = L["Guides"], scalePath = "ui.menuScale", searchPlaceholder = HUB_SEARCH,
 		onSearch = onSearch,
 	})
 	P.frame = win
