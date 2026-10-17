@@ -1757,7 +1757,6 @@ L["next"] = "siguiente"
 
 -- Talents/Options.lua
 L["Talent plans"] = "Planes de talentos"
-L["Follow a talent plan for your class and spec (/pole talents). Paladin only for now."] = "Sigue un plan de talentos para tu clase y especialización (/pole talents). Por ahora solo Paladín."
 L["Mark the talent frame"] = "Marcar el marco de talentos"
 L["A ring on the next talent in your plan and a flag on points the plan does not spend."] = "Un anillo en el siguiente talento de tu plan y una bandera en los puntos que el plan no gasta."
 L["Pick numbers"] = "Números de elección"
@@ -1766,6 +1765,7 @@ L["Plan in tooltips"] = "Plan en las descripciones"
 L["A line in each talent's tooltip: where it comes in the plan, or that it is off the plan."] = "Una línea en la descripción de cada talento: dónde entra en el plan, o que está fuera del plan."
 L["Remind me of unspent points"] = "Recordar puntos sin gastar"
 L["A chat line naming the plan's next talent when a point is waiting."] = "Una línea de chat con el siguiente talento del plan cuando hay un punto esperando."
+L["Follow a talent plan for your class and spec (/pole talents)."] = "Sigue un plan de talentos para tu clase y especialización (/pole talents)."
 
 -- Talents/View.lua
 L["Follow this plan"] = "Seguir este plan"
@@ -1779,7 +1779,6 @@ L["1 point to spend. Next: %s."] = "1 punto por gastar. Siguiente: %s."
 L["%d points to spend. Next: %s."] = "%d puntos por gastar. Siguiente: %s."
 L["On plan. Next point: %s."] = "Según el plan. Siguiente punto: %s."
 L["Talent plans are turned off. Turn them on under Options > Questing > Talents."] = "Los planes de talentos están desactivados. Actívalos en Opciones > Misiones > Talentos."
-L["Talent plans cover the Paladin for now. More classes will follow."] = "Por ahora los planes de talentos cubren al Paladín. Vendrán más clases."
 L["The talent tree is not loaded yet. It will be once you are in the world."] = "El árbol de talentos aún no está cargado. Lo estará cuando estés en el mundo."
 L["Picks %d-%d"] = "Elecciones %d-%d"
 L["A talent plan, pick by pick"] = "Un plan de talentos, elección a elección"
@@ -1796,6 +1795,7 @@ L["Source"] = "Fuente"
 L["Picks from %s (%s), checked against the game's talent tree; notes in Polestar's words."] = "Elecciones de %s (%s), comprobadas con el árbol de talentos del juego; notas con palabras de Polestar."
 L["Keep this plan"] = "Mantener este plan"
 L["Follow this plan whatever spec gear advice uses."] = "Seguir este plan sea cual sea la especialización de los consejos de equipo."
+-- L["There is no talent plan for your class yet."] = ""
 
 -- Maps/MinimapButton.lua
 L["Click: show or hide the guide"] = "Clic: mostrar u ocultar la guía"
@@ -2002,3 +2002,5 @@ L["Spare points go to Divine Strength and Holy's Improved Seals for damage, then
 -- L["quality: Artifact"] = "Artefacto"
 -- L["quality: Rare"] = "Raro"
 -- L["Browsing the guide needs a gamepad: turn it on in the game's options and plug one in."] = "Para recorrer la guía se necesita un control: actívalo en las opciones del juego y conecta uno."
+-- L["Follow a talent plan for your class and spec (/pole talents). Paladin only for now."] = "Sigue un plan de talentos para tu clase y especialización (/pole talents). Por ahora solo Paladín."
+-- L["Talent plans cover the Paladin for now. More classes will follow."] = "Por ahora los planes de talentos cubren al Paladín. Vendrán más clases."

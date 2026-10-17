@@ -1733,7 +1733,6 @@ L["next"] = "다음"
 
 -- Talents/Options.lua
 L["Talent plans"] = "특성 계획"
-L["Follow a talent plan for your class and spec (/pole talents). Paladin only for now."] = "직업과 전문화에 맞는 특성 계획을 따릅니다 (/pole talents). 지금은 성기사만."
 L["Mark the talent frame"] = "특성 창에 표시"
 L["A ring on the next talent in your plan and a flag on points the plan does not spend."] = "계획의 다음 특성에 고리, 계획에 없는 포인트에 깃발."
 L["Pick numbers"] = "선택 순서 번호"
@@ -1742,6 +1741,7 @@ L["Plan in tooltips"] = "툴팁에 계획"
 L["A line in each talent's tooltip: where it comes in the plan, or that it is off the plan."] = "각 특성 툴팁에 한 줄: 계획상 순서 또는 계획 외."
 L["Remind me of unspent points"] = "남은 포인트 알림"
 L["A chat line naming the plan's next talent when a point is waiting."] = "포인트가 남아 있으면 대화창에 계획의 다음 특성을 알립니다."
+L["Follow a talent plan for your class and spec (/pole talents)."] = "직업과 전문화에 맞는 특성 계획을 따릅니다 (/pole talents)."
 
 -- Talents/View.lua
 L["Follow this plan"] = "이 계획 따르기"
@@ -1755,7 +1755,6 @@ L["1 point to spend. Next: %s."] = "쓸 포인트 1개. 다음: %s."
 L["%d points to spend. Next: %s."] = "쓸 포인트 %d개. 다음: %s."
 L["On plan. Next point: %s."] = "계획대로. 다음 포인트: %s."
 L["Talent plans are turned off. Turn them on under Options > Questing > Talents."] = "특성 계획이 꺼져 있습니다. 설정 > 퀘스트 진행 > 특성에서 켜십시오."
-L["Talent plans cover the Paladin for now. More classes will follow."] = "특성 계획은 지금은 성기사만 있습니다. 다른 직업도 추가됩니다."
 L["The talent tree is not loaded yet. It will be once you are in the world."] = "특성 트리를 아직 불러오지 않았습니다. 월드에 들어가면 불러옵니다."
 L["Picks %d-%d"] = "선택 %d-%d"
 L["A talent plan, pick by pick"] = "하나씩 따라가는 특성 계획"
@@ -1772,6 +1771,7 @@ L["Source"] = "출처"
 L["Picks from %s (%s), checked against the game's talent tree; notes in Polestar's words."] = "선택은 %s (%s) 기준이며 게임 특성 트리로 확인했습니다. 메모는 Polestar가 썼습니다."
 L["Keep this plan"] = "이 계획 유지"
 L["Follow this plan whatever spec gear advice uses."] = "장비 조언의 전문화와 관계없이 이 계획을 따릅니다."
+-- L["There is no talent plan for your class yet."] = ""
 
 -- Gear/Weights.lua
 L["Arms"] = "무기"
@@ -1969,3 +1969,5 @@ L["Spare points go to Divine Strength and Holy's Improved Seals for damage, then
 -- No longer in the code (its English changed or it went away): reuse or delete.
 -- L["Shortest Path Forever is guiding. Turn off \"Guide with Shortest Path Forever when it's installed\" (Options, Arrow & routes) to use Polestar's arrow."] = "Shortest Path Forever가 가이드 중입니다. Polestar 화살표를 쓰려면 \"설치 시 Shortest Path Forever로 가이드\"를 끄십시오(설정, 화살표 및 경로)."
 -- L["Browsing the guide needs a gamepad: turn it on in the game's options and plug one in."] = "가이드 탐색에는 게임패드가 필요합니다. 게임 설정에서 켜고 게임패드를 연결하십시오."
+-- L["Follow a talent plan for your class and spec (/pole talents). Paladin only for now."] = "직업과 전문화에 맞는 특성 계획을 따릅니다 (/pole talents). 지금은 성기사만."
+-- L["Talent plans cover the Paladin for now. More classes will follow."] = "특성 계획은 지금은 성기사만 있습니다. 다른 직업도 추가됩니다."

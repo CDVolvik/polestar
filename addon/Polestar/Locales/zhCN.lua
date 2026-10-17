@@ -1733,7 +1733,6 @@ L["next"] = "下一个"
 
 -- Talents/Options.lua
 L["Talent plans"] = "天赋方案"
-L["Follow a talent plan for your class and spec (/pole talents). Paladin only for now."] = "按你的职业和专精的天赋方案加点（/pole talents）。目前仅支持圣骑士。"
 L["Mark the talent frame"] = "标记天赋面板"
 L["A ring on the next talent in your plan and a flag on points the plan does not spend."] = "在方案中的下一个天赋上显示圆环，在方案之外的点数上显示标记。"
 L["Pick numbers"] = "加点序号"
@@ -1742,6 +1741,7 @@ L["Plan in tooltips"] = "鼠标提示中显示方案"
 L["A line in each talent's tooltip: where it comes in the plan, or that it is off the plan."] = "在每个天赋的鼠标提示中加一行：它在方案中的位置，或不在方案中。"
 L["Remind me of unspent points"] = "提醒未分配点数"
 L["A chat line naming the plan's next talent when a point is waiting."] = "有可用点数时，在聊天框提示方案中的下一个天赋。"
+L["Follow a talent plan for your class and spec (/pole talents)."] = "按你的职业和专精的天赋方案加点（/pole talents）。"
 
 -- Talents/View.lua
 L["Follow this plan"] = "使用此方案"
@@ -1755,7 +1755,6 @@ L["1 point to spend. Next: %s."] = "有1点可分配。下一个：%s。"
 L["%d points to spend. Next: %s."] = "有%d点可分配。下一个：%s。"
 L["On plan. Next point: %s."] = "符合方案。下一点：%s。"
 L["Talent plans are turned off. Turn them on under Options > Questing > Talents."] = "天赋方案已关闭。请在 选项 > 做任务 > 天赋 中开启。"
-L["Talent plans cover the Paladin for now. More classes will follow."] = "天赋方案目前仅支持圣骑士。更多职业即将推出。"
 L["The talent tree is not loaded yet. It will be once you are in the world."] = "天赋树尚未加载。进入游戏世界后会加载。"
 L["Picks %d-%d"] = "第%d-%d点"
 L["A talent plan, pick by pick"] = "逐点的天赋方案"
@@ -1772,6 +1771,7 @@ L["Source"] = "来源"
 L["Picks from %s (%s), checked against the game's talent tree; notes in Polestar's words."] = "加点来自%s（%s），已与游戏天赋树核对；说明由Polestar撰写。"
 L["Keep this plan"] = "保留此方案"
 L["Follow this plan whatever spec gear advice uses."] = "无论装备建议使用哪个专精，都使用此方案。"
+-- L["There is no talent plan for your class yet."] = ""
 
 -- Gear/Weights.lua
 L["Arms"] = "武器"
@@ -1969,3 +1969,5 @@ L["Spare points go to Divine Strength and Holy's Improved Seals for damage, then
 -- No longer in the code (its English changed or it went away): reuse or delete.
 -- L["Shortest Path Forever is guiding. Turn off \"Guide with Shortest Path Forever when it's installed\" (Options, Arrow & routes) to use Polestar's arrow."] = "Shortest Path Forever 正在导航。要使用 Polestar 的箭头，请关闭“安装 Shortest Path Forever 时由其导航”（选项 > 箭头与路线）。"
 -- L["Browsing the guide needs a gamepad: turn it on in the game's options and plug one in."] = "浏览指南需要手柄：请在游戏选项中启用手柄并连接一个手柄。"
+-- L["Follow a talent plan for your class and spec (/pole talents). Paladin only for now."] = "按你的职业和专精的天赋方案加点（/pole talents）。目前仅支持圣骑士。"
+-- L["Talent plans cover the Paladin for now. More classes will follow."] = "天赋方案目前仅支持圣骑士。更多职业即将推出。"

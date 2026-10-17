@@ -1733,7 +1733,6 @@ L["next"] = "далее"
 
 -- Talents/Options.lua
 L["Talent plans"] = "Планы талантов"
-L["Follow a talent plan for your class and spec (/pole talents). Paladin only for now."] = "Следовать плану талантов для класса и специализации (/pole talents). Пока только паладин."
 L["Mark the talent frame"] = "Отмечать окно талантов"
 L["A ring on the next talent in your plan and a flag on points the plan does not spend."] = "Кольцо на следующем таланте плана и флажок на очках вне плана."
 L["Pick numbers"] = "Номера выбора"
@@ -1742,6 +1741,7 @@ L["Plan in tooltips"] = "План в подсказках"
 L["A line in each talent's tooltip: where it comes in the plan, or that it is off the plan."] = "Строка в подсказке таланта: его место в плане или что он вне плана."
 L["Remind me of unspent points"] = "Напоминать о свободных очках"
 L["A chat line naming the plan's next talent when a point is waiting."] = "Сообщение в чате со следующим талантом плана, когда есть свободное очко."
+L["Follow a talent plan for your class and spec (/pole talents)."] = "Следовать плану талантов для класса и специализации (/pole talents)."
 
 -- Talents/View.lua
 L["Follow this plan"] = "Следовать плану"
@@ -1755,7 +1755,6 @@ L["1 point to spend. Next: %s."] = "1 очко свободно. Далее: %s.
 L["%d points to spend. Next: %s."] = "Свободных очков: %d. Далее: %s."
 L["On plan. Next point: %s."] = "По плану. Следующее очко: %s."
 L["Talent plans are turned off. Turn them on under Options > Questing > Talents."] = "Планы талантов выключены. Включите их: Настройки > Задания > Таланты."
-L["Talent plans cover the Paladin for now. More classes will follow."] = "Пока планы талантов есть только для паладина. Другие классы появятся позже."
 L["The talent tree is not loaded yet. It will be once you are in the world."] = "Дерево талантов еще не загружено. Это произойдет, когда вы войдете в мир."
 L["Picks %d-%d"] = "Выборы %d–%d"
 L["A talent plan, pick by pick"] = "План талантов, шаг за шагом"
@@ -1772,6 +1771,7 @@ L["Source"] = "Источник"
 L["Picks from %s (%s), checked against the game's talent tree; notes in Polestar's words."] = "Выборы из %s (%s), сверены с деревом талантов игры; заметки — словами Polestar."
 L["Keep this plan"] = "Сохранить этот план"
 L["Follow this plan whatever spec gear advice uses."] = "Следовать этому плану при любой специализации для советов по экипировке."
+-- L["There is no talent plan for your class yet."] = ""
 
 -- Gear/Weights.lua
 L["Arms"] = "Оружие"
@@ -1969,3 +1969,5 @@ L["Spare points go to Divine Strength and Holy's Improved Seals for damage, then
 -- No longer in the code (its English changed or it went away): reuse or delete.
 -- L["Shortest Path Forever is guiding. Turn off \"Guide with Shortest Path Forever when it's installed\" (Options, Arrow & routes) to use Polestar's arrow."] = "Ведет Shortest Path Forever. Отключите «Вести через Shortest Path Forever, если он установлен» (Настройки, Стрелка и маршруты), чтобы использовать стрелку Polestar."
 -- L["Browsing the guide needs a gamepad: turn it on in the game's options and plug one in."] = "Чтобы листать гайд, нужен геймпад: включите его в настройках игры и подключите."
+-- L["Follow a talent plan for your class and spec (/pole talents). Paladin only for now."] = "Следовать плану талантов для класса и специализации (/pole talents). Пока только паладин."
+-- L["Talent plans cover the Paladin for now. More classes will follow."] = "Пока планы талантов есть только для паладина. Другие классы появятся позже."

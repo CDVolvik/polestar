@@ -1733,7 +1733,6 @@ L["next"] = "下一個"
 
 -- Talents/Options.lua
 L["Talent plans"] = "天賦規劃"
-L["Follow a talent plan for your class and spec (/pole talents). Paladin only for now."] = "依你的職業與專精跟隨天賦規劃（/pole talents）。目前僅限聖騎士。"
 L["Mark the talent frame"] = "標記天賦視窗"
 L["A ring on the next talent in your plan and a flag on points the plan does not spend."] = "在規劃中的下一個天賦加上光環，並在規劃外的點數上加上旗標。"
 L["Pick numbers"] = "選擇順序編號"
@@ -1742,6 +1741,7 @@ L["Plan in tooltips"] = "滑鼠提示中的規劃"
 L["A line in each talent's tooltip: where it comes in the plan, or that it is off the plan."] = "在每個天賦的滑鼠提示中加一行：它在規劃中的位置，或不在規劃中。"
 L["Remind me of unspent points"] = "提醒我未分配的點數"
 L["A chat line naming the plan's next talent when a point is waiting."] = "有點數待分配時，在聊天中顯示規劃的下一個天賦。"
+L["Follow a talent plan for your class and spec (/pole talents)."] = "依你的職業與專精跟隨天賦規劃（/pole talents）。"
 
 -- Talents/View.lua
 L["Follow this plan"] = "跟隨此規劃"
@@ -1755,7 +1755,6 @@ L["1 point to spend. Next: %s."] = "有 1 點可分配。下一個：%s。"
 L["%d points to spend. Next: %s."] = "有 %d 點可分配。下一個：%s。"
 L["On plan. Next point: %s."] = "符合規劃。下一點：%s。"
 L["Talent plans are turned off. Turn them on under Options > Questing > Talents."] = "天賦規劃已關閉。在「選項」>「解任務」>「天賦」中開啟。"
-L["Talent plans cover the Paladin for now. More classes will follow."] = "天賦規劃目前涵蓋聖騎士。之後會加入更多職業。"
 L["The talent tree is not loaded yet. It will be once you are in the world."] = "天賦樹尚未載入。進入遊戲世界後就會載入。"
 L["Picks %d-%d"] = "第 %d-%d 選"
 L["A talent plan, pick by pick"] = "天賦規劃，逐選說明"
@@ -1772,6 +1771,7 @@ L["Source"] = "來源"
 L["Picks from %s (%s), checked against the game's talent tree; notes in Polestar's words."] = "選擇來自 %s（%s），已對照遊戲的天賦樹檢查；備註為 Polestar 自己的文字。"
 L["Keep this plan"] = "保持此規劃"
 L["Follow this plan whatever spec gear advice uses."] = "不論裝備建議使用哪個專精都跟隨此規劃。"
+-- L["There is no talent plan for your class yet."] = ""
 
 -- Gear/Weights.lua
 L["Arms"] = "武器"
@@ -1969,3 +1969,5 @@ L["Spare points go to Divine Strength and Holy's Improved Seals for damage, then
 -- No longer in the code (its English changed or it went away): reuse or delete.
 -- L["Shortest Path Forever is guiding. Turn off \"Guide with Shortest Path Forever when it's installed\" (Options, Arrow & routes) to use Polestar's arrow."] = "Shortest Path Forever 正在導引。關閉「已安裝時以 Shortest Path Forever 導引」（「選項」>「箭頭與路線」）即可使用 Polestar 的箭頭。"
 -- L["Browsing the guide needs a gamepad: turn it on in the game's options and plug one in."] = "瀏覽指南需要控制器：請在遊戲選項中啟用並接上控制器。"
+-- L["Follow a talent plan for your class and spec (/pole talents). Paladin only for now."] = "依你的職業與專精跟隨天賦規劃（/pole talents）。目前僅限聖騎士。"
+-- L["Talent plans cover the Paladin for now. More classes will follow."] = "天賦規劃目前涵蓋聖騎士。之後會加入更多職業。"
