@@ -318,14 +318,19 @@ local function goalApplies(goal)
 	end
 	local out = goal.quest and guide and Own.leftOut[guide.id]
 	local why = out and out[goal.quest]
-	if why and not questDone(goal.quest) and not Compat().IsOnQuest(goal.quest) then return false end
+	if why and not questDone(goal.quest) then
+		-- "log": a quest in the log, left out until it is ready to hand in;
+		-- true: one not taken, left out until the player takes it.
+		local C, q = Compat(), goal.quest
+		if why == "log" and not C.IsQuestReadyForTurnIn(q) or why ~= "log" and not C.IsOnQuest(q) then return false end
+	end
 	return greyNeed(goal) ~= false and not orphaned(goal)
 end
 
 
--- The catch-up's quests left out, per guide (guideId -> { [questID] = true }),
--- for the session; placement works them out again (Own.catchUp). Taken by
--- hand, a quest is back.
+-- The catch-up's quests left out, per guide (guideId -> { [questID] = true |
+-- "log" }), for the session; placement works them out again (Own.catchUp).
+-- Taken by hand, a quest is back; one in the log ("log") is back once done.
 Own.leftOut = {}
 -- Guides placement passed whole (guideId -> true): they may chain to `next`
 -- like a finished guide; and the guides passed on the way to the one placed,
@@ -1331,10 +1336,9 @@ end
 -- 2 levels below) and not taken yet, unless a quest worth doing needs it first
 -- (down the guide and the guides after it). Worth doing: an accept that is
 -- not grey, behind the anchor only from yellow up (2 levels below or more). A
--- quest in the log is never left out: the player chose it, and the guide
--- takes them there (a kill for it further on moves the anchor past its
--- accept, and must not drop the quest). Only for leveling guides, with "Skip
--- grey quests" on.
+-- quest in the log by the same rules ("log"): left out while not done, kept
+-- once it only has to be handed in. Only for leveling guides, with "Skip grey
+-- quests" on.
 function Own.catchUp(anchor, level)
 	if guide.maxLevel and level >= guide.maxLevel + 2 then return Own.catchUpPast(level) end
 	local out = {}
@@ -1361,9 +1365,13 @@ function Own.catchUp(anchor, level)
 			for _, goal in ipairs(steps[s].goals) do
 				local q = goal.quest
 				if (goal.t == "accept" or goal.direct) and q and not goal.optional and Guides.Matches(goal.only, player)
-					and low(goal) and not needs[q] and not questDone(q) and not C.IsOnQuest(q)
-					and not C.IsQuestTrivial(tonumber(goal.qlvl), level) then
-					out[q] = true -- grey ones: greyNeed
+					and low(goal) and not needs[q] and not questDone(q) then
+					if C.IsOnQuest(q) then
+						-- In the log: left out until done, kept to hand in.
+						if not C.IsQuestReadyForTurnIn(q) then out[q] = "log" end
+					elseif not C.IsQuestTrivial(tonumber(goal.qlvl), level) then
+						out[q] = true -- grey ones: greyNeed
+					end
 				end
 			end
 		end
@@ -1376,7 +1384,8 @@ end
 -- accept not taken yet is left out, unless at least CHAIN_WORTH quests from
 -- yellow up need it, down the chain (The Tower of Althalaxx at 30: five
 -- grey and green quests in Darkshore lead to four at 28 and 31 in
--- Ashenvale, so the chain stays). Quests in the log stay.
+-- Ashenvale, so the chain stays). A quest in the log by the same rules,
+-- kept once it only has to be handed in.
 Own.CHAIN_WORTH = 3
 function Own.catchUpPast(level)
 	local C = Compat()
@@ -1416,9 +1425,13 @@ function Own.catchUpPast(level)
 			for _, goal in ipairs(step.goals) do
 				local q, qlvl = goal.quest, tonumber(goal.qlvl)
 				if (goal.t == "accept" or goal.direct) and q and qlvl and qlvl < level - 2 and not goal.optional
-					and Guides.Matches(goal.only, player) and not questDone(q) and not C.IsOnQuest(q)
+					and Guides.Matches(goal.only, player) and not questDone(q)
 					and (counts[q] or 0) < Own.CHAIN_WORTH then
-					out[q] = true
+					if not C.IsOnQuest(q) then
+						out[q] = true
+					elseif not C.IsQuestReadyForTurnIn(q) then
+						out[q] = "log" -- in the log, not done: left out; done, kept to hand in
+					end
 				end
 			end
 		end

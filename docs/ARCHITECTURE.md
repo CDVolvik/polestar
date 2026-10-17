@@ -1350,15 +1350,16 @@ the last quest progress that are more than 2 levels below the character
 (green or lower) and not taken yet are left out, unless a quest worth doing
 needs them first (`Own.needsFrom` down `pre`/`preAll`, over the guide and the
 guides after it: `Own.chainOf`). Worth doing: an accept that is not grey,
-behind the anchor only from 2 levels below up. A quest in the log is never
-left out: the player chose it (and a kill for it further on moves the anchor
-past its own accept). Left out (`Own.leftOut[guideId]`, for the session; each
+behind the anchor only from 2 levels below up. A quest in the log goes by the
+same rules (`"log"`): left out while not done, kept once it only has to be
+handed in. Left out (`Own.leftOut[guideId]`, for the session; each
 placement works it out again), an accept no longer applies, with its turn-in
 and objectives; taking the quest by hand brings it back. In a guide the
 character is past (`maxLevel` + 2, as the out-levelled banner counts) going
 back is a detour: every grey or green accept not taken yet is left out,
 anywhere in the guide, unless at least `Own.CHAIN_WORTH` (3) accepts from
-yellow up need it down the chain (`Own.catchUpPast`). Grey accepts anywhere go by `behavior.skipGrey`'s own rule (greyNeed).
+yellow up need it down the chain (`Own.catchUpPast`); a quest in the log
+too, until it only has to be handed in. Grey accepts anywhere go by `behavior.skipGrey`'s own rule (greyNeed).
 Soft goals before the start also pass in a step before the last left-out or
 grey-skipped accept: the way to what was left out goes with it. A guide the
 character is past (an accept left out or grey-skipped, or `maxLevel`

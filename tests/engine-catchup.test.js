@@ -104,10 +104,10 @@ test('a level-20 character opening a grey guide is taken through it to the next,
 	assert.deepEqual(out.statuses.slice(0, 9), ['done', 'na', 'done', 'na', 'active', 'pending', 'done', 'pending', 'done']);
 });
 
-// Yendi at 30 in Duskwood (25-27): Gather Rot Blossoms (24) in the log, and
-// one kill for The Night Watch (26) further on moved the anchor past both
-// accepts. The guide still resumes at the blossoms, and is not passed whole.
-test('a quest in the log is never left out, even when progress further on is behind it: the guide resumes there', () => {
+// Yendi at 30 in Duskwood (25-27): Gather Rot Blossoms (24) and The Night
+// Watch (26) in the log, neither done. In the log by the same rules as a quest
+// not taken: too low and not done, it goes; done, it stays to be handed in.
+test('a low quest in the log goes while it is not done, and stays once it only has to be handed in', () => {
 	const duskwood = `
 		Polestar.RegisterGuide({ id = "test/dusk", pack = "test", title = "Duskwood", faction = "Alliance", minLevel = 25, maxLevel = 27, next = "test/mid", steps = {
 			{ goals = { { t = "accept", quest = 57, title = "The Night Watch", qlvl = 26 } } },
@@ -117,14 +117,24 @@ test('a quest in the log is never left out, even when progress further on is beh
 			{ goals = { { t = "turnin", quest = 156, title = "Gather Rot Blossoms" }, { t = "turnin", quest = 57, title = "The Night Watch" } } },
 		} })
 	` + GUIDES;
-	const [out] = run({
+	const night = 'stub.world.onQuest(57, { { required = 15, fulfilled = 1 } })';
+	const script = 'E.SetGuide("test/dusk"); flush(); emit({ guide = E.GetGuide().id, at = E.GetStepIndex() })';
+	const [notDone] = run({
 		before: `stub.world.level = 30
 			stub.world.onQuest(156, { { type = "item", required = 8, fulfilled = 0 } })
-			stub.world.onQuest(57, { { required = 15, fulfilled = 1 } })`,
+			${night}`,
 		guides: duskwood,
-		script: 'E.SetGuide("test/dusk"); flush(); emit({ guide = E.GetGuide().id, at = E.GetStepIndex() })',
+		script,
 	});
-	assert.deepEqual(out, { guide: 'test/dusk', at: 3 });
+	assert.equal(notDone.guide, 'test/mid', 'both too low and not done: the guide passes');
+	const [ready] = run({
+		before: `stub.world.level = 30
+			stub.world.onQuest(156, { { type = "item", required = 8, fulfilled = 8 } })
+			${night}`,
+		guides: duskwood,
+		script,
+	});
+	assert.deepEqual(ready, { guide: 'test/dusk', at: 5 }, 'the blossoms gathered: the guide takes them to hand in');
 });
 
 test('without "Skip grey quests" the guide is placed as before: the first quest not done, in the first guide', () => {
