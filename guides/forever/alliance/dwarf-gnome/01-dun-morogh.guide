@@ -149,7 +149,7 @@ step Young wolves
 step Anvilmar
   turnin 179                                  -- Sten Stoutarm
   accept 233                                  -- Sten Stoutarm
-  accept 3106 only Dwarf,Warrior             -- Sten Stoutarm: Simple Rune
+  accept 3106 only Dwarf,Warrior              -- Sten Stoutarm: Simple Rune
   accept 3112 only Gnome,Warrior              -- Sten Stoutarm: Simple Memorandum
   accept 3107 only Paladin                    -- Sten Stoutarm: Consecrated Rune
   accept 3108 only Hunter                     -- Sten Stoutarm: a rune for Thorgas Grimson
