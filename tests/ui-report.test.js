@@ -505,3 +505,54 @@ test('the Discord steps say to press Ctrl+C after Copy report: the button select
 		emit({ note = PolestarReport.DiscordNote:GetText() })`);
 	assert.match(out.note, /^1\. Press Copy report, then Ctrl\+C \(Cmd\+C on a Mac\)\./);
 });
+
+test('Copy report and Open on GitHub wait until the player says what went wrong in 5 letters or more, and say so', () => {
+	const [out] = run(`
+		uistub.setGuide(uistub.elwynn, 3)
+		UI.ShowReport()
+		local F = PolestarReport
+		local function state()
+			return { copy = F.Copy:IsEnabled(), github = F.GitHub:IsEnabled(), tip = F.Copy.psTip or false }
+		end
+		local empty = state()
+		F.Copy:Click()
+		local boxAfterClick = F.Box:IsShown()
+		F.Desc:SetText("  bad ")
+		stub.RunScript(F.Desc, "OnTextChanged", true)
+		local short = state()
+		F.Desc:SetText("wrong")
+		stub.RunScript(F.Desc, "OnTextChanged", true)
+		local enough = state()
+		F.Copy:Click()
+		local shown = F.Box:IsShown()
+		F.Desc:SetText("")
+		stub.RunScript(F.Desc, "OnTextChanged", true)
+		emit({ empty = empty, boxAfterClick = boxAfterClick, short = short, enough = enough, shown = shown, cleared = { state = state(), box = F.Box:IsShown() } })`);
+	const waiting = { copy: false, github: false, tip: 'Say what went wrong first.' };
+	assert.deepEqual(out.empty, waiting);
+	assert.equal(out.boxAfterClick, false, 'a click while it waits shows nothing');
+	assert.deepEqual(out.short, waiting, 'three letters and spaces are not enough');
+	assert.deepEqual(out.enough, { copy: true, github: true, tip: false });
+	assert.equal(out.shown, true);
+	assert.deepEqual(out.cleared, { state: waiting, box: false }, 'emptied again: the report goes away until there is something to send');
+});
+
+test('Clear mark, beside Mark again, takes the right spot back out of the report', () => {
+	const [out] = run(`
+		uistub.setGuide(uistub.elwynn, 3)
+		UI.ShowReport()
+		local F = PolestarReport
+		F.Desc:SetText("The vermin were all by the tents.")
+		stub.RunScript(F.Desc, "OnTextChanged", true)
+		local before = { clear = F.Clear:IsShown(), report = F.Box:GetText() }
+		Polestar.Compat.GetPlayerMapPosition = function() return 1429, 51.234, 40.5 end
+		F.Mark:Click()
+		PolestarMark.Here:Click()
+		local marked = { clear = F.Clear:IsShown(), spot = F.Box:GetText():find("51.23,40.50", 1, true) ~= nil }
+		F.Clear:Click()
+		emit({ before = before, marked = marked, after = { clear = F.Clear:IsShown(), button = F.Mark.Label:GetText(), report = F.Box:GetText(),
+			template = UI.Report.IssueURL(F.Desc:GetText(), F.details, F.spot):match("template=([%w%-%.]+)") } })`);
+	assert.equal(out.before.clear, false, 'nothing marked, nothing to clear');
+	assert.deepEqual(out.marked, { clear: true, spot: true });
+	assert.deepEqual(out.after, { clear: false, button: 'Mark the right spot', report: out.before.report, template: 'bug-report.yml' });
+});

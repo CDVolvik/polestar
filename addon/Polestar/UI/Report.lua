@@ -33,6 +33,8 @@ UI.Report = R
 -- still longer, R.Text shortens its Addons line, which the Discord bot
 -- quotes but does not read.
 R.DESC_MAX = 250
+-- Fewer letters than this say nothing a fix can go on: the report waits.
+R.DESC_MIN = 5
 R.TEXT_MAX = 2000
 local LINE_MAX = 100
 local GOALS_MAX = 6
@@ -518,6 +520,8 @@ local function layout()
 	put(F.SpotNote, PAD, y)
 	y = y + F.SpotNote:GetStringHeight() + 8
 	put(F.Mark, PAD, y)
+	F.Clear:ClearAllPoints()
+	F.Clear:SetPoint("LEFT", F.Mark, "RIGHT", 8, 0)
 	y = y + F.Mark:GetHeight() + 16
 	put(F.Rule, PAD, y)
 	y = y + 1 + 16
@@ -554,7 +558,9 @@ local function showSpot()
 	if F.spot then
 		F.SpotNote:SetText((L["Right spot marked: %s"]):format(table.concat(F.spot, SEP)))
 		W.SetButtonText(F.Mark, L["Mark again"])
+		F.Clear:Show()
 	else
+		F.Clear:Hide()
 		F.SpotNote:SetText(L["Optional: is the step sending you to the wrong place? Mark the right spot and it goes in your report."])
 		W.SetButtonText(F.Mark, L["Mark the right spot"])
 	end
@@ -562,8 +568,27 @@ end
 
 -- The report box is as tall as its text, so it is read whole and copied
 -- whole: measured in its own font at its inner width.
+-- Whether the player said what went wrong: Copy report and Open on GitHub
+-- wait for it, so no report goes out "(not described)".
+local function saidEnough()
+	local desc = (F.Desc:GetText() or ""):match("^%s*(.-)%s*$")
+	return length(desc) >= R.DESC_MIN
+end
+
+local function gate()
+	local ok = saidEnough()
+	for _, b in ipairs({ F.Copy, F.GitHub }) do
+		b:SetEnabled(ok)
+		b:SetAlpha(ok and 1 or 0.5)
+		b.psTip = not ok and L["Say what went wrong first."] or nil
+	end
+	if not ok then F.Box:Hide() end
+	return ok
+end
+
 local function compose()
 	showSpot()
+	gate()
 	local report = R.Text(F.Desc:GetText(), F.details, F.spot)
 	W.SetCopyText(F.Box, report)
 	F.Measure:SetText(report)
@@ -573,6 +598,7 @@ end
 
 -- The report for Discord, shown under its buttons only when asked for.
 local function copyReport()
+	if not gate() then return end
 	F.Box:Show()
 	layout()
 	F.Box:SetFocus()
@@ -580,6 +606,7 @@ local function copyReport()
 end
 
 local function openGitHub()
+	if not gate() then return end
 	UI.ShowCopy(L["Open on GitHub"], R.IssueURL(F.Desc:GetText(), F.details, F.spot), {
 		hint = L["The link is selected for you: copy it with Ctrl+C (Cmd+C on a Mac), paste it in your browser's address bar, check the form and press Create."],
 	})
@@ -723,6 +750,11 @@ local function build()
 	F.SpotNote:SetJustifyH("LEFT")
 	F.SpotNote:SetWordWrap(true)
 	F.Mark = W.Button(F, L["Mark the right spot"], startMark)
+	F.Clear = W.Button(F, L["Clear mark"], function()
+		F.spot = nil
+		compose()
+	end)
+	F.Clear:Hide()
 
 	F.Box = W.CopyBox(F, { lines = 2 })
 	F.Box:Hide()
@@ -765,6 +797,10 @@ local function build()
 	F.GitHubNote:SetWordWrap(true)
 	F.GitHubNote:SetText(L["Have a GitHub account? Open the issue there with everything filled in."])
 	F.GitHub = W.Button(F, L["Open on GitHub"], openGitHub)
+	-- Their tooltip says why they wait, so it shows while they are disabled.
+	for _, b in ipairs({ F.Copy, F.GitHub }) do
+		if b.SetMotionScriptsWhileDisabled then b:SetMotionScriptsWhileDisabled(true) end
+	end
 
 	F:SetScript("OnShow", function(self) Anim.To(self, "alpha", 0, 1, Anim.FAST, "out") end)
 	ns.CloseOnEscape("PolestarReport")

@@ -514,12 +514,19 @@ test('B on the bar for marking the right spot goes back to the report, as Cancel
 	assert.deepEqual(out, { bar: false, report: true, desc: 'The vermin were all by the tents.', context: 'Step 3 of 8  ·  Kobold Camp  ·  Elwynn Forest' });
 });
 
-test('the report window starts on Copy report, the way to report on Discord', () => {
-	const [out] = run(`
+test('the report window starts on Copy report, the way to report on Discord, once the player said what went wrong', () => {
+	const [empty, said] = run(`
 		uistub.setGuide(uistub.elwynn, 3)
 		UI.ShowReport()
 		stub.advance(0.3)
 		emit({ copy = G.Focused(PolestarReport) == PolestarReport.Copy })
+		PolestarReport.Desc:SetText("The vermin were all by the tents.")
+		stub.RunScript(PolestarReport.Desc, "OnTextChanged", true)
+		PolestarReport:Hide()
+		UI.ShowReport()
+		stub.advance(0.3)
+		emit({ copy = G.Focused(PolestarReport) == PolestarReport.Copy })
 	`);
-	assert.deepEqual(out, { copy: true });
+	assert.deepEqual(empty, { copy: false }, 'nothing typed: Copy report waits');
+	assert.deepEqual(said, { copy: true });
 });
