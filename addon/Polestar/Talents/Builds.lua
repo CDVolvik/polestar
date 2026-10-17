@@ -964,7 +964,7 @@ T.Register({
 				{ 105827, 5 }, { 105832, 1 }, { 105832, 2 },
 			},
 			notes = {
-				[10] = L["Power in Light first: more Smite damage, your main attack as Discipline."],
+				[10] = L["Power in Light first: more Smite damage, your main attack as Discipline, on targets with your Holy Fire or Shadow Word: Pain."],
 				[15] = L["Improved Power Word: Shield: a bigger shield is fewer interrupted casts and less healing."],
 				[30] = L["Penance is a channelled burst of Holy damage or healing: use it on every mob."],
 				[40] = L["Power Infusion is the capstone: a damage and healing cooldown for you or an ally."],
@@ -988,7 +988,7 @@ T.Register({
 			notes = {
 				[10] = L["Holy Specialization first: more crits on Smite and on your heals."],
 				[15] = L["Divine Fury speeds up Smite, Holy Fire and your big heals."],
-				[32] = L["Spiritual Guidance turns Spirit into spell power: stack Spirit gear from here."],
+				[32] = L["Spiritual Guidance adds 25% of your Spirit to your healing but only 8% to your damage: Spirit gear helps your heals most."],
 				[40] = L["Prayer of Mending is the capstone: a heal that jumps between your group as they take damage."],
 				[41] = L["The last 20 points go to Discipline: a stronger wand, a bigger Power Word: Shield, Meditation's regen while casting and more Intellect."],
 			},

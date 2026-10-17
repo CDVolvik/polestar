@@ -22,7 +22,7 @@
 					"tree": "Discipline",
 					"talent": "Power in Light",
 					"rank": 1,
-					"note": "Power in Light first: more Smite damage, your main attack as Discipline."
+					"note": "Power in Light first: more Smite damage, your main attack as Discipline, on targets with your Holy Fire or Shadow Word: Pain."
 				},
 				{
 					"level": 11,
@@ -475,7 +475,7 @@
 					"tree": "Holy",
 					"talent": "Spiritual Guidance",
 					"rank": 1,
-					"note": "Spiritual Guidance turns Spirit into spell power: stack Spirit gear from here."
+					"note": "Spiritual Guidance adds 25% of your Spirit to your healing but only 8% to your damage: Spirit gear helps your heals most."
 				},
 				{
 					"level": 33,
