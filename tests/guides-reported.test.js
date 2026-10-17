@@ -271,6 +271,15 @@ test(`${DUN_MOROGH}: thmastin's report: Camping 101: Cooking waits for the retur
 	assert.equal(list[camping].step, list[at(list, 'turnin 384 (Beer Basted Boar Ribs)', is('turnin', 384))].step, 'on the same visit as the ribs');
 });
 
+test(`${DUN_MOROGH}: thmastin's report: The Reports is taken from Senir with Frostmane Hold and handed to the senator on the way to the tram`, { skip }, () => {
+	const list = goals(DUN_MOROGH);
+	const accept = at(list, 'accept 291 (The Reports)', is('accept', 291));
+	assert.equal(accept, at(list, 'turnin 287 (Frostmane Hold)', is('turnin', 287)) + 1, 'taken right after Frostmane Hold is handed in');
+	const turnin = at(list, 'turnin 291 (Senator Barin Redstone)', is('turnin', 291));
+	assert.ok(turnin > accept, 'handed in later');
+	assert.equal(list[turnin].step, list[at(list, 'goto Deeprun Tram', (g) => g.t === 'goto' && g.text === 'Deeprun Tram')].step, 'in the Deeprun Tram step');
+});
+
 test(`${DUN_MOROGH}: thmastin's report: Ammo for Rumbleshot is taken beside Beldin and handed in before the walk back to Kharanos`, { skip }, () => {
 	const list = goals(DUN_MOROGH);
 	assert.equal(at(list, 'accept 5541 (Loslor Rudge)', is('accept', 5541)), at(list, 'turnin 400 (Beldin)', is('turnin', 400)) + 1, 'Loslor right after Beldin');

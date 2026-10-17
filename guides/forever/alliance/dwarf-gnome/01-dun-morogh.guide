@@ -74,9 +74,9 @@ next forever/alliance/02-westfall
 #   and leopards killed on the way to the Hold count toward "A Favor for
 #   Evershine" (319) instead of being wasted.
 #
-# Left out: "The Reports" (291) and "Stout to Kadrell" (414) are accepted by
-# the route but never turned in (the route goes to Westfall, not Ironforge's
-# senator or Loch Modan).
+# Left out: "Stout to Kadrell" (414) is never turned in (the route goes to
+# Westfall, not Loch Modan). "The Reports" (291) is handed to Senator Barin
+# Redstone on the way through Ironforge to the Deeprun Tram.
 # "The Adventurer" (96628) is taken from Thalos once "Senir's Observations"
 # (282) is handed in, and handed to Eric before "The Great Outdoors" (96608),
 # which it leads to: taken after it, Thalos no longer offers it.
@@ -392,6 +392,7 @@ step Kharanos
   turnin 310                                  -- The Unguarded Thunder Ale Barrel in the distillery
   accept 311
   turnin 287                                  -- Senir Whitebeard
+  accept 291                                  -- Senir Whitebeard: Senator Barin Redstone in Ironforge takes it
   train class
 
 step Steelgrill's Depot
@@ -637,6 +638,7 @@ step The Deeprun Tram
   zone Ironforge
   tip Follow the road up to Ironforge and train with your class trainer. The Deeprun Tram leaves from Tinker Town, in the east of the city. Ride it to Stormwind.
   train class
+  turnin 291                                  -- Senator Barin Redstone, in the High Seat with King Magni
   accept 97263 optional                       -- Misplaced Packages, by the mailbox in Tinker Town
   turnin 97263 optional                       -- Eldrun Stormbreaker, the shaman trainer, north of the Great Forge
   goto 78.0,51.4 "Deeprun Tram"
