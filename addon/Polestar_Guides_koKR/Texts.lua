@@ -3640,6 +3640,7 @@ t.guides["forever/horde/03-silverpine-forest"] = (function() return {
 		["North of the {area:228}. {npc:1983} haunts the {area:240}: kill it, then walk across the field."] = "{area:228} 북쪽입니다. {npc:1983}이(가) {area:240}에 출몰합니다. 처치한 뒤 들판을 가로지르세요.",
 		["Road to Silverpine"] = "은빛소나무 숲으로 가는 길",
 		["South-east down the road to {area:233}. Protectors guard the outskirts and Mages the town; both drop pendants. Wizards and Watchers patrol the roads around it. Stay out of the middle, where {npc:2120} stands."] = "길을 따라 남동쪽으로 {area:233}까지 내려가세요. 수호병이 외곽을, 마법사가 마을을 지키며 둘 다 펜던트를 떨어뜨립니다. 마술사와 파수꾼은 주변 길을 순찰합니다. {npc:2120}이(가) 서 있는 한가운데에는 들어가지 마세요.",
+		["South-west of Ambermill, the Ravenclaw Drudgers and Guardians haunt the ruins of {quest:516} in the south-east of the forest."] = "앰버밀 남서쪽, 숲 남동부의 {quest:516} 폐허에 까마귀발톱 노역꾼과 수호병이 출몰합니다.",
 		["Speak with {npc:10540}, in Grommash Hold"] = "{npc:10540}에게 말을 거세요, 그롬마쉬 요새 안",
 		["Speak with {npc:3230}, in Grommash Hold"] = "{npc:3230}에게 말을 거세요, 그롬마쉬 요새 안",
 		["Swim back and follow the road west to the {area:228}."] = "헤엄쳐 돌아와 길을 따라 서쪽으로 {area:228}까지 가세요.",

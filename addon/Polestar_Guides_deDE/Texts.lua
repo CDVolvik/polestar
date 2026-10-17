@@ -3640,6 +3640,7 @@ t.guides["forever/horde/03-silverpine-forest"] = (function() return {
 		["North of the {area:228}. {npc:1983} haunts the {area:240}: kill it, then walk across the field."] = "Nördlich von {area:228}. {npc:1983} spukt auf dem {area:240}: Töte sie und geh dann über das Feld.",
 		["Road to Silverpine"] = "Straße zum Silberwald",
 		["South-east down the road to {area:233}. Protectors guard the outskirts and Mages the town; both drop pendants. Wizards and Watchers patrol the roads around it. Stay out of the middle, where {npc:2120} stands."] = "Die Straße nach Südosten hinunter nach {area:233}. Beschützer von Dalaran bewachen den Ortsrand und Magier von Dalaran den Ort; beide lassen Anhänger fallen. Hexer und Behüter von Dalaran patrouillieren auf den Straßen ringsum. Meide die Mitte, wo {npc:2120} steht.",
+		["South-west of Ambermill, the Ravenclaw Drudgers and Guardians haunt the ruins of {quest:516} in the south-east of the forest."] = "Südwestlich von Ambermill spuken Zwangsarbeiter und Wächter von Rabenklaue in den Ruinen von {quest:516} im Südosten des Waldes.",
 		["Speak with {npc:10540}, in Grommash Hold"] = "Sprich mit {npc:10540} in Grommash Hold",
 		["Speak with {npc:3230}, in Grommash Hold"] = "Sprich mit {npc:3230} in Grommash Hold",
 		["Swim back and follow the road west to the {area:228}."] = "Schwimm zurück und folge der Straße nach Westen bis zum Grabmal ({area:228}).",

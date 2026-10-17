@@ -3640,6 +3640,7 @@ t.guides["forever/horde/03-silverpine-forest"] = (function() return {
 		["North of the {area:228}. {npc:1983} haunts the {area:240}: kill it, then walk across the field."] = "К северу от места {area:228}. {npc:1983} бродит по {area:240}: убейте ее, затем пройдите через поле.",
 		["Road to Silverpine"] = "Дорога в Серебряный бор",
 		["South-east down the road to {area:233}. Protectors guard the outskirts and Mages the town; both drop pendants. Wizards and Watchers patrol the roads around it. Stay out of the middle, where {npc:2120} stands."] = "На юго-восток по дороге: {area:233}. Заступники охраняют окраины, маги – город; с обоих падают подвески. Волшебники и дозорные патрулируют дороги вокруг. Держитесь подальше от центра, где стоит {npc:2120}.",
+		["South-west of Ambermill, the Ravenclaw Drudgers and Guardians haunt the ruins of {quest:516} in the south-east of the forest."] = "К юго-западу от Янтарной мельницы, в руинах {quest:516} на юго-востоке леса, бродят чернорабочие и стражи Когтя Ворона.",
 		["Speak with {npc:10540}, in Grommash Hold"] = "Поговорите с NPC {npc:10540} в Крепости Громмаш",
 		["Speak with {npc:3230}, in Grommash Hold"] = "Поговорите с NPC {npc:3230} в Крепости Громмаш",
 		["Swim back and follow the road west to the {area:228}."] = "Плывите обратно и идите по дороге на запад: {area:228}.",

@@ -3640,6 +3640,7 @@ t.guides["forever/horde/03-silverpine-forest"] = (function() return {
 		["North of the {area:228}. {npc:1983} haunts the {area:240}: kill it, then walk across the field."] = "Al norte de {area:228}. {npc:1983} ronda {area:240}: mátalo y luego cruza el campo.",
 		["Road to Silverpine"] = "Camino al Bosque de Argénteos",
 		["South-east down the road to {area:233}. Protectors guard the outskirts and Mages the town; both drop pendants. Wizards and Watchers patrol the roads around it. Stay out of the middle, where {npc:2120} stands."] = "Al sureste por el camino hasta {area:233}. Los Protectores Dalaran vigilan las afueras y los Magos Dalaran el pueblo; ambos sueltan colgantes. Los Zahoríes y Vigilantes Dalaran patrullan los caminos de alrededor. No te metas en el centro, donde está {npc:2120}.",
+		["South-west of Ambermill, the Ravenclaw Drudgers and Guardians haunt the ruins of {quest:516} in the south-east of the forest."] = "Al suroeste de Molino Ámbar, los esclavos y guardianes Corvozarpa rondan las ruinas de {quest:516}, en el sureste del bosque.",
 		["Speak with {npc:10540}, in Grommash Hold"] = "Habla con {npc:10540}, en el Fuerte Grommash",
 		["Speak with {npc:3230}, in Grommash Hold"] = "Habla con {npc:3230}, en el Fuerte Grommash",
 		["Swim back and follow the road west to the {area:228}."] = "Vuelve nadando y sigue el camino al oeste hasta {area:228}.",

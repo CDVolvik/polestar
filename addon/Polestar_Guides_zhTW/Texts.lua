@@ -3640,6 +3640,7 @@ t.guides["forever/horde/03-silverpine-forest"] = (function() return {
 		["North of the {area:228}. {npc:1983} haunts the {area:240}: kill it, then walk across the field."] = "在{area:228}北邊。{npc:1983}在{area:240}出沒：殺了它，然後走過整片田地。",
 		["Road to Silverpine"] = "前往銀松森林的道路",
 		["South-east down the road to {area:233}. Protectors guard the outskirts and Mages the town; both drop pendants. Wizards and Watchers patrol the roads around it. Stay out of the middle, where {npc:2120} stands."] = "沿著道路向東南前往{area:233}。達拉然保衛者守衛外圍，達拉然法師守著城鎮；兩者都會掉落墜飾。達拉然巫師和達拉然衛士在周圍的道路巡邏。不要進入中央，{npc:2120}站在那裡。",
+		["South-west of Ambermill, the Ravenclaw Drudgers and Guardians haunt the ruins of {quest:516} in the south-east of the forest."] = "安伯米爾西南方，森林東南部的{quest:516}廢墟中出沒著鴉爪苦工和鴉爪守護者。",
 		["Speak with {npc:10540}, in Grommash Hold"] = "與Grommash Hold裡的{npc:10540}交談",
 		["Speak with {npc:3230}, in Grommash Hold"] = "與Grommash Hold裡的{npc:3230}交談",
 		["Swim back and follow the road west to the {area:228}."] = "游回去，沿著道路向西前往{area:228}。",

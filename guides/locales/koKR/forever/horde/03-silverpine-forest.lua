@@ -130,7 +130,7 @@ return {
 	-- Step 25: Beren's Peril
 	-- {quest:516} Beren's Peril
 	-- plural, as words: Ravenclaw Drudgers = {npc:1974} Ravenclaw Drudger
-	["South-west of Ambermill, the Ravenclaw Drudgers and Guardians haunt the ruins of {quest:516} in the south-east of the forest."] = "",
+	["South-west of Ambermill, the Ravenclaw Drudgers and Guardians haunt the ruins of {quest:516} in the south-east of the forest."] = "앰버밀 남서쪽, 숲 남동부의 {quest:516} 폐허에 까마귀발톱 노역꾼과 수호병이 출몰합니다.",
 
 	-- Step 27: Lordamere Lake shore
 	-- {area:1338} Lordamere Lake

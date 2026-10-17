@@ -3640,6 +3640,7 @@ t.guides["forever/horde/03-silverpine-forest"] = (function() return {
 		["North of the {area:228}. {npc:1983} haunts the {area:240}: kill it, then walk across the field."] = "Ao norte do {area:228}. {npc:1983} assombra o {area:240}: mate-o e depois atravesse o campo.",
 		["Road to Silverpine"] = "Estrada para Pinhaprata",
 		["South-east down the road to {area:233}. Protectors guard the outskirts and Mages the town; both drop pendants. Wizards and Watchers patrol the roads around it. Stay out of the middle, where {npc:2120} stands."] = "Para sudeste pela estrada até {area:233}. Protetoras guardam os arredores e Magos a cidade; ambos deixam cair pingentes. Teurgos e Vigias patrulham as estradas em volta. Fique longe do centro, onde {npc:2120} fica.",
+		["South-west of Ambermill, the Ravenclaw Drudgers and Guardians haunt the ruins of {quest:516} in the south-east of the forest."] = "A sudoeste de Lenhâmbar, os Mourejantes e Guardiões Corvinalle assombram as ruínas de {quest:516}, no sudeste da floresta.",
 		["Speak with {npc:10540}, in Grommash Hold"] = "Fale com {npc:10540}, na Fortaleza Grommash",
 		["Speak with {npc:3230}, in Grommash Hold"] = "Fale com {npc:3230}, na Fortaleza Grommash",
 		["Swim back and follow the road west to the {area:228}."] = "Nade de volta e siga a estrada para oeste até o {area:228}.",
