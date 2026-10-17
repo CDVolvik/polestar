@@ -58,6 +58,10 @@ next forever/alliance/02-westfall
 #   characters without Cooking too (seen in game; QuestieDB's Forever store
 #   lists no skill, only pfQuest's Classic data lists Cooking). Its Rhapsody
 #   Malt is bought from Innkeeper Belm in the same visit.
+# - Camping 101: Cooking (96629) and the Cooking lesson wait for the return
+#   with the ribs: on arrival a new character has spent its copper on class
+#   training (hit twice in play, noted in a recorded Dwarf Hunter run). The
+#   lesson comes before the turn-in, as in a recorded Dwarf Paladin run.
 # - Kharanos is done outside first: Senir, Eric's campfire (The Adventurer and
 #   The Great Outdoors) and Tharek's forge, then one visit inside the
 #   distillery, instead of in, out to the campfire and back in for Gremlock.
@@ -280,14 +284,12 @@ step Tharek Blackstone
   accept 400                                  -- Tharek Blackstone
 
 step Thunderbrew Distillery
-  tip Then go in: Tannok, the innkeeper, Maxan, Ragnar Thunderbrew and Gremlock Pilsnor, who teaches cooking.
+  tip Then go in: Tannok, the innkeeper, Maxan and Ragnar. Gremlock's Cooking lesson waits for the return with the ribs, when the copper is there for it.
   turnin 2160                                 -- Tannok Frosthammer
   sethome "Thunderbrew Distillery"
   buy 2894 x1 npc 1247                        -- Rhapsody Malt, from Innkeeper Belm
   accept 99158                                -- Maxan Anvol
   accept 384                                  -- Ragnar Thunderbrew
-  complete 96629                              -- Speak with Gremlock Pilsnor
-  turnin 96629                                -- Gremlock Pilsnor
   train class                                 -- Last: some classes' trainers stand outside
 
 step Steelgrill's Depot
@@ -304,6 +306,10 @@ step Boars and bears
   collect 6952 quest 317.2                    -- Thick Bear Fur
 
 step Kharanos
+  tip Back in the distillery: Gremlock Pilsnor teaches Cooking, then the ribs go to Ragnar.
+  train Cooking                               -- Gremlock Pilsnor: Camping 101 asks you to learn it
+  complete 96629                              -- Speak with Gremlock Pilsnor
+  turnin 96629                                -- Gremlock Pilsnor
   turnin 384                                  -- Ragnar Thunderbrew
   accept 98321                                -- Tognus Flintfire
 
