@@ -8633,6 +8633,7 @@ do
 				{
 					title = "{quest:98326}",
 					goals = {
+						{ t = "goto", text = "{area:136}", area = 136, map = 1426, x = 42.57, y = 54.68 },
 						{ t = "collect", quest = 98326, title = "Frosthowl", item = 280426, itemName = "Sack of Fish", count = 1, oi = 1, map = 1426, x = 39.33, y = 48.79, f = "e", from = "Frosthowl", fromKind = "npc", fromId = 271587 },
 					},
 				},

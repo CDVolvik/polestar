@@ -378,6 +378,7 @@ step Rejold Barleybrew
   accept 320
 
 step Frosthowl
+  goto 42.57,54.68 live "The Grizzled Den"
   collect 280426 quest 98326.1                -- Sack of Fish
 
 # ---------------------------------------------------------------- Back to Kharanos
