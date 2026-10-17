@@ -1031,6 +1031,20 @@ function Guides.Suggest()
 	return Guides.Suggestions()[1]
 end
 
+-- The leveling guide a new character of the player's race and class starts
+-- with: the suggestion at level 1, from the suggestion source (ours where it
+-- has none). The catch-up opens it when no guide is open and goes through
+-- the guides from there to where the player is (Engine, login).
+function Guides.FirstGuide()
+	local p = {}
+	for k, v in pairs(ns.Compat.GetPlayerInfo()) do p[k] = v end
+	p.level = 1
+	local source = Guides.SuggestSource()
+	local fitting = rank(source, p, nil, nil)
+	if #fitting == 0 and source ~= "guides" then fitting = rank("guides", p, nil, nil) end
+	return fitting[1]
+end
+
 ns.OnLogin(function()
 	loggedIn = true
 	Guides.ScanInstalled()

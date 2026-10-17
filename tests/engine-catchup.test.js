@@ -24,8 +24,9 @@ w.race, w.raceName, w.faction, w.class, w.className = "Human", "Human", "Allianc
 w.level = 20
 `;
 
-// test/low (1-12): grey for them, done in part. test/mid (15-22): a trip to a
-// green quest behind their progress, a grey quest a yellow one needs, a
+// test/low (1-12): grey for them, done in part, with a grey quest handed in
+// with no accept (`turnin ... direct`, as Distracting Jarven in Dun
+// Morogh). test/mid (15-22): a trip to a green quest behind their progress, a grey quest a yellow one needs, a
 // green quest still in the log behind it (kept: they chose it), and the last
 // quest they did.
 const GUIDES = `
@@ -34,6 +35,7 @@ Polestar.RegisterGuide({ id = "test/low", pack = "test", title = "Low", faction 
 	{ goals = { { t = "goto", map = 1429, x = 10, y = 10, label = "Farm" } } },
 	{ goals = { { t = "accept", quest = 102, title = "Grey not done", qlvl = 6 } } },
 	{ goals = { { t = "turnin", quest = 102, title = "Grey not done" }, { t = "turnin", quest = 101, title = "Grey done" } } },
+	{ goals = { { t = "turnin", quest = 103, title = "Grey direct", direct = true, qlvl = 7 } } },
 	{ goals = { { t = "fly", location = "Stormwind City" } } },
 } })
 Polestar.RegisterGuide({ id = "test/mid", pack = "test", title = "Mid", faction = "Alliance", minLevel = 15, maxLevel = 22, steps = {
@@ -212,4 +214,19 @@ test('a reload places the guide again at the same step; with nothing behind the 
 		script: 'E.SetGuide("test/mid"); flush(); emit(E.GetStepIndex())',
 	});
 	assert.equal(fresh, 1, 'nothing done: the guide starts at its first step');
+});
+
+// Yendi: the first time, the guide starts from the race's first guide and
+// goes through every guide to where the character is, for them to see.
+test('with no guide open at login, the catch-up starts from the first guide and goes through to where the character is', () => {
+	const [out] = run({
+		before: DONE,
+		saved: { Polestar: 'PolestarCharDB = nil' },
+		script: 'emit({ guide = E.GetGuide().id, at = E.GetStepIndex(), placed = PLACED[#PLACED], first = Polestar.Guides.FirstGuide(), suggest = Polestar.Guides.Suggest() })',
+	});
+	assert.deepEqual(out, { guide: 'test/mid', at: 5, placed: { id: 'test/mid', step: 5, chain: 'test/low' }, first: 'test/low', suggest: 'test/mid' });
+
+	// Without the catch-up, the guide for their level, as before.
+	const [off] = run({ before: DONE, saved: { Polestar: 'PolestarDB = { schema = 1, settings = { behavior = { skipGrey = false } } }; PolestarCharDB = nil' }, script: 'emit(E.GetGuide().id)' });
+	assert.equal(off, 'test/mid');
 });

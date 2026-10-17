@@ -225,15 +225,17 @@ function Own.everyStep(g)
 	return type(mine) == "table" and mine[g.id] == true
 end
 
--- behavior.skipGrey: an accept for a quest already grey for the character,
--- not taken yet and not a prerequisite of a quest later in the guide or its
--- chain, no longer applies (status "na", never blocks, never auto-accepted);
+-- behavior.skipGrey: an accept for a quest already grey for the character
+-- (or a `turnin ... direct`, handed in with no accept, the compiler giving it
+-- its quest's level too), not taken yet and not a prerequisite of a quest
+-- later in the guide or its chain, no longer applies (status "na", never
+-- blocks, never auto-accepted);
 -- its turn-in and objectives go with it (orphaned). greyNeed gives false for
 -- such an accept; for a grey accept that is not taken yet but kept, the open
 -- accept it leads to; nil when the setting is off or the accept is not grey
 -- and open.
 local function greyNeed(goal)
-	if goal.t ~= "accept" or not goal.qlvl or not ns.Get("behavior.skipGrey") or Own.everyStep(guide) then return nil end
+	if not (goal.t == "accept" or goal.direct) or not goal.qlvl or not ns.Get("behavior.skipGrey") or Own.everyStep(guide) then return nil end
 	local C = Compat()
 	local level = player.level or 1
 	if not C.IsQuestTrivial(tonumber(goal.qlvl), level) then return nil end
@@ -1354,7 +1356,7 @@ function Own.catchUp(anchor, level)
 		if stepApplies(steps[s]) then
 			for _, goal in ipairs(steps[s].goals) do
 				local q = goal.quest
-				if goal.t == "accept" and q and not goal.optional and Guides.Matches(goal.only, player)
+				if (goal.t == "accept" or goal.direct) and q and not goal.optional and Guides.Matches(goal.only, player)
 					and low(goal) and not needs[q] and not questDone(q) and not C.IsOnQuest(q)
 					and not C.IsQuestTrivial(tonumber(goal.qlvl), level) then
 					out[q] = true -- grey ones: greyNeed
@@ -1409,7 +1411,7 @@ local function place()
 	local start, later, anyOut
 	for s = 1, #steps do
 		for _, goal in ipairs(steps[s].goals) do
-			if goal.t == "accept" and goal.quest and ((out and out[goal.quest]) or greyNeed(goal) == false) then anyOut = true end
+			if (goal.t == "accept" or goal.direct) and goal.quest and ((out and out[goal.quest]) or greyNeed(goal) == false) then anyOut = true end
 		end
 		if stepApplies(steps[s]) and not (sk and sk[s]) and not stepDone(s) then
 			local started, doable = false, false
@@ -1442,7 +1444,7 @@ local function place()
 	local lastOut = 0
 	for s = 1, limit - 1 do
 		for _, goal in ipairs(steps[s].goals) do
-			if goal.t == "accept" and goal.quest and ((out and out[goal.quest]) or greyNeed(goal) == false) then lastOut = s end
+			if (goal.t == "accept" or goal.direct) and goal.quest and ((out and out[goal.quest]) or greyNeed(goal) == false) then lastOut = s end
 		end
 	end
 	local here = false
@@ -2672,6 +2674,32 @@ end
 
 -- The guide to continue with after `from` (or nil), and whether the player
 -- has to choose it first.
+-- Quest work done in guide g: its accepts and turn-ins of quests the
+-- character has done or holds.
+function Own.doneIn(g)
+	local C, done = Compat(), 0
+	for _, step in ipairs(g.steps) do
+		for _, goal in ipairs(step.goals) do
+			if (goal.t == "accept" or goal.t == "turnin") and goal.quest and (questDone(goal.quest) or C.IsOnQuest(goal.quest)) then done = done + 1 end
+		end
+	end
+	return done
+end
+
+-- The route a catch-up takes where a guide passed whole offers several: the
+-- option with the most quest work done (Own.doneIn), the recommended one
+-- among equals.
+function Own.likeliestRoute(from)
+	local options = routeOptions(from)
+	if #options == 0 then return nil end
+	local best, bestDone = {}, -1
+	for _, o in ipairs(options) do
+		local done = Own.doneIn(o.guide)
+		if done > bestDone then best, bestDone = { o }, done elseif done == bestDone then best[#best + 1] = o end
+	end
+	return #best == 1 and best[1].guide.id or rankRoutes(best).guide.id
+end
+
 local function routeNext(from)
 	if not from.nextChoices then return from.next, false end
 	local options = routeOptions(from)
@@ -2820,6 +2848,9 @@ end
 
 -- Fresh step state for a new guide in the loaded tab.
 local function resetLoaded(id, auto)
+	-- Opened by the player: finished or passed whole earlier this session, it
+	-- may finish and chain again.
+	if not auto then completedFired[id] = nil end
 	guide = Guides.Get(id)
 	current, computed, pin, pinDone, aim, lastSig, passedUpTo = nil, nil, nil, nil, nil, nil, 0
 	autoChain, sawIncomplete, placing = auto and true or false, false, GetTime() + PLACE_SECONDS
@@ -2951,6 +2982,7 @@ local function evaluateLoaded(active)
 			Own.placedThrough[id] = nil
 			local mayChain = (autoChain or sawIncomplete or through) and ns.Get("behavior.autoNextGuide")
 			local nextId, asks = routeNext(guide)
+			if through and asks then nextId, asks = Own.likeliestRoute(guide), false end
 			if mayChain and asks then pendingChoices[#pendingChoices + 1] = id end
 			if mayChain and nextId and Guides.Get(nextId) and not completedFired[nextId] and not tabIndexOf(nextId) then
 				if through and active then Own.placedChain[#Own.placedChain + 1] = id end
@@ -4072,7 +4104,12 @@ ns.OnLogin(function()
 	local activeId = s.tabs and list[tonumber(s.activeTab) or 0] or s.guide
 	local offerFrom
 	if #ids == 0 and ns.Get("behavior.autoSelectGuide") then
-		local suggested = Guides.Suggest()
+		-- With the catch-up, the race's first guide when the character did
+		-- quests in it: placement goes through the guides from there to where
+		-- they are, for them to see. A character with nothing done there gets
+		-- the guide for their level.
+		local first = ns.Get("behavior.skipGrey") and Guides.FirstGuide()
+		local suggested = first and Own.doneIn(Guides.Get(first)) > 0 and first or Guides.Suggest()
 		add(suggested)
 		local g = suggested and Guides.Get(suggested)
 		local from = g and choiceOffering(suggested)
