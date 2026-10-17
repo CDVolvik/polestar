@@ -1120,18 +1120,19 @@ end`,
 	},
 	{
 		file: 'skins-new.svg',
-		title: 'Skins: the welcome\'s Route style page, Options\' Community guides and the gamepad\'s focus and hints, in Halo and Hearth',
+		title: 'Skins: the welcome\'s Route style page, Options\' Community guides, the gamepad\'s focus and hints, and the report window, in Halo and Hearth',
 		panels: ['halo', 'hearth'].flatMap((k) => [
 			{ roots: ['PolestarWelcome'], script: `Polestar.Set("ui.skin", "${k}"); Polestar.UI.Welcome.Show("route")` },
 			{ roots: OPTIONS, before: PACKS_ADDONS, script: `Polestar.Set("ui.skin", "${k}"); ${PACKS_SCENE}; Polestar.UI.ShowOptions("guidepacks")` },
 			{ roots: PAD_OPTIONS, before: PAD(), script: `Polestar.Set("ui.skin", "${k}"); Polestar.UI.ShowOptions("gamepad"); stub.advance(0.3)` },
+			{ roots: ['PolestarReport'], script: `Polestar.Set("ui.skin", "${k}"); ${TABS}; Polestar.UI.ShowReport()` },
 		]),
 	},
 	// The game's looks draw the client's own art: rendered only with
 	// POLESTAR_CLIENT_ART (local: true), so it never lands in docs/preview.
 	...['forever', 'blizzard', 'classic'].map((k) => ({
 		file: `skins-game-${k}.svg`,
-		title: `Skins: ${k}: the guide window (a hub step, the menu), Options (Guide, Appearance, Community guides, Gamepad) and the welcome's Route style page`,
+		title: `Skins: ${k}: the guide window (a hub step, the menu), Options (Guide, Appearance, Community guides, Gamepad), the welcome's Route style page and the report window`,
 		backdrop: 'terrain',
 		local: true,
 		panels: [
@@ -1142,6 +1143,7 @@ end`,
 			{ roots: OPTIONS, before: PACKS_ADDONS, script: `Polestar.Set("ui.skin", "${k}"); ${PACKS_SCENE}; Polestar.UI.ShowOptions("guidepacks")` },
 			{ roots: PAD_OPTIONS, before: PAD(), script: `Polestar.Set("ui.skin", "${k}"); Polestar.UI.ShowOptions("gamepad"); stub.advance(0.3)` },
 			{ roots: ['PolestarWelcome'], script: `Polestar.Set("ui.skin", "${k}"); Polestar.UI.Welcome.Show("route")` },
+			{ roots: ['PolestarReport'], script: `Polestar.Set("ui.skin", "${k}"); ${TABS}; Polestar.UI.ShowReport()` },
 		],
 	})),
 	{
