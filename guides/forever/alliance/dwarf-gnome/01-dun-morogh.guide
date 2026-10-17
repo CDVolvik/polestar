@@ -285,9 +285,9 @@ step Thunderbrew Distillery
 step Steelgrill's Depot
   tip Follow the road north-east from Kharanos to the depot below the Ironforge road.
   turnin 400                                  -- Beldin Steelgrill
+  accept 5541                                 -- Loslor Rudge, beside him
   accept 317                                  -- Pilot Bellowfiz
   accept 313                                  -- Pilot Stonegear
-  accept 5541                                 -- Loslor Rudge
 
 step Boars and bears
   tip Crag Boars and Young Black Bears roam the fields around Kharanos and the depot.
