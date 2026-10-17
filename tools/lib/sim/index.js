@@ -12,7 +12,7 @@ const { compileRun, makeTables } = require('./run');
 const { Evaluator } = require('./evaluate');
 const { runJob, search } = require('./search');
 const { Pool } = require('./pool');
-const { loadParamsFile, effective, means, objectiveName } = require('./params');
+const { loadParamsFile, effective, means, objectiveName, tagName } = require('./params');
 const { CLASSES, classLabel } = require('../game/races');
 
 const { ROOT, DATA, SOURCES } = require('../paths');
@@ -51,10 +51,11 @@ async function loadWorld(o) {
 	return { world, worldFile: worldFile(opts.simDir, opts.faction) };
 }
 
-// Parameters for a class under an objective (params.js OBJECTIVES).
-function paramsFor(simDir, cls, objective = 'time') {
+// Parameters for a class under an objective (params.js OBJECTIVES) and
+// `--param` overrides ({ key: value }, applied last).
+function paramsFor(simDir, cls, objective = 'time', overrides = {}) {
 	const doc = loadParamsFile(simDir);
-	const eff = effective(doc, cls, objective);
+	const eff = effective(doc, cls, objective, overrides);
 	return { doc, eff, mean: means(eff) };
 }
 
@@ -68,11 +69,28 @@ function className(cls) {
 	return cls ? String(cls) : 'any';
 }
 
-// The time objective keeps the plain name; another gets its own file
-// (horde-orc-any-smooth.json), so the two never overwrite each other.
-function resultFile(simDir, faction, race, cls, family = 'solo', objective = 'time') {
+// File name suffix of a search variant: the time objective without a tag
+// keeps the plain name; another objective and a `--tag` get their own
+// (horde-orc-any-smooth.json, horde-orc-any-smooth-g6.json), so variants
+// never overwrite each other.
+function variantSuffix(objective = 'time', tag = null) {
 	const obj = objectiveName(objective);
-	return path.join(simDir, 'results', `${faction.toLowerCase()}-${race.toLowerCase()}-${className(cls).toLowerCase()}${family === 'solo' ? '' : `-${family}`}${obj === 'time' ? '' : `-${obj}`}.json`);
+	const t = tagName(tag);
+	return `${obj === 'time' ? '' : `-${obj}`}${t ? `-${t}` : ''}`;
+}
+
+function resultFile(simDir, faction, race, cls, family = 'solo', objective = 'time', tag = null) {
+	return path.join(simDir, 'results', `${faction.toLowerCase()}-${race.toLowerCase()}-${className(cls).toLowerCase()}${family === 'solo' ? '' : `-${family}`}${variantSuffix(objective, tag)}.json`);
+}
+
+// ", smooth objective, grindWeight=6 (tag g6)" for report headers; "" for
+// the plain time search.
+function variantLabel(objective = 'time', overrides = {}, tag = null) {
+	const parts = [];
+	if (objectiveName(objective) !== 'time') parts.push(`${objectiveName(objective)} objective`);
+	for (const [k, v] of Object.entries(overrides || {})) parts.push(`${k}=${v}`);
+	if (tag) parts.push(`tag ${tag}`);
+	return parts.map((p) => `, ${p}`).join('');
 }
 
 // Smoothness counters of an evaluation (evaluate.js result()).
@@ -133,12 +151,14 @@ async function runCharacter(o) {
 	const faction = normFaction(opts.faction);
 	const { world, worldFile: wf } = opts.world ? { world: opts.world, worldFile: opts.worldFile } : await loadWorld({ ...opts, faction });
 	const objective = objectiveName(opts.objective);
-	const { eff, mean } = paramsFor(opts.simDir, opts.cls, objective);
+	const overrides = opts.overrides || {};
+	const tag = tagName(opts.tag);
+	const { eff, mean } = paramsFor(opts.simDir, opts.cls, objective, overrides);
 	const params = opts.params || mean;
 	const runOpts = { race: opts.race, cls: opts.cls || null, family: opts.family };
 	const local = makeRun(world, { ...runOpts, params });
 	const log = opts.log || (() => {});
-	log(`${faction} ${opts.race} ${className(opts.cls)} (${opts.family}, ${objective} objective): ${local.run.Q} quests in ${local.run.P} packages`);
+	log(`${faction} ${opts.race} ${className(opts.cls)} (${opts.family}, ${objective} objective${Object.keys(overrides).length ? `, ${Object.entries(overrides).map(([k, v]) => `${k}=${v}`).join(' ')}` : ''}): ${local.run.Q} quests in ${local.run.P} packages`);
 
 	let pool = null;
 	let exec;
@@ -159,7 +179,7 @@ async function runCharacter(o) {
 	const msPerEval = opts.benchMs === 0 ? null : benchEval(ev, bestRoute, opts.benchMs || 1500);
 	const out = {
 		schema: 1,
-		faction, race: opts.race, class: className(opts.cls), family: opts.family, objective,
+		faction, race: opts.race, class: className(opts.cls), family: opts.family, objective, overrides, tag,
 		seed: opts.seed, workers: opts.workers, paths: opts.paths,
 		evaluatedRoutes: res.evals, packageTrials: res.trials, rounds: res.rounds, converged: res.converged,
 		wallSeconds: res.wallSeconds, msPerEval,
@@ -175,7 +195,7 @@ async function runCharacter(o) {
 		elite: res.elite.map((e) => ({ route: keys(prune(ev, e.route)), seconds: e.seconds })),
 	};
 	if (opts.write !== false) {
-		const file = resultFile(opts.simDir, faction, opts.race, opts.cls, opts.family, objective);
+		const file = resultFile(opts.simDir, faction, opts.race, opts.cls, opts.family, objective, tag);
 		fs.mkdirSync(path.dirname(file), { recursive: true });
 		fs.writeFileSync(file, `${JSON.stringify(out, null, 1)}\n`);
 		out.file = file;
@@ -206,5 +226,5 @@ function assertFresh(res, world, file) {
 
 module.exports = {
 	DEFAULTS, START_RACES, normFaction, normClass, loadWorld, paramsFor, makeRun, className, resultFile, assertFresh,
-	prune, describe, benchEval, runCharacter, routeFromKeys, downsample, smoothness,
+	prune, describe, benchEval, runCharacter, routeFromKeys, downsample, smoothness, variantSuffix, variantLabel,
 };

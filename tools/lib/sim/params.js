@@ -76,6 +76,28 @@ function objectiveName(o) {
 	return k;
 }
 
+// `--param key=value` (repeatable) -> { key: number }; unknown keys and
+// non-numbers are errors.
+function parseOverrides(list) {
+	const out = {};
+	for (const s of [].concat(list || [])) {
+		const m = /^([A-Za-z0-9]+)=(.+)$/.exec(String(s));
+		if (!m) throw new Error(`--param must be key=value (got ${s})`);
+		if (!PRIORS[m[1]]) throw new Error(`--param: unknown parameter ${m[1]} (known: ${Object.keys(PRIORS).join(', ')})`);
+		const v = Number(m[2]);
+		if (!Number.isFinite(v)) throw new Error(`--param ${m[1]}: ${m[2]} is not a number`);
+		out[m[1]] = v;
+	}
+	return out;
+}
+
+// `--tag <name>`: a suffix for result file names (variants of one search).
+function tagName(t) {
+	if (t == null || t === '') return null;
+	if (!/^[A-Za-z0-9_-]+$/.test(String(t))) throw new Error(`--tag must be letters, digits, - or _ (got ${t})`);
+	return String(t);
+}
+
 const NAMES = Object.keys(PRIORS);
 
 function priorTable() {
@@ -104,9 +126,10 @@ function saveParamsFile(simDir, doc) {
 	fs.renameSync(`${file}.tmp`, file);
 }
 
-// Priors with calibration applied, the class prior and the objective's
-// policy overrides: { name: { mean, sd, lo, hi } }.
-function effective(doc, cls = null, objective = 'time') {
+// Priors with calibration applied, the class prior, the objective's policy
+// overrides and then `--param` overrides (each fixed: mean = lo = hi, sd 0):
+// { name: { mean, sd, lo, hi } }.
+function effective(doc, cls = null, objective = 'time', overrides = {}) {
 	const out = {};
 	const cal = (doc && doc.calibrated) || {};
 	for (const [k, [mean, sd, lo, hi]] of Object.entries(PRIORS)) {
@@ -115,6 +138,10 @@ function effective(doc, cls = null, objective = 'time') {
 	}
 	if (cls && CLASS_FACTOR[cls] != null) out.classFactor = { ...out.classFactor, mean: CLASS_FACTOR[cls] };
 	for (const [k, v] of Object.entries(OBJECTIVES[objectiveName(objective)])) out[k] = { mean: v, sd: 0, lo: v, hi: v };
+	for (const [k, v] of Object.entries(overrides || {})) {
+		if (!out[k]) throw new Error(`unknown parameter ${k}`);
+		out[k] = { mean: v, sd: 0, lo: v, hi: v };
+	}
 	return out;
 }
 
@@ -145,5 +172,5 @@ function draws(eff, k, seed) {
 }
 
 module.exports = {
-	PRIORS, NAMES, CLASS_FACTOR, OBJECTIVES, objectiveName, priorTable, paramsFile, loadParamsFile, saveParamsFile, effective, means, sample, draws,
+	PRIORS, NAMES, CLASS_FACTOR, OBJECTIVES, objectiveName, parseOverrides, tagName, priorTable, paramsFile, loadParamsFile, saveParamsFile, effective, means, sample, draws,
 };

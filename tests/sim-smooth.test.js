@@ -190,3 +190,18 @@ test('quest log: a full log skips an accept, or abandons a quest 6+ levels below
 	assert.equal(ev.open, 2);
 	assert.equal(ev.result().acceptedNeverTurnedIn, 3);
 });
+
+test('--param overrides apply after the objective, unknown keys fail, --tag keeps variants apart', () => {
+	const { parseOverrides, tagName } = require('../tools/lib/sim/params');
+	const sim = require('../tools/lib/sim');
+	const over = parseOverrides(['grindWeight=6', 'zoneReturn=0']);
+	const eff = effective({ calibrated: {} }, null, 'smooth', over);
+	assert.deepEqual(eff.grindWeight, { mean: 6, sd: 0, lo: 6, hi: 6 });
+	assert.equal(eff.zoneReturn.mean, 0);
+	assert.equal(eff.spotReturn.mean, 900, 'the rest of the preset stays');
+	assert.throws(() => parseOverrides(['grindWeigth=6']), /unknown parameter grindWeigth/);
+	assert.throws(() => parseOverrides(['grindWeight=x']), /not a number/);
+	assert.throws(() => tagName('a/b'), /--tag/);
+	const files = [['time', null], ['smooth', null], ['smooth', 'g6'], ['time', 'g6']].map(([o, t]) => require('node:path').basename(sim.resultFile('/x', 'Horde', 'Orc', null, 'solo', o, t)));
+	assert.deepEqual(files, ['horde-orc-any.json', 'horde-orc-any-smooth.json', 'horde-orc-any-smooth-g6.json', 'horde-orc-any-g6.json']);
+});

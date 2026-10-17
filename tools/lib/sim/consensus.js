@@ -257,11 +257,13 @@ async function consensus(o) {
 	const family = o.family || 'solo';
 	const { world, worldFile } = await sim.loadWorld({ ...o, faction });
 	const objective = o.objective || 'time';
-	const sfx = objective === 'time' ? '' : `-${objective}`;
-	const { mean } = sim.paramsFor(o.simDir, null, objective);
+	const overrides = o.overrides || {};
+	const tag = o.tag || null;
+	const sfx = sim.variantSuffix(objective, tag);
+	const { mean } = sim.paramsFor(o.simDir, null, objective, overrides);
 	const chars = [];
 	for (const race of sim.START_RACES[faction]) {
-		const file = sim.resultFile(o.simDir, faction, race, null, family, objective);
+		const file = sim.resultFile(o.simDir, faction, race, null, family, objective, tag);
 		if (!fs.existsSync(file)) throw new Error(`${file} not found: run \`sim run --faction ${faction}\` first`);
 		const res = JSON.parse(fs.readFileSync(file, 'utf8'));
 		sim.assertFresh(res, world, path.basename(file));
@@ -334,7 +336,7 @@ async function consensus(o) {
 		});
 	}
 	const out = {
-		schema: 1, faction, family, objective, worldHash: world.dataHash,
+		schema: 1, faction, family, objective, overrides, tag, worldHash: world.dataHash,
 		note: 'Era + known Forever quests (Forever 30-60 content not in the data yet; the beta caps at 30).',
 		splitLevel: SPLIT_LEVEL, branchGainHours: BRANCH_GAIN / 3600,
 		crossMatrix: { rows: 'shared 12-60 route = this start\'s own', cols: chars.map((c) => c.race), hours: chars.map((c, i) => ({ route: c.race, hours: matrix[i].map((s) => s / 3600), sum: matrix[i].reduce((a, b) => a + b, 0) / 3600 })) },
@@ -411,7 +413,7 @@ function markdown(out) {
 
 async function command(args, o) {
 	const r = await consensus({ ...sim.DEFAULTS, ...o, faction: args.faction, family: args.dungeons ? 'dungeons' : 'solo', seed: args.seed ? Number(args.seed) : undefined, evals: args.evals ? Number(args.evals) : undefined, workers: args.workers ? Number(args.workers) : undefined });
-	console.log(`\n== consensus ${r.faction} (${r.family}${r.objective === 'time' ? '' : `, ${r.objective} objective`}): ${r.suffix.length} shared packages from level ${r.splitLevel}; bound (${r.bound.from}) ${r.bound.totalHours.toFixed(1)} h summed, consensus ${r.annealed.totalHours.toFixed(1)} h (${r.annealed.evals.toLocaleString('en-US')} evaluations, ${r.annealed.wallSeconds.toFixed(0)} s) ==`);
+	console.log(`\n== consensus ${r.faction} (${r.family}${sim.variantLabel(r.objective, r.overrides, r.tag)}): ${r.suffix.length} shared packages from level ${r.splitLevel}; bound (${r.bound.from}) ${r.bound.totalHours.toFixed(1)} h summed, consensus ${r.annealed.totalHours.toFixed(1)} h (${r.annealed.evals.toLocaleString('en-US')} evaluations, ${r.annealed.wallSeconds.toFixed(0)} s) ==`);
 	console.log(table(['shared route', ...r.crossMatrix.cols, 'sum'], r.crossMatrix.hours.map((x) => [`${x.route}'s own`, ...x.hours.map((h) => h.toFixed(1)), x.sum.toFixed(1)])));
 	console.log(table(['start', 'own best', 'consensus', 'lost', 'to 20', 'to 30', 'to 40', 'to 50', 'zones/returns/spot returns'], r.races.map((x) => [
 		x.race, fmtH(x.ownHours * 3600), fmtH(x.consensusHours * 3600), `${x.hoursLost.toFixed(2)}h`,

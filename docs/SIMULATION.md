@@ -284,6 +284,14 @@ objectives never overwrite each other. Results, `sim compare` rows and the
 `zoneChanges`, `zoneReturns`, `spotReturns`, `sharedKills` and the quest
 log counters above.
 
+`--param key=value` (repeatable) sets any parameter of params.js after the
+objective's preset, fixed at that value (also in robustness draws); an
+unknown key is an error. A variant gets its own result files only with
+`--tag <name>`: `sim run --objective smooth --param grindWeight=6 --tag g6`
+writes `horde-orc-any-smooth-g6.json`, and `robust`, `compare` and
+`consensus` with the same `--tag` read and write that variant. Results
+record `overrides` and `tag`.
+
 ## 3. Route evaluation and search
 
 - A **route** is an ordered list of packages starting at the race's start zone
@@ -356,13 +364,14 @@ Only the fitted parameter values are kept (data/sim/params.json).
 sim world   [--faction F] [--rebuild]               build/cache the world model (data/sim/world-<faction>.json)
 sim calibrate [--fdj DIR]                            fit parameters to quest data and recordings
 sim run     --faction F [--race R] [--class C] [--paths N] [--workers W] [--seed S] [--dungeons]
-            [--jobs J] [--anneal A] [--max-paths M] [--objective time|smooth]
+            [--jobs J] [--anneal A] [--max-paths M] [--objective time|smooth] [--param K=V ...] [--tag T]
 sim robust  --faction F [--race R] [--class C] [--draws K] [--top N] [--objective O]   robustness of the top routes
 sim compare --faction F [--race R] [--class C] [--guides DIR] [--pack DIR | DIR] [--to 10,20,30] [--with-optional]
             [--objective O]   Polestar's routes vs the best found, same model
 sim bench   --faction F [--race R] [--class C]      bracket table: zones, levels, quests per 10 levels
 sim export  --result <file> --out <dir>             zone-by-zone skeleton guides + visits.json for authors
 sim consensus --faction F [--dungeons] [--evals N] [--objective O]   one 12-60 route shared by the faction's starts (+ exports)
+(robust, compare and consensus take --param and --tag too)
 ```
 
 Less common options: `--fdj <dir>` (calibrate: the ForeverDungeonJournal

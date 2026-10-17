@@ -65,7 +65,7 @@ function sources(o, faction, race, run, runD) {
 // A `sim run` result, or null when missing; a result searched on another
 // world (data or builder changed) is refused, never replayed.
 function loadResult(o, faction, race, family, world, warn) {
-	const f = sim.resultFile(o.simDir, faction, race, o.cls || null, family, o.objective || 'time');
+	const f = sim.resultFile(o.simDir, faction, race, o.cls || null, family, o.objective || 'time', o.tag || null);
 	if (!fs.existsSync(f)) return null;
 	const res = JSON.parse(fs.readFileSync(f, 'utf8'));
 	try {
@@ -112,7 +112,7 @@ function score(ev, run, src) {
 async function compare(o) {
 	const faction = sim.normFaction(o.faction);
 	const { world } = await sim.loadWorld({ ...o, faction });
-	const { mean } = sim.paramsFor(o.simDir, o.cls || null, o.objective || 'time');
+	const { mean } = sim.paramsFor(o.simDir, o.cls || null, o.objective || 'time', o.overrides || {});
 	const out = [];
 	for (const race of o.race ? [o.race] : sim.START_RACES[faction]) {
 		// Solo sources run without dungeons, dungeon routes with them.
@@ -140,7 +140,7 @@ async function compare(o) {
 				trace,
 			});
 		}
-		out.push({ faction, race, class: sim.className(o.cls), objective: o.objective || 'time', rows, warn });
+		out.push({ faction, race, class: sim.className(o.cls), objective: o.objective || 'time', overrides: o.overrides || {}, tag: o.tag || null, rows, warn });
 	}
 	return out;
 }
@@ -221,7 +221,7 @@ async function compareCommand(args, o) {
 		}
 		for (const w of c.warn) console.log(`warning: ${w}`);
 		// A pack's comparison is its own file, so ours is never overwritten.
-		const file = path.join(opts.benchDir, `compare-${c.faction.toLowerCase()}-${c.race.toLowerCase()}${clsPart(opts.cls)}${pack ? `-${pack.manifest.id}` : ''}${c.objective === 'time' ? '' : `-${c.objective}`}.json`);
+		const file = path.join(opts.benchDir, `compare-${c.faction.toLowerCase()}-${c.race.toLowerCase()}${clsPart(opts.cls)}${pack ? `-${pack.manifest.id}` : ''}${sim.variantSuffix(c.objective, c.tag)}.json`);
 		fs.writeFileSync(file, `${JSON.stringify({ ...c, ...(pack ? { pack: pack.manifest.id } : {}), rows: c.rows.map(({ trace, ...x }) => x) }, null, 1)}\n`);
 		const md = choices.length ? choices.map(([name, variants]) => `## ${name} route choices\n\n${mdTable(HEAD, variants.map(fmtRow))}\n`).join('\n') : `## Polestar route choices\n\n${mdTable(HEAD, [])}\n`;
 		fs.writeFileSync(file.replace(/\.json$/, '.md'), `# ${c.faction} ${c.race} (${c.class})${pack ? ` (${pack.manifest.id})` : ''}: route comparison\n\n${mdTable(HEAD, shown.map(fmtRow))}\n\n${md}`);
