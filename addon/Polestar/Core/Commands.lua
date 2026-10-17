@@ -152,23 +152,8 @@ ns.RegisterCommand("welcome", function()
 	ns.Fire("SHOW_WELCOME")
 end, L["Show the welcome again"])
 
--- Where the player stands, as guide lines ready to paste into a step: the
--- map (`zone map <uiMapID>`) and a goal there (`goto x,y live`, two decimals
--- like the compiler writes), then `x,y live` for the hint; nil where the
--- game gives no position. The client reports live-frame coordinates, and
--- typed coordinates are read in the Era frame unless marked, so the goal
--- modifier `live` goes with them (Forever moved some zones). /polestar where
--- and the report window's right spot (UI/Report.lua).
-function ns.WhereLines()
-	local C = ns.Compat
-	local map, x, y
-	if C and C.GetPlayerMapPosition then map, x, y = C.GetPlayerMapPosition() end
-	if not (map and x and y) then return nil end
-	local xy = ("%.2f,%.2f live"):format(x, y)
-	return { ("zone map %d"):format(map), "goto " .. xy }, xy
-end
-
--- Printed with a hint for other goals (`@x,y live`), and shown in a box to
+-- Where the player stands as guide lines (ns.WhereLines, Core/Compat.lua),
+-- printed with a hint for other goals (`@x,y live`), and shown in a box to
 -- copy (UI/Copy.lua).
 ns.RegisterCommand("where", function()
 	local lines, xy = ns.WhereLines()
