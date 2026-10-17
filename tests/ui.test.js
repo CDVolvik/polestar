@@ -756,7 +756,13 @@ test('the header carries Nearby services between Skip and the bug: its menu poin
 		stub.inCombat = false
 		Polestar.Set("nav.nearbyButton", false)
 		local off = B:IsShown()
-		emit({ noGuide = noGuide, order = order, items = items, mining = mining, inn = inn, enabledInCombat = disabled, off = off })`);
+		-- Off, Skip moves up to the bug, and stays there on the next step.
+		local skipOff = { now = relOf(nav.Skip) == nav.Report }
+		uistub.setGuide(uistub.elwynn, 4)
+		skipOff.nextStep = relOf(nav.Skip) == nav.Report
+		Polestar.Set("nav.nearbyButton", true)
+		skipOff.backOn = relOf(nav.Skip) == B
+		emit({ noGuide = noGuide, order = order, items = items, mining = mining, inn = inn, enabledInCombat = disabled, off = off, skipOff = skipOff })`);
 	assert.deepEqual(out.noGuide, { shown: true, rel: true }, 'without a guide it sits by the menu');
 	assert.deepEqual(out.order, { skip: true, nearby: true, report: true }, 'Skip, Nearby, the bug, the menu');
 	assert.deepEqual(out.items, ['Vendor', 'Innkeeper', 'Mining trainer', 'Weapon master  \u203a', 'Bank']);
@@ -764,6 +770,7 @@ test('the header carries Nearby services between Skip and the bug: its menu poin
 	assert.deepEqual(out.inn, ['NearbyGo', 'innkeeper']);
 	assert.equal(out.enabledInCombat, 0, 'in combat every entry is off');
 	assert.equal(out.off, false);
+	assert.deepEqual(out.skipOff, { now: true, nextStep: true, backOn: true }, 'with the button off, Skip sits by the bug');
 });
 
 test('the header menu: picker, new tab, compact, transparent, lock; destructive items ask twice', () => {

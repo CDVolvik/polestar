@@ -1265,6 +1265,13 @@ function GF.PaintSkip(shown, enabled)
 	W.Color(b.Label, "textDim", a)
 end
 
+-- Skip sits left of the Nearby services button, or of the bug when that
+-- button is off (nav.nearbyButton).
+local function anchorSkip()
+	nav.Skip:ClearAllPoints()
+	nav.Skip:SetPoint("RIGHT", nav.Nearby:IsShown() and nav.Nearby or nav.Report, "LEFT", -2, 0)
+end
+
 local function navigatorFor(guide, index)
 	local E = Engine()
 	local count = guide and E.GetStepCount and E.GetStepCount() or 0
@@ -1283,6 +1290,7 @@ local function navigatorFor(guide, index)
 	nav.Report:SetShown(guide ~= nil)
 	nav.Nearby:ClearAllPoints()
 	nav.Nearby:SetPoint("RIGHT", guide and nav.Report or nav.Menu, "LEFT", 0, 0)
+	anchorSkip()
 	-- No guide: no steps to walk; the navigator names the addon instead.
 	nav.Steps:SetShown(guide ~= nil)
 	nav.Title:ClearAllPoints()
@@ -1734,6 +1742,7 @@ local APPLY = {
 	["ui.font"] = function() GF.Layout() end,
 	["nav.nearbyButton"] = function()
 		nav.Nearby:SetShown(ns.Get("nav.nearbyButton") ~= false)
+		anchorSkip()
 		GF.Layout()
 	end,
 }
@@ -1980,7 +1989,6 @@ local function build()
 	skip.Label:SetPoint("LEFT", skip.Icon, "RIGHT", 5, 0)
 	skip.Label:SetText(L["Skip"])
 	skip:SetWidth(floor(7 + 11 + 5 + skip.Label:GetStringWidth() + 8 + 0.5))
-	skip:SetPoint("RIGHT", nav.Nearby, "LEFT", -2, 0)
 	skip:SetScript("OnClick", function() GF.SkipStep() end)
 	skip:SetScript("OnEnter", function(self)
 		if self:IsEnabled() then
@@ -1996,6 +2004,7 @@ local function build()
 	end)
 	skip:Hide()
 	nav.Skip = skip
+	anchorSkip()
 	nav.Title = T(nav, "small", "textDim")
 	-- The step's own title and the guide's facts, on the step number.
 	local countHit = CreateFrame("Frame", nil, nav.Steps)
