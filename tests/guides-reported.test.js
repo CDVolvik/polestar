@@ -47,10 +47,10 @@ function compiled(guide) {
 function goals(guide) {
 	return compiled(guide).steps.flatMap((step) => step.goals.map((goal) => ({ step, goal })));
 }
-// Every guide of ours, as paths relative to guides/.
+// Every guide of ours, as paths relative to guides/ with forward slashes.
 function allGuides() {
 	const walk = (dir) => fs.readdirSync(dir, { withFileTypes: true }).flatMap((e) => (e.isDirectory() ? walk(path.join(dir, e.name)) : e.name.endsWith('.guide') ? [path.join(dir, e.name)] : []));
-	return walk(path.join(OFFICIAL_DIR, 'forever')).map((file) => path.relative(OFFICIAL_DIR, file));
+	return walk(path.join(OFFICIAL_DIR, 'forever')).map((file) => path.relative(OFFICIAL_DIR, file).split(path.sep).join('/'));
 }
 
 // Index of the first goal matching, asserted present.
