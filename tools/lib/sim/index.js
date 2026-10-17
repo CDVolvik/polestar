@@ -77,7 +77,10 @@ function resultFile(simDir, faction, race, cls, family = 'solo', objective = 'ti
 
 // Smoothness counters of an evaluation (evaluate.js result()).
 function smoothness(r) {
-	return { zoneChanges: r.zoneChanges, zoneReturns: r.zoneReturns, spotReturns: r.spotReturns, sharedKills: r.sharedKills, logPeak: r.logPeak };
+	return {
+		zoneChanges: r.zoneChanges, zoneReturns: r.zoneReturns, spotReturns: r.spotReturns, sharedKills: r.sharedKills,
+		logPeak: r.logPeak, logDeferred: r.logDeferred, logSkipped: r.logSkipped, logAbandoned: r.logAbandoned, acceptedNeverTurnedIn: r.acceptedNeverTurnedIn,
+	};
 }
 
 // Drop packages that changed nothing (all steps skipped): same cost, shorter

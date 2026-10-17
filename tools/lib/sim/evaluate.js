@@ -54,6 +54,7 @@ const J_DUNGEON = 5;
 const J_VISIT2 = 6;
 const J_VISIT3 = 7;
 const J_ZONE = 8;
+const J_EVER = 9;
 
 // Numeric undo log array ids (shared kill credit, spot cells)
 const U_KILLED = 0;
@@ -64,6 +65,9 @@ const MAX_VISITS = 3;
 // work began starts a new one; work again in a spot cell (run.js
 // SPOT_CELL) worked in an earlier stretch is a spot return.
 const SPOT_LEAVE = 600;
+// Levels below the character at which a full quest log gives up a quest
+// (abandonable; its reward is already reduced, SHARE).
+const ABANDON_GAP = 6;
 
 class Evaluator {
 	constructor(run, tables, opts = {}) {
@@ -77,6 +81,7 @@ class Evaluator {
 		this.visit2 = new Uint8Array(run.P); // a second visit of the package
 		this.visit3 = new Uint8Array(run.P); // a third
 		this.dungeonDone = new Uint8Array(Math.max(1, (run.dungeons || []).length));
+		this.everActive = new Uint8Array(run.Q); // accepted at some point (acceptedNeverTurnedIn)
 		// Smoothness: zones entered so far; per spot cell the stretch (areaId)
 		// of its last work (0: none); per kill work item the kills already
 		// credited by other quests' kills of the same mob (shared kill credit).
@@ -124,6 +129,7 @@ class Evaluator {
 		this.visit2.fill(0);
 		this.visit3.fill(0);
 		this.dungeonDone.fill(0);
+		this.everActive.fill(0);
 		this.levelTimes.fill(0);
 		this.zoneSeen.fill(0);
 		this.zoneSeen[r.pZone[r.start.pt]] = 1;
@@ -165,6 +171,9 @@ class Evaluator {
 		this.areaPt = r.start.pt;
 		this.open = 0;
 		this.logPeak = 0;
+		this.logDeferred = 0;
+		this.logSkipped = 0;
+		this.logAbandoned = 0;
 		this.awayPending = false;
 	}
 
@@ -178,12 +187,13 @@ class Evaluator {
 			homeLeft: this.homeLeft, unreachable: this.unreachable, riskCrossings: this.riskCrossings, steps: this.steps, catchUpSec: this.catchUpSec,
 			zoneChanges: this.zoneChanges, zoneReturns: this.zoneReturns, spotReturns: this.spotReturns, sharedKills: this.sharedKills,
 			areaId: this.areaId, areaPt: this.areaPt, open: this.open, logPeak: this.logPeak, u: this.uLen,
+			logDeferred: this.logDeferred, logSkipped: this.logSkipped, logAbandoned: this.logAbandoned,
 		};
 	}
 
 	restore(s) {
 		// Undo journaled writes back to the snapshot.
-		const arrs = [this.done, this.active, this.taskDone, this.known, this.usedPkg, this.dungeonDone, this.visit2, this.visit3, this.zoneSeen];
+		const arrs = [this.done, this.active, this.taskDone, this.known, this.usedPkg, this.dungeonDone, this.visit2, this.visit3, this.zoneSeen, this.everActive];
 		for (let k = this.jLen - 1; k >= s.j; k--) arrs[this.jArr[k]][this.jIdx[k]] ^= 1;
 		for (let k = this.uLen - 1; k >= s.u; k--) (this.uArr[k] === U_KILLED ? this.killed : this.cellArea)[this.uIdx[k]] = this.uOld[k];
 		this.uLen = s.u;
@@ -224,6 +234,9 @@ class Evaluator {
 		this.areaPt = s.areaPt;
 		this.open = s.open;
 		this.logPeak = s.logPeak;
+		this.logDeferred = s.logDeferred;
+		this.logSkipped = s.logSkipped;
+		this.logAbandoned = s.logAbandoned;
 	}
 
 	// Flip a 0 flag to 1, journaled when trial moves are active.
@@ -242,13 +255,43 @@ class Evaluator {
 			this.jIdx[this.jLen++] = i;
 		}
 	}
-	// Turn-off of `active` at turn-in: journaled as a flip too.
-	set0Active(i) {
-		this.active[i] = 0;
+	// Turn-off of a flag (`active` at turn-in or abandon, `taskDone` at
+	// abandon): journaled as a flip too.
+	set0(arrId, arr, i) {
+		arr[i] = 0;
 		if (this.journaling) {
-			this.jArr[this.jLen] = J_ACTIVE;
+			this.jArr[this.jLen] = arrId;
 			this.jIdx[this.jLen++] = i;
 			if (this.jLen >= this.jArr.length - 4) this.set1Grow();
+		}
+	}
+	set0Active(i) {
+		this.set0(J_ACTIVE, this.active, i);
+	}
+
+	// The quest a full log gives up (stopgap until the planner keeps the
+	// log): the lowest-level active quest at least ABANDON_GAP levels below
+	// the character, whose reward is already reduced; -1 when none is.
+	abandonable() {
+		const r = this.run;
+		const max = this.level - ABANDON_GAP;
+		let best = -1;
+		for (let q = 0; q < r.Q; q++) {
+			if (this.active[q] && r.qLevel[q] <= max && (best < 0 || r.qLevel[q] < r.qLevel[best])) best = q;
+		}
+		return best;
+	}
+
+	// Abandon quest q: out of the log, its objectives' progress lost (as
+	// in the game); it can be taken again.
+	abandon(q) {
+		const r = this.run;
+		this.set0Active(q);
+		this.open--;
+		this.logAbandoned++;
+		for (let t = r.qTask0[q]; t < r.qTask1[q]; t++) {
+			if (this.taskDone[t]) this.set0(J_TASK, this.taskDone, t);
+			for (let w = r.taskW0[t]; w < r.taskW1[t]; w++) if (this.killed[w] > 0) this.setNum(U_KILLED, w, 0);
 		}
 	}
 	set1Grow() {
@@ -503,8 +546,10 @@ class Evaluator {
 		return false;
 	}
 
-	// One step. With `this.defer`, an accept above the character's level is
-	// deferred (runPackage takes it once the level allows) instead of grinding for it.
+	// One step. With `this.defer`, an accept above the character's level, or
+	// one the full quest log (run.logCap) has no room for, is deferred
+	// (runPackage takes it once the level allows / a turn-in frees a slot)
+	// instead of grinding for it; without, a full log skips it (counted).
 	step(kind, q, task, pt) {
 		const r = this.run;
 		if (kind === K_ACCEPT) {
@@ -524,15 +569,28 @@ class Evaluator {
 				if (opens < this.gateNeed) this.gateNeed = opens;
 				return;
 			}
+			// The quest log is full: give up a low quest (abandonable), else
+			// wait for a turn-in (this pass), the package's second pass or a
+			// later return.
+			const drop = this.open >= r.logCap ? this.abandonable() : -1;
+			if (this.open >= r.logCap && drop < 0) {
+				if (this.defer) {
+					this.deferred++;
+					this.logDeferred++;
+				} else this.logSkipped++;
+				return;
+			}
 			if (!this.moveTo(pt)) {
 				this.unreachable++;
 				return;
 			}
 			if (this.level < r.qMinLevel[q]) this.grindTo(r.qMinLevel[q]);
 			if (this.level + this.p.dangerGap < r.qLevel[q]) this.grindTo(r.qLevel[q] - this.p.dangerGap);
+			if (drop >= 0) this.abandon(drop);
 			if (task >= 0) this.doWork(task);
 			this.time += this.p.talkSec;
 			this.set1(J_ACTIVE, this.active, q);
+			if (!this.everActive[q]) this.set1(J_EVER, this.everActive, q);
 			if (++this.open > this.logPeak) this.logPeak = this.open;
 		} else if (kind === K_TASK) {
 			if (!this.active[q] || this.taskDone[task]) return;
@@ -688,7 +746,7 @@ class Evaluator {
 			const t = pend[i];
 			const kind = r.sKind[t];
 			const q = r.sQuest[t];
-			const open = kind === K_DUNGEON ? this.level >= r.dungeons[q].min : this.level >= r.qMinLevel[q] && this.level + this.p.dangerGap >= r.qLevel[q];
+			const open = kind === K_DUNGEON ? this.level >= r.dungeons[q].min : this.level >= r.qMinLevel[q] && this.level + this.p.dangerGap >= r.qLevel[q] && (this.open < r.logCap || this.abandonable() >= 0);
 			if (!open) {
 				pend[kept++] = t;
 				continue;
@@ -720,6 +778,14 @@ class Evaluator {
 		}
 	}
 
+	// Quests accepted at some point and not turned in (still in the log or
+	// abandoned): wasted accepts.
+	neverTurnedIn() {
+		let n = 0;
+		for (let q = 0; q < this.run.Q; q++) if (this.everActive[q] && !this.done[q]) n++;
+		return n;
+	}
+
 	finish() {
 		if (!this.finished) this.grindTo(60);
 	}
@@ -749,6 +815,10 @@ class Evaluator {
 			spotReturns: this.spotReturns,
 			sharedKills: this.sharedKills,
 			logPeak: this.logPeak,
+			logDeferred: this.logDeferred,
+			logSkipped: this.logSkipped,
+			logAbandoned: this.logAbandoned,
+			acceptedNeverTurnedIn: this.neverTurnedIn(),
 			...extra,
 		};
 	}

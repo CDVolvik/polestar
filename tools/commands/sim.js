@@ -95,7 +95,8 @@ function printRun(r) {
 	console.log(`\n== ${r.faction} ${r.race} (${r.class}, ${r.family}${r.objective === 'time' ? '' : `, ${r.objective} objective`}) ==`);
 	console.log(`evaluated routes ${r.evaluatedRoutes.toLocaleString('en-US')} in ${r.rounds} rounds, ${r.wallSeconds.toFixed(1)} s on ${r.workers} workers; ${r.msPerEval != null ? r.msPerEval.toFixed(3) : '?'} ms per route evaluation; converged: ${r.converged ? 'yes' : 'no'}`);
 	console.log(`best: ${fmtH(r.best.seconds)} to 60 (${fmtHM(r.best.seconds)}); quests ${r.best.questsDone}; XP quest/kill/grind ${r.best.xpSplit.quest}/${r.best.xpSplit.kill}/${r.best.xpSplit.grind}; travel ${((100 * r.best.travelSeconds) / r.best.seconds).toFixed(1)}%; grinding ${fmtH(r.best.grindSeconds)}`);
-	console.log(`smoothness: zone changes ${r.best.zoneChanges}; zone returns ${r.best.zoneReturns}; spot returns ${r.best.spotReturns}; shared-credit kills saved ${Math.round(r.best.sharedKills)}; quest log peak ${r.best.logPeak}`);
+	console.log(`smoothness: zone changes ${r.best.zoneChanges}; zone returns ${r.best.zoneReturns}; spot returns ${r.best.spotReturns}; shared-credit kills saved ${Math.round(r.best.sharedKills)}`);
+	console.log(`quest log: peak ${r.best.logPeak}; accepts deferred for a full log ${r.best.logDeferred}, skipped ${r.best.logSkipped}; quests abandoned ${r.best.logAbandoned}; accepted but never turned in ${r.best.acceptedNeverTurnedIn}`);
 	console.log(`time to: ${Object.entries(r.best.timeTo).map(([l, s]) => `${l}: ${fmtH(s)}`).join('  ')}`);
 	console.log(table(['zone', 'levels', 'arrive', 'hours', 'quests'], r.best.visits.map((v) => [v.zone, `${v.levelIn.toFixed(1)}-${v.levelOut.toFixed(1)}`, fmtH(v.arrive), ((v.leave - v.arrive) / 3600).toFixed(2), v.quests])));
 	const c = r.curve;

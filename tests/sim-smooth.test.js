@@ -147,3 +147,46 @@ test('quest log 40: a hub with 41 quests splits into two packages, 40 stay one',
 	assert.deepEqual(hub(41), [['Testvale 1-5a', 40], ['Testvale 1-5b', 1]]);
 	assert.equal(world().maxOpen, 40);
 });
+
+test('quest log: a full log defers an accept until a turn-in frees a slot, never above the cap', () => {
+	const run = (cap) => {
+		const ev = evaluator();
+		ev.run.logCap = cap;
+		return ev.evaluate([0, 1, 2]);
+	};
+	const free = run(40);
+	const tight = run(2);
+	assert.ok(free.logPeak > 2);
+	assert.equal(tight.logPeak, 2);
+	assert.ok(tight.logDeferred > 0, 'accepts waited for a slot');
+	assert.equal(tight.questsDone, free.questsDone, 'and were taken within the package once one opened');
+	assert.equal(tight.acceptedNeverTurnedIn, 0);
+});
+
+test('quest log: a full log skips an accept, or abandons a quest 6+ levels below the character (its progress lost)', () => {
+	const ev = evaluator();
+	ev.run.logCap = 2;
+	const rats = quest(ev, 501); // level 2
+	const pelts = quest(ev, 502); // level 4
+	const word = quest(ev, 503);
+	ev.reset();
+	accept(ev, rats);
+	accept(ev, pelts);
+	work(ev, rats);
+	accept(ev, word);
+	assert.equal(ev.active[word.q], 0, 'level 1: nothing low enough to give up');
+	assert.equal(ev.logSkipped, 1);
+	ev.reset();
+	accept(ev, rats);
+	accept(ev, pelts);
+	work(ev, rats);
+	ev.level = 9; // Rat Trouble (2) is 7 below, Fox Pelts (4) 5
+	accept(ev, word);
+	assert.equal(ev.active[word.q], 1);
+	assert.equal(ev.active[rats.q], 0, 'the lowest quest 6+ levels below goes');
+	assert.equal(ev.active[pelts.q], 1);
+	assert.equal(ev.taskDone[rats.task], 0, 'its objective must be done again');
+	assert.equal(ev.logAbandoned, 1);
+	assert.equal(ev.open, 2);
+	assert.equal(ev.result().acceptedNeverTurnedIn, 3);
+});

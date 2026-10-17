@@ -9,7 +9,7 @@
 const { mobXp } = require('../game/xp');
 const { CLASSES, ALL_CLASSES, RACE_BY_FILE, FACTION_RACES, SKYBORNE_BIT, hasBit, raceLabel, classLabel } = require('../game/races');
 const { planOrder } = require('./tour');
-const { ISLE_MAPS, ISLANDS } = require('./world');
+const { ISLE_MAPS, ISLANDS, MAX_OPEN } = require('./world');
 
 // Mask bits by the names runs use ("Undead", "Warrior"): the Era races, every class.
 const RACE_BITS = {};
@@ -441,6 +441,7 @@ function compileRun(world, { race, cls = null, raceBits = {}, family = 'solo' } 
 		ptList, ptIndex, pC, pR, pX, pY, pMap, pFp, pInn, pNear, pNearD,
 		pZone, pCell, zoneCount: zoneIdx.size, cellCount: cellIdx.size,
 		pkgHome, pkgAway, homeCount, homeLevel: HOME_LEVEL, zoneMin, danger,
+		logCap: world.maxOpen || MAX_OPEN, // quest log size (evaluate.js: accepts wait for a free slot)
 		innPt: Int32Array.from(innRunPt),
 		N, fpBit, fpCount,
 		nodes: world.nodes, nodeR: Int32Array.from(nodePt.map((p) => p[1])), nodeC: Int32Array.from(nodePt.map((p) => p[0])),

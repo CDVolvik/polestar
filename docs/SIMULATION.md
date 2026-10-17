@@ -236,8 +236,20 @@ packages.
   the quest log shows N/40; issue #30): a package that needs more open
   quests is split. It is a world option (`maxOpen`, recorded in the world
   file; a world with another limit is rebuilt). The results up to 0.2.5
-  were searched at 20. The evaluator does not cap the log across packages;
-  results report the peak (`logPeak`).
+  were searched at 20. The evaluator holds the log to it across the whole
+  route: an accept with the log full waits (deferred like an accept above
+  the character's level: taken in the same pass once a turn-in frees a
+  slot, else in the package's second pass or a later return; still full
+  there, it is skipped and counted). A stopgap until sim v2 plans the log:
+  when the log is full, the character abandons the lowest-level quest in
+  it at least 6 levels below it (`ABANDON_GAP`, evaluate.js; its reward is
+  already reduced), losing that quest's progress, and waits only when none
+  is that low. Without it, quests a route accepts and never hands in (65
+  in the 200k-route Orc time route) filled the log for good: today's best
+  routes went from 123.5 to 173.3 h. Results report `logPeak` (at most the
+  limit), `logDeferred` (accepts that waited), `logSkipped`,
+  `logAbandoned` and `acceptedNeverTurnedIn` (accepted at some point, not
+  turned in by 60: wasted accepts).
 - Every parameter has a prior (mean and spread). Calibration (§4) narrows
   them.
 
@@ -269,7 +281,8 @@ Smooth results are their own files (`<faction>-<race>-<class>-smooth.json`,
 `consensus-<faction>-smooth.json`, `compare-…-smooth.json`), so the two
 objectives never overwrite each other. Results, `sim compare` rows and the
 `sim run` report carry the smoothness counters next to the hours:
-`zoneChanges`, `zoneReturns`, `spotReturns`, `sharedKills` and `logPeak`.
+`zoneChanges`, `zoneReturns`, `spotReturns`, `sharedKills` and the quest
+log counters above.
 
 ## 3. Route evaluation and search
 
