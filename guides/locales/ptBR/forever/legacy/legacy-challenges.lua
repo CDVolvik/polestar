@@ -69,10 +69,18 @@ return {
 	-- Step 12: PvP: honor ranks
 	["PvP: honor ranks"] = "JxJ: patentes de honra",
 	["Ranks 3, 7, 10, 13 and 14 are a point each. Polestar cannot read your highest rank yet, so tick each one off yourself. Forever's honor rules for reaching a rank have not been published in detail; in Classic, ranks come from your weekly honor standing, and 13-14 take many weeks of top standing."] = "As patentes 3, 7, 10, 13 e 14 valem um ponto cada. O Polestar ainda não consegue ler sua patente mais alta, então marque cada uma você mesmo. As regras de honra do Forever para alcançar uma patente não foram publicadas em detalhe; no Classic, as patentes vêm da sua classificação semanal de honra, e 13-14 exigem muitas semanas no topo.",
+	["enemy players for honor until PvP Rank 3"] = "jogadores inimigos por honra até a patente JxJ 3",
+	["enemy players for honor until PvP Rank 7"] = "jogadores inimigos por honra até a patente JxJ 7",
+	["enemy players for honor until PvP Rank 10"] = "jogadores inimigos por honra até a patente JxJ 10",
+	["enemy players for honor until PvP Rank 13"] = "jogadores inimigos por honra até a patente JxJ 13",
+	["enemy players for honor until PvP Rank 14"] = "jogadores inimigos por honra até a patente JxJ 14",
 
 	-- Step 13: PvP: Field of Honor
 	["PvP: Field of Honor"] = "JxJ: Field of Honor",
 	["The Field of Honor PvP season has weekly journey quests; finishing the ones for weeks 4, 7 and 10 is a point each. These quests are new in Forever and not in our data, so tick each one off yourself."] = "A temporada JxJ Field of Honor tem missões de jornada semanais; concluir as das semanas 4, 7 e 10 vale um ponto cada. Essas missões são novas no Forever e não estão nos nossos dados, então marque cada uma você mesmo.",
+	["enemy players and finish the Field of Honor week 4 journey quest"] = "jogadores inimigos e concluir a missão de jornada da semana 4 do Campo de Honra",
+	["enemy players and finish the Field of Honor week 7 journey quest"] = "jogadores inimigos e concluir a missão de jornada da semana 7 do Campo de Honra",
+	["enemy players and finish the Field of Honor week 10 journey quest"] = "jogadores inimigos e concluir a missão de jornada da semana 10 do Campo de Honra",
 
 	-- Step 14: Adventure: explore the world map
 	["Adventure: explore the world map"] = "Aventura: explorar o mapa-múndi",
@@ -83,8 +91,10 @@ return {
 	-- Step 15: Adventure: Lord Valthalak
 	-- {npc:16042} Lord Valthalak
 	["Adventure: {npc:16042}"] = "Aventura: {npc:16042}",
-	-- {npc:16042} Lord Valthalak · {npc:16013} Deliana · {zone:1455} Ironforge · {npc:16012} Mokvar · {zone:1454} Orgrimmar · {npc:16033} Bodley · {area:254} Blackrock Mountain · {quest:8996} Return to Bodley · {quest:8997} Back to the Beginning
-	["The {npc:16042} questline is a point. It is the level 60 dungeon-set chain: {npc:16013} ({zone:1455}) or {npc:16012} ({zone:1454}) send you through In Search of Anthion and Anthion's Parting Words to {npc:16033} at {area:254}, whose Three Kings of Flame, the Left and Right Pieces of Lord Valthalak's Amulet, Final Preparations and Mea Culpa, {npc:16042} end with {quest:8996}. {quest:8997} then leads to the class Saving the Best for Last quests."] = "A série de missões de {npc:16042} vale um ponto. É a cadeia do conjunto de masmorra de nível 60: {npc:16013} ({zone:1455}) ou {npc:16012} ({zone:1454}) mandam você, por À procura de Anthion e As últimas palavras de Anthion, até {npc:16033} em {area:254}, cujas Três reis das chamas, as partes esquerda e direita de Amuleto do Lorde Valthalak, Preparativos finais e Mea Culpa, {npc:16042} terminam com {quest:8996}. {quest:8997} então leva às missões de classe Deixando o melhor para o final.",
+	-- {npc:16042} Lord Valthalak · {npc:16013} Deliana · {zone:1455} Ironforge · {npc:16012} Mokvar · {zone:1454} Orgrimmar · {npc:16033} Bodley · {area:254} Blackrock Mountain · {quest:8995} Mea Culpa, Lord Valthalak · {quest:8996} Return to Bodley · {quest:8997} Back to the Beginning
+	["The {npc:16042} questline is a point. It is the level 60 dungeon-set chain: {npc:16013} ({zone:1455}) or {npc:16012} ({zone:1454}) send you through In Search of Anthion and Anthion's Parting Words to {npc:16033} at {area:254}, whose Three Kings of Flame, the Left and Right Pieces of Lord Valthalak's Amulet, Final Preparations and {quest:8995} end with {quest:8996}. {quest:8997} then leads to the class Saving the Best for Last quests."] = "A série de missões de {npc:16042} vale um ponto. É a cadeia do conjunto de masmorra de nível 60: {npc:16013} ({zone:1455}) ou {npc:16012} ({zone:1454}) mandam você, por À procura de Anthion e As últimas palavras de Anthion, até {npc:16033} em {area:254}, cujas Três reis das chamas, as partes esquerda e direita do Amuleto do Lorde Valthalak, Preparativos finais e {quest:8995} terminam com {quest:8996}. {quest:8997} então leva às missões de classe Deixando o melhor para o final.",
+	-- {npc:16073} Spirit of Lord Valthalak · {npc:16033} Bodley · {area:254} Blackrock Mountain
+	["{npc:16073}, inside Upper Blackrock Spire after Mea Culpa (no spawn in the data: the arrow leads to {npc:16033}'s {area:254})"] = "{npc:16073}, no Pico da Rocha Negra Superior, depois de Mea Culpa (sem ponto de surgimento nos dados: a seta leva a {npc:16033}, em {area:254})",
 	-- {npc:16033} Bodley · {quest:8996} Return to Bodley
 	["{npc:16033} offers it once {quest:8996} is turned in"] = "{npc:16033} a oferece depois que {quest:8996} for entregue",
 	-- {quest:8996} Return to Bodley
@@ -145,6 +155,10 @@ return {
 	["Forever's new dungeons"] = "As novas masmorras do Forever",
 	-- {area:16919} Hall of Thanes · {area:153} Ruins of Lordaeron
 	["{area:16919} and {area:153} are new in Forever. Their bosses, levels and Legacy bracket are not in our data, so tick them off yourself."] = "{area:16919} e {area:153} são novas no Forever. Seus chefes, níveis e faixa de Legado não estão nos nossos dados, então marque-as você mesmo.",
+	-- {area:16919} Hall of Thanes
+	["the final boss of {area:16919}"] = "o chefe final de {area:16919}",
+	-- {area:153} Ruins of Lordaeron
+	["the final boss of {area:153}"] = "o chefe final de {area:153}",
 
 	-- Step 22: Raids: Onyxia
 	-- {npc:10184} Onyxia
@@ -155,8 +169,13 @@ return {
 	-- Step 23: Raids: Hyjal Summit
 	["Raids: Hyjal Summit"] = "Raides: Hyjal Summit",
 	["All 13 Hyjal Summit bosses are a point. Hyjal Summit is a new Forever raid; its bosses are not in our data, so tick it off once all 13 are down."] = "Os 13 chefes de Hyjal Summit, juntos, valem um ponto. Hyjal Summit é uma raide nova do Forever; seus chefes não estão nos nossos dados, então marque-a quando os 13 caírem.",
+	["all 13 Hyjal Summit bosses"] = "todos os 13 chefes do Pico Hyjal",
 
 	-- Step 24: Raids: Barrow Deeps
 	["Raids: Barrow Deeps"] = "Raides: Barrow Deeps",
 	["All 8 Barrow Deeps bosses are a point. Barrow Deeps is a new Forever raid; its bosses are not in our data, so tick it off once all 8 are down."] = "Os 8 chefes de Barrow Deeps, juntos, valem um ponto. Barrow Deeps é uma raide nova do Forever; seus chefes não estão nos nossos dados, então marque-a quando os 8 caírem.",
+	["all 8 Barrow Deeps bosses"] = "todos os 8 chefes das Profundezas dos Túmulos",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["The {npc:16042} questline is a point. It is the level 60 dungeon-set chain: {npc:16013} ({zone:1455}) or {npc:16012} ({zone:1454}) send you through In Search of Anthion and Anthion's Parting Words to {npc:16033} at {area:254}, whose Three Kings of Flame, the Left and Right Pieces of Lord Valthalak's Amulet, Final Preparations and Mea Culpa, {npc:16042} end with {quest:8996}. {quest:8997} then leads to the class Saving the Best for Last quests."] = "A série de missões de {npc:16042} vale um ponto. É a cadeia do conjunto de masmorra de nível 60: {npc:16013} ({zone:1455}) ou {npc:16012} ({zone:1454}) mandam você, por À procura de Anthion e As últimas palavras de Anthion, até {npc:16033} em {area:254}, cujas Três reis das chamas, as partes esquerda e direita de Amuleto do Lorde Valthalak, Preparativos finais e Mea Culpa, {npc:16042} terminam com {quest:8996}. {quest:8997} então leva às missões de classe Deixando o melhor para o final.",
 }

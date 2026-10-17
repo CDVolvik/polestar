@@ -31,7 +31,8 @@ ns.RegisterDefaults("ui", {
 	notesOpen = true, -- a step's tip starts in full; off, it starts on one line (players asked for it open)
 	combat = "show", -- "show" | "fade" | "hide"; steady by default, a fade on every pull distracts
 	reduceMotion = false,
-	font = "game", -- "game" (the client's own font, the default) | "inter" (EllesmereUI's while matchFont is on)
+	skin = "polestar", -- "polestar" (the house style, the default) | "halo" | "hearth" | "forever" | "blizzard" | "classic" (Polestar.Theme, "Skins")
+	font = "skin", -- "skin" (the skin's: the game's own font, Fira Sans in Halo) | "game" | "inter" | "fira" (EllesmereUI's while matchFont is on)
 	scheme = "dusk", -- "dusk" | "night" | "graphite" | "ellesmere" (Polestar.Theme.SCHEMES)
 	accent = false, -- false: the scheme's (or EllesmereUI's) accent; { r, g, b }: your own
 	bgColor = false, -- false: the scheme's ground; { r, g, b }: your own
@@ -138,13 +139,13 @@ function UI.Category(guide)
 end
 
 -- Where a guide happens, as the player should read it: a leveling guide's
--- zone; for other categories (professions, reputation, ...) the guide's
--- zone is only a meaningful place when the guide belongs to one faction
--- (its capital); a both-faction guide's zone is an authoring detail and
--- reads as nothing here.
+-- zone (the client's name of its map, else the guide's English); for other
+-- categories (professions, reputation, ...) the guide's zone is only a
+-- meaningful place when the guide belongs to one faction (its capital); a
+-- both-faction guide's zone is an authoring detail and reads as nothing here.
 function UI.GuidePlace(guide)
 	if not guide then return nil end
-	local z = guide.zoneName
+	local z = type(guide.zone) == "number" and mapName(guide.zone) or guide.zoneName
 	if type(z) ~= "string" or z == "" then return nil end
 	if UI.Category(guide) == "Leveling" or guide.faction then return z end
 	return nil
@@ -220,7 +221,8 @@ end
 
 -- Secondary line. An unavailable quest says why ("Needs level 14"); a farm
 -- spot names its mobs; a chosen candidate (trainer, vendor, inn, farm spot)
--- adds its zone; then the Engine's detail and the goal's own note.
+-- adds its zone; then the Engine's detail, the quest a kept grey accept
+-- opens and the goal's own note.
 function UI.GoalDetail(goal)
 	if goal.unavailable then
 		local why = goal.unavailableText
@@ -238,6 +240,7 @@ function UI.GoalDetail(goal)
 		local zone = UI.MapName(goal.map)
 		if zone and not (d and d:find(zone, 1, true)) then parts[#parts + 1] = zone end
 	end
+	if goal.keptGreyText then parts[#parts + 1] = goal.keptGreyText end
 	if goal.note then parts[#parts + 1] = goal.note end
 	if #parts == 0 then return nil end
 	return table.concat(parts, "  \194\183  ")
@@ -266,7 +269,7 @@ local function rewardItem(it)
 	local C = ns.Compat
 	local q = (C and C.GetItemQuality and C.GetItemQuality(it.item)) or it.quality
 	local hex = q and C and C.ItemQualityHex and C.ItemQualityHex(q) or Theme.Hex("item")
-	return "|c" .. hex .. (it.itemName or ("#" .. it.item)) .. "|r"
+	return "|c" .. hex .. (ns.Names.Item(it.item) or it.itemName or ("#" .. it.item)) .. "|r"
 end
 
 local function itemList(list, joiner)
@@ -342,7 +345,7 @@ function UI.GroupLine(goal)
 	if p.kind == "elite" then
 		text = ELITE_LINE[p.rank] or ELITE_LINE[1]
 	elseif (p.kind == "dungeon" or p.kind == "raid") and type(p.name) == "string" then
-		text = format(p.kind == "raid" and L["Raid: %s"] or L["Dungeon: %s"], p.name)
+		text = format(p.kind == "raid" and L["Raid: %s"] or L["Dungeon: %s"], (type(p.map) == "number" and ns.Names.Instance(p.map)) or p.name)
 	elseif p.kind == "group" then
 		text = type(p.size) == "number" and format(L["Group of %d advised"], p.size) or L["Group advised"]
 	end
@@ -382,12 +385,14 @@ function UI.ReadingGoal(view, goal)
 	return setmetatable({
 		t = a.t, text = a.text, verb = a.verb, subject = a.subject, subjectKind = a.subjectKind,
 		quest = a.quest, note = a.note or false, optional = a.optional, progress = false, source = false, party = a.party,
+		keptGreyText = a.keptGreyText,
 	}, { __index = goal })
 end
 
 -- The one line under a goal in the reading flow, only when it changes what
 -- the player does: why a quest is unavailable, that the goal needs a group,
--- how to get the item a quest starts from, whom an item is got from, that an
+-- how to get the item a quest starts from, which later quest a grey accept
+-- "Skip grey quests" keeps opens, whom an item is got from, that an
 -- area objective's mobs are all over its area, which mobs a farm spot is,
 -- where a chosen trainer/vendor is, the open objectives of a quest to
 -- complete that has several, the goal's own note, and an open turn-in's
@@ -403,6 +408,8 @@ function UI.GoalSubline(goal, shownMap, noParty, noMissing)
 	if party then parts[#parts + 1] = party end
 	local starter = UI.StarterLine(goal)
 	if starter then parts[#parts + 1] = starter end
+	-- A grey accept "Skip grey quests" keeps, and the quest it opens.
+	if goal.keptGreyText and goal.status ~= "skipped" then parts[#parts + 1] = goal.keptGreyText end
 	local source = UI.SourceLine(goal)
 	if source then parts[#parts + 1] = source end
 	local area = UI.AreaLine(goal)

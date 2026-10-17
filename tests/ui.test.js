@@ -855,6 +855,21 @@ test('an unavailable quest stays readable but muted, says why, and drops its cou
 	assert.equal(out.fallback, 'Not offered');
 });
 
+test('a grey accept "Skip grey quests" keeps says which quest it opens, on its row and in its tooltip', () => {
+	const [out] = run(`
+		uistub.setGuide(uistub.elwynn, 4)
+		local g = uistub.goal(4, 2)
+		g.keptGrey, g.keptGreyText = 18, "Grey, kept: opens Brotherhood of Thieves"
+		uistub.update()
+		local r = rowFor("Investigate Echo Ridge")
+		emit({ sub = r and r.Sub:GetText() or false, line = Polestar.UI.GoalSubline(g), detail = Polestar.UI.GoalDetail(g),
+			plain = Polestar.UI.GoalSubline(uistub.goal(4, 4)) or false })`);
+	assert.equal(out.line, 'Grey, kept: opens Brotherhood of Thieves');
+	assert.equal(out.sub, out.line, 'shown under the goal in the window');
+	assert.match(out.detail, /Grey, kept: opens Brotherhood of Thieves/);
+	assert.doesNotMatch(String(out.plain), /Grey, kept/);
+});
+
 test('a farm-spot collect goal names its mobs, their levels and zone, and cycles to the next spot', () => {
 	const [out] = run(`
 		uistub.setGuide(uistub.elwynn, 3)
@@ -938,7 +953,7 @@ test('TRAIN_DUE shows a training banner after the out-levelled offer; Show point
 	const [out] = run(`
 		uistub.openTabs(TABS, 1)
 		local B = GF.parts.banner
-		local trainer = { npc = 914, npcName = "Ander Germaine", map = 1453, x = 79.6, y = 70.2 }
+		local trainer = { npc = 914, npcName = "Ander Germaine", map = 1453, x = 79.6, y = 70.2, z = 96.5 }
 		Polestar.Fire("GUIDE_OUTLEVELED", uistub.elwynn, "forever/alliance/02-westfall")
 		Polestar.Fire("TRAIN_DUE", 12, trainer)
 		local first = B.Jump.Label:GetText()
@@ -946,16 +961,17 @@ test('TRAIN_DUE shows a training banner after the out-levelled offer; Show point
 		local second = { text = B.Text:GetText(), show = B.Jump.Label:GetText(), later = B.Later:IsShown(), close = B.Close:IsShown() }
 		B.Jump:Click()
 		local target = lastCall("SetTarget")
-		local afterShow = B:IsShown()
+		local afterShow, aimed = B:IsShown(), { uistub.target.stop, uistub.target.z }
 		Polestar.Fire("TRAIN_DUE", 14, trainer)
 		B.Later:Click()
-		emit({ first = first, second = second, target = target, afterShow = afterShow, afterLater = B:IsShown() })`);
+		emit({ first = first, second = second, target = target, aimed = aimed, afterShow = afterShow, afterLater = B:IsShown() })`);
 	assert.equal(out.first, 'Jump to Westfall', 'the out-levelled offer goes first');
 	assert.deepEqual(out.second, {
 		text: 'Level 12  \u00b7  new Warrior skills  \u00b7  Ander Germaine, Stormwind City',
 		show: 'Show', later: true, close: false,
 	});
 	assert.deepEqual(out.target, ['SetTarget', 1453, 79.6, 70.2, 'Ander Germaine']);
+	assert.deepEqual(out.aimed, ['trainer', 96.5], 'the trainer\'s stop kind and height (#180)');
 	assert.equal(out.afterShow, false);
 	assert.equal(out.afterLater, false);
 });

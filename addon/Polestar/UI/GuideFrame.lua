@@ -47,6 +47,8 @@ local UI, Theme, W, Anim = ns.UI, ns.Theme, ns.Widgets, ns.Anim
 local L = ns.L
 local floor, max, min, abs, type, ipairs = math.floor, math.max, math.min, math.abs, type, ipairs
 
+-- The window's sizes: the house style's here, a skin's from Theme.Metric
+-- (readMetrics, on build and on a skin change).
 local PAD = 14
 local TAB_H = 28
 local NAV_H = 34
@@ -58,6 +60,18 @@ local CHECK = 18
 local UP_ROW = 24
 local UP_TOGGLE = 30
 local COMBAT_ALPHA = 0.35
+
+local function readMetrics()
+	PAD = Theme.Metric("guidePad", 14)
+	TAB_H = Theme.Metric("guideTabs", 28)
+	NAV_H = Theme.Metric("guideNav", 34)
+	PROG_H = Theme.Metric("guideFoot", 26)
+	TEXT_X = PAD + ICON + Theme.Metric("guideIconGap", 10)
+	ROW_MIN = Theme.Metric("guideRow", 24)
+	CHECK = Theme.Metric("guideCheck", 18)
+	UP_ROW = Theme.Metric("guideUpRow", 24)
+	UP_TOGGLE = Theme.Metric("guideUpToggle", 30)
+end
 local TAB_MAX_W = 150
 
 local GF = {}
@@ -176,10 +190,11 @@ local function goalTooltip(row)
 	W.Tooltip(row, tooltipAnchor(), goal.text or "", lines)
 end
 
+-- `p`: a goal's or group's place from the step view, its height `z` included.
 local function pointAt(p, label)
 	local nav = ns.Nav
 	if p and p.x and p.map and nav and nav.SetTarget then
-		nav.SetTarget(p.map, p.x, p.y, label, p.f)
+		nav.SetTarget(p.map, p.x, p.y, label, p.f, nil, p.z)
 		GF.UpdateTargets()
 	end
 end
@@ -369,8 +384,11 @@ local function paintRow(r, goal, pop, sameStep, current, noParty, noMissing)
 	if skipped then
 		W.Color(r.Icon, "textMuted", 0.8)
 	else
-		W.Color(r.Icon, done and "success" or (current and "accent" or "textDim"))
+		local gold = Theme.GameSkin() and (goal.t == "accept" or goal.t == "turnin")
+		W.Color(r.Icon, done and "success" or ((current or gold) and "accent" or "textDim"))
 	end
+	-- The game's looks light the goal to do now with their own art.
+	Theme.KitRowLit(r, current and not done and not skipped and not transparent())
 	r.Text:SetText(UI.GoalLine(goal))
 	-- White while it is to be done; done and skipped goals step back.
 	W.Color(r.Text, (done or skipped) and "textMuted" or "text")
@@ -705,6 +723,7 @@ function GF.RenderTabs()
 		W.Color(b.Icon, b.psActive and "accent" or "textMuted")
 		b.Selected:SetShown(b.psActive)
 		b.Bar:SetShown(b.psActive)
+		GF.PaintTab(b)
 		local w = b.psActive and activeW or otherW
 		b:SetWidth(w)
 		layoutTab(b, b:IsMouseOver() and 20 or 8)
@@ -887,7 +906,7 @@ function GF.TakeBanner()
 		notices.train = nil
 		local t, nav2 = n.trainer, ns.Nav
 		if t and t.map and t.x and nav2 and nav2.SetTarget then
-			nav2.SetTarget(t.map, t.x, t.y, t.npcName or L["Class trainer"], t.f, "trainer")
+			nav2.SetTarget(t.map, t.x, t.y, t.npcName or L["Class trainer"], t.f, "trainer", t.z)
 		end
 	end
 	GF.Layout()
@@ -1112,6 +1131,7 @@ function GF.PaintProgress(animate)
 	local w = F:GetWidth() - PAD * 2 - 44
 	foot.Line:SetWidth(max(1, w))
 	W.SetProgress(foot.Line, frac, w, animate)
+	GF.PaintStatus(frac, foot.Pct:GetText())
 	foot.psDone, foot.psTotal = done, total
 end
 
@@ -1136,15 +1156,15 @@ local function setEmpty(kind)
 	empty.Secondary:Hide()
 	local glyph, color = "emblem", "accent"
 	if kind == "noguides" and UI.Packs and UI.Packs.AnySwitchedOff() then
-		-- Installed but switched off on the Guide packs page.
+		-- Installed but switched off on the Community guides page.
 		empty.Title:SetText(L["No guides shown"])
-		empty.Text:SetText(L["The guide packs are switched off. Turn one on under Options, Guide packs (/polestar packs)."])
-		W.SetButtonText(empty.Primary, L["Guide packs"])
+		empty.Text:SetText(L["The community addons are switched off. Turn one on under Options, Community guides (/polestar packs)."])
+		W.SetButtonText(empty.Primary, L["Community guides"])
 		empty.Primary.psAction = function() UI.ShowOptions("guidepacks") end
 		empty.Primary:Show()
 	elseif kind == "noguides" then
 		empty.Title:SetText(L["No guides installed"])
-		empty.Text:SetText(L["Enable Polestar Guides or a guide pack in the AddOns list on the character screen, then reload."])
+		empty.Text:SetText(L["Enable Polestar Guides or a community addon in the AddOns list on the character screen, then reload."])
 	elseif kind == "noguide" then
 		local id = G and G.Suggest and G.Suggest()
 		local suggested = id and G.Get(id)
@@ -1588,7 +1608,13 @@ function GF.ApplyStyle()
 	local clear = transparent()
 	F.psBare = clear
 	Theme.Repaint(F)
-	band:SetShown(not clear)
+	local skin = Theme.SkinKey()
+	band:SetShown(not clear and skin == "polestar")
+	nav.TitleBar:SetShown(not clear and skin == "hearth")
+	-- Blizzard's damage meter header bar under the tabs.
+	Theme.KitStrip(strip, not clear)
+	-- The quest tracker's header behind the focus (Forever, Blizzard).
+	Theme.KitHeader(person, not clear)
 	strip.Rule:SetShown(not clear)
 	nav.Rule:SetShown(not clear)
 	W.Painter(foot.Line.Track, paintTrack)
@@ -1713,7 +1739,208 @@ local APPLY = {
 	["ui.font"] = function() GF.Layout() end,
 }
 
+---------------------------------------------------------------------------
+-- Skins (Polestar.Theme, "Skins"): Halo and Blizzard take the handoff's
+-- sizes (DIRECTION_B_HALO.md §3) and their own parts: Halo's gold rule under
+-- the navigator, Blizzard's title bar, framed tabs and the game's status bar.
+---------------------------------------------------------------------------
+
+local skinShown
+
+-- Hearth's tab: framed, gold on the active one (DIRECTION_A_BLIZZARD.md §3);
+-- the game's looks: their kit's tab art.
+function GF.PaintTab(b)
+	local kit = Theme.KitTab(b, b.psActive)
+	local bliz = Theme.SkinKey() == "hearth"
+	local f = rawget(b, "psFrameTex")
+	if bliz and not f then
+		f = b:CreateTexture(nil, "BACKGROUND", nil, -7)
+		f:SetTexture(Theme.Media("white"))
+		b.psFrameTex = f
+	end
+	if f then
+		f:SetShown(bliz)
+		f:ClearAllPoints()
+		f:SetPoint("BOTTOMLEFT", b, "BOTTOMLEFT", 0, 0)
+		f:SetPoint("BOTTOMRIGHT", b, "BOTTOMRIGHT", 0, 0)
+		f:SetHeight(b.psActive and 24 or 21)
+		local top = b.psActive and { 0.231, 0.176, 0.078 } or { 0.122, 0.094, 0.047 }
+		local bottom = b.psActive and { 0.09, 0.067, 0.039 } or { 0.051, 0.039, 0.02 }
+		if f.SetGradient and CreateColor then
+			f:SetGradient("VERTICAL", CreateColor(bottom[1], bottom[2], bottom[3], 1), CreateColor(top[1], top[2], top[3], 1))
+		else
+			f:SetVertexColor(top[1], top[2], top[3], 1)
+		end
+	end
+	if bliz or kit then
+		b.Selected:Hide()
+		b.Bar:Hide()
+		W.Color(b.Label, b.psActive and "title" or "tabRest")
+	end
+end
+
+-- The progress bar: the house and Halo's slim line with its percent right of
+-- it, or Blizzard's game status bar (Interface\TargetingFrame\UI-StatusBar),
+-- 14 high, the percent centred in it.
+local STATUS_BAR = "Interface\\TargetingFrame\\UI-StatusBar"
+local function footBar()
+	local b = rawget(foot, "Status")
+	if b then return b end
+	b = CreateFrame("StatusBar", nil, foot)
+	b:SetStatusBarTexture(STATUS_BAR)
+	b:SetMinMaxValues(0, 1)
+	b.Bg = b:CreateTexture(nil, "BACKGROUND")
+	b.Bg:SetTexture(Theme.Media("white"))
+	b.Bg:SetAllPoints(b)
+	b.Bg:SetVertexColor(0, 0, 0, 0.75)
+	Theme.Border(b, 0.42, 0.329, 0.125, 1)
+	b.Pct = b:CreateFontString(nil, "OVERLAY")
+	Theme.Font(b.Pct, "small")
+	b.Pct:SetPoint("CENTER", b, "CENTER", 0, 0)
+	b.Pct:SetTextColor(1, 1, 1, 1)
+	foot.Status = b
+	return b
+end
+
+-- Fill Blizzard's bar (GF.Layout sets the house line; this follows it).
+function GF.PaintStatus(frac, pctText)
+	local b = rawget(foot, "Status")
+	if not b or not b:IsShown() then return end
+	b:SetValue(frac or 0)
+	local t = b:GetStatusBarTexture()
+	if Theme.Kit() then
+		-- The game's looks colour their own fill (Theme.KitStatus).
+	elseif t and t.SetGradient and CreateColor then
+		t:SetGradient("VERTICAL", CreateColor(0.478, 0.345, 0, 1), CreateColor(0.91, 0.722, 0, 1))
+	elseif t then
+		t:SetVertexColor(0.91, 0.722, 0, 1)
+	end
+	b.Pct:SetText(pctText or "")
+end
+
+function GF.ApplySkin()
+	if not F then return end
+	readMetrics()
+	local skin = Theme.SkinKey()
+	skinShown = skin
+	F.psGuide = true
+	Theme.Repaint(F)
+	strip:SetHeight(TAB_H)
+	nav:SetHeight(NAV_H)
+	foot:SetHeight(PROG_H)
+	-- The navigator: ‹ › and the icon buttons at the skin's sizes.
+	local nb, ni = Theme.Metric("guideNavBtn", 24), Theme.Metric("guideNavIcon", 14)
+	for _, b in ipairs({ nav.Prev, nav.Next }) do
+		b:SetSize(nb, nb)
+		b.Icon:SetSize(ni, ni)
+		W.SetFramed(b, "red")
+	end
+	-- Room between ‹ › and "28 / 36": Halo's 2, Blizzard's framed squares 4.
+	local gap = Theme.Metric("guideNavGap", 0)
+	nav.Steps.Count:SetPoint("LEFT", nav.Prev, "RIGHT", gap, 0)
+	nav.Next:SetPoint("LEFT", nav.Steps.Count, "RIGHT", gap, 0)
+	local iw, ih, ig = Theme.Metric("guideIconBtnW", 24), Theme.Metric("guideIconBtnH", 24), Theme.Metric("guideIcon", 14)
+	-- The icon buttons right of Skip: the bug, the menu and, where it is built,
+	-- the Nearby services button.
+	for _, key in ipairs({ "Menu", "Report", "Nearby" }) do
+		local b = rawget(nav, key)
+		if b then
+			b:SetSize(iw, ih)
+			b.Icon:SetSize(ig, ig)
+			W.SetFramed(b, "icon")
+		end
+	end
+	nav.Skip:SetHeight(nb)
+	nav.Steps:SetHeight(nb)
+	nav.Steps:SetPoint("LEFT", nav, "LEFT", PAD - 6, 0)
+	-- Rules: Halo's gold one under the navigator; Hearth's title bar line; the
+	-- game's looks their separator.
+	W.Painter(nav.Rule, function(t)
+		local k = Theme.SkinKey()
+		if k == "halo" then
+			t:SetVertexColor(Theme.Color("accentLine"))
+		elseif k == "hearth" then
+			t:SetVertexColor(Theme.Color("titleLine"))
+		elseif Theme.Kit() then
+			t:SetVertexColor(Theme.Color("separator"))
+		else
+			t:SetVertexColor(Theme.Wash("divider"))
+		end
+		t:SetHeight(Theme.Pixel(nav))
+	end)
+	-- Hearth: the person's name over a gold separator.
+	person.Rule:SetShown(skin == "hearth")
+	-- The focus parts at the skin's paddings.
+	person.Icon:SetPoint("TOPLEFT", person, "TOPLEFT", PAD - 1, -11)
+	person.Name:SetPoint("TOPLEFT", person, "TOPLEFT", TEXT_X, -10)
+	card.Tip.Text:SetPoint("TOPLEFT", card.Tip, "TOPLEFT", TEXT_X, -6)
+	card.Tip.Toggle:SetPoint("TOPLEFT", card.Tip, "TOPLEFT", PAD - 2, -3)
+	for _, part in ipairs({ after, upnext.Toggle, GF.xp }) do
+		part.Rule:SetPoint("TOPLEFT", part, "TOPLEFT", PAD, 0)
+		part.Rule:SetPoint("TOPRIGHT", part, "TOPRIGHT", -PAD, 0)
+	end
+	after.Text:SetPoint("LEFT", after, "LEFT", PAD, 0)
+	after.Count:SetPoint("RIGHT", after, "RIGHT", -PAD, 0)
+	upnext.Toggle:SetHeight(UP_TOGGLE)
+	upnext.Toggle.Label:SetPoint("LEFT", upnext.Toggle, "LEFT", PAD, 0)
+	upnext.Toggle.Icon:SetPoint("RIGHT", upnext.Toggle, "RIGHT", -PAD, 0)
+	GF.xp.Icon:SetPoint("LEFT", GF.xp, "LEFT", PAD, -1)
+	banner.Icon:SetPoint("TOPLEFT", banner, "TOPLEFT", PAD, -10)
+	banner.Text:SetPoint("TOPLEFT", banner, "TOPLEFT", PAD + 21, -9)
+	for _, r in ipairs(rows) do
+		r.Icon:SetPoint("CENTER", r, "TOPLEFT", PAD + ICON / 2, -12)
+		r.Text:SetPoint("TOPLEFT", r, "TOPLEFT", TEXT_X, -4)
+		r.Check:SetSize(CHECK, CHECK)
+		r.Check:SetPoint("TOPRIGHT", r, "TOPRIGHT", -PAD + 3, -3)
+		Theme.Repaint(r.Check)
+	end
+	-- The progress bar: the game's status bar in Hearth and the game's looks.
+	local bliz = Theme.GameSkin()
+	foot.Line:SetHeight(3)
+	foot.Line:SetPoint("LEFT", foot, "LEFT", PAD, 0)
+	foot.Pct:SetPoint("RIGHT", foot, "RIGHT", -PAD, 0)
+	foot.Line:SetShown(not bliz)
+	foot.Pct:SetShown(not bliz)
+	if bliz then
+		local b = footBar()
+		b:ClearAllPoints()
+		local inset = Theme.Kit() and 10 or 0
+		b:SetPoint("LEFT", foot, "LEFT", PAD + inset, 0)
+		b:SetPoint("RIGHT", foot, "RIGHT", -PAD - inset, 0)
+		b:SetHeight(Theme.Kit() and 12 or 14)
+		b:Show()
+		if Theme.KitStatus(b) then
+			b.psKitDrawn = true
+		elseif b.psKitDrawn then
+			-- Back from a game look: Hearth's bar as footBar made it.
+			b:SetStatusBarTexture(STATUS_BAR)
+			b:GetStatusBarTexture():SetTexCoord(0, 1, 0, 1)
+			b.Bg:SetTexture(Theme.Media("white"))
+			b.Bg:SetTexCoord(0, 1, 0, 1)
+			b.Bg:SetVertexColor(0, 0, 0, 0.75)
+			Theme.Border(b, 0.42, 0.329, 0.125, 1)
+			b.psKitDrawn = nil
+		end
+	elseif rawget(foot, "Status") then
+		foot.Status:Hide()
+	end
+	-- The tabs, painted again in the skin.
+	for _, b in ipairs(tabButtons) do
+		b:SetHeight(TAB_H)
+		GF.PaintTab(b)
+	end
+end
+
+-- A skin chosen while the window shows: its sizes, then a fresh layout.
+Theme.OnChanged(function()
+	if F and skinShown and skinShown ~= Theme.SkinKey() then
+		GF.ApplySkin()
+		GF.ApplyStyle()
+	end
+end)
+
 local function applyAll()
+	GF.ApplySkin()
 	F:SetScale(ns.Get("ui.scale") or 1)
 	GF.ApplyPosition()
 	GF.ApplyLock()
@@ -1817,6 +2044,7 @@ local function draggable(frame)
 end
 
 local function build()
+	readMetrics()
 	F = CreateFrame("Frame", "PolestarGuideFrame", UIParent)
 	F:SetFrameStrata("MEDIUM")
 	F:SetClampedToScreen(true)
@@ -1857,6 +2085,20 @@ local function build()
 	nav.Rule = W.Divider(nav)
 	nav.Rule:SetPoint("BOTTOMLEFT", nav, "BOTTOMLEFT", 0, 0)
 	nav.Rule:SetPoint("BOTTOMRIGHT", nav, "BOTTOMRIGHT", 0, 0)
+	-- Blizzard's title bar: #2C200C to #150F06, 4 in from the frame.
+	nav.TitleBar = nav:CreateTexture(nil, "BACKGROUND", nil, -4)
+	nav.TitleBar:SetTexture(Theme.Media("white"))
+	nav.TitleBar:SetPoint("TOPLEFT", nav, "TOPLEFT", 4, 0)
+	nav.TitleBar:SetPoint("BOTTOMRIGHT", nav, "BOTTOMRIGHT", -4, 1)
+	W.Painter(nav.TitleBar, function(t)
+		local top, bottom = { Theme.Color("sky") }, { Theme.Color("skyBottom") }
+		if t.SetGradient and CreateColor then
+			t:SetGradient("VERTICAL", CreateColor(bottom[1], bottom[2], bottom[3], 1), CreateColor(top[1], top[2], top[3], 1))
+		else
+			t:SetVertexColor(top[1], top[2], top[3], 1)
+		end
+	end)
+	nav.TitleBar:Hide()
 	nav.Steps = CreateFrame("Frame", nil, nav)
 	nav.Steps:SetSize(100, 24)
 	nav.Steps:SetPoint("LEFT", nav, "LEFT", PAD - 6, 0)
@@ -1955,10 +2197,18 @@ local function build()
 	person.Icon = person:CreateTexture(nil, "ARTWORK")
 	person.Icon:SetSize(ICON + 1, ICON + 1)
 	person.Icon:SetPoint("TOPLEFT", person, "TOPLEFT", PAD - 1, -11)
-	person.Name = T(person, "name", "npc")
+	person.Name = T(person, "name", "personName")
 	person.Name:SetPoint("TOPLEFT", person, "TOPLEFT", TEXT_X, -10)
 	person.Where = T(person, "small", "textDim")
 	person.Where:SetPoint("TOPLEFT", person.Name, "BOTTOMLEFT", 0, -3)
+	-- Blizzard: a gold separator under the person, above the goals.
+	person.Rule = person:CreateTexture(nil, "ARTWORK")
+	person.Rule:SetTexture(Theme.Media("white"))
+	person.Rule:SetHeight(1)
+	person.Rule:SetPoint("BOTTOMLEFT", person, "BOTTOMLEFT", PAD, 0)
+	person.Rule:SetPoint("BOTTOMRIGHT", person, "BOTTOMRIGHT", -PAD, 0)
+	W.Color(person.Rule, "separator")
+	person.Rule:Hide()
 	person:SetScript("OnClick", function(self) pointAt(self.psPlace, self.psLabel) end)
 	person:SetScript("OnEnter", personEnter)
 	person:SetScript("OnLeave", function(self) W.HideTooltip(self) end)
