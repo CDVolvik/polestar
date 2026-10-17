@@ -80,10 +80,13 @@ eval    the walking router run standalone (LuaJIT, else Lua 5.1; a folder
         (yards, seconds, the share of the drawn line our grid at
         data/local/nav3 cannot walk, off-road share, yards in hostile hubs,
         steepest climb, indoor yards on data/local/nav4's indoor surfaces
-        outside the capitals; a layer not built yet reads n/a) and
-        expectations; --sweep also searches, per zone with located guide
-        goals and per side, from the zone's flight master (else its first
-        goal) to every goal. --baseline runs the same on another folder (or
+        outside the capitals, yards per zone; a layer not built yet reads
+        n/a) and expectations; a route with a level (the character's) is
+        priced with zone danger as the addon prices it (zones at least 4
+        levels above it, tools/lib/maps/zonelevels.js); --sweep also
+        searches, per zone with located guide goals and per side, from the
+        zone's flight master (else its first goal) to every goal.
+        --baseline runs the same on another folder (or
         reads an earlier --out report) and judges the acceptance checks
         A1-A8; exit 1 when one fails. --style prices every search in a
         route style (fastest, balanced or roads; default balanced), the
@@ -441,7 +444,9 @@ async function evalCmd(argv) {
 	const city = indoorGrid ? require('../lib/nav/pack').cityTest({ areaTable: areaTableRows(), zoneAt: zoneLookup() }) : undefined;
 	const taxi = o.sweep ? readJson(path.join(DATA, 'travel.json')).taxi.nodes : null;
 	const guides = o.sweep ? fs.readFileSync(path.join(ROOT, 'addon', 'Polestar_Guides', 'Guides.lua'), 'utf8') : null;
-	const common = { corpus, sweep: !!o.sweep, style, geo, taxi, guides, grid, layers: loadLayers(undefined, { indoorGrid, city }), lua: findInterpreter(), log: (m) => console.error(m) };
+	// Routes with a level are priced with zone danger from each zone's lowest level (the addon's ZoneLevels.lua source).
+	const zoneLevels = corpus.routes.some((r) => r.level !== undefined && r.level !== null) ? require('../lib/maps/zonelevels').buildZoneLevels().levels : null;
+	const common = { corpus, sweep: !!o.sweep, style, geo, taxi, guides, grid, layers: loadLayers(undefined, { indoorGrid, city }), lua: findInterpreter(), zoneLevels, log: (m) => console.error(m) };
 	const fmtSummary = (label, s) => {
 		const sides = Object.entries(s.sweep).map(([p, v]) => `${p} ${v.reachable}/${v.targets} goals in ${v.zones} zones`).join(', ');
 		return `${s.style || 'balanced'} ${label}: routes ${s.ok}/${s.routes} found, blocked share ${s.blockedShare === null ? 'n/a' : `${(100 * s.blockedShare).toFixed(1)}%`}, median cold search ${s.medianMs} ms${sides ? `; sweep: ${sides}` : ''}`;

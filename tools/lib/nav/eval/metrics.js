@@ -4,7 +4,7 @@
 //
 //   metrics(result, { grid, layers, map }) -> null when not ok, else
 //     { yards, seconds, blocked, offRoad, hubYards: { Alliance, Horde }, hubYardsAway: { Alliance, Horde },
-//       endHubs: { Alliance: [name], Horde: [name] }, maxClimbDeg, indoorYards, endIndoor }
+//       endHubs: { Alliance: [name], Horde: [name] }, maxClimbDeg, indoorYards, endIndoor, zoneYards }
 //   loadLayers(dir = data/local/nav-layers, { indoorGrid, city }) -> { roads, hubs, indoor } (each null when not built)
 //   indoorLayer(grid, city?) -> indoor(c, x, y, z): true | false | null (no surface there)
 //   measureIndoor(report, layers) -> report with indoorYards and endIndoor measured again on layers.indoor
@@ -28,7 +28,8 @@
 // of the line lies in (endHubs, per side the names of those hubs hostile to
 // it: a route to a town of the other side enters it on purpose); indoorYards: yards on indoor ground
 // (layers.indoor(c, x, y, z) -> bool, indoorLayer); endIndoor: an end of the line lies on indoor ground (a route
-// that goes inside on purpose). Each null until its layer exists.
+// that goes inside on purpose). Each null until its layer exists. zoneYards: the drawn line's yards per zone
+// ({ [uiMapID]: yd }, the harness's zones: the router's own Path.ZoneAt), null on maps without zones.
 
 const fs = require('node:fs');
 const path = require('node:path');
@@ -176,6 +177,7 @@ function metrics(result, { grid = null, layers = {}, map = result.map } = {}) {
 		maxClimbDeg: maxClimb(pts),
 		indoorYards,
 		endIndoor,
+		zoneYards: result.zones ? { ...result.zones } : null,
 	};
 }
 

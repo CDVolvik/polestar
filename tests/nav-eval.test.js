@@ -107,6 +107,96 @@ test('eval harness: an error reported during a query makes that query not ok and
 	assert.equal(next.reason, null);
 });
 
+// Map 0 of 2 x 3 clusters (x 0..2T, y 0..3T), every cell open ground joined to its neighbours, each cluster in one
+// zone: the left column Tirisfal (1420), Western Plaguelands (1422), Tirisfal again; the right column Silverpine (1421).
+function zonedFolder() {
+	const C = 16;
+	const cg = new CellGrid({ C, NX: 2, NY: 3, CX0: 0, CY0: 0 });
+	const zoneOf = [1420, 1422, 1420, 1421, 1421, 1421]; // by cluster k = cx * 3 + cy
+	for (let k = 0; k < 6; k++) {
+		const cl = cg.cluster(k);
+		cl.val.fill(1);
+		cl.zone = new Uint16Array(256).fill(zoneOf[k]);
+	}
+	for (let gx = 0; gx < cg.GW; gx++) {
+		for (let gy = 0; gy < cg.GH; gy++) {
+			for (const [dx, dy] of [[1, 0], [0, 1], [1, 1], [1, -1]]) {
+				const x = gx + dx;
+				const y = gy + dy;
+				if (x < cg.GW && y >= 0 && y < cg.GH) cg.join(gx * cg.GH + gy, x * cg.GH + y);
+			}
+		}
+	}
+	cg.finish();
+	const maps = encodeMaps(cg, buildHpa(cg));
+	assert.ok(maps.zone && maps.zone.size === 6, 'the zone field');
+	const { files } = packFiles({ map: 0, cg, maps, global: 'PolestarPathData', gen: '-- nav-eval test map' });
+	const dir = tmpdir('polestar-eval-');
+	fs.mkdirSync(path.join(dir, 'Nav'));
+	for (const [name, text] of files) fs.writeFileSync(path.join(dir, 'Nav', name), text);
+	fs.writeFileSync(path.join(dir, 'Nav', 'Nav.xml'), `<Ui>\n${files.map(([name]) => `\t<Script file="${name}"/>`).join('\n')}\n</Ui>\n`);
+	return dir;
+}
+
+test('eval harness: a route with a level is priced with the zone danger table (the start\'s and the goal\'s zones exempt); its yards per zone come from Path.ZoneAt', { skip: noLua }, () => {
+	const { runRoutes } = require('../tools/lib/nav/eval/run');
+	const navDir = zonedFolder();
+	// zonelevels.js's shape: at level 20 Western Plaguelands (51+) is far above (10x), Silverpine (11+) safe.
+	const zoneLevels = { 1420: { min: 1 }, 1421: { min: 11 }, 1422: { min: 51 } };
+	const down = { map: 0, from: [150, 150, null], to: [150, 3 * T - 150, null] };
+	const into = { map: 0, from: [150, 150, null], to: [150, 1.5 * T, null] };
+	const [plain, danger, goal, goalPlain] = runRoutes({
+		navDir,
+		lua,
+		zoneLevels,
+		routes: [
+			{ id: 'plain', ...down },
+			{ id: 'danger', ...down, level: 20 },
+			{ id: 'goal', ...into, level: 20 },
+			{ id: 'goalPlain', ...into },
+		],
+	});
+	for (const r of [plain, danger, goal, goalPlain]) assert.equal(r.ok, true, `${r.id} routed (${r.reason})`);
+	assert.ok(plain.zones[1422] > 400, `without a level the walk goes straight through Western Plaguelands: ${JSON.stringify(plain.zones)}`);
+	assert.ok(plain.zones[1420] > 0 && !plain.zones[1421], `and never into Silverpine: ${JSON.stringify(plain.zones)}`);
+	assert.ok(!(danger.zones[1422] > 10), `at level 20 it goes round through Silverpine: ${JSON.stringify(danger.zones)}`);
+	assert.ok(danger.zones[1421] > 400, `through Silverpine: ${JSON.stringify(danger.zones)}`);
+	assert.deepEqual(goal.pts, goalPlain.pts, 'a goal inside Western Plaguelands: its zone is exempt, the walk is the plain one');
+	assert.equal(goal.cost, goalPlain.cost);
+});
+
+test('eval harness: on maps without the zone field a route\'s zones are null and its level changes nothing', { skip: noLua }, () => {
+	const { runRoutes } = require('../tools/lib/nav/eval/run');
+	const navDir = twoClusterFolder();
+	const [a, b] = runRoutes({ navDir, lua, zoneLevels: { 1422: { min: 51 } }, routes: [{ id: 'a', map: 0, from: [200, 200, null], to: [300, 800, null] }, { id: 'b', map: 0, from: [200, 200, null], to: [300, 800, null], level: 20 }] });
+	assert.equal(a.zones, null);
+	assert.deepEqual([b.pts, b.cost, b.zones], [a.pts, a.cost, null]);
+});
+
+test('metrics and compare: zoneYards.<uiMapID> reads the harness\'s yards in that zone, 0 for a zone the line never enters, n/a without zones', () => {
+	const { metrics } = require('../tools/lib/nav/eval/metrics');
+	const { evaluateExpectations } = require('../tools/lib/nav/eval/compare');
+	const m = metrics({ ok: true, cost: 100, pts: [[0, 0, 0], [100, 0, 0]], zones: { 1420: 60, 1424: 40 } }, { grid: null, layers: {}, map: 0 });
+	assert.deepEqual(m.zoneYards, { 1420: 60, 1424: 40 });
+	assert.equal(metrics({ ok: true, cost: 1, pts: [[0, 0, 0], [1, 0, 0]], zones: null }, {}).zoneYards, null);
+	const expect = [{ type: 'metric', metric: 'zoneYards.1422', op: '==', value: 0 }];
+	const [none] = evaluateExpectations({ expect, result: { ok: true }, metrics: m });
+	assert.deepEqual([none.pass, none.detail], [true, 'zoneYards.1422 0 (want == 0)']);
+	const [through] = evaluateExpectations({ expect, result: { ok: true }, metrics: { zoneYards: { 1422: 120.5 } } });
+	assert.equal(through.pass, false);
+	const [na] = evaluateExpectations({ expect, result: { ok: true }, metrics: { zoneYards: null } });
+	assert.equal(na.pass, null);
+});
+
+test('the route corpus: a zone-map end in the Era frame (f "e") converts by that frame; a route\'s level reaches its query', () => {
+	const { resolveRoutes } = require('../tools/lib/nav/eval/run');
+	const calls = [];
+	const geo = { toWorld: (m, x, y, f) => (calls.push(f), { c: 0, wx: x * 10, wy: y * 10 }) };
+	const [r] = resolveRoutes([{ id: 'r', kind: 'reported', from: { uiMap: 1420, x: 1, y: 2 }, to: { uiMap: 1424, x: 3, y: 4, f: 'e' }, profile: 'Horde', level: 20, expect: [] }], geo);
+	assert.deepEqual(calls, ['l', 'e']);
+	assert.deepEqual([r.map, r.from, r.to, r.level], [0, [10, 20, null], [30, 40, null], 20]);
+});
+
 test('metrics: yards from the drawn line, the steepest climb between points; blocked, roads, hubs and indoor null without grid and layers', () => {
 	const { metrics } = require('../tools/lib/nav/eval/metrics');
 	const m = metrics({ ok: true, cost: 70, yards: null, pts: [[0, 0, 0], [30, 40, 0], [30, 50, 10], [30, 60, 0]] }, { grid: null, layers: {} });

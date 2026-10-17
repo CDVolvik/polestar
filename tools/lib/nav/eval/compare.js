@@ -11,7 +11,8 @@
 // Expectations (routes.json `expect`):
 //   { type: 'ok' }                                  the route is found
 //   { type: 'metric', metric: 'hubYards.Horde', op: '<=', value: 0 }   a metric (metrics.js) holds; n/a while null
-//     (hubYards.<side> of a route with an end inside a hub hostile to that side reads hubYardsAway.<side>)
+//     (hubYards.<side> of a route with an end inside a hub hostile to that side reads hubYardsAway.<side>;
+//     zoneYards.<uiMapID> reads 0 for a zone the line never enters, n/a on maps without zones)
 //   { type: 'hubs', includes: 'Southshore' }        the router reports that hub (n/a while it reports none)
 //   { type: 'faceClearance', face: [x, y, z], gt }  the drawn line passes the face's middle further than gt yd
 // A check is n/a (pass null) while a measurement it needs is null (a layer not built, a router without hubs):
@@ -69,7 +70,8 @@ function evaluateExpectations(route) {
 			const side = /^hubYards\.(Alliance|Horde)$/.exec(e.metric);
 			const ends = side && m && m.endHubs ? m.endHubs[side[1]] : [];
 			const metric = ends.length ? `hubYardsAway.${side[1]}` : e.metric;
-			const v = get(m, metric);
+			const zone = /^zoneYards\.(\d+)$/.exec(e.metric);
+			const v = zone ? (m && m.zoneYards ? m.zoneYards[zone[1]] || 0 : null) : get(m, metric);
 			if (v === null) return { type: e.type, pass: null, detail: `${metric} n/a` };
 			const note = ends.length ? ` (an end inside ${ends.join(', ')}; ${get(m, e.metric)} yd in all)` : '';
 			return { type: e.type, pass: OPS[e.op](v, e.value), detail: `${metric} ${v} (want ${e.op} ${e.value})${note}` };

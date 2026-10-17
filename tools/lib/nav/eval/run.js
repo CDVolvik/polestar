@@ -3,17 +3,19 @@
 // Polestar_Nav folder's maps, through the walking router run standalone by
 // harness.lua (LuaJIT, else Lua 5.1).
 //
-//   runQueries({ navDir, queries, lua? }) -> { init, results }   raw harness lines (harness.lua's header)
-//   runRoutes({ navDir, routes, profile?, lua? })
-//     routes: [{ id, map, from: [x, y, z|null], to, profile? }] (world, UnitPosition's frame)
-//     -> [{ id, ok, reason, cost, yards, pts: [[x, y, z]], hubs, ms, warmMs, kb, wet }]
-//   loadCorpus(file = routes.json) -> { routes: [{ id, kind, map?, from, to, profile, expect }] }
+//   runQueries({ navDir, queries, lua?, zoneLevels? }) -> { init, results }   raw harness lines (harness.lua's header)
+//     zoneLevels: tools/lib/maps/zonelevels.js's { [uiMapID]: { min, ... } }, for the routes with a level
+//   runRoutes({ navDir, routes, profile?, lua?, zoneLevels? })
+//     routes: [{ id, map, from: [x, y, z|null], to, profile?, level? }] (world, UnitPosition's frame)
+//     -> [{ id, ok, reason, cost, yards, pts: [[x, y, z]], hubs, ms, warmMs, kb, wet, zones }]
+//   loadCorpus(file = routes.json) -> { routes: [{ id, kind, map?, from, to, profile, level?, expect }] }
 //   resolveRoutes(routes, geo) -> the routes with world ends: an end [x, y, z] is kept (on `map`), an end
-//     { uiMap, x, y } (map percent in the live frame, as the player sees it) becomes world yards by
-//     map-frames.json (planner/geo.js, as tests/nav-e2e.test.js's every-zone walk); map is its continent
+//     { uiMap, x, y, f? } (map percent in the live frame, as the player sees it; f "e" the Era frame, as Guides.lua's
+//     goals) becomes world yards by map-frames.json (planner/geo.js, as tests/nav-e2e.test.js's every-zone walk);
+//     map is its continent; level (the character's, null for none) prices the route with zone danger (harness.lua)
 //   sweepQueries({ geo, taxi, guides, profiles }) -> one `many` query per zone with located guide goals
 //     and profile: from the zone's flight master open to that side (else its first goal) to every goal
-//   evaluate({ navDir, corpus, sweep, geo, taxi, guides, grid, layers, lua, log }) -> the eval report
+//   evaluate({ navDir, corpus, sweep, geo, taxi, guides, grid, layers, lua, zoneLevels, log }) -> the eval report
 //     { navDir, lua, init, routes: [{ ...route, result, metrics, expect }], sweep: [...], summary }
 //
 // A folder without its own Polestar_Nav.toc, Routing or API.lua (a `nav pack --out` folder holds only Nav/ and
@@ -66,15 +68,21 @@ function navFiles(navDir) {
 	return files;
 }
 
-function runQueries({ navDir, queries, lua = findInterpreter() }) {
+function runQueries({ navDir, queries, lua = findInterpreter(), zoneLevels = null }) {
 	const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'polestar-eval-'));
 	try {
 		const list = path.join(tmp, 'files.txt');
 		const qfile = path.join(tmp, 'queries.jsonl');
 		const out = path.join(tmp, 'out.jsonl');
+		const args = [HARNESS, ENCODING, list, qfile, out];
 		fs.writeFileSync(list, navFiles(path.resolve(navDir)).join('\n') + '\n');
 		fs.writeFileSync(qfile, queries.map((q) => JSON.stringify(q)).join('\n') + '\n');
-		const r = spawnSync(lua, [HARNESS, ENCODING, list, qfile, out], { encoding: 'utf8', stdio: ['ignore', 'ignore', 'pipe'], maxBuffer: 64 * 1024 * 1024 });
+		if (zoneLevels) {
+			const zfile = path.join(tmp, 'zones.json');
+			fs.writeFileSync(zfile, JSON.stringify(Object.fromEntries(Object.entries(zoneLevels).map(([id, z]) => [id, z.min]))));
+			args.push(zfile);
+		}
+		const r = spawnSync(lua, args, { encoding: 'utf8', stdio: ['ignore', 'ignore', 'pipe'], maxBuffer: 64 * 1024 * 1024 });
 		if (r.error) throw r.error;
 		if (r.status !== 0) throw new Error(`nav eval harness (${lua}) failed: ${(r.stderr || '').trim()}`);
 		const lines = fs.readFileSync(out, 'utf8').split('\n').filter(Boolean).map((l) => JSON.parse(l));
@@ -84,10 +92,10 @@ function runQueries({ navDir, queries, lua = findInterpreter() }) {
 	}
 }
 
-const routeQuery = (r, profile, style = 'balanced') => ({ type: 'route', id: r.id, map: r.map, from: r.from, to: r.to, profile: r.profile !== undefined ? r.profile : profile, style });
+const routeQuery = (r, profile, style = 'balanced') => ({ type: 'route', id: r.id, map: r.map, from: r.from, to: r.to, profile: r.profile !== undefined ? r.profile : profile, style, level: r.level === undefined ? null : r.level });
 
-function runRoutes({ navDir, routes, profile = null, style = 'balanced', lua }) {
-	const { results } = runQueries({ navDir, lua, queries: routes.map((r) => routeQuery(r, profile, style)) });
+function runRoutes({ navDir, routes, profile = null, style = 'balanced', lua, zoneLevels = null }) {
+	const { results } = runQueries({ navDir, lua, zoneLevels, queries: routes.map((r) => routeQuery(r, profile, style)) });
 	return results.map(({ type, ...r }) => r);
 }
 
@@ -100,7 +108,7 @@ function resolveRoutes(routes, geo) {
 		let map = r.map;
 		const end = (e, which) => {
 			if (Array.isArray(e)) return [e[0], e[1], e[2] === undefined ? null : e[2]];
-			const w = geo.toWorld(e.uiMap, e.x, e.y, 'l');
+			const w = geo.toWorld(e.uiMap, e.x, e.y, e.f || 'l');
 			if (!w) throw new Error(`route ${r.id}: map ${e.uiMap} has no frame in map-frames.json`);
 			if (map !== undefined && map !== w.c) throw new Error(`route ${r.id}: its ${which} end is on map ${w.c}, the route on ${map}`);
 			map = w.c;
@@ -108,7 +116,7 @@ function resolveRoutes(routes, geo) {
 		};
 		const from = end(r.from, 'from');
 		const to = end(r.to, 'to');
-		return { id: r.id, kind: r.kind, map, from, to, profile: r.profile === undefined ? null : r.profile, expect: r.expect || [] };
+		return { id: r.id, kind: r.kind, map, from, to, profile: r.profile === undefined ? null : r.profile, level: r.level === undefined ? null : r.level, expect: r.expect || [] };
 	});
 }
 
@@ -146,12 +154,12 @@ function sweepQueries({ geo, taxi, guides, profiles = PROFILES, style = 'balance
 	return queries;
 }
 
-function evaluate({ navDir, corpus, sweep = false, style = 'balanced', geo, taxi, guides, grid = null, layers = {}, lua = findInterpreter(), log = () => {} }) {
+function evaluate({ navDir, corpus, sweep = false, style = 'balanced', geo, taxi, guides, grid = null, layers = {}, lua = findInterpreter(), zoneLevels = null, log = () => {} }) {
 	const routes = resolveRoutes(corpus.routes, geo);
 	const many = sweep ? sweepQueries({ geo, taxi, guides, style }) : [];
 	log(`nav eval: ${routes.length} routes${sweep ? `, ${many.length} zone sweeps` : ''} on ${navDir} (${lua})`);
 	const t0 = Date.now();
-	const { init, results } = runQueries({ navDir, lua, queries: [...routes.map((r) => routeQuery(r, null, style)), ...many.map(({ hub, zone, ...q }) => q)] });
+	const { init, results } = runQueries({ navDir, lua, zoneLevels, queries: [...routes.map((r) => routeQuery(r, null, style)), ...many.map(({ hub, zone, ...q }) => q)] });
 	log(`nav eval: harness done in ${((Date.now() - t0) / 1000).toFixed(1)} s`);
 	const byId = new Map(results.map((r) => [`${r.type}|${r.id}`, r]));
 	const out = routes.map((r) => {
