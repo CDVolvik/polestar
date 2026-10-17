@@ -1621,6 +1621,11 @@ L["The map marks each place."] = "El mapa marca cada lugar."
 L["Every guide"] = "Todas las guías"
 L["Leveling, professions, reputations, mounts and pets."] = "Subir de nivel, profesiones, reputaciones, monturas y mascotas."
 L["Pages"] = "Páginas"
+-- L["The shortest walk. Cuts across fields and goes straight over hills."] = ""
+-- L["Takes roads when they aren't much longer, and goes round steep hills."] = ""
+-- L["Stays on roads, even when it's longer. Slower, but easy to follow."] = ""
+-- L["How the arrow walks you. You can change it any time in Options."] = ""
+-- L["Every style keeps you out of the other faction's towns and away from zones far above your level."] = ""
 
 -- Core/Closes.lua
 L["Taking %s closes %s for good."] = "Aceptar %s bloquea %s para siempre."

@@ -117,8 +117,9 @@ Other people can publish their own guides for Polestar as guide packs:
 separate addons, made and supported by their authors
 ([Guide packs](#guide-packs)). Each new character's first login opens a short
 welcome: a hello and what Polestar does; on the account's first character,
-quest automation, the guide at login and the colour scheme; then the guide
-Polestar suggests for that character, the Discord and guide packs
+quest automation, the guide at login and the colour scheme, then the route
+style (Fastest, Balanced or Roads, with a line on what each does); then the
+guide Polestar suggests for that character, the Discord and guide packs
 (`/polestar welcome` shows it again).
 
 > [!NOTE]

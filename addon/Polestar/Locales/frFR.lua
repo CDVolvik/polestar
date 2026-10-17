@@ -1317,6 +1317,11 @@ L["Feedback, bug reports and news"] = "Avis, rapports de bugs et nouvelles"
 L["Guides made by other players for Polestar, not our own routes: each pack is an addon of its own, installed like any other. Its guides appear in %s under Guide packs, credited to their author, who supports them. More in Options > Guide packs."] = "Des guides créés par d'autres joueurs pour Polestar, pas nos itinéraires : chaque pack est un addon à part, installé comme les autres. Ses guides apparaissent dans %s sous Packs de guides, crédités à leur auteur, qui les maintient. Plus dans Options > Packs de guides."
 L["Back"] = "Retour"
 L["Pages"] = "Pages"
+-- L["The shortest walk. Cuts across fields and goes straight over hills."] = ""
+-- L["Takes roads when they aren't much longer, and goes round steep hills."] = ""
+-- L["Stays on roads, even when it's longer. Slower, but easy to follow."] = ""
+-- L["How the arrow walks you. You can change it any time in Options."] = ""
+-- L["Every style keeps you out of the other faction's towns and away from zones far above your level."] = ""
 
 -- UI/Copy.lua
 L["Selected for you: copy it with Ctrl+C (Cmd+C on a Mac), then press Escape."] = "Sélectionné pour vous : copiez avec Ctrl+C (Cmd+C sur Mac), puis appuyez sur Échap."

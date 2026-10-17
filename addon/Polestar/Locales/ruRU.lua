@@ -1316,6 +1316,11 @@ L["Feedback, bug reports and news"] = "Отзывы, сообщения об о�
 L["Guides made by other players for Polestar, not our own routes: each pack is an addon of its own, installed like any other. Its guides appear in %s under Guide packs, credited to their author, who supports them. More in Options > Guide packs."] = "Гайды других игроков для Polestar, а не наши маршруты: каждый пакет — отдельный аддон, устанавливается как любой другой. Его гайды появляются в %s в разделе «Пакеты гайдов» с именем автора, который их поддерживает. Подробнее: Настройки > Пакеты гайдов."
 L["Back"] = "Назад"
 L["Pages"] = "Страницы"
+-- L["The shortest walk. Cuts across fields and goes straight over hills."] = ""
+-- L["Takes roads when they aren't much longer, and goes round steep hills."] = ""
+-- L["Stays on roads, even when it's longer. Slower, but easy to follow."] = ""
+-- L["How the arrow walks you. You can change it any time in Options."] = ""
+-- L["Every style keeps you out of the other faction's towns and away from zones far above your level."] = ""
 
 -- UI/Copy.lua
 L["Selected for you: copy it with Ctrl+C (Cmd+C on a Mac), then press Escape."] = "Выделено для вас: скопируйте Ctrl+C (Cmd+C на Mac), затем нажмите Escape."

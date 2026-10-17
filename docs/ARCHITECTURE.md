@@ -174,7 +174,7 @@ keeps yards for whoever reads it.
 `packs[<id>].off` hides a pack's guides account-wide (the Guide packs page's
 switch). `welcomeSeen` (UI/Welcome.lua) is the version of the welcome last
 seen: in `PolestarDB`, the account has had its welcome (later characters skip
-its Set up page); in `PolestarCharDB`, this character has (0 while due).
+its Set up and Route style pages); in `PolestarCharDB`, this character has (0 while due).
 `behavior.suggestFrom` (default `"guides"`) is the pack suggestions come from.
 Modules keep their own keys beside these (`rares`, `instances`, `names` account-wide;
 `ui`, `routes`, `classTrainLevel`, `classTrainVisit`, `qol`, `flightTimes`,
@@ -3404,11 +3404,16 @@ Reading flow: `docs/DESIGN.md` ("Intent" and "The Guide Window").
   `PACKS.md`: the TOC's `X-Website` + `/blob/HEAD/docs/GUIDE_PACKS.md`, else
   "docs/GUIDE_PACKS.md in Polestar's source"). While `Guides.ProblemCount() > 0` the page's sidebar row carries
   the warning dot (a page spec's `dot`). Nothing goes to chat.
-- **Welcome** (`UI/Welcome.lua`, `SHOW_WELCOME`): centred, three pages under
+- **Welcome** (`UI/Welcome.lua`, `SHOW_WELCOME`): centred, four pages under
   a starlit hero, with step dots, Skip, Back and Next in the footer: Hello,
   <name> (what Polestar does, then the guide window, the arrow and
   `/polestar guides`); Set up (quest automation, the guide at login, the
-  colour scheme as cards that apply live); Start (the guide
+  colour scheme as cards that apply live); Route style (`nav.routeStyle`,
+  the setting Options' Route style dropdown writes, as three cards, Fastest,
+  Balanced with its Recommended tag and Roads, each saying what it does: a
+  click sets it live and Nav/Walk.lua searches again, right-click or the
+  gamepad's Y puts Balanced back, and the pick follows the setting however
+  it changes; a line on what every style keeps you away from); Start (the guide
   `Guides.Suggest()` picks on its zone painting, with its level range and
   pitch; the beta note while `ns.routesBeta`; the Discord invite in a copy
   box; what guide packs are; then Start guide, or Choose a guide without
@@ -3419,7 +3424,7 @@ Reading flow: `docs/DESIGN.md` ("Intent" and "The Guide Window").
   combat, during a cinematic or over the route choice; a due welcome that never opened stays due
   for the next login, and one that opened is marked on the character as it
   opens (a /reload or logout with it up does not repeat it); one the intro
-  cinematic closes comes back on its page when the cinematic ends. Set up is in it only while the account has not had its
+  cinematic closes comes back on its page when the cinematic ends. Set up and Route style are in it only while the account has not had its
   welcome (`PolestarDB.welcomeSeen`); the page set is fixed when a showing
   starts. Any close marks the account (and the character). About's "Show the
   welcome again" and `/polestar welcome` open it with every page.

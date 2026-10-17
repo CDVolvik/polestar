@@ -498,6 +498,11 @@ L["Feedback, bug reports and news"] = "Feedback, Fehlerberichte und Neuigkeiten"
 L["Guides made by other players for Polestar, not our own routes: each pack is an addon of its own, installed like any other. Its guides appear in %s under Guide packs, credited to their author, who supports them. More in Options > Guide packs."] = "Guides, die andere Spieler für Polestar geschrieben haben, nicht unsere eigenen Routen: Jedes Paket ist ein eigenes Addon und wird wie jedes andere installiert. Seine Guides erscheinen in %s unter Guide-Pakete, mit dem Namen ihres Autors, der sie betreut. Mehr unter Optionen > Guide-Pakete."
 L["Back"] = "Zurück"
 L["Pages"] = "Seiten"
+-- L["The shortest walk. Cuts across fields and goes straight over hills."] = ""
+-- L["Takes roads when they aren't much longer, and goes round steep hills."] = ""
+-- L["Stays on roads, even when it's longer. Slower, but easy to follow."] = ""
+-- L["How the arrow walks you. You can change it any time in Options."] = ""
+-- L["Every style keeps you out of the other faction's towns and away from zones far above your level."] = ""
 
 -- New on the next branch
 L["%d of %d done"] = "%d von %d erledigt"
