@@ -2984,8 +2984,12 @@ local function evaluate()
 	end
 	useActive()
 	evaluateLoaded(true)
-	-- Out-levelled: once per guide per session.
-	if guide and guide.maxLevel and (player.level or 1) >= guide.maxLevel + 2 and not outleveled[guide.id] then
+	-- Out-levelled: once per guide per session, for a guide that does every
+	-- step (or with "Skip grey quests" off). One that catches up manages
+	-- itself: its quests turn grey and drop out as the player levels, and it
+	-- hands over to `next` once nothing worth doing is left.
+	local catchesUp = ns.Get("behavior.skipGrey") and not Own.everyStep(guide)
+	if guide and guide.maxLevel and (player.level or 1) >= guide.maxLevel + 2 and not outleveled[guide.id] and not catchesUp then
 		outleveled[guide.id] = true
 		local suggested = Guides.Suggest()
 		ns.Fire("GUIDE_OUTLEVELED", guide.id, suggested ~= guide.id and suggested or nil)

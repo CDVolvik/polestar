@@ -999,7 +999,10 @@ Polestar.Engine.GetProgress() -> doneSteps, totalSteps
   open guide's follow-up once the player is within two levels of it.
 - **Out-levelled guides.** When the player's level exceeds the active guide's
   `maxLevel` by 2 or more, the Engine fires `GUIDE_OUTLEVELED(guideId,
-  suggestedId)` once per guide per session; the UI offers the jump. Setting
+  suggestedId)` once per guide per session; the UI offers the jump. Only for
+  a guide that does every step or with `behavior.skipGrey` off: a guide that
+  catches up manages itself (its quests turn grey and drop out as the player
+  levels, and it hands over to `next` once nothing worth doing is left). Setting
   `behavior.skipGrey` (default on since the catch-up; leveling guides only, see
   "Every step") auto-skips `accept` goals for quests already
   grey for the character, and with them the quests' turn-ins and objectives,
