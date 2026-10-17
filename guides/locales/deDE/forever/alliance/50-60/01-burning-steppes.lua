@@ -8,7 +8,7 @@
 return {
 	-- Step 1: Ironforge
 	-- {npc:5111} Innkeeper Firebrew
-	["{npc:5111}: the last guide binds here, so this usually ticks at once"] = "",
+	["{npc:5111}: the last guide binds here, so this usually ticks at once"] = "{npc:5111}: Der letzte Guide bindet dich hier, daher ist das meist sofort abgehakt",
 
 	-- Step 2: Menethil Harbor
 	-- {zone:1455} Ironforge · {area:150} Menethil Harbor · {area:442} Auberdine

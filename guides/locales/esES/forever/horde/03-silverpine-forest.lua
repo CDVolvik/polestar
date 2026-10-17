@@ -29,9 +29,9 @@ return {
 	-- {quest:6127} The Principal Source · {area:384} Dreadmist Peak
 	["{quest:6127}: {area:384}, next guide"] = "{quest:6127}: {area:384}, en la siguiente guía",
 	-- {item:15877} Shrine Bauble · {object:177785} Bauble Container
-	["{item:15877}, from a {object:177785} in the lake"] = "",
+	["{item:15877}, from a {object:177785} in the lake"] = "{item:15877}, de un {object:177785} del lago",
 	-- {area:2362} Shrine of Remulos
-	["At the {area:2362}"] = "",
+	["At the {area:2362}"] = "En el {area:2362}",
 	-- {npc:11799} Tajarri · {area:2362} Shrine of Remulos
 	["{npc:11799}, at the {area:2362}"] = "{npc:11799}, en {area:2362}",
 	-- {npc:11798} Bunthen Plainswind · {area:2361} Nighthaven · {zone:1454} Orgrimmar
@@ -84,9 +84,9 @@ return {
 
 	-- Step 16: Mottled Worgs
 	-- plural, as words: Mottled Worgs = {npc:1766} Mottled Worg
-	["Mottled Worgs"] = "",
+	["Mottled Worgs"] = "Lupos jaspeados",
 	-- plural, as words: Mottled Worgs = {npc:1766} Mottled Worg
-	["Mottled Worgs prowl the hills around the house."] = "",
+	["Mottled Worgs prowl the hills around the house."] = "Los Lupos jaspeados merodean por las colinas alrededor de la casa.",
 
 	-- Step 17: Hearth to the Sepulcher
 	-- {area:228} Sepulcher
@@ -97,13 +97,13 @@ return {
 	["The {object:1593} lies at the ferry landing on the lake shore east of the {area:228}."] = "{object:1593} está en el embarcadero de la orilla del lago, al este de {area:228}.",
 
 	-- Step 20: Quinn Yorick
-	["North again to the Yoricks' house."] = "",
+	["North again to the Yoricks' house."] = "De nuevo al norte, a la casa de los Yorick.",
 
 	-- Step 21: Vile Fin murlocs
-	["Vile Fin murlocs"] = "",
+	["Vile Fin murlocs"] = "Múrlocs Anca Vil",
 	-- {area:172} Fenris Isle
 	-- plural, as words: Vile Fin Shredders = {npc:1767} Vile Fin Shredder
-	["Follow the lake shore south-east toward {area:172}: the Vile Fin Shredders and Tidehunters along it drop the murloc eyes."] = "",
+	["Follow the lake shore south-east toward {area:172}: the Vile Fin Shredders and Tidehunters along it drop the murloc eyes."] = "Sigue la orilla del lago hacia el sureste, hacia {area:172}: los Machacadores y Cazamareas Anca Vil de allí sueltan los ojos de múrloc.",
 
 	-- Step 22: Fenris Isle
 	-- {area:172} Fenris Isle · {area:235} Fenris Keep
@@ -119,7 +119,7 @@ return {
 	-- {area:228} Sepulcher
 	["Swim back and follow the road west to the {area:228}."] = "Vuelve nadando y sigue el camino al oeste hasta {area:228}.",
 	-- {npc:1937} Apothecary Renferrel
-	["{npc:1937}: for Quinn, on the road north at the end"] = "",
+	["{npc:1937}: for Quinn, on the road north at the end"] = "{npc:1937}: para Quinn, en el camino al norte al final",
 	-- {npc:2121} Shadow Priest Allister · {quest:516} Beren's Peril
 	["{npc:2121}: {quest:516}, on the south loop"] = "{npc:2121}: {quest:516}, en el circuito del sur",
 
@@ -147,7 +147,7 @@ return {
 
 	-- Step 29: The Ivar Patch
 	-- {zone:1420} Tirisfal Glades · {area:238} Malden's Orchard · {quest:425} Ivar the Foul
-	["Take the road north toward {zone:1420}: the Yoricks' house at {area:238} is on the way. {quest:425} lurks a short walk west of it."] = "",
+	["Take the road north toward {zone:1420}: the Yoricks' house at {area:238} is on the way. {quest:425} lurks a short walk west of it."] = "Toma el camino al norte hacia {zone:1420}: la casa de los Yorick en {area:238} está de camino. {quest:425} acecha a poca distancia al oeste.",
 
 	-- Step 30: Brill
 	-- {zone:1420} Tirisfal Glades · {area:159} Brill · {npc:246152} Shari Stilwell

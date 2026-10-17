@@ -8,9 +8,9 @@
 return {
 	-- Step 1: Tarren Mill
 	-- {area:272} Tarren Mill
-	["{area:272} is your base for this guide: the hearth brings you back here twice. Everyone stands around the town square."] = "",
+	["{area:272} is your base for this guide: the hearth brings you back here twice. Everyone stands around the town square."] = "{area:272}은(는) 이 가이드의 거점입니다. 귀환석으로 이곳에 두 번 돌아옵니다. 모두 마을 광장 주변에 있습니다.",
 	-- {npc:2388} Innkeeper Shay
-	["{npc:2388}: the last guide binds here, so this usually ticks at once"] = "",
+	["{npc:2388}: the last guide binds here, so this usually ticks at once"] = "{npc:2388}: 이전 가이드에서 이곳에 귀환 지점을 정하므로 보통 바로 완료됩니다",
 	-- {object:1763} WANTED
 	["The {object:1763} poster by the inn"] = "여관 옆의 {object:1763} 게시판",
 	-- {quest:567} Dangerous!
@@ -48,7 +48,7 @@ return {
 	-- {area:287} Hillsbrad
 	["The Peasants work the fields south of the farmhouses. Every {area:287} human drops skulls; the Peasants drop them most often."] = "힐스브래드 소작농은 농가 남쪽 밭에서 일합니다. {area:287}의 인간은 모두 해골을 떨어뜨리며, 힐스브래드 소작농이 가장 자주 떨어뜨립니다.",
 	-- {item:3692} Hillsbrad Human Skull
-	["{item:3692}: the Peasants in the fields"] = "",
+	["{item:3692}: the Peasants in the fields"] = "{item:3692}: 들판의 힐스브래드 소작농",
 
 	-- Step 8: Tarren Mill
 	-- {npc:2215} High Executor Darthalia · {npc:270438} Deathstalker Masoj

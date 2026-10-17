@@ -100,7 +100,7 @@ L["%s or %s"] = "%s ou %s"
 L["Kill %s for %s"] = "Matar %s para obter %s"
 L["Collect %s from %s"] = "Coletar %s de %s"
 L["Riding"] = "Montaria"
--- L["Grey, kept: opens %s"] = ""
+L["Grey, kept: opens %s"] = "Cinza, mantida: libera %s"
 
 -- Core/Closes.lua
 L["Taking %s closes %s for good."] = "Pegar %s fecha %s para sempre."

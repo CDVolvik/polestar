@@ -76,7 +76,7 @@ return {
 
 	-- Step 12: Lakeshire
 	-- {npc:341} Foreman Oslow · {quest:89} The Everstill Bridge
-	["{npc:341}: after {quest:89}"] = "",
+	["{npc:341}: after {quest:89}"] = "{npc:341} : après {quest:89}",
 	-- {npc:703} Lieutenant Fangore · {area:1000} Galardell Valley
 	["The Wanted poster by the inn: {npc:703}, in {area:1000}"] = "L'avis de recherche près de l'auberge : {npc:703}, à {area:1000}",
 
@@ -91,7 +91,7 @@ return {
 	["Greater Tarantulas crawl on the slopes around the mill north-east of the lake; Blackrock Renegades hold the mill itself."] = "Des Grandes tarentules rampent sur les pentes autour du moulin, au nord-est du lac ; des Renégats Blackrock occupent le moulin.",
 	-- {item:3014} Battleworn Axe
 	-- plural, as words: Blackrock Renegades = {npc:437} Blackrock Renegade
-	["{item:3014}: the Blackrock Renegades at the mill"] = "",
+	["{item:3014}: the Blackrock Renegades at the mill"] = "{item:3014} : les Renégats Blackrock du moulin",
 
 	-- Step 15: Galardell Valley
 	-- {npc:703} Lieutenant Fangore · {area:2099} Stonewatch Keep

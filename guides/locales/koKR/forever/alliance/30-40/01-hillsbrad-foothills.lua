@@ -8,7 +8,7 @@
 return {
 	-- Step 1: Menethil Harbor
 	-- {npc:2104} Captain Stoutfist · {area:2103} Menethil Keep · {npc:2094} James Halloran
-	["{npc:2104} stands in {area:2103}; {npc:2094} stands by the north gate."] = "",
+	["{npc:2104} stands in {area:2103}; {npc:2094} stands by the north gate."] = "{npc:2104}은(는) {area:2103}에 있으며, {npc:2094}은(는) 북문 옆에 있습니다.",
 	-- {npc:2104} Captain Stoutfist · {npc:270637} Howin Kindfeather
 	["{npc:2104}: for {npc:270637}"] = "{npc:2104}: {npc:270637}에게",
 
@@ -33,8 +33,8 @@ return {
 
 	-- Step 6: Angerfang Encampment
 	-- {area:1036} Angerfang Encampment · {object:671518} Tattered Spellbook
-	["South to the Dragonmaw's {area:1036}: the first catapult stands on the way, and the {object:671518} lies in the camp."] = "",
-	["The next step, Defeat Nek'rosh, pits you against an elite chieftain: skip it."] = "",
+	["South to the Dragonmaw's {area:1036}: the first catapult stands on the way, and the {object:671518} lies in the camp."] = "남쪽의 용아귀부족 {area:1036}(으)로 가십시오. 가는 길에 첫 번째 투석기가 있고, {object:671518}은(는) 야영지 안에 있습니다.",
+	["The next step, Defeat Nek'rosh, pits you against an elite chieftain: skip it."] = "다음 단계인 네크로쉬 처치는 정예 족장과 싸워야 합니다. 건너뛰십시오.",
 	-- {object:671518} Tattered Spellbook · {npc:2104} Captain Stoutfist
 	["{object:671518}: for {npc:2104}"] = "{object:671518}: {npc:2104}에게",
 

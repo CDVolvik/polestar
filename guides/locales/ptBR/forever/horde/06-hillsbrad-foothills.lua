@@ -8,9 +8,9 @@
 return {
 	-- Step 1: Tarren Mill
 	-- {area:272} Tarren Mill
-	["{area:272} is your base for this guide: the hearth brings you back here twice. Everyone stands around the town square."] = "",
+	["{area:272} is your base for this guide: the hearth brings you back here twice. Everyone stands around the town square."] = "{area:272} é sua base neste guia: a pedra de regresso traz você de volta aqui duas vezes. Todos ficam em volta da praça da cidade.",
 	-- {npc:2388} Innkeeper Shay
-	["{npc:2388}: the last guide binds here, so this usually ticks at once"] = "",
+	["{npc:2388}: the last guide binds here, so this usually ticks at once"] = "{npc:2388}: o guia anterior vincula você aqui, então isto costuma ser marcado na hora",
 	-- {object:1763} WANTED
 	["The {object:1763} poster by the inn"] = "O cartaz {object:1763} perto da estalagem",
 	-- {quest:567} Dangerous!
@@ -48,7 +48,7 @@ return {
 	-- {area:287} Hillsbrad
 	["The Peasants work the fields south of the farmhouses. Every {area:287} human drops skulls; the Peasants drop them most often."] = "Os Camponeses trabalham nos campos ao sul das casas de fazenda. Todo humano de {area:287} derruba caveiras; os Camponeses derrubam com mais frequência.",
 	-- {item:3692} Hillsbrad Human Skull
-	["{item:3692}: the Peasants in the fields"] = "",
+	["{item:3692}: the Peasants in the fields"] = "{item:3692}: os Camponeses de Eira dos Montes nos campos",
 
 	-- Step 8: Tarren Mill
 	-- {npc:2215} High Executor Darthalia · {npc:270438} Deathstalker Masoj

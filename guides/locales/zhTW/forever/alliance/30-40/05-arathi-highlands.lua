@@ -170,9 +170,9 @@ return {
 	-- plural, as words: Argus Shadow Mages = {npc:2318} Argus Shadow Mage
 	["The tomes lie in the ruined keep west of {area:280}; Argus Shadow Mages hold the ruins."] = "書卷在{area:280}西邊的城堡廢墟中；暗影大法師佔據著廢墟。",
 	-- {item:3658} Recovered Tome
-	["{item:3658}: Crushridge ogres"] = "",
+	["{item:3658}: Crushridge ogres"] = "{item:3658}：破碎嶺巨魔",
 	-- {item:3659} Worn Leather Book · {object:1760} Weathered Bookcase
-	["{item:3659}: the {object:1760}"] = "",
+	["{item:3659}: the {object:1760}"] = "{item:3659}：{object:1760}",
 
 	-- Step 44: Dalaran
 	-- {area:279} Dalaran · {zone:1421} Silverpine Forest · {npc:269127} Image of Archmage Modera

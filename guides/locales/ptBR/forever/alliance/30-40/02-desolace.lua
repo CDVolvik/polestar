@@ -12,7 +12,7 @@ return {
 
 	-- Step 2: Auberdine
 	-- {area:442} Auberdine
-	["Take the boat to {area:442} from Menethil's docks."] = "",
+	["Take the boat to {area:442} from Menethil's docks."] = "Pegue o barco para {area:442} nas docas do Porto de Menethil.",
 
 	-- Step 3: Heartswood
 	-- {area:415} Astranaar · {quest:1738} Heartswood · {area:413} Maestra's Post · {quest:65602} What Is Love? · {item:190309} Wooden Figurine · {area:1276} Talondeep Path

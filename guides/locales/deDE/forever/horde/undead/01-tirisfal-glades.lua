@@ -151,7 +151,7 @@ return {
 
 	-- Step 29: Calvin Montague
 	-- {area:156} Solliden Farmstead · {npc:1519} Deathguard Simmer · {npc:6784} Calvin Montague
-	["Walk on west to the {area:156}. {npc:1519} stands at the farm; {npc:6784}, by the farmhouse, wants a duel: talk to him."] = "",
+	["Walk on west to the {area:156}. {npc:1519} stands at the farm; {npc:6784}, by the farmhouse, wants a duel: talk to him."] = "Geh weiter nach Westen zu {area:156}. {npc:1519} steht beim Hof; {npc:6784}, beim Bauernhaus, will ein Duell: Sprich mit ihm.",
 	-- {npc:6784} Calvin Montague
 	["Beat {npc:6784} in the duel"] = "Besiege {npc:6784} im Duell",
 
@@ -220,7 +220,7 @@ return {
 	-- Step 40: Tirisfal Pumpkins
 	-- plural, as words: Tirisfal Pumpkins = {object:375} Tirisfal Pumpkin
 	["Tirisfal Pumpkins"] = "Tirisfalkürbisse",
-	["Walk south-west from the mills: the pumpkins grow in the Scarlet-held fields north-west of Solliden."] = "",
+	["Walk south-west from the mills: the pumpkins grow in the Scarlet-held fields north-west of Solliden."] = "Geh von den Mühlen nach Südwesten: Die Kürbisse wachsen auf den von den Scharlachroten gehaltenen Feldern nordwestlich von Sollidens Bauernhof.",
 
 	-- Step 41: Crusader's Outpost
 	["Crusader's Outpost"] = "Außenposten der Kreuzzügler",
@@ -303,7 +303,7 @@ return {
 	-- Step 59: Vicious Night Web Spiders
 	-- plural, as words: Vicious Night Web Spiders = {npc:1555} Vicious Night Web Spider
 	["Vicious Night Web Spiders"] = "Heimtückische Nachtweber",
-	["The spiders lurk in the woods at the far east end of the glades."] = "",
+	["The spiders lurk in the woods at the far east end of the glades."] = "Die Spinnen lauern in den Wäldern am äußersten Ostende von Tirisfal.",
 
 	-- Step 60: Hides for the Forsaken
 	-- plural, as words: Duskbats = {npc:1512} Duskbat

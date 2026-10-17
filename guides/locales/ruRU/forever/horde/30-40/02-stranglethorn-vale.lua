@@ -54,7 +54,7 @@ return {
 	-- Step 11: Nesingwary's camp
 	-- {object:3202} Grom'gol
 	-- plural, as words: Shadowmaw Panthers = {npc:684} Shadowmaw Panther
-	["The Shadowmaw Panthers come much later, by {object:3202}"] = "",
+	["The Shadowmaw Panthers come much later, by {object:3202}"] = "Тенебрюхие пантеры будут гораздо позже, у объекта {object:3202}",
 
 	-- Step 12: Elder tigers and Lashtail raptors
 	["Elder tigers and Lashtail raptors"] = "Старые тигры и ящеры-кнутохвосты",

@@ -8,7 +8,7 @@
 return {
 	-- Step 1: Aerie Peak
 	-- {npc:7744} Innkeeper Thulfram
-	["{npc:7744}: the last guide binds here, so this usually ticks at once"] = "",
+	["{npc:7744}: the last guide binds here, so this usually ticks at once"] = "{npc:7744}: o guia anterior vincula você aqui, então isto costuma ser marcado na hora",
 
 	-- Step 2: The Altar of Zul
 	-- {area:355} Altar of Zul · {zone:1425} The Hinterlands · {npc:8636} Morta'gya the Keeper

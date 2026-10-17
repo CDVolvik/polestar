@@ -163,9 +163,9 @@ return {
 
 	-- Step 29: Rumbleshot's Ammo
 	-- {object:176785} Ammo Crate · {npc:271546} Mountaineer Gretchen · {area:136} Grizzled Den · {npc:1243} Hegnar Rumbleshot
-	["The {object:176785} sits next to {npc:271546}, south of the {area:136}; {npc:1243} camps south-west of it, by the road to Coldridge."] = "",
+	["The {object:176785} sits next to {npc:271546}, south of the {area:136}; {npc:1243} camps south-west of it, by the road to Coldridge."] = "{object:176785} está junto a {npc:271546}, al sur de {area:136}; {npc:1243} acampa al suroeste, junto al camino a Crestanevada.",
 	-- {item:13850} Rumbleshot's Ammo · {object:176785} Ammo Crate
-	["{item:13850}: the {object:176785}"] = "",
+	["{item:13850}: the {object:176785}"] = "{item:13850}: {object:176785}",
 
 	-- Step 30: Frostmane Hold
 	-- {area:135} Frostmane Hold · {area:137} Brewnall Village
@@ -182,10 +182,10 @@ return {
 	["Leper Gnomes around Brewnall and the {area:133} road carry the cogs and gears. Ice Claw Bears, Elder Crag Boars and Snow Leopards roam the hills around the lake."] = "Los Gnomos parias ({npc:1211}) alrededor de Brewnall y del camino a {area:133} llevan los dientes y engranajes. Los Osos zarpahelada ({npc:1196}), los Jabalíes del risco ancianos ({npc:1127}) y los Leopardos de las nieves ({npc:1201}) recorren las colinas alrededor del lago.",
 	-- {item:3083} Restabilization Cog
 	-- plural, as words: Leper Gnomes = {npc:1211} Leper Gnome
-	["{item:3083}: Leper Gnomes"] = "",
+	["{item:3083}: Leper Gnomes"] = "{item:3083}: gnomos parias",
 	-- {item:3084} Gyromechanic Gear
 	-- plural, as words: Leper Gnomes = {npc:1211} Leper Gnome
-	["{item:3084}: Leper Gnomes"] = "",
+	["{item:3084}: Leper Gnomes"] = "{item:3084}: gnomos parias",
 
 	-- Step 35: Kharanos
 	-- {npc:1373} Jarven Thunderbrew · {item:2686} Thunder Ale · {npc:1247} Innkeeper Belm · {spell:8553} Barleybrew Scalder
@@ -331,7 +331,7 @@ return {
 	-- {npc:1266} Tundra MacGrann · {area:801} Chill Breeze Valley · {npc:1271} Old Icebeard
 	["{npc:1266} camps in {area:801}, south of Brewnall. His meats are in the locker in {npc:1271}'s cave to the north-east of his camp: grab them and leave quickly."] = "{npc:1266} acampa en {area:801}, al sur de Brewnall. Sus carnes están en el baúl de la cueva de {npc:1271}, al noreste de su campamento: tómalas y sal rápido.",
 	-- {item:2667} MacGrann's Dried Meats
-	["{item:2667}: the meat locker"] = "",
+	["{item:2667}: the meat locker"] = "{item:2667}: la despensa de carne",
 
 	-- Step 69: The Tome of Divinity
 	-- {zone:1455} Ironforge · {object:32362} Mystic Ward (no name in this language: may be words) · {npc:5149} Brandur Ironhammer · {npc:6179} Tiza Battleforge · {npc:6178} Muiredon Battleforge · {object:32386} Hall of Mysteries (no name in this language: may be words) · {npc:6175} John Turner · {item:2589} Linen Cloth · {zone:1426} Dun Morogh

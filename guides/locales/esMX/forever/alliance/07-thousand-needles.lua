@@ -150,18 +150,18 @@ return {
 	-- {area:150} Menethil Harbor
 	["Ride back west along the road to {area:150}."] = "Cabalga de vuelta al oeste por el camino hasta {area:150}.",
 	-- {quest:98221} From the Ashes · {quest:465} Nek'rosh's Gambit
-	["{quest:98221}: {quest:465} comes after it on Forever"] = "",
+	["{quest:98221}: {quest:465} comes after it on Forever"] = "{quest:98221}: en Forever, {quest:465} viene después",
 
 	-- Step 29: Angerfang Encampment
 	-- {area:1036} Angerfang Encampment · {npc:2091} Chieftain Nek'rosh
-	["Ride east again to the Dragonmaw camp. The four sets of Attack Plans lie in the {area:1036}; {npc:2091}, an elite, stands in the camp too."] = "",
+	["Ride east again to the Dragonmaw camp. The four sets of Attack Plans lie in the {area:1036}; {npc:2091}, an elite, stands in the camp too."] = "Cabalga de nuevo al este, hasta el campamento Faucedraco. Los cuatro juegos de planes de ataque están en {area:1036}; {npc:2091}, un élite, también está en el campamento.",
 
 	-- Step 30: To Theramore
 	["To Theramore"] = "A Theramore",
 	-- {npc:2104} Captain Stoutfist · {area:2103} Menethil Keep
-	["{npc:2104}, in {area:2103}"] = "",
+	["{npc:2104}, in {area:2103}"] = "{npc:2104}, en {area:2103}",
 	-- {zone:1437} Wetlands
-	["For the Dragonmaw catapult, on the {zone:1437} loop of the next guide"] = "",
+	["For the Dragonmaw catapult, on the {zone:1437} loop of the next guide"] = "Para la catapulta Faucedraco, en la vuelta por {zone:1437} de la siguiente guía",
 	-- {area:513} Theramore Isle · {zone:1445} Dustwallow Marsh
 	["Take the boat from Menethil's pier to {area:513} in {zone:1445}."] = "Toma el barco del muelle de Menethil a {area:513} en {zone:1445}.",
 

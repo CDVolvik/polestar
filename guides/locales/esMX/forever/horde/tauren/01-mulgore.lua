@@ -25,7 +25,7 @@ return {
 
 	-- Step 4: Greatmother Hawkwind
 	-- {npc:2991} Greatmother Hawkwind · {object:2907} Water Pitcher
-	["{npc:2991} sits by the tent on the camp's eastern edge; the {object:2907} stands next to her."] = "",
+	["{npc:2991} sits by the tent on the camp's eastern edge; the {object:2907} stands next to her."] = "{npc:2991} está sentada junto a la tienda del borde este del campamento; {object:2907} está a su lado.",
 
 	-- Step 6: The Hunt Continues
 	-- {npc:6775} Antur Fallow · {npc:2980} Grull Hawkwind
@@ -106,7 +106,7 @@ return {
 	-- Step 26: Thunderhorn Water Well
 	-- {object:2912} Ambercorn · {quest:766} Mazzranache · {quest:761} Swoop Hunting
 	-- plural, as words: Well Stones = {object:2910} Well Stone
-	["The well lies north of the village. Well Stones sit around the well, {object:2912} lies under the trees nearby. Kill wolves, cougars, plainstriders and swoops on the way for {quest:766} and {quest:761}."] = "",
+	["The well lies north of the village. Well Stones sit around the well, {object:2912} lies under the trees nearby. Kill wolves, cougars, plainstriders and swoops on the way for {quest:766} and {quest:761}."] = "El pozo está al norte del poblado. Las Piedras de pozo están alrededor del pozo y {object:2912} está bajo los árboles cercanos. Mata lobos, pumas, zancudos y aguilones en el camino para {quest:766} y {quest:761}.",
 
 	-- Step 27: Bloodhoof Village
 	-- {npc:277182} Ahab Wheathoof
@@ -125,10 +125,10 @@ return {
 
 	-- Step 31: Prairie Wolf Alphas
 	-- plural, as words: Prairie Wolf Alphas = {npc:2960} Prairie Wolf Alpha
-	["Prairie Wolf Alphas"] = "",
+	["Prairie Wolf Alphas"] = "Lobos alfa de pradera",
 	-- {npc:275789} Malah Longwind
 	-- plural, as words: Prairie Wolf Alphas = {npc:2960} Prairie Wolf Alpha
-	["Prairie Wolf Alphas roam among the wolves on the plains around {npc:275789} and the Galak camp to the east."] = "",
+	["Prairie Wolf Alphas roam among the wolves on the plains around {npc:275789} and the Galak camp to the east."] = "Los Lobos alfa de pradera recorren la zona entre los lobos de las llanuras alrededor de {npc:275789} y del campamento Galak al este.",
 
 	-- Step 32: The Ravaged Caravan
 	-- {zone:1456} Thunder Bluff
@@ -142,9 +142,9 @@ return {
 	["Back south-east to the {area:396}."] = "De vuelta al sureste a {area:396}.",
 
 	-- Step 37: Galak centaurs
-	["Galak centaurs"] = "",
+	["Galak centaurs"] = "Centauros Galak",
 	-- {npc:275767} Herak the Pillager
-	["The Galak centaurs camp on the plains east of the well; {npc:275767} leads them."] = "",
+	["The Galak centaurs camp on the plains east of the well; {npc:275767} leads them."] = "Los centauros Galak acampan en las llanuras al este del pozo; {npc:275767} los dirige.",
 
 	-- Step 38: The Venture Co. Mine
 	-- {quest:765} Supervisor Fizsprocket · {item:281031} Mulgore Expansion Plans · {quest:98424} Fizsprocket's Notes
@@ -165,9 +165,9 @@ return {
 	-- Step 42: Dwarven Digging
 	-- {area:404} Bael'dun Digsite
 	-- plural, as words: Prospector's Picks = {item:4702} Prospector's Pick
-	["The dwarves of the {area:404} carry the Prospector's Picks. Smash them at the dwarves' forge in the digsite."] = "",
+	["The dwarves of the {area:404} carry the Prospector's Picks. Smash them at the dwarves' forge in the digsite."] = "Los enanos de {area:404} llevan los Picos de prospector. Destrúyelos en la forja de los enanos de la excavación.",
 	-- {item:4703} Broken Tools
-	["{item:4703}, at the digsite forge"] = "",
+	["{item:4703}, at the digsite forge"] = "{item:4703}, en la forja de la excavación",
 
 	-- Step 43: Sharing the Land
 	-- {area:818} Palemane Rock · {npc:272203} Perith Stormhoof
@@ -185,7 +185,7 @@ return {
 	["Head north to {area:225}, east of {zone:1456}. {npc:3233} stands at the foot of the rocks; the Bristleback Interlopers dig at the burial ground and the {npc:2994} waits on top."] = "Ve al norte hasta {area:225}, al este de {zone:1456}. {npc:3233} está al pie de las rocas; los Intrusos Erizapúas ({npc:3232}) excavan en el cementerio y el {npc:2994} espera en la cima.",
 	-- {item:5203} Flatland Prowler Claw · {area:225} Red Rocks
 	-- plural, as words: Flatland Prowlers = {npc:3566} Flatland Prowler
-	["{item:5203}: Flatland Prowlers roam the plains around {area:225}"] = "",
+	["{item:5203}: Flatland Prowlers roam the plains around {area:225}"] = "{item:5203}: los merodeadores de las estepas recorren las llanuras alrededor de {area:225}",
 
 	-- Step 47: Thunder Bluff
 	-- {npc:2995} Tal · {npc:3057} Cairne Bloodhoof

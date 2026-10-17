@@ -76,7 +76,7 @@ return {
 
 	-- Step 12: Lakeshire
 	-- {npc:341} Foreman Oslow · {quest:89} The Everstill Bridge
-	["{npc:341}: after {quest:89}"] = "",
+	["{npc:341}: after {quest:89}"] = "{npc:341}: {quest:89} 이후",
 	-- {npc:703} Lieutenant Fangore · {area:1000} Galardell Valley
 	["The Wanted poster by the inn: {npc:703}, in {area:1000}"] = "여관 옆 현상수배 게시판: {npc:703}, {area:1000}에 있음",
 
@@ -91,7 +91,7 @@ return {
 	["Greater Tarantulas crawl on the slopes around the mill north-east of the lake; Blackrock Renegades hold the mill itself."] = "거대한 타란툴라는 호수 북동쪽 방앗간 주변 비탈을 기어다니고, 검은바위부족 보초병은 방앗간 자체를 차지하고 있습니다.",
 	-- {item:3014} Battleworn Axe
 	-- plural, as words: Blackrock Renegades = {npc:437} Blackrock Renegade
-	["{item:3014}: the Blackrock Renegades at the mill"] = "",
+	["{item:3014}: the Blackrock Renegades at the mill"] = "{item:3014}: 방앗간의 검은바위부족 보초병",
 
 	-- Step 15: Galardell Valley
 	-- {npc:703} Lieutenant Fangore · {area:2099} Stonewatch Keep

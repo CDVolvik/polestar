@@ -150,18 +150,18 @@ return {
 	-- {area:150} Menethil Harbor
 	["Ride back west along the road to {area:150}."] = "길을 따라 서쪽으로 {area:150}까지 돌아가세요.",
 	-- {quest:98221} From the Ashes · {quest:465} Nek'rosh's Gambit
-	["{quest:98221}: {quest:465} comes after it on Forever"] = "",
+	["{quest:98221}: {quest:465} comes after it on Forever"] = "{quest:98221}: Forever에서는 {quest:465}이(가) 그 뒤에 이어집니다",
 
 	-- Step 29: Angerfang Encampment
 	-- {area:1036} Angerfang Encampment · {npc:2091} Chieftain Nek'rosh
-	["Ride east again to the Dragonmaw camp. The four sets of Attack Plans lie in the {area:1036}; {npc:2091}, an elite, stands in the camp too."] = "",
+	["Ride east again to the Dragonmaw camp. The four sets of Attack Plans lie in the {area:1036}; {npc:2091}, an elite, stands in the camp too."] = "다시 동쪽의 용아귀부족 야영지로 가세요. 공격 계획서 네 묶음은 {area:1036}에 있습니다. 정예인 {npc:2091}도 야영지에 서 있습니다.",
 
 	-- Step 30: To Theramore
 	["To Theramore"] = "테라모어로",
 	-- {npc:2104} Captain Stoutfist · {area:2103} Menethil Keep
-	["{npc:2104}, in {area:2103}"] = "",
+	["{npc:2104}, in {area:2103}"] = "{area:2103}의 {npc:2104}",
 	-- {zone:1437} Wetlands
-	["For the Dragonmaw catapult, on the {zone:1437} loop of the next guide"] = "",
+	["For the Dragonmaw catapult, on the {zone:1437} loop of the next guide"] = "용아귀부족 투석기는 다음 가이드의 {zone:1437} 순환에서",
 	-- {area:513} Theramore Isle · {zone:1445} Dustwallow Marsh
 	["Take the boat from Menethil's pier to {area:513} in {zone:1445}."] = "메네실 부두에서 배를 타고 {zone:1445}의 {area:513}(으)로 가세요.",
 
