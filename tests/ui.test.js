@@ -702,10 +702,10 @@ test('the header menu: picker, new tab, compact, transparent, lock; destructive 
 });
 
 // The catch-up (GUIDE_PLACED): the window shows each step before the one
-// placed in turn, in full, then that one; at launch and on every guide
-// opened. After a /reload that places the guide where it was, nothing rolls.
-// The Engine's step never moves.
-test('the catch-up shows every step up to the one placed; not after a reload that resumes there; Do every step in the menu', () => {
+// placed in turn, in full, then that one, whenever a guide is placed (launch,
+// /reload, a guide opened); not for a single step. The Engine's step never
+// moves.
+test('the catch-up shows every step up to the one placed, each time a guide is placed; Do every step in the menu', () => {
 	const [out] = run(`
 		uistub.setGuide(uistub.elwynn, 4)
 		local nav, Count = GF.parts.nav, GF.parts.nav.Steps.Count
@@ -717,15 +717,12 @@ test('the catch-up shows every step up to the one placed; not after a reload tha
 		stub.advance(3)
 		local done = { GF.catchingUp or false, Count:GetText(), GF.parts.card:GetAlpha(), GF.ShownStep() }
 		Polestar.Fire("GUIDE_PLACED", uistub.elwynn, 4, {})
-		local opened = GF.catchingUp ~= nil
+		local again = GF.catchingUp ~= nil
 		stub.advance(3)
-		-- A reload that places the guide where it was.
-		GF.catchUpState.reload, GF.catchUpState.seen = true, {}
-		Polestar.Fire("GUIDE_PLACED", uistub.elwynn, 4, {})
-		local reload = GF.catchingUp or false
+		Polestar.Fire("GUIDE_PLACED", uistub.elwynn, 2, {})
+		local single = GF.catchingUp ~= nil
 		menuPick("Do every step")
-		emit({ rolling = rolling, mid = mid, done = done, opened = opened, reload = reload, set = lastCall("SetEveryStep"),
-			at = PolestarCharDB.catchUpAt[uistub.elwynn], step1 = Polestar.Engine.GetStepView(1).title or false })`);
+		emit({ rolling = rolling, mid = mid, done = done, again = again, single = single, set = lastCall("SetEveryStep") })`);
 	assert.deepEqual(out.rolling, ['steps', 1], 'it starts on step 1');
 	assert.ok(out.mid.shown >= 1 && out.mid.shown <= 3, `a step gone over is shown in full (${out.mid.shown})`);
 	assert.equal(out.mid.count, `${out.mid.shown} / ${out.done[1].split(' / ')[1]}`);
@@ -734,10 +731,9 @@ test('the catch-up shows every step up to the one placed; not after a reload tha
 	assert.match(out.done[1], /^4 \/ \d+$/);
 	assert.equal(out.done[2], 1);
 	assert.equal(out.done[3], 4);
-	assert.equal(out.opened, true, 'opened again: it goes over the steps again');
-	assert.equal(out.reload, false, 'reloaded where it was: nothing rolls');
+	assert.equal(out.again, true, 'placed again (a reload, the guide opened again): it goes over the steps again');
+	assert.equal(out.single, false, 'a single step passed: nothing rolls');
 	assert.deepEqual(out.set, ['SetEveryStep', 'forever/alliance/human/01-elwynn-forest', true]);
-	assert.equal(out.at, 4);
 });
 
 test('profession, reputation and achievement goals: own colours, icons, progress bars', () => {

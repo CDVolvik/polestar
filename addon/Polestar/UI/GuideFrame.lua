@@ -2515,15 +2515,13 @@ end)
 -- The catch-up (GUIDE_PLACED): once a guide is placed, the window goes over
 -- the steps before the one it resumes at, each shown in full (the card, the
 -- journey, what follows) one after another faster and faster, then the step
--- placed. Guides passed whole go by first, by title. It plays at game launch
--- and whenever a guide is opened, from step 1; after a /reload it plays only
--- when the guide resumes elsewhere than before it (catchUpAt, per character).
--- Not with reduced motion, the window hidden, or a single step to go over.
--- A guide placed before the world is entered waits for it
--- (PLAYER_ENTERING_WORLD says whether this is a reload). Only the window moves: the Engine's step, the arrow and the
+-- placed. Guides passed whole go by first, by title. It plays whenever a
+-- guide is placed (game launch, /reload, a guide opened), from step 1. Not
+-- with reduced motion, the window hidden, or a single step to go over. A
+-- guide placed before the world is entered waits for it. Only the window moves: the Engine's step, the arrow and the
 -- automation stay on the step placed.
 local CATCH_GUIDE = 0.35 -- seconds per guide passed whole (at most 1.2 in all)
-GF.catchUpState = { entered = false, reload = false, seen = {} }
+GF.catchUpState = { entered = false }
 
 local function catchUpDone()
 	GF.catchingUp, GF.catchUpIndex = nil, nil
@@ -2537,15 +2535,7 @@ function GF.PlayCatchUp(guideId, step, chain)
 		cs.queued = { guideId, step, chain }
 		return
 	end
-	local st = ns.CharState()
-	if type(st.catchUpAt) ~= "table" then st.catchUpAt = {} end
-	local before = tonumber(st.catchUpAt[guideId])
-	if step then st.catchUpAt[guideId] = step end
-	for _, id in ipairs(chain or {}) do st.catchUpAt[id] = nil end
-	local first = not cs.seen[guideId]
-	cs.seen[guideId] = true
 	local passed = chain and #chain or 0
-	if cs.reload and first and before == step and passed == 0 then return end
 	if not (F and F:IsShown() and ns.IsLoggedIn()) or Anim.Reduced() then return end
 	-- A single step passed is no catch-up (the player's own first step).
 	if not step or (step <= 2 and passed == 0) then return end
@@ -2586,10 +2576,10 @@ function GF.PlayCatchUp(guideId, step, chain)
 	end)
 end
 
-ns.RegisterEvent("PLAYER_ENTERING_WORLD", function(_, _, isReload)
+ns.RegisterEvent("PLAYER_ENTERING_WORLD", function()
 	local cs = GF.catchUpState
 	if cs.entered then return end
-	cs.entered, cs.reload = true, isReload and true or false
+	cs.entered = true
 	local q = cs.queued
 	cs.queued = nil
 	if q and F then GF.PlayCatchUp(q[1], q[2], q[3]) end

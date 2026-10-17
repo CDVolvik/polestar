@@ -132,7 +132,7 @@ Messages:
 | `PLAYER_SKIPPED_STEP` | guideId, stepIndex | Engine, after `Skip()` (the window, the menu, `/polestar skip`): the guide window offers the undo |
 | `WAYPOINT_CHANGED` | waypoint or nil | Engine (and Nav when an override is set/cleared) |
 | `GUIDE_COMPLETED` | guideId | Engine |
-| `GUIDE_PLACED` | guideId, stepIndex or nil, `{ guideId, ... }` | Engine, active tab, once placement ends (see "Placement"): where the guide resumes, and the guides passed whole on the way; the guide window goes over the steps before it, titles and count rolling (`GF.PlayCatchUp`: at launch and on every guide opened, after `PLAYER_ENTERING_WORLD`; after a /reload only when the guide resumes elsewhere) |
+| `GUIDE_PLACED` | guideId, stepIndex or nil, `{ guideId, ... }` | Engine, active tab, once placement ends (see "Placement"): where the guide resumes, and the guides passed whole on the way; the guide window goes over the steps before it, titles and count rolling (`GF.PlayCatchUp`: whenever a guide is placed, at launch, /reload or opened, after `PLAYER_ENTERING_WORLD`) |
 | `CATCH_UP` | true \| false | Guide window, while its catch-up goes over the steps (`GF.PlayCatchUp`): the arrow shows an hourglass turning over in its dial's place (`Arrow.SetBusy`; Media/UI `hourglass`, `hourglass-sand`, tools/media/ui.js) |
 | `SETTING_CHANGED` | path, value | Core settings |
 | `TOGGLE_FRAME` / `SHOW_FRAME` / `HIDE_FRAME` | — | commands, keybinds → UI |
@@ -171,7 +171,7 @@ the nearest 5, `opts.compact` writes yards from 1000 as "1.2k yd"
 keeps yards for whoever reads it.
 
 `PolestarDB = { schema = 1, settings = { [section] = { ... } }, packs = { [packId] = { off = true } }, welcomeSeen = 1, gamepad = { chords = { [action] = "PADRSHOULDER+PADDUP" } } }`
-`PolestarCharDB = { schema = 1, guide = id|nil, tabs = { guideId, ... }, activeTab = n, absentAt = { [guideId] = place }, manual = { [guideId] = { ["s:g"] = true|"tick" } }, skipped = { [guideId] = { [stepIndex] = true, ["s:g"] = true } }, pins = { [guideId] = { step, done } }, offers = { [questID] = true }, everyStep = { [guideId] = true }, catchUpAt = { [guideId] = stepIndex }, shapes = { [guideId] = shape }, stepKeys = { [guideId] = { hash, ... } }, flags = { fp = { [name] = true }, ... }, welcomeSeen = 0|1 }`
+`PolestarCharDB = { schema = 1, guide = id|nil, tabs = { guideId, ... }, activeTab = n, absentAt = { [guideId] = place }, manual = { [guideId] = { ["s:g"] = true|"tick" } }, skipped = { [guideId] = { [stepIndex] = true, ["s:g"] = true } }, pins = { [guideId] = { step, done } }, offers = { [questID] = true }, everyStep = { [guideId] = true }, shapes = { [guideId] = shape }, stepKeys = { [guideId] = { hash, ... } }, flags = { fp = { [name] = true }, ... }, welcomeSeen = 0|1 }`
 
 `packs[<id>].off` hides a pack's guides account-wide (the Community guides page's
 switch). `welcomeSeen` (UI/Welcome.lua) is the version of the welcome last
@@ -195,10 +195,7 @@ steps the player skipped (step number) and the optional goals they skipped
 (`"s:g"`). `pins` is the step the player was looking at when it is not the
 live one (Prev/Next/Goto), `offers` the quests their giver did not offer
 (saved at logout, restored while the character is still that level),
-`everyStep` the leveling guides the player set to every step, `catchUpAt`
-the step where the guide window last saw each guide placed (after a /reload
-its catch-up plays only when the guide resumes elsewhere; never a position
-the Engine reads). All of
+`everyStep` the leveling guides the player set to every step. All of
 them are keyed by step position: `stepKeys` (a hash per step of its verbs and
 ids) lets a pack update carry them to the steps it kept (see "Placement").
 
