@@ -1401,7 +1401,85 @@ Polestar.Theme.Skin(frame, kind)          -- "window","panel","inset","button","
 Polestar.Theme.Media(name) -> texturePath -- e.g. "icon-accept", "check", "white", "glow"
 Polestar.Theme.OnChanged(fn)              -- fn() on any scheme/colour/font change
 Polestar.Theme.IsEllesmere() -> bool
+Polestar.Theme.SkinKey() -> "polestar" | "halo" | "blizzard"   -- ui.skin
+Polestar.Theme.SkinChoices() -> { { value, text }, ... }
+Polestar.Theme.Metric(key, house) -> n   -- a size in the skin in use; `house` in the house style
+Polestar.Theme.Icon(name) -> name        -- a glyph a skin draws its own way ("bug" -> "flag")
+Polestar.Theme.FontKey() -> "game" | "inter" | "fira"   -- ui.font, "skin" resolved
 ```
+
+**Skins** (`ui.skin`, Appearance > Windows > Frame): `polestar`, the house
+style everything below describes (the default); the two directions of the
+design handoff, `halo` (Forever · Halo: no frame, a dark veil with soft edges,
+an off-white ladder, the game's gold, Fira Sans) and `hearth` (Forever ·
+Hearth: warm game colours, a brown gradient window, the client's buttons, font
+and text colours); and the game's own looks, `forever`, `blizzard` and
+`classic` (below). `Theme.GameSkin()` is true for Hearth and the game's looks:
+the client's check boxes, sliders and red buttons, its font and hard shadow. A
+skin brings:
+- its palette (`Theme.SKIN_PALETTES`: the handoff's tokens as given, washes
+  included); the scheme, ground colour, brightness, band and shadow are the
+  house style's (their options are greyed out in a skin); the player's own
+  accent, window border and arrow colours win in every skin. Tokens the skins
+  added (`textOff`, `title`, `link`, `todo`, `later`, `manual`, `skipped`,
+  `arrive`, `veil`, `veilWindow`, `menuBg`, `inputBg`, `control`,
+  `accentLine`, `padSelect`, `chipAccent`, `separator`, `rowLine`, `icon`,
+  `iconHover`, `buttonText`, `personName`, `tabRest`) exist in the house
+  style too, as their house equivalents;
+- its paints (`Theme.SKIN_PAINT`, falling back to the house paint): Halo's
+  veil (Media/UI/veil-soft, nine slices laid 24 units out); Hearth's flat
+  brown gradient windows edged by the window border setting (a #5C4518
+  hairline by default; no game frame) and the game's `UI-Panel-Button-*`. A
+  frame painted in another skin is cleared first, so a switch and back leaves it
+  as it was;
+- its fonts (`ui.font` "skin", the default: the game's in the house style and
+  Hearth and the game's looks, Fira Sans in Halo), its type sizes and text shadow;
+- its sizes (`Theme.Metric`): setting rows, buttons, menus, dropdowns,
+  sliders, the guide window (`readMetrics` / `GF.ApplySkin`), the shell
+  (`W.SHELL` reads them) and the guide menu. The big windows take them as they
+  are built.
+
+The arrow follows the skin (`nav.arrowStyle` "skin", the default: 3D in the
+house style, the `halo` dart in Halo, the `hearth` dart in Hearth and the
+game's looks; Nav/Arrow.lua). The skins' textures are drawn by
+`tools/media/skins.js`.
+
+**The game's looks** (Theme/GameSkins.lua) draw Polestar in the client's art,
+the three looks EllesmereUI offers on the Forever client (its visual spec
+only; nothing of that addon is used), composed as the client's own FrameXML
+composes its windows: SharedUIPanelTemplates (ButtonFrameTemplateNoPortrait,
+InsetFrameTemplate, UIPanelButtonTemplate, UIPanelCloseButton), the
+NineSliceLayouts with the Forever client's offset overrides, and the Settings
+panel's controls (MinimalTab, the minimal check box, MinimalSliderWithSteppers,
+WowStyle2Dropdown, MinimalScrollBar, the MenuStyle1 menu ground). Each look is
+a kit of parts by role (`Theme.KITS`), drawn by `Theme.Kit*` helpers the
+widgets and the guide window call, and kept in `frame.psSkin.kit` so a skin
+change hides them:
+- the big windows (shells, dialogs) are the template's Bg: its metal frame
+  lies outside them, with the title bar above (a drag strip and the title on
+  it) and the close button on its corner; rock under the content, the
+  sidebar an inset, gold setting labels and list rows (`rowLabel`,
+  `navRest`);
+- the guide window and the toasts (`psLight`) keep EllesmereUI's small-window
+  looks: Forever's bronze micro menu line, Blizzard's black body under a fade
+  with the damage meter's header bar, Classic's tooltip tile under the chat
+  tab's rim;
+- atlases the client draws sliced (UiTextureAtlasElementSliceData) are cut at
+  the same margins (`ns.GameArtSlice`).
+
+Sources: `forever` names atlas elements (the Forever client draws its own
+-c60 art for them); `blizzard` draws the same elements in their retail art,
+which still ships with the client but which SetAtlas does not draw there, by
+file ID and coordinates from `Theme/GameArt.lua` (generated with the slice
+margins by `node tools/polestar.js media game-art`, tools/media/game-art.js);
+`classic` names the vanilla files (the dialog box and tooltips through
+BackdropTemplate).
+
+No client art is copied into the addon; the kits name files and atlases. With
+POLESTAR_CLIENT_ART holding the client's UI textures decoded to <fileID>.tga
+plus atlases.json and files.json, `node tools/polestar.js preview` draws them
+(SetAtlas, GetAtlasInfo and file paths resolve) and renders the local-only
+`skins-game-*` scenes into that folder.
 
 **Colour schemes** (`ui.scheme`, `Theme.SCHEMES`): Dusk (default: Night's
 navy lifted to dusk), Night (the original deep navy-black, values unchanged),
@@ -1430,7 +1508,8 @@ scheme.
   every ground is darkened together by the least lightness that restores it.
 - Ground opacity: `ui.bgOpacity` for every window skin.
 - Font: EllesmereUI's when `ui.matchFont` (default off) and installed, else
-  `ui.font` (`game` by default | `inter`; CJK clients always the game font).
+  `ui.font` (`skin` by default: the skin's | `game` | `inter` | `fira`; CJK
+  clients always the game font).
 - Settings from before schemes: a stored accent equal to the old gold default
   is dropped at load (Theme.lua's `migrate`); any other stays the user's own.
 - Window frame (the `window` skin of every top-level window, live):

@@ -165,6 +165,11 @@ L["Open the Gamepad page: button names and bindings"] = "打开手柄页面：�
 L["Dusk"] = "黄昏"
 L["Night"] = "夜晚"
 L["Graphite"] = "石墨"
+L["Halo"] = "光环"
+L["Hearth"] = "炉边"
+L["WoW Forever"] = "WoW Forever"
+L["Blizzard"] = "暴雪"
+L["Classic"] = "经典"
 
 -- Theme/Widgets.lua
 L["Click to copy"] = "点击复制"
@@ -1493,7 +1498,6 @@ L["Background opacity"] = "背景不透明度"
 L["The background opacity of every Polestar window: how much of the world shows through. Right-click to reset."] = "所有 Polestar 窗口的背景不透明度：能透出多少游戏画面。右键点击重置。"
 L["Type & motion"] = "字体与动效"
 L["Font"] = "字体"
-L["The game's own font (the default), Inter, or EllesmereUI's."] = "游戏自带字体（默认）、Inter 或 EllesmereUI 的字体。"
 L["Game font"] = "游戏字体"
 L["Match EllesmereUI font"] = "匹配 EllesmereUI 字体"
 L["Follow EllesmereUI's font, live. Choosing another font turns this off."] = "实时跟随 EllesmereUI 的字体。选择其他字体会关闭此项。"
@@ -1607,6 +1611,11 @@ L["Close the game menu to see Polestar's settings."] = "关闭游戏菜单以查
 L["Integrations"] = "整合"
 L["Settings for other addons Polestar works with, shown when they are installed."] = "Polestar 可配合的其他插件的设置，安装后显示。"
 L["None of the addons Polestar works with is installed."] = "未安装任何 Polestar 可配合的插件。"
+L["The skin's font (the default: the game's own, Fira Sans in Halo), the game's, Inter, Fira Sans, or EllesmereUI's."] = "皮肤的字体（默认：游戏自带字体，光环为 Fira Sans）、游戏字体、Inter、Fira Sans 或 EllesmereUI 的字体。"
+L["The skin's font"] = "皮肤的字体"
+L["Skin"] = "皮肤"
+L["Polestar's own look (the default), Halo (no frame, a soft dark veil, Fira Sans), Hearth (warm game colours), or the game's own art: WoW Forever, Blizzard and Classic. Style, compact mode and the colours you pick work in each."] = "Polestar 自己的外观（默认）、光环（无边框，柔和的暗色薄纱，Fira Sans）、炉边（游戏的暖色调），或游戏自身的美术：WoW Forever、暴雪和经典。样式、紧凑模式和你选的颜色在每种皮肤中都有效。"
+L["The skin's arrow"] = "皮肤的箭头"
 
 -- Rares/Rares.lua
 L["Raid warning"] = "团队通知"
@@ -1938,3 +1947,4 @@ L["Shortest Path Forever's arrow, route and journey take you to each goal. Poles
 -- L["Guide with Shortest Path Forever when it's installed"] = "安装 Shortest Path Forever 时由其导航"
 -- L["Shortest Path Forever's arrow, route and journey take you to each goal. Polestar's arrow, route lines, journey steps, travel button, transport alerts, map clicks and /way step aside; the guide window and map pins stay."] = "由 Shortest Path Forever 的箭头、路线和行程带你前往每个目标。Polestar 的箭头、路线线条、行程步骤、旅行按钮、交通提醒、地图点击和 /way 将让位；指南窗口和地图标记保留。"
 -- L["Browsing the guide needs a gamepad: turn it on in the game's options and plug one in."] = "浏览指南需要手柄：请在游戏选项中启用手柄并连接一个手柄。"
+-- L["The game's own font (the default), Inter, or EllesmereUI's."] = "游戏自带字体（默认）、Inter 或 EllesmereUI 的字体。"

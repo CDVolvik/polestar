@@ -165,6 +165,11 @@ L["Open the Gamepad page: button names and bindings"] = "게임패드 페이지 
 L["Dusk"] = "황혼"
 L["Night"] = "밤"
 L["Graphite"] = "흑연"
+L["Halo"] = "후광"
+L["Hearth"] = "화롯가"
+L["WoW Forever"] = "WoW Forever"
+L["Blizzard"] = "블리자드"
+L["Classic"] = "클래식"
 
 -- Theme/Widgets.lua
 L["Click to copy"] = "클릭하여 복사"
@@ -1493,7 +1498,6 @@ L["Background opacity"] = "배경 불투명도"
 L["The background opacity of every Polestar window: how much of the world shows through. Right-click to reset."] = "모든 Polestar 창의 배경 불투명도: 게임 화면이 얼마나 비쳐 보이는지. 오른쪽 클릭하면 초기화."
 L["Type & motion"] = "글꼴 및 움직임"
 L["Font"] = "글꼴"
-L["The game's own font (the default), Inter, or EllesmereUI's."] = "게임 글꼴(기본), Inter, 또는 EllesmereUI 글꼴."
 L["Game font"] = "게임 글꼴"
 L["Match EllesmereUI font"] = "EllesmereUI 글꼴 따르기"
 L["Follow EllesmereUI's font, live. Choosing another font turns this off."] = "EllesmereUI 글꼴을 실시간으로 따릅니다. 다른 글꼴을 고르면 꺼집니다."
@@ -1607,6 +1611,11 @@ L["Close the game menu to see Polestar's settings."] = "Polestar 설정을 보�
 L["Integrations"] = "연동"
 L["Settings for other addons Polestar works with, shown when they are installed."] = "Polestar와 연동되는 다른 애드온의 설정이며, 해당 애드온이 설치되어 있을 때 표시됩니다."
 L["None of the addons Polestar works with is installed."] = "Polestar와 연동되는 애드온이 설치되어 있지 않습니다."
+L["The skin's font (the default: the game's own, Fira Sans in Halo), the game's, Inter, Fira Sans, or EllesmereUI's."] = "스킨 글꼴(기본: 게임 글꼴, 후광은 Fira Sans), 게임 글꼴, Inter, Fira Sans 또는 EllesmereUI 글꼴."
+L["The skin's font"] = "스킨 글꼴"
+L["Skin"] = "스킨"
+L["Polestar's own look (the default), Halo (no frame, a soft dark veil, Fira Sans), Hearth (warm game colours), or the game's own art: WoW Forever, Blizzard and Classic. Style, compact mode and the colours you pick work in each."] = "Polestar 고유의 모습(기본), 후광(테두리 없이 부드러운 어두운 장막, Fira Sans), 화롯가(따뜻한 게임 색), 또는 게임 고유의 아트: WoW Forever, 블리자드, 클래식. 스타일, 간략 모드, 직접 고른 색은 모든 스킨에 적용됩니다."
+L["The skin's arrow"] = "스킨 화살표"
 
 -- Rares/Rares.lua
 L["Raid warning"] = "공격대 경보"
@@ -1938,3 +1947,4 @@ L["Shortest Path Forever's arrow, route and journey take you to each goal. Poles
 -- L["Guide with Shortest Path Forever when it's installed"] = "설치 시 Shortest Path Forever로 가이드"
 -- L["Shortest Path Forever's arrow, route and journey take you to each goal. Polestar's arrow, route lines, journey steps, travel button, transport alerts, map clicks and /way step aside; the guide window and map pins stay."] = "Shortest Path Forever의 화살표, 경로, 여정이 각 목표로 안내합니다. Polestar의 화살표, 경로선, 여정 단계, 이동 버튼, 교통수단 알림, 지도 클릭, /way는 물러나고 가이드 창과 지도 핀은 남습니다."
 -- L["Browsing the guide needs a gamepad: turn it on in the game's options and plug one in."] = "가이드 탐색에는 게임패드가 필요합니다. 게임 설정에서 켜고 게임패드를 연결하십시오."
+-- L["The game's own font (the default), Inter, or EllesmereUI's."] = "게임 글꼴(기본), Inter, 또는 EllesmereUI 글꼴."

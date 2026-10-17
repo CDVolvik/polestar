@@ -770,7 +770,6 @@ L["Background opacity"] = "Hintergrund-Deckkraft"
 L["The background opacity of every Polestar window: how much of the world shows through. Right-click to reset."] = "Die Deckkraft des Hintergrunds jedes Polestar-Fensters: wie viel von der Welt durchscheint. Rechtsklick zum Zurücksetzen."
 L["Type & motion"] = "Schrift & Bewegung"
 L["Font"] = "Schrift"
-L["The game's own font (the default), Inter, or EllesmereUI's."] = "Die Schrift des Spiels (Standard), Inter oder die von EllesmereUI."
 L["Game font"] = "Spielschrift"
 L["Match EllesmereUI font"] = "EllesmereUI-Schrift übernehmen"
 L["Follow EllesmereUI's font, live. Choosing another font turns this off."] = "Folgt der Schrift von EllesmereUI, live. Wählst du eine andere Schrift, schaltet sich das aus."
@@ -927,6 +926,11 @@ L["Close the game menu to see Polestar's settings."] = "Schließe das Spielmenü
 L["Integrations"] = "Integrationen"
 L["Settings for other addons Polestar works with, shown when they are installed."] = "Einstellungen für andere Addons, mit denen Polestar zusammenarbeitet; sichtbar, wenn sie installiert sind."
 L["None of the addons Polestar works with is installed."] = "Keines der Addons, mit denen Polestar zusammenarbeitet, ist installiert."
+L["The skin's font (the default: the game's own, Fira Sans in Halo), the game's, Inter, Fira Sans, or EllesmereUI's."] = "Die Schrift des Designs (Standard: die des Spiels, Fira Sans in Halo), die des Spiels, Inter, Fira Sans oder die von EllesmereUI."
+L["The skin's font"] = "Die Schrift des Designs"
+L["Skin"] = "Design"
+L["Polestar's own look (the default), Halo (no frame, a soft dark veil, Fira Sans), Hearth (warm game colours), or the game's own art: WoW Forever, Blizzard and Classic. Style, compact mode and the colours you pick work in each."] = "Polestars eigenes Aussehen (Standard), Halo (ohne Rahmen, ein weicher dunkler Schleier, Fira Sans), Herd (warme Farben des Spiels) oder die Grafik des Spiels selbst: WoW Forever, Blizzard und Classic. Stil, Kompaktmodus und die Farben, die du wählst, wirken in jedem Design."
+L["The skin's arrow"] = "Der Pfeil des Designs"
 
 -- UI/Dungeons.lua
 L["Ready to turn in"] = "Bereit zur Abgabe"
@@ -1901,6 +1905,13 @@ L["Opens the gate of the Horde's way into the City of Dalaran; one key opens it 
 L["Hand guiding to Shortest Path Forever"] = "Führung an Shortest Path Forever abgeben"
 L["Shortest Path Forever's arrow, route and journey take you to each goal. Polestar's arrow, route lines, journey steps, travel button, transport alerts, map clicks and /way step aside; the guide window and map pins stay. Off: Polestar guides, and steps aside only while a journey you started in Shortest Path Forever runs."] = "Pfeil, Route und Reise von Shortest Path Forever führen dich zu jedem Ziel. Polestars Pfeil, Routenlinien, Reiseschritte, Reise-Button, Transport-Alarme, Kartenklicks und /way treten zur Seite; das Guide-Fenster und die Kartenmarkierungen bleiben. Aus: Polestar führt und tritt nur zur Seite, solange eine Reise läuft, die du in Shortest Path Forever gestartet hast."
 
+-- Theme/Theme.lua
+L["Halo"] = "Halo"
+L["Hearth"] = "Herd"
+L["WoW Forever"] = "WoW Forever"
+L["Blizzard"] = "Blizzard"
+L["Classic"] = "Classic"
+
 -- No longer in the code (its English changed or it went away): reuse or delete.
 -- L["The arrow's target and the areas it spawns in."] = "Das Ziel des Pfeils und die Gebiete, in denen es spawnt."
 -- L["The arrow's target, the stops of its travel route, the step's other goals and the areas their mobs and objects spawn in."] = "Das Ziel des Pfeils, die Stationen seiner Reiseroute, die anderen Ziele des Schritts und die Gebiete, in denen ihre Mobs und Objekte spawnen."
@@ -1942,3 +1953,4 @@ L["Shortest Path Forever's arrow, route and journey take you to each goal. Poles
 -- L["Guide with Shortest Path Forever when it's installed"] = "Mit Shortest Path Forever führen, wenn es installiert ist"
 -- L["Shortest Path Forever's arrow, route and journey take you to each goal. Polestar's arrow, route lines, journey steps, travel button, transport alerts, map clicks and /way step aside; the guide window and map pins stay."] = "Pfeil, Route und Reise von Shortest Path Forever führen dich zu jedem Ziel. Polestars Pfeil, Routenlinien, Reiseschritte, Reise-Button, Transport-Alarme, Kartenklicks und /way treten zur Seite; das Guide-Fenster und die Kartenmarkierungen bleiben."
 -- L["Browsing the guide needs a gamepad: turn it on in the game's options and plug one in."] = "Zum Durchgehen des Guides brauchst du ein Gamepad: Aktiviere es in den Spieloptionen und schließ eines an."
+-- L["The game's own font (the default), Inter, or EllesmereUI's."] = "Die Schrift des Spiels (Standard), Inter oder die von EllesmereUI."

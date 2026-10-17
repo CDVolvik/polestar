@@ -165,6 +165,11 @@ L["Open the Gamepad page: button names and bindings"] = "Abrir la página Mando:
 L["Dusk"] = "Crepúsculo"
 L["Night"] = "Noche"
 L["Graphite"] = "Grafito"
+L["Halo"] = "Halo"
+L["Hearth"] = "Hogar"
+L["WoW Forever"] = "WoW Forever"
+L["Blizzard"] = "Blizzard"
+L["Classic"] = "Classic"
 
 -- Theme/Widgets.lua
 L["Click to copy"] = "Haz clic para copiar"
@@ -1493,7 +1498,6 @@ L["Background opacity"] = "Opacidad del fondo"
 L["The background opacity of every Polestar window: how much of the world shows through. Right-click to reset."] = "La opacidad del fondo de cada ventana de Polestar: cuánto del mundo se ve a través. Clic derecho para restablecer."
 L["Type & motion"] = "Tipografía y movimiento"
 L["Font"] = "Fuente"
-L["The game's own font (the default), Inter, or EllesmereUI's."] = "La fuente propia del juego (predeterminada), Inter o la de EllesmereUI."
 L["Game font"] = "Fuente del juego"
 L["Match EllesmereUI font"] = "Usar la fuente de EllesmereUI"
 L["Follow EllesmereUI's font, live. Choosing another font turns this off."] = "Sigue la fuente de EllesmereUI en vivo. Elegir otra fuente lo desactiva."
@@ -1607,6 +1611,11 @@ L["Close the game menu to see Polestar's settings."] = "Cierra el menú del jueg
 L["Integrations"] = "Integraciones"
 L["Settings for other addons Polestar works with, shown when they are installed."] = "Ajustes para otros addons con los que funciona Polestar; se muestran cuando están instalados."
 L["None of the addons Polestar works with is installed."] = "No está instalado ninguno de los addons con los que funciona Polestar."
+L["The skin's font (the default: the game's own, Fira Sans in Halo), the game's, Inter, Fira Sans, or EllesmereUI's."] = "La fuente del tema (predeterminada: la propia del juego, Fira Sans en Halo), la del juego, Inter, Fira Sans o la de EllesmereUI."
+L["The skin's font"] = "La fuente del tema"
+L["Skin"] = "Tema"
+L["Polestar's own look (the default), Halo (no frame, a soft dark veil, Fira Sans), Hearth (warm game colours), or the game's own art: WoW Forever, Blizzard and Classic. Style, compact mode and the colours you pick work in each."] = "El aspecto propio de Polestar (predeterminado), Halo (sin marco, un velo oscuro suave, Fira Sans), Hogar (los colores cálidos del juego) o el arte propio del juego: WoW Forever, Blizzard y Classic. El estilo, el modo compacto y los colores que elijas funcionan en cada uno."
+L["The skin's arrow"] = "La flecha del tema"
 
 -- Rares/Rares.lua
 L["Raid warning"] = "Aviso de la banda"
@@ -1938,3 +1947,4 @@ L["Shortest Path Forever's arrow, route and journey take you to each goal. Poles
 -- L["Guide with Shortest Path Forever when it's installed"] = "Guiar con Shortest Path Forever si está instalado"
 -- L["Shortest Path Forever's arrow, route and journey take you to each goal. Polestar's arrow, route lines, journey steps, travel button, transport alerts, map clicks and /way step aside; the guide window and map pins stay."] = "La flecha, la ruta y el trayecto de Shortest Path Forever te llevan a cada objetivo. La flecha de Polestar, las líneas de ruta, los pasos del trayecto, el botón de viaje, los avisos de transporte, los clics en el mapa y /way se apartan; la ventana de la guía y los marcadores del mapa se quedan."
 -- L["Browsing the guide needs a gamepad: turn it on in the game's options and plug one in."] = "Recorrer la guía requiere un mando: actívalo en las opciones del juego y conecta uno."
+-- L["The game's own font (the default), Inter, or EllesmereUI's."] = "La fuente propia del juego (predeterminada), Inter o la de EllesmereUI."

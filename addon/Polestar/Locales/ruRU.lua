@@ -165,6 +165,11 @@ L["Open the Gamepad page: button names and bindings"] = "Открыть стра
 L["Dusk"] = "Сумерки"
 L["Night"] = "Ночь"
 L["Graphite"] = "Графит"
+L["Halo"] = "Ореол"
+L["Hearth"] = "Очаг"
+L["WoW Forever"] = "WoW Forever"
+L["Blizzard"] = "Blizzard"
+L["Classic"] = "Classic"
 
 -- Theme/Widgets.lua
 L["Click to copy"] = "Щелкните, чтобы скопировать"
@@ -1493,7 +1498,6 @@ L["Background opacity"] = "Непрозрачность фона"
 L["The background opacity of every Polestar window: how much of the world shows through. Right-click to reset."] = "Непрозрачность фона всех окон Polestar: сколько мира видно сквозь них. ПКМ — сброс."
 L["Type & motion"] = "Шрифт и анимация"
 L["Font"] = "Шрифт"
-L["The game's own font (the default), Inter, or EllesmereUI's."] = "Шрифт игры (по умолчанию), Inter или шрифт EllesmereUI."
 L["Game font"] = "Шрифт игры"
 L["Match EllesmereUI font"] = "Шрифт EllesmereUI"
 L["Follow EllesmereUI's font, live. Choosing another font turns this off."] = "Следовать шрифту EllesmereUI в реальном времени. Выбор другого шрифта отключает это."
@@ -1607,6 +1611,11 @@ L["Close the game menu to see Polestar's settings."] = "Закройте игр�
 L["Integrations"] = "Интеграции"
 L["Settings for other addons Polestar works with, shown when they are installed."] = "Настройки других аддонов, с которыми работает Polestar; показываются, если они установлены."
 L["None of the addons Polestar works with is installed."] = "Ни один из аддонов, с которыми работает Polestar, не установлен."
+L["The skin's font (the default: the game's own, Fira Sans in Halo), the game's, Inter, Fira Sans, or EllesmereUI's."] = "Шрифт оформления (по умолчанию: шрифт игры, Fira Sans в Ореоле), шрифт игры, Inter, Fira Sans или шрифт EllesmereUI."
+L["The skin's font"] = "Шрифт оформления"
+L["Skin"] = "Оформление"
+L["Polestar's own look (the default), Halo (no frame, a soft dark veil, Fira Sans), Hearth (warm game colours), or the game's own art: WoW Forever, Blizzard and Classic. Style, compact mode and the colours you pick work in each."] = "Собственный вид Polestar (по умолчанию), Ореол (без рамки, мягкая темная вуаль, Fira Sans), Очаг (теплые цвета игры) или собственная графика игры: WoW Forever, Blizzard и Classic. Стиль, компактный режим и выбранные цвета работают в каждом оформлении."
+L["The skin's arrow"] = "Стрелка оформления"
 
 -- Rares/Rares.lua
 L["Raid warning"] = "Предупреждение рейда"
@@ -1938,3 +1947,4 @@ L["Shortest Path Forever's arrow, route and journey take you to each goal. Poles
 -- L["Guide with Shortest Path Forever when it's installed"] = "Вести через Shortest Path Forever, если он установлен"
 -- L["Shortest Path Forever's arrow, route and journey take you to each goal. Polestar's arrow, route lines, journey steps, travel button, transport alerts, map clicks and /way step aside; the guide window and map pins stay."] = "Стрелка, маршрут и путь Shortest Path Forever ведут к каждой цели. Стрелка Polestar, линии маршрута, шаги пути, кнопка пути, оповещения о транспорте, щелчки по карте и /way отключаются; окно гайда и метки на карте остаются."
 -- L["Browsing the guide needs a gamepad: turn it on in the game's options and plug one in."] = "Чтобы листать гайд, нужен геймпад: включите его в настройках игры и подключите."
+-- L["The game's own font (the default), Inter, or EllesmereUI's."] = "Шрифт игры (по умолчанию), Inter или шрифт EllesmereUI."
