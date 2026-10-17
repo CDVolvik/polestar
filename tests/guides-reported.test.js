@@ -110,6 +110,8 @@ const CAVES = [
 	{ cave: 'the Coldridge troll cave', guide: DUN_MOROGH, target: (g) => g.t === 'collect' && g.item === 2004, mouth: { map: 1426, x: 26.93, y: 80.03 } },
 	// The Grizzled Den's mouth as marked in game (thmastin); Flintfire's shipments lie inside.
 	{ cave: 'the Grizzled Den', guide: DUN_MOROGH, target: (g) => g.t === 'collect' && g.item === 280413, mouth: { map: 1426, x: 42.57, y: 54.68 } },
+	// Frostmane Hold's mouth as marked in game (thmastin); its Headhunters guard the way in.
+	{ cave: 'Frostmane Hold', guide: DUN_MOROGH, target: (g) => g.t === 'kill' && g.quest === 287, mouth: { map: 1426, x: 25.1, y: 50.94 } },
 	{ cave: 'the Jasperlode Mine', guide: ELWYNN, target: (g) => g.t === 'complete' && g.quest === 76, mouth: { map: 1429, x: 61.6, y: 54.1 } },
 	{ cave: 'Shadowthread Cave', guide: TELDRASSIL, target: (g) => g.t === 'collect' && g.item === 5167, mouth: { map: 1438, x: 57, y: 32 } },
 	{ cave: 'Fel Rock', guide: TELDRASSIL, target: (g) => g.t === 'collect' && g.item === 5221, mouth: { map: 1438, x: 54, y: 52 } },

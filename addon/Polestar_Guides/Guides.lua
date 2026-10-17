@@ -8600,13 +8600,14 @@ do
 						{ t = "accept", quest = 315, title = "The Perfect Stout", npc = 1374, npcName = "Rejold Barleybrew", minLevel = 5, qlvl = 9, map = 1426, x = 30.19, y = 45.73, z = 394.3, f = "e" },
 						{ t = "accept", quest = 319, title = "A Favor for Evershine", npc = 1374, npcName = "Rejold Barleybrew", minLevel = 2, qlvl = 8, pre = { 318 }, preTitles = { [318] = "Evershine" }, map = 1426, x = 30.19, y = 45.73, z = 394.3, f = "e" },
 						{ t = "accept", quest = 310, title = "Bitter Rivals", npc = 1375, npcName = "Marleth Barleybrew", minLevel = 2, qlvl = 6, map = 1426, x = 30.19, y = 45.53, z = 394.4, f = "e" },
+						{ t = "goto", text = "{area:135}", area = 135, map = 1426, x = 25.1, y = 50.94 },
 					},
 				},
 				{
 					title = "{area:135}",
 					note = "{area:135} is the troll cave in the hills south-west of {area:137}. Ice Claw Bears, Elder Crag Boars and Snow Leopards you kill on the way count for {npc:1374}. Kill Headhunters at its mouth and walk through to its far end.",
 					goals = {
-						{ t = "kill", quest = 287, title = "Frostmane Hold", target = "Frostmane Headhunter", npc = 1123, count = 5, oi = 1, map = 1426, x = 25.99, y = 51.49, z = 381.4, f = "e", spots = { { x = 25.8, y = 51.5, z = 381.4, r = 40, n = 3 }, { x = 23.8, y = 51, z = 399.2, r = 40, n = 5 }, { x = 23.9, y = 53.3, z = 386, r = 40, n = 1 }, { x = 21.9, y = 54.6, r = 40, n = 2 }, { x = 21.7, y = 51.1, r = 40, n = 4 }, { x = 40.9, y = 43.8, z = 441.1, r = 40, n = 1, alt = true }, { x = 39.3, y = 35.9, z = 428.5, r = 40, n = 1, alt = true } }, spread = true },
+						{ t = "kill", quest = 287, title = "Frostmane Hold", target = "Frostmane Headhunter", npc = 1123, count = 5, oi = 1, map = 1426, x = 25.5, y = 50.86, z = 391.6, f = "e", spots = { { x = 25.8, y = 51.5, z = 381.4, r = 40, n = 3 }, { x = 23.8, y = 51, z = 399.2, r = 40, n = 5 }, { x = 23.9, y = 53.3, z = 386, r = 40, n = 1 }, { x = 21.9, y = 54.6, r = 40, n = 2 }, { x = 21.7, y = 51.1, r = 40, n = 4 }, { x = 40.9, y = 43.8, z = 441.1, r = 40, n = 1, alt = true }, { x = 39.3, y = 35.9, z = 428.5, r = 40, n = 1, alt = true } }, spread = true },
 						{ t = "goto", text = "{area:135}", area = 135, map = 1426, x = 22.8, y = 52.1, f = "e" },
 						{ t = "complete", quest = 287, title = "Frostmane Hold" },
 					},
