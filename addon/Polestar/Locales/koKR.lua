@@ -696,11 +696,11 @@ L["Reset session"] = "접속 기록 초기화"
 L["Start this session's XP per hour from zero."] = "이번 접속의 시간당 경험치를 0부터 다시 셉니다."
 -- L["Mark what they target"] = ""
 -- L["A new one each press"] = ""
--- L["The target button and the step key put a raid icon on the mob and the NPC they target; a press that finds neither clears your target. Your party sees the icons; in a raid only the leader and assistants can set them."] = ""
 -- L["Icon on mobs"] = ""
 -- L["A new one each press skips the NPCs' icon and leaves a mob that has one as it is."] = ""
 -- L["Icon on NPCs"] = ""
--- L["A new one each press keeps the icons on the NPCs before."] = ""
+-- L["The target button and the step key put a raid icon on the mob and the NPC they target; out of combat, a press that finds neither clears your target. Your party sees the icons; in a raid only the leader and assistants can set them."] = ""
+-- L["A new one each press, so the last few NPCs keep theirs. Every press counts, even one that marks nothing."] = ""
 
 -- Lookup/Sources.lua
 L["Alliance only"] = "얼라이언스 전용"

@@ -19,8 +19,8 @@
 --     a kill or collect's mobs, an NPC goal's NPC by name), else the quest
 --     item. Independent of the three buttons' settings.
 --   Mark target (off by default): the target button and the step key clear
---     the target first and end their macro with /tm, an icon on a live
---     hostile target (skull unless set) or a friendly NPC (star), or a new
+--     the target first (out of combat) and end their macro with /tm, an icon
+--     on a live hostile target (skull unless set) or an NPC (star), or a new
 --     one each press (Buttons.MarkLine).
 --
 -- The buttons hang off one holder: hearth above the item, target below. A
@@ -457,7 +457,9 @@ function Buttons.TargetNames(view, raw)
 	return names
 end
 
-local MARK_UNIT = { mob = "[@target,harm,nodead]", npc = "[@target,help,nodead]" }
+-- "exists", not "help": a neutral NPC (Booty Bay, Gadgetzan) is no unit you
+-- can assist, and /targetexact has already made the target that NPC.
+local MARK_UNIT = { mob = "[@target,harm,nodead]", npc = "[@target,exists,nodead]" }
 local MARK_KEY = { mob = "qol.markMob", npc = "qol.markNpc" }
 local MARK_DEFAULT = { mob = 8, npc = 1 }
 local OTHER = { mob = "npc", npc = "mob" }
@@ -508,8 +510,9 @@ function Buttons.TargetMacro(list, preferred, mark)
 		if Buttons.MacroSafeName(list[idx]) then lines[#lines + 1] = "/targetexact " .. list[idx] end
 	end
 	if #lines == 0 then return nil end
-	-- Cleared first, so when no name is in range the old target is not marked.
-	local head = mark and "/cleartarget\n" or ""
+	-- Cleared first, so when no name is in range the old target is not marked;
+	-- not in a fight, where clearing it would stop melee and Auto Shot.
+	local head = mark and "/cleartarget [nocombat]\n" or ""
 	local tail = mark and ("\n" .. mark) or ""
 	local text = head .. concat(lines, "\n") .. tail
 	while #text > MACRO_LIMIT and #lines > 1 do

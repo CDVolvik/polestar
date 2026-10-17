@@ -696,11 +696,11 @@ L["Reset session"] = "重置本次記錄"
 L["Start this session's XP per hour from zero."] = "將本次的每小時經驗從零開始計算。"
 -- L["Mark what they target"] = ""
 -- L["A new one each press"] = ""
--- L["The target button and the step key put a raid icon on the mob and the NPC they target; a press that finds neither clears your target. Your party sees the icons; in a raid only the leader and assistants can set them."] = ""
 -- L["Icon on mobs"] = ""
 -- L["A new one each press skips the NPCs' icon and leaves a mob that has one as it is."] = ""
 -- L["Icon on NPCs"] = ""
--- L["A new one each press keeps the icons on the NPCs before."] = ""
+-- L["The target button and the step key put a raid icon on the mob and the NPC they target; out of combat, a press that finds neither clears your target. Your party sees the icons; in a raid only the leader and assistants can set them."] = ""
+-- L["A new one each press, so the last few NPCs keep theirs. Every press counts, even one that marks nothing."] = ""
 
 -- Lookup/Sources.lua
 L["Alliance only"] = "僅限聯盟"
