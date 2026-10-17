@@ -495,7 +495,7 @@
 					"tree": "Enhancement",
 					"talent": "Maelstrom Weapon",
 					"rank": 1,
-					"note": "Maelstrom Weapon makes your next spell faster and cheaper as you hit: a quick heal or Lightning Bolt between swings."
+					"note": "Maelstrom Weapon makes your next Lightning Bolt faster and cheaper as you hit."
 				},
 				{
 					"level": 36,

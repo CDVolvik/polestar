@@ -994,7 +994,7 @@ T.Register({
 				[15] = L["Mental Dexterity turns your Intellect into attack power, so mana gear helps your melee too; it also opens Flurry."],
 				[25] = L["Flurry speeds up your swings after a crit and is the core of Enhancement's damage."],
 				[30] = L["Stormstrike is an instant strike that raises the damage your next spells do."],
-				[35] = L["Maelstrom Weapon makes your next spell faster and cheaper as you hit: a quick heal or Lightning Bolt between swings."],
+				[35] = L["Maelstrom Weapon makes your next Lightning Bolt faster and cheaper as you hit."],
 				[40] = L["Rage of the Farseer is the capstone: a big attack-speed cooldown for elites and pulls."],
 				[41] = L["The last 20 points go to Elemental for stronger Shocks, cheaper casts and more crit from spells."],
 			},
