@@ -294,6 +294,7 @@ local function validate(def)
 	if def.category ~= nil and not isStr(def.category) then return "bad category" end
 	if def.pitch ~= nil and not isStr(def.pitch) then return "bad pitch" end
 	if def.folder ~= nil and not isStr(def.folder) then return "bad folder" end
+	if def.everyStep ~= nil and type(def.everyStep) ~= "boolean" then return "bad everyStep" end
 	if def.collects ~= nil then
 		if type(def.collects) ~= "table" then return "bad collects" end
 		for i = 1, #def.collects do

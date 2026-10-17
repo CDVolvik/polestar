@@ -519,6 +519,10 @@ function resolveGuide(ast, data, diag, opts = {}) {
 		});
 	}
 	setIf(guide, 'why', h.why);
+	if (h.skip === 'none') {
+		if (guide.category && guide.category !== 'Leveling') warn(ast.lines.skip, `\`skip none\` is for leveling guides: a ${guide.category} guide already does every step`);
+		guide.everyStep = true;
+	}
 	if (guide.category === 'Class') {
 		if (!h.reward) warn(ast.line, 'a Class guide needs `reward`: what its chain gives (`reward item <id>`, `reward spell <id> "Name"` or `reward text <words>`), shown in the guide menu');
 		if (!h.why) warn(ast.line, 'a Class guide needs `why`: one short line on why the chain is worth doing, shown in the guide menu');
