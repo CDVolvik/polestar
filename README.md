@@ -22,7 +22,7 @@
 <p align="center">
   <a href="LICENSE"><img alt="Licence: GPL-3.0" src="https://img.shields.io/badge/licence-GPL--3.0-e6ba66?style=flat-square&labelColor=232a3f"></a>
   <img alt="World of Warcraft: Forever, client 1.60.1" src="https://img.shields.io/badge/WoW-Forever_1.60.1-94c9ff?style=flat-square&labelColor=232a3f">
-  <img alt="Version 0.2.1, beta" src="https://img.shields.io/badge/version-0.2.1_beta-fabf4d?style=flat-square&labelColor=232a3f">
+  <img alt="Version 0.2.5, beta" src="https://img.shields.io/badge/version-0.2.5_beta-fabf4d?style=flat-square&labelColor=232a3f">
   <a href="https://github.com/fitzforge/polestar/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/fitzforge/polestar/actions/workflows/ci.yml/badge.svg"></a>
   <a href="https://discord.gg/vMbee6F2e9"><img alt="Discord: join the Polestar community" src="https://img.shields.io/badge/Discord-join_us-5865f2?style=flat-square&logo=discord&logoColor=white&labelColor=232a3f"></a>
   <a href="https://www.curseforge.com/wow/addons/polestar-guides"><img alt="CurseForge: Polestar Guides" src="https://img.shields.io/badge/CurseForge-Polestar_Guides-f16436?style=flat-square&logo=curseforge&logoColor=white&labelColor=232a3f"></a>
@@ -105,8 +105,10 @@ arrow that walks real paths (on Polestar's walking maps, with a router that
 started from Shortest Path Forever's by Cillian Berragan) and a travel planner, quest
 markers on the map, an upgrade indicator on item tooltips, a search for where
 any item, mount or pet comes from, a dungeon quest journal, rare alerts and
-the quality-of-life helpers a long leveling session needs. Its interface is
-in English, French, German and Latin American Spanish.
+the quality-of-life helpers a long leveling session needs. Its interface and
+its guides read in English, German, French, Spanish (Spain and Latin
+America), Brazilian Portuguese, Russian, Korean and Chinese (simplified and
+traditional).
 
 The leveling routes are not hand-picked. A simulator models every quest
 Forever offers a faction, plays millions of complete 1-60 routes for each
@@ -189,8 +191,8 @@ Polestar 0.1.0 at its default settings. Click a picture for full size.
   </tr>
 </table>
 
-Lookup beyond the guides, Dungeons and Rares read a data pack that is built
-locally and not in the release yet ([Lookup, Dungeons and
+Lookup, Dungeons and Rares read the Codex, a data pack that ships in the
+release as `Polestar_Codex` ([Lookup, Dungeons and
 Rares](#lookup-dungeons-and-rares)). Not pictured yet: the rare alert, the
 upgrade marks on the quest reward panel and the quest markers on the world
 map. Renders of every window and state, drawn without the game, are in
