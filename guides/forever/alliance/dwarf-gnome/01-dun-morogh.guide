@@ -605,7 +605,7 @@ step Tundra MacGrann
 step The Tome of Divinity
   only Paladin
   zone Ironforge
-  tip Follow the road up to Ironforge and take the Mystic Ward: Brandur Ironhammer, Tiza Battleforge and Muiredon Battleforge are in the Hall of Mysteries. John Turner, a beggar, wanders the city. He asks for ten Linen Cloth: the troggs and trolls of Dun Morogh drop it, and the Auction House sells it.
+  tip Follow the road up to Ironforge and take the Mystic Ward: Brandur Ironhammer, Tiza Battleforge and Muiredon Battleforge are in the Hall of Mysteries, Tiza and Muiredon on its upper floor: the stairs up start just north-east of Brandur. John Turner, a beggar, wanders the city. He asks for ten Linen Cloth: the troggs and trolls of Dun Morogh drop it, and the Auction House sells it.
   accept 2999                                 -- Brandur Ironhammer
   turnin 2999                                 -- Tiza Battleforge
   accept 1646                                 -- From the Tome of Divinity she gives you
