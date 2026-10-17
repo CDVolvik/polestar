@@ -265,7 +265,7 @@ test('"Mark the right spot" steps the window aside while the player walks; "Mark
 		PolestarMark.Here:Click()
 		local back = { report = F:IsShown(), bar = PolestarMark:IsShown(), note = F.SpotNote:GetText(), button = F.Mark.Label:GetText() }
 		local after = F.Box:GetText()
-		local url = UI.Report.IssueURL(F.Desc:GetText(), nil, F.spot)
+		local url = UI.Report.IssueURL(F.Desc:GetText(), F.details, F.spot)
 		F:Hide()
 		UI.ShowReport()
 		local reopened = F.SpotNote:GetText()
@@ -282,4 +282,31 @@ test('"Mark the right spot" steps the window aside while the player walks; "Mark
 	assert.equal(out.reopened, out.back.note, 'the spot stays while it is the same step');
 	assert.match(out.otherStep, /^Optional:/, 'another step starts unmarked');
 	assert.doesNotMatch(out.otherReport, /Right spot/);
+});
+
+test('the issue link holds the report taken when the window opened: the step on screen then, not where the guide is when Report bug is pressed', () => {
+	const [out] = run(`
+		uistub.setGuide(uistub.elwynn, 3)
+		UI.ShowReport()
+		local F = PolestarReport
+		F.Desc:SetText("The vermin were all by the tents.")
+		stub.RunScript(F.Desc, "OnTextChanged", true)
+		F.Mark:Click()
+		uistub.setStep(4)
+		Polestar.Compat.GetPlayerMapPosition = function() return 1429, 51.234, 40.5 end
+		PolestarMark.Here:Click()
+		F.Report:Click()
+		local moved = PolestarCopy.Box:GetText()
+		uistub.complete()
+		F.Report:Click()
+		emit({ moved = moved, done = PolestarCopy.Box:GetText(), report = F.Box:GetText() })`);
+	for (const url of [out.moved, out.done]) {
+		const q = Object.fromEntries(new URL(url).searchParams);
+		assert.equal(q.template, 'wrong-step.yml', 'a step was on screen when the window opened');
+		assert.equal(q.title, 'Wrong step: Elwynn Forest, step 3');
+		assert.equal(q.step, '3: Kobold Camp');
+		assert.match(q.wrong, /^Step 3 of 8: Kobold Camp$/m);
+		assert.match(q.character, /^Human Warrior/);
+	}
+	assert.match(out.report, /^Step 3 of 8: Kobold Camp$/m);
 });

@@ -22,7 +22,7 @@
 local ADDON, ns = ...
 local UI, Theme, W, Anim = ns.UI, ns.Theme, ns.Widgets, ns.Anim
 local L = ns.L
-local floor, max, ipairs, pairs, tostring, type, pcall = math.floor, math.max, ipairs, pairs, tostring, type, pcall
+local floor, max, min, ipairs, pairs, tostring, type, pcall = math.floor, math.max, math.min, ipairs, pairs, tostring, type, pcall
 
 local R = {}
 UI.Report = R
@@ -109,26 +109,45 @@ local function character()
 	return cut(table.concat({ tostring(p.race or "?") .. " " .. class, level, tostring(p.faction or "?") }, SEP))
 end
 
-local function guideLines(out)
+-- The guide on screen, its title as it reads, its step count and the step
+-- on screen: its index and its view, nil past the last step.
+local function onScreen()
 	local E = ns.Engine
 	local guide = E and E.GetGuide and E.GetGuide()
+	if not guide then return {} end
+	local index = E.GetStepIndex and E.GetStepIndex()
+	return { guide = guide, title = plain(guide.title or guide.id), index = index,
+		view = index and E.GetStepView and E.GetStepView(index), count = E.GetStepCount and E.GetStepCount() or 0 }
+end
+
+-- "Step 3 of 8 · Kobold Camp · Elwynn Forest": what the report is about.
+local function context(on)
+	if not on.guide then return L["No guide open"] end
+	local parts = {}
+	if on.view then
+		parts[#parts + 1] = (L["Step %d of %d"]):format(on.index, on.count)
+		if on.view.title and on.view.title ~= "" then parts[#parts + 1] = plain(on.view.title) end
+	end
+	parts[#parts + 1] = on.title
+	return table.concat(parts, UI_SEP)
+end
+
+local function guideLines(d, on)
+	local out, E, guide, index, view = d.lines, ns.Engine, on.guide, on.index, on.view
 	if not guide then
 		out[#out + 1] = L["Guide: none open"]
 		return
 	end
 	local G = ns.Guides
 	local pack = guide.pack and G and G.Pack and G.Pack(guide.pack)
-	local line = (L["Guide: %s (%s)"]):format(plain(guide.title or guide.id), tostring(guide.id))
+	local line = (L["Guide: %s (%s)"]):format(on.title, tostring(guide.id))
 	if pack then line = line .. SEP .. (L["pack %s"]):format(plain(pack.title or pack.id) .. (pack.version and (" " .. plain(pack.version)) or "")) end
 	out[#out + 1] = cut(line)
-	local index = E.GetStepIndex and E.GetStepIndex()
-	local view = index and E.GetStepView and E.GetStepView(index)
 	if not view then
 		out[#out + 1] = L["Step: none, the guide is complete"]
 		return
 	end
-	local count = E.GetStepCount and E.GetStepCount() or 0
-	local step = (L["Step %d of %d: %s"]):format(index, count, plain(view.title or ""))
+	local step = (L["Step %d of %d: %s"]):format(index, on.count, plain(view.title or ""))
 	if view.skipped then step = step .. SEP .. L["skipped"] end
 	local live = E.GetLiveStep and E.GetLiveStep()
 	if live and live ~= index then
@@ -139,13 +158,14 @@ local function guideLines(out)
 	out[#out + 1] = cut(step)
 	local wp = E.GetWaypoint and E.GetWaypoint()
 	local raws = guide.steps and guide.steps[index] and guide.steps[index].goals or {}
-	for g, gv in ipairs(view.goals or {}) do
-		if g > GOALS_MAX then
-			out[#out + 1] = (L["... %d more goals"]):format(#view.goals - GOALS_MAX)
-			break
-		end
-		out[#out + 1] = goalLine(gv, raws[g], view.current == g, wp)
+	local goals = view.goals or {}
+	local shown = min(#goals, GOALS_MAX)
+	d.goals = { first = #out + 1, last = #out + shown, more = #goals - shown }
+	for g = 1, shown do
+		if view.current == g then d.goals.current = #out + 1 end
+		out[#out + 1] = goalLine(goals[g], raws[g], view.current == g, wp)
 	end
+	if d.goals.more > 0 then out[#out + 1] = (L["... %d more goals"]):format(d.goals.more) end
 end
 
 local function arrowLine()
@@ -266,31 +286,51 @@ local function errorLines(out)
 	end
 end
 
--- The report's details, one line each, as they stand now.
+-- The report's details, taken once when the window opens: the issue link
+-- and the report for Discord are made from them alone, so they say the
+-- same whatever the guide does while the window is open.
+--   lines     one fact each, in the order the Discord bot reads them
+--   key       the guide and the step, to tell a report on another step
+--   context   the line under the window's title
+--   goals     where the step's goal lines sit in `lines`: first, last, the
+--             arrow's (current), and how many more were not listed
+--   addonsAt  where the Addons line sits in `lines`
+--   addons    the other addons with their versions, for the issue's field
+--   issue     the issue's template, and on a step its title, guide, step
+--             and character
 function R.Details()
-	local out = { versions(), character() }
-	guideLines(out)
+	local on = onScreen()
+	local who = character()
+	local d = { lines = { versions(), who }, context = context(on), addons = otherAddons(true),
+		key = tostring(on.guide and on.guide.id) .. ":" .. tostring(on.index) }
+	local out = d.lines
+	guideLines(d, on)
 	out[#out + 1] = arrowLine()
 	out[#out + 1] = playerLine()
 	out[#out + 1] = packsLine()
+	d.addonsAt = #out + 1
 	out[#out + 1] = addonsLine()
 	errorLines(out)
-	local lines = {}
-	for i = 1, #out do
-		if out[i] then lines[#lines + 1] = out[i] end
+	if on.view then
+		d.issue = { template = "wrong-step.yml", title = ("Wrong step: %s, step %d"):format(on.title, on.index),
+			guide = on.title, step = on.index .. ": " .. plain(on.view.title or ""), character = who }
+	else
+		d.issue = { template = "bug-report.yml" }
 	end
-	return lines
+	return d
 end
 
 -- The report to paste: what went wrong, in the player's words, then the
--- details as a code block (Discord keeps their lines and spacing). The bug
--- bot reads this layout back (tools/discord-bot/lib/report.js): the first
--- line's shape, the guide line's "(id)", the order of the lines.
-function R.Text(description, details)
+-- details as a code block (Discord keeps their lines and spacing), and the
+-- right spot when the player marked one. The bug bot reads this layout
+-- back (tools/discord-bot/lib/report.js): the first line's shape, the guide
+-- line's "(id)", the order of the lines.
+function R.Text(description, details, spot)
 	local desc = tostring(description or ""):match("^%s*(.-)%s*$")
 	if desc == "" then desc = L["(not described)"] end
 	local out = { "**" .. L["What went wrong:"] .. "** " .. desc, "```" }
-	for _, line in ipairs(details or R.Details()) do out[#out + 1] = line end
+	for _, line in ipairs(details.lines) do out[#out + 1] = line end
+	if spot then out[#out + 1] = (L["Right spot: %s"]):format(table.concat(spot, SEP)) end
 	out[#out + 1] = "```"
 	return table.concat(out, "\n")
 end
@@ -306,8 +346,7 @@ R.LINK_MAX = 6000
 
 -- The addons field: every addon when they fit in `room` characters of the
 -- link, else a line that counts them and as many as fit, in their order.
-local function addonsField(room)
-	local list = otherAddons(true)
+local function addonsField(list, room)
 	local all = table.concat(list, "\n")
 	if #encode(all) <= room then return all end
 	local head = ("The player has %d other addons on. The ones that fit in the link, quest, map and guide addons first:"):format(#list)
@@ -328,27 +367,23 @@ end
 -- "Wrong step" issue, anything else a "Bug report". `spot`: the right spot
 -- the player marked (ns.WhereLines), for the "Wrong step" form's own field.
 function R.IssueURL(description, details, spot)
+	local issue = details.issue
 	local fields = {
+		template = issue.template,
 		version = polestarVersion(),
 	}
-	local E = ns.Engine
-	local guide = E and E.GetGuide and E.GetGuide()
-	local index = guide and E.GetStepIndex and E.GetStepIndex()
-	local view = index and E.GetStepView and E.GetStepView(index)
-	local guideTitle = guide and plain(guide.title or guide.id)
-	if view then
-		fields.template = "wrong-step.yml"
-		fields.title = ("Wrong step: %s, step %d"):format(guideTitle, index)
-		fields.guide = guideTitle
-		fields.step = index .. ": " .. plain(view.title or "")
-		fields.wrong = R.Text(description, details)
-		fields.character = character()
+	local report = R.Text(description, details, spot)
+	if issue.template == "wrong-step.yml" then
+		fields.title = issue.title
+		fields.guide = issue.guide
+		fields.step = issue.step
+		fields.wrong = report
+		fields.character = issue.character
 		if spot then fields.where = table.concat(spot, "\n") end
 	else
 		local desc = tostring(description or ""):match("^%s*(.-)%s*$")
-		fields.template = "bug-report.yml"
 		fields.title = "Bug: " .. cut(desc, 80)
-		fields.steps = R.Text(description, details)
+		fields.steps = report
 	end
 	local keys = {}
 	for k in pairs(fields) do keys[#keys + 1] = k end
@@ -358,7 +393,7 @@ function R.IssueURL(description, details, spot)
 		if fields[k] ~= "" then query[#query + 1] = k .. "=" .. encode(fields[k]) end
 	end
 	local url = ns.IssueURL .. "?" .. table.concat(query, "&")
-	local addons = addonsField(R.LINK_MAX - #url - #"&addons=")
+	local addons = addonsField(details.addons, R.LINK_MAX - #url - #"&addons=")
 	if addons and addons ~= "" then url = url .. "&addons=" .. encode(addons) end
 	return url
 end
@@ -418,18 +453,6 @@ local function layout()
 	F:SetHeight(floor(y + PAD + 0.5))
 end
 
--- The report box is as tall as its text, so it is read whole and copied
--- whole: measured in its own font at its inner width.
--- The details taken when the window opened, and the right spot when the
--- player marked one.
-local function details()
-	if not F.spot then return F.details end
-	local out = {}
-	for i, line in ipairs(F.details) do out[i] = line end
-	out[#out + 1] = (L["Right spot: %s"]):format(table.concat(F.spot, SEP))
-	return out
-end
-
 local function showSpot()
 	if F.spot then
 		F.SpotNote:SetText((L["Right spot marked: %s"]):format(table.concat(F.spot, SEP)))
@@ -440,9 +463,11 @@ local function showSpot()
 	end
 end
 
+-- The report box is as tall as its text, so it is read whole and copied
+-- whole: measured in its own font at its inner width.
 local function compose()
 	showSpot()
-	local text = R.Text(F.Desc:GetText(), details())
+	local text = R.Text(F.Desc:GetText(), F.details, F.spot)
 	W.SetCopyText(F.Box, text)
 	F.Measure:SetText(text)
 	F.Box:SetHeight(floor(F.Measure:GetStringHeight() + 16 + 0.5))
@@ -458,7 +483,7 @@ local function copyReport()
 end
 
 local function reportBug()
-	UI.ShowCopy(L["Report a bug on GitHub"], R.IssueURL(F.Desc:GetText(), details(), F.spot), {
+	UI.ShowCopy(L["Report a bug on GitHub"], R.IssueURL(F.Desc:GetText(), F.details, F.spot), {
 		hint = L["The link is selected for you: copy it with Ctrl+C (Cmd+C on a Mac), paste it in your browser's address bar and press Enter."],
 	})
 end
@@ -525,28 +550,6 @@ local function startMark()
 	F:Hide()
 	M:Show()
 	M:Raise()
-end
-
--- "Step 3 of 8 · Kobold Camp · Elwynn Forest": what the report is about.
-local function context()
-	local E = ns.Engine
-	local guide = E and E.GetGuide and E.GetGuide()
-	if not guide then return L["No guide open"] end
-	local index = E.GetStepIndex and E.GetStepIndex()
-	local view = index and E.GetStepView and E.GetStepView(index)
-	local parts = {}
-	if view then
-		parts[#parts + 1] = (L["Step %d of %d"]):format(index, E.GetStepCount and E.GetStepCount() or 0)
-		if view.title and view.title ~= "" then parts[#parts + 1] = plain(view.title) end
-	end
-	parts[#parts + 1] = plain(guide.title or guide.id)
-	return table.concat(parts, UI_SEP)
-end
-
-local function stepKey()
-	local E = ns.Engine
-	local guide = E and E.GetGuide and E.GetGuide()
-	return tostring(guide and guide.id) .. ":" .. tostring(E and E.GetStepIndex and E.GetStepIndex())
 end
 
 -- The description: the copy box's well and border, editable, its
@@ -679,16 +682,15 @@ end
 -- the player typed stays while it is the same step.
 function UI.ShowReport()
 	if not F then build() end
-	local key = stepKey()
 	F.details = R.Details()
-	if key ~= F.key then
+	if F.details.key ~= F.key then
 		F.Desc:SetText("")
 		F.spot = nil
 	end
 	if M then M:Hide() end
-	F.key = key
+	F.key = F.details.key
 	F.Desc.Placeholder:SetShown((F.Desc:GetText() or "") == "")
-	F.Context:SetText(context())
+	F.Context:SetText(F.details.context)
 	F.Box:Hide()
 	compose()
 	F:Show()
