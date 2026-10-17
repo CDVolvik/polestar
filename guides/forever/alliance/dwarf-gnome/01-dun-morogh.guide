@@ -284,11 +284,11 @@ step Thunderbrew Distillery
   turnin 2160                                 -- Tannok Frosthammer
   sethome "Thunderbrew Distillery"
   buy 2894 x1 npc 1247                        -- Rhapsody Malt, from Innkeeper Belm
-  train class
   accept 99158                                -- Maxan Anvol
   accept 384                                  -- Ragnar Thunderbrew
   complete 96629                              -- Speak with Gremlock Pilsnor
   turnin 96629                                -- Gremlock Pilsnor
+  train class                                 -- Last: some classes' trainers stand outside
 
 step Steelgrill's Depot
   tip Follow the road north-east from Kharanos to the depot below the Ironforge road.
