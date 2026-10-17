@@ -133,6 +133,31 @@ test('return penalties: a route back to a zone and a spot already worked costs m
 	}
 });
 
+test('wasted accepts: a quest taken and never handed in costs wastedAccept under smooth, nothing under time', () => {
+	for (const objective of ['time', 'smooth']) {
+		const ev = evaluator(objective);
+		const rats = quest(ev, 501);
+		const word = quest(ev, 503);
+		const run = (handIn) => {
+			ev.reset();
+			accept(ev, rats);
+			accept(ev, word);
+			work(ev, rats);
+			turnin(ev, rats);
+			if (handIn) turnin(ev, word);
+			ev.finish();
+			return { cost: ev.costNow(), never: ev.neverTurnedIn(), seconds: ev.levelTimes[60], grind: ev.grindSec, zoneChanges: ev.zoneChanges, zoneReturns: ev.zoneReturns, spotReturns: ev.spotReturns };
+		};
+		const left = run(false);
+		assert.equal(left.never, 1);
+		assert.equal(run(true).never, 0);
+		const p = ev.p;
+		const base = left.seconds + (p.grindWeight - 1) * left.grind + p.zoneChange * left.zoneChanges + (p.zoneReturn || 0) * left.zoneReturns + (p.spotReturn || 0) * left.spotReturns;
+		assert.equal(left.cost, base + (objective === 'smooth' ? p.wastedAccept : 0));
+		if (objective === 'smooth') assert.ok(p.wastedAccept > 0);
+	}
+});
+
 test('quest log 40: a hub with 41 quests splits into two packages, 40 stay one', () => {
 	const hub = (n) => {
 		const data = syn.makeData();

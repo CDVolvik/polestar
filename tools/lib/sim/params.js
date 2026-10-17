@@ -41,6 +41,7 @@ const PRIORS = {
 	zoneChange: [450, 0, 450, 450, 'policy, not a measurement: seconds a move into another zone counts when routes are compared, so a route takes a hub\'s quests and does them in one go and switches zones only when it is clearly worth it (reported times stay real)'],
 	zoneReturn: [0, 0, 0, 0, 'policy, not a measurement: seconds a move back into a zone the route was in earlier (and left) counts when routes are compared; 0 in the time objective, see OBJECTIVES (reported times stay real)'],
 	spotReturn: [0, 0, 0, 0, 'policy, not a measurement: seconds work again at a spot (250 yd cell) worked earlier, after leaving it by more than 600 yd, counts when routes are compared; 0 in the time objective, see OBJECTIVES (reported times stay real)'],
+	wastedAccept: [0, 0, 0, 0, 'policy, not a measurement: seconds each quest accepted and never handed in (abandoned for a full log, or still in the log at 60) counts when routes are compared; 0 in the time objective, see OBJECTIVES (reported times stay real)'],
 	gateGap: [2, 0, 2, 2, 'levels a character grinds to reach a quest\'s minimum level; further above, the quest is not available yet'],
 	dangerGap: [5, 0, 5, 5, 'most levels a quest may be above the character (red quests are not attempted)'],
 	deathRisk: [300, 150, 0, 1200, 'seconds lost per walking crossing of a zone whose mobs are 5+ levels above the character (deaths, corpse runs, detours)'],
@@ -65,10 +66,13 @@ const CLASS_FACTOR = {
 // smooth also counts grinding more (4 instead of 2.5): grinding never moves,
 // so with the return penalties alone the search ground instead of questing
 // (Horde Orc, 200k routes: 52 h of grinding against 9 h under time, 131 h
-// to 60; at 4, 29 h and 127 h, with a third of the zone returns).
+// to 60; at 4, 29 h and 127 h, with a third of the zone returns). smooth
+// also counts each quest accepted and never handed in (abandoned for a full
+// log or left in it at 60): taking a quest only to drop it is not smooth
+// (Horde Orc, 100k routes with walks: 42 abandoned, 63 never handed in).
 const OBJECTIVES = {
 	time: {},
-	smooth: { zoneChange: 900, zoneReturn: 1800, spotReturn: 900, grindWeight: 4 },
+	smooth: { zoneChange: 900, zoneReturn: 1800, spotReturn: 900, grindWeight: 4, wastedAccept: 600 },
 };
 
 function objectiveName(o) {

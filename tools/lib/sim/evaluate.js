@@ -883,6 +883,7 @@ class Evaluator {
 		let c = (this.levelTimes[60] || this.time) + ((this.p.grindWeight || 1) - 1) * this.grindSec + (this.p.zoneChange || 0) * this.zoneChanges;
 		if (this.p.zoneReturn) c += this.p.zoneReturn * this.zoneReturns;
 		if (this.p.spotReturn) c += this.p.spotReturn * this.spotReturns;
+		if (this.p.wastedAccept) c += this.p.wastedAccept * this.neverTurnedIn();
 		return c;
 	}
 

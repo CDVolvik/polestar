@@ -293,10 +293,10 @@ What the search minimises is set by the policy parameters above; the
 objective chooses them (params.js `OBJECTIVES`, one place). Reported times
 stay real under either.
 
-| objective | zoneChange | zoneReturn | spotReturn | grindWeight |
-|---|---|---|---|---|
-| `time` (default) | 450 s | 0 | 0 | 2.5 |
-| `smooth` | 900 s | 1800 s | 900 s | 4 |
+| objective | zoneChange | zoneReturn | spotReturn | grindWeight | wastedAccept |
+|---|---|---|---|---|---|
+| `time` (default) | 450 s | 0 | 0 | 2.5 | 0 |
+| `smooth` | 900 s | 1800 s | 900 s | 4 | 600 s |
 
 - `zoneReturn`: seconds per move back into a zone the route was in earlier
   and left (the first entry is free).
@@ -310,6 +310,10 @@ stay real under either.
   zone changes, 73 zone returns, 507 spot returns; smooth at 2.5: 131.3 h,
   52.4 h, 38, 8, 219; at 4: 127.4 h, 28.8 h, 57, 25, 365; at 6: 126.5 h,
   16.3 h, 85, 50, 433.
+- `wastedAccept`: seconds per quest accepted and never handed in (given
+  up for a full log, or still in the log at 60). Taking a quest only to
+  drop it is not smooth: Horde Orc, 100,000 routes with walks, the smooth
+  objective without it gave up 42 quests and left 63 never handed in.
 
 Smooth results are their own files (`<faction>-<race>-<class>-smooth.json`,
 `consensus-<faction>-smooth.json`, `compare-…-smooth.json`), so the two
