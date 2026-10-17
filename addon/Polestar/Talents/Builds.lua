@@ -209,7 +209,7 @@ T.Register({
 
 T.Register({
 	class = "HUNTER", tree = 1091, prereq = "full",
-	source = "Polestar, with ForeverDB's talent data", url = "https://foreverdb.net/class/Hunter/talents",
+	source = "Polestar, with ForeverDB's builds to level 20", url = "https://foreverdb.net/class/Hunter/talents",
 	summary = L["Level as Beast Mastery: your pet tanks and does much of the damage, so you rarely stop. Marksmanship hits harder from range with Careful Aim and Sniper Shot; Survival fights in melee with Predator's Edge and Lacerating Strikes."],
 	specs = { "Beast Mastery", "Marksmanship", "Survival" },
 	-- node = { entry, max ranks, spell, spec column, row, column, name }
