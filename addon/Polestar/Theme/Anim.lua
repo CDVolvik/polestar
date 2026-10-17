@@ -28,7 +28,7 @@ local EASE = {
 }
 Anim.EASE = EASE
 
-local MOTION = { offset = true, offsetX = true, size = true, scale = true, width = true, height = true }
+local MOTION = { offset = true, offsetX = true, size = true, scale = true, width = true, height = true, value = true }
 
 -- How a value lands on an object, per property.
 local APPLY = {
@@ -48,6 +48,8 @@ local APPLY = {
 		o:ClearAllPoints()
 		o:SetPoint(p[1], p[2], p[3], p[4] + v, p[5])
 	end,
+	-- Any number the object shows itself: o.psOnValue(o, v) (a count rolling up).
+	value = function(o, v) o.psOnValue(o, v) end,
 }
 
 local driver = CreateFrame("Frame")

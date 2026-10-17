@@ -690,7 +690,7 @@ test('the header menu: picker, new tab, compact, transparent, lock; destructive 
 		menuPick("Options")
 		emit({ items = items, locked = Polestar.Get("ui.locked"), style = style, armed = armed, reset = lastCall("ResetProgress"),
 			picker = picker, options = PolestarOptions:IsShown(), pickerAfter = PolestarPicker:IsShown() })`);
-	assert.deepEqual(out.items, ['Choose guide', 'Open in new tab', 'Skip this step', 'Report a problem', 'Compact mode', 'Transparent', 'Lock window',
+	assert.deepEqual(out.items, ['Choose guide', 'Open in new tab', 'Skip this step', 'Do every step', 'Report a problem', 'Compact mode', 'Transparent', 'Lock window',
 		'Reset guide progress', 'Options', 'Hide window']);
 	assert.equal(out.locked, true);
 	assert.equal(out.style, 'transparent');
@@ -699,6 +699,33 @@ test('the header menu: picker, new tab, compact, transparent, lock; destructive 
 	assert.equal(out.picker, true);
 	assert.equal(out.options, true);
 	assert.equal(out.pickerAfter, false, 'one dialog at a time');
+});
+
+// The catch-up (GUIDE_PLACED): the count rolls up to the step placed with the
+// card faded, once; a reload that places the guide where it was shows no roll.
+test('the catch-up rolls the step count up to the step placed, once; Do every step in the menu sets the guide', () => {
+	const [out] = run(`
+		uistub.setGuide(uistub.elwynn, 4)
+		local nav, Count = GF.parts.nav, GF.parts.nav.Steps.Count
+		Polestar.Fire("GUIDE_PLACED", uistub.elwynn, 4, {})
+		local rolling = { GF.catchingUp == true, GF.parts.card:GetAlpha() < 1 }
+		GF.Render()
+		local held = Count:GetText()
+		stub.advance(2)
+		local done = { GF.catchingUp or false, Count:GetText(), GF.parts.card:GetAlpha() }
+		Polestar.Fire("GUIDE_PLACED", uistub.elwynn, 4, {})
+		local again = GF.catchingUp or false
+		menuPick("Do every step")
+		emit({ rolling = rolling, held = held, done = done, again = again, set = lastCall("SetEveryStep"),
+			at = PolestarCharDB.catchUpAt[uistub.elwynn] })`);
+	assert.deepEqual(out.rolling, [true, true]);
+	assert.notEqual(out.held, '4 / ' + out.done[1].split(' / ')[1], 'a render during the roll leaves the count to it');
+	assert.deepEqual(out.done.slice(0, 2), [false, out.done[1]]);
+	assert.match(out.done[1], /^4 \/ \d+$/);
+	assert.equal(out.done[2], 1);
+	assert.equal(out.again, false, 'placed where it was: no roll');
+	assert.deepEqual(out.set, ['SetEveryStep', 'forever/alliance/human/01-elwynn-forest', true]);
+	assert.equal(out.at, 4);
 });
 
 test('profession, reputation and achievement goals: own colours, icons, progress bars', () => {
