@@ -8766,6 +8766,13 @@
 				],
 				"english": "Hagar Lowe"
 			},
+			"npc:248277": {
+				"reason": "no-source",
+				"scenes": [
+					"guide"
+				],
+				"english": "Merell Ross"
+			},
 			"npc:248415": {
 				"reason": "same-as-english",
 				"scenes": [
@@ -15237,6 +15244,13 @@
 				],
 				"english": "Hagar Lowe"
 			},
+			"npc:248277": {
+				"reason": "no-source",
+				"scenes": [
+					"guide"
+				],
+				"english": "Merell Ross"
+			},
 			"npc:248464": {
 				"reason": "same-as-english",
 				"scenes": [
@@ -21258,6 +21272,13 @@
 					"guides"
 				],
 				"english": "Hagar Lowe"
+			},
+			"npc:248277": {
+				"reason": "no-source",
+				"scenes": [
+					"guide"
+				],
+				"english": "Merell Ross"
 			},
 			"npc:248464": {
 				"reason": "same-as-english",
@@ -30618,6 +30639,13 @@
 				],
 				"english": "Hagar Lowe"
 			},
+			"npc:248277": {
+				"reason": "no-source",
+				"scenes": [
+					"guide"
+				],
+				"english": "Merell Ross"
+			},
 			"npc:248464": {
 				"reason": "same-as-english",
 				"scenes": [
@@ -37386,6 +37414,13 @@
 					"guides"
 				],
 				"english": "Hagar Lowe"
+			},
+			"npc:248277": {
+				"reason": "no-source",
+				"scenes": [
+					"guide"
+				],
+				"english": "Merell Ross"
 			},
 			"npc:248362": {
 				"reason": "no-source",

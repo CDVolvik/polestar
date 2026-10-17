@@ -66,6 +66,9 @@ test('the bug in the navigator reports the step on screen: the player\'s words, 
 	assert.ok(meat.startsWith('[ ] Kill Young Wolf for Tough Wolf Meat 3/8') && meat.includes('item 750'), meat);
 	assert.ok(lineWith(out.text, 'Arrow:').includes('42 yd'), out.text);
 	assert.ok(lineWith(out.text, 'Where:').includes('Elwynn Forest'), out.text);
+	const routes = lines.indexOf(lineWith(out.text, 'Routes:'));
+	assert.equal(lines[routes], 'Routes: balanced', 'the default route style, and nothing else when the rest is at its defaults');
+	assert.equal(routes, lines.indexOf(lineWith(out.text, 'Where:')) + 1, 'right after Where, so the bug bot still finds Arrow and Where by position');
 	const who = lineWith(out.text, 'Human Warrior');
 	assert.ok(who.includes('level 4') && who.includes('Alliance'), who);
 	const versions = lineWith(out.text, 'client ');
@@ -77,6 +80,30 @@ test('the bug in the navigator reports the step on screen: the player\'s words, 
 	assert.ok(out.openH <= 720, `with the report shown, the window fits a 720-unit screen (${out.openH})`);
 	assert.deepEqual(out.invite, { shown: true, text: INVITE, focus: true }, 'Get the invite opens the invite on its own, selected');
 	assert.ok(out.boxH >= lines.length * 11, `the box holds every line (${out.boxH}px for ${lines.length})`);
+});
+
+test('the report says how the arrow routes: the route style, then only the routing settings turned away from their defaults', () => {
+	const [out] = run(`
+		uistub.setGuide(uistub.elwynn, 3)
+		local function routes()
+			UI.ShowReport()
+			for line in PolestarReport.Box:GetText():gmatch("[^\\n]+") do
+				if line:find("^Routes: ") then return line end
+			end
+		end
+		local r = {}
+		Polestar.Set("nav.routeStyle", "roads")
+		r.roads = routes()
+		Polestar.Set("nav.routeStyle", "fastest")
+		Polestar.Set("nav.navRouting", false)
+		Polestar.Set("nav.travel", false)
+		r.off = routes()
+		Polestar.Set("nav.routeStyle", "something old")
+		r.unknown = routes()
+		emit(r)`);
+	assert.equal(out.roads, 'Routes: roads');
+	assert.equal(out.off, 'Routes: fastest · real paths off · travel planner off');
+	assert.equal(out.unknown, 'Routes: balanced · real paths off · travel planner off', 'a style the router reads as Balanced is reported as Balanced');
 });
 
 // The longest report a player can send: every line at its cap in `word`'s
@@ -104,6 +131,7 @@ function longest(locale, word, letter, opts = {}) {
 		Polestar.Guides.Pack = function() return { title = long, version = word } end
 		Polestar.Guides.Packs = function() return { { title = long, version = word, status = "on" }, { title = long, status = "on" } } end
 		Polestar.Compat.GetPlayerMapPosition = function() return 1429, 51.234, 40.5 end
+		for i = 1, 4 do stub.fire("ADDON_ACTION_BLOCKED", "Polestar_" .. string.rep("Long", 10), string.rep("Protected", 8) .. i .. "()") end
 		uistub.setGuide(id, 1)
 		UI.ShowReport()
 		local F = PolestarReport
@@ -143,6 +171,9 @@ test('at its longest, with a marked spot and 40 addons, the report still fits on
 	assert.match(addons, /^\*\*Addons:\*\* QuestAndMapHelperWithALongName01, .*\.\.\.$/, `the Addons line gives way: ${addons}`);
 	const unmarked = longest(...SCRIPTS[0], { unmarked: true }).text;
 	assert.equal(unmarked.split('\n')[1], '**Addons:** QuestAndMapHelperWithALongName01, QuestAndMapHelperWithALongName02, QuestAndMapHelperWithALongNam...', 'with room, the Addons line stays, cut at 100 bytes');
+	assert.match(english.text, /^\.\.\. 3 more goals$/m, 'goals past the sixth are counted, not listed');
+	assert.equal((english.text.match(/^ {2}1x /gm) || []).length, 3, 'the newest three of the errors and blocked calls together');
+	assert.equal((english.text.match(/^ {2}1x blocked in Polestar_Long/gm) || []).length, 3, 'the blocked calls came last');
 });
 
 test('errors Polestar caught come with the report, counted, by their path from the AddOns folder; !BugGrabber adds the session\'s errors in Polestar\'s files', () => {
@@ -166,6 +197,28 @@ test('errors Polestar caught come with the report, counted, by their path from t
 	assert.deepEqual(errors, [
 		'  2x Polestar/UI/GuideFrame.lua:12: attempt to index a nil value',
 		'  3x Polestar/Nav/Arrow.lua:40: bad argument',
+	]);
+});
+
+test('actions the game blocked from Polestar (taint, no Lua error) come with the report: by the addon blamed, counted, newest time, sharing the newest three with the errors; other addons\' are left out', () => {
+	const [out] = run(`
+		Polestar.NoteError("Interface/AddOns/Polestar/UI/GuideFrame.lua:1: oldest")
+		stub.fire("ADDON_ACTION_BLOCKED", "Polestar", "UseAction()")
+		stub.advance(5)
+		stub.fire("ADDON_ACTION_FORBIDDEN", "OtherAddon", "CastSpellByName()")
+		stub.fire("ADDON_ACTION_FORBIDDEN", "Polestar_Gamepad", "ClearOverrideBindings()")
+		Polestar.NoteError("Interface/AddOns/Polestar/Nav/Arrow.lua:2: between")
+		stub.fire("ADDON_ACTION_BLOCKED", "Polestar", "UseAction()")
+		uistub.setGuide(uistub.elwynn, 3)
+		UI.ShowReport()
+		emit({ text = PolestarReport.Box:GetText(), at = date("%H:%M:%S") })`);
+	const lines = out.text.split('\n');
+	assert.ok(!lines.includes('Errors: none'), out.text);
+	assert.ok(lines.includes('Errors:'), out.text);
+	assert.deepEqual(lines.filter((l) => l.startsWith('  ')), [
+		`  1x blocked in Polestar_Gamepad: ClearOverrideBindings() (${out.at})`,
+		'  1x Polestar/Nav/Arrow.lua:2: between',
+		`  2x blocked in Polestar: UseAction() (${out.at})`,
 	]);
 });
 
