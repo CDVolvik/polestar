@@ -8572,6 +8572,14 @@ do
 					},
 				},
 				{
+					title = "{item:13850}",
+					note = "The {object:176785} sits next to {npc:271546}, south of the {area:136}; {npc:1243} camps south-west of it, by the road to Coldridge.",
+					goals = {
+						{ t = "collect", quest = 5541, title = "Ammo for Rumbleshot", item = 13850, itemName = "Rumbleshot's Ammo", oi = 1, map = 1426, x = 44.13, y = 56.95, f = "e", note = "{item:13850}: the {object:176785}", from = "Ammo Crate", fromKind = "object", fromId = 176785 },
+						{ t = "turnin", quest = 5541, title = "Ammo for Rumbleshot", npc = 1243, npcName = "Hegnar Rumbleshot", map = 1426, x = 40.68, y = 65.13, z = 407.4, f = "e" },
+					},
+				},
+				{
 					title = "{area:131} and the depot",
 					goals = {
 						{ t = "turnin", quest = 98321, title = "Flintfire's Shipment", npc = 1241, npcName = "Tognus Flintfire", map = 1426, x = 45.34, y = 51.94, z = 397.3, f = "e" },
@@ -8579,14 +8587,6 @@ do
 						{ t = "accept", quest = 287, title = "Frostmane Hold", npc = 1252, npcName = "Senir Whitebeard", minLevel = 7, qlvl = 9, pre = { 420 }, preTitles = { [420] = "Senir's Observations" }, map = 1426, x = 46.73, y = 53.83, z = 396.8, f = "e" },
 						{ t = "turnin", quest = 313, title = "The Grizzled Den", npc = 1377, npcName = "Pilot Stonegear", map = 1426, x = 49.62, y = 48.61, z = 393.3, f = "e", note = "{npc:1377}, at the depot" },
 						{ t = "accept", quest = 412, title = "Operation Recombobulation", npc = 1269, npcName = "Razzle Sprysprocket", minLevel = 7, qlvl = 10, map = 1426, x = 45.85, y = 49.37, z = 395.4, f = "e", note = "{npc:1269}, by the depot" },
-					},
-				},
-				{
-					title = "{item:13850}",
-					note = "The {object:176785} sits next to {npc:271546}, south of the {area:136}; {npc:1243} camps south-west of it, by the road to Coldridge.",
-					goals = {
-						{ t = "collect", quest = 5541, title = "Ammo for Rumbleshot", item = 13850, itemName = "Rumbleshot's Ammo", oi = 1, map = 1426, x = 44.13, y = 56.95, f = "e", note = "{item:13850}: the {object:176785}", from = "Ammo Crate", fromKind = "object", fromId = 176785 },
-						{ t = "turnin", quest = 5541, title = "Ammo for Rumbleshot", npc = 1243, npcName = "Hegnar Rumbleshot", map = 1426, x = 40.68, y = 65.13, z = 407.4, f = "e" },
 					},
 				},
 				{

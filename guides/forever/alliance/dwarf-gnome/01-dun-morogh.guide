@@ -63,6 +63,9 @@ next forever/alliance/02-westfall
 #   distillery, instead of in, out to the campfire and back in for Gremlock.
 # - Gretchen, at the mouth of the Grizzled Den, is visited first, so the den
 #   is entered once for the shipments, the manes and Cornelius.
+# - Rumbleshot's ammo is taken from the crate by Gretchen's camp (looted at
+#   44.1,57.0 in a recorded run) and handed to Hegnar before the walk back to
+#   Kharanos, instead of a second trip out.
 #
 # Left out: "The Reports" (291) and "Stout to Kadrell" (414) are accepted by
 # the route but never turned in (the route goes to Westfall, not Ironforge's
@@ -324,17 +327,17 @@ step Mountaineer Gretchen
   turnin 98319
   accept 98323
 
+step Rumbleshot's Ammo
+  tip The Ammo Crate sits next to Mountaineer Gretchen, south of the Grizzled Den; Hegnar Rumbleshot camps south-west of it, by the road to Coldridge.
+  collect 13850 quest 5541.1                  -- Rumbleshot's Ammo: the Ammo Crate
+  turnin 5541                                 -- Hegnar Rumbleshot
+
 step Kharanos and the depot
   turnin 98321                                -- Tognus Flintfire
   turnin 98323                                -- Senir Whitebeard
   accept 287                                  -- Senir Whitebeard
   turnin 313                                  -- Pilot Stonegear, at the depot
   accept 412                                  -- Razzle Sprysprocket, by the depot
-
-step Rumbleshot's Ammo
-  tip The Ammo Crate sits next to Mountaineer Gretchen, south of the Grizzled Den; Hegnar Rumbleshot camps south-west of it, by the road to Coldridge.
-  collect 13850 quest 5541.1                  -- Rumbleshot's Ammo: the Ammo Crate
-  turnin 5541                                 -- Hegnar Rumbleshot
 
 # ---------------------------------------------------------------- Brewnall Village
 
