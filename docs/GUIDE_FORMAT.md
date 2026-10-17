@@ -330,11 +330,15 @@ object's (its spawn, or your `@x,y` at it):
   of many spawns is seldom within 15 yards of one), `interact`;
 - `buy`, `train`, `vendor`, `sethome`, `getfp` and `learn` naming an `npc`.
 
-`goto` and `explore` (places), `collect` (a farming spot among the item's
-sources), `use` and smart targets (`nearest`, class and profession trainers:
-the engine picks the NPC at runtime) never get one, nor does the arrow carry
-it to a spawn area other than the goal's own point. `compile` prints how many
-goals got one ("heights: N of M NPC or object goals got z"). In the game the
+The same rule gives a height, each from its own point, to the other spawn
+places of such a goal (`spots`: a place within 15 yards of one of its spawns;
+the centre of a camp farther from each gets none) and to every candidate of a
+smart target (`nearest`, class and profession trainers, by the candidate's
+own NPC), so the walk to the place or NPC the arrow picks ends on its floor
+too. `goto` and `explore` (places), `collect` (a farming spot among the
+item's sources, also `collect … nearest`'s farm spots) and `use` never get
+one. `compile` prints how many got one ("heights: N of M NPC or object goals,
+N of M smart-target candidates and N of M spawn spots got z"). In the game the
 walk is searched with the height and asked again without it when that finds
 no route or one ending more than 30 yards above or below it.
 

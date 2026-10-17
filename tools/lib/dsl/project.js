@@ -182,7 +182,8 @@ function referencedFrames(guides, data) {
 // named `../<folder>_<locale>/<file>` (writePackDir writes them there).
 function buildPackFiles({ guides, manifest, data, license = null, translations = {} }) {
 	const sources = (data.meta && Array.isArray(data.meta.sources) && data.meta.sources) || [];
-	const meta = heightCounts(guides).withZ && !sources.some((s) => s && s.name === HEIGHTS_SOURCE.name) ? { ...data.meta, sources: [...sources, HEIGHTS_SOURCE] } : data.meta;
+	const h = heightCounts(guides);
+	const meta = h.withZ + h.candidatesWithZ + h.spotsWithZ && !sources.some((s) => s && s.name === HEIGHTS_SOURCE.name) ? { ...data.meta, sources: [...sources, HEIGHTS_SOURCE] } : data.meta;
 	const iface = coreInterface();
 	const files = {
 		[`${manifest.folder}.toc`]: emitToc(manifest, iface),
