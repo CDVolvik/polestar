@@ -57,8 +57,10 @@ next forever/alliance/02-westfall
 #   Kharanos, before the cooking lesson: on Forever he offers it to
 #   characters without Cooking too (seen in game; QuestieDB's Forever store
 #   lists no skill, only pfQuest's Classic data lists Cooking). Its Rhapsody
-#   Malt is bought from Innkeeper Belm in the same visit, and Maxan Anvol
-#   (beside Tannok) is taken before the walk out to the forge.
+#   Malt is bought from Innkeeper Belm in the same visit.
+# - Kharanos is done outside first: Senir, Eric's campfire (The Adventurer and
+#   The Great Outdoors) and Tharek's forge, then one visit inside the
+#   distillery, instead of in, out to the campfire and back in for Gremlock.
 #
 # Left out: "The Reports" (291) and "Stout to Kadrell" (414) are accepted by
 # the route but never turned in (the route goes to Westfall, not Ironforge's
@@ -253,24 +255,30 @@ step The tunnel
 # ---------------------------------------------------------------- Kharanos
 
 step Kharanos
-  tip Follow the road through the tunnel and north-east to Kharanos. Kill the Crag Boars on the way: their ribs drop before you have Ragnar's quest and count toward it. Senir, Eric and his campfire are outside the Thunderbrew Distillery. Tannok, Maxan and Ragnar are inside. Tharek Blackstone works the forge.
+  tip Follow the road through the tunnel and north-east to Kharanos. Kill the Crag Boars on the way: their ribs drop before you have Ragnar's quest and count toward it. Start outside: Senir and Eric's campfire are in front of the Thunderbrew Distillery.
   turnin 420                                  -- Senir Whitebeard
-  turnin 2160                                 -- Tannok Frosthammer, in the distillery
-  accept 99158                                -- Maxan Anvol, next to Tannok
-  accept 384                                  -- Ragnar Thunderbrew
-  sethome "Thunderbrew Distillery"
-  buy 2894 x1 npc 1247                        -- Rhapsody Malt, from Innkeeper Belm
-  train class
-  accept 400                                  -- Tharek Blackstone
   accept 98322                                -- Senir Whitebeard
 
 step The Great Outdoors
-  tip Sit by Eric's campfire (type /sit) and wait for the buff, then Gremlock Pilsnor in the distillery teaches you cooking.
+  tip Sit by Eric's campfire (type /sit) and wait for the buff.
   turnin 96628                                -- Eric Brighthammer: The Adventurer
   accept 96608                                -- Eric Brighthammer
   complete 96608
   turnin 96608
   accept 96629
+
+step Tharek Blackstone
+  tip Tharek works the forge west of the distillery.
+  accept 400                                  -- Tharek Blackstone
+
+step Thunderbrew Distillery
+  tip Then go in: Tannok, the innkeeper, Maxan, Ragnar Thunderbrew and Gremlock Pilsnor, who teaches cooking.
+  turnin 2160                                 -- Tannok Frosthammer
+  sethome "Thunderbrew Distillery"
+  buy 2894 x1 npc 1247                        -- Rhapsody Malt, from Innkeeper Belm
+  train class
+  accept 99158                                -- Maxan Anvol
+  accept 384                                  -- Ragnar Thunderbrew
   complete 96629                              -- Speak with Gremlock Pilsnor
   turnin 96629                                -- Gremlock Pilsnor
 
