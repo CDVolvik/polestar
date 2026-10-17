@@ -134,30 +134,30 @@ step Young wolves
 
 step Anvilmar
   turnin 179                                  -- Sten Stoutarm
-  accept 3106 only Dwarf,Warrior              -- Sten Stoutarm: Simple Rune
+  accept 233                                  -- Sten Stoutarm
+  accept 3106 only Dwarf,Warrior             -- Sten Stoutarm: Simple Rune
   accept 3112 only Gnome,Warrior              -- Sten Stoutarm: Simple Memorandum
-  turnin 3106 only Dwarf,Warrior              -- Thran Khorman, the warrior trainer
-  turnin 3112 only Gnome,Warrior              -- Thran Khorman, the warrior trainer
   accept 3107 only Paladin                    -- Sten Stoutarm: Consecrated Rune
-  turnin 3107 only Paladin                    -- Bromos Grummner, the paladin trainer
   accept 3108 only Hunter                     -- Sten Stoutarm: a rune for Thorgas Grimson
-  turnin 3108 only Hunter                     -- Thorgas Grimson, the hunter trainer
   accept 3109 only Dwarf,Rogue                -- Sten Stoutarm: Encrypted Rune
   accept 3113 only Gnome,Rogue                -- Sten Stoutarm: Encrypted Memorandum
-  turnin 3109 only Dwarf,Rogue                -- Solm Hargrin, the rogue trainer
-  turnin 3113 only Gnome,Rogue                -- Solm Hargrin, the rogue trainer
   accept 3110 only Dwarf,Priest               -- Sten Stoutarm: Hallowed Rune
   accept 98574 only Gnome,Priest              -- Sten Stoutarm: Hallowed Memorandum
+  accept 98581 only Shaman                    -- Sten Stoutarm: read the Archaic Rune
+  accept 3114 only Mage                       -- Sten Stoutarm: Glyphic Memorandum
+  accept 3115 only Warlock                    -- Sten Stoutarm: Tainted Memorandum
+  accept 170                                  -- Balir Frosthammer, next to Sten
+  turnin 3106 only Dwarf,Warrior              -- Thran Khorman, the warrior trainer
+  turnin 3112 only Gnome,Warrior              -- Thran Khorman, the warrior trainer
+  turnin 3107 only Paladin                    -- Bromos Grummner, the paladin trainer
+  turnin 3108 only Hunter                     -- Thorgas Grimson, the hunter trainer
+  turnin 3109 only Dwarf,Rogue                -- Solm Hargrin, the rogue trainer
+  turnin 3113 only Gnome,Rogue                -- Solm Hargrin, the rogue trainer
   turnin 3110 only Dwarf,Priest               -- Branstock Khalder, the priest trainer
   turnin 98574 only Gnome,Priest              -- Branstock Khalder, the priest trainer
-  accept 98581 only Shaman                    -- Sten Stoutarm: read the Archaic Rune
   turnin 98581 only Shaman                    -- Teo Hammerstorm, inside Anvilmar
-  accept 3114 only Mage                       -- Sten Stoutarm: Glyphic Memorandum
   turnin 3114 only Mage                       -- Marryk Nurribit, the mage trainer, inside Anvilmar
-  accept 3115 only Warlock                    -- Sten Stoutarm: Tainted Memorandum
   turnin 3115 only Warlock                    -- Alamar Grimm, inside Anvilmar
-  accept 233
-  accept 170                                  -- Balir Frosthammer, next to Sten
   train class                                 -- Inside Anvilmar
 
 step The troggs
