@@ -1056,6 +1056,23 @@ test('with the lock on, only a Shift-drag moves the arrow, and the movable wash 
 	assert.equal(out.stopped, false);
 });
 
+test('with the lock on, a drag that does not move the arrow does not save its spot', () => {
+	const [out] = run(`
+		target(100, 0)
+		stub.advance(0.1)
+		local f = A.frame
+		Polestar.Set("ui.lockHud", true)
+		stub.RunScript(f, "OnDragStart")
+		stub.RunScript(f, "OnDragStop")
+		local refused = Polestar.Get("nav.arrowPos") == nil
+		stub.keys.shift = true
+		stub.RunScript(f, "OnDragStart")
+		stub.RunScript(f, "OnDragStop")
+		emit({ refused = refused, shift = Polestar.Get("nav.arrowPos") ~= nil })`);
+	assert.equal(out.refused, true, 'a plain drag on the locked arrow leaves nav.arrowPos alone');
+	assert.equal(out.shift, true, 'a Shift-drag still saves the spot');
+});
+
 test('ETA appears while closing in at running speed', () => {
 	const [out] = run(`
 		target(300, 0)

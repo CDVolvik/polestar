@@ -561,12 +561,16 @@ function Nav.ResetArrowPosition()
 	ns.Set("nav.arrowPos", nil)
 end
 
+local moving = false
 frame:SetScript("OnDragStart", function(self)
 	if ns.DragLocked() then return end
+	moving = true
 	self:StartMoving()
 end)
 
 frame:SetScript("OnDragStop", function(self)
+	if not moving then return end
+	moving = false
 	self:StopMovingOrSizing()
 	local point, _, relPoint, x, y = self:GetPoint(1)
 	if point then ns.Set("nav.arrowPos", { point = point, relPoint = relPoint, x = x, y = y }) end
