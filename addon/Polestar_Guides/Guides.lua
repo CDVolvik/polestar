@@ -8932,7 +8932,7 @@ do
 				},
 				{
 					title = "{npc:1266}",
-					note = "{npc:1266} camps in {area:801}, south of Brewnall. His meats are in the locker in {npc:1271}'s cave to the north-east of his camp: grab them and leave quickly.",
+					note = "{npc:1266} camps in {area:801}, south of Brewnall. His meats are in the locker in {npc:1271}'s cave, north-east of his camp. {npc:1271} is an elite yeti: wait out of sight until he wanders off on his patrol, then take the meats and leave before he comes back. You don't need to fight him.",
 					goals = {
 						{ t = "accept", quest = 312, title = "Tundra MacGrann's Stolen Stash", npc = 1266, npcName = "Tundra MacGrann", minLevel = 7, qlvl = 12, map = 1426, x = 34.57, y = 51.65, z = 483.9, f = "e" },
 						{ t = "collect", quest = 312, title = "Tundra MacGrann's Stolen Stash", item = 2667, itemName = "MacGrann's Dried Meats", oi = 1, map = 1426, x = 38.51, y = 53.93, f = "e", note = "{item:2667}: the meat locker", from = "MacGrann's Meat Locker", fromKind = "object", fromId = 272 },

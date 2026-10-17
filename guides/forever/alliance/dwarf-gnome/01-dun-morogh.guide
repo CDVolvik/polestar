@@ -595,7 +595,7 @@ step Earthseer Farsen
 # ---------------------------------------------------------------- Old Icebeard
 
 step Tundra MacGrann
-  tip Tundra MacGrann camps in Chill Breeze Valley, south of Brewnall. His meats are in the locker in Old Icebeard's cave to the north-east of his camp: grab them and leave quickly.
+  tip Tundra MacGrann camps in Chill Breeze Valley, south of Brewnall. His meats are in the locker in Old Icebeard's cave, north-east of his camp. Old Icebeard is an elite yeti: wait out of sight until he wanders off on his patrol, then take the meats and leave before he comes back. You don't need to fight him.
   accept 312                                  -- Tundra MacGrann
   collect 2667 quest 312.1                    -- MacGrann's Dried Meats: the meat locker
   turnin 312
