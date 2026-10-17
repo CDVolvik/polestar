@@ -111,7 +111,11 @@ next forever/alliance/02-westfall
 #   Grif Wildheart's taming quests (6064, 6084, 6085: Tame Beast) at
 #   Kharanos after the hearth; Training the Beast (6086) in Ironforge.
 # - Paladin (Dwarf): the Tome of Divinity quests (2999 to 1785, Redemption)
-#   at the end: Ironforge, Narm Faulk by Helm's Bed Lake, Ironforge.
+#   at the end: Ironforge, Narm Faulk by Helm's Bed Lake, then Thelsamar in
+#   Loch Modan for Honor Students (6387, 6391, 6388) and its flight back to
+#   Ironforge: about 70 seconds more than walking back up to the gates, for
+#   about 1,000 XP and the Thelsamar flight point (recorded Dwarf Paladin
+#   run). Return to Brock (6392) is left for a later visit to Loch Modan.
 # - Priest: Desperate Prayer (5637, Dwarf; handed in at the Cathedral of Light
 #   on arrival in Stormwind) and Confounding Flash (94824, Gnome; Ironforge) from
 #   Maxan Anvol in Kharanos.
@@ -629,6 +633,23 @@ step Narm Faulk
   turnin 1783                                 -- Narm Faulk
   accept 1784
   collect 6847 quest 1784.1                   -- Dark Iron Script: Dark Iron Spies
+
+step Honor Students
+  only Paladin
+  zone Loch Modan
+  tip Instead of walking back up to Ironforge, go east through the South Gate tunnel into Loch Modan and follow the road north to Thelsamar. Brock Stoneseeker stands on the east side of town, past the Stoutlager Inn; his errand pays for a flight back to Ironforge.
+  accept 6387                                 -- Brock Stoneseeker
+  turnin 6387                                 -- Thorgrum Borrelson, the gryphon master
+  accept 6391
+  getfp "Thelsamar"
+  fly "Ironforge"
+
+step Golnir Bouldertoe
+  only Paladin
+  zone Ironforge
+  turnin 6391                                 -- Golnir Bouldertoe, in the Great Forge
+  accept 6388
+  turnin 6388                                 -- Gryth Thurden, the gryphon master where you landed
 
 step Muiredon Battleforge
   only Paladin
