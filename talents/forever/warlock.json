@@ -207,7 +207,7 @@
 					"tree": "Affliction",
 					"talent": "Wrack",
 					"rank": 1,
-					"note": "Wrack is the capstone: a strong channel that raises the damage the target takes from your spells."
+					"note": "Wrack is the capstone: a strong channel that raises the damage the target takes from your other Shadow damage-over-time effects by 10%."
 				},
 				{
 					"level": 41,

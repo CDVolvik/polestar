@@ -771,7 +771,7 @@ T.Register({
 				[25] = L["Nightfall gives an instant Shadow Bolt now and then while your damage over time ticks."],
 				[30] = L["Siphon Life adds another self-heal over time to the rotation."],
 				[35] = L["Shadow Mastery adds damage to every Shadow spell."],
-				[40] = L["Wrack is the capstone: a strong channel that raises the damage the target takes from your spells."],
+				[40] = L["Wrack is the capstone: a strong channel that raises the damage the target takes from your other Shadow damage-over-time effects by 10%."],
 				[41] = L["The last 20 points go to Demonology: more Stamina, a tougher Voidwalker, quicker summons and Demonic Sacrifice."],
 			},
 		},
