@@ -7,12 +7,10 @@
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Menethil Harbor
-	-- {npc:2104} Captain Stoutfist · {area:2103} Menethil Keep · {npc:2094} James Halloran · {npc:270844} Sylessa Duskwhisper
-	["{npc:2104} stands in {area:2103}; {npc:2094} and {npc:270844} stand together by the north gate."] = "{npc:2104} steht in {area:2103}; {npc:2094} und {npc:270844} stehen zusammen am Nordtor.",
+	-- {npc:2104} Captain Stoutfist · {area:2103} Menethil Keep · {npc:2094} James Halloran
+	["{npc:2104} stands in {area:2103}; {npc:2094} stands by the north gate."] = "{npc:2104} steht in {area:2103}; {npc:2094} steht am Nordtor.",
 	-- {npc:2104} Captain Stoutfist · {npc:270637} Howin Kindfeather
 	["{npc:2104}: for {npc:270637}"] = "{npc:2104}: für {npc:270637}",
-	-- {npc:270844} Sylessa Duskwhisper · {npc:3649} Thundris Windweaver · {area:442} Auberdine
-	["{npc:270844}: for {npc:3649} in {area:442} (02-desolace)"] = "{npc:270844}: für {npc:3649} in {area:442} (02-desolace)",
 
 	-- Step 2: Prospector Whelgar
 	-- {area:118} Whelgar's Excavation Site
@@ -35,9 +33,8 @@ return {
 
 	-- Step 6: Angerfang Encampment
 	-- {area:1036} Angerfang Encampment · {object:671518} Tattered Spellbook
-	["South to the Dragonmaw's {area:1036}; the {object:671518} lies in the camp."] = "Nach Süden zum {area:1036} des Drachenmals; {object:671518} liegt im Lager.",
-	-- {quest:98221} From the Ashes
-	["Destroy the four sets of Attack Plans in the camp for {quest:98221}."] = "Zerstöre die vier Sätze Angriffspläne im Lager für {quest:98221}.",
+	["South to the Dragonmaw's {area:1036}: the first catapult stands on the way, and the {object:671518} lies in the camp."] = "Nach Süden zum {area:1036} der Dragonmaw: Das erste Katapult steht auf dem Weg, und {object:671518} liegt im Lager.",
+	["The next step, Defeat Nek'rosh, pits you against an elite chieftain: skip it."] = "Der nächste Schritt, Sieg über Nek'rosh, stellt dich gegen einen Elite-Häuptling: Überspring ihn.",
 	-- {object:671518} Tattered Spellbook · {npc:2104} Captain Stoutfist
 	["{object:671518}: for {npc:2104}"] = "{object:671518}: für {npc:2104}",
 
@@ -46,8 +43,8 @@ return {
 	["{npc:271462} stands in the south-eastern hills: use the {item:279996} beside it."] = "{npc:271462} steht in den südöstlichen Hügeln: Benutze daneben {item:279996}.",
 
 	-- Step 8: Dragonmaw Gates
-	-- {area:1038} Dragonmaw Gates · {npc:271373} Subdued Dragonspawn · {npc:271338} Ados · {item:279996} Goaz Stone
-	["North-east to the {area:1038}: the {npc:271373} are held there, and {npc:271338} stands at the gates (use the {item:279996})."] = "Nach Nordosten zu {area:1038}: {npc:271373} werden dort festgehalten, und {npc:271338} steht an den Toren (benutze {item:279996}).",
+	-- {area:1038} Dragonmaw Gates · {npc:271338} Ados · {item:279996} Goaz Stone
+	["North-east to the {area:1038}: {npc:271338} stands at the gates (use the {item:279996})."] = "",
 
 	-- Step 9: Whelps, raptors and Neru
 	-- {npc:271458} Neru
@@ -111,7 +108,7 @@ return {
 	["The naga hold the shore south-east of {area:271}."] = "Die Naga halten das Ufer südöstlich von {area:271}.",
 
 	-- Step 22: Farren
-	-- {object:2117} Stormwind Keep (no name in this language: may be words)
+	-- {object:2117} Stormwind Keep
 	["A report for {object:2117}"] = "Ein Bericht für {object:2117}",
 
 	-- Step 23: Snapjaws
@@ -146,22 +143,22 @@ return {
 	["From {npc:2432} in {area:271}"] = "Von {npc:2432} in {area:271}",
 
 	-- Step 29: Elling Trias
-	-- {object:2096} Trade District (no name in this language: may be words)
+	-- {object:2096} Trade District
 	["The cheese shop in the {object:2096}."] = "Der Käseladen im {object:2096}.",
 
 	-- Step 30: Dashel Stonefist
-	-- {npc:4961} Dashel Stonefist · {object:2100} Old Town (no name in this language: may be words)
+	-- {npc:4961} Dashel Stonefist · {object:2100} Old Town
 	["{npc:4961} waits in the Pig and Whistle tavern in {object:2100}; he and his two thugs fight you, but stop once beaten."] = "{npc:4961} wartet in der Taverne „Zum Schwein und Pfeife“ in {object:2100}; er und seine zwei Schläger greifen dich an, hören aber auf, sobald sie besiegt sind.",
 
 	-- Step 31: The Islander
-	-- {npc:5479} Wu Shen · {object:2100} Old Town (no name in this language: may be words) · {npc:6236} Klannoc Macleod · {area:720} Fray Island · {zone:1413} Barrens · {area:392} Ratchet
+	-- {npc:5479} Wu Shen · {object:2100} Old Town · {npc:6236} Klannoc Macleod · {area:720} Fray Island · {zone:1413} Barrens · {area:392} Ratchet
 	["{npc:5479} trains warriors in {object:2100}, beside the Pig and Whistle. {npc:6236} waits on {area:720} in the {zone:1413}, on the way to {area:392} much later (40-50/01)."] = "{npc:5479} bildet in {object:2100} Krieger aus, neben der Taverne „Zum Schwein und Pfeife“. {npc:6236} wartet auf {area:720} im {zone:1413}, auf dem Weg nach {area:392} viel später (40-50/01).",
 
 	-- Step 33: Cathedral of Light
 	["Cathedral of Light"] = "Kathedrale des Lichts",
 
 	-- Step 34: Mage Quarter
-	-- {npc:2708} Archmage Malin · {object:2164} Slaughtered Lamb (no name in this language: may be words) · {npc:211033} Garion Wendell · {npc:5081} Connor Rivers · {object:2101} Mage Quarter (no name in this language: may be words)
+	-- {npc:2708} Archmage Malin · {object:2164} Slaughtered Lamb · {npc:211033} Garion Wendell · {npc:5081} Connor Rivers · {object:2101} Mage Quarter
 	["{npc:2708} is in the {object:2164}; {npc:211033} near the canal; {npc:5081} south of the {object:2101}."] = "{npc:2708} ist im {object:2164}; {npc:211033} nahe dem Kanal; {npc:5081} südlich vom {object:2101}.",
 
 	-- Step 36: Druid training
@@ -170,16 +167,21 @@ return {
 	["{zone:1455} has no druid trainer: train with {npc:5504} in {zone:1453} before the tram."] = "{zone:1455} hat keinen Druidenlehrer: Trainiere vor der Bahn bei {npc:5504} in {zone:1453}.",
 
 	-- Step 37: Deeprun Tram
-	-- {area:2257} Deeprun Tram · {object:28027} Dwarven District (no name in this language: may be words) · {zone:1455} Ironforge
+	-- {area:2257} Deeprun Tram · {object:28027} Dwarven District · {zone:1455} Ironforge
 	["Take the {area:2257} from the {object:28027} to {zone:1455}."] = "Nimm die {area:2257} vom {object:28027} nach {zone:1455}.",
-	-- {npc:2784} King Magni Bronzebeard · {object:171709} High Seat (no name in this language: may be words)
+	-- {npc:2784} King Magni Bronzebeard · {object:171709} High Seat
 	["{npc:2784}, the {object:171709}"] = "{npc:2784}, {object:171709}",
 	["Level 30 and 32 spells"] = "Zauber der Stufen 30 und 32",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Destroy the four sets of Attack Plans in the camp for {quest:98221}."] = "Zerstöre die vier Sätze Angriffspläne im Lager für {quest:98221}.",
 	-- ["Fly to {zone:1453}"] = "Flieg nach {zone:1453}",
 	-- ["Follow the road north-east into the {area:1025}: {npc:270637} camps beside it, {npc:1244} a short way east."] = "Folge der Straße nach Nordosten in {area:1025}: {npc:270637} lagert daneben, {npc:1244} ein Stück weiter östlich.",
 	-- ["Golm"] = "Golm",
+	-- ["North-east to the {area:1038}: the {npc:271373} are held there, and {npc:271338} stands at the gates (use the {item:279996})."] = "Nach Nordosten zu {area:1038}: {npc:271373} werden dort festgehalten, und {npc:271338} steht an den Toren (benutze {item:279996}).",
 	-- ["Red whelps fill the hills west of the gates, Maddened Rotclaws the {area:1025}, Razormaws the northern slopes; Neru stands in the north-east (use the {item:279996}).\n{quest:98283} is elite: grouping up is advised."] = "Rote Welpen füllen die Hügel westlich der Tore, Wahnsinnige Faulklauen ({npc:271334}) {area:1025}, Scharfzähne die nördlichen Hänge; Neru steht im Nordosten (benutze {item:279996}).\n{quest:98283} ist Elite: Such dir am besten eine Gruppe.",
+	-- ["South to the Dragonmaw's {area:1036}; the {object:671518} lies in the camp."] = "Nach Süden zum {area:1036} des Drachenmals; {object:671518} liegt im Lager.",
+	-- ["{npc:2104} stands in {area:2103}; {npc:2094} and {npc:270844} stand together by the north gate."] = "{npc:2104} steht in {area:2103}; {npc:2094} und {npc:270844} stehen zusammen am Nordtor.",
+	-- ["{npc:270844}: for {npc:3649} in {area:442} (02-desolace)"] = "{npc:270844}: für {npc:3649} in {area:442} (02-desolace)",
 	-- ["{zone:1455} has no druid trainer: train with {npc:5504} in {zone:1453} before the tram."] = "{zone:1455} hat keinen Druidenlehrer: Trainiere vor der Bahn bei {npc:5504} in {zone:1453}.",
 }

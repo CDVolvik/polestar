@@ -162,8 +162,10 @@ return {
 	["{npc:1269}, by the depot"] = "{npc:1269}, perto da garagem",
 
 	-- Step 29: Rumbleshot's Ammo
-	-- {area:802} Shimmer Ridge · {npc:1243} Hegnar Rumbleshot
-	["The ammo crate sits in the Frostmane camp on {area:802}; {npc:1243} camps south of it, by the road to Coldridge."] = "O caixote de munição fica no acampamento Jubafria em {area:802}; {npc:1243} acampa ao sul dele, junto à estrada para o Vale Cristálgida.",
+	-- {object:176785} Ammo Crate · {npc:271546} Mountaineer Gretchen · {area:136} Grizzled Den · {npc:1243} Hegnar Rumbleshot
+	["The {object:176785} sits next to {npc:271546}, south of the {area:136}; {npc:1243} camps south-west of it, by the road to Coldridge."] = "{object:176785} fica ao lado de {npc:271546}, ao sul de {area:136}; {npc:1243} acampa a sudoeste dele, junto à estrada para o Vale Cristálgida.",
+	-- {item:13850} Rumbleshot's Ammo · {object:176785} Ammo Crate
+	["{item:13850}: the {object:176785}"] = "{item:13850}: {object:176785}",
 
 	-- Step 30: Frostmane Hold
 	-- {area:135} Frostmane Hold · {area:137} Brewnall Village
@@ -178,6 +180,12 @@ return {
 	-- {area:133} Gnomeregan
 	-- plural, as words: Leper Gnomes = {npc:1211} Leper Gnome · Ice Claw Bears = {npc:1196} Ice Claw Bear · Elder Crag Boars = {npc:1127} Elder Crag Boar · Snow Leopards = {npc:1201} Snow Leopard
 	["Leper Gnomes around Brewnall and the {area:133} road carry the cogs and gears. Ice Claw Bears, Elder Crag Boars and Snow Leopards roam the hills around the lake."] = "Gnomos Leprosos em volta da Aldeia da Cevada e da estrada de {area:133} levam as rodas dentadas e engrenagens. Ursos Garra de Gelo, Rochetuscos Anciões e Leopardos da Neve vagam pelas colinas em volta do lago.",
+	-- {item:3083} Restabilization Cog
+	-- plural, as words: Leper Gnomes = {npc:1211} Leper Gnome
+	["{item:3083}: Leper Gnomes"] = "{item:3083}: Gnomos Leprosos",
+	-- {item:3084} Gyromechanic Gear
+	-- plural, as words: Leper Gnomes = {npc:1211} Leper Gnome
+	["{item:3084}: Leper Gnomes"] = "{item:3084}: Gnomos Leprosos",
 
 	-- Step 35: Kharanos
 	-- {npc:1373} Jarven Thunderbrew · {item:2686} Thunder Ale · {npc:1247} Innkeeper Belm · {spell:8553} Barleybrew Scalder
@@ -322,6 +330,8 @@ return {
 	-- Step 68: Tundra MacGrann
 	-- {npc:1266} Tundra MacGrann · {area:801} Chill Breeze Valley · {npc:1271} Old Icebeard
 	["{npc:1266} camps in {area:801}, south of Brewnall. His meats are in the locker in {npc:1271}'s cave to the north-east of his camp: grab them and leave quickly."] = "{npc:1266} acampa no {area:801}, ao sul da Aldeia da Cevada. As carnes dele estão no armário da caverna do {npc:1271}, a nordeste do acampamento: pegue-as e saia rápido.",
+	-- {item:2667} MacGrann's Dried Meats
+	["{item:2667}: the meat locker"] = "{item:2667}: o armário de carne",
 
 	-- Step 69: The Tome of Divinity
 	-- {zone:1455} Ironforge · {object:32362} Mystic Ward (no name in this language: may be words) · {npc:5149} Brandur Ironhammer · {npc:6179} Tiza Battleforge · {npc:6178} Muiredon Battleforge · {object:32386} Hall of Mysteries (no name in this language: may be words) · {npc:6175} John Turner · {item:2589} Linen Cloth · {zone:1426} Dun Morogh
@@ -344,7 +354,7 @@ return {
 	-- Step 72: Ironforge class quests
 	-- {zone:1455} Ironforge
 	["{zone:1455} class quests"] = "Missões de classe em {zone:1455}",
-	-- {npc:10090} Belia Thundergranite · {object:32390} Hall of Arms (no name in this language: may be words) · {npc:258785} High Priestess Mims · {object:32386} Hall of Mysteries (no name in this language: may be words) · {npc:6120} Lago Blackwrench · {object:32383} Forlorn Cavern (no name in this language: may be words)
+	-- {npc:10090} Belia Thundergranite · {object:32390} Hall of Arms (no name in this language: may be words) · {npc:258785} High Priestess Mims · {object:32386} Hall of Mysteries (no name in this language: may be words) · {npc:6120} Lago Blackwrench · {object:32383} Forlorn Cavern
 	["{npc:10090} is in the {object:32390}, {npc:258785} in the {object:32386}, {npc:6120} in the {object:32383}."] = "{npc:10090} está no {object:32390}, {npc:258785} no {object:32386}, {npc:6120} na {object:32383}.",
 	-- {npc:6120} Lago Blackwrench · {npc:6122} Gakin the Darkbinder · {zone:1453} Stormwind
 	["{npc:6120}: {npc:6122} in {zone:1453} takes it"] = "{npc:6120}: {npc:6122} em {zone:1453} a recebe",
@@ -352,15 +362,15 @@ return {
 	-- Step 73: The Deeprun Tram
 	-- {area:2257} Deeprun Tram
 	["The {area:2257}"] = "O {area:2257}",
-	-- {zone:1455} Ironforge · {area:2257} Deeprun Tram · {object:171524} Tinker Town (no name in this language: may be words) · {zone:1453} Stormwind
+	-- {zone:1455} Ironforge · {area:2257} Deeprun Tram · {object:171524} Tinker Town · {zone:1453} Stormwind
 	["Follow the road up to {zone:1455} and train with your class trainer. The {area:2257} leaves from {object:171524}, in the east of the city. Ride it to {zone:1453}."] = "Siga a estrada até {zone:1455} e treine com seu instrutor de classe. O {area:2257} sai da {object:171524}, no leste da cidade. Vá nele até {zone:1453}.",
-	-- {object:660964} Misplaced Packages · {object:171524} Tinker Town (no name in this language: may be words)
+	-- {object:660964} Misplaced Packages · {object:171524} Tinker Town
 	["{object:660964}, by the mailbox in {object:171524}"] = "{object:660964}, perto da caixa de correio na {object:171524}",
 	-- {npc:258098} Eldrun Stormbreaker · {object:32372} Great Forge (no name in this language: may be words)
 	["{npc:258098}, the shaman trainer, north of the {object:32372}"] = "{npc:258098}, o instrutor de xamã, ao norte da {object:32372}",
 
 	-- Step 74: Defensive Stance
-	-- {object:28027} Dwarven District (no name in this language: may be words) · {npc:5480} Ilsa Corbin · {object:2100} Old Town (no name in this language: may be words) · {npc:6089} Harry Burlguard · {npc:6090} Bartleby · {object:2152} Pig and Whistle Tavern (no name in this language: may be words)
+	-- {object:28027} Dwarven District · {npc:5480} Ilsa Corbin · {object:2100} Old Town · {npc:6089} Harry Burlguard · {npc:6090} Bartleby · {object:2152} Pig and Whistle Tavern
 	["The tram arrives in the {object:28027}. {npc:5480} trains warriors in {object:2100}; {npc:6089} and {npc:6090} stand together by the {object:2152} there. {npc:6090} fights you for his mug."] = "O metrô chega no {object:28027}. {npc:5480} treina guerreiros em {object:2100}; {npc:6089} e {npc:6090} ficam juntos perto da {object:2152} de lá. {npc:6090} luta com você pela caneca dele.",
 
 	-- Step 75: Desperate Prayer
@@ -368,7 +378,7 @@ return {
 	["{npc:376} is in the Cathedral of Light."] = "{npc:376} está na Catedral da Luz.",
 
 	-- Step 76: Gakin the Darkbinder
-	-- {npc:6122} Gakin the Darkbinder · {object:2164} Slaughtered Lamb (no name in this language: may be words) · {object:2101} Mage Quarter (no name in this language: may be words)
+	-- {npc:6122} Gakin the Darkbinder · {object:2164} Slaughtered Lamb · {object:2101} Mage Quarter
 	["{npc:6122} waits in the cellar of the {object:2164}, in the {object:2101}."] = "{npc:6122} espera no porão do {object:2164}, no {object:2101}.",
 
 	-- Step 77: Surena Caledon
@@ -376,15 +386,18 @@ return {
 	["Leave {zone:1453} by the main gate, go south to {area:87} and east along the road to the {area:62}. {npc:881} (level 9) stands by its farmhouse."] = "Saia de {zone:1453} pelo portão principal, vá para o sul até {area:87} e para leste pela estrada até a {area:62}. {npc:881} (nível 9) fica junto à casa da fazenda.",
 
 	-- Step 78: The Binding
-	-- {npc:6122} Gakin the Darkbinder · {item:6928} Bloodstone Choker · {object:2164} Slaughtered Lamb (no name in this language: may be words) · {zone:1436} Westfall · {area:87} Goldshire
+	-- {npc:6122} Gakin the Darkbinder · {item:6928} Bloodstone Choker · {object:2164} Slaughtered Lamb · {zone:1436} Westfall · {area:87} Goldshire
 	["Back to {npc:6122}. Use the {item:6928} at the summoning circle in the {object:2164}'s cellar and defeat the voidwalker it calls. {zone:1436} is next, west of {area:87}."] = "De volta a {npc:6122}. Use o {item:6928} no círculo de evocação do porão do {object:2164} e derrote o emissário do caos que ele chama. {zone:1436} é a próxima, a oeste de {area:87}.",
 	["Subdue the voidwalker"] = "Subjugue o emissário do caos",
 
 	-- Step 79: Jennea Cannon
-	-- {npc:5497} Jennea Cannon · {object:2101} Mage Quarter (no name in this language: may be words) · {quest:1861} Mirror Lake
+	-- {npc:5497} Jennea Cannon · {object:2101} Mage Quarter · {quest:1861} Mirror Lake
 	["{npc:5497} stands in the Wizard's Sanctum, the tower of the {object:2101}; she gives you a flask for the {quest:1861} waterfall."] = "{npc:5497} fica na torre do {object:2101}; ela lhe dá um frasco para a cachoeira do {quest:1861}.",
 
 	-- Step 80: Mirror Lake
 	-- {zone:1453} Stormwind · {quest:1861} Mirror Lake · {zone:1436} Westfall · {item:7207} Jennea's Flask
 	["Leave {zone:1453} by the main gate. The {quest:1861} waterfall is south-west of the gates, on the way west to {zone:1436}: fill {item:7207} at its base."] = "Saia de {zone:1453} pelo portão principal. A cachoeira do {quest:1861} fica a sudoeste dos portões, no caminho para oeste até {zone:1436}: encha o {item:7207} na base dela.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["The ammo crate sits in the Frostmane camp on {area:802}; {npc:1243} camps south of it, by the road to Coldridge."] = "O caixote de munição fica no acampamento Jubafria em {area:802}; {npc:1243} acampa ao sul dele, junto à estrada para o Vale Cristálgida.",
 }

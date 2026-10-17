@@ -7,12 +7,10 @@
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Menethil Harbor
-	-- {npc:2104} Captain Stoutfist · {area:2103} Menethil Keep · {npc:2094} James Halloran · {npc:270844} Sylessa Duskwhisper
-	["{npc:2104} stands in {area:2103}; {npc:2094} and {npc:270844} stand together by the north gate."] = "{npc:2104}站在{area:2103}；{npc:2094}和{npc:270844}一起站在北門旁。",
+	-- {npc:2104} Captain Stoutfist · {area:2103} Menethil Keep · {npc:2094} James Halloran
+	["{npc:2104} stands in {area:2103}; {npc:2094} stands by the north gate."] = "{npc:2104}站在{area:2103}；{npc:2094}站在北門旁。",
 	-- {npc:2104} Captain Stoutfist · {npc:270637} Howin Kindfeather
 	["{npc:2104}: for {npc:270637}"] = "{npc:2104}：給{npc:270637}",
-	-- {npc:270844} Sylessa Duskwhisper · {npc:3649} Thundris Windweaver · {area:442} Auberdine
-	["{npc:270844}: for {npc:3649} in {area:442} (02-desolace)"] = "{npc:270844}：給{area:442}的{npc:3649}（02-desolace）",
 
 	-- Step 2: Prospector Whelgar
 	-- {area:118} Whelgar's Excavation Site
@@ -35,9 +33,8 @@ return {
 
 	-- Step 6: Angerfang Encampment
 	-- {area:1036} Angerfang Encampment · {object:671518} Tattered Spellbook (no name in this language: may be words)
-	["South to the Dragonmaw's {area:1036}; the {object:671518} lies in the camp."] = "向南前往龍喉的{area:1036}；{object:671518}就在營地裡。",
-	-- {quest:98221} From the Ashes
-	["Destroy the four sets of Attack Plans in the camp for {quest:98221}."] = "為了{quest:98221}，摧毀營地裡的四份攻擊計畫。",
+	["South to the Dragonmaw's {area:1036}: the first catapult stands on the way, and the {object:671518} lies in the camp."] = "向南前往龍喉的{area:1036}：第一架投石車就在路上，{object:671518}就在營地裡。",
+	["The next step, Defeat Nek'rosh, pits you against an elite chieftain: skip it."] = "下一步「擊敗納克羅西」要你對抗一名精英酋長：跳過它。",
 	-- {object:671518} Tattered Spellbook (no name in this language: may be words) · {npc:2104} Captain Stoutfist
 	["{object:671518}: for {npc:2104}"] = "{object:671518}：給{npc:2104}",
 
@@ -46,8 +43,8 @@ return {
 	["{npc:271462} stands in the south-eastern hills: use the {item:279996} beside it."] = "{npc:271462}站在東南方的山丘上：在它旁邊使用{item:279996}。",
 
 	-- Step 8: Dragonmaw Gates
-	-- {area:1038} Dragonmaw Gates · {npc:271373} Subdued Dragonspawn · {npc:271338} Ados · {item:279996} Goaz Stone
-	["North-east to the {area:1038}: the {npc:271373} are held there, and {npc:271338} stands at the gates (use the {item:279996})."] = "向東北前往{area:1038}：{npc:271373}被關在那裡，{npc:271338}站在大門旁（使用{item:279996}）。",
+	-- {area:1038} Dragonmaw Gates · {npc:271338} Ados · {item:279996} Goaz Stone
+	["North-east to the {area:1038}: {npc:271338} stands at the gates (use the {item:279996})."] = "",
 
 	-- Step 9: Whelps, raptors and Neru
 	-- {npc:271458} Neru
@@ -111,7 +108,7 @@ return {
 	["The naga hold the shore south-east of {area:271}."] = "納迦佔據{area:271}東南方的海岸。",
 
 	-- Step 22: Farren
-	-- {object:2117} Stormwind Keep (no name in this language: may be words)
+	-- {object:2117} Stormwind Keep
 	["A report for {object:2117}"] = "給{object:2117}的報告",
 
 	-- Step 23: Snapjaws
@@ -146,22 +143,22 @@ return {
 	["From {npc:2432} in {area:271}"] = "來自{area:271}的{npc:2432}",
 
 	-- Step 29: Elling Trias
-	-- {object:2096} Trade District (no name in this language: may be words)
+	-- {object:2096} Trade District
 	["The cheese shop in the {object:2096}."] = "{object:2096}的乳酪店。",
 
 	-- Step 30: Dashel Stonefist
-	-- {npc:4961} Dashel Stonefist · {object:2100} Old Town (no name in this language: may be words)
+	-- {npc:4961} Dashel Stonefist · {object:2100} Old Town
 	["{npc:4961} waits in the Pig and Whistle tavern in {object:2100}; he and his two thugs fight you, but stop once beaten."] = "{npc:4961}在{object:2100}的酒館裡等候；他和他的兩個打手會跟你打，但被打敗後就會停手。",
 
 	-- Step 31: The Islander
-	-- {npc:5479} Wu Shen · {object:2100} Old Town (no name in this language: may be words) · {npc:6236} Klannoc Macleod · {area:720} Fray Island · {zone:1413} Barrens · {area:392} Ratchet
+	-- {npc:5479} Wu Shen · {object:2100} Old Town · {npc:6236} Klannoc Macleod · {area:720} Fray Island · {zone:1413} Barrens · {area:392} Ratchet
 	["{npc:5479} trains warriors in {object:2100}, beside the Pig and Whistle. {npc:6236} waits on {area:720} in the {zone:1413}, on the way to {area:392} much later (40-50/01)."] = "{npc:5479}在{object:2100}的酒館旁訓練戰士。{npc:6236}在{zone:1413}的{area:720}等候，要很久以後前往{area:392}的途中才會經過（40-50/01）。",
 
 	-- Step 33: Cathedral of Light
 	["Cathedral of Light"] = "光明大教堂",
 
 	-- Step 34: Mage Quarter
-	-- {npc:2708} Archmage Malin · {object:2164} Slaughtered Lamb (no name in this language: may be words) · {npc:211033} Garion Wendell · {npc:5081} Connor Rivers · {object:2101} Mage Quarter (no name in this language: may be words)
+	-- {npc:2708} Archmage Malin · {object:2164} Slaughtered Lamb · {npc:211033} Garion Wendell · {npc:5081} Connor Rivers · {object:2101} Mage Quarter
 	["{npc:2708} is in the {object:2164}; {npc:211033} near the canal; {npc:5081} south of the {object:2101}."] = "{npc:2708}在{object:2164}；{npc:211033}在運河附近；{npc:5081}在{object:2101}南邊。",
 
 	-- Step 36: Druid training
@@ -170,16 +167,21 @@ return {
 	["{zone:1455} has no druid trainer: train with {npc:5504} in {zone:1453} before the tram."] = "{zone:1455}沒有德魯伊訓練師：搭地鐵前先在{zone:1453}向{npc:5504}學習。",
 
 	-- Step 37: Deeprun Tram
-	-- {area:2257} Deeprun Tram · {object:28027} Dwarven District (no name in this language: may be words) · {zone:1455} Ironforge
+	-- {area:2257} Deeprun Tram · {object:28027} Dwarven District · {zone:1455} Ironforge
 	["Take the {area:2257} from the {object:28027} to {zone:1455}."] = "從{object:28027}搭乘{area:2257}前往{zone:1455}。",
-	-- {npc:2784} King Magni Bronzebeard · {object:171709} High Seat (no name in this language: may be words)
+	-- {npc:2784} King Magni Bronzebeard · {object:171709} High Seat
 	["{npc:2784}, the {object:171709}"] = "{npc:2784}，{object:171709}",
 	["Level 30 and 32 spells"] = "30級和32級法術",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Destroy the four sets of Attack Plans in the camp for {quest:98221}."] = "為了{quest:98221}，摧毀營地裡的四份攻擊計畫。",
 	-- ["Fly to {zone:1453}"] = "飛往{zone:1453}",
 	-- ["Follow the road north-east into the {area:1025}: {npc:270637} camps beside it, {npc:1244} a short way east."] = "沿著道路向東北進入{area:1025}：{npc:270637}在路旁紮營，{npc:1244}在東邊不遠處。",
 	-- ["Golm"] = "高爾姆",
+	-- ["North-east to the {area:1038}: the {npc:271373} are held there, and {npc:271338} stands at the gates (use the {item:279996})."] = "向東北前往{area:1038}：{npc:271373}被關在那裡，{npc:271338}站在大門旁（使用{item:279996}）。",
 	-- ["Red whelps fill the hills west of the gates, Maddened Rotclaws the {area:1025}, Razormaws the northern slopes; Neru stands in the north-east (use the {item:279996}).\n{quest:98283} is elite: grouping up is advised."] = "紅色雛龍遍布大門西邊的山丘，{npc:271334}在{area:1025}，刺喉龍在北面山坡；奈爾魯站在東北方（使用{item:279996}）。\n{quest:98283}是精英：建議組隊。",
+	-- ["South to the Dragonmaw's {area:1036}; the {object:671518} lies in the camp."] = "向南前往龍喉的{area:1036}；{object:671518}就在營地裡。",
+	-- ["{npc:2104} stands in {area:2103}; {npc:2094} and {npc:270844} stand together by the north gate."] = "{npc:2104}站在{area:2103}；{npc:2094}和{npc:270844}一起站在北門旁。",
+	-- ["{npc:270844}: for {npc:3649} in {area:442} (02-desolace)"] = "{npc:270844}：給{area:442}的{npc:3649}（02-desolace）",
 	-- ["{zone:1455} has no druid trainer: train with {npc:5504} in {zone:1453} before the tram."] = "{zone:1455}沒有德魯伊訓練師：搭地鐵前先在{zone:1453}向{npc:5504}學習。",
 }

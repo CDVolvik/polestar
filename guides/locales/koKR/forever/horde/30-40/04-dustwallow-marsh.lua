@@ -9,6 +9,8 @@ return {
 	-- Step 1: Fly to Camp Taurajo
 	-- {area:378} Camp Taurajo
 	["Fly to {area:378}"] = "{area:378}(으)로 날아가기",
+	-- {npc:6791} Innkeeper Wiley
+	["{npc:6791}: the last guide binds here, so this usually ticks at once"] = "{npc:6791}: 이전 가이드에서 이곳에 귀환 지점을 정하므로 보통 바로 완료됩니다",
 
 	-- Step 2: Shady Rest Inn
 	-- {area:378} Camp Taurajo · {area:403} Shady Rest Inn
@@ -58,7 +60,7 @@ return {
 
 	-- Step 12: Brackenwall Village
 	["Ride back west to Brackenwall with the head."] = "머리를 가지고 서쪽의 담쟁이 마을로 돌아가세요.",
-	-- {npc:2519} Kin'weelay · {object:3202} Grom'gol (no name in this language: may be words)
+	-- {npc:2519} Kin'weelay · {object:3202} Grom'gol
 	["For {npc:2519} at {object:3202}, in the next guide"] = "다음 가이드에서 {object:3202}의 {npc:2519}에게",
 
 	-- Step 13: Hearth to Ratchet

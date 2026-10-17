@@ -122,6 +122,12 @@ for your language from
   descriptions wrap, controls size to their text), and a text this still
   lists is a layout bug to report, not yours to shorten. `--slack 1.15`
   measures about as wide as the game's own font.
+- `node tools/polestar.js i18n leaks [<locale>...]` runs the addon in each
+  language and lists the English it leaves on screen, grouped by where it
+  came from ("English left on screen" below). `--scene guide,options` runs
+  only those scenes, `--guide <id>,...` puts other guides in the guide
+  window, `--json` prints one document, `--update-baseline` rewrites the
+  baseline (below).
 
 ## For developers
 
@@ -139,6 +145,87 @@ the display can ask `Polestar.Names` for it. A game term the client names
 `L`, and its English value goes in `tests/lua/wow_stub.lua`. Tests that need a
 translated client fake a language Polestar does not ship:
 `fakeLocale('itIT', { ... })` (`tests/helpers/locale.js`).
+
+## English left on screen
+
+`node tools/polestar.js i18n leaks` checks that nothing English reaches the
+screen on a client in another language, so a new feature cannot add English
+unnoticed. It runs the addon on the client stub (`tests/lua`) in each
+language with the shipped translations, names addon and guide texts, and has
+the client answer in "its language": every name the client itself gives
+(quest titles, item, zone, map, area, spell, faction, class and race names,
+the player's name) comes back as a placeholder holding no word. Scenes then
+drive the windows: the guide window step by step with every tooltip, all
+guides (both with every step shown, whatever class, race or faction it is
+for), the welcome, the picker, Options, Lookup, Dungeons, Rares, talents,
+the journey planner, Polestar's tooltip lines, every slash command, the world
+map and alerts, and the Recorder. Every text the addons put up is recorded
+(font strings and buttons, tooltips, chat, popups, menus) with its scene and
+the line that set it.
+
+A word of three or more Latin letters is English left on screen unless it is
+the language's own or `tools/lib/i18n/leaks-allow.json` allows it:
+
+- **The language's own words.** Russian, Korean and Chinese have none in
+  Latin letters. German, Spanish, French and Portuguese learn the words of
+  their real translations (interface strings and guide texts), after cutting
+  what is the same in every language (products, slash commands and their
+  arguments, tokens, formats): a translation that equals its English, or
+  copies most of it, teaches nothing.
+- **Names the client gave.** Every name `Polestar.Names` returned in the run
+  is the client's, in whole and by its words.
+- **The allow list**: product and people's names (Polestar, Discord, TomTom,
+  the font credits...), terms every client shows in English (XP, PvP, Shift,
+  Ctrl+C), patterns for links, files, versions, slash commands with their
+  documented arguments (`slashArguments` and every registered command; the
+  prose after one is checked), guide ids and format directives, and per
+  language the names and words it writes as English does (Uldaman; German
+  Navigation).
+
+What a scene types (a search, a command's arguments) does not count where a
+text repeats it. Each finding names its source:
+
+- **interface string not translated**: a key the language's file leaves
+  empty (`i18n sync`, then translate it);
+- **guide text not translated**: a guide text its texts file leaves empty
+  (`i18n guides sync`);
+- **name missing from the names pack**: `Polestar.Names` was asked and had no
+  name, so the guide's English showed (`i18n names`);
+- **English name, Polestar.Names not asked**: the code shows a name from a
+  guide or the data without asking `Polestar.Names` for it by its id;
+- **English a translation keeps**: the words are ones a translation of the
+  language writes as in English (a Forever-only place such as Hyjal Summit);
+- **English in the code**: a literal or a data text that does not go through
+  `L`.
+
+`tools/lib/i18n/leaks-baseline.json` lists, per language, what cannot be
+fixed in Polestar yet, each with a reason and the scenes it shows in: names
+as `"kind:id"` (`no-source`: no source of `i18n names` has it, mostly
+Forever's own NPCs, objects and items, which the client shows once the
+player has seen them; `same-as-english`: every source names it as in
+English, which `i18n names` records in `data/local/names-same-as-english.json`
+for the baseline), and texts as `"text:<the text>"` whose English a
+translation keeps (`kept-english`). A text whose only English is such is no
+finding.
+
+It fails (exit 1) on any finding, on a scene that stops with an error, and on
+a baseline entry that no longer shows in English in scenes that all ran (so the file only shrinks: remove the
+entry, or run with `--update-baseline`, which also adds the names and kept
+texts a new guide leaves in English, and never takes English from the code
+or an untranslated string or guide text). `npm test` runs a part of it
+(`tests/i18n-leaks.test.js`: Russian and Simplified Chinese; the guide window
+on three guides, Options, the picker, and Lookup, Dungeons and Rares where
+the Codex and quest database are built), and plants English to show the
+check finds it: an interface string "translated" as its English, English the
+code writes out, dropped guide texts (a paladin's among them) and prose after
+a slash command. Every scene needs the Codex and the quest database built
+(`codex build`, `questdb build`): without them the addon is an incomplete
+install with its own warnings, so the scenes skip, as on CI; run
+`i18n leaks` before a pull request that changes what the addon shows. A text that is right
+to show in Latin letters goes on the allow list with the reason in its group,
+never to make a finding go away. Developer output stays English on purpose:
+the guide lines `/polestar where` prints and the details block of a bug
+report, both read by maintainers, are on the allow list.
 
 ## Game names
 
@@ -196,7 +283,7 @@ that every TOC under `addon/` has all nine and that they match.
 ## Guide texts
 
 A guide's own words (its title, why and route-choice lines, each step's title
-and tip, each goal's note and label) are translated per guide pack, in the
+and tip, each goal's note and label) are translated per pack, in the
 pack's `locales/` folder: `guides/locales/<locale>/` for Polestar's own, one
 file per guide at the guide's path (`forever/alliance/02-westfall.lua`), plus
 `_pack.lua` for the pack's own texts (its title and notes, its guides' menu
@@ -244,7 +331,7 @@ locale files and the texts addons `compile` writes.
 - `node tools/polestar.js i18n guides sync [<locale>...]` writes every
   guide's file and `_pack.lua` for each language named (without one: each the
   pack has a folder for): every text in reading order, the translations kept,
-  the lost ones moved to the end. `--pack <dir>` names another guide pack.
+  the lost ones moved to the end. `--pack <dir>` names another pack.
 - `node tools/polestar.js i18n guides check [<locale>...]` fails on a file
   Lua cannot load, a translation that leaves out or adds a token or a line
   break, a stale translation, or a file no guide has. `lint` and `compile`

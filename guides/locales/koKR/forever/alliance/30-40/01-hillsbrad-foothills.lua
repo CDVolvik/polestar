@@ -7,12 +7,10 @@
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Menethil Harbor
-	-- {npc:2104} Captain Stoutfist · {area:2103} Menethil Keep · {npc:2094} James Halloran · {npc:270844} Sylessa Duskwhisper
-	["{npc:2104} stands in {area:2103}; {npc:2094} and {npc:270844} stand together by the north gate."] = "{npc:2104}은(는) {area:2103}에 있으며, {npc:2094}와(과) {npc:270844}은(는) 북문 옆에 함께 있습니다.",
+	-- {npc:2104} Captain Stoutfist · {area:2103} Menethil Keep · {npc:2094} James Halloran
+	["{npc:2104} stands in {area:2103}; {npc:2094} stands by the north gate."] = "{npc:2104}은(는) {area:2103}에 있으며, {npc:2094}은(는) 북문 옆에 있습니다.",
 	-- {npc:2104} Captain Stoutfist · {npc:270637} Howin Kindfeather
 	["{npc:2104}: for {npc:270637}"] = "{npc:2104}: {npc:270637}에게",
-	-- {npc:270844} Sylessa Duskwhisper · {npc:3649} Thundris Windweaver · {area:442} Auberdine
-	["{npc:270844}: for {npc:3649} in {area:442} (02-desolace)"] = "{npc:270844}: {area:442}의 {npc:3649}에게 (02-desolace)",
 
 	-- Step 2: Prospector Whelgar
 	-- {area:118} Whelgar's Excavation Site
@@ -35,9 +33,8 @@ return {
 
 	-- Step 6: Angerfang Encampment
 	-- {area:1036} Angerfang Encampment · {object:671518} Tattered Spellbook
-	["South to the Dragonmaw's {area:1036}; the {object:671518} lies in the camp."] = "남쪽의 용아귀부족 {area:1036}(으)로 가십시오. {object:671518}은(는) 야영지 안에 있습니다.",
-	-- {quest:98221} From the Ashes
-	["Destroy the four sets of Attack Plans in the camp for {quest:98221}."] = "{quest:98221}을(를) 위해 야영지의 공격 계획 네 묶음을 파괴하십시오.",
+	["South to the Dragonmaw's {area:1036}: the first catapult stands on the way, and the {object:671518} lies in the camp."] = "남쪽의 용아귀부족 {area:1036}(으)로 가십시오. 가는 길에 첫 번째 투석기가 있고, {object:671518}은(는) 야영지 안에 있습니다.",
+	["The next step, Defeat Nek'rosh, pits you against an elite chieftain: skip it."] = "다음 단계인 네크로쉬 처치는 정예 족장과 싸워야 합니다. 건너뛰십시오.",
 	-- {object:671518} Tattered Spellbook · {npc:2104} Captain Stoutfist
 	["{object:671518}: for {npc:2104}"] = "{object:671518}: {npc:2104}에게",
 
@@ -46,8 +43,8 @@ return {
 	["{npc:271462} stands in the south-eastern hills: use the {item:279996} beside it."] = "{npc:271462}은(는) 남동쪽 언덕에 있습니다. 그 옆에서 {item:279996}을(를) 사용하십시오.",
 
 	-- Step 8: Dragonmaw Gates
-	-- {area:1038} Dragonmaw Gates · {npc:271373} Subdued Dragonspawn · {npc:271338} Ados · {item:279996} Goaz Stone
-	["North-east to the {area:1038}: the {npc:271373} are held there, and {npc:271338} stands at the gates (use the {item:279996})."] = "북동쪽 {area:1038}(으)로 가십시오. {npc:271373}이(가) 그곳에 갇혀 있으며, {npc:271338}이(가) 성문에 있습니다({item:279996} 사용).",
+	-- {area:1038} Dragonmaw Gates · {npc:271338} Ados · {item:279996} Goaz Stone
+	["North-east to the {area:1038}: {npc:271338} stands at the gates (use the {item:279996})."] = "",
 
 	-- Step 9: Whelps, raptors and Neru
 	-- {npc:271458} Neru
@@ -111,7 +108,7 @@ return {
 	["The naga hold the shore south-east of {area:271}."] = "나가가 {area:271} 남동쪽 해안을 차지하고 있습니다.",
 
 	-- Step 22: Farren
-	-- {object:2117} Stormwind Keep (no name in this language: may be words)
+	-- {object:2117} Stormwind Keep
 	["A report for {object:2117}"] = "{object:2117}에 보낼 보고서",
 
 	-- Step 23: Snapjaws
@@ -146,22 +143,22 @@ return {
 	["From {npc:2432} in {area:271}"] = "{area:271}의 {npc:2432}에게서",
 
 	-- Step 29: Elling Trias
-	-- {object:2096} Trade District (no name in this language: may be words)
+	-- {object:2096} Trade District
 	["The cheese shop in the {object:2096}."] = "{object:2096}의 치즈 가게입니다.",
 
 	-- Step 30: Dashel Stonefist
-	-- {npc:4961} Dashel Stonefist · {object:2100} Old Town (no name in this language: may be words)
+	-- {npc:4961} Dashel Stonefist · {object:2100} Old Town
 	["{npc:4961} waits in the Pig and Whistle tavern in {object:2100}; he and his two thugs fight you, but stop once beaten."] = "{npc:4961}은(는) {object:2100}의 돼지와 휘파람 선술집에서 기다립니다. 그와 부하 둘이 덤벼들지만 쓰러뜨리면 멈춥니다.",
 
 	-- Step 31: The Islander
-	-- {npc:5479} Wu Shen · {object:2100} Old Town (no name in this language: may be words) · {npc:6236} Klannoc Macleod · {area:720} Fray Island · {zone:1413} Barrens · {area:392} Ratchet
+	-- {npc:5479} Wu Shen · {object:2100} Old Town · {npc:6236} Klannoc Macleod · {area:720} Fray Island · {zone:1413} Barrens · {area:392} Ratchet
 	["{npc:5479} trains warriors in {object:2100}, beside the Pig and Whistle. {npc:6236} waits on {area:720} in the {zone:1413}, on the way to {area:392} much later (40-50/01)."] = "{npc:5479}은(는) {object:2100}의 돼지와 휘파람 선술집 옆에서 전사를 가르칩니다. {npc:6236}은(는) {zone:1413}의 {area:720}에서 기다립니다. 한참 뒤 {area:392}(으)로 가는 길에 있습니다(40-50/01).",
 
 	-- Step 33: Cathedral of Light
 	["Cathedral of Light"] = "빛의 대성당",
 
 	-- Step 34: Mage Quarter
-	-- {npc:2708} Archmage Malin · {object:2164} Slaughtered Lamb (no name in this language: may be words) · {npc:211033} Garion Wendell · {npc:5081} Connor Rivers · {object:2101} Mage Quarter (no name in this language: may be words)
+	-- {npc:2708} Archmage Malin · {object:2164} Slaughtered Lamb · {npc:211033} Garion Wendell · {npc:5081} Connor Rivers · {object:2101} Mage Quarter
 	["{npc:2708} is in the {object:2164}; {npc:211033} near the canal; {npc:5081} south of the {object:2101}."] = "{npc:2708}은(는) {object:2164}에, {npc:211033}은(는) 운하 근처에, {npc:5081}은(는) {object:2101} 남쪽에 있습니다.",
 
 	-- Step 36: Druid training
@@ -170,16 +167,21 @@ return {
 	["{zone:1455} has no druid trainer: train with {npc:5504} in {zone:1453} before the tram."] = "{zone:1455}에는 드루이드 상급자가 없습니다. 전차를 타기 전에 {zone:1453}의 {npc:5504}에게 수련하십시오.",
 
 	-- Step 37: Deeprun Tram
-	-- {area:2257} Deeprun Tram · {object:28027} Dwarven District (no name in this language: may be words) · {zone:1455} Ironforge
+	-- {area:2257} Deeprun Tram · {object:28027} Dwarven District · {zone:1455} Ironforge
 	["Take the {area:2257} from the {object:28027} to {zone:1455}."] = "{object:28027}에서 {area:2257}을(를) 타고 {zone:1455}(으)로 가십시오.",
-	-- {npc:2784} King Magni Bronzebeard · {object:171709} High Seat (no name in this language: may be words)
+	-- {npc:2784} King Magni Bronzebeard · {object:171709} High Seat
 	["{npc:2784}, the {object:171709}"] = "{npc:2784}, {object:171709}",
 	["Level 30 and 32 spells"] = "30, 32레벨 주문",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Destroy the four sets of Attack Plans in the camp for {quest:98221}."] = "{quest:98221}을(를) 위해 야영지의 공격 계획 네 묶음을 파괴하십시오.",
 	-- ["Fly to {zone:1453}"] = "{zone:1453}(으)로 비행",
 	-- ["Follow the road north-east into the {area:1025}: {npc:270637} camps beside it, {npc:1244} a short way east."] = "길을 따라 북동쪽 {area:1025}(으)로 가십시오. {npc:270637}은(는) 그 옆에 야영하고 있고, {npc:1244}은(는) 조금 동쪽에 있습니다.",
 	-- ["Golm"] = "골름",
+	-- ["North-east to the {area:1038}: the {npc:271373} are held there, and {npc:271338} stands at the gates (use the {item:279996})."] = "북동쪽 {area:1038}(으)로 가십시오. {npc:271373}이(가) 그곳에 갇혀 있으며, {npc:271338}이(가) 성문에 있습니다({item:279996} 사용).",
 	-- ["Red whelps fill the hills west of the gates, Maddened Rotclaws the {area:1025}, Razormaws the northern slopes; Neru stands in the north-east (use the {item:279996}).\n{quest:98283} is elite: grouping up is advised."] = "새끼 붉은용이 성문 서쪽 언덕에, 광기에 물든 썩은발톱이 {area:1025}에, 무쇠턱 랩터가 북쪽 비탈에 가득합니다. 네루는 북동쪽에 있습니다({item:279996} 사용).\n{quest:98283}은(는) 정예이므로 파티를 권장합니다.",
+	-- ["South to the Dragonmaw's {area:1036}; the {object:671518} lies in the camp."] = "남쪽의 용아귀부족 {area:1036}(으)로 가십시오. {object:671518}은(는) 야영지 안에 있습니다.",
+	-- ["{npc:2104} stands in {area:2103}; {npc:2094} and {npc:270844} stand together by the north gate."] = "{npc:2104}은(는) {area:2103}에 있으며, {npc:2094}와(과) {npc:270844}은(는) 북문 옆에 함께 있습니다.",
+	-- ["{npc:270844}: for {npc:3649} in {area:442} (02-desolace)"] = "{npc:270844}: {area:442}의 {npc:3649}에게 (02-desolace)",
 	-- ["{zone:1455} has no druid trainer: train with {npc:5504} in {zone:1453} before the tram."] = "{zone:1455}에는 드루이드 상급자가 없습니다. 전차를 타기 전에 {zone:1453}의 {npc:5504}에게 수련하십시오.",
 }

@@ -17,13 +17,13 @@ return {
 
 	-- Step 2: Shaman training
 	["Shaman training"] = "주술사 훈련",
-	-- {zone:1453} Stormwind · {area:2257} Deeprun Tram · {object:28027} Dwarven District (no name in this language: may be words) · {zone:1455} Ironforge · {npc:258098} Eldrun Stormbreaker
+	-- {zone:1453} Stormwind · {area:2257} Deeprun Tram · {object:28027} Dwarven District · {zone:1455} Ironforge · {npc:258098} Eldrun Stormbreaker
 	["{zone:1453} has no shaman trainer: take the {area:2257} from the {object:28027} to {zone:1455}, train with {npc:258098}, then ride the tram back."] = "{zone:1453}에는 주술사 상급자가 없습니다. {object:28027}에서 {area:2257}을(를) 타고 {zone:1455}(으)로 가서 {npc:258098}에게 훈련을 받은 뒤, 지하철을 타고 돌아오세요.",
 
 	-- Step 3: Stormwind class quests
 	-- {zone:1453} Stormwind
 	["{zone:1453} class quests"] = "{zone:1453} 직업 퀘스트",
-	-- {npc:332} Master Mathias Shaw · {object:2100} Old Town (no name in this language: may be words) · {npc:6122} Gakin the Darkbinder · {object:2164} Slaughtered Lamb (no name in this language: may be words) · {object:2101} Mage Quarter (no name in this language: may be words) · {npc:376} High Priestess Laurena
+	-- {npc:332} Master Mathias Shaw · {object:2100} Old Town · {npc:6122} Gakin the Darkbinder · {object:2164} Slaughtered Lamb · {object:2101} Mage Quarter · {npc:376} High Priestess Laurena
 	["{npc:332} is at SI:7 in {object:2100}, {npc:6122} in the {object:2164}'s cellar in the {object:2101}, {npc:376} in the Cathedral of Light."] = "{npc:332}은(는) {object:2100}의 SI:7에, {npc:6122}은(는) {object:2101}에 있는 {object:2164}의 지하실에, {npc:376}은(는) 빛의 대성당에 있습니다.",
 	-- {npc:332} Master Mathias Shaw · {npc:7024} Agent Kearnen · {zone:1436} Westfall · {zone:1431} Duskwood
 	["{npc:332}: {npc:7024} in {zone:1436} takes it, at the end of {zone:1431}"] = "{npc:332}: {zone:1436}의 {npc:7024}에게 제출합니다. {zone:1431} 진행 막바지에",
@@ -75,6 +75,8 @@ return {
 	["{npc:345} (level 24) roots around the pen just west of {area:69}. Pull him away from the other boars and fight at full health."] = "{npc:345}(24레벨)는 {area:69} 바로 서쪽 우리에서 땅을 파헤칩니다. 다른 멧돼지들과 떨어뜨려 끌어온 뒤 생명력이 가득 찬 상태로 싸우세요.",
 
 	-- Step 12: Lakeshire
+	-- {npc:341} Foreman Oslow · {quest:89} The Everstill Bridge
+	["{npc:341}: after {quest:89}"] = "{npc:341}: {quest:89} 이후",
 	-- {npc:703} Lieutenant Fangore · {area:1000} Galardell Valley
 	["The Wanted poster by the inn: {npc:703}, in {area:1000}"] = "여관 옆 현상수배 게시판: {npc:703}, {area:1000}에 있음",
 
@@ -88,7 +90,8 @@ return {
 	-- plural, as words: Greater Tarantulas = {npc:505} Greater Tarantula · Blackrock Renegades = {npc:437} Blackrock Renegade
 	["Greater Tarantulas crawl on the slopes around the mill north-east of the lake; Blackrock Renegades hold the mill itself."] = "거대한 타란툴라는 호수 북동쪽 방앗간 주변 비탈을 기어다니고, 검은바위부족 보초병은 방앗간 자체를 차지하고 있습니다.",
 	-- {item:3014} Battleworn Axe
-	["{item:3014}: any Blackrock orc"] = "{item:3014}: 아무 검은바위부족 오크",
+	-- plural, as words: Blackrock Renegades = {npc:437} Blackrock Renegade
+	["{item:3014}: the Blackrock Renegades at the mill"] = "{item:3014}: 방앗간의 검은바위부족 보초병",
 
 	-- Step 15: Galardell Valley
 	-- {npc:703} Lieutenant Fangore · {area:2099} Stonewatch Keep
@@ -119,4 +122,5 @@ return {
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Bellygrub"] = "서리먹보",
+	-- ["{item:3014}: any Blackrock orc"] = "{item:3014}: 아무 검은바위부족 오크",
 }

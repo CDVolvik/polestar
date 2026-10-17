@@ -69,10 +69,18 @@ return {
 	-- Step 12: PvP: honor ranks
 	["PvP: honor ranks"] = "PvP: звания чести",
 	["Ranks 3, 7, 10, 13 and 14 are a point each. Polestar cannot read your highest rank yet, so tick each one off yourself. Forever's honor rules for reaching a rank have not been published in detail; in Classic, ranks come from your weekly honor standing, and 13-14 take many weeks of top standing."] = "Звания 3, 7, 10, 13 и 14 дают по очку. Polestar пока не видит ваше высшее звание, так что отмечайте их сами. Правила чести Forever для получения званий подробно не опубликованы; в Classic звание зависит от еженедельного места по чести, а для 13-14 нужно много недель на вершине.",
+	["enemy players for honor until PvP Rank 3"] = "вражеских игроков ради чести до PvP-звания 3",
+	["enemy players for honor until PvP Rank 7"] = "вражеских игроков ради чести до PvP-звания 7",
+	["enemy players for honor until PvP Rank 10"] = "вражеских игроков ради чести до PvP-звания 10",
+	["enemy players for honor until PvP Rank 13"] = "вражеских игроков ради чести до PvP-звания 13",
+	["enemy players for honor until PvP Rank 14"] = "вражеских игроков ради чести до PvP-звания 14",
 
 	-- Step 13: PvP: Field of Honor
 	["PvP: Field of Honor"] = "PvP: Field of Honor",
 	["The Field of Honor PvP season has weekly journey quests; finishing the ones for weeks 4, 7 and 10 is a point each. These quests are new in Forever and not in our data, so tick each one off yourself."] = "В PvP-сезоне Field of Honor есть еженедельные задания; выполнение заданий 4-й, 7-й и 10-й недель дает по очку. Эти задания – новые в Forever, их нет в наших данных, так что отмечайте их сами.",
+	["enemy players and finish the Field of Honor week 4 journey quest"] = "вражеских игроков и выполнить задание пути 4-й недели Поля Чести",
+	["enemy players and finish the Field of Honor week 7 journey quest"] = "вражеских игроков и выполнить задание пути 7-й недели Поля Чести",
+	["enemy players and finish the Field of Honor week 10 journey quest"] = "вражеских игроков и выполнить задание пути 10-й недели Поля Чести",
 
 	-- Step 14: Adventure: explore the world map
 	["Adventure: explore the world map"] = "Приключения: исследуйте карту мира",
@@ -83,8 +91,10 @@ return {
 	-- Step 15: Adventure: Lord Valthalak
 	-- {npc:16042} Lord Valthalak
 	["Adventure: {npc:16042}"] = "Приключения: {npc:16042}",
-	-- {npc:16042} Lord Valthalak · {npc:16013} Deliana · {zone:1455} Ironforge · {npc:16012} Mokvar · {zone:1454} Orgrimmar · {npc:16033} Bodley · {area:254} Blackrock Mountain · {quest:8996} Return to Bodley · {quest:8997} Back to the Beginning
-	["The {npc:16042} questline is a point. It is the level 60 dungeon-set chain: {npc:16013} ({zone:1455}) or {npc:16012} ({zone:1454}) send you through In Search of Anthion and Anthion's Parting Words to {npc:16033} at {area:254}, whose Three Kings of Flame, the Left and Right Pieces of Lord Valthalak's Amulet, Final Preparations and Mea Culpa, {npc:16042} end with {quest:8996}. {quest:8997} then leads to the class Saving the Best for Last quests."] = "Цепочка заданий – {npc:16042} – дает очко. Это цепочка комплекта подземелий 60-го уровня: {npc:16013} ({zone:1455}) или {npc:16012} ({zone:1454}) через «В поисках Антиона» и «Прощальные слова Антиона» отправляют к NPC {npc:16033} ({area:254}); его задания «Три властелина огня», левая и правая части амулета Лорда Вальтхалака, «Последние приготовления» и «Mea Culpa» ({npc:16042}) завершаются заданием {quest:8996}. Затем {quest:8997} ведет к классовым заданиям на последнее улучшение комплекта.",
+	-- {npc:16042} Lord Valthalak · {npc:16013} Deliana · {zone:1455} Ironforge · {npc:16012} Mokvar · {zone:1454} Orgrimmar · {npc:16033} Bodley · {area:254} Blackrock Mountain · {quest:8995} Mea Culpa, Lord Valthalak · {quest:8996} Return to Bodley · {quest:8997} Back to the Beginning
+	["The {npc:16042} questline is a point. It is the level 60 dungeon-set chain: {npc:16013} ({zone:1455}) or {npc:16012} ({zone:1454}) send you through In Search of Anthion and Anthion's Parting Words to {npc:16033} at {area:254}, whose Three Kings of Flame, the Left and Right Pieces of Lord Valthalak's Amulet, Final Preparations and {quest:8995} end with {quest:8996}. {quest:8997} then leads to the class Saving the Best for Last quests."] = "Цепочка заданий – {npc:16042} – дает очко. Это цепочка комплекта подземелий 60-го уровня: {npc:16013} ({zone:1455}) или {npc:16012} ({zone:1454}) через «В поисках Антиона» и «Прощальные слова Антиона» отправляют к NPC {npc:16033} ({area:254}); его задания «Три властелина огня», левая и правая части амулета Лорда Вальтхалака, «Последние приготовления» и {quest:8995} завершаются заданием {quest:8996}. Затем {quest:8997} ведет к классовым заданиям «Сладкое – на закуску».",
+	-- {npc:16073} Spirit of Lord Valthalak · {npc:16033} Bodley · {area:254} Blackrock Mountain
+	["{npc:16073}, inside Upper Blackrock Spire after Mea Culpa (no spawn in the data: the arrow leads to {npc:16033}'s {area:254})"] = "{npc:16073} – в верхней части Вершины Черной горы, после задания «Mea Culpa» (в данных нет точки появления: стрелка ведет к NPC {npc:16033}, {area:254})",
 	-- {npc:16033} Bodley · {quest:8996} Return to Bodley
 	["{npc:16033} offers it once {quest:8996} is turned in"] = "{npc:16033} выдает его после сдачи задания {quest:8996}",
 	-- {quest:8996} Return to Bodley
@@ -145,6 +155,10 @@ return {
 	["Forever's new dungeons"] = "Новые подземелья Forever",
 	-- {area:16919} Hall of Thanes · {area:153} Ruins of Lordaeron
 	["{area:16919} and {area:153} are new in Forever. Their bosses, levels and Legacy bracket are not in our data, so tick them off yourself."] = "{area:16919} и {area:153} – новые подземелья Forever. Их боссов, уровней и диапазона наследия нет в наших данных, так что отмечайте их сами.",
+	-- {area:16919} Hall of Thanes
+	["the final boss of {area:16919}"] = "последнего босса: {area:16919}",
+	-- {area:153} Ruins of Lordaeron
+	["the final boss of {area:153}"] = "последнего босса: {area:153}",
 
 	-- Step 22: Raids: Onyxia
 	-- {npc:10184} Onyxia
@@ -155,12 +169,15 @@ return {
 	-- Step 23: Raids: Hyjal Summit
 	["Raids: Hyjal Summit"] = "Рейды: Вершина Хиджала",
 	["All 13 Hyjal Summit bosses are a point. Hyjal Summit is a new Forever raid; its bosses are not in our data, so tick it off once all 13 are down."] = "Все 13 боссов Вершины Хиджала дают очко. Вершина Хиджала – новый рейд Forever; его боссов нет в наших данных, так что отметьте шаг, когда убьете всех 13.",
+	["all 13 Hyjal Summit bosses"] = "всех 13 боссов Вершины Хиджала",
 
 	-- Step 24: Raids: Barrow Deeps
 	["Raids: Barrow Deeps"] = "Рейды: Barrow Deeps",
 	["All 8 Barrow Deeps bosses are a point. Barrow Deeps is a new Forever raid; its bosses are not in our data, so tick it off once all 8 are down."] = "Все 8 боссов рейда Barrow Deeps дают очко. Это новый рейд Forever; его боссов нет в наших данных, так что отметьте шаг, когда убьете всех 8.",
+	["all 8 Barrow Deeps bosses"] = "всех 8 боссов Курганных глубин",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["The {npc:16042} questline is a point. It is the level 60 dungeon-set chain: {npc:16013} ({zone:1455}) or {npc:16012} ({zone:1454}) send you through In Search of Anthion and Anthion's Parting Words to {npc:16033} at {area:254}, whose Three Kings of Flame, the Left and Right Pieces of Lord Valthalak's Amulet, Final Preparations and Mea Culpa, {npc:16042} end with {quest:8996}. {quest:8997} then leads to the class Saving the Best for Last quests."] = "Цепочка заданий – {npc:16042} – дает очко. Это цепочка комплекта подземелий 60-го уровня: {npc:16013} ({zone:1455}) или {npc:16012} ({zone:1454}) через «В поисках Антиона» и «Прощальные слова Антиона» отправляют к NPC {npc:16033} ({area:254}); его задания «Три властелина огня», левая и правая части амулета Лорда Вальтхалака, «Последние приготовления» и «Mea Culpa» ({npc:16042}) завершаются заданием {quest:8996}. Затем {quest:8997} ведет к классовым заданиям на последнее улучшение комплекта.",
 	-- ["The {npc:16042} questline is a point. It is the level 60 dungeon-set chain: {npc:16013} ({zone:1455}) or {npc:16012} ({zone:1454}) send you through In Search of Anthion and Anthion's Parting Words to {npc:16033} at {area:254}, whose Three Kings of Flame, the Left and Right Pieces of {item:22048}, Final Preparations and Mea Culpa, {npc:16042} end with {quest:8996}. {quest:8997} then leads to the class Saving the Best for Last quests."] = "Цепочка заданий – {npc:16042} – дает очко. Это цепочка комплекта подземелий 60-го уровня: {npc:16013} ({zone:1455}) или {npc:16012} ({zone:1454}) через «В поисках Антиона» и «Прощальные слова Антиона» отправляют к NPC {npc:16033} ({area:254}); его задания «Три властелина огня», левая и правая части амулета ({item:22048}), «Последние приготовления» и «Mea Culpa» ({npc:16042}) завершаются заданием {quest:8996}. Затем {quest:8997} ведет к классовым заданиям на последнее улучшение комплекта.",
 	-- ["{area:717}: the usual last kill; the {area:717} has no fixed final boss"] = "{area:717}: обычное последнее убийство; постоянного последнего босса в подземелье {area:717} нет",
 }

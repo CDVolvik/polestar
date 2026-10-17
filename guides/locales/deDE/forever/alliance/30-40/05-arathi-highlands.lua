@@ -53,7 +53,7 @@ return {
 	["{npc:1440}, the Royal Library in the keep"] = "{npc:1440}, die Königliche Bibliothek in der Burg",
 
 	-- Step 13: The Binding
-	-- {npc:6122} Gakin the Darkbinder · {object:2164} Slaughtered Lamb (no name in this language: may be words) · {object:2101} Mage Quarter (no name in this language: may be words) · {item:6913} Heartswood Core · {quest:65602} What Is Love? · {item:190309} Wooden Figurine
+	-- {npc:6122} Gakin the Darkbinder · {object:2164} Slaughtered Lamb · {object:2101} Mage Quarter · {item:6913} Heartswood Core · {quest:65602} What Is Love? · {item:190309} Wooden Figurine
 	["{npc:6122} waits in the {object:2164}'s cellar, in the {object:2101}. Use the {item:6913} at the summoning circle there and defeat the succubus it calls. If you took {quest:65602}, hand him the {item:190309} too, place it at the same circle and defeat the incubus."] = "{npc:6122} wartet im Keller von {object:2164} in {object:2101}. Benutze {item:6913} am Beschwörungskreis dort und besiege den herbeigerufenen Sukkubus. Wenn du {quest:65602} angenommen hast, gib ihm auch {item:190309}, stelle sie am selben Kreis ab und besiege den Inkubus.",
 	["Subdue the succubus"] = "Bezwinge den Sukkubus",
 	-- {quest:65602} What Is Love?
@@ -65,7 +65,7 @@ return {
 
 	-- Step 14: Shaman training
 	["Shaman training"] = "Schamanentraining",
-	-- {zone:1453} Stormwind · {area:2257} Deeprun Tram · {object:28027} Dwarven District (no name in this language: may be words) · {zone:1455} Ironforge · {npc:258098} Eldrun Stormbreaker · {npc:1573} Gryth Thurden · {object:32372} Great Forge (no name in this language: may be words) · {area:271} Southshore
+	-- {zone:1453} Stormwind · {area:2257} Deeprun Tram · {object:28027} Dwarven District · {zone:1455} Ironforge · {npc:258098} Eldrun Stormbreaker · {npc:1573} Gryth Thurden · {object:32372} Great Forge (no name in this language: may be words) · {area:271} Southshore
 	["{zone:1453} has no shaman trainer: take the {area:2257} from the {object:28027} to {zone:1455} and train with {npc:258098}. {npc:1573} in the {object:32372} flies to {area:271} too."] = "{zone:1453} hat keinen Schamanenlehrer: Nimm {area:2257} vom {object:28027} nach {zone:1455} und trainiere bei {npc:258098}. {npc:1573} bei {object:32372} fliegt ebenfalls nach {area:271}.",
 
 	-- Step 15: Fly to Southshore
@@ -169,14 +169,16 @@ return {
 	-- {area:280} Strahnbrad
 	-- plural, as words: Argus Shadow Mages = {npc:2318} Argus Shadow Mage
 	["The tomes lie in the ruined keep west of {area:280}; Argus Shadow Mages hold the ruins."] = "Die Folianten liegen in der zerstörten Burg westlich von {area:280}; Schattenmagier der Arguswacht halten die Ruinen.",
+	-- {item:3658} Recovered Tome
+	["{item:3658}: Crushridge ogres"] = "{item:3658}: Crushridge-Oger",
+	-- {item:3659} Worn Leather Book · {object:1760} Weathered Bookcase
+	["{item:3659}: the {object:1760}"] = "{item:3659}: {object:1760}",
 
 	-- Step 44: Dalaran
 	-- {area:279} Dalaran · {zone:1421} Silverpine Forest · {npc:269127} Image of Archmage Modera
 	["South-west to the Kirin Tor camp on the lake shore west of {area:279}, just over the border into {zone:1421}: the {npc:269127} stands there. Archmage Ansirem stands south-east of it, by the dome."] = "Nach Südwesten zum Lager der Kirin Tor am Seeufer westlich von {area:279}, gleich hinter der Grenze in {zone:1421}: Dort steht {npc:269127}. Erzmagier Ansirem steht südöstlich davon, bei der Kuppel.",
 	-- {npc:2542} Catelyn the Blade · {area:35} Booty Bay
 	["For {npc:2542} in {area:35}: keep it"] = "Für {npc:2542} in {area:35}: behalten",
-	-- {npc:252085} Archmage Celindra
-	["{npc:252085}, in the City of Dalaran"] = "{npc:252085}, in der Stadt Dalaran",
 
 	-- Step 45: Southshore
 	-- {item:2321} Fine Thread · {npc:2438} Bartolo Ginsetti · {npc:2381} Micha Yance
@@ -193,4 +195,5 @@ return {
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Follow the road north to the draenei of the {area:657}."] = "Folge der Straße nach Norden zu den Draenei von {area:657}.",
+	-- ["{npc:252085}, in the City of Dalaran"] = "{npc:252085}, in der Stadt Dalaran",
 }

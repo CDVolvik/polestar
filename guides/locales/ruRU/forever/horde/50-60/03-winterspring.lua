@@ -9,6 +9,8 @@ return {
 	-- Step 1: Everlook
 	-- {area:2255} Everlook
 	["{area:2255} is the goblin town on the east side of the valley."] = "{area:2255} – гоблинский город в восточной части долины.",
+	-- {npc:11118} Innkeeper Vizzie
+	["{npc:11118}: the last guide binds here, so this usually ticks at once"] = "{npc:11118}: предыдущий гайд привязывает вас здесь, так что это обычно отмечается сразу",
 	["Gregor's and Harlo's quests lead to other zones: keep them."] = "Задания Грегора и Харло ведут в другие зоны: сохраните их.",
 
 	-- Step 2: Ice Thistle yetis
@@ -128,10 +130,10 @@ return {
 	["Fly to {area:1637}"] = "Летите сюда: {area:1637}",
 
 	-- Step 31: Vehena
-	-- {object:172961} Valley of Spirits (no name in this language: may be words)
+	-- {object:172961} Valley of Spirits
 	["In the {object:172961}."] = "Ориентир: {object:172961}.",
 
 	-- Step 32: Rashona Straglash
-	-- {object:172958} Valley of Honor (no name in this language: may be words)
+	-- {object:172958} Valley of Honor
 	["In the {object:172958}."] = "Ориентир: {object:172958}.",
 }
