@@ -2239,3 +2239,48 @@ test('#234 floor: the router may drop the floor\'s cluster when the target is cl
 	assert.equal(out.stale, 1, 'past 2 s: released once');
 	assert.ok(out.cleared >= 2, 'the target cleared: released');
 });
+
+test('#234 floor: a style change or a level-up clears the walk but keeps the floor\'s cluster (the arrow goes on)', () => {
+	const [out] = run(`${FLOORS}
+		fake.surfaces = function() return { 40 } end
+		nav.place(0, 50)
+		startZ()
+		fake.releases = 0
+		Polestar.Set("nav.routeStyle", "roads")
+		N.Sample()
+		Polestar.Fire("PLAYER_LEVEL_UP", 11)
+		N.Sample()
+		emit({ releases = fake.releases, z = startZ() })`);
+	assert.deepEqual(out, { releases: 0, z: 40 });
+});
+
+test('#234 floor (Ruling 36b): a search sent without a height, then the floor found within 5 s, is asked once more with it, once', () => {
+	const [out] = run(`${FLOORS}
+		local r = {}
+		fake.surfaces = function() return { 40 } end
+		-- Arrived: the cluster still decoding when the target is set.
+		fake.undecoded = true
+		nav.place(0, 50)
+		r.first = startZ()
+		local n = calls()
+		fake.undecoded = false
+		for _ = 1, 10 do stub.advance(0.3) N.Sample() end
+		r.reasked = { calls() - n, fake.last().from.z or "none" }
+		walk(0, 30)
+		r.after = calls() - n
+		-- Past 5 s the floor found asks nothing.
+		fake.undecoded = true
+		nav.place(400, 400)
+		r.late = startZ()
+		n = calls()
+		stub.advance(6) N.Sample()
+		fake.undecoded = false
+		for _ = 1, 10 do stub.advance(0.3) N.Sample() end
+		r.lateCalls = calls() - n
+		emit(r)`);
+	assert.equal(out.first, 'none', 'searched at once, without a height');
+	assert.deepEqual(out.reasked, [1, 40], 'once more, from the floor');
+	assert.equal(out.after, 1, 'and not again');
+	assert.equal(out.late, 'none');
+	assert.equal(out.lateCalls, 0, 'a floor found more than 5 s after the search asks nothing');
+});

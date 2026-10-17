@@ -334,11 +334,15 @@ test('Z1: a height of 0 from UnitPosition is no height: the walk to Mebok Mizzyr
 	const out = run(t, `
 		local c, sx, sy = C.MapToWorld(1413, 63.07, 37.08, "e")
 		place(1413, sx, sy, 0)
-		-- A first target for a second: the arrow's floor reads the ground here once its cluster is decoded (#234).
-		N.SetTarget(1413, 60, 40, "Ratchet")
-		aim()
-		stub.advance(1)
 		local f = guide(1413, 62.37, 37.62, "Mebok Mizzyrix")
+		-- The first search goes before the player's cluster is decoded (no height); once the floor reads
+		-- the ground it is asked once more from there (Ruling 36b).
+		for _ = 1, 100 do
+			local last = finds[#finds]
+			if last.done and last.from[3] then f = last break end
+			stub.advance(0.05)
+			aim()
+		end
 		local east = 0
 		for _, p in ipairs(f.points) do if sy - p.y > east then east = sy - p.y end end
 		emit({ c = c, z = f.from[3], east = east, n = #f.points })`);

@@ -2008,9 +2008,16 @@ floor when known, checked within 2 s and read within 5 yd of the player
 keeping the goal's height (one that ends off the goal's floor drops the
 goal's height, Z2, keeping the start), and that answer stands. The player's
 place in `Walk.Measure` takes the same height. Unknown, every search is as
-before. The router keeps the one cluster the floor reads decoded, through
-`Idle` too, until `Path.ReleaseSurfaces()`: `Walk.Clear` (no target) or no
-`Walk.Aim` for 2 s (`Walk:Refresh`).
+before; when the floor then becomes known within 5 s of a search sent
+without a start height (an arrival: login, hearth, a landing; ambiguous
+ground walked off), it is asked once more from the floor (Ruling 36b), once
+per such search and never in combat. The router keeps the one cluster the
+floor reads decoded, through `Idle` too: the one the player stands in (a read
+of another decoded cluster takes the slot at once; a `Path.Prefetch` that
+lands after the player walked back keeps out of it). `Path.ReleaseSurfaces()`
+cancels a pending prefetch and drops it: the target cleared or no `Walk.Aim`
+for 2 s (`Walk:Refresh`), never a style change, a level-up or a hand-made
+walk, which only clear the walk.
 Hand-made walks win: a walk leg from a crossing or chain waypoint, to a
 chain node past its mouth, or from inside a chain (`leg.handmade`), and a
 guide goal whose last located goal before it, across steps, is a `goto`
@@ -2568,7 +2575,7 @@ Path.ReuseMany(job, point, profile, style, danger) -> bool  -- may a batch from 
 Path.ZoneAt(map, x, y) -> uiMapID | nil  -- a point's zone (the maps' zone field)
 Path.SurfacesAt(map, x, y, out) -> n | nil  -- the cell's walkable surfaces: out[i] height, out[-i] marks (1 water, 2 indoor); nil: its cluster not decoded (a Prefetch is queued)
 Path.Prefetch(map, x, y) -> job | nil  -- decode that cluster under the frame budget for SurfacesAt (one job at a time)
-Path.ReleaseSurfaces()  -- the cluster SurfacesAt reads may go at rest
+Path.ReleaseSurfaces()  -- cancel a pending Prefetch; the cluster SurfacesAt reads may go at rest
 Path.Cancel(job) ; Path.Busy() -> bool ; Path.Available(map) -> bool
 -- opts: a boolean is waterWalking (as every caller passed it before profiles), or
 -- { waterWalking = boolean, profile = "Alliance" | "Horde" | nil (Costs.Profile(UnitFactionGroup)),

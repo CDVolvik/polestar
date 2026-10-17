@@ -1073,6 +1073,7 @@ function Path.SurfacesAt(map, x, y, out)
 	end
 	local val = st.val[k]
 	if val == nil then
+		Grid.wantRead(st, k)
 		Path.Prefetch(map, x, y)
 		return nil
 	end
@@ -1094,11 +1095,6 @@ function Path.SurfacesAt(map, x, y, out)
 		node = node + 1
 	end
 	return n
-end
-
--- The cluster Path.SurfacesAt read last is no longer needed decoded at rest (its reader stopped).
-function Path.ReleaseSurfaces()
-	Grid.dropRead()
 end
 
 local function start(job)

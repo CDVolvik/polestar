@@ -184,6 +184,17 @@ function Path.Prefetch(map, x, y)
 	return prefetching
 end
 
+-- The cluster Path.SurfacesAt reads is no longer needed decoded at rest (its reader stopped): a Prefetch queued or
+-- running is cancelled (its decode would land after this and stay), and the reader's cluster may go.
+function Path.ReleaseSurfaces()
+	local p = prefetching
+	prefetching = nil
+	if p and not p.done and not p.cancelled then
+		Path.Cancel(p)
+	end
+	Grid.dropRead()
+end
+
 -- A candidate can be ruled in or out without refining all its intermediate clusters into drawing points.
 -- callback(cost, reason, job) uses the same exact graph cost as Find and FindMany; job.yards is the yards along the
 -- cost-best path (FindMany's label; the cost itself on a format 1 map), job.hubs absent (nothing is drawn).

@@ -60,14 +60,18 @@
 --     floor is kept, checked but not read again, so JUMP and NEAR still
 --     count from where it was last read, and it is followed from there once
 --     the cluster is in. The router keeps that one cluster decoded at rest
---     until Path.ReleaseSurfaces: Walk.Clear (no target) or no Walk.Aim for
---     FRESH seconds (Walk:Refresh).
+--     until Path.ReleaseSurfaces: the target cleared (Walk:OnTarget) or no
+--     Walk.Aim for FRESH seconds (Walk:Refresh); never on Walk.Clear alone (a
+--     style change, a level-up, a hand-made walk: the arrow goes on).
 -- The arrow's search starts from the client's height when it gives one, else
 -- from the floor when it is known, checked within FRESH seconds and read
 -- within NEAR (5) yards of the player; a search with it that finds nothing is
 -- asked once more without it, keeping the goal's height (Z2 still drops the
 -- goal's, keeping the start as it was). The player's place in Walk.Measure
--- takes the same height. Unknown: searched without a height, as before.
+-- takes the same height. Unknown: searched without a height, as before; and
+-- when the floor then becomes known within REASK (5) seconds of that search
+-- (an arrival: login, hearth, a landing; ambiguous ground walked off), asked
+-- once more with it (Ruling 36b), once per such search, never in combat.
 --
 -- Steps: the walk is split at the lifts Nav/Transit.lua knows, and keeps the
 -- crossings, approach chains and guide gotos the planner already makes legs
@@ -234,7 +238,6 @@ function Walk.Clear()
 	local had, c, x, y = gc ~= nil, gc, gx, gy
 	cancel()
 	gc, gx, gy, gzFor, gz, count, idx, wanted, failed, hubs = nil, nil, nil, nil, nil, 0, 1, false, false, nil
-	release()
 	if had then
 		restore(c, x, y)
 		changed()
@@ -295,6 +298,9 @@ local surf = {}       -- Path.SurfacesAt's out, reused
 local floorZ          -- the floor's height (nil: unknown)
 local fC, fX, fY, fAt, fGhost = nil, 0, 0, -huge, false -- the last check: continent, point read, time, ghost
 local aimAt               -- GetTime of the last Walk.Aim (nil: the reader's cluster released)
+local flatAt              -- GetTime of the last ask sent without a start height (nil: none owed a re-ask)
+local floorAsk = false    -- the floor became known soon after that ask: ask once more with it (Ruling 36b)
+local REASK = 5           -- seconds after a flat ask within which a floor found re-asks
 
 -- On a taxi, a transport (Transit.Riding) or at a lift: the floor can change without walking.
 local function carried(pc, px, py)
@@ -378,6 +384,7 @@ local function track(P, pc, px, py)
 		floorZ = nil
 	elseif floorZ == nil then
 		floorZ = seed(n)
+		if floorZ ~= nil and flatAt and now - flatAt <= REASK then flatAt, floorAsk = nil, true end
 	else
 		floorZ = follow(n)
 	end
@@ -449,6 +456,9 @@ local function ask(P, pc, px, py, flat)
 	local z = gz
 	local sz, tracked = startZ(pc, px, py)
 	if flat and tracked then sz, tracked = nil, false end
+	-- A start without a height (not the retry that dropped the floor) owes one re-ask once the floor is found.
+	floorAsk = false
+	if sz == nil and not flat then flatAt = GetTime() else flatAt = nil end
 	local ok, handle = pcall(P.Find, pc, { x = px, y = py, z = sz }, { x = gx, y = gy, z = z }, function(points, _, answer)
 		if token ~= mine then return end
 		token, job = nil, nil
@@ -518,6 +528,11 @@ function Walk.Aim(pc, px, py, goalC, goalX, goalY, handmade, goalZ)
 		gzFor, gz = tz, tz or nil
 		askedAt = -huge
 		if had then changed() end
+		ask(P, pc, px, py)
+	elseif floorAsk then
+		-- Ruling 36b: arrived (login, hearth, a landing) or off ambiguous ground,
+		-- the floor found after a search without a height: once more with it.
+		floorAsk = false
 		ask(P, pc, px, py)
 	elseif failed then
 		local dx, dy = px - failX, py - failY
@@ -1298,6 +1313,7 @@ end)
 function Walk:OnTarget(target)
 	if not target then
 		Walk.Clear()
+		release()
 		cancelMeasure()
 		cancelLeg()
 	end

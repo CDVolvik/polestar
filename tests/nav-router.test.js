@@ -789,3 +789,55 @@ out.released = read(10, 10).n`;
 	assert.equal(got.decodes, 4, 'cluster 0, 1, 0 again, 1 again');
 	assert.equal(got.released, 'nil', 'Path.ReleaseSurfaces drops it');
 });
+
+// Two clusters, cell (10, 10) walkable in each, for the reader's slot.
+function readerRoute(tail) {
+	const cells = new Map([[10 * C + 10, { val: 1, cls: 0 }], [C * C + 10 * C + 10, { val: 1, cls: 0 }]]);
+	return route(OURS, mapFiles(cells, true, { nx: 2 }), [], {
+		tail: `
+local t = {}
+local function read(gx) return Path.SurfacesAt(${MAP}, (gx + 0.5) * ${CS}, 10.5 * ${CS}, t) or "nil" end
+local function pump(budget, once)
+	local was, clock, now = Path.budget, Path.clock, 0
+	Path.budget = budget or was
+	Path.clock = function() now = now + 0.01 return now end
+	while #frames > 0 do
+		table.remove(frames, 1)()
+		if once then break end
+	end
+	Path.budget, Path.clock = was, clock
+end
+${tail}`,
+	});
+}
+
+test('Path.ReleaseSurfaces cancels a Prefetch queued or mid-decode: nothing lands after it, nothing is held', () => {
+	const got = readerRoute(`
+local d0 = Path.decodes or 0
+read(10)
+Path.ReleaseSurfaces()
+pump()
+out.queued = { decodes = (Path.decodes or 0) - d0, loaded = Path.IsLoaded(${MAP}) }
+read(10)
+pump(0, true)
+out.started = (Path.decodes or 0) - d0
+Path.ReleaseSurfaces()
+pump()
+out.running = Path.IsLoaded(${MAP})`);
+	assert.deepEqual(got.queued, { decodes: 0, loaded: false }, 'a queued Prefetch never runs');
+	assert.equal(got.started, 1, 'the second one had begun decoding');
+	assert.equal(got.running, false, 'and its decode never lands');
+});
+
+test('Path.SurfacesAt at a cluster edge: A, then B (not decoded), then back in A before B lands keeps A, and B goes at Idle', () => {
+	const got = readerRoute(`
+read(10)
+pump()
+out.a = read(10)
+out.b = read(${C} + 10)
+out.back = read(10)
+pump()
+out.kept = read(10)
+out.bAfter = read(${C} + 10)`);
+	assert.deepEqual(got, { a: 1, b: 'nil', back: 1, kept: 1, bAfter: 'nil' });
+});

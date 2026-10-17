@@ -549,29 +549,35 @@ end
 
 -- The cluster Path.SurfacesAt reads (the player's, for Polestar's walking floor): never decoded by the read itself,
 -- only by Path.Prefetch's job under the frame budget (prefetch, run from PathJobs as a search is). The reader keeps
--- at most one cluster: the one it read last. Moving to another evicts the old one unless a search has used it since
--- (its use stamp moved: the search's now, Idle drops it later). Idle keeps it (the floor reads it again within a
--- quarter second); Path.ReleaseSurfaces drops it when the caller stops reading (Walk.lua: no target, or no arrow
--- update for 2 s).
-local reader = {} -- { st, k, use }
+-- at most one cluster: the one the player stands in, read last. A read of another decoded cluster makes it the
+-- reader's at once and evicts the old one unless a search has used it since (its use stamp moved: the search's now,
+-- Idle drops it later). A Prefetch that lands takes the slot only when its cluster is still the one read last (walked
+-- A to B and back to A before B landed: A stays, Idle drops B). Idle keeps the reader's cluster (the floor reads it
+-- again within a quarter second); Path.ReleaseSurfaces drops it when the caller stops reading (Walk.lua: no target, or
+-- no arrow update for 2 s).
+local reader = {} -- { st, k, use } the cluster kept; { wantSt, wantK } the cluster read last
 local function drop()
 	local st, k = reader.st, reader.k
 	if st and states[st.map] == st and st.used[k] ~= nil and st.used[k] == reader.use then
 		evict(st, k)
 	end
-	reader.st, reader.k, reader.use = nil, nil, nil
+	reader.st, reader.k, reader.use, reader.wantSt, reader.wantK = nil, nil, nil, nil, nil
 end
--- Cluster k of st, decoded, is the reader's.
+-- Cluster k of st is the one read last (decoded or not).
+local function wantRead(st, k)
+	reader.wantSt, reader.wantK = st, k
+end
+-- Cluster k of st, decoded, is read: the reader's.
 local function keepRead(st, k)
-	if reader.st == st and reader.k == k then
-		return
+	if reader.st ~= st or reader.k ~= k then
+		drop()
+		reader.st, reader.k, reader.use = st, k, st.used[k]
 	end
-	drop()
-	reader.st, reader.k, reader.use = st, k, st.used[k]
+	reader.wantSt, reader.wantK = st, k
 end
--- Path.Prefetch's job: decode cluster k of st (slicing under the job's deadline) and keep it for the reader.
+-- Path.Prefetch's job: decode cluster k of st (slicing under the job's deadline); the reader's if still read last.
 local function prefetch(st, k)
-	if grid(st, k) then
+	if grid(st, k) and reader.wantSt == st and reader.wantK == k then
 		keepRead(st, k)
 	end
 end
@@ -1130,6 +1136,7 @@ ns.PathGrid = {
 	surface = surface,
 	grid = grid,
 	keepRead = keepRead,
+	wantRead = wantRead,
 	prefetch = prefetch,
 	dropRead = drop,
 	cellOf = cellOf,
