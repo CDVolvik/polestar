@@ -95,7 +95,7 @@ L["Reach %s with"] = "Erreiche %s bei"
 L["Explore"] = "Erkunde"
 L["Complete"] = "Abschließen"
 L["Riding"] = "Reiten"
--- L["Grey, kept: opens %s"] = ""
+L["Grey, kept: opens %s"] = "Grau, behalten: öffnet %s"
 
 -- Core/Guides.lua
 L["Needs Polestar %s or newer."] = "Benötigt Polestar %s oder neuer."

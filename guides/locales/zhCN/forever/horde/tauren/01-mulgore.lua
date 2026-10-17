@@ -25,7 +25,7 @@ return {
 
 	-- Step 4: Greatmother Hawkwind
 	-- {npc:2991} Greatmother Hawkwind · {object:2907} Water Pitcher
-	["{npc:2991} sits by the tent on the camp's eastern edge; the {object:2907} stands next to her."] = "",
+	["{npc:2991} sits by the tent on the camp's eastern edge; the {object:2907} stands next to her."] = "{npc:2991}坐在营地东缘的帐篷旁；{object:2907}就在她旁边。",
 
 	-- Step 6: The Hunt Continues
 	-- {npc:6775} Antur Fallow · {npc:2980} Grull Hawkwind
@@ -106,7 +106,7 @@ return {
 	-- Step 26: Thunderhorn Water Well
 	-- {object:2912} Ambercorn · {quest:766} Mazzranache · {quest:761} Swoop Hunting
 	-- plural, as words: Well Stones = {object:2910} Well Stone
-	["The well lies north of the village. Well Stones sit around the well, {object:2912} lies under the trees nearby. Kill wolves, cougars, plainstriders and swoops on the way for {quest:766} and {quest:761}."] = "",
+	["The well lies north of the village. Well Stones sit around the well, {object:2912} lies under the trees nearby. Kill wolves, cougars, plainstriders and swoops on the way for {quest:766} and {quest:761}."] = "水井在村子北边。水井石在水井周围，{object:2912}在附近的树下。沿途击杀狼、美洲狮、平原陆行鸟和猛鹫，完成{quest:766}和{quest:761}。",
 
 	-- Step 27: Bloodhoof Village
 	-- {npc:277182} Ahab Wheathoof
@@ -125,10 +125,10 @@ return {
 
 	-- Step 31: Prairie Wolf Alphas
 	-- plural, as words: Prairie Wolf Alphas = {npc:2960} Prairie Wolf Alpha
-	["Prairie Wolf Alphas"] = "",
+	["Prairie Wolf Alphas"] = "草原狼前锋",
 	-- {npc:275789} Malah Longwind
 	-- plural, as words: Prairie Wolf Alphas = {npc:2960} Prairie Wolf Alpha
-	["Prairie Wolf Alphas roam among the wolves on the plains around {npc:275789} and the Galak camp to the east."] = "",
+	["Prairie Wolf Alphas roam among the wolves on the plains around {npc:275789} and the Galak camp to the east."] = "草原狼前锋在{npc:275789}和东边加拉克营地周围的平原上，混在狼群中游荡。",
 
 	-- Step 32: The Ravaged Caravan
 	-- {zone:1456} Thunder Bluff
@@ -142,9 +142,9 @@ return {
 	["Back south-east to the {area:396}."] = "向东南返回{area:396}。",
 
 	-- Step 37: Galak centaurs
-	["Galak centaurs"] = "",
+	["Galak centaurs"] = "加拉克半人马",
 	-- {npc:275767} Herak the Pillager
-	["The Galak centaurs camp on the plains east of the well; {npc:275767} leads them."] = "",
+	["The Galak centaurs camp on the plains east of the well; {npc:275767} leads them."] = "加拉克半人马在水井东边的平原上扎营；{npc:275767}是他们的首领。",
 
 	-- Step 38: The Venture Co. Mine
 	-- {quest:765} Supervisor Fizsprocket · {item:281031} Mulgore Expansion Plans · {quest:98424} Fizsprocket's Notes
@@ -165,9 +165,9 @@ return {
 	-- Step 42: Dwarven Digging
 	-- {area:404} Bael'dun Digsite
 	-- plural, as words: Prospector's Picks = {item:4702} Prospector's Pick
-	["The dwarves of the {area:404} carry the Prospector's Picks. Smash them at the dwarves' forge in the digsite."] = "",
+	["The dwarves of the {area:404} carry the Prospector's Picks. Smash them at the dwarves' forge in the digsite."] = "{area:404}的矮人带着勘察员的锄头。在挖掘场里矮人的熔炉上砸碎它们。",
 	-- {item:4703} Broken Tools
-	["{item:4703}, at the digsite forge"] = "",
+	["{item:4703}, at the digsite forge"] = "{item:4703}，在挖掘场的熔炉旁",
 
 	-- Step 43: Sharing the Land
 	-- {area:818} Palemane Rock · {npc:272203} Perith Stormhoof
@@ -185,7 +185,7 @@ return {
 	["Head north to {area:225}, east of {zone:1456}. {npc:3233} stands at the foot of the rocks; the Bristleback Interlopers dig at the burial ground and the {npc:2994} waits on top."] = "向北到{zone:1456}东边的{area:225}。{npc:3233}站在岩石脚下；{npc:3232}在墓地里挖掘，{npc:2994}在顶上等候。",
 	-- {item:5203} Flatland Prowler Claw · {area:225} Red Rocks
 	-- plural, as words: Flatland Prowlers = {npc:3566} Flatland Prowler
-	["{item:5203}: Flatland Prowlers roam the plains around {area:225}"] = "",
+	["{item:5203}: Flatland Prowlers roam the plains around {area:225}"] = "{item:5203}：平原徘徊者在{area:225}周围的平原上游荡",
 
 	-- Step 47: Thunder Bluff
 	-- {npc:2995} Tal · {npc:3057} Cairne Bloodhoof

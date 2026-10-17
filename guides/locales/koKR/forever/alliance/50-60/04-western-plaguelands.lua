@@ -8,7 +8,7 @@
 return {
 	-- Step 1: Light's Hope Chapel
 	-- {npc:16256} Jessica Chambers
-	["{npc:16256}: the last guide binds here, so this usually ticks at once"] = "",
+	["{npc:16256}: the last guide binds here, so this usually ticks at once"] = "{npc:16256}: 이전 가이드에서 이곳에 귀환 지점을 정하므로 보통 바로 완료됩니다",
 
 	-- Step 2: Chillwind Camp
 	-- {npc:11616} Nathaniel Dumah · {area:2627} Terrordale

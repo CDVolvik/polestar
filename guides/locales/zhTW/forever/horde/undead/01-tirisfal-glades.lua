@@ -151,7 +151,7 @@ return {
 
 	-- Step 29: Calvin Montague
 	-- {area:156} Solliden Farmstead · {npc:1519} Deathguard Simmer · {npc:6784} Calvin Montague
-	["Walk on west to the {area:156}. {npc:1519} stands at the farm; {npc:6784}, by the farmhouse, wants a duel: talk to him."] = "",
+	["Walk on west to the {area:156}. {npc:1519} stands at the farm; {npc:6784}, by the farmhouse, wants a duel: talk to him."] = "繼續向西走到{area:156}。{npc:1519}站在農場裡；農舍旁的{npc:6784}想和你決鬥：和他交談。",
 	-- {npc:6784} Calvin Montague
 	["Beat {npc:6784} in the duel"] = "在決鬥中擊敗{npc:6784}",
 
@@ -220,7 +220,7 @@ return {
 	-- Step 40: Tirisfal Pumpkins
 	-- plural, as words: Tirisfal Pumpkins = {object:375} Tirisfal Pumpkin
 	["Tirisfal Pumpkins"] = "提里斯法南瓜",
-	["Walk south-west from the mills: the pumpkins grow in the Scarlet-held fields north-west of Solliden."] = "",
+	["Walk south-west from the mills: the pumpkins grow in the Scarlet-held fields north-west of Solliden."] = "從磨坊向西南走：南瓜生長在索利丹西北方、血色十字軍佔據的田地裡。",
 
 	-- Step 41: Crusader's Outpost
 	["Crusader's Outpost"] = "十字軍前哨",
@@ -303,7 +303,7 @@ return {
 	-- Step 59: Vicious Night Web Spiders
 	-- plural, as words: Vicious Night Web Spiders = {npc:1555} Vicious Night Web Spider
 	["Vicious Night Web Spiders"] = "邪惡的夜行蜘蛛",
-	["The spiders lurk in the woods at the far east end of the glades."] = "",
+	["The spiders lurk in the woods at the far east end of the glades."] = "蜘蛛潛伏在林地最東端的樹林裡。",
 
 	-- Step 60: Hides for the Forsaken
 	-- plural, as words: Duskbats = {npc:1512} Duskbat

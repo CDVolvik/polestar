@@ -29,9 +29,9 @@ return {
 	-- {quest:6127} The Principal Source · {area:384} Dreadmist Peak
 	["{quest:6127}: {area:384}, next guide"] = "{quest:6127}: {area:384}, nächster Guide",
 	-- {item:15877} Shrine Bauble · {object:177785} Bauble Container
-	["{item:15877}, from a {object:177785} in the lake"] = "",
+	["{item:15877}, from a {object:177785} in the lake"] = "{item:15877}, aus einem {object:177785} im See",
 	-- {area:2362} Shrine of Remulos
-	["At the {area:2362}"] = "",
+	["At the {area:2362}"] = "Am {area:2362}",
 	-- {npc:11799} Tajarri · {area:2362} Shrine of Remulos
 	["{npc:11799}, at the {area:2362}"] = "{npc:11799}, am Schrein: {area:2362}",
 	-- {npc:11798} Bunthen Plainswind · {area:2361} Nighthaven · {zone:1454} Orgrimmar
@@ -84,9 +84,9 @@ return {
 
 	-- Step 16: Mottled Worgs
 	-- plural, as words: Mottled Worgs = {npc:1766} Mottled Worg
-	["Mottled Worgs"] = "",
+	["Mottled Worgs"] = "Scheckige Worgs",
 	-- plural, as words: Mottled Worgs = {npc:1766} Mottled Worg
-	["Mottled Worgs prowl the hills around the house."] = "",
+	["Mottled Worgs prowl the hills around the house."] = "Scheckige Worgs streifen durch die Hügel um das Haus.",
 
 	-- Step 17: Hearth to the Sepulcher
 	-- {area:228} Sepulcher
@@ -97,13 +97,13 @@ return {
 	["The {object:1593} lies at the ferry landing on the lake shore east of the {area:228}."] = "Das {object:1593} liegt an der Fähranlegestelle am Seeufer östlich vom Grabmal ({area:228}).",
 
 	-- Step 20: Quinn Yorick
-	["North again to the Yoricks' house."] = "",
+	["North again to the Yoricks' house."] = "Wieder nach Norden zum Haus der Yoricks.",
 
 	-- Step 21: Vile Fin murlocs
-	["Vile Fin murlocs"] = "",
+	["Vile Fin murlocs"] = "Murlocs der Finsterflossen",
 	-- {area:172} Fenris Isle
 	-- plural, as words: Vile Fin Shredders = {npc:1767} Vile Fin Shredder
-	["Follow the lake shore south-east toward {area:172}: the Vile Fin Shredders and Tidehunters along it drop the murloc eyes."] = "",
+	["Follow the lake shore south-east toward {area:172}: the Vile Fin Shredders and Tidehunters along it drop the murloc eyes."] = "Folge dem Seeufer nach Südosten Richtung {area:172}: Die Schredder und Gezeitenjäger der Finsterflossen dort lassen die Murlocaugen fallen.",
 
 	-- Step 22: Fenris Isle
 	-- {area:172} Fenris Isle · {area:235} Fenris Keep
@@ -119,7 +119,7 @@ return {
 	-- {area:228} Sepulcher
 	["Swim back and follow the road west to the {area:228}."] = "Schwimm zurück und folge der Straße nach Westen bis zum Grabmal ({area:228}).",
 	-- {npc:1937} Apothecary Renferrel
-	["{npc:1937}: for Quinn, on the road north at the end"] = "",
+	["{npc:1937}: for Quinn, on the road north at the end"] = "{npc:1937}: für Quinn, am Ende auf der Straße nach Norden",
 	-- {npc:2121} Shadow Priest Allister · {quest:516} Beren's Peril
 	["{npc:2121}: {quest:516}, on the south loop"] = "{npc:2121}: {quest:516}, auf der südlichen Runde",
 
@@ -130,7 +130,7 @@ return {
 	-- Step 25: Beren's Peril
 	-- {quest:516} Beren's Peril
 	-- plural, as words: Ravenclaw Drudgers = {npc:1974} Ravenclaw Drudger
-	["South-west of Ambermill, the Ravenclaw Drudgers and Guardians haunt the ruins of {quest:516} in the south-east of the forest."] = "",
+	["South-west of Ambermill, the Ravenclaw Drudgers and Guardians haunt the ruins of {quest:516} in the south-east of the forest."] = "Südwestlich von Ambermill spuken Zwangsarbeiter und Wächter von Rabenklaue in den Ruinen von {quest:516} im Südosten des Waldes.",
 
 	-- Step 27: Lordamere Lake shore
 	-- {area:1338} Lordamere Lake
@@ -147,7 +147,7 @@ return {
 
 	-- Step 29: The Ivar Patch
 	-- {zone:1420} Tirisfal Glades · {area:238} Malden's Orchard · {quest:425} Ivar the Foul
-	["Take the road north toward {zone:1420}: the Yoricks' house at {area:238} is on the way. {quest:425} lurks a short walk west of it."] = "",
+	["Take the road north toward {zone:1420}: the Yoricks' house at {area:238} is on the way. {quest:425} lurks a short walk west of it."] = "Nimm die Straße nach Norden Richtung {zone:1420}: Das Haus der Yoricks bei {area:238} liegt auf dem Weg. {quest:425} lauert ein kurzes Stück westlich davon.",
 
 	-- Step 30: Brill
 	-- {zone:1420} Tirisfal Glades · {area:159} Brill · {npc:246152} Shari Stilwell

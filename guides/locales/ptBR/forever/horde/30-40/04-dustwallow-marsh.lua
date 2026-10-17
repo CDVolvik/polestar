@@ -10,7 +10,7 @@ return {
 	-- {area:378} Camp Taurajo
 	["Fly to {area:378}"] = "Voar para o {area:378}",
 	-- {npc:6791} Innkeeper Wiley
-	["{npc:6791}: the last guide binds here, so this usually ticks at once"] = "",
+	["{npc:6791}: the last guide binds here, so this usually ticks at once"] = "{npc:6791}: o guia anterior vincula você aqui, então isto costuma ser marcado na hora",
 
 	-- Step 2: Shady Rest Inn
 	-- {area:378} Camp Taurajo · {area:403} Shady Rest Inn

@@ -8,7 +8,7 @@
 return {
 	-- Step 1: Menethil Harbor
 	-- {npc:2104} Captain Stoutfist · {area:2103} Menethil Keep · {npc:2094} James Halloran
-	["{npc:2104} stands in {area:2103}; {npc:2094} stands by the north gate."] = "",
+	["{npc:2104} stands in {area:2103}; {npc:2094} stands by the north gate."] = "{npc:2104} steht in {area:2103}; {npc:2094} steht am Nordtor.",
 	-- {npc:2104} Captain Stoutfist · {npc:270637} Howin Kindfeather
 	["{npc:2104}: for {npc:270637}"] = "{npc:2104}: für {npc:270637}",
 
@@ -33,8 +33,8 @@ return {
 
 	-- Step 6: Angerfang Encampment
 	-- {area:1036} Angerfang Encampment · {object:671518} Tattered Spellbook
-	["South to the Dragonmaw's {area:1036}: the first catapult stands on the way, and the {object:671518} lies in the camp."] = "",
-	["The next step, Defeat Nek'rosh, pits you against an elite chieftain: skip it."] = "",
+	["South to the Dragonmaw's {area:1036}: the first catapult stands on the way, and the {object:671518} lies in the camp."] = "Nach Süden zum {area:1036} der Dragonmaw: Das erste Katapult steht auf dem Weg, und {object:671518} liegt im Lager.",
+	["The next step, Defeat Nek'rosh, pits you against an elite chieftain: skip it."] = "Der nächste Schritt, Sieg über Nek'rosh, stellt dich gegen einen Elite-Häuptling: Überspring ihn.",
 	-- {object:671518} Tattered Spellbook · {npc:2104} Captain Stoutfist
 	["{object:671518}: for {npc:2104}"] = "{object:671518}: für {npc:2104}",
 

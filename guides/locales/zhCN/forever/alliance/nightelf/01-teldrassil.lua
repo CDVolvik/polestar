@@ -131,7 +131,7 @@ return {
 
 	-- Step 20: Dolanaar
 	-- {npc:2151} Moon Priestess Amara
-	["{npc:2151} patrols the road west of the village: if she isn't at the arrow, follow the road until you meet her."] = "",
+	["{npc:2151} patrols the road west of the village: if she isn't at the arrow, follow the road until you meet her."] = "{npc:2151}在村子西边的道路上巡逻：如果她不在箭头处，沿着道路走直到遇见她。",
 	-- {npc:2151} Moon Priestess Amara
 	["{npc:2151}, on the road west of the village"] = "{npc:2151}，在村子西边的路上",
 

@@ -32,7 +32,7 @@ return {
 	["{npc:7881}, in the port's tavern"] = "{npc:7881}，在港口的酒馆里",
 	["The Wanted poster beside him"] = "他旁边的通缉布告",
 	-- {npc:7847} Caliph Scorpidsting · {area:976} Gadgetzan
-	["The same poster: {npc:7847} comes much later, after {area:976}"] = "",
+	["The same poster: {npc:7847} comes much later, after {area:976}"] = "同一张告示：{npc:7847}要很久以后才会出现，在{area:976}之后",
 
 	-- Step 6: Lost Rigger Cove
 	-- {npc:7883} Andre Firebeard · {npc:7881} Stoley

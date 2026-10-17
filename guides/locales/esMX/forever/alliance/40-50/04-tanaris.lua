@@ -32,7 +32,7 @@ return {
 	["{npc:7881}, in the port's tavern"] = "{npc:7881}, en la taberna del puerto",
 	["The Wanted poster beside him"] = "El cartel de Se busca a su lado",
 	-- {npc:7847} Caliph Scorpidsting · {area:976} Gadgetzan
-	["The same poster: {npc:7847} comes much later, after {area:976}"] = "",
+	["The same poster: {npc:7847} comes much later, after {area:976}"] = "El mismo cartel: {npc:7847} llega mucho más tarde, después de {area:976}",
 
 	-- Step 6: Lost Rigger Cove
 	-- {npc:7883} Andre Firebeard · {npc:7881} Stoley

@@ -150,18 +150,18 @@ return {
 	-- {area:150} Menethil Harbor
 	["Ride back west along the road to {area:150}."] = "Езжайте по дороге назад на запад: {area:150}.",
 	-- {quest:98221} From the Ashes · {quest:465} Nek'rosh's Gambit
-	["{quest:98221}: {quest:465} comes after it on Forever"] = "",
+	["{quest:98221}: {quest:465} comes after it on Forever"] = "{quest:98221}: в Forever задание {quest:465} идет после него",
 
 	-- Step 29: Angerfang Encampment
 	-- {area:1036} Angerfang Encampment · {npc:2091} Chieftain Nek'rosh
-	["Ride east again to the Dragonmaw camp. The four sets of Attack Plans lie in the {area:1036}; {npc:2091}, an elite, stands in the camp too."] = "",
+	["Ride east again to the Dragonmaw camp. The four sets of Attack Plans lie in the {area:1036}; {npc:2091}, an elite, stands in the camp too."] = "Снова езжайте на восток к лагерю клана Драконьей Пасти. Четыре комплекта планов атаки лежат здесь: {area:1036}; {npc:2091}, элитный противник, тоже стоит в лагере.",
 
 	-- Step 30: To Theramore
 	["To Theramore"] = "На остров Терамор",
 	-- {npc:2104} Captain Stoutfist · {area:2103} Menethil Keep
-	["{npc:2104}, in {area:2103}"] = "",
+	["{npc:2104}, in {area:2103}"] = "{npc:2104} – здесь: {area:2103}",
 	-- {zone:1437} Wetlands
-	["For the Dragonmaw catapult, on the {zone:1437} loop of the next guide"] = "",
+	["For the Dragonmaw catapult, on the {zone:1437} loop of the next guide"] = "Для катапульты клана Драконьей Пасти – на круге по зоне {zone:1437} в следующем гайде",
 	-- {area:513} Theramore Isle · {zone:1445} Dustwallow Marsh
 	["Take the boat from Menethil's pier to {area:513} in {zone:1445}."] = "Сядьте на корабль у причала Гавани Менетилов: {area:513} ({zone:1445}).",
 

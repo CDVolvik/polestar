@@ -25,7 +25,7 @@ return {
 
 	-- Step 4: Greatmother Hawkwind
 	-- {npc:2991} Greatmother Hawkwind · {object:2907} Water Pitcher
-	["{npc:2991} sits by the tent on the camp's eastern edge; the {object:2907} stands next to her."] = "",
+	["{npc:2991} sits by the tent on the camp's eastern edge; the {object:2907} stands next to her."] = "{npc:2991}은(는) 야영지 동쪽 가장자리 천막 옆에 앉아 있으며, {object:2907}은(는) 그 옆에 있습니다.",
 
 	-- Step 6: The Hunt Continues
 	-- {npc:6775} Antur Fallow · {npc:2980} Grull Hawkwind
@@ -106,7 +106,7 @@ return {
 	-- Step 26: Thunderhorn Water Well
 	-- {object:2912} Ambercorn · {quest:766} Mazzranache · {quest:761} Swoop Hunting
 	-- plural, as words: Well Stones = {object:2910} Well Stone
-	["The well lies north of the village. Well Stones sit around the well, {object:2912} lies under the trees nearby. Kill wolves, cougars, plainstriders and swoops on the way for {quest:766} and {quest:761}."] = "",
+	["The well lies north of the village. Well Stones sit around the well, {object:2912} lies under the trees nearby. Kill wolves, cougars, plainstriders and swoops on the way for {quest:766} and {quest:761}."] = "우물은 마을 북쪽에 있습니다. 우물돌은 우물 주변에, {object:2912}은(는) 근처 나무 아래에 있습니다. 가는 길에 {quest:766}와(과) {quest:761}을(를) 위해 늑대, 퓨마, 초원타조, 검독수리를 처치하세요.",
 
 	-- Step 27: Bloodhoof Village
 	-- {npc:277182} Ahab Wheathoof
@@ -125,10 +125,10 @@ return {
 
 	-- Step 31: Prairie Wolf Alphas
 	-- plural, as words: Prairie Wolf Alphas = {npc:2960} Prairie Wolf Alpha
-	["Prairie Wolf Alphas"] = "",
+	["Prairie Wolf Alphas"] = "우두머리 초원늑대",
 	-- {npc:275789} Malah Longwind
 	-- plural, as words: Prairie Wolf Alphas = {npc:2960} Prairie Wolf Alpha
-	["Prairie Wolf Alphas roam among the wolves on the plains around {npc:275789} and the Galak camp to the east."] = "",
+	["Prairie Wolf Alphas roam among the wolves on the plains around {npc:275789} and the Galak camp to the east."] = "우두머리 초원늑대는 {npc:275789}와(과) 동쪽 갈라크일족 야영지 주변 평원에서 늑대들 사이를 돌아다닙니다.",
 
 	-- Step 32: The Ravaged Caravan
 	-- {zone:1456} Thunder Bluff
@@ -142,9 +142,9 @@ return {
 	["Back south-east to the {area:396}."] = "남동쪽의 {area:396}(으)로 돌아가세요.",
 
 	-- Step 37: Galak centaurs
-	["Galak centaurs"] = "",
+	["Galak centaurs"] = "갈라크일족 켄타우로스",
 	-- {npc:275767} Herak the Pillager
-	["The Galak centaurs camp on the plains east of the well; {npc:275767} leads them."] = "",
+	["The Galak centaurs camp on the plains east of the well; {npc:275767} leads them."] = "갈라크일족 켄타우로스는 우물 동쪽 평원에 야영하고 있으며, {npc:275767}이(가) 그들을 이끕니다.",
 
 	-- Step 38: The Venture Co. Mine
 	-- {quest:765} Supervisor Fizsprocket · {item:281031} Mulgore Expansion Plans · {quest:98424} Fizsprocket's Notes
@@ -165,9 +165,9 @@ return {
 	-- Step 42: Dwarven Digging
 	-- {area:404} Bael'dun Digsite
 	-- plural, as words: Prospector's Picks = {item:4702} Prospector's Pick
-	["The dwarves of the {area:404} carry the Prospector's Picks. Smash them at the dwarves' forge in the digsite."] = "",
+	["The dwarves of the {area:404} carry the Prospector's Picks. Smash them at the dwarves' forge in the digsite."] = "{area:404}의 드워프들이 발굴조사단장의 곡괭이를 지니고 있습니다. 발굴현장 안의 드워프 대장간에서 부수세요.",
 	-- {item:4703} Broken Tools
-	["{item:4703}, at the digsite forge"] = "",
+	["{item:4703}, at the digsite forge"] = "{item:4703}, 발굴현장 대장간에서",
 
 	-- Step 43: Sharing the Land
 	-- {area:818} Palemane Rock · {npc:272203} Perith Stormhoof
@@ -185,7 +185,7 @@ return {
 	["Head north to {area:225}, east of {zone:1456}. {npc:3233} stands at the foot of the rocks; the Bristleback Interlopers dig at the burial ground and the {npc:2994} waits on top."] = "북쪽으로 {zone:1456} 동쪽의 {area:225}(으)로 가세요. {npc:3233}은(는) 바위 기슭에 서 있습니다. 뾰족털일족 약탈자는 매장지를 파헤치고 있고, {npc:2994}은(는) 꼭대기에서 기다립니다.",
 	-- {item:5203} Flatland Prowler Claw · {area:225} Red Rocks
 	-- plural, as words: Flatland Prowlers = {npc:3566} Flatland Prowler
-	["{item:5203}: Flatland Prowlers roam the plains around {area:225}"] = "",
+	["{item:5203}: Flatland Prowlers roam the plains around {area:225}"] = "{item:5203}: 굶주린 평원퓨마는 {area:225} 주변 평원을 돌아다닙니다",
 
 	-- Step 47: Thunder Bluff
 	-- {npc:2995} Tal · {npc:3057} Cairne Bloodhoof

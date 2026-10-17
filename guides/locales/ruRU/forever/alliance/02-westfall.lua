@@ -8,18 +8,18 @@
 return {
 	-- Step 1: Sentinel Hill
 	-- {npc:234} Gryan Stoutmantle · {npc:821} Captain Danuvin · {npc:491} Quartermaster Lewis · {npc:878} Scout Galiaan · {npc:523} Thor
-	["{npc:234} and {npc:821} stand at the top of the stone tower. {npc:491} is in the tower, {npc:878} on the south side of the hill, next to the inn and {npc:523} the gryphon master."] = "",
+	["{npc:234} and {npc:821} stand at the top of the stone tower. {npc:491} is in the tower, {npc:878} on the south side of the hill, next to the inn and {npc:523} the gryphon master."] = "{npc:234} и {npc:821} стоят на вершине каменной башни. {npc:491} – в башне; {npc:878} – на южном склоне холма, рядом с таверной и укротителем грифонов (это {npc:523}).",
 	-- {npc:523} Thor
 	["{npc:523}; skip the free flight it offers"] = "{npc:523}; от бесплатного полета откажитесь",
 	-- {npc:253092} Alba Fairmoon · {npc:878} Scout Galiaan
-	["{npc:253092}, beside {npc:878}"] = "",
+	["{npc:253092}, beside {npc:878}"] = "{npc:253092} – рядом с NPC {npc:878}",
 
 	-- Step 2: Saldean's Farm
 	-- {npc:233} Farmer Saldean · {npc:235} Salma Saldean · {npc:253395} Ozwin Ironsprocket
 	["Follow the road north. {npc:233} stands outside, {npc:235} in the house, {npc:253395} in the barn to the west."] = "Идите по дороге на север. {npc:233} стоит снаружи, {npc:235} – в доме, {npc:253395} – в амбаре к западу.",
 
 	-- Step 3: The Jansen Stead
-	["Further north along the road. The Furlbrows sit by their burned farm. Collect the oats from the Sacks of Oats in the fields as you go."] = "",
+	["Further north along the road. The Furlbrows sit by their burned farm. Collect the oats from the Sacks of Oats in the fields as you go."] = "Дальше на север по дороге. Супруги Хмуробров сидят у своей сгоревшей фермы. По пути собирайте овес из мешков овса на полях.",
 	-- {item:1972} Westfall Deed
 	["Only if you looted a {item:1972} in Elwynn: right-click it"] = "Только если вы добыли в Элвиннском лесу предмет {item:1972}: щелкните по нему правой кнопкой",
 	["Fill the vial at the well"] = "Наполните склянку у колодца",
@@ -42,7 +42,7 @@ return {
 	-- Step 6: Jangolode Mine
 	-- {object:290} Furlbrow's Wardrobe
 	-- plural, as words: Defias Trappers = {npc:504} Defias Trapper
-	["North of Molsen Farm. Defias Trappers and Smugglers camp outside the mine. {object:290} stands by the ruined house east of the mine."] = "",
+	["North of Molsen Farm. Defias Trappers and Smugglers camp outside the mine. {object:290} stands by the ruined house east of the mine."] = "К северу от фермы Мольсена. Звероловы и контрабандисты из Братства Справедливости стоят лагерем у входа в рудник. {object:290} – у разрушенного дома к востоку от рудника.",
 	-- {quest:153} Red Leather Bandanas
 	["{quest:153}: every Defias drops them"] = "{quest:153}: падают со всех членов Братства Справедливости",
 
@@ -64,7 +64,7 @@ return {
 	-- Step 12: Jangolode Mine
 	-- {area:918} Molsen Farm
 	-- plural, as words: Kobold Diggers = {npc:1236} Kobold Digger
-	["Back north past {area:918} to the mine: Kobold Diggers work inside."] = "",
+	["Back north past {area:918} to the mine: Kobold Diggers work inside."] = "Обратно на север мимо фермы ({area:918}) к руднику: внутри работают кобольды-землекопы.",
 	-- plural, as words: Kobold Diggers = {npc:1236} Kobold Digger
 	["Kobold Diggers"] = "Кобольды-землекопы",
 
@@ -73,7 +73,7 @@ return {
 	["The {area:113}"] = "{area:113}",
 	-- {area:918} Molsen Farm
 	-- plural, as words: Riverpaw Miners = {npc:1426} Riverpaw Miner
-	["South-west to the coast, west of {area:918}. Riverpaw Miners work the quarry."] = "",
+	["South-west to the coast, west of {area:918}. Riverpaw Miners work the quarry."] = "На юго-запад к побережью, к западу от фермы ({area:918}). В карьере работают шахтеры из стаи Речной Лапы.",
 	-- plural, as words: Riverpaw Miners = {npc:1426} Riverpaw Miner
 	["Riverpaw Miners"] = "Шахтеры из стаи Речной Лапы",
 
@@ -116,7 +116,7 @@ return {
 
 	-- Step 21: Stormwind
 	-- {zone:1453} Stormwind · {object:2100} Old Town · {object:2101} Mage Quarter
-	["Fly or ride to {zone:1453}. Trainers: {object:2100} (Warriors, Rogues), the Cathedral (Paladins, Priests), the {object:2101} (Mages, Warlocks), the Park (Druids)."] = "",
+	["Fly or ride to {zone:1453}. Trainers: {object:2100} (Warriors, Rogues), the Cathedral (Paladins, Priests), the {object:2101} (Mages, Warlocks), the Park (Druids)."] = "Летите или езжайте в город {zone:1453}. Учителя: {object:2100} (воины, разбойники), собор (паладины, жрецы), {object:2101} (маги, чернокнижники), парк (друиды).",
 	["Level 12, 14 and 16 spells"] = "Заклинания 12, 14 и 16-го уровней",
 	-- {item:2449} Earthroot · {zone:1439} Darkshore · {npc:1313} Maria Lumere
 	["{item:2449} for Gathering the Cure (6123) in {zone:1439}: {npc:1313}, Alchemy Supplies; herbalists pick it there instead"] = "{item:2449} для задания «Сбор лекарственных ингредиентов» (6123), {zone:1439}: {npc:1313}, товары для алхимиков; травники вместо этого собирают его там сами",

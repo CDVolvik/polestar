@@ -8,9 +8,9 @@
 return {
 	-- Step 1: Tarren Mill
 	-- {area:272} Tarren Mill
-	["{area:272} is your base for this guide: the hearth brings you back here twice. Everyone stands around the town square."] = "",
+	["{area:272} is your base for this guide: the hearth brings you back here twice. Everyone stands around the town square."] = "{area:272}是本指南的據點：爐石會兩次帶你回到這裡。所有人都站在鎮上廣場周圍。",
 	-- {npc:2388} Innkeeper Shay
-	["{npc:2388}: the last guide binds here, so this usually ticks at once"] = "",
+	["{npc:2388}: the last guide binds here, so this usually ticks at once"] = "{npc:2388}：上一份指南在這裡綁定爐石，所以這一步通常會立即完成",
 	-- {object:1763} WANTED
 	["The {object:1763} poster by the inn"] = "旅店旁的{object:1763}海報",
 	-- {quest:567} Dangerous!
@@ -48,7 +48,7 @@ return {
 	-- {area:287} Hillsbrad
 	["The Peasants work the fields south of the farmhouses. Every {area:287} human drops skulls; the Peasants drop them most often."] = "希爾斯布萊德農民在農舍南邊的田裡工作。每個{area:287}的人類都會掉落頭骨；農民掉落最頻繁。",
 	-- {item:3692} Hillsbrad Human Skull
-	["{item:3692}: the Peasants in the fields"] = "",
+	["{item:3692}: the Peasants in the fields"] = "{item:3692}：田裡的希爾斯布萊德農民",
 
 	-- Step 8: Tarren Mill
 	-- {npc:2215} High Executor Darthalia · {npc:270438} Deathstalker Masoj

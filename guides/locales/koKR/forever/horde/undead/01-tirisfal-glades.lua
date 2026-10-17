@@ -151,7 +151,7 @@ return {
 
 	-- Step 29: Calvin Montague
 	-- {area:156} Solliden Farmstead · {npc:1519} Deathguard Simmer · {npc:6784} Calvin Montague
-	["Walk on west to the {area:156}. {npc:1519} stands at the farm; {npc:6784}, by the farmhouse, wants a duel: talk to him."] = "",
+	["Walk on west to the {area:156}. {npc:1519} stands at the farm; {npc:6784}, by the farmhouse, wants a duel: talk to him."] = "계속 서쪽의 {area:156}(으)로 가세요. {npc:1519}이(가) 농장에 있고, 농가 옆의 {npc:6784}이(가) 결투를 원합니다. 그에게 말을 거세요.",
 	-- {npc:6784} Calvin Montague
 	["Beat {npc:6784} in the duel"] = "결투에서 {npc:6784}을(를) 이기세요",
 
@@ -220,7 +220,7 @@ return {
 	-- Step 40: Tirisfal Pumpkins
 	-- plural, as words: Tirisfal Pumpkins = {object:375} Tirisfal Pumpkin
 	["Tirisfal Pumpkins"] = "티리스팔 호박",
-	["Walk south-west from the mills: the pumpkins grow in the Scarlet-held fields north-west of Solliden."] = "",
+	["Walk south-west from the mills: the pumpkins grow in the Scarlet-held fields north-west of Solliden."] = "방앗간에서 남서쪽으로 가세요. 호박은 솔리덴 농장 북서쪽, 붉은십자군이 차지한 들판에 자랍니다.",
 
 	-- Step 41: Crusader's Outpost
 	["Crusader's Outpost"] = "붉은십자군 전초기지",
@@ -303,7 +303,7 @@ return {
 	-- Step 59: Vicious Night Web Spiders
 	-- plural, as words: Vicious Night Web Spiders = {npc:1555} Vicious Night Web Spider
 	["Vicious Night Web Spiders"] = "흉포한 검은그물거미",
-	["The spiders lurk in the woods at the far east end of the glades."] = "",
+	["The spiders lurk in the woods at the far east end of the glades."] = "거미는 숲 동쪽 맨 끝의 수풀에 숨어 있습니다.",
 
 	-- Step 60: Hides for the Forsaken
 	-- plural, as words: Duskbats = {npc:1512} Duskbat

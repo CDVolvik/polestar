@@ -49,7 +49,7 @@ return {
 
 	-- Step 11: Forest Song
 	-- {area:2358} Forest Song · {npc:3848} Kayneth Stillwind
-	["{area:2358}, the Night Elf outpost at the eastern end of the road: {npc:3848} stands there."] = "",
+	["{area:2358}, the Night Elf outpost at the eastern end of the road: {npc:3848} stands there."] = "길 동쪽 끝의 나이트 엘프 전초기지 {area:2358}: {npc:3848}이(가) 그곳에 있습니다.",
 
 	-- Step 12: Bottle of Disease
 	-- {area:2358} Forest Song

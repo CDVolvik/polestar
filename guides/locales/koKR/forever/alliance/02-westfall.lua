@@ -8,18 +8,18 @@
 return {
 	-- Step 1: Sentinel Hill
 	-- {npc:234} Gryan Stoutmantle · {npc:821} Captain Danuvin · {npc:491} Quartermaster Lewis · {npc:878} Scout Galiaan · {npc:523} Thor
-	["{npc:234} and {npc:821} stand at the top of the stone tower. {npc:491} is in the tower, {npc:878} on the south side of the hill, next to the inn and {npc:523} the gryphon master."] = "",
+	["{npc:234} and {npc:821} stand at the top of the stone tower. {npc:491} is in the tower, {npc:878} on the south side of the hill, next to the inn and {npc:523} the gryphon master."] = "{npc:234}와(과) {npc:821}은(는) 돌탑 꼭대기에 있습니다. {npc:491}은(는) 탑 안에, {npc:878}은(는) 언덕 남쪽의 여관과 그리폰 조련사 {npc:523} 옆에 있습니다.",
 	-- {npc:523} Thor
 	["{npc:523}; skip the free flight it offers"] = "{npc:523}; 제공되는 무료 비행은 건너뛰십시오",
 	-- {npc:253092} Alba Fairmoon · {npc:878} Scout Galiaan
-	["{npc:253092}, beside {npc:878}"] = "",
+	["{npc:253092}, beside {npc:878}"] = "{npc:253092}, {npc:878} 옆",
 
 	-- Step 2: Saldean's Farm
 	-- {npc:233} Farmer Saldean · {npc:235} Salma Saldean · {npc:253395} Ozwin Ironsprocket
 	["Follow the road north. {npc:233} stands outside, {npc:235} in the house, {npc:253395} in the barn to the west."] = "길을 따라 북쪽으로 가십시오. {npc:233}은(는) 밖에, {npc:235}은(는) 집 안에, {npc:253395}은(는) 서쪽 헛간에 있습니다.",
 
 	-- Step 3: The Jansen Stead
-	["Further north along the road. The Furlbrows sit by their burned farm. Collect the oats from the Sacks of Oats in the fields as you go."] = "",
+	["Further north along the road. The Furlbrows sit by their burned farm. Collect the oats from the Sacks of Oats in the fields as you go."] = "길을 따라 더 북쪽으로 가십시오. 펄브로우 부부가 불탄 농장 옆에 앉아 있습니다. 가는 길에 밭의 귀리 부대에서 귀리를 모으십시오.",
 	-- {item:1972} Westfall Deed
 	["Only if you looted a {item:1972} in Elwynn: right-click it"] = "엘윈 숲에서 {item:1972}을(를) 획득한 경우에만: 오른쪽 클릭하십시오",
 	["Fill the vial at the well"] = "우물에서 약병 채우기",
@@ -42,7 +42,7 @@ return {
 	-- Step 6: Jangolode Mine
 	-- {object:290} Furlbrow's Wardrobe
 	-- plural, as words: Defias Trappers = {npc:504} Defias Trapper
-	["North of Molsen Farm. Defias Trappers and Smugglers camp outside the mine. {object:290} stands by the ruined house east of the mine."] = "",
+	["North of Molsen Farm. Defias Trappers and Smugglers camp outside the mine. {object:290} stands by the ruined house east of the mine."] = "몰센 농장 북쪽입니다. 데피아즈단 덫사냥꾼과 데피아즈단 밀수업자가 광산 밖에 진을 치고 있습니다. {object:290}은(는) 광산 동쪽의 폐가 옆에 있습니다.",
 	-- {quest:153} Red Leather Bandanas
 	["{quest:153}: every Defias drops them"] = "{quest:153}: 모든 데피아즈단이 떨어뜨립니다",
 
@@ -64,7 +64,7 @@ return {
 	-- Step 12: Jangolode Mine
 	-- {area:918} Molsen Farm
 	-- plural, as words: Kobold Diggers = {npc:1236} Kobold Digger
-	["Back north past {area:918} to the mine: Kobold Diggers work inside."] = "",
+	["Back north past {area:918} to the mine: Kobold Diggers work inside."] = "{area:918}을(를) 지나 다시 북쪽의 광산으로 가십시오. 코볼트 채굴꾼이 안에서 일합니다.",
 	-- plural, as words: Kobold Diggers = {npc:1236} Kobold Digger
 	["Kobold Diggers"] = "코볼트 채굴꾼",
 
@@ -73,7 +73,7 @@ return {
 	["The {area:113}"] = "{area:113}",
 	-- {area:918} Molsen Farm
 	-- plural, as words: Riverpaw Miners = {npc:1426} Riverpaw Miner
-	["South-west to the coast, west of {area:918}. Riverpaw Miners work the quarry."] = "",
+	["South-west to the coast, west of {area:918}. Riverpaw Miners work the quarry."] = "남서쪽 해안, {area:918} 서쪽으로 가십시오. 갈퀴발일족 광부가 채석장에서 일합니다.",
 	-- plural, as words: Riverpaw Miners = {npc:1426} Riverpaw Miner
 	["Riverpaw Miners"] = "갈퀴발일족 광부",
 
@@ -116,7 +116,7 @@ return {
 
 	-- Step 21: Stormwind
 	-- {zone:1453} Stormwind · {object:2100} Old Town · {object:2101} Mage Quarter
-	["Fly or ride to {zone:1453}. Trainers: {object:2100} (Warriors, Rogues), the Cathedral (Paladins, Priests), the {object:2101} (Mages, Warlocks), the Park (Druids)."] = "",
+	["Fly or ride to {zone:1453}. Trainers: {object:2100} (Warriors, Rogues), the Cathedral (Paladins, Priests), the {object:2101} (Mages, Warlocks), the Park (Druids)."] = "{zone:1453}(으)로 날아가거나 말을 타고 가세요. 상급자: {object:2100}(전사, 도적), 대성당(성기사, 사제), {object:2101}(마법사, 흑마법사), 공원(드루이드).",
 	["Level 12, 14 and 16 spells"] = "12, 14, 16레벨 주문",
 	-- {item:2449} Earthroot · {zone:1439} Darkshore · {npc:1313} Maria Lumere
 	["{item:2449} for Gathering the Cure (6123) in {zone:1439}: {npc:1313}, Alchemy Supplies; herbalists pick it there instead"] = "{zone:1439}의 약재 모으기(6123)에 필요한 {item:2449}: {npc:1313}, 연금술 용품. 약초채집가는 대신 그곳에서 채집하세요",

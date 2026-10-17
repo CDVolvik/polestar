@@ -163,9 +163,9 @@ return {
 
 	-- Step 29: Rumbleshot's Ammo
 	-- {object:176785} Ammo Crate · {npc:271546} Mountaineer Gretchen · {area:136} Grizzled Den · {npc:1243} Hegnar Rumbleshot
-	["The {object:176785} sits next to {npc:271546}, south of the {area:136}; {npc:1243} camps south-west of it, by the road to Coldridge."] = "",
+	["The {object:176785} sits next to {npc:271546}, south of the {area:136}; {npc:1243} camps south-west of it, by the road to Coldridge."] = "{object:176785} стоит рядом с NPC {npc:271546}, к югу от места {area:136}; {npc:1243} стоит лагерем к юго-западу от него, у дороги в Холодную долину.",
 	-- {item:13850} Rumbleshot's Ammo · {object:176785} Ammo Crate
-	["{item:13850}: the {object:176785}"] = "",
+	["{item:13850}: the {object:176785}"] = "{item:13850}: {object:176785}",
 
 	-- Step 30: Frostmane Hold
 	-- {area:135} Frostmane Hold · {area:137} Brewnall Village
@@ -182,10 +182,10 @@ return {
 	["Leper Gnomes around Brewnall and the {area:133} road carry the cogs and gears. Ice Claw Bears, Elder Crag Boars and Snow Leopards roam the hills around the lake."] = "Лепрогномы вокруг поселка Пивоваров и дороги к месту {area:133} носят шестеренки и зубчатки. Медведи-ледолапы, старые скальные вепри и снежные леопарды бродят по холмам вокруг озера.",
 	-- {item:3083} Restabilization Cog
 	-- plural, as words: Leper Gnomes = {npc:1211} Leper Gnome
-	["{item:3083}: Leper Gnomes"] = "",
+	["{item:3083}: Leper Gnomes"] = "{item:3083}: лепрогномы",
 	-- {item:3084} Gyromechanic Gear
 	-- plural, as words: Leper Gnomes = {npc:1211} Leper Gnome
-	["{item:3084}: Leper Gnomes"] = "",
+	["{item:3084}: Leper Gnomes"] = "{item:3084}: лепрогномы",
 
 	-- Step 35: Kharanos
 	-- {npc:1373} Jarven Thunderbrew · {item:2686} Thunder Ale · {npc:1247} Innkeeper Belm · {spell:8553} Barleybrew Scalder
@@ -331,7 +331,7 @@ return {
 	-- {npc:1266} Tundra MacGrann · {area:801} Chill Breeze Valley · {npc:1271} Old Icebeard
 	["{npc:1266} camps in {area:801}, south of Brewnall. His meats are in the locker in {npc:1271}'s cave to the north-east of his camp: grab them and leave quickly."] = "{npc:1266} стоит лагерем здесь: {area:801}, к югу от поселка Пивоваров. Его мясо лежит в шкафчике в пещере NPC {npc:1271} к северо-востоку от лагеря: заберите его и быстро уходите.",
 	-- {item:2667} MacGrann's Dried Meats
-	["{item:2667}: the meat locker"] = "",
+	["{item:2667}: the meat locker"] = "{item:2667}: сундук с мясом",
 
 	-- Step 69: The Tome of Divinity
 	-- {zone:1455} Ironforge · {object:32362} Mystic Ward · {npc:5149} Brandur Ironhammer · {npc:6179} Tiza Battleforge · {npc:6178} Muiredon Battleforge · {object:32386} Hall of Mysteries · {npc:6175} John Turner · {item:2589} Linen Cloth · {zone:1426} Dun Morogh

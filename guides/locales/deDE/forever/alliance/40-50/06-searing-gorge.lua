@@ -8,7 +8,7 @@
 return {
 	-- Step 1: Thelsamar
 	-- {npc:6734} Innkeeper Hearthstove
-	["{npc:6734}: the last guide hearths you here, so this usually ticks at once"] = "",
+	["{npc:6734}: the last guide hearths you here, so this usually ticks at once"] = "{npc:6734}: Der letzte Guide bringt dich per Ruhestein hierher, daher ist das meist sofort abgehakt",
 
 	-- Step 2: Thorium Point
 	-- {area:144} Thelsamar · {zone:1418} Badlands · {area:340} Kargath · {zone:1427} Searing Gorge · {area:1446} Thorium Point

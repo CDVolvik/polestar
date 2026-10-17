@@ -32,7 +32,7 @@ return {
 	["{npc:7881}, in the port's tavern"] = "{npc:7881}, 항구의 선술집 안",
 	["The Wanted poster beside him"] = "그 옆의 현상수배 포스터",
 	-- {npc:7847} Caliph Scorpidsting · {area:976} Gadgetzan
-	["The same poster: {npc:7847} comes much later, after {area:976}"] = "",
+	["The same poster: {npc:7847} comes much later, after {area:976}"] = "같은 현상수배 전단: {npc:7847}은(는) 훨씬 나중, {area:976} 이후에 나옵니다",
 
 	-- Step 6: Lost Rigger Cove
 	-- {npc:7883} Andre Firebeard · {npc:7881} Stoley

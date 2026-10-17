@@ -8,7 +8,7 @@
 return {
 	-- Step 1: Thelsamar
 	-- {npc:6734} Innkeeper Hearthstove
-	["{npc:6734}: the last guide hearths you here, so this usually ticks at once"] = "",
+	["{npc:6734}: the last guide hearths you here, so this usually ticks at once"] = "{npc:6734}：上一份指南用炉石把你送到这里，所以这一步通常会立即完成",
 
 	-- Step 2: Gadgetzan
 	-- {area:144} Thelsamar · {area:150} Menethil Harbor · {area:976} Gadgetzan · {npc:9619} Torwa Pathfinder

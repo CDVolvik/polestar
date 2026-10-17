@@ -40,7 +40,7 @@ return {
 
 	-- Step 9: Rebel Camp
 	-- {npc:738} Private Thorsen
-	["Take the road north; {npc:738} patrols it, the camp sits in the hills to the west."] = "",
+	["Take the road north; {npc:738} patrols it, the camp sits in the hills to the west."] = "Pegue a estrada para o norte; {npc:738} patrulha nela, e o acampamento fica nas colinas a oeste.",
 	-- {npc:469} Lieutenant Doren
 	["{npc:469}, in the hut"] = "{npc:469}, na cabana",
 

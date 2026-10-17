@@ -150,18 +150,18 @@ return {
 	-- {area:150} Menethil Harbor
 	["Ride back west along the road to {area:150}."] = "Reite die Straße zurück nach Westen nach {area:150}.",
 	-- {quest:98221} From the Ashes · {quest:465} Nek'rosh's Gambit
-	["{quest:98221}: {quest:465} comes after it on Forever"] = "",
+	["{quest:98221}: {quest:465} comes after it on Forever"] = "{quest:98221}: {quest:465} folgt darauf in Forever",
 
 	-- Step 29: Angerfang Encampment
 	-- {area:1036} Angerfang Encampment · {npc:2091} Chieftain Nek'rosh
-	["Ride east again to the Dragonmaw camp. The four sets of Attack Plans lie in the {area:1036}; {npc:2091}, an elite, stands in the camp too."] = "",
+	["Ride east again to the Dragonmaw camp. The four sets of Attack Plans lie in the {area:1036}; {npc:2091}, an elite, stands in the camp too."] = "Reite wieder nach Osten zum Lager der Dragonmaw. Die vier Sätze Angriffspläne liegen im {area:1036}; {npc:2091}, ein Elite, steht ebenfalls im Lager.",
 
 	-- Step 30: To Theramore
 	["To Theramore"] = "Nach Theramore",
 	-- {npc:2104} Captain Stoutfist · {area:2103} Menethil Keep
-	["{npc:2104}, in {area:2103}"] = "",
+	["{npc:2104}, in {area:2103}"] = "{npc:2104}, in {area:2103}",
 	-- {zone:1437} Wetlands
-	["For the Dragonmaw catapult, on the {zone:1437} loop of the next guide"] = "",
+	["For the Dragonmaw catapult, on the {zone:1437} loop of the next guide"] = "Für das Katapult der Dragonmaw, auf der Runde durch das {zone:1437} im nächsten Guide",
 	-- {area:513} Theramore Isle · {zone:1445} Dustwallow Marsh
 	["Take the boat from Menethil's pier to {area:513} in {zone:1445}."] = "Nimm das Boot vom Pier von Menethil nach {area:513} in den {zone:1445}.",
 
