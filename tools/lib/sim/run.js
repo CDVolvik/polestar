@@ -88,6 +88,20 @@ function onIsle(world, q) {
 // races' starting islands); see docs/SIMULATION.md "Starts".
 const HOME_LEVEL = 10;
 
+// Quests by level for the evaluator's full-log abandon (abandonable):
+// qLv (level clamped to 0..63), qByLevel (quest indices by level, then
+// index) and qLvStart (each clamped level's first entry, 65 bounds).
+function questsByLevel(qLevel) {
+	const n = qLevel.length;
+	const qLv = new Uint8Array(n);
+	for (let i = 0; i < n; i++) qLv[i] = Math.max(0, Math.min(63, qLevel[i]));
+	const qByLevel = Int32Array.from({ length: n }, (_, i) => i).sort((a, b) => qLevel[a] - qLevel[b] || a - b);
+	const qLvStart = new Int32Array(65);
+	for (let i = 0; i < n; i++) qLvStart[qLv[i] + 1]++;
+	for (let L = 0; L < 64; L++) qLvStart[L + 1] += qLvStart[L];
+	return { qLv, qByLevel, qLvStart };
+}
+
 // family: 'solo' (no dungeons) or 'dungeons' (dungeon packages and their quests allowed).
 function compileRun(world, { race, cls = null, raceBits = {}, family = 'solo' } = {}) {
 	const faction = world.faction;
@@ -430,6 +444,7 @@ function compileRun(world, { race, cls = null, raceBits = {}, family = 'solo' } 
 		quests, qIndex, Q,
 		qLevel, qMinLevel, qExcl0, qExcl1, exclList: Int32Array.from(exclList), qTier, qXp, qGiver, qEnder, qAccept, qTask0, qTask1, qPre0, qPre1, qAll0, qAll1, allList: Int32Array.from(allList),
 		qParent, qAfter0, qAfter1, afterList: Int32Array.from(afterList),
+		...questsByLevel(qLevel),
 		preList: Int32Array.from(preList),
 		taskPt: Int32Array.from(taskPt), taskW0: Int32Array.from(taskW0), taskW1: Int32Array.from(taskW1),
 		wKind: Int32Array.from(wKind), wLevel: Int32Array.from(wLevel), wCount: Float64Array.from(wCount),

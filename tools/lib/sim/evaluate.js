@@ -82,6 +82,7 @@ class Evaluator {
 		this.visit3 = new Uint8Array(run.P); // a third
 		this.dungeonDone = new Uint8Array(Math.max(1, (run.dungeons || []).length));
 		this.everActive = new Uint8Array(run.Q); // accepted at some point (acceptedNeverTurnedIn)
+		this.actLv = new Int32Array(64); // active quests by (clamped) quest level: abandonable()
 		// Smoothness: zones entered so far; per spot cell the stretch (areaId)
 		// of its last work (0: none); per kill work item the kills already
 		// credited by other quests' kills of the same mob (shared kill credit).
@@ -130,6 +131,7 @@ class Evaluator {
 		this.visit3.fill(0);
 		this.dungeonDone.fill(0);
 		this.everActive.fill(0);
+		this.actLv.fill(0);
 		this.levelTimes.fill(0);
 		this.zoneSeen.fill(0);
 		this.zoneSeen[r.pZone[r.start.pt]] = 1;
@@ -194,7 +196,12 @@ class Evaluator {
 	restore(s) {
 		// Undo journaled writes back to the snapshot.
 		const arrs = [this.done, this.active, this.taskDone, this.known, this.usedPkg, this.dungeonDone, this.visit2, this.visit3, this.zoneSeen, this.everActive];
-		for (let k = this.jLen - 1; k >= s.j; k--) arrs[this.jArr[k]][this.jIdx[k]] ^= 1;
+		for (let k = this.jLen - 1; k >= s.j; k--) {
+			const id = this.jArr[k];
+			const i = this.jIdx[k];
+			arrs[id][i] ^= 1;
+			if (id === J_ACTIVE) this.actLv[this.run.qLv[i]] += this.active[i] ? 1 : -1;
+		}
 		for (let k = this.uLen - 1; k >= s.u; k--) (this.uArr[k] === U_KILLED ? this.killed : this.cellArea)[this.uIdx[k]] = this.uOld[k];
 		this.uLen = s.u;
 		this.jLen = s.j;
@@ -267,19 +274,25 @@ class Evaluator {
 	}
 	set0Active(i) {
 		this.set0(J_ACTIVE, this.active, i);
+		this.actLv[this.run.qLv[i]]--;
+	}
+	set1Active(i) {
+		this.set1(J_ACTIVE, this.active, i);
+		this.actLv[this.run.qLv[i]]++;
 	}
 
 	// The quest a full log gives up (stopgap until the planner keeps the
 	// log): the lowest-level active quest at least ABANDON_GAP levels below
-	// the character, whose reward is already reduced; -1 when none is.
+	// the character, whose reward is already reduced (the first by index
+	// among equals); -1 when none is.
 	abandonable() {
 		const r = this.run;
 		const max = this.level - ABANDON_GAP;
-		let best = -1;
-		for (let q = 0; q < r.Q; q++) {
-			if (this.active[q] && r.qLevel[q] <= max && (best < 0 || r.qLevel[q] < r.qLevel[best])) best = q;
+		for (let L = 0; L <= max && L < 64; L++) {
+			if (!this.actLv[L]) continue;
+			for (let k = r.qLvStart[L]; k < r.qLvStart[L + 1]; k++) if (this.active[r.qByLevel[k]]) return r.qByLevel[k];
 		}
-		return best;
+		return -1;
 	}
 
 	// Abandon quest q: out of the log, its objectives' progress lost (as
@@ -589,7 +602,7 @@ class Evaluator {
 			if (drop >= 0) this.abandon(drop);
 			if (task >= 0) this.doWork(task);
 			this.time += this.p.talkSec;
-			this.set1(J_ACTIVE, this.active, q);
+			this.set1Active(q);
 			if (!this.everActive[q]) this.set1(J_EVER, this.everActive, q);
 			if (++this.open > this.logPeak) this.logPeak = this.open;
 		} else if (kind === K_TASK) {
