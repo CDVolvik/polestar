@@ -1875,6 +1875,12 @@ test('zone danger: the planner\'s straight walk 1200 yd through a zone far above
 		r.none = ratio()
 		layout(1422, 1422, 1416)
 		r.ends = ratio()
+		-- Routing turned off after the engine loaded (Nav.Path stays): today's estimate at once.
+		layout(1421, 1422, 1424)
+		Polestar.Set("nav.navRouting", false)
+		r.routingOff = ratio()
+		Polestar.Set("nav.navRouting", true)
+		r.routingOn = ratio()
 		Polestar_NavEngine.ZoneAt = nil
 		r.noZoneAt = ratio()
 		emit(r)`, { many: true });
@@ -1884,6 +1890,7 @@ test('zone danger: the planner\'s straight walk 1200 yd through a zone far above
 	assert.deepEqual(out.none, [1, t, 214], 'a zone without levels');
 	assert.deepEqual(out.ends, [1, t, 214], 'the player\'s and the target\'s zones never count');
 	assert.deepEqual(out.noZoneAt, [1, t, 214], 'no maps: today\'s estimate');
+	assert.deepEqual([out.routingOff, out.routingOn], [[1, t, 214], [5.5, t, 214]], 'routing off: today\'s estimate; on again: priced again');
 });
 
 test('zone danger: on a continent with crossing data the straight walk from a flight master to the gate takes its share too', () => {

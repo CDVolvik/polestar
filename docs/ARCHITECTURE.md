@@ -2022,12 +2022,15 @@ walk's cost (never its time) is multiplied by the mean, over the middle of
 each 100 yd piece of the line, of `danger[Path.ZoneAt(...)]` (1 elsewhere),
 the zones of its two ends never counting; the table is the plan's level's
 without the player's and the target's zones (`Travel.Replan` and
-`Nav.EstimateTravel` alike). A walk half through a far-above zone costs
-x5.5, half through a dangerous one x2. The zones read are kept per chunk
-(16 to a tile) for the session's `Path.ZoneAt`, so later plans between the
-same places ask the router nothing. Without `Path.ZoneAt` (no maps, routing
-off), its zone field or a dangerous zone the estimate is today's. A measured
-walk (`p.walkCost`) already carries the router's pricing.
+`Nav.EstimateTravel` alike; the latter's 5 s cache is keyed by the level
+too). A walk half through a far-above zone costs x5.5, half through a
+dangerous one x2. The zones read are kept per chunk (16 to a tile) for the
+session's `Path.ZoneAt`, so later plans between the same places ask the
+router nothing. With `nav.navRouting` off or the guiding handed to Shortest
+Path Forever (`Nav.HandedOff()`), the next plan's estimates are today's at
+once, even though the loaded engine stays; likewise without `Path.ZoneAt` (no
+maps), its zone field or a dangerous zone. A measured walk (`p.walkCost`)
+already carries the router's pricing.
 
 **Walks priced by the engine.** A straight line x1.25 cannot tell a walk
 round a ridge from one over it, so the planner would land at a flight master

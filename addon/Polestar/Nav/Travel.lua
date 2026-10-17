@@ -1389,8 +1389,12 @@ end
 
 -- The plan's p.walkDanger: the danger table at the player's level
 -- (Nav/Danger.lua), without the player's and the target's zones (as the
--- engine's walks leave out their start's and goal's); nil when no zone counts.
+-- engine's walks leave out their start's and goal's); nil when no zone
+-- counts, and with routing off or handed to Shortest Path Forever (the
+-- engine, once loaded, stays: its zones would still be read), so turning
+-- routing off brings back today's estimates at once.
 local function walkDanger(pc, px, py, tc, tx, ty)
+	if not ns.Get("nav.navRouting") or Nav.HandedOff() then return nil end
 	local D = Nav.danger
 	local level = D and D.Level()
 	local danger = level and D.Table(level, D.ZoneAt(pc, px, py), D.ZoneAt(tc, tx, ty))
@@ -1508,8 +1512,10 @@ function Nav.EstimateTravel(from, to, budgeted)
 		fc, fwx, fwy = pointWorld(from)
 	end
 	if not fc then return nil end
-	local key = format("%d:%d:%d>%d:%.1f:%.1f:%d", fc, floor(fwx / CACHE_CELL), floor(fwy / CACHE_CELL),
-		tc, twx, twy, from == nil and 1 or 0)
+	-- The level too: the plan's walk danger is the level's (Nav/Danger.lua).
+	local D = Nav.danger
+	local key = format("%d:%d:%d>%d:%.1f:%.1f:%d:%d", fc, floor(fwx / CACHE_CELL), floor(fwy / CACHE_CELL),
+		tc, twx, twy, from == nil and 1 or 0, D and D.Level() or 0)
 	local now = GetTime()
 	local hit = estimates[key]
 	if hit and now - hit.at < CACHE_SECONDS then return hit.seconds end
