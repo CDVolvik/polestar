@@ -632,6 +632,29 @@ test('pack: a road crossing a tile border is an entrance where it crosses, one p
 	assert.equal(row(added[0].a), row(added[0].b), 'the straight crossing');
 });
 
+test('pack: a dry strip crossing a tile border beside water is an entrance of its own when every chunk entrance there lies in the water (Fitz, Auberdine pier, 2026-10-17)', async () => {
+	// Two flat tiles (32 west of 33); along the border (40 yd each side) the ground drops 3 yd under water level with
+	// the land, but for a dry strip at cells 24-27 north of the tiles' south edge (a beach or a pier's root), between
+	// the chunk entrances at 19 and 32. Land and water are one region on each side, so the border's crossings are one
+	// group and his chunk entrances all fall in the water.
+	const cellY = (gx) => ADT - (gx + 0.5) * (ADT / 128); // local y of cell row gx's centre
+	const strip = [cellY(28) + 0.01, cellY(23) - 0.01]; // local y, north to south
+	const inStrip = (y) => y > strip[0] && y < strip[1];
+	const a = new Scene({ col: 32, height: (x, y) => (x > ADT - 40 && !inStrip(y) ? -3 : 0) });
+	const b = new Scene({ col: 33, height: (x, y) => (x < 40 && !inStrip(y) ? -3 : 0) });
+	for (const [s, x0, x1] of [[a, ADT - 40, ADT], [b, 0, 40]]) s.water(x0, 0, x1, strip[0], 0).water(x0, strip[1], x1, ADT, 0);
+	const { cg } = await cellGridFromDir({ dir: await gridOf(a, b), c: 0, C: 128 });
+	const dry = (e) => cg.nodeValue(e.a) === 1 && cg.nodeValue(e.b) === 1;
+	const row = (n) => Math.floor(cg.cellOf(n) / cg.GH) % 128;
+	const crossings = [...buildHpa(cg).edges.values()].filter((e) => cg.clusterOfCell(cg.cellOf(e.a)) !== cg.clusterOfCell(cg.cellOf(e.b)));
+	assert.ok(crossings.filter((e) => !dry(e)).length >= 8, 'the chunk entrances along the border, in the water');
+	const dryOnes = crossings.filter(dry);
+	assert.equal(dryOnes.length, 1, `one dry entrance (at cells ${dryOnes.map((e) => row(e.a)).join(', ')})`);
+	const [e] = dryOnes;
+	assert.ok(row(e.a) >= 24 && row(e.a) <= 27, `in the dry strip (cell ${row(e.a)})`);
+	assert.equal(row(e.a), row(e.b), 'the straight crossing');
+});
+
 test('pack: shipPack writes the files, PACK.json and Nav.xml; checkPack finds a changed, missing or unlisted file; the same date gives the same bytes', async () => {
 	const { shipPack, checkPack } = require('../tools/lib/nav/pack');
 	const dir = await gridOf(new Scene());

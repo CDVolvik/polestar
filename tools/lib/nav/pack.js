@@ -60,7 +60,13 @@
 // main road and the one entrance sat on the main road, saw his walk leave
 // the road along the border. So each run of road crossings (both cells road)
 // gets an entrance of its own at its middle, unless one of his lies within
-// ROAD_NEAR_YD of the run.
+// ROAD_NEAR_YD of the run. Dry ground too (Ruling 37, 2026-10-17): a region
+// holds land and the water it wades into, so his entrance can fall in the
+// water beside a beach or a pier's root, and every walk across that border
+// swam (Fitz at Auberdine, where the pier's beach crosses x = 6400 and walks
+// to the boats swam 200 yd across the bay). So each run of dry crossings
+// (both cells ground, value 1) that no entrance crosses dry gets one at its
+// middle.
 //
 // Cells (decided here). SPF's cluster is one ADT tile cut into C x C cells
 // (C = `cells`), x north, y west; our tile is 256 x 256 columns (format.js),
@@ -976,7 +982,8 @@ function clusterMoves(cg, k) {
 // gen_nav.py grid_hpa: regions per cluster, entrances per border group (the crossings between one region on
 // each side) every `run` crossings (ENTRANCE_YD in cells; a cell crosses straight and both ways diagonally, so on
 // open ground that is an entrance about every ENTRANCE_YD / 3), plus one on each road crossing the border away
-// from those (Polestar's, 2026-10-16), intra-cluster edges by Dijkstra per profile, pruned.
+// from those and one on each dry run of crossings none of them crosses dry (Polestar's, 2026-10-16 and -17),
+// intra-cluster edges by Dijkstra per profile, pruned.
 // An edge is { a, b, ab, ba, yab, yba }: ab the costs from a to b (Costs.PROFILES order: Alliance, Horde, none),
 // each priced as the router prices a grid step (its length times Costs.mult of the node it enters, times SWIM in
 // water), ba the way back, yab and yba the yards walked along the cost-best way with no profile.
@@ -986,6 +993,7 @@ function buildHpa(cg, log = () => {}) {
 	const run = Math.max(1, Math.round(ENTRANCE_YD / CS));
 	const near = Math.max(1, Math.round(ROAD_NEAR_YD / CS));
 	const isRoad = (n) => (cg.nodeClass(n) & 7) === CLASS.ROAD;
+	const isDry = (c) => cg.nodeValue(c[2]) === 1 && cg.nodeValue(c[3]) === 1; // a crossing with ground on both sides
 	const ks = [...cg.clusters.keys()].sort((a, b) => a - b);
 	const moves = new Map();
 	const region = new Map(); // k -> Int32Array local -> region (local root)
@@ -1066,7 +1074,10 @@ function buildHpa(cg, log = () => {}) {
 			// A group's entrances: one per chunk of `run` crossings, at its middle (a straight crossing first), then one
 			// per run of road crossings (both cells road, along the border without a gap) that no chunk entrance lies
 			// within `near` cells of: a road crossing the border far from the chunk's middle otherwise sends every walk
-			// along it out along the border to that entrance (Fitz at Ratchet, 2026-10-16).
+			// along it out along the border to that entrance (Fitz at Ratchet, 2026-10-16). Then one per run of dry
+			// crossings (both cells ground, no swim surface) that no entrance so far crosses dry: a group holds land and
+			// the water it wades into, so a chunk's middle can fall in the water beside a beach or a pier's root, and
+			// every walk across that border swam to it (Fitz at Auberdine's pier, 2026-10-17, Ruling 37).
 			const pick = (list) => {
 				const mid = list[list.length >> 1][0];
 				let best = list[0];
@@ -1085,16 +1096,31 @@ function buildHpa(cg, log = () => {}) {
 				const placed = [];
 				for (let i = 0; i < crossings.length; i += run) {
 					const best = pick(crossings.slice(i, i + run));
-					placed.push(best[0]);
+					placed.push(best);
 					place(best);
 				}
 				const roads = crossings.filter((c) => isRoad(c[2]) && isRoad(c[3]));
+				const onRoads = [];
 				for (let i = 0; i < roads.length; ) {
 					let j = i + 1;
 					while (j < roads.length && roads[j][0] - roads[j - 1][0] <= 1) j++;
 					const t0 = roads[i][0] - near;
 					const t1 = roads[j - 1][0] + near;
-					if (!placed.some((t) => t >= t0 && t <= t1)) place(pick(roads.slice(i, j)));
+					if (!placed.some((c) => c[0] >= t0 && c[0] <= t1)) {
+						const best = pick(roads.slice(i, j));
+						onRoads.push(best);
+						place(best);
+					}
+					i = j;
+				}
+				placed.push(...onRoads);
+				const drys = crossings.filter(isDry);
+				for (let i = 0; i < drys.length; ) {
+					let j = i + 1;
+					while (j < drys.length && drys[j][0] - drys[j - 1][0] <= 1) j++;
+					const t0 = drys[i][0];
+					const t1 = drys[j - 1][0];
+					if (!placed.some((c) => isDry(c) && c[0] >= t0 && c[0] <= t1)) place(pick(drys.slice(i, j)));
 					i = j;
 				}
 			}
