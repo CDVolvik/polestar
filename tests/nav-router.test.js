@@ -687,6 +687,16 @@ out.reusePlain = { none = Path.ReuseMany(plain, here, "Horde"), empty = Path.Reu
 	assert.deepEqual(got.reusePlain, { none: true, empty: true, wpl: false });
 });
 
+test('ReuseMany on a map without the zone field reuses a batch across danger tables (danger prices nothing there)', () => {
+	const tail = `
+local job = Path.FindMany(${MAP}, { map = ${MAP}, x = A.x, y = A.y, z = A.z }, { B }, function() end, { profile = "Horde", danger = { [${WPL}] = 3 } })
+while #frames > 0 do table.remove(frames, 1)() end
+local here = { map = ${MAP}, x = A.x + 1, y = A.y, z = A.z }
+out.reuse = { other = Path.ReuseMany(job, here, "Horde", nil, { [${WPL}] = 10 }), none = Path.ReuseMany(job, here, "Horde"), alliance = Path.ReuseMany(job, here, "Alliance", nil, { [${WPL}] = 3 }) }`;
+	const got = route(OURS, mapFiles(layout(4), true), [], { tail });
+	assert.deepEqual(got.reuse, { other: true, none: true, alliance: false });
+});
+
 test('Path.ZoneAt reads the uiMapID of a point\'s chunk; nil outside the maps, on a map without the zone field and in a chunk of no zone', () => {
 	const tail = `
 local function z(m, p) return Path.ZoneAt(m, p.x, p.y) or "nil" end

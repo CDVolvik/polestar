@@ -69,7 +69,8 @@ local function dangerOf(danger)
 end
 
 -- Class multipliers by class byte for a profile ("Alliance", "Horde" or none), a style and a danger signature, built
--- once each (a handful of tables: a new danger table comes with a level-up).
+-- once each. The caller's danger table leaves out the zones of a walk's start and goal, so it changes with each
+-- start/goal zone pair as well as with a level-up: tags split per pair, bounded by the 32-table cap below.
 local mults, multCount = {}, 0
 -- A search's step multipliers on map state st for profile, style and danger: nil on a map without classes (every
 -- step costs its length), and the heuristics' factor for a search that also crosses graph edges (Balanced's baked
@@ -997,8 +998,8 @@ end
 
 -- May a FindMany batch from job's source serve a new batch from point for profile in style with danger? Only from the
 -- same source node, priced for the same profile (Costs.Profile: one for Alliance, one for Horde, one for none), the
--- same style (Costs.Style: nil and unknown names are Balanced) and a danger table of the same signature (dangerOf:
--- the same entries above 1; nil and {} are none).
+-- same style (Costs.Style: nil and unknown names are Balanced) and, on a map with the zone field (where weights
+-- prices danger), a danger table of the same signature (dangerOf: the same entries above 1; nil and {} are none).
 ---@param job SPFPathJob?
 ---@param point SPFPoint
 ---@param profile? string the new batch's opts.profile
@@ -1007,14 +1008,17 @@ end
 ---@return boolean
 function Path.ReuseMany(job, point, profile, style, danger)
 	if not job or job.map ~= point.map or not job.sourceNode or Costs.Profile(job.profile) ~= Costs.Profile(profile)
-		or Costs.Style(job.style) ~= Costs.Style(style) or select(2, dangerOf(job.danger)) ~= select(2, dangerOf(danger)) then
+		or Costs.Style(job.style) ~= Costs.Style(style) then
+		return false
+	end
+	local st = State(job.map)
+	if st.classed and st.zoned and select(2, dangerOf(job.danger)) ~= select(2, dangerOf(danger)) then
 		return false
 	end
 	local from = job.from
 	if (from.x - point.x) ^ 2 + (from.y - point.y) ^ 2 > 9 or (from.z and point.z and abs(from.z - point.z) > ZTOL) then
 		return false
 	end
-	local st = State(job.map)
 	local k, node = pointNode(st, point)
 	return k == job.sourceCluster and node == job.sourceNode
 end
