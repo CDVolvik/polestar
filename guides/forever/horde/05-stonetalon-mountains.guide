@@ -73,13 +73,21 @@ next forever/horde/06-hillsbrad-foothills
 
 # ---------------------------------------------------------------- Mor'shan Rampart
 
+# Kadrak stands at the Mor'shan Rampart, in the Barrens (AreaTable: area 1703
+# under 17), where the Barrens' and Ashenvale's maps overlap, between the two
+# ends of the zone crossing. The travel planner goes through the crossing when
+# a target is on the other zone's map, so each visit has him on the map of the
+# side you come from: the Barrens' from the Crossroads, Ashenvale's on the way
+# back down from Splintertree. On Ashenvale's map from the south, the arrow
+# went to the crossing's far end, about 110 yards past him, and back (#246).
 step Kadrak
-  zone Ashenvale
+  zone The Barrens
   tip From the Crossroads follow the road north. Kadrak stands on the watch tower of the Mor'shan Rampart where the road enters Ashenvale. Open the Bundle of Reports he gives you.
   turnin 6541                         -- Kadrak
   accept 6543
 
 step Warsong Scout
+  zone Ashenvale
   tip Keep north on the road. The Warsong Scout waits at the Warsong lumber camp, south of Splintertree.
   collect 16764 quest 6543.1 @71.05,68.36 -- Warsong Scout
 

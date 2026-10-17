@@ -739,6 +739,25 @@ test("Fitz's playtest: typed coordinates are on the zone of every character who 
 	assert.deepEqual(offenders, [], 'typed coordinates on a zone some of their characters are not in');
 });
 
+// --- Kadrak on the far side's map (#246, found triaging fur's #237): he stands
+// at the Mor'shan Rampart, where the Barrens' and Ashenvale's world maps
+// overlap, between the two ends of the zone crossing. The travel planner goes
+// through the crossing to a target on the other zone's map, so from the
+// Crossroads, with Kadrak on Ashenvale's map, the arrow walked the crossing past
+// him and back. Each visit has him on the map of the side it comes from.
+const STONETALON_HORDE = 'forever/horde/05-stonetalon-mountains.guide';
+
+test(`${STONETALON_HORDE}: Kadrak is on the map of the side each visit comes from: the Barrens' from the Crossroads, Ashenvale's from Splintertree (#246)`, { skip }, () => {
+	const list = goals(STONETALON_HORDE);
+	for (const [what, pred, map] of [['turnin 6541', is('turnin', 6541), 1413], ['accept 6543', is('accept', 6543), 1413], ['turnin 6543', is('turnin', 6543), 1440]]) {
+		assert.equal(list[at(list, what, pred)].goal.map, map, `${what} is on map ${map}`);
+	}
+	for (const oi of [1, 2, 3]) {
+		const i = at(list, `collect 6543.${oi}`, (g) => g.t === 'collect' && g.quest === 6543 && g.oi === oi);
+		assert.equal(list[i].goal.map, 1440, `Warsong report ${oi} is on Ashenvale's map`);
+	}
+});
+
 // --- Hearths on another guide's bind (#171): Hillsbrad's "Hearth to Tarren
 // Mill" relied on the bind the Stonetalon guide makes, so a player who
 // skipped it, or started Hillsbrad from the picker, was told to hearth with a

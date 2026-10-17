@@ -23233,8 +23233,8 @@ do
 					title = "Kadrak",
 					note = "From the Crossroads follow the road north. Kadrak stands on the watch tower of the Mor'shan Rampart where the road enters Ashenvale. Open the Bundle of Reports he gives you.",
 					goals = {
-						{ t = "turnin", quest = 6541, title = "Report to Kadrak", npc = 8582, npcName = "Kadrak", map = 1440, x = 68.6, y = 89.1, z = 108.4, f = "e", note = "Kadrak" },
-						{ t = "accept", quest = 6543, title = "The Warsong Reports", npc = 8582, npcName = "Kadrak", minLevel = 17, qlvl = 19, map = 1440, x = 68.6, y = 89.1, z = 108.4, f = "e" },
+						{ t = "turnin", quest = 6541, title = "Report to Kadrak", npc = 8582, npcName = "Kadrak", map = 1413, x = 48.12, y = 5.42, z = 108.4, f = "e", note = "Kadrak" },
+						{ t = "accept", quest = 6543, title = "The Warsong Reports", npc = 8582, npcName = "Kadrak", minLevel = 17, qlvl = 19, map = 1413, x = 48.12, y = 5.42, z = 108.4, f = "e" },
 					},
 				},
 				{
