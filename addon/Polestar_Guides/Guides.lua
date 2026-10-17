@@ -8696,9 +8696,9 @@ do
 				},
 				{
 					title = "{quest:99160}",
-					note = "Finish off the Minor Ice Elementals around the frozen lake by the refuge if you are still short.",
+					note = "Finish off the Minor Ice Elementals around the small lake just west of the refuge if you are still short.",
 					goals = {
-						{ t = "kill", quest = 99160, title = "Rime's Wrath", target = "Minor Ice Elemental", npc = 276003, count = 10, oi = 1, map = 1426, x = 52.14, y = 44.11, f = "e", spots = { { x = 53.1, y = 44, r = 75, n = 32 }, { x = 52.7, y = 45.7, r = 55, n = 7 }, { x = 53.3, y = 42.2, r = 81, n = 7 }, { x = 55.1, y = 45.4, r = 65, n = 37 }, { x = 56.3, y = 43.7, r = 63, n = 21 }, { x = 56.6, y = 47, r = 61, n = 22 }, { x = 57.2, y = 45.2, r = 51, n = 23, alt = true }, { x = 57.7, y = 42.6, r = 28, n = 7, alt = true }, { x = 57.2, y = 49.8, r = 15, n = 2, alt = true }, { x = 58.4, y = 51.6, r = 16, n = 2, alt = true } } },
+						{ t = "kill", quest = 99160, title = "Rime's Wrath", target = "Minor Ice Elemental", npc = 276003, count = 10, oi = 1, map = 1426, x = 56.37, y = 44.73, note = "{npc:276003}, around the small lake" },
 					},
 				},
 				{
