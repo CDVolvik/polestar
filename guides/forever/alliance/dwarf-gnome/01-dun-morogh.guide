@@ -216,11 +216,11 @@ step Grelin Whitebeard
 step Anvilmar
   tip The Scalding Mornbrew lasts five minutes: go straight north to Durnan Furcutter inside Anvilmar.
   turnin 3364                                 -- Durnan Furcutter, inside Anvilmar
-  turnin 3361                                 -- Felix Whindlebolt
-  accept 3365
+  accept 3365                                 -- Durnan Furcutter
   train class                                 -- Level 4 spells, before Gozwin's camp
   turnin 1599 only Warlock                    -- Alamar Grimm: Summon Imp
   accept 94373 only Shaman                    -- Teo Hammerstorm, inside Anvilmar
+  turnin 3361                                 -- Felix Whindlebolt, at the door on the way out
 
 # The troll cave's mouth, marked in game at 26.93,80.03 (PR #16); Wowhead
 # Classic comments put it "@ 26, 79", Grik'nir "in the cave @ 30, 80"
