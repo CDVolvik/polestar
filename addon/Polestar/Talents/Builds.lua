@@ -212,7 +212,7 @@ T.Register({
 
 T.Register({
 	class = "ROGUE", tree = 1111, prereq = "full",
-	source = "ForeverDB", url = "https://foreverdb.net/class/Rogue/talents",
+	source = "ForeverDB's leveling builds, adapted to level 30", url = "https://foreverdb.net/class/Rogue/talents",
 	summary = L["Level as Combat with a sword (Riposte, Blade Flurry, Adrenaline Rush) for the steadiest kills, or Assassination with daggers and poisons (Mutilate). Subtlety's Hemorrhage plan suits stealth openers and is slower solo."],
 	specs = { "Assassination", "Combat", "Subtlety" },
 	-- node = { entry, max ranks, spell, spec column, row, column, name }
@@ -418,7 +418,7 @@ T.Register({
 
 T.Register({
 	class = "WARRIOR", tree = 1117, prereq = "full",
-	source = "ForeverDB", url = "https://foreverdb.net/class/Warrior/talents",
+	source = "ForeverDB's leveling builds, adapted to level 30", url = "https://foreverdb.net/class/Warrior/talents",
 	summary = L["Level as Arms with a two-hander (Mortal Strike, Sweeping Strikes) or Fury (Enrage, Death Wish, then Flurry and Bloodthirst with two weapons). Protection is slower alone but ready to tank any dungeon on the way."],
 	specs = { "Arms", "Fury", "Protection" },
 	-- node = { entry, max ranks, spell, spec column, row, column, name }
