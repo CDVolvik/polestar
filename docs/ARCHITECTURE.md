@@ -643,7 +643,6 @@ Compat.SpellLink(spellID)              -> link | nil
 Compat.RequestSpell(spellID)           -> bool   (cached; else requested: SPELL_DATA_LOAD_RESULT follows)
 Compat.GetBindLocation()               -> string | nil
 Compat.IsOnTaxi()                      -> bool
-Compat.IsIndoors()                     -> bool   (IsIndoors: in a cave, mine or building)
 Compat.GetCurrentTaxiNode()            -> name of the open taxi map's node | nil
 Compat.GetNpcID(unit)                  -> number | nil   (from UnitGUID)
 Compat.InCombat()                      -> bool
@@ -2567,9 +2566,10 @@ ceilings, 24 MB of grids and 4 MB of graph, were sized for his 8 yd cells, so
 runs (maps format 2's longest corpus walk decodes 40.9 MB of grids and 15.7 MB
 of graph) and `Path.graphRestKB` 6 MB at rest. With no search queued (`Idle`)
 the decoded grids go and the decoded graph is trimmed to 6 MB: measured
-standalone, 33.9 MB with the maps loaded and no search, 41.4 MB after the six
-longest corpus walks (0.2.4: 27.8 MB and 33.4 MB), about 103 MB at the peak of
-a long walk. Since the walking floor (#234) the cluster `Path.SurfacesAt`
+standalone (Task 15, LuaJIT heap at the router's callbacks), 33.8 MB with the
+maps loaded and no search, 38.3 MB after the six longest corpus walks and
+`Idle` (0.2.4: 27.8 MB and 33.4 MB), and a peak of 79.2 MB seen during those
+walks. Since the walking floor (#234) the cluster `Path.SurfacesAt`
 reads (the player's) stays decoded at rest while the arrow runs: one cluster,
 3.3 MB on average by the engine's accounting (3.1 MB allocated decoding the
 Den's camp's under LuaJIT); none without a target or 2 s after the arrow's
@@ -2587,7 +2587,7 @@ blocks are not checked at load; `nav check` pins them by sha256.
 
 **The handoff.** Polestar loads the addon with `Data.Pack("Polestar_Nav")`
 at login or later, never at its own `ADDON_LOADED` (decoding nothing, it
-still builds about 26 MB of packed strings) and never in combat; with
+still builds about 34 MB of packed strings) and never in combat; with
 `nav.navRouting` off it is not loaded. `API.lua` sets the global
 `Polestar_NavEngine` to the router's Path table; `Nav/Walk.lua` keeps it as
 `Nav.Path`. The calls are Shortest Path Forever's, with the fifth argument

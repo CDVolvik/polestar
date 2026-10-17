@@ -58,12 +58,14 @@ aids    the arrow's aids from the grid (--dir, default data/local/nav;
         data/local/crossings.json; read only).
 pack    Polestar's walking maps of maps 0 (Eastern Kingdoms), 1 (Kalimdor)
         and 2991 (Zephras Isle) from the grid (--dir, default data/local/nav;
-        grid version 3 or 4, 4 for the slope classes) and the ground layers
+        it needs grid version 4: nav build --out data/local/nav4, then --dir
+        data/local/nav4) and the ground layers
         (--layers, default data/local/nav-layers: roads and hubs, from nav
         layers), in maps format 2: a ground class per surface (road, gentle
         or steep slope, indoor, indoor city, Alliance and Horde hubs) and
         every graph edge priced per faction (tools/lib/nav/pack.js, grown
-        from a port of Shortest Path Forever's gen_nav.py and pack_nav.py),
+        from a port of Shortest Path Forever's (Cillian Berragan) gen_nav.py
+        and pack_nav.py),
         with Chokepoints.lua (lifts, bridges, gates, tunnels, cave and building
         mouths, passes; tools/lib/nav/chokepoints.js), into
         addon/Polestar_Nav (--out): Nav/Nav<map>*.lua,
@@ -80,11 +82,13 @@ eval    the walking router run standalone (LuaJIT, else Lua 5.1; a folder
         (yards, seconds, the share of the drawn line our grid at
         data/local/nav3 cannot walk, off-road share, yards in hostile hubs,
         steepest climb, indoor yards on data/local/nav4's indoor surfaces
-        outside the capitals, yards per zone; a layer not built yet reads
-        n/a) and expectations; a route with a level (the character's) is
-        priced with zone danger as the addon prices it (zones at least 4
-        levels above it, tools/lib/maps/zonelevels.js), and a route's own
-        danger ({ "<uiMapID>": multiplier }) is laid over it; --sweep also
+        outside the capitals, yards per zone, swumYards: yards over water;
+        a layer not built yet reads n/a) and expectations; a route with a
+        level (the character's) is priced with zone danger as the addon
+        prices it (x3 at 4+ levels above; more than 10 above x20; the
+        start's and goal's zones exempt; tools/lib/maps/zonelevels.js), and
+        a route's own danger ({ "<uiMapID>": multiplier }) is laid over it;
+        --sweep also
         searches, per zone with located guide goals and per side, from the
         zone's flight master (else its first goal) to every goal.
         --baseline runs the same on another folder (or

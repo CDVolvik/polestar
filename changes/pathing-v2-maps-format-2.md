@@ -8,4 +8,4 @@ section: contributors
   (`Routing/Costs.lua`, `Path.lua`, `PathGrid.lua`) prices steps by class and
   profile, straightens only over ground no costlier, and returns `job.yards`
   and `job.hubs`; Zephras Isle is packed from our grid. `nav eval` measures a
-  maps folder against a baseline (checks A1-A9).
+  maps folder against a baseline (checks A1-A8 (A9, memory, by hand)).

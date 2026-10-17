@@ -6,6 +6,6 @@ section: contributors
   by its yards (`walkCost` returns cost, yards; `Walk.LegPath` returns yards,
   hubs). `Travel.WalkCostHook(fn)` lets a planner rule scale walk costs;
   `leg.hubs` carries the hostile towns a walk enters (journey line,
-  `Travel.TakeWarning` for the arrow). `nav.spfHandoff` defaults to off, and
-  `Nav.HandedOff()` is also true while Shortest Path Forever runs a journey
-  not Polestar's (`Nav.handoff.Yielding()`).
+  `Travel.TakeWarning` for the arrow). `Nav.HandedOff()` is also true while
+  Shortest Path Forever runs a journey not Polestar's
+  (`Nav.handoff.Yielding()`).

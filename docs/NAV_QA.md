@@ -126,7 +126,7 @@ What tests cannot prove, checked in the client before a release:
    platform.
 4. **Loading (C17):** `Polestar_Nav` loads after login without a hitch;
    note its memory with `/run UpdateAddOnMemoryUsage() print(GetAddOnMemoryUsage("Polestar_Nav"))`
-   (about 26,000 KB, in Stormwind and in Teldrassil alike).
+   (about 34,000 KB, in Stormwind and in Teldrassil alike).
 5. **Hand-off and yield (H3, H5):** with Shortest Path Forever installed and
    a fresh profile, Polestar's arrow guides. Start a journey in Shortest Path
    Forever (its map click): Polestar's arrow, lines and journey step aside

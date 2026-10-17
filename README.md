@@ -76,8 +76,8 @@ Good to know:
 - **Updating:** delete the old Polestar folders, then unzip the new release
   the same way.
 - **Memory:** the arrow's walking routes (`Polestar_Nav`) load after login,
-  never in combat: about 26 MB for the walking maps, and while a walk is being
-  searched up to about 54 MB more for the stretch of map it crosses, released
+  never in combat: about 34 MB for the walking maps, and while a walk is being
+  searched up to about 45 MB more for the stretch of map it crosses, released
   when the search ends. **Walk real paths** (Options, Arrow & routes) off
   never loads them.
 - **Optional:** `Polestar_Recorder-<version>.zip` from the same release
