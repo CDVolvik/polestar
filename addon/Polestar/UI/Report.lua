@@ -1,24 +1,26 @@
 -- Report a problem: the window behind the guide window's bug button (in the
 -- navigator, beside Skip and the menu), its menu entry and /polestar report.
--- The player says what went wrong; the window sets that above everything a
+-- The player says what went wrong; the report sets that above everything a
 -- fix needs, taken when the window opens: the guide and the step on screen
 -- with every goal's state, ids and position, the arrow, where the player
--- stands, the versions, other packs and the errors Polestar caught. One
--- report, selected for copying, sized to stay inside one Discord message,
--- and under it where to paste it: the Polestar Discord, with "Get the
--- invite" for a player not in it yet. UI.ShowDiscord: the invite alone
+-- stands, the versions, other packs and addons and the errors Polestar
+-- caught. "Report bug" gives a link that opens a new issue on Polestar's
+-- GitHub with the report, its title, the version and the addons filled in
+-- (R.IssueURL). Under it the Polestar Discord: "Copy report" shows the
+-- report, selected, sized to stay inside one Discord message, and "Get the
+-- invite" is for a player not in it yet. UI.ShowDiscord: the invite alone
 -- (ns.DiscordURL), in the copy window with Discord's mark (that button, the
 -- sidebars' Discord mark, /polestar discord).
 --
 -- The game gives addons no clipboard and opens no links (LaunchURL is
 -- Blizzard's alone): everything to take away sits in a read-only copy box,
--- selected for Ctrl+C, and a member copies only the report.
+-- selected for Ctrl+C: the issue link, or the report for Discord.
 -- Built on first use; colours are Theme tokens only.
 
 local ADDON, ns = ...
 local UI, Theme, W, Anim = ns.UI, ns.Theme, ns.Widgets, ns.Anim
 local L = ns.L
-local floor, max, ipairs, tostring, type, pcall = math.floor, math.max, ipairs, tostring, type, pcall
+local floor, max, ipairs, pairs, tostring, type, pcall = math.floor, math.max, ipairs, pairs, tostring, type, pcall
 
 local R = {}
 UI.Report = R
@@ -82,14 +84,17 @@ local function goalLine(gv, raw, isCurrent, wp)
 	return cut(table.concat(parts, SEP))
 end
 
+local function polestarVersion()
+	return tostring(ns.version or "dev") .. (ns.stage and (" " .. ns.stage) or "")
+end
+
 local function versions()
 	local v, build = "?", "?"
 	if GetBuildInfo then
 		local a, b = GetBuildInfo()
 		v, build = tostring(a or "?"), tostring(b or "?")
 	end
-	local polestar = tostring(ns.version or "dev") .. (ns.stage and (" " .. ns.stage) or "")
-	return cut((L["Polestar %s"]):format(polestar) .. SEP .. (L["client %s (%s)"]):format(v, build) .. SEP .. (GetLocale and GetLocale() or "?"))
+	return cut((L["Polestar %s"]):format(polestarVersion()) .. SEP .. (L["client %s (%s)"]):format(v, build) .. SEP .. (GetLocale and GetLocale() or "?"))
 end
 
 local function character()
@@ -180,6 +185,32 @@ local function packsLine()
 	return cut((L["Packs: %s"]):format(table.concat(list, ", ")))
 end
 
+-- The other addons that are loaded, "name version" each (`withVersions`)
+-- or names only: their arrows, quest lines and frames can look like
+-- Polestar's.
+local function otherAddons(withVersions)
+	local A = C_AddOns or {}
+	local count = A.GetNumAddOns or GetNumAddOns
+	local info = A.GetAddOnInfo or GetAddOnInfo
+	local loaded = A.IsAddOnLoaded or IsAddOnLoaded
+	local meta = A.GetAddOnMetadata or GetAddOnMetadata
+	local list = {}
+	if not (count and info and loaded) then return list end
+	for i = 1, count() do
+		local name = info(i)
+		if type(name) == "string" and not name:find("^Polestar") and loaded(name) then
+			local v = withVersions and meta and meta(name, "Version")
+			list[#list + 1] = (type(v) == "string" and v ~= "") and (name .. " " .. plain(v)) or name
+		end
+	end
+	return list
+end
+
+local function addonsLine()
+	local list = otherAddons()
+	return cut((L["Addons: %s"]):format(#list > 0 and table.concat(list, ", ") or L["none"]))
+end
+
 -- The errors Polestar caught (ns.Errors), then with !BugGrabber installed the
 -- ones it grabbed this session in Polestar's files: the newest few, each
 -- with how often it came, its path from the AddOns folder.
@@ -222,6 +253,7 @@ function R.Details()
 	out[#out + 1] = arrowLine()
 	out[#out + 1] = playerLine()
 	out[#out + 1] = packsLine()
+	out[#out + 1] = addonsLine()
 	errorLines(out)
 	local lines = {}
 	for i = 1, #out do
@@ -241,6 +273,48 @@ function R.Text(description, details)
 	for _, line in ipairs(details or R.Details()) do out[#out + 1] = line end
 	out[#out + 1] = "```"
 	return table.concat(out, "\n")
+end
+
+-- A link that opens a new issue on Polestar's GitHub with the report in
+-- it: GitHub fills the title and the issue form's fields (by their ids in
+-- .github/ISSUE_TEMPLATE) from the link's query. A step on screen is a
+-- "Wrong step" issue, anything else a "Bug report".
+local function encode(s)
+	return (tostring(s):gsub("[^%w%-%._~]", function(c) return ("%%%02X"):format(c:byte()) end))
+end
+
+function R.IssueURL(description, details)
+	local fields = {
+		version = polestarVersion(),
+		-- Room in the link for a long list, short of GitHub's limit on its length.
+		addons = cut(table.concat(otherAddons(true), "\n"), 2000),
+	}
+	local E = ns.Engine
+	local guide = E and E.GetGuide and E.GetGuide()
+	local index = guide and E.GetStepIndex and E.GetStepIndex()
+	local view = index and E.GetStepView and E.GetStepView(index)
+	local guideTitle = guide and plain(guide.title or guide.id)
+	if view then
+		fields.template = "wrong-step.yml"
+		fields.title = ("Wrong step: %s, step %d"):format(guideTitle, index)
+		fields.guide = guideTitle
+		fields.step = index .. ": " .. plain(view.title or "")
+		fields.wrong = R.Text(description, details)
+		fields.character = character()
+	else
+		local desc = tostring(description or ""):match("^%s*(.-)%s*$")
+		fields.template = "bug-report.yml"
+		fields.title = "Bug: " .. cut(desc, 80)
+		fields.steps = R.Text(description, details)
+	end
+	local keys = {}
+	for k in pairs(fields) do keys[#keys + 1] = k end
+	table.sort(keys)
+	local query = {}
+	for _, k in ipairs(keys) do
+		if fields[k] and fields[k] ~= "" then query[#query + 1] = k .. "=" .. encode(fields[k]) end
+	end
+	return ns.IssueURL .. "?" .. table.concat(query, "&")
 end
 
 ---------------------------------------------------------------------------
@@ -270,13 +344,10 @@ local function layout()
 	y = y + F.DescLabel:GetStringHeight() + 6
 	put(F.Desc, PAD, y)
 	y = y + F.Desc:GetHeight() + 16
-	-- "Your report" and Select report share a row, the label on its middle.
-	put(F.Select, WIDTH - PAD - F.Select:GetWidth(), y)
-	F.BoxLabel:ClearAllPoints()
-	F.BoxLabel:SetPoint("LEFT", F, "TOPLEFT", PAD, -(y + 14))
-	y = y + 28 + 8
-	put(F.Box, PAD, y)
-	y = y + F.Box:GetHeight() + 16
+	put(F.GitHubNote, PAD, y)
+	y = y + F.GitHubNote:GetStringHeight() + 10
+	put(F.Report, PAD, y)
+	y = y + F.Report:GetHeight() + 16
 	put(F.Rule, PAD, y)
 	y = y + 1 + 16
 	-- The mark's ink starts 2px into its texture and 5px down.
@@ -285,8 +356,15 @@ local function layout()
 	y = y + F.DiscordTitle:GetStringHeight() + 4
 	put(F.DiscordNote, TEXT_X, y)
 	y = y + F.DiscordNote:GetStringHeight() + 10
-	put(F.Invite, TEXT_X, y)
-	y = y + F.Invite:GetHeight()
+	put(F.Copy, TEXT_X, y)
+	F.Invite:ClearAllPoints()
+	F.Invite:SetPoint("LEFT", F.Copy, "RIGHT", 8, 0)
+	y = y + F.Copy:GetHeight()
+	if F.Box:IsShown() then
+		y = y + 12
+		put(F.Box, PAD, y)
+		y = y + F.Box:GetHeight()
+	end
 	F:SetHeight(floor(y + PAD + 0.5))
 end
 
@@ -300,9 +378,18 @@ local function compose()
 	layout()
 end
 
-local function selectReport()
+-- The report for Discord, shown under its buttons only when asked for.
+local function copyReport()
+	F.Box:Show()
+	layout()
 	F.Box:SetFocus()
 	F.Box:HighlightText()
+end
+
+local function reportBug()
+	UI.ShowCopy(L["Report a bug on GitHub"], R.IssueURL(F.Desc:GetText(), F.details), {
+		hint = L["The link is selected for you: copy it with Ctrl+C (Cmd+C on a Mac), paste it in your browser's address bar and press Enter."],
+	})
 end
 
 -- "Step 3 of 8 · Kobold Camp · Elwynn Forest": what the report is about.
@@ -349,7 +436,6 @@ local function textArea()
 	e:SetScript("OnEditFocusGained", function(self) Theme.SetFocused(self, true) end)
 	e:SetScript("OnEditFocusLost", function(self) Theme.SetFocused(self, false) end)
 	e:SetScript("OnEscapePressed", function(self) self:ClearFocus() end)
-	e:SetScript("OnTabPressed", selectReport)
 	e:SetScript("OnTextChanged", function(self)
 		self.Placeholder:SetShown((self:GetText() or "") == "")
 		if F.details then compose() end
@@ -398,10 +484,15 @@ local function build()
 	F.DescLabel:SetText(L["What went wrong?"])
 	F.Desc = textArea()
 
-	F.BoxLabel = W.Text(F, "label", "text")
-	F.BoxLabel:SetText(L["Your report"])
-	F.Select = W.Button(F, L["Select report"], selectReport, { primary = true })
+	F.GitHubNote = W.Text(F, "note", "textDim")
+	F.GitHubNote:SetWidth(BOX_W)
+	F.GitHubNote:SetJustifyH("LEFT")
+	F.GitHubNote:SetWordWrap(true)
+	F.GitHubNote:SetText(L["Click the button to get a link to GitHub for your web browser, then copy-paste the URL to go to GitHub. If you don't have an account, create one, copy-paste the URL again, and click \"Create\" on the bottom right of your screen. Thanks for helping make the addon better!"])
+	F.Report = W.Button(F, L["Report bug"], reportBug, { primary = true })
+
 	F.Box = W.CopyBox(F, { lines = 2 })
+	F.Box:Hide()
 	Theme.Font(F.Box, "small")
 	F.Box:SetWidth(BOX_W)
 	F.Box:SetScript("OnTabPressed", function() F.Desc:SetFocus() end)
@@ -425,7 +516,8 @@ local function build()
 	F.DiscordNote:SetWidth(WIDTH - TEXT_X - PAD)
 	F.DiscordNote:SetJustifyH("LEFT")
 	F.DiscordNote:SetWordWrap(true)
-	F.DiscordNote:SetText(L["Copy your report with Ctrl+C (Cmd+C on a Mac), switch to Discord and paste it in the Polestar server. Not in it yet? Get the invite once and open it in your browser."])
+	F.DiscordNote:SetText(L["Rather use Discord? Press Copy report, then Ctrl+C (Cmd+C on a Mac), and paste it in the Polestar server. Not in it yet? Get the invite once and open it in your browser."])
+	F.Copy = W.Button(F, L["Copy report"], copyReport)
 	-- The game opens no links, so the invite is one more copy: only for a
 	-- player who has not joined yet, in the copy window, never here beside
 	-- the report.
@@ -433,11 +525,11 @@ local function build()
 
 	F:SetScript("OnShow", function(self) Anim.To(self, "alpha", 0, 1, Anim.FAST, "out") end)
 	ns.CloseOnEscape("PolestarReport")
-	-- A gamepad (UI/Gamepad.lua) starts on "Select report".
+	-- A gamepad (UI/Gamepad.lua) starts on "Report bug".
 	if ns.Gamepad and ns.Gamepad.Register then
 		ns.Gamepad.Register(F, {
 			initial = function(rows)
-				for i, w in ipairs(rows) do if w == F.Select then return i end end
+				for i, w in ipairs(rows) do if w == F.Report then return i end end
 			end,
 		})
 	end
@@ -453,6 +545,7 @@ function UI.ShowReport()
 	F.key = key
 	F.Desc.Placeholder:SetShown((F.Desc:GetText() or "") == "")
 	F.Context:SetText(context())
+	F.Box:Hide()
 	compose()
 	F:Show()
 	F:Raise()

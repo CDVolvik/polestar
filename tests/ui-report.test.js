@@ -1,8 +1,9 @@
 'use strict';
 // Reporting a problem (addon/Polestar/UI/Report.lua): the guide window's bug
 // button, its menu entry and /polestar report open a window that sets the
-// player's words above the details a fix needs, as one report to copy for
-// the Polestar Discord; the sidebars of the hub and the settings, and
+// player's words above the details a fix needs, as one report: in a link
+// that opens a filled-in GitHub issue, or to copy for the Polestar Discord;
+// the sidebars of the hub and the settings, and
 // /polestar discord, give the invite with Discord's mark. Against the real
 // Core, Theme and UI and the fakes of tests/lua/stub_ui.lua.
 
@@ -36,14 +37,15 @@ test('the bug in the navigator reports the step on screen: the player\'s words, 
 		local opened = { shown = F:IsShown(), typing = stub.focus == F.Desc, context = F.Context:GetText() }
 		F.Desc:SetText("The vermin were all by the tents.")
 		stub.RunScript(F.Desc, "OnTextChanged", true)
+		local hidden = not F.Box:IsShown()
+		local closedH = F:GetHeight()
+		F.Copy:Click()
 		local text = F.Box:GetText()
-		F.Select:Click()
-		local selected = stub.focus == F.Box
+		local selected = F.Box:IsShown() and stub.focus == F.Box
 		local boxH = F.Box:GetHeight()
-		local reportCopies = 0
-		for _, b in ipairs({ F:GetChildren() }) do if b.psText and b:IsShown() then reportCopies = reportCopies + 1 end end
+		local grown = F:GetHeight() - closedH
 		F.Invite:Click()
-		emit({ noGuide = noGuide, shown = shown, opened = opened, text = text, selected = selected, copies = reportCopies,
+		emit({ noGuide = noGuide, shown = shown, opened = opened, text = text, hidden = hidden, selected = selected, grown = grown,
 			invite = { shown = PolestarCopy:IsShown(), text = PolestarCopy.Box:GetText(), focus = stub.focus == PolestarCopy.Box }, boxH = boxH })`);
 	assert.equal(out.noGuide, false, 'no guide, no step to report: the bug is not there');
 	assert.equal(out.shown, true);
@@ -67,8 +69,9 @@ test('the bug in the navigator reports the step on screen: the player\'s words, 
 	const versions = lineWith(out.text, 'client ');
 	assert.ok(versions.startsWith('Polestar ') && versions.includes('client 1.60.1 (70338)') && versions.endsWith('enUS'), versions);
 	assert.ok(lines.includes('Errors: none'), out.text);
-	assert.equal(out.selected, true, 'Select report puts the report in focus, selected for Ctrl+C');
-	assert.equal(out.copies, 1, 'one thing to copy in the window: the report (a member needs no invite)');
+	assert.equal(out.hidden, true, 'the report is not shown until it is asked for');
+	assert.equal(out.selected, true, 'Copy report shows the report in focus, selected for Ctrl+C');
+	assert.ok(out.grown >= out.boxH, `the window grows to hold it (${out.grown}px for a ${out.boxH}px box)`);
 	assert.deepEqual(out.invite, { shown: true, text: INVITE, focus: true }, 'Get the invite opens the invite on its own, selected');
 	assert.ok(out.boxH >= lines.length * 11, `the box holds every line (${out.boxH}px for ${lines.length})`);
 });
@@ -89,6 +92,7 @@ test('at its longest the report still fits one Discord message', () => {
 		local F = PolestarReport
 		F.Desc:SetText(string.rep("w", UI.Report.DESC_MAX))
 		stub.RunScript(F.Desc, "OnTextChanged", true)
+		F.Copy:Click()
 		emit({ text = F.Box:GetText() })`);
 	assert.ok(out.text.length <= 2000, `${out.text.length} characters`);
 	assert.ok(out.text.startsWith(`**What went wrong:** ${'w'.repeat(250)}\n`), 'the description is kept whole');
@@ -188,4 +192,41 @@ test('the hub and the settings carry the Polestar Discord at the foot of the sid
 	assert.deepEqual(out.fromHub, invite);
 	assert.deepEqual(out.fromCommand, invite);
 	assert.deepEqual(out.after, { icon: false, text: 'zone map 1429' }, 'the next text to copy comes without the mark');
+});
+
+test('the report names the other addons that are loaded; "Report bug" gives a link that opens a new GitHub issue with the report, its title, the version and those addons filled in', () => {
+	const [out] = run(`
+		stub.addons[#stub.addons + 1] = { name = "Questie", loaded = true }
+		stub.addons[#stub.addons + 1] = { name = "TomTom", loaded = true }
+		stub.addons[#stub.addons + 1] = { name = "NotLoaded", loaded = false }
+		stub.addonMeta.Questie = { Version = "9.1.0" }
+		uistub.setGuide(uistub.elwynn, 3)
+		UI.ShowReport()
+		local F = PolestarReport
+		F.Desc:SetText("The vermin were all by the tents.")
+		stub.RunScript(F.Desc, "OnTextChanged", true)
+		local report = F.Box:GetText()
+		F.Report:Click()
+		local step = { shown = PolestarCopy:IsShown(), url = PolestarCopy.Box:GetText(), focus = stub.focus == PolestarCopy.Box }
+		Polestar.Engine.SetGuide(nil)
+		emit({ report = report, step = step, noGuide = UI.Report.IssueURL("Lua error on login", UI.Report.Details()) })`);
+	assert.ok(out.report.split('\n').includes('Addons: Questie, TomTom'), out.report);
+	assert.equal(out.step.shown, true);
+	assert.equal(out.step.focus, true, 'the link is selected for Ctrl+C');
+	const url = new URL(out.step.url);
+	assert.equal(url.origin + url.pathname, 'https://github.com/fitzforge/polestar/issues/new');
+	const q = Object.fromEntries(url.searchParams);
+	assert.equal(q.template, 'wrong-step.yml');
+	assert.equal(q.title, 'Wrong step: Elwynn Forest, step 3');
+	assert.equal(q.guide, 'Elwynn Forest');
+	assert.equal(q.step, '3: Kobold Camp');
+	assert.equal(q.wrong, out.report, 'the whole report, as the window shows it');
+	assert.match(q.character, /^Human Warrior · level 4/);
+	assert.match(q.version, /^(\d+\.\d+\.\d+|dev)/);
+	assert.equal(q.addons, 'Questie 9.1.0\nTomTom 0.1.0-test');
+	const bug = Object.fromEntries(new URL(out.noGuide).searchParams);
+	assert.equal(bug.template, 'bug-report.yml', 'no step on screen: a bug report');
+	assert.equal(bug.title, 'Bug: Lua error on login');
+	assert.match(bug.steps, /^\*\*What went wrong:\*\* Lua error on login\n```\n/);
+	assert.equal(bug.guide, undefined);
 });
