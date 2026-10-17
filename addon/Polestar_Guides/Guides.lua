@@ -8842,6 +8842,27 @@ do
 					},
 				},
 				{
+					title = "{npc:264936}",
+					note = "Farsen camps on the ridge overlooking the {area:134} from the west. Talk to him for his farsight.",
+					goals = {
+						{ t = "turnin", quest = 96408, title = "A Visitor to Dun Morogh", npc = 264936, npcName = "Earthseer Farsen", map = 1426, x = 64.87, y = 58.47, f = "e" },
+						{ t = "accept", quest = 96392, title = "Farsen's Watch", npc = 264936, npcName = "Earthseer Farsen", minLevel = 9, qlvl = 13, map = 1426, x = 64.87, y = 58.47, f = "e" },
+						{ t = "turnin", quest = 96392, title = "Farsen's Watch", npc = 264936, npcName = "Earthseer Farsen", map = 1426, x = 64.87, y = 58.47, f = "e" },
+						{ t = "accept", quest = 96390, title = "Nip 'Em in the Bud", npc = 264936, npcName = "Earthseer Farsen", minLevel = 9, qlvl = 13, pre = { 96392 }, preTitles = { [96392] = "Farsen's Watch" }, map = 1426, x = 64.87, y = 58.47, f = "e" },
+						{ t = "accept", quest = 433, title = "The Public Servant", npc = 1977, npcName = "Senator Mehr Stonehallow", minLevel = 6, qlvl = 11, map = 1426, x = 68.67, y = 55.97, z = 383.3, f = "e", note = "{npc:1977}, in the quarry" },
+					},
+				},
+				{
+					title = "Spies and Bonesnappers",
+					note = "Rockjaw Bonesnappers prowl the quarry and {area:212}; Dark Iron Spies sneak around the lake shore, on the way east to the South Gate. One spy drops the {item:274268}.",
+					goals = {
+						{ t = "kill", quest = 433, title = "The Public Servant", target = "Rockjaw Bonesnapper", npc = 1117, count = 10, oi = 1, map = 1426, x = 70.67, y = 56.64, z = 361.6, f = "e", spots = { { x = 70.8, y = 55.4, z = 360.8, r = 42, n = 5 }, { x = 70.6, y = 52.8, z = 350.2, r = 40, n = 6 }, { x = 71.9, y = 50.9, z = 339.6, r = 43, n = 7 }, { x = 72.8, y = 53.1, r = 40, n = 3 }, { x = 74.8, y = 56.1, z = 399.7, r = 40, n = 3 }, { x = 76.3, y = 61, r = 40, n = 3 }, { x = 78.1, y = 59.4, z = 401.9, r = 42, n = 5 }, { x = 79.8, y = 58.1, z = 401.7, r = 40, n = 1 }, { x = 79.6, y = 54.6, z = 401.2, r = 40, n = 3 } }, spread = true },
+						{ t = "kill", quest = 96390, title = "Nip 'Em in the Bud", target = "Dark Iron Spy", npc = 6123, count = 10, oi = 1, map = 1426, x = 76.91, y = 59.95, z = 401.2, f = "e", spots = { { x = 77.5, y = 59.9, r = 32, n = 4 }, { x = 77.6, y = 61.8, z = 408.2, r = 44, n = 8 } } },
+						{ t = "collect", item = 274268, itemName = "Dark Iron Map", map = 1426, x = 76.91, y = 59.95, f = "e", spots = { { x = 77.4, y = 60.1, r = 37, n = 5 }, { x = 77.7, y = 62, r = 47, n = 8 } } },
+						{ t = "accept", quest = 96391, title = "Underground Map", item = 274268, itemName = "Dark Iron Map", minLevel = 9, qlvl = 15 },
+					},
+				},
+				{
 					title = "{area:806}",
 					note = "Follow the road all the way east to the {area:806} at the {zone:1432} tunnel.",
 					goals = {
@@ -8894,27 +8915,6 @@ do
 					only = { classes = { "SHAMAN" } },
 					goals = {
 						{ t = "turnin", quest = 94468, title = "Call of Fire", npc = 257597, npcName = "Bruegs Kindleborn", map = 1426, x = 87.94, y = 44.8, f = "e", note = "{npc:257597}: {npc:2523}, your {item:5176} and the {item:263412}", rewards = { items = { { item = 5176, itemName = "Fire Totem" }, { item = 263412, itemName = "Totem of Charged Flames" } } } },
-					},
-				},
-				{
-					title = "{npc:264936}",
-					note = "Farsen camps on the ridge overlooking the {area:134} from the west. Talk to him for his farsight.",
-					goals = {
-						{ t = "turnin", quest = 96408, title = "A Visitor to Dun Morogh", npc = 264936, npcName = "Earthseer Farsen", map = 1426, x = 64.87, y = 58.47, f = "e" },
-						{ t = "accept", quest = 96392, title = "Farsen's Watch", npc = 264936, npcName = "Earthseer Farsen", minLevel = 9, qlvl = 13, map = 1426, x = 64.87, y = 58.47, f = "e" },
-						{ t = "turnin", quest = 96392, title = "Farsen's Watch", npc = 264936, npcName = "Earthseer Farsen", map = 1426, x = 64.87, y = 58.47, f = "e" },
-						{ t = "accept", quest = 96390, title = "Nip 'Em in the Bud", npc = 264936, npcName = "Earthseer Farsen", minLevel = 9, qlvl = 13, pre = { 96392 }, preTitles = { [96392] = "Farsen's Watch" }, map = 1426, x = 64.87, y = 58.47, f = "e" },
-						{ t = "accept", quest = 433, title = "The Public Servant", npc = 1977, npcName = "Senator Mehr Stonehallow", minLevel = 6, qlvl = 11, map = 1426, x = 68.67, y = 55.97, z = 383.3, f = "e", note = "{npc:1977}, in the quarry" },
-					},
-				},
-				{
-					title = "Spies and Bonesnappers",
-					note = "Rockjaw Bonesnappers prowl the quarry and {area:212}; Dark Iron Spies sneak around the lake shore. One spy drops the {item:274268}.",
-					goals = {
-						{ t = "kill", quest = 433, title = "The Public Servant", target = "Rockjaw Bonesnapper", npc = 1117, count = 10, oi = 1, map = 1426, x = 70.67, y = 56.64, z = 361.6, f = "e", spots = { { x = 70.8, y = 55.4, z = 360.8, r = 42, n = 5 }, { x = 70.6, y = 52.8, z = 350.2, r = 40, n = 6 }, { x = 71.9, y = 50.9, z = 339.6, r = 43, n = 7 }, { x = 72.8, y = 53.1, r = 40, n = 3 }, { x = 74.8, y = 56.1, z = 399.7, r = 40, n = 3 }, { x = 76.3, y = 61, r = 40, n = 3 }, { x = 78.1, y = 59.4, z = 401.9, r = 42, n = 5 }, { x = 79.8, y = 58.1, z = 401.7, r = 40, n = 1 }, { x = 79.6, y = 54.6, z = 401.2, r = 40, n = 3 } }, spread = true },
-						{ t = "kill", quest = 96390, title = "Nip 'Em in the Bud", target = "Dark Iron Spy", npc = 6123, count = 10, oi = 1, map = 1426, x = 76.91, y = 59.95, z = 401.2, f = "e", spots = { { x = 77.5, y = 59.9, r = 32, n = 4 }, { x = 77.6, y = 61.8, z = 408.2, r = 44, n = 8 } } },
-						{ t = "collect", item = 274268, itemName = "Dark Iron Map", map = 1426, x = 76.91, y = 59.95, f = "e", spots = { { x = 77.4, y = 60.1, r = 37, n = 5 }, { x = 77.7, y = 62, r = 47, n = 8 } } },
-						{ t = "accept", quest = 96391, title = "Underground Map", item = 274268, itemName = "Dark Iron Map", minLevel = 9, qlvl = 15 },
 					},
 				},
 				{

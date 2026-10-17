@@ -14,7 +14,8 @@ next forever/alliance/02-westfall
 # Frostmane Hold -> back east to Kharanos and the depot -> Misty Pine
 # Refuge -> Amberstill Ranch and the
 # Gol'Bolar Quarry -> North Gate Outpost -> hearth to Kharanos -> Brewnall ->
-# South Gate Outpost -> Farsen above the quarry -> Old Icebeard's cave ->
+# Farsen above the quarry -> South Gate Outpost -> back to Mehr and Farsen ->
+# Old Icebeard's cave ->
 # Ironforge (training) and the tram to Stormwind.
 #
 # Order changes against the export:
@@ -73,6 +74,11 @@ next forever/alliance/02-westfall
 # - Brewnall's quests are taken before Frostmane Hold, so the bears, boars
 #   and leopards killed on the way to the Hold count toward "A Favor for
 #   Evershine" (319) instead of being wasted.
+# - Farsen's quests and Senator Mehr's "The Public Servant" (433) are taken
+#   on the walk east to the South Gate Outpost, so the Bonesnappers and Dark
+#   Iron Spies along the way count, and handed in on the way back west,
+#   instead of reaching the South Gate first and walking back east for the
+#   kills (played at level 11 in a recorded Dwarf Paladin run).
 #
 # Left out: "Stout to Kadrell" (414) is never turned in (the route goes to
 # Westfall, not Loch Modan). "The Reports" (291) is handed to Senator Barin
@@ -525,6 +531,21 @@ step Brewnall Village
 step Steelgrill's Depot
   accept 96408                                -- Beldin Steelgrill
 
+step Earthseer Farsen
+  tip Farsen camps on the ridge overlooking the Gol'Bolar Quarry from the west. Talk to him for his farsight.
+  turnin 96408
+  accept 96392
+  turnin 96392
+  accept 96390
+  accept 433                                  -- Senator Mehr Stonehallow, in the quarry
+
+step Spies and Bonesnappers
+  tip Rockjaw Bonesnappers prowl the quarry and Helm's Bed Lake; Dark Iron Spies sneak around the lake shore, on the way east to the South Gate. One spy drops the Dark Iron Map.
+  kill 1117 quest 433                         -- Rockjaw Bonesnapper
+  kill 6123 quest 96390                       -- Dark Iron Spy
+  collect 274268                              -- Dark Iron Map
+  accept 96391
+
 step South Gate Outpost
   tip Follow the road all the way east to the South Gate Outpost at the Loch Modan tunnel.
   turnin 413                                  -- Mountaineer Barleybrew
@@ -563,21 +584,6 @@ step Back to Bruegs Kindleborn
   zone Dun Morogh
   tip Back through the tunnel to Bruegs' cave above the farm.
   turnin 94468 reward 5176 263412             -- Bruegs Kindleborn: Searing Totem, your Fire Totem and the Totem of Charged Flames
-
-step Earthseer Farsen
-  tip Farsen camps on the ridge overlooking the Gol'Bolar Quarry from the west. Talk to him for his farsight.
-  turnin 96408
-  accept 96392
-  turnin 96392
-  accept 96390
-  accept 433                                  -- Senator Mehr Stonehallow, in the quarry
-
-step Spies and Bonesnappers
-  tip Rockjaw Bonesnappers prowl the quarry and Helm's Bed Lake; Dark Iron Spies sneak around the lake shore. One spy drops the Dark Iron Map.
-  kill 1117 quest 433                         -- Rockjaw Bonesnapper
-  kill 6123 quest 96390                       -- Dark Iron Spy
-  collect 274268                              -- Dark Iron Map
-  accept 96391
 
 step Senator Mehr Stonehallow
   turnin 433
