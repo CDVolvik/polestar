@@ -24,8 +24,8 @@ one into the other. The addons:
 | Addon | What it holds | Built by (`node tools/polestar.js …`) | In git | Ships |
 |---|---|---|---|---|
 | `Polestar` (`addon/Polestar/`) | The addon: engine, navigation, quests, gear, maps, quality of life, Lookup, Dungeons, Rares and every window | hand-written, plus a few generated data files | yes | yes |
-| `Polestar_Guides` (`addon/Polestar_Guides/`) | Polestar's own guide pack (pack id `guides`) | `compile`, from `guides/` | yes (generated) | yes |
-| community guide packs | Addons by other authors (`X-Polestar-Pack` in their TOC; `docs/PACKS.md`, `docs/PACK_FORMAT.md`) | the same compiler, from their own repositories | in their own repositories | by their authors |
+| `Polestar_Guides` (`addon/Polestar_Guides/`) | Polestar's own pack (pack id `guides`) | `compile`, from `guides/` | yes (generated) | yes |
+| community addons | Addons by other authors (`X-Polestar-Pack` in their TOC; `docs/PACKS.md`, `docs/PACK_FORMAT.md`) | the same compiler, from their own repositories | in their own repositories | by their authors |
 | `Polestar_ItemDB` (`addon/Polestar_ItemDB/`) | Item stats and Forever reward choices for the gear advice; loaded on demand | `itemdb build` (`Items.lua`), then `gear build` (`Forever.lua`) | yes (generated) | yes |
 | `Polestar_Names_<locale>` (`addon/Polestar_Names_deDE/` … `zhTW/`) | Quest, NPC, object and item names in one client language, for `Polestar.Names`; loaded on demand, only the client's own, never in English | `i18n names`, from DingDB (pinned) and pfQuest | yes (generated) | yes |
 | `Polestar_QuestDB` (`addon/Polestar_QuestDB/`) | The quest database behind quest markers and tooltips; loaded on demand | `questdb build` | no (local, gitignored) | yes, when built |
@@ -35,7 +35,7 @@ one into the other. The addons:
 | `Polestar_Recorder` (`addon/Polestar_Recorder/`) | The optional standalone recorder of play sessions, for authoring | hand-written | yes | yes, as its own zip |
 
 A guide goes from a `.guide` file to the game in four steps. An author
-writes it in a guide pack (`guides/` for Polestar's own). `lint` and
+writes it in a pack (`guides/` for Polestar's own). `lint` and
 `compile` parse it and fill in names, places and coordinates from the
 reference data in `data/forever`. `compile` writes the result as Lua into the
 pack's addon folder (`addon/Polestar_Guides` for ours). `install` copies that
@@ -92,7 +92,7 @@ be prefixed `Polestar`.
 ## Core
 
 `local ADDON, ns = ...` in every file; `Polestar = ns` is set once in
-`Core/Init.lua` (first file loaded). Guide packs reach it as the global.
+`Core/Init.lua` (first file loaded). Packs reach it as the global.
 
 ### Lifecycle
 
@@ -171,7 +171,7 @@ keeps yards for whoever reads it.
 `PolestarDB = { schema = 1, settings = { [section] = { ... } }, packs = { [packId] = { off = true } }, welcomeSeen = 1, gamepad = { chords = { [action] = "PADRSHOULDER+PADDUP" } } }`
 `PolestarCharDB = { schema = 1, guide = id|nil, tabs = { guideId, ... }, activeTab = n, absentAt = { [guideId] = place }, manual = { [guideId] = { ["s:g"] = true|"tick" } }, skipped = { [guideId] = { [stepIndex] = true, ["s:g"] = true } }, pins = { [guideId] = { step, done } }, offers = { [questID] = true }, shapes = { [guideId] = shape }, stepKeys = { [guideId] = { hash, ... } }, flags = { fp = { [name] = true }, ... }, welcomeSeen = 0|1 }`
 
-`packs[<id>].off` hides a pack's guides account-wide (the Guide packs page's
+`packs[<id>].off` hides a pack's guides account-wide (the Community guides page's
 switch). `welcomeSeen` (UI/Welcome.lua) is the version of the welcome last
 seen: in `PolestarDB`, the account has had its welcome (later characters skip
 its Set up and Route style pages); in `PolestarCharDB`, this character has (0 while due).
@@ -209,7 +209,7 @@ registered commands with their `help` lines (already translated:
 (skip the step shown, for good), `reset` (clear ticks, latches, skips and
 the saved view for the current guide), `guide <id>`, `status`, `tabs`,
 `tab <n>`, `close`, `path` (the route choice), `welcome` (`SHOW_WELCOME`),
-`packs` (Options at Guide packs), `gamepad` (Options at Gamepad), `where`, `report` (`SHOW_REPORT`),
+`packs` (Options at Community guides), `gamepad` (Options at Gamepad), `where`, `report` (`SHOW_REPORT`),
 `discord` (`SHOW_DISCORD`), `debug`; Nav adds `arrow`, `way` and `route`;
 modules add theirs (`xp`, `gear`, `instances`, `dungeons`, `lookup`, `mount`,
 `rares`, `questdb`).
@@ -1401,7 +1401,85 @@ Polestar.Theme.Skin(frame, kind)          -- "window","panel","inset","button","
 Polestar.Theme.Media(name) -> texturePath -- e.g. "icon-accept", "check", "white", "glow"
 Polestar.Theme.OnChanged(fn)              -- fn() on any scheme/colour/font change
 Polestar.Theme.IsEllesmere() -> bool
+Polestar.Theme.SkinKey() -> "polestar" | "halo" | "blizzard"   -- ui.skin
+Polestar.Theme.SkinChoices() -> { { value, text }, ... }
+Polestar.Theme.Metric(key, house) -> n   -- a size in the skin in use; `house` in the house style
+Polestar.Theme.Icon(name) -> name        -- a glyph a skin draws its own way ("bug" -> "flag")
+Polestar.Theme.FontKey() -> "game" | "inter" | "fira"   -- ui.font, "skin" resolved
 ```
+
+**Skins** (`ui.skin`, Appearance > Windows > Frame): `polestar`, the house
+style everything below describes (the default); the two directions of the
+design handoff, `halo` (Forever · Halo: no frame, a dark veil with soft edges,
+an off-white ladder, the game's gold, Fira Sans) and `hearth` (Forever ·
+Hearth: warm game colours, a brown gradient window, the client's buttons, font
+and text colours); and the game's own looks, `forever`, `blizzard` and
+`classic` (below). `Theme.GameSkin()` is true for Hearth and the game's looks:
+the client's check boxes, sliders and red buttons, its font and hard shadow. A
+skin brings:
+- its palette (`Theme.SKIN_PALETTES`: the handoff's tokens as given, washes
+  included); the scheme, ground colour, brightness, band and shadow are the
+  house style's (their options are greyed out in a skin); the player's own
+  accent, window border and arrow colours win in every skin. Tokens the skins
+  added (`textOff`, `title`, `link`, `todo`, `later`, `manual`, `skipped`,
+  `arrive`, `veil`, `veilWindow`, `menuBg`, `inputBg`, `control`,
+  `accentLine`, `padSelect`, `chipAccent`, `separator`, `rowLine`, `icon`,
+  `iconHover`, `buttonText`, `personName`, `tabRest`) exist in the house
+  style too, as their house equivalents;
+- its paints (`Theme.SKIN_PAINT`, falling back to the house paint): Halo's
+  veil (Media/UI/veil-soft, nine slices laid 24 units out); Hearth's flat
+  brown gradient windows edged by the window border setting (a #5C4518
+  hairline by default; no game frame) and the game's `UI-Panel-Button-*`. A
+  frame painted in another skin is cleared first, so a switch and back leaves it
+  as it was;
+- its fonts (`ui.font` "skin", the default: the game's in the house style and
+  Hearth and the game's looks, Fira Sans in Halo), its type sizes and text shadow;
+- its sizes (`Theme.Metric`): setting rows, buttons, menus, dropdowns,
+  sliders, the guide window (`readMetrics` / `GF.ApplySkin`), the shell
+  (`W.SHELL` reads them) and the guide menu. The big windows take them as they
+  are built.
+
+The arrow follows the skin (`nav.arrowStyle` "skin", the default: 3D in the
+house style, the `halo` dart in Halo, the `hearth` dart in Hearth and the
+game's looks; Nav/Arrow.lua). The skins' textures are drawn by
+`tools/media/skins.js`.
+
+**The game's looks** (Theme/GameSkins.lua) draw Polestar in the client's art,
+the three looks EllesmereUI offers on the Forever client (its visual spec
+only; nothing of that addon is used), composed as the client's own FrameXML
+composes its windows: SharedUIPanelTemplates (ButtonFrameTemplateNoPortrait,
+InsetFrameTemplate, UIPanelButtonTemplate, UIPanelCloseButton), the
+NineSliceLayouts with the Forever client's offset overrides, and the Settings
+panel's controls (MinimalTab, the minimal check box, MinimalSliderWithSteppers,
+WowStyle2Dropdown, MinimalScrollBar, the MenuStyle1 menu ground). Each look is
+a kit of parts by role (`Theme.KITS`), drawn by `Theme.Kit*` helpers the
+widgets and the guide window call, and kept in `frame.psSkin.kit` so a skin
+change hides them:
+- the big windows (shells, dialogs) are the template's Bg: its metal frame
+  lies outside them, with the title bar above (a drag strip and the title on
+  it) and the close button on its corner; rock under the content, the
+  sidebar an inset, gold setting labels and list rows (`rowLabel`,
+  `navRest`);
+- the guide window and the toasts (`psLight`) keep EllesmereUI's small-window
+  looks: Forever's bronze micro menu line, Blizzard's black body under a fade
+  with the damage meter's header bar, Classic's tooltip tile under the chat
+  tab's rim;
+- atlases the client draws sliced (UiTextureAtlasElementSliceData) are cut at
+  the same margins (`ns.GameArtSlice`).
+
+Sources: `forever` names atlas elements (the Forever client draws its own
+-c60 art for them); `blizzard` draws the same elements in their retail art,
+which still ships with the client but which SetAtlas does not draw there, by
+file ID and coordinates from `Theme/GameArt.lua` (generated with the slice
+margins by `node tools/polestar.js media game-art`, tools/media/game-art.js);
+`classic` names the vanilla files (the dialog box and tooltips through
+BackdropTemplate).
+
+No client art is copied into the addon; the kits name files and atlases. With
+POLESTAR_CLIENT_ART holding the client's UI textures decoded to <fileID>.tga
+plus atlases.json and files.json, `node tools/polestar.js preview` draws them
+(SetAtlas, GetAtlasInfo and file paths resolve) and renders the local-only
+`skins-game-*` scenes into that folder.
 
 **Colour schemes** (`ui.scheme`, `Theme.SCHEMES`): Dusk (default: Night's
 navy lifted to dusk), Night (the original deep navy-black, values unchanged),
@@ -1430,7 +1508,8 @@ scheme.
   every ground is darkened together by the least lightness that restores it.
 - Ground opacity: `ui.bgOpacity` for every window skin.
 - Font: EllesmereUI's when `ui.matchFont` (default off) and installed, else
-  `ui.font` (`game` by default | `inter`; CJK clients always the game font).
+  `ui.font` (`skin` by default: the skin's | `game` | `inter` | `fira`; CJK
+  clients always the game font).
 - Settings from before schemes: a stored accent equal to the old gold default
   is dropped at load (Theme.lua's `migrate`); any other stays the user's own.
 - Window frame (the `window` skin of every top-level window, live):
@@ -2759,7 +2838,7 @@ ones (a tunnel 0.2.4 walks too).
 **Licence.** The folder is GPL-3.0-or-later with his copyright (`LICENSE`,
 `CREDITS.md`). It is code and data of a GPL program, not reference data:
 Polestar's guide-pack exception does not cover it, and nothing from it goes
-into a guide pack.
+into a pack.
 
 **Quality.** Every problem reported against Shortest Path Forever that
 touches what Polestar uses from it (the router, the maps, route lines,
@@ -3196,7 +3275,7 @@ The built-in pages are grouped by what the player is doing: **Guide** (10:
 Window, Arrow & routes, Automation), **Appearance** (20: Colour & type,
 Windows, Arrow), **Map** (30), **Questing** (40: Quests, Rewards & gear,
 Talents, Buttons), **Discovery** (50: Lookup, Dungeons, Rares), **Quality of Life** (60:
-Travel, Social, Vendors, Trackers), **Guide packs** (70, a custom page:
+Travel, Social, Vendors, Trackers), **Community guides** (70, a custom page:
 `UI/Packs.lua`), **Gamepad** (75, registered by `UI/GamepadGuide.lua`:
 Navigation, Key bindings), Recorder, About. The options window
 declares every tab and section of the module-filled pages, in order, and the
@@ -3223,9 +3302,9 @@ chip below it are never crowded, whatever the page count, font or menu scale;
 the selected row is scrolled into view. The hub shares it. Its items are
 `{ key, label, icon, count, dot }`: `dot` puts a warning dot at the row's
 right edge instead of the count (a page spec's `dot = function() end`, the
-Guide packs page while a pack has problems), and `{ heading = true, label }`
-is a muted heading over the rows after it, not a choice (the menu's "Guide
-packs").
+Community guides page while a pack has problems), and `{ heading = true, label }`
+is a muted heading over the rows after it, not a choice (the menu's "Community
+guides").
 
 The settings window is a rail shell like the hub (`W.Shell` with `rail`): it
 shows the hub's sections (`UI.Picker.RailItems()`) with Options marked, and a
@@ -3400,16 +3479,16 @@ Reading flow: `docs/DESIGN.md` ("Intent" and "The Guide Window").
   shows past the painting's edges. Only the base and overlay tiles the band
   shows get a texture, from per-band pools. Used by the route choice cards
   and the menu; the night band stands in without the art.
-- **Guide packs in the menu.** Our categories (Leveling, Professions, …)
+- **Community guides in the menu.** Our categories (Leveling, Professions, …)
   list only our guides; All, Favourites, Current, Recent and search cover every
-  shown guide. A "Guide packs" heading in the sidebar (a `W.ShellNav` heading
+  shown guide. A "Community guides" heading in the sidebar (a `W.ShellNav` heading
   row), present only while a shown pack has guides, lists one entry per such
   pack (`pack:<id>`, "<title> · <author>"), its guides grouped as ours are.
   Pack guides carry their pack's title in rows and results; the details pane
   has a credits line for every guide ("By <author> · <pack title> <version> ·
   <licence>", plus the pack's `source`; ours "By Polestar"). The empty states
-  name both Polestar Guides and guide packs.
-- **Guide packs page** (`UI/Packs.lua`, Options order 70, `/polestar
+  name both Polestar Guides and community addons.
+- **Community guides page** (`UI/Packs.lua`, Options order 70, `/polestar
   packs`): one row per `Guides.Packs()` record: title, credits, guide count,
   website as a `W.Link` (the address without its scheme; the click opens
   `UI.ShowCopy("<title> website", <address>)`), source, and a `W.Switch` (`Guides.SetPackShown`) or
@@ -3419,8 +3498,8 @@ Reading flow: `docs/DESIGN.md` ("Intent" and "The Guide Window").
   no guides", "refused: <reason>"); with problems a warning chip, **Show**
   (the list) and **Copy report** (`P.Report`: pack, versions, client build,
   every problem). Then **Suggest guides from** (`behavior.suggestFrom`,
-  `Guides.SuggestSources()`), what a guide pack is, and "Read more:" with a
-  `W.Link` to docs/GUIDE_PACKS.md opening `UI.ShowCopy("Guide packs,
+  `Guides.SuggestSources()`), what a community addon is, and "Read more:" with a
+  `W.Link` to docs/GUIDE_PACKS.md opening `UI.ShowCopy("Community guides,
   explained", <address>)` (`ns.DocsURL()` with `GUIDE_PACKS.md` for
   `PACKS.md`: the TOC's `X-Website` + `/blob/HEAD/docs/GUIDE_PACKS.md`, else
   "docs/GUIDE_PACKS.md in Polestar's source"). While `Guides.ProblemCount() > 0` the page's sidebar row carries
@@ -3437,7 +3516,7 @@ Reading flow: `docs/DESIGN.md` ("Intent" and "The Guide Window").
   it changes; a line on what every style keeps you away from); Start (the guide
   `Guides.Suggest()` picks on its zone painting, with its level range and
   pitch; the beta note while `ns.routesBeta`; the Discord invite in a copy
-  box; what guide packs are; then Start guide, or Choose a guide without
+  box; what community guides are; then Start guide, or Choose a guide without
   one, and Browse guides). Once
   per new character (`PolestarCharDB.welcomeSeen`: 0 for a character with no
   saved `PolestarCharDB` as Polestar loaded, `ns.IsNewCharacter()`; set seen
@@ -3473,7 +3552,12 @@ Reading flow: `docs/DESIGN.md` ("Intent" and "The Guide Window").
   (`live` unless in the Era frame) and `spot i of n` for the arrow's spawn
   spot; the arrow's target and distance (and "your own waypoint" with its
   position when the player set it); where the player stands (zone, subzone,
-  `map <id> @x,y live`); other guide packs that are on; and the errors
+  `map <id> @x,y live`); "Routes:" with the route style (`nav.routeStyle`:
+  `fastest`, `balanced` or `roads`, in English) and only the routing settings
+  away from their defaults (`real paths off`, `travel planner off`, `handed
+  to Shortest Path Forever`), after Where so the bug bot still finds Arrow and
+  Where by position and reads this line by its style word; other packs that
+  are on; and the errors
   (`Polestar.Errors()`, plus with !BugGrabber its errors this session in
   Polestar's files, `BugGrabber:GetDB()`) by their path from the AddOns
   folder, and the calls the game blocked (`Polestar.Blocked()`) as "blocked
@@ -3810,7 +3894,7 @@ classes), `tools/lib/lua.js` (run Lua 5.1, convert Lua data to JSON),
 
 Every command, every generated file and the rebuild order: [tools/README.md](../tools/README.md).
 
-### Guide packs (pack mode)
+### Packs (pack mode)
 
 The guide commands work on a pack: the folder given as their one argument
 or in `--pack <dir>` (one of the two; it must hold `pack.json`), else the
@@ -3862,7 +3946,7 @@ shows the art it was built for. Empty (0 x 0) rows are dropped; a row whose
 tiles do not fill its grid is dropped with a warning. The default build is
 the Forever client's (1.60.1.70338, product `wow_classic_beta`). It lives in
 the core addon, loaded right after `UI/ZoneArt.lua`, because the core is what
-draws it (the menu and the route cards work without any guide pack), and it
+draws it (the menu and the route cards work without any pack), and it
 registers through `ZoneArt.RegisterOverlays` the way `MapFrames.lua` and
 `Maps/ZoneLevels.lua` register their generated tables.
 
