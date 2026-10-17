@@ -3129,8 +3129,9 @@ Reading flow: `docs/DESIGN.md` ("Intent" and "The Guide Window").
   `map <id> @x,y live`); other guide packs that are on; and the errors
   (`Polestar.Errors()`, plus with !BugGrabber its errors this session in
   Polestar's files, `BugGrabber:GetDB()`), the newest three, counted, by
-  their path from the AddOns folder. Every line is cut at 100 bytes, so at
-  its longest the report fits one Discord message (2000 characters). Under
+  their path from the AddOns folder. Every line is cut at 100 bytes, and
+  when the report is still longer than one Discord message (2000
+  characters) the Addons line is shortened, never a line the bot reads. Under
   it, Discord's mark, "Polestar on Discord" and "Get the invite", which opens
   the invite (`Polestar.DiscordURL`) in the copy window: the game opens no
   links for addons, so the report is the only text a member copies. What the
