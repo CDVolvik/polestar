@@ -2508,39 +2508,71 @@ ns.On("STEP_SKIPPED", function(_, to, skips)
 	end)
 end)
 
--- The catch-up (GUIDE_PLACED): a guide opened by a character who already did
--- part of it rolls its step count from where it last stood (1 for a guide new
--- to the character) up to the step placed, the card faded, then shows the
--- step. Guides passed whole go by first, by title. Nothing when the guide
--- resumes where it was (a reload), with reduced motion, or the window hidden.
--- Where each guide was placed is kept per character (catchUpAt).
+-- The catch-up (GUIDE_PLACED): once a guide is placed, the window goes over
+-- the steps before the one it resumes at, one title after another faster and
+-- faster, the count rolling with them and the card faded, then shows the
+-- step. Guides passed whole go by first, by title. It plays at game launch
+-- and whenever a guide is opened, from step 1; after a /reload it plays only
+-- when the guide resumes elsewhere than before it (catchUpAt, per character).
+-- Not with reduced motion or the window hidden. A guide placed before the
+-- world is entered waits for it (PLAYER_ENTERING_WORLD says whether this is a
+-- reload).
 local CATCH_GUIDE = 0.35 -- seconds per guide passed whole (at most 1.2 in all)
+GF.catchUpState = { entered = false, reload = false, seen = {} }
+
+-- What a step reads as while the catch-up goes over it: its title, else its
+-- first quest goal, else its first goal.
+local function catchUpLine(E, i)
+	local v = E.GetStepView(i)
+	if not v then return "" end
+	if v.title and v.title ~= "" then return v.title end
+	local first
+	for _, g in ipairs(v.goals or {}) do
+		if g.text and g.text ~= "" then
+			if g.quest then return g.text end
+			first = first or g.text
+		end
+	end
+	return first or ""
+end
+
 function GF.PlayCatchUp(guideId, step, chain)
+	local cs = GF.catchUpState
+	if not cs.entered then
+		cs.queued = { guideId, step, chain }
+		return
+	end
 	local st = ns.CharState()
 	if type(st.catchUpAt) ~= "table" then st.catchUpAt = {} end
-	local from = tonumber(st.catchUpAt[guideId]) or 1
+	local before = tonumber(st.catchUpAt[guideId])
 	if step then st.catchUpAt[guideId] = step end
 	for _, id in ipairs(chain or {}) do st.catchUpAt[id] = nil end
+	local first = not cs.seen[guideId]
+	cs.seen[guideId] = true
 	local passed = chain and #chain or 0
+	if cs.reload and first and before == step and passed == 0 then return end
 	if not (F and F:IsShown() and ns.IsLoggedIn()) or Anim.Reduced() then return end
-	if not step or (step <= from and passed == 0) then return end
+	if not step or (step <= 1 and passed == 0) then return end
 	local E = Engine()
 	local count = E and E.GetStepCount and E.GetStepCount() or step
 	local Count = nav.Steps.Count
 	GF.catchingUp = true
 	Anim.To(card, "alpha", card:GetAlpha(), 0.25, Anim.BASE, "out")
 	local function roll()
-		local g = ns.Guides.Get(guideId)
-		nav.Title:SetText(g and (g.title or g.id) or "")
-		local width = max(floor(Count:GetStringWidth() + 0.5), 40)
+		local lines = {}
+		for i = 1, step - 1 do lines[i] = catchUpLine(E, i) end
 		Count:SetText(string.format("%d / %d", count, count))
-		local cw = max(width, floor(Count:GetStringWidth() + 0.5))
+		local cw = max(40, floor(Count:GetStringWidth() + 0.5))
 		Count:SetWidth(cw)
 		nav.Steps:SetWidth(24 + cw + 24)
-		Count.psOnValue = function(o, v) o:SetText(string.format("%d / %d", floor(v + 0.5), count)) end
-		local start = passed > 0 and 1 or from
-		local dur = min(1.4, 0.3 + 0.03 * (step - start))
-		Anim.To(Count, "value", start, step, dur, "inout", function()
+		Count.psOnValue = function(o, v)
+			local i = max(1, min(step - 1, floor(v)))
+			o:SetText(string.format("%d / %d", i, count))
+			nav.Title:SetText(lines[i] or "")
+		end
+		-- Slow at first, then faster: about 0.06 s a step, 2.5 s at most.
+		local dur = min(2.5, 0.5 + 0.06 * (step - 1))
+		Anim.To(Count, "value", 1, step - 0.001, dur, "in", function()
 			GF.catchingUp = nil
 			GF.Render()
 			Anim.To(card, "alpha", 0.25, 1, Anim.BASE, "out")
@@ -2559,8 +2591,22 @@ function GF.PlayCatchUp(guideId, step, chain)
 		nav.Title:SetText(t[1])
 		o:SetText(string.format("%d / %d", t[2], t[2]))
 	end
-	Anim.To(Count, "value", 0, passed - 0.001, min(1.2, CATCH_GUIDE * passed), "linear", roll)
+	Anim.To(Count, "value", 0, passed - 0.001, min(1.2, CATCH_GUIDE * passed), "linear", function()
+		if step > 1 then return roll() end
+		GF.catchingUp = nil
+		GF.Render()
+		Anim.To(card, "alpha", 0.25, 1, Anim.BASE, "out")
+	end)
 end
+
+ns.RegisterEvent("PLAYER_ENTERING_WORLD", function(_, _, isReload)
+	local cs = GF.catchUpState
+	if cs.entered then return end
+	cs.entered, cs.reload = true, isReload and true or false
+	local q = cs.queued
+	cs.queued = nil
+	if q and F then GF.PlayCatchUp(q[1], q[2], q[3]) end
+end)
 
 ns.On("GUIDE_PLACED", function(guideId, step, chain)
 	if F then GF.PlayCatchUp(guideId, step, chain) end

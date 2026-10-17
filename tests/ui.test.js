@@ -701,29 +701,39 @@ test('the header menu: picker, new tab, compact, transparent, lock; destructive 
 	assert.equal(out.pickerAfter, false, 'one dialog at a time');
 });
 
-// The catch-up (GUIDE_PLACED): the count rolls up to the step placed with the
-// card faded, once; a reload that places the guide where it was shows no roll.
-test('the catch-up rolls the step count up to the step placed, once; Do every step in the menu sets the guide', () => {
+// The catch-up (GUIDE_PLACED): the window goes over the steps before the one
+// placed, their titles and the count rolling, the card faded; at launch and
+// on every guide opened. After a /reload that places the guide where it was,
+// nothing rolls.
+test('the catch-up goes over the steps up to the one placed; not after a reload that resumes there; Do every step in the menu', () => {
 	const [out] = run(`
 		uistub.setGuide(uistub.elwynn, 4)
 		local nav, Count = GF.parts.nav, GF.parts.nav.Steps.Count
 		Polestar.Fire("GUIDE_PLACED", uistub.elwynn, 4, {})
 		local rolling = { GF.catchingUp == true, GF.parts.card:GetAlpha() < 1 }
+		stub.advance(0.6)
 		GF.Render()
-		local held = Count:GetText()
-		stub.advance(2)
-		local done = { GF.catchingUp or false, Count:GetText(), GF.parts.card:GetAlpha() }
+		local mid = { count = Count:GetText(), title = nav.Title:GetText() }
+		stub.advance(3)
+		local done = { GF.catchingUp or false, Count:GetText(), GF.parts.card:GetAlpha(), nav.Title:GetText() }
 		Polestar.Fire("GUIDE_PLACED", uistub.elwynn, 4, {})
-		local again = GF.catchingUp or false
+		local opened = GF.catchingUp or false
+		stub.advance(3)
+		-- A reload that places the guide where it was.
+		GF.catchUpState.reload, GF.catchUpState.seen = true, {}
+		Polestar.Fire("GUIDE_PLACED", uistub.elwynn, 4, {})
+		local reload = GF.catchingUp or false
 		menuPick("Do every step")
-		emit({ rolling = rolling, held = held, done = done, again = again, set = lastCall("SetEveryStep"),
-			at = PolestarCharDB.catchUpAt[uistub.elwynn] })`);
+		emit({ rolling = rolling, mid = mid, done = done, opened = opened, reload = reload, set = lastCall("SetEveryStep"),
+			at = PolestarCharDB.catchUpAt[uistub.elwynn], step1 = Polestar.Engine.GetStepView(1).title or false })`);
 	assert.deepEqual(out.rolling, [true, true]);
-	assert.notEqual(out.held, '4 / ' + out.done[1].split(' / ')[1], 'a render during the roll leaves the count to it');
-	assert.deepEqual(out.done.slice(0, 2), [false, out.done[1]]);
+	assert.match(out.mid.count, /^[1-3] \/ \d+$/, 'a render during the roll leaves the count to it');
+	assert.notEqual(out.mid.title, out.done[3], 'the title is a step gone over');
+	assert.equal(out.done[0], false);
 	assert.match(out.done[1], /^4 \/ \d+$/);
 	assert.equal(out.done[2], 1);
-	assert.equal(out.again, false, 'placed where it was: no roll');
+	assert.equal(out.opened, true, 'opened again: it goes over the steps again');
+	assert.equal(out.reload, false, 'reloaded where it was: nothing rolls');
 	assert.deepEqual(out.set, ['SetEveryStep', 'forever/alliance/human/01-elwynn-forest', true]);
 	assert.equal(out.at, 4);
 });

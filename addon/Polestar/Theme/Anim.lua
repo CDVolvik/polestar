@@ -19,12 +19,15 @@ Anim.BASE = 0.18
 Anim.SLOW = 0.20
 
 -- Easing. Strong ease-out for anything entering or responding to the user;
--- back-out for the small "pop" of a check; in-out for things moving on screen.
+-- back-out for the small "pop" of a check; in-out for things moving on screen;
+-- in for a run that gathers speed.
 local EASE = {
 	out = function(t) local u = 1 - t; return 1 - u * u * u * u end,
 	back = function(t) local u = t - 1; return 1 + 2.4 * u * u * u + 1.4 * u * u end,
 	inout = function(t) if t < 0.5 then return 4 * t * t * t end local u = -2 * t + 2; return 1 - u * u * u / 2 end,
 	linear = function(t) return t end,
+	-- Slow, then faster: a list going by (the guide window's catch-up).
+	["in"] = function(t) return t * t end,
 }
 Anim.EASE = EASE
 

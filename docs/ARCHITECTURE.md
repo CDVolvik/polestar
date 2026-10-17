@@ -132,7 +132,7 @@ Messages:
 | `PLAYER_SKIPPED_STEP` | guideId, stepIndex | Engine, after `Skip()` (the window, the menu, `/polestar skip`): the guide window offers the undo |
 | `WAYPOINT_CHANGED` | waypoint or nil | Engine (and Nav when an override is set/cleared) |
 | `GUIDE_COMPLETED` | guideId | Engine |
-| `GUIDE_PLACED` | guideId, stepIndex or nil, `{ guideId, ... }` | Engine, active tab, once placement ends (see "Placement"): where the guide resumes, and the guides passed whole on the way; the guide window rolls its step count there (`GF.PlayCatchUp`) |
+| `GUIDE_PLACED` | guideId, stepIndex or nil, `{ guideId, ... }` | Engine, active tab, once placement ends (see "Placement"): where the guide resumes, and the guides passed whole on the way; the guide window goes over the steps before it, titles and count rolling (`GF.PlayCatchUp`: at launch and on every guide opened, after `PLAYER_ENTERING_WORLD`; after a /reload only when the guide resumes elsewhere) |
 | `SETTING_CHANGED` | path, value | Core settings |
 | `TOGGLE_FRAME` / `SHOW_FRAME` / `HIDE_FRAME` | — | commands, keybinds → UI |
 | `SHOW_PICKER` | — | commands → UI |
@@ -195,8 +195,9 @@ steps the player skipped (step number) and the optional goals they skipped
 live one (Prev/Next/Goto), `offers` the quests their giver did not offer
 (saved at logout, restored while the character is still that level),
 `everyStep` the leveling guides the player set to every step, `catchUpAt`
-the step where the guide window last saw each guide placed (its catch-up
-roll starts there; never a position the Engine reads). All of
+the step where the guide window last saw each guide placed (after a /reload
+its catch-up plays only when the guide resumes elsewhere; never a position
+the Engine reads). All of
 them are keyed by step position: `stepKeys` (a hash per step of its verbs and
 ids) lets a pack update carry them to the steps it kept (see "Placement").
 
