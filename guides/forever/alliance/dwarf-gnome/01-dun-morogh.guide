@@ -348,12 +348,12 @@ step Frostmane Hold
   complete 287
 
 step Brewnall Village
-  tip Brewnall Village sits on the lake north-west of Frostmane Hold.
+  tip Brewnall Village sits on the lake north-west of Frostmane Hold. Coming from Kharanos, Gretta Ganter's dock is the first stop; Rejold and Marleth Barleybrew are in the village beyond it.
+  accept 98326                                -- Gretta Ganter, on the dock
   turnin 318                                  -- Rejold Barleybrew
   accept 315
   accept 319
   accept 310                                  -- Marleth Barleybrew
-  accept 98326                                -- Gretta Ganter
 
 step Gnomes, bears and leopards
   tip Leper Gnomes around Brewnall and the Gnomeregan road carry the cogs and gears. Ice Claw Bears, Elder Crag Boars and Snow Leopards roam the hills around the lake.
