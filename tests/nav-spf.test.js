@@ -1659,3 +1659,135 @@ test('changing the route style mid-walk drops the old lines, re-plans at once, a
 	assert.deepEqual(out.after.slice(0, 3), [['walk', 3], ['flight', 2], ['walk', 3]], 'drawn along the Roads paths');
 	assert.equal(out.same, 6, 'setting the same style again searches nothing');
 });
+
+// Zone danger (Nav/Danger.lua, Nav/Walk.lua): the zones the router's maps
+// carry (Path.ZoneAt, faked here by area: y >= 500 the player's and Home
+// Roost's, y < 0 the target's, else a zone without levels) and their level
+// ranges (Maps.GetZoneLevels, faked) at the player's level make the danger
+// table every search carries: a zone whose lowest level is at least the
+// player's + 4 costs x3, more than + 10 x10; the walk's own start and goal
+// zones never count.
+const DANGER = `
+local D = N.danger
+nav.level = 20
+Polestar.Compat.GetPlayerInfo = function() return { name = "Testchar", level = nav.level, faction = nav.faction } end
+local zoneLevels = { [1422] = { 51, 57 }, [1421] = { 10, 19 }, [1424] = { 20, 33 }, [1416] = { 30, 39 } }
+Polestar.Maps = Polestar.Maps or {}
+Polestar.Maps.GetZoneLevels = function(id) local v = id and zoneLevels[id] if v then return v[1], v[2] end end
+Polestar.Maps.EachZoneLevels = function()
+	local id
+	return function()
+		local v
+		id, v = next(zoneLevels, id)
+		if id ~= nil then return id, v[1], v[2] end
+	end
+end
+fake.zones = { home = 1421, target = 1424, between = 1497 }
+Polestar_NavEngine.ZoneAt = function(map, x, y)
+	if y >= 500 then return fake.zones.home elseif y < 0 then return fake.zones.target end
+	return fake.zones.between
+end
+-- A search's danger table, "uiMap=mult,..." by uiMapID (false: none).
+local function dz(job)
+	local t = job and job.opts and job.opts.danger
+	if type(t) ~= "table" then return false end
+	local ids = {}
+	for id, m in pairs(t) do ids[#ids + 1] = id .. "=" .. m end
+	table.sort(ids)
+	return table.concat(ids, ",")
+end
+local function sig(t, s)
+	return { dz({ opts = { danger = t } }), s }
+end
+`;
+
+test('zone danger: x3 from the player\'s level + 4, x10 above + 10; a zone without levels, or no level, is never dangerous', () => {
+	const [out] = run(`${DANGER}
+		local r = {}
+		zoneLevels = { [9001] = { 23, 30 }, [9002] = { 24, 30 }, [9003] = { 30, 40 }, [9004] = { 31, 40 } }
+		r.mult = { D.Mult(20, 9001), D.Mult(20, 9002), D.Mult(20, 9003), D.Mult(20, 9004), D.Mult(20, 1497), D.Mult(20, nil), D.Mult(nil, 9004) }
+		r.table = sig(D.Table(20, nil, nil))
+		r.none = sig(D.Table(40, nil, nil))
+		r.cached = D.Table(20, nil, nil) == D.Table(20, nil, nil)
+		emit(r)`, { many: true });
+	assert.deepEqual(out.mult, [1, 3, 3, 10, 1, 1, 1]);
+	assert.deepEqual(out.table, ['9002=3,9003=3,9004=10', '9002=3,9003=3,9004=10'], 'every zone above 1, and its signature');
+	assert.deepEqual(out.none, [false, ''], 'none: nil, an empty signature');
+	assert.equal(out.cached, true, 'kept per level and zone pair');
+});
+
+test('zone danger: at level 20 every search carries the zones far above (x10) and dangerous (x3), minus the walk\'s own start and goal zones', () => {
+	const [out] = run(`${CROSSING}${DANGER}
+		local r = {}
+		nav.place(900, 800)
+		target(600, -300)
+		N.Sample()
+		local batch, own = fake.of(true)[1], fake.of(false)[1]
+		r.batch, r.own = dz(batch), dz(own)
+		fake.settle(batch, function(x, y) return math.floor(math.sqrt((x - 600) ^ 2 + (y + 300) ^ 2) * 1.1) end)
+		fake.answer(own, 900, 800, 900, 900)
+		local leg = fake.of(false)[2]
+		r.leg = { dz(leg), floor(leg.from.x), floor(leg.from.y) }
+		-- Review focus 1: a goal inside a dangerous zone is walked to; its zone does not count.
+		fake.zones.target = 1416
+		target(600, -250)
+		N.Sample()
+		local many = fake.of(true)
+		r.inside = dz(many[#many])
+		r.unit = {
+			sig(D.Table(20, 1421, 1424)),
+			sig(D.Table(20, 1422, 1421)),
+			sig(D.Table(20, 1421, 1416)),
+			sig(D.Table(20, 1422, 1416)),
+			D.Mult(20, 1497),
+		}
+		emit(r)`, { many: true });
+	assert.equal(out.batch, '1416=3,1422=10', 'the measure into the target');
+	assert.equal(out.own, '1416=3,1422=10', 'the arrow\'s own walk');
+	assert.deepEqual(out.leg, ['1416=3,1422=10', 400, 300], 'a later walk, from a zone without levels');
+	assert.equal(out.inside, '1422=10', 'a target inside Alterac (dangerous) is measured without its own zone');
+	assert.deepEqual(out.unit, [
+		['1416=3,1422=10', '1416=3,1422=10'],
+		['1416=3', '1416=3'],
+		['1422=10', '1422=10'],
+		[false, ''],
+		1,
+	], 'the start\'s and the goal\'s zones never count; a zone without levels is absent');
+});
+
+test('zone danger: a level-up drops the walks, re-plans at once, and measures and searches every walk again with the new level\'s table', () => {
+	const [out] = run(`${CROSSING}${DANGER}
+		local r = {}
+		local changes = 0
+		Polestar.On("ROUTE_CHANGED", function() changes = changes + 1 end)
+		nav.place(900, 800)
+		target(600, -300)
+		N.Sample()
+		local measure = function(x, y) return math.floor(math.sqrt((x - 600) ^ 2 + (y + 300) ^ 2) * 1.1) end
+		fake.settle(fake.of(true)[1], measure)
+		fake.answer(fake.of(false)[1], 900, 800, 880, 850, 900, 900)
+		fake.answer(fake.of(false)[2], 400, 300, 500, 300, 600, 20)
+		r.before = { lines = lines(), danger = dz(fake.of(false)[2]) }
+		local seen, version, calls = changes, T.version, #fake.calls
+		-- PLAYER_LEVEL_UP's level stands while the client's still reads 20 (UnitLevel lags the event).
+		stub.fire("PLAYER_LEVEL_UP", 27)
+		r.replanned = { changed = changes > seen, version = T.version > version }
+		r.lines = lines()
+		N.Sample()
+		local batch, own = fake.of(true)[2], fake.of(false)[3]
+		r.asked = { #fake.calls - calls, dz(batch), dz(own), own and floor(own.to.x), own and floor(own.to.y) }
+		if batch then fake.settle(batch, measure) end
+		if own then fake.answer(own, 900, 800, 880, 850, 900, 900) end
+		local leg = fake.of(false)[4]
+		r.leg = leg and { dz(leg), floor(leg.from.x), floor(leg.from.y), floor(leg.to.x), floor(leg.to.y) } or false
+		if leg then fake.answer(leg, 400, 300, 450, 250, 600, 20) end
+		r.after = lines()
+		emit(r)`, { many: true });
+	assert.deepEqual(out.before.lines.slice(0, 3), [['walk', 3], ['flight', 2], ['walk', 3]], 'at 20: the walks drawn along their paths');
+	assert.equal(out.before.danger, '1416=3,1422=10');
+	assert.deepEqual(out.replanned, { changed: true, version: true }, 're-planned at once');
+	assert.deepEqual(out.lines.slice(0, 3), [['walk', 2], ['flight', 2], ['walk', 2]], 'no line priced at 20 stays: straight until the new paths are in');
+	assert.deepEqual(out.asked, [2, '1422=10', '1422=10', 900, 900], 'the walks into the target measured again and the arrow\'s own walk searched again, at 27 (Alterac no longer dangerous)');
+	assert.deepEqual(out.leg, ['1422=10', 400, 300, 600, 20], 'the later walk searched again at 27');
+	assert.deepEqual(out.after.slice(0, 3), [['walk', 3], ['flight', 2], ['walk', 3]], 'drawn along the new paths');
+});

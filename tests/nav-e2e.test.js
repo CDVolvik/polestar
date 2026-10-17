@@ -72,13 +72,13 @@ local w, N, C = stub.world, Polestar.Nav, Polestar.Compat
 local E = Polestar_NavEngine
 local floor, sqrt = math.floor, math.sqrt
 local function r1(v) return v and floor(v * 10 + 0.5) / 10 end
--- Every search the arrow asks for, with what it was asked (style: its opts.style) and what came back.
+-- Every search the arrow asks for, with what it was asked (style: its opts.style; opts: the whole) and what came back.
 local finds = {}
 if E then -- nil when Polestar_Nav was not loaded (routing off)
 	local realFind = E.Find
 	E.Find = function(map, from, to, callback, water)
 		local rec = { map = map, from = { from.x, from.y, from.z }, to = { to.x, to.y, to.z }, at = GetTime(), combat = InCombatLockdown() and true or false,
-			style = type(water) == "table" and water.style or nil }
+			style = type(water) == "table" and water.style or nil, opts = type(water) == "table" and water or nil }
 		finds[#finds + 1] = rec
 		return realFind(map, from, to, function(points, cost, job)
 			rec.points, rec.cost, rec.done = points, cost, true
@@ -900,4 +900,75 @@ test('route styles: Goldshire to Sentinel Hill keeps to the road with Roads and 
 	t.diagnostic(`on road: Balanced ${(sb * 100).toFixed(1)}%, Roads ${(sr * 100).toFixed(1)}%`);
 	assert.ok(sr >= 0.8, `the Roads walk keeps ${(sr * 100).toFixed(1)}% of its length within 8 yd of a road (off road at most 0.2)`);
 	assert.ok(sb < sr, `the Balanced walk's road share (${(sb * 100).toFixed(1)}%) is lower`);
+});
+
+// Zone danger (#195, Nav/Danger.lua, Nav/Walk.lua): a level 20 Horde
+// character in Tirisfal (75.92,68.39, the live frame) walking to the Spring
+// Well (Hillsbrad 62.18,20.79, the guides' Era frame). Without danger the
+// router's way runs through Western Plaguelands (uiMap 1422, 51+); with the
+// addon's danger table the drawn walk keeps out of it, sampled every 20 yd
+// with Path.ZoneAt.
+test('zone danger (#195): Tirisfal to the Spring Well at level 20 as Horde walks no yard of Western Plaguelands', { skip }, (t) => {
+	const out = run(t, `
+		Polestar.Set("nav.travel", false)
+		w.setLevel(20)
+		w.faction = "Horde"
+		w.moveTo(1420, 75.92, 68.39)
+		w.z = nil
+		N.SetTarget(1424, 62.18, 20.79, "The Spring Well", "e")
+		local _, tx, ty = N.GetTargetWorld()
+		local f
+		for _ = 1, 1200 do
+			aim()
+			local last = finds[#finds]
+			if last and last.done and dist(last.to[1], last.to[2], tx, ty) < 1 then f = last break end
+			stub.advance(0.05)
+		end
+		assert(f and f.points and #f.points > 1, "the walk is never in")
+		-- Yards of a line, and of it in zone 1422 (sampled every 20 yd).
+		local function measure(map, pts)
+			local yards, wpl = 0, 0
+			for i = 2, #pts do
+				local ax, ay, bx, by = pts[i - 1][1], pts[i - 1][2], pts[i][1], pts[i][2]
+				local d = dist(ax, ay, bx, by)
+				yards = yards + d
+				local n = math.max(1, math.ceil(d / 20))
+				for k = 0, n - 1 do
+					local s = (k + 0.5) / n
+					if E.ZoneAt(map, ax + (bx - ax) * s, ay + (by - ay) * s) == 1422 then wpl = wpl + d / n end
+				end
+			end
+			return { yards = floor(yards + 0.5), wpl = floor(wpl + 0.5) }
+		end
+		local drawn = {}
+		for _, leg in ipairs(N.GetRouteGeometry().legs) do
+			if leg.kind == "walk" then
+				for _, p in ipairs(leg.pts) do drawn[#drawn + 1] = { p[2], p[3] } end
+			end
+		end
+		local o = f.opts or {}
+		local danger = {}
+		for id, m in pairs(o.danger or {}) do danger[#danger + 1] = id .. "=" .. m end
+		table.sort(danger)
+		local r = { map = f.map, profile = o.profile or false, danger = table.concat(danger, ","),
+			startZone = E.ZoneAt(f.map, f.from[1], f.from[2]) or false, goalZone = E.ZoneAt(f.map, tx, ty) or false }
+		local line = {}
+		for i, p in ipairs(f.points) do line[i] = { p.x, p.y } end
+		r.after = measure(f.map, line)
+		r.drawn = measure(f.map, drawn)
+		-- The same walk without danger: what #195 reported.
+		local pts = E.FindSync(f.map, { x = f.from[1], y = f.from[2], z = f.from[3] }, { x = f.to[1], y = f.to[2], z = f.to[3] }, { profile = o.profile, style = o.style })
+		local before = {}
+		for i, p in ipairs(pts or {}) do before[i] = { p.x, p.y } end
+		r.before = measure(f.map, before)
+		emit(r)`, { shipped: true });
+	t.diagnostic(`without danger ${out.before.yards} yd (${out.before.wpl} in Western Plaguelands); with it ${out.after.yards} yd (${out.after.wpl})`);
+	assert.equal(out.profile, 'Horde');
+	assert.equal(out.startZone, 1420, 'the walk starts in Tirisfal');
+	assert.equal(out.goalZone, 1424, 'and ends in Hillsbrad');
+	assert.match(out.danger, /(^|,)1422=10(,|$)/, 'Western Plaguelands is far above level 20');
+	assert.ok(out.before.wpl > 0, 'without danger the walk crosses Western Plaguelands (#195)');
+	assert.equal(out.after.wpl, 0, 'with it the searched walk keeps out');
+	assert.equal(out.drawn.wpl, 0, 'and so does the drawn line');
+	assert.ok(out.drawn.yards > 0);
 });

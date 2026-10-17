@@ -1999,6 +1999,22 @@ kept later paths; then `Travel.Replan` plans at once, its plan measures the
 walks into the target again and the arrow and the later walks are searched
 again, all in the new style. No line drawn in the old style stays.
 
+**Zone danger.** Every search Walk.lua makes also goes with `opts.danger`,
+`Nav.danger.Table(level, startZone, goalZone)` (`Nav/Danger.lua`): every zone
+with a level range (`Maps.EachZoneLevels`) whose lowest level is at least the
+player's + 4 (x3) or more than + 10 (x10), `Nav.danger.Mult`; a zone without a
+range (a city, an unknown one) never counts, and nil when none does. The
+idea and its 4-level threshold come from Ding! (Yendi, `ding-travel`
+2bccf01). The zones a walk starts and ends in are left out (`Path.ZoneAt` at
+its two ends: the player and the arrow's goal, a later walk's from and to),
+so a quest inside a dangerous zone is still walked to; the planner's measure
+(`FindMany`, one opts for all its places) leaves out the target's zone only,
+so a place inside a dangerous zone is priced through it. A table is built
+once per level and zone pair (the router keys its caches by its signature).
+The level is `Compat.GetPlayerInfo().level`, or `PLAYER_LEVEL_UP`'s when
+higher (the client's can lag the event). A level-up drops every walk priced
+at the old level and re-plans at once, as a style change does.
+
 **Walks priced by the engine.** A straight line x1.25 cannot tell a walk
 round a ridge from one over it, so the planner would land at a flight master
 whose straight walk crosses a mountain. On a continent the engine covers
@@ -2520,11 +2536,12 @@ the sha256 of every file), and `Nav.xml` to it.
 
 **Polestar's side: the faction, cost and yards, hostile towns**
 (`Nav/Walk.lua`, `Nav/Travel.lua`). Every search goes with opts
-`{ waterWalking, profile, style }`, `profile` the player's faction from
+`{ waterWalking, profile, style, danger }`, `profile` the player's faction from
 `Compat.GetPlayerFaction()` (none when neutral or unread: the router then
 prices no hub hostile and still routes), `style` the Route style option
-(`nav.routeStyle`, above), so roads are preferred (x0.8 in Balanced) and
-the other faction's towns avoided (x20). On format 2 maps a walk's cost is no
+(`nav.routeStyle`, above), `danger` the zones far above the player (Zone
+danger, above), so roads are preferred (x0.8 in Balanced), the other
+faction's towns avoided (x20) and dangerous zones x3 or x10. On format 2 maps a walk's cost is no
 longer its yards, so the two are kept apart: the cost chooses, yards are
 what is shown and timed.
 
@@ -2593,13 +2610,18 @@ and re-pack.
 (LuaJIT, else Lua 5.1) loads a folder's maps and router in the client's
 order (`tests/lua/stub_encoding.lua` decodes them), drives `Path.Find` and
 `Path.FindMany` with the frame pump in hand, and answers one JSON line per
-query (cost, the router's yards and hubs when it gives them, points, cold
-and warm milliseconds, Lua memory; an error reported through the client's
-error handler during a query fails that query, and the next starts clean).
+query (cost, the router's yards and hubs when it gives them, points, the
+drawn line's yards per zone by `Path.ZoneAt`, cold and warm milliseconds, Lua
+memory; an error reported through the client's error handler during a query
+fails that query, and the next starts clean). A route with a `level` is
+priced with zone danger as the addon prices it: the harness builds the
+danger table from each zone's lowest level (`tools/lib/maps/zonelevels.js`),
+the start's and the goal's zones (`Path.ZoneAt`) exempt.
 `run.js` resolves the route corpus
-(`routes.json`: 0.2.4's measured routes, the #98 reports, hostile-hub,
-road, building and slope routes; zone-map ends through `map-frames.json`)
-and, with `--sweep`, one FindMany per zone with located guide goals and
+(`routes.json`: 0.2.4's measured routes, the #98 and #195 reports,
+hostile-hub, road, building and slope routes; zone-map ends through
+`map-frames.json`, live frame or Era) and, with `--sweep`, one FindMany per
+zone with located guide goals and
 per side, from the zone's flight master; `metrics.js` measures each drawn
 line (the share our grid at `data/local/nav3` cannot walk straight, as
 0.2.4's maps were measured; the steepest climb; off-road share and yards in

@@ -59,15 +59,18 @@
 --     current, choke }, ... } } or nil without a target; NAV_ROUTE_GEOMETRY on change.
 --     kind: walk | flight | boat | zeppelin | tram | portal | hearth | teleport | lift.
 --
--- Every search goes with opts { waterWalking, profile, style }: the player's
--- faction (Compat.GetPlayerFaction; none when neutral or unread) and the
--- Route style option (nav.routeStyle: "fastest", "balanced" (the default) or
--- "roads"; the router reads anything else as Balanced), so the router prices
--- each step by its ground in that style (roads cheaper, slopes and indoors
--- dearer) and the other faction's towns twenty times over. A change of style
--- drops the arrow's path, the measures and the later walks' paths, and
--- re-plans at once (Walk:OnSettings): every walk is searched and measured
--- again in it. The router's cost chooses (the
+-- Every search goes with opts { waterWalking, profile, style, danger }: the
+-- player's faction (Compat.GetPlayerFaction; none when neutral or unread),
+-- the Route style option (nav.routeStyle: "fastest", "balanced" (the default)
+-- or "roads"; the router reads anything else as Balanced) and the zones far
+-- above the player's level (Nav/Danger.lua's table at the player's level,
+-- without the walk's own start and goal zones, Path.ZoneAt), so the router
+-- prices each step by its ground in that style (roads cheaper, slopes and
+-- indoors dearer), the other faction's towns twenty times over and a step
+-- into a dangerous zone three or ten times. A change of style, or a level-up
+-- (PLAYER_LEVEL_UP), drops the arrow's path, the measures and the later
+-- walks' paths, and re-plans at once (Walk:OnSettings, searchAgain): every
+-- walk is searched and measured again in it. The router's cost chooses (the
 -- planner's walkCost); every distance and time shown comes from yards: the
 -- arrow's walk from its path's points (the drawn line, Find's job.yards), a
 -- later walk from Find's job.yards, a measured walk from FindMany's
@@ -102,6 +105,7 @@ local Z_OFF = 30            -- yards: a path ending this far above or below the 
 
 local loadTried = false
 local styleSeen             -- nav.routeStyle the searches were made in (nil until the first settings pass)
+local levelSeen = 0         -- PLAYER_LEVEL_UP's level: the client's can lag the event
 
 local function inCombat()
 	local C = ns.Compat
@@ -128,15 +132,38 @@ local function engine()
 	return Nav.Path
 end
 
+-- The player's level: the client's (Compat.GetPlayerInfo), or the last
+-- PLAYER_LEVEL_UP's when that is higher; nil when unread.
+local function playerLevel()
+	local C = ns.Compat
+	local info = C and C.GetPlayerInfo and C.GetPlayerInfo()
+	local level = info and type(info.level) == "number" and info.level or nil
+	if levelSeen > (level or 0) then level = levelSeen end
+	return level
+end
+
+-- The zone (uiMapID) of world point (x, y) on map in the router's maps (Path.ZoneAt), or nil.
+local function zoneAt(map, x, y)
+	local P = Nav.Path
+	if not (P and P.ZoneAt and map and x and y) then return nil end
+	local ok, zone = pcall(P.ZoneAt, map, x, y)
+	return ok and zone or nil
+end
+
 -- The router's options (Routing/Path.lua): water walking (a ghost), the
--- player's faction (Compat.GetPlayerFaction: nil when neutral or unread) and
+-- player's faction (Compat.GetPlayerFaction: nil when neutral or unread),
 -- the route style (nav.routeStyle, as saved: the router reads an unknown one
--- as Balanced), so each step is priced for them: roads cheaper, slopes and
--- indoors dearer, the other faction's towns twenty times over.
-local function opts(water)
+-- as Balanced) and the danger table (Nav.danger.Table at the player's level,
+-- without the zones of the walk's start (sx, sy) and goal (tx, ty) on map;
+-- nil for either leaves no zone out there), so each step is priced for them:
+-- roads cheaper, slopes and indoors dearer, the other faction's towns twenty
+-- times over, a zone far above the player three or ten times.
+local function opts(water, map, sx, sy, tx, ty)
 	local C = ns.Compat
 	local profile = C and C.GetPlayerFaction and C.GetPlayerFaction() or nil
-	return { waterWalking = water and true or false, profile = profile, style = ns.Get("nav.routeStyle") }
+	local D, level = Nav.danger, playerLevel()
+	local danger = D and level and D.Table(level, zoneAt(map, sx, sy), zoneAt(map, tx, ty)) or nil
+	return { waterWalking = water and true or false, profile = profile, style = ns.Get("nav.routeStyle"), danger = danger }
 end
 
 ---------------------------------------------------------------------------
@@ -281,7 +308,7 @@ local function ask(P, pc, px, py)
 		end
 		changed()
 		pumpLegs()
-	end, opts(ghost)) -- a ghost walks on water
+	end, opts(ghost, pc, px, py, gx, gy)) -- a ghost walks on water
 	if not ok then
 		token = nil
 		if z then
@@ -405,6 +432,9 @@ end
 --   The target's height (Nav.GetTargetWorld) goes with the batch, so a walk
 --     into an Undercity quarter is measured to that floor; a batch with it
 --     that finds nothing is asked once more without it (as Z2).
+--   The batch's danger table leaves out the target's zone only: one batch
+--     takes one opts for all its places, so a place inside a dangerous zone
+--     is priced through its own zone (the walk out of it).
 --   One batch at a time; a new target cancels the old one's. None is started
 --     in combat (owed until it ends; the engine pauses a running one), with
 --     Walk real paths off, or while Shortest Path Forever guides.
@@ -516,7 +546,7 @@ local function batch(P, mine, z)
 		local tc, tx, ty = Nav.GetTargetWorld()
 		if found and tc and T and T.Remeasured and sameTarget(mine, tc, tx, ty, water) then T.Remeasured() end
 		pumpLegs()
-	end, opts(water), true)
+	end, opts(water, mine.c, nil, nil, mine.x, mine.y), true)
 	if not ok then
 		if z then return batch(P, mine, nil) end
 		measuring = nil
@@ -721,7 +751,7 @@ local function searchLeg(P, mine, key, from, to, z, ghost, flat)
 		-- Priced: ROUTE_CHANGED redraws; a failure keeps the straight line.
 		if not (e and T and T.PricePaths and T.PricePaths()) then changed() end
 		pumpLegs()
-	end, opts(ghost))
+	end, opts(ghost, from.c, from.wx, from.wy, to.wx, to.wy))
 	if not ok then
 		if z or fz then return searchLeg(P, mine, key, from, to, nil, ghost, true) end
 		legToken, legKey = nil, nil
@@ -1105,6 +1135,21 @@ function Walk:OnTarget(target)
 	changed()
 end
 
+-- Every walk priced under the old options (a route style, a level) is
+-- dropped: the arrow's path (straight until the new one is in), the measure
+-- in flight and the kept measures, the later walk in flight and the kept
+-- later paths; then the route is planned again at once, so each is measured
+-- and searched again under the new ones.
+local function searchAgain()
+	Walk.Clear()
+	cancelMeasure()
+	for i = #measures, 1, -1 do measures[i] = nil end
+	cancelLeg()
+	for i = #legOrder, 1, -1 do legPaths[legOrder[i]], legOrder[i] = nil, nil end
+	local T = Nav.travel
+	if T and T.Replan then T.Replan() end
+end
+
 function Walk:OnSettings()
 	if ns.Get("nav.navRouting") then
 		load()
@@ -1113,21 +1158,19 @@ function Walk:OnSettings()
 		cancelMeasure()
 		cancelLeg()
 	end
-	-- Another route style: every walk priced in the old one is dropped (the
-	-- arrow's path, the measures, the later walks' paths) and the route is
-	-- planned again at once, so each is measured and searched again in the new.
+	-- Another route style: every walk priced in the old one is searched again (searchAgain).
 	local style = ns.Get("nav.routeStyle")
-	if styleSeen ~= nil and style ~= styleSeen then
-		Walk.Clear()
-		cancelMeasure()
-		for i = #measures, 1, -1 do measures[i] = nil end
-		cancelLeg()
-		for i = #legOrder, 1, -1 do legPaths[legOrder[i]], legOrder[i] = nil, nil end
-		local T = Nav.travel
-		if T and T.Replan then T.Replan() end
-	end
+	if styleSeen ~= nil and style ~= styleSeen then searchAgain() end
 	styleSeen = style
 end
+
+-- A level-up: the zones far above the player are others now (Nav/Danger.lua),
+-- so every walk priced at the old level is searched again (searchAgain), with
+-- the event's level (the client's can lag it).
+ns.RegisterEvent("PLAYER_LEVEL_UP", function(_, level)
+	if type(level) == "number" and level > levelSeen then levelSeen = level end
+	searchAgain()
+end)
 
 function Walk:Refresh()
 	if ns.Get("nav.navRouting") and not Nav.Path and not loadTried then load() end
