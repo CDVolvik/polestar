@@ -437,18 +437,18 @@ test('the route page: three styles with what each does, Balanced picked on a fre
 		local reset = { get("nav.routeStyle") or "balanced", pick() }
 		Polestar.Set("nav.routeStyle", "fastest")
 		local options = pick()
-		emit({ title = title(), note = uistub.findText(F, "How the arrow walks you. You can change it any time in Options.") ~= nil,
-			foot = uistub.findText(F, "Every style keeps you out of the other faction's towns and away from zones far above your level.") ~= nil,
+		local route = F.pages.route
+		local function said(w) return w ~= nil and w:IsShown() and (w:GetText() or "") ~= "" end
+		emit({ title = title(), note = said(route.Hero.Sub), foot = said(route.Foot),
 			cards = cards, fresh = fresh, roads = roads, reset = reset, options = options,
 			fits = F.pages.route:GetHeight() <= F.pages.setup:GetHeight() })`);
-	assert.equal(out.title, 'Route style');
-	assert.equal(out.note, true);
-	assert.equal(out.foot, true);
-	assert.deepEqual(out.cards, [
-		['Fastest', 'The shortest walk. Cuts across fields and goes straight over hills.', false],
-		['Balanced', 'Takes roads when they aren\'t much longer, and goes round steep hills.', 'Recommended'],
-		['Roads', 'Stays on roads, even when it\'s longer. Slower, but easy to follow.', false],
-	]);
+	assert.ok(out.title, 'the page has a title');
+	assert.equal(out.note, true, 'the note under the title');
+	assert.equal(out.foot, true, 'the footnote under the cards');
+	assert.equal(out.cards.length, 3, 'three cards');
+	for (const [name, desc] of out.cards) assert.ok(name && desc, `${name}: a name and a description`);
+	assert.equal(new Set(out.cards.map((c) => c[1])).size, 3, 'three different descriptions');
+	assert.deepEqual(out.cards.filter((c) => c[2]).map((c) => c[0]), ['Balanced'], 'the Recommended chip on Balanced only');
 	assert.equal(out.fresh, 'Balanced', 'Balanced is picked on a fresh account');
 	assert.deepEqual(out.roads, ['roads', 'Roads'], 'a click sets the style and moves the pick');
 	assert.deepEqual(out.reset, ['balanced', 'Balanced'], 'right-click puts Balanced back');

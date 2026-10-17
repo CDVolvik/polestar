@@ -749,9 +749,10 @@ out.water = read(10, 11)
 out.indoor = read(10, 12)
 out.city = read(10, 13)
 out.none = read(10, 20)
-out.outside = { n = Path.SurfacesAt(${MAP}, -50, 5, t), nomap = Path.SurfacesAt(99, 5, 5, t) }
 out.kept = t[2]
 out.done = Path.Prefetch(${MAP}, x, y) == nil
+-- Off the data: 0, and the cluster read before goes.
+out.outside = { n = Path.SurfacesAt(${MAP}, -50, 5, t), nomap = Path.SurfacesAt(99, 5, 5, t) }
 -- The next cluster: the first goes (the reader keeps one).
 read(${C} + 10, 10)
 pump()
@@ -840,4 +841,19 @@ pump()
 out.kept = read(10)
 out.bAfter = read(${C} + 10)`);
 	assert.deepEqual(got, { a: 1, b: 'nil', back: 1, kept: 1, bAfter: 'nil' });
+});
+
+test('Path.SurfacesAt off the data (another map, outside the map) drops the cluster read before: none is held at rest', () => {
+	const got = readerRoute(`
+local function held(f)
+	read(10)
+	pump()
+	local was = read(10)
+	local n = f()
+	return { was, n, Path.IsLoaded(${MAP}) }
+end
+out.nomap = held(function() return Path.SurfacesAt(99, 5, 5, t) end)
+out.outside = held(function() return Path.SurfacesAt(${MAP}, -50, 5, t) end)`);
+	assert.deepEqual(got.nomap, [1, 0, false], 'a map without data');
+	assert.deepEqual(got.outside, [1, 0, false], 'a point outside the map\'s data');
 });

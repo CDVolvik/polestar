@@ -1065,10 +1065,12 @@ end
 function Path.SurfacesAt(map, x, y, out)
 	local st = State(map)
 	if not st then
+		Grid.dropRead()
 		return 0
 	end
 	local k, lc = locate(st, x, y)
 	if not k then
+		Grid.dropRead()
 		return 0
 	end
 	local val = st.val[k]
@@ -1078,6 +1080,7 @@ function Path.SurfacesAt(map, x, y, out)
 		return nil
 	end
 	if not val then
+		Grid.dropRead()
 		return 0
 	end
 	Grid.keepRead(st, k)

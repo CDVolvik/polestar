@@ -2248,7 +2248,7 @@ test('#234 floor: a style change or a level-up clears the walk but keeps the flo
 		fake.releases = 0
 		Polestar.Set("nav.routeStyle", "roads")
 		N.Sample()
-		Polestar.Fire("PLAYER_LEVEL_UP", 11)
+		stub.fire("PLAYER_LEVEL_UP", 11)
 		N.Sample()
 		emit({ releases = fake.releases, z = startZ() })`);
 	assert.deepEqual(out, { releases: 0, z: 40 });
