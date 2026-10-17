@@ -749,7 +749,7 @@ local function build()
 	F.DiscordNote:SetWidth(WIDTH - TEXT_X - PAD)
 	F.DiscordNote:SetJustifyH("LEFT")
 	F.DiscordNote:SetWordWrap(true)
-	F.DiscordNote:SetText(L["1. Copy your report.\n2. In the Polestar Discord, open #bugs and press New Post. Not in it yet? Get the invite.\n3. Paste the report, give it a short title and post it. A bot files it for the developers and tells you in your thread when it's fixed."])
+	F.DiscordNote:SetText(L["1. Press Copy report, then Ctrl+C (Cmd+C on a Mac).\n2. In the Polestar Discord, open #bugs and press New Post. Not in it yet? Get the invite.\n3. Paste the report, give it a short title and post it. A bot files it for the developers and tells you in your thread when it's fixed."])
 	F.Copy = W.Button(F, L["Copy report"], copyReport, { primary = true })
 	-- The game opens no links, so the invite is one more copy: only for a
 	-- player who has not joined yet, in the copy window, never here beside

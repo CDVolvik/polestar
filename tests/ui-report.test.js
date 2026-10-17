@@ -497,3 +497,11 @@ test('the Discord bot reads the report the window gives: the details from the co
 	assert.equal(zh.details.errors.length, 1);
 	assert.match(zh.description, /The vermin were all by the tents\.\n\*\*[^*\n]+\*\* zone map 1429 · goto 51\.23,40\.50 live\n\*\*[^*\n]+\*\* Questie, TomTom$/);
 });
+
+test('the Discord steps say to press Ctrl+C after Copy report: the button selects the report, the game copies nothing itself', () => {
+	const [out] = run(`
+		uistub.setGuide(uistub.elwynn, 3)
+		UI.ShowReport()
+		emit({ note = PolestarReport.DiscordNote:GetText() })`);
+	assert.match(out.note, /^1\. Press Copy report, then Ctrl\+C \(Cmd\+C on a Mac\)\./);
+});

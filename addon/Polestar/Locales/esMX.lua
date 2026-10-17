@@ -1525,8 +1525,8 @@ L["Report problems, ask for help and hear about new guides first."] = "Informa d
 -- L["Open on GitHub"] = ""
 -- L["The link is selected for you: copy it with Ctrl+C (Cmd+C on a Mac), paste it in your browser's address bar, check the form and press Create."] = ""
 -- L["Report it on Discord"] = ""
--- L["1. Copy your report.\n2. In the Polestar Discord, open #bugs and press New Post. Not in it yet? Get the invite.\n3. Paste the report, give it a short title and post it. A bot files it for the developers and tells you in your thread when it's fixed."] = ""
 -- L["Have a GitHub account? Open the issue there with everything filled in."] = ""
+-- L["1. Press Copy report, then Ctrl+C (Cmd+C on a Mac).\n2. In the Polestar Discord, open #bugs and press New Post. Not in it yet? Get the invite.\n3. Paste the report, give it a short title and post it. A bot files it for the developers and tells you in your thread when it's fixed."] = ""
 
 -- UI/RouteChoice.lua
 L["Right here"] = "Justo aquí"
