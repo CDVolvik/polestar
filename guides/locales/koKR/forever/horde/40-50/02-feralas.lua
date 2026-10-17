@@ -3,24 +3,25 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Korean words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Fly to Grom'gol
-	-- {object:3202} Grom'gol
+	-- {object:3202} Grom'gol (no name in this language: may be words)
 	["Fly to {object:3202}"] = "{object:3202}(으)로 날아가기",
-	-- {area:1978} Misty Reed Post · {area:75} Stonard · {object:3202} Grom'gol
+	-- {area:1978} Misty Reed Post · {area:75} Stonard · {object:3202} Grom'gol (no name in this language: may be words)
 	["Ride back north-west from {area:1978} to {area:75} and fly to {object:3202}."] = "{area:1978}에서 북서쪽의 {area:75}(으)로 돌아가 {object:3202}(으)로 날아가세요.",
 
 	-- Step 2: Zeppelin to Orgrimmar
 	-- {zone:1454} Orgrimmar
 	["Zeppelin to {zone:1454}"] = "{zone:1454}행 비행선",
-	-- {zone:1454} Orgrimmar · {object:3202} Grom'gol
+	-- {zone:1454} Orgrimmar · {object:3202} Grom'gol (no name in this language: may be words)
 	["The {zone:1454} zeppelin leaves from the tower beside {object:3202}; it lands just outside {zone:1454}'s main gate."] = "{zone:1454}행 비행선은 {object:3202} 옆의 탑에서 출발하며, {zone:1454} 정문 바로 밖에 도착합니다.",
 	["Zeppelin tower"] = "비행선 탑",
 
 	-- Step 4: Riding at 40
 	["Riding at 40"] = "40레벨 탈것 타기",
-	-- {npc:4752} Kildar · {object:172958} Valley of Honor · {npc:3362} Ogunaro Wolfrunner
+	-- {npc:4752} Kildar · {object:172958} Valley of Honor (no name in this language: may be words) · {npc:3362} Ogunaro Wolfrunner
 	["Riding needs level 40 and costs 100 gold; learning it gives you a mount. {npc:4752} teaches Orcs in the {object:172958}, by {npc:3362}'s kennel; no Skyborne riding trainer is known, so Skyborne try {npc:4752} too. Your race's other mounts are 20 gold each: Collectibles, Mounts · Level 40 has a guide for each."] = "탈것 타기는 40레벨이 필요하고 100골드가 듭니다. 배우면 탈것을 하나 받습니다. {npc:4752}은(는) {object:172958}의 {npc:3362} 우리 옆에서 오크에게 가르칩니다. 스카이본 탈것 타기 상급자는 알려진 바가 없으니, 스카이본도 {npc:4752}에게 시도해 보세요. 종족의 다른 탈것은 각각 20골드입니다: 수집품, 탈것 · 40레벨에 각각의 가이드가 있습니다.",
 	-- {npc:4752} Kildar
 	["{npc:4752}, riding trainer"] = "탈것 타기 상급자 {npc:4752}",
@@ -30,7 +31,7 @@ return {
 	["Galestriders: {npc:265756}, in {area:16638} on Zephras Isle."] = "돌풍타조: 제프라스 섬 {area:16638}의 {npc:265756}",
 
 	-- Step 5: Riding at 40
-	-- {npc:7953} Xar'Ti · {area:367} Sen'jin Village · {zone:1411} Durotar · {npc:4752} Kildar · {zone:1454} Orgrimmar · {object:172958} Valley of Honor
+	-- {npc:7953} Xar'Ti · {area:367} Sen'jin Village · {zone:1411} Durotar · {npc:4752} Kildar · {zone:1454} Orgrimmar · {object:172958} Valley of Honor (no name in this language: may be words)
 	["Riding needs level 40 and costs 100 gold; learning it gives you a mount. In Classic each race learns it from its own race's trainer: yours is {npc:7953} in {area:367} on the {zone:1411} coast, with Zjolnir's raptors (20 gold each) beside him. Forever may let any race learn from any riding trainer (not confirmed): try {npc:4752} in {zone:1454}'s {object:172958} first, as he is the nearest, and skip this step if he teaches you."] = "탈것 타기는 40레벨이 필요하고 100골드가 듭니다. 배우면 탈것을 하나 받습니다. 클래식에서는 각 종족이 자기 종족의 상급자에게서 배웁니다. 당신의 상급자는 {zone:1411} 해안 {area:367}의 {npc:7953}이며, 그 옆에서 졸니르가 랩터(각 20골드)를 팝니다. Forever에서는 어느 종족이든 아무 탈것 타기 상급자에게서 배울 수 있을지도 모릅니다(확인되지 않음). 가장 가까운 {zone:1454} {object:172958}의 {npc:4752}에게 먼저 시도하고, 그가 가르쳐 주면 이 단계는 건너뛰세요.",
 	-- {npc:7953} Xar'Ti
 	["{npc:7953}, riding trainer"] = "탈것 타기 상급자 {npc:7953}",
@@ -38,7 +39,7 @@ return {
 	["Raptors: Zjolnir, beside {npc:7953} in {area:367}."] = "랩터: {area:367}의 {npc:7953} 옆의 졸니르",
 
 	-- Step 6: Riding at 40
-	-- {npc:3690} Kar Stormsinger · {area:222} Bloodhoof Village · {npc:3685} Harb Clawhoof · {npc:4752} Kildar · {zone:1454} Orgrimmar · {object:172958} Valley of Honor
+	-- {npc:3690} Kar Stormsinger · {area:222} Bloodhoof Village · {npc:3685} Harb Clawhoof · {npc:4752} Kildar · {zone:1454} Orgrimmar · {object:172958} Valley of Honor (no name in this language: may be words)
 	["Riding needs level 40 and costs 100 gold; learning it gives you a mount. In Classic each race learns it from its own race's trainer: yours is {npc:3690} in {area:222}, with {npc:3685}'s kodos (20 gold each) beside him. Forever may let any race learn from any riding trainer (not confirmed): try {npc:4752} in {zone:1454}'s {object:172958} first, as he is the nearest, and skip this step if he teaches you."] = "탈것 타기는 40레벨이 필요하고 100골드가 듭니다. 배우면 탈것을 하나 받습니다. 클래식에서는 각 종족이 자기 종족의 상급자에게서 배웁니다. 당신의 상급자는 {area:222}의 {npc:3690}이며, 그 옆에서 {npc:3685}이(가) 코도(각 20골드)를 팝니다. Forever에서는 어느 종족이든 아무 탈것 타기 상급자에게서 배울 수 있을지도 모릅니다(확인되지 않음). 가장 가까운 {zone:1454} {object:172958}의 {npc:4752}에게 먼저 시도하고, 그가 가르쳐 주면 이 단계는 건너뛰세요.",
 	-- {npc:3690} Kar Stormsinger
 	["{npc:3690}, riding trainer"] = "탈것 타기 상급자 {npc:3690}",
@@ -46,7 +47,7 @@ return {
 	["Kodos: {npc:3685}, beside {npc:3690} in {area:222}."] = "코도: {area:222}의 {npc:3690} 옆의 {npc:3685}",
 
 	-- Step 7: Riding at 40
-	-- {npc:4773} Velma Warnam · {area:159} Brill · {npc:4731} Zachariah Post · {npc:4752} Kildar · {zone:1454} Orgrimmar · {object:172958} Valley of Honor
+	-- {npc:4773} Velma Warnam · {area:159} Brill · {npc:4731} Zachariah Post · {npc:4752} Kildar · {zone:1454} Orgrimmar · {object:172958} Valley of Honor (no name in this language: may be words)
 	["Riding needs level 40 and costs 100 gold; learning it gives you a mount. In Classic each race learns it from its own race's trainer: yours is {npc:4773} in {area:159}, with {npc:4731}'s skeletal horses (20 gold each) beside her. Forever may let any race learn from any riding trainer (not confirmed): try {npc:4752} in {zone:1454}'s {object:172958} first, as he is the nearest, and skip this step if he teaches you."] = "탈것 타기는 40레벨이 필요하고 100골드가 듭니다. 배우면 탈것을 하나 받습니다. 클래식에서는 각 종족이 자기 종족의 상급자에게서 배웁니다. 당신의 상급자는 {area:159}의 {npc:4773}이며, 그 옆에서 {npc:4731}이(가) 해골마(각 20골드)를 팝니다. Forever에서는 어느 종족이든 아무 탈것 타기 상급자에게서 배울 수 있을지도 모릅니다(확인되지 않음). 가장 가까운 {zone:1454} {object:172958}의 {npc:4752}에게 먼저 시도하고, 그가 가르쳐 주면 이 단계는 건너뛰세요.",
 	-- {npc:4773} Velma Warnam
 	["{npc:4773}, riding trainer"] = "탈것 타기 상급자 {npc:4773}",
@@ -155,8 +156,8 @@ return {
 	["Keep riding west to the coast. The Coast Crawl Deepseers and Snapclaws on the beaches drop OOX-22/FE's distress beacon about one kill in forty: if one drops, use it to start the quest."] = "계속 서쪽 해안으로 가세요. 해변의 점쟁이 바다마크루라와 집게발 바다마크루라는 마흔 마리에 한 번꼴로 OOX-22/FE 조난 탐지기를 떨어뜨립니다. 얻으면 사용해 퀘스트를 시작하세요.",
 
 	-- Step 34: Homing Robot OOX-22/FE
-	-- {area:1105} Feral Scar Vale · {area:35} Booty Bay
-	["Only with the distress beacon: the robot sits in a small cave on the north side of {area:1105}. Escort it to the dock on the Forgotten Coast; yetis and gorillas ambush you on the way. Its reward waits in {area:35} for a later visit."] = "조난 탐지기가 있을 때만: 로봇은 {area:1105} 북쪽의 작은 동굴에 있습니다. 잊혀진 해안의 부두까지 호위하세요. 가는 길에 설인과 고릴라가 습격합니다. 보상은 나중에 {area:35}에 들를 때 받습니다.",
+	-- {area:1105} Feral Scar Vale · {area:1108} The Forgotten Coast · {area:35} Booty Bay
+	["Only with the distress beacon: the robot sits in a small cave on the north side of {area:1105}. Escort it to the dock on the {area:1108}; yetis and gorillas ambush you on the way. Its reward waits in {area:35} for a later visit."] = "조난 탐지기가 있을 때만: 로봇은 {area:1105} 북쪽의 작은 동굴에 있습니다. {area:1108}의 부두까지 호위하세요. 가는 길에 설인과 고릴라가 습격합니다. 보상은 나중에 {area:35}에 들를 때 받습니다.",
 
 	-- Step 35: Hearth to Camp Mojache
 	-- {area:1099} Camp Mojache
@@ -169,9 +170,9 @@ return {
 	["for the {zone:1425}, around level 48"] = "48레벨쯤 {zone:1425}에서",
 
 	-- Step 37: Zeppelin to Grom'gol
-	-- {object:3202} Grom'gol
+	-- {object:3202} Grom'gol (no name in this language: may be words)
 	["Zeppelin to {object:3202}"] = "{object:3202}행 비행선",
-	-- {object:3202} Grom'gol · {zone:1454} Orgrimmar
+	-- {object:3202} Grom'gol (no name in this language: may be words) · {zone:1454} Orgrimmar
 	["The {object:3202} zeppelin leaves from the tower just north-east of {zone:1454}'s main gate."] = "{object:3202}행 비행선은 {zone:1454} 정문 바로 북동쪽의 탑에서 출발합니다.",
 
 	-- Step 38: Fly to Stonard

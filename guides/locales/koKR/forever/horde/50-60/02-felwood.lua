@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Korean words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Fly to the Undercity
@@ -12,8 +13,8 @@ return {
 	["From {area:2268}'s flight master, fly to the {area:1497}."] = "{area:2268}의 비행 조련사에게서 {area:1497}(으)로 날아가세요.",
 
 	-- Step 2: Janice Felstone
-	-- {area:1497} Undercity · {zone:1420} Tirisfal Glades · {area:152} Bulwark
-	["Leave the {area:1497} and ride east along the road through {zone:1420}, past the {area:152}. Felstone Farm is the first farm along the road; Janice waits in the house."] = "{area:1497}을(를) 나와 길을 따라 동쪽으로 {zone:1420}을(를) 지나 {area:152}을(를) 지나가세요. 펠스톤 농장은 길을 따라 처음 나오는 농장이며, 재니스는 집 안에서 기다립니다.",
+	-- {area:1497} Undercity · {zone:1420} Tirisfal Glades · {area:152} Bulwark · {npc:10778} Janice Felstone
+	["Leave the {area:1497} and ride east along the road through {zone:1420}, past the {area:152}. Felstone Farm is the first farm along the road; {npc:10778} waits in the house."] = "{area:1497}을(를) 나와 길을 따라 동쪽으로 {zone:1420}을(를) 지나 {area:152}을(를) 지나가세요. 펠스톤 농장은 길을 따라 처음 나오는 농장이며, {npc:10778}은(는) 집 안에서 기다립니다.",
 	-- {object:175894} Janice's Parcel
 	["{object:175894}, beside the house"] = "집 옆의 {object:175894}",
 	-- {npc:10781} Royal Overseer Bauhaus · {area:1497} Undercity
@@ -35,8 +36,8 @@ return {
 	["He camps by the {area:202}, south-east of {area:200}."] = "그는 {area:200} 남동쪽, {area:202} 옆에 야영하고 있습니다.",
 
 	-- Step 6: Sorrow Hill
-	-- {area:202} Writhing Haunt · {area:197} Sorrow Hill · {npc:10936} Joseph Redpath
-	["Ride south past the {area:202} to {area:197}; Marlene's house stands by the road, and {npc:10936}'s monument is in the graveyard behind it. Kill the Diseased Wolves you meet in the fields on the way."] = "남쪽으로 {area:202}을(를) 지나 {area:197}(으)로 가세요. 말레네의 집은 길가에 있고, {npc:10936}의 기념비는 그 뒤 묘지에 있습니다. 가는 길에 들판에서 만나는 역병에 걸린 늑대를 처치하세요.",
+	-- {area:202} Writhing Haunt · {area:197} Sorrow Hill · {npc:10927} Marlene Redpath · {npc:10936} Joseph Redpath
+	["Ride south past the {area:202} to {area:197}; {npc:10927}'s house stands by the road, and {npc:10936}'s monument is in the graveyard behind it. Kill the Diseased Wolves you meet in the fields on the way."] = "남쪽으로 {area:202}을(를) 지나 {area:197}(으)로 가세요. {npc:10927}의 집은 길가에 있고, {npc:10936}의 기념비는 그 뒤 묘지에 있습니다. 가는 길에 들판에서 만나는 역병에 걸린 늑대를 처치하세요.",
 	-- {npc:10840} Argent Officer Pureheart
 	["{npc:10840}, at the graveyard's south end"] = "묘지 남쪽 끝의 {npc:10840}",
 	-- {quest:5142} Little Pamela · {area:2262} Darrowshire
@@ -75,8 +76,8 @@ return {
 	["Tirion's hunts are in the {zone:1423}: keep them for later."] = "티리온의 사냥은 {zone:1423}에서 합니다. 나중을 위해 보관하세요.",
 
 	-- Step 15: Kirsta Deepshadow
-	-- {area:192} Northridge Lumber Camp
-	["Ride west to the {area:192}; Kirsta hides on the hill north-east of it."] = "서쪽의 {area:192}(으)로 가세요. 키르스타는 그 북동쪽 언덕에 숨어 있습니다.",
+	-- {area:192} Northridge Lumber Camp · {npc:11610} Kirsta Deepshadow
+	["Ride west to the {area:192}; {npc:11610} hides on the hill north-east of it."] = "서쪽의 {area:192}(으)로 가세요. {npc:11610}은(는) 그 북동쪽 언덕에 숨어 있습니다.",
 
 	-- Step 16: Scarlet Crusade
 	["Scarlet Crusade"] = "붉은십자군",
@@ -85,12 +86,13 @@ return {
 
 	-- Step 18: Radley and Durgen
 	["Radley and Durgen"] = "래들리와 더건",
-	-- {npc:11613} Huntsman Radley · {npc:11611} Cavalier Durgen · {area:190} Hearthglen
-	["{npc:11613} stands east of the lumber camp; {npc:11611} guards the road north-east of Kirsta, toward {area:190}."] = "{npc:11613}은(는) 벌목지 동쪽에 서 있고, {npc:11611}은(는) 키르스타 북동쪽, {area:190}(으)로 가는 길을 지키고 있습니다.",
+	-- {npc:11613} Huntsman Radley · {npc:11611} Cavalier Durgen · {npc:11610} Kirsta Deepshadow · {area:190} Hearthglen
+	["{npc:11613} stands east of the lumber camp; {npc:11611} guards the road north-east of {npc:11610}, toward {area:190}."] = "{npc:11613}은(는) 벌목지 동쪽에 서 있고, {npc:11611}은(는) {npc:11610} 북동쪽, {area:190}(으)로 가는 길을 지키고 있습니다.",
 
 	-- Step 20: Northridge Lumber Camp
+	-- {npc:11610} Kirsta Deepshadow
 	-- plural, as words: Scarlet Knights = {npc:1833} Scarlet Knight
-	["Kirsta's last task needs level 53. The Scarlet Knights and Magi (54-55) working the lumber camp just south-west of her are the closest camp."] = "키르스타의 마지막 임무는 53레벨이 필요합니다. 그녀 바로 남서쪽 벌목지에서 일하는 붉은십자군 기사와 학자(54-55)가 가장 가까운 사냥터입니다.",
+	["{npc:11610}'s last task needs level 53. The Scarlet Knights and Magi (54-55) working the lumber camp just south-west of her are the closest camp."] = "{npc:11610}의 마지막 임무는 53레벨이 필요합니다. 그녀 바로 남서쪽 벌목지에서 일하는 붉은십자군 기사와 학자(54-55)가 가장 가까운 사냥터입니다.",
 	-- {area:192} Northridge Lumber Camp · {zone:1422} Western Plaguelands
 	-- plural, as words: Scarlet Knights = {npc:1833} Scarlet Knight
 	["grind on Scarlet Knights at {area:192}, {zone:1422}"] = "{zone:1422} {area:192}에서 붉은십자군 기사 사냥",
@@ -99,12 +101,11 @@ return {
 	-- {area:190} Hearthglen
 	["{area:190}'s Scarlets are level 58-60. Ride in to the high point marked on your map, look over the town, and get out."] = "{area:190}의 붉은십자군은 58-60레벨입니다. 지도에 표시된 높은 곳까지 들어가 마을을 살펴본 뒤 빠져나오세요.",
 
-	-- Step 24: The Bulwark
-	-- {area:152} Bulwark
-	["The {area:152}"] = "{area:152}",
+	-- Step 24: Bulwark
 	-- {area:152} Bulwark
 	["Ride south-west past Felstone Farm and follow the road west back to the {area:152}."] = "남서쪽으로 펠스톤 농장을 지나 길을 따라 서쪽의 {area:152}(으)로 돌아가세요.",
-	["Derrington's watchtowers, Vandis' cauldron and Mickey's barrel are done on a later visit: keep them."] = "데링턴의 감시탑, 반디스의 가마솥, 미키의 통은 나중에 들를 때 처리합니다. 보관하세요.",
+	-- {npc:11615} Mickey Levine
+	["Derrington's watchtowers, Vandis' cauldron and {npc:11615}'s barrel are done on a later visit: keep them."] = "데링턴의 감시탑, 반디스의 가마솥, {npc:11615}의 통은 나중에 들를 때 처리합니다. 보관하세요.",
 
 	-- Step 25: To Felwood
 	-- {zone:1448} Felwood
@@ -143,8 +144,8 @@ return {
 	-- Step 32: The Jaedenar moonwell
 	-- {area:1763} Jaedenar
 	["The {area:1763} moonwell"] = "{area:1763} 달샘",
-	-- {area:1763} Jaedenar
-	["Back north to {area:1763}. Fill Greta's canteen at the corrupted moonwell in the middle of the southern camp."] = "북쪽의 {area:1763}(으)로 돌아가세요. 남쪽 야영지 한가운데의 오염된 달샘에서 그레타의 수통을 채우세요.",
+	-- {area:1763} Jaedenar · {npc:10922} Greta Mosshoof
+	["Back north to {area:1763}. Fill {npc:10922}'s canteen at the corrupted moonwell in the middle of the southern camp."] = "북쪽의 {area:1763}(으)로 돌아가세요. 남쪽 야영지 한가운데의 오염된 달샘에서 {npc:10922}의 수통을 채우세요.",
 
 	-- Step 33: Rakaiah
 	-- {npc:11018} Arko'narin · {npc:9518} Rakaiah · {area:1763} Jaedenar · {npc:11020} Remains of Trey Lightforge
@@ -158,13 +159,14 @@ return {
 
 	-- Step 35: The Jadefire moonwell
 	["The Jadefire moonwell"] = "비취불꽃 달샘",
-	-- {area:1763} Jaedenar
-	["Ride back south past {area:1763} to the corrupted moonwell of the Jadefire satyrs and fill Winna's flasket there."] = "남쪽으로 {area:1763}을(를) 지나 비취불꽃의 사티로스가 있는 오염된 달샘으로 돌아가, 그곳에서 위나의 작은 병을 채우세요.",
+	-- {area:1763} Jaedenar · {npc:9996} Winna Hazzard
+	["Ride back south past {area:1763} to the corrupted moonwell of the Jadefire satyrs and fill {npc:9996}'s flasket there."] = "남쪽으로 {area:1763}을(를) 지나 비취불꽃의 사티로스가 있는 오염된 달샘으로 돌아가, 그곳에서 {npc:9996}의 작은 병을 채우세요.",
 
-	-- Step 37: Winna's kitten
-	["Winna's kitten"] = "위나의 새끼 고양이",
-	-- {npc:10042} Corrupted Saber
-	["Take the kitten to the same moonwell and release it there; once it has turned into a {npc:10042}, bring it back to Winna and click on it to hand it over."] = "새끼 고양이를 같은 달샘에 데려가 풀어 주세요. {npc:10042}(으)로 변하면 위나에게 데려가 클릭해서 건네세요.",
+	-- Step 37: Winna Hazzard's kitten
+	-- {npc:9996} Winna Hazzard
+	["{npc:9996}'s kitten"] = "{npc:9996}의 새끼 고양이",
+	-- {npc:10042} Corrupted Saber · {npc:9996} Winna Hazzard
+	["Take the kitten to the same moonwell and release it there; once it has turned into a {npc:10042}, bring it back to {npc:9996} and click on it to hand it over."] = "새끼 고양이를 같은 달샘에 데려가 풀어 주세요. {npc:10042}(으)로 변하면 {npc:9996}에게 데려가 클릭해서 건네세요.",
 	["Jadefire moonwell"] = "비취불꽃 달샘",
 
 	-- Step 39: Shatter Scar Vale
@@ -226,5 +228,5 @@ return {
 	["Walk into the {area:1769} tunnel beside {npc:15395} and never attack the Timbermaw furbolgs inside. The tunnel opens into {zone:1452}; follow the road east to {area:2255}, the goblin town where the next guide starts."] = "{npc:15395} 옆의 {area:1769} 터널로 들어가세요. 안쪽의 나무구렁 털보숭이는 절대 공격하지 마세요. 터널은 {zone:1452}(으)로 이어집니다. 길을 따라 동쪽으로 다음 가이드가 시작되는 고블린 마을 {area:2255}(으)로 가세요.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["East of {area:1997}, the cratered vale where the Entropic Beasts and Horrors roam. Kill two of each, then walk to each of the three fel-water craters."] = "{area:1997} 동쪽, 혼돈의 불길과 혼돈의 소산물이 돌아다니는 구덩이투성이 골짜기입니다. 각각 두 마리씩 처치한 뒤, 지옥 물 구덩이 세 곳을 모두 걸어서 찾아가세요.",
+	-- ["The {area:152}"] = "{area:152}",
 }

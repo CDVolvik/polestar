@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in German (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in German words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Kadrak
@@ -20,8 +21,8 @@ return {
 	-- Step 4: Night Run
 	-- {npc:12696} Senani Thunderheart · {area:428} Night Run
 	["{npc:12696} stands at {area:428}, the Warsong camp just north-east of Splintertree, beside the hunt board."] = "{npc:12696} steht bei {area:428}, dem Lager der Warsong gleich nordöstlich von Splintertree, neben dem Jagdbrett.",
-	-- {zone:1440} Ashenvale
-	["Senani's hunt targets (Ursangous, Shadumbra, Sharptalon) are for the next {zone:1440} visit, at 27."] = "Senanis Jagdziele (Ursangus, Schattumbra, Scharfkralle) sind für den nächsten Besuch in {zone:1440}, mit 27.",
+	-- {npc:12696} Senani Thunderheart · {zone:1440} Ashenvale
+	["{npc:12696}'s hunt targets (Ursangous, Shadumbra, Sharptalon) are for the next {zone:1440} visit, at 27."] = "{npc:12696}s Jagdziele (Ursangus, Schattumbra, Scharfkralle) sind für den nächsten Besuch in {zone:1440}, mit 27.",
 
 	-- Step 5: Warsong Outrider
 	-- {npc:12864} Warsong Outrider · {area:428} Night Run · {area:430} Satyrnaar
@@ -33,8 +34,8 @@ return {
 	["On the ride west, {npc:267214} is stuck in a ravine south of the main road, south-east of {area:415}. Shadowhorn Stags and Ashenvale Bears roam the woods all around it."] = "Auf dem Ritt nach Westen steckt {npc:267214} in einer Schlucht südlich der Hauptstraße fest, südöstlich von {area:415}. Schattenhornhirsche und Ashenvalebären streifen überall durch die Wälder drumherum.",
 
 	-- Step 7: A Void Path
-	-- {npc:271181} Eye of Kilrogg
-	["Steer Va'xug's {npc:271181} out of the ravine to the main road within four minutes; if the channel breaks, ask Va'xug again."] = "Steuere Va'xugs {npc:271181} innerhalb von vier Minuten aus der Schlucht zur Hauptstraße; bricht die Kanalisierung ab, frag Va'xug erneut.",
+	-- {npc:267214} Va'xug Firefure · {npc:271181} Eye of Kilrogg
+	["Steer {npc:267214}'s {npc:271181} out of the ravine to the main road within four minutes; if the channel breaks, ask {npc:267214} again."] = "Steuere {npc:267214}s {npc:271181} innerhalb von vier Minuten aus der Schlucht zur Hauptstraße; bricht die Kanalisierung ab, frag {npc:267214} erneut.",
 	-- {npc:271181} Eye of Kilrogg
 	["{npc:271181}, on the road"] = "{npc:271181}, auf der Straße",
 
@@ -71,7 +72,7 @@ return {
 	-- Step 16: Sun Rock Retreat
 	-- {area:460} Sun Rock Retreat
 	["Follow the road west to {area:460}."] = "Folge der Straße nach Westen zum {area:460}.",
-	-- {npc:11860} Maggran Earthbinder · {object:19844} Great Lift
+	-- {npc:11860} Maggran Earthbinder · {object:19844} Great Lift (no name in this language: may be words)
 	["{npc:11860}: Grish is at the {object:19844}, in the next guide"] = "{npc:11860}: Grish ist am {object:19844}, im nächsten Guide",
 	-- {npc:11860} Maggran Earthbinder
 	-- plural, as words: Glittering Sunstones = {item:277936} Glittering Sunstone
@@ -94,13 +95,13 @@ return {
 	["Follow the road north toward {area:467}. Antlered Coursers graze along the way; the Sap Beasts, Twilight Runners and Fey Dragons roam the woods below the Peak, and the Cenarion druids hold the grove there."] = "Folge der Straße nach Norden Richtung {area:467}. Gehörnte Renner grasen am Weg; die Blutsaftbestien, Mondlichtläufer und Siechdrachen streifen durch die Wälder unterhalb des Gipfels, und die Cenarischen Druiden halten den Hain dort.",
 
 	-- Step 19: Sun Rock Retreat
-	-- {zone:1440} Ashenvale
-	["Braelyn's next quest, Ordanus, is on the Alliance side of {zone:1440}. Skip it."] = "Braelyns nächste Quest, Ordanus, liegt auf der Allianzseite von {zone:1440}. Überspring sie.",
+	-- {npc:4198} Braelyn Firehand · {zone:1440} Ashenvale
+	["{npc:4198}'s next quest, Ordanus, is on the Alliance side of {zone:1440}. Skip it."] = "{npc:4198}s nächste Quest, Ordanus, liegt auf der Allianzseite von {zone:1440}. Überspring sie.",
 
 	-- Step 20: The Charred Vale
-	-- {item:16312} Incendrites
+	-- {area:465} The Charred Vale · {item:16312} Incendrites
 	-- plural, as words: Gaea Seeds = {item:16205} Gaea Seed
-	["South-west of Sun Rock lies the burned Charred Vale. Plant the Gaea Seeds in the dirt mounds on the valley floor; the fire elementals drop {item:16312}. Bloodfury Harpies and Ambushers nest on the north side, Slayers and Roguefeathers to the south."] = "Südwestlich vom Sonnenfels liegt das Verbrannte Tal. Pflanz die Gaeasamenkörner in die Erdhügel auf dem Talgrund; die Feuerelementare lassen {item:16312} fallen. Harpyien und Wegelagerinnen der Blutfurien nisten auf der Nordseite, Töterinnen und Wildfedern im Süden.",
+	["South-west of Sun Rock lies the burned {area:465}. Plant the Gaea Seeds in the dirt mounds on the valley floor; the fire elementals drop {item:16312}. Bloodfury Harpies and Ambushers nest on the north side, Slayers and Roguefeathers to the south."] = "Südwestlich vom Sonnenfels liegt das {area:465}. Pflanz die Gaeasamenkörner in die Erdhügel auf dem Talgrund; die Feuerelementare lassen {item:16312} fallen. Harpyien und Wegelagerinnen der Blutfurien nisten auf der Nordseite, Töterinnen und Wildfedern im Süden.",
 	-- plural, as words: Gaea Dirt Mounds = {object:177929} Gaea Dirt Mound
 	["Gaea Dirt Mounds"] = "Gaeaerdhügel",
 	-- {item:277936} Glittering Sunstone
@@ -119,13 +120,13 @@ return {
 	-- Step 23: To the Undercity
 	-- {area:1497} Undercity
 	["To the {area:1497}"] = "Nach {area:1497}",
-	-- {area:380} Crossroads · {zone:1454} Orgrimmar · {zone:1420} Tirisfal Glades · {area:1497} Undercity · {area:153} Ruins of Lordaeron · {object:36078} Trade Quarter
+	-- {area:380} Crossroads · {zone:1454} Orgrimmar · {zone:1420} Tirisfal Glades · {area:1497} Undercity · {area:153} Ruins of Lordaeron · {object:36078} Trade Quarter (no name in this language: may be words)
 	["Ride east to the {area:380} and fly to {zone:1454}. Take the zeppelin from the towers outside {zone:1454} to {zone:1420}; the {area:1497} lies below the {area:153}. The bat handler is in the {object:36078}."] = "Reite nach Osten nach {area:380} und flieg nach {zone:1454}. Nimm den Zeppelin von den Türmen vor {zone:1454} nach {zone:1420}; {area:1497} liegt unter den {area:153}. Der Fledermausführer ist im {object:36078}.",
-	-- {npc:10181} Lady Sylvanas Windrunner · {object:36126} Royal Quarter · {quest:93739} Exploring the Horde
+	-- {npc:10181} Lady Sylvanas Windrunner · {object:36126} Royal Quarter (no name in this language: may be words) · {quest:93739} Exploring the Horde
 	["Speak with {npc:10181}, in the {object:36126}: {quest:93739}"] = "Sprich mit {npc:10181} im {object:36126}: {quest:93739}",
 
 	-- Step 24: Aelthalyste
-	-- {npc:4606} Aelthalyste · {object:36070} War Quarter
+	-- {npc:4606} Aelthalyste · {object:36070} War Quarter (no name in this language: may be words)
 	["{npc:4606} stands in the {object:36070}."] = "{npc:4606} steht im {object:36070}.",
 
 	-- Step 25: Beren's Peril

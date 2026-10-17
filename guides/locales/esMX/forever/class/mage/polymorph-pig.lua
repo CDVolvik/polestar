@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Spanish (Latin America) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Spanish (Latin America) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -31,7 +32,4 @@ return {
 	-- Step 5: Fragmented Magic
 	-- {npc:8379} Archmage Xylem · {spell:118} Polymorph
 	["{npc:8379}: {spell:118} (pig)"] = "{npc:8379}: {spell:118} (cerdo)",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Carry the {item:23250} back to the {area:1221}. {spell:118} a Spitelash naga and wait a few seconds: it splits into small Polymorph Clones. Kill the clones quickly; the shell collects their essence."] = "Lleva la {item:23250} de vuelta a {area:1221}. Lanza {spell:118} sobre una naga Látigo de Ira y espera unos segundos: se divide en pequeños Clones polimórficos ({npc:16479}). Mata a los clones rápido; la concha recoge su esencia.",
 }

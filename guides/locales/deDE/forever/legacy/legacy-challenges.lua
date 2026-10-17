@@ -3,14 +3,15 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in German (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in German words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
-	["Legacy Challenges"] = "Legacy-Herausforderungen",
+	["Legacy Challenges"] = "Vermächtnisherausforderungen",
 
 	-- Step 1: Classes: level 25
 	["Classes: level 25"] = "Klassen: Stufe 25",
-	["Classes give 27 points: every class reaching 25, 45 and 60. They count once per class across your account, so a second character of a class you already raised adds nothing; a new class does. The first character to reach 25 usually unlocks the Legacy System itself."] = "Klassen geben 27 Punkte: jede Klasse, die 25, 45 und 60 erreicht. Sie zählen einmal pro Klasse im ganzen Account, ein zweiter Charakter einer bereits hochgespielten Klasse bringt also nichts; eine neue Klasse schon. Der erste Charakter auf Stufe 25 schaltet meist das Legacy-System selbst frei.",
+	["Classes give 27 points: every class reaching 25, 45 and 60. They count once per class across your account, so a second character of a class you already raised adds nothing; a new class does. The first character to reach 25 usually unlocks the Legacy System itself."] = "Klassen geben 27 Punkte: jede Klasse, die 25, 45 und 60 erreicht. Sie zählen einmal pro Klasse im ganzen Account, ein zweiter Charakter einer bereits hochgespielten Klasse bringt also nichts; eine neue Klasse schon. Der erste Charakter auf Stufe 25 schaltet meist das Vermächtnissystem selbst frei.",
 
 	-- Step 2: Classes: level 45
 	["Classes: level 45"] = "Klassen: Stufe 45",
@@ -24,7 +25,7 @@ return {
 	-- {skill:171} Alchemy
 	["Tradeskills: {skill:171}"] = "Berufe: {skill:171}",
 	-- {skill:171} Alchemy
-	["Each crafting profession gives 3 points, at 150, 225 and 300. Ranks count once per profession across your account. Follow the Polestar guide \"{skill:171} 1-300\" (Professions). A crafting profession at 150 also unlocks the Legacy System."] = "Jeder Herstellungsberuf gibt 3 Punkte, bei 150, 225 und 300. Ränge zählen einmal pro Beruf im ganzen Account. Folge dem Polestar-Guide „{skill:171} 1-300“ (Berufe). Ein Herstellungsberuf auf 150 schaltet auch das Legacy-System frei.",
+	["Each crafting profession gives 3 points, at 150, 225 and 300. Ranks count once per profession across your account. Follow the Polestar guide \"{skill:171} 1-300\" (Professions). A crafting profession at 150 also unlocks the Legacy System."] = "Jeder Herstellungsberuf gibt 3 Punkte, bei 150, 225 und 300. Ränge zählen einmal pro Beruf im ganzen Account. Folge dem Polestar-Guide „{skill:171} 1-300“ (Berufe). Ein Herstellungsberuf auf 150 schaltet auch das Vermächtnissystem frei.",
 
 	-- Step 5: Tradeskills: Blacksmithing
 	-- {skill:164} Blacksmithing
@@ -58,9 +59,9 @@ return {
 
 	-- Step 10: PvP: battleground reputations (Alliance)
 	["PvP: battleground reputations (Alliance)"] = "PvP: Schlachtfeld-Ruf (Allianz)",
-	["Exalted with each battleground faction is worth a point (4 in all; this page shows three, see the note). Follow the Polestar Reputation guides Warsong Gulch Reputation, Arathi Basin Reputation and Alterac Valley Reputation. The Diplomat Legacy perk increases reputation gains."] = "Ehrfürchtig bei jeder Schlachtfeldfraktion ist einen Punkt wert (insgesamt 4; diese Seite zeigt drei, siehe Hinweis). Folge den Polestar-Rufguides Ruf: Warsongschlucht, Ruf: Arathibecken und Ruf: Alteractal. Der Legacy-Vorteil „Diplomat“ erhöht den Rufgewinn.",
+	["Exalted with each battleground faction is worth a point (4 in all; this page shows three, see the note). Follow the Polestar Reputation guides Warsong Gulch Reputation, Arathi Basin Reputation and Alterac Valley Reputation. The Diplomat Legacy perk increases reputation gains."] = "Ehrfürchtig bei jeder Schlachtfeldfraktion ist einen Punkt wert (insgesamt 4; diese Seite zeigt drei, siehe Hinweis). Folge den Polestar-Rufguides Ruf: Warsongschlucht, Ruf: Arathibecken und Ruf: Alteractal. Der Vermächtnis-Vorteil „Diplomat“ erhöht den Rufgewinn.",
 	-- {zone:1460} Warsong Gulch · {zone:1461} Arathi Basin · {zone:1459} Alterac Valley
-	["Blizzard counts four battleground reputations, but our faction data has three per side ({zone:1460}, {zone:1461}, {zone:1459}). The fourth is likely tied to Forever's new PvP content; check the in-game Legacy panel."] = "Blizzard zählt vier Schlachtfeld-Rufe, aber unsere Fraktionsdaten haben drei pro Seite ({zone:1460}, {zone:1461}, {zone:1459}). Der vierte hängt wohl mit den neuen PvP-Inhalten von Forever zusammen; sieh im Legacy-Fenster im Spiel nach.",
+	["Blizzard counts four battleground reputations, but our faction data has three per side ({zone:1460}, {zone:1461}, {zone:1459}). The fourth is likely tied to Forever's new PvP content; check the in-game Legacy panel."] = "Blizzard zählt vier Schlachtfeld-Rufe, aber unsere Fraktionsdaten haben drei pro Seite ({zone:1460}, {zone:1461}, {zone:1459}). Der vierte hängt wohl mit den neuen PvP-Inhalten von Forever zusammen; sieh im Vermächtnis-Fenster im Spiel nach.",
 
 	-- Step 11: PvP: battleground reputations (Horde)
 	["PvP: battleground reputations (Horde)"] = "PvP: Schlachtfeld-Ruf (Horde)",
@@ -75,9 +76,9 @@ return {
 
 	-- Step 14: Adventure: explore the world map
 	["Adventure: explore the world map"] = "Abenteuer: die Weltkarte erkunden",
-	["Exploring the entire world map on one character is a point, and it can also unlock the Legacy System. It must all be on the same character."] = "Die ganze Weltkarte mit einem Charakter zu erkunden ist einen Punkt wert und kann auch das Legacy-System freischalten. Alles muss mit demselben Charakter geschehen.",
+	["Exploring the entire world map on one character is a point, and it can also unlock the Legacy System. It must all be on the same character."] = "Die ganze Weltkarte mit einem Charakter zu erkunden ist einen Punkt wert und kann auch das Vermächtnissystem freischalten. Alles muss mit demselben Charakter geschehen.",
 	["Follow the Polestar Exploration guides: Exploration: Eastern Kingdoms 1-30, 30-45 and 45-60, and Exploration: Kalimdor 1-30, 30-45 and 45-60. They track every area as you discover it."] = "Folge den Polestar-Erkundungsguides: Erkundung: Östliche Königreiche 1-30, 30-45 und 45-60, und Erkundung: Kalimdor 1-30, 30-45 und 45-60. Sie verfolgen jedes Gebiet, sobald du es entdeckst.",
-	["This step cannot check the whole map by itself yet; it becomes a tracked goal once the Legacy achievement ids are recorded."] = "Dieser Schritt kann die ganze Karte noch nicht selbst prüfen; er wird zu einem verfolgten Ziel, sobald die Legacy-Erfolgs-IDs erfasst sind.",
+	["This step cannot check the whole map by itself yet; it becomes a tracked goal once the Legacy achievement ids are recorded."] = "Dieser Schritt kann die ganze Karte noch nicht selbst prüfen; er wird zu einem verfolgten Ziel, sobald die Vermächtnis-Erfolgs-IDs erfasst sind.",
 
 	-- Step 15: Adventure: Lord Valthalak
 	-- {npc:16042} Lord Valthalak
@@ -87,7 +88,7 @@ return {
 	-- {npc:16033} Bodley · {quest:8996} Return to Bodley
 	["{npc:16033} offers it once {quest:8996} is turned in"] = "{npc:16033} bietet sie an, sobald {quest:8996} abgegeben ist",
 	-- {quest:8996} Return to Bodley
-	["Which quest Blizzard counts as the end of the questline ({quest:8996} or your class's Saving the Best for Last) is unconfirmed until the Legacy data is recorded."] = "Welche Quest Blizzard als Ende der Questreihe zählt ({quest:8996} oder Das Beste gibt's zum Schluss deiner Klasse), ist unbestätigt, bis die Legacy-Daten erfasst sind.",
+	["Which quest Blizzard counts as the end of the questline ({quest:8996} or your class's Saving the Best for Last) is unconfirmed until the Legacy data is recorded."] = "Welche Quest Blizzard als Ende der Questreihe zählt ({quest:8996} oder Das Beste gibt's zum Schluss deiner Klasse), ist unbestätigt, bis die Vermächtnis-Daten erfasst sind.",
 
 	-- Step 16: Adventure: Back to the Beginning (Alliance)
 	-- {quest:8997} Back to the Beginning
@@ -103,11 +104,11 @@ return {
 
 	-- Step 18: Dungeons: level 15-25
 	["Dungeons: level 15-25"] = "Dungeons: Stufe 15-25",
-	["The final boss of every level 15-25 dungeon earns one point together. Tick each boss off when you kill it; the grouping follows the usual Classic level ranges, so check the in-game Legacy panel for the exact list."] = "Der Endboss jedes Dungeons der Stufe 15-25 bringt zusammen einen Punkt. Hak jeden Boss ab, wenn du ihn tötest; die Einteilung folgt den üblichen Classic-Stufenbereichen, prüf also die genaue Liste im Legacy-Fenster im Spiel.",
+	["The final boss of every level 15-25 dungeon earns one point together. Tick each boss off when you kill it; the grouping follows the usual Classic level ranges, so check the in-game Legacy panel for the exact list."] = "Der Endboss jedes Dungeons der Stufe 15-25 bringt zusammen einen Punkt. Hak jeden Boss ab, wenn du ihn tötest; die Einteilung folgt den üblichen Classic-Stufenbereichen, prüf also die genaue Liste im Vermächtnis-Fenster im Spiel.",
 	-- {area:718} Wailing Caverns · {npc:3678} Disciple of Naralex
 	["{area:718} (appears after the {npc:3678}'s event)"] = "{area:718} (erscheint nach dem Ereignis des {npc:3678})",
 	-- {area:717} The Stockade
-	["{area:717}: the usual last kill; the Stockade has no fixed final boss"] = "{area:717}: der übliche letzte Kill; das Verlies hat keinen festen Endboss",
+	["{area:717}: the usual last kill; the {area:717} has no fixed final boss"] = "{area:717}: der übliche letzte Kill; das {area:717} hat keinen festen Endboss",
 	-- {area:16919} Hall of Thanes · {area:153} Ruins of Lordaeron
 	["Forever adds the dungeons {area:16919} and {area:153}; their bosses and brackets are not in our data yet."] = "Forever fügt die Dungeons {area:16919} und {area:153} hinzu; ihre Bosse und Stufenbereiche sind noch nicht in unseren Daten.",
 
@@ -143,7 +144,7 @@ return {
 	-- Step 21: Forever's new dungeons
 	["Forever's new dungeons"] = "Neue Dungeons von Forever",
 	-- {area:16919} Hall of Thanes · {area:153} Ruins of Lordaeron
-	["{area:16919} and {area:153} are new in Forever. Their bosses, levels and Legacy bracket are not in our data, so tick them off yourself."] = "{area:16919} und {area:153} sind neu in Forever. Ihre Bosse, Stufen und Legacy-Bereiche sind nicht in unseren Daten, hak sie also selbst ab.",
+	["{area:16919} and {area:153} are new in Forever. Their bosses, levels and Legacy bracket are not in our data, so tick them off yourself."] = "{area:16919} und {area:153} sind neu in Forever. Ihre Bosse, Stufen und Vermächtnis-Bereiche sind nicht in unseren Daten, hak sie also selbst ab.",
 
 	-- Step 22: Raids: Onyxia
 	-- {npc:10184} Onyxia

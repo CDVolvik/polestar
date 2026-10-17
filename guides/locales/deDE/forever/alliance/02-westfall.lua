@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in German (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in German words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Sentinel Hill
@@ -12,8 +13,8 @@ return {
 	["{npc:523}; skip the free flight it offers"] = "{npc:523}; überspring den kostenlosen Flug, den er anbietet",
 
 	-- Step 2: Saldean's Farm
-	-- {npc:233} Farmer Saldean · {npc:253395} Ozwin Ironsprocket
-	["Follow the road north. {npc:233} stands outside, Salma in the house, {npc:253395} in the barn to the west."] = "Folge der Straße nach Norden. {npc:233} steht draußen, Salma im Haus, {npc:253395} in der Scheune im Westen.",
+	-- {npc:233} Farmer Saldean · {npc:235} Salma Saldean · {npc:253395} Ozwin Ironsprocket
+	["Follow the road north. {npc:233} stands outside, {npc:235} in the house, {npc:253395} in the barn to the west."] = "Folge der Straße nach Norden. {npc:233} steht draußen, {npc:235} im Haus, {npc:253395} in der Scheune im Westen.",
 
 	-- Step 3: The Jansen Stead
 	["Further north along the road. The Furlbrows sit by their burned farm. Collect the oats from the Sacks of Oats in the fields as you go and fill the vial at the stead's well."] = "Weiter nördlich an der Straße. Die Furlbrows sitzen bei ihrem niedergebrannten Hof. Sammle unterwegs den Hafer aus den Hafersäcken auf den Feldern und füll die Phiole am Brunnen des Hofs.",
@@ -62,8 +63,9 @@ return {
 
 	-- Step 9: The gnoll hills
 	["The gnoll hills"] = "Die Gnollhügel",
+	-- {area:916} The Jansen Stead
 	-- plural, as words: Riverpaw Gnolls = {npc:117} Riverpaw Gnoll
-	["Riverpaw Gnolls and Scouts roam the hills between the coast and the Jansen Stead."] = "Gnolle und Späher der Flusspfoten streifen durch die Hügel zwischen der Küste und Jansens Hof.",
+	["Riverpaw Gnolls and Scouts roam the hills between the coast and the {area:916}."] = "Gnolle und Späher der Flusspfoten streifen durch die Hügel zwischen der Küste und {area:916}.",
 	-- plural, as words: Gnoll Paws = {item:725} Gnoll Paw
 	["Gnoll Paws"] = "Gnolltatzen",
 
@@ -91,11 +93,11 @@ return {
 	["Hearthstone on cooldown? Follow the road north-east."] = "Ruhestein noch nicht bereit? Folge der Straße nach Nordosten.",
 	-- {npc:266} Wiley the Black · {area:69} Lakeshire
 	["For {npc:266} in {area:69}, Redridge"] = "Für {npc:266} in {area:69}, Rotkammgebirge",
-	-- {npc:11026} Sprite Jumpsprocket · {zone:1453} Stormwind · {object:28027} Dwarven District
+	-- {npc:11026} Sprite Jumpsprocket · {zone:1453} Stormwind · {object:28027} Dwarven District (no name in this language: may be words)
 	["For {npc:11026} in {zone:1453}'s {object:28027}"] = "Für {npc:11026} in {object:28027} in {zone:1453}",
 
 	-- Step 17: Defensive Stance
-	-- {zone:1453} Stormwind · {npc:5480} Ilsa Corbin · {object:2100} Old Town · {npc:6089} Harry Burlguard · {npc:6090} Bartleby · {object:2152} Pig and Whistle Tavern
+	-- {zone:1453} Stormwind · {npc:5480} Ilsa Corbin · {object:2100} Old Town (no name in this language: may be words) · {npc:6089} Harry Burlguard · {npc:6090} Bartleby · {object:2152} Pig and Whistle Tavern (no name in this language: may be words)
 	["Fly or ride to {zone:1453}. {npc:5480} trains warriors in {object:2100}; {npc:6089} and {npc:6090} stand together by the {object:2152} there. {npc:6090} fights you for his mug."] = "Flieg oder reite nach {zone:1453}. {npc:5480} bildet in {object:2100} Krieger aus; {npc:6089} und {npc:6090} stehen dort zusammen bei {object:2152}. {npc:6090} kämpft mit dir um seinen Krug.",
 
 	-- Step 18: High Priestess Laurena
@@ -104,11 +106,11 @@ return {
 
 	-- Step 19: Shaman training
 	["Shaman training"] = "Schamanenausbildung",
-	-- {zone:1453} Stormwind · {area:2257} Deeprun Tram · {object:28027} Dwarven District · {zone:1455} Ironforge · {npc:258098} Eldrun Stormbreaker
+	-- {zone:1453} Stormwind · {area:2257} Deeprun Tram · {object:28027} Dwarven District (no name in this language: may be words) · {zone:1455} Ironforge · {npc:258098} Eldrun Stormbreaker
 	["Ride to {zone:1453}. It has no shaman trainer: take the {area:2257} from the {object:28027} to {zone:1455}, train with {npc:258098}, then ride the tram back for the boat."] = "Reite nach {zone:1453}. Dort gibt es keinen Schamanenlehrer: Nimm {area:2257} von {object:28027} nach {zone:1455}, trainiere bei {npc:258098} und fahr dann mit der Bahn zurück zum Schiff.",
 
 	-- Step 20: Stormwind
-	-- {zone:1453} Stormwind · {object:2100} Old Town · {object:2101} Mage Quarter · {npc:11026} Sprite Jumpsprocket · {object:28027} Dwarven District · {npc:279} Morgan Pestle · {object:2096} Trade District
+	-- {zone:1453} Stormwind · {object:2100} Old Town (no name in this language: may be words) · {object:2101} Mage Quarter (no name in this language: may be words) · {npc:11026} Sprite Jumpsprocket · {object:28027} Dwarven District (no name in this language: may be words) · {npc:279} Morgan Pestle · {object:2096} Trade District (no name in this language: may be words)
 	["Fly or ride to {zone:1453}. Trainers: {object:2100} (Warriors, Rogues), the Cathedral (Paladins, Priests), the {object:2101} (Mages, Warlocks), the Park (Druids). {npc:11026} works in the {object:28027}, {npc:279} in the {object:2096}."] = "Flieg oder reite nach {zone:1453}. Lehrer: {object:2100} (Krieger, Schurken), die Kathedrale (Paladine, Priester), {object:2101} (Magier, Hexenmeister), der Park (Druiden). {npc:11026} arbeitet in {object:28027}, {npc:279} in {object:2096}.",
 	["Level 12, 14 and 16 spells"] = "Zauber der Stufen 12, 14 und 16",
 	-- {item:2449} Earthroot · {zone:1439} Darkshore · {npc:1313} Maria Lumere
@@ -117,13 +119,11 @@ return {
 	["{npc:5497}, Wizard's Sanctum: {quest:1861}"] = "{npc:5497}, Magiersanktum: {quest:1861}",
 
 	-- Step 21: Fishin' Time
-	-- {npc:5494} Catherine Leland · {object:2096} Trade District · {npc:267118} Gilbert Gray
+	-- {npc:5494} Catherine Leland · {object:2096} Trade District (no name in this language: may be words) · {npc:267118} Gilbert Gray
 	["{npc:5494} sells fishing supplies along the canal just west of the {object:2096}; {npc:267118} fishes at the harbor, on the way to the boat."] = "{npc:5494} verkauft Angelbedarf am Kanal direkt westlich von {object:2096}; {npc:267118} angelt am Hafen, auf dem Weg zum Schiff.",
 	-- {item:6529} Shiny Bauble · {npc:5494} Catherine Leland
 	["{item:6529}, from {npc:5494}"] = "{item:6529}, von {npc:5494}",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["North of {area:918}. Defias Trappers and Smugglers camp outside the mine, Kobold Diggers work inside. {object:290} stands by the ruined house east of the mine."] = "Nördlich von {area:918}. Fallensteller und Schmuggler der Defias lagern vor der Mine, Koboldbuddler arbeiten drinnen. {object:290} steht beim zerstörten Haus östlich der Mine.",
 	-- ["Riverpaw Gnolls and Scouts roam the hills between the coast and the {area:916}."] = "Gnolle und Späher der Flusspfoten streifen durch die Hügel zwischen der Küste und {area:916}.",
-	-- ["West of {area:918}, toward the coast. Riverpaw Miners work the quarry."] = "Westlich von {area:918}, Richtung Küste. Minenarbeiter der Flusspfoten arbeiten im Steinbruch.",
 }

@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in German (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in German words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -13,7 +14,7 @@ return {
 	["{npc:928} is in the Cathedral of Light."] = "{npc:928} ist in der Kathedrale des Lichts.",
 
 	-- Step 2: Brandur Ironhammer
-	-- {npc:5149} Brandur Ironhammer · {object:32362} Mystic Ward
+	-- {npc:5149} Brandur Ironhammer · {object:32362} Mystic Ward (no name in this language: may be words)
 	["{npc:5149} is in the {object:32362}."] = "{npc:5149} ist in {object:32362}.",
 
 	-- Step 3: Chillwind Camp

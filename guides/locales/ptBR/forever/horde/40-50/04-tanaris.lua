@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Portuguese (Brazil) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Portuguese (Brazil) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Fly to Gadgetzan
@@ -22,18 +23,19 @@ return {
 	["West of Gadgetzan, use the {item:8584} beside the water hole in the troll camp."] = "A oeste de Geringontzan, use o {item:8584} junto ao poço d'água no acampamento troll.",
 
 	-- Step 5: Caliph Scorpidsting
-	["South-east of Gadgetzan the Wastewander bandits camp in the dunes; Caliph stands in the eastern camp."] = "A sudeste de Geringontzan, os bandidos Errantes acampam nas dunas; Califa fica no acampamento leste.",
+	-- {npc:7847} Caliph Scorpidsting
+	["South-east of Gadgetzan the Wastewander bandits camp in the dunes; {npc:7847} stands in the eastern camp."] = "A sudeste de Geringontzan, os bandidos Errantes acampam nas dunas; {npc:7847} fica no acampamento leste.",
 
 	-- Step 6: Marvon Rivetseeker
-	-- {area:1938} Broken Pillar · {item:9978} Gahz'ridian Detector · {area:983} Dunemaul Compound
-	["West along the road south; Marvon camps by the ruins at the {area:1938}. Put on his {item:9978}: it shows the buried ornaments, here and around the {area:983}."] = "Para oeste pela estrada do sul; Marlon acampa junto às ruínas no {area:1938}. Equipe o {item:9978} dele: ele mostra os ornamentos enterrados, aqui e em volta do {area:983}.",
+	-- {npc:7771} Marvon Rivetseeker · {area:1938} Broken Pillar · {item:9978} Gahz'ridian Detector · {area:983} Dunemaul Compound
+	["West along the road south; {npc:7771} camps by the ruins at the {area:1938}. Put on his {item:9978}: it shows the buried ornaments, here and around the {area:983}."] = "Para oeste pela estrada do sul; {npc:7771} acampa junto às ruínas no {area:1938}. Equipe o {item:9978} dele: ele mostra os ornamentos enterrados, aqui e em volta do {area:983}.",
 
 	-- Step 7: The Noxious Lair
 	["West, the Centipaar insects swarm around their hives; any of them drops the parts."] = "A oeste, os insetos Centiparte enxameiam em volta das colmeias; qualquer um deles deixa cair as peças.",
 
 	-- Step 8: Dunemaul Compound
-	-- {npc:12046} Gor'marok the Ravager · {quest:3161} Gahz'ridian
-	["South of the Noxious Lair the Dunemaul ogres hold their compound, with {npc:12046} at its eastern end. Dig up {quest:3161} ornaments between the fights."] = "Ao sul do Covil Nóxio, os ogros Dunamalho ocupam o complexo, com {npc:12046} no extremo leste. Desenterre ornamentos de {quest:3161} entre as lutas.",
+	-- {area:982} The Noxious Lair · {npc:12046} Gor'marok the Ravager · {quest:3161} Gahz'ridian
+	["South of the {area:982} the Dunemaul ogres hold their compound, with {npc:12046} at its eastern end. Dig up {quest:3161} ornaments between the fights."] = "Ao sul do {area:982}, os ogros Dunamalho ocupam o complexo, com {npc:12046} no extremo leste. Desenterre ornamentos de {quest:3161} entre as lutas.",
 
 	-- Step 9: Thistleshrub Valley
 	-- {zone:1446} Tanaris
@@ -156,6 +158,4 @@ return {
 	-- Step 32: Thorium Point
 	-- {area:1446} Thorium Point · {area:75} Stonard
 	["Ride back north to {area:1446}. Stay here: the next guide starts with the flight to {area:75}."] = "Cavalgue de volta para o norte até {area:1446}. Fique aqui: o próximo guia começa com o voo para {area:75}.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
 }

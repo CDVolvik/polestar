@@ -3,10 +3,11 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Spanish (Latin America) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Spanish (Latin America) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
-	["Hydraxian Waterlords Reputation"] = "Reputación con Hydraxian Waterlords",
+	["Hydraxian Waterlords Reputation"] = "Reputación: Srs. del Agua de Hydraxis",
 
 	-- Step 1: Duke Hydraxis
 	-- {npc:13278} Duke Hydraxis · {zone:1447} Azshara · {faction:749} Hydraxian Waterlords

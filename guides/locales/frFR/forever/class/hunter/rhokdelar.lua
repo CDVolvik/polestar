@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in French (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in French words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -65,7 +66,4 @@ return {
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Azuregos"] = "Azuregos",
-	-- ["Hastat's quiver needs the {item:18704}. Azuregos, a world boss for a raid, roams the south of {zone:1447} and drops it most of the time; the Cobalt dragonkin of {zone:1452} drop it very rarely. Skip the rest of this guide if you do not want the quiver."] = "Le carquois de Hastat exige le {item:18704}. Azuregos, un boss mondial pour un raid, rôde au sud d'{zone:1447} et le lâche la plupart du temps ; les draconiens cobalt du {zone:1452} le lâchent très rarement. Passez le reste de ce guide si vous ne voulez pas le carquois.",
-	-- ["Not confirmed in Forever. In Classic, using the {item:18707} with the {item:18724} in your bags made Rhok'delar, and Vartrus then gave {item:18715} (Icy Veins)."] = "Non confirmé dans Forever. Dans Classic, utiliser le {item:18707} avec le {item:18724} dans vos sacs créait Rhok'delar, puis Vartrus donnait {item:18715} (Icy Veins).",
-	-- ["{item:18704}, from Azuregos"] = "{item:18704}, sur Azuregos",
 }

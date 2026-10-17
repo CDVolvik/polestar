@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (simplified) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (simplified) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -22,14 +23,15 @@ return {
 	-- {quest:98394} The Great Cat Spirit · {npc:272054} Avatar of Saeyleenan · {area:2363} Stormrage Barrow Dens · {item:280680} Relic of the Silent Shadow
 	["{quest:98394} (Night Elves) waits on the southern hill above the bridge, the {npc:272054} (Skyborne) south of the twin bridges. The relics lie in the {area:2363} east of the lake: leave your form, click the statue at the entrance for five minutes of stealth, keep clear of the spirits inside and take one of each relic; the {item:280680} lies at the foot of the white cat statue. A relic gives no loot while another player is looting it: wait a moment and try again."] = "{quest:98394}（暗夜精灵）在桥上方的南边山丘等候，{npc:272054}（天裔）在双桥南边。圣物位于湖东边的{area:2363}：解除变形，点击入口处的雕像获得五分钟潜行，避开里面的灵魂，每种圣物各拿一件；{item:280680}在白色猎豹雕像脚下。其他玩家正在拾取时圣物不会给你战利品：稍等片刻再试。",
 
-	-- Step 4: Back to Dendrite
-	["Back to Dendrite"] = "回到德迪利特·星焰处",
+	-- Step 4: Back to Dendrite Starblaze
+	-- {npc:11802} Dendrite Starblaze
+	["Back to {npc:11802}"] = "回到{npc:11802}处",
 	-- {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {area:702} Rut'theran Village
 	["Back to {npc:11802} in {area:2361}, then fly to {area:702}."] = "回到{area:2361}的{npc:11802}处，然后飞往{area:702}。",
 
 	-- Step 5: To Darnassus
-	-- {area:1658} Cenarion Enclave
-	["Take the portal up to Mathrengyl in the {area:1658}."] = "乘传送门上到{area:1658}找玛斯雷·驭熊者。",
+	-- {npc:4217} Mathrengyl Bearwalker · {area:1658} Cenarion Enclave
+	["Take the portal up to {npc:4217} in the {area:1658}."] = "乘传送门上到{area:1658}找{npc:4217}。",
 
 	-- Step 6: The Great Cat Spirit
 	-- {npc:3033} Turak Runetotem · {area:1639} Elder Rise
@@ -45,7 +47,7 @@ return {
 	-- {quest:98342} The Great Cat Spirit · {npc:272054} Avatar of Saeyleenan · {area:2363} Stormrage Barrow Dens · {item:280680} Relic of the Silent Shadow
 	["{quest:98342} (Tauren) waits on the southern hill above the bridge, the {npc:272054} (Skyborne) south of the twin bridges. The relics lie in the {area:2363} east of the lake: leave your form, click the statue at the entrance for five minutes of stealth, keep clear of the spirits inside and take one of each relic; the {item:280680} lies at the foot of the white cat statue. A relic gives no loot while another player is looting it: wait a moment and try again."] = "{quest:98342}（牛头人）在桥上方的南边山丘等候，{npc:272054}（天裔）在双桥南边。圣物位于湖东边的{area:2363}：解除变形，点击入口处的雕像获得五分钟潜行，避开里面的灵魂，每种圣物各拿一件；{item:280680}在白色猎豹雕像脚下。其他玩家正在拾取时圣物不会给你战利品：稍等片刻再试。",
 
-	-- Step 9: Back to Dendrite
+	-- Step 9: Back to Dendrite Starblaze
 	-- {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {npc:11798} Bunthen Plainswind · {area:1638} Thunder Bluff
 	["Back to {npc:11802} in {area:2361}, then take {npc:11798}'s flight to {area:1638}."] = "回到{area:2361}的{npc:11802}处，然后乘{npc:11798}的飞行前往{area:1638}。",
 

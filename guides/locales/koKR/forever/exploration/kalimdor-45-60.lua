@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Korean words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -12,7 +13,7 @@ return {
 	-- Step 1: Tanaris (1/3)
 	-- {zone:1446} Tanaris · {zone:1445} Dustwallow Marsh · {zone:1414} Kalimdor
 	["Starts in {zone:1446}, south of {zone:1445}. The last area of this guide completes the {zone:1414} map. 20 areas to discover here, levels 40-50."] = "{zone:1445} 남쪽의 {zone:1446}에서 시작합니다. 이 가이드의 마지막 지역으로 {zone:1414} 지도가 완성됩니다. 이곳에서 발견할 지역 20곳, 레벨 40-50.",
-	["Exploring the entire world map on one character is a Forever Legacy Challenge (1 account-wide Legacy Point)."] = "한 캐릭터로 세계 지도 전체를 탐험하는 것은 Forever Legacy 도전 과제입니다(계정 공통 Legacy Point 1점).",
+	["Exploring the entire world map on one character is a Forever Legacy Challenge (1 account-wide Legacy Point)."] = "한 캐릭터로 세계 지도 전체를 탐험하는 것은 Forever 유산 도전입니다(계정 공통 유산 점수 1점).",
 	-- {zone:1446} Tanaris · {zone:1445} Dustwallow Marsh · {zone:1441} Thousand Needles · {area:976} Gadgetzan
 	["{zone:1446} is south of {zone:1445} and {zone:1441}. {area:976} is a neutral goblin town."] = "{zone:1446}은(는) {zone:1445}와(과) {zone:1441} 남쪽에 있습니다. {area:976}은(는) 중립 고블린 마을입니다.",
 	-- {area:976} Gadgetzan · {npc:7823} Bera Stonehammer

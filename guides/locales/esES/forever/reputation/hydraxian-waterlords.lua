@@ -3,10 +3,11 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Spanish (Spain) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Spanish (Spain) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
-	["Hydraxian Waterlords Reputation"] = "Reputación con los Señores del Agua de Hydraxis",
+	["Hydraxian Waterlords Reputation"] = "Reputación: Señores del Agua de Hydraxis",
 
 	-- Step 1: Duke Hydraxis
 	-- {npc:13278} Duke Hydraxis · {zone:1447} Azshara · {faction:749} Hydraxian Waterlords
@@ -55,6 +56,5 @@ return {
 	["Keep clearing the {area:2717} until Exalted."] = "Sigue limpiando {area:2717} hasta Exaltado.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["{faction:749} Reputation"] = "Reputación con {faction:749}",
 	-- ["{npc:9816} in Upper {area:1583} drops the {quest:6821}. This needs a raid group."] = "{npc:9816}, en la parte superior de {area:1583}, suelta {quest:6821}. Requiere un grupo de banda.",
 }

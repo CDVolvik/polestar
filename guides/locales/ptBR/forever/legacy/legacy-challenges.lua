@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Portuguese (Brazil) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Portuguese (Brazil) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -107,7 +108,7 @@ return {
 	-- {area:718} Wailing Caverns · {npc:3678} Disciple of Naralex
 	["{area:718} (appears after the {npc:3678}'s event)"] = "{area:718} (aparece após o evento do {npc:3678})",
 	-- {area:717} The Stockade
-	["{area:717}: the usual last kill; the Stockade has no fixed final boss"] = "{area:717}: a última morte usual; O Cárcere não tem chefe final fixo",
+	["{area:717}: the usual last kill; the {area:717} has no fixed final boss"] = "{area:717}: a última morte usual; {area:717} não tem chefe final fixo",
 	-- {area:16919} Hall of Thanes · {area:153} Ruins of Lordaeron
 	["Forever adds the dungeons {area:16919} and {area:153}; their bosses and brackets are not in our data yet."] = "O Forever adiciona as masmorras {area:16919} e {area:153}; seus chefes e faixas ainda não estão nos nossos dados.",
 
@@ -158,6 +159,4 @@ return {
 	-- Step 24: Raids: Barrow Deeps
 	["Raids: Barrow Deeps"] = "Raides: Barrow Deeps",
 	["All 8 Barrow Deeps bosses are a point. Barrow Deeps is a new Forever raid; its bosses are not in our data, so tick it off once all 8 are down."] = "Os 8 chefes de Barrow Deeps, juntos, valem um ponto. Barrow Deeps é uma raide nova do Forever; seus chefes não estão nos nossos dados, então marque-a quando os 8 caírem.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
 }

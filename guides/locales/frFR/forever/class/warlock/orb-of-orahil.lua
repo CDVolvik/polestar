@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in French (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in French words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -10,7 +11,7 @@ return {
 	["An off-hand orb or a staff for your late 30s, down the felhound's or the infernal's path, your pick."] = "Un orbe de main gauche ou un bâton vers la fin de la trentaine de niveaux, par la voie du gangrechien ou celle de l'infernal, au choix.",
 
 	-- Step 1: Knowledge of the Orb of Orahil (Stormwind)
-	-- {npc:461} Demisette Cloyce · {object:2164} Slaughtered Lamb · {object:2101} Mage Quarter · {npc:6266} Menara Voidrender · {area:392} Ratchet
+	-- {npc:461} Demisette Cloyce · {object:2164} Slaughtered Lamb (no name in this language: may be words) · {object:2101} Mage Quarter (no name in this language: may be words) · {npc:6266} Menara Voidrender · {area:392} Ratchet
 	["At 35 {npc:461} in the {object:2164}, in the {object:2101}, sends you to {npc:6266} in {area:392}."] = "Au niveau 35, {npc:461}, dans l'{object:2164}, dans le {object:2101}, vous envoie voir {npc:6266} à {area:392}.",
 
 	-- Step 2: Knowledge of the Orb of Orahil (Ironforge)
@@ -18,11 +19,11 @@ return {
 	["At 35 {npc:5172} in {zone:1455} sends you to {npc:6266} in {area:392}."] = "Au niveau 35, {npc:5172}, à {zone:1455}, vous envoie voir {npc:6266} à {area:392}.",
 
 	-- Step 3: Knowledge of the Orb of Orahil (Orgrimmar)
-	-- {npc:3326} Zevrost · {object:172960} Cleft of Shadow · {npc:6266} Menara Voidrender · {area:392} Ratchet
+	-- {npc:3326} Zevrost · {object:172960} Cleft of Shadow (no name in this language: may be words) · {npc:6266} Menara Voidrender · {area:392} Ratchet
 	["At 35 {npc:3326} in the {object:172960} sends you to {npc:6266} in {area:392}."] = "Au niveau 35, {npc:3326}, dans la {object:172960}, vous envoie voir {npc:6266} à {area:392}.",
 
 	-- Step 4: Knowledge of the Orb of Orahil (Undercity)
-	-- {npc:4563} Kaal Soulreaper · {object:36082} Magic Quarter · {npc:6266} Menara Voidrender · {area:392} Ratchet · {zone:1420} Tirisfal Glades · {zone:1411} Durotar
+	-- {npc:4563} Kaal Soulreaper · {object:36082} Magic Quarter (no name in this language: may be words) · {npc:6266} Menara Voidrender · {area:392} Ratchet · {zone:1420} Tirisfal Glades · {zone:1411} Durotar
 	["At 35 {npc:4563} in the {object:36082} sends you to {npc:6266} in {area:392}. The zeppelin from {zone:1420} flies to {zone:1411}."] = "Au niveau 35, {npc:4563}, dans le {object:36082}, vous envoie voir {npc:6266} à {area:392}. Le zeppelin de {zone:1420} vole jusqu'à {zone:1411}.",
 
 	-- Step 5: Menara Voidrender
@@ -62,13 +63,13 @@ return {
 	-- Step 10: The Orb of Dar'Orahil
 	-- {item:15108} Orb of Dar'Orahil
 	["The {item:15108}"] = "L'{item:15108}",
-	-- {area:392} Ratchet · {item:15108} Orb of Dar'Orahil
-	["Back to Menara in the tower above {area:392} with the cleansed orb. On the felhound path, wait while she completes the {item:15108}, then speak to her again."] = "Retournez voir Menara dans la tour au-dessus de {area:392} avec l'orbe purifié. Sur la voie du gangrechien, attendez qu'elle achève l'{item:15108}, puis parlez-lui à nouveau.",
+	-- {npc:6266} Menara Voidrender · {area:392} Ratchet · {item:15108} Orb of Dar'Orahil
+	["Back to {npc:6266} in the tower above {area:392} with the cleansed orb. On the felhound path, wait while she completes the {item:15108}, then speak to her again."] = "Retournez voir {npc:6266} dans la tour au-dessus de {area:392} avec l'orbe purifié. Sur la voie du gangrechien, attendez qu'elle achève l'{item:15108}, puis parlez-lui à nouveau.",
 	["Wait for the orb"] = "Attendez l'orbe",
 
 	-- Step 11: The Orb of Noh'Orahil
 	-- {item:15107} Orb of Noh'Orahil
 	["The {item:15107}"] = "L'{item:15107}",
-	-- {item:15107} Orb of Noh'Orahil
-	["On the infernal path, wait while Menara completes the {item:15107}, then speak to her again."] = "Sur la voie de l'infernal, attendez que Menara achève l'{item:15107}, puis parlez-lui à nouveau.",
+	-- {npc:6266} Menara Voidrender · {item:15107} Orb of Noh'Orahil
+	["On the infernal path, wait while {npc:6266} completes the {item:15107}, then speak to her again."] = "Sur la voie de l'infernal, attendez que {npc:6266} achève l'{item:15107}, puis parlez-lui à nouveau.",
 }

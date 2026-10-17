@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (traditional) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (traditional) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Gadgetzan
@@ -54,7 +55,8 @@ return {
 	["Ride east to {npc:13220}."] = "向東騎往{npc:13220}。",
 
 	-- Step 12: Southwind Village
-	["The tortured druids and sentinels haunt the ruined village south-west of Layo."] = "被折磨的德魯伊和被折磨的哨兵在萊奧西南方的廢墟村莊出沒。",
+	-- {npc:13220} Layo Starstrike
+	["The tortured druids and sentinels haunt the ruined village south-west of {npc:13220}."] = "被折磨的德魯伊和被折磨的哨兵在{npc:13220}西南方的廢墟村莊出沒。",
 
 	-- Step 14: The Hive'Ashi tower
 	-- {area:2742} Hive'Ashi
@@ -71,8 +73,8 @@ return {
 	["Ride back to {area:3425} and fly to {area:392}."] = "騎回{area:3425}，飛往{area:392}。",
 
 	-- Step 17: Stormwind City
-	-- {area:392} Ratchet · {area:35} Booty Bay
-	["Take the boat from {area:392} to {area:35} and fly to Stormwind."] = "從{area:392}搭船前往{area:35}，然後飛往暴風城。",
+	-- {area:392} Ratchet · {area:35} Booty Bay · {zone:1453} Stormwind City
+	["Take the boat from {area:392} to {area:35} and fly to {zone:1453}."] = "從{area:392}搭船前往{area:35}，然後飛往{zone:1453}。",
 	-- {npc:3520} Ol' Emma
 	["{npc:3520}, who walks the canals"] = "{npc:3520}，在運河邊走動",
 	-- {npc:10778} Janice Felstone
@@ -104,9 +106,9 @@ return {
 	-- Step 22: Scourge Champions
 	-- plural, as words: Scourge Champions = {npc:8529} Scourge Champion
 	["Scourge Champions"] = "天災勇士",
-	-- {area:2270} Noxious Glade · {area:2268} Light's Hope Chapel · {item:13156} Mystic Crystal
+	-- {area:2270} Noxious Glade · {area:2268} Light's Hope Chapel · {npc:11063} Carlin Redpath · {item:13156} Mystic Crystal
 	-- plural, as words: Scourge Champions = {npc:8529} Scourge Champion
-	["Scourge Champions (59) roam the {area:2270}, north of {area:2268}. Pass Carlin's {item:13156} over each one you kill: the skulls that resonate are the ones he wants. Pull them one at a time."] = "天災勇士（59級）在{area:2268}北邊的{area:2270}遊蕩。每殺一隻就用卡林的{item:13156}掃過牠：產生共鳴的頭骨才是他要的。一次只拉一隻。",
+	["Scourge Champions (59) roam the {area:2270}, north of {area:2268}. Pass {npc:11063}'s {item:13156} over each one you kill: the skulls that resonate are the ones he wants. Pull them one at a time."] = "天災勇士（59級）在{area:2268}北邊的{area:2270}遊蕩。每殺一隻就用{npc:11063}的{item:13156}掃過牠：產生共鳴的頭骨才是他要的。一次只拉一隻。",
 	-- {item:13155} Resonating Skull
 	-- plural, as words: Scourge Champions = {npc:8529} Scourge Champion
 	["{item:13155}, from the Scourge Champions"] = "{item:13155}，來自天災勇士",
@@ -119,14 +121,14 @@ return {
 	["Ride north to the {area:2277}'s north-eastern edge."] = "向北騎往{area:2277}的東北邊緣。",
 
 	-- Step 25: The Undercroft
-	-- {npc:11886} Mercutio Filthgorger
-	["Ride south-west to the Undercroft. The mound of dirt lies inside. {npc:11886} is elite: grouping up is advised."] = "向西南騎往墓室。土堆在裡面。{npc:11886}是精英：建議組隊。",
+	-- {area:2261} The Undercroft · {npc:11886} Mercutio Filthgorger
+	["Ride south-west to the {area:2261}. The mound of dirt lies inside. {npc:11886} is elite: grouping up is advised."] = "向西南騎往{area:2261}。土堆在裡面。{npc:11886}是精英：建議組隊。",
 	-- {item:14613} Taelan's Hammer · {npc:11886} Mercutio Filthgorger
 	["{item:14613}, from {npc:11886}"] = "{item:14613}，來自{npc:11886}",
 
 	-- Step 26: The Fungal Vale
-	-- {npc:8532} Diseased Flayer · {zone:1423} Eastern Plaguelands
-	["grind on {npc:8532} at the Fungal Vale, {zone:1423}"] = "在{zone:1423}的蘑菇谷擊殺{npc:8532}練等",
+	-- {npc:8532} Diseased Flayer · {area:2258} The Fungal Vale · {zone:1423} Eastern Plaguelands
+	["grind on {npc:8532} at the {area:2258}, {zone:1423}"] = "在{zone:1423}的{area:2258}擊殺{npc:8532}練等",
 
 	-- Step 27: Ratchet
 	-- {area:392} Ratchet

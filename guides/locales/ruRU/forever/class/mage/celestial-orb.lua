@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Russian (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Russian words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -11,7 +12,7 @@ return {
 	["An off-hand orb or a staff for the late 30s, your pick."] = "Сфера для левой руки или посох для уровней ближе к 40, на ваш выбор.",
 
 	-- Step 1: Return to the Marsh (Stormwind)
-	-- {npc:5497} Jennea Cannon · {zone:1453} Stormwind · {object:2101} Mage Quarter · {npc:6546} Tabetha · {zone:1455} Ironforge
+	-- {npc:5497} Jennea Cannon · {zone:1453} Stormwind · {object:2101} Mage Quarter (no name in this language: may be words) · {npc:6546} Tabetha · {zone:1455} Ironforge
 	["{npc:5497} in the Wizard's Sanctum, {zone:1453}'s {object:2101}, sends you back to {npc:6546}; Bink in {zone:1455} gives the same quest."] = "{npc:5497} в башне магов ({zone:1453}, {object:2101}) отправляет вас обратно к NPC {npc:6546}; Бинк ({zone:1455}) дает то же задание.",
 
 	-- Step 2: Return to the Marsh (Orgrimmar)
@@ -32,7 +33,7 @@ return {
 	["{npc:6546} draws the demon out of the orb beside her cottage. The {npc:6549} is elite: grouping up is advised. You have three minutes before it slips back into the orb."] = "{npc:6546} извлекает демона из сферы рядом со своей хижиной. {npc:6549} — элитный: лучше собрать группу. У вас три минуты, прежде чем он вернется в сферу.",
 
 	-- Step 6: Power in Uldaman
-	-- {area:1517} Uldaman · {zone:1418} Badlands · {object:178824} Meeting Stone · {npc:7023} Obsidian Sentinel
+	-- {area:1517} Uldaman · {zone:1418} Badlands · {object:178824} Meeting Stone (no name in this language: may be words) · {npc:7023} Obsidian Sentinel
 	["{area:1517} is a dungeon in the northern {zone:1418}, by the {object:178824}: a group of five. Defeat the {npc:7023} inside for its power source."] = "{area:1517} — подземелье на севере зоны {zone:1418}, рядом с объектом {object:178824}: группа из пяти человек. Победите внутри NPC {npc:7023}, чтобы получить его источник силы.",
 
 	-- Step 7: Mana Surges

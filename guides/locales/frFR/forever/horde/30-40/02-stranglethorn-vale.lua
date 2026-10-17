@@ -3,12 +3,13 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in French (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in French words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Zeppelin to Grom'gol
-	-- {object:3202} Grom'gol
+	-- {object:3202} Grom'gol (no name in this language: may be words)
 	["Zeppelin to {object:3202}"] = "Zeppelin pour {object:3202}",
-	-- {zone:1458} Undercity · {object:3202} Grom'gol
+	-- {zone:1458} Undercity · {object:3202} Grom'gol (no name in this language: may be words)
 	["Leave the {zone:1458} by the lift and walk up through the ruins to the zeppelin towers; the {object:3202} zeppelin is the one on the south-west tower."] = "Quittez {zone:1458} par l'ascenseur et montez à travers les ruines jusqu'aux tours des zeppelins ; le zeppelin pour {object:3202} est celui de la tour sud-ouest.",
 	["Zeppelin towers"] = "Tours des zeppelins",
 
@@ -16,23 +17,23 @@ return {
 	["The zeppelin lands at the tower on the west side of the camp."] = "Le zeppelin arrive à la tour à l'ouest du campement.",
 
 	-- Step 3: Orgrimmar
-	-- {zone:1454} Orgrimmar · {object:3202} Grom'gol
+	-- {zone:1454} Orgrimmar · {object:3202} Grom'gol (no name in this language: may be words)
 	["Take the {zone:1454} zeppelin from the tower on the west side of {object:3202} and train in the city before you fly on."] = "Prenez le zeppelin pour {zone:1454} à la tour à l'ouest de {object:3202} et entraînez-vous en ville avant de repartir.",
 
 	-- Step 4: Islen Waterseer
-	-- {zone:1454} Orgrimmar · {object:3202} Grom'gol · {area:392} Ratchet · {npc:5901} Islen Waterseer
+	-- {zone:1454} Orgrimmar · {object:3202} Grom'gol (no name in this language: may be words) · {area:392} Ratchet · {npc:5901} Islen Waterseer
 	["Take the {zone:1454} zeppelin from the tower on the west side of {object:3202} and fly to {area:392}. {npc:5901} camps on the coast a short ride south of it."] = "Prenez le zeppelin pour {zone:1454} à la tour à l'ouest de {object:3202}, puis prenez un vol pour {area:392}. {npc:5901} campe sur la côte, un peu au sud.",
 	-- {npc:5901} Islen Waterseer · {npc:3527} Healing Stream Totem · {item:5177} Water Totem
 	["{npc:5901}: {npc:3527} and your {item:5177}"] = "{npc:5901} : {npc:3527} et votre {item:5177}",
 
 	-- Step 5: Back to Grom'gol
-	-- {object:3202} Grom'gol
+	-- {object:3202} Grom'gol (no name in this language: may be words)
 	["Back to {object:3202}"] = "Retour à {object:3202}",
 
 	-- Step 6: Nesingwary's camp
 	["Nesingwary's camp"] = "Camp de Nesingwary",
-	-- {object:3202} Grom'gol · {quest:338} The Green Hills of Stranglethorn
-	["Follow the road north out of {object:3202}; Nesingwary's hunting camp sits on the hill north-east of the river. From here on, keep every page of {quest:338} you loot: Barnil asks for them later."] = "Suivez la route vers le nord depuis {object:3202} ; le camp de chasse de Nesingwary se trouve sur la colline au nord-est de la rivière. Dès maintenant, gardez chaque page de {quest:338} ramassée : Barnil les demandera plus tard.",
+	-- {object:3202} Grom'gol (no name in this language: may be words) · {quest:338} The Green Hills of Stranglethorn · {npc:716} Barnil Stonepot
+	["Follow the road north out of {object:3202}; Nesingwary's hunting camp sits on the hill north-east of the river. From here on, keep every page of {quest:338} you loot: {npc:716} asks for them later."] = "Suivez la route vers le nord depuis {object:3202} ; le camp de chasse de Nesingwary se trouve sur la colline au nord-est de la rivière. Dès maintenant, gardez chaque page de {quest:338} ramassée : {npc:716} les demandera plus tard.",
 
 	-- Step 7: Young tigers and panthers
 	["Young tigers and panthers"] = "Jeunes tigres et panthères",
@@ -52,12 +53,12 @@ return {
 
 	-- Step 12: Elder tigers and Lashtail raptors
 	["Elder tigers and Lashtail raptors"] = "Anciens tigres et raptors flagellants",
-	-- {object:3202} Grom'gol
+	-- {object:3202} Grom'gol (no name in this language: may be words)
 	-- plural, as words: Elder Stranglethorn Tigers = {npc:1085} Elder Stranglethorn Tiger · Lashtail Raptors = {npc:686} Lashtail Raptor
 	["The Elder Stranglethorn Tigers (34-35) roam the hills south-west of the camp; the Lashtail Raptors (35-36) hunt further south, towards {object:3202}."] = "Les Anciens tigres de Strangleronce (34-35) parcourent les collines au sud-ouest du camp ; les Raptors flagellants (35-36) chassent plus au sud, vers {object:3202}.",
 
 	-- Step 13: Grom'gol
-	-- {object:3202} Grom'gol
+	-- {object:3202} Grom'gol (no name in this language: may be words)
 	["Follow the road south to {object:3202}."] = "Suivez la route vers le sud jusqu'à {object:3202}.",
 
 	-- Step 14: Nesingwary's camp
@@ -73,7 +74,7 @@ return {
 	["The Bloodscalp Headhunters (36-37) in the village on the coast carry the shrunken heads."] = "Les Chasseurs de tête Bloodscalp (36-37) du village de la côte portent les têtes réduites.",
 
 	-- Step 18: Hearth to Grom'gol
-	-- {object:3202} Grom'gol
+	-- {object:3202} Grom'gol (no name in this language: may be words)
 	["Hearth to {object:3202}"] = "Pierre de foyer vers {object:3202}",
 
 	-- Step 19: Booty Bay
@@ -81,7 +82,7 @@ return {
 	["Follow the road south to {area:35} at the southern tip of the vale and enter through the tunnel in the cliffs. Stay on the road: the jungle beside it is well above your level. {npc:2858}, the Horde flight master, waits on the upper deck."] = "Suivez la route vers le sud jusqu'à {area:35}, à la pointe sud de la vallée, et entrez par le tunnel dans les falaises. Restez sur la route : la jungle alentour est bien au-dessus de votre niveau. {npc:2858}, le maître de vol de la Horde, attend sur le ponton supérieur.",
 
 	-- Step 20: Fly to Grom'gol
-	-- {object:3202} Grom'gol
+	-- {object:3202} Grom'gol (no name in this language: may be words)
 	["Fly to {object:3202}"] = "Prendre un vol pour {object:3202}",
 
 	-- Step 21: The camp by the river
@@ -98,7 +99,7 @@ return {
 	-- Step 23: Fly to Booty Bay
 	-- {area:35} Booty Bay
 	["Fly to {area:35}"] = "Prendre un vol pour {area:35}",
-	-- {object:3202} Grom'gol · {area:35} Booty Bay
+	-- {object:3202} Grom'gol (no name in this language: may be words) · {area:35} Booty Bay
 	["Ride south down the coast to {object:3202} and fly to {area:35}."] = "Descendez la côte vers le sud jusqu'à {object:3202} et prenez un vol pour {area:35}.",
 
 	-- Step 24: Fly to Grom'gol
@@ -107,13 +108,13 @@ return {
 
 	-- Step 25: Lashtail raptors
 	["Lashtail raptors"] = "Raptors flagellants",
-	-- {object:3202} Grom'gol
+	-- {object:3202} Grom'gol (no name in this language: may be words)
 	-- plural, as words: Lashtail Raptors = {npc:686} Lashtail Raptor
 	["The Lashtail Raptors (35-36) hunt the jungle just north-east of {object:3202}."] = "Les Raptors flagellants (35-36) chassent dans la jungle juste au nord-est de {object:3202}.",
 
 	-- Step 27: Mosh'Ogg camp
 	["Mosh'Ogg camp"] = "Camp Mosh'Ogg",
-	-- {object:3202} Grom'gol
+	-- {object:3202} Grom'gol (no name in this language: may be words)
 	["The Mosh'Ogg ogres camp in the hills just east of {object:3202}. Kill one Brute and one Witch Doctor (36-37); pull them one at a time."] = "Les ogres Mosh'Ogg campent dans les collines juste à l'est de {object:3202}. Tuez une Brute Mosh'Ogg et un Sorcier-docteur Mosh'Ogg (36-37) ; attirez-les un par un.",
 
 	-- Step 28: Shadowmaw jungle and the Snapjaw river
@@ -123,7 +124,7 @@ return {
 	["East of the ogres, Shadowmaw Panthers (37-38) stalk unseen until they strike; the Stranglethorn Tigresses roam the same ground and now and then drop a pristine fang. Snapjaw Crocolisks line the river just west of the jungle; keep their skins for {npc:2495}."] = "À l'est des ogres, les Panthères Ombregueule (37-38) rôdent invisibles jusqu'à leur attaque ; les Tigresses de Strangleronce parcourent le même terrain et lâchent parfois un Croc de tigresse en parfait état. Les Crocilisques Gueule d'acier bordent la rivière juste à l'ouest de la jungle ; gardez leurs peaux pour {npc:2495}.",
 
 	-- Step 29: Grom'gol
-	-- {object:3202} Grom'gol
+	-- {object:3202} Grom'gol (no name in this language: may be words)
 	["Back to {object:3202}."] = "Retour à {object:3202}.",
 
 	-- Step 30: The Vile Reef
@@ -136,7 +137,7 @@ return {
 	["The Bloodscalp trolls hold the ruins up the coast north of the reef and the village beyond; every one can drop a {item:3915}. Keep looting pages of {quest:338}."] = "Les trolls Bloodscalp tiennent les ruines de la côte au nord du récif et le village plus loin ; chacun peut lâcher un {item:3915}. Continuez à ramasser les pages de {quest:338}.",
 
 	-- Step 32: Grom'gol
-	-- {object:3202} Grom'gol
+	-- {object:3202} Grom'gol (no name in this language: may be words)
 	["Ride back south to {object:3202}."] = "Retournez au sud jusqu'à {object:3202}.",
 
 	-- Step 33: Nesingwary's camp
@@ -144,8 +145,8 @@ return {
 
 	-- Step 34: Green Hills pages
 	["Green Hills pages"] = "Pages des Vertes collines",
-	-- {item:2755} Green Hills of Stranglethorn
-	["Pages of The {item:2755} drop at about 1% each from the Bloodscalp and Skullsplitter trolls; keep every page you loot and look on the auction house for the rest. Barnil takes the chapters later in this guide."] = "Les pages de {item:2755} tombent à environ 1 % chacune sur les trolls Bloodscalp et Skullsplitter ; gardez chaque page ramassée et cherchez le reste à l'hôtel des ventes. Barnil prend les chapitres plus loin dans ce guide.",
+	-- {item:2755} Green Hills of Stranglethorn · {npc:716} Barnil Stonepot
+	["Pages of The {item:2755} drop at about 1% each from the Bloodscalp and Skullsplitter trolls; keep every page you loot and look on the auction house for the rest. {npc:716} takes the chapters later in this guide."] = "Les pages de {item:2755} tombent à environ 1 % chacune sur les trolls Bloodscalp et Skullsplitter ; gardez chaque page ramassée et cherchez le reste à l'hôtel des ventes. {npc:716} prend les chapitres plus loin dans ce guide.",
 
 	-- Step 35: Shadowmaw panthers
 	["Shadowmaw panthers"] = "Panthères Ombregueule",
@@ -159,7 +160,7 @@ return {
 	-- Step 39: Jungle Stalkers
 	-- plural, as words: Jungle Stalkers = {npc:687} Jungle Stalker
 	["Jungle Stalkers"] = "Traqueurs de la jungle",
-	-- {object:3202} Grom'gol
+	-- {object:3202} Grom'gol (no name in this language: may be words)
 	-- plural, as words: Jungle Stalkers = {npc:687} Jungle Stalker
 	["The Jungle Stalkers (40-41) hunt the coast south of {object:3202}. They are well above you: pull one at a time and rest between fights."] = "Les Traqueurs de la jungle (40-41) chassent sur la côte au sud de {object:3202}. Ils sont bien au-dessus de votre niveau : attirez-les un par un et reposez-vous entre les combats.",
 
@@ -185,9 +186,4 @@ return {
 	["Hearth to {area:35}"] = "Pierre de foyer vers {area:35}",
 	-- {area:272} Tarren Mill · {zone:1417} Arathi Highlands
 	["The next guide flies you north to {area:272} and into the {zone:1417}."] = "Le guide suivant vous emmène en vol au nord jusqu'à {area:272} et dans {zone:1417}.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["North-west of {object:3202} the {area:104} lies under the water off the coast. The {item:4094} rests on the sea floor by the sunken ruins; watch your breath and the murlocs."] = "Au nord-ouest de {object:3202}, {area:104} s'étend sous l'eau au large de la côte. L'{item:4094} repose au fond de la mer près des ruines englouties ; surveillez votre souffle et les murlocs.",
-	-- ["Pages of {quest:338} drop at about 1% each from the Bloodscalp and Skullsplitter trolls; keep every page you loot and look on the auction house for the rest. Barnil takes the chapters later in this guide."] = "Les pages de {quest:338} tombent à environ 1 % chacune sur les trolls Bloodscalp et Skullsplitter ; gardez chaque page ramassée et cherchez le reste à l'hôtel des ventes. Barnil prend les chapitres plus loin dans ce guide.",
-	-- ["Pages of {quest:338} drop at about 1% each from the Bloodscalp and Skullsplitter trolls; take what drops and check the Auction House for the rest."] = "Les pages de {quest:338} tombent à environ 1 % chacune sur les trolls Bloodscalp et Skullsplitter ; prenez ce qui tombe et cherchez le reste à l'hôtel des ventes.",
 }

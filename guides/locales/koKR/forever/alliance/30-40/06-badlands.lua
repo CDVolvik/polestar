@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Korean words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Hammertoe's Digsite
@@ -23,8 +24,8 @@ return {
 	["Ryedol's next errand goes into {area:1517}: skip it."] = "라이돌의 다음 심부름은 {area:1517}(으)로 가니 건너뛰십시오.",
 
 	-- Step 5: Valley of Fangs
-	-- {npc:2817} Rigglefuzz · {area:1877} Valley of Fangs · {zone:1418} Badlands
-	["Martek and {npc:2817} camp together in the {area:1877}, in the middle of the {zone:1418}."] = "망명자 마르텍과 {npc:2817}은(는) {zone:1418} 한가운데 {area:1877}에 함께 야영하고 있습니다.",
+	-- {npc:4618} Martek the Exiled · {npc:2817} Rigglefuzz · {area:1877} Valley of Fangs · {zone:1418} Badlands
+	["{npc:4618} and {npc:2817} camp together in the {area:1877}, in the middle of the {zone:1418}."] = "{npc:4618}와(과) {npc:2817}은(는) {zone:1418} 한가운데 {area:1877}에 함께 야영하고 있습니다.",
 	["The clams lie on Stranglethorn's north-west coast, in the next guide: keep it"] = "조개는 다음 가이드의 가시덤불 골짜기 북서 해안에 있습니다. 보관하십시오",
 
 	-- Step 6: Ogres and buzzards
@@ -41,21 +42,22 @@ return {
 	["for {npc:4454} in the {area:439}: the {zone:1446} guide crosses them at 45, keep it"] = "{area:439}의 {npc:4454}에게: {zone:1446} 가이드가 45레벨에 지나갑니다. 보관하십시오",
 
 	-- Step 9: Lotwil Veriatus
-	-- {area:1878} Dustbowl
-	["Ride west into the {area:1878}; Lotwil works by his machines in the middle of it."] = "서쪽 {area:1878}(으)로 가십시오. 로트윌은 그 한가운데 기계 옆에서 일합니다.",
+	-- {area:1878} Dustbowl · {npc:2921} Lotwil Veriatus
+	["Ride west into the {area:1878}; {npc:2921} works by his machines in the middle of it."] = "서쪽 {area:1878}(으)로 가십시오. {npc:2921}은(는) 그 한가운데 기계 옆에서 일합니다.",
 
 	-- Step 10: Lesser Rock Elementals
 	-- plural, as words: Lesser Rock Elementals = {npc:2735} Lesser Rock Elemental
 	["Lesser Rock Elementals"] = "하급 바위 정령",
-	-- {area:1878} Dustbowl
+	-- {area:1878} Dustbowl · {npc:2921} Lotwil Veriatus
 	-- plural, as words: Lesser Rock Elementals = {npc:2735} Lesser Rock Elemental
-	["The Lesser Rock Elementals wander the {area:1878} west of Lotwil."] = "하급 바위 정령이 로트윌 서쪽 {area:1878}을(를) 돌아다닙니다.",
+	["The Lesser Rock Elementals wander the {area:1878} west of {npc:2921}."] = "하급 바위 정령이 {npc:2921} 서쪽 {area:1878}을(를) 돌아다닙니다.",
 
 	-- Step 12: Rock Elementals
 	-- plural, as words: Rock Elementals = {npc:92} Rock Elemental
 	["Rock Elementals"] = "바위 정령",
+	-- {npc:2921} Lotwil Veriatus
 	-- plural, as words: Rock Elementals = {npc:92} Rock Elemental · Giant Buzzards = {npc:2831} Giant Buzzard · Elder Crag Coyotes = {npc:2729} Elder Crag Coyote
-	["The Rock Elementals roam south-east of Lotwil; Giant Buzzards and Elder Crag Coyotes share the plain to their west."] = "{npc:92}은(는) 로트윌의 남동쪽을 돌아다니고, {npc:2831}와(과) {npc:2729}은(는) 그 서쪽 평원에 함께 있습니다.",
+	["The Rock Elementals roam south-east of {npc:2921}; Giant Buzzards and Elder Crag Coyotes share the plain to their west."] = "{npc:92}은(는) {npc:2921}의 남동쪽을 돌아다니고, {npc:2831}와(과) {npc:2729}은(는) 그 서쪽 평원에 함께 있습니다.",
 
 	-- Step 14: Greater Rock Elementals
 	-- plural, as words: Greater Rock Elementals = {npc:2736} Greater Rock Elemental
@@ -65,11 +67,12 @@ return {
 	["The Greater Rock Elementals (level 42) walk the far south-west corner below {area:342}; pull them one at a time. The Dustbelcher Wyrmhunters and Maulers at {area:342} also drop scrap."] = "상급 바위 정령(42레벨)은 {area:342} 아래 남서쪽 끝을 걷습니다. 하나씩 끌어오십시오. {area:342}의 먼지목도리일족 고룡사냥꾼과 먼지목도리일족 싸움꾼도 고철을 떨어뜨립니다.",
 
 	-- Step 15: Lotwil Veriatus
-	-- {npc:2920} Lucien Tosselwrench
-	["{npc:2920}, beside Lotwil"] = "{npc:2920}, 로트윌 옆",
+	-- {npc:2920} Lucien Tosselwrench · {npc:2921} Lotwil Veriatus
+	["{npc:2920}, beside {npc:2921}"] = "{npc:2920}, {npc:2921} 옆",
 	-- {item:2868} Patterned Bronze Bracers
 	["only if you carry {item:2868} (a blacksmith's craft)"] = "{item:2868}(대장기술 제작품)을 가지고 있을 때만",
-	["Lotwil's next test needs crafted gear: skip it."] = "로트윌의 다음 실험에는 제작 장비가 필요하니 건너뛰십시오.",
+	-- {npc:2921} Lotwil Veriatus
+	["{npc:2921}'s next test needs crafted gear: skip it."] = "{npc:2921}의 다음 실험에는 제작 장비가 필요하니 건너뛰십시오.",
 
 	-- Step 16: The Ancient Chest
 	-- {object:126260} Ancient Chest
@@ -101,23 +104,24 @@ return {
 	["Follow the road west across the north of {zone:1443} to the ruins of {area:2405}; the wrecked ship's chest lies on the shore just west of them."] = "길을 따라 {zone:1443} 북부를 가로질러 서쪽 {area:2405} 폐허로 가십시오. 난파선의 궤짝은 그 바로 서쪽 해안에 있습니다.",
 
 	-- Step 24: Azore Aldamort
-	["Azore's tower stands on the hill east of the wreck."] = "아조레의 탑은 난파선 동쪽 언덕에 있습니다.",
+	-- {npc:11863} Azore Aldamort
+	["{npc:11863}'s tower stands on the hill east of the wreck."] = "{npc:11863}의 탑은 난파선 동쪽 언덕에 있습니다.",
 
 	-- Step 25: Lord Kragaru
-	-- {npc:12369} Lord Kragaru
-	["{npc:12369}, a centaur chieftain, camps on the north-west coast, north of Azore's tower."] = "켄타우로스 족장 {npc:12369}은(는) 아조레의 탑 북쪽, 북서 해안에 야영하고 있습니다.",
+	-- {npc:12369} Lord Kragaru · {npc:11863} Azore Aldamort
+	["{npc:12369}, a centaur chieftain, camps on the north-west coast, north of {npc:11863}'s tower."] = "켄타우로스 족장 {npc:12369}은(는) {npc:11863}의 탑 북쪽, 북서 해안에 야영하고 있습니다.",
 
 	-- Step 27: Nijel's Point
-	-- {item:6245} Karnitol's Satchel
-	["Kreldig's next task, {item:6245}, is a drop on the far coast: skip it."] = "크렐디그의 다음 임무인 {item:6245}은(는) 먼 해안에서 떨어지는 아이템이니 건너뛰십시오.",
+	-- {npc:5638} Kreldig Ungor · {item:6245} Karnitol's Satchel
+	["{npc:5638}'s next task, {item:6245}, is a drop on the far coast: skip it."] = "{npc:5638}의 다음 임무인 {item:6245}은(는) 먼 해안에서 떨어지는 아이템이니 건너뛰십시오.",
 
 	-- Step 28: Bibbly F'utzbuckle
 	-- {area:2407} Kormek's Hut
 	["Follow the road south to {area:2407}."] = "길을 따라 남쪽 {area:2407}(으)로 가십시오.",
 
 	-- Step 29: Kodo Graveyard
-	-- {area:596} Kodo Graveyard · {area:2407} Kormek's Hut · {object:176751} Kodo Bones · {npc:217590} Flesh Picker
-	["Hornizz stands at the edge of the {area:596}, south-west of {area:2407}; {object:176751} lie among the skeletons. A {npc:217590} crawls about the graveyard: catch one with the Entomology Starter Kit, then tick it off."] = "호르니즈는 {area:2407} 남서쪽 {area:596} 가장자리에 있습니다. {object:176751}은(는) 해골들 사이에 있습니다. {npc:217590}이(가) 무덤 주변을 기어다니니 Entomology Starter Kit로 잡은 뒤 체크하십시오.",
+	-- {npc:6019} Hornizz Brimbuzzle · {area:596} Kodo Graveyard · {area:2407} Kormek's Hut · {object:176751} Kodo Bones · {npc:217590} Flesh Picker
+	["{npc:6019} stands at the edge of the {area:596}, south-west of {area:2407}; {object:176751} lie among the skeletons. A {npc:217590} crawls about the graveyard: catch one with the Entomology Starter Kit, then tick it off."] = "{npc:6019}은(는) {area:2407} 남서쪽 {area:596} 가장자리에 있습니다. {object:176751}은(는) 해골들 사이에 있습니다. {npc:217590}이(가) 무덤 주변을 기어다니니 Entomology Starter Kit로 잡은 뒤 체크하십시오.",
 	-- {npc:217590} Flesh Picker
 	["{npc:217590}: catch it, for My Little Friends"] = "{npc:217590}: 잡으십시오, My Little Friends용",
 
@@ -127,12 +131,14 @@ return {
 	["The Maraudine centaurs hold the {area:607} west of the graveyard; every kind drops the totems."] = "마라우돈일족 켄타우로스가 무덤 서쪽 {area:607}을(를) 차지하고 있으며, 모든 종류가 토템을 떨어뜨립니다.",
 
 	-- Step 31: Melizza Brimbuzzle
-	["Melizza is held in the centaur camp west of the graveyard. Free her and keep her alive on the walk out; she stops by the graveyard."] = "멜릿자는 무덤 서쪽 켄타우로스 야영지에 갇혀 있습니다. 풀어 주고 나가는 동안 살려 두십시오. 무덤 옆에서 멈춥니다.",
-	["escort Melizza back toward the graveyard"] = "멜릿자를 무덤 쪽으로 호위",
+	-- {npc:12277} Melizza Brimbuzzle
+	["{npc:12277} is held in the centaur camp west of the graveyard. Free her and keep her alive on the walk out; she stops by the graveyard."] = "{npc:12277}은(는) 무덤 서쪽 켄타우로스 야영지에 갇혀 있습니다. 풀어 주고 나가는 동안 살려 두십시오. 무덤 옆에서 멈춥니다.",
+	-- {npc:12277} Melizza Brimbuzzle
+	["escort {npc:12277} back toward the graveyard"] = "{npc:12277}을(를) 무덤 쪽으로 호위",
 
 	-- Step 33: Gizelton Caravan
-	-- {npc:11626} Rigger Gizelton · {area:606} Gelkis Village · {area:602} Mannoroc Coven · {area:596} Kodo Graveyard
-	["{npc:11626}'s caravan stops on the road east of {area:606}. Take the quest and walk with the kodos past the {area:602}, killing the demons that jump them; talk to Smeed at his camp east of the {area:596} afterwards."] = "{npc:11626}의 대상단은 {area:606} 동쪽 길에 멈춥니다. 퀘스트를 수락하고 코도와 함께 {area:602}을(를) 지나며 덤벼드는 악마를 처치하십시오. 그다음 {area:596} 동쪽 야영지의 스미드와 대화하십시오.",
+	-- {npc:11626} Rigger Gizelton · {area:606} Gelkis Village · {area:602} Mannoroc Coven · {npc:11596} Smeed Scrabblescrew · {area:596} Kodo Graveyard
+	["{npc:11626}'s caravan stops on the road east of {area:606}. Take the quest and walk with the kodos past the {area:602}, killing the demons that jump them; talk to {npc:11596} at his camp east of the {area:596} afterwards."] = "{npc:11626}의 대상단은 {area:606} 동쪽 길에 멈춥니다. 퀘스트를 수락하고 코도와 함께 {area:602}을(를) 지나며 덤벼드는 악마를 처치하십시오. 그다음 {area:596} 동쪽 야영지의 {npc:11596}와(과) 대화하십시오.",
 
 	-- Step 34: Mannoroc Coven
 	-- {area:602} Mannoroc Coven · {zone:1443} Desolace

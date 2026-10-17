@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in German (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in German words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Fly to the Undercity
@@ -12,8 +13,8 @@ return {
 	["From {area:3317}'s flight master, fly to the {area:1497}."] = "Flieg vom Flugmeister in {area:3317} nach {area:1497}.",
 
 	-- Step 2: Oran Snakewrithe
-	-- {object:36082} Magic Quarter
-	["Oran stands in the {object:36082}."] = "Oran steht im {object:36082}.",
+	-- {npc:7825} Oran Snakewrithe · {object:36082} Magic Quarter (no name in this language: may be words)
+	["{npc:7825} stands in the {object:36082}."] = "{npc:7825} steht im {object:36082}.",
 
 	-- Step 3: Zeppelin to Orgrimmar
 	-- {zone:1454} Orgrimmar
@@ -68,17 +69,17 @@ return {
 	-- Step 15: Jediga
 	-- {area:1237} Valormok
 	["Ride west back to {area:1237}."] = "Reite nach Westen zurück nach {area:1237}.",
-	-- {npc:8659} Jes'rimon · {npc:6522} Andron Gant · {zone:1456} Thunder Bluff · {zone:1454} Orgrimmar · {zone:1458} Undercity
-	["Keep the deliveries for Magatha, {npc:8659} and {npc:6522}: you pass {zone:1456}, {zone:1454} and the {zone:1458} later."] = "Behalte die Lieferungen für Magatha, {npc:8659} und {npc:6522}: Du kommst später durch {zone:1456}, {zone:1454} und {zone:1458}.",
+	-- {npc:4046} Magatha Grimtotem · {npc:8659} Jes'rimon · {npc:6522} Andron Gant · {zone:1456} Thunder Bluff · {zone:1454} Orgrimmar · {zone:1458} Undercity
+	["Keep the deliveries for {npc:4046}, {npc:8659} and {npc:6522}: you pass {zone:1456}, {zone:1454} and the {zone:1458} later."] = "Behalte die Lieferungen für {npc:4046}, {npc:8659} und {npc:6522}: Du kommst später durch {zone:1456}, {zone:1454} und {zone:1458}.",
 
 	-- Step 16: Archmage Xylem
 	-- {area:1237} Valormok
 	["Xylem's tower stands on the cliff just north of {area:1237}; the path winds up its north side."] = "Der Turm von Xylem steht auf der Klippe gleich nördlich von {area:1237}; der Pfad windet sich an seiner Nordseite hinauf.",
 
 	-- Step 18: To Grom'gol
-	-- {object:3202} Grom'gol
+	-- {object:3202} Grom'gol (no name in this language: may be words)
 	["To {object:3202}"] = "Nach {object:3202}",
-	-- {area:1237} Valormok · {zone:1454} Orgrimmar · {object:3202} Grom'gol
+	-- {area:1237} Valormok · {zone:1454} Orgrimmar · {object:3202} Grom'gol (no name in this language: may be words)
 	["Fly from {area:1237} to {zone:1454}, walk out of the main gate to the zeppelin towers and take the zeppelin to {object:3202}."] = "Flieg von {area:1237} nach {zone:1454}, geh durch das Haupttor hinaus zu den Zeppelintürmen und nimm den Zeppelin nach {object:3202}.",
 
 	-- Step 19: Grom'gol Base Camp
@@ -96,7 +97,7 @@ return {
 	["Only once all three robots are home"] = "Erst wenn alle drei Roboter zu Hause sind",
 
 	-- Step 22: Back to Grom'gol
-	-- {object:3202} Grom'gol
+	-- {object:3202} Grom'gol (no name in this language: may be words)
 	["Back to {object:3202}"] = "Zurück nach {object:3202}",
 
 	-- Step 23: Orgrimmar
@@ -104,22 +105,22 @@ return {
 	["Take the zeppelin back to {zone:1454}."] = "Nimm den Zeppelin zurück nach {zone:1454}.",
 	-- {npc:6986} Dran Droffers
 	["{npc:6986}, the Drag"] = "{npc:6986}, die Gasse",
-	-- {npc:8659} Jes'rimon · {object:172960} Cleft of Shadow
+	-- {npc:8659} Jes'rimon · {object:172960} Cleft of Shadow (no name in this language: may be words)
 	["{npc:8659}, the {object:172960}"] = "{npc:8659}, {object:172960}",
 	-- {npc:8659} Jes'rimon · {quest:3504} Betrayed · {area:1237} Valormok
 	["Keep {npc:8659}'s payment and Ag'tor's {quest:3504}: they go back to {area:1237} on a later visit."] = "Behalte die Bezahlung von {npc:8659} und Ag'tors {quest:3504}: Sie gehen bei einem späteren Besuch zurück nach {area:1237}.",
 
 	-- Step 24: Thunder Bluff
-	-- {area:1638} Thunder Bluff · {area:1099} Camp Mojache · {area:378} Camp Taurajo · {zone:1412} Mulgore · {area:1639} Elder Rise · {npc:3033} Turak Runetotem · {npc:246344} Alodan the Hopeful
-	["Fly to {area:1638}; it is on the way to {area:1099}. No flight path there yet? Fly to {area:378} and ride west through {zone:1412}. Hamuul and Magatha are on the {area:1639}; Druids and Paladins train here ({npc:3033}, {npc:246344})."] = "Flieg nach {area:1638}; es liegt auf dem Weg nach {area:1099}. Noch keine Flugroute dort? Flieg nach {area:378} und reite nach Westen durch {zone:1412}. Hamuul und Magatha sind im Gebiet {area:1639}; Druiden und Paladine trainieren hier ({npc:3033}, {npc:246344}).",
-	-- {quest:3761} Un'Goro Soil · {npc:8587} Jediga
-	["{quest:3761} is gathered in the next guide; Magatha's payment goes back to {npc:8587} later."] = "{quest:3761} wird im nächsten Guide gesammelt; Magathas Bezahlung geht später zurück an {npc:8587}.",
+	-- {area:1638} Thunder Bluff · {area:1099} Camp Mojache · {area:378} Camp Taurajo · {zone:1412} Mulgore · {npc:4046} Magatha Grimtotem · {area:1639} Elder Rise · {npc:3033} Turak Runetotem · {npc:246344} Alodan the Hopeful
+	["Fly to {area:1638}; it is on the way to {area:1099}. No flight path there yet? Fly to {area:378} and ride west through {zone:1412}. Hamuul and {npc:4046} are on the {area:1639}; Druids and Paladins train here ({npc:3033}, {npc:246344})."] = "Flieg nach {area:1638}; es liegt auf dem Weg nach {area:1099}. Noch keine Flugroute dort? Flieg nach {area:378} und reite nach Westen durch {zone:1412}. Hamuul und {npc:4046} sind im Gebiet {area:1639}; Druiden und Paladine trainieren hier ({npc:3033}, {npc:246344}).",
+	-- {quest:3761} Un'Goro Soil · {npc:4046} Magatha Grimtotem · {npc:8587} Jediga
+	["{quest:3761} is gathered in the next guide; {npc:4046}'s payment goes back to {npc:8587} later."] = "{quest:3761} wird im nächsten Guide gesammelt; {npc:4046}s Bezahlung geht später zurück an {npc:8587}.",
 
 	-- Step 25: Camp Mojache
 	-- {npc:7776} Talo Thornhoof · {zone:1448} Felwood
 	["{npc:7776}: the bears are in {zone:1448}"] = "{npc:7776}: Die Bären sind im {zone:1448}",
-	-- {area:1417} Sunken Temple · {zone:1446} Tanaris
-	["Keep {area:1417} for Marvon in {zone:1446}."] = "Behalte {area:1417} für Marvon in {zone:1446}.",
+	-- {area:1417} Sunken Temple · {npc:7771} Marvon Rivetseeker · {zone:1446} Tanaris
+	["Keep {area:1417} for {npc:7771} in {zone:1446}."] = "Behalte {area:1417} für {npc:7771} in {zone:1446}.",
 
 	-- Step 26: Frayfeather Hippogryphs
 	-- plural, as words: Frayfeather Hippogryphs = {npc:5300} Frayfeather Hippogryph
@@ -138,8 +139,8 @@ return {
 	["The treants wander the forest roads between the camp and the middle of {zone:1444}; there are only a few, so look along the paths."] = "Die Treants wandern auf den Waldwegen zwischen dem Lager und der Mitte von {zone:1444}; es gibt nur wenige, also such entlang der Pfade.",
 
 	-- Step 32: Zorbin Fandazzle
-	-- {area:1108} Forgotten Coast
-	["Ride north-west to the {area:1108}; Zorbin waits on the dock."] = "Reite nach Nordwesten zum Ort {area:1108}; Zorbin wartet am Steg.",
+	-- {area:1108} Forgotten Coast · {npc:14637} Zorbin Fandazzle
+	["Ride north-west to the {area:1108}; {npc:14637} waits on the dock."] = "Reite nach Nordwesten zum Ort {area:1108}; {npc:14637} wartet am Steg.",
 
 	-- Step 33: Zapped giants
 	["Zapped giants"] = "Geschrumpfte Riesen",
@@ -165,6 +166,6 @@ return {
 	-- Step 38: Broken Pillar
 	-- {area:1938} Broken Pillar · {npc:7771} Marvon Rivetseeker · {zone:1449} Un'Goro Crater
 	["Ride south along the road to the {area:1938}; {npc:7771} camps beside it. From here the road west leads down into {zone:1449}, where the next guide starts."] = "Reite auf der Straße nach Süden zur {area:1938}; {npc:7771} lagert daneben. Von hier führt die Straße nach Westen hinab in {zone:1449}, wo der nächste Guide beginnt.",
-	-- {quest:3444} The Stone Circle
-	["Keep {quest:3444}: Marvon's chest is opened on a later visit."] = "Behalte {quest:3444}: Marvons Truhe wird bei einem späteren Besuch geöffnet.",
+	-- {quest:3444} The Stone Circle · {npc:7771} Marvon Rivetseeker
+	["Keep {quest:3444}: {npc:7771}'s chest is opened on a later visit."] = "Behalte {quest:3444}: {npc:7771}s Truhe wird bei einem späteren Besuch geöffnet.",
 }

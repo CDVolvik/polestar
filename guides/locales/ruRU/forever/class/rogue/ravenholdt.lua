@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Russian (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Russian words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -25,15 +26,16 @@ return {
 	["{npc:6766}: {quest:6701}, repeatable"] = "{npc:6766}: {quest:6701}, повторяемое",
 
 	-- Step 3: Lord Tomas
-	-- {npc:266216} Lord Tomas · {area:275} Durnholde Keep · {area:287} Hillsbrad
-	["{npc:266216} is inside {area:275}, the Syndicate fortress in eastern {area:287}, south of the manor. Quick and quiet, says Myrokos."] = "{npc:266216} – внутри крепости Синдиката ({area:275}) на востоке зоны {area:287}, к югу от поместья. Быстро и тихо, говорит Мирокос.",
+	-- {npc:266216} Lord Tomas · {area:275} Durnholde Keep · {area:287} Hillsbrad · {npc:13085} Myrokos Silentform
+	["{npc:266216} is inside {area:275}, the Syndicate fortress in eastern {area:287}, south of the manor. Quick and quiet, says {npc:13085}."] = "{npc:266216} – внутри крепости Синдиката ({area:275}) на востоке зоны {area:287}, к югу от поместья. Быстро и тихо, говорит {npc:13085}.",
 
 	-- Step 5: What's the Big Idea?
-	-- {area:280} Strahnbrad · {zone:1416} Alterac Mountains
-	["At 36, Myrokos sends you after Barton's scouting report. Barton leads a Syndicate party at {area:280}, in the east of the {zone:1416}: pick his pocket, do not kill him."] = "На 36-м уровне Мирокос отправляет вас за разведдонесением Бартона. Бартон возглавляет отряд Синдиката здесь: {area:280}, восток зоны {zone:1416}. Обчистите его карманы, не убивайте.",
+	-- {npc:13085} Myrokos Silentform · {area:280} Strahnbrad · {zone:1416} Alterac Mountains
+	["At 36, {npc:13085} sends you after Barton's scouting report. Barton leads a Syndicate party at {area:280}, in the east of the {zone:1416}: pick his pocket, do not kill him."] = "На 36-м уровне {npc:13085} отправляет вас за разведдонесением Бартона. Бартон возглавляет отряд Синдиката здесь: {area:280}, восток зоны {zone:1416}. Обчистите его карманы, не убивайте.",
 	-- {item:275482} Barton's Scouting Report
 	["{item:275482}: pickpocket Barton"] = "{item:275482}: обчистите карманы Бартона",
 
-	-- Step 6: Back to Myrokos
-	["Back to Myrokos"] = "Назад к Мирокосу",
+	-- Step 6: Back to Myrokos Silentform
+	-- {npc:13085} Myrokos Silentform
+	["Back to {npc:13085}"] = "Назад к {npc:13085}",
 }

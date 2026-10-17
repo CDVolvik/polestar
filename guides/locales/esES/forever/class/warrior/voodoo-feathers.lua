@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Spanish (Spain) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Spanish (Spain) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -11,7 +12,7 @@ return {
 	["Experience"] = "Experiencia",
 
 	-- Step 1: A Troubled Spirit (Stormwind)
-	-- {npc:5479} Wu Shen · {object:2100} Old Town · {npc:7572} Fallen Hero of the Horde · {zone:1435} Swamp of Sorrows
+	-- {npc:5479} Wu Shen · {object:2100} Old Town (no name in this language: may be words) · {npc:7572} Fallen Hero of the Horde · {zone:1435} Swamp of Sorrows
 	["At 50, {npc:5479} in {object:2100}, beside the Pig and Whistle, sends you to the {npc:7572} in the {zone:1435}."] = "A nivel 50, {npc:5479}, en el {object:2100}, junto a la taberna, te envía con el {npc:7572} en el {zone:1435}.",
 
 	-- Step 2: A Troubled Spirit (Ironforge)
@@ -23,7 +24,7 @@ return {
 	["At 50, {npc:7315}, the warrior trainer of {zone:1457}, sends you to the {npc:7572} in the {zone:1435}."] = "A nivel 50, {npc:7315}, el instructor de guerreros de {zone:1457}, te envía con el {npc:7572} en el {zone:1435}.",
 
 	-- Step 4: A Troubled Spirit (Orgrimmar)
-	-- {npc:3354} Sorek · {object:172958} Valley of Honor · {npc:7572} Fallen Hero of the Horde · {zone:1435} Swamp of Sorrows
+	-- {npc:3354} Sorek · {object:172958} Valley of Honor (no name in this language: may be words) · {npc:7572} Fallen Hero of the Horde · {zone:1435} Swamp of Sorrows
 	["At 50, {npc:3354} in the {object:172958} sends you to the {npc:7572} in the {zone:1435}."] = "A nivel 50, {npc:3354}, en el {object:172958}, te envía con el {npc:7572} en el {zone:1435}.",
 
 	-- Step 5: A Troubled Spirit (Thunder Bluff)

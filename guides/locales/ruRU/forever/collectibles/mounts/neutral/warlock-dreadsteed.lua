@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Russian (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Russian words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -10,7 +11,7 @@ return {
 	["Your epic mount at 60: summoned anywhere, with no gold spent on an epic horse."] = "Ваше эпическое средство передвижения на 60-м уровне: призывается где угодно, без трат золота на эпического коня.",
 
 	-- Step 1: Mor'zul Bloodbringer (Stormwind)
-	-- {npc:5520} Spackle Thornberry · {object:2164} Slaughtered Lamb · {quest:7562} Mor'zul Bloodbringer · {zone:1428} Burning Steppes
+	-- {npc:5520} Spackle Thornberry · {object:2164} Slaughtered Lamb (no name in this language: may be words) · {quest:7562} Mor'zul Bloodbringer · {zone:1428} Burning Steppes
 	["At 60 {npc:5520} in the {object:2164} sends you to {quest:7562} in the {zone:1428}."] = "На 60-м уровне {npc:5520} ({object:2164}) отправляет вас к NPC {quest:7562} ({zone:1428}).",
 
 	-- Step 2: Mor'zul Bloodbringer (Ironforge)
@@ -18,16 +19,16 @@ return {
 	["At 60 {npc:6382} in {zone:1455} sends you to {quest:7562} in the {zone:1428}."] = "На 60-м уровне {npc:6382} ({zone:1455}) отправляет вас к NPC {quest:7562} ({zone:1428}).",
 
 	-- Step 3: Mor'zul Bloodbringer (Orgrimmar)
-	-- {npc:5815} Kurgul · {object:172960} Cleft of Shadow · {quest:7562} Mor'zul Bloodbringer · {zone:1428} Burning Steppes
+	-- {npc:5815} Kurgul · {object:172960} Cleft of Shadow (no name in this language: may be words) · {quest:7562} Mor'zul Bloodbringer · {zone:1428} Burning Steppes
 	["At 60 {npc:5815} in the {object:172960} sends you to {quest:7562} in the {zone:1428}."] = "На 60-м уровне {npc:5815} ({object:172960}) отправляет вас к NPC {quest:7562} ({zone:1428}).",
 
 	-- Step 4: Mor'zul Bloodbringer (Undercity)
-	-- {npc:5753} Martha Strain · {object:36082} Magic Quarter · {quest:7562} Mor'zul Bloodbringer · {zone:1428} Burning Steppes
+	-- {npc:5753} Martha Strain · {object:36082} Magic Quarter (no name in this language: may be words) · {quest:7562} Mor'zul Bloodbringer · {zone:1428} Burning Steppes
 	["At 60 {npc:5753} in the {object:36082} sends you to {quest:7562} in the {zone:1428}."] = "На 60-м уровне {npc:5753} ({object:36082}) отправляет вас к NPC {quest:7562} ({zone:1428}).",
 
 	-- Step 5: Mor'zul Bloodbringer
 	-- {quest:7562} Mor'zul Bloodbringer · {npc:14437} Gorzeeki Wildeyes · {area:255} Altar of Storms · {zone:1428} Burning Steppes · {area:254} Blackrock Mountain
-	["{quest:7562} and his goblin {npc:14437} camp at the {area:255}, in the north-west of the {zone:1428}, west of {area:254}. The chain is long, costs gold at Gorzeeki's and ends in two dungeons."] = "{quest:7562} и его гоблин {npc:14437} стоят лагерем здесь: {area:255}, на северо-западе зоны {zone:1428}, к западу от места {area:254}. Цепочка длинная, у Горзиеки придется тратить золото, а заканчивается она в двух подземельях.",
+	["{quest:7562} and his goblin {npc:14437} camp at the {area:255}, in the north-west of the {zone:1428}, west of {area:254}. The chain is long, costs gold at {npc:14437}'s and ends in two dungeons."] = "{quest:7562} и его гоблин {npc:14437} стоят лагерем здесь: {area:255}, на северо-западе зоны {zone:1428}, к западу от места {area:254}. Цепочка длинная, у {npc:14437} придется тратить золото, а заканчивается она в двух подземельях.",
 
 	-- Step 6: Raging Beast's Blood
 	-- {zone:1452} Winterspring · {area:2255} Everlook · {spell:417141} Berserk
@@ -35,23 +36,24 @@ return {
 	["The owlbeasts of {zone:1452} drop the blood, about one in three: the Ragged and Raging Owlbeasts west of and around {area:2255}, the Crazed, Moontouched and {spell:417141} ones in the east. While you hunt, start on the materials of the next step: the Auction House has them all."] = "Кровь падает с совухов зоны {zone:1452} примерно в одном случае из трех: лохматые и бешеные совухи – к западу от места {area:2255} и вокруг него, безумные, луноподобные и совухи с эффектом «{spell:417141}» – на востоке. Пока охотитесь, начните собирать материалы для следующего шага: на аукционе есть все.",
 
 	-- Step 7: Wildeyes
-	-- {item:18591} Case of Blood · {npc:14437} Gorzeeki Wildeyes · {zone:1448} Felwood
+	-- {npc:14436} Mor'zul Bloodbringer · {item:18591} Case of Blood · {npc:14437} Gorzeeki Wildeyes · {zone:1448} Felwood
 	-- plural, as words: Shadowy Potions = {item:18802} Shadowy Potion
-	["Back to Mor'zul, then hand his {item:18591} to {npc:14437} beside him. Mor'zul then asks for three ritual pieces and Gorzeeki sends you to {zone:1448}: buy two Shadowy Potions from Gorzeeki for that trip."] = "Вернитесь к Мор'зулу, затем отдайте его {item:18591} NPC {npc:14437} рядом с ним. Затем Мор'зул просит три предмета для ритуала, а Горзиеки отправляет вас в зону {zone:1448}: купите у Горзиеки для этого два теневых зелья.",
+	["Back to {npc:14436}, then hand his {item:18591} to {npc:14437} beside him. {npc:14436} then asks for three ritual pieces and {npc:14437} sends you to {zone:1448}: buy two Shadowy Potions from {npc:14437} for that trip."] = "Вернитесь к {npc:14436}, затем отдайте его {item:18591} NPC {npc:14437} рядом с ним. Затем {npc:14436} просит три предмета для ритуала, а {npc:14437} отправляет вас в зону {zone:1448}: купите у {npc:14437} для этого два теневых зелья.",
 	-- {item:18591} Case of Blood
 	["he gives you the {item:18591}"] = "он дает вам {item:18591}",
-	-- {item:18802} Shadowy Potion
-	["{item:18802}, from Gorzeeki"] = "{item:18802}, у Горзиеки",
+	-- {item:18802} Shadowy Potion · {npc:14437} Gorzeeki Wildeyes
+	["{item:18802}, from {npc:14437}"] = "{item:18802}, у {npc:14437}",
 
 	-- Step 8: The ritual pieces
 	["The ritual pieces"] = "Предметы для ритуала",
-	-- {skill:171} Alchemy · {skill:333} Enchanting · {item:11370} Dark Iron Ore · {skill:186} Mining · {area:1584} Blackrock Depths · {zone:1427} Searing Gorge · {skill:393} Skinning · {zone:1428} Burning Steppes
+	-- {npc:14437} Gorzeeki Wildeyes · {skill:171} Alchemy · {skill:333} Enchanting · {item:11370} Dark Iron Ore · {skill:186} Mining · {area:1584} Blackrock Depths · {zone:1427} Searing Gorge · {skill:393} Skinning · {zone:1428} Burning Steppes
 	-- plural, as words: Large Brilliant Shards = {item:14344} Large Brilliant Shard · Black Dragonscales = {item:15416} Black Dragonscale
-	["Gorzeeki wants 10 Elixirs of Shadow Power ({skill:171}), 6 Large Brilliant Shards ({skill:333}), 25 {item:11370} ({skill:186}, in {area:1584} and the {zone:1427}) and 35 Black Dragonscales ({skill:393}, black dragonkin of the {zone:1428}). Make or gather what your professions allow; buy the rest at the Auction House."] = "Горзиеки нужны 10 эликсиров силы тьмы ({skill:171}), 6 больших сверкающих осколков ({skill:333}), 25 шт. {item:11370} ({skill:186}; {area:1584} и {zone:1427}) и 35 шкур черного дракона ({skill:393}; черные дракониды зоны {zone:1428}). Сделайте или добудьте то, что позволяют ваши профессии; остальное купите на аукционе.",
+	["{npc:14437} wants 10 Elixirs of Shadow Power ({skill:171}), 6 Large Brilliant Shards ({skill:333}), 25 {item:11370} ({skill:186}, in {area:1584} and the {zone:1427}) and 35 Black Dragonscales ({skill:393}, black dragonkin of the {zone:1428}). Make or gather what your professions allow; buy the rest at the Auction House."] = "{npc:14437} нужны 10 эликсиров силы тьмы ({skill:171}), 6 больших сверкающих осколков ({skill:333}), 25 шт. {item:11370} ({skill:186}; {area:1584} и {zone:1427}) и 35 шкур черного дракона ({skill:393}; черные дракониды зоны {zone:1428}). Сделайте или добудьте то, что позволяют ваши профессии; остальное купите на аукционе.",
 
 	-- Step 9: Arcanite
+	-- {npc:14437} Gorzeeki Wildeyes
 	-- plural, as words: Arcanite Bars = {item:12360} Arcanite Bar
-	["Hand the three pieces to Gorzeeki. He then wants 3 Arcanite Bars: alchemists transmute them, everyone else buys them at the Auction House."] = "Отдайте три предмета Горзиеки. Затем ему нужны 3 арканитовых слитка: алхимики получают их трансмутацией, остальные покупают на аукционе.",
+	["Hand the three pieces to {npc:14437}. He then wants 3 Arcanite Bars: alchemists transmute them, everyone else buys them at the Auction House."] = "Отдайте три предмета {npc:14437}. Затем ему нужны 3 арканитовых слитка: алхимики получают их трансмутацией, остальные покупают на аукционе.",
 
 	-- Step 10: Lord Banehollow
 	-- {area:1763} Jaedenar · {zone:1448} Felwood · {item:18802} Shadowy Potion · {quest:7623} Lord Banehollow · {area:1770} Shadow Hold
@@ -68,8 +70,8 @@ return {
 	["{item:18687}, from {npc:14522}"] = "{item:18687}: {npc:14522}",
 
 	-- Step 13: Imp Delivery
-	-- {item:18688} Imp in a Jar · {area:2057} Scholomance
-	["Back to Gorzeeki with the stardust. He gives you the {item:18688} for the {area:2057}."] = "Вернитесь к Горзиеки со звездной пылью. Он дает вам {item:18688} для подземелья {area:2057}.",
+	-- {npc:14437} Gorzeeki Wildeyes · {item:18688} Imp in a Jar · {area:2057} Scholomance
+	["Back to {npc:14437} with the stardust. He gives you the {item:18688} for the {area:2057}."] = "Вернитесь к {npc:14437} со звездной пылью. Он дает вам {item:18688} для подземелья {area:2057}.",
 
 	-- Step 14: The Scholomance
 	-- {area:2057} Scholomance
@@ -80,9 +82,9 @@ return {
 	["Use the {item:18688} at the alchemy lab"] = "Используйте {item:18688} у алхимической лаборатории",
 
 	-- Step 15: Dreadsteed of Xoroth
-	-- {item:18663} J'eevee's Jar · {item:18629} Black Lodestone · {item:18670} Xorothian Glyphs
+	-- {npc:14437} Gorzeeki Wildeyes · {npc:14436} Mor'zul Bloodbringer · {item:18663} J'eevee's Jar · {item:18629} Black Lodestone · {item:18670} Xorothian Glyphs
 	-- plural, as words: Soul Shards = {item:6265} Soul Shard
-	["Back to Gorzeeki, then Mor'zul hands you his instructions for the ritual. Buy {item:18663}, the {item:18629} and the {item:18670} from Gorzeeki, and carry ten or more Soul Shards."] = "Вернитесь к Горзиеки, затем Мор'зул вручит вам указания для ритуала. Купите у Горзиеки {item:18663}, {item:18629} и {item:18670} и возьмите с собой десять или больше осколков души.",
+	["Back to {npc:14437}, then {npc:14436} hands you his instructions for the ritual. Buy {item:18663}, the {item:18629} and the {item:18670} from {npc:14437}, and carry ten or more Soul Shards."] = "Вернитесь к {npc:14437}, затем {npc:14436} вручит вам указания для ритуала. Купите у {npc:14437} {item:18663}, {item:18629} и {item:18670} и возьмите с собой десять или больше осколков души.",
 
 	-- Step 16: The ritual in Dire Maul
 	-- {area:2577} Dire Maul

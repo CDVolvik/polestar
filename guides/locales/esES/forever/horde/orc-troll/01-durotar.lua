@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Spanish (Spain) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Spanish (Spain) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Kaltunk
@@ -17,8 +18,6 @@ return {
 	["Training weapons and boars"] = "Armas de entrenamiento y jabalíes",
 	-- plural, as words: Mottled Boars = {npc:3098} Mottled Boar
 	["The weapons lie around the Den and the training grounds; the Mottled Boars roam the whole valley floor."] = "Las armas están alrededor de El Cubil y del campo de entrenamiento; los jabalíes jaspeados recorren todo el fondo del valle.",
-	-- {area:364} The Den
-	["{area:364}'s cave mouth"] = "Entrada de la cueva de {area:364}",
 
 	-- Step 4: The Den
 	-- {npc:3143} Gornek · {npc:3159} Kzan Thornslash
@@ -75,10 +74,12 @@ return {
 	["Back at the Den"] = "De vuelta en El Cubil",
 
 	-- Step 15: Canaga Earthcaller
-	["Canaga stands just outside the Den."] = "Canaga está justo a la salida de El Cubil.",
+	-- {npc:5887} Canaga Earthcaller
+	["{npc:5887} stands just outside the Den."] = "{npc:5887} está justo a la salida de El Cubil.",
 
 	-- Step 17: Yarrog Baneshadow
-	["Inside the cave, keep to the right wall all the way round, over the stream: Yarrog waits at the end."] = "Dentro de la cueva, sigue la pared derecha durante todo el recorrido, cruzando el arroyo: Yarrog espera al final.",
+	-- {npc:3183} Yarrog Baneshadow
+	["Inside the cave, keep to the right wall all the way round, over the stream: {npc:3183} waits at the end."] = "Dentro de la cueva, sigue la pared derecha durante todo el recorrido, cruzando el arroyo: {npc:3183} espera al final.",
 
 	-- Step 18: Felstalker hooves
 	-- {npc:3102} Felstalker
@@ -91,8 +92,8 @@ return {
 	["the {object:654925} on the ground beside her"] = "{object:654925}, en el suelo a su lado",
 
 	-- Step 20: Call of Earth
-	-- {area:639} Spirit Rock · {item:6635} Earth Sapta · {npc:5891} Minor Manifestation of Earth · {item:6656} Rough Quartz
-	["Canaga stands outside the Den. {area:639} is the hill just south of it: drink the {item:6635} there to see the {npc:5891}, then take the {item:6656} back to Canaga."] = "Canaga está fuera de El Cubil. {area:639} es la colina justo al sur: bebe {item:6635} allí para ver a {npc:5891} y lleva {item:6656} a Canaga.",
+	-- {npc:5887} Canaga Earthcaller · {area:639} Spirit Rock · {item:6635} Earth Sapta · {npc:5891} Minor Manifestation of Earth · {item:6656} Rough Quartz
+	["{npc:5887} stands outside the Den. {area:639} is the hill just south of it: drink the {item:6635} there to see the {npc:5891}, then take the {item:6656} back to {npc:5887}."] = "{npc:5887} está fuera de El Cubil. {area:639} es la colina justo al sur: bebe {item:6635} allí para ver a {npc:5891} y lleva {item:6656} a {npc:5887}.",
 	-- {npc:5891} Minor Manifestation of Earth · {area:639} Spirit Rock
 	["{npc:5891}, on {area:639}"] = "{npc:5891}, en {area:639}",
 	-- {npc:5887} Canaga Earthcaller · {npc:5873} Stoneskin Totem · {item:5175} Earth Totem
@@ -196,38 +197,38 @@ return {
 	["{npc:3706}, for {npc:6018} in {zone:1454}: keep it"] = "{npc:3706}, para {npc:6018} en {zone:1454}: guárdala",
 
 	-- Step 48: Fizzle Darkstorm
-	-- {spell:1294269} Burning Blade · {area:369} Thunder Ridge · {area:362} Razor Hill · {npc:3099} Dire Mottled Boar · {item:15908} Taming Rod
-	["Fizzle holds the {spell:1294269} camp on {area:369}, north-west of {area:362}. Hunters: tame a {npc:3099} with the {item:15908} on the way."] = "Fizzle Necromenta ocupa el campamento de {spell:1294269} en {area:369}, al noroeste de {area:362}. Cazadores: domesticad un {npc:3099} con la {item:15908} por el camino.",
+	-- {area:369} Thunder Ridge · {area:362} Razor Hill · {npc:3099} Dire Mottled Boar · {item:15908} Taming Rod
+	["Fizzle holds the Burning Blade camp on {area:369}, north-west of {area:362}. Hunters: tame a {npc:3099} with the {item:15908} on the way."] = "Fizzle ocupa el campamento del Filo Ardiente en {area:369}, al noroeste de {area:362}. Cazadores: domesticad un {npc:3099} con {item:15908} por el camino.",
 	-- {item:15908} Taming Rod
 	["Tame it with the {item:15908}"] = "Domestícalo con {item:15908}",
 
 	-- Step 50: Heglan Shadeeye
-	-- {area:362} Razor Hill
-	["Heglan stands on the shore east of {area:362}. The trident, banner and dagger lie on the beach around him."] = "Heglan está en la orilla, al este de {area:362}. El tridente, el estandarte y la daga están en la playa a su alrededor.",
+	-- {npc:275657} Heglan Shadeeye · {area:362} Razor Hill
+	["{npc:275657} stands on the shore east of {area:362}. The trident, banner and dagger lie on the beach around him."] = "{npc:275657} está en la orilla, al este de {area:362}. El tridente, el estandarte y la daga están en la playa a su alrededor.",
 
 	-- Step 51: Margoz
 	-- {quest:828} Margoz · {quest:827} Skull Rock
 	["{quest:828} camps on the hill west of the naga beach, south of {quest:827}."] = "{quest:828} acampa en la colina al oeste de la playa de los naga, al sur de {quest:827}.",
 
 	-- Step 52: Gan'rul Bloodeye
-	-- {zone:1454} Orgrimmar · {area:817} Skull Rock · {object:172960} Cleft of Shadow · {object:172982} Valley of Strength
-	["{zone:1454}'s main gate is just west of {area:817}. Gan'rul stands in the {object:172960}, the canyon under the {object:172982}."] = "La puerta principal de {zone:1454} está justo al oeste de {area:817}. Gan'rul está en {object:172960}, el cañón bajo {object:172982}.",
+	-- {zone:1454} Orgrimmar · {area:817} Skull Rock · {npc:5875} Gan'rul Bloodeye · {object:172960} Cleft of Shadow (no name in this language: may be words) · {object:172982} Valley of Strength (no name in this language: may be words)
+	["{zone:1454}'s main gate is just west of {area:817}. {npc:5875} stands in the {object:172960}, the canyon under the {object:172982}."] = "La puerta principal de {zone:1454} está justo al oeste de {area:817}. {npc:5875} está en {object:172960}, el cañón bajo {object:172982}.",
 
 	-- Step 53: Skull Rock's mouth
 	-- {area:817} Skull Rock
 	["{area:817}'s mouth"] = "Entrada de {area:817}",
 
 	-- Step 54: Skull Rock
-	-- {spell:1294269} Burning Blade · {quest:827} Skull Rock · {item:4871} Searing Collar · {npc:3204} Gazz'uz · {item:4903} Eye of Burning Shadow
-	["{spell:1294269} cultists hold the caves of {quest:827}; any of them drops a {item:4871}. {npc:3204}, a level 14 warlock, stands deep inside and drops the {item:4903}."] = "Los fieles de {spell:1294269} ocupan las cuevas de {quest:827}; cualquiera de ellos suelta un {item:4871}. {npc:3204}, un brujo de nivel 14, está en lo más hondo y suelta el {item:4903}.",
+	-- {quest:827} Skull Rock · {item:4871} Searing Collar · {npc:3204} Gazz'uz · {item:4903} Eye of Burning Shadow
+	["Burning Blade cultists hold the caves of {quest:827}; any of them drops a {item:4871}. {npc:3204}, a level 14 warlock, stands deep inside and drops the {item:4903}."] = "Los fieles Filo Ardiente ocupan las cuevas de {quest:827}; cualquiera de ellos suelta {item:4871}. {npc:3204}, un brujo de nivel 14, está en lo más hondo y suelta {item:4903}.",
 
 	-- Step 55: Tablet of Verga
 	-- {object:58595} Burning Blade Stash · {area:817} Skull Rock
 	["The {object:58595} stands in {area:817}, among the cultists you just fought."] = "{object:58595} está en {area:817}, entre los fieles con los que acabas de luchar.",
 
 	-- Step 56: The Binding
-	-- {object:172960} Cleft of Shadow · {item:7464} Glyphs of Summoning
-	["Back to Gan'rul in the {object:172960}. Use the {item:7464} on the summoning circle there and defeat the voidwalker to bind it."] = "Vuelve con Gan'rul en {object:172960}. Usa {item:7464} en el círculo de invocación de allí y derrota al abisario para vincularlo.",
+	-- {npc:5875} Gan'rul Bloodeye · {object:172960} Cleft of Shadow (no name in this language: may be words) · {item:7464} Glyphs of Summoning
+	["Back to {npc:5875} in the {object:172960}. Use the {item:7464} on the summoning circle there and defeat the voidwalker to bind it."] = "Vuelve con {npc:5875} en {object:172960}. Usa {item:7464} en el círculo de invocación de allí y derrota al abisario para vincularlo.",
 
 	-- Step 58: Razor Hill
 	-- {area:362} Razor Hill
@@ -235,9 +236,9 @@ return {
 
 	-- Step 59: Spitelash naga
 	["Spitelash naga"] = "Nagas Látigo de Ira",
-	-- {area:370} Drygulch Ravine · {npc:3107} Surf Crawler
+	-- {npc:275657} Heglan Shadeeye · {area:370} Drygulch Ravine · {npc:3107} Surf Crawler
 	-- plural, as words: Spitelash Scouts = {npc:275662} Spitelash Scout
-	["Back east to the shore north of Heglan. Spitelash Scouts and Attendants hold the beach below {area:370}. Hunters: tame a {npc:3107} on the beach."] = "Vuelve al este, a la orilla al norte de Heglan. Los exploradores y ayudantes Látigo de Ira ocupan la playa bajo {area:370}. Cazadores: domesticad un {npc:3107} en la playa.",
+	["Back east to the shore north of {npc:275657}. Spitelash Scouts and Attendants hold the beach below {area:370}. Hunters: tame a {npc:3107} on the beach."] = "Vuelve al este, a la orilla al norte de {npc:275657}. Los exploradores y ayudantes Látigo de Ira ocupan la playa bajo {area:370}. Cazadores: domesticad un {npc:3107} en la playa.",
 
 	-- Step 60: Razor Hill
 	-- {area:362} Razor Hill
@@ -259,7 +260,7 @@ return {
 	["{npc:3171}: {npc:3352} in {zone:1454} teaches {spell:5149}"] = "{npc:3171}: {npc:3352}, en {zone:1454}, enseña {spell:5149}",
 
 	-- Step 63: Ormak Grimshot
-	-- {area:362} Razor Hill · {zone:1454} Orgrimmar · {area:817} Skull Rock · {npc:3352} Ormak Grimshot · {object:172958} Valley of Honor
+	-- {area:362} Razor Hill · {zone:1454} Orgrimmar · {area:817} Skull Rock · {npc:3352} Ormak Grimshot · {object:172958} Valley of Honor (no name in this language: may be words)
 	["Follow the road north from {area:362} to {zone:1454}'s main gate, just west of {area:817}. {npc:3352} stands with the hunter trainers in the {object:172958}."] = "Sigue el camino hacia el norte desde {area:362} hasta la puerta principal de {zone:1454}, justo al oeste de {area:817}. {npc:3352} está con los instructores de cazadores en {object:172958}.",
 
 	-- Step 64: Far Watch Post
@@ -273,18 +274,13 @@ return {
 	["Thunder Lizards and Lightning Hides graze on {area:369} across the bridge; any of them can drop a {item:6486}."] = "Los truenagartos y los lomorrayos pastan en {area:369}, al otro lado del puente; cualquiera de ellos puede soltar {item:6486}.",
 
 	-- Step 67: The Crossroads
-	-- {area:379} Far Watch Post · {zone:1413} Barrens
-	["Follow the road south-west from {area:379} to the Crossroads. The {zone:1413} guide starts here."] = "Sigue el camino hacia el suroeste desde {area:379} hasta El Cruce. Aquí empieza la guía de {zone:1413}.",
+	-- {area:379} Far Watch Post · {area:380} The Crossroads · {zone:1413} Barrens
+	["Follow the road south-west from {area:379} to the {area:380}. {zone:1413} guide starts here."] = "Sigue el camino hacia el suroeste desde {area:379} hasta {area:380}. Aquí empieza la guía de {zone:1413}.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Burning Blade cultists hold the caves of {quest:827}; any of them drops a {item:4871}. {npc:3204}, a level 14 warlock, stands deep inside and drops the {item:4903}."] = "Los fieles Filo Ardiente ocupan las cuevas de {quest:827}; cualquiera de ellos suelta {item:4871}. {npc:3204}, un brujo de nivel 14, está en lo más hondo y suelta {item:4903}.",
-	-- ["Felstalker hooves"] = "Pezuñas de acechador vil",
-	-- ["Fizzle holds the Burning Blade camp on {area:369}, north-west of {area:362}. Hunters: tame a {npc:3099} with the {item:15908} on the way."] = "Fizzle ocupa el campamento del Filo Ardiente en {area:369}, al noroeste de {area:362}. Cazadores: domesticad un {npc:3099} con {item:15908} por el camino.",
 	-- ["Follow the road south-west from {area:379} to the {area:380}. {zone:1413} guide starts here."] = "Sigue el camino hacia el suroeste desde {area:379} hasta {area:380}. Aquí empieza la guía de {zone:1413}.",
-	-- ["Wade back west to the shore south of Sen'jin. {zone:1411} Tigers roam it and the Taillasher eggs sit in nests along the beach."] = "Vuelve vadeando al oeste hasta la orilla al sur del poblado Sen'jin. Por ella rondan los tigres de {zone:1411}, y los huevos de Colazote están en nidos a lo largo de la playa.",
-	-- ["{npc:265809} camps just south of {area:362}. Sit by his campfire (/sit) until the Boosted Rest buff appears."] = "{npc:265809} acampa justo al sur de {area:362}. Siéntate junto a su hoguera (/sentarse) hasta que aparezca el beneficio de descanso potenciado.",
+	-- ["{area:364}'s cave mouth"] = "Entrada de la cueva de {area:364}",
 	-- ["{npc:3171}: Tame Beast"] = "{npc:3171}: Domesticar bestia",
-	-- ["{npc:3171}: {npc:3352} in {zone:1454} teaches Beast Training"] = "{npc:3171}: {npc:3352}, en {zone:1454}, enseña Adiestramiento de bestias",
 	-- ["{npc:3352}: Beast Training"] = "{npc:3352}: Adiestramiento de bestias",
 	-- ["{npc:5875}: Summon Voidwalker"] = "{npc:5875}: Invocar abisario",
 }

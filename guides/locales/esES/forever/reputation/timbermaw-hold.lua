@@ -3,14 +3,15 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Spanish (Spain) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Spanish (Spain) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
-	["Timbermaw Hold Reputation"] = "Reputación con el Bastión de los Fauces de Madera",
+	["Timbermaw Hold Reputation"] = "Reputación: Bastión de los Fauces de Madera",
 
 	-- Step 1: Grazle
 	-- {faction:576} Timbermaw Hold
-	["{faction:576} starts out Hostile, and its furbolgs in the tunnels attack until you reach Unfriendly. Every Deadwood and Winterfall furbolg you kill raises it, so the quests below pay twice. Forever's Legacy Diplomat perk increases reputation gains."] = "{faction:576} empieza en Hostil, y sus fúrbolgs de los túneles te atacan hasta que llegas a Adverso. Cada fúrbolg Muertobosque o Nevada que matas la sube, así que las misiones de abajo dan reputación por partida doble. La ventaja Diplomático del legado de Forever aumenta la reputación que ganas.",
+	["{faction:576} starts out Hostile, and its furbolgs in the tunnels attack until you reach Unfriendly. Every Deadwood and Winterfall furbolg you kill raises it, so the quests below pay twice. Forever's Legacy Diplomat perk increases reputation gains."] = "{faction:576} empieza en Hostil, y sus fúrbolgs de los túneles te atacan hasta que llegas a Adverso. Cada fúrbolg Muertobosque o Nevada que matas la sube, así que las misiones de abajo dan reputación por partida doble. La ventaja de Legado Diplomático de Forever aumenta la reputación que ganas.",
 
 	-- Step 2: Deadwood Village
 	-- {zone:1448} Felwood · {item:21377} Deadwood Headdress Feather · {npc:11554} Grazle · {npc:15395} Nafien
@@ -68,7 +69,4 @@ return {
 	-- {faction:576} Timbermaw Hold
 	["{faction:576} to Exalted"] = "{faction:576} hasta Exaltado",
 	["Keep turning in feathers and beads until Exalted."] = "Sigue entregando plumas y cuentas hasta Exaltado.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["{faction:576} Reputation"] = "Reputación con {faction:576}",
 }

@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in German (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in German words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -25,7 +26,7 @@ return {
 	["{npc:5492} is in the Cathedral of Light."] = "{npc:5492} ist in der Kathedrale des Lichts.",
 
 	-- Step 4: Ursula Deline
-	-- {object:2101} Mage Quarter · {npc:5495} Ursula Deline
+	-- {object:2101} Mage Quarter (no name in this language: may be words) · {npc:5495} Ursula Deline
 	["Katherine sends you to the warlocks in the {object:2101}; {npc:5495} speaks for them."] = "Katherine schickt dich zu den Hexenmeistern im {object:2101}; {npc:5495} spricht für sie.",
 
 	-- Step 5: Summoner's Salt
@@ -33,8 +34,9 @@ return {
 	-- plural, as words: Blackrock Summoners = {npc:4463} Blackrock Summoner
 	["Blackrock Summoners, Champions and Trackers camp in the north-west of Redridge; they drop the {item:209778}."] = "Beschwörer, Helden und Fährtenleser der Blackrock lagern im Nordwesten des Rotkammgebirges; sie lassen das {item:209778} fallen.",
 
-	-- Step 6: Back to Ursula
-	["Back to Ursula"] = "Zurück zu Ursula",
+	-- Step 6: Back to Ursula Deline
+	-- {npc:5495} Ursula Deline
+	["Back to {npc:5495}"] = "Zurück zu {npc:5495}",
 
 	-- Step 7: Motes of Mannoroth
 	["Motes of Mannoroth"] = "Partikel von Mannoroth",

@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in French (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in French words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -83,7 +84,4 @@ return {
 	["9 areas to discover here."] = "9 zones à découvrir ici.",
 	-- {zone:2482} Mount Hyjal · {zone:1452} Winterspring · {area:2256} Darkwhisper Gorge
 	["{zone:2482} is reached from {zone:1452} through {area:2256} in the south. It is Forever's endgame leveling zone."] = "On rejoint {zone:2482} depuis {zone:1452} par {area:2256}, au sud. C'est la zone de progression de fin de jeu de Forever.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Take the {area:1769} tunnel in northern {zone:1448} through to {zone:1450} (druids: Teleport: {zone:1450}). {area:2361} is neutral."] = "Empruntez le tunnel de {area:1769}, dans le nord de {zone:1448}, jusqu'à {zone:1450} (druides : Téléportation : {zone:1450}). {area:2361} est neutre.",
 }

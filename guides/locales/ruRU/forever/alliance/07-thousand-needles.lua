@@ -3,11 +3,12 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Russian (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Russian words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Darkshire
-	-- {item:4371} Bronze Tube · {quest:174} Look to the Stars · {npc:3133} Herble Baubbletump · {npc:1448} Neal Allen · {area:150} Menethil Harbor
-	["No {item:4371} for {quest:174}? {npc:3133} sells it in the house beside Viktori, in limited stock; {npc:1448} in {area:150} sells it too."] = "Нет предмета {item:4371} для задания «{quest:174}»? Его продает {npc:3133} в доме рядом с Виктором, запас ограничен; продает его и {npc:1448} ({area:150}).",
+	-- {item:4371} Bronze Tube · {quest:174} Look to the Stars · {npc:3133} Herble Baubbletump · {npc:276} Viktori Prism'Antras · {npc:1448} Neal Allen · {area:150} Menethil Harbor
+	["No {item:4371} for {quest:174}? {npc:3133} sells it in the house beside {npc:276}, in limited stock; {npc:1448} in {area:150} sells it too."] = "Нет предмета {item:4371} для задания «{quest:174}»? Его продает {npc:3133} в доме рядом с {npc:276}, запас ограничен; продает его и {npc:1448} ({area:150}).",
 	-- {npc:352} Dungar Longdrink · {zone:1453} Stormwind
 	["From {npc:352} in {zone:1453}"] = "Выдает {npc:352} ({zone:1453})",
 	-- {npc:6790} Innkeeper Trelayne
@@ -61,16 +62,18 @@ return {
 	-- plural, as words: Plague Spreaders = {npc:604} Plague Spreader
 	["The Plague Spreaders walk the northern half of the {area:492}. {npc:522}, an elite, wanders the graves: keep away from him."] = "Распространители чумы бродят по северной части кладбища ({area:492}). Среди могил бродит элитный противник {npc:522}: держитесь от него подальше.",
 
-	-- Step 11: Sven's Camp
-	["Sven's Camp"] = "Лагерь Свена",
+	-- Step 11: Sven Yorgen's Camp
+	-- {npc:311} Sven Yorgen
+	["{npc:311}'s Camp"] = "Лагерь {npc:311}",
 
 	-- Step 12: Raven Hill Cemetery, west
 	-- {area:492} Raven Hill Cemetery
 	["{area:492}, west"] = "{area:492}, запад",
+	-- {npc:311} Sven Yorgen
 	-- plural, as words: Skeletal Raiders = {npc:1110} Skeletal Raider
-	["Skeletal Raiders, Healers and Warders hold the west part of the cemetery, just east of Sven's camp."] = "Скелеты-налетчики, скелеты-лекари и скелеты-хранители занимают западную часть кладбища, сразу к востоку от лагеря Свена.",
+	["Skeletal Raiders, Healers and Warders hold the west part of the cemetery, just east of {npc:311}'s camp."] = "Скелеты-налетчики, скелеты-лекари и скелеты-хранители занимают западную часть кладбища, сразу к востоку от лагеря {npc:311}.",
 
-	-- Step 13: Sven's Camp
+	-- Step 13: Sven Yorgen's Camp
 	-- {npc:1212} Bishop Farthing · {zone:1453} Stormwind
 	["For {npc:1212} in {zone:1453}, in the next guide"] = "Для NPC {npc:1212} ({zone:1453}), в следующем гайде",
 
@@ -135,8 +138,9 @@ return {
 	-- {item:2661} Neru Fragment · {object:331} Loose Soil
 	["{item:2661}: the {object:331}"] = "{item:2661}: {object:331}",
 
-	-- Step 26: Ormer and Whelgar
-	["Ormer and Whelgar"] = "Ормер и Вельгар",
+	-- Step 26: Ormer Ironbraid and Whelgar
+	-- {npc:1078} Ormer Ironbraid
+	["{npc:1078} and Whelgar"] = "{npc:1078} и Вельгар",
 
 	-- Step 27: Dragonmaw camp
 	["Dragonmaw camp"] = "Лагерь клана Драконьей Пасти",
@@ -191,6 +195,4 @@ return {
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Ride east to the ogre mound. {item:1349} sits in the camp at its entrance; Splinter Fist ogres guard it."] = "Езжайте на восток к кургану огров. {item:1349} лежит в лагере у входа; его охраняют огры из клана Дробящего Кулака.",
-	-- ["The dig and Sarltooth"] = "Раскопки и Зарлозуб",
-	-- ["The relics lie in the dig itself. Sarltooth, a big Razormaw, prowls the raptor valley just west of it."] = "Реликвии лежат прямо на раскопках. Зарлозуб, крупный острозуб, рыщет в долине ящеров сразу к западу от них.",
 }

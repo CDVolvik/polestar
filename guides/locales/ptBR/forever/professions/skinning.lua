@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Portuguese (Brazil) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Portuguese (Brazil) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Learn Skinning
@@ -64,9 +65,9 @@ return {
 
 	-- Step 8: Journeyman Skinning
 	-- {skill:393} Skinning
-	["Journeyman {skill:393}"] = "{skill:393} Artesão",
+	["Journeyman {skill:393}"] = "{skill:393} (Profissional)",
 	-- {skill:393} Skinning
-	["Journeyman {skill:393} raises the cap to 150; it needs skill 50 and character level 10. The arrow picks the nearest {skill:393} trainer of your faction."] = "{skill:393} Artesão eleva o limite para 150; requer perícia 50 e nível de personagem 10. A seta escolhe o instrutor de {skill:393} mais próximo da sua facção.",
+	["Journeyman {skill:393} raises the cap to 150; it needs skill 50 and character level 10. The arrow picks the nearest {skill:393} trainer of your faction."] = "{skill:393} Profissional eleva o limite para 150; requer perícia 50 e nível de personagem 10. A seta escolhe o instrutor de {skill:393} mais próximo da sua facção.",
 
 	-- Step 9: Beasts 10-16: Westfall (50-100)
 	-- {zone:1436} Westfall
@@ -140,9 +141,9 @@ return {
 
 	-- Step 17: Expert Skinning
 	-- {skill:393} Skinning
-	["Expert {skill:393}"] = "{skill:393} Especialista",
+	["Expert {skill:393}"] = "{skill:393} (Perito)",
 	-- {skill:393} Skinning
-	["Expert {skill:393} raises the cap to 225; it needs skill 125 and character level 20. The arrow picks the nearest {skill:393} trainer of your faction."] = "{skill:393} Especialista eleva o limite para 225; requer perícia 125 e nível de personagem 20. A seta escolhe o instrutor de {skill:393} mais próximo da sua facção.",
+	["Expert {skill:393} raises the cap to 225; it needs skill 125 and character level 20. The arrow picks the nearest {skill:393} trainer of your faction."] = "{skill:393} (Perito) eleva o limite para 225; requer perícia 125 e nível de personagem 20. A seta escolhe o instrutor de {skill:393} mais próximo da sua facção.",
 
 	-- Step 18: Beasts 21-29: Wetlands (125-150)
 	-- {zone:1437} Wetlands
@@ -178,7 +179,7 @@ return {
 
 	-- Step 23: Artisan Skinning
 	-- {skill:393} Skinning
-	["Artisan {skill:393}"] = "{skill:393} Artífice",
+	["Artisan {skill:393}"] = "{skill:393} (Artífice)",
 	-- {skill:393} Skinning
 	["Artisan {skill:393} raises the cap to 300; it needs skill 200 and character level 35. The arrow picks the nearest {skill:393} trainer of your faction."] = "{skill:393} Artífice eleva o limite para 300; requer perícia 200 e nível de personagem 35. A seta escolhe o instrutor de {skill:393} mais próximo da sua facção.",
 

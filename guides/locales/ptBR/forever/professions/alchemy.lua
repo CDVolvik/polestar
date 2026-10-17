@@ -3,13 +3,14 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Portuguese (Brazil) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Portuguese (Brazil) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Apprentice Alchemy
 	-- {skill:171} Alchemy
-	["Apprentice {skill:171}"] = "{skill:171} Aprendiz",
+	["Apprentice {skill:171}"] = "{skill:171} (Aprendiz)",
 	-- {skill:171} Alchemy
-	["{skill:171} runs alongside leveling. Forever's Legacy System rewards crafting professions at skill 150, 225 and 300 (the Journeyman, Expert and Artisan caps), so each of those checkpoints counts. Materials for 1-75 are worth about 68s in all."] = "{skill:171} acompanha a evolução do personagem. O Sistema de Legado do Forever recompensa profissões de produção nas perícias 150, 225 e 300 (os limites de Artesão, Especialista e Artífice), então cada um desses marcos conta. Os materiais de 1-75 valem cerca de 68s no total.",
+	["{skill:171} runs alongside leveling. Forever's Legacy System rewards crafting professions at skill 150, 225 and 300 (the Journeyman, Expert and Artisan caps), so each of those checkpoints counts. Materials for 1-75 are worth about 68s in all."] = "{skill:171} acompanha a evolução do personagem. O Sistema de Legado do Forever recompensa profissões de produção nas perícias 150, 225 e 300 (os limites de Profissional, Perito e Artífice), então cada um desses marcos conta. Os materiais de 1-75 valem cerca de 68s no total.",
 
 	-- Step 2: Silverleaf (Alliance)
 	-- {item:765} Silverleaf
@@ -38,9 +39,9 @@ return {
 
 	-- Step 7: Journeyman Alchemy
 	-- {skill:171} Alchemy
-	["Journeyman {skill:171}"] = "{skill:171} Artesão",
+	["Journeyman {skill:171}"] = "{skill:171} (Profissional)",
 	-- {skill:171} Alchemy
-	["Journeyman needs character level 10 and {skill:171} 50; it raises the cap to 150. Materials for 75-150 are worth about 1g 44s in all."] = "Artesão exige personagem nível 10 e {skill:171} 50; eleva o limite para 150. Os materiais de 75-150 valem cerca de 1g 44s no total.",
+	["Journeyman needs character level 10 and {skill:171} 50; it raises the cap to 150. Materials for 75-150 are worth about 1g 44s in all."] = "Profissional exige personagem nível 10 e {skill:171} 50; eleva o limite para 150. Os materiais de 75-150 valem cerca de 1g 44s no total.",
 
 	-- Step 8: Recipe: Holy Protection Potion
 	-- {item:6051} Holy Protection Potion · {skill:171} Alchemy
@@ -123,9 +124,9 @@ return {
 
 	-- Step 25: Expert Alchemy
 	-- {skill:171} Alchemy
-	["Expert {skill:171}"] = "{skill:171} Especialista",
+	["Expert {skill:171}"] = "{skill:171} (Perito)",
 	-- {skill:171} Alchemy
-	["Expert needs character level 20 and {skill:171} 125; it raises the cap to 225. Materials for 150-225 are worth about 3g 65s in all."] = "Especialista exige personagem nível 20 e {skill:171} 125; eleva o limite para 225. Os materiais de 150-225 valem cerca de 3g 65s no total.",
+	["Expert needs character level 20 and {skill:171} 125; it raises the cap to 225. Materials for 150-225 are worth about 3g 65s in all."] = "Perito exige personagem nível 20 e {skill:171} 125; eleva o limite para 225. Os materiais de 150-225 valem cerca de 3g 65s no total.",
 
 	-- Step 26: Murloc Eye
 	["Kill the mobs that drop it at the farm spot Polestar picks for your level and faction. The Auction House works too."] = "Mate os monstros que deixam cair o item no local que o Polestar escolhe para seu nível e facção. A Casa de Leilões também serve.",
@@ -242,7 +243,7 @@ return {
 
 	-- Step 48: Artisan Alchemy
 	-- {skill:171} Alchemy
-	["Artisan {skill:171}"] = "{skill:171} Artífice",
+	["Artisan {skill:171}"] = "{skill:171} (Artífice)",
 	-- {skill:171} Alchemy
 	["Artisan needs character level 35 and {skill:171} 200; it raises the cap to 300. Materials for 225-300 are worth about 7g 80s in all."] = "Artífice exige personagem nível 35 e {skill:171} 200; eleva o limite para 300. Os materiais de 225-300 valem cerca de 7g 80s no total.",
 
@@ -323,6 +324,4 @@ return {
 	["{spell:17554} to 300"] = "{spell:17554} até 300",
 	-- {skill:171} Alchemy
 	["Orange (a point every craft) until 280, yellow until 300, green until 320. {skill:171} 300 is a Legacy System milestone."] = "Laranja (um ponto a cada produção) até 280, amarelo até 300, verde até 320. {skill:171} 300 é um marco do Sistema de Legado.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
 }

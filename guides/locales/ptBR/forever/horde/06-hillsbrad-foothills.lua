@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Portuguese (Brazil) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Portuguese (Brazil) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Tarren Mill
@@ -12,12 +13,12 @@ return {
 	["The {object:1763} poster by the inn"] = "O cartaz {object:1763} perto da estalagem",
 	-- {quest:567} Dangerous!
 	["The {quest:567} poster: its targets come up along the way"] = "O cartaz {quest:567}: os alvos aparecem pelo caminho",
-	-- {item:7768} Empty Red Waterskin · {object:107045} Spring Well
+	-- {item:7768} Empty Red Waterskin · {object:107045} Spring Well (no name in this language: may be words)
 	["Fill the {item:7768} at the {object:107045} beside the inn"] = "Encha o {item:7768} no {object:107045} ao lado da estalagem",
 
 	-- Step 2: Serge Hinott
-	-- {npc:2391} Serge Hinott · {area:272} Tarren Mill
-	["Only if Gallywix fell in the Barrens (Mission: Possible But Not Probable): {npc:2391} stands in {area:272}. Wait beside him while he brews the cure, then take your reward: Poisons."] = "Só se Gallywix caiu nos Sertões (Missão: possível, mas não provável): {npc:2391} fica em {area:272}. Espere ao lado dele enquanto prepara a cura e pegue sua recompensa: Venenos.",
+	-- {zone:1413} The Barrens · {npc:2391} Serge Hinott · {area:272} Tarren Mill
+	["Only if Gallywix fell in the {zone:1413} (Mission: Possible But Not Probable): {npc:2391} stands in {area:272}. Wait beside him while he brews the cure, then take your reward: Poisons."] = "Só se Gallywix caiu nos {zone:1413} (Missão: possível, mas não provável): {npc:2391} fica em {area:272}. Espere ao lado dele enquanto prepara a cura e pegue sua recompensa: Venenos.",
 	-- {npc:2391} Serge Hinott
 	["{npc:2391}: Poisons"] = "{npc:2391}: Venenos",
 	["No Gallywix yet? The Class guide Poisons (Horde) runs the chain from Shenthul again, with a group for Gallywix."] = "Ainda sem Gallywix? O guia de classe Venenos (Horda) refaz a cadeia a partir de Shenthul, com um grupo para Gallywix.",
@@ -124,12 +125,10 @@ return {
 	["Hearth to {area:378} and fly to {area:392}. {quest:874} camps on the shore north of {area:392}."] = "Use a Pedra de Regresso para {area:378} e voe até {area:392}. {quest:874} acampa na praia ao norte de {area:392}.",
 
 	-- Step 28: Isha Awak
-	-- {quest:873} Isha Awak · {area:391} Merchant Coast
-	["{quest:873}, a big threshadon, swims in the shallows off the {area:391}, east of Mahren."] = "{quest:873}, um grande manguadonte, nada nas águas rasas da {area:391}, a leste de Mahren.",
+	-- {quest:873} Isha Awak · {area:391} Merchant Coast · {npc:3388} Mahren Skyseer
+	["{quest:873}, a big threshadon, swims in the shallows off the {area:391}, east of {npc:3388}."] = "{quest:873}, um grande manguadonte, nada nas águas rasas da {area:391}, a leste de {npc:3388}.",
 
 	-- Step 29: Ratchet
 	-- {npc:3442} Sputtervalve · {area:392} Ratchet
 	["{npc:3442}, by the docks in {area:392}"] = "{npc:3442}, perto das docas em {area:392}",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
 }

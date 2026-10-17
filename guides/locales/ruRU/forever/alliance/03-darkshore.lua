@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Russian (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Russian words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Auberdine
@@ -70,12 +71,9 @@ return {
 
 	-- Step 10: The Tower of Althalaxx
 	-- {quest:954} Bashal'Aran · {quest:1002} Buzzbox 323
-	-- plural, as words: Grizzled Thistle Bears = {npc:2165} Grizzled Thistle Bear
-	["Moonstalkers prowl the hills between {quest:954} and the tower. {quest:1002} stands on the hill west of the tower; Grizzled Thistle Bears roam around it."] = "Лунопарды рыщут по холмам между руинами ({quest:954}) и башней. {quest:1002} стоит на холме к западу от башни; вокруг бродят седые колючешерстные медведи.",
+	["Moonstalkers prowl the hills between {quest:954} and the tower. {quest:1002} stands on the hill west of the tower."] = "",
 	-- plural, as words: Moonstalker Fangs = {item:5413} Moonstalker Fang
 	["Moonstalker Fangs"] = "Клыки лунопарда",
-	-- plural, as words: Grizzled Scalps = {item:5414} Grizzled Scalp
-	["Grizzled Scalps"] = "Седые скальпы",
 
 	-- Step 11: Hearth to Auberdine
 	-- {area:442} Auberdine
@@ -120,7 +118,10 @@ return {
 	-- {area:448} Grove of the Ancients
 	["The {area:448}"] = "{area:448}",
 	-- {quest:1003} Buzzbox 525
-	["{quest:1003} stands west of the Grove."] = "{quest:1003} стоит к западу от Рощи.",
+	-- plural, as words: Grizzled Thistle Bears = {npc:2165} Grizzled Thistle Bear
+	["Grizzled Thistle Bears roam the hills around the Grove; {quest:1003} stands west of it among them."] = "",
+	-- plural, as words: Grizzled Scalps = {item:5414} Grizzled Scalp
+	["Grizzled Scalps"] = "Седые скальпы",
 
 	-- Step 18: The red crystal
 	["Back north-east into the mountains to the crystal."] = "Назад на северо-восток, в горы, к кристаллу.",
@@ -257,16 +258,19 @@ return {
 	-- {quest:98394} The Great Cat Spirit · {npc:272054} Avatar of Saeyleenan · {area:493} Moonglade · {area:2363} Stormrage Barrow Dens
 	["{quest:98394} (Night Elves) and the {npc:272054} (Skyborne) wait in southern {area:493}. The three relics lie in the {area:2363}, east of them. Reports from the first weeks say a relic gives no loot while another player is looting it: wait a moment and try again."] = "{quest:98394} (ночные эльфы) и {npc:272054} (небеснорожденные) ждут на юге ({area:493}). Три реликвии лежат к востоку от них ({area:2363}). По отчетам первых недель, реликвия не дает добычи, пока ее обыскивает другой игрок: подождите немного и попробуйте снова.",
 
-	-- Step 41: Back to Dendrite
-	["Back to Dendrite"] = "Назад к Дендриту",
+	-- Step 41: Back to Dendrite Starblaze
+	-- {npc:11802} Dendrite Starblaze
+	["Back to {npc:11802}"] = "Назад к {npc:11802}",
 	-- {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {area:702} Rut'theran Village · {area:442} Auberdine
 	["Back to {npc:11802} in {area:2361}, then fly to {area:702} (by way of {area:442})."] = "Назад: {npc:11802} ({area:2361}), затем летите: {area:702} (через {area:442}).",
 
 	-- Step 42: To Darnassus
-	-- {area:442} Auberdine · {zone:1453} Stormwind
-	["Take the portal up to Mathrengyl, then fly back to {area:442} for the boat to {zone:1453}."] = "Поднимитесь через портал к Матренгилу Медвежьей Лапе, затем летите обратно ({area:442}) к кораблю ({zone:1453}).",
+	-- {npc:4217} Mathrengyl Bearwalker · {area:442} Auberdine · {zone:1453} Stormwind
+	["Take the portal up to {npc:4217}, then fly back to {area:442} for the boat to {zone:1453}."] = "Поднимитесь через портал к {npc:4217}, затем летите обратно ({area:442}) к кораблю ({zone:1453}).",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Moonstalkers prowl the hills between {quest:954} and the tower. {quest:1002} stands on the hill west of the tower; Grizzled Thistle Bears roam around it."] = "Лунопарды рыщут по холмам между руинами ({quest:954}) и башней. {quest:1002} стоит на холме к западу от башни; вокруг бродят седые колючешерстные медведи.",
 	-- ["Tide Crawlers scuttle along the shore below the village; {quest:983} stands on the beach just south of the docks. Darkshore Threshers swim in the shallows. The {quest:4723} lies on the shore just south of the village."] = "Прибрежные крабы снуют по берегу под деревней; {quest:983} стоит на пляже чуть южнее пристани. На мелководье плавают крепкозубы Темного берега. {quest:4723} лежит на берегу чуть южнее деревни.",
 	-- ["{item:15883}: the {object:177790} under the water off the north coast, west of the ruins"] = "{item:15883}: {object:177790} под водой у северного побережья, к западу от руин",
+	-- ["{quest:1003} stands west of the Grove."] = "{quest:1003} стоит к западу от Рощи.",
 }

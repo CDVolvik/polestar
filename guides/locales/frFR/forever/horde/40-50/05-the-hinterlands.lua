@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in French (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in French words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Fly to Stonard
@@ -44,7 +45,7 @@ return {
 	["Ride north back to {area:75} and fly to the {area:1497}."] = "Retournez au nord jusqu'à {area:75} et prenez un vol pour {area:1497}.",
 
 	-- Step 8: Undercity
-	-- {npc:7825} Oran Snakewrithe · {object:36126} Royal Quarter
+	-- {npc:7825} Oran Snakewrithe · {object:36126} Royal Quarter (no name in this language: may be words)
 	["{npc:7825}, the {object:36126}"] = "{npc:7825}, {object:36126}",
 	-- {npc:6741} Innkeeper Norman · {zone:1456} Thunder Bluff
 	["{npc:6741}: for {zone:1456}, around level 50"] = "{npc:6741} : pour {zone:1456}, vers le niveau 50",
@@ -53,10 +54,11 @@ return {
 	-- {area:272} Tarren Mill
 	["Fly to {area:272}"] = "Prendre un vol pour {area:272}",
 
-	-- Step 10: Gilveradin's camp
-	["Gilveradin's camp"] = "Camp de Gilveradin",
-	-- {area:272} Tarren Mill · {npc:7801} Gilveradin Sunchaser · {area:350} Quel'Danil Lodge
-	["Ride north-east from {area:272} into the Hinterlands and east along the road; {npc:7801} camps on the hill south of the elves' {area:350}."] = "Depuis {area:272}, allez au nord-est jusqu'aux Hinterlands, puis à l'est le long de la route ; {npc:7801} campe sur la colline au sud de {area:350}, le gîte des elfes.",
+	-- Step 10: Gilveradin Sunchaser's camp
+	-- {npc:7801} Gilveradin Sunchaser
+	["{npc:7801}'s camp"] = "Camp de {npc:7801}",
+	-- {area:272} Tarren Mill · {zone:1425} The Hinterlands · {npc:7801} Gilveradin Sunchaser · {area:350} Quel'Danil Lodge
+	["Ride north-east from {area:272} into the {zone:1425} and east along the road; {npc:7801} camps on the hill south of the elves' {area:350}."] = "Depuis {area:272}, allez au nord-est jusqu'aux {zone:1425}, puis à l'est le long de la route ; {npc:7801} campe sur la colline au sud de {area:350}, le gîte des elfes.",
 
 	-- Step 11: Highvale
 	["Highvale"] = "Haut-val",
@@ -75,7 +77,8 @@ return {
 	["South-west again, the exile hides by the ruins of {area:353}."] = "De nouveau au sud-ouest, l'exilé se cache près des ruines de {area:353}.",
 
 	-- Step 15: Revantusk Village
-	["Follow the roads east across the Hinterlands to the troll village on the eastern coast."] = "Suivez les routes vers l'est à travers les Hinterlands jusqu'au village troll de la côte est.",
+	-- {zone:1425} The Hinterlands
+	["Follow the roads east across the {zone:1425} to the troll village on the eastern coast."] = "Suivez les routes vers l'est à travers les {zone:1425} jusqu'au village troll de la côte est.",
 
 	-- Step 16: Saltwater Snapjaws
 	-- plural, as words: Saltwater Snapjaws = {npc:2505} Saltwater Snapjaw
@@ -104,9 +107,9 @@ return {
 
 	-- Step 20: The central hills
 	["The central hills"] = "Les collines centrales",
-	-- {area:351} Skulk Rock · {item:9618} Wildkin Muisek Vessel
+	-- {area:351} Skulk Rock · {item:9618} Wildkin Muisek Vessel · {npc:14738} Otho Moji'ko
 	-- plural, as words: Silvermane Stalkers = {npc:2926} Silvermane Stalker · Savage Owlbeasts = {npc:2929} Savage Owlbeast · Razorbeak Skylords = {npc:2659} Razorbeak Skylord · Long Elegant Feathers = {item:4589} Long Elegant Feather
-	["The Silvermane Stalkers, Savage Owlbeasts and Razorbeak Skylords share the hills between the temples and {area:351}. Use the {item:9618} on the owlbeasts you kill. The Skylords also drop Long Elegant Feathers: keep ten for Otho's second message."] = "Les Traqueurs Crins-d'argent, les Chouettards sauvages et les Seigneurs du ciel Bec-rasoir se partagent les collines entre les temples et {area:351}. Utilisez {item:9618} sur les chouettards que vous tuez. Les Seigneurs du ciel Bec-rasoir laissent aussi tomber des Longues plumes élégantes : gardez-en dix pour le deuxième message d'Otho Moji'ko.",
+	["The Silvermane Stalkers, Savage Owlbeasts and Razorbeak Skylords share the hills between the temples and {area:351}. Use the {item:9618} on the owlbeasts you kill. The Skylords also drop Long Elegant Feathers: keep ten for {npc:14738}'s second message."] = "Les Traqueurs Crins-d'argent, les Chouettards sauvages et les Seigneurs du ciel Bec-rasoir se partagent les collines entre les temples et {area:351}. Utilisez {item:9618} sur les chouettards que vous tuez. Les Seigneurs du ciel Bec-rasoir laissent aussi tomber des Longues plumes élégantes : gardez-en dix pour le deuxième message d'{npc:14738} Moji'ko.",
 
 	-- Step 21: Skulk Rock
 	-- {item:8684} Hinterlands Honey Ripple · {area:351} Skulk Rock
@@ -127,7 +130,7 @@ return {
 	-- {area:350} Quel'Danil Lodge
 	["Back west to {area:350}; rangers and marksmen stay near the lodge, scouts and outrunners on the slopes south of it."] = "Retournez à l'ouest jusqu'à {area:350} ; les Forestiers et Tireurs d'élite du Haut-val restent près du gîte, les Eclaireurs et Estafettes du Haut-val sur les pentes au sud.",
 
-	-- Step 25: Gilveradin's camp
+	-- Step 25: Gilveradin Sunchaser's camp
 	-- {npc:6986} Dran Droffers · {zone:1454} Orgrimmar
 	["for {npc:6986} in {zone:1454}, around level 50"] = "pour {npc:6986} à {zone:1454}, vers le niveau 50",
 
@@ -156,7 +159,6 @@ return {
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Follow the roads east across the {zone:1425} to the troll village on the eastern coast."] = "Suivez les routes vers l'est à travers {zone:1425} jusqu'au village troll de la côte est.",
-	-- ["Huntsman Malkhor's skull lies on a pile below the Vilebranch ruins, his bones on a pile at the foot of {area:354}. The Vessels of Tainted Blood sit on the lower terraces, and {npc:14757} is held at the top. Keep to the paths: the trolls inside are elite."] = "Le Crâne du veneur Malkhor se trouve sur un tas sous les ruines Vilebranch, les Os du veneur Malkhor sur un tas au pied de {area:354}. Les Calices de sang corrompu sont posés sur les terrasses inférieures, et {npc:14757} est retenu au sommet. Restez sur les chemins : les trolls à l'intérieur sont des élites.",
 	-- ["Huntsman Malkhor's skull lies on a pile below the Vilebranch ruins, his bones on a pile at the foot of {area:354}. The Vessels of {spell:19478} sit on the lower terraces, and {npc:14757} is held at the top. Keep to the paths: the trolls inside are elite."] = "Le Crâne du veneur Malkhor repose sur un tas sous les ruines Vilebranch, ses os sur un tas au pied de {area:354}. Les Calices de {spell:19478} se trouvent sur les terrasses inférieures, et {npc:14757} est retenu au sommet. Restez sur les chemins : les trolls à l'intérieur sont des élites.",
 	-- ["Ride north-east from {area:272} into the {zone:1425} and east along the road; {npc:7801} camps on the hill south of the elves' {area:350}."] = "Depuis {area:272}, allez au nord-est jusqu'à {zone:1425}, puis à l'est le long de la route ; {npc:7801} campe sur la colline au sud de {area:350}, le gîte des elfes.",
 }

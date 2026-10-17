@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Portuguese (Brazil) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Portuguese (Brazil) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Ironforge
@@ -11,11 +12,11 @@ return {
 
 	-- Step 2: Druid training
 	["Druid training"] = "Treinamento de druida",
-	-- {area:1537} Ironforge · {area:2257} Deeprun Tram · {object:171524} Tinker Town · {zone:1453} Stormwind · {npc:5504} Sheldras Moontree
+	-- {area:1537} Ironforge · {area:2257} Deeprun Tram · {object:171524} Tinker Town (no name in this language: may be words) · {zone:1453} Stormwind · {npc:5504} Sheldras Moontree
 	["{area:1537} has no druid trainer: take the {area:2257} from {object:171524} to {zone:1453} and train with {npc:5504}."] = "{area:1537} não tem instrutor de druida: pegue o {area:2257} em {object:171524} até {zone:1453} e treine com {npc:5504}.",
 
 	-- Step 3: Darkshire
-	-- {area:42} Darkshire · {npc:1573} Gryth Thurden · {area:1537} Ironforge · {object:32372} Great Forge · {npc:352} Dungar Longdrink · {zone:1453} Stormwind · {object:2096} Trade District
+	-- {area:42} Darkshire · {npc:1573} Gryth Thurden · {area:1537} Ironforge · {object:32372} Great Forge (no name in this language: may be words) · {npc:352} Dungar Longdrink · {zone:1453} Stormwind · {object:2096} Trade District (no name in this language: may be words)
 	["Fly to {area:42}: {npc:1573} in {area:1537}'s {object:32372}, or {npc:352} in {zone:1453}'s {object:2096}."] = "Voe para {area:42}: {npc:1573}, em {object:32372} de {area:1537}, ou {npc:352}, em {object:2096} de {zone:1453}.",
 
 	-- Step 4: Nesingwary's Expedition
@@ -69,11 +70,11 @@ return {
 	-- Step 16: Down to Booty Bay
 	-- {area:35} Booty Bay
 	["Down to {area:35}"] = "Descendo até {area:35}",
-	-- {object:3202} Grom'gol · {area:35} Booty Bay
+	-- {object:3202} Grom'gol (no name in this language: may be words) · {area:35} Booty Bay
 	["Follow the main road south the length of the jungle, past the {object:3202} turn-off, to {area:35} on the southern cape."] = "Siga a estrada principal para o sul por toda a selva, passando o desvio para {object:3202}, até {area:35}, no cabo ao sul.",
 	["Gyll, on the top floor by the docks"] = "Gyll, no último andar, junto às docas",
-	-- {npc:2832} Nixxrax Fillamug
-	["{npc:2832}, in the Salty Sailor Tavern"] = "{npc:2832}, na Taverna do Marujo Salgado",
+	-- {npc:2832} Nixxrax Fillamug · {object:56910} The Salty Sailor Tavern (no name in this language: may be words)
+	["{npc:2832}, in the {object:56910}"] = "{npc:2832}, na Taverna do Marujo Salgado",
 	-- {npc:2495} Drizzlik
 	["{npc:2495}, by the bank"] = "{npc:2495}, junto ao banco",
 	-- {npc:773} Krazek
@@ -120,8 +121,8 @@ return {
 	["Follow the west coast north; the haunted island lies off the shore west of Nesingwary's camp. Just reach it."] = "Siga a costa oeste para o norte; a ilha assombrada fica perto da praia, a oeste do acampamento de Rosarães. Basta chegar lá.",
 
 	-- Step 26: Nesingwary's Expedition
-	-- {item:2755} Green Hills of Stranglethorn
-	["Barnil collects the {item:2755}: the pages drop from almost every humanoid in the jungle. Turn the pages into chapters as you go."] = "Eucunha coleciona {item:2755}: as páginas caem de quase todo humanoide da selva. Transforme as páginas em capítulos pelo caminho.",
+	-- {npc:716} Barnil Stonepot · {item:2755} Green Hills of Stranglethorn
+	["{npc:716} collects the {item:2755}: the pages drop from almost every humanoid in the jungle. Turn the pages into chapters as you go."] = "{npc:716} coleciona {item:2755}: as páginas caem de quase todo humanoide da selva. Transforme as páginas em capítulos pelo caminho.",
 
 	-- Step 28: Kurzen's Compound
 	["Headshrinkers stand deeper in the compound; the Commandos lurk stealthed around it and in the cave. Pick up Green Hills pages as they drop."] = "Os Encolhedores de Cabeças ficam mais para dentro do complexo; as Tropas de Choque espreitam furtivas ao redor dele e na caverna. Pegue as páginas de Grande Espinhaço: Veredas que caírem.",
@@ -140,7 +141,7 @@ return {
 
 	-- Step 32: Skullsplitter trolls
 	["Skullsplitter trolls"] = "Trolls Rachacrânio",
-	-- {object:3202} Grom'gol
+	-- {object:3202} Grom'gol (no name in this language: may be words)
 	["The Skullsplitter trolls hold the ruins east of the road between Nesingwary and {object:3202}."] = "Os trolls Rachacrânio dominam as ruínas a leste da estrada, entre Rosarães e {object:3202}.",
 
 	-- Step 34: Booty Bay
@@ -150,6 +151,4 @@ return {
 	-- Step 36: Baron Revilgaz
 	-- {zone:1416} Alterac Mountains
 	["For Archmage Ansirem in {zone:1416}"] = "Para o Arquimago Ansirem, em {zone:1416}",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
 }

@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Portuguese (Brazil) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Portuguese (Brazil) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -15,7 +16,7 @@ return {
 	["At 10 {npc:917}, the rogue trainer in the Lion's Pride Inn in {area:87}, gives you a package for {npc:332} in {zone:1453}."] = "No nível 10, {npc:917}, o instrutor de ladinos na Estalagem Orgulho do Leão em {area:87}, dá a você um pacote para {npc:332} em {zone:1453}.",
 
 	-- Step 2: Master Mathias Shaw
-	-- {zone:1453} Stormwind · {object:2100} Old Town
+	-- {zone:1453} Stormwind · {object:2100} Old Town (no name in this language: may be words)
 	["Ride north to {zone:1453}; Mathias Shaw is at SI:7 in {object:2100}."] = "Cavalgue para o norte até {zone:1453}; Mestre Mathias Shaw está na AVIN, em {object:2100}.",
 
 	-- Step 3: Defias Dockmaster
@@ -36,11 +37,12 @@ return {
 	["{npc:5165} stands in the north of {zone:1455}."] = "{npc:5165} fica no norte de {zone:1455}.",
 
 	-- Step 7: Onin MacHammar
-	-- {area:133} Gnomeregan · {zone:1426} Dun Morogh
-	["Onin waits near {area:133}, in western {zone:1426}."] = "Onin espera perto de {area:133}, no oeste de {zone:1426}.",
+	-- {npc:6886} Onin MacHammar · {area:133} Gnomeregan · {zone:1426} Dun Morogh
+	["{npc:6886} waits near {area:133}, in western {zone:1426}."] = "{npc:6886} espera perto de {area:133}, no oeste de {zone:1426}.",
 
-	-- Step 8: Back to Hulfdan
-	["Back to Hulfdan"] = "De volta a Hulfdan",
+	-- Step 8: Back to Hulfdan Blackbeard
+	-- {npc:5165} Hulfdan Blackbeard
+	["Back to {npc:5165}"] = "De volta a {npc:5165}",
 
 	-- Step 9: The Apple Falls
 	-- {npc:3599} Jannok Breezesong · {area:186} Dolanaar · {npc:4163} Syurna · {zone:1457} Darnassus

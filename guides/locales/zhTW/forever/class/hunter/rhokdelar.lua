@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (traditional) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (traditional) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -65,6 +66,4 @@ return {
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Azuregos"] = "艾索雷葛斯",
-	-- ["Hastat's quiver needs the {item:18704}. Azuregos, a world boss for a raid, roams the south of {zone:1447} and drops it most of the time; the Cobalt dragonkin of {zone:1452} drop it very rarely. Skip the rest of this guide if you do not want the quiver."] = "古樹哈斯塔特的箭袋需要{item:18704}。艾索雷葛斯是需要團隊的世界首領，在{zone:1447}南部遊蕩，大多會掉落；{zone:1452}的深藍龍族極少掉落。如果你不想要箭袋，跳過本指南其餘部分。",
-	-- ["{item:18704}, from Azuregos"] = "{item:18704}，來自艾索雷葛斯",
 }

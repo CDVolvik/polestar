@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Portuguese (Brazil) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Portuguese (Brazil) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Thorium Point
@@ -25,9 +26,9 @@ return {
 	["Heavy War Golems patrol the floor of the Cauldron below Kalaran; Magma Elementals drift among them. Golems and elementals drop the oil, elementals the hearts."] = "Golems de Guerra Pesados patrulham o fundo de O Caldeirão, abaixo de Kalaran; Elementais de Magma vagam entre eles. Golems e elementais deixam cair o óleo; os elementais, os corações.",
 
 	-- Step 6: Dark Iron dwarves
-	-- {object:147516} Dark Iron
+	-- {object:147516} Dark Iron (no name in this language: may be words)
 	["{object:147516} dwarves"] = "Anões {object:147516}",
-	-- {item:10551} Thorium Plated Dagger · {item:18959} Smithing Tuyere · {object:147516} Dark Iron · {item:11818} Grimesilt Outhouse Key
+	-- {item:10551} Thorium Plated Dagger · {item:18959} Smithing Tuyere · {object:147516} Dark Iron (no name in this language: may be words) · {item:11818} Grimesilt Outhouse Key
 	["Taskmasters and Slavers drive the slaves all over the Cauldron, and any of them can carry a {item:10551}. The Steamsmiths work at the furnaces in the middle (the {item:18959}), the Lookouts stand on the southern ridges (the Spyglass). Any {object:147516} may drop the {item:11818}: keep it."] = "Capatazes Ferro Negro e Feitores Ferro Negro tocam os escravos por todo O Caldeirão, e qualquer um deles pode carregar uma {item:10551}. Os Vaporistas Ferro Negro trabalham nas fornalhas no meio (a {item:18959}); os Atalaias Ferro Negro ficam nas cristas do sul (a Luneta do Espia). Qualquer {object:147516} pode deixar cair a {item:11818}: guarde-a.",
 
 	-- Step 7: Greater Lava Spiders
@@ -49,7 +50,7 @@ return {
 	["The prisoner's next task, Ledger from {zone:1446}, sends you to the {zone:1435} and {zone:1445}: skip it."] = "A próxima tarefa do prisioneiro, Livro-Caixa de {zone:1446}, manda você para {zone:1435} e {zone:1445}: pule.",
 
 	-- Step 12: Dorius Stonetender
-	-- {object:147516} Dark Iron · {object:175704} Singed Letter · {area:1959} Dustfire Valley
+	-- {object:147516} Dark Iron (no name in this language: may be words) · {object:175704} Singed Letter · {area:1959} Dustfire Valley
 	["The dwarf stands by the road at the dig site. Follow him north along the road and fight off the {object:147516} ambushes. When it is over, read the {object:175704} he leaves on the road in {area:1959}."] = "O anão fica à beira da estrada, na escavação. Siga-o para o norte pela estrada e repila as emboscadas {object:147516}. No fim, leia a {object:175704} que ele deixa na estrada em {area:1959}.",
 	-- {npc:8256} Curator Thorius · {zone:1455} Ironforge
 	["For {npc:8256} in {zone:1455}, later"] = "Para {npc:8256} em {zone:1455}, depois",

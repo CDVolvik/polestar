@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Korean words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Learn Fishing
@@ -23,16 +24,17 @@ return {
 	["{zone:1411} coast"] = "{zone:1411} 해안",
 
 	-- Step 6: Fishing: The Barrens (1-50)
-	["Barrens oasis"] = "불모의 땅 오아시스",
+	-- {zone:1413} The Barrens
+	["{zone:1413} oasis"] = "{zone:1413} 오아시스",
 
 	-- Step 7: Fishing: Tirisfal Glades (1-50)
 	["Vile Fin shore"] = "썩은지느러미 물가",
 
 	-- Step 8: Journeyman Fishing
 	-- {skill:356} Fishing
-	["Journeyman {skill:356}"] = "중급 {skill:356}",
+	["Journeyman {skill:356}"] = "수습 {skill:356}",
 	-- {skill:356} Fishing
-	["Journeyman {skill:356} raises the cap to 150; it needs skill 50 and character level 10. The arrow picks the nearest {skill:356} trainer of your faction."] = "중급 {skill:356}은(는) 최대 숙련도를 150(으)로 올립니다. 숙련도 50, 캐릭터 레벨 10이(가) 필요합니다. 화살표는 진영의 가장 가까운 {skill:356} 상급자를 가리킵니다.",
+	["Journeyman {skill:356} raises the cap to 150; it needs skill 50 and character level 10. The arrow picks the nearest {skill:356} trainer of your faction."] = "수습 {skill:356}은(는) 최대 숙련도를 150(으)로 올립니다. 숙련도 50, 캐릭터 레벨 10이(가) 필요합니다. 화살표는 진영의 가장 가까운 {skill:356} 상급자를 가리킵니다.",
 
 	-- Step 9: Fishing: Westfall (50-125)
 	["Fish the pools and open water here until skill 125. Pools (floating debris, schools of fish) also drop extra loot."] = "숙련도 125까지 이곳의 낚시터와 탁 트인 물에서 낚시하세요. 낚시터(떠다니는 잔해, 물고기 떼)에서는 추가 전리품도 나옵니다.",
@@ -45,11 +47,11 @@ return {
 
 	-- Step 14: Expert Fishing
 	-- {skill:356} Fishing
-	["Expert {skill:356}"] = "고급 {skill:356}",
+	["Expert {skill:356}"] = "숙련 {skill:356}",
 	-- {skill:356} Fishing · {npc:2626} Old Man Heming · {item:16083} Expert Fishing - The Bass and You · {area:35} Booty Bay · {zone:1434} Stranglethorn Vale
-	["Expert {skill:356} (cap 225) is a book, not a trainer rank: {npc:2626} sells {item:16083} in {area:35}, at the south tip of {zone:1434}, to both factions. Buy it and read it; it needs skill 125 and level 20."] = "고급 {skill:356}(최대 225)은(는) 상급자가 아니라 책으로 배웁니다. {zone:1434} 남쪽 끝 {area:35}에서 {npc:2626}이(가) 양 진영 모두에게 {item:16083}을(를) 팝니다. 사서 읽으세요. 숙련도 125, 레벨 20이 필요합니다.",
+	["Expert {skill:356} (cap 225) is a book, not a trainer rank: {npc:2626} sells {item:16083} in {area:35}, at the south tip of {zone:1434}, to both factions. Buy it and read it; it needs skill 125 and level 20."] = "숙련 {skill:356}(최대 225)은(는) 상급자가 아니라 책으로 배웁니다. {zone:1434} 남쪽 끝 {area:35}에서 {npc:2626}이(가) 양 진영 모두에게 {item:16083}을(를) 팝니다. 사서 읽으세요. 숙련도 125, 레벨 20이 필요합니다.",
 	-- {item:16083} Expert Fishing - The Bass and You · {skill:356} Fishing
-	["Buy and read {item:16083} (Expert {skill:356})"] = "{item:16083} 사서 읽기 (고급 {skill:356})",
+	["Buy and read {item:16083} (Expert {skill:356})"] = "{item:16083} 사서 읽기 (숙련 {skill:356})",
 
 	-- Step 15: Fishing: Wetlands (125-225)
 	["Fish the pools here until skill 225. If fish keep getting away, fish easier water until your skill catches up."] = "숙련도 225까지 이곳의 낚시터에서 낚시하세요. 물고기가 자꾸 달아나면 숙련도가 오를 때까지 더 쉬운 곳에서 낚시하세요.",

@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Korean words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -10,7 +11,7 @@ return {
 	["A hauberk at 28, a coif, leggings or gauntlets by race, and a shield on the way."] = "28레벨에 사슬 갑옷, 종족에 따라 사슬 두건, 다리보호구 또는 건틀릿, 그리고 도중에 방패.",
 
 	-- Step 1: Yorus Barleybrew (Stormwind)
-	-- {npc:5479} Wu Shen · {object:2100} Old Town · {quest:1698} Yorus Barleybrew
+	-- {npc:5479} Wu Shen · {object:2100} Old Town (no name in this language: may be words) · {quest:1698} Yorus Barleybrew
 	["At 20, {npc:5479} in {object:2100}, beside the Pig and Whistle, sends you to {quest:1698} in Redridge."] = "20레벨에 돼지와 휘파람 선술집 옆 {object:2100}의 {npc:5479}이(가) 붉은마루 산맥의 {quest:1698}에게 보냅니다.",
 
 	-- Step 2: Yorus Barleybrew (Ironforge)
@@ -58,12 +59,12 @@ return {
 	["{item:6841}, from Roogug"] = "{item:6841}, 루구그에게서",
 
 	-- Step 9: Furen's Armor
-	-- {npc:5413} Furen Longbeard · {object:28027} Dwarven District
+	-- {npc:5413} Furen Longbeard · {object:28027} Dwarven District (no name in this language: may be words)
 	["Back to {npc:5413} in the {object:28027}. He sends you on to a smith of your own race."] = "{object:28027}의 {npc:5413}에게 돌아가십시오. 그가 당신 종족의 대장장이에게 보냅니다.",
 
 	-- Step 10: Grimand Elmore
-	-- {npc:1416} Grimand Elmore · {zone:1453} Stormwind
-	["{npc:1416} is in {zone:1453}, a short walk from Furen."] = "{npc:1416}은(는) {zone:1453}에 있으며, 푸렌에게서 조금만 걸어가면 됩니다.",
+	-- {npc:1416} Grimand Elmore · {zone:1453} Stormwind · {npc:5413} Furen Longbeard
+	["{npc:1416} is in {zone:1453}, a short walk from {npc:5413}."] = "{npc:1416}은(는) {zone:1453}에 있으며, {npc:5413}에게서 조금만 걸어가면 됩니다.",
 
 	-- Step 11: Burning Blood
 	-- {zone:1431} Duskwood · {quest:1705} Burning Blood · {npc:6170} Gutspill · {item:6845} Burning Rock
@@ -88,9 +89,4 @@ return {
 	-- Step 17: Iron Coral
 	-- {quest:1708} Iron Coral · {zone:1437} Wetlands · {area:150} Menethil Harbor
 	["The {quest:1708} grows along the {zone:1437}' west coast, south of {area:150}."] = "{quest:1708}은(는) {area:150} 남쪽, {zone:1437} 서쪽 해안을 따라 자랍니다.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["The Nightbane worgen of {zone:1431} drop the {quest:1705}. Gutspill walks in the far south-east of {zone:1431} and carries the {item:6845}."] = "{zone:1431}의 파멸의어둠일족 늑대인간이 {quest:1705}을(를) 떨어뜨립니다. 거트스필은 {zone:1431} 남동쪽 끝을 돌아다니며 {item:6845}을(를) 가지고 있습니다.",
-	-- ["{item:6845} from Gutspill"] = "{item:6845}, 거트스필에게서",
-	-- ["{npc:5413} works in the Dwarven District of {zone:1453}. He keeps the {item:6843} and gives you {item:6970}, a shield; {quest:1701} is a level 28 quest."] = "{npc:5413}은(는) {zone:1453} 드워프 지구에서 일합니다. 그가 {item:6843}을(를) 가지고 있으며 방패인 {item:6970}을(를) 줍니다. {quest:1701}은(는) 28레벨 퀘스트입니다.",
 }

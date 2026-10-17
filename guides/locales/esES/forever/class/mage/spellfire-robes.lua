@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Spanish (Spain) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Spanish (Spain) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -18,7 +19,7 @@ return {
 	["{npc:2128} is the {area:159} mage trainer."] = "{npc:2128} es el instructor de magos de {area:159}.",
 
 	-- Step 3: Anastasia Hartwell
-	-- {npc:4568} Anastasia Hartwell · {object:36082} Magic Quarter · {item:7247} Chest of Containment Coffers · {item:7308} Cantation of Manifestation
+	-- {npc:4568} Anastasia Hartwell · {object:36082} Magic Quarter (no name in this language: may be words) · {item:7247} Chest of Containment Coffers · {item:7308} Cantation of Manifestation
 	["{npc:4568} stands in the {object:36082}. The {item:7247} and the {item:7308} lie behind her."] = "{npc:4568} está en {object:36082}. {item:7247} y {item:7308} están detrás de ella.",
 
 	-- Step 4: The alchemist shop
@@ -44,5 +45,4 @@ return {
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Algernon's alchemist shop is in the {object:36072}. Use the {item:7308} there to make the {npc:6492} visible, subdue one with your spells, then use the {item:7247} to throw down a coffer and capture it."] = "La tienda de alquimia de Algernon está en {object:36072}. Usa {item:7308} allí para hacer visible a {npc:6492}, sométela con tus hechizos y luego usa {item:7247} para lanzar un cofre y capturarla.",
-	-- ["Humanoids drop {item:2589}; the {zone:1458} Auction House sells it."] = "Los humanoides sueltan {item:2589}; la casa de subastas de {zone:1458} lo vende.",
 }

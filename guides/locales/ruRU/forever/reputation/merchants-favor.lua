@@ -3,10 +3,11 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Russian (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Russian words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
-	["Merchant's Favor Reputation"] = "Репутация: Merchant's Favor",
+	["Merchant's Favor Reputation"] = "Репутация: Торговое обязательство",
 
 	-- Step 1: Azeroth Commerce Authority to Friendly
 	-- {faction:2586} Azeroth Commerce Authority

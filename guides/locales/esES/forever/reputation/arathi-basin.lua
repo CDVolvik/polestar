@@ -3,10 +3,11 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Spanish (Spain) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Spanish (Spain) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
-	["Arathi Basin Reputation"] = "Reputación de la Cuenca de Arathi",
+	["Arathi Basin Reputation"] = "Reputación: Cuenca de Arathi",
 
 	-- Step 1: League of Arathor to Friendly
 	["League of Arathor to Friendly"] = "Liga de Arathor a Amistoso",
@@ -58,9 +59,4 @@ return {
 	["{faction:510} to Exalted"] = "{faction:510} a Exaltado",
 	-- {faction:510} The Defilers
 	["Exalted with {faction:510} earns a Legacy Point."] = "Exaltado con {faction:510} da un punto de Legado.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Keep playing {zone:1461}. On Call to Arms: {zone:1461} weekends the {npc:15350} in the capitals takes three {zone:1461} Marks of Honor for extra reputation."] = "Sigue jugando {zone:1461}. Los fines de semana de Llamada a las armas: {zone:1461}, el {npc:15350} de las capitales acepta tres Marcas de honor de {zone:1461} a cambio de reputación extra.",
-	-- ["Keep playing {zone:1461}. On Call to Arms: {zone:1461} weekends the {npc:15351} in the capitals takes three {zone:1461} Marks of Honor for extra reputation."] = "Sigue jugando {zone:1461}. Los fines de semana de Llamada a las armas: {zone:1461}, el {npc:15351} de las capitales acepta tres Marcas de honor de {zone:1461} a cambio de reputación extra.",
-	-- ["{zone:1461} Reputation"] = "Reputación de {zone:1461}",
 }

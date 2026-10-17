@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (simplified) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (simplified) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -36,8 +37,8 @@ return {
 	["{item:15885}: join the halves at the shrine"] = "{item:15885}：在神殿合成两半",
 
 	-- Step 6: Aquatic Form
-	-- {area:1658} Cenarion Enclave
-	["Take the portal up to Mathrengyl in the {area:1658}."] = "乘传送门上到{area:1658}找玛斯雷。",
+	-- {npc:4217} Mathrengyl Bearwalker · {area:1658} Cenarion Enclave
+	["Take the portal up to {npc:4217} in the {area:1658}."] = "乘传送门上到{area:1658}找{npc:4217}。",
 
 	-- Step 7: A Lesson to Learn
 	-- {npc:3033} Turak Runetotem · {area:1639} Elder Rise
@@ -65,6 +66,4 @@ return {
 	-- ["Cast Teleport: {zone:1450}. Join the two halves into the {item:15885} near the {area:2362}, on the north-west shore of the lake, then see {npc:11802} in {area:2361}. {npc:11798} flies druids to {area:1638}."] = "施放传送：{zone:1450}。在湖西北岸的{area:2362}附近把两半合成{item:15885}，然后去{area:2361}找{npc:11802}。{npc:11798}可送德鲁伊飞往{area:1638}。",
 	-- ["Cast Teleport: {zone:1450}. {npc:11802} is in {area:2361}. Shrine Baubles lie in the containers on the floor of {area:656}, below {area:2361}: take one to the {area:2362} on the north-west shore, use it there and speak to {npc:11799}."] = "施放传送：{zone:1450}。{npc:11802}在{area:2361}。神殿灵珠在{area:2361}下方{area:656}湖底的容器里：拿一个到西北岸的{area:2362}，在那里使用，然后与{npc:11799}交谈。",
 	-- ["Cast Teleport: {zone:1450}. {npc:11802} is in {area:2361}. The Shrine Baubles lie on the bed of {area:656} and fade within minutes: swim one straight to the {area:2362} on the north-west shore, use it there and speak to {npc:11799}."] = "施放传送：{zone:1450}。{npc:11802}在{area:2361}。神殿灵珠在{area:656}湖底，几分钟内就会消失：拿到后直接游到西北岸的{area:2362}，在那里使用，然后与{npc:11799}交谈。",
-	-- ["Fly from {area:2361} to {area:442}. The {object:177790} lies under the water off the north coast, west of the {area:443}."] = "从{area:2361}飞往{area:442}。{object:177790}在北部海岸外的水下，{area:443}以西。",
-	-- ["The {object:177790} lies at the north edge of the {area:382}, by the Venture Co. tower, north of the {area:380}."] = "{object:177790}在{area:382}北缘，风险投资公司的塔旁，{area:380}以北。",
 }

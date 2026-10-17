@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Spanish (Latin America) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Spanish (Latin America) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Darkshire
@@ -22,8 +23,8 @@ return {
 	["{npc:633}, at the south end of town"] = "{npc:633}, en el extremo sur del pueblo",
 
 	-- Step 2: Viktori Prism'Antras
-	-- {npc:3133} Herble Baubbletump
-	["Viktori's house stands at the east end of town. {npc:3133} sells engineering goods in the house beside it."] = "La casa de Viktori está en el extremo este del pueblo. {npc:3133} vende artículos de ingeniería en la casa de al lado.",
+	-- {npc:276} Viktori Prism'Antras · {npc:3133} Herble Baubbletump
+	["{npc:276}'s house stands at the east end of town. {npc:3133} sells engineering goods in the house beside it."] = "La casa de {npc:276} está en el extremo este del pueblo. {npc:3133} vende artículos de ingeniería en la casa de al lado.",
 	-- {item:4371} Bronze Tube · {npc:3133} Herble Baubbletump · {npc:1448} Neal Allen · {area:150} Menethil Harbor
 	["{item:4371}, from {npc:3133}: limited stock. Sold out? {npc:1448} in {area:150} sells it too."] = "{item:4371}, de {npc:3133}: existencias limitadas. ¿Agotado? {npc:1448} en {area:150} también lo vende.",
 
@@ -39,9 +40,9 @@ return {
 	["{npc:888} stands south of the road, at the {area:245}."] = "{npc:888} está al sur del camino, en {area:245}.",
 
 	-- Step 6: Raven Hill
-	-- {area:94} Raven Hill · {object:673515} Memory of Valor
+	-- {area:94} Raven Hill · {object:673515} Memory of Valor (no name in this language: may be words)
 	["Continue west to {area:94}. The {object:673515} glows by the ruined house south of the road."] = "Sigue al oeste hasta {area:94}. {object:673515} brilla junto a la casa en ruinas al sur del camino.",
-	-- {item:281046} Raven Hill Tome · {object:673515} Memory of Valor
+	-- {item:281046} Raven Hill Tome · {object:673515} Memory of Valor (no name in this language: may be words)
 	["{item:281046}, from the {object:673515}"] = "{item:281046}, de {object:673515}",
 
 	-- Step 7: Raven Hill Cemetery, south
@@ -52,8 +53,8 @@ return {
 	["The cemetery lies north of the village. Skeletal Horrors and Skeletal Fiends walk its southern half. {npc:522}, an elite, wanders the graves: keep away from him."] = "El cementerio está al norte del pueblo. Los horrores esqueléticos y los mefistos esqueléticos recorren su mitad sur. {npc:522}, un élite, deambula entre las tumbas: mantente lejos de él.",
 
 	-- Step 8: Sven's Camp
-	-- {npc:893} Lars
-	["Follow the road north-west past the cemetery to Sven's camp on the far west edge of the forest. {npc:893} stands beside Sven."] = "Sigue el camino al noroeste pasando el cementerio hasta el campamento de Sven, en el extremo oeste del bosque. {npc:893} está junto a Sven.",
+	-- {npc:311} Sven Yorgen · {npc:893} Lars
+	["Follow the road north-west past the cemetery to {npc:311}'s camp on the far west edge of the forest. {npc:893} stands beside {npc:311}."] = "Sigue el camino al noroeste pasando el cementerio hasta el campamento de {npc:311}, en el extremo oeste del bosque. {npc:893} está junto a {npc:311}.",
 
 	-- Step 9: Abercrombie
 	-- {area:492} Raven Hill Cemetery
@@ -121,7 +122,7 @@ return {
 	["{item:7908}, in the chest"] = "{item:7908}, en el cofre",
 
 	-- Step 27: Master Mathias Shaw
-	-- {zone:1453} Stormwind · {object:2100} Old Town
+	-- {zone:1453} Stormwind · {object:2100} Old Town (no name in this language: may be words)
 	["Ride north through Elwynn to {zone:1453}; Mathias Shaw is at SI:7 in {object:2100}."] = "Cabalga al norte por Elwynn hasta {zone:1453}; Mathias Shaw está en el IV:7 en {object:2100}.",
 	-- {npc:332} Master Mathias Shaw · {item:18160} Recipe: Thistle Tea
 	["{npc:332}: Poisons, and {item:18160}"] = "{npc:332}: Venenos y {item:18160}",
@@ -139,7 +140,7 @@ return {
 
 	-- Step 29: Shaman training
 	["Shaman training"] = "Entrenamiento de chamán",
-	-- {zone:1453} Stormwind · {area:2257} Deeprun Tram · {object:28027} Dwarven District · {zone:1455} Ironforge · {npc:258098} Eldrun Stormbreaker · {area:442} Auberdine
+	-- {zone:1453} Stormwind · {area:2257} Deeprun Tram · {object:28027} Dwarven District (no name in this language: may be words) · {zone:1455} Ironforge · {npc:258098} Eldrun Stormbreaker · {area:442} Auberdine
 	["{zone:1453} has no shaman trainer: take the {area:2257} from the {object:28027} to {zone:1455}, train with {npc:258098}, then ride the tram back for the {area:442} boat."] = "{zone:1453} no tiene instructor de chamanes: toma el {area:2257} desde {object:28027} hasta {zone:1455}, entrena con {npc:258098} y luego regresa en el tranvía para tomar el barco a {area:442}.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.

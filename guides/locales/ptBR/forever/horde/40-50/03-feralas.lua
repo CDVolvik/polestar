@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Portuguese (Brazil) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Portuguese (Brazil) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Stonard
@@ -40,18 +41,18 @@ return {
 	["for the {npc:5598} in the {zone:1425}, around level 48"] = "para {npc:5598} em {zone:1425}, por volta do nível 48",
 
 	-- Step 11: Fly to Grom'gol
-	-- {object:3202} Grom'gol
+	-- {object:3202} Grom'gol (no name in this language: may be words)
 	["Fly to {object:3202}"] = "Voe para {object:3202}",
 
 	-- Step 12: Zeppelin to Orgrimmar
 	-- {zone:1454} Orgrimmar
 	["Zeppelin to {zone:1454}"] = "Zepelim para {zone:1454}",
-	-- {zone:1454} Orgrimmar · {object:3202} Grom'gol
+	-- {zone:1454} Orgrimmar · {object:3202} Grom'gol (no name in this language: may be words)
 	["The zeppelin to {zone:1454} leaves from the tower beside {object:3202}; it lands just north-east of {zone:1454}'s main gate."] = "O zepelim para {zone:1454} sai da torre ao lado de {object:3202}; ele pousa logo a nordeste do portão principal de {zone:1454}.",
 	["Zeppelin tower"] = "Torre do zepelim",
 
 	-- Step 13: Orgrimmar
-	-- {object:172958} Valley of Honor · {object:172960} Cleft of Shadow · {object:172961} Valley of Spirits
+	-- {object:172958} Valley of Honor (no name in this language: may be words) · {object:172960} Cleft of Shadow (no name in this language: may be words) · {object:172961} Valley of Spirits (no name in this language: may be words)
 	["{object:172958}, then the {object:172960} and the {object:172961}."] = "{object:172958}, depois {object:172960} e {object:172961}.",
 
 	-- Step 14: Thunder Bluff
@@ -101,12 +102,10 @@ return {
 	["South of the vale the Frayfeather hippogryphs roost on the slopes; nearly every one drops sinew and metallic fragments."] = "Ao sul do vale, os Hipogrifos Esfiapluma pousam nas encostas; quase todos deixam cair tendões e fragmentos metálicos.",
 
 	-- Step 25: Zorbin Fandazzle
-	-- {area:1108} Forgotten Coast
-	["Ride north-west to the {area:1108}; Zorbin waits on the dock."] = "Siga para o noroeste até {area:1108}; Zorbin espera no cais.",
+	-- {area:1108} Forgotten Coast · {npc:14637} Zorbin Fandazzle
+	["Ride north-west to the {area:1108}; {npc:14637} waits on the dock."] = "Siga para o noroeste até {area:1108}; {npc:14637} espera no cais.",
 
-	-- Step 26: The Forgotten Coast
-	-- {area:1108} Forgotten Coast
-	["The {area:1108}"] = "{area:1108}",
+	-- Step 26: Forgotten Coast
 	-- {item:18904} Zorbin's Ultra-Shrinker
 	["Sea elementals and sea sprays wash along the shore around the dock. Zap the giants with {item:18904} first: shrunken, they lose their elite strength. Shore striders wade in the water; the land walkers and cliff giants roam the hills further north."] = "Elementais do Mar e Borrifos do Mar percorrem a margem em volta do cais. Primeiro atinja os gigantes com {item:18904}: encolhidos, eles perdem a força de elite. Costívagos andam na água; os Terrâmbulos e Gigantes do Penhasco vagam pelas colinas mais ao norte.",
 
@@ -124,4 +123,7 @@ return {
 	-- Step 31: Camp Mojache
 	-- {area:976} Gadgetzan
 	["Ride back east to the camp. Stay here: the next guide starts with the flight to {area:976}."] = "Volte para o leste até o acampamento. Fique aqui: o próximo guia começa com o voo para {area:976}.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["The {area:1108}"] = "{area:1108}",
 }

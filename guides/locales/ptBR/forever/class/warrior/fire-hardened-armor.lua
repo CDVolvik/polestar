@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Portuguese (Brazil) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Portuguese (Brazil) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -10,7 +11,7 @@ return {
 	["A hauberk at 28, a coif, leggings or gauntlets by race, and a shield on the way."] = "Uma cota no nível 28, uma coifa, perneiras ou manoplas conforme a raça, e um escudo no caminho.",
 
 	-- Step 1: Yorus Barleybrew (Stormwind)
-	-- {npc:5479} Wu Shen · {object:2100} Old Town · {quest:1698} Yorus Barleybrew
+	-- {npc:5479} Wu Shen · {object:2100} Old Town (no name in this language: may be words) · {quest:1698} Yorus Barleybrew
 	["At 20, {npc:5479} in {object:2100}, beside the Pig and Whistle, sends you to {quest:1698} in Redridge."] = "No nível 20, {npc:5479}, em {object:2100}, ao lado da Porco e Apito, envia você a {quest:1698} nas Montanhas Cristarrubra.",
 
 	-- Step 2: Yorus Barleybrew (Ironforge)
@@ -58,12 +59,12 @@ return {
 	["{item:6841}, from Roogug"] = "{item:6841}, de Rugug",
 
 	-- Step 9: Furen's Armor
-	-- {npc:5413} Furen Longbeard · {object:28027} Dwarven District
+	-- {npc:5413} Furen Longbeard · {object:28027} Dwarven District (no name in this language: may be words)
 	["Back to {npc:5413} in the {object:28027}. He sends you on to a smith of your own race."] = "Volte a {npc:5413} no {object:28027}. Ele envia você a um ferreiro da sua raça.",
 
 	-- Step 10: Grimand Elmore
-	-- {npc:1416} Grimand Elmore · {zone:1453} Stormwind
-	["{npc:1416} is in {zone:1453}, a short walk from Furen."] = "{npc:1416} está em {zone:1453}, a pouca distância de Furen.",
+	-- {npc:1416} Grimand Elmore · {zone:1453} Stormwind · {npc:5413} Furen Longbeard
+	["{npc:1416} is in {zone:1453}, a short walk from {npc:5413}."] = "{npc:1416} está em {zone:1453}, a pouca distância de {npc:5413}.",
 
 	-- Step 11: Burning Blood
 	-- {zone:1431} Duskwood · {quest:1705} Burning Blood · {npc:6170} Gutspill · {item:6845} Burning Rock
@@ -88,6 +89,4 @@ return {
 	-- Step 17: Iron Coral
 	-- {quest:1708} Iron Coral · {zone:1437} Wetlands · {area:150} Menethil Harbor
 	["The {quest:1708} grows along the {zone:1437}' west coast, south of {area:150}."] = "O {quest:1708} cresce ao longo da costa oeste de {zone:1437}, ao sul de {area:150}.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
 }

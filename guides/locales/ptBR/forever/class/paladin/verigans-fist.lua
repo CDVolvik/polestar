@@ -3,13 +3,14 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Portuguese (Brazil) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Portuguese (Brazil) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
 	["The Alliance paladin's rare two-handed mace for the 20s, with a shield on the way."] = "A maça de duas mãos rara do paladino da Aliança para os 20, com um escudo no caminho.",
 
 	-- Step 1: The Tome of Valor (Ironforge)
-	-- {npc:6179} Tiza Battleforge · {object:32362} Mystic Ward · {item:6776} Tome of Valor · {npc:6171} Duthorian Rall · {zone:1453} Stormwind · {zone:1455} Ironforge
+	-- {npc:6179} Tiza Battleforge · {object:32362} Mystic Ward (no name in this language: may be words) · {item:6776} Tome of Valor · {npc:6171} Duthorian Rall · {zone:1453} Stormwind · {zone:1455} Ironforge
 	["At 20 {npc:6179} in the {object:32362} gives you the {item:6776}; it sends you to {npc:6171} in {zone:1453}'s Cathedral of Light. Take the tram from {zone:1455} to {zone:1453}."] = "No nível 20, {npc:6179} na {object:32362} lhe dá o {item:6776}; ele manda você a {npc:6171} na Catedral da Luz de {zone:1453}. Pegue o metrô de {zone:1455} até {zone:1453}.",
 
 	-- Step 2: The Tome of Valor
@@ -38,10 +39,11 @@ return {
 	-- {object:92420} Bailor's Ore
 	["{object:92420} crate"] = "Caixote de {object:92420}",
 
-	-- Step 8: Back to Bailor
-	["Back to Bailor"] = "De volta a Bailor",
-	-- {item:6993} Jordan's Refined Ore Shipment
-	["Bailor turns the ore into {item:6993}."] = "Bailor transforma o minério no {item:6993}.",
+	-- Step 8: Back to Bailor Stonehand
+	-- {npc:6241} Bailor Stonehand
+	["Back to {npc:6241}"] = "De volta a {npc:6241}",
+	-- {npc:6241} Bailor Stonehand · {item:6993} Jordan's Refined Ore Shipment
+	["{npc:6241} turns the ore into {item:6993}."] = "{npc:6241} transforma o minério no {item:6993}.",
 
 	-- Step 9: Whitestone Oak Lumber
 	-- {area:1581} The Deadmines · {area:20} Moonbrook
@@ -71,8 +73,8 @@ return {
 	-- Step 13: The Purified Kor Gem
 	-- {item:7083} Purified Kor Gem
 	["The {item:7083}"] = "A {item:7083}",
-	-- {area:442} Auberdine
-	["Back to Thundris in {area:442}: he purifies the gem."] = "De volta a Trovejius em {area:442}: ele purifica a gema.",
+	-- {npc:3649} Thundris Windweaver · {area:442} Auberdine
+	["Back to {npc:3649} in {area:442}: he purifies the gem."] = "De volta a {npc:3649} em {area:442}: ele purifica a gema.",
 
 	-- Step 14: Verigan's Fist
 	-- {npc:6181} Jordan Stilwell · {zone:1455} Ironforge

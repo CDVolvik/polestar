@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (traditional) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (traditional) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -12,7 +13,7 @@ return {
 	["The {item:5178} that lets you place air totems, then a weapon of your choice at 40."] = "讓你能放置風之圖騰的{item:5178}，40級時再獲得一把自選武器。",
 
 	-- Step 1: Searn Firewarder
-	-- {npc:5892} Searn Firewarder · {object:172957} Valley of Wisdom · {npc:5905} Prate Cloudseer · {zone:1441} Thousand Needles
+	-- {npc:5892} Searn Firewarder · {object:172957} Valley of Wisdom (no name in this language: may be words) · {npc:5905} Prate Cloudseer · {zone:1441} Thousand Needles
 	["At 30 {npc:5892} in the {object:172957} sends you to {npc:5905} in {zone:1441}."] = "30級時，{object:172957}的{npc:5892}會派你去找{zone:1441}的{npc:5905}。",
 
 	-- Step 2: Xanis Flameweaver
@@ -65,14 +66,14 @@ return {
 
 	-- Step 12: The steam pools
 	["The steam pools"] = "蒸氣池",
-	-- {item:268582} Corrupted Totems · {area:484} Freewind Post · {npc:216474} Ravaging Tempest · {quest:79366} Heed My Call
-	["Prate hands you the {item:268582}: place them at the steam pools west of {area:484} and defeat the {npc:216474} they call. {quest:79366} is an elite quest: grouping up is advised."] = "普拉特·白雲會交給你{item:268582}：把它們放在{area:484}西邊的蒸氣池，擊敗它們召喚出的{npc:216474}。{quest:79366}是精英任務：建議組隊。",
+	-- {npc:5905} Prate Cloudseer · {item:268582} Corrupted Totems · {area:484} Freewind Post · {npc:216474} Ravaging Tempest · {quest:79366} Heed My Call
+	["{npc:5905} hands you the {item:268582}: place them at the steam pools west of {area:484} and defeat the {npc:216474} they call. {quest:79366} is an elite quest: grouping up is advised."] = "{npc:5905}會交給你{item:268582}：把它們放在{area:484}西邊的蒸氣池，擊敗它們召喚出的{npc:216474}。{quest:79366}是精英任務：建議組隊。",
 	-- {item:212792} Eye of the Tempest · {npc:216474} Ravaging Tempest
 	["{item:212792}, from the {npc:216474}"] = "{item:212792}，來自{npc:216474}",
 
 	-- Step 14: Bath'rah the Windwatcher
-	-- {zone:1416} Alterac Mountains · {area:272} Tarren Mill
-	["Bath'rah camps in the east of {zone:1416}, north-east of {area:272}."] = "捕風者巴斯拉在{zone:1416}東部、{area:272}東北方紮營。",
+	-- {npc:6176} Bath'rah the Windwatcher · {zone:1416} Alterac Mountains · {area:272} Tarren Mill
+	["{npc:6176} camps in the east of {zone:1416}, north-east of {area:272}."] = "{npc:6176}在{zone:1416}東部、{area:272}東北方紮營。",
 	-- {npc:6176} Bath'rah the Windwatcher · {item:213086} Rune of the Storm
 	["{npc:6176}: the {item:213086} and your weapon"] = "{npc:6176}：{item:213086}和你的武器",
 }

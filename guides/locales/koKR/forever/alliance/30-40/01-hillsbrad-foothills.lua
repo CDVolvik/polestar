@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Korean words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Menethil Harbor
@@ -27,8 +28,8 @@ return {
 	["A new {item:279996}, for the four titan watchers around the {zone:1437}"] = "새 {item:279996}, {zone:1437} 주변 티탄 감시자 넷을 위한 것",
 
 	-- Step 5: The Green Belt
-	-- {npc:270637} Howin Kindfeather · {npc:1244} Rethiel the Greenwarden
-	["Follow the road north-east into the Green Belt: {npc:270637} camps beside it, {npc:1244} a short way east."] = "길을 따라 북동쪽 녹지대로 가십시오. {npc:270637}은(는) 그 옆에 야영하고 있고, {npc:1244}은(는) 조금 동쪽에 있습니다.",
+	-- {area:1025} The Green Belt · {npc:270637} Howin Kindfeather · {npc:1244} Rethiel the Greenwarden
+	["Follow the road north-east into the {area:1025}: {npc:270637} camps beside it, {npc:1244} a short way east."] = "길을 따라 북동쪽 {area:1025}로 가십시오. {npc:270637}은(는) 그 옆에 야영하고 있고, {npc:1244}은(는) 조금 동쪽에 있습니다.",
 	-- {npc:1244} Rethiel the Greenwarden · {quest:98283} Carnage
 	["{npc:1244}: {quest:98283}, an elite raptor"] = "{npc:1244}: {quest:98283}, 정예 랩터",
 
@@ -51,9 +52,9 @@ return {
 	-- Step 9: Whelps, raptors and Neru
 	-- {npc:271458} Neru
 	["Whelps, raptors and {npc:271458}"] = "새끼 용, 랩터, {npc:271458}",
-	-- {npc:271458} Neru · {item:279996} Goaz Stone · {quest:98283} Carnage
+	-- {area:1025} The Green Belt · {npc:271458} Neru · {item:279996} Goaz Stone · {quest:98283} Carnage
 	-- plural, as words: Maddened Rotclaws = {npc:271334} Maddened Rotclaw
-	["Red whelps fill the hills west of the gates, Maddened Rotclaws the Green Belt, Razormaws the northern slopes; {npc:271458} stands in the north-east (use the {item:279996}).\n{quest:98283} is elite: grouping up is advised."] = "새끼 붉은용이 성문 서쪽 언덕에, 광기에 물든 썩은발톱이 녹지대에, 무쇠턱 랩터가 북쪽 비탈에 가득합니다. {npc:271458}은(는) 북동쪽에 있습니다({item:279996} 사용).\n{quest:98283}은(는) 정예이므로 파티를 권장합니다.",
+	["Red whelps fill the hills west of the gates, Maddened Rotclaws the {area:1025}, Razormaws the northern slopes; {npc:271458} stands in the north-east (use the {item:279996}).\n{quest:98283} is elite: grouping up is advised."] = "새끼 붉은용이 성문 서쪽 언덕에, 광기에 물든 썩은발톱이 {area:1025}에, 무쇠턱 랩터가 북쪽 비탈에 가득합니다. {npc:271458}은(는) 북동쪽에 있습니다({item:279996} 사용).\n{quest:98283}은(는) 정예이므로 파티를 권장합니다.",
 
 	-- Step 10: The Green Belt
 	-- {zone:1455} Ironforge
@@ -65,8 +66,8 @@ return {
 
 	-- Step 12: The Villards
 	["The Villards"] = "빌라드 남매",
-	-- {npc:5683} Comar Villard · {area:205} Dun Modr · {area:881} Thandol Span
-	["{npc:5683} waits north of {area:205} by the {area:881}; Essene a short walk further north-east."] = "{npc:5683}은(는) {area:205} 북쪽 {area:881} 옆에서 기다리고, 에센은 조금 더 북동쪽에 있습니다.",
+	-- {npc:5683} Comar Villard · {area:205} Dun Modr · {area:881} Thandol Span · {npc:271322} Essene Villard
+	["{npc:5683} waits north of {area:205} by the {area:881}; {npc:271322} a short walk further north-east."] = "{npc:5683}은(는) {area:205} 북쪽 {area:881} 옆에서 기다리고, {npc:271322}은(는) 조금 더 북동쪽에 있습니다.",
 
 	-- Step 13: Prospector Whelgar
 	["Back south down the road to the excavation site."] = "길을 따라 남쪽 발굴 현장으로 돌아가십시오.",
@@ -110,7 +111,7 @@ return {
 	["The naga hold the shore south-east of {area:271}."] = "나가가 {area:271} 남동쪽 해안을 차지하고 있습니다.",
 
 	-- Step 22: Farren
-	-- {object:2117} Stormwind Keep
+	-- {object:2117} Stormwind Keep (no name in this language: may be words)
 	["A report for {object:2117}"] = "{object:2117}에 보낼 보고서",
 
 	-- Step 23: Snapjaws
@@ -127,8 +128,8 @@ return {
 	["Yeti cave"] = "설인 동굴",
 	-- {area:271} Southshore
 	["The yetis live in the cave in the hills north of {area:271}, on your way back south."] = "설인은 {area:271} 북쪽 언덕의 동굴에 삽니다. 남쪽으로 돌아가는 길에 있습니다.",
-	-- {item:3719} Hillman's Cloak · {item:2997} Bolt of Woolen Cloth · {item:2321} Fine Thread · {area:271} Southshore
-	["Bartolo also wants a {item:3719}, a {item:2997} and {item:2321}: crafted or bought; the cloak is turned in when you are back in {area:271} later."] = "바르톨로는 {item:3719}, {item:2997}, {item:2321}도 원합니다. 제작하거나 구매하십시오. 망토는 나중에 {area:271}에 돌아와서 제출합니다.",
+	-- {npc:2438} Bartolo Ginsetti · {item:3719} Hillman's Cloak · {item:2997} Bolt of Woolen Cloth · {item:2321} Fine Thread · {area:271} Southshore
+	["{npc:2438} also wants a {item:3719}, a {item:2997} and {item:2321}: crafted or bought; the cloak is turned in when you are back in {area:271} later."] = "{npc:2438}은(는) {item:3719}, {item:2997}, {item:2321}도 원합니다. 제작하거나 구매하십시오. 망토는 나중에 {area:271}에 돌아와서 제출합니다.",
 
 	-- Step 26: Hillsbrad's town hall
 	-- {area:287} Hillsbrad
@@ -138,39 +139,40 @@ return {
 	-- {area:287} Hillsbrad
 	["{area:287} town hall"] = "{area:287} 마을 회관",
 
-	-- Step 28: Fly to Stormwind
-	["Fly to Stormwind"] = "스톰윈드로 비행",
+	-- Step 28: Fly to Stormwind City
+	-- {zone:1453} Stormwind City
+	["Fly to {zone:1453}"] = "{zone:1453}로 비행",
 	-- {npc:2432} Darla Harris · {area:271} Southshore
 	["From {npc:2432} in {area:271}"] = "{area:271}의 {npc:2432}에게서",
 
 	-- Step 29: Elling Trias
-	-- {object:2096} Trade District
+	-- {object:2096} Trade District (no name in this language: may be words)
 	["The cheese shop in the {object:2096}."] = "{object:2096}의 치즈 가게입니다.",
 
 	-- Step 30: Dashel Stonefist
-	-- {object:2100} Old Town
-	["Dashel waits in the Pig and Whistle tavern in {object:2100}; he and his two thugs fight you, but stop once beaten."] = "다셸은 {object:2100}의 돼지와 휘파람 선술집에서 기다립니다. 그와 부하 둘이 덤벼들지만 쓰러뜨리면 멈춥니다.",
+	-- {npc:4961} Dashel Stonefist · {object:2100} Old Town (no name in this language: may be words)
+	["{npc:4961} waits in the Pig and Whistle tavern in {object:2100}; he and his two thugs fight you, but stop once beaten."] = "{npc:4961}은(는) {object:2100}의 돼지와 휘파람 선술집에서 기다립니다. 그와 부하 둘이 덤벼들지만 쓰러뜨리면 멈춥니다.",
 
 	-- Step 31: The Islander
-	-- {npc:5479} Wu Shen · {object:2100} Old Town · {npc:6236} Klannoc Macleod · {area:720} Fray Island · {zone:1413} Barrens · {area:392} Ratchet
+	-- {npc:5479} Wu Shen · {object:2100} Old Town (no name in this language: may be words) · {npc:6236} Klannoc Macleod · {area:720} Fray Island · {zone:1413} Barrens · {area:392} Ratchet
 	["{npc:5479} trains warriors in {object:2100}, beside the Pig and Whistle. {npc:6236} waits on {area:720} in the {zone:1413}, on the way to {area:392} much later (40-50/01)."] = "{npc:5479}은(는) {object:2100}의 돼지와 휘파람 선술집 옆에서 전사를 가르칩니다. {npc:6236}은(는) {zone:1413}의 {area:720}에서 기다립니다. 한참 뒤 {area:392}(으)로 가는 길에 있습니다(40-50/01).",
 
 	-- Step 33: Cathedral of Light
 	["Cathedral of Light"] = "빛의 대성당",
 
 	-- Step 34: Mage Quarter
-	-- {npc:2708} Archmage Malin · {object:2164} Slaughtered Lamb · {npc:211033} Garion Wendell · {npc:5081} Connor Rivers · {object:2101} Mage Quarter
+	-- {npc:2708} Archmage Malin · {object:2164} Slaughtered Lamb (no name in this language: may be words) · {npc:211033} Garion Wendell · {npc:5081} Connor Rivers · {object:2101} Mage Quarter (no name in this language: may be words)
 	["{npc:2708} is in the {object:2164}; {npc:211033} near the canal; {npc:5081} south of the {object:2101}."] = "{npc:2708}은(는) {object:2164}에, {npc:211033}은(는) 운하 근처에, {npc:5081}은(는) {object:2101} 남쪽에 있습니다.",
 
 	-- Step 36: Druid training
 	["Druid training"] = "드루이드 수련",
-	-- {zone:1455} Ironforge · {npc:5504} Sheldras Moontree
-	["{zone:1455} has no druid trainer: train with {npc:5504} in Stormwind before the tram."] = "{zone:1455}에는 드루이드 상급자가 없습니다. 전차를 타기 전에 스톰윈드의 {npc:5504}에게 수련하십시오.",
+	-- {zone:1455} Ironforge · {npc:5504} Sheldras Moontree · {zone:1453} Stormwind City
+	["{zone:1455} has no druid trainer: train with {npc:5504} in {zone:1453} before the tram."] = "{zone:1455}에는 드루이드 상급자가 없습니다. 전차를 타기 전에 {zone:1453}의 {npc:5504}에게 수련하십시오.",
 
 	-- Step 37: Deeprun Tram
-	-- {area:2257} Deeprun Tram · {object:28027} Dwarven District · {zone:1455} Ironforge
+	-- {area:2257} Deeprun Tram · {object:28027} Dwarven District (no name in this language: may be words) · {zone:1455} Ironforge
 	["Take the {area:2257} from the {object:28027} to {zone:1455}."] = "{object:28027}에서 {area:2257}을(를) 타고 {zone:1455}(으)로 가십시오.",
-	-- {npc:2784} King Magni Bronzebeard · {object:171709} High Seat
+	-- {npc:2784} King Magni Bronzebeard · {object:171709} High Seat (no name in this language: may be words)
 	["{npc:2784}, the {object:171709}"] = "{npc:2784}, {object:171709}",
 	["Level 30 and 32 spells"] = "30, 32레벨 주문",
 
@@ -178,10 +180,6 @@ return {
 	-- ["Fly to {zone:1453}"] = "{zone:1453}(으)로 비행",
 	-- ["Follow the road north-east into the {area:1025}: {npc:270637} camps beside it, {npc:1244} a short way east."] = "길을 따라 북동쪽 {area:1025}(으)로 가십시오. {npc:270637}은(는) 그 옆에 야영하고 있고, {npc:1244}은(는) 조금 동쪽에 있습니다.",
 	-- ["Golm"] = "골름",
-	-- ["Golm stands in the south-eastern hills: use the {item:279996} beside it."] = "골름은 남동쪽 언덕에 있습니다. 그 옆에서 {item:279996}을(를) 사용하십시오.",
-	-- ["North along the road to {area:205}. Modr stands in the ruins (use the {item:279996}); the {npc:271481} is held on the west side: lead it out to {npc:1072}."] = "길을 따라 북쪽 {area:205}(으)로 가십시오. 모드르는 폐허 안에 있습니다({item:279996} 사용). {npc:271481}은(는) 서쪽에 갇혀 있으니 {npc:1072}에게 데려가십시오.",
-	-- ["North-east to the {area:1038}: the {npc:271373} are held there, and Ados stands at the gates (use the {item:279996})."] = "북동쪽 {area:1038}(으)로 가십시오. {npc:271373}이(가) 그곳에 갇혀 있으며, 아도스가 성문에 있습니다({item:279996} 사용).",
 	-- ["Red whelps fill the hills west of the gates, Maddened Rotclaws the {area:1025}, Razormaws the northern slopes; Neru stands in the north-east (use the {item:279996}).\n{quest:98283} is elite: grouping up is advised."] = "새끼 붉은용이 성문 서쪽 언덕에, 광기에 물든 썩은발톱이 {area:1025}에, 무쇠턱 랩터가 북쪽 비탈에 가득합니다. 네루는 북동쪽에 있습니다({item:279996} 사용).\n{quest:98283}은(는) 정예이므로 파티를 권장합니다.",
-	-- ["Whelps, raptors and Neru"] = "새끼 용, 랩터, 네루",
 	-- ["{zone:1455} has no druid trainer: train with {npc:5504} in {zone:1453} before the tram."] = "{zone:1455}에는 드루이드 상급자가 없습니다. 전차를 타기 전에 {zone:1453}의 {npc:5504}에게 수련하십시오.",
 }

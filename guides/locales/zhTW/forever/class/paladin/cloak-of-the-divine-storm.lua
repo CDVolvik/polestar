@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (traditional) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (traditional) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -25,7 +26,7 @@ return {
 	["{npc:5492} is in the Cathedral of Light."] = "{npc:5492}在光明大教堂內。",
 
 	-- Step 4: Ursula Deline
-	-- {object:2101} Mage Quarter · {npc:5495} Ursula Deline
+	-- {object:2101} Mage Quarter (no name in this language: may be words) · {npc:5495} Ursula Deline
 	["Katherine sends you to the warlocks in the {object:2101}; {npc:5495} speaks for them."] = "凱瑟琳派你去找{object:2101}的術士；由{npc:5495}代表他們發言。",
 
 	-- Step 5: Summoner's Salt
@@ -33,8 +34,9 @@ return {
 	-- plural, as words: Blackrock Summoners = {npc:4463} Blackrock Summoner
 	["Blackrock Summoners, Champions and Trackers camp in the north-west of Redridge; they drop the {item:209778}."] = "黑石召喚師、黑石勇士和黑石追蹤者在赤脊山西北部紮營；他們會掉落{item:209778}。",
 
-	-- Step 6: Back to Ursula
-	["Back to Ursula"] = "返回烏蘇拉",
+	-- Step 6: Back to Ursula Deline
+	-- {npc:5495} Ursula Deline
+	["Back to {npc:5495}"] = "返回烏{npc:5495}",
 
 	-- Step 7: Motes of Mannoroth
 	["Motes of Mannoroth"] = "瑪諾洛斯微粒",
@@ -43,11 +45,11 @@ return {
 	["{area:435} is in south-east {zone:1440}. The Mannoroc Lashers, Searing Infernals, Felguards and Legion Hounds in it drop the Motes of Mannoroth."] = "{area:435}在{zone:1440}東南部。那裡的瑪諾洛克鞭笞者、灼熱的地獄火、惡魔守衛和惡魔指揮官會掉落瑪諾洛斯微粒。",
 
 	-- Step 8: The Spear of Mannoroth
-	-- {object:409311} Spear of Mannoroth
+	-- {object:409311} Spear of Mannoroth (no name in this language: may be words)
 	["The {object:409311}"] = "{object:409311}",
-	-- {object:409311} Spear of Mannoroth · {area:435} Demon Fall Canyon · {object:409315} Shattered Orb
+	-- {object:409311} Spear of Mannoroth (no name in this language: may be words) · {area:435} Demon Fall Canyon · {object:409315} Shattered Orb (no name in this language: may be words)
 	["The {object:409311} stands at the east end of {area:435}. Shatter the orb on it; the {object:409315} appears beside it."] = "{object:409311}位於{area:435}東端。擊碎上面的寶珠；{object:409315}會出現在旁邊。",
-	-- {object:409315} Shattered Orb
+	-- {object:409315} Shattered Orb (no name in this language: may be words)
 	["from the {object:409315}"] = "從{object:409315}取得",
 
 	-- Step 9: Return to Delgren

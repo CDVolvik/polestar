@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Korean words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -36,8 +37,8 @@ return {
 	["{item:15885}: join the halves at the shrine"] = "{item:15885}: 제단에서 반쪽을 합치세요",
 
 	-- Step 6: Aquatic Form
-	-- {area:1658} Cenarion Enclave
-	["Take the portal up to Mathrengyl in the {area:1658}."] = "차원문을 타고 {area:1658}의 마스렌길에게 올라가세요.",
+	-- {npc:4217} Mathrengyl Bearwalker · {area:1658} Cenarion Enclave
+	["Take the portal up to {npc:4217} in the {area:1658}."] = "차원문을 타고 {area:1658}의 {npc:4217}에게 올라가세요.",
 
 	-- Step 7: A Lesson to Learn
 	-- {npc:3033} Turak Runetotem · {area:1639} Elder Rise
@@ -59,8 +60,4 @@ return {
 	-- Step 11: Pendant of the Sea Lion
 	-- {spell:18960} Teleport: Moonglade · {item:15885} Pendant of the Sea Lion · {area:2362} Shrine of Remulos · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {npc:11798} Bunthen Plainswind · {area:1638} Thunder Bluff
 	["Cast {spell:18960}. Join the two halves into the {item:15885} near the {area:2362}, on the north-west shore of the lake, then see {npc:11802} in {area:2361}. {npc:11798} flies druids to {area:1638}."] = "{spell:18960}을(를) 시전하세요. 호수 북서쪽 기슭의 {area:2362} 근처에서 반쪽 두 개를 합쳐 {item:15885}을(를) 만든 뒤, {area:2361}의 {npc:11802}을(를) 만나세요. {npc:11798}이(가) 드루이드를 {area:1638}(으)로 태워 줍니다.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Fly from {area:2361} to {area:442}. The {object:177790} lies under the water off the north coast, west of the {area:443}."] = "{area:2361}에서 {area:442}(으)로 날아가세요. {object:177790}은(는) {area:443} 서쪽, 북쪽 해안 앞 물속에 있습니다.",
-	-- ["The {object:177790} lies at the north edge of the {area:382}, by the Venture Co. tower, north of the {area:380}."] = "{object:177790}은(는) {area:380} 북쪽, {area:382} 북쪽 가장자리의 투자개발회사 탑 옆에 있습니다.",
 }

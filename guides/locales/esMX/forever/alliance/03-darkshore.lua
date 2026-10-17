@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Spanish (Latin America) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Spanish (Latin America) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Auberdine
@@ -70,12 +71,9 @@ return {
 
 	-- Step 10: The Tower of Althalaxx
 	-- {quest:954} Bashal'Aran · {quest:1002} Buzzbox 323
-	-- plural, as words: Grizzled Thistle Bears = {npc:2165} Grizzled Thistle Bear
-	["Moonstalkers prowl the hills between {quest:954} and the tower. {quest:1002} stands on the hill west of the tower; Grizzled Thistle Bears roam around it."] = "Los Acechalunas merodean por las colinas entre {quest:954} y la torre. {quest:1002} está en la colina al oeste de la torre; los osos cardo grisáceos rondan a su alrededor.",
+	["Moonstalkers prowl the hills between {quest:954} and the tower. {quest:1002} stands on the hill west of the tower."] = "",
 	-- plural, as words: Moonstalker Fangs = {item:5413} Moonstalker Fang
 	["Moonstalker Fangs"] = "Colmillos de Acechalunas",
-	-- plural, as words: Grizzled Scalps = {item:5414} Grizzled Scalp
-	["Grizzled Scalps"] = "Cueros cabelludos grisáceos",
 
 	-- Step 11: Hearth to Auberdine
 	-- {area:442} Auberdine
@@ -120,7 +118,10 @@ return {
 	-- {area:448} Grove of the Ancients
 	["The {area:448}"] = "{area:448}",
 	-- {quest:1003} Buzzbox 525
-	["{quest:1003} stands west of the Grove."] = "{quest:1003} está al oeste del Páramo de los Ancianos.",
+	-- plural, as words: Grizzled Thistle Bears = {npc:2165} Grizzled Thistle Bear
+	["Grizzled Thistle Bears roam the hills around the Grove; {quest:1003} stands west of it among them."] = "",
+	-- plural, as words: Grizzled Scalps = {item:5414} Grizzled Scalp
+	["Grizzled Scalps"] = "Cueros cabelludos grisáceos",
 
 	-- Step 18: The red crystal
 	["Back north-east into the mountains to the crystal."] = "Vuelve al noreste, a las montañas, hasta el cristal.",
@@ -257,16 +258,19 @@ return {
 	-- {quest:98394} The Great Cat Spirit · {npc:272054} Avatar of Saeyleenan · {area:493} Moonglade · {area:2363} Stormrage Barrow Dens
 	["{quest:98394} (Night Elves) and the {npc:272054} (Skyborne) wait in southern {area:493}. The three relics lie in the {area:2363}, east of them. Reports from the first weeks say a relic gives no loot while another player is looting it: wait a moment and try again."] = "{quest:98394} (elfos de la noche) y {npc:272054} (Cielonato) esperan en el sur de {area:493}. Las tres reliquias están en {area:2363}, al este de ellos. Según informes de las primeras semanas, una reliquia no da botín mientras otro jugador la saquea: espera un momento y vuelve a intentarlo.",
 
-	-- Step 41: Back to Dendrite
-	["Back to Dendrite"] = "De vuelta con Dendrite Rafagaestelar",
+	-- Step 41: Back to Dendrite Starblaze
+	-- {npc:11802} Dendrite Starblaze
+	["Back to {npc:11802}"] = "De vuelta con {npc:11802}",
 	-- {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {area:702} Rut'theran Village · {area:442} Auberdine
 	["Back to {npc:11802} in {area:2361}, then fly to {area:702} (by way of {area:442})."] = "Vuelve con {npc:11802} en {area:2361} y luego vuela a {area:702} (pasando por {area:442}).",
 
 	-- Step 42: To Darnassus
-	-- {area:442} Auberdine · {zone:1453} Stormwind
-	["Take the portal up to Mathrengyl, then fly back to {area:442} for the boat to {zone:1453}."] = "Toma el portal para subir con Mathrengyl Garroso y luego vuela de vuelta a {area:442} para tomar el barco a {zone:1453}.",
+	-- {npc:4217} Mathrengyl Bearwalker · {area:442} Auberdine · {zone:1453} Stormwind
+	["Take the portal up to {npc:4217}, then fly back to {area:442} for the boat to {zone:1453}."] = "Toma el portal para subir con {npc:4217} y luego vuela de vuelta a {area:442} para tomar el barco a {zone:1453}.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Moonstalkers prowl the hills between {quest:954} and the tower. {quest:1002} stands on the hill west of the tower; Grizzled Thistle Bears roam around it."] = "Los Acechalunas merodean por las colinas entre {quest:954} y la torre. {quest:1002} está en la colina al oeste de la torre; los osos cardo grisáceos rondan a su alrededor.",
 	-- ["Tide Crawlers scuttle along the shore below the village; {quest:983} stands on the beach just south of the docks. Darkshore Threshers swim in the shallows. The {quest:4723} lies on the shore just south of the village."] = "Los Reptadores de marea ({npc:2232}) corretean por la orilla bajo el pueblo; {quest:983} está en la playa, justo al sur de los muelles. Los Trilladores de Costa Oscura ({npc:2185}) nadan en los bajíos. {quest:4723} yace en la orilla, justo al sur del pueblo.",
 	-- ["{item:15883}: the {object:177790} under the water off the north coast, west of the ruins"] = "{item:15883}: {object:177790}, bajo el agua frente a la costa norte, al oeste de las ruinas",
+	-- ["{quest:1003} stands west of the Grove."] = "{quest:1003} está al oeste del Páramo de los Ancianos.",
 }

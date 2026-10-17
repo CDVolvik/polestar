@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Korean words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Oozing Bag
@@ -18,7 +19,4 @@ return {
 	["Open the {item:20768}"] = "{item:20768} 열기",
 	-- {item:20768} Oozing Bag
 	["Open the {item:20768} from your bags."] = "가방에서 {item:20768}을(를) 여십시오.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Oozes drop the {item:20768}: the Vile Slimes, Large Vile Slimes and Devouring Oozes of {zone:1422}, and the oozes of {zone:1448}, {zone:1449} and {zone:1423}, at about 0.07-0.09% per kill in our data. The waypoint is a {npc:1806} spawn in eastern {zone:1422}."] = "수액괴물이 {item:20768}을(를) 떨어뜨립니다. {zone:1422}의 오염된 진흙괴물, 거대한 오염된 진흙괴물, 포식성 수액괴물, 그리고 {zone:1448}, {zone:1449}, {zone:1423}의 수액괴물이 우리 데이터상 처치당 약 0.07-0.09% 확률로 떨어뜨립니다. 경유지는 {zone:1422} 동쪽의 {npc:1806} 출현 지점입니다.",
 }

@@ -3,13 +3,14 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (traditional) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (traditional) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Apprentice Leatherworking
 	-- {skill:165} Leatherworking
 	["Apprentice {skill:165}"] = "初級{skill:165}",
 	-- {skill:165} Leatherworking
-	["{skill:165} runs alongside leveling. Forever's Legacy System rewards crafting professions at skill 150, 225 and 300 (the Journeyman, Expert and Artisan caps), so each of those checkpoints counts. Materials for 1-75 are worth about 1g 18s in all."] = "{skill:165}可以邊升級邊練。Forever的傳承系統會在技能150、225和300（中級、高級和專家的上限）獎勵製造專業，所以每個關卡都很重要。1-75所需材料總價約1金18銀。",
+	["{skill:165} runs alongside leveling. Forever's Legacy System rewards crafting professions at skill 150, 225 and 300 (the Journeyman, Expert and Artisan caps), so each of those checkpoints counts. Materials for 1-75 are worth about 1g 18s in all."] = "{skill:165}可以邊升級邊練。Forever的傳承系統會在技能150、225和300（中級、高級和專家級的上限）獎勵製造專業，所以每個關卡都很重要。1-75所需材料總價約1金18銀。",
 
 	-- Step 2: Light Leather (Alliance)
 	-- {item:2318} Light Leather
@@ -270,9 +271,9 @@ return {
 
 	-- Step 51: Artisan Leatherworking
 	-- {skill:165} Leatherworking
-	["Artisan {skill:165}"] = "專家{skill:165}",
+	["Artisan {skill:165}"] = "專家級{skill:165}",
 	-- {skill:165} Leatherworking
-	["Artisan needs character level 35 and {skill:165} 200; it raises the cap to 300. Materials for 225-300 are worth about 312g in all."] = "專家需要角色等級35且{skill:165}200點；上限提高到300。225-300所需材料總價約312金。",
+	["Artisan needs character level 35 and {skill:165} 200; it raises the cap to 300. Materials for 225-300 are worth about 312g in all."] = "專家級需要角色等級35且{skill:165}200點；上限提高到300。225-300所需材料總價約312金。",
 
 	-- Step 52: Pattern: Wicked Leather Gauntlets
 	-- {item:15083} Wicked Leather Gauntlets · {skill:165} Leatherworking

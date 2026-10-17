@@ -3,14 +3,15 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Korean words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
-	["Legacy Challenges"] = "Legacy 도전 과제",
+	["Legacy Challenges"] = "유산 도전 과제",
 
 	-- Step 1: Classes: level 25
 	["Classes: level 25"] = "직업: 레벨 25",
-	["Classes give 27 points: every class reaching 25, 45 and 60. They count once per class across your account, so a second character of a class you already raised adds nothing; a new class does. The first character to reach 25 usually unlocks the Legacy System itself."] = "직업은 27점을 줍니다: 각 직업이 25, 45, 60레벨에 도달할 때마다 1점입니다. 계정 전체에서 직업마다 한 번만 계산되므로, 이미 키운 직업의 두 번째 캐릭터는 점수를 주지 않고 새 직업은 점수를 줍니다. 보통 처음으로 25레벨에 도달한 캐릭터가 Legacy 시스템 자체를 해금합니다.",
+	["Classes give 27 points: every class reaching 25, 45 and 60. They count once per class across your account, so a second character of a class you already raised adds nothing; a new class does. The first character to reach 25 usually unlocks the Legacy System itself."] = "직업은 27점을 줍니다: 각 직업이 25, 45, 60레벨에 도달할 때마다 1점입니다. 계정 전체에서 직업마다 한 번만 계산되므로, 이미 키운 직업의 두 번째 캐릭터는 점수를 주지 않고 새 직업은 점수를 줍니다. 보통 처음으로 25레벨에 도달한 캐릭터가 유산 시스템 자체를 해금합니다.",
 
 	-- Step 2: Classes: level 45
 	["Classes: level 45"] = "직업: 레벨 45",
@@ -24,7 +25,7 @@ return {
 	-- {skill:171} Alchemy
 	["Tradeskills: {skill:171}"] = "전문 기술: {skill:171}",
 	-- {skill:171} Alchemy
-	["Each crafting profession gives 3 points, at 150, 225 and 300. Ranks count once per profession across your account. Follow the Polestar guide \"{skill:171} 1-300\" (Professions). A crafting profession at 150 also unlocks the Legacy System."] = "제작 전문 기술은 각각 150, 225, 300에서 1점씩, 총 3점을 줍니다. 단계는 계정 전체에서 전문 기술마다 한 번만 계산됩니다. Polestar 가이드 \"{skill:171} 1-300\"(전문 기술)을 따르십시오. 제작 전문 기술 150 달성으로도 Legacy 시스템이 해금됩니다.",
+	["Each crafting profession gives 3 points, at 150, 225 and 300. Ranks count once per profession across your account. Follow the Polestar guide \"{skill:171} 1-300\" (Professions). A crafting profession at 150 also unlocks the Legacy System."] = "제작 전문 기술은 각각 150, 225, 300에서 1점씩, 총 3점을 줍니다. 단계는 계정 전체에서 전문 기술마다 한 번만 계산됩니다. Polestar 가이드 \"{skill:171} 1-300\"(전문 기술)을 따르십시오. 제작 전문 기술 150 달성으로도 유산 시스템이 해금됩니다.",
 
 	-- Step 5: Tradeskills: Blacksmithing
 	-- {skill:164} Blacksmithing
@@ -58,9 +59,9 @@ return {
 
 	-- Step 10: PvP: battleground reputations (Alliance)
 	["PvP: battleground reputations (Alliance)"] = "PvP: 전장 평판 (얼라이언스)",
-	["Exalted with each battleground faction is worth a point (4 in all; this page shows three, see the note). Follow the Polestar Reputation guides Warsong Gulch Reputation, Arathi Basin Reputation and Alterac Valley Reputation. The Diplomat Legacy perk increases reputation gains."] = "각 전장 세력과 확고한 동맹이 되면 1점입니다(총 4점, 이 페이지에는 3개만 나옵니다. 참고를 보세요). Polestar 평판 가이드 전쟁노래 협곡 평판, 아라시 분지 평판, 알터랙 계곡 평판을 따르세요. 외교관 Legacy 특전은 평판 획득량을 늘려 줍니다.",
+	["Exalted with each battleground faction is worth a point (4 in all; this page shows three, see the note). Follow the Polestar Reputation guides Warsong Gulch Reputation, Arathi Basin Reputation and Alterac Valley Reputation. The Diplomat Legacy perk increases reputation gains."] = "각 전장 세력과 확고한 동맹이 되면 1점입니다(총 4점, 이 페이지에는 3개만 나옵니다. 참고를 보세요). Polestar 평판 가이드 전쟁노래 협곡 평판, 아라시 분지 평판, 알터랙 계곡 평판을 따르세요. 외교관 유산 특전은 평판 획득량을 늘려 줍니다.",
 	-- {zone:1460} Warsong Gulch · {zone:1461} Arathi Basin · {zone:1459} Alterac Valley
-	["Blizzard counts four battleground reputations, but our faction data has three per side ({zone:1460}, {zone:1461}, {zone:1459}). The fourth is likely tied to Forever's new PvP content; check the in-game Legacy panel."] = "블리자드는 전장 평판 4개를 계산하지만, 우리 세력 데이터에는 진영마다 3개({zone:1460}, {zone:1461}, {zone:1459})만 있습니다. 네 번째는 Forever의 새 PvP 콘텐츠와 관련된 것으로 보입니다. 게임 내 Legacy 창을 확인하십시오.",
+	["Blizzard counts four battleground reputations, but our faction data has three per side ({zone:1460}, {zone:1461}, {zone:1459}). The fourth is likely tied to Forever's new PvP content; check the in-game Legacy panel."] = "블리자드는 전장 평판 4개를 계산하지만, 우리 세력 데이터에는 진영마다 3개({zone:1460}, {zone:1461}, {zone:1459})만 있습니다. 네 번째는 Forever의 새 PvP 콘텐츠와 관련된 것으로 보입니다. 게임 내 유산 창을 확인하십시오.",
 
 	-- Step 11: PvP: battleground reputations (Horde)
 	["PvP: battleground reputations (Horde)"] = "PvP: 전장 평판 (호드)",
@@ -75,9 +76,9 @@ return {
 
 	-- Step 14: Adventure: explore the world map
 	["Adventure: explore the world map"] = "모험: 세계 지도 탐험",
-	["Exploring the entire world map on one character is a point, and it can also unlock the Legacy System. It must all be on the same character."] = "한 캐릭터로 세계 지도 전체를 탐험하면 1점이며, Legacy 시스템을 해금할 수도 있습니다. 모두 같은 캐릭터로 탐험해야 합니다.",
+	["Exploring the entire world map on one character is a point, and it can also unlock the Legacy System. It must all be on the same character."] = "한 캐릭터로 세계 지도 전체를 탐험하면 1점이며, 유산 시스템을 해금할 수도 있습니다. 모두 같은 캐릭터로 탐험해야 합니다.",
 	["Follow the Polestar Exploration guides: Exploration: Eastern Kingdoms 1-30, 30-45 and 45-60, and Exploration: Kalimdor 1-30, 30-45 and 45-60. They track every area as you discover it."] = "Polestar 탐험 가이드를 따르십시오: 탐험: 동부 왕국 1-30, 30-45, 45-60과 탐험: 칼림도어 1-30, 30-45, 45-60. 발견하는 모든 지역을 추적합니다.",
-	["This step cannot check the whole map by itself yet; it becomes a tracked goal once the Legacy achievement ids are recorded."] = "이 단계는 아직 지도 전체를 스스로 확인할 수 없습니다. Legacy 업적 ID가 기록되면 추적되는 목표가 됩니다.",
+	["This step cannot check the whole map by itself yet; it becomes a tracked goal once the Legacy achievement ids are recorded."] = "이 단계는 아직 지도 전체를 스스로 확인할 수 없습니다. 유산 업적 ID가 기록되면 추적되는 목표가 됩니다.",
 
 	-- Step 15: Adventure: Lord Valthalak
 	-- {npc:16042} Lord Valthalak
@@ -87,7 +88,7 @@ return {
 	-- {npc:16033} Bodley · {quest:8996} Return to Bodley
 	["{npc:16033} offers it once {quest:8996} is turned in"] = "{quest:8996}을(를) 제출하면 {npc:16033}이(가) 줍니다",
 	-- {quest:8996} Return to Bodley
-	["Which quest Blizzard counts as the end of the questline ({quest:8996} or your class's Saving the Best for Last) is unconfirmed until the Legacy data is recorded."] = "블리자드가 퀘스트 라인의 끝으로 어느 퀘스트({quest:8996} 또는 직업별 은혜의 보답)를 계산하는지는 Legacy 데이터가 기록될 때까지 확실하지 않습니다.",
+	["Which quest Blizzard counts as the end of the questline ({quest:8996} or your class's Saving the Best for Last) is unconfirmed until the Legacy data is recorded."] = "블리자드가 퀘스트 라인의 끝으로 어느 퀘스트({quest:8996} 또는 직업별 은혜의 보답)를 계산하는지는 유산 데이터가 기록될 때까지 확실하지 않습니다.",
 
 	-- Step 16: Adventure: Back to the Beginning (Alliance)
 	-- {quest:8997} Back to the Beginning
@@ -103,11 +104,11 @@ return {
 
 	-- Step 18: Dungeons: level 15-25
 	["Dungeons: level 15-25"] = "던전: 레벨 15-25",
-	["The final boss of every level 15-25 dungeon earns one point together. Tick each boss off when you kill it; the grouping follows the usual Classic level ranges, so check the in-game Legacy panel for the exact list."] = "레벨 15-25 던전의 마지막 우두머리를 모두 처치하면 합쳐서 1점입니다. 우두머리를 처치할 때마다 체크하십시오. 분류는 일반적인 클래식 레벨대를 따르므로, 정확한 목록은 게임 내 Legacy 창에서 확인하십시오.",
+	["The final boss of every level 15-25 dungeon earns one point together. Tick each boss off when you kill it; the grouping follows the usual Classic level ranges, so check the in-game Legacy panel for the exact list."] = "레벨 15-25 던전의 마지막 우두머리를 모두 처치하면 합쳐서 1점입니다. 우두머리를 처치할 때마다 체크하십시오. 분류는 일반적인 클래식 레벨대를 따르므로, 정확한 목록은 게임 내 유산 창에서 확인하십시오.",
 	-- {area:718} Wailing Caverns · {npc:3678} Disciple of Naralex
 	["{area:718} (appears after the {npc:3678}'s event)"] = "{area:718}({npc:3678} 이벤트 후에 나타남)",
 	-- {area:717} The Stockade
-	["{area:717}: the usual last kill; the Stockade has no fixed final boss"] = "{area:717}: 보통 마지막으로 처치하는 대상. 스톰윈드 지하감옥에는 정해진 마지막 우두머리가 없습니다",
+	["{area:717}: the usual last kill; the {area:717} has no fixed final boss"] = "{area:717}: 보통 마지막으로 처치하는 대상. {area:717}에는 정해진 마지막 우두머리가 없습니다",
 	-- {area:16919} Hall of Thanes · {area:153} Ruins of Lordaeron
 	["Forever adds the dungeons {area:16919} and {area:153}; their bosses and brackets are not in our data yet."] = "Forever는 던전 {area:16919}와(과) {area:153}을(를) 추가합니다. 그 우두머리와 레벨대는 아직 우리 데이터에 없습니다.",
 
@@ -143,7 +144,7 @@ return {
 	-- Step 21: Forever's new dungeons
 	["Forever's new dungeons"] = "Forever의 새 던전",
 	-- {area:16919} Hall of Thanes · {area:153} Ruins of Lordaeron
-	["{area:16919} and {area:153} are new in Forever. Their bosses, levels and Legacy bracket are not in our data, so tick them off yourself."] = "{area:16919}와(과) {area:153}은(는) Forever에 새로 추가되었습니다. 우두머리, 레벨, Legacy 구간이 우리 데이터에 없으니 직접 체크하십시오.",
+	["{area:16919} and {area:153} are new in Forever. Their bosses, levels and Legacy bracket are not in our data, so tick them off yourself."] = "{area:16919}와(과) {area:153}은(는) Forever에 새로 추가되었습니다. 우두머리, 레벨, 유산 구간이 우리 데이터에 없으니 직접 체크하십시오.",
 
 	-- Step 22: Raids: Onyxia
 	-- {npc:10184} Onyxia

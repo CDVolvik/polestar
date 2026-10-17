@@ -3,11 +3,12 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (simplified) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (simplified) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Layo Starstrike
-	-- {area:3077} Valor's Rest · {zone:1451} Silithus
-	["The pass from Un'Goro comes out at {area:3077}, the graveyard in north-east {zone:1451}. Layo stands among the graves."] = "从安戈洛环形山出来的山口通往{area:3077}，那是{zone:1451}东北部的墓地。莱耶站在坟墓之间。",
+	-- {area:3077} Valor's Rest · {zone:1451} Silithus · {npc:13220} Layo Starstrike
+	["The pass from Un'Goro comes out at {area:3077}, the graveyard in north-east {zone:1451}. {npc:13220} stands among the graves."] = "从安戈洛环形山出来的山口通往{area:3077}，那是{zone:1451}东北部的墓地。{npc:13220}站在坟墓之间。",
 
 	-- Step 2: The Spirits of Southwind
 	-- {area:2738} Southwind Village · {object:179565} Dusty Reliquary · {npc:11801} Rabine Saturna
@@ -107,16 +108,17 @@ return {
 	["Fly to {area:1637} and train."] = "飞往{area:1637}训练。",
 
 	-- Step 25: The Undercity
-	-- {area:1637} Orgrimmar · {zone:1420} Tirisfal Glades · {zone:1458} Undercity · {object:36126} Royal Quarter
+	-- {area:1637} Orgrimmar · {zone:1420} Tirisfal Glades · {zone:1458} Undercity · {object:36126} Royal Quarter (no name in this language: may be words)
 	["Take the zeppelin from the tower outside {area:1637} to {zone:1420} and ride into the {zone:1458}. Lady Sylvanas holds the {object:36126}."] = "在{area:1637}外的塔上乘飞艇前往{zone:1420}，再骑进{zone:1458}。希尔瓦娜斯·风行者在{object:36126}。",
 
 	-- Step 26: The Bulwark
-	["Ride east along the road to the Bulwark on the border."] = "沿道路向东骑往边境上的亡灵壁垒。",
+	-- {area:152} The Bulwark
+	["Ride east along the road to the {area:152} on the border."] = "沿道路向东骑往边境上的{area:152}。",
 
 	-- Step 27: Felstone Field
-	-- {npc:10778} Janice Felstone · {npc:11075} Cauldron Lord Bilemaw
+	-- {npc:10778} Janice Felstone · {area:152} The Bulwark · {npc:11075} Cauldron Lord Bilemaw
 	-- plural, as words: Jabbering Ghouls = {npc:10801} Jabbering Ghoul
-	["{npc:10778}'s farm is the first one east of the Bulwark. Jabbering Ghouls on the farm carry the other half of her charm; {npc:11075} guards the cauldron in the field."] = "{npc:10778}的农场是亡灵壁垒东边的第一座农场。农场上的{npc:10801}携带她护身符的另一半；{npc:11075}守着田里的瘟疫之锅。",
+	["{npc:10778}'s farm is the first one east of the {area:152}. Jabbering Ghouls on the farm carry the other half of her charm; {npc:11075} guards the cauldron in the field."] = "{npc:10778}的农场是{area:152}东边的第一座农场。农场上的{npc:10801}携带她护身符的另一半；{npc:11075}守着田里的瘟疫之锅。",
 
 	-- Step 28: Andorhal watchtowers and silos
 	["Andorhal watchtowers and silos"] = "安多哈尔的哨塔和粮仓",
@@ -148,12 +150,12 @@ return {
 	["The libram lies further north, on the way to {area:190}."] = "圣契在更北边，通往{area:190}的路上。",
 
 	-- Step 33: Tirion Fordring
-	-- {area:2619} Thondroril River
-	["Ride east to Tirion's hut by the {area:2619} and hear him out."] = "向东骑往{area:2619}旁提里奥的小屋，听他把话说完。",
+	-- {npc:1855} Tirion Fordring · {area:2619} Thondroril River
+	["Ride east to {npc:1855}'s hut by the {area:2619} and hear him out."] = "向东骑往{area:2619}旁{npc:1855}的小屋，听他把话说完。",
 
 	-- Step 34: Redpath's Shield
-	-- {area:201} Gahrron's Withering
-	["The shield lies at {area:201}, south of Tirion's hut."] = "盾牌在提里奥小屋南边的{area:201}。",
+	-- {area:201} Gahrron's Withering · {npc:1855} Tirion Fordring
+	["The shield lies at {area:201}, south of {npc:1855}'s hut."] = "盾牌在{npc:1855}小屋南边的{area:201}。",
 
 	-- Step 35: Light's Hope Chapel
 	["Ride east across the plaguelands to the chapel."] = "向东骑过瘟疫之地前往教堂。",
@@ -161,25 +163,29 @@ return {
 	-- Step 36: Scourge Champions
 	-- plural, as words: Scourge Champions = {npc:8529} Scourge Champion
 	["Scourge Champions"] = "天灾勇士",
-	-- {area:2270} Noxious Glade · {item:13156} Mystic Crystal
+	-- {area:2270} Noxious Glade · {npc:11063} Carlin Redpath · {item:13156} Mystic Crystal
 	-- plural, as words: Scourge Champions = {npc:8529} Scourge Champion
-	["Scourge Champions roam the {area:2270}, north of the chapel. Pass Carlin's {item:13156} over each one you kill: the skulls that resonate are the ones he wants."] = "天灾勇士在教堂北边的{area:2270}游荡。在你杀死的每一个身上晃一晃卡林的{item:13156}：产生共鸣的头骨就是他要的。",
+	["Scourge Champions roam the {area:2270}, north of the chapel. Pass {npc:11063}'s {item:13156} over each one you kill: the skulls that resonate are the ones he wants."] = "天灾勇士在教堂北边的{area:2270}游荡。在你杀死的每一个身上晃一晃{npc:11063}的{item:13156}：产生共鸣的头骨就是他要的。",
 
-	-- Step 38: Pamela and the Undercroft
-	-- {area:2261} Undercroft
-	["Pamela and the {area:2261}"] = "帕米拉和{area:2261}",
-	-- {area:2262} Darrowshire · {npc:11886} Mercutio Filthgorger · {area:2261} Undercroft
-	["Ride to {area:2262} in the south-west; Pamela plays among the houses. {npc:11886} lurks in the {area:2261}, the crypt just west of the town."] = "骑往西南的{area:2262}；帕米拉在房子间玩耍。{npc:11886}潜伏在城镇正西的墓穴{area:2261}里。",
-	["Pamela's own errand is not on this route. Skip it."] = "帕米拉自己的差事不在本路线上。跳过它。",
+	-- Step 38: Pamela Redpath and the Undercroft
+	-- {npc:10926} Pamela Redpath · {area:2261} Undercroft
+	["{npc:10926} and the {area:2261}"] = "{npc:10926}和{area:2261}",
+	-- {area:2262} Darrowshire · {npc:10926} Pamela Redpath · {npc:11886} Mercutio Filthgorger · {area:2261} Undercroft
+	["Ride to {area:2262} in the south-west; {npc:10926} plays among the houses. {npc:11886} lurks in the {area:2261}, the crypt just west of the town."] = "骑往西南的{area:2262}；{npc:10926}在房子间玩耍。{npc:11886}潜伏在城镇正西的墓穴{area:2261}里。",
+	-- {npc:10926} Pamela Redpath
+	["{npc:10926}'s own errand is not on this route. Skip it."] = "{npc:10926}自己的差事不在本路线上。跳过它。",
 
 	-- Step 39: Nathanos Blightcaller
 	-- {npc:15193} The Banshee Queen · {area:2260} Marris Stead · {area:2261} Undercroft
 	["{npc:15193}'s champion holds the {area:2260} farmhouse, north of the {area:2261}."] = "{npc:15193}的勇士占据着{area:2261}北边{area:2260}的农舍。",
-	["Nathanos' errands are not on this route. Skip them."] = "纳萨诺斯的差事不在本路线上。跳过它们。",
+	-- {npc:11878} Nathanos Blightcaller
+	["{npc:11878}' errands are not on this route. Skip them."] = "{npc:11878}的差事不在本路线上。跳过它们。",
 
 	-- Step 40: Tirion Fordring
-	["Ride north-west to Tirion's hut."] = "向西北骑往提里奥的小屋。",
-	["Tirion's next task, Of Lost Honor, is not on this route. Skip it."] = "提里奥的下一个任务（失落的荣耀）不在本路线上。跳过它。",
+	-- {npc:1855} Tirion Fordring
+	["Ride north-west to {npc:1855}'s hut."] = "向西北骑往{npc:1855}的小屋。",
+	-- {npc:1855} Tirion Fordring
+	["{npc:1855}'s next task, Of Lost Honor, is not on this route. Skip it."] = "{npc:1855}的下一个任务（失落的荣耀）不在本路线上。跳过它。",
 
 	-- Step 41: Chromie
 	-- {npc:10667} Chromie
@@ -188,12 +194,11 @@ return {
 	["{npc:10667}'s Battle of Darrowshire ends against elites. Skip it."] = "{npc:10667}的达隆郡之战最后要对付精英。跳过它。",
 
 	-- Step 42: The Bulwark
-	-- {zone:1458} Undercity
-	["West to the Bulwark. The next guide starts in the {zone:1458}, a short ride west."] = "向西前往亡灵壁垒。下一个指南从西边不远的{zone:1458}开始。",
+	-- {area:152} The Bulwark · {zone:1458} Undercity
+	["West to the {area:152}. The next guide starts in the {zone:1458}, a short ride west."] = "向西前往{area:152}。下一个指南从西边不远的{zone:1458}开始。",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Ride east along the road to the {area:152} on the border."] = "沿道路向东骑往边境上的{area:152}。",
 	-- ["West to the {area:152}. The next guide starts in the {zone:1458}, a short ride west."] = "向西前往{area:152}。下一个指南从西边不远的{zone:1458}开始。",
-	-- ["{npc:10667}'s Battle of {area:2262} ends against elites. Skip it."] = "{npc:10667}的{area:2262}之战最后要对付精英。跳过它。",
 	-- ["{npc:10778}'s farm is the first one east of the {area:152}. Jabbering Ghouls on the farm carry the other half of her charm; {npc:11075} guards the cauldron in the field."] = "{npc:10778}的农场是{area:152}东边的第一座农场。农场上的喋喋不休的食尸鬼携带她护身符的另一半；{npc:11075}守着田里的瘟疫之锅。",
 }

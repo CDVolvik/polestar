@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in French (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in French words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -51,7 +52,7 @@ return {
 	["Cast {spell:18960}. {npc:11802} is in {area:2361}. {npc:11798} flies druids to {area:1638}; fly on to the {area:380} from there."] = "Lancez {spell:18960}. {npc:11802} est à {area:2361}. {npc:11798} transporte les druides jusqu'à {area:1638} ; de là, volez jusqu'à {area:380}.",
 
 	-- Step 12: Dreadmist Peak
-	-- {area:380} Crossroads · {area:384} Dreadmist Peak · {item:15842} Empty Dreadmist Peak Sampler · {object:19464} Dreadmist Peak Pool
+	-- {area:380} Crossroads · {area:384} Dreadmist Peak · {item:15842} Empty Dreadmist Peak Sampler · {object:19464} Dreadmist Peak Pool (no name in this language: may be words)
 	["From the {area:380} ride north to {area:384} and fill the {item:15842} at the {object:19464}."] = "Depuis {area:380}, chevauchez vers le nord jusqu'à {area:384} et remplissez l'{item:15842} au {object:19464}.",
 
 	-- Step 13: Tonga Runetotem
@@ -86,6 +87,5 @@ return {
 	-- ["Cast Teleport: {zone:1450} and see {npc:11802}, then take {npc:11798}'s flight to {area:1638}."] = "Lancez Téléportation : {zone:1450} et parlez à {npc:11802}, puis prenez le vol de {npc:11798} pour {area:1638}.",
 	-- ["Cast Teleport: {zone:1450}. {npc:11802} is in {area:2361}. Then fly to {area:442}."] = "Lancez Téléportation : {zone:1450}. {npc:11802} se trouve à {area:2361}. Prenez ensuite un vol pour {area:442}.",
 	-- ["Cast Teleport: {zone:1450}. {npc:11802} is in {area:2361}. {npc:11798} flies druids to {area:1638}; fly on to the {area:380} from there."] = "Lancez Téléportation : {zone:1450}. {npc:11802} se trouve à {area:2361}. {npc:11798} emmène les druides à {area:1638} ; de là, prenez un vol pour {area:380}.",
-	-- ["Lost {zone:1413} Kodos roam the plains north and west of the {area:380} and around the {area:388}; each drops a horn. Herbalists find {item:2449} all over the northern {zone:1413}."] = "Les Kodos égarés de {zone:1413} parcourent les plaines au nord et à l'ouest de {area:380} et autour de {area:388} ; chacun laisse tomber une corne. Les herboristes trouvent de la {item:2449} partout dans le nord de {zone:1413}.",
 	-- ["The Lunar Fungal Blooms grow in the moonkin caves in the hills just east of {area:442}; the moonkin there are irritable. {item:2449} needs {skill:182}: herbalists pick it all over {zone:1439}, anyone else buys it from {npc:1313} ({skill:171} Supplies) in {zone:1453} or on the Auction House."] = "Les Floraisons fongiques lunaires poussent dans les grottes des séléniens dans les collines juste à l'est de {area:442} ; les séléniens y sont irritables. {item:2449} demande {skill:182} : les herboristes en cueillent partout en {zone:1439}, les autres l'achètent à {npc:1313} (fournitures d'{skill:171}) à {zone:1453} ou à l'hôtel des ventes.",
 }
