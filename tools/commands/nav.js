@@ -83,7 +83,8 @@ eval    the walking router run standalone (LuaJIT, else Lua 5.1; a folder
         outside the capitals, yards per zone; a layer not built yet reads
         n/a) and expectations; a route with a level (the character's) is
         priced with zone danger as the addon prices it (zones at least 4
-        levels above it, tools/lib/maps/zonelevels.js); --sweep also
+        levels above it, tools/lib/maps/zonelevels.js), and a route's own
+        danger ({ "<uiMapID>": multiplier }) is laid over it; --sweep also
         searches, per zone with located guide goals and per side, from the
         zone's flight master (else its first goal) to every goal.
         --baseline runs the same on another folder (or

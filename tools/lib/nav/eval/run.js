@@ -6,13 +6,14 @@
 //   runQueries({ navDir, queries, lua?, zoneLevels? }) -> { init, results }   raw harness lines (harness.lua's header)
 //     zoneLevels: tools/lib/maps/zonelevels.js's { [uiMapID]: { min, ... } }, for the routes with a level
 //   runRoutes({ navDir, routes, profile?, lua?, zoneLevels? })
-//     routes: [{ id, map, from: [x, y, z|null], to, profile?, level? }] (world, UnitPosition's frame)
-//     -> [{ id, ok, reason, cost, yards, pts: [[x, y, z]], hubs, ms, warmMs, kb, wet, zones }]
-//   loadCorpus(file = routes.json) -> { routes: [{ id, kind, map?, from, to, profile, level?, expect }] }
+//     routes: [{ id, map, from: [x, y, z|null], to, profile?, level?, danger? }] (world, UnitPosition's frame)
+//     -> [{ id, ok, reason, cost, yards, pts: [[x, y, z]], hubs, ms, warmMs, kb, wet, zones, endZones }]
+//   loadCorpus(file = routes.json) -> { routes: [{ id, kind, map?, from, to, profile, level?, danger?, expect }] }
 //   resolveRoutes(routes, geo) -> the routes with world ends: an end [x, y, z] is kept (on `map`), an end
 //     { uiMap, x, y, f? } (map percent in the live frame, as the player sees it; f "e" the Era frame, as Guides.lua's
 //     goals) becomes world yards by map-frames.json (planner/geo.js, as tests/nav-e2e.test.js's every-zone walk);
-//     map is its continent; level (the character's, null for none) prices the route with zone danger (harness.lua)
+//     map is its continent; level (the character's, null for none) prices the route with zone danger (harness.lua),
+//     danger ({ "<uiMapID>": multiplier }, null for none) is laid over that table (adds zones or replaces them)
 //   sweepQueries({ geo, taxi, guides, profiles }) -> one `many` query per zone with located guide goals
 //     and profile: from the zone's flight master open to that side (else its first goal) to every goal
 //   evaluate({ navDir, corpus, sweep, geo, taxi, guides, grid, layers, lua, zoneLevels, log }) -> the eval report
@@ -92,7 +93,7 @@ function runQueries({ navDir, queries, lua = findInterpreter(), zoneLevels = nul
 	}
 }
 
-const routeQuery = (r, profile, style = 'balanced') => ({ type: 'route', id: r.id, map: r.map, from: r.from, to: r.to, profile: r.profile !== undefined ? r.profile : profile, style, level: r.level === undefined ? null : r.level });
+const routeQuery = (r, profile, style = 'balanced') => ({ type: 'route', id: r.id, map: r.map, from: r.from, to: r.to, profile: r.profile !== undefined ? r.profile : profile, style, level: r.level === undefined ? null : r.level, danger: r.danger || null });
 
 function runRoutes({ navDir, routes, profile = null, style = 'balanced', lua, zoneLevels = null }) {
 	const { results } = runQueries({ navDir, lua, zoneLevels, queries: routes.map((r) => routeQuery(r, profile, style)) });
@@ -116,7 +117,7 @@ function resolveRoutes(routes, geo) {
 		};
 		const from = end(r.from, 'from');
 		const to = end(r.to, 'to');
-		return { id: r.id, kind: r.kind, map, from, to, profile: r.profile === undefined ? null : r.profile, level: r.level === undefined ? null : r.level, expect: r.expect || [] };
+		return { id: r.id, kind: r.kind, map, from, to, profile: r.profile === undefined ? null : r.profile, level: r.level === undefined ? null : r.level, danger: r.danger || null, expect: r.expect || [] };
 	});
 }
 

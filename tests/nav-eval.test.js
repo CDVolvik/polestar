@@ -145,7 +145,8 @@ test('eval harness: a route with a level is priced with the zone danger table (t
 	const zoneLevels = { 1420: { min: 1 }, 1421: { min: 11 }, 1422: { min: 51 } };
 	const down = { map: 0, from: [150, 150, null], to: [150, 3 * T - 150, null] };
 	const into = { map: 0, from: [150, 150, null], to: [150, 1.5 * T, null] };
-	const [plain, danger, goal, goalPlain] = runRoutes({
+	const out = { map: 0, from: [150, 1.5 * T, null], to: [150, 3 * T - 150, null] };
+	const [plain, danger, goal, goalPlain, start, startPlain, extra, cleared] = runRoutes({
 		navDir,
 		lua,
 		zoneLevels,
@@ -154,22 +155,33 @@ test('eval harness: a route with a level is priced with the zone danger table (t
 			{ id: 'danger', ...down, level: 20 },
 			{ id: 'goal', ...into, level: 20 },
 			{ id: 'goalPlain', ...into },
+			{ id: 'start', ...out, level: 20 },
+			{ id: 'startPlain', ...out },
+			// A route's own danger: laid over the level's table (or none), adding a zone or replacing its multiplier.
+			{ id: 'extra', ...down, danger: { 1422: 10 } },
+			{ id: 'cleared', ...down, level: 20, danger: { 1422: 1 } },
 		],
 	});
-	for (const r of [plain, danger, goal, goalPlain]) assert.equal(r.ok, true, `${r.id} routed (${r.reason})`);
+	for (const r of [plain, danger, goal, goalPlain, start, startPlain, extra, cleared]) assert.equal(r.ok, true, `${r.id} routed (${r.reason})`);
 	assert.ok(plain.zones[1422] > 400, `without a level the walk goes straight through Western Plaguelands: ${JSON.stringify(plain.zones)}`);
 	assert.ok(plain.zones[1420] > 0 && !plain.zones[1421], `and never into Silverpine: ${JSON.stringify(plain.zones)}`);
 	assert.ok(!(danger.zones[1422] > 10), `at level 20 it goes round through Silverpine: ${JSON.stringify(danger.zones)}`);
 	assert.ok(danger.zones[1421] > 400, `through Silverpine: ${JSON.stringify(danger.zones)}`);
 	assert.deepEqual(goal.pts, goalPlain.pts, 'a goal inside Western Plaguelands: its zone is exempt, the walk is the plain one');
 	assert.equal(goal.cost, goalPlain.cost);
+	assert.deepEqual(start.pts, startPlain.pts, 'a start inside Western Plaguelands at level 20: its zone is exempt, the walk is the plain one');
+	assert.equal(start.cost, startPlain.cost);
+	assert.deepEqual([plain.endZones, start.endZones, goal.endZones], [[1420, 1420], [1422, 1420], [1420, 1422]], 'endZones: Path.ZoneAt at each end');
+	assert.ok(!(extra.zones[1422] > 10) && extra.zones[1421] > 400, `a route's danger without a level goes round: ${JSON.stringify(extra.zones)}`);
+	assert.ok(extra.cost > plain.cost);
+	assert.deepEqual([cleared.pts, cleared.cost], [plain.pts, plain.cost], 'a route\'s danger of 1 takes the level\'s zone out');
 });
 
 test('eval harness: on maps without the zone field a route\'s zones are null and its level changes nothing', { skip: noLua }, () => {
 	const { runRoutes } = require('../tools/lib/nav/eval/run');
 	const navDir = twoClusterFolder();
 	const [a, b] = runRoutes({ navDir, lua, zoneLevels: { 1422: { min: 51 } }, routes: [{ id: 'a', map: 0, from: [200, 200, null], to: [300, 800, null] }, { id: 'b', map: 0, from: [200, 200, null], to: [300, 800, null], level: 20 }] });
-	assert.equal(a.zones, null);
+	assert.deepEqual([a.zones, a.endZones], [null, null]);
 	assert.deepEqual([b.pts, b.cost, b.zones], [a.pts, a.cost, null]);
 });
 
@@ -188,13 +200,14 @@ test('metrics and compare: zoneYards.<uiMapID> reads the harness\'s yards in tha
 	assert.equal(na.pass, null);
 });
 
-test('the route corpus: a zone-map end in the Era frame (f "e") converts by that frame; a route\'s level reaches its query', () => {
+test('the route corpus: a zone-map end in the Era frame (f "e") converts by that frame; a route\'s level and danger reach its query', () => {
 	const { resolveRoutes } = require('../tools/lib/nav/eval/run');
 	const calls = [];
 	const geo = { toWorld: (m, x, y, f) => (calls.push(f), { c: 0, wx: x * 10, wy: y * 10 }) };
-	const [r] = resolveRoutes([{ id: 'r', kind: 'reported', from: { uiMap: 1420, x: 1, y: 2 }, to: { uiMap: 1424, x: 3, y: 4, f: 'e' }, profile: 'Horde', level: 20, expect: [] }], geo);
+	const [r, bare] = resolveRoutes([{ id: 'r', kind: 'reported', from: { uiMap: 1420, x: 1, y: 2 }, to: { uiMap: 1424, x: 3, y: 4, f: 'e' }, profile: 'Horde', level: 20, danger: { 1416: 1000 }, expect: [] }, { id: 'bare', kind: 'reference', map: 0, from: [0, 0], to: [1, 1] }], geo);
 	assert.deepEqual(calls, ['l', 'e']);
-	assert.deepEqual([r.map, r.from, r.to, r.level], [0, [10, 20, null], [30, 40, null], 20]);
+	assert.deepEqual([r.map, r.from, r.to, r.level, r.danger], [0, [10, 20, null], [30, 40, null], 20, { 1416: 1000 }]);
+	assert.deepEqual([bare.level, bare.danger], [null, null]);
 });
 
 test('metrics: yards from the drawn line, the steepest climb between points; blocked, roads, hubs and indoor null without grid and layers', () => {

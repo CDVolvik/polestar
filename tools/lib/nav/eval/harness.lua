@@ -9,11 +9,11 @@
 -- zones.json (optional): {"<uiMapID>": the zone's lowest level, ...} (tools/lib/maps/zonelevels.js, as the addon's
 -- Maps.GetZoneLevels), for the routes with a level.
 -- queries.jsonl, one JSON object per line ([x, y, z] points in UnitPosition's frame, z null when unknown):
---   {"type":"route","id":..,"map":0,"from":[x,y,z],"to":[x,y,z],"profile":null|"Alliance"|"Horde","style":"fastest"|"balanced"|"roads","level":n|null}
+--   {"type":"route","id":..,"map":0,"from":[x,y,z],"to":[x,y,z],"profile":null|"Alliance"|"Horde","style":"fastest"|"balanced"|"roads","level":n|null,"danger":{"<uiMapID>":mult}|null}
 --   {"type":"many","id":..,"map":0,"from":[x,y,z],"targets":[[x,y,z],...],"profile":..,"style":..}
 -- out.jsonl: an init line ({"type":"init","files":n,"loadMs":..,"packedKB":..,"profiles":bool}), then one line per
 -- query:
---   {"type":"route","id","ok","reason","cost","yards","ms","warmMs","kb","pts":[[x,y,z],...],"hubs","wet","zones"}
+--   {"type":"route","id","ok","reason","cost","yards","ms","warmMs","kb","pts":[[x,y,z],...],"hubs","wet","zones","endZones"}
 --   {"type":"many","id","ok","reason","costs":[cost|false,...],"yards":[..]|null,"ms","kb"}
 -- yards and hubs are the router's own (job.yards, job.hubs) when it returns them, null otherwise. A search runs
 -- through Path.Find / Path.FindMany with the frame pump driven here and no frame budget, from cleared caches: ms is
@@ -24,9 +24,12 @@
 -- 0.2.4's router takes a waterWalking flag where opts goes, so it is called without one.
 -- A route with a level is priced with zone danger (opts.danger) as the addon's Nav.danger.Table builds it: every zone
 -- of zones.json whose lowest level is >= level + 4 costs 3x, > level + 10 10x, except the start's and the goal's
--- zones (Path.ZoneAt at each end); none on a router without Path.ZoneAt or a map without the zone field.
+-- zones (Path.ZoneAt at each end); none on a router without Path.ZoneAt or a map without the zone field. A route's
+-- danger ({"<uiMapID>": multiplier}) is laid over that table, level or not: it adds zones, or replaces their
+-- multipliers (1 takes a zone out; 1000 all but closes it, to ask whether a walk has another way).
 -- zones: the drawn line's yards per zone ({"<uiMapID>": yd}, Path.ZoneAt at the middle of every <= 2 yd piece; a
--- piece in no zone counts nowhere), null on a router without Path.ZoneAt or a map without the zone field.
+-- piece in no zone counts nowhere), endZones: [the start's zone, the goal's zone] (Path.ZoneAt, null for none); both
+-- null on a router without Path.ZoneAt or a map without the zone field.
 
 local ENCODING, FILES, QUERIES, OUT, ZONES = arg[1], arg[2], arg[3], arg[4], arg[5]
 assert(ENCODING and FILES and QUERIES and OUT, "usage: harness.lua <encoding.lua> <files.txt> <queries.jsonl> <out.jsonl> [zones.json]")
@@ -224,22 +227,39 @@ local function zoned(map)
 	return Path.ZoneAt ~= nil and D ~= nil and D.zone ~= nil
 end
 
--- The danger table at level for a walk from from to to (the header; the rule is the addon's Nav.danger: Ding!'s
--- dangerAbove): nil without a level, on a map without zones, or when no zone is dangerous.
-local function dangerOf(map, from, to, level)
-	if type(level) ~= "number" or not zoned(map) then
+-- The danger table for a walk from from to to (the header; the rule is the addon's Nav.danger: Ding!'s dangerAbove):
+-- the level's table without the ends' zones, extra laid over it; nil on a map without zones or when it is empty.
+local function dangerOf(map, from, to, level, extra)
+	if not zoned(map) then
 		return nil
 	end
-	local a, b = Path.ZoneAt(map, from.x, from.y), Path.ZoneAt(map, to.x, to.y)
 	local danger
-	for id, min in pairs(zoneMins) do
-		local m = (min > level + 10 and 10) or (min >= level + 4 and 3) or nil
-		if m and id ~= a and id ~= b then
+	if type(level) == "number" then
+		local a, b = Path.ZoneAt(map, from.x, from.y), Path.ZoneAt(map, to.x, to.y)
+		for id, min in pairs(zoneMins) do
+			local m = (min > level + 10 and 10) or (min >= level + 4 and 3) or nil
+			if m and id ~= a and id ~= b then
+				danger = danger or {}
+				danger[id] = m
+			end
+		end
+	end
+	if type(extra) == "table" then
+		for id, m in pairs(extra) do
 			danger = danger or {}
-			danger[id] = m
+			danger[tonumber(id)] = m
 		end
 	end
 	return danger
+end
+
+-- The zones of a walk's ends as JSON (the header's endZones).
+local function endZones(map, from, to)
+	if not zoned(map) then
+		return "null"
+	end
+	local a, b = Path.ZoneAt(map, from.x, from.y), Path.ZoneAt(map, to.x, to.y)
+	return string.format("[%s,%s]", a and num(a, "%d") or "null", b and num(b, "%d") or "null")
 end
 
 -- The drawn line's yards per zone as JSON (the header's zones).
@@ -275,7 +295,7 @@ end
 
 local function route(q)
 	local from, to = point(q.map, q.from), point(q.map, q.to)
-	local danger = dangerOf(q.map, from, to, q.level)
+	local danger = dangerOf(q.map, from, to, q.level, q.danger)
 	local got
 	local function once()
 		got = nil
@@ -294,7 +314,7 @@ local function route(q)
 	local out = {}
 	if not cold then
 		local reason = #errors > 0 and "error: " .. table.concat(errors, "; ") or "no answer"
-		return string.format('{"type":"route","id":%s,"ok":false,"reason":%s,"cost":null,"yards":null,"ms":null,"warmMs":null,"kb":null,"pts":[],"hubs":null,"wet":null,"zones":null}', quote(q.id), quote(reason))
+		return string.format('{"type":"route","id":%s,"ok":false,"reason":%s,"cost":null,"yards":null,"ms":null,"warmMs":null,"kb":null,"pts":[],"hubs":null,"wet":null,"zones":null,"endZones":%s}', quote(q.id), quote(reason), endZones(q.map, from, to))
 	end
 	-- An error reported during the query (the client's error handler) fails it.
 	local ok = cold.points ~= nil and #errors == 0
@@ -317,7 +337,7 @@ local function route(q)
 		reason = quote("error: " .. table.concat(errors, "; "))
 	end
 	return string.format(
-		'{"type":"route","id":%s,"ok":%s,"reason":%s,"cost":%s,"yards":%s,"ms":%s,"warmMs":%s,"kb":%s,"pts":[%s],"hubs":%s,"wet":%s,"zones":%s}',
+		'{"type":"route","id":%s,"ok":%s,"reason":%s,"cost":%s,"yards":%s,"ms":%s,"warmMs":%s,"kb":%s,"pts":[%s],"hubs":%s,"wet":%s,"zones":%s,"endZones":%s}',
 		quote(q.id),
 		tostring(ok),
 		reason,
@@ -329,7 +349,8 @@ local function route(q)
 		table.concat(out, ","),
 		hubs,
 		ok and num(cold.points.wet) or "null",
-		ok and zoneYards(q.map, cold.points) or "null"
+		ok and zoneYards(q.map, cold.points) or "null",
+		endZones(q.map, from, to)
 	)
 end
 
