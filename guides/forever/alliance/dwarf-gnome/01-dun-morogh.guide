@@ -357,6 +357,9 @@ step Brewnall Village
   accept 315
   accept 319
   accept 310                                  -- Marleth Barleybrew
+  kill 1196 quest 319 optional                -- Ice Claw Bear, on the way to the Hold
+  kill 1127 quest 319 optional                -- Elder Crag Boar, on the way
+  kill 1201 quest 319 optional                -- Snow Leopard, on the way
   goto 25.1,50.94 live "Frostmane Hold"
 
 step Frostmane Hold
@@ -414,12 +417,16 @@ step Father Gavin
   accept 99160
   accept 99162
 
-step The cold
-  tip Minor Ice Elementals drift around the frozen lake by the refuge. The three rifles are in the snow around it.
-  kill 276003 quest 99160                     -- Minor Ice Elemental
+step Treacherous Cold
+  tip The three rifles lie in the snow around the frozen lake by the refuge. Minor Ice Elementals drift around the lake and along the way: kill them as you go for Rime's Wrath.
   collect 286360 quest 99162.1                -- Stoneanvil's Rifle
   collect 286359 quest 99162.2                -- Sunhammer's Rifle
   collect 286358 quest 99162.3                -- Coalbeard's Rifle
+  kill 276003 quest 99160 optional            -- Minor Ice Elemental, on the way
+
+step Rime's Wrath
+  tip Finish off the Minor Ice Elementals around the frozen lake by the refuge if you are still short.
+  kill 276003 quest 99160                     -- Minor Ice Elemental
 
 step Father Gavin
   turnin 99162
