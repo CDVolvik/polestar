@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Portuguese (Brazil) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Portuguese (Brazil) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -13,7 +14,7 @@ return {
 	["{area:1446}, on the scaffolds in the north-west of {zone:1427}, is the Brotherhood's outpost. The {faction:59} starts out Neutral. Forever's Legacy Diplomat perk increases reputation gains."] = "{area:1446}, nos andaimes do noroeste de {zone:1427}, é o posto avançado da Irmandade. A {faction:59} começa em Neutro. A vantagem de Legado Diplomata do Forever aumenta os ganhos de reputação.",
 
 	-- Step 2: Secret Plans: Fiery Flux
-	-- {area:1443} Slag Pit · {object:147516} Dark Iron · {item:18945} Dark Iron Residue
+	-- {area:1443} Slag Pit · {object:147516} Dark Iron (no name in this language: may be words) · {item:18945} Dark Iron Residue
 	["The plans lie in the {area:1443} of the Cauldron, guarded by {object:147516} dwarves. {object:147516} dwarves also drop {item:18945}, which Burninate takes for Gaining Acceptance."] = "As instruções estão em {area:1443} do Caldeirão, guardadas por anões {object:147516}. Anões {object:147516} também deixam cair {item:18945}, que Queimatar aceita em Conquistando a confiança.",
 
 	-- Step 3: Back to Burninate

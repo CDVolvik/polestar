@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (simplified) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (simplified) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Stonard
@@ -40,18 +41,18 @@ return {
 	["for the {npc:5598} in the {zone:1425}, around level 48"] = "交给{zone:1425}的{npc:5598}，大约48级时",
 
 	-- Step 11: Fly to Grom'gol
-	-- {object:3202} Grom'gol
+	-- {object:3202} Grom'gol (no name in this language: may be words)
 	["Fly to {object:3202}"] = "飞往{object:3202}",
 
 	-- Step 12: Zeppelin to Orgrimmar
 	-- {zone:1454} Orgrimmar
 	["Zeppelin to {zone:1454}"] = "乘飞艇前往{zone:1454}",
-	-- {zone:1454} Orgrimmar · {object:3202} Grom'gol
+	-- {zone:1454} Orgrimmar · {object:3202} Grom'gol (no name in this language: may be words)
 	["The zeppelin to {zone:1454} leaves from the tower beside {object:3202}; it lands just north-east of {zone:1454}'s main gate."] = "前往{zone:1454}的飞艇从{object:3202}旁的塔上出发；它降落在{zone:1454}正门东北不远处。",
 	["Zeppelin tower"] = "飞艇塔",
 
 	-- Step 13: Orgrimmar
-	-- {object:172958} Valley of Honor · {object:172960} Cleft of Shadow · {object:172961} Valley of Spirits
+	-- {object:172958} Valley of Honor (no name in this language: may be words) · {object:172960} Cleft of Shadow (no name in this language: may be words) · {object:172961} Valley of Spirits (no name in this language: may be words)
 	["{object:172958}, then the {object:172960} and the {object:172961}."] = "{object:172958}，然后是{object:172960}和{object:172961}。",
 
 	-- Step 14: Thunder Bluff
@@ -101,12 +102,10 @@ return {
 	["South of the vale the Frayfeather hippogryphs roost on the slopes; nearly every one drops sinew and metallic fragments."] = "在山谷南边，乱羽角鹰兽栖息在山坡上；几乎每只都会掉落肌腱和金属碎片。",
 
 	-- Step 25: Zorbin Fandazzle
-	-- {area:1108} Forgotten Coast
-	["Ride north-west to the {area:1108}; Zorbin waits on the dock."] = "向西北骑往{area:1108}；索尔宾在码头上等候。",
+	-- {area:1108} Forgotten Coast · {npc:14637} Zorbin Fandazzle
+	["Ride north-west to the {area:1108}; {npc:14637} waits on the dock."] = "向西北骑往{area:1108}；{npc:14637}在码头上等候。",
 
-	-- Step 26: The Forgotten Coast
-	-- {area:1108} Forgotten Coast
-	["The {area:1108}"] = "{area:1108}",
+	-- Step 26: Forgotten Coast
 	-- {item:18904} Zorbin's Ultra-Shrinker
 	["Sea elementals and sea sprays wash along the shore around the dock. Zap the giants with {item:18904} first: shrunken, they lose their elite strength. Shore striders wade in the water; the land walkers and cliff giants roam the hills further north."] = "海元素和巨型海元素沿着码头周围的海岸漂荡。先用{item:18904}电击巨人：被缩小后，它们就失去了精英的力量。海岸巨人在水中涉行；大地行者和峭壁巨人在更北边的山丘上游荡。",
 
@@ -124,4 +123,7 @@ return {
 	-- Step 31: Camp Mojache
 	-- {area:976} Gadgetzan
 	["Ride back east to the camp. Stay here: the next guide starts with the flight to {area:976}."] = "向东骑回营地。留在这里：下一个指南从飞往{area:976}开始。",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["The {area:1108}"] = "{area:1108}",
 }

@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (simplified) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (simplified) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -58,7 +59,7 @@ return {
 
 	-- Step 10: PvP: battleground reputations (Alliance)
 	["PvP: battleground reputations (Alliance)"] = "PvP：战场声望（联盟）",
-	["Exalted with each battleground faction is worth a point (4 in all; this page shows three, see the note). Follow the Polestar Reputation guides Warsong Gulch Reputation, Arathi Basin Reputation and Alterac Valley Reputation. The Diplomat Legacy perk increases reputation gains."] = "每个战场阵营达到崇拜可获得1点（共4点；本页显示三个，见备注）。按照 Polestar 声望指南：战歌峡谷声望、阿拉希盆地声望和奥特兰克山谷声望。传承天赋“外交官”可提高声望获取。",
+	["Exalted with each battleground faction is worth a point (4 in all; this page shows three, see the note). Follow the Polestar Reputation guides Warsong Gulch Reputation, Arathi Basin Reputation and Alterac Valley Reputation. The Diplomat Legacy perk increases reputation gains."] = "每个战场阵营达到崇拜可获得1点（共4点；本页显示三个，见备注）。按照 Polestar 声望指南：战歌峡谷声望、阿拉希盆地声望和奥特兰克山谷声望。传承外交官特权可提高声望获取。",
 	-- {zone:1460} Warsong Gulch · {zone:1461} Arathi Basin · {zone:1459} Alterac Valley
 	["Blizzard counts four battleground reputations, but our faction data has three per side ({zone:1460}, {zone:1461}, {zone:1459}). The fourth is likely tied to Forever's new PvP content; check the in-game Legacy panel."] = "暴雪计算了四个战场声望，但我们的阵营数据中每方只有三个（{zone:1460}、{zone:1461}、{zone:1459}）。第四个可能与 Forever 新的PvP内容有关；请查看游戏内的传承面板。",
 
@@ -107,7 +108,7 @@ return {
 	-- {area:718} Wailing Caverns · {npc:3678} Disciple of Naralex
 	["{area:718} (appears after the {npc:3678}'s event)"] = "{area:718}（在{npc:3678}的事件之后出现）",
 	-- {area:717} The Stockade
-	["{area:717}: the usual last kill; the Stockade has no fixed final boss"] = "{area:717}：通常的最后一个击杀；监狱没有固定的最终首领",
+	["{area:717}: the usual last kill; the {area:717} has no fixed final boss"] = "{area:717}：通常的最后一个击杀；{area:717}没有固定的最终首领",
 	-- {area:16919} Hall of Thanes · {area:153} Ruins of Lordaeron
 	["Forever adds the dungeons {area:16919} and {area:153}; their bosses and brackets are not in our data yet."] = "Forever 新增了地下城{area:16919}和{area:153}；它们的首领和等级段还不在我们的数据中。",
 

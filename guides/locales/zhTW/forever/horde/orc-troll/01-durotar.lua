@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (traditional) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (traditional) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Kaltunk
@@ -17,8 +18,6 @@ return {
 	["Training weapons and boars"] = "訓練武器與野豬",
 	-- plural, as words: Mottled Boars = {npc:3098} Mottled Boar
 	["The weapons lie around the Den and the training grounds; the Mottled Boars roam the whole valley floor."] = "武器散落在大獸穴和訓練場周圍；雜斑野豬在整個谷底遊蕩。",
-	-- {area:364} The Den
-	["{area:364}'s cave mouth"] = "{area:364}洞口",
 
 	-- Step 4: The Den
 	-- {npc:3143} Gornek · {npc:3159} Kzan Thornslash
@@ -75,10 +74,12 @@ return {
 	["Back at the Den"] = "回到大獸穴",
 
 	-- Step 15: Canaga Earthcaller
-	["Canaga stands just outside the Den."] = "坎納甘就站在大獸穴外。",
+	-- {npc:5887} Canaga Earthcaller
+	["{npc:5887} stands just outside the Den."] = "{npc:5887}就站在大獸穴外。",
 
 	-- Step 17: Yarrog Baneshadow
-	["Inside the cave, keep to the right wall all the way round, over the stream: Yarrog waits at the end."] = "進入洞穴後，一路沿著右側牆壁繞行，越過溪流：亞羅格在盡頭等著。",
+	-- {npc:3183} Yarrog Baneshadow
+	["Inside the cave, keep to the right wall all the way round, over the stream: {npc:3183} waits at the end."] = "進入洞穴後，一路沿著右側牆壁繞行，越過溪流：{npc:3183}在盡頭等著。",
 
 	-- Step 18: Felstalker hooves
 	-- {npc:3102} Felstalker
@@ -91,8 +92,8 @@ return {
 	["the {object:654925} on the ground beside her"] = "她旁邊地上的{object:654925}",
 
 	-- Step 20: Call of Earth
-	-- {area:639} Spirit Rock · {item:6635} Earth Sapta · {npc:5891} Minor Manifestation of Earth · {item:6656} Rough Quartz
-	["Canaga stands outside the Den. {area:639} is the hill just south of it: drink the {item:6635} there to see the {npc:5891}, then take the {item:6656} back to Canaga."] = "坎納甘站在大獸穴外。{area:639}就是它南邊的山丘：在那裡喝下{item:6635}以看見{npc:5891}，然後把{item:6656}帶回給坎納甘。",
+	-- {npc:5887} Canaga Earthcaller · {area:639} Spirit Rock · {item:6635} Earth Sapta · {npc:5891} Minor Manifestation of Earth · {item:6656} Rough Quartz
+	["{npc:5887} stands outside the Den. {area:639} is the hill just south of it: drink the {item:6635} there to see the {npc:5891}, then take the {item:6656} back to {npc:5887}."] = "{npc:5887}站在大獸穴外。{area:639}就是它南邊的山丘：在那裡喝下{item:6635}以看見{npc:5891}，然後把{item:6656}帶回給{npc:5887}。",
 	-- {npc:5891} Minor Manifestation of Earth · {area:639} Spirit Rock
 	["{npc:5891}, on {area:639}"] = "{npc:5891}，在{area:639}上",
 	-- {npc:5887} Canaga Earthcaller · {npc:5873} Stoneskin Totem · {item:5175} Earth Totem
@@ -196,38 +197,38 @@ return {
 	["{npc:3706}, for {npc:6018} in {zone:1454}: keep it"] = "{npc:3706}，交給{zone:1454}的{npc:6018}：保留此任務",
 
 	-- Step 48: Fizzle Darkstorm
-	-- {spell:1294269} Burning Blade · {area:369} Thunder Ridge · {area:362} Razor Hill · {npc:3099} Dire Mottled Boar · {item:15908} Taming Rod
-	["Fizzle holds the {spell:1294269} camp on {area:369}, north-west of {area:362}. Hunters: tame a {npc:3099} with the {item:15908} on the way."] = "費索佔據{area:362}西北方{area:369}上的{spell:1294269}營地。獵人：沿途用{item:15908}馴服一隻{npc:3099}。",
+	-- {area:369} Thunder Ridge · {area:362} Razor Hill · {npc:3099} Dire Mottled Boar · {item:15908} Taming Rod
+	["Fizzle holds the Burning Blade camp on {area:369}, north-west of {area:362}. Hunters: tame a {npc:3099} with the {item:15908} on the way."] = "費索佔據{area:362}西北方{area:369}上的燃刃氏族營地。獵人：沿途用{item:15908}馴服一隻{npc:3099}。",
 	-- {item:15908} Taming Rod
 	["Tame it with the {item:15908}"] = "用{item:15908}馴服牠",
 
 	-- Step 50: Heglan Shadeeye
-	-- {area:362} Razor Hill
-	["Heglan stands on the shore east of {area:362}. The trident, banner and dagger lie on the beach around him."] = "他站在{area:362}東邊的岸上。三叉戟、旗幟和匕首散落在他周圍的海灘上。",
+	-- {npc:275657} Heglan Shadeeye · {area:362} Razor Hill
+	["{npc:275657} stands on the shore east of {area:362}. The trident, banner and dagger lie on the beach around him."] = "{npc:275657}站在{area:362}東邊的岸上。三叉戟、旗幟和匕首散落在他周圍的海灘上。",
 
 	-- Step 51: Margoz
 	-- {quest:828} Margoz · {quest:827} Skull Rock
 	["{quest:828} camps on the hill west of the naga beach, south of {quest:827}."] = "{quest:828}在納迦海灘西邊的山丘上紮營，位於{quest:827}南邊。",
 
 	-- Step 52: Gan'rul Bloodeye
-	-- {zone:1454} Orgrimmar · {area:817} Skull Rock · {object:172960} Cleft of Shadow · {object:172982} Valley of Strength
-	["{zone:1454}'s main gate is just west of {area:817}. Gan'rul stands in the {object:172960}, the canyon under the {object:172982}."] = "{zone:1454}的正門就在{area:817}西邊。甘盧爾站在{object:172960}，就是{object:172982}下方的峽谷。",
+	-- {zone:1454} Orgrimmar · {area:817} Skull Rock · {npc:5875} Gan'rul Bloodeye · {object:172960} Cleft of Shadow (no name in this language: may be words) · {object:172982} Valley of Strength (no name in this language: may be words)
+	["{zone:1454}'s main gate is just west of {area:817}. {npc:5875} stands in the {object:172960}, the canyon under the {object:172982}."] = "{zone:1454}的正門就在{area:817}西邊。{npc:5875}站在{object:172960}，就是{object:172982}下方的峽谷。",
 
 	-- Step 53: Skull Rock's mouth
 	-- {area:817} Skull Rock
 	["{area:817}'s mouth"] = "{area:817}入口",
 
 	-- Step 54: Skull Rock
-	-- {spell:1294269} Burning Blade · {quest:827} Skull Rock · {item:4871} Searing Collar · {npc:3204} Gazz'uz · {item:4903} Eye of Burning Shadow
-	["{spell:1294269} cultists hold the caves of {quest:827}; any of them drops a {item:4871}. {npc:3204}, a level 14 warlock, stands deep inside and drops the {item:4903}."] = "{spell:1294269}的教徒佔據{quest:827}的洞穴；他們都會掉落{item:4871}。{npc:3204}是14級的術士，站在深處，會掉落{item:4903}。",
+	-- {quest:827} Skull Rock · {item:4871} Searing Collar · {npc:3204} Gazz'uz · {item:4903} Eye of Burning Shadow
+	["Burning Blade cultists hold the caves of {quest:827}; any of them drops a {item:4871}. {npc:3204}, a level 14 warlock, stands deep inside and drops the {item:4903}."] = "燃刃氏族的教徒佔據{quest:827}的洞穴；他們都會掉落{item:4871}。{npc:3204}是14級的術士，站在深處，會掉落{item:4903}。",
 
 	-- Step 55: Tablet of Verga
 	-- {object:58595} Burning Blade Stash · {area:817} Skull Rock
 	["The {object:58595} stands in {area:817}, among the cultists you just fought."] = "{object:58595}在{area:817}裡，就在你剛才打過的教徒之間。",
 
 	-- Step 56: The Binding
-	-- {object:172960} Cleft of Shadow · {item:7464} Glyphs of Summoning
-	["Back to Gan'rul in the {object:172960}. Use the {item:7464} on the summoning circle there and defeat the voidwalker to bind it."] = "回到{object:172960}找甘盧爾。在那裡的召喚法陣使用{item:7464}，擊敗虛空行者以束縛它。",
+	-- {npc:5875} Gan'rul Bloodeye · {object:172960} Cleft of Shadow (no name in this language: may be words) · {item:7464} Glyphs of Summoning
+	["Back to {npc:5875} in the {object:172960}. Use the {item:7464} on the summoning circle there and defeat the voidwalker to bind it."] = "回到{object:172960}找{npc:5875}。在那裡的召喚法陣使用{item:7464}，擊敗虛空行者以束縛它。",
 
 	-- Step 58: Razor Hill
 	-- {area:362} Razor Hill
@@ -235,9 +236,9 @@ return {
 
 	-- Step 59: Spitelash naga
 	["Spitelash naga"] = "惡鞭納迦",
-	-- {area:370} Drygulch Ravine · {npc:3107} Surf Crawler
+	-- {npc:275657} Heglan Shadeeye · {area:370} Drygulch Ravine · {npc:3107} Surf Crawler
 	-- plural, as words: Spitelash Scouts = {npc:275662} Spitelash Scout
-	["Back east to the shore north of Heglan. Spitelash Scouts and Attendants hold the beach below {area:370}. Hunters: tame a {npc:3107} on the beach."] = "向東回到他北邊的海岸。{npc:275662}和其他惡鞭納迦佔據{area:370}下方的海灘。獵人：在海灘上馴服一隻{npc:3107}。",
+	["Back east to the shore north of {npc:275657}. Spitelash Scouts and Attendants hold the beach below {area:370}. Hunters: tame a {npc:3107} on the beach."] = "向東回到{npc:275657}北邊的海岸。{npc:275662}和其他惡鞭納迦佔據{area:370}下方的海灘。獵人：在海灘上馴服一隻{npc:3107}。",
 
 	-- Step 60: Razor Hill
 	-- {area:362} Razor Hill
@@ -259,7 +260,7 @@ return {
 	["{npc:3171}: {npc:3352} in {zone:1454} teaches {spell:5149}"] = "{npc:3171}：{zone:1454}的{npc:3352}教授{spell:5149}",
 
 	-- Step 63: Ormak Grimshot
-	-- {area:362} Razor Hill · {zone:1454} Orgrimmar · {area:817} Skull Rock · {npc:3352} Ormak Grimshot · {object:172958} Valley of Honor
+	-- {area:362} Razor Hill · {zone:1454} Orgrimmar · {area:817} Skull Rock · {npc:3352} Ormak Grimshot · {object:172958} Valley of Honor (no name in this language: may be words)
 	["Follow the road north from {area:362} to {zone:1454}'s main gate, just west of {area:817}. {npc:3352} stands with the hunter trainers in the {object:172958}."] = "沿著道路從{area:362}向北前往{zone:1454}的正門，就在{area:817}西邊。{npc:3352}和獵人訓練師們站在{object:172958}。",
 
 	-- Step 64: Far Watch Post
@@ -273,10 +274,10 @@ return {
 	["Thunder Lizards and Lightning Hides graze on {area:369} across the bridge; any of them can drop a {item:6486}."] = "雷霆蜥蜴和閃電蜥蜴在橋對面的{area:369}吃草；牠們都可能掉落{item:6486}。",
 
 	-- Step 67: The Crossroads
-	-- {area:379} Far Watch Post · {zone:1413} Barrens
-	["Follow the road south-west from {area:379} to the Crossroads. The {zone:1413} guide starts here."] = "沿著道路從{area:379}向西南前往十字路口。{zone:1413}指南從這裡開始。",
+	-- {area:379} Far Watch Post · {area:380} The Crossroads · {zone:1413} Barrens
+	["Follow the road south-west from {area:379} to the {area:380}. {zone:1413} guide starts here."] = "沿著道路從{area:379}向西南前往{area:380}。{zone:1413}指南從這裡開始。",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Felstalker hooves"] = "地獄捕獵者的蹄子",
 	-- ["Follow the road south-west from {area:379} to the {area:380}. {zone:1413} guide starts here."] = "沿著道路從{area:379}向西南前往{area:380}。{zone:1413}指南從這裡開始。",
+	-- ["{area:364}'s cave mouth"] = "{area:364}洞口",
 }

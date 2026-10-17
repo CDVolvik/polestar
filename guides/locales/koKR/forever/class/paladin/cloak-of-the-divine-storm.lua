@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Korean words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -25,7 +26,7 @@ return {
 	["{npc:5492} is in the Cathedral of Light."] = "{npc:5492}은(는) 빛의 대성당에 있습니다.",
 
 	-- Step 4: Ursula Deline
-	-- {object:2101} Mage Quarter · {npc:5495} Ursula Deline
+	-- {object:2101} Mage Quarter (no name in this language: may be words) · {npc:5495} Ursula Deline
 	["Katherine sends you to the warlocks in the {object:2101}; {npc:5495} speaks for them."] = "캐서린은 당신을 {object:2101}의 흑마법사들에게 보냅니다. {npc:5495}이(가) 그들을 대변합니다.",
 
 	-- Step 5: Summoner's Salt
@@ -33,8 +34,9 @@ return {
 	-- plural, as words: Blackrock Summoners = {npc:4463} Blackrock Summoner
 	["Blackrock Summoners, Champions and Trackers camp in the north-west of Redridge; they drop the {item:209778}."] = "붉은마루 산맥 북서쪽에 진을 친 검은바위부족 소환사, 용사, 추적자가 {item:209778}을(를) 떨어뜨립니다.",
 
-	-- Step 6: Back to Ursula
-	["Back to Ursula"] = "울슐라에게 돌아가기",
+	-- Step 6: Back to Ursula Deline
+	-- {npc:5495} Ursula Deline
+	["Back to {npc:5495}"] = "{npc:5495}에게 돌아가기",
 
 	-- Step 7: Motes of Mannoroth
 	["Motes of Mannoroth"] = "만노로스의 티끌",
@@ -43,11 +45,11 @@ return {
 	["{area:435} is in south-east {zone:1440}. The Mannoroc Lashers, Searing Infernals, Felguards and Legion Hounds in it drop the Motes of Mannoroth."] = "{area:435}은(는) {zone:1440} 남동쪽에 있습니다. 그 안의 만노로크 채찍마녀, 불타는 지옥불정령, 지옥군단병, 군단 지옥사냥개가 만노로스의 티끌을 떨어뜨립니다.",
 
 	-- Step 8: The Spear of Mannoroth
-	-- {object:409311} Spear of Mannoroth
+	-- {object:409311} Spear of Mannoroth (no name in this language: may be words)
 	["The {object:409311}"] = "{object:409311}",
-	-- {object:409311} Spear of Mannoroth · {area:435} Demon Fall Canyon · {object:409315} Shattered Orb
+	-- {object:409311} Spear of Mannoroth (no name in this language: may be words) · {area:435} Demon Fall Canyon · {object:409315} Shattered Orb (no name in this language: may be words)
 	["The {object:409311} stands at the east end of {area:435}. Shatter the orb on it; the {object:409315} appears beside it."] = "{object:409311}은(는) {area:435} 동쪽 끝에 서 있습니다. 그 위의 구슬을 깨뜨리면 옆에 {object:409315}이(가) 나타납니다.",
-	-- {object:409315} Shattered Orb
+	-- {object:409315} Shattered Orb (no name in this language: may be words)
 	["from the {object:409315}"] = "{object:409315}에서",
 
 	-- Step 9: Return to Delgren

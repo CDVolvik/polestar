@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Korean words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -10,7 +11,7 @@ return {
 	["An off-hand orb or a staff for your late 30s, down the felhound's or the infernal's path, your pick."] = "30대 후반에 얻는 보조장비 보주 또는 지팡이입니다. 지옥사냥개 경로와 지옥불정령 경로 중 원하는 쪽을 고르십시오.",
 
 	-- Step 1: Knowledge of the Orb of Orahil (Stormwind)
-	-- {npc:461} Demisette Cloyce · {object:2164} Slaughtered Lamb · {object:2101} Mage Quarter · {npc:6266} Menara Voidrender · {area:392} Ratchet
+	-- {npc:461} Demisette Cloyce · {object:2164} Slaughtered Lamb (no name in this language: may be words) · {object:2101} Mage Quarter (no name in this language: may be words) · {npc:6266} Menara Voidrender · {area:392} Ratchet
 	["At 35 {npc:461} in the {object:2164}, in the {object:2101}, sends you to {npc:6266} in {area:392}."] = "35레벨에 {object:2101} {object:2164}의 {npc:461}이(가) {area:392}의 {npc:6266}에게 보냅니다.",
 
 	-- Step 2: Knowledge of the Orb of Orahil (Ironforge)
@@ -18,11 +19,11 @@ return {
 	["At 35 {npc:5172} in {zone:1455} sends you to {npc:6266} in {area:392}."] = "35레벨에 {zone:1455}의 {npc:5172}이(가) {area:392}의 {npc:6266}에게 보냅니다.",
 
 	-- Step 3: Knowledge of the Orb of Orahil (Orgrimmar)
-	-- {npc:3326} Zevrost · {object:172960} Cleft of Shadow · {npc:6266} Menara Voidrender · {area:392} Ratchet
+	-- {npc:3326} Zevrost · {object:172960} Cleft of Shadow (no name in this language: may be words) · {npc:6266} Menara Voidrender · {area:392} Ratchet
 	["At 35 {npc:3326} in the {object:172960} sends you to {npc:6266} in {area:392}."] = "35레벨에 {object:172960}의 {npc:3326}이(가) {area:392}의 {npc:6266}에게 보냅니다.",
 
 	-- Step 4: Knowledge of the Orb of Orahil (Undercity)
-	-- {npc:4563} Kaal Soulreaper · {object:36082} Magic Quarter · {npc:6266} Menara Voidrender · {area:392} Ratchet · {zone:1420} Tirisfal Glades · {zone:1411} Durotar
+	-- {npc:4563} Kaal Soulreaper · {object:36082} Magic Quarter (no name in this language: may be words) · {npc:6266} Menara Voidrender · {area:392} Ratchet · {zone:1420} Tirisfal Glades · {zone:1411} Durotar
 	["At 35 {npc:4563} in the {object:36082} sends you to {npc:6266} in {area:392}. The zeppelin from {zone:1420} flies to {zone:1411}."] = "35레벨에 {object:36082}의 {npc:4563}이(가) {area:392}의 {npc:6266}에게 보냅니다. {zone:1420}에서 출발하는 비행선은 {zone:1411}(으)로 갑니다.",
 
 	-- Step 5: Menara Voidrender
@@ -62,13 +63,13 @@ return {
 	-- Step 10: The Orb of Dar'Orahil
 	-- {item:15108} Orb of Dar'Orahil
 	["The {item:15108}"] = "{item:15108}",
-	-- {area:392} Ratchet · {item:15108} Orb of Dar'Orahil
-	["Back to Menara in the tower above {area:392} with the cleansed orb. On the felhound path, wait while she completes the {item:15108}, then speak to her again."] = "정화된 보주를 가지고 {area:392} 위 탑의 미네라에게 돌아가십시오. 지옥사냥개 경로라면 그녀가 {item:15108}을(를) 완성할 때까지 기다린 뒤 다시 대화하십시오.",
+	-- {npc:6266} Menara Voidrender · {area:392} Ratchet · {item:15108} Orb of Dar'Orahil
+	["Back to {npc:6266} in the tower above {area:392} with the cleansed orb. On the felhound path, wait while she completes the {item:15108}, then speak to her again."] = "정화된 보주를 가지고 {area:392} 위 탑의 {npc:6266}에게 돌아가십시오. 지옥사냥개 경로라면 그녀가 {item:15108}을(를) 완성할 때까지 기다린 뒤 다시 대화하십시오.",
 	["Wait for the orb"] = "보주 기다리기",
 
 	-- Step 11: The Orb of Noh'Orahil
 	-- {item:15107} Orb of Noh'Orahil
 	["The {item:15107}"] = "{item:15107}",
-	-- {item:15107} Orb of Noh'Orahil
-	["On the infernal path, wait while Menara completes the {item:15107}, then speak to her again."] = "지옥불정령 경로라면 미네라가 {item:15107}을(를) 완성할 때까지 기다린 뒤 다시 대화하십시오.",
+	-- {npc:6266} Menara Voidrender · {item:15107} Orb of Noh'Orahil
+	["On the infernal path, wait while {npc:6266} completes the {item:15107}, then speak to her again."] = "지옥불정령 경로라면 {npc:6266}이(가) {item:15107}을(를) 완성할 때까지 기다린 뒤 다시 대화하십시오.",
 }

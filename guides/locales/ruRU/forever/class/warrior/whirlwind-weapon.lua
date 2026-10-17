@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Russian (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Russian words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -10,7 +11,7 @@ return {
 	["{spell:2458} at 30 and a {spell:1680} axe, sword or warhammer at 40."] = "{spell:2458} на 30-м уровне и топор, меч или боевой молот ({spell:1680}) на 40-м.",
 
 	-- Step 1: The Islander (Stormwind)
-	-- {npc:5479} Wu Shen · {object:2100} Old Town · {npc:6236} Klannoc Macleod · {area:720} Fray Island · {zone:1413} Barrens
+	-- {npc:5479} Wu Shen · {object:2100} Old Town (no name in this language: may be words) · {npc:6236} Klannoc Macleod · {area:720} Fray Island · {zone:1413} Barrens
 	["At 30, {npc:5479} in {object:2100}, beside the Pig and Whistle, sends you to {npc:6236} on {area:720} in the {zone:1413}."] = "На 30-м уровне {npc:5479} ({object:2100}, рядом с таверной «Свинья и Свисток») отправляет вас к NPC {npc:6236} ({area:720}, {zone:1413}).",
 
 	-- Step 2: The Islander (Ironforge)
@@ -18,7 +19,7 @@ return {
 	["At 30, {npc:5113}, the warrior trainer of {zone:1455}, sends you to {npc:6236} on {area:720} in the {zone:1413}."] = "На 30-м уровне {npc:5113}, учитель воинов ({zone:1455}), отправляет вас к NPC {npc:6236} ({area:720}, {zone:1413}).",
 
 	-- Step 3: The Islander (Orgrimmar)
-	-- {npc:3354} Sorek · {object:172958} Valley of Honor · {npc:6236} Klannoc Macleod · {area:720} Fray Island · {zone:1413} Barrens
+	-- {npc:3354} Sorek · {object:172958} Valley of Honor (no name in this language: may be words) · {npc:6236} Klannoc Macleod · {area:720} Fray Island · {zone:1413} Barrens
 	["At 30, {npc:3354} in the {object:172958} sends you to {npc:6236} on {area:720} in the {zone:1413}."] = "На 30-м уровне {npc:3354} ({object:172958}) отправляет вас к NPC {npc:6236} ({area:720}, {zone:1413}).",
 
 	-- Step 4: The Islander (Thunder Bluff)
@@ -63,8 +64,8 @@ return {
 	["The Bloodscalp trolls hold the north-west of {zone:1434}; they drop the {item:3901}."] = "Тролли из племени Кровавого Скальпа занимают северо-запад зоны {zone:1434}; с них падает {item:3901}.",
 
 	-- Step 11: The Summoning
-	-- {quest:1712} Cyclonian · {item:6894} Whirlwind Heart
-	["{quest:1712} waits just north of Bath'rah's camp and carries the {item:6894}. {quest:1712} is elite: grouping up is advised."] = "{quest:1712} ждет чуть севернее лагеря Бат'ры и несет {item:6894}. {quest:1712} — элита: лучше собрать группу.",
+	-- {quest:1712} Cyclonian · {npc:6176} Bath'rah the Windwatcher · {item:6894} Whirlwind Heart
+	["{quest:1712} waits just north of {npc:6176}'s camp and carries the {item:6894}. {quest:1712} is elite: grouping up is advised."] = "{quest:1712} ждет чуть севернее лагеря {npc:6176} и несет {item:6894}. {quest:1712} — элита: лучше собрать группу.",
 	-- {item:6894} Whirlwind Heart · {quest:1712} Cyclonian
 	["{item:6894} from {quest:1712}"] = "{item:6894} — {quest:1712}",
 }

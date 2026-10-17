@@ -3,13 +3,14 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in German (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in German words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
 	-- {item:18608} Benediction
 	["{item:18608} and Anathema"] = "{item:18608} und Bannfluch",
-	-- {item:18608} Benediction
-	["Eris's splinter and the two Eyes make {item:18608}, the epic priest staff that turns into Anathema."] = "Der Splitter von Eris und die beiden Augen ergeben {item:18608}, den epischen Priesterstab, der sich in Bannfluch verwandelt.",
+	-- {npc:14494} Eris Havenfire · {item:18608} Benediction
+	["{npc:14494}'s splinter and the two Eyes make {item:18608}, the epic priest staff that turns into Anathema."] = "Der Splitter von {npc:14494} und die beiden Augen ergeben {item:18608}, den epischen Priesterstab, der sich in Bannfluch verwandelt.",
 
 	-- Step 1: The Eye of Shadow
 	-- {item:18646} The Eye of Divinity · {object:179703} Cache of the Firelord · {npc:12018} Majordomo Executus · {area:2717} Molten Core · {item:18665} The Eye of Shadow · {npc:12397} Lord Kazzak

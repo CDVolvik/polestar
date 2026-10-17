@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Korean words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Stonard
@@ -40,18 +41,18 @@ return {
 	["for the {npc:5598} in the {zone:1425}, around level 48"] = "48레벨쯤 {zone:1425}의 {npc:5598}에게",
 
 	-- Step 11: Fly to Grom'gol
-	-- {object:3202} Grom'gol
+	-- {object:3202} Grom'gol (no name in this language: may be words)
 	["Fly to {object:3202}"] = "{object:3202}(으)로 날아가기",
 
 	-- Step 12: Zeppelin to Orgrimmar
 	-- {zone:1454} Orgrimmar
 	["Zeppelin to {zone:1454}"] = "{zone:1454}행 비행선",
-	-- {zone:1454} Orgrimmar · {object:3202} Grom'gol
+	-- {zone:1454} Orgrimmar · {object:3202} Grom'gol (no name in this language: may be words)
 	["The zeppelin to {zone:1454} leaves from the tower beside {object:3202}; it lands just north-east of {zone:1454}'s main gate."] = "{zone:1454}행 비행선은 {object:3202} 옆의 탑에서 출발하며, {zone:1454} 정문 바로 북동쪽에 도착합니다.",
 	["Zeppelin tower"] = "비행선 탑",
 
 	-- Step 13: Orgrimmar
-	-- {object:172958} Valley of Honor · {object:172960} Cleft of Shadow · {object:172961} Valley of Spirits
+	-- {object:172958} Valley of Honor (no name in this language: may be words) · {object:172960} Cleft of Shadow (no name in this language: may be words) · {object:172961} Valley of Spirits (no name in this language: may be words)
 	["{object:172958}, then the {object:172960} and the {object:172961}."] = "{object:172958}, 그다음 {object:172960}와(과) {object:172961}.",
 
 	-- Step 14: Thunder Bluff
@@ -101,12 +102,10 @@ return {
 	["South of the vale the Frayfeather hippogryphs roost on the slopes; nearly every one drops sinew and metallic fragments."] = "골짜기 남쪽 비탈에 공작날개 히포그리프가 둥지를 틀고 있습니다. 거의 모두 힘줄과 금속 파편을 떨어뜨립니다.",
 
 	-- Step 25: Zorbin Fandazzle
-	-- {area:1108} Forgotten Coast
-	["Ride north-west to the {area:1108}; Zorbin waits on the dock."] = "북서쪽의 {area:1108}(으)로 가세요. 조브린이 부두에서 기다립니다.",
+	-- {area:1108} Forgotten Coast · {npc:14637} Zorbin Fandazzle
+	["Ride north-west to the {area:1108}; {npc:14637} waits on the dock."] = "북서쪽의 {area:1108}(으)로 가세요. {npc:14637}이(가) 부두에서 기다립니다.",
 
-	-- Step 26: The Forgotten Coast
-	-- {area:1108} Forgotten Coast
-	["The {area:1108}"] = "{area:1108}",
+	-- Step 26: Forgotten Coast
 	-- {item:18904} Zorbin's Ultra-Shrinker
 	["Sea elementals and sea sprays wash along the shore around the dock. Zap the giants with {item:18904} first: shrunken, they lose their elite strength. Shore striders wade in the water; the land walkers and cliff giants roam the hills further north."] = "부두 주변 해안에는 바다 정령과 바다 물보라 정령이 밀려다닙니다. 거인에게는 먼저 {item:18904}을(를) 쏘세요. 작아지면 정예의 힘을 잃습니다. 성큼걸이 해안거인은 물속을 걷고, 평지거인과 절벽거인은 더 북쪽 언덕을 돌아다닙니다.",
 
@@ -124,4 +123,7 @@ return {
 	-- Step 31: Camp Mojache
 	-- {area:976} Gadgetzan
 	["Ride back east to the camp. Stay here: the next guide starts with the flight to {area:976}."] = "동쪽 야영지로 돌아가세요. 여기 머무르세요. 다음 가이드는 {area:976}행 비행으로 시작합니다.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["The {area:1108}"] = "{area:1108}",
 }

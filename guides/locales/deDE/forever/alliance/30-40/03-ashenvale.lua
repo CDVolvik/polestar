@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in German (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in German words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Astranaar
@@ -94,7 +95,8 @@ return {
 	["Take the boat to {area:150} from {area:442}'s docks."] = "{area:150}: Nimm das Boot vom Steg in {area:442}.",
 
 	-- Step 31: Glorin Steelbrow
-	["Glorin stands on the upper floor of Menethil's keep."] = "Glorin steht im oberen Stockwerk der Burg von Menethil.",
+	-- {npc:1217} Glorin Steelbrow
+	["{npc:1217} stands on the upper floor of Menethil's keep."] = "{npc:1217} steht im oberen Stockwerk der Burg von Menethil.",
 
 	-- Step 32: Waterlogged Chest
 	["The wreck of the Flying Osprey lies in the shallows south of the keep."] = "Das Wrack der Flying Osprey liegt im seichten Wasser südlich der Burg.",
@@ -105,10 +107,9 @@ return {
 	["The Bluegill murlocs on the beach south-west of Menethil carry the ingots."] = "Die Murlocs der Blaukiemen am Strand südwestlich von Menethil tragen die Blöcke.",
 
 	-- Step 35: Deepwater Tavern
-	-- {npc:5082} Vincent Hyal · {npc:4963} Mikhail · {npc:1480} Caitlin Grassman
-	["{npc:5082}, {npc:4963} and Tapoke Jahn are all at Menethil's inn; Tapoke fights you when you talk to {npc:4963}, but gives up once beaten. {npc:1480} stands a short walk north-east of the inn."] = "{npc:5082}, {npc:4963} und Tapoke Jahn sind alle im Gasthaus von Menethil; Tapoke greift dich an, wenn du mit {npc:4963} sprichst, gibt aber auf, sobald er besiegt ist. {npc:1480} steht ein kurzes Stück nordöstlich des Gasthauses.",
+	-- {npc:5082} Vincent Hyal · {npc:4963} Mikhail · {npc:4962} Tapoke "Slim" Jahn · {npc:1480} Caitlin Grassman
+	["{npc:5082}, {npc:4963} and Tapoke Jahn are all at Menethil's inn; {npc:4962} fights you when you talk to {npc:4963}, but gives up once beaten. {npc:1480} stands a short walk north-east of the inn."] = "{npc:5082}, {npc:4963} und {npc:4962} Jahn sind alle im Gasthaus von Menethil; Tapoke greift dich an, wenn du mit {npc:4963} sprichst, gibt aber auf, sobald er besiegt ist. {npc:1480} steht ein kurzes Stück nordöstlich des Gasthauses.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Geltharis"] = "Geltharis",
-	-- ["Geltharis leads the {area:429} satyrs; he carries the branch."] = "Geltharis führt die Satyrn von {area:429} an; er trägt den Zweig.",
 }

@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Spanish (Spain) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Spanish (Spain) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Tarren Mill
@@ -16,8 +17,8 @@ return {
 	["Fill the {item:7768} at the {object:107045} beside the inn"] = "Llena {item:7768} en {object:107045} junto a la posada",
 
 	-- Step 2: Serge Hinott
-	-- {npc:2391} Serge Hinott · {area:272} Tarren Mill
-	["Only if Gallywix fell in the Barrens (Mission: Possible But Not Probable): {npc:2391} stands in {area:272}. Wait beside him while he brews the cure, then take your reward: Poisons."] = "Solo si Gallywix cayó en Los Baldíos (Misión: posible, pero no probable): {npc:2391} está en {area:272}. Espera a su lado mientras prepara la cura y recoge tu recompensa: Venenos.",
+	-- {zone:1413} The Barrens · {npc:2391} Serge Hinott · {area:272} Tarren Mill
+	["Only if Gallywix fell in the {zone:1413} (Mission: Possible But Not Probable): {npc:2391} stands in {area:272}. Wait beside him while he brews the cure, then take your reward: Poisons."] = "Solo si Gallywix cayó en {zone:1413} (Misión: posible, pero no probable): {npc:2391} está en {area:272}. Espera a su lado mientras prepara la cura y recoge tu recompensa: Venenos.",
 	-- {npc:2391} Serge Hinott
 	["{npc:2391}: Poisons"] = "{npc:2391}: Venenos",
 	["No Gallywix yet? The Class guide Poisons (Horde) runs the chain from Shenthul again, with a group for Gallywix."] = "¿Aún no has acabado con Gallywix? La guía de clase Venenos (Horda) repite la cadena desde Shenthul, con un grupo para Gallywix.",
@@ -124,21 +125,17 @@ return {
 	["Hearth to {area:378} and fly to {area:392}. {quest:874} camps on the shore north of {area:392}."] = "Usa la Piedra de hogar para ir a {area:378} y vuela a {area:392}. {quest:874} acampa en la orilla al norte de {area:392}.",
 
 	-- Step 28: Isha Awak
-	-- {quest:873} Isha Awak · {area:391} Merchant Coast
-	["{quest:873}, a big threshadon, swims in the shallows off the {area:391}, east of Mahren."] = "{quest:873}, un gran trillanodonte, nada en las aguas poco profundas de {area:391}, al este de Mahren Videncielo.",
+	-- {quest:873} Isha Awak · {area:391} Merchant Coast · {npc:3388} Mahren Skyseer
+	["{quest:873}, a big threshadon, swims in the shallows off the {area:391}, east of {npc:3388}."] = "{quest:873}, un gran trillanodonte, nada en las aguas poco profundas de {area:391}, al este de {npc:3388}.",
 
 	-- Step 29: Ratchet
 	-- {npc:3442} Sputtervalve · {area:392} Ratchet
 	["{npc:3442}, by the docks in {area:392}"] = "{npc:3442}, junto a los muelles de {area:392}",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["No Gallywix yet? The Class guide Poisons (Horde) runs the chain from Shenthul again, with a group for Gallywix."] = "¿Aún no has acabado con Gallywix? La guía de clase Venenos (Horda) repite la cadena desde Shenthul, con un grupo para Gallywix.",
 	-- ["No Gallywix yet? The Class guide {spell:2842} (Horde) runs the chain from Shenthul again, with a group for Gallywix."] = "¿Aún no has acabado con Gallywix? La guía de clase {spell:2842} (Horda) repite la cadena desde Shenthul, con un grupo para Gallywix.",
 	-- ["Only if Gallywix fell in the {zone:1413} (Mission: Possible But Not Probable): {npc:2391} stands in {area:272}. Wait beside him while he brews the cure, then take your reward: Poisons."] = "Solo si Gallywix cayó en {zone:1413} (Misión: posible, pero no probable): {npc:2391} está en {area:272}. Espera a su lado mientras prepara la cura y recoge tu recompensa: Venenos.",
 	-- ["Only if Gallywix fell in the {zone:1413} (Mission: Possible But Not Probable): {npc:2391} stands in {area:272}. Wait beside him while he brews the cure, then take your reward: {spell:2842}."] = "Solo si Gallywix cayó en {zone:1413} (Misión: posible, pero no probable): {npc:2391} está en {area:272}. Espera a su lado mientras prepara la cura y recoge tu recompensa: {spell:2842}.",
-	-- ["South-west of {area:359}, {npc:12576} waits at the top of the {area:1718}."] = "Al suroeste de {area:359}, {npc:12576} espera en lo alto de {area:1718}.",
 	-- ["The smithy stands in the middle of {area:287} town. {npc:2404} and his apprentices work at the forge; the {item:3564} is stacked beside it. {npc:2449} walks the street north of it."] = "La herrería está en medio del pueblo de {area:287}. {npc:2404} y sus aprendices trabajan en la forja; {item:3564} está apilado al lado. {npc:2449} pasea por la calle al norte.",
-	-- ["West of {area:272}, Gray Bears, Forest Moss Creepers and Starving Mountain Lions roam the hills on the way down to the farms. The creepers drop {item:3477} rarely; you need only one."] = "Al oeste de {area:272}, osos grises, trepamusgos del bosque y leones monteses hambrientos recorren las colinas de bajada a las granjas. Los trepamusgos sueltan {item:3477} rara vez; solo necesitas uno.",
 	-- ["{npc:2055}, in the {object:36072}"] = "{npc:2055}, en {object:36072}",
-	-- ["{npc:2391}: Poisons"] = "{npc:2391}: Venenos",
 }

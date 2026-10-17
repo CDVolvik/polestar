@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (simplified) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (simplified) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Kadrak
@@ -20,8 +21,8 @@ return {
 	-- Step 4: Night Run
 	-- {npc:12696} Senani Thunderheart · {area:428} Night Run
 	["{npc:12696} stands at {area:428}, the Warsong camp just north-east of Splintertree, beside the hunt board."] = "{npc:12696}站在{area:428}的狩猎告示板旁，那是碎木岗哨东北方不远的战歌营地。",
-	-- {zone:1440} Ashenvale
-	["Senani's hunt targets (Ursangous, Shadumbra, Sharptalon) are for the next {zone:1440} visit, at 27."] = "塞娜尼的狩猎目标（乌萨苟斯、萨杜布拉、沙普塔隆）留到27级下次来{zone:1440}时。",
+	-- {npc:12696} Senani Thunderheart · {zone:1440} Ashenvale
+	["{npc:12696}'s hunt targets (Ursangous, Shadumbra, Sharptalon) are for the next {zone:1440} visit, at 27."] = "{npc:12696}的狩猎目标（乌萨苟斯、萨杜布拉、沙普塔隆）留到27级下次来{zone:1440}时。",
 
 	-- Step 5: Warsong Outrider
 	-- {npc:12864} Warsong Outrider · {area:428} Night Run · {area:430} Satyrnaar
@@ -33,8 +34,8 @@ return {
 	["On the ride west, {npc:267214} is stuck in a ravine south of the main road, south-east of {area:415}. Shadowhorn Stags and Ashenvale Bears roam the woods all around it."] = "向西骑行时，{npc:267214}被困在主路南边的一条峡谷里，位于{area:415}东南。黑角鹿和灰谷熊在峡谷周围的林子里游荡。",
 
 	-- Step 7: A Void Path
-	-- {npc:271181} Eye of Kilrogg
-	["Steer Va'xug's {npc:271181} out of the ravine to the main road within four minutes; if the channel breaks, ask Va'xug again."] = "在四分钟内操控Va'xug的{npc:271181}离开峡谷到达主路；如果引导中断，再找Va'xug一次。",
+	-- {npc:267214} Va'xug Firefure · {npc:271181} Eye of Kilrogg
+	["Steer {npc:267214}'s {npc:271181} out of the ravine to the main road within four minutes; if the channel breaks, ask {npc:267214} again."] = "在四分钟内操控{npc:267214}的{npc:271181}离开峡谷到达主路；如果引导中断，再找{npc:267214}一次。",
 	-- {npc:271181} Eye of Kilrogg
 	["{npc:271181}, on the road"] = "{npc:271181}，在路上",
 
@@ -71,7 +72,7 @@ return {
 	-- Step 16: Sun Rock Retreat
 	-- {area:460} Sun Rock Retreat
 	["Follow the road west to {area:460}."] = "沿道路向西前往{area:460}。",
-	-- {npc:11860} Maggran Earthbinder · {object:19844} Great Lift
+	-- {npc:11860} Maggran Earthbinder · {object:19844} Great Lift (no name in this language: may be words)
 	["{npc:11860}: Grish is at the {object:19844}, in the next guide"] = "{npc:11860}：瑞什在{object:19844}，下一份指南",
 	-- {npc:11860} Maggran Earthbinder
 	-- plural, as words: Glittering Sunstones = {item:277936} Glittering Sunstone
@@ -94,13 +95,13 @@ return {
 	["Follow the road north toward {area:467}. Antlered Coursers graze along the way; the Sap Beasts, Twilight Runners and Fey Dragons roam the woods below the Peak, and the Cenarion druids hold the grove there."] = "沿道路向北朝{area:467}前进。巨角鹿沿途吃草；腐蚀兽、夜行虎和灵龙在山峰下方的树林中游荡，塞纳里奥德鲁伊占据那里的树林。",
 
 	-- Step 19: Sun Rock Retreat
-	-- {zone:1440} Ashenvale
-	["Braelyn's next quest, Ordanus, is on the Alliance side of {zone:1440}. Skip it."] = "布莱林的下一个任务“奥达努斯”在{zone:1440}的联盟一方。跳过。",
+	-- {npc:4198} Braelyn Firehand · {zone:1440} Ashenvale
+	["{npc:4198}'s next quest, Ordanus, is on the Alliance side of {zone:1440}. Skip it."] = "{npc:4198}的下一个任务“奥达努斯”在{zone:1440}的联盟一方。跳过。",
 
 	-- Step 20: The Charred Vale
-	-- {item:16312} Incendrites
+	-- {area:465} The Charred Vale · {item:16312} Incendrites
 	-- plural, as words: Gaea Seeds = {item:16205} Gaea Seed
-	["South-west of Sun Rock lies the burned Charred Vale. Plant the Gaea Seeds in the dirt mounds on the valley floor; the fire elementals drop {item:16312}. Bloodfury Harpies and Ambushers nest on the north side, Slayers and Roguefeathers to the south."] = "烈日石居西南方是烧焦的焦炭谷。把{item:16205}种在谷底的土堆里；火元素掉落{item:16312}。血怒鹰身人和血怒伏击者在北侧筑巢，血怒杀戮者和血怒游荡者在南侧。",
+	["South-west of Sun Rock lies the burned {area:465}. Plant the Gaea Seeds in the dirt mounds on the valley floor; the fire elementals drop {item:16312}. Bloodfury Harpies and Ambushers nest on the north side, Slayers and Roguefeathers to the south."] = "烈日石居西南方是烧焦的{area:465}。把{item:16205}种在谷底的土堆里；火元素掉落{item:16312}。血怒鹰身人和血怒伏击者在北侧筑巢，血怒杀戮者和血怒游荡者在南侧。",
 	-- plural, as words: Gaea Dirt Mounds = {object:177929} Gaea Dirt Mound
 	["Gaea Dirt Mounds"] = "盖亚土堆",
 	-- {item:277936} Glittering Sunstone
@@ -119,13 +120,13 @@ return {
 	-- Step 23: To the Undercity
 	-- {area:1497} Undercity
 	["To the {area:1497}"] = "前往{area:1497}",
-	-- {area:380} Crossroads · {zone:1454} Orgrimmar · {zone:1420} Tirisfal Glades · {area:1497} Undercity · {area:153} Ruins of Lordaeron · {object:36078} Trade Quarter
+	-- {area:380} Crossroads · {zone:1454} Orgrimmar · {zone:1420} Tirisfal Glades · {area:1497} Undercity · {area:153} Ruins of Lordaeron · {object:36078} Trade Quarter (no name in this language: may be words)
 	["Ride east to the {area:380} and fly to {zone:1454}. Take the zeppelin from the towers outside {zone:1454} to {zone:1420}; the {area:1497} lies below the {area:153}. The bat handler is in the {object:36078}."] = "向东骑到{area:380}，飞往{zone:1454}。从{zone:1454}外的塔楼乘飞艇前往{zone:1420}；{area:1497}在{area:153}下方。蝙蝠管理员在{object:36078}。",
-	-- {npc:10181} Lady Sylvanas Windrunner · {object:36126} Royal Quarter · {quest:93739} Exploring the Horde
+	-- {npc:10181} Lady Sylvanas Windrunner · {object:36126} Royal Quarter (no name in this language: may be words) · {quest:93739} Exploring the Horde
 	["Speak with {npc:10181}, in the {object:36126}: {quest:93739}"] = "与{object:36126}的{npc:10181}交谈：{quest:93739}",
 
 	-- Step 24: Aelthalyste
-	-- {npc:4606} Aelthalyste · {object:36070} War Quarter
+	-- {npc:4606} Aelthalyste · {object:36070} War Quarter (no name in this language: may be words)
 	["{npc:4606} stands in the {object:36070}."] = "{npc:4606}站在{object:36070}。",
 
 	-- Step 25: Beren's Peril

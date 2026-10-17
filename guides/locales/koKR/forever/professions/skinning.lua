@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Korean words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Learn Skinning
@@ -64,9 +65,9 @@ return {
 
 	-- Step 8: Journeyman Skinning
 	-- {skill:393} Skinning
-	["Journeyman {skill:393}"] = "중급 {skill:393}",
+	["Journeyman {skill:393}"] = "수습 {skill:393}",
 	-- {skill:393} Skinning
-	["Journeyman {skill:393} raises the cap to 150; it needs skill 50 and character level 10. The arrow picks the nearest {skill:393} trainer of your faction."] = "중급 {skill:393}은(는) 최대 숙련도를 150(으)로 올립니다. 숙련도 50, 캐릭터 레벨 10이(가) 필요합니다. 화살표가 진영의 가장 가까운 {skill:393} 상급자를 가리킵니다.",
+	["Journeyman {skill:393} raises the cap to 150; it needs skill 50 and character level 10. The arrow picks the nearest {skill:393} trainer of your faction."] = "수습 {skill:393}은(는) 최대 숙련도를 150(으)로 올립니다. 숙련도 50, 캐릭터 레벨 10이(가) 필요합니다. 화살표가 진영의 가장 가까운 {skill:393} 상급자를 가리킵니다.",
 
 	-- Step 9: Beasts 10-16: Westfall (50-100)
 	-- {zone:1436} Westfall
@@ -140,9 +141,9 @@ return {
 
 	-- Step 17: Expert Skinning
 	-- {skill:393} Skinning
-	["Expert {skill:393}"] = "고급 {skill:393}",
+	["Expert {skill:393}"] = "숙련 {skill:393}",
 	-- {skill:393} Skinning
-	["Expert {skill:393} raises the cap to 225; it needs skill 125 and character level 20. The arrow picks the nearest {skill:393} trainer of your faction."] = "고급 {skill:393}은(는) 최대 숙련도를 225(으)로 올립니다. 숙련도 125, 캐릭터 레벨 20이(가) 필요합니다. 화살표가 진영의 가장 가까운 {skill:393} 상급자를 가리킵니다.",
+	["Expert {skill:393} raises the cap to 225; it needs skill 125 and character level 20. The arrow picks the nearest {skill:393} trainer of your faction."] = "숙련 {skill:393}은(는) 최대 숙련도를 225(으)로 올립니다. 숙련도 125, 캐릭터 레벨 20이(가) 필요합니다. 화살표가 진영의 가장 가까운 {skill:393} 상급자를 가리킵니다.",
 
 	-- Step 18: Beasts 21-29: Wetlands (125-150)
 	-- {zone:1437} Wetlands

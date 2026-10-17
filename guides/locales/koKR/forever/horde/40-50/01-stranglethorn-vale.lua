@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Korean words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Fly to Ratchet
@@ -34,8 +35,8 @@ return {
 	-- Step 6: The Wild Shore
 	-- {area:43} Wild Shore
 	["The {area:43}"] = "{area:43}",
-	-- {area:43} Wild Shore
-	["South of Booty Bay the Bloodsail swashbucklers camp on the {area:43}; the charts and the orders lie in their tents. Any Bloodsail can carry snuff and Dizzy's eye, so keep killing until you have both."] = "무법항 남쪽, {area:43}에 붉은해적단 칼잡이가 야영하고 있습니다. 해도와 명령서는 천막 안에 있습니다. 붉은해적단은 누구나 코담배와 디지의 눈을 지니고 있을 수 있으니, 둘 다 얻을 때까지 계속 처치하세요.",
+	-- {area:43} Wild Shore · {npc:2493} Dizzy One-Eye
+	["South of Booty Bay the Bloodsail swashbucklers camp on the {area:43}; the charts and the orders lie in their tents. Any Bloodsail can carry snuff and {npc:2493}'s eye, so keep killing until you have both."] = "무법항 남쪽, {area:43}에 붉은해적단 칼잡이가 야영하고 있습니다. 해도와 명령서는 천막 안에 있습니다. 붉은해적단은 누구나 코담배와 {npc:2493}의 눈을 지니고 있을 수 있으니, 둘 다 얻을 때까지 계속 처치하세요.",
 
 	-- Step 8: The Bloodsail ships
 	["The Bloodsail ships"] = "붉은해적단 배",
@@ -53,7 +54,8 @@ return {
 	["The gorillas roam the valley around Unbagwa. The elders drop the giblets; any of them can drop a fang."] = "고릴라는 운바그와 주변 골짜기를 돌아다닙니다. 덩치큰 고릴라가 내장을 떨어뜨리고, 모든 고릴라가 송곳니를 떨어뜨릴 수 있습니다.",
 
 	-- Step 12: Mokk the Savage
-	["Hand Unbagwa the fangs and stay by him: he calls three waves of gorillas, then Mokk. Fight them one at a time."] = "운바그와에게 송곳니를 건네고 곁에 있으세요. 그가 고릴라 세 무리를 부른 뒤 모크를 부릅니다. 한 번에 하나씩 싸우세요.",
+	-- {npc:1514} Mokk the Savage
+	["Hand Unbagwa the fangs and stay by him: he calls three waves of gorillas, then {npc:1514}. Fight them one at a time."] = "운바그와에게 송곳니를 건네고 곁에 있으세요. 그가 고릴라 세 무리를 부른 뒤 {npc:1514}을(를) 부릅니다. 한 번에 하나씩 싸우세요.",
 
 	-- Step 13: Zanzil's camps
 	["Zanzil's camps"] = "잔질의 야영지",
@@ -64,7 +66,7 @@ return {
 	["Further north, the goblins of the Venture Co. dig at the mine east of the road; miners, foremen, surveyors and tinkerers all drop the crystals."] = "더 북쪽, 길 동쪽 광산에서 투자개발회사 고블린이 채굴하고 있습니다. 광부, 현장감독, 감시관, 땜장이 모두 수정을 떨어뜨립니다.",
 
 	-- Step 15: Grom'gol Base Camp
-	-- {object:3202} Grom'gol
+	-- {object:3202} Grom'gol (no name in this language: may be words)
 	["Ride north-west to {object:3202}."] = "북서쪽의 {object:3202}(으)로 가세요.",
 	-- {zone:1425} Hinterlands
 	["for later: the {zone:1425}, around level 48"] = "나중에: 48레벨쯤 {zone:1425}",
@@ -74,18 +76,18 @@ return {
 
 	-- Step 17: Zul'Kunda
 	["Zul'Kunda"] = "줄쿤다",
-	-- {npc:1061} Gan'zulah
-	["West of the expedition, the Bloodscalp chiefs {npc:1061} and Nezzliok stand together in the ruins of Zul'Kunda. Clear their guards first, then pull them."] = "원정대 서쪽, 줄쿤다의 폐허에 붉은머리부족 족장 {npc:1061}와(과) 네즐뤼크가 함께 서 있습니다. 먼저 호위병을 처치한 뒤 끌어오세요.",
+	-- {npc:1061} Gan'zulah · {npc:1062} Nezzliok the Dire
+	["West of the expedition, the Bloodscalp chiefs {npc:1061} and {npc:1062} stand together in the ruins of Zul'Kunda. Clear their guards first, then pull them."] = "원정대 서쪽, 줄쿤다의 폐허에 붉은머리부족 족장 {npc:1061}와(과) {npc:1062}이(가) 함께 서 있습니다. 먼저 호위병을 처치한 뒤 끌어오세요.",
 
 	-- Step 18: Hearth to Grom'gol
-	-- {object:3202} Grom'gol
+	-- {object:3202} Grom'gol (no name in this language: may be words)
 	["Hearth to {object:3202}"] = "귀환석으로 {object:3202}에 가기",
 	-- {object:2076} Bubbling Cauldron · {npc:2497} Nimboya
 	["the {object:2076}, beside {npc:2497}"] = "{npc:2497} 옆의 {object:2076}",
 
 	-- Step 19: Jungle stalkers
 	["Jungle stalkers"] = "줄무늬정글랩터",
-	-- {object:3202} Grom'gol
+	-- {object:3202} Grom'gol (no name in this language: may be words)
 	["The stalker raptors hunt the jungle south of {object:3202}, out towards the west coast."] = "랩터는 {object:3202} 남쪽 정글에서 서쪽 해안 쪽으로 사냥합니다.",
 
 	-- Step 20: Naga shore and the Holy Spring
@@ -100,8 +102,8 @@ return {
 
 	-- Step 22: Pirate ghosts
 	["Pirate ghosts"] = "해적 유령",
-	-- {area:35} Booty Bay
-	["The three ghostly pirates haunt the jungle north of {area:35}, near Zanzil's camps: Maury and Jon-Jon stand together, Chucky further east."] = "해적 유령 셋은 {area:35} 북쪽, 잔질의 야영지 근처 정글에 출몰합니다. 마우리와 존존은 함께 있고, 처키는 더 동쪽에 있습니다.",
+	-- {area:35} Booty Bay · {npc:2535} Maury "Club Foot" Wilkins · {npc:2536} Jon-Jon the Crow · {npc:2537} Chucky "Ten Thumbs"
+	["The three ghostly pirates haunt the jungle north of {area:35}, near Zanzil's camps: {npc:2535} and {npc:2536} stand together, {npc:2537} further east."] = "해적 유령 셋은 {area:35} 북쪽, 잔질의 야영지 근처 정글에 출몰합니다. {npc:2535}와(과) {npc:2536}은(는) 함께 있고, {npc:2537}은(는) 더 동쪽에 있습니다.",
 
 	-- Step 23: Zul'Mamwe
 	["Zul'Mamwe"] = "줄맘웨",
@@ -113,11 +115,11 @@ return {
 	["The next trophy skulls stand in the small ruins just north of the warriors' camp."] = "다음 전리품 해골은 전사 야영지 바로 북쪽의 작은 폐허에 있습니다.",
 
 	-- Step 25: Ziata'jai Ruins
-	-- {object:3202} Grom'gol
+	-- {object:3202} Grom'gol (no name in this language: may be words)
 	["The last skulls are in the ruins a short ride west, on the way back to {object:3202}."] = "마지막 해골은 {object:3202}(으)로 돌아가는 길에, 조금 서쪽의 폐허에 있습니다.",
 
 	-- Step 26: Grom'gol Base Camp
-	-- {object:3202} Grom'gol
+	-- {object:3202} Grom'gol (no name in this language: may be words)
 	["Ride west to {object:3202}."] = "서쪽의 {object:3202}(으)로 가세요.",
 	-- {object:2076} Bubbling Cauldron
 	["the {object:2076}"] = "{object:2076}",
@@ -127,7 +129,7 @@ return {
 	["Hearth to {area:35}"] = "귀환석으로 {area:35}에 가기",
 
 	-- Step 28: Fly to Grom'gol
-	-- {object:3202} Grom'gol
+	-- {object:3202} Grom'gol (no name in this language: may be words)
 	["Fly to {object:3202}"] = "{object:3202}(으)로 날아가기",
 
 	-- Step 29: Nesingwary's Expedition
@@ -162,12 +164,10 @@ return {
 
 	-- Step 36: Sawtooth crocolisks
 	["Sawtooth crocolisks"] = "톱니악어",
-	-- {area:75} Stonard
-	["The crocolisks wallow in the pools around Galen's camp and south towards {area:75}; about one in four drops a flank."] = "악어는 갈렌의 야영지 주변 웅덩이와 남쪽 {area:75} 쪽에서 뒹굴고 있습니다. 네 마리 중 한 마리 정도가 옆구리살을 떨어뜨립니다.",
+	-- {npc:5391} Galen Goodward · {area:75} Stonard
+	["The crocolisks wallow in the pools around {npc:5391}'s camp and south towards {area:75}; about one in four drops a flank."] = "악어는 {npc:5391}의 야영지 주변 웅덩이와 남쪽 {area:75} 쪽에서 뒹굴고 있습니다. 네 마리 중 한 마리 정도가 옆구리살을 떨어뜨립니다.",
 
-	-- Step 37: The Harborage
-	-- {area:657} Harborage
-	["The {area:657}"] = "{area:657}",
+	-- Step 37: Harborage
 	-- {area:657} Harborage · {zone:1430} Deadwind Pass
 	["Ride west along the road to the draenei camp at the {area:657}, near the way in from {zone:1430}."] = "길을 따라 서쪽으로 {zone:1430}에서 들어오는 길 근처, {area:657}의 드레나이 야영지로 가세요.",
 
@@ -184,5 +184,5 @@ return {
 	["The next guide starts here and takes you to {zone:1446}."] = "다음 가이드는 여기서 시작해 {zone:1446}(으)로 안내합니다.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["South of {area:35} the Bloodsail swashbucklers camp on the {area:43}; the charts and the orders lie in their tents. Any Bloodsail can carry snuff and Dizzy's eye, so keep killing until you have both."] = "{area:35} 남쪽, {area:43}에 붉은해적단 칼잡이가 야영하고 있습니다. 해도와 명령서는 천막 안에 있습니다. 붉은해적단은 누구나 코담배와 디지의 눈을 지니고 있을 수 있으니, 둘 다 얻을 때까지 계속 처치하세요.",
+	-- ["The {area:657}"] = "{area:657}",
 }

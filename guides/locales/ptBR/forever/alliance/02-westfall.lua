@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Portuguese (Brazil) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Portuguese (Brazil) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Sentinel Hill
@@ -12,8 +13,8 @@ return {
 	["{npc:523}; skip the free flight it offers"] = "{npc:523}; pule o voo grátis que ele oferece",
 
 	-- Step 2: Saldean's Farm
-	-- {npc:233} Farmer Saldean · {npc:253395} Ozwin Ironsprocket
-	["Follow the road north. {npc:233} stands outside, Salma in the house, {npc:253395} in the barn to the west."] = "Siga a estrada para o norte. {npc:233} fica do lado de fora, Salma dentro da casa e {npc:253395} no celeiro a oeste.",
+	-- {npc:233} Farmer Saldean · {npc:235} Salma Saldean · {npc:253395} Ozwin Ironsprocket
+	["Follow the road north. {npc:233} stands outside, {npc:235} in the house, {npc:253395} in the barn to the west."] = "Siga a estrada para o norte. {npc:233} fica do lado de fora, {npc:235} dentro da casa e {npc:253395} no celeiro a oeste.",
 
 	-- Step 3: The Jansen Stead
 	["Further north along the road. The Furlbrows sit by their burned farm. Collect the oats from the Sacks of Oats in the fields as you go and fill the vial at the stead's well."] = "Mais ao norte pela estrada. Os Taturana estão sentados junto à fazenda incendiada. No caminho, colete a aveia dos Sacos de Aveia nos campos e encha o frasco no poço da propriedade.",
@@ -62,8 +63,9 @@ return {
 
 	-- Step 9: The gnoll hills
 	["The gnoll hills"] = "As colinas dos gnolls",
+	-- {area:916} The Jansen Stead
 	-- plural, as words: Riverpaw Gnolls = {npc:117} Riverpaw Gnoll
-	["Riverpaw Gnolls and Scouts roam the hills between the coast and the Jansen Stead."] = "Gnolls e Batedores Pata Molhada vagam pelas colinas entre o litoral e o Sítio dos Jansen.",
+	["Riverpaw Gnolls and Scouts roam the hills between the coast and the {area:916}."] = "Gnolls e Batedores Pata Molhada vagam pelas colinas entre o litoral e o {area:916}.",
 	-- plural, as words: Gnoll Paws = {item:725} Gnoll Paw
 	["Gnoll Paws"] = "Patas de Gnoll",
 
@@ -91,11 +93,11 @@ return {
 	["Hearthstone on cooldown? Follow the road north-east."] = "Pedra de Regresso em recarga? Siga a estrada para o nordeste.",
 	-- {npc:266} Wiley the Black · {area:69} Lakeshire
 	["For {npc:266} in {area:69}, Redridge"] = "Para {npc:266} em {area:69}, Montanhas Cristarrubra",
-	-- {npc:11026} Sprite Jumpsprocket · {zone:1453} Stormwind · {object:28027} Dwarven District
+	-- {npc:11026} Sprite Jumpsprocket · {zone:1453} Stormwind · {object:28027} Dwarven District (no name in this language: may be words)
 	["For {npc:11026} in {zone:1453}'s {object:28027}"] = "Para {npc:11026} em {object:28027}, {zone:1453}",
 
 	-- Step 17: Defensive Stance
-	-- {zone:1453} Stormwind · {npc:5480} Ilsa Corbin · {object:2100} Old Town · {npc:6089} Harry Burlguard · {npc:6090} Bartleby · {object:2152} Pig and Whistle Tavern
+	-- {zone:1453} Stormwind · {npc:5480} Ilsa Corbin · {object:2100} Old Town (no name in this language: may be words) · {npc:6089} Harry Burlguard · {npc:6090} Bartleby · {object:2152} Pig and Whistle Tavern (no name in this language: may be words)
 	["Fly or ride to {zone:1453}. {npc:5480} trains warriors in {object:2100}; {npc:6089} and {npc:6090} stand together by the {object:2152} there. {npc:6090} fights you for his mug."] = "Voe ou cavalgue até {zone:1453}. {npc:5480} treina guerreiros em {object:2100}; {npc:6089} e {npc:6090} ficam juntos perto de {object:2152}, ali. {npc:6090} luta com você pela caneca dele.",
 
 	-- Step 18: High Priestess Laurena
@@ -104,11 +106,11 @@ return {
 
 	-- Step 19: Shaman training
 	["Shaman training"] = "Treinamento de xamã",
-	-- {zone:1453} Stormwind · {area:2257} Deeprun Tram · {object:28027} Dwarven District · {zone:1455} Ironforge · {npc:258098} Eldrun Stormbreaker
+	-- {zone:1453} Stormwind · {area:2257} Deeprun Tram · {object:28027} Dwarven District (no name in this language: may be words) · {zone:1455} Ironforge · {npc:258098} Eldrun Stormbreaker
 	["Ride to {zone:1453}. It has no shaman trainer: take the {area:2257} from the {object:28027} to {zone:1455}, train with {npc:258098}, then ride the tram back for the boat."] = "Cavalgue até {zone:1453}. Lá não há instrutor de xamãs: pegue o {area:2257} em {object:28027} até {zone:1455}, treine com {npc:258098} e volte de metrô para pegar o barco.",
 
 	-- Step 20: Stormwind
-	-- {zone:1453} Stormwind · {object:2100} Old Town · {object:2101} Mage Quarter · {npc:11026} Sprite Jumpsprocket · {object:28027} Dwarven District · {npc:279} Morgan Pestle · {object:2096} Trade District
+	-- {zone:1453} Stormwind · {object:2100} Old Town (no name in this language: may be words) · {object:2101} Mage Quarter (no name in this language: may be words) · {npc:11026} Sprite Jumpsprocket · {object:28027} Dwarven District (no name in this language: may be words) · {npc:279} Morgan Pestle · {object:2096} Trade District (no name in this language: may be words)
 	["Fly or ride to {zone:1453}. Trainers: {object:2100} (Warriors, Rogues), the Cathedral (Paladins, Priests), the {object:2101} (Mages, Warlocks), the Park (Druids). {npc:11026} works in the {object:28027}, {npc:279} in the {object:2096}."] = "Voe ou cavalgue até {zone:1453}. Instrutores: {object:2100} (guerreiros, ladinos), a Catedral da Luz (paladinos, sacerdotes), {object:2101} (magos, bruxos), o Parque (druidas). {npc:11026} trabalha em {object:28027}; {npc:279}, em {object:2096}.",
 	["Level 12, 14 and 16 spells"] = "Feitiços de nível 12, 14 e 16",
 	-- {item:2449} Earthroot · {zone:1439} Darkshore · {npc:1313} Maria Lumere
@@ -117,10 +119,8 @@ return {
 	["{npc:5497}, Wizard's Sanctum: {quest:1861}"] = "{npc:5497}, no Sacrário dos Teurgos: {quest:1861}",
 
 	-- Step 21: Fishin' Time
-	-- {npc:5494} Catherine Leland · {object:2096} Trade District · {npc:267118} Gilbert Gray
+	-- {npc:5494} Catherine Leland · {object:2096} Trade District (no name in this language: may be words) · {npc:267118} Gilbert Gray
 	["{npc:5494} sells fishing supplies along the canal just west of the {object:2096}; {npc:267118} fishes at the harbor, on the way to the boat."] = "{npc:5494} vende suprimentos de pesca junto ao canal, logo a oeste de {object:2096}; {npc:267118} pesca no porto, a caminho do barco.",
 	-- {item:6529} Shiny Bauble · {npc:5494} Catherine Leland
 	["{item:6529}, from {npc:5494}"] = "{item:6529}, de {npc:5494}",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
 }

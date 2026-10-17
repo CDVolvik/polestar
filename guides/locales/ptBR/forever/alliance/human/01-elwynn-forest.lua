@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Portuguese (Brazil) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Portuguese (Brazil) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Northshire Abbey
@@ -115,8 +116,8 @@ return {
 	["Speak with {npc:1430}"] = "Fale com {npc:1430}",
 
 	-- Step 23: Maybell Maclure
-	-- {area:87} Goldshire · {area:64} Maclure Vineyards
-	["Follow the road south out of {area:87} to the {area:64}. Maybell waits by the house."] = "Siga a estrada para o sul, saindo de {area:87}, até {area:64}. Mabel espera junto à casa.",
+	-- {area:87} Goldshire · {area:64} Maclure Vineyards · {npc:251} Maybell Maclure
+	["Follow the road south out of {area:87} to the {area:64}. {npc:251} waits by the house."] = "Siga a estrada para o sul, saindo de {area:87}, até {area:64}. {npc:251} espera junto à casa.",
 
 	-- Step 24: The Fargodeep Mine
 	-- {npc:248464} Nimsy
@@ -160,10 +161,6 @@ return {
 
 	-- Step 31: "Auntie" Bernice Stonefield
 	["\"Auntie\" Bernice Stonefield"] = "\"Titia\" Berenice Campedra",
-
-	-- Step 32: Billy Maclure
-	-- {area:57} Fargodeep Mine
-	["{area:57}'s mouth"] = "Boca de {area:57}",
 
 	-- Step 33: Goldtooth
 	-- {quest:87} Goldtooth · {area:57} Fargodeep Mine · {item:1972} Westfall Deed
@@ -235,8 +232,8 @@ return {
 	["Follow the hills south to the tower."] = "Siga pelas colinas para o sul até a torre.",
 
 	-- Step 48: Goldshire
-	-- {area:87} Goldshire
-	["Follow the road west back to {area:87}; Helene and Jason stand on the lake shore before town."] = "Siga a estrada para o oeste de volta a {area:87}; Helene e Jasão ficam na margem do lago antes da cidade.",
+	-- {area:87} Goldshire · {npc:6306} Helene Peltskinner
+	["Follow the road west back to {area:87}; {npc:6306} and Jason stand on the lake shore before town."] = "Siga a estrada para o oeste de volta a {area:87}; {npc:6306} e Jasão ficam na margem do lago antes da cidade.",
 
 	-- Step 49: Maybell Maclure
 	-- {area:64} Maclure Vineyards
@@ -314,7 +311,7 @@ return {
 	["{npc:258930}, beside her: {spell:5149}"] = "{npc:258930}, ao lado dela: {spell:5149}",
 
 	-- Step 64: Jennea Cannon
-	-- {area:87} Goldshire · {zone:1453} Stormwind · {npc:5497} Jennea Cannon · {object:2101} Mage Quarter · {quest:1861} Mirror Lake
+	-- {area:87} Goldshire · {zone:1453} Stormwind · {npc:5497} Jennea Cannon · {object:2101} Mage Quarter (no name in this language: may be words) · {quest:1861} Mirror Lake
 	["Follow the road north from {area:87} into {zone:1453}. {npc:5497} stands in the Wizard's Sanctum, the tower of the {object:2101}; she gives you a flask for the {quest:1861} waterfall."] = "Siga a estrada para o norte, de {area:87} até {zone:1453}. {npc:5497} fica no Sacrário dos Teurgos, a torre de {object:2101}; ela lhe dá um frasco para a cachoeira de {quest:1861}.",
 
 	-- Step 65: Mirror Lake
@@ -322,7 +319,7 @@ return {
 	["Leave {zone:1453} by the main gate. The {quest:1861} waterfall is south-west of the gates, on the way west to {zone:1436}: fill {item:7207} at its base."] = "Saia de {zone:1453} pelo portão principal. A cachoeira de {quest:1861} fica a sudoeste dos portões, no caminho para o oeste rumo a {zone:1436}: encha {item:7207} na base dela.",
 
 	-- Step 66: Gakin the Darkbinder
-	-- {area:87} Goldshire · {zone:1453} Stormwind · {npc:6122} Gakin the Darkbinder · {object:2164} Slaughtered Lamb · {object:2101} Mage Quarter
+	-- {area:87} Goldshire · {zone:1453} Stormwind · {npc:6122} Gakin the Darkbinder · {object:2164} Slaughtered Lamb (no name in this language: may be words) · {object:2101} Mage Quarter (no name in this language: may be words)
 	["Follow the road north from {area:87} into {zone:1453}. {npc:6122} waits in the cellar of the {object:2164}, in the {object:2101}."] = "Siga a estrada para o norte, de {area:87} até {zone:1453}. {npc:6122} espera no porão de {object:2164}, em {object:2101}.",
 
 	-- Step 67: Surena Caledon
@@ -330,12 +327,12 @@ return {
 	["Ride back out through {area:87} and east along the road to the {area:62}. {npc:881} (level 9) stands by its farmhouse."] = "Saia de novo passando por {area:87} e siga a estrada para o leste até {area:62}. {npc:881} (nível 9) fica junto à casa da fazenda.",
 
 	-- Step 68: The Binding
-	-- {item:6928} Bloodstone Choker · {object:2164} Slaughtered Lamb
-	["Back to Gakin. Use the {item:6928} at the summoning circle in the {object:2164}'s cellar and defeat the voidwalker it calls."] = "De volta a Gakin. Use o {item:6928} no círculo de evocação no porão de {object:2164} e derrote o emissário do caos que ele invocar.",
+	-- {npc:6122} Gakin the Darkbinder · {item:6928} Bloodstone Choker · {object:2164} Slaughtered Lamb (no name in this language: may be words)
+	["Back to {npc:6122}. Use the {item:6928} at the summoning circle in the {object:2164}'s cellar and defeat the voidwalker it calls."] = "De volta a {npc:6122}. Use o {item:6928} no círculo de evocação no porão de {object:2164} e derrote o emissário do caos que ele invocar.",
 	["Subdue the voidwalker"] = "Subjugue o emissário do caos",
 
 	-- Step 69: The Tome of Divinity
-	-- {area:87} Goldshire · {zone:1453} Stormwind · {npc:6171} Duthorian Rall · {npc:6173} Gazin Tenorm · {npc:6174} Stephanie Turner · {object:2100} Old Town · {item:2589} Linen Cloth
+	-- {area:87} Goldshire · {zone:1453} Stormwind · {npc:6171} Duthorian Rall · {npc:6173} Gazin Tenorm · {npc:6174} Stephanie Turner · {object:2100} Old Town (no name in this language: may be words) · {item:2589} Linen Cloth
 	["Follow the road north from {area:87} into {zone:1453}. {npc:6171} and {npc:6173} are in the Cathedral of Light; {npc:6174} stands in {object:2100} and asks for ten {item:2589} (humanoids drop it; the Auction House sells it)."] = "Siga a estrada para o norte, de {area:87} até {zone:1453}. {npc:6171} e {npc:6173} estão na Catedral da Luz; {npc:6174} fica em {object:2100} e pede dez {item:2589} (humanoides soltam; a Casa de Leilões vende).",
 	-- {quest:2998} Tome of Divinity
 	["From the {quest:2998} he gives you"] = "Do {quest:2998} que ele lhe dá",
@@ -360,5 +357,6 @@ return {
 	["Follow the road west past Westbrook into {zone:1436}, then south along it to {area:108}. Thor, the gryphon master, stands on the hill."] = "Siga a estrada para o oeste, passando pela Ribeira d'Oeste, até {zone:1436}; depois, para o sul por ela até {area:108}. Thor, o mestre de grifos, fica no morro.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["{area:57}'s mouth"] = "Boca de {area:57}",
 	-- ["{item:1006}: Princess"] = "{item:1006}: Princesa",
 }

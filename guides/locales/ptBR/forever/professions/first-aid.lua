@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Portuguese (Brazil) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Portuguese (Brazil) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Learn First Aid
@@ -23,9 +24,9 @@ return {
 
 	-- Step 4: Journeyman First Aid
 	-- {skill:129} First Aid
-	["Journeyman {skill:129}"] = "{skill:129} Artesão",
+	["Journeyman {skill:129}"] = "{skill:129} (Profissional)",
 	-- {skill:129} First Aid · {spell:3276} Heavy Linen Bandage
-	["Journeyman {skill:129} raises the cap to 150; it needs skill 50 and character level 10: the arrow picks the nearest {skill:129} trainer of your faction. Learn {spell:3276} on the same visit."] = "{skill:129} Artesão eleva o limite para 150; requer perícia 50 e nível de personagem 10: a seta escolhe o instrutor de {skill:129} mais próximo da sua facção. Aprenda {spell:3276} na mesma visita.",
+	["Journeyman {skill:129} raises the cap to 150; it needs skill 50 and character level 10: the arrow picks the nearest {skill:129} trainer of your faction. Learn {spell:3276} on the same visit."] = "{skill:129} Profissional eleva o limite para 150; requer perícia 50 e nível de personagem 10: a seta escolhe o instrutor de {skill:129} mais próximo da sua facção. Aprenda {spell:3276} na mesma visita.",
 
 	-- Step 5: Heavy Linen Bandage: cloth
 	-- {item:2581} Heavy Linen Bandage
@@ -55,11 +56,11 @@ return {
 
 	-- Step 11: Expert First Aid
 	-- {skill:129} First Aid
-	["Expert {skill:129}"] = "{skill:129} Especialista",
+	["Expert {skill:129}"] = "{skill:129} (Perito)",
 	-- {skill:129} First Aid · {item:16084} Expert First Aid - Under Wraps · {item:8544} Mageweave Bandage
-	["Expert {skill:129} raises the cap to 225; it needs skill 125 and character level 20: it is a book, {item:16084}; the arrow picks its nearest seller for your faction. Buy it and read it. The same vendor sells the Heavy Silk and {item:8544} manuals: buy both now, you read them at 180 and 210."] = "{skill:129} Especialista eleva o limite para 225; requer perícia 125 e nível de personagem 20: é um livro, {item:16084}; a seta escolhe o vendedor mais próximo da sua facção. Compre-o e leia-o. O mesmo vendedor vende os manuais de Bandagem Grossa de Seda e {item:8544}: compre os dois agora, você os lê em 180 e 210.",
+	["Expert {skill:129} raises the cap to 225; it needs skill 125 and character level 20: it is a book, {item:16084}; the arrow picks its nearest seller for your faction. Buy it and read it. The same vendor sells the Heavy Silk and {item:8544} manuals: buy both now, you read them at 180 and 210."] = "{skill:129} (Perito) eleva o limite para 225; requer perícia 125 e nível de personagem 20: é um livro, {item:16084}; a seta escolhe o vendedor mais próximo da sua facção. Compre-o e leia-o. O mesmo vendedor vende os manuais de Bandagem Grossa de Seda e {item:8544}: compre os dois agora, você os lê em 180 e 210.",
 	-- {item:16084} Expert First Aid - Under Wraps · {skill:129} First Aid
-	["Buy and read {item:16084} (Expert {skill:129})"] = "Compre e leia {item:16084} ({skill:129} Especialista)",
+	["Buy and read {item:16084} (Expert {skill:129})"] = "Compre e leia {item:16084} ({skill:129} (Perito))",
 
 	-- Step 13: Heavy Wool Bandage (125-150)
 	-- {spell:3278} Heavy Wool Bandage
@@ -106,7 +107,7 @@ return {
 	-- {quest:6624} Triage
 	["{quest:6624}: treat the wounded soldiers in the doctor's tent with the bandages the doctor gives you, the most critical first, before any of them die."] = "{quest:6624}: trate os soldados feridos na tenda do médico com as bandagens que ele lhe der, os mais graves primeiro, antes que algum morra.",
 	-- {skill:129} First Aid
-	["Artisan {skill:129}"] = "{skill:129} Artífice",
+	["Artisan {skill:129}"] = "{skill:129} (Artífice)",
 
 	-- Step 23: Triage
 	-- {quest:6622} Triage

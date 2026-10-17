@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Korean words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -10,7 +11,7 @@ return {
 
 	-- Step 1: Duke Hydraxis
 	-- {npc:13278} Duke Hydraxis · {zone:1447} Azshara · {faction:749} Hydraxian Waterlords
-	["{npc:13278} stands on a small island off the eastern coast of {zone:1447}; swim or walk the shallows out to him. The {faction:749} start out Neutral. Forever's Legacy Diplomat perk increases reputation gains."] = "{npc:13278}은(는) {zone:1447} 동쪽 해안 앞 작은 섬에 서 있습니다. 헤엄치거나 얕은 물을 걸어 가세요. {faction:749}은(는) 중립에서 시작합니다. Forever의 외교관 Legacy 특전은 평판 획득량을 늘려 줍니다.",
+	["{npc:13278} stands on a small island off the eastern coast of {zone:1447}; swim or walk the shallows out to him. The {faction:749} start out Neutral. Forever's Legacy Diplomat perk increases reputation gains."] = "{npc:13278}은(는) {zone:1447} 동쪽 해안 앞 작은 섬에 서 있습니다. 헤엄치거나 얕은 물을 걸어 가세요. {faction:749}은(는) 중립에서 시작합니다. Forever의 외교관 유산 특전은 평판 획득량을 늘려 줍니다.",
 
 	-- Step 2: Dust Stormers and Desert Rumblers
 	-- plural, as words: Dust Stormers = {npc:11744} Dust Stormer · Desert Rumblers = {npc:11746} Desert Rumbler

@@ -3,18 +3,19 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Spanish (Latin America) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Spanish (Latin America) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Fly to Grom'gol
-	-- {object:3202} Grom'gol
+	-- {object:3202} Grom'gol (no name in this language: may be words)
 	["Fly to {object:3202}"] = "Vuela a {object:3202}",
-	-- {area:35} Booty Bay · {object:3202} Grom'gol · {object:1661} The Undercity
+	-- {area:35} Booty Bay · {object:3202} Grom'gol (no name in this language: may be words) · {object:1661} The Undercity (no name in this language: may be words)
 	["From {area:35}, fly to {object:3202}. {object:1661} zeppelin leaves from the tower on the west side of the camp."] = "Desde {area:35}, vuela a {object:3202}. El zepelín de {object:1661} sale de la torre del lado oeste del campamento.",
 	-- {zone:1458} Undercity
 	["Zeppelin to the {zone:1458}"] = "Zepelín a {zone:1458}",
 
 	-- Step 2: Orgrimmar
-	-- {object:1661} The Undercity · {zone:1454} Orgrimmar · {zone:1458} Undercity
+	-- {object:1661} The Undercity (no name in this language: may be words) · {zone:1454} Orgrimmar · {zone:1458} Undercity
 	["{object:1661} has no Hunter or Shaman trainer: take the {zone:1454} zeppelin from the same tower instead and train in the city, then take the {zone:1458} zeppelin from the tower outside {zone:1454}'s main gate."] = "{object:1661} no tiene instructor de cazadores ni de chamanes: toma en su lugar el zepelín a {zone:1454} desde la misma torre y entrena en la ciudad; luego toma el zepelín a {zone:1458} desde la torre a las afueras de la puerta principal de {zone:1454}.",
 
 	-- Step 3: Thunder Bluff
@@ -24,7 +25,7 @@ return {
 	-- Step 4: Undercity trainers
 	-- {zone:1458} Undercity
 	["{zone:1458} trainers"] = "Instructores de {zone:1458}",
-	-- {zone:1458} Undercity · {object:36070} War Quarter · {object:36073} Rogues' Quarter · {object:36082} Magic Quarter · {npc:260093} Garen Largo
+	-- {zone:1458} Undercity · {object:36070} War Quarter (no name in this language: may be words) · {object:36073} Rogues' Quarter (no name in this language: may be words) · {object:36082} Magic Quarter (no name in this language: may be words) · {npc:260093} Garen Largo
 	["Train while you are in the {zone:1458}: the trainers stand in the {object:36070}, the {object:36073} and the {object:36082} (Paladins: {npc:260093})."] = "Entrena mientras estás en {zone:1458}: los instructores están en {object:36070}, {object:36073} y {object:36082} (paladines: {npc:260093}).",
 
 	-- Step 5: Fly to Tarren Mill
@@ -64,7 +65,7 @@ return {
 	-- Step 13: The Stone of East Binding
 	-- {object:2691} Stone of East Binding
 	["The {object:2691}"] = "{object:2691}",
-	-- {object:180105} Circle of Binding · {area:321} Hammerfall
+	-- {object:180105} Circle of Binding (no name in this language: may be words) · {area:321} Hammerfall
 	["Each {object:180105} is a ring of standing stones; the key sits on the stone at its heart. The eastern circle is on the hills north-west of {area:321}."] = "Cada {object:180105} es un anillo de piedras erguidas; la llave está en la piedra del centro. El círculo del este está en las colinas al noroeste de {area:321}.",
 
 	-- Step 14: Witherbark Village
@@ -137,8 +138,8 @@ return {
 	["{quest:1106}: Fizzle's letter from the {area:439}"] = "{quest:1106}: la carta de Fizzle Pernolatón de {area:439}",
 
 	-- Step 30: The Dustbowl
-	-- {area:340} Kargath
-	["Ride west along the road; Lotwil's camp sits in the Dustbowl halfway to {area:340}."] = "Cabalga al oeste por el camino; el campamento de Lotwil está en Terraseca, a medio camino de {area:340}.",
+	-- {npc:2921} Lotwil Veriatus · {area:1878} The Dustbowl · {area:340} Kargath
+	["Ride west along the road; {npc:2921}'s camp sits in the {area:1878} halfway to {area:340}."] = "Cabalga al oeste por el camino; el campamento de {npc:2921} está en {area:1878}, a medio camino de {area:340}.",
 
 	-- Step 31: Kargath
 	-- {area:340} Kargath
@@ -149,19 +150,22 @@ return {
 	-- Step 32: Lesser Rock Elementals
 	-- plural, as words: Lesser Rock Elementals = {npc:2735} Lesser Rock Elemental
 	["Lesser Rock Elementals"] = "Elementales de roca inferiores",
+	-- {npc:2921} Lotwil Veriatus · {npc:6868} Jarkal Mossmeld
 	-- plural, as words: Rock Elemental Shards = {item:7848} Rock Elemental Shard
-	["The small elementals drift across the flats just west of Lotwil's camp. Every rock elemental in the zone can drop Jarkal's Rock Elemental Shards: keep them."] = "Los elementales pequeños flotan por el desierto justo al oeste del campamento de Lotwil. Cualquier elemental de roca de la zona puede soltar los Fragmentos de elemental de roca ({item:7848}) de Jarkal: guárdalos.",
+	["The small elementals drift across the flats just west of {npc:2921}'s camp. Every rock elemental in the zone can drop {npc:6868}'s Rock Elemental Shards: keep them."] = "Los elementales pequeños flotan por el desierto justo al oeste del campamento de {npc:2921}. Cualquier elemental de roca de la zona puede soltar los Fragmentos de elemental de roca ({item:7848}) de {npc:6868}: guárdalos.",
 
 	-- Step 34: Rock Elementals
 	-- plural, as words: Rock Elementals = {npc:92} Rock Elemental
 	["Rock Elementals"] = "Elementales de roca",
+	-- {area:1878} The Dustbowl
 	-- plural, as words: Rock Elementals = {npc:92} Rock Elemental
-	["The bigger Rock Elementals stand on the slopes north-west of the Dustbowl; each one drops a slab."] = "Los elementales de roca ({npc:92}) más grandes están en las laderas al noroeste de Terraseca; cada uno suelta una losa.",
+	["The bigger Rock Elementals stand on the slopes north-west of the {area:1878}; each one drops a slab."] = "Los elementales de roca ({npc:92}) más grandes están en las laderas al noroeste de {area:1878}; cada uno suelta una losa.",
 
 	-- Step 36: Coyotes and buzzards
 	["Coyotes and buzzards"] = "Coyotes y águilas ratoneras",
+	-- {area:1878} The Dustbowl
 	-- plural, as words: Elder Crag Coyotes = {npc:2729} Elder Crag Coyote · Giant Buzzards = {npc:2831} Giant Buzzard
-	["The Elder Crag Coyotes and Giant Buzzards roam the basin south of the Dustbowl. Coyotes drop both the jawbones and the fangs; only the buzzards drop wings and gizzards."] = "Los coyotes del risco mayores ({npc:2729}) y las águilas ratoneras gigantes ({npc:2831}) deambulan por la cuenca al sur de Terraseca. Los coyotes sueltan tanto las mandíbulas como los colmillos; solo las águilas ratoneras sueltan alas y mollejas.",
+	["The Elder Crag Coyotes and Giant Buzzards roam the basin south of the {area:1878}. Coyotes drop both the jawbones and the fangs; only the buzzards drop wings and gizzards."] = "Los coyotes del risco mayores ({npc:2729}) y las águilas ratoneras gigantes ({npc:2831}) deambulan por la cuenca al sur de {area:1878}. Los coyotes sueltan tanto las mandíbulas como los colmillos; solo las águilas ratoneras sueltan alas y mollejas.",
 
 	-- Step 37: Greater Rock Elementals
 	-- plural, as words: Greater Rock Elementals = {npc:2736} Greater Rock Elemental
@@ -187,7 +191,8 @@ return {
 	["Theldurin sits among the dwarven ruins at {area:345}, south of the {area:1877}."] = "Theldurin está sentado entre las ruinas enanas de {area:345}, al sur de {area:1877}.",
 
 	-- Step 43: Valley of Fangs
-	["Follow the road north; Martek's camp is on the way."] = "Sigue el camino al norte; el campamento de Martek está de camino.",
+	-- {npc:4618} Martek the Exiled
+	["Follow the road north; {npc:4618}'s camp is on the way."] = "Sigue el camino al norte; el campamento de {npc:4618} está de camino.",
 
 	-- Step 44: Ancient Chest
 	-- {area:1517} Uldaman
@@ -204,7 +209,7 @@ return {
 	-- Step 47: Zeppelin to Orgrimmar
 	-- {zone:1454} Orgrimmar
 	["Zeppelin to {zone:1454}"] = "Zepelín a {zone:1454}",
-	-- {zone:1454} Orgrimmar · {object:3202} Grom'gol
+	-- {zone:1454} Orgrimmar · {object:3202} Grom'gol (no name in this language: may be words)
 	["Take the {zone:1454} zeppelin from the tower on the west side of {object:3202}."] = "Toma el zepelín a {zone:1454} desde la torre del lado oeste de {object:3202}.",
 	["Zeppelin tower"] = "Torre del zepelín",
 
@@ -212,13 +217,9 @@ return {
 	-- {area:1638} Thunder Bluff · {zone:1454} Orgrimmar · {npc:3033} Turak Runetotem · {area:1639} Elder Rise · {npc:246344} Alodan the Hopeful · {area:380} Crossroads
 	["Your trainer is in {area:1638}, one flight from {zone:1454}: {npc:3033} (Druids) on {area:1639}, {npc:246344} (Paladins). Fly on to the {area:380} from there."] = "Tu instructor está en {area:1638}, a un vuelo de {zone:1454}: {npc:3033} (druidas) en {area:1639}, {npc:246344} (paladines). Desde allí sigue volando a {area:380}.",
 
-	-- Step 50: The Crossroads
-	-- {area:380} Crossroads
-	["The {area:380}"] = "{area:380}",
-
 	-- Step 51: Regthar Deathgate
-	-- {area:380} Crossroads · {area:386} Forgotten Pools
-	["Ride north up the road from the {area:380} to the {area:386}; Regthar keeps watch on the rise above the water."] = "Cabalga al norte por el camino desde {area:380} hasta {area:386}; Regthar vigila desde la elevación sobre el agua.",
+	-- {area:380} Crossroads · {area:386} Forgotten Pools · {npc:3389} Regthar Deathgate
+	["Ride north up the road from the {area:380} to the {area:386}; {npc:3389} keeps watch on the rise above the water."] = "Cabalga al norte por el camino desde {area:380} hasta {area:386}; {npc:3389} vigila desde la elevación sobre el agua.",
 	-- {npc:5395} Felgur Twocuts · {zone:1443} Desolace
 	["for {npc:5395} in {zone:1443}, in the next guide"] = "para {npc:5395} en {zone:1443}, en la siguiente guía",
 
@@ -235,9 +236,9 @@ return {
 	["Ride south along the coast from {area:392} to {area:720}. {npc:6236} stands by the arena: step on the grate to start the fight; the challengers come one at a time, then {npc:6238} (33)."] = "Cabalga al sur por la costa desde {area:392} hasta {area:720}. {npc:6236} está junto a la arena: pisa la rejilla para empezar la pelea; los retadores vienen de uno en uno y luego {npc:6238} (33).",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["North-east of {area:321} the Drywhisker kobolds mine the gorge; the Kobolds at the mouth and the Diggers and Surveyors deeper in all drop the Motes of Myzrael."] = "Al noreste de {area:321}, los kóbolds Mostacho Seco minan el cañón; los kóbolds de la entrada y los cavadores y peritos del fondo sueltan las motas de Myzrael.",
 	-- ["Ride west along the road; Lotwil's camp sits in the {area:1878} halfway to {area:340}."] = "Cabalga al oeste por el camino; el campamento de Lotwil está en {area:1878}, a medio camino de {area:340}.",
 	-- ["The Elder Crag Coyotes and Giant Buzzards roam the basin south of the {area:1878}. Coyotes drop both the jawbones and the fangs; only the buzzards drop wings and gizzards."] = "Los coyotes del risco mayores y las águilas ratoneras gigantes deambulan por la cuenca al sur de {area:1878}. Los coyotes sueltan tanto las mandíbulas como los colmillos; solo las águilas ratoneras sueltan alas y mollejas.",
 	-- ["The bigger Rock Elementals stand on the slopes north-west of the {area:1878}; each one drops a slab."] = "Los elementales de roca más grandes están en las laderas al noroeste de {area:1878}; cada uno suelta una losa.",
+	-- ["The {area:380}"] = "{area:380}",
 	-- ["{npc:6236}: Berserker Stance"] = "{npc:6236}: Actitud rabiosa",
 }

@@ -3,11 +3,12 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (simplified) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (simplified) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Camp Narache
-	-- {area:221} Camp Narache
-	["You start on the mesa of {area:221}. Grull and the chief stand by the big tent in the middle."] = "你从{area:221}的台地上出发。格鲁尔·鹰风和鹰风酋长站在中央的大帐篷旁。",
+	-- {area:221} Camp Narache · {npc:2980} Grull Hawkwind
+	["You start on the mesa of {area:221}. {npc:2980} and the chief stand by the big tent in the middle."] = "你从{area:221}的台地上出发。{npc:2980}和鹰风酋长站在中央的大帐篷旁。",
 
 	-- Step 2: The Hunt Begins
 	["Plainstriders roam the grass all around the camp."] = "平原陆行鸟在营地周围的草地上游荡。",
@@ -27,13 +28,13 @@ return {
 	["{npc:2991} sits by the tent on the camp's eastern edge; the {item:4755} stands next to her."] = "{npc:2991}坐在营地东缘的帐篷旁；{item:4755}就在她旁边。",
 
 	-- Step 6: The Hunt Continues
-	-- {npc:6775} Antur Fallow
+	-- {npc:6775} Antur Fallow · {npc:2980} Grull Hawkwind
 	-- plural, as words: Mountain Cougars = {npc:2961} Mountain Cougar
-	["{npc:6775} stands at the west end of the camp, at the north-west corner of the hills where the Mountain Cougars prowl: take his quest, hunt the cougars from there south and east, then come back up to Grull."] = "{npc:6775}站在营地西端，位于{npc:2961}出没的山丘西北角：接下他的任务，从那里向南和向东猎杀美洲狮，然后回到格鲁尔·鹰风处。",
+	["{npc:6775} stands at the west end of the camp, at the north-west corner of the hills where the Mountain Cougars prowl: take his quest, hunt the cougars from there south and east, then come back up to {npc:2980}."] = "{npc:6775}站在营地西端，位于{npc:2961}出没的山丘西北角：接下他的任务，从那里向南和向东猎杀美洲狮，然后回到{npc:2980}处。",
 
 	-- Step 7: Grull Hawkwind
-	-- {npc:3209} Brave Windfeather
-	["{npc:3209}, next to Grull"] = "{npc:3209}，在格鲁尔·鹰风旁边",
+	-- {npc:3209} Brave Windfeather · {npc:2980} Grull Hawkwind
+	["{npc:3209}, next to {npc:2980}"] = "{npc:3209}，在{npc:2980}旁边",
 
 	-- Step 8: Seer Graytongue
 	["Follow the path south out of camp to the Seer's tent at the foot of the hills."] = "沿小路向南离开营地，到山脚下灰舌先知的帐篷。",
@@ -91,8 +92,8 @@ return {
 
 	-- Step 22: Back to Bloodhoof
 	["Back to Bloodhoof"] = "返回血蹄村",
-	-- {npc:2993} Baine Bloodhoof · {zone:1456} Thunder Bluff
-	["{npc:2993}, for Cairne in {zone:1456}"] = "{npc:2993}，交给{zone:1456}的凯恩·血蹄",
+	-- {npc:2993} Baine Bloodhoof · {npc:3057} Cairne Bloodhoof · {zone:1456} Thunder Bluff
+	["{npc:2993}, for {npc:3057} in {zone:1456}"] = "{npc:2993}，交给{zone:1456}的{npc:3057}",
 	-- {npc:2948} Mull Thunderhorn · {zone:1456} Thunder Bluff
 	["{npc:2948}, for Hamuul in {zone:1456}"] = "{npc:2948}，交给{zone:1456}的大德鲁伊哈缪尔·符文图腾",
 
@@ -102,8 +103,8 @@ return {
 	["{npc:3063}'s quest: beat three Novice Warriors (or players in duels) next to him."] = "{npc:3063}的任务：击败他旁边的三名{npc:10721}（或在决斗中击败玩家）。",
 
 	-- Step 25: Ahab Wheathoof
-	-- {item:287505} Tender Strider Meat
-	["Ahab stands at the north edge of the village. Kyle wants {item:287505} from plainstriders."] = "Ahab站在村子北缘。Kyle想要平原陆行鸟身上的{item:287505}。",
+	-- {npc:277182} Ahab Wheathoof · {item:287505} Tender Strider Meat
+	["{npc:277182} stands at the north edge of the village. Kyle wants {item:287505} from plainstriders."] = "{npc:277182}站在村子北缘。Kyle想要平原陆行鸟身上的{item:287505}。",
 
 	-- Step 26: Thunderhorn Water Well
 	-- {item:4809} Ambercorn · {quest:766} Mazzranache · {quest:761} Swoop Hunting
@@ -118,12 +119,12 @@ return {
 	["Swoops glide over the plains all around Bloodhoof."] = "猛鹫在血蹄村周围的平原上空滑翔。",
 
 	-- Step 29: Morin Cloudstalker
-	-- {area:396} Winterhoof Water Well
-	["Morin camps by the {area:396} south-east of Bloodhoof."] = "摩林·云行者在血蹄村东南方的{area:396}旁扎营。",
+	-- {npc:2988} Morin Cloudstalker · {area:396} Winterhoof Water Well
+	["{npc:2988} camps by the {area:396} south-east of Bloodhoof."] = "{npc:2988}在血蹄村东南方的{area:396}旁扎营。",
 
 	-- Step 30: Longwalker Malah
-	-- {area:821} Rolling Plains
-	["Malah stands on the {area:821} a little east of the well."] = "漫行者玛拉站在水井东边不远处的{area:821}上。",
+	-- {npc:275789} Malah Longwind · {area:821} Rolling Plains
+	["{npc:275789} stands on the {area:821} a little east of the well."] = "漫行者{npc:275789}站在水井东边不远处的{area:821}上。",
 
 	-- Step 31: Galak centaurs and Prairie Wolf Alphas
 	-- plural, as words: Prairie Wolf Alphas = {npc:2960} Prairie Wolf Alpha
@@ -177,12 +178,12 @@ return {
 	["Flatland Prowlers roam the plains around {area:225}"] = "{npc:3566}在{area:225}周围的平原上游荡",
 
 	-- Step 46: Thunder Bluff
-	-- {npc:2995} Tal
-	["Ride a lift up to the mesas. {npc:2995} keeps the wind riders on the central rise; Cairne stands in the great tent there."] = "乘升降梯上到台地。{npc:2995}在中央台地照看双足飞龙；凯恩·血蹄站在那里的大帐篷里。",
+	-- {npc:2995} Tal · {npc:3057} Cairne Bloodhoof
+	["Ride a lift up to the mesas. {npc:2995} keeps the wind riders on the central rise; {npc:3057} stands in the great tent there."] = "乘升降梯上到台地。{npc:2995}在中央台地照看双足飞龙；{npc:3057}站在那里的大帐篷里。",
 
 	-- Step 47: Traditions of the Bluff
-	-- {npc:269068} Eylah Sunhorn · {npc:3005} Mahu · {item:278078} Prepared Incense
-	["{npc:269068} wants tauren incense: buy its four parts from Nida the herbalist, Nata the enchanting supplier, {npc:3005} the leatherworking supplier and Naal the cooking supplier, then combine them into {item:278078}."] = "{npc:269068}想要牛头人熏香：从草药商尼达·冰蹄、附魔供应商纳塔·黎明行者、制皮供应商{npc:3005}和烹饪供应商纳尔·迷雾行者处购买四种材料，然后合成{item:278078}。",
+	-- {npc:269068} Eylah Sunhorn · {npc:3014} Nida Winterhoof · {npc:3012} Nata Dawnstrider · {npc:3005} Mahu · {npc:3027} Naal Mistrunner · {item:278078} Prepared Incense
+	["{npc:269068} wants tauren incense: buy its four parts from {npc:3014} the herbalist, {npc:3012} the enchanting supplier, {npc:3005} the leatherworking supplier and {npc:3027} the cooking supplier, then combine them into {item:278078}."] = "{npc:269068}想要牛头人熏香：从草药商{npc:3014}、附魔供应商{npc:3012}、制皮供应商{npc:3005}和烹饪供应商{npc:3027}处购买四种材料，然后合成{item:278078}。",
 	-- {item:278079} Bundle of Herbs · {npc:3014} Nida Winterhoof
 	["{item:278079}, from {npc:3014}"] = "{item:278079}，来自{npc:3014}",
 	-- {item:278080} Bundle of Dried Cedar Twigs · {npc:3012} Nata Dawnstrider
@@ -205,8 +206,8 @@ return {
 	["{npc:5769}: for {npc:3448} at the {area:380}"] = "{npc:5769}：交给{area:380}的{npc:3448}",
 
 	-- Step 52: Turak Runetotem
-	-- {npc:6746} Innkeeper Pala · {area:1639} Elder Rise
-	["{npc:6746} on the central rise sends you to Turak on {area:1639}."] = "中央台地的{npc:6746}让你去{area:1639}找图拉克·符文图腾。",
+	-- {npc:6746} Innkeeper Pala · {npc:3033} Turak Runetotem · {area:1639} Elder Rise
+	["{npc:6746} on the central rise sends you to {npc:3033} on {area:1639}."] = "中央台地的{npc:6746}让你去{area:1639}找{npc:3033}。",
 
 	-- Step 53: Moonglade
 	-- {spell:18960} Teleport: Moonglade · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {quest:5930} Great Bear Spirit
@@ -223,14 +224,12 @@ return {
 	["Tame it with the {item:15908}"] = "用{item:15908}驯服它",
 
 	-- Step 56: The Moonkin Stone
-	-- {object:177525} Moonkin Stone
+	-- {object:177525} Moonkin Stone (no name in this language: may be words)
 	["The {object:177525}"] = "{object:177525}",
 	-- {zone:1412} Mulgore · {item:15710} Cenarion Lunardust
 	["The stone stands in the pass out of {zone:1412}, on your way east. Use the {item:15710} there and defeat Lunaclaw."] = "石头在离开{zone:1412}的山口里，就在你向东的路上。在那里使用{item:15710}并击败月爪枭兽。",
 
-	-- Step 57: The Crossroads
-	-- {area:380} Crossroads
-	["The {area:380}"] = "{area:380}",
+	-- Step 57: Crossroads
 	-- {zone:1412} Mulgore · {area:380} Crossroads · {quest:860} Sergra Darkthorn · {npc:3448} Tonga Runetotem · {zone:1413} The Barrens
 	["Leave {zone:1412} by the south-eastern pass and follow the road to the {area:380}. {quest:860} stands by the inn, {npc:3448} at the south gate. {zone:1413} guide starts here."] = "从东南方的山口离开{zone:1412}，沿道路到{area:380}。{quest:860}站在旅店旁，{npc:3448}在南门。{zone:1413}指南从这里开始。",
 
@@ -240,4 +239,5 @@ return {
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Battleboars graze north of the shrine; the Bristleback quilboar hold the ravine to the north-east. {npc:8554} stands at its eastern end, and the {item:4851} lies on the ground in the camp."] = "斗猪在神龛北边吃草；刺背野猪人占据着东北方的峡谷。{npc:8554}站在峡谷东端，{item:4851}在营地的地上。",
+	-- ["The {area:380}"] = "{area:380}",
 }

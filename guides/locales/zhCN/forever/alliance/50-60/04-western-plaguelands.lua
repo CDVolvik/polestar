@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (simplified) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (simplified) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Chillwind Camp
@@ -10,8 +11,8 @@ return {
 	["{npc:11616}: the termites come later, in {area:2627}"] = "{npc:11616}：白蚁之后在{area:2627}收集",
 
 	-- Step 2: Marlene Redpath
-	-- {npc:10936} Joseph Redpath
-	["Marlene's farmhouse stands on the hill east of the camp; {npc:10936}'s monument is just north of it."] = "玛莱恩·雷德帕斯的农舍在营地东边的山丘上；{npc:10936}的纪念碑就在它北边。",
+	-- {npc:10927} Marlene Redpath · {npc:10936} Joseph Redpath
+	["{npc:10927}'s farmhouse stands on the hill east of the camp; {npc:10936}'s monument is just north of it."] = "{npc:10927}的农舍在营地东边的山丘上；{npc:10936}的纪念碑就在它北边。",
 	-- {item:12894} Joseph's Wedding Ring
 	["{item:12894}, at the monument"] = "{item:12894}，在纪念碑旁",
 
@@ -21,8 +22,8 @@ return {
 	["Skeletal Flayers and Slavering Ghouls roam the fields north of the camp; all the Scourge here drop Scourgestones."] = "{npc:1783}和{npc:1791}在营地北边的田野里游荡；这里的所有天灾军团都会掉落天灾石。",
 
 	-- Step 4: Mulgris Deepriver
-	-- {area:202} Writhing Haunt
-	["Mulgris stands by the farm at the {area:202}, north-east of the fields."] = "穆格雷斯·深水站在田野东北方{area:202}的农场旁。",
+	-- {npc:10739} Mulgris Deepriver · {area:202} Writhing Haunt
+	["{npc:10739} stands by the farm at the {area:202}, north-east of the fields."] = "{npc:10739}站在田野东北方{area:202}的农场旁。",
 
 	-- Step 5: Diseased Wolves
 	["Diseased Wolves"] = "生病的狼",
@@ -41,8 +42,8 @@ return {
 	["{object:175924}, in the farmhouse"] = "{object:175924}，在农舍里",
 
 	-- Step 10: Janice Felstone
-	-- {area:199} Felstone Field · {area:200} Dalson's Tears
-	["Janice's ghost wanders by the farmhouse of {area:199}, west of {area:200}; her parcel lies inside."] = "詹妮丝·费尔斯通的鬼魂在{area:200}西边、{area:199}的农舍旁游荡；她的包裹在屋里。",
+	-- {npc:10778} Janice Felstone · {area:199} Felstone Field · {area:200} Dalson's Tears
+	["{npc:10778}'s ghost wanders by the farmhouse of {area:199}, west of {area:200}; her parcel lies inside."] = "{npc:10778}的鬼魂在{area:200}西边、{area:199}的农舍旁游荡；她的包裹在屋里。",
 	-- {zone:1453} Stormwind
 	["For {zone:1453}: keep it"] = "交给{zone:1453}：先留着",
 
@@ -87,8 +88,8 @@ return {
 	-- Step 18: Writhing Haunt cauldron
 	-- {area:202} Writhing Haunt
 	["{area:202} cauldron"] = "{area:202}的大锅",
-	-- {area:202} Writhing Haunt
-	["The cauldron sits at the {area:202}, by Mulgris' farm."] = "大锅在{area:202}，穆格雷斯·深水的农场旁。",
+	-- {area:202} Writhing Haunt · {npc:10739} Mulgris Deepriver
+	["The cauldron sits at the {area:202}, by {npc:10739}' farm."] = "大锅在{area:202}，{npc:10739}的农场旁。",
 	-- {npc:1796} Freezing Ghoul · {area:202} Writhing Haunt · {zone:1422} Western Plaguelands
 	["grind on {npc:1796} at the {area:202}, {zone:1422}"] = "在{zone:1422}的{area:202}刷{npc:1796}",
 
@@ -130,7 +131,8 @@ return {
 	["More watches"] = "更多怀表",
 
 	-- Step 30: Kirsta Deepshadow
-	["Ride north up the road to the Northridge lumber mill; Kirsta hides at the camp's edge."] = "沿道路向北骑到北山伐木场；科尔斯塔·迪普沙东躲在营地边缘。",
+	-- {npc:11610} Kirsta Deepshadow
+	["Ride north up the road to the Northridge lumber mill; {npc:11610} hides at the camp's edge."] = "沿道路向北骑到北山伐木场；{npc:11610}躲在营地边缘。",
 
 	-- Step 31: The Scarlet Crusade
 	["The Scarlet Crusade"] = "血色十字军",
@@ -140,8 +142,8 @@ return {
 
 	-- Step 33: Radley and Durgen
 	["Radley and Durgen"] = "猎人莱德雷和骑士杜尔根",
-	-- {npc:11613} Huntsman Radley · {npc:11611} Cavalier Durgen · {area:190} Hearthglen
-	["{npc:11613} walks the Northridge camp east of Kirsta; {npc:11611} guards the tower at {area:190}'s southern approach."] = "{npc:11613}在科尔斯塔·迪普沙东东边的北山营地巡逻；{npc:11611}守卫着{area:190}南边入口的塔。",
+	-- {npc:11613} Huntsman Radley · {npc:11610} Kirsta Deepshadow · {npc:11611} Cavalier Durgen · {area:190} Hearthglen
+	["{npc:11613} walks the Northridge camp east of {npc:11610}; {npc:11611} guards the tower at {area:190}'s southern approach."] = "{npc:11613}在{npc:11610}东边的北山营地巡逻；{npc:11611}守卫着{area:190}南边入口的塔。",
 
 	-- Step 35: Hearthglen overlook
 	-- {area:190} Hearthglen
@@ -150,7 +152,8 @@ return {
 	["Climb the hill west of {area:190} to look down on the town."] = "爬上{area:190}西边的山丘俯瞰小镇。",
 
 	-- Step 37: Tirion Fordring
-	["Ride east to the border river: Tirion lives in a small hut on the bank."] = "向东骑到边界河：提里奥·弗丁住在河岸边的小屋里。",
+	-- {npc:1855} Tirion Fordring
+	["Ride east to the border river: {npc:1855} lives in a small hut on the bank."] = "向东骑到边界河：{npc:1855}住在河岸边的小屋里。",
 
 	-- Step 38: Gahrron's Withering cauldron
 	-- {area:201} Gahrron's Withering
@@ -186,22 +189,23 @@ return {
 	["{npc:11140} stands by Augustus' hut in {area:2627}."] = "{npc:11140}站在{area:2627}被感动的奥古斯图斯的小屋旁。",
 
 	-- Step 46: Tirion Fordring
-	["Cross the river west to Tirion's hut."] = "向西过河到提里奥·弗丁的小屋。",
+	-- {npc:1855} Tirion Fordring
+	["Cross the river west to {npc:1855}'s hut."] = "向西过河到{npc:1855}的小屋。",
 	["Listen to his story"] = "听他讲述他的故事",
 	-- {npc:11886} Mercutio Filthgorger
 	["{npc:11886} is elite: grouping up is advised"] = "{npc:11886}是精英：建议组队",
 
 	-- Step 47: Davil's Libram
-	-- {item:12954} Davil's Libram · {area:190} Hearthglen
-	["{item:12954} lies in the town hall of {area:190}, west of Tirion: the Scarlet guards stand close together."] = "{item:12954}在提里奥·弗丁西边{area:190}的市政厅里：血色卫兵站得很近。",
+	-- {item:12954} Davil's Libram · {area:190} Hearthglen · {npc:1855} Tirion Fordring
+	["{item:12954} lies in the town hall of {area:190}, west of {npc:1855}: the Scarlet guards stand close together."] = "{item:12954}在{npc:1855}西边{area:190}的市政厅里：血色卫兵站得很近。",
 
 	-- Step 48: Redpath's Shield
 	-- {item:12955} Redpath's Shield · {area:201} Gahrron's Withering
 	["{item:12955} lies east of the barn at {area:201}."] = "{item:12955}在{area:201}谷仓东边。",
 
 	-- Step 49: The Undercroft
-	-- {object:177667} Torn Scroll · {npc:12248} Infiltrator Hameya
-	["Cross the river east to the Undercroft, the crypt in the south-west of the zone. The {object:177667} lies inside: its key is on {npc:12248} in the far north-east, done in the next guide."] = "向东过河到墓室，即区域西南部的地穴。{object:177667}在里面：它的钥匙在东北远端的{npc:12248}身上，在下一份指南中完成。",
+	-- {area:2261} The Undercroft · {object:177667} Torn Scroll · {npc:12248} Infiltrator Hameya
+	["Cross the river east to the {area:2261}, the crypt in the south-west of the zone. The {object:177667} lies inside: its key is on {npc:12248} in the far north-east, done in the next guide."] = "向东过河到{area:2261}，即区域西南部的地穴。{object:177667}在里面：它的钥匙在东北远端的{npc:12248}身上，在下一份指南中完成。",
 
 	-- Step 50: Darnassus
 	-- {area:3197} Chillwind Camp · {area:150} Menethil Harbor · {area:442} Auberdine · {area:702} Rut'theran Village · {zone:1457} Darnassus
@@ -235,8 +239,8 @@ return {
 	["{npc:7900}: keep it for {zone:1446}"] = "{npc:7900}：留到{zone:1446}",
 
 	-- Step 55: Zorbin Fandazzle
-	-- {area:1119} Twin Colossals
-	["Take the boat to the mainland and ride north-east to Zorbin's camp by the {area:1119}."] = "乘船到大陆，向东北骑到{area:1119}旁索尔宾·范达瑟的营地。",
+	-- {npc:14637} Zorbin Fandazzle · {area:1119} Twin Colossals
+	["Take the boat to the mainland and ride north-east to {npc:14637}'s camp by the {area:1119}."] = "乘船到大陆，向东北骑到{area:1119}旁{npc:14637}的营地。",
 
 	-- Step 56: Zapped giants and sea elementals
 	["Zapped giants and sea elementals"] = "被电过的巨人和海元素",
@@ -244,8 +248,8 @@ return {
 	["The shrunken giants roam the {area:1119}; the sea elementals wade along the coast to the west."] = "缩小的巨人在{area:1119}游荡；海元素在西边的海岸涉水。",
 
 	-- Step 58: Gregan Brewspewer
-	-- {area:1119} Twin Colossals · {item:11243} Videre Elixir
-	["Gregan's camp lies north of the {area:1119}. He sells the {item:11243} once he has his bait."] = "格雷甘·山酒的营地在{area:1119}北边。拿到诱饵后，他会出售{item:11243}。",
+	-- {npc:7775} Gregan Brewspewer · {area:1119} Twin Colossals · {item:11243} Videre Elixir
+	["{npc:7775}'s camp lies north of the {area:1119}. He sells the {item:11243} once he has his bait."] = "{npc:7775}的营地在{area:1119}北边。拿到诱饵后，他会出售{item:11243}。",
 
 	-- Step 59: Ratchet
 	-- {area:392} Ratchet

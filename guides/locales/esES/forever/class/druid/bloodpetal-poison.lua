@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Spanish (Spain) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Spanish (Spain) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -13,8 +14,8 @@ return {
 	["Cast {spell:18960}. {npc:12042} stands in {area:2361}; your class trainer offers the same quest."] = "Lanza {spell:18960}. {npc:12042} está en {area:2361}; tu instructor de clase ofrece la misma misión.",
 
 	-- Step 2: Torwa Pathfinder
-	-- {area:976} Gadgetzan · {zone:1449} Un'Goro Crater
-	["Fly to {area:976}, ride west to the long ramp down into {zone:1449}: Torwa camps at its foot, in the south-east corner of the crater."] = "Vuela a {area:976} y cabalga al oeste hasta la larga rampa que baja a {zone:1449}: Torwa acampa al pie, en la esquina sureste del cráter.",
+	-- {area:976} Gadgetzan · {zone:1449} Un'Goro Crater · {npc:9619} Torwa Pathfinder
+	["Fly to {area:976}, ride west to the long ramp down into {zone:1449}: {npc:9619} camps at its foot, in the south-east corner of the crater."] = "Vuela a {area:976} y cabalga al oeste hasta la larga rampa que baja a {zone:1449}: {npc:9619} acampa al pie, en la esquina sureste del cráter.",
 
 	-- Step 3: Gorishi Stings and Bloodcap
 	-- {item:22434} Bloodcap
@@ -38,8 +39,8 @@ return {
 	["{area:1477} lies in the {area:74} in the {zone:1435}. {npc:8580} guards the bottom of the temple: a dungeon boss, so bring a group."] = "{area:1477} está en {area:74}, en {zone:1435}. {npc:8580} guarda el fondo del templo: es un jefe de mazmorra, así que lleva un grupo.",
 
 	-- Step 8: A Better Ingredient
-	-- {zone:1449} Un'Goro Crater
-	["Back to Torwa in the south-east corner of {zone:1449}."] = "Vuelve con Torwa, en la esquina sureste de {zone:1449}.",
+	-- {npc:9619} Torwa Pathfinder · {zone:1449} Un'Goro Crater
+	["Back to {npc:9619} in the south-east corner of {zone:1449}."] = "Vuelve con {npc:9619}, en la esquina sureste de {zone:1449}.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Cast Teleport: {zone:1450}. {npc:12042} stands in {area:2361}; your class trainer offers the same quest."] = "Lanza Teletransporte: {zone:1450}. {npc:12042} está en {area:2361}; tu instructor de clase ofrece la misma misión.",

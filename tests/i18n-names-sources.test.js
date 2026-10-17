@@ -1,8 +1,8 @@
 'use strict';
-// The names packs' sources beside DingDB and pfQuest (`i18n names`): Wowhead's
-// Forever database in each language (tools/lib/i18n/names-wowhead.js: list
-// pages for the ranges holding a wanted id, tooltips for the rest, bracketed
-// names dropped), the client's tables, and which source wins an id
+// The names packs' sources beside DingDB and pfQuest (`i18n names`): what is
+// cached of Wowhead's Forever database in each language
+// (tools/lib/i18n/names-wowhead.js: list pages and tooltips, bracketed names
+// dropped), the client's tables, and which source wins an id
 // (tools/lib/i18n/names.js buildNames).
 
 const { test } = require('node:test');
@@ -11,93 +11,58 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { tmpdir } = require('./helpers/tmp');
 const wh = require('../tools/lib/i18n/names-wowhead');
-const { parseList, listUrl, politeClient, LOCALE_PATHS } = require('../tools/lib/codex/wowhead');
+const { LOCALE_PATHS } = require('../tools/lib/codex/wowhead');
 const names = require('../tools/lib/i18n/names');
 const { LOCALE_CODES } = require('../tools/lib/i18n/locales');
 
-const T0 = Date.parse('2026-10-16T00:00:00Z');
+const T0 = '2026-10-16T00:00:00.000Z';
+const T1 = '2026-10-17T00:00:00.000Z';
 
-test('every client language has its Wowhead path and tooltip locale (the ids checked on the live site)', () => {
+const writeJson = (file, value) => {
+	fs.mkdirSync(path.dirname(file), { recursive: true });
+	fs.writeFileSync(file, JSON.stringify(value));
+};
+
+test('every client language has its Wowhead path (the names packs\' credit)', () => {
 	assert.deepEqual(Object.keys(LOCALE_PATHS).sort(), [...LOCALE_CODES].sort());
-	assert.deepEqual(Object.keys(wh.TOOLTIP_LOCALES).sort(), [...LOCALE_CODES].sort());
-	assert.deepEqual(wh.TOOLTIP_LOCALES, { koKR: 1, frFR: 2, deDE: 3, zhCN: 4, esES: 6, ruRU: 7, ptBR: 8, zhTW: 10, esMX: 11 });
-	assert.equal(listUrl('npc', { lo: 253000, hi: 253200 }, 'ruRU'), 'https://www.wowhead.com/forever/ru/npcs?filter=37:37;2:5;253000:253200');
-	assert.equal(listUrl('quest', { lo: 0, hi: 3000 }), 'https://www.wowhead.com/forever/quests?filter=30:30;2:5;0:3000');
 });
 
-test('the quest list\'s Listview, whose data follows other keys, is read', () => {
-	const html = `<script>new Listview({template: 'quest', id: 'quests', extraCols: ['popularity'], sort: ["popularity"], maxPopularity: 725, data:[{"category":40,"id":92742,"level":12,"name":"\\u041f\\u0440\\u043e\\u0432\\u0435\\u0440\\u043a\\u0430"}]});</script>`;
-	assert.deepEqual(parseList(html, 'quest').rows.map((r) => [r.id, r.name]), [[92742, 'Проверка']]);
-});
-
-// A fake Wowhead in two languages: npc list pages answer the rows of their
-// range named per language (npc 7 untranslated: "[Npc 7]"), tooltips per id.
-function fakeWowhead(calls) {
-	const named = { ru: (id) => (id === 7 ? '[Npc 7]' : `Нпс ${id}`), de: (id) => `NPC ${id}` };
-	const ids = [5, 7, 150, 250];
-	return async (url) => {
-		calls.push(url);
-		const list = /forever\/(ru|de)\/npcs\?filter=37:37;2:5;(\d+):(\d+)$/.exec(url);
-		if (list) {
-			const rows = ids.filter((id) => id >= Number(list[2]) && id < Number(list[3])).map((id) => ({ id, name: named[list[1]](id) }));
-			return { ok: true, status: 200, text: async () => `<script>new Listview({"template":"npc","id":"npcs","data":${JSON.stringify(rows)}});</script>` };
-		}
-		const tip = /tooltip\/(npc|quest)\/(\d+)\?locale=(\d+)$/.exec(url);
-		if (tip && tip[2] === '404') return { ok: false, status: 404, json: async () => ({}) };
-		if (tip) {
-			const body = tip[1] === 'quest'
-				? { name: 'Задание', tooltip: '<table><tr><td><b class="q">Задание</b><br />Убейте всех в лагере.<br /><br /><span class="q">Requirements:</span></td></tr></table>' }
-				: { name: `Tip ${tip[2]} (${tip[3]})` };
-			return { ok: true, status: 200, json: async () => body };
-		}
-		return { ok: false, status: 404, text: async () => '' };
-	};
-}
-
-test('Wowhead lists: only the English ranges holding a wanted id, in each language\'s path, cached; a bracketed name is none', async () => {
+test('cached Wowhead lists: each language\'s rows, the English list\'s names beside them; a bracketed name is none', () => {
 	const sourcesDir = tmpdir('polestar-names-wh-');
-	const en = { type: 'npc', chunks: [{ lo: 0, hi: 100, rows: [] }, { lo: 100, hi: 200, rows: [] }, { lo: 200, hi: 300, rows: [] }] };
-	fs.mkdirSync(path.dirname(wh.englishListFile(sourcesDir, 'npc')), { recursive: true });
-	fs.writeFileSync(wh.englishListFile(sourcesDir, 'npc'), JSON.stringify(en));
-	const calls = [];
-	const client = politeClient({ fetchImpl: fakeWowhead(calls), delayMs: 0 });
-	const want = { npc: new Set([5, 7, 150]) };
-	const res = await wh.fetchListNames({ sourcesDir, locales: ['ruRU', 'deDE'], want, client, now: T0 });
-	assert.deepEqual(res.failed, []);
-	assert.deepEqual(calls, [
-		'https://www.wowhead.com/forever/ru/npcs?filter=37:37;2:5;0:100',
-		'https://www.wowhead.com/forever/ru/npcs?filter=37:37;2:5;100:200',
-		'https://www.wowhead.com/forever/de/npcs?filter=37:37;2:5;0:100',
-		'https://www.wowhead.com/forever/de/npcs?filter=37:37;2:5;100:200',
-	], 'no range without a wanted id (200-300)');
-	const again = await wh.fetchListNames({ sourcesDir, locales: ['ruRU', 'deDE'], want, client, now: T0 + 86400000 });
-	assert.equal(again.requests, 0, 'the cache serves a later run');
+	writeJson(wh.englishListFile(sourcesDir, 'npc'), { type: 'npc', chunks: [{ lo: 0, hi: 200, rows: [{ id: 5, name: 'Npc 5 ' }, { id: 7, name: 'Npc 7' }] }] });
+	writeJson(wh.localeListFile(sourcesDir, 'ruRU', 'npc'), { type: 'npc', chunks: [
+		{ lo: 0, hi: 100, fetchedAt: T1, rows: [{ id: 5, name: 'Нпс 5' }, { id: 7, name: '[Npc 7]' }] },
+		{ lo: 100, hi: 200, fetchedAt: T0, rows: [{ id: 150, name: 'Нпс 150' }, { id: 151, name: '[PH] Нпс' }] },
+	] });
 	const ru = wh.loadWowheadNames(sourcesDir, 'ruRU');
-	assert.deepEqual([...ru.names.npc], [[5, 'Нпс 5'], [150, 'Нпс 150']], 'the bracketed [Npc 7] is no name');
-	assert.ok(ru.listed.npc.has(7), 'but it is listed: no tooltip will ask for it');
-	assert.equal(ru.fetched.first, new Date(T0).toISOString());
+	assert.deepEqual([...ru.names.npc], [[5, 'Нпс 5'], [150, 'Нпс 150']], 'the bracketed [Npc 7] and the [PH] placeholder are no names');
+	assert.ok(ru.listed.npc.has(7), 'but they are listed');
+	assert.deepEqual([...ru.english.npc], [[5, 'Npc 5'], [7, 'Npc 7']]);
+	assert.deepEqual(ru.fetched, { first: T0, last: T1 });
 });
 
-test('Wowhead tooltips: the language\'s locale id, asked once (a 404 too), a quest\'s objective line read', async () => {
+test('cached Wowhead tooltips: a name no list gave, a 404 none, a quest\'s objective line read', () => {
 	const sourcesDir = tmpdir('polestar-names-tip-');
-	const calls = [];
-	const client = politeClient({ fetchImpl: fakeWowhead(calls), delayMs: 0 });
-	const wanted = { ruRU: { npc: [250, 404], quest: [92742] } };
-	const res = await wh.fetchTooltipNames({ sourcesDir, wanted, client, now: T0 });
-	assert.equal(res.fetched, 3);
-	assert.deepEqual(calls, [
-		'https://nether.wowhead.com/forever/tooltip/npc/250?locale=7',
-		'https://nether.wowhead.com/forever/tooltip/npc/404?locale=7',
-		'https://nether.wowhead.com/forever/tooltip/quest/92742?locale=7',
-	]);
-	const again = await wh.fetchTooltipNames({ sourcesDir, wanted, client, now: T0 });
-	assert.deepEqual([again.requests, again.cached], [0, 3]);
+	writeJson(wh.localeListFile(sourcesDir, 'ruRU', 'npc'), { type: 'npc', chunks: [{ lo: 0, hi: 300, fetchedAt: T0, rows: [{ id: 250, name: 'Список 250' }] }] });
+	writeJson(wh.tooltipFile(sourcesDir, 'ruRU', 'npc', 250), { id: 250, name: 'Tip 250', fetchedAt: T0 });
+	writeJson(wh.tooltipFile(sourcesDir, 'ruRU', 'npc', 251), { id: 251, name: 'Tip 251', fetchedAt: T1 });
+	writeJson(wh.tooltipFile(sourcesDir, 'ruRU', 'npc', 404), { id: 404, notFound: true, fetchedAt: T1 });
+	writeJson(wh.tooltipFile(sourcesDir, 'ruRU', 'quest', 92742), {
+		id: 92742, name: 'Задание', fetchedAt: T0,
+		tooltip: '<table><tr><td><b class="q">Задание</b><br />Убейте всех в лагере.<br /><br /><span class="q">Requirements:</span></td></tr></table>',
+	});
 	const ru = wh.loadWowheadNames(sourcesDir, 'ruRU');
-	assert.equal(ru.names.npc.get(250), 'Tip 250 (7)');
+	assert.equal(ru.names.npc.get(250), 'Список 250', 'the list row first');
+	assert.equal(ru.names.npc.get(251), 'Tip 251');
 	assert.equal(ru.names.npc.has(404), false);
+	assert.equal(ru.names.quest.get(92742), 'Задание');
 	assert.equal(ru.objective.get(92742), 'Убейте всех в лагере.');
-	const capped = await wh.fetchTooltipNames({ sourcesDir, wanted: { deDE: { npc: [1, 2, 3] } }, client, limit: 1, now: T0 });
-	assert.deepEqual([capped.fetched, capped.left], [1, 2], '--limit');
+	assert.deepEqual(ru.fetched, { first: T0, last: T1 });
+});
+
+test('no Wowhead cache: no names, nothing read', () => {
+	const de = wh.loadWowheadNames(tmpdir('polestar-names-none-'), 'deDE');
+	assert.deepEqual([de.names.npc.size, de.listed.quest.size, de.objective.size, de.fetched], [0, 0, 0, null]);
 });
 
 test('per id the client\'s tables win, then Wowhead, then DingDB, then pfQuest; the extra kinds come from the client\'s tables', () => {

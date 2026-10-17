@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Spanish (Spain) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Spanish (Spain) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Chillwind Camp
@@ -10,8 +11,8 @@ return {
 	["{npc:11616}: the termites come later, in {area:2627}"] = "{npc:11616}: las termitas vienen más tarde, en {area:2627}",
 
 	-- Step 2: Marlene Redpath
-	-- {npc:10936} Joseph Redpath
-	["Marlene's farmhouse stands on the hill east of the camp; {npc:10936}'s monument is just north of it."] = "La granja de Marlene está en la colina al este del campamento; el monumento de {npc:10936} está justo al norte.",
+	-- {npc:10927} Marlene Redpath · {npc:10936} Joseph Redpath
+	["{npc:10927}'s farmhouse stands on the hill east of the camp; {npc:10936}'s monument is just north of it."] = "La granja de {npc:10927} está en la colina al este del campamento; el monumento de {npc:10936} está justo al norte.",
 	-- {item:12894} Joseph's Wedding Ring
 	["{item:12894}, at the monument"] = "{item:12894}, en el monumento",
 
@@ -21,8 +22,8 @@ return {
 	["Skeletal Flayers and Slavering Ghouls roam the fields north of the camp; all the Scourge here drop Scourgestones."] = "Los despellejadores esqueléticos y los necrófagos esclavizantes rondan los campos al norte del campamento; toda la Plaga de aquí suelta piedras de la Plaga.",
 
 	-- Step 4: Mulgris Deepriver
-	-- {area:202} Writhing Haunt
-	["Mulgris stands by the farm at the {area:202}, north-east of the fields."] = "Mulgris está junto a la granja de {area:202}, al noreste de los campos.",
+	-- {npc:10739} Mulgris Deepriver · {area:202} Writhing Haunt
+	["{npc:10739} stands by the farm at the {area:202}, north-east of the fields."] = "{npc:10739} está junto a la granja de {area:202}, al noreste de los campos.",
 
 	-- Step 5: Diseased Wolves
 	["Diseased Wolves"] = "Lobos malsanos",
@@ -41,8 +42,8 @@ return {
 	["{object:175924}, in the farmhouse"] = "{object:175924}, en la casa de la granja",
 
 	-- Step 10: Janice Felstone
-	-- {area:199} Felstone Field · {area:200} Dalson's Tears
-	["Janice's ghost wanders by the farmhouse of {area:199}, west of {area:200}; her parcel lies inside."] = "El fantasma de Janice vaga junto a la casa de {area:199}, al oeste de {area:200}; su paquete está dentro.",
+	-- {npc:10778} Janice Felstone · {area:199} Felstone Field · {area:200} Dalson's Tears
+	["{npc:10778}'s ghost wanders by the farmhouse of {area:199}, west of {area:200}; her parcel lies inside."] = "El fantasma de {npc:10778} vaga junto a la casa de {area:199}, al oeste de {area:200}; su paquete está dentro.",
 	-- {zone:1453} Stormwind
 	["For {zone:1453}: keep it"] = "Para {zone:1453}: guárdala",
 
@@ -87,8 +88,8 @@ return {
 	-- Step 18: Writhing Haunt cauldron
 	-- {area:202} Writhing Haunt
 	["{area:202} cauldron"] = "Caldera de {area:202}",
-	-- {area:202} Writhing Haunt
-	["The cauldron sits at the {area:202}, by Mulgris' farm."] = "La caldera está en {area:202}, junto a la granja de Mulgris.",
+	-- {area:202} Writhing Haunt · {npc:10739} Mulgris Deepriver
+	["The cauldron sits at the {area:202}, by {npc:10739}' farm."] = "La caldera está en {area:202}, junto a la granja de {npc:10739}.",
 	-- {npc:1796} Freezing Ghoul · {area:202} Writhing Haunt · {zone:1422} Western Plaguelands
 	["grind on {npc:1796} at the {area:202}, {zone:1422}"] = "mata a {npc:1796} en {area:202}, {zone:1422}",
 
@@ -130,7 +131,8 @@ return {
 	["More watches"] = "Más relojes",
 
 	-- Step 30: Kirsta Deepshadow
-	["Ride north up the road to the Northridge lumber mill; Kirsta hides at the camp's edge."] = "Cabalga al norte por el camino hasta el Aserradero Crestanorte; Kirsta se esconde en el borde del campamento.",
+	-- {npc:11610} Kirsta Deepshadow
+	["Ride north up the road to the Northridge lumber mill; {npc:11610} hides at the camp's edge."] = "Cabalga al norte por el camino hasta el Aserradero Crestanorte; {npc:11610} se esconde en el borde del campamento.",
 
 	-- Step 31: The Scarlet Crusade
 	["The Scarlet Crusade"] = "La Cruzada Escarlata",
@@ -140,8 +142,8 @@ return {
 
 	-- Step 33: Radley and Durgen
 	["Radley and Durgen"] = "Radley y Durgen",
-	-- {npc:11613} Huntsman Radley · {npc:11611} Cavalier Durgen · {area:190} Hearthglen
-	["{npc:11613} walks the Northridge camp east of Kirsta; {npc:11611} guards the tower at {area:190}'s southern approach."] = "{npc:11613} recorre el aserradero Crestanorte al este de Kirsta; {npc:11611} protege la torre del acceso sur de {area:190}.",
+	-- {npc:11613} Huntsman Radley · {npc:11610} Kirsta Deepshadow · {npc:11611} Cavalier Durgen · {area:190} Hearthglen
+	["{npc:11613} walks the Northridge camp east of {npc:11610}; {npc:11611} guards the tower at {area:190}'s southern approach."] = "{npc:11613} recorre el aserradero Crestanorte al este de {npc:11610}; {npc:11611} protege la torre del acceso sur de {area:190}.",
 
 	-- Step 35: Hearthglen overlook
 	-- {area:190} Hearthglen
@@ -150,7 +152,8 @@ return {
 	["Climb the hill west of {area:190} to look down on the town."] = "Sube a la colina al oeste de {area:190} para ver el pueblo desde arriba.",
 
 	-- Step 37: Tirion Fordring
-	["Ride east to the border river: Tirion lives in a small hut on the bank."] = "Cabalga al este hasta el río de la frontera: Tirión vive en una cabaña pequeña en la orilla.",
+	-- {npc:1855} Tirion Fordring
+	["Ride east to the border river: {npc:1855} lives in a small hut on the bank."] = "Cabalga al este hasta el río de la frontera: {npc:1855} vive en una cabaña pequeña en la orilla.",
 
 	-- Step 38: Gahrron's Withering cauldron
 	-- {area:201} Gahrron's Withering
@@ -186,22 +189,23 @@ return {
 	["{npc:11140} stands by Augustus' hut in {area:2627}."] = "{npc:11140} está junto a la cabaña de Augustus en {area:2627}.",
 
 	-- Step 46: Tirion Fordring
-	["Cross the river west to Tirion's hut."] = "Cruza el río hacia el oeste hasta la cabaña de Tirión.",
+	-- {npc:1855} Tirion Fordring
+	["Cross the river west to {npc:1855}'s hut."] = "Cruza el río hacia el oeste hasta la cabaña de {npc:1855}.",
 	["Listen to his story"] = "Escucha su historia",
 	-- {npc:11886} Mercutio Filthgorger
 	["{npc:11886} is elite: grouping up is advised"] = "{npc:11886} es élite: conviene ir en grupo",
 
 	-- Step 47: Davil's Libram
-	-- {item:12954} Davil's Libram · {area:190} Hearthglen
-	["{item:12954} lies in the town hall of {area:190}, west of Tirion: the Scarlet guards stand close together."] = "El {item:12954} está en el ayuntamiento de {area:190}, al oeste de Tirión: los guardias escarlata están muy juntos.",
+	-- {item:12954} Davil's Libram · {area:190} Hearthglen · {npc:1855} Tirion Fordring
+	["{item:12954} lies in the town hall of {area:190}, west of {npc:1855}: the Scarlet guards stand close together."] = "El {item:12954} está en el ayuntamiento de {area:190}, al oeste de {npc:1855}: los guardias escarlata están muy juntos.",
 
 	-- Step 48: Redpath's Shield
 	-- {item:12955} Redpath's Shield · {area:201} Gahrron's Withering
 	["{item:12955} lies east of the barn at {area:201}."] = "El {item:12955} está al este del granero de {area:201}.",
 
 	-- Step 49: The Undercroft
-	-- {object:177667} Torn Scroll · {npc:12248} Infiltrator Hameya
-	["Cross the river east to the Undercroft, the crypt in the south-west of the zone. The {object:177667} lies inside: its key is on {npc:12248} in the far north-east, done in the next guide."] = "Cruza el río hacia el este hasta La Subgranja, la cripta del suroeste de la zona. El {object:177667} está dentro: la llave la lleva {npc:12248}, en el extremo noreste, que se hace en la siguiente guía.",
+	-- {area:2261} The Undercroft · {object:177667} Torn Scroll · {npc:12248} Infiltrator Hameya
+	["Cross the river east to the {area:2261}, the crypt in the south-west of the zone. The {object:177667} lies inside: its key is on {npc:12248} in the far north-east, done in the next guide."] = "Cruza el río hacia el este hasta {area:2261}, la cripta del suroeste de la zona. El {object:177667} está dentro: la llave la lleva {npc:12248}, en el extremo noreste, que se hace en la siguiente guía.",
 
 	-- Step 50: Darnassus
 	-- {area:3197} Chillwind Camp · {area:150} Menethil Harbor · {area:442} Auberdine · {area:702} Rut'theran Village · {zone:1457} Darnassus
@@ -235,8 +239,8 @@ return {
 	["{npc:7900}: keep it for {zone:1446}"] = "{npc:7900}: guárdala para {zone:1446}",
 
 	-- Step 55: Zorbin Fandazzle
-	-- {area:1119} Twin Colossals
-	["Take the boat to the mainland and ride north-east to Zorbin's camp by the {area:1119}."] = "Toma el barco al continente y cabalga al noreste hasta el campamento de Zorbin junto a {area:1119}.",
+	-- {npc:14637} Zorbin Fandazzle · {area:1119} Twin Colossals
+	["Take the boat to the mainland and ride north-east to {npc:14637}'s camp by the {area:1119}."] = "Toma el barco al continente y cabalga al noreste hasta el campamento de {npc:14637} junto a {area:1119}.",
 
 	-- Step 56: Zapped giants and sea elementals
 	["Zapped giants and sea elementals"] = "Gigantes machacados y elementales marinos",
@@ -244,8 +248,8 @@ return {
 	["The shrunken giants roam the {area:1119}; the sea elementals wade along the coast to the west."] = "Los gigantes encogidos rondan {area:1119}; los elementales marinos vadean la costa al oeste.",
 
 	-- Step 58: Gregan Brewspewer
-	-- {area:1119} Twin Colossals · {item:11243} Videre Elixir
-	["Gregan's camp lies north of the {area:1119}. He sells the {item:11243} once he has his bait."] = "El campamento de Gregan está al norte de {area:1119}. Vende el {item:11243} cuando tiene su cebo.",
+	-- {npc:7775} Gregan Brewspewer · {area:1119} Twin Colossals · {item:11243} Videre Elixir
+	["{npc:7775}'s camp lies north of the {area:1119}. He sells the {item:11243} once he has his bait."] = "El campamento de {npc:7775} está al norte de {area:1119}. Vende el {item:11243} cuando tiene su cebo.",
 
 	-- Step 59: Ratchet
 	-- {area:392} Ratchet
@@ -280,5 +284,4 @@ return {
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Cross the river east to the {area:2261}, the crypt in the south-west of the zone. The {object:177667} lies inside: its key is on {npc:12248} in the far north-east, done in the next guide."] = "Cruza el río hacia el este hasta {area:2261}, la cripta del suroeste de la zona. El {object:177667} está dentro: la llave la lleva {npc:12248}, en el extremo noreste, que se hace en la siguiente guía.",
-	-- ["Ride west to {area:2627}. {npc:8597} Runts, Plaguebats and Carrion Grubs roam its woods; fill the {item:15042} at the big termite mounds and kill the Frenzied Plaguehounds further north."] = "Cabalga al oeste hasta {area:2627}. Los cachorros de {npc:8597}, los murcipestes y las larvas carroñeras rondan sus bosques; llena la {item:15042} en los grandes termiteros y mata a los canes de la Peste demenciados más al norte.",
 }

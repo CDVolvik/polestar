@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Korean words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -11,7 +12,7 @@ return {
 	["200 Horde reputation"] = "호드 평판 200",
 
 	-- Step 1: Sagorne Creststrider
-	-- {npc:13417} Sagorne Creststrider · {object:172957} Valley of Wisdom
+	-- {npc:13417} Sagorne Creststrider · {object:172957} Valley of Wisdom (no name in this language: may be words)
 	["At 58 {npc:13417}, the shaman trainer in the {object:172957}, asks for two rare diamonds."] = "58레벨에 {object:172957}의 주술사 상급자 {npc:13417}이(가) 희귀한 다이아몬드 두 개를 요구합니다.",
 
 	-- Step 2: Two diamonds
@@ -26,8 +27,8 @@ return {
 	["he hands you the {item:18746}"] = "그가 {item:18746}을(를) 줍니다",
 
 	-- Step 4: The Great Ossuary
-	-- {area:2057} Scholomance · {area:2298} Caer Darrow · {zone:1422} Western Plaguelands · {item:18746} Divination Scryer · {npc:14516} Death Knight Darkreaver
-	["{area:2057} lies under {area:2298}, the island town in the south-east of the {zone:1422}. Use the {item:18746} in the heart of the Great Ossuary's basement, beat the spirits it calls, then {npc:14516}. All are elite: bring a group."] = "{area:2057}은(는) {zone:1422} 남동쪽의 섬 마을인 {area:2298} 아래에 있습니다. 거대한 납골당 지하실 중앙에서 {item:18746}을(를) 사용하고 나타나는 영혼들을 물리친 뒤 {npc:14516}을(를) 물리치세요. 모두 정예이니 파티를 데려가세요.",
+	-- {area:2057} Scholomance · {area:2298} Caer Darrow · {zone:1422} Western Plaguelands · {item:18746} Divination Scryer · {object:179746} The Great Ossuary (no name in this language: may be words) · {npc:14516} Death Knight Darkreaver
+	["{area:2057} lies under {area:2298}, the island town in the south-east of the {zone:1422}. Use the {item:18746} in the heart of the {object:179746}'s basement, beat the spirits it calls, then {npc:14516}. All are elite: bring a group."] = "{area:2057}은(는) {zone:1422} 남동쪽의 섬 마을인 {area:2298} 아래에 있습니다. 거대한 납골당 지하실 중앙에서 {item:18746}을(를) 사용하고 나타나는 영혼들을 물리친 뒤 {npc:14516}을(를) 물리치세요. 모두 정예이니 파티를 데려가세요.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["{area:2057} lies under {area:2298}, the island town in the south-east of the {zone:1422}. Use the {item:18746} in the heart of the {object:179746}'s basement, beat the spirits it calls, then {npc:14516}. All are elite: bring a group."] = "{area:2057}은(는) {zone:1422} 남동쪽의 섬 마을인 {area:2298} 아래에 있습니다. {object:179746} 지하실 중앙에서 {item:18746}을(를) 사용하고 나타나는 영혼들을 물리친 뒤 {npc:14516}을(를) 물리치세요. 모두 정예이니 파티를 데려가세요.",

@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (simplified) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (simplified) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -11,7 +12,7 @@ return {
 	["Experience"] = "经验",
 
 	-- Step 1: Magecraft (Stormwind)
-	-- {npc:331} Maginor Dumas · {zone:1453} Stormwind · {object:2101} Mage Quarter · {zone:1455} Ironforge
+	-- {npc:331} Maginor Dumas · {zone:1453} Stormwind · {object:2101} Mage Quarter (no name in this language: may be words) · {zone:1455} Ironforge
 	["{npc:331}, the Master Mage, stands in the Wizard's Sanctum in {zone:1453}'s {object:2101}; Dink in {zone:1455} gives the same quest."] = "大法师{npc:331}站在{zone:1453}{object:2101}的巫师圣殿里；{zone:1455}的丁克也提供同样的任务。",
 
 	-- Step 2: Magecraft (Orgrimmar)

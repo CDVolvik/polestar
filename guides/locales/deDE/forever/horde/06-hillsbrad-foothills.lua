@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in German (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in German words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Tarren Mill
@@ -16,8 +17,8 @@ return {
 	["Fill the {item:7768} at the {object:107045} beside the inn"] = "Füll den {item:7768} am {object:107045} neben dem Gasthaus",
 
 	-- Step 2: Serge Hinott
-	-- {npc:2391} Serge Hinott · {area:272} Tarren Mill
-	["Only if Gallywix fell in the Barrens (Mission: Possible But Not Probable): {npc:2391} stands in {area:272}. Wait beside him while he brews the cure, then take your reward: Poisons."] = "Nur wenn Gallywix im Brachland gefallen ist (Mission: möglich, aber nicht sehr wahrscheinlich): {npc:2391} steht in {area:272}. Warte bei ihm, während er das Heilmittel braut, und hol dir dann deine Belohnung: Gifte.",
+	-- {zone:1413} The Barrens · {npc:2391} Serge Hinott · {area:272} Tarren Mill
+	["Only if Gallywix fell in the {zone:1413} (Mission: Possible But Not Probable): {npc:2391} stands in {area:272}. Wait beside him while he brews the cure, then take your reward: Poisons."] = "Nur wenn Gallywix im {zone:1413} gefallen ist (Mission: möglich, aber nicht sehr wahrscheinlich): {npc:2391} steht in {area:272}. Warte bei ihm, während er das Heilmittel braut, und hol dir dann deine Belohnung: Gifte.",
 	-- {npc:2391} Serge Hinott
 	["{npc:2391}: Poisons"] = "{npc:2391}: Gifte",
 	["No Gallywix yet? The Class guide Poisons (Horde) runs the chain from Shenthul again, with a group for Gallywix."] = "Noch kein Gallywix? Der Klassenguide Gifte (Horde) führt die Questreihe ab Shenthul erneut, mit einer Gruppe für Gallywix.",
@@ -124,8 +125,8 @@ return {
 	["Hearth to {area:378} and fly to {area:392}. {quest:874} camps on the shore north of {area:392}."] = "Ruhestein nach {area:378} und flieg nach {area:392}. {quest:874} lagert am Ufer nördlich von {area:392}.",
 
 	-- Step 28: Isha Awak
-	-- {quest:873} Isha Awak · {area:391} Merchant Coast
-	["{quest:873}, a big threshadon, swims in the shallows off the {area:391}, east of Mahren."] = "{quest:873}, ein großer Dreschadon, schwimmt im seichten Wasser vor der Küste ({area:391}), östlich von Mahren Skyseer.",
+	-- {quest:873} Isha Awak · {area:391} Merchant Coast · {npc:3388} Mahren Skyseer
+	["{quest:873}, a big threshadon, swims in the shallows off the {area:391}, east of {npc:3388}."] = "{quest:873}, ein großer Dreschadon, schwimmt im seichten Wasser vor der Küste ({area:391}), östlich von {npc:3388} Skyseer.",
 
 	-- Step 29: Ratchet
 	-- {npc:3442} Sputtervalve · {area:392} Ratchet
@@ -134,7 +135,5 @@ return {
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["No Gallywix yet? The Class guide {spell:2842} (Horde) runs the chain from Shenthul again, with a group for Gallywix."] = "Noch kein Gallywix? Der Klassenguide {spell:2842} (Horde) führt die Questreihe ab Shenthul erneut, mit einer Gruppe für Gallywix.",
 	-- ["Only if Gallywix fell in the {zone:1413} (Mission: Possible But Not Probable): {npc:2391} stands in {area:272}. Wait beside him while he brews the cure, then take your reward: {spell:2842}."] = "Nur wenn Gallywix im {zone:1413} gefallen ist (Mission: möglich, aber nicht sehr wahrscheinlich): {npc:2391} steht in {area:272}. Warte bei ihm, während er das Heilmittel braut, und hol dir dann deine Belohnung: {spell:2842}.",
-	-- ["South-west of {area:359}, {npc:12576} waits at the top of the {area:1718}."] = "Südwestlich von {area:359} wartet {npc:12576} oben am Aufzug ({area:1718}).",
 	-- ["The smithy stands in the middle of {area:287} town. {npc:2404} and his apprentices work at the forge; the {item:3564} is stacked beside it. {npc:2449} walks the street north of it."] = "Die Schmiede steht mitten im Ort {area:287}. {npc:2404} und seine Lehrlinge arbeiten an der Esse; die {item:3564} ist daneben gestapelt. {npc:2449} läuft die Straße nördlich davon entlang.",
-	-- ["West of {area:272}, Gray Bears, Forest Moss Creepers and Starving Mountain Lions roam the hills on the way down to the farms. The creepers drop {item:3477} rarely; you need only one."] = "Westlich von {area:272} streifen Graubären, Waldmooskrabbler und Verhungernde Berglöwen auf dem Weg hinunter zu den Höfen durch die Hügel. Die Krabbler droppen {item:3477} selten; du brauchst nur eins.",
 }

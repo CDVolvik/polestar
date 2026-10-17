@@ -3,10 +3,11 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (traditional) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (traditional) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Thelsamar
-	-- {npc:1573} Gryth Thurden · {object:32372} Great Forge
+	-- {npc:1573} Gryth Thurden · {object:32372} Great Forge (no name in this language: may be words)
 	["{npc:1573}, the {object:32372}"] = "{npc:1573}，{object:32372}",
 
 	-- Step 2: Hammertoe's Digsite
@@ -53,23 +54,27 @@ return {
 	["Raleigh's next errand is in the {area:796}: skip it."] = "虔誠的萊雷恩的下一個差事在{area:796}：跳過它。",
 
 	-- Step 11: Aerie Peak
-	-- {area:271} Southshore · {area:348} Aerie Peak · {quest:1450} Gryphon Master Talonaxe · {npc:7884} Fraggar Thundermantle
-	["Ride north-east out of {area:271} on the road into the Hinterlands; {area:348} sits just past the border. Falstad holds court at the top, {quest:1450} tends the aviary and {npc:7884} stands by the inn."] = "沿道路從{area:271}往東北騎進辛特蘭；{area:348}就在邊界後方。弗斯塔德·蠻錘在頂層主持，{quest:1450}照料獅鷲棲所，{npc:7884}站在旅店旁。",
+	-- {area:271} Southshore · {zone:1425} The Hinterlands · {area:348} Aerie Peak · {npc:5635} Falstad Wildhammer · {quest:1450} Gryphon Master Talonaxe · {npc:7884} Fraggar Thundermantle
+	["Ride north-east out of {area:271} on the road into the {zone:1425}; {area:348} sits just past the border. {npc:5635} holds court at the top, {quest:1450} tends the aviary and {npc:7884} stands by the inn."] = "沿道路從{area:271}往東北騎進{zone:1425}；{area:348}就在邊界後方。{npc:5635}在頂層主持，{quest:1450}照料獅鷲棲所，{npc:7884}站在旅店旁。",
 
 	-- Step 12: Rhapsody Shindigger
-	-- {area:348} Aerie Peak
-	["Rhapsody camps on the road east of {area:348}."] = "拉普索迪·鐵鏟在{area:348}東邊的路上紮營。",
-	["Rhapsody's cocktail needs parts from Kalimdor: skip it."] = "拉普索迪的雞尾酒需要卡林多的材料：跳過它。",
+	-- {npc:5634} Rhapsody Shindigger · {area:348} Aerie Peak
+	["{npc:5634} camps on the road east of {area:348}."] = "{npc:5634}在{area:348}東邊的路上紮營。",
+	-- {npc:5634} Rhapsody Shindigger
+	["{npc:5634}'s cocktail needs parts from Kalimdor: skip it."] = "{npc:5634}的雞尾酒需要卡林多的材料：跳過它。",
 
 	-- Step 13: Witherbark villages
 	["Witherbark villages"] = "枯木食人妖村落",
-	["The first two cages stand together in the Witherbark village south of Rhapsody; the third is in the next village to the east. Every Witherbark troll can drop a necklace."] = "前兩個籠子一起放在拉普索迪南邊的枯木村落；第三個在東邊的下一個村落。每隻枯木食人妖都可能掉落項鍊。",
+	-- {npc:5634} Rhapsody Shindigger
+	["The first two cages stand together in the Witherbark village south of {npc:5634}; the third is in the next village to the east. Every Witherbark troll can drop a necklace."] = "前兩個籠子一起放在{npc:5634}南邊的枯木村落；第三個在東邊的下一個村落。每隻枯木食人妖都可能掉落項鍊。",
 
 	-- Step 14: Aerie Peak
-	["Fraggar keeps paying for necklaces: hand in any extras"] = "弗拉加爾會持續收購項鍊：多的都交出去",
+	-- {npc:7884} Fraggar Thundermantle
+	["{npc:7884} keeps paying for necklaces: hand in any extras"] = "{npc:7884}會持續收購項鍊：多的都交出去",
 	-- {npc:5636} Gryphon Master Talonaxe
 	["{npc:5636}, beside the flight master at the top"] = "{npc:5636}，在頂層的飛行管理員旁邊",
-	["Talonaxe's next task waits for a later Hinterlands guide."] = "沙拉克·鷹斧的下一個任務留到之後的辛特蘭指南。",
+	-- {zone:1425} The Hinterlands
+	["Talonaxe's next task waits for a later {zone:1425} guide."] = "沙拉克·鷹斧的下一個任務留到之後的{zone:1425}指南。",
 
 	-- Step 15: Menethil Harbor
 	["Take the boat to Theramore from the far pier."] = "從最遠的碼頭搭船前往塞拉摩島。",

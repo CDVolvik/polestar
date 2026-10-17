@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Russian (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Russian words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Chillwind Camp
@@ -10,8 +11,8 @@ return {
 	["{npc:11616}: the termites come later, in {area:2627}"] = "{npc:11616}: термиты будут позже, здесь: {area:2627}",
 
 	-- Step 2: Marlene Redpath
-	-- {npc:10936} Joseph Redpath
-	["Marlene's farmhouse stands on the hill east of the camp; {npc:10936}'s monument is just north of it."] = "Дом Марлен стоит на холме к востоку от лагеря; памятник ({npc:10936}) – чуть севернее.",
+	-- {npc:10927} Marlene Redpath · {npc:10936} Joseph Redpath
+	["{npc:10927}'s farmhouse stands on the hill east of the camp; {npc:10936}'s monument is just north of it."] = "Дом {npc:10927} стоит на холме к востоку от лагеря; памятник ({npc:10936}) – чуть севернее.",
 	-- {item:12894} Joseph's Wedding Ring
 	["{item:12894}, at the monument"] = "{item:12894} – у памятника",
 
@@ -21,8 +22,8 @@ return {
 	["Skeletal Flayers and Slavering Ghouls roam the fields north of the camp; all the Scourge here drop Scourgestones."] = "Скелеты-живодеры и слюнявые вурдалаки бродят по полям к северу от лагеря; со всей Плети здесь падают камни Плети.",
 
 	-- Step 4: Mulgris Deepriver
-	-- {area:202} Writhing Haunt
-	["Mulgris stands by the farm at the {area:202}, north-east of the fields."] = "Мулгрис стоит у фермы к северо-востоку от полей: {area:202}.",
+	-- {npc:10739} Mulgris Deepriver · {area:202} Writhing Haunt
+	["{npc:10739} stands by the farm at the {area:202}, north-east of the fields."] = "{npc:10739} стоит у фермы к северо-востоку от полей: {area:202}.",
 
 	-- Step 5: Diseased Wolves
 	["Diseased Wolves"] = "Больные волки",
@@ -41,8 +42,8 @@ return {
 	["{object:175924}, in the farmhouse"] = "{object:175924} – в доме",
 
 	-- Step 10: Janice Felstone
-	-- {area:199} Felstone Field · {area:200} Dalson's Tears
-	["Janice's ghost wanders by the farmhouse of {area:199}, west of {area:200}; her parcel lies inside."] = "Призрак Джанис бродит у дома ({area:199}) к западу от места {area:200}; ее посылка лежит внутри.",
+	-- {npc:10778} Janice Felstone · {area:199} Felstone Field · {area:200} Dalson's Tears
+	["{npc:10778}'s ghost wanders by the farmhouse of {area:199}, west of {area:200}; her parcel lies inside."] = "Призрак {npc:10778} бродит у дома ({area:199}) к западу от места {area:200}; ее посылка лежит внутри.",
 	-- {zone:1453} Stormwind
 	["For {zone:1453}: keep it"] = "Для города {zone:1453}: сохраните задание",
 
@@ -87,8 +88,8 @@ return {
 	-- Step 18: Writhing Haunt cauldron
 	-- {area:202} Writhing Haunt
 	["{area:202} cauldron"] = "Котел: {area:202}",
-	-- {area:202} Writhing Haunt
-	["The cauldron sits at the {area:202}, by Mulgris' farm."] = "Котел стоит у фермы Мулгриса: {area:202}.",
+	-- {area:202} Writhing Haunt · {npc:10739} Mulgris Deepriver
+	["The cauldron sits at the {area:202}, by {npc:10739}' farm."] = "Котел стоит у фермы {npc:10739}: {area:202}.",
 	-- {npc:1796} Freezing Ghoul · {area:202} Writhing Haunt · {zone:1422} Western Plaguelands
 	["grind on {npc:1796} at the {area:202}, {zone:1422}"] = "убивайте мобов ({npc:1796}): {area:202}, {zone:1422}",
 
@@ -130,7 +131,8 @@ return {
 	["More watches"] = "Еще часы",
 
 	-- Step 30: Kirsta Deepshadow
-	["Ride north up the road to the Northridge lumber mill; Kirsta hides at the camp's edge."] = "Езжайте по дороге на север к Лесопилке Северного Кряжа; Криста прячется на краю лагеря.",
+	-- {npc:11610} Kirsta Deepshadow
+	["Ride north up the road to the Northridge lumber mill; {npc:11610} hides at the camp's edge."] = "Езжайте по дороге на север к Лесопилке Северного Кряжа; {npc:11610} прячется на краю лагеря.",
 
 	-- Step 31: The Scarlet Crusade
 	["The Scarlet Crusade"] = "Алый орден",
@@ -140,8 +142,8 @@ return {
 
 	-- Step 33: Radley and Durgen
 	["Radley and Durgen"] = "Рэдли и Дурген",
-	-- {npc:11613} Huntsman Radley · {npc:11611} Cavalier Durgen · {area:190} Hearthglen
-	["{npc:11613} walks the Northridge camp east of Kirsta; {npc:11611} guards the tower at {area:190}'s southern approach."] = "{npc:11613} ходит по лагерю Северного Кряжа к востоку от Кристы; {npc:11611} охраняет башню на южных подступах (ориентир: {area:190}).",
+	-- {npc:11613} Huntsman Radley · {npc:11610} Kirsta Deepshadow · {npc:11611} Cavalier Durgen · {area:190} Hearthglen
+	["{npc:11613} walks the Northridge camp east of {npc:11610}; {npc:11611} guards the tower at {area:190}'s southern approach."] = "{npc:11613} ходит по лагерю Северного Кряжа к востоку от {npc:11610}; {npc:11611} охраняет башню на южных подступах (ориентир: {area:190}).",
 
 	-- Step 35: Hearthglen overlook
 	-- {area:190} Hearthglen
@@ -150,7 +152,8 @@ return {
 	["Climb the hill west of {area:190} to look down on the town."] = "Поднимитесь на холм к западу (ориентир: {area:190}), чтобы осмотреть город сверху.",
 
 	-- Step 37: Tirion Fordring
-	["Ride east to the border river: Tirion lives in a small hut on the bank."] = "Езжайте на восток к пограничной реке: Тирион живет в маленькой хижине на берегу.",
+	-- {npc:1855} Tirion Fordring
+	["Ride east to the border river: {npc:1855} lives in a small hut on the bank."] = "Езжайте на восток к пограничной реке: {npc:1855} живет в маленькой хижине на берегу.",
 
 	-- Step 38: Gahrron's Withering cauldron
 	-- {area:201} Gahrron's Withering
@@ -186,22 +189,23 @@ return {
 	["{npc:11140} stands by Augustus' hut in {area:2627}."] = "{npc:11140} стоит у хижины Августа ({area:2627}).",
 
 	-- Step 46: Tirion Fordring
-	["Cross the river west to Tirion's hut."] = "Перейдите реку на запад к хижине Тириона.",
+	-- {npc:1855} Tirion Fordring
+	["Cross the river west to {npc:1855}'s hut."] = "Перейдите реку на запад к хижине {npc:1855}.",
 	["Listen to his story"] = "Выслушайте его историю",
 	-- {npc:11886} Mercutio Filthgorger
 	["{npc:11886} is elite: grouping up is advised"] = "{npc:11886} – элитный противник: лучше собрать группу",
 
 	-- Step 47: Davil's Libram
-	-- {item:12954} Davil's Libram · {area:190} Hearthglen
-	["{item:12954} lies in the town hall of {area:190}, west of Tirion: the Scarlet guards stand close together."] = "{item:12954} лежит в ратуше ({area:190}) к западу от Тириона: стражи Алого ордена стоят плотно.",
+	-- {item:12954} Davil's Libram · {area:190} Hearthglen · {npc:1855} Tirion Fordring
+	["{item:12954} lies in the town hall of {area:190}, west of {npc:1855}: the Scarlet guards stand close together."] = "{item:12954} лежит в ратуше ({area:190}) к западу от {npc:1855}: стражи Алого ордена стоят плотно.",
 
 	-- Step 48: Redpath's Shield
 	-- {item:12955} Redpath's Shield · {area:201} Gahrron's Withering
 	["{item:12955} lies east of the barn at {area:201}."] = "{item:12955} лежит к востоку от амбара ({area:201}).",
 
 	-- Step 49: The Undercroft
-	-- {object:177667} Torn Scroll · {npc:12248} Infiltrator Hameya
-	["Cross the river east to the Undercroft, the crypt in the south-west of the zone. The {object:177667} lies inside: its key is on {npc:12248} in the far north-east, done in the next guide."] = "Перейдите реку на восток к Крипте – склепу на юго-западе зоны. {object:177667} лежит внутри: ключ от него у персонажа {npc:12248} на дальнем северо-востоке, это будет в следующем гайде.",
+	-- {area:2261} The Undercroft · {object:177667} Torn Scroll · {npc:12248} Infiltrator Hameya
+	["Cross the river east to the {area:2261}, the crypt in the south-west of the zone. The {object:177667} lies inside: its key is on {npc:12248} in the far north-east, done in the next guide."] = "Перейдите реку на восток к {area:2261} – склепу на юго-западе зоны. {object:177667} лежит внутри: ключ от него у персонажа {npc:12248} на дальнем северо-востоке, это будет в следующем гайде.",
 
 	-- Step 50: Darnassus
 	-- {area:3197} Chillwind Camp · {area:150} Menethil Harbor · {area:442} Auberdine · {area:702} Rut'theran Village · {zone:1457} Darnassus
@@ -235,8 +239,8 @@ return {
 	["{npc:7900}: keep it for {zone:1446}"] = "{npc:7900}: сохраните задание для зоны {zone:1446}",
 
 	-- Step 55: Zorbin Fandazzle
-	-- {area:1119} Twin Colossals
-	["Take the boat to the mainland and ride north-east to Zorbin's camp by the {area:1119}."] = "Плывите на корабле на материк и езжайте на северо-восток к лагерю Зорбина (ориентир: {area:1119}).",
+	-- {npc:14637} Zorbin Fandazzle · {area:1119} Twin Colossals
+	["Take the boat to the mainland and ride north-east to {npc:14637}'s camp by the {area:1119}."] = "Плывите на корабле на материк и езжайте на северо-восток к лагерю {npc:14637} (ориентир: {area:1119}).",
 
 	-- Step 56: Zapped giants and sea elementals
 	["Zapped giants and sea elementals"] = "Уменьшенные великаны и морские элементали",
@@ -244,8 +248,8 @@ return {
 	["The shrunken giants roam the {area:1119}; the sea elementals wade along the coast to the west."] = "Уменьшенные великаны бродят здесь: {area:1119}; морские элементали – вдоль побережья к западу.",
 
 	-- Step 58: Gregan Brewspewer
-	-- {area:1119} Twin Colossals · {item:11243} Videre Elixir
-	["Gregan's camp lies north of the {area:1119}. He sells the {item:11243} once he has his bait."] = "Лагерь Грегана – к северу (ориентир: {area:1119}). Он продает {item:11243}, когда получит свою наживку.",
+	-- {npc:7775} Gregan Brewspewer · {area:1119} Twin Colossals · {item:11243} Videre Elixir
+	["{npc:7775}'s camp lies north of the {area:1119}. He sells the {item:11243} once he has his bait."] = "Лагерь {npc:7775} – к северу (ориентир: {area:1119}). Он продает {item:11243}, когда получит свою наживку.",
 
 	-- Step 59: Ratchet
 	-- {area:392} Ratchet

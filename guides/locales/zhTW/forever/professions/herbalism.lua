@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (traditional) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (traditional) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Learn Herbalism
@@ -69,9 +70,9 @@ return {
 
 	-- Step 22: Artisan Herbalism
 	-- {skill:182} Herbalism
-	["Artisan {skill:182}"] = "專家{skill:182}",
+	["Artisan {skill:182}"] = "專家級{skill:182}",
 	-- {skill:182} Herbalism
-	["Artisan {skill:182} raises the cap to 300; it needs skill 200 and character level 35. The arrow picks the nearest {skill:182} trainer of your faction."] = "專家{skill:182}將上限提高至300；需要技能200且角色等級35。箭頭會指向你陣營最近的{skill:182}訓練師。",
+	["Artisan {skill:182} raises the cap to 300; it needs skill 200 and character level 35. The arrow picks the nearest {skill:182} trainer of your faction."] = "專家級{skill:182}將上限提高至300；需要技能200且角色等級35。箭頭會指向你陣營最近的{skill:182}訓練師。",
 
 	-- Step 23: Khadgar's Whisker: Swamp of Sorrows (200-210) cont.
 	-- {object:2043} Khadgar's Whisker · {zone:1435} Swamp of Sorrows

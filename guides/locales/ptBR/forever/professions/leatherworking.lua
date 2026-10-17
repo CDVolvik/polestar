@@ -3,13 +3,14 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Portuguese (Brazil) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Portuguese (Brazil) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Apprentice Leatherworking
 	-- {skill:165} Leatherworking
-	["Apprentice {skill:165}"] = "{skill:165} Aprendiz",
+	["Apprentice {skill:165}"] = "{skill:165} (Aprendiz)",
 	-- {skill:165} Leatherworking
-	["{skill:165} runs alongside leveling. Forever's Legacy System rewards crafting professions at skill 150, 225 and 300 (the Journeyman, Expert and Artisan caps), so each of those checkpoints counts. Materials for 1-75 are worth about 1g 18s in all."] = "{skill:165} acompanha a evolução do personagem. O Sistema de Legado do Forever recompensa profissões de produção nas perícias 150, 225 e 300 (os limites de Artesão, Especialista e Artífice), então cada um desses marcos conta. Os materiais de 1-75 valem cerca de 1o 18p no total.",
+	["{skill:165} runs alongside leveling. Forever's Legacy System rewards crafting professions at skill 150, 225 and 300 (the Journeyman, Expert and Artisan caps), so each of those checkpoints counts. Materials for 1-75 are worth about 1g 18s in all."] = "{skill:165} acompanha a evolução do personagem. O Sistema de Legado do Forever recompensa profissões de produção nas perícias 150, 225 e 300 (os limites de Profissional, Perito e Artífice), então cada um desses marcos conta. Os materiais de 1-75 valem cerca de 1o 18p no total.",
 
 	-- Step 2: Light Leather (Alliance)
 	-- {item:2318} Light Leather
@@ -41,9 +42,9 @@ return {
 
 	-- Step 7: Journeyman Leatherworking
 	-- {skill:165} Leatherworking
-	["Journeyman {skill:165}"] = "{skill:165} Artesão",
+	["Journeyman {skill:165}"] = "{skill:165} (Profissional)",
 	-- {skill:165} Leatherworking
-	["Journeyman needs character level 10 and {skill:165} 50; it raises the cap to 150. Materials for 75-150 are worth about 11g in all."] = "Artesão exige nível de personagem 10 e {skill:165} 50; eleva o limite para 150. Os materiais de 75-150 valem cerca de 11o no total.",
+	["Journeyman needs character level 10 and {skill:165} 50; it raises the cap to 150. Materials for 75-150 are worth about 11g in all."] = "Profissional exige nível de personagem 10 e {skill:165} 50; eleva o limite para 150. Os materiais de 75-150 valem cerca de 11o no total.",
 
 	-- Step 8: Light Hide (Alliance)
 	-- {item:783} Light Hide
@@ -132,9 +133,9 @@ return {
 
 	-- Step 26: Expert Leatherworking
 	-- {skill:165} Leatherworking
-	["Expert {skill:165}"] = "{skill:165} Especialista",
+	["Expert {skill:165}"] = "{skill:165} (Perito)",
 	-- {skill:165} Leatherworking
-	["Expert needs character level 20 and {skill:165} 125; it raises the cap to 225. Materials for 150-225 are worth about 61g in all."] = "Especialista exige nível de personagem 20 e {skill:165} 125; eleva o limite para 225. Os materiais de 150-225 valem cerca de 61o no total.",
+	["Expert needs character level 20 and {skill:165} 125; it raises the cap to 225. Materials for 150-225 are worth about 61g in all."] = "Perito exige nível de personagem 20 e {skill:165} 125; eleva o limite para 225. Os materiais de 150-225 valem cerca de 61o no total.",
 
 	-- Step 27: Pattern: Mystic Heavy Armor Kit
 	-- {item:252452} Mystic Heavy Armor Kit · {skill:165} Leatherworking
@@ -270,7 +271,7 @@ return {
 
 	-- Step 51: Artisan Leatherworking
 	-- {skill:165} Leatherworking
-	["Artisan {skill:165}"] = "{skill:165} Artífice",
+	["Artisan {skill:165}"] = "{skill:165} (Artífice)",
 	-- {skill:165} Leatherworking
 	["Artisan needs character level 35 and {skill:165} 200; it raises the cap to 300. Materials for 225-300 are worth about 312g in all."] = "Artífice exige nível de personagem 35 e {skill:165} 200; eleva o limite para 300. Os materiais de 225-300 valem cerca de 312o no total.",
 

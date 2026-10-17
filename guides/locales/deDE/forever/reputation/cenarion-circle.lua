@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in German (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in German words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -10,7 +11,7 @@ return {
 
 	-- Step 1: Cenarion Hold
 	-- {area:3425} Cenarion Hold · {zone:1451} Silithus · {npc:15270} Huum Wildmane · {faction:609} Cenarion Circle
-	["{area:3425} is the walled town in north-central {zone:1451}. Bor and {npc:15270} stand together inside. The {faction:609} starts out Neutral. Forever's Legacy Diplomat perk increases reputation gains."] = "{area:3425} ist die ummauerte Stadt im nördlichen Zentrum von {zone:1451}. Bor und {npc:15270} stehen zusammen drinnen. Beim {faction:609} beginnst du mit Neutral. Forevers Vermächtnisvorteil „Diplomat“ erhöht den Rufgewinn.",
+	["{area:3425} is the walled town in north-central {zone:1451}. Bor and {npc:15270} stand together inside. The {faction:609} starts out Neutral. Forever's Legacy Diplomat perk increases reputation gains."] = "{area:3425} ist die ummauerte Stadt im nördlichen Zentrum von {zone:1451}. Bor und {npc:15270} stehen zusammen drinnen. Beim {faction:609} beginnst du mit Neutral. Forevers Vermächtnis-Vorteil „Diplomat“ erhöht den Rufgewinn.",
 	-- {quest:8320} Twilight Geolords
 	["{quest:8320} needs level 60"] = "{quest:8320} erfordert Stufe 60",
 

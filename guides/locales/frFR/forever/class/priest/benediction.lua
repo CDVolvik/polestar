@@ -3,13 +3,14 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in French (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in French words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
 	-- {item:18608} Benediction
 	["{item:18608} and Anathema"] = "{item:18608} et Anathème",
-	-- {item:18608} Benediction
-	["Eris's splinter and the two Eyes make {item:18608}, the epic priest staff that turns into Anathema."] = "L'éclat d'Eris et les deux Yeux donnent {item:18608}, le bâton épique de prêtre qui se change en Anathème.",
+	-- {npc:14494} Eris Havenfire · {item:18608} Benediction
+	["{npc:14494}'s splinter and the two Eyes make {item:18608}, the epic priest staff that turns into Anathema."] = "L'éclat d'{npc:14494} et les deux Yeux donnent {item:18608}, le bâton épique de prêtre qui se change en Anathème.",
 
 	-- Step 1: The Eye of Shadow
 	-- {item:18646} The Eye of Divinity · {object:179703} Cache of the Firelord · {npc:12018} Majordomo Executus · {area:2717} Molten Core · {item:18665} The Eye of Shadow · {npc:12397} Lord Kazzak
@@ -28,7 +29,4 @@ return {
 	-- Step 4: Benediction
 	-- {item:18608} Benediction
 	["With both Eyes in your bags: {item:18608}"] = "Avec les deux Yeux dans vos sacs : {item:18608}",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Save 50 peasants before 15 die. Kill the skeletons that attack them, cure their diseases (the purple ones first) and heal the wounded with Renew. Friends may buff you beforehand but must stay out of the fight, or a demon appears and kills everyone."] = "Sauvez 50 paysans avant que 15 ne meurent. Tuez les squelettes qui les attaquent, guérissez leurs maladies (les violets d'abord) et soignez les blessés avec Rénovation. Des amis peuvent vous améliorer avant, mais doivent rester hors du combat, sinon un démon apparaît et tue tout le monde.",
 }

@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Russian (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Russian words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Fly to Gadgetzan
@@ -22,18 +23,19 @@ return {
 	["West of Gadgetzan, use the {item:8584} beside the water hole in the troll camp."] = "К западу от Прибамбасска используйте предмет {item:8584} у водопоя в лагере троллей.",
 
 	-- Step 5: Caliph Scorpidsting
-	["South-east of Gadgetzan the Wastewander bandits camp in the dunes; Caliph stands in the eastern camp."] = "К юго-востоку от Прибамбасска в дюнах стоят лагерем бандиты Скитальцев Пустыни; Калиф – в восточном лагере.",
+	-- {npc:7847} Caliph Scorpidsting
+	["South-east of Gadgetzan the Wastewander bandits camp in the dunes; {npc:7847} stands in the eastern camp."] = "К юго-востоку от Прибамбасска в дюнах стоят лагерем бандиты Скитальцев Пустыни; {npc:7847} – в восточном лагере.",
 
 	-- Step 6: Marvon Rivetseeker
-	-- {area:1938} Broken Pillar · {item:9978} Gahz'ridian Detector · {area:983} Dunemaul Compound
-	["West along the road south; Marvon camps by the ruins at the {area:1938}. Put on his {item:9978}: it shows the buried ornaments, here and around the {area:983}."] = "На запад по дороге на юг; Марвон стоит лагерем у руин ({area:1938}). Наденьте его предмет {item:9978}: он показывает закопанные украшения – здесь и вокруг места {area:983}.",
+	-- {npc:7771} Marvon Rivetseeker · {area:1938} Broken Pillar · {item:9978} Gahz'ridian Detector · {area:983} Dunemaul Compound
+	["West along the road south; {npc:7771} camps by the ruins at the {area:1938}. Put on his {item:9978}: it shows the buried ornaments, here and around the {area:983}."] = "На запад по дороге на юг; {npc:7771} стоит лагерем у руин ({area:1938}). Наденьте его предмет {item:9978}: он показывает закопанные украшения – здесь и вокруг места {area:983}.",
 
 	-- Step 7: The Noxious Lair
 	["West, the Centipaar insects swarm around their hives; any of them drops the parts."] = "К западу насекомые-сентипаары роятся у своих ульев; части тел падают с любого.",
 
 	-- Step 8: Dunemaul Compound
-	-- {npc:12046} Gor'marok the Ravager · {quest:3161} Gahz'ridian
-	["South of the Noxious Lair the Dunemaul ogres hold their compound, with {npc:12046} at its eastern end. Dig up {quest:3161} ornaments between the fights."] = "К югу от Ядовитого улья огры клана Песчаного Молота занимают свой лагерь, {npc:12046} – в его восточной части. Между боями выкапывайте украшения ({quest:3161}).",
+	-- {area:982} The Noxious Lair · {npc:12046} Gor'marok the Ravager · {quest:3161} Gahz'ridian
+	["South of the {area:982} the Dunemaul ogres hold their compound, with {npc:12046} at its eastern end. Dig up {quest:3161} ornaments between the fights."] = "К югу от места {area:982} огры клана Песчаного Молота занимают свой лагерь, {npc:12046} – в его восточной части. Между боями выкапывайте украшения ({quest:3161}).",
 
 	-- Step 9: Thistleshrub Valley
 	-- {zone:1446} Tanaris
@@ -159,6 +161,4 @@ return {
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["South of the {area:982} the Dunemaul ogres hold their compound, with {npc:12046} at its eastern end. Dig up {quest:3161} ornaments between the fights."] = "К югу от места {area:982} огры клана Песчаного Молота занимают свой лагерь, {npc:12046} – в его восточной части. Между боями выкапывайте украшения ({quest:3161}).",
-	-- ["South-east of {area:976} the Wastewander bandits camp in the dunes; Caliph stands in the eastern camp."] = "К юго-востоку от места {area:976} в дюнах стоят лагерем бандиты Скитальцев Пустыни; Калиф – в восточном лагере.",
-	-- ["West of {area:976}, use the {item:8584} beside the water hole in the troll camp."] = "К западу от места {area:976} используйте предмет {item:8584} у водопоя в лагере троллей.",
 }

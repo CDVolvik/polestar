@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Russian (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Russian words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Menethil Harbor
@@ -86,7 +87,7 @@ return {
 	-- Step 23: The Tablet of the Seven
 	-- {quest:4296} Tablet of the Seven
 	["The {quest:4296}"] = "{quest:4296}",
-	-- {object:147516} Dark Iron · {area:251} Flame Crest
+	-- {object:147516} Dark Iron (no name in this language: may be words) · {area:251} Flame Crest
 	["Read the tablet in the {object:147516} camp among the ruins, south-west of {area:251}, to copy the transcript."] = "Прочитайте табличку в лагере ({object:147516}) среди руин к юго-западу от места {area:251}, чтобы скопировать текст.",
 
 	-- Step 24: Broodling Essence
@@ -102,8 +103,8 @@ return {
 	["{npc:9176} and the Blackrock orcs hold the camps and the stronghold at the foot of {area:254}, west of {area:251}. Pull them one at a time; every orc and worg may drop a medallion, so kill them until you have fifty."] = "{npc:9176} и орки из клана Черной Горы занимают лагеря и крепость у подножия горы ({area:254}), к западу от места {area:251}. Выманивайте их по одному; медальон может выпасть с любого орка и ворга, так что убивайте, пока не наберете пятьдесят.",
 
 	-- Step 27: Franclorn Forgewright
-	-- {area:254} Blackrock Mountain
-	["Optional: Franclorn's ghost stands on his tomb on the great chain inside {area:254}, and only the dead can see him. If you die near the mountain anyway, run your spirit to him before resurrecting."] = "Необязательно: призрак Франклорна стоит на своей гробнице на огромной цепи внутри горы ({area:254}), и видят его только мертвые. Если вы все равно погибнете у горы, доберитесь до него духом, прежде чем воскреснуть.",
+	-- {npc:8888} Franclorn Forgewright · {area:254} Blackrock Mountain
+	["Optional: {npc:8888}'s ghost stands on his tomb on the great chain inside {area:254}, and only the dead can see him. If you die near the mountain anyway, run your spirit to him before resurrecting."] = "Необязательно: призрак {npc:8888} стоит на своей гробнице на огромной цепи внутри горы ({area:254}), и видят его только мертвые. Если вы все равно погибнете у горы, доберитесь до него духом, прежде чем воскреснуть.",
 
 	-- Step 28: Morgan's Vigil
 	["Ride back east along the road to the Vigil."] = "Езжайте по дороге назад на восток к Дозору.",
@@ -117,9 +118,9 @@ return {
 	["Fly to {area:1438}."] = "Летите в {area:1438}.",
 
 	-- Step 32: Kum'isha the Collector
-	-- {area:2517} Rise of the Defiler · {zone:1419} Blasted Lands
+	-- {npc:7363} Kum'isha the Collector · {area:2517} Rise of the Defiler · {zone:1419} Blasted Lands
 	-- plural, as words: Imperfect Draenethyst Fragments = {item:10593} Imperfect Draenethyst Fragment
-	["Kum'isha waits at the {area:2517}, the hill south-west of the keep. The {zone:1419} mobs on the way drop the Imperfect Draenethyst Fragments; bring her what you have."] = "Кум'иша ждет на холме к юго-западу от крепости ({area:2517}). С существ зоны {zone:1419} по пути падают несовершенные фрагменты дренетиста; принесите ей, сколько есть.",
+	["{npc:7363} waits at the {area:2517}, the hill south-west of the keep. The {zone:1419} mobs on the way drop the Imperfect Draenethyst Fragments; bring her what you have."] = "{npc:7363} ждет на холме к юго-западу от крепости ({area:2517}). С существ зоны {zone:1419} по пути падают несовершенные фрагменты дренетиста; принесите ей, сколько есть.",
 
 	-- Step 33: Wildkin feathers
 	["Wildkin feathers"] = "Перья диких совухов",

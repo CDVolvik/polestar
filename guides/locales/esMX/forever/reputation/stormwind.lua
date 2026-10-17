@@ -3,10 +3,11 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Spanish (Latin America) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Spanish (Latin America) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
-	["Stormwind Reputation"] = "Reputación con Ventormenta",
+	["Stormwind Reputation"] = "Reputación: Ventormenta",
 
 	-- Step 1: Clavicus Knavingham: A Donation of Wool
 	-- {npc:14722} Clavicus Knavingham · {faction:72} Stormwind · {zone:1453} Stormwind City · {item:14047} Runecloth · {quest:7796} Additional Runecloth
@@ -23,7 +24,7 @@ return {
 	["Dunemaul ogres (level 45-48) drop it here. The Auction House works too."] = "Los ogros Machacaduna (nivel 45-48) lo sueltan aquí. La casa de subastas también sirve.",
 
 	-- Step 8: Runecloth
-	-- {object:92525} Argent Dawn
+	-- {object:92525} Argent Dawn (no name in this language: may be words)
 	-- plural, as words: Dark Adepts = {npc:8546} Dark Adept
 	["Dark Adepts and Shadowmages (level 58-60) drop it here; every Scourge kill here also counts toward the {object:92525} (see that guide). The Auction House works too."] = "Los Adeptos oscuros y los Magos oscuros (nivel 58-60) lo sueltan aquí; cada muerte de la Plaga aquí también cuenta para {object:92525} (consulta esa guía). La casa de subastas también sirve.",
 
