@@ -16,6 +16,7 @@ const PRIORS = {
 	mountMul: [1.6, 0, 1.6, 1.6, 'mounted speed multiplier'],
 	detour0: [1.35, 0.12, 1.05, 2, 'walking detour factor, Eastern Kingdoms (path / straight line)'],
 	detour1: [1.3, 0.12, 1.05, 2, 'walking detour factor, Kalimdor'],
+	routeMul: [1, 0.05, 0.9, 1.3, 'routed walk (sim walks) / the walking router\'s yards: a player strays a little from the drawn line'],
 	killSec1: [11, 3, 6, 30, 'seconds per kill incl. downtime at level 1 (equal-level mob)'],
 	killSec60: [30, 6, 15, 60, 'seconds per kill incl. downtime at level 60'],
 	killUp: [0.1, 0.04, 0, 0.3, 'kill time +share per mob level above the player'],

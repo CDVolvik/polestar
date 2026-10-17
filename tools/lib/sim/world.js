@@ -27,7 +27,8 @@
 //   hubs     quest givers/enders clustered at 150 yd, with fp/inn/trainers
 //   quests   [{ id, title, level, minLevel, races, classes, pre, preAll, excl, ...,
 //              giver, ender, accept: {pt, work}, tasks: [{pt, work}],
-//              gName, eName (giver/ender names), gPos, ePos ({map, x, y} map percent) }]
+//              gName, eName (giver/ender names), gPos, ePos ({map, x, y} map percent),
+//              gAlt?, eAlt? (every friendly giver/ender, { 'npc:<id>': pt }, when more than one) }]
 //   packages [{ key, zone, zoneName, band, quests, steps: [[kind, quest, task, pt]] }]
 //   grind    { spacing: [yards by mob level] }
 //   starts   { Race: { zone, pt, quest } }
@@ -54,7 +55,7 @@ const SOLO = require('./solo');
 const { blockingPrereqs } = require('../data/prereqs');
 const { CLASS_BY_FILE, FACTION_RACES, SKYBORNE_BIT, hasBit } = require('../game/races');
 
-const BUILDER_VERSION = 19;
+const BUILDER_VERSION = 20;
 
 const FACTION_BIT = { Alliance: 1, Horde: 2 };
 const PROFESSION_SORTS = new Set([24, 101, 121, 181, 182, 201, 264, 304, 324]);
@@ -658,6 +659,24 @@ function buildWorld(data, opts = {}) {
 			else ex('no located turn-in');
 			continue;
 		}
+		// Every friendly giver and ender by entity ("npc:5489"), kept when there
+		// is more than one: a guide that names one (`accept 8254 npc 11406`) is
+		// scored there (sequence.js). The route search keeps giver and ender.
+		const alts = (list, anchor) => {
+			const out = {};
+			let n = 0;
+			for (const kind of ['npc', 'object']) {
+				for (const eid of list[kind] || []) {
+					const e = sites(kind, eid);
+					if (!e || !e.friendly) continue;
+					out[`${kind}:${eid}`] = bestSite(e, anchor(e)).pt;
+					n++;
+				}
+			}
+			return n > 1 ? out : null;
+		};
+		const gAlt = alts(start, (e) => (e.sites.length > 1 ? endAnchor() : null));
+		const eAlt = alts(end, () => giver);
 		// Objectives.
 		const objs = Array.isArray(raw.objectives) ? raw.objectives : [];
 		const located = [];
@@ -878,6 +897,8 @@ function buildWorld(data, opts = {}) {
 			elite,
 			gName, eName, gPos, ePos,
 		};
+		if (gAlt) q.gAlt = gAlt;
+		if (eAlt) q.eAlt = eAlt;
 		if (startFrom != null) q.startFrom = startFrom;
 		if (raw.parent != null) q.inLog = Number(raw.parent);
 		byId.set(id, q);

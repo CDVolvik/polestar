@@ -64,7 +64,7 @@ async function evaluateDraws({ world, worldFile, runOpts, routes, draws, workers
 			return routes.map((r) => ev.cost(r));
 		});
 	}
-	const pool = new Pool(workers, { worldFile, runOpts, params: draws[0] });
+	const pool = new Pool(workers, { worldFile, runOpts, params: draws[0], walks: !!world.walks });
 	try {
 		const chunk = Math.max(1, Math.ceil(draws.length / (workers * 4)));
 		const msgs = [];
