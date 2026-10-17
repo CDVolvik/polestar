@@ -498,3 +498,18 @@ test('the welcome turns its pages with LB / RB and starts on Next', () => {
 	`);
 	assert.deepEqual(out, { first: true, at: 1, at2: 2, at3: 1 });
 });
+
+test('B on the bar for marking the right spot goes back to the report, as Cancel does: the player\'s words and the step they reported kept', () => {
+	const [out] = run(`
+		uistub.setGuide(uistub.elwynn, 3)
+		UI.ShowReport()
+		local F = PolestarReport
+		F.Desc:SetText("The vermin were all by the tents.")
+		stub.RunScript(F.Desc, "OnTextChanged", true)
+		F.Mark:Click()
+		uistub.setStep(4)
+		stub.press("PAD2")
+		emit({ bar = PolestarMark:IsShown(), report = F:IsShown(), desc = F.Desc:GetText(), context = F.Context:GetText() })
+	`);
+	assert.deepEqual(out, { bar: false, report: true, desc: 'The vermin were all by the tents.', context: 'Step 3 of 8  ·  Kobold Camp  ·  Elwynn Forest' });
+});

@@ -263,7 +263,8 @@ test('the report names the other addons that are loaded; "Report bug" gives a li
 	assert.deepEqual(Object.keys(q).sort(), ['addons', 'steps', 'template', 'title', 'version'], 'only the Bug report form\'s fields');
 	assert.equal(q.template, 'bug-report.yml', 'a step on screen, no spot marked: a bug report');
 	assert.equal(q.title, 'Bug: The vermin were all by the tents.');
-	assert.equal(q.steps, out.report, 'the whole report, as the window shows it, the guide and the step in it');
+	const noAddons = (t) => t.split('\n').filter((l) => !l.startsWith('Addons: ')).join('\n');
+	assert.equal(q.steps, noAddons(out.report), 'the whole report, as the window shows it, the guide and the step in it, but the addons, which have their own field');
 	assert.match(q.version, /^(\d+\.\d+\.\d+|dev)/);
 	assert.equal(q.addons, 'Questie 9.1.0\nTomTom 0.1.0-test\nBagnon 0.1.0-test\nDetails 0.1.0-test');
 	const wrong = Object.fromEntries(new URL(out.marked).searchParams);
@@ -274,7 +275,7 @@ test('the report names the other addons that are loaded; "Report bug" gives a li
 	assert.equal(wrong.step, '3: Kobold Camp');
 	assert.match(wrong.character, /^Human Warrior · level 4/);
 	assert.equal(wrong.where, 'zone map 1429\ngoto 51.23,40.50 live');
-	assert.equal(wrong.wrong, out.markedReport, 'the report without its Right spot line');
+	assert.equal(wrong.wrong, noAddons(out.markedReport), 'the report without its Right spot and Addons lines');
 	const bug = Object.fromEntries(new URL(out.noGuide).searchParams);
 	assert.equal(bug.template, 'bug-report.yml', 'no step on screen: a bug report, spot or not');
 	assert.equal(bug.title, 'Bug: Lua error on login', 'the first line of what the player typed');
@@ -329,7 +330,7 @@ test('"Mark the right spot" steps the window aside while the player walks; "Mark
 	const added = out.after.split('\n').filter((l) => !out.before.split('\n').includes(l));
 	assert.deepEqual(added, ['Right spot: zone map 1429 · goto 51.23,40.50 live'], 'the spot is the one line added: the report taken at the open is kept');
 	assert.equal(new URL(out.url).searchParams.get('where'), 'zone map 1429\ngoto 51.23,40.50 live', 'the right spot field holds what /polestar where prints');
-	assert.equal(new URL(out.url).searchParams.get('wrong'), out.before, 'the issue gives the spot once, in its own field');
+	assert.equal(new URL(out.url).searchParams.get('wrong'), out.before.split('\n').filter((l) => !l.startsWith('Addons: ')).join('\n'), 'the issue gives the spot once, in its own field');
 	assert.equal(out.reopened, out.back.note, 'the spot stays while it is the same step');
 	assert.match(out.otherStep, /^Optional:/, 'another step starts unmarked');
 	assert.doesNotMatch(out.otherReport, /Right spot/);
@@ -397,4 +398,31 @@ test('a bug report with nothing typed is titled as its report reads: "Bug: (not 
 		UI.ShowReport()
 		emit({ url = UI.Report.IssueURL("  \\n  ", PolestarReport.details) })`);
 	assert.equal(new URL(out.url).searchParams.get('title'), 'Bug: (not described)');
+});
+
+test('the bug button while the player walks to mark the right spot brings back the report they started: their words, the step and the snapshot, not a new report on the step the guide moved to', () => {
+	const [out] = run(`
+		uistub.setGuide(uistub.elwynn, 3)
+		UI.ShowReport()
+		local F = PolestarReport
+		F.Desc:SetText("The vermin were all by the tents.")
+		stub.RunScript(F.Desc, "OnTextChanged", true)
+		local before = F.Box:GetText()
+		F.Mark:Click()
+		uistub.setStep(4)
+		GF.parts.nav.Report:Click()
+		emit({ desc = F.Desc:GetText(), bar = PolestarMark:IsShown(), shown = F:IsShown(), context = F.Context:GetText(), same = F.Box:GetText() == before })`);
+	assert.deepEqual(out, { desc: 'The vermin were all by the tents.', bar: false, shown: true, context: 'Step 3 of 8  \u00b7  Kobold Camp  \u00b7  Elwynn Forest', same: true });
+});
+
+test('the issue body leaves out the Addons line: the addons have their own field', () => {
+	const [out] = run(`
+		stub.addons[#stub.addons + 1] = { name = "Questie", loaded = true }
+		uistub.setGuide(uistub.elwynn, 3)
+		UI.ShowReport()
+		emit({ url = UI.Report.IssueURL("x", PolestarReport.details), report = UI.Report.Text("x", PolestarReport.details) })`);
+	const q = new URL(out.url).searchParams;
+	assert.match(out.report, /^Addons: Questie$/m, 'the Discord report keeps it');
+	assert.doesNotMatch(q.get('steps'), /^Addons:/m);
+	assert.match(q.get('addons'), /^Questie /);
 });

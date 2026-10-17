@@ -324,17 +324,17 @@ function R.Details()
 	return d
 end
 
--- The report to paste: what went wrong, in the player's words, then the
--- details as a code block (Discord keeps their lines and spacing), and the
--- right spot when the player marked one. The bug bot reads this layout
--- back (tools/discord-bot/lib/report.js): the first line's shape, the guide
--- line's "(id)", the order of the lines.
 -- What the player typed, trimmed, or "(not described)".
 local function described(description)
 	local desc = tostring(description or ""):match("^%s*(.-)%s*$")
 	return desc ~= "" and desc or L["(not described)"]
 end
 
+-- The report to paste: what went wrong, in the player's words, then the
+-- details as a code block (Discord keeps their lines and spacing), and the
+-- right spot when the player marked one. The bug bot reads this layout
+-- back (tools/discord-bot/lib/report.js): the first line's shape, the guide
+-- line's "(id)", the order of the lines.
 local function text(description, lines, spot)
 	local desc = described(description)
 	local out = { "**" .. L["What went wrong:"] .. "** " .. desc, "```" }
@@ -433,6 +433,13 @@ end
 -- English one, so goals after the arrow's go first, then the report is cut
 -- with its code block still closed.
 local function bodyField(description, details, spot, room)
+	-- The addons have their own field: in the body they would only take room.
+	local lines = {}
+	for i, line in ipairs(details.lines) do
+		if i ~= details.addonsAt then lines[#lines + 1] = line end
+	end
+	-- The goals come before the Addons line, so their places in `lines` hold.
+	details = setmetatable({ lines = lines }, { __index = details })
 	local report = text(description, details.lines, spot)
 	local g = details.goals
 	local droppable = g and (g.last - g.first + 1 - (g.current and 1 or 0)) or 0
@@ -558,9 +565,9 @@ end
 -- whole: measured in its own font at its inner width.
 local function compose()
 	showSpot()
-	local text = R.Text(F.Desc:GetText(), F.details, F.spot)
-	W.SetCopyText(F.Box, text)
-	F.Measure:SetText(text)
+	local report = R.Text(F.Desc:GetText(), F.details, F.spot)
+	W.SetCopyText(F.Box, report)
+	F.Measure:SetText(report)
 	F.Box:SetHeight(floor(F.Measure:GetStringHeight() + 16 + 0.5))
 	layout()
 end
@@ -631,7 +638,7 @@ local function buildMark()
 	M.Here:SetPoint("TOPLEFT", M.Note, "BOTTOMLEFT", 0, -12)
 	M.Cancel = W.Button(M, L["Cancel"], backToReport)
 	M.Cancel:SetPoint("LEFT", M.Here, "RIGHT", 8, 0)
-	if ns.Gamepad and ns.Gamepad.Register then ns.Gamepad.Register(M, {}) end
+	if ns.Gamepad and ns.Gamepad.Register then ns.Gamepad.Register(M, { back = backToReport }) end
 end
 
 local function startMark()
@@ -772,6 +779,14 @@ end
 -- Opens the window on the step on screen. The details are taken now; what
 -- the player typed stays while it is the same step.
 function UI.ShowReport()
+	-- Opened again while the player walks to mark the right spot (the bug
+	-- button, the menu, /polestar report): back to the report they started,
+	-- not a new one about wherever the guide is now.
+	if M and M:IsShown() then
+		backToReport()
+		F.Desc:SetFocus()
+		return
+	end
 	if not F then build() end
 	F.details = R.Details()
 	if F.details.key ~= F.key then
