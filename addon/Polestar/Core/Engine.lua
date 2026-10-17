@@ -316,13 +316,14 @@ local function goalApplies(goal)
 	end
 	local out = goal.quest and guide and Own.leftOut[guide.id]
 	local why = out and out[goal.quest]
-	if why and not questDone(goal.quest) and (why == "log" or not Compat().IsOnQuest(goal.quest)) then return false end
+	if why and not questDone(goal.quest) and not Compat().IsOnQuest(goal.quest) then return false end
 	return greyNeed(goal) ~= false and not orphaned(goal)
 end
 
 
--- The catch-up's quests left out, per guide (guideId -> { [questID] = "new" |
--- "log" }), for the session; placement works them out again (Own.catchUp).
+-- The catch-up's quests left out, per guide (guideId -> { [questID] = true }),
+-- for the session; placement works them out again (Own.catchUp). Taken by
+-- hand, a quest is back.
 Own.leftOut = {}
 -- Guides placement passed whole (guideId -> true): they may chain to `next`
 -- like a finished guide; and the guides passed on the way to the one placed,
@@ -1321,12 +1322,14 @@ end
 
 -- The catch-up: behind the last quest progress (anchor), the guide leaves out
 -- what is too low to be worth going back for, as "Skip grey quests" does for
--- grey quests anywhere: an accept that is green or lower for the character
--- (more than 2 levels below), not taken yet ("new"), and a quest still in the
--- log that is grey or green there ("log"), unless a quest worth doing needs it
--- first (down the guide and the guides after it). Worth doing: an accept that
--- is not grey, behind the anchor only from yellow up (2 levels below or more).
--- Only for leveling guides, with "Skip grey quests" on.
+-- grey quests anywhere: an accept that is green for the character (more than
+-- 2 levels below) and not taken yet, unless a quest worth doing needs it first
+-- (down the guide and the guides after it). Worth doing: an accept that is
+-- not grey, behind the anchor only from yellow up (2 levels below or more). A
+-- quest in the log is never left out: the player chose it, and the guide
+-- takes them there (a kill for it further on moves the anchor past its
+-- accept, and must not drop the quest). Only for leveling guides, with "Skip
+-- grey quests" on.
 function Own.catchUp(anchor, level)
 	local out = {}
 	if anchor <= 1 then return out end
@@ -1352,12 +1355,9 @@ function Own.catchUp(anchor, level)
 			for _, goal in ipairs(steps[s].goals) do
 				local q = goal.quest
 				if goal.t == "accept" and q and not goal.optional and Guides.Matches(goal.only, player)
-					and low(goal) and not needs[q] and not questDone(q) then
-					if C.IsOnQuest(q) then
-						out[q] = "log"
-					elseif not C.IsQuestTrivial(tonumber(goal.qlvl), level) then
-						out[q] = "new" -- grey ones: greyNeed
-					end
+					and low(goal) and not needs[q] and not questDone(q) and not C.IsOnQuest(q)
+					and not C.IsQuestTrivial(tonumber(goal.qlvl), level) then
+					out[q] = true -- grey ones: greyNeed
 				end
 			end
 		end

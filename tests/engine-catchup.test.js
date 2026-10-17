@@ -26,7 +26,8 @@ w.level = 20
 
 // test/low (1-12): grey for them, done in part. test/mid (15-22): a trip to a
 // green quest behind their progress, a grey quest a yellow one needs, a
-// green quest still in the log behind it, and the last quest they did.
+// green quest still in the log behind it (kept: they chose it), and the last
+// quest they did.
 const GUIDES = `
 Polestar.RegisterGuide({ id = "test/low", pack = "test", title = "Low", faction = "Alliance", minLevel = 1, maxLevel = 12, next = "test/mid", steps = {
 	{ goals = { { t = "accept", quest = 101, title = "Grey done", qlvl = 5 } } },
@@ -97,8 +98,31 @@ test('a level-20 character opening a grey guide is taken through it to the next,
 	assert.equal(out.guide, 'test/mid');
 	assert.equal(out.at, 5, 'the grey quest Yellow needs, after the trip to the green quest left behind');
 	assert.deepEqual(out.placed, { id: 'test/mid', step: 5, chain: 'test/low' });
-	// Green behind, its turn-in and the quest still in the log behind are left out; the trips pass.
-	assert.deepEqual(out.statuses.slice(0, 9), ['done', 'na', 'done', 'na', 'active', 'pending', 'na', 'na', 'done']);
+	// Green behind and its turn-in are left out, the trips pass; the quest in the log keeps its turn-in.
+	assert.deepEqual(out.statuses.slice(0, 9), ['done', 'na', 'done', 'na', 'active', 'pending', 'done', 'pending', 'done']);
+});
+
+// Yendi at 30 in Duskwood (25-27): Gather Rot Blossoms (24) in the log, and
+// one kill for The Night Watch (26) further on moved the anchor past both
+// accepts. The guide still resumes at the blossoms, and is not passed whole.
+test('a quest in the log is never left out, even when progress further on is behind it: the guide resumes there', () => {
+	const duskwood = `
+		Polestar.RegisterGuide({ id = "test/dusk", pack = "test", title = "Duskwood", faction = "Alliance", minLevel = 25, maxLevel = 27, next = "test/mid", steps = {
+			{ goals = { { t = "accept", quest = 57, title = "The Night Watch", qlvl = 26 } } },
+			{ goals = { { t = "accept", quest = 156, title = "Gather Rot Blossoms", qlvl = 24 } } },
+			{ goals = { { t = "collect", item = 1598, itemName = "Rot Blossom", quest = 156, oi = 1, count = 8 } } },
+			{ goals = { { t = "kill", target = "Skeletal Horror", npc = 202, quest = 57, oi = 1, count = 15 } } },
+			{ goals = { { t = "turnin", quest = 156, title = "Gather Rot Blossoms" }, { t = "turnin", quest = 57, title = "The Night Watch" } } },
+		} })
+	` + GUIDES;
+	const [out] = run({
+		before: `stub.world.level = 30
+			stub.world.onQuest(156, { { type = "item", required = 8, fulfilled = 0 } })
+			stub.world.onQuest(57, { { required = 15, fulfilled = 1 } })`,
+		guides: duskwood,
+		script: 'E.SetGuide("test/dusk"); flush(); emit({ guide = E.GetGuide().id, at = E.GetStepIndex() })',
+	});
+	assert.deepEqual(out, { guide: 'test/dusk', at: 3 });
 });
 
 test('without "Skip grey quests" the guide is placed as before: the first quest not done, in the first guide', () => {

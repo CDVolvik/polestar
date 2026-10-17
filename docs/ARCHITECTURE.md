@@ -1346,14 +1346,14 @@ holds at its opening, see "Not yet available"):
 **The catch-up** (`Own.catchUp`, with `behavior.skipGrey` on, in a guide that
 does not do every step): before the start is worked out, the accepts behind
 the last quest progress that are more than 2 levels below the character
-(green or lower) and not taken yet are left out, and so are the quests still
-in the log there that are, unless a quest worth doing needs them first
-(`Own.needsFrom` down `pre`/`preAll`, over the guide and the guides after it:
-`Own.chainOf`). Worth doing: an accept that is not grey, behind the anchor
-only from 2 levels below up. Left out (`Own.leftOut[guideId]`, for the
-session; each placement works it out again), an accept no longer applies,
-with its turn-in and objectives; taking the quest by hand brings a "new" one
-back. Grey accepts anywhere go by `behavior.skipGrey`'s own rule (greyNeed).
+(green or lower) and not taken yet are left out, unless a quest worth doing
+needs them first (`Own.needsFrom` down `pre`/`preAll`, over the guide and the
+guides after it: `Own.chainOf`). Worth doing: an accept that is not grey,
+behind the anchor only from 2 levels below up. A quest in the log is never
+left out: the player chose it (and a kill for it further on moves the anchor
+past its own accept). Left out (`Own.leftOut[guideId]`, for the session; each
+placement works it out again), an accept no longer applies, with its turn-in
+and objectives; taking the quest by hand brings it back. Grey accepts anywhere go by `behavior.skipGrey`'s own rule (greyNeed).
 Soft goals before the start also pass in a step before the last left-out or
 grey-skipped accept: the way to what was left out goes with it. A guide the
 character is past (an accept left out or grey-skipped, or `maxLevel`
