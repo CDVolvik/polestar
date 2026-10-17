@@ -321,8 +321,22 @@ function R.Details()
 end
 
 -- What the player typed, trimmed, or "(not described)".
+-- s without the spaces around it: ASCII ones, and the no-break space and the
+-- ideographic space (U+3000) a Chinese, Japanese or Korean input method types.
+local function trimmed(s)
+	local prev
+	s = tostring(s or "")
+	repeat
+		prev = s
+		s = s:gsub("^%s+", ""):gsub("%s+$", "")
+		s = s:gsub("^\194\160", ""):gsub("\194\160$", "")
+		s = s:gsub("^\227\128\128", ""):gsub("\227\128\128$", "")
+	until s == prev
+	return s
+end
+
 local function described(description)
-	local desc = tostring(description or ""):match("^%s*(.-)%s*$")
+	local desc = trimmed(description)
 	return desc ~= "" and desc or L["(not described)"]
 end
 
@@ -566,13 +580,12 @@ local function showSpot()
 	end
 end
 
--- The report box is as tall as its text, so it is read whole and copied
--- whole: measured in its own font at its inner width.
 -- Whether the player said what went wrong: Copy report and Open on GitHub
--- wait for it, so no report goes out "(not described)".
+-- wait for it, so no report goes out "(not described)". Characters, one
+-- each: not Discord's count, where an emoji is two.
 local function saidEnough()
-	local desc = (F.Desc:GetText() or ""):match("^%s*(.-)%s*$")
-	return length(desc) >= R.DESC_MIN
+	local _, chars = trimmed(F.Desc:GetText()):gsub("[^\128-\191]", "")
+	return chars >= R.DESC_MIN
 end
 
 local function gate()
@@ -581,11 +594,14 @@ local function gate()
 		b:SetEnabled(ok)
 		b:SetAlpha(ok and 1 or 0.5)
 		b.psTip = not ok and L["Say what went wrong first."] or nil
+		if ok then W.HideTooltip(b) end
 	end
 	if not ok then F.Box:Hide() end
 	return ok
 end
 
+-- The report box is as tall as its text, so it is read whole and copied
+-- whole: measured in its own font at its inner width.
 local function compose()
 	showSpot()
 	gate()
@@ -808,7 +824,11 @@ local function build()
 	if ns.Gamepad and ns.Gamepad.Register then
 		ns.Gamepad.Register(F, {
 			initial = function(rows)
-				for i, w in ipairs(rows) do if w == F.Copy then return i end end
+				-- Copy report while it waits is left out of the rows: then Mark,
+				-- never the first row, the ✕.
+				for _, want in ipairs({ F.Copy, F.Mark }) do
+					for i, w in ipairs(rows) do if w == want then return i end end
+				end
 			end,
 		})
 	end

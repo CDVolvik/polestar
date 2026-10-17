@@ -519,7 +519,7 @@ test('the report window starts on Copy report, the way to report on Discord, onc
 		uistub.setGuide(uistub.elwynn, 3)
 		UI.ShowReport()
 		stub.advance(0.3)
-		emit({ copy = G.Focused(PolestarReport) == PolestarReport.Copy })
+		emit({ copy = G.Focused(PolestarReport) == PolestarReport.Copy, mark = G.Focused(PolestarReport) == PolestarReport.Mark })
 		PolestarReport.Desc:SetText("The vermin were all by the tents.")
 		stub.RunScript(PolestarReport.Desc, "OnTextChanged", true)
 		PolestarReport:Hide()
@@ -527,6 +527,6 @@ test('the report window starts on Copy report, the way to report on Discord, onc
 		stub.advance(0.3)
 		emit({ copy = G.Focused(PolestarReport) == PolestarReport.Copy })
 	`);
-	assert.deepEqual(empty, { copy: false }, 'nothing typed: Copy report waits');
+	assert.deepEqual(empty, { copy: false, mark: true }, 'nothing typed: Copy report waits, and the pad starts on Mark, never on the close button');
 	assert.deepEqual(said, { copy: true });
 });

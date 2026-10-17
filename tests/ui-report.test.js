@@ -556,3 +556,19 @@ test('Clear mark, beside Mark again, takes the right spot back out of the report
 	assert.deepEqual(out.marked, { clear: true, spot: true });
 	assert.deepEqual(out.after, { clear: false, button: 'Mark the right spot', report: out.before.report, template: 'bug-report.yml' });
 });
+
+test('the 5 letters are letters: spaces a Chinese or Japanese input method types do not count, and an emoji is one', () => {
+	const [out] = run(`
+		uistub.setGuide(uistub.elwynn, 3)
+		UI.ShowReport()
+		local F = PolestarReport
+		local res = {}
+		for _, t in ipairs({ string.rep("\\227\\128\\128", 5), string.rep("\\194\\160", 5), "\\227\\128\\128a\\227\\128\\128b\\227\\128\\128",
+				string.rep("\\240\\159\\152\\128", 3), string.rep("\\240\\159\\152\\128", 5), "\\230\\151\\165\\230\\156\\172\\232\\170\\158\\227\\131\\134\\227\\130\\185" }) do
+			F.Desc:SetText(t)
+			stub.RunScript(F.Desc, "OnTextChanged", true)
+			res[#res + 1] = F.Copy:IsEnabled()
+		end
+		emit({ res = res })`);
+	assert.deepEqual(out.res, [false, false, false, false, true, true], 'ideographic spaces, no-break spaces, two letters padded with them, three emoji: no; five emoji, five Japanese letters: yes');
+});
