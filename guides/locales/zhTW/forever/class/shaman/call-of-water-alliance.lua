@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (traditional) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (traditional) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -16,17 +17,17 @@ return {
 	["At 20 {npc:258098}, the shaman trainer in {zone:1455}, sends you to {npc:258043} in {zone:1432}."] = "20級時，{zone:1455}的薩滿訓練師{npc:258098}會派你去找{zone:1432}的{npc:258043}。",
 
 	-- Step 2: Norric Lochthane
-	-- {area:146} Stonewrought Dam
-	["Norric's burrow hut stands on the north-western edge of the loch, south of {area:146}."] = "他的地穴小屋位於湖的西北邊緣，{area:146}南邊。",
+	-- {npc:258043} Norric Lochthane · {area:146} Stonewrought Dam
+	["{npc:258043}'s burrow hut stands on the north-western edge of the loch, south of {area:146}."] = "{npc:258043}的地穴小屋位於湖的西北邊緣，{area:146}南邊。",
 
 	-- Step 3: Hervdana Saegrund
-	-- {zone:1437} Wetlands
-	["Hervdana's family lives in a cave beneath the southern falls of the {zone:1437}."] = "她的家人住在{zone:1437}南部瀑布下方的洞穴裡。",
+	-- {npc:258203} Hervdana Saegrund · {zone:1437} Wetlands
+	["{npc:258203}'s family lives in a cave beneath the southern falls of the {zone:1437}."] = "{npc:258203}的家人住在{zone:1437}南部瀑布下方的洞穴裡。",
 
 	-- Step 4: The brown waterskin
 	["The brown waterskin"] = "棕色水袋",
-	-- {item:265732} Unfilled Brown Waterskin
-	["Fill the {item:265732} at the bottom of the waterfalls below Hervdana's cave, where the fresh water meets the brackish."] = "在那個洞穴下方的瀑布底部、淡水與鹹水交會處裝滿{item:265732}。",
+	-- {item:265732} Unfilled Brown Waterskin · {npc:258203} Hervdana Saegrund
+	["Fill the {item:265732} at the bottom of the waterfalls below {npc:258203}'s cave, where the fresh water meets the brackish."] = "在{npc:258203}的洞穴下方的瀑布底部、淡水與鹹水交會處裝滿{item:265732}。",
 
 	-- Step 6: The red waterskin
 	["The red waterskin"] = "紅色水袋",
@@ -36,12 +37,12 @@ return {
 
 	-- Step 8: The blue waterskin
 	["The blue waterskin"] = "藍色水袋",
-	-- {area:150} Menethil Harbor · {area:442} Auberdine · {area:271} Southshore · {area:415} Astranaar · {item:265772} Unfilled Blue Waterskin
-	["Hervdana: take the boat from {area:150} to {area:442} (it stops in {area:271} on the way), then go south to {area:415}. Fill the {item:265772} in the lake around the town."] = "從那個洞穴出發：從{area:150}搭船前往{area:442}（途中會停靠{area:271}），然後向南前往{area:415}。在城鎮周圍的湖裡裝滿{item:265772}。",
+	-- {npc:258203} Hervdana Saegrund · {area:150} Menethil Harbor · {area:442} Auberdine · {area:271} Southshore · {area:415} Astranaar · {item:265772} Unfilled Blue Waterskin
+	["{npc:258203}: take the boat from {area:150} to {area:442} (it stops in {area:271} on the way), then go south to {area:415}. Fill the {item:265772} in the lake around the town."] = "{npc:258203}：從{area:150}搭船前往{area:442}（途中會停靠{area:271}），然後向南前往{area:415}。在城鎮周圍的湖裡裝滿{item:265772}。",
 
 	-- Step 9: Hervdana Saegrund
-	-- {item:7810} Vial of Purest Water
-	["the {item:7810}, for Norric"] = "{item:7810}，交給派你來的薩滿",
+	-- {item:7810} Vial of Purest Water · {npc:258043} Norric Lochthane
+	["the {item:7810}, for {npc:258043}"] = "{item:7810}，交給{npc:258043}",
 
 	-- Step 10: Norric Lochthane
 	-- {npc:258043} Norric Lochthane · {item:6637} Water Sapta

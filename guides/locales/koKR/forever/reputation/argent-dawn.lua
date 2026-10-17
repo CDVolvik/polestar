@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Korean words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -11,14 +12,14 @@ return {
 	-- Step 1: Argent Dawn Commission (Alliance)
 	-- {quest:5401} Argent Dawn Commission
 	["{quest:5401} (Alliance)"] = "{quest:5401} (얼라이언스)",
-	-- {object:2160} The Argent Dawn · {npc:10840} Argent Officer Pureheart · {area:3197} Chillwind Camp · {quest:5401} Argent Dawn Commission
-	["{object:2160} starts out Neutral. Take the Commission from {npc:10840} at {area:3197} and wear it: in Classic, Scourgestones only drop while the {quest:5401} trinket is equipped. Forever's Legacy Diplomat perk increases reputation gains."] = "{object:2160}은(는) 중립에서 시작합니다. {area:3197}의 {npc:10840}에게서 위임장을 받아 착용하세요. 클래식에서는 {quest:5401} 장신구를 착용해야만 스컬지석이 떨어집니다. Forever의 외교관 Legacy 특전은 평판 획득량을 늘려 줍니다.",
+	-- {object:2160} The Argent Dawn (no name in this language: may be words) · {npc:10840} Argent Officer Pureheart · {area:3197} Chillwind Camp · {quest:5401} Argent Dawn Commission
+	["{object:2160} starts out Neutral. Take the Commission from {npc:10840} at {area:3197} and wear it: in Classic, Scourgestones only drop while the {quest:5401} trinket is equipped. Forever's Legacy Diplomat perk increases reputation gains."] = "{object:2160}은(는) 중립에서 시작합니다. {area:3197}의 {npc:10840}에게서 위임장을 받아 착용하세요. 클래식에서는 {quest:5401} 장신구를 착용해야만 스컬지석이 떨어집니다. Forever의 외교관 유산 특전은 평판 획득량을 늘려 줍니다.",
 
 	-- Step 2: Argent Dawn Commission (Horde)
 	-- {quest:5401} Argent Dawn Commission
 	["{quest:5401} (Horde)"] = "{quest:5401} (호드)",
-	-- {object:2160} The Argent Dawn · {npc:10839} Argent Officer Garush · {area:813} The Bulwark · {quest:5401} Argent Dawn Commission
-	["{object:2160} starts out Neutral. Take the Commission from {npc:10839} at {area:813} and wear it: in Classic, Scourgestones only drop while the {quest:5401} trinket is equipped. Forever's Legacy Diplomat perk increases reputation gains."] = "{object:2160}은(는) 중립에서 시작합니다. {area:813}의 {npc:10839}에게서 위임장을 받아 착용하세요. 클래식에서는 {quest:5401} 장신구를 착용해야만 스컬지석이 떨어집니다. Forever의 외교관 Legacy 특전은 평판 획득량을 늘려 줍니다.",
+	-- {object:2160} The Argent Dawn (no name in this language: may be words) · {npc:10839} Argent Officer Garush · {area:813} The Bulwark · {quest:5401} Argent Dawn Commission
+	["{object:2160} starts out Neutral. Take the Commission from {npc:10839} at {area:813} and wear it: in Classic, Scourgestones only drop while the {quest:5401} trinket is equipped. Forever's Legacy Diplomat perk increases reputation gains."] = "{object:2160}은(는) 중립에서 시작합니다. {area:813}의 {npc:10839}에게서 위임장을 받아 착용하세요. 클래식에서는 {quest:5401} 장신구를 착용해야만 스컬지석이 떨어집니다. Forever의 외교관 유산 특전은 평판 획득량을 늘려 줍니다.",
 
 	-- Step 3: Minion's Scourgestones to Friendly
 	-- plural, as words: Minion's Scourgestones = {item:12840} Minion's Scourgestone

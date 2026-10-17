@@ -1042,9 +1042,10 @@ L["Faction filter"] = "陣營篩選"
 L["Class"] = "職業"
 L["Professions"] = "專業"
 L["Exploration"] = "探索"
-L["Legacy"] = "舊版"
+L["Legacy"] = "傳承"
 L["Collectibles"] = "收藏品"
 L["Sections"] = "區段"
+L["guide status: Completed"] = "已完成"
 
 -- UI/Lookup.lua
 L["Companion"] = "小寵物"

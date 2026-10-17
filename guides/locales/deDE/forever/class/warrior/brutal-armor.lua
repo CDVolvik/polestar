@@ -3,13 +3,14 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in German (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in German words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
 	["Four armor pieces at 30 (hauberk, helm, gauntlets, legguards) and a shield on the way."] = "Vier Rüstungsteile mit 30 (Halsberge, Helm, Stulpen, Beinschützer) und ein Schild unterwegs.",
 
 	-- Step 1: Speak with Ruga (Orgrimmar)
-	-- {npc:3354} Sorek · {object:172958} Valley of Honor · {npc:6394} Ruga Ragetotem · {area:378} Camp Taurajo
+	-- {npc:3354} Sorek · {object:172958} Valley of Honor (no name in this language: may be words) · {npc:6394} Ruga Ragetotem · {area:378} Camp Taurajo
 	["At 20, {npc:3354} in the {object:172958} sends you to {npc:6394} in {area:378}."] = "Mit 20 schickt dich {npc:3354} im {object:172958} zu {npc:6394} in {area:378}.",
 
 	-- Step 2: Speak with Ruga (Thunder Bluff)
@@ -27,8 +28,8 @@ return {
 	["Twitching Antennae from the silithid"] = "Zuckende Fühler von den Silithiden",
 
 	-- Step 5: Thun'grim Firegaze
-	-- {area:380} Crossroads · {quest:1838} Brutal Armor
-	["Thun'grim camps beside the road east of the {area:380}. {quest:1838} is a level 30 quest; you can take it now and gather for it on the way."] = "Thun'grim Firegaze lagert an der Straße östlich vom {area:380}. {quest:1838} ist eine Quest der Stufe 30; du kannst sie jetzt annehmen und unterwegs dafür sammeln.",
+	-- {npc:5878} Thun'grim Firegaze · {area:380} Crossroads · {quest:1838} Brutal Armor
+	["{npc:5878} camps beside the road east of the {area:380}. {quest:1838} is a level 30 quest; you can take it now and gather for it on the way."] = "{npc:5878} Firegaze lagert an der Straße östlich vom {area:380}. {quest:1838} ist eine Quest der Stufe 30; du kannst sie jetzt annehmen und unterwegs dafür sammeln.",
 
 	-- Step 6: Roogug in Razorfen Kraul
 	-- {area:1717} Razorfen Kraul
@@ -66,8 +67,8 @@ return {
 	["Iron Bars: {npc:8673}"] = "Eisenbarren: {npc:8673}",
 
 	-- Step 10: Brutal Hauberk
-	-- {area:380} Crossroads · {quest:1848} Brutal Hauberk
-	["Back to Thun'grim beside the road east of the {area:380}. {quest:1848} is the first piece; he then sends you to three crafters for the rest."] = "Zurück zu Thun'grim Firegaze an der Straße östlich vom {area:380}. {quest:1848} ist das erste Teil; danach schickt er dich für den Rest zu drei Handwerkern.",
+	-- {npc:5878} Thun'grim Firegaze · {area:380} Crossroads · {quest:1848} Brutal Hauberk
+	["Back to {npc:5878} beside the road east of the {area:380}. {quest:1848} is the first piece; he then sends you to three crafters for the rest."] = "Zurück zu {npc:5878} Firegaze an der Straße östlich vom {area:380}. {quest:1848} ist das erste Teil; danach schickt er dich für den Rest zu drei Handwerkern.",
 
 	-- Step 11: Ula'elek
 	-- {npc:6408} Ula'elek · {area:367} Sen'jin Village · {zone:1411} Durotar
@@ -96,7 +97,4 @@ return {
 	["The Dragonmaw orcs camp in the middle of the {zone:1437}, south of the road; Raiders, Swamprunners, Centurions, Shadowwarders and Bonewarders all drop the Sturdy Dragonmaw Shinbones."] = "Die Orcs der Dragonmaw lagern in der Mitte des {zone:1437}, südlich der Straße; Räuber, Sumpfläufer, Zenturios, Schattenwärter und Knochenwärter lassen alle die Stabilen Schienbeinknochen ({item:7134}) fallen.",
 	-- plural, as words: Sturdy Dragonmaw Shinbones = {item:7134} Sturdy Dragonmaw Shinbone
 	["Sturdy Dragonmaw Shinbones"] = "Stabile Schienbeinknochen ({item:7134})",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Uncloven Satyr Hooves"] = "Ungespaltene Satyrhufe",
 }

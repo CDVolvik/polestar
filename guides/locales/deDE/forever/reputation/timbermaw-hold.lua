@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in German (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in German words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -10,7 +11,7 @@ return {
 
 	-- Step 1: Grazle
 	-- {faction:576} Timbermaw Hold
-	["{faction:576} starts out Hostile, and its furbolgs in the tunnels attack until you reach Unfriendly. Every Deadwood and Winterfall furbolg you kill raises it, so the quests below pay twice. Forever's Legacy Diplomat perk increases reputation gains."] = "{faction:576} beginnt bei Feindselig, und ihre Furbolgs in den Tunneln greifen an, bis du Unfreundlich erreichst. Jeder Furbolg der Totenwaldfelle und der Winterfelle, den du tötest, erhöht ihn, die Quests unten zahlen sich also doppelt aus. Forevers Vorteil Legacy Diplomat erhöht den Rufgewinn.",
+	["{faction:576} starts out Hostile, and its furbolgs in the tunnels attack until you reach Unfriendly. Every Deadwood and Winterfall furbolg you kill raises it, so the quests below pay twice. Forever's Legacy Diplomat perk increases reputation gains."] = "{faction:576} beginnt bei Feindselig, und ihre Furbolgs in den Tunneln greifen an, bis du Unfreundlich erreichst. Jeder Furbolg der Totenwaldfelle und der Winterfelle, den du tötest, erhöht ihn, die Quests unten zahlen sich also doppelt aus. Forevers Vermächtnis-Vorteil „Diplomat“ erhöht den Rufgewinn.",
 
 	-- Step 2: Deadwood Village
 	-- {zone:1448} Felwood · {item:21377} Deadwood Headdress Feather · {npc:11554} Grazle · {npc:15395} Nafien

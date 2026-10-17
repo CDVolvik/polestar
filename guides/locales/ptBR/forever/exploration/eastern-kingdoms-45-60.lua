@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Portuguese (Brazil) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Portuguese (Brazil) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -51,10 +52,10 @@ return {
 
 	-- Step 7: The Hinterlands (1/2)
 	["14 areas to discover here, levels 41-49."] = "14 áreas a descobrir aqui, níveis 41-49.",
-	-- {area:348} Aerie Peak · {area:271} Southshore · {zone:1424} Hillsbrad Foothills
-	["Fly to {area:348} if you have it; otherwise fly to {area:271} and walk north-east from {zone:1424} into the Hinterlands."] = "Voe para {area:348} se tiver a rota; senão, voe para {area:271} e caminhe para nordeste do {zone:1424} até as Terras Agrestes.",
-	-- {area:3317} Revantusk Village · {area:272} Tarren Mill · {zone:1424} Hillsbrad Foothills
-	["Fly to {area:3317} if you have it; otherwise fly to {area:272} and walk east from {zone:1424} into the Hinterlands."] = "Voe para {area:3317} se tiver a rota; senão, voe para {area:272} e caminhe para leste do {zone:1424} até as Terras Agrestes.",
+	-- {area:348} Aerie Peak · {area:271} Southshore · {zone:1424} Hillsbrad Foothills · {zone:1425} The Hinterlands
+	["Fly to {area:348} if you have it; otherwise fly to {area:271} and walk north-east from {zone:1424} into the {zone:1425}."] = "Voe para {area:348} se tiver a rota; senão, voe para {area:271} e caminhe para nordeste do {zone:1424} até as {zone:1425}.",
+	-- {area:3317} Revantusk Village · {area:272} Tarren Mill · {zone:1424} Hillsbrad Foothills · {zone:1425} The Hinterlands
+	["Fly to {area:3317} if you have it; otherwise fly to {area:272} and walk east from {zone:1424} into the {zone:1425}."] = "Voe para {area:3317} se tiver a rota; senão, voe para {area:272} e caminhe para leste do {zone:1424} até as {zone:1425}.",
 	-- {area:348} Aerie Peak · {npc:8018} Guthrum Thunderfist
 	["Flight path here: {area:348} ({npc:8018})."] = "Rota de voo aqui: {area:348} ({npc:8018}).",
 	-- {area:3317} Revantusk Village
@@ -80,6 +81,4 @@ return {
 	["Flight path here: {area:2268} ({npc:12617})."] = "Rota de voo aqui: {area:2268} ({npc:12617}).",
 	-- {area:2268} Light's Hope Chapel
 	["Flight path here: {area:2268} (Georgia)."] = "Rota de voo aqui: {area:2268} (Georgia).",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
 }

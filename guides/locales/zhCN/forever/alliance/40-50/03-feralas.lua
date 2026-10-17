@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (simplified) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (simplified) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Feathermoon Stronghold
@@ -56,7 +57,7 @@ return {
 	["Grimtotem camp"] = "恐怖图腾营地",
 	-- {area:1108} Forgotten Coast · {zone:1444} Feralas · {npc:7956} Kindal Moonweaver
 	-- plural, as words: Sprite Darters = {npc:5278} Sprite Darter
-	["Boat to the {area:1108} and ride east across {zone:1444} to the Grimtotem camp north of the road. {npc:7956} waits outside it; free the Sprite Darters from the pen in the middle and keep Kindal and at least six of them alive."] = "乘船前往{area:1108}，向东骑过{zone:1444}，到道路北边的恐怖图腾营地。{npc:7956}在营地外等候；解救中间围栏里的{npc:5278}，保证辛达尔·月纹和至少六只精灵龙存活。",
+	["Boat to the {area:1108} and ride east across {zone:1444} to the Grimtotem camp north of the road. {npc:7956} waits outside it; free the Sprite Darters from the pen in the middle and keep {npc:7956} and at least six of them alive."] = "乘船前往{area:1108}，向东骑过{zone:1444}，到道路北边的恐怖图腾营地。{npc:7956}在营地外等候；解救中间围栏里的{npc:5278}，保证{npc:7956}和至少六只精灵龙存活。",
 
 	-- Step 13: Grimtotem tauren
 	["Grimtotem tauren"] = "恐怖图腾牛头人",
@@ -79,36 +80,37 @@ return {
 
 	-- Step 17: Rage Scar yetis
 	["Rage Scar yetis"] = "怒痕雪人",
-	-- {quest:7735} Pristine Yeti Hide
-	["Ride back west along the road, then north into the Rage Scar hills. Every yeti here can drop a hide; one may drop a {quest:7735}, which Pratt pays for too."] = "沿道路向西骑回，然后向北进入怒痕山丘。这里的每个雪人都可能掉落毛皮；可能会掉落{quest:7735}，普拉特·马克格鲁比也会收购。",
+	-- {quest:7735} Pristine Yeti Hide · {npc:7852} Pratt McGrubben
+	["Ride back west along the road, then north into the Rage Scar hills. Every yeti here can drop a hide; one may drop a {quest:7735}, which {npc:7852} pays for too."] = "沿道路向西骑回，然后向北进入怒痕山丘。这里的每个雪人都可能掉落毛皮；可能会掉落{quest:7735}，{npc:7852}也会收购。",
 
 	-- Step 18: Rockbiter
 	-- plural, as words: Land Walkers = {npc:5357} Land Walker · Cliff Giants = {npc:5358} Cliff Giant
 	["Ride west to the friendly mountain giant at the foot of the hills. Land Walkers and Cliff Giants around him are elite: give them room."] = "向西骑到山脚下友好的山岭巨人那里。他周围的{npc:5357}和{npc:5358}是精英：离它们远点。",
 
 	-- Step 19: Shay Leafrunner
-	-- {npc:7765} Rockbiter
-	["Shay wanders the hills north of {npc:7765}, among the Northspring harpies; her bell is in the chest beside her."] = "沙恩·飘叶在{npc:7765}北边的山丘上、北泉鹰身人之间游荡；她的铃铛在她旁边的箱子里。",
+	-- {npc:7774} Shay Leafrunner · {npc:7765} Rockbiter
+	["{npc:7774} wanders the hills north of {npc:7765}, among the Northspring harpies; her bell is in the chest beside her."] = "{npc:7774}在{npc:7765}北边的山丘上、北泉鹰身人之间游荡；她的铃铛在她旁边的箱子里。",
 
-	-- Step 20: Shay's escort
-	["Shay's escort"] = "护送沙恩·飘叶",
-	-- {npc:7765} Rockbiter
-	["Ring the bell whenever Shay stops to wander, and lead her south to {npc:7765}."] = "每当沙恩·飘叶停下乱走时就摇铃，带她向南到{npc:7765}处。",
+	-- Step 20: Shay Leafrunner's escort
+	-- {npc:7774} Shay Leafrunner
+	["{npc:7774}'s escort"] = "护送{npc:7774}",
+	-- {npc:7774} Shay Leafrunner · {npc:7765} Rockbiter
+	["Ring the bell whenever {npc:7774} stops to wander, and lead her south to {npc:7765}."] = "每当{npc:7774}停下乱走时就摇铃，带她向南到{npc:7765}处。",
 
 	-- Step 21: Feathermoon Stronghold
-	-- {zone:1457} Darnassus · {area:976} Gadgetzan
-	["Shandris then asks you to carry news to {zone:1457}: skip it, {area:976} sends you there instead."] = "珊蒂斯·羽月接着会让你把消息带到{zone:1457}：跳过，{area:976}会让你去那里。",
+	-- {npc:3936} Shandris Feathermoon · {zone:1457} Darnassus · {area:976} Gadgetzan
+	["{npc:3936} then asks you to carry news to {zone:1457}: skip it, {area:976} sends you there instead."] = "{npc:3936}接着会让你把消息带到{zone:1457}：跳过，{area:976}会让你去那里。",
 
 	-- Step 22: Zul'Farrak instead of grinding
 	-- {area:978} Zul'Farrak
 	["{area:978} instead of grinding"] = "用{area:978}代替刷怪",
-	-- {area:978} Zul'Farrak · {zone:1446} Tanaris · {area:1108} Forgotten Coast
-	["Running {area:978} instead of grinding gets you there faster in a group. The troll city lies in northern {zone:1446}, the next zone on the route; come back to Zorbin on the {area:1108} afterwards."] = "组队刷{area:978}代替刷怪升级更快。巨魔城市在{zone:1446}北部，也就是路线的下一个区域；之后回到{area:1108}找索尔宾·范达瑟。",
+	-- {area:978} Zul'Farrak · {zone:1446} Tanaris · {npc:14637} Zorbin Fandazzle · {area:1108} Forgotten Coast
+	["Running {area:978} instead of grinding gets you there faster in a group. The troll city lies in northern {zone:1446}, the next zone on the route; come back to {npc:14637} on the {area:1108} afterwards."] = "组队刷{area:978}代替刷怪升级更快。巨魔城市在{zone:1446}北部，也就是路线的下一个区域；之后回到{area:1108}找{npc:14637}。",
 
 	-- Step 23: Grind to 45
 	["Grind to 45"] = "刷到45级",
-	-- {area:1108} Forgotten Coast · {area:1105} Feral Scar Vale
-	["Boat to the {area:1108} and ride east into {area:1105}. Zorbin's quests on the coast need level 45."] = "乘船前往{area:1108}，向东骑进{area:1105}。索尔宾·范达瑟在海岸的任务需要45级。",
+	-- {area:1108} Forgotten Coast · {area:1105} Feral Scar Vale · {npc:14637} Zorbin Fandazzle
+	["Boat to the {area:1108} and ride east into {area:1105}. {npc:14637}'s quests on the coast need level 45."] = "乘船前往{area:1108}，向东骑进{area:1105}。{npc:14637}在海岸的任务需要45级。",
 	-- {npc:5292} Feral Scar Yeti · {area:1105} Feral Scar Vale · {zone:1444} Feralas
 	["grind on {npc:5292} at {area:1105}, {zone:1444}"] = "在{zone:1444}的{area:1105}刷{npc:5292}",
 
@@ -123,7 +125,8 @@ return {
 	["Shore Striders, Deep Striders and Wave Striders (elite giants) wade along the coast north of the dock: zap one with {item:18904} and kill the shrunken giant. Sea Elementals and Sea Sprays drift in the same surf."] = "{npc:5359}、{npc:5360}和{npc:5361}（精英巨人）在码头北边的海岸涉水：用{item:18904}电一只，然后杀掉缩小的巨人。{npc:5461}和{npc:5462}在同一片浪花中飘荡。",
 
 	-- Step 26: Zorbin Fandazzle
-	["Zorbin's refills are level 55: skip them."] = "索尔宾·范达瑟的补充任务是55级：跳过。",
+	-- {npc:14637} Zorbin Fandazzle
+	["{npc:14637}'s refills are level 55: skip them."] = "{npc:14637}的补充任务是55级：跳过。",
 	-- {area:1108} Forgotten Coast · {zone:1446} Tanaris
 	["You end at the {area:1108} dock: the {zone:1446} guide starts with the trip east from here."] = "你在{area:1108}的码头结束：{zone:1446}指南从这里向东出发开始。",
 }

@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Korean words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -10,9 +11,9 @@ return {
 
 	-- Step 1: Journeyman Riding
 	-- {skill:762} Riding
-	["Journeyman {skill:762}"] = "중급 {skill:762}",
+	["Journeyman {skill:762}"] = "수습 {skill:762}",
 	-- {npc:4753} Jartsam · {npc:4730} Lelanai · {area:1658} Cenarion Enclave · {zone:1457} Darnassus · {skill:762} Riding
-	["{npc:4753} and {npc:4730}'s sabers are in the {area:1658}'s riding grounds in {zone:1457}. At 60 {npc:4753} teaches Journeyman {skill:762} (1,000g per Blizzard's designers); Blizzard says learning riding grants a mount. The Forever client sells each swift saber for 200g at level 60."] = "{npc:4753}와(과) {npc:4730}의 호랑이는 {zone:1457} {area:1658}의 탈것 훈련장에 있습니다. 60레벨에 {npc:4753}이(가) 중급 {skill:762}을(를) 가르칩니다(블리자드 개발진 기준 1,000골드). 블리자드에 따르면 탈것 타기를 배우면 탈것을 하나 받습니다. Forever 클라이언트에서는 날쌘 호랑이를 60레벨에 각 200골드에 판매합니다.",
+	["{npc:4753} and {npc:4730}'s sabers are in the {area:1658}'s riding grounds in {zone:1457}. At 60 {npc:4753} teaches Journeyman {skill:762} (1,000g per Blizzard's designers); Blizzard says learning riding grants a mount. The Forever client sells each swift saber for 200g at level 60."] = "{npc:4753}와(과) {npc:4730}의 호랑이는 {zone:1457} {area:1658}의 탈것 훈련장에 있습니다. 60레벨에 {npc:4753}이(가) 수습 {skill:762}을(를) 가르칩니다(블리자드 개발진 기준 1,000골드). 블리자드에 따르면 탈것 타기를 배우면 탈것을 하나 받습니다. Forever 클라이언트에서는 날쌘 호랑이를 60레벨에 각 200골드에 판매합니다.",
 	-- {npc:4753} Jartsam
 	["{npc:4753}, riding trainer"] = "{npc:4753}, 탈것 상급자",
 

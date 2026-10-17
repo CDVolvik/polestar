@@ -81,9 +81,9 @@ unless --addon names the other.
                              each language. Per id, the first source with a
                              name wins: the Forever client's tables
                              (wago.tools, &locale=), Wowhead's Forever
-                             database in that language (list pages, then
-                             tooltips for the ids no list holds; one request
-                             at a time, cached in data/sources/wowhead/names),
+                             database in that language (list pages and
+                             tooltips, read only from what is already cached
+                             in data/sources/wowhead/names),
                              DingDB (pinned commit and sha256s, cloned into
                              data/sources/ding), then pfQuest's db/<locale>.
                              Only the ids the compiled guides, the quest
@@ -125,10 +125,7 @@ options:
   --no-questie      names: leave DingDB out (its base data is QuestieDB's)
   --no-tables       names: leave the client tables out (otherwise a missing
                     table stops the build)
-  --offline         names: no downloads; the cached clones, tables and pages
-  --dry-run         names: count the Wowhead requests a run would make; write nothing
-  --limit <n>       names: at most n Wowhead tooltip requests this run
-  --delay <ms>      names: between Wowhead requests (default 2500, at least 2000)
+  --offline         names: no downloads; the cached clones and tables
   --build <version> names: this Forever client build (default the newest wago.tools lists)
   --sources <dir>   names: the client-table and Wowhead cache (default data/sources)
   --ding <dir>      names: this DingDB checkout (default data/sources/ding)
@@ -360,13 +357,11 @@ async function runNames(opts, positional) {
 	const { ensurePfQuest, loadPfQuestNames } = require('../lib/data/pfquest');
 	const { loadClientNames } = require('../lib/i18n/names-wago');
 	const wh = require('../lib/i18n/names-wowhead');
-	const { politeClient } = require('../lib/codex/wowhead');
 	const wanted = locales(positional);
 	const abs = (p) => (p ? path.resolve(p) : undefined);
 	const log = opts.json ? () => {} : (m) => console.log(m);
 	const warn = (m) => console.error(`warning: ${m}`);
 	const offline = Boolean(opts.offline);
-	const dryRun = Boolean(opts.dryRun);
 	const sourcesDir = abs(opts.sources) || names.DEFAULTS.sources;
 	const codex = abs(opts.codex) || names.DEFAULTS.codex;
 	const ids = names.usedIds({ guides: abs(opts.guides), questdb: abs(opts.questdb), codex });
@@ -397,42 +392,9 @@ async function runNames(opts, positional) {
 		for (const [id, r] of Object.entries(JSON.parse(fs.readFileSync(f, 'utf8')))) names.addEnglish(english, kind, Number(id), r && (r.name || r.title));
 	}
 
-	// Wowhead: the list ranges holding an id (items: only those some
-	// language's client table lacks), then tooltips for the rest.
-	const want = {};
-	for (const kind of names.NAME_KINDS) want[kind] = ids[kind];
-	if (wago) want.item = new Set([...ids.item].filter((id) => wanted.some((l) => !(wago[l] && wago[l].item && wago[l].item.has(id)))));
-	const delayMs = Math.max(wh.MIN_DELAY_MS, opts.delay ? Number(opts.delay) : wh.DELAY_MS);
-	const http = politeClient({ delayMs, retryPauseMs: 30000, maxFailures: 5, userAgent: 'Mozilla/5.0 (polestar-names-build)', log: (m) => console.error(m) });
-	const lists = await wh.fetchListNames({ sourcesDir, locales: wanted, want, client: http, dryRun, offline, log: (m) => console.error(m) });
-	for (const f of lists.failed.slice(0, 20)) warn(`Wowhead ${f.locale} ${f.url}: ${f.error}`);
-	if (lists.missingEnglish.length) warn(`no cached English Wowhead list for ${lists.missingEnglish.join(', ')} (run codex wowhead once): those kinds get tooltips only`);
-	const loadAll = () => Object.fromEntries(wanted.map((l) => [l, wh.loadWowheadNames(sourcesDir, l)]));
-	let whNames = loadAll();
-	let out = names.buildNames({ locales: wanted, ids, ding: dingNames, pf, wago, wowhead: whNames, english });
-	const tooltips = {};
-	let stragglers = 0;
-	for (const l of wanted) {
-		const byType = {};
-		for (const kind of names.NAME_KINDS) {
-			const left = [...ids[kind]].filter((id) => !out[l].names[kind].has(id) && !out[l].english[kind].has(id) && !whNames[l].listed[kind].has(id));
-			if (left.length) byType[kind] = left;
-		}
-		const objectives = [...ids.objective].filter((id) => !out[l].names.objective.has(id));
-		if (objectives.length) byType.quest = [...new Set([...(byType.quest || []), ...objectives])].sort((a, b) => a - b);
-		for (const v of Object.values(byType)) stragglers += v.length;
-		tooltips[l] = byType;
-	}
-	const tips = await wh.fetchTooltipNames({ sourcesDir, wanted: tooltips, client: http, dryRun, offline, limit: opts.limit ? Number(opts.limit) : Infinity, log: (m) => console.error(m) });
-	for (const f of tips.failed.slice(0, 20)) warn(`Wowhead ${f.locale} ${f.url}: ${f.error}`);
-	if (dryRun) {
-		console.log(`dry run: ${lists.planned} Wowhead list ranges and ${tips.left} tooltips to fetch (${tips.cached} tooltips cached); nothing written`);
-		return 0;
-	}
-	if (tips.fetched) {
-		whNames = loadAll();
-		out = names.buildNames({ locales: wanted, ids, ding: dingNames, pf, wago, wowhead: whNames, english });
-	}
+	// Wowhead: only what is already cached.
+	const whNames = Object.fromEntries(wanted.map((l) => [l, wh.loadWowheadNames(sourcesDir, l)]));
+	const out = names.buildNames({ locales: wanted, ids, ding: dingNames, pf, wago, wowhead: whNames, english });
 	for (const l of wanted) {
 		for (const kind of ['map', 'faction', 'taxi']) {
 			if (wago && ids[kind] && ids[kind].size && !out[l].names[kind].size) throw new Error(`${l}: no ${kind} names from the client tables (${ids[kind].size} wanted); nothing written`);
@@ -452,7 +414,7 @@ async function runNames(opts, positional) {
 		console.log(JSON.stringify({
 			ids: { ...kinds(idCount), sources: ids.counts },
 			wago: wagoInfo ? wagoInfo.builds : null,
-			wowhead: { listRequests: lists.requests, tooltipRequests: tips.requests, tooltipsLeft: tips.left, failed: lists.failed.length + tips.failed.length },
+			wowhead: sources.wowhead ? Object.fromEntries(wanted.map((l) => [l, whNames[l].fetched])) : null,
 			ding: ding ? { version: ding.pin.version, commit: ding.pin.commit, revision: ding.revision } : null,
 			pfquest: { revision: pfInfo.revision },
 			locales: Object.fromEntries(wanted.map((l) => {
@@ -466,7 +428,8 @@ async function runNames(opts, positional) {
 	console.log(`ids Polestar's data names: ${idLine(Object.fromEntries(names.PACK_KINDS.map((k) => [k, idCount(k)])))}${ids.encounter === null ? ', every encounter' : ''}`);
 	for (const [src, c] of Object.entries(ids.counts)) console.log(`  ${src}: ${idLine(c, names.NAME_KINDS)}`);
 	console.log(wagoInfo ? `client tables: ${Object.entries(wagoInfo.builds).map(([p, b]) => `${p} ${b}`).join(', ')}` : 'client tables left out');
-	console.log(`Wowhead: ${lists.requests} list and ${tips.requests} tooltip requests this run${tips.left ? `, ${tips.left} tooltips left (--limit)` : ''}`);
+	const whDates = wanted.flatMap((l) => (whNames[l].fetched ? [whNames[l].fetched.first, whNames[l].fetched.last] : [])).sort();
+	console.log(whDates.length ? `Wowhead: the cache, read ${whDates[0].slice(0, 10)} to ${whDates[whDates.length - 1].slice(0, 10)}` : 'Wowhead: nothing cached');
 	console.log(ding ? `DingDB ${ding.pin.version} (${ding.pin.commit.slice(0, 7)}): every pinned file matches its sha256` : 'DingDB left out (--no-questie)');
 	console.log(`pfQuest ${pfInfo.revision ? pfInfo.revision.slice(0, 7) : '(revision unknown)'}`);
 	for (const l of wanted) {
@@ -627,8 +590,8 @@ function runGuides(opts, positional) {
 
 async function run(argv) {
 	const { opts, positional, error } = parseArgs(argv, {
-		flags: ['--json', '--markdown', '--no-questie', '--no-tables', '--offline', '--dry-run'],
-		options: ['--ding', '--pfquest', '--guides', '--questdb', '--codex', '--travel', '--chokepoints', '--out', '--limit', '--delay', '--build', '--sources', '--slack', '--addon', '--pack', '--data'],
+		flags: ['--json', '--markdown', '--no-questie', '--no-tables', '--offline'],
+		options: ['--ding', '--pfquest', '--guides', '--questdb', '--codex', '--travel', '--chokepoints', '--out', '--build', '--sources', '--slack', '--addon', '--pack', '--data'],
 	});
 	const [sub, ...rest] = positional;
 	if (error || !sub) {

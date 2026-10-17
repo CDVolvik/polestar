@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Russian (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Russian words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -39,7 +40,7 @@ return {
 
 	-- Step 5: Badlands (1/2)
 	["14 areas to discover here, levels 36-45."] = "Местностей для открытия: 14, уровни 36-45.",
-	-- {area:880} Thandol Span · {zone:1437} Wetlands · {object:1668} Dun Algaz · {zone:1432} Loch Modan · {zone:1418} Badlands
+	-- {area:880} Thandol Span · {zone:1437} Wetlands · {object:1668} Dun Algaz (no name in this language: may be words) · {zone:1432} Loch Modan · {zone:1418} Badlands
 	["Cross the {area:880} south into the {zone:1437}, go through the {object:1668} pass into {zone:1432} and take the road south out of {zone:1432} into the {zone:1418}."] = "Пересеките {area:880} на юг в зону {zone:1437}, пройдите перевал ({object:1668}) в зону {zone:1432} и по дороге на юг из зоны {zone:1432} – в зону {zone:1418}.",
 	-- {area:144} Thelsamar · {zone:1432} Loch Modan
 	["Faster: fly to {area:144} in {zone:1432}."] = "Быстрее: летите сюда: {area:144} ({zone:1432}).",
@@ -62,7 +63,7 @@ return {
 	["Take the zeppelin from {zone:1454} or the {zone:1458} to {area:117}."] = "Сядьте на дирижабль ({zone:1454} или {zone:1458}). Цель: {area:117}.",
 	-- {area:35} Booty Bay
 	["Flight path here: {area:35} (Gyll)."] = "Маршрут полета здесь: {area:35} (Гилл).",
-	-- {area:35} Booty Bay · {object:3202} Grom'gol
+	-- {area:35} Booty Bay · {object:3202} Grom'gol (no name in this language: may be words)
 	["Flight paths here: {area:35} (Gringer), {object:3202} (Thysta)."] = "Маршруты полета здесь: {area:35} (Грингер), {object:3202} (Тиста).",
 
 	-- Step 10: Stranglethorn Vale (2/4)

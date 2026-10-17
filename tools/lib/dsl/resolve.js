@@ -21,7 +21,7 @@ const { blockingPrereqs } = require('../data/prereqs');
 const { clusterPoints, scaleOf } = require('../questdb/cluster');
 const { groupOf, isElite, hostileTo } = require('./group');
 const { goalHeight } = require('./heights');
-const { goalArea, goalNode } = require('./places');
+const { goalArea, goalNode, goalInnkeeper } = require('./places');
 
 // A collect's sources are named only for an item that few creatures or
 // objects drop (at 2% or more, with spawns); past this it drops everywhere.
@@ -210,11 +210,19 @@ function point(cand, map, x, y, f) {
 //
 // Alternatives come nearest to the goal's point first.
 //
+// Strays: a target with more than SPOT_CAP spawns whose spawns, linked
+// wherever two lie within STRAY_YARDS of each other, mostly (STRAY_SHARE)
+// form one area: a group of at most STRAY_MAX spawns apart from the rest is a
+// stray (a mob or two on their own, hundreds of yards from the camps). The
+// arrow never picks a place of strays while it has another place, and a goal
+// point there (the spawn nearest the previous goal) moves to the nearest other
+// place (`at`).
+//
 // Elite camps: `elites` are elite droppers passed over for the normal sources
 // (onMap). A place of the sources with more of their spawns than its own
 // within its radius (at least SPOT_CLUSTER_YARDS) is in their camp: the
 // arrow never picks it while it has another place, and a goal point there
-// moves to the nearest other place (`at`).
+// moves to the nearest other place (`at`), as for strays.
 //
 // -> { spots: [{ x, y, r, n, alt? }], spread: bool, at?: { x, y } } (map
 // percent, radius in yards, spawn count) | undefined
@@ -226,6 +234,9 @@ const SPREAD_YARDS = 250;
 const SPREAD_CAP = 12;
 const SPREAD_MIN_RADIUS = 40;
 const SPREAD_MAX_MIN_RADIUS = 150;
+const STRAY_YARDS = 300;
+const STRAY_MAX = 2;
+const STRAY_SHARE = 0.75;
 
 // Median distance in yards from a spawn to its nearest neighbour.
 function medianSpacing(pts, frame) {
@@ -296,6 +307,32 @@ function walk(data, map, spots, x, y) {
 	return out;
 }
 
+// The stray spawns of `pts` (see spawnSpots, "Strays"): the groups of at most
+// STRAY_MAX spawns, linked within STRAY_YARDS, beside one group holding at
+// least STRAY_SHARE of them. -> Set of points
+function strayPoints(pts, frame) {
+	const strays = new Set();
+	if (pts.length <= SPOT_CAP) return strays;
+	const { sx, sy } = scaleOf(frame);
+	const root = pts.map((_, i) => i);
+	const find = (i) => (root[i] === i ? i : (root[i] = find(root[i])));
+	for (let i = 0; i < pts.length; i++) {
+		for (let j = i + 1; j < pts.length; j++) {
+			if (Math.hypot((pts[i][0] - pts[j][0]) * sx, (pts[i][1] - pts[j][1]) * sy) <= STRAY_YARDS) root[find(i)] = find(j);
+		}
+	}
+	const groups = new Map();
+	pts.forEach((p, i) => {
+		const g = find(i);
+		if (!groups.has(g)) groups.set(g, []);
+		groups.get(g).push(p);
+	});
+	const sizes = [...groups.values()];
+	if (Math.max(...sizes.map((g) => g.length)) < STRAY_SHARE * pts.length) return strays;
+	for (const g of sizes) if (g.length <= STRAY_MAX) for (const p of g) strays.add(p);
+	return strays;
+}
+
 // Every known spawn point of `sources` on `map` in frame `f`: the reference
 // data's spread points and the ones its cap left out.
 function spawnPointsOf(data, sources, map, f) {
@@ -329,18 +366,28 @@ function spawnSpots(data, sources, map, f, x, y, elites = []) {
 		const minRadius = spread ? Math.round(Math.min(SPREAD_MAX_MIN_RADIUS, Math.max(SPREAD_MIN_RADIUS, spacing))) : SPOT_MIN_RADIUS;
 		clusters = clusterPoints(pts, frame, { radius, cap: Infinity, minRadius });
 	}
-	// The places outside elite camps; the goal's point leaves a camp for the nearest of them.
+	// The places the arrow may pick: outside elite camps, then not strays, each
+	// while any place is left; the goal's point leaves any other place for the
+	// nearest of them.
 	const { sx, sy } = scaleOf(frame);
 	const yards = (a, b) => Math.hypot((a.x - b.x) * sx, (a.y - b.y) * sy);
+	const keep = (list, out) => {
+		const rest = list.filter((c) => !out(c));
+		return rest.length ? rest : list;
+	};
 	const elitePts = spawnPointsOf(data, elites, map, f).map(([ex, ey]) => ({ x: ex, y: ey }));
 	const inCamp = (c) => elitePts.filter((p) => yards(p, c) <= Math.max(c.r, SPOT_CLUSTER_YARDS)).length > c.n;
-	const camped = elitePts.length ? clusters.filter(inCamp) : [];
-	const open = camped.length < clusters.length ? clusters.filter((c) => !camped.includes(c)) : clusters;
+	let open = elitePts.length ? keep(clusters, inCamp) : clusters;
+	const strays = strayPoints(pts, frame);
+	if (strays.size) {
+		const settled = pts.filter((p) => !strays.has(p)).map(([px, py]) => ({ x: px, y: py }));
+		open = keep(open, (c) => !settled.some((p) => yards(p, c) <= c.r));
+	}
 	let at;
-	if (open !== clusters) {
+	if (open.length < clusters.length) {
 		const here = { x, y };
 		const nearest = (list) => list.reduce((a, b) => (yards(b, here) < yards(a, here) ? b : a));
-		if (camped.includes(nearest(clusters))) {
+		if (!open.includes(nearest(clusters))) {
 			const to = nearest(open);
 			x = to.x;
 			y = to.y;
@@ -978,6 +1025,17 @@ function resolveGoal(g, zoneMap, prev, data, err, warn, ctx = { sides: ['Allianc
 				smart(goal, entries, `class trainer`);
 			}
 			if (g.nearest && v === 'sethome') smart(goal, data.npcsWithRole('innkeeper').map((id) => ({ npc: id })), 'innkeeper');
+			// A located `sethome` naming no npc: its inn's innkeeper, for the
+			// factions the goal applies to, so the arrow leads there (places.js).
+			if (v === 'sethome' && g.npc === undefined && !g.nearest) {
+				const keeper = goalInnkeeper(data, g.location, smartSides(ctx.sides, applicable(ctx.layers || [])));
+				if (keeper) {
+					goal.npc = keeper.npc;
+					setIf(goal, 'npcName', nameOf(data, 'npc', keeper.npc) || keeper.npcName || undefined);
+					candidates = [{ kind: 'npc', id: keeper.npc }];
+					checkKinds = candidates;
+				}
+			}
 			// Sell junk and repair: every repairer also buys junk, a plain vendor may not repair.
 			if (g.nearest && v === 'vendor') smart(goal, data.npcsWithRole('repair').map((id) => ({ npc: id })), 'repair vendor');
 			if (g.npc !== undefined) {

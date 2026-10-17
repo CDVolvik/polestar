@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Korean words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -31,7 +32,4 @@ return {
 	-- Step 5: Fragmented Magic
 	-- {npc:8379} Archmage Xylem · {spell:118} Polymorph
 	["{npc:8379}: {spell:118} (pig)"] = "{npc:8379}: {spell:118}(돼지)",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Carry the {item:23250} back to the {area:1221}. {spell:118} a Spitelash naga and wait a few seconds: it splits into small Polymorph Clones. Kill the clones quickly; the shell collects their essence."] = "{item:23250}을(를) {area:1221}(으)로 다시 가져가세요. 원한의꼬리일족 나가에게 {spell:118}을(를) 걸고 몇 초 기다리면 작은 {npc:16479}(으)로 갈라집니다. 복제생물을 빨리 처치하세요. 껍데기가 그 정수를 모읍니다.",
 }

@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (simplified) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (simplified) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -31,10 +32,4 @@ return {
 	-- Step 5: Fragmented Magic
 	-- {npc:8379} Archmage Xylem · {spell:118} Polymorph
 	["{npc:8379}: {spell:118} (pig)"] = "{npc:8379}：{spell:118}（猪）",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["A new look for Polymorph: it turns the target into a pig rather than a sheep."] = "变形术的新外观：把目标变成猪而不是羊。",
-	-- ["Carry the {item:23250} back to the {area:1221}. Polymorph a Spitelash naga and wait a few seconds: it splits into small Polymorph Clones. Kill the clones quickly; the shell collects their essence."] = "把{item:23250}带回{area:1221}。对一只恶鞭纳迦施放变形术并等待几秒：它会分裂成小型的变形克隆。迅速杀死克隆；贝壳会收集它们的精华。",
-	-- ["Carry the {item:23250} back to the {area:1221}. {spell:118} a Spitelash naga and wait a few seconds: it splits into small Polymorph Clones. Kill the clones quickly; the shell collects their essence."] = "把{item:23250}带回{area:1221}。对一只恶鞭纳迦施放{spell:118}并等几秒：它会分裂成小型的{npc:16479}。迅速杀死克隆体；贝壳会收集它们的精华。",
-	-- ["{npc:8379}: Polymorph (pig)"] = "{npc:8379}：变形术（猪）",
 }

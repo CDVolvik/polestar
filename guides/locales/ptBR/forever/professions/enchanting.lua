@@ -3,13 +3,14 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Portuguese (Brazil) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Portuguese (Brazil) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Apprentice Enchanting
 	-- {skill:333} Enchanting
 	["Apprentice {skill:333}"] = "{skill:333} (Aprendiz)",
 	-- {skill:333} Enchanting
-	["{skill:333} runs alongside leveling. Forever's Legacy System rewards crafting professions at skill 150, 225 and 300 (the Journeyman, Expert and Artisan caps), so each of those checkpoints counts. Materials for 1-75 are worth about 4g 3s in all."] = "{skill:333} acompanha a evolução de nível. O Sistema de Legado do Forever recompensa profissões de criação na perícia 150, 225 e 300 (os limites de Oficial, Perito e Artífice), então cada um desses marcos conta. Os materiais de 1-75 valem cerca de 4o 3p no total.",
+	["{skill:333} runs alongside leveling. Forever's Legacy System rewards crafting professions at skill 150, 225 and 300 (the Journeyman, Expert and Artisan caps), so each of those checkpoints counts. Materials for 1-75 are worth about 4g 3s in all."] = "{skill:333} acompanha a evolução de nível. O Sistema de Legado do Forever recompensa profissões de criação na perícia 150, 225 e 300 (os limites de Profissional, Perito e Artífice), então cada um desses marcos conta. Os materiais de 1-75 valem cerca de 4o 3p no total.",
 
 	-- Step 2: Enchant Bracer - Inferior Stamina to 25
 	-- {spell:7418} Enchant Bracer - Inferior Stamina
@@ -24,9 +25,9 @@ return {
 
 	-- Step 4: Journeyman Enchanting
 	-- {skill:333} Enchanting
-	["Journeyman {skill:333}"] = "{skill:333} (Oficial)",
+	["Journeyman {skill:333}"] = "{skill:333} (Profissional)",
 	-- {skill:333} Enchanting
-	["Journeyman needs character level 10 and {skill:333} 50; it raises the cap to 150. Materials for 75-150 are worth about 7g 51s in all."] = "Oficial requer nível de personagem 10 e {skill:333} 50; eleva o limite para 150. Os materiais de 75-150 valem cerca de 7o 51p no total.",
+	["Journeyman needs character level 10 and {skill:333} 50; it raises the cap to 150. Materials for 75-150 are worth about 7g 51s in all."] = "Profissional requer nível de personagem 10 e {skill:333} 50; eleva o limite para 150. Os materiais de 75-150 valem cerca de 7o 51p no total.",
 
 	-- Step 5: Formula: Enchant Cloak - Minor Agility
 	-- {spell:13419} Enchant Cloak - Minor Agility · {skill:333} Enchanting

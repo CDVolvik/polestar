@@ -3,11 +3,12 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Russian (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Russian words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Camp Narache
-	-- {area:221} Camp Narache
-	["You start on the mesa of {area:221}. Grull and the chief stand by the big tent in the middle."] = "Вы начинаете на плато ({area:221}). Грулл и вождь стоят у большого шатра в центре.",
+	-- {area:221} Camp Narache · {npc:2980} Grull Hawkwind
+	["You start on the mesa of {area:221}. {npc:2980} and the chief stand by the big tent in the middle."] = "Вы начинаете на плато ({area:221}). {npc:2980} и вождь стоят у большого шатра в центре.",
 
 	-- Step 2: The Hunt Begins
 	["Plainstriders roam the grass all around the camp."] = "Равнинные долгоноги бродят по траве вокруг лагеря.",
@@ -27,13 +28,13 @@ return {
 	["{npc:2991} sits by the tent on the camp's eastern edge; the {item:4755} stands next to her."] = "{npc:2991} сидит у шатра на восточном краю лагеря; {item:4755} стоит рядом с ней.",
 
 	-- Step 6: The Hunt Continues
-	-- {npc:6775} Antur Fallow
+	-- {npc:6775} Antur Fallow · {npc:2980} Grull Hawkwind
 	-- plural, as words: Mountain Cougars = {npc:2961} Mountain Cougar
-	["{npc:6775} stands at the west end of the camp, at the north-west corner of the hills where the Mountain Cougars prowl: take his quest, hunt the cougars from there south and east, then come back up to Grull."] = "{npc:6775} стоит в западной части лагеря, у северо-западного угла холмов, где бродят горные пумы: возьмите его задание, охотьтесь на пум оттуда к югу и востоку, затем вернитесь к Груллу.",
+	["{npc:6775} stands at the west end of the camp, at the north-west corner of the hills where the Mountain Cougars prowl: take his quest, hunt the cougars from there south and east, then come back up to {npc:2980}."] = "{npc:6775} стоит в западной части лагеря, у северо-западного угла холмов, где бродят горные пумы: возьмите его задание, охотьтесь на пум оттуда к югу и востоку, затем вернитесь к {npc:2980}.",
 
 	-- Step 7: Grull Hawkwind
-	-- {npc:3209} Brave Windfeather
-	["{npc:3209}, next to Grull"] = "{npc:3209}, рядом с Груллом",
+	-- {npc:3209} Brave Windfeather · {npc:2980} Grull Hawkwind
+	["{npc:3209}, next to {npc:2980}"] = "{npc:3209}, рядом с {npc:2980}",
 
 	-- Step 8: Seer Graytongue
 	["Follow the path south out of camp to the Seer's tent at the foot of the hills."] = "Идите по тропе на юг из лагеря к шатру провидца у подножия холмов.",
@@ -91,8 +92,8 @@ return {
 
 	-- Step 22: Back to Bloodhoof
 	["Back to Bloodhoof"] = "Назад в Деревня Кровавого Копыта",
-	-- {npc:2993} Baine Bloodhoof · {zone:1456} Thunder Bluff
-	["{npc:2993}, for Cairne in {zone:1456}"] = "{npc:2993}, для Кэрна ({zone:1456})",
+	-- {npc:2993} Baine Bloodhoof · {npc:3057} Cairne Bloodhoof · {zone:1456} Thunder Bluff
+	["{npc:2993}, for {npc:3057} in {zone:1456}"] = "{npc:2993}, для {npc:3057} ({zone:1456})",
 	-- {npc:2948} Mull Thunderhorn · {zone:1456} Thunder Bluff
 	["{npc:2948}, for Hamuul in {zone:1456}"] = "{npc:2948}, для Хамуула ({zone:1456})",
 
@@ -102,8 +103,8 @@ return {
 	["{npc:3063}'s quest: beat three Novice Warriors (or players in duels) next to him."] = "Задание ({npc:3063}): одолейте трех воинов-учеников (или игроков на дуэли) рядом с ним.",
 
 	-- Step 25: Ahab Wheathoof
-	-- {item:287505} Tender Strider Meat
-	["Ahab stands at the north edge of the village. Kyle wants {item:287505} from plainstriders."] = "Ахаб стоит на северной окраине деревни. Кайлу нужен предмет {item:287505} с равнинных долгоногов.",
+	-- {npc:277182} Ahab Wheathoof · {item:287505} Tender Strider Meat
+	["{npc:277182} stands at the north edge of the village. Kyle wants {item:287505} from plainstriders."] = "{npc:277182} стоит на северной окраине деревни. Кайлу нужен предмет {item:287505} с равнинных долгоногов.",
 
 	-- Step 26: Thunderhorn Water Well
 	-- {item:4809} Ambercorn · {quest:766} Mazzranache · {quest:761} Swoop Hunting
@@ -118,12 +119,12 @@ return {
 	["Swoops glide over the plains all around Bloodhoof."] = "Перепелятники парят над равнинами вокруг Деревни Кровавого Копыта.",
 
 	-- Step 29: Morin Cloudstalker
-	-- {area:396} Winterhoof Water Well
-	["Morin camps by the {area:396} south-east of Bloodhoof."] = "Морин стоит лагерем у места {area:396}, к юго-востоку от Деревни Кровавого Копыта.",
+	-- {npc:2988} Morin Cloudstalker · {area:396} Winterhoof Water Well
+	["{npc:2988} camps by the {area:396} south-east of Bloodhoof."] = "{npc:2988} стоит лагерем у места {area:396}, к юго-востоку от Деревни Кровавого Копыта.",
 
 	-- Step 30: Longwalker Malah
-	-- {area:821} Rolling Plains
-	["Malah stands on the {area:821} a little east of the well."] = "Мала стоит здесь: {area:821}, чуть к востоку от колодца.",
+	-- {npc:275789} Malah Longwind · {area:821} Rolling Plains
+	["{npc:275789} stands on the {area:821} a little east of the well."] = "{npc:275789} стоит здесь: {area:821}, чуть к востоку от колодца.",
 
 	-- Step 31: Galak centaurs and Prairie Wolf Alphas
 	-- plural, as words: Prairie Wolf Alphas = {npc:2960} Prairie Wolf Alpha
@@ -177,12 +178,12 @@ return {
 	["Flatland Prowlers roam the plains around {area:225}"] = "Хищники плоскогорья бродят по равнинам вокруг места {area:225}",
 
 	-- Step 46: Thunder Bluff
-	-- {npc:2995} Tal
-	["Ride a lift up to the mesas. {npc:2995} keeps the wind riders on the central rise; Cairne stands in the great tent there."] = "Поднимитесь на подъемнике на плато. {npc:2995} присматривает за ветрокрылами на центральном холме; Кэрн стоит там в большом шатре.",
+	-- {npc:2995} Tal · {npc:3057} Cairne Bloodhoof
+	["Ride a lift up to the mesas. {npc:2995} keeps the wind riders on the central rise; {npc:3057} stands in the great tent there."] = "Поднимитесь на подъемнике на плато. {npc:2995} присматривает за ветрокрылами на центральном холме; {npc:3057} стоит там в большом шатре.",
 
 	-- Step 47: Traditions of the Bluff
-	-- {npc:269068} Eylah Sunhorn · {npc:3005} Mahu · {item:278078} Prepared Incense
-	["{npc:269068} wants tauren incense: buy its four parts from Nida the herbalist, Nata the enchanting supplier, {npc:3005} the leatherworking supplier and Naal the cooking supplier, then combine them into {item:278078}."] = "{npc:269068} просит тауренские благовония: купите четыре части у Ниды (травница), Наты (товары для зачарования), персонажа {npc:3005} (товары для кожевников) и Наала (товары для кулинарии), затем соедините их в предмет {item:278078}.",
+	-- {npc:269068} Eylah Sunhorn · {npc:3014} Nida Winterhoof · {npc:3012} Nata Dawnstrider · {npc:3005} Mahu · {npc:3027} Naal Mistrunner · {item:278078} Prepared Incense
+	["{npc:269068} wants tauren incense: buy its four parts from {npc:3014} the herbalist, {npc:3012} the enchanting supplier, {npc:3005} the leatherworking supplier and {npc:3027} the cooking supplier, then combine them into {item:278078}."] = "{npc:269068} просит тауренские благовония: купите четыре части у {npc:3014} (травница), {npc:3012} (товары для зачарования), персонажа {npc:3005} (товары для кожевников) и {npc:3027} (товары для кулинарии), затем соедините их в предмет {item:278078}.",
 	-- {item:278079} Bundle of Herbs · {npc:3014} Nida Winterhoof
 	["{item:278079}, from {npc:3014}"] = "{item:278079}, у персонажа {npc:3014}",
 	-- {item:278080} Bundle of Dried Cedar Twigs · {npc:3012} Nata Dawnstrider
@@ -205,8 +206,8 @@ return {
 	["{npc:5769}: for {npc:3448} at the {area:380}"] = "{npc:5769}: для персонажа {npc:3448} ({area:380})",
 
 	-- Step 52: Turak Runetotem
-	-- {npc:6746} Innkeeper Pala · {area:1639} Elder Rise
-	["{npc:6746} on the central rise sends you to Turak on {area:1639}."] = "{npc:6746} на центральном холме отправляет вас к Тураку ({area:1639}).",
+	-- {npc:6746} Innkeeper Pala · {npc:3033} Turak Runetotem · {area:1639} Elder Rise
+	["{npc:6746} on the central rise sends you to {npc:3033} on {area:1639}."] = "{npc:6746} на центральном холме отправляет вас к NPC {npc:3033} ({area:1639}).",
 
 	-- Step 53: Moonglade
 	-- {spell:18960} Teleport: Moonglade · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {quest:5930} Great Bear Spirit
@@ -223,14 +224,12 @@ return {
 	["Tame it with the {item:15908}"] = "Приручите его предметом {item:15908}",
 
 	-- Step 56: The Moonkin Stone
-	-- {object:177525} Moonkin Stone
+	-- {object:177525} Moonkin Stone (no name in this language: may be words)
 	["The {object:177525}"] = "{object:177525}",
 	-- {zone:1412} Mulgore · {item:15710} Cenarion Lunardust
 	["The stone stands in the pass out of {zone:1412}, on your way east. Use the {item:15710} there and defeat Lunaclaw."] = "Камень стоит на перевале из края {zone:1412}, по пути на восток. Используйте там предмет {item:15710} и одолейте Лунокогтя.",
 
-	-- Step 57: The Crossroads
-	-- {area:380} Crossroads
-	["The {area:380}"] = "{area:380}",
+	-- Step 57: Crossroads
 	-- {zone:1412} Mulgore · {area:380} Crossroads · {quest:860} Sergra Darkthorn · {npc:3448} Tonga Runetotem · {zone:1413} The Barrens
 	["Leave {zone:1412} by the south-eastern pass and follow the road to the {area:380}. {quest:860} stands by the inn, {npc:3448} at the south gate. {zone:1413} guide starts here."] = "Покиньте край {zone:1412} через юго-восточный перевал и идите по дороге сюда: {area:380}. {quest:860} стоит у таверны, {npc:3448} – у южных ворот. Здесь начинается руководство: {zone:1413}.",
 
@@ -240,4 +239,5 @@ return {
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Battleboars graze north of the shrine; the Bristleback quilboar hold the ravine to the north-east. {npc:8554} stands at its eastern end, and the {item:4851} lies on the ground in the camp."] = "К северу от святилища пасутся боевые вепри; дыбогривые свинобразы занимают ущелье к северо-востоку. {npc:8554} стоит в его восточной части, а {item:4851} лежит на земле в лагере.",
+	-- ["The {area:380}"] = "{area:380}",
 }

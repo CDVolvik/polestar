@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in German (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in German words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -16,8 +17,8 @@ return {
 	["At 30 {npc:258098}, the shaman trainer in {zone:1455}, sends you to {npc:259023} in {zone:1417}."] = "Auf Stufe 30 schickt dich {npc:258098}, der Schamanenlehrer in {zone:1455}, zu {npc:259023} im {zone:1417}.",
 
 	-- Step 2: Veyric Thunderhame
-	-- {zone:1417} Arathi Highlands
-	["Veyric camps in the northern hills of {zone:1417}."] = "Veyric lagert in den nördlichen Hügeln des {zone:1417}.",
+	-- {npc:259023} Veyric Thunderhame · {zone:1417} Arathi Highlands
+	["{npc:259023} camps in the northern hills of {zone:1417}."] = "{npc:259023} lagert in den nördlichen Hügeln des {zone:1417}.",
 	-- {npc:259023} Veyric Thunderhame · {item:5178} Air Totem
 	["{npc:259023}: your {item:5178}"] = "{npc:259023}: dein {item:5178}",
 
@@ -57,14 +58,14 @@ return {
 
 	-- Step 10: The steam pools
 	["The steam pools"] = "Die Dampfbecken",
-	-- {item:268582} Corrupted Totems · {zone:1441} Thousand Needles · {npc:216474} Ravaging Tempest · {quest:96135} Heed My Call
-	["Veyric hands you the {item:268582}: place them at the steam pools of {zone:1441} and defeat the {npc:216474} they call. {quest:96135} is an elite quest: grouping up is advised."] = "Veyric gibt dir die {item:268582}: Stell sie an den Dampfbecken von {zone:1441} auf und besiege den {npc:216474}, den sie rufen. {quest:96135} ist eine Elite-Quest: Eine Gruppe wird empfohlen.",
+	-- {npc:259023} Veyric Thunderhame · {item:268582} Corrupted Totems · {zone:1441} Thousand Needles · {npc:216474} Ravaging Tempest · {quest:96135} Heed My Call
+	["{npc:259023} hands you the {item:268582}: place them at the steam pools of {zone:1441} and defeat the {npc:216474} they call. {quest:96135} is an elite quest: grouping up is advised."] = "{npc:259023} gibt dir die {item:268582}: Stell sie an den Dampfbecken von {zone:1441} auf und besiege den {npc:216474}, den sie rufen. {quest:96135} ist eine Elite-Quest: Eine Gruppe wird empfohlen.",
 	-- {item:212792} Eye of the Tempest · {npc:216474} Ravaging Tempest
 	["{item:212792}, from the {npc:216474}"] = "{item:212792}, vom {npc:216474}",
 
 	-- Step 12: Bath'rah the Windwatcher
-	-- {zone:1416} Alterac Mountains · {area:272} Tarren Mill
-	["Bath'rah camps in the east of {zone:1416}, north-east of {area:272}."] = "Bath'rah lagert im Osten des {zone:1416}, nordöstlich von {area:272}.",
+	-- {npc:6176} Bath'rah the Windwatcher · {zone:1416} Alterac Mountains · {area:272} Tarren Mill
+	["{npc:6176} camps in the east of {zone:1416}, north-east of {area:272}."] = "{npc:6176} lagert im Osten des {zone:1416}, nordöstlich von {area:272}.",
 	-- {npc:6176} Bath'rah the Windwatcher · {item:280696} Elementalist's Guard
 	["{npc:6176}: the {item:280696} and your weapon"] = "{npc:6176}: {item:280696} und deine Waffe",
 }

@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Spanish (Latin America) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Spanish (Latin America) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -13,11 +14,11 @@ return {
 	-- {zone:2521} Zephras Isle · {area:17221} Skywall
 	["{zone:2521} is the Skyborne starting island, a world of its own in {area:17221}; anyone may visit, and its map counts towards exploring the world. 20 areas to discover here, levels 3-12."] = "{zone:2521} es la isla inicial de los Cielonatos, un mundo propio en {area:17221}; cualquiera puede visitarla, y su mapa cuenta para explorar el mundo. 20 zonas por descubrir aquí, niveles 3-12.",
 	["Exploring the entire world map on one character is a Forever Legacy Challenge (1 account-wide Legacy Point)."] = "Explorar todo el mapa del mundo con un solo personaje es un Desafío de legado de Forever (1 Punto de legado para toda la cuenta).",
-	["Skyborne start here. Everyone else takes a skyboat, about every five minutes; either faction may take either one."] = "Los Cielonato empiezan aquí. Los demás toman un aerobarco, más o menos cada cinco minutos; cualquier facción puede tomar cualquiera de los dos.",
+	["Skyborne start here. Everyone else takes a skyboat, about every five minutes; either faction may take either one."] = "Los Cielonato empiezan aquí. Los demás toman un barco celeste, más o menos cada cinco minutos; cualquier facción puede tomar cualquiera de los dos.",
 	-- {area:279} Dalaran · {zone:1416} Alterac Mountains · {zone:1456} Thunder Bluff
-	["The skyboat leaves the north side of {area:279} in the {zone:1416} (another flies from north of {zone:1456})."] = "El aerobarco sale del lado norte de {area:279} en {zone:1416} (otro vuela desde el norte de {zone:1456}).",
+	["The skyboat leaves the north side of {area:279} in the {zone:1416} (another flies from north of {zone:1456})."] = "El barco celeste sale del lado norte de {area:279} en {zone:1416} (otro vuela desde el norte de {zone:1456}).",
 	-- {area:17045} Skywatcher Plateau · {zone:1456} Thunder Bluff · {area:279} Dalaran
-	["The skyboat leaves the cliffs south of {area:17045}, north of {zone:1456} (another flies from {area:279})."] = "El aerobarco sale de los acantilados al sur de {area:17045}, al norte de {zone:1456} (otro vuela desde {area:279}).",
+	["The skyboat leaves the cliffs south of {area:17045}, north of {zone:1456} (another flies from {area:279})."] = "El barco celeste sale de los acantilados al sur de {area:17045}, al norte de {zone:1456} (otro vuela desde {area:279}).",
 
 	-- Step 2: Zephras Isle (2/3)
 	["any one of these names counts"] = "cualquiera de estos nombres cuenta",

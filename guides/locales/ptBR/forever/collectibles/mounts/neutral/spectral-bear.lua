@@ -3,13 +3,14 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Portuguese (Brazil) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Portuguese (Brazil) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Journeyman Riding
 	-- {skill:762} Riding
-	["Journeyman {skill:762}"] = "{skill:762} (Artesão)",
+	["Journeyman {skill:762}"] = "{skill:762} (Profissional)",
 	-- {skill:762} Riding
-	["The reins need level 60 and Journeyman {skill:762} (Forever client). Train it at your race's riding trainer; see the Level 60 mount guides."] = "As rédeas requerem nível 60 e {skill:762} (Artesão) (cliente Forever). Treine com o instrutor de montaria da sua raça; veja os guias de montaria de nível 60.",
+	["The reins need level 60 and Journeyman {skill:762} (Forever client). Train it at your race's riding trainer; see the Level 60 mount guides."] = "As rédeas requerem nível 60 e {skill:762} (Profissional) (cliente Forever). Treine com o instrutor de montaria da sua raça; veja os guias de montaria de nível 60.",
 
 	-- Step 2: 55 Legacy Points
 	["55 Legacy Points"] = "55 Pontos de Legado",

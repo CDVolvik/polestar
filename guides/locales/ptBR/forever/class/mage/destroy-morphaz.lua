@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Portuguese (Brazil) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Portuguese (Brazil) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -11,7 +12,7 @@ return {
 	["Experience"] = "Experiência",
 
 	-- Step 1: Magecraft (Stormwind)
-	-- {npc:331} Maginor Dumas · {zone:1453} Stormwind · {object:2101} Mage Quarter · {zone:1455} Ironforge
+	-- {npc:331} Maginor Dumas · {zone:1453} Stormwind · {object:2101} Mage Quarter (no name in this language: may be words) · {zone:1455} Ironforge
 	["{npc:331}, the Master Mage, stands in the Wizard's Sanctum in {zone:1453}'s {object:2101}; Dink in {zone:1455} gives the same quest."] = "{npc:331}, o Mestre Mago, fica no Santuário do Mago, no {object:2101} de {zone:1453}; Dink, em {zone:1455}, dá a mesma missão.",
 
 	-- Step 2: Magecraft (Orgrimmar)
@@ -20,7 +21,7 @@ return {
 
 	-- Step 3: Sanath Lim-yo
 	-- {area:3137} Talrendis Point · {area:1237} Valormok · {npc:8395} Sanath Lim-yo · {zone:1447} Azshara · {area:1221} Ruins of Eldarath · {npc:8379} Archmage Xylem
-	["Fly to {area:3137} (Alliance) or {area:1237} (Horde). {npc:8395} camps below his master's tower: from the fork of {zone:1447}'s main road at the {area:1221}, head straight north to the cliffs. He teleports you up to {npc:8379}."] = "Voe até {area:3137} (Aliança) ou {area:1237} (Horda). {npc:8395} acampa ao pé da torre do seu mestre: da bifurcação da estrada principal de {zone:1447} nas {area:1221}, siga direto para o norte até os penhascos. Ele teletransporta você até {npc:8379}.",
+	["Fly to {area:3137} (Alliance) or {area:1237} (Horde). {npc:8395} camps below his master's tower: from the fork of {zone:1447}'s main road at the {area:1221}, head straight north to the cliffs. He teleports you up to {npc:8379}."] = "Voe até {area:3137} (Aliança) ou {area:1237} (Horda). {npc:8395} acampa ao pé da torre do seu mestre: da bifurcação da estrada principal de {zone:1447} nas {area:1221}, siga direto para o norte até os penhascos. Ele teleporta você até {npc:8379}.",
 	-- {npc:8379} Archmage Xylem
 	["{npc:8379}, in the tower"] = "{npc:8379}, na torre",
 
@@ -31,7 +32,7 @@ return {
 
 	-- Step 5: Archmage Xylem
 	-- {npc:8395} Sanath Lim-yo
-	["Back to {npc:8395}, who teleports you up to the tower."] = "Volte a {npc:8395}, que teletransporta você até a torre.",
+	["Back to {npc:8395}, who teleports you up to the tower."] = "Volte a {npc:8395}, que teleporta você até a torre.",
 
 	-- Step 6: Enchanted Coral
 	-- {area:1221} Ruins of Eldarath
