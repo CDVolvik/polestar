@@ -12,7 +12,7 @@ const { compileRun, makeTables } = require('./run');
 const { Evaluator } = require('./evaluate');
 const { runJob, search } = require('./search');
 const { Pool } = require('./pool');
-const { loadParamsFile, effective, means } = require('./params');
+const { loadParamsFile, effective, means, objectiveName } = require('./params');
 const { CLASSES, classLabel } = require('../game/races');
 
 const { ROOT, DATA, SOURCES } = require('../paths');
@@ -47,13 +47,14 @@ function normFaction(f) {
 async function loadWorld(o) {
 	const opts = { ...DEFAULTS, ...o };
 	const questXp = await loadQuestXp({ sourcesDir: opts.sourcesDir, offline: opts.offline, log: opts.log });
-	const world = getWorld({ dataDir: opts.dataDir, sourcesDir: opts.sourcesDir, simDir: opts.simDir, faction: opts.faction, rebuild: opts.rebuild, questXp, log: opts.log, bandWidth: opts.bandWidth, extraStarts: opts.extraStarts });
+	const world = getWorld({ dataDir: opts.dataDir, sourcesDir: opts.sourcesDir, simDir: opts.simDir, faction: opts.faction, rebuild: opts.rebuild, questXp, log: opts.log, bandWidth: opts.bandWidth, maxOpen: opts.maxOpen, extraStarts: opts.extraStarts });
 	return { world, worldFile: worldFile(opts.simDir, opts.faction) };
 }
 
-function paramsFor(simDir, cls) {
+// Parameters for a class under an objective (params.js OBJECTIVES).
+function paramsFor(simDir, cls, objective = 'time') {
 	const doc = loadParamsFile(simDir);
-	const eff = effective(doc, cls);
+	const eff = effective(doc, cls, objective);
 	return { doc, eff, mean: means(eff) };
 }
 
@@ -67,8 +68,16 @@ function className(cls) {
 	return cls ? String(cls) : 'any';
 }
 
-function resultFile(simDir, faction, race, cls, family = 'solo') {
-	return path.join(simDir, 'results', `${faction.toLowerCase()}-${race.toLowerCase()}-${className(cls).toLowerCase()}${family === 'solo' ? '' : `-${family}`}.json`);
+// The time objective keeps the plain name; another gets its own file
+// (horde-orc-any-smooth.json), so the two never overwrite each other.
+function resultFile(simDir, faction, race, cls, family = 'solo', objective = 'time') {
+	const obj = objectiveName(objective);
+	return path.join(simDir, 'results', `${faction.toLowerCase()}-${race.toLowerCase()}-${className(cls).toLowerCase()}${family === 'solo' ? '' : `-${family}`}${obj === 'time' ? '' : `-${obj}`}.json`);
+}
+
+// Smoothness counters of an evaluation (evaluate.js result()).
+function smoothness(r) {
+	return { zoneChanges: r.zoneChanges, zoneReturns: r.zoneReturns, spotReturns: r.spotReturns, sharedKills: r.sharedKills, logPeak: r.logPeak };
 }
 
 // Drop packages that changed nothing (all steps skipped): same cost, shorter
@@ -120,12 +129,13 @@ async function runCharacter(o) {
 	const opts = { ...DEFAULTS, seed: 1, paths: 1e6, workers: Math.max(1, os.availableParallelism ? os.availableParallelism() : os.cpus().length), family: 'solo', ...Object.fromEntries(Object.entries(o).filter(([, v]) => v !== undefined)) };
 	const faction = normFaction(opts.faction);
 	const { world, worldFile: wf } = opts.world ? { world: opts.world, worldFile: opts.worldFile } : await loadWorld({ ...opts, faction });
-	const { eff, mean } = paramsFor(opts.simDir, opts.cls);
+	const objective = objectiveName(opts.objective);
+	const { eff, mean } = paramsFor(opts.simDir, opts.cls, objective);
 	const params = opts.params || mean;
 	const runOpts = { race: opts.race, cls: opts.cls || null, family: opts.family };
 	const local = makeRun(world, { ...runOpts, params });
 	const log = opts.log || (() => {});
-	log(`${faction} ${opts.race} ${className(opts.cls)} (${opts.family}): ${local.run.Q} quests in ${local.run.P} packages`);
+	log(`${faction} ${opts.race} ${className(opts.cls)} (${opts.family}, ${objective} objective): ${local.run.Q} quests in ${local.run.P} packages`);
 
 	let pool = null;
 	let exec;
@@ -146,7 +156,7 @@ async function runCharacter(o) {
 	const msPerEval = opts.benchMs === 0 ? null : benchEval(ev, bestRoute, opts.benchMs || 1500);
 	const out = {
 		schema: 1,
-		faction, race: opts.race, class: className(opts.cls), family: opts.family,
+		faction, race: opts.race, class: className(opts.cls), family: opts.family, objective,
 		seed: opts.seed, workers: opts.workers, paths: opts.paths,
 		evaluatedRoutes: res.evals, packageTrials: res.trials, rounds: res.rounds, converged: res.converged,
 		wallSeconds: res.wallSeconds, msPerEval,
@@ -156,12 +166,13 @@ async function runCharacter(o) {
 		best: {
 			route: keys(bestRoute), seconds: best.seconds, timeTo: best.timeTo, levelTimes: best.levelTimes, xpSplit: best.xpSplit,
 			travelSeconds: best.travelSeconds, grindSeconds: best.grindSeconds, questsDone: best.questsDone, hearths: best.hearths, flights: best.flights,
+			...smoothness(best),
 			visits: best.visits,
 		},
 		elite: res.elite.map((e) => ({ route: keys(prune(ev, e.route)), seconds: e.seconds })),
 	};
 	if (opts.write !== false) {
-		const file = resultFile(opts.simDir, faction, opts.race, opts.cls, opts.family);
+		const file = resultFile(opts.simDir, faction, opts.race, opts.cls, opts.family, objective);
 		fs.mkdirSync(path.dirname(file), { recursive: true });
 		fs.writeFileSync(file, `${JSON.stringify(out, null, 1)}\n`);
 		out.file = file;
@@ -192,5 +203,5 @@ function assertFresh(res, world, file) {
 
 module.exports = {
 	DEFAULTS, START_RACES, normFaction, normClass, loadWorld, paramsFor, makeRun, className, resultFile, assertFresh,
-	prune, describe, benchEval, runCharacter, routeFromKeys, downsample,
+	prune, describe, benchEval, runCharacter, routeFromKeys, downsample, smoothness,
 };

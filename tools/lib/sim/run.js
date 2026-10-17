@@ -35,6 +35,8 @@ const WORK_KIND = { kill: W_KILL, use: W_USE, escort: W_ESCORT, buy: W_BUY, visi
 
 const NEAR_K = 3; // transport nodes considered at each end of a leg
 const NEAR_HUB = 200; // a flight master / inn this close is learned / bound
+const SHARE_R = 100; // yards: kills of one mob credit another quest's work on it this close
+const SPOT_CELL = 250; // yards: side of a spot cell (spot returns, evaluate.js)
 
 const MOBL = 64; // mob level stride in the kill tables
 
@@ -166,6 +168,8 @@ function compileRun(world, { race, cls = null, raceBits = {}, family = 'solo' } 
 	const wElite = [];
 	const wSpacing = [];
 	const wDrop = [];
+	const wMob = []; // npc id of a kill item (0: none known)
+	const wTask = [];
 	const addTask = (t) => {
 		const ti = taskPt.length;
 		taskPt.push(usePt(t.pt));
@@ -179,6 +183,8 @@ function compileRun(world, { race, cls = null, raceBits = {}, family = 'solo' } 
 			wSpacing.push(k === W_KILL ? w[4] || 0 : 0);
 			// Fractional counts come from drop chances (scaled by dropMul).
 			wDrop.push(k === W_KILL && !Number.isInteger(w[2]) ? 1 : k === W_USE && !Number.isInteger(w[1]) ? 1 : 0);
+			wMob.push(k === W_KILL ? w[5] || 0 : 0);
+			wTask.push(ti);
 		}
 		taskW1.push(wKind.length);
 		return ti;
@@ -230,6 +236,37 @@ function compileRun(world, { race, cls = null, raceBits = {}, family = 'solo' } 
 		qAfter0[i] = afterList.length;
 		for (const c of q.after || []) if (qIndex.has(c)) afterList.push(qIndex.get(c));
 		qAfter1[i] = afterList.length;
+	});
+	const tQuest = new Int32Array(taskPt.length).fill(-1); // objective tasks only (not accept items)
+	for (let i = 0; i < Q; i++) for (let t = qTask0[i]; t < qTask1[i]; t++) tQuest[t] = i;
+
+	// Shared kill credit (evaluate.js doWork): for each kill item, the other
+	// objective kill items (other quests', or another objective of its own)
+	// on the same mob whose site is within SHARE_R.
+	const shareOf = wKind.map(() => []);
+	const byMob = new Map();
+	wKind.forEach((k, w) => {
+		if (k !== W_KILL || !wMob[w]) return;
+		if (!byMob.has(wMob[w])) byMob.set(wMob[w], []);
+		byMob.get(wMob[w]).push(w);
+	});
+	for (const list of byMob.values()) {
+		for (const a of list) {
+			const pa = world.points[ptList[taskPt[wTask[a]]]];
+			for (const b of list) {
+				if (a === b || tQuest[wTask[b]] < 0) continue;
+				const pb = world.points[ptList[taskPt[wTask[b]]]];
+				if (pa[1] === pb[1] && Math.hypot(pa[2] - pb[2], pa[3] - pb[3]) <= SHARE_R) shareOf[a].push(b);
+			}
+		}
+	}
+	const wShare0 = new Int32Array(wKind.length);
+	const wShare1 = new Int32Array(wKind.length);
+	const shareList = [];
+	shareOf.forEach((l, w) => {
+		wShare0[w] = shareList.length;
+		for (const b of l) shareList.push(b);
+		wShare1[w] = shareList.length;
 	});
 
 	// ---- package steps ----
@@ -368,6 +405,19 @@ function compileRun(world, { race, cls = null, raceBits = {}, family = 'solo' } 
 			}
 		});
 	}
+	// Smoothness counters (evaluate.js): a dense zone index and a spot cell
+	// (SPOT_CELL yd squares per region) per point.
+	const pZone = new Int32Array(NP);
+	const pCell = new Int32Array(NP);
+	const zoneIdx = new Map();
+	const cellIdx = new Map();
+	for (let i = 0; i < NP; i++) {
+		if (!zoneIdx.has(pMap[i])) zoneIdx.set(pMap[i], zoneIdx.size);
+		pZone[i] = zoneIdx.get(pMap[i]);
+		const ck = `${pR[i]}:${Math.floor(pX[i] / SPOT_CELL)}:${Math.floor(pY[i] / SPOT_CELL)}`;
+		if (!cellIdx.has(ck)) cellIdx.set(ck, cellIdx.size);
+		pCell[i] = cellIdx.get(ck);
+	}
 	// Travel safety grid: per region, the zone of each cell and the zones'
 	// minimum levels (world.danger / world.zoneMin).
 	const zoneMin = new Map(Object.entries(world.zoneMin || {}).map(([m, l]) => [Number(m), l]));
@@ -384,10 +434,12 @@ function compileRun(world, { race, cls = null, raceBits = {}, family = 'solo' } 
 		taskPt: Int32Array.from(taskPt), taskW0: Int32Array.from(taskW0), taskW1: Int32Array.from(taskW1),
 		wKind: Int32Array.from(wKind), wLevel: Int32Array.from(wLevel), wCount: Float64Array.from(wCount),
 		wElite: Int32Array.from(wElite), wSpacing: Float64Array.from(wSpacing), wDrop: Int32Array.from(wDrop),
+		wMob: Int32Array.from(wMob), wTask: Int32Array.from(wTask), tQuest, wShare0, wShare1, shareList: Int32Array.from(shareList),
 		packages, P: packages.length,
 		pkgStart: Int32Array.from(pkgStart), pkgEnd: Int32Array.from(pkgEnd),
 		sKind: Int32Array.from(sKind), sQuest: Int32Array.from(sQuest), sTask: Int32Array.from(sTask), sPt: Int32Array.from(sPt),
 		ptList, ptIndex, pC, pR, pX, pY, pMap, pFp, pInn, pNear, pNearD,
+		pZone, pCell, zoneCount: zoneIdx.size, cellCount: cellIdx.size,
 		pkgHome, pkgAway, homeCount, homeLevel: HOME_LEVEL, zoneMin, danger,
 		innPt: Int32Array.from(innRunPt),
 		N, fpBit, fpCount,
@@ -443,5 +495,5 @@ function makeTables(run, p) {
 }
 
 module.exports = {
-	compileRun, makeTables, K_ACCEPT, K_TASK, K_TURNIN, K_GRIND, K_DUNGEON, W_KILL, W_USE, W_ESCORT, W_BUY, NEAR_K, MOBL,
+	compileRun, makeTables, K_ACCEPT, K_TASK, K_TURNIN, K_GRIND, K_DUNGEON, W_KILL, W_USE, W_ESCORT, W_BUY, NEAR_K, MOBL, SHARE_R,
 };
