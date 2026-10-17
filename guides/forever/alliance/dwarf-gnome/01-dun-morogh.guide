@@ -61,6 +61,8 @@ next forever/alliance/02-westfall
 # - Kharanos is done outside first: Senir, Eric's campfire (The Adventurer and
 #   The Great Outdoors) and Tharek's forge, then one visit inside the
 #   distillery, instead of in, out to the campfire and back in for Gremlock.
+# - Gretchen, at the mouth of the Grizzled Den, is visited first, so the den
+#   is entered once for the shipments, the manes and Cornelius.
 #
 # Left out: "The Reports" (291) and "Stout to Kadrell" (414) are accepted by
 # the route but never turned in (the route goes to Westfall, not Ironforge's
@@ -305,17 +307,15 @@ step Steelgrill's Depot
 
 # ---------------------------------------------------------------- The Grizzled Den
 
-step The Grizzled Den
-  tip The Grizzled Den is the wendigo cave south-west of Kharanos. Flintfire's shipments lie on the cave floor.
-  collect 280413 quest 98321.1                -- Flintfire's Shipment
-  collect 2671 quest 313.1                    -- Wendigo Mane
-
 step Mountaineer Gretchen
+  tip Gretchen camps just outside the Grizzled Den, the wendigo cave south-west of Kharanos.
   turnin 98322                                -- Mountaineer Gretchen
   accept 98319
 
-step Mountaineer Cornelius
-  tip Cornelius is missing in the Grizzled Den: find him inside, then go back to Gretchen.
+step The Grizzled Den
+  tip Flintfire's shipments lie on the cave floor, and Mountaineer Cornelius is missing somewhere inside.
+  collect 280413 quest 98321.1                -- Flintfire's Shipment
+  collect 2671 quest 313.1                    -- Wendigo Mane
   goto 42.9,49.6 "Mountaineer Cornelius"
   complete 98319
 

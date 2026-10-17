@@ -8546,24 +8546,19 @@ do
 					},
 				},
 				{
-					title = "{quest:313}",
-					note = "{quest:313} is the wendigo cave south-west of {area:131}. Flintfire's shipments lie on the cave floor.",
-					goals = {
-						{ t = "collect", quest = 98321, title = "Flintfire's Shipment", item = 280413, itemName = "Flintfire's Shipment", oi = 1, map = 1426, x = 43.5, y = 49.4, f = "e", spots = { { x = 41.8, y = 49.3, r = 65, n = 5 }, { x = 42.3, y = 52.3, r = 36, n = 2 }, { x = 40.8, y = 46.2, r = 85, n = 8 }, { x = 43.5, y = 49.4, r = 15, n = 1, alt = true } }, from = "Flintfire's Shipment", fromKind = "object", fromId = 672508 },
-						{ t = "collect", quest = 313, title = "The Grizzled Den", item = 2671, itemName = "Wendigo Mane", count = 8, oi = 1, map = 1426, x = 43.57, y = 49.61, f = "e", spots = { { x = 43, y = 49.6, r = 33, n = 7 }, { x = 41.6, y = 49.3, r = 47, n = 9 }, { x = 42.1, y = 52.2, r = 51, n = 7 }, { x = 41.7, y = 46.4, r = 60, n = 10 }, { x = 42.3, y = 54.8, r = 38, n = 12 }, { x = 39.5, y = 47.8, r = 66, n = 12 }, { x = 40.2, y = 53.3, r = 15, n = 1, alt = true } }, from = "Young Wendigo", fromKind = "npc", fromAlso = "Wendigo", fromId = 1134, fromAlsoId = 1135 },
-					},
-				},
-				{
 					title = "{npc:271546}",
+					note = "Gretchen camps just outside the {area:136}, the wendigo cave south-west of {area:131}.",
 					goals = {
 						{ t = "turnin", quest = 98322, title = "Secure the Mountain", npc = 271546, npcName = "Mountaineer Gretchen", map = 1426, x = 44.1, y = 57.07, f = "e" },
 						{ t = "accept", quest = 98319, title = "Secure the Mountain", npc = 271546, npcName = "Mountaineer Gretchen", minLevel = 4, qlvl = 8, pre = { 98322 }, preTitles = { [98322] = "Secure the Mountain" }, map = 1426, x = 44.1, y = 57.07, f = "e" },
 					},
 				},
 				{
-					title = "{object:460004}",
-					note = "Cornelius is missing in the {area:136}: find him inside, then go back to Gretchen.",
+					title = "{quest:313}",
+					note = "Flintfire's shipments lie on the cave floor, and {object:460004} is missing somewhere inside.",
 					goals = {
+						{ t = "collect", quest = 98321, title = "Flintfire's Shipment", item = 280413, itemName = "Flintfire's Shipment", oi = 1, map = 1426, x = 41.8, y = 52.8, f = "e", spots = { { x = 42.3, y = 52.3, r = 36, n = 2 }, { x = 41.8, y = 49.3, r = 65, n = 5 }, { x = 40.8, y = 46.2, r = 85, n = 8 }, { x = 43.5, y = 49.4, r = 15, n = 1, alt = true } }, from = "Flintfire's Shipment", fromKind = "object", fromId = 672508 },
+						{ t = "collect", quest = 313, title = "The Grizzled Den", item = 2671, itemName = "Wendigo Mane", count = 8, oi = 1, map = 1426, x = 41.92, y = 52.74, f = "e", spots = { { x = 42.1, y = 52.2, r = 51, n = 7 }, { x = 42.3, y = 54.8, r = 38, n = 12 }, { x = 41.6, y = 49.3, r = 47, n = 9 }, { x = 43, y = 49.6, r = 33, n = 7 }, { x = 39.5, y = 47.8, r = 66, n = 12 }, { x = 41.7, y = 46.4, r = 60, n = 10 }, { x = 40.2, y = 53.3, r = 15, n = 1, alt = true } }, from = "Young Wendigo", fromKind = "npc", fromAlso = "Wendigo", fromId = 1134, fromAlsoId = 1135 },
 						{ t = "goto", text = "{object:460004}", map = 1426, x = 42.9, y = 49.6, f = "e" },
 						{ t = "complete", quest = 98319, title = "Secure the Mountain" },
 					},
