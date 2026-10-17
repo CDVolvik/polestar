@@ -14,8 +14,9 @@
 //
 // and, for `data build` (data/forever/spawnz.json), every creature and
 // gameobject spawn on maps 0 and 1 with its height (loadSpawnHeights): the
-// compiler gives a guide goal at an NPC or object its spawn's z
-// (tools/lib/dsl/heights.js), facts like the transport periods; and, for
+// compiler gives a guide goal, spawn spot or smart-target candidate at an NPC
+// or object (and `trainers build` Core/ClassTrainers.lua's class trainers) its
+// spawn's z (tools/lib/dsl/heights.js), facts like the transport periods; and, for
 // `nav layers hubs`, every
 // creature template's name, faction template, NPC flags, extra flags, rank and
 // level (loadCreatureTemplates, cached as creature_template.json).
@@ -287,7 +288,7 @@ const HEIGHTS_SOURCE = {
 	name: 'CMaNGOS classic-db: creature and gameobject spawn heights',
 	url: DB_URL,
 	revision: DB_REV,
-	license: "GPL-3.0; spawn heights (z) only, used as facts like the transport periods: a guide goal at an NPC or object carries its spawn's height",
+	license: "GPL-3.0; spawn heights (z) only, used as facts like the transport periods: a guide goal, spawn spot or smart-target candidate at an NPC or object (and Core/ClassTrainers.lua's class trainers) carries its spawn's height",
 	copyright: 'CMaNGOS (https://github.com/cmangos/classic-db)',
 };
 

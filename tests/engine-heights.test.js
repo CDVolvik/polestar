@@ -56,7 +56,7 @@ test('Z1, Z3, #180: the waypoint carries the goal\'s z at its own point, a spot\
 		E.SetGuide("test/z")
 		local function z() local wp = E.GetWaypoint(); return wp and (wp.z or "none") or "no waypoint" end
 		local function view(s) local g = E.GetStepView(s).goals[1]; return g.z or "none" end
-		local r = { talk = z() }
+		local r = { talk = z(), talkGroup = E.GetStepView(1).groups[1].z or "none" }
 		E.Goto(2)
 		r.spotHere = z()
 		E.CycleSpot(2, 1, 2)
@@ -73,6 +73,7 @@ test('Z1, Z3, #180: the waypoint carries the goal\'s z at its own point, a spot\
 		r.goto = z()
 		emit(r)`);
 	assert.equal(out.talk, -66, 'an NPC goal: its z');
+	assert.equal(out.talkGroup, -66, 'the step view\'s group (the header person a click points at) has it too');
 	assert.equal(out.spotHere, -40, 'a spawn area at the goal\'s own point keeps it');
 	assert.equal(out.spotElsewhere, 'none', 'another spawn area without its own z has none');
 	assert.equal(out.spotOwn, -12, 'a spawn area with its own z: that z');

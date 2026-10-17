@@ -3162,7 +3162,7 @@ function Engine.GetStepView(i)
 			npc = grp.kind == "npc" and grp.id or nil,
 			object = grp.kind == "object" and grp.id or nil,
 			name = grp.name,
-			map = grp.map, x = grp.x, y = grp.y, f = grp.f,
+			map = grp.map, x = grp.x, y = grp.y, f = grp.f, z = grp.z,
 			goals = grp.goals, done = grp.done, pending = grp.pending,
 		}
 	end

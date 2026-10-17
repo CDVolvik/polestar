@@ -176,7 +176,8 @@ function referencedFrames(guides, data) {
 // <folder>.toc, Pack.lua, MapFrames.lua, Guides.lua and LICENSE-DATA.txt,
 // plus LICENSE.txt holding `license` (the pack's LICENSE file) when given.
 // LICENSE-DATA.txt names meta.json's sources, and CMaNGOS classic-db when a
-// goal carries a height (heights.js) and meta.json does not name it already.
+// goal, smart-target candidate or spawn spot carries a height (heights.js)
+// and meta.json does not name it already.
 // `translations` (tools/lib/i18n/guides.js packTranslations: { [locale]: {
 // pack, guides } }) add a texts addon per language beside the folder,
 // named `../<folder>_<locale>/<file>` (writePackDir writes them there).
