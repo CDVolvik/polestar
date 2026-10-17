@@ -66,6 +66,12 @@ Outputs: `data/sim/` and `data/bench/` (both gitignored).
 - **Givers in several places** (Minor Manifestation of Earth: the Valley of
   Trials and Mulgore): the quest starts at the giver's site nearest its
   turn-in (Call of Earth 1518 in the valley, 1521 in Mulgore).
+- **Several givers or enders** (Cenarion Aid 8254: Brother Joshua in
+  Stormwind and High Priest Rohan in Ironforge; the two Wanted Posters of
+  Tanaris): the route search uses the first friendly one the data lists,
+  and the world also keeps every friendly one by entity (`gAlt`, `eAlt`:
+  `{ "npc:<id>": point }`, only when there is more than one), so a guide is
+  scored at the one it names (§5).
 - **Child quests** (Questie `parentQuest`): a child is offered only while
   its parent is in the log, so the parent is not its prerequisite and the
   child is accepted after the parent's accept and before its turn-in. A
@@ -295,6 +301,15 @@ Only the fitted parameter values are kept (data/sim/params.json).
   extras can save. Elite and dungeon quests are outside the solo world, so
   they stay out either way. Search results (best found, consensus) are not
   guides and are unchanged.
+- **Guides are scored at the giver and ender they name.** A compiled
+  accept or turn-in carries its NPC or object (`accept 8254 npc 11406`, or
+  the one the compiler placed it at), and a quest with several is scored
+  there, not at the world's first. Guides used to be scored at the
+  first, a trip the player never makes: Horde guides were charged the walk
+  to the Steamwheedle Port poster for the two Tanaris wanted quests they
+  take in the Gadgetzan square, and class guides the trip to another city's
+  trainer (Rohan for Cenarion Aid was scored by moving him in the data).
+  About 0.1 h to 60 for most starts and up to 0.9 h for Horde Warriors.
 - A pack (`sim compare --pack <dir>`, or the pack folder as the one
   argument): its chain, after our chain up to the pack's first level when it
   starts above 1, under the same model
