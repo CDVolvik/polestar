@@ -31,6 +31,7 @@ const os = require('node:os');
 const path = require('node:path');
 const { Worker, isMainThread, parentPort, workerData } = require('node:worker_threads');
 const sim = require('./index');
+const { attachWalks } = require('./walks');
 const { exportRoute, loadPlaces, loadCamps, slug } = require('./export');
 const { Rng } = require('./rng');
 const { MAX_VISITS } = require('./evaluate');
@@ -200,10 +201,10 @@ function makeChars(world, races, params, family) {
 // starts job i from seed route i mod #seeds, later rounds from the best so
 // far. Each job: `evals` suffix evaluations (one per start each).
 const JOBS = 32;
-async function parallelAnneal({ worldFile, races, params, family, pool, seeds, evalsTotal, rounds = 2, seed = 11, workers }) {
+async function parallelAnneal({ worldFile, races, params, family, pool, seeds, evalsTotal, rounds = 2, seed = 11, workers, walks = false }) {
 	const per = Math.max(1, Math.ceil(evalsTotal / (rounds * JOBS)));
 	const W = Math.max(1, Math.min(JOBS, workers));
-	const threads = Array.from({ length: W }, () => new Worker(__filename, { workerData: { consensusWorker: true, worldFile, races, params, family, pool } }));
+	const threads = Array.from({ length: W }, () => new Worker(__filename, { workerData: { consensusWorker: true, worldFile, races, params, family, pool, walks } }));
 	const runJobs = (jobs) => new Promise((resolve, reject) => {
 		const out = new Array(jobs.length);
 		let next = 0;
@@ -242,6 +243,7 @@ async function parallelAnneal({ worldFile, races, params, family, pool, seeds, e
 if (!isMainThread && workerData && workerData.consensusWorker) {
 	const wd = workerData;
 	const world = JSON.parse(fs.readFileSync(wd.worldFile, 'utf8'));
+	if (wd.walks) attachWalks(world, path.dirname(wd.worldFile));
 	const chars = makeChars(world, wd.races, wd.params, wd.family);
 	parentPort.on('message', (job) => {
 		try {
@@ -287,7 +289,7 @@ async function consensus(o) {
 	const t0 = Date.now();
 	const evalsTotal = o.evals || 1.2e6;
 	const sa = await parallelAnneal({
-		worldFile, races: chars.map((c) => ({ race: c.race, prefix: c.prefix })), params: mean, family, pool, seeds,
+		worldFile, races: chars.map((c) => ({ race: c.race, prefix: c.prefix })), params: mean, family, pool, seeds, walks: !!world.walks,
 		evalsTotal, seed: o.seed || 11, workers: o.workers || os.availableParallelism(),
 	});
 	const wall = (Date.now() - t0) / 1000;
