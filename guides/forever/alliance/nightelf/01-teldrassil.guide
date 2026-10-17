@@ -281,6 +281,7 @@ step Lake Al'Ameth
   turnin 919
 
 step Dolanaar
+  tip Moon Priestess Amara patrols the road west of the village: if she isn't at the arrow, follow the road until you meet her.
   turnin 4161                                 -- Zarrin
   turnin 476                                  -- Athridas Bearmantle
   accept 483
@@ -336,6 +337,7 @@ step Gnarlpine Hold
 # ---------------------------------------------------------------- Back to Dolanaar
 
 step Hearth to Dolanaar
+  tip Moon Priestess Amara patrols the road west of the village: if she isn't at the arrow, follow the road until you meet her.
   hearth "Dolanaar"
   turnin 99053                                -- Sentinel Kyra Starsong
   turnin 933                                  -- Corithras Moonrage
@@ -460,7 +462,7 @@ step Rut'theran Village
   accept 6342
 
 step Boat to Auberdine
-  goto 54.8,97.2 "Boat to Auberdine"
+  goto 54.79,96.81 "Boat to Auberdine"
 
 step Moonglade
   only Druid
@@ -503,7 +505,7 @@ step Auberdine
   zone Darkshore
   tip Laird's fish stall is by the docks. Then take the boat to Stormwind.
   turnin 6342                                 -- Laird
-  goto 30.5,40.9 "Boat to Stormwind"
+  goto 30.76,40.92 "Boat to Stormwind"
   note From Stormwind Harbor, ride through the city gates into Elwynn Forest and follow the road west to Westfall.
 
 step Defensive Stance
