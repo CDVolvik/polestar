@@ -4,7 +4,7 @@
 //
 //   metrics(result, { grid, layers, map }) -> null when not ok, else
 //     { yards, seconds, blocked, offRoad, hubYards: { Alliance, Horde }, hubYardsAway: { Alliance, Horde },
-//       endHubs: { Alliance: [name], Horde: [name] }, maxClimbDeg, indoorYards, endIndoor, zoneYards }
+//       endHubs: { Alliance: [name], Horde: [name] }, maxClimbDeg, indoorYards, endIndoor, zoneYards, swumYards }
 //   loadLayers(dir = data/local/nav-layers, { indoorGrid, city }) -> { roads, hubs, indoor } (each null when not built)
 //   indoorLayer(grid, city?) -> indoor(c, x, y, z): true | false | null (no surface there)
 //   measureIndoor(report, layers) -> report with indoorYards and endIndoor measured again on layers.indoor
@@ -29,7 +29,8 @@
 // it: a route to a town of the other side enters it on purpose); indoorYards: yards on indoor ground
 // (layers.indoor(c, x, y, z) -> bool, indoorLayer); endIndoor: an end of the line lies on indoor ground (a route
 // that goes inside on purpose). Each null until its layer exists. zoneYards: the drawn line's yards per zone
-// ({ [uiMapID]: yd }, the harness's zones: the router's own Path.ZoneAt), null on maps without zones.
+// ({ [uiMapID]: yd }, the harness's zones: the router's own Path.ZoneAt), null on maps without zones. swumYards: the
+// drawn yards over water (the harness's wet: the router's points.wet), null when the result carries none.
 
 const fs = require('node:fs');
 const path = require('node:path');
@@ -178,6 +179,7 @@ function metrics(result, { grid = null, layers = {}, map = result.map } = {}) {
 		indoorYards,
 		endIndoor,
 		zoneYards: result.zones ? { ...result.zones } : null,
+		swumYards: typeof result.wet === 'number' ? +result.wet.toFixed(1) : null,
 	};
 }
 

@@ -207,6 +207,19 @@ test('metrics and compare: zoneYards.<uiMapID> reads the harness\'s yards in tha
 	assert.equal(na.pass, null);
 });
 
+test('metrics and compare: swumYards is the router\'s drawn yards over water (the harness\'s wet), null when it gives none', () => {
+	const { metrics } = require('../tools/lib/nav/eval/metrics');
+	const { evaluateExpectations } = require('../tools/lib/nav/eval/compare');
+	const m = metrics({ ok: true, cost: 100, pts: [[0, 0, 0], [100, 0, 0]], wet: 21.46 }, { grid: null, layers: {}, map: 0 });
+	assert.equal(m.swumYards, 21.5);
+	assert.equal(metrics({ ok: true, cost: 1, pts: [[0, 0, 0], [1, 0, 0]], wet: null }, {}).swumYards, null);
+	const expect = [{ type: 'metric', metric: 'swumYards', op: '==', value: 0 }];
+	const [wet] = evaluateExpectations({ expect, result: { ok: true }, metrics: m });
+	assert.deepEqual([wet.pass, wet.detail], [false, 'swumYards 21.5 (want == 0)']);
+	const [dry] = evaluateExpectations({ expect, result: { ok: true }, metrics: { swumYards: 0 } });
+	assert.equal(dry.pass, true);
+});
+
 test('the route corpus: a zone-map end in the Era frame (f "e") converts by that frame; a route\'s level and danger reach its query', () => {
 	const { resolveRoutes } = require('../tools/lib/nav/eval/run');
 	const calls = [];
