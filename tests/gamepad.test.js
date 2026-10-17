@@ -512,7 +512,9 @@ test('the welcome\'s route style cards: the D-pad reaches them, A picks one, Y p
 		stub.press("PAD1")
 		local picked = { Polestar.Get("nav.routeStyle"), card and card.psSelected or false }
 		stub.press("PAD4")
-		emit({ reached = card ~= nil, picked = picked, reset = Polestar.Get("nav.routeStyle") or "balanced" })
+		emit({ reached = card ~= nil, picked = picked, reset = Polestar.Get("nav.routeStyle") or "balanced",
+			balanced = PolestarWelcome.Styles[2].psSelected or false, roads = card and card.psSelected or false })
 	`);
-	assert.deepEqual(out, { reached: true, picked: ['roads', true], reset: 'balanced' });
+	assert.deepEqual(out, { reached: true, picked: ['roads', true], reset: 'balanced', balanced: true, roads: false },
+		'Y puts Balanced back and moves the pick to its card');
 });
