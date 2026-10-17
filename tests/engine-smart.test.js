@@ -263,7 +263,7 @@ test('skipGrey skips grey accepts and their turn-ins unless a quest worth doing 
 		statuses: ['na', 'na', 'active', 'pending', 'na', 'pending', 'pending', 'pending', 'na', 'na', 'na'],
 		at: 3, accepted101: false, grey: true, byHand: ['done', 'pending'],
 	});
-	const [off] = run({ guides, script });
+	const [off] = run({ guides, saved: { Polestar: 'PolestarDB = { schema = 1, settings = { behavior = { skipGrey = false } } }' }, script });
 	assert.equal(off.statuses.filter((s) => s === 'na').length, 0, JSON.stringify(off.statuses));
 	assert.deepEqual([off.at, off.accepted101, off.grey], [1, true, false]);
 });
@@ -306,7 +306,7 @@ test('skipGrey: a grey accept kept for its chain names the nearest open quest it
 		// All grey: the chain is left out, nothing to explain.
 		{ level: 23, kept: false, text: false, skipped: true, accepts: ['skipped', 'skipped', 'skipped'] },
 	]);
-	const [off] = run({ guides, script });
+	const [off] = run({ guides, saved: { Polestar: 'PolestarDB = { schema = 1, settings = { behavior = { skipGrey = false } } }' }, script });
 	assert.deepEqual(off.map((r) => [r.kept, r.text, r.skipped]), [[false, false, false], [false, false, false], [false, false, false]]);
 });
 
