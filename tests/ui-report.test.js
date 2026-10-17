@@ -108,6 +108,7 @@ function longest(locale, word, letter, opts = {}) {
 		stub.RunScript(F.Desc, "OnTextChanged", true)
 		${opts.unmarked ? '' : `F.Mark:Click()
 		PolestarMark.Here:Click()`}
+		${opts.linkMax ? `UI.Report.LINK_MAX = ${opts.linkMax}` : ''}
 		F.Report:Click()
 		local url = PolestarCopy.Box:GetText()
 		F.Copy:Click()
@@ -377,4 +378,23 @@ test('the issue link stays under GitHub\'s limit in every script: goals past the
 		if (locale !== 'enUS') assert.match(q.wrong, /^\.\.\. \d+ goals left out to fit the link$/m, locale);
 		assert.match(q.wrong, /^\[>\] /m, `${locale}: the arrow's goal is kept`);
 	}
+});
+
+test('a link too short for the report even without its goals cuts the report, its code block kept closed, no character cut in half', () => {
+	for (const [locale, word, letter] of SCRIPTS) {
+		const out = longest(locale, word, letter, { linkMax: 2000 });
+		assert.ok(out.url.length <= 2000, `${locale}: ${out.url.length} characters`);
+		const wrong = new URL(out.url).searchParams.get('wrong');
+		assert.ok(wrong.endsWith('...\n```'), `${locale}: cut, then the code block closed: ${wrong.slice(-40)}`);
+		assert.ok(!wrong.includes('\ufffd'), `${locale}: no character cut in half`);
+		assert.doesNotMatch(wrong, /Polestar\/UI\/Long/, `${locale}: the report's last lines went`);
+	}
+});
+
+test('a bug report with nothing typed is titled as its report reads: "Bug: (not described)"', () => {
+	const [out] = run(`
+		uistub.setGuide(uistub.elwynn, 3)
+		UI.ShowReport()
+		emit({ url = UI.Report.IssueURL("  \\n  ", PolestarReport.details) })`);
+	assert.equal(new URL(out.url).searchParams.get('title'), 'Bug: (not described)');
 });

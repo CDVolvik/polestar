@@ -303,8 +303,8 @@ end
 --             arrow's (current), and how many more were not listed
 --   addonsAt  where the Addons line sits in `lines`
 --   addons    the other addons with their versions, for the issue's field
---   issue     on a step, a "Wrong step" issue's title, guide, step and
---             character
+--   issue     on a step, the facts a "Wrong step" issue names: the guide's
+--             title, the step's index and title, the character
 function R.Details()
 	local on = onScreen()
 	local who = character()
@@ -319,9 +319,7 @@ function R.Details()
 	out[#out + 1] = addonsLine()
 	errorLines(out)
 	if on.view then
-		local title = oneLine(on.title)
-		d.issue = { title = ("Wrong step: %s, step %d"):format(cut(title, 80), on.index),
-			guide = cut(title), step = cut(oneLine(on.index .. ": " .. plain(on.view.title or ""))), character = who }
+		d.issue = { guide = oneLine(on.title), index = on.index, step = oneLine(plain(on.view.title or "")), character = who }
 	end
 	return d
 end
@@ -331,9 +329,14 @@ end
 -- right spot when the player marked one. The bug bot reads this layout
 -- back (tools/discord-bot/lib/report.js): the first line's shape, the guide
 -- line's "(id)", the order of the lines.
-local function text(description, lines, spot)
+-- What the player typed, trimmed, or "(not described)".
+local function described(description)
 	local desc = tostring(description or ""):match("^%s*(.-)%s*$")
-	if desc == "" then desc = L["(not described)"] end
+	return desc ~= "" and desc or L["(not described)"]
+end
+
+local function text(description, lines, spot)
+	local desc = described(description)
 	local out = { "**" .. L["What went wrong:"] .. "** " .. desc, "```" }
 	for _, line in ipairs(lines) do out[#out + 1] = line end
 	if spot then out[#out + 1] = cut((L["Right spot: %s"]):format(table.concat(spot, SEP))) end
@@ -454,17 +457,22 @@ end
 -- leave, less the addons field's count line, and the addons what is left.
 function R.IssueURL(description, details, spot)
 	local issue = spot and details.issue
-	local desc = tostring(description or ""):match("^%s*(.-)%s*$")
+	local title
+	if issue then
+		title = ("Wrong step: %s, step %d"):format(cut(issue.guide, 80), issue.index)
+	else
+		title = "Bug: " .. cut(oneLine(described(description):match("^[^\n]*")), 80)
+	end
 	local fields = {
 		{ "template", issue and "wrong-step.yml" or "bug-report.yml" },
-		{ "title", issue and issue.title or ("Bug: " .. cut(desc:match("^[^\n]*"), 80)) },
+		{ "title", title },
 		{ "version", polestarVersion() },
 	}
 	local body, bodySpot = "steps", spot
 	if issue then
 		body, bodySpot = "wrong", nil
-		fields[#fields + 1] = { "guide", issue.guide }
-		fields[#fields + 1] = { "step", issue.step }
+		fields[#fields + 1] = { "guide", cut(issue.guide) }
+		fields[#fields + 1] = { "step", cut(issue.index .. ": " .. issue.step) }
 		fields[#fields + 1] = { "character", issue.character }
 		fields[#fields + 1] = { "where", table.concat(spot, "\n") }
 	end
