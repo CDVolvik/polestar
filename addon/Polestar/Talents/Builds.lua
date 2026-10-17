@@ -569,7 +569,7 @@ T.Register({
 				[38] = L["Improved Slam stops Slam from resetting your swing: a free hit between big two-hander swings."],
 				[40] = L["Mortal Strike is the capstone and your hardest-hitting strike for the rest of the climb."],
 				[41] = L["The last 20 points go to Fury: Cruelty and Unbridled Wrath give more crit and more rage."],
-				[56] = L["Enrage finishes the plan: a damage boost after you take hits, which while questing is nearly always."],
+				[56] = L["Enrage finishes the plan: a damage boost that is often up while you take hits."],
 			},
 		},
 		{
@@ -590,7 +590,7 @@ T.Register({
 				[10] = L["Cruelty first: more crit for every build, and the way into the Fury tree."],
 				[15] = L["Unbridled Wrath means more rage from every swing, which matters most with two fast weapons."],
 				[20] = L["Piercing Howl stops runners and lets you walk away from a bad pull."],
-				[25] = L["Enrage raises your physical damage after you are hit, so it is up for most of a fight."],
+				[25] = L["Enrage raises your physical damage after you are hit, so it is often up while you take hits."],
 				[30] = L["Death Wish is a big cooldown for elites and a fear breaker; it also opens Flurry."],
 				[31] = L["Dual Wield Specialization: more off-hand damage and rage now that you carry two weapons."],
 				[41] = L["Bloodthirst is the capstone: a strong instant attack and a little run speed between mobs."],
