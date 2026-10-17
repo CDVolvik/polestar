@@ -28,6 +28,10 @@
 --   bit 3 inside an Alliance hub, bit 4 inside a Horde hub), run-length as the grid field; nodes past the end
 --   are class 0, and so is every node of a cluster without one. hubs: the hostile hubs, for the router's report:
 --   { id, side, name (English), areaId (AreaTable: the town in the client's language), disks = { { x, y, r } } }.
+-- zone[k + 1] (format 2, optional, not packed): the zone of each of the cluster's 16 x 16 chunks (cells / 16 cells
+--   square; chunk (x // (cells / 16)) * 16 + y // (cells / 16) of its local cell x, y) as its uiMapID, 0 for none:
+--   a 2-symbol number, a symbol >= 48 repeating the previous one (symbol - 47) more times. A cluster without one
+--   lies in no zone; the router prices a step into a zone by its caller's danger table (Routing/Path.lua).
 -- Packed (pack_nav.py's layout): data.packed.<field>[k + 1] = { base64(zlib(16 KB block)), ... } in the parts.
 PolestarPathData = PolestarPathData or {}
 
