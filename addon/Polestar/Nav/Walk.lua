@@ -105,7 +105,6 @@ local Z_OFF = 30            -- yards: a path ending this far above or below the 
 
 local loadTried = false
 local styleSeen             -- nav.routeStyle the searches were made in (nil until the first settings pass)
-local levelSeen = 0         -- PLAYER_LEVEL_UP's level: the client's can lag the event
 
 local function inCombat()
 	local C = ns.Compat
@@ -132,37 +131,21 @@ local function engine()
 	return Nav.Path
 end
 
--- The player's level: the client's (Compat.GetPlayerInfo), or the last
--- PLAYER_LEVEL_UP's when that is higher; nil when unread.
-local function playerLevel()
-	local C = ns.Compat
-	local info = C and C.GetPlayerInfo and C.GetPlayerInfo()
-	local level = info and type(info.level) == "number" and info.level or nil
-	if levelSeen > (level or 0) then level = levelSeen end
-	return level
-end
-
--- The zone (uiMapID) of world point (x, y) on map in the router's maps (Path.ZoneAt), or nil.
-local function zoneAt(map, x, y)
-	local P = Nav.Path
-	if not (P and P.ZoneAt and map and x and y) then return nil end
-	local ok, zone = pcall(P.ZoneAt, map, x, y)
-	return ok and zone or nil
-end
-
 -- The router's options (Routing/Path.lua): water walking (a ghost), the
 -- player's faction (Compat.GetPlayerFaction: nil when neutral or unread),
 -- the route style (nav.routeStyle, as saved: the router reads an unknown one
--- as Balanced) and the danger table (Nav.danger.Table at the player's level,
--- without the zones of the walk's start (sx, sy) and goal (tx, ty) on map;
--- nil for either leaves no zone out there), so each step is priced for them:
--- roads cheaper, slopes and indoors dearer, the other faction's towns twenty
--- times over, a zone far above the player three or ten times.
+-- as Balanced) and the danger table (Nav.danger.Table at Nav.danger.Level,
+-- without the zones (Nav.danger.ZoneAt) of the walk's start (sx, sy) and
+-- goal (tx, ty) on map; nil for either leaves no zone out there), so each
+-- step is priced for them: roads cheaper, slopes and indoors dearer, the
+-- other faction's towns twenty times over, a zone far above the player three
+-- or ten times.
 local function opts(water, map, sx, sy, tx, ty)
 	local C = ns.Compat
 	local profile = C and C.GetPlayerFaction and C.GetPlayerFaction() or nil
-	local D, level = Nav.danger, playerLevel()
-	local danger = D and level and D.Table(level, zoneAt(map, sx, sy), zoneAt(map, tx, ty)) or nil
+	local D = Nav.danger
+	local level = D and D.Level()
+	local danger = level and D.Table(level, D.ZoneAt(map, sx, sy), D.ZoneAt(map, tx, ty)) or nil
 	return { waterWalking = water and true or false, profile = profile, style = ns.Get("nav.routeStyle"), danger = danger }
 end
 
@@ -1164,11 +1147,10 @@ function Walk:OnSettings()
 	styleSeen = style
 end
 
--- A level-up: the zones far above the player are others now (Nav/Danger.lua),
--- so every walk priced at the old level is searched again (searchAgain), with
--- the event's level (the client's can lag it).
-ns.RegisterEvent("PLAYER_LEVEL_UP", function(_, level)
-	if type(level) == "number" and level > levelSeen then levelSeen = level end
+-- A level-up: the zones far above the player are others now (Nav/Danger.lua,
+-- whose own handler, run first, keeps the event's level: the client's can lag
+-- it), so every walk priced at the old level is searched again (searchAgain).
+ns.RegisterEvent("PLAYER_LEVEL_UP", function()
 	searchAgain()
 end)
 

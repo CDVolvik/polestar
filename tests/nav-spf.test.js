@@ -1791,3 +1791,122 @@ test('zone danger: a level-up drops the walks, re-plans at once, and measures an
 	assert.deepEqual(out.leg, ['1422=10', 400, 300, 600, 20], 'the later walk searched again at 27');
 	assert.deepEqual(out.after.slice(0, 3), [['walk', 3], ['flight', 2], ['walk', 3]], 'drawn along the new paths');
 });
+
+// The planner's straight estimates (Nav/Danger.lua Danger.Along, Nav/Travel.lua):
+// the zone every 100 yd along a straight walk (the middle of each 100 yd
+// piece), its share in a dangerous zone x3, in a far-above one x10; the
+// zones of its two ends never count, nor the player's and the target's.
+test('zone danger: Danger.Along samples a straight line every 100 yd, its ends\' zones never counting; without a table, Path.ZoneAt or length it is 1', () => {
+	const [out] = run(`${DANGER}
+		local r = {}
+		-- West of x = 100 zone a, to x = 700 zone b, east of it zone c. Each
+		-- layout is a new Path.ZoneAt: Danger keeps the zones it read per chunk
+		-- for one Path.ZoneAt (the maps' zones never change).
+		local asked = 0
+		local function layout(zb)
+			Polestar_NavEngine.ZoneAt = function(map, x, y)
+				asked = asked + 1
+				if x < 100 then return 1421 elseif x < 700 then return zb end
+				return 1424
+			end
+		end
+		layout(1422)
+		local far = { [1422] = 10, [1416] = 3 }
+		r.far = D.Along(far, 0, 0, 0, 1200, 0)
+		r.asked = asked
+		r.again = D.Along(far, 0, 0, 0, 1200, 0)
+		r.askedAgain = asked
+		layout(1416)
+		r.dangerous = D.Along(far, 0, 0, 0, 1200, 0)
+		layout(1422)
+		r.endsNever = D.Along({ [1421] = 10, [1422] = 10, [1424] = 10 }, 0, 0, 0, 1200, 0)
+		r.fromInside = D.Along(far, 0, 150, 0, 1350, 0)
+		r.noTable = D.Along(nil, 0, 0, 0, 1200, 0)
+		r.still = D.Along(far, 0, 300, 0, 300, 0)
+		r.level = D.Level()
+		stub.fire("PLAYER_LEVEL_UP", 23)
+		r.levelUp = D.Level()
+		Polestar_NavEngine.ZoneAt = nil
+		r.noZoneAt = D.Along(far, 0, 0, 0, 1200, 0)
+		emit(r)`, { many: true });
+	assert.equal(out.far, 0.5 * 10 + 0.5, 'half its 12 samples in a far-above zone');
+	assert.equal(out.dangerous, 0.5 * 3 + 0.5, 'half in a dangerous one');
+	assert.equal(out.endsNever, 0.5 * 10 + 0.5, 'the zones of its two ends never count');
+	assert.deepEqual([out.again, out.asked, out.askedAgain], [5.5, 14, 14], 'its two ends and 12 samples asked once; the same line again asks nothing');
+	assert.equal(out.fromInside, 1, 'a line from inside the far-above zone: its own start zone');
+	assert.equal(out.noTable, 1);
+	assert.equal(out.still, 1, 'no length');
+	assert.equal(out.noZoneAt, 1, 'no maps: today\'s estimate');
+	assert.deepEqual([out.level, out.levelUp], [20, 23], 'the level: the client\'s, or PLAYER_LEVEL_UP\'s when higher (one source for Walk and Travel)');
+});
+
+test('zone danger: the planner\'s straight walk 1200 yd through a zone far above costs t x 5.5, through a dangerous one t x 2, timed as before; the player\'s and target\'s zones never count; without Path.ZoneAt it is today\'s', () => {
+	const [out] = run(`${TERRAIN}${DANGER}
+		local r = {}
+		Polestar.CharState().flags.taxi = {}
+		-- Along the walk from (0, 1200) to (0, 0): the start's zone from y = 1100,
+		-- another to y = 500 (half the walk's 12 samples), the target's below.
+		-- A new Path.ZoneAt per layout (Danger keeps the zones per chunk for one).
+		local function layout(home, between, there)
+			Polestar_NavEngine.ZoneAt = function(map, x, y)
+				if y >= 1100 then return home elseif y > 500 then return between end
+				return there
+			end
+		end
+		local cost, secs
+		T.WalkCostHook(function(w, c)
+			if at(w.from.wx, w.from.wy, 0, 1200) and at(w.to.wx, w.to.wy, 0, 0) then cost, secs = c, w.seconds end
+			return c
+		end)
+		nav.place(0, 1200)
+		target(0, 0)
+		N.Sample()
+		local function ratio()
+			cost, secs = nil, nil
+			T.Replan()
+			if not cost then return false end
+			return { math.floor(cost / secs * 1000 + 0.5) / 1000, math.floor(secs * 1000 + 0.5) / 1000, route().seconds }
+		end
+		layout(1421, 1422, 1424)
+		r.far = ratio()
+		layout(1421, 1416, 1424)
+		r.dangerous = ratio()
+		layout(1421, 1497, 1424)
+		r.none = ratio()
+		layout(1422, 1422, 1416)
+		r.ends = ratio()
+		Polestar_NavEngine.ZoneAt = nil
+		r.noZoneAt = ratio()
+		emit(r)`, { many: true });
+	const t = Math.round(1200 * 1.25 / 7 * 1000) / 1000;
+	assert.deepEqual(out.far, [5.5, t, 214], 't x (0.5 x 10 + 0.5), its time as before');
+	assert.deepEqual(out.dangerous, [2, t, 214], 't x (0.5 x 3 + 0.5)');
+	assert.deepEqual(out.none, [1, t, 214], 'a zone without levels');
+	assert.deepEqual(out.ends, [1, t, 214], 'the player\'s and the target\'s zones never count');
+	assert.deepEqual(out.noZoneAt, [1, t, 214], 'no maps: today\'s estimate');
+});
+
+test('zone danger: on a continent with crossing data the straight walk from a flight master to the gate takes its share too', () => {
+	const [out] = run(`${CROSSING}${DANGER}
+		local r = {}
+		local at = function(x, y, ax, ay) return math.abs(x - ax) < 0.01 and math.abs(y - ay) < 0.01 end
+		-- A far-above band 450 < x < 550 north of y = 0: Gate Roost (400, 300) to
+		-- the gate (600, 20) is 344 yd, its 4 samples at x 425, 475, 525, 575.
+		Polestar_NavEngine.ZoneAt = function(map, x, y)
+			if x > 450 and x < 550 and y > 0 then return 1422 end
+			return 1497
+		end
+		local seen = {}
+		T.WalkCostHook(function(w, c)
+			if at(w.from.wx, w.from.wy, 400, 300) and at(w.to.wx, w.to.wy, 600, 20) then seen.gate = math.floor(c / w.seconds * 1000 + 0.5) / 1000 end
+			if at(w.from.wx, w.from.wy, 900, 800) and at(w.to.wx, w.to.wy, 900, 900) then seen.home = math.floor(c / w.seconds * 1000 + 0.5) / 1000 end
+			return c
+		end)
+		nav.place(900, 800)
+		target(600, -300)
+		N.Sample()
+		r.gate, r.home = seen.gate or false, seen.home or false
+		emit(r)`, { many: true });
+	assert.equal(out.gate, (2 * 10 + 2) / 4, 'half its samples in the band');
+	assert.equal(out.home, 1, 'the walk to Home Roost crosses none');
+});

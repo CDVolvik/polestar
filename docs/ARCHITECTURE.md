@@ -2011,9 +2011,23 @@ so a quest inside a dangerous zone is still walked to; the planner's measure
 (`FindMany`, one opts for all its places) leaves out the target's zone only,
 so a place inside a dangerous zone is priced through it. A table is built
 once per level and zone pair (the router keys its caches by its signature).
-The level is `Compat.GetPlayerInfo().level`, or `PLAYER_LEVEL_UP`'s when
-higher (the client's can lag the event). A level-up drops every walk priced
-at the old level and re-plans at once, as a style change does.
+The level is `Nav.danger.Level()`: `Compat.GetPlayerInfo().level`, or
+`PLAYER_LEVEL_UP`'s when higher (the client's can lag the event; Danger.lua's
+own handler keeps it, registered before Walk.lua's). A level-up drops every
+walk priced at the old level and re-plans at once, as a style change does.
+
+The journey planner's straight estimates take the same rule
+(`Nav.danger.Along(danger, map, x1, y1, x2, y2)`, `p.walkDanger`): a straight
+walk's cost (never its time) is multiplied by the mean, over the middle of
+each 100 yd piece of the line, of `danger[Path.ZoneAt(...)]` (1 elsewhere),
+the zones of its two ends never counting; the table is the plan's level's
+without the player's and the target's zones (`Travel.Replan` and
+`Nav.EstimateTravel` alike). A walk half through a far-above zone costs
+x5.5, half through a dangerous one x2. The zones read are kept per chunk
+(16 to a tile) for the session's `Path.ZoneAt`, so later plans between the
+same places ask the router nothing. Without `Path.ZoneAt` (no maps, routing
+off), its zone field or a dangerous zone the estimate is today's. A measured
+walk (`p.walkCost`) already carries the router's pricing.
 
 **Walks priced by the engine.** A straight line x1.25 cannot tell a walk
 round a ridge from one over it, so the planner would land at a flight master
@@ -2558,7 +2572,7 @@ what is shown and timed.
   `job.yards` (`Walk.LegPath`, `Travel.PricePaths`). An engine `cost` is
   never shown as a distance.
 - `Travel.WalkCostHook(fn(walk, cost) -> cost)` registers a planner rule
-  (the paused Ding! port's zone danger is the first meant for it): every
+  (zone danger is built in, `p.walkDanger`, above; a hook sees its cost): every
   walk the planner weighs is handed to each hook with `walk = { from = { c,
   wx, wy }, to = { c, wx, wy }, seconds }` (one reused table) and its cost in
   the planner's seconds; a number >= 0 back replaces the cost, the time stays.
