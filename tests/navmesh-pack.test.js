@@ -418,18 +418,22 @@ test('pack: readLayers resolves a chunk\'s zone up its AreaTable parents to a zo
 	fs.writeFileSync(path.join(layerDir, 'hubs.json'), '{}');
 	fs.mkdirSync(path.join(layerDir, 'roads'));
 	fs.writeFileSync(path.join(layerDir, 'roads', 'index.json'), '{}');
+	// Area 900 is a zones.json entry of another type (6, a battleground or instance-like map) inside Riverglades; 901
+	// lies in it: only a zone (type 3) counts, so both resolve to Riverglades, never to 2600.
 	const areaTable = [
 		{ ID: 16591, ParentAreaID: 0, Flags_0: 0 }, { ID: 16723, ParentAreaID: 16591, Flags_0: 0 },
 		{ ID: 44, ParentAreaID: 0, Flags_0: 0 }, { ID: 69, ParentAreaID: 44, Flags_0: 0 }, { ID: 7, ParentAreaID: 0, Flags_0: 0 },
+		{ ID: 900, ParentAreaID: 16591, Flags_0: 0 }, { ID: 901, ParentAreaID: 900, Flags_0: 0 },
 	];
 	const zones = {
 		1415: { id: 1415, name: 'Eastern Kingdoms', areaId: null, type: 2 },
 		1433: { id: 1433, name: 'Redridge Mountains', areaId: 44, type: 3 },
 		2548: { id: 2548, name: 'Riverglades', areaId: 16591, type: 3 },
+		2600: { id: 2600, name: 'Not a zone', areaId: 900, type: 6 },
 	};
 	const layers = readLayers({ dir: layerDir, areaTable, zones });
 	assert.equal(typeof layers.zone, 'function', 'readLayers gives the zone layer from the AreaTable and zones.json');
-	assert.deepEqual([16723, 16591, 69, 44, 7, 0].map((a) => layers.zone(0, a) || 0), [2548, 2548, 1433, 1433, 0, 0]);
+	assert.deepEqual([16723, 16591, 69, 44, 7, 0, 900, 901].map((a) => layers.zone(0, a) || 0), [2548, 2548, 1433, 1433, 0, 0, 2548, 2548]);
 	const files = await packNav({ dir, cells: 128, layers });
 	const D = S.loadPack(files, 0);
 	const [, s] = /^\t\t\[\d+\] = "([A-Za-z0-9+/]*)",$/m.exec(files.get('Nav0.lua'));

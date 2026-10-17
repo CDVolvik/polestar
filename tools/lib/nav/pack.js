@@ -186,14 +186,15 @@ function capitalAreas(areaTable) {
 	return out;
 }
 
-// The zone of each AreaTable area (rows: ID, ParentAreaID) by zones.json (its entries with an areaId): the uiMapID of
-// the first area up its ParentAreaID chain that is a zone's area, else 0. No map frame is needed, so a Forever zone
-// without an Era frame (Riverglades, Zephras Isle) resolves too. -> (c, areaId) -> uiMapID (0 for none)
+// The zone of each AreaTable area (rows: ID, ParentAreaID) by zones.json (its zones, type 3, with an areaId): the
+// uiMapID of the first area up its ParentAreaID chain that is a zone's area, else 0. Entries of other types
+// (battlegrounds, Darkspear Islands) never count. No map frame is needed, so a Forever zone without an Era frame
+// (Riverglades, Zephras Isle) resolves too. -> (c, areaId) -> uiMapID (0 for none)
 function zoneAreas({ areaTable, zones }) {
 	const parent = new Map();
 	for (const r of areaTable) parent.set(Number(r.ID), Number(r.ParentAreaID) || 0);
 	const byArea = new Map();
-	for (const z of Object.values(zones)) if (z && z.areaId) byArea.set(Number(z.areaId), Number(z.id));
+	for (const z of Object.values(zones)) if (z && z.type === 3 && z.areaId) byArea.set(Number(z.areaId), Number(z.id));
 	const memo = new Map();
 	return (c, areaId) => {
 		const id = Number(areaId) || 0;
