@@ -247,3 +247,39 @@ test('with more addons than the link holds, the issue counts them all and lists 
 	assert.equal(lines[2], 'Addon001 0.1.0-test');
 	assert.ok(lines.length > 50 && lines.length < 402, `${lines.length - 1} of 401 listed`);
 });
+
+test('"Mark the right spot" steps the window aside while the player walks; "Mark here" brings it back with the spot in the report and in the issue\'s right spot field, the rest of the report as it was', () => {
+	const [out] = run(`
+		uistub.setGuide(uistub.elwynn, 3)
+		UI.ShowReport()
+		local F = PolestarReport
+		F.Desc:SetText("The vermin were all by the tents.")
+		stub.RunScript(F.Desc, "OnTextChanged", true)
+		local before = F.Box:GetText()
+		F.Mark:Click()
+		local walking = { report = F:IsShown(), bar = PolestarMark:IsShown() }
+		Polestar.Compat.GetPlayerMapPosition = function() return nil end
+		PolestarMark.Here:Click()
+		local nowhere = { bar = PolestarMark:IsShown(), report = F:IsShown() }
+		Polestar.Compat.GetPlayerMapPosition = function() return 1429, 51.234, 40.5 end
+		PolestarMark.Here:Click()
+		local back = { report = F:IsShown(), bar = PolestarMark:IsShown(), note = F.SpotNote:GetText(), button = F.Mark.Label:GetText() }
+		local after = F.Box:GetText()
+		local url = UI.Report.IssueURL(F.Desc:GetText(), nil, F.spot)
+		F:Hide()
+		UI.ShowReport()
+		local reopened = F.SpotNote:GetText()
+		uistub.setStep(4)
+		UI.ShowReport()
+		emit({ walking = walking, nowhere = nowhere, back = back, before = before, after = after, url = url, reopened = reopened,
+			otherStep = F.SpotNote:GetText(), otherReport = F.Box:GetText() })`);
+	assert.deepEqual(out.walking, { report: false, bar: true });
+	assert.deepEqual(out.nowhere, { bar: true, report: false }, 'no position: the bar stays for another try');
+	assert.deepEqual(out.back, { report: true, bar: false, note: 'Right spot marked: zone map 1429 · goto 51.23,40.50 live', button: 'Mark again' });
+	const added = out.after.split('\n').filter((l) => !out.before.split('\n').includes(l));
+	assert.deepEqual(added, ['Right spot: zone map 1429 · goto 51.23,40.50 live'], 'the spot is the one line added: the report taken at the open is kept');
+	assert.equal(new URL(out.url).searchParams.get('where'), 'zone map 1429\ngoto 51.23,40.50 live', 'the right spot field holds what /polestar where prints');
+	assert.equal(out.reopened, out.back.note, 'the spot stays while it is the same step');
+	assert.match(out.otherStep, /^Optional:/, 'another step starts unmarked');
+	assert.doesNotMatch(out.otherReport, /Right spot/);
+});

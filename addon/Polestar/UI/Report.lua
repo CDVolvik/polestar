@@ -6,9 +6,11 @@
 -- stands, the versions, other packs and addons and the errors Polestar
 -- caught. "Report bug" gives a link that opens a new issue on Polestar's
 -- GitHub with the report, its title, the version and the addons filled in
--- (R.IssueURL). Under it the Polestar Discord: "Copy report" shows the
--- report, selected, sized to stay inside one Discord message, and "Get the
--- invite" is for a player not in it yet. UI.ShowDiscord: the invite alone
+-- (R.IssueURL); "Mark the right spot" adds where the step should have sent
+-- the player, marked from a bar while the window steps aside. Under it the
+-- Polestar Discord: "Copy report" shows the report, selected, sized to stay
+-- inside one Discord message, and "Get the invite" is for a player not in it
+-- yet. UI.ShowDiscord: the invite alone
 -- (ns.DiscordURL), in the copy window with Discord's mark (that button, the
 -- sidebars' Discord mark, /polestar discord).
 --
@@ -323,8 +325,9 @@ end
 -- A link that opens a new issue on Polestar's GitHub with the report in
 -- it: GitHub fills the title and the issue form's fields (by their ids in
 -- .github/ISSUE_TEMPLATE) from the link's query. A step on screen is a
--- "Wrong step" issue, anything else a "Bug report".
-function R.IssueURL(description, details)
+-- "Wrong step" issue, anything else a "Bug report". `spot`: the right spot
+-- the player marked (ns.WhereLines), for the "Wrong step" form's own field.
+function R.IssueURL(description, details, spot)
 	local fields = {
 		version = polestarVersion(),
 	}
@@ -340,6 +343,7 @@ function R.IssueURL(description, details)
 		fields.step = index .. ": " .. plain(view.title or "")
 		fields.wrong = R.Text(description, details)
 		fields.character = character()
+		if spot then fields.where = table.concat(spot, "\n") end
 	else
 		local desc = tostring(description or ""):match("^%s*(.-)%s*$")
 		fields.template = "bug-report.yml"
@@ -385,7 +389,11 @@ local function layout()
 	put(F.DescLabel, PAD, y)
 	y = y + F.DescLabel:GetStringHeight() + 6
 	put(F.Desc, PAD, y)
-	y = y + F.Desc:GetHeight() + 16
+	y = y + F.Desc:GetHeight() + 12
+	put(F.SpotNote, PAD, y)
+	y = y + F.SpotNote:GetStringHeight() + 8
+	put(F.Mark, PAD, y)
+	y = y + F.Mark:GetHeight() + 16
 	put(F.GitHubNote, PAD, y)
 	y = y + F.GitHubNote:GetStringHeight() + 10
 	put(F.Report, PAD, y)
@@ -412,8 +420,29 @@ end
 
 -- The report box is as tall as its text, so it is read whole and copied
 -- whole: measured in its own font at its inner width.
+-- The details taken when the window opened, and the right spot when the
+-- player marked one.
+local function details()
+	if not F.spot then return F.details end
+	local out = {}
+	for i, line in ipairs(F.details) do out[i] = line end
+	out[#out + 1] = (L["Right spot: %s"]):format(table.concat(F.spot, SEP))
+	return out
+end
+
+local function showSpot()
+	if F.spot then
+		F.SpotNote:SetText((L["Right spot marked: %s"]):format(table.concat(F.spot, SEP)))
+		W.SetButtonText(F.Mark, L["Mark again"])
+	else
+		F.SpotNote:SetText(L["Optional: is the step sending you to the wrong place? Mark the right spot and it goes in your report."])
+		W.SetButtonText(F.Mark, L["Mark the right spot"])
+	end
+end
+
 local function compose()
-	local text = R.Text(F.Desc:GetText(), F.details)
+	showSpot()
+	local text = R.Text(F.Desc:GetText(), details())
 	W.SetCopyText(F.Box, text)
 	F.Measure:SetText(text)
 	F.Box:SetHeight(floor(F.Measure:GetStringHeight() + 16 + 0.5))
@@ -429,9 +458,73 @@ local function copyReport()
 end
 
 local function reportBug()
-	UI.ShowCopy(L["Report a bug on GitHub"], R.IssueURL(F.Desc:GetText(), F.details), {
+	UI.ShowCopy(L["Report a bug on GitHub"], R.IssueURL(F.Desc:GetText(), details(), F.spot), {
 		hint = L["The link is selected for you: copy it with Ctrl+C (Cmd+C on a Mac), paste it in your browser's address bar and press Enter."],
 	})
+end
+
+---------------------------------------------------------------------------
+-- Marking the right spot: the window steps aside for a bar while the player
+-- walks there; the report it took when it opened is kept, so walking about
+-- changes nothing in it.
+---------------------------------------------------------------------------
+
+local MARK_W = 360
+local M
+
+local function backToReport()
+	M:Hide()
+	compose()
+	F:Show()
+	F:Raise()
+end
+
+local function markHere()
+	local lines = ns.WhereLines()
+	if not lines then
+		M.Note:SetText(L["No position here: the game gives none in instances and on some maps."])
+		return
+	end
+	F.spot = lines
+	backToReport()
+end
+
+local function buildMark()
+	M = CreateFrame("Frame", "PolestarMark", UIParent)
+	M:SetFrameStrata("DIALOG")
+	M:SetToplevel(true)
+	M:SetClampedToScreen(true)
+	M:EnableMouse(true)
+	M:SetMovable(true)
+	M:RegisterForDrag("LeftButton")
+	M:SetScript("OnDragStart", M.StartMoving)
+	M:SetScript("OnDragStop", M.StopMovingOrSizing)
+	M:SetWidth(MARK_W)
+	M:SetPoint("TOP", UIParent, "TOP", 0, -120)
+	M:Hide()
+	Theme.Skin(M, "window")
+	M.Title = W.Text(M, "heading", "text")
+	M.Title:SetPoint("TOPLEFT", M, "TOPLEFT", PAD, -PAD)
+	M.Title:SetText(L["Mark the right spot"])
+	M.Note = W.Text(M, "note", "textDim")
+	M.Note:SetPoint("TOPLEFT", M.Title, "BOTTOMLEFT", 0, -6)
+	M.Note:SetWidth(MARK_W - PAD * 2)
+	M.Note:SetJustifyH("LEFT")
+	M.Note:SetWordWrap(true)
+	M.Here = W.Button(M, L["Mark here"], markHere, { primary = true })
+	M.Here:SetPoint("TOPLEFT", M.Note, "BOTTOMLEFT", 0, -12)
+	M.Cancel = W.Button(M, L["Cancel"], backToReport)
+	M.Cancel:SetPoint("LEFT", M.Here, "RIGHT", 8, 0)
+	if ns.Gamepad and ns.Gamepad.Register then ns.Gamepad.Register(M, {}) end
+end
+
+local function startMark()
+	if not M then buildMark() end
+	M.Note:SetText(L["Walk to where the step should have sent you: the NPC, the object or the mobs as you found them. Then press Mark here. Your report is kept while you walk."])
+	M:SetHeight(floor(PAD + M.Title:GetStringHeight() + 6 + M.Note:GetStringHeight() + 12 + M.Here:GetHeight() + PAD + 0.5))
+	F:Hide()
+	M:Show()
+	M:Raise()
 end
 
 -- "Step 3 of 8 · Kobold Camp · Elwynn Forest": what the report is about.
@@ -525,6 +618,11 @@ local function build()
 	F.DescLabel = W.Text(F, "label", "text")
 	F.DescLabel:SetText(L["What went wrong?"])
 	F.Desc = textArea()
+	F.SpotNote = W.Text(F, "note", "textDim")
+	F.SpotNote:SetWidth(BOX_W)
+	F.SpotNote:SetJustifyH("LEFT")
+	F.SpotNote:SetWordWrap(true)
+	F.Mark = W.Button(F, L["Mark the right spot"], startMark)
 
 	F.GitHubNote = W.Text(F, "note", "textDim")
 	F.GitHubNote:SetWidth(BOX_W)
@@ -583,7 +681,11 @@ function UI.ShowReport()
 	if not F then build() end
 	local key = stepKey()
 	F.details = R.Details()
-	if key ~= F.key then F.Desc:SetText("") end
+	if key ~= F.key then
+		F.Desc:SetText("")
+		F.spot = nil
+	end
+	if M then M:Hide() end
 	F.key = key
 	F.Desc.Placeholder:SetShown((F.Desc:GetText() or "") == "")
 	F.Context:SetText(context())

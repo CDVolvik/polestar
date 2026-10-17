@@ -1352,6 +1352,14 @@ L["Report problems, ask for help and hear about new guides first."] = "回報問
 -- L["Report bug"] = ""
 -- L["Rather use Discord? Press Copy report, then Ctrl+C (Cmd+C on a Mac), and paste it in the Polestar server. Not in it yet? Get the invite once and open it in your browser."] = ""
 -- L["1. Click Report bug and copy the link.\n2. Paste it in your browser's address bar.\n3. Sign in to GitHub. New to it? Make a free account, then paste the link again.\n4. Everything is filled in. Drag in a screenshot if you have one, then click Create. GitHub emails you when someone replies.\nThanks for helping make Polestar better!"] = ""
+-- L["Right spot: %s"] = ""
+-- L["Right spot marked: %s"] = ""
+-- L["Mark again"] = ""
+-- L["Optional: is the step sending you to the wrong place? Mark the right spot and it goes in your report."] = ""
+-- L["Mark the right spot"] = ""
+-- L["Mark here"] = ""
+-- L["Cancel"] = ""
+-- L["Walk to where the step should have sent you: the NPC, the object or the mobs as you found them. Then press Mark here. Your report is kept while you walk."] = ""
 
 -- UI/Packs.lua
 L["turned off in the AddOns list"] = "已在插件清單中關閉"
