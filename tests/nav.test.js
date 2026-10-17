@@ -178,7 +178,7 @@ test('switching nav.arrowStyle live keeps heading, colour and the arrived state'
 		r.arrivedFlat = snap()
 		r.default = Polestar.GetDefault("nav.arrowStyle")
 		emit(r)`);
-	assert.equal(out.default, '3d');
+	assert.equal(out.default, 'skin', "the skin's arrow by default: the 3D one in the house style");
 	assert.deepEqual([out.solid.style, out.solid.sheet, out.solid.spec, out.solid.body, out.solid.frame], ['3d', true, true, false, 25]);
 	assert.deepEqual([out.flat.style, out.flat.sheet, out.flat.spec, out.flat.body, out.flat.facet, out.flat.frame], ['flat', false, false, true, true, false]);
 	assert.ok(angleDiff(out.flat.rotation, PI / 2) < 1e-3, 'flat dart takes over the heading');
@@ -267,6 +267,62 @@ test('reaching the target switches to the arrived state, with hysteresis and one
 // colour far away and the near colour on arrival (both styles, the ring),
 // the target's pin follows the arrow live, and a colour too dark to read as
 // the arrow's text is lifted for the text alone.
+test("the skins' darts: the skin's arrow by default, accent far and arrival green within 40 m, Hearth's baked gold, then the ring and the check", () => {
+	const { emitted } = runAddon({
+		stubs: ['stub_nav.lua'],
+		addons: [{ name: 'Polestar', files: ['Core/Init.lua', 'Theme/Theme.xml', 'Nav/Nav.xml'] }],
+		login: true,
+		script: `${PRELUDE}
+		local function rgb(t) local r, g, b = t:GetVertexColor() return { r, g, b } end
+		local function tex(t) return (t:GetTexture() or ""):match("([^\\\\]+)$") end
+		local out = {}
+		target(300, 400)
+		stub.advance(0.2)
+		out.house = A.GetStyle()
+		Polestar.Set("ui.skin", "halo")
+		stub.advance(0.2)
+		out.halo = { style = A.GetStyle(), dart = A.dart:IsShown(), sheet = A.sheet:IsShown(), tint = rgb(A.dart), edge = rgb(A.dartEdge) }
+		nav.place(300, 360)                -- 40 yd away: inside 40 m
+		stub.advance(0.2)
+		out.haloNear = { tint = rgb(A.dart), edge = rgb(A.dartEdge) }
+		Polestar.Set("ui.skin", "hearth")
+		nav.place(300, 0)
+		stub.advance(0.2)
+		out.bliz = { style = A.GetStyle(), tex = tex(A.dart), tint = rgb(A.dart), edge = rgb(A.dartEdge) }
+		nav.place(300, 360)
+		stub.advance(0.2)
+		out.blizNear = { tex = tex(A.dart), tint = rgb(A.dart) }
+		nav.place(300, 398)                -- arrive
+		stub.advance(0.2)
+		out.arrived = { mode = A.GetMode(), ring = A.skinRing:IsShown(), houseRing = A.ring:IsShown(), check = A.skinCheck:IsShown(), dart = A.dart:IsShown() }
+		stub.advance(0.7)
+		out.checked = A.skinCheck:IsShown()
+		Polestar.Set("nav.arrowStyle", "flat")
+		out.flat = A.GetStyle()
+		Polestar.Set("nav.arrowStyle", "skin")
+		out.looks = {}
+		for _, k in ipairs({ "forever", "blizzard", "classic" }) do
+			Polestar.Set("ui.skin", k)
+			out.looks[#out.looks + 1] = A.GetStyle()
+		end
+		emit(out)`,
+	});
+	const [out] = emitted;
+	const r3 = (c) => c.map((v) => Math.round(v * 1000) / 1000);
+	assert.equal(out.house, '3d');
+	assert.deepEqual({ ...out.halo, tint: r3(out.halo.tint), edge: r3(out.halo.edge) },
+		{ style: 'halo', dart: true, sheet: false, tint: [1, 0.82, 0], edge: [0.09, 0.075, 0.055] }, 'Halo: the gold dart #FFD100, edged #17130E');
+	assert.deepEqual(r3(out.haloNear.tint), [0.373, 0.816, 0.408], 'within 40 m: the arrival green #5FD068');
+	assert.deepEqual(r3(out.haloNear.edge), [0.043, 0.102, 0.047]);
+	assert.deepEqual({ ...out.bliz, tint: r3(out.bliz.tint), edge: r3(out.bliz.edge) },
+		{ style: 'hearth', tex: 'dart-gold', tint: [1, 1, 1], edge: [0.165, 0.102, 0] }, "Hearth: the baked gold gradient, edged #2A1A00");
+	assert.deepEqual({ tex: out.blizNear.tex, tint: r3(out.blizNear.tint) }, { tex: 'dart', tint: [0.345, 0.753, 0.29] }, 'up close: #58C04A');
+	assert.deepEqual(out.arrived, { mode: 'arrived', ring: true, houseRing: false, check: false, dart: false });
+	assert.equal(out.checked, true, 'the check follows the ring');
+	assert.equal(out.flat, 'flat', 'a style picked by hand stays');
+	assert.deepEqual(out.looks, ['hearth', 'hearth', 'hearth'], "the game's looks take Hearth's gold dart");
+});
+
 test('chosen arrow colours: far and near, both styles and the arrival ring; the target pin follows; dark picks stay legible', () => {
 	const { emitted } = runAddon({
 		stubs: ['stub_nav.lua'],

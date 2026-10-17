@@ -25,6 +25,11 @@ local WHITE = Theme.Media("white")
 
 W.ROW_H = 40
 
+-- A setting row's height in the skin in use (Halo 34, Blizzard 28).
+function W.RowH()
+	return Theme.Metric("row", W.ROW_H)
+end
+
 ---------------------------------------------------------------------------
 -- Theme-following paint
 ---------------------------------------------------------------------------
@@ -246,26 +251,66 @@ W.Hover = hoverTexture
 
 -- A glyph-only button: the glyph sits in the dim text colour and brightens
 -- under the cursor; a press nudges it down a pixel, like a key going in.
+-- The framed square a Blizzard icon button sits in, on the buttons that ask
+-- for it (b.psFramed; DIRECTION_A_BLIZZARD.md §3): "icon" #3A2C14 to #1A1309
+-- with a #8A6A2A edge, "red" (the small square buttons, ‹ ›) #8A1C10 to
+-- #420B05 with a #C79C3E edge. Hidden in the other skins.
+local FRAMES = {
+	icon = { top = { 0.227, 0.173, 0.078 }, bottom = { 0.102, 0.075, 0.035 }, edge = { 0.541, 0.416, 0.165 } },
+	red = { top = { 0.541, 0.11, 0.063 }, bottom = { 0.259, 0.043, 0.02 }, edge = { 0.78, 0.612, 0.243 } },
+}
+local function iconFrame(b)
+	-- The game's looks draw their own plates, page arrows and close button.
+	Theme.KitIconButton(b)
+	local spec = FRAMES[rawget(b, "psFramed") or ""]
+	local bliz = Theme.SkinKey() == "hearth" and spec ~= nil
+	local f = rawget(b, "psFrame")
+	if not f and bliz then
+		f = b:CreateTexture(nil, "BACKGROUND", nil, -6)
+		f:SetTexture(WHITE)
+		f:SetAllPoints(b)
+		b.psFrame = f
+	end
+	if not f then return end
+	f:SetShown(bliz)
+	if bliz then
+		local t, bo, e = spec.top, spec.bottom, spec.edge
+		if f.SetGradient and CreateColor then
+			f:SetGradient("VERTICAL", CreateColor(bo[1], bo[2], bo[3], 1), CreateColor(t[1], t[2], t[3], 1))
+		else
+			f:SetVertexColor(t[1], t[2], t[3], 1)
+		end
+		Theme.Border(b, e[1], e[2], e[3], 1)
+	elseif b.psBorder then
+		for i = 1, 4 do b.psBorder[i]:Hide() end
+	end
+end
+
 function W.IconButton(parent, icon, size, tip, onClick, glyphSize)
 	local b = CreateFrame("Button", nil, parent)
 	size = size or 22
 	b:SetSize(size, size)
 	hoverTexture(b)
 	local g = b:CreateTexture(nil, "ARTWORK")
-	g:SetTexture(Theme.Media(icon))
+	b.psIconName = icon
+	g:SetTexture(Theme.Media(Theme.Icon(icon)))
 	local gs = glyphSize or floor(size * 0.6 + 0.5)
 	g:SetSize(gs, gs)
 	g:SetPoint("CENTER", b, "CENTER", 0, 0)
 	b.Icon = g
-	W.Color(g, "textDim")
+	W.Color(g, "icon")
 	b.psTip = tip
+	W.Painter(b, function(self)
+		self.Icon:SetTexture(Theme.Media(Theme.Icon(self.psIconName)))
+		iconFrame(self)
+	end)
 	b:SetScript("OnEnter", function(self)
-		if self:IsEnabled() then W.Color(self.Icon, self.psActive and "accent" or "text") end
+		if self:IsEnabled() then W.Color(self.Icon, self.psActive and "accent" or "iconHover") end
 		simpleTip(self)
 		if self.psOnEnter then self.psOnEnter(self) end
 	end)
 	b:SetScript("OnLeave", function(self)
-		W.Color(self.Icon, self.psActive and "accent" or "textDim", self:IsEnabled() and 1 or 0.35)
+		W.Color(self.Icon, self.psActive and "accent" or "icon", self:IsEnabled() and 1 or 0.35)
 		hideTip(self)
 		if self.psOnLeave then self.psOnLeave(self) end
 	end)
@@ -276,14 +321,21 @@ function W.IconButton(parent, icon, size, tip, onClick, glyphSize)
 end
 
 function W.SetIcon(b, icon)
-	b.Icon:SetTexture(Theme.Media(icon))
+	b.psIconName = icon
+	b.Icon:SetTexture(Theme.Media(Theme.Icon(icon)))
+end
+
+-- Ask for Blizzard's framed square on an icon button ("icon" or "red").
+function W.SetFramed(b, kind)
+	b.psFramed = kind
+	iconFrame(b)
 end
 
 -- Mark an icon button as "on" (accent glyph) or dim it when disabled.
 function W.SetIconState(b, active, enabled)
 	b.psActive = active and true or false
 	if enabled == false then b:Disable() else b:Enable() end
-	W.Color(b.Icon, b.psActive and "accent" or "textDim", b:IsEnabled() and 1 or 0.35)
+	W.Color(b.Icon, b.psActive and "accent" or "icon", b:IsEnabled() and 1 or 0.35)
 end
 
 -- A text button. opts: { primary = true, ghost = true, danger = true,
@@ -291,8 +343,9 @@ end
 function W.Button(parent, text, onClick, opts)
 	opts = opts or {}
 	local b = CreateFrame("Button", nil, parent)
-	b:SetHeight(opts.height or 28)
-	local label = W.Text(b, "label", opts.danger and "danger" or "text")
+	b.psHeight = opts.height
+	b:SetHeight(opts.height or Theme.Metric("buttonH", 28))
+	local label = W.Text(b, "label", opts.danger and "danger" or "buttonText")
 	label:SetPoint("CENTER", b, "CENTER", 0, 0)
 	b.Label = label
 	if opts.icon then
@@ -306,10 +359,23 @@ function W.Button(parent, text, onClick, opts)
 	if opts.ghost then
 		hoverTexture(b)
 	else
+		b.psTextButton = true
 		Theme.Skin(b, "button")
 	end
 	W.Painter(b, function(self)
 		local icon = rawget(self, "Icon")
+		if not self.psHeight then self:SetHeight(Theme.Metric("buttonH", 28)) end
+		-- Hearth's primary buttons, and every text button in the game's looks.
+		local bliz = Theme.GameSkin() and (self.psPrimary or Theme.Kit() ~= nil)
+		if bliz and not self.psGhost then
+			-- The game's red button, as the others: an edge of its own would read
+			-- as the gamepad's selection.
+			W.Color(self.Label, "buttonText")
+			if self.psBorder then for i = 1, 4 do self.psBorder[i]:Hide() end end
+			if icon then icon:SetVertexColor(Theme.Color("buttonText")) end
+			Theme.SetShadow(self.Label, true)
+			return
+		end
 		if self.psPrimary then
 			local d = self.psSkin
 			local r, g, bb = Theme.Accent()
@@ -343,7 +409,7 @@ function W.SetButtonText(b, text)
 		b.Icon:SetPoint("RIGHT", b.Label, "LEFT", -6, 0)
 	end
 	b.Label:SetPoint("CENTER", b, "CENTER", b.psLabelX or 0, 0)
-	b:SetWidth(b.psFixedWidth or max(72, floor(w + iconW + 32 + 0.5)))
+	b:SetWidth(b.psFixedWidth or max(72, floor(w + iconW + 2 * Theme.Metric("buttonPad", 16) + 0.5)))
 end
 
 -- A link: an address shown as text in the accent, no box. Under the cursor
@@ -609,12 +675,14 @@ end)
 -- row's tooltip. W.LayoutRow sizes it.
 local function settingRow(parent, label, desc)
 	local row = CreateFrame("Button", nil, parent)
-	row:SetHeight(W.ROW_H)
+	row:SetHeight(W.RowH())
 	hoverTexture(row, 0.6)
 	row.Rule = W.Divider(row, false, 0.6)
 	row.Rule:SetPoint("BOTTOMLEFT", row, "BOTTOMLEFT", 0, 0)
 	row.Rule:SetPoint("BOTTOMRIGHT", row, "BOTTOMRIGHT", 0, 0)
-	row.Label = W.Text(row, "body", "text")
+	-- A setting's label: the text colour, gold in the game's looks (the
+	-- Settings panel's GameFontNormal).
+	row.Label = W.Text(row, "body", "rowLabel")
 	row.Label:SetWordWrap(true)
 	row.Label:SetText(label)
 	row.Label:SetPoint("LEFT", row, "LEFT", 12, 0)
@@ -676,10 +744,50 @@ local function toggleValue(self)
 	return ns.Get(self.psPath) and true or false
 end
 
+local CHECK_UP, CHECK_ON = "Interface\\Buttons\\UI-CheckBox-Up", "Interface\\Buttons\\UI-CheckBox-Check"
+
+-- The game's check box in place of the switch: true when it drew one
+-- (Hearth the vanilla box, the game's looks their kit's).
+local function gameCheck(self, on)
+	local game, kit = Theme.GameSkin(), Theme.Kit()
+	local bliz = game and not kit
+	local box = rawget(self, "psGameBox")
+	if bliz and not box then
+		box = self.Track:GetParent():CreateTexture(nil, "ARTWORK")
+		box:SetTexture(CHECK_UP)
+		box:SetSize(24, 24)
+		box:SetPoint("CENTER", self.Track, "CENTER", 0, 0)
+		local check = self.Track:GetParent():CreateTexture(nil, "OVERLAY")
+		check:SetTexture(CHECK_ON)
+		check:SetAllPoints(box)
+		box.Check = check
+		self.psGameBox = box
+	end
+	for i = 1, #self.Track.parts do self.Track.parts[i]:SetShown(not game) end
+	self.Knob:SetShown(not game)
+	if box then
+		box:SetShown(bliz)
+		box.Check:SetShown(bliz and on)
+	end
+	if kit then
+		Theme.KitCheck(self, self.Track:GetParent(), self.Track, on)
+	else
+		Theme.KitHide(self, "toggle")
+		Theme.KitHide(self, "toggleCheck")
+	end
+	return game
+end
+
 local function toggleRefresh(self)
 	local on = toggleValue(self)
 	local enabled = W.Enabled(self)
+	if self.SetHeight and self.psRow then self:SetHeight(W.RowH()) end
 	dimRow(self, enabled)
+	if gameCheck(self, on) then
+		self.psOn = on
+		self.checked = on
+		return
+	end
 	if on then
 		local r, g, b = Theme.Accent()
 		self.Track:SetColor(r, g, b, 1)
@@ -704,6 +812,7 @@ end
 -- one switch stands for several settings (set(nil) on right-click: defaults).
 function W.Toggle(parent, label, path, desc, depends, opts)
 	local row = settingRow(parent, label, desc)
+	row.psRow = true
 	row.Track = pill(row, TOGGLE_W, TOGGLE_H)
 	row.psGet, row.psSet = opts and opts.get, opts and opts.set
 	row.Track:SetPoint("RIGHT", row, "RIGHT", -12, 0)
@@ -768,11 +877,13 @@ local function sliderText(self, v)
 	return string.format(fmt or "%.2f", v)
 end
 
+local SLIDER_THUMB = "Interface\\Buttons\\UI-SliderBar-Button-Horizontal"
+
 local function sliderPaint(self, value)
 	local s = self.Slider
 	local lo, hi = s:GetMinMaxValues()
 	local v = value or s:GetValue()
-	local w = self.psTrackW or SLIDER_W
+	local w = self.psTrackW or Theme.Metric("sliderW", SLIDER_W)
 	local frac = hi > lo and (v - lo) / (hi - lo) or 0
 	self.Fill:SetWidth(max(0.01, w * frac))
 	self.Value:SetText(sliderText(self, v))
@@ -785,9 +896,53 @@ local function sliderRefresh(self)
 	self.Slider:SetValue(v)
 	self.psRefreshing = false
 	dimRow(self, W.Enabled(self))
-	self.Fill:SetVertexColor(Theme.Accent())
-	self.Thumb:SetVertexColor(Theme.Color("text"))
+	W.SkinSlider(self)
 	sliderPaint(self)
+end
+
+-- A slider's parts in the skin in use (rows and the guide window's own).
+function W.SkinSlider(self)
+	local bliz = Theme.SkinKey() == "hearth"
+	local s = self.Slider
+	if self.psRow then
+		self:SetHeight(W.RowH())
+		s:SetWidth(Theme.Metric("sliderW", SLIDER_W))
+		self.Value:SetWidth(Theme.Metric("valueW", VALUE_W))
+	end
+	self.Thumb:SetTexCoord(0, 1, 0, 1)
+	-- A row's label ends short of the slider: further in the game's looks,
+	-- where the back stepper stands left of the track.
+	local kitDrawn = Theme.KitSlider(self, s, self.Thumb)
+	if self.psRow and self.Label then self.Label:SetPoint("RIGHT", s, "LEFT", kitDrawn and -20 or -10, 0) end
+	if kitDrawn then
+		-- The game's looks: their own track and thumb, the value in gold.
+		self.Track:Hide()
+		self.Fill:Hide()
+		if s.psBorder then for i = 1, 4 do s.psBorder[i]:Hide() end end
+		if self.Value then W.Color(self.Value, "accent") end
+		return
+	end
+	self.Track:Show()
+	if bliz then
+		self.Track:SetHeight(8)
+		self.Track:SetVertexColor(0, 0, 0, 1)
+		Theme.Border(s, 0.42, 0.42, 0.42, 1)
+		self.Fill:Hide()
+		self.Thumb:SetTexture(SLIDER_THUMB)
+		self.Thumb:SetSize(32, 32)
+		self.Thumb:SetVertexColor(1, 1, 1, 1)
+		if self.Value then W.Color(self.Value, "accent") end
+	else
+		self.Track:SetHeight(2)
+		self.Track:SetVertexColor(Theme.Wash("track"))
+		if s.psBorder then for i = 1, 4 do s.psBorder[i]:Hide() end end
+		self.Fill:Show()
+		self.Fill:SetVertexColor(Theme.Accent())
+		self.Thumb:SetTexture(Theme.Media("circle"))
+		self.Thumb:SetSize(12, 12)
+		self.Thumb:SetVertexColor(Theme.Color("text"))
+		if self.Value then W.Color(self.Value, "textDim") end
+	end
 end
 
 -- The track, fill and thumb of a slider, on `owner`.
@@ -840,6 +995,7 @@ end
 -- setting that rescales the window the slider sits in).
 function W.Slider(parent, label, path, lo, hi, stepSize, fmt, desc, depends, opts)
 	local row = settingRow(parent, label, desc)
+	row.psRow = true
 	row.psMin, row.psMax, row.psStep, row.psFormat = lo, hi, stepSize, fmt
 	row.Value = W.Text(row, "number", "textDim")
 	row.Value:SetJustifyH("RIGHT")
@@ -972,7 +1128,8 @@ end
 function W.ShowMenu(anchor, items, opts)
 	if not menu then buildMenu() end
 	opts = opts or {}
-	local y, width, nrow, nsep = -MENU_PAD, opts.minWidth or 176, 0, 0
+	local pad, rowH = Theme.Metric("menuPad", MENU_PAD), Theme.Metric("menuRow", MENU_ROW)
+	local y, width, nrow, nsep = -pad, opts.minWidth or Theme.Metric(opts.wide and "servicesWidth" or "menuWidth", 176), 0, 0
 	local anyIcon = false
 	for i = 1, #items do if items[i].icon then anyIcon = true end end
 	for i = 1, #menu.rows do menu.rows[i]:Hide() end
@@ -1000,7 +1157,7 @@ function W.ShowMenu(anchor, items, opts)
 			row.Text:SetPoint("LEFT", row, "LEFT", anyIcon and 32 or 12, 0)
 			W.Color(row.Text, item.color or "text", item.disabled and 0.45 or 1)
 			if item.icon then
-				row.Icon:SetTexture(Theme.Media(item.icon))
+				row.Icon:SetTexture(Theme.Media(Theme.Icon(item.icon)))
 				W.Color(row.Icon, item.color or "textDim", item.disabled and 0.45 or 1)
 				row.Icon:Show()
 			else
@@ -1009,14 +1166,15 @@ function W.ShowMenu(anchor, items, opts)
 			row.Check:SetShown(item.checked and true or false)
 			W.Color(row.Check, "accent")
 			row:ClearAllPoints()
+			row:SetHeight(rowH)
 			row:SetPoint("TOPLEFT", menu, "TOPLEFT", 1, y)
 			row:SetPoint("TOPRIGHT", menu, "TOPRIGHT", -1, y)
 			row:Show()
 			width = max(width, row.Text:GetStringWidth() + (anyIcon and 32 or 12) + 36)
-			y = y - MENU_ROW
+			y = y - rowH
 		end
 	end
-	menu:SetSize(floor(width + 0.5), -y + MENU_PAD)
+	menu:SetSize(floor(width + 0.5), -y + pad)
 	menu:ClearAllPoints()
 	menu.psOwner = anchor
 	local point, relPoint = opts.point or "TOPRIGHT", opts.relPoint or "BOTTOMRIGHT"
@@ -1065,8 +1223,26 @@ local function choiceText(choices, v)
 	return tostring(v == nil and "" or v)
 end
 
+local DROPDOWN_ARROW = "Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Up"
+
 local function dropdownRefresh(self)
 	self.Button.Label:SetText(choiceText(choicesOf(self), valueOf(self)))
+	self:SetHeight(W.RowH())
+	local b = self.Button
+	b:SetSize(Theme.Metric("dropdownW", DROPDOWN_W), Theme.Metric("dropdownH", 28))
+	local bliz = Theme.GameSkin()
+	local size = bliz and 22 or Theme.Metric("chevron", 12)
+	b.Arrow:SetTexture(bliz and DROPDOWN_ARROW or Theme.Media("chevron-down"))
+	b.Arrow:SetTexCoord(0, 1, 0, 1)
+	b.Arrow:SetAlpha(1)
+	-- The Settings panel's dropdown centres its value.
+	b.Label:SetJustifyH((Theme.Kit() and Theme.Kit().dropdown) and "CENTER" or "LEFT")
+	b.Arrow:SetSize(size, size)
+	-- The game's looks: their own arrow button.
+	Theme.KitDropArrow(b.Arrow)
+	b.Arrow:ClearAllPoints()
+	b.Arrow:SetPoint("RIGHT", b, "RIGHT", bliz and (Theme.Kit() and -3 or 0) or -Theme.Metric("chevronInset", 9), 0)
+	if bliz then W.Uncolor(b.Arrow); b.Arrow:SetVertexColor(1, 1, 1, 1) else W.Color(b.Arrow, "textDim") end
 	dimRow(self, W.Enabled(self))
 end
 
@@ -1255,7 +1431,7 @@ function W.ActionTile(parent, icon, title, desc, onClick, opts)
 	opts = opts or {}
 	local b = CreateFrame("Button", nil, parent)
 	b:SetHeight(TILE_H)
-	Theme.Skin(b, "button")
+	Theme.Skin(b, "tile")
 	b.Icon = b:CreateTexture(nil, "ARTWORK")
 	b.Icon:SetTexture(Theme.Media(icon))
 	b.Icon:SetSize(18, 18)
@@ -1435,10 +1611,14 @@ local function scrollUpdate(sf)
 		return
 	end
 	bar:Show()
-	local h = max(24, view * view / content)
+	-- A game look's scroll bar keeps its arrow buttons at the ends
+	-- (bar.psInset, Theme/GameSkins.lua): the thumb runs between them.
+	local inset = bar.psInset or 0
+	local track = max(1, view - 2 * inset)
+	local h = max(24, track * view / content)
 	bar.Thumb:SetHeight(h)
 	bar.Thumb:ClearAllPoints()
-	bar.Thumb:SetPoint("TOPRIGHT", bar, "TOPRIGHT", 0, -(view - h) * (cur / range))
+	bar.Thumb:SetPoint("TOPRIGHT", bar, "TOPRIGHT", 0, -(inset + (track - h) * (cur / range)))
 end
 
 local function scrollDrag(bar)
@@ -1448,9 +1628,10 @@ local function scrollDrag(bar)
 	local view = sf.psView or sf:GetHeight()
 	local range = max(0, (sf.psContent or 0) - view)
 	local h = bar.Thumb:GetHeight()
-	if view - h <= 0 then return end
+	local track = view - 2 * (bar.psInset or 0)
+	if track - h <= 0 then return end
 	local dy = (bar.psStartY - y / scale)
-	sf:SetVerticalScroll(min(range, max(0, bar.psStartScroll + dy * range / (view - h))))
+	sf:SetVerticalScroll(min(range, max(0, bar.psStartScroll + dy * range / (track - h))))
 	scrollUpdate(sf)
 end
 
@@ -1484,8 +1665,9 @@ function W.Scroll(parent)
 	bar:SetScript("OnMouseUp", function(self) self:SetScript("OnUpdate", nil) end)
 	-- Escape can hide the window mid-drag, before any mouse-up arrives.
 	bar:SetScript("OnHide", function(self) self:SetScript("OnUpdate", nil) end)
-	bar:SetScript("OnEnter", function(self) self.Thumb:SetWidth(4) end)
-	bar:SetScript("OnLeave", function(self) self.Thumb:SetWidth(2) end)
+	-- The house thumb widens under the cursor; a game look's keeps its art.
+	bar:SetScript("OnEnter", function(self) if not Theme.Kit() then self.Thumb:SetWidth(4) end end)
+	bar:SetScript("OnLeave", function(self) if not Theme.Kit() then self.Thumb:SetWidth(2) end end)
 	bar:Hide()
 	sf.Bar = bar
 	Theme.Skin(bar, "scrollbar")
@@ -1509,7 +1691,7 @@ end
 -- The shell
 ---------------------------------------------------------------------------
 
-local SHELL = {
+local HOUSE_SHELL = {
 	width = 960, height = 680, sidebar = 240, header = 112, tabs = 40, footer = 56, pad = 32,
 	side = 24, -- the sidebar's left edge
 	top = 152, -- header + tab band: where navigation and content begin
@@ -1517,6 +1699,22 @@ local SHELL = {
 	brand = 69, -- a hub's brand block ends here: the rail's hairline starts below it
 	foot = 23, -- the version line's bottom, level with the rail's foot label
 }
+-- The shell's sizes follow the skin (Theme.Metric; DIRECTION_B_HALO.md §3:
+-- 930 x 690, a 200 sidebar, 32 tabs, the body 28 from the edge, a 56 foot).
+-- A window takes them as it is built: one built before a skin change keeps
+-- its sizes until the interface reloads.
+local SHELL_METRIC = { width = "shellW", height = "shellH", sidebar = "shellSidebar", header = "shellHeader",
+	tabs = "shellTabs", footer = "shellFooter", pad = "shellPad" }
+local SHELL = setmetatable({}, {
+	__index = function(_, k)
+		if k == "top" then
+			return Theme.Metric("shellHeader", HOUSE_SHELL.header) + Theme.Metric("shellTabs", HOUSE_SHELL.tabs)
+		end
+		local m = SHELL_METRIC[k]
+		if m then return Theme.Metric(m, HOUSE_SHELL[k]) end
+		return HOUSE_SHELL[k]
+	end,
+})
 W.SHELL = SHELL
 
 -- Polestar's memory in KB (nil when the client hides it), for About.
@@ -1616,7 +1814,12 @@ function W.ShellNav(f, items, active, onSelect)
 		if item.dot then b.Count:Hide() end
 		b.Selected:SetShown(on)
 		b.Bar:SetShown(on)
-		W.Color(b.Label, on and "text" or (empty and "textMuted" or "textDim"))
+		-- The game's looks mark the row with their own selection art.
+		if Theme.KitRowLit(b, on, "navLit", 10) then
+			b.Selected:Hide()
+			b.Bar:Hide()
+		end
+		W.Color(b.Label, on and "text" or (empty and "textMuted" or "navRest"))
 		W.Color(b.Icon, on and "accent" or (empty and "textMuted" or "textDim"))
 		b:SetAlpha((empty and not on) and 0.55 or 1)
 		b.psEmpty = empty
@@ -1646,7 +1849,7 @@ function W.ShellNav(f, items, active, onSelect)
 	end
 	for i = #items + 1, #f.navButtons do f.navButtons[i]:Hide() end
 	local view = W.ShellNavHeight(f)
-	sf.Child:SetWidth(SHELL.sidebar - 1)
+	sf.Child:SetWidth((f.psSidebar or SHELL.sidebar) - 1)
 	W.SetScrollContent(sf, y, view)
 	if activeY then
 		local cur = sf:GetVerticalScroll()
@@ -1699,10 +1902,18 @@ function W.ShellTabs(f, tabs, active, onSelect)
 		local t = shellTab(f, i)
 		t.psKey = tabs[i].key
 		t.Label:SetText(tabs[i].label)
-		t:SetWidth(floor(t.Label:GetStringWidth() + 24 + 0.5))
 		local on = tabs[i].key == active
 		Theme.SetTabSelected(t, on)
-		W.Color(t.Label, on and "text" or "textDim")
+		-- The game's looks: MinimalTabTemplate, its small label on the art,
+		-- the tab 40 wider than it; the house tab 24 wider, its label centred.
+		local kit = Theme.KitTab(t, on, t.Label)
+		if not kit then
+			t.Label:ClearAllPoints()
+			t.Label:SetPoint("CENTER", t, "CENTER", 0, 0)
+		end
+		Theme.Font(t.Label, kit and "small" or "label")
+		t:SetWidth(floor(t.Label:GetStringWidth() + (kit and 40 or 24) + 0.5))
+		W.Color(t.Label, on and "text" or (kit and "tabRest" or "textDim"))
 		t:ClearAllPoints()
 		t:SetPoint("BOTTOMLEFT", f.TabRow, "BOTTOMLEFT", x, 0)
 		t:Show()
@@ -1807,6 +2018,7 @@ end
 -- across both columns at 152 where navigation and content begin. Left edges:
 -- 24 in the sidebar, 32 in the main column.
 --
+-- opts.sidebar: the sidebar's width (SHELL.sidebar by default).
 -- opts.rail: a section rail (SHELL.rail wide) left of the sidebar, for a
 -- hub of several sections (W.ShellRail); the emblem moves into it and the
 -- window grows by the rail's width.
@@ -1814,8 +2026,9 @@ function W.Shell(name, opts)
 	opts = opts or {}
 	local RAIL = opts.rail and SHELL.rail or 0
 	local Wd, Hd = opts.width or (SHELL.width + RAIL), opts.height or SHELL.height
-	local SB = SHELL.sidebar
+	local SB = opts.sidebar or SHELL.sidebar
 	local f = CreateFrame("Frame", name, UIParent)
+	f.psSidebar = SB
 	f:SetSize(Wd, Hd)
 	f:SetPoint("CENTER", UIParent, "CENTER", 0, 20)
 	f:SetFrameStrata("HIGH")
@@ -1943,6 +2156,12 @@ function W.Shell(name, opts)
 	f.Subtitle:SetSpacing(2)
 	f.Close = W.IconButton(head, "close", 28, L["Close"], function() f:Hide() end, 14)
 	f.Close:SetPoint("TOPRIGHT", head, "TOPRIGHT", -12, -12)
+	-- The game's looks put the close button on the window frame's corner.
+	f.Close:SetShown(not Theme.Kit())
+	Theme.OnChanged(function() f.Close:SetShown(not Theme.Kit()) end)
+	-- The window frame's own close button (the game's looks) stands for this
+	-- one: paint again now that it exists.
+	Theme.Repaint(f)
 
 	-- Tab row: tabs sit on its bottom hairline.
 	f.TabRow = CreateFrame("Frame", nil, main)
