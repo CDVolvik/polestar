@@ -2742,6 +2742,19 @@ function Own.doneIn(g)
 	return done
 end
 
+-- The guide to start with, with no guide open (the login's pick, the guide
+-- window's and the welcome's Start guide): with the catch-up, the race's
+-- first guide when the character did quests in it, so placement goes
+-- through the guides from there to where they are, for them to see; else
+-- the guide for their level (Guides.Suggest).
+function Engine.StartingGuide()
+	if not player then refreshPlayer() end
+	local first = ns.Get("behavior.skipGrey") and Guides.FirstGuide()
+	local g = first and Guides.Get(first)
+	if g and Own.doneIn(g) > 0 then return first end
+	return Guides.Suggest()
+end
+
 -- The route a catch-up takes where a guide passed whole offers several: the
 -- option with the most quest work done (Own.doneIn), the recommended one
 -- among equals.
@@ -4160,12 +4173,7 @@ ns.OnLogin(function()
 	local activeId = s.tabs and list[tonumber(s.activeTab) or 0] or s.guide
 	local offerFrom
 	if #ids == 0 and ns.Get("behavior.autoSelectGuide") then
-		-- With the catch-up, the race's first guide when the character did
-		-- quests in it: placement goes through the guides from there to where
-		-- they are, for them to see. A character with nothing done there gets
-		-- the guide for their level.
-		local first = ns.Get("behavior.skipGrey") and Guides.FirstGuide()
-		local suggested = first and Own.doneIn(Guides.Get(first)) > 0 and first or Guides.Suggest()
+		local suggested = Engine.StartingGuide()
 		add(suggested)
 		local g = suggested and Guides.Get(suggested)
 		local from = g and choiceOffering(suggested)

@@ -1166,7 +1166,7 @@ local function setEmpty(kind)
 		empty.Title:SetText(L["No guides installed"])
 		empty.Text:SetText(L["Enable Polestar Guides or a community addon in the AddOns list on the character screen, then reload."])
 	elseif kind == "noguide" then
-		local id = G and G.Suggest and G.Suggest()
+		local id = E and E.StartingGuide and E.StartingGuide() or (G and G.Suggest and G.Suggest())
 		local suggested = id and G.Get(id)
 		empty.Title:SetText(L["No guide open"])
 		if suggested then

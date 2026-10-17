@@ -222,9 +222,10 @@ test('with no guide open at login, the catch-up starts from the first guide and 
 	const [out] = run({
 		before: DONE,
 		saved: { Polestar: 'PolestarCharDB = nil' },
-		script: 'emit({ guide = E.GetGuide().id, at = E.GetStepIndex(), placed = PLACED[#PLACED], first = Polestar.Guides.FirstGuide(), suggest = Polestar.Guides.Suggest() })',
+		script: 'emit({ guide = E.GetGuide().id, at = E.GetStepIndex(), placed = PLACED[#PLACED], first = Polestar.Guides.FirstGuide(), suggest = Polestar.Guides.Suggest(), start = E.StartingGuide() })',
 	});
-	assert.deepEqual(out, { guide: 'test/mid', at: 5, placed: { id: 'test/mid', step: 5, chain: 'test/low' }, first: 'test/low', suggest: 'test/mid' });
+	// The guide window's and the welcome's Start guide open E.StartingGuide() too.
+	assert.deepEqual(out, { guide: 'test/mid', at: 5, placed: { id: 'test/mid', step: 5, chain: 'test/low' }, first: 'test/low', suggest: 'test/mid', start: 'test/low' });
 
 	// Without the catch-up, the guide for their level, as before.
 	const [off] = run({ before: DONE, saved: { Polestar: 'PolestarDB = { schema = 1, settings = { behavior = { skipGrey = false } } }; PolestarCharDB = nil' }, script: 'emit(E.GetGuide().id)' });
