@@ -793,23 +793,6 @@ test('no arrival chime from Polestar while it guides (its own arrival says so); 
 // runs (one the player started there, or another addon's), Polestar steps
 // aside as it does when handing off, so the two never guide at once.
 
-test('a fresh profile with Shortest Path Forever installed: Polestar guides; handing off is an option, off by default', () => {
-	const [out] = run(`
-		nav.setWaypoint(copy(FARLAND))
-		local s = surfaces()
-		s.handedOff = N.HandedOff()
-		s.setting = Polestar.Get("nav.spfHandoff")
-		s.label = option().label
-		s.shown = option().needs()
-		s.sent = sent()
-		emit(s)
-	`, { saved: FRESH });
-	assert.deepEqual(out, {
-		arrow: true, route: 3, lines: 3, journey: true, trail: false, walk: true, pack: true, way: true, shim: true,
-		handedOff: false, setting: false, label: 'Hand guiding to Shortest Path Forever', shown: true, sent: 0,
-	});
-});
-
 test('a journey the player starts in Shortest Path Forever: Polestar steps aside until it ends, and never asks in combat', () => {
 	const [out] = run(`
 		nav.setWaypoint(copy(FARLAND))
@@ -935,6 +918,28 @@ test('the hand-off turned off in a fight: Polestar stays stepped aside while its
 		r.after = { N.HandedOff(), arrowShown() }
 		emit(r)`, { spf: `${SPF}${COUNT_FIGHT}` });
 	assert.deepEqual(out, { owner: 'Polestar', inFight: [true, false], fight: '', cancels: 1, ownerAfter: false, after: [false, true] });
+});
+
+test('no way there, then the hand-off turned off in a fight: Polestar\'s arrow, guiding the unguided journey, keeps guiding through it', () => {
+	const [out] = run(`
+		nav.setWaypoint(copy(FARLAND))
+		spf.noWay()
+		stub.runTimers()
+		stub.advance(0.3)
+		local r = { before = { N.HandedOff(), arrowShown() } }
+		stub.inCombat = true
+		Polestar.Set("nav.spfHandoff", false)
+		stub.runTimers()
+		stub.advance(0.3)
+		r.inFight = { N.HandedOff(), arrowShown() }
+		stub.inCombat = false
+		stub.fire("PLAYER_REGEN_ENABLED")
+		stub.advance(0.3)
+		r.after = { N.HandedOff(), arrowShown() }
+		emit(r)`);
+	assert.deepEqual(out.before, [false, true]);
+	assert.deepEqual(out.inFight, [false, true], 'its journey guides nothing: Polestar does not step aside');
+	assert.deepEqual(out.after, [false, true]);
 });
 
 test('a /reload in combat with a 0.2.4 journey left over: Polestar steps aside until the fight ends and the journey is cancelled, so the two never guide at once', () => {

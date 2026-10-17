@@ -137,7 +137,7 @@ local function look()
 		setYielding(false)
 		return
 	end
-	if leftoverOwed or (live and pending) then
+	if leftoverOwed or (live and pending and not unguided) then
 		lookOwed = true
 		setYielding(true)
 		return
