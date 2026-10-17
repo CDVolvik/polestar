@@ -1333,6 +1333,7 @@ end
 -- accept, and must not drop the quest). Only for leveling guides, with "Skip
 -- grey quests" on.
 function Own.catchUp(anchor, level)
+	if guide.maxLevel and level >= guide.maxLevel + 2 then return Own.catchUpPast(level) end
 	local out = {}
 	if anchor <= 1 then return out end
 	local C = Compat()
@@ -1360,6 +1361,61 @@ function Own.catchUp(anchor, level)
 					and low(goal) and not needs[q] and not questDone(q) and not C.IsOnQuest(q)
 					and not C.IsQuestTrivial(tonumber(goal.qlvl), level) then
 					out[q] = true -- grey ones: greyNeed
+				end
+			end
+		end
+	end
+	return out
+end
+
+-- In a guide the character is past (2 levels over its top, as the
+-- out-levelled banner counts), going back is a detour: every grey or green
+-- accept not taken yet is left out, unless at least CHAIN_WORTH quests from
+-- yellow up need it, down the chain (The Tower of Althalaxx at 30: five
+-- grey and green quests in Darkshore lead to four at 28 and 31 in
+-- Ashenvale, so the chain stays). Quests in the log stay.
+Own.CHAIN_WORTH = 3
+function Own.catchUpPast(level)
+	local C = Compat()
+	local chain = Own.chainOf(guide)
+	local cache = chainNeedsCache[guide]
+	local key = "past:" .. level
+	local counts = cache[key]
+	if not counts then
+		-- For each quest, how many distinct accepts from yellow up need it.
+		counts = {}
+		local targets = {}
+		for _, goal in ipairs(chain.accepts) do
+			local qlvl = tonumber(goal.qlvl)
+			if qlvl and qlvl >= level - 2 and not targets[goal.quest] then
+				targets[goal.quest] = true
+				local seen, queue, head = { [goal.quest] = true }, { goal.quest }, 1
+				while queue[head] do
+					local q = queue[head]
+					head = head + 1
+					for _, list in ipairs(chain.pres[q] or NONE) do
+						for _, p in ipairs(list) do
+							if not seen[p] then
+								seen[p] = true
+								counts[p] = (counts[p] or 0) + 1
+								queue[#queue + 1] = p
+							end
+						end
+					end
+				end
+			end
+		end
+		cache[key] = counts
+	end
+	local out = {}
+	for _, step in ipairs(guide.steps) do
+		if stepApplies(step) then
+			for _, goal in ipairs(step.goals) do
+				local q, qlvl = goal.quest, tonumber(goal.qlvl)
+				if (goal.t == "accept" or goal.direct) and q and qlvl and qlvl < level - 2 and not goal.optional
+					and Guides.Matches(goal.only, player) and not questDone(q) and not C.IsOnQuest(q)
+					and (counts[q] or 0) < Own.CHAIN_WORTH then
+					out[q] = true
 				end
 			end
 		end

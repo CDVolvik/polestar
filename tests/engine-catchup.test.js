@@ -35,7 +35,7 @@ Polestar.RegisterGuide({ id = "test/low", pack = "test", title = "Low", faction 
 	{ goals = { { t = "goto", map = 1429, x = 10, y = 10, label = "Farm" } } },
 	{ goals = { { t = "accept", quest = 102, title = "Grey not done", qlvl = 6 } } },
 	{ goals = { { t = "turnin", quest = 102, title = "Grey not done" }, { t = "turnin", quest = 101, title = "Grey done" } } },
-	{ goals = { { t = "turnin", quest = 103, title = "Grey direct", direct = true, qlvl = 7 } } },
+	{ goals = { { t = "turnin", quest = 104, title = "Grey direct", direct = true, qlvl = 7 } } },
 	{ goals = { { t = "fly", location = "Stormwind City" } } },
 } })
 Polestar.RegisterGuide({ id = "test/mid", pack = "test", title = "Mid", faction = "Alliance", minLevel = 15, maxLevel = 22, steps = {
@@ -229,4 +229,34 @@ test('with no guide open at login, the catch-up starts from the first guide and 
 	// Without the catch-up, the guide for their level, as before.
 	const [off] = run({ before: DONE, saved: { Polestar: 'PolestarDB = { schema = 1, settings = { behavior = { skipGrey = false } } }; PolestarCharDB = nil' }, script: 'emit(E.GetGuide().id)' });
 	assert.equal(off, 'test/mid');
+});
+
+// Yendi at 30 in Darkshore (15-18): The Tower of Althalaxx, grey and green
+// there, leads to four quests at 28 and 31 in Ashenvale. In a guide the
+// character is past, a low chain is worth the detour only when at least three
+// quests from yellow up need it.
+test('in a guide the character is past, a low chain stays only when three quests from yellow up need it', () => {
+	const guides = (worth) => `
+		Polestar.RegisterGuide({ id = "test/dark", pack = "test", title = "Darkshore", faction = "Alliance", minLevel = 10, maxLevel = 15, next = "test/ashen", steps = {
+			{ goals = { { t = "accept", quest = 401, title = "Tower 1", qlvl = 12 } } },
+			{ goals = { { t = "turnin", quest = 401, title = "Tower 1" }, { t = "accept", quest = 402, title = "Tower 2", qlvl = 14, pre = { 401 } } } },
+			{ goals = { { t = "turnin", quest = 402, title = "Tower 2" } } },
+			{ goals = { { t = "accept", quest = 403, title = "Lone low", qlvl = 12 } } },
+			{ goals = { { t = "turnin", quest = 403, title = "Lone low" } } },
+		} })
+		Polestar.RegisterGuide({ id = "test/ashen", pack = "test", title = "Ashenvale", faction = "Alliance", minLevel = 18, maxLevel = 25, steps = {
+			{ goals = { { t = "accept", quest = 410, title = "Tower 3", qlvl = 19, pre = { 402 } } } },
+			{ goals = { { t = "turnin", quest = 410, title = "Tower 3" }, { t = "accept", quest = 411, title = "Tower 4", qlvl = 20, pre = { 410 } } } },
+			${worth ? '{ goals = { { t = "turnin", quest = 411, title = "Tower 4" }, { t = "accept", quest = 412, title = "Tower 5", qlvl = 21, pre = { 411 } } } },' : ''}
+			{ goals = { { t = "accept", quest = 420, title = "After the lone one", qlvl = 19, pre = { 403 } } } },
+			{ goals = { { t = "accept", quest = 430, title = "Ashenvale", qlvl = 20 } } },
+		} })
+	`;
+	const script = `${STATUSES}
+		E.SetGuide("test/dark"); flush()
+		emit({ guide = E.GetGuide().id, at = E.GetStepIndex() or false, statuses = E.GetGuide().id == "test/dark" and statuses() or false })`;
+	const [three] = run({ guides: guides(true), saved: { Polestar: 'PolestarCharDB = nil' }, script });
+	assert.deepEqual(three, { guide: 'test/dark', at: 1, statuses: ['active', 'pending', 'pending', 'na', 'na'] }, 'three quests from yellow up: the chain stays, the lone low quest goes');
+	const [two] = run({ guides: guides(false), saved: { Polestar: 'PolestarCharDB = nil' }, script });
+	assert.equal(two.guide, 'test/ashen', 'two only: not worth the detour, the guide passes');
 });
