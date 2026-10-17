@@ -76,6 +76,50 @@ test('the bug in the navigator reports the step on screen: the player\'s words, 
 	assert.ok(out.boxH >= lines.length * 11, `the box holds every line (${out.boxH}px for ${lines.length})`);
 });
 
+// The longest report a player can send: every line at its cap in `word`'s
+// script under `locale`, the description at its most letters, 40 addons and
+// a marked right spot. Returns the report for Discord and the issue link.
+function longest(locale, word, letter, opts = {}) {
+	return run(`
+		local word, letter = ${JSON.stringify(word)}, ${JSON.stringify(letter)}
+		local long = string.rep(word, 12)
+		local goals = {}
+		for i = 1, 9 do
+			goals[i] = { t = "kill", verb = word, subject = long, subjectKind = "npc", npc = 1000000 + i, quest = 2000000 + i, item = 3000000 + i,
+				progress = { cur = 99, max = 100 }, map = 1429, x = 47.123, y = 35.456, status = "active" }
+		end
+		local id = "test/" .. string.rep("long-", 20)
+		uistub.guides[id] = { id = id, pack = "guides", title = long, faction = "Alliance", minLevel = 1, maxLevel = 60, steps = { { title = long, goals = goals } } }
+		for i = 1, 6 do Polestar.NoteError("Interface/AddOns/Polestar/UI/" .. string.rep("Long", 12) .. i .. ".lua:1: " .. long) end
+		for i = 1, 40 do
+			local name = ("QuestAndMapHelperWithALongName%02d"):format(i)
+			stub.addons[#stub.addons + 1] = { name = name, loaded = true }
+			stub.addonMeta[name] = { Version = "v12.34.56-" .. word }
+		end
+		uistub.player = { level = 59, xp = 1, xpMax = 3, race = long, class = "WARRIOR", faction = word }
+		Polestar.Compat.GetZoneText = function() return long, long end
+		Polestar.Guides.Pack = function() return { title = long, version = word } end
+		Polestar.Guides.Packs = function() return { { title = long, version = word, status = "on" }, { title = long, status = "on" } } end
+		uistub.setGuide(id, 1)
+		UI.ShowReport()
+		local F = PolestarReport
+		F.Desc:SetText(${opts.desc ? 'string.rep(word, 3) .. "\\n" .. ' : ''}string.rep(letter, UI.Report.DESC_MAX))
+		stub.RunScript(F.Desc, "OnTextChanged", true)
+		${opts.unmarked ? '' : `F.Mark:Click()
+		Polestar.Compat.GetPlayerMapPosition = function() return 1429, 51.234, 40.5 end
+		PolestarMark.Here:Click()`}
+		F.Report:Click()
+		local url = PolestarCopy.Box:GetText()
+		F.Copy:Click()
+		emit({ text = F.Box:GetText(), url = url, max = UI.Report.LINK_MAX })`, `function GetLocale() return "${locale}" end`)[0];
+}
+
+const SCRIPTS = [
+	['enUS', 'Overlook of the Brightwater Lake ', 'w'],
+	['ruRU', '\u0421\u043c\u043e\u0442\u0440\u043e\u0432\u0430\u044f \u043f\u043b\u043e\u0449\u0430\u0434\u043a\u0430 ', '\u0436'],
+	['zhCN', '\u5e03\u83b1\u7279\u6c83\u7279\u6e56\u7684\u77ad\u671b\u53f0', '\u6e56'],
+];
+
 test('at its longest the report still fits one Discord message', () => {
 	const [out] = run(`
 		local long = string.rep("Overlook of the Brightwater Lake ", 6)
@@ -309,4 +353,32 @@ test('the issue link holds the report taken when the window opened: the step on 
 		assert.match(q.character, /^Human Warrior/);
 	}
 	assert.match(out.report, /^Step 3 of 8: Kobold Camp$/m);
+});
+
+test('the issue link stays under GitHub\'s limit in every script: goals past the arrow\'s are left out first, then the report is cut, its code block kept closed', () => {
+	for (const [locale, word, letter] of SCRIPTS) {
+		const out = longest(locale, word, letter);
+		assert.ok(out.url.length <= out.max, `${locale}: ${out.url.length} characters`);
+		const q = Object.fromEntries(new URL(out.url).searchParams);
+		assert.equal(q.template, 'wrong-step.yml', locale);
+		assert.ok(q.wrong.endsWith('\n```'), `${locale}: the code block is closed`);
+		assert.ok(q.wrong.startsWith(`**`), locale);
+		assert.ok(!q.wrong.includes('\ufffd'), `${locale}: no character cut in half`);
+		for (const k of ['title', 'guide', 'step', 'character']) {
+			assert.ok(Buffer.byteLength(q[k]) <= 120, `${locale}: ${k} is bounded (${Buffer.byteLength(q[k])} bytes)`);
+		}
+		assert.ok(q.addons, `${locale}: the addons field gets what is left`);
+		if (locale !== 'enUS') assert.match(q.wrong, /^\.\.\. \d+ goals left out to fit the link$/m, locale);
+		assert.match(q.wrong, /^\[>\] /m, `${locale}: the arrow's goal is kept`);
+	}
+});
+
+test('a bug report\'s title is what the player typed on one line', () => {
+	const [out] = run(`
+		Polestar.Engine.SetGuide(nil)
+		UI.ShowReport()
+		emit({ url = UI.Report.IssueURL("Lua error on login\\nthen again after a reload", PolestarReport.details) })`);
+	const q = Object.fromEntries(new URL(out.url).searchParams);
+	assert.equal(q.template, 'bug-report.yml');
+	assert.equal(q.title, 'Bug: Lua error on login then again after a reload');
 });

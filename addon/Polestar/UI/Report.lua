@@ -56,6 +56,11 @@ local function cut(s, n)
 	return (s:sub(1, n - 3):gsub("[\192-\255][\128-\191]*$", "")) .. "..."
 end
 
+-- s on one line, for a field GitHub shows as one.
+local function oneLine(s)
+	return (s:gsub("%s+", " "))
+end
+
 -- A position as a guide writes it: the map, then `@x,y`, marked `live`
 -- unless it is in the Era frame (typed coordinates are read in it).
 local function where(map, x, y, f)
@@ -312,8 +317,9 @@ function R.Details()
 	out[#out + 1] = addonsLine()
 	errorLines(out)
 	if on.view then
-		d.issue = { template = "wrong-step.yml", title = ("Wrong step: %s, step %d"):format(on.title, on.index),
-			guide = on.title, step = on.index .. ": " .. plain(on.view.title or ""), character = who }
+		local title = oneLine(on.title)
+		d.issue = { template = "wrong-step.yml", title = ("Wrong step: %s, step %d"):format(cut(title, 80), on.index),
+			guide = cut(title), step = cut(oneLine(on.index .. ": " .. plain(on.view.title or ""))), character = who }
 	else
 		d.issue = { template = "bug-report.yml" }
 	end
@@ -325,14 +331,18 @@ end
 -- right spot when the player marked one. The bug bot reads this layout
 -- back (tools/discord-bot/lib/report.js): the first line's shape, the guide
 -- line's "(id)", the order of the lines.
-function R.Text(description, details, spot)
+local function text(description, lines, spot)
 	local desc = tostring(description or ""):match("^%s*(.-)%s*$")
 	if desc == "" then desc = L["(not described)"] end
 	local out = { "**" .. L["What went wrong:"] .. "** " .. desc, "```" }
-	for _, line in ipairs(details.lines) do out[#out + 1] = line end
+	for _, line in ipairs(lines) do out[#out + 1] = line end
 	if spot then out[#out + 1] = (L["Right spot: %s"]):format(table.concat(spot, SEP)) end
 	out[#out + 1] = "```"
 	return table.concat(out, "\n")
+end
+
+function R.Text(description, details, spot)
+	return text(description, details.lines, spot)
 end
 
 local function encode(s)
@@ -344,12 +354,16 @@ end
 -- sign-in page) and one of 6700 did not.
 R.LINK_MAX = 6000
 
+local function addonsHead(n)
+	return ("The player has %d other addons on. The ones that fit in the link, quest, map and guide addons first:"):format(n)
+end
+
 -- The addons field: every addon when they fit in `room` characters of the
 -- link, else a line that counts them and as many as fit, in their order.
 local function addonsField(list, room)
 	local all = table.concat(list, "\n")
 	if #encode(all) <= room then return all end
-	local head = ("The player has %d other addons on. The ones that fit in the link, quest, map and guide addons first:"):format(#list)
+	local head = addonsHead(#list)
 	local used = #encode(head)
 	if used > room then return nil end
 	local lines = { head }
@@ -361,39 +375,86 @@ local function addonsField(list, room)
 	return table.concat(lines, "\n")
 end
 
+-- The longest start of s whose encoding fits in `room` characters, never
+-- cut inside a character.
+local function fitEncoded(s, room)
+	local used, n = 0, 0
+	for i = 1, #s do
+		used = used + (s:sub(i, i):find("^[%w%-%._~]$") and 1 or 3)
+		if used > room then break end
+		n = i
+	end
+	if n == #s then return s end
+	return (s:sub(1, n):gsub("[\192-\255][\128-\191]*$", ""))
+end
+
+-- The details without the last n goals other than the arrow's, and one line
+-- that counts every goal not listed.
+local function withoutGoals(details, n)
+	local g, out, gone, left = details.goals, {}, {}, n
+	for i = g.last, g.first, -1 do
+		if left == 0 then break end
+		if i ~= g.current then gone[i], left = true, left - 1 end
+	end
+	local moreAt = g.more > 0 and g.last + 1
+	for i, line in ipairs(details.lines) do
+		if not gone[i] and i ~= moreAt then out[#out + 1] = line end
+		if i == g.last then out[#out + 1] = ("... %d goals left out to fit the link"):format(n + g.more) end
+	end
+	return out
+end
+
+-- The report for the issue's own field, encoded, in `room` characters of
+-- the link. A CJK report encodes to three times the characters of an
+-- English one, so goals after the arrow's go first, then the report is cut
+-- with its code block still closed.
+local function bodyField(description, details, spot, room)
+	local report = text(description, details.lines, spot)
+	local g = details.goals
+	local droppable = g and (g.last - g.first + 1 - (g.current and 1 or 0)) or 0
+	for n = 1, droppable do
+		if #encode(report) <= room then break end
+		report = text(description, withoutGoals(details, n), spot)
+	end
+	if #encode(report) > room then
+		local close = "...\n```"
+		report = fitEncoded(report:sub(1, -5), room - #encode(close)) .. close
+	end
+	return encode(report)
+end
+
 -- A link that opens a new issue on Polestar's GitHub with the report in
 -- it: GitHub fills the title and the issue form's fields (by their ids in
 -- .github/ISSUE_TEMPLATE) from the link's query. A step on screen is a
 -- "Wrong step" issue, anything else a "Bug report". `spot`: the right spot
 -- the player marked (ns.WhereLines), for the "Wrong step" form's own field.
+-- The short fields come first, each bounded; the report gets the room they
+-- leave, less the addons field's count line, and the addons what is left.
 function R.IssueURL(description, details, spot)
 	local issue = details.issue
+	local desc = tostring(description or ""):match("^%s*(.-)%s*$")
 	local fields = {
-		template = issue.template,
-		version = polestarVersion(),
+		{ "template", issue.template },
+		{ "title", issue.title or ("Bug: " .. cut(oneLine(desc), 80)) },
+		{ "version", polestarVersion() },
 	}
-	local report = R.Text(description, details, spot)
+	local body = "steps"
 	if issue.template == "wrong-step.yml" then
-		fields.title = issue.title
-		fields.guide = issue.guide
-		fields.step = issue.step
-		fields.wrong = report
-		fields.character = issue.character
-		if spot then fields.where = table.concat(spot, "\n") end
-	else
-		local desc = tostring(description or ""):match("^%s*(.-)%s*$")
-		fields.title = "Bug: " .. cut(desc, 80)
-		fields.steps = report
+		body = "wrong"
+		fields[#fields + 1] = { "guide", issue.guide }
+		fields[#fields + 1] = { "step", issue.step }
+		fields[#fields + 1] = { "character", issue.character }
+		if spot then fields[#fields + 1] = { "where", table.concat(spot, "\n") } end
 	end
-	local keys = {}
-	for k in pairs(fields) do keys[#keys + 1] = k end
-	table.sort(keys)
 	local query = {}
-	for _, k in ipairs(keys) do
-		if fields[k] ~= "" then query[#query + 1] = k .. "=" .. encode(fields[k]) end
+	for _, f in ipairs(fields) do
+		if f[2] and f[2] ~= "" then query[#query + 1] = f[1] .. "=" .. encode(f[2]) end
 	end
 	local url = ns.IssueURL .. "?" .. table.concat(query, "&")
-	local addons = addonsField(details.addons, R.LINK_MAX - #url - #"&addons=")
+	local list = details.addons
+	local reserve = #list > 0 and #"&addons=" + #encode(addonsHead(#list)) or 0
+	url = url .. "&" .. body .. "=" .. bodyField(description, details, spot, R.LINK_MAX - #url - #body - 2 - reserve)
+	local addons = addonsField(list, R.LINK_MAX - #url - #"&addons=")
 	if addons and addons ~= "" then url = url .. "&addons=" .. encode(addons) end
 	return url
 end
