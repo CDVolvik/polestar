@@ -71,7 +71,7 @@ return {
 
 	-- Step 10: The Tower of Althalaxx
 	-- {quest:954} Bashal'Aran · {quest:1002} Buzzbox 323
-	["Moonstalkers prowl the hills between {quest:954} and the tower. {quest:1002} stands on the hill west of the tower."] = "",
+	["Moonstalkers prowl the hills between {quest:954} and the tower. {quest:1002} stands on the hill west of the tower."] = "Los Acechalunas merodean por las colinas entre {quest:954} y la torre. {quest:1002} está en la colina al oeste de la torre.",
 	-- plural, as words: Moonstalker Fangs = {item:5413} Moonstalker Fang
 	["Moonstalker Fangs"] = "Colmillos de Acechalunas",
 
@@ -119,7 +119,7 @@ return {
 	["The {area:448}"] = "{area:448}",
 	-- {quest:1003} Buzzbox 525
 	-- plural, as words: Grizzled Thistle Bears = {npc:2165} Grizzled Thistle Bear
-	["Grizzled Thistle Bears roam the hills around the Grove; {quest:1003} stands west of it among them."] = "",
+	["Grizzled Thistle Bears roam the hills around the Grove; {quest:1003} stands west of it among them."] = "Los osos cardo grisáceos rondan por las colinas alrededor de la Arboleda; {quest:1003} está al oeste de ella, entre ellos.",
 	-- plural, as words: Grizzled Scalps = {item:5414} Grizzled Scalp
 	["Grizzled Scalps"] = "Cueros cabelludos grisáceos",
 
@@ -269,7 +269,6 @@ return {
 	["Take the portal up to {npc:4217}, then fly back to {area:442} for the boat to {zone:1453}."] = "Toma el portal para subir con {npc:4217} y luego vuela de vuelta a {area:442} para tomar el barco a {zone:1453}.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Moonstalkers prowl the hills between {quest:954} and the tower. {quest:1002} stands on the hill west of the tower; Grizzled Thistle Bears roam around it."] = "Los Acechalunas merodean por las colinas entre {quest:954} y la torre. {quest:1002} está en la colina al oeste de la torre; los osos cardo grisáceos rondan a su alrededor.",
 	-- ["Tide Crawlers scuttle along the shore below the village; {quest:983} stands on the beach just south of the docks. Darkshore Threshers swim in the shallows. The {quest:4723} lies on the shore just south of the village."] = "Los Reptadores de marea ({npc:2232}) corretean por la orilla bajo el pueblo; {quest:983} está en la playa, justo al sur de los muelles. Los Trilladores de Costa Oscura ({npc:2185}) nadan en los bajíos. {quest:4723} yace en la orilla, justo al sur del pueblo.",
 	-- ["{item:15883}: the {object:177790} under the water off the north coast, west of the ruins"] = "{item:15883}: {object:177790}, bajo el agua frente a la costa norte, al oeste de las ruinas",
 	-- ["{quest:1003} stands west of the Grove."] = "{quest:1003} está al oeste del Páramo de los Ancianos.",

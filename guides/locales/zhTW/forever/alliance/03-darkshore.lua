@@ -71,7 +71,7 @@ return {
 
 	-- Step 10: The Tower of Althalaxx
 	-- {quest:954} Bashal'Aran · {quest:1002} Buzzbox 323
-	["Moonstalkers prowl the hills between {quest:954} and the tower. {quest:1002} stands on the hill west of the tower."] = "",
+	["Moonstalkers prowl the hills between {quest:954} and the tower. {quest:1002} stands on the hill west of the tower."] = "月夜猛虎在{quest:954}與高塔之間的丘陵徘徊。{quest:1002}站在高塔西邊的山丘上。",
 	-- plural, as words: Moonstalker Fangs = {item:5413} Moonstalker Fang
 	["Moonstalker Fangs"] = "月夜猛虎的牙齒",
 
@@ -119,7 +119,7 @@ return {
 	["The {area:448}"] = "{area:448}",
 	-- {quest:1003} Buzzbox 525
 	-- plural, as words: Grizzled Thistle Bears = {npc:2165} Grizzled Thistle Bear
-	["Grizzled Thistle Bears roam the hills around the Grove; {quest:1003} stands west of it among them."] = "",
+	["Grizzled Thistle Bears roam the hills around the Grove; {quest:1003} stands west of it among them."] = "灰斑薊熊在林地周圍的丘陵遊蕩；{quest:1003}就在林地西邊的熊群之中。",
 	-- plural, as words: Grizzled Scalps = {item:5414} Grizzled Scalp
 	["Grizzled Scalps"] = "灰色頭皮",
 
@@ -269,7 +269,6 @@ return {
 	["Take the portal up to {npc:4217}, then fly back to {area:442} for the boat to {zone:1453}."] = "搭傳送門上去找{npc:4217}，然後飛回{area:442}搭船前往{zone:1453}。",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Moonstalkers prowl the hills between {quest:954} and the tower. {quest:1002} stands on the hill west of the tower; Grizzled Thistle Bears roam around it."] = "月夜猛虎在{quest:954}與高塔之間的丘陵徘徊。{quest:1002}站在高塔西邊的山丘上；灰斑薊熊在周圍遊蕩。",
 	-- ["Tide Crawlers scuttle along the shore below the village; {quest:983} stands on the beach just south of the docks. Darkshore Threshers swim in the shallows. The {quest:4723} lies on the shore just south of the village."] = "潮行蟹在村子下方的海岸爬行；{quest:983}站在碼頭南邊不遠的海灘上。黑海岸蛇頸龍在淺水中游動。{quest:4723}在村子南邊不遠的岸上。",
 	-- ["{item:15883}: the {object:177790} under the water off the north coast, west of the ruins"] = "{item:15883}：廢墟西邊、北海岸外水下的{object:177790}",
 	-- ["{quest:1003} stands west of the Grove."] = "{quest:1003}站在古樹之林西邊。",
