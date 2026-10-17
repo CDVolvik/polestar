@@ -12,7 +12,7 @@ const zlib = require('node:zlib');
 const { Scene, ADT } = require('./helpers/navscene');
 const { tmpdir } = require('./helpers/tmp');
 const { buildGrid } = require('../tools/lib/nav/grid/build');
-const { packNav, cellGridFromDir, buildHpa, encodeMaps, nodeClass, capitalAreas, BLOCK_BYTES, PART_BYTES, ZQ } = require('../tools/lib/nav/pack');
+const { packNav, cellGridFromDir, buildHpa, encodeMaps, nodeClass, capitalAreas, readLayers, BLOCK_BYTES, PART_BYTES, ZQ } = require('../tools/lib/nav/pack');
 const Costs = require('../tools/lib/nav/costs');
 const { FLAG } = require('../tools/lib/nav/grid/format');
 const { runAddon, tocEntries, ADDONS } = require('./helpers/lua');
@@ -407,6 +407,39 @@ test('pack: the zone field: each chunk\'s zone (its area up to a zone, as a uiMa
 	// Without the zone layer, or with no chunk in a zone, no field is written.
 	assert.doesNotMatch((await packNav({ dir, cells: 128 })).get('Nav0.lua'), /zone = /);
 	assert.doesNotMatch((await packNav({ dir, cells: 128, layers: { zone: () => 0 } })).get('Nav0.lua'), /zone = /);
+});
+
+test('pack: readLayers resolves a chunk\'s zone up its AreaTable parents to a zone of zones.json, with no map frame (Riverglades, a Forever zone)', async () => {
+	// Riverglades (area 16591, uiMap 2548) has no Era map frame; Sunnyglade (16723) is its subzone, Lakeshire (69) is
+	// Redridge's (44, 1433); area 7 is no zone's.
+	const areaAt = (x, y) => (y < ADT / 4 ? 16723 : y < ADT / 2 ? 16591 : x < ADT / 2 ? 69 : 7);
+	const dir = await gridOf(new Scene({ col: 32, areas: areaAt }));
+	const layerDir = tmpdir('polestar-pack-layers-');
+	fs.writeFileSync(path.join(layerDir, 'hubs.json'), '{}');
+	fs.mkdirSync(path.join(layerDir, 'roads'));
+	fs.writeFileSync(path.join(layerDir, 'roads', 'index.json'), '{}');
+	const areaTable = [
+		{ ID: 16591, ParentAreaID: 0, Flags_0: 0 }, { ID: 16723, ParentAreaID: 16591, Flags_0: 0 },
+		{ ID: 44, ParentAreaID: 0, Flags_0: 0 }, { ID: 69, ParentAreaID: 44, Flags_0: 0 }, { ID: 7, ParentAreaID: 0, Flags_0: 0 },
+	];
+	const zones = {
+		1415: { id: 1415, name: 'Eastern Kingdoms', areaId: null, type: 2 },
+		1433: { id: 1433, name: 'Redridge Mountains', areaId: 44, type: 3 },
+		2548: { id: 2548, name: 'Riverglades', areaId: 16591, type: 3 },
+	};
+	const layers = readLayers({ dir: layerDir, areaTable, zones });
+	assert.equal(typeof layers.zone, 'function', 'readLayers gives the zone layer from the AreaTable and zones.json');
+	assert.deepEqual([16723, 16591, 69, 44, 7, 0].map((a) => layers.zone(0, a) || 0), [2548, 2548, 1433, 1433, 0, 0]);
+	const files = await packNav({ dir, cells: 128, layers });
+	const D = S.loadPack(files, 0);
+	const [, s] = /^\t\t\[\d+\] = "([A-Za-z0-9+/]*)",$/m.exec(files.get('Nav0.lua'));
+	const z = decodeZones(s);
+	for (const [x, y] of [[100, 50], [100, 200], [100, 400], [400, 400]]) {
+		const w = new Scene({ col: 32 }).world(x, y);
+		const p = S.locate(D, w.wx, w.wy);
+		const q = Math.floor(Math.floor(p.lc / 128) / 8) * 16 + Math.floor((p.lc % 128) / 8);
+		assert.equal(z[q], { 16723: 2548, 16591: 2548, 69: 1433, 7: 0 }[areaAt(x, y)], `local ${x},${y}`);
+	}
 });
 
 // The cost from node src to node dst on a decoded cluster, a step into node v costing length * cs * mult(class of

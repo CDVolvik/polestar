@@ -369,17 +369,12 @@ function zoneLookup() {
 }
 
 // The ground layers the maps' classes come from (pack.js readLayers): roads and hubs from `nav layers` in dir, the
-// capitals by the AreaTable and the zone map around a chunk; and the chunks' zones for the zone field (aids.js
-// zoneResolver: a chunk's area up its AreaTable parents to a zone of zones.json, on the map's continent).
+// capitals by the AreaTable and the zone map around a chunk; and the chunks' zones for the zone field (pack.js
+// zoneAreas: a chunk's area up its AreaTable parents to a zone of zones.json, no map frame needed).
 function packLayers(dir) {
 	const { readLayers } = require('../lib/nav/pack');
-	const { zoneResolver } = require('../lib/nav/aids');
-	const { Frames } = require('../lib/travel/geo');
 	try {
-		const areaTable = areaTableRows();
-		const zones = readJson(path.join(DATA, 'zones.json'));
-		const zoneOf = zoneResolver({ zones, areaRows: areaTable, frames: new Frames(readJson(path.join(DATA, 'map-frames.json')).era, zones) });
-		return readLayers({ dir, areaTable, zoneAt: zoneLookup(), zoneOf });
+		return readLayers({ dir, areaTable: areaTableRows(), zoneAt: zoneLookup(), zones: readJson(path.join(DATA, 'zones.json')) });
 	} catch (e) {
 		throw Object.assign(e, { exit: 1 });
 	}

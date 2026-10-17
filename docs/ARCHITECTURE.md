@@ -2465,9 +2465,10 @@ path, and `Path.ReuseMany` reuses a batch only for the same signature.
 Without `danger` (nil, `{}`, or on a map without the field) every search is
 byte-identical to before (tested against the router before it, from git).
 `Path.ZoneAt(map, x, y)` reads a point's zone from the same field (nil
-outside it), without decoding any cluster. The field is 27 KB of `Nav0.lua`
-(636 tiles) and 39 KB of `Nav1.lua` (912), none on Zephras Isle (its uiMap
-has no era map frame, which the zone resolver needs); loaded, about 0.1 MB.
+outside it), without decoding any cluster. The field is 29 KB of `Nav0.lua`
+(675 tiles), 40 KB of `Nav1.lua` (928) and 3 KB of `Nav2991.lua` (72); the
+packer needs no map frame for it, so Forever's own zones (Riverglades, Mount
+Hyjal, Shen'dralas, Zephras Isle) are there too; loaded, about 0.1 MB.
 
 ```
 Polestar_Nav.toc        LoadOnDemand, Dependencies: Polestar

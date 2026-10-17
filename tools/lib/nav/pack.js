@@ -45,7 +45,8 @@
 //
 // Zones (decided 2026-10-17, the zone danger design): each cluster carries
 // the zone of its 16 x 16 chunks (the grid's chunk area, up its AreaTable
-// parents to a zone of zones.json, as its uiMapID: readLayers' zoneOf) in the
+// parents to a zone of zones.json, as its uiMapID, no map frame needed:
+// zoneAreas, through readLayers) in the
 // metadata's zone field; the router prices a step into a zone its caller
 // marks dangerous (Routing/Path.lua). Nothing else depends on it: every other
 // field is the same bytes with or without zones.
@@ -183,6 +184,31 @@ function capitalAreas(areaTable) {
 		}
 	}
 	return out;
+}
+
+// The zone of each AreaTable area (rows: ID, ParentAreaID) by zones.json (its entries with an areaId): the uiMapID of
+// the first area up its ParentAreaID chain that is a zone's area, else 0. No map frame is needed, so a Forever zone
+// without an Era frame (Riverglades, Zephras Isle) resolves too. -> (c, areaId) -> uiMapID (0 for none)
+function zoneAreas({ areaTable, zones }) {
+	const parent = new Map();
+	for (const r of areaTable) parent.set(Number(r.ID), Number(r.ParentAreaID) || 0);
+	const byArea = new Map();
+	for (const z of Object.values(zones)) if (z && z.areaId) byArea.set(Number(z.areaId), Number(z.id));
+	const memo = new Map();
+	return (c, areaId) => {
+		const id = Number(areaId) || 0;
+		if (!memo.has(id)) {
+			let out = 0;
+			for (let cur = id, n = 0; cur && n < 8; cur = parent.get(cur) || 0, n++) {
+				if (byArea.has(cur)) {
+					out = byArea.get(cur);
+					break;
+				}
+			}
+			memo.set(id, out);
+		}
+		return memo.get(id);
+	};
 }
 
 function enc(v, width) {
@@ -1590,10 +1616,9 @@ function cityTest({ areaTable, zoneAt = null }) {
 }
 
 // The ground layers of `nav layers` (data/local/nav-layers) for packNav: the roads layer
-// (roads/<c>/<col>_<row>.bin, absent tiles and maps none), hubs.json, and the capitals (cityTest); with zoneOf
-// ((c, areaId) -> the uiMapID of the zone the area lies in, up its AreaTable parents, or null: aids.js zoneResolver)
-// the chunks' zones for the zone field.
-function readLayers({ dir, areaTable, zoneAt = null, zoneOf = null }) {
+// (roads/<c>/<col>_<row>.bin, absent tiles and maps none), hubs.json, and the capitals (cityTest); with zones
+// (zones.json) the chunks' zones for the zone field (zoneAreas over the same AreaTable).
+function readLayers({ dir, areaTable, zoneAt = null, zones = null }) {
 	const hubsFile = path.join(dir, 'hubs.json');
 	if (!fs.existsSync(hubsFile)) throw new Error(`pack: no hubs layer at ${hubsFile} (node tools/polestar.js nav layers hubs)`);
 	if (!fs.existsSync(path.join(dir, 'roads', 'index.json'))) throw new Error(`pack: no roads layer under ${path.join(dir, 'roads')} (node tools/polestar.js nav layers roads)`);
@@ -1611,7 +1636,7 @@ function readLayers({ dir, areaTable, zoneAt = null, zoneOf = null }) {
 		},
 		hubs,
 		city,
-		...(zoneOf ? { zone: zoneOf } : {}),
+		...(zones ? { zone: zoneAreas({ areaTable, zones }) } : {}),
 	};
 }
 
@@ -1749,5 +1774,5 @@ function checkPack(addonDir) {
 module.exports = {
 	SWIM, ZQ, MIN_REGION, BLOCK_BYTES, PART_BYTES, B64, SDX, SDY, OPP, PACK_JSON, MAPS, COST_MAX, YARDS_MAX, AREA_CAPITAL,
 	CellGrid, cellGrid, cellGridFromDir, readRegions, buildHpa, encodeMaps, packFiles, packNav, shipPack, checkPack,
-	nodeClass, capitalAreas, cityTest, readLayers, markHubs, navXml, encodeZones,
+	nodeClass, capitalAreas, zoneAreas, cityTest, readLayers, markHubs, navXml, encodeZones,
 };
