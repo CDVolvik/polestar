@@ -2415,6 +2415,27 @@ everywhere, has one edge cost for every profile and keeps the 1.0
 heuristic, so it routes and straightens exactly as before classes, for any
 profile and style.
 
+**Zone danger.** Each map tile of the walking maps carries the zone of its
+16 x 16 chunks (the metadata's `zone` field, `nav pack`: the grid's chunk
+area up its AreaTable parents to a zone of `zones.json`, as its uiMapID; the
+layout in `pack.js`'s HEADER). A search's `opts.danger`, a table
+`{ [uiMapID] = multiplier }` its caller builds, multiplies a grid step into a
+node by its chunk's zone's multiplier, on top of its class, profile and
+style; a graph edge costs its baked cost times the larger of its two ends'
+multipliers; straightening compares the same products, so the drawn line
+never cuts back into a zone the path went round. No zone is closed: when the
+only way crosses one, the walk takes it at that price. Multipliers are at
+least 1, so the heuristics and `Path.LowerBound` stay admissible; entries of
+1 or less are dropped. The searches' cache tags carry the table's signature
+(`uiMap=mult` by uiMapID), so two tables never share a cached connection or
+path, and `Path.ReuseMany` reuses a batch only for the same signature.
+Without `danger` (nil, `{}`, or on a map without the field) every search is
+byte-identical to before (tested against the router before it, from git).
+`Path.ZoneAt(map, x, y)` reads a point's zone from the same field (nil
+outside it), without decoding any cluster. The field is 27 KB of `Nav0.lua`
+(636 tiles) and 39 KB of `Nav1.lua` (912), none on Zephras Isle (its uiMap
+has no era map frame, which the zone resolver needs); loaded, about 0.1 MB.
+
 ```
 Polestar_Nav.toc        LoadOnDemand, Dependencies: Polestar
   Nav\Nav.xml           the walking maps -> PolestarPathData[map], then the chokepoints
@@ -2427,7 +2448,7 @@ Polestar_Nav.toc        LoadOnDemand, Dependencies: Polestar
   API.lua               Polestar_NavEngine = the Path table, plus Available(map); the memory ceilings
 ```
 
-**Memory.** The packed maps (format 2, all three) are 33.4 MB of files; loaded,
+**Memory.** The packed maps (format 2, all three) are 33.5 MB of files; loaded,
 the Lua heap holds about 34 MB (0.2.4's format 1 maps 28 MB; his own three maps were about 12 MB). A search decodes the clusters (ADT tiles) it
 crosses: by the engine's own accounting (`PathGrid.lua` gridSize, an upper
 bound) about 3.3 MB a cluster on average: 15.8 MB for Kharanos to
@@ -2466,11 +2487,13 @@ widened:
 Path.Find(map, from, to, callback, opts) -> job      -- callback(points, cost, job) or (nil, reason, job); job.yards, job.hubs
 Path.FindCost(map, from, to, callback, opts) -> job  -- callback(cost, reason, job), no drawing points; job.yards
 Path.FindMany(map, from, targets, callback, opts, reverse, progress) -> job  -- costs[i] or false; job.yards[i]
-Path.ReuseMany(job, point, profile, style) -> bool  -- may a batch from job's source serve one from point for profile in style
+Path.ReuseMany(job, point, profile, style, danger) -> bool  -- may a batch from job's source serve one from point for profile in style with danger
+Path.ZoneAt(map, x, y) -> uiMapID | nil  -- a point's zone (the maps' zone field)
 Path.Cancel(job) ; Path.Busy() -> bool ; Path.Available(map) -> bool
 -- opts: a boolean is waterWalking (as every caller passed it before profiles), or
 -- { waterWalking = boolean, profile = "Alliance" | "Horde" | nil (Costs.Profile(UnitFactionGroup)),
---   style = "fastest" | "balanced" | "roads" | nil (Costs.Style: anything else is Balanced) }
+--   style = "fastest" | "balanced" | "roads" | nil (Costs.Style: anything else is Balanced),
+--   danger = { [uiMapID] = multiplier >= 1 } | nil (Zone danger, above) }
 ```
 
 `map` is the instance map ID (`UnitPosition`'s fourth value: 0 Eastern

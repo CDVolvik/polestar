@@ -15,7 +15,10 @@
 // of the map's `hubs` metadata its drawn line enters, the drawn line
 // straightens only over ground no costlier than the path it replaces (a
 // road's bend, a hostile hub's rim), and ReuseMany keeps a batch to the
-// profile it was priced for.
+// profile it was priced for. With the maps' `zone` field, opts.danger
+// multiplies a step into a dangerous zone (round it, never closed, graph edges
+// by their ends, straightening too, caches and ReuseMany by its signature);
+// without it every result is today's; Path.ZoneAt reads a point's zone.
 
 const { test } = require('node:test');
 const assert = require('node:assert/strict');
@@ -25,7 +28,7 @@ const zlib = require('node:zlib');
 const { spawnSync } = require('node:child_process');
 const { runAddon, tocEntries, ADDONS, ROOT } = require('./helpers/lua');
 const { tmpdir } = require('./helpers/tmp');
-const { encodeMaps, packFiles, B64 } = require('../tools/lib/nav/pack');
+const { encodeMaps, packFiles, encodeZones, B64 } = require('../tools/lib/nav/pack');
 
 const NAV = path.join(ADDONS, 'Polestar_Nav');
 // The router before it priced classes: pathing-v2's base (origin/next, 0.2.4's router).
@@ -81,8 +84,11 @@ function runLength(vals) {
 // carries the format 2 `class` field (one byte per node, run-length, zlib,
 // base64). `graph` holds a cluster's hand-made graph string by cluster
 // (index k + 1; Routing/PathGrid.lua's adjacent defines the records), `hubs`
-// the metadata's `hubs` list as Lua. -> the Lua files, in load order.
-function mapFiles(cells, classes, { nx = 1, graph = null, hubs = null } = {}) {
+// the metadata's `hubs` list as Lua, `zones(k, q)` the uiMapID of cluster k's
+// chunk q ((cx // 8) * 16 + (cy // 8)) for the metadata's `zone` field, as
+// pack.js encodes it (encodeZones; a cluster of all 0 gets none). -> the Lua
+// files, in load order.
+function mapFiles(cells, classes, { nx = 1, graph = null, hubs = null, zones = null } = {}) {
 	const tiles = [];
 	for (let k = 0; k < nx; k++) {
 		tiles.push({
@@ -112,7 +118,15 @@ function mapFiles(cells, classes, { nx = 1, graph = null, hubs = null } = {}) {
 		graph.forEach((s, i) => s && lines.push(`data.packed.graph[${i + 1}] = {"${block(s)}"}`));
 	}
 	if (hubs) edited = edited.replace('\tcounts = {', `\thubs = ${hubs},\n\tcounts = {`);
-	assert.equal(edited === meta, !classes && !graph && !hubs);
+	if (zones) {
+		const rows = [];
+		for (let k = 0; k < nx; k++) {
+			const z = Array.from({ length: 256 }, (_, q) => zones(k, q));
+			if (z.some(Boolean)) rows.push(`\t\t[${k + 1}] = "${encodeZones(z)}",`);
+		}
+		edited = edited.replace('\tcounts = {', `\tzone = {\n${rows.join('\n')}\n\t},\n\tcounts = {`);
+	}
+	assert.equal(edited === meta, !classes && !graph && !hubs && !zones);
 	files[0][1] = edited;
 	const last = files[files.length - 1];
 	last[1] = last[1].replace('-- stylua: ignore end\n', `${lines.map((l) => `${l}\n`).join('')}-- stylua: ignore end\n`);
@@ -354,15 +368,15 @@ test('format 2: yards are the drawn line\'s length under every profile, and Find
 
 // Two tiles along x, one strip across their border on row Y0 from gx = C - 12 to C + 12; entrance 0 of each
 // cluster at the border (cluster 0's last row, cluster 1's first), one hand-made format 2 edge each way priced
-// per profile (costAlliance, costHorde, costNone) with its yards.
+// per profile (costAlliance, costHorde, costNone) with its yards; zone(k), when given, the uiMapID of all cluster k.
 const BORDER = { from: at(C - 12, Y0), to: at(C + 12, Y0) };
-function borderFiles(costs, yards) {
+function borderFiles(costs, yards, zone = null) {
 	const cells = new Map();
 	for (let x = C - 12; x <= C + 12; x++) cells.set(x * C + Y0, { val: 1, cls: 0 });
 	// One entrance: cell(3) layer(1) component(2) degree(1), then its edge: offset(1) node(2) costs 3 x (3) yards(2).
 	const cluster = (lx, offset) => enc(1, 2) + enc(lx * C + Y0, 3) + enc(0, 1) + enc(0, 2) + enc(1, 1) + enc(offset, 1) + enc(0, 2) + costs.map((c) => enc(c, 3)).join('') + enc(yards, 2);
 	// Offsets (dx + 1) * 3 + dy + 1: +x from cluster 0 is 7, -x from cluster 1 is 1.
-	return mapFiles(cells, true, { nx: 2, graph: [cluster(C - 1, 7), cluster(0, 1)] });
+	return mapFiles(cells, true, { nx: 2, graph: [cluster(C - 1, 7), cluster(0, 1)], zones: zone && ((k) => zone(k)) });
 }
 
 test('format 2: the graph prices an edge per profile (no profile reads costNone) and adds its yards', () => {
@@ -555,4 +569,135 @@ out.reusePlain = { none = Path.ReuseMany(plain, here, "Horde"), balanced = Path.
 	const got = route(OURS, mapFiles(layout(4), true), [], { tail });
 	assert.deepEqual(got.reuse, { roads: true, balanced: false, none: false });
 	assert.deepEqual(got.reusePlain, { none: true, balanced: true, fastest: false });
+});
+
+// Zone danger (opts.danger = { [uiMapID] = multiplier }): on the strip-and-U maps the strip's row (cells y >= 64:
+// chunk rows cy >= 8) lies in Western Plaguelands (1422), the U above it in Silverpine (1421).
+const WPL = 1422;
+const SILVERPINE = 1421;
+const zonesByRow = (k, q) => (q % 16 >= 8 ? WPL : SILVERPINE);
+const danger = (t) => `{ danger = ${t} }`;
+
+test('danger: a step into a dangerous zone costs its multiplier: round a dangerous strip, straight across a safe one, and the costs in every API', () => {
+	assert.ok(ROUND(4) < 3 * STRAIGHT, 'the U is shorter than three strips');
+	const files = mapFiles(layout(4), true, { zones: zonesByRow });
+	// No danger first, then two tables in one session: the path and endpoint caches must not mix them.
+	const got = route(OURS, files, [
+		q('none', 'find'), q('wpl', 'find', danger(`{ [${WPL}] = 3 }`)), q('silver', 'find', danger(`{ [${SILVERPINE}] = 3 }`)),
+		q('wplCost', 'cost', danger(`{ [${WPL}] = 3 }`)), q('wplMany', 'many', danger(`{ [${WPL}] = 3 }`)), q('silverCost', 'cost', danger(`{ [${SILVERPINE}] = 3 }`)),
+		q('wplHorde', 'find', `{ profile = "Horde", style = "roads", danger = { [${WPL}] = 3 } }`), q('noneAgain', 'find'),
+	]);
+	assert.ok(straight(got.none), 'no danger: straight');
+	close(got.none, STRAIGHT, 'no danger');
+	// Round the U, the last step into the goal's cell (in 1422) at x 3.
+	const roundWpl = (S + 2 * 4 - 5 + 2 * Math.SQRT2 + 3) * CS;
+	for (const id of ['wpl', 'wplHorde']) {
+		assert.ok(round(got[id]), `${id}: round the dangerous strip`);
+		close(got[id], roundWpl, id);
+	}
+	close(got.wplCost, roundWpl, 'FindCost');
+	close(got.wplMany, roundWpl, 'FindMany');
+	assert.ok(straight(got.silver), 'a dangerous U: straight');
+	close(got.silver, STRAIGHT, 'the strip is not dangerous');
+	close(got.silverCost, STRAIGHT, 'FindCost: the strip');
+	assert.deepEqual(got.noneAgain, got.none, 'no danger after danger: today\'s route again');
+});
+
+test('danger: no zone is closed: the only way through a zone ten times over still routes, at ten times the cost', () => {
+	const strip = new Map([...layout(4)].filter(([l]) => l % C === Y0));
+	const got = route(OURS, mapFiles(strip, true, { zones: zonesByRow }), [q('far', 'find', danger(`{ [${WPL}] = 10 }`)), q('farMany', 'many', danger(`{ [${WPL}] = 10 }`)), q('farCost', 'cost', danger(`{ [${WPL}] = 10 }`))]);
+	for (const id of ['far', 'farMany', 'farCost']) close(got[id], 10 * STRAIGHT, `${id}: through, x 10`);
+	assert.ok(straight(got.far), 'drawn along the strip');
+});
+
+test('danger: a graph edge costs its baked cost times the larger of its two ends\' multipliers', () => {
+	const [A, H, N, Y] = [4, 84, 5, 4];
+	// Cluster 0 (the start's side) in Silverpine, cluster 1 in Western Plaguelands.
+	const files = borderFiles([A, H, N], Y, (k) => (k === 0 ? SILVERPINE : WPL));
+	const tables = [['wpl3', `{ [${WPL}] = 3 }`, 11 + 3 * 12, 3], ['silver2', `{ [${SILVERPINE}] = 2 }`, 2 * 11 + 12, 2], ['both', `{ [${SILVERPINE}] = 2, [${WPL}] = 3 }`, 2 * 11 + 3 * 12, 3]];
+	const got = route(OURS, files, tables.flatMap(([id, t]) => [q(id, 'find', danger(t)), q(`${id}Many`, 'many', danger(t)), q(`${id}Cost`, 'cost', danger(t))]), BORDER);
+	for (const [id, , cells, edge] of tables) {
+		for (const kind of ['', 'Many', 'Cost']) close(got[id + kind], cells * CS + edge * N, `${id}${kind}`);
+	}
+});
+
+test('danger: straightening never cuts into a dangerous zone the path went round', () => {
+	// Open ground; the chunk at cells x 32-39, y 64-71 is Western Plaguelands, the rest Silverpine. The straight line
+	// from (20, 64) to (40, 72) clips that chunk; an octile path of the same length goes round it (diagonals first).
+	const cells = fill(new Map(), X0 - 3, X0 + 23, Y0 - 3, Y0 + 11, 0);
+	const zones = (k, q) => (q === 4 * 16 + 8 ? WPL : SILVERPINE);
+	const to = at(X0 + 20, Y0 + 8);
+	const got = route(OURS, mapFiles(cells, true, { zones }), [q('none', 'find'), q('wpl', 'find', danger(`{ [${WPL}] = 3 }`))], { to });
+	const octile = (12 + 8 * Math.SQRT2) * CS;
+	const inChunk = (g) => Math.floor(g / C) >= 32 && Math.floor(g / C) <= 39 && g % C >= 64 && g % C <= 71;
+	close(got.none, octile, 'no danger');
+	assert.equal(got.none.points.length, 2, 'no danger: one straight segment');
+	assert.ok([...crossed(got.none)].some(inChunk), 'the straight line crosses the chunk');
+	close(got.wpl, octile, 'danger: round the chunk at no extra length');
+	assert.deepEqual([...crossed(got.wpl)].filter(inChunk), [], 'danger: no drawn segment crosses the dangerous chunk');
+});
+
+test('danger: without it (nil, {}, or only zones the map lacks), and on a map without the zone field, points, costs and yards are today\'s router\'s', (t) => {
+	const REV = 'c84f3b89'; // the router before zone danger
+	const show = (rel) => spawnSync('git', ['-C', ROOT, 'show', `${REV}:addon/Polestar_Nav/${rel}`], { encoding: 'utf8', maxBuffer: 16 * 1024 * 1024 });
+	if (show('API.lua').status !== 0) {
+		t.skip(`no git history with ${REV} (not a checkout of the repository)`);
+		return;
+	}
+	const dir = path.join(tmpdir('polestar-router-today-'), 'Polestar_Nav');
+	const rels = ['Routing/Costs.lua', 'Routing/PathGrid.lua', 'Routing/Path.lua', 'Routing/PathJobs.lua', 'API.lua'];
+	fs.mkdirSync(path.join(dir, 'Routing'), { recursive: true });
+	for (const rel of rels) {
+		const r = show(rel);
+		assert.equal(r.status, 0, r.stderr);
+		fs.writeFileSync(path.join(dir, rel), r.stdout);
+	}
+	fs.writeFileSync(path.join(dir, 'Polestar_Nav.toc'), `${rels.join('\n')}\n`);
+	const TODAY = { name: 'Polestar_Nav', dir };
+	const base = [['none', 'nil'], ['horde', '{ profile = "Horde" }'], ['roads', '{ profile = "Alliance", style = "roads" }'], ['walk', 'true']];
+	const kinds = ['find', 'cost', 'many'];
+	const theirs = base.flatMap(([id, o]) => kinds.map((k) => q(`${id}-${k}`, k, o)));
+	// Ours: the same queries with no danger, an empty table and a table of zones the map does not hold.
+	const withDanger = (o, d) => (o === 'nil' ? `{ danger = ${d} }` : o === 'true' ? `{ waterWalking = true, danger = ${d} }` : o.replace(/ \}$/, `, danger = ${d} }`));
+	for (const [what, files, opts] of [
+		['zoned strip and U', mapFiles(layout(4, {}, { cls: 1 }), true, { zones: zonesByRow }), {}],
+		['zoned border graph', borderFiles([4, 84, 5], 4, (k) => (k === 0 ? SILVERPINE : WPL)), BORDER],
+		['no zone field', mapFiles(layout(4, { cls: 8 }), true), {}],
+	]) {
+		const want = route(TODAY, files, theirs, opts);
+		for (const d of [null, '{}', '{ [9999] = 3 }', ...(what === 'no zone field' ? [`{ [${WPL}] = 10 }`] : [])]) {
+			const ours = base.flatMap(([id, o]) => kinds.map((k) => q(`${id}-${k}`, k, d === null ? o : withDanger(o, d))));
+			assert.deepEqual(route(OURS, files, ours, opts), want, `${what}, danger ${d}: today's results`);
+		}
+	}
+});
+
+test('ReuseMany reuses a batch only for the danger table it was priced for (its signature, not the table)', () => {
+	const tail = `
+local job = Path.FindMany(${MAP}, { map = ${MAP}, x = A.x, y = A.y, z = A.z }, { B }, function() end, { profile = "Horde", danger = { [${WPL}] = 3 } })
+while #frames > 0 do table.remove(frames, 1)() end
+local here = { map = ${MAP}, x = A.x + 1, y = A.y, z = A.z }
+out.reuse = { same = Path.ReuseMany(job, here, "Horde", nil, { [${WPL}] = 3 }), other = Path.ReuseMany(job, here, "Horde", nil, { [${WPL}] = 10 }),
+	more = Path.ReuseMany(job, here, "Horde", nil, { [${WPL}] = 3, [${SILVERPINE}] = 3 }), none = Path.ReuseMany(job, here, "Horde") }
+local plain = Path.FindMany(${MAP}, { map = ${MAP}, x = A.x, y = A.y, z = A.z }, { B }, function() end, { profile = "Horde" })
+while #frames > 0 do table.remove(frames, 1)() end
+out.reusePlain = { none = Path.ReuseMany(plain, here, "Horde"), empty = Path.ReuseMany(plain, here, "Horde", nil, {}), wpl = Path.ReuseMany(plain, here, "Horde", nil, { [${WPL}] = 3 }) }`;
+	const got = route(OURS, mapFiles(layout(4), true, { zones: zonesByRow }), [], { tail });
+	assert.deepEqual(got.reuse, { same: true, other: false, more: false, none: false });
+	assert.deepEqual(got.reusePlain, { none: true, empty: true, wpl: false });
+});
+
+test('Path.ZoneAt reads the uiMapID of a point\'s chunk; nil outside the maps, on a map without the zone field and in a chunk of no zone', () => {
+	const tail = `
+local function z(m, p) return Path.ZoneAt(m, p.x, p.y) or "nil" end
+out.zones = { strip = z(${MAP}, ${lua(at(X0, Y0))}), u = z(${MAP}, ${lua(at(X0, Y0 - 4))}), corner = z(${MAP}, ${lua(at(127, 0))}), last = z(${MAP}, ${lua(at(127, 127))}),
+	outside = z(${MAP}, { x = -10, y = 5 }), nomap = z(99, ${lua(at(X0, Y0))}) }`;
+	const zones = (k, q) => (q === 0 ? 0 : zonesByRow(k, q));
+	const got = route(OURS, mapFiles(layout(4), true, { zones }), [], { tail });
+	assert.deepEqual(got.zones, { strip: WPL, u: SILVERPINE, corner: SILVERPINE, last: WPL, outside: 'nil', nomap: 'nil' });
+	const none = route(OURS, mapFiles(layout(4), true), [], { tail });
+	assert.equal(none.zones.strip, 'nil', 'a map without the zone field');
+	// Chunk 0 (cells x 0-7, y 0-7) is no zone.
+	const zero = route(OURS, mapFiles(layout(4), true, { zones }), [], { tail: `out.zero = Path.ZoneAt(${MAP}, ${at(3, 3).x}, ${at(3, 3).y}) or "nil"` });
+	assert.equal(zero.zero, 'nil');
 });

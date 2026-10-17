@@ -14,8 +14,8 @@ local ns = select(2, ...)
 -- A cell holds its base surface and, where surfaces overlap (a tunnel under a mountain, a city under ruins, both
 -- ends of a lift), floors above or below it. A node is a local cell (the base surface) or C * C + a floor's index.
 -- A map of format 2 also carries a ground class byte per node (the class field, Routing/Costs.lua) and graph edges
--- priced per profile with their yards (adjacent); format 1 maps (0.2.4's) have no classes (class 0 everywhere) and one
--- edge cost for every profile.
+-- priced per profile with their yards (adjacent), and may carry the zone of each cluster's 16 x 16 chunks (the zone
+-- field, zoneAt); format 1 maps (0.2.4's) have no classes (class 0 everywhere) and one edge cost for every profile.
 -- This file holds the decoded maps, their memory ceilings, frame slicing and string-pulling; Path.lua searches them
 -- and PathJobs.lua schedules the searches.
 ---@class SPFPath
@@ -159,6 +159,7 @@ local function State(map)
 			swim = D.swim,
 			zstep = D.zstep,
 			classed = Classed(D), -- format 2: Path.lua prices steps by class (and style) and the heuristic by its least
+			zoned = D.zone ~= nil, -- the zone field: Path.lua prices a step into a zone by its caller's danger table
 			sizes = {},
 			used = {}, -- [k] = last use, for eviction
 			decoded = 0,
@@ -865,11 +866,66 @@ local function classOf(st, k, node)
 	return cls and cls[node + 1] or 0
 end
 
+-- The zone field (metadata zone[k + 1], format 2, optional; tools/lib/nav/pack.js HEADER): per cluster the uiMapID of
+-- each of its 16 x 16 chunks, read straight from the string (never decoded and kept: a cluster's search builds its
+-- chunk multipliers once, chunkDanger). Chunk q (0-based) of local cell lc.
+local function chunkOf(C, lc)
+	return floor(floor(lc / C) * 16 / C) * 16 + floor(lc % C * 16 / C)
+end
+
+-- The uiMapID of local cell lc of cluster k; nil in no zone, or on a map or cluster without the zone field.
+local function zoneAt(st, k, lc)
+	local s = st.D.zone and st.D.zone[k + 1]
+	if not s then
+		return nil
+	end
+	local q, i, n, value = chunkOf(st.C, lc), 1, -1, 0
+	while i <= #s do
+		local a = B64[byte(s, i)]
+		if a < 48 then
+			value, n, i = a * 64 + B64[byte(s, i + 1)], n + 1, i + 2
+		else
+			n, i = n + a - 47, i + 1
+		end
+		if n >= q then
+			return value ~= 0 and value or nil
+		end
+	end
+	return nil
+end
+
+-- The multiplier of a step into each chunk of cluster k (index q + 1) under danger ({ [uiMapID] = multiplier > 1 },
+-- Path.lua's weights); nil when no chunk of the cluster is dangerous (or it has no zone field).
+local function chunkDanger(st, k, danger)
+	local s = danger and st.D.zone and st.D.zone[k + 1]
+	if not s then
+		return nil
+	end
+	local out, any, n, value, i = {}, false, 0, 1, 1
+	while i <= #s do
+		local a, reps = B64[byte(s, i)], nil
+		if a < 48 then
+			local m = danger[a * 64 + B64[byte(s, i + 1)]]
+			value, any, reps, i = m or 1, any or m ~= nil, 1, i + 2
+		else
+			reps, i = a - 47, i + 1
+		end
+		for _ = 1, reps do
+			n = n + 1
+			out[n] = value
+		end
+	end
+	for q = n + 1, 256 do
+		out[q] = 1
+	end
+	return any and out or nil
+end
+
 -- Line of sight between two path entries, walking every cell the segment between their cell centres crosses and
 -- following the surface from node to node, so it cannot jump between floors. With limit (a map with classes), every
--- node crossed must also cost no more than limit (Costs.Mult for profile in style) and, unless hostileOK, carry no
--- hub bit hb (the one hostile to profile; nil for none).
-local function sight(st, P, a, b, water, limit, profile, hb, hostileOK, style)
+-- node crossed must also cost no more than limit (Costs.Mult for profile in style, times dangerAt(k, node) when
+-- given: smooth's zone danger) and, unless hostileOK, carry no hub bit hb (the one hostile to profile; nil for none).
+local function sight(st, P, a, b, water, limit, profile, hb, hostileOK, style, dangerAt)
 	local ax, ay, bx, by = P.x[a], P.y[a], P.x[b], P.y[b]
 	local k, node = P.k[a], P.n[a]
 	local dx, dy = bx - ax, by - ay
@@ -894,7 +950,11 @@ local function sight(st, P, a, b, water, limit, profile, hb, hostileOK, style)
 		end
 		if limit then
 			local c = classOf(st, k, node)
-			if Mult(c, profile, style) > limit or (hb and not hostileOK and c % (hb + hb) >= hb) then
+			local m = Mult(c, profile, style)
+			if dangerAt then
+				m = m * dangerAt(k, node)
+			end
+			if m > limit or (hb and not hostileOK and c % (hb + hb) >= hb) then
 				return false
 			end
 		end
@@ -906,10 +966,11 @@ end
 
 -- Collapse a node path to its turns, then pull the string: from each anchor, jump to the furthest point in sight.
 -- Water may only be crossed where the path itself swam. On a map with classes a straight segment replaces the path
--- between two entries only over ground no costlier for profile in style than the costliest node of that path
--- stretch, and into a hub hostile to profile only where that stretch already entered one: the drawn line (and the
--- hubs it reports) never cuts a road's bend or a hostile hub's rim the cost-best path kept to.
-local function smooth(st, P, profile, style)
+-- between two entries only over ground no costlier for profile in style (times the zone danger of danger, Path.lua's
+-- weights, when given) than the costliest node of that path stretch, and into a hub hostile to profile only where
+-- that stretch already entered one: the drawn line (and the hubs it reports) never cuts a road's bend, a hostile
+-- hub's rim or a dangerous zone's edge the cost-best path kept to.
+local function smooth(st, P, profile, style, danger)
 	local PX, PY, PW, PK, PN = P.x, P.y, P.w, P.k, P.n
 	local n = #PX
 	local keep = { 1 }
@@ -924,6 +985,19 @@ local function smooth(st, P, profile, style)
 	local classed = st.classed
 	profile = Costs.Profile(profile)
 	local hb = profile == "Horde" and Costs.HUB_ALLIANCE or profile == "Alliance" and Costs.HUB_HORDE or nil
+	-- A node's zone multiplier, each cluster's chunk multipliers built once (false: none dangerous).
+	local dangerAt
+	if classed and danger then
+		local chunks, C = {}, st.C
+		dangerAt = function(k, node)
+			local z = chunks[k]
+			if z == nil then
+				z = chunkDanger(st, k, danger) or false
+				chunks[k] = z
+			end
+			return z and z[chunkOf(C, cellOf(st, k, node)) + 1] or 1
+		end
+	end
 	local out, a = { keep[1] }, 1
 	while a < #keep do
 		local b = a + 1
@@ -939,6 +1013,9 @@ local function smooth(st, P, profile, style)
 				for i = last + 1, q do
 					local c = classOf(st, PK[i], PN[i])
 					local m = Mult(c, profile, style)
+					if dangerAt then
+						m = m * dangerAt(PK[i], PN[i])
+					end
 					if m > limit then
 						limit = m
 					end
@@ -948,7 +1025,7 @@ local function smooth(st, P, profile, style)
 				end
 				last = q
 			end
-			if not sight(st, P, p, q, PW[q] - PW[p] > 0, limit, profile, hb, hostile, style) then
+			if not sight(st, P, p, q, PW[q] - PW[p] > 0, limit, profile, hb, hostile, style, dangerAt) then
 				break
 			end
 			b = j
@@ -1019,6 +1096,9 @@ ns.PathGrid = {
 	surface = surface,
 	grid = grid,
 	cellOf = cellOf,
+	chunkOf = chunkOf,
+	zoneAt = zoneAt,
+	chunkDanger = chunkDanger,
 	nodesOf = nodesOf,
 	metadata = metadata,
 	adjacent = adjacent,

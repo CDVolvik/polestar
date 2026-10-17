@@ -15,6 +15,10 @@ local ns = select(2, ...)
 -- whichever is smaller); a map without them (format 1) routes as before classes, one edge cost for every profile and
 -- style. Format 2 edges carry no walking-on-water cost: with waterWalking the graph reads the profile's (water at
 -- swim) while the grid inside the end clusters runs on water.
+-- Zone danger (the zone danger design, 2026-10-17): on a map with the zone field a caller's opts.danger ({ [uiMapID] =
+-- multiplier }, multipliers at least 1) multiplies a grid step into a node by its chunk's zone's, a graph edge by the
+-- larger of its two ends' and straightening's limit alike; no zone is closed, and the heuristics stay admissible.
+-- Without danger (nil, {}, only multipliers of 1, or a map without the field) every search is exactly as before.
 -- Every result carries yards beside its cost. Find's job.yards is the drawn line's flat length (any format). FindCost's
 -- job.yards and FindMany's job.yards[i] are a second label along the cost-best path: on format 2 each grid step's
 -- length and each graph edge's yards (one value an edge for every profile, the no-profile way's: across a cluster
@@ -30,6 +34,7 @@ local tick, Deadline, Expansions, State, surface, grid =
 	Grid.tick, Grid.Deadline, Grid.Expansions, Grid.State, Grid.surface, Grid.grid
 local cellOf, nodesOf, metadata, adjacent = Grid.cellOf, Grid.nodesOf, Grid.metadata, Grid.adjacent
 local entrance, locate, standing, snap, smooth = Grid.entrance, Grid.locate, Grid.standing, Grid.snap, Grid.smooth
+local zoneAt, chunkDanger = Grid.zoneAt, Grid.chunkDanger
 
 local TILE, SNAP, ZTOL, DX, DY = Grid.TILE, Grid.SNAP, Grid.ZTOL, Grid.DX, Grid.DY
 local RETRIES = 8 -- other cells tried for an endpoint stuck in a pocket
@@ -40,25 +45,59 @@ local START, GOAL = -1, -2
 local floor, sqrt, huge, max, abs = math.floor, math.sqrt, math.huge, math.max, math.abs
 local yield = coroutine.yield
 
--- Class multipliers by class byte for a profile ("Alliance", "Horde" or none) and a style, built once each.
-local mults = {}
--- A search's step multipliers on map state st for profile and style: nil on a map without classes (every step costs
--- its length), and the heuristics' factor for a search that also crosses graph edges (Balanced's baked costs): the
--- smaller of Costs.MIN and the style's own, else 1 (a format 1 map searches exactly as before). mult.min is the
--- style's own smallest multiplier, for searches on the grid alone.
-local function weights(st, profile, style)
+-- A danger table ({ [uiMapID] = multiplier }, opts.danger) -> its entries above 1 (nil when none) and their
+-- signature, "uiMap=mult,..." by uiMapID ("" when none): what a cache tag carries, so two tables with the same
+-- entries price alike and two different ones never share a cached search.
+local function dangerOf(danger)
+	if type(danger) ~= "table" then
+		return nil, ""
+	end
+	local ids, kept = {}, {}
+	for id, m in pairs(danger) do
+		if type(id) == "number" and type(m) == "number" and m > 1 then
+			ids[#ids + 1], kept[id] = id, m
+		end
+	end
+	if #ids == 0 then
+		return nil, ""
+	end
+	table.sort(ids)
+	for i, id in ipairs(ids) do
+		ids[i] = id .. "=" .. string.format("%.17g", kept[id])
+	end
+	return kept, table.concat(ids, ",")
+end
+
+-- Class multipliers by class byte for a profile ("Alliance", "Horde" or none), a style and a danger signature, built
+-- once each (a handful of tables: a new danger table comes with a level-up).
+local mults, multCount = {}, 0
+-- A search's step multipliers on map state st for profile, style and danger: nil on a map without classes (every
+-- step costs its length), and the heuristics' factor for a search that also crosses graph edges (Balanced's baked
+-- costs): the smaller of Costs.MIN and the style's own, else 1 (a format 1 map searches exactly as before). mult.min
+-- is the style's own smallest multiplier, for searches on the grid alone. On a map with the zone field, mult.danger
+-- is danger's entries above 1 (dangerOf; nil for none), and mult.tag carries their signature: a step into a node
+-- also costs danger[its chunk's zone], a graph edge its baked cost times the larger of its two ends' (run, runMany).
+-- Multipliers are at least 1, so the heuristics stay admissible.
+local function weights(st, profile, style, danger)
 	if not st.classed then
 		return nil, 1
 	end
 	style = Costs.Style(style)
-	local tag = (Costs.Profile(profile) or "") .. ":" .. style
+	local kept, signature
+	if st.zoned then
+		kept, signature = dangerOf(danger)
+	end
+	local tag = (Costs.Profile(profile) or "") .. ":" .. style .. (kept and ":" .. signature or "")
 	local mult = mults[tag]
 	if not mult then
-		mult = { tag = tag, min = Costs.Min(style) }
+		if multCount >= 32 then
+			mults, multCount = {}, 0
+		end
+		mult = { tag = tag, min = Costs.Min(style), danger = kept }
 		for c = 0, 47 do -- every byte a run-length literal can hold
 			mult[c] = Costs.Mult(c, Costs.Profile(profile), style)
 		end
-		mults[tag] = mult
+		mults[tag], multCount = mult, multCount + 1
 	end
 	return mult, math.min(Costs.MIN, mult.min)
 end
@@ -66,12 +105,36 @@ end
 -- The fifth argument of Find, FindCost and FindMany (the fourth of FindSync and FindManySync): a boolean is the
 -- waterWalking flag every caller passed before profiles; a table is opts { waterWalking = boolean, profile =
 -- "Alliance" | "Horde" | nil, style = "fastest" | "balanced" | "roads" | nil (Costs.Style: anything else is
--- Balanced) }. -> waterWalking, profile, style
+-- Balanced), danger = { [uiMapID] = multiplier >= 1 } | nil (a step into a zone the table holds costs that many
+-- times; weights) }. -> waterWalking, profile, style, danger
 local function options(opts)
 	if type(opts) == "table" then
-		return opts.waterWalking, opts.profile, opts.style
+		return opts.waterWalking, opts.profile, opts.style, opts.danger
 	end
-	return opts, nil, nil
+	return opts, nil, nil, nil
+end
+
+-- A graph edge's multiplier under mult.danger: the larger of its two ends' (each entrance's chunk's zone), each
+-- entrance read once per search (memo). nil without danger.
+local function edgeDanger(st, mult)
+	local danger = mult and mult.danger
+	if not danger then
+		return nil
+	end
+	local memo = {}
+	local function at(id)
+		local m = memo[id]
+		if not m then
+			local z = zoneAt(st, floor(id / 4096), (metadata(st, id)))
+			m = z and danger[z] or 1
+			memo[id] = m
+		end
+		return m
+	end
+	return function(a, b)
+		local ma, mb = at(a), at(b)
+		return ma > mb and ma or mb
+	end
 end
 
 -- Where an entrance's decoded edges (PathGrid.lua's adjacent) keep a step's cost and yards: -> the values an edge,
@@ -127,9 +190,9 @@ local function pop()
 end
 
 -- Grid search inside one cluster, entering water costing swim times its length and, with mult (weights), a node of
--- class c mult[c] times it. tree holds g/parent keyed by node + 1 and, with mult, y: the yards walked along the
--- cost-best path. With goal set it is A*, otherwise Dijkstra that stops once every node in targets (a set of nodes)
--- is settled.
+-- class c mult[c] times it, and a node in a zone of mult.danger that zone's multiplier times. tree holds g/parent
+-- keyed by node + 1 and, with mult, y: the yards walked along the cost-best path. With goal set it is A*, otherwise
+-- Dijkstra that stops once every node in targets (a set of nodes) is settled.
 local function Tree()
 	return { g = {}, par = {}, stamp = {}, closed = {}, gen = 0, y = {} }
 end
@@ -143,6 +206,9 @@ local function search(st, k, swim, mult, source, tree, goal, targets, left)
 	local C, cs = st.C, st.cs
 	local hs = cs * (mult and mult.min or 1) -- the cheapest yard: the heuristic never overstates
 	local N = C * C
+	-- Per chunk the zone multiplier of a step into it; nil when the cluster has no dangerous chunk (every search
+	-- without danger).
+	local dz = mult and mult.danger and chunkDanger(st, k, mult.danger)
 	local g, par, stamp, closed, ys = tree.g, tree.par, tree.stamp, tree.closed, mult and tree.y
 	tree.gen = tree.gen + 1
 	local gen = tree.gen
@@ -163,7 +229,14 @@ local function search(st, k, swim, mult, source, tree, goal, targets, left)
 	local u, ux, uy, gu, yu
 	local function relax(v, length)
 		local i = v + 1
-		local gv = gu + length * cs * (cls and mult[cls[i]] or 1) * (val[i] == 2 and swim or 1)
+		local gv
+		if dz then
+			local cell = v < N and v or at[i]
+			gv = gu + length * cs * (cls and mult[cls[i]] or 1) * (val[i] == 2 and swim or 1)
+				* dz[floor(floor(cell / C) * 16 / C) * 16 + floor(cell % C * 16 / C) + 1]
+		else
+			gv = gu + length * cs * (cls and mult[cls[i]] or 1) * (val[i] == 2 and swim or 1)
+		end
 		if stamp[i] ~= gen or gv < g[i] then
 			g[i], par[i], stamp[i] = gv, u, gen
 			if ys then
@@ -501,7 +574,7 @@ local function hubsOn(hubs, points, profile)
 	return out
 end
 -- Sliced A* and refinement share scratch trees; splitting adds hot-path calls and upvalues
-local function run(map, from, to, waterWalking, costOnly, profile, job, style)
+local function run(map, from, to, waterWalking, costOnly, profile, job, style, danger)
 	local st = State(map)
 	if not st then
 		return nil, "nodata"
@@ -510,7 +583,8 @@ local function run(map, from, to, waterWalking, costOnly, profile, job, style)
 	-- cost).
 	local swim = waterWalking and 1 or st.swim
 	local stride, ci, yi = edgeFields(st, waterWalking, profile)
-	local mult, hmin = weights(st, profile, style)
+	local mult, hmin = weights(st, profile, style, danger)
+	local edged = edgeDanger(st, mult)
 	local sk, sc = locate(st, from.x, from.y)
 	local gk, gc = locate(st, to.x, to.y)
 	if not sk or not gk then
@@ -610,7 +684,7 @@ local function run(map, from, to, waterWalking, costOnly, profile, job, style)
 					local v = adj[e]
 					if aclosed[v] ~= gen then
 						nodesOf(st, floor(v / 4096))
-						relax(v, gu + adj[e + ci], yu + adj[e + yi], u)
+						relax(v, gu + (edged and adj[e + ci] * edged(u, v) or adj[e + ci]), yu + adj[e + yi], u)
 					end
 				end
 			end
@@ -702,8 +776,8 @@ local function run(map, from, to, waterWalking, costOnly, profile, job, style)
 
 	-- Points carry the height of the surface they stand on; the cost weights water as the search did, and points.wet
 	-- is the yards over water, which call for Water Walking. Straightening keeps to ground no costlier for profile in
-	-- style than the path it replaces and out of hostile hub cells the path kept out of (smooth).
-	local keep = smooth(st, P, profile, style)
+	-- style (and danger) than the path it replaces and out of hostile hub cells the path kept out of (smooth).
+	local keep = smooth(st, P, profile, style, mult and mult.danger)
 	if #keep == 1 then -- both ends on one node
 		keep[2] = keep[1]
 	end
@@ -734,7 +808,7 @@ end
 
 -- Lazy terminal-node connections let nearby targets settle without first searching every faraway endpoint.
 -- One sliced Dijkstra owns the heap swap and frontier locals across endpoint searches
-local function runMany(map, from, targets, waterWalking, reverse, job, profile, style)
+local function runMany(map, from, targets, waterWalking, reverse, job, profile, style, danger)
 	local costs, yards = job and job.costs or {}, job and job.yards or {}
 	local function failed(reason)
 		for i = 1, #targets do
@@ -769,7 +843,8 @@ local function runMany(map, from, targets, waterWalking, reverse, job, profile, 
 	end
 	local swim = waterWalking and 1 or st.swim
 	local stride, ci, yi = edgeFields(st, waterWalking, profile)
-	local mult = weights(st, profile, style)
+	local mult = weights(st, profile, style, danger)
+	local edged = edgeDanger(st, mult)
 	local starts, source, _, sourceYards = connectPoint(st, swim, mult, sk, sc, from.z)
 	local clusters, links, dist, dyards, closed, left = {}, {}, {}, {}, {}, #targets
 	for i, point in ipairs(targets) do
@@ -874,7 +949,10 @@ local function runMany(map, from, targets, waterWalking, reverse, job, profile, 
 				for e = 1, #adj, stride do
 					local v = adj[e]
 					if not closed[v] then
-						relax(v, dist[u] + adj[e + ci], dyards[u] + adj[e + yi])
+						if edged then
+							nodesOf(st, floor(v / 4096))
+						end
+						relax(v, dist[u] + (edged and adj[e + ci] * edged(u, v) or adj[e + ci]), dyards[u] + adj[e + yi])
 					end
 				end
 			end
@@ -897,6 +975,7 @@ end
 -- SNAP cells and then move SNAP more off a ledge; each nonzero grid step is at least cs before rounding.
 -- This bound is in running yards for both water modes, before the planner divides by walkSpeed; on a map with classes
 -- a yard may cost as little as the smaller of Costs.MIN (graph edges, Balanced's) and style's smallest multiplier.
+-- Zone danger only raises costs (multipliers at least 1), so the bound holds with any danger table.
 ---@param map number
 ---@param from SPFPoint
 ---@param to SPFPoint
@@ -916,17 +995,19 @@ function Path.LowerBound(map, from, to, style)
 	return max(0, gap - (4 * SNAP + 1) * SQRT2 * cs) * max(0, 1 - 0.5 / cs) * cheapest
 end
 
--- May a FindMany batch from job's source serve a new batch from point for profile in style? Only from the same source
--- node, priced for the same profile (Costs.Profile: one for Alliance, one for Horde, one for none) and the same style
--- (Costs.Style: nil and unknown names are Balanced).
+-- May a FindMany batch from job's source serve a new batch from point for profile in style with danger? Only from the
+-- same source node, priced for the same profile (Costs.Profile: one for Alliance, one for Horde, one for none), the
+-- same style (Costs.Style: nil and unknown names are Balanced) and a danger table of the same signature (dangerOf:
+-- the same entries above 1; nil and {} are none).
 ---@param job SPFPathJob?
 ---@param point SPFPoint
 ---@param profile? string the new batch's opts.profile
 ---@param style? string the new batch's opts.style
+---@param danger? table<number, number> the new batch's opts.danger
 ---@return boolean
-function Path.ReuseMany(job, point, profile, style)
+function Path.ReuseMany(job, point, profile, style, danger)
 	if not job or job.map ~= point.map or not job.sourceNode or Costs.Profile(job.profile) ~= Costs.Profile(profile)
-		or Costs.Style(job.style) ~= Costs.Style(style) then
+		or Costs.Style(job.style) ~= Costs.Style(style) or select(2, dangerOf(job.danger)) ~= select(2, dangerOf(danger)) then
 		return false
 	end
 	local from = job.from
@@ -936,6 +1017,22 @@ function Path.ReuseMany(job, point, profile, style)
 	local st = State(job.map)
 	local k, node = pointNode(st, point)
 	return k == job.sourceCluster and node == job.sourceNode
+end
+
+-- The zone (uiMapID) of a world point on map: its chunk's in the map's zone field (tools/lib/nav/pack.js HEADER); nil
+-- outside the map's data, on a map without the field, and in a chunk of no zone. Reads the metadata only: no cluster
+-- is decoded.
+---@param map number
+---@param x number
+---@param y number
+---@return number?
+function Path.ZoneAt(map, x, y)
+	local st = State(map)
+	if not st or not st.zoned then
+		return nil
+	end
+	local k, lc = locate(st, x, y)
+	return k and zoneAt(st, k, lc) or nil
 end
 
 local function start(job)
@@ -948,9 +1045,9 @@ local function start(job)
 	end
 	Expansions(0)
 	if job.targets then
-		return runMany(job.map, job.from, job.targets, job.waterWalking, job.reverse, job, job.profile, job.style)
+		return runMany(job.map, job.from, job.targets, job.waterWalking, job.reverse, job, job.profile, job.style, job.danger)
 	end
-	return run(job.map, job.from, job.to, job.waterWalking, job.costOnly, job.profile, job, job.style)
+	return run(job.map, job.from, job.to, job.waterWalking, job.costOnly, job.profile, job, job.style, job.danger)
 end
 
 local spare
@@ -976,11 +1073,11 @@ end
 ---@param map number
 ---@param from SPFPoint
 ---@param to SPFPoint
----@param opts? boolean|{ waterWalking: boolean?, profile: string?, style: string? } waterWalking, or opts (options above)
+---@param opts? boolean|{ waterWalking: boolean?, profile: string?, style: string?, danger: table<number, number>? } waterWalking, or opts (options above)
 function Path.FindSync(map, from, to, opts)
 	Deadline(huge)
-	local waterWalking, profile, style = options(opts)
-	local job = { map = map, from = from, to = to, waterWalking = waterWalking, profile = profile, style = style }
+	local waterWalking, profile, style, danger = options(opts)
+	local job = { map = map, from = from, to = to, waterWalking = waterWalking, profile = profile, style = style, danger = danger }
 	local co = coroutine.create(start)
 	local saved = scratch()
 	local ok, points, cost = coroutine.resume(co, job)
@@ -999,14 +1096,14 @@ end
 ---@param map number
 ---@param from SPFPoint
 ---@param targets SPFPoint[]
----@param opts? boolean|{ waterWalking: boolean?, profile: string?, style: string? } waterWalking, or opts (options above)
+---@param opts? boolean|{ waterWalking: boolean?, profile: string?, style: string?, danger: table<number, number>? } waterWalking, or opts (options above)
 ---@param reverse? boolean
 function Path.FindManySync(map, from, targets, opts, reverse)
 	Deadline(huge)
 	Expansions(0)
 	local saved = scratch()
-	local waterWalking, profile, style = options(opts)
-	local costs, reason, yards = runMany(map, from, targets, waterWalking, reverse, nil, profile, style)
+	local waterWalking, profile, style, danger = options(opts)
+	local costs, reason, yards = runMany(map, from, targets, waterWalking, reverse, nil, profile, style, danger)
 	scratch(saved)
 	return costs, reason, Expansions(), yards
 end

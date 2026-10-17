@@ -351,6 +351,64 @@ emit(out)`,
 	assert.ok(edges > 0, 'a graph');
 });
 
+// The zone field's run-length (pack.js HEADER): a symbol < 48 starts a 2-symbol uiMapID, one >= 48 repeats the
+// previous one (symbol - 47) more times. -> 256 uiMapIDs by chunk (cx // 8) * 16 + (cy // 8) of the cluster's cells.
+function decodeZones(s) {
+	const B = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
+	const out = [];
+	for (let i = 0; i < s.length; ) {
+		const a = B.indexOf(s[i]);
+		if (a < 48) {
+			out.push(a * 64 + B.indexOf(s[i + 1]));
+			i += 2;
+		} else {
+			for (let r = 47; r < a; r++) out.push(out[out.length - 1]);
+			i++;
+		}
+	}
+	return out;
+}
+
+test('pack: the zone field: each chunk\'s zone (its area up to a zone, as a uiMapID) in the cluster\'s own axes; a tile without areas writes none', async () => {
+	// Tile 32: Western Plaguelands (area 28, uiMap 1422) in its north half, Silverpine (130, 1421) in the south, and
+	// one chunk of Tirisfal (85, 1420) at its south-west corner (asymmetric: a flipped axis puts it elsewhere). Tile
+	// 33 (east of it) has no areas.
+	const span = ADT / 16;
+	const areaAt = (x, y) => (x < span && y > ADT - span ? 85 : y < ADT / 2 ? 28 : 130);
+	const a = new Scene({ col: 32, areas: areaAt });
+	const b = new Scene({ col: 33, areas: null });
+	const dir = await gridOf(a, b);
+	const UIMAP = { 28: 1422, 130: 1421, 85: 1420 };
+	const layers = { zone: (c, areaId) => UIMAP[areaId] || 0 };
+	const files = await packNav({ dir, cells: 128, layers });
+	const meta = files.get('Nav0.lua');
+	const D = S.loadPack(files, 0);
+	const zone = {};
+	for (const m of meta.matchAll(/^\t\t\[(\d+)\] = "([A-Za-z0-9+/]*)",$/gm)) zone[Number(m[1])] = m[2];
+	assert.match(meta, /^\tzone = \{$/m, 'the metadata carries the zone field');
+	const ka = S.locate(D, a.world(10, 10).wx, a.world(10, 10).wy).k;
+	const kb = S.locate(D, b.world(10, 10).wx, b.world(10, 10).wy).k;
+	assert.notEqual(ka, kb);
+	assert.deepEqual(Object.keys(zone).map(Number), [ka + 1], 'only the tile with areas has a zone string');
+	const z = decodeZones(zone[ka + 1]);
+	assert.equal(z.length, 256);
+	let corner = 0;
+	for (let cy = 0; cy < 16; cy++) {
+		for (let cx = 0; cx < 16; cx++) {
+			const [x, y] = [(cx + 0.5) * span, (cy + 0.5) * span];
+			const w = a.world(x, y);
+			const p = S.locate(D, w.wx, w.wy);
+			const q = Math.floor(Math.floor(p.lc / 128) / 8) * 16 + Math.floor((p.lc % 128) / 8);
+			assert.equal(z[q], UIMAP[areaAt(x, y)], `chunk at local ${x.toFixed(0)},${y.toFixed(0)} (cluster chunk ${q})`);
+			if (z[q] === 1420) corner++;
+		}
+	}
+	assert.equal(corner, 1, 'one Tirisfal chunk');
+	// Without the zone layer, or with no chunk in a zone, no field is written.
+	assert.doesNotMatch((await packNav({ dir, cells: 128 })).get('Nav0.lua'), /zone = /);
+	assert.doesNotMatch((await packNav({ dir, cells: 128, layers: { zone: () => 0 } })).get('Nav0.lua'), /zone = /);
+});
+
 // The cost from node src to node dst on a decoded cluster, a step into node v costing length * cs * mult(class of
 // v), times swim in water (Routing/Path.lua search).
 function gridCost(dc, src, dst, mult, cs, swim) {

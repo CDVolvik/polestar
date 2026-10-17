@@ -26,7 +26,7 @@
 //                        which neighbouring surfaces a link joins (a CellGrid)
 //   buildHpa(cg)         the HPA* graph, each edge priced per profile
 //   encodeMaps(cg, hpa)  -> the five per-cluster strings (graph, grid,
-//                        height, floor, class)
+//                        height, floor, class) and the zone field's
 //   packFiles(...)       strings -> NavN.lua (metadata) + NavN_i.lua parts
 //                        of zlib-compressed, base64 blocks
 //
@@ -42,6 +42,13 @@
 // edge carries the cost of its grid path under each profile (Alliance, Horde,
 // none: a step costs its length times the class's multiplier, times swim in
 // water) and its yards.
+//
+// Zones (decided 2026-10-17, the zone danger design): each cluster carries
+// the zone of its 16 x 16 chunks (the grid's chunk area, up its AreaTable
+// parents to a zone of zones.json, as its uiMapID: readLayers' zoneOf) in the
+// metadata's zone field; the router prices a step into a zone its caller
+// marks dangerous (Routing/Path.lua). Nothing else depends on it: every other
+// field is the same bytes with or without zones.
 //
 // Entrances (his rule, plus roads decided 2026-10-16, Ruling 31). A cluster
 // border's crossings are grouped by the region on each side; his rule puts
@@ -499,8 +506,9 @@ class Faces {
 // layers (each optional): roads(c, col, row) -> the tile's road columns (65536 bytes, j * 256 + i, nonzero: road;
 // cellGridFromDir derives them from the layer's weights) or null;
 // hubs: { [c]: [{ id, side, name, areaId, disks: [[x, y, r]] }] } (hubs.json's); city(c, x, y, areaId) -> whether a
-// chunk (its centre, its area) lies in a capital. The ground classes (nodeClass) come from these and the grid's
-// flags and tslope.
+// chunk (its centre, its area) lies in a capital; zone(c, areaId) -> the uiMapID of the zone a chunk's area lies in
+// (0 or null for none: the cluster's cl.zone, the zone field). The ground classes (nodeClass) come from these and
+// the grid's flags and tslope.
 function cellGrid({ tiles, loadTile, regions, C, c = 0, layers = {}, log = () => {} }) {
 	const rows = tiles.map((t) => t.row);
 	const cols = tiles.map((t) => t.col);
@@ -548,6 +556,15 @@ function cellGrid({ tiles, loadTile, regions, C, c = 0, layers = {}, log = () =>
 				const wy = (32 - meta.col) * T - ((ch & 15) * 16 + 8) * CELL;
 				city[ch] = layers.city(c, wx, wy, t.areas[ch]) ? 1 : 0;
 			}
+		}
+		// Per chunk in the cluster's own axes (q = (cx // 8) * 16 + (cy // 8) at 128 cells; x and y run against the
+		// grid's j and i, so chunk q is the grid's 255 - q): its zone's uiMapID (layers.zone), 0 for none. A tile with
+		// no chunk in a zone has none (the zone field skips it).
+		if (layers.zone && t.areas) {
+			const zone = new Uint16Array(256);
+			let any = false;
+			for (let q = 0; q < 256; q++) any = (zone[q] = Number(layers.zone(c, t.areas[255 - q])) || 0) !== 0 || any;
+			if (any) cl.zone = zone;
 		}
 		const terr = (e) => (flags[e] & (FLAG.TERRAIN | FLAG.WMO | FLAG.M2)) === FLAG.TERRAIN;
 		// A terrain link touching terrain the client slides off, inside a run of such columns (along the link's
@@ -1200,6 +1217,21 @@ function runLength(vals) {
 	return out;
 }
 
+// The zone field of a cluster (HEADER): its 256 chunk uiMapIDs, each a 2-symbol number (under 48 * 64, so its first
+// symbol is under 48), a symbol >= 48 repeating the previous one (symbol - 47) more times.
+function encodeZones(vals) {
+	let out = '';
+	for (let i = 0; i < vals.length; ) {
+		let j = i + 1;
+		while (j < vals.length && vals[j] === vals[i]) j++;
+		if (!(vals[i] < 48 * 64)) throw new Error(`pack: zone ${vals[i]} does not fit the zone field`);
+		out += enc(vals[i], 2);
+		for (let r = j - i - 1; r > 0; r -= 16) out += B64[48 + Math.min(r, 16) - 1];
+		i = j;
+	}
+	return out;
+}
+
 // gen_nav.py encode_heights.
 function encodeHeights(cl, C) {
 	const q = new Int32Array(C * C);
@@ -1412,7 +1444,10 @@ function encodeMaps(cg, hpa) {
 			floors.set(k, out);
 		}
 	}
-	return { graph, grid: grids, height: heights, floor: floors, class: classed ? classes : undefined, components: roots.size, clamped, maxDegree };
+	// The zone field (maps format 2 only): clusters whose chunks lie in a zone (cellGrid's cl.zone).
+	const zones = new Map();
+	for (const k of [...cg.clusters.keys()].sort((a, b) => a - b)) if (cg.clusters.get(k).zone) zones.set(k, encodeZones(cg.clusters.get(k).zone));
+	return { graph, grid: grids, height: heights, floor: floors, class: classed ? classes : undefined, zone: classed ? zones : undefined, components: roots.size, clamped, maxDegree };
 }
 
 const HEADER = [
@@ -1440,6 +1475,10 @@ const HEADER = [
 	'--   bit 3 inside an Alliance hub, bit 4 inside a Horde hub), run-length as the grid field; nodes past the end',
 	'--   are class 0, and so is every node of a cluster without one. hubs: the hostile hubs, for the router\'s report:',
 	'--   { id, side, name (English), areaId (AreaTable: the town in the client\'s language), disks = { { x, y, r } } }.',
+	'-- zone[k + 1] (format 2, optional, not packed): the zone of each of the cluster\'s 16 x 16 chunks (cells / 16 cells',
+	'--   square; chunk (x // (cells / 16)) * 16 + y // (cells / 16) of its local cell x, y) as its uiMapID, 0 for none:',
+	'--   a 2-symbol number, a symbol >= 48 repeating the previous one (symbol - 47) more times. A cluster without one',
+	'--   lies in no zone; the router prices a step into a zone by its caller\'s danger table (Routing/Path.lua).',
 	'-- Packed (pack_nav.py\'s layout): data.packed.<field>[k + 1] = { base64(zlib(16 KB block)), ... } in the parts.',
 ];
 
@@ -1458,7 +1497,8 @@ const luaStr = (s) => `"${String(s).replace(/[\\"]/g, (ch) => `\\${ch}`).replace
 
 // One map's strings -> its metadata file and parts (pack_nav.py write_bundle);
 // `gen` is the generated-file header line. Maps format 2 (maps.class set)
-// carry format = 2, the profiles, the hubs ([{ id, side, name, areaId, disks }]) and the class field.
+// carry format = 2, the profiles, the hubs ([{ id, side, name, areaId, disks }]), the class field and, when a
+// cluster lies in a zone (maps.zone), the zone field in the metadata itself.
 function packFiles({ map, cg, maps, global, gen, hubs = [] }) {
 	const files = [];
 	const classed = maps.class !== undefined;
@@ -1490,6 +1530,7 @@ function packFiles({ map, cg, maps, global, gen, hubs = [] }) {
 		'\theight = {},',
 		'\tfloor = {},',
 		...(classed ? ['\tclass = {},'] : []),
+		...(classed && maps.zone && maps.zone.size ? ['\tzone = {', ...[...maps.zone].sort((p, q) => p[0] - q[0]).map(([k, s]) => `\t\t[${k + 1}] = "${s}",`), '\t},'] : []),
 		`\tcounts = { ${fields.map((f) => `${f} = ${maps[f].size}`).join(', ')} },`,
 		`\tpacked = { ${fields.map((f) => `${f} = {}`).join(', ')} },`,
 		'}',
@@ -1549,8 +1590,10 @@ function cityTest({ areaTable, zoneAt = null }) {
 }
 
 // The ground layers of `nav layers` (data/local/nav-layers) for packNav: the roads layer
-// (roads/<c>/<col>_<row>.bin, absent tiles and maps none), hubs.json, and the capitals (cityTest).
-function readLayers({ dir, areaTable, zoneAt = null }) {
+// (roads/<c>/<col>_<row>.bin, absent tiles and maps none), hubs.json, and the capitals (cityTest); with zoneOf
+// ((c, areaId) -> the uiMapID of the zone the area lies in, up its AreaTable parents, or null: aids.js zoneResolver)
+// the chunks' zones for the zone field.
+function readLayers({ dir, areaTable, zoneAt = null, zoneOf = null }) {
 	const hubsFile = path.join(dir, 'hubs.json');
 	if (!fs.existsSync(hubsFile)) throw new Error(`pack: no hubs layer at ${hubsFile} (node tools/polestar.js nav layers hubs)`);
 	if (!fs.existsSync(path.join(dir, 'roads', 'index.json'))) throw new Error(`pack: no roads layer under ${path.join(dir, 'roads')} (node tools/polestar.js nav layers roads)`);
@@ -1568,6 +1611,7 @@ function readLayers({ dir, areaTable, zoneAt = null }) {
 		},
 		hubs,
 		city,
+		...(zoneOf ? { zone: zoneOf } : {}),
 	};
 }
 
@@ -1705,5 +1749,5 @@ function checkPack(addonDir) {
 module.exports = {
 	SWIM, ZQ, MIN_REGION, BLOCK_BYTES, PART_BYTES, B64, SDX, SDY, OPP, PACK_JSON, MAPS, COST_MAX, YARDS_MAX, AREA_CAPITAL,
 	CellGrid, cellGrid, cellGridFromDir, readRegions, buildHpa, encodeMaps, packFiles, packNav, shipPack, checkPack,
-	nodeClass, capitalAreas, cityTest, readLayers, markHubs, navXml,
+	nodeClass, capitalAreas, cityTest, readLayers, markHubs, navXml, encodeZones,
 };
