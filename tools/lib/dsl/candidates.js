@@ -24,8 +24,12 @@ function round2(n) {
 	return Object.is(r, -0) ? 0 : r;
 }
 
+// World yards of a map point: the map's Era frame, else its Forever one (a
+// map Forever added, such as Zephras Isle, has only that, and its points are
+// in the live frame). Without either the point cannot be placed: the set then
+// keeps one candidate per map, so a map placed by neither frame must stay rare.
 function worldPos(data, map, x, y) {
-	const fr = data.eraFrame(map);
+	const fr = data.eraFrame(map) || (data.mapFrames && data.mapFrames.forever && data.mapFrames.forever[map]) || null;
 	if (!fr) return null;
 	return { c: fr.c, wx: fr.top + ((fr.bottom - fr.top) * y) / 100, wy: fr.left + ((fr.right - fr.left) * x) / 100 };
 }
