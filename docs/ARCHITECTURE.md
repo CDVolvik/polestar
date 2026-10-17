@@ -1003,7 +1003,8 @@ Polestar.Engine.GetProgress() -> doneSteps, totalSteps
   levels, and it hands over to `next` once nothing worth doing is left). Setting
   `behavior.skipGrey` (default on since the catch-up; leveling guides only, see
   "Every step") auto-skips `accept` goals for quests already
-  grey for the character, and with them the quests' turn-ins and objectives,
+  grey for the character (and `turnin ... direct` goals, which the compiler
+  gives their quest's level too), and with them the quests' turn-ins and objectives,
   unless the quest is a prerequisite (`pre`, `preAll`) of a quest later in the
   guide or its chain that is not grey, directly or through other grey ones.
 - **Class-training reminder.** Class trainers ship in the core:
@@ -1359,8 +1360,15 @@ grey-skipped accept: the way to what was left out goes with it. A guide the
 character is past (an accept left out or grey-skipped, or `maxLevel`
 reached) with no start, no accept waiting for a level or a prerequisite and
 the quest log read passes whole (`Own.placedThrough`) and chains to `next`
-as a finished one does, even when the player opened it by hand; the next
-guide is placed the same way. `GUIDE_PLACED(guideId, step, passed)` fires
+as a finished one does, even when the player opened it by hand (opening a
+guide by hand clears its `completedFired`, so a guide passed earlier in the
+session chains again); the next guide is placed the same way. Where it offers
+a route choice, the catch-up takes the option with the most quest work done
+(`Own.likeliestRoute`, `Own.doneIn`), the recommended one among equals. With
+no tab open at login (`behavior.autoSelectGuide`), a character who did quests
+in their race's first guide (`Guides.FirstGuide()`: the suggestion at level
+1) starts there and goes through the guides to where they are; one with
+nothing done there gets `Guides.Suggest()`, as before. `GUIDE_PLACED(guideId, step, passed)` fires
 for the active tab once placement ends, with the guides passed whole.
 
 **Every step** (`Own.everyStep`): any guide but a leveling one (category
