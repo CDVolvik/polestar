@@ -769,10 +769,14 @@ places follow with `alt = true`; a hand-placed point is the first spot, the
 data's places its alternatives (GUIDE_FORMAT, "Spawn areas"). `x`/`y` stay the
 default point. `z` (optional, 0.2.4) is the height of the NPC or object the
 goal's `x`/`y` stands for (the compiler's, from `spawnz.json`: GUIDE_FORMAT,
-"Heights"); the Engine puts it on the waypoint while the waypoint is that
-point (`posOf`: not a smart target's candidate, not a spot elsewhere), and the
-walk to it is searched with it ("Walking paths" under Nav). Packs stay format
-2: an older Polestar ignores it.
+"Heights"); a spot and a smart target's candidate may carry their own `z`
+(0.2.5, #180), by the same rule from their own point. The Engine puts the
+height of the place it leads to on the waypoint (`posOf`: the chosen
+candidate's `z`, else the chosen spot's, else the goal's while the waypoint is
+the goal's own point), and on the step view's goals and groups, so a click on
+a goal's row, header or map pin and the training reminder's and Nearby's class
+trainer (`Nav.SetTarget`'s `z`) keep it; the walk to it is searched with it
+("Walking paths" under Nav). Packs stay format 2: an older Polestar ignores it.
 
 Group content (format 2; GUIDE_FORMAT, "Group content"): `group = { kind =
 "elite", rank = 1|2|3 }`, `{ kind = "dungeon"|"raid", name = "Dire Maul" }` or
@@ -924,7 +928,7 @@ Polestar.Engine.GetProgress() -> doneSteps, totalSteps
 
 #### Smart logic
 
-- **Candidate goals.** A compiled goal may carry `candidates = { { npc, npcName, map, x, y, f, faction = "A"|"H"|"AH", races?, classes? }, ... }`
+- **Candidate goals.** A compiled goal may carry `candidates = { { npc, npcName, map, x, y, z?, f, faction = "A"|"H"|"AH", races?, classes? }, ... }`
   (from `train <Profession>`, `train class`, `buy … nearest`, `vendor nearest`, `sethome nearest`; see GUIDE_FORMAT).
   The Engine filters by the character's faction (and races/classes when given),
   then picks the cheapest by `Polestar.Nav.EstimateTravel(from, to)` seconds when
@@ -1436,8 +1440,9 @@ colour change repaints live without a reload.
 ## Nav
 
 ```lua
-Polestar.Nav.SetTarget(map, x, y, label, f, stop)   -- user picked a goal; overrides the engine waypoint until the step changes;
-                                                     -- stop: what stands there ("dungeon", "trainer", ...), for the hand-off below
+Polestar.Nav.SetTarget(map, x, y, label, f, stop, z)   -- user picked a goal; overrides the engine waypoint until the step changes;
+                                                        -- stop: what stands there ("dungeon", "trainer", ...), for the hand-off below;
+                                                        -- z: the height of the NPC or object there, optional (the walk ends on its floor)
 Polestar.Nav.ClearTarget()
 Polestar.Nav.GetTarget() -> waypoint | nil
 Polestar.Nav.GetDistance() -> yards | nil      -- to an area target's edge, 0 inside it

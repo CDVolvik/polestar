@@ -167,7 +167,7 @@ local override    -- point picked with Nav.SetTarget, kept until the step change
 local dismissed   -- engine waypoint hidden by ClearTarget until the Engine moves on
 local target      -- what we guide to: override, else engine waypoint
 local tC, tX, tY  -- target in world space (nil until resolvable)
-local tZ         -- its height: the Engine waypoint's `z` (a guide goal at an NPC or object), else nil
+local tZ         -- its height: the target's `z` (a guide goal, candidate or spawn area at an NPC or object), else nil
 local arrived = false
 local firing = false
 local ticker
@@ -220,12 +220,15 @@ end
 
 -- `stop`: what stands there, as Shortest Path Forever's stop kinds name it
 -- ("dungeon", "trainer", "innkeeper", "flightmaster"; Nav/Handoff.lua), optional.
-function Nav.SetTarget(map, x, y, label, f, stop)
+-- `z`: the height of the NPC or object there (a guide goal's or candidate's
+-- compiled `z`), optional, so the walk ends on its floor.
+function Nav.SetTarget(map, x, y, label, f, stop, z)
 	map, x, y = tonumber(map), tonumber(x), tonumber(y)
 	if not (map and x and y) then return false end
 	local Engine = ns.Engine
 	override = {
 		map = map, x = x, y = y, f = f,
+		z = type(z) == "number" and z or nil,
 		label = (label and label ~= "") and label or L["Waypoint"],
 		kind = "manual",
 		stop = type(stop) == "string" and stop or nil,

@@ -634,6 +634,21 @@ test('Z1: the Engine waypoint\'s height goes to the walking engine with the targ
 	assert.deepEqual(out.hand, [2, true, true], 'the same spot set by hand: searched again, without a height');
 });
 
+test('#180: a target set by hand at an NPC with its height (Nav.SetTarget\'s z: a class trainer, a goal\'s row) is searched with it', () => {
+	const [out] = run(`${Z_WAYPOINT}
+		local r = {}
+		nav.place(0, 0)
+		N.SetTarget(m, x, y, "Trainer", nil, "trainer", -66)
+		N.Sample()
+		r.withZ = { calls(), fake.last().to.z, select(4, N.GetTargetWorld()), N.GetTarget().z }
+		N.SetTarget(m, x, y, "Trainer", nil, "trainer", "high")
+		N.Sample()
+		r.bad = N.GetTarget().z == nil
+		emit(r)`);
+	assert.deepEqual(out.withZ, [1, -66, -66, -66]);
+	assert.equal(out.bad, true, 'only a number is a height');
+});
+
 test('Z2: a search with the height that fails is asked once more without it, and that answer stands', () => {
 	const [out] = run(`${Z_WAYPOINT}
 		local r = {}
