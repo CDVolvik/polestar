@@ -2002,7 +2002,7 @@ again, all in the new style. No line drawn in the old style stays.
 **Zone danger.** Every search Walk.lua makes also goes with `opts.danger`,
 `Nav.danger.Table(level, startZone, goalZone)` (`Nav/Danger.lua`): every zone
 with a level range (`Maps.EachZoneLevels`) whose lowest level is at least the
-player's + 4 (x3) or more than + 10 (x10), `Nav.danger.Mult`; a zone without a
+player's + 4 (x3) or more than + 10 (x20, the other faction's towns' strength), `Nav.danger.Mult`; a zone without a
 range (a city, an unknown one) never counts, and nil when none does. The
 idea and its 4-level threshold come from Ding! (Yendi, `ding-travel`
 2bccf01). The zones a walk starts and ends in are left out (`Path.ZoneAt` at
@@ -2023,7 +2023,7 @@ each 100 yd piece of the line, of `danger[Path.ZoneAt(...)]` (1 elsewhere),
 the zones of its two ends never counting; the table is the plan's level's
 without the player's and the target's zones (`Travel.Replan` and
 `Nav.EstimateTravel` alike; the latter's 5 s cache is keyed by the level
-too). A walk half through a far-above zone costs x5.5, half through a
+too). A walk half through a far-above zone costs x10.5, half through a
 dangerous one x2. The zones read are kept per chunk (16 to a tile) for the
 session's `Path.ZoneAt`, so later plans between the same places ask the
 router nothing. With `nav.navRouting` off or the guiding handed to Shortest
@@ -2559,7 +2559,7 @@ the sha256 of every file), and `Nav.xml` to it.
 prices no hub hostile and still routes), `style` the Route style option
 (`nav.routeStyle`, above), `danger` the zones far above the player (Zone
 danger, above), so roads are preferred (x0.8 in Balanced), the other
-faction's towns avoided (x20) and dangerous zones x3 or x10. On format 2 maps a walk's cost is no
+faction's towns avoided (x20) and dangerous zones x3 or x20. On format 2 maps a walk's cost is no
 longer its yards, so the two are kept apart: the cost chooses, yards are
 what is shown and timed.
 

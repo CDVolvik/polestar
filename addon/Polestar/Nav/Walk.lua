@@ -67,7 +67,7 @@
 -- without the walk's own start and goal zones, Path.ZoneAt), so the router
 -- prices each step by its ground in that style (roads cheaper, slopes and
 -- indoors dearer), the other faction's towns twenty times over and a step
--- into a dangerous zone three or ten times. A change of style, or a level-up
+-- into a dangerous zone three or twenty times. A change of style, or a level-up
 -- (PLAYER_LEVEL_UP), drops the arrow's path, the measures and the later
 -- walks' paths, and re-plans at once (Walk:OnSettings, searchAgain): every
 -- walk is searched and measured again in it. The router's cost chooses (the
@@ -139,7 +139,7 @@ end
 -- goal (tx, ty) on map; nil for either leaves no zone out there), so each
 -- step is priced for them: roads cheaper, slopes and indoors dearer, the
 -- other faction's towns twenty times over, a zone far above the player three
--- or ten times.
+-- or twenty times.
 local function opts(water, map, sx, sy, tx, ty)
 	local C = ns.Compat
 	local profile = C and C.GetPlayerFaction and C.GetPlayerFaction() or nil

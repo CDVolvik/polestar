@@ -966,7 +966,7 @@ test('zone danger (#195): Tirisfal to the Spring Well at level 20 as Horde walks
 	assert.equal(out.profile, 'Horde');
 	assert.equal(out.startZone, 1420, 'the walk starts in Tirisfal');
 	assert.equal(out.goalZone, 1424, 'and ends in Hillsbrad');
-	assert.match(out.danger, /(^|,)1422=10(,|$)/, 'Western Plaguelands is far above level 20');
+	assert.match(out.danger, /(^|,)1422=20(,|$)/, 'Western Plaguelands is far above level 20 (x20)');
 	assert.ok(out.before.wpl > 0, 'without danger the walk crosses Western Plaguelands (#195)');
 	assert.equal(out.after.wpl, 0, 'with it the searched walk keeps out');
 	assert.equal(out.drawn.wpl, 0, 'and so does the drawn line');

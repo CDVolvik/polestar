@@ -23,7 +23,7 @@
 -- The profile and the route style reach the router (opts.profile, opts.style) only when it prices by profile (Polestar_NavCosts is defined):
 -- 0.2.4's router takes a waterWalking flag where opts goes, so it is called without one.
 -- A route with a level is priced with zone danger (opts.danger) as the addon's Nav.danger.Table builds it: every zone
--- of zones.json whose lowest level is >= level + 4 costs 3x, > level + 10 10x, except the start's and the goal's
+-- of zones.json whose lowest level is >= level + 4 costs 3x, > level + 10 20x, except the start's and the goal's
 -- zones (Path.ZoneAt at each end); none on a router without Path.ZoneAt or a map without the zone field. A route's
 -- danger ({"<uiMapID>": multiplier}) is laid over that table, level or not: it adds zones, or replaces their
 -- multipliers (1 takes a zone out; 1000 all but closes it, to ask whether a walk has another way).
@@ -237,7 +237,7 @@ local function dangerOf(map, from, to, level, extra)
 	if type(level) == "number" then
 		local a, b = Path.ZoneAt(map, from.x, from.y), Path.ZoneAt(map, to.x, to.y)
 		for id, min in pairs(zoneMins) do
-			local m = (min > level + 10 and 10) or (min >= level + 4 and 3) or nil
+			local m = (min > level + 10 and 20) or (min >= level + 4 and 3) or nil
 			if m and id ~= a and id ~= b then
 				danger = danger or {}
 				danger[id] = m

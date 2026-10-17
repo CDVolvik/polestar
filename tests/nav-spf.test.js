@@ -1665,7 +1665,7 @@ test('changing the route style mid-walk drops the old lines, re-plans at once, a
 // Roost's, y < 0 the target's, else a zone without levels) and their level
 // ranges (Maps.GetZoneLevels, faked) at the player's level make the danger
 // table every search carries: a zone whose lowest level is at least the
-// player's + 4 costs x3, more than + 10 x10; the walk's own start and goal
+// player's + 4 costs x3, more than + 10 x20 (Ruling 35); the walk's own start and goal
 // zones never count.
 const DANGER = `
 local D = N.danger
@@ -1701,7 +1701,7 @@ local function sig(t, s)
 end
 `;
 
-test('zone danger: x3 from the player\'s level + 4, x10 above + 10; a zone without levels, or no level, is never dangerous', () => {
+test('zone danger: x3 from the player\'s level + 4, x20 above + 10; a zone without levels, or no level, is never dangerous', () => {
 	const [out] = run(`${DANGER}
 		local r = {}
 		zoneLevels = { [9001] = { 23, 30 }, [9002] = { 24, 30 }, [9003] = { 30, 40 }, [9004] = { 31, 40 } }
@@ -1710,13 +1710,13 @@ test('zone danger: x3 from the player\'s level + 4, x10 above + 10; a zone witho
 		r.none = sig(D.Table(40, nil, nil))
 		r.cached = D.Table(20, nil, nil) == D.Table(20, nil, nil)
 		emit(r)`, { many: true });
-	assert.deepEqual(out.mult, [1, 3, 3, 10, 1, 1, 1]);
-	assert.deepEqual(out.table, ['9002=3,9003=3,9004=10', '9002=3,9003=3,9004=10'], 'every zone above 1, and its signature');
+	assert.deepEqual(out.mult, [1, 3, 3, 20, 1, 1, 1]);
+	assert.deepEqual(out.table, ['9002=3,9003=3,9004=20', '9002=3,9003=3,9004=20'], 'every zone above 1, and its signature');
 	assert.deepEqual(out.none, [false, ''], 'none: nil, an empty signature');
 	assert.equal(out.cached, true, 'kept per level and zone pair');
 });
 
-test('zone danger: at level 20 every search carries the zones far above (x10) and dangerous (x3), minus the walk\'s own start and goal zones', () => {
+test('zone danger: at level 20 every search carries the zones far above (x20) and dangerous (x3), minus the walk\'s own start and goal zones', () => {
 	const [out] = run(`${CROSSING}${DANGER}
 		local r = {}
 		nav.place(900, 800)
@@ -1742,14 +1742,14 @@ test('zone danger: at level 20 every search carries the zones far above (x10) an
 			D.Mult(20, 1497),
 		}
 		emit(r)`, { many: true });
-	assert.equal(out.batch, '1416=3,1422=10', 'the measure into the target');
-	assert.equal(out.own, '1416=3,1422=10', 'the arrow\'s own walk');
-	assert.deepEqual(out.leg, ['1416=3,1422=10', 400, 300], 'a later walk, from a zone without levels');
-	assert.equal(out.inside, '1422=10', 'a target inside Alterac (dangerous) is measured without its own zone');
+	assert.equal(out.batch, '1416=3,1422=20', 'the measure into the target');
+	assert.equal(out.own, '1416=3,1422=20', 'the arrow\'s own walk');
+	assert.deepEqual(out.leg, ['1416=3,1422=20', 400, 300], 'a later walk, from a zone without levels');
+	assert.equal(out.inside, '1422=20', 'a target inside Alterac (dangerous) is measured without its own zone');
 	assert.deepEqual(out.unit, [
-		['1416=3,1422=10', '1416=3,1422=10'],
+		['1416=3,1422=20', '1416=3,1422=20'],
 		['1416=3', '1416=3'],
-		['1422=10', '1422=10'],
+		['1422=20', '1422=20'],
 		[false, ''],
 		1,
 	], 'the start\'s and the goal\'s zones never count; a zone without levels is absent');
@@ -1784,17 +1784,17 @@ test('zone danger: a level-up drops the walks, re-plans at once, and measures an
 		r.after = lines()
 		emit(r)`, { many: true });
 	assert.deepEqual(out.before.lines.slice(0, 3), [['walk', 3], ['flight', 2], ['walk', 3]], 'at 20: the walks drawn along their paths');
-	assert.equal(out.before.danger, '1416=3,1422=10');
+	assert.equal(out.before.danger, '1416=3,1422=20');
 	assert.deepEqual(out.replanned, { changed: true, version: true }, 're-planned at once');
 	assert.deepEqual(out.lines.slice(0, 3), [['walk', 2], ['flight', 2], ['walk', 2]], 'no line priced at 20 stays: straight until the new paths are in');
-	assert.deepEqual(out.asked, [2, '1422=10', '1422=10', 900, 900], 'the walks into the target measured again and the arrow\'s own walk searched again, at 27 (Alterac no longer dangerous)');
-	assert.deepEqual(out.leg, ['1422=10', 400, 300, 600, 20], 'the later walk searched again at 27');
+	assert.deepEqual(out.asked, [2, '1422=20', '1422=20', 900, 900], 'the walks into the target measured again and the arrow\'s own walk searched again, at 27 (Alterac no longer dangerous)');
+	assert.deepEqual(out.leg, ['1422=20', 400, 300, 600, 20], 'the later walk searched again at 27');
 	assert.deepEqual(out.after.slice(0, 3), [['walk', 3], ['flight', 2], ['walk', 3]], 'drawn along the new paths');
 });
 
 // The planner's straight estimates (Nav/Danger.lua Danger.Along, Nav/Travel.lua):
 // the zone every 100 yd along a straight walk (the middle of each 100 yd
-// piece), its share in a dangerous zone x3, in a far-above one x10; the
+// piece), its share in a dangerous zone x3, in a far-above one x20; the
 // zones of its two ends never count, nor the player's and the target's.
 test('zone danger: Danger.Along samples a straight line every 100 yd, its ends\' zones never counting; without a table, Path.ZoneAt or length it is 1', () => {
 	const [out] = run(`${DANGER}
@@ -1811,7 +1811,7 @@ test('zone danger: Danger.Along samples a straight line every 100 yd, its ends\'
 			end
 		end
 		layout(1422)
-		local far = { [1422] = 10, [1416] = 3 }
+		local far = { [1422] = 20, [1416] = 3 }
 		r.far = D.Along(far, 0, 0, 0, 1200, 0)
 		r.asked = asked
 		r.again = D.Along(far, 0, 0, 0, 1200, 0)
@@ -1819,7 +1819,7 @@ test('zone danger: Danger.Along samples a straight line every 100 yd, its ends\'
 		layout(1416)
 		r.dangerous = D.Along(far, 0, 0, 0, 1200, 0)
 		layout(1422)
-		r.endsNever = D.Along({ [1421] = 10, [1422] = 10, [1424] = 10 }, 0, 0, 0, 1200, 0)
+		r.endsNever = D.Along({ [1421] = 20, [1422] = 20, [1424] = 20 }, 0, 0, 0, 1200, 0)
 		r.fromInside = D.Along(far, 0, 150, 0, 1350, 0)
 		r.noTable = D.Along(nil, 0, 0, 0, 1200, 0)
 		r.still = D.Along(far, 0, 300, 0, 300, 0)
@@ -1829,10 +1829,10 @@ test('zone danger: Danger.Along samples a straight line every 100 yd, its ends\'
 		Polestar_NavEngine.ZoneAt = nil
 		r.noZoneAt = D.Along(far, 0, 0, 0, 1200, 0)
 		emit(r)`, { many: true });
-	assert.equal(out.far, 0.5 * 10 + 0.5, 'half its 12 samples in a far-above zone');
+	assert.equal(out.far, 0.5 * 20 + 0.5, 'half its 12 samples in a far-above zone');
 	assert.equal(out.dangerous, 0.5 * 3 + 0.5, 'half in a dangerous one');
-	assert.equal(out.endsNever, 0.5 * 10 + 0.5, 'the zones of its two ends never count');
-	assert.deepEqual([out.again, out.asked, out.askedAgain], [5.5, 14, 14], 'its two ends and 12 samples asked once; the same line again asks nothing');
+	assert.equal(out.endsNever, 0.5 * 20 + 0.5, 'the zones of its two ends never count');
+	assert.deepEqual([out.again, out.asked, out.askedAgain], [10.5, 14, 14], 'its two ends and 12 samples asked once; the same line again asks nothing');
 	assert.equal(out.fromInside, 1, 'a line from inside the far-above zone: its own start zone');
 	assert.equal(out.noTable, 1);
 	assert.equal(out.still, 1, 'no length');
@@ -1840,7 +1840,7 @@ test('zone danger: Danger.Along samples a straight line every 100 yd, its ends\'
 	assert.deepEqual([out.level, out.levelUp], [20, 23], 'the level: the client\'s, or PLAYER_LEVEL_UP\'s when higher (one source for Walk and Travel)');
 });
 
-test('zone danger: the planner\'s straight walk 1200 yd through a zone far above costs t x 5.5, through a dangerous one t x 2, timed as before; the player\'s and target\'s zones never count; without Path.ZoneAt it is today\'s', () => {
+test('zone danger: the planner\'s straight walk 1200 yd through a zone far above costs t x 10.5, through a dangerous one t x 2, timed as before; the player\'s and target\'s zones never count; without Path.ZoneAt it is today\'s', () => {
 	const [out] = run(`${TERRAIN}${DANGER}
 		local r = {}
 		Polestar.CharState().flags.taxi = {}
@@ -1885,12 +1885,12 @@ test('zone danger: the planner\'s straight walk 1200 yd through a zone far above
 		r.noZoneAt = ratio()
 		emit(r)`, { many: true });
 	const t = Math.round(1200 * 1.25 / 7 * 1000) / 1000;
-	assert.deepEqual(out.far, [5.5, t, 214], 't x (0.5 x 10 + 0.5), its time as before');
+	assert.deepEqual(out.far, [10.5, t, 214], 't x (0.5 x 20 + 0.5), its time as before');
 	assert.deepEqual(out.dangerous, [2, t, 214], 't x (0.5 x 3 + 0.5)');
 	assert.deepEqual(out.none, [1, t, 214], 'a zone without levels');
 	assert.deepEqual(out.ends, [1, t, 214], 'the player\'s and the target\'s zones never count');
 	assert.deepEqual(out.noZoneAt, [1, t, 214], 'no maps: today\'s estimate');
-	assert.deepEqual([out.routingOff, out.routingOn], [[1, t, 214], [5.5, t, 214]], 'routing off: today\'s estimate; on again: priced again');
+	assert.deepEqual([out.routingOff, out.routingOn], [[1, t, 214], [10.5, t, 214]], 'routing off: today\'s estimate; on again: priced again');
 });
 
 test('zone danger: on a continent with crossing data the straight walk from a flight master to the gate takes its share too', () => {
@@ -1914,6 +1914,6 @@ test('zone danger: on a continent with crossing data the straight walk from a fl
 		N.Sample()
 		r.gate, r.home = seen.gate or false, seen.home or false
 		emit(r)`, { many: true });
-	assert.equal(out.gate, (2 * 10 + 2) / 4, 'half its samples in the band');
+	assert.equal(out.gate, (2 * 20 + 2) / 4, 'half its samples in the band');
 	assert.equal(out.home, 1, 'the walk to Home Roost crosses none');
 });

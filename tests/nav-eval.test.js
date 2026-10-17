@@ -141,12 +141,12 @@ function zonedFolder() {
 test('eval harness: a route with a level is priced with the zone danger table (the start\'s and the goal\'s zones exempt); its yards per zone come from Path.ZoneAt', { skip: noLua }, () => {
 	const { runRoutes } = require('../tools/lib/nav/eval/run');
 	const navDir = zonedFolder();
-	// zonelevels.js's shape: at level 20 Western Plaguelands (51+) is far above (10x), Silverpine (11+) safe.
+	// zonelevels.js's shape: at level 20 Western Plaguelands (51+) is far above (20x, Ruling 35), Silverpine (11+) safe.
 	const zoneLevels = { 1420: { min: 1 }, 1421: { min: 11 }, 1422: { min: 51 } };
 	const down = { map: 0, from: [150, 150, null], to: [150, 3 * T - 150, null] };
 	const into = { map: 0, from: [150, 150, null], to: [150, 1.5 * T, null] };
 	const out = { map: 0, from: [150, 1.5 * T, null], to: [150, 3 * T - 150, null] };
-	const [plain, danger, goal, goalPlain, start, startPlain, extra, cleared] = runRoutes({
+	const [plain, danger, goal, goalPlain, start, startPlain, extra, cleared, forced, forced20, forced10] = runRoutes({
 		navDir,
 		lua,
 		zoneLevels,
@@ -160,9 +160,13 @@ test('eval harness: a route with a level is priced with the zone danger table (t
 			// A route's own danger: laid over the level's table (or none), adding a zone or replacing its multiplier.
 			{ id: 'extra', ...down, danger: { 1422: 10 } },
 			{ id: 'cleared', ...down, level: 20, danger: { 1422: 1 } },
+			// Silverpine all but closed: the walk must cross Western Plaguelands, at the level's far-above price.
+			{ id: 'forced', ...down, level: 20, danger: { 1421: 1000 } },
+			{ id: 'forced20', ...down, danger: { 1421: 1000, 1422: 20 } },
+			{ id: 'forced10', ...down, danger: { 1421: 1000, 1422: 10 } },
 		],
 	});
-	for (const r of [plain, danger, goal, goalPlain, start, startPlain, extra, cleared]) assert.equal(r.ok, true, `${r.id} routed (${r.reason})`);
+	for (const r of [plain, danger, goal, goalPlain, start, startPlain, extra, cleared, forced, forced20, forced10]) assert.equal(r.ok, true, `${r.id} routed (${r.reason})`);
 	assert.ok(plain.zones[1422] > 400, `without a level the walk goes straight through Western Plaguelands: ${JSON.stringify(plain.zones)}`);
 	assert.ok(plain.zones[1420] > 0 && !plain.zones[1421], `and never into Silverpine: ${JSON.stringify(plain.zones)}`);
 	assert.ok(!(danger.zones[1422] > 10), `at level 20 it goes round through Silverpine: ${JSON.stringify(danger.zones)}`);
@@ -175,6 +179,9 @@ test('eval harness: a route with a level is priced with the zone danger table (t
 	assert.ok(!(extra.zones[1422] > 10) && extra.zones[1421] > 400, `a route's danger without a level goes round: ${JSON.stringify(extra.zones)}`);
 	assert.ok(extra.cost > plain.cost);
 	assert.deepEqual([cleared.pts, cleared.cost], [plain.pts, plain.cost], 'a route\'s danger of 1 takes the level\'s zone out');
+	assert.ok(forced.zones[1422] > 400, `the only way crosses Western Plaguelands: ${JSON.stringify(forced.zones)}`);
+	assert.deepEqual([forced.pts, forced.cost], [forced20.pts, forced20.cost], 'the far-above tier is priced 20x (Danger.lua\'s FAR_MULT)');
+	assert.ok(forced.cost > forced10.cost, `20x, not 10x: ${forced.cost} vs ${forced10.cost}`);
 });
 
 test('eval harness: on maps without the zone field a route\'s zones are null and its level changes nothing', { skip: noLua }, () => {
