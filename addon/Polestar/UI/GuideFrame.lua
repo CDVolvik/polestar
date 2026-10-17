@@ -1270,8 +1270,9 @@ local function navigatorFor(guide, index)
 	local E = Engine()
 	local count = guide and E.GetStepCount and E.GetStepCount() or 0
 	if guide then
-		-- While the catch-up rolls, the count and title are its (GF.PlayCatchUp).
-		if not GF.catchingUp then
+		-- While the catch-up shows the guides passed whole, the count and title
+		-- are its (GF.PlayCatchUp).
+		if GF.catchingUp ~= "guides" then
 			nav.Steps.Count:SetText(string.format("%d / %d", index or count, count))
 			nav.Title:SetText(guide.title or guide.id)
 		end
@@ -1293,7 +1294,7 @@ local function navigatorFor(guide, index)
 	else
 		nav.Title:SetPoint("LEFT", nav, "LEFT", PAD, 0)
 	end
-	if GF.catchingUp then return end
+	if GF.catchingUp == "guides" then return end
 	local cw = max(floor(nav.Steps.Count:GetStringWidth() + 0.5), 40)
 	nav.Steps.Count:SetWidth(cw)
 	nav.Steps:SetWidth(24 + cw + 24)
@@ -1470,7 +1471,7 @@ function GF.Render()
 		GF.Layout()
 		return
 	end
-	local index = E.GetStepIndex and E.GetStepIndex()
+	local index = GF.catchUpIndex or (E.GetStepIndex and E.GetStepIndex())
 	navigatorFor(guide, index)
 	-- The undo goes once the step is no longer skipped (undone elsewhere).
 	local k = notices.stepSkip
@@ -1509,13 +1510,16 @@ function GF.Render()
 	showSteps(true)
 	GF.Layout()
 	GF.PaintProgress(shownGuide == guide.id)
-	if focusChanged and F:IsVisible() then
+	if focusChanged and F:IsVisible() and not GF.catchingUp then
 		-- The next person (or step) slides up 6px into place as it fades in.
 		Anim.To(card, "alpha", 0, 1, Anim.BASE, "out")
 		Anim.To(card, "offset", -6, 0, Anim.BASE, "out")
 	end
 	shownIndex, shownGuide, shownFocus = index, guide.id, focus
 end
+
+-- The step the window shows (the catch-up's while it goes over the steps).
+function GF.ShownStep() return shownIndex end
 
 -- STEP_UPDATED: same step, new goal status/progress. When the focus moved
 -- to the next person this re-renders (with the slide); otherwise rows are
@@ -2509,31 +2513,22 @@ ns.On("STEP_SKIPPED", function(_, to, skips)
 end)
 
 -- The catch-up (GUIDE_PLACED): once a guide is placed, the window goes over
--- the steps before the one it resumes at, one title after another faster and
--- faster, the count rolling with them and the card faded, then shows the
--- step. Guides passed whole go by first, by title. It plays at game launch
+-- the steps before the one it resumes at, each shown in full (the card, the
+-- journey, what follows) one after another faster and faster, then the step
+-- placed. Guides passed whole go by first, by title. It plays at game launch
 -- and whenever a guide is opened, from step 1; after a /reload it plays only
 -- when the guide resumes elsewhere than before it (catchUpAt, per character).
--- Not with reduced motion or the window hidden. A guide placed before the
--- world is entered waits for it (PLAYER_ENTERING_WORLD says whether this is a
--- reload).
+-- Not with reduced motion, the window hidden, or a single step to go over.
+-- A guide placed before the world is entered waits for it
+-- (PLAYER_ENTERING_WORLD says whether this is a reload). Only the window moves: the Engine's step, the arrow and the
+-- automation stay on the step placed.
 local CATCH_GUIDE = 0.35 -- seconds per guide passed whole (at most 1.2 in all)
 GF.catchUpState = { entered = false, reload = false, seen = {} }
 
--- What a step reads as while the catch-up goes over it: its title, else its
--- first quest goal, else its first goal.
-local function catchUpLine(E, i)
-	local v = E.GetStepView(i)
-	if not v then return "" end
-	if v.title and v.title ~= "" then return v.title end
-	local first
-	for _, g in ipairs(v.goals or {}) do
-		if g.text and g.text ~= "" then
-			if g.quest then return g.text end
-			first = first or g.text
-		end
-	end
-	return first or ""
+local function catchUpDone()
+	GF.catchingUp, GF.catchUpIndex = nil, nil
+	ns.Fire("CATCH_UP", false)
+	GF.Render()
 end
 
 function GF.PlayCatchUp(guideId, step, chain)
@@ -2552,35 +2547,29 @@ function GF.PlayCatchUp(guideId, step, chain)
 	local passed = chain and #chain or 0
 	if cs.reload and first and before == step and passed == 0 then return end
 	if not (F and F:IsShown() and ns.IsLoggedIn()) or Anim.Reduced() then return end
-	if not step or (step <= 1 and passed == 0) then return end
-	local E = Engine()
-	local count = E and E.GetStepCount and E.GetStepCount() or step
+	-- A single step passed is no catch-up (the player's own first step).
+	if not step or (step <= 2 and passed == 0) then return end
 	local Count = nav.Steps.Count
-	GF.catchingUp = true
-	Anim.To(card, "alpha", card:GetAlpha(), 0.25, Anim.BASE, "out")
+	-- CATCH_UP(true|false): the arrow shows an hourglass meanwhile (Nav/Arrow.lua).
+	ns.Fire("CATCH_UP", true)
 	local function roll()
-		local lines = {}
-		for i = 1, step - 1 do lines[i] = catchUpLine(E, i) end
-		Count:SetText(string.format("%d / %d", count, count))
-		local cw = max(40, floor(Count:GetStringWidth() + 0.5))
-		Count:SetWidth(cw)
-		nav.Steps:SetWidth(24 + cw + 24)
-		Count.psOnValue = function(o, v)
+		GF.catchingUp = "steps"
+		local shown
+		Count.psOnValue = function(_, v)
 			local i = max(1, min(step - 1, floor(v)))
-			o:SetText(string.format("%d / %d", i, count))
-			nav.Title:SetText(lines[i] or "")
+			if i ~= shown then
+				shown = i
+				GF.catchUpIndex = i
+				GF.Render()
+			end
 		end
 		-- Slow at first, then faster: about 0.06 s a step, 2.5 s at most.
 		local dur = min(2.5, 0.5 + 0.06 * (step - 1))
-		Anim.To(Count, "value", 1, step - 0.001, dur, "in", function()
-			GF.catchingUp = nil
-			GF.Render()
-			Anim.To(card, "alpha", 0.25, 1, Anim.BASE, "out")
-			Anim.To(card, "offset", -6, 0, Anim.BASE, "out")
-		end)
+		Anim.To(Count, "value", 1, step - 0.001, dur, "in", catchUpDone)
 	end
 	if passed == 0 then return roll() end
 	-- The guides passed whole, each shown done.
+	GF.catchingUp = "guides"
 	local titles = {}
 	for i, id in ipairs(chain) do
 		local g = ns.Guides.Get(id)
@@ -2593,9 +2582,7 @@ function GF.PlayCatchUp(guideId, step, chain)
 	end
 	Anim.To(Count, "value", 0, passed - 0.001, min(1.2, CATCH_GUIDE * passed), "linear", function()
 		if step > 1 then return roll() end
-		GF.catchingUp = nil
-		GF.Render()
-		Anim.To(card, "alpha", 0.25, 1, Anim.BASE, "out")
+		catchUpDone()
 	end)
 end
 
