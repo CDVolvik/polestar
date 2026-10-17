@@ -1,5 +1,5 @@
--- Hand-off to Shortest Path Forever: with it installed (and nav.spfHandoff
--- on, the default), it guides to Polestar's target and Polestar's own
+-- Hand-off to Shortest Path Forever: with it installed and nav.spfHandoff on
+-- (off by default), it guides to Polestar's target and Polestar's own
 -- guidance steps aside, so the two never guide at once. Contract:
 -- docs/ARCHITECTURE.md, "Hand-off to Shortest Path Forever".
 --
@@ -27,8 +27,9 @@
 -- refused in combat (or without a position: an instance, a loading screen)
 -- waits for combat's end or the world; one refused otherwise (Journeys off in
 -- Shortest Path Forever, a point it cannot place) lets Polestar guide that
--- target itself. While the player is dead or a ghost nothing is sent: it
--- guides corpse runs itself.
+-- target itself, and so does a stop it took but guides nothing to (its search
+-- found no way there): Polestar guides until it guides again. While the
+-- player is dead or a ghost nothing is sent: it guides corpse runs itself.
 
 local ADDON, ns = ...
 local Nav = ns.Nav
@@ -40,7 +41,7 @@ local format, concat = string.format, table.concat
 local Handoff = {}
 Nav.handoff = Handoff
 
-ns.RegisterDefaults("nav", { spfHandoff = true })
+ns.RegisterDefaults("nav", { spfHandoff = false })
 
 local OWNER = "Polestar"
 local PLACE = 15 -- yards: a target this close to a flight master, inn or portal stands at it
@@ -77,6 +78,7 @@ local function engaged()
 end
 
 local refused = false -- it refused the last stop: Polestar guides that target itself
+local unguided = false -- it holds Polestar's stop but guides nothing (no way there): Polestar guides it
 local refusedKey      -- the stop (or target) refused, not offered again until it changes or the world reloads
 local sentKey         -- the stop it last took, kept after its journey ends: never sent twice
 local live = false    -- that journey still runs, as far as Polestar knows
@@ -86,7 +88,7 @@ local subscribed = false
 local wasEngaged
 
 function Nav.HandedOff()
-	return not refused and engaged()
+	return not refused and not unguided and engaged()
 end
 
 local function inCombat()
@@ -270,8 +272,14 @@ end
 
 -- Polestar's own guidance comes back (or steps aside again) for the same target.
 local function setRefused(on)
-	if refused == on then return end
-	refused = on
+	if refused == on and not unguided then return end
+	refused, unguided = on, false
+	Nav.Reapply()
+end
+
+local function setUnguided(on)
+	if unguided == on then return end
+	unguided = on
 	Nav.Reapply()
 end
 
@@ -279,7 +287,7 @@ local function step(force)
 	local A = api()
 	if not engaged() then
 		cancel(A)
-		sentKey, pending, refusedKey, refused = nil, false, nil, false
+		sentKey, pending, refusedKey, refused, unguided = nil, false, nil, false, false
 		return
 	end
 	if not worldUp or dead() then return end
@@ -325,12 +333,26 @@ end
 Handoff.Sync = sync
 
 -- Its guidance changed: has the journey Polestar sent ended (arrived, cleared,
--- replaced)? Then it stays ended until Polestar's target changes.
+-- replaced)? Then it stays ended until Polestar's target changes. Does it
+-- still hold that stop but guide nothing (Active() false: its search found no
+-- way there, or its guidance was turned off in its tracker)? Then Polestar
+-- guides that target, also after that journey ends, until it guides anything
+-- again (that journey, the player's own, another addon's or its corpse run):
+-- then Polestar steps aside. Never decided while dead or a ghost: the corpse
+-- run is its own.
 local function heard()
 	local A = api()
-	if not (A and live) then return end
-	local why = type(A.Ended) == "function" and A.Ended(OWNER)
-	if why or (type(A.CurrentStop) == "function" and A.CurrentStop(OWNER) == nil) then live = false end
+	if not A then return end
+	if live then
+		local why = type(A.Ended) == "function" and A.Ended(OWNER)
+		if why or (type(A.CurrentStop) == "function" and A.CurrentStop(OWNER) == nil) then live = false end
+	end
+	if type(A.Active) ~= "function" or not (live or unguided) then return end
+	if A.Active() then
+		setUnguided(false)
+	elseif live and not dead() then
+		setUnguided(true)
+	end
 end
 
 local function subscribe()
@@ -350,7 +372,7 @@ end
 
 -- Without Subscribe (minor 0): Nav's once-a-second tick asks instead.
 function Handoff:Refresh()
-	if live and not subscribed then heard() end
+	if (live or unguided) and not subscribed then heard() end
 end
 
 function Handoff:OnSettings()
@@ -381,9 +403,13 @@ end)
 ns.RegisterEvent("PLAYER_REGEN_ENABLED", function()
 	if pending then sync() end
 end)
--- Dead or a ghost, nothing is sent; alive again, the target goes as it is.
+-- Dead or a ghost, nothing is sent; alive again, the target goes as it is,
+-- and whether it guides is asked again.
 for _, event in ipairs({ "PLAYER_DEAD", "PLAYER_ALIVE", "PLAYER_UNGHOST" }) do
-	ns.RegisterEvent(event, function() sync() end)
+	ns.RegisterEvent(event, function()
+		sync()
+		heard()
+	end)
 end
 
 if ns.RegisterOptions then

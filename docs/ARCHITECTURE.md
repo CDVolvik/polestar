@@ -1595,13 +1595,15 @@ Polestar.Pins.MinimapCursor() -> dNorth, dWest | nil      -- yards from the play
 [Shortest Path Forever](https://github.com/cjber/shortest-path-forever)
 installed (its global `ShortestPathForever.API`, `version` 1, with `Cancel`
 and `NavigateRoute` or `Navigate`; every other function checked before it is
-called, as its `minor` grows) and `nav.spfHandoff` on (the default; Options,
-Integrations, Shortest Path Forever: "Guide with Shortest Path Forever when it's
-installed", shown only with it installed), Polestar's target is guided by it
-and Polestar's own guidance steps aside, so the two never guide at once.
+called, as its `minor` grows) and `nav.spfHandoff` on (off by default, after
+#235; Options, Integrations, Shortest Path Forever: "Guide with
+Shortest Path Forever when it's installed", shown only with it installed),
+Polestar's target is guided by it and Polestar's own guidance steps aside, so
+the two never guide at once. With the option off (the default) Polestar
+guides and sends nothing.
 
 ```lua
-Polestar.Nav.HandedOff() -> bool   -- the one predicate: installed, on, and the last stop not refused
+Polestar.Nav.HandedOff() -> bool   -- the one predicate: installed, on, the last stop not refused, and it guides that stop
 Polestar.Nav.Reapply()             -- (Nav.lua) re-plan and tell every module the same target again, unannounced
 Polestar.Nav.handoff.Available() -> bool
 ```
@@ -1652,6 +1654,16 @@ Polestar.Nav.handoff.Available() -> bool
   itself (`Nav.HandedOff()` false) and cancels its earlier journey; the next
   target, or a zone change, offers a stop again, and the first one taken hands
   back.
+- **No way there.** A stop it took that it then guides nothing to (its
+  `CurrentStop("Polestar")` set but `Active()` false: its search found no
+  way, `StopGuide` in its `Journey.lua`, the tracker saying "No way there
+  from here."; or its guidance turned off in its tracker): Polestar guides
+  that target itself (`Nav.HandedOff()` false), leaving its journey in place
+  and sending nothing. It is read on `Subscribe`'s news (else Nav's tick) and
+  at death and coming back; it is never set while dead or a ghost (its corpse
+  run). Polestar goes on guiding after that journey ends, and steps aside as
+  soon as it guides anything again (that journey, the player's own, another
+  addon's, its corpse run); the next stop taken hands back.
 - **Off.** Turning `nav.spfHandoff` off cancels the journey and Polestar
   guides again (`Polestar_Nav` loads then); on again sends the stop anew.
 - **Options and commands.** `Nav.HandoffOption(control)` wraps every option
@@ -2392,7 +2404,7 @@ tables (`PathGrid.lua` trimming, eviction, `Idle`, `Reset`) while ours may be
 in the middle of a search that already counts a cluster as decoded, which
 would end in a Lua error (docs/NAV_QA.md H1). With both
 addons installed and the hand-off off, each holds its own maps in memory
-(with it on, the default, `Polestar_Nav` is not loaded: "Hand-off to Shortest
+(with it on, `Polestar_Nav` is not loaded: "Hand-off to Shortest
 Path Forever"); `tests/nav-vendor.test.js`
 trims a stand-in for his tables after every frame of one of our searches and
 checks the route is unchanged.
