@@ -8962,7 +8962,7 @@ do
 				},
 				{
 					title = "{npc:6177}",
-					note = "Ride back out of {zone:1455} and east along the road to {area:212}. {npc:6177} lies dead by its shore: use the {item:6866} on him. The Dark Iron Spies sneaking around the lake carry the script.",
+					note = "Head back out of {zone:1455} and east along the road to {area:212}. {npc:6177} lies dead by its shore: use the {item:6866} on him. The Dark Iron Spies sneaking around the lake carry the script.",
 					only = { classes = { "PALADIN" } },
 					goals = {
 						{ t = "complete", quest = 1783, title = "The Tome of Divinity", note = "Use the {item:6866} on {npc:6177}" },
