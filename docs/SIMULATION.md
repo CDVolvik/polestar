@@ -91,7 +91,8 @@ Outputs: `data/sim/` and `data/bench/` (both gitignored).
 - **Tasks** group a quest's objectives by site (spawn clusters, 70 yd).
 - **Hubs**: givers and enders clustered (150 yd), with flight masters, inns
   and class trainers nearby (trainers.json, TravelData).
-- **Travel graph**: walking (straight line × detour factor, per continent),
+- **Travel graph**: walking (the walking router's routed walks where `sim
+  walks` has them, below; else the straight line × detour factor, per continent),
   flights between known flight paths (TravelData flight times), boats,
   zeppelins and trams (wait + ride, data/forever/travel.json), hearthstone
   (bind, 60 min cooldown, parameter). All-pairs shortest paths over the
@@ -100,6 +101,33 @@ Outputs: `data/sim/` and `data/bench/` (both gitignored).
   flight or a ride), or walking, whichever is cheaper. A place the
   character cannot reach (another landmass with no transport, e.g. back to
   Zephras Isle) skips the step and is counted (`unreachable`).
+- **Walks** (`sim walks`, tools/lib/sim/walks.js): the walking router the
+  arrow uses (addon/Polestar_Nav, run standalone by `nav eval`'s harness)
+  walks every pair of the world's points (quest givers, enders, objective
+  sites, inns, transport nodes, starts) up to 4,000 yd apart on the same
+  landmass, as the faction (its hostile towns cost more) in the arrow's
+  default route style (balanced): one `Path.FindMany` search per point,
+  on worker threads (about 10 min per faction on 15 workers), into
+  `data/sim/walks-<faction>.json`. A walk between two of those points is
+  then the routed yards × `routeMul` (prior 1 ± 0.05: a player strays a
+  little from the drawn line), and so are the walks to and from
+  transport nodes, between nodes, and the order of a package's steps; a
+  longer walk, or one the router could not find, keeps the straight line
+  × detour. The file is used only on the world (data hash) and walking
+  maps (PACK.json) it was built on, and a search result records whether
+  it was searched with walks, so it replays only on the same (`--no-walks`
+  walks the straight line × detour anyway). Measured on the 3,103
+  walking legs the default guides of the 8 starts use (2026-10-17): the
+  straight line × 1.3 is right on average (routed 1.31 Eastern Kingdoms,
+  1.34 Kalimdor) but wrong both ways, about 2.1 h per start too slow
+  within zones (open ground is nearer 1.1-1.2) and 2.1 h too fast between
+  them, nearly all of it 97 legs straight through a mountain or a cliff
+  (Silithus to Feralas: 1,785 yd straight, 13,807 walked; the Barrens to
+  Thousand Needles: 325 and 4,168). A factor per zone or per pair of
+  zones fixed neither (the error is the leg's, not the zone's), so the
+  walks are routed one by one.
+  With walks the search needs longer to settle: `--paths 3000000` (the
+  default 1,000,000 stopped Human at a route 5 h worse).
 - **Travel safety**: each zone's level is the P10 of its hostile normal-rank
   spawns (the `maps build` ZoneLevels heuristic, tools/lib/maps/zonelevels.js),
   and each 200-yard cell of a landmass belongs to the zone with the most NPC
@@ -304,6 +332,8 @@ Only the fitted parameter values are kept (data/sim/params.json).
 
 ```
 sim world   [--faction F] [--rebuild]               build/cache the world model (data/sim/world-<faction>.json)
+sim walks   [--faction F] [--radius Y] [--workers W]  route the world's walks with the walking router
+            (data/sim/walks-<faction>.json; run, robust, compare, bench and consensus use them)
 sim calibrate [--fdj DIR]                            fit parameters to quest data and recordings
 sim run     --faction F [--race R] [--class C] [--paths N] [--workers W] [--seed S] [--dungeons]
             [--jobs J] [--anneal A] [--max-paths M]
@@ -328,7 +358,9 @@ our chain up to its first level when it starts above 1; written to
 (compare: levels to show, default 10,20,30,40,50,60), `--top <n>` (robust:
 routes re-evaluated), `--dungeons` (run, robust and consensus: the
 dungeon-inclusive family, needs `data/forever/dungeons.json`), `--offline`
-(never download the QuestXP table), `--quiet` (less output); `--data <dir>`
+(never download the QuestXP table), `--radius <yards>` (walks: route every
+pair of points up to this far apart, default 4000), `--no-walks` (walk the
+straight line × detour even with a walks file), `--quiet` (less output); `--data <dir>`
 and `--sim <dir>` move the reference data and simulator outputs (default
 `data/forever`, `data/sim`).
 
@@ -611,6 +643,12 @@ column; `--guides` with the guides of tag v0.1.0 for the middle one):
 - **Bag items**: cloth donations and items bought or carried over are
   modelled as gathered where they drop, so scoring a guide that hands them
   in from the bags adds trips the player does not make.
+- **Walks without heights**: the world's points carry no height, so the
+  router meets each at the floor it finds first. On Thunder Bluff's mesas
+  (36 of the 56 Horde points it cannot reach, a lift up) and a few cave
+  and town points, it finds none: 6.6% of Horde pairs and 1.7% of
+  Alliance pairs keep the straight line × detour. The compiler already
+  has spawn heights (spawnz.json); passing them would route those too.
 - **Search depth**: see convergence above; Human and Skyborne H were still
   improving at the route cap.
 
