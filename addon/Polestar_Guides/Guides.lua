@@ -355,7 +355,7 @@ do
 				},
 				{
 					title = "Bashal'Aran",
-					note = "North along the hills. Asterion waits in the ruins of Bashal'Aran; Wild Grells and Vile Sprites fill them, Deth'ryll Satyrs the eastern edge. Buzzbox 411 stands by the road west of the ruins.",
+					note = "North along the hills. Asterion waits in the ruins of Bashal'Aran; Wild Grells and Vile Sprites fill them, Deth'ryll Satyrs the eastern edge. Buzzbox 411 stands by the road west of the ruins; a Beached Sea Creature lies on the shore on the way to him.",
 					goals = {
 						{ t = "turnin", quest = 954, title = "Bashal'Aran", npc = 3650, npcName = "Asterion", map = 1439, x = 44.17, y = 36.29, z = 48.7, f = "e", note = "Asterion" },
 						{ t = "accept", quest = 955, title = "Bashal'Aran", npc = 3650, npcName = "Asterion", minLevel = 7, qlvl = 12, pre = { 954 }, preTitles = { [954] = "Bashal'Aran" }, map = 1439, x = 44.17, y = 36.29, z = 48.7, f = "e" },
@@ -365,6 +365,7 @@ do
 						{ t = "collect", quest = 956, title = "Bashal'Aran", item = 5338, itemName = "Ancient Moonstone Seal", count = 1, oi = 1, map = 1439, x = 45.46, y = 36.5, f = "e", spots = { { x = 45.5, y = 36.5, r = 15, n = 1 }, { x = 46.6, y = 39.2, r = 15, n = 1 }, { x = 45.4, y = 39.7, r = 15, n = 1 }, { x = 47.6, y = 37.1, r = 33, n = 3 } }, note = "Ancient Moonstone Seal: Deth'ryll Satyrs", from = "Deth'ryll Satyr", fromKind = "npc" },
 						{ t = "turnin", quest = 956, title = "Bashal'Aran", npc = 3650, npcName = "Asterion", map = 1439, x = 44.17, y = 36.29, z = 48.7, f = "e" },
 						{ t = "accept", quest = 957, title = "Bashal'Aran", npc = 3650, npcName = "Asterion", minLevel = 7, qlvl = 13, pre = { 956 }, preTitles = { [956] = "Bashal'Aran" }, map = 1439, x = 44.17, y = 36.29, z = 48.7, f = "e" },
+						{ t = "accept", quest = 4723, title = "Beached Sea Creature", object = 175233, objName = "Beached Sea Creature", minLevel = 11, qlvl = 13, pre = { 4681 }, preTitles = { [4681] = "Washed Ashore" }, map = 1439, x = 41.93, y = 31.53, z = 0.5, f = "e", note = "Beached Sea Creature" },
 						{ t = "turnin", quest = 1001, title = "Buzzbox 411", object = 17183, objName = "Buzzbox 411", map = 1439, x = 41.96, y = 28.62, z = 0.8, f = "e", note = "Buzzbox 411" },
 						{ t = "accept", quest = 1002, title = "Buzzbox 323", object = 17183, objName = "Buzzbox 411", minLevel = 7, qlvl = 14, pre = { 1001 }, preTitles = { [1001] = "Buzzbox 411" }, map = 1439, x = 41.96, y = 28.62, z = 0.8, f = "e" },
 					},
@@ -394,6 +395,7 @@ do
 						{ t = "turnin", quest = 958, title = "Tools of the Highborne", npc = 3649, npcName = "Thundris Windweaver", map = 1439, x = 37.4, y = 40.13, z = 8.3, f = "e" },
 						{ t = "accept", quest = 4762, title = "The Cliffspring River", npc = 3649, npcName = "Thundris Windweaver", minLevel = 11, qlvl = 15, pre = { 4761 }, preTitles = { [4761] = "Thundris Windweaver" }, map = 1439, x = 37.4, y = 40.13, z = 8.3, f = "e" },
 						{ t = "turnin", quest = 4722, title = "Beached Sea Turtle", npc = 10219, npcName = "Gwennyth Bly'Leggonde", map = 1439, x = 36.62, y = 45.59, z = 16.1, f = "e", note = "Gwennyth Bly'Leggonde" },
+						{ t = "turnin", quest = 4723, title = "Beached Sea Creature", npc = 10219, npcName = "Gwennyth Bly'Leggonde", map = 1439, x = 36.62, y = 45.59, z = 16.1, f = "e" },
 						{ t = "turnin", quest = 963, title = "For Love Eternal", npc = 3644, npcName = "Cerellean Whiteclaw", map = 1439, x = 35.74, y = 43.71, z = 9.7, f = "e", note = "Cerellean Whiteclaw" },
 						{ t = "collect", quest = 4812, title = "As Water Cascades", item = 14339, itemName = "Moonwell Water Tube", oi = 1, map = 1439, x = 37.78, y = 44.03, f = "e", note = "Fill the tube at the moonwell in the village", from = "Auberdine Moonwell", fromKind = "object" },
 						{ t = "vendor", candidates = { { npc = 4187, npcName = "Harlon Thornguard", map = 1439, x = 37.05, y = 41.34, f = "e", faction = "A" }, { npc = 15315, npcName = "Mylini Frostmoon", map = 1448, x = 62.41, y = 25.78, f = "e", faction = "A" }, { npc = 12024, npcName = "Meliri", map = 1450, x = 51.18, y = 42.31, f = "e", faction = "AH" }, { npc = 3612, npcName = "Sinda", map = 1438, x = 56.33, y = 59.59, f = "e", faction = "A" }, { npc = 4234, npcName = "Andrus", map = 1457, x = 56.13, y = 88.91, f = "e", faction = "A" }, { npc = 3952, npcName = "Aeolynn", map = 1440, x = 34.47, y = 49.52, f = "e", faction = "A" }, { npc = 4188, npcName = "Illyanie", map = 1442, x = 35.59, y = 7.35, f = "e", faction = "A" }, { npc = 4164, npcName = "Cylania", map = 1457, x = 59.24, y = 46.36, f = "e", faction = "A" }, { npc = 3589, npcName = "Keina", map = 1438, x = 59.31, y = 41.09, f = "e", faction = "A" }, { npc = 3951, npcName = "Bhaldaran Ravenshade", map = 1440, x = 50.27, y = 67.27, f = "e", faction = "A" }, { npc = 4085, npcName = "Nizzik", map = 1442, x = 62.7, y = 40.18, f = "e", faction = "AH" }, { npc = 222685, npcName = "Quartermaster Kyleen", map = 1440, x = 89.4, y = 40.4, f = "e", faction = "AH" }, { npc = 11182, npcName = "Nixxrak", map = 1452, x = 61.62, y = 37.87, f = "e", faction = "AH" }, { npc = 4086, npcName = "Veenix", map = 1442, x = 58.22, y = 51.74, f = "e", faction = "AH" }, { npc = 14753, npcName = "Illiyana Moonblaze", map = 1440, x = 61.49, y = 83.86, f = "e", faction = "A" }, { npc = 14301, npcName = "Brinna Valanaar", map = 1447, x = 12, y = 78.38, f = "e", faction = "A" }, { npc = 1322, npcName = "Maxton Strang", map = 1443, x = 67.93, y = 8.31, f = "e", faction = "A" }, { npc = 3684, npcName = "Pizznukle", map = 1413, x = 41.77, y = 38.62, f = "e", faction = "AH" }, { npc = 3491, npcName = "Ironzar", map = 1413, x = 62.24, y = 37.48, f = "e", faction = "AH" }, { npc = 263569, npcName = "Bryanna Embreeze", map = 1413, x = 63.44, y = 58.74, f = "e", faction = "A" }, { npc = 1695, npcName = "Rendow", map = 1441, x = 7.6, y = 17.9, f = "e", faction = "A" }, { npc = 7852, npcName = "Pratt McGrubben", map = 1444, x = 30.63, y = 42.71, f = "e", faction = "A" }, { npc = 4890, npcName = "Piter Verance", map = 1445, x = 67.39, y = 47.86, f = "e", faction = "A" }, { npc = 3000, npcName = "Gibbert", map = 1449, x = 44.1, y = 7.19, f = "e", faction = "AH" }, { npc = 15176, npcName = "Vargus", map = 1451, x = 51.23, y = 38.86, f = "e", faction = "AH" }, { npc = 3053, npcName = "Synge", map = 1441, x = 80.4, y = 77.01, f = "e", faction = "AH" }, { npc = 8131, npcName = "Blizrik Buckshot", map = 1446, x = 50.74, y = 27.53, f = "e", faction = "AH" }, { npc = 3537, npcName = "Zixil", map = 1416, x = 53.6, y = 98.7, f = "e", faction = "AH" }, { npc = 13217, npcName = "Thanthaldis Snowgleam", map = 1416, x = 39.45, y = 81.65, f = "e", faction = "A" }, { npc = 28989, npcName = "Aemara", map = 1416, x = 16.59, y = 70.12, f = "e", faction = "A" }, { npc = 275596, npcName = "Rafael Langrom", map = 1416, x = 12.66, y = 70.91, f = "e", faction = "AH" }, { npc = 1471, npcName = "Jannos Ironwill", map = 1417, x = 45.98, y = 47.72, f = "e", faction = "A" }, { npc = 9179, npcName = "Jazzrik", map = 1418, x = 42.47, y = 52.5, f = "e", faction = "AH" }, { npc = 9544, npcName = "Yuka Screwspigot", map = 1418, x = 4.9, y = 94.7, f = "e", faction = "AH" }, { npc = 5508, npcName = "Strumner Flintheel", map = 1419, x = 66.08, y = 17.16, f = "e", faction = "A" }, { npc = 3528, npcName = "Pyrewood Armorer", map = 1421, x = 46.4, y = 71.88, f = "e", faction = "A" }, { npc = 3534, npcName = "Wallace the Blind", map = 1421, x = 46.5, y = 86.49, f = "e", faction = "AH" }, { npc = 10856, npcName = "Argent Quartermaster Hasana", map = 1422, x = 26.6, y = 55.2, f = "e", faction = "AH" }, { npc = 10857, npcName = "Argent Quartermaster Lightspark", map = 1422, x = 42.84, y = 83.72, f = "e", faction = "AH" }, { npc = 11278, npcName = "Magnus Frostwake", map = 1422, x = 68.12, y = 77.57, f = "e", faction = "AH" }, { npc = 12942, npcName = "Leonard Porter", map = 1422, x = 43.08, y = 84.31, f = "e", faction = "A" }, { npc = 16376, npcName = "Craftsman Wilhelm", map = 1423, x = 71.24, y = 49.9, faction = "AH" }, { npc = 2404, npcName = "Blacksmith Verringtan", map = 1424, x = 32.11, y = 44.42, f = "e", faction = "A" }, { npc = 3536, npcName = "Kris Legace", map = 1424, x = 80.14, y = 38.89, f = "e", faction = "AH" }, { npc = 3543, npcName = "Robert Aebischer", map = 1424, x = 51.21, y = 56.98, f = "e", faction = "A" }, { npc = 8161, npcName = "Harggan", map = 1424, x = 98.7, y = 3.1, f = "e", faction = "A" }, { npc = 836, npcName = "Durnan Furcutter", map = 1426, x = 28.77, y = 66.37, f = "e", faction = "A" }, { npc = 1238, npcName = "Gamili Frosthide", map = 1426, x = 45.18, y = 51.93, f = "e", faction = "A" }, { npc = 1698, npcName = "Frast Dokner", map = 1426, x = 69, y = 55.89, f = "e", faction = "A" }, { npc = 3162, npcName = "Burdrak Harglhelm", map = 1426, x = 30.11, y = 45.28, f = "e", faction = "A" }, { npc = 3177, npcName = "Turuk Amberstill", map = 1426, x = 62.9, y = 49.89, f = "e", faction = "A" }, { npc = 11703, npcName = "Graw Cornerstone", map = 1427, x = 41.5, y = 74.97, f = "e", faction = "A" }, { npc = 14624, npcName = "Master Smith Burninate", map = 1427, x = 38.8, y = 28.51, f = "e", faction = "AH" }, { npc = 1296, npcName = "Felder Stover", map = 1428, x = 85.21, y = 68.39, f = "e", faction = "A" }, { npc = 54, npcName = "Corina Steele", map = 1429, x = 41.53, y = 65.9, f = "e", faction = "A" }, { npc = 78, npcName = "Janos Hammerknuckle", map = 1429, x = 47.24, y = 41.9, f = "e", faction = "A" }, { npc = 896, npcName = "Veldan Lightfoot", map = 1429, x = 25.18, y = 73.89, f = "e", faction = "A" }, { npc = 959, npcName = "Morley Eberlein", map = 1429, x = 64.69, y = 69.51, f = "e", faction = "A" }, { npc = 1198, npcName = "Rallic Finn", map = 1429, x = 83.28, y = 66.09, f = "e", faction = "A" }, { npc = 225, npcName = "Gavin Gnarltree", map = 1431, x = 73.6, y = 50.04, f = "e", faction = "A" }, { npc = 167, npcName = "Morhan Coppertongue", map = 1432, x = 34.02, y = 46.54, f = "e", faction = "A" }, { npc = 222, npcName = "Nillen Andemar", map = 1432, x = 42.87, y = 9.89, f = "e", faction = "A" }, { npc = 954, npcName = "Kat Sampson", map = 1432, x = 82.65, y = 64.11, f = "e", faction = "A" }, { npc = 1214, npcName = "Aldren Cordon", map = 1432, x = 64.82, y = 66.05, f = "e", faction = "A" }, { npc = 1362, npcName = "Gothor Brumn", map = 1432, x = 24.13, y = 18.21, f = "e", faction = "A" }, { npc = 789, npcName = "Kimberly Hiett", map = 1433, x = 21.99, y = 45.55, faction = "A" }, { npc = 3097, npcName = "Bernard Brubaker", map = 1433, x = 83.16, y = 71.02, faction = "A" }, { npc = 256730, npcName = "Stondry Darkhammer", map = 1433, x = 10.38, y = 73.85, faction = "A" }, { npc = 2482, npcName = "Zarena Cromwind", map = 1434, x = 28.34, y = 75.46, f = "e", faction = "AH" }, { npc = 2483, npcName = "Jaquilina Dramet", map = 1434, x = 35.75, y = 10.66, f = "e", faction = "AH" }, { npc = 14921, npcName = "Rin'wosho the Trader", map = 1434, x = 15.07, y = 16, f = "e", faction = "AH" }, { npc = 1668, npcName = "William MacGregor", map = 1436, x = 57.71, y = 53.94, f = "e", faction = "A" }, { npc = 1669, npcName = "Defias Profiteer", map = 1436, x = 43.47, y = 66.76, f = "e", faction = "AH" }, { npc = 1441, npcName = "Brak Durnad", map = 1437, x = 11.44, y = 59.69, f = "e", faction = "A" }, { npc = 2679, npcName = "Wenna Silkbeard", map = 1437, x = 25.61, y = 25.8, f = "e", faction = "A" }, { npc = 1287, npcName = "Marda Weller", map = 1453, x = 64.07, y = 68.36, faction = "A" }, { npc = 5509, npcName = "Kathrum Axehand", map = 1453, x = 59.3, y = 33.82, faction = "A" }, { npc = 4259, npcName = "Thurgrum Deepforge", map = 1455, x = 51.74, y = 42.78, f = "e", faction = "A" }, { npc = 5119, npcName = "Hegnar Swiftaxe", map = 1455, x = 62.19, y = 88.16, f = "e", faction = "A" }, { npc = 5133, npcName = "Harick Boulderdrum", map = 1455, x = 23.13, y = 15.94, f = "e", faction = "A" }, { npc = 4257, npcName = "Lana Thunderbrew", map = 1459, x = 43.41, y = 15.64, f = "e", faction = "A" }, { npc = 243855, npcName = "Toron Rockhoof", map = 2482, x = 69, y = 47.36, faction = "A" }, { npc = 265883, npcName = "Chagrak Hammerstrike", map = 2482, x = 13.4, y = 52.4, faction = "AH" }, { npc = 251364, npcName = "Destin Thriceforged", map = 2521, x = 43.08, y = 23.4, faction = "AH" }, { npc = 259766, npcName = "Mika Darby", map = 2548, x = 77.78, y = 52.02, faction = "A" }, { npc = 260566, npcName = "Fizzix Boomshot", map = 2548, x = 78.5, y = 53.89, faction = "AH" } } },
@@ -443,7 +445,7 @@ do
 				},
 				{
 					title = "The southern beaches",
-					note = "Follow the coast south past Ameth'Aran: one Beached Sea Creature lies on the shore west of the Grove, another further south near Remtravel's Excavation.",
+					note = "Follow the coast south past Ameth'Aran: one Beached Sea Creature lies on the shore west of the Grove, another further south near Remtravel's Excavation. Three more remains lie further south-west among Greymist Oracles and Tidehunters (18-20): the guide leaves them for the last loop, when you are closer to their level.",
 					goals = {
 						{ t = "accept", quest = 4728, title = "Beached Sea Creature", object = 175226, objName = "Beached Sea Creature", minLevel = 12, qlvl = 14, pre = { 4681 }, preTitles = { [4681] = "Washed Ashore" }, map = 1439, x = 36.01, y = 70.88, z = 0.3, f = "e", note = "Beached Sea Creature" },
 						{ t = "accept", quest = 4730, title = "Beached Sea Creature", object = 175227, objName = "Beached Sea Creature", minLevel = 12, qlvl = 16, pre = { 4681 }, preTitles = { [4681] = "Washed Ashore" }, map = 1439, x = 32.69, y = 80.79, z = 0.1, f = "e", note = "Beached Sea Creature" },
@@ -466,13 +468,12 @@ do
 				},
 				{
 					title = "Cliffspring Falls",
-					note = "Follow the hills north to the Cliffspring River and up to the falls. Three more beached remains lie on the north shore: near the Ruins of Mathystra, north of Bashal'Aran and west of Bashal'Aran.",
+					note = "Follow the hills north to the Cliffspring River and up to the falls. Two more beached remains lie on the north shore: near the Ruins of Mathystra and north of Bashal'Aran.",
 					goals = {
 						{ t = "collect", quest = 4762, title = "The Cliffspring River", item = 12349, itemName = "Cliffspring River Sample", count = 1, oi = 1, map = 1439, x = 50.84, y = 25.63, f = "e", note = "Cliffspring River Sample, at the waterfall", from = "Cliffspring River Waterfall", fromKind = "object" },
 						{ t = "collect", quest = 6122, title = "The Principal Source", item = 15845, itemName = "Filled Cliffspring Falls Sampler", count = 1, oi = 1, map = 1439, x = 54.92, y = 33.31, f = "e", only = { classes = { "DRUID" }, races = { "NightElf" } }, note = "Filled Cliffspring Falls Sampler: at the mouth of the cave by the falls", from = "Cliffspring Falls Cave Mouth", fromKind = "object" },
 						{ t = "accept", quest = 4727, title = "Beached Sea Turtle", object = 176196, objName = "Beached Sea Turtle", minLevel = 12, qlvl = 15, pre = { 4681 }, preTitles = { [4681] = "Washed Ashore" }, map = 1439, x = 53.11, y = 18.08, z = 0.6, f = "e", note = "Beached Sea Turtle" },
 						{ t = "accept", quest = 4725, title = "Beached Sea Turtle", object = 176197, objName = "Beached Sea Turtle", minLevel = 12, qlvl = 15, pre = { 4681 }, preTitles = { [4681] = "Washed Ashore" }, map = 1439, x = 44.19, y = 20.6, z = 2.5, f = "e", note = "Beached Sea Turtle" },
-						{ t = "accept", quest = 4723, title = "Beached Sea Creature", object = 175233, objName = "Beached Sea Creature", minLevel = 11, qlvl = 13, pre = { 4681 }, preTitles = { [4681] = "Washed Ashore" }, map = 1439, x = 41.93, y = 31.53, z = 0.5, f = "e", note = "Beached Sea Creature" },
 					},
 				},
 				{
@@ -493,7 +494,6 @@ do
 						{ t = "turnin", quest = 4730, title = "Beached Sea Creature", npc = 10219, npcName = "Gwennyth Bly'Leggonde", map = 1439, x = 36.62, y = 45.59, z = 16.1, f = "e" },
 						{ t = "turnin", quest = 4727, title = "Beached Sea Turtle", npc = 10219, npcName = "Gwennyth Bly'Leggonde", map = 1439, x = 36.62, y = 45.59, z = 16.1, f = "e" },
 						{ t = "turnin", quest = 4725, title = "Beached Sea Turtle", npc = 10219, npcName = "Gwennyth Bly'Leggonde", map = 1439, x = 36.62, y = 45.59, z = 16.1, f = "e" },
-						{ t = "turnin", quest = 4723, title = "Beached Sea Creature", npc = 10219, npcName = "Gwennyth Bly'Leggonde", map = 1439, x = 36.62, y = 45.59, z = 16.1, f = "e" },
 						{ t = "accept", quest = 947, title = "Cave Mushrooms", npc = 3583, npcName = "Barithras Moonshade", minLevel = 12, qlvl = 17, map = 1439, x = 37.32, y = 43.64, z = 8.1, f = "e", note = "Barithras Moonshade" },
 						{ t = "accept", quest = 1138, title = "Fruit of the Sea", npc = 10216, npcName = "Gubber Blump", minLevel = 15, qlvl = 17, map = 1439, x = 36.1, y = 44.93, z = 0.2, f = "e", note = "Gubber Blump" },
 						{ t = "accept", quest = 4740, title = "WANTED: Murkdeep!", object = 175320, objName = "WANTED: Murkdeep!", minLevel = 15, qlvl = 18, map = 1439, x = 37.22, y = 44.22, z = 8.1, f = "e", note = "The WANTED poster" },
@@ -599,7 +599,7 @@ do
 				},
 				{
 					title = "Murkdeep's beach",
-					note = "Murkdeep camps on the beach west of the glaive: kill the murlocs at the camp fire; he comes in the third wave with his hound. Three beached remains lie on the beaches south of Remtravel's Excavation.",
+					note = "Murkdeep camps on the beach west of the glaive: kill the murlocs at the camp fire; he comes in the third wave with his hound. Three beached remains lie on the beaches west and south-west of Remtravel's Excavation.",
 					goals = {
 						{ t = "kill", quest = 4740, title = "WANTED: Murkdeep!", target = "Murkdeep", npc = 10323, oi = 1, map = 1439, x = 36.44, y = 76.51, f = "e", note = "Murkdeep" },
 						{ t = "accept", quest = 4731, title = "Beached Sea Turtle", object = 176198, objName = "Beached Sea Turtle", minLevel = 13, qlvl = 19, pre = { 4681 }, preTitles = { [4681] = "Washed Ashore" }, map = 1439, x = 31.67, y = 83.68, z = 2, f = "e", note = "Beached Sea Turtle" },
@@ -5090,6 +5090,7 @@ do
 						{ t = "accept", quest = 2873, title = "Stoley's Shipment", npc = 7881, npcName = "Stoley", minLevel = 40, qlvl = 45, map = 1446, x = 67.11, y = 23.98, z = 8.1, f = "e" },
 						{ t = "accept", quest = 8366, title = "Southsea Shakedown", npc = 7882, npcName = "Security Chief Bilgewhizzle", minLevel = 40, qlvl = 45, map = 1446, x = 67.06, y = 23.89, z = 8.1, f = "e", note = "Security Chief Bilgewhizzle" },
 						{ t = "accept", quest = 2875, title = "WANTED: Andre Firebeard", object = 142122, objName = "Wanted Poster", minLevel = 40, qlvl = 45, map = 1446, x = 66.82, y = 22.29, z = 8, f = "e", note = "The Wanted poster beside him" },
+						{ t = "accept", quest = 2781, title = "WANTED: Caliph Scorpidsting", object = 142122, objName = "Wanted Poster", minLevel = 39, qlvl = 46, map = 1446, x = 66.82, y = 22.29, z = 8, f = "e", note = "The same poster: Caliph comes much later, after Gadgetzan" },
 						{ t = "accept", quest = 8365, title = "Pirate Hats Ahoy!", npc = 15165, npcName = "Haughty Modiste", minLevel = 40, qlvl = 45, map = 1446, x = 66.56, y = 22.27, z = 8.8, f = "e", note = "Haughty Modiste" },
 					},
 				},
@@ -5211,12 +5212,6 @@ do
 						{ t = "accept", quest = 1560, title = "Tooga's Quest", npc = 5955, npcName = "Tooga", minLevel = 40, qlvl = 50, map = 1446, x = 29.48, y = 60.51, f = "e", spots = { { x = 29.5, y = 60.5, r = 15, n = 1 }, { x = 30, y = 65, r = 15, n = 1 }, { x = 30, y = 70, r = 15, n = 1 }, { x = 31.8, y = 74.2, r = 15, n = 1 } }, note = "Tooga" },
 						{ t = "complete", quest = 1560, title = "Tooga's Quest" },
 						{ t = "turnin", quest = 1560, title = "Tooga's Quest", npc = 6015, npcName = "Torta", map = 1446, x = 66.58, y = 25.67, z = 0.8, f = "e", note = "Torta" },
-					},
-				},
-				{
-					title = "Steamwheedle Port",
-					goals = {
-						{ t = "accept", quest = 2781, title = "WANTED: Caliph Scorpidsting", object = 142122, objName = "Wanted Poster", minLevel = 39, qlvl = 46, map = 1446, x = 66.82, y = 22.29, z = 8, f = "e", note = "The Wanted poster by Security Chief Bilgewhizzle" },
 					},
 				},
 				{
@@ -24782,6 +24777,12 @@ do
 						{ t = "turnin", quest = 186, title = "Tiger Mastery", npc = 717, npcName = "Ajeck Rouack", map = 1434, x = 35.62, y = 10.62, z = 11.2, f = "e", note = "Ajeck Rouack" },
 						{ t = "accept", quest = 187, title = "Tiger Mastery", npc = 717, npcName = "Ajeck Rouack", minLevel = 28, qlvl = 35, pre = { 186 }, preTitles = { [186] = "Tiger Mastery" }, map = 1434, x = 35.62, y = 10.62, z = 11.2, f = "e" },
 						{ t = "turnin", quest = 191, title = "Panther Mastery", npc = 718, npcName = "Sir S. J. Erlgadin", map = 1434, x = 35.55, y = 10.55, z = 11.1, f = "e", note = "Sir S. J. Erlgadin" },
+						{ t = "accept", quest = 192, title = "Panther Mastery", npc = 718, npcName = "Sir S. J. Erlgadin", minLevel = 28, qlvl = 38, pre = { 191 }, preTitles = { [191] = "Panther Mastery" }, map = 1434, x = 35.55, y = 10.55, z = 11.1, f = "e", note = "The Shadowmaw Panthers come much later, by Grom'gol" },
+						{ t = "accept", quest = 338, title = "The Green Hills of Stranglethorn", npc = 716, npcName = "Barnil Stonepot", minLevel = 30, qlvl = 40, pre = { 583 }, preTitles = { [583] = "Welcome to the Jungle" }, map = 1434, x = 35.66, y = 10.53, z = 11.1, f = "e", optional = true, note = "Barnil Stonepot" },
+						{ t = "accept", quest = 339, title = "Chapter I", npc = 716, npcName = "Barnil Stonepot", minLevel = 30, qlvl = 40, map = 1434, x = 35.66, y = 10.53, z = 11.1, f = "e", optional = true },
+						{ t = "accept", quest = 340, title = "Chapter II", npc = 716, npcName = "Barnil Stonepot", minLevel = 30, qlvl = 40, map = 1434, x = 35.66, y = 10.53, z = 11.1, f = "e", optional = true },
+						{ t = "accept", quest = 341, title = "Chapter III", npc = 716, npcName = "Barnil Stonepot", minLevel = 30, qlvl = 40, map = 1434, x = 35.66, y = 10.53, z = 11.1, f = "e", optional = true },
+						{ t = "accept", quest = 342, title = "Chapter IV", npc = 716, npcName = "Barnil Stonepot", minLevel = 30, qlvl = 40, map = 1434, x = 35.66, y = 10.53, z = 11.1, f = "e", optional = true },
 						{ t = "turnin", quest = 194, title = "Raptor Mastery", npc = 715, npcName = "Hemet Nesingwary", map = 1434, x = 35.66, y = 10.81, z = 11, f = "e", note = "Hemet Nesingwary" },
 						{ t = "accept", quest = 195, title = "Raptor Mastery", npc = 715, npcName = "Hemet Nesingwary", minLevel = 28, qlvl = 36, pre = { 194 }, preTitles = { [194] = "Raptor Mastery" }, map = 1434, x = 35.66, y = 10.81, z = 11, f = "e" },
 					},
@@ -24958,23 +24959,11 @@ do
 					},
 				},
 				{
-					title = "Nesingwary's camp",
-					note = "Follow the road north to the camp.",
-					goals = {
-						{ t = "accept", quest = 192, title = "Panther Mastery", npc = 718, npcName = "Sir S. J. Erlgadin", minLevel = 28, qlvl = 38, pre = { 191 }, preTitles = { [191] = "Panther Mastery" }, map = 1434, x = 35.55, y = 10.55, z = 11.1, f = "e", note = "Sir S. J. Erlgadin" },
-						{ t = "accept", quest = 338, title = "The Green Hills of Stranglethorn", npc = 716, npcName = "Barnil Stonepot", minLevel = 30, qlvl = 40, pre = { 583 }, preTitles = { [583] = "Welcome to the Jungle" }, map = 1434, x = 35.66, y = 10.53, z = 11.1, f = "e", optional = true, note = "Barnil Stonepot" },
-						{ t = "accept", quest = 339, title = "Chapter I", npc = 716, npcName = "Barnil Stonepot", minLevel = 30, qlvl = 40, map = 1434, x = 35.66, y = 10.53, z = 11.1, f = "e", optional = true },
-						{ t = "accept", quest = 340, title = "Chapter II", npc = 716, npcName = "Barnil Stonepot", minLevel = 30, qlvl = 40, map = 1434, x = 35.66, y = 10.53, z = 11.1, f = "e", optional = true },
-						{ t = "accept", quest = 341, title = "Chapter III", npc = 716, npcName = "Barnil Stonepot", minLevel = 30, qlvl = 40, map = 1434, x = 35.66, y = 10.53, z = 11.1, f = "e", optional = true },
-						{ t = "accept", quest = 342, title = "Chapter IV", npc = 716, npcName = "Barnil Stonepot", minLevel = 30, qlvl = 40, map = 1434, x = 35.66, y = 10.53, z = 11.1, f = "e", optional = true },
-					},
-				},
-				{
 					title = "Green Hills pages",
 					note = "Pages of The Green Hills of Stranglethorn drop at about 1% each from the Bloodscalp and Skullsplitter trolls; keep every page you loot and look on the auction house for the rest. Barnil takes the chapters later in this guide.",
 					goals = {
-						{ t = "collect", quest = 339, title = "Chapter I", item = 2725, itemName = "Green Hills of Stranglethorn - Page 1", oi = 1, map = 1434, x = 34.71, y = 21.9, f = "e", spots = { { x = 34.5, y = 22.4, r = 39, n = 3 }, { x = 35.5, y = 23.7, r = 15, n = 1 } }, optional = true, from = "Gluggle", fromKind = "npc", fromRank = 4 },
-						{ t = "collect", quest = 339, title = "Chapter I", item = 2728, itemName = "Green Hills of Stranglethorn - Page 4", oi = 2, map = 1434, x = 34.71, y = 21.9, f = "e", spots = { { x = 34.5, y = 22.4, r = 39, n = 3 }, { x = 35.5, y = 23.7, r = 15, n = 1 } }, optional = true },
+						{ t = "collect", quest = 339, title = "Chapter I", item = 2725, itemName = "Green Hills of Stranglethorn - Page 1", oi = 1, map = 1434, x = 33.92, y = 22.63, f = "e", spots = { { x = 34.5, y = 22.4, r = 39, n = 3 }, { x = 35.5, y = 23.7, r = 15, n = 1 } }, optional = true, from = "Gluggle", fromKind = "npc", fromRank = 4 },
+						{ t = "collect", quest = 339, title = "Chapter I", item = 2728, itemName = "Green Hills of Stranglethorn - Page 4", oi = 2, map = 1434, x = 33.92, y = 22.63, f = "e", spots = { { x = 34.5, y = 22.4, r = 39, n = 3 }, { x = 35.5, y = 23.7, r = 15, n = 1 } }, optional = true },
 						{ t = "collect", quest = 339, title = "Chapter I", item = 2730, itemName = "Green Hills of Stranglethorn - Page 6", oi = 3, map = 1434, x = 44.66, y = 11.01, f = "e", spots = { { x = 44.7, y = 11, r = 15, n = 1 }, { x = 44.6, y = 8.2, r = 28, n = 2 } }, optional = true, from = "Bookie Herod", fromKind = "npc" },
 						{ t = "collect", quest = 339, title = "Chapter I", item = 2732, itemName = "Green Hills of Stranglethorn - Page 8", oi = 4, map = 1434, x = 49.83, y = 30.87, f = "e", spots = { { x = 49.8, y = 30.9, r = 15, n = 1 }, { x = 28.6, y = 62.3, r = 21, n = 2 } }, spread = true, optional = true },
 						{ t = "collect", quest = 340, title = "Chapter II", item = 2734, itemName = "Green Hills of Stranglethorn - Page 10", oi = 1, map = 1434, x = 44.66, y = 11.01, f = "e", spots = { { x = 44.7, y = 11, r = 15, n = 1 }, { x = 44.6, y = 8.2, r = 28, n = 2 }, { x = 29.2, y = 88.8, r = 15, n = 1 } }, spread = true, optional = true },
@@ -32833,8 +32822,9 @@ do
 				},
 				{
 					title = "Calvin Montague",
-					note = "Walk on west to Calvin and talk to him: he wants a duel.",
+					note = "Walk on west to the Solliden Farmstead. Deathguard Simmer stands at the farm; Calvin, by the farmhouse, wants a duel: talk to him.",
 					goals = {
+						{ t = "accept", quest = 365, title = "Fields of Grief", npc = 1519, npcName = "Deathguard Simmer", minLevel = 4, qlvl = 7, map = 1420, x = 40.91, y = 54.17, z = 32.3, f = "e", note = "Deathguard Simmer" },
 						{ t = "accept", quest = 590, title = "A Rogue's Deal", npc = 6784, npcName = "Calvin Montague", minLevel = 1, qlvl = 5, pre = { 8 }, preTitles = { [8] = "A Rogue's Deal" }, map = 1420, x = 38.23, y = 56.79, z = 54, f = "e" },
 						{ t = "complete", quest = 590, title = "A Rogue's Deal", map = 1420, x = 38.2, y = 56.8, f = "e", note = "Beat Calvin in the duel" },
 						{ t = "turnin", quest = 590, title = "A Rogue's Deal", npc = 6784, npcName = "Calvin Montague", map = 1420, x = 38.23, y = 56.79, z = 54, f = "e" },
@@ -32941,17 +32931,10 @@ do
 					},
 				},
 				{
-					title = "Deathguard Simmer",
-					note = "Walk south-west to the Solliden Farmstead; Simmer stands at the farm.",
-					goals = {
-						{ t = "accept", quest = 365, title = "Fields of Grief", npc = 1519, npcName = "Deathguard Simmer", minLevel = 4, qlvl = 7, map = 1420, x = 40.91, y = 54.17, z = 32.3, f = "e" },
-					},
-				},
-				{
 					title = "Tirisfal Pumpkins",
-					note = "The pumpkins grow in the Scarlet-held fields north-west of Solliden.",
+					note = "Walk south-west from the mills: the pumpkins grow in the Scarlet-held fields north-west of Solliden.",
 					goals = {
-						{ t = "collect", quest = 365, title = "Fields of Grief", item = 2846, itemName = "Tirisfal Pumpkin", count = 10, oi = 1, map = 1420, x = 37.16, y = 52.18, f = "e", spots = { { x = 36.7, y = 51.6, r = 32, n = 5 }, { x = 36.9, y = 49.4, r = 42, n = 6 }, { x = 35.4, y = 50.6, r = 64, n = 7 }, { x = 34.5, y = 51.2, r = 46, n = 6 }, { x = 32.1, y = 46.9, r = 22, n = 3 } }, from = "Tirisfal Pumpkin", fromKind = "object" },
+						{ t = "collect", quest = 365, title = "Fields of Grief", item = 2846, itemName = "Tirisfal Pumpkin", count = 10, oi = 1, map = 1420, x = 37.29, y = 48.92, f = "e", spots = { { x = 36.9, y = 49.4, r = 42, n = 6 }, { x = 36.7, y = 51.6, r = 32, n = 5 }, { x = 35.4, y = 50.6, r = 64, n = 7 }, { x = 34.5, y = 51.2, r = 46, n = 6 }, { x = 32.1, y = 46.9, r = 22, n = 3 } }, from = "Tirisfal Pumpkin", fromKind = "object" },
 					},
 				},
 				{

@@ -451,6 +451,38 @@ test(`${WESTFALL}: Alba Fairmoon's chain is not given to Humans (#144)`, { skip 
 	}
 });
 
+// --- Darkshore (XooVe, #213): the first loop walked past a Beached Sea
+// Creature from Asterion to Buzzbox 411 and the second loop came back for it.
+
+test(`${DARKSHORE}: XooVe's report: the Beached Sea Creature by Bashal'Aran is taken on the walk from Asterion to Buzzbox 411 (#213)`, { skip }, () => {
+	const list = goals(DARKSHORE);
+	const take = at(list, 'accept 4723 (Beached Sea Creature)', is('accept', 4723));
+	assert.equal(list[take].step.title, "Bashal'Aran", "it is taken in the Bashal'Aran step");
+	assert.ok(at(list, 'accept 957 (Asterion)', is('accept', 957)) < take, 'after Asterion');
+	assert.ok(take < at(list, 'turnin 1001 (Buzzbox 411)', is('turnin', 1001)), 'before Buzzbox 411');
+	// Handed in at the first hearth, with the Beached Sea Turtle, before the second loop.
+	const handIn = at(list, 'turnin 4723', is('turnin', 4723));
+	assert.equal(list[handIn].step, list[at(list, 'turnin 4722', is('turnin', 4722))].step, 'handed in with 4722');
+	assert.ok(handIn < at(list, 'accept 4728', is('accept', 4728)), 'before the second loop');
+});
+
+// The same pattern elsewhere: a quest taken where the route already stands,
+// instead of on a walk back to its giver later.
+const STRANGLETHORN_HORDE = 'forever/horde/30-40/02-stranglethorn-vale.guide';
+const TANARIS_ALLIANCE = 'forever/alliance/40-50/04-tanaris.guide';
+
+test('#213: quests whose giver the route already stands at are taken there, not on a walk back', { skip }, () => {
+	for (const [guide, quest, withGoal, what] of [
+		[TIRISFAL, 365, is('accept', 590), "Calvin's duel at Solliden"],
+		[TANARIS_ALLIANCE, 2781, is('accept', 2875), "Andre Firebeard's poster at Steamwheedle Port"],
+		[STRANGLETHORN_HORDE, 192, is('turnin', 191), "Panther Mastery's second turn-in"],
+	]) {
+		const list = goals(guide);
+		const take = at(list, `${guide}: accept ${quest}`, is('accept', quest));
+		assert.equal(list[take].step, list[at(list, `${guide}: ${what}`, withGoal)].step, `${guide}: ${quest} is taken at ${what}`);
+	}
+});
+
 // Every leveling guide with a profession quest still plays to the end for a
 // character who already has the profession (tests/guides.test.js plays them
 // all without one).
