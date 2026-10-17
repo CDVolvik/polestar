@@ -673,7 +673,7 @@ local function create()
 	rareButton = newButton("PolestarRareButton", rareTooltip)
 	rareButton.Icon:SetTexture(media("qol-target"))
 	rareButton.Icon:SetTexCoord(0, 1, 0, 1)
-	color(rareButton.Icon, "rare")
+	color(rareButton.Icon, "quest")
 	rareButton:HookScript("PostClick", function(self, _, down)
 		if down or self.dragging then return end
 		local n = #rare.list
