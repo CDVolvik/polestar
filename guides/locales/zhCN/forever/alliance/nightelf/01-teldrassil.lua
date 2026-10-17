@@ -27,7 +27,7 @@ return {
 	-- {npc:2082} Gilshalan Windwalker
 	["{npc:2082}, on the tree's ramp"] = "{npc:2082}，在巨树的坡道上",
 	-- {npc:3595} Shanda
-	["{npc:3595}, inside the tree"] = "{npc:3595}，在巨树内",
+	["{npc:3595}: in at the tree's front entrance and up the ramp"] = "",
 	-- {quest:97979} The Goddess Provides · {spell:1259799} Elune's Light · {npc:3595} Shanda
 	["{quest:97979}: cast {spell:1259799} and Shadowmeld, then hand it back to {npc:3595}"] = "{quest:97979}：施放{spell:1259799}和影遁，然后交还给{npc:3595}",
 	-- {npc:8583} Dirania Silvershine
@@ -50,7 +50,7 @@ return {
 	-- {npc:3594} Frahun Shadewhisper
 	["{npc:3594}, the rogue trainer"] = "{npc:3594}，潜行者训练师",
 	-- {npc:3595} Shanda
-	["{npc:3595}, the priest trainer, inside the tree"] = "{npc:3595}，牧师训练师，在巨树内",
+	["{npc:3595}, the priest trainer: in at the tree's front entrance and up the ramp"] = "",
 	-- {npc:3597} Mardant Strongoak · {area:256} Aldrassil
 	["{npc:3597}, the druid trainer at {area:256}"] = "{npc:3597}，{area:256}的德鲁伊训练师",
 
@@ -83,7 +83,7 @@ return {
 
 	-- Step 12: Zenn Foulhoof
 	-- {area:188} Shadowglen · {npc:2150} Zenn Foulhoof · {area:186} Dolanaar
-	["Follow the road south-west out of {area:188}. {npc:2150} sits beside it just east of {area:186}."] = "",
+	["Follow the road south-west out of {area:188}. {npc:2150} sits beside it just east of {area:186}."] = "沿道路向西南离开{area:188}。{npc:2150}就坐在路旁，在{area:186}东边不远处。",
 
 	-- Step 13: Dolanaar
 	-- {npc:265811} Lyreena Duskblade
@@ -96,7 +96,7 @@ return {
 	["{quest:488} and the Starbreeze moonwell"] = "{quest:488}和星风村的月亮井",
 	-- {area:186} Dolanaar · {area:260} Starbreeze Village
 	-- plural, as words: Strigid Owls = {npc:1995} Strigid Owl · Webwood Lurkers = {npc:1998} Webwood Lurker
-	["Nightsabers, Strigid Owls and Webwood Lurkers roam all around {area:186} and along the road east. The moonwell is at the west edge of {area:260}."] = "",
+	["Nightsabers, Strigid Owls and Webwood Lurkers roam all around {area:186} and along the road east. The moonwell is at the west edge of {area:260}."] = "夜刃豹、巨翼枭和树林潜伏者在{area:186}四周和向东的道路沿途游荡。月亮井在{area:260}的西缘。",
 	-- {item:5619} Jade Phial
 	["Use the {item:5619} at the moonwell"] = "在月亮井使用{item:5619}",
 	-- {npc:2150} Zenn Foulhoof
@@ -323,6 +323,8 @@ return {
 	-- ["The {area:264}"] = "{area:264}",
 	-- ["{npc:11401}, in the Temple of the Moon: {spell:10797}"] = "{npc:11401}，在月神殿：{spell:10797}",
 	-- ["{npc:2150} sits by the road just east of {area:186}, on the way to {area:260}."] = "{npc:2150}坐在{area:186}东边不远的路旁，在去{area:260}的路上。",
+	-- ["{npc:3595}, inside the tree"] = "{npc:3595}，在巨树内",
+	-- ["{npc:3595}, the priest trainer, inside the tree"] = "{npc:3595}，牧师训练师，在巨树内",
 	-- ["{npc:4217}: Bear Form"] = "{npc:4217}：熊形态",
 	-- ["{npc:6089}: Defensive Stance"] = "{npc:6089}：防御姿态",
 	-- ["{quest:97979}: cast {spell:1259799} and {spell:20580}, then hand it back to {npc:3595}"] = "{quest:97979}：施放{spell:1259799}和{spell:20580}，然后交还给{npc:3595}",

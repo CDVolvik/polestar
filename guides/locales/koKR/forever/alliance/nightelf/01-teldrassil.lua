@@ -27,7 +27,7 @@ return {
 	-- {npc:2082} Gilshalan Windwalker
 	["{npc:2082}, on the tree's ramp"] = "나무 경사로의 {npc:2082}",
 	-- {npc:3595} Shanda
-	["{npc:3595}, inside the tree"] = "나무 안의 {npc:3595}",
+	["{npc:3595}: in at the tree's front entrance and up the ramp"] = "",
 	-- {quest:97979} The Goddess Provides · {spell:1259799} Elune's Light · {npc:3595} Shanda
 	["{quest:97979}: cast {spell:1259799} and Shadowmeld, then hand it back to {npc:3595}"] = "{quest:97979}: {spell:1259799}와(과) 그림자 숨기를 시전한 뒤 {npc:3595}에게 완료하세요",
 	-- {npc:8583} Dirania Silvershine
@@ -50,7 +50,7 @@ return {
 	-- {npc:3594} Frahun Shadewhisper
 	["{npc:3594}, the rogue trainer"] = "도적 상급자 {npc:3594}",
 	-- {npc:3595} Shanda
-	["{npc:3595}, the priest trainer, inside the tree"] = "나무 안의 사제 상급자 {npc:3595}",
+	["{npc:3595}, the priest trainer: in at the tree's front entrance and up the ramp"] = "",
 	-- {npc:3597} Mardant Strongoak · {area:256} Aldrassil
 	["{npc:3597}, the druid trainer at {area:256}"] = "{area:256}의 드루이드 상급자 {npc:3597}",
 
@@ -83,7 +83,7 @@ return {
 
 	-- Step 12: Zenn Foulhoof
 	-- {area:188} Shadowglen · {npc:2150} Zenn Foulhoof · {area:186} Dolanaar
-	["Follow the road south-west out of {area:188}. {npc:2150} sits beside it just east of {area:186}."] = "",
+	["Follow the road south-west out of {area:188}. {npc:2150} sits beside it just east of {area:186}."] = "{area:188}에서 남서쪽 길을 따라가세요. {npc:2150}은(는) {area:186} 바로 동쪽 길가에 앉아 있습니다.",
 
 	-- Step 13: Dolanaar
 	-- {npc:265811} Lyreena Duskblade
@@ -96,7 +96,7 @@ return {
 	["{quest:488} and the Starbreeze moonwell"] = "{quest:488}와(과) 별바람 마을 달샘",
 	-- {area:186} Dolanaar · {area:260} Starbreeze Village
 	-- plural, as words: Strigid Owls = {npc:1995} Strigid Owl · Webwood Lurkers = {npc:1998} Webwood Lurker
-	["Nightsabers, Strigid Owls and Webwood Lurkers roam all around {area:186} and along the road east. The moonwell is at the west edge of {area:260}."] = "",
+	["Nightsabers, Strigid Owls and Webwood Lurkers roam all around {area:186} and along the road east. The moonwell is at the west edge of {area:260}."] = "흑호, 스트리기드 올빼미, 나무그물 늑대거미가 {area:186} 주변과 동쪽 길을 따라 돌아다닙니다. 달샘은 {area:260} 서쪽 끝에 있습니다.",
 	-- {item:5619} Jade Phial
 	["Use the {item:5619} at the moonwell"] = "달샘에서 {item:5619}을(를) 사용하세요",
 	-- {npc:2150} Zenn Foulhoof
@@ -321,5 +321,7 @@ return {
 	-- ["The {area:264}"] = "{area:264}",
 	-- ["{npc:11401}, in the Temple of the Moon: {spell:10797}"] = "달의 신전의 {npc:11401}: {spell:10797}",
 	-- ["{npc:2150} sits by the road just east of {area:186}, on the way to {area:260}."] = "{npc:2150}은(는) {area:260}(으)로 가는 길, {area:186} 바로 동쪽 길가에 앉아 있습니다.",
+	-- ["{npc:3595}, inside the tree"] = "나무 안의 {npc:3595}",
+	-- ["{npc:3595}, the priest trainer, inside the tree"] = "나무 안의 사제 상급자 {npc:3595}",
 	-- ["{quest:97979}: cast {spell:1259799} and {spell:20580}, then hand it back to {npc:3595}"] = "{quest:97979}: {spell:1259799}와(과) {spell:20580}을(를) 시전한 뒤 {npc:3595}에게 완료하세요",
 }

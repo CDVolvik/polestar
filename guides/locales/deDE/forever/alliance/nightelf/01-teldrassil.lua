@@ -27,7 +27,7 @@ return {
 	-- {npc:2082} Gilshalan Windwalker
 	["{npc:2082}, on the tree's ramp"] = "{npc:2082}, auf der Rampe des Baums",
 	-- {npc:3595} Shanda
-	["{npc:3595}, inside the tree"] = "{npc:3595}, im Baum",
+	["{npc:3595}: in at the tree's front entrance and up the ramp"] = "",
 	-- {quest:97979} The Goddess Provides · {spell:1259799} Elune's Light · {npc:3595} Shanda
 	["{quest:97979}: cast {spell:1259799} and Shadowmeld, then hand it back to {npc:3595}"] = "{quest:97979}: Wirke {spell:1259799} und Schattenmimik, dann gib sie bei {npc:3595} ab",
 	-- {npc:8583} Dirania Silvershine
@@ -50,7 +50,7 @@ return {
 	-- {npc:3594} Frahun Shadewhisper
 	["{npc:3594}, the rogue trainer"] = "{npc:3594}, der Schurkenlehrer",
 	-- {npc:3595} Shanda
-	["{npc:3595}, the priest trainer, inside the tree"] = "{npc:3595}, die Priesterlehrerin, im Baum",
+	["{npc:3595}, the priest trainer: in at the tree's front entrance and up the ramp"] = "",
 	-- {npc:3597} Mardant Strongoak · {area:256} Aldrassil
 	["{npc:3597}, the druid trainer at {area:256}"] = "{npc:3597}, der Druidenlehrer bei {area:256}",
 
@@ -83,7 +83,7 @@ return {
 
 	-- Step 12: Zenn Foulhoof
 	-- {area:188} Shadowglen · {npc:2150} Zenn Foulhoof · {area:186} Dolanaar
-	["Follow the road south-west out of {area:188}. {npc:2150} sits beside it just east of {area:186}."] = "",
+	["Follow the road south-west out of {area:188}. {npc:2150} sits beside it just east of {area:186}."] = "Folge der Straße nach Südwesten aus {area:188} hinaus. {npc:2150} sitzt daneben gleich östlich von {area:186}.",
 
 	-- Step 13: Dolanaar
 	-- {npc:265811} Lyreena Duskblade
@@ -96,7 +96,7 @@ return {
 	["{quest:488} and the Starbreeze moonwell"] = "{quest:488} und der Mondbrunnen von Starbreeze",
 	-- {area:186} Dolanaar · {area:260} Starbreeze Village
 	-- plural, as words: Strigid Owls = {npc:1995} Strigid Owl · Webwood Lurkers = {npc:1998} Webwood Lurker
-	["Nightsabers, Strigid Owls and Webwood Lurkers roam all around {area:186} and along the road east. The moonwell is at the west edge of {area:260}."] = "",
+	["Nightsabers, Strigid Owls and Webwood Lurkers roam all around {area:186} and along the road east. The moonwell is at the west edge of {area:260}."] = "Nachtsäbler, Strigideulen und Waldweberlauerer streifen rund um {area:186} und entlang der Straße nach Osten umher. Der Mondbrunnen liegt am Westrand von {area:260}.",
 	-- {item:5619} Jade Phial
 	["Use the {item:5619} at the moonwell"] = "Benutze die {item:5619} am Mondbrunnen",
 	-- {npc:2150} Zenn Foulhoof
@@ -321,5 +321,7 @@ return {
 	-- ["The {area:264}"] = "{area:264}",
 	-- ["{npc:11401}, in the Temple of the Moon: {spell:10797}"] = "{npc:11401}, im Tempel des Mondes: {spell:10797}",
 	-- ["{npc:2150} sits by the road just east of {area:186}, on the way to {area:260}."] = "{npc:2150} sitzt an der Straße gleich östlich von {area:186}, auf dem Weg nach {area:260}.",
+	-- ["{npc:3595}, inside the tree"] = "{npc:3595}, im Baum",
+	-- ["{npc:3595}, the priest trainer, inside the tree"] = "{npc:3595}, die Priesterlehrerin, im Baum",
 	-- ["{quest:97979}: cast {spell:1259799} and {spell:20580}, then hand it back to {npc:3595}"] = "{quest:97979}: Wirke {spell:1259799} und {spell:20580}, dann gib sie bei {npc:3595} ab",
 }
