@@ -74,26 +74,54 @@ const CLASS_SPECS = {
 	WARRIOR: ['Arms', 'Fury', 'Protection'],
 };
 
+// Each class in turn, as the player's class: T.Register keeps only that one.
+function runAs(cls, script) {
+	return runAddon({
+		stubs: ['stub_world.lua', 'stub_talents.lua'],
+		before: `stub.talents.class = "${cls}"`,
+		addons: [{ name: 'Polestar', files: CORE }],
+		script,
+	}).emitted;
+}
+
 test('Builds.lua: every class has a plan per spec, 51 picks each, every one legal under the snapshot', () => {
-	const [out] = run(`
-local o = {}
-for _, cls in ipairs({ ${Object.keys(CLASS_SPECS).map((c) => `"${c}"`).join(', ')} }) do
-	local d = T.Data(cls)
-	local c = { specs = d and d.specs, plans = {} }
-	for _, b in ipairs(d and d.builds or {}) do
-		c.plans[#c.plans + 1] = { key = b.key, spec = b.specName, picks = #b.picks, errors = T.Replay(d, b) }
-	end
-	o[cls] = c
-end
-emit(o)`);
 	for (const [cls, specs] of Object.entries(CLASS_SPECS)) {
-		assert.deepEqual(out[cls].specs, specs, cls);
-		assert.deepEqual(out[cls].plans.map((p) => p.spec), specs, `${cls}: one plan per spec, in order`);
-		for (const p of out[cls].plans) {
+		const [out] = runAs(cls, `
+local d = Polestar.Talents.Data()
+local c = { class = d and d.class, specs = d and d.specs, plans = {} }
+for _, b in ipairs(d and d.builds or {}) do
+	c.plans[#c.plans + 1] = { key = b.key, spec = b.specName, picks = #b.picks, errors = Polestar.Talents.Replay(d, b) }
+end
+emit(c)`);
+		assert.equal(out.class, cls);
+		assert.deepEqual(out.specs, specs, cls);
+		assert.deepEqual(out.plans.map((p) => p.spec), specs, `${cls}: one plan per spec, in order`);
+		for (const p of out.plans) {
 			assert.equal(p.picks, 51, `${cls} ${p.key}`);
 			assert.equal(Object.keys(p.errors).length, 0, `${cls} ${p.key}: ${JSON.stringify(p.errors)}`);
 		}
 	}
+});
+
+test('Register: only the player\'s class is kept, so a character does not hold every class\'s plans', () => {
+	const classes = Object.keys(CLASS_SPECS).map((c) => `"${c}"`).join(', ');
+	const kept = `
+local o = {}
+for _, cls in ipairs({ ${classes} }) do
+	if Polestar.Talents.Data(cls) then o[#o + 1] = cls end
+end
+emit(o)`;
+	assert.deepEqual(runAs('WARRIOR', kept)[0], ['WARRIOR']);
+	assert.deepEqual(runAs('PALADIN', kept)[0], ['PALADIN']);
+	assert.deepEqual(runAs('DEATHKNIGHT', kept)[0], {}, 'a class with no plans keeps none (an empty Lua table)');
+	// A client that cannot name the class yet keeps every class, as before.
+	const [all] = runAddon({
+		stubs: ['stub_world.lua', 'stub_talents.lua'],
+		before: 'stub.talents.class = nil',
+		addons: [{ name: 'Polestar', files: CORE }],
+		script: kept,
+	}).emitted;
+	assert.deepEqual(all, Object.keys(CLASS_SPECS));
 });
 
 test('Replay: a skipped arrow, an early tier and a skipped rank are caught; "started" relaxes arrows', () => {
