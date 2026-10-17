@@ -86,6 +86,7 @@ local shownIndex, shownGuide, shownFocus -- what the card shows, to tell a chang
 local tipOpen = false
 local inCombat = false
 local inInstance, openInside = false, false -- in a dungeon or raid; opened there by the player
+local shownOnEntry = false -- ui.shown when this visit began
 local state = "none" -- "steps" | "noguides" | "noguide" | "notyet" | "complete"
 local texts = {} -- every string the window draws, for transparent-mode outlines
 local chrome = {} -- frames that hide in transparent mode until hovered
@@ -1655,10 +1656,12 @@ function GF.ApplyVisibility()
 end
 
 -- The toggle (/polestar, the key binding, the minimap button) inside, with
--- ui.instance "hide" and the window on: opens or closes it for this visit,
--- ui.shown untouched. -> true when it did.
+-- ui.instance "hide" and the window on, now and on the way in: opens or
+-- closes it for this visit, ui.shown untouched. -> true when it did. A
+-- window that was off on the way in toggles ui.shown as anywhere else, so
+-- closing it there keeps it off after leaving.
 function GF.ToggleInside()
-	if not (inInstance and ns.Get("ui.instance") == "hide" and ns.Get("ui.shown")) then return false end
+	if not (inInstance and shownOnEntry and ns.Get("ui.instance") == "hide" and ns.Get("ui.shown")) then return false end
 	openInside = not openInside
 	GF.ApplyVisibility()
 	return true
@@ -2574,7 +2577,10 @@ end
 -- or out ends a visit, so the next one starts hidden again.
 local function checkInstance()
 	local now = instanceNow()
-	if now ~= inInstance then openInside = false end
+	if now ~= inInstance then
+		openInside = false
+		shownOnEntry = ns.Get("ui.shown") and true or false
+	end
 	inInstance = now
 	GF.ApplyVisibility()
 end

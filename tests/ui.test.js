@@ -921,6 +921,20 @@ test('in dungeons: a window hidden by hand stays hidden after leaving', () => {
 	assert.deepEqual(out, { shown: false, stored: false });
 });
 
+test('in dungeons: a window off on the way in, opened and closed there with /polestar, stays off after leaving', () => {
+	const [out] = run(`${ENTER}
+		Polestar.Set("ui.instance", "hide")
+		Polestar.Fire("HIDE_FRAME")
+		enter("party")
+		Polestar.Fire("TOGGLE_FRAME")
+		local opened = F:IsShown()
+		Polestar.Fire("TOGGLE_FRAME")
+		local closed = F:IsShown()
+		enter(nil)
+		emit({ opened = opened, closed = closed, shown = F:IsShown(), stored = Polestar.Get("ui.shown") })`);
+	assert.deepEqual(out, { opened: true, closed: false, shown: false, stored: false });
+});
+
 test('in dungeons: a fight there does not bring the window back, and In combat still hides one opened by hand', () => {
 	const [out] = run(`${ENTER}
 		Polestar.Set("ui.instance", "hide")
