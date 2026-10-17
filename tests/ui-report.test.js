@@ -317,6 +317,7 @@ test('"Mark the right spot" steps the window aside while the player walks; "Mark
 	const added = out.after.split('\n').filter((l) => !out.before.split('\n').includes(l));
 	assert.deepEqual(added, ['Right spot: zone map 1429 · goto 51.23,40.50 live'], 'the spot is the one line added: the report taken at the open is kept');
 	assert.equal(new URL(out.url).searchParams.get('where'), 'zone map 1429\ngoto 51.23,40.50 live', 'the right spot field holds what /polestar where prints');
+	assert.equal(new URL(out.url).searchParams.get('wrong'), out.before, 'the issue gives the spot once, in its own field');
 	assert.equal(out.reopened, out.back.note, 'the spot stays while it is the same step');
 	assert.match(out.otherStep, /^Optional:/, 'another step starts unmarked');
 	assert.doesNotMatch(out.otherReport, /Right spot/);

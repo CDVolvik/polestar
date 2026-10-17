@@ -461,9 +461,9 @@ function R.IssueURL(description, details, spot)
 		{ "title", issue.title or ("Bug: " .. cut(oneLine(desc), 80)) },
 		{ "version", polestarVersion() },
 	}
-	local body = "steps"
+	local body, bodySpot = "steps", spot
 	if issue.template == "wrong-step.yml" then
-		body = "wrong"
+		body, bodySpot = "wrong", nil
 		fields[#fields + 1] = { "guide", issue.guide }
 		fields[#fields + 1] = { "step", issue.step }
 		fields[#fields + 1] = { "character", issue.character }
@@ -476,7 +476,7 @@ function R.IssueURL(description, details, spot)
 	local url = ns.IssueURL .. "?" .. table.concat(query, "&")
 	local list = details.addons
 	local reserve = #list > 0 and #"&addons=" + #encode(addonsHead(#list)) or 0
-	url = url .. "&" .. body .. "=" .. bodyField(description, details, spot, R.LINK_MAX - #url - #body - 2 - reserve)
+	url = url .. "&" .. body .. "=" .. bodyField(description, details, bodySpot, R.LINK_MAX - #url - #body - 2 - reserve)
 	local addons = addonsField(list, R.LINK_MAX - #url - #"&addons=")
 	if addons and addons ~= "" then url = url .. "&addons=" .. encode(addons) end
 	return url
