@@ -100,6 +100,28 @@ git grep "accept 184"
 - When the guide is wrong because the data is (a giver, a spawn, a drop),
   fix the data in `tools/lib/data/corrections.json` too, so the simulator and
   the next route refresh see it.
+- `addon/Polestar_Guides/Guides.lua` comes from
+  `node tools/polestar.js compile`: commit the file it writes, never a hand
+  edit or a hunk spliced in from another compile. A spliced hunk can still be
+  valid Lua and load without an error while the game never sees its goals: a
+  goal left between a step's `title` and its `goals = {`, or a step's goals
+  left open so the next step becomes one of its goals. When your reference
+  data is older or newer than the branch's, a recompile also changes guides
+  you did not touch. Keep only your change by compiling the guides before and
+  after it with the same local data and merging the difference into the
+  committed file:
+
+  ```sh
+  tmp=$(mktemp -d)
+  git archive origin/next guides | tar -x -C "$tmp"   # the guides your change starts from (origin/hotfix/<version> for a patch fix)
+  node tools/polestar.js compile --guides "$tmp/guides" --out "$tmp/before"
+  node tools/polestar.js compile --out "$tmp/after"
+  git merge-file addon/Polestar_Guides/Guides.lua "$tmp/before/Guides.lua" "$tmp/after/Guides.lua"
+  ```
+
+  A conflict means your data differs from the branch's in the very lines
+  your change touches: rebuild the data and compile, or say so in the pull
+  request and leave Guides.lua to the maintainer.
 - Check your change:
 
   ```sh
@@ -192,7 +214,7 @@ Agents are welcome. [AGENTS.md](AGENTS.md), which most coding agents read
 on their own, sends them to the skill for their task in `skills/`:
 `polestar-contributing` for any change or pull request, `polestar-triage`
 for checking a report, `polestar-guide-fix` for fixing a guide step and
-`polestar-guide-pack` for writing a guide pack. Your own agent settings and
+`polestar-guide-pack` for writing a community addon. Your own agent settings and
 notes stay yours: keep them out of commits. Claude Code reads AGENTS.md only
 while you have no `CLAUDE.md` or `CLAUDE.local.md` of your own; if you write
 one, start it with `@AGENTS.md`. The rules that matter most:
@@ -270,9 +292,9 @@ unexplained.
   messages and chat sent without the player asking, hooks on secure
   functions, slash commands that do something other than what they say.
 - **The toolchain.** New dependencies or install scripts, `child_process`,
-  network access to hosts the project does not already use (wago.tools,
-  Wowhead), reading or writing outside the repository (the home folder,
-  tokens, other addons' saved data), changes to `.github/workflows`.
+  network access to hosts the project does not already use (wago.tools),
+  reading or writing outside the repository (the home folder, tokens, other
+  addons' saved data), changes to `.github/workflows`.
 - **Data and guides.** Executable code or links hidden in data, guide or
   locale files.
 
@@ -282,6 +304,6 @@ the player) and merged into its base branch.
 
 ## Licence
 
-Contributions to Polestar are under GPL-3.0 ([LICENSE](LICENSE)). Guide packs
-written by others are separate works; see
+Contributions to Polestar are under GPL-3.0 ([LICENSE](LICENSE)). Community
+addons written by others are separate works; see
 [LICENSE-EXCEPTION.md](LICENSE-EXCEPTION.md).

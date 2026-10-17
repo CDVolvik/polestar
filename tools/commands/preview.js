@@ -383,7 +383,7 @@ end`;
 // the arrow in your own colours.
 const CUSTOM_LOOK = `Polestar.Set("ui.borderAccent", true); Polestar.Set("ui.borderSize", 2); Polestar.Set("ui.band", false); Polestar.Set("ui.shadow", false)
 Polestar.Set("nav.arrowColor", { 0.45, 0.7, 1 }); Polestar.Set("nav.arrowNearColor", { 1, 0.55, 0.85 })`;
-// The Guide packs page over the real registry (uistub.realGuides in place
+// The Community guides page over the real registry (uistub.realGuides in place
 // of stub_ui's fake): ours and Joe's on, Ann's with two problems, Sam's
 // too new for this Polestar, Kim's turned off in the AddOns list.
 const PACKS_ADDONS = `stub.addons = {
@@ -415,6 +415,25 @@ guide("ann/d", "ann", 12, { category = "Dungeons" })
 guide("dungeons/deadmines", "ann", 1)
 Polestar.RegisterGuide({ id = "ann/broken", pack = "ann", title = "Broken", steps = {} })
 realGuides.ScanInstalled()`;
+// The guide menu over the same registry: Joe's Routes listed under Community
+// guides, its Westfall selected with the author's credits in the details.
+const PACKS_PICKER = `Polestar.Guides = uistub.realGuides
+local function guide(id, pack, title, zone, minL, maxL)
+	local steps = {}
+	for i = 1, 6 * (maxL - minL) do steps[i] = { goals = { { t = "level", level = maxL } } } end
+	Polestar.RegisterGuide({ id = id, pack = pack, title = title, zone = zone, faction = "Alliance", category = "Leveling", minLevel = minL, maxLevel = maxL, steps = steps })
+end
+Polestar.RegisterPack({ addon = "Polestar_Guides", id = "guides", format = 1, title = "Polestar Guides", author = "Polestar", version = "0.1.0", license = "GPL-3.0" })
+guide("forever/alliance/02-westfall", "guides", "Westfall", "Westfall", 10, 15)
+Polestar.RegisterPack({ addon = "JoeRoutes", id = "joe", format = 1, title = "Joe's Routes", author = "Joe", version = "1.2.0", license = "CC-BY-4.0",
+	website = "https://github.com/joe/routes", source = "Written from my own play" })
+guide("joe/elwynn", "joe", "Elwynn Forest", "Elwynn Forest", 1, 10)
+guide("joe/westfall", "joe", "Westfall", "Westfall", 10, 15)
+guide("joe/redridge", "joe", "Redridge Mountains", "Redridge Mountains", 15, 20)
+guide("joe/duskwood", "joe", "Duskwood", "Duskwood", 20, 25)
+Polestar.RegisterPack({ addon = "AnnDungeons", id = "ann", format = 1, title = "Ann's Dungeons", author = "Ann", version = "0.4.0", license = "MIT" })
+Polestar.RegisterGuide({ id = "ann/deadmines", pack = "ann", title = "The Deadmines", category = "Dungeons", minLevel = 17, maxLevel = 23, steps = { { goals = { { t = "level", level = 23 } } } } })
+uistub.realGuides.ScanInstalled()`;
 
 // The route choice window, filled the way Engine.GetRouteChoice fills it, with
 // each zone's pitch, pros and cons read from its guide file. The shipped
@@ -815,10 +834,11 @@ const SCENES = [
 	},
 	{
 		file: 'welcome.svg',
-		title: 'The welcome, once per new character after login: Hello, Make it yours (on the account\'s first), Your first guide',
+		title: 'The welcome, once per new character after login: Hello, Make it yours and Route style (on the account\'s first), Your first guide',
 		panels: [
 			{ roots: ['PolestarWelcome'], script: 'Polestar.UI.Welcome.Show("welcome")' },
 			{ roots: ['PolestarWelcome'], script: 'Polestar.UI.Welcome.Show("setup")' },
+			{ roots: ['PolestarWelcome'], script: 'Polestar.UI.Welcome.Show("route")' },
 			{ roots: ['PolestarWelcome'], get script() { return `${clientArtLua()}Polestar.UI.Welcome.Show("start")`; } },
 		],
 	},
@@ -1053,7 +1073,7 @@ end`,
 	},
 	{
 		file: 'options-packs.svg',
-		title: 'Options: Guide packs: ours and a community pack on, one with problems and its report, one turned off, one too new; where suggestions come from',
+		title: 'Options: Community guides: ours and a community addon on, one with problems and its report, one turned off, one too new; where suggestions come from',
 		panels: [
 			{ roots: OPTIONS, before: PACKS_ADDONS, script: `${PACKS_SCENE}; Polestar.UI.ShowOptions("guidepacks")` },
 			{ roots: OPTIONS, before: PACKS_ADDONS, script: `${PACKS_SCENE}; Polestar.UI.ShowOptions("guidepacks")
@@ -1071,7 +1091,7 @@ end`,
 	},
 	{
 		file: 'skins-more.svg',
-		title: 'Skins: the welcome, the journey and the route choice in Halo, then in Blizzard',
+		title: 'Skins: the welcome, the journey and the route choice in Halo, then in Hearth',
 		backdrop: 'terrain',
 		panels: [
 			{ roots: ['PolestarWelcome'], script: 'Polestar.Set("ui.skin", "halo"); Polestar.UI.Welcome.Show("welcome")' },
@@ -1098,11 +1118,20 @@ end`,
 			{ roots: PICKER, script: pickerScene(`Polestar.Set("ui.skin", "hearth"); ${TABS}; Polestar.UI.ShowPicker(); Polestar.UI.Picker.Select(uistub.elwynn)`) },
 		],
 	},
+	{
+		file: 'skins-new.svg',
+		title: 'Skins: the welcome\'s Route style page, Options\' Community guides and the gamepad\'s focus and hints, in Halo and Hearth',
+		panels: ['halo', 'hearth'].flatMap((k) => [
+			{ roots: ['PolestarWelcome'], script: `Polestar.Set("ui.skin", "${k}"); Polestar.UI.Welcome.Show("route")` },
+			{ roots: OPTIONS, before: PACKS_ADDONS, script: `Polestar.Set("ui.skin", "${k}"); ${PACKS_SCENE}; Polestar.UI.ShowOptions("guidepacks")` },
+			{ roots: PAD_OPTIONS, before: PAD(), script: `Polestar.Set("ui.skin", "${k}"); Polestar.UI.ShowOptions("gamepad"); stub.advance(0.3)` },
+		]),
+	},
 	// The game's looks draw the client's own art: rendered only with
 	// POLESTAR_CLIENT_ART (local: true), so it never lands in docs/preview.
 	...['forever', 'blizzard', 'classic'].map((k) => ({
 		file: `skins-game-${k}.svg`,
-		title: `Skins: ${k}: the guide window (a hub step, the menu) and Options (Guide, Appearance)`,
+		title: `Skins: ${k}: the guide window (a hub step, the menu), Options (Guide, Appearance, Community guides, Gamepad) and the welcome's Route style page`,
 		backdrop: 'terrain',
 		local: true,
 		panels: [
@@ -1110,6 +1139,9 @@ end`,
 			{ roots: [...GUIDE, 'PolestarMenu'], script: `Polestar.Set("ui.skin", "${k}"); ${TABS}; stub.RunScript(Polestar.UI.GuideFrame.menuButton, "OnClick", "LeftButton")` },
 			{ roots: OPTIONS, script: `Polestar.Set("ui.skin", "${k}"); Polestar.UI.ShowOptions("guide")` },
 			{ roots: OPTIONS, script: `Polestar.Set("ui.skin", "${k}"); Polestar.UI.ShowOptions("appearance"); Polestar.UI.Options.Select("appearance", "Windows")` },
+			{ roots: OPTIONS, before: PACKS_ADDONS, script: `Polestar.Set("ui.skin", "${k}"); ${PACKS_SCENE}; Polestar.UI.ShowOptions("guidepacks")` },
+			{ roots: PAD_OPTIONS, before: PAD(), script: `Polestar.Set("ui.skin", "${k}"); Polestar.UI.ShowOptions("gamepad"); stub.advance(0.3)` },
+			{ roots: ['PolestarWelcome'], script: `Polestar.Set("ui.skin", "${k}"); Polestar.UI.Welcome.Show("route")` },
 		],
 	})),
 	{
@@ -1124,6 +1156,17 @@ end`,
 				roots: PICKER,
 				script: pickerScene(`${TABS}; Polestar.Set("ui.pickerFaction", "All"); Polestar.UI.ShowPicker(); Polestar.UI.Picker.SetCategory("Leveling")
 Polestar.UI.Picker.Select("forever/alliance/02-westfall")`),
+			},
+		],
+	},
+	{
+		file: 'picker-packs.svg',
+		title: 'Guide menu: a community addon under Community guides, its guide credited to its author',
+		panels: [
+			{
+				roots: PICKER,
+				before: PACKS_ADDONS,
+				script: `${PACKS_PICKER}; Polestar.UI.ShowPicker(); Polestar.UI.Picker.SetCategory("pack:joe"); Polestar.UI.Picker.Select("joe/westfall")`,
 			},
 		],
 	},

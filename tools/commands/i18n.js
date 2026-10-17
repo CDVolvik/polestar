@@ -29,7 +29,18 @@ function addons(opts, { one = false } = {}) {
 	return one ? [ADDONS.Polestar] : Object.values(ADDONS);
 }
 
-const usage = `usage: node tools/polestar.js i18n <status|check|sync|keys|import|fit|names|guides> [options]
+// Words wrapped to 79 columns, every line indented `indent` spaces.
+function wrapWords(text, indent) {
+	const lines = [];
+	let line = '';
+	for (const w of text.split(' ')) {
+		if (line && indent + line.length + 1 + w.length > 79) { lines.push(line); line = w; } else line = line ? `${line} ${w}` : w;
+	}
+	if (line) lines.push(line);
+	return lines.map((l) => ' '.repeat(indent) + l).join('\n');
+}
+
+const usage = `usage: node tools/polestar.js i18n <status|check|sync|keys|import|fit|leaks|names|guides> [options]
 
 Polestar's interface translations (docs/TRANSLATING.md): one file per
 locale, addon/Polestar/Locales/<locale>.lua, and the same for the Recorder,
@@ -74,6 +85,22 @@ unless --addon names the other.
                              same way in English (a long guide or item name)
                              is left out. Fails (exit 1) when a locale has
                              any. CJK is measured 1em wide.
+  i18n leaks [<locale>...]   runs the addon on the client stub in each locale
+                             (or those named) with its shipped translations,
+                             names pack and guide texts, the client's own
+                             names as placeholders, through every scene (or
+                             those --scene names), and lists the English left
+                             on screen: a Latin word of 3+ letters in a text,
+                             tooltip, chat line or menu that none of the
+                             locale's own texts uses and
+                             tools/lib/i18n/leaks-allow.json does not allow,
+                             grouped by where it came from (an untranslated
+                             interface string or guide text, a name missing
+                             from the names pack, a name Polestar.Names was
+                             not asked for, English in the code). Fails (exit
+                             1) on any, or on a scene that errors. Scenes
+                             (--scene; default all):
+${wrapWords(require('../lib/i18n/leaks').SCENE_NAMES.join(', ') + '.', 29)}
   i18n names [<locale>...]   builds the names addons addon/Polestar_Names_<locale>:
                              the names of quests, NPCs, objects, items,
                              instances, encounters, factions and flight points
@@ -81,9 +108,9 @@ unless --addon names the other.
                              each language. Per id, the first source with a
                              name wins: the Forever client's tables
                              (wago.tools, &locale=), Wowhead's Forever
-                             database in that language (list pages, then
-                             tooltips for the ids no list holds; one request
-                             at a time, cached in data/sources/wowhead/names),
+                             database in that language (list pages and
+                             tooltips, read only from what is already cached
+                             in data/sources/wowhead/names),
                              DingDB (pinned commit and sha256s, cloned into
                              data/sources/ding), then pfQuest's db/<locale>.
                              Only the ids the compiled guides, the quest
@@ -92,7 +119,7 @@ unless --addon names the other.
                              folder.
 
   i18n guides sync [<locale>...]
-                             writes a guide pack's texts in other languages
+                             writes a pack's texts in other languages
                              (docs/TRANSLATING.md, "Guide texts"):
                              <pack>/locales/<locale>/<guide path>.lua per
                              guide and _pack.lua for the pack's own texts,
@@ -116,19 +143,22 @@ unless --addon names the other.
                              for naming only their goal.
 
 options:
-  --json            status, check, keys, names, fit, guides: one JSON document on stdout
+  --json            status, check, keys, names, fit, leaks, guides: one JSON document on stdout
+  --scene <a,b>     leaks: only these scenes
+  --guide <id,...>  leaks: the guides the guide scene shows (default a few)
+  --jobs <n>        leaks: runs at a time (default one per core)
+  --update-baseline leaks: write tools/lib/i18n/leaks-baseline.json: add the
+                    names no source has that the runs showed in English,
+                    drop the entries that no longer show
   --slack <n>       fit: measure every glyph n times wider (1.15: about the
                     client's own font)
-  --pack <dir>      guides: the guide pack (default our guides/)
+  --pack <dir>      guides: the pack (default our guides/)
   --data <dir>      guides: the reference data (default data/forever)
   --markdown        status: a Markdown table
   --no-questie      names: leave DingDB out (its base data is QuestieDB's)
   --no-tables       names: leave the client tables out (otherwise a missing
                     table stops the build)
-  --offline         names: no downloads; the cached clones, tables and pages
-  --dry-run         names: count the Wowhead requests a run would make; write nothing
-  --limit <n>       names: at most n Wowhead tooltip requests this run
-  --delay <ms>      names: between Wowhead requests (default 2500, at least 2000)
+  --offline         names: no downloads; the cached clones and tables
   --build <version> names: this Forever client build (default the newest wago.tools lists)
   --sources <dir>   names: the client-table and Wowhead cache (default data/sources)
   --ding <dir>      names: this DingDB checkout (default data/sources/ding)
@@ -360,13 +390,11 @@ async function runNames(opts, positional) {
 	const { ensurePfQuest, loadPfQuestNames } = require('../lib/data/pfquest');
 	const { loadClientNames } = require('../lib/i18n/names-wago');
 	const wh = require('../lib/i18n/names-wowhead');
-	const { politeClient } = require('../lib/codex/wowhead');
 	const wanted = locales(positional);
 	const abs = (p) => (p ? path.resolve(p) : undefined);
 	const log = opts.json ? () => {} : (m) => console.log(m);
 	const warn = (m) => console.error(`warning: ${m}`);
 	const offline = Boolean(opts.offline);
-	const dryRun = Boolean(opts.dryRun);
 	const sourcesDir = abs(opts.sources) || names.DEFAULTS.sources;
 	const codex = abs(opts.codex) || names.DEFAULTS.codex;
 	const ids = names.usedIds({ guides: abs(opts.guides), questdb: abs(opts.questdb), codex });
@@ -397,42 +425,9 @@ async function runNames(opts, positional) {
 		for (const [id, r] of Object.entries(JSON.parse(fs.readFileSync(f, 'utf8')))) names.addEnglish(english, kind, Number(id), r && (r.name || r.title));
 	}
 
-	// Wowhead: the list ranges holding an id (items: only those some
-	// language's client table lacks), then tooltips for the rest.
-	const want = {};
-	for (const kind of names.NAME_KINDS) want[kind] = ids[kind];
-	if (wago) want.item = new Set([...ids.item].filter((id) => wanted.some((l) => !(wago[l] && wago[l].item && wago[l].item.has(id)))));
-	const delayMs = Math.max(wh.MIN_DELAY_MS, opts.delay ? Number(opts.delay) : wh.DELAY_MS);
-	const http = politeClient({ delayMs, retryPauseMs: 30000, maxFailures: 5, userAgent: 'Mozilla/5.0 (polestar-names-build)', log: (m) => console.error(m) });
-	const lists = await wh.fetchListNames({ sourcesDir, locales: wanted, want, client: http, dryRun, offline, log: (m) => console.error(m) });
-	for (const f of lists.failed.slice(0, 20)) warn(`Wowhead ${f.locale} ${f.url}: ${f.error}`);
-	if (lists.missingEnglish.length) warn(`no cached English Wowhead list for ${lists.missingEnglish.join(', ')} (run codex wowhead once): those kinds get tooltips only`);
-	const loadAll = () => Object.fromEntries(wanted.map((l) => [l, wh.loadWowheadNames(sourcesDir, l)]));
-	let whNames = loadAll();
-	let out = names.buildNames({ locales: wanted, ids, ding: dingNames, pf, wago, wowhead: whNames, english });
-	const tooltips = {};
-	let stragglers = 0;
-	for (const l of wanted) {
-		const byType = {};
-		for (const kind of names.NAME_KINDS) {
-			const left = [...ids[kind]].filter((id) => !out[l].names[kind].has(id) && !out[l].english[kind].has(id) && !whNames[l].listed[kind].has(id));
-			if (left.length) byType[kind] = left;
-		}
-		const objectives = [...ids.objective].filter((id) => !out[l].names.objective.has(id));
-		if (objectives.length) byType.quest = [...new Set([...(byType.quest || []), ...objectives])].sort((a, b) => a - b);
-		for (const v of Object.values(byType)) stragglers += v.length;
-		tooltips[l] = byType;
-	}
-	const tips = await wh.fetchTooltipNames({ sourcesDir, wanted: tooltips, client: http, dryRun, offline, limit: opts.limit ? Number(opts.limit) : Infinity, log: (m) => console.error(m) });
-	for (const f of tips.failed.slice(0, 20)) warn(`Wowhead ${f.locale} ${f.url}: ${f.error}`);
-	if (dryRun) {
-		console.log(`dry run: ${lists.planned} Wowhead list ranges and ${tips.left} tooltips to fetch (${tips.cached} tooltips cached); nothing written`);
-		return 0;
-	}
-	if (tips.fetched) {
-		whNames = loadAll();
-		out = names.buildNames({ locales: wanted, ids, ding: dingNames, pf, wago, wowhead: whNames, english });
-	}
+	// Wowhead: only what is already cached.
+	const whNames = Object.fromEntries(wanted.map((l) => [l, wh.loadWowheadNames(sourcesDir, l)]));
+	const out = names.buildNames({ locales: wanted, ids, ding: dingNames, pf, wago, wowhead: whNames, english });
 	for (const l of wanted) {
 		for (const kind of ['map', 'faction', 'taxi']) {
 			if (wago && ids[kind] && ids[kind].size && !out[l].names[kind].size) throw new Error(`${l}: no ${kind} names from the client tables (${ids[kind].size} wanted); nothing written`);
@@ -442,6 +437,10 @@ async function runNames(opts, positional) {
 	const sources = { wago: wagoInfo, wowhead: Object.fromEntries(wanted.map((l) => [l, whNames[l]])), ding, pf: pfInfo };
 	if (!Object.values(sources.wowhead).some((x) => x.fetched)) sources.wowhead = null;
 	const written = names.writeNamesAddons(out, outDir, { sources });
+	// The ids whose every name in a language is the English one, for
+	// `i18n leaks --update-baseline` (data/local, not shipped); only for a
+	// build into the addon folder.
+	if (outDir === names.DEFAULTS.out) names.writeSameAsEnglish(out);
 	const idCount = (k) => (ids[k] === null ? null : ids[k].size);
 	// Ids with no name in a language, and those whose every name there is the
 	// English one (not stored: the English shows, as the game does).
@@ -452,7 +451,7 @@ async function runNames(opts, positional) {
 		console.log(JSON.stringify({
 			ids: { ...kinds(idCount), sources: ids.counts },
 			wago: wagoInfo ? wagoInfo.builds : null,
-			wowhead: { listRequests: lists.requests, tooltipRequests: tips.requests, tooltipsLeft: tips.left, failed: lists.failed.length + tips.failed.length },
+			wowhead: sources.wowhead ? Object.fromEntries(wanted.map((l) => [l, whNames[l].fetched])) : null,
 			ding: ding ? { version: ding.pin.version, commit: ding.pin.commit, revision: ding.revision } : null,
 			pfquest: { revision: pfInfo.revision },
 			locales: Object.fromEntries(wanted.map((l) => {
@@ -466,7 +465,8 @@ async function runNames(opts, positional) {
 	console.log(`ids Polestar's data names: ${idLine(Object.fromEntries(names.PACK_KINDS.map((k) => [k, idCount(k)])))}${ids.encounter === null ? ', every encounter' : ''}`);
 	for (const [src, c] of Object.entries(ids.counts)) console.log(`  ${src}: ${idLine(c, names.NAME_KINDS)}`);
 	console.log(wagoInfo ? `client tables: ${Object.entries(wagoInfo.builds).map(([p, b]) => `${p} ${b}`).join(', ')}` : 'client tables left out');
-	console.log(`Wowhead: ${lists.requests} list and ${tips.requests} tooltip requests this run${tips.left ? `, ${tips.left} tooltips left (--limit)` : ''}`);
+	const whDates = wanted.flatMap((l) => (whNames[l].fetched ? [whNames[l].fetched.first, whNames[l].fetched.last] : [])).sort();
+	console.log(whDates.length ? `Wowhead: the cache, read ${whDates[0].slice(0, 10)} to ${whDates[whDates.length - 1].slice(0, 10)}` : 'Wowhead: nothing cached');
 	console.log(ding ? `DingDB ${ding.pin.version} (${ding.pin.commit.slice(0, 7)}): every pinned file matches its sha256` : 'DingDB left out (--no-questie)');
 	console.log(`pfQuest ${pfInfo.revision ? pfInfo.revision.slice(0, 7) : '(revision unknown)'}`);
 	for (const l of wanted) {
@@ -513,6 +513,60 @@ async function runFit(opts, positional) {
 		console.log(`${r.locale}${r.file ? ` (${path.relative(process.cwd(), r.file)})` : ''}: ${r.translated.length ? `${plural(r.translated.length, 'string')} that do not fit` : 'everything fits'}`);
 		for (const f of r.translated) console.log(`  ${describe(f)}\n${where(f)}`);
 	}
+	return failed ? 1 : 0;
+}
+
+// English left on screen in each locale (tools/lib/i18n/leaks.js).
+async function runLeaks(opts, positional) {
+	const L = require('../lib/i18n/leaks');
+	const chosen = locales(positional);
+	const scenes = opts.scene ? opts.scene.split(',').map((s) => s.trim()).filter(Boolean) : L.SCENE_NAMES;
+	const guides = opts.guide ? opts.guide.split(',').map((s) => s.trim()).filter(Boolean) : [];
+	const jobs = opts.jobs === undefined ? undefined : Number(opts.jobs);
+	if (jobs !== undefined && !(jobs >= 1)) throw new Error(`--jobs ${opts.jobs}: a number of 1 or more`);
+	const results = await L.findLeaks(chosen, scenes, {
+		guides,
+		jobs,
+		onResult: opts.json ? null : (r) => console.error(`${r.locale} ${r.scene}: ${r.skipped ? `skipped (${r.skipped})` : `${plural(r.leaks.length, 'English text')}${r.errors.length ? `, ${plural(r.errors.length, 'error')}` : ''}`}`),
+	});
+	const errors = results.flatMap((r) => (r.errors || []).map((e) => ({ locale: r.locale, scene: r.scene, ...e })));
+	if (opts.updateBaseline) {
+		if (errors.length) throw new Error(`${plural(errors.length, 'scene error')}: fix them before the baseline is written`);
+		const before = L.loadBaseline();
+		const next = L.updatedBaseline(results, before);
+		const count = (b) => Object.values(b.entries).reduce((n, e) => n + Object.keys(e).length, 0);
+		fs.writeFileSync(L.BASELINE_FILE, `${JSON.stringify(next, null, '\t')}\n`);
+		const left = results.reduce((n, r) => n + (r.leaks || []).filter((l) => !l.names.length && !l.textKey).length, 0);
+		console.log(`${rel(L.BASELINE_FILE)}: ${count(before)} -> ${count(next)} names; ${plural(left, 'English text')} it cannot take (not a missing name: fix the code or translation)`);
+		return left ? 1 : 0;
+	}
+	const leaks = results.reduce((n, r) => n + (r.leaks ? r.leaks.length : 0), 0);
+	const stale = L.staleBaseline(results);
+	const groups = L.groupBySource(results);
+	const failed = leaks || errors.length || stale.length;
+	if (opts.json) {
+		console.log(JSON.stringify({
+			ok: !failed,
+			runs: results.map((r) => ({ locale: r.locale, scene: r.scene, skipped: r.skipped || undefined, texts: r.texts, leaks: r.leaks ? r.leaks.length : undefined, baselined: r.baselined ? r.baselined.length : undefined })),
+			errors,
+			stale: stale.map((s) => ({ locale: s.locale, name: s.key, scenes: s.entry.scenes })),
+			groups: groups.map((g) => ({ source: g.source, label: g.key, entries: [...g.entries].map(([words, e]) => ({ words, locales: Object.fromEntries(e.locales), scenes: [...e.scenes], sites: [...e.sites] })) })),
+		}, null, 1));
+		return failed ? 1 : 0;
+	}
+	for (const e of errors) console.log(`error: ${e.locale} ${e.scene}: ${e.scene === e.error ? '' : `${e.scene}: `}${e.error.split('\n')[0]}`);
+	for (const s of stale) console.log(`stale: ${rel(L.BASELINE_FILE)}: ${s.locale} ${s.key} no longer shows in English (${s.entry.scenes.join(', ')}): remove it, or run with --update-baseline`);
+	for (const g of groups) {
+		console.log(`\n${g.key} (${plural(g.entries.size, 'text')})`);
+		for (const [words, e] of g.entries) {
+			const [locale, text] = [...e.locales][0];
+			console.log(`  ${words}  [${[...e.locales.keys()].join(' ')}]`);
+			console.log(`    ${locale}: ${text.length > 160 ? `${text.slice(0, 157)}...` : text}`);
+			console.log(`    in ${[...e.scenes][0]}${e.scenes.size > 1 ? ` and ${e.scenes.size - 1} more` : ''}; set at ${[...e.sites][0] || '?'}`);
+		}
+	}
+	const ran = results.filter((r) => !r.skipped);
+	console.log(`\n${ran.length} of ${plural(results.length, 'run')} (${plural(chosen.length, 'locale')}, ${plural(scenes.length, 'scene')}): ${leaks ? `${plural(leaks, 'English text')} from ${plural(groups.length, 'source')}` : 'no English left'}${errors.length ? `, ${plural(errors.length, 'scene error')}` : ''}${stale.length ? `, ${plural(stale.length, 'stale baseline name')}` : ''}`);
 	return failed ? 1 : 0;
 }
 
@@ -627,8 +681,8 @@ function runGuides(opts, positional) {
 
 async function run(argv) {
 	const { opts, positional, error } = parseArgs(argv, {
-		flags: ['--json', '--markdown', '--no-questie', '--no-tables', '--offline', '--dry-run'],
-		options: ['--ding', '--pfquest', '--guides', '--questdb', '--codex', '--travel', '--chokepoints', '--out', '--limit', '--delay', '--build', '--sources', '--slack', '--addon', '--pack', '--data'],
+		flags: ['--json', '--markdown', '--no-questie', '--no-tables', '--offline', '--update-baseline'],
+		options: ['--ding', '--pfquest', '--guides', '--questdb', '--codex', '--travel', '--chokepoints', '--out', '--build', '--sources', '--slack', '--addon', '--pack', '--data', '--scene', '--guide', '--jobs'],
 	});
 	const [sub, ...rest] = positional;
 	if (error || !sub) {
@@ -642,6 +696,7 @@ async function run(argv) {
 		if (sub === 'keys') return runKeys(opts);
 		if (sub === 'import') return runImport(opts, rest);
 		if (sub === 'fit') return await runFit(opts, rest);
+		if (sub === 'leaks') return await runLeaks(opts, rest);
 		if (sub === 'names') return await runNames(opts, rest);
 		if (sub === 'guides') return runGuides(opts, rest);
 	} catch (e) {
@@ -652,4 +707,4 @@ async function run(argv) {
 	return 2;
 }
 
-module.exports = { name: 'i18n', summary: 'interface translations (status, check, sync, keys, import, fit), guide texts (guides) and the names addons (names)', usage, run };
+module.exports = { name: 'i18n', summary: 'interface translations (status, check, sync, keys, import, fit, leaks), guide texts (guides) and the names addons (names)', usage, run };

@@ -3,10 +3,10 @@
 // (docs/ARCHITECTURE.md, "Guide data"). Output is deterministic: fixed key
 // order, stable number formatting, sorted guides.
 
-const { FORMAT, NEEDS, TOC_MARKER, TOC_TITLE_PREFIX } = require('../pack/format');
+const { FORMAT, NEEDS, TOC_MARKER, TOC_TITLE_PREFIX, LEGACY_TOC_TITLE_PREFIX } = require('../pack/format');
 const { header } = require('../generated');
 
-const GUIDE_KEYS = ['id', 'pack', 'title', 'faction', 'races', 'classes', 'minLevel', 'maxLevel', 'category', 'folder', 'keywords', 'collects', 'reward', 'why', 'zone', 'zoneName', 'next', 'nextChoices', 'pitch', 'pros', 'cons', 'author', 'version', 'group', 'names', 'steps'];
+const GUIDE_KEYS = ['id', 'pack', 'title', 'faction', 'races', 'classes', 'minLevel', 'maxLevel', 'category', 'folder', 'keywords', 'collects', 'reward', 'why', 'zone', 'zoneName', 'next', 'nextChoices', 'pitch', 'pros', 'cons', 'author', 'version', 'group', 'names', 'written', 'steps'];
 const STEP_KEYS = ['title', 'note', 'only', 'goals'];
 // Keys only the profession/reputation/exploration/achievement verbs use sit
 // where no other goal has a value, so adding them left older output unchanged.
@@ -19,10 +19,12 @@ const GOAL_KEYS = [
 	'from', 'fromKind', 'fromRank', 'fromFaction', 'fromAlso', 'fromId', 'fromAlsoId', 'candidates', 'rewards', 'group', 'direct',
 ];
 const REAGENT_KEYS = ['item', 'itemName', 'count'];
-const CANDIDATE_KEYS = ['npc', 'npcName', 'map', 'x', 'y', 'f', 'faction', 'races', 'classes', 'lvl', 'rate', 'spawns'];
-// Spawn areas: map-percent centre in the goal's map and frame, radius in yards,
-// spawn count, and `alt` for a place the arrow reaches only when moved on to it.
-const SPOT_KEYS = ['x', 'y', 'r', 'n', 'alt'];
+// `z` (heights.js) follows y in candidates and spawn areas as in goals.
+const CANDIDATE_KEYS = ['npc', 'npcName', 'map', 'x', 'y', 'z', 'f', 'faction', 'races', 'classes', 'lvl', 'rate', 'spawns'];
+// Spawn areas: map-percent centre in the goal's map and frame, its height,
+// radius in yards, spawn count, and `alt` for a place the arrow reaches only
+// when moved on to it.
+const SPOT_KEYS = ['x', 'y', 'z', 'r', 'n', 'alt'];
 // A turn-in's `rewards = { choices, items, money, xp }`: item lists in this order.
 const REWARD_KEYS = ['item', 'itemName', 'quality'];
 // A guide's `reward = { ... }`: an item (`choice` when one of several), a spell or words.
@@ -128,9 +130,10 @@ function emitGuide(guide, sourceRel) {
 				out.push('\t\t\t\t},');
 			}
 			out.push('\t\t\t},');
-		} else if (k === 'names') {
-			// The English of the texts' name tokens (tools/lib/dsl/tokens.js), "kind:id" -> name.
-			out.push(`\t\t\tnames = { ${Object.keys(v).sort().map((t) => `[${luaString(t)}] = ${luaString(v[t])}`).join(', ')} },`);
+		} else if (k === 'names' || k === 'written') {
+			// The English of the texts' name tokens (tools/lib/dsl/tokens.js), "kind:id" -> name;
+			// written: the author's words of a text that spells a name otherwise, tokenised text -> words.
+			out.push(`\t\t\t${k} = { ${Object.keys(v).sort().map((t) => `[${luaString(t)}] = ${luaString(v[t])}`).join(', ')} },`);
 		} else if (Array.isArray(v)) out.push(`\t\t\t${k} = ${list(v, LIST_KEYS[k] || null)},`);
 		else out.push(`\t\t\t${k} = ${scalar(v)},`);
 	}
@@ -153,16 +156,18 @@ function emitPack(manifest) {
 
 // <folder>.toc: the pack's metadata for the client and for Polestar's pack
 // list (optional lines only when the value exists), then the fixed file set.
-// A pack other than ours reads "Polestar Pack: <title>" in the AddOns list and
-// sits in Polestar's group there, under Polestar's own entry, like
-// Polestar_Guides; Polestar's menus show the plain title (Pack.lua).
+// A pack other than ours reads "Polestar Community: <title>" in the AddOns list
+// and sits in Polestar's group there, under Polestar's own entry, like
+// Polestar_Guides; Polestar's menus show the plain title (Pack.lua). A title
+// already carrying that prefix or the legacy "Polestar Pack: " is kept.
 function emitToc(manifest, iface) {
 	const ours = manifest.id === 'guides';
-	const title = ours || manifest.title.startsWith(TOC_TITLE_PREFIX) ? manifest.title : `${TOC_TITLE_PREFIX}${manifest.title}`;
+	const prefixed = [TOC_TITLE_PREFIX, LEGACY_TOC_TITLE_PREFIX].some((p) => manifest.title.startsWith(p));
+	const title = ours || prefixed ? manifest.title : `${TOC_TITLE_PREFIX}${manifest.title}`;
 	const lines = [
 		`## Interface: ${iface}`,
 		`## Title: ${title}`,
-		`## Notes: ${manifest.notes || `Guide pack for Polestar by ${manifest.author}`}`,
+		`## Notes: ${manifest.notes || `Community addon for Polestar by ${manifest.author}`}`,
 		// Polestar's own pack: the AddOns list in the client's language too.
 		...(ours ? require('../i18n/toc').tocLines('Polestar_Guides') : []),
 		`## Author: ${manifest.author}`,
@@ -191,6 +196,8 @@ function emitTextsToc(manifest, locale, language, iface) {
 		`## Interface: ${iface}`,
 		`## Title: ${manifest.title} (${locale})`,
 		`## Notes: ${language} texts of ${manifest.title}. Loaded on demand on a ${language} client.`,
+		// Polestar's own pack: the AddOns list in every client language too.
+		...(manifest.id === 'guides' ? require('../i18n/toc').tocLines(`Polestar_Guides_${locale}`) : []),
 		`## Author: ${manifest.author}`,
 		`## Version: ${manifest.version}`,
 		'## Category: Quests',
@@ -231,16 +238,18 @@ function emitMapFrames(frames, packId) {
 }
 
 // Core/ClassTrainers.lua: the class trainers the training reminder picks
-// from (candidates: { npc, npcName, map, x, y, f, faction, classes }), with
-// the Era bounds of every map they stand on.
+// from (candidates: { npc, npcName, map, x, y, z?, f, faction, classes }), with
+// the Era bounds of every map they stand on. `z`: the trainer's spawn height
+// (heights.js); the header then names CMaNGOS classic-db.
 // trainers: the reminder's candidates (one per town and class); byClass:
 // { classFile: [npcId, ...] }, every class trainer, for Engine.IsClassTrainer.
 function emitClassTrainers(trainers, frames, byClass) {
 	const ids = Object.keys(frames)
 		.map(Number)
 		.sort((a, b) => a - b);
+	const heights = trainers.some((t) => t.z !== undefined);
 	const out = [
-		header('lua', 'trainers build', 'data/forever/trainers.json and the map frames'),
+		header('lua', 'trainers build', heights ? 'data/forever/trainers.json, the map frames and data/forever/spawnz.json (CMaNGOS classic-db spawn heights, GPL-3.0, used as facts)' : 'data/forever/trainers.json and the map frames'),
 		'local ADDON, ns = ...',
 		'',
 		'ns.RegisterMapFrames({',

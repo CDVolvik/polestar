@@ -34,7 +34,7 @@
   <a href="#a-look-inside">A look inside</a> ·
   <a href="#features">Features</a> ·
   <a href="#how-the-routes-are-made">How the routes are made</a> ·
-  <a href="#guide-packs">Guide packs</a> ·
+  <a href="#community-guides">Community guides</a> ·
   <a href="#building-from-source">Building from source</a> ·
   <a href="#contributing">Contributing</a> ·
   <a href="#data-and-licensing">Data and licensing</a> ·
@@ -44,7 +44,7 @@
 <table align="center">
   <tr>
     <td align="center" width="240"><a href="#quick-start"><b>Play</b></a><br>Install the addon and follow the arrow.</td>
-    <td align="center" width="240"><a href="#writing-a-guide-pack"><b>Write guides</b></a><br>Publish your own routes as a guide pack.</td>
+    <td align="center" width="240"><a href="#writing-a-community-addon"><b>Write guides</b></a><br>Publish your own routes as a community addon.</td>
     <td align="center" width="240"><a href="#building-from-source"><b>Work on Polestar</b></a><br>Fix a guide, build the addon, run the tests.</td>
   </tr>
 </table>
@@ -76,15 +76,16 @@ Good to know:
 - **Updating:** delete the old Polestar folders, then unzip the new release
   the same way.
 - **Memory:** the arrow's walking routes (`Polestar_Nav`) load after login,
-  never in combat: about 26 MB for the walking maps, and while a walk is being
-  searched up to about 54 MB more for the stretch of map it crosses, released
+  never in combat: about 34 MB for the walking maps, and while a walk is being
+  searched up to about 45 MB more for the stretch of map it crosses, released
   when the search ends. **Walk real paths** (Options, Arrow & routes) off
   never loads them.
 - **Optional:** `Polestar_Recorder-<version>.zip` from the same release
   records your sessions to improve the routes. It does nothing until you turn
   it on.
-- **Guide packs** are other people's guides for Polestar, each a separate
-  addon from its own author: see [Guide packs](#guide-packs).
+- **Community guides** are other people's guides for Polestar, each a
+  separate addon from its own author: see
+  [Community guides](#community-guides).
 - Something wrong? Click the bug in the guide window, beside Skip: say what
   went wrong, copy the report (it already holds the step, where you stand and
   the versions) and paste it on the
@@ -100,8 +101,8 @@ starting zone (Zephras Isle for the Skyborne included), 62 class guides for
 every class's quest chains, the twelve professions from 1 to 300, 17
 reputations, 7 exploration guides, the Legacy challenges and 64 collectible
 guides, one per mount and per pet. Around the guides it adds a 3D waypoint
-arrow that walks real paths (on Polestar's walking maps, with Shortest Path
-Forever's routing engine by Cillian Berragan) and a travel planner, quest
+arrow that walks real paths (on Polestar's walking maps, with a router that
+started from Shortest Path Forever's by Cillian Berragan) and a travel planner, quest
 markers on the map, an upgrade indicator on item tooltips, a search for where
 any item, mount or pet comes from, a dungeon quest journal, rare alerts and
 the quality-of-life helpers a long leveling session needs. Its interface is
@@ -113,12 +114,13 @@ start, and keeps the one that reaches 60 soonest under its model; the guides
 are written from that route and scored under the same model
 ([How the routes are made](#how-the-routes-are-made)).
 
-Other people can publish their own guides for Polestar as guide packs:
-separate addons, made and supported by their authors
-([Guide packs](#guide-packs)). Each new character's first login opens a short
+Other people can publish their own guides for Polestar as community
+addons: separate addons, made and supported by their authors
+([Community guides](#community-guides)). Each new character's first login opens a short
 welcome: a hello and what Polestar does; on the account's first character,
-quest automation, the guide at login and the colour scheme; then the guide
-Polestar suggests for that character, the Discord and guide packs
+quest automation, the guide at login and the colour scheme, then the route
+style (Fastest, Balanced or Roads, with a line on what each does); then the
+guide Polestar suggests for that character, the Discord and community guides
 (`/polestar welcome` shows it again).
 
 > [!NOTE]
@@ -243,7 +245,7 @@ map. Renders of every window and state, drawn without the game, are in
 - **Nearby services.** `/polestar near repair` (trainer, a profession,
   class, reagents, vendor, innkeeper, bank, auction, flight, stable) points
   the arrow at the quickest one to reach; the map's tracking menu lists them.
-- **Other addons' waypoints.** Without TomTom, "Let other addons set
+- **Other addons' waypoints** (Options, Integrations, TomTom). Without TomTom, "Let other addons set
   waypoints" (off by default) lets addons that set TomTom waypoints point
   Polestar's arrow and makes `/way` work; addons that expect TomTom's own
   settings may not work with it on. With TomTom, the arrow can follow
@@ -260,13 +262,23 @@ maps of the continents from the game client and wrote a router that finds a
 route over them a couple of milliseconds at a time, so the game never
 stutters. It is beautiful work, and he generously said yes when we asked to
 use it. Polestar's travel planner still picks the flights, boats and
-Hearthstone; his router walks every leg between them.
+Hearthstone; the router that started from his walks every leg between them.
+It keeps to roads where they are not much longer, round steep slopes, and out
+of the other faction's towns; when a walk must enter one (a quest inside
+Southshore for a Horde character), the arrow says "Hostile town: Southshore"
+once as the walk starts, and the walk's journey step reads the same when the
+route has more steps. **Route style** (Options, Guide, Arrow & routes) picks
+how it walks: Fastest takes the shortest way over hills and across fields,
+Balanced (the default) keeps to roads that aren't much longer and goes round
+hills, and Roads stays on roads even when they're longer. Every style keeps
+out of the other faction's towns.
 
-His pathing ships with Polestar as the `Polestar_Nav` folder: his router,
-copied from his repository with only mechanical changes, runs on Polestar's
-own walking maps of Eastern Kingdoms and Kalimdor, made from the game's
-geometry in his map format by a port of his map baker, and on his map of
-Zephras Isle (GPL-3.0-or-later; what came from where is in
+The router ships with Polestar as the `Polestar_Nav` folder. Polestar's
+walking router started from Shortest Path Forever v1.16.0 by Cillian
+Berragan, with thanks; Polestar maintains it since 2026-10-16. It runs on
+Polestar's own walking maps of Eastern Kingdoms, Kalimdor and Zephras Isle,
+made from the game's geometry in a format grown from his by a port of his map
+baker (GPL-3.0-or-later; what came from where is in
 [addon/Polestar_Nav/CREDITS.md](addon/Polestar_Nav/CREDITS.md)).
 **Walk real paths** (Options, Arrow & routes) turns it off. If you like it, try
 his addon:
@@ -274,16 +286,20 @@ his addon:
 plans whole journeys with flights, boats, zeppelins, portals and live
 departure times.
 
-**Works with Shortest Path Forever.** With it installed, Polestar hands it
-the route: each goal goes to Shortest Path Forever, whose arrow, route and
-journey take you there, and Polestar's own arrow, route lines, journey steps,
-travel button, transport alerts, map clicks and `/way` step aside, so the two
-never guide at once (Polestar's walking maps are not even loaded). The guide
-window and the map pins stay. A kill or collect area is handed over as an
-area, so it holds you there until the goal is done; if you clear or replace
-the journey, Polestar leaves it be until the guide moves on. **Guide with
-Shortest Path Forever when it's installed** (Options, Arrow & routes) turns
-it off.
+**Shortest Path Forever: an option.** With it installed, Polestar still
+guides by default. **Hand guiding to Shortest Path Forever** (Options,
+Integrations) hands it the route instead: each goal goes to Shortest Path
+Forever, whose arrow, route and journey take you there, and Polestar's own
+arrow, route lines, journey steps, travel button, transport alerts, map
+clicks and `/way` step aside, so the two never guide at once (Polestar's
+walking maps are not even loaded). The guide window and the map pins stay. A
+kill or collect area is handed over as an area, so it holds you there until
+the goal is done; if you clear or replace the journey, Polestar leaves it be
+until the guide moves on. With the option off, a journey you start in
+Shortest Path Forever itself still wins: Polestar steps aside the same way
+while it runs, and guides again when it ends. If Shortest Path Forever
+finds no way to a goal, or turns its journeys off, Polestar's own arrow
+guides you there instead.
 
 ### Quests and the map
 
@@ -341,7 +357,7 @@ and each section says what is missing.
   scale, opacity and colours; reduced motion. Everything applies live,
   without a reload; right-click any setting to reset it.
 - **Fonts**: the game's own by default, or Inter, or EllesmereUI's.
-- **EllesmereUI**: Polestar follows its accent and font by default through
+- **EllesmereUI** (Options, Integrations): Polestar follows its accent and font by default through
   its public skinning API, and where its Quality of Life or Friends module
   does the same job as a Polestar toggle, the toggle starts off.
 
@@ -453,7 +469,7 @@ settings instead, and Polestar keeps out of the game's own windows.
 | `mount` | Look up the mount of your target (or mouseover) and how to get it |
 | `rares [test]` | Open Rares, or show a sample rare alert |
 | `questdb` | Quest database status |
-| `packs` | Open Options > Guide packs |
+| `packs` | Open Options > Community guides |
 | `gamepad` | Open Options > Gamepad: button names and key bindings |
 | `welcome` | Show the welcome again |
 | `where` | Print your map and position as guide lines (`zone map <id>`, `goto x,y live`), in a box to copy |
@@ -638,44 +654,48 @@ on one line):
 
 Every verb, modifier and condition is in
 [docs/GUIDE_FORMAT.md](docs/GUIDE_FORMAT.md); guides of your own ship as a
-[guide pack](#guide-packs).
+[community addon](#community-guides).
 
-## Guide packs
+## Community guides
 
-A **guide pack** is someone else's guides for Polestar. It is a separate
-addon, made and supported by its author; its guides are not Polestar's
-leveling routes. Polestar does not ship, host or recommend any pack.
-[docs/GUIDE_PACKS.md](docs/GUIDE_PACKS.md) explains packs in full, for
-players and for authors.
+Guides for Polestar written by other players and published as their own
+addons. Install one next to Polestar and its guides show up in the guide
+menu under **Community guides**, with the arrow, the map markers and
+everything else Polestar does. Each is made and supported by its author;
+Polestar does not ship, host or recommend any.
 
-### Installing a guide pack
+<p align="center">
+  <img src="docs/preview/picker-packs.svg" width="720" alt="The guide menu: under the Community guides heading, Joe's Routes is selected and lists four Alliance leveling guides, each credited to Joe">
+</p>
 
-Download the pack from wherever its author publishes it and install it like
-any addon, next to the `Polestar` folders, then restart the game. Its guides
-appear in the guide menu (`/polestar guides`) under "Guide packs", each
-credited to its author. Options > Guide packs (`/polestar packs`) lists every
-pack you have installed and turns each one on or off without a reload; it
-also picks where the guide for your level is suggested from (Polestar's own
-guides unless you choose a pack). A pack never replaces Polestar's guides or
-another pack's.
+### Installing a community addon
 
-Report a problem in a pack to its author, not to Polestar. A pack is an
-addon like any other, so install packs from authors you trust.
+1. Download it from wherever its author publishes it, and install it like
+   any addon, next to the `Polestar` folders.
+2. Restart the game. Its guides appear in the guide menu
+   (`/polestar guides`) under **Community guides**.
+3. **Options > Community guides** (`/polestar packs`) turns each one on or
+   off without a reload, and picks where the guide for your level is
+   suggested from.
 
-### Writing a guide pack
+A community addon never replaces Polestar's guides or another one's.
+Report problems in it to its author, not to Polestar, and install them only
+from authors you trust.
 
-You can write your own leveling guides with the tools Polestar uses for its
-own: the guide format, the compiler, `lint`, `playtest`, and in the game the
-guide engine, the arrow and the map markers. Publish them as your own addon
-on the addon sites, and they appear in Polestar's guide menu as a pack. A
-pack lives in its own folder, beside a clone of Polestar that provides the
-tools (Node 24 or later; Lua 5.1 for `play` and `playtest`):
+### Writing a community addon
+
+Write leveling guides in plain text and publish them as your own addon,
+with the tools Polestar uses for its own: the guide format, the compiler,
+`lint`, `playtest`, and in the game the guide engine, the arrow and the map
+markers. Hand over to any of Polestar's guides with `next`, so your addon
+can cover one zone or the whole climb, under a licence of your choice
+([Data and licensing](#data-and-licensing)).
 
 ```sh
 git clone https://github.com/fitzforge/polestar.git
 cd polestar
 npm link               # puts `polestar` on your PATH; no npm dependencies
-polestar data build    # the reference data in data/forever/, which every guide command reads
+polestar data build    # the reference data every guide command reads
 polestar doctor        # checks the setup and prints the fix for anything missing
 cd ..                  # your pack goes beside the clone, not inside it
 polestar new my-pack   # asks for the id, title, author and licence
@@ -683,41 +703,14 @@ cd my-pack
 polestar dev --play    # lint and build on every save, with the browser playground
 ```
 
-`data build` downloads its public sources and also reads quest data from an
-addon installed with the game, so today it is built on a machine with the
-Forever client (`polestar help data` lists every source). `new` writes an
-example guide that already lints and plays to the end. Before publishing,
-`polestar playtest` plays every guide to the end in the real addon, for each
-race that can reach it and each class it has steps for, and `polestar pack`
-builds the zip, byte for byte reproducible. Upload it as your own addon
-project, with Polestar as a required dependency, a title that cannot be
-mistaken for Polestar's own addons, your name, a version, and a website or
-support link where players can reach you. Write your own guide text: do not
-copy Polestar's.
-
-- [docs/GUIDE_PACKS.md](docs/GUIDE_PACKS.md): what a pack is, the steps from
-  `new` to publishing, what the tools require and what we ask of authors
-- [docs/PACKS.md](docs/PACKS.md): the handbook (setup, a first pack in 15
-  minutes, testing, publishing, every problem and its fix)
-- [docs/GUIDE_CHEATSHEET.md](docs/GUIDE_CHEATSHEET.md): the guide format on
-  one page; [docs/GUIDE_FORMAT.md](docs/GUIDE_FORMAT.md) in full
-- [docs/PACK_FORMAT.md](docs/PACK_FORMAT.md): what `pack.json` holds and what
-  the tools write
-- **Codespaces:** a pack made by `polestar new` carries a dev container; open
-  its repository in GitHub Codespaces for Node, Lua and the tools with nothing
-  to install (use `play` and `playtest` there, since `install` and `dev` need
-  the game)
-
-`polestar find <text>` turns quests, NPCs, objects, items, inns and flight
-points into guide lines; in game, `/polestar where` gives your position as
-one. A pack can hand over to any of Polestar's guides with `next`, so it can
-cover one zone or one level range, and may use a licence of its author's
-choice ([Data and licensing](#data-and-licensing)).
+| Start here | Then |
+|---|---|
+| [**docs/GUIDE_PACKS.md**](docs/GUIDE_PACKS.md): community guides on one page, for players and authors: install, the steps from `new` to publishing, the checklist before you publish | [docs/PACKS.md](docs/PACKS.md): the full handbook, with setup on each system, a first pack in 15 minutes, and every problem and its fix<br>[docs/GUIDE_CHEATSHEET.md](docs/GUIDE_CHEATSHEET.md): the guide format on one page ([in full](docs/GUIDE_FORMAT.md))<br>[docs/PACK_FORMAT.md](docs/PACK_FORMAT.md): exactly what the tools write |
 
 ## Building from source
 
 This part is for working on Polestar itself: players need only the
-[Quick start](#quick-start), guide authors the [Guide packs](#guide-packs)
+[Quick start](#quick-start), guide authors the [Community guides](#community-guides)
 section. [docs/README.md](docs/README.md) maps every document, and
 [CHANGELOG.md](CHANGELOG.md) lists what changed in each release.
 
@@ -845,7 +838,7 @@ the new zones ([docs/SIMULATION.md](docs/SIMULATION.md), "Refresh").
 | [`addon/Polestar`](addon/Polestar) | The addon: engine, navigation, UI, modules, textures drawn in code ([addon/README.md](addon/README.md); every addon: [docs/ARCHITECTURE.md, "Overview"](docs/ARCHITECTURE.md#overview)) |
 | [`addon/Polestar_Guides`](addon/Polestar_Guides) | The compiled guides (generated by `compile`) |
 | [`addon/Polestar_ItemDB`](addon/Polestar_ItemDB) | Item stats for gear advice: `Items.lua` from `itemdb build`, `Forever.lua` from `gear build` |
-| [`addon/Polestar_Nav`](addon/Polestar_Nav) | The arrow's walking routes: Shortest Path Forever's router by Cillian Berragan (GPL-3.0-or-later), vendored by `nav vendor`, on Polestar's walking maps of Eastern Kingdoms and Kalimdor in his format (`nav pack`) and his map of Zephras Isle ([CREDITS.md](addon/Polestar_Nav/CREDITS.md)) |
+| [`addon/Polestar_Nav`](addon/Polestar_Nav) | The arrow's walking routes: Polestar's walking router, started from Shortest Path Forever's by Cillian Berragan (GPL-3.0-or-later), on Polestar's walking maps of Eastern Kingdoms, Kalimdor and Zephras Isle, grown from his format (`nav pack`; [CREDITS.md](addon/Polestar_Nav/CREDITS.md)) |
 | [`addon/Polestar_Recorder`](addon/Polestar_Recorder) | The optional session recorder |
 | [`guides/forever`](guides/forever) | The guide sources: leveling, professions, reputation, exploration, Legacy, collectibles |
 | [`tools`](tools) | The command line (`polestar.js`), the guide compiler, the simulator, data importers, texture and preview renderers, the playground ([tools/README.md](tools/README.md)) |
@@ -907,10 +900,11 @@ CurseForge avatar are drawn by [`tools/readme`](tools/readme) from the same sour
 Marcellus (SIL Open Font License 1.1) for the banner's lines; the CurseForge
 button's anvil is the CurseForge mark from simple-icons (CC0 1.0).
 
-The walking router in `Polestar_Nav` and its map of Zephras Isle are Shortest
-Path Forever's, by Cillian Berragan, and its maps of Eastern Kingdoms and
-Kalimdor are Polestar's, written in his format by a port of his baker; all of
-it is under the GPL version 3 or later, used with his permission
+The walking router in `Polestar_Nav` started from Shortest Path Forever's, by
+Cillian Berragan, and keeps his copyright in the files that began as his; its
+maps of Eastern Kingdoms, Kalimdor and Zephras Isle are Polestar's, written in
+a format grown from his by a port of his baker; all of it is under
+the GPL version 3 or later, used with his permission
 (see [Pathing by Shortest Path Forever](#pathing-by-shortest-path-forever));
 the guide-pack permission below does not cover them.
 

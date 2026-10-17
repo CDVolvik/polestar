@@ -295,7 +295,7 @@ Only the fitted parameter values are kept (data/sim/params.json).
   extras can save. Elite and dungeon quests are outside the solo world, so
   they stay out either way. Search results (best found, consensus) are not
   guides and are unchanged.
-- A guide pack (`sim compare --pack <dir>`, or the pack folder as the one
+- A pack (`sim compare --pack <dir>`, or the pack folder as the one
   argument): its chain, after our chain up to the pack's first level when it
   starts above 1, under the same model
   (`data/bench/compare-<faction>-<race>-<pack id>.json`).
@@ -307,7 +307,7 @@ sim world   [--faction F] [--rebuild]               build/cache the world model 
 sim calibrate [--fdj DIR]                            fit parameters to quest data and recordings
 sim run     --faction F [--race R] [--class C] [--paths N] [--workers W] [--seed S] [--dungeons]
             [--jobs J] [--anneal A] [--max-paths M]
-sim robust  --faction F [--race R] [--draws K] [--top N]   robustness of the top routes
+sim robust  --faction F [--race R] [--class C] [--draws K] [--top N]   robustness of the top routes
 sim compare --faction F [--race R] [--class C] [--guides DIR] [--pack DIR | DIR] [--to 10,20,30] [--with-optional]
             Polestar's routes vs the best found, same model
 sim bench   --faction F [--race R] [--class C]      bracket table: zones, levels, quests per 10 levels
@@ -322,7 +322,7 @@ world's quest packages, default 5; a new width rebuilds the world), `--jobs
 annealing evaluations per job, default 6000), `--max-paths <n>` (run: hard
 cap on evaluated routes, default 3x `--paths`), `--guides <dir>` (compare:
 the guides folder to score, default `guides/`), `--pack <dir>` or a pack
-folder as the one argument (compare: also score a guide pack's chain, after
+folder as the one argument (compare: also score a pack's chain, after
 our chain up to its first level when it starts above 1; written to
 `data/bench/compare-<faction>-<race>-<pack id>.json`), `--to <levels>`
 (compare: levels to show, default 10,20,30,40,50,60), `--top <n>` (robust:

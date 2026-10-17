@@ -3,7 +3,7 @@
 Every line of the format on one page, with an example each:
 [GUIDE_CHEATSHEET.md](GUIDE_CHEATSHEET.md). This page has the full rules.
 
-Guides are written as `.guide` text files in a guide pack (Polestar's own:
+Guides are written as `.guide` text files in a pack (Polestar's own:
 `guides/`; a community pack: any folder holding a `pack.json`, see
 [PACKS.md](PACKS.md)) and compiled to Lua by `node tools/polestar.js compile`.
 The compiler fills in names, titles and coordinates from the reference data in
@@ -107,7 +107,7 @@ Step directives:
 
 | Directive | Effect |
 |---|---|
-| `zone <Name>` / `zone map <uiMapID>` | Current zone for coordinates from here on (sticky across later steps). |
+| `zone <Name>` / `zone map <uiMapID>` | Current zone for coordinates from here on (sticky across later steps, also when its step has `only`: after a class trip, the next step everyone sees names its zone again). |
 | `only <cond>[,<cond>...]` | The step applies only to matching characters. |
 | `tip <text>` | Player-facing step note (compiled to `step.note`). |
 
@@ -126,11 +126,11 @@ A step must contain at least one goal.
 | `complete` | `<questId> ["Title"]` | Finish all objectives. |
 | `kill` | `<npcId>` or `"Target name"` | Pair with `quest Q.O` to track a quest objective. |
 | `collect` | `<itemId> ["Item name"]` | Pair with `quest Q.O`; otherwise tracked by bag count `xN`. `collect <item> xN nearest` (no `quest`) compiles to farm spots: clusters of normal or rare mobs that drop the item at 2% or more, outside towns and guard posts, each with the zone's safety (`A`/`H` faction zone, `AH` contested), mob level range, items per kill and spawn count; at most 16 per continent, spread over safety and 10-level bands. The engine picks one by the player's level, faction and travel time. |
-| `goto` | `<x>,<y> ["Label"]` | Coordinates are mandatory here. |
+| `goto` | `<x>,<y> ["Label"]` | Coordinates are mandatory here. A label that is a subzone's name as the game spells it (`"Fargodeep Mine"`, not `"Fargodeep Mine's mouth"`) gets its area ("Places by ID"); at a cave's or mine's mouth the goto then also counts as arrived once the player walks into it past the point (in that subzone and indoors). |
 | `talk` | `<npcId>` | |
 | `interact` | `<objectId>` | Click a game object. |
 | `use` | `<itemId> ["Item name"]` | |
-| `sethome` | `"Location"` or `nearest` | Inn location as the game names it (the bind location it reports), e.g. `"Goldshire"`. `sethome nearest` binds at the nearest own-faction inn when the step comes up. Lint warns about a location no inn has (`polestar find --kind inn`). Completes on every client language: binding at the inn's innkeeper, or a bind location the client names as the inn's area (see "Places by ID"). |
+| `sethome` | `"Location"` or `nearest` | Inn location as the game names it (the bind location it reports), e.g. `"Goldshire"`. Without `npc` the compiler names the inn's innkeeper, so the arrow leads to them ("What the compiler fills in"); `npc <id>` picks one yourself. `sethome nearest` binds at the nearest own-faction inn when the step comes up. Lint warns about a location no inn has (`polestar find --kind inn`). Completes on every client language: binding at the inn's innkeeper, or a bind location the client names as the inn's area (see "Places by ID"). |
 | `hearth` | `"Location"` | Done when the zone or subzone where you land has that name: an inn's location or the zone it is in, in the client's language when the compiler finds its area ("Places by ID"). Lint warns about any other name. |
 | `getfp` | `"Location"` | Discover a flight path: the flight point's name (`"Stormwind, Elwynn"`) or its part before the comma (`"Stormwind"`). The compiler adds its taxi node, so it completes on every client language ("Places by ID"). Lint warns about a name no flight point has (`polestar find --kind flight`). |
 | `fly` | `"Location"` | Take a flight: the flight point's town (`"Stormwind"`), as the flight map picks the node by it. Done when the zone or subzone where you land has that name (in the client's language when the compiler finds its area, "Places by ID"); where the landing area is named differently (`"Stormwind City"`), the goal checks off only through a later goal of its step. Lint warns about a name that is no flight point's town, inn location or zone they are in. |
@@ -222,6 +222,7 @@ AND. `only Warrior,Paladin,Dwarf` = (Warrior or Paladin) and Dwarf.
 | height `z` | a goal at an NPC or object: the height of that NPC's or object's spawn (`spawnz.json`), so the walk ends on its floor: see "Heights" below |
 | place area `area` | `sethome`, `hearth`, `fly` and `getfp` (their location) and `goto` (its label): the AreaTable area of that name, so the goal completes and reads right on every client language: see "Places by ID" below |
 | taxi node `node` | `getfp`: its flight point's taxi node (`travel.json`): see "Places by ID" below |
+| `sethome` innkeeper `npc`, `npcName` and coordinates | a `sethome "Location"` without `npc`: the innkeeper of the one inn (`travel.json`) whose bind location is that name (ignoring case) and who serves every faction the goal applies to (a neutral town's goblin serves both). None when no such inn has one: the Alliance innkeeper's inn on a goal for both factions gets none |
 | name tokens `{kind:id}`, `names` | the game's names in every text a player reads, so each shows in the client's language: see "Names in texts" below |
 | (a note dropped) | a goal's `--` note that only names the goal's own NPC, object, target or item (`accept 6181 -- Quartermaster Lewis`): the goal shows that name already, in the client's language |
 
@@ -245,12 +246,17 @@ Class and Professions guides, or after "cast" or "your"; none another thing
 of the game shares, no profession rank spell, no spell owning something
 ("Blizzard's designers"), and no one-word spell used as a verb: taking an
 object or opening a sentence that goes on in lower case, "Polymorph a
-naga"). A place, NPC or
+naga"; nor a name of a faction of the client's `Faction` table, "Burning
+Blade"). A place, NPC or
 object the game names with a leading "The" matches without it ("Molsen
 Farm" is the game's "The Molsen Farm"), and a zone or area ending "City"
-without that ("Stormwind"): other languages show the game's name there, and
-an English client reads the author's own words (a guide spells each such name
-one way; another spelling of it stays words). A name in its
+without that ("Stormwind"). An NPC of the step's or the guide's own goals
+also matches by its first name ("Dalinda" for Dalinda Malem) where that
+word has four letters or more, no other NPC of the step (or guide) shares it,
+no other NPC of the data starts with it ("Defias" stays words), and the word
+after it is not the rest of the NPC's name ("Lashtail raptors"). Other
+languages show the game's name there, and an English client reads the
+author's own words (the compiled guide's `written`). A name in its
 English plural ("Harvest Watchers"), in lower case ("the Jansen Stead") or
 inside a longer word stays words, as does a name right next to a capitalised
 word or before "of <Capitalised>" that would make it a longer name the data
@@ -302,6 +308,17 @@ gets no `spots`.
   the player searches spot by spot: the arrow says "Search here" inside a spot
   (never "Arrived"), moves on to the nearest spot not visited lately once the
   player leaves it, and the map shades every region the spots cover.
+- **Strays** (every goal the data places, any verb, whose target has more
+  than 6 spawns on the map): when the spawns, linked wherever two lie within
+  300 yd of each other, mostly (three quarters or more) form one area, a group
+  of one or two spawns apart from the rest is a stray: a mob or two on their
+  own, hundreds of yards from the camps. A stray is an alternative, and a goal
+  point at one (the spawn nearest the previous goal) moves to the nearest other
+  spot, so the arrow leads to the area that holds the target. A sparse trail of
+  three or more spawns is not a stray; nor is anything of a target with 6
+  spawns or fewer, or one spread over a zone with no area holding most of it.
+  A stray can still be the place a step means (a named mob that drops the item
+  too): place such a goal by hand (`@x,y`), or put it in the step at the camp.
 - **Hand-placed** (`@x,y`): the author's point is the spot the arrow takes,
   wide enough for any place of the target it stands in, and every other place
   the data knows follows as an alternative. Only where the data agrees: a point
@@ -328,13 +345,18 @@ object's (its spawn, or your `@x,y` at it):
 - `accept` and `turnin` at their NPC or object (not a quest from an item);
 - `talk`, `kill` (the spawn nearest the previous goal; a point at the centre
   of many spawns is seldom within 15 yards of one), `interact`;
-- `buy`, `train`, `vendor`, `sethome`, `getfp` and `learn` naming an `npc`.
+- `buy`, `train`, `vendor`, `sethome`, `getfp` and `learn` naming an `npc`
+  (a `sethome` also with the innkeeper the compiler names).
 
-`goto` and `explore` (places), `collect` (a farming spot among the item's
-sources), `use` and smart targets (`nearest`, class and profession trainers:
-the engine picks the NPC at runtime) never get one, nor does the arrow carry
-it to a spawn area other than the goal's own point. `compile` prints how many
-goals got one ("heights: N of M NPC or object goals got z"). In the game the
+The same rule gives a height, each from its own point, to the other spawn
+places of such a goal (`spots`: a place within 15 yards of one of its spawns;
+the centre of a camp farther from each gets none) and to every candidate of a
+smart target (`nearest`, class and profession trainers, by the candidate's
+own NPC), so the walk to the place or NPC the arrow picks ends on its floor
+too. `goto` and `explore` (places), `collect` (a farming spot among the
+item's sources, also `collect … nearest`'s farm spots) and `use` never get
+one. `compile` prints how many got one ("heights: N of M NPC or object goals,
+N of M smart-target candidates and N of M spawn spots got z"). In the game the
 walk is searched with the height and asked again without it when that finds
 no route or one ending more than 30 yards above or below it.
 
@@ -350,8 +372,9 @@ Polestar compares IDs, or names the game gives in the same language:
   has a map, else the open world's (Eastern Kingdoms and Kalimdor, not
   Forever's copies of a town elsewhere). A name two areas share there gets
   none. In the game a `hearth` or `fly` is done when the zone or subzone text
-  is that area's name in the client's language (`C_Map.GetAreaInfo`), and the
-  guide window shows that name.
+  is that area's name in the client's language (`C_Map.GetAreaInfo`), a
+  `goto` also when the player goes indoors in that subzone (a cave or mine,
+  never a zone), and the guide window shows that name.
 - `node`: on `getfp`, the taxi node of its flight master (`npc`), else of the
   one flight point (`travel.json`) of that name or town serving every faction
   the goal applies to (Booty Bay has one per faction, so a goal for both gets
@@ -459,6 +482,9 @@ Warnings:
   recipes excepted); `until <N>` past the recipe's grey skill
 - a coordinate on a map other than the step's zone that the guide never sets as
   a zone (catches a target resolved onto another continent)
+- coordinates without `map` on a zone set in a step for some characters only,
+  when the other characters who see them are in another zone (a class trip's
+  `zone Moonglade` holding for the rest of Darkshore)
 - profession, faction or spell missing from data but given a quoted name
 - a `goto` right before a goal that already leads to the same place: the next
   goal (notes skipped) is located within 200 yards of the goto point, measured to
@@ -576,6 +602,16 @@ it. It keeps a `goto` followed by another `goto`, by a goal without a location,
 an `optional` one, one for other characters (`only`) or one on another map, a
 kill or drop whose target spawns nowhere in the data (an instance boss placed at
 its entrance), and gotos in steps with `fly` or `hearth`.
+
+A `goto` counts as done on arrival, once a later goal of its step is done,
+or, when only other gotos, notes and goals for other characters follow it in
+its step, once the next step for the character is done with a quest goal of
+it done: a cave's mouth in a step of its own no longer sends back a player who
+already did the work inside. The goto still holds when that next step has no
+quest goal (training, a level, travel), is for some classes or races only
+(`only`), was skipped, or was passed only because its quests are unavailable,
+when the quest goal done is itself `only`, and when `optional` goals follow
+the goto in its own step: that is where they are done.
 
 ### People and things: `talk`, `interact`, `use`
 
@@ -748,6 +784,23 @@ step Deputy Willem
 step Kobolds
   kill 6 x10 quest 7.1
   turnin 5261 optional                -- Eagan stands by the path
+```
+
+The turn-in, objectives and `complete` goals of a quest whose accepts in the
+guide are all `optional` apply only while the quest is in the log or handed
+in. A player who never took it doesn't see them. So a side quest's turn-in
+can have a step of its own, written without `optional`: the step holds and
+leads the arrow to the ender for a player who took the quest, and the guide
+passes it for everyone else.
+
+```
+step Murlocs
+  collect 780 quest 46
+  collect 247826 x1 optional          -- Croaky's Head: Croaky
+  accept 91740 optional
+
+step Ridgepoint Tower
+  turnin 91740                        -- only for players who took it
 ```
 
 **Leveling up before moving on.** `level <N>` holds its step until the

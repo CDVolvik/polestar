@@ -41,14 +41,14 @@ function build({ ding = true, locales = LOCALE_CODES } = {}) {
 	return names.buildNames({ locales, ids, ding: d ? names.readDing(d, locales) : null, pf });
 }
 
-test('the ids kept are the ones the compiled guides, the quest database and the Codex name', () => {
+test('the ids kept are the ones the compiled guides (their goals and their texts\' tokens), the quest database and the Codex name', () => {
 	const ids = names.usedIds(INPUTS);
 	const sorted = (s) => [...s].sort((a, b) => a - b);
 	assert.deepEqual(sorted(ids.quest), [7, 33, 34, 35, 176], 'goal quests, pre, closedBy and preTitles, QuestDB and Codex quests');
-	assert.deepEqual(sorted(ids.npc), [6, 197, 240, 448], 'goal and candidate NPCs, QuestDB and Codex NPCs');
+	assert.deepEqual(sorted(ids.npc), [6, 197, 240, 299, 448], 'goal and candidate NPCs, the names its texts show as tokens, QuestDB and Codex NPCs');
 	assert.deepEqual(sorted(ids.object), [68, 2843]);
 	assert.deepEqual(sorted(ids.item), [750, 1528, 2862], 'goal items, the guide reward, QuestDB and Codex items');
-	assert.deepEqual(ids.counts.guides, { quest: 4, npc: 3, object: 1, item: 3 });
+	assert.deepEqual(ids.counts.guides, { quest: 4, npc: 4, object: 1, item: 3 });
 	assert.throws(() => names.usedIds({ ...INPUTS, questdb: path.join(FIX, 'nowhere') }), /questdb build.*--questdb/s, 'a missing input says how to get it');
 });
 
@@ -177,6 +177,7 @@ test('node tools/polestar.js i18n names writes the folders and reports what each
 	const report = JSON.parse(r.stdout);
 	assert.equal(report.ding, null);
 	assert.equal(report.wago, null);
+	assert.equal(report.wowhead, null, 'no Wowhead cache: nothing from it, nothing asked for');
 	assert.deepEqual(Object.fromEntries(names.NAME_KINDS.map((k) => [k, report.locales.frFR.names[k]])), { quest: 2, npc: 2, object: 1, item: 1 });
 	assert.deepEqual([report.locales.frFR.sameAsEnglish.npc, report.locales.frFR.lacking.npc], [1, report.ids.npc - 3],
 		'what each language lacks, apart from Marshal McBride, whose only French name is the English one');
