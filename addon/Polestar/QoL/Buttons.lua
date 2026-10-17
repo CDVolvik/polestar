@@ -457,9 +457,11 @@ function Buttons.TargetNames(view, raw)
 	return names
 end
 
--- "exists", not "help": a neutral NPC (Booty Bay, Gadgetzan) is no unit you
--- can assist, and /targetexact has already made the target that NPC.
-local MARK_UNIT = { mob = "[@target,harm,nodead]", npc = "[@target,exists,nodead]" }
+-- NPCs: "exists" out of combat, not "help": a neutral NPC (Booty Bay,
+-- Gadgetzan) is no unit you can assist, and /cleartarget then /targetexact
+-- have made the target that NPC. In a fight the target is not cleared, so
+-- only one you cannot attack is marked, never the mob you are fighting.
+local MARK_UNIT = { mob = "[@target,harm,nodead]", npc = "[@target,exists,nodead,nocombat][@target,noharm,nodead]" }
 local MARK_KEY = { mob = "qol.markMob", npc = "qol.markNpc" }
 local MARK_DEFAULT = { mob = 8, npc = 1 }
 local OTHER = { mob = "npc", npc = "mob" }

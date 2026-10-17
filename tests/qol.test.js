@@ -337,7 +337,7 @@ test('mark target: off by default; on, the target button and step key put a skul
 	// Not in a fight, where clearing the target would stop melee and Auto Shot.
 	const skull = '/cleartarget [nocombat]\n/targetexact Kobold Vermin\n/tm [@target,harm,nodead] !8';
 	assert.deepEqual(out[1], [skull, skull]);
-	assert.equal(out[2], '/cleartarget [nocombat]\n/targetexact Marshal Dughan\n/tm [@target,exists,nodead] !1');
+	assert.equal(out[2], '/cleartarget [nocombat]\n/targetexact Marshal Dughan\n/tm [@target,exists,nodead,nocombat][@target,noharm,nodead] !1');
 	assert.equal(out[3], '/targetexact Marshal Dughan', 'turned off again');
 	assert.ok(out[4].length <= 255, 'fits a macro');
 	assert.ok(out[4].endsWith('N1\n/tm [@target,harm,nodead] !8'), 'the preferred name and the mark stay when names are dropped');
@@ -374,7 +374,7 @@ test('mark target: the icon for mobs and for NPCs is a setting; a new one each p
 	assert.deepEqual(out[1], ['~1', '~2', '~3', '~4', '~5', '~6', '~8', '~1'], 'cycles, skipping the mobs\' icon');
 	assert.deepEqual(out[2], ['~2', '~2'], 'the target button and the step key share the cycle');
 	assert.equal(out[3], '~2', 'one count for both kinds: the NPC press after the mob\'s goes on from it');
-	assert.equal(out[4],'/cleartarget [nocombat]\n/targetexact Marshal Dughan\n/tm [@target,exists,nodead] !1', 'an unknown setting falls back to the star');
+	assert.equal(out[4],'/cleartarget [nocombat]\n/targetexact Marshal Dughan\n/tm [@target,exists,nodead,nocombat][@target,noharm,nodead] !1', 'an unknown setting falls back to the star');
 });
 
 // Every CLICK binding in Bindings.xml shows its label in the key bindings
