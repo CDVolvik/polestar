@@ -33785,6 +33785,106 @@ do
 	register()
 end
 
+-- Source: forever/miscellaneous/cozy-sleeping-bag.guide
+do
+	local function register()
+		Polestar.RegisterGuide({
+			id = "forever/miscellaneous/cozy-sleeping-bag",
+			pack = "guides",
+			title = "{item:211527}",
+			minLevel = 14,
+			maxLevel = 32,
+			category = "Miscellaneous",
+			keywords = { "Cozy Sleeping Bag", "Old Toolbox", "Student Fodder", "... and that note you found", "Stepping Stones", "Scramble", "Wet Job", "Eagle's Fist", "This Must Be The Place", "Burned-Out Remains", "Nailed Plank", "Thoradin's Wall" },
+			collects = { 211527, 221498 },
+			reward = { { item = 211527, itemName = "Cozy Sleeping Bag" }, { item = 221498, itemName = "Old Toolbox" } },
+			why = "A trail of hidden notes across both continents: the {item:211527} at the end, a 12-slot {item:221498} on the way.",
+			zone = 1436,
+			zoneName = "Westfall",
+			author = "Polestar",
+			version = 1,
+			names = { ["area:1057"] = "Thoradin's Wall", ["area:146"] = "Stonewrought Dam", ["area:287"] = "Hillsbrad", ["item:211527"] = "Cozy Sleeping Bag", ["item:221498"] = "Old Toolbox", ["object:424005"] = "Pocket Litter", ["object:424012"] = "Mound of Dirt", ["zone:1413"] = "Barrens", ["zone:1432"] = "Loch Modan", ["zone:1436"] = "Westfall", ["zone:1442"] = "Stonetalon Mountains" },
+			steps = {
+				{
+					title = "The note in {zone:1436}",
+					note = "A burned-out campfire in western {zone:1436}, with a nailed plank beside it.",
+					only = { factions = { "Alliance" } },
+					goals = {
+						{ t = "accept", quest = 79008, title = "... and that note you found", object = 415107, objName = "Burned-Out Remains", minLevel = 14, qlvl = 22, map = 1436, x = 37.34, y = 50.63, f = "e" },
+					},
+				},
+				{
+					title = "Its twin in the {zone:1413}",
+					note = "The note's \"twin land\" is the {zone:1413}: the same burned-out campfire stands in the southern {zone:1413}.",
+					only = { factions = { "Alliance" } },
+					goals = {
+						{ t = "turnin", quest = 79008, title = "... and that note you found", object = 415106, objName = "Burned-Out Remains", map = 1413, x = 46.34, y = 73.88, f = "e" },
+						{ t = "accept", quest = 79192, title = "Stepping Stones", object = 417072, objName = "Nailed Plank", minLevel = 14, qlvl = 24, map = 1413, x = 46.36, y = 73.8, f = "e" },
+					},
+				},
+				{
+					title = "The note in the {zone:1413}",
+					note = "A burned-out campfire in the southern {zone:1413}, with a nailed plank beside it.",
+					only = { factions = { "Horde" } },
+					goals = {
+						{ t = "accept", quest = 79007, title = "... and that note you found", object = 415106, objName = "Burned-Out Remains", minLevel = 14, qlvl = 22, map = 1413, x = 46.34, y = 73.88, f = "e" },
+					},
+				},
+				{
+					title = "Its twin in {zone:1436}",
+					note = "The note's \"twin land\" is {zone:1436}: the same burned-out campfire stands in western {zone:1436}.",
+					only = { factions = { "Horde" } },
+					goals = {
+						{ t = "turnin", quest = 79007, title = "... and that note you found", object = 415107, objName = "Burned-Out Remains", map = 1436, x = 37.34, y = 50.63, f = "e" },
+						{ t = "accept", quest = 79192, title = "Stepping Stones", object = 424010, objName = "Nailed Plank", minLevel = 14, qlvl = 24, map = 1436, x = 37.43, y = 50.89, f = "e" },
+					},
+				},
+				{
+					title = "{zone:1442}",
+					note = "The next hideout is a small camp in the hills of eastern Stonetalon. Leave the road where a path climbs into the hills and follow it to the camp; the {object:424005} lies on a crate beside its tent.",
+					goals = {
+						{ t = "goto", text = "Path into the hills", map = 1442, x = 50.9, y = 52.3, f = "e" },
+						{ t = "turnin", quest = 79192, title = "Stepping Stones", object = 424005, objName = "Pocket Litter", map = 1442, x = 40.76, y = 52.57, f = "e" },
+						{ t = "accept", quest = 79980, title = "Scramble", object = 424005, objName = "Pocket Litter", minLevel = 14, qlvl = 24, map = 1442, x = 40.76, y = 52.57, f = "e" },
+					},
+				},
+				{
+					title = "A hundred paces north",
+					note = "Walk north through the camp and drop carefully down the steep slope to the {object:424012} on the ledge below. A missed jump only slides you down: hug the cliff and walk back up.",
+					goals = {
+						{ t = "turnin", quest = 79980, title = "Scramble", object = 424012, objName = "Mound of Dirt", map = 1442, x = 39.62, y = 49.86, f = "e" },
+						{ t = "accept", quest = 79974, title = "Wet Job", object = 424012, objName = "Mound of Dirt", minLevel = 14, qlvl = 32, map = 1442, x = 39.62, y = 49.86, f = "e" },
+					},
+				},
+				{
+					title = "The dam in {zone:1432}",
+					note = "The figurine is on a ledge just below the top of the {area:146}, on its north face. Step off slowly; walking backwards keeps you from overshooting the ledge.",
+					goals = {
+						{ t = "turnin", quest = 79974, title = "Wet Job", object = 424007, objName = "Carved Figurine", map = 1432, x = 49.35, y = 12.9, f = "e" },
+						{ t = "accept", quest = 79975, title = "Eagle's Fist", object = 424007, objName = "Carved Figurine", minLevel = 14, qlvl = 32, map = 1432, x = 49.35, y = 12.9, f = "e" },
+					},
+				},
+				{
+					title = "{area:1057}",
+					note = "At the gate in {area:1057} between Arathi and {area:287}, turn north and follow the wall on the {area:287} side to a fallen cart leaning against it. Jump up the cart and its ladder onto the wall, then over the rocks to the hidden camp. Some characters cannot fit under the cargo netting at the camp; another race or a smaller form gets through.",
+					goals = {
+						{ t = "goto", text = "Fallen cart", map = 1424, x = 87.5, y = 47.7, f = "e" },
+					},
+				},
+				{
+					title = "The hidden camp",
+					goals = {
+						{ t = "turnin", quest = 79975, title = "Eagle's Fist", object = 406918, objName = "Messenger Bag", map = 1417, x = 22.46, y = 24.21, f = "e" },
+						{ t = "accept", quest = 79976, title = "This Must Be The Place", object = 406918, objName = "Messenger Bag", minLevel = 14, qlvl = 32, map = 1417, x = 22.46, y = 24.21, f = "e" },
+						{ t = "turnin", quest = 79976, title = "This Must Be The Place", object = 424006, objName = "Hastily Rolled-Up Satchel", map = 1417, x = 22.45, y = 24.21, f = "e" },
+					},
+				},
+			},
+		})
+	end
+	register()
+end
+
 -- Source: forever/professions/alchemy.guide
 do
 	local function register()
