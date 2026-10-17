@@ -311,6 +311,7 @@ step Mountaineer Gretchen
   tip Gretchen camps just outside the Grizzled Den, the wendigo cave south-west of Kharanos.
   turnin 98322                                -- Mountaineer Gretchen
   accept 98319
+  goto 42.57,54.68 live "The Grizzled Den"
 
 step The Grizzled Den
   tip Flintfire's shipments lie on the cave floor, and Mountaineer Cornelius is missing somewhere inside.
