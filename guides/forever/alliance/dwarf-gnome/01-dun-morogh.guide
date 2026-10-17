@@ -66,6 +66,9 @@ next forever/alliance/02-westfall
 # - Rumbleshot's ammo is taken from the crate by Gretchen's camp (looted at
 #   44.1,57.0 in a recorded run) and handed to Hegnar before the walk back to
 #   Kharanos, instead of a second trip out.
+# - Brewnall's quests are taken before Frostmane Hold, so the bears, boars
+#   and leopards killed on the way to the Hold count toward "A Favor for
+#   Evershine" (319) instead of being wasted.
 #
 # Left out: "The Reports" (291) and "Stout to Kadrell" (414) are accepted by
 # the route but never turned in (the route goes to Westfall, not Ironforge's
@@ -341,19 +344,19 @@ step Kharanos and the depot
 
 # ---------------------------------------------------------------- Brewnall Village
 
-step Frostmane Hold
-  tip Frostmane Hold is the troll cave in the hills west of Brewnall Village. Kill Headhunters at its mouth and walk through to its far end.
-  kill 1123 quest 287                         -- Frostmane Headhunter
-  goto 22.8,52.1 "Frostmane Hold"
-  complete 287
-
 step Brewnall Village
-  tip Brewnall Village sits on the lake north-west of Frostmane Hold. Coming from Kharanos, Gretta Ganter's dock is the first stop; Rejold and Marleth Barleybrew are in the village beyond it.
+  tip Brewnall Village sits on the lake west of Kharanos. Gretta Ganter's dock is the first stop; Rejold and Marleth Barleybrew are in the village beyond it.
   accept 98326                                -- Gretta Ganter, on the dock
   turnin 318                                  -- Rejold Barleybrew
   accept 315
   accept 319
   accept 310                                  -- Marleth Barleybrew
+
+step Frostmane Hold
+  tip Frostmane Hold is the troll cave in the hills south-west of Brewnall Village. Ice Claw Bears, Elder Crag Boars and Snow Leopards you kill on the way count for Rejold. Kill Headhunters at its mouth and walk through to its far end.
+  kill 1123 quest 287                         -- Frostmane Headhunter
+  goto 22.8,52.1 "Frostmane Hold"
+  complete 287
 
 step Gnomes, bears and leopards
   tip Leper Gnomes around Brewnall and the Gnomeregan road carry the cogs and gears. Ice Claw Bears, Elder Crag Boars and Snow Leopards roam the hills around the lake.
