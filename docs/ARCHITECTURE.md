@@ -1364,9 +1364,13 @@ grey-skipped accept: the way to what was left out goes with it. A guide the
 character is past (an accept left out or grey-skipped, or `maxLevel`
 reached) with no start, no accept waiting for a level or a prerequisite and
 the quest log read passes whole (`Own.placedThrough`) and chains to `next`
-as a finished one does, even when the player opened it by hand (opening a
-guide by hand clears its `completedFired`, so a guide passed earlier in the
-session chains again); the next guide is placed the same way. Where it offers
+as a finished one does, even when the player opened it by hand (which clears
+its `completedFired`, so a guide passed earlier in the session chains again),
+unless every quest of it is done (`Own.allQuestsDone`): a guide all done that
+the player opens stays, finished, for them to look at. The next guide is
+placed the same way. The picker's "done" check (`GetGuideState`) needs every
+quest the character can take in the guide turned in, so a guide the catch-up
+passed with grey quests never done is not checked. Where it offers
 a route choice, the catch-up takes the option with the most quest work done
 (`Own.likeliestRoute`, `Own.doneIn`), the recommended one among equals. With
 no tab open at login (`behavior.autoSelectGuide`), a character who did quests

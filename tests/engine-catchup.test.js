@@ -261,3 +261,20 @@ test('in a guide the character is past, a low chain stays only when three quests
 	const [two] = run({ guides: guides(false), saved: { Polestar: 'PolestarCharDB = nil' }, script });
 	assert.equal(two.guide, 'test/ashen', 'two only: not worth the detour, the guide passes');
 });
+
+// Yendi: the guide list's check means every quest of the guide is done; a
+// guide the catch-up passed with grey quests never done is not checked. A
+// guide all done, opened by the player, stays open, finished.
+test('a guide is done for the list only once all its quests are; one all done, opened by hand, stays open', () => {
+	const allDone = 'stub.world.complete({ 101, 102, 104, 204 }); stub.world.onQuest(206, {})';
+	const [passed] = run({
+		before: DONE,
+		script: 'E.SetGuide("test/low"); flush(); emit({ guide = E.GetGuide().id, low = E.GetGuideState("test/low") })',
+	});
+	assert.deepEqual(passed, { guide: 'test/mid', low: 'started' }, 'passed with a grey quest never done: not done');
+	const [opened] = run({
+		before: allDone,
+		script: 'E.SetGuide("test/low"); flush(); emit({ guide = E.GetGuide().id, at = E.GetStepIndex() or false, low = E.GetGuideState("test/low") })',
+	});
+	assert.deepEqual(opened, { guide: 'test/low', at: false, low: 'done' }, 'all done and opened by hand: it stays, finished');
+});

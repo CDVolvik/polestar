@@ -1490,7 +1490,10 @@ local function place()
 	-- level or a prerequisite: it passes whole, and chains to the next
 	-- (evaluateLoaded).
 	local past = anyOut or (guide.maxLevel ~= nil and level >= guide.maxLevel)
+	-- A guide whose quests are all done, opened by the player, stays: they
+	-- chose to look at it (it shows finished).
 	local through = catchUp and not start and not later and logReady and past
+		and (autoChain or not Own.allQuestsDone(guide))
 	if through then
 		limit = #steps + 1
 		Own.placedThrough[guide.id] = true
@@ -2742,6 +2745,28 @@ function Own.doneIn(g)
 	return done
 end
 
+-- Whether every quest of guide g this character can take is turned in (its
+-- accepts, turn-ins and completes, optional ones aside), nil for a guide
+-- without quests. The picker's check: a guide the catch-up passed with grey
+-- quests never done is not done.
+function Own.allQuestsDone(g)
+	local any = false
+	for _, step in ipairs(g.steps) do
+		if Guides.Matches(step.only, player) then
+			for _, goal in ipairs(step.goals) do
+				local t = goal.t
+				if goal.quest and (t == "accept" or t == "turnin" or t == "complete") and not goal.optional
+					and Guides.Matches(goal.only, player) then
+					any = true
+					if not questDone(goal.quest) then return false end
+				end
+			end
+		end
+	end
+	if any then return true end
+	return nil
+end
+
 -- The guide to start with, with no guide open (the login's pick, the guide
 -- window's and the welcome's Start guide): with the catch-up, the race's
 -- first guide when the character did quests in it, so placement goes
@@ -3208,21 +3233,24 @@ function Engine.MoveTab(from, to)
 end
 
 -- For the picker: "new", "started" (opened in a tab before, or has
--- check-offs/skips) or "done" (finished this session, or open and finished);
+-- check-offs/skips) or "done" (finished this session, or open and finished;
+-- for a guide with quests, only once every quest the character can take in
+-- it is turned in: a guide the catch-up passed is not done for that alone);
 -- doneSteps/totalSteps when the guide is open in a tab.
 function Engine.GetGuideState(id)
-	if not (id and Guides.Get(id)) then return nil end
+	local g = id and Guides.Get(id)
+	if not g then return nil end
+	if not player then refreshPlayer() end
 	local open = tabIndexOf(id)
 	local done, total
+	local finished = completedFired[id]
 	if open then
 		use(tabs[open])
-		if not player then refreshPlayer() end
 		done, total = progressLoaded()
-		local complete = computed == nil
+		finished = finished or computed == nil
 		useActive()
-		if complete then return "done", done, total end
 	end
-	if completedFired[id] then return "done", done, total end
+	if finished and Own.allQuestsDone(g) ~= false then return "done", done, total end
 	local s = ns.CharState()
 	local started = type(s.flags.started) == "table" and s.flags.started[id]
 	if open or started or s.manual[id] or s.skipped[id] then return "started", done, total end
