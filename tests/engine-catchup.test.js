@@ -278,3 +278,27 @@ test('a guide is done for the list only once all its quests are; one all done, o
 	});
 	assert.deepEqual(opened, { guide: 'test/low', at: false, low: 'done' }, 'all done and opened by hand: it stays, finished');
 });
+
+// Yendi: a catch-up stopped at the end of a guide ("Guide complete, Up next")
+// on a second try in the session (the next guide had finished on the first),
+// and on a quest whose prerequisite was a grey one it left out.
+test('a catch-up goes on to the next guide silently: on a second try, and past a quest whose prerequisite it left out', () => {
+	const guides = GUIDES.replace('maxLevel = 12, next = "test/mid"', 'maxLevel = 12, next = "test/low2"') + `
+		Polestar.RegisterGuide({ id = "test/low2", pack = "test", title = "Low 2", faction = "Alliance", minLevel = 8, maxLevel = 14, next = "test/mid", steps = {
+			{ goals = { { t = "accept", quest = 150, title = "Grey start", qlvl = 8 } } },
+			{ goals = { { t = "turnin", quest = 150, title = "Grey start" }, { t = "accept", quest = 152, title = "Yellow after it", qlvl = 19, pre = { 150 } } } },
+			{ goals = { { t = "turnin", quest = 152, title = "Yellow after it" } } },
+		} })
+	`;
+	const [out] = run({
+		before: DONE,
+		guides,
+		saved: { Polestar: 'PolestarCharDB = nil' },
+		script: `
+			local first = { E.GetGuide().id, PLACED[#PLACED].chain }
+			E.SetGuide("test/low"); flush()
+			emit({ first = first, again = { E.GetGuide().id, PLACED[#PLACED].chain } })`,
+	});
+	assert.deepEqual(out.first, ['test/mid', 'test/low,test/low2'], 'the first run goes through both');
+	assert.deepEqual(out.again, ['test/mid', 'test/low,test/low2'], 'a second try in the session too');
+});

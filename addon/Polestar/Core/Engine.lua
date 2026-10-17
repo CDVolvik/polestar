@@ -331,6 +331,9 @@ Own.leftOut = {}
 -- like a finished guide; and the guides passed on the way to the one placed,
 -- for GUIDE_PLACED.
 Own.placedThrough, Own.placedChain = {}, {}
+-- The guides a catch-up passed whole on its current run (guideId -> true),
+-- so a loop of `next` stops it.
+Own.chainSeen = {}
 
 -- Quests found unavailable at their giver this session (questID ->
 -- { reason, accept }): the giver's window opened without offering them. Such a
@@ -1475,7 +1478,10 @@ local function place()
 				if open(s, g, goal) then
 					if goal.t == "accept" then
 						doable = doable or not gated(goal)
-						later = later or gated(goal) ~= nil
+						-- Only a level to reach holds a guide the catch-up could
+						-- pass: a missing prerequisite is often a grey quest it
+						-- left out, which will never come.
+						later = later or gated(goal) == "level"
 					elseif isQuestGoal(goal) and C.IsOnQuest(goal.quest) then
 						started = true
 					end
@@ -3078,8 +3084,16 @@ local function evaluateLoaded(active)
 			local nextId, asks = routeNext(guide)
 			if through and asks then nextId, asks = Own.likeliestRoute(guide), false end
 			if mayChain and asks then pendingChoices[#pendingChoices + 1] = id end
-			if mayChain and nextId and Guides.Get(nextId) and not completedFired[nextId] and not tabIndexOf(nextId) then
-				if through and active then Own.placedChain[#Own.placedChain + 1] = id end
+			-- A catch-up goes on through guides finished earlier this session
+			-- (another try): only a guide it already passed on this run stops
+			-- it, against a loop of `next`.
+			local again = through and not Own.chainSeen[nextId] and nextId ~= id
+			if mayChain and nextId and Guides.Get(nextId) and (again or not completedFired[nextId]) and not tabIndexOf(nextId) then
+				if through then
+					Own.chainSeen[id] = true
+					completedFired[nextId] = nil
+					if active then Own.placedChain[#Own.placedChain + 1] = id end
+				end
 				resetLoaded(nextId, true)
 				persist()
 				if active then ns.Fire("GUIDE_CHANGED", nextId) end
@@ -3090,6 +3104,7 @@ local function evaluateLoaded(active)
 	end
 	-- Placed: where the guide resumes, and the guides passed whole on the way
 	-- (the guide window shows the catch-up).
+	if placed then Own.chainSeen = {} end
 	if placed and active then
 		local chain = Own.placedChain
 		Own.placedChain = {}

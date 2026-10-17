@@ -1362,13 +1362,16 @@ yellow up need it down the chain (`Own.catchUpPast`). Grey accepts anywhere go b
 Soft goals before the start also pass in a step before the last left-out or
 grey-skipped accept: the way to what was left out goes with it. A guide the
 character is past (an accept left out or grey-skipped, or `maxLevel`
-reached) with no start, no accept waiting for a level or a prerequisite and
-the quest log read passes whole (`Own.placedThrough`) and chains to `next`
+reached) with no start, no accept waiting for a level (a missing prerequisite
+is often a grey quest it left out, which never comes) and the quest log read
+passes whole (`Own.placedThrough`) and chains to `next`
 as a finished one does, even when the player opened it by hand (which clears
 its `completedFired`, so a guide passed earlier in the session chains again),
 unless every quest of it is done (`Own.allQuestsDone`): a guide all done that
 the player opens stays, finished, for them to look at. The next guide is
-placed the same way. The picker's "done" check (`GetGuideState`) needs every
+placed the same way, even when it finished earlier in the session (another
+try): only a guide passed on the same run stops it (`Own.chainSeen`), against
+a loop of `next`. The picker's "done" check (`GetGuideState`) needs every
 quest the character can take in the guide turned in, so a guide the catch-up
 passed with grey quests never done is not checked. Where it offers
 a route choice, the catch-up takes the option with the most quest work done
