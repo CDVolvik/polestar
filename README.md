@@ -34,7 +34,7 @@
   <a href="#a-look-inside">A look inside</a> ·
   <a href="#features">Features</a> ·
   <a href="#how-the-routes-are-made">How the routes are made</a> ·
-  <a href="#guide-packs">Guide packs</a> ·
+  <a href="#community-guides">Community guides</a> ·
   <a href="#building-from-source">Building from source</a> ·
   <a href="#contributing">Contributing</a> ·
   <a href="#data-and-licensing">Data and licensing</a> ·
@@ -44,7 +44,7 @@
 <table align="center">
   <tr>
     <td align="center" width="240"><a href="#quick-start"><b>Play</b></a><br>Install the addon and follow the arrow.</td>
-    <td align="center" width="240"><a href="#writing-a-guide-pack"><b>Write guides</b></a><br>Publish your own routes as a guide pack.</td>
+    <td align="center" width="240"><a href="#writing-a-community-addon"><b>Write guides</b></a><br>Publish your own routes as a community addon.</td>
     <td align="center" width="240"><a href="#building-from-source"><b>Work on Polestar</b></a><br>Fix a guide, build the addon, run the tests.</td>
   </tr>
 </table>
@@ -83,8 +83,9 @@ Good to know:
 - **Optional:** `Polestar_Recorder-<version>.zip` from the same release
   records your sessions to improve the routes. It does nothing until you turn
   it on.
-- **Guide packs** are other people's guides for Polestar, each a separate
-  addon from its own author: see [Guide packs](#guide-packs).
+- **Community guides** are other people's guides for Polestar, each a
+  separate addon from its own author: see
+  [Community guides](#community-guides).
 - Something wrong? Click the bug in the guide window, beside Skip: say what
   went wrong, copy the report (it already holds the step, where you stand and
   the versions) and paste it on the
@@ -113,13 +114,13 @@ start, and keeps the one that reaches 60 soonest under its model; the guides
 are written from that route and scored under the same model
 ([How the routes are made](#how-the-routes-are-made)).
 
-Other people can publish their own guides for Polestar as guide packs:
-separate addons, made and supported by their authors
-([Guide packs](#guide-packs)). Each new character's first login opens a short
+Other people can publish their own guides for Polestar as community
+addons: separate addons, made and supported by their authors
+([Community guides](#community-guides)). Each new character's first login opens a short
 welcome: a hello and what Polestar does; on the account's first character,
 quest automation, the guide at login and the colour scheme, then the route
 style (Fastest, Balanced or Roads, with a line on what each does); then the
-guide Polestar suggests for that character, the Discord and guide packs
+guide Polestar suggests for that character, the Discord and community guides
 (`/polestar welcome` shows it again).
 
 > [!NOTE]
@@ -468,7 +469,7 @@ settings instead, and Polestar keeps out of the game's own windows.
 | `mount` | Look up the mount of your target (or mouseover) and how to get it |
 | `rares [test]` | Open Rares, or show a sample rare alert |
 | `questdb` | Quest database status |
-| `packs` | Open Options > Guide packs |
+| `packs` | Open Options > Community guides |
 | `gamepad` | Open Options > Gamepad: button names and key bindings |
 | `welcome` | Show the welcome again |
 | `where` | Print your map and position as guide lines (`zone map <id>`, `goto x,y live`), in a box to copy |
@@ -653,44 +654,48 @@ on one line):
 
 Every verb, modifier and condition is in
 [docs/GUIDE_FORMAT.md](docs/GUIDE_FORMAT.md); guides of your own ship as a
-[guide pack](#guide-packs).
+[community addon](#community-guides).
 
-## Guide packs
+## Community guides
 
-A **guide pack** is someone else's guides for Polestar. It is a separate
-addon, made and supported by its author; its guides are not Polestar's
-leveling routes. Polestar does not ship, host or recommend any pack.
-[docs/GUIDE_PACKS.md](docs/GUIDE_PACKS.md) explains packs in full, for
-players and for authors.
+Guides for Polestar written by other players and published as their own
+addons. Install one next to Polestar and its guides show up in the guide
+menu under **Community guides**, with the arrow, the map markers and
+everything else Polestar does. Each is made and supported by its author;
+Polestar does not ship, host or recommend any.
 
-### Installing a guide pack
+<p align="center">
+  <img src="docs/preview/picker-packs.svg" width="720" alt="The guide menu: under the Community guides heading, Joe's Routes is selected and lists four Alliance leveling guides, each credited to Joe">
+</p>
 
-Download the pack from wherever its author publishes it and install it like
-any addon, next to the `Polestar` folders, then restart the game. Its guides
-appear in the guide menu (`/polestar guides`) under "Guide packs", each
-credited to its author. Options > Guide packs (`/polestar packs`) lists every
-pack you have installed and turns each one on or off without a reload; it
-also picks where the guide for your level is suggested from (Polestar's own
-guides unless you choose a pack). A pack never replaces Polestar's guides or
-another pack's.
+### Installing a community addon
 
-Report a problem in a pack to its author, not to Polestar. A pack is an
-addon like any other, so install packs from authors you trust.
+1. Download it from wherever its author publishes it, and install it like
+   any addon, next to the `Polestar` folders.
+2. Restart the game. Its guides appear in the guide menu
+   (`/polestar guides`) under **Community guides**.
+3. **Options > Community guides** (`/polestar packs`) turns each one on or
+   off without a reload, and picks where the guide for your level is
+   suggested from.
 
-### Writing a guide pack
+A community addon never replaces Polestar's guides or another one's.
+Report problems in it to its author, not to Polestar, and install them only
+from authors you trust.
 
-You can write your own leveling guides with the tools Polestar uses for its
-own: the guide format, the compiler, `lint`, `playtest`, and in the game the
-guide engine, the arrow and the map markers. Publish them as your own addon
-on the addon sites, and they appear in Polestar's guide menu as a pack. A
-pack lives in its own folder, beside a clone of Polestar that provides the
-tools (Node 24 or later; Lua 5.1 for `play` and `playtest`):
+### Writing a community addon
+
+Write leveling guides in plain text and publish them as your own addon,
+with the tools Polestar uses for its own: the guide format, the compiler,
+`lint`, `playtest`, and in the game the guide engine, the arrow and the map
+markers. Hand over to any of Polestar's guides with `next`, so your addon
+can cover one zone or the whole climb, under a licence of your choice
+([Data and licensing](#data-and-licensing)).
 
 ```sh
 git clone https://github.com/fitzforge/polestar.git
 cd polestar
 npm link               # puts `polestar` on your PATH; no npm dependencies
-polestar data build    # the reference data in data/forever/, which every guide command reads
+polestar data build    # the reference data every guide command reads
 polestar doctor        # checks the setup and prints the fix for anything missing
 cd ..                  # your pack goes beside the clone, not inside it
 polestar new my-pack   # asks for the id, title, author and licence
@@ -698,41 +703,14 @@ cd my-pack
 polestar dev --play    # lint and build on every save, with the browser playground
 ```
 
-`data build` downloads its public sources and also reads quest data from an
-addon installed with the game, so today it is built on a machine with the
-Forever client (`polestar help data` lists every source). `new` writes an
-example guide that already lints and plays to the end. Before publishing,
-`polestar playtest` plays every guide to the end in the real addon, for each
-race that can reach it and each class it has steps for, and `polestar pack`
-builds the zip, byte for byte reproducible. Upload it as your own addon
-project, with Polestar as a required dependency, a title that cannot be
-mistaken for Polestar's own addons, your name, a version, and a website or
-support link where players can reach you. Write your own guide text: do not
-copy Polestar's.
-
-- [docs/GUIDE_PACKS.md](docs/GUIDE_PACKS.md): what a pack is, the steps from
-  `new` to publishing, what the tools require and what we ask of authors
-- [docs/PACKS.md](docs/PACKS.md): the handbook (setup, a first pack in 15
-  minutes, testing, publishing, every problem and its fix)
-- [docs/GUIDE_CHEATSHEET.md](docs/GUIDE_CHEATSHEET.md): the guide format on
-  one page; [docs/GUIDE_FORMAT.md](docs/GUIDE_FORMAT.md) in full
-- [docs/PACK_FORMAT.md](docs/PACK_FORMAT.md): what `pack.json` holds and what
-  the tools write
-- **Codespaces:** a pack made by `polestar new` carries a dev container; open
-  its repository in GitHub Codespaces for Node, Lua and the tools with nothing
-  to install (use `play` and `playtest` there, since `install` and `dev` need
-  the game)
-
-`polestar find <text>` turns quests, NPCs, objects, items, inns and flight
-points into guide lines; in game, `/polestar where` gives your position as
-one. A pack can hand over to any of Polestar's guides with `next`, so it can
-cover one zone or one level range, and may use a licence of its author's
-choice ([Data and licensing](#data-and-licensing)).
+| Start here | Then |
+|---|---|
+| [**docs/GUIDE_PACKS.md**](docs/GUIDE_PACKS.md): community guides on one page, for players and authors: install, the steps from `new` to publishing, the checklist before you publish | [docs/PACKS.md](docs/PACKS.md): the full handbook, with setup on each system, a first pack in 15 minutes, and every problem and its fix<br>[docs/GUIDE_CHEATSHEET.md](docs/GUIDE_CHEATSHEET.md): the guide format on one page ([in full](docs/GUIDE_FORMAT.md))<br>[docs/PACK_FORMAT.md](docs/PACK_FORMAT.md): exactly what the tools write |
 
 ## Building from source
 
 This part is for working on Polestar itself: players need only the
-[Quick start](#quick-start), guide authors the [Guide packs](#guide-packs)
+[Quick start](#quick-start), guide authors the [Community guides](#community-guides)
 section. [docs/README.md](docs/README.md) maps every document, and
 [CHANGELOG.md](CHANGELOG.md) lists what changed in each release.
 
