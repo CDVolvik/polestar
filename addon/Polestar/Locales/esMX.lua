@@ -1518,7 +1518,7 @@ L["Copy your report with Ctrl+C (Cmd+C on a Mac), switch to Discord and paste it
 L["Get the invite"] = "Conseguir la invitación"
 L["Report problems, ask for help and hear about new guides first. The invite is selected for you: copy it with Ctrl+C (Cmd+C on a Mac) and open it in your browser."] = "Informa de problemas, pide ayuda y entérate primero de las guías nuevas. La invitación ya está seleccionada: cópiala con Ctrl+C (Cmd+C en Mac) y ábrela en tu navegador."
 L["Report problems, ask for help and hear about new guides first."] = "Informa de problemas, pide ayuda y entérate primero de las guías nuevas."
--- L["blocked in %s: %s (%s)"] = ""
+L["blocked in %s: %s (%s)"] = "bloqueado en %s: %s (%s)"
 
 -- UI/RouteChoice.lua
 L["Right here"] = "Justo aquí"
@@ -1621,11 +1621,11 @@ L["The map marks each place."] = "El mapa marca cada lugar."
 L["Every guide"] = "Todas las guías"
 L["Leveling, professions, reputations, mounts and pets."] = "Subir de nivel, profesiones, reputaciones, monturas y mascotas."
 L["Pages"] = "Páginas"
--- L["The shortest walk. Cuts across fields and goes straight over hills."] = ""
--- L["Takes roads when they aren't much longer, and goes round steep hills."] = ""
--- L["Stays on roads, even when it's longer. Slower, but easy to follow."] = ""
--- L["How the arrow walks you. You can change it any time in Options."] = ""
--- L["Every style keeps you out of the other faction's towns and away from zones far above your level."] = ""
+L["The shortest walk. Cuts across fields and goes straight over hills."] = "El camino más corto. Cruza campos y sube derecho por los cerros."
+L["Takes roads when they aren't much longer, and goes round steep hills."] = "Toma caminos si no son mucho más largos, y le da la vuelta a los cerros empinados."
+L["Stays on roads, even when it's longer. Slower, but easy to follow."] = "Se queda en los caminos aunque sea más largo. Más lenta, pero fácil de seguir."
+L["How the arrow walks you. You can change it any time in Options."] = "Cómo te guía la flecha. Puedes cambiarlo cuando quieras en Opciones."
+L["Every style keeps you out of the other faction's towns and away from zones far above your level."] = "Todos los estilos te mantienen fuera de las ciudades de la otra facción y lejos de zonas muy arriba de tu nivel."
 
 -- Core/Closes.lua
 L["Taking %s closes %s for good."] = "Aceptar %s bloquea %s para siempre."

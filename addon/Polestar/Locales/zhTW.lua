@@ -1316,11 +1316,11 @@ L["Feedback, bug reports and news"] = "意見回饋、錯誤回報與最新消�
 L["Guides made by other players for Polestar, not our own routes: each pack is an addon of its own, installed like any other. Its guides appear in %s under Guide packs, credited to their author, who supports them. More in Options > Guide packs."] = "其他玩家為 Polestar 製作的指南，並非我們自己的路線：每個包都是獨立的插件，像其他插件一樣安裝。其指南會出現在%s的「指南包」下，並註明作者，由作者負責維護。詳情見「選項」>「指南包」。"
 L["Back"] = "返回"
 L["Pages"] = "頁面"
--- L["The shortest walk. Cuts across fields and goes straight over hills."] = ""
--- L["Takes roads when they aren't much longer, and goes round steep hills."] = ""
--- L["Stays on roads, even when it's longer. Slower, but easy to follow."] = ""
--- L["How the arrow walks you. You can change it any time in Options."] = ""
--- L["Every style keeps you out of the other faction's towns and away from zones far above your level."] = ""
+L["The shortest walk. Cuts across fields and goes straight over hills."] = "最短的路線。穿越田野，直接翻過山丘。"
+L["Takes roads when they aren't much longer, and goes round steep hills."] = "道路不會遠太多時走道路，並繞過陡峭的山丘。"
+L["Stays on roads, even when it's longer. Slower, but easy to follow."] = "始終沿著道路走，即使比較遠。較慢，但容易跟隨。"
+L["How the arrow walks you. You can change it any time in Options."] = "箭頭為你帶路的方式。可隨時在選項中更改。"
+L["Every style keeps you out of the other faction's towns and away from zones far above your level."] = "所有風格都會避開敵對陣營的城鎮，以及遠高於你等級的地區。"
 
 -- UI/Copy.lua
 L["Selected for you: copy it with Ctrl+C (Cmd+C on a Mac), then press Escape."] = "已為你選取：用 Ctrl+C（Mac 為 Cmd+C）複製，然後按 Escape。"
@@ -1356,7 +1356,7 @@ L["Copy your report with Ctrl+C (Cmd+C on a Mac), switch to Discord and paste it
 L["Get the invite"] = "取得邀請"
 L["Report problems, ask for help and hear about new guides first. The invite is selected for you: copy it with Ctrl+C (Cmd+C on a Mac) and open it in your browser."] = "回報問題、尋求協助，並搶先得知新指南。邀請連結已為你選取：用 Ctrl+C（Mac 為 Cmd+C）複製並在瀏覽器中開啟。"
 L["Report problems, ask for help and hear about new guides first."] = "回報問題、尋求協助，並搶先得知新指南。"
--- L["blocked in %s: %s (%s)"] = ""
+L["blocked in %s: %s (%s)"] = "在 %s 中被阻擋：%s（%s）"
 
 -- UI/Packs.lua
 L["turned off in the AddOns list"] = "已在插件清單中關閉"

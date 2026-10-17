@@ -1316,11 +1316,11 @@ L["Feedback, bug reports and news"] = "의견, 버그 신고, 소식"
 L["Guides made by other players for Polestar, not our own routes: each pack is an addon of its own, installed like any other. Its guides appear in %s under Guide packs, credited to their author, who supports them. More in Options > Guide packs."] = "다른 플레이어가 Polestar용으로 만든 가이드이며 저희 경로가 아닙니다: 각 팩은 별도 애드온으로, 다른 애드온처럼 설치합니다. 그 가이드는 %s의 가이드 팩에 제작자 이름과 함께 나타나며, 지원도 제작자가 합니다. 자세한 내용은 설정 > 가이드 팩."
 L["Back"] = "뒤로"
 L["Pages"] = "페이지"
--- L["The shortest walk. Cuts across fields and goes straight over hills."] = ""
--- L["Takes roads when they aren't much longer, and goes round steep hills."] = ""
--- L["Stays on roads, even when it's longer. Slower, but easy to follow."] = ""
--- L["How the arrow walks you. You can change it any time in Options."] = ""
--- L["Every style keeps you out of the other faction's towns and away from zones far above your level."] = ""
+L["The shortest walk. Cuts across fields and goes straight over hills."] = "가장 짧은 길입니다. 들판을 가로지르고 언덕을 곧장 넘어갑니다."
+L["Takes roads when they aren't much longer, and goes round steep hills."] = "많이 멀지 않으면 도로를 타고, 가파른 언덕은 돌아갑니다."
+L["Stays on roads, even when it's longer. Slower, but easy to follow."] = "더 멀어도 도로를 따라갑니다. 느리지만 따라가기 쉽습니다."
+L["How the arrow walks you. You can change it any time in Options."] = "화살표가 길을 안내하는 방식입니다. 설정에서 언제든 바꿀 수 있습니다."
+L["Every style keeps you out of the other faction's towns and away from zones far above your level."] = "모든 방식은 상대 진영의 마을과 레벨보다 훨씬 높은 지역을 피합니다."
 
 -- UI/Copy.lua
 L["Selected for you: copy it with Ctrl+C (Cmd+C on a Mac), then press Escape."] = "선택되어 있습니다: Ctrl+C(Mac은 Cmd+C)로 복사한 뒤 Esc를 누르십시오."
@@ -1356,7 +1356,7 @@ L["Copy your report with Ctrl+C (Cmd+C on a Mac), switch to Discord and paste it
 L["Get the invite"] = "초대 링크 받기"
 L["Report problems, ask for help and hear about new guides first. The invite is selected for you: copy it with Ctrl+C (Cmd+C on a Mac) and open it in your browser."] = "문제를 신고하고, 도움을 요청하고, 새 가이드 소식을 먼저 받으십시오. 초대 링크가 선택되어 있습니다: Ctrl+C(Mac은 Cmd+C)로 복사해 브라우저에서 여십시오."
 L["Report problems, ask for help and hear about new guides first."] = "문제를 신고하고, 도움을 요청하고, 새 가이드 소식을 먼저 받으십시오."
--- L["blocked in %s: %s (%s)"] = ""
+L["blocked in %s: %s (%s)"] = "%s에서 차단됨: %s (%s)"
 
 -- UI/Packs.lua
 L["turned off in the AddOns list"] = "애드온 목록에서 꺼짐"

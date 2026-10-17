@@ -1316,11 +1316,11 @@ L["Feedback, bug reports and news"] = "Opiniões, relatos de bugs e novidades"
 L["Guides made by other players for Polestar, not our own routes: each pack is an addon of its own, installed like any other. Its guides appear in %s under Guide packs, credited to their author, who supports them. More in Options > Guide packs."] = "Guias feitos por outros jogadores para o Polestar, não nossas rotas: cada pacote é um addon próprio, instalado como qualquer outro. Os guias aparecem em %s em Pacotes de guias, creditados ao autor, que dá suporte a eles. Mais em Opções > Pacotes de guias."
 L["Back"] = "Voltar"
 L["Pages"] = "Páginas"
--- L["The shortest walk. Cuts across fields and goes straight over hills."] = ""
--- L["Takes roads when they aren't much longer, and goes round steep hills."] = ""
--- L["Stays on roads, even when it's longer. Slower, but easy to follow."] = ""
--- L["How the arrow walks you. You can change it any time in Options."] = ""
--- L["Every style keeps you out of the other faction's towns and away from zones far above your level."] = ""
+L["The shortest walk. Cuts across fields and goes straight over hills."] = "O caminho mais curto. Corta pelos campos e sobe direto pelas colinas."
+L["Takes roads when they aren't much longer, and goes round steep hills."] = "Usa estradas quando não são muito mais longas e contorna colinas íngremes."
+L["Stays on roads, even when it's longer. Slower, but easy to follow."] = "Fica nas estradas, mesmo quando é mais longe. Mais lenta, mas fácil de seguir."
+L["How the arrow walks you. You can change it any time in Options."] = "Como a seta guia você. Dá para mudar a qualquer momento em Opções."
+L["Every style keeps you out of the other faction's towns and away from zones far above your level."] = "Todo estilo mantém você fora das cidades da outra facção e longe de zonas muito acima do seu nível."
 
 -- UI/Copy.lua
 L["Selected for you: copy it with Ctrl+C (Cmd+C on a Mac), then press Escape."] = "Já selecionado: copie com Ctrl+C (Cmd+C no Mac) e aperte Esc."
@@ -1356,7 +1356,7 @@ L["Copy your report with Ctrl+C (Cmd+C on a Mac), switch to Discord and paste it
 L["Get the invite"] = "Pegar o convite"
 L["Report problems, ask for help and hear about new guides first. The invite is selected for you: copy it with Ctrl+C (Cmd+C on a Mac) and open it in your browser."] = "Relate problemas, peça ajuda e saiba antes de novos guias. O convite já está selecionado: copie com Ctrl+C (Cmd+C no Mac) e abra no navegador."
 L["Report problems, ask for help and hear about new guides first."] = "Relate problemas, peça ajuda e saiba antes de novos guias."
--- L["blocked in %s: %s (%s)"] = ""
+L["blocked in %s: %s (%s)"] = "bloqueado em %s: %s (%s)"
 
 -- UI/Packs.lua
 L["turned off in the AddOns list"] = "desativado na lista de AddOns"
