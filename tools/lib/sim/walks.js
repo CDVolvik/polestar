@@ -48,9 +48,17 @@ function readPack(navDir = NAV_DIR) {
 	return JSON.parse(fs.readFileSync(path.join(navDir, 'PACK.json'), 'utf8'));
 }
 
-// The walking maps a walks file was built on: PACK.json's sha1 (it lists every map file's sha256).
+// The walking maps and router a walks file was built on: PACK.json (it lists
+// every map file's sha256) and the router's code (API.lua, Routing/), the
+// folder's own where it has them, else the repository's (as nav eval loads them).
 function navFingerprint(navDir = NAV_DIR) {
-	return crypto.createHash('sha1').update(fs.readFileSync(path.join(navDir, 'PACK.json'))).digest('hex');
+	const h = crypto.createHash('sha1').update(fs.readFileSync(path.join(navDir, 'PACK.json')));
+	const code = ['API.lua', ...fs.readdirSync(path.join(NAV_DIR, 'Routing')).sort().map((f) => `Routing/${f}`)];
+	for (const f of code) {
+		const own = path.join(navDir, f);
+		h.update(`\n${f}\n`).update(fs.readFileSync(fs.existsSync(own) ? own : path.join(NAV_DIR, f)));
+	}
+	return h.digest('hex');
 }
 
 function walkPoints(world, maps) {

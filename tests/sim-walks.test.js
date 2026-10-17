@@ -104,6 +104,18 @@ test('attach: used on the world and walking maps it was built on, not on another
 	assert.match(notes.join('\n'), /straight line × detour/);
 });
 
+test('attach: walks routed by other router code (Routing/, same maps) are not used', async () => {
+	const w = world();
+	const nav = navDir();
+	const dir = tmpdir('sim-walks-');
+	walks.writeWalks(dir, await walks.buildWalks(w, { navDir: nav, runQueries: fakeRouter(w, 2) }));
+	const edited = navDir();
+	fs.mkdirSync(path.join(edited, 'Routing'));
+	fs.writeFileSync(path.join(edited, 'Routing', 'Costs.lua'), '-- other costs\n');
+	assert.ok(walks.attachWalks(world(), dir, { navDir: navDir() }), 'same maps and code');
+	assert.equal(walks.attachWalks(world(), dir, { navDir: edited }), null);
+});
+
 test('travel: a routed walk costs the router\'s yards (× routeMul), the rest the straight line × detour', async () => {
 	const w = world();
 	const nav = navDir();
