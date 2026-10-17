@@ -519,8 +519,6 @@ step Brewnall Village
   turnin 311                                  -- Marleth Barleybrew
   turnin 315                                  -- Rejold Barleybrew
   accept 413
-  accept 415
-  turnin 415
 
 # ---------------------------------------------------------------- South Gate and Farsen
 

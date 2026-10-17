@@ -8833,8 +8833,6 @@ do
 						{ t = "turnin", quest = 311, title = "Return to Marleth", npc = 1375, npcName = "Marleth Barleybrew", map = 1426, x = 30.19, y = 45.53, z = 394.4, f = "e" },
 						{ t = "turnin", quest = 315, title = "The Perfect Stout", npc = 1374, npcName = "Rejold Barleybrew", map = 1426, x = 30.19, y = 45.73, z = 394.3, f = "e" },
 						{ t = "accept", quest = 413, title = "Shimmer Stout", npc = 1374, npcName = "Rejold Barleybrew", minLevel = 8, qlvl = 10, pre = { 315 }, preTitles = { [315] = "The Perfect Stout" }, map = 1426, x = 30.19, y = 45.73, z = 394.3, f = "e" },
-						{ t = "accept", quest = 415, title = "Rejold's New Brew", npc = 1872, npcName = "Tharek Blackstone", minLevel = 8, qlvl = 10, pre = { 315 }, closedBy = { 413 }, preTitles = { [315] = "The Perfect Stout", [413] = "Shimmer Stout" }, map = 1426, x = 46.02, y = 51.68, z = 402.1, f = "e" },
-						{ t = "turnin", quest = 415, title = "Rejold's New Brew", npc = 1374, npcName = "Rejold Barleybrew", map = 1426, x = 30.19, y = 45.73, z = 394.3, f = "e" },
 					},
 				},
 				{
