@@ -1,8 +1,9 @@
 'use strict';
 // Reporting a problem (addon/Polestar/UI/Report.lua): the guide window's bug
 // button, its menu entry and /polestar report open a window that sets the
-// player's words above the details a fix needs, as one report: in a link
-// that opens a filled-in GitHub issue, or to copy for the Polestar Discord;
+// player's words above the details a fix needs, as one report: to copy for
+// the Polestar Discord's #bugs, or in a link that opens a filled-in GitHub
+// issue for a player with an account;
 // the sidebars of the hub and the settings, and
 // /polestar discord, give the invite with Discord's mark. Against the real
 // Core, Theme and UI and the fakes of tests/lua/stub_ui.lua.
@@ -44,8 +45,9 @@ test('the bug in the navigator reports the step on screen: the player\'s words, 
 		local selected = F.Box:IsShown() and stub.focus == F.Box
 		local boxH = F.Box:GetHeight()
 		local grown = F:GetHeight() - closedH
+		local openH = F:GetHeight()
 		F.Invite:Click()
-		emit({ noGuide = noGuide, shown = shown, opened = opened, text = text, hidden = hidden, selected = selected, grown = grown,
+		emit({ noGuide = noGuide, shown = shown, opened = opened, text = text, hidden = hidden, selected = selected, grown = grown, openH = openH,
 			invite = { shown = PolestarCopy:IsShown(), text = PolestarCopy.Box:GetText(), focus = stub.focus == PolestarCopy.Box }, boxH = boxH })`);
 	assert.equal(out.noGuide, false, 'no guide, no step to report: the bug is not there');
 	assert.equal(out.shown, true);
@@ -72,6 +74,7 @@ test('the bug in the navigator reports the step on screen: the player\'s words, 
 	assert.equal(out.hidden, true, 'the report is not shown until it is asked for');
 	assert.equal(out.selected, true, 'Copy report shows the report in focus, selected for Ctrl+C');
 	assert.ok(out.grown >= out.boxH, `the window grows to hold it (${out.grown}px for a ${out.boxH}px box)`);
+	assert.ok(out.openH <= 720, `with the report shown, the window fits a 720-unit screen (${out.openH})`);
 	assert.deepEqual(out.invite, { shown: true, text: INVITE, focus: true }, 'Get the invite opens the invite on its own, selected');
 	assert.ok(out.boxH >= lines.length * 11, `the box holds every line (${out.boxH}px for ${lines.length})`);
 });
@@ -109,10 +112,10 @@ function longest(locale, word, letter, opts = {}) {
 		${opts.unmarked ? '' : `F.Mark:Click()
 		PolestarMark.Here:Click()`}
 		${opts.linkMax ? `UI.Report.LINK_MAX = ${opts.linkMax}` : ''}
-		F.Report:Click()
+		F.GitHub:Click()
 		local url = PolestarCopy.Box:GetText()
 		F.Copy:Click()
-		emit({ text = F.Box:GetText(), url = url, max = UI.Report.LINK_MAX, details = F.details.lines, addonsAt = F.details.addonsAt })`, `function GetLocale() return "${locale}" end`)[0];
+		emit({ text = F.Box:GetText(), url = url, max = UI.Report.LINK_MAX, details = F.details.lines, height = F:GetHeight() })`, `function GetLocale() return "${locale}" end`)[0];
 }
 
 const SCRIPTS = [
@@ -121,23 +124,25 @@ const SCRIPTS = [
 	['zhCN', '\u5e03\u83b1\u7279\u6c83\u7279\u6e56\u7684\u77ad\u671b\u53f0', '\u6e56'],
 ];
 
+// The details code block of a report, its lines between the fences.
+const block = (text) => text.slice(text.indexOf('```\n') + 4, text.lastIndexOf('\n```')).split('\n');
+
 test('at its longest, with a marked spot and 40 addons, the report still fits one Discord message in every script: the Addons line is shortened, never a line the Discord bot reads', () => {
 	for (const [locale, word, letter] of SCRIPTS) {
-		const { text, details, addonsAt } = longest(locale, word, letter);
+		const { text, details } = longest(locale, word, letter);
 		const lines = text.split('\n');
 		// Discord counts characters, as JavaScript does: one each, two past U+FFFF.
 		assert.ok(text.length <= 2000, `${locale}: ${text.length} characters, ${Buffer.byteLength(text, 'utf8')} bytes`);
 		assert.ok(lines[0].endsWith(letter.repeat(250)), `${locale}: the description is kept whole`);
-		const others = details.filter((_, i) => i !== addonsAt - 1);
-		assert.deepEqual(lines.filter((l) => others.includes(l)), others, `${locale}: every line but the Addons one, as taken`);
-		assert.match(lines[lines.length - 2], /: zone map 1429 · goto 51\.23,40\.50 live$/, `${locale}: the right spot is kept`);
+		assert.deepEqual(block(text), details, `${locale}: every detail line, as taken`);
+		assert.equal(lines[1], '**Right spot:** zone map 1429 · goto 51.23,40.50 live', `${locale}: the right spot is kept`);
 	}
 	const english = longest(...SCRIPTS[0]);
 	assert.equal(english.text.length, 2000, 'English is the one that runs over');
-	const addons = english.text.split('\n').find((l) => l.startsWith('Addons: '));
-	assert.ok(addons.endsWith('...') && addons.length < english.details[english.addonsAt - 1].length, `the Addons line gives way: ${addons}`);
+	const addons = english.text.split('\n')[2];
+	assert.match(addons, /^\*\*Addons:\*\* QuestAndMapHelperWithALongName01, .*\.\.\.$/, `the Addons line gives way: ${addons}`);
 	const unmarked = longest(...SCRIPTS[0], { unmarked: true }).text;
-	assert.match(unmarked, /^Addons: QuestAndMapHelperWithALongName01, /m, 'with room, the Addons line stays');
+	assert.equal(unmarked.split('\n')[1], '**Addons:** QuestAndMapHelperWithALongName01, QuestAndMapHelperWithALongName02, QuestAndMapHelperWithALongNam...', 'with room, the Addons line stays, cut at 100 bytes');
 });
 
 test('errors Polestar caught come with the report, counted, by their path from the AddOns folder; !BugGrabber adds the session\'s errors in Polestar\'s files', () => {
@@ -233,7 +238,7 @@ test('the hub and the settings carry the Polestar Discord at the foot of the sid
 	assert.deepEqual(out.after, { icon: false, text: 'zone map 1429' }, 'the next text to copy comes without the mark');
 });
 
-test('the report names the other addons that are loaded; "Report bug" gives a link that opens a new GitHub bug report with the report, its title, the version and those addons filled in; with a marked spot it is a Wrong step issue', () => {
+test('the report names the other addons that are loaded; "Open on GitHub" gives a link that opens a new GitHub bug report with the report, its title, the version and those addons filled in; with a marked spot it is a Wrong step issue', () => {
 	const [out] = run(`
 		stub.addons[#stub.addons + 1] = { name = "Details", loaded = true }
 		stub.addons[#stub.addons + 1] = { name = "TomTom", loaded = true }
@@ -247,15 +252,16 @@ test('the report names the other addons that are loaded; "Report bug" gives a li
 		F.Desc:SetText("The vermin were all by the tents.")
 		stub.RunScript(F.Desc, "OnTextChanged", true)
 		local report = F.Box:GetText()
-		F.Report:Click()
-		local step = { shown = PolestarCopy:IsShown(), url = PolestarCopy.Box:GetText(), focus = stub.focus == PolestarCopy.Box }
+		F.GitHub:Click()
+		local step = { shown = PolestarCopy:IsShown(), url = PolestarCopy.Box:GetText(), focus = stub.focus == PolestarCopy.Box, title = PolestarCopy.Title:GetText() }
 		local spot = { "zone map 1429", "goto 51.23,40.50 live" }
 		local marked = UI.Report.IssueURL(F.Desc:GetText(), F.details, spot)
 		Polestar.Engine.SetGuide(nil)
 		emit({ report = report, step = step, marked = marked, markedReport = UI.Report.Text(F.Desc:GetText(), F.details),
 			noGuide = UI.Report.IssueURL("Lua error on login\\nthen again", UI.Report.Details(), spot) })`);
-	assert.ok(out.report.split('\n').includes('Addons: Questie, TomTom, Bagnon, Details'), `quest and map addons first, then A to Z: ${out.report}`);
+	assert.equal(out.report.split('\n')[1], '**Addons:** Questie, TomTom, Bagnon, Details', `under what went wrong, quest and map addons first, then A to Z: ${out.report}`);
 	assert.equal(out.step.shown, true);
+	assert.equal(out.step.title, 'Open on GitHub');
 	assert.equal(out.step.focus, true, 'the link is selected for Ctrl+C');
 	const url = new URL(out.step.url);
 	assert.equal(url.origin + url.pathname, 'https://github.com/fitzforge/polestar/issues/new');
@@ -263,7 +269,7 @@ test('the report names the other addons that are loaded; "Report bug" gives a li
 	assert.deepEqual(Object.keys(q).sort(), ['addons', 'steps', 'template', 'title', 'version'], 'only the Bug report form\'s fields');
 	assert.equal(q.template, 'bug-report.yml', 'a step on screen, no spot marked: a bug report');
 	assert.equal(q.title, 'Bug: The vermin were all by the tents.');
-	const noAddons = (t) => t.split('\n').filter((l) => !l.startsWith('Addons: ')).join('\n');
+	const noAddons = (t) => t.split('\n').filter((l) => !l.startsWith('**Addons:** ')).join('\n');
 	assert.equal(q.steps, noAddons(out.report), 'the whole report, as the window shows it, the guide and the step in it, but the addons, which have their own field');
 	assert.match(q.version, /^(\d+\.\d+\.\d+|dev)/);
 	assert.equal(q.addons, 'Questie 9.1.0\nTomTom 0.1.0-test\nBagnon 0.1.0-test\nDetails 0.1.0-test');
@@ -279,8 +285,7 @@ test('the report names the other addons that are loaded; "Report bug" gives a li
 	const bug = Object.fromEntries(new URL(out.noGuide).searchParams);
 	assert.equal(bug.template, 'bug-report.yml', 'no step on screen: a bug report, spot or not');
 	assert.equal(bug.title, 'Bug: Lua error on login', 'the first line of what the player typed');
-	assert.match(bug.steps, /^\*\*What went wrong:\*\* Lua error on login\nthen again\n```\n/);
-	assert.match(bug.steps, /^Right spot: zone map 1429 · goto 51\.23,40\.50 live$/m, 'with no field for it, the spot stays in the report');
+	assert.match(bug.steps, /^\*\*What went wrong:\*\* Lua error on login\nthen again\n\*\*Right spot:\*\* zone map 1429 · goto 51\.23,40\.50 live\n```\n/, 'with no field for it, the spot stays in the report');
 	assert.equal(bug.where, undefined);
 });
 
@@ -328,15 +333,15 @@ test('"Mark the right spot" steps the window aside while the player walks; "Mark
 	assert.deepEqual(out.nowhere, { bar: true, report: false }, 'no position: the bar stays for another try');
 	assert.deepEqual(out.back, { report: true, bar: false, note: 'Right spot marked: zone map 1429 · goto 51.23,40.50 live', button: 'Mark again' });
 	const added = out.after.split('\n').filter((l) => !out.before.split('\n').includes(l));
-	assert.deepEqual(added, ['Right spot: zone map 1429 · goto 51.23,40.50 live'], 'the spot is the one line added: the report taken at the open is kept');
+	assert.deepEqual(added, ['**Right spot:** zone map 1429 · goto 51.23,40.50 live'], 'the spot is the one line added: the report taken at the open is kept');
 	assert.equal(new URL(out.url).searchParams.get('where'), 'zone map 1429\ngoto 51.23,40.50 live', 'the right spot field holds what /polestar where prints');
-	assert.equal(new URL(out.url).searchParams.get('wrong'), out.before.split('\n').filter((l) => !l.startsWith('Addons: ')).join('\n'), 'the issue gives the spot once, in its own field');
+	assert.equal(new URL(out.url).searchParams.get('wrong'), out.before, 'the issue gives the spot once, in its own field');
 	assert.equal(out.reopened, out.back.note, 'the spot stays while it is the same step');
 	assert.match(out.otherStep, /^Optional:/, 'another step starts unmarked');
 	assert.doesNotMatch(out.otherReport, /Right spot/);
 });
 
-test('the issue link holds the report taken when the window opened: the step on screen then, not where the guide is when Report bug is pressed', () => {
+test('the issue link holds the report taken when the window opened: the step on screen then, not where the guide is when Open on GitHub is pressed', () => {
 	const [out] = run(`
 		uistub.setGuide(uistub.elwynn, 3)
 		UI.ShowReport()
@@ -347,10 +352,10 @@ test('the issue link holds the report taken when the window opened: the step on 
 		uistub.setStep(4)
 		Polestar.Compat.GetPlayerMapPosition = function() return 1429, 51.234, 40.5 end
 		PolestarMark.Here:Click()
-		F.Report:Click()
+		F.GitHub:Click()
 		local moved = PolestarCopy.Box:GetText()
 		uistub.complete()
-		F.Report:Click()
+		F.GitHub:Click()
 		emit({ moved = moved, done = PolestarCopy.Box:GetText(), report = F.Box:GetText() })`);
 	for (const url of [out.moved, out.done]) {
 		const q = Object.fromEntries(new URL(url).searchParams);
@@ -422,7 +427,73 @@ test('the issue body leaves out the Addons line: the addons have their own field
 		UI.ShowReport()
 		emit({ url = UI.Report.IssueURL("x", PolestarReport.details), report = UI.Report.Text("x", PolestarReport.details) })`);
 	const q = new URL(out.url).searchParams;
-	assert.match(out.report, /^Addons: Questie$/m, 'the Discord report keeps it');
-	assert.doesNotMatch(q.get('steps'), /^Addons:/m);
+	assert.match(out.report, /^\*\*Addons:\*\* Questie$/m, 'the Discord report keeps it');
+	assert.doesNotMatch(q.get('steps'), /Addons:/);
 	assert.match(q.get('addons'), /^Questie /);
+});
+
+test('with no other addons the report has no Addons line', () => {
+	const [out] = run(`
+		uistub.setGuide(uistub.elwynn, 3)
+		UI.ShowReport()
+		emit({ report = UI.Report.Text("x", PolestarReport.details) })`);
+	assert.doesNotMatch(out.report, /Addons/);
+	assert.equal(out.report.split('\n')[1], '```');
+});
+
+// The report as a player pastes it in #bugs, from the window in `locale`:
+// typed words, two other addons, one caught error and a marked spot.
+function pasted(locale) {
+	return run(`
+		stub.addons[#stub.addons + 1] = { name = "TomTom", loaded = true }
+		stub.addons[#stub.addons + 1] = { name = "Questie", loaded = true }
+		Polestar.NoteError("Interface/AddOns/Polestar/Nav/Arrow.lua:40: bad argument")
+		uistub.setGuide(uistub.elwynn, 3)
+		UI.ShowReport()
+		local F = PolestarReport
+		F.Desc:SetText("The vermin were all by the tents.")
+		stub.RunScript(F.Desc, "OnTextChanged", true)
+		F.Mark:Click()
+		Polestar.Compat.GetPlayerMapPosition = function() return 1429, 51.234, 40.5 end
+		PolestarMark.Here:Click()
+		F.Copy:Click()
+		emit({ text = F.Box:GetText() })`, `function GetLocale() return "${locale}" end`)[0].text;
+}
+
+test('the Discord bot reads the report the window gives: the details from the code block as before, the player\'s words with the right spot and the addons above them, which the issue quotes outside the folded full report', () => {
+	const { parseReport } = require('../tools/discord-bot/lib/report');
+	const { issueBody } = require('../tools/discord-bot/lib/issue');
+	const text = pasted('enUS');
+	const r = parseReport(text);
+	assert.equal(r.description, 'The vermin were all by the tents.\n**Right spot:** zone map 1429 · goto 51.23,40.50 live\n**Addons:** Questie, TomTom');
+	const d = r.details;
+	assert.match(d.version, /^(\d+\.\d+\.\d+|dev)/);
+	assert.equal(d.locale, 'enUS');
+	assert.equal(d.client, '1.60.1');
+	assert.match(d.character, /^Human Warrior · level 4/);
+	assert.equal(d.guideId, 'forever/alliance/human/01-elwynn-forest');
+	assert.equal(d.step, 3);
+	assert.equal(d.stepCount, 8);
+	assert.match(d.arrow, /^Arrow: .* · 42 yd$/);
+	assert.match(d.where, /^Where: Elwynn Forest/);
+	assert.deepEqual(d.errors, [{ count: 1, message: 'Polestar/Nav/Arrow.lua:40: bad argument' }]);
+	assert.equal(r.block, block(text).join('\n'), 'the block is the details alone');
+	const body = issueBody({ report: r, reporter: 'Tom', guild: '1', thread: '2' });
+	const [open, folded] = body.split('<details><summary>Full report</summary>');
+	assert.match(open, /^> The vermin were all by the tents\.\n> \*\*Right spot:\*\* zone map 1429 · goto 51\.23,40\.50 live\n> \*\*Addons:\*\* Questie, TomTom$/m);
+	assert.match(open, /\| Guide \| Elwynn Forest · forever\/alliance\/human\/01-elwynn-forest \|/);
+	assert.doesNotMatch(folded, /Right spot|Addons/);
+	const ru = parseReport(pasted('ruRU'));
+	assert.equal(ru.details.locale, 'ruRU');
+	assert.equal(ru.details.guideId, 'forever/alliance/human/01-elwynn-forest');
+	assert.equal(ru.details.step, 3);
+	assert.equal(ru.details.errors.length, 1);
+	assert.match(ru.description, /^The vermin were all by the tents\.\n\*\*[^*\n]+\*\* zone map 1429 · goto 51\.23,40\.50 live\n\*\*[^*\n]+\*\* Questie, TomTom$/);
+	// zhCN's labels end in full-width colons and brackets, which the bot's
+	// patterns do not match (its guide and step, its lead-in): only the block
+	// and the lines above it are checked here.
+	const zh = parseReport(pasted('zhCN'));
+	assert.equal(zh.details.locale, 'zhCN');
+	assert.equal(zh.details.errors.length, 1);
+	assert.match(zh.description, /The vermin were all by the tents\.\n\*\*[^*\n]+\*\* zone map 1429 · goto 51\.23,40\.50 live\n\*\*[^*\n]+\*\* Questie, TomTom$/);
 });

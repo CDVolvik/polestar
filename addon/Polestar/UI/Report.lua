@@ -4,13 +4,14 @@
 -- fix needs, taken when the window opens: the guide and the step on screen
 -- with every goal's state, ids and position, the arrow, where the player
 -- stands, the versions, other packs and addons and the errors Polestar
--- caught. "Report bug" gives a link that opens a new issue on Polestar's
--- GitHub with the report, its title, the version and the addons filled in
--- (R.IssueURL); "Mark the right spot" adds where the step should have sent
--- the player, marked from a bar while the window steps aside. Under it the
--- Polestar Discord: "Copy report" shows the report, selected, sized to stay
+-- caught. "Mark the right spot" adds where the step should have sent the
+-- player, marked from a bar while the window steps aside. Then the way to
+-- send it, the Polestar Discord's #bugs, whose bot files each post as a
+-- GitHub issue: "Copy report" shows the report, selected, sized to stay
 -- inside one Discord message, and "Get the invite" is for a player not in it
--- yet. UI.ShowDiscord: the invite alone
+-- yet. Last, for a player with a GitHub account, "Open on GitHub" gives a
+-- link that opens a new issue with the report, its title, the version and
+-- the addons filled in (R.IssueURL). UI.ShowDiscord: the invite alone
 -- (ns.DiscordURL), in the copy window with Discord's mark (that button, the
 -- sidebars' Discord mark, /polestar discord).
 --
@@ -29,8 +30,8 @@ UI.Report = R
 
 -- A Discord message holds 2000 characters. The description, the detail
 -- lines and the number of goals and errors are capped; when the report is
--- still longer, R.Text shortens its Addons line, which the Discord bot does
--- not read.
+-- still longer, R.Text shortens its Addons line, which the Discord bot
+-- quotes but does not read.
 R.DESC_MAX = 250
 R.TEXT_MAX = 2000
 local LINE_MAX = 100
@@ -253,11 +254,6 @@ local function otherAddons(withVersions)
 	return list
 end
 
-local function addonsLine()
-	local list = otherAddons()
-	return cut((L["Addons: %s"]):format(#list > 0 and table.concat(list, ", ") or L["none"]))
-end
-
 -- The errors Polestar caught (ns.Errors), then with !BugGrabber installed the
 -- ones it grabbed this session in Polestar's files: the newest few, each
 -- with how often it came, its path from the AddOns folder.
@@ -301,22 +297,20 @@ end
 --   context   the line under the window's title
 --   goals     where the step's goal lines sit in `lines`: first, last, the
 --             arrow's (current), and how many more were not listed
---   addonsAt  where the Addons line sits in `lines`
+--   names     the other addons' names, for the report's Addons line
 --   addons    the other addons with their versions, for the issue's field
 --   issue     on a step, the facts a "Wrong step" issue names: the guide's
 --             title, the step's index and title, the character
 function R.Details()
 	local on = onScreen()
 	local who = character()
-	local d = { lines = { versions(), who }, context = context(on), addons = otherAddons(true),
+	local d = { lines = { versions(), who }, context = context(on), names = otherAddons(), addons = otherAddons(true),
 		key = tostring(on.guide and on.guide.id) .. ":" .. tostring(on.index) }
 	local out = d.lines
 	guideLines(d, on)
 	out[#out + 1] = arrowLine()
 	out[#out + 1] = playerLine()
 	out[#out + 1] = packsLine()
-	d.addonsAt = #out + 1
-	out[#out + 1] = addonsLine()
 	errorLines(out)
 	if on.view then
 		d.issue = { guide = oneLine(on.title), index = on.index, step = oneLine(plain(on.view.title or "")), character = who }
@@ -330,16 +324,23 @@ local function described(description)
 	return desc ~= "" and desc or L["(not described)"]
 end
 
--- The report to paste: what went wrong, in the player's words, then the
--- details as a code block (Discord keeps their lines and spacing), and the
--- right spot when the player marked one. The bug bot reads this layout
--- back (tools/discord-bot/lib/report.js): the first line's shape, the guide
--- line's "(id)", the order of the lines.
-local function text(description, lines, spot)
-	local desc = described(description)
-	local out = { "**" .. L["What went wrong:"] .. "** " .. desc, "```" }
+local function bold(label, s)
+	return "**" .. label .. "** " .. s
+end
+
+-- The report to paste: what went wrong, in the player's words, the right
+-- spot when the player marked one and the other addons (`names`, when
+-- given) as bold lines a reader sees at once, then the details as a code
+-- block (Discord keeps their lines and spacing). The bug bot reads this
+-- layout back (tools/discord-bot/lib/report.js): everything above the code
+-- block is the description it quotes in the issue; in the block, the first
+-- line's shape, the guide line's "(id)", the order of the lines.
+local function text(description, lines, spot, names)
+	local out = { bold(L["What went wrong:"], described(description)) }
+	if spot then out[#out + 1] = bold(L["Right spot:"], cut(table.concat(spot, SEP))) end
+	if names then out[#out + 1] = bold(L["Addons:"], names) end
+	out[#out + 1] = "```"
 	for _, line in ipairs(lines) do out[#out + 1] = line end
-	if spot then out[#out + 1] = cut((L["Right spot: %s"]):format(table.concat(spot, SEP))) end
 	out[#out + 1] = "```"
 	return table.concat(out, "\n")
 end
@@ -352,19 +353,16 @@ local function length(s)
 	return chars + astral
 end
 
+-- With no other addons there is no Addons line.
 function R.Text(description, details, spot)
-	local lines, at = details.lines, details.addonsAt
-	local report = text(description, lines, spot)
-	local n = #lines[at]
+	local names = #details.names > 0 and cut(table.concat(details.names, ", ")) or nil
+	local report = text(description, details.lines, spot, names)
+	local n = names and #names or 0
 	while length(report) > R.TEXT_MAX and n > 0 do
 		n = n - (length(report) - R.TEXT_MAX)
-		-- Shorter than 30 bytes it names no addon: the line goes.
-		if n < 30 then n = 0 end
-		local short = {}
-		for i, line in ipairs(lines) do
-			if i ~= at then short[#short + 1] = line elseif n > 0 then short[#short + 1] = cut(line, n) end
-		end
-		report = text(description, short, spot)
+		-- Shorter than 20 bytes it names hardly an addon: the line goes.
+		if n < 20 then n = 0 end
+		report = text(description, details.lines, spot, n > 0 and cut(names, n) or nil)
 	end
 	return report
 end
@@ -432,14 +430,8 @@ end
 -- the link. A CJK report encodes to three times the characters of an
 -- English one, so goals after the arrow's go first, then the report is cut
 -- with its code block still closed.
+-- The addons have their own field: in the body they would only take room.
 local function bodyField(description, details, spot, room)
-	-- The addons have their own field: in the body they would only take room.
-	local lines = {}
-	for i, line in ipairs(details.lines) do
-		if i ~= details.addonsAt then lines[#lines + 1] = line end
-	end
-	-- The goals come before the Addons line, so their places in `lines` hold.
-	details = setmetatable({ lines = lines }, { __index = details })
 	local report = text(description, details.lines, spot)
 	local g = details.goals
 	local droppable = g and (g.last - g.first + 1 - (g.current and 1 or 0)) or 0
@@ -527,10 +519,6 @@ local function layout()
 	y = y + F.SpotNote:GetStringHeight() + 8
 	put(F.Mark, PAD, y)
 	y = y + F.Mark:GetHeight() + 16
-	put(F.GitHubNote, PAD, y)
-	y = y + F.GitHubNote:GetStringHeight() + 10
-	put(F.Report, PAD, y)
-	y = y + F.Report:GetHeight() + 16
 	put(F.Rule, PAD, y)
 	y = y + 1 + 16
 	-- The mark's ink starts 2px into its texture and 5px down.
@@ -548,6 +536,17 @@ local function layout()
 		put(F.Box, PAD, y)
 		y = y + F.Box:GetHeight()
 	end
+	y = y + 16
+	put(F.GitHubRule, PAD, y)
+	y = y + 1 + 12
+	-- One row: the note beside its button, centred on each other.
+	local bw = F.GitHub:GetWidth()
+	F.GitHubNote:SetWidth(BOX_W - bw - 12)
+	local nh, bh = F.GitHubNote:GetStringHeight(), F.GitHub:GetHeight()
+	local row = max(nh, bh)
+	put(F.GitHubNote, PAD, y + floor((row - nh) / 2 + 0.5))
+	put(F.GitHub, WIDTH - PAD - bw, y + floor((row - bh) / 2 + 0.5))
+	y = y + row
 	F:SetHeight(floor(y + PAD + 0.5))
 end
 
@@ -580,9 +579,9 @@ local function copyReport()
 	F.Box:HighlightText()
 end
 
-local function reportBug()
-	UI.ShowCopy(L["Report a bug on GitHub"], R.IssueURL(F.Desc:GetText(), F.details, F.spot), {
-		hint = L["The link is selected for you: copy it with Ctrl+C (Cmd+C on a Mac), paste it in your browser's address bar and press Enter."],
+local function openGitHub()
+	UI.ShowCopy(L["Open on GitHub"], R.IssueURL(F.Desc:GetText(), F.details, F.spot), {
+		hint = L["The link is selected for you: copy it with Ctrl+C (Cmd+C on a Mac), paste it in your browser's address bar, check the form and press Create."],
 	})
 end
 
@@ -725,13 +724,6 @@ local function build()
 	F.SpotNote:SetWordWrap(true)
 	F.Mark = W.Button(F, L["Mark the right spot"], startMark)
 
-	F.GitHubNote = W.Text(F, "note", "textDim")
-	F.GitHubNote:SetWidth(BOX_W)
-	F.GitHubNote:SetJustifyH("LEFT")
-	F.GitHubNote:SetWordWrap(true)
-	F.GitHubNote:SetText(L["1. Click Report bug and copy the link.\n2. Paste it in your browser's address bar.\n3. Sign in to GitHub. New to it? Make a free account, then paste the link again.\n4. Everything is filled in. Drag in a screenshot if you have one, then click Create. GitHub emails you when someone replies.\nThanks for helping make Polestar better!"])
-	F.Report = W.Button(F, L["Report bug"], reportBug, { primary = true })
-
 	F.Box = W.CopyBox(F, { lines = 2 })
 	F.Box:Hide()
 	Theme.Font(F.Box, "small")
@@ -752,25 +744,35 @@ local function build()
 	F.Logo = W.Tex(F, "ARTWORK", "discord", "discord")
 	F.Logo:SetSize(LOGO, LOGO)
 	F.DiscordTitle = W.Text(F, "heading", "text")
-	F.DiscordTitle:SetText(L["Polestar on Discord"])
+	F.DiscordTitle:SetText(L["Report it on Discord"])
 	F.DiscordNote = W.Text(F, "note", "textDim")
 	F.DiscordNote:SetWidth(WIDTH - TEXT_X - PAD)
 	F.DiscordNote:SetJustifyH("LEFT")
 	F.DiscordNote:SetWordWrap(true)
-	F.DiscordNote:SetText(L["Rather use Discord? Press Copy report, then Ctrl+C (Cmd+C on a Mac), and paste it in the Polestar server. Not in it yet? Get the invite once and open it in your browser."])
-	F.Copy = W.Button(F, L["Copy report"], copyReport)
+	F.DiscordNote:SetText(L["1. Copy your report.\n2. In the Polestar Discord, open #bugs and press New Post. Not in it yet? Get the invite.\n3. Paste the report, give it a short title and post it. A bot files it for the developers and tells you in your thread when it's fixed."])
+	F.Copy = W.Button(F, L["Copy report"], copyReport, { primary = true })
 	-- The game opens no links, so the invite is one more copy: only for a
 	-- player who has not joined yet, in the copy window, never here beside
 	-- the report.
 	F.Invite = W.Button(F, L["Get the invite"], function() UI.ShowDiscord() end)
 
+	-- GitHub, for a player who has an account: the same report in a filled-in
+	-- issue (R.IssueURL).
+	F.GitHubRule = W.Divider(F)
+	F.GitHubRule:SetWidth(BOX_W)
+	F.GitHubNote = W.Text(F, "note", "textDim")
+	F.GitHubNote:SetJustifyH("LEFT")
+	F.GitHubNote:SetWordWrap(true)
+	F.GitHubNote:SetText(L["Have a GitHub account? Open the issue there with everything filled in."])
+	F.GitHub = W.Button(F, L["Open on GitHub"], openGitHub)
+
 	F:SetScript("OnShow", function(self) Anim.To(self, "alpha", 0, 1, Anim.FAST, "out") end)
 	ns.CloseOnEscape("PolestarReport")
-	-- A gamepad (UI/Gamepad.lua) starts on "Report bug".
+	-- A gamepad (UI/Gamepad.lua) starts on "Copy report".
 	if ns.Gamepad and ns.Gamepad.Register then
 		ns.Gamepad.Register(F, {
 			initial = function(rows)
-				for i, w in ipairs(rows) do if w == F.Report then return i end end
+				for i, w in ipairs(rows) do if w == F.Copy then return i end end
 			end,
 		})
 	end

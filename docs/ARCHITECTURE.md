@@ -3114,7 +3114,10 @@ Reading flow: `docs/DESIGN.md` ("Intent" and "The Guide Window").
   navigator while a guide is open), its menu's "Report a problem" and
   `/polestar report` open it on the step on screen. The player types what
   went wrong (250 letters); the report is `UI.Report.Text(description,
-  details, spot)`: their words after "**What went wrong:**", then
+  details, spot)`: their words after "**What went wrong:**", then as bold
+  lines under it the right spot when one is marked ("**Right spot:**") and
+  the other addons that are loaded, names only, quest, map and guide addons
+  first, then A to Z ("**Addons:**", left out when there are none), then
   `UI.Report.Details()` in a code block, one fact a line, taken when the
   window opens: Polestar's version and stage, the client build and locale;
   race, class, level (XP %) and faction (never the name or realm); the guide
@@ -3126,31 +3129,38 @@ Reading flow: `docs/DESIGN.md` ("Intent" and "The Guide Window").
   (`live` unless in the Era frame) and `spot i of n` for the arrow's spawn
   spot; the arrow's target and distance (and "your own waypoint" with its
   position when the player set it); where the player stands (zone, subzone,
-  `map <id> @x,y live`); other guide packs that are on; the other addons
-  that are loaded (quest, map and guide addons first, then A to Z); and the
+  `map <id> @x,y live`); other guide packs that are on; and the
   errors
   (`Polestar.Errors()`, plus with !BugGrabber its errors this session in
   Polestar's files, `BugGrabber:GetDB()`), the newest three, counted, by
   their path from the AddOns folder. Every line is cut at 100 bytes, and
   when the report is still longer than one Discord message (2000
-  characters) the Addons line is shortened, never a line the bot reads.
+  characters) the Addons line is shortened, then dropped, never a line the
+  bot reads. The Discord bot (`tools/discord-bot`) takes the code block for
+  the details and everything above it, the bold lines included, as the
+  description it quotes in the issue.
   "Mark the right spot" hides the window behind a bar (`PolestarMark`) while
   the player walks to where the step should have sent them; "Mark here"
-  keeps `ns.WhereLines()` as the right spot, added to the report as its last
-  line. "Report bug" opens in the copy window a link to a new issue on
+  keeps `ns.WhereLines()` as the right spot. Under it, the way to send the
+  report: Discord's mark, "Report it on Discord", three numbered lines
+  (copy, open #bugs and press New Post, paste and post: the bot files it),
+  "Copy report", which shows the report box under it selected, and "Get the
+  invite", which opens the invite (`Polestar.DiscordURL`) in the copy
+  window. Last, for a player with a GitHub account, "Open on GitHub" opens
+  in the copy window a link to a new issue on
   Polestar's GitHub, `UI.Report.IssueURL(description, details, spot)`, whose
   query fills the issue form's fields by their ids: a "Wrong step" issue
   (`wrong-step.yml`: title, guide, step, character, the right spot, the
   report) when the player marked a spot, a "Bug report" (`bug-report.yml`)
-  otherwise, both with the version and the addons. The whole link stays
+  otherwise, both with the version and the addons. The report in the issue
+  leaves out the Addons line and, in a Wrong step issue, the Right spot
+  line: each has its own field. The whole link stays
   under `UI.Report.LINK_MAX` (GitHub refuses one much longer): the report
   loses goals after the arrow's, then is cut, and the addons field lists as
-  many as fit after a line that counts them. Under it, Discord's mark,
-  "Polestar on Discord", "Copy report", which shows the report box under it
-  selected, and "Get the invite", which opens the invite
-  (`Polestar.DiscordURL`) in the copy window: the game opens no links and
+  many as fit after a line that counts them. The game opens no links and
   has no clipboard for addons, so every text to take away is selected for
-  Ctrl+C. The details, the issue's fields and the right spot are taken when
+  Ctrl+C. A gamepad starts on "Copy report". The details, the issue's
+  fields and the right spot are taken when
   the window opens or the spot is marked, so the guide moving on changes
   neither. What the player typed and the right spot stay while the window
   is reopened on the same step. The

@@ -1,8 +1,10 @@
 ---
 section: players
 ---
-- "Report bug" in the report window gives a link that opens a new GitHub
+- The report window shows how to report in the Polestar Discord: "Copy
+  report", then post it in #bugs, where a bot files it for the developers
+  and tells you in your thread when it's fixed. "Get the invite" is there if
+  you're not in the Discord yet. The report now lists your other addons too.
+  Have a GitHub account? "Open on GitHub" gives a link that opens a new
   issue with your report, its title, your Polestar version and your other
-  addons already filled in: paste it in your browser and press Enter. The
-  report now lists your other addons too, and "Copy report" beside the
-  Discord invite shows it for pasting in Discord.
+  addons already filled in.

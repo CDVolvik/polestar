@@ -1,4 +1,4 @@
-# The report window's "Report bug" fills these fields by their ids
+# The report window's "Open on GitHub" fills these fields by their ids
 # (addon/Polestar/UI/Report.lua, R.IssueURL): rename one there too.
 name: Bug report
 description: A Lua error, or something in Polestar that does not work.
