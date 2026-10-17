@@ -41,7 +41,8 @@
 			"encounter:274": {
 				"reason": "same-as-english",
 				"scenes": [
-					"dungeons"
+					"dungeons",
+					"guides"
 				],
 				"english": "Halycon"
 			},
@@ -62,7 +63,8 @@
 			"encounter:349": {
 				"reason": "same-as-english",
 				"scenes": [
-					"dungeons"
+					"dungeons",
+					"guides"
 				],
 				"english": "Immol'thar"
 			},
@@ -83,7 +85,8 @@
 			"encounter:478": {
 				"reason": "same-as-english",
 				"scenes": [
-					"dungeons"
+					"dungeons",
+					"guides"
 				],
 				"english": "Balnazzar"
 			},
@@ -104,7 +107,8 @@
 			"encounter:484": {
 				"reason": "same-as-english",
 				"scenes": [
-					"dungeons"
+					"dungeons",
+					"guides"
 				],
 				"english": "Baron Rivendare"
 			},
@@ -132,7 +136,8 @@
 			"encounter:554": {
 				"reason": "same-as-english",
 				"scenes": [
-					"dungeons"
+					"dungeons",
+					"guides"
 				],
 				"english": "Archaedas"
 			},
@@ -209,7 +214,9 @@
 			"encounter:666": {
 				"reason": "same-as-english",
 				"scenes": [
-					"dungeons"
+					"dungeons",
+					"guide",
+					"guides"
 				],
 				"english": "Garr"
 			},
@@ -307,21 +314,24 @@
 			"encounter:2735": {
 				"reason": "same-as-english",
 				"scenes": [
-					"dungeons"
+					"dungeons",
+					"lookup"
 				],
 				"english": "Bazzalan"
 			},
 			"encounter:2741": {
 				"reason": "same-as-english",
 				"scenes": [
-					"dungeons"
+					"dungeons",
+					"lookup"
 				],
 				"english": "Rhahk'Zor"
 			},
 			"encounter:2743": {
 				"reason": "same-as-english",
 				"scenes": [
-					"dungeons"
+					"dungeons",
+					"lookup"
 				],
 				"english": "Gilnid"
 			},
@@ -342,7 +352,8 @@
 			"encounter:2760": {
 				"reason": "same-as-english",
 				"scenes": [
-					"dungeons"
+					"dungeons",
+					"guides"
 				],
 				"english": "Bazil Thredd"
 			},
@@ -384,7 +395,8 @@
 			"encounter:2799": {
 				"reason": "same-as-english",
 				"scenes": [
-					"dungeons"
+					"dungeons",
+					"guides"
 				],
 				"english": "Skul"
 			},
@@ -412,7 +424,8 @@
 			"encounter:2913": {
 				"reason": "same-as-english",
 				"scenes": [
-					"dungeons"
+					"dungeons",
+					"lookup"
 				],
 				"english": "Lorgus Jett"
 			},
@@ -440,7 +453,8 @@
 			"encounter:3069": {
 				"reason": "same-as-english",
 				"scenes": [
-					"dungeons"
+					"dungeons",
+					"guides"
 				],
 				"english": "General Drakkisath"
 			},
@@ -482,7 +496,8 @@
 			"encounter:3582": {
 				"reason": "same-as-english",
 				"scenes": [
-					"dungeons"
+					"dungeons",
+					"guides"
 				],
 				"english": "Atal'alarion"
 			},
@@ -941,6 +956,7 @@
 			"npc:520": {
 				"reason": "same-as-english",
 				"scenes": [
+					"guides",
 					"lookup",
 					"picker",
 					"rares",
@@ -1161,24 +1177,38 @@
 			"npc:797": {
 				"reason": "same-as-english",
 				"scenes": [
+					"dungeons",
+					"guides",
 					"picker",
-					"slash"
+					"rares",
+					"slash",
+					"tooltips"
 				],
 				"english": "Bo"
 			},
 			"npc:804": {
 				"reason": "same-as-english",
 				"scenes": [
+					"dungeons",
+					"guide",
+					"guides",
+					"journey",
 					"lookup",
+					"more",
+					"options",
 					"picker",
-					"slash"
+					"rares",
+					"slash",
+					"tooltips",
+					"welcome"
 				],
 				"english": "Dana"
 			},
 			"npc:807": {
 				"reason": "same-as-english",
 				"scenes": [
-					"lookup"
+					"lookup",
+					"tooltips"
 				],
 				"english": "Lisa"
 			},
@@ -1529,7 +1559,9 @@
 			"npc:1366": {
 				"reason": "same-as-english",
 				"scenes": [
-					"lookup"
+					"guides",
+					"lookup",
+					"tooltips"
 				],
 				"english": "Adam"
 			},
@@ -3071,7 +3103,10 @@
 			"npc:3443": {
 				"reason": "same-as-english",
 				"scenes": [
+					"dungeons",
+					"guides",
 					"picker",
+					"rares",
 					"slash"
 				],
 				"english": "Grub"
@@ -3166,6 +3201,9 @@
 			"npc:3504": {
 				"reason": "same-as-english",
 				"scenes": [
+					"dungeons",
+					"guide",
+					"guides",
 					"lookup"
 				],
 				"english": "Gil"
@@ -3275,13 +3313,6 @@
 					"guides"
 				],
 				"english": "Ilkrud Magthrull"
-			},
-			"npc:3666": {
-				"reason": "same-as-english",
-				"scenes": [
-					"guides"
-				],
-				"english": "Wizbang Cranktoggle"
 			},
 			"npc:3667": {
 				"reason": "same-as-english",
@@ -3405,13 +3436,6 @@
 					"guides"
 				],
 				"english": "Caylais Moonfeather"
-			},
-			"npc:3845": {
-				"reason": "same-as-english",
-				"scenes": [
-					"guides"
-				],
-				"english": "Shindrell Swiftfire"
 			},
 			"npc:3846": {
 				"reason": "same-as-english",
@@ -4202,6 +4226,7 @@
 			"npc:5428": {
 				"reason": "same-as-english",
 				"scenes": [
+					"dungeons",
 					"guides"
 				],
 				"english": "Roc"
@@ -4326,8 +4351,10 @@
 			"npc:5591": {
 				"reason": "same-as-english",
 				"scenes": [
+					"dungeons",
 					"guides",
 					"picker",
+					"rares",
 					"slash"
 				],
 				"english": "Dar"
@@ -4538,6 +4565,8 @@
 			"npc:5796": {
 				"reason": "same-as-english",
 				"scenes": [
+					"guide",
+					"guides",
 					"picker",
 					"rares",
 					"slash"
@@ -5066,6 +5095,7 @@
 			"npc:6583": {
 				"reason": "same-as-english",
 				"scenes": [
+					"guide",
 					"guides",
 					"picker",
 					"rares",
@@ -6251,6 +6281,7 @@
 				"reason": "same-as-english",
 				"scenes": [
 					"picker",
+					"rares",
 					"slash"
 				],
 				"english": "Greth"
@@ -6345,7 +6376,8 @@
 			"npc:10220": {
 				"reason": "same-as-english",
 				"scenes": [
-					"dungeons"
+					"dungeons",
+					"guides"
 				],
 				"english": "Halycon"
 			},
@@ -6361,6 +6393,8 @@
 			"npc:10237": {
 				"reason": "same-as-english",
 				"scenes": [
+					"dungeons",
+					"guides",
 					"picker",
 					"rares",
 					"slash"
@@ -6500,7 +6534,8 @@
 			"npc:10393": {
 				"reason": "same-as-english",
 				"scenes": [
-					"dungeons"
+					"dungeons",
+					"guides"
 				],
 				"english": "Skul"
 			},
@@ -7235,7 +7270,9 @@
 			"npc:12057": {
 				"reason": "same-as-english",
 				"scenes": [
-					"dungeons"
+					"dungeons",
+					"guide",
+					"guides"
 				],
 				"english": "Garr"
 			},
@@ -8021,6 +8058,7 @@
 				"reason": "same-as-english",
 				"scenes": [
 					"picker",
+					"rares",
 					"slash"
 				],
 				"english": "Gruk"
@@ -8049,7 +8087,10 @@
 			"npc:15065": {
 				"reason": "same-as-english",
 				"scenes": [
+					"dungeons",
+					"guides",
 					"picker",
+					"rares",
 					"slash"
 				],
 				"english": "Lady"
@@ -8116,6 +8157,13 @@
 					"guides"
 				],
 				"english": "Frankal Stonebridge"
+			},
+			"npc:15174": {
+				"reason": "same-as-english",
+				"scenes": [
+					"guides"
+				],
+				"english": "Calandrath"
 			},
 			"npc:15177": {
 				"reason": "same-as-english",
@@ -8468,6 +8516,13 @@
 					"guides"
 				],
 				"english": "Bragok"
+			},
+			"npc:16256": {
+				"reason": "same-as-english",
+				"scenes": [
+					"guides"
+				],
+				"english": "Jessica Chambers"
 			},
 			"npc:17079": {
 				"reason": "same-as-english",
@@ -8975,6 +9030,8 @@
 				"reason": "same-as-english",
 				"scenes": [
 					"dungeons",
+					"guide",
+					"guides",
 					"slash"
 				],
 				"english": "Alba Fairmoon"
@@ -9119,6 +9176,7 @@
 				"reason": "same-as-english",
 				"scenes": [
 					"picker",
+					"rares",
 					"slash"
 				],
 				"english": "Gorg"
@@ -9469,6 +9527,7 @@
 				"reason": "same-as-english",
 				"scenes": [
 					"picker",
+					"rares",
 					"slash"
 				],
 				"english": "Paige"
@@ -9540,7 +9599,9 @@
 			"npc:269683": {
 				"reason": "same-as-english",
 				"scenes": [
+					"dungeons",
 					"picker",
+					"rares",
 					"slash"
 				],
 				"english": "Marcus"
@@ -9888,7 +9949,8 @@
 			"encounter:349": {
 				"reason": "same-as-english",
 				"scenes": [
-					"dungeons"
+					"dungeons",
+					"guides"
 				],
 				"english": "Immol'thar"
 			},
@@ -9902,7 +9964,8 @@
 			"encounter:478": {
 				"reason": "same-as-english",
 				"scenes": [
-					"dungeons"
+					"dungeons",
+					"guides"
 				],
 				"english": "Balnazzar"
 			},
@@ -9930,7 +9993,8 @@
 			"encounter:554": {
 				"reason": "same-as-english",
 				"scenes": [
-					"dungeons"
+					"dungeons",
+					"guides"
 				],
 				"english": "Archaedas"
 			},
@@ -10007,7 +10071,8 @@
 			"encounter:663": {
 				"reason": "same-as-english",
 				"scenes": [
-					"dungeons"
+					"dungeons",
+					"guides"
 				],
 				"english": "Lucifron"
 			},
@@ -10021,21 +10086,24 @@
 			"encounter:665": {
 				"reason": "same-as-english",
 				"scenes": [
-					"dungeons"
+					"dungeons",
+					"guides"
 				],
 				"english": "Gehennas"
 			},
 			"encounter:666": {
 				"reason": "same-as-english",
 				"scenes": [
-					"dungeons"
+					"dungeons",
+					"guides"
 				],
 				"english": "Garr"
 			},
 			"encounter:667": {
 				"reason": "same-as-english",
 				"scenes": [
-					"dungeons"
+					"dungeons",
+					"guides"
 				],
 				"english": "Shazzrah"
 			},
@@ -10140,28 +10208,33 @@
 			"encounter:2735": {
 				"reason": "same-as-english",
 				"scenes": [
-					"dungeons"
+					"dungeons",
+					"lookup"
 				],
 				"english": "Bazzalan"
 			},
 			"encounter:2741": {
 				"reason": "same-as-english",
 				"scenes": [
-					"dungeons"
+					"dungeons",
+					"lookup"
 				],
 				"english": "Rhahk'Zor"
 			},
 			"encounter:2743": {
 				"reason": "same-as-english",
 				"scenes": [
-					"dungeons"
+					"dungeons",
+					"lookup"
 				],
 				"english": "Gilnid"
 			},
 			"encounter:2747": {
 				"reason": "same-as-english",
 				"scenes": [
-					"dungeons"
+					"dungeons",
+					"guides",
+					"lookup"
 				],
 				"english": "Edwin VanCleef"
 			},
@@ -10182,7 +10255,8 @@
 			"encounter:2760": {
 				"reason": "same-as-english",
 				"scenes": [
-					"dungeons"
+					"dungeons",
+					"guides"
 				],
 				"english": "Bazil Thredd"
 			},
@@ -10259,14 +10333,16 @@
 			"encounter:2910": {
 				"reason": "same-as-english",
 				"scenes": [
-					"dungeons"
+					"dungeons",
+					"guides"
 				],
 				"english": "Aku'mai"
 			},
 			"encounter:2913": {
 				"reason": "same-as-english",
 				"scenes": [
-					"dungeons"
+					"dungeons",
+					"lookup"
 				],
 				"english": "Lorgus Jett"
 			},
@@ -10315,7 +10391,8 @@
 			"encounter:3582": {
 				"reason": "same-as-english",
 				"scenes": [
-					"dungeons"
+					"dungeons",
+					"guides"
 				],
 				"english": "Atal'alarion"
 			},
@@ -10859,7 +10936,9 @@
 			"npc:1366": {
 				"reason": "same-as-english",
 				"scenes": [
-					"lookup"
+					"guides",
+					"lookup",
+					"tooltips"
 				],
 				"english": "Adam"
 			},
@@ -11450,6 +11529,7 @@
 			"npc:3007": {
 				"reason": "same-as-english",
 				"scenes": [
+					"guides",
 					"lookup"
 				],
 				"english": "Una"
@@ -11747,8 +11827,12 @@
 			"npc:3504": {
 				"reason": "same-as-english",
 				"scenes": [
+					"dungeons",
+					"guide",
+					"guides",
 					"lookup",
 					"picker",
+					"rares",
 					"slash"
 				],
 				"english": "Gil"
@@ -12264,6 +12348,7 @@
 			"npc:5428": {
 				"reason": "same-as-english",
 				"scenes": [
+					"dungeons",
 					"guides"
 				],
 				"english": "Roc"
@@ -13419,6 +13504,7 @@
 				"reason": "same-as-english",
 				"scenes": [
 					"picker",
+					"rares",
 					"slash"
 				],
 				"english": "Greth"
@@ -13501,6 +13587,7 @@
 			"npc:10237": {
 				"reason": "same-as-english",
 				"scenes": [
+					"guides",
 					"picker",
 					"rares",
 					"slash"
@@ -13994,14 +14081,16 @@
 			"npc:12057": {
 				"reason": "same-as-english",
 				"scenes": [
-					"dungeons"
+					"dungeons",
+					"guides"
 				],
 				"english": "Garr"
 			},
 			"npc:12118": {
 				"reason": "same-as-english",
 				"scenes": [
-					"dungeons"
+					"dungeons",
+					"guides"
 				],
 				"english": "Lucifron"
 			},
@@ -14015,14 +14104,16 @@
 			"npc:12259": {
 				"reason": "same-as-english",
 				"scenes": [
-					"dungeons"
+					"dungeons",
+					"guides"
 				],
 				"english": "Gehennas"
 			},
 			"npc:12264": {
 				"reason": "same-as-english",
 				"scenes": [
-					"dungeons"
+					"dungeons",
+					"guides"
 				],
 				"english": "Shazzrah"
 			},
@@ -14569,7 +14660,10 @@
 			"npc:15065": {
 				"reason": "same-as-english",
 				"scenes": [
+					"dungeons",
+					"guides",
 					"picker",
+					"rares",
 					"slash"
 				],
 				"english": "Lady"
@@ -14622,6 +14716,13 @@
 					"dungeons"
 				],
 				"english": "Gahz'ranka"
+			},
+			"npc:15174": {
+				"reason": "same-as-english",
+				"scenes": [
+					"guides"
+				],
+				"english": "Calandrath"
 			},
 			"npc:15299": {
 				"reason": "same-as-english",
@@ -14890,6 +14991,13 @@
 					"dungeons"
 				],
 				"english": "Rayne"
+			},
+			"npc:16256": {
+				"reason": "same-as-english",
+				"scenes": [
+					"guides"
+				],
+				"english": "Jessica Chambers"
 			},
 			"npc:185333": {
 				"reason": "same-as-english",
@@ -15221,6 +15329,7 @@
 				"reason": "no-source",
 				"scenes": [
 					"picker",
+					"rares",
 					"slash"
 				],
 				"english": "Gorg"
@@ -15386,6 +15495,7 @@
 				"reason": "same-as-english",
 				"scenes": [
 					"picker",
+					"rares",
 					"slash"
 				],
 				"english": "Paige"
@@ -15458,7 +15568,9 @@
 			"npc:269683": {
 				"reason": "no-source",
 				"scenes": [
+					"dungeons",
 					"picker",
+					"rares",
 					"slash"
 				],
 				"english": "Marcus"
@@ -15550,6 +15662,7 @@
 			"npc:271636": {
 				"reason": "same-as-english",
 				"scenes": [
+					"guides",
 					"picker"
 				],
 				"english": "Weevil K. Neevil"
@@ -15832,7 +15945,8 @@
 			"encounter:349": {
 				"reason": "same-as-english",
 				"scenes": [
-					"dungeons"
+					"dungeons",
+					"guides"
 				],
 				"english": "Immol'thar"
 			},
@@ -15846,7 +15960,8 @@
 			"encounter:478": {
 				"reason": "same-as-english",
 				"scenes": [
-					"dungeons"
+					"dungeons",
+					"guides"
 				],
 				"english": "Balnazzar"
 			},
@@ -15874,7 +15989,8 @@
 			"encounter:554": {
 				"reason": "same-as-english",
 				"scenes": [
-					"dungeons"
+					"dungeons",
+					"guides"
 				],
 				"english": "Archaedas"
 			},
@@ -15951,7 +16067,8 @@
 			"encounter:663": {
 				"reason": "same-as-english",
 				"scenes": [
-					"dungeons"
+					"dungeons",
+					"guides"
 				],
 				"english": "Lucifron"
 			},
@@ -15965,21 +16082,24 @@
 			"encounter:665": {
 				"reason": "same-as-english",
 				"scenes": [
-					"dungeons"
+					"dungeons",
+					"guides"
 				],
 				"english": "Gehennas"
 			},
 			"encounter:666": {
 				"reason": "same-as-english",
 				"scenes": [
-					"dungeons"
+					"dungeons",
+					"guides"
 				],
 				"english": "Garr"
 			},
 			"encounter:667": {
 				"reason": "same-as-english",
 				"scenes": [
-					"dungeons"
+					"dungeons",
+					"guides"
 				],
 				"english": "Shazzrah"
 			},
@@ -16091,28 +16211,33 @@
 			"encounter:2735": {
 				"reason": "same-as-english",
 				"scenes": [
-					"dungeons"
+					"dungeons",
+					"lookup"
 				],
 				"english": "Bazzalan"
 			},
 			"encounter:2741": {
 				"reason": "same-as-english",
 				"scenes": [
-					"dungeons"
+					"dungeons",
+					"lookup"
 				],
 				"english": "Rhahk'Zor"
 			},
 			"encounter:2743": {
 				"reason": "same-as-english",
 				"scenes": [
-					"dungeons"
+					"dungeons",
+					"lookup"
 				],
 				"english": "Gilnid"
 			},
 			"encounter:2747": {
 				"reason": "same-as-english",
 				"scenes": [
-					"dungeons"
+					"dungeons",
+					"guides",
+					"lookup"
 				],
 				"english": "Edwin VanCleef"
 			},
@@ -16133,7 +16258,8 @@
 			"encounter:2760": {
 				"reason": "same-as-english",
 				"scenes": [
-					"dungeons"
+					"dungeons",
+					"guides"
 				],
 				"english": "Bazil Thredd"
 			},
@@ -16175,7 +16301,8 @@
 			"encounter:2799": {
 				"reason": "same-as-english",
 				"scenes": [
-					"dungeons"
+					"dungeons",
+					"guides"
 				],
 				"english": "Skul"
 			},
@@ -16210,14 +16337,16 @@
 			"encounter:2910": {
 				"reason": "same-as-english",
 				"scenes": [
-					"dungeons"
+					"dungeons",
+					"guides"
 				],
 				"english": "Aku'mai"
 			},
 			"encounter:2913": {
 				"reason": "same-as-english",
 				"scenes": [
-					"dungeons"
+					"dungeons",
+					"lookup"
 				],
 				"english": "Lorgus Jett"
 			},
@@ -16266,7 +16395,8 @@
 			"encounter:3582": {
 				"reason": "same-as-english",
 				"scenes": [
-					"dungeons"
+					"dungeons",
+					"guides"
 				],
 				"english": "Atal'alarion"
 			},
@@ -16803,6 +16933,7 @@
 			"npc:1366": {
 				"reason": "same-as-english",
 				"scenes": [
+					"guides",
 					"lookup"
 				],
 				"english": "Adam"
@@ -17392,6 +17523,7 @@
 			"npc:3007": {
 				"reason": "same-as-english",
 				"scenes": [
+					"guides",
 					"lookup"
 				],
 				"english": "Una"
@@ -17682,8 +17814,12 @@
 			"npc:3504": {
 				"reason": "same-as-english",
 				"scenes": [
+					"dungeons",
+					"guide",
+					"guides",
 					"lookup",
 					"picker",
+					"rares",
 					"slash"
 				],
 				"english": "Gil"
@@ -18235,6 +18371,7 @@
 			"npc:5428": {
 				"reason": "same-as-english",
 				"scenes": [
+					"dungeons",
 					"guides"
 				],
 				"english": "Roc"
@@ -19395,6 +19532,7 @@
 				"reason": "same-as-english",
 				"scenes": [
 					"picker",
+					"rares",
 					"slash"
 				],
 				"english": "Greth"
@@ -19477,6 +19615,7 @@
 			"npc:10237": {
 				"reason": "same-as-english",
 				"scenes": [
+					"guides",
 					"picker",
 					"rares",
 					"slash"
@@ -19563,7 +19702,8 @@
 			"npc:10393": {
 				"reason": "same-as-english",
 				"scenes": [
-					"dungeons"
+					"dungeons",
+					"guides"
 				],
 				"english": "Skul"
 			},
@@ -19955,28 +20095,32 @@
 			"npc:12057": {
 				"reason": "same-as-english",
 				"scenes": [
-					"dungeons"
+					"dungeons",
+					"guides"
 				],
 				"english": "Garr"
 			},
 			"npc:12118": {
 				"reason": "same-as-english",
 				"scenes": [
-					"dungeons"
+					"dungeons",
+					"guides"
 				],
 				"english": "Lucifron"
 			},
 			"npc:12259": {
 				"reason": "same-as-english",
 				"scenes": [
-					"dungeons"
+					"dungeons",
+					"guides"
 				],
 				"english": "Gehennas"
 			},
 			"npc:12264": {
 				"reason": "same-as-english",
 				"scenes": [
-					"dungeons"
+					"dungeons",
+					"guides"
 				],
 				"english": "Shazzrah"
 			},
@@ -20524,7 +20668,10 @@
 			"npc:15065": {
 				"reason": "same-as-english",
 				"scenes": [
+					"dungeons",
+					"guides",
 					"picker",
+					"rares",
 					"slash"
 				],
 				"english": "Lady"
@@ -20577,6 +20724,13 @@
 					"dungeons"
 				],
 				"english": "Gahz'ranka"
+			},
+			"npc:15174": {
+				"reason": "same-as-english",
+				"scenes": [
+					"guides"
+				],
+				"english": "Calandrath"
 			},
 			"npc:15299": {
 				"reason": "same-as-english",
@@ -21610,6 +21764,7 @@
 				"reason": "no-source",
 				"scenes": [
 					"picker",
+					"rares",
 					"slash"
 				],
 				"english": "Gorg"
@@ -21939,6 +22094,7 @@
 				"reason": "no-source",
 				"scenes": [
 					"picker",
+					"rares",
 					"slash"
 				],
 				"english": "Paige"
@@ -22039,7 +22195,9 @@
 			"npc:269683": {
 				"reason": "no-source",
 				"scenes": [
+					"dungeons",
 					"picker",
+					"rares",
 					"slash"
 				],
 				"english": "Marcus"
@@ -22619,14 +22777,16 @@
 			"encounter:361": {
 				"reason": "same-as-english",
 				"scenes": [
-					"dungeons"
+					"dungeons",
+					"guides"
 				],
 				"english": "Prince Tortheldrin"
 			},
 			"encounter:478": {
 				"reason": "same-as-english",
 				"scenes": [
-					"dungeons"
+					"dungeons",
+					"guides"
 				],
 				"english": "Balnazzar"
 			},
@@ -22647,7 +22807,8 @@
 			"encounter:554": {
 				"reason": "same-as-english",
 				"scenes": [
-					"dungeons"
+					"dungeons",
+					"guides"
 				],
 				"english": "Archaedas"
 			},
@@ -22696,7 +22857,9 @@
 			"encounter:666": {
 				"reason": "same-as-english",
 				"scenes": [
-					"dungeons"
+					"dungeons",
+					"guide",
+					"guides"
 				],
 				"english": "Garr"
 			},
@@ -22787,21 +22950,25 @@
 			"encounter:2735": {
 				"reason": "same-as-english",
 				"scenes": [
-					"dungeons"
+					"dungeons",
+					"lookup"
 				],
 				"english": "Bazzalan"
 			},
 			"encounter:2743": {
 				"reason": "same-as-english",
 				"scenes": [
-					"dungeons"
+					"dungeons",
+					"lookup"
 				],
 				"english": "Gilnid"
 			},
 			"encounter:2747": {
 				"reason": "same-as-english",
 				"scenes": [
-					"dungeons"
+					"dungeons",
+					"guides",
+					"lookup"
 				],
 				"english": "Edwin VanCleef"
 			},
@@ -22822,7 +22989,8 @@
 			"encounter:2760": {
 				"reason": "same-as-english",
 				"scenes": [
-					"dungeons"
+					"dungeons",
+					"guides"
 				],
 				"english": "Bazil Thredd"
 			},
@@ -22850,7 +23018,8 @@
 			"encounter:2913": {
 				"reason": "same-as-english",
 				"scenes": [
-					"dungeons"
+					"dungeons",
+					"lookup"
 				],
 				"english": "Lorgus Jett"
 			},
@@ -23214,6 +23383,7 @@
 			"npc:520": {
 				"reason": "same-as-english",
 				"scenes": [
+					"guides",
 					"rares"
 				],
 				"english": "Brack"
@@ -23378,15 +23548,20 @@
 			"npc:797": {
 				"reason": "same-as-english",
 				"scenes": [
+					"dungeons",
+					"guides",
 					"picker",
-					"slash"
+					"rares",
+					"slash",
+					"tooltips"
 				],
 				"english": "Bo"
 			},
 			"npc:807": {
 				"reason": "same-as-english",
 				"scenes": [
-					"lookup"
+					"lookup",
+					"tooltips"
 				],
 				"english": "Lisa"
 			},
@@ -23683,7 +23858,9 @@
 			"npc:1366": {
 				"reason": "same-as-english",
 				"scenes": [
-					"lookup"
+					"guides",
+					"lookup",
+					"tooltips"
 				],
 				"english": "Adam"
 			},
@@ -23726,6 +23903,7 @@
 				"reason": "same-as-english",
 				"scenes": [
 					"picker",
+					"rares",
 					"slash"
 				],
 				"english": "Snarl"
@@ -24608,7 +24786,10 @@
 			"npc:2857": {
 				"reason": "same-as-english",
 				"scenes": [
+					"dungeons",
+					"guides",
 					"picker",
+					"rares",
 					"slash"
 				],
 				"english": "Thund"
@@ -25267,8 +25448,12 @@
 			"npc:3504": {
 				"reason": "same-as-english",
 				"scenes": [
+					"dungeons",
+					"guide",
+					"guides",
 					"lookup",
 					"picker",
+					"rares",
 					"slash"
 				],
 				"english": "Gil"
@@ -25385,13 +25570,6 @@
 				],
 				"english": "Ilkrud Magthrull"
 			},
-			"npc:3666": {
-				"reason": "same-as-english",
-				"scenes": [
-					"guides"
-				],
-				"english": "Wizbang Cranktoggle"
-			},
 			"npc:3667": {
 				"reason": "same-as-english",
 				"scenes": [
@@ -25491,13 +25669,6 @@
 					"guides"
 				],
 				"english": "Caylais Moonfeather"
-			},
-			"npc:3845": {
-				"reason": "same-as-english",
-				"scenes": [
-					"guides"
-				],
-				"english": "Shindrell Swiftfire"
 			},
 			"npc:3846": {
 				"reason": "same-as-english",
@@ -26360,8 +26531,10 @@
 			"npc:5591": {
 				"reason": "same-as-english",
 				"scenes": [
+					"dungeons",
 					"guides",
 					"picker",
+					"rares",
 					"slash"
 				],
 				"english": "Dar"
@@ -27663,6 +27836,7 @@
 				"reason": "same-as-english",
 				"scenes": [
 					"picker",
+					"rares",
 					"slash"
 				],
 				"english": "Raze"
@@ -28135,6 +28309,7 @@
 				"reason": "same-as-english",
 				"scenes": [
 					"picker",
+					"rares",
 					"slash"
 				],
 				"english": "Greth"
@@ -28229,6 +28404,8 @@
 			"npc:10237": {
 				"reason": "same-as-english",
 				"scenes": [
+					"dungeons",
+					"guides",
 					"picker",
 					"rares",
 					"slash"
@@ -29047,7 +29224,9 @@
 			"npc:12057": {
 				"reason": "same-as-english",
 				"scenes": [
-					"dungeons"
+					"dungeons",
+					"guide",
+					"guides"
 				],
 				"english": "Garr"
 			},
@@ -29882,6 +30061,13 @@
 				],
 				"english": "Frankal Stonebridge"
 			},
+			"npc:15174": {
+				"reason": "same-as-english",
+				"scenes": [
+					"guides"
+				],
+				"english": "Calandrath"
+			},
 			"npc:15177": {
 				"reason": "same-as-english",
 				"scenes": [
@@ -30199,6 +30385,13 @@
 				],
 				"english": "Bragok"
 			},
+			"npc:16256": {
+				"reason": "same-as-english",
+				"scenes": [
+					"guides"
+				],
+				"english": "Jessica Chambers"
+			},
 			"npc:185333": {
 				"reason": "same-as-english",
 				"scenes": [
@@ -30511,6 +30704,7 @@
 				"reason": "same-as-english",
 				"scenes": [
 					"picker",
+					"rares",
 					"slash"
 				],
 				"english": "Gorg"
@@ -30627,6 +30821,7 @@
 				"reason": "same-as-english",
 				"scenes": [
 					"picker",
+					"rares",
 					"slash"
 				],
 				"english": "Paige"
@@ -30693,6 +30888,7 @@
 				"reason": "no-source",
 				"scenes": [
 					"picker",
+					"rares",
 					"slash"
 				],
 				"english": "Marcus"
@@ -32144,14 +32340,16 @@
 			"encounter:349": {
 				"reason": "same-as-english",
 				"scenes": [
-					"dungeons"
+					"dungeons",
+					"guides"
 				],
 				"english": "Immol'thar"
 			},
 			"encounter:478": {
 				"reason": "same-as-english",
 				"scenes": [
-					"dungeons"
+					"dungeons",
+					"guides"
 				],
 				"english": "Balnazzar"
 			},
@@ -32284,28 +32482,33 @@
 			"encounter:2735": {
 				"reason": "same-as-english",
 				"scenes": [
-					"dungeons"
+					"dungeons",
+					"lookup"
 				],
 				"english": "Bazzalan"
 			},
 			"encounter:2741": {
 				"reason": "same-as-english",
 				"scenes": [
-					"dungeons"
+					"dungeons",
+					"lookup"
 				],
 				"english": "Rhahk'Zor"
 			},
 			"encounter:2743": {
 				"reason": "same-as-english",
 				"scenes": [
-					"dungeons"
+					"dungeons",
+					"lookup"
 				],
 				"english": "Gilnid"
 			},
 			"encounter:2747": {
 				"reason": "same-as-english",
 				"scenes": [
-					"dungeons"
+					"dungeons",
+					"guides",
+					"lookup"
 				],
 				"english": "Edwin VanCleef"
 			},
@@ -32326,14 +32529,16 @@
 			"encounter:2910": {
 				"reason": "same-as-english",
 				"scenes": [
-					"dungeons"
+					"dungeons",
+					"guides"
 				],
 				"english": "Aku'mai"
 			},
 			"encounter:2913": {
 				"reason": "same-as-english",
 				"scenes": [
-					"dungeons"
+					"dungeons",
+					"lookup"
 				],
 				"english": "Lorgus Jett"
 			},
@@ -32389,7 +32594,8 @@
 			"encounter:3582": {
 				"reason": "same-as-english",
 				"scenes": [
-					"dungeons"
+					"dungeons",
+					"guides"
 				],
 				"english": "Atal'alarion"
 			},
@@ -33246,6 +33452,7 @@
 			"npc:3504": {
 				"reason": "same-as-english",
 				"scenes": [
+					"dungeons",
 					"lookup"
 				],
 				"english": "Gil"
@@ -33635,6 +33842,7 @@
 				"scenes": [
 					"guides",
 					"picker",
+					"rares",
 					"slash"
 				],
 				"english": "Dar"
@@ -33733,6 +33941,8 @@
 			"npc:5796": {
 				"reason": "same-as-english",
 				"scenes": [
+					"guide",
+					"guides",
 					"picker",
 					"rares",
 					"slash"
@@ -34378,6 +34588,7 @@
 				"reason": "same-as-english",
 				"scenes": [
 					"picker",
+					"rares",
 					"slash"
 				],
 				"english": "Greth"
@@ -34451,6 +34662,7 @@
 			"npc:10237": {
 				"reason": "same-as-english",
 				"scenes": [
+					"guides",
 					"picker",
 					"rares",
 					"slash"
@@ -35024,7 +35236,10 @@
 			"npc:15065": {
 				"reason": "same-as-english",
 				"scenes": [
+					"dungeons",
+					"guides",
 					"picker",
+					"rares",
 					"slash"
 				],
 				"english": "Lady"
@@ -35049,6 +35264,13 @@
 					"dungeons"
 				],
 				"english": "Hazza'rah"
+			},
+			"npc:15174": {
+				"reason": "same-as-english",
+				"scenes": [
+					"guides"
+				],
+				"english": "Calandrath"
 			},
 			"npc:15299": {
 				"reason": "same-as-english",
@@ -35597,6 +35819,7 @@
 				"reason": "no-source",
 				"scenes": [
 					"picker",
+					"rares",
 					"slash"
 				],
 				"english": "Gorg"
@@ -35785,6 +36008,7 @@
 				"reason": "no-source",
 				"scenes": [
 					"picker",
+					"rares",
 					"slash"
 				],
 				"english": "Paige"
@@ -35871,6 +36095,7 @@
 				"reason": "no-source",
 				"scenes": [
 					"picker",
+					"rares",
 					"slash"
 				],
 				"english": "Marcus"
