@@ -889,14 +889,14 @@ end
 
 -- map, x, y, f of the goal (the chosen candidate's when it has candidates,
 -- the chosen spawn area's when it has spots), then that area's radius in
--- yards, then the goal's height `z` (the compiler's, from the spawn of the
--- NPC or object it stands for) only while the position is the goal's own
--- point: a candidate or a spawn area elsewhere has none.
+-- yards, then the height `z` there (the compiler's, from the spawn of the
+-- NPC or object it stands for): the candidate's or spawn area's own, else the
+-- goal's while the position is the goal's own point.
 local function posOf(goal)
 	local c = chosen(goal)
-	if c then return c.map, c.x, c.y, c.f end
+	if c then return c.map, c.x, c.y, c.f, nil, c.z end
 	local s = goal.spots and Spots.get(goal)
-	if s then return goal.map, s.x, s.y, goal.f, s.r, s.x == goal.x and s.y == goal.y and goal.z or nil end
+	if s then return goal.map, s.x, s.y, goal.f, s.r, s.z or (s.x == goal.x and s.y == goal.y and goal.z) or nil end
 	return goal.map, goal.x, goal.y, goal.f, nil, goal.z
 end
 
@@ -1528,8 +1528,8 @@ local function stepGroups(s)
 			local goal = goals[g]
 			if stillBlocks(s, g, goal) then pending = pending + 1 end
 			if not grp.map and goalApplies(goal) then
-				local map, x, y, f = posOf(goal)
-				if map and x and y then grp.map, grp.x, grp.y, grp.f = map, x, y, f end
+				local map, x, y, f, _, z = posOf(goal)
+				if map and x and y then grp.map, grp.x, grp.y, grp.f, grp.z = map, x, y, f, z end
 			end
 		end
 		grp.pending, grp.done = pending, pending == 0
@@ -1750,7 +1750,7 @@ local function goalView(s, g, goal, stepStatus, group)
 	local progress = (cur and max) and { cur = cur, max = max, label = label, kind = pkind or "count" } or nil
 	local verb, subject, kind, detail = describe(goal)
 	local npc, npcName = npcOf(goal)
-	local map, x, y, f = posOf(goal)
+	local map, x, y, f, _, z = posOf(goal)
 	local alternatives
 	if goal.candidates then
 		local n = #pickFor(goal).list
@@ -1781,7 +1781,7 @@ local function goalView(s, g, goal, stepStatus, group)
 		dismissed = Own.goalSkipped(s, g) or nil,
 		optional = goal.optional and true or false,
 		note = goal.note,
-		map = map, x = x, y = y, f = f,
+		map = map, x = x, y = y, f = f, z = z,
 		quest = goal.quest, oi = goal.oi, npc = npc, npcName = npcName, item = goal.item,
 		alternatives = alternatives,
 		spots = goal.spots and #goal.spots or nil, spread = goal.spread or nil,
@@ -3260,7 +3260,7 @@ function Engine.GetStepView(i)
 			npc = grp.kind == "npc" and grp.id or nil,
 			object = grp.kind == "object" and grp.id or nil,
 			name = grp.name,
-			map = grp.map, x = grp.x, y = grp.y, f = grp.f,
+			map = grp.map, x = grp.x, y = grp.y, f = grp.f, z = grp.z,
 			goals = grp.goals, done = grp.done, pending = grp.pending,
 		}
 	end
