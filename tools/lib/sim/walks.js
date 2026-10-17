@@ -69,6 +69,9 @@ function walkPoints(world, maps) {
 	for (const q of world.quests) {
 		add(q.giver);
 		add(q.ender);
+		// Every giver and ender of a quest that has several (a guide is scored at the one it names).
+		for (const pt of Object.values(q.gAlt || {})) add(pt);
+		for (const pt of Object.values(q.eAlt || {})) add(pt);
 		if (q.accept) add(q.accept.pt);
 		for (const t of q.tasks) add(t.pt);
 	}
