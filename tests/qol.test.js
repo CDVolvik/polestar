@@ -403,6 +403,16 @@ test('rare button: targets the rares in range, comes up and goes with them, each
 	assert.deepEqual(out[6], ['nil', false]);
 });
 
+test('rare button: its icon is gold, apart from the red Target button', () => {
+	const [rare, target, gold] = run(`
+		emit({ PolestarRareButton.Icon:GetVertexColor() })
+		emit({ PolestarTargetButton.Icon:GetVertexColor() })
+		emit({ Polestar.Theme.Color("quest") })
+	`);
+	assert.deepEqual(rare.slice(0, 3), gold.slice(0, 3), 'the quest gold');
+	assert.notDeepEqual(rare.slice(0, 3), target.slice(0, 3), 'not the Target button color');
+});
+
 test('hearth: button while a hearth goal is open; GetHearth reports bind and cooldown', () => {
 	const out = run(`
 		local h = PolestarHearthButton
