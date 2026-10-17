@@ -547,6 +547,27 @@ local function grid(st, k)
 	return val
 end
 
+-- A cluster for Path.SurfacesAt outside any search, decoded like a search's endpoint (grid), the reader keeping at
+-- most two clusters of its own between searches (the one a player stands in and the last one, so walking along a
+-- cluster's edge does not decode it again and again). Decoding a third evicts the older of the two, unless a search
+-- has used it since (its use stamp moved: the search's now). Idle keeps the two (they become the reader's again):
+-- the walking floor reads the player's cluster again within a quarter second, and decoding it is the cost (18-40 ms).
+-- So a player walking across a continent holds two decoded clusters, not every one they cross.
+local read = { {}, {} } -- [1] the cluster read last, [2] the one before: { st, k, use }
+local function readGrid(st, k)
+	local old = read[2]
+	local ost, ok = old.st, old.k
+	if ost and states[ost.map] == ost and ost.used[ok] ~= nil and ost.used[ok] == old.use then
+		evict(ost, ok)
+	end
+	local val = grid(st, k)
+	if val then
+		read[2], read[1] = read[1], old
+		old.st, old.k, old.use = st, k, st.used[k]
+	end
+	return val
+end
+
 -- A node's local cell.
 local function cellOf(st, k, node)
 	if node < st.C * st.C then
@@ -1036,8 +1057,8 @@ local function smooth(st, P, profile, style, danger)
 	return out
 end
 
--- With no search queued, drop decoded grids and local trees and trim the decoded graph to its resting ceiling; exact
--- endpoint costs stay.
+-- With no search queued, drop decoded grids (but the two Path.SurfacesAt read last) and local trees and trim the
+-- decoded graph to its resting ceiling; exact endpoint costs stay.
 local function Idle()
 	for _, st in pairs(states) do
 		for _, entry in ipairs(st.endTrees or {}) do
@@ -1045,7 +1066,16 @@ local function Idle()
 		end
 		st.endTrees = nil
 		for k in pairs(st.used) do
-			evict(st, k)
+			local mine = false
+			for i = 1, 2 do
+				local r = read[i]
+				if r.st == st and r.k == k then
+					r.use, mine = st.used[k], true
+				end
+			end
+			if not mine then
+				evict(st, k)
+			end
 		end
 		if st.D.packed then
 			st.D.grid, st.D.height, st.D.floor = {}, {}, {}
@@ -1095,6 +1125,7 @@ ns.PathGrid = {
 	Classed = Classed,
 	surface = surface,
 	grid = grid,
+	readGrid = readGrid,
 	cellOf = cellOf,
 	chunkOf = chunkOf,
 	zoneAt = zoneAt,

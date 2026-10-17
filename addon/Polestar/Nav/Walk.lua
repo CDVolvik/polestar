@@ -31,6 +31,36 @@
 -- before the goal), is asked once more without it, and that answer is the
 -- one used. A hand-set target has no height: searched as before.
 --
+-- The player's floor (#234, Ruling 36): Forever's client gives no player
+-- height (Compat reads its 0 as none), and a search from a point without one
+-- starts from the cheapest surface within a cell of it: a roof, rock top,
+-- bridge or upper floor above the player. So Walk follows the height of the
+-- surface under the player as they move: from Walk.Aim, at most every EVERY
+-- (0.25) seconds, reading the cell's surfaces (Path.SurfacesAt, into one
+-- reused table: nothing is allocated) only after moving MOVE (1) yard.
+--   Seed (the floor unknown): the cell's surfaces all within ZTOL (10, the
+--     router's: it stands on them alike): the lowest of them. Else, when the
+--     client says whether the player is indoors (Compat.IsIndoors) and the
+--     surfaces differ in it (an indoor or indoor city class against the
+--     rest), the ones that match it when they lie within ZTOL: off the
+--     Undercity's lifts, the city under Tirisfal's outdoor ground. Never to
+--     override a followed floor (a doorway can disagree for a moment).
+--   Follow: the surface nearest the floor, never more than RISE (4) yards
+--     above it (a ramp or stairs at mount speed, plus a jump); any drop (a
+--     fall). None: unknown.
+--   Unknown again: another continent; more than JUMP (30) yards since the
+--     last check (a hearth, teleport, landing, loading screen); moving after
+--     more than FRESH (2) seconds without a check; on a taxi, a transport
+--     (Transit.Riding) or within LIFT (8) yards of a lift (Transit.LiftNear:
+--     it changes level without moving); a ghost state change; in combat a
+--     cluster not decoded (only decoded ones are read then).
+-- The arrow's search starts from the client's height when it gives one, else
+-- from the floor when it is known, checked within FRESH seconds and read
+-- within NEAR (5) yards of the player; a search with it that finds nothing is
+-- asked once more without it (and without the goal's height), and that
+-- answer stands. The player's place in Walk.Measure takes the same height.
+-- Unknown: searched without a height, as before.
+--
 -- Steps: the walk is split at the lifts Nav/Transit.lua knows, and keeps the
 -- crossings, approach chains and guide gotos the planner already makes legs
 -- of. Gates, bridges, tunnels, passes, lift landings and cave or building
@@ -234,6 +264,120 @@ local function playerZ(pc)
 	return nil
 end
 
+---------------------------------------------------------------------------
+-- The walking floor (#234, Ruling 36): Forever gives no player height, so
+-- the height of the surface under the player is followed as they move
+-- (Path.SurfacesAt), from Walk.Aim. The rules are in the header ("Floors").
+---------------------------------------------------------------------------
+
+local RISE = 4        -- yards a reading may climb above the floor: a ramp or stairs at mount speed, plus a jump
+local MOVE = 1        -- yards moved before the surfaces are read again
+local EVERY = 0.25    -- seconds between checks
+local JUMP = 30       -- yards between checks: a hearth, a teleport, a landing, a loading screen
+local FRESH = 2       -- seconds: a floor checked longer ago is not used (and moving after such a gap loses it)
+local NEAR = 5        -- yards from where the floor was read: farther, it is not used
+local ZTOL = 10       -- Routing/PathGrid.lua's ZTOL: surfaces this close the router stands on alike
+local LIFT = 8        -- yards from a lift (Transit.LiftNear): it changes level without moving
+local INDOOR = 2      -- Path.SURFACE_INDOOR
+
+local surf = {}       -- Path.SurfacesAt's out, reused
+local floorZ          -- the floor's height (nil: unknown)
+local fC, fX, fY, fAt, fGhost = nil, 0, 0, -huge, false -- the last check: continent, point read, time, ghost
+
+-- On a taxi, a transport (Transit.Riding) or at a lift: the floor can change without walking.
+local function carried(pc, px, py)
+	local C, X = ns.Compat, ns.Transit
+	if C and C.IsOnTaxi and C.IsOnTaxi() then return true end
+	if X and X.Riding and X.Riding() then return true end
+	return X and X.LiftNear and X.LiftNear(pc, px, py, LIFT) ~= nil or false
+end
+
+-- An unknown floor from the n surfaces read: their height when they lie
+-- within ZTOL (the lowest); else, when the client says whether the player is
+-- indoors and the surfaces differ in it, those that match it when they lie
+-- within ZTOL; else nil.
+local function seed(n)
+	if n == 0 then return nil end
+	local lo, hi = huge, -huge
+	for i = 1, n do
+		local z = surf[i]
+		if z < lo then lo = z end
+		if z > hi then hi = z end
+	end
+	if hi - lo <= ZTOL then return lo end
+	local C = ns.Compat
+	local indoors = C and C.IsIndoors and C.IsIndoors()
+	if indoors == nil then return nil end
+	local mlo, mhi, other = huge, -huge, false
+	for i = 1, n do
+		if (surf[-i] % (2 * INDOOR) >= INDOOR) == indoors then
+			local z = surf[i]
+			if z < mlo then mlo = z end
+			if z > mhi then mhi = z end
+		else
+			other = true
+		end
+	end
+	if other and mhi >= mlo and mhi - mlo <= ZTOL then return mlo end
+	return nil
+end
+
+-- A known floor from the n surfaces read: the one nearest it, never more
+-- than RISE above it (any drop is a fall); none: unknown.
+local function follow(n)
+	local best, gap = nil, huge
+	for i = 1, n do
+		local z = surf[i]
+		if z <= floorZ + RISE and abs(z - floorZ) < gap then best, gap = z, abs(z - floorZ) end
+	end
+	return best
+end
+
+local function track(P, pc, px, py)
+	local now = GetTime()
+	if pc == fC and now - fAt < EVERY then return end
+	local dx, dy = px - fX, py - fY
+	local d2 = dx * dx + dy * dy
+	local T = Nav.travel
+	local ghost = T and T.IsGhost and T.IsGhost() or false
+	local held = carried(pc, px, py)
+	if held or pc ~= fC or ghost ~= fGhost or d2 > JUMP * JUMP or (d2 >= MOVE * MOVE and now - fAt > FRESH) then
+		floorZ = nil
+	elseif d2 < MOVE * MOVE then
+		fAt = now
+		return
+	end
+	fC, fX, fY, fAt, fGhost = pc, px, py, now, ghost
+	if held then return end
+	-- In combat only a decoded cluster is read (nil: not decoded, so unknown).
+	local n = P.SurfacesAt(pc, px, py, surf, inCombat())
+	if not n then
+		floorZ = nil
+	elseif floorZ == nil then
+		floorZ = seed(n)
+	else
+		floorZ = follow(n)
+	end
+end
+
+-- The tracked floor under (px, py) on pc: known, checked within FRESH
+-- seconds and read within NEAR yards of it; else nil.
+local function trackedZ(pc, px, py)
+	if floorZ == nil or fC ~= pc or GetTime() - fAt > FRESH then return nil end
+	local dx, dy = px - fX, py - fY
+	if dx * dx + dy * dy > NEAR * NEAR then return nil end
+	return floorZ
+end
+
+-- The height a walk from the player at (px, py) starts from: the client's,
+-- else the tracked floor; nil, tracked.
+local function startZ(pc, px, py)
+	local z = playerZ(pc)
+	if z ~= nil then return z, false end
+	z = trackedZ(pc, px, py)
+	return z, z ~= nil
+end
+
 -- The target's height when the goal (c, x, y) is the target's own point.
 local function targetZ(c, x, y)
 	local tc, tx, ty, tz = Nav.GetTargetWorld()
@@ -254,7 +398,8 @@ local function offFloor(points, z)
 	return false
 end
 
-local function ask(P, pc, px, py)
+-- flat: the retry without the tracked floor and the goal's height.
+local function ask(P, pc, px, py, flat)
 	wanted = true
 	if inCombat() then return end -- after combat, on the next sample
 	wanted = false
@@ -268,14 +413,16 @@ local function ask(P, pc, px, py)
 	token = mine
 	local ghost = Nav.travel and Nav.travel.IsGhost and Nav.travel.IsGhost() or false
 	local z = gz
-	local ok, handle = pcall(P.Find, pc, { x = px, y = py, z = playerZ(pc) }, { x = gx, y = gy, z = z }, function(points, _, answer)
+	local sz, tracked = startZ(pc, px, py)
+	if flat and tracked then sz, tracked = nil, false end
+	local ok, handle = pcall(P.Find, pc, { x = px, y = py, z = sz }, { x = gx, y = gy, z = z }, function(points, _, answer)
 		if token ~= mine then return end
 		token, job = nil, nil
 		local got = type(points) == "table" and #points > 0
-		if z and (not got or offFloor(points, z)) then
-			-- Once more without the height; that answer stands.
+		if (z or tracked) and (not got or (z and offFloor(points, z))) then
+			-- Once more without the heights (the goal's for good); that answer stands.
 			gz = nil
-			ask(P, pc, px, py)
+			ask(P, pc, px, py, true)
 			return
 		end
 		if got then
@@ -294,9 +441,9 @@ local function ask(P, pc, px, py)
 	end, opts(ghost, pc, px, py, gx, gy)) -- a ghost walks on water
 	if not ok then
 		token = nil
-		if z then
+		if z or tracked then
 			gz = nil
-			return ask(P, pc, px, py)
+			return ask(P, pc, px, py, true)
 		end
 		failed, failAt, failX, failY = true, askedAt, px, py
 		return
@@ -320,6 +467,7 @@ end
 
 function Walk.Aim(pc, px, py, goalC, goalX, goalY, handmade, goalZ)
 	local P = engine()
+	if P and P.SurfacesAt and pc then track(P, pc, px, py) end
 	if handmade or not P or pc ~= goalC then
 		if gc then Walk.Clear() end
 		return nil
@@ -590,7 +738,7 @@ function Walk.Measure(c, x, y, water, places)
 	-- The places picked, the player's walk, and those the last measure had.
 	local pts, si = {}, nil
 	for _, p in ipairs(pick) do
-		pts[#pts + 1] = { x = p.wx, y = p.wy, z = p.z }
+		pts[#pts + 1] = { x = p.wx, y = p.wy, z = p.z or (p.start and (startZ(c, p.wx, p.wy))) or nil }
 		if p.start then si = #pts end
 	end
 	if e then

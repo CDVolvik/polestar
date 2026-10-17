@@ -145,6 +145,16 @@ function Compat.IsInInstance()
 	return inside and true or false
 end
 
+-- The client's indoor state (the minimap's indoor zoom): true indoors, false
+-- outdoors, nil when the client lacks IsIndoors, it errors, or keeps it secret.
+-- Nav/Walk.lua seeds the walking floor with it.
+function Compat.IsIndoors()
+	if not IsIndoors then return nil end
+	local ok, inside = pcall(IsIndoors)
+	if not ok or (inside ~= nil and readable(inside) == nil) then return nil end
+	return inside and true or false
+end
+
 function Compat.IsShiftKeyDown()
 	return IsShiftKeyDown and IsShiftKeyDown() and true or false
 end

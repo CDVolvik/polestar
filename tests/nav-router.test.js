@@ -711,3 +711,53 @@ out.zones = { strip = z(${MAP}, ${lua(at(X0, Y0))}), u = z(${MAP}, ${lua(at(X0, 
 	const zero = route(OURS, mapFiles(layout(4), true, { zones }), [], { tail: `out.zero = Path.ZoneAt(${MAP}, ${at(3, 3).x}, ${at(3, 3).y}) or "nil"` });
 	assert.equal(zero.zero, 'nil');
 });
+
+test('Path.SurfacesAt: the heights and marks (water 1, indoor 2) of a cell\'s surfaces into the caller\'s table; 0 off the data; decoded only: nil until the cluster is; at most two clusters kept between searches, and through Idle', () => {
+	const cells = new Map();
+	for (let k = 0; k < 3; k++) {
+		cells.set(k * C * C + 10 * C + 10, { val: 1, cls: 0 });
+		cells.set(k * C * C + 10 * C + 11, { val: 2, cls: 0 });
+		cells.set(k * C * C + 10 * C + 12, { val: 1, cls: 4 });
+		cells.set(k * C * C + 10 * C + 13, { val: 1, cls: 5 + 8 });
+	}
+	const files = mapFiles(cells, true, { nx: 3 });
+	const tail = `
+local t = { 99, 99, [-1] = 99 }
+local function read(gx, gy, decoded)
+	local n = Path.SurfacesAt(${MAP}, (gx + 0.5) * ${CS}, (gy + 0.5) * ${CS}, t, decoded)
+	return { n = n or "nil", z = n and n > 0 and t[1] or "-", marks = n and n > 0 and t[-1] or "-" }
+end
+out.cold = read(10, 10, true)
+out.ground = read(10, 10)
+out.water = read(10, 11)
+out.indoor = read(10, 12)
+out.city = read(10, 13)
+out.none = read(10, 20)
+out.outside = { n = Path.SurfacesAt(${MAP}, -50, 5, t), nomap = Path.SurfacesAt(99, 5, 5, t) }
+out.kept = t[2]
+local d0 = Path.decodes or 0
+read(${C} + 10, 10)
+read(${2 * C} + 10, 10)
+local d1 = Path.decodes
+out.third = { read(10, 10, true).n, read(${C} + 10, 10, true).n, read(${2 * C} + 10, 10, true).n }
+read(10, 10)
+out.decodes = { d1 - d0, Path.decodes - d1 }
+-- A search, then Idle (the queue empty): the two clusters read last stay decoded.
+Path.Find(${MAP}, A, B, function() end)
+while #frames > 0 do table.remove(frames, 1)() end
+out.idle = { read(10, 10, true).n, read(${C} + 10, 10, true).n, read(${2 * C} + 10, 10, true).n }`;
+	const got = route(OURS, files, [], { tail });
+	assert.deepEqual(got.cold, { n: 'nil', z: '-', marks: '-' }, 'decoded only: nil before the cluster is decoded');
+	assert.equal(got.ground.n, 1);
+	assert.equal(got.ground.marks, 0);
+	assert.equal(typeof got.ground.z, 'number');
+	assert.equal(got.water.marks, 1);
+	assert.equal(got.indoor.marks, 2);
+	assert.equal(got.city.marks, 2, 'an indoor city (class 5, here inside a hub) is indoor');
+	assert.equal(got.none.n, 0, 'a cell with no walkable surface');
+	assert.deepEqual(got.outside, { n: 0, nomap: 0 });
+	assert.equal(got.kept, 99, 'entries past n are left as they were');
+	assert.deepEqual(got.third, ['nil', 1, 1], 'reading a third cluster evicts the oldest the reader decoded');
+	assert.deepEqual(got.decodes, [2, 1], 'one decode a new cluster, and the evicted one once more');
+	assert.deepEqual(got.idle, [1, 'nil', 1], 'Idle keeps the two clusters read last; the other went before');
+});

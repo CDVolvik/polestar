@@ -40,6 +40,16 @@ Polestar_NavEngine = {
 	Cancel = function(job) job.cancelled = true end,
 	Busy = function() return false end,
 	Available = function(c) return fake.avail[c] ~= false end,
+	-- The walkable surfaces under (x, y): fake.surfaces(map, x, y) -> { z, ..., [-i] = marks } (none without it;
+	-- marks as Path.SurfacesAt's: 2 indoor, 1 water, 0 when left out); with decoded, nil when fake.undecoded (a
+	-- cluster not decoded, in combat). fake.reads counts the reads.
+	SurfacesAt = function(map, x, y, out, decoded)
+		if decoded and fake.undecoded then return nil end
+		fake.reads = (fake.reads or 0) + 1
+		local list = fake.surfaces and fake.surfaces(map, x, y) or {}
+		for i, z in ipairs(list) do out[i], out[-i] = z, list[-i] or 0 end
+		return #list
+	end,
 }
 fake.opts = opts
 function fake.last() return fake.calls[#fake.calls] end
@@ -1931,4 +1941,210 @@ test('zone danger: on a continent with crossing data the straight walk from a fl
 		emit(r)`, { many: true });
 	assert.equal(out.gate, (2 * 20 + 2) / 4, 'half its samples in the band');
 	assert.equal(out.home, 1, 'the walk to Home Roost crosses none');
+});
+
+// The walking floor (#234, Ruling 36): Forever gives no player height, so
+// Walk follows the surface under the player (Path.SurfacesAt, faked here by
+// fake.surfaces) and starts the arrow's search, and the player's place in the
+// planner's measure, from it. Testshire's ground is at 40; the overhang tests
+// lay a rock top at 72 over x -10..10, y -40..-15.
+const FLOORS = `
+-- The arrow searches player to target (the planner, which re-plans on its own time, is off).
+if not KEEP_PLAN then Polestar.Set("nav.travel", false) end
+-- Walk from the player's spot to (x1, y1) in 2 yd steps 0.3 s apart, the arrow sampling each.
+local function walk(x1, y1)
+	local p = nav.player
+	local x0, y0, c = p.wx, p.wy, p.c
+	local n = math.max(1, math.ceil(math.sqrt((x1 - x0) ^ 2 + (y1 - y0) ^ 2) / 2))
+	for i = 1, n do
+		nav.place(x0 + (x1 - x0) * i / n, y0 + (y1 - y0) * i / n, c)
+		stub.advance(0.3)
+		N.Sample()
+	end
+end
+-- The height the next search starts from: a new target, asked from here ("none": no height).
+local goals = 0
+local function startZ()
+	goals = goals + 1
+	target(-500, 500 - goals * 10)
+	N.Sample()
+	local z = fake.last().from.z
+	if z == nil then return "none" end
+	return z
+end
+local function overhang(map, x, y)
+	if x >= -10 and x <= 10 and y <= -15 and y >= -40 then return { 40, 72 } end
+	return { 40 }
+end
+`;
+
+test('#234 floor: seeded where the cell has one surface, it stays on the ground under a rock top; a first cell with two stays unknown (today\'s search)', () => {
+	const [out] = run(`${FLOORS}
+		local r = {}
+		fake.surfaces = overhang
+		nav.place(0, 50)
+		r.seed = startZ()
+		walk(0, -25)
+		r.under = startZ()
+		-- Standing still nothing is read; moving, at most one read a 0.25 s.
+		local reads = fake.reads
+		for _ = 1, 10 do stub.advance(0.3) N.Sample() end
+		r.still = fake.reads - reads
+		reads = fake.reads
+		for i = 1, 10 do nav.place(0, -25 - i * 0.2) stub.advance(0.02) N.Sample() end
+		r.quick = fake.reads - reads
+		emit(r)`);
+	assert.equal(out.seed, 40, 'one surface: the floor is its height');
+	assert.equal(out.under, 40, 'under the rock top (40 and 72) the walk starts from the ground walked in on');
+	assert.equal(out.still, 0, 'standing still reads nothing');
+	assert.ok(out.quick <= 1, `${out.quick} reads in 0.2 s`);
+	const [first] = run(`${FLOORS}
+		fake.surfaces = overhang
+		nav.place(0, -25)
+		emit({ z = startZ() })`);
+	assert.equal(first.z, 'none', 'first seen under the rock: unknown, searched without a height as today');
+});
+
+test('#234 floor: climbs a ramp onto a bridge, falls off its side to the ground, and stays there under the bridge', () => {
+	const [out] = run(`${FLOORS}
+		local r = {}
+		-- A ramp from y -20 (40) to y -60 (60), a bridge at 60 over the ground from y -60 to -100 for x -6..6.
+		fake.surfaces = function(map, x, y)
+			if y <= -20 and y > -60 and x >= -6 and x <= 6 then return { 40 + (-20 - y) / 2 } end
+			if y <= -60 and y >= -100 and x >= -6 and x <= 6 then return { 40, 60 } end
+			return { 40 }
+		end
+		nav.place(0, 0)
+		r.seed = startZ()
+		walk(0, -80)
+		r.bridge = startZ()
+		walk(20, -80)
+		r.fell = startZ()
+		walk(0, -80)
+		r.under = startZ()
+		emit(r)`);
+	assert.deepEqual(out, { seed: 40, bridge: 60, fell: 40, under: 40 });
+});
+
+test('#234 floor: a jump of 30+ yd, another continent or a stale floor (no reading for 2 s while moving) is unknown again', () => {
+	const [out] = run(`${FLOORS}
+		local r = {}
+		fake.surfaces = overhang
+		nav.place(0, 50)
+		startZ()
+		walk(0, -12)
+		r.edge = startZ()
+		nav.place(0, 50)
+		stub.advance(0.3)
+		N.Sample()
+		nav.place(0, -25)
+		r.jump = startZ()
+		nav.place(0, 50)
+		startZ()
+		walk(0, -12)
+		nav.place(0, -13, 1)
+		N.SetTarget(9001, 50, 50, "Farland")
+		N.Sample()
+		nav.place(0, -15, 0)
+		r.continent = startZ()
+		nav.place(0, 50)
+		startZ()
+		walk(0, -12)
+		-- In an instance the arrow samples nothing: 3 s later, 8 yd on.
+		nav.instance = true
+		nav.place(0, -20)
+		stub.advance(3)
+		nav.instance = false
+		r.stale = startZ()
+		emit(r)`);
+	assert.deepEqual(out, { edge: 40, jump: 'none', continent: 'none', stale: 'none' });
+});
+
+test('#234 floor: a search with the tracked height that finds nothing is asked once more without it, and that answer stands', () => {
+	const [out] = run(`${FLOORS}
+		local r = {}
+		fake.surfaces = overhang
+		nav.place(0, 50)
+		r.z = startZ()
+		local n = calls()
+		fake.fail("unreachable")
+		r.retry = { calls() - n, fake.last().from.z == nil }
+		fake.resolve(0, 50, -500, 490)
+		r.aim = aim()[1]
+		r.calls = calls() - n
+		emit(r)`);
+	assert.equal(out.z, 40);
+	assert.deepEqual(out.retry, [1, true], 'once more, without the height');
+	assert.equal(out.aim, 'travel');
+	assert.equal(out.calls, 1, 'no third search');
+});
+
+test('#234 floor: the planner\'s measure takes the player\'s place at the tracked floor', () => {
+	const [out] = run(`KEEP_PLAN = true
+${TERRAIN}${FLOORS}
+		fake.surfaces = function() return { 40 } end
+		nav.place(900, 900)
+		-- A walk first (the arrow reads the floor), then the target the planner measures.
+		target(900, 850)
+		N.Sample()
+		target(0, 0)
+		N.Sample()
+		local many = fake.of(true)
+		local job = many[#many]
+		-- The player's place (Home Roost's flight master stands there too, without a height).
+		local z = "missing"
+		for _, p in ipairs(job.targets) do
+			if math.abs(p.x - 900) < 0.01 and math.abs(p.y - 900) < 0.01 and (z == "missing" or p.z) then z = p.z or "none" end
+		end
+		emit({ z = z })`, { many: true });
+	assert.equal(out.z, 40);
+});
+
+test('#234 floor: a lift resets it; off the lift, indoors, it seeds on the one indoor surface (the Undercity under Tirisfal\'s ground), never overriding a followed floor', () => {
+	const [out] = run(`${FLOORS}
+		local r = {}
+		-- A lift at (0, 0): the shaft holds the top (62, indoor) and the bottom (-41, indoor); the city
+		-- (-62, indoor) runs under Tirisfal's outdoor ground (64) for y < -20, and the city past y -40
+		-- under a second indoor level (6) as well.
+		local lift = Polestar.Transit.LiftNear
+		Polestar.Transit.LiftNear = function(c, x, y, yards)
+			if x * x + y * y <= (yards or 8) ^ 2 then return "lift-test", "Test lift" end
+		end
+		fake.surfaces = function(map, x, y)
+			if y > -12 then return { 62, -41, [-1] = 2, [-2] = 2 } end
+			if y > -20 then return { 64, -41, [-2] = 2 } end
+			if y > -40 then return { 64, -62, [-2] = 2 } end
+			return { 64, -62, 6, [-2] = 2, [-3] = 2 }
+		end
+		nav.indoors = true
+		nav.place(0, 30)
+		r.top = startZ()
+		walk(0, 0)
+		r.lift = startZ()
+		walk(0, -30)
+		r.city = startZ()
+		walk(0, -60)
+		r.followed = startZ()
+		-- Outdoors at the doorway for a moment: a followed floor stays.
+		nav.indoors = false
+		walk(0, -64)
+		r.doorway = startZ()
+		-- Without the client's indoor state, or with two indoor levels apart, it stays unknown.
+		nav.indoors = nil
+		nav.place(0, -30)
+		stub.advance(3)
+		r.unread = startZ()
+		nav.indoors = true
+		nav.place(0, -60)
+		stub.advance(3)
+		r.two = startZ()
+		Polestar.Transit.LiftNear = lift
+		emit(r)`);
+	assert.equal(out.top, 'none', 'the shaft\'s two landings: unknown');
+	assert.equal(out.lift, 'none', 'at the lift: unknown');
+	assert.equal(out.city, -62, 'off the lift, indoors: the one indoor surface under the outdoor ground');
+	assert.equal(out.followed, -62, 'followed past a second indoor level');
+	assert.equal(out.doorway, -62, 'the indoor state never overrides a followed floor');
+	assert.equal(out.unread, 'none');
+	assert.equal(out.two, 'none', 'two indoor surfaces apart: unknown');
 });

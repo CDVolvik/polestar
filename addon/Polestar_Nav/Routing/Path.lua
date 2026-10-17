@@ -457,10 +457,12 @@ local function connect(st, swim, mult, k, node)
 	return entry.node, entry.edges, entry.tree, entry.yards
 end
 
--- A point without a height (the player, whose UnitPosition height is a placeholder 0, or a map click) could stand on
--- any surface at its spot, so it starts from each one within a cell of it at a distinct height and the search keeps
--- the cheapest: a street beside or over a canal is not walked from the canal bed. Returns each surface's connection,
--- the entrance costs merged by minimum, per entrance the surface it came from, and the merged costs' yards.
+-- A point without a height (a map click, or the player while Polestar's walking floor is unknown: UnitPosition's
+-- height is a placeholder 0, so Nav/Walk.lua usually sends the floor it follows under the player, Path.SurfacesAt)
+-- could stand on any surface at its spot, so it starts from each one within a cell of it at a distinct height and the
+-- search keeps the cheapest: a street beside or over a canal is not walked from the canal bed, but a rock top or roof
+-- over the player may be walked from (#234). Returns each surface's connection, the entrance costs merged by minimum,
+-- per entrance the surface it came from, and the merged costs' yards.
 local function connectPoint(st, swim, mult, k, node, h)
 	local nodes = { node }
 	if not h then
@@ -1037,6 +1039,62 @@ function Path.ZoneAt(map, x, y)
 	end
 	local k, lc = locate(st, x, y)
 	return k and zoneAt(st, k, lc) or nil
+end
+
+-- Path.SurfacesAt's marks, and a node's (its class byte read from the decoded cluster's cls).
+Path.SURFACE_WATER, Path.SURFACE_INDOOR = 1, 2
+local INDOOR, CITY = Costs.CLASS.INDOOR, Costs.CLASS.CITY
+local function marks(val, cls, node)
+	local c = cls[node + 1] % 8
+	return (val[node + 1] == 2 and 1 or 0) + ((c == INDOOR or c == CITY) and 2 or 0)
+end
+
+-- The walkable surfaces of the cell under a world point on map: its base surface and its floors, base first, each
+-- surface's height in out[i] and its marks in out[-i]: SURFACE_WATER (1) when it is water, plus SURFACE_INDOOR (2)
+-- when its ground class is indoor or an indoor city (Costs.CLASS INDOOR, CITY; never on a map without classes).
+-- -> n, 0 outside the map's data, in a cluster without data or a cell with no walkable surface. The caller's out is
+-- reused (nothing is allocated; entries past n are left as they were). The cell's cluster is decoded if it is not
+-- (PathGrid's readGrid, like a search's endpoint, keeping at most two such clusters between searches); with decoded
+-- true none is: nil when it is not decoded (the walking floor's reading in combat, Nav/Walk.lua).
+---@param map number
+---@param x number
+---@param y number
+---@param out table
+---@param decoded? boolean
+---@return number?
+function Path.SurfacesAt(map, x, y, out, decoded)
+	local st = State(map)
+	if not st then
+		return 0
+	end
+	local k, lc = locate(st, x, y)
+	if not k then
+		return 0
+	end
+	local val = st.val[k]
+	if val == nil then
+		if decoded then
+			return nil
+		end
+		val = Grid.readGrid(st, k)
+	end
+	if not val then
+		return 0
+	end
+	local z, at, cls, n = st.z[k], st.at[k], st.cls[k], 0
+	if val[lc + 1] ~= 0 then
+		n = 1
+		out[1], out[-1] = z[lc + 1], marks(val, cls, lc)
+	end
+	local node = at[-(lc + 1)]
+	while node and at[node + 1] == lc do
+		if val[node + 1] ~= 0 then
+			n = n + 1
+			out[n], out[-n] = z[node + 1], marks(val, cls, node)
+		end
+		node = node + 1
+	end
+	return n
 end
 
 local function start(job)

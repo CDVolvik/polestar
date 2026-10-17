@@ -339,7 +339,8 @@ test('Z1: a height of 0 from UnitPosition is no height: the walk to Mebok Mizzyr
 		for _, p in ipairs(f.points) do if sy - p.y > east then east = sy - p.y end end
 		emit({ c = c, z = f.from[3], east = east, n = #f.points })`);
 	assert.equal(out.c, 1);
-	assert.equal(out.z, undefined, 'searched without a height');
+	// Never the 0 as a height: the ground under the player, which the walking floor (#234) reads there (one surface).
+	assert.ok(out.z !== 0 && (out.z === undefined || Math.abs(out.z - 12) <= 3), `searched from the ground's height or none (${out.z})`);
 	assert.ok(out.east < 3, `no point of the path is east of the player, towards the harbour (${out.east.toFixed(1)} yd east, ${out.n} points)`);
 });
 
@@ -971,4 +972,107 @@ test('zone danger (#195): Tirisfal to the Spring Well at level 20 as Horde walks
 	assert.equal(out.after.wpl, 0, 'with it the searched walk keeps out');
 	assert.equal(out.drawn.wpl, 0, 'and so does the drawn line');
 	assert.ok(out.drawn.yards > 0);
+});
+
+// The walking floor (#234, Ruling 36). Forever's UnitPosition gives no height
+// (z 0), so a search from the player started on whichever surface near them
+// was cheapest: at the Den's camp in the Valley of Trials (the reporter's
+// 42.9,67.6) the rock top over the Den (z 73), whence Fastest crossed the hill
+// to Hana'zua through the pass. Walk now follows the surface under the player
+// (Path.SurfacesAt) and starts the search from it. FLOOR_WALK walks the
+// player in 2 yd steps 0.3 s apart to each point of a list, the arrow sampling
+// each step, with UnitPosition's z 0.
+const FLOOR_WALK = `
+local function walkTo(map, pts)
+	local _, x0, y0 = C.GetPlayerWorldPosition()
+	for _, p in ipairs(pts) do
+		local n = math.max(1, math.ceil(dist(x0, y0, p[1], p[2]) / 2))
+		for i = 1, n do
+			place(map, x0 + (p[1] - x0) * i / n, y0 + (p[2] - y0) * i / n, 0)
+			stub.advance(0.3)
+			aim()
+		end
+		x0, y0 = p[1], p[2]
+	end
+end
+-- The arrow's walk to (map, wx, wy) at height z, once its search is in.
+local function walkFor(map, wx, wy, label, z)
+	local c = C_Map.GetWorldPosFromMapPos(map, CreateVector2D(0.5, 0.5))
+	local x, y = C.WorldToMap(c, wx, wy, map)
+	local before = #finds
+	N.SetTarget(map, x, y, label, nil, "npc", z)
+	for _ = 1, 1200 do
+		aim()
+		local f = finds[#finds]
+		if #finds > before and f.done and dist(f.to[1], f.to[2], wx, wy) < 1 then return f end
+		stub.advance(0.05)
+	end
+end
+-- The highest point of a search's line within r yd of (x, y).
+local function highest(f, x, y, r)
+	local top = -math.huge
+	for _, p in ipairs(f.points or {}) do
+		if p.z and dist(p.x, p.y, x, y) <= r and p.z > top then top = p.z end
+	end
+	return top
+end
+`;
+const DEN = [-574.567, -4230.838]; // the reporter's spot at the Den's camp (ground z 39.2, the rock top 73 within a cell)
+const HANAZUA = [-397.8, -4109, 50.3];
+
+for (const style of ['fastest', 'balanced']) {
+	test(`#234 floor (${style}): at the Den's camp, walked in from the valley floor, the walk to Hana'zua never starts on the rock top; with no walking history it is searched as before, without a height`, { skip }, (t) => {
+		const out = run(t, `${FLOOR_WALK}
+			Polestar.Set("nav.travel", false)
+			Polestar.Set("nav.routeStyle", "${style}")
+			w.setLevel(3)
+			w.faction = "Horde"
+			local r = {}
+			-- No history: standing at the camp from the first sample.
+			place(1411, ${DEN[0]}, ${DEN[1]}, 0)
+			local f = walkFor(1411, ${HANAZUA[0]}, ${HANAZUA[1]}, "Hana'zua", ${HANAZUA[2]})
+			r.fresh = { z = f.from[3] or false, top = highest(f, ${DEN[0]}, ${DEN[1]}, 60), yards = floor(length(f.points)) }
+			-- Walked in: from 42 yd out on the valley floor (one surface, z 38), a walk the arrow follows.
+			N.SetTarget(1411, 30, 70, "Valley")
+			place(1411, ${DEN[0]} - 30, ${DEN[1]} - 30, 0)
+			stub.advance(3)
+			aim()
+			walkTo(1411, { { ${DEN[0]}, ${DEN[1]} } })
+			f = walkFor(1411, ${HANAZUA[0]}, ${HANAZUA[1]}, "Hana'zua", ${HANAZUA[2]})
+			r.walked = { z = f.from[3] or false, top = highest(f, ${DEN[0]}, ${DEN[1]}, 60), yards = floor(length(f.points)) }
+			emit(r)`, { shipped: true });
+		t.diagnostic(`${style}: no history ${out.fresh.yards} yd (highest within 60 yd of the start ${out.fresh.top}); walked in ${out.walked.yards} yd (${out.walked.top}), from z ${out.walked.z}`);
+		assert.equal(out.fresh.z, false, 'no walking history: searched without a height, as before');
+		assert.ok(Math.abs(out.walked.z - 39.2) <= 3, `walked in: searched from the camp's ground (${out.walked.z})`);
+		assert.ok(out.walked.top <= 55, `and the drawn line never stands on the rock top (highest within 60 yd: ${out.walked.top})`);
+	});
+}
+
+// The pattern sweep's worst Undercity start (hop|forever/class/rogue/
+// plundering-the-plunderers|17, real z -62.2, its column -62/5/63): a player
+// who rode the south lift down (the floor unknown at a lift) and walked to it
+// along the router's own way, indoors (IsIndoors), keeps the lower level.
+test('#234 floor: off the Undercity\'s south lift, indoors, the walk to the plundering start keeps the lower level, and the search from there starts on it', { skip }, (t) => {
+	const out = run(t, `${FLOOR_WALK}
+		Polestar.Set("nav.travel", false)
+		w.setLevel(16)
+		w.faction = "Horde"
+		IsIndoors = function() return 1 end
+		local START = { 1435.6, 72, -62.2 }
+		local LIFT = { 1544.2, 240.8, -41 }
+		local way = E.FindSync(0, { x = LIFT[1], y = LIFT[2], z = LIFT[3] }, { x = START[1], y = START[2], z = START[3] }, { profile = "Horde" })
+		local pts = {}
+		for i = 2, #way do pts[#pts + 1] = { way[i].x, way[i].y } end
+		place(1420, LIFT[1], LIFT[2], 0)
+		local f = walkFor(1420, START[1], START[2], "The plundering start")
+		local r = { atLift = f.from[3] or false }
+		walkTo(1420, pts)
+		f = walkFor(1420, -160.1, 774.2, "The plundering goal")
+		local first = f.points and f.points[2]
+		r.walked = { z = f.from[3] or false, top = highest(f, START[1], START[2], 60), yards = floor(length(f.points or {})), second = first and first.z or false }
+		emit(r)`, { shipped: true });
+	t.diagnostic(`at the lift ${out.atLift}; walked in: from z ${out.walked.z}, highest within 60 yd ${out.walked.top}, ${out.walked.yards} yd`);
+	assert.equal(out.atLift, false, 'at the lift the floor is unknown');
+	assert.ok(Math.abs(out.walked.z - -62.2) <= 3, `searched from the lower level (${out.walked.z})`);
+	assert.ok(out.walked.top < -20, `the drawn line's first 60 yd stay down there (highest ${out.walked.top})`);
 });
