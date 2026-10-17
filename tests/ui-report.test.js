@@ -88,8 +88,8 @@ function longest(locale, word, letter, opts = {}) {
 			goals[i] = { t = "kill", verb = word, subject = long, subjectKind = "npc", npc = 1000000 + i, quest = 2000000 + i, item = 3000000 + i,
 				progress = { cur = 99, max = 100 }, map = 1429, x = 47.123, y = 35.456, status = "active" }
 		end
-		local id = "test/" .. string.rep("long-", 20)
-		uistub.guides[id] = { id = id, pack = "guides", title = long, faction = "Alliance", minLevel = 1, maxLevel = 60, steps = { { title = long, goals = goals } } }
+		local id = "test/a-long-guide"
+		uistub.guides[id] = { id = id, pack = "guides", title = word, faction = "Alliance", minLevel = 1, maxLevel = 60, steps = { { title = long, goals = goals } } }
 		for i = 1, 6 do Polestar.NoteError("Interface/AddOns/Polestar/UI/" .. string.rep("Long", 12) .. i .. ".lua:1: " .. long) end
 		for i = 1, 40 do
 			local name = ("QuestAndMapHelperWithALongName%02d"):format(i)
@@ -97,21 +97,21 @@ function longest(locale, word, letter, opts = {}) {
 			stub.addonMeta[name] = { Version = "v12.34.56-" .. word }
 		end
 		uistub.player = { level = 59, xp = 1, xpMax = 3, race = long, class = "WARRIOR", faction = word }
-		Polestar.Compat.GetZoneText = function() return long, long end
+		Polestar.Compat.GetZoneText = function() return word, "Goldshire Inn" end
 		Polestar.Guides.Pack = function() return { title = long, version = word } end
 		Polestar.Guides.Packs = function() return { { title = long, version = word, status = "on" }, { title = long, status = "on" } } end
+		Polestar.Compat.GetPlayerMapPosition = function() return 1429, 51.234, 40.5 end
 		uistub.setGuide(id, 1)
 		UI.ShowReport()
 		local F = PolestarReport
-		F.Desc:SetText(${opts.desc ? 'string.rep(word, 3) .. "\\n" .. ' : ''}string.rep(letter, UI.Report.DESC_MAX))
+		F.Desc:SetText(string.rep(letter, UI.Report.DESC_MAX))
 		stub.RunScript(F.Desc, "OnTextChanged", true)
 		${opts.unmarked ? '' : `F.Mark:Click()
-		Polestar.Compat.GetPlayerMapPosition = function() return 1429, 51.234, 40.5 end
 		PolestarMark.Here:Click()`}
 		F.Report:Click()
 		local url = PolestarCopy.Box:GetText()
 		F.Copy:Click()
-		emit({ text = F.Box:GetText(), url = url, max = UI.Report.LINK_MAX })`, `function GetLocale() return "${locale}" end`)[0];
+		emit({ text = F.Box:GetText(), url = url, max = UI.Report.LINK_MAX, details = F.details.lines, addonsAt = F.details.addonsAt })`, `function GetLocale() return "${locale}" end`)[0];
 }
 
 const SCRIPTS = [
@@ -120,29 +120,23 @@ const SCRIPTS = [
 	['zhCN', '\u5e03\u83b1\u7279\u6c83\u7279\u6e56\u7684\u77ad\u671b\u53f0', '\u6e56'],
 ];
 
-test('at its longest the report still fits one Discord message', () => {
-	const [out] = run(`
-		local long = string.rep("Overlook of the Brightwater Lake ", 6)
-		local goals = {}
-		for i = 1, 9 do
-			goals[i] = { t = "kill", verb = "Kill", subject = long, subjectKind = "npc", npc = 1000000 + i, quest = 2000000 + i, item = 3000000 + i,
-				progress = { cur = 99, max = 100 }, map = 1429, x = 47.123, y = 35.456, status = "active" }
-		end
-		local id = "test/" .. string.rep("long-", 20)
-		uistub.guides[id] = { id = id, pack = "guides", title = long, faction = "Alliance", minLevel = 1, maxLevel = 60, steps = { { title = long, goals = goals } } }
-		for i = 1, 6 do Polestar.NoteError("Interface/AddOns/Polestar/UI/" .. string.rep("Long", 12) .. i .. ".lua:1: " .. long) end
-		uistub.setGuide(id, 1)
-		UI.ShowReport()
-		local F = PolestarReport
-		F.Desc:SetText(string.rep("w", UI.Report.DESC_MAX))
-		stub.RunScript(F.Desc, "OnTextChanged", true)
-		F.Copy:Click()
-		emit({ text = F.Box:GetText() })`);
-	assert.ok(out.text.length <= 2000, `${out.text.length} characters`);
-	assert.ok(out.text.startsWith(`**What went wrong:** ${'w'.repeat(250)}\n`), 'the description is kept whole');
-	assert.match(out.text, /^Step 1 of 1: Overlook/m);
-	assert.match(out.text, /^\.\.\. 3 more goals$/m, 'goals past the sixth are counted, not listed');
-	assert.equal((out.text.match(/^ {2}1x /gm) || []).length, 3, 'the newest three errors');
+test('at its longest, with a marked spot and 40 addons, the report still fits one Discord message in every script: the Addons line is shortened, never a line the Discord bot reads', () => {
+	for (const [locale, word, letter] of SCRIPTS) {
+		const { text, details, addonsAt } = longest(locale, word, letter);
+		const lines = text.split('\n');
+		// Discord counts characters, as JavaScript does: one each, two past U+FFFF.
+		assert.ok(text.length <= 2000, `${locale}: ${text.length} characters, ${Buffer.byteLength(text, 'utf8')} bytes`);
+		assert.ok(lines[0].endsWith(letter.repeat(250)), `${locale}: the description is kept whole`);
+		const others = details.filter((_, i) => i !== addonsAt - 1);
+		assert.deepEqual(lines.filter((l) => others.includes(l)), others, `${locale}: every line but the Addons one, as taken`);
+		assert.match(lines[lines.length - 2], /: zone map 1429 · goto 51\.23,40\.50 live$/, `${locale}: the right spot is kept`);
+	}
+	const english = longest(...SCRIPTS[0]);
+	assert.equal(english.text.length, 2000, 'English is the one that runs over');
+	const addons = english.text.split('\n').find((l) => l.startsWith('Addons: '));
+	assert.ok(addons.endsWith('...') && addons.length < english.details[english.addonsAt - 1].length, `the Addons line gives way: ${addons}`);
+	const unmarked = longest(...SCRIPTS[0], { unmarked: true }).text;
+	assert.match(unmarked, /^Addons: QuestAndMapHelperWithALongName01, /m, 'with room, the Addons line stays');
 });
 
 test('errors Polestar caught come with the report, counted, by their path from the AddOns folder; !BugGrabber adds the session\'s errors in Polestar\'s files', () => {

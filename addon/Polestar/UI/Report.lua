@@ -27,10 +27,12 @@ local floor, max, min, ipairs, pairs, tostring, type, pcall = math.floor, math.m
 local R = {}
 UI.Report = R
 
--- A Discord message holds 2000 characters. The description, every detail
--- line and the number of goals and errors are capped so that the whole
--- report, at its longest, stays under it (in bytes, which count no fewer).
+-- A Discord message holds 2000 characters. The description, the detail
+-- lines and the number of goals and errors are capped; when the report is
+-- still longer, R.Text shortens its Addons line, which the Discord bot does
+-- not read.
 R.DESC_MAX = 250
+R.TEXT_MAX = 2000
 local LINE_MAX = 100
 local GOALS_MAX = 6
 local ERRORS_MAX = 3
@@ -336,13 +338,34 @@ local function text(description, lines, spot)
 	if desc == "" then desc = L["(not described)"] end
 	local out = { "**" .. L["What went wrong:"] .. "** " .. desc, "```" }
 	for _, line in ipairs(lines) do out[#out + 1] = line end
-	if spot then out[#out + 1] = (L["Right spot: %s"]):format(table.concat(spot, SEP)) end
+	if spot then out[#out + 1] = cut((L["Right spot: %s"]):format(table.concat(spot, SEP))) end
 	out[#out + 1] = "```"
 	return table.concat(out, "\n")
 end
 
+-- Characters as Discord counts them, like JavaScript: one each, two past
+-- U+FFFF. Not bytes: a Chinese report of 1200 characters is 2500 bytes.
+local function length(s)
+	local _, chars = s:gsub("[^\128-\191]", "")
+	local _, astral = s:gsub("[\240-\247]", "")
+	return chars + astral
+end
+
 function R.Text(description, details, spot)
-	return text(description, details.lines, spot)
+	local lines, at = details.lines, details.addonsAt
+	local report = text(description, lines, spot)
+	local n = #lines[at]
+	while length(report) > R.TEXT_MAX and n > 0 do
+		n = n - (length(report) - R.TEXT_MAX)
+		-- Shorter than 30 bytes it names no addon: the line goes.
+		if n < 30 then n = 0 end
+		local short = {}
+		for i, line in ipairs(lines) do
+			if i ~= at then short[#short + 1] = line elseif n > 0 then short[#short + 1] = cut(line, n) end
+		end
+		report = text(description, short, spot)
+	end
+	return report
 end
 
 local function encode(s)
