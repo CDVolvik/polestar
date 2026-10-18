@@ -1400,6 +1400,8 @@ L["The skin's font"] = "La fuente del tema"
 L["Skin"] = "Tema"
 L["Polestar's own look (the default), Halo (no frame, a soft dark veil, Fira Sans), Hearth (warm game colours), or the game's own art: WoW Forever, Blizzard and Classic. Style, compact mode and the colours you pick work in each."] = "El aspecto propio de Polestar (predeterminado), Halo (sin marco, un velo oscuro suave, Fira Sans), Hogar (los colores cálidos del juego) o el arte propio del juego: WoW Forever, Blizzard y Classic. El estilo, el modo compacto y los colores que elijas funcionan en cada uno."
 L["The skin's arrow"] = "La flecha del tema"
+-- L["Bar at the bottom"] = ""
+-- L["With Grow upward, put the tabs and the step bar at the bottom edge, next to where the window is pinned."] = ""
 
 -- UI/Packs.lua
 L["turned off in the AddOns list"] = "desactivado en la lista de AddOns"

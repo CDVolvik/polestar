@@ -1617,6 +1617,8 @@ L["The skin's font"] = "La police de l'habillage"
 L["Skin"] = "Habillage"
 L["Polestar's own look (the default), Halo (no frame, a soft dark veil, Fira Sans), Hearth (warm game colours), or the game's own art: WoW Forever, Blizzard and Classic. Style, compact mode and the colours you pick work in each."] = "L'apparence de Polestar (par défaut), Halo (sans cadre, un voile sombre aux bords adoucis, Fira Sans), Foyer (les couleurs chaudes du jeu), ou les graphismes du jeu : WoW Forever, Blizzard et Classique. Le style, le mode compact et les couleurs que vous choisissez s'appliquent à chacun."
 L["The skin's arrow"] = "La flèche de l'habillage"
+-- L["Bar at the bottom"] = ""
+-- L["With Grow upward, put the tabs and the step bar at the bottom edge, next to where the window is pinned."] = ""
 
 -- Rares/Rares.lua
 L["Raid warning"] = "Avertissement de raid"

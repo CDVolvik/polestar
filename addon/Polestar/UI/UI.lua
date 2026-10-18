@@ -19,6 +19,7 @@ ns.RegisterDefaults("ui", {
 	shown = true,
 	locked = false,
 	growUp = false, -- pin the guide window by its bottom edge, so it grows upward
+	barsBottom = false, -- with growUp: tabs and navigator at the bottom, by the pinned edge
 	compact = false,
 	style = "standard", -- "standard" | "transparent"
 	scale = 1,
