@@ -27,6 +27,10 @@ const { goalArea, goalNode, goalInnkeeper } = require('./places');
 // objects drop (at 2% or more, with spawns); past this it drops everywhere.
 const MAX_NAMED_SOURCES = 8;
 
+// `fromNpcs` on a collect: the mobs its point and spots belong to, for the
+// target button, which cycles at most this many names.
+const MAX_SOURCE_NPCS = 5;
+
 // Standard rank caps and the skill each rank can first be trained at (Classic).
 const RANK_CAPS = [75, 150, 225, 300];
 const RANK_MIN_SKILL = [0, 50, 125, 225];
@@ -145,6 +149,30 @@ function onMap(data, all, map, sides) {
 		if (likely.length) on = likely;
 	}
 	return { on, elites };
+}
+
+// The NPC sources a goal's point and spawn areas belong to (pickSpawn's
+// `sources`, onMap's likely droppers on that map), `first` (the source the
+// point itself belongs to, when it is one of them) leading: the mobs the
+// arrow leads to. The target button names them, which the item's own droppers
+// cannot give it, as those rank over the whole world: the best droppers of an
+// item many creatures drop are usually in other zones (Small Spider Leg's are
+// in Elwynn Forest, Loch Modan and Silverpine, not the Teldrassil spiders a
+// Teldrassil goal points at). Objects are left out: a macro can only target a
+// creature.
+// -> [{ npc, npcName }] | undefined
+function sourceNpcs(data, first, sources) {
+	const list = sources || [];
+	const out = [];
+	const seen = new Set();
+	for (const s of list.includes(first) ? [first, ...list] : list) {
+		if (out.length >= MAX_SOURCE_NPCS) break;
+		if (!s || s.kind !== 'npc' || seen.has(s.id)) continue;
+		seen.add(s.id);
+		const rec = data.npc(s.id);
+		if (rec && rec.name) out.push({ npc: s.id, npcName: String(rec.name) });
+	}
+	return out.length ? out : undefined;
 }
 
 // Sources ([{ kind, id, chance? }]) that elites (group.js isElite) and normal
@@ -1343,6 +1371,7 @@ function resolveGoal(g, zoneMap, prev, data, err, warn, ctx = { sides: ['Allianc
 					goal.y = sp.at.y;
 				}
 			}
+			if (v === 'collect') setIf(goal, 'fromNpcs', sourceNpcs(data, c, picked.sources));
 		} else if (g.explicitCoords && goal.x !== undefined) {
 			// Hand-placed: the sources known to give the item (a drop chance, or a
 			// gathering node; not loot of unknown odds). A mob or object spawns
@@ -1355,6 +1384,7 @@ function resolveGoal(g, zoneMap, prev, data, err, warn, ctx = { sides: ['Allianc
 			const sources = onMap(data, all, goal.map, dropSides).on.map((o) => o.cand);
 			const near = !area ? SPAWN_CHECK_YARDS : sources.length && sources.every((s) => gatherNode(data, s)) ? Infinity : SPREAD_YARDS;
 			setIf(goal, 'spots', handSpots(data, sources, goal.map, goal.f, goal.x, goal.y, near));
+			if (v === 'collect') setIf(goal, 'fromNpcs', sourceNpcs(data, c, sources));
 		}
 	}
 	if (g.r !== undefined) goal.r = g.r;
