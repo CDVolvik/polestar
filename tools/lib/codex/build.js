@@ -306,12 +306,32 @@ function boxOf(fr) {
 }
 
 // Box `b` lies wholly within `a` and is smaller: its map is inside the other's
-// (Darnassus within Teldrassil). Frames of neighbouring zones overlap without
-// either holding the other, so this is not a size test.
+// (Darnassus within Teldrassil, a zone within a continent). Frames of
+// neighbouring zones overlap without either holding the other, so this is not
+// a size test.
 function within(b, a) {
 	if (!(b && a && b.c === a.c)) return false;
 	if (!(b.x0 >= a.x0 && b.x1 <= a.x1 && b.y0 >= a.y0 && b.y1 <= a.y1)) return false;
 	return (b.x1 - b.x0) * (b.y1 - b.y0) < (a.x1 - a.x0) * (a.y1 - a.y0);
+}
+
+// A map you are inside rather than crossing: a capital or a battleground.
+// Their frames stand well apart from the zones' — Ironforge 791 yd on its
+// long side, Undercity 959, Thunder Bluff 1044, Darnassus 1058, Warsong Gulch
+// 1146, Stormwind City 1344 and Orgrimmar 1403, then nothing until Arathi
+// Basin at 1756 and Redridge Mountains at 2171. (journal.js tells continents
+// from zones by size the same way.)
+const INNER_MAX = 1500; // yards on the long side
+function enclosed(b) {
+	return !!b && Math.max(b.x1 - b.x0, b.y1 - b.y0) <= INNER_MAX;
+}
+
+// Of two maps holding the same place, `b` is the one the player is in: an
+// enclosed map beats the open zone around it, and otherwise the map whose
+// frame lies inside the other's.
+function moreInner(b, a) {
+	if (enclosed(b) && !enclosed(a)) return true;
+	return within(b, a);
 }
 
 // A map point's world position through its frame, or null.
@@ -337,9 +357,12 @@ function samePlace(a, b) {
 // the world. The city is where a player standing there is, and what the route
 // planner has to be told, or it plans a way out of the city and back in
 // (#382); it is also the zone the Codex should name. So where two maps hold
-// the same place and one frame lies inside the other, the inner map comes
-// first, whatever their ids. Maps holding different places keep their order,
-// and neighbouring zones whose frames merely overlap hold neither.
+// the same place, the inner one comes first, whatever their ids: an enclosed
+// map (a capital, a battleground) over the open zone, else the map whose
+// frame lies inside the other's. The Undercity is both — it is recorded with
+// Silverpine Forest and Western Plaguelands, whose frames it overlaps without
+// either holding it (#350). Maps holding different places keep their order,
+// so a mob on a zone border stays in the zone it is mostly seen in.
 function spawnsOf(byMap, zones, frames) {
 	const maps = Object.entries(byMap || {})
 		.filter(([map]) => !zones || zones[map])
@@ -355,7 +378,7 @@ function spawnsOf(byMap, zones, frames) {
 		for (let i = 0; i < maps.length; i++) {
 			let inner = i;
 			for (let j = i + 1; j < maps.length; j++) {
-				if (samePlace(maps[i].at, maps[j].at) && within(maps[j].box, maps[inner].box)) inner = j;
+				if (samePlace(maps[i].at, maps[j].at) && moreInner(maps[j].box, maps[inner].box)) inner = j;
 			}
 			if (inner !== i) maps.splice(i, 0, maps.splice(inner, 1)[0]);
 		}

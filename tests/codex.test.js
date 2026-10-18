@@ -352,17 +352,22 @@ const { mergeCodex, clientFacts, buildCodex, cluster } = require('../tools/lib/c
 const { tmpdir } = require('./helpers/tmp');
 
 function syntheticInputs() {
-	const era = { left: 0, right: -1000, top: 1000, bottom: 0, c: 1 };
-	// A city frame inside the zone's: 200 x 200 yd of the 1000 x 1000 above,
-	// so 50,50 on either frame is the same world point (-500, 500).
-	const city = { left: -400, right: -600, top: 600, bottom: 400, c: 1 };
-	// A neighbour's frame: smaller than the zone's but hanging over its edge,
-	// so neither holds the other. 75,75 on it is the same world point again.
-	const neighbour = { left: 100, right: -700, top: 1100, bottom: 300, c: 1 };
+	// Zone-sized, 4000 x 4000 yd: 50,50 on it is the world point (2000, -2000).
+	const era = { left: 0, right: -4000, top: 4000, bottom: 0, c: 1 };
+	// A capital inside it, 800 yd on its long side, where 50,50 is that same
+	// world point: both frames hold the place, and this one is enclosed.
+	const city = { left: -1600, right: -2400, top: 2400, bottom: 1600, c: 1 };
+	// A neighbouring zone, 3000 yd and hanging over the zone's edge, so neither
+	// holds the other and neither is enclosed. 83.33,50 is the world point again.
+	const neighbour = { left: 500, right: -2500, top: 3500, bottom: 500, c: 1 };
+	// A capital that overlaps the zone without lying inside it, as the Undercity
+	// does with Silverpine Forest (#350). 6.25,50 and the zone's 98.75,50 are
+	// both the world point (2000, -3950).
+	const sunken = { left: -3900, right: -4700, top: 2400, bottom: 1600, c: 1 };
 	const forever = {
-		zones: { 1438: { id: 1438, name: 'Teldrassil' }, 1457: { id: 1457, name: 'Darnassus' }, 1460: { id: 1460, name: 'Darkshore' }, 1423: { id: 1423, name: 'Eastern Plaguelands' }, 1429: { id: 1429, name: 'Elwynn Forest' } },
+		zones: { 1438: { id: 1438, name: 'Teldrassil' }, 1457: { id: 1457, name: 'Darnassus' }, 1458: { id: 1458, name: 'Undercity' }, 1460: { id: 1460, name: 'Darkshore' }, 1423: { id: 1423, name: 'Eastern Plaguelands' }, 1429: { id: 1429, name: 'Elwynn Forest' } },
 		factions: { 589: { id: 589, name: 'Wintersaber Trainers', side: 'Alliance' } },
-		mapFrames: { era: { 1438: era, 1429: era, 1457: city, 1460: neighbour } },
+		mapFrames: { era: { 1438: era, 1429: era, 1457: city, 1460: neighbour, 1458: sunken } },
 		meta: { builtAt: '2026-01-01T00:00:00.000Z', sources: [{ name: 'pfQuest', revision: 'abc', license: 'MIT' }] },
 		npcs: {
 			4730: { id: 4730, name: 'Lelanai', level: 35, faction: 'A', roles: ['vendor'], spawns: { 1438: { f: 'e', pts: [[25.2, 50.1], [25.3, 50.2], [70, 70]] } }, source: ['questie-forever'] },
@@ -378,8 +383,11 @@ function syntheticInputs() {
 			4784: { id: 4784, name: 'City Guard', level: 23, faction: 'A', spawns: { 1438: { f: 'e', pts: [[50, 50]] }, 1457: { f: 'e', pts: [[50, 50]] } } },
 			// Two real places, one of them in the city: not the same guard twice.
 			4785: { id: 4785, name: 'Wanderer', level: 23, faction: 'A', spawns: { 1438: { f: 'e', pts: [[50, 50]] }, 1457: { f: 'e', pts: [[10, 10]] } } },
-			// On a zone border: one place on two maps, but neither map is in the other.
-			4786: { id: 4786, name: 'Border Mob', level: 23, faction: null, spawns: { 1438: { f: 'e', pts: [[50, 50]] }, 1460: { f: 'e', pts: [[75, 75]] } } },
+			// On a zone border: one place on two maps, but neither map is in the
+			// other and neither is a place you are inside.
+			4786: { id: 4786, name: 'Border Mob', level: 23, faction: null, spawns: { 1438: { f: 'e', pts: [[50, 50]] }, 1460: { f: 'e', pts: [[83.33, 50]] } } },
+			// In a capital the zone's frame overlaps but does not hold (#350).
+			4787: { id: 4787, name: 'Sunken Guard', level: 23, faction: 'H', spawns: { 1438: { f: 'e', pts: [[98.75, 50]] }, 1458: { f: 'e', pts: [[6.25, 50]] } } },
 		},
 		objects: {
 			2843: { id: 2843, name: 'Battered Chest', roles: ['chest'], spawns: { 1429: { f: 'e', pts: [[63.5, 56.1]] } } },
@@ -621,7 +629,7 @@ test('mergeCodex builds npcs, rares, instances, quests, spells and frames', () =
 	assert.deepEqual(Object.keys(codex.objects), ['2843']);
 	assert.equal(codex.objects[2843].treasure, true);
 	assert.deepEqual(codex.objects[2843].loot, [1179, 2933], 'known chance first; unknown items (424242) dropped');
-	assert.deepEqual(Object.keys(codex.frames).sort(), ['1429', '1438', '1457', '1460']);
+	assert.deepEqual(Object.keys(codex.frames).sort(), ['1429', '1438', '1457', '1458', '1460']);
 });
 
 test('cluster merges nearby points, biggest first', () => {
@@ -679,6 +687,9 @@ test('mergeCodex: a guard recorded on a city map and on the zone that holds it i
 	// Nor does a smaller frame win on its own: neighbouring zones overlap, and
 	// a mob on the border is in the zone it is mostly seen in, as before.
 	assert.deepEqual(codex.npcs[4786].spawns.map((s) => s.map), [1438, 1460]);
+	// A capital the zone's frame overlaps without holding wins all the same:
+	// the Undercity is recorded with Silverpine Forest, which does not hold it.
+	assert.deepEqual(codex.npcs[4787].spawns.map((s) => s.map), [1458, 1438]);
 });
 
 test('mergeCodex: an NPC casting a spell that creates the item hands it out (gift)', () => {
