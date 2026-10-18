@@ -30,6 +30,7 @@ const TELDRASSIL = 'forever/alliance/nightelf/01-teldrassil.guide';
 const ELWYNN = 'forever/alliance/human/01-elwynn-forest.guide';
 const MULGORE = 'forever/horde/tauren/01-mulgore.guide';
 const TIRISFAL = 'forever/horde/undead/01-tirisfal-glades.guide';
+const ASHENVALE = 'forever/alliance/06-ashenvale.guide';
 
 let data;
 const memo = new Map();
@@ -1255,4 +1256,20 @@ test('#246: no NPC or object goal is on a neighbouring zone\'s map where the two
 		}
 	}
 	assert.deepEqual([...new Set(offenders)], [], 'goals on the map of a zone Wowhead Forever does not place them in');
+});
+
+// --- Ashenvale (Zerkness, #383): Alonso's Dragonslayer quests are Warrior-only.
+
+test(`${ASHENVALE}: Zerkness's report (#383): only Warriors are sent to Alonso at Mystral Lake for the Dragonslayer quests`, { skip }, () => {
+	const list = goals(ASHENVALE);
+	const chain = [78132, 78133, 78134]; // Dragonslayer's Helm, Dragonslayer's Shield, and the quest after
+	const paladin = list.filter(forClass('PALADIN'));
+	assert.deepEqual(paladin.filter(({ goal }) => chain.includes(goal.quest)).map(({ goal }) => `${goal.t} ${goal.quest}`), [], 'a Paladin gets no goal of the Alonso chain');
+	// Sentinel Velene's Elemental Bracers at the same lake stay for everyone.
+	at(paladin, 'accept 1016 (Elemental Bracers) for a Paladin', is('accept', 1016));
+	const warrior = list.filter(forClass('WARRIOR'));
+	for (const q of chain) {
+		const take = at(warrior, `accept ${q} for a Warrior`, is('accept', q));
+		assert.ok(take < at(warrior, `turnin ${q} for a Warrior`, is('turnin', q)), `a Warrior hands in ${q} after taking it`);
+	}
 });
