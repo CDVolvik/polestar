@@ -32921,13 +32921,12 @@ do
 					goals = {
 						{ t = "turnin", quest = 364, title = "The Mindless Ones", npc = 1569, npcName = "Shadow Priest Sarvis", map = 1420, x = 30.84, y = 66.2, z = 97.8, f = "e" },
 						{ t = "accept", quest = 3901, title = "Rattling the Rattlecages", npc = 1569, npcName = "Shadow Priest Sarvis", minLevel = 1, qlvl = 3, pre = { 364 }, preTitles = { [364] = "The Mindless Ones" }, map = 1420, x = 30.84, y = 66.2, z = 97.8, f = "e" },
-						{ t = "accept", quest = 376, title = "The Damned", npc = 1661, npcName = "Novice Elreth", minLevel = 2, qlvl = 2, map = 1420, x = 30.86, y = 66.05, z = 97, f = "e", note = "{npc:1661}, beside the church" },
-						{ t = "accept", quest = 98389, title = "A Light in the Darkness", npc = 244808, npcName = "Aramis Hammerhand", minLevel = 2, qlvl = 4, map = 1420, x = 31.04, y = 66.45, f = "e" },
 						{ t = "accept", quest = 3095, title = "Simple Scroll", npc = 1569, npcName = "Shadow Priest Sarvis", minLevel = 1, qlvl = 1, pre = { 364 }, preTitles = { [364] = "The Mindless Ones" }, map = 1420, x = 30.84, y = 66.2, z = 97.8, f = "e", only = { classes = { "WARRIOR" } }, note = "{npc:1569}: {quest:3095}" },
 						{ t = "accept", quest = 3096, title = "Encrypted Scroll", npc = 1569, npcName = "Shadow Priest Sarvis", minLevel = 1, qlvl = 1, pre = { 364 }, preTitles = { [364] = "The Mindless Ones" }, map = 1420, x = 30.84, y = 66.2, z = 97.8, f = "e", only = { classes = { "ROGUE" } }, note = "{npc:1569}: {quest:3096}" },
 						{ t = "accept", quest = 3097, title = "Hallowed Scroll", npc = 1569, npcName = "Shadow Priest Sarvis", minLevel = 1, qlvl = 1, pre = { 364 }, preTitles = { [364] = "The Mindless Ones" }, map = 1420, x = 30.84, y = 66.2, z = 97.8, f = "e", only = { classes = { "PRIEST" } }, note = "{npc:1569}: {quest:3097}" },
 						{ t = "accept", quest = 3098, title = "Glyphic Scroll", npc = 1569, npcName = "Shadow Priest Sarvis", minLevel = 1, qlvl = 1, pre = { 364 }, preTitles = { [364] = "The Mindless Ones" }, map = 1420, x = 30.84, y = 66.2, z = 97.8, f = "e", only = { classes = { "MAGE" } }, note = "{npc:1569}: {quest:3098}" },
 						{ t = "accept", quest = 3099, title = "Tainted Scroll", npc = 1569, npcName = "Shadow Priest Sarvis", minLevel = 1, qlvl = 1, pre = { 364 }, preTitles = { [364] = "The Mindless Ones" }, map = 1420, x = 30.84, y = 66.2, z = 97.8, f = "e", only = { classes = { "WARLOCK" } }, note = "{npc:1569}: {quest:3099}" },
+						{ t = "accept", quest = 376, title = "The Damned", npc = 1661, npcName = "Novice Elreth", minLevel = 2, qlvl = 2, map = 1420, x = 30.86, y = 66.05, z = 97, f = "e", note = "{npc:1661}, beside the church" },
 						{ t = "turnin", quest = 3095, title = "Simple Scroll", npc = 2119, npcName = "Dannal Stern", map = 1420, x = 32.69, y = 65.56, z = 94.9, f = "e", only = { classes = { "WARRIOR" } }, note = "{npc:2119}, the warrior trainer" },
 						{ t = "turnin", quest = 3096, title = "Encrypted Scroll", npc = 2122, npcName = "David Trias", map = 1420, x = 32.53, y = 65.65, z = 94.4, f = "e", only = { classes = { "ROGUE" } }, note = "{npc:2122}, the rogue trainer" },
 						{ t = "turnin", quest = 3097, title = "Hallowed Scroll", npc = 2123, npcName = "Dark Cleric Duesten", map = 1420, x = 31.11, y = 66.03, z = 97, f = "e", only = { classes = { "PRIEST" } }, note = "{npc:2123}, the priest trainer in the church" },
@@ -32954,14 +32953,7 @@ do
 						{ t = "kill", quest = 3901, title = "Rattling the Rattlecages", target = "Rattlecage Skeleton", npc = 1890, count = 12, oi = 1, map = 1420, x = 32.98, y = 63, z = 90.2, f = "e", spots = { { x = 33.5, y = 62, z = 87.2, r = 44, n = 7 }, { x = 34.4, y = 64.7, z = 88, r = 15, n = 3 }, { x = 32.2, y = 60.4, z = 74, r = 55, n = 9 } } },
 						{ t = "collect", quest = 376, title = "The Damned", item = 3265, itemName = "Scavenger Paw", count = 6, oi = 1, map = 1420, x = 34.56, y = 62.55, f = "e", spots = { { x = 36.1, y = 62.5, r = 70, n = 5 }, { x = 35.1, y = 65.5, r = 27, n = 2 }, { x = 37.9, y = 62.5, r = 57, n = 3 }, { x = 35.1, y = 57.6, r = 63, n = 8 }, { x = 33.6, y = 67.7, r = 35, n = 3 }, { x = 31.7, y = 59, r = 22, n = 2 }, { x = 30.3, y = 61.9, r = 40, n = 4, alt = true }, { x = 37.3, y = 57.2, r = 47, n = 3, alt = true }, { x = 31.5, y = 56.6, r = 37, n = 2, alt = true }, { x = 29.5, y = 64.8, r = 39, n = 3, alt = true }, { x = 29.2, y = 67.7, r = 20, n = 2, alt = true } }, from = "Young Scavenger", fromKind = "npc", fromAlso = "Ragged Scavenger", fromId = 1508, fromAlsoId = 1509 },
 						{ t = "collect", quest = 376, title = "The Damned", item = 3264, itemName = "Duskbat Wing", count = 6, oi = 2, map = 1420, x = 33.91, y = 61.73, f = "e", spots = { { x = 34.7, y = 61.1, r = 48, n = 4 }, { x = 34.6, y = 57.8, r = 49, n = 6 }, { x = 37, y = 57.7, r = 40, n = 3 }, { x = 36.9, y = 64.4, r = 40, n = 1 }, { x = 34.3, y = 66.7, r = 47, n = 5 }, { x = 35.1, y = 70.4, r = 46, n = 8 }, { x = 32.4, y = 69.5, r = 40, n = 1 }, { x = 29.7, y = 71.4, r = 40, n = 2 }, { x = 28.8, y = 68, r = 47, n = 5 }, { x = 29.9, y = 65.3, r = 40, n = 3 }, { x = 28.1, y = 63.6, r = 40, n = 4 }, { x = 31, y = 58.8, r = 40, n = 2 }, { x = 35.3, y = 63.8, r = 40, n = 2, alt = true }, { x = 37.4, y = 60.8, r = 43, n = 4, alt = true }, { x = 32.3, y = 56.8, r = 44, n = 3, alt = true }, { x = 29.7, y = 62.1, r = 46, n = 4, alt = true }, { x = 30.7, y = 69.3, r = 40, n = 1, alt = true }, { x = 31.7, y = 72.1, r = 40, n = 2, alt = true } }, spread = true, from = "Duskbat", fromKind = "npc", fromAlso = "Mangy Duskbat", fromId = 1512, fromAlsoId = 1513 },
-					},
-				},
-				{
-					title = "Rattlecage skulls",
-					note = "The Rattlecage Skeletons in the ruined houses drop the skulls.",
-					only = { classes = { "WARLOCK" } },
-					goals = {
-						{ t = "collect", quest = 1470, title = "Piercing the Veil", item = 6281, itemName = "Rattlecage Skull", count = 3, oi = 1, map = 1420, x = 33.94, y = 61.85, f = "e", spots = { { x = 33.5, y = 62, r = 44, n = 7 }, { x = 34.4, y = 64.7, r = 15, n = 3 }, { x = 32.2, y = 60.4, r = 55, n = 9 } }, from = "Rattlecage Skeleton", fromKind = "npc", fromId = 1890 },
+						{ t = "collect", quest = 1470, title = "Piercing the Veil", item = 6281, itemName = "Rattlecage Skull", count = 3, oi = 1, map = 1420, x = 33.94, y = 61.85, f = "e", spots = { { x = 33.5, y = 62, r = 44, n = 7 }, { x = 34.4, y = 64.7, r = 15, n = 3 }, { x = 32.2, y = 60.4, r = 55, n = 9 } }, only = { classes = { "WARLOCK" } }, from = "Rattlecage Skeleton", fromKind = "npc", fromId = 1890 },
 					},
 				},
 				{
@@ -32977,9 +32969,9 @@ do
 				{
 					title = "{npc:244808} and {npc:5667}",
 					note = "Paladins: {quest:90902} is done once you have healed five {npc:259377} around the church with {spell:635}.",
-					only = { classes = { "PALADIN", "WARLOCK" } },
 					goals = {
 						{ t = "turnin", quest = 90902, title = "Rediscovering the Light", npc = 244808, npcName = "Aramis Hammerhand", map = 1420, x = 31.04, y = 66.45, f = "e", only = { classes = { "PALADIN" } }, note = "{npc:244808}: {spell:635}" },
+						{ t = "accept", quest = 98389, title = "A Light in the Darkness", npc = 244808, npcName = "Aramis Hammerhand", minLevel = 2, qlvl = 4, pre = { 376 }, preTitles = { [376] = "The Damned" }, map = 1420, x = 31.04, y = 66.45, f = "e" },
 						{ t = "turnin", quest = 1470, title = "Piercing the Veil", npc = 5667, npcName = "Venya Marthand", map = 1420, x = 30.98, y = 66.41, z = 97, f = "e", only = { classes = { "WARLOCK" } }, note = "{npc:5667}: {spell:688}" },
 					},
 				},
