@@ -73,7 +73,7 @@ return {
 	-- {object:3202} Grom'gol · {area:35} Booty Bay
 	["Follow the main road south the length of the jungle, past the {object:3202} turn-off, to {area:35} on the southern cape."] = "Идите по главной дороге на юг через все джунгли, мимо поворота на {object:3202}, до южного мыса: {area:35}.",
 	-- {npc:2859} Gyll
-	["{npc:2859}, on the top floor by the docks"] = "",
+	["{npc:2859}, on the top floor by the docks"] = "{npc:2859} – на верхнем этаже у причалов",
 	-- {npc:2832} Nixxrax Fillamug · {object:56910} The Salty Sailor Tavern
 	["{npc:2832}, in the {object:56910}"] = "{npc:2832} – {object:56910}",
 	-- {npc:2495} Drizzlik
@@ -152,7 +152,6 @@ return {
 	["For Archmage Ansirem in {zone:1416}"] = "Для верховного мага Ансарема (зона {zone:1416})",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Gyll, on the top floor by the docks"] = "Гилл – на верхнем этаже у причалов",
 	-- ["Take the road north; {npc:738} stands on it, the camp sits in the hills to the west."] = "Идите по дороге на север; {npc:738} стоит на ней, лагерь – в холмах к западу.",
 	-- ["{npc:2832}, in the {object:56910}"] = "{npc:2832} – {object:56910}",
 	-- ["{quest:207}: four troll legends"] = "{quest:207}: четыре легенды троллей",

@@ -48,7 +48,7 @@ return {
 
 	-- Step 8: Hammerfall
 	-- {npc:2851} Urda
-	["The orc stronghold at the eastern end of the road. {npc:2851}, the wind rider master, stands by the gate."] = "",
+	["The orc stronghold at the eastern end of the road. {npc:2851}, the wind rider master, stands by the gate."] = "La forteresse orque au bout est de la route. {npc:2851}, la maîtresse des coursiers du vent, se tient près de la porte.",
 
 	-- Step 9: Highland raptors
 	["Highland raptors"] = "Raptors des hautes-terres",
@@ -240,6 +240,5 @@ return {
 	-- ["Ride west along the road; Lotwil's camp sits in the {area:1878} halfway to {area:340}."] = "Chevauchez vers l'ouest sur la route ; le camp de Lotwil se trouve dans la {area:1878}, à mi-chemin de {area:340}.",
 	-- ["The Elder Crag Coyotes and Giant Buzzards roam the basin south of the {area:1878}. Coyotes drop both the jawbones and the fangs; only the buzzards drop wings and gizzards."] = "Les Anciens coyotes des rochers ({npc:2729}) et les Busards géants ({npc:2831}) parcourent le bassin au sud de la {area:1878}. Les coyotes lâchent à la fois les mâchoires et les crocs ; seuls les busards lâchent ailes et gésiers.",
 	-- ["The bigger Rock Elementals stand on the slopes north-west of the {area:1878}; each one drops a slab."] = "Les plus gros Elémentaires de roche ({npc:92}) se tiennent sur les pentes au nord-ouest de la {area:1878} ; chacun lâche une dalle.",
-	-- ["The orc stronghold at the eastern end of the road. Urda, the wind rider master, stands by the gate."] = "La forteresse orque au bout est de la route. Urda, la maîtresse des coursiers du vent, se tient près de la porte.",
 	-- ["The {area:380}"] = "{area:380}",
 }

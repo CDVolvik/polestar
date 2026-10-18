@@ -48,7 +48,7 @@ return {
 
 	-- Step 8: Hammerfall
 	-- {npc:2851} Urda
-	["The orc stronghold at the eastern end of the road. {npc:2851}, the wind rider master, stands by the gate."] = "",
+	["The orc stronghold at the eastern end of the road. {npc:2851}, the wind rider master, stands by the gate."] = "길 동쪽 끝의 오크 요새입니다. 윈드라이더 조련사 {npc:2851}는 정문 옆에 서 있습니다.",
 
 	-- Step 9: Highland raptors
 	["Highland raptors"] = "고원랩터",
@@ -240,6 +240,5 @@ return {
 	-- ["Ride west along the road; Lotwil's camp sits in the {area:1878} halfway to {area:340}."] = "길을 따라 서쪽으로 가세요. 로트윌의 야영지는 {area:340}(으)로 가는 중간쯤, {area:1878}에 있습니다.",
 	-- ["The Elder Crag Coyotes and Giant Buzzards roam the basin south of the {area:1878}. Coyotes drop both the jawbones and the fangs; only the buzzards drop wings and gizzards."] = "덩치큰 바위산코요테와 거대한 대머리수리는 {area:1878} 남쪽 분지를 돌아다닙니다. 코요테는 턱뼈와 송곳니를 모두 떨어뜨리고, 날개와 모래주머니는 대머리수리만 떨어뜨립니다.",
 	-- ["The bigger Rock Elementals stand on the slopes north-west of the {area:1878}; each one drops a slab."] = "더 큰 바위 정령은 {area:1878} 북서쪽 비탈에 서 있습니다. 각각 석판을 떨어뜨립니다.",
-	-- ["The orc stronghold at the eastern end of the road. Urda, the wind rider master, stands by the gate."] = "길 동쪽 끝의 오크 요새입니다. 윈드라이더 조련사 우르다는 정문 옆에 서 있습니다.",
 	-- ["The {area:380}"] = "{area:380}",
 }

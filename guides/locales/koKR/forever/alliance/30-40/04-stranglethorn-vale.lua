@@ -73,7 +73,7 @@ return {
 	-- {object:3202} Grom'gol · {area:35} Booty Bay
 	["Follow the main road south the length of the jungle, past the {object:3202} turn-off, to {area:35} on the southern cape."] = "큰길을 따라 밀림을 끝까지 남쪽으로 가서 {object:3202} 갈림길을 지나 남쪽 곶의 {area:35}에 도착하세요.",
 	-- {npc:2859} Gyll
-	["{npc:2859}, on the top floor by the docks"] = "",
+	["{npc:2859}, on the top floor by the docks"] = "{npc:2859}, 부두 옆 꼭대기 층",
 	-- {npc:2832} Nixxrax Fillamug · {object:56910} The Salty Sailor Tavern
 	["{npc:2832}, in the {object:56910}"] = "{npc:2832}, {object:56910} 안",
 	-- {npc:2495} Drizzlik
@@ -152,7 +152,6 @@ return {
 	["For Archmage Ansirem in {zone:1416}"] = "{zone:1416}의 대마법사 앤자이럼 룬위버에게",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Gyll, on the top floor by the docks"] = "가일, 부두 옆 꼭대기 층",
 	-- ["Take the road north; {npc:738} stands on it, the camp sits in the hills to the west."] = "길을 따라 북쪽으로 가세요. {npc:738}은(는) 길 위에 서 있고, 야영지는 서쪽 언덕에 있습니다.",
 	-- ["{npc:2832}, in the {object:56910}"] = "{npc:2832}, {object:56910} 안",
 	-- ["{quest:207}: four troll legends"] = "{quest:207}: 트롤 전설 4개",

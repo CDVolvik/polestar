@@ -48,7 +48,7 @@ return {
 
 	-- Step 8: Hammerfall
 	-- {npc:2851} Urda
-	["The orc stronghold at the eastern end of the road. {npc:2851}, the wind rider master, stands by the gate."] = "",
+	["The orc stronghold at the eastern end of the road. {npc:2851}, the wind rider master, stands by the gate."] = "La fortaleza orca al final del camino por el este. {npc:2851}, la maestra de jinetes del viento, está junto a la puerta.",
 
 	-- Step 9: Highland raptors
 	["Highland raptors"] = "Raptores de las Tierras Altas",
@@ -241,7 +241,6 @@ return {
 	-- ["Ride west along the road; Lotwil's camp sits in the {area:1878} halfway to {area:340}."] = "Cabalga al oeste por el camino; el campamento de Lotwil está en {area:1878}, a medio camino de {area:340}.",
 	-- ["The Elder Crag Coyotes and Giant Buzzards roam the basin south of the {area:1878}. Coyotes drop both the jawbones and the fangs; only the buzzards drop wings and gizzards."] = "Los Coyotes del risco mayores y las Águilas ratoneras gigantes recorren la cuenca al sur de {area:1878}. Los coyotes sueltan tanto las mandíbulas como los colmillos; solo las águilas ratoneras sueltan alas y mollejas.",
 	-- ["The bigger Rock Elementals stand on the slopes north-west of the {area:1878}; each one drops a slab."] = "Los Elementales de piedra más grandes están en las laderas al noroeste de {area:1878}; cada uno suelta una losa.",
-	-- ["The orc stronghold at the eastern end of the road. Urda, the wind rider master, stands by the gate."] = "La fortaleza orca al final del camino por el este. Urda, la maestra de jinetes del viento, está junto a la puerta.",
 	-- ["The {area:380}"] = "{area:380}",
 	-- ["{npc:6236}: Berserker Stance"] = "{npc:6236}: Actitud rabiosa",
 }

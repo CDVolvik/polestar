@@ -48,7 +48,7 @@ return {
 
 	-- Step 8: Hammerfall
 	-- {npc:2851} Urda
-	["The orc stronghold at the eastern end of the road. {npc:2851}, the wind rider master, stands by the gate."] = "",
+	["The orc stronghold at the eastern end of the road. {npc:2851}, the wind rider master, stands by the gate."] = "道路东端的兽人要塞。双足飞龙管理员{npc:2851}站在大门旁。",
 
 	-- Step 9: Highland raptors
 	["Highland raptors"] = "高地迅猛龙",
@@ -240,6 +240,5 @@ return {
 	-- ["Ride west along the road; Lotwil's camp sits in the {area:1878} halfway to {area:340}."] = "沿道路向西骑行；鲁特维尔的营地在前往{area:340}半途的{area:1878}。",
 	-- ["The Elder Crag Coyotes and Giant Buzzards roam the basin south of the {area:1878}. Coyotes drop both the jawbones and the fangs; only the buzzards drop wings and gizzards."] = "老峭壁山狗和巨型秃鹫在{area:1878}南边的盆地中游荡。山狗掉落颚骨和尖牙；只有秃鹫掉落翅膀和胃。",
 	-- ["The bigger Rock Elementals stand on the slopes north-west of the {area:1878}; each one drops a slab."] = "更大的石元素站在{area:1878}西北方的山坡上；每个都掉落一块石板。",
-	-- ["The orc stronghold at the eastern end of the road. Urda, the wind rider master, stands by the gate."] = "道路东端的兽人要塞。双足飞龙管理员尤尔达站在大门旁。",
 	-- ["The {area:380}"] = "{area:380}",
 }
