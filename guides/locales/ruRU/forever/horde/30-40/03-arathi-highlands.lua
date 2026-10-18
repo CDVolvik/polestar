@@ -47,7 +47,8 @@ return {
 	["The violet shards glow just off the road a short way west of {area:321}."] = "Фиолетовые осколки светятся у дороги, недалеко к западу от места {area:321}.",
 
 	-- Step 8: Hammerfall
-	["The orc stronghold at the eastern end of the road. Urda, the wind rider master, stands by the gate."] = "Крепость орков в восточном конце дороги. Урда, распорядитель полетов, стоит у ворот.",
+	-- {npc:2851} Urda
+	["The orc stronghold at the eastern end of the road. {npc:2851}, the wind rider master, stands by the gate."] = "",
 
 	-- Step 9: Highland raptors
 	["Highland raptors"] = "Ящеры нагорья",
@@ -239,5 +240,6 @@ return {
 	-- ["Ride west along the road; Lotwil's camp sits in the {area:1878} halfway to {area:340}."] = "Езжайте на запад по дороге; лагерь Лотвиля – здесь: {area:1878}, на полпути к месту {area:340}.",
 	-- ["The Elder Crag Coyotes and Giant Buzzards roam the basin south of the {area:1878}. Coyotes drop both the jawbones and the fangs; only the buzzards drop wings and gizzards."] = "Старые скальные койоты и гигантские канюки бродят по низине к югу от места {area:1878}. С койотов падают и челюсти, и клыки; крылья и желудки – только с канюков.",
 	-- ["The bigger Rock Elementals stand on the slopes north-west of the {area:1878}; each one drops a slab."] = "Каменные элементали покрупнее стоят на склонах к северо-западу от места {area:1878}; с каждого падает плита.",
+	-- ["The orc stronghold at the eastern end of the road. Urda, the wind rider master, stands by the gate."] = "Крепость орков в восточном конце дороги. Урда, распорядитель полетов, стоит у ворот.",
 	-- ["The {area:380}"] = "{area:380}",
 }

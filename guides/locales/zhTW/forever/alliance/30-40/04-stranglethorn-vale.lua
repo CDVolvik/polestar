@@ -72,7 +72,8 @@ return {
 	["Down to {area:35}"] = "前往{area:35}",
 	-- {object:3202} Grom'gol · {area:35} Booty Bay
 	["Follow the main road south the length of the jungle, past the {object:3202} turn-off, to {area:35} on the southern cape."] = "沿主要道路向南穿過整片叢林，經過{object:3202}岔路，到達南端海角的{area:35}。",
-	["Gyll, on the top floor by the docks"] = "蓋爾，在碼頭旁的頂樓",
+	-- {npc:2859} Gyll
+	["{npc:2859}, on the top floor by the docks"] = "",
 	-- {npc:2832} Nixxrax Fillamug · {object:56910} The Salty Sailor Tavern
 	["{npc:2832}, in the {object:56910}"] = "{npc:2832}，在{object:56910}",
 	-- {npc:2495} Drizzlik
@@ -151,6 +152,7 @@ return {
 	["For Archmage Ansirem in {zone:1416}"] = "給{zone:1416}的大法師安斯雷姆·魯因維沃爾",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Gyll, on the top floor by the docks"] = "蓋爾，在碼頭旁的頂樓",
 	-- ["Take the road north; {npc:738} stands on it, the camp sits in the hills to the west."] = "沿道路向北；{npc:738}站在路上，營地在西邊的丘陵中。",
 	-- ["{npc:2832}, in the {object:56910}"] = "{npc:2832}，在{object:56910}",
 	-- ["{quest:207}: four troll legends"] = "{quest:207}：四個食人妖傳說",

@@ -47,7 +47,8 @@ return {
 	["The violet shards glow just off the road a short way west of {area:321}."] = "紫色的碎片就在{area:321}西邊不遠處的路旁發光。",
 
 	-- Step 8: Hammerfall
-	["The orc stronghold at the eastern end of the road. Urda, the wind rider master, stands by the gate."] = "位於道路東端的獸人要塞。雙足飛龍管理員尤爾達站在大門旁。",
+	-- {npc:2851} Urda
+	["The orc stronghold at the eastern end of the road. {npc:2851}, the wind rider master, stands by the gate."] = "",
 
 	-- Step 9: Highland raptors
 	["Highland raptors"] = "高地迅猛龍",
@@ -239,5 +240,6 @@ return {
 	-- ["Ride west along the road; Lotwil's camp sits in the {area:1878} halfway to {area:340}."] = "沿著道路向西騎；魯特維爾的營地在前往{area:340}半路上的{area:1878}。",
 	-- ["The Elder Crag Coyotes and Giant Buzzards roam the basin south of the {area:1878}. Coyotes drop both the jawbones and the fangs; only the buzzards drop wings and gizzards."] = "老峭壁山狗和巨型禿鷲在{area:1878}南邊的盆地中遊蕩。山狗會掉落顎骨和尖牙；只有禿鷲會掉落翅膀和砂囊。",
 	-- ["The bigger Rock Elementals stand on the slopes north-west of the {area:1878}; each one drops a slab."] = "較大的石元素站在{area:1878}西北方的山坡上；每一隻都會掉落一塊石板。",
+	-- ["The orc stronghold at the eastern end of the road. Urda, the wind rider master, stands by the gate."] = "位於道路東端的獸人要塞。雙足飛龍管理員尤爾達站在大門旁。",
 	-- ["The {area:380}"] = "{area:380}",
 }

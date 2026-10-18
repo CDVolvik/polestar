@@ -47,7 +47,8 @@ return {
 	["The violet shards glow just off the road a short way west of {area:321}."] = "Die violetten Splitter leuchten gleich neben der Straße, ein kurzes Stück westlich von {area:321}.",
 
 	-- Step 8: Hammerfall
-	["The orc stronghold at the eastern end of the road. Urda, the wind rider master, stands by the gate."] = "Die Orcfestung am östlichen Ende der Straße. Urda, die Windreitermeisterin, steht beim Tor.",
+	-- {npc:2851} Urda
+	["The orc stronghold at the eastern end of the road. {npc:2851}, the wind rider master, stands by the gate."] = "",
 
 	-- Step 9: Highland raptors
 	["Highland raptors"] = "Hochlandraptoren",
@@ -239,5 +240,6 @@ return {
 	-- ["Ride west along the road; Lotwil's camp sits in the {area:1878} halfway to {area:340}."] = "Reite auf der Straße nach Westen; Lotwils Lager liegt in {area:1878} auf halbem Weg nach {area:340}.",
 	-- ["The Elder Crag Coyotes and Giant Buzzards roam the basin south of the {area:1878}. Coyotes drop both the jawbones and the fangs; only the buzzards drop wings and gizzards."] = "Die Alten Klippenkojoten und Riesenbussarde streifen durch das Becken südlich von {area:1878}. Kojoten lassen Kieferknochen und Fangzähne fallen; nur die Bussarde lassen Flügel und Muskelmägen fallen.",
 	-- ["The bigger Rock Elementals stand on the slopes north-west of the {area:1878}; each one drops a slab."] = "Die größeren Felselementare stehen an den Hängen nordwestlich von {area:1878}; jedes lässt eine Steinplatte fallen.",
+	-- ["The orc stronghold at the eastern end of the road. Urda, the wind rider master, stands by the gate."] = "Die Orcfestung am östlichen Ende der Straße. Urda, die Windreitermeisterin, steht beim Tor.",
 	-- ["The {area:380}"] = "{area:380}",
 }
