@@ -1616,6 +1616,7 @@ L["The skin's font"] = "스킨 글꼴"
 L["Skin"] = "스킨"
 L["Polestar's own look (the default), Halo (no frame, a soft dark veil, Fira Sans), Hearth (warm game colours), or the game's own art: WoW Forever, Blizzard and Classic. Style, compact mode and the colours you pick work in each."] = "Polestar 고유의 모습(기본), 후광(테두리 없이 부드러운 어두운 장막, Fira Sans), 화롯가(따뜻한 게임 색), 또는 게임 고유의 아트: WoW Forever, 블리자드, 클래식. 스타일, 간략 모드, 직접 고른 색은 모든 스킨에 적용됩니다."
 L["The skin's arrow"] = "스킨 화살표"
+-- L["Line style"] = ""
 
 -- Rares/Rares.lua
 L["Raid warning"] = "공격대 경보"
@@ -1940,6 +1941,35 @@ L["Spare points go to Divine Strength and Holy's Improved Seals for damage, then
 -- Nav/Handoff.lua
 L["Hand guiding to Shortest Path Forever"] = "Shortest Path Forever에 안내 맡기기"
 L["Shortest Path Forever's arrow, route and journey take you to each goal. Polestar's arrow, route lines, journey steps, travel button, transport alerts, map clicks and /way step aside; the guide window and map pins stay. Off: Polestar guides, and steps aside only while a journey you started in Shortest Path Forever runs."] = "Shortest Path Forever의 화살표, 경로, 여정이 각 목표로 안내합니다. Polestar의 화살표, 경로선, 여정 단계, 이동 버튼, 교통수단 알림, 지도 클릭, /way는 물러나고 가이드 창과 지도 핀은 남습니다. 끄면: Polestar가 안내하며, Shortest Path Forever에서 시작한 여정이 진행되는 동안에만 물러납니다."
+
+-- UI/LineStyle.lua
+-- L["How the route lines are drawn: Polestar's dots, or sparkles that drift along the way to the goal."] = ""
+-- L["Dots"] = ""
+-- L["Sparkle"] = ""
+-- L["Intensity"] = ""
+-- L["How bright each sparkle and its glow are."] = ""
+-- L["Density"] = ""
+-- L["How close together the sparkles sit, the same at any zoom."] = ""
+-- L["Smaller, dimmer, calmer twinkles that drift less; no glow at 100%."] = ""
+-- L["Sparkle size"] = ""
+-- L["Each sparkle's size before subtlety."] = ""
+-- L["Flow toward goal"] = ""
+-- L["How fast the sparkles drift toward the goal; 0 holds them still."] = ""
+-- L["Most sparkles shown"] = ""
+-- L["A ceiling on each map, whatever the density."] = ""
+-- L["Sparkle colour"] = ""
+-- L["Loot gold is the colour of the game's own loot sparkle. Route colours tint each leg as the dots are."] = ""
+-- L["Loot gold"] = ""
+-- L["Arcane blue"] = ""
+-- L["Fel green"] = ""
+-- L["Rose"] = ""
+-- L["Starlight"] = ""
+-- L["Route colours"] = ""
+-- L["Whole route"] = ""
+-- L["Sparkle the legs after this one too, fainter. Off: only the leg you are on."] = ""
+-- L["Subtle"] = ""
+-- L["Dazzling"] = ""
+-- L["Route line style"] = ""
 
 -- No longer in the code (its English changed or it went away): reuse or delete.
 -- L["Shortest Path Forever is guiding. Turn off \"Guide with Shortest Path Forever when it's installed\" (Options, Arrow & routes) to use Polestar's arrow."] = "Shortest Path Forever가 가이드 중입니다. Polestar 화살표를 쓰려면 \"설치 시 Shortest Path Forever로 가이드\"를 끄십시오(설정, 화살표 및 경로)."

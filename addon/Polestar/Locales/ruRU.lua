@@ -1616,6 +1616,7 @@ L["The skin's font"] = "Шрифт оформления"
 L["Skin"] = "Оформление"
 L["Polestar's own look (the default), Halo (no frame, a soft dark veil, Fira Sans), Hearth (warm game colours), or the game's own art: WoW Forever, Blizzard and Classic. Style, compact mode and the colours you pick work in each."] = "Собственный вид Polestar (по умолчанию), Ореол (без рамки, мягкая темная вуаль, Fira Sans), Очаг (теплые цвета игры) или собственная графика игры: WoW Forever, Blizzard и Classic. Стиль, компактный режим и выбранные цвета работают в каждом оформлении."
 L["The skin's arrow"] = "Стрелка оформления"
+-- L["Line style"] = ""
 
 -- Rares/Rares.lua
 L["Raid warning"] = "Предупреждение рейда"
@@ -1940,6 +1941,35 @@ L["Spare points go to Divine Strength and Holy's Improved Seals for damage, then
 -- Nav/Handoff.lua
 L["Hand guiding to Shortest Path Forever"] = "Передать ведение Shortest Path Forever"
 L["Shortest Path Forever's arrow, route and journey take you to each goal. Polestar's arrow, route lines, journey steps, travel button, transport alerts, map clicks and /way step aside; the guide window and map pins stay. Off: Polestar guides, and steps aside only while a journey you started in Shortest Path Forever runs."] = "Стрелка, маршрут и путь Shortest Path Forever ведут к каждой цели. Стрелка Polestar, линии маршрута, шаги пути, кнопка пути, оповещения о транспорте, щелчки по карте и /way отключаются; окно гайда и метки на карте остаются. Выкл.: ведет Polestar и уступает только на время пути, начатого в Shortest Path Forever."
+
+-- UI/LineStyle.lua
+-- L["How the route lines are drawn: Polestar's dots, or sparkles that drift along the way to the goal."] = ""
+-- L["Dots"] = ""
+-- L["Sparkle"] = ""
+-- L["Intensity"] = ""
+-- L["How bright each sparkle and its glow are."] = ""
+-- L["Density"] = ""
+-- L["How close together the sparkles sit, the same at any zoom."] = ""
+-- L["Smaller, dimmer, calmer twinkles that drift less; no glow at 100%."] = ""
+-- L["Sparkle size"] = ""
+-- L["Each sparkle's size before subtlety."] = ""
+-- L["Flow toward goal"] = ""
+-- L["How fast the sparkles drift toward the goal; 0 holds them still."] = ""
+-- L["Most sparkles shown"] = ""
+-- L["A ceiling on each map, whatever the density."] = ""
+-- L["Sparkle colour"] = ""
+-- L["Loot gold is the colour of the game's own loot sparkle. Route colours tint each leg as the dots are."] = ""
+-- L["Loot gold"] = ""
+-- L["Arcane blue"] = ""
+-- L["Fel green"] = ""
+-- L["Rose"] = ""
+-- L["Starlight"] = ""
+-- L["Route colours"] = ""
+-- L["Whole route"] = ""
+-- L["Sparkle the legs after this one too, fainter. Off: only the leg you are on."] = ""
+-- L["Subtle"] = ""
+-- L["Dazzling"] = ""
+-- L["Route line style"] = ""
 
 -- No longer in the code (its English changed or it went away): reuse or delete.
 -- L["Shortest Path Forever is guiding. Turn off \"Guide with Shortest Path Forever when it's installed\" (Options, Arrow & routes) to use Polestar's arrow."] = "Ведет Shortest Path Forever. Отключите «Вести через Shortest Path Forever, если он установлен» (Настройки, Стрелка и маршруты), чтобы использовать стрелку Polestar."

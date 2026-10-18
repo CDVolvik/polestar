@@ -1400,6 +1400,7 @@ L["The skin's font"] = "La fuente del tema"
 L["Skin"] = "Tema"
 L["Polestar's own look (the default), Halo (no frame, a soft dark veil, Fira Sans), Hearth (warm game colours), or the game's own art: WoW Forever, Blizzard and Classic. Style, compact mode and the colours you pick work in each."] = "El aspecto propio de Polestar (predeterminado), Halo (sin marco, un velo oscuro suave, Fira Sans), Hogar (los colores cálidos del juego) o el arte propio del juego: WoW Forever, Blizzard y Classic. El estilo, el modo compacto y los colores que elijas funcionan en cada uno."
 L["The skin's arrow"] = "La flecha del tema"
+-- L["Line style"] = ""
 
 -- UI/Packs.lua
 L["turned off in the AddOns list"] = "desactivado en la lista de AddOns"
@@ -1939,6 +1940,35 @@ L["Spare points go to Divine Strength and Holy's Improved Seals for damage, then
 -- Nav/Handoff.lua
 L["Hand guiding to Shortest Path Forever"] = "Ceder la guía a Shortest Path Forever"
 L["Shortest Path Forever's arrow, route and journey take you to each goal. Polestar's arrow, route lines, journey steps, travel button, transport alerts, map clicks and /way step aside; the guide window and map pins stay. Off: Polestar guides, and steps aside only while a journey you started in Shortest Path Forever runs."] = "La flecha, la ruta y el trayecto de Shortest Path Forever te llevan a cada objetivo. La flecha de Polestar, las líneas de ruta, los pasos del trayecto, el botón de viaje, los avisos de transporte, los clics en el mapa y /way se apartan; la ventana de la guía y los marcadores del mapa se quedan. Desactivado: guía Polestar, y solo se aparta mientras dure un trayecto que iniciaste en Shortest Path Forever."
+
+-- UI/LineStyle.lua
+-- L["How the route lines are drawn: Polestar's dots, or sparkles that drift along the way to the goal."] = ""
+-- L["Dots"] = ""
+-- L["Sparkle"] = ""
+-- L["Intensity"] = ""
+-- L["How bright each sparkle and its glow are."] = ""
+-- L["Density"] = ""
+-- L["How close together the sparkles sit, the same at any zoom."] = ""
+-- L["Smaller, dimmer, calmer twinkles that drift less; no glow at 100%."] = ""
+-- L["Sparkle size"] = ""
+-- L["Each sparkle's size before subtlety."] = ""
+-- L["Flow toward goal"] = ""
+-- L["How fast the sparkles drift toward the goal; 0 holds them still."] = ""
+-- L["Most sparkles shown"] = ""
+-- L["A ceiling on each map, whatever the density."] = ""
+-- L["Sparkle colour"] = ""
+-- L["Loot gold is the colour of the game's own loot sparkle. Route colours tint each leg as the dots are."] = ""
+-- L["Loot gold"] = ""
+-- L["Arcane blue"] = ""
+-- L["Fel green"] = ""
+-- L["Rose"] = ""
+-- L["Starlight"] = ""
+-- L["Route colours"] = ""
+-- L["Whole route"] = ""
+-- L["Sparkle the legs after this one too, fainter. Off: only the leg you are on."] = ""
+-- L["Subtle"] = ""
+-- L["Dazzling"] = ""
+-- L["Route line style"] = ""
 
 -- No longer in the code (its English changed or it went away): reuse or delete.
 -- L["The arrow's target, the stops of its travel route, the step's other goals and the areas their mobs and objects spawn in."] = "El objetivo de la flecha, las paradas de su ruta de viaje, los demás objetivos del paso y las zonas donde aparecen sus monstruos y objetos."
