@@ -33217,6 +33217,7 @@ do
 					title = "{area:159}",
 					note = "Follow the road south back to {area:159}.",
 					goals = {
+						{ t = "buy", npc = 2118, npcName = "Abigail Shiel", item = 2320, itemName = "Coarse Thread", map = 1420, x = 61.03, y = 52.37, z = 34.9, f = "e", note = "{item:2320} from {npc:2118}, for Gretchen" },
 						{ t = "turnin", quest = 375, title = "The Chill of Death", npc = 1521, npcName = "Gretchen Dedmar", map = 1420, x = 61.89, y = 52.73, z = 41.3, f = "e" },
 						{ t = "turnin", quest = 358, title = "Graverobbers", npc = 1499, npcName = "Magistrate Sevren", map = 1420, x = 61.26, y = 50.84, z = 38.8, f = "e" },
 						{ t = "accept", quest = 359, title = "Forsaken Duties", npc = 1499, npcName = "Magistrate Sevren", minLevel = 6, qlvl = 9, pre = { 358 }, preTitles = { [358] = "Graverobbers" }, map = 1420, x = 61.26, y = 50.84, z = 38.8, f = "e" },

@@ -179,6 +179,14 @@ test(`${MULGORE}: A Task Unfinished at Antur Fallow starts the cougar hunt, with
 	assert.ok(hunt < at(list, 'turnin 750', is('turnin', 750)), 'the hunt ends at Grull');
 });
 
+test(`${TIRISFAL}: Onrevax's report (#365): the Coarse Thread for The Chill of Death is asked for again at the turn-in, from Abigail Shiel`, { skip }, () => {
+	const list = goals(TIRISFAL);
+	const hand = at(list, 'turnin 375 (The Chill of Death)', is('turnin', 375));
+	const thread = list.findIndex(({ goal, s }) => s === list[hand].s && goal.t === 'buy' && goal.item === 2320);
+	assert.ok(thread >= 0 && thread < hand, 'the turn-in step buys the thread before Gretchen');
+	assert.equal(list[thread].goal.npc, 2118, 'from Abigail Shiel, Trade Supplies in Brill');
+});
+
 // --- Bandarion Keep (Mike_, 0.2.3): Hilda the Breaker and Ephram Barbaro offer their quests to Paladins only.
 
 test(`${TIRISFAL}: Mike_'s report: only Paladins are sent to Hilda the Breaker and Ephram Barbaro at Bandarion Keep`, { skip }, () => {

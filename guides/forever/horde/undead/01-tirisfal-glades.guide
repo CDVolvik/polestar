@@ -344,6 +344,7 @@ step Vile Fin murlocs
 
 step Brill
   tip Follow the road south back to Brill.
+  buy 2320 npc 2118                   -- Coarse Thread from Abigail Shiel, for Gretchen
   turnin 375                          -- Gretchen Dedmar
   turnin 358                          -- Magistrate Sevren
   accept 359
