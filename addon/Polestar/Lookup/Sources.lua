@@ -2,7 +2,8 @@
 -- an NPC, quest, dungeon or treasure is), ranked for this character.
 -- Contract: docs/ARCHITECTURE.md, "Lookup".
 --
---   Lookup.Sources(kind, id) -> list, entity
+--   Lookup.Sources(kind, id[, direct]) -> list, entity
+--     direct: true = straight-line travel only, never the route planner (tooltips)
 --     kind: "item" | "mount" | "pet" | "recipe" | "tabard" (item IDs), "npc" | "rare",
 --           "quest", "instance" (key), "object" | "treasure", "zone" (no rows)
 --     list[i] = { type, src, label, detail, zone, map, x, y, f, travel, effort, cost,
@@ -130,22 +131,27 @@ local zoneName = ns.Compat.MapName
 
 -- Travel seconds between two points, nil when either cannot be placed (or
 -- the core's travel estimate is absent).
-local function travel(from, to)
-	if not (from and to and ns.TravelCost) then return nil end
+local function travel(from, to, direct)
+	if not (from and to) then return nil end
+	if direct then
+		if not ns.DirectTravelCost then return nil end
+		return ns.DirectTravelCost(from, to)
+	end
+	if not ns.TravelCost then return nil end
 	return ns.TravelCost(from, to)
 end
 Lookup.Travel = travel
 
 -- The spawn the player reaches soonest -> spawn, travel | nil. Without a
 -- player position (instances, loading) the first spawn, travel nil.
-local function nearest(spawns, from)
+local function nearest(spawns, from, direct)
 	if type(spawns) ~= "table" or #spawns == 0 then return nil end
 	if not from then return spawns[1], nil end
 	local best, bestT
 	for i = 1, #spawns do
 		local s = spawns[i]
 		if s.map and s.x and s.y then
-			local t = travel(from, s)
+			local t = travel(from, s, direct)
 			if t and (not bestT or t < bestT) then best, bestT = s, t end
 		end
 	end
@@ -154,19 +160,19 @@ local function nearest(spawns, from)
 end
 Lookup.Nearest = nearest
 
-local function npcSpawn(npcId, from)
+local function npcSpawn(npcId, from, direct)
 	local C = Codex()
 	local npc = npcId and C.Npc(npcId)
 	if not npc then return nil end
-	local s, t = nearest(npc.spawns, from)
+	local s, t = nearest(npc.spawns, from, direct)
 	return npc, s, t
 end
 
-local function objectSpawn(objectId, from)
+local function objectSpawn(objectId, from, direct)
 	local C = Codex()
 	local obj = objectId and C.Object(objectId)
 	if not obj then return nil end
-	local s, t = nearest(obj.spawns, from)
+	local s, t = nearest(obj.spawns, from, direct)
 	return obj, s, t
 end
 
@@ -180,19 +186,19 @@ local function closer(best, c)
 	return best
 end
 
-local function questEnd(ends, from, p)
+local function questEnd(ends, from, p, direct)
 	if type(ends) ~= "table" then return nil end
 	p = p or playerInfo()
 	local best, other
 	for _, id in ipairs(ends.npc or {}) do
-		local npc, s, t = npcSpawn(id, from)
+		local npc, s, t = npcSpawn(id, from, direct)
 		if npc and s then
 			local c = { npc = npc.id, name = npc.name, spawn = s, travel = t }
 			if sideOK(npc.faction, p) then best = closer(best, c) else c.faction = npc.faction; other = closer(other, c) end
 		end
 	end
 	for _, id in ipairs(ends.object or {}) do
-		local obj, s, t = objectSpawn(id, from)
+		local obj, s, t = objectSpawn(id, from, direct)
 		if obj and s then best = closer(best, { object = obj.id, name = obj.name, spawn = s, travel = t }) end
 	end
 	if best then return best end
@@ -313,9 +319,9 @@ end
 
 local builders = {}
 
-builders.vendor = function(src, p, from)
+builders.vendor = function(src, p, from, direct)
 	local r = newRow(src, "vendor")
-	local npc, s, t = npcSpawn(src.npc, from)
+	local npc, s, t = npcSpawn(src.npc, from, direct)
 	r.label = npc and npc.name or L["Vendor"]
 	place(r, s, t)
 	r.detail = detail(L["Vendor"], r.zone)
@@ -327,9 +333,9 @@ builders.vendor = function(src, p, from)
 end
 
 -- An NPC hands it out (casts the spell that creates it: Duke Hydraxis's Aqual Quintessence).
-builders.gift = function(src, p, from)
+builders.gift = function(src, p, from, direct)
 	local r = newRow(src, "gift")
-	local npc, s, t = npcSpawn(src.npc, from)
+	local npc, s, t = npcSpawn(src.npc, from, direct)
 	r.label = npc and npc.name or L["Given by an NPC"]
 	place(r, s, t)
 	r.detail = detail(L["Given by an NPC"], r.zone)
@@ -338,7 +344,7 @@ builders.gift = function(src, p, from)
 	return r
 end
 
-builders.drop = function(src, p, from)
+builders.drop = function(src, p, from, direct)
 	local C = Codex()
 	local r = newRow(src, "drop")
 	local npc = src.npc and C.Npc(src.npc)
@@ -352,7 +358,7 @@ builders.drop = function(src, p, from)
 	local kills = 100 / chance
 	if inst then
 		if inst.entrance then
-			local t = travel(from, inst.entrance)
+			local t = travel(from, inst.entrance, direct)
 			place(r, inst.entrance, t)
 		end
 		r.instance = inst.key
@@ -363,7 +369,7 @@ builders.drop = function(src, p, from)
 		r.guideable = npc ~= nil
 	else
 		local s, t
-		if npc then s, t = nearest(npc.spawns, from) end
+		if npc then s, t = nearest(npc.spawns, from, direct) end
 		place(r, s, t)
 		r.detail = detail(L["Drop"], r.zone)
 		local per = killSeconds(npc and npc.level, p.level, npc and npc.elite)
@@ -377,9 +383,9 @@ builders.drop = function(src, p, from)
 	return r
 end
 
-builders.object = function(src, p, from)
+builders.object = function(src, p, from, direct)
 	local r = newRow(src, "object")
-	local obj, s, t = objectSpawn(src.object, from)
+	local obj, s, t = objectSpawn(src.object, from, direct)
 	r.label = obj and obj.name or L["Object"]
 	place(r, s, t)
 	r.detail = detail(obj and obj.treasure and L["Treasure"] or L["Object"], r.zone)
@@ -392,7 +398,7 @@ builders.object = function(src, p, from)
 	return r
 end
 
-builders.quest = function(src, p, from)
+builders.quest = function(src, p, from, direct)
 	local C = Codex()
 	local r = newRow(src, "quest")
 	local q = src.quest and C.Quest(src.quest)
@@ -401,8 +407,8 @@ builders.quest = function(src, p, from)
 		r.detail = L["Quest"]
 		return r
 	end
-	local giver = questEnd(q.start, from, p)
-	local finish = questEnd(q["end"], nil, p)
+	local giver = questEnd(q.start, from, p, direct)
+	local finish = questEnd(q["end"], nil, p, direct)
 	if giver then place(r, giver.spawn, giver.travel) end
 	r.detail = detail(src.choice and L["Quest reward choice"] or L["Quest reward"], r.zone)
 	r.effort = questEffort(q, p)
@@ -424,7 +430,7 @@ local function primaryCount()
 	return n
 end
 
-builders.craft = function(src, p, from)
+builders.craft = function(src, p, from, direct)
 	local r = newRow(src, "craft")
 	local line = src.skillLine
 	local name = Lookup.ProfessionName(line)
@@ -450,7 +456,7 @@ builders.craft = function(src, p, from)
 	if line and C.WithRole then
 		local best, bestT, bestNpc
 		for _, id in ipairs(C.WithRole("trainer:" .. line) or {}) do
-			local npc, s, t = npcSpawn(id, from)
+			local npc, s, t = npcSpawn(id, from, direct)
 			if npc and s and sideOK(npc.faction, p) and (not best or (t and (not bestT or t < bestT))) then
 				best, bestT, bestNpc = s, t, npc
 			end
@@ -465,7 +471,7 @@ builders.craft = function(src, p, from)
 	return r
 end
 
-builders.rep = function(src, p, from)
+builders.rep = function(src, p, from, direct)
 	local C = Codex()
 	local r = newRow(src, "rep")
 	local f = src.faction and C.Faction(src.faction)
@@ -473,7 +479,7 @@ builders.rep = function(src, p, from)
 	r.standing = src.standing
 	r.detail = detail(L["Reputation"], src.standing and (ns.StandingName(src.standing) or "") or nil)
 	local npc, s, t
-	if src.npc then npc, s, t = npcSpawn(src.npc, from) end
+	if src.npc then npc, s, t = npcSpawn(src.npc, from, direct) end
 	place(r, s, t)
 	local code = f and (f.side == "Alliance" and "A" or f.side == "Horde" and "H" or nil)
 	if code and not sideOK(code, p) then block(r, "faction", sideText(code)) end
@@ -489,10 +495,10 @@ builders.rep = function(src, p, from)
 	return r
 end
 
-builders.pvp = function(src, p, from)
+builders.pvp = function(src, p, from, direct)
 	local r = newRow(src, "pvp")
 	local npc, s, t
-	if src.npc then npc, s, t = npcSpawn(src.npc, from) end
+	if src.npc then npc, s, t = npcSpawn(src.npc, from, direct) end
 	r.label = npc and npc.name or L["PvP"]
 	place(r, s, t)
 	r.detail = detail(src.rank and (L["PvP rank"] .. " " .. src.rank) or L["PvP"], r.zone)
@@ -592,7 +598,7 @@ local function purchaseGates(item, r)
 	end
 end
 
-local function itemSources(id, p, from)
+local function itemSources(id, p, from, direct)
 	local C = Codex()
 	local item = C.Item(id)
 	if not item then return {}, nil end
@@ -600,7 +606,7 @@ local function itemSources(id, p, from)
 	for _, src in ipairs(item.sources or {}) do
 		local build = builders[src.type]
 		if build then
-			local r = build(src, p, from)
+			local r = build(src, p, from, direct)
 			if r then list[#list + 1] = r end
 		end
 	end
@@ -623,12 +629,12 @@ local function itemSources(id, p, from)
 	return list, item
 end
 
-local function spawnRows(entity, kind, p, from, levelGate)
+local function spawnRows(entity, kind, p, from, levelGate, direct)
 	local list = {}
 	for _, s in ipairs(entity.spawns or {}) do
 		local r = newRow(nil, kind)
 		r.label = entity.name
-		place(r, s, travel(from, s))
+		place(r, s, travel(from, s, direct))
 		r.detail = r.zone
 		if entity.level then r.detail = detail(r.zone or "", L["Level"] .. " " .. entity.level) end
 		if levelGate and entity.level and entity.level - p.level > MOB_LEVEL_GAP then
@@ -641,11 +647,11 @@ local function spawnRows(entity, kind, p, from, levelGate)
 	return list
 end
 
-local function questRows(q, p, from)
+local function questRows(q, p, from, direct)
 	local list = {}
 	local why, text = questBlock(q, p)
-	local giver = questEnd(q.start, from, p)
-	local finish = questEnd(q["end"], from, p)
+	local giver = questEnd(q.start, from, p, direct)
+	local finish = questEnd(q["end"], from, p, direct)
 	if giver then
 		local r = newRow(nil, "start")
 		r.label = giver.name
@@ -672,37 +678,37 @@ local function questRows(q, p, from)
 	return list
 end
 
-local cache = {} -- "kind:id" -> { at, level, list, entity }
+local cache = {} -- "kind:id:direct|route" -> { at, level, list, entity }
 
 local function now() return GetTime and GetTime() or 0 end
 
-function Lookup.Sources(kind, id)
+function Lookup.Sources(kind, id, direct)
 	local C = Codex()
 	if not (C and kind and id ~= nil) then return {}, nil end
 	if not C.IsLoaded() and not C.Load() then return {}, nil end
 	local p = playerInfo()
-	local key = kind .. ":" .. tostring(id)
+	local key = kind .. ":" .. tostring(id) .. (direct and ":direct" or ":route")
 	local hit = cache[key]
 	if hit and now() - hit.at < CACHE_SECONDS and hit.level == p.level then return hit.list, hit.entity end
 	local from = ns.PlayerPoint()
 	local list, entity = {}, nil
 	if ITEM_KINDS[kind] then
-		list, entity = itemSources(tonumber(id), p, from)
+		list, entity = itemSources(tonumber(id), p, from, direct)
 	elseif kind == "npc" or kind == "rare" then
 		entity = C.Npc(id)
-		if entity then list = spawnRows(entity, "spawn", p, from, true) end
+		if entity then list = spawnRows(entity, "spawn", p, from, true, direct) end
 	elseif kind == "object" or kind == "treasure" then
 		entity = C.Object(id)
-		if entity then list = spawnRows(entity, "spawn", p, from, false) end
+		if entity then list = spawnRows(entity, "spawn", p, from, false, direct) end
 	elseif kind == "quest" then
 		entity = C.Quest(id)
-		if entity then list = questRows(entity, p, from) end
+		if entity then list = questRows(entity, p, from, direct) end
 	elseif kind == "instance" then
 		entity = C.Instance(id)
 		if entity and entity.entrance then
 			local r = newRow(nil, "entrance")
 			r.label = entity.name
-			place(r, entity.entrance, travel(from, entity.entrance))
+			place(r, entity.entrance, travel(from, entity.entrance, direct))
 			r.detail = detail(L["Entrance"], r.zone)
 			local need = entity.levels and entity.levels[1]
 			if need and need > p.level then block(r, "level", levelText(need)) end
