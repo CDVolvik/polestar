@@ -30735,57 +30735,6 @@ do
 					},
 				},
 				{
-					title = "{npc:3293}",
-					note = "Follow the road north toward {zone:1454}. {npc:3293} camps beside it; the stolen sacks lie along the road south of him.",
-					goals = {
-						{ t = "accept", quest = 834, title = "Winds in the Desert", npc = 3293, npcName = "Rezlak", minLevel = 7, qlvl = 9, map = 1411, x = 46.37, y = 22.94, z = 14.5, f = "e" },
-						{ t = "collect", quest = 834, title = "Winds in the Desert", item = 4918, itemName = "Sack of Supplies", count = 5, oi = 1, map = 1411, x = 49.1, y = 22.59, f = "e", spots = { { x = 49.7, y = 23.3, r = 50, n = 4 }, { x = 50.3, y = 26.5, r = 36, n = 4 }, { x = 47.5, y = 30.9, r = 53, n = 3 }, { x = 48.4, y = 33.5, r = 58, n = 5 }, { x = 51.7, y = 27.8, r = 15, n = 1, alt = true }, { x = 49.6, y = 32.1, r = 15, n = 1, alt = true } }, from = "Stolen Supply Sack", fromKind = "object", fromId = 3290 },
-						{ t = "turnin", quest = 834, title = "Winds in the Desert", npc = 3293, npcName = "Rezlak", map = 1411, x = 46.37, y = 22.94, z = 14.5, f = "e" },
-						{ t = "accept", quest = 835, title = "Securing the Lines", npc = 3293, npcName = "Rezlak", minLevel = 7, qlvl = 11, pre = { 834 }, preTitles = { [834] = "Winds in the Desert" }, map = 1411, x = 46.37, y = 22.94, z = 14.5, f = "e" },
-					},
-				},
-				{
-					title = "{area:370}",
-					note = "Savages and Storm Witches nest in {area:370}, east of {npc:3293}. A Storm Witch drops the {item:277661}.",
-					goals = {
-						{ t = "kill", quest = 835, title = "Securing the Lines", target = "Dustwind Savage", npc = 3117, count = 12, oi = 1, map = 1411, x = 51.43, y = 20.86, z = 13.8, f = "e", spots = { { x = 52.1, y = 21, z = 13.9, r = 37, n = 3 }, { x = 52.6, y = 24.2, z = 23.8, r = 44, n = 4 }, { x = 53.9, y = 22.7, z = 16.3, r = 32, n = 3 }, { x = 54, y = 25.3, z = 15, r = 37, n = 3 }, { x = 54, y = 27.6, z = 11.2, r = 15, n = 2 } } },
-						{ t = "kill", quest = 835, title = "Securing the Lines", target = "Dustwind Storm Witch", npc = 3118, count = 8, oi = 2, map = 1411, x = 51.34, y = 20.19, z = 16.5, f = "e", spots = { { x = 51.4, y = 19.6, r = 23, n = 5 }, { x = 51.6, y = 22.8, r = 54, n = 6 }, { x = 53.7, y = 22, r = 27, n = 2 }, { x = 53.2, y = 24, z = 23.6, r = 15, n = 3 } } },
-						{ t = "collect", item = 277661, itemName = "Dull Storm Orb", map = 1411, x = 51.34, y = 20.19, f = "e", spots = { { x = 51.5, y = 20.2, r = 66, n = 15 }, { x = 51.6, y = 23.6, r = 36, n = 8 }, { x = 53.7, y = 22, r = 27, n = 2 }, { x = 53.2, y = 24, r = 15, n = 3 } } },
-						{ t = "accept", quest = 97281, title = "A Simmering Storm", item = 277661, itemName = "Dull Storm Orb", minLevel = 7, qlvl = 11 },
-					},
-				},
-				{
-					title = "{npc:3293}",
-					goals = {
-						{ t = "turnin", quest = 835, title = "Securing the Lines", npc = 3293, npcName = "Rezlak", map = 1411, x = 46.37, y = 22.94, z = 14.5, f = "e" },
-						{ t = "turnin", quest = 97281, title = "A Simmering Storm", npc = 3293, npcName = "Rezlak", map = 1411, x = 46.37, y = 22.94, z = 14.5, f = "e" },
-						{ t = "accept", quest = 97282, title = "Stormy Potential", npc = 3293, npcName = "Rezlak", minLevel = 7, qlvl = 11, map = 1411, x = 46.37, y = 22.94, z = 14.5, f = "e" },
-					},
-				},
-				{
-					title = "Thunder lizards",
-					note = "Thunder Lizards and Lightning Hides graze on {area:369}, just west and south-west of {npc:3293}.",
-					goals = {
-						{ t = "collect", quest = 97282, title = "Stormy Potential", item = 277665, itemName = "Charged Thunder Lizard Organ", count = 5, oi = 1, map = 1411, x = 43.63, y = 24.14, f = "e", spots = { { x = 42.8, y = 24.2, r = 44, n = 5 }, { x = 40.4, y = 24.1, r = 54, n = 4 }, { x = 39.2, y = 25.6, r = 36, n = 3 }, { x = 40.3, y = 29, r = 48, n = 5 }, { x = 39.1, y = 30, r = 53, n = 5 } } },
-					},
-				},
-				{
-					title = "{npc:3293}",
-					goals = {
-						{ t = "turnin", quest = 97282, title = "Stormy Potential", npc = 3293, npcName = "Rezlak", map = 1411, x = 46.37, y = 22.94, z = 14.5, f = "e" },
-					},
-				},
-				{
-					title = "{npc:3193}",
-					note = "Misha's hut stands south of the lizards. The crocolisks along the {area:814} to the west carry {item:4891}.",
-					goals = {
-						{ t = "accept", quest = 816, title = "Lost But Not Forgotten", npc = 3193, npcName = "Misha Tor'kren", minLevel = 8, qlvl = 11, map = 1411, x = 43.1, y = 30.24, z = 18.8, f = "e" },
-						{ t = "collect", quest = 816, title = "Lost But Not Forgotten", item = 4891, itemName = "Kron's Amulet", oi = 1, map = 1411, x = 35.24, y = 30.11, f = "e", spots = { { x = 35.3, y = 29.2, r = 43, n = 2 }, { x = 35.3, y = 25.4, r = 43, n = 3 }, { x = 36.7, y = 22.2, r = 43, n = 2 }, { x = 36.9, y = 16.5, r = 43, n = 2 }, { x = 35.1, y = 39.2, r = 43, n = 1 }, { x = 34.4, y = 44.2, r = 43, n = 1 }, { x = 34.2, y = 47.1, r = 43, n = 2 }, { x = 34.6, y = 53.2, r = 43, n = 4 }, { x = 35.4, y = 56.7, r = 43, n = 2 }, { x = 36.6, y = 61.7, r = 43, n = 2 }, { x = 37.5, y = 67.1, r = 43, n = 2 } }, spread = true },
-						{ t = "turnin", quest = 816, title = "Lost But Not Forgotten", npc = 3193, npcName = "Misha Tor'kren", map = 1411, x = 43.1, y = 30.24, z = 18.8, f = "e" },
-						{ t = "hearth", location = "Razor Hill", area = 362 },
-					},
-				},
-				{
 					title = "The wreckage",
 					note = "The gnomish toolboxes lie in the wreckage along the shore east and south-east of {area:362}. Follow the shore south to Sen'jin.",
 					goals = {
@@ -30891,10 +30840,60 @@ do
 					},
 				},
 				{
+					title = "{npc:3293}",
+					note = "Follow the road north toward {zone:1454}. {npc:3293} camps beside it; the stolen sacks lie along the road south of him.",
+					goals = {
+						{ t = "accept", quest = 834, title = "Winds in the Desert", npc = 3293, npcName = "Rezlak", minLevel = 7, qlvl = 9, map = 1411, x = 46.37, y = 22.94, z = 14.5, f = "e" },
+						{ t = "collect", quest = 834, title = "Winds in the Desert", item = 4918, itemName = "Sack of Supplies", count = 5, oi = 1, map = 1411, x = 49.1, y = 22.59, f = "e", spots = { { x = 49.7, y = 23.3, r = 50, n = 4 }, { x = 50.3, y = 26.5, r = 36, n = 4 }, { x = 47.5, y = 30.9, r = 53, n = 3 }, { x = 48.4, y = 33.5, r = 58, n = 5 }, { x = 51.7, y = 27.8, r = 15, n = 1, alt = true }, { x = 49.6, y = 32.1, r = 15, n = 1, alt = true } }, from = "Stolen Supply Sack", fromKind = "object", fromId = 3290 },
+						{ t = "turnin", quest = 834, title = "Winds in the Desert", npc = 3293, npcName = "Rezlak", map = 1411, x = 46.37, y = 22.94, z = 14.5, f = "e" },
+						{ t = "accept", quest = 835, title = "Securing the Lines", npc = 3293, npcName = "Rezlak", minLevel = 7, qlvl = 11, pre = { 834 }, preTitles = { [834] = "Winds in the Desert" }, map = 1411, x = 46.37, y = 22.94, z = 14.5, f = "e" },
+					},
+				},
+				{
+					title = "{area:370}",
+					note = "Savages and Storm Witches nest in {area:370}, east of {npc:3293}. A Storm Witch drops the {item:277661}.",
+					goals = {
+						{ t = "kill", quest = 835, title = "Securing the Lines", target = "Dustwind Savage", npc = 3117, count = 12, oi = 1, map = 1411, x = 51.43, y = 20.86, z = 13.8, f = "e", spots = { { x = 52.1, y = 21, z = 13.9, r = 37, n = 3 }, { x = 52.6, y = 24.2, z = 23.8, r = 44, n = 4 }, { x = 53.9, y = 22.7, z = 16.3, r = 32, n = 3 }, { x = 54, y = 25.3, z = 15, r = 37, n = 3 }, { x = 54, y = 27.6, z = 11.2, r = 15, n = 2 } } },
+						{ t = "kill", quest = 835, title = "Securing the Lines", target = "Dustwind Storm Witch", npc = 3118, count = 8, oi = 2, map = 1411, x = 51.34, y = 20.19, z = 16.5, f = "e", spots = { { x = 51.4, y = 19.6, r = 23, n = 5 }, { x = 51.6, y = 22.8, r = 54, n = 6 }, { x = 53.7, y = 22, r = 27, n = 2 }, { x = 53.2, y = 24, z = 23.6, r = 15, n = 3 } } },
+						{ t = "collect", item = 277661, itemName = "Dull Storm Orb", map = 1411, x = 51.34, y = 20.19, f = "e", spots = { { x = 51.5, y = 20.2, r = 66, n = 15 }, { x = 51.6, y = 23.6, r = 36, n = 8 }, { x = 53.7, y = 22, r = 27, n = 2 }, { x = 53.2, y = 24, r = 15, n = 3 } } },
+						{ t = "accept", quest = 97281, title = "A Simmering Storm", item = 277661, itemName = "Dull Storm Orb", minLevel = 7, qlvl = 11 },
+					},
+				},
+				{
+					title = "{npc:3293}",
+					goals = {
+						{ t = "turnin", quest = 835, title = "Securing the Lines", npc = 3293, npcName = "Rezlak", map = 1411, x = 46.37, y = 22.94, z = 14.5, f = "e" },
+						{ t = "turnin", quest = 97281, title = "A Simmering Storm", npc = 3293, npcName = "Rezlak", map = 1411, x = 46.37, y = 22.94, z = 14.5, f = "e" },
+						{ t = "accept", quest = 97282, title = "Stormy Potential", npc = 3293, npcName = "Rezlak", minLevel = 7, qlvl = 11, map = 1411, x = 46.37, y = 22.94, z = 14.5, f = "e" },
+					},
+				},
+				{
+					title = "Thunder lizards",
+					note = "Thunder Lizards and Lightning Hides graze on {area:369}, just west and south-west of {npc:3293}.",
+					goals = {
+						{ t = "collect", quest = 97282, title = "Stormy Potential", item = 277665, itemName = "Charged Thunder Lizard Organ", count = 5, oi = 1, map = 1411, x = 43.63, y = 24.14, f = "e", spots = { { x = 42.8, y = 24.2, r = 44, n = 5 }, { x = 40.4, y = 24.1, r = 54, n = 4 }, { x = 39.2, y = 25.6, r = 36, n = 3 }, { x = 40.3, y = 29, r = 48, n = 5 }, { x = 39.1, y = 30, r = 53, n = 5 } } },
+					},
+				},
+				{
+					title = "{npc:3293}",
+					goals = {
+						{ t = "turnin", quest = 97282, title = "Stormy Potential", npc = 3293, npcName = "Rezlak", map = 1411, x = 46.37, y = 22.94, z = 14.5, f = "e" },
+					},
+				},
+				{
+					title = "{npc:3193}",
+					note = "Misha's hut stands south of the lizards. The crocolisks along the {area:814} to the west carry {item:4891}.",
+					goals = {
+						{ t = "accept", quest = 816, title = "Lost But Not Forgotten", npc = 3193, npcName = "Misha Tor'kren", minLevel = 8, qlvl = 11, map = 1411, x = 43.1, y = 30.24, z = 18.8, f = "e" },
+						{ t = "collect", quest = 816, title = "Lost But Not Forgotten", item = 4891, itemName = "Kron's Amulet", oi = 1, map = 1411, x = 35.24, y = 30.11, f = "e", spots = { { x = 35.3, y = 29.2, r = 43, n = 2 }, { x = 35.3, y = 25.4, r = 43, n = 3 }, { x = 36.7, y = 22.2, r = 43, n = 2 }, { x = 36.9, y = 16.5, r = 43, n = 2 }, { x = 35.1, y = 39.2, r = 43, n = 1 }, { x = 34.4, y = 44.2, r = 43, n = 1 }, { x = 34.2, y = 47.1, r = 43, n = 2 }, { x = 34.6, y = 53.2, r = 43, n = 4 }, { x = 35.4, y = 56.7, r = 43, n = 2 }, { x = 36.6, y = 61.7, r = 43, n = 2 }, { x = 37.5, y = 67.1, r = 43, n = 2 } }, spread = true },
+						{ t = "turnin", quest = 816, title = "Lost But Not Forgotten", npc = 3193, npcName = "Misha Tor'kren", map = 1411, x = 43.1, y = 30.24, z = 18.8, f = "e" },
+					},
+				},
+				{
 					title = "{npc:3203}",
 					note = "Fizzle holds the Burning Blade camp on {area:369}, north-west of {area:362}. Hunters: tame a {npc:3099} with the {item:15908} on the way.",
 					goals = {
-						{ t = "kill", quest = 6062, title = "Taming the Beast", target = "Dire Mottled Boar", npc = 3099, count = 1, oi = 1, map = 1411, x = 53.43, y = 46.16, z = 14.7, f = "e", spots = { { x = 52.6, y = 46.1, r = 50, n = 2 }, { x = 51.6, y = 55.6, r = 76, n = 6 }, { x = 53.9, y = 62.6, z = 37.3, r = 50, n = 1 }, { x = 54.1, y = 68.8, r = 70, n = 3 }, { x = 51.8, y = 78.1, z = 22.7, r = 50, n = 1 }, { x = 41.8, y = 50.4, z = 68, r = 61, n = 3 }, { x = 45, y = 43.2, z = 35.3, r = 70, n = 4 }, { x = 46, y = 34.9, z = 22, r = 50, n = 1 }, { x = 41.7, y = 32.4, r = 68, n = 3 }, { x = 38.8, y = 36.8, r = 50, n = 3 }, { x = 53.6, y = 31.6, r = 50, n = 4 }, { x = 58.4, y = 41.6, z = 19.1, r = 50, n = 1 }, { x = 55.4, y = 44, z = 18, r = 50, n = 1, alt = true }, { x = 52.3, y = 49.6, r = 103, n = 6, alt = true }, { x = 57.6, y = 45.6, r = 50, n = 2, alt = true }, { x = 54.2, y = 53.1, z = 22.8, r = 50, n = 1, alt = true }, { x = 55.6, y = 39.8, z = 20.6, r = 68, n = 6, alt = true }, { x = 52.3, y = 37.2, r = 52, n = 2, alt = true }, { x = 47.2, y = 44.6, r = 74, n = 7, alt = true }, { x = 48.2, y = 40.2, z = 51.3, r = 50, n = 1, alt = true }, { x = 54.2, y = 35.9, z = 33.2, r = 75, n = 4, alt = true }, { x = 56.2, y = 36, r = 50, n = 2, alt = true }, { x = 55, y = 57.1, z = 27.1, r = 68, n = 5, alt = true }, { x = 49.5, y = 36.1, r = 67, n = 3, alt = true }, { x = 45.7, y = 48.4, r = 50, n = 2, alt = true }, { x = 51.2, y = 34, r = 50, n = 3, alt = true }, { x = 55.4, y = 32.8, z = 23.8, r = 50, n = 1, alt = true }, { x = 52.6, y = 59.8, r = 74, n = 5, alt = true }, { x = 45.9, y = 38.2, z = 36.3, r = 82, n = 4, alt = true }, { x = 42.4, y = 45.4, r = 89, n = 9, alt = true }, { x = 44.1, y = 34.3, r = 50, n = 2, alt = true }, { x = 51.9, y = 64.6, r = 91, n = 7, alt = true }, { x = 40.7, y = 40.7, z = 33.3, r = 50, n = 1, alt = true }, { x = 41.1, y = 36.8, z = 24.8, r = 50, n = 1, alt = true }, { x = 39.5, y = 47.2, r = 92, n = 5, alt = true }, { x = 50.5, y = 73.2, r = 66, n = 4, alt = true } }, spread = true, only = { classes = { "HUNTER" } }, note = "Tame it with the {item:15908}" },
+						{ t = "kill", quest = 6062, title = "Taming the Beast", target = "Dire Mottled Boar", npc = 3099, count = 1, oi = 1, map = 1411, x = 41.99, y = 31.52, z = 16.4, f = "e", spots = { { x = 41.7, y = 32.4, r = 68, n = 3 }, { x = 46, y = 34.9, z = 22, r = 50, n = 1 }, { x = 48.2, y = 40.2, z = 51.3, r = 50, n = 1 }, { x = 55.6, y = 39.8, z = 20.6, r = 68, n = 6 }, { x = 57.6, y = 45.6, r = 50, n = 2 }, { x = 52.3, y = 49.6, r = 103, n = 6 }, { x = 52.6, y = 59.8, r = 74, n = 5 }, { x = 54.1, y = 68.8, r = 70, n = 3 }, { x = 51.8, y = 78.1, z = 22.7, r = 50, n = 1 }, { x = 41.8, y = 50.4, z = 68, r = 61, n = 3 }, { x = 40.7, y = 40.7, z = 33.3, r = 50, n = 1 }, { x = 53.6, y = 31.6, r = 50, n = 4 }, { x = 44.1, y = 34.3, r = 50, n = 2, alt = true }, { x = 41.1, y = 36.8, z = 24.8, r = 50, n = 1, alt = true }, { x = 38.8, y = 36.8, r = 50, n = 3, alt = true }, { x = 45.9, y = 38.2, z = 36.3, r = 82, n = 4, alt = true }, { x = 49.5, y = 36.1, r = 67, n = 3, alt = true }, { x = 45, y = 43.2, z = 35.3, r = 70, n = 4, alt = true }, { x = 42.4, y = 45.4, r = 89, n = 9, alt = true }, { x = 51.2, y = 34, r = 50, n = 3, alt = true }, { x = 47.2, y = 44.6, r = 74, n = 7, alt = true }, { x = 39.5, y = 47.2, r = 92, n = 5, alt = true }, { x = 52.3, y = 37.2, r = 52, n = 2, alt = true }, { x = 45.7, y = 48.4, r = 50, n = 2, alt = true }, { x = 54.2, y = 35.9, z = 33.2, r = 75, n = 4, alt = true }, { x = 55.4, y = 32.8, z = 23.8, r = 50, n = 1, alt = true }, { x = 52.6, y = 46.1, r = 50, n = 2, alt = true }, { x = 56.2, y = 36, r = 50, n = 2, alt = true }, { x = 55.4, y = 44, z = 18, r = 50, n = 1, alt = true }, { x = 58.4, y = 41.6, z = 19.1, r = 50, n = 1, alt = true }, { x = 51.6, y = 55.6, r = 76, n = 6, alt = true }, { x = 54.2, y = 53.1, z = 22.8, r = 50, n = 1, alt = true }, { x = 55, y = 57.1, z = 27.1, r = 68, n = 5, alt = true }, { x = 53.9, y = 62.6, z = 37.3, r = 50, n = 1, alt = true }, { x = 51.9, y = 64.6, r = 91, n = 7, alt = true }, { x = 50.5, y = 73.2, r = 66, n = 4, alt = true } }, spread = true, only = { classes = { "HUNTER" } }, note = "Tame it with the {item:15908}" },
 						{ t = "collect", quest = 806, title = "Dark Storms", item = 4869, itemName = "Fizzle's Claw", oi = 1, map = 1411, x = 42.12, y = 26.66, f = "e", from = "Fizzle Darkstorm", fromKind = "npc", fromId = 3203 },
 					},
 				},

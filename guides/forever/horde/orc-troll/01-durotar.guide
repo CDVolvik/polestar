@@ -14,9 +14,9 @@ next forever/horde/orc-troll/02-the-barrens
 # against 3.27 h for the one this guide was built from, so the order stays.
 #
 # Flow: Valley of Trials -> Sen'jin Village (report) -> Razor Hill (bind) ->
-# Razormane Grounds -> Tiragarde Keep -> Razor Hill -> Rezlak, Drygulch Ravine
-# and Thunder Ridge -> hearth -> the wreckage and the coast -> Sen'jin Village ->
-# Echo Isles and the south-east shore -> Kolkar Crag -> Razor Hill -> Fizzle
+# Razormane Grounds -> Tiragarde Keep -> Razor Hill -> the wreckage and the
+# coast -> Sen'jin Village -> Echo Isles and the south-east shore -> Kolkar
+# Crag -> Razor Hill -> Rezlak, Drygulch Ravine, Thunder Ridge and Fizzle
 # Darkstorm -> Razor Hill -> Heglan's shore, the naga coast, Margoz and Skull
 # Rock -> Razor Hill -> west over the Southfury River to Far Watch Post and the
 # Crossroads (flight path, bind). The Barrens guide starts at the Crossroads.
@@ -36,10 +36,15 @@ next forever/horde/orc-troll/02-the-barrens
 #   which does not count the second walk through the cave.
 # - Legging It (96821) is taken at Sen'jin on the first visit: its spiders sit
 #   on the road north to Razor Hill, where Gar'Thok takes it.
-# - Rezlak's second pair (A Simmering Storm 97281, Stormy Potential 97282) and
-#   Lost But Not Forgotten (816) are done on the first Thunder Ridge visit at
-#   about 8.5 instead of a second trip there at 11: the orb drops from the
-#   Storm Witches you already kill, and the lizards and Misha are next door.
+# - Rezlak and Thunder Ridge (834, 835, 97281, 97282, 816) come after the
+#   south loop, on the way to Fizzle Darkstorm (806) on the same ridge, at
+#   about 10.3-11.2 instead of 8.4-9.6: Securing the Lines (835) is a level 11
+#   quest against level 9-10 mobs, and it left the south's level 8 quests for
+#   level 11 (#352). 3-7 min faster to 20 under the simulator for every Orc
+#   class, and the hearth after Misha is no longer needed. Rezlak's second pair
+#   (97281, 97282) and Lost But Not Forgotten (816) stay on the same visit: the
+#   orb drops from the Storm Witches you already kill, and the lizards and
+#   Misha are next door.
 # - A Missing Hand / Threat from Below (99048, 99049) and Conscript of the
 #   Horde (840) are taken at Razor Hill at 10.5, when Orgnil and Takrin
 #   first offer them; the naga coast is done on the way to Margoz.
@@ -318,41 +323,6 @@ step Razor Hill
   turnin 791                          -- Furl Scornbrow
   train class
 
-# ---------------------------------------------------------------- Thunder Ridge
-
-step Rezlak
-  tip Follow the road north toward Orgrimmar. Rezlak camps beside it; the stolen sacks lie along the road south of him.
-  accept 834                          -- Rezlak
-  collect 4918 quest 834.1
-  turnin 834                          -- Rezlak
-  accept 835
-
-step Drygulch Ravine
-  tip Savages and Storm Witches nest in Drygulch Ravine, east of Rezlak. A Storm Witch drops the Dull Storm Orb.
-  kill 3117 quest 835.1
-  kill 3118 quest 835.2
-  collect 277661 "Dull Storm Orb"
-  accept 97281
-
-step Rezlak
-  turnin 835
-  turnin 97281
-  accept 97282
-
-step Thunder lizards
-  tip Thunder Lizards and Lightning Hides graze on Thunder Ridge, just west and south-west of Rezlak.
-  collect 277665 quest 97282.1
-
-step Rezlak
-  turnin 97282
-
-step Misha Tor'kren
-  tip Misha's hut stands south of the lizards. The crocolisks along the Southfury River to the west carry Kron's Amulet.
-  accept 816
-  collect 4891 quest 816.1
-  turnin 816
-  hearth "Razor Hill"
-
 # ---------------------------------------------------------------- The coast and Sen'jin
 
 step The wreckage
@@ -431,6 +401,40 @@ step Razor Hill
   accept 6062 only Hunter             -- Thotar
   accept 1506 only Warlock            -- Ophek, by the inn
   accept 5654 only Troll,Priest       -- Tai'jin, for Ur'kyo in Orgrimmar: keep it
+
+# ---------------------------------------------------------------- Thunder Ridge
+
+step Rezlak
+  tip Follow the road north toward Orgrimmar. Rezlak camps beside it; the stolen sacks lie along the road south of him.
+  accept 834                          -- Rezlak
+  collect 4918 quest 834.1
+  turnin 834                          -- Rezlak
+  accept 835
+
+step Drygulch Ravine
+  tip Savages and Storm Witches nest in Drygulch Ravine, east of Rezlak. A Storm Witch drops the Dull Storm Orb.
+  kill 3117 quest 835.1
+  kill 3118 quest 835.2
+  collect 277661 "Dull Storm Orb"
+  accept 97281
+
+step Rezlak
+  turnin 835
+  turnin 97281
+  accept 97282
+
+step Thunder lizards
+  tip Thunder Lizards and Lightning Hides graze on Thunder Ridge, just west and south-west of Rezlak.
+  collect 277665 quest 97282.1
+
+step Rezlak
+  turnin 97282
+
+step Misha Tor'kren
+  tip Misha's hut stands south of the lizards. The crocolisks along the Southfury River to the west carry Kron's Amulet.
+  accept 816
+  collect 4891 quest 816.1
+  turnin 816
 
 step Fizzle Darkstorm
   tip Fizzle holds the Burning Blade camp on Thunder Ridge, north-west of Razor Hill. Hunters: tame a Dire Mottled Boar with the Taming Rod on the way.
