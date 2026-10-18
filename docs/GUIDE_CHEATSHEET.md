@@ -43,6 +43,7 @@ Before the first `step`. `guide`, `title`, `levels` and `zone` are required.
 | `tip <text>` | A note for the whole step, shown in the guide window | `tip Pull one kobold at a time.` |
 | `zone <Name>` / `zone map <uiMapID>` | Inside a step: the zone for coordinates from here on, also for the steps after it (after a step with `only` that sets one, name the zone again) | `zone Elwynn Forest` |
 | `only <condition>, ...` | Inside a step: the step is only for matching characters | `only Hunter` |
+| `when <predicate>` | Inside a step: the step is only for characters in that state when the route gets there (see Conditions checked during play) | `when level<6` |
 | `note <text>` | A line of information; never holds the player up | `note The camp is busy at night.` |
 | `level <N>` | Reach level N, grinding if need be | `level 2` |
 | `# <text>` | A note for you and other authors; players never see it | `# check the patrol route` |
@@ -135,6 +136,23 @@ is a Dwarf who is a Warrior or a Paladin.
 | `!<Class>` | Every class but this one | `only !Hunter` |
 | `Human` `Dwarf` `Gnome` `NightElf` `Orc` `Troll` `Tauren` `Undead` (or `Scourge`) `Skyborne` | Races; Skyborne plays on both sides | `only Dwarf,Gnome` |
 | `Alliance` `Horde` | Factions | `only Alliance,Mage` |
+
+## Conditions checked during play
+
+One predicate per `when` line; a step with several needs all of them. `!`
+turns any of them around but `level`. Once the route has passed the step,
+the outcome stays.
+
+| Line | The step applies while | Example |
+|---|---|---|
+| `when level<N` (`<=`, `>`, `>=`) | the character's level compares so | `when level>=10` |
+| `when onquest <quest>, ...` | any of the quests is in the log | `when onquest 783` |
+| `when complete <quest>` | the quest is ready to turn in | `when complete 7` |
+| `when turnedin <quest>` | the quest is handed in | `when !turnedin 9201` |
+| `when available <quest>` | the quest can be taken now | `when available 9200` |
+| `when has <item> [xN]` | the bags hold N or more | `when !has 159 x5` |
+| `when zone "<Name>"` / `when subzone "<Name>"` | the player is there | `when subzone "Goldshire"` |
+| `when bound "<Location>"` | the hearthstone is bound there | `when !bound "Goldshire"` |
 
 ## Route choices and optional steps
 

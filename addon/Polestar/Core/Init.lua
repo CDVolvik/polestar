@@ -436,6 +436,8 @@ function ns.CharState()
 	if s.schema == nil then s.schema = 1 end
 	if type(s.manual) ~= "table" then s.manual = {} end
 	if type(s.skipped) ~= "table" then s.skipped = {} end
+	-- Per guide, per step: whether its `when` held when the route passed it (Engine.lua, Own.latchWhen).
+	if type(s.when) ~= "table" then s.when = {} end
 	if type(s.flags) ~= "table" then s.flags = {} end
 	return s
 end

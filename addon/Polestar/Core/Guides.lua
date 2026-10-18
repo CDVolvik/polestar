@@ -195,6 +195,36 @@ local function checkOnly(only)
 	return true
 end
 
+-- A step's `when` (format 4): predicates, each { k, neg?, ... } by kind
+-- (docs/PACK_FORMAT.md, "Format 4"); Engine.lua (Own.whenFails) reads them.
+local WHEN_OPS = { ["<"] = true, ["<="] = true, [">"] = true, [">="] = true }
+local WHEN_QUEST = { complete = true, turnedin = true, available = true }
+local WHEN_PLACE = { zone = true, subzone = true, bound = true }
+local function checkWhen(list)
+	if list == nil then return true end
+	if type(list) ~= "table" or #list == 0 then return false end
+	for i = 1, #list do
+		local p = list[i]
+		if type(p) ~= "table" then return false end
+		local k = p.k
+		if k == "level" then
+			if not (WHEN_OPS[p.op] and isNum(p.n)) then return false end
+		elseif k == "onquest" then
+			if type(p.q) ~= "table" or #p.q == 0 then return false end
+			for j = 1, #p.q do
+				if not isNum(p.q[j]) then return false end
+			end
+		elseif WHEN_QUEST[k] then
+			if not isNum(p.q) then return false end
+		elseif k == "has" then
+			if not isNum(p.item) then return false end
+		elseif not (WHEN_PLACE[k] and isStr(p.name)) then
+			return false
+		end
+	end
+	return true
+end
+
 local function checkGoal(goal)
 	if type(goal) ~= "table" then return "not a table" end
 	local rules = REQUIRED[goal.t]
@@ -331,6 +361,7 @@ local function validate(def)
 		if type(step) ~= "table" then return ("step %d is not a table"):format(s) end
 		if type(step.goals) ~= "table" or #step.goals == 0 then return ("step %d has no goals"):format(s) end
 		if not checkOnly(step.only) then return ("step %d: bad only"):format(s) end
+		if not checkWhen(step.when) then return ("step %d: bad when"):format(s) end
 		for g, goal in ipairs(step.goals) do
 			local err = checkGoal(goal)
 			if err then return ("step %d goal %d: %s"):format(s, g, err) end
@@ -348,7 +379,7 @@ Guides.Validate = validate
 ---------------------------------------------------------------------------
 
 -- Every format Polestar has shipped (docs/PACK_FORMAT.md, "Versioning").
-Guides.FORMATS = { [1] = true, [2] = true, [3] = true }
+Guides.FORMATS = { [1] = true, [2] = true, [3] = true, [4] = true }
 Guides.RESERVED = { guides = true, forever = true, lookup = true, draft = true, polestar = true }
 local OFFICIAL_ADDON = "Polestar_Guides"
 local REQUIRED_META = { "addon", "title", "author", "version", "license" }

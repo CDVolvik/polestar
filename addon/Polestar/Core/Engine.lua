@@ -77,6 +77,11 @@ local arrived = setmetatable({}, { __mode = "k" })
 
 local function Compat() return ns.Compat end
 
+-- The player's own word: goal skips, the current goal, header arrival, the
+-- saved view, state carried over pack updates. One table (Lua 5.1 caps a
+-- chunk at 200 locals), which also holds the Engine's other private helpers.
+local Own = {}
+
 ---------------------------------------------------------------------------
 -- Live state helpers
 ---------------------------------------------------------------------------
@@ -86,8 +91,10 @@ local function refreshPlayer()
 	if levelSeen > (player.level or 0) then player.level = levelSeen end
 end
 
+-- A step is for this character (`only`) and, with `when`, its predicates
+-- hold (Own.whenHolds: as stored once the route passed the step, else live).
 local function stepApplies(step)
-	return Guides.Matches(step.only, player)
+	return Guides.Matches(step.only, player) and (step.when == nil or Own.whenHolds(step))
 end
 
 local function questDone(q)
@@ -252,7 +259,7 @@ local function orphaned(goal)
 	local manual = ns.CharState().manual[guide.id]
 	for _, a in ipairs(l.accepts[q] or NONE) do
 		if a.s <= s and not a.goal.optional and not (skipped and skipped[a.s]) and not (manual and manual[a.key])
-			and Guides.Matches(a.step.only, player) and Guides.Matches(a.goal.only, player) and greyNeed(a.goal) ~= false then
+			and stepApplies(a.step) and Guides.Matches(a.goal.only, player) and greyNeed(a.goal) ~= false then
 			return false
 		end
 	end
@@ -278,11 +285,6 @@ local function goalApplies(goal)
 	end
 	return greyNeed(goal) ~= false and not orphaned(goal)
 end
-
--- The player's own word: goal skips, the current goal, header arrival, the
--- saved view, state carried over pack updates. One table (Lua 5.1 caps a
--- chunk at 200 locals), which also holds the Engine's other private helpers.
-local Own = {}
 
 -- Quests found unavailable at their giver this session (questID ->
 -- { reason, accept }): the giver's window opened without offering them. Such a
@@ -355,6 +357,119 @@ end
 
 local function same(a, b)
 	return a ~= nil and b ~= nil and a:lower() == b:lower()
+end
+
+-- Conditions checked during play (`when` on a step, format 4;
+-- docs/GUIDE_FORMAT.md, "Conditions checked during play"). Each predicate
+-- holds or not on the live state; a step applies while all of its hold. Once
+-- the route moves past a step (latchPassed), whether they held is stored in
+-- CharState().when[guideId][step] (Own.latchWhen) and read from there on,
+-- so a step passed because its condition failed never comes back when the
+-- condition changes later (money spent, an item used up, a zone left), and a
+-- step that applied stays applied.
+
+-- Quest `p.q` can be taken now: not in the log or done, the level reached,
+-- its prerequisites done (missingPre, as an accept's) and none of the quests
+-- that close it taken or done.
+function Own.availableNow(p)
+	local C, q = Compat(), p.q
+	if C.IsOnQuest(q) or questDone(q) then return false end
+	if p.minLevel and (player.level or 1) < p.minLevel then return false end
+	if missingPre(p) then return false end
+	for _, by in ipairs(type(p.closedBy) == "table" and p.closedBy or NONE) do
+		if C.IsOnQuest(by) or questDone(by) then return false end
+	end
+	return true
+end
+
+-- A place predicate's text (zone, subzone or bind location) reads as its
+-- area's name in the client's language, or as the name the guide wrote.
+function Own.samePlace(text, p)
+	local C = Compat()
+	local area = p.area and C.GetAreaName and C.GetAreaName(p.area)
+	return same(text, area) or same(text, p.name)
+end
+
+function Own.predicateHolds(p)
+	local C, k, ok = Compat(), p.k, false
+	if k == "level" then
+		local level, n, op = player.level or 1, p.n, p.op
+		return (op == "<" and level < n) or (op == "<=" and level <= n) or (op == ">" and level > n) or (op == ">=" and level >= n)
+	elseif k == "onquest" then
+		for _, q in ipairs(p.q) do
+			if C.IsOnQuest(q) then
+				ok = true
+				break
+			end
+		end
+	elseif k == "complete" then
+		ok = C.IsQuestReadyForTurnIn(p.q)
+	elseif k == "turnedin" then
+		ok = questDone(p.q) and true or false
+	elseif k == "available" then
+		ok = Own.availableNow(p)
+	elseif k == "has" then
+		ok = (C.GetItemCount(p.item) or 0) >= (p.n or 1)
+	elseif k == "zone" or k == "subzone" then
+		local zone, sub = C.GetZoneText()
+		ok = Own.samePlace(k == "zone" and zone or sub, p)
+	elseif k == "bound" then
+		ok = Own.samePlace(C.GetBindLocation(), p)
+	end
+	if p.neg then return not ok end
+	return ok
+end
+
+-- The first predicate of a step's `when` that does not hold now, or nil.
+function Own.whenFails(step)
+	for _, p in ipairs(step.when or NONE) do
+		if not Own.predicateHolds(p) then return p end
+	end
+	return nil
+end
+
+-- The loaded guide's step numbers by step table, built once per guide.
+Own.stepNumbers = setmetatable({}, { __mode = "k" })
+function Own.stepNumber(step)
+	if not guide then return nil end
+	local map = Own.stepNumbers[guide]
+	if not map then
+		map = {}
+		for s, st in ipairs(guide.steps) do map[st] = s end
+		Own.stepNumbers[guide] = map
+	end
+	return map[step]
+end
+
+function Own.whenHolds(step)
+	local s = Own.stepNumber(step)
+	local stored = s and ns.CharState().when[guide.id]
+	if stored and stored[s] ~= nil then return stored[s] end
+	return Own.whenFails(step) == nil
+end
+
+-- Store whether step s's `when` holds, once the route has moved past it
+-- (latchPassed). A step for other characters (`only`) stores nothing.
+function Own.latchWhen(s)
+	local step = guide.steps[s]
+	if not (step and step.when) or not Guides.Matches(step.only, player) then return end
+	local all = ns.CharState().when
+	local stored = all[guide.id]
+	if stored and stored[s] ~= nil then return end
+	if not stored then
+		stored = {}
+		all[guide.id] = stored
+	end
+	stored[s] = Own.whenFails(step) == nil
+end
+
+-- What keeps step s off for this character by its `when` (the step view's
+-- `unmet`): the predicate that fails now, `true` when the stored outcome
+-- does, nil when its `when` holds or it has none.
+function Own.unmet(s)
+	local step = guide.steps[s]
+	if not (step.when and Guides.Matches(step.only, player)) or Own.whenHolds(step) then return nil end
+	return Own.whenFails(step) or true
 end
 
 -- The player stands in a hearth's or flight's place: the zone or subzone
@@ -1386,11 +1501,12 @@ local function computeCurrent()
 end
 
 -- Store the live-done latchable goals of steps from..to (steps the route has
--- just moved past).
+-- just moved past), and whether their `when` held (Own.latchWhen).
 local function latchPassed(from, to)
 	local steps = guide.steps
 	for s = from, to do
 		local step = steps[s]
+		Own.latchWhen(s)
 		if stepApplies(step) then
 			for g, goal in ipairs(step.goals) do
 				if latchable(goal) and goalApplies(goal) and not checked(s, g) and goalDone(s, g, goal) then
@@ -2115,8 +2231,9 @@ function Own.matchSteps(old, new)
 	return map
 end
 
--- Move guide `id`'s check-offs ("s:g"), skips (s, "s:g") and saved view to
--- the new step numbers; entries of steps not kept are dropped.
+-- Move guide `id`'s check-offs ("s:g"), skips (s, "s:g"), stored `when`
+-- outcomes (s) and saved view to the new step numbers; entries of steps not
+-- kept are dropped.
 function Own.remap(id, map)
 	local s = ns.CharState()
 	local function moved(k)
@@ -2125,7 +2242,7 @@ function Own.remap(id, map)
 		local j = a and map[tonumber(a)]
 		return j and (j .. ":" .. b) or nil
 	end
-	for _, field in ipairs({ "manual", "skipped" }) do
+	for _, field in ipairs({ "manual", "skipped", "when" }) do
 		local old = s[field][id]
 		if type(old) == "table" then
 			local out = {}
@@ -3270,7 +3387,7 @@ function Engine.GetStepView(i)
 		index = i, title = step.title, note = step.note, status = status, goals = goals,
 		groups = outGroups, focus = focus,
 		current = status == "current" and (Own.currentGoal(i, groups, focus)) or nil,
-		skipped = isSkipped(i), live = computed,
+		skipped = isSkipped(i), live = computed, unmet = Own.unmet(i),
 	}
 end
 
@@ -3509,6 +3626,7 @@ function Engine.ResetProgress()
 	local state = ns.CharState()
 	state.manual[guide.id] = nil
 	state.skipped[guide.id] = nil
+	state.when[guide.id] = nil
 	pin, pinDone, aim, passedUpTo, placing = nil, nil, nil, 0, GetTime() + PLACE_SECONDS
 	evaluate()
 end
