@@ -663,12 +663,60 @@ class Evaluator {
 		};
 	}
 
+	// Whether a guide step's `when` predicates (tools/lib/dsl/when.js) hold
+	// now: level and quest state as the replay has them; a quest the world
+	// lacks is neither in the log nor done. Items, zones and the bind point
+	// are not modelled: those predicates hold.
+	whenHolds(preds) {
+		const r = this.run;
+		const qi = (id) => {
+			const i = r.qIndex.get(Number(id));
+			return i == null ? -1 : i;
+		};
+		const done = (id) => {
+			const i = qi(id);
+			return i >= 0 && this.done[i] === 1;
+		};
+		const active = (id) => {
+			const i = qi(id);
+			return i >= 0 && this.active[i] === 1;
+		};
+		for (const p of preds) {
+			let ok = true;
+			if (p.k === 'level') {
+				const L = this.level;
+				ok = p.op === '<' ? L < p.n : p.op === '<=' ? L <= p.n : p.op === '>' ? L > p.n : L >= p.n;
+			} else if (p.k === 'onquest') ok = p.q.some(active);
+			else if (p.k === 'turnedin') ok = done(p.q);
+			else if (p.k === 'complete') {
+				const i = qi(p.q);
+				ok = i >= 0 && this.active[i] === 1;
+				for (let t = ok ? r.qTask0[i] : 0; ok && t < r.qTask1[i]; t++) if (!this.taskDone[t]) ok = false;
+			} else if (p.k === 'available') {
+				ok = !done(p.q) && !active(p.q) && this.level >= (p.minLevel || 0)
+					&& (!p.pre || p.pre.some(done)) && (!p.preAll || p.preAll.every(done))
+					&& !(p.closedBy || []).some((c) => done(c) || active(c));
+			} else continue;
+			if (p.neg) ok = !ok;
+			if (!ok) return false;
+		}
+		return true;
+	}
+
 	// A compiled sequence: Int32Array quadruples [kind, q, task, pt] (K_GRIND: q = level, task = xp into level).
 	// opts: honorCheckpoints (grind to `level` steps); grinds out to 60 after the last step.
+	// A step with `when` (seq.cond, seq.conds) is decided once, at its first
+	// event, and left out whole when its predicates do not hold there.
 	evaluateSequence(seq, opts = {}) {
 		this.reset();
 		const n = seq.kind.length;
+		const decided = new Map();
 		for (let i = 0; i < n && !this.finished; i++) {
+			const c = seq.cond ? seq.cond[i] : -1;
+			if (c >= 0) {
+				if (!decided.has(c)) decided.set(c, this.whenHolds(seq.conds[c]));
+				if (!decided.get(c)) continue;
+			}
 			const k = seq.kind[i];
 			if (k === K_GRIND) {
 				if (opts.honorCheckpoints) this.grindTo(seq.q[i], seq.task[i]);

@@ -338,6 +338,12 @@ Only the fitted parameter values are kept (data/sim/params.json).
   take in the Gadgetzan square, and class guides the trip to another city's
   trainer (Rohan for Cenarion Aid was scored by moving him in the data).
   About 0.1 h to 60 for most starts and up to 0.9 h for Horde Warriors.
+- **Steps with `when` are scored where the replay reaches them.** A
+  step's `when` (GUIDE_FORMAT.md, "Conditions checked during play") is
+  decided once, at its first event, on the replay's level and quest state
+  (in the log, ready to turn in, handed in, available), and the step is
+  left out whole when it does not hold, as Polestar decides it in the game.
+  Items, zones and the bind point are not modelled: those predicates hold.
 - A pack (`sim compare --pack <dir>`, or the pack folder as the one
   argument): its chain, after our chain up to the pack's first level when it
   starts above 1, under the same model
