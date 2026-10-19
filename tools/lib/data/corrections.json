@@ -662,9 +662,12 @@
 						"x": 24.67,
 						"y": 59.39
 					}
+				],
+				"pre": [
+					376
 				]
 			},
-			"note": "A Light in the Darkness (Tirisfal): Wowhead Forever https://www.wowhead.com/forever/quest=98389 lists \"Webbed Forsaken freed\" (6), credited by npc=271961 Webbed Forsaken, which is friendly to the Horde and has 8 map points in Night's Web Hollow (https://www.wowhead.com/forever/npc=271961), checked 2026-10-13. Encoded as an event and not a kill: freeing a friendly NPC is an interaction, not a fight. The position is the Webbed Forsaken spawn nearest the centroid of its 24 spawns in data/forever (Tirisfal 24.67,59.39, Era frame = Forever frame). QuestieDB 1.0.5 has no objectives."
+			"note": "A Light in the Darkness (Tirisfal): Wowhead Forever https://www.wowhead.com/forever/quest=98389 lists \"Webbed Forsaken freed\" (6), credited by npc=271961 Webbed Forsaken, which is friendly to the Horde and has 8 map points in Night's Web Hollow (https://www.wowhead.com/forever/npc=271961), checked 2026-10-13. Encoded as an event and not a kill: freeing a friendly NPC is an interaction, not a fight. The position is the Webbed Forsaken spawn nearest the centroid of its 24 spawns in data/forever (Tirisfal 24.67,59.39, Era frame = Forever frame). QuestieDB 1.0.5 has no objectives. Aramis Hammerhand offers it only after The Damned 376 is handed in: a Scourge Warlock was not offered it at level 2, nor at level 3 before the first turn-ins, nor after Rattling the Rattlecages 3901 was turned in, and was offered it once The Damned was handed in (checked in game 2026-10-18). The Wowhead page lists no prerequisite and no Series."
 		},
 		"98418": {
 			"set": {
