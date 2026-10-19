@@ -15,7 +15,7 @@ The handbook is [PACKS.md](PACKS.md).
 **On this page:** [`pack.json`](#packjson) ·
 [The addon](#the-addon) · [TOC fields](#toc-fields) ·
 [Rules Polestar enforces](#rules-polestar-enforces) ·
-[Format 3](#format-3) · [Versioning](#versioning)
+[Format 3](#format-3) · [Import strings](#import-strings) · [Versioning](#versioning)
 
 A community addon is an addon for World of Warcraft: Forever that depends
 on Polestar and registers guides with it. It is built from a pack: a folder
@@ -167,12 +167,17 @@ into a new temporary folder, so neither touches an existing pack folder.
 before a pack is built (`tests/packs-parity.test.js` holds the two together).
 
 1. **Ids.** Pack ids match `^[a-z0-9][a-z0-9-]{1,31}$`; `guides`, `forever`,
-   `lookup`, `draft` and `polestar` are reserved. Every guide id starts with
-   `<pack id>/`, except in Polestar's own packs: `guides` (the addon
-   `Polestar_Guides`) owns `forever/` and `draft/`, and Polestar's internal
-   `lookup` pack owns `lookup/`.
+   `lookup`, `draft`, `polestar` and `imported` are reserved. Every guide id
+   starts with `<pack id>/`, except in Polestar's own packs: `guides` (the
+   addon `Polestar_Guides`) owns `forever/` and `draft/`, Polestar's internal
+   `lookup` pack owns `lookup/`, and `imported` (the guides pasted as
+   import strings, below) owns every `<author>/` that is a valid pack id
+   nobody reserves.
 2. **No overrides.** A guide id outside its pack's prefix is refused. A pack
-   may register one of its own ids again, which replaces that guide.
+   may register one of its own ids again, which replaces that guide. An id a
+   guide of another pack already holds is refused too ("Guide <id> was
+   refused: <pack> already holds that id."): only an imported guide can
+   share a prefix with a pack.
 3. **Clashes.** A pack whose id is already registered is refused whole, and
    the problem names both addons; a pack with a reserved id is refused whole
    with "Pack id <id> is reserved for Polestar.". Either way the guides and
@@ -402,6 +407,66 @@ candidate on, where the reference data has them: `c` the continent,
 `left`/`right` world Y, `top`/`bottom` world X. For a map Polestar already
 covers, Polestar's bounds win (rule 4). Call it after `RegisterPack`: the
 frames of a pack that is not registered are dropped.
+
+## Import strings
+
+One compiled guide as one line of text, for a player to paste on Polestar's
+Import page instead of installing an addon (GUIDE_PACKS.md, "Import
+strings"). `polestar export <file.guide>` writes it
+(`tools/lib/pack/importstring.js`); `addon/Polestar/Core/Import.lua` reads
+it.
+
+```text
+!PS1!<checksum>!<body>
+```
+
+| Part | Value |
+|---|---|
+| `!PS1!` | the string format, version 1. A later format gets another number; Polestar refuses one it does not know with "This import string needs a newer Polestar." |
+| `<checksum>` | the Adler-32 of the payload (the JSON below, as UTF-8 bytes), 8 hex digits |
+| `<body>` | the payload, compressed with zlib (RFC 1950) and written in base64 (`A`–`Z`, `a`–`z`, `0`–`9`, `+`, `/`, `=` padding) |
+
+Whitespace anywhere in a pasted string is dropped first (a chat window may
+wrap it). The payload is JSON:
+
+```json
+{ "format": 3, "license": "CC-BY-4.0", "guide": { "id": "yendi/cozy-sleeping-bag", "title": "Cozy Sleeping Bag", "...": "...", "steps": [ ... ] }, "frames": { "1429": { "c": 0, "left": 1535.417, "right": -1935.417, "top": -7939.583, "bottom": -10254.166 } } }
+```
+
+| Key | Required | Value |
+|---|---|---|
+| `format` | yes | the guide data's format (above): Polestar refuses a format it does not read |
+| `license` | yes | the licence of the guide, from the pack's `pack.json` |
+| `guide` | yes | one guide exactly as `RegisterGuide(def)` takes it, without `pack`: the keys above, numbers rounded as `Guides.lua` writes them, `preTitles` with the quest ids as the object's keys |
+| `frames` | no | `RegisterMapFrames`'s `era` table for the maps its goals use, by uiMapID |
+
+Polestar reads it as data only. The client's own decoders
+(`C_EncodingUtil.DecodeBase64` and `DecompressString`, the ones the walking
+maps use) unpack it; Polestar parses the JSON itself (objects, arrays,
+strings, numbers, `true`, `false`; no `null`, nested 12 deep at most) and
+builds the guide field by field from the keys this page lists, each with its
+type. A key it does not know refuses the string, naming the key ("This
+import string holds a field Polestar does not read (guide.steps[3].goals[1].onLoad).").
+Nothing in a string is ever run: the reader never hands its text to
+`loadstring` or anything like it.
+
+Then the guide meets the rules above, as a community addon's would, plus:
+
+- at most 50,000 characters in the string, 256 KB of payload, 60 steps;
+- its id is `<author>/<name>`, under no reserved id and no id of a
+  community addon the player has installed (registered or only listed);
+- `next` and every `nextChoices` entry name one of Polestar's guides
+  (`forever/`, `draft/`) or a guide already imported;
+- `Guides.Validate` passes (the message is the Community guides page's:
+  "Guide <id> was refused: <reason>.").
+
+A refused string saves nothing. An accepted one is kept account-wide in
+`PolestarDB.imports[<guide id>]` as its payload, and registered at every
+login through the same checks under the reserved pack `imported`. A guide's
+`version` (a number) against the stored one's decides Import, Update (higher)
+or nothing (equal or lower). Imported guides are listed in the guide menu as
+**Imported** under Community guides, credited "By <author> · Imported ·
+<licence>", never on the Community guides page, and never suggested.
 
 ## Versioning
 

@@ -141,6 +141,71 @@ function emitGuide(guide, sourceRel) {
 	return `${out.join('\n')}\n`;
 }
 
+// The data emitGuide writes, as plain JSON values instead of Lua source: the
+// same keys in the same places, numbers rounded as luaNumber rounds them, so
+// a guide carried another way (an import string, tools/lib/pack/importstring.js)
+// registers exactly as Guides.lua registers it. `pack` is left out: the
+// carrier names the pack. preTitles keeps its quest ids as the object's keys.
+function dataScalar(v, decimals) {
+	if (typeof v === 'number') return Number(luaNumber(v, decimals));
+	if (typeof v === 'string' || typeof v === 'boolean') return v;
+	throw new Error(`cannot write ${typeof v} as a scalar`);
+}
+
+function dataList(arr, keys, decimals) {
+	return arr.map((v) => (v !== null && typeof v === 'object' ? dataInline(v, keys || Object.keys(v).sort(), decimals) : dataScalar(v)));
+}
+
+function dataInline(obj, keys, decimals) {
+	const out = {};
+	for (const k of keys) {
+		const v = obj[k];
+		if (v === undefined || v === null) continue;
+		if (Array.isArray(v)) out[k] = dataList(v, LIST_KEYS[k] || null, LIST_DECIMALS[k]);
+		else if (k === 'preTitles') {
+			const ids = {};
+			for (const id of Object.keys(v).map(Number).sort((a, b) => a - b)) ids[id] = dataScalar(v[id]);
+			out[k] = ids;
+		} else if (typeof v === 'object') out[k] = dataInline(v, k === 'only' ? ONLY_KEYS : k === 'lvl' ? ['min', 'max'] : Object.keys(v).sort(), decimals);
+		else out[k] = dataScalar(v, decimals);
+	}
+	return out;
+}
+
+function guideData(guide) {
+	const out = {};
+	for (const k of GUIDE_KEYS) {
+		const v = guide[k];
+		if (v === undefined || v === null || k === 'pack') continue;
+		if (k === 'steps') {
+			out.steps = v.map((step) => {
+				const s = {};
+				for (const sk of STEP_KEYS) {
+					const sv = step[sk];
+					if (sv === undefined || sv === null) continue;
+					if (sk === 'goals') s.goals = sv.map((goal) => dataInline(goal, GOAL_KEYS));
+					else if (sk === 'only') s.only = dataInline(sv, ONLY_KEYS);
+					else s[sk] = dataScalar(sv);
+				}
+				return s;
+			});
+		} else if (k === 'names' || k === 'written') {
+			const m = {};
+			for (const t of Object.keys(v).sort()) m[t] = String(v[t]);
+			out[k] = m;
+		} else if (Array.isArray(v)) out[k] = dataList(v, LIST_KEYS[k] || null);
+		else out[k] = dataScalar(v);
+	}
+	return out;
+}
+
+// Era frames as emitMapFrames writes them: { [mapId]: { c, left, right, top, bottom } }.
+function framesData(frames) {
+	const out = {};
+	for (const id of Object.keys(frames).map(Number).sort((a, b) => a - b)) out[id] = dataInline(frames[id], FRAME_KEYS, 4);
+	return out;
+}
+
 // Guides.lua: every guide's block, sorted by id. entries: [{ guide, source }].
 function emitGuides(entries) {
 	const sorted = entries.slice().sort((a, b) => (a.guide.id < b.guide.id ? -1 : a.guide.id > b.guide.id ? 1 : 0));
@@ -330,4 +395,4 @@ function emitLicense(meta) {
 	return `${out.join('\n').trimEnd()}\n`;
 }
 
-module.exports = { emitGuides, emitPack, emitToc, emitTextsToc, emitTexts, emitMapFrames, emitClassTrainers, emitLicense, luaString, luaNumber, GUIDE_KEYS, GOAL_KEYS };
+module.exports = { emitGuides, emitPack, emitToc, emitTextsToc, emitTexts, emitMapFrames, emitClassTrainers, emitLicense, luaString, luaNumber, guideData, framesData, GUIDE_KEYS, STEP_KEYS, GOAL_KEYS, ONLY_KEYS, LIST_KEYS, FRAME_KEYS };

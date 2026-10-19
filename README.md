@@ -918,10 +918,10 @@ the GPL version 3 or later, used with his permission
 the guide-pack permission below does not cover them.
 
 [LICENSE-EXCEPTION.md](LICENSE-EXCEPTION.md) adds a permission under section
-7: guide packs produced by Polestar's compiler, including the reference data
-it places in them, may be distributed under terms of the pack author's
-choice (not guide text copied from Polestar's own guides, nor Polestar's
-code).
+7: guide packs produced by Polestar's compiler and import strings produced by
+its tools, including the reference data they place in them, may be
+distributed under terms of the author's choice (not guide text copied from
+Polestar's own guides, nor Polestar's code).
 
 <p align="center"><img src="docs/assets/emblem.svg" width="28" alt=""></p>
 

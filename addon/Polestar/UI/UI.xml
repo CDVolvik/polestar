@@ -15,6 +15,7 @@
 	<Script file="Copy.lua"/>
 	<Script file="Report.lua"/>
 	<Script file="Packs.lua"/>
+	<Script file="Import.lua"/>
 	<Script file="Options.lua"/>
 	<Script file="QuestieTurnIns.lua"/>
 </Ui>

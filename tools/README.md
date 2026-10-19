@@ -39,6 +39,7 @@ is installed. The contract the tools write to is in
 | `new` | Starts a pack (the source of a community addon) in a new folder from `tools/templates/pack` |
 | `lint` | Checks a pack's `.guide` files without writing anything |
 | `compile` | Compiles a pack into its addon folder (ours into `addon/Polestar_Guides`) |
+| `export` | Prints one community guide as an import string (lints its pack first) |
 | `dev` | Rebuilds a pack into the game, and optionally the playground, on every save |
 | `playtest` | Plays a pack's guides to the end for every class they branch on |
 | `find` | Looks up quests, NPCs, objects, items, inns, flight points and guides, printed as guide lines |
