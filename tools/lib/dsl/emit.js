@@ -7,7 +7,9 @@ const { FORMAT, NEEDS, TOC_MARKER, TOC_TITLE_PREFIX, LEGACY_TOC_TITLE_PREFIX } =
 const { header } = require('../generated');
 
 const GUIDE_KEYS = ['id', 'pack', 'title', 'faction', 'races', 'classes', 'minLevel', 'maxLevel', 'category', 'folder', 'keywords', 'collects', 'reward', 'why', 'zone', 'zoneName', 'next', 'nextChoices', 'pitch', 'pros', 'cons', 'author', 'version', 'group', 'names', 'written', 'steps'];
-const STEP_KEYS = ['title', 'note', 'only', 'goals'];
+const STEP_KEYS = ['title', 'note', 'only', 'when', 'goals'];
+// A step's `when` predicates (format 4), in this key order.
+const WHEN_KEYS = ['k', 'neg', 'op', 'n', 'q', 'item', 'name', 'area', 'minLevel', 'pre', 'preAll', 'closedBy'];
 // Keys only the profession/reputation/exploration/achievement verbs use sit
 // where no other goal has a value, so adding them left older output unchanged.
 // `z` (heights.js) follows y, `node` and `area` (places.js) precede map: a
@@ -127,6 +129,7 @@ function emitGuide(guide, sourceRel) {
 						for (const goal of sv) out.push(`\t\t\t\t\t\t${inline(goal, GOAL_KEYS)},`);
 						out.push('\t\t\t\t\t},');
 					} else if (sk === 'only') out.push(`\t\t\t\t\tonly = ${inline(sv, ONLY_KEYS)},`);
+					else if (sk === 'when') out.push(`\t\t\t\t\twhen = ${list(sv, WHEN_KEYS)},`);
 					else out.push(`\t\t\t\t\t${sk} = ${scalar(sv)},`);
 				}
 				out.push('\t\t\t\t},');
@@ -150,8 +153,9 @@ function emitGuides(entries) {
 }
 
 // Pack.lua: the pack's registration with its credits (manifest: pack.json, read by tools/lib/pack/manifest.js).
-function emitPack(manifest) {
-	const parts = ['addon = ADDON', `id = ${luaString(manifest.id)}`, `format = ${FORMAT}`];
+// `format`: the one its guides need (pack/format.js formatFor), FORMAT by default.
+function emitPack(manifest, format = FORMAT) {
+	const parts = ['addon = ADDON', `id = ${luaString(manifest.id)}`, `format = ${format}`];
 	for (const k of PACK_KEYS.slice(1)) if (manifest[k] !== undefined && manifest[k] !== null) parts.push(`${k} = ${luaString(manifest[k])}`);
 	return `${header('lua', 'compile', 'pack.json')}\nlocal ADDON = ...\n\nPolestar.RegisterPack({ ${parts.join(', ')} })\n`;
 }
@@ -162,7 +166,7 @@ function emitPack(manifest) {
 // and sits in Polestar's group there, under Polestar's own entry, like
 // Polestar_Guides; Polestar's menus show the plain title (Pack.lua). A title
 // already carrying that prefix or the legacy "Polestar Pack: " is kept.
-function emitToc(manifest, iface) {
+function emitToc(manifest, iface, format = FORMAT) {
 	const ours = manifest.id === 'guides';
 	const prefixed = [TOC_TITLE_PREFIX, LEGACY_TOC_TITLE_PREFIX].some((p) => manifest.title.startsWith(p));
 	const title = ours || prefixed ? manifest.title : `${TOC_TITLE_PREFIX}${manifest.title}`;
@@ -180,8 +184,8 @@ function emitToc(manifest, iface) {
 	lines.push(
 		'## Dependencies: Polestar',
 		`## X-Polestar-Pack: ${manifest.id}`,
-		`## X-Polestar-Format: ${FORMAT}`,
-		`## X-Polestar-Needs: ${NEEDS[FORMAT]}`,
+		`## X-Polestar-Format: ${format}`,
+		`## X-Polestar-Needs: ${NEEDS[format]}`,
 		`## X-License: ${manifest.license}`,
 	);
 	if (manifest.website) lines.push(`## X-Website: ${manifest.website}`);

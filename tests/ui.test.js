@@ -429,6 +429,40 @@ test('grow upward pins the window by its bottom-left; turning it on or off keeps
 	assert.equal(out.offPoint[0], 'TOPLEFT');
 });
 
+test('bar at the bottom needs grow upward; then the tabs, navigator and progress stack at the bottom', () => {
+	const [out] = run(`
+		uistub.setGuide(uistub.elwynn, 3)
+		local function at() return { strip = { GF.parts.strip:GetPoint(1) }, foot = { GF.parts.foot:GetPoint(1) }, nav = { GF.parts.nav:GetPoint(1) } } end
+		local normal = at()
+		Polestar.Set("ui.barsBottom", true)
+		local withoutGrow = at()
+		Polestar.Set("ui.growUp", true)
+		local flipped = at()
+		Polestar.Set("ui.barsBottom", false)
+		emit({ normal = normal, withoutGrow = withoutGrow, flipped = flipped, back = at() })`);
+	const pt = (o) => [o.strip[0], o.foot[2], o.nav[0]];
+	assert.deepEqual(pt(out.normal), ['TOPLEFT', 'BOTTOMLEFT', 'TOPLEFT'], 'default: tabs on top, foot at the bottom');
+	assert.deepEqual(pt(out.withoutGrow), ['TOPLEFT', 'BOTTOMLEFT', 'TOPLEFT'], 'without grow upward the option changes nothing');
+	assert.deepEqual(pt(out.flipped), ['BOTTOMLEFT', 'TOPLEFT', 'BOTTOMLEFT'], 'flipped: tabs at the bottom, the navigator and the foot stacked above them');
+	assert.deepEqual(pt(out.back), ['TOPLEFT', 'BOTTOMLEFT', 'TOPLEFT'], 'turning it off restores the order');
+});
+
+test('bar at the bottom: a tab opened while it is on has its highlight on the top edge from the render that makes it', () => {
+	const [out] = run(`
+		Polestar.Set("ui.growUp", true)
+		Polestar.Set("ui.barsBottom", true)
+		local points, render = {}, GF.RenderTabs
+		GF.RenderTabs = function(...)
+			render(...)
+			for _, b in ipairs(shownTabs()) do points[#points + 1] = b.Bar:GetPoint(1) end
+		end
+		uistub.openTabs(TABS, 1)
+		GF.RenderTabs = render
+		emit({ points = points })`);
+	assert.ok(out.points.length >= 2, 'the tabs were rendered');
+	for (const p of out.points) assert.equal(p, 'TOPLEFT', 'a new tab\'s highlight sits on the edge next to the navigator');
+});
+
 test('combat: by default the window stays as it is; fade dims it, hide hides it, both restore afterwards', () => {
 	const [out] = run(`
 		uistub.setGuide(uistub.elwynn, 3)
@@ -800,6 +834,38 @@ test('the header menu: picker, new tab, compact, transparent, lock; destructive 
 	assert.equal(out.picker, true);
 	assert.equal(out.options, true);
 	assert.equal(out.pickerAfter, false, 'one dialog at a time');
+});
+
+// The catch-up (GUIDE_PLACED, fired for a guide just opened): the window
+// shows each step before the one placed in turn, in full, then that one; not
+// for a single step. The Engine's step never moves.
+test('the catch-up shows every step up to the one placed, each time a guide opened is placed', () => {
+	const [out] = run(`
+		uistub.setGuide(uistub.elwynn, 4)
+		local nav, Count = GF.parts.nav, GF.parts.nav.Steps.Count
+		Polestar.Fire("GUIDE_PLACED", uistub.elwynn, 4, {})
+		local rolling = { GF.catchingUp, GF.ShownStep() }
+		stub.advance(0.6)
+		GF.Render()
+		local mid = { count = Count:GetText(), shown = GF.ShownStep(), engine = Polestar.Engine.GetStepIndex() }
+		stub.advance(3)
+		local done = { GF.catchingUp or false, Count:GetText(), GF.parts.card:GetAlpha(), GF.ShownStep() }
+		Polestar.Fire("GUIDE_PLACED", uistub.elwynn, 4, {})
+		local again = GF.catchingUp ~= nil
+		stub.advance(3)
+		Polestar.Fire("GUIDE_PLACED", uistub.elwynn, 2, {})
+		local single = GF.catchingUp ~= nil
+		emit({ rolling = rolling, mid = mid, done = done, again = again, single = single })`);
+	assert.deepEqual(out.rolling, ['steps', 1], 'it starts on step 1');
+	assert.ok(out.mid.shown >= 1 && out.mid.shown <= 3, `a step gone over is shown in full (${out.mid.shown})`);
+	assert.equal(out.mid.count, `${out.mid.shown} / ${out.done[1].split(' / ')[1]}`);
+	assert.equal(out.mid.engine, 4, 'the Engine stays on the step placed');
+	assert.equal(out.done[0], false);
+	assert.match(out.done[1], /^4 \/ \d+$/);
+	assert.equal(out.done[2], 1);
+	assert.equal(out.done[3], 4);
+	assert.equal(out.again, true, 'the guide opened again: it goes over the steps again');
+	assert.equal(out.single, false, 'a single step passed: nothing rolls');
 });
 
 test('profession, reputation and achievement goals: own colours, icons, progress bars', () => {

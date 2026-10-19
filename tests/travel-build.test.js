@@ -382,6 +382,51 @@ test('a ship stop in the water 12 yd off a pier gets a board point on the deck; 
 	assert.ok(travel.transports.every((t) => !t.a.board && !t.b.board));
 });
 
+// #338 (Tazul): the Deeprun Tram's Stormwind end had no height, so the walk to
+// it ended on the roof above the entrance. An end on dry ground gets the floor
+// of its column nearest the height of what stands there (the AreaTrigger, the
+// dock NPC's spawn), within 10 yd.
+test('an end on dry ground gets the floor nearest its source\'s height: the entrance under a roof, not the roof', async () => {
+	const { endHeight } = require('../tools/lib/travel/transports');
+	const { Scene } = require('./helpers/navscene');
+	const { buildGrid } = require('../tools/lib/nav/grid/build');
+	const { openNav } = require('../tools/lib/nav/path');
+	// Flat ground (z 0) with a 60 x 60 yd roof plate 12 yd up over it, a ramp onto its west edge.
+	const s = new Scene();
+	s.box(200, 200, 11.5, 260, 260, 12, 1);
+	s.quad([170, 220, 0], [200, 220, 12], [200, 240, 12], [170, 240, 0], 1);
+	const dir = tmpdir('polestar-endz-');
+	await buildGrid({
+		outDir: dir, workers: 0,
+		continents: [{ c: 0, name: 'test', tiles: [{ col: s.col, row: s.row }] }],
+		geometryJob: () => ({ geom: s.geom() }),
+	});
+	const nav = openNav({ dir });
+	const end = s.world(230, 230);
+	assert.ok(Math.abs(endHeight(nav, end, 4.8) - 0) < 0.5, 'a trigger 4.8 yd over the ground: the ground under the roof');
+	assert.ok(Math.abs(endHeight(nav, end, 13) - 12) < 0.5, 'a spawn on the roof: the roof');
+	assert.equal(endHeight(nav, end, 30), null, 'nothing within 10 yd: none');
+	assert.equal(endHeight(nav, end, null), null, 'no source height: none');
+});
+
+test('the committed TravelData.lua gives the tram and zeppelin ends their floor: the tram\'s entrances, the towers\' tops', () => {
+	const [ends] = runAddon({
+		stubs: ['stub_nav.lua'],
+		addons: [{ name: 'Polestar', files: ['Core/Init.lua', 'Nav/Nav.xml'] }],
+		script: `
+			local out = {}
+			for _, t in ipairs(Polestar.Nav.GetTravelData().transports) do
+				out[t.id] = { t.a.z or false, t.b.z or false }
+			end
+			emit(out)`,
+	}).emitted;
+	const near = (v, z) => typeof v === 'number' && Math.abs(v - z) < 3;
+	const tram = ends['tram-stormwind-ironforge'];
+	assert.ok(near(tram[0], 92) && near(tram[1], 502), `the tram's entrances in Stormwind (AreaTrigger 96.6) and Ironforge: ${tram}`);
+	const og = ends['zeppelin-orgrimmar-undercity'];
+	assert.ok(near(og[0], 54), `Orgrimmar's tower top (Frezza at 53.6): ${og[0]}`);
+});
+
 test('the committed TravelData.lua has the Forever ships on their dock maps', () => {
 	const [ships] = runAddon({
 		stubs: ['stub_nav.lua'],

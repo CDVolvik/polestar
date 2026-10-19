@@ -5,7 +5,8 @@
 // frame (data.frame): spawn areas, candidate towns, farm spots and the quest
 // database's markers. Before, they fell back to a mid-sized zone (3000 x
 // 2000 yd) and Zephras Isle (5562 x 3708 yd) was measured at about half its
-// size (#299).
+// size (#299). Route geometry (route/geo.js) measured them as a 1000-yard
+// square and farm spots skipped them as unplaceable (#422).
 
 const { test } = require('node:test');
 const assert = require('node:assert/strict');
@@ -13,6 +14,8 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { compile, plain, DATA_DIR } = require('./helpers/dsl');
 const { loadData } = require('../tools/lib/dsl/data');
+const { farmSpots } = require('../tools/lib/dsl/farmspots');
+const { makeProjector, dist } = require('../tools/lib/route/geo');
 const { buildQuestDB } = require('../tools/lib/questdb/build');
 const { tmpdir } = require('./helpers/tmp');
 
@@ -76,4 +79,38 @@ test('quest-database markers on a Forever-only map are clustered in that map\'s 
 	assert.equal(rec[at + 1], 1, 'live-frame points');
 	assert.equal(rec[at + 2], 2, JSON.stringify(rec));
 	assert.ok(!Object.keys(db.mapFrames).includes(String(ZEPHRAS)), 'no Era frame is emitted for it');
+});
+
+test('route geometry measures a Forever-only map in its Forever frame, author points included', () => {
+	const warnings = [];
+	const p = makeProjector({ era: {}, forever: { [ZEPHRAS]: FRAME } }, (w) => warnings.push(w));
+	for (const f of [null, 'e', 'l']) {
+		const a = p.point(ZEPHRAS, 0, 0, f);
+		const b = p.point(ZEPHRAS, 100, 100, f);
+		assert.deepEqual([a.c, a.wx, a.wy, b.wx, b.wy], [FRAME.c, FRAME.top, FRAME.left, FRAME.bottom, FRAME.right], `f ${f}`);
+		// 1.5% of the isle east-west: 83 yd (15 yd in a 1000-yard square).
+		assert.ok(Math.abs(dist(p.point(ZEPHRAS, 40, 30, f), p.point(ZEPHRAS, 41.5, 30, f)) - 1.5 * SX) < 0.01, `f ${f}`);
+	}
+	// An author point and a spawn on the same map are on one continent, comparable.
+	assert.ok(dist(p.point(ZEPHRAS, 40, 30), p.point(ZEPHRAS, 40, 30, 'l')) < 0.01);
+	assert.deepEqual(warnings, []);
+	// Neither frame: still the 1000-yard square, with a warning.
+	assert.equal(dist(p.point(99999, 0, 0), p.point(99999, 100, 0)), 1000);
+	assert.equal(warnings.length, 1);
+});
+
+test('farm spots on a Forever-only zone of Eastern Kingdoms: contested, clustered in that map\'s yards', () => {
+	// Riverglades: Eastern Kingdoms (continent 0), 4850 yd east-west, 48.5 yd per x %.
+	const RIVERGLADES = 2548;
+	const RFRAME = { c: 0, left: -1891.666, right: -6741.666, top: -6466.666, bottom: -9700 };
+	// Two camps 2% apart: 97 yd, two spots at the 70 yd cluster radius (60 yd and one spot in a 3000 yd zone).
+	const pts = [[40, 50], [40.2, 50.2], [42, 50], [42.2, 50.2]];
+	const data = loadData(dataWith(DATA_DIR, (raw) => {
+		raw['map-frames.json'].forever = { [RIVERGLADES]: RFRAME };
+		raw['zones.json'][RIVERGLADES] = { areaId: 16591, id: RIVERGLADES, name: 'Riverglades', parent: 1415, type: 3 };
+		raw['npcs.json'][92001] = { faction: null, id: 92001, level: 30, name: 'Glade Lurker', spawns: { [RIVERGLADES]: { f: 'l', pts } } };
+		raw['items.json'][4306].drops.npc[92001] = 30;
+	}));
+	const spots = farmSpots(data, 4306).filter((s) => s.map === RIVERGLADES);
+	assert.deepEqual(spots.map((s) => [s.faction, s.f, s.x, s.y, s.spawns]), [['AH', undefined, 40.1, 50.1, 2], ['AH', undefined, 42.1, 50.1, 2]]);
 });

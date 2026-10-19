@@ -1,5 +1,5 @@
 -- Action buttons: the quest item button, the Hearthstone button and the
--- target button. Each is a named secure button (bindable as
+-- target button and the rare button. Each is a named secure button (bindable as
 -- `CLICK <name>:LeftButton`); what it does is set through attributes, and
 -- every attribute, Show/Hide, scale or position change goes through
 -- QoL.Secure, so in combat it waits for PLAYER_REGEN_ENABLED while the button
@@ -16,15 +16,23 @@
 --     goal (`fromNpcs`), then the item's own droppers (Polestar.QuestDB when
 --     loaded), passing over corpses; every click moves the next name to the
 --     front.
+--   Rare: /targetexact for the rares in range (Polestar.Rares.Nearby): the
+--     button comes up when the addon spots one and goes when it dies or is
+--     out of sight; every click moves the next name to the front.
 --   Step key: no button on screen, only a binding: the first open goal it can
 --     act on, in guide order (a use goal's item, a hearth goal's Hearthstone,
 --     a kill or collect's mobs, an NPC goal's NPC by name), else the quest
---     item. Independent of the three buttons' settings.
+--     item. Independent of the buttons' settings.
+--   Mark target (off by default): the target button and the step key clear
+--     the target first (out of combat) and end their macro with /tm, an icon
+--     on a live hostile target (skull unless set) or an NPC (star), or a new
+--     one each press (Buttons.MarkLine).
 --
--- The buttons hang off one holder: hearth above the item, target below. A
--- left-drag on any of them moves the set (out of combat; with ui.lockHud on,
--- only a Shift-drag); the position is per character, so the Hearthstone
--- button, shown only for hearth goals, appears in its slot of the moved set.
+-- The buttons hang off one holder: hearth above the item, target and rare
+-- below. A left-drag on any of them moves the set (out of combat; with
+-- ui.lockHud on, only a Shift-drag); the position is per character, so the
+-- Hearthstone button, shown only for hearth goals, appears in its slot of the
+-- moved set.
 
 local ADDON, ns = ...
 local L = ns.L
@@ -46,7 +54,7 @@ QoL.Buttons = Buttons
 -- button's slot above (+) or below (-) it, GAP button units apart.
 local DEFAULT_POS = { "CENTER", "CENTER", 260, -140 }
 local GAP = 44
-local SLOT = { PolestarHearthButton = 1, PolestarQuestItemButton = 0, PolestarTargetButton = -1 }
+local SLOT = { PolestarHearthButton = 1, PolestarQuestItemButton = 0, PolestarTargetButton = -1, PolestarRareButton = -2 }
 
 local function Theme() return ns.Theme end
 
@@ -195,6 +203,9 @@ local LABEL_SIDE = {
 -- gap between them, where it would run into the button above.
 local function placeLabel(b)
 	local a = LABEL_SIDE[ns.Get("qol.buttonTextSide")] or LABEL_SIDE.right
+	-- The rare button sits under the target button, whose name has the space
+	-- above: a rare's name goes below instead.
+	if a == LABEL_SIDE.above and b:GetName() == "PolestarRareButton" then a = LABEL_SIDE.below end
 	local to = b
 	if a == LABEL_SIDE.above and set then
 		local slot, moved = SLOT[b:GetName()], true
@@ -503,17 +514,61 @@ function Buttons.TargetNames(view, raw)
 	return names
 end
 
+-- NPCs: "exists" out of combat, not "help": a neutral NPC (Booty Bay,
+-- Gadgetzan) is no unit you can assist, and /cleartarget then /targetexact
+-- have made the target that NPC. In a fight the target is not cleared, so
+-- only one you cannot attack is marked, never the mob you are fighting.
+local MARK_UNIT = { mob = "[@target,harm,nodead]", npc = "[@target,exists,nodead,nocombat][@target,noharm,nodead]" }
+local MARK_KEY = { mob = "qol.markMob", npc = "qol.markNpc" }
+local MARK_DEFAULT = { mob = 8, npc = 1 }
+local OTHER = { mob = "npc", npc = "mob" }
+-- Presses with a cycling mark: one count for both kinds, so when both cycle
+-- an NPC's icon is not the next mob's.
+local presses = 0
+
+-- A mark setting as an icon 1-8, "cycle", or the kind's default.
+local function markSetting(kind)
+	local v = ns.Get(MARK_KEY[kind])
+	if v == "cycle" then return v end
+	v = tonumber(v)
+	return v and v >= 1 and v <= 8 and v == math.floor(v) and v or MARK_DEFAULT[kind]
+end
+
+-- The /tm line for kind ("mob" or "npc"), nil while marking is off. A fixed
+-- icon uses "!", so pressing again never takes it off. "cycle" puts the next
+-- icon on at each press, skipping the one the other kind keeps, with "~": a
+-- unit that already has an icon keeps it. In combat the macro cannot change,
+-- so until the fight ends each press puts on the same icon.
+function Buttons.MarkLine(kind)
+	if not kind or not QoL.On("markTarget") then return nil end
+	local icon = markSetting(kind)
+	if icon ~= "cycle" then return "/tm " .. MARK_UNIT[kind] .. " !" .. icon end
+	local other, icons = markSetting(OTHER[kind]), {}
+	for i = 1, 8 do
+		if i ~= other then icons[#icons + 1] = i end
+	end
+	return "/tm " .. MARK_UNIT[kind] .. " ~" .. icons[presses % #icons + 1]
+end
+
+-- After a press with kind's mark: true when the next press puts on a new icon.
+local function nextMark(kind)
+	if not kind or not QoL.On("markTarget") or markSetting(kind) ~= "cycle" then return false end
+	presses = presses + 1
+	return true
+end
+
 -- The macro for names, tried from names[preferred] on in click order. Out of
 -- combat it starts from nothing ("/cleartarget [nocombat]"), so a target that
 -- is none of the names -- a mob clicked by hand, the quest giver just turned
--- in to -- cannot stop the chain; in a fight the target is left alone, since
--- clearing it would cut melee swings and Auto Shot. A plain /targetexact
--- takes the nearest match, corpse or not, so each line is followed by
--- "/cleartarget [dead]", and every later name is tried only while nothing is
--- targeted ("[noexists]"): the first living match is kept. A name that is not
--- MacroSafeName never becomes a line; names past MACRO_LIMIT are dropped from
--- the end.
-function Buttons.TargetMacro(list, preferred)
+-- in to -- cannot stop the chain, and a press that finds no name marks
+-- nothing; in a fight the target is left alone, since clearing it would cut
+-- melee swings and Auto Shot. A plain /targetexact takes the nearest match,
+-- corpse or not, so each line is followed by "/cleartarget [dead]", and every
+-- later name is tried only while nothing is targeted ("[noexists]"): the
+-- first living match is kept. A name that is not MacroSafeName never becomes
+-- a line. mark: a /tm line (Buttons.MarkLine) for the end. Names past
+-- MACRO_LIMIT are dropped from the end; the preferred name and the mark stay.
+function Buttons.TargetMacro(list, preferred, mark)
 	local n = #list
 	if n == 0 then return nil end
 	local order = {}
@@ -523,6 +578,7 @@ function Buttons.TargetMacro(list, preferred)
 	end
 	local count = #order
 	if count == 0 then return nil end
+	local tail = mark and ("\n" .. mark) or ""
 	local text
 	repeat
 		local lines = { "/cleartarget [nocombat]" }
@@ -530,7 +586,7 @@ function Buttons.TargetMacro(list, preferred)
 			lines[#lines + 1] = (k == 1 and "/targetexact " or "/targetexact [noexists] ") .. order[k]
 			lines[#lines + 1] = "/cleartarget [dead]"
 		end
-		text = concat(lines, "\n")
+		text = concat(lines, "\n") .. tail
 		count = count - 1
 	until #text <= MACRO_LIMIT or count == 0
 	return text
@@ -541,7 +597,7 @@ local target = { list = {}, sig = nil, cycle = 1 }
 local function applyTarget(b)
 	QoL.Secure("target", function()
 		local list = target.list
-		local text = Buttons.TargetMacro(list, target.cycle)
+		local text = Buttons.TargetMacro(list, target.cycle, Buttons.MarkLine("mob"))
 		b:SetAttribute("type", text and "macro" or nil)
 		b:SetAttribute("macrotext", text)
 		b.applied = list[target.cycle]
@@ -553,6 +609,31 @@ end
 local function targetTooltip(b, tip)
 	tip:SetText(L["Target"])
 	for i = 1, #target.list do tip:AddLine(target.list[i], 1, 1, 1) end
+	tip:AddLine(ns.Get("ui.lockHud") and L["Click again for the next name. Shift-drag to move."]
+		or L["Click again for the next name. Drag to move."], 0.6, 0.6, 0.6)
+end
+
+---------------------------------------------------------------------------
+-- Rare button
+---------------------------------------------------------------------------
+
+local rare = { list = {}, sig = nil, cycle = 1 }
+
+local function applyRare(b)
+	QoL.Secure("rare", function()
+		local list = rare.list
+		local text = Buttons.TargetMacro(list, rare.cycle)
+		b:SetAttribute("type", text and "macro" or nil)
+		b:SetAttribute("macrotext", text)
+		b.applied = list[rare.cycle]
+		b.Label:SetText(b.applied or "")
+		if text then b:Show() else b:Hide() end
+	end)
+end
+
+local function rareTooltip(b, tip)
+	tip:SetText(L["Target rare"])
+	for i = 1, #rare.list do tip:AddLine(rare.list[i], 1, 1, 1) end
 	tip:AddLine(ns.Get("ui.lockHud") and L["Click again for the next name. Shift-drag to move."]
 		or L["Click again for the next name. Drag to move."], 0.6, 0.6, 0.6)
 end
@@ -605,14 +686,16 @@ function Buttons.StepAction(view, raw)
 end
 
 local step = { kind = nil, value = nil, list = {}, sig = nil, cycle = 1 }
+-- The mark each kind of step key press puts on.
+local STEP_MARK = { target = "mob", npc = "npc" }
 
 local function applyStep(b)
 	QoL.Secure("step", function()
 		local text, item
 		if step.kind == "target" then
-			text = Buttons.TargetMacro(step.list, step.cycle)
+			text = Buttons.TargetMacro(step.list, step.cycle, Buttons.MarkLine("mob"))
 		elseif step.kind == "npc" then
-			text = Buttons.TargetMacro({ step.value }, 1)
+			text = Buttons.TargetMacro({ step.value }, 1, Buttons.MarkLine("npc"))
 		elseif step.kind == "item" then
 			item = "item:" .. step.value
 		end
@@ -626,7 +709,7 @@ end
 -- Wiring
 ---------------------------------------------------------------------------
 
-local itemButton, hearthButton, targetButton, stepButton
+local itemButton, hearthButton, targetButton, rareButton, stepButton
 
 local function refresh()
 	if not itemButton then return end
@@ -636,7 +719,9 @@ local function refresh()
 	applyItem(hearthButton, QoL.On("hearthButton") and view and Buttons.WantsHearth(view) and Client.HEARTHSTONE or nil)
 
 	local list = QoL.On("targetButton") and view and Buttons.TargetNames(view, raw) or {}
-	local sig = concat(list, "\n")
+	-- The mark settings are part of both signatures, so changing one re-applies.
+	local mark = QoL.On("markTarget") and (markSetting("mob") .. " " .. markSetting("npc") .. "\n") or ""
+	local sig = mark .. concat(list, "\n")
 	if sig ~= target.sig then
 		target.sig = sig
 		local copy = {}
@@ -646,9 +731,24 @@ local function refresh()
 		applyTarget(targetButton)
 	end
 
+	-- Not tied to the step: a rare can turn up on any of them.
+	local R = ns.Rares
+	local rares = QoL.On("rareButton") and R and R.Nearby and R.Nearby() or {}
+	local raresSig = concat(rares, "\n")
+	if raresSig ~= rare.sig then
+		rare.sig = raresSig
+		local copy = {}
+		for i = 1, #rares do
+			if Buttons.MacroSafeName(rares[i]) then copy[#copy + 1] = rares[i] end
+		end
+		rare.list = copy
+		rare.cycle = 1
+		applyRare(rareButton)
+	end
+
 	local kind, value = nil, nil
 	if view then kind, value = Buttons.StepAction(view, raw) end
-	local stepSig = kind == "target" and ("target\n" .. concat(value, "\n")) or (tostring(kind) .. "\n" .. tostring(value))
+	local stepSig = mark .. (kind == "target" and ("target\n" .. concat(value, "\n")) or (tostring(kind) .. "\n" .. tostring(value)))
 	if stepSig ~= step.sig then
 		step.sig, step.kind, step.cycle = stepSig, kind, 1
 		local copy = {}
@@ -677,8 +777,8 @@ local function create()
 	holder:SetSize(SIZE, SIZE)
 	holder:SetMovable(true)
 	holder:SetClampedToScreen(true)
-	-- The clamp covers the hearth and target slots too.
-	holder:SetClampRectInsets(0, 0, GAP, -GAP)
+	-- The clamp covers the hearth, target and rare slots too.
+	holder:SetClampRectInsets(0, 0, GAP, -2 * GAP)
 	itemButton = newItemButton("PolestarQuestItemButton")
 	hearthButton = newItemButton("PolestarHearthButton")
 	targetButton = newButton("PolestarTargetButton", targetTooltip)
@@ -688,9 +788,22 @@ local function create()
 	targetButton:HookScript("PostClick", function(self, _, down)
 		if down or self.dragging then return end
 		local n = #target.list
+		if n > 1 then target.cycle = target.cycle % n + 1 end
+		local marked = nextMark("mob")
+		if n > 1 or marked then applyTarget(targetButton) end
+		-- The step key shares the icon cycle.
+		if marked then applyStep(stepButton) end
+	end)
+	rareButton = newButton("PolestarRareButton", rareTooltip)
+	rareButton.Icon:SetTexture(media("qol-target"))
+	rareButton.Icon:SetTexCoord(0, 1, 0, 1)
+	color(rareButton.Icon, "quest")
+	rareButton:HookScript("PostClick", function(self, _, down)
+		if down or self.dragging then return end
+		local n = #rare.list
 		if n > 1 then
-			target.cycle = target.cycle % n + 1
-			applyTarget(targetButton)
+			rare.cycle = rare.cycle % n + 1
+			applyRare(rareButton)
 		end
 	end)
 	-- The step key: a binding only, never shown.
@@ -700,13 +813,14 @@ local function create()
 	stepButton:HookScript("PostClick", function(self, _, down)
 		if down then return end
 		local n = #step.list
-		if step.kind == "target" and n > 1 then
-			step.cycle = step.cycle % n + 1
-			applyStep(self)
-		end
+		local names = step.kind == "target" and n > 1
+		if names then step.cycle = step.cycle % n + 1 end
+		local marked = nextMark(STEP_MARK[step.kind])
+		if names or marked then applyStep(self) end
+		if marked then applyTarget(targetButton) end
 	end)
-	Buttons.item, Buttons.hearth, Buttons.target, Buttons.step = itemButton, hearthButton, targetButton, stepButton
-	set = { hearthButton, itemButton, targetButton }
+	Buttons.item, Buttons.hearth, Buttons.target, Buttons.rare, Buttons.step = itemButton, hearthButton, targetButton, rareButton, stepButton
+	set = { hearthButton, itemButton, targetButton, rareButton }
 	-- An Above name moves when a button over it comes or goes.
 	local function placeLabels() for i = 1, #set do placeLabel(set[i]) end end
 	for i = 1, #set do
@@ -734,7 +848,9 @@ ns.RegisterEvent("UPDATE_BINDINGS", function()
 	refreshHotkey(itemButton)
 	refreshHotkey(hearthButton)
 	refreshHotkey(targetButton)
+	refreshHotkey(rareButton)
 end)
+ns.On("RARE_NEARBY", refreshSoon)
 ns.On("QUESTDB_LOADED", refreshSoon)
 ns.On("SETTING_CHANGED", function(path)
 	if not itemButton or type(path) ~= "string" then return end

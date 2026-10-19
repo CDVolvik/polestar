@@ -30,7 +30,7 @@
 // and seconds in the services' expected waits and rides.
 
 const { round, dist2d } = require('./geo');
-const { inZone } = require('./transports');
+const { inZone, endHeight } = require('./transports');
 
 const SPEED = 30;
 const ACCEL = 1;
@@ -486,7 +486,9 @@ function place(name, c, wx, wy, frames, liveFrames, area) {
 	return null;
 }
 
-function buildPortals(areaTriggers, db, frames, liveFrames, warnings) {
+// nav: the navigation grid (path.js openNav) for the ends' heights
+// (transports.js endHeight: the trigger's, the destination's); null: none.
+function buildPortals(areaTriggers, db, frames, liveFrames, warnings, nav = null) {
 	const triggers = new Map((areaTriggers || []).map((r) => [int(r.ID), r]));
 	const out = [];
 	for (const p of PORTALS) {
@@ -498,6 +500,13 @@ function buildPortals(areaTriggers, db, frames, liveFrames, warnings) {
 		}
 		const a = place(p.from, int(t.ContinentID), Number(t.Pos_0), Number(t.Pos_1), frames, liveFrames, p.fromArea);
 		const b = place(p.to, dest.map, dest.x, dest.y, frames, liveFrames, p.toArea);
+		if (a && b && nav) {
+			for (const [e, z] of [[a, Number(t.Pos_2)], [b, dest.z]]) {
+				const h = endHeight(nav, e, z);
+				if (h !== null) e.z = h;
+				else warnings.push(`${p.id}: the ${e.name} end has no walkable surface near its height ${round(z, 1)}`);
+			}
+		}
 		if (!a || !b) {
 			warnings.push(`${p.id}: an end is on no map, skipped`);
 			continue;
@@ -552,8 +561,9 @@ function buildTeleports(tables, db, frames, liveFrames, warnings) {
 // transports: buildTransports' output (each boat/zeppelin with `path`,
 // `client` and its ends' TaxiPathNode `stops`); their expected ab/ba/waitA/
 // waitB are replaced by the timetable's when one is built.
+// nav: the navigation grid for the portals' end heights (buildPortals); null: none.
 // -> { routes, services, portals, teleports, warnings }
-function buildTimetables({ tables, foreverTables = null, transit = null, db = null, transports, frames, liveFrames = new Map() }) {
+function buildTimetables({ tables, foreverTables = null, transit = null, db = null, transports, frames, liveFrames = new Map(), nav = null }) {
 	const warnings = [];
 	const routes = {};
 	const services = {};
@@ -597,7 +607,7 @@ function buildTimetables({ tables, foreverTables = null, transit = null, db = nu
 		buildLifts(tracks, db, routes, services, warnings);
 		const tram = transports.find((t) => t.kind === 'tram');
 		if (tram) buildTram(tram, tracks, db, routes, services, warnings);
-		portals = buildPortals(tables.AreaTrigger, db, frames, liveFrames, warnings);
+		portals = buildPortals(tables.AreaTrigger, db, frames, liveFrames, warnings, nav);
 		teleports = buildTeleports(transit, db, frames, liveFrames, warnings);
 	}
 	for (const [id, service] of Object.entries(services)) Object.assign(service, serviceTimes(service, routes));
