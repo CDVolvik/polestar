@@ -1508,3 +1508,23 @@ test('forever/horde/05-stonetalon-mountains.guide: Hotline\'s report (#278): the
 	assert.equal(list[reports].step, list[at(list, 'accept 6543', is('accept', 6543))].step, 'opened on the Kadrak step');
 	for (const update of [16764, 16765, 16763]) assert.ok(reports < at(list, `update ${update}`, (g) => g.t === 'collect' && g.item === update), `a report is in the bags before update ${update}`);
 });
+
+// --- Hearts of the Lovers (Phyz, #412): QuestieDB lists only Isaac's Heart,
+// so the Ratchet step read the quest log's first line, which is Avelina's
+// Heart, and passed as soon as the Silverpine heart was in the bags.
+// Forever's quest data lists Avelina's Heart first, then Isaac's Heart
+// (corrections.json 65593). With that correction applied, as `data build`
+// does, each heart's goal reads its own line.
+test("forever/class/warlock/incubus-horde.guide: Phyz's report (#412): Avelina's and Isaac's hearts each read their own line of Hearts of the Lovers", { skip }, () => {
+	const corrected = loadData(DATA);
+	const fix = require('../tools/lib/data/corrections.json').quests['65593'];
+	assert.ok(fix, 'corrections.json corrects 65593');
+	Object.assign(corrected.quest(65593), fix.set);
+	const file = path.join(OFFICIAL_DIR, 'forever/class/warlock/incubus-horde.guide');
+	const { guides } = compileSources([{ file, text: fs.readFileSync(file, 'utf8') }], corrected);
+	const list = guides[0].steps.flatMap((step) => step.goals);
+	const heart = (item) => list.find((g) => g.t === 'collect' && g.quest === 65593 && g.item === item);
+	assert.deepEqual(corrected.quest(65593).objectives.map((o) => o.id), [190179, 190180], "Avelina's Heart is the first objective, Isaac's the second");
+	assert.equal(heart(190179).oi, 1, "Avelina's Heart reads line 1");
+	assert.equal(heart(190180).oi, 2, "Isaac's Heart reads line 2");
+});

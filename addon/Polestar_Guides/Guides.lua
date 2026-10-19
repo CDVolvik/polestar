@@ -15992,14 +15992,14 @@ do
 					title = "{npc:185333}",
 					note = "{npc:185333} works as a tailor for the {area:279} wizards at {area:233}, in eastern {zone:1421}. Take her heart.",
 					goals = {
-						{ t = "collect", quest = 65593, title = "Hearts of the Lovers", item = 190179, itemName = "Avelina's Heart", map = 1421, x = 63.48, y = 65.27, f = "e", from = "Avelina Lilly", fromKind = "npc", fromId = 185333 },
+						{ t = "collect", quest = 65593, title = "Hearts of the Lovers", item = 190179, itemName = "Avelina's Heart", count = 1, oi = 1, map = 1421, x = 63.48, y = 65.27, f = "e", from = "Avelina Lilly", fromKind = "npc", fromId = 185333 },
 					},
 				},
 				{
 					title = "{npc:185334}",
 					note = "{npc:185334} works in {area:392}, on the {zone:1413} coast. Take the zeppelin to {zone:1411} and ride or fly on to {area:392}.",
 					goals = {
-						{ t = "collect", quest = 65593, title = "Hearts of the Lovers", item = 190180, itemName = "Isaac's Heart", oi = 1, map = 1413, x = 61.8, y = 38.42, f = "e", spots = { { x = 61.8, y = 38.4, r = 15, n = 2 } }, from = "Isaac Pearson", fromKind = "npc", fromId = 185334 },
+						{ t = "collect", quest = 65593, title = "Hearts of the Lovers", item = 190180, itemName = "Isaac's Heart", count = 1, oi = 2, map = 1413, x = 61.8, y = 38.42, f = "e", spots = { { x = 61.8, y = 38.4, r = 15, n = 2 } }, from = "Isaac Pearson", fromKind = "npc", fromId = 185334 },
 					},
 				},
 				{
