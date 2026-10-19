@@ -167,3 +167,38 @@ test('a sethome naming no npc gets its inn\'s innkeeper and position, for the fa
 		['Crossroads', 3934, 'Innkeeper Boorand Plainswind', 1413, 51.99, 29.89],
 	]);
 });
+
+// Fixture flight masters for the NODES above, plus Ratchet's, whose node
+// serves both factions.
+const FLIGHT_MASTERS = {
+	2858: { id: 2858, name: 'Gringer', level: 55, faction: 'H', roles: ['flightmaster'], spawns: { 1434: { f: 'e', pts: [[26.53, 77.04]] } } },
+	2859: { id: 2859, name: 'Gyll', level: 55, faction: 'A', roles: ['flightmaster'], spawns: { 1434: { f: 'e', pts: [[27.53, 77.78]] } } },
+	16227: { id: 16227, name: 'Bragok', level: 55, faction: null, roles: ['flightmaster'], spawns: { 1413: { f: 'e', pts: [[63.08, 37.16]] } } },
+};
+const RATCHET = { id: 80, name: 'Ratchet, The Barrens', short: 'Ratchet', map: 1413, x: 63.08, y: 37.16, faction: 3, npc: 16227, npcName: 'Bragok' };
+const masters = (r) => r.guides[0].steps[0].goals.map((g) => [g.location, g.node, g.npc, g.npcName, g.map, g.x, g.y]);
+
+test('a getfp naming no npc gets its taxi node\'s flight master and position, for the factions its races can be (Skyborne: both); an explicit npc wins', () => {
+	const { dir } = placeData();
+	fs.writeFileSync(path.join(dir, 'travel.json'), `${JSON.stringify({ inns: [], taxi: { nodes: [...NODES, RATCHET] } })}\n`);
+	const npcsFile = path.join(dir, 'npcs.json');
+	fs.writeFileSync(npcsFile, JSON.stringify({ ...JSON.parse(fs.readFileSync(npcsFile, 'utf8')), ...FLIGHT_MASTERS }));
+	const data = loadData(dir);
+	const alliance = compile(guideText(['step Flight paths', '  getfp "Booty Bay"', '  getfp "ratchet"', '  getfp "Booty Bay" npc 2858', '  getfp "Nowhere"']), data);
+	assert.deepEqual(masters(alliance), [
+		['Booty Bay', 19, 2859, 'Gyll', 1434, 27.53, 77.78],
+		['ratchet', 80, 16227, 'Bragok', 1413, 63.08, 37.16],
+		['Booty Bay', 18, 2858, 'Gringer', 1434, 26.53, 77.04],
+		['Nowhere', undefined, undefined, undefined, undefined, undefined, undefined],
+	]);
+	const both = ['guide t/both', 'title Both', 'levels 1-10', 'zone Elwynn Forest', '', 'step Flight paths', '  getfp "Ratchet"', '  getfp "Booty Bay"', '  getfp "Booty Bay" only Horde', '  getfp "Booty Bay" only Human', '  getfp "Booty Bay" only Skyborne'];
+	const r = compile(`${both.join('\n')}\n`, data);
+	assert.deepEqual(r.errors, []);
+	assert.deepEqual(masters(r), [
+		['Ratchet', 80, 16227, 'Bragok', 1413, 63.08, 37.16],
+		['Booty Bay', undefined, undefined, undefined, undefined, undefined, undefined],
+		['Booty Bay', 18, 2858, 'Gringer', 1434, 26.53, 77.04],
+		['Booty Bay', 19, 2859, 'Gyll', 1434, 27.53, 77.78],
+		['Booty Bay', undefined, undefined, undefined, undefined, undefined, undefined],
+	]);
+});

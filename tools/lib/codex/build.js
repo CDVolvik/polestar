@@ -286,14 +286,103 @@ function cluster(points, radius = SPAWN.radius) {
 		.sort((a, b) => b.n - a.n || a.x - b.x || a.y - b.y);
 }
 
+// A map's frame, or null. `f`: the spawn's frame ('e': the Era frame, else
+// the live one).
+function frameOf(frames, map, f) {
+	const set = (frames && frames[f === 'e' ? 'era' : 'forever']) || {};
+	const fr = set[map];
+	if (!fr) return null;
+	return Math.abs(fr.right - fr.left) > 0 && Math.abs(fr.bottom - fr.top) > 0 ? fr : null;
+}
+
+// A frame as a world rectangle (frames are written corner to corner, either
+// way round).
+function boxOf(fr) {
+	return fr && {
+		c: fr.c,
+		x0: Math.min(fr.left, fr.right), x1: Math.max(fr.left, fr.right),
+		y0: Math.min(fr.top, fr.bottom), y1: Math.max(fr.top, fr.bottom),
+	};
+}
+
+// Box `b` lies wholly within `a` and is smaller: its map is inside the other's
+// (Darnassus within Teldrassil, a zone within a continent). Frames of
+// neighbouring zones overlap without either holding the other, so this is not
+// a size test.
+function within(b, a) {
+	if (!(b && a && b.c === a.c)) return false;
+	if (!(b.x0 >= a.x0 && b.x1 <= a.x1 && b.y0 >= a.y0 && b.y1 <= a.y1)) return false;
+	return (b.x1 - b.x0) * (b.y1 - b.y0) < (a.x1 - a.x0) * (a.y1 - a.y0);
+}
+
+// A map you are inside rather than crossing: a capital or a battleground.
+// Their frames stand well apart from the zones' — Ironforge 791 yd on its
+// long side, Undercity 959, Thunder Bluff 1044, Darnassus 1058, Warsong Gulch
+// 1146, Stormwind City 1344 and Orgrimmar 1403, then nothing until Arathi
+// Basin at 1756 and Redridge Mountains at 2171. (journal.js tells continents
+// from zones by size the same way.)
+const INNER_MAX = 1500; // yards on the long side
+function enclosed(b) {
+	return !!b && Math.max(b.x1 - b.x0, b.y1 - b.y0) <= INNER_MAX;
+}
+
+// Of two maps holding the same place, `b` is the one the player is in: an
+// enclosed map beats the open zone around it, and otherwise the map whose
+// frame lies inside the other's.
+function moreInner(b, a) {
+	if (enclosed(b) && !enclosed(a)) return true;
+	return within(b, a);
+}
+
+// A map point's world position through its frame, or null.
+function worldOf(frames, map, f, x, y) {
+	const fr = frameOf(frames, map, f);
+	if (!fr) return null;
+	return { c: fr.c, wx: fr.top + (y / 100) * (fr.bottom - fr.top), wy: fr.left + (x / 100) * (fr.right - fr.left) };
+}
+
+// Two maps' kept places are the same spot in the world: one entity recorded
+// twice, not one standing in two places.
+const SAME_PLACE = 50; // yards
+function samePlace(a, b) {
+	return !!(a && b && a.c === b.c && Math.hypot(a.wx - b.wx, a.wy - b.wy) <= SAME_PLACE);
+}
+
 // { map: { f, pts } } (data/forever) -> [{ map, x, y, f }] capped; only maps in `zones`.
-function spawnsOf(byMap, zones) {
+// Maps come by how much of the entity is seen on them, most first.
+//
+// A city map lies inside the zone map that holds it, and someone standing in
+// one is recorded on both at the same world position: Argent Guard Manados is
+// on Darnassus at 55.2,24.0 and on Teldrassil at 28.7,51.9, a yard apart in
+// the world. The city is where a player standing there is, and what the route
+// planner has to be told, or it plans a way out of the city and back in
+// (#382); it is also the zone the Codex should name. So where two maps hold
+// the same place, the inner one comes first, whatever their ids: an enclosed
+// map (a capital, a battleground) over the open zone, else the map whose
+// frame lies inside the other's. The Undercity is both — it is recorded with
+// Silverpine Forest and Western Plaguelands, whose frames it overlaps without
+// either holding it (#350). Maps holding different places keep their order,
+// so a mob on a zone border stays in the zone it is mostly seen in.
+function spawnsOf(byMap, zones, frames) {
 	const maps = Object.entries(byMap || {})
 		.filter(([map]) => !zones || zones[map])
 		.map(([map, s]) => ({ map: Number(map), f: s && s.f === 'e' ? 'e' : null, clusters: cluster((s && s.pts) || []) }))
 		.filter((m) => m.clusters.length)
 		.sort((a, b) => b.clusters.reduce((n, c) => n + c.n, 0) - a.clusters.reduce((n, c) => n + c.n, 0) || a.map - b.map)
 		.slice(0, SPAWN.maps);
+	if (frames) {
+		for (const m of maps) {
+			m.at = worldOf(frames, m.map, m.f, m.clusters[0].x, m.clusters[0].y);
+			m.box = boxOf(frameOf(frames, m.map, m.f));
+		}
+		for (let i = 0; i < maps.length; i++) {
+			let inner = i;
+			for (let j = i + 1; j < maps.length; j++) {
+				if (samePlace(maps[i].at, maps[j].at) && moreInner(maps[j].box, maps[inner].box)) inner = j;
+			}
+			if (inner !== i) maps.splice(i, 0, maps.splice(inner, 1)[0]);
+		}
+	}
 	const out = [];
 	for (const m of maps) for (const c of m.clusters.slice(0, SPAWN.perMap)) out.push({ map: m.map, x: c.x, y: c.y, f: m.f });
 	return out;
@@ -452,7 +541,7 @@ function mergeCodex(inputs) {
 			boss: rank === 3,
 			instance: null,
 			roles: [],
-			spawns: spawnsOf(n.spawns, zonesIn),
+			spawns: spawnsOf(n.spawns, zonesIn, fv.mapFrames),
 		};
 		npcRoles[id] = new Set(n.roles || []);
 	}
@@ -464,7 +553,7 @@ function mergeCodex(inputs) {
 		for (const [id, w] of Object.entries(wh.npc)) {
 			const rareW = w.classification === 'rare' || w.classification === 'rareelite';
 			const live = Object.fromEntries(Object.entries(w.spawns || {}).map(([m, pts]) => [m, { f: null, pts }]));
-			const spawns = spawnsOf(live, zonesIn);
+			const spawns = spawnsOf(live, zonesIn, fv.mapFrames);
 			let rec = npcs[id];
 			if (!rec) {
 				// An NPC only Wowhead knows: a rare with a place, or anything that drops.
@@ -542,7 +631,7 @@ function mergeCodex(inputs) {
 					const pts = (r.points && r.points.length ? r.points : r.x != null ? [[r.x, r.y]] : []).slice();
 					(byMap[r.map] = byMap[r.map] || { f: null, pts: [] }).pts.push(...pts);
 				}
-				rec.spawns = spawnsOf(byMap, zonesIn);
+				rec.spawns = spawnsOf(byMap, zonesIn, fv.mapFrames);
 			}
 			const loot = (rareLoot[npc] = rareLoot[npc] || new Set());
 			for (const r of list) for (const it of r.loot || []) loot.add(it);
@@ -1059,7 +1148,7 @@ function mergeCodex(inputs) {
 		const treasure = (o.roles || []).includes('chest');
 		if (!treasure && !wantObjects.has(Number(id))) continue;
 		if (!o.name || JUNK.test(o.name)) continue;
-		objects[id] = { id: Number(id), name: o.name, treasure, spawns: spawnsOf(o.spawns, zonesIn) };
+		objects[id] = { id: Number(id), name: o.name, treasure, spawns: spawnsOf(o.spawns, zonesIn, fv.mapFrames) };
 	}
 	const treasureLoot = {}; // object -> Set(items) (RareScanner)
 	for (const t of (rs && rs.treasures) || []) {
@@ -1071,7 +1160,7 @@ function mergeCodex(inputs) {
 			o = objects[t.object] = { id: t.object, name, treasure: true, spawns: [] };
 		}
 		o.treasure = true;
-		if (!o.spawns.length) o.spawns = spawnsOf({ [t.map]: { f: null, pts: t.points && t.points.length ? t.points : [[t.x, t.y]] } }, zonesIn);
+		if (!o.spawns.length) o.spawns = spawnsOf({ [t.map]: { f: null, pts: t.points && t.points.length ? t.points : [[t.x, t.y]] } }, zonesIn, fv.mapFrames);
 		const loot = (treasureLoot[t.object] = treasureLoot[t.object] || new Set());
 		for (const it of t.loot || []) loot.add(Number(it));
 	}
