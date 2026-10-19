@@ -1,11 +1,11 @@
 'use strict';
 // GitHub back to Discord, run by the Actions: an issue filed from a #bugs
-// post closed or reopened, and a release that ships the fixes. The player
-// hears it in their own thread, which gets the matching status tag (Fixed,
-// Won't fix, Duplicate, Tracked again) and is locked while the issue is
-// closed. Every such message pings only the reporter. A prerelease (a
-// release candidate) tells no thread: it pings the tester role once in the
-// testers channel instead.
+// post gets its first pull request, is closed or reopened, and a release
+// ships the fixes. The player hears it in their own thread, which gets the
+// matching status tag (In progress, Fixed, Won't fix, Duplicate, Tracked
+// again) and is locked while the issue is closed. Every such message pings
+// only the reporter. A prerelease (a release candidate) tells no thread: it
+// pings the tester role once in the testers channel instead.
 
 const I = require('./issue');
 const { statusTags, withStatus } = require('./discord');
@@ -121,6 +121,29 @@ async function onIssue({ discord, github, event, forumId, log = console }) {
 	const forum = await discord.getChannel(thread.parent_id);
 	await discord.editThread(thread.id, { applied_tags: withStatus(thread.applied_tags, statusTags(forum), msg.role), locked: msg.locked });
 	log.info(`#${issue.number} ${action} (${issue.state_reason || 'reopened'}): told thread ${thread.id}`);
+	return true;
+}
+
+// The message for an issue's first open pull request: someone is on it, it
+// is not reviewed yet.
+function progressMessage({ repo, issue, prs, owner }) {
+	const ping = owner ? `<@${owner}> ` : '';
+	const links = prs.map((p) => `[#${p.number}](<https://github.com/${repo}/pull/${p.number}>)`).join(', ');
+	const what = prs.length > 1 ? `Fixes for this are open (${links})` : `A fix for this is open (${links})`;
+	return `${ping}${what}. It still has to be reviewed; we'll tell you here when it's fixed. (${issueLink(repo, issue.number)})`;
+}
+
+// Tells the reporter a fix is open and tags the thread In progress. True
+// when told; false when the issue has no thread, so the next run tries again
+// only if a thread appears.
+async function onProgress({ discord, github, issue, prs, forumId, log = console }) {
+	const thread = await threadOf(discord, issue, forumId, log);
+	if (!thread) return false;
+	await postIn(discord, thread, progressMessage({ repo: github.repo, issue, prs, owner: thread.owner_id }), thread.owner_id ? [thread.owner_id] : []);
+	const forum = await discord.getChannel(thread.parent_id);
+	const tags = statusTags(forum);
+	if (tags.progress) await discord.editThread(thread.id, { applied_tags: withStatus(thread.applied_tags, tags, 'progress') });
+	log.info(`#${issue.number}: fix open in ${prs.map((p) => `#${p.number}`).join(', ')}; told thread ${thread.id}`);
 	return true;
 }
 
@@ -293,4 +316,4 @@ async function onRelease({ discord, github, event, forumId, testers = null, log 
 	return { told, failed };
 }
 
-module.exports = { onIssue, onRelease, issueMessage, releaseMessage, candidateMessage, shippedBy, isPrerelease, maintainerNote };
+module.exports = { onIssue, onRelease, onProgress, issueMessage, releaseMessage, progressMessage, candidateMessage, shippedBy, isPrerelease, maintainerNote };
