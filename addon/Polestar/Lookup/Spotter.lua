@@ -173,7 +173,7 @@ function Lookup.ItemTooltip(tooltip, link, itemID)
 		ns.Hooks.AddLine(tooltip, L["No longer obtainable"], nil, rr, rg, rb)
 		return
 	end
-	local list = Lookup.Sources(item.kind or "item", itemID)
+	local list = Lookup.Sources(item.kind or "item", itemID, true)
 	if #list == 0 then return end
 	local H = ns.Hooks
 	local lr, lg, lb = color("textDim", 0.69, 0.72, 0.8)
@@ -196,7 +196,7 @@ function Lookup.UnitTooltip(tooltip, unit)
 	local rr, rg, rb = color("textMuted", 0.5, 0.54, 0.63)
 	local right
 	if info.item then
-		local list = Lookup.Sources(itemKind(ns.Codex, info.item), info.item)
+		local list = Lookup.Sources(itemKind(ns.Codex, info.item), info.item, true)
 		if list[1] then right = sourceText(list[1]) end
 	elseif info.class then
 		right = L["Class mount"]

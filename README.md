@@ -253,8 +253,11 @@ map. Renders of every window and state, drawn without the game, are in
   takes you there, routed like any goal; Alt-click works over map icons.
   Click the spot again to let it go.
 - **Nearby services.** `/polestar near repair` (trainer, a profession,
-  class, reagents, vendor, innkeeper, bank, auction, flight, stable) points
-  the arrow at the quickest one to reach; the map's tracking menu lists them.
+  class, weapon, reagents, vendor, innkeeper, bank, auction, flight, stable)
+  points the arrow at the quickest one to reach; the map's tracking menu and
+  the guide window's Nearby services button list them, the button with a
+  page of the weapons a weapon master can teach you. Once you get there,
+  the arrow is back on the guide.
 - **Other addons' waypoints** (Options, Integrations, TomTom). Without TomTom, "Let other addons set
   waypoints" (off by default) lets addons that set TomTom waypoints point
   Polestar's arrow and makes `/way` work; addons that expect TomTom's own
@@ -332,6 +335,8 @@ guides you there instead.
 - **On the game's reward panel** every choice that is an upgrade gets a green
   arrow, the one to take is framed, and a coin marks the one that sells for
   most. Turn-in goals name the best reward.
+- **In your bags** every item that is an upgrade gets the same green arrow,
+  in the game's bags and in Baganator.
 
 ### Lookup, Dungeons and Rares
 
