@@ -1508,3 +1508,23 @@ test('forever/horde/05-stonetalon-mountains.guide: Hotline\'s report (#278): the
 	assert.equal(list[reports].step, list[at(list, 'accept 6543', is('accept', 6543))].step, 'opened on the Kadrak step');
 	for (const update of [16764, 16765, 16763]) assert.ok(reports < at(list, `update ${update}`, (g) => g.t === 'collect' && g.item === update), `a report is in the bags before update ${update}`);
 });
+
+// --- Flight to Auberdine (Pynte, #402, #403): Vesprystus flies you to
+// Auberdine for free once you have the quest ("speak with me again when you
+// are ready to fly"), so the guide takes his flight, not the boat. Return to
+// Nessa (6343) is taken from Laird and handed to Nessa in Rut'theran by every
+// class (Druids on their own Rut'theran stop).
+test(`${TELDRASSIL}: Pynte's report: Flight to Auberdine is flown with Vesprystus, not the boat, and Return to Nessa is handed in (#402, #403)`, { skip }, () => {
+	for (const cls of ['WARRIOR', 'HUNTER', 'ROGUE', 'PRIEST', 'DRUID']) {
+		const list = goals(TELDRASSIL).filter(forClass(cls));
+		const take = at(list, 'accept 6342 (Flight to Auberdine)', is('accept', 6342));
+		const travel = list.slice(take + 1).find(({ goal }) => ['goto', 'fly', 'hearth'].includes(goal.t));
+		assert.ok(travel && travel.goal.t === 'fly' && travel.goal.location === 'Auberdine', `${cls}: the travel after accepting 6342 is the flight to Auberdine`);
+		const give = at(list, 'turnin 6342 (Flight to Auberdine)', is('turnin', 6342));
+		assert.ok(list.indexOf(travel) < give, `${cls}: 6342 is handed in after the flight`);
+		assert.ok(!list.slice(take, give).some(({ goal }) => goal.t === 'goto'), `${cls}: no walk to a boat between taking 6342 and handing it in`);
+		const back = at(list, 'accept 6343 (Return to Nessa)', is('accept', 6343));
+		assert.ok(give < back, `${cls}: Return to Nessa is taken from Laird after 6342`);
+		assert.ok(back < at(list, 'turnin 6343 (Return to Nessa)', is('turnin', 6343)), `${cls}: Return to Nessa is handed in`);
+	}
+});
