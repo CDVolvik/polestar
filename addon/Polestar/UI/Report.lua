@@ -399,9 +399,10 @@ local function length(s)
 	return chars + astral
 end
 
--- With no other addons there is no Addons line.
+-- With no other addons there is no Addons line. The line names every addon
+-- while the report fits one Discord message; only then is it shortened.
 function R.Text(description, details, spot)
-	local names = #details.names > 0 and cut(table.concat(details.names, ", ")) or nil
+	local names = #details.names > 0 and table.concat(details.names, ", ") or nil
 	local report = text(description, details.lines, spot, names)
 	local n = names and #names or 0
 	while length(report) > R.TEXT_MAX and n > 0 do
