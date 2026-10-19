@@ -15,15 +15,16 @@
 //   [!]has <item> [xN]                        the bags hold N (default 1) or more
 //   [!]zone "<Name>"  [!]subzone "<Name>"     the zone or subzone text reads so
 //   [!]bound "<Location>"                     the hearthstone is bound there
+//   [!]dungeon "<Name>"                       the player chose to run that dungeon
 // value = { k, neg?, op?, n?, frac?, q?, item?, name? }; `q` is a list for onquest.
 
 const { levelPoint } = require('../game/xp');
 
 const INT_RE = /^\d+$/;
-const KINDS = ['level', 'onquest', 'complete', 'turnedin', 'available', 'has', 'zone', 'subzone', 'bound'];
+const KINDS = ['level', 'onquest', 'complete', 'turnedin', 'available', 'has', 'zone', 'subzone', 'bound', 'dungeon'];
 const QUEST_ONE = new Set(['complete', 'turnedin', 'available']);
 const PLACE = new Set(['zone', 'subzone', 'bound']);
-const USAGE = `predicates: level<N, level>=N, [!]onquest <quest>, [!]complete <quest>, [!]turnedin <quest>, [!]available <quest>, [!]has <item> [xN], [!]zone "<Name>", [!]subzone "<Name>", [!]bound "<Location>"`;
+const USAGE = `predicates: level<N, level>=N, [!]onquest <quest>, [!]complete <quest>, [!]turnedin <quest>, [!]available <quest>, [!]has <item> [xN], [!]zone "<Name>", [!]subzone "<Name>", [!]bound "<Location>", [!]dungeon "<Name>"`;
 
 // A name written quoted or bare: `"Razor Hill"` or `Razor Hill`.
 function nameOf(text) {
@@ -74,7 +75,7 @@ function parseWhen(rest) {
 		value.n = n;
 		return { value };
 	}
-	// zone, subzone, bound
+	// zone, subzone, bound, dungeon
 	const name = nameOf(args);
 	if (!name) return { error: `\`${kind}\` needs a name: ${kind} "<${kind === 'bound' ? 'Location' : 'Name'}>"` };
 	value.name = name;

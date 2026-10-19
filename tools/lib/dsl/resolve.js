@@ -19,7 +19,7 @@ const { objectiveLabel } = require('./data');
 const { checkLocation } = require('./places');
 const { blockingPrereqs, closedByOf } = require('../data/prereqs');
 const { clusterPoints, scaleOf } = require('../questdb/cluster');
-const { groupOf, isElite, isRare, hostileTo } = require('./group');
+const { groupOf, isElite, isRare, hostileTo, dungeonNamed } = require('./group');
 const { escortOf } = require('./escort');
 const { goalHeight, spotHeight } = require('./heights');
 const { goalArea, goalNode, goalInnkeeper, goalFlightMaster } = require('./places');
@@ -894,9 +894,10 @@ function acceptGate(q, id, data) {
 // (docs/PACK_FORMAT.md, "Format 4"): quest and item ids checked against the
 // data; `available` with what an accept of the quest waits on (minLevel,
 // pre, preAll, closedBy); a zone, subzone or bind location with its area
-// (places.js, "Places by ID"), the subzone looked up in the step's zone.
-// `levels`: the guide's [min, max], to warn about a step no character in
-// that range sees.
+// (places.js, "Places by ID"), the subzone looked up in the step's zone; a
+// dungeon with its Map.csv id (group.js dungeonNamed), the key of the
+// player's choice. `levels`: the guide's [min, max], to warn about a step no
+// character in that range sees.
 function resolveWhen(list, zoneId, levels, data, warn) {
 	if (!list || !list.length) return undefined;
 	const haveQuests = Object.keys(data.quests || {}).length > 0;
@@ -949,6 +950,13 @@ function resolveWhen(list, zoneId, levels, data, warn) {
 				else if (data.areas) warn(p.line, `subzone "${p.name}" names no single area${z && z.name ? ` in ${z.name}` : ''}: the predicate compares the subzone text as written, in English only`);
 				break;
 			}
+			case 'dungeon': {
+				w.name = p.name;
+				const run = dungeonNamed(data, p.name);
+				if (run) w.map = run.map;
+				else if (data.instances) warn(p.line, `dungeon "${p.name}" is not a dungeon in the client's instance tables: no character can choose it, so \`when dungeon\` never holds and \`when !dungeon\` always does`, 'write the dungeon as the game names it, as the guide window\'s "Dungeon:" line shows it ("Ragefire Chasm")');
+				break;
+			}
 			default: {
 				// bound
 				w.name = p.name;
@@ -975,7 +983,7 @@ function resolveWhen(list, zoneId, levels, data, warn) {
 	const key = (p) => JSON.stringify({ ...p, neg: undefined, line: undefined });
 	for (const p of list) {
 		if (p.k !== 'level' && list.some((o) => o !== p && !!o.neg !== !!p.neg && key(o) === key(p))) {
-			warn(p.line, `the step asks for \`${p.k}\` and \`!${p.k}\` of the same ${p.k === 'has' ? 'item' : p.k === 'onquest' || p.k === 'complete' || p.k === 'turnedin' || p.k === 'available' ? 'quest' : 'place'}: no character sees it`);
+			warn(p.line, `the step asks for \`${p.k}\` and \`!${p.k}\` of the same ${p.k === 'has' ? 'item' : p.k === 'onquest' || p.k === 'complete' || p.k === 'turnedin' || p.k === 'available' ? 'quest' : p.k === 'dungeon' ? 'dungeon' : 'place'}: no character sees it`);
 			break;
 		}
 	}

@@ -275,13 +275,16 @@ hold:
 | `"has"` | `item`; optional `n` (default 1) | the bags hold `n` or more |
 | `"zone"`, `"subzone"` | `name`; optional `area` | the zone (subzone) text reads as the area's name in the client's language, or as `name` |
 | `"bound"` | `name`; optional `area` | the bind location reads so |
+| `"dungeon"` | `name`; optional `map` (the instance's Map.csv id) | the character chose to run the dungeon with that `map` in leveling guides (Options, Discovery, Dungeons: "Dungeons in leveling guides"); without `map` it never holds |
 
 ```lua
 { title = "Back to Gornek", when = { { k = "onquest", q = { 788 } }, { k = "level", op = "<", n = 6 } }, goals = { ... } }
 ```
 
 A `when` that is not a non-empty list, or a predicate of another kind or
-without its keys, refuses the guide. Once the route has moved past a step,
+without its keys, refuses the guide. Polestar 0.2.6 reads every kind above
+but `"dungeon"`, which came after it: 0.2.6 refuses a guide with one ("bad
+when"). Once the route has moved past a step,
 Polestar stores whether its `when` held (per character, guide and step) and
 reads that from then on.
 

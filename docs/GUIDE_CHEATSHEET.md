@@ -158,6 +158,7 @@ the outcome stays.
 | `when has <item> [xN]` | the bags hold N or more | `when !has 159 x5` |
 | `when zone "<Name>"` / `when subzone "<Name>"` | the player is there | `when subzone "Goldshire"` |
 | `when bound "<Location>"` | the hearthstone is bound there | `when !bound "Goldshire"` |
+| `when dungeon "<Name>"` | the player chose to run that dungeon (Options, Discovery, Dungeons; all off at first); `!dungeon` is the route without it | `when dungeon "Ragefire Chasm"` |
 
 ## Route choices and optional steps
 

@@ -281,12 +281,14 @@ test('a guide with a malformed `when` is refused', () => {
 local V = Polestar.Guides.Validate
 local function step(when) return { id = "test/x", title = "X", steps = { { when = when, goals = { { t = "level", level = 2 } } } } } end
 emit({
-	ok = V(step({ { k = "level", op = "<", n = 3 }, { k = "onquest", q = { 7 } }, { k = "has", item = 159 }, { k = "zone", name = "Elwynn Forest" } })) or false,
+	ok = V(step({ { k = "level", op = "<", n = 3 }, { k = "onquest", q = { 7 } }, { k = "has", item = 159 }, { k = "zone", name = "Elwynn Forest" }, { k = "dungeon", name = "Ragefire Chasm", map = 389 }, { k = "dungeon", name = "Ragefire Chasmm" } })) or false,
 	empty = V(step({})),
 	op = V(step({ { k = "level", op = "=", n = 3 } })),
 	kind = V(step({ { k = "money", n = 3 } })),
 	quests = V(step({ { k = "onquest", q = 7 } })),
 	place = V(step({ { k = "bound" } })),
+	dungeon = V(step({ { k = "dungeon", map = 389 } })),
+	dungeonMap = V(step({ { k = "dungeon", name = "Ragefire Chasm", map = "389" } })),
 })
 `,
 	}).emitted;
@@ -297,5 +299,7 @@ emit({
 		kind: 'step 1: bad when',
 		quests: 'step 1: bad when',
 		place: 'step 1: bad when',
+		dungeon: 'step 1: bad when',
+		dungeonMap: 'step 1: bad when',
 	});
 });
