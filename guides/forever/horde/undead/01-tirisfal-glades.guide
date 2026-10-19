@@ -160,6 +160,12 @@ step Aramis and Venya
   accept 90902 only Paladin
   accept 1470 only Warlock            -- Venya Marthand
 
+step Injured Deathguard
+  only Paladin
+  tip Rediscovering the Light: the Injured Deathguard lie around the church. Heal five of them with Holy Light.
+  goto 31.8,63.9 "Injured Deathguard"
+  complete 90902
+
 step Rattlecages, scavengers and duskbats
   tip Rattlecage Skeletons wander the ruined houses in the north half of Deathknell. Young Scavengers and Duskbats roam all around the village; the Ragged Scavengers and Mangy Duskbats are on its east side.
   kill 1890 quest 3901.1

@@ -144,6 +144,23 @@
 			},
 			"note": "Sentiments of the Lost (Wetlands, Essene Villard) comes after Accessories of the Lost 88757: the quest chain on https://foreverchanges.pro/quest/88758, which for quests new in Forever comes from Wowhead's Forever database (checked 2026-10-17) lists \"1. Hearts of the Lost; 2. Accessories of the Lost; 3. Sentiments of the Lost\", and its text (\"one last favor\") follows Essene's repacking. QuestieDB 1.0.5 has no prerequisite."
 		},
+		"90902": {
+			"set": {
+				"objectives": [
+					{
+						"type": "event",
+						"id": null,
+						"count": null,
+						"text": "Heal 5 Injured Deathguard",
+						"map": 1420,
+						"f": "e",
+						"x": 31.77,
+						"y": 63.85
+					}
+				]
+			},
+			"note": "Rediscovering the Light (Deathknell, Forsaken Paladins): Wowhead Forever https://www.wowhead.com/forever/quest=90902 lists \"Injured Deathguard healed (5)\", to be done \"with your Holy Light ability\", checked 2026-10-18. Encoded as an event and not a kill: it is a heal on friendly NPCs, not a fight. The position is the Injured Deathguard 259377 spawn nearest the centroid of its 24 spawns around the church in data/forever (Tirisfal 31.77,63.85). QuestieDB 1.0.6 has no objectives, so the guide had nothing to hold the step and went straight to the turn-in (Hotline's report, issue #408)."
+		},
 		"91920": {
 			"set": {
 				"pre": [
