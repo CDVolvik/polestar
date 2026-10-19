@@ -6,6 +6,7 @@
 // eliteWork(goal, sides, data) — elite work (also the Leveling-guide elite
 //   rule in validate.js).
 // groupOf(goal, explicit, sides, data) — the goal's compiled `group`.
+// dungeonNamed(data, name) — the dungeon a `when dungeon` names.
 
 const SOLO = require('../sim/solo');
 
@@ -82,4 +83,25 @@ function groupOf(goal, explicit, sides, data) {
 	return elite ? { kind: 'elite', rank: elite.rank } : null;
 }
 
-module.exports = { eliteWork, groupOf, isElite, isRare, hostileTo };
+// The dungeon a name stands for, from the same instance tables: its Map.csv
+// name ("Ragefire Chasm"), else an area of that name on one dungeon's map
+// (AreaTable: "The Deadmines" for map 36, "Deadmines" in Map.csv), case
+// aside. Raids and battlegrounds are no dungeon. -> { name, map } | null
+function dungeonNamed(data, name) {
+	const inst = data.instances;
+	if (!inst) return null;
+	const key = String(name).trim().toLowerCase();
+	const runs = [...Object.values(inst.areas || {}), ...Object.values(inst.maps || {})].filter((r) => r && r.kind === 'dungeon' && r.map);
+	const byName = runs.find((r) => String(r.name).toLowerCase() === key);
+	if (byName) return { name: byName.name, map: byName.map };
+	const maps = new Set();
+	for (const a of (data.areas && data.areas.byName.get(key)) || []) {
+		const r = (inst.areas || {})[a.id];
+		if (r && r.kind === 'dungeon' && r.map) maps.add(r.map);
+	}
+	if (maps.size !== 1) return null;
+	const map = [...maps][0];
+	return { name: runs.find((r) => r.map === map).name, map };
+}
+
+module.exports = { eliteWork, groupOf, isElite, isRare, hostileTo, dungeonNamed };

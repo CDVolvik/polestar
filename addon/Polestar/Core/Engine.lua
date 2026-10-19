@@ -514,6 +514,8 @@ function Own.predicateHolds(p)
 		ok = Own.samePlace(k == "zone" and zone or sub, p)
 	elseif k == "bound" then
 		ok = Own.samePlace(C.GetBindLocation(), p)
+	elseif k == "dungeon" then
+		ok = p.map ~= nil and Engine.DungeonChosen(p.map)
 	end
 	if p.neg then return not ok end
 	return ok
@@ -3902,6 +3904,21 @@ function Engine.ChooseRoute(fromId, toId)
 	end
 	ns.Fire("ROUTE_CHOSEN", fromId, toId)
 	return true
+end
+
+-- The dungeons the player runs in leveling guides (`when dungeon`, the
+-- Options' "Dungeons in leveling guides"): CharState().dungeons[map] = true,
+-- by the instance's Map id; none by default, so the solo route is the
+-- default. A change re-evaluates the guides at once; a step the route has
+-- passed keeps its stored outcome (Own.latchWhen).
+function Engine.DungeonChosen(map)
+	return ns.CharState().dungeons[map] == true
+end
+
+function Engine.ChooseDungeon(map, on)
+	if type(map) ~= "number" then return end
+	ns.CharState().dungeons[map] = on and true or nil
+	requestUpdate()
 end
 
 -- The active tab's finished guide when its route choice waits for the

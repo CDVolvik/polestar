@@ -137,10 +137,13 @@ Warrior or Paladin).
 `when` checks the character's state instead, one predicate per line:
 `level<N` (also `<=`, `>`, `>=`; N may be `12.5` or `12+2500`), `money>=1s` (also `<`, `<=`, `>`), `onquest <quest>, ...`, `complete <quest>`,
 `turnedin <quest>`, `available <quest>`, `has <item> [xN]`, `zone "<Name>"`,
-`subzone "<Name>"`, `bound "<Location>"`; `!` in front of any but `level`
-and `money` turns it around. Once the route has passed the step, the outcome stays. A
-pack with `when` (on a step or a `next` line), `along` or `label` needs Polestar 0.2.6; with
-`money` or `task` goals, or a `when money` predicate, needs Polestar 0.3.0.
+`subzone "<Name>"`, `bound "<Location>"`, `dungeon "<Name>"` (the player
+chose to run that dungeon in Options, Discovery, Dungeons; all are off at
+first, so `!dungeon "<Name>"` is the solo route); `!` in front of any but
+`level` and `money` turns it around. Once the route has passed the step, the
+outcome stays. A pack with `when` (on a step or a `next` line), `along` or
+`label` needs Polestar 0.2.6; with `money` or `task` goals, or a `when money`
+or `when dungeon` predicate, needs Polestar 0.3.0.
 
 ## Lint errors that come up most
 

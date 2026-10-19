@@ -243,6 +243,7 @@ step Back to Gornek
 | `zone "<Name>"` | the zone text reads so (the zone as the game names it) |
 | `subzone "<Name>"` | the subzone text reads so |
 | `bound "<Location>"` | the hearthstone is bound there (a bind location, as for `sethome`) |
+| `dungeon "<Name>"` | the character chose to run that dungeon (see "Dungeon steps" below) |
 
 `!` in front of any predicate but `level` turns it around: `!onquest 788`
 holds while the quest is not in the log, `!has 159 x5` while the bags hold
@@ -271,6 +272,31 @@ compiler gives each its area ID where the data names one (see "Places by
 ID"), and Polestar compares the game's own name for it, then the name you
 wrote.
 
+**Dungeon steps.** `when dungeon "<Name>"` is for the steps of a dungeon
+run: they apply only to characters who chose to run that dungeon, and `when
+!dungeon "<Name>"` is the route for those who did not. Each character picks
+the dungeons in Options, Discovery, Dungeons ("Dungeons in leveling guides",
+one switch per Classic dungeon); every one is off at first, so the solo route
+is the default. A choice changes only the steps still ahead: like any `when`,
+a step the route has passed keeps its outcome.
+
+```
+step Ragefire Chasm
+  when dungeon "Ragefire Chasm"
+  note Run Ragefire Chasm with a group, then come back to Orgrimmar.
+step Grind instead
+  when !dungeon "Ragefire Chasm"
+  level 15
+```
+
+Write the dungeon as the game names it: its name in the client's instance
+tables ("Ragefire Chasm", "Deadmines") or an area of that name on its map
+("The Deadmines"), case aside. The compiler gives it the instance's map ID
+from the same tables as "Group content" (below); a name that is no dungeon
+there (a typo, a raid) warns, and the step's `when dungeon` then never holds.
+Without the client tables (no `sources` folder beside the data) the name is
+not checked.
+
 ### Conditional hand-offs
 
 `next <id> when <predicate>` makes one `next` option conditional: one guide,
@@ -295,9 +321,10 @@ time. A subzone is looked up in the zone where the guide ends.
 
 A pack with a `when` anywhere (on a step or a `next` option), or a `level`
 goal inside a level (`level 12.5`), is written in pack format 4, which
-Polestar 0.2.6 and later read. A `when money` predicate (above) writes format 5
-(Polestar 0.3.0 and later), because 0.2.6 knows `when` but not the `money`
-predicate; `money` and `task` goals also need format 5 (docs/PACK_FORMAT.md).
+Polestar 0.2.6 and later read. A `when money` or `when dungeon` predicate
+(above) writes format 5 (Polestar 0.3.0 and later), because 0.2.6 knows `when`
+but not those predicates; `money` and `task` goals also need format 5
+(docs/PACK_FORMAT.md).
 
 ## Along the way
 

@@ -231,6 +231,8 @@ local function checkWhen(list)
 			if not isNum(p.q) then return false end
 		elseif k == "has" then
 			if not isNum(p.item) then return false end
+		elseif k == "dungeon" then
+			if not (isStr(p.name) and (p.map == nil or isNum(p.map))) then return false end
 		elseif not (WHEN_PLACE[k] and isStr(p.name)) then
 			return false
 		end

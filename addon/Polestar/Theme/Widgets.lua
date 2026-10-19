@@ -599,7 +599,7 @@ end
 function W.Bind(control, path, depends)
 	control.psPath = path
 	control.psDepends = depends
-	track(bound, path, control)
+	if path then track(bound, path, control) end
 	if depends then track(dependents, depends, control) end
 	control:Refresh()
 	return control
@@ -809,7 +809,8 @@ local function toggleRefresh(self)
 end
 
 -- opts.get() / opts.set(value) stand in for reading and writing the path when
--- one switch stands for several settings (set(nil) on right-click: defaults).
+-- one switch stands for several settings, or for state that is no setting
+-- (path nil); set(nil) on right-click: defaults.
 -- opts.gear = { tip, onClick }: a gear before the switch that opens the
 -- setting's own options (the route lines' style).
 local GEAR, GEAR_GAP = 22, 6
@@ -836,6 +837,7 @@ function W.Toggle(parent, label, path, desc, depends, opts)
 		if not W.Enabled(self) then return end
 		if self.psSet then
 			if button == "RightButton" then self.psSet(nil) else self.psSet(not toggleValue(self)) end
+			self:Refresh()
 		elseif button == "RightButton" then
 			ns.Set(self.psPath, nil)
 		else
@@ -2417,7 +2419,9 @@ function ns.RegisterOptions(spec)
 		if type(c) ~= "table" or not CONTROL_KINDS[c.kind] then
 			return false, ("RegisterOptions(%s): control %d has unknown kind %s"):format(spec.page, i, tostring(c and c.kind))
 		end
-		if c.kind ~= "button" and c.kind ~= "binding" and type(c.key) ~= "string" then
+		-- A toggle may hold state that is no setting: get/set and no key.
+		local state = c.kind == "toggle" and c.key == nil and type(c.get) == "function" and type(c.set) == "function"
+		if c.kind ~= "button" and c.kind ~= "binding" and not state and type(c.key) ~= "string" then
 			return false, ("RegisterOptions(%s): control %d needs a settings key"):format(spec.page, i)
 		end
 		if c.kind == "binding" and type(c.action) ~= "string" then

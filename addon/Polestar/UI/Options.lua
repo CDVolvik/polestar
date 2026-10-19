@@ -371,7 +371,7 @@ for _, list in ipairs({
 	}),
 	declare(DISCOVERY, "discovery", "search", 50, L["Lookup, the dungeon journal and rares: finding things in the world."], {
 		{ L["Lookup"], { L["How to get anything"] } },
-		{ L["Dungeons"], { ENCOUNTER_JOURNAL } },
+		{ L["Dungeons"], { ENCOUNTER_JOURNAL, L["Dungeons in leveling guides"] } },
 		{ L["Rares"], { L["When a rare shows up"], L["How rares are noticed"], L["History"] } },
 	}),
 	declare(QOL, "qualityoflife", "qol-toggles", 60, L["Small conveniences: travel, invitations, merchants and trackers."], {
@@ -679,7 +679,16 @@ local function available(c)
 	if c.needs and not c.needs() then return false end
 	if c.kind == "button" then return true end
 	if c.kind == "binding" then return ns.Gamepad ~= nil and ns.Gamepad.BindingRow ~= nil end
+	-- A toggle with get/set and no key holds state that is no setting (per character).
+	if c.kind == "toggle" and not c.key and c.get and c.set then return true end
 	return ns.GetDefault and ns.GetDefault(c.key) ~= nil
+end
+
+-- A control's label: a string, or a function that names it when it is drawn
+-- (a name in the client's language that is not loaded at registration).
+local function labelOf(c)
+	if type(c.label) == "function" then return c.label() or "" end
+	return c.label
 end
 
 local function choicesOf(c)
@@ -693,7 +702,7 @@ end
 local function makeControl(parent, c)
 	local w
 	if c.kind == "toggle" then
-		w = W.Toggle(parent, c.label, c.key, c.help, nil, c.gear and { gear = c.gear } or nil)
+		w = W.Toggle(parent, labelOf(c), c.key, c.help, nil, (c.gear or c.get or c.set) and { gear = c.gear, get = c.get, set = c.set } or nil)
 	elseif c.kind == "slider" then
 		w = W.Slider(parent, c.label, c.key, c.min or 0, c.max or 1, c.step or 0.1, c.format, c.help, nil, c.release and { release = true } or nil)
 	elseif c.kind == "dropdown" then
@@ -821,7 +830,7 @@ end
 local searchView
 
 local function matches(c, words)
-	local hay = ((c.label or "") .. " " .. (c.help or "") .. " " .. (c.page and c.page.name or "") .. " " .. (c.tab or "") .. " " .. (c.section or "")):lower()
+	local hay = ((labelOf(c) or "") .. " " .. (c.help or "") .. " " .. (c.page and c.page.name or "") .. " " .. (c.tab or "") .. " " .. (c.section or "")):lower()
 	for _, w in ipairs(words) do
 		if not hay:find(w, 1, true) then return false end
 	end
@@ -981,6 +990,19 @@ end
 
 function O.ResetPage(p)
 	for _, key in ipairs(pageKeys(p)) do ns.Set(key, nil) end
+	-- Toggles of state that is no setting go back to their default too.
+	for _, t in ipairs(p.tabs) do
+		for _, s in ipairs(t.sections) do
+			for _, c in ipairs(s.controls) do
+				if c.kind == "toggle" and not c.key and c.set and available(c) then c.set(nil) end
+			end
+		end
+	end
+	for _, v in pairs(p.views or {}) do
+		for _, w in pairs(v.cache or {}) do
+			if w.psControl and not w.psControl.key and w.Refresh then w:Refresh() end
+		end
+	end
 end
 
 -- Show page `key` (and tab name), or the search results when searching.
@@ -1129,7 +1151,7 @@ function O.Controls(key, tabName)
 	for name, view in pairs(p.views) do
 		if not tabName or name == tabName then
 			for c, w in pairs(view.cache) do
-				if c.key then out[c.key] = w else out[c.label] = w end
+				if c.key then out[c.key] = w else out[labelOf(c)] = w end
 			end
 		end
 	end
