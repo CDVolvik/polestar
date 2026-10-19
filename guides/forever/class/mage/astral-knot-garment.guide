@@ -46,7 +46,7 @@ step High Sorcerer Andromath
 
 step The Tower of Ilgalar
   zone Redridge Mountains
-  tip Ride east through Elwynn Forest into Redridge. The fallen mage's tower of Ilgalar stands in the east of the zone; the treatise is in his library.
+  tip Head east through Elwynn Forest into Redridge. The fallen mage's tower of Ilgalar stands in the east of the zone; the treatise is in his library.
   collect 7266 quest 1938.1                   -- Ur's Treatise on Shadow Magic
 
 step Back to Andromath

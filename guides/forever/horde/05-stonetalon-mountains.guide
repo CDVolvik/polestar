@@ -107,7 +107,7 @@ step Warsong Outrider
   collect 16765 quest 6543.3 @81.83,53.51 -- Warsong Outrider
 
 step Va'xug Firefure
-  tip On the ride west, Va'xug Firefure is stuck in a ravine south of the main road, south-east of Astranaar. Shadowhorn Stags and Ashenvale Bears roam the woods all around it.
+  tip On the way west, Va'xug Firefure is stuck in a ravine south of the main road, south-east of Astranaar. Shadowhorn Stags and Ashenvale Bears roam the woods all around it.
   accept 98251 @40.4,61.5             -- Va'xug Firefure
   kill 3817 quest 98251.1
   kill 3809 quest 98251.2
@@ -121,7 +121,7 @@ step A Void Path
 # ---------------------------------------------------------------- Zoram'gar Outpost
 
 step Zoram'gar Outpost
-  tip Ride west along the main road across Ashenvale, past Astranaar (Alliance: keep to the road), to the coast. Zoram'gar Outpost is on the Zoram Strand in the north-west. Its other quests are for the next visit, at 27.
+  tip Head west along the main road across Ashenvale, past Astranaar (Alliance: keep to the road), to the coast. Zoram'gar Outpost is on the Zoram Strand in the north-west. Its other quests are for the next visit, at 27.
   getfp "Zoram'gar Outpost"
   collect 16763 quest 6543.2 @12.22,34.22 -- Warsong Runner
   accept 6442                         -- Marukai
@@ -135,7 +135,7 @@ step Zoram'gar Outpost
 
 step Back to Kadrak
   zone The Barrens
-  tip Fly to Splintertree Post and ride south down the road to the Mor'shan Rampart.
+  tip Fly to Splintertree Post and head south down the road to the Mor'shan Rampart.
   fly "Splintertree Post"
   turnin 6543                         -- Kadrak
 
@@ -143,7 +143,7 @@ step Back to Kadrak
 
 step Malaka'jin
   zone Stonetalon Mountains
-  tip Ride south to the Crossroads, then west along the road out of the Barrens into Stonetalon. The troll village of Malaka'jin sits at the entrance of the canyon.
+  tip Head south to the Crossroads, then west along the road out of the Barrens into Stonetalon. The troll village of Malaka'jin sits at the entrance of the canyon.
   accept 1058                         -- Witch Doctor Jin'Zil
 
 step Ziz Fizziks
@@ -215,14 +215,14 @@ step Sun Rock Retreat
   turnin 86576 npc 11861              -- Mor'rogal, beside Tsunaman
 
 step Malaka'jin
-  tip Ride back down the Webwinder Path to Malaka'jin.
+  tip Head back down the Webwinder Path to Malaka'jin.
   turnin 1058                         -- Witch Doctor Jin'Zil
 
 # ---------------------------------------------------------------- To Tarren Mill
 
 step To the Undercity
   zone Undercity
-  tip Ride east to the Crossroads and fly to Orgrimmar. Take the zeppelin from the towers outside Orgrimmar to Tirisfal Glades; the Undercity lies below the Ruins of Lordaeron. The bat handler is in the Trade Quarter.
+  tip Head east to the Crossroads and fly to Orgrimmar. Take the zeppelin from the towers outside Orgrimmar to Tirisfal Glades; the Undercity lies below the Ruins of Lordaeron. The bat handler is in the Trade Quarter.
   getfp "Undercity"
   kill 10181 quest 93739.4 only Skyborne optional -- Speak with Lady Sylvanas Windrunner, in the Royal Quarter: Exploring the Horde
 
@@ -233,7 +233,7 @@ step Aelthalyste
 
 step Beren's Peril
   zone Silverpine Forest
-  tip If you already know the Tarren Mill flight path, fly there and skip to Tarren Mill. Otherwise fly from the Undercity to the Sepulcher and ride south down the road past Pyrewood. The Ravenclaw undead haunt the ruins of Beren's Peril east of the road in the south-east of the forest; a Ravenclaw Guardian drops the Note Scrap that leads to the Offering Stone.
+  tip If you already know the Tarren Mill flight path, fly there and skip to Tarren Mill. Otherwise fly from the Undercity to the Sepulcher and head south down the road past Pyrewood. The Ravenclaw undead haunt the ruins of Beren's Peril east of the road in the south-east of the forest; a Ravenclaw Guardian drops the Note Scrap that leads to the Offering Stone.
   accept 95884 item 271343            -- Note Scrap, from a Ravenclaw Guardian
   turnin 95884 @58.1,69.8             -- Offering Stone
   accept 95883

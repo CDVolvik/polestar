@@ -89,7 +89,7 @@ step Avelina Lilly
 
 step Isaac Pearson
   zone The Barrens
-  tip Isaac Pearson works in Ratchet, on the Barrens coast. Take the zeppelin to Durotar and ride or fly on to Ratchet.
+  tip Isaac Pearson works in Ratchet, on the Barrens coast. Take the zeppelin to Durotar and walk or fly on to Ratchet.
   collect 190180 quest 65593.1        -- Isaac's Heart
 
 step The Binding (Undercity)

@@ -64,7 +64,7 @@ step The Islander (Undercity)
 
 step The Affray
   zone The Barrens
-  tip Ride south along the coast from Ratchet to Fray Island. Klannoc Macleod stands by the arena: step on the grate to start the fight; the challengers come one at a time, then Big Will (33).
+  tip Head south along the coast from Ratchet to Fray Island. Klannoc Macleod stands by the arena: step on the grate to start the fight; the challengers come one at a time, then Big Will (33).
   turnin 1718                                 -- Klannoc Macleod
   accept 1719
   complete 1719                               -- Defeat the challengers and Big Will

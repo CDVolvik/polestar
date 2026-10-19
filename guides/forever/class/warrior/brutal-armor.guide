@@ -82,7 +82,7 @@ step Windshear Mine
 
 step Hillsbrad Miners
   zone Hillsbrad Foothills
-  tip The Hillsbrad Miners work the mine in the west of Hillsbrad Foothills; they drop the Powdered Azurite. Take the zeppelin from Orgrimmar to Tirisfal Glades and ride south through Silverpine Forest.
+  tip The Hillsbrad Miners work the mine in the west of Hillsbrad Foothills; they drop the Powdered Azurite. Take the zeppelin from Orgrimmar to Tirisfal Glades and head south through Silverpine Forest.
   collect 7127 quest 1838.2                   -- Powdered Azurite from the Hillsbrad Miners
 
 step Iron Bars

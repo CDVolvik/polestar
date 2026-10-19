@@ -61,7 +61,7 @@ step Half Pendant of Aquatic Agility
 step Half Pendant of Aquatic Endurance
   only NightElf
   zone Westfall
-  tip Take the boat from Auberdine to Stormwind and fly to Sentinel Hill. Ride north-west to the coast: the Strange Lockbox lies on the sea floor off the shore.
+  tip Take the boat from Auberdine to Stormwind and fly to Sentinel Hill. Head north-west to the coast: the Strange Lockbox lies on the sea floor off the shore.
   fly "Sentinel Hill"
   collect 15882 x1                      -- Half Pendant of Aquatic Endurance
 

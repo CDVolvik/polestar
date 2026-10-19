@@ -95,7 +95,7 @@ step Stormwind class quests
 step Half Pendant of Aquatic Endurance
   only NightElf,Druid
   zone Westfall
-  tip Fly to Sentinel Hill and ride north-west to the coast: the Strange Lockbox lies on the sea floor off the shore. Then ride east along the road through Elwynn to Redridge.
+  tip Fly to Sentinel Hill and head north-west to the coast: the Strange Lockbox lies on the sea floor off the shore. Then head east along the road through Elwynn to Redridge.
   fly "Sentinel Hill"
   collect 15882 x1                            -- Half Pendant of Aquatic Endurance: the Strange Lockbox
 

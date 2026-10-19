@@ -44,7 +44,7 @@ step Agent Kearnen
 
 step Master Mathias Shaw
   zone Stormwind City
-  tip Ride north through Elwynn to Stormwind; Mathias Shaw is at SI:7 in Old Town.
+  tip Head north through Elwynn to Stormwind; Mathias Shaw is at SI:7 in Old Town.
   turnin 2359 reward 18160                    -- Master Mathias Shaw: Poisons
   accept 2607
 
