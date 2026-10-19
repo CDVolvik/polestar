@@ -635,7 +635,6 @@ L["Wearing %s (%s)."] = "%s équipé (%s)."
 L["Wearing %s."] = "%s équipé."
 
 -- QoL/Flight.lua
-L["Route"] = "Itinéraire"
 L["Route: fly to %s."] = "Itinéraire : prenez un vol pour %s."
 
 -- QoL/Death.lua
@@ -2005,6 +2004,9 @@ L["Spare points go to Divine Strength and Holy's Improved Seals for damage, then
 L["Hand guiding to Shortest Path Forever"] = "Confier le guidage à Shortest Path Forever"
 L["Shortest Path Forever's arrow, route and journey take you to each goal. Polestar's arrow, route lines, journey steps, travel button, transport alerts, map clicks and /way step aside; the guide window and map pins stay. Off: Polestar guides, and steps aside only while a journey you started in Shortest Path Forever runs."] = "La flèche, l'itinéraire et le trajet de Shortest Path Forever vous mènent à chaque objectif. La flèche de Polestar, ses lignes d'itinéraire, les étapes du trajet, le bouton de voyage, les alertes de transport, les clics sur la carte et /way s'effacent ; la fenêtre du guide et les marques de la carte restent. Désactivé : Polestar guide, et ne s'efface que pendant un trajet lancé dans Shortest Path Forever."
 
+-- Nav/Pins.lua
+-- L["Polestar trail dots"] = ""
+
 -- No longer in the code (its English changed or it went away): reuse or delete.
 -- L["Alliance"] = "Alliance"
 -- L["Blood Elf"] = "Elfe de sang"
@@ -2060,3 +2062,4 @@ L["Shortest Path Forever's arrow, route and journey take you to each goal. Poles
 -- L["Next lift in about %s"] = "Prochain ascenseur dans environ %s"
 -- L["leaves in about %s"] = "départ dans environ %s"
 -- L["Scale of the quest item, Hearthstone and target buttons. Drag one to move them all."] = "Échelle des boutons d'objet de quête, de pierre de foyer et de ciblage. Faites-en glisser un pour tous les déplacer."
+-- L["Route"] = "Itinéraire"

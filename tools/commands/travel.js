@@ -86,6 +86,8 @@ import: the shipped crossings file from Carbonite's Classic Era zone
 connections (Carbonite/Data/classic/ZoneConnections.lua in
 github.com/IrcDirk/Carbonite-Classic, GPL-3.0): its walks between zones
 (two-way unless marked one way), validated, with the arrival radius given.
+The open borders of the file it replaces (from the navigation grid, not
+Carbonite) are kept.
 
   --carbonite <file>   Carbonite's ZoneConnections.lua
   --source <text>      where it came from (repository and commit), kept in the file
@@ -166,12 +168,13 @@ function importCrossings(rest) {
 	const dataDir = path.resolve(values.data || DATA);
 	const read = (f) => JSON.parse(fs.readFileSync(path.join(dataDir, f), 'utf8'));
 	const frames = new Frames(read('map-frames.json').era, read('zones.json'));
-	const doc = carboniteCrossings(fs.readFileSync(path.resolve(values.carbonite), 'utf8'), frames, { source: values.source, radius: yardsOption(values.radius, '--radius', undefined) });
+	const out = path.resolve(values.out || SHIPPED_CROSSINGS);
+	const keep = fs.existsSync(out) ? JSON.parse(fs.readFileSync(out, 'utf8')) : null;
+	const doc = carboniteCrossings(fs.readFileSync(path.resolve(values.carbonite), 'utf8'), frames, { source: values.source, radius: yardsOption(values.radius, '--radius', undefined), keep });
 	const v = validateCrossings(doc, frames);
 	if (v.errors.length) throw new Error(`${v.errors.length} error(s)\n  ${v.errors.join('\n  ')}`);
-	const out = path.resolve(values.out || SHIPPED_CROSSINGS);
 	fs.writeFileSync(out, `${JSON.stringify(doc, null, '\t')}\n`);
-	console.log(`wrote ${path.relative(process.cwd(), out)}: ${doc.crossings.length} crossings (${doc.crossings.filter((c) => c.oneWay).length} one way)`);
+	console.log(`wrote ${path.relative(process.cwd(), out)}: ${doc.crossings.length} crossings (${doc.crossings.filter((c) => c.oneWay).length} one way), ${(doc.open || []).length} open borders kept`);
 	return 0;
 }
 

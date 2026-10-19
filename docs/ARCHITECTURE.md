@@ -186,7 +186,11 @@ during their step, and conditions that can stop holding later (goto,
 sethome, hearth, fly, getfp, buy, bag-count collect, `train class` with
 nothing to learn) are latched once the route moves past their step, so
 leaving a zone, rebinding the hearthstone or levelling up never drags the
-guide backwards. Quest goals are never latched, but for a `direct` turn-in's
+guide backwards. A hearth or fly that landed is also latched within its step
+while that step is the live one, even while the player looks at another
+step, so walking out of the arrival's subzone does not send the player back
+to the flight master (#362); a step only looked at ahead never latches it,
+and stepping back (Prev) keeps it. Quest goals are never latched, but for a `direct` turn-in's
 QUEST_TURNED_IN during its step (a repeatable is never flagged completed): abandoning a
 quest reopens its step (unless the player ticked it). `skipped` holds the
 steps the player skipped (step number) and the optional goals they skipped
@@ -823,9 +827,9 @@ as on a bag item (`W.ItemClick`: Shift links, Ctrl tries it on, Alt guides;
 | `interact` | `object`, `objName` | `quest`, `oi` | objective state if `quest` (the line named after the object, else `oi`); else manual |
 | `use` | `item`, `itemName` | `quest`, `oi` | objective state if `quest`; else manual |
 | `sethome` | `location` | `npc`, `npcName`, `area` | bound at the goal's inn (`npc`'s, else the inn `location` names, in Nav/Travel.lua's data), by any of: the inn Travel finds for `GetBindLocation()` (`Nav.BoundInn`: the innkeeper learned at bind time in `flags.inn`, else the inn whose `area` the client names so, else its names); `GetBindLocation()` equal to the client's name of that inn's or the goal's `area` (`Compat.GetAreaName`); last, equal to `location` (case-insensitive). Binding at that innkeeper during the step latches it |
-| `hearth` | `location` | `area` | zone or subzone equals the client's name of `area` (without one, `location`), else manual |
+| `hearth` | `location` | `area` | zone or subzone equals the client's name of `area` (without one, `location`), else manual; latched once it lands in its live step |
 | `getfp` | `location` | `npc`, `npcName`, `node`, `area` | with `node`: that taxi node among the known ones (`flags.taxi`, recorded by Nav/Travel.lua from the flight map); without: taxi map opened at a flight master of that name (persisted in `flags.fp`); else manual |
-| `fly` | `location` | `area`, `node` | as `hearth` (`node`: the flight point, named in the client's language where no `area` names the place) |
+| `fly` | `location` | `area`, `node` | as `hearth`, including the in-step latch (`node`: the flight point, named in the client's language where no `area` names the place) |
 | `train` | — | `npc`, `npcName`, `text` | trainer window opened during this step, else manual |
 | `buy` | `item`, `itemName` | `count`, `npc`, `npcName` | item count ≥ `count` (default 1) |
 | `vendor` | — | `npc`, `npcName`, `text` | merchant window opened during this step, else manual |
@@ -1951,6 +1955,19 @@ inside the visible disc or square, 5 px, at most 40. World map: every max(15,
 map width / 60) yd, clipped to the map, 6 px (counter-scaled like the pins)
 under the pins, textures on one no-mouse frame, at most 300. One 20 Hz driver runs only while dots show.
 `nav.trailDots` (default on) with `nav.worldPins` / `nav.minimapPins` per surface.
+On OpenMap's stitched world map (`OpenMapAPI`, OpenMap's `docs/api.md`; an
+optional dependency), the world map frame shows only the map under the view's
+centre while OpenMap draws the rest, so the trail goes through OpenMap's own
+placement instead: each run's continent yards to the shown map's percent through
+a reference map on that continent (the shown map, or on the world map its
+children), placed by `OpenMapAPI.WorldFromMap` / `MapFromWorld`; clipped to what
+the map's scroll frame shows (and 4% past it), not to the map; every max(15,
+view width / 60) yd rounded up to 15 yd times a power of two, so dots keep their
+places through a zoom within a step; redrawn when a pan or zoom moves the view
+(the canvas's and its scroll frame's place, read each frame) and when OpenMap
+switches its map on or off (`OpenMap_StitchedChanged`). `nav.openmapDots`
+(default on) is a switch of Polestar's in OpenMap's menu; it hides the dots on
+OpenMap's map only. Only OpenMap's table is called; the map frame is only read.
 The trail stands in only while route lines draw nothing (`nav.routeLines` off):
 `Nav/Layers.lua` clears it while `Polestar.RouteLines.Active()`.
 
@@ -2366,7 +2383,12 @@ committed, written by `node tools/polestar.js travel import --carbonite
 connections (GPL-3.0; `tools/lib/travel/carbonite.js`): its walks between
 two zones of one continent, both ways unless Carbonite marks one way, every
 end with a 30 yd arrival radius (Carbonite gives none); its boats, zeppelins,
-tram and portals are TravelData's own transports and are left out. `travel
+tram and portals are TravelData's own transports and are left out. Its
+`open` pairs are not Carbonite's: borders the navigation grid finds walkable
+along their length (`nav aids` open pairs; Elwynn Forest and Duskwood,
+Duskwood and Westfall, whose river the walking engine swims), so a walk
+across them is not sent round to a road crossing (#371, #421); a re-import
+keeps them and its `source` says so. `travel
 build --shipped none` builds without them (the test fixtures). An optional
 local crossings file, `data/local/crossings.json` (gitignored), adds to them:
 the build validates it and writes it into the local data addon
