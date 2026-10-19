@@ -139,10 +139,14 @@ local function spellName(spell, english)
 	return (N and spell and N.Spell(spell)) or english
 end
 
--- A transport end (point) with its board point, when TravelData gives one
--- (b = { wx, wy, z }): end.board = a point on the deck, with z.
+-- A transport or portal end (point) with what TravelData adds after its area:
+-- its board point (b = { wx, wy, z }: end.board, a point on the deck, with z)
+-- or its height (a number: end.z, the floor the walk to it ends on: the
+-- Deeprun Tram's entrance, not the roof above it, #338; a zeppelin tower's top).
 local function withBoard(e, b)
-	if type(b) == "table" and type(b.wx) == "number" and type(b.wy) == "number" then
+	if type(b) == "number" then
+		e.z = b
+	elseif type(b) == "table" and type(b.wx) == "number" and type(b.wy) == "number" then
 		local p = point(e.name, e.c, b.wx, b.wy, e.map, nil, nil, nil, e.area)
 		p.z = b.z
 		e.board = p
@@ -201,8 +205,8 @@ function Nav.RegisterTravelData(d, replace)
 		if type(a) == "table" and type(b) == "table" then
 			portals[#portals + 1] = {
 				id = t.id, kind = "portal", name = t.name, area = t.area, faction = t.faction or 3, seconds = t.seconds or 5,
-				a = point(a[1], a[2], a[3], a[4], a[5], a[6], a[7], a[8] or "e", a[9]),
-				b = point(b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8] or "e", b[9]),
+				a = withBoard(point(a[1], a[2], a[3], a[4], a[5], a[6], a[7], a[8] or "e", a[9]), a[10]),
+				b = withBoard(point(b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8] or "e", b[9]), b[10]),
 			}
 		end
 	end
@@ -323,7 +327,8 @@ end
 --   flights = { [fromId] = { toId, yards, toId, yards, ... } }
 --   transports = { { id, kind, faction, a, b, ab, ba, waitA, waitB }, ... }, inns = { inn, ... },
 --     (a, b: the ends, at the ship's stop; end.board = { name, c, wx, wy, map, z }: where a ship
---     lying off its pier is boarded, the dock the planner walks to)
+--     lying off its pier is boarded, the dock the planner walks to; else end.z: the floor the
+--     walk to it ends on, when TravelData knows it)
 --   portals = { { id, kind = "portal", name, faction, a, b, seconds }, ... }
 function Nav.GetTravelData()
 	return { taxi = taxiList, taxiById = taxi, flights = flights, transports = transports, inns = inns, portals = portals, build = Travel.build }
@@ -660,7 +665,7 @@ function Nav.PlanRoute(p)
 	if walkCost or places then
 		for v = 1, keys do
 			if v ~= 2 and vc[v] == tg.c and not sealed(v) then
-				-- A dock at a board point carries the deck's height (the walk from it starts on the deck).
+				-- A dock carries its height (a board point's deck, a tram or zeppelin end's floor): the walk from it starts there.
 				if places then places[#places + 1] = { wx = vx[v], wy = vy[v], z = vkind[v] == DOCK and dockEnd[v].z or nil, start = v == 1 or nil } end
 				if walkCost then
 					local cost, yd = walkCost(vc[v], vx[v], vy[v], v == 1)
