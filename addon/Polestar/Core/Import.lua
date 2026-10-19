@@ -196,7 +196,7 @@ Import.ParseJSON = parseJSON
 -- refuses the string. Built fresh: nothing of the parsed tree is kept.
 ---------------------------------------------------------------------------
 
-local S, N, B, NS = "s", "n", "b", "ns" -- string, number, boolean, number or string
+local S, N, B, NS, NL = "s", "n", "b", "ns", "nl" -- string, number, boolean, number or string, number or list of numbers
 local function list(of) return { list = of } end
 local function rec(fields) return { rec = fields } end
 local LS, LN = list(S), list(N)
@@ -220,7 +220,9 @@ local GOAL = rec({
 	group = rec({ kind = S, rank = N, name = S, size = N, map = N }),
 	direct = B,
 })
-local STEP = rec({ title = S, note = S, only = ONLY, goals = list(GOAL) })
+-- A step's `when` predicates (format 4; Guides.Validate checks each kind's keys).
+local WHEN = rec({ k = S, neg = B, op = S, n = N, q = NL, item = N, name = S, area = N, minLevel = N, pre = LN, preAll = LN, closedBy = LN })
+local STEP = rec({ title = S, note = S, only = ONLY, when = list(WHEN), goals = list(GOAL) })
 local GUIDE = rec({
 	id = S, title = S, faction = S, races = LS, classes = LS, minLevel = N, maxLevel = N, category = S, folder = S, keywords = LS,
 	collects = LN, reward = list(rec({ item = N, itemName = S, quality = N, choice = B, spell = N, spellName = S, text = S })),
@@ -240,7 +242,7 @@ Import.KEYS = {
 	guide = keysOf(GUIDE), step = keysOf(STEP), goal = keysOf(GOAL), only = keysOf(ONLY),
 	reagents = keysOf(GOAL.rec.reagents.list), candidates = keysOf(GOAL.rec.candidates.list), spots = keysOf(GOAL.rec.spots.list),
 	fromNpcs = keysOf(GOAL.rec.fromNpcs.list),
-	items = keysOf(REWARD_ITEM), reward = keysOf(GUIDE.rec.reward.list),
+	items = keysOf(REWARD_ITEM), reward = keysOf(GUIDE.rec.reward.list), when = keysOf(WHEN),
 }
 
 local function finite(v) return type(v) == "number" and v == v and v ~= huge and v ~= -huge end
@@ -257,6 +259,9 @@ local function build(v, spec, where)
 		if type(v) == "boolean" then return v end
 	elseif spec == NS then
 		if type(v) == "string" or finite(v) then return v end
+	elseif spec == NL then
+		if finite(v) then return v end
+		if type(v) == "table" then return build(v, LN, where) end
 	elseif type(v) == "table" then
 		local out = {}
 		if spec.list then

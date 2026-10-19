@@ -20,7 +20,7 @@
 // it to the registry's checks. Nothing in a string is ever run.
 
 const zlib = require('node:zlib');
-const { FORMAT, RESERVED_IDS } = require('./format');
+const { formatFor, RESERVED_IDS } = require('./format');
 const { guideData, framesData } = require('../dsl/emit');
 const { referencedFrames } = require('../dsl/project');
 
@@ -102,7 +102,7 @@ function importString(guide, { manifest, data }) {
 	}
 	const steps = (guide.steps || []).length;
 	if (steps > LIMITS.steps) return { error: `${guide.id} has ${steps} steps; an import string holds a guide of ${LIMITS.steps} steps at most (a longer guide goes in a community addon: polestar pack)` };
-	const payload = { format: FORMAT, license: manifest.license, guide: guideData(guide._localised || guide) };
+	const payload = { format: formatFor([guide]), license: manifest.license, guide: guideData(guide._localised || guide) };
 	const frames = data ? framesData(referencedFrames([guide], data)) : {};
 	if (Object.keys(frames).length) payload.frames = frames;
 	const long = longText(payload);

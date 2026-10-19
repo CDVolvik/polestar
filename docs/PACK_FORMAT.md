@@ -471,7 +471,7 @@ wrap it). The payload is JSON:
 
 | Key | Required | Value |
 |---|---|---|
-| `format` | yes | the guide data's format (above): Polestar refuses a format it does not read |
+| `format` | yes | the guide data's format (above): 4 when a step has `when`, else 3; Polestar refuses a format it does not read |
 | `license` | yes | the licence of the guide, from the pack's `pack.json` |
 | `guide` | yes | one guide exactly as `RegisterGuide(def)` takes it, without `pack`: the keys above, numbers rounded as `Guides.lua` writes them, `preTitles` with the quest ids as the object's keys |
 | `frames` | no | `RegisterMapFrames`'s `era` table for the maps its goals use, by uiMapID. Polestar takes a frame only for a map the guide's goals or their smart targets stand on, and only where no one (Polestar, a community addon, an earlier import) has registered one |

@@ -190,6 +190,7 @@ function guideData(guide) {
 					if (sv === undefined || sv === null) continue;
 					if (sk === 'goals') s.goals = sv.map((goal) => dataInline(goal, GOAL_KEYS));
 					else if (sk === 'only') s.only = dataInline(sv, ONLY_KEYS);
+					else if (sk === 'when') s.when = dataList(sv, WHEN_KEYS);
 					else s[sk] = dataScalar(sv);
 				}
 				return s;
@@ -401,4 +402,4 @@ function emitLicense(meta) {
 	return `${out.join('\n').trimEnd()}\n`;
 }
 
-module.exports = { emitGuides, emitPack, emitToc, emitTextsToc, emitTexts, emitMapFrames, emitClassTrainers, emitLicense, luaString, luaNumber, guideData, framesData, GUIDE_KEYS, STEP_KEYS, GOAL_KEYS, ONLY_KEYS, LIST_KEYS, FRAME_KEYS };
+module.exports = { emitGuides, emitPack, emitToc, emitTextsToc, emitTexts, emitMapFrames, emitClassTrainers, emitLicense, luaString, luaNumber, guideData, framesData, GUIDE_KEYS, STEP_KEYS, WHEN_KEYS, GOAL_KEYS, ONLY_KEYS, LIST_KEYS, FRAME_KEYS };

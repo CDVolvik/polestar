@@ -12,7 +12,7 @@ const zlib = require('node:zlib');
 const { runAddon } = require('./helpers/lua');
 const { compile, fixtureData } = require('./helpers/dsl');
 const { importString, encodeImport, adler32, LIMITS } = require('../tools/lib/pack/importstring');
-const { emitGuides, guideData, GUIDE_KEYS, STEP_KEYS, GOAL_KEYS, ONLY_KEYS, LIST_KEYS } = require('../tools/lib/dsl/emit');
+const { emitGuides, guideData, GUIDE_KEYS, STEP_KEYS, WHEN_KEYS, GOAL_KEYS, ONLY_KEYS, LIST_KEYS } = require('../tools/lib/dsl/emit');
 
 const CORE = { name: 'Polestar', files: ['Core/Core.xml'] };
 const ID = 'yendi/northshire';
@@ -113,6 +113,7 @@ test('the caps, the checksum and the key lists are the writer\'s', () => {
 	const sorted = (a) => [...a].sort();
 	assert.deepEqual(out.keys.guide, sorted(GUIDE_KEYS.filter((k) => k !== 'pack')));
 	assert.deepEqual(out.keys.step, sorted(STEP_KEYS));
+	assert.deepEqual(out.keys.when, sorted(WHEN_KEYS));
 	assert.deepEqual(out.keys.goal, sorted(GOAL_KEYS));
 	assert.deepEqual(out.keys.only, sorted(ONLY_KEYS));
 	for (const k of ['reagents', 'candidates', 'fromNpcs', 'spots', 'items', 'reward']) assert.deepEqual(out.keys[k], sorted(LIST_KEYS[k]), k);
@@ -144,6 +145,22 @@ test('round trip: .guide -> string -> preview -> Import registers the guide a co
 	assert.equal(reg.listed, 0, 'the imported guides are not a row of the Community guides page');
 	const strip = ({ pack, license, ...rest }) => rest;
 	assert.deepEqual(strip(reg.guide), strip(theirs[0].guide));
+});
+
+test('a guide with `when` steps goes into a format 4 string and imports with its conditions', () => {
+	const src = GUIDE.replace('step Back to the abbey\n', 'step Back to the abbey\n  when onquest 7\n  when level<6\n');
+	const c = compile({ 'northshire.guide': src }, fixtureData(), { pack: 'yendi', author: 'Yendi' });
+	assert.deepEqual(c.errors, []);
+	const r = importString(c.guides[0], { manifest: MANIFEST, data: fixtureData() });
+	assert.equal(r.error, undefined);
+	const [out] = run(`
+		local info, why = I.Preview(${str(r.text)})
+		assert(info, why)
+		assert(I.Save(info.entry))
+		emit({ format = info.entry.format, when = G.Get(${str(ID)}).steps[4].when })
+	`);
+	assert.equal(out.format, 4);
+	assert.deepEqual(out.when, [{ k: 'onquest', q: [7] }, { k: 'level', op: '<', n: 6 }]);
 });
 
 test('a damaged, truncated, oversized, foreign or code-carrying string is refused with a reason, and SavedVariables stay untouched', () => {
