@@ -4538,7 +4538,9 @@ built.
 quests.json   { "<id>": { id, title, level, minLevel, races, classes, start: { npc: [], object: [], item: [] },
                           end: { npc: [], object: [] }, pre: [ids], excl: [ids], next, objectives: [
                           { type: "kill"|"item"|"object"|"event", id, count, text } ], objectiveText, zone, xp,
-                          rewards?: { items: [ids], choices: [ids], money }, source: [] } }   (rewards: recorded only)
+                          rewards?: { items: [ids], choices: [ids], money }, source: [] } }   (rewards: recorded only;
+              count: the objective text's, else pfQuest's, else CMaNGOS classic-db quest_template's for the same id or the
+              quest's one objective of that kind, else null; tools/lib/data/questie-merge.js fillCounts)
 npcs.json     { "<id>": { id, name, level, levelMax?, rank?, faction, roles?, spawns: { "<uiMapID>": { f: "e"|"l", pts: [[x, y], ...],
                           more?: [[x, y], ...] } }, instances?: [instance map ids], encounter?: DungeonEncounter id, source: [] } }
 objects.json  { "<id>": { id, name, roles?, spawns: { ... same ... }, instances?: [instance map ids], source: [] } }
