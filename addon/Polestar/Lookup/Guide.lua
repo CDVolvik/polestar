@@ -349,7 +349,7 @@ local function questStep(q, from, isTarget, opts)
 		end
 	end
 	if event then
-		goals[#goals + 1] = { t = "complete", quest = q.id, title = q.title, text = event.text }
+		goals[#goals + 1] = at({ t = "complete", quest = q.id, title = q.title, text = event.text }, event)
 	end
 	goals[#goals + 1] = endGoal("turnin", q, finish)
 	local step = { title = q.title, goals = goals }

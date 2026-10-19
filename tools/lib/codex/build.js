@@ -110,6 +110,20 @@ function round1(v) {
 	return Math.round(Number(v) * 10) / 10;
 }
 
+// A quest objective for the Codex. An event (explore an area, a scripted
+// moment) has no spawns to place it by, so it keeps the place quests.json
+// gives it, when it has one (the area trigger's).
+function objectiveOf(o) {
+	const out = { type: o.type, id: o.id ?? null, count: o.count ?? null, text: o.text ?? null };
+	if (o.type === 'event' && int(o.map) && Number.isFinite(o.x) && Number.isFinite(o.y)) {
+		out.map = int(o.map);
+		out.x = round1(o.x);
+		out.y = round1(o.y);
+		if (o.f) out.f = o.f;
+	}
+	return out;
+}
+
 function slug(s) {
 	return String(s)
 		.normalize('NFKD')
@@ -1189,7 +1203,7 @@ function mergeCodex(inputs) {
 				classes: int(q.classes),
 				start: { npc: (q.start && q.start.npc) || [], object: (q.start && q.start.object) || [], item: (q.start && q.start.item) || [] },
 				end: { npc: (q.end && q.end.npc) || [], object: (q.end && q.end.object) || [] },
-				objectives: (q.objectives || []).filter((o) => ['kill', 'item', 'object', 'event'].includes(o.type)).map((o) => ({ type: o.type, id: o.id ?? null, count: o.count ?? null, text: o.text ?? null })),
+				objectives: (q.objectives || []).filter((o) => ['kill', 'item', 'object', 'event'].includes(o.type)).map(objectiveOf),
 				...prereqs(q),
 				zone: int(q.zone),
 				rewards,

@@ -408,7 +408,7 @@ function syntheticInputs() {
 			1179: { id: 1179, name: 'Ice Cold Milk', drops: { npc: {}, object: { 2843: 25 } }, vendors: [] },
 		},
 		quests: {
-			176: { id: 176, title: 'Wanted: "Hogger"', level: 11, minLevel: 5, races: 77, classes: null, start: { npc: [], object: [68], item: [] }, end: { npc: [240], object: [] }, pre: [1], preAll: [33], preAny: [7, 783], objectives: [{ type: 'item', id: 1931, count: null, text: 'Huge Gnoll Claw' }], zone: 1429, xp: 1050 },
+			176: { id: 176, title: 'Wanted: "Hogger"', level: 11, minLevel: 5, races: 77, classes: null, start: { npc: [], object: [68], item: [] }, end: { npc: [240], object: [] }, pre: [1], preAll: [33], preAny: [7, 783], objectives: [{ type: 'item', id: 1931, count: null, text: 'Huge Gnoll Claw', map: 1429, x: 30, y: 60 }, { type: 'event', id: 87, count: null, text: 'Scout the camp', map: 1429, x: 32.04, y: 61.96, f: null }], zone: 1429, xp: 1050 },
 			// QuestieDB requiredMinRep 3000 (Friendly) and a reputation objective 9000 (Honored): the rewards need Honored.
 			9001: { id: 9001, title: 'Frostsaber Errand', level: 60, minLevel: 55, races: null, classes: null, start: { npc: [4730], object: [], item: [] }, end: { npc: [4730], object: [] }, pre: [], objectives: [], zone: 1438, minRep: { faction: 589, value: 3000 }, reputation: { faction: 589, value: 9000 }, rewards: { items: [20002] }, source: ['questie-forever'] },
 		},
@@ -625,6 +625,10 @@ test('mergeCodex builds npcs, rares, instances, quests, spells and frames', () =
 	assert.deepEqual(q.preAny, [7, 783]);
 	assert.equal(q.faction, 'A');
 	assert.deepEqual(q.choices, [1933, 2933]);
+	assert.deepEqual(q.objectives, [
+		{ type: 'item', id: 1931, count: null, text: 'Huge Gnoll Claw' },
+		{ type: 'event', id: 87, count: null, text: 'Scout the camp', map: 1429, x: 32, y: 62 },
+	], 'an event keeps its place (#515), other objectives are placed by their spawns');
 	assert.equal(codex.quests[5212].title, 'The Medallion of Faith');
 	assert.deepEqual(codex.spells[8394], { kind: 'mount', item: 8631, name: 'Striped Frostsaber', class: null });
 	assert.deepEqual(codex.spells[13819], { kind: 'mount', item: null, name: 'Summon Warhorse', class: 'PALADIN' });

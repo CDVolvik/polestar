@@ -11,7 +11,8 @@
 --   Codex.Load() -> loaded, reason   -- Data.Pack("Polestar_Codex"); fires CODEX_LOADED(meta) once
 --   Codex.IsLoaded() ; Codex.Meta()
 --   Codex.Item(id) / Npc(id) / Object(id) / Quest(id) / Instance(key) / Zone(id) / Faction(id)
---       (a quest's `xp`: its full XP reward, nil when not known or the pack predates it)
+--       (a quest's `xp`: its full XP reward, nil when not known or the pack predates it;
+--       an event objective's `map`, `x`, `y`, `f`: where it is done, when known)
 --   Codex.FollowUps(questId) -> { quest, ... }   -- the quests whose pre or preAny names it
 --   Codex.Spell(spellId) -> { id, kind, item, name, class } | nil
 --   Codex.Name(kind, id) -> name | nil   -- no decoding; "item" spans every item kind,
@@ -313,6 +314,13 @@ local function decodeQuest(group, id, s)
 		elseif lead == "x" then
 			-- Its full XP reward: x<xp>.
 			rec.xp = tonumber(sub(f, 2))
+		elseif lead == "p" then
+			-- Where the objective before it is done (an event's area): p<map>,<x>,<y>,<f>.
+			local o = rec.objectives[#rec.objectives]
+			local _, _, map, x, y, fac = find(f, "^p(%d+),(%-?%d+),(%-?%d+),(%a*)$")
+			if o and map then
+				o.map, o.x, o.y, o.f = tonumber(map), tonumber(x) / 10, tonumber(y) / 10, fac ~= "" and fac or nil
+			end
 		end
 	end
 	return rec

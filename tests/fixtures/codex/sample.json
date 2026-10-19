@@ -716,6 +716,16 @@
 					"id": 448,
 					"count": 1,
 					"text": "Hogger"
+				},
+				{
+					"type": "event",
+					"id": 87,
+					"count": null,
+					"text": "Scout the gnoll camp",
+					"map": 1429,
+					"x": 26.5,
+					"y": 86.1,
+					"f": "e"
 				}
 			],
 			"pre": [
