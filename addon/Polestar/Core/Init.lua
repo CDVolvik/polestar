@@ -32,6 +32,8 @@ end
 
 -- The Polestar Discord's invite: where players report problems (UI/Report.lua).
 ns.DiscordURL = "https://discord.gg/vMbee6F2e9"
+-- A new issue on Polestar's GitHub: the report window fills one in (UI/Report.lua).
+ns.IssueURL = "https://github.com/fitzforge/polestar/issues/new"
 
 local pcall, type, pairs, select, tostring = pcall, type, pairs, select, tostring
 
@@ -52,7 +54,7 @@ end
 
 -- The interface's translations made with AI (tools/lib/i18n/locales.js,
 -- status "ai"; tests/i18n.test.js keeps the two lists equal).
-ns.AI_LOCALES = { esES = true, koKR = true, ptBR = true, ruRU = true, zhCN = true, zhTW = true }
+ns.AI_LOCALES = { koKR = true, ptBR = true, ruRU = true, zhCN = true, zhTW = true }
 
 -- True when this client reads an AI-made translation: its locale is one of
 -- AI_LOCALES and its file filled L. Options' About then says so.
@@ -115,21 +117,51 @@ end
 
 -- The errors Polestar caught this session, for the report a player copies
 -- (UI/Report.lua): each message's first line with how often it came, oldest
--- first, the last few kept.
+-- first, the last few kept. seq, shared with the blocked calls below, says
+-- which came last, so the report lists the newest few of both.
 local MAX_ERRORS = 5
 local errors = {}
+local seq = 0
 function ns.NoteError(err)
 	local msg = tostring(err):match("^[^\n]*")
+	seq = seq + 1
 	for i = 1, #errors do
 		if errors[i].msg == msg then
-			errors[i].count = errors[i].count + 1
+			errors[i].count, errors[i].seq = errors[i].count + 1, seq
 			return
 		end
 	end
 	if #errors >= MAX_ERRORS then table.remove(errors, 1) end
-	errors[#errors + 1] = { msg = msg, count = 1 }
+	errors[#errors + 1] = { msg = msg, count = 1, seq = seq }
 end
 function ns.Errors() return errors end
+
+-- The protected calls the game blocked from Polestar this session
+-- (ADDON_ACTION_BLOCKED, ADDON_ACTION_FORBIDDEN: the addon blamed, then the
+-- function), for the report: taint is no Lua error, so without these a
+-- report on a broken gamepad or button reads "Errors: none". The last few,
+-- oldest first, each with the Polestar addon blamed, how often and when it
+-- last came.
+local MAX_BLOCKED = 5
+local blocked = {}
+function ns.NoteBlocked(addon, fn)
+	if type(addon) ~= "string" or not (addon == ADDON or addon:find("^Polestar_")) then return end
+	fn = tostring(fn or "?")
+	local at = date("%H:%M:%S")
+	seq = seq + 1
+	for i = 1, #blocked do
+		local e = blocked[i]
+		if e.addon == addon and e.fn == fn then
+			table.remove(blocked, i)
+			e.count, e.at, e.seq = e.count + 1, at, seq
+			blocked[#blocked + 1] = e
+			return
+		end
+	end
+	if #blocked >= MAX_BLOCKED then table.remove(blocked, 1) end
+	blocked[#blocked + 1] = { addon = addon, fn = fn, count = 1, at = at, seq = seq }
+end
+function ns.Blocked() return blocked end
 
 -- Run a callback; report its error without stopping the caller's loop.
 local function call(fn, ...)
@@ -140,6 +172,55 @@ local function call(fn, ...)
 	end
 end
 ns.SafeCall = call
+
+-- A frame of Polestar's that goes under the game's own UI (the world map's
+-- canvas, the minimap, a quest reward or talent button): made with no parent,
+-- then set under it. The gamepad interface hooks CreateFrame and, when the
+-- parent is inside one of its open panels (the world map, the quest frame,
+-- the talents...), rebuilds that panel's button list inside the caller's
+-- code: called from Polestar, the panel is left tainted and the next gamepad
+-- action there is blocked. SetParent is not hooked. Every Polestar frame
+-- whose parent is a game frame, or is under one, is made through this.
+function ns.CreateFrameUnder(kind, name, parent, template)
+	local f = CreateFrame(kind, name, nil, template)
+	if parent then f:SetParent(parent) end
+	return f
+end
+
+-- Forever's Gamepad interface style (Options, Gamepad, Enable Gamepad UI).
+-- Its navigation (Blizzard_GamepadSmartNavigation, FrameControlsManager)
+-- opens, closes and focuses the game's windows, popups, menus and chat box
+-- from Blizzard's code, and in the same execution makes protected calls
+-- (SetPreferredGamepadInteractTarget, RunBinding). When addon code runs in
+-- that flow (a slash command the chat box calls before it closes, a menu or
+-- popup shown, a window closed, a hook on a button it focuses), the calls
+-- are blocked, and the "AddOn blocked" popup's own gamepad handling blocks
+-- the next one, until the client freezes. With it on, Polestar keeps to its
+-- own windows: every reach into the game's UI asks ns.GamepadUI() first
+-- (the list: docs/ARCHITECTURE.md, "Gamepad interface"; the test:
+-- tests/gamepad-ui.test.js). The style is read once, as the addon loads:
+-- the client reloads the UI when it changes, and the slash commands are
+-- registered then. C_InputInterfaceStyle is the answer: the CVar
+-- InputDeviceInterfaceStyle can stay "1" (Gamepad) on a client playing with
+-- the keyboard and mouse, so it is read only on a client without the API.
+local function readGamepadUI()
+	local E = Enum and Enum.InputDeviceInterfaceType
+	if not (E and E.Gamepad) then return false end
+	local S = C_InputInterfaceStyle
+	if S and S.GetCurrentStyle then return S.GetCurrentStyle() == E.Gamepad end
+	local get = (C_CVar and C_CVar.GetCVar) or GetCVar
+	return get and tonumber(get("InputDeviceInterfaceStyle")) == E.Gamepad or false
+end
+local gamepadUI = readGamepadUI()
+function ns.GamepadUI() return gamepadUI end
+
+-- A Polestar window that Escape closes: listed in UISpecialFrames, which
+-- the gamepad interface's menus also read and close, so not with it on
+-- (the window's own close button, and B where it takes the gamepad).
+function ns.CloseOnEscape(name)
+	if gamepadUI or not (UISpecialFrames and name) then return end
+	tinsert(UISpecialFrames, name)
+end
 
 local function compact(list)
 	local j = 0
@@ -337,6 +418,12 @@ function ns.Set(path, value)
 	ns.Fire("SETTING_CHANGED", path, ns.Get(path))
 end
 
+-- The arrow, the action buttons and the timers: with ui.lockHud on, a drag
+-- moves them only while Shift is held, so a stray drag does nothing.
+function ns.DragLocked()
+	return ns.Get("ui.lockHud") and not ns.Compat.IsShiftKeyDown() and true or false
+end
+
 -- Forget stored values for one section (or all), back to defaults.
 function ns.ResetSettings(section)
 	local settings = DB().settings
@@ -407,6 +494,9 @@ local function onLogin()
 end
 
 ns.RegisterEvent("ADDON_LOADED", onAddonLoaded)
+local function onBlocked(_, addon, fn) ns.NoteBlocked(addon, fn) end
+ns.RegisterEvent("ADDON_ACTION_BLOCKED", onBlocked)
+ns.RegisterEvent("ADDON_ACTION_FORBIDDEN", onBlocked)
 ns.RegisterEvent("PLAYER_LOGIN", onLogin)
 
 ---------------------------------------------------------------------------
@@ -428,7 +518,10 @@ function ns.Debug(...)
 end
 
 ---------------------------------------------------------------------------
--- Slash commands: /polestar and /pole
+-- Slash commands: /polestar and /pole. Not with the gamepad interface: the
+-- chat box calls a command's function and then closes itself in that
+-- function's taint, which blocks the gamepad's actions (ns.GamepadUI).
+-- The minimap button and the key bindings open Polestar then.
 ---------------------------------------------------------------------------
 
 local commands, commandOrder = {}, {}
@@ -447,9 +540,7 @@ local function showHelp()
 	end
 end
 
-SLASH_POLESTAR1 = "/polestar"
-SLASH_POLESTAR2 = "/pole"
-SlashCmdList.POLESTAR = function(msg)
+function ns.RunCommand(msg)
 	local name, rest = (msg or ""):match("^%s*(%S*)%s*(.-)%s*$")
 	if name == "" then
 		ns.Fire("TOGGLE_FRAME")
@@ -467,4 +558,9 @@ SlashCmdList.POLESTAR = function(msg)
 		return
 	end
 	call(c.fn, rest)
+end
+if not gamepadUI then
+	SLASH_POLESTAR1 = "/polestar"
+	SLASH_POLESTAR2 = "/pole"
+	SlashCmdList.POLESTAR = ns.RunCommand
 end

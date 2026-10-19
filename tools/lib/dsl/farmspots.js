@@ -2,7 +2,7 @@
 // Farm spots for `collect <item> xN nearest` (docs/ARCHITECTURE.md, "Smart
 // logic", Farm spots): where to kill mobs that drop the item.
 //
-//   spot = { map, x, y, f, faction, npcName, lvl = { min, max }, rate, spawns }
+//   spot = { map, x, y, f, faction, npc, npcName, lvl = { min, max }, rate, spawns }
 //
 // Droppers: npcs with a drop chance of at least MIN_CHANCE percent, normal or
 // rare (no elites, rare elites or bosses), hostile to everyone (no faction tag
@@ -69,7 +69,7 @@ function townPoints(data) {
 }
 
 function yardScale(data, map) {
-	const fr = data.eraFrame(map);
+	const fr = data.frame(map);
 	if (!fr) return { sx: 30, sy: 20 };
 	return { sx: Math.abs(fr.right - fr.left) / 100, sy: Math.abs(fr.bottom - fr.top) / 100 };
 }
@@ -100,6 +100,7 @@ function farmSpots(data, itemId) {
 				const spot = { map: s.map, x: round2(c.x), y: round2(c.y) };
 				if (era) spot.f = 'e';
 				spot.faction = faction;
+				spot.npc = id;
 				spot.npcName = String(npc.name);
 				const lo = Number(npc.level) || 1;
 				const hi = Math.max(lo, Number(npc.levelMax) || lo);

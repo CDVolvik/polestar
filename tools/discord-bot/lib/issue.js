@@ -103,7 +103,7 @@ function threadUrl(guild, thread, message) {
 function issueTitle(name) {
 	const t = String(name || '')
 		.replace(/```[\s\S]*$/, '')
-		.replace(/^\s*\*\*[^*\n]{1,60}:\*\*\s*/, '')
+		.replace(/^\s*\*\*[^*\n]{1,60}[:：]\*\*\s*/, '')
 		.replace(/\s+/g, ' ')
 		.trim() || 'Bug report from Discord';
 	return t.length > 200 ? t.slice(0, 197) + '...' : t;
@@ -143,6 +143,7 @@ function summaryTable(d) {
 		rows.push(['Step', s]);
 	}
 	if (d.zone) rows.push(['Where', d.zone + (d.map ? ` · map ${d.map}` : '')]);
+	if (d.routes) rows.push(['Routes', d.routes]);
 	rows.push(['Errors', d.errors.length ? d.errors.map((e) => `${e.count}x ${e.message}`).join(' / ') : 'none']);
 	return ['| | |', '|---|---|', ...rows.map(([k, v]) => `| ${k} | ${cell(v)} |`)].join('\n');
 }
@@ -188,7 +189,7 @@ function followUpComment(msg) {
 
 // The bot's reply in the thread once the issue exists, and that reply read back.
 function trackedReply(repo, number) {
-	return `Tracked as [${repo}#${number}](<https://github.com/${repo}/issues/${number}>). We'll reply here when it's fixed.`;
+	return `Tracked as [${repo}#${number}](<https://github.com/${repo}/issues/${number}>). Replies in this thread, from anyone, are copied to the issue. We'll reply here when it's fixed.`;
 }
 
 function readTrackedReply(content, repo) {

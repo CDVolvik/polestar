@@ -1,7 +1,7 @@
 'use strict';
 // Transport timing (addon/Polestar/Nav/Transit.lua) and its generator
 // (tools/lib/travel/timetable.js, cmangos.js), after Shortest Path Forever by
-// Cillian Berragan: departure maths (phase, wrap, boarding), untimed "about"
+// Cillian Berragan: departure maths (phase, wrap, boarding), untimed average
 // waits, sightings and the ride observer correcting a drifted one, the
 // guild/group sync's validation, class teleports, lifts; the generator's
 // transport model, expected waits, lift tracks, portals and teleports, and a
@@ -65,7 +65,7 @@ function lua(script, opts = {}) {
 	return runAddon({ addons: [TRANSIT], login: true, ...opts, script: DATA + script }).emitted;
 }
 
-test('C9: an untimed loop costs its expected wait and is captioned "about", never "no sighting yet"', () => {
+test('C9: an untimed loop costs its expected wait and is captioned as an average, never "no sighting yet"', () => {
 	const [dep, caption, arrival, unknown] = lua(`
 		local w, r, timed = T.NextDeparture("boat", "boat-x", T.Now(), "a")
 		emit({ w, r, timed })
@@ -74,9 +74,25 @@ test('C9: an untimed loop costs its expected wait and is captioned "about", neve
 		emit(T.NextDeparture("boat", "nope", T.Now(), "a") == nil)
 	`);
 	assert.deepEqual(dep, [60, 30, false]);
-	assert.equal(caption, 'Next boat in about 1:00');
+	assert.equal(caption, 'Boat: average wait 1:00');
 	assert.equal(arrival, true, 'no countdown to an arrival nobody has timed');
 	assert.equal(unknown, true);
+});
+
+test('C9: an untimed average wait is not worded as a countdown, since it stays the same as time passes (#364)', () => {
+	const [captions, waits] = lua(`
+		local c, w = {}, {}
+		for i = 1, 3 do
+			if i > 1 then stub.advance(60) end
+			c[#c + 1] = T.Caption("boat", "boat-x", T.Now(), "a")
+			w[#w + 1] = (T.NextDeparture("boat", "boat-x", T.Now(), "a"))
+		end
+		emit(c)
+		emit(w)
+	`);
+	assert.deepEqual(waits, [60, 60, 60], 'the expected wait does not move');
+	assert.deepEqual(captions, ['Boat: average wait 1:00', 'Boat: average wait 1:00', 'Boat: average wait 1:00']);
+	for (const c of captions) assert.doesNotMatch(c, /Next boat in|leaves in/);
 });
 
 test('departure maths: docked, too late to board, arriving, wrapping past phase zero', () => {
@@ -193,7 +209,7 @@ test('C5: a ride is timed when the client reports its height as 0, along a track
 	assert.equal(timed, 'you', 'timed from the ride, matched on the ground plane');
 });
 
-test('lifts: found near a crossing, listed, untimed "about" captions then timed, either landing when the side is unknown (K3)', () => {
+test('lifts: found near a crossing, listed, untimed average captions then timed, either landing when the side is unknown (K3)', () => {
 	const [near, far, list, untimed, timed, either] = lua(`
 		emit({ T.LiftNear(0, 510, 495) })
 		emit(T.LiftNear(0, 900, 900) == nil)
@@ -206,7 +222,7 @@ test('lifts: found near a crossing, listed, untimed "about" captions then timed,
 	assert.deepEqual(near, ['lift-x', 'The Test Lift']);
 	assert.equal(far, true);
 	assert.deepEqual(list, [{ id: 'lift-x', name: 'The Test Lift', c: 0, wx: 500, wy: 500, top: 100, bottom: 0 }]);
-	assert.equal(untimed, 'Next lift in about 0:17');
+	assert.equal(untimed, 'Lift: average wait 0:17');
 	assert.deepEqual(timed, ['Next lift in 0:14', 'Lift here, leaves in 0:04']);
 	assert.equal(either, 4, 'no side: the landing it leaves first');
 });
@@ -391,7 +407,7 @@ test('lift tracks, portals and teleports from TransportAnimation, classic-db and
 	assert.deepEqual(out.portals.map((p) => [p.id, p.a.map, p.b.map, p.seconds]), [['portal-ruttheran', 1457, 1438, 5], ['portal-darnassus', 1438, 1457, 5]]);
 	assert.deepEqual(out.teleports, [
 		{ spell: 556, name: 'Astral Recall', cast: 10, bind: true },
-		{ spell: 3567, name: 'Teleport: Orgrimmar', cast: 10, reagents: [17031, 1], to: { name: 'Orgrimmar', c: 1, wx: 1469.9, wy: -4221.5, map: 1454, x: 40.72, y: 51.01, f: 'e' } },
+		{ spell: 3567, name: 'Teleport: Orgrimmar', cast: 10, reagents: [17031, 1], to: { name: 'Orgrimmar', area: 1637, c: 1, wx: 1469.9, wy: -4221.5, map: 1454, x: 40.72, y: 51.01, f: 'e' } },
 	]);
 	assert.ok(out.warnings.some((w) => /Teleport: Nowhere \(9999\): no destination/.test(w)));
 });
@@ -457,7 +473,7 @@ const TRAVEL_DATA = path.join(ROOT, 'addon', 'Polestar', 'Nav', 'TravelData.lua'
 test('review P0-1: the committed TravelData.lua\'s timetables index stops from 1; a sighting on every loop times every service', () => {
 	const text = fs.readFileSync(TRAVEL_DATA, 'utf8');
 	const routeIds = [...text.matchAll(/^\t\t\t\["([\w-]+)"\] = \{ kind = /gm)].map((m) => m[1]);
-	const serviceIds = [...text.matchAll(/^\t\t\t\["([\w-]+)"\] = \{board=/gm)].map((m) => m[1]);
+	const serviceIds = [...text.matchAll(/^\t\t\t\["([\w-]+)"\] = \{(?:area=\d+,|areas=\{[\d,]+\},)?board=/gm)].map((m) => m[1]);
 	assert.ok(routeIds.includes('path-285') && serviceIds.includes('zeppelin-orgrimmar-gromgol'));
 	const [zep, all, cars] = runAddon({
 		stubs: ['stub_nav.lua'],

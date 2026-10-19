@@ -40,6 +40,8 @@ next forever/horde/06-hillsbrad-foothills
 #   which passes Deathstalker Lesh: Time To Strike (494, export visit 10) is
 #   picked up there (optional: players who fly in never meet him) and handed
 #   to Darthalia on arrival in the next guide.
+# - Sun Rock: Maggran on the lower level before Tsunaman and Mor'rogal, who
+#   stand together on the upper ledge.
 #
 # Carried on: Calling in the Reserves (5881) and Further Instructions (1094)
 # are turned in in the Barrens and Trouble in the Deeps (6562) at Zoram'gar
@@ -74,12 +76,15 @@ next forever/horde/06-hillsbrad-foothills
 # ---------------------------------------------------------------- Mor'shan Rampart
 
 step Kadrak
-  zone Ashenvale
+  # The Mor'shan Rampart is in the Barrens (Wowhead Forever; AreaTable 1703):
+  # on Ashenvale's map the route sent you through the zone crossing past him (#246).
+  zone The Barrens
   tip From the Crossroads follow the road north. Kadrak stands on the watch tower of the Mor'shan Rampart where the road enters Ashenvale. Open the Bundle of Reports he gives you.
   turnin 6541                         -- Kadrak
   accept 6543
 
 step Warsong Scout
+  zone Ashenvale
   tip Keep north on the road. The Warsong Scout waits at the Warsong lumber camp, south of Splintertree.
   collect 16764 quest 6543.1 @71.05,68.36 -- Warsong Scout
 
@@ -128,6 +133,7 @@ step Zoram'gar Outpost
   turnin 6442                         -- Marukai
 
 step Back to Kadrak
+  zone The Barrens
   tip Fly to Splintertree Post and ride south down the road to the Mor'shan Rampart.
   fly "Splintertree Post"
   turnin 6543                         -- Kadrak
@@ -203,9 +209,9 @@ step The Charred Vale
 
 step Sun Rock Retreat
   turnin 6381                         -- Tammra Windfield
-  turnin 6393                         -- Tsunaman
   turnin 6282                         -- Maggran Earthbinder
-  turnin 86576 npc 11861              -- Mor'rogal, beside Maggran
+  turnin 6393                         -- Tsunaman, up on the ledge
+  turnin 86576 npc 11861              -- Mor'rogal, beside Tsunaman
 
 step Malaka'jin
   tip Ride back down the Webwinder Path to Malaka'jin.

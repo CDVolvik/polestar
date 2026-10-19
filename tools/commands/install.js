@@ -9,7 +9,8 @@ const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
 const { parseArgs, resolvePath, printDiagnostics, plural } = require('../lib/cli');
-const { releaseAddons, packDirRefusal, writePackDir } = require('../lib/dsl/project');
+const { LOCALE_CODES } = require('../lib/i18n/locales');
+const { releaseAddons, packDirRefusal, textsDirRefusal, textsAddon, writePackDir } = require('../lib/dsl/project');
 const { ROOT } = require('../lib/paths');
 const { detectAddonsDirs, pickAddonsDir, isDir } = require('../lib/addons');
 const { PACK_OPTIONS, PACK_USAGE, otherPack, noDataConflict, noDataCache, buildPack, folderIn } = require('../lib/pack/build');
@@ -26,7 +27,7 @@ names addons Polestar_Names_<locale> when they have been built (and with
 --recorder, addon/Polestar_Recorder) into World of Warcraft: Forever's AddOns
 folder.
 
-Given another guide pack (<dir>, --pack, or run inside one) it lints and
+Given another pack (<dir>, --pack, or run inside one) it lints and
 builds that pack into <pack>/dist/<folder>/ instead and installs that
 folder; an existing <AddOns>/<folder> is replaced only when it is empty or a
 generated build of the same pack (its TOC's X-Polestar-Pack names this
@@ -47,7 +48,7 @@ options:
   --recorder    also install Polestar_Recorder
   --dry-run     print what would happen, change nothing
   --addons <dir>  source folder holding the addons (default addon/)
-  --no-data     a guide pack only: build it without reference data (every
+  --no-data     a pack only: build it without reference data (every
                 quest title, NPC name and place given in the guide)
 ${PACK_USAGE}`;
 
@@ -153,7 +154,9 @@ function hasCompiledGuides(dir) {
 // Install folders [{ src, name, owned? }] into the chosen destination.
 // `prepare()` (unless --dry-run) runs after every check passed, before anything
 // is installed; it returns an error message or null. `ctx`: { env, native } (see run).
-function installFolders(folders, opts, ctx, prepare = null) {
+// `drop`: { drop: [folder name], owned(target) -> bool }, folders removed
+// from the destination where owned says they are ours to remove.
+function installFolders(folders, opts, ctx, prepare = null, drop = null) {
 	const dest = chooseDest(opts, ctx.env, ctx.env.HOME || os.homedir(), ctx.native);
 	if (dest.error) {
 		console.error(dest.error);
@@ -186,6 +189,12 @@ function installFolders(folders, opts, ctx, prepare = null) {
 		}
 		installOne(src, dest.dir, name, !!opts.link);
 		console.log(`  ${action.replace(/^replace/, 'replaced').replace(/^add/, 'added')}`);
+	}
+	for (const name of (drop && drop.drop) || []) {
+		const target = path.join(dest.dir, name);
+		if (!exists(target) || !drop.owned(target)) continue;
+		console.log(`  ${opts.dryRun ? 'would remove' : 'removed'} ${name} (the pack no longer translates that language)`);
+		if (!opts.dryRun) removePath(target);
 	}
 	return 0;
 }
@@ -220,7 +229,16 @@ function installPack(other, opts, ctx) {
 		console.log(`built ${src} (${plural(built.guides.length, 'guide')})`);
 		return null;
 	};
-	return installFolders([{ src, name, owned: generatedPack(built.manifest.id) }], opts, ctx, prepare);
+	// The pack's texts addons (one per language it translates) sit beside it.
+	const texts = [...new Set(Object.keys(built.files).filter((f) => f.startsWith('../')).map((f) => f.split('/')[1]))].sort();
+	const owned = (target) => {
+		const refusal = textsDirRefusal(target, built.manifest.id);
+		return refusal && `${target}: ${refusal}`;
+	};
+	const folders = [{ src, name, owned: generatedPack(built.manifest.id) }, ...texts.map((t) => ({ src: path.join(path.dirname(src), t), name: t, owned }))];
+	// A texts addon of a language the pack no longer translates goes (only one generated for this pack).
+	const dropped = LOCALE_CODES.map((l) => textsAddon(name, l)).filter((t) => !texts.includes(t));
+	return installFolders(folders, opts, ctx, prepare, { drop: dropped, owned: (target) => !textsDirRefusal(target, built.manifest.id) });
 }
 
 // `env` and `native` ({ platform, root }) stand in for the environment and the
@@ -244,7 +262,7 @@ async function run(argv, env = process.env, native = {}) {
 	}
 	if (other) return installPack(other, opts, ctx);
 	if (opts.noData) {
-		console.error(`--no-data builds a guide pack; run it inside the pack or name its folder\n\n${usage}`);
+		console.error(`--no-data builds a community addon; run it inside the pack or name its folder\n\n${usage}`);
 		return 2;
 	}
 	const source = opts.addons ? path.resolve(opts.addons) : path.join(ROOT, 'addon');

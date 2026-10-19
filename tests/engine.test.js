@@ -229,6 +229,96 @@ test('goto is done once a later goal in its step is done, without arriving', () 
 	assert.deepEqual(out, { index: 4, goto: 'done', s3: 'done' });
 });
 
+test('a goto that leads into the next step is done once that step\'s quest work is, so work done ahead never sends the player back to the cave mouth (#240)', () => {
+	// Durotar's Burning Blade Coven: the mouth in a step of its own, then the
+	// Medallion inside. Gruko had the Medallion already and was sent back to
+	// the mouth. A mouth ending a step of other work counts the same way; a
+	// goto ahead of a step with no quest work (training, a level) still holds,
+	// and so does one with optional work after it in its own step (the
+	// Wailing Caverns mound), which is where that work is.
+	const COVEN = `
+Polestar.RegisterGuide({ id = "test/coven", pack = "test", title = "Coven", zone = 1429, steps = {
+	{ title = "Zureetha", goals = { { t = "accept", quest = 7, title = "Kobold Camp Cleanup", npc = 197, map = 1429, x = 48.9, y = 41.6 } } },
+	{ title = "Burning Blade Coven", goals = { { t = "goto", map = 1429, x = 20, y = 20, text = "Burning Blade Coven" } } },
+	{ title = "Yarrog", goals = { { t = "kill", target = "Kobold Vermin", npc = 6, count = 10, quest = 7, oi = 1, map = 1429, x = 22, y = 18 } } },
+	{ title = "Familiars", goals = {
+		{ t = "accept", quest = 783, title = "A Threat Within", npc = 823, map = 1429, x = 48.2, y = 42.0 },
+		{ t = "goto", map = 1429, x = 20, y = 20, text = "Burning Blade Coven" },
+	} },
+	{ title = "Pick", goals = { { t = "turnin", quest = 783, title = "A Threat Within", npc = 197, map = 1429, x = 22, y = 18 } } },
+	{ title = "Trainer", goals = { { t = "goto", map = 1429, x = 80, y = 80, text = "Trainer" } } },
+	{ title = "Level", goals = { { t = "level", level = 1 } } },
+	{ title = "Mound", goals = {
+		{ t = "goto", map = 1429, x = 60, y = 60, text = "Mound" },
+		{ t = "kill", target = "Defias Bandit", npc = 116, map = 1429, x = 60, y = 60, optional = true },
+	} },
+	{ title = "Regthar", goals = { { t = "turnin", quest = 783, title = "A Threat Within", npc = 197, map = 1429, x = 62, y = 60 } } },
+	{ goals = { { t = "level", level = 60 } } },
+} })
+`;
+	const [out] = run({
+		guides: COVEN,
+		script: `
+			local w = stub.world
+			E.SetGuide("test/coven"); flush()
+			w.accept(7, { 10 }); flush()
+			local mouth = E.GetStepIndex()
+			w.progress(7, 1, 10); flush()
+			local medallion = { index = E.GetStepIndex(), goto = E.GetStepView(2).goals[1].status }
+			w.accept(783, {}); flush()
+			local familiars = E.GetStepIndex()
+			w.turnIn(783); flush()
+			emit({ mouth = mouth, medallion = medallion, familiars = familiars, trainer = E.GetStepIndex(),
+				mound = E.GetStepView(8).goals[1].status })
+		`,
+	});
+	assert.deepEqual(out, {
+		mouth: 2, // the Medallion not yet in the bags: the mouth holds
+		medallion: { index: 4, goto: 'done' },
+		familiars: 4,
+		trainer: 6,
+		mound: 'pending',
+	});
+});
+
+test('a goto ahead of a step done only through class quests, a skipped step or unavailable quests still holds (#240)', () => {
+	// What counts as the player having been through the next step is what
+	// placement counts (anchorStep): its own quest work. A Warrior who took The
+	// Islander anywhere is not in Orgrimmar (Arathi's zeppelin, Sorek's accept
+	// `only Warrior`); a step the player skipped or one whose only quest the
+	// giver will never offer proves nothing either. The last pair is the control.
+	const STEPS = `
+Polestar.RegisterGuide({ id = "test/evidence", pack = "test", title = "Evidence", zone = 1429, steps = {
+	{ title = "Hold", goals = { { t = "level", level = 60 } } },
+	{ title = "Zeppelin", goals = { { t = "goto", map = 1429, x = 20, y = 20, text = "Zeppelin" } } },
+	{ title = "Sorek", goals = { { t = "turnin", quest = 783, title = "A Threat Within", npc = 197, map = 1429, x = 22, y = 20, only = { classes = { "WARRIOR" } } } } },
+	{ title = "Path", goals = { { t = "goto", map = 1429, x = 30, y = 20, text = "Path" } } },
+	{ title = "Warrior trainer", only = { classes = { "WARRIOR" } }, goals = { { t = "turnin", quest = 783, title = "A Threat Within", npc = 197, map = 1429, x = 32, y = 20 } } },
+	{ title = "Cave", goals = { { t = "goto", map = 1429, x = 40, y = 20, text = "Cave" } } },
+	{ title = "Skipped", goals = { { t = "turnin", quest = 7, title = "Kobold Camp Cleanup", npc = 197, map = 1429, x = 42, y = 20 } } },
+	{ title = "Dock", goals = { { t = "goto", map = 1429, x = 50, y = 20, text = "Dock" } } },
+	{ title = "Closed", goals = { { t = "accept", quest = 60, title = "Kobold Candles", npc = 253, map = 1429, x = 52, y = 20, closedBy = { 783 } } } },
+	{ title = "Mouth", goals = { { t = "goto", map = 1429, x = 60, y = 20, text = "Mouth" } } },
+	{ title = "Inside", goals = { { t = "turnin", quest = 7, title = "Kobold Camp Cleanup", npc = 197, map = 1429, x = 62, y = 20 } } },
+	{ goals = { { t = "level", level = 60 } } },
+} })
+`;
+	const [out] = run({
+		guides: STEPS,
+		script: `
+			local w = stub.world
+			E.SetGuide("test/evidence"); flush()
+			E.Goto(7); E.Skip(); flush()
+			w.accept(783, {}); w.turnIn(783); w.accept(7, {}); w.turnIn(7); flush()
+			emit({ skipped = PolestarCharDB.skipped["test/evidence"][7] == true,
+				gotos = { E.GetStepView(2).goals[1].status, E.GetStepView(4).goals[1].status, E.GetStepView(6).goals[1].status,
+				E.GetStepView(8).goals[1].status, E.GetStepView(10).goals[1].status } })
+		`,
+	});
+	assert.equal(out.skipped, true, 'the turn-in after the cave was skipped');
+	assert.deepEqual(out.gotos.map((st) => st === 'done'), [false, false, false, false, true], 'only the goto ahead of quest work everyone does is done');
+});
+
 test('a kill goal with spawn areas points at the area nearest the player, switching only once another is clearly nearer', () => {
 	// Elwynn here is 30 yd per map percent across: the two areas are 600 yd apart, radius 30.
 	const SPOTS = `
@@ -616,6 +706,61 @@ test('a quest started by a dropped item is one line: the collect stands for it, 
 	assert.equal(out.taken.cFolded, true);
 });
 
+// Accepting an item-started quest uses up the item. A player who took the
+// quest before the guide reached its step (Ursangous met early, #309) never
+// had the item in the bags during that step, so nothing latched the collect.
+test('the collect of a quest\'s starting item is done once the quest is taken, though the item is gone', () => {
+	const guides = `
+		Polestar.RegisterGuide({ id = "test/paw", pack = "test", title = "Paw", faction = "Horde", minLevel = 20, maxLevel = 30, steps = {
+			{ title = "Ursangous", goals = {
+				{ t = "collect", item = 16303, itemName = "Ursangous's Paw", count = 1, map = 1429, x = 40, y = 65 },
+				{ t = "accept", quest = 23, title = "Ursangous's Paw", item = 16303, itemName = "Ursangous's Paw" },
+			} },
+			{ title = "Splintertree Post", goals = {
+				{ t = "turnin", quest = 23, title = "Ursangous's Paw", npc = 12696, npcName = "Senani Thunderheart", map = 1429, x = 73, y = 61 },
+			} },
+		} })
+	`;
+	const [out] = run({
+		guides,
+		before: 'stub.world.faction = "Horde"; stub.world.race = "Orc"; stub.world.class = "HUNTER"; stub.world.level = 27',
+		script: `
+			E.SetGuide("test/paw"); flush()
+			local r = { fresh = { E.GetStepIndex(), E.GetStepView(1).goals[1].status } }
+			stub.world.accept(23, {}); flush()
+			r.taken = { E.GetStepIndex(), E.GetStepView(1).goals[1].status }
+			emit(r)
+		`,
+	});
+	assert.deepEqual(out.fresh, [1, 'active'], 'neither the item nor the quest: get the item');
+	assert.deepEqual(out.taken, [2, 'done'], 'the quest in the log: on to its turn-in');
+});
+
+test('a taken quest does not count for other collects of its item', () => {
+	const PAW = 'item = 16303, itemName = "Paw"';
+	const cases = {
+		'two of the item': `{ t = "collect", ${PAW}, count = 2 }, { t = "accept", quest = 23, title = "Q", ${PAW} }`,
+		'a collect after the accept': `{ t = "accept", quest = 23, title = "Q", ${PAW} }, { t = "collect", ${PAW}, count = 1 }`,
+		"another class's accept": `{ t = "accept", quest = 23, title = "Q", ${PAW}, only = { classes = { "MAGE" } } }, { t = "collect", ${PAW}, count = 1 }, { t = "accept", quest = 2, title = "Q2", ${PAW} }`,
+	};
+	for (const [name, goals] of Object.entries(cases)) {
+		const [out] = run({
+			guides: `Polestar.RegisterGuide({ id = "test/paws", pack = "test", title = "Paws", faction = "Horde", minLevel = 20, maxLevel = 30, steps = {
+				{ title = "Paws", goals = { ${goals} } },
+				{ title = "Later", goals = { { t = "level", level = 60 } } },
+			} })`,
+			before: 'stub.world.faction = "Horde"; stub.world.race = "Orc"; stub.world.class = "HUNTER"; stub.world.level = 27',
+			script: `
+				E.SetGuide("test/paws"); flush()
+				stub.world.accept(23, {}); flush()
+				local v = E.GetStepView(1)
+				for _, gv in ipairs(v.goals) do if gv.t == "collect" then emit({ E.GetStepIndex(), gv.status }) end end
+			`,
+		});
+		assert.deepEqual(out, [1, 'active'], name);
+	}
+});
+
 // The game's objective names only the item ("Fel Moss: 0/8"); the goal line
 // says where it comes from.
 test('a collect with a known source names it: kill an enemy for the item, collect from a friend or an object', () => {
@@ -999,4 +1144,75 @@ test('a quest to complete shows its objectives\' count, and the open ones when i
 	// Looting past the need counts the need; a finished objective leaves the list.
 	assert.deepEqual(fed, [{ cur: 7, max: 14, kind: 'count' }, ['Plainstrider Feathers: 0/7'], { cur: 0, max: 1, kind: 'count' }, false]);
 	assert.deepEqual(log, ['STEP_UPDATED 1', 'STEP_UPDATED 1'], 'each count change redraws the step');
+});
+
+// An objective goal reads the quest-log line named after its target, not the
+// position it was compiled with (#223, #279, #335): the game lists Slimy
+// Menace's objectives Murloc first, where the quest data (and so `oi`) has
+// Murloc Streamrunner first, and An Enticing Offer's Vial of Animal Blood
+// first, where the data has Duskweed Petal. By position, each line read the
+// other's count ("Kill Murloc 1/4") and ticked the other line.
+const MURLOCS = `
+Polestar.RegisterGuide({
+	id = "test/murlocs", pack = "test", title = "Crystal Lake", faction = "Alliance", minLevel = 1, maxLevel = 10, zone = 1429,
+	steps = {
+		{ title = "The murloc camp", goals = {
+			{ t = "kill", quest = 99128, title = "Slimy Menace", target = "Murloc", npc = 285, oi = 2, map = 1429, x = 49.8, y = 66.4 },
+			{ t = "kill", quest = 99128, title = "Slimy Menace", target = "Murloc Streamrunner", npc = 735, oi = 1, map = 1429, x = 50.5, y = 66.3 },
+		} },
+		{ title = "Bait ingredients", goals = {
+			{ t = "collect", quest = 99130, title = "An Enticing Offer", item = 286214, itemName = "Duskweed Petal", oi = 1, map = 1429, x = 41.4, y = 84.4 },
+			{ t = "collect", quest = 99130, title = "An Enticing Offer", item = 286215, itemName = "Vial of Animal Blood", oi = 2, map = 1429, x = 41.0, y = 85.0 },
+		} },
+		{ title = "Turn in", goals = {
+			{ t = "turnin", quest = 99128, title = "Slimy Menace", npc = 1, npcName = "Somebody" },
+		} },
+	},
+})
+`;
+
+test('an objective goal reads the quest-log line named after its target, not the position it was compiled with (#223, #279, #335)', () => {
+	const [murlocs, streamrunnersDone, bait] = run({
+		guides: NORTHSHIRE + MURLOCS,
+		before: `w.onQuest(99128, { { text = "Murloc slain: 0/7", required = 7, type = "monster" }, { text = "Murloc Streamrunner slain: 0/4", required = 4, type = "monster" } })
+			w.onQuest(99130, { { text = "Vial of Animal Blood: 0/6", required = 6, type = "item" }, { text = "Duskweed Petal: 0/18", required = 18, type = "item" } })`,
+		script: `
+			local w = stub.world
+			E.SetGuide("test/murlocs"); flush()
+			local function view(s)
+				local v = E.GetStepView(s)
+				local out = {}
+				for i, g in ipairs(v.goals) do out[i] = { g.progress and g.progress.cur, g.progress and g.progress.max, g.status } end
+				return out
+			end
+			w.progress(99128, 1, 3); w.progress(99128, 2, 1); flush()
+			emit(view(1))
+			w.progress(99128, 2, 4); flush()
+			emit(view(1))
+			w.progress(99130, 1, 2); w.progress(99130, 2, 5); flush()
+			emit(view(2))
+		`,
+	});
+	// 3 Murlocs and 1 Streamrunner killed: each line its own count.
+	assert.deepEqual(murlocs.map((g) => g.slice(0, 2)), [[3, 7], [1, 4]]);
+	// The 4 Streamrunners done: the Streamrunner line ticks, the Murloc line stays open.
+	assert.deepEqual(streamrunnersDone.map((g) => g[2]), ['active', 'done'], JSON.stringify(streamrunnersDone));
+	assert.deepEqual(bait.map((g) => g.slice(0, 2)), [[5, 18], [2, 6]]);
+});
+
+test('an objective goal keeps its compiled position when no line names its target', () => {
+	const [counts] = run({
+		guides: NORTHSHIRE + MURLOCS,
+		// Labels not filled in yet (counts alone), then lines in a language the guide's names are not in.
+		before: `w.onQuest(99128, { { text = " slain: 0/7", required = 7, type = "monster" }, { text = " slain: 0/4", required = 4, type = "monster" } })`,
+		script: `
+			local w = stub.world
+			E.SetGuide("test/murlocs"); flush()
+			w.progress(99128, 1, 3); flush()
+			local v = E.GetStepView(1)
+			emit({ { v.goals[1].progress.cur, v.goals[1].progress.max }, { v.goals[2].progress.cur, v.goals[2].progress.max } })
+		`,
+	});
+	// Murloc (oi 2) reads line 2, Murloc Streamrunner (oi 1) line 1, as compiled.
+	assert.deepEqual(counts, [[0, 4], [3, 7]]);
 });

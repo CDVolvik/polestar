@@ -51,6 +51,7 @@ test('a translated report parses by shape, not by its words', () => {
 		'[>] Sprich mit Rybrad · quest 400 · npc 1690 · map 1426 @46.82,52.36',
 		'Pfeil: Rybrad · 120 yd',
 		'Ort: Dun Morogh, Kharanos · map 1426 @46.00,52.00 live',
+		'Routen: roads · travel planner off',
 		'Fehler:',
 		'  3x Polestar/Nav/Arrow.lua:88: attempt to index nil',
 		'```',
@@ -62,7 +63,39 @@ test('a translated report parses by shape, not by its words', () => {
 	assert.deepEqual([r.details.step, r.details.stepCount, r.details.liveStep], [7, 40, undefined]);
 	assert.equal(r.details.zone, 'Dun Morogh, Kharanos');
 	assert.deepEqual(r.details.errors, [{ count: 3, message: 'Polestar/Nav/Arrow.lua:88: attempt to index nil' }]);
+	assert.equal(r.details.routes, 'roads · travel planner off', 'the route settings, found by their words under a translated label');
+	assert.match(I.issueBody({ report: r, reporter: 'x', guild: '1', thread: '2' }), /^\| Routes \| roads · travel planner off \|$/m);
 	assert.ok(I.labelsFor(r).includes('lua-error'));
+});
+
+test('a Chinese report, its labels in full-width colons and brackets, reads like any other', () => {
+	const zh = [
+		'**出了什么问题：** 箭头指向水里',
+		'```',
+		'Polestar 0.2.4 Beta · 客户端 1.60.1（70338） · zhCN',
+		'Human Warrior · 4级 · Alliance',
+		'指南：Elwynn Forest（forever/alliance/human/01-elwynn-forest）',
+		'步骤 3/8：Kobold Camp',
+		'[x] Accept Wolves Across the Border · quest 33 · npc 196 · map 1429 @48.20,40.00 live',
+		'[>] Kill Kobold Vermin 7/10 · quest 7 · npc 6 · map 1429 @47.60,35.10 live',
+		'箭头：Kill Kobold Vermin · 42 yd',
+		'位置：Elwynn Forest · map 1429 @47.00,35.00 live',
+		'路线：balanced',
+		'错误：',
+		'  1x Polestar/Nav/Arrow.lua:40: bad argument',
+		'```',
+	].join('\n');
+	const r = parseReport(zh);
+	assert.equal(r.description, '箭头指向水里', 'the lead-in goes, as in English');
+	const d = r.details;
+	assert.deepEqual([d.client, d.build, d.locale], ['1.60.1', '70338', 'zhCN']);
+	assert.equal(d.character, 'Human Warrior · 4级 · Alliance');
+	assert.deepEqual([d.guideTitle, d.guideId], ['Elwynn Forest', 'forever/alliance/human/01-elwynn-forest']);
+	assert.deepEqual([d.step, d.stepCount, d.stepTitle], [3, 8, 'Kobold Camp']);
+	assert.equal(d.arrow, '箭头：Kill Kobold Vermin · 42 yd', 'the goals are passed over, not read as the arrow or the place');
+	assert.deepEqual([d.zone, d.map, d.routes], ['Elwynn Forest', 1429, 'balanced']);
+	assert.ok(I.labelsFor(r).includes('guide:01-elwynn-forest'));
+	assert.equal(I.issueTitle('**出了什么问题：** 箭头指向水里 ``` Polestar'), '箭头指向水里');
 });
 
 test('a report with no guide open still finds the arrow and position lines', () => {
@@ -72,6 +105,7 @@ test('a report with no guide open still finds the arrow and position lines', () 
 	assert.equal(r.details.arrow, 'Arrow: none');
 	assert.equal(r.details.zone, 'Stormwind City');
 	assert.deepEqual(I.labelsFor(r), ['discord', 'triage', 'bug', 'locale:enUS']);
+	assert.equal(r.details.routes, undefined, 'a report from before the Routes line has none');
 });
 
 test('a post without a report is all description, other code blocks included', () => {
@@ -261,6 +295,131 @@ test('a pre-release (a test build) tells no thread, and the next full release st
 	const release = { id: 3, tag_name: 'v0.2.5', name: 'Polestar 0.2.5', html_url: 'https://github.com/fitzforge/polestar/releases/tag/v0.2.5', published_at: '2026-10-20T00:00:00Z' };
 	github.releasesList.push(release);
 	assert.deepEqual(await onRelease({ discord, github, event: { release }, log: quietLog }), { told: 2, failed: 0 });
+});
+
+// Prereleases: no thread hears of them, the testers do, once.
+const { spawnSync } = require('node:child_process');
+const { tmpdir } = require('./helpers/tmp');
+
+const TESTERS = { channel: '950', role: 'r-testers' };
+
+async function closedFixes(dates) {
+	const s = setup();
+	for (const [i, at] of dates.entries()) {
+		const id = String(i + 1);
+		s.discord.post(id, { content: 'bug ' + id });
+		await s.sync.newPost(id);
+		Object.assign(s.github.issues[i], { state: 'closed', state_reason: 'completed', closed_at: at });
+	}
+	return s;
+}
+
+test('a prerelease tells no thread and pings the testers once, with the player entries from its changes/', async () => {
+	const { discord, github } = await closedFixes(['2026-10-15T00:00:00Z']);
+	github.releasesList.push({ id: 1, tag_name: 'v0.2.4', published_at: '2026-10-10T00:00:00Z' });
+	const release = { id: 2, tag_name: 'v0.3.0-rc.1', prerelease: true, html_url: 'https://github.com/fitzforge/polestar/releases/tag/v0.3.0-rc.1', published_at: '2026-10-16T00:00:00Z' };
+	github.releasesList.push(release);
+	const tag = release.tag_name;
+	github.files.set(`${tag}:changes/README.md`, '# Changelog fragments\n');
+	github.files.set(`${tag}:changes/b-arrow.md`, '---\nsection: players\n---\n- The arrow walks\n  real paths.\n');
+	github.files.set(`${tag}:changes/a-tooling.md`, '---\nsection: contributors\n---\n- A new command.\n');
+	github.files.set(`${tag}:changes/c-french.md`, '---\nsection: players\n---\n- Polestar is in French.\n');
+	// A tester asking about it first is not the bot's ping.
+	discord.messages.set(TESTERS.channel, []);
+	discord.say(TESTERS.channel, { author: 'u9', content: `is **${tag}** out yet?` });
+
+	const before = discord.sent.length;
+	const edits = discord.edits.length;
+	assert.deepEqual(await onRelease({ discord, github, event: { release }, forumId: FORUM, testers: TESTERS, log: quietLog }), { told: 0, failed: 0 });
+	const sent = discord.sent.slice(before);
+	assert.equal(sent.length, 1);
+	assert.equal(sent[0].channel, TESTERS.channel);
+	assert.deepEqual(sent[0].roles, [TESTERS.role]);
+	assert.deepEqual(sent[0].users, []);
+	assert.match(sent[0].content, /^<@&r-testers> \*\*v0\.3\.0-rc\.1\*\*/);
+	assert.ok(sent[0].content.includes(`<#${FORUM}>`));
+	assert.ok(sent[0].content.includes(release.html_url));
+	const arrow = sent[0].content.indexOf('- The arrow walks real paths.');
+	assert.ok(arrow > 0 && arrow < sent[0].content.indexOf('- Polestar is in French.'));
+	assert.doesNotMatch(sent[0].content, /A new command/);
+	assert.equal(discord.edits.length, edits);
+	assert.ok(github.issues.every((i) => !i.labels.some((l) => l.name.startsWith('released:'))));
+
+	await onRelease({ discord, github, event: { release }, forumId: FORUM, testers: TESTERS, log: quietLog });
+	assert.equal(discord.sent.length, before + 1);
+});
+
+test('a full release counts its fixes from the full release before it, never from a prerelease', async () => {
+	const { discord, github } = await closedFixes(['2026-10-09T00:00:00Z', '2026-10-12T00:00:00Z', '2026-10-14T12:00:00Z']);
+	github.releasesList.push(
+		{ id: 1, tag_name: 'v0.2.4', published_at: '2026-10-10T00:00:00Z' },
+		{ id: 2, tag_name: 'v0.2.5-test.1', prerelease: true, published_at: '2026-10-11T00:00:00Z' },
+		{ id: 3, tag_name: 'v0.3.0-rc.1', published_at: '2026-10-13T00:00:00Z' },
+	);
+	const rc = github.releasesList[2];
+	await onRelease({ discord, github, event: { release: rc }, forumId: FORUM, testers: null, log: quietLog });
+	const release = { id: 4, tag_name: 'v0.3.0', name: 'Polestar 0.3.0', html_url: 'https://github.com/fitzforge/polestar/releases/tag/v0.3.0', published_at: '2026-10-16T00:00:00Z' };
+	github.releasesList.push(release);
+
+	const before = discord.sent.length;
+	assert.deepEqual(await onRelease({ discord, github, event: { release }, forumId: FORUM, log: quietLog }), { told: 2, failed: 0 });
+	assert.deepEqual(discord.sent.slice(before).map((s) => s.channel).sort(), ['2', '3']);
+});
+
+test('a patch tells the fixes closed by hand, not those closed by a commit only `next` has; the feature release after it tells those', async () => {
+	const { discord, github } = await closedFixes(['2026-10-11T00:00:00Z', '2026-10-12T00:00:00Z', '2026-10-13T00:00:00Z']);
+	// #1 by a push to next, #2 by hand (the patch's fix), #3 by a pull request merged into next.
+	github.timelines.set(1, [{ event: 'closed', commit_id: 'c-next', created_at: '2026-10-11T00:00:00Z' }]);
+	github.timelines.set(2, [{ event: 'closed', commit_id: null, created_at: '2026-10-12T00:00:00Z' }]);
+	github.timelines.set(3, [
+		{ event: 'cross-referenced', source: { issue: { number: 40, repository_url: 'https://api.github.com/repos/fitzforge/polestar', pull_request: { merged_at: '2026-10-13T00:00:02Z' } } } },
+		{ event: 'closed', commit_id: null, created_at: '2026-10-13T00:00:03Z' },
+	]);
+	github.pulls.set(40, { merge_commit_sha: 'c-pr' });
+	github.tagCommits.set('v0.2.4', new Set(['c-old']));
+	github.tagCommits.set('v0.2.5', new Set(['c-old', 'c-patch']));
+	github.tagCommits.set('v0.3.0', new Set(['c-old', 'c-patch', 'c-next', 'c-pr']));
+	github.releasesList.push({ id: 1, tag_name: 'v0.2.4', published_at: '2026-10-10T00:00:00Z' });
+	const patch = { id: 2, tag_name: 'v0.2.5', name: 'Polestar 0.2.5', html_url: 'https://github.com/fitzforge/polestar/releases/tag/v0.2.5', published_at: '2026-10-14T00:00:00Z' };
+	github.releasesList.push(patch);
+
+	let before = discord.sent.length;
+	assert.deepEqual(await onRelease({ discord, github, event: { release: patch }, forumId: FORUM, log: quietLog }), { told: 1, failed: 0 });
+	assert.deepEqual(discord.sent.slice(before).map((s) => s.channel), ['2']);
+	assert.ok(github.issues[0].labels.every((l) => l.name !== 'released:v0.2.5'));
+
+	const feature = { id: 3, tag_name: 'v0.3.0', name: 'Polestar 0.3.0', html_url: 'https://github.com/fitzforge/polestar/releases/tag/v0.3.0', published_at: '2026-10-16T00:00:00Z' };
+	github.releasesList.push(feature);
+	before = discord.sent.length;
+	assert.deepEqual(await onRelease({ discord, github, event: { release: feature }, forumId: FORUM, log: quietLog }), { told: 2, failed: 0 });
+	assert.deepEqual(discord.sent.slice(before).map((s) => s.channel).sort(), ['1', '3']);
+});
+
+test('a prerelease with the testers channel or role unset tells no one and exits 0', async () => {
+	const { discord, github } = await closedFixes(['2026-10-15T00:00:00Z']);
+	const release = { id: 2, tag_name: 'v0.3.0-rc.2', prerelease: true, published_at: '2026-10-16T00:00:00Z' };
+	const before = discord.sent.length;
+	assert.deepEqual(await onRelease({ discord, github, event: { release }, forumId: FORUM, testers: null, log: quietLog }), { told: 0, failed: 0 });
+	assert.equal(discord.sent.length, before);
+
+	const dir = tmpdir();
+	const eventPath = path.join(dir, 'release.json');
+	fs.writeFileSync(eventPath, JSON.stringify({ release }));
+	const run = spawnSync(process.execPath, [path.join(__dirname, '..', 'tools', 'discord-bot', 'notify.js'), 'release'], {
+		encoding: 'utf8',
+		env: {
+			PATH: process.env.PATH,
+			NOTIFY_EVENT_PATH: eventPath,
+			DISCORD_TOKEN: 'token',
+			GITHUB_TOKEN: 'token',
+			GITHUB_REPOSITORY: 'fitzforge/polestar',
+			DISCORD_TESTERS_CHANNEL_ID: TESTERS.channel,
+			// Nothing listens here: a run that called out would fail.
+			DISCORD_API: 'http://127.0.0.1:9',
+			GITHUB_API_URL: 'http://127.0.0.1:9',
+		},
+	});
+	assert.equal(run.status, 0, run.stderr);
 });
 
 // Admin slash commands (lib/commands.js): /close with a reason and /reopen,

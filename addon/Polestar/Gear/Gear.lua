@@ -60,6 +60,7 @@ do
 		tooltip = true,
 		rewards = true,
 		pickTooltip = true, -- "Best pick" on quest reward items' tooltips
+		bagArrows = true, -- the upgrade arrow on bag items (Bags.lua)
 		useBags = true,
 		minUpgrade = 1, -- percent
 		spec = spec, -- per class: "auto" or a spec key
@@ -787,6 +788,7 @@ ns.RegisterCommand("gear", function(rest)
 		ns.Print(L["Gear advice: no weights for this class"])
 		return
 	end
+	if label then label = L[label] end
 	if rest == nil or rest == "" then
 		ns.Print(L["Gear weights"] .. ": " .. tostring(label) .. " (" .. (SPEC_SOURCE[source] or tostring(source)) .. ")")
 		return

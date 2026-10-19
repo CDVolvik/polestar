@@ -28,6 +28,12 @@ next forever/horde/orc-troll/02-the-barrens
 #   Sarkoth: his slope is full of Scorpid Workers and cactuses. All three go
 #   back to the Den with Sarkoth (804); 0.01 h faster to 10 and 20 under the
 #   simulator than taking 789 and 4402 after Sarkoth.
+# - Vile Familiars (792; 1485/1499 for Warlocks) is handed in and Burning
+#   Blade Medallion (794) taken before the Burning Blade Coven, so Thazz'ril's
+#   Pick (6394) and Yarrog are done on one trip into the cave; the export goes
+#   in for the pick, back to the Den and in again for Yarrog. 37-50 s faster
+#   to 10 and 20 under the simulator (Orc; any class, Mage, Warlock, Shaman),
+#   which does not count the second walk through the cave.
 # - Legging It (96821) is taken at Sen'jin on the first visit: its spiders sit
 #   on the road north to Razor Hill, where Gar'Thok takes it.
 # - Rezlak's second pair (A Simmering Storm 97281, Stormy Potential 97282) and
@@ -112,7 +118,7 @@ step Training weapons and boars
   tip The weapons lie around the Den and the training grounds; the Mottled Boars roam the whole valley floor.
   collect 277653 quest 97279.1
   kill 3098 quest 788.1
-  goto 42.4,68.6 "The Den's cave mouth"
+  goto 42.4,68.6 "The Den"
 
 step The Den
   tip Gornek stands just inside the cave mouth; Kzan Thornslash at the back of the cave behind him.
@@ -163,7 +169,7 @@ step Sarkoth
 step Hana'zua
   turnin 790
   accept 804
-  goto 42.4,68.6 "The Den's cave mouth"
+  goto 42.4,68.6 "The Den"
 
 step Back to the Den
   turnin 804                          -- Gornek
@@ -176,28 +182,18 @@ step Foreman Thazz'ril
 
 step Lazy Peons
   tip Hit the sleeping peons north of the Den with the Foreman's Blackjack.
-  kill 10556 quest 5441.1
+  kill 10556 quest 5441.1 "Wake Lazy Peons with the Foreman's Blackjack"
 
 step Foreman Thazz'ril
   turnin 5441
   accept 6394
 
-# The Burning Blade Coven's mouth: "Go in the cave (45 56) and stay right"
-# (https://www.wowhead.com/classic/quest=794, comments); the pick lies past the
-# first split, straight on, then right along the stream to the waterfall
-# (https://www.wowhead.com/classic/quest=6394, comments).
 step North end of the valley
   tip The Vile Familiars swarm the slope below the Burning Blade Coven, the cave on the valley's north side.
   kill 3101 quest 792.1 only !Warlock
   collect 6487 quest 1485.1 only Warlock
-  goto 45.0,56.0 "Burning Blade Coven"
-
-step Thazz'ril's Pick
-  tip Inside the cave, go straight on at the first split, then right and follow the stream on your left to the waterfall: the pick glows by the water, behind a column of rock.
-  collect 16332 quest 6394.1 @43.7,53.8
 
 step Back at the Den
-  turnin 6394                         -- Foreman Thazz'ril
   turnin 792 only !Warlock            -- Zureetha Fargaze
   turnin 1485 only Warlock            -- Ruzan
   accept 1499 only Warlock
@@ -209,8 +205,16 @@ step Canaga Earthcaller
   tip Canaga stands just outside the Den.
   accept 1516                         -- Canaga Earthcaller
 
+# The Burning Blade Coven's mouth: "Go in the cave (45 56) and stay right"
+# (https://www.wowhead.com/classic/quest=794, comments); the pick lies past the
+# first split, straight on, then right along the stream to the waterfall
+# (https://www.wowhead.com/classic/quest=6394, comments).
 step Burning Blade Coven
   goto 45.0,56.0 "Burning Blade Coven"
+
+step Thazz'ril's Pick
+  tip Inside the cave, go straight on at the first split, then right and follow the stream on your left to the waterfall: the pick glows by the water, behind a column of rock.
+  collect 16332 quest 6394.1 @43.7,53.8
 
 step Yarrog Baneshadow
   tip Inside the cave, keep to the right wall all the way round, over the stream: Yarrog waits at the end.
@@ -220,6 +224,9 @@ step Felstalker hooves
   only Shaman
   tip Felstalkers roam the slope below the cave, on the valley's north side.
   collect 6640 quest 1516.1
+
+step Foreman Thazz'ril
+  turnin 6394
 
 step Zureetha Fargaze
   turnin 794
@@ -261,15 +268,15 @@ step Brakk's campfire
   accept 96655
 
 step Razor Hill
-  turnin 2161                         -- Innkeeper Grosk
-  sethome "Razor Hill"
+  accept 96822                        -- Turroc, on the east side of town
   turnin 96821                        -- Gar'Thok
   accept 784
   complete 96655 @51.1,42.5           -- Talk to Cook Torka
   turnin 96655
   accept 96825
+  turnin 2161                         -- Innkeeper Grosk
+  sethome "Razor Hill"
   accept 791                          -- Furl Scornbrow, in the watchtower
-  accept 96822                        -- Turroc
 
 step Prickly pears
   tip The prickly pears grow among the quilboar huts just west of town.

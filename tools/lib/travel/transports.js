@@ -25,10 +25,16 @@
 // - An end is placed on its map's Era frame (f "e") unless Forever redrew that
 //   map (its live frame differs, e.g. Stormwind with the harbor) or Forever
 //   added it (the Riverglades): then on the live frame (f "l").
+// - A ship's stop is where the ship lies, often in open water a few yards off
+//   its pier. Where an end's point is not on dry walkable ground, it gets a
+//   board point: where passengers walk to and board (boardPoint, from the
+//   navigation grid; none without a grid).
 
 const { round, dist2d, isJump } = require('./geo');
 const { spawnPoints, indexByName } = require('./entities');
 const { pathPoints } = require('./taxi');
+const { FLAG, TILE_CELLS, CELL, cellOf, cellCentre } = require('../nav/grid/format');
+const { SNAP_REGION } = require('../nav/path');
 
 // Estimates, not client data: transports carry their speed in server-side
 // gameobject data. 30 yd/s matches the common Classic transport speed.
@@ -37,23 +43,26 @@ const LOAD_SECONDS = 10;
 const TRAM_WAIT = 30; // two trams shuttle continuously
 const ANCHOR_YARDS = 120;
 const STOP_MERGE_YARDS = 40;
+const BOARD_YARDS = 30; // a board point is at most this far from its end's stop
 
 const A = 1;
 const H = 2;
 const BOTH = 3;
 
 // path: TaxiPath ID in the Era client tables, or the Forever client tables
-// with client: 'forever'.
+// with client: 'forever'. An end's area: the AreaTable area of its place (the
+// WoW Forever client's), whose name the client gives in its language
+// (C_Map.GetAreaInfo); name is the English one, for logs and enUS.
 const TRANSPORTS = [
 	{
 		id: 'boat-bootybay-ratchet', kind: 'boat', faction: BOTH, path: 241,
-		a: { name: 'Booty Bay', zone: 1434, anchor: { npc: 'Wharfmaster Lozgil', use: 'position' } },
-		b: { name: 'Ratchet', zone: 1413, anchor: { npc: 'Wharfmaster Dizzywig', use: 'position' } },
+		a: { name: 'Booty Bay', area: 35, zone: 1434, anchor: { npc: 'Wharfmaster Lozgil', use: 'position' } },
+		b: { name: 'Ratchet', area: 392, zone: 1413, anchor: { npc: 'Wharfmaster Dizzywig', use: 'position' } },
 	},
 	{
 		id: 'boat-menethil-theramore', kind: 'boat', faction: A, path: 292,
-		a: { name: 'Menethil Harbor', zone: 1437, anchor: { object: 'Boat to Theramore', use: 'check' } },
-		b: { name: 'Theramore', zone: 1445 },
+		a: { name: 'Menethil Harbor', area: 150, zone: 1437, anchor: { object: 'Boat to Theramore', use: 'check' } },
+		b: { name: 'Theramore', area: 513, zone: 1445 },
 	},
 	// Forever ships (TaxiPath IDs of the Forever client). One ship sails
 	// Menethil Harbor -> Southshore -> Auberdine -> Menethil Harbor (TaxiPath
@@ -61,58 +70,58 @@ const TRANSPORTS = [
 	// in the client tables), so that pair keeps its id and rides the new loop.
 	{
 		id: 'boat-menethil-southshore', kind: 'boat', faction: A, client: 'forever', path: 11167,
-		a: { name: 'Menethil Harbor', zone: 1437 },
-		b: { name: 'Southshore', zone: 1424 },
+		a: { name: 'Menethil Harbor', area: 150, zone: 1437 },
+		b: { name: 'Southshore', area: 271, zone: 1424 },
 	},
 	{
 		id: 'boat-southshore-auberdine', kind: 'boat', faction: A, client: 'forever', path: 11167,
-		a: { name: 'Southshore', zone: 1424 },
-		b: { name: 'Auberdine', zone: 1439, anchor: { object: 'Boat to Menethil', use: 'check' } },
+		a: { name: 'Southshore', area: 271, zone: 1424 },
+		b: { name: 'Auberdine', area: 442, zone: 1439, anchor: { object: 'Boat to Menethil', use: 'check' } },
 	},
 	{
 		id: 'boat-menethil-auberdine', kind: 'boat', faction: A, client: 'forever', path: 11167,
-		a: { name: 'Menethil Harbor', zone: 1437 },
-		b: { name: 'Auberdine', zone: 1439, anchor: { object: 'Boat to Menethil', use: 'check' } },
+		a: { name: 'Menethil Harbor', area: 150, zone: 1437 },
+		b: { name: 'Auberdine', area: 442, zone: 1439, anchor: { object: 'Boat to Menethil', use: 'check' } },
 	},
 	{
 		id: 'boat-stormwind-auberdine', kind: 'boat', faction: A, client: 'forever', path: 11616,
-		a: { name: 'Stormwind Harbor', zone: 1453 },
-		b: { name: 'Auberdine', zone: 1439 },
+		a: { name: 'Stormwind Harbor', area: 17203, zone: 1453 },
+		b: { name: 'Auberdine', area: 442, zone: 1439 },
 	},
 	{
 		id: 'boat-tanaris-powderfuse', kind: 'boat', faction: BOTH, client: 'forever', path: 11391,
-		a: { name: 'Steamwheedle Port', zone: 1446, anchor: { npc: 'Wharfmaster Steamfizzle', use: 'position' } },
-		b: { name: 'Powderfuse Port', zone: 2548, anchor: { npc: 'Wharfmaster Whizzbuzz', use: 'position' } },
+		a: { name: 'Steamwheedle Port', area: 977, zone: 1446, anchor: { npc: 'Wharfmaster Steamfizzle', use: 'position' } },
+		b: { name: 'Powderfuse Port', area: 16727, zone: 2548, anchor: { npc: 'Wharfmaster Whizzbuzz', use: 'position' } },
 	},
 	{
 		id: 'boat-auberdine-ruttheran', kind: 'boat', faction: A, path: 293,
-		a: { name: 'Auberdine', zone: 1439, anchor: { object: 'Boat to Teldrassil', use: 'check' } },
-		b: { name: "Rut'theran Village", zone: 1438 },
+		a: { name: 'Auberdine', area: 442, zone: 1439, anchor: { object: 'Boat to Teldrassil', use: 'check' } },
+		b: { name: "Rut'theran Village", area: 702, zone: 1438 },
 	},
 	{
 		id: 'boat-feathermoon', kind: 'boat', faction: A, path: 303,
-		a: { name: 'Feathermoon Stronghold', zone: 1444, near: [31, 39.5] },
-		b: { name: 'The Forgotten Coast', zone: 1444, near: [43, 43] },
+		a: { name: 'Feathermoon Stronghold', area: 1116, zone: 1444, near: [31, 39.5] },
+		b: { name: 'The Forgotten Coast', area: 1108, zone: 1444, near: [43, 43] },
 	},
 	{
 		id: 'zeppelin-orgrimmar-undercity', kind: 'zeppelin', faction: H, path: 302,
-		a: { name: 'Orgrimmar', zone: 1411, anchor: { npc: 'Frezza', use: 'position' } },
-		b: { name: 'Undercity', zone: 1420, anchor: { npc: 'Zapetta', use: 'position' } },
+		a: { name: 'Orgrimmar', area: 1637, zone: 1411, anchor: { npc: 'Frezza', use: 'position' } },
+		b: { name: 'Undercity', area: 1497, zone: 1420, anchor: { npc: 'Zapetta', use: 'position' } },
 	},
 	{
 		id: 'zeppelin-orgrimmar-gromgol', kind: 'zeppelin', faction: H, path: 285,
-		a: { name: 'Orgrimmar', zone: 1411, anchor: { npc: 'Snurk Bucksquick', use: 'position' } },
-		b: { name: "Grom'gol", zone: 1434, anchor: { npc: "Nez'raz", use: 'position' } },
+		a: { name: 'Orgrimmar', area: 1637, zone: 1411, anchor: { npc: 'Snurk Bucksquick', use: 'position' } },
+		b: { name: "Grom'gol", area: 117, zone: 1434, anchor: { npc: "Nez'raz", use: 'position' } },
 	},
 	{
 		id: 'zeppelin-undercity-gromgol', kind: 'zeppelin', faction: H, path: 301,
-		a: { name: 'Undercity', zone: 1420, anchor: { npc: 'Hin Denburg', use: 'position' } },
-		b: { name: "Grom'gol", zone: 1434, anchor: { npc: 'Squibby Overspeck', use: 'position' } },
+		a: { name: 'Undercity', area: 1497, zone: 1420, anchor: { npc: 'Hin Denburg', use: 'position' } },
+		b: { name: "Grom'gol", area: 117, zone: 1434, anchor: { npc: 'Squibby Overspeck', use: 'position' } },
 	},
 	{
 		id: 'tram-stormwind-ironforge', kind: 'tram', faction: A,
-		a: { name: 'Stormwind', zone: 1453, trigger: 2173 },
-		b: { name: 'Ironforge', zone: 1455, trigger: 2175 },
+		a: { name: 'Stormwind', area: 1519, zone: 1453, trigger: 2173 },
+		b: { name: 'Ironforge', area: 1537, zone: 1455, trigger: 2175 },
 		inside: [2166, 2171],
 	},
 ];
@@ -235,6 +244,7 @@ function endpoint(end, frames, liveFrames, stop, anchorInfo, warnings, id) {
 	}
 	return {
 		name: end.name,
+		area: end.area,
 		c: pos.c,
 		wx: round(pos.wx, 1),
 		wy: round(pos.wy, 1),
@@ -256,9 +266,69 @@ function pickStop(stops, end, frames, liveFrames, anchorInfo) {
 	return cands.reduce((best, s) => (dist2d(s, ref) < dist2d(best, ref) ? s : best));
 }
 
+// The dry surfaces of one grid column: walkable (not swum, not blocked) and
+// above the column's water surface when it has one -> entry indices.
+function drySurfaces(t, k) {
+	let water = -Infinity;
+	for (let e = t.first[k]; e < t.first[k + 1]; e++) if (t.flags[e] & FLAG.SWIM && t.z[e] > water) water = t.z[e];
+	const out = [];
+	for (let e = t.first[k]; e < t.first[k + 1]; e++) {
+		if (!(t.flags[e] & (FLAG.SWIM | FLAG.BLOCKED)) && t.z[e] > water) out.push(e);
+	}
+	return out;
+}
+
+// Whether a point's grid column holds a dry surface.
+function onDryGround(nav, { c, wx, wy }) {
+	const at = cellOf(wx, wy);
+	const t = nav.tile(c, at.col, at.row);
+	return !!t && drySurfaces(t, at.j * TILE_CELLS + at.i).length > 0;
+}
+
+// Where passengers board when an end's point (a ship's stop) is not on dry
+// ground: the nearest dry surface within BOARD_YARDS, of a region of at least
+// SNAP_REGION surfaces and open both ways (path.js's snap rules: not a
+// piling or a pocket under a floor); at equal distance the larger region
+// (the one the grid connects to the town), then the lower surface.
+// nav: tools/lib/nav/path.js openNav. -> { wx, wy, z } (the column's
+// centre), or null: the point is on dry ground, or nothing qualifies.
+function boardPoint(nav, end) {
+	if (onDryGround(nav, end)) return null;
+	const { c, wx, wy } = end;
+	const at = cellOf(wx, wy);
+	const R = Math.ceil(BOARD_YARDS / CELL);
+	let best = null;
+	for (let dj = -R; dj <= R; dj++) {
+		for (let di = -R; di <= R; di++) {
+			const gi = at.col * TILE_CELLS + at.i + di;
+			const gj = at.row * TILE_CELLS + at.j + dj;
+			const col = Math.floor(gi / TILE_CELLS);
+			const row = Math.floor(gj / TILE_CELLS);
+			const i = gi - col * TILE_CELLS;
+			const j = gj - row * TILE_CELLS;
+			const ctr = cellCentre(col, row, i, j);
+			const d = Math.hypot(ctr.wx - wx, ctr.wy - wy);
+			if (d > BOARD_YARDS) continue;
+			const t = nav.tile(c, col, row);
+			if (!t) continue;
+			const k = j * TILE_CELLS + i;
+			for (const e of drySurfaces(t, k)) {
+				const size = nav.regionSize(c, col, row, e);
+				if ((size !== null && size < SNAP_REGION) || !nav.isOpen(t, k, e)) continue;
+				const s = size === null ? 0 : size;
+				const z = t.z[e];
+				if (!best || d < best.d || (d === best.d && (s > best.s || (s === best.s && z < best.z)))) best = { d, s, z, wx: ctr.wx, wy: ctr.wy };
+			}
+		}
+	}
+	return best && { wx: round(best.wx, 1), wy: round(best.wy, 1), z: round(best.z, 1) };
+}
+
 // foreverTables: the Forever client's { TaxiPathNode } for `client: 'forever'`
 // ships (null when unavailable: those are skipped with `foreverError`).
-function buildTransports({ tables, foreverTables = null, foreverBuild = null, foreverError = 'not loaded', frames, npcs, objects, liveFrames = new Map() }) {
+// nav: the navigation grid (path.js openNav) for the ends' board points;
+// null: none.
+function buildTransports({ tables, foreverTables = null, foreverBuild = null, foreverError = 'not loaded', frames, npcs, objects, liveFrames = new Map(), nav = null }) {
 	const warnings = [];
 	const indexes = { npcs: indexByName(npcs), objects: indexByName(objects) };
 	const points = { era: pathPoints(tables.TaxiPathNode), forever: foreverTables ? pathPoints(foreverTables.TaxiPathNode) : null };
@@ -330,6 +400,13 @@ function buildTransports({ tables, foreverTables = null, foreverBuild = null, fo
 			warnings.push(`${t.id}: an end could not be placed, skipped`);
 			continue;
 		}
+		if (nav) {
+			for (const e of [a, b]) {
+				const board = boardPoint(nav, e);
+				if (board) e.board = board;
+				else if (!onDryGround(nav, e)) warnings.push(`${t.id}: the ${e.name} end is not on dry ground and has no dry ground within ${BOARD_YARDS} yd`);
+			}
+		}
 		out.push({
 			id: t.id,
 			kind: t.kind,
@@ -347,4 +424,4 @@ function buildTransports({ tables, foreverTables = null, foreverBuild = null, fo
 	return { transports: out, warnings };
 }
 
-module.exports = { buildTransports, inZone, TRANSPORTS, TRANSPORT_SPEED, LOAD_SECONDS, ANCHOR_YARDS };
+module.exports = { buildTransports, boardPoint, onDryGround, inZone, TRANSPORTS, TRANSPORT_SPEED, LOAD_SECONDS, ANCHOR_YARDS, BOARD_YARDS };

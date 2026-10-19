@@ -33,6 +33,14 @@ function onlyHolds(only, ctx) {
 	return true;
 }
 
+// The NPC or object a compiled accept or turn-in sends the player to: a quest
+// with several givers or enders is scored there (sequence.js).
+function target(goal) {
+	if (goal.npc != null) return { npc: goal.npc };
+	if (goal.object != null) return { object: goal.object };
+	return null;
+}
+
 function guideEvents(g, ctx) {
 	const events = [{ t: 'guide', title: g.title, zone: g.zoneName || null, levels: g.minLevel != null ? [g.minLevel, g.maxLevel ?? g.minLevel] : null, id: g.id }];
 	for (const step of g.steps || []) {
@@ -43,7 +51,7 @@ function guideEvents(g, ctx) {
 			let e = null;
 			if (goal.t === 'level') e = { t: 'level', level: goal.level, xp: null };
 			else if (goal.quest == null) continue;
-			else if (goal.t === 'accept' || goal.t === 'turnin') e = { t: goal.t, q: goal.quest };
+			else if (goal.t === 'accept' || goal.t === 'turnin') e = { t: goal.t, q: goal.quest, ...target(goal) };
 			else {
 				const key = `${goal.quest}/${goal.oi ?? ''}`;
 				if (seen.has(key)) continue;

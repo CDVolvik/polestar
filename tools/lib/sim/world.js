@@ -27,7 +27,8 @@
 //   hubs     quest givers/enders clustered at 150 yd, with fp/inn/trainers
 //   quests   [{ id, title, level, minLevel, races, classes, pre, preAll, excl, ...,
 //              giver, ender, accept: {pt, work}, tasks: [{pt, work}],
-//              gName, eName (giver/ender names), gPos, ePos ({map, x, y} map percent) }]
+//              gName, eName (giver/ender names), gPos, ePos ({map, x, y} map percent),
+//              gAlt?, eAlt? (every friendly giver/ender, { 'npc:<id>': pt }, when more than one) }]
 //   packages [{ key, zone, zoneName, band, quests, steps: [[kind, quest, task, pt]] }]
 //   grind    { spacing: [yards by mob level] }
 //   starts   { Race: { zone, pt, quest } }
@@ -53,7 +54,7 @@ const SOLO = require('./solo');
 const { blockingPrereqs } = require('../data/prereqs');
 const { CLASS_BY_FILE, FACTION_RACES, SKYBORNE_BIT, hasBit } = require('../game/races');
 
-const BUILDER_VERSION = 18;
+const BUILDER_VERSION = 19;
 
 const FACTION_BIT = { Alliance: 1, Horde: 2 };
 const PROFESSION_SORTS = new Set([24, 101, 121, 181, 182, 201, 264, 304, 324]);
@@ -442,10 +443,13 @@ function buildWorld(data, opts = {}) {
 	const rides = [];
 	for (const t of travel.transports || []) {
 		if (!(t.faction & fbit)) continue;
+		// The dock: the deck where a ship lying off its pier is boarded (travel build's `board`), else the stop.
+		const da = t.a.board || t.a;
+		const db = t.b.board || t.b;
 		const a = nodes.length;
-		nodes.push({ kind: 'dock', name: `${t.a.name} (${t.kind})`, pt: addPoint(t.a.c, t.a.wx, t.a.wy, t.a.map) });
+		nodes.push({ kind: 'dock', name: `${t.a.name} (${t.kind})`, pt: addPoint(t.a.c, da.wx, da.wy, t.a.map) });
 		const b = nodes.length;
-		nodes.push({ kind: 'dock', name: `${t.b.name} (${t.kind})`, pt: addPoint(t.b.c, t.b.wx, t.b.wy, t.b.map) });
+		nodes.push({ kind: 'dock', name: `${t.b.name} (${t.kind})`, pt: addPoint(t.b.c, db.wx, db.wy, t.b.map) });
 		rides.push([a, b, t.ab, t.waitA || 0, t.id]);
 		rides.push([b, a, t.ba, t.waitB || 0, t.id]);
 	}
@@ -653,6 +657,24 @@ function buildWorld(data, opts = {}) {
 			else ex('no located turn-in');
 			continue;
 		}
+		// Every friendly giver and ender by entity ("npc:5489"), kept when there
+		// is more than one: a guide that names one (`accept 8254 npc 11406`) is
+		// scored there (sequence.js). The route search keeps giver and ender.
+		const alts = (list, anchor) => {
+			const out = {};
+			let n = 0;
+			for (const kind of ['npc', 'object']) {
+				for (const eid of list[kind] || []) {
+					const e = sites(kind, eid);
+					if (!e || !e.friendly) continue;
+					out[`${kind}:${eid}`] = bestSite(e, anchor(e)).pt;
+					n++;
+				}
+			}
+			return n > 1 ? out : null;
+		};
+		const gAlt = alts(start, (e) => (e.sites.length > 1 ? endAnchor() : null));
+		const eAlt = alts(end, () => giver);
 		// Objectives.
 		const objs = Array.isArray(raw.objectives) ? raw.objectives : [];
 		const located = [];
@@ -873,6 +895,8 @@ function buildWorld(data, opts = {}) {
 			elite,
 			gName, eName, gPos, ePos,
 		};
+		if (gAlt) q.gAlt = gAlt;
+		if (eAlt) q.eAlt = eAlt;
 		if (startFrom != null) q.startFrom = startFrom;
 		if (raw.parent != null) q.inLog = Number(raw.parent);
 		byId.set(id, q);

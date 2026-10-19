@@ -10,7 +10,11 @@
 --      switch) and the guide at login (behavior.autoSelectGuide), each with
 --      its description inline, and the colour scheme (ui.scheme) as swatch
 --      cards that apply live;
---   3. start: the suggested guide on its painting (its level range, who it
+--   3. route: the route style (nav.routeStyle, the setting Options' Route
+--      style dropdown writes) as three cards, Fastest, Balanced (Recommended)
+--      and Roads, each saying what it does, that apply live; a line on what
+--      every style keeps you away from. Shown with setup;
+--   4. start: the suggested guide on its painting (its level range, who it
 --      is for), its pitch; the beta callout while ns.routesBeta is true; the
 --      Discord community (its invite as a link to the copy window); what
 --      guide packs are.
@@ -26,11 +30,11 @@
 -- under the route choice) stays due for the next login.
 --
 -- Per account: PolestarDB.welcomeSeen, the account has had its welcome. Its
--- settings are account-wide, so setup is in a welcome shown at login only
--- while the account's flag is below SEEN; a later character skips it. The
--- page set is fixed when a showing starts. Any close (Skip, Start guide,
--- Browse guides, the hero's ✕, Escape) sets both flags. The beta notice's old
--- flag (betaNoticeSeen) is dropped.
+-- settings are account-wide, so setup and the route style are in a welcome
+-- shown at login only while the account's flag is below SEEN; a later
+-- character skips them. The page set is fixed when a showing starts. Any
+-- close (Skip, Start guide, Browse guides, the hero's ✕, Escape) sets both
+-- flags. The beta notice's old flag (betaNoticeSeen) is dropped.
 --
 -- It opens a moment after login, never in combat (it waits for the fight to
 -- end), never during a cinematic, and never over the route choice: while that
@@ -74,6 +78,7 @@ local current = "welcome" -- the page shown (its key)
 local pending -- nil | "login" (due at login) | "asked" (opened on request, or coming back), waiting for combat or the route choice
 local stepping -- hidden to make way for the route choice, not closed
 local full = true -- this showing has every page (false: setup left out); fixed when it starts
+local unasked = false -- this showing came by itself (open's deferred): a gamepad waits to be asked
 local hookedRC
 
 local function inCombat()
@@ -138,9 +143,10 @@ end
 -- The hero's art: the emblem in its glow, and the Little Dipper
 ---------------------------------------------------------------------------
 
--- The emblem, `size` px, centred on (x, y) in hero coordinates, in its glow.
-local function emblem(parent, size, x, y)
-	local e = W.Tex(parent, "ARTWORK", "emblem", "accent")
+-- The emblem (or `glyph`, a media key in the emblem's place), `size` px,
+-- centred on (x, y) in hero coordinates, in its glow.
+local function emblem(parent, size, x, y, glyph)
+	local e = W.Tex(parent, "ARTWORK", glyph or "emblem", "accent")
 	e:SetSize(size, size)
 	e:SetPoint("CENTER", parent, "TOPLEFT", x, -y)
 	local glow = W.Tex(parent, "BACKGROUND", "glow", nil, 2)
@@ -211,8 +217,8 @@ local function dipper(parent, px, py, polarisR)
 	end
 end
 
--- Where the emblem stands when it sits at the hero's right (setup, start
--- without a painting): Polaris low on the right, the Dipper above it.
+-- Where the emblem stands when it sits at the hero's right (setup, route,
+-- start without a painting): Polaris low on the right, the Dipper above it.
 local SIDE_X, SIDE_Y, SIDE_EMBLEM = HERO_W - 64, 112, 36
 local SIDE_TEXT_W = 300 -- text beside it stays clear of the stars
 
@@ -364,12 +370,52 @@ local function toggleRow(p, label, path, desc, opts)
 	row.Label:ClearAllPoints()
 	row.Label:SetPoint("TOPLEFT", row, "TOPLEFT", 12, -14)
 	row.Label:SetPoint("RIGHT", row.Track, "LEFT", -16, 0)
+	row.Label:SetWidth(CW - 30 - 16) -- what the anchors give it, for its height when it wraps
 	row.Desc:SetPoint("TOPLEFT", row.Label, "BOTTOMLEFT", 0, -5)
 	return row
 end
 
 local function toggleRowHeight(row)
 	return 14 + row.Label:GetStringHeight() + 5 + row.Desc:GetStringHeight() + 14
+end
+
+-- The hero's title and line beside the emblem sit low, the line's foot 24
+-- above the hero's edge (setup, route).
+local function lowHeroText(h)
+	local subH = h.Sub:GetStringHeight()
+	local subY = HERO_H - 24 - subH
+	h.Sub:ClearAllPoints()
+	h.Sub:SetPoint("TOPLEFT", h, "TOPLEFT", EDGE, -subY)
+	h.Title:ClearAllPoints()
+	h.Title:SetPoint("TOPLEFT", h, "TOPLEFT", EDGE, -(subY - 8 - h.Title:GetStringHeight()))
+end
+
+-- A card's 1px outline: the accent while it is the one chosen, the border
+-- wash otherwise.
+local function outline(c)
+	local px = Theme.Pixel(c)
+	c.psEdge = {}
+	for i, pts in ipairs({ { "TOPLEFT", "TOPRIGHT" }, { "BOTTOMLEFT", "BOTTOMRIGHT" }, { "TOPLEFT", "BOTTOMLEFT" }, { "TOPRIGHT", "BOTTOMRIGHT" } }) do
+		local e = c:CreateTexture(nil, "OVERLAY")
+		e:SetTexture(Theme.Media("white"))
+		e:SetPoint(pts[1], c, pts[1], 0, 0)
+		e:SetPoint(pts[2], c, pts[2], 0, 0)
+		if i <= 2 then e:SetHeight(px) else e:SetWidth(px) end
+		c.psEdge[i] = e
+	end
+end
+
+local function paintOutline(c, on)
+	c.psSelected = on
+	local r, g, b, a
+	if on then
+		r, g, b = Theme.Accent()
+		a = 1
+	else
+		r, g, b, a = Theme.Wash("border")
+	end
+	for i = 1, 4 do c.psEdge[i]:SetVertexColor(r, g, b, a) end
+	W.Color(c.Name, on and "text" or "textDim")
 end
 
 -- Scheme cards: a small window in that scheme's grounds with the accent, the
@@ -403,32 +449,14 @@ local function paintCard(c)
 	local ar, ag, ab = Theme.Accent()
 	c.Button:SetVertexColor(ar, ag, ab, 1)
 	c.Bar:SetVertexColor(ar, ag, ab, 1)
-	local on = Theme.SchemeKey() == c.psValue
-	c.psSelected = on
-	local r, g, b, a
-	if on then
-		r, g, b, a = ar, ag, ab, 1
-	else
-		r, g, b, a = Theme.Wash("border")
-	end
-	for i = 1, 4 do c.psEdge[i]:SetVertexColor(r, g, b, a) end
-	W.Color(c.Name, on and "text" or "textDim")
+	paintOutline(c, Theme.SchemeKey() == c.psValue)
 end
 
 local function schemeCard(p)
 	local c = CreateFrame("Button", nil, p)
 	W.Fill(c, "panelAlt", "BACKGROUND", -6)
 	W.Hover(c)
-	local px = Theme.Pixel(c)
-	c.psEdge = {}
-	for i, pts in ipairs({ { "TOPLEFT", "TOPRIGHT" }, { "BOTTOMLEFT", "BOTTOMRIGHT" }, { "TOPLEFT", "BOTTOMLEFT" }, { "TOPRIGHT", "BOTTOMRIGHT" } }) do
-		local e = c:CreateTexture(nil, "OVERLAY")
-		e:SetTexture(Theme.Media("white"))
-		e:SetPoint(pts[1], c, pts[1], 0, 0)
-		e:SetPoint(pts[2], c, pts[2], 0, 0)
-		if i <= 2 then e:SetHeight(px) else e:SetWidth(px) end
-		c.psEdge[i] = e
-	end
+	outline(c)
 	local function tex(layer, sub)
 		local t = c:CreateTexture(nil, layer, nil, sub)
 		t:SetTexture(Theme.Media("white"))
@@ -499,13 +527,7 @@ PAGES[#PAGES + 1] = {
 		F.Schemes = {}
 	end,
 	layout = function(p, h)
-		-- The hero's text sits low, its foot 24 above the hero's edge.
-		local subH = h.Sub:GetStringHeight()
-		local subY = HERO_H - 24 - subH
-		h.Sub:ClearAllPoints()
-		h.Sub:SetPoint("TOPLEFT", h, "TOPLEFT", EDGE, -subY)
-		h.Title:ClearAllPoints()
-		h.Title:SetPoint("TOPLEFT", h, "TOPLEFT", EDGE, -(subY - 8 - h.Title:GetStringHeight()))
+		lowHeroText(h)
 
 		local y = 0
 		for _, row in ipairs({ F.AutoQuest, F.AutoGuide }) do
@@ -544,7 +566,98 @@ PAGES[#PAGES + 1] = {
 	title = function(_, h) return h.Title:GetText() end,
 }
 
--- 3. Start ------------------------------------------------------------------
+-- 3. Route style -------------------------------------------------------------
+
+-- The styles: the setting's value, the name, what it does, the
+-- Recommended tag. Options' Route style dropdown writes the same setting;
+-- Nav/Walk.lua searches its walks again when it changes.
+local STYLES = {
+	{ "fastest", L["Fastest"], L["The shortest walk. Cuts across fields and goes straight over hills."] },
+	{ "balanced", L["Balanced"], L["Takes roads when they aren't much longer, and goes round steep hills."], true },
+	{ "roads", L["Roads"], L["Stays on roads, even when it's longer. Slower, but easy to follow."] },
+}
+local STYLE_PAD = 12
+local STYLE_W = floor((CW - CARD_GAP * (#STYLES - 1)) / #STYLES)
+
+-- The style in use: the router reads anything but Fastest or Roads as
+-- Balanced, the default.
+local function routeStyle()
+	local s = ns.Get("nav.routeStyle")
+	if s == "fastest" or s == "roads" then return s end
+	return "balanced"
+end
+
+local function paintStyle(c)
+	paintOutline(c, routeStyle() == c.psStyle)
+	if c.psChip then W.SetChip(c.psChip, L["Recommended"], "accent") end
+end
+
+-- A style's card: its name, what it does under it; the tag rides the top
+-- edge. Click sets the style live; right-click puts Balanced back.
+local function styleCard(p, st)
+	local c = CreateFrame("Button", nil, p)
+	W.Fill(c, "panelAlt", "BACKGROUND", -6)
+	W.Hover(c)
+	outline(c)
+	c.psStyle = st[1]
+	c.Name = para(c, "label", "textDim", STYLE_W - STYLE_PAD * 2, 2)
+	c.Name:SetText(st[2])
+	c.Name:SetPoint("TOPLEFT", c, "TOPLEFT", STYLE_PAD, -STYLE_PAD)
+	c.Desc = para(c, "note", "textMuted", STYLE_W - STYLE_PAD * 2, 3)
+	c.Desc:SetText(st[3])
+	c.Desc:SetPoint("TOPLEFT", c.Name, "BOTTOMLEFT", 0, -6)
+	if st[4] then
+		c.psChip = W.Chip(c)
+		c.psChip:SetPoint("BOTTOMRIGHT", c, "TOPRIGHT", -STYLE_PAD, -W.CHIP_H / 2)
+	end
+	c:RegisterForClicks("LeftButtonUp", "RightButtonUp")
+	c:SetScript("OnClick", function(self, button)
+		if button == "RightButton" then ns.Set("nav.routeStyle", nil) else ns.Set("nav.routeStyle", self.psStyle) end
+	end)
+	W.Painter(c, paintStyle)
+	return c
+end
+
+PAGES[#PAGES + 1] = {
+	key = "route",
+	shown = function() return full end,
+	build = function(p, h)
+		emblem(h, SIDE_EMBLEM, SIDE_X, SIDE_Y, "icon-goto")
+		dipper(h, SIDE_X, SIDE_Y, SIDE_EMBLEM / 2 - 5)
+		h.Title = para(h, "hero", "text", SIDE_TEXT_W, 2)
+		h.Title:SetText(L["Route style"])
+		h.Sub = para(h, "note", "textDim", SIDE_TEXT_W + 120, 3)
+		h.Sub:SetText(L["How the arrow walks you. You can change it any time in Options."])
+
+		F.Styles = {}
+		for i, st in ipairs(STYLES) do F.Styles[i] = styleCard(p, st) end
+		p.Foot = para(p, "note", "textDim", CW, 3)
+		p.Foot:SetText(L["Every style keeps you out of the other faction's towns and away from zones far above your level."])
+	end,
+	layout = function(p, h)
+		lowHeroText(h)
+		-- Every card as tall as the tallest; the tag's upper half sits above
+		-- the cards.
+		local nameH, descH = 0, 0
+		for _, c in ipairs(F.Styles) do
+			nameH = max(nameH, c.Name:GetStringHeight())
+			descH = max(descH, c.Desc:GetStringHeight())
+		end
+		local y = W.CHIP_H / 2
+		local ch = STYLE_PAD + nameH + 6 + descH + STYLE_PAD
+		for i, c in ipairs(F.Styles) do
+			c:SetSize(STYLE_W, ch)
+			place(c, (i - 1) * (STYLE_W + CARD_GAP), y)
+			paintStyle(c)
+		end
+		y = y + ch + 20
+		place(p.Foot, 0, y)
+		return y + p.Foot:GetStringHeight()
+	end,
+	title = function(_, h) return h.Title:GetText() end,
+}
+
+-- 4. Start ------------------------------------------------------------------
 
 local function startSuggested()
 	local G, E = ns.Guides, ns.Engine
@@ -597,6 +710,7 @@ PAGES[#PAGES + 1] = {
 		h.Title = onArt(para(h.Text, "hero", "text", CW, 2))
 		h.Chip = W.Chip(h.Text)
 		h.For = onArt(W.Text(h.Text, "note", "textDim"))
+		h.For:SetWordWrap(true) -- a second line where the chip leaves too little room
 
 		p.Pitch = para(p, "body", "textDim", CW)
 		p.Beta = note(p, L["Our routes are still in beta"])
@@ -611,7 +725,7 @@ PAGES[#PAGES + 1] = {
 		-- The invite as a link (the scheme left off); a click opens the copy
 		-- window holding it, since the game cannot open links.
 		F.Discord = W.Link(p, (ns.DiscordURL:gsub("^%a+://", "")), function() UI.ShowDiscord() end)
-		p.Packs = note(p, L["Guide packs"])
+		p.Packs = note(p, L["Community guides"])
 
 		F.Start = W.Button(F.Foot, L["Start guide"], startSuggested, { primary = true })
 		F.Browse = W.Button(F.Foot, L["Browse guides"], function()
@@ -645,14 +759,17 @@ PAGES[#PAGES + 1] = {
 			h.Chip:Hide()
 		end
 		h.For:SetText(g and forWhom(g) or L["Polestar has no guide to suggest for where you are."])
-		h.For:SetWidth(min(h.For:GetStringWidth() + 1, (painted and CW or SIDE_TEXT_W + 120) - chipW))
+		h.For:SetWidth(min(W.TextWidth(h.For) + 1, (painted and CW or SIDE_TEXT_W + 120) - chipW))
 		local factY = HERO_H - 20 - W.CHIP_H
 		h.Chip:ClearAllPoints()
 		h.Chip:SetPoint("TOPLEFT", h.Text, "TOPLEFT", EDGE, -factY)
 		h.For:ClearAllPoints()
 		h.For:SetPoint("LEFT", h.Text, "TOPLEFT", EDGE + chipW, -(factY + W.CHIP_H / 2))
+		-- Centred on the chip, a wrapped line reaches above it: the title
+		-- keeps its 10px over whichever is higher.
+		local lift = max(0, (h.For:GetStringHeight() - W.CHIP_H) / 2)
 		h.Title:ClearAllPoints()
-		h.Title:SetPoint("TOPLEFT", h.Text, "TOPLEFT", EDGE, -(factY - 10 - h.Title:GetStringHeight()))
+		h.Title:SetPoint("TOPLEFT", h.Text, "TOPLEFT", EDGE, -(factY - lift - 10 - h.Title:GetStringHeight()))
 
 		-- The page: the pitch, then notes under hairlines.
 		local y = 0
@@ -696,7 +813,7 @@ PAGES[#PAGES + 1] = {
 		lay(p.Discord, true)
 		F.Discord:ClearAllPoints()
 		F.Discord:SetPoint("RIGHT", p, "TOPRIGHT", 0, -(p.Discord.psY + p.Discord.psH / 2))
-		p.Packs.Text:SetText((L["Guides made by other players for Polestar, not our own routes: each pack is an addon of its own, installed like any other. Its guides appear in %s under Guide packs, credited to their author, who supports them. More in Options > Guide packs."]):format(cmd("/polestar guides")))
+		p.Packs.Text:SetText((L["Guides made by other players for Polestar, not our own routes: each community addon is installed like any other addon. Its guides appear in %s under Community guides, credited to their author, who supports them. More in Options > Community guides."]):format(cmd("/polestar guides")))
 		lay(p.Packs, true)
 		W.SetButtonText(F.Start, g and L["Start guide"] or L["Choose a guide"])
 		return y - 16
@@ -843,8 +960,33 @@ local function build()
 		ns.DB().welcomeSeen = SEEN
 		pending = nil
 	end)
-	if UISpecialFrames then tinsert(UISpecialFrames, "PolestarWelcome") end
+	ns.CloseOnEscape("PolestarWelcome")
 	WEL.frame = F
+	-- A gamepad (UI/Gamepad.lua): LB / RB turn the pages, A on Next by default.
+	-- Shown by itself, it waits for the player before it takes the gamepad.
+	if ns.Gamepad and ns.Gamepad.Register then
+		ns.Gamepad.Register(F, {
+			unasked = function() return unasked end,
+			initial = function(rows)
+				for i, w in ipairs(rows) do if w == F.Next then return i end end
+			end,
+			prevTab = function() go(-1) end,
+			nextTab = function()
+				local _, at, count = WEL.Page()
+				if at and count and at < count then go(1) end
+			end,
+			tabsLabel = L["Pages"],
+			-- A colour scheme's or a route style's card: Y puts the default
+			-- (Dusk, Balanced) back.
+			reset = function(w)
+				if w and (w.psValue or w.psStyle) then
+					w:Click("RightButton")
+					return true
+				end
+			end,
+			resetLabel = function(w) return (w.psValue or w.psStyle) and L["Default"] or nil end,
+		})
+	end
 end
 
 -- The step dots: the current one a 16x4 accent capsule, the others 4px dots.
@@ -973,9 +1115,11 @@ local function afterRouteChoice()
 end
 
 -- Open now on the current page, or as soon as combat and the route choice
--- allow. A showing at login starts on the first page, with setup while the
--- account has not had its welcome.
-local function open(why)
+-- allow. A showing at login starts on the first page, with setup and the
+-- route style while the account has not had its welcome. deferred: opened by
+-- itself (at login, or after the fight or the route choice that held it
+-- back), not on request.
+local function open(why, deferred)
 	if inCombat() or inCinematic() then
 		pending = pending == "asked" and "asked" or why
 		return
@@ -992,14 +1136,16 @@ local function open(why)
 		current = PAGES[1].key
 	end
 	if not F then build() end
+	unasked = deferred and true or false
 	render()
 	F:Show()
 	F:Raise()
 end
 
--- Open the welcome at `page` (a page key: "welcome", "setup", "start"; or its
--- number among the pages shown), the first by default, with every page.
--- Opens even when already seen (About, /polestar welcome, the preview).
+-- Open the welcome at `page` (a page key: "welcome", "setup", "route",
+-- "start"; or its number among the pages shown), the first by default, with
+-- every page. Opens even when already seen (About, /polestar welcome, the
+-- preview).
 function WEL.Show(page)
 	full = true
 	local list = pageList()
@@ -1035,7 +1181,7 @@ function WEL.Page()
 end
 
 function try()
-	if pending == "asked" or (pending and not seen()) then open(pending) end
+	if pending == "asked" or (pending and not seen()) then open(pending, true) end
 end
 
 -- A route choice opened over the welcome: step aside, come back after it
@@ -1078,10 +1224,14 @@ ns.On("ROUTE_CHOICE", yieldToRouteChoice)
 ns.On("SHOW_WELCOME", function(page) WEL.Show(page) end)
 
 -- The quest switch stands for two settings; the widgets refresh it for the
--- one it is bound to (behavior.autoAccept), this for the other. A scheme
+-- one it is bound to (behavior.autoAccept), this for the other. A route
+-- style set anywhere (the cards, Options) moves the cards' pick. A scheme
 -- change repaints the dots (the cards repaint with the theme).
 ns.On("SETTING_CHANGED", function(path)
 	if path == "behavior.autoTurnin" and F and F.AutoQuest then F.AutoQuest:Refresh() end
+	if (path == "nav.routeStyle" or path == "nav" or path == "") and F and F.Styles then
+		for _, c in ipairs(F.Styles) do paintStyle(c) end
+	end
 end)
 Theme.OnChanged(function()
 	if F and F.psAt then paintDots(F.psAt, F.psCount, false) end

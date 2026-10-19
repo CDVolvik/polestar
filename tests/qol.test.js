@@ -487,6 +487,30 @@ test('action buttons: a left-drag moves the whole set and never uses the item; c
 	assert.deepEqual(out[6], [['CENTER', 'CENTER', 260, -140], false]);
 });
 
+test('action buttons: with the lock on, only a Shift-drag moves the set; a plain drag uses nothing and clicks still act', () => {
+	const out = run(`${ACTS}
+		q.items[900] = { name = "Torch" }
+		q.addItem(0, 1, 900, 1)
+		q.step({ { t = "use", item = 900, quest = 7 }, { t = "kill", target = "Wolf" } })
+		stub.cvars.ActionButtonUseKeyDown = "1"
+		Polestar.Set("ui.lockHud", true)
+		emit({ drag(item, -300, 50), drag(target, -300, 50), spot(), mouseClick(item, false), mouseClick(item, true), keyPress(item) })
+		hover(target)
+		emit(GameTooltip.lines[#GameTooltip.lines])
+		leave(target)
+		stub.keys.shift = true
+		emit({ drag(target, -200, 30), spot() })
+		Polestar.Set("ui.lockHud", false)
+		stub.keys.shift = false
+		emit({ drag(item, -100, 10), spot() })
+	`);
+	assert.deepEqual(out[0], [[false, 0, 'false'], [false, 0, 'false'], ['CENTER', 'CENTER', 260, -140], 1, 1, [1, 1]],
+		'locked, no Shift: neither drag moves the set or uses anything; clicks and keys act once');
+	assert.equal(out[1], 'Click again for the next name. Shift-drag to move.');
+	assert.deepEqual(out[2], [[true, 0, 'false'], ['CENTER', 'CENTER', -200, 30]], 'locked, Shift held: the drag moves the set');
+	assert.deepEqual(out[3], [[true, 0, 'false'], ['CENTER', 'CENTER', -100, 10]], 'unlocked: a plain drag moves it again, live');
+});
+
 test('action buttons: the set comes back where it was left after a reload', () => {
 	const [s] = run(`${ACTS} emit(spot())`, {
 		saved: { Polestar: 'PolestarCharDB = { qol = { buttonPos = { "TOPLEFT", "TOPLEFT", 40, -60 } } }' },
@@ -1274,6 +1298,30 @@ test('rewards: a disabled Gear module marks no upgrades; a single choice gets it
 	assert.deepEqual(single, [{ badge: 'qol-upgrade', tint: 'success', coin: false, best: false, onIcon: true }]);
 });
 
+// The gamepad interface hooks CreateFrame and, for a parent inside the quest
+// frame while it is open, rebuilds the quest frame's buttons in the caller's
+// code: a mark made by CreateFrame under a reward button, from Polestar's
+// code, blocks the next gamepad action there (the A that takes the reward).
+// wow_stub.lua's CreateFrame lists those in stub.underGameFrames.
+test('rewards: a mark is made with no parent, then set on its reward button, so the gamepad interface never rebuilds the quest frame\'s buttons in Polestar\'s code', () => {
+	const [out] = run(`${MARKS}
+		q.items[11] = { name = "Cloak", price = 120 }
+		q.items[12] = { name = "Potion", price = 50 }
+		q.choices = { { id = 11 }, { id = 12, count = 5 } }
+		Polestar.Gear = { IsEnabled = function() return true end, IsUpgrade = function(link) return link:find("item:11") ~= nil, 4 end }
+		q.questComplete()
+		stub.runTimers()
+		local on = 0
+		for _, b in ipairs(QuestInfoRewardsFrame.RewardButtons) do
+			for _, c in ipairs(b.children) do
+				if c.Badge and c:IsShown() and c:GetParent() == b then on = on + 1 end
+			end
+		end
+		emit({ marks = on, under = table.concat(stub.underGameFrames, "; ") })
+	`);
+	assert.deepEqual(out, { marks: 2, under: '' }, 'both choices are marked, on their own buttons, and no CreateFrame names a game frame as parent');
+});
+
 test('rewards: auto-pick takes the best when on; Shift, quest cost and a disabled Gear module are respected', () => {
 	const out = run(`
 		q.items[11] = { name = "Cloak", price = 120 }
@@ -1776,6 +1824,32 @@ test('death: as a ghost the arrow points at the faster choice; resurrection rele
 	assert.equal(out[4], true, 'no more targets after resurrection');
 });
 
+test('death: a ghost in the next zone is led to the corpse on its own zone map, not off the edge of theirs (#270)', () => {
+	const out = run(`
+		-- the corpse in 9000 (50, 80); the ghost 900 yd south in zone 9002, where
+		-- the client answers for the corpse off the map's top edge (50, -20)
+		QoL.SetData({ spiritHealers = {}, flightMasters = {} })
+		q.corpse = { 50, 80 }
+		q.player = { c = 0, wx = -1500, wy = 0 }
+		q.level = 30
+		q.ghost = true
+		stub.fire("PLAYER_ALIVE")
+		local t = q.nav.target
+		emit({ label = t.label, map = t.map, x = t.x, y = t.y, yards = QoL.GetDeathAdvice().corpseYards })
+		-- walking north into 9000 keeps the same spot
+		q.player = { c = 0, wx = -800, wy = 0 }
+		stub.advance(1.1)
+		t = q.nav.target
+		emit({ map = t.map, x = t.x, y = t.y })
+	`);
+	assert.equal(out[0].label, 'Your corpse');
+	assert.equal(out[0].map, 9000);
+	assert.ok(Math.abs(out[0].x - 50) < 1e-9 && Math.abs(out[0].y - 80) < 1e-9, `corpse at ${out[0].x}, ${out[0].y}`);
+	assert.ok(Math.abs(out[0].yards - 900) < 1e-9);
+	assert.equal(out[1].map, 9000);
+	assert.ok(Math.abs(out[1].x - 50) < 1e-9 && Math.abs(out[1].y - 80) < 1e-9);
+});
+
 test('death: in metres the advice gives the distances in metres', () => {
 	const [note] = run(`
 		Polestar.Set("nav.distanceUnit", "metres")
@@ -1949,12 +2023,18 @@ test('summons: accepted out of combat when able to teleport; the dialog closes; 
 		s.combat.player = true; local combat = summon(); s.combat.player = false
 		s.canTeleport = false; local cannot = summon(); s.canTeleport = true
 		stub.keys.shift = true; local shift = summon(); stub.keys.shift = false
-		s.gamepad = true; local pad = summon(); local padClosed = #calls("StaticPopup_Hide"); s.gamepad = false
-		emit({ combat = combat, cannot = cannot, shift = shift, pad = pad, padClosed = padClosed })
+		emit({ combat = combat, cannot = cannot, shift = shift })
 	`);
 	assert.equal(out[0], 0, 'off by default');
 	assert.deepEqual(out[1], { n: 1, closed: 1, msg: true });
-	assert.deepEqual(out[2], { combat: 0, cannot: 0, shift: 0, pad: 1, padClosed: 0 }, 'Gamepad style: dialogs left alone');
+	assert.deepEqual(out[2], { combat: 0, cannot: 0, shift: 0 });
+	// The gamepad interface is read as the addon loads (Core/Init.lua).
+	const [pad] = run(`
+		q.calls = {}; set("acceptSummon", true)
+		q.showPopup("CONFIRM_SUMMON"); stub.fire("CONFIRM_SUMMON", 0, false); stub.runTimers()
+		emit({ n = #calls("ConfirmSummon"), closed = #calls("StaticPopup_Hide") })
+	`, { before: 'stub.qol.social.gamepad = true' });
+	assert.deepEqual(pad, { n: 1, closed: 0 }, 'Gamepad style: accepted, and the dialog left alone');
 });
 
 test('resurrections: accepted after the corpse delay while still offered; never from a caster in combat or in Hardcore', () => {

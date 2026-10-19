@@ -99,12 +99,8 @@ local RUN_SPEED = 7 -- yards per second
 local CROSS_CONTINENT = 3600 -- seconds
 ns.TRAVEL_CROSS_CONTINENT = CROSS_CONTINENT
 
-function ns.TravelCost(from, to)
-	local nav = ns.Nav
-	if nav and nav.EstimateTravel then
-		local ok, s = pcall(nav.EstimateTravel, from, to)
-		if ok and type(s) == "number" then return s end
-	end
+-- A cheap direct world-distance estimate: never touches the route planner.
+local function directTravelCost(from, to)
 	local C = ns.Compat
 	local c1, x1, y1 = C.MapToWorld(from.map, from.x, from.y, from.f)
 	local c2, x2, y2 = C.MapToWorld(to.map, to.x, to.y, to.f)
@@ -112,6 +108,16 @@ function ns.TravelCost(from, to)
 	if c1 ~= c2 then return CROSS_CONTINENT end
 	local dx, dy = x2 - x1, y2 - y1
 	return (dx * dx + dy * dy) ^ 0.5 / RUN_SPEED
+end
+ns.DirectTravelCost = directTravelCost
+
+function ns.TravelCost(from, to)
+	local nav = ns.Nav
+	if nav and nav.EstimateTravel then
+		local ok, s = pcall(nav.EstimateTravel, from, to)
+		if ok and type(s) == "number" then return s end
+	end
+	return directTravelCost(from, to)
 end
 
 -- The player's live position as a travel point, or nil (instance, loading).
@@ -167,10 +173,23 @@ for verb, rules in pairs(REQUIRED) do
 	REQUIRED_ORDER[verb] = fields
 end
 
+-- The key lists the checks below walk, at file scope: as literals inside the
+-- loops they were one throwaway table per goal, per step and per guide, and
+-- registering the 220 guides walks about 12,000 goals (#60). One table, so the
+-- chunk stays well inside Lua 5.1's cap on locals.
+local KEYS = {
+	only = { "classes", "races", "factions" },
+	goalNumbers = { "skillLine", "untilSkill", "criteria", "level", "profLine", "profRank" },
+	goalRanks = { "rank", "qlvl" },
+	rewardLists = { "items", "choices" },
+	guideMaps = { "names", "written" },
+	guideLists = { "races", "classes", "nextChoices", "pros", "cons", "keywords" },
+}
+
 local function checkOnly(only)
 	if only == nil then return true end
 	if type(only) ~= "table" then return false end
-	for _, key in ipairs({ "classes", "races", "factions" }) do
+	for _, key in ipairs(KEYS.only) do
 		local list = only[key]
 		if list ~= nil then
 			if type(list) ~= "table" then return false end
@@ -201,7 +220,7 @@ local function checkGoal(goal)
 	if goal.count ~= nil and not isNum(goal.count) then return "bad count" end
 	if goal.text ~= nil and type(goal.text) ~= "string" then return "bad text" end
 	if goal.t == "rep" and (goal.standing < 1 or goal.standing > 8) then return "standing outside 1-8" end
-	for _, key in ipairs({ "skillLine", "untilSkill", "criteria", "level", "profLine", "profRank" }) do
+	for _, key in ipairs(KEYS.goalNumbers) do
 		if goal[key] ~= nil and not isNum(goal[key]) then return "bad " .. key end
 	end
 	if goal.profName ~= nil and not isStr(goal.profName) then return "bad profName" end
@@ -234,15 +253,17 @@ local function checkGoal(goal)
 		end
 	end
 	if goal.spread ~= nil and not (goal.spread == true and goal.spots ~= nil) then return "bad spread" end
-	-- A collect's dominant source: its name (and a second's), kind, rank and faction.
+	-- A collect's dominant source: its name (and a second's), their ids, kind, rank and faction.
 	if goal.from ~= nil and not isStr(goal.from) then return "bad from" end
 	if goal.fromAlso ~= nil and not isStr(goal.fromAlso) then return "bad fromAlso" end
+	if goal.fromId ~= nil and not isNum(goal.fromId) then return "bad fromId" end
+	if goal.fromAlsoId ~= nil and not isNum(goal.fromAlsoId) then return "bad fromAlsoId" end
 	if goal.fromKind ~= nil and goal.fromKind ~= "npc" and goal.fromKind ~= "object" then return "bad fromKind" end
 	if goal.fromRank ~= nil and not isNum(goal.fromRank) then return "bad fromRank" end
 	if goal.fromFaction ~= nil and goal.fromFaction ~= "A" and goal.fromFaction ~= "H" and goal.fromFaction ~= "AH" then
 		return "bad fromFaction"
 	end
-	for _, key in ipairs({ "rank", "qlvl" }) do
+	for _, key in ipairs(KEYS.goalRanks) do
 		if goal[key] ~= nil and not isNum(goal[key]) and not isStr(goal[key]) then return "bad " .. key end
 	end
 	if goal.pre ~= nil and type(goal.pre) ~= "table" then return "bad pre" end
@@ -252,7 +273,7 @@ local function checkGoal(goal)
 		local r = goal.rewards
 		if type(r) ~= "table" then return "bad rewards" end
 		if (r.xp ~= nil and not isNum(r.xp)) or (r.money ~= nil and not isNum(r.money)) then return "bad rewards" end
-		for _, key in ipairs({ "items", "choices" }) do
+		for _, key in ipairs(KEYS.rewardLists) do
 			local list = r[key]
 			if list ~= nil then
 				if type(list) ~= "table" then return "bad rewards" end
@@ -294,7 +315,16 @@ local function validate(def)
 		end
 	end
 	if def.why ~= nil and not isStr(def.why) then return "bad why" end
-	for _, key in ipairs({ "races", "classes", "nextChoices", "pros", "cons", "keywords" }) do
+	for _, key in ipairs(KEYS.guideMaps) do
+		local map = def[key]
+		if map ~= nil then
+			if type(map) ~= "table" then return "bad " .. key end
+			for k, v in pairs(map) do
+				if not (isStr(k) and isStr(v)) then return "bad " .. key end
+			end
+		end
+	end
+	for _, key in ipairs(KEYS.guideLists) do
 		local list = def[key]
 		if list ~= nil then
 			if type(list) ~= "table" then return "bad " .. key end
@@ -324,7 +354,7 @@ Guides.Validate = validate
 ---------------------------------------------------------------------------
 
 -- Every format Polestar has shipped (docs/PACK_FORMAT.md, "Versioning").
-Guides.FORMATS = { [1] = true, [2] = true }
+Guides.FORMATS = { [1] = true, [2] = true, [3] = true }
 Guides.RESERVED = { guides = true, forever = true, lookup = true, draft = true, polestar = true }
 local OFFICIAL_ADDON = "Polestar_Guides"
 local REQUIRED_META = { "addon", "title", "author", "version", "license" }
@@ -401,6 +431,8 @@ local function newRecord(meta, addon)
 	for _, key in ipairs(OPTIONAL_META) do
 		if type(meta[key]) == "string" then r[key] = escape(meta[key]) end
 	end
+	-- The English of the texts its texts addon translates (GuideTexts.PackText).
+	r.english = { title = type(meta.title) == "string" and meta.title or nil, notes = type(meta.notes) == "string" and meta.notes or nil }
 	records[#records + 1] = r
 	return r
 end
@@ -419,7 +451,7 @@ end
 -- its files register next under that id are dropped, never given to the
 -- holder. Cleared when that addon's files are done (ADDON_LOADED).
 local loadingRefused = nil
-ns.RegisterEvent("ADDON_LOADED", function() loadingRefused = nil end)
+local loaded = {} -- addon name -> true once its files are done (ADDON_LOADED)
 
 -- Counts a guide dropped with refused record r in r's problem.
 local function dropGuide(r, id)
@@ -448,7 +480,7 @@ function ns.RegisterPack(meta)
 		r.status = "on"
 		return true
 	end
-	-- Every other pack, refused ones included, is listed on the Guide packs page.
+	-- Every other pack, refused ones included, is listed on the Community guides page.
 	local addon = meta.addon
 	local r = newRecord(meta, addon)
 	loadingRefused = nil
@@ -536,6 +568,10 @@ function ns.RegisterGuide(def)
 		problem(r, "guide-refused", (L["Guide %s was refused: %s."]):format(escape(id), escape(err)), id)
 		return false, err
 	end
+	-- The texts in the client's language (GuideTexts), then escaped like the
+	-- rest. While the pack's files load its names stay English: the pack's
+	-- ADDON_LOADED brings its texts addon and the names in.
+	ns.GuideTexts.Prepare(def, not (r.addon and not loaded[r.addon]))
 	escapeTree(def, {}, ID_KEYS)
 	if not guides[id] then
 		order[#order + 1] = id
@@ -675,7 +711,7 @@ function Guides.Packs()
 	return out
 end
 
--- Problems over every listed pack (the Guide packs page's dot).
+-- Problems over every listed pack (the Community guides page's dot).
 function Guides.ProblemCount()
 	local n = 0
 	for _, r in ipairs(Guides.Packs()) do n = n + #r.problems end
@@ -718,12 +754,14 @@ local function noGuides(r)
 end
 
 -- A pack that never registered, from its TOC and the client's state. The
--- compiler writes its Title as "Polestar Pack: <title>" for the AddOns list;
+-- compiler writes its Title as "Polestar Community: <title>" for the AddOns
+-- list (community addons built before that say "Polestar Pack: <title>");
 -- here it reads as the pack's own title, as a registered pack's does.
 -- Priority: too-new > disabled > not-loaded > broken.
 local function fromToc(r, name, reason, enabled)
 	local title = meta(name, "Title")
-	r.title = escape(title and title:gsub("^Polestar Pack: ", "") or name)
+	if title then title = title:gsub("^Polestar Community: ", ""):gsub("^Polestar Pack: ", "") end
+	r.title = escape(title or name)
 	for key, field in pairs({ author = "Author", version = "Version", license = "X-License", website = "X-Website" }) do
 		local v = meta(name, field)
 		r[key] = v and escape(v) or nil
@@ -777,6 +815,61 @@ function Guides.ScanInstalled()
 		end
 	end
 end
+
+---------------------------------------------------------------------------
+-- Texts in the client's language (GuideTexts): once a pack's files are in,
+-- its texts addon loads and its guides take the translations and the names;
+-- again when the names pack lands late (NAMES_LOADED) or a texts addon
+-- refused in combat loads after it.
+---------------------------------------------------------------------------
+
+local GuideTexts = ns.GuideTexts
+local loggedIn = false
+
+local function relocalise(packId)
+	local changed = false
+	for id, def in pairs(guides) do
+		if (packId == nil or def.pack == packId) and GuideTexts.Refresh(def) then
+			changed = true
+			local h = headers[id]
+			if h then
+				for _, k in ipairs(GuideTexts.GUIDE_FIELDS) do h[k] = def[k] end
+			end
+		end
+	end
+	for _, r in ipairs(records) do
+		if (packId == nil or r.id == packId) and r.english then
+			if r.english.title then r.title = escape(GuideTexts.PackText(r.id, r.english.title)) end
+			if r.english.notes then r.notes = escape(GuideTexts.PackText(r.id, r.english.notes)) end
+		end
+	end
+	if changed and loggedIn then ns.Fire("GUIDES_REGISTERED") end
+end
+
+ns.RegisterEvent("ADDON_LOADED", function(_, name)
+	loadingRefused = nil
+	if type(name) ~= "string" then return end
+	loaded[name] = true
+	if not ns.Names.Localised() then return end
+	for _, r in ipairs(records) do
+		if r.addon == name and accepted(r) then
+			GuideTexts.Load(name)
+			relocalise(r.id)
+		end
+	end
+end)
+
+ns.On("NAMES_LOADED", function() relocalise(nil) end)
+
+ns.RegisterEvent("PLAYER_REGEN_ENABLED", function()
+	for _, addon in ipairs(GuideTexts.Pending()) do
+		if GuideTexts.Load(addon) == "loaded" then
+			for _, r in ipairs(records) do
+				if r.addon == addon and accepted(r) then relocalise(r.id) end
+			end
+		end
+	end
+end)
 
 ---------------------------------------------------------------------------
 -- Queries (guides of hidden packs are left out)
@@ -853,7 +946,7 @@ local function canSuggest(id)
 end
 
 -- The packs suggestions can come from, ours ("guides") first, then the
--- others as Guides.Packs orders them (the Guide packs page's choices).
+-- others as Guides.Packs orders them (the Community guides page's choices).
 function Guides.SuggestSources()
 	local out = { "guides" }
 	for _, r in ipairs(Guides.Packs()) do
@@ -944,6 +1037,7 @@ function Guides.Suggest()
 end
 
 ns.OnLogin(function()
+	loggedIn = true
 	Guides.ScanInstalled()
 	ns.Fire("GUIDES_REGISTERED")
 end)

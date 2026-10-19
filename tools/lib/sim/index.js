@@ -7,12 +7,14 @@ const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
 const { getWorld, worldFile } = require('./world');
+const { attachWalks } = require('./walks');
 const { loadQuestXp } = require('../game/xp');
 const { compileRun, makeTables } = require('./run');
 const { Evaluator } = require('./evaluate');
 const { runJob, search } = require('./search');
 const { Pool } = require('./pool');
 const { loadParamsFile, effective, means } = require('./params');
+const { CLASSES, classLabel } = require('../game/races');
 
 const { ROOT, DATA, SOURCES } = require('../paths');
 const DEFAULTS = {
@@ -26,6 +28,17 @@ const FACTIONS = { alliance: 'Alliance', horde: 'Horde' };
 // Start races the runs cover (one per starting area, plus Forever's own).
 const START_RACES = { Horde: ['Orc', 'Tauren', 'Undead', 'Skyborne'], Alliance: ['Human', 'Dwarf', 'NightElf', 'Skyborne'] };
 
+// Class names as the rest of the model writes them (title case: the keys of
+// CLASS_FACTOR in params.js and of CLASS_BITS in run.js), from any case. An
+// unknown name fails here: left alone it is a silent wrong answer, because
+// `q.classes & CLASS_BITS[undefined]` is 0, so every class quest drops out.
+function normClass(c) {
+	if (c == null || c === '') return null;
+	const k = String(c).toLowerCase();
+	if (!CLASSES[k]) throw new Error(`--class must be one of ${Object.values(CLASSES).map((x) => classLabel(x.file)).join(', ')} (got ${c})`);
+	return classLabel(CLASSES[k].file);
+}
+
 function normFaction(f) {
 	const v = FACTIONS[String(f || '').toLowerCase()];
 	if (!v) throw new Error(`--faction must be Alliance or Horde (got ${f})`);
@@ -36,6 +49,9 @@ async function loadWorld(o) {
 	const opts = { ...DEFAULTS, ...o };
 	const questXp = await loadQuestXp({ sourcesDir: opts.sourcesDir, offline: opts.offline, log: opts.log });
 	const world = getWorld({ dataDir: opts.dataDir, sourcesDir: opts.sourcesDir, simDir: opts.simDir, faction: opts.faction, rebuild: opts.rebuild, questXp, log: opts.log, bandWidth: opts.bandWidth, extraStarts: opts.extraStarts });
+	// Routed walks (sim walks), unless --no-walks: the straight line × detour then.
+	if (opts.walks !== false) attachWalks(world, opts.simDir, { log: opts.log });
+	else world.walks = null;
 	return { world, worldFile: worldFile(opts.simDir, opts.faction) };
 }
 
@@ -118,7 +134,7 @@ async function runCharacter(o) {
 	let pool = null;
 	let exec;
 	if (opts.workers > 1) {
-		pool = new Pool(opts.workers, { worldFile: wf, runOpts, params });
+		pool = new Pool(opts.workers, { worldFile: wf, runOpts, params, walks: !!world.walks });
 		exec = (jobs) => pool.run(jobs.map((job) => ({ type: 'search', job })));
 	} else exec = async (jobs) => jobs.map((job) => runJob(local.ev, job));
 	let res;
@@ -139,6 +155,7 @@ async function runCharacter(o) {
 		evaluatedRoutes: res.evals, packageTrials: res.trials, rounds: res.rounds, converged: res.converged,
 		wallSeconds: res.wallSeconds, msPerEval,
 		dataHash: world.dataHash,
+		walks: world.walksId || null,
 		params, priors: eff,
 		curve: downsample(res.curve, 200),
 		best: {
@@ -176,9 +193,12 @@ function assertFresh(res, world, file) {
 	if (res.dataHash !== world.dataHash) {
 		throw new Error(`${file || 'result'} was searched on world ${String(res.dataHash).slice(0, 12)}, the current ${world.faction} world is ${String(world.dataHash).slice(0, 12)} (data or builder changed): rerun \`sim run --faction ${world.faction.toLowerCase()}\``);
 	}
+	if ((res.walks || null) !== (world.walksId || null)) {
+		throw new Error(`${file || 'result'} was searched ${res.walks ? 'with other routed walks' : 'without routed walks'}, the current ${world.faction} world walks ${world.walksId ? 'routed (sim walks)' : 'the straight line × detour'}: rerun \`sim run --faction ${world.faction.toLowerCase()}\``);
+	}
 }
 
 module.exports = {
-	DEFAULTS, START_RACES, normFaction, loadWorld, paramsFor, makeRun, className, resultFile, assertFresh,
+	DEFAULTS, START_RACES, normFaction, normClass, loadWorld, paramsFor, makeRun, className, resultFile, assertFresh,
 	prune, describe, benchEval, runCharacter, routeFromKeys, downsample,
 };

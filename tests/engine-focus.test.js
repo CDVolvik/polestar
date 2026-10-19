@@ -115,6 +115,34 @@ test('a field step stays one group; accept, kill and turn-in at one NPC make thr
 	});
 });
 
+// Teldrassil "The Balance of Nature" (#102), Badlands' cages, Silithus'
+// braziers: objects clicked for a quest objective are field work beside the
+// kills, not a person met after them. A plain click (no quest) is a visit.
+test('a quest interact stays in the field group; a plain interact is its own group', () => {
+	const FIELD = `
+Polestar.RegisterGuide({ id = "test/xr", pack = "test", title = "Woods", faction = "Horde", minLevel = 10, maxLevel = 20, zone = 1413, steps = {
+	{ title = "Woods", goals = {
+		{ t = "kill", target = "Gnarlpine Ursa", count = 4, quest = 456, oi = 1, map = 1413, x = 55, y = 44 },
+		{ t = "collect", item = 3297, itemName = "Fel Moss", count = 8, quest = 459, oi = 1, map = 1413, x = 55, y = 45 },
+		{ t = "interact", quest = 97977, object = 668482, objName = "Gnarlpine Totem", oi = 1, map = 1413, x = 56, y = 46,
+			spots = { { x = 56, y = 46, r = 15, n = 1 }, { x = 55.2, y = 44.2, r = 36, n = 2 } } },
+	} },
+	{ title = "Shrine", goals = {
+		{ t = "kill", target = "Gnarlpine Ursa", count = 4, quest = 456, oi = 1, map = 1413, x = 55, y = 44 },
+		{ t = "interact", quest = 97978, object = 668499, objName = "Old Shrine", oi = 1, map = 1413, x = 57, y = 47 },
+		{ t = "interact", object = 668500, objName = "Moonwell", map = 1413, x = 58, y = 47 },
+	} },
+} })
+`;
+	const [out] = run({
+		before: 'stub.world.onQuest(456, { 4 }); stub.world.onQuest(459, { 8 }); stub.world.onQuest(97977, { 4 }); stub.world.onQuest(97978, { 1 })',
+		guides: FIELD,
+		script: 'emit({ woods = groups(1), shrine = groups(2) })',
+	});
+	assert.deepEqual(out.woods, { groups: ['here nil 1+2+3 open3'], focus: 1 });
+	assert.deepEqual(out.shrine, { groups: ['here nil 1+2 open2', 'object Moonwell 3 open1'], focus: 1 });
+});
+
 test('doing a later person first marks that group done but leaves the focus on the first', () => {
 	const [out] = run({
 		before: 'stub.world.onQuest(840, {})',
@@ -228,6 +256,59 @@ test('the waypoint never leaves the focus group: an unlocated focus points nowhe
 	});
 	// Thork has no location here: the arrow must not jump to Gazrog, whom the window does not show yet.
 	assert.deepEqual(split, { focus: 1, wp: false });
+});
+
+// #256: a bare `complete` after its giver's goals is a group of its own with
+// no place. The arrow leads to the place of its group's work (a goto already
+// reached), else to the group before it for the same quest (the giver), and
+// never to a later group (the turn-in).
+test('a bare complete leads to its group\'s place, else to its giver before it, never to the turn-in', () => {
+	const guides = `
+		Polestar.RegisterGuide({ id = "test/cp", pack = "test", title = "Complete", faction = "Horde", minLevel = 1, maxLevel = 60, steps = {
+			{ title = "Shenthul", goals = {
+				{ t = "accept", quest = 2460, title = "The Shattered Salute", npc = 3401, npcName = "Shenthul", map = 1413, x = 43.0, y = 53.0 },
+				{ t = "complete", quest = 2460, title = "The Shattered Salute" },
+				{ t = "turnin", quest = 2460, title = "The Shattered Salute", npc = 3401, npcName = "Shenthul", map = 1413, x = 43.0, y = 53.0 },
+			} },
+			{ title = "Eastern Pylon", goals = {
+				{ t = "goto", map = 1413, x = 60.0, y = 40.0, text = "Eastern Pylon" },
+				{ t = "complete", quest = 4287, title = "The Eastern Pylon" },
+				{ t = "turnin", quest = 4287, title = "The Eastern Pylon", npc = 9117, npcName = "J.D. Collie", map = 1413, x = 70.0, y = 70.0 },
+			} },
+			{ title = "Elsewhere", goals = {
+				{ t = "accept", quest = 4289, title = "The Northern Pylon", npc = 9117, npcName = "J.D. Collie", map = 1413, x = 70.0, y = 70.0 },
+				{ t = "complete", quest = 4288, title = "The Western Pylon" },
+				{ t = "turnin", quest = 4288, title = "The Western Pylon", npc = 9117, npcName = "J.D. Collie", map = 1413, x = 70.0, y = 70.0 },
+			} },
+		} })
+	`;
+	const [out] = run({
+		guides,
+		before: 'stub.world.onQuest(2460, { 1 }); stub.world.onQuest(4287, { 1 }); stub.world.onQuest(4288, { 1 }); stub.world.onQuest(4289, {})',
+		script: `
+			E.SetGuide("test/cp")
+			local function wp()
+				local p = E.GetWaypoint()
+				return p and { p.stepIndex, p.goalIndex, p.kind, p.x, p.y } or false
+			end
+			local r = { salute = wp() }
+			E.Skip(); flush()
+			r.pylon = wp()
+			stub.world.moveTo(1413, 60, 40); flush()
+			r.reached = wp()
+			E.Skip(); flush()
+			r.elsewhere = wp()
+			emit(r)
+		`,
+	});
+	// The salute is done beside Shenthul: the arrow stays on him.
+	assert.deepEqual(out.salute, [1, 2, 'complete', 43, 53]);
+	// The goto leads first; once reached, the pylon's complete keeps its place.
+	assert.deepEqual(out.pylon, [2, 1, 'goto', 60, 40]);
+	assert.deepEqual(out.reached, [2, 2, 'complete', 60, 40]);
+	// Only another quest's giver before the complete: no arrow, rather than
+	// that giver or the turn-in.
+	assert.equal(out.elsewhere, false);
 });
 
 test('smart candidates group by the chosen NPC', () => {

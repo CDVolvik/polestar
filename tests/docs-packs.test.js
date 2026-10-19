@@ -3,7 +3,7 @@
 // names every goal verb the runtime reads (Core/Guides.lua's REQUIRED table,
 // Polestar.Guides.VERBS) and every guide and goal key the compiler writes
 // (tools/lib/dsl/emit.js); docs/PACKS.md (the handbook) names every problem
-// kind and pack status the Guide packs page can show.
+// kind and pack status the Community guides page can show.
 
 const { test } = require('node:test');
 const assert = require('node:assert/strict');
@@ -23,7 +23,7 @@ function missing(text, list) {
 
 test('PACK_FORMAT.md names every goal verb the runtime reads', () => {
 	const [verbs] = runAddon({
-		addons: [{ name: 'Polestar', files: ['Core/Init.lua', 'Core/Guides.lua'] }],
+		addons: [{ name: 'Polestar', files: ['Core/Init.lua', 'Core/Compat.lua', 'Core/Data.lua', 'Core/Names.lua', 'Core/GuideTexts.lua', 'Core/Guides.lua'] }],
 		script: 'local out = {} for k in pairs(Polestar.Guides.VERBS) do out[#out + 1] = k end table.sort(out) emit(out)',
 	}).emitted;
 	assert.ok(verbs.length >= 20, `expected the runtime's verb list, got ${JSON.stringify(verbs)}`);

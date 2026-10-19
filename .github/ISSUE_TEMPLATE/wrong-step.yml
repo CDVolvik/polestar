@@ -1,3 +1,5 @@
+# The report window's "Open on GitHub" fills these fields by their ids
+# (addon/Polestar/UI/Report.lua, R.IssueURL): rename one there too.
 name: Wrong step
 description: A guide step that is wrong, never checks off or sends you the long way.
 title: "Wrong step: <guide>, step <number>"
@@ -47,3 +49,8 @@ body:
       placeholder: 0.2.0
     validations:
       required: true
+  - type: textarea
+    id: addons
+    attributes:
+      label: Other addons
+      description: The other addons you have turned on, quest and map addons above all (Questie, TomTom, other guides). Their arrows and quest lines can look like Polestar's.

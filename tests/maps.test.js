@@ -368,6 +368,58 @@ test('the compact tracker is off until a player turns it on, then shows while it
 	assert.equal(out.expired, false, 'hidden once the hour has passed');
 });
 
+test('with the lock on, only a Shift-drag moves the flight timer and the instance tracker', () => {
+	const [out] = run(`${FLY}
+		known(1, 3)
+		fly(1, 1, { 3 }, 600, 0, 40)
+		local function drag(f)
+			stub.RunScript(f, "OnDragStart")
+			local started = f.moving == true
+			f:StopMovingOrSizing()
+			return started
+		end
+		local r = {}
+		for _, name in ipairs({ "PolestarFlightTimer", "PolestarInstanceTracker" }) do
+			local f = stub.frame(name)
+			Polestar.Set("ui.lockHud", false)
+			stub.keys.shift = false
+			local unlocked = drag(f)
+			Polestar.Set("ui.lockHud", true)
+			local locked = drag(f)
+			stub.keys.shift = true
+			r[name] = { unlocked, locked, drag(f), f:IsMouseEnabled() }
+		end
+		emit(r)`);
+	assert.deepEqual(out, {
+		PolestarFlightTimer: [true, false, true, true],
+		PolestarInstanceTracker: [true, false, true, true],
+	}, 'unlocked: a plain drag; locked: only with Shift held');
+});
+
+test('with the lock on, a drag that does not move the flight timer or the instance tracker does not save its spot', () => {
+	const [out] = run(`${FLY}
+		known(1, 3)
+		fly(1, 1, { 3 }, 600, 0, 40)
+		Polestar.Set("ui.lockHud", true)
+		local r = {}
+		for name, key in pairs({ PolestarFlightTimer = "maps.timerPos", PolestarInstanceTracker = "maps.trackerPos" }) do
+			local f = stub.frame(name)
+			stub.keys.shift = false
+			stub.RunScript(f, "OnDragStart")
+			stub.RunScript(f, "OnDragStop")
+			local refused = Polestar.Get(key)
+			stub.keys.shift = true
+			stub.RunScript(f, "OnDragStart")
+			stub.RunScript(f, "OnDragStop")
+			r[name] = { refused, type(Polestar.Get(key)) }
+		end
+		emit(r)`);
+	assert.deepEqual(out, {
+		PolestarFlightTimer: [false, 'table'],
+		PolestarInstanceTracker: [false, 'table'],
+	}, 'a plain drag leaves the saved spot alone; a Shift-drag still saves it');
+});
+
 // ---------------------------------------------------------------------------
 // World map zone info
 // ---------------------------------------------------------------------------
@@ -384,7 +436,7 @@ test('the world map shows zone ranges on the continent, the hovered zone, and pl
 			local function labels()
 				local out = {}
 				for _, f in ipairs(stub.frames) do
-					if f.parent == stub.maps.canvas and f.Range and f:IsShown() then
+					if f.parent == stub.maps.canvas and rawget(f, "Range") and f:IsShown() then
 						local p = f.points[1]
 						out[#out + 1] = { name = f.Name:GetText(), range = f.Range:GetText(), x = p.x, y = p.y, scale = f:GetScale() }
 					end
@@ -397,7 +449,7 @@ test('the world map shows zone ranges on the continent, the hovered zone, and pl
 			stub.advance(0.2)
 			local continent = { labels = labels(), zone = bar.Zone:GetText(), coords = bar.Coords:GetText() }
 			m.canvasScale = 2
-			for p in pairs(WorldMapFrame.dataProviders) do if p.OnCanvasScaleChanged then p:OnCanvasScaleChanged() end end
+			stub.runMapFrame(WorldMapFrame, 0)
 			local zoomed = labels()
 			m.cursor = nil
 			m.showMap(9000)
@@ -437,7 +489,7 @@ test('every Maps setting is registered with a label and help: map features on th
 	assert.equal(out.missing, '');
 	assert.deepEqual(Object.keys(out.pages).sort(), ['Map', 'Quality of Life']);
 	assert.deepEqual(out.pages.Map.sort(), [
-		'maps.coords', 'maps.dockPins', 'maps.dungeonPins', 'maps.innPins', 'maps.minimapCoords', 'maps.reveal',
+		'maps.coords', 'maps.dockPins', 'maps.dungeonPins', 'maps.innPins', 'maps.minimapButton', 'maps.minimapCoords', 'maps.reveal',
 		'maps.taxiPins', 'maps.travelMinimap', 'maps.zoneLevels',
 	]);
 	assert.deepEqual(out.pages['Quality of Life'].sort(), [

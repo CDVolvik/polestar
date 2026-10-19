@@ -21,6 +21,10 @@ ns.RegisterDefaults("maps", {
 	zoneLevels = true,      -- level ranges on the continent and zone maps
 	coords = true,          -- player and cursor coordinates on the world map
 	minimapCoords = false,  -- a small player coordinate readout on the minimap
+	-- A Polestar button on the minimap's edge. On by default with the gamepad
+	-- interface, which has no slash commands (Core/Init.lua, ns.GamepadUI).
+	minimapButton = ns.GamepadUI(),
+	minimapButtonAngle = 225, -- where on the edge, degrees (0 = east, counter-clockwise)
 	reveal = "tint",        -- unexplored areas: "off" | "on" (revealed) | "tint" (revealed, tinted)
 	dungeonPins = false,    -- dungeon entrances on the world map (from the Codex pack)
 	taxiPins = false,       -- flight masters
@@ -224,6 +228,14 @@ register({
 	},
 })
 
+register({
+	page = MAP, tab = L["Guide & quests"], section = L["Guide"],
+	controls = {
+		{ kind = "toggle", key = "maps.minimapButton", label = L["Minimap button"],
+			help = L["A Polestar button on the edge of the minimap. Click to show or hide the guide, right-click for settings, drag to move it."] },
+	},
+})
+
 -- The flight timer and the instance tracker join Quality of Life's Travel
 -- and Trackers tabs; their sections are declared there, in order.
 do
@@ -290,8 +302,15 @@ function Maps.CompactFrame(name, posKey, defaultPoint, dx, dy)
 			f:SetPoint(defaultPoint, UIParent, defaultPoint, dx, dy)
 		end
 	end
-	f:SetScript("OnDragStart", function(self) self:StartMoving() end)
+	local moving = false
+	f:SetScript("OnDragStart", function(self)
+		if ns.DragLocked() then return end
+		moving = true
+		self:StartMoving()
+	end)
 	f:SetScript("OnDragStop", function(self)
+		if not moving then return end
+		moving = false
 		self:StopMovingOrSizing()
 		local cx, cy = self:GetCenter()
 		local ux, uy = UIParent:GetCenter()

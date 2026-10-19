@@ -168,7 +168,7 @@ test('a reload keeps the position: a skipped step stays skipped even with its qu
 	assert.deepEqual(out, { at: 4, skipped: '3' });
 });
 
-test('a reload keeps the position: quests their giver did not offer stay passed until a level or a turn-in', () => {
+test('a reload or a relog at a new level keeps the position: quests their giver did not offer stay passed until the giver offers them (#161)', () => {
 	const GUIDE = `
 		Polestar.RegisterGuide({ id = "test/xr", pack = "test", title = "Crossroads", minLevel = 10, maxLevel = 20, steps = {
 			{ title = "Thork", goals = {
@@ -197,8 +197,19 @@ test('a reload keeps the position: quests their giver did not offer stay passed 
 	const script = `emit({ at = E.GetStepIndex(), status = E.GetStepView(1).goals[1].status, why = E.GetStepView(1).goals[1].unavailable or false })`;
 	const [reload] = run({ guides: GUIDE, before: `${before}; w.onQuest(869, { 12 })`, saved: reloadOf(first.db), script });
 	assert.deepEqual(reload, { at: 2, status: 'skipped', why: 'offer' }, 'the reload keeps the player at the raptors');
-	const [levelled] = run({ guides: GUIDE, before: `w.level = 13; w.onQuest(869, { 12 })`, saved: reloadOf(first.db), script });
-	assert.deepEqual(levelled, { at: 1, status: 'active', why: false }, 'a level later Thork may offer it: asked again');
+	const asked = `
+		local w = stub.world
+		local r = { at = E.GetStepIndex(), why = E.GetStepView(1).goals[1].unavailable or false }
+		w.gossip(3429, { available = { { questID = 870 } } }); flush()
+		r.offered = E.GetStepIndex()
+		emit(r)
+	`;
+	const [levelled] = run({ guides: GUIDE, before: `w.level = 13; w.onQuest(869, { 12 })`, saved: reloadOf(first.db), script: asked });
+	assert.deepEqual(levelled, { at: 2, why: 'offer', offered: 1 }, 'a level later the guide stays at the raptors; Thork offering it takes it back');
+	// Saves from before kept the level the quest was refused at.
+	const older = reloadOf({ ...first.db, offers: { 870: 12 } });
+	const [old] = run({ guides: GUIDE, before: `w.level = 13; w.onQuest(869, { 12 })`, saved: older, script: asked });
+	assert.deepEqual(old, { at: 2, why: 'offer', offered: 1 });
 });
 
 test('a pack update that moves steps keeps check-offs, skips and the place the player was looking at', () => {
@@ -306,6 +317,99 @@ test('an accept ticked without taking the quest drops its later goals; taking it
 	});
 	assert.deepEqual(out.ticked, ['na', 'active', 2], "the turn-in of a quest never taken is not work; the step's other accept is");
 	assert.deepEqual(out.taken, ['active', 2]);
+});
+
+// Issue #108: Distracting Jarven (308) is handed in straight from Jarven
+// Thunderbrew's window, with no accept. `turnin ... direct` is that goal; the
+// client never flags such a quest completed when it repeats, so the hand-in is
+// stored like the Engine's other latched results.
+const DIRECT = (direct) => `
+	Polestar.RegisterGuide({ id = "test/direct", pack = "test", title = "Direct", minLevel = 1, maxLevel = 60, steps = {
+		{ title = "Jarven Thunderbrew", goals = {
+			{ t = "turnin", quest = 308, title = "Distracting Jarven", ${direct ? 'direct = true, ' : ''}npc = 1373, npcName = "Jarven Thunderbrew", map = 1429, x = 49.0, y = 42.0 },
+		} },
+		{ title = "The barrel", goals = { { t = "level", level = 5 } } },
+	} })`;
+
+test('#108: a `direct` turn-in is work without an accept, and the hand-in is saved even when the quest is never flagged completed', () => {
+	const [out] = run({
+		guides: DIRECT(true),
+		saved: 'PolestarCharDB = { schema = 1, guide = "test/direct" }',
+		script: `
+			local r = { before = E.GetStepView(1).goals[1].status, at = E.GetStepIndex() }
+			-- The hand-in itself: no accept, and a repeatable leaves no completed flag.
+			stub.fire("QUEST_TURNED_IN", 308); flush()
+			r.after = E.GetStepView(1).goals[1].status
+			r.flagged = stub.world.completed[308] == true
+			r.saved = PolestarCharDB.manual["test/direct"]["1:1"]
+			r.moved = E.GetStepIndex()
+			stub.fire("PLAYER_LOGOUT")
+			r.db = PolestarCharDB
+			emit(r)
+		`,
+	});
+	assert.equal(out.before, 'active', 'a direct turn-in has no accept, so it must not read as orphaned');
+	assert.equal(out.at, 1);
+	assert.equal(out.after, 'done');
+	assert.equal(out.flagged, false, 'the quest repeats: the client flags nothing');
+	assert.equal(out.saved, true);
+	assert.equal(out.moved, 2);
+
+	// The reload the issue describes: without the stored hand-in the goal would
+	// be open again, since nothing in the client remembers it.
+	const [reload] = run({
+		guides: DIRECT(true),
+		saved: reloadOf(out.db),
+		script: 'emit({ at = E.GetStepIndex(), status = E.GetStepView(1).goals[1].status })',
+	});
+	assert.deepEqual(reload, { at: 2, status: 'done' });
+});
+
+test('#108: the same turn-in without `direct` reads as another route\'s work, and its hand-in is forgotten at a reload', () => {
+	const [out] = run({
+		guides: DIRECT(false),
+		saved: 'PolestarCharDB = { schema = 1, guide = "test/direct" }',
+		script: `
+			local before = E.GetStepView(1).goals[1].status
+			stub.fire("QUEST_TURNED_IN", 308); flush()
+			local r = { before = before, after = E.GetStepView(1).goals[1].status, saved = PolestarCharDB.manual["test/direct"] }
+			stub.fire("PLAYER_LOGOUT")
+			r.db = PolestarCharDB
+			emit(r)
+		`,
+	});
+	assert.equal(out.before, 'na', 'a turn-in with no accept is orphaned');
+	// The Engine remembers the turn-in for the session, so the goal does tick;
+	// nothing is stored, because only a direct turn-in is latched.
+	assert.equal(out.after, 'done');
+	assert.equal(out.saved, undefined);
+	const [reload] = run({
+		guides: DIRECT(false),
+		saved: reloadOf(out.db),
+		script: 'emit(E.GetStepView(1).goals[1].status)',
+	});
+	assert.equal(reload, 'na', 'the hand-in is gone: a repeatable would come back as undone');
+});
+
+// The cloth donations: Additional Runecloth (7796) repeats, a `turnin 7796
+// direct` in each step. The session's memory of a turn-in must not close the
+// later steps' goals: one hand-in is one goal.
+test('#108: one hand-in of a repeatable `direct` quest checks off one goal, not every later one', () => {
+	const GUIDE = `
+		Polestar.RegisterGuide({ id = "test/cloth", pack = "test", title = "Cloth", minLevel = 1, maxLevel = 60, steps = {
+			{ title = "First", goals = { { t = "turnin", quest = 7796, title = "Additional Runecloth", direct = true, npc = 14722, npcName = "Clavicus Knavingham", map = 1429, x = 49.0, y = 42.0 } } },
+			{ title = "Second", goals = { { t = "turnin", quest = 7796, title = "Additional Runecloth", direct = true, npc = 14722, npcName = "Clavicus Knavingham", map = 1429, x = 49.0, y = 42.0 } } },
+		} })`;
+	const [out] = run({
+		guides: GUIDE,
+		before: 'w.repeatable[7796] = true',
+		saved: 'PolestarCharDB = { schema = 1, guide = "test/cloth" }',
+		script: `
+			stub.world.turnIn(7796); flush()
+			emit({ E.GetStepView(1).goals[1].status, E.GetStepView(2).goals[1].status, E.GetStepIndex() })
+		`,
+	});
+	assert.deepEqual(out, ['done', 'active', 2]);
 });
 
 test('optional goals skip with one click, are saved, and come back with another', () => {
@@ -480,4 +584,64 @@ test('a spawn spot holds while the player is on another continent, and is picked
 	});
 	assert.equal(out.start, 80);
 	assert.deepEqual(out.away, [80, 80, 80, 80]);
+});
+
+// #221: a turn-in in a step of its own after an `optional` accept (Croaky's
+// Head: the head drops on the murloc shore, Merell Ross takes it at
+// Ridgepoint Tower). It holds only a player who took the quest: one who
+// never did passes the step, one who has it in the log is led to the ender,
+// and one who already handed it in finds the step done.
+const OPTIONAL_TAKE = `
+	Polestar.RegisterGuide({ id = "test/optional", pack = "test", title = "Optional", minLevel = 1, maxLevel = 20, steps = {
+		{ title = "Murlocs", goals = {
+			{ t = "collect", item = 780, itemName = "Torn Murloc Fin", count = 8, quest = 46, oi = 1, map = 1429, x = 76.5, y = 79.7 },
+			{ t = "accept", quest = 91740, title = "Croaky's Head", item = 247826, itemName = "Croaky's Head", optional = true },
+		} },
+		{ title = "Ridgepoint Tower", goals = {
+			{ t = "turnin", quest = 91740, title = "Croaky's Head", npc = 248277, npcName = "Merell Ross", map = 1429, x = 84.75, y = 79.3 },
+		} },
+		{ title = "Guard Thomas", goals = {
+			{ t = "turnin", quest = 46, title = "Bounty on Murlocs", npc = 261, npcName = "Guard Thomas", map = 1429, x = 74.0, y = 72.2 },
+		} },
+	} })`;
+
+function optionalTake(take) {
+	const [out] = run({
+		guides: OPTIONAL_TAKE,
+		before: `w.onQuest(46, { 8 })${take === 'done' ? '; w.complete({ 91740 })' : ''}`,
+		saved: 'PolestarCharDB = { schema = 1, guide = "test/optional" }',
+		script: `
+			local r = { start = E.GetStepIndex() }
+			${take === 'taken' ? 'stub.world.accept(91740, {}); flush()' : ''}
+			stub.world.finish(46); flush()
+			local wp = E.GetWaypoint()
+			r.at, r.ridgepoint = E.GetStepIndex(), E.GetStepView(2).goals[1].status
+			r.wp = wp and { wp.stepIndex, wp.map, wp.x, wp.y } or false
+			${take === 'taken' ? 'stub.world.turnIn(91740); flush(); r.after = E.GetStepIndex()' : ''}
+			emit(r)
+		`,
+	});
+	return out;
+}
+
+test('#221: a turn-in after an optional accept the player never took no longer holds the guide', () => {
+	const out = optionalTake('no');
+	assert.equal(out.start, 1);
+	assert.equal(out.ridgepoint, 'na', 'the turn-in is not this player\'s');
+	assert.equal(out.at, 3, 'Ridgepoint Tower is passed: on to Guard Thomas');
+	assert.deepEqual(out.wp, [3, 1429, 74.0, 72.2]);
+});
+
+test('#221: a turn-in after an optional accept holds a player who took the quest, and the arrow leads to the ender', () => {
+	const out = optionalTake('taken');
+	assert.equal(out.at, 2, 'Ridgepoint Tower holds with the quest in the log');
+	assert.equal(out.ridgepoint, 'active');
+	assert.deepEqual(out.wp, [2, 1429, 84.75, 79.3], 'the arrow leads to Merell Ross');
+	assert.equal(out.after, 3, 'handed in: on to Guard Thomas');
+});
+
+test('#221: a turn-in after an optional accept is done for a player who already handed the quest in', () => {
+	const out = optionalTake('done');
+	assert.equal(out.ridgepoint, 'done');
+	assert.equal(out.at, 3);
 });

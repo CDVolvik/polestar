@@ -178,7 +178,7 @@ test('switching nav.arrowStyle live keeps heading, colour and the arrived state'
 		r.arrivedFlat = snap()
 		r.default = Polestar.GetDefault("nav.arrowStyle")
 		emit(r)`);
-	assert.equal(out.default, '3d');
+	assert.equal(out.default, 'skin', "the skin's arrow by default: the 3D one in the house style");
 	assert.deepEqual([out.solid.style, out.solid.sheet, out.solid.spec, out.solid.body, out.solid.frame], ['3d', true, true, false, 25]);
 	assert.deepEqual([out.flat.style, out.flat.sheet, out.flat.spec, out.flat.body, out.flat.facet, out.flat.frame], ['flat', false, false, true, true, false]);
 	assert.ok(angleDiff(out.flat.rotation, PI / 2) < 1e-3, 'flat dart takes over the heading');
@@ -234,9 +234,10 @@ test('Era-frame targets convert through the registered Era bounds', () => {
 	assert.deepEqual(out.liveCoords, [9000, 52, 48.5]);
 });
 
-test('reaching the target switches to the arrived state, with hysteresis and one chime', () => {
+test('reaching the target switches to the arrived state, with hysteresis, one chime and one NAV_ARRIVED', () => {
 	const [out] = run(`
-		local seen = {}
+		local seen, arrivals = {}, 0
+		Polestar.On("NAV_ARRIVED", function(t) if t == N.GetTarget() then arrivals = arrivals + 1 end end)
 		target(20, 0)
 		stub.advance(0.2)
 		seen[#seen + 1] = { A.GetMode(), A.distText:GetText(), #stub.sounds }
@@ -253,6 +254,7 @@ test('reaching the target switches to the arrived state, with hysteresis and one
 		nav.place(18, 0)
 		stub.advance(0.2)
 		seen[#seen + 1] = { A.GetMode(), #stub.sounds }
+		seen[#seen + 1] = arrivals
 		emit(seen)`);
 	assert.deepEqual(out, [
 		['travel', '20 yd', 0],
@@ -260,6 +262,7 @@ test('reaching the target switches to the arrived state, with hysteresis and one
 		['arrived', 1],
 		['travel', '20 yd', false],
 		['arrived', 1],
+		2,
 	]);
 });
 
@@ -267,6 +270,62 @@ test('reaching the target switches to the arrived state, with hysteresis and one
 // colour far away and the near colour on arrival (both styles, the ring),
 // the target's pin follows the arrow live, and a colour too dark to read as
 // the arrow's text is lifted for the text alone.
+test("the skins' darts: the skin's arrow by default, accent far and arrival green within 40 m, Hearth's baked gold, then the ring and the check", () => {
+	const { emitted } = runAddon({
+		stubs: ['stub_nav.lua'],
+		addons: [{ name: 'Polestar', files: ['Core/Init.lua', 'Theme/Theme.xml', 'Nav/Nav.xml'] }],
+		login: true,
+		script: `${PRELUDE}
+		local function rgb(t) local r, g, b = t:GetVertexColor() return { r, g, b } end
+		local function tex(t) return (t:GetTexture() or ""):match("([^\\\\]+)$") end
+		local out = {}
+		target(300, 400)
+		stub.advance(0.2)
+		out.house = A.GetStyle()
+		Polestar.Set("ui.skin", "halo")
+		stub.advance(0.2)
+		out.halo = { style = A.GetStyle(), dart = A.dart:IsShown(), sheet = A.sheet:IsShown(), tint = rgb(A.dart), edge = rgb(A.dartEdge) }
+		nav.place(300, 360)                -- 40 yd away: inside 40 m
+		stub.advance(0.2)
+		out.haloNear = { tint = rgb(A.dart), edge = rgb(A.dartEdge) }
+		Polestar.Set("ui.skin", "hearth")
+		nav.place(300, 0)
+		stub.advance(0.2)
+		out.bliz = { style = A.GetStyle(), tex = tex(A.dart), tint = rgb(A.dart), edge = rgb(A.dartEdge) }
+		nav.place(300, 360)
+		stub.advance(0.2)
+		out.blizNear = { tex = tex(A.dart), tint = rgb(A.dart) }
+		nav.place(300, 398)                -- arrive
+		stub.advance(0.2)
+		out.arrived = { mode = A.GetMode(), ring = A.skinRing:IsShown(), houseRing = A.ring:IsShown(), check = A.skinCheck:IsShown(), dart = A.dart:IsShown() }
+		stub.advance(0.7)
+		out.checked = A.skinCheck:IsShown()
+		Polestar.Set("nav.arrowStyle", "flat")
+		out.flat = A.GetStyle()
+		Polestar.Set("nav.arrowStyle", "skin")
+		out.looks = {}
+		for _, k in ipairs({ "forever", "blizzard", "classic" }) do
+			Polestar.Set("ui.skin", k)
+			out.looks[#out.looks + 1] = A.GetStyle()
+		end
+		emit(out)`,
+	});
+	const [out] = emitted;
+	const r3 = (c) => c.map((v) => Math.round(v * 1000) / 1000);
+	assert.equal(out.house, '3d');
+	assert.deepEqual({ ...out.halo, tint: r3(out.halo.tint), edge: r3(out.halo.edge) },
+		{ style: 'halo', dart: true, sheet: false, tint: [1, 0.82, 0], edge: [0.09, 0.075, 0.055] }, 'Halo: the gold dart #FFD100, edged #17130E');
+	assert.deepEqual(r3(out.haloNear.tint), [0.373, 0.816, 0.408], 'within 40 m: the arrival green #5FD068');
+	assert.deepEqual(r3(out.haloNear.edge), [0.043, 0.102, 0.047]);
+	assert.deepEqual({ ...out.bliz, tint: r3(out.bliz.tint), edge: r3(out.bliz.edge) },
+		{ style: 'hearth', tex: 'dart-gold', tint: [1, 1, 1], edge: [0.165, 0.102, 0] }, "Hearth: the baked gold gradient, edged #2A1A00");
+	assert.deepEqual({ tex: out.blizNear.tex, tint: r3(out.blizNear.tint) }, { tex: 'dart', tint: [0.345, 0.753, 0.29] }, 'up close: #58C04A');
+	assert.deepEqual(out.arrived, { mode: 'arrived', ring: true, houseRing: false, check: false, dart: false });
+	assert.equal(out.checked, true, 'the check follows the ring');
+	assert.equal(out.flat, 'flat', 'a style picked by hand stays');
+	assert.deepEqual(out.looks, ['hearth', 'hearth', 'hearth'], "the game's looks take Hearth's gold dart");
+});
+
 test('chosen arrow colours: far and near, both styles and the arrival ring; the target pin follows; dark picks stay legible', () => {
 	const { emitted } = runAddon({
 		stubs: ['stub_nav.lua'],
@@ -335,15 +394,15 @@ test('an area target is arrived anywhere inside it, shows the distance to its ed
 		nav.place(260, 0); stub.advance(0.2); snap()  -- 60 on the far side: on the edge
 		nav.place(125, 0); stub.advance(0.2); snap()  -- 75: 15 past the edge
 		nav.showWorldMap(9000)
-		local areas = nav.pins("PolestarPinsAreaTemplate")
+		local areas = nav.pins("areas")
 		local r = { seen = seen, areas = #areas }
 		r.size = math.floor(areas[1].width + 0.5)
-		r.at = { areas[1].normalizedX, areas[1].normalizedY }
+		r.at = { nav.worldPoint(areas[1]) }
 		for _, pin in ipairs(nav.pins()) do
-			if pin.data.layer.name == "nav.target" then r.pin = { pin.normalizedX, pin.normalizedY } end
+			if pin.data.layer.name == "nav.target" then r.pin = { nav.worldPoint(pin) } end
 		end
 		nav.setWaypoint(wp(100, 0, "A point"))
-		r.pointAreas = #nav.pins("PolestarPinsAreaTemplate")
+		r.pointAreas = #nav.pins("areas")
 		emit(r)`);
 	assert.deepEqual(out.seen, [
 		['travel', '140 yd', 'Kill Bristlebacks', 140],
@@ -428,10 +487,10 @@ test('the world map marks every other spot of an area objective; clicking one se
 		for _, pin in ipairs(nav.pins()) do
 			if pin.data.layer.name == "nav.spots" then
 				marks[#marks + 1] = pin
-				r.marks[#r.marks + 1] = { pin.normalizedX, pin.normalizedY, nav.tooltipOf(pin)[2] }
+				r.marks[#r.marks + 1] = { pin.data.x / 100, pin.data.y / 100, nav.tooltipOf(pin)[2] }
 			end
 		end
-		marks[2]:OnMouseClickAction("LeftButton")
+		nav.click(marks[2], "LeftButton")
 		r.cycled = cycled[1]
 		r.spot = N.GetTarget().spot
 		local after = 0
@@ -503,7 +562,7 @@ test("the regions the step's open goals spawn in are on the map; the target's go
 		nav.showWorldMap(9000)
 		stub.advance(0.3)
 		local r = {}
-		r.world = { #nav.pins("PolestarPinsHullTemplate"), #nav.pins("PolestarPinsAreaTemplate") }
+		r.world = { #nav.pins("hulls"), #nav.pins("areas") }
 		r.own, r.others = alphas("nav.areas"), alphas("nav.goalAreas")
 		local ar, ag, ab = N.RGB("arrow")
 		local pr = N.RGB("place")
@@ -521,7 +580,7 @@ test("the regions the step's open goals spawn in are on the map; the target's go
 		stub.advance(0.3)
 		r.minimapOff = minimap()
 		Polestar.Set("nav.worldPins", false)
-		r.worldOff = #nav.pins("PolestarPinsHullTemplate")
+		r.worldOff = #nav.pins("hulls")
 		emit(r)`);
 	assert.deepEqual(out.world, [6, 0], "every open goal's regions, none for a done goal; no disc under the target: its region covers it");
 	assert.deepEqual(out.own, [[8, 100, true], [8, 100, true], [8, 60, true]], "the target's goal: a region per place (too far apart to join; small ones are 8-gons), the other places it spawns fainter");
@@ -605,13 +664,13 @@ test("a Teldrassil step's spawn regions cover every spawn of its goals and read 
 		nav.showWorldMap(1438)
 		stub.advance(0.3)
 		r.world = {}
-		for _, pin in ipairs(nav.pins("PolestarPinsHullTemplate")) do
+		for _, pin in ipairs(nav.pins("hulls")) do
 			local _, _, _, fill = pin.texs[1]:GetVertexColor()
 			local _, _, _, rim = pin.texs[pin.used]:GetVertexColor()
 			r.world[#r.world + 1] = { pin.data.layer.name, math.floor(pin.width + 0.5), math.floor(pin.height + 0.5),
 				math.floor(fill * 100 + 0.5), math.floor(rim * 100 + 0.5) }
 		end
-		r.target = { #nav.pins("PolestarPinsAreaTemplate"), Pins.GetLayer("nav.target")[1].area == nil }
+		r.target = { #nav.pins("areas"), Pins.GetLayer("nav.target")[1].area == nil }
 		r.stats = Pins.AreaStats()
 		emit(r)`);
 	for (const [g, goal] of out.goals.entries()) assert.equal(goal.covered, goal.spots, `goal ${g + 1}: every spot's spawns lie in a region`);
@@ -959,6 +1018,64 @@ test('settings apply live: scale, alpha, visibility, pins, position and Blizzard
 	]);
 });
 
+test('with the lock on, only a Shift-drag moves the arrow, and the movable wash shows only with Shift held', () => {
+	const [out] = run(`
+		local r = {}
+		target(100, 0)
+		stub.advance(0.1)
+		local f = A.frame
+		local function hover()
+			stub.RunScript(f, "OnEnter")
+			local seen = { A.mover:IsShown(), GameTooltip.lines[2] }
+			stub.RunScript(f, "OnLeave")
+			return seen
+		end
+		local function drag()
+			stub.RunScript(f, "OnDragStart")
+			local started = f.moving == true
+			f:StopMovingOrSizing()
+			return started
+		end
+		r.unlocked = { drag(), hover() }
+		Polestar.Set("ui.lockHud", true)
+		r.locked = { drag(), hover() }
+		r.mouse = f:IsMouseEnabled()
+		stub.keys.shift = true
+		r.shift = { drag(), hover() }
+		-- Shift let go mid-drag: the drag carries on and its end saves the spot.
+		stub.RunScript(f, "OnDragStart")
+		stub.keys.shift = false
+		f:ClearAllPoints()
+		f:SetPoint("CENTER", UIParent, "CENTER", 80, 20)
+		stub.RunScript(f, "OnDragStop")
+		r.saved = PolestarDB.settings.nav.arrowPos
+		r.stopped = f.moving
+		emit(r)`);
+	assert.deepEqual(out.unlocked, [true, [true, 'Drag to move.']], 'off by default: a plain drag moves it');
+	assert.deepEqual(out.locked, [false, [false, 'Shift-drag to move.']], 'locked: a plain drag does nothing, no wash');
+	assert.equal(out.mouse, true, 'locked, the arrow still takes the mouse for clicks');
+	assert.deepEqual(out.shift, [true, [true, 'Shift-drag to move.']], 'locked: Shift-drag moves it');
+	assert.deepEqual(out.saved, { point: 'CENTER', relPoint: 'CENTER', x: 80, y: 20 });
+	assert.equal(out.stopped, false);
+});
+
+test('with the lock on, a drag that does not move the arrow does not save its spot', () => {
+	const [out] = run(`
+		target(100, 0)
+		stub.advance(0.1)
+		local f = A.frame
+		Polestar.Set("ui.lockHud", true)
+		stub.RunScript(f, "OnDragStart")
+		stub.RunScript(f, "OnDragStop")
+		local refused = Polestar.Get("nav.arrowPos") == nil
+		stub.keys.shift = true
+		stub.RunScript(f, "OnDragStart")
+		stub.RunScript(f, "OnDragStop")
+		emit({ refused = refused, shift = Polestar.Get("nav.arrowPos") ~= nil })`);
+	assert.equal(out.refused, true, 'a plain drag on the locked arrow leaves nav.arrowPos alone');
+	assert.equal(out.shift, true, 'a Shift-drag still saves the spot');
+});
+
 test('ETA appears while closing in at running speed', () => {
 	const [out] = run(`
 		target(300, 0)
@@ -1001,11 +1118,11 @@ test('world map pins: target and open goals on the viewed map, with tooltip and 
 		local pins = nav.pins()
 		local r = { count = #pins, pins = {} }
 		for _, pin in ipairs(pins) do
-			r.pins[#r.pins + 1] = { layer = pin.data.layer.name, label = nav.tooltipOf(pin)[1], x = pin.normalizedX, y = pin.normalizedY,
+			r.pins[#r.pins + 1] = { layer = pin.data.layer.name, label = nav.tooltipOf(pin)[1], x = pin.data.x / 100, y = pin.data.y / 100,
 				size = math.floor(pin.width * 10 + 0.5) / 10, shown = pin:IsShown() }
 		end
 		r.tooltip = nav.tooltipOf(pins[1])
-		pins[2]:OnMouseClickAction("LeftButton")
+		nav.click(pins[2], "LeftButton")
 		r.retarget = N.GetTarget().label
 		r.after = #nav.pins()
 		Polestar.Set("nav.worldPins", false)

@@ -56,11 +56,19 @@ function Compat.Now()
 	return time and time() or 0
 end
 
+-- The player's faction: "Alliance", "Horde", or nil (neutral, unread or secret).
+-- Compat's one reader of UnitFactionGroup; the walking router prices the
+-- other faction's towns by it (Nav/Walk.lua).
+function Compat.GetPlayerFaction()
+	local faction = readable(UnitFactionGroup and UnitFactionGroup("player"))
+	if faction == "Alliance" or faction == "Horde" then return faction end
+	return nil
+end
+
 function Compat.GetPlayerInfo()
 	local _, race = UnitRace("player")
 	local _, class = UnitClass("player")
-	local faction = readable(UnitFactionGroup and UnitFactionGroup("player"))
-	if faction ~= "Alliance" and faction ~= "Horde" then faction = "Neutral" end
+	local faction = Compat.GetPlayerFaction() or "Neutral"
 	return {
 		name = readable(UnitName("player")),
 		realm = GetRealmName and GetRealmName() or nil,
@@ -131,9 +139,21 @@ function Compat.InCombat()
 	return readable(UnitAffectingCombat and UnitAffectingCombat("player")) and true or false
 end
 
+-- -> inside, instanceType ("party", "raid", "pvp", ...; nil outside)
 function Compat.IsInInstance()
 	if not IsInInstance then return false end
-	local inside = IsInInstance()
+	local inside, kind = IsInInstance()
+	if not inside then return false end
+	return true, kind
+end
+
+-- The client's indoor state (the minimap's indoor zoom): true indoors, false
+-- outdoors, nil when the client lacks IsIndoors, it errors, or keeps it secret.
+-- Nav/Walk.lua seeds the walking floor with it.
+function Compat.IsIndoors()
+	if not IsIndoors then return nil end
+	local ok, inside = pcall(IsIndoors)
+	if not ok or (inside ~= nil and readable(inside) == nil) then return nil end
 	return inside and true or false
 end
 
@@ -161,6 +181,17 @@ function Compat.GetCurrentTaxiNode()
 		end
 	end
 	return nil
+end
+
+-- Another addon installed and enabled: loaded, or loadable when it loads
+-- after Polestar. C_AddOns.IsAddOnLoaded / DoesAddOnExist / GetAddOnInfo
+-- (AddOnsDocumentation.lua).
+function Compat.AddOnPresent(name)
+	local A = C_AddOns
+	if not A then return false end
+	if A.IsAddOnLoaded and A.IsAddOnLoaded(name) then return true end
+	if not (A.DoesAddOnExist and A.GetAddOnInfo) or not A.DoesAddOnExist(name) then return false end
+	return select(4, A.GetAddOnInfo(name)) and true or false
 end
 
 ---------------------------------------------------------------------------
@@ -207,6 +238,19 @@ function Compat.GetQuestObjectives(questID)
 	return out
 end
 
+-- A quest-log objective line's label: its text without the counts
+-- ("Kobold Vermin slain: 3/10", "Linen Cloth: 2/6", on some clients "3/10
+-- Kobold Vermin slain"), the name an objective is matched on (the guide's
+-- objective goals, Engine; the quest tracker's lines). A line of counts alone
+-- (" slain: 0/8", ": 0/1") has no name yet: "".
+function Compat.ObjectiveLabel(text)
+	if type(text) ~= "string" then return "" end
+	local s = text:gsub("^%s*%d+%s*/%s*%d+%s+", ""):gsub("%s*:%s*%d+%s*/%s*%d+%s*$", "")
+	s = s:gsub("^%s+", ""):gsub("%s+$", "")
+	if s == "slain" then return "" end
+	return (s:gsub("%s+slain$", ""))
+end
+
 function Compat.GetQuestTitle(questID)
 	if C_QuestLog and C_QuestLog.GetTitleForQuestID then
 		local t = C_QuestLog.GetTitleForQuestID(questID)
@@ -240,6 +284,33 @@ function Compat.GetOfferedQuests(source)
 		local q = GetQuestID and GetQuestID()
 		if not q or q == 0 then return nil end
 		out[1] = q
+	else
+		return nil
+	end
+	return out
+end
+
+-- Quests the open gossip or greeting window lists as active (in the log, or
+-- just accepted: the window refreshes a moment before the quest log does), as
+-- a list of quest IDs, or nil when the client cannot say. source: "gossip"
+-- (C_GossipInfo.GetActiveQuests) or "greeting" (GetNumActiveQuests /
+-- GetActiveQuestID, as QuestFrame.lua's greeting panel reads them).
+function Compat.GetActiveQuests(source)
+	local out = {}
+	if source == "gossip" then
+		local G = C_GossipInfo
+		if not (G and G.GetActiveQuests) then return nil end
+		local list = G.GetActiveQuests() or {}
+		for i = 1, #list do
+			local q = list[i].questID
+			if q then out[#out + 1] = q end
+		end
+	elseif source == "greeting" then
+		if not (GetNumActiveQuests and GetActiveQuestID) then return nil end
+		for i = 1, GetNumActiveQuests() or 0 do
+			local q = GetActiveQuestID(i)
+			if q then out[#out + 1] = q end
+		end
 	else
 		return nil
 	end
@@ -418,9 +489,13 @@ end
 -- leaves the map frame tainted, so every later open in combat is blocked and
 -- the quest pins are lost until a reload (Shortest Path Forever 1.8.0, #92;
 -- docs/NAV_QA.md C3); it is only the
--- fallback on a client without C_Map.OpenWorldMap. Never in combat.
+-- fallback on a client without C_Map.OpenWorldMap. Never in combat, and
+-- never with the gamepad interface (ns.GamepadUI): the map opened from
+-- addon code joins the gamepad's focus in Polestar's name, and its close
+-- is blocked. The button that would open it is not shown then.
 --   Compat.CanOpenWorldMap() -> bool ; Compat.OpenWorldMap(uiMapID) -> opened
 local function worldMapOpener()
+	if ns.GamepadUI() then return nil end
 	if C_Map and C_Map.OpenWorldMap then return C_Map.OpenWorldMap end
 	return OpenWorldMap
 end
@@ -468,6 +543,24 @@ function Compat.GetPlayerMapPosition()
 	local x, y = xyOf(pos)
 	if not x or not y or (x == 0 and y == 0) then return nil end
 	return map, x * 100, y * 100
+end
+
+-- Where the player stands, as guide lines ready to paste into a step: the
+-- map (`zone map <uiMapID>`) and a goal there (`goto x,y live`, two decimals
+-- like the compiler writes), then `x,y live` for the hint; nil where the
+-- game gives no position. The client reports live-frame coordinates, and
+-- typed coordinates are read in the Era frame unless marked, so the goal
+-- modifier `live` goes with them (Forever moved some zones). /polestar where
+-- and the report window's right spot (UI/Report.lua).
+-- Not in the Compat table: it reads ns.Compat at the call, so a test's fake
+-- Compat gives it the position.
+function ns.WhereLines()
+	local C = ns.Compat
+	local map, x, y
+	if C and C.GetPlayerMapPosition then map, x, y = C.GetPlayerMapPosition() end
+	if not (map and x and y) then return nil end
+	local xy = ("%.2f,%.2f live"):format(x, y)
+	return { ("zone map %d"):format(map), "goto " .. xy }, xy
 end
 
 local function liveToWorld(map, x, y)
@@ -605,6 +698,16 @@ function Compat.GetSkillRank(skillLineOrName)
 	return nil
 end
 
+-- A spell the character has, weapon skills included (Forever's spellbook
+-- check says no for those; IsPlayerSpell answers): true, false, or nil when
+-- the client cannot tell.
+function Compat.IsPlayerSpell(spellID)
+	if not (spellID and IsPlayerSpell) then return nil end
+	local ok, known = pcall(IsPlayerSpell, spellID)
+	if not ok then return nil end
+	return known and true or false
+end
+
 -- Spells in the spellbook, and profession recipes (which are not).
 function Compat.IsSpellKnown(spellID)
 	if not spellID then return false end
@@ -620,6 +723,28 @@ function Compat.IsSpellKnown(spellID)
 		if recipe and recipe.learned then return true end
 	end
 	return false
+end
+
+-- A skill line's name in the client's language (C_SkillInfo by ID, else the
+-- character's professions), or nil when the client does not say.
+function Compat.GetSkillLineName(skillLine)
+	if type(skillLine) ~= "number" then return nil end
+	local S = C_SkillInfo
+	if S and S.GetSkillLineInfoByID then
+		local ok, info = pcall(S.GetSkillLineInfoByID, skillLine)
+		local name = ok and type(info) == "table" and readable(info.name)
+		if type(name) == "string" and name ~= "" then return name end
+	end
+	if GetProfessions and GetProfessionInfo then
+		local profs = { GetProfessions() }
+		for i = 1, 5 do
+			if profs[i] then
+				local pname, _, _, _, _, _, line = GetProfessionInfo(profs[i])
+				if line == skillLine and type(pname) == "string" and pname ~= "" then return pname end
+			end
+		end
+	end
+	return nil
 end
 
 -- standingID (1 Hated .. 8 Exalted), value, barMin, barMax, name; nil for a

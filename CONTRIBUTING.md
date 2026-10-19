@@ -12,7 +12,11 @@ package them. You can help without touching any code.
   paste the report on the [Polestar Discord](https://discord.gg/vMbee6F2e9);
   or open an issue with the "Wrong step" form.
 - **Fix a guide.** Guides are plain text files; a fix is often one line. See
-  [Fixing a guide](#fixing-a-guide).
+  [Fixing a guide](#fixing-a-guide). New here? Start with an issue labelled
+  [good first issue](https://github.com/fitzforge/polestar/labels/good%20first%20issue)
+  or [patch-candidate](https://github.com/fitzforge/polestar/labels/patch-candidate):
+  small issues to start on, and confirmed guide-only fixes with the evidence
+  on the issue.
 - **Record a session.** The Polestar Recorder addon (its own download beside
   Polestar on the GitHub release; it runs with or without Polestar) logs your
   play: quests, routes, rares you see, what creatures and chests drop, the
@@ -66,8 +70,43 @@ report goes through the same steps before anything changes:
    changed many quests.
 4. **Fix it only if it is real,** with a test that fails before the fix and
    passes after it (or, for a guide, lint and `playtest`).
-5. **Credit the reporter** in CHANGELOG.md, "(thanks <name>)", and tell them
-   which release carries the fix.
+5. **Credit the reporter** in the fix's changelog entry, "(thanks <name>)",
+   and tell them which release carries the fix.
+
+## Before you start
+
+Many people, and their agents, work on the same reports at once. These
+steps keep two of you from fixing the same thing without knowing:
+
+1. **Look for work already open.** An issue with the label `has-pr` has a
+   comment, "Pull requests for this issue", listing who is on it. Not every
+   pull request names its issue, so search too:
+   `gh pr list --state open --search "<issue number>"`, then the quest id
+   and the guide's name. When an open pull request covers it, help there
+   instead of opening another: review it, try it in the game, or offer the
+   part it is missing.
+2. **Start from a checked report.** Issues labelled `confirmed` or
+   `patch-candidate` have the evidence on them. Any other report is a lead:
+   check it first ([How a report is handled](#how-a-report-is-handled)).
+3. **Say you are on it.** Leave a short comment on the issue, and open your
+   pull request early, as a draft while it is unfinished. Link the issue so
+   it shows: the issue's number in the title (`(#302)`), or "closes #302"
+   (into `next`) or "fixes #302" (into a `hotfix/` branch) in the
+   description, once for each issue it fixes. A plain mention ("see #302")
+   is a link, not a claim, and does not list your pull request on the issue.
+4. **If your pull request gets the label `overlap`,** another open pull
+   request addresses the same issue (its comment names it). Compare the two
+   and say on both what each covers. One is merged: the correct and complete
+   one first, then the earlier. Useful parts of the other are carried over
+   with credit to its author.
+5. **One issue, one pull request.** The same bug in several guides is one
+   pull request that fixes the pattern and lists every issue it closes.
+6. **A claim that went quiet** (no commit or reply for a week) is free:
+   say on the issue that you are taking it over, and go ahead.
+
+An issue filed from the Discord #bugs forum tells its reporter in their
+thread when the first pull request for it opens, so link only what you are
+really fixing.
 
 ## Fixing a guide
 
@@ -96,6 +135,28 @@ git grep "accept 184"
 - When the guide is wrong because the data is (a giver, a spawn, a drop),
   fix the data in `tools/lib/data/corrections.json` too, so the simulator and
   the next route refresh see it.
+- `addon/Polestar_Guides/Guides.lua` comes from
+  `node tools/polestar.js compile`: commit the file it writes, never a hand
+  edit or a hunk spliced in from another compile. A spliced hunk can still be
+  valid Lua and load without an error while the game never sees its goals: a
+  goal left between a step's `title` and its `goals = {`, or a step's goals
+  left open so the next step becomes one of its goals. When your reference
+  data is older or newer than the branch's, a recompile also changes guides
+  you did not touch. Keep only your change by compiling the guides before and
+  after it with the same local data and merging the difference into the
+  committed file:
+
+  ```sh
+  tmp=$(mktemp -d)
+  git archive origin/next guides | tar -x -C "$tmp"   # the guides your change starts from (origin/hotfix/<version> for a patch fix)
+  node tools/polestar.js compile --guides "$tmp/guides" --out "$tmp/before"
+  node tools/polestar.js compile --out "$tmp/after"
+  git merge-file addon/Polestar_Guides/Guides.lua "$tmp/before/Guides.lua" "$tmp/after/Guides.lua"
+  ```
+
+  A conflict means your data differs from the branch's in the very lines
+  your change touches: rebuild the data and compile, or say so in the pull
+  request and leave Guides.lua to the maintainer.
 - Check your change:
 
   ```sh
@@ -155,20 +216,97 @@ command.
   locale files with the change ([docs/TRANSLATING.md](docs/TRANSLATING.md),
   "For developers"); CI runs `i18n check`.
 
+## Branches
+
+| Branch | Holds |
+|---|---|
+| `main` | The latest release, what players have. It moves only when a release is made. |
+| `next` | The next feature release (the repository's default branch). |
+| `hotfix/<version>` | The next patch release, for example `hotfix/0.2.5`: cut from the latest release's tag right after it ships, deleted once the patch is out. |
+
+Open your pull request against:
+
+- **`hotfix/<version>`** for a guide fix to a bug players have in the latest
+  release: changes to `guides/`, the recompiled `addon/Polestar_Guides/`,
+  the fix's test, `tools/lib/data/corrections.json` and its changelog
+  fragment in `changes/`, nothing else. The `Base branch` check fails a
+  pull request to a `hotfix/` branch that changes anything more. It has
+  to work with the released addon: a fix that needs a change to the addon or
+  the tools that is only on `next` goes to `next`. Write "fixes #N" in the
+  description; GitHub closes issues only for pull requests merged into
+  `next`, so the maintainer closes them when the patch ships.
+- **`next`** for everything else: the addon, the tools, the data builds,
+  translations, new guides and route refreshes. Not sure? Use `next`; a fix
+  there can still go into a patch later.
+- Never `main`.
+
+After a patch ships, `main` is merged into `next`, so `next` always has
+every released fix. docs/RELEASING.md has the release side.
+
+## Using an AI agent
+
+Agents are welcome. [AGENTS.md](AGENTS.md), which most coding agents read
+on their own, sends them to the skill for their task in `skills/`:
+`polestar-contributing` for any change or pull request, `polestar-triage`
+for checking a report, `polestar-guide-fix` for fixing a guide step and
+`polestar-guide-pack` for writing a community addon. Your own agent settings and
+notes stay yours: keep them out of commits. Claude Code reads AGENTS.md only
+while you have no `CLAUDE.md` or `CLAUDE.local.md` of your own; if you write
+one, start it with `@AGENTS.md`. The rules that matter most:
+
+- A bug report is a lead, not a verdict, from a player or from their agent.
+  Check it against the guide, the data and Forever's own sources before
+  changing anything; Classic knowledge is not a source (see
+  [How a report is handled](#how-a-report-is-handled)).
+- Never claim a check ran when it did not, and never invent quest ids,
+  coordinates or names.
+- You answer for what your agent opens, pushes or posts. Read its comments
+  before they go up, and say in the pull request that an agent helped.
+
+### Installing the skills
+
+Install the skills to have them in your agent outside a clone too, for
+example to start on an issue. The `--sparse` paths fetch only the skills,
+not the whole repository:
+
+| Agent | Install | Update |
+|---|---|---|
+| Claude Code | `claude plugin marketplace add fitzforge/polestar --sparse .claude-plugin skills`, then `claude plugin install polestar@polestar` | `claude plugin update polestar@polestar` |
+| Codex | `codex plugin marketplace add fitzforge/polestar --sparse .agents/plugins --sparse skills`, then `codex plugin add polestar@polestar` | `codex plugin marketplace upgrade polestar` |
+| Any other (Cursor, Hermes Agent, OpenCode, Gemini CLI and more) | `npx skills add fitzforge/polestar -g` (`-a hermes-agent` for one agent) | `npx skills update` |
+
+Run `npx skills` with `-g`: without it, it writes the skills into the folder
+you are in. Start a new session after installing. An agent picks a skill when
+your request matches it; to be sure, name it: "use polestar-triage on #123".
+
 ## Commits and pull requests
 
-- Open pull requests against `next`, the next release in progress (the
-  repository's default branch). `main` is the latest release: it moves only
-  when a release is made, by merging `next` into it.
+- Base branch: see [Branches](#branches).
 - One change per commit.
 - Plain messages that describe the change for the players or authors it
   affects (for example "Westfall: turn in at Sentinel Hill before the farms"), not
   how it was made.
 - Behaviour changes come with tests that show the behaviour.
-- A change goes into CHANGELOG.md under the coming release. A fix for a
-  reported bug (Discord, an issue, the in-game report) credits the person
-  who reported it at the end of its entry, by the name they reported under:
-  "(thanks Tom)". A contribution credits its author the same way.
+- Each change brings its changelog entry as a file of its own in
+  `changes/` (a fragment), not an edit to CHANGELOG.md: with many pull
+  requests open at once, they would all edit the same lines. The release
+  assembles them into CHANGELOG.md. Write it with
+
+  ```sh
+  node tools/polestar.js changelog add players --name westfall-sentinel-hill --text "Westfall turns in at Sentinel Hill before the farms (thanks Tom)."
+  ```
+
+  (`players`, `authors` or `contributors`: the "For players", "For guide
+  authors" and "For contributors" headings), or by hand as in
+  [changes/README.md](changes/README.md). `changelog check` (run in CI)
+  checks every fragment and `changelog show` prints them as the release will.
+  A fix for a reported bug (Discord, an issue, the in-game report) credits
+  the person who reported it at the end of its entry, by the name they
+  reported under: "(thanks Tom)". A contribution credits its author the
+  same way.
+- A pull request into `next` that should also go out in the coming patch:
+  ask for the `backport` label. When it merges, a pull request picking it
+  onto the `hotfix/` branch opens on its own (docs/RELEASING.md).
 
 ## How a pull request is reviewed
 
@@ -189,18 +327,18 @@ unexplained.
   messages and chat sent without the player asking, hooks on secure
   functions, slash commands that do something other than what they say.
 - **The toolchain.** New dependencies or install scripts, `child_process`,
-  network access to hosts the project does not already use (wago.tools,
-  Wowhead), reading or writing outside the repository (the home folder,
-  tokens, other addons' saved data), changes to `.github/workflows`.
+  network access to hosts the project does not already use (wago.tools),
+  reading or writing outside the repository (the home folder, tokens, other
+  addons' saved data), changes to `.github/workflows`.
 - **Data and guides.** Executable code or links hidden in data, guide or
   locale files.
 
 Then the change is reviewed for correctness (tests, the game's limits,
 Options toggles off by default for anything that spends, equips or acts for
-the player) and merged into `next`.
+the player) and merged into its base branch.
 
 ## Licence
 
-Contributions to Polestar are under GPL-3.0 ([LICENSE](LICENSE)). Guide packs
-written by others are separate works; see
+Contributions to Polestar are under GPL-3.0 ([LICENSE](LICENSE)). Community
+addons written by others are separate works; see
 [LICENSE-EXCEPTION.md](LICENSE-EXCEPTION.md).

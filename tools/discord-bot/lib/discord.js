@@ -42,8 +42,8 @@ function createDiscord({ token, api = API, fetch: fetchImpl = fetch }) {
 		return data;
 	}
 
-	// No @everyone or role pings ever; users only when listed.
-	const mentions = (users = []) => ({ parse: [], users });
+	// No @everyone ever; users and roles only when listed.
+	const mentions = (users = [], roles = []) => ({ parse: [], users, roles });
 
 	return {
 		request,
@@ -53,15 +53,16 @@ function createDiscord({ token, api = API, fetch: fetchImpl = fetch }) {
 		getMessages: (channel, limit = 50) => request('GET', `/channels/${channel}/messages?limit=${limit}`),
 		getMember: (guild, user) => request('GET', `/guilds/${guild}/members/${user}`),
 		activeThreads: (guild) => request('GET', `/guilds/${guild}/threads/active`),
-		send: (channel, content, users = []) =>
-			request('POST', `/channels/${channel}/messages`, { content, allowed_mentions: mentions(users), flags: 4 }),
+		send: (channel, content, users = [], roles = []) =>
+			request('POST', `/channels/${channel}/messages`, { content, allowed_mentions: mentions(users, roles), flags: 4 }),
 		editThread: (id, fields) => request('PATCH', `/channels/${id}`, fields),
 	};
 }
 
-// A forum's status tags (Tracked, Fixed, Won't fix, Duplicate) by role, from
-// its available_tags; names match without case or apostrophe style.
-const STATUS_TAGS = { tracked: 'tracked', fixed: 'fixed', wontfix: "won't fix", duplicate: 'duplicate' };
+// A forum's status tags (Tracked, In progress, Fixed, Won't fix, Duplicate)
+// by role, from its available_tags; names match without case or apostrophe
+// style.
+const STATUS_TAGS = { tracked: 'tracked', progress: 'in progress', fixed: 'fixed', wontfix: "won't fix", duplicate: 'duplicate' };
 
 function tagKey(name) {
 	return String(name).toLowerCase().replace(/[\u2018\u2019`]/g, "'").trim();

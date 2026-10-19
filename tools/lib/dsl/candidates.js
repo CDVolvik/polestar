@@ -8,7 +8,10 @@
 // list, a candidate within HUB_YARDS of one already kept is dropped, nearest to
 // the reference point first when it is on that continent. Every town stays
 // reachable, so the Engine can pick the nearest from wherever the player is;
-// MAX_PER_GROUP only guards against runaway data.
+// MAX_PER_GROUP only guards against runaway data. Each candidate carries the
+// height of its NPC's spawn there (`z`, heights.js) when spawnz.json has one.
+
+const { candidateHeight } = require('./heights');
 
 const CAP = 6; // kept for callers that ask for a hard per-group limit
 const HUB_YARDS = 250;
@@ -21,8 +24,11 @@ function round2(n) {
 	return Object.is(r, -0) ? 0 : r;
 }
 
+// World yards of a map point through data.frame: the map's Era frame, else
+// its Forever one (Zephras Isle has only that). Without either the point
+// cannot be placed: the set then keeps one candidate per map (#299).
 function worldPos(data, map, x, y) {
-	const fr = data.eraFrame(map);
+	const fr = data.frame(map);
 	if (!fr) return null;
 	return { c: fr.c, wx: fr.top + ((fr.bottom - fr.top) * y) / 100, wy: fr.left + ((fr.right - fr.left) * x) / 100 };
 }
@@ -75,7 +81,7 @@ function usableBy(tag, side) {
 // city and the zone around it) kept once, on the smaller (more detailed) map.
 function distinctPoints(data, id) {
 	const area = (map) => {
-		const fr = data.eraFrame(map);
+		const fr = data.frame(map);
 		return fr ? Math.abs((fr.right - fr.left) * (fr.bottom - fr.top)) : Infinity;
 	};
 	const pts = spawnPoints(data, id)
@@ -121,6 +127,8 @@ function buildCandidates(data, entries, opts) {
 			cand.x = p.x;
 			cand.y = p.y;
 			if (p.f) cand.f = p.f;
+			const z = candidateHeight(data, cand);
+			if (z !== undefined) cand.z = round2(z);
 			cand.faction = tag;
 			if (meta.classes && meta.classes.length) cand.classes = meta.classes;
 			const near = ref && w && w.c === ref.c;
@@ -158,4 +166,4 @@ function buildCandidates(data, entries, opts) {
 	return { candidates: kept.map((a) => a.cand), coverage };
 }
 
-module.exports = { buildCandidates, factionTag, spawnPoints, worldPos, CAP };
+module.exports = { buildCandidates, factionTag, usableBy, spawnPoints, worldPos, CAP };

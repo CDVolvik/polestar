@@ -1,10 +1,12 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/">
 	<Script file="Nav.lua"/>
+	<Script file="MapCanvas.lua"/>
 	<Script file="Pins.lua"/>
 	<Script file="Arrow.lua"/>
 	<Script file="Layers.lua"/>
 	<Script file="Bridges.lua"/>
 	<Script file="Transit.lua"/>
+	<Script file="Danger.lua"/>
 	<Script file="Travel.lua"/>
 	<Script file="Walk.lua"/>
 	<Script file="TravelData.lua"/>

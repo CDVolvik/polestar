@@ -1,4 +1,4 @@
--- The Guide packs page of the options window (Options.lua registers it at
+-- The Community guides page of the options window (Options.lua registers it at
 -- order 70; `/polestar packs` opens it): one row per pack the core found
 -- (Guides.Packs: ours first, then by title) with its credits, its website
 -- (a link opening the copy window), its source and its state: a switch while
@@ -18,7 +18,7 @@ local floor, max, min, ipairs, tostring = math.floor, math.max, math.min, ipairs
 local SH = W.SHELL
 local PAD = 12 -- a row's inner inset, as a settings row's
 local SEP = "  \194\183  "
-local LINE1 = 40 -- the title line
+local LINE1 = 58 -- the title and credits lines
 
 -- An address as a link's text: without its scheme, cut to maxW.
 local function setLink(b, url, maxW)
@@ -104,8 +104,8 @@ function P.Report(r)
 	end
 	local esc = ns.EscapeText
 	local lines = {
-		(L["Pack: %s (%s)"]):format(esc(r.id), esc(r.addon or "?")),
-		(L["Pack version: %s"]):format(r.version or "?"),
+		(L["Community addon: %s (%s)"]):format(esc(r.id), esc(r.addon or "?")),
+		(L["Community addon version: %s"]):format(r.version or "?"),
 		(L["Polestar version: %s"]):format(tostring(ns.version or "dev")),
 		(L["Client build: %s (%s)"]):format(version, build),
 		L["Problems:"],
@@ -163,7 +163,7 @@ local function newRow(view)
 	row.Switch = W.Switch(row, function() return row.psRecord and row.psRecord.status == "on" end, function(on)
 		local G = registry()
 		if row.psRecord and G and G.SetPackShown then G.SetPackShown(row.psRecord.id, on) end
-	end, L["Show this pack's guides"])
+	end, L["Show this addon's guides"])
 	row.Enable = W.Button(row, L["Enable and reload"], function()
 		local r = row.psRecord
 		if not (r and r.addon and C_AddOns and C_AddOns.EnableAddOn) then return end
@@ -224,42 +224,39 @@ end
 local function layoutRow(row, r, width)
 	row.psRecord = r
 	row:SetWidth(width)
-	local titleW = min(220, floor(width * 0.32))
-	local col = PAD + titleW + 16
-	local avail = width - col - PAD
+	-- The title, its credits under it, and below them the rest at full width.
+	local col = PAD
+	local avail = width - 2 * PAD
 	-- A refused pack keeps its id as given: escaped for display.
 	row.Title:SetText(r.title or ns.EscapeText(r.id))
 	row.Title:ClearAllPoints()
 	row.Title:SetPoint("TOPLEFT", row, "TOPLEFT", PAD, -13)
-	row.Title:SetWidth(titleW)
 
-	-- Line 1, right: the switch and the guide count, or Enable and reload.
-	local right
+	-- Right of the title and credits: the switch and the guide count, or
+	-- Enable and reload.
+	local reserve = 0
 	row.Switch:Hide(); row.Enable:Hide(); row.Count:Hide()
 	if switchable(r) then
 		row.Switch:ClearAllPoints()
-		row.Switch:SetPoint("TOPRIGHT", row, "TOPRIGHT", -PAD + 4, -8)
+		row.Switch:SetPoint("TOPRIGHT", row, "TOPRIGHT", -PAD + 4, -19)
 		row.Switch:Show()
 		row.Switch:Refresh()
 		row.Count:SetText(count(r.guideCount or 0, L["1 guide"], L["%d guides"]))
 		row.Count:ClearAllPoints()
 		row.Count:SetPoint("RIGHT", row.Switch, "LEFT", -10, 0)
 		row.Count:Show()
-		right = row.Count
+		reserve = row.Switch:GetWidth() + 10 + row.Count:GetStringWidth() + 12
 	elseif r.status == "disabled" and r.addon then
 		row.Enable:ClearAllPoints()
-		row.Enable:SetPoint("TOPRIGHT", row, "TOPRIGHT", -PAD, -8)
+		row.Enable:SetPoint("TOPRIGHT", row, "TOPRIGHT", -PAD, -16)
 		row.Enable:Show()
-		right = row.Enable
+		reserve = row.Enable:GetWidth() + 12
 	end
+	row.Title:SetWidth(avail - reserve)
 	row.Credits:SetText(P.Credits(r))
 	row.Credits:ClearAllPoints()
-	row.Credits:SetPoint("TOPLEFT", row, "TOPLEFT", col, -15)
-	if right then
-		row.Credits:SetPoint("RIGHT", right, "LEFT", -12, 0)
-	else
-		row.Credits:SetWidth(avail)
-	end
+	row.Credits:SetPoint("TOPLEFT", row, "TOPLEFT", PAD, -35)
+	row.Credits:SetWidth(avail - reserve)
 	local y = LINE1
 
 	-- The website link, then the source on its own line, wrapped.
@@ -364,34 +361,34 @@ function P.Build(view)
 	local installed = W.SectionHeader(view)
 	local none = W.Text(view, "note", "textMuted")
 	none:SetWordWrap(true)
-	none:SetText(L["No guide packs installed."])
+	none:SetText(L["No community addons installed."])
 	local suggestH = W.SectionHeader(view)
 	W.SetSection(suggestH, L["Suggestions"])
 	local source = W.Dropdown(view, L["Suggest guides from"], "behavior.suggestFrom", P.SourceChoices,
-		L["Where the guide for your level is suggested from. Polestar's guides fill in where a pack has none for you."], nil,
+		L["Where the guide for your level is suggested from. Polestar's guides fill in where a community addon has none for you."], nil,
 		{ get = function()
 			local G = registry()
 			return G and G.SuggestSource and G.SuggestSource() or "guides"
 		end })
 	view.Source = source
 	local aboutH = W.SectionHeader(view)
-	W.SetSection(aboutH, L["About guide packs"])
+	W.SetSection(aboutH, L["About community guides"])
 	local about = W.Text(view, "note", "textDim")
 	about:SetWordWrap(true)
 	about:SetSpacing(3)
 	about:SetJustifyH("LEFT")
 	about:SetJustifyV("TOP")
 	about:SetText(table.concat({
-		L["A guide pack is a separate addon with someone else's guides for Polestar. It is not part of Polestar, and its guides are not Polestar's own routes."],
-		L["Get a pack from wherever its author publishes it and install it like any addon, then restart the game. Its guides appear in the guide menu under Guide packs, with the author's name. The switch on its row above turns it on or off."],
-		L["Each pack is made and supported by its author: report its problems to them, not to Polestar. A pack is an addon like any other, so install packs from authors you trust."],
-		L["Anyone can write a pack with Polestar's own tools."],
+		L["A community addon is a separate addon with someone else's guides for Polestar. It is not part of Polestar, and its guides are not Polestar's own routes."],
+		L["Get a community addon from wherever its author publishes it and install it like any addon, then restart the game. Its guides appear in the guide menu under Community guides, with the author's name. The switch on its row above turns it on or off."],
+		L["Each community addon is made and supported by its author: report its problems to them, not to Polestar. It is an addon like any other, so install community addons from authors you trust."],
+		L["Anyone can make a community addon with Polestar's own tools."],
 	}, "\n\n"))
 	local docsLabel = oneLine(W.Text(view, "note", "text"))
 	-- The page on guide packs: a link opening the copy window.
 	local docs = W.Link(view, "", function()
 		local url = guidePacksURL()
-		if url then UI.ShowCopy(L["Guide packs, explained"], url) end
+		if url then UI.ShowCopy(L["Community guides, explained"], url) end
 	end, { role = "note" })
 	docs.Label:SetWordWrap(false)
 	view.Docs, view.DocsLabel = docs, docsLabel
@@ -431,9 +428,8 @@ function P.Build(view)
 		y = y + 44
 		source:ClearAllPoints()
 		source:SetPoint("TOPLEFT", view, "TOPLEFT", SH.pad, -y)
-		source:SetWidth(width)
 		source:Refresh()
-		y = y + W.ROW_H + 16
+		y = y + W.LayoutRow(source, width) + 16
 
 		aboutH:ClearAllPoints()
 		aboutH:SetPoint("TOPLEFT", view, "TOPLEFT", SH.pad, -y)

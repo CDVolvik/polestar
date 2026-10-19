@@ -85,6 +85,8 @@ local function build()
 	f:SetClampedToScreen(true)
 	f:EnableMouse(true)
 	f:SetPoint("TOP", UIParent, "TOP", 0, DEFAULT_Y)
+	-- A toast: the game's looks give it the guide window's light frame.
+	f.psLight = true
 	Theme.Skin(f, "window")
 
 	f.Ring = W.Tex(f, "ARTWORK", "qol-ring", "place")
@@ -94,7 +96,25 @@ local function build()
 	f.Glyph:SetSize(16, 16)
 	f.Glyph:SetPoint("CENTER", f.Ring, "CENTER", 0, 0)
 
-	f.Title = W.Text(f, "title", "text")
+	-- In the skins (DIRECTION_B_HALO.md §3, DIRECTION_A_BLIZZARD.md §5): Halo's
+	-- 30-unit ring in the accent; Hearth's and the game's looks' 32-unit ring
+	-- edged #C79C3E, their title in gold.
+	W.Painter(f.Ring, function(t)
+		local skin = Theme.SkinKey()
+		if skin == "polestar" then
+			t:SetTexture(Theme.Media("qol-ring"))
+			t:SetSize(32, 32)
+			W.Color(t, "place")
+			W.Color(f.Glyph, "place")
+		else
+			local size = skin == "halo" and 30 or 32
+			t:SetTexture(Theme.Media("skin-ring"))
+			t:SetSize(size * 60 / 48, size * 60 / 48)
+			if skin == "halo" then W.Color(t, "accent") else W.Uncolor(t); t:SetVertexColor(0.78, 0.612, 0.243, 1) end
+			W.Color(f.Glyph, "accent")
+		end
+	end)
+	f.Title = W.Text(f, "title", "title")
 	f.Title:SetPoint("BOTTOMLEFT", f.Ring, "RIGHT", 12, 1)
 	f.Title:SetPoint("RIGHT", f, "RIGHT", -PAD, 0)
 	f.Title:SetJustifyH("LEFT")
@@ -202,7 +222,8 @@ function Alerts.Check()
 	if not id then return false end
 	local arriveIn, _, timed = X.NextArrival(leg.kind, id, now, leg.side)
 	if timed == false or not arriveIn or arriveIn <= 0 or not Alerts.Due(arriveIn, AT_DOCK) then return false end
-	local to = leg.to and leg.to.name or ""
+	local T = Nav.travel
+	local to = leg.to and ((T and T.PlaceName and T.PlaceName(leg.to)) or leg.to.name) or ""
 	return alert(tostring(id) .. ":" .. tostring(leg.side or from.name or "?"), leg.kind,
 		format(ARRIVES[leg.kind], to), L["Arrives in %s"], arriveIn)
 end

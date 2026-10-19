@@ -1,11 +1,11 @@
 ## Interface: 16001
 ## Title: Acceptance Future
-## Notes: Guide pack for Polestar
+## Notes: Community addon for Polestar
 ## Author: Bo
 ## Version: 3.0.0
 ## Dependencies: Polestar
 ## X-Polestar-Pack: acceptance-future
-## X-Polestar-Format: 3
+## X-Polestar-Format: 4
 ## X-Polestar-Needs: 0.9.0
 ## X-License: MIT
 # Fixture (tests/acceptance-packs.test.js), written by hand: a pack in a

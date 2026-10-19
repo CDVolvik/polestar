@@ -41,7 +41,7 @@ Before the first `step`. `guide`, `title`, `levels` and `zone` are required.
 |---|---|---|
 | `step [title]` | Starts a step; it is done when its goals are | `step Kobold camp` |
 | `tip <text>` | A note for the whole step, shown in the guide window | `tip Pull one kobold at a time.` |
-| `zone <Name>` / `zone map <uiMapID>` | Inside a step: the zone for coordinates from here on | `zone Elwynn Forest` |
+| `zone <Name>` / `zone map <uiMapID>` | Inside a step: the zone for coordinates from here on, also for the steps after it (after a step with `only` that sets one, name the zone again) | `zone Elwynn Forest` |
 | `only <condition>, ...` | Inside a step: the step is only for matching characters | `only Hunter` |
 | `note <text>` | A line of information; never holds the player up | `note The camp is busy at night.` |
 | `level <N>` | Reach level N, grinding if need be | `level 2` |
@@ -52,7 +52,7 @@ Before the first `step`. `guide`, `title`, `levels` and `zone` are required.
 
 | Line | What it does | Example |
 |---|---|---|
-| `goto <x>,<y> ["Label"]` | Walk to a spot; checked off on arrival or when a later goal of the step is done | `goto 47.6,35.1 "Kobold camp"` |
+| `goto <x>,<y> ["Label"]` | Walk to a spot; checked off on arrival, when a later goal of the step is done, or, ending its step, when the next step's quest work is done | `goto 47.6,35.1 "Kobold camp"` |
 | `r <yards>` | How close `goto` counts as arrived (default 8) | `goto 42.9,65.6 "Goldshire" r 30` |
 | `@<x>,<y>` | Places any goal at these coordinates instead of the data's | `talk 197 @48.9,41.6` |
 | `map <uiMapID>` | The map this goal's `@` coordinates are on | `kill 69 map 1429 @45,40` |
@@ -80,6 +80,7 @@ Before the first `step`. `guide`, `title`, `levels` and `zone` are required.
 | `"<text>"` | Right after an id: the quest title, or the name of the NPC, object or item, for content missing from the data; after the modifiers: the text players see instead of the generated one | `accept 9201 "The First Step"` |
 | `xp <N>` / `money <amount>` | On `turnin`: what it pays (`money 1g50s`, `7s` or copper) | `turnin 9201 xp 210 money 1s` |
 | `choose <item> ...` / `reward <item> ...` | On `turnin`: the rewards to pick from, and the ones given outright | `turnin 5261 choose 159 2589 reward 4306` |
+| `direct` | On `turnin`: handed in straight from the giver's window, with no `accept` (Distracting Jarven, the cloth donations). Buy or collect what it asks for with `buy`/`collect`: the quest never enters the log, so nothing tracks objectives for it | `turnin 9300 direct` |
 
 ## Killing and collecting
 

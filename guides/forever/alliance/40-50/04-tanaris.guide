@@ -14,8 +14,11 @@
 # and the first bounties) and the Wastewander bandits are killed on the ride
 # back from Steamwheedle Port. Tooga is walked home straight from Thistleshrub
 # Valley instead of after a hearth and a ride back; Caliph Scorpidsting (2781)
-# is picked up at Steamwheedle where Tooga's walk ends and killed on the way
-# to the Gaping Chasm. One hearth instead of two.
+# is taken from the Wanted Poster with Andre Firebeard's bounty on the first
+# visit to the port (not on a detour back into the port after Tooga's walk)
+# and killed on the way to the Gaping Chasm. One hearth instead of two.
+# Gadgetzan from the north starts with Tran'rek; back from Steamwheedle, the
+# turn-ins run east to west (Andi Lynn first).
 #
 # Added: Keeping Pace and Rizzle's Schematics (1190, 1194, with Zamek's
 # Distraction 1191), from News for Fizzle (1137, carried from Martek in
@@ -65,9 +68,9 @@ step Pozzik
 step Gadgetzan
   zone Tanaris
   tip Ride south-east off the Shimmering Flats into Tanaris. Gadgetzan is just inside the border.
+  turnin 2864                         -- Tran'rek, north side of town
   getfp "Gadgetzan" npc 7823          -- Bera Stonehammer
   sethome "Gadgetzan" npc 7733        -- Innkeeper Fizzgrimble
-  turnin 2864                         -- Tran'rek, north side of town
   accept 1690                         -- Chief Engineer Bilgewhizzle, by the water tower
   accept 1707                         -- Spigot Operator Luglunket, next to him
 
@@ -79,6 +82,7 @@ step Steamwheedle Port
   accept 2873
   accept 8366                         -- Security Chief Bilgewhizzle
   accept 2875 object 142122           -- The Wanted poster beside him
+  accept 2781 object 142122           -- The same poster: Caliph comes much later, after Gadgetzan
   accept 8365                         -- Haughty Modiste
 
 step Lost Rigger Cove
@@ -164,16 +168,13 @@ step Tooga's escort
   complete 1560
   turnin 1560                         -- Torta
 
-step Steamwheedle Port
-  accept 2781 object 142122           -- The Wanted poster by Security Chief Bilgewhizzle
-
 step Gadgetzan
   tip Ride back west to Gadgetzan.
-  turnin 82                           -- Alchemist Pestlezugg
-  turnin 3362                         -- Tran'rek
+  turnin 5863                         -- Andi Lynn, on the east side of town
   turnin 2605                         -- Marin Noggenfogger
   accept 2606
-  turnin 5863                         -- Andi Lynn
+  turnin 3362                         -- Tran'rek
+  turnin 82                           -- Alchemist Pestlezugg
   turnin 2606                         -- Sprinkle
   note Sprinkle's next ingredient grows in the Hinterlands, and the route never brings it back: skip it.
   accept 10                           -- Senior Surveyor Fizzledowser

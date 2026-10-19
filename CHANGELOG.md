@@ -1,40 +1,360 @@
 # Changelog
 
-## Unreleased
+## 0.2.5 (2026-10-17)
 
 ### For players
 
+- Options > About says so on a client whose translation was made with AI, with
+  the Discord invite.
+- Alliance Priests run Cenarion Aid, Of Coursers We Know and The Ichor of
+  Undeath (8254-8256) on the leveling route: High Priest Rohan gives the first
+  at the Ironforge stop before Azshara, and Ogtinc's two errands fit the
+  Azshara visit, the Ichor of Undeath from the Ruins of Eldarath the route
+  already clears. About half an hour faster to 60 for every Alliance Priest
+  start, with about 45 minutes less grinding. Blood of Morphaz stays in the
+  Class guide: its item drops inside the Sunken Temple (thanks XrayAlpha,
+  #119).
+- Desolace (Alliance, from the Badlands guide): Book of the Ancients is taken
+  from Azore Aldamort on the way to Karnitol's Chest, instead of on a walk
+  back to his tower after it (the same pattern as #89).
+- Blood in the Streets (Dalaran, Horde) waits until Magus Wordeen Voidglare's
+  Dalaran Patrols and Key to the City are handed in: its prerequisite
+  correction listed them in a form the guides ignored, so the guide could
+  offer it too early.
+- The arrow to a boat now leads onto the pier beside the ship, not to the
+  ship's stop in the water off its end: the boats from Stormwind Harbor,
+  Auberdine (to Stormwind), Rut'theran Village and Menethil Harbor (to
+  Southshore and Theramore). The route's walk to every boat now ends on the
+  wharf at its boarding point instead of jumping off the pier and swimming
+  the last few yards (Auberdine, Menethil Harbor, Theramore, Southshore,
+  Stormwind Harbor, Rut'theran Village, Feathermoon), and Auberdine's walks
+  keep to the pier instead of swimming across the bay. Darkshore's last step
+  leads to the Stormwind boat in Auberdine instead of a spot in Moonglade,
+  and the Barrens Warlocks' summoning circle for Dogran's Pendant is in
+  Orgrimmar's Cleft of Shadow, not in Thunder Bluff (thanks Fitz).
+- More quests are no longer asked for before the game offers them. In
+  Silverpine Forest, Quinn Yorick gives Wild Eyes when you bring him Return
+  to Quinn at the Ivar Patch, the murloc eyes come on the shore walk to
+  Fenris Isle and Apothecary Renferrel takes them at the Sepulcher; Return to
+  Quinn (Again) is left out. From level 30, Bloom of the Heavens (Menethil
+  Harbor and Auberdine), Sentiments of the Lost (the Wetlands), Shared Fury
+  (Forest Song) and Friend of the Kirin Tor (by Dalaran) are left out: each
+  comes after a quest the guide cannot lead you to yet.
+- Darkshore: the Grizzled Scalps for Buzzbox 525 are collected at the Grove of
+  the Ancients, where the bears live, instead of at the Tower of Althalaxx.
+  The cloth donations in Stormwind and Ironforge and Grimand's Runecloth for
+  the Paladin charger lead to the Auction House, as their tips say, instead of
+  to guards or to mobs in another zone.
+- In German the guide's goal verb read "Abgeschlossen" (finished) instead of
+  "Abschließen", and in French, Spanish, Portuguese and Russian a finished
+  guide's card in the picker read as an order ("Terminer") instead of a
+  status. The goal verb and the picker's status are now translated apart.
+- On a road where a zone crossing's two ends are far apart, such as the Gold
+  Road north out of the Barrens into Ashenvale, the arrow no longer sends you
+  back to the crossing's near end once you have walked past it, and skipping
+  that end moves on instead of bringing it back (thanks Mark Gould and fur).
+- Darkshore: the Beached Sea Creature by Bashal'Aran is picked up on the first
+  loop, on the walk from Asterion to Buzzbox 411 that passes it, and handed in
+  at the first hearth instead of on a detour from Cliffspring Falls. The
+  southern beaches step says why the three remains past Remtravel's
+  Excavation wait for the last loop: level 18-20 Greymist murlocs guard them
+  (thanks XooVe).
+- On a client in another language, the Dungeons objective lines, dungeon, zone
+  and faction names, attunement notes, talent plan notes, flight points,
+  docks, inns, boats and lifts, class teleports, and the journey's cave,
+  bridge, gate and lift steps read in that language, from the game's own names
+- Durotar: Vile Familiars is handed in and Burning Blade Medallion taken
+  before the Burning Blade Coven, so Thazz'ril's Pick and Yarrog Baneshadow
+  are done on one trip into the cave instead of two (thanks Gruko).
+- Collecting an item that both normal mobs and elites drop, the arrow now
+  leads to the normal mobs instead of into the elites' camp: the Battleworn
+  Axes in Redridge, the Hillsbrad Human Skulls, the Indurium Flakes in the
+  Badlands, the Troll Tribal Necklaces in the Hinterlands, the Zhevra Hooves
+  in the Barrens, the Green Hills of Stranglethorn pages and more. A normal
+  mob standing among the elites is still marked on the map, but the arrow no
+  longer picks it on its own (thanks Smuve, #126).
+- Elwynn Forest: Croaky's Head is now an optional extra. Croaky, an elite,
+  roams the murloc shore south of the Eastvale bridge where the guide sends
+  you for the Torn Murloc Fins. If you loot its head, the guide then takes
+  you to Merell Ross at Ridgepoint Tower, just east, before heading back to
+  the bridge; without it, the guide goes straight on (thanks Syfin).
+- Every guide's titles, tips and notes now read in your game's language on German, Spanish (Spain and Latin America), French, Korean, Brazilian Portuguese, Russian and Chinese (Simplified and Traditional) clients, with every NPC, place, item and quest named exactly as your game names it. Each language is its own small addon in the release zip; only your game's language loads.
+- Every interface text now shows in your language on all nine clients: the
+  strings added lately are translated, and nothing is left in English. Spanish
+  (Spain) is now reviewed by julen92.
+- Redridge Mountains: the Battleworn Axes lead to the Blackrock Renegades at
+  Alther's Mill, not the elite orcs of Stonewatch Keep. Hillsbrad Foothills
+  (Horde): the skulls lead to the Peasants in Hillsbrad Fields (thanks Smuve).
+- Darkshore: Holy Diver is taken once all nine beached remains are handed
+  in, its rod on the naga trip. Silverpine Forest: Ivar the Foul comes after
+  Return to Quinn (Again), both on the road north out of the forest at the
+  end. Westfall no longer takes the second Harvesting the Harvesters, and
+  Silverpine no longer takes the Forever Arugal's Folly: the game offers
+  them only after quests the route does not do.
+- Quests that open only after another one are no longer asked for before the
+  game offers them: in Mulgore, Baine's chain (Longwalker Malah, then Grim
+  Tidings, Our Ancient Enemy, Drive Them Out and The High Chieftain, each
+  once the one before is handed in) and Thunderhorn's Report after Wildmane
+  Cleansing; in Tirisfal, Bandarion Keep when The Cult of the Damned and
+  Remnants of War are handed in; in Redridge, Alther's Mill after The
+  Everstill Bridge; in Westfall, The State of the Mines after Testing the
+  Wells, with the mines and the quarry on the way to the western farms; in
+  Hillsbrad, Scout Support after Battle of Hillsbrad part II, with the
+  peasants now done before the Durnholde trip. Tirisfal no longer takes the
+  second Rear Guard Patrol (Riptear): Linnea offers it only after the east
+  loop (thanks Kori, whiteswag, Smuve, SouthernStyleSims and Taako).
+- Polestar's interface is in French, translated by Yendi (thanks Yendi).
+- Reputation standings, item qualities, the Alliance and the Horde, the gear
+  slots on the upgrade line, the Dungeon Journal and the race names on guides
+  and the welcome read exactly as the game writes them, in every language
+  ("Main Hand", "Shoulders" and "Dungeon Journal" in English).
+- Polestar's windows work with a gamepad. The options have a new Gamepad
+  page: it names the buttons (Xbox letters or PlayStation shapes) and binds
+  any Polestar action to a key, a button or two buttons held together;
+  nothing is bound until you choose. "Browse the guide with the gamepad"
+  lets the D-pad pick a line in the guide window: A points the arrow there,
+  X shows the details, LB / RB change steps, Y minimizes the window and B
+  gives the gamepad back. Every Polestar window you open answers the D-pad,
+  A, B, Y and LB / RB, with a bar of button hints, and gives every button
+  back when it closes or a fight starts. A window that opens by itself, like
+  the choice of where to level next, waits until you press the Browse the
+  guide button. With the game's gamepad interface on, LB and RB stay the
+  game's targeting buttons (ported from Ding! by Yendi, @moust4ki).
+- With the gamepad interface on (Options, Gamepad, Enable Gamepad UI),
+  opening and closing the world map, or closing windows with B, no longer
+  brings up the game's warning that Polestar was blocked from an action only
+  available to the Blizzard UI, again and again, with the game's own gamepad
+  controls failing behind it. Everything Polestar shows on the world map
+  (the arrow's target, the step's goals and their regions, the route lines
+  and the trail, rares, dungeon entrances, flight masters, zone levels, the
+  coordinates bar) and the unexplored areas on the world and battlefield
+  maps are now drawn over the map without touching it, the same with the
+  gamepad and with the keyboard and mouse.
+- With the gamepad, the world map's cursor works on Polestar's pins as on
+  the game's own: near one, its tooltip shows, and A does what a click does
+  (aims the arrow at a goal or a camp, opens a dungeon's page, and so on).
+- With the gamepad interface on, taking a quest reward no longer brings up
+  the same warning, with the game's gamepad controls failing in every window
+  after it; nor does opening the talents or the world map. Polestar's marks
+  on the reward choices and on the talents, and its drawings on the map and
+  the minimap, are now added in a way that leaves the gamepad interface's
+  own code alone.
+- With the gamepad interface on (Options, Gamepad, Enable Gamepad UI),
+  Polestar now keeps to its own windows, so the game's warning that Polestar
+  was blocked from an action no longer comes back again and again until the
+  game freezes. Polestar's slash commands (`/polestar`, `/way`, `/psrec`)
+  are off, because the game blocks gamepad actions after any addon command
+  typed in chat. Open Polestar from its minimap button, which is now on by
+  default with the gamepad, or bind a key in Key Bindings. With the gamepad
+  interface, Polestar also leaves out its entries in the map's tracking
+  menu, quest levels in the game's quest windows, its line on talent
+  tooltips, the route drawn on the flight map, the "Show on map" button on
+  dungeon pages and the setting that hides combat error messages. Escape
+  (B) no longer closes Polestar's windows; use their close button. With the
+  keyboard and mouse, nothing changes.
+- With the keyboard and mouse, Polestar no longer shows gamepad hints (the A,
+  B, X, Y bar under its windows) or keeps its slash commands away when the
+  game's saved interface setting still reads Gamepad from an earlier session:
+  the game's own answer for the interface in use decides.
+- With the keyboard and mouse, Polestar's windows no longer show the gamepad's
+  focus outline, button hints (Move, Adjust, Choose…) or B chip, and no longer
+  take the gamepad's buttons, even with a gamepad plugged in: Polestar uses
+  the gamepad with the game's gamepad interface (Options, Gamepad, Enable
+  Gamepad UI). To use a gamepad with the keyboard and mouse interface too,
+  turn on Use with the keyboard and mouse on Polestar's Gamepad page.
 - Gear advice no longer marks a weapon you haven't trained as an upgrade,
   picks it as your quest reward or equips it: it went by the weapons your
   class can learn, so a level 4 rogue was shown a green arrow on a sword and
   a mace. The tooltip says the weapon skill isn't trained, and the advice
   changes as soon as you learn it (thanks Pynte).
-- Teldrassil takes Conservator Ilthalaine's The Balance of Nature before
-  Melithar's quest: he stands right beside where you start, and the guide
-  sent you past him first (thanks Pynte).
-- Teldrassil shows the Gnarlpine Totems with the Nightsabers, boars and Fel
-  Moss instead of after them, and the arrow knows every totem in the woods:
-  the guide named only one of the two totem objects (thanks Pynte).
-- Teldrassil still hands you your class sigil after The Balance of Nature,
-  but has you hand it to your trainer on the next visit to Aldrassil, when
-  you train, rather than a trip up the tree at level 2 with nothing to learn
-  (thanks Pynte).
-- Thousand Needles offers the Bronze Tube from Herble Baubbletump before you
-  turn in Look to the Stars in Darkshire, for when you arrive without one;
-  the tip names Neal Allen in Menethil Harbor if Herble is sold out (thanks
-  Yendi).
-- Zephras Isle: The Great Outdoors says to /sit by Raan's campfire until you
-  get Boosted Rest, not "Click Basic Campfire" (thanks Sato).
-- Zephras Isle: The Gift of Skysight says to cast Skysight near the
-  Elemental Convergence, and the Alliance's Reading the Ley Lines to cast
-  Read Ley Line at the Ley Line, not to click them (thanks Sato).
-- Zephras Isle (Horde) takes Welcome to Shen'dar Village at your first stop
-  with Constable Aonda and follows the quest's own progress, so talking to
-  Illaya Amberwind earlier counts and the step no longer waits on her
-  (thanks Sato).
-- Zephras Isle: the Scrawny Ursera step sends you to the slopes west of
-  Thendal Village, where they spawn, not into the village: our spawn data
-  had bears inside it that Wowhead Forever's map has none of (thanks Sato).
+- Where two zone maps overlap, the arrow now leads to people and things on the
+  map of the zone they really stand in, so the route no longer sends you
+  through a zone crossing past them and back: Kadrak at the Mor'shan Rampart,
+  Tirion Fordring's hut, Argent Officer Garush at the Bulwark, Erion
+  Shadewhisper in Darnassus, Tal and Cairne in Thunder Bluff, the Great Lift's
+  top, Henchman Valik, Lieutenant Haggerdin and the Syndicate camps in
+  Alterac, and the Uldaman dig in the Badlands. The Western Plaguelands
+  (Alliance) and Felwood (Horde) guides also take Tirion's first three quests
+  at his hut instead of in Hearthglen (thanks fur and CDVolvik).
+- A "Go to" at a cave's mouth, a dock or another way in now ticks off once the
+  work it leads to is already done, so the guide no longer sends you back to
+  the Burning Blade Coven with the Medallion already in your bags. The same
+  holds for Skull Rock, Fel Rock, Shadowthread Cave, the Jasperlode and
+  Fargodeep Mines, the Coldridge troll cave, the Blackfathom Deeps ruins and
+  the boats and zeppelins between zones (thanks Gruko).
+- A "Go to" at a cave's or mine's mouth now ticks off once you walk into the
+  cave past it, in every client language: the Burning Blade Coven, the Den and
+  Skull Rock in Durotar, Shadowthread Cave and Fel Rock in Teldrassil, the
+  Fargodeep and Jasperlode Mines in Elwynn Forest, and every other cave a step
+  names. Before, it waited for you to stand within 8 yards of the point
+  outside (thanks Hulari).
+- With Skip grey quests on, a grey quest Polestar keeps because it opens a
+  later quest still worth doing now says so under it, naming that quest
+  (thanks XooVe).
+- On a client in another language, the names inside a guide's tips, notes and
+  step titles (quest givers, mobs, items, quests, zones and places,
+  professions) are the game's own names in that language; English ones showed
+  until now. A note that only repeated the quest giver's name is gone: it put
+  the English name beside the translated one (#133). The guides' own words
+  come in your language as each one is translated.
+- Guide packs are now Community guides: the options page and the guide menu's
+  heading read Community guides, and each one you install is a community
+  addon. Built ones read "Polestar Community: <title>" in the AddOns list;
+  those built before still read "Polestar Pack:" and show as before.
+- Registering the guides at login makes about 3 MiB less short-lived garbage
+  for the collector to clear up: the checks that walk every step and goal now
+  share one table of key names instead of building a new one per goal (#60).
+- A guide that hearths you back to an inn now has you bind there first, at
+  the start or the first time it passes the inn, instead of relying on the
+  guide before it. This is for anyone who skipped that bind or started the
+  guide from the picker. Horde: Hillsbrad Foothills (Tarren Mill),
+  Dustwallow Marsh (Ratchet) and Winterspring (Everlook). Alliance: The
+  Hinterlands (Aerie Peak), Searing Gorge and Un'Goro Crater (Thelsamar), the
+  Burning Steppes (Ironforge), Winterspring (Everlook), the Western
+  Plaguelands (Light's Hope Chapel) and Silithus (Ratchet). If you are
+  already bound there, the step ticks at once (thanks psykzz).
+- Options, Integrations also holds the settings for Shortest Path Forever
+  (hand guiding to it), TomTom (let other addons set waypoints,
+  follow TomTom's arrow) and EllesmereUI (match its accent and font), so every
+  setting that depends on another addon is in one place.
+- Dun Morogh: Distracting Jarven is now part of Bitter Rivals: buy a Thunder
+  Ale, click the guarded barrel and hand the ale to Jarven before the
+  unguarded barrel. The city reputation guides' Additional Runecloth goals
+  check off when you hand the cloth in, not when you talk to the
+  quartermaster, and stay done after a /reload; auto turn-in hands in once per
+  goal, never again on a later visit. (thanks thmastin)
+- Translated guides: an NPC a tip names by first name, and places such as the
+  Crossroads written without their "The", now show in your language;
+  profession ranks, Legacy, Skyborne, skyboat and reputation guide titles read
+  the same everywhere in each language, with the client's own words
+- On a client in another language the guide window names flight paths,
+  explored places, farm-spot mobs and the items that start quests in your
+  language where the game or the names addon has them.
+- A minimap button (Options, Map, Guide & quests; off by default): click shows
+  or hides the guide window, right-click opens the settings, and you can drag
+  it around the minimap's edge (thanks Tedddogg).
+- On a client in another language, Polestar now names Forever's own quests,
+  NPCs, objects and items in that language too, and instances, dungeon bosses,
+  factions and flight points as the game does: the names packs take the game's
+  own tables first, then Wowhead's Forever database in that language. The
+  source a collect goal names ("Kill Grell for Fel Moss") is in your language,
+  and the AddOns list shows Polestar's addons in it.
+- Walks keep out of zones far above your level: the arrow and the route lines
+  go round a zone whose lowest level is 4 or more above yours (and far round
+  one more than 10 above), unless your walk starts or ends there or there is
+  no other way, and they are searched again when you level up. Journeys
+  weigh their straight walks the same way, so a route prefers a flight or
+  boat to a walk across such a zone. So a level 20 Horde character walking
+  from Tirisfal to Hillsbrad no longer crosses the Western Plaguelands
+  (#195). The idea and its 4-level threshold come from Ding! by Yendi.
+- On a non-English client, `/polestar near`, Lookup's sources and search
+  results and the Dungeons list no longer keep English names after the names
+  pack loads late (after combat).
+- Dun Morogh's Call of Fire (Dwarf Shamans) and Durotar's Legging It count the
+  Fire Tar and Reagent Pouch, and the Creepers and Lurkers, on the right lines
+  again; a guide that names another objective's index no longer builds.
+- The arrow now leads to the objective itself, not to the quest's turn-in,
+  in steps that only had the turn-in placed: Rumbleshot's Ammo (the Ammo
+  Crate by Mountaineer Gretchen, which the tip wrongly put on Shimmer Ridge),
+  Operation Recombobulation, Treacherous Cold, A Pilot's Revenge and Tundra
+  MacGrann's Stolen Stash in Dun Morogh, and steps in Darkshore, Stranglethorn
+  Vale, Arathi Highlands, Alterac Mountains, Silverpine Forest, Azshara and
+  Mulgore.
+- Dun Morogh (Shaman, Call of Fire) and Durotar (Legging It) count each
+  item or kill toward the right objective: their objective numbers were
+  swapped.
+- Legacy Challenges: Return to Bodley is now turned in before Back to the
+  Beginning, which needs it.
+- Accepting a quest no longer shows "Not offered by" its giver for it, or
+  skips its later steps if you abandon it (thanks Tate Mastin)
+- A quest giver who did not offer a quest no longer pulls you back to them
+  after a level-up, a turn-in or logging in at a new level: the guide stays
+  where it is and takes you back only when that giver offers the quest, for
+  example when the route meets them again. A quest you passed because you
+  were too low or lacked its prerequisite still brings you back once you
+  reach its level or finish that quest (thanks Wyatt and stroexd).
+- On a client in another language, the Dungeons journal, Rares, Lookup (entity
+  pages, where things come from, item tooltips), the gear advice, the class
+  trainer reminder, Nearby's professions, the talent plan's specs and guide
+  skill, spell and reputation goals show the game's names in that language
+  instead of English. NPC and object names the game shows you (target,
+  mouseover, talking to them) are remembered and used from then on, since the
+  game is always right. The optional Recorder's chat lines can be translated
+  too.
+- The turn-in and objectives of an optional quest you never took no longer
+  show in the guide window, and no longer hold the guide: they come back if
+  you take the quest.
+- Options, Guide, Arrow & routes, Route style: Fastest takes the shortest walk
+  over hills and across fields, Balanced (the default) keeps to roads that
+  aren't much longer and goes round hills, and Roads stays on roads even when
+  they're longer.
+- The arrow's walks now keep to roads where they are not much longer, go round
+  steep slopes rather than over them, and stay out of the other faction's
+  towns. When a walk must enter one (a quest inside Southshore for a Horde
+  character), the arrow says "Hostile town: Southshore" once as the walk
+  starts, even when the walk is the whole way, and the walk's journey step
+  reads the same. Walk times come from the path's real length.
+- Teldrassil: the Dolanaar steps say that Moon Priestess Amara patrols the
+  road west of the village, so if she isn't at the arrow you know to follow
+  the road and meet her (thanks sesgoe). Stranglethorn Vale's first Rebel
+  Camp step now says the same of Private Thorsen, who patrols the road north
+  of the camp.
+- On a French, German, Spanish or any other non-English client, setting your
+  home, discovering a flight path, hearthing and flying complete their steps:
+  the guide named the place in English and the game answered in your language
+  ("Darkshire" against "Sombre-Comté"), so these steps never checked off and
+  had to be skipped. Polestar now knows each inn, flight path and place by
+  the game's own ID: binding at the innkeeper the step names, or being bound
+  there already, completes the step, and the guide window names the place as
+  your game does (thanks Yendi, #83).
+- The crafting profession guides (Alchemy, Blacksmithing, Enchanting,
+  Engineering, Leatherworking, Tailoring) now follow Forever's own recipes:
+  its skill colours, reagents and names, not Classic's, so no step asks you to
+  keep crafting a recipe that has already turned grey. Forever's recipes past
+  295 in Tailoring all need a station or a recipe Polestar can't route yet, so
+  the guide stops there and names them (thanks Hotline, #109).
+- Questie's tracker can show where Polestar plans to hand in each completed
+  quest, including the step in a later guide; earlier, skipped or missing
+  hand-ins are flagged, and an unchosen route or unloaded guide is shown as
+  unknown. Turn it on in Options > Integrations, a new page for the addons
+  Polestar works with that lists each one only while it is installed (thanks
+  AurumTitanos).
+- The report from the bug button (and /polestar report) now lists the actions
+  the game blocked from Polestar this session, such as a gamepad binding or a
+  button press refused for taint, with how often and when. These are no Lua
+  errors, so such reports used to say "Errors: none".
+- The bug report (and /polestar report) says how the arrow routes: the route
+  style (Fastest, Balanced or Roads) and any routing setting turned off or
+  handed to Shortest Path Forever, so a pathing report shows which way the
+  walk was planned. The bug bot puts it in the issue.
+- After the reported fixes, every guide was searched for the same
+  mistakes, and these were fixed wherever they turned up:
+  - The quest giver standing beside you comes first. The Human start sent
+    you 86 yards to Eagan Peltskinner past Deputy Willem; the same happened
+    in about 40 towns from Northshire to Silithus (Teldrassil's Aldrassil and
+    Dolanaar, Brill, Bloodhoof, Razor Hill, Auberdine, Lakeshire, Ratchet,
+    Southshore, Gadgetzan, Feathermoon and more).
+  - Class letters are handed in on the visit where you train: Elwynn's and
+    the Horde Zephras Isle letters sent you to the trainer at level 2 with
+    nothing to learn.
+  - Items a quest needs that only a vendor sells are bought on the way: the
+    Rhapsody Malt in Kharanos, the Empty Vial in Dolanaar, Fine Thread for
+    Bartolo in Southshore, the Nutritious Slime Sludge, the Enriched Manna
+    Biscuits and the Xorothian Stardust.
+  - Goals say what you actually do: /sit at Kaga's campfire in Mulgore,
+    spread the Prepared Incense off Hunter Rise, heal the druids in the
+    Nightfang Den, mark the Andorhal towers with the Beacon Torch, free the
+    Darrowshire spirits, wake the Lazy Peons.
+  - Objects you click for a quest (the Gaea mounds in Stonetalon, the
+    Witherbark cages, the Shadow Hold braziers) show together with the mobs
+    around them instead of one after the other.
+  - Talking to a quest NPC before the guide asks for it counts, on Zephras
+    Isle (Horde) and for William Pickman in Brill.
+  - Kill arrows no longer point at quest givers in town: the Balnir
+    Farmstead cultists in Tirisfal, and the Windsong Crawlers and Al'Aketh
+    Healers on Zephras Isle, whose spawn data had them inside Valanaar.
+  - Orc mages are offered the Spellfire Robes chain, and Skyborne
+    characters the mage robe, Aquatic Form and Cure Poison quests.
 - A quest whose earlier part you haven't done reads "Requires <quest>
   first" right away, and the guide no longer walks you to its giver: in the
   19-24 Barrens it sent you to Sergra Darkthorn for Jorn Skyseer without The
@@ -42,13 +362,87 @@
   back as soon as you finish the earlier part. Quests whose earlier part the
   guide still brings you to are unchanged, and the giver's window stays the
   final word (thanks Fitz).
-- Polestar's interface is in French, translated by Yendi (thanks Yendi).
-- Reputation standings, item qualities, the Alliance and the Horde, the gear
-  slots on the upgrade line, the Dungeon Journal and the race names on guides
-  and the welcome read exactly as the game writes them, in every language
-  ("Main Hand", "Shoulders" and "Dungeon Journal" in English).
-- Options > About says so on a client whose translation was made with AI, with
-  the Discord invite.
+- Setting your hearthstone now points the arrow at the innkeeper: every "set
+  your home" step that named only its inn, such as Sentinel Hill, Auberdine,
+  Lakeshire or Astranaar, now leads to the innkeeper of your faction there.
+- Settings help lines wrap instead of being cut, and labels make room for
+  longer languages: setting names, button descriptions, slider values,
+  dropdown choices, the hub's section rail and sidebar, a guide's facts and a
+  dungeon's facts take a second line or the room they need, so no
+  translation ends in "..." (thanks thecodingcortex).
+- Silverpine Forest no longer sends you to Dalar Dawnweaver for Stop the
+  Spread, which he did not offer on the guide's route, or on to the refugees
+  for it (thanks Rupert and Wyatt R).
+- New skins, under Options > Appearance > Windows > Skin. Polestar's own look
+  stays the default.
+  - Halo: no frame, a dark veil with soft edges under the text, the game's
+    gold, Fira Sans.
+  - Hearth: Polestar in warm game colours, with the game's red buttons, check
+    boxes and font.
+  - WoW Forever, Blizzard and Classic: Polestar drawn in the game's own art.
+    WoW Forever wears Forever's bronze frames, header rods and plates;
+    Blizzard the retail art (the metal window frame, the damage meter's
+    header, the minimal check boxes and sliders); Classic the original
+    dialog box, tooltip borders, panel buttons and tabs.
+
+  Every window takes the skin, and Style, compact mode and the colours you pick
+  work in each. The arrow follows the skin too (Arrow style, "The skin's
+  arrow"): a dart that turns green within 40 m, then a ring and a check on
+  arrival; the 3D and flat arrows can still be picked. The font follows the
+  skin unless you pick one (Font, "The skin's font"; Fira Sans joins the list).
+- Spanish (Spain): clearer quest and trainer instructions, party progress, XP and kill counters, instance lockouts and gear advice; correct the Restoration spec and untrained-weapon warning, with consistent player vocabulary (thanks Forever Hispano).
+- With Shortest Path Forever installed, Polestar's own arrow now guides by
+  default; "Hand guiding to Shortest Path Forever" (Options, Integrations)
+  hands it the route. This switches everyone to Polestar's
+  arrow, players who used the hand-off before included: turn the option on
+  again to keep it. With it on, a goal Shortest Path Forever finds no way to
+  is guided by Polestar's arrow instead of by neither (#235, thanks Lofka).
+  While a journey you started in Shortest Path Forever runs, Polestar steps
+  aside so the two never guide at once, and guides again when it ends.
+- The arrow now leads to every objective step that had nowhere to point: the
+  Grizzled Den and seven more Dun Morogh steps, eight in Mulgore, and steps in
+  Darkshore, Ashenvale, Stranglethorn Vale, Un'Goro Crater, the Burning
+  Steppes, Winterspring, the Western Plaguelands and the Hydraxian Waterlords
+  guide (thanks rikette).
+- Stranglethorn Vale: the arrow leads to the hunters' camp for Investigate the
+  Camp, for the Alliance and the Horde, as it now does in Darkshore for The
+  Red Crystal (thanks Twerkjob).
+- A kill or collect step whose mobs mostly live in one camp leads to that
+  camp, not to a lone one or two hundreds of yards away from it: Frostmane
+  Headhunters at Frostmane Hold, Grizzled Scalps in Darkshore, Jadefire
+  Hellcallers at Jadefire Run, Stonetalon Sap, the Bloodpetals of Un'Goro's
+  east side and the Marsh Flesheaters by the Misty Reed huts among them. The
+  strays stay on the map as other places to look (thanks Phear).
+- Teldrassil: Shanda's note says she is in at Aldrassil's front entrance and
+  up the ramp, not just "inside the tree", so you don't run past the ramp
+  deeper into the tree (thanks Pynte).
+- Teldrassil shows the Gnarlpine Totems with the Nightsabers, boars and Fel
+  Moss instead of after them, and the arrow knows every totem in the woods:
+  the guide named only one of the two totem objects (thanks Pynte).
+- Teldrassil still hands you your class sigil after The Balance of Nature,
+  but has you hand it to your trainer on the next visit to Aldrassil, when
+  you train, rather than a trip up the tree at level 2 with nothing to learn
+  (thanks Pynte).
+- Teldrassil takes Conservator Ilthalaine's The Balance of Nature before
+  Melithar's quest: he stands right beside where you start, and the guide
+  sent you past him first (thanks Pynte).
+- Teldrassil: Zenn's Bidding is taken from Zenn Foulhoof on the road down from
+  Shadowglen, which passes him, instead of on a walk back east once Dolanaar
+  is done (#89, thanks Pynte for the report and CDVolvik for the fix).
+- The Community guides page lays each row out top to bottom: the title with
+  its author, version and licence under it, then the website and the author's
+  note at the row's full width, so a long note no longer wraps in a narrow
+  column.
+- Thousand Needles offers the Bronze Tube from Herble Baubbletump before you
+  turn in Look to the Stars in Darkshire, for when you arrive without one;
+  the tip names Neal Allen in Menethil Harbor if Herble is sold out (thanks
+  Yendi).
+- The arrow's walk to a trainer, vendor or innkeeper the guide picks for you
+  (train class, a profession trainer, buy nearest, vendor nearest, sethome
+  nearest), to the class trainer of the training reminder and Nearby, and to
+  the other places a quest's creature or object spawns now ends on that NPC's
+  floor: the walk to the warrior trainer in Northshire Abbey led outside the
+  building (thanks halexh, #180).
 - On a client in another language, the guide window names quests, NPCs,
   objects and items in that language, and the game's own quest title comes
   before the guide's English one: the client's names where it has them, else
@@ -60,22 +454,45 @@
   one. Each language's names are their own small addon,
   `Polestar_Names_<locale>`, in the release zip; the game loads only the one
   of its language, and an English client none.
-- On a French, German, Spanish or any other non-English client, setting your
-  home, discovering a flight path, hearthing and flying complete their steps:
-  the guide named the place in English and the game answered in your language
-  ("Darkshire" against "Sombre-Comté"), so these steps never checked off and
-  had to be skipped. Polestar now knows each inn, flight path and place by
-  the game's own ID: binding at the innkeeper the step names, or being bound
-  there already, completes the step, and the guide window names the place as
-  your game does (thanks Yendi, #83).
-- Alliance Priests run Cenarion Aid, Of Coursers We Know and The Ichor of
-  Undeath (8254-8256) on the leveling route: High Priest Rohan gives the first
-  at the Ironforge stop before Azshara, and Ogtinc's two errands fit the
-  Azshara visit, the Ichor of Undeath from the Ruins of Eldarath the route
-  already clears. About half an hour faster to 60 for every Alliance Priest
-  start, with about 45 minutes less grinding. Blood of Morphaz stays in the
-  Class guide: its item drops inside the Sunken Temple (thanks XrayAlpha,
-  #119).
+- The arrow's walk starts from the ground you are standing on, not a roof,
+  rock top or upper floor above you: Polestar follows the floor under you as
+  you walk (the game gives addons no height), so at the Den's camp in the
+  Valley of Trials the way to Hana'zua no longer climbs the rock over the Den
+  and crosses the hill. Off a lift, inside the Undercity, the city's floor is
+  picked up from whether you are indoors (thanks MrPersonage, #234).
+- Quests are taken where the route already stands instead of on a walk back
+  later: Fields of Grief from Deathguard Simmer at Calvin's duel (Tirisfal
+  Glades), WANTED: Caliph Scorpidsting from the same poster as Andre
+  Firebeard's bounty (Tanaris, Alliance), and Panther Mastery with The Green
+  Hills of Stranglethorn when the panthers are handed in at Nesingwary's camp,
+  which saves a ride up from Grom'gol (Stranglethorn Vale, Horde).
+- The welcome has a route style page on your account's first character: pick
+  Fastest, Balanced or Roads, with a line on what each one does.
+- Westfall: Alba Fairmoon's quests (Testing the Wells, Murloc Gills, The
+  State of the Mines, Moonbrook Espionage, Explosive Consultation) are for
+  Dwarves, Gnomes, Night Elves and Skyborne only on Forever. Humans are no
+  longer sent to her, to the wells or to the mines for them.
+- Wetlands: Captain Stoutfist's quests come in the order the game offers
+  them. War Banners is followed by From the Ashes, the Dragonmaw attack plans
+  in the Angerfang Encampment. Nek'rosh's Gambit comes after that: you take it
+  when you hand From the Ashes in after the hearth to Menethil, and light the
+  catapult on the Wetlands loop at the start of the next guide (thanks
+  Lou-Saydus).
+- Wetlands (Alliance): the guide no longer asks for Stopping the Cycle. Howin
+  Kindfeather offers it only after Death to the Dragonmaw, whose orcs in the
+  Dragonmaw Retreat are elite.
+- Zephras Isle (Horde) takes Welcome to Shen'dar Village at your first stop
+  with Constable Aonda and follows the quest's own progress, so talking to
+  Illaya Amberwind earlier counts and the step no longer waits on her
+  (thanks Sato).
+- Zephras Isle: The Gift of Skysight says to cast Skysight near the
+  Elemental Convergence, and the Alliance's Reading the Ley Lines to cast
+  Read Ley Line at the Ley Line, not to click them (thanks Sato).
+- Zephras Isle: The Great Outdoors says to /sit by Raan's campfire until you
+  get Boosted Rest, not "Click Basic Campfire" (thanks Sato).
+- Zephras Isle: the Scrawny Ursera step sends you to the slopes west of
+  Thendal Village, where they spawn, not into the village: our spawn data
+  had bears inside it that Wowhead Forever's map has none of (thanks Sato).
 
 ### For guide authors
 
@@ -85,13 +502,169 @@
   prints how many got one. The guide sources do not change, and a pack
   without the keys keeps matching by English name (GUIDE_FORMAT.md, "Places
   by ID"; PACK_FORMAT.md).
+- Compiled collect goals carry the ids of the sources they name (fromId,
+  fromAlsoId), so Polestar names them in the player's language; older Polestar
+  ignores them.
+- docs/GUIDE_PACKS.md, the page Options > Community guides links to, is easier
+  to follow on GitHub: a short path for players and one for authors, renders
+  of the guide menu and the Community guides page, the publish steps as a list
+  and a checklist before you publish. docs/PACKS.md and docs/PACK_FORMAT.md
+  open with their contents.
+- A goto at a cave's or mine's mouth labelled with the cave's subzone name as
+  the game spells it ("Fargodeep Mine", not "Fargodeep Mine's mouth") gets its
+  area and also counts as arrived once the player is inside
+  (docs/GUIDE_FORMAT.md, goto).
+- Guide packs are now called community addons. `polestar compile`, `pack`,
+  `install` and `dev` title the addon "Polestar Community: <title>" in the
+  AddOns list; Polestar still reads the old "Polestar Pack:" titles, so addons
+  already published keep working. `pack.json`, the commands and the
+  `PolestarPack_` folder names are unchanged.
+- Guide texts can be translated (docs/TRANSLATING.md, "Guide texts"): the
+  compiler writes the game's names in a guide's texts as tokens, {npc:234},
+  which the game shows in each client's language, and a pack's
+  locales/<locale>/ files translate the words around them, compiled into a
+  load-on-demand texts addon per language, <folder>_<locale>. `i18n guides
+  sync`, `check` and `stats` write, check and size them; `lint` warns about a
+  stale or broken translation. Packs are now format 3 (X-Polestar-Needs
+  0.2.5).
+- Guide texts: an NPC of the step or guide named by its first name becomes its
+  token, and every spelling of a name is a token; an English client reads the
+  author's words through the guide's new `written` table
+- A quest whose accepts in the guide are all `optional` has its turn-in,
+  objectives and `complete` goals only for players who took it. Its turn-in
+  can now have a step of its own, written without `optional`: the step holds,
+  and leads the arrow to the ender, only for those players. Before, that step
+  held everyone (GUIDE_FORMAT.md, "An optional side chain").
+- A `turnin <id> direct` of a repeatable quest checks off one goal per
+  hand-in, so the same quest can repeat across steps; the route planner keeps
+  `direct` when it rewrites a line; a plain `turnin` of a repeatable its giver
+  takes back hints at `direct`, and lint no longer asks for `optional` on a
+  `direct` turn-in of a repeatable in a leveling guide.
+- `turnin <id> direct` for a quest handed in straight from the giver's window,
+  with no accept (Distracting Jarven, the repeat cloth donations). It needs no
+  earlier accept, its availability and prerequisites are linted as an accept's
+  are, and because such a quest never enters the log it carries no objectives:
+  lint says so if you give it any. In game the goal checks off on the hand-in
+  itself and that is stored, so a repeatable stays done after a /reload, and
+  quest automation picks it from the quests the giver offers (thanks thmastin,
+  #108).
+- Lint warns when coordinates without `map` are on a zone that a step for some
+  characters only set (a class trip's `zone` holds for the steps after it),
+  while the other characters who see them are in another zone, and says which
+  zone to name (thanks Fitz).
 
 ### For contributors
 
-- The Discord bot tells no #bugs thread about a pre-release: a test build
-  published on GitHub as a pre-release is not "the fix is out", and the next
-  full release still tells every fix closed since the last full one
-  (`tools/discord-bot/lib/notify.js`).
+- AGENTS.md points coding agents to skills that carry the project's rules,
+  chief among them that a bug report is a lead to check against the guide,
+  the data and Forever's sources, never a verdict:
+  `skills/polestar-contributing/` (branches,
+  changelog fragments, what a pull request must not do),
+  `skills/polestar-triage/` checks a report and drafts the verdict, the
+  labels and the reply, and `skills/polestar-guide-fix/` takes a confirmed
+  wrong step to a pull request on the right branch. CONTRIBUTING.md, "Using
+  an AI agent", and a pull request template say the same to the people
+  running them. Claude Code reads AGENTS.md on its own; a personal
+  `CLAUDE.md` or `CLAUDE.local.md` stays out of git and starts with
+  `@AGENTS.md` so the rules still load.
+- The four skills install outside a clone too: as a Claude Code plugin
+  (`claude plugin marketplace add fitzforge/polestar`), a Codex plugin
+  (`codex plugin marketplace add fitzforge/polestar`), or with
+  `npx skills add fitzforge/polestar` for any other agent (Cursor, Hermes
+  Agent, OpenCode and more). CONTRIBUTING.md, "Installing the skills", has
+  the commands.
+- Issues waiting on the reporter carry `needs-info` and close on their own
+  after three weeks without a reply; `confirmed` and `patch-candidate` mark
+  checked bugs. The "Wrong step" form asks for the other addons in use.
+  SECURITY.md says how to report a security problem privately, and
+  CODEOWNERS names who reviews what.
+- A change's changelog entry is a file of its own in `changes/`, written
+  with `node tools/polestar.js changelog add`, instead of an edit to
+  CHANGELOG.md, so pull requests open side by side no longer edit the same
+  lines. `changelog check` (in CI) checks them, `changelog show` prints them
+  as the release will, and `changelog build <version>` assembles them into
+  CHANGELOG.md at release time (changes/README.md).
+- The tests now load the committed `addon/Polestar_Guides/Guides.lua` the
+  way the game does and fail when it differs from what `compile` writes: a
+  goal outside its step's `goals`, a goal of no known kind, or a guide whose
+  steps, goal kinds and quests do not match its `.guide` file. A hand-spliced
+  Guides.lua could break that and still load without an error, and the game
+  never showed those goals. Needs no reference data, so CI runs it.
+- On Windows, data build names its quest XP and Wowhead zone list caches with
+  forward slashes in meta.json, so compiling there no longer writes
+  backslashes into those two lines of addon/Polestar_Guides/LICENSE-DATA.txt.
+- `tools/discord-bot`: `/close` and `/reopen` for server administrators in
+  a #bugs thread. `/close` takes a reason (Fixed, Won't fix, No action
+  needed, Can't reproduce, Not resolved, Duplicate) and an optional note,
+  closes the issue with it, and the reporter hears it in those words with
+  the note quoted (`tools/discord-bot/README.md`).
+- `tools/discord-bot`: a prerelease (`v0.3.0-rc.1`) tells no #bugs thread
+  its fix is out; it pings the tester role once in the testers channel,
+  with its player entries, when `DISCORD_TESTERS_CHANNEL_ID` and
+  `DISCORD_TESTER_ROLE_ID` are set. A full release tells an issue closed by
+  a commit only when its tag holds that commit, so a patch no longer
+  claims fixes merged into `next`; one closed by hand still counts from the
+  full release before, never from a prerelease. The release workflow runs
+  `next`'s bot, so a patch tag cut from an older release gets the current
+  one (`tools/discord-bot/README.md`).
+- Tests fake an Italian client (`fakeLocale('itIT', ...)`): Forever has none,
+  so no shipped language file replaces the fake strings.
+- Polestar draws on Blizzard's map frames through `Polestar.MapCanvas`
+  (`Nav/MapCanvas.lua`, ARCHITECTURE "MapCanvas"): its own frames on the
+  map's canvas, the map only read. No module adds a data provider or a pin
+  pool, acquires a pin or calls a map method that writes: a value written
+  into the map's tables taints the gamepad interface's secure code. No frame
+  there has a click script either (the gamepad's navigation reads it back as
+  it scans the map): pins take clicks from `GLOBAL_MOUSE_DOWN` and
+  `GLOBAL_MOUSE_UP`. The route lines (`Maps/RouteLines.lua`) are one such
+  frame; `Nav/Journey.lua` tells Polestar's pins under the mouse with
+  `Pins.WorldPinOf` and lets the target go on a Shift-click of its pin
+  through `Pins.OnWorldClick`. `tests/lua/wow_stub.lua` fakes the map
+  frames' shape (`stub.newMapCanvas`) and `stub.guardMap` fails any write of
+  addon code into them; `tests/nav-mapcanvas.test.js` draws everything with
+  the maps guarded, with either interface, and pins what Polestar reads
+  there.
+- A frame of Polestar's whose parent is a game frame, or is under one (the
+  map canvases, the minimap, quest reward and talent buttons), is made with
+  `Polestar.CreateFrameUnder` (`Core/Init.lua`, ARCHITECTURE "Frames under
+  the game's UI"): no parent, then `SetParent`. The gamepad interface hooks
+  `CreateFrame` and, for a parent inside one of its open panels, rebuilds
+  the panel's buttons in the caller's code, tainted. `tests/lua/wow_stub.lua`'s
+  `CreateFrame` fails such a call from addon code and lists it in
+  `stub.underGameFrames`.
+- CONTRIBUTING.md and the guide-fix skill say Guides.lua is only ever what
+  compile writes, never a hand edit or a spliced hunk, and give a recipe for
+  keeping only your change when your reference data differs from the branch's:
+  compile the guides before and after it with the same data and git merge-file
+  the difference into the committed file.
+- A memory budget for the compiled guide pack (`tests/guides-memory.test.js`):
+  it loads `addon/Polestar_Guides/Guides.lua` under the test interpreter and
+  weighs what stays resident, so a change that costs memory per goal or per
+  step shows up in the suite. It also reports what one faction's share of the
+  pack weighs, the figure a faction-only load would have to beat (#60).
+- On Windows, the test that every hearth goes to an inn its guide binds at
+  no longer fails on the Badlands and Un'Goro Crater hearths it allows: it
+  compared Windows paths, with backslashes, against its list of exceptions,
+  written with forward slashes.
+- Guide fixes for the latest release can ship as a patch, without the full
+  data build: their pull requests go to `hotfix/<version>` (for example
+  `hotfix/0.2.5`), everything else to `next` (CONTRIBUTING.md, "Branches";
+  docs/RELEASING.md, "Patch releases"). The `Base branch` check fails a pull
+  request to `main`, and one to a `hotfix/` branch that changes more than a
+  patch may carry (`release scope`). A fix merged into `next` with the
+  `backport` label gets its cherry-pick pull request to the `hotfix/`
+  branch on its own. `next`, `main` and `hotfix/` branches take changes by
+  pull request only, with CI green.
+- `release patch` builds a patch in a `hotfix/` checkout with that
+  release's own tools and data addons, and stops when the branch carries
+  more than guide fixes or the reference data has moved on; `release notes`
+  drafts the GitHub, CurseForge and Discord notes from the changelog.
+  Publishing a release opens the pull request that merges it back into
+  `next`.
+- i18n check and sync also cover addon/Polestar_Recorder/Locales (--addon
+  limits a command to one addon); Polestar.Names gains Spell, Faction, Area,
+  Instance, Taxi, Encounter, Get(kind, id) and names learned in play
+  (PolestarDB.names).
 - `node tools/polestar.js i18n` keeps the interface translations, adapted
   from Ding! by Yendi (@moust4ki): `status` lists the nine languages with
   their counts, status (reviewed or AI-made) and translators; `check` (run in
@@ -101,11 +674,9 @@
   moves translations of texts it lost to a block at the end, never touching a
   translation; `import` merges translations written apart.
   docs/TRANSLATING.md.
-- The boat, zeppelin, tram and lift captions ("Next boat in 1:20") can be
-  translated: they were looked up through a variable, so no translator saw
-  them.
-- Tests fake an Italian client (`fakeLocale('itIT', ...)`): Forever has none,
-  so no shipped language file replaces the fake strings.
+- `node tools/polestar.js i18n leaks` runs the addon in every language and
+  lists the English left on screen, grouped by where it came from
+  (docs/TRANSLATING.md, "English left on screen").
 - `node tools/polestar.js i18n names` builds the names addons
   `addon/Polestar_Names_<locale>` (committed) from DingDB, cloned into
   `data/sources/ding` and pinned to Ding v1.8.1's commit and each file's
@@ -116,20 +687,69 @@
   licences and counts, with Ding's `CREDITS.md` beside it. `Polestar.Names`
   (`Core/Names.lua`) reads them; docs/ARCHITECTURE.md, "Names", and
   docs/TRANSLATING.md, "Game names".
+- i18n names reads the client's own tables in each language (wago.tools) and
+  the cached Wowhead Forever names (data/sources/wowhead/names) before DingDB
+  and pfQuest, and bakes instance, encounter, faction, flight point and
+  dungeon objective names too. Every addon TOC has Title-/Notes- lines for the
+  nine languages, from tools/lib/i18n/toc.js.
 - `travel build` gives every inn in `Nav/TravelData.lua` its AreaTable area,
   from the AreaTable `data build` caches (`tools/lib/data/areas.js`, also read
   by `compile`); `Compat.GetAreaName` reads `C_Map.GetAreaInfo`; Nav exposes
   `Nav.FindInn` and `Nav.BoundInn`. `tests/engine-l10n.test.js` plays the
   steps on a fake French client.
-- `tools/discord-bot`: `/close` and `/reopen` for server administrators in
-  a #bugs thread. `/close` takes a reason (Fixed, Won't fix, No action
-  needed, Can't reproduce, Not resolved, Duplicate) and an optional note,
-  closes the issue with it, and the reporter hears it in those words with
-  the note quoted (`tools/discord-bot/README.md`).
-- `tools/discord-bot`: every player's message in a tracked #bugs thread
-  becomes a comment on its issue, not only the reporter's: another player's
-  confirmation or Wowhead link is context for whoever triages it. The
-  reporter's comments say "(the reporter)".
+- Nav asks the router with the player's faction (`Compat.GetPlayerFaction`,
+  opts.profile), chooses walks by the router's cost and shows and times them
+  by its yards (`walkCost` returns cost, yards; `Walk.LegPath` returns yards,
+  hubs). `Travel.WalkCostHook(fn)` lets a planner rule scale walk costs;
+  `leg.hubs` carries the hostile towns a walk enters (journey line,
+  `Travel.TakeWarning` for the arrow). `Nav.HandedOff()` is also true while
+  Shortest Path Forever runs a journey not Polestar's
+  (`Nav.handoff.Yielding()`).
+- Pathing v2: the walking maps are format 2 (`nav pack`): every node carries a
+  ground class (road, gentle or steep slope, indoor, indoor city, hostile-hub
+  bits, from `nav layers roads` and `nav layers hubs` and grid v4's surface
+  slopes) and every graph edge a cost per faction and its yards. The router
+  (`Routing/Costs.lua`, `Path.lua`, `PathGrid.lua`) prices steps by class and
+  profile, straightens only over ground no costlier, and returns `job.yards`
+  and `job.hubs`; Zephras Isle is packed from our grid. `nav eval` measures a
+  maps folder against a baseline (checks A1-A8 (A9, memory, by hand)).
+- `sim compare` and `sim bench` take `--class`, so a chain written for one
+  class can be measured: they passed `cls: null` whatever was given, and a
+  quest open to fewer than five classes is left out without one, so a Priest
+  or Mage chain scored as if its own quests were not there. With a class the
+  chain's `only <Class>` goals and the class's quests count, its kill-speed
+  prior applies, the best-found row comes from that class's `sim run` result,
+  and the files are `compare-<faction>-<race>-<class>[-<pack id>].json` and
+  `bench-<faction>-<race>-<class>.*`, so the class-agnostic ones are left
+  alone. A name that is not a class is refused instead of silently dropping
+  every class quest (thanks XrayAlpha).
+- `sim run` and `sim robust` take `--class` in any case, as `sim compare` and
+  `sim bench` do: they passed it on as typed, so `--class priest` missed the
+  class table and searched as if the Priest's own quests were not there, and
+  a name that is not a class is now refused instead of doing the same.
+- `talents build` takes one plan file per class in `talents/forever/` and
+  writes them all into `Builds.lua`, one class after another; every class's
+  tree is known by its class skill line. Two stray talents in the client's
+  tables are left out: a second Lightning Reflexes far off the Hunter tree
+  and a second Holy Specialization below the Priest's Shadow column. Kept,
+  they made the Hunter tree a fourth spec column and the Priest tree an
+  eighth row. Rows a few units apart (Warlock's first and fourth) count as
+  one, and a line the client only draws (a TraitEdge of type 0, VisualOnly)
+  is no prerequisite: the Druid's Nature's Majesty and Nature's Splendor
+  each seemed to need the other, so neither could be planned
+  (thanks jnickles85-bit).
+- Of several arrows into one talent, any one opens it, in `talents build`
+  and in the addon's own check of a plan: the Hunter's Intimidation has
+  arrows from Bestial Swiftness and from Bestial Wrath (which itself needs
+  Intimidation), so requiring both made Beast Mastery's last talents
+  impossible to plan (thanks jnickles85-bit).
+- The Discord bot tells no #bugs thread about a pre-release: a test build
+  published on GitHub as a pre-release is not "the fix is out", and the next
+  full release still tells every fix closed since the last full one
+  (`tools/discord-bot/lib/notify.js`).
+- The boat, zeppelin, tram and lift captions ("Next boat in 1:20") can be
+  translated: they were looked up through a variable, so no translator saw
+  them.
 
 ## 0.2.4 (2026-10-16)
 
