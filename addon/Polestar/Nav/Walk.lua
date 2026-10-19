@@ -98,7 +98,8 @@
 --   Walk.Measured(c, x, y, water) -> walkCost(c, wx, wy, start) -> cost, yards | nil, or nil
 --   Walk.LegPath(from, to) -> yards along that later walk's searched path, its hubs | nil
 --   Nav.GetRouteGeometry() -> { legs = { { kind, pts = { { c, wx, wy }, ... },
---     current, choke }, ... } } or nil without a target; NAV_ROUTE_GEOMETRY on change.
+--     current, choke }, ... } } or nil without a target or while handed off
+--     (Nav.HandedOff); NAV_ROUTE_GEOMETRY on change.
 --     kind: walk | flight | boat | zeppelin | tram | portal | hearth | teleport | lift.
 --
 -- Every search goes with opts { waterWalking, profile, style, danger }: the
@@ -1282,7 +1283,7 @@ local function build()
 end
 
 function Nav.GetRouteGeometry()
-	if not Nav.GetTarget() then return nil end
+	if not Nav.GetTarget() or Nav.HandedOff() then return nil end
 	local T = Nav.travel
 	local route = T and T.version or 0
 	if not geom or geomBuilt ~= geomVersion or geomRoute ~= route then

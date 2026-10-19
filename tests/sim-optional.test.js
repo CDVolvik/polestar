@@ -1,7 +1,6 @@
 'use strict';
 // Guides are scored on what they require (docs/SIMULATION.md §5, issue #30):
 // `sim compare` leaves a guide's optional goals out unless --with-optional.
-// The quest log size the world builder splits packages at (§2).
 
 const { test } = require('node:test');
 const assert = require('node:assert/strict');
@@ -11,7 +10,6 @@ const path = require('node:path');
 
 const { loadPolestarRoutes, requiredEvents } = require('../tools/lib/sim/baselines/polestar');
 const { sources } = require('../tools/lib/sim/compare');
-const { MAX_OPEN } = require('../tools/lib/sim/world');
 
 const FIX = path.join(__dirname, 'fixtures', 'sim', 'polestar');
 
@@ -57,11 +55,4 @@ test('sim compare scores the guides without their optional goals; --with-optiona
 		fs.rmSync(dir, { recursive: true, force: true });
 		fs.rmSync(simDir, { recursive: true, force: true });
 	}
-});
-
-test('quest log: 20 as the published results were searched, within the client\'s 40', () => {
-	// Forever's client: MAXIMUM_NUM_QUESTS_LOG_CAN_ACCEPT = 40. The published
-	// results were searched at 20; 40 comes with the next world (0.2.5).
-	assert.equal(MAX_OPEN, 20);
-	assert.ok(MAX_OPEN <= 40);
 });

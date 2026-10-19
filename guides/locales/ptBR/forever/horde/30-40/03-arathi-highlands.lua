@@ -47,7 +47,8 @@ return {
 	["The violet shards glow just off the road a short way west of {area:321}."] = "Os estilhaços violeta brilham logo ao lado da estrada, um pouco a oeste de {area:321}.",
 
 	-- Step 8: Hammerfall
-	["The orc stronghold at the eastern end of the road. Urda, the wind rider master, stands by the gate."] = "A fortaleza orc no extremo leste da estrada. Urda, a mestre dos mantícoras, fica junto ao portão.",
+	-- {npc:2851} Urda
+	["The orc stronghold at the eastern end of the road. {npc:2851}, the wind rider master, stands by the gate."] = "A fortaleza orc no extremo leste da estrada. {npc:2851}, a mestre dos mantícoras, fica junto ao portão.",
 
 	-- Step 9: Highland raptors
 	["Highland raptors"] = "Raptores do planalto",

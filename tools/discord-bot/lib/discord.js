@@ -59,9 +59,10 @@ function createDiscord({ token, api = API, fetch: fetchImpl = fetch }) {
 	};
 }
 
-// A forum's status tags (Tracked, Fixed, Won't fix, Duplicate) by role, from
-// its available_tags; names match without case or apostrophe style.
-const STATUS_TAGS = { tracked: 'tracked', fixed: 'fixed', wontfix: "won't fix", duplicate: 'duplicate' };
+// A forum's status tags (Tracked, In progress, Fixed, Won't fix, Duplicate)
+// by role, from its available_tags; names match without case or apostrophe
+// style.
+const STATUS_TAGS = { tracked: 'tracked', progress: 'in progress', fixed: 'fixed', wontfix: "won't fix", duplicate: 'duplicate' };
 
 function tagKey(name) {
 	return String(name).toLowerCase().replace(/[\u2018\u2019`]/g, "'").trim();

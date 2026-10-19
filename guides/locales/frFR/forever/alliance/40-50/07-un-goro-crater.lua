@@ -34,7 +34,6 @@ return {
 	-- Step 8: Marshal's Refuge
 	-- {area:541} Marshal's Refuge · {object:157936} Un'Goro Dirt Pile
 	["Ride north along the east side of the crater to {area:541}, the camp in the caves of the northern cliff. Give the elite devilsaurs and stegodons a wide berth. Pick up every Power Crystal and {object:157936} you pass from here on."] = "Chevauchez vers le nord le long du côté est du cratère jusqu'à {area:541}, le camp dans les grottes de la falaise nord. Évitez largement les diablosaures et les stégodons élites. Ramassez désormais chaque Cristal de puissance et chaque {object:157936} sur votre chemin.",
-	["Gryfe"] = "Gryfe",
 	-- {npc:9298} Donova Snowden · {zone:1452} Winterspring
 	["Ends with {npc:9298} in {zone:1452}: keep it"] = "Se termine auprès de {npc:9298} au {zone:1452} : gardez-la",
 	-- {npc:9117} J.D. Collie
@@ -199,6 +198,7 @@ return {
 	["Xiggs waits in the {object:32359}."] = "Xiggs attend dans {object:32359}.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Gryfe"] = "Gryfe",
 	-- ["Ride south to {area:537} in the middle of the crater, then east into the eastern jungle. Crystal clusters stand all over the crater, many of them around {area:537}: take a few extra of each colour. {item:11316} Lashers and Threshers drop the petals; the expedition's {item:11113} sits at an abandoned camp in the eastern jungle."] = "Chevauchez vers le sud jusqu'à {area:537}, au milieu du cratère, puis vers l'est dans la jungle est. Des amas de cristaux se dressent partout dans le cratère, beaucoup autour de {area:537} : prenez-en quelques-uns de plus de chaque couleur. Les Flagellants et Batteurs {item:11316} laissent tomber les pétales ; la {item:11113} de l'expédition se trouve dans un camp abandonné de la jungle est.",
 	-- ["grind on {npc:5458} at {area:982}, {zone:1446}"] = "tuez des {npc:5458} à {area:982}, {zone:1446}",
 }
