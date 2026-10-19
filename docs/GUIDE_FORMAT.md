@@ -148,6 +148,14 @@ A step must contain at least one goal.
 | `explore` | `<x>,<y> ["Area"]` | Discover the map area at those coordinates (current zone). |
 | `achieve` | `<achievementId> ["Name"]` | Complete an achievement / Legacy Challenge; `criteria <n>` targets one criterion. |
 
+**Quests the route leaves out.** Quest automation accepts and hands in only
+the `accept` and `turnin` goals of the step in play and the next two. When the
+game then opens a window of its own at the same NPC (the next quest of the
+chain, or the NPC's other quests) and none of those is a goal there, Polestar
+closes it (Options, Guide, Automation, "Close offers the guide skips", on by
+default). To keep such a follow-up in front of the player, give it an
+`accept` in the same step or the next two.
+
 **Smart targets.** `nearest` (and the profession/class forms of `train`) compile to a
 *candidate set* instead of one NPC: every matching NPC in the data with its faction.
 At runtime the engine keeps the candidates the character may use (faction, and race
@@ -258,7 +266,7 @@ ID"), and Polestar compares the game's own name for it, then the name you
 wrote.
 
 A pack with a `when` anywhere is written in pack format 4, which Polestar
-0.3.0 and later read (docs/PACK_FORMAT.md); a pack without stays readable by
+0.2.6 and later read (docs/PACK_FORMAT.md); a pack without stays readable by
 older versions.
 
 ## What the compiler fills in
