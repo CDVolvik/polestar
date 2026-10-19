@@ -36,8 +36,18 @@ const OPENINGS = require('./openings.json').openings.map((o) => {
 	return { id: o.id, wmo: o.wmo, portal: o.portal, depth: o.depth };
 });
 
+// The reviewed walkways (walkways.json): { id, m2 }. Every placement of a
+// listed M2 gives KIND.m2Walkway triangles: rasterise.js keeps their faces
+// steeper than WALK_MAX as walls.
+const WALKWAYS = require('./walkways.json').walkways.map((w) => {
+	if (typeof w.id !== 'string' || !Number.isInteger(w.m2) || w.m2 <= 0) {
+		throw new Error(`walkways.json: bad entry ${JSON.stringify(w.id)}`);
+	}
+	return { id: w.id, m2: w.m2 };
+});
+
 const GRID = 64;
-const KIND = { terrain: 0, wmoOutdoor: 1, wmoIndoor: 2, m2: 3 };
+const KIND = { terrain: 0, wmoOutdoor: 1, wmoIndoor: 2, m2: 3, m2Walkway: 4 };
 const LIQUID = { none: 0, water: 1, ocean: 2, magma: 3, slime: 4 };
 const SOUND_BANK = [LIQUID.water, LIQUID.ocean, LIQUID.magma, LIQUID.slime];
 const OCEAN_FLAG = 0x400;
@@ -228,11 +238,13 @@ function model(cache, fdid, load) {
 //     openings (openings.json, OPENINGS) placed in this tile: the portal's
 //     span along its wall, `depth` yards to each side of its plane, between
 //     its bottom and top (rasterise.js carve).
+// A placement of a reviewed walkway's M2 (walkways.json, WALKWAYS) adds its
+// triangles as KIND.m2Walkway, any other M2 as KIND.m2.
 // Model triangles (collision and liquid) are kept when their xy box meets the
 // tile grown by `margin` yards (default 0); terrain triangles are
 // counter-clockwise seen from above, collision triangles as the model
 // stores them. opts.cache: Map fdid -> parsed WMO/M2, shared across tiles.
-async function tileGeometry(casc, { c, col, row, root, obj0 }, { cache = new Map(), margin = 0, openings = OPENINGS } = {}) {
+async function tileGeometry(casc, { c, col, row, root, obj0 }, { cache = new Map(), margin = 0, openings = OPENINGS, walkways = WALKWAYS } = {}) {
 	const [rootBuf, objBuf, liquid] = await Promise.all([casc.get(root), obj0 ? casc.get(obj0) : null, liquidInfo(casc)]);
 	const terrain = parseRoot(rootBuf);
 	const { tris: ttris, holes } = terrainTriangles(terrain.mcnk);
@@ -250,6 +262,7 @@ async function tileGeometry(casc, { c, col, row, root, obj0 }, { cache = new Map
 	const placements = [];
 	const cuts = [];
 	const get = (fdid) => casc.get(fdid);
+	const walkway = new Set(walkways.map((w) => w.m2));
 
 	const { wmo, m2 } = objBuf ? parsePlacements(chunks(objBuf)) : { wmo: [], m2: [] };
 	const wmoModels = await Promise.all(wmo.map((p) => model(cache, p.fdid, () => loadWmo(get, p.fdid, liquid.kind))));
@@ -285,7 +298,7 @@ async function tileGeometry(casc, { c, col, row, root, obj0 }, { cache = new Map
 		if (!mdl) return missing.add(p.fdid);
 		if (!mdl.idx.length) return;
 		const m = placementMatrix(p);
-		stats.m2Tris += place('m2', p, mdl, m, transformBox(m, mdl.box), KIND.m2);
+		stats.m2Tris += place('m2', p, mdl, m, transformBox(m, mdl.box), walkway.has(p.fdid) ? KIND.m2Walkway : KIND.m2);
 	});
 	stats.missing = [...missing].sort((a, b) => a - b);
 	const wmoLiquid = [];
@@ -356,4 +369,4 @@ function openingCut(v, depth) {
 	return { pts: [at(lo, -depth), at(hi, -depth), at(hi, depth), at(lo, depth)], zlo, zhi };
 }
 
-module.exports = { continentTiles, continentFlags, tileGeometry, openingCut, liquidInfo, transportTravel, KIND, LIQUID, OPENINGS };
+module.exports = { continentTiles, continentFlags, tileGeometry, openingCut, liquidInfo, transportTravel, KIND, LIQUID, OPENINGS, WALKWAYS };

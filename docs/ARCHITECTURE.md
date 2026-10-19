@@ -5114,6 +5114,12 @@ fileDataID from wago.tools into `data/sources/casc` (local, never shipped):
   whose centre lies within its span and `depth` yards of its plane lose
   their spans and walls from just above its bottom to its top (Brill's town
   hall, whose only way in is a 2.9 yd door into its tower room, #366).
+  Reviewed walkways (`geom/walkways.json`): a model face between WALK_MAX
+  and WALL_MIN is a span where it crosses a column's centre line, so on a
+  narrow model deck the rails' leaning faces can cover the deck's own
+  columns and cut it in two; every placement of a listed M2 keeps its faces
+  steeper than WALK_MAX as walls instead (Darkcloud Pinnacle's rope bridge,
+  whose two placements at 0.71 and 0.74 scale were closed, #374).
   Fatigue water is never swum: MH2O's deep quads (the server's fatigue; a
   chunk of ocean without attributes is deep throughout, `geom/mh2o.js`)
   give a blocked swim surface (`SWIM | BLOCKED`), so no route crosses open

@@ -359,6 +359,42 @@ test('openings: a reviewed portal cut opens a doorway whose jamb base closes its
 	assert.ok(column(t, 209.4, 70).some((c) => c.z > 1.9), 'a jamb base outside the cut keeps its height');
 });
 
+test('walkways: a narrow bridge whose leaning rails cover its deck is open only as a reviewed walkway (#374)', () => {
+	// Two model platforms (top 0.5) joined by a 1.9 yd deck inside one column
+	// row (y 100.1..102.0; the row's centre is y 101.04), over a 50 yd drop.
+	// Its rails lean in at 70°, 1.5 yd high: each crosses the north-south
+	// centre line of every column it passes, as Darkcloud Pinnacle's rope
+	// bridge at 0.71 scale does.
+	const build = (kind) => {
+		const s = new Scene({ height: () => -50 });
+		s.box(60, 90, -1, 100, 112, 0.5, 3).box(120, 90, -1, 160, 112, 0.5, 3);
+		s.quad([99.5, 100.1, 0.5], [120.5, 100.1, 0.5], [120.5, 102.0, 0.5], [99.5, 102.0, 0.5], kind);
+		const lean = 1.5 / TAN(70);
+		s.quad([100, 100.1, 0.5], [120, 100.1, 0.5], [120, 100.1 + lean, 2], [100, 100.1 + lean, 2], kind);
+		s.quad([100, 102.0, 0.5], [100, 102.0 - lean, 2], [120, 102.0 - lean, 2], [120, 102.0, 0.5], kind);
+		return linked(s);
+	};
+	const across = (t) => {
+		let e = top(t, 90, 101).e;
+		let k = column(t, 90, 101)[0].k;
+		for (let x = 90; x < 130; x += CELL) {
+			const b = linkOf(t, e, E);
+			if (b === NO_LINK) return false;
+			k += 1;
+			e = t.first[k] + (b & 31);
+		}
+		return Math.abs(t.z[e] - 0.5) < 0.01;
+	};
+	const plain = build(3);
+	assert.equal(across(plain), false, 'an M2 deck: the rails close it');
+	assert.ok(column(plain, 110, 101).every((c) => c.z < -10 || c.flags & FLAG.BLOCKED), 'its column holds no walkable surface at the deck');
+	const walkway = build(4);
+	assert.ok(across(walkway), 'a reviewed walkway: across the deck at its height');
+	const deck = top(walkway, 110, 101);
+	assert.ok(deck && deck.flags & FLAG.M2 && Math.abs(deck.z - 0.5) < 0.01, 'the deck is an M2 floor');
+	assert.ok(column(walkway, 110, 101).every((c) => c.z < 1), 'and the rails are no spans over it');
+});
+
 test('components: a pen walled higher than any fall is its own component', () => {
 	const s = new Scene();
 	s.box(100, 100, -1, 200, 104, 40).box(100, 196, -1, 200, 200, 40).box(100, 100, -1, 104, 200, 40).box(196, 100, -1, 200, 200, 40);

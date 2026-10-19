@@ -9,7 +9,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const { tmpdir } = require('./helpers/tmp');
-const { tileGeometry, continentTiles, openingCut, OPENINGS } = require('../tools/lib/nav/geom');
+const { tileGeometry, continentTiles, openingCut, OPENINGS, WALKWAYS, KIND } = require('../tools/lib/nav/geom');
 const { chunks } = require('../tools/lib/nav/geom/adt');
 const { parsePlacements, placementMatrix, transformBox } = require('../tools/lib/nav/geom/place');
 const { parseRoot: parseWmoRoot } = require('../tools/lib/nav/geom/wmo');
@@ -554,4 +554,27 @@ test('openings: Brill town hall\'s tower door is cut on its tile, floor to linte
 	const cx = cut.pts.reduce((a, p) => a + p[0], 0) / 4;
 	const cy = cut.pts.reduce((a, p) => a + p[1], 0) / 4;
 	assert.ok(Math.hypot(cx - 2298.0, cy - 284.0) < 0.5, `centred on the doorway: ${cx.toFixed(1)}, ${cy.toFixed(1)}`);
+});
+
+test('walkways: Darkcloud Pinnacle\'s rope bridges are walkway triangles in every placement (real tile, #374)', async (t) => {
+	assert.ok(WALKWAYS.some((w) => w.id === 'thousand-needles-grimtotem-rope-bridge' && w.m2 === 202693), 'the rope bridge is listed');
+	let casc;
+	try {
+		casc = await openCasc({ sourcesDir: SOURCES, offline: true });
+	} catch (err) {
+		return t.skip(`no CASC cache: ${err.message}`);
+	}
+	if (![785600, 785601, 202693].every((f) => casc.has(f))) return t.skip(`CASC cache ${casc.build} lacks Kalimdor 35_41 (node tools/polestar.js nav build)`);
+	let g;
+	try {
+		g = await tileGeometry(casc, { c: 1, col: 35, row: 41, root: 785600, obj0: 785601 });
+	} catch (err) {
+		return t.skip(`CASC cache ${casc.build} lacks a file of 35_41: ${err.message}`);
+	}
+	const kindsOf = (p) => new Set(g.kind.subarray(p.first, p.first + p.count));
+	const bridges = g.placements.filter((p) => p.fdid === 202693 && p.count);
+	assert.ok(bridges.some((p) => p.uniqueId === 475080), 'the bridge to Arnak Grimtotem (0.71 scale)');
+	for (const p of bridges) assert.deepEqual([...kindsOf(p)], [KIND.m2Walkway], `bridge ${p.uniqueId}`);
+	const others = g.placements.filter((p) => p.type === 'm2' && p.fdid !== 202693 && p.count);
+	assert.ok(others.length > 0 && others.every((p) => [...kindsOf(p)].every((k) => k === KIND.m2)), 'every other model stays an M2');
 });

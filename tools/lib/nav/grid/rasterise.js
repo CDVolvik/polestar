@@ -31,6 +31,16 @@
 // portal's bottom and its top are trimmed away (carve), so the threshold's
 // own floor stays and the doorway is open to its full height.
 //
+// Reviewed walkways (#374). A narrow model deck lost to the second rule: a
+// rope bridge placed at 0.71 scale between Darkcloud Pinnacle's mesas has
+// rails whose leaning faces (68-74 degrees) cross the centre lines of the
+// deck's own columns, so their spans covered the planks (blocked below,
+// steep on top) and the bridge was cut in two. The triangles of an M2 listed
+// in tools/lib/nav/geom/walkways.json (tagged KIND_WALKWAY by tileGeometry)
+// that are steeper than WALK_MAX are walls, as if they were
+// WALL_MIN or steeper: the deck stays open and the rails still keep a walk
+// on it. Every other model keeps the rules above.
+//
 // rasterise({ tris, kind, openings? }, { col, row }) -> Heightfield
 //   head: Int32Array(COLUMNS) first span of each column (ascending z), -1 none
 //   next, smin, smax, slope (Uint8, degrees), kind (Uint8) per span
@@ -41,6 +51,7 @@
 const { ADT, CELL, TILE_CELLS, COLUMNS, MERGE_TOP, WALK_MAX, WALL_MIN, HALF, wallIndex } = require('./format');
 
 const CUT_FLOOR = 0.25; // yd above a cut's bottom that its threshold's floor may reach
+const KIND_WALKWAY = 4; // geom KIND.m2Walkway: a reviewed walkway's M2 triangle
 
 class Heightfield {
 	constructor(capacity = 1 << 18) {
@@ -391,7 +402,7 @@ function rasterise(geom, { col, row }) {
 		if (!(len > 1e-9)) continue;
 		const slope = Math.min(90, Math.round(Math.acos(Math.min(1, Math.abs(nz) / len)) * DEG));
 		const kd = kind[t];
-		const wall = kd !== 0 && slope >= WALL_MIN;
+		const wall = kd !== 0 && (slope >= WALL_MIN || (kd === KIND_WALKWAY && slope > WALK_MAX));
 		const steep = kd !== 0 && slope > WALK_MAX;
 		poly[0] = u0;
 		poly[1] = v0;
