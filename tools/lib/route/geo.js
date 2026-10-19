@@ -6,25 +6,30 @@
 // bounds (`forever`) and come back as Era-frame percent, so every point a
 // projector returns is in the Era frame when the map has Era bounds: clusters
 // never mix frames, and generators can write the numbers into `coords era`
-// guides as they are.
+// guides as they are. A map Forever added (Zephras Isle, Riverglades) has only
+// Forever bounds, and every point on it, author-given or spawn, is measured
+// through them.
 
 // Distance between points on different continents. Finite so that tour
 // arithmetic stays exact; large enough that no route ever prefers it.
 const FAR = 1e6;
 
-// Fallback when a map has no registered bounds: a 1000-yard square.
+// Fallback when a map has neither Era nor Forever bounds: a 1000-yard square.
 const FALLBACK = { c: 0, left: 0, right: -1000, top: 0, bottom: -1000 };
 
 function makeProjector(frames, warn) {
 	const era = (frames && frames.era) || {};
 	const forever = (frames && frames.forever) || {};
 	const warned = new Set();
+	// The map's Era bounds, else its Forever ones (a map only Forever has).
 	function bounds(map) {
 		const b = era[String(map)];
-		if (b && [b.left, b.right, b.top, b.bottom].every((v) => typeof v === 'number')) return b;
+		if (b && hasBounds(b)) return b;
+		const lb = liveBounds(map);
+		if (lb) return lb;
 		if (!warned.has(map)) {
 			warned.add(map);
-			if (warn) warn(`map ${map} has no Era bounds in map-frames.json; distances assume a 1000-yard square`);
+			if (warn) warn(`map ${map} has no bounds in map-frames.json; distances assume a 1000-yard square`);
 		}
 		return { ...FALLBACK, c: -Number(map) };
 	}
