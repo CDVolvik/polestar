@@ -134,19 +134,30 @@ test('auto-detect finds the Forever client in Wine/Proton/Faugus prefixes by its
 	flavorClient(path.join(home, '.wine', 'drive_c', 'Program Files (x86)', 'World of Warcraft'), '_classic_beta_', null);
 	let found = detectAddonsDirs(home, NO_NATIVE);
 	assert.deepEqual(found.map((f) => [f.addons, f.kind]), [[path.join(beta, 'Interface', 'AddOns'), 'beta']]);
+	// Single client: chooseDest returns { dir } directly.
 	assert.deepEqual(install.chooseDest({}, {}, home, NO_NATIVE).dir, path.join(beta, 'Interface', 'AddOns'));
 
-	// After launch: a _forever_ client in a Faugus prefix wins over the beta.
+	// After launch: a _forever_ client appears alongside the beta; both are installed into.
 	const live = flavorClient(path.join(home, 'Faugus', 'battlenet', 'drive_c', 'Program Files (x86)', 'World of Warcraft'), '_forever_', 'wow_forever');
 	found = detectAddonsDirs(home, NO_NATIVE);
 	assert.equal(found.length, 2);
-	assert.deepEqual(install.chooseDest({}, {}, home, NO_NATIVE).dir, path.join(live, 'Interface', 'AddOns'));
+	// Multiple clients: chooseDest returns { dirs } covering all of them.
+	const multi = install.chooseDest({}, {}, home, NO_NATIVE);
+	assert.ok(multi.dirs, 'expects dirs for multiple clients');
+	assert.equal(multi.dirs.length, 2);
+	assert.ok(multi.dirs.some((d) => d.dir === path.join(beta, 'Interface', 'AddOns')));
+	assert.ok(multi.dirs.some((d) => d.dir === path.join(live, 'Interface', 'AddOns')));
+	// --client picks one by folder name.
+	assert.deepEqual(install.chooseDest({ client: '_forever_' }, {}, home, NO_NATIVE).dir, path.join(live, 'Interface', 'AddOns'));
+	// Unknown --client errors with a list of what is available.
+	const bad = install.chooseDest({ client: 'nope' }, {}, home, NO_NATIVE);
+	assert.match(bad.error, /--client nope: no client found; detected:/);
 
 	// Proton prefixes keep drive_c under pfx/.
 	const proton = flavorClient(path.join(home, '.local', 'share', 'Steam', 'steamapps', 'compatdata', '12345', 'pfx', 'drive_c', 'Program Files (x86)', 'World of Warcraft'), '_forever_', 'wow_forever');
 	assert.ok(detectAddonsDirs(home, NO_NATIVE).some((f) => f.client === proton));
-	const two = install.chooseDest({}, {}, home, NO_NATIVE);
-	assert.match(two.error, /several Forever clients found/);
+	const three = install.chooseDest({}, {}, home, NO_NATIVE);
+	assert.ok(three.dirs && three.dirs.length === 3, 'three clients → three entries in dirs');
 });
 
 test('auto-detected installs create Interface/AddOns when the client has none yet', async () => {
@@ -161,6 +172,61 @@ test('auto-detected installs create Interface/AddOns when the client has none ye
 	const none = await quiet(() => install.run(['--addons', src], { HOME: tmpdir() }, NO_NATIVE));
 	assert.equal(none.result, 1);
 	assert.match(none.out, /no World of Warcraft: Forever client found/);
+});
+test('wowf flavor (stress-test client) is detected as a Forever client', () => {
+	const home = tmpdir();
+	const wow = path.join(home, 'Games', 'drive_c', 'Program Files (x86)', 'World of Warcraft');
+	const stress = flavorClient(wow, '_forever_', 'wowf');
+	const found = detectAddonsDirs(home, NO_NATIVE);
+	assert.equal(found.length, 1);
+	assert.equal(found[0].flavor, 'wowf');
+	assert.equal(found[0].kind, 'forever');
+	assert.equal(found[0].name, '_forever_');
+	assert.equal(found[0].client, stress);
+	assert.deepEqual(install.chooseDest({}, {}, home, NO_NATIVE).dir, path.join(stress, 'Interface', 'AddOns'));
+});
+
+test('install with beta + wowf clients installs into both; --client picks one; unknown --client errors with the list', async () => {
+	const home = tmpdir();
+	const wow = path.join(home, 'Games', 'drive_c', 'Program Files (x86)', 'World of Warcraft');
+	const beta = flavorClient(wow, '_classic_beta_', 'wow_classic_beta');
+	const stress = flavorClient(path.join(home, 'Faugus', 'battlenet', 'drive_c', 'Program Files (x86)', 'World of Warcraft'), '_forever_', 'wowf');
+	const src = compiledAddons();
+
+	// No --client: installs into both.
+	const both = await quiet(() => install.run(['--addons', src, '--dry-run'], { HOME: home }, NO_NATIVE));
+	assert.equal(both.result, 0, both.out);
+	assert.match(both.out, /_classic_beta_/);
+	assert.match(both.out, /_forever_.*wowf|wowf.*_forever_/);
+
+	// Installs for real into both.
+	const real = await quiet(() => install.run(['--addons', src], { HOME: home }, NO_NATIVE));
+	assert.equal(real.result, 0, real.out);
+	assert.deepEqual(fs.readdirSync(path.join(beta, 'Interface', 'AddOns')).sort(), ['Polestar', 'Polestar_Guides', 'Polestar_Nav']);
+	assert.deepEqual(fs.readdirSync(path.join(stress, 'Interface', 'AddOns')).sort(), ['Polestar', 'Polestar_Guides', 'Polestar_Nav']);
+
+	// --client _forever_ picks only the stress-test client.
+	const pickFolder = await quiet(() => install.run(['--addons', src, '--dry-run', '--client', '_forever_'], { HOME: home }, NO_NATIVE));
+	assert.equal(pickFolder.result, 0, pickFolder.out);
+	assert.match(pickFolder.out, /--client _forever_.*_forever_.*wowf/);
+	assert.doesNotMatch(pickFolder.out, /_classic_beta_/);
+
+	// --client wowf picks by flavor.
+	const pickFlavor = await quiet(() => install.run(['--addons', src, '--dry-run', '--client', 'wowf'], { HOME: home }, NO_NATIVE));
+	assert.equal(pickFlavor.result, 0, pickFlavor.out);
+	assert.match(pickFlavor.out, /wowf/);
+
+	// --client beta picks by kind.
+	const pickBeta = await quiet(() => install.run(['--addons', src, '--dry-run', '--client', 'beta'], { HOME: home }, NO_NATIVE));
+	assert.equal(pickBeta.result, 0, pickBeta.out);
+	assert.match(pickBeta.out, /wow_classic_beta/);
+
+	// Unknown --client errors with the detected list.
+	const unknown = await quiet(() => install.run(['--addons', src, '--client', 'nope'], { HOME: home }, NO_NATIVE));
+	assert.equal(unknown.result, 1, unknown.out);
+	assert.match(unknown.out, /--client nope: no client found; detected:/);
+	assert.match(unknown.out, /_classic_beta_/);
+	assert.match(unknown.out, /_forever_/);
 });
 
 test('install refuses to replace its own source, install into the source, or replace a folder that is not that addon', async () => {
