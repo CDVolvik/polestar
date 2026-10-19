@@ -1,14 +1,27 @@
-# Guide pack format
+# Community addon format
 
-The contract between a guide pack and Polestar, for anyone building tools of
-their own. Authors who use Polestar's tools never write any of this by hand:
-they write `pack.json` and `.guide` files ([GUIDE_FORMAT.md](GUIDE_FORMAT.md))
-and `polestar compile` writes the rest. The handbook is
-[PACKS.md](PACKS.md).
+The contract between a community addon and Polestar, for anyone building
+tools of their own. Authors who use Polestar's tools never write any of this
+by hand: they write `pack.json` and `.guide` files
+([GUIDE_FORMAT.md](GUIDE_FORMAT.md)) and `polestar compile` writes the rest.
+The handbook is [PACKS.md](PACKS.md).
 
-A guide pack is an addon for World of Warcraft: Forever that depends on
-Polestar and registers guides with it. Polestar's own guides are a pack too
-(`Polestar_Guides`, pack id `guides`).
+> [!TIP]
+> Building a tool that generates guides? The simplest path is to write a
+> pack (`pack.json` and `.guide` files) and let `polestar lint`,
+> `polestar playtest` and `polestar pack` check and build it. Write the
+> addon described below yourself only when that is not an option.
+
+**On this page:** [`pack.json`](#packjson) ·
+[The addon](#the-addon) · [TOC fields](#toc-fields) ·
+[Rules Polestar enforces](#rules-polestar-enforces) ·
+[Format 3](#format-3) · [Versioning](#versioning)
+
+A community addon is an addon for World of Warcraft: Forever that depends
+on Polestar and registers guides with it. It is built from a pack: a folder
+with a `pack.json` and `.guide` files. In the format, every such addon is a
+pack; Polestar's own guides are a pack too (`Polestar_Guides`, pack id
+`guides`).
 
 ## `pack.json`
 
@@ -39,7 +52,7 @@ a parent.
 | `license` | yes | the licence of the pack's guides, as an SPDX id where one exists (`CC-BY-4.0`, `CC0-1.0`, `MIT`, `GPL-3.0-only`); at most 64 characters |
 | `website` | no | `https://` or `http://` address; at most 200 characters |
 | `source` | no | where the guides come from, in the author's words; at most 200 characters |
-| `notes` | no | one line for the AddOns list, shown when the player points at the pack there; at most 200 characters (default "Guide pack for Polestar by <author>") |
+| `notes` | no | one line for the AddOns list, shown when the player points at the pack there; at most 200 characters (default "Community addon for Polestar by <author>") |
 | `folder` | no | the addon's folder name: 1 to 64 letters, digits, `_` and `-`, not `Polestar` and not starting with `Polestar_` (in any case); default `PolestarPack_` and the title in CamelCase (`Joe's Routes` → `PolestarPack_JoesRoutes`), or the id when the title has no letters or digits |
 
 Every value is a string on one line. A missing required field, or a value
@@ -103,8 +116,8 @@ Each guide's table is built inside its own function in `Guides.lua`, so Lua
 
 ```
 ## Interface: 16001
-## Title: Polestar Pack: Joe's Routes
-## Notes: Guide pack for Polestar by Joe
+## Title: Polestar Community: Joe's Routes
+## Notes: Community addon for Polestar by Joe
 ## Author: Joe
 ## Version: 1.2.0
 ## Category: Quests
@@ -125,13 +138,13 @@ Guides.lua
 | Field | Value |
 |---|---|
 | `Interface` | copied from `addon/Polestar/Polestar.toc` at build time |
-| `Title` | "Polestar Pack: " and `pack.json` `title` (the title alone when it already starts so), so the AddOns list reads the addon as a pack. Polestar's own menus show the title without it. Polestar's own pack (`guides`) gets no prefix |
+| `Title` | "Polestar Community: " and `pack.json` `title` (the title alone when it already starts so), so the AddOns list reads the addon as a community addon. Community addons built before this prefix carry "Polestar Pack: " until rebuilt; Polestar recognises both. Polestar's own menus show the title without it. Polestar's own pack (`guides`) gets no prefix |
 | `Author`, `Version` | from `pack.json` |
-| `Notes` | `pack.json` `notes`, else "Guide pack for Polestar by <author>" |
+| `Notes` | `pack.json` `notes`, else "Community addon for Polestar by <author>" |
 | `Category` | `Quests`, Polestar's category in the AddOns list |
 | `Group` | `Polestar`: the AddOns list shows the pack under Polestar's own entry, beside Polestar's own addons. Not written for Polestar's own pack |
 | `Dependencies` | `Polestar`: the client loads Polestar first |
-| `X-Polestar-Pack` | the pack id. Polestar lists every addon carrying it on the Guide packs page, loaded or not |
+| `X-Polestar-Pack` | the pack id. Polestar lists every addon carrying it on the Community guides page, loaded or not |
 | `X-Polestar-Format` | the pack format (below) |
 | `X-Polestar-Needs` | the first Polestar version that reads that format, so an older Polestar can say which version the pack needs |
 | `X-License` | `pack.json` `license` |
@@ -143,9 +156,9 @@ The comment line is the **generated-folder marker**, and with
 replaced without the check) and `dev` (the folder
 in AddOns) write a pack folder only when it is absent, empty, or carrying
 the generated marker and no other pack's id. Anything else is refused: a
-folder without the marker as "not a generated guide pack", one generated
+folder without the marker as "not a generated community addon", one generated
 for another pack as holding that pack, with the hint to set `folder` in
-`pack.json`. `pack` builds a guide pack's zip in memory, and `play` writes
+`pack.json`. `pack` builds a community addon's zip in memory, and `play` writes
 into a new temporary folder, so neither touches an existing pack folder.
 
 ## Rules Polestar enforces
@@ -183,7 +196,7 @@ before a pack is built (`tests/packs-parity.test.js` holds the two together).
 6. **Visible problems.** Every refusal is recorded against its pack with a
    kind: `pack-refused` (the pack), `guide-refused` (one guide, with its id),
    `no-guides` (the addon loaded but registered no guides, usually a Lua error
-   in its files). The Guide packs page shows them.
+   in its files). The Community guides page shows them.
 7. **Text prints literally.** Every string a pack registers is escaped once,
    at registration (`|` doubled), so colour and link codes do not work. A
    guide's ids (`id`, `pack`, `next`, `nextChoices`) are left as written.
@@ -191,7 +204,7 @@ before a pack is built (`tests/packs-parity.test.js` holds the two together).
    missing or switched off reopen in their old place when it comes back.
 9. **Packs on disk.** At login Polestar lists every addon whose TOC carries
    `X-Polestar-Pack`, loaded or not, with a status. A registered pack is
-   `on`, `off` (switched off on the Guide packs page), `refused`, `too-new`
+   `on`, `off` (switched off on the Community guides page), `refused`, `too-new`
    (a newer format) or `broken` (registered no guides). One that never
    registered is, in this order of precedence, `too-new`, `disabled` (turned
    off in the AddOns list), `not-loaded` (the client did not load it: out of
@@ -199,7 +212,7 @@ before a pack is built (`tests/packs-parity.test.js` holds the two together).
 
 Only guides of packs that are on are shown, searched and suggested.
 Suggestions come from Polestar's guides unless the player picks a pack under
-**Suggest guides from** on the Guide packs page; only packs with Leveling
+**Suggest guides from** on the Community guides page; only packs with Leveling
 guides are offered there, and Polestar's guides fill in where the chosen pack
 has nothing for the character.
 
@@ -221,7 +234,9 @@ step's `title` and `note`; a goal's `note` and `text`) are written
 each as the game names it in the client's language (Polestar.Names, the
 client's map and area names, the profession's translation), else as the
 guide's `names` give it, so an English client reads the text as its author
-wrote it. The compiler writes the tokens (GUIDE_FORMAT.md, "Names in
+wrote it (a text that spells a name otherwise, "Dendrite" for Dendrite
+Starblaze, is in the guide's `written` with the author's words). The
+compiler writes the tokens (GUIDE_FORMAT.md, "Names in
 texts"); an older Polestar would show them as written, hence the format.
 
 ### `RegisterPack(meta)`
@@ -290,6 +305,7 @@ Guide keys (the compiler writes them in this order):
 | `version` | no | number |
 | `group` | no | `true` (format 2): a goal of the guide's route that is not `optional` needs a group; the guide menu shows a "Group" chip |
 | `names` | no | format 3: `{ ["npc:240"] = "Marshal Dughan", ... }`, the English of every name token the guide's texts hold (a token it lacks is shown as written) |
+| `written` | no | format 3: `{ ["Back to {npc:3649}"] = "Back to Dendrite", ... }`, a text whose names its tokens' English in `names` would spell otherwise, with the author's words an English client reads |
 | `steps` | yes | list of steps, at least one |
 
 Step keys: `title` (optional), `note` (optional, player-facing), `only`
@@ -311,7 +327,7 @@ frame; absent: the live frame), `r` (arrival radius in yards), `spots`
 | `turnin` | `quest`, `title` | `npc`/`npcName`, `object`/`objName`, `rewards = { choices = { { item, itemName, quality } }, items = { ... }, xp, money }`, `direct` |
 | `complete` | `quest`, `title` | — |
 | `kill` | `target` | `title`, `npc`, `count`, `quest`, `oi`, `spread` |
-| `collect` | `item`, `itemName` | `title`, `count`, `quest`, `oi`, `spread`, `from`, `fromAlso`, `fromId`, `fromAlsoId`, `fromKind`, `fromRank`, `fromFaction`, `candidates` |
+| `collect` | `item`, `itemName` | `title`, `count`, `quest`, `oi`, `spread`, `from`, `fromAlso`, `fromId`, `fromAlsoId`, `fromKind`, `fromRank`, `fromFaction`, `fromNpcs`, `candidates` |
 | `goto` | `map`, `x`, `y` | `text`, `r`, `area` |
 | `talk` | `npc`, `npcName` | — |
 | `interact` | `object`, `objName` | `title`, `quest`, `oi`, `spread` |
@@ -354,14 +370,15 @@ The fields:
 | `reagents` | `{ { item, itemName, count } }` |
 | `standing` | 1 Hated to 8 Exalted |
 | `criteria` | an achievement's criterion index |
-| `z` | the height (world z, yards) of the NPC or object the goal's `x`,`y` stands for, so the walking route ends on its floor (an Undercity quarter rather than the street above it). Polestar 0.2.4 and later pass it to the walking engine while the arrow leads to that point (not to a smart target's candidate, nor to a spawn place elsewhere), and ask again without it when the route found with it fails or ends more than 30 yards above or below it. The compiler fills it in (GUIDE_FORMAT.md, "Heights"); a hand-written pack may leave it out. Older Polestar ignores it, so it does not change the format |
-| `area` | the AreaTable area ID (`C_Map.GetAreaInfo`) of the place a `sethome`, `hearth`, `fly` or `getfp` location or a `goto` label names. Polestar 0.2.5 and later complete a `hearth` or `fly` when the zone or subzone text is that area's name in the client's language, accept a `sethome` bind location that reads so, and show that name in place of the English one. The compiler fills it in (GUIDE_FORMAT.md, "Places by ID"); without it the goal matches by its English name. Older Polestar ignores it, so it does not change the format |
+| `z` | the height (world z, yards) of the NPC or object the goal's `x`,`y` stands for, so the walking route ends on its floor (an Undercity quarter rather than the street above it). Polestar 0.2.4 and later pass it to the walking engine while the arrow leads to that point, and ask again without it when the route found with it fails or ends more than 30 yards above or below it. A spot (`spots`) and a smart target's candidate (`candidates`) may carry their own `z`, which Polestar 0.2.5 and later pass the same way when the arrow leads there (#180). The compiler fills it in (GUIDE_FORMAT.md, "Heights"); a hand-written pack may leave it out. Older Polestar ignores it, so it does not change the format |
+| `area` | the AreaTable area ID (`C_Map.GetAreaInfo`) of the place a `sethome`, `hearth`, `fly` or `getfp` location or a `goto` label names. Polestar 0.2.5 and later complete a `hearth` or `fly` when the zone or subzone text is that area's name in the client's language, accept a `sethome` bind location that reads so, count a `goto` arrived when the player goes indoors in that subzone (a cave or mine past its mouth; never for a zone), and show that name in place of the English one. The compiler fills it in (GUIDE_FORMAT.md, "Places by ID"); without it the goal matches by its English name. Older Polestar ignores it, so it does not change the format |
 | `node` | on `getfp`: the taxi node ID (`C_TaxiMap` `nodeID`) of its flight point. Polestar 0.2.5 and later count the goal done once the flight map lists that node as known, instead of comparing names. Filled in like `area`; older Polestar ignores it |
-| `spots` | spawn places `{ { x, y, r, n, alt } }`: centre in the goal's map and frame, radius in yards, spawn count; `alt = true` for another place the target spawns, which the arrow takes only when the player moves on to it (the world map marks it) |
+| `spots` | spawn places `{ { x, y, z, r, n, alt } }`: centre in the goal's map and frame, its height (optional, see `z`), radius in yards, spawn count; `alt = true` for another place the target spawns, which the arrow takes only when the player moves on to it (the world map marks it) |
 | `spread` | `true` with `spots`: an area objective, searched spot by spot |
 | `from`, `fromAlso`, `fromKind`, `fromRank`, `fromFaction` | a `collect`'s main source: name, a second source of the same kind dropping it at 50% or more, `"npc"` or `"object"`, rank (1 elite, 2 rare elite, 3 boss, 4 rare), faction `"A"`, `"H"` or `"AH"` |
 | `fromId`, `fromAlsoId` | the ids of `from` and `fromAlso` (of kind `fromKind`): Polestar names them in the client's language (`Polestar.Names`), keeping `from`/`fromAlso` where it has no name; older Polestar ignores them |
-| `candidates` | smart targets: `{ { npc, npcName, map, x, y, f, faction, races, classes, lvl, rate, spawns } }`; Polestar picks the nearest usable one at runtime |
+| `fromNpcs` | a `collect`'s source creatures where the goal stands: `{ { npc, npcName } }`, the one its point belongs to first, then the other likely sources there, at most 5 (GUIDE_FORMAT.md, "What the compiler fills in"). Newer Polestar gives them to the target button, named in the client's language by their ids, before the item's own droppers from the quest database, whose drop chances rank them over the whole world. Older Polestar ignores them, so it does not change the format |
+| `candidates` | smart targets: `{ { npc, npcName, map, x, y, z, f, faction, races, classes, lvl, rate, spawns } }` (`z` optional, see `z`); Polestar picks the nearest usable one at runtime |
 | `rewards` | `{ choices = { { item, itemName, quality } }, items = { ... }, xp, money }` (money in copper) |
 | `direct` | `true` on a `turnin`: the quest is handed in straight from the giver's window and never enters the quest log, so the goal needs no `accept` before it and carries no objectives. Polestar counts it done on the hand-in itself and stores that, so a repeatable stays done after a reload |
 | `group` | format 2: the goal needs a group, shown under it in the guide window: `{ kind = "elite", rank = 1 }` (rank 1 elite, 2 rare elite, 3 boss: "Elite: group advised"), `{ kind = "dungeon", name = "Dire Maul" }` ("Dungeon: Dire Maul"), `{ kind = "raid", name = "Molten Core" }` ("Raid: Molten Core"), `{ kind = "group", size = 3 }` ("Group of 3 advised"; without `size`, "Group advised"). The compiler derives it or takes the author's `group [N]` (GUIDE_FORMAT.md, "Group content"); Polestar shows nothing for a kind it does not know |
@@ -398,5 +415,5 @@ frames of a pack that is not registered are dropped.
   into the TOC as `X-Polestar-Needs`. Format 1 is read by Polestar 0.1.0 and
   later, format 2 (the `group`, `reward` and `why` keys) by 0.2.4 and later.
 - A pack in a format this Polestar does not read registers nothing; the
-  Guide packs page shows it as `too-new` with "Needs Polestar <version> or
+  Community guides page shows it as `too-new` with "Needs Polestar <version> or
   newer." (rule 5).

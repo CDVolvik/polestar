@@ -84,7 +84,10 @@ local function runSpeed()
 	return RUN_SPEED
 end
 
--- Corpse in world yards: c, wx, wy, map, x, y (live percent on the player's map).
+-- Corpse in world yards: c, wx, wy, map, x, y (live percent on the zone that
+-- holds it). The client answers on the player's map, off its edge when the
+-- ghost is in the next zone (#270), so the point is moved onto the zone under
+-- it on the continent map; the player's map when that finds none.
 local function corpse()
 	local C = ns.Compat
 	local map = C.GetPlayerMapPosition and C.GetPlayerMapPosition()
@@ -97,6 +100,14 @@ local function corpse()
 	if not (x and y) or (x == 0 and y == 0) then return nil end
 	local c, wx, wy = C.MapToWorld(map, x * 100, y * 100)
 	if not c then return nil end
+	local J = ns.Nav and ns.Nav.journey
+	local cont = J and C.GetContinentMap(map)
+	if cont then
+		local kx, ky = C.WorldToMap(c, wx, wy, cont)
+		local zm, zx, zy
+		if kx then zm, zx, zy = J.ZonePoint(cont, kx, ky) end
+		if zm then return c, wx, wy, zm, zx, zy end
+	end
 	return c, wx, wy, map, x * 100, y * 100
 end
 
@@ -232,12 +243,12 @@ local function release()
 		local step = E and E.GetStepIndex and E.GetStepIndex() or nil
 		if previous and previous.stepIndex == step then
 			-- Picked before dying, on the same guide step: hand it back.
-			Nav.SetTarget(previous.map, previous.x, previous.y, previous.label, previous.f, previous.stop)
+			Nav.SetTarget(previous.map, previous.x, previous.y, previous.label, previous.f, previous.stop, previous.z)
 		elseif Nav.ReleaseTarget then
 			Nav.ReleaseTarget()
 		else
 			local wp = E and E.GetWaypoint and E.GetWaypoint()
-			if wp then Nav.SetTarget(wp.map, wp.x, wp.y, wp.label, wp.f) elseif Nav.ClearTarget then Nav.ClearTarget() end
+			if wp then Nav.SetTarget(wp.map, wp.x, wp.y, wp.label, wp.f, nil, wp.z) elseif Nav.ClearTarget then Nav.ClearTarget() end
 		end
 	end
 	mine, current, noted, previous = nil, nil, false, nil

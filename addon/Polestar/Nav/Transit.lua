@@ -30,8 +30,8 @@
 --   Transit.NextArrival(kind, id, now, side) -> arriveIn (0 = there now),
 --       departIn; nil while untimed
 --   Transit.Caption(kind, id, now, side) -> "Next boat in 1:20", "Boat
---       docked, leaves in 0:40", untimed "Next boat in about 2:55"; nil for
---       an unknown id
+--       docked, leaves in 0:40", untimed "Boat: average wait 2:55" (no
+--       countdown, since nothing has timed the loop); nil for an unknown id
 --   Transit.Riding(now) -> { kind, route, dock, arriveIn } | nil   (dock: its name to show)
 --   Transit.LiftNear(c, wx, wy [, yards]) -> liftId, name (to show)
 --   Transit.Teleports(now) -> usable class teleports, see below
@@ -363,15 +363,15 @@ local NEXT = {
 	lift = L["Next lift in %s"],
 }
 
-local ABOUT = {
-	boat = L["Next boat in about %s"],
-	zeppelin = L["Next zeppelin in about %s"],
-	tram = L["Next tram in about %s"],
-	lift = L["Next lift in about %s"],
+local AVERAGE = {
+	boat = L["Boat: average wait %s"],
+	zeppelin = L["Zeppelin: average wait %s"],
+	tram = L["Tram: average wait %s"],
+	lift = L["Lift: average wait %s"],
 }
 
--- Timed: when it docks, or while docked when it leaves. Untimed: the
--- expected wait, said as "about".
+-- Timed: when it docks, or while docked when it leaves. Untimed: the loop's
+-- average wait, which stands still, so it is never worded as a countdown.
 function Transit.Caption(kind, id, now, side)
 	local s = serviceOf(id)
 	if not s then return nil end
@@ -385,7 +385,7 @@ function Transit.Caption(kind, id, now, side)
 	end
 	local wait = Transit.NextDeparture(kind, id, now, side)
 	if not wait then return nil end
-	return format(ABOUT[k], countdown(wait))
+	return format(AVERAGE[k], countdown(wait))
 end
 
 -- Every lift: { id, name, c, wx, wy, top, bottom } (z of its landings), for

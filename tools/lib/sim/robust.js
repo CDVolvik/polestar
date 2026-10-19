@@ -64,7 +64,7 @@ async function evaluateDraws({ world, worldFile, runOpts, routes, draws, workers
 			return routes.map((r) => ev.cost(r));
 		});
 	}
-	const pool = new Pool(workers, { worldFile, runOpts, params: draws[0] });
+	const pool = new Pool(workers, { worldFile, runOpts, params: draws[0], walks: !!world.walks });
 	try {
 		const chunk = Math.max(1, Math.ceil(draws.length / (workers * 4)));
 		const msgs = [];
@@ -115,7 +115,10 @@ function analyze(seconds, draws, labels, margin = 0.01) {
 
 async function robust(o) {
 	const faction = sim.normFaction(o.faction);
-	const file = sim.resultFile(o.simDir, faction, o.race, o.cls, o.family || 'solo');
+	const objective = o.objective || 'time';
+	const overrides = o.overrides || {};
+	const tag = o.tag || null;
+	const file = sim.resultFile(o.simDir, faction, o.race, o.cls, o.family || 'solo', objective, tag);
 	if (!fs.existsSync(file)) throw new Error(`${file} not found: run \`sim run --faction ${faction} --race ${o.race}\` first`);
 	const res = JSON.parse(fs.readFileSync(file, 'utf8'));
 	const { world, worldFile } = await sim.loadWorld({ ...o, faction });
@@ -124,7 +127,7 @@ async function robust(o) {
 	const run = compileRun(world, runOpts);
 	const top = res.elite.slice(0, o.top || 10);
 	const routes = top.map((e) => sim.routeFromKeys(run, e.route));
-	const { eff } = sim.paramsFor(o.simDir, o.cls);
+	const { eff } = sim.paramsFor(o.simDir, o.cls, objective, overrides);
 	const K = o.draws || 2000;
 	const draws = drawParams(eff, K, o.seed || 7);
 	const t0 = Date.now();
@@ -139,7 +142,7 @@ async function robust(o) {
 		r.diffVsFirst = { added: top[i].route.filter((k) => !first.has(k)), removed: top[0].route.filter((k) => !s.has(k)) };
 		r.searchSeconds = top[i].seconds;
 	});
-	const out = { schema: 1, faction, race: o.race, class: sim.className(o.cls), family: runOpts.family, draws: K, seed: o.seed || 7, wallSeconds: wall, result: path.basename(file), ...a };
+	const out = { schema: 1, faction, race: o.race, class: sim.className(o.cls), family: runOpts.family, objective, overrides, tag, draws: K, seed: o.seed || 7, wallSeconds: wall, result: path.basename(file), ...a };
 	const outFile = file.replace(/\.json$/, '-robust.json');
 	fs.writeFileSync(outFile, `${JSON.stringify(out, null, 1)}\n`);
 	out.file = outFile;
@@ -148,14 +151,21 @@ async function robust(o) {
 
 async function command(args, o) {
 	const faction = sim.normFaction(args.faction);
+	let cls;
+	try {
+		cls = sim.normClass(args.class);
+	} catch (err) {
+		console.error(`sim robust: ${err.message}`);
+		return 2;
+	}
 	const racesList = args.race ? [args.race] : sim.START_RACES[faction];
 	for (const race of racesList) {
 		const r = await robust({
-			...sim.DEFAULTS, ...o, faction, race, cls: args.class || null, family: args.dungeons ? 'dungeons' : 'solo',
+			...sim.DEFAULTS, ...o, faction, race, cls, family: args.dungeons ? 'dungeons' : 'solo',
 			draws: args.draws ? Number(args.draws) : 2000, top: args.top ? Number(args.top) : 10,
 			workers: args.workers ? Number(args.workers) : undefined, seed: args.seed ? Number(args.seed) : undefined,
 		});
-		console.log(`\n== robustness ${r.faction} ${r.race} (${r.class}, ${r.family}): ${r.draws} draws, ${r.routes.length} routes, ${r.wallSeconds.toFixed(1)} s ==`);
+		console.log(`\n== robustness ${r.faction} ${r.race} (${r.class}, ${r.family}${sim.variantLabel(r.objective, r.overrides, r.tag)}): ${r.draws} draws, ${r.routes.length} routes, ${r.wallSeconds.toFixed(1)} s ==`);
 		console.log(table(['route', 'search', 'win rate', 'within 1%', 'mean', '5%', '95%', 'vs #1'], r.routes.map((x) => [
 			x.label, fmtH(x.searchSeconds), `${(100 * x.winRate).toFixed(1)}%`, `${(100 * x.withinMargin).toFixed(1)}%`, fmtH(x.mean), fmtH(x.p5), fmtH(x.p95),
 			x.diffVsFirst.added.length || x.diffVsFirst.removed.length ? `+${x.diffVsFirst.added.length}/-${x.diffVsFirst.removed.length} pkgs` : 'same set, order',

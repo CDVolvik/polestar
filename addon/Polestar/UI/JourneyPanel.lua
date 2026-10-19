@@ -6,7 +6,7 @@
 --   To Silithus                                            destination
 --   1  [lift]  Walk to The Great Lift, Top         11:10   current step: accent glyph
 --   2  [lift]  Take The Great Lift                  0:25      and the 2px accent bar
---              leaves in about 0:15 · ride 0:10
+--              average wait 0:15 · ride 0:10
 --   3  [goto]  Walk to Silithus                    25:13
 --
 -- Shown while the route has more than one leg (Nav.travel.Active()): a lone
@@ -19,7 +19,9 @@
 -- nav.journeyOpen = false, never in compact mode.
 --
 -- Reads Nav.GetRoute() (legs, current index; leg.kind, label, seconds,
--- yards, step, lift, side, transport, to), Nav.travel.Progress() for the
+-- yards, step, lift, side, transport, to, hubs: a walk entering the other
+-- faction's towns reads "Hostile town: <name>" under its step),
+-- Nav.travel.Progress() for the
 -- current leg and ns.Transit.NextDeparture for boats, zeppelins, the tram and
 -- lifts. Wakes on ROUTE_CHANGED, ROUTE_ADVANCED, NAV_TRANSIT,
 -- WAYPOINT_CHANGED and nav.* settings.
@@ -130,6 +132,14 @@ end
 
 local function glyphOf(leg)
 	return (leg.kind == "walk" and STEP_GLYPH[leg.step]) or GLYPH[leg.kind] or "icon-note"
+end
+
+-- "Hostile town: <names>" for a walk whose path enters the other faction's
+-- towns (leg.hubs, Nav.travel.HubText), else nil.
+local function hubText(leg)
+	if leg.kind ~= "walk" then return nil end
+	local T = ns.Nav and ns.Nav.travel
+	return T and T.HubText and T.HubText(leg) or nil
 end
 
 ---------------------------------------------------------------------------
@@ -249,10 +259,11 @@ function JP.Compute(legs, ci)
 	return view
 end
 
--- "leaves in about 0:15 · ride 0:10" (untimed: the loop's average wait).
+-- "leaves in 0:15 · ride 0:10" once timed; untimed, "average wait 0:15 ·
+-- ride 0:10": the loop's average, which does not count down.
 function JP.DepartureText(i)
 	if view.board[i] then return format(L["on board \194\183 %s"], JP.FormatTime(view.ride[i])) end
-	local lead = view.timed[i] and L["leaves in %s"] or L["leaves in about %s"]
+	local lead = view.timed[i] and L["leaves in %s"] or L["average wait %s"]
 	return format(L["%s \194\183 ride %s"], format(lead, JP.FormatTime(view.wait[i])), JP.FormatTime(view.ride[i]))
 end
 
@@ -436,7 +447,10 @@ local function fillStructure(legs, ci)
 		W.Color(r.Text, current and "text" or "textDim")
 		W.Color(r.Time, current and "text" or "textMuted")
 		W.Color(r.Num, current and "textDim" or "textMuted")
-		r.Sub:Hide() -- shown by the times once a departure is known
+		-- The line under the step: a ride's departure once known, a walk's hostile towns.
+		r.psHub = hubText(leg)
+		W.Color(r.Sub, r.psHub and "warning" or "textDim")
+		r.Sub:Hide()
 		r:SetHeight(ROW_H)
 		r:Show()
 	end
@@ -461,7 +475,7 @@ local function fillTimes()
 		local r = rows[i]
 		if r:IsShown() then
 			setTime(r.Time, view.secs[i])
-			if r.Sub:IsShown() then r.Sub:SetText(JP.DepartureText(i)) end
+			if r.Sub:IsShown() then r.Sub:SetText(view.dep[i] and JP.DepartureText(i) or r.psHub) end
 		end
 	end
 end
@@ -490,11 +504,12 @@ function JP.Refresh(force)
 	if changed then fillStructure(legs, ci) end
 	head.Icon:SetTexture(Theme.Media(open() and "chevron-up" or "chevron-down"))
 	JP.Compute(legs, ci)
-	-- The departure line only where a departure is known (none: no empty line).
+	-- The line under a step only where there is something to say: a known
+	-- departure, a walk's hostile towns (none: no empty line).
 	for i = 1, #rows do
 		local r = rows[i]
 		if r:IsShown() then
-			local want = view.dep[i] and true or false
+			local want = (view.dep[i] or r.psHub) and true or false
 			if r.Sub:IsShown() ~= want then
 				r.Sub:SetShown(want)
 				r:SetHeight(want and ROW_H + SUB_H or ROW_H)

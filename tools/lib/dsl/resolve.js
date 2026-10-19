@@ -20,12 +20,16 @@ const { checkLocation } = require('./places');
 const { blockingPrereqs } = require('../data/prereqs');
 const { clusterPoints, scaleOf } = require('../questdb/cluster');
 const { groupOf, isElite, hostileTo } = require('./group');
-const { goalHeight } = require('./heights');
-const { goalArea, goalNode } = require('./places');
+const { goalHeight, spotHeight } = require('./heights');
+const { goalArea, goalNode, goalInnkeeper, goalFlightMaster } = require('./places');
 
 // A collect's sources are named only for an item that few creatures or
 // objects drop (at 2% or more, with spawns); past this it drops everywhere.
 const MAX_NAMED_SOURCES = 8;
+
+// `fromNpcs` on a collect: the mobs its point and spots belong to, for the
+// target button, which cycles at most this many names.
+const MAX_SOURCE_NPCS = 5;
 
 // Standard rank caps and the skill each rank can first be trained at (Classic).
 const RANK_CAPS = [75, 150, 225, 300];
@@ -147,6 +151,46 @@ function onMap(data, all, map, sides) {
 	return { on, elites };
 }
 
+// The NPC sources a goal's point and spawn areas belong to (pickSpawn's
+// `sources`, onMap's likely droppers on that map), `first` (the source the
+// point itself belongs to, when it is one of them) leading: the mobs the
+// arrow leads to. The target button names them, which the item's own droppers
+// cannot give it, as those rank over the whole world: the best droppers of an
+// item many creatures drop are usually in other zones (Small Spider Leg's are
+// in Elwynn Forest, Loch Modan and Silverpine, not the Teldrassil spiders a
+// Teldrassil goal points at). Objects are left out: a macro can only target a
+// creature.
+// -> [{ npc, npcName }] | undefined
+function sourceNpcs(data, first, sources) {
+	const list = sources || [];
+	const out = [];
+	const seen = new Set();
+	for (const s of list.includes(first) ? [first, ...list] : list) {
+		if (out.length >= MAX_SOURCE_NPCS) break;
+		if (!s || s.kind !== 'npc' || seen.has(s.id)) continue;
+		seen.add(s.id);
+		const rec = data.npc(s.id);
+		if (rec && rec.name) out.push({ npc: s.id, npcName: String(rec.name) });
+	}
+	return out.length ? out : undefined;
+}
+
+// The sources a hand-placed point stands among: those with a spawn within
+// `near` yards of it (handSpots' own test for a point the data knows),
+// nearest spawn first. The point is the author's, so the creature it belongs
+// to is the nearest one, not the best dropper pickSpawn would have chosen.
+// -> [{ kind, id, chance? }]
+function pointSources(data, sources, map, f, x, y, near) {
+	const out = [];
+	for (const src of sources) {
+		let d = Infinity;
+		for (const p of spawnPointsOf(data, [src], map, f)) d = Math.min(d, distance(data, map, p[0], p[1], x, y));
+		if (d <= near) out.push({ src, d });
+	}
+	out.sort((a, b) => a.d - b.d);
+	return out.map((o) => o.src);
+}
+
 // Sources ([{ kind, id, chance? }]) that elites (group.js isElite) and normal
 // sources (a non-elite npc hostile to one of `sides`, or an object) both drop
 // at 1% or more (any chance when none drops it at 1%, or none has a chance).
@@ -210,11 +254,19 @@ function point(cand, map, x, y, f) {
 //
 // Alternatives come nearest to the goal's point first.
 //
+// Strays: a target with more than SPOT_CAP spawns whose spawns, linked
+// wherever two lie within STRAY_YARDS of each other, mostly (STRAY_SHARE)
+// form one area: a group of at most STRAY_MAX spawns apart from the rest is a
+// stray (a mob or two on their own, hundreds of yards from the camps). The
+// arrow never picks a place of strays while it has another place, and a goal
+// point there (the spawn nearest the previous goal) moves to the nearest other
+// place (`at`).
+//
 // Elite camps: `elites` are elite droppers passed over for the normal sources
 // (onMap). A place of the sources with more of their spawns than its own
 // within its radius (at least SPOT_CLUSTER_YARDS) is in their camp: the
 // arrow never picks it while it has another place, and a goal point there
-// moves to the nearest other place (`at`).
+// moves to the nearest other place (`at`), as for strays.
 //
 // -> { spots: [{ x, y, r, n, alt? }], spread: bool, at?: { x, y } } (map
 // percent, radius in yards, spawn count) | undefined
@@ -226,6 +278,9 @@ const SPREAD_YARDS = 250;
 const SPREAD_CAP = 12;
 const SPREAD_MIN_RADIUS = 40;
 const SPREAD_MAX_MIN_RADIUS = 150;
+const STRAY_YARDS = 300;
+const STRAY_MAX = 2;
+const STRAY_SHARE = 0.75;
 
 // Median distance in yards from a spawn to its nearest neighbour.
 function medianSpacing(pts, frame) {
@@ -296,6 +351,32 @@ function walk(data, map, spots, x, y) {
 	return out;
 }
 
+// The stray spawns of `pts` (see spawnSpots, "Strays"): the groups of at most
+// STRAY_MAX spawns, linked within STRAY_YARDS, beside one group holding at
+// least STRAY_SHARE of them. -> Set of points
+function strayPoints(pts, frame) {
+	const strays = new Set();
+	if (pts.length <= SPOT_CAP) return strays;
+	const { sx, sy } = scaleOf(frame);
+	const root = pts.map((_, i) => i);
+	const find = (i) => (root[i] === i ? i : (root[i] = find(root[i])));
+	for (let i = 0; i < pts.length; i++) {
+		for (let j = i + 1; j < pts.length; j++) {
+			if (Math.hypot((pts[i][0] - pts[j][0]) * sx, (pts[i][1] - pts[j][1]) * sy) <= STRAY_YARDS) root[find(i)] = find(j);
+		}
+	}
+	const groups = new Map();
+	pts.forEach((p, i) => {
+		const g = find(i);
+		if (!groups.has(g)) groups.set(g, []);
+		groups.get(g).push(p);
+	});
+	const sizes = [...groups.values()];
+	if (Math.max(...sizes.map((g) => g.length)) < STRAY_SHARE * pts.length) return strays;
+	for (const g of sizes) if (g.length <= STRAY_MAX) for (const p of g) strays.add(p);
+	return strays;
+}
+
 // Every known spawn point of `sources` on `map` in frame `f`: the reference
 // data's spread points and the ones its cap left out.
 function spawnPointsOf(data, sources, map, f) {
@@ -319,7 +400,7 @@ function gatherNode(data, src) {
 function spawnSpots(data, sources, map, f, x, y, elites = []) {
 	const pts = spawnPointsOf(data, sources, map, f);
 	if (pts.length < 2) return undefined;
-	const frame = data.eraFrame(map);
+	const frame = data.frame(map);
 	const spread = extent90(pts, frame) > SPREAD_YARDS;
 	let clusters;
 	if (pts.length <= SPOT_CAP) clusters = clusterPoints(pts, frame, { radius: SPOT_CLUSTER_YARDS, cap: Infinity, minRadius: SPOT_MIN_RADIUS });
@@ -329,18 +410,28 @@ function spawnSpots(data, sources, map, f, x, y, elites = []) {
 		const minRadius = spread ? Math.round(Math.min(SPREAD_MAX_MIN_RADIUS, Math.max(SPREAD_MIN_RADIUS, spacing))) : SPOT_MIN_RADIUS;
 		clusters = clusterPoints(pts, frame, { radius, cap: Infinity, minRadius });
 	}
-	// The places outside elite camps; the goal's point leaves a camp for the nearest of them.
+	// The places the arrow may pick: outside elite camps, then not strays, each
+	// while any place is left; the goal's point leaves any other place for the
+	// nearest of them.
 	const { sx, sy } = scaleOf(frame);
 	const yards = (a, b) => Math.hypot((a.x - b.x) * sx, (a.y - b.y) * sy);
+	const keep = (list, out) => {
+		const rest = list.filter((c) => !out(c));
+		return rest.length ? rest : list;
+	};
 	const elitePts = spawnPointsOf(data, elites, map, f).map(([ex, ey]) => ({ x: ex, y: ey }));
 	const inCamp = (c) => elitePts.filter((p) => yards(p, c) <= Math.max(c.r, SPOT_CLUSTER_YARDS)).length > c.n;
-	const camped = elitePts.length ? clusters.filter(inCamp) : [];
-	const open = camped.length < clusters.length ? clusters.filter((c) => !camped.includes(c)) : clusters;
+	let open = elitePts.length ? keep(clusters, inCamp) : clusters;
+	const strays = strayPoints(pts, frame);
+	if (strays.size) {
+		const settled = pts.filter((p) => !strays.has(p)).map(([px, py]) => ({ x: px, y: py }));
+		open = keep(open, (c) => !settled.some((p) => yards(p, c) <= c.r));
+	}
 	let at;
-	if (open !== clusters) {
+	if (open.length < clusters.length) {
 		const here = { x, y };
 		const nearest = (list) => list.reduce((a, b) => (yards(b, here) < yards(a, here) ? b : a));
-		if (camped.includes(nearest(clusters))) {
+		if (!open.includes(nearest(clusters))) {
 			const to = nearest(open);
 			x = to.x;
 			y = to.y;
@@ -978,6 +1069,20 @@ function resolveGoal(g, zoneMap, prev, data, err, warn, ctx = { sides: ['Allianc
 				smart(goal, entries, `class trainer`);
 			}
 			if (g.nearest && v === 'sethome') smart(goal, data.npcsWithRole('innkeeper').map((id) => ({ npc: id })), 'innkeeper');
+			// A located `sethome` naming no npc: its inn's innkeeper, for the
+			// factions the goal applies to, so the arrow leads there (places.js).
+			// A located `getfp` naming no npc: its taxi node's flight master,
+			// the same way (places.js).
+			if ((v === 'sethome' || v === 'getfp') && g.npc === undefined && !g.nearest) {
+				const sides = smartSides(ctx.sides, applicable(ctx.layers || []));
+				const host = v === 'sethome' ? goalInnkeeper(data, g.location, sides) : goalFlightMaster(data, g.location, sides);
+				if (host) {
+					goal.npc = host.npc;
+					setIf(goal, 'npcName', nameOf(data, 'npc', host.npc) || host.npcName || undefined);
+					candidates = [{ kind: 'npc', id: host.npc }];
+					checkKinds = candidates;
+				}
+			}
 			// Sell junk and repair: every repairer also buys junk, a plain vendor may not repair.
 			if (g.nearest && v === 'vendor') smart(goal, data.npcsWithRole('repair').map((id) => ({ npc: id })), 'repair vendor');
 			if (g.npc !== undefined) {
@@ -1167,13 +1272,15 @@ function resolveGoal(g, zoneMap, prev, data, err, warn, ctx = { sides: ['Allianc
 			const kind = v === 'kill' ? 'kill' : v === 'collect' ? 'item' : v === 'interact' ? 'object' : null;
 			const id = v === 'kill' ? g.npc : v === 'interact' ? g.object : g.item;
 			// `quest Q.O` naming an objective of the same kind for another
-			// target: progress and count would follow that one.
+			// target: progress and count would follow that one. When the target
+			// is another objective of the quest, the index is swapped, which is
+			// always wrong: an error (#214 shipped two that a warning let pass).
 			const named = oi !== undefined && kind && id !== undefined ? data.questObjectives(g.quest)[oi - 1] : null;
 			if (named && named.kind === kind && named.id != null && named.id !== id) {
 				const right = objectiveFor(q, kind, id);
 				const noun = v === 'kill' ? 'npc' : v === 'interact' ? 'object' : 'item';
 				const own = right ? data.questObjectives(g.quest)[right - 1] : null;
-				warn(
+				(right ? err : warn)(
 					ln,
 					`${objectiveLabel(g.quest, named).replace(/^(\S+) = /, 'quest $1 is ')}, not this ${noun}${own ? `; ${own.name || `${noun} ${id}`} is ${g.quest}.${right}` : ''}`,
 					right ? `write \`quest ${g.quest}.${right}\`, or \`quest ${g.quest}\` to take the index from the ${noun}` : `its objectives: ${listed()}`,
@@ -1283,6 +1390,7 @@ function resolveGoal(g, zoneMap, prev, data, err, warn, ctx = { sides: ['Allianc
 					goal.y = sp.at.y;
 				}
 			}
+			if (v === 'collect') setIf(goal, 'fromNpcs', sourceNpcs(data, c, picked.sources));
 		} else if (g.explicitCoords && goal.x !== undefined) {
 			// Hand-placed: the sources known to give the item (a drop chance, or a
 			// gathering node; not loot of unknown odds). A mob or object spawns
@@ -1295,6 +1403,10 @@ function resolveGoal(g, zoneMap, prev, data, err, warn, ctx = { sides: ['Allianc
 			const sources = onMap(data, all, goal.map, dropSides).on.map((o) => o.cand);
 			const near = !area ? SPAWN_CHECK_YARDS : sources.length && sources.every((s) => gatherNode(data, s)) ? Infinity : SPREAD_YARDS;
 			setIf(goal, 'spots', handSpots(data, sources, goal.map, goal.f, goal.x, goal.y, near));
+			if (v === 'collect') {
+				const own = pointSources(data, sources, goal.map, goal.f, goal.x, goal.y, near);
+				setIf(goal, 'fromNpcs', sourceNpcs(data, own[0], own));
+			}
 		}
 	}
 	if (g.r !== undefined) goal.r = g.r;
@@ -1305,11 +1417,14 @@ function resolveGoal(g, zoneMap, prev, data, err, warn, ctx = { sides: ['Allianc
 	setIf(goal, 'group', groupOf(goal, g.group, ctx.sides, data));
 	setIf(goal, 'only', onlyOf(g.only));
 	setIf(goal, 'note', g.note);
-	// The height of the NPC or object the goal's point stands for (heights.js).
+	// The height of the NPC or object the goal's point stands for, and of each
+	// of its spawn spots (heights.js).
 	setIf(goal, 'z', goalHeight(data, goal));
-	// The area its place name stands for, and a getfp's taxi node (places.js).
+	for (const s of goal.spots || []) setIf(s, 'z', spotHeight(data, goal, s));
+	// The area its place name stands for, and a getfp's or fly's taxi node
+	// (places.js), for the factions its races can be (a Tauren-only step: Horde).
 	setIf(goal, 'area', goalArea(data, goal));
-	setIf(goal, 'node', goalNode(data, goal, ctx.sides));
+	setIf(goal, 'node', goalNode(data, goal, smartSides(ctx.sides, applicable(ctx.layers || []))));
 
 	if ((v === 'kill' || v === 'collect' || v === 'interact' || v === 'use') && goal.x === undefined && !goal.candidates && !g.nearest) {
 		warn(ln, `\`${v}\` has no coordinates (no known spawns; add @x,y)`, 'add @x,y where the player finds the target (the map coordinates the game shows), so the arrow can lead there');

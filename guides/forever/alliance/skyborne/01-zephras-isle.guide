@@ -126,12 +126,12 @@ step Raw Windstones and the Cirrusfly Queen
   kill 251404 quest 92463.1
 
 step Yala Windwatcher
-  tip Yala Windwatcher keeps watch east of the grove. The Roiling Winds and Al'Aketh Converts gather just north of her; the Ley Line rises further north: cast your Read Ley Line racial ability at it.
+  tip Yala Windwatcher keeps watch east of the grove. The Roiling Winds and Al'Aketh Converts gather just north of her; the Ley Line rises further north: cast your Read Leyline racial ability at it.
   turnin 92464                                -- Yala Windwatcher
   accept 92465
   kill 251143 quest 92465.2
   kill 251160 quest 92465.1
-  interact 460002 quest 92597.1 @46.29,17.87 "Cast Read Ley Line at the Ley Line"
+  interact 460002 quest 92597.1 @46.29,17.87 "Cast Read Leyline at the Ley Line"
   turnin 92465                                -- Yala Windwatcher
   accept 92469
 

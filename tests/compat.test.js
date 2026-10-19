@@ -64,6 +64,15 @@ test('player positions: map percent, world position, nil in instances', () => {
 	assert.equal(out[5], true);
 });
 
+test('IsInInstance names the instance type inside ("party" for a dungeon) and nothing outside', () => {
+	const [out] = run(`
+		local outside = { C.IsInInstance() }
+		w.inInstance = true
+		emit({ outside = outside, inside = { C.IsInInstance() } })
+	`);
+	assert.deepEqual(out, { outside: [false], inside: [true, 'party'] });
+});
+
 test('quest objectives normalize to text/type/finished/numFulfilled/numRequired', () => {
 	const [out] = run(`
 		C_QuestLog.GetQuestObjectives = function(q)
@@ -294,4 +303,20 @@ test('C3 (NAV_QA): no addon code outside Core/Compat.lua opens or moves the worl
 	};
 	walk(ADDONS);
 	assert.deepEqual(found, []);
+});
+
+test('IsIndoors: the client\'s indoor state; nil without IsIndoors or when it errors', () => {
+	const [out] = run(`
+		local r = {}
+		IsIndoors = function() return 1 end
+		r.inside = C.IsIndoors()
+		IsIndoors = function() return nil end
+		r.outside = C.IsIndoors()
+		IsIndoors = function() error("no") end
+		r.err = C.IsIndoors() == nil
+		IsIndoors = nil
+		r.none = C.IsIndoors() == nil
+		emit(r)
+	`);
+	assert.deepEqual(out, { inside: true, outside: false, err: true, none: true });
 });

@@ -281,7 +281,7 @@ end
 -- The selection pane's width, from the hub (anchored frames have no width
 -- before the first layout): the main column, less the rail and sidebar.
 local function detailWidth()
-	local full = shellRef and (shellRef:GetWidth() - (shellRef.psRail or 0) - SH.sidebar - 2) or 0
+	local full = shellRef and (shellRef:GetWidth() - (shellRef.psRail or 0) - (shellRef.psSidebar or SH.sidebar) - 2) or 0
 	if full <= 0 then full = 878 end
 	return full - LIST_W
 end

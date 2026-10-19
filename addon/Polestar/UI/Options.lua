@@ -150,6 +150,9 @@ end
 O.ResetPositions = resetPositions
 
 local function borderOff() return not ns.Get("ui.border") end
+-- Settings of the house style alone: every other skin brings its own grounds,
+-- no starlit band and no drop shadow (Theme.lua, "Skins").
+local function houseOnly() return Theme.SkinKey() ~= "polestar" end
 local function px(v) return string.format(L["%d px"], floor(v + 0.5)) end
 -- Guidance options with no effect while Shortest Path Forever guides (Nav/Handoff.lua).
 local function H(c)
@@ -184,8 +187,14 @@ local BUILTIN = {
 		{ kind = "dropdown", key = "ui.combat", label = L["In combat"], help = L["What the window does while you fight."],
 			choices = { { value = "show", label = L["Keep visible"] }, { value = "fade", label = L["Fade out"] }, { value = "hide", label = L["Hide"] } } },
 	} },
+	{ page = GUIDE, tab = L["Window"], section = L["Dungeons"], controls = {
+		{ kind = "dropdown", key = "ui.instance", label = L["In dungeons"], help = L["What the window does in dungeons and raids. /polestar or the key binding opens it there until you leave."],
+			choices = { { value = "show", label = L["Keep visible"] }, { value = "hide", label = L["Hide"] } } },
+	} },
 	{ page = GUIDE, tab = L["Window"], section = L["Position"], controls = {
 		{ kind = "toggle", key = "ui.locked", label = L["Lock window"], help = L["Prevents moving and resizing."] },
+		{ kind = "toggle", key = "ui.lockHud", label = L["Lock arrow and buttons"],
+			help = L["Stops stray drags on the arrow, the action buttons and the flight and instance timers. Shift-drag still moves them."] },
 		{ kind = "toggle", key = "ui.growUp", label = L["Grow upward"], help = L["Keep the bottom edge in place, so longer steps extend the window up."] },
 		{ kind = "button", icon = "reset", label = L["Reset position"], help = L["Put the guide window back in its corner."], onClick = function() ns.Set("ui.pos", nil) end },
 	} },
@@ -248,22 +257,23 @@ local BUILTIN = {
 			help = L["The accent follows your class: warlock purple, shaman blue, druid orange. Picking your own accent turns this off."] },
 	} },
 	{ page = LOOK, tab = L["Colour & type"], section = L["Background"], controls = {
-		{ kind = "dropdown", key = "ui.scheme", label = L["Colour scheme"],
+		{ kind = "dropdown", key = "ui.scheme", label = L["Colour scheme"], disabled = houseOnly,
 			help = L["How deep the night runs. Dusk is the default, Night the darkest, Graphite a neutral grey; EllesmereUI takes its panel colour and accent."],
 			choices = function() return Theme.SchemeChoices() end },
-		{ kind = "color", key = "ui.bgColor", label = L["Background colour"],
+		{ kind = "color", key = "ui.bgColor", label = L["Background colour"], disabled = houseOnly,
 			help = L["The ground of every Polestar window. Right-click to go back to the scheme's. Text always stays legible: a colour too light for it is darkened."],
 			shown = function() return Theme.Color("bg") end,
 			source = function() return O.SchemeLabel() end },
-		{ kind = "slider", key = "ui.brightness", label = L["Brightness"], min = -1, max = 1, step = 0.05, format = O.Signed,
+		{ kind = "slider", key = "ui.brightness", label = L["Brightness"], disabled = houseOnly, min = -1, max = 1, step = 0.05, format = O.Signed,
 			help = L["Lifts or lowers every background together. Right-click to reset."] },
 		{ kind = "slider", key = "ui.bgOpacity", label = L["Background opacity"], min = 0, max = 1, step = 0.05, format = percent,
 			help = L["The background opacity of every Polestar window: how much of the world shows through. Right-click to reset."] },
 	} },
 	{ page = LOOK, tab = L["Colour & type"], section = L["Type & motion"], controls = {
-		{ kind = "dropdown", key = "ui.font", label = L["Font"], help = L["The game's own font (the default), Inter, or EllesmereUI's."],
+		{ kind = "dropdown", key = "ui.font", label = L["Font"], help = L["The skin's font (the default: the game's own, Fira Sans in Halo), the game's, Inter, Fira Sans, or EllesmereUI's."],
 			choices = function()
-				local list = { { value = "game", label = L["Game font"] }, { value = "inter", label = "Inter" } }
+				local list = { { value = "skin", label = L["The skin's font"] }, { value = "game", label = L["Game font"] },
+					{ value = "inter", label = "Inter" }, { value = "fira", label = "Fira Sans" } }
 				if Theme.IsEllesmere() then list[#list + 1] = { value = "ellesmere", label = "EllesmereUI" } end
 				return list
 			end,
@@ -279,6 +289,13 @@ local BUILTIN = {
 		{ kind = "toggle", key = "ui.reduceMotion", label = L["Reduce motion"], help = L["No sliding or popping; fades stay short."] },
 	} },
 	{ page = LOOK, tab = L["Windows"], section = L["Frame"], controls = {
+		{ kind = "dropdown", key = "ui.skin", label = L["Skin"],
+			help = L["Polestar's own look (the default), Halo (no frame, a soft dark veil, Fira Sans), Hearth (warm game colours), or the game's own art: WoW Forever, Blizzard and Classic. Style, compact mode and the colours you pick work in each."],
+			choices = function()
+				local list = {}
+				for i, c in ipairs(Theme.SkinChoices()) do list[i] = { value = c.value, label = c.text } end
+				return list
+			end },
 		{ kind = "toggle", key = "ui.border", label = L["Window border"], help = L["The line around every Polestar window."] },
 		{ kind = "color", key = "ui.borderColor", label = L["Border colour"], linked = { "ui.borderAccent" }, disabled = borderOff,
 			help = L["Click to pick your own, right-click to go back to the scheme's hairline."],
@@ -288,8 +305,8 @@ local BUILTIN = {
 			help = L["The border takes your accent colour. Picking your own border colour turns this off."] },
 		{ kind = "slider", key = "ui.borderSize", label = L["Border thickness"], min = 1, max = 4, step = 1, format = px, disabled = borderOff,
 			help = L["In screen pixels; a thicker border grows outward. Right-click to reset."] },
-		{ kind = "toggle", key = "ui.band", label = L["Starlit band"], help = L["The night sky with its stars across the top of every window. Off: the plain background."] },
-		{ kind = "toggle", key = "ui.shadow", label = L["Window shadow"], help = L["The soft shadow under every window."] },
+		{ kind = "toggle", key = "ui.band", label = L["Starlit band"], disabled = houseOnly, help = L["The night sky with its stars across the top of every window. Off: the plain background."] },
+		{ kind = "toggle", key = "ui.shadow", label = L["Window shadow"], disabled = houseOnly, help = L["The soft shadow under every window."] },
 	} },
 	{ page = LOOK, tab = L["Windows"], section = L["Guide window"], controls = {
 		{ kind = "dropdown", key = "ui.style", label = L["Style"], help = L["Transparent drops every background and border; text is outlined and the controls appear when you hover the window."],
@@ -304,7 +321,8 @@ local BUILTIN = {
 			help = L["The guide menu and this window; applies when you let go. Right-click to reset."] },
 	} },
 	{ page = LOOK, tab = L["Arrow"], section = L["Arrow"], controls = {
-		H({ kind = "dropdown", key = "nav.arrowStyle", label = L["Arrow style"], choices = { { value = "3d", label = L["3D"] }, { value = "flat", label = L["Flat"] } } }),
+		H({ kind = "dropdown", key = "nav.arrowStyle", label = L["Arrow style"], choices = { { value = "skin", label = L["The skin's arrow"] }, { value = "3d", label = L["3D"] }, { value = "flat", label = L["Flat"] },
+			{ value = "halo", label = L["Halo"] }, { value = "hearth", label = L["Hearth"] } } }),
 		H({ kind = "slider", key = "nav.arrowScale", label = L["Arrow scale"], min = 0.5, max = 2, step = 0.05, format = percent }),
 		H({ kind = "slider", key = "nav.arrowAlpha", label = L["Arrow opacity"], min = 0.2, max = 1, step = 0.05, format = percent }),
 	} },
@@ -633,7 +651,7 @@ local function buildAbout(view)
 	end
 end
 
-add({ page = L["Guide packs"], key = "guidepacks", icon = "layers", order = 70, subtitle = L["Guides made by other players: switch them on or off, and choose where suggestions come from."],
+add({ page = L["Community guides"], key = "guidepacks", icon = "layers", order = 70, subtitle = L["Guides made by other players: switch them on or off, and choose where suggestions come from."],
 	custom = UI.Packs.Build, dot = UI.Packs.HasProblems }, true)
 add({ page = REC, key = "recorder", icon = "record", order = 90, subtitle = L["The data recorder for guide authors."], custom = buildRecorder }, true)
 add({ page = ABOUT, key = "about", icon = "info", order = 100, subtitle = L["Why Polestar exists, its commands and its credits."], custom = buildAbout }, true)

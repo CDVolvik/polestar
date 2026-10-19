@@ -12,8 +12,10 @@
 --     (Polestar.QuestDB; none without it), never one left from another quest.
 --   Hearthstone: while the current step has an open `hearth` goal.
 --   Target: /targetexact for the current step's kill targets and the mobs
---     that drop its collect items (Polestar.QuestDB when loaded); every click
---     moves the next name to the front.
+--     that drop its collect items: the ones the guide sends you to for that
+--     goal (`fromNpcs`), then the item's own droppers (Polestar.QuestDB when
+--     loaded), passing over corpses; every click moves the next name to the
+--     front.
 --   Step key: no button on screen, only a binding: the first open goal it can
 --     act on, in guide order (a use goal's item, a hearth goal's Hearthstone,
 --     a kill or collect's mobs, an NPC goal's NPC by name), else the quest
@@ -24,9 +26,9 @@
 --     one each press (Buttons.MarkLine).
 --
 -- The buttons hang off one holder: hearth above the item, target below. A
--- left-drag on any of them moves the set (out of combat); the position is
--- per character, so the Hearthstone button, shown only for hearth goals,
--- appears in its slot of the moved set.
+-- left-drag on any of them moves the set (out of combat; with ui.lockHud on,
+-- only a Shift-drag); the position is per character, so the Hearthstone
+-- button, shown only for hearth goals, appears in its slot of the moved set.
 
 local ADDON, ns = ...
 local L = ns.L
@@ -152,6 +154,8 @@ local function onDragStart(b)
 	if QoL.InLockdown() then return end
 	b.dragging = true
 	useOnKeyDown(b, true)
+	-- Locked: still a drag, so its release uses nothing, but the set stays.
+	if ns.DragLocked() then return end
 	moving = true
 	holder:StartMoving()
 end
@@ -180,6 +184,37 @@ end
 local function refreshHotkey(b)
 	local t = bindingText(b)
 	b.Hotkey:SetText(t or "")
+end
+
+-- The label's anchor pair for each qol.buttonTextSide: label point, button point, x, y.
+local LABEL_SIDE = {
+	right = { "LEFT", "RIGHT", 8, 0 },
+	left = { "RIGHT", "LEFT", -8, 0 },
+	above = { "BOTTOM", "TOP", 0, 4 },
+	below = { "TOP", "BOTTOM", 0, -4 },
+}
+
+-- Above sits over the shown buttons stacked on top of b (the quest item
+-- button over the target button, the Hearthstone over that), not in the 8 px
+-- gap between them, where it would run into the button above.
+local function placeLabel(b)
+	local a = LABEL_SIDE[ns.Get("qol.buttonTextSide")] or LABEL_SIDE.right
+	local to = b
+	if a == LABEL_SIDE.above and set then
+		local slot, moved = SLOT[b:GetName()], true
+		while moved do
+			moved = false
+			for i = 1, #set do
+				local o = set[i]
+				if SLOT[o:GetName()] == slot + 1 and o:IsShown() then
+					to, slot, moved = o, slot + 1, true
+					break
+				end
+			end
+		end
+	end
+	b.Label:ClearAllPoints()
+	b.Label:SetPoint(a[1], to, a[2], a[3], a[4])
 end
 
 local function newButton(name, onEnter)
@@ -228,8 +263,8 @@ local function newButton(name, onEnter)
 	local label = b:CreateFontString(nil, "OVERLAY")
 	font(label, "small")
 	color(label, "textDim")
-	label:SetPoint("LEFT", b, "RIGHT", 8, 0)
 	b.Label = label
+	placeLabel(b)
 
 	paintBorder(b, false)
 	local T = Theme()
@@ -302,7 +337,7 @@ end
 
 local function itemTooltip(b, tip)
 	if b.itemID and tip.SetItemByID then tip:SetItemByID(b.itemID) end
-	tip:AddLine(L["Drag to move."], 0.6, 0.6, 0.6)
+	tip:AddLine(ns.Get("ui.lockHud") and L["Shift-drag to move."] or L["Drag to move."], 0.6, 0.6, 0.6)
 end
 
 local function newItemButton(name)
@@ -445,11 +480,26 @@ function Buttons.TargetNames(view, raw)
 				-- /targetexact needs the name as the client writes it.
 				local N = ns.Names
 				addName((N and N.Npc(rg.npc or gv.npc)) or rg.target or gv.subject)
-			elseif gv.t == "collect" and qdb then
-				if gv.quest and rg.oi and QDB.GetObjectiveMobs then
-					addDroppers(QDB.GetObjectiveMobs(gv.quest, rg.oi))
-				elseif (gv.item or rg.item) and QDB.GetItemDroppers then
-					addDroppers(QDB.GetItemDroppers(gv.item or rg.item))
+			elseif gv.t == "collect" then
+				-- The mobs the arrow leads to come first: the farm spot the engine
+				-- chose (`collect … nearest`), then the guide's own sources for this
+				-- point (`fromNpcs`). The item's droppers follow, and stand alone for
+				-- a goal with neither: they are ranked by drop chance over the whole
+				-- world, so for an item many creatures drop the best of them are
+				-- mostly in other zones.
+				local N = ns.Names
+				local npc = gv.npc or rg.npc
+				if npc then addName((N and N.Npc(npc)) or gv.npcName or rg.npcName) end
+				local src = rg.fromNpcs or gv.fromNpcs
+				for i = 1, src and #src or 0 do
+					addName((N and N.Npc(src[i].npc)) or src[i].npcName)
+				end
+				if qdb then
+					if gv.quest and rg.oi and QDB.GetObjectiveMobs then
+						addDroppers(QDB.GetObjectiveMobs(gv.quest, rg.oi))
+					elseif (gv.item or rg.item) and QDB.GetItemDroppers then
+						addDroppers(QDB.GetItemDroppers(gv.item or rg.item))
+					end
 				end
 			end
 		end
@@ -500,27 +550,38 @@ local function nextMark(kind)
 	return true
 end
 
--- "/targetexact" lines with names[preferred] last, so it wins when present.
--- A name that is not MacroSafeName never becomes a line. mark: a /tm line
--- (Buttons.MarkLine) for the end, kept when names are dropped to fit.
+-- The macro for names, tried from names[preferred] on in click order. Out of
+-- combat it starts from nothing ("/cleartarget [nocombat]"), so a target that
+-- is none of the names -- a mob clicked by hand, the quest giver just turned
+-- in to -- cannot stop the chain, and a press that finds no name marks
+-- nothing; in a fight the target is left alone, since clearing it would cut
+-- melee swings and Auto Shot. A plain /targetexact takes the nearest match,
+-- corpse or not, so each line is followed by "/cleartarget [dead]", and every
+-- later name is tried only while nothing is targeted ("[noexists]"): the
+-- first living match is kept. A name that is not MacroSafeName never becomes
+-- a line. mark: a /tm line (Buttons.MarkLine) for the end. Names past
+-- MACRO_LIMIT are dropped from the end; the preferred name and the mark stay.
 function Buttons.TargetMacro(list, preferred, mark)
 	local n = #list
 	if n == 0 then return nil end
-	local lines = {}
-	for k = 1, n do
-		local idx = (preferred + k - 1) % n + 1
-		if Buttons.MacroSafeName(list[idx]) then lines[#lines + 1] = "/targetexact " .. list[idx] end
+	local order = {}
+	for k = 0, n - 1 do
+		local name = list[(preferred - 1 + k) % n + 1]
+		if Buttons.MacroSafeName(name) then order[#order + 1] = name end
 	end
-	if #lines == 0 then return nil end
-	-- Cleared first, so when no name is in range the old target is not marked;
-	-- not in a fight, where clearing it would stop melee and Auto Shot.
-	local head = mark and "/cleartarget [nocombat]\n" or ""
+	local count = #order
+	if count == 0 then return nil end
 	local tail = mark and ("\n" .. mark) or ""
-	local text = head .. concat(lines, "\n") .. tail
-	while #text > MACRO_LIMIT and #lines > 1 do
-		table.remove(lines, 1)
-		text = head .. concat(lines, "\n") .. tail
-	end
+	local text
+	repeat
+		local lines = { "/cleartarget [nocombat]" }
+		for k = 1, count do
+			lines[#lines + 1] = (k == 1 and "/targetexact " or "/targetexact [noexists] ") .. order[k]
+			lines[#lines + 1] = "/cleartarget [dead]"
+		end
+		text = concat(lines, "\n") .. tail
+		count = count - 1
+	until #text <= MACRO_LIMIT or count == 0
 	return text
 end
 
@@ -541,7 +602,8 @@ end
 local function targetTooltip(b, tip)
 	tip:SetText(L["Target"])
 	for i = 1, #target.list do tip:AddLine(target.list[i], 1, 1, 1) end
-	tip:AddLine(L["Click again for the next name. Drag to move."], 0.6, 0.6, 0.6)
+	tip:AddLine(ns.Get("ui.lockHud") and L["Click again for the next name. Shift-drag to move."]
+		or L["Click again for the next name. Drag to move."], 0.6, 0.6, 0.6)
 end
 
 ---------------------------------------------------------------------------
@@ -700,6 +762,13 @@ local function create()
 	end)
 	Buttons.item, Buttons.hearth, Buttons.target, Buttons.step = itemButton, hearthButton, targetButton, stepButton
 	set = { hearthButton, itemButton, targetButton }
+	-- An Above name moves when a button over it comes or goes.
+	local function placeLabels() for i = 1, #set do placeLabel(set[i]) end end
+	for i = 1, #set do
+		set[i]:HookScript("OnShow", placeLabels)
+		set[i]:HookScript("OnHide", placeLabels)
+	end
+	placeLabels()
 	place()
 end
 
@@ -726,6 +795,9 @@ ns.On("SETTING_CHANGED", function(path)
 	if not itemButton or type(path) ~= "string" then return end
 	if path == "qol.buttonScale" or path == "qol" or path == "" then
 		place()
+	end
+	if path == "qol.buttonTextSide" or path == "qol" or path == "" then
+		for i = 1, #set do placeLabel(set[i]) end
 	end
 	if path:sub(1, 4) == "qol." or path == "qol" or path == "" then refreshSoon() end
 end)

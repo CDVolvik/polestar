@@ -11,6 +11,7 @@
 --   uistub.goal(s, g)         the mutable goal table behind step s, goal g (active tab)
 --   uistub.update()           fire STEP_UPDATED for the current step
 --   uistub.guides             the sample guides, by id
+--   uistub.instance           the instance type the player is in ("party", "raid", ...); nil outside
 --   uistub.install({ noNav = true, noTabs = true })  leave Nav / the tabs API out
 
 uistub = { calls = {}, guides = {}, order = {} }
@@ -588,9 +589,10 @@ function Guides.SuggestSource() return "guides" end
 function Guides.GuideMatches(g, player) return uistub.realGuides.GuideMatches(g, player) end
 
 local Nav = {}
-function Nav.SetTarget(map, x, y, label, f)
+function Nav.SetTarget(map, x, y, label, f, stop, z)
 	record("SetTarget", map, x, y, label, f)
-	uistub.target = { map = map, x = x, y = y, label = label, f = f }
+	-- `stop` and `z` sit after a nil `f` for most callers, so they are kept here, not in the call record.
+	uistub.target = { map = map, x = x, y = y, label = label, f = f, stop = stop, z = z }
 	Polestar.Fire("WAYPOINT_CHANGED", uistub.target)
 end
 function Nav.ClearTarget() record("ClearTarget"); uistub.target = nil end
@@ -603,6 +605,29 @@ end
 function Nav.GetTarget() return uistub.target or Engine.GetWaypoint() end
 function Nav.GetDistance() return 42 end
 function Nav.ResetArrowPosition() record("ResetArrowPosition") end
+-- Nearby services (Nav/Nearby.lua): the guide window's list, and Go.
+Nav.nearby = {
+	MenuItems = function()
+		return { { key = "vendor", label = "Vendor", icon = "icon-vendor" }, { key = "innkeeper", label = "Innkeeper", icon = "icon-sethome" },
+			{ key = "trainer", line = 186, label = "Mining trainer", icon = "icon-skill" },
+			{ key = "weapon", label = "Weapon master", icon = "icon-train", weapons = {
+				{ key = "weapon", line = 43, label = "Swords" },
+				{ key = "weapon", line = 173, label = "Daggers", known = true },
+				{ key = "weapon", line = 229, label = "Polearms", level = 20 },
+			} },
+			{ separator = true }, { key = "bank", label = "Bank" } }
+	end,
+	Go = function(key, line) record("NearbyGo", key, line); return true end,
+	-- uistub.trip: the trip under way ({ name, label }), set by the scenes.
+	Trip = function() return uistub.trip end,
+	EndTrip = function()
+		record("NearbyEndTrip")
+		local was = uistub.trip ~= nil
+		uistub.trip = nil
+		Polestar.Fire("NEARBY_TRIP", nil)
+		return was
+	end,
+}
 
 local MAPS = {
 	[ELWYNN] = "Elwynn Forest", [1453] = "Stormwind City", [1426] = "Dun Morogh", [1436] = "Westfall",
@@ -619,7 +644,7 @@ function Compat.IsOnQuest() return false end
 function Compat.IsQuestReadyForTurnIn() return false end
 function Compat.GetZoneText() return "Elwynn Forest", "" end
 function Compat.IsOnTaxi() return false end
-function Compat.IsInInstance() return false end
+function Compat.IsInInstance() return uistub.instance ~= nil, uistub.instance end
 function Compat.GetPlayerInfo() return uistub.player end
 function Compat.GetMapName(id) return MAPS[id] end
 function Compat.GetQuestTitle() return nil end
@@ -640,7 +665,7 @@ function uistub.install(opts)
 	end
 	Polestar.Engine = Engine
 	-- The real registry stays reachable for pages that show its records
-	-- (the Guide packs page): Polestar.Guides = uistub.realGuides.
+	-- (the Community guides page): Polestar.Guides = uistub.realGuides.
 	if Polestar.Guides ~= Guides then uistub.realGuides = Polestar.Guides end
 	Polestar.Guides = Guides
 	if not opts.noNav then Polestar.Nav = Nav end

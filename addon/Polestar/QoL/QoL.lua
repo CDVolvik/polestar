@@ -43,6 +43,7 @@ local defaults = {
 	markMob = "8",           -- its icon on mobs (1-8, "cycle"): skull
 	markNpc = "1",           -- and on NPCs: star
 	buttonScale = 1,
+	buttonTextSide = "right", -- which side of the button its name sits on
 	xpTracker = true,
 	sellJunk = true,
 	autoRepair = true,
