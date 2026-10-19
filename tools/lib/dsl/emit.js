@@ -7,7 +7,10 @@ const { FORMAT, NEEDS, TOC_MARKER, TOC_TITLE_PREFIX, LEGACY_TOC_TITLE_PREFIX } =
 const { header } = require('../generated');
 
 const GUIDE_KEYS = ['id', 'pack', 'title', 'faction', 'races', 'classes', 'minLevel', 'maxLevel', 'category', 'folder', 'keywords', 'collects', 'reward', 'why', 'zone', 'zoneName', 'next', 'nextChoices', 'pitch', 'pros', 'cons', 'author', 'version', 'group', 'names', 'written', 'steps'];
-const STEP_KEYS = ['title', 'note', 'only', 'when', 'goals'];
+// `image` follows note, so a step without one is emitted as before.
+const STEP_KEYS = ['title', 'note', 'image', 'only', 'when', 'goals'];
+// A step's picture: its path in the pack's addon folder (no extension) and its size in pixels.
+const IMAGE_KEYS = ['file', 'w', 'h'];
 // A step's `when` predicates (format 4), in this key order.
 const WHEN_KEYS = ['k', 'neg', 'op', 'n', 'q', 'item', 'name', 'area', 'minLevel', 'pre', 'preAll', 'closedBy'];
 // Keys only the profession/reputation/exploration/achievement verbs use sit
@@ -129,6 +132,7 @@ function emitGuide(guide, sourceRel) {
 						for (const goal of sv) out.push(`\t\t\t\t\t\t${inline(goal, GOAL_KEYS)},`);
 						out.push('\t\t\t\t\t},');
 					} else if (sk === 'only') out.push(`\t\t\t\t\tonly = ${inline(sv, ONLY_KEYS)},`);
+					else if (sk === 'image') out.push(`\t\t\t\t\timage = ${inline(sv, IMAGE_KEYS)},`);
 					else if (sk === 'when') out.push(`\t\t\t\t\twhen = ${list(sv, WHEN_KEYS)},`);
 					else out.push(`\t\t\t\t\t${sk} = ${scalar(sv)},`);
 				}
@@ -190,6 +194,7 @@ function guideData(guide) {
 					if (sv === undefined || sv === null) continue;
 					if (sk === 'goals') s.goals = sv.map((goal) => dataInline(goal, GOAL_KEYS));
 					else if (sk === 'only') s.only = dataInline(sv, ONLY_KEYS);
+					else if (sk === 'image') s.image = dataInline(sv, IMAGE_KEYS);
 					else if (sk === 'when') s.when = dataList(sv, WHEN_KEYS);
 					else s[sk] = dataScalar(sv);
 				}
@@ -402,4 +407,4 @@ function emitLicense(meta) {
 	return `${out.join('\n').trimEnd()}\n`;
 }
 
-module.exports = { emitGuides, emitPack, emitToc, emitTextsToc, emitTexts, emitMapFrames, emitClassTrainers, emitLicense, luaString, luaNumber, guideData, framesData, GUIDE_KEYS, STEP_KEYS, WHEN_KEYS, GOAL_KEYS, ONLY_KEYS, LIST_KEYS, FRAME_KEYS };
+module.exports = { emitGuides, emitPack, emitToc, emitTextsToc, emitTexts, emitMapFrames, emitClassTrainers, emitLicense, luaString, luaNumber, guideData, framesData, GUIDE_KEYS, STEP_KEYS, IMAGE_KEYS, WHEN_KEYS, GOAL_KEYS, ONLY_KEYS, LIST_KEYS, FRAME_KEYS };
