@@ -1465,18 +1465,18 @@ test("#286: a typed coordinate is near its target's spawns in its own map frame,
 // south-west of the bow, to where QuestieDB 1.0.5 had it; 1.0.6 moved it to
 // 59.4,56.4, where the player found it. A quest item that lies on the ground
 // at a few fixed spots is collected where one of them is: the arrow leads
-// within 1 map unit of its object's spawn.
+// within 1 map unit of its object's spawn, both points in the same map frame
+// (Augustus' Receipt Book, #423: the Un'Goro guide's 17.4,31.1 is the Era
+// frame's name for the spawn the data gives as 14.04,24.22 live).
 const AWAY_FROM_ITS_OBJECTS = new Set([
 	// Fish from pools: the schools drift along the shore, and the step points at a stretch of it.
 	'forever/professions/fishing.guide 16968',
 	'forever/professions/fishing.guide 16969',
 	'forever/professions/fishing.guide 16970',
-	// The data has the book at 14.0,24.2 (pfQuest and QuestieDB agree); the guide says the
-	// Terrordale inn at 17.4,31.1. Not checked in game yet; left for its own fix.
-	'forever/horde/50-60/01-un-goro-crater.guide 15884',
 ]);
 test("#289: a quest item picked up from objects is collected at one of the objects' spawns", { skip }, () => {
 	data = data || loadData(DATA);
+	const { point } = makeProjector(data.mapFrames);
 	const offenders = [];
 	for (const guide of allGuides()) {
 		for (const { step, goal } of goals(guide)) {
@@ -1485,9 +1485,12 @@ test("#289: a quest item picked up from objects is collected at one of the objec
 			if (!item || !item.questItem || !item.drops) continue;
 			const objects = Object.keys(item.drops.object || {});
 			if (!objects.length || Object.keys(item.drops.npc || {}).length) continue;
-			const pts = objects.flatMap((id) => data.spawns('object', Number(id)).filter((s) => s.map === goal.map).flatMap((s) => s.pts));
+			const pts = objects.flatMap((id) => data.spawns('object', Number(id)).filter((s) => s.map === goal.map).flatMap((s) => s.pts.map((p) => point(s.map, p[0], p[1], s.f))));
 			if (!pts.length) continue;
-			const near = Math.min(...[goal, ...(goal.spots || [])].flatMap((g) => pts.map((p) => Math.hypot(p[0] - g.x, p[1] - g.y))));
+			const near = Math.min(...[goal, ...(goal.spots || [])].flatMap((g) => {
+				const q = point(goal.map, g.x, g.y, goal.f || 'l');
+				return pts.map((p) => Math.hypot(p.x - q.x, p.y - q.y));
+			}));
 			if (near > 1 && !AWAY_FROM_ITS_OBJECTS.has(`${guide} ${goal.item}`)) offenders.push(`${guide} collect ${goal.item} @${goal.x},${goal.y} (step ${step.title}) is ${near.toFixed(2)} from its objects`);
 		}
 	}
