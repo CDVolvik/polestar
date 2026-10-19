@@ -55,3 +55,19 @@ test('luajit: a file too big for it in any other shape names the way out', { ski
 	const { error } = load('luajit', file, 'return true');
 	assert.match(error, /more than 65536 constants \(LuaJIT cannot load this file; set LUA to a Lua 5\.1 interpreter\)/);
 });
+
+for (const [shape, value] of [
+	// 12000 lines inside one value, so a 10000-line cut falls in it.
+	['a long string', (i) => (i === 1 ? `[[${'\n  x'.repeat(12000)}]]` : `"${i}"`)],
+	['a backslash line continuation', (i) => (i === 1 ? `"${'\\\n  x'.repeat(12000)}"` : `"${i}"`)],
+]) {
+	test(`luajit: a file it would have to cut inside ${shape} is refused, not loaded wrong`, { skip: !works('luajit') && 'luajit is not installed' }, () => {
+		const lines = ['pfDB["units"]["data"] = {'];
+		for (let i = 1; i <= 70000; i++) lines.push(`  [${i}] = {`, `    ["lvl"] = ${value(i)},`, '  },');
+		lines.push('}', '');
+		const file = path.join(tmpdir(), 'units.lua');
+		fs.writeFileSync(file, lines.join('\n'));
+		const { error } = load('luajit', file, 'return true');
+		assert.match(error, /LuaJIT cannot load this file; set LUA to a Lua 5\.1 interpreter/);
+	});
+}

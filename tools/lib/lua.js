@@ -129,6 +129,9 @@ local __rawopen, __rawload, __setfenv, __pcall = io.open, loadstring, setfenv, p
 -- line indented two spaces, "}" on the last) loads again with its entries
 -- split across functions of their own, which fill the same table.
 local function __split(src)
+  -- A cut inside a long string ([[...]], [==[...]==]) or after a backslash
+  -- line continuation would paste the wrapper into the value: don't split.
+  if src:find("%[=*%[") or src:find("\\\r?\n") then return nil end
   local lines = {}
   for line in (src:gsub("\r\n", "\n") .. "\n"):gmatch("([^\n]*)\n") do lines[#lines + 1] = line end
   while #lines > 0 and lines[#lines]:match("^%s*$") do lines[#lines] = nil end
