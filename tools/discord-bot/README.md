@@ -13,7 +13,7 @@ sequenceDiagram
   P->>D: post: what went wrong, the report, screenshots
   B->>G: issue with labels, screenshots on the bug-media branch
   B->>D: "Tracked as #N", tag Tracked
-  P->>D: follow-up in the thread
+  P->>D: follow-up in the thread (the reporter or another player)
   B->>G: comment on the issue
   G->>D: first pull request for the issue: "a fix is open", tag In progress (Action)
   G->>D: needs-info: the maintainer's question, answered in the thread (Action)
@@ -24,8 +24,8 @@ sequenceDiagram
 
 | What happens | Who does it | What the player sees |
 |---|---|---|
-| A new post | the bot, at once | "Tracked as fitzforge/polestar#N", tag **Tracked** |
-| The reporter writes again in the thread (text, screenshots, a new report) | the bot | nothing; it becomes a comment on the issue. Other people's replies stay on Discord |
+| A new post | the bot, at once | "Tracked as fitzforge/polestar#N. Replies in this thread, from anyone, are copied to the issue.", tag **Tracked** |
+| Anyone writes in the thread (text, screenshots, a new report) | the bot | nothing; it becomes a comment on the issue, the reporter's marked "(the reporter)". The bot's own messages are not copied |
 | The reporter edits the post's first message | the bot | nothing; the issue body is written again |
 | A pull request addresses the issue for the first time (its title names `#N`, or it says `closes`/`fixes`/`resolves #N`) | `pr-links.yml` | ping: "A fix for this is open (#M). It still has to be reviewed; we'll tell you here when it's fixed.", tag **In progress**. Once per issue: more pull requests, edits and closes tell the thread nothing. On GitHub the issue gets one comment listing its pull requests, kept up to date, and the label `has-pr` (CONTRIBUTING.md, "Before you start") |
 | Issue labelled **needs-info** | `discord-issue-sync.yml` | ping: "We need a little more to go on with this one", quoting the maintainer's last comment on the issue, and "Please answer here in the thread". The answer comes back to the issue as a follow-up. Tags unchanged |
