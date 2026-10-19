@@ -836,6 +836,20 @@
 			},
 			"note": "Wowhead Forever npc=639 (https://www.wowhead.com/forever/npc=639): Edwin VanCleef is Elite in Forever (checked 2026-10-13); the merged Era data has rank 2 (Rare Elite)."
 		},
+		"1738": {
+			"addSpawns": {
+				"1420": {
+					"f": "e",
+					"pts": [
+						[
+							61.4,
+							53.4
+						]
+					]
+				}
+			},
+			"note": "User report (2026-10-18): Deathguard Terrence (npc=1738), giver for The Argent Emissary (96895), is at map 1420, 61.4,53.4; replaces the existing map spawns."
+		},
 		"1756": {
 			"set": {
 				"rank": 1
