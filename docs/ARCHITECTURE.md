@@ -940,7 +940,7 @@ Polestar.Import.Save(entry) -> ok, reason             -- checks again, registers
 Polestar.Import.Delete(id) -> bool
 Polestar.Import.List() -> { { id, title, author, version, license, steps, problem }, ... }  -- by title
 Polestar.Import.Load()                                -- at login
-Polestar.Import.LIMITS                                -- { length = 50000, steps = 60, payload = 262144 }
+Polestar.Import.LIMITS                                -- { length = 50000, steps = 60, payload = 262144, text = 4096 }
 ```
 
 Only guides of shown packs (`on`, plus the internal `lookup`) are visible to

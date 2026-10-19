@@ -2019,6 +2019,8 @@ L["This import string is too long: Polestar reads up to %d characters."] = "가�
 L["This is not a Polestar import string."] = "Polestar 가져오기 문자열이 아닙니다."
 L["This game client cannot read import strings."] = "이 게임 클라이언트는 가져오기 문자열을 읽을 수 없습니다."
 L["Open the Import page: guides shared as text"] = "가져오기 페이지 열기: 텍스트로 공유된 가이드"
+L["This import string holds a text longer than Polestar reads (%s): %d characters at most."] = "이 가져오기 문자열에 Polestar가 읽는 것보다 긴 텍스트(%s)가 있습니다. 최대 %d자입니다."
+L["This import string holds too much: Polestar reads up to %d KB of guide data."] = "이 가져오기 문자열의 내용이 너무 많습니다. Polestar는 가이드 데이터를 최대 %d KB까지 읽습니다."
 
 -- UI/Import.lua
 L["by %s"] = "작성자 %s"

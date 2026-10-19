@@ -26,9 +26,32 @@ const { referencedFrames } = require('../dsl/project');
 
 const PREFIX = '!PS1!';
 // The caps the addon applies too (Core/Import.lua, Import.LIMITS; a test
-// holds the two equal): the whole string, the steps of its guide, and the
-// payload once decompressed.
-const LIMITS = { length: 50000, steps: 60, payload: 262144 };
+// holds the two equal): the whole string, the steps of its guide, the
+// payload once decompressed (bytes), and any one text or object key in it
+// (bytes).
+const LIMITS = { length: 50000, steps: 60, payload: 262144, text: 4096 };
+
+// The first text or key in v longer than LIMITS.text, as the addon names it
+// (`guide.steps[2].note`), or null.
+function longText(v, where = '') {
+	if (typeof v === 'string') return Buffer.byteLength(v) > LIMITS.text ? where : null;
+	if (Array.isArray(v)) {
+		for (let i = 0; i < v.length; i++) {
+			const hit = longText(v[i], `${where}[${i + 1}]`);
+			if (hit !== null) return hit;
+		}
+		return null;
+	}
+	if (v && typeof v === 'object') {
+		for (const [k, x] of Object.entries(v)) {
+			const at = where === '' ? k : `${where}.${k}`;
+			if (Buffer.byteLength(k) > LIMITS.text) return where;
+			const hit = longText(x, at);
+			if (hit !== null) return hit;
+		}
+	}
+	return null;
+}
 
 function adler32(buf) {
 	let a = 1;
@@ -70,7 +93,8 @@ function decodeImport(text) {
 // One compiled guide of a pack (buildPack's guides; manifest its pack.json,
 // data its reference data) as an import string. -> { text, steps } or
 // { error } when the guide cannot go in one: one of Polestar's own guides,
-// too many steps, or a string longer than the addon reads.
+// too many steps, a text longer than the addon reads, or a string or payload
+// bigger than it reads.
 function importString(guide, { manifest, data }) {
 	const prefix = String(guide.id).split('/')[0];
 	if (!manifest || manifest.id === 'guides' || RESERVED_IDS.has(prefix)) {
@@ -81,6 +105,12 @@ function importString(guide, { manifest, data }) {
 	const payload = { format: FORMAT, license: manifest.license, guide: guideData(guide._localised || guide) };
 	const frames = data ? framesData(referencedFrames([guide], data)) : {};
 	if (Object.keys(frames).length) payload.frames = frames;
+	const long = longText(payload);
+	if (long !== null) return { error: `${guide.id}: ${long} is longer than ${LIMITS.text} bytes, the most Polestar reads in one text of an import string` };
+	const bytes = Buffer.byteLength(JSON.stringify(payload));
+	if (bytes > LIMITS.payload) {
+		return { error: `${guide.id} holds ${bytes} bytes of guide data; Polestar reads ${LIMITS.payload} at most (a guide this big goes in a community addon: polestar pack)` };
+	}
 	const text = encodeImport(payload);
 	if (text.length > LIMITS.length) {
 		return { error: `${guide.id} makes a string of ${text.length} characters; Polestar reads ${LIMITS.length} at most (a guide this big goes in a community addon: polestar pack)` };

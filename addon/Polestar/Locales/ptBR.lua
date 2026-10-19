@@ -2019,6 +2019,8 @@ L["This import string is too long: Polestar reads up to %d characters."] = "Este
 L["This is not a Polestar import string."] = "Isto não é um texto de importação do Polestar."
 L["This game client cannot read import strings."] = "Este cliente do jogo não consegue ler textos de importação."
 L["Open the Import page: guides shared as text"] = "Abrir a página Importar: guias compartilhados como texto"
+L["This import string holds a text longer than Polestar reads (%s): %d characters at most."] = "Este texto de importação tem um texto mais longo do que o Polestar lê (%s): no máximo %d caracteres."
+L["This import string holds too much: Polestar reads up to %d KB of guide data."] = "Este texto de importação tem dados demais: o Polestar lê até %d KB de dados de guia."
 
 -- UI/Import.lua
 L["by %s"] = "de %s"

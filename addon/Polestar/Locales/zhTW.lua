@@ -2019,6 +2019,8 @@ L["This import string is too long: Polestar reads up to %d characters."] = "此�
 L["This is not a Polestar import string."] = "這不是 Polestar 匯入字串。"
 L["This game client cannot read import strings."] = "此遊戲用戶端無法讀取匯入字串。"
 L["Open the Import page: guides shared as text"] = "開啟匯入頁面：以文字分享的指南"
+L["This import string holds a text longer than Polestar reads (%s): %d characters at most."] = "此匯入字串含有超出 Polestar 讀取長度的文字（%s）：最多 %d 個字元。"
+L["This import string holds too much: Polestar reads up to %d KB of guide data."] = "此匯入字串內容過多：Polestar 最多讀取 %d KB 指南資料。"
 
 -- UI/Import.lua
 L["by %s"] = "作者 %s"

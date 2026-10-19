@@ -42,8 +42,10 @@ ns.Import = Import
 
 local PACK = "imported"
 -- The caps tools/lib/pack/importstring.js applies (a test holds them equal):
--- characters in a string, steps in its guide, bytes of the payload.
-local LIMITS = { length = 50000, steps = 60, payload = 262144 }
+-- characters in a string, steps in its guide, bytes of the payload, and
+-- bytes in any one text or key of it (a title, a note, a name token): the
+-- texts are filled in token by token, so a long one costs time to show.
+local LIMITS = { length = 50000, steps = 60, payload = 262144, text = 4096 }
 Import.LIMITS = LIMITS
 
 ns.RegisterPack({ id = PACK, imported = true, title = L["Imported"] })
@@ -246,6 +248,7 @@ local function finite(v) return type(v) == "number" and v == v and v ~= huge and
 -- v shaped by spec -> a fresh copy; raises { field = where } at the first
 -- key or value that does not fit.
 local function build(v, spec, where)
+	if type(v) == "string" and #v > LIMITS.text and (spec == S or spec == NS) then error({ field = where, long = true }, 0) end
 	if spec == S then
 		if type(v) == "string" then return v end
 	elseif spec == N then
@@ -274,6 +277,7 @@ local function build(v, spec, where)
 		elseif spec.map then
 			for k, x in pairs(v) do
 				if type(k) ~= "string" or k == "" then error({ field = where }, 0) end
+				if #k > LIMITS.text then error({ field = where, long = true }, 0) end
 				out[k] = build(x, spec.map, where .. "." .. k)
 			end
 			return out
@@ -378,6 +382,9 @@ local function fromTree(tree)
 	if finite(tree.format) and not Guides.FORMATS[tree.format] then return nil, L["This import string needs a newer Polestar."] end
 	local ok, entry = pcall(build, tree, PAYLOAD, "")
 	if not ok then
+		if type(entry) == "table" and entry.long then
+			return nil, (L["This import string holds a text longer than Polestar reads (%s): %d characters at most."]):format(escape(entry.field), LIMITS.text)
+		end
 		if type(entry) == "table" and entry.field then
 			return nil, (L["This import string holds a field Polestar does not read (%s). It may need a newer Polestar."]):format(escape(entry.field))
 		end
@@ -408,7 +415,7 @@ function Import.Decode(text)
 	local raw
 	ok, raw = pcall(enc.DecompressString, packed, method)
 	if not ok or type(raw) ~= "string" then return nil, damaged() end
-	if #raw > LIMITS.payload then return nil, (L["This import string is too long: Polestar reads up to %d characters."]):format(LIMITS.length) end
+	if #raw > LIMITS.payload then return nil, (L["This import string holds too much: Polestar reads up to %d KB of guide data."]):format(LIMITS.payload / 1024) end
 	if adler32(raw) ~= lower(sum) then return nil, damaged() end
 	local tree = parseJSON(raw)
 	if tree == nil then return nil, damaged() end
@@ -449,8 +456,35 @@ end
 
 local problems = {} -- guide id -> why its stored guide did not register (login)
 
+-- The Era frames of entry for the maps its guide's goals and their smart
+-- targets stand on, and only where no one has registered a frame: a string
+-- never moves another pack's (or Polestar's) map. -> { [map] = frame } | nil
+local function newFrames(entry)
+	if type(entry.frames) ~= "table" then return nil end
+	local used = {}
+	for _, step in ipairs(entry.guide.steps or {}) do
+		for _, goal in ipairs(step.goals or {}) do
+			if goal.map then used[goal.map] = true end
+			for _, c in ipairs(goal.candidates or {}) do
+				if c.map then used[c.map] = true end
+			end
+		end
+	end
+	local era = ns.MapFrames and ns.MapFrames.era or {}
+	local out, any = {}, false
+	for map, frame in pairs(entry.frames) do
+		if used[map] and era[map] == nil then
+			out[map] = copy(frame)
+			any = true
+		end
+	end
+	return any and out or nil
+end
+Import.NewFrames = newFrames
+
 local function register(entry)
-	if entry.frames then ns.RegisterMapFrames({ era = copy(entry.frames) }, PACK) end
+	local frames = newFrames(entry)
+	if frames then ns.RegisterMapFrames({ era = frames }, PACK) end
 	local def = copy(entry.guide)
 	def.pack = PACK
 	def.license = entry.license

@@ -439,7 +439,7 @@ wrap it). The payload is JSON:
 | `format` | yes | the guide data's format (above): Polestar refuses a format it does not read |
 | `license` | yes | the licence of the guide, from the pack's `pack.json` |
 | `guide` | yes | one guide exactly as `RegisterGuide(def)` takes it, without `pack`: the keys above, numbers rounded as `Guides.lua` writes them, `preTitles` with the quest ids as the object's keys |
-| `frames` | no | `RegisterMapFrames`'s `era` table for the maps its goals use, by uiMapID |
+| `frames` | no | `RegisterMapFrames`'s `era` table for the maps its goals use, by uiMapID. Polestar takes a frame only for a map the guide's goals or their smart targets stand on, and only where no one (Polestar, a community addon, an earlier import) has registered one |
 
 Polestar reads it as data only. The client's own decoders
 (`C_EncodingUtil.DecodeBase64` and `DecompressString`, the ones the walking
@@ -453,7 +453,9 @@ Nothing in a string is ever run: the reader never hands its text to
 
 Then the guide meets the rules above, as a community addon's would, plus:
 
-- at most 50,000 characters in the string, 256 KB of payload, 60 steps;
+- at most 50,000 characters in the string, 256 KB of payload, 60 steps,
+  and 4,096 bytes in any one text or key (a longer one is refused, naming
+  it, before any text is filled in; `export` refuses it too);
 - its id is `<author>/<name>`, under no reserved id and no id of a
   community addon the player has installed (registered or only listed);
 - `next` and every `nextChoices` entry name one of Polestar's guides

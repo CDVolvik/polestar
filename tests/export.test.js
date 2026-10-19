@@ -143,3 +143,13 @@ test('export refuses a file of two guides, a file outside any pack, and asks for
 	assert.equal(polestar(['export']).status, 2);
 	assert.equal(polestar(['export', 'pack.json']).status, 2);
 });
+
+test('importString refuses a text over the cap and a payload over the cap, as the addon would', () => {
+	const manifest = { id: 'yendi', license: 'MIT' };
+	const long = { id: 'yendi/long', title: 'a'.repeat(LIMITS.text + 1), steps: [{ goals: [{ t: 'level', level: 2 }] }] };
+	assert.match(importString(long, { manifest, data: null }).error, /guide\.title is longer than 4096 bytes/);
+	const steps = Array.from({ length: LIMITS.steps }, () => ({ note: 'n'.repeat(4000), goals: [{ t: 'note', text: 't'.repeat(1000) }] }));
+	const big = { id: 'yendi/big', title: 'Big', steps };
+	const r = importString(big, { manifest, data: null });
+	assert.match(r.error, /bytes of guide data; Polestar reads 262144 at most/);
+});

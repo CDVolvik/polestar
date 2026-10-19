@@ -326,3 +326,60 @@ test('no community addon can take the imported pack\'s id', () => {
 	assert.match(out.err, /reserved for Polestar/);
 	assert.equal(out.holder, true);
 });
+
+test('a text over the cap is refused at once, naming it, before any of it is filled in', () => {
+	const long = payload();
+	long.guide.title = '{a:1}'.repeat(50000);
+	const key = payload();
+	key.guide.written = { ['x'.repeat(5000)]: 'y' };
+	const ns = payload();
+	ns.guide.steps[0].goals[0].qlvl = 'q'.repeat(5000);
+	const [out] = run(`
+		local function why(text)
+			local t0 = os.clock()
+			local info, reason = I.Preview(text)
+			return { reason = info and "accepted" or reason, seconds = os.clock() - t0 }
+		end
+		emit({ long = why(${str(encodeImport(long))}), key = why(${str(encodeImport(key))}), ns = why(${str(encodeImport(ns))}), imports = PolestarDB.imports == nil })
+	`);
+	assert.match(out.long.reason, /holds a text longer than Polestar reads \(guide\.title\): 4096 characters at most/);
+	assert.ok(out.long.seconds < 0.2, `refused in ${out.long.seconds} s`);
+	assert.match(out.key.reason, /text longer than Polestar reads \(guide\.written\)/);
+	assert.match(out.ns.reason, /text longer than Polestar reads \(guide\.steps\[1\]\.goals\[1\]\.qlvl\)/);
+	assert.equal(out.imports, true);
+});
+
+test('a payload over the cap is refused with its own message', () => {
+	const big = envelope(`{"format":3,"license":"MIT","guide":{"id":"yendi/x","title":"${' '.repeat(LIMITS.payload)}"}}`);
+	assert.ok(big.length < LIMITS.length, 'the string itself is short');
+	const [out] = run(`local info, why = I.Preview(${str(big)}) emit({ why = why })`);
+	assert.equal(out.why, 'This import string holds too much: Polestar reads up to 256 KB of guide data.');
+});
+
+test('a string adds Era frames only for the maps its guide uses, and never over a frame someone registered', () => {
+	// A goal on a map Polestar has no frame for (9998), and a frame for a map no goal uses (9999).
+	const p = payload();
+	const goal = p.guide.steps.flatMap((st) => st.goals).find((g) => g.map !== undefined);
+	goal.map = 9998;
+	const mine = { c: 0, left: 1, right: 2, top: 3, bottom: 4 };
+	p.frames = { 9998: mine, 9999: mine };
+	const text = encodeImport(p);
+	const [free, taken] = [
+		run(`
+			local before = Polestar.MapFrames.era[9998]
+			save(${str(text)})
+			emit({ before = before == nil, got = Polestar.MapFrames.era[9998], stray = Polestar.MapFrames.era[9999] == nil })
+		`),
+		run(`
+			assert(Polestar.RegisterPack({ addon = "PolestarPack_Joe", id = "joe", format = 3, title = "Joe", author = "Joe", version = "1", license = "MIT" }))
+			Polestar.RegisterMapFrames({ era = { [9998] = { c = 0, left = 10, right = 20, top = 30, bottom = 40 } } }, "joe")
+			save(${str(text)})
+			emit({ left = Polestar.MapFrames.era[9998].left, stray = Polestar.MapFrames.era[9999] == nil })
+		`),
+	];
+	assert.equal(free[0].before, true);
+	assert.deepEqual(free[0].got, mine, 'a map no one registered takes the string\'s frame');
+	assert.equal(free[0].stray, true, 'a map the guide never uses is left out');
+	assert.equal(taken[0].left, 10, 'the community addon\'s frame stays');
+	assert.equal(taken[0].stray, true);
+});
