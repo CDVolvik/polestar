@@ -35,7 +35,7 @@ step Seek out SI: 7
 step Master Mathias Shaw
   only Human,Skyborne
   zone Stormwind City
-  tip Ride north to Stormwind; Mathias Shaw is at SI:7 in Old Town.
+  tip Head north to Stormwind; Mathias Shaw is at SI:7 in Old Town.
   turnin 2205                                 -- Master Mathias Shaw
   accept 2206
 
@@ -90,7 +90,7 @@ step The Apple Falls
 step Syurna
   only NightElf
   zone Darnassus
-  tip Ride west to Darnassus. Syurna stands in the north-west of the city.
+  tip Head west to Darnassus. Syurna stands in the north-west of the city.
   turnin 2241                                 -- Syurna
   accept 2242
 

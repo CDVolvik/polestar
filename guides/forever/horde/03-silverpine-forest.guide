@@ -215,7 +215,7 @@ step Rane Yorick
 
 step Mottled Worgs
   tip Mottled Worgs prowl the hills around the house.
-  collect 3164 quest 429.1
+  collect 3164 quest 429.1 @54.9,13.6
 
 step Hearth to the Sepulcher
   hearth "The Sepulcher"
@@ -247,7 +247,7 @@ step Quinn Yorick
 
 step Vile Fin murlocs
   tip Follow the lake shore south-east toward Fenris Isle: the Vile Fin Shredders and Tidehunters along it drop the murloc eyes.
-  collect 730 quest 91920.1
+  collect 730 quest 91920.1 @61.1,14.5
 
 step Fenris Isle
   tip Follow the lake shore south-east and swim out to Fenris Isle. Rot Hide gnolls cover the island; every type drops ichor. Stay out of Fenris Keep on its north side unless you go for the optional niche: the gnolls there are level 18-22.

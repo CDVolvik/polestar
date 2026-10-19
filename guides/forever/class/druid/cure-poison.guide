@@ -57,7 +57,7 @@ step Dendrite Starblaze
 step Cliffspring Falls
   only NightElf
   zone Darkshore
-  tip Ride north-east from Auberdine to Cliffspring Falls and fill the Empty Cliffspring Falls Sampler at the mouth of the cave by the falls.
+  tip Head north-east from Auberdine to Cliffspring Falls and fill the Empty Cliffspring Falls Sampler at the mouth of the cave by the falls.
   collect 15845 quest 6122.1            -- Filled Cliffspring Falls Sampler
 
 step Alanndarian Nightsong
@@ -115,7 +115,7 @@ step Dendrite Starblaze
 step Dreadmist Peak
   only Tauren
   zone The Barrens
-  tip From the Crossroads ride north to Dreadmist Peak and fill the Empty Dreadmist Peak Sampler at the Dreadmist Peak Pool.
+  tip From the Crossroads head north to Dreadmist Peak and fill the Empty Dreadmist Peak Sampler at the Dreadmist Peak Pool.
   fly "Crossroads"
   collect 15843 quest 6127.1            -- Filled Dreadmist Peak Sampler
 

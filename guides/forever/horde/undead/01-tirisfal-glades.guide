@@ -96,7 +96,13 @@ next forever/horde/02-the-barrens
 # class gate on them, but a Scourge Mage (Mike_, 0.2.3) found neither in the
 # givers' quest windows, and warcraft.wiki.gg calls Hilda a Forsaken paladin
 # trainer: the keep is the Paladin hub. Other classes skip the keep; the
-# Shadowvale elixir bottles (95314) stay for everyone.
+# Shadowvale elixir bottles (95314) stay for everyone. Both quests need level
+# 10 (Forever's quest data: no prerequisite), and a Paladin reaches the keep
+# around 9 on the west loop: MadReign_Ltd (Paladin, 0.2.5) found Hilda and
+# Ephram without them there, and with them at 12 after A Righteous Cause
+# (96896, Leonid). Paladins take them after Leonid, a short walk south, which
+# is right whether the gate is the level or Leonid's quests; which one it is
+# still needs checking in game.
 #
 # Left out for Paladins: the Bandarion Keep chain (91282-91317, 95803) and A
 # Lesson in Divinity (94427-94441, Redemption) run from Bandarion Keep on the
@@ -138,13 +144,12 @@ step Mindless Zombies
 step Shadow Priest Sarvis
   turnin 364
   accept 3901
-  accept 376                          -- Novice Elreth, beside the church
-  accept 98389                        -- Aramis Hammerhand
   accept 3095 only Warrior            -- Shadow Priest Sarvis: Simple Scroll
   accept 3096 only Rogue              -- Shadow Priest Sarvis: Encrypted Scroll
   accept 3097 only Priest             -- Shadow Priest Sarvis: Hallowed Scroll
   accept 3098 only Mage               -- Shadow Priest Sarvis: Glyphic Scroll
   accept 3099 only Warlock            -- Shadow Priest Sarvis: Tainted Scroll
+  accept 376                          -- Novice Elreth, beside the church
   turnin 3095 only Warrior            -- Dannal Stern, the warrior trainer
   turnin 3096 only Rogue              -- David Trias, the rogue trainer
   turnin 3097 only Priest             -- Dark Cleric Duesten, the priest trainer in the church
@@ -160,16 +165,18 @@ step Aramis and Venya
   accept 90902 only Paladin
   accept 1470 only Warlock            -- Venya Marthand
 
+step Injured Deathguard
+  only Paladin
+  tip Rediscovering the Light: the Injured Deathguard lie around the church. Heal five of them with Holy Light.
+  goto 31.8,63.9 "Injured Deathguard"
+  complete 90902
+
 step Rattlecages, scavengers and duskbats
   tip Rattlecage Skeletons wander the ruined houses in the north half of Deathknell. Young Scavengers and Duskbats roam all around the village; the Ragged Scavengers and Mangy Duskbats are on its east side.
   kill 1890 quest 3901.1
   collect 3265 quest 376.1
   collect 3264 quest 376.2
-
-step Rattlecage skulls
-  only Warlock
-  tip The Rattlecage Skeletons in the ruined houses drop the skulls.
-  collect 6281 quest 1470.1
+  collect 6281 quest 1470.1 only Warlock
 
 step Back to the church
   turnin 3901                         -- Shadow Priest Sarvis
@@ -179,9 +186,9 @@ step Back to the church
   train class
 
 step Aramis and Venya
-  only Paladin,Warlock
   tip Paladins: Rediscovering the Light is done once you have healed five Injured Deathguard around the church with Holy Light.
   turnin 90902 only Paladin           -- Aramis Hammerhand: Holy Light
+  accept 98389                        -- Aramis Hammerhand
   turnin 1470 only Warlock            -- Venya Marthand: Summon Imp
 
 step Scavenging Deathknell
@@ -223,9 +230,9 @@ step Marla's Grave
 step Executor Arren
   turnin 6395                         -- Novice Elreth
   turnin 381                          -- Executor Arren
+  accept 382
   turnin 91208 only Paladin           -- Aramis Hammerhand
   accept 91209 only Paladin
-  accept 382
 
 step Meven Korgal
   tip Meven Korgal stands at the south end of the Scarlet farm.
@@ -254,13 +261,13 @@ step Brill
   sethome "Gallows' End Tavern" npc 5688 -- Innkeeper Renee
   turnin 8                            -- Innkeeper Renee
   turnin 383                          -- Executor Zygand
-  turnin 91209 only Paladin           -- Shari Stilwell, the Paladin trainer
   accept 427
   accept 99134
   accept 99141
   accept 404                          -- Deathguard Dillinger
   collect 286200 quest 99141.1 npc 1496 @58.2,51.5 -- Ask Deathguard Dillinger for his report
   accept 86784                        -- Deathguard Bartholomew
+  turnin 91209 only Paladin           -- Shari Stilwell, the Paladin trainer
   train class                         -- The Brill trainers are in and around the inn
 
 step Discipline
@@ -344,6 +351,7 @@ step Vile Fin murlocs
 
 step Brill
   tip Follow the road south back to Brill.
+  buy 2320 npc 2118                   -- Coarse Thread from Abigail Shiel, for Gretchen
   turnin 375                          -- Gretchen Dedmar
   turnin 358                          -- Magistrate Sevren
   accept 359
@@ -393,22 +401,16 @@ step Vile Fin shore
   tip More Vile Fin murlocs walk the shore just north of the outpost.
   collect 278244 quest 97558.3
 
-step Paladin: Whispering Forest
-  only Paladin
-  tip Head west into the Whispering Forest; Hilda and Ephram camp at its edge.
-  accept 99152                        -- Hilda the Breaker
-  accept 99153                        -- Ephram Barbaro
-
+# Shadowvale's Lurchers, Mystics and elixir bottles are in the big basement
+# under the ruined house (only a floor and a few pillars left), not on the
+# ground above it: Onrevax's report (#392), and players' notes on quests
+# 95314 and 99152 in Forever's quest data put the way down at 12.9,65.7. Both
+# Shadowvale steps go to the stairs first, so the arrow does not circle the
+# ruins overhead.
 step Shadowvale
-  tip Shadowvale is the hollow at the west edge of the glades. The Shadowvale Lurchers and Mystics drop the bones; the bottles lie on the ground among them, and the Glowing Crystal Fragment is at the south end.
-  collect 286259 quest 99152.1 only Paladin
+  tip Shadowvale is the hollow at the west edge of the glades. Go down into the big basement under the ruined house (only a floor and a few pillars left, not the two-storey house): the bottles lie on its floor among the Shadowvale Lurchers and Mystics.
+  goto 12.9,65.7 "the basement under the ruined house"
   collect 268801 quest 95314.1
-  collect 286269 quest 99153.1 only Paladin
-
-step Paladin: Whispering Forest
-  only Paladin
-  turnin 99153                        -- Ephram Barbaro
-  turnin 99152                        -- Hilda the Breaker
 
 step Hearth to Brill
   hearth "Gallows' End Tavern"
@@ -544,6 +546,24 @@ step Leonid Barthalomew
   turnin 96899
   accept 96896
   turnin 96896                        -- Listen to Leonid and Danitha Morr, then talk to him again
+
+step Paladin: Whispering Forest
+  only Paladin
+  tip Hilda and Ephram camp at the forest's edge, just south of Leonid. Their quests need level 10.
+  accept 99152                        -- Hilda the Breaker
+  accept 99153                        -- Ephram Barbaro
+
+step Paladin: Shadowvale
+  only Paladin
+  tip Back to Shadowvale and down into the basement under the ruined house: the Shadowvale Lurchers and Mystics there drop the bones, and the Glowing Crystal Fragment is at the basement's south end.
+  goto 12.9,65.7 "the basement under the ruined house"
+  collect 286259 quest 99152.1
+  collect 286269 quest 99153.1
+
+step Paladin: Whispering Forest
+  only Paladin
+  turnin 99153                        -- Ephram Barbaro
+  turnin 99152                        -- Hilda the Breaker
 
 step Hearth to Brill
   hearth "Gallows' End Tavern"
