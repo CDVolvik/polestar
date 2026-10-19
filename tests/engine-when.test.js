@@ -45,25 +45,26 @@ Polestar.RegisterGuide({
 const HELPERS = `
 E = Polestar.Engine
 function flush() stub.advance(0.25) end
--- The live step, step 2's status and what keeps it off.
-function state() local v = E.GetStepView(2); return { live = E.GetLiveStep(), status = v.status, unmet = v.unmet } end
+-- The live step and step 2's status.
+function state() local v = E.GetStepView(2); return { live = E.GetLiveStep(), status = v.status } end
 `;
 
-function run({ when, before = '', saved = 'PolestarCharDB = { schema = 1, guide = "test/when" }', script }) {
+// `login` runs right after PLAYER_LOGIN; the quest log is read (QUEST_LOG_UPDATE) after it.
+function run({ when, before = '', saved = 'PolestarCharDB = { schema = 1, guide = "test/when" }', login = '', script }) {
 	return runAddon({
 		stubs: ['stub_world.lua'],
 		before: WORLD + before,
 		addons: [CORE],
 		saved: { Polestar: saved },
 		script: `${TEST_PACK}
-${TEST_SOURCE}\n${guide(when)}\n${HELPERS}\nstub.login()\nstub.fire("QUEST_LOG_UPDATE"); stub.advance(0.6)\n${script}`,
+${TEST_SOURCE}\n${guide(when)}\n${HELPERS}\nstub.login()\n${login}\nstub.fire("QUEST_LOG_UPDATE"); stub.advance(0.6)\n${script}`,
 	}).emitted;
 }
 
 // The player has taken A Threat Within: step 2 or 3 is the live step.
 const TAKEN = 'w.onQuest(783, {})';
 
-test('a step applies while its `when` holds, and is passed (status na, unmet names the predicate) while it does not', () => {
+test('a step applies while its `when` holds, and is passed (stored as skipped) once it does not', () => {
 	const [low, high] = run({
 		when: '{ { k = "level", op = "<", n = 3 } }',
 		before: TAKEN,
@@ -74,7 +75,7 @@ test('a step applies while its `when` holds, and is passed (status na, unmet nam
 		`,
 	});
 	assert.deepEqual(low, { live: 2, status: 'current' });
-	assert.deepEqual(high, { live: 3, status: 'na', unmet: { k: 'level', op: '<', n: 3 } });
+	assert.deepEqual(high, { live: 3, status: 'skipped' });
 });
 
 test('once the route has moved past a step, its outcome is stored: a failed `when` never brings the step back, and a reload keeps it', () => {
@@ -86,21 +87,54 @@ test('once the route has moved past a step, its outcome is stored: a failed `whe
 			stub.world.addItem(159, -1); flush()
 			emit(state())
 			stub.fire("PLAYER_LOGOUT")
-			emit(PolestarCharDB.when)
+			emit({ skipped = PolestarCharDB.skipped, when = PolestarCharDB.when })
 		`,
 	});
-	assert.deepEqual(first, { live: 3, status: 'na', unmet: { k: 'has', item: 159, n: 1, neg: true } });
+	assert.deepEqual(first, { live: 3, status: 'skipped' });
 	// Without the stored outcome the water used up would pull the guide back to step 2.
-	assert.deepEqual(after, { live: 3, status: 'na', unmet: true });
-	assert.deepEqual(db, { 'test/when': { 2: false } });
+	assert.deepEqual(after, { live: 3, status: 'skipped' });
+	assert.deepEqual(db, { skipped: { 'test/when': { 2: true } }, when: {} });
 
 	const [reloaded] = run({
 		when: '{ { k = "has", item = 159, n = 1, neg = true } }',
 		before: TAKEN,
-		saved: `PolestarCharDB = ${luaValue({ schema: 1, guide: 'test/when', when: { 'test/when': { 2: false } } })}`,
+		saved: `PolestarCharDB = ${luaValue({ schema: 1, guide: 'test/when', skipped: { 'test/when': { 2: true } } })}`,
 		script: 'emit(state())',
 	});
-	assert.deepEqual(reloaded, { live: 3, status: 'na', unmet: true });
+	assert.deepEqual(reloaded, { live: 3, status: 'skipped' });
+});
+
+test('nothing is stored before the quest log can be read: a step whose `when` reads the log is decided once it can', () => {
+	// Step 1's accept checked off by hand; 783 shows in the log only with QUEST_LOG_UPDATE.
+	const [early, ready, db] = run({
+		when: '{ { k = "onquest", q = { 783 } } }',
+		saved: `PolestarCharDB = ${luaValue({ schema: 1, guide: 'test/when', manual: { 'test/when': { '1:1': true } } })}`,
+		login: 'stub.advance(0.25); emit(state()); stub.world.onQuest(783, {})',
+		script: `
+			emit(state())
+			stub.fire("PLAYER_LOGOUT")
+			emit({ skipped = PolestarCharDB.skipped, when = PolestarCharDB.when })
+		`,
+	});
+	assert.deepEqual(early, { status: 'na' });
+	assert.deepEqual(ready, { live: 2, status: 'current' });
+	assert.deepEqual(db, { skipped: {}, when: {} });
+});
+
+test('a step stored off can be unskipped, and then applies whatever its `when`', () => {
+	const [off, back, db] = run({
+		when: '{ { k = "level", op = "<", n = 3 } }',
+		before: `${TAKEN}; w.setLevel(3)`,
+		script: `
+			emit(state())
+			E.Unskip(2); flush()
+			emit(state())
+			emit(PolestarCharDB.when)
+		`,
+	});
+	assert.deepEqual(off, { live: 3, status: 'skipped' });
+	assert.deepEqual(back, { live: 2, status: 'current' });
+	assert.deepEqual(db, { 'test/when': { 2: true } });
 });
 
 test('a step that applied stays applied once passed, and ResetProgress forgets the stored outcomes', () => {
@@ -119,7 +153,7 @@ test('a step that applied stays applied once passed, and ResetProgress forgets t
 	assert.deepEqual(passed, { live: 3, status: 'done' });
 	assert.deepEqual(later, { live: 3, status: 'done' });
 	// Reset, the route is placed again: at level 5 the step no longer applies.
-	assert.deepEqual(reset, { live: 3, status: 'na', unmet: { k: 'level', op: '<', n: 3 } });
+	assert.deepEqual(reset, { live: 3, status: 'skipped' });
 });
 
 test('quest predicates: onquest (any of), complete, turnedin and their negations', () => {

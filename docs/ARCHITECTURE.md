@@ -1029,16 +1029,18 @@ Polestar.Engine.GetProgress() -> doneSteps, totalSteps
   else as written). `stepApplies` reads them, so such a step counts as one
   for other characters while they fail, and a turn-in whose only accept sits
   there goes with it (`orphaned`). When the route moves past a step
-  (`latchPassed`), whether its `when` held is stored per character in
-  `CharState().when[guideId][step]` (`Own.latchWhen`) and read from then on
-  (`Own.whenHolds`): a step passed because its condition failed never comes
-  back when the condition changes, and one that applied stays applied.
+  (`latchPassed`), its outcome is stored per character (`Own.latchWhen`): a
+  `when` that held in `CharState().when[guideId][step]`, one that failed as
+  a skip in `CharState().skipped`, read from then on (`Own.whenHolds`): a
+  step passed because its condition failed never comes back when the
+  condition changes, one that applied stays applied, and `Unskip` brings a
+  wrongly stored step back (storing it as held). Nothing is stored before
+  `QUEST_LOG_UPDATE` (`logReady`; the log lags `PLAYER_LOGIN`):
+  `Own.latchCaughtUp` stores the steps passed meanwhile once it can.
   `ResetProgress` forgets them; a pack update moves them with the steps
   (`Own.remap`). The live state they read already re-evaluates the guide
   (quest log, `BAG_UPDATE_DELAYED`, zone changes, `PLAYER_LEVEL_UP`,
-  `HEARTHSTONE_BOUND`). `GetStepView(i).unmet` is what keeps such a step
-  off: the predicate that fails now, `true` when only the stored outcome
-  does, else nil.
+  `HEARTHSTONE_BOUND`).
 - **Unavailable quests.** An `accept` whose `closedBy` names a quest that is
   in the log or done is unavailable before any visit (reason `"closed"`,
   "No longer offered: you took <quest>"): a breadcrumb whose follow-up is

@@ -363,11 +363,12 @@ end
 -- Conditions checked during play (`when` on a step, format 4;
 -- docs/GUIDE_FORMAT.md, "Conditions checked during play"). Each predicate
 -- holds or not on the live state; a step applies while all of its hold. Once
--- the route moves past a step (latchPassed), whether they held is stored in
--- CharState().when[guideId][step] (Own.latchWhen) and read from there on,
--- so a step passed because its condition failed never comes back when the
--- condition changes later (money spent, an item used up, a zone left), and a
--- step that applied stays applied.
+-- the route moves past a step (latchPassed) with the quest log readable,
+-- the outcome is stored (Own.latchWhen): a step whose `when` held in
+-- CharState().when[guideId][step], one whose `when` failed as skipped, so
+-- it never comes back when the condition changes later (money spent, an
+-- item used up, a zone left), a step that applied stays applied, and the
+-- player can still Unskip a step stored off by mistake.
 
 -- Quest `p.q` can be taken now: not in the log or done, the level reached,
 -- its prerequisites done (missingPre, as an accept's) and none of the quests
@@ -442,35 +443,44 @@ function Own.stepNumber(step)
 	return map[step]
 end
 
+-- Stored as held, or skipped (it applies, the player passed it): applies;
+-- else its predicates live.
 function Own.whenHolds(step)
 	local s = Own.stepNumber(step)
-	local stored = s and ns.CharState().when[guide.id]
-	if stored and stored[s] ~= nil then return stored[s] end
+	if s then
+		local state = ns.CharState()
+		local held, skipped = state.when[guide.id], state.skipped[guide.id]
+		if (held and held[s]) or (skipped and skipped[s]) then return true end
+	end
 	return Own.whenFails(step) == nil
 end
 
--- Store whether step s's `when` holds, once the route has moved past it
--- (latchPassed). A step for other characters (`only`) stores nothing.
+-- Store step s's `when` outcome once the route has moved past it
+-- (latchPassed): held in `when`, failed as a skip. Not before the quest log
+-- can be read (it lags PLAYER_LOGIN; Own.latchCaughtUp stores the steps
+-- passed meanwhile). A step for other characters (`only`) stores nothing.
 function Own.latchWhen(s)
 	local step = guide.steps[s]
-	if not (step and step.when) or not Guides.Matches(step.only, player) then return end
-	local all = ns.CharState().when
-	local stored = all[guide.id]
-	if stored and stored[s] ~= nil then return end
-	if not stored then
-		stored = {}
-		all[guide.id] = stored
+	if not logReady or not (step and step.when) or not Guides.Matches(step.only, player) then return end
+	local state = ns.CharState()
+	local held, skipped = state.when[guide.id], state.skipped[guide.id]
+	if (held and held[s]) or (skipped and skipped[s]) then return end
+	local field = Own.whenFails(step) == nil and "when" or "skipped"
+	local t = state[field][guide.id]
+	if not t then
+		t = {}
+		state[field][guide.id] = t
 	end
-	stored[s] = Own.whenFails(step) == nil
+	t[s] = true
 end
 
--- What keeps step s off for this character by its `when` (the step view's
--- `unmet`): the predicate that fails now, `true` when the stored outcome
--- does, nil when its `when` holds or it has none.
-function Own.unmet(s)
-	local step = guide.steps[s]
-	if not (step.when and Guides.Matches(step.only, player)) or Own.whenHolds(step) then return nil end
-	return Own.whenFails(step) or true
+-- Once per loaded guide, after the quest log can be read: store the
+-- outcomes of steps 1..passed the route moved past before it could.
+Own.caughtUp = setmetatable({}, { __mode = "k" })
+function Own.latchCaughtUp(passed)
+	if not logReady or Own.caughtUp[guide] then return end
+	Own.caughtUp[guide] = true
+	for s = 1, passed do Own.latchWhen(s) end
 end
 
 -- The player stands in a hearth's or flight's place: the zone or subzone
@@ -2949,6 +2959,7 @@ local function evaluateLoaded(active)
 	if computed then sawIncomplete = true end
 	local passed = (computed or #guide.steps + 1) - 1
 	if passed > passedUpTo then latchPassed(passedUpTo + 1, passed) end
+	Own.latchCaughtUp(passed)
 	passedUpTo = passed
 
 	-- The view of another step: released once it is the live step (or no
@@ -3489,7 +3500,7 @@ function Engine.GetStepView(i)
 		index = i, title = step.title, note = step.note, status = status, goals = goals,
 		groups = outGroups, focus = focus,
 		current = status == "current" and (Own.currentGoal(i, groups, focus)) or nil,
-		skipped = isSkipped(i), live = computed, unmet = Own.unmet(i),
+		skipped = isSkipped(i), live = computed,
 	}
 end
 
@@ -3565,6 +3576,12 @@ function Engine.Unskip(i)
 	placing = nil
 	sk[i] = nil
 	if not next(sk) then ns.CharState().skipped[guide.id] = nil end
+	-- A step with `when` unskipped applies from now on, whatever its predicates.
+	if guide.steps[i] and guide.steps[i].when then
+		local held = ns.CharState().when
+		held[guide.id] = held[guide.id] or {}
+		held[guide.id][i] = true
+	end
 	evaluate()
 	return true
 end

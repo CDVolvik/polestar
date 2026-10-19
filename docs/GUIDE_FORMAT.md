@@ -234,12 +234,14 @@ holds while the quest is not in the log, `!has 159 x5` while the bags hold
 fewer than five. Names can be quoted or bare.
 
 **Once the route moves past a step, its outcome stays.** Polestar stores
-whether the step's `when` held at that moment, and reads that from then on: a
-"buy water" step passed because the bags were full does not come back when
-the water runs out, and a step that applied stays done. Resetting the
-guide's progress forgets the stored outcomes.
+whether the step's `when` held at that moment (once the quest log can be
+read after login), and reads that from then on: a "buy water" step passed
+because the bags were full is stored as skipped and does not come back when
+the water runs out, and a step that applied stays done. The player can
+unskip such a step like any other; it then applies whatever its `when`.
+Resetting the guide's progress forgets the stored outcomes.
 
-A step passed by its `when` counts as one that does not apply: like a step
+While its `when` fails, a step counts as one that does not apply: like a step
 for another class, it never holds the guide, and a turn-in whose only accept
 is in such a step goes with it.
 
