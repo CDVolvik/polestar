@@ -28,7 +28,7 @@ Before the first `step`. `guide`, `title`, `levels` and `zone` are required.
 | `race <Race>, ...` | Only these races (Conditions) |
 | `class <Class>, ...` | Only these classes |
 | `next <id>, ...` | The guide that follows. Several ids: the player chooses, the first is the default; each must suit this guide's characters (`polestar find <zone> --kind guide --race <Race>`) |
-| `category <Category>` | `Leveling` (default), `Class`, `Professions`, `Reputation`, `Legacy`, `Exploration`, `Collectibles`, `Dungeons` |
+| `category <Category>` | `Leveling` (default), `Class`, `Professions`, `Reputation`, `Legacy`, `Exploration`, `Collectibles`, `Miscellaneous`, `Dungeons` |
 | `folder <text>` | The guide menu folder to list it under |
 | `keywords <word>, ...` | Extra words the guide menu search matches |
 | `collects <item>, ...` | Item ids the guide obtains |
@@ -51,6 +51,7 @@ every goal in it that is not `optional` is; its goals are open together.
 | `tip <text>` | A note for the whole step |
 | `zone <Name>` / `zone map <uiMapID>` | The zone for coordinates from here on, in later steps too |
 | `only <condition>, ...` | The step is only for matching characters |
+| `when <predicate>` | The step is only for characters in that state when the route gets there; several lines must all hold (see Conditions) |
 
 ## Goals
 
@@ -126,6 +127,13 @@ Warrior or Paladin).
 - Races: `Human` `Dwarf` `Gnome` `NightElf` `Orc` `Troll` `Tauren` `Undead`
   (or `Scourge`) `Skyborne` (Skyborne plays on both sides).
 - Factions: `Alliance` `Horde`.
+
+`when` checks the character's state instead, one predicate per line:
+`level<N` (also `<=`, `>`, `>=`), `onquest <quest>, ...`, `complete <quest>`,
+`turnedin <quest>`, `available <quest>`, `has <item> [xN]`, `zone "<Name>"`,
+`subzone "<Name>"`, `bound "<Location>"`; `!` in front of any but `level`
+turns it around. Once the route has passed the step, the outcome stays. A
+pack with `when` needs Polestar 0.3.0 or newer.
 
 ## Lint errors that come up most
 

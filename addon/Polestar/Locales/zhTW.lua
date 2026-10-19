@@ -634,7 +634,6 @@ L["Wearing %s (%s)."] = "已穿上 %s（%s）。"
 L["Wearing %s."] = "已穿上 %s。"
 
 -- QoL/Flight.lua
-L["Route"] = "路線"
 L["Route: fly to %s."] = "路線：飛往 %s。"
 
 -- QoL/Death.lua
@@ -1100,6 +1099,7 @@ L["Legacy"] = "傳承"
 L["Collectibles"] = "收藏品"
 L["Sections"] = "區段"
 L["guide status: Completed"] = "已完成"
+L["Miscellaneous"] = "其他"
 
 -- UI/Lookup.lua
 L["Companion"] = "小寵物"
@@ -1678,6 +1678,7 @@ L["The skin's arrow"] = "皮膚的箭頭"
 -- L["Stops stray drags on the arrow, the action buttons and the flight and instance timers. Shift-drag still moves them."] = ""
 -- L["In dungeons"] = ""
 -- L["What the window does in dungeons and raids. /polestar or the key binding opens it there until you leave."] = ""
+-- L["Line style"] = ""
 -- L["Bar at the bottom"] = ""
 -- L["With Grow upward, put the tabs and the step bar at the bottom edge, next to where the window is pinned."] = ""
 
@@ -2005,6 +2006,38 @@ L["Spare points go to Divine Strength and Holy's Improved Seals for damage, then
 L["Hand guiding to Shortest Path Forever"] = "交由 Shortest Path Forever 導引"
 L["Shortest Path Forever's arrow, route and journey take you to each goal. Polestar's arrow, route lines, journey steps, travel button, transport alerts, map clicks and /way step aside; the guide window and map pins stay. Off: Polestar guides, and steps aside only while a journey you started in Shortest Path Forever runs."] = "由 Shortest Path Forever 的箭頭、路線與旅程帶你前往每個目標。Polestar 的箭頭、路線線條、旅程步驟、旅行按鈕、交通提醒、地圖點擊與 /way 會讓開；指南視窗與地圖標記保留。關閉：由 Polestar 導引，僅在你於 Shortest Path Forever 中開始的旅程進行時讓開。"
 
+-- Nav/Pins.lua
+-- L["Polestar trail dots"] = ""
+
+-- UI/LineStyle.lua
+-- L["How the route lines are drawn: Polestar's dots, or sparkles that drift along the way to the goal."] = ""
+-- L["Dots"] = ""
+-- L["Sparkle"] = ""
+-- L["Intensity"] = ""
+-- L["How bright each sparkle and its glow are."] = ""
+-- L["Density"] = ""
+-- L["How close together the sparkles sit, the same at any zoom."] = ""
+-- L["Smaller, dimmer, calmer twinkles that drift less; no glow at 100%."] = ""
+-- L["Sparkle size"] = ""
+-- L["Each sparkle's size before subtlety."] = ""
+-- L["Flow toward goal"] = ""
+-- L["How fast the sparkles drift toward the goal; 0 holds them still."] = ""
+-- L["Most sparkles shown"] = ""
+-- L["A ceiling on each map, whatever the density."] = ""
+-- L["Sparkle colour"] = ""
+-- L["Loot gold is the colour of the game's own loot sparkle. Route colours tint each leg as the dots are."] = ""
+-- L["Loot gold"] = ""
+-- L["Arcane blue"] = ""
+-- L["Fel green"] = ""
+-- L["Rose"] = ""
+-- L["Starlight"] = ""
+-- L["Route colours"] = ""
+-- L["Whole route"] = ""
+-- L["Sparkle the legs after this one too, fainter. Off: only the leg you are on."] = ""
+-- L["Subtle"] = ""
+-- L["Dazzling"] = ""
+-- L["Route line style"] = ""
+
 -- No longer in the code (its English changed or it went away): reuse or delete.
 -- L["Shortest Path Forever is guiding. Turn off \"Guide with Shortest Path Forever when it's installed\" (Options, Arrow & routes) to use Polestar's arrow."] = "Shortest Path Forever 正在導引。關閉「已安裝時以 Shortest Path Forever 導引」（「選項」>「箭頭與路線」）即可使用 Polestar 的箭頭。"
 -- L["Shortest Path Forever is guiding. Turn off \"Guide with Shortest Path Forever when it's installed\" (Options, Integrations) to use Polestar's arrow."] = "Shortest Path Forever 正在導引。若要使用 Polestar 的箭頭，請關閉\"已安裝時以 Shortest Path Forever 導引\"（選項，整合）。"
@@ -2021,3 +2054,4 @@ L["Shortest Path Forever's arrow, route and journey take you to each goal. Poles
 -- L["Next lift in about %s"] = "下一趟升降梯：約 %s"
 -- L["leaves in about %s"] = "約 %s後出發"
 -- L["Scale of the quest item, Hearthstone and target buttons. Drag one to move them all."] = "任務物品、爐石與目標按鈕的縮放。拖曳其中一個即可一起移動。"
+-- L["Route"] = "路線"

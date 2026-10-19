@@ -79,15 +79,31 @@ function glow(size) {
 	return c;
 }
 
-// Four-pointed star: Polestar's mark, used at the centre of map pins.
-function star(cx, cy, outer, inner) {
+// Four-pointed star: Polestar's mark, used at the centre of map pins; `turn`
+// radians round from upright.
+function star(cx, cy, outer, inner, turn = 0) {
 	const pts = [];
 	for (let i = 0; i < 8; i++) {
 		const r = i % 2 === 0 ? outer : inner;
-		const a = (i * Math.PI) / 4 - Math.PI / 2;
+		const a = (i * Math.PI) / 4 - Math.PI / 2 + turn;
 		pts.push([cx + Math.cos(a) * r, cy + Math.sin(a) * r]);
 	}
 	return sdf.polygon(pts);
+}
+
+// A route sparkle (nav.lineStyle "sparkle"): a glint of long thin rays on
+// the axes, short faint ones on the diagonals, round a bright core. Drawn
+// additively over Media/Nav/glow and tinted; the rays stay inside the
+// inscribed circle so SetRotation never clips them.
+function sparkle(size) {
+	const c = new Canvas(size, size);
+	const m = size / 2;
+	const k = size / 64;
+	c.fill(sdf.circle(m, m, 6 * k), [...WHITE, 0.6], { feather: 10 * k });
+	c.fill(star(m, m, 15 * k, 2.2 * k, Math.PI / 4), [...WHITE, 0.45], { feather: 2 * k });
+	c.fill(star(m, m, 29 * k, 2.6 * k), [...WHITE, 1], { feather: 2.5 * k });
+	c.fill(sdf.circle(m, m, 3.2 * k), [...WHITE, 1], { feather: 2 * k });
+	return c;
 }
 
 // Pin frame: dark rim, white ring, white star. Drawn over pin-fill.
@@ -159,6 +175,7 @@ const TEXTURES = [
 	['edge', () => edge(64)],
 	['area', () => area(128)],
 	['ring', () => ring(64)],
+	['sparkle', () => sparkle(64)],
 ];
 
 function generate(addonRoot) {

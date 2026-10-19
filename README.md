@@ -213,6 +213,12 @@ map. Renders of every window and state, drawn without the game, are in
   kills, loot, places reached, trainers visited, skills and reputation. Your
   place in a guide is recomputed from your quest log, so it survives lost
   saved variables.
+- **It catches up.** With "Skip grey quests" on, a guide you open on a
+  character who already did part of the route goes over what is done to
+  where you are: grey quests are left out, and so are green ones behind your
+  progress, unless a later quest needs them. A guide you are past, given to
+  you when no guide is open or by Start guide, hands over to the next.
+  Item, mount, reputation, profession and class guides do every step.
 - **A guide for where you are.** The window opens with a guide suggested for
   your race, class, level and location, and each guide hands over to the
   next one in its chain when you finish it.
@@ -252,6 +258,9 @@ map. Renders of every window and state, drawn without the game, are in
   the guide window's Nearby services button list them, the button with a
   page of the weapons a weapon master can teach you. Once you get there,
   the arrow is back on the guide.
+- **OpenMap.** On [OpenMap](https://www.curseforge.com/wow/addons/openmap)'s
+  seamless world map the trail dots carry on across zone borders and show on
+  the whole-world view too. OpenMap's menu has a "Polestar trail dots" switch.
 - **Other addons' waypoints** (Options, Integrations, TomTom). Without TomTom, "Let other addons set
   waypoints" (off by default) lets addons that set TomTom waypoints point
   Polestar's arrow and makes `/way` work; addons that expect TomTom's own
