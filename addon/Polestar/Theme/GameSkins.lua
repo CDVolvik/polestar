@@ -548,15 +548,36 @@ end
 -- The guide window (and the toasts, psLight).
 local GUIDE = {
 	forever = function(f, kit)
-		body(f, 0, 0, 0, 0.96 * opacity(f), 3)
-		-- The micro menu box's bronze line (55 units, its chamfered corners
-		-- 12), the line 3 units in from the art's edge: laid 3 out so it runs
-		-- on the window's edge. Its filled middle is left out: the body is
-		-- the window's own.
+		-- /polestar skintest <n>: temporary variants for Fitz to verify in game.
+		-- a = cover on edge frame (BORDER 1 on o covers inner bleed from same level)
+		-- b = out={0,0,0,0}: slim flush to window edge, no outer protrusion
+		-- c = original rc1 (inset 3, BACKGROUND)
+		-- default = body BORDER 1, inset 0, out {3,3,3,3} (attempt 2)
+		local st = ns and ns.Get and ns.Get("ui.skintest") or ""
+		local bvar = (st:find("a") and "a") or (st:find("b") and "b") or (st:find("c") and "c") or ""
+		local out = { 3, 3, 3, 3 }
+		if bvar == "b" then out = { 0, 0, 0, 0 } end
+		if bvar == "c" then
+			body(f, 0, 0, 0, 0.96 * opacity(f), 3)  -- original rc1
+		else
+			local bg = body(f, 0, 0, 0, 0.96 * opacity(f))
+			bg:SetDrawLayer("BORDER", 1)
+		end
 		local o = child(f, "edge", 6)
 		o:EnableMouse(false)
 		o:SetAllPoints(f)
-		sliced(f, "slim", kit, kit.slim, o, { 3, 3, 3, 3 }, "BORDER", 0, true)
+		sliced(f, "slim", kit, kit.slim, o, out, "BORDER", 0, true)
+		if bvar == "a" then
+			-- Cover on the edge frame (same level as slim) at BORDER 1 covers
+			-- the inner bleed; outer bronze line (outside f) remains visible.
+			local cv = o:CreateTexture(nil, "BORDER", nil, 1)
+			cv:SetTexture(Theme.Media("white"))
+			cv:SetVertexColor(0, 0, 0, 0.96 * opacity(f))
+			cv:SetAllPoints(f)
+			f.psSkin.kit.slimCover = cv
+		elseif f.psSkin and f.psSkin.kit and f.psSkin.kit.slimCover then
+			f.psSkin.kit.slimCover:Hide()
+		end
 	end,
 	blizzard = function(f)
 		local a = opacity(f)
@@ -678,7 +699,8 @@ end
 local function card(f, kit, selected)
 	if kit.card then
 		sliced(f, "card", kit, selected and kit.cardSelected or kit.card, f, nil, "BACKGROUND", -6)
-		sliced(f, "cardLit", kit, kit.cardHover, f, nil, "HIGHLIGHT", 0)
+		local lp = sliced(f, "cardLit", kit, kit.cardHover, f, nil, "HIGHLIGHT", 0)
+		for i = 1, 9 do if lp[i] then lp[i]:SetBlendMode("ADD") end end
 		return
 	end
 	if kit.source == "file" then
@@ -725,7 +747,8 @@ local function field(f, kit)
 		return
 	end
 	sliced(f, "dd", kit, kit.dropdown, f, { 7, 7, 7, 7 }, "BACKGROUND", -6)
-	sliced(f, "ddLit", kit, kit.dropdownLit, f, { 7, 7, 7, 7 }, "HIGHLIGHT", 0)
+	local dp = sliced(f, "ddLit", kit, kit.dropdownLit, f, { 7, 7, 7, 7 }, "HIGHLIGHT", 0)
+	for i = 1, 9 do if dp[i] then dp[i]:SetBlendMode("ADD") end end
 	local arrow = tex(f, "ddArrow", "HIGHLIGHT", 1)
 	draw(arrow, kit, kit.dropdownArrow)
 	arrow:ClearAllPoints()
@@ -897,6 +920,7 @@ function Theme.KitIconButton(b)
 	local hl = tex(b, "plateLit", "HIGHLIGHT")
 	draw(hl, kit, kit.plateHover)
 	hl:SetAllPoints(b)
+	hl:SetBlendMode("ADD")
 	b.Icon:SetAlpha(1)
 	return true
 end
@@ -1050,6 +1074,7 @@ function Theme.KitRowLit(r, shown, key, inset)
 	if key == "navLit" and kit.navHover then
 		local hv = tex(r, key .. "Hover", "HIGHLIGHT", 0)
 		draw(hv, kit, kit.navHover)
+		hv:SetBlendMode("ADD")
 		hv:ClearAllPoints()
 		hv:SetPoint("LEFT", r, "LEFT", inset or 4, 0)
 		hv:SetPoint("RIGHT", r, "RIGHT", -(inset or 4), 0)
@@ -1131,15 +1156,27 @@ function Theme.KitStatus(b)
 	if not kit then return false end
 	local fill = b:GetStatusBarTexture()
 	if kit.source == "atlas" then
-		local f, l, r, tp, bt = region(kit, kit.status.fill)
-		if f then b:SetStatusBarTexture(f); fill = b:GetStatusBarTexture(); fill:SetTexCoord(l, r, tp, bt) end
+		-- Bar variants (/polestar skintest):
+		-- x = fill at OVERLAY (above ARTWORK statusArt), frame at original offsets
+		-- y = original rc1 (broken fill, original offsets)
+		-- default = attempt2 margins outside bar (+11/-13)
+		local st = ns and ns.Get and ns.Get("ui.skintest") or ""
+		local bv = (st:find("x") and "x") or (st:find("y") and "y") or ""
+		local f2, l2, r2, tp2, bt2 = region(kit, kit.status.fill)
+		if f2 then b:SetStatusBarTexture(f2); fill = b:GetStatusBarTexture(); fill:SetTexCoord(l2, r2, tp2, bt2) end
 		fill:SetVertexColor(1, 1, 1, 1)
+		if bv == "x" and fill.SetDrawLayer then fill:SetDrawLayer("OVERLAY", 0) end
 		draw(b.Bg, kit, kit.status.bg)
 		local o = child(b, "statusFrame", 2)
 		o:EnableMouse(false)
 		o:ClearAllPoints()
-		o:SetPoint("TOPLEFT", b, "TOPLEFT", -7, 6)
-		o:SetPoint("BOTTOMRIGHT", b, "BOTTOMRIGHT", 7, -7)
+		if bv == "x" or bv == "y" then
+			o:SetPoint("TOPLEFT", b, "TOPLEFT", -7, 6)
+			o:SetPoint("BOTTOMRIGHT", b, "BOTTOMRIGHT", 7, -7)
+		else
+			o:SetPoint("TOPLEFT", b, "TOPLEFT", -7, 11)
+			o:SetPoint("BOTTOMRIGHT", b, "BOTTOMRIGHT", 7, -13)
+		end
 		sliced(b, "statusArt", kit, kit.status.frame, o, nil, "ARTWORK", 0, true)
 	elseif kit.source == "retail" then
 		b:SetStatusBarTexture(CLASSIC.statusFill[1])
