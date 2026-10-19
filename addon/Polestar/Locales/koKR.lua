@@ -160,6 +160,7 @@ L["Browse the guide with the gamepad"] = "게임패드로 가이드 탐색"
 L["Open the guide menu"] = "가이드 메뉴 열기"
 L["Open Polestar options"] = "Polestar 설정 열기"
 L["Open the Gamepad page: button names and bindings"] = "게임패드 페이지 열기: 버튼 이름과 단축키"
+-- L["Target rare"] = ""
 
 -- Theme/Theme.lua
 L["Dusk"] = "황혼"
@@ -633,7 +634,6 @@ L["Wearing %s (%s)."] = "%s 착용 (%s)."
 L["Wearing %s."] = "%s 착용."
 
 -- QoL/Flight.lua
-L["Route"] = "경로"
 L["Route: fly to %s."] = "경로: %s까지 비행."
 
 -- QoL/Death.lua
@@ -667,7 +667,6 @@ L["Targets the current step's mobs by name; each click moves to the next name. B
 L["Hearthstone button"] = "귀환석 버튼"
 L["Shows your Hearthstone while the guide says to hearth. Bindable."] = "가이드가 귀환석 사용을 지시하는 동안 귀환석을 표시합니다. 단축키 지정 가능."
 L["Button size"] = "버튼 크기"
-L["Scale of the quest item, Hearthstone and target buttons. Drag one to move them all."] = "퀘스트 아이템, 귀환석, 대상 버튼의 크기. 하나를 끌면 모두 이동합니다."
 L["Target name position"] = "대상 이름 위치"
 L["Where the target's name shows around the target button: right, left, above or below."] = "대상 버튼 주변에 대상의 이름을 어디에 표시할지 정합니다: 오른쪽, 왼쪽, 위 또는 아래."
 L["Right"] = "오른쪽"
@@ -740,6 +739,9 @@ L["Start this session's XP per hour from zero."] = "이번 접속의 시간당 �
 -- L["Icon on NPCs"] = ""
 -- L["The target button and the step key put a raid icon on the mob and the NPC they target; out of combat, a press that finds neither clears your target. Your party sees the icons; in a raid only the leader and assistants can set them."] = ""
 -- L["A new one each press, so the last few NPCs keep theirs. Every press counts, even one that marks nothing."] = ""
+-- L["Rare button"] = ""
+-- L["Shows a button that targets a rare Polestar spotted nearby, until it dies or is out of sight. Bindable."] = ""
+-- L["Scale of the quest item, Hearthstone, target and rare buttons. Drag one to move them all."] = ""
 
 -- Lookup/Sources.lua
 L["Alliance only"] = "얼라이언스 전용"
@@ -1097,6 +1099,7 @@ L["Legacy"] = "유산"
 L["Collectibles"] = "수집품"
 L["Sections"] = "섹션"
 L["guide status: Completed"] = "완료됨"
+L["Miscellaneous"] = "기타"
 
 -- UI/Lookup.lua
 L["Companion"] = "애완동물"
@@ -2001,6 +2004,9 @@ L["Spare points go to Divine Strength and Holy's Improved Seals for damage, then
 L["Hand guiding to Shortest Path Forever"] = "Shortest Path Forever에 안내 맡기기"
 L["Shortest Path Forever's arrow, route and journey take you to each goal. Polestar's arrow, route lines, journey steps, travel button, transport alerts, map clicks and /way step aside; the guide window and map pins stay. Off: Polestar guides, and steps aside only while a journey you started in Shortest Path Forever runs."] = "Shortest Path Forever의 화살표, 경로, 여정이 각 목표로 안내합니다. Polestar의 화살표, 경로선, 여정 단계, 이동 버튼, 교통수단 알림, 지도 클릭, /way는 물러나고 가이드 창과 지도 핀은 남습니다. 끄면: Polestar가 안내하며, Shortest Path Forever에서 시작한 여정이 진행되는 동안에만 물러납니다."
 
+-- Nav/Pins.lua
+-- L["Polestar trail dots"] = ""
+
 -- UI/LineStyle.lua
 -- L["How the route lines are drawn: Polestar's dots, or sparkles that drift along the way to the goal."] = ""
 -- L["Dots"] = ""
@@ -2045,3 +2051,5 @@ L["Shortest Path Forever's arrow, route and journey take you to each goal. Poles
 -- L["Next tram in about %s"] = "다음 지하철 약 %s 후"
 -- L["Next lift in about %s"] = "다음 승강기 약 %s 후"
 -- L["leaves in about %s"] = "약 %s 후 출발"
+-- L["Scale of the quest item, Hearthstone and target buttons. Drag one to move them all."] = "퀘스트 아이템, 귀환석, 대상 버튼의 크기. 하나를 끌면 모두 이동합니다."
+-- L["Route"] = "경로"

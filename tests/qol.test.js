@@ -583,6 +583,55 @@ test('target button: a corpse is never left selected; the first living match win
 	assert.doesNotMatch(long, /Defias Smuggler/);
 });
 
+test('rare button: targets the rares in range, comes up and goes with them, each click cycles, off with its setting', () => {
+	const out = run(`
+		local b = PolestarRareButton
+		local nearby = {}
+		Polestar.Rares = { Nearby = function() return nearby end }
+		q.step({ { t = "kill", target = "Wolf" } })
+		emit({ b:GetAttribute("macrotext") or "nil", b:IsShown() })
+		nearby = { "Thuros Lightfingers", "Bad\\n/run X()", "Hogger" }
+		Polestar.Fire("RARE_NEARBY")
+		stub.runTimers()
+		emit({ b:GetAttribute("type"), b:GetAttribute("macrotext"), b:IsShown(), b.Label:GetText(), PolestarTargetButton:GetAttribute("macrotext") })
+		q.click(b, false)
+		emit(b:GetAttribute("macrotext"))
+		q.combat(true)
+		nearby = { "Hogger" }
+		Polestar.Fire("RARE_NEARBY")
+		stub.runTimers()
+		emit({ b:GetAttribute("macrotext"), b:IsShown() })
+		q.combat(false)
+		emit({ b:GetAttribute("macrotext"), b:IsShown() })
+		set("rareButton", false)
+		emit({ b:GetAttribute("macrotext") or "nil", b:IsShown() })
+		set("rareButton", true)
+		nearby = {}
+		Polestar.Fire("RARE_NEARBY")
+		stub.runTimers()
+		emit({ b:GetAttribute("macrotext") or "nil", b:IsShown() })
+	`);
+	assert.deepEqual(out[0], ['nil', false]);
+	// #373's macro: from nothing out of combat, the preferred name first, corpses passed over.
+	const macro = (...names) => ['/cleartarget [nocombat]', ...names.flatMap((n, i) => [`/targetexact ${i ? '[noexists] ' : ''}${n}`, '/cleartarget [dead]'])].join('\n');
+	assert.deepEqual(out[1], ['macro', macro('Thuros Lightfingers', 'Hogger'), true, 'Thuros Lightfingers', macro('Wolf')]);
+	assert.equal(out[2], macro('Hogger', 'Thuros Lightfingers'), 'the next click moves on');
+	assert.deepEqual(out[3], [macro('Hogger', 'Thuros Lightfingers'), true], 'in combat the button keeps what it did');
+	assert.deepEqual(out[4], [macro('Hogger'), true]);
+	assert.deepEqual(out[5], ['nil', false]);
+	assert.deepEqual(out[6], ['nil', false]);
+});
+
+test('rare button: its icon is gold, apart from the red Target button', () => {
+	const [rare, target, gold] = run(`
+		emit({ PolestarRareButton.Icon:GetVertexColor() })
+		emit({ PolestarTargetButton.Icon:GetVertexColor() })
+		emit({ Polestar.Theme.Color("quest") })
+	`);
+	assert.deepEqual(rare.slice(0, 3), gold.slice(0, 3), 'the quest gold');
+	assert.notDeepEqual(rare.slice(0, 3), target.slice(0, 3), 'not the Target button color');
+});
+
 test('hearth: button while a hearth goal is open; GetHearth reports bind and cooldown', () => {
 	const out = run(`
 		local h = PolestarHearthButton
@@ -1979,6 +2028,25 @@ test("flight: marks the route's next flight destination, else the fly goal; neve
 	assert.deepEqual(out[1], [2, 2]);
 	assert.equal(out[2], 0);
 	assert.equal(out[3], 'none');
+});
+
+test("flight: the mark names the destination node and bobs, unless motion is reduced", () => {
+	const out = run(`
+		q.step({ { t = "fly", location = "Sentinel Hill" } })
+		q.openTaxi({ "Stormwind, Elwynn", "Lakeshire, Redridge", "Sentinel Hill, Westfall" })
+		local function theMark()
+			for _, c in ipairs(TaxiButton3.children) do if c.Label and c.Bob then return c end end
+		end
+		local m = theMark()
+		emit({ m.Label:GetText(), m.Bob.plays or 0, m.Wave.plays or 0, m.Ripple:IsShown() })
+		stub.fire("TAXIMAP_CLOSED")
+		Polestar.Set("ui.reduceMotion", true)
+		q.openTaxi({ "Stormwind, Elwynn", "Lakeshire, Redridge", "Sentinel Hill, Westfall" })
+		emit({ m.Bob.plays or 0, m.Wave.plays or 0, m.Ripple:IsShown() })
+	`);
+	assert.equal(out[0][0], 'Sentinel Hill');
+	assert.ok(out[0][1] > 0 && out[0][2] > 0 && out[0][3], 'the arrow bobs and the ring ripples');
+	assert.deepEqual(out[1], [out[0][1], out[0][2], false], 'reduced motion plays neither loop and hides the ripple');
 });
 
 // ---------------------------------------------------------------------------

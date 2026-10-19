@@ -209,6 +209,18 @@ test('travel import: Carbonite\'s walks between zones become crossings, both way
 	assert.throws(() => carboniteCrossings('Nx.ZoneConnections = {}', frames, { source: 'test' }), /no walking zone connections/);
 });
 
+test('travel import keeps the open borders of the file it replaces, and says where they come from', () => {
+	const { carboniteCrossings, OPEN_NOTE } = require('../tools/lib/travel/carbonite');
+	const lua = 'Nx.ZoneConnections = {\n    "7|1||1429|32.33|49.86||1453|73.34|90.73",\n}';
+	const keep = { schema: 1, frame: 'e', source: 'old; open borders', crossings: [], open: [{ a: 1436, b: 1429 }] };
+	const doc = carboniteCrossings(lua, frames, { source: 'test', keep });
+	assert.deepEqual(doc.open, [{ a: 1436, b: 1429 }]);
+	assert.equal(doc.source, `test; ${OPEN_NOTE}`);
+	assert.deepEqual(validateCrossings(doc, frames).errors, []);
+	const fresh = carboniteCrossings(lua, frames, { source: 'test' });
+	assert.deepEqual([fresh.source, fresh.open], ['test', undefined]);
+});
+
 // The shipped crossings (tools/lib/travel/crossings.json, in TravelData.lua),
 // on the real maps when this checkout has them built.
 const SHIPPED = require('../tools/lib/travel/build').SHIPPED_CROSSINGS;
@@ -230,4 +242,31 @@ test('shipped crossings: from the Barrens to Astranaar the walk from Sun Rock Re
 	const through = legs.findIndex((l) => l.kind === 'walk' && at(l.to, talondeep.b));
 	assert.ok(through >= 0, `a walk reaches the Stonetalon end of the Talondeep Path: ${legs.map((l) => `${l.kind} ${l.label}`).join(' | ')}`);
 	assert.ok(at(legs[through + 1].to, talondeep.a), 'and goes on to its Ashenvale end');
+});
+
+// Walks across a border the walking engine crosses anywhere (a river it
+// swims, a forest edge) need an open pair: with only the Carbonite crossing
+// points, the planner walked to a far road crossing and the Hearthstone won.
+const legText = (legs) => legs.map((l) => `${l.kind} ${l.label} -> ${l.to.map}`).join(' | ');
+
+// Ioney (#371): leaving Sven's camp on the Duskwood bank of the Westfall river
+// for a Stormwind trainer, Polestar said to hearth to Darkshire and fly, when
+// a swim across the river and a short walk to Sentinel Hill saves the stone.
+test('shipped crossings: from Sven\'s camp the walk crosses the river to Sentinel Hill; the Hearthstone stays (#371)', { skip: realData === true ? false : realData }, () => {
+	const legs = planRoute({ from: { map: 1431, x: 7.8, y: 34.1 }, to: { map: 1453, x: 78.6, y: 45.8 }, known: ['Sentinel Hill', 'Darkshire', 'Stormwind'], hearth: 'Darkshire' });
+	assert.deepEqual(legs.map((l) => l.kind), ['walk', 'fly', 'walk'], legText(legs));
+	assert.equal(legs[0].to.short, 'Sentinel Hill', legText(legs));
+	assert.ok(legs[0].seconds < 120, `${legs[0].seconds} s to Sentinel Hill`);
+	// And from the Westfall bank back to the camp: straight over, not by the Raven Hill road.
+	const back = planRoute({ from: { map: 1436, x: 66.5, y: 34.5 }, to: { map: 1431, x: 7.8, y: 34.1 } });
+	assert.deepEqual(back.map((l) => [l.kind, l.to.map]), [['walk', 1431]], legText(back));
+});
+
+// #421: Elwynn Forest and Duskwood had no crossing, so walks from Eastvale
+// to Darkshire went round through Redridge Mountains.
+test('shipped crossings: Elwynn Forest to Duskwood walks over their border, not through Redridge (#421)', { skip: realData === true ? false : realData }, () => {
+	for (const [from, to] of [[{ map: 1429, x: 81, y: 66 }, { map: 1431, x: 75, y: 45 }], [{ map: 1429, x: 70, y: 79 }, { map: 1431, x: 50, y: 20 }]]) {
+		const legs = planRoute({ from, to });
+		assert.deepEqual(legs.map((l) => [l.kind, l.to.map]), [['walk', 1431]], legText(legs));
+	}
 });

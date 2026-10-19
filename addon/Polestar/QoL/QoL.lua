@@ -38,6 +38,7 @@ end
 local defaults = {
 	itemButton = true,       -- quest item button
 	targetButton = true,     -- target macro button
+	rareButton = true,       -- target button for a rare the addon spotted
 	hearthButton = true,     -- Hearthstone button while a hearth goal is active
 	markTarget = false,      -- raid icon on what the target button and step key target
 	markMob = "8",           -- its icon on mobs (1-8, "cycle"): skull

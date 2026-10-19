@@ -252,6 +252,9 @@ map. Renders of every window and state, drawn without the game, are in
   the guide window's Nearby services button list them, the button with a
   page of the weapons a weapon master can teach you. Once you get there,
   the arrow is back on the guide.
+- **OpenMap.** On [OpenMap](https://www.curseforge.com/wow/addons/openmap)'s
+  seamless world map the trail dots carry on across zone borders and show on
+  the whole-world view too. OpenMap's menu has a "Polestar trail dots" switch.
 - **Other addons' waypoints** (Options, Integrations, TomTom). Without TomTom, "Let other addons set
   waypoints" (off by default) lets addons that set TomTom waypoints point
   Polestar's arrow and makes `/way` work; addons that expect TomTom's own

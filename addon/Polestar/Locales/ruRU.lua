@@ -160,6 +160,7 @@ L["Browse the guide with the gamepad"] = "Листать гайд геймпад
 L["Open the guide menu"] = "Открыть меню гайда"
 L["Open Polestar options"] = "Открыть настройки Polestar"
 L["Open the Gamepad page: button names and bindings"] = "Открыть страницу «Геймпад»: названия кнопок и назначения"
+-- L["Target rare"] = ""
 
 -- Theme/Theme.lua
 L["Dusk"] = "Сумерки"
@@ -633,7 +634,6 @@ L["Wearing %s (%s)."] = "Надето: %s (%s)."
 L["Wearing %s."] = "Надето: %s."
 
 -- QoL/Flight.lua
-L["Route"] = "Маршрут"
 L["Route: fly to %s."] = "Маршрут: лететь в %s."
 
 -- QoL/Death.lua
@@ -667,7 +667,6 @@ L["Targets the current step's mobs by name; each click moves to the next name. B
 L["Hearthstone button"] = "Кнопка камня возвращения"
 L["Shows your Hearthstone while the guide says to hearth. Bindable."] = "Показывает камень возвращения, когда гайд велит им воспользоваться. Можно назначить клавишу."
 L["Button size"] = "Размер кнопок"
-L["Scale of the quest item, Hearthstone and target buttons. Drag one to move them all."] = "Масштаб кнопок предмета задания, камня возвращения и цели. Перетащите одну, чтобы сдвинуть все."
 L["Target name position"] = "Положение имени цели"
 L["Where the target's name shows around the target button: right, left, above or below."] = "Где показывать имя цели рядом с кнопкой цели: справа, слева, сверху или снизу."
 L["Right"] = "Справа"
@@ -740,6 +739,9 @@ L["Start this session's XP per hour from zero."] = "Начать отсчет о
 -- L["Icon on NPCs"] = ""
 -- L["The target button and the step key put a raid icon on the mob and the NPC they target; out of combat, a press that finds neither clears your target. Your party sees the icons; in a raid only the leader and assistants can set them."] = ""
 -- L["A new one each press, so the last few NPCs keep theirs. Every press counts, even one that marks nothing."] = ""
+-- L["Rare button"] = ""
+-- L["Shows a button that targets a rare Polestar spotted nearby, until it dies or is out of sight. Bindable."] = ""
+-- L["Scale of the quest item, Hearthstone, target and rare buttons. Drag one to move them all."] = ""
 
 -- Lookup/Sources.lua
 L["Alliance only"] = "Только Альянс"
@@ -1097,6 +1099,7 @@ L["Legacy"] = "Наследие"
 L["Collectibles"] = "Коллекции"
 L["Sections"] = "Разделы"
 L["guide status: Completed"] = "Завершён"
+L["Miscellaneous"] = "Разное"
 
 -- UI/Lookup.lua
 L["Companion"] = "Питомец"
@@ -2001,6 +2004,9 @@ L["Spare points go to Divine Strength and Holy's Improved Seals for damage, then
 L["Hand guiding to Shortest Path Forever"] = "Передать ведение Shortest Path Forever"
 L["Shortest Path Forever's arrow, route and journey take you to each goal. Polestar's arrow, route lines, journey steps, travel button, transport alerts, map clicks and /way step aside; the guide window and map pins stay. Off: Polestar guides, and steps aside only while a journey you started in Shortest Path Forever runs."] = "Стрелка, маршрут и путь Shortest Path Forever ведут к каждой цели. Стрелка Polestar, линии маршрута, шаги пути, кнопка пути, оповещения о транспорте, щелчки по карте и /way отключаются; окно гайда и метки на карте остаются. Выкл.: ведет Polestar и уступает только на время пути, начатого в Shortest Path Forever."
 
+-- Nav/Pins.lua
+-- L["Polestar trail dots"] = ""
+
 -- UI/LineStyle.lua
 -- L["How the route lines are drawn: Polestar's dots, or sparkles that drift along the way to the goal."] = ""
 -- L["Dots"] = ""
@@ -2045,3 +2051,5 @@ L["Shortest Path Forever's arrow, route and journey take you to each goal. Poles
 -- L["Next tram in about %s"] = "Следующий поезд примерно через %s"
 -- L["Next lift in about %s"] = "Следующий подъемник примерно через %s"
 -- L["leaves in about %s"] = "отправление через ~%s"
+-- L["Scale of the quest item, Hearthstone and target buttons. Drag one to move them all."] = "Масштаб кнопок предмета задания, камня возвращения и цели. Перетащите одну, чтобы сдвинуть все."
+-- L["Route"] = "Маршрут"

@@ -160,6 +160,7 @@ L["Browse the guide with the gamepad"] = "Recorrer la guía con el mando"
 L["Open the guide menu"] = "Abrir el menú de la guía"
 L["Open Polestar options"] = "Abrir las opciones de Polestar"
 L["Open the Gamepad page: button names and bindings"] = "Abrir la página Mando: nombres de botones y asignaciones"
+-- L["Target rare"] = ""
 
 -- Theme/Theme.lua
 L["Dusk"] = "Crepúsculo"
@@ -633,7 +634,6 @@ L["Wearing %s (%s)."] = "Equipado: %s (%s)."
 L["Wearing %s."] = "Equipado: %s."
 
 -- QoL/Flight.lua
-L["Route"] = "Ruta"
 L["Route: fly to %s."] = "Ruta: vuela a %s."
 
 -- QoL/Death.lua
@@ -667,7 +667,6 @@ L["Targets the current step's mobs by name; each click moves to the next name. B
 L["Hearthstone button"] = "Botón de piedra de hogar"
 L["Shows your Hearthstone while the guide says to hearth. Bindable."] = "Muestra tu piedra de hogar cuando la guía dice que la uses. Se le puede asignar una tecla."
 L["Button size"] = "Tamaño de botones"
-L["Scale of the quest item, Hearthstone and target buttons. Drag one to move them all."] = "Escala de los botones de objeto de misión, piedra de hogar y objetivo. Arrastra uno para moverlos todos."
 L["Target name position"] = "Posición del nombre del objetivo"
 L["Where the target's name shows around the target button: right, left, above or below."] = "Dónde aparece el nombre del objetivo junto al botón de objetivo: derecha, izquierda, arriba o abajo."
 L["Right"] = "Derecha"
@@ -740,6 +739,9 @@ L["Start this session's XP per hour from zero."] = "Reinicia el cálculo de XP p
 -- L["Icon on NPCs"] = ""
 -- L["The target button and the step key put a raid icon on the mob and the NPC they target; out of combat, a press that finds neither clears your target. Your party sees the icons; in a raid only the leader and assistants can set them."] = ""
 -- L["A new one each press, so the last few NPCs keep theirs. Every press counts, even one that marks nothing."] = ""
+-- L["Rare button"] = ""
+-- L["Shows a button that targets a rare Polestar spotted nearby, until it dies or is out of sight. Bindable."] = ""
+-- L["Scale of the quest item, Hearthstone, target and rare buttons. Drag one to move them all."] = ""
 
 -- Lookup/Sources.lua
 L["Alliance only"] = "Solo Alianza"
@@ -1097,6 +1099,7 @@ L["Legacy"] = "Legado"
 L["Collectibles"] = "Coleccionables"
 L["Sections"] = "Secciones"
 L["guide status: Completed"] = "Completada"
+L["Miscellaneous"] = "Miscelánea"
 
 -- UI/Lookup.lua
 L["Companion"] = "Mascota de compañía"
@@ -2001,6 +2004,9 @@ L["Spare points go to Divine Strength and Holy's Improved Seals for damage, then
 L["Hand guiding to Shortest Path Forever"] = "Ceder la guía a Shortest Path Forever"
 L["Shortest Path Forever's arrow, route and journey take you to each goal. Polestar's arrow, route lines, journey steps, travel button, transport alerts, map clicks and /way step aside; the guide window and map pins stay. Off: Polestar guides, and steps aside only while a journey you started in Shortest Path Forever runs."] = "La flecha, la ruta y el trayecto de Shortest Path Forever te llevan a cada objetivo. La flecha de Polestar, las líneas de ruta, los pasos del trayecto, el botón de viaje, los avisos de transporte, los clics en el mapa y /way se apartan; la ventana de la guía y los marcadores del mapa se quedan. Desactivado: guía Polestar, y solo se aparta mientras dure un trayecto que iniciaste en Shortest Path Forever."
 
+-- Nav/Pins.lua
+-- L["Polestar trail dots"] = ""
+
 -- UI/LineStyle.lua
 -- L["How the route lines are drawn: Polestar's dots, or sparkles that drift along the way to the goal."] = ""
 -- L["Dots"] = ""
@@ -2045,3 +2051,5 @@ L["Shortest Path Forever's arrow, route and journey take you to each goal. Poles
 -- L["Next tram in about %s"] = "Próximo tranvía en unos %s"
 -- L["Next lift in about %s"] = "Próximo ascensor en unos %s"
 -- L["leaves in about %s"] = "sale en unos %s"
+-- L["Scale of the quest item, Hearthstone and target buttons. Drag one to move them all."] = "Escala de los botones de objeto de misión, piedra de hogar y objetivo. Arrastra uno para moverlos todos."
+-- L["Route"] = "Ruta"

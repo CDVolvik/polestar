@@ -23,7 +23,7 @@ Before the first `step`. `guide`, `title`, `levels` and `zone` are required.
 | `faction <Faction>` | Only for `Alliance` or `Horde` characters | `faction Alliance` |
 | `race <Race>, ...` | Only for these races (see Conditions) | `race Human, Dwarf` |
 | `class <Class>, ...` | Only for these classes | `class Warrior, Paladin` |
-| `category <Category>` | The guide menu category: `Leveling` (default), `Class`, `Professions`, `Reputation`, `Legacy`, `Exploration`, `Collectibles` or `Dungeons` | `category Professions` |
+| `category <Category>` | The guide menu category: `Leveling` (default), `Class`, `Professions`, `Reputation`, `Legacy`, `Exploration`, `Collectibles`, `Miscellaneous` or `Dungeons` | `category Professions` |
 | `folder <text>` | The guide menu folder to list it under | `folder Mounts · Level 40` |
 | `keywords <word>, ...` | Extra words the guide menu search finds it by | `keywords wolf, meat` |
 | `collects <item>, ...` | Items the guide obtains; Lookup opens this guide for them | `collects 750` |
@@ -43,6 +43,7 @@ Before the first `step`. `guide`, `title`, `levels` and `zone` are required.
 | `tip <text>` | A note for the whole step, shown in the guide window | `tip Pull one kobold at a time.` |
 | `zone <Name>` / `zone map <uiMapID>` | Inside a step: the zone for coordinates from here on, also for the steps after it (after a step with `only` that sets one, name the zone again) | `zone Elwynn Forest` |
 | `only <condition>, ...` | Inside a step: the step is only for matching characters | `only Hunter` |
+| `when <predicate>` | Inside a step: the step is only for characters in that state when the route gets there (see Conditions checked during play) | `when level<6` |
 | `note <text>` | A line of information; never holds the player up | `note The camp is busy at night.` |
 | `level <N>` | Reach level N, grinding if need be | `level 2` |
 | `# <text>` | A note for you and other authors; players never see it | `# check the patrol route` |
@@ -74,7 +75,7 @@ Before the first `step`. `guide`, `title`, `levels` and `zone` are required.
 | `accept <quest> ["Title"]` | Take a quest; the giver and title come from the data | `accept 783` |
 | `turnin <quest> ["Title"]` | Hand a quest in | `turnin 783` |
 | `lvl <N>` | On `accept`: the level the quest needs, shown beside it | `accept 7 lvl 2` |
-| `complete <quest> ["Title"]` | Finish every objective of a quest | `complete 7` |
+| `complete <quest> ["Title"]` | Finish every objective of a quest; give it a place (`@x,y`, or a `goto` before it) when its objectives have one, or the arrow has nowhere to point | `complete 7 @48.5,31.0` |
 | `npc <id>` | Which NPC gives or takes the quest, when the data knows several | `accept 5261 npc 196` |
 | `object <id>` / `item <id>` | The same for a quest started or ended at an object, or started by an item | `accept 9400 object 1617` |
 | `"<text>"` | Right after an id: the quest title, or the name of the NPC, object or item, for content missing from the data; after the modifiers: the text players see instead of the generated one | `accept 9201 "The First Step"` |
@@ -135,6 +136,23 @@ is a Dwarf who is a Warrior or a Paladin.
 | `!<Class>` | Every class but this one | `only !Hunter` |
 | `Human` `Dwarf` `Gnome` `NightElf` `Orc` `Troll` `Tauren` `Undead` (or `Scourge`) `Skyborne` | Races; Skyborne plays on both sides | `only Dwarf,Gnome` |
 | `Alliance` `Horde` | Factions | `only Alliance,Mage` |
+
+## Conditions checked during play
+
+One predicate per `when` line; a step with several needs all of them. `!`
+turns any of them around but `level`. Once the route has passed the step,
+the outcome stays.
+
+| Line | The step applies while | Example |
+|---|---|---|
+| `when level<N` (`<=`, `>`, `>=`) | the character's level compares so | `when level>=10` |
+| `when onquest <quest>, ...` | any of the quests is in the log | `when onquest 783` |
+| `when complete <quest>` | the quest is ready to turn in | `when complete 7` |
+| `when turnedin <quest>` | the quest is handed in | `when !turnedin 9201` |
+| `when available <quest>` | the quest can be taken now | `when available 9200` |
+| `when has <item> [xN]` | the bags hold N or more | `when !has 159 x5` |
+| `when zone "<Name>"` / `when subzone "<Name>"` | the player is there | `when subzone "Goldshire"` |
+| `when bound "<Location>"` | the hearthstone is bound there | `when !bound "Goldshire"` |
 
 ## Route choices and optional steps
 

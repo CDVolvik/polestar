@@ -1046,7 +1046,7 @@ if ns.Transit and ns.Transit.Register then
 		},
 	})
 end
--- zone crossings: Carbonite (github.com/IrcDirk/Carbonite-Classic, GPL-3.0) at 4d062800ae0c77c3f52ecf436b175bf06dcced4a: Carbonite/Data/classic/ZoneConnections.lua, the walks between zones
+-- zone crossings: Carbonite (github.com/IrcDirk/Carbonite-Classic, GPL-3.0) at 4d062800ae0c77c3f52ecf436b175bf06dcced4a: Carbonite/Data/classic/ZoneConnections.lua, the walks between zones; open borders (open): from Polestar's navigation grid (nav aids)
 N.RegisterCrossings({
 	-- the continents this set covers walk between zones only through it
 	complete = true,
@@ -1157,5 +1157,10 @@ N.RegisterCrossings({
 		{ id = "carbonite-mulgore--thunder-bluff-2", a = { map = 1412, c = 1, wx = -1228.8, wy = 270.9, r = 30 }, b = { map = 1456, c = 1, wx = -1288.9, wy = 144.2, r = 30 } },
 		{ id = "carbonite-mulgore--thunder-bluff-3", a = { map = 1412, c = 1, wx = -926.7, wy = 45.8, r = 30 }, b = { map = 1456, c = 1, wx = -1069.5, wy = -17.4, r = 30 } },
 		{ id = "carbonite-mulgore--thunder-bluff-4", a = { map = 1412, c = 1, wx = -964.8, wy = -116.5, r = 30 }, b = { map = 1456, c = 1, wx = -1069.5, wy = -17.4, r = 30 } },
+	},
+	-- zone a, zone b, one way (1: a -> b only)
+	open = {
+		1429, 1431, 0,
+		1431, 1436, 0,
 	},
 })

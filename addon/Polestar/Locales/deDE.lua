@@ -54,6 +54,7 @@ L["Browse the guide with the gamepad"] = "Guide mit dem Gamepad durchgehen"
 L["Open the guide menu"] = "Guide-Menü öffnen"
 L["Open Polestar options"] = "Polestar-Optionen öffnen"
 L["Open the Gamepad page: button names and bindings"] = "Seite „Gamepad“ öffnen: Tastennamen und Belegungen"
+-- L["Target rare"] = ""
 
 -- Core/Engine.lua
 L["Quest"] = "Quest"
@@ -419,6 +420,7 @@ L["Guides you load show up here."] = "Geladene Guides erscheinen hier."
 L["All"] = "Alle"
 L["Sections"] = "Abschnitte"
 L["guide status: Completed"] = "Abgeschlossen"
+L["Miscellaneous"] = "Verschiedenes"
 
 -- UI/Report.lua
 L["skipped"] = "übersprungen"
@@ -1135,7 +1137,6 @@ L["Targets the current step's mobs by name; each click moves to the next name. B
 L["Hearthstone button"] = "Ruhestein-Button"
 L["Shows your Hearthstone while the guide says to hearth. Bindable."] = "Zeigt deinen Ruhestein, solange der Guide dich zum Ruhestein schickt. Belegbar."
 L["Button size"] = "Button-Größe"
-L["Scale of the quest item, Hearthstone and target buttons. Drag one to move them all."] = "Größe von Questgegenstand-, Ruhestein- und Ziel-Button. Zieh einen, um alle zu verschieben."
 L["Target name position"] = "Position des Zielnamens"
 L["Where the target's name shows around the target button: right, left, above or below."] = "Wo der Name des Ziels um den Ziel-Button steht: rechts, links, oben oder unten."
 L["Right"] = "Rechts"
@@ -1192,6 +1193,9 @@ L["Start this session's XP per hour from zero."] = "EP pro Stunde dieser Sitzung
 -- L["Icon on NPCs"] = ""
 -- L["The target button and the step key put a raid icon on the mob and the NPC they target; out of combat, a press that finds neither clears your target. Your party sees the icons; in a raid only the leader and assistants can set them."] = ""
 -- L["A new one each press, so the last few NPCs keep theirs. Every press counts, even one that marks nothing."] = ""
+-- L["Rare button"] = ""
+-- L["Shows a button that targets a rare Polestar spotted nearby, until it dies or is out of sight. Bindable."] = ""
+-- L["Scale of the quest item, Hearthstone, target and rare buttons. Drag one to move them all."] = ""
 
 -- Rares/View.lua, Rares/Options.lua
 L["Seen"] = "Gesehen"
@@ -1564,7 +1568,6 @@ L["Resurrect at the Spirit Healer (%s): your corpse is %s away, longer than %s o
 L["Resurrect at the Spirit Healer (%s)."] = "Lass dich beim Geistheiler wiederbeleben (%s)."
 L["Your corpse"] = "Deine Leiche"
 L["Spirit Healer"] = "Geistheiler"
-L["Route"] = "Route"
 L["Route: fly to %s."] = "Route: Flieg nach %s."
 L["%dh %02dm"] = "%d Std. %02d Min."
 L["%dm"] = "%d Min."
@@ -1974,6 +1977,9 @@ L["Classic"] = "Classic"
 -- QoL/Buttons.lua
 -- L["Click again for the next name. Shift-drag to move."] = ""
 
+-- Nav/Pins.lua
+-- L["Polestar trail dots"] = ""
+
 -- UI/LineStyle.lua
 -- L["How the route lines are drawn: Polestar's dots, or sparkles that drift along the way to the goal."] = ""
 -- L["Dots"] = ""
@@ -2053,3 +2059,5 @@ L["Classic"] = "Classic"
 -- L["Next tram in about %s"] = "Nächste Bahn in etwa %s"
 -- L["Next lift in about %s"] = "Nächster Aufzug in etwa %s"
 -- L["leaves in about %s"] = "fährt ab in etwa %s"
+-- L["Scale of the quest item, Hearthstone and target buttons. Drag one to move them all."] = "Größe von Questgegenstand-, Ruhestein- und Ziel-Button. Zieh einen, um alle zu verschieben."
+-- L["Route"] = "Route"
