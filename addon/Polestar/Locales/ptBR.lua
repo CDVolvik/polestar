@@ -746,6 +746,9 @@ L["Start this session's XP per hour from zero."] = "Zera a EXP por hora desta se
 -- L["Scale of the quest item, Hearthstone, target and rare buttons. Drag one to move them all."] = ""
 L["Guide level on the XP bar"] = "Nível do guia na barra de EXP"
 L["A mark at the end of the game's XP bar with the level the guide wants you to reach before it moves on, and how many levels away that is when it is more than one."] = "Uma marca no fim da barra de EXP do jogo com o nível que o guia quer que você alcance antes de seguir, e quantos níveis faltam quando é mais de um."
+-- L["Hearthstone"] = ""
+-- L["Set your home at the guide's inn"] = ""
+-- L["When the step sets your home and you talk to its innkeeper, binds your Hearthstone there. Never at another inn. Hold Shift to skip."] = ""
 
 -- Lookup/Sources.lua
 L["Alliance only"] = "Só Aliança"
@@ -2262,6 +2265,10 @@ L["Guides someone shared with you, as an import string or a community addon."] =
 -- QoL/XPMark.lua
 L["Guide: %d"] = "Guia: %d"
 L["Guide: %d (%d levels)"] = "Guia: %d (%d níveis)"
+
+-- QoL/Bind.lua
+-- L["Bound your Hearthstone to %s."] = ""
+-- L["Bound your Hearthstone."] = ""
 
 -- No longer in the code (its English changed or it went away): reuse or delete.
 -- L["Shortest Path Forever is guiding. Turn off \"Guide with Shortest Path Forever when it's installed\" (Options, Arrow & routes) to use Polestar's arrow."] = "Shortest Path Forever está guiando. Desative \"Guiar com Shortest Path Forever quando instalado\" (Opções, Seta e rotas) para usar a seta do Polestar."

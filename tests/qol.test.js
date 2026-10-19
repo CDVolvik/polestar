@@ -57,7 +57,7 @@ test('options: every qol setting is registered, on Questing or Quality of Life, 
 			"rewardHighlight", "rewardAutoPick", "flightAutoOpen", "flightHighlight", "deathHelper", "instantQuestText",
 			"skipGossip", "fastLoot", "declineDuels", "repairGuild", "hideErrors", "autoReleasePvP", "declineGuildInvites",
 			"declinePartyStrangers", "acceptPartyFriends", "acceptSummon", "acceptResurrect", "buyGoals", "trainAll",
-			"rewardEquip" }) do keys[k] = Polestar.GetDefault("qol." .. k) end
+			"rewardEquip", "autoBind" }) do keys[k] = Polestar.GetDefault("qol." .. k) end
 		emit(keys)
 	`);
 	const registered = new Set(specs.filter((c) => c.key).map((c) => c.key.replace(/^qol\./, '')));
@@ -71,6 +71,7 @@ test('options: every qol setting is registered, on Questing or Quality of Life, 
 	assert.equal(defaults.buyGoals, false, 'buying for the guide is off by default');
 	assert.equal(defaults.trainAll, false, 'learning at trainers is off by default');
 	assert.equal(defaults.rewardEquip, false, 'wearing rewards is off by default');
+	assert.equal(defaults.autoBind, false, 'binding the Hearthstone is off by default');
 	assert.equal(defaults.sellJunk, true);
 });
 
@@ -2173,6 +2174,80 @@ test("flight: the mark names the destination node and bobs, unless motion is red
 	assert.equal(out[0][0], 'Sentinel Hill');
 	assert.ok(out[0][1] > 0 && out[0][2] > 0 && out[0][3], 'the arrow bobs and the ring ripples');
 	assert.deepEqual(out[1], [out[0][1], out[0][2], false], 'reduced motion plays neither loop and hides the ripple');
+});
+
+// ---------------------------------------------------------------------------
+// Binding at the guide's inn
+// ---------------------------------------------------------------------------
+
+// An innkeeper's gossip: the bind option (the binder icon, no text read) and
+// the vendor's. visit(npc) returns the option picked (0: none); confirm()
+// fires the bind confirmation Blizzard shows its popup for, and counts what
+// answered it (binder: the interaction type confirmed, 0: none).
+const INN = `
+local BIND = { gossipOptionID = 90, name = "Make this inn your home.", icon = 132052, orderIndex = 0 }
+local SHOP = { gossipOptionID = 91, name = "Let me browse your goods.", icon = 132060, orderIndex = 1 }
+local function visit(npc, opts)
+	q.calls = {}
+	q.openGossip(npc, opts or { options = { SHOP, BIND } })
+	return calls("SelectOption")[1] or 0
+end
+local function confirm()
+	q.calls = {}
+	q.showPopup("CONFIRM_BINDER"); stub.fire("CONFIRM_BINDER", "Goldshire"); stub.runTimers()
+	return { binder = calls("ConfirmationInteraction")[1] or 0, cleared = calls("ClearInteraction")[1] or 0, closed = #calls("StaticPopup_Hide") }
+end
+`;
+
+test("bind: at the step's innkeeper, picks the bind option and confirms the bind; off by default", () => {
+	const out = run(`${INN}
+		q.step({ { t = "sethome", location = "Goldshire", npc = 295 } })
+		emit({ picked = visit(295), answer = confirm(), watching = QoL.Watching("CONFIRM_BINDER") })
+		set("autoBind", true)
+		emit({ picked = visit(295), answer = confirm(), said = printed("Bound your Hearthstone to Goldshire"), watching = QoL.Watching("CONFIRM_BINDER") })
+		-- The icon as overrideIconID; the gossip already closed at the confirmation.
+		emit(visit(295, { options = { { gossipOptionID = 92, name = "?", icon = 0, overrideIconID = 132052, orderIndex = 0 } } }))
+		q.npc = nil
+		emit(confirm())
+		-- sethome nearest: any of its candidates.
+		q.step({ { t = "sethome", candidates = { { npc = 6790 }, { npc = 295 } } } })
+		emit(visit(6790))
+	`);
+	assert.deepEqual(out[0], { picked: 0, answer: { binder: 0, cleared: 0, closed: 0 }, watching: false }, 'off: nothing');
+	assert.deepEqual(out[1], { picked: 90, answer: { binder: 20, cleared: 20, closed: 1 }, said: true, watching: true });
+	assert.equal(out[2], 92);
+	assert.deepEqual(out[3], { binder: 20, cleared: 20, closed: 1 });
+	assert.equal(out[4], 90);
+});
+
+test('bind: nothing at another innkeeper, with Shift, with quests waiting, without an open sethome goal, or when bound there', () => {
+	const [r] = run(`${INN}
+		set("autoBind", true)
+		local r = {}
+		local function both(npc, opts) local picked = visit(npc, opts); return { picked = picked, binder = confirm().binder } end
+		q.step({ { t = "sethome", location = "Goldshire", npc = 295 } })
+		r.other = both(6790)
+		stub.keys.shift = true; r.shift = both(295); stub.keys.shift = false
+		-- Shift held only as the popup shows.
+		visit(295); stub.keys.shift = true; r.shiftAtConfirm = confirm().binder; stub.keys.shift = false
+		-- Quests to pick up or hand in go first; the player picking the bind
+		-- option themselves at the step's innkeeper is still confirmed.
+		r.quests = both(295, { options = { SHOP, BIND }, available = 1 })
+		r.turnin = visit(295, { options = { SHOP, BIND }, active = { { questID = 4, isComplete = true } } })
+		q.step({ { t = "sethome", location = "Goldshire", npc = 295, status = "done" } })
+		r.done = both(295)
+		q.step({ { t = "talk", npc = 295 } })
+		r.noGoal = both(295)
+		q.nav.boundInn = 295
+		q.step({ { t = "sethome", candidates = { { npc = 295 } } } })
+		r.bound = both(295)
+		emit(r)
+	`);
+	const none = { picked: 0, binder: 0 };
+	assert.deepEqual(r, {
+		other: none, shift: none, shiftAtConfirm: 0, quests: { picked: 0, binder: 20 }, turnin: 0,
+		done: none, noGoal: none, bound: none,
+	});
 });
 
 // ---------------------------------------------------------------------------

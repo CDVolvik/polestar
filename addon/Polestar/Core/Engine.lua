@@ -1111,6 +1111,18 @@ local function isCandidate(goal, npc)
 	return false
 end
 
+-- Whether `npc` is an innkeeper a `sethome` goal binds at: a located goal's
+-- inn's (goal.npc, else the innkeeper of the inn its location names, in
+-- Nav/Travel.lua's data); `sethome nearest`, one of its candidates. The
+-- latch below and QoL's bind helper both ask this.
+function Engine.IsSethomeInnkeeper(goal, npc)
+	if not (npc and type(goal) == "table" and goal.t == "sethome") then return false end
+	if not goal.location then return goal.candidates ~= nil and isCandidate(goal, npc) end
+	local nav = ns.Nav
+	local inn = nav and nav.FindInn and nav.FindInn(goal.npc, goal.location)
+	return npc == (inn and inn.npc or goal.npc)
+end
+
 -- Goals whose live condition can stop holding after the step is passed
 -- (leaving the zone, rebinding, selling the items, walking away). Their done
 -- state is stored once the route moves past them, so the guide never jumps
@@ -2923,10 +2935,8 @@ local function latch(kind, npc)
 						ok = goal.npc == npc
 					elseif kind == "sethome" then
 						-- `sethome nearest` on any bind; a located one at its inn's
-						-- innkeeper (goal.npc, else the one of the inn its location names).
-						local nav = goal.location and npc and ns.Nav
-						local inn = nav and nav.FindInn and nav.FindInn(goal.npc, goal.location)
-						ok = not goal.location or (npc ~= nil and npc == (inn and inn.npc or goal.npc))
+						-- innkeeper (Engine.IsSethomeInnkeeper).
+						ok = not goal.location or Engine.IsSethomeInnkeeper(goal, npc)
 					elseif kind == "train" and isProfessionTrain(goal) then
 						ok = false
 					elseif goal.candidates and npc then

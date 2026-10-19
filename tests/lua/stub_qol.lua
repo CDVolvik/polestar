@@ -3,7 +3,7 @@
 -- Pins (just before ADDON_LOADED, after the addon files ran), overrides the
 -- map half of Compat with one flat test map, and provides the client APIs QoL
 -- uses: XP, bags and items, merchant (guild repair, goods), trainer, quest
--- rewards, gossip,
+-- rewards, gossip, the innkeeper's bind confirmation,
 -- taxi map, death, loot, requests from other players (q.social), popups
 -- (q.showPopup), UIErrorsFrame message types, and installed-but-unloaded
 -- addons (q.installed).
@@ -49,7 +49,7 @@ local q = {
 	loot = 0,
 	specialItems = {}, -- questID -> itemID (quest log special item)
 	engine = { step = nil, view = nil, guide = nil, waypoint = nil },
-	nav = { target = nil, sets = {}, releases = 0, clears = 0, route = nil, ci = 1 },
+	nav = { target = nil, sets = {}, releases = 0, clears = 0, route = nil, ci = 1, boundInn = nil },
 	pins = {},
 	cooldowns = {},
 	inRange = nil,
@@ -481,6 +481,12 @@ function q.openGossip(npc, opts)
 	stub.fire("GOSSIP_SHOW")
 end
 
+-- The bind confirmation (GameDialogDefs.lua's CONFIRM_BINDER Accept).
+Enum.PlayerInteractionType = { Binder = 20 }
+C_PlayerInteractionManager = {}
+function C_PlayerInteractionManager.ConfirmationInteraction(t) call("ConfirmationInteraction", t) end
+function C_PlayerInteractionManager.ClearInteraction(t) call("ClearInteraction", t) end
+
 TaxiFrame = CreateFrame("Frame", "TaxiFrame", UIParent)
 TaxiFrame.shown = false
 function NumTaxiNodes() return #q.taxiNodes end
@@ -596,6 +602,16 @@ function Engine.GetStepView(i) if i == q.engine.step then return q.engine.view e
 function Engine.GetGuide() return q.engine.guide end
 function Engine.GetWaypoint() return q.engine.waypoint end
 function Engine.IsClassTrainer(npc) return npc ~= nil and q.classTrainers[npc] == true end
+-- The Engine's rule: a located goal at its npc, `sethome nearest` at a candidate.
+function Engine.IsSethomeInnkeeper(goal, npc)
+	if not (npc and goal and goal.t == "sethome") then return false end
+	if not goal.location then
+		for _, c in ipairs(goal.candidates or {}) do if c.npc == npc then return true end end
+		return false
+	end
+	return npc == goal.npc
+end
+
 -- q.engine.levelTarget: the guide's next `level N`; returned only above `level`.
 function Engine.LevelTarget(level)
 	local t = q.engine.levelTarget
@@ -644,6 +660,8 @@ function Nav.ClearTarget()
 	q.nav.target = nil
 end
 function Nav.GetRoute() return q.nav.route, q.nav.route and q.nav.ci or nil end
+-- The inn this character is bound at: q.nav.boundInn, its innkeeper.
+function Nav.BoundInn() return q.nav.boundInn and { npc = q.nav.boundInn } or nil end
 
 local Pins = {}
 q.Pins = Pins

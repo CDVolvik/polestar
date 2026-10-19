@@ -387,12 +387,13 @@ selling greys and repairing (optionally from the guild bank first); buying
 what a step asks you to buy; learning new spells at class trainers; taking
 the best quest reward and wearing rewards that are upgrades; instant quest
 text, single-option gossip and faster auto-loot; hiding combat error spam;
-flight map and death helpers, and releasing at once in battlegrounds.
-Requests from other players: accept summons, resurrections and friends' or
-guildmates' party invitations; decline other party invitations, guild
-invitations and duels (friends and guild excepted). Hold **Shift** to skip
-auto-accept, auto-turn-in, auto-sell, training or the flight helper once, or
-to answer a request yourself.
+flight map and death helpers, and releasing at once in battlegrounds;
+setting your home at the inn the guide names when you talk to its innkeeper
+(off by default). Requests from other players: accept summons, resurrections
+and friends' or guildmates' party invitations; decline other party
+invitations, guild invitations and duels (friends and guild excepted). Hold
+**Shift** to skip auto-accept, auto-turn-in, auto-sell, training, binding or
+the flight helper once, or to answer a request yourself.
 
 ### With a gamepad
 
