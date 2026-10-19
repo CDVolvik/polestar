@@ -9,7 +9,7 @@
 //   qol-corpse   corpse pin: a headstone
 //   qol-upgrade  quest reward badge: an upgrade, a bold up arrow with a dark rim
 //   qol-coin     quest reward badge: sells for most, a coin with a dark rim
-//   qol-ring     flight map destination marker: a ring with four ticks
+//   qol-ring     alert, toast and dungeon marker: a ring with four ticks
 //   qol-fly-arrow flight map destination: a bold down arrow with a heavy dark rim
 //   qol-fly-ring  flight map destination: the ring on the node, heavy dark rim
 //
