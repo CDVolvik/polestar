@@ -1462,6 +1462,7 @@ do
 					note = "{npc:3885} stands at the {area:420} on the east shore of {area:421}; {npc:210995} camps on its west shore. Befouled Water Elementals wade in the lake between them.",
 					goals = {
 						{ t = "accept", quest = 1016, title = "Elemental Bracers", npc = 3885, npcName = "Sentinel Velene Starstrike", minLevel = 20, qlvl = 24, map = 1440, x = 49.8, y = 67.21, z = 101.9, f = "e" },
+						{ t = "collect", item = 12220, itemName = "Intact Elemental Bracer", count = 5, map = 1440, x = 50.92, y = 67.42, f = "e", spots = { { x = 51.7, y = 70, r = 21, n = 3 }, { x = 49.9, y = 70.1, r = 44, n = 5 }, { x = 50.8, y = 72.1, r = 55, n = 5 }, { x = 47.8, y = 69.1, r = 39, n = 4 }, { x = 52.1, y = 72.5, r = 15, n = 2 }, { x = 48.8, y = 72.3, r = 32, n = 2 }, { x = 50.9, y = 67.4, r = 15, n = 1, alt = true }, { x = 46.8, y = 67.4, r = 24, n = 2, alt = true }, { x = 47.5, y = 71.2, r = 57, n = 5, alt = true }, { x = 45.9, y = 69.7, r = 50, n = 5, alt = true } }, optional = true },
 						{ t = "collect", quest = 1016, title = "Elemental Bracers", item = 5455, itemName = "Divined Scroll", count = 1, oi = 1, map = 1440, x = 46.6, y = 69.6, f = "e", note = "Kill the elementals for 5 Intact Elemental Bracers, then use the {item:5456}" },
 						{ t = "turnin", quest = 1016, title = "Elemental Bracers", npc = 3885, npcName = "Sentinel Velene Starstrike", map = 1440, x = 49.8, y = 67.21, z = 101.9, f = "e" },
 						{ t = "accept", quest = 78132, title = "Dragonslayer's Helm", npc = 210995, npcName = "Alonso", minLevel = 15, qlvl = 25, map = 1440, x = 43.4, y = 70.4, f = "e", spots = { { x = 43.4, y = 70.4, r = 15, n = 1 }, { x = 42.2, y = 69.6, r = 20, n = 2 } } },
@@ -10040,7 +10041,6 @@ do
 					title = "{area:262}",
 					note = "The barrow is south of the road. {npc:275744} is held inside, {npc:7317} sleeps in its depths, and the four relic chests sit in the lower rooms.",
 					goals = {
-						{ t = "accept", quest = 99053, title = "Escaping Ban'ethil", npc = 275744, npcName = "Sentinel Lynessa Duskblossom", minLevel = 4, qlvl = 9, map = 1438, x = 44.68, y = 58.92, f = "e" },
 						{ t = "accept", quest = 2541, title = "The Sleeping Druid", npc = 7317, npcName = "Oben Rageclaw", minLevel = 3, qlvl = 8, map = 1438, x = 44.94, y = 61.59, z = 1280.4, f = "e" },
 						{ t = "collect", quest = 483, title = "The Relics of Wakening", item = 3405, itemName = "Raven Claw Talisman", oi = 1, map = 1438, x = 45.65, y = 57.44, f = "e", from = "Chest of the Raven Claw", fromKind = "object", fromId = 2740 },
 						{ t = "collect", quest = 483, title = "The Relics of Wakening", item = 3406, itemName = "Black Feather Quill", oi = 2, map = 1438, x = 43.7, y = 61.22, f = "e", from = "Chest of the Black Feather", fromKind = "object", fromId = 2739 },
@@ -10057,6 +10057,7 @@ do
 					title = "{quest:99053}",
 					note = "Escort {npc:275744} out of the barrow; {npc:2081} in {area:186} takes the report.",
 					goals = {
+						{ t = "accept", quest = 99053, title = "Escaping Ban'ethil", npc = 275744, npcName = "Sentinel Lynessa Duskblossom", minLevel = 4, qlvl = 9, map = 1438, x = 44.68, y = 58.92, f = "e" },
 						{ t = "goto", text = "{area:736}, outside the barrow", map = 1438, x = 46.4, y = 57.3, f = "e", r = 25, note = "Walk Lynessa out and keep her alive" },
 						{ t = "complete", quest = 99053, title = "Escaping Ban'ethil" },
 					},
