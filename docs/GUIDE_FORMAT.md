@@ -113,6 +113,7 @@ Step directives:
 | `along [until <label>]` | The route never stops at the step: its goals are done along the way, listed under the steps after it. See "Along the way". |
 | `label <name>` | Names the step, for an `along until` before it. |
 | `tip <text>` | Player-facing step note (compiled to `step.note`). |
+| `image <path> [<w>x<h>]` | A picture shown in the guide window under the step's tip, while the tip is open, scaled to the window's width (at most 160 high): a screenshot of a spot that is hard to find, such as a cave mouth. `<path>` is the file's place in the pack folder, `/` between folders (`media/fargodeep-mine.tga`), a `.tga` or `.blp` file; without the extension the `.tga`, else the `.blp`. The file ships in the pack's addon folder at that path. `<w>x<h>` is the size it is drawn at (only the ratio counts: `512x256` is twice as wide as high); without it the compiler reads the file's own. One per step; a step with no `tip` reads "Picture of this spot" above it. See "Pictures" in the Cookbook. |
 | `loop` | The step's `goto` points, in order, are the places to search for its kill, collect and interact goals instead of a path to walk: see "Spawn areas", Loop. |
 
 A step must contain at least one goal.
@@ -601,6 +602,10 @@ Errors:
 - a step label used twice in a guide, an `along until` naming no label, or a
   label on its own step or an earlier one
 - `era`/`live` on a goal without typed coordinates
+- an `image` path that is absolute, leaves the pack folder (`..`), uses `\`,
+  names a file other than `.tga` or `.blp`, or has a character other than
+  letters, digits, `_`, `-` and `/`; a malformed size (`512x256`); a second
+  `image` in a step
 - `choose`/`reward` without item ids, an item listed twice, a reward item missing from `items.json` without a name; malformed `money` or `xp`; a `group` size that is not a whole number from 2 to 40
 - a smart target (`nearest`, `train <Profession>`, `train class`, `collect … nearest`) with no candidate
   in the data or with coordinates; `collect … nearest` without `xN` or with `quest`;
@@ -696,6 +701,10 @@ Warnings:
   prints literally in game
 - another pack's Era frame for a map Polestar's guides also use, with other
   bounds: in game Polestar's wins, so coordinates on that map may be off
+- an `image` whose file the pack folder lacks (the step then shows no
+  picture), a file whose size the compiler cannot read (not a TGA or BLP)
+  when the line gives none, and a picture whose sides are not powers of two
+  (256, 512, 1024), which the game may not draw
 - `lint` only, with a simulator world cached in `data/sim` (or `--sim <dir>`): a
   non-`optional` quest goal in a `Leveling` guide on a quest the solo filter
   excludes (dungeon, raid, pvp, rare drop, reputation, repeatable or profession;
@@ -712,9 +721,10 @@ saying how to fix them.
 another pack's: `dist/<folder>/`): the generated TOC, `Pack.lua`,
 `MapFrames.lua` (Era bounds for referenced maps), `Guides.lua` (one
 `RegisterGuide` per guide, each in its own function) and `LICENSE-DATA.txt`,
-plus the pack folder's `LICENSE` copied as `LICENSE.txt` when it has one, and
-beside it a texts addon per language the pack's `locales/` translates
-(docs/TRANSLATING.md, "Guide texts").
+plus the pack folder's `LICENSE` copied as `LICENSE.txt` when it has one, the
+picture file of every `image` the compiler found, at its path in the pack
+folder, and beside it a texts addon per language the pack's `locales/`
+translates (docs/TRANSLATING.md, "Guide texts").
 [PACK_FORMAT.md](PACK_FORMAT.md) describes them. Output is deterministic: the
 same inputs give byte-identical files.
 
@@ -790,6 +800,30 @@ quest goal (training, a level, travel), is for some classes or races only
 (`only`), was skipped, or was passed only because its quests are unavailable,
 when the quest goal done is itself `only`, and when `optional` goals follow
 the goto in its own step: that is where they are done.
+
+### Pictures: `image`
+
+```
+step Fargodeep Mine
+  tip The mouth is easy to miss from the road: the picture shows it.
+  image media/fargodeep-mine.tga
+  goto 39.5,80.0 "Fargodeep Mine"
+```
+
+A screenshot helps where words and the arrow do not: a cave mouth hidden in
+a hillside, the right door of a building. Take it in game (Print Screen
+saves it in the game's `Screenshots` folder), crop it to the spot, and save
+it as a `.tga` at a power-of-two size such as 512x256 or 512x512 in your
+pack folder, for example `media/`. The guide window draws it under the
+step's tip as wide as the window (at most 160 high), in the ratio of the file
+or of `<w>x<h>` when the line gives one. Folded to one line, the tip hides
+it; a player who turned step tips off sees none. Lint warns when the file is
+not there, and `compile` copies it into the addon folder.
+
+The game may only find a picture added while it runs after a restart;
+`dev` rebuilds when a `.guide` file or `pack.json` is saved, so save the
+guide once the picture is in place. An import string carries the `image`
+line but not the file, so an imported guide shows no picture.
 
 ### People and things: `talk`, `interact`, `use`
 

@@ -1117,6 +1117,7 @@ L["After the run: a guide to where this dungeon's quests are turned in, and the 
 -- L["%s (known)"] = ""
 -- L["%s (from level %d)"] = ""
 -- L["Points the arrow at the nearest vendor, repair, inn, flight master or trainer."] = ""
+-- L["Picture of this spot"] = ""
 -- L["Along the way"] = ""
 
 -- UI/Lookup.lua

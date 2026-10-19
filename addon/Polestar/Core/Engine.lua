@@ -3934,9 +3934,10 @@ function Engine.GetStepView(i)
 		}
 	end
 	-- `current`: the goal the window marks and the arrow leads to (the
-	-- current step only); `skipped`: the player skipped this step (Unskip).
+	-- current step only); `skipped`: the player skipped this step (Unskip);
+	-- `image`: the step's picture ({ file, w, h, texture }, Guides.lua).
 	return {
-		index = i, title = step.title, note = step.note, status = status, goals = goals,
+		index = i, title = step.title, note = step.note, image = step.image, status = status, goals = goals,
 		groups = outGroups, focus = focus,
 		current = status == "current" and (Own.currentGoal(i, groups, focus)) or nil,
 		skipped = isSkipped(i), live = computed,

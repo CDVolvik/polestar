@@ -17,7 +17,8 @@ next forever/alliance/02-westfall
 # Sentinel Eralya -> the Oracle Glade (Arynia's harpies) -> Ursal ->
 # Dolanaar -> Lake Al'Ameth -> Dolanaar -> Sentinel Eralya -> Darnassus (the
 # Cenarion Enclave, the Temple of the Moon) -> Rut'theran Village (flight path)
-# -> boat to Auberdine -> boat to Stormwind -> Westfall.
+# -> Vesprystus' quest flight to Auberdine -> Return to Nessa (fly to
+# Rut'theran and back) -> boat to Stormwind -> Westfall.
 #
 # Deviations from the export, each a shorter walk with the same quests:
 # - The Balance of Nature (456) is taken from Conservator Ilthalaine before
@@ -26,7 +27,9 @@ next forever/alliance/02-westfall
 #   yards to Tarindrella either way), without passing him by.
 # - The Relics of Wakening (483) is done on the one trip into Ban'ethil
 #   Barrow Den with Oben Rageclaw and Lynessa: Starbreeze (475, 476) and the
-#   dresser (2438) come before the west loop instead of after it.
+#   dresser (2438) come before the west loop instead of after it. Lynessa's
+#   escort, Escaping Ban'ethil (99053), is taken last, once the rest of the
+#   den is done: taken first, she sets off before it is (Pynte, #334).
 # - Timberling Seeds and Sprouts (918, 919) are taken and done on the first
 #   visit to Denalan, with the lasher fronds, instead of a later trip.
 # - The Glowing Fruit (930) waits for the last lake visit (931, 2399), and
@@ -37,8 +40,18 @@ next forever/alliance/02-westfall
 #   it.
 # - The Sisterhood of Elune (98391), never turned in by the export, is turned
 #   in to Sister Aquinne beside the Rut'theran portal.
-# - Flight to Auberdine (6342) is turned in at Laird on the Auberdine dock
-#   while changing boats, not on the later Darkshore visit.
+# - Flight to Auberdine (6342) is taken the way the quest says: Vesprystus
+#   flies you to Auberdine for free once you have it ("speak with me again
+#   when you are ready to fly"), instead of the boat the export took (the
+#   simulator only knows learned flight paths). It lands beside Laird, so
+#   6342 is turned in on landing, with the Auberdine flight path (Pynte,
+#   #402, #403).
+# - Return to Nessa (6343, Laird to Nessa, 1050 XP), not in the export, is
+#   added. Druids hand it in on the Rut'theran stop their class quests
+#   already make; everyone else flies to Rut'theran and back for it.
+#   Measured with sim compare against this guide with it for Druids only:
+#   0.04 h sooner to 12 and to 60 as a Warrior, 0.04 h sooner to 12 and
+#   0.15 h sooner to 20 as a Priest.
 # - Dolanaar Delivery (2159) is taken from Porthannius when you leave
 #   Shadowglen for Dolanaar, not with the Aldrassil pickups before the cave:
 #   he stands by the path out of the glen, about 380 yards out of the way
@@ -316,7 +329,6 @@ step The road to Darnassus
 
 step Ban'ethil Barrow Den
   tip The barrow is south of the road. Sentinel Lynessa Duskblossom is held inside, Oben Rageclaw sleeps in its depths, and the four relic chests sit in the lower rooms.
-  accept 99053                                -- Sentinel Lynessa Duskblossom
   accept 2541                                 -- Oben Rageclaw
   collect 3405 quest 483.1
   collect 3406 quest 483.2
@@ -330,6 +342,7 @@ step Ban'ethil Barrow Den
 
 step Escaping Ban'ethil
   tip Escort Sentinel Lynessa Duskblossom out of the barrow; Sentinel Kyra Starsong in Dolanaar takes the report.
+  accept 99053                                -- Sentinel Lynessa Duskblossom
   goto 46.4,57.3 "Ban'ethil Hollow, outside the barrow" r 25 -- Walk Lynessa out and keep her alive
   complete 99053
 
@@ -461,21 +474,33 @@ step Darnassus
 
 step Rut'theran Village
   zone Teldrassil
-  tip Take the portal down to Rut'theran Village. Nessa stands on the dock, Vesprystus by the hippogryphs.
+  tip Take the portal down to Rut'theran Village. Nessa stands on the dock, Vesprystus by the hippogryphs. Once you have Flight to Auberdine, talk to Vesprystus again and choose the flight to Auberdine: it is free and lands beside Laird. If the flight map opens instead, close it and talk to him again holding Shift.
   turnin 6344                                 -- Nessa Shadowsong
   accept 6341
   getfp "Rut'theran Village" npc 3838         -- Vesprystus
   turnin 6341
   accept 6342
+  fly "Auberdine"                             -- talk to Vesprystus again: free with Flight to Auberdine
 
-step Boat to Auberdine
-  goto 54.79,96.81 "Boat to Auberdine"
+step Auberdine
+  zone Darkshore
+  tip Learn the flight path from Caylais Moonfeather where you land. Laird's fish stall is just north of her, by the docks.
+  getfp "Auberdine"
+  turnin 6342                                 -- Laird
+  accept 6343                                 -- Return to Nessa
+
+step Return to Nessa
+  only !Druid
+  zone Teldrassil
+  tip Fly back to Rut'theran Village from Caylais Moonfeather, hand Laird's Response to Nessa on the dock, then fly back to Auberdine for the boat.
+  fly "Rut'theran Village"
+  turnin 6343                                 -- Nessa Shadowsong
+  fly "Auberdine"
 
 step Moonglade
   only Druid
   zone Darkshore
-  tip Learn the Auberdine flight path on the hill south of the inn, then cast Teleport: Moonglade. Dendrite Starblaze is in Nighthaven; the Great Bear Spirit sits in the woods to the north-west. Learn the Moonglade flight path in Nighthaven and fly to Rut'theran Village (by way of Auberdine).
-  getfp "Auberdine"
+  tip Cast Teleport: Moonglade. Dendrite Starblaze is in Nighthaven; the Great Bear Spirit sits in the woods to the north-west. Learn the Moonglade flight path in Nighthaven and fly to Rut'theran Village (by way of Auberdine).
   zone Moonglade
   turnin 5921                                 -- Dendrite Starblaze
   accept 5929
@@ -488,7 +513,8 @@ step Moonglade
 step Back to Darnassus
   only Druid
   zone Darnassus
-  tip Take the portal up from Rut'theran Village to Mathrengyl in the Cenarion Enclave.
+  tip Nessa stands on the Rut'theran dock where you land. Then take the portal up to Mathrengyl in the Cenarion Enclave.
+  turnin 6343                                 -- Nessa Shadowsong
   turnin 5931                                 -- Mathrengyl Bearwalker
   accept 6001
 
@@ -508,12 +534,11 @@ step Body and Heart
   turnin 6001                                 -- Mathrengyl Bearwalker: Bear Form
   fly "Auberdine"
 
-step Auberdine
+step Boat to Stormwind
   zone Darkshore
-  tip Laird's fish stall is by the docks. Then take the boat to Stormwind.
-  turnin 6342                                 -- Laird
+  tip Take the boat to Stormwind from Auberdine's docks.
   goto 30.76,40.92 "Boat to Stormwind"
-  note From Stormwind Harbor, ride through the city gates into Elwynn Forest and follow the road west to Westfall.
+  note From Stormwind Harbor, head through the city gates into Elwynn Forest and follow the road west to Westfall.
 
 step Defensive Stance
   only Warrior

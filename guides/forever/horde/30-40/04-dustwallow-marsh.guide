@@ -91,7 +91,7 @@ step Fly to Camp Taurajo
 
 step Shady Rest Inn
   zone Dustwallow Marsh
-  tip Ride east from Camp Taurajo along the road into the marsh. The burned-out Shady Rest Inn stands beside it just past the border; the shield, the badge and the hoofprints are in and beside the ruin.
+  tip Head east from Camp Taurajo along the road into the marsh. The burned-out Shady Rest Inn stands beside it just past the border; the shield, the badge and the hoofprints are in and beside the ruin.
   accept 1251
   accept 1268
   accept 1269
@@ -118,7 +118,7 @@ step Questioning Reethe
 # ---------------------------------------------------------------- Witch Hill
 
 step Stinky Ignatz
-  tip Ride north to Witch Hill. Stinky stands at the foot of the hill; escort him while he gathers Bogbean Leaves just south of it.
+  tip Head north to Witch Hill. Stinky stands at the foot of the hill; escort him while he gathers Bogbean Leaves just south of it.
   accept 1270
   complete 1270
 
@@ -136,7 +136,7 @@ step Swamp Eye Jarl
 # ---------------------------------------------------------------- Back west
 
 step Darkfang spiders
-  tip Ride west back across the marsh. The Darkfang Venomspitters on the ridges north of Brackenwall drop the venom sacs. Theramore Infiltrators (35-36) sneak through the same woods: they are stealthed, so look closely.
+  tip Head west back across the marsh. The Darkfang Venomspitters on the ridges north of Brackenwall drop the venom sacs. Theramore Infiltrators (35-36) sneak through the same woods: they are stealthed, so look closely.
   collect 5959 quest 1322
   kill 4834 quest 1201
 
@@ -154,14 +154,14 @@ step Brackenwall Village
   turnin 1323                         -- Krog
 
 step Swamp Eye Jarl
-  tip Ride east back to the Swamplight Manor.
+  tip Head east back to the Swamplight Manor.
   turnin 1206
   accept 1203 optional                -- only if you carry a Moonsteel Broadsword (Blacksmithing or the Auction House)
   turnin 1203 optional
   accept 1239                         -- Loose Dirt, now that Nazeer has read the report
 
 step Brackenwall Village
-  tip Ride back west to Brackenwall with the head.
+  tip Head back west to Brackenwall with the head.
   turnin 1239                         -- Nazeer Bloodpike
   accept 1240                         -- For Kin'weelay at Grom'gol, in the next guide
 
@@ -179,7 +179,7 @@ step Shadowprey Village
   accept 6143                         -- Drulzegar Skraghook
 
 step Melizza Brimbuzzle
-  tip Ride north-east to the Valley of Spears. Melizza is held in the Maraudine centaur camp; free her and escort her out east of the valley.
+  tip Head north-east to the Valley of Spears. Melizza is held in the Maraudine centaur camp; free her and escort her out east of the valley.
   accept 6132
   complete 6132
 
@@ -203,7 +203,7 @@ step Ghost Walker Post
   accept 93225                        -- Gurda Wildmane
 
 step Kormek's Hut
-  tip Ride north up the road to the hut by the road north of the graveyard.
+  tip Head north up the road to the hut by the road north of the graveyard.
   accept 5501                         -- Bibbly F'utzbuckle
 
 step Kodo bones and ghosts
@@ -224,7 +224,7 @@ step Thunder Axe Fortress
 # ---------------------------------------------------------------- The coast
 
 step Ethel Rethor
-  tip Ride west to Azore Aldamort's tower at Ethel Rethor on the north-west coast.
+  tip Head west to Azore Aldamort's tower at Ethel Rethor on the north-west coast.
   accept 6027                         -- Azore Aldamort
 
 step Slitherblade coast
@@ -238,22 +238,22 @@ step Azore Aldamort
   turnin 6027
 
 step Maraudine totems
-  tip Ride south from Ethel Rethor into the Valley of Spears. The Maraudine Scouts, Wranglers, Maulers, Windchasers and Marauders (36-39) drop the Carved Centaur Totems.
+  tip Head south from Ethel Rethor into the Valley of Spears. The Maraudine Scouts, Wranglers, Maulers, Windchasers and Marauders (36-39) drop the Carved Centaur Totems.
   collect 254432 x5 quest 93225.1
 
 step Shadowprey Village
-  tip Ride on south-west to Shadowprey.
+  tip Head on south-west to Shadowprey.
   turnin 5381                         -- Taiga Wisemane
   accept 5581
   turnin 6143                         -- Drulzegar Skraghook
 
 step Portals of the Legion
-  tip Ride east to Mannoroc Coven. Use the Rod of Banishing by each demon portal to close six of them.
+  tip Head east to Mannoroc Coven. Use the Rod of Banishing by each demon portal to close six of them.
   goto 52.0,78.0 "Mannoroc Coven"
   complete 5581
 
 step Ghost Walker Post
-  tip Ride north from the coven to Gurda Wildmane at Ghost Walker Post.
+  tip Head north from the coven to Gurda Wildmane at Ghost Walker Post.
   turnin 93225                        -- Gurda Wildmane
 
 step Hearth to Shadowprey

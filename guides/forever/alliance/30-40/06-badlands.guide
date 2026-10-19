@@ -62,7 +62,7 @@ next forever/alliance/40-50/01-stranglethorn-vale
 
 step Hammertoe's Digsite
   zone Badlands
-  tip Ride back west to the road and follow it south out of Loch Modan through the pass into the Badlands. Prospector Ryedol and Sigrun Ironhew camp side by side at the dig.
+  tip Head back west to the road and follow it south out of Loch Modan through the pass into the Badlands. Prospector Ryedol and Sigrun Ironhew camp side by side at the dig.
   accept 719                          -- Prospector Ryedol
   accept 718                          -- Sigrun Ironhew
 
@@ -73,7 +73,7 @@ step Shadowforge camp
   collect 7846 quest 2500             -- Crag Coyote Fang
 
 step The excavation crate
-  tip Ride north-east to the abandoned dig; the supply crate lies there among the Dustbelcher ogres.
+  tip Head north-east to the abandoned dig; the supply crate lies there among the Dustbelcher ogres.
   collect 4629 quest 718              -- Supply Crate
 
 step Hammertoe's Digsite
@@ -111,7 +111,7 @@ step Valley of Fangs
   accept 1137                         -- for Fizzle Brassbolts in the Shimmering Flats: the Tanaris guide crosses them at 45, keep it
 
 step Lotwil Veriatus
-  tip Ride west into the Dustbowl; Lotwil works by his machines in the middle of it.
+  tip Head west into the Dustbowl; Lotwil works by his machines in the middle of it.
   accept 710
 
 step Lesser Rock Elementals
@@ -148,14 +148,14 @@ step Lotwil Veriatus
 # ---------------------------------------------------------------- The north
 
 step The Ancient Chest
-  tip Ride north-east to the dwarven ruins in the north of the Badlands; the chest sits among the Shadowforge dwarves. Ambassador Infernus nearby is elite: give him room.
+  tip Head north-east to the dwarven ruins in the north of the Badlands; the chest sits among the Shadowforge dwarves. Ambassador Infernus nearby is elite: give him room.
   collect 4631 quest 709              -- Tablet of Ryun'eh
 
 step Hammertoe's Digsite
   turnin 733                          -- Sigrun Ironhew
 
 step Theldurin the Lost
-  tip Ride south to Agmond's End.
+  tip Head south to Agmond's End.
   turnin 709
   accept 727                          -- for Gerrig Bonegrip in Ironforge: keep it
 
@@ -263,8 +263,8 @@ step Kormek's Hut
 step Nijel's Point
   tip Follow the road north to Nijel's Point.
   turnin 1466                         -- Kreldig Ungor
-  turnin 93224                        -- Captain Pentigast
   accept 1467                         -- for Roetten Stonehammer in Ironforge: keep it
+  turnin 93224                        -- Captain Pentigast
   turnin 261                          -- Brother Anton
   accept 1052                         -- for Raleigh the Devout in Southshore: keep it
 

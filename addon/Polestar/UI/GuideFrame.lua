@@ -60,6 +60,10 @@ local CHECK = 18
 local UP_ROW = 24
 local UP_TOGGLE = 30
 local COMBAT_ALPHA = 0.35
+-- A step's picture in the opened tip: never taller than this, and drawn
+-- 2:1 when its pack gave no size (512x256, a common screenshot texture).
+local PICTURE_MAX_H = 160
+local PICTURE_ASPECT = 2
 
 local function readMetrics()
 	PAD = Theme.Metric("guidePad", 14)
@@ -1030,6 +1034,23 @@ local function layoutCard(width)
 		tip.psOpen = tipOpen
 		local th = tipOpen and tip.Text:GetStringHeight() or min(tip.Text:GetStringHeight(), tip.Text:GetLineHeight())
 		local h = floor(6 + th + 6 + 0.5)
+		-- The step's picture, under the opened tip: as wide as the text
+		-- column, its aspect kept, no taller than PICTURE_MAX_H.
+		local pic = tipOpen and tip.psImage or nil
+		if pic then
+			local aspect = (pic.w and pic.h) and pic.w / pic.h or PICTURE_ASPECT
+			local iw = max(1, width - TEXT_X - PAD)
+			local ih = iw / aspect
+			if ih > PICTURE_MAX_H then ih, iw = PICTURE_MAX_H, PICTURE_MAX_H * aspect end
+			iw, ih = floor(iw + 0.5), floor(ih + 0.5)
+			tip.Image:SetSize(iw, ih)
+			tip.Image:ClearAllPoints()
+			tip.Image:SetPoint("TOPLEFT", tip, "TOPLEFT", TEXT_X, -h)
+			tip.Image:Show()
+			h = h + ih + 6
+		else
+			tip.Image:Hide()
+		end
 		tip:SetHeight(h)
 		tip:ClearAllPoints()
 		tip:SetPoint("TOPLEFT", card, "TOPLEFT", 0, -(y + 2))
@@ -1611,9 +1632,17 @@ local function fillCard(sameFocus)
 		rows[i].psGoal = nil
 		rows[i].psStatus = nil
 	end
-	local note = (ns.Get("ui.showNotes") and not compact()) and view.note or nil
-	card.Tip.Text:SetText(note or "")
-	card.Tip:SetShown(note ~= nil and note ~= "")
+	local shown = ns.Get("ui.showNotes") and not compact()
+	local note = shown and view.note or nil
+	if note == "" then note = nil end
+	-- The step's picture (a file in its pack's addon folder, Guides.lua): one
+	-- the client cannot load leaves the tip as it was without one.
+	local pic = shown and view.image and view.image.texture and view.image or nil
+	if pic and not card.Tip.Image:SetTexture(pic.texture) then pic = nil end
+	if not pic then card.Tip.Image:SetTexture(nil) end
+	card.Tip.psImage = pic
+	card.Tip.Text:SetText(note or (pic and L["Picture of this spot"]) or "")
+	card.Tip:SetShown(note ~= nil or pic ~= nil)
 	W.SetIcon(card.Tip.Toggle, tipOpen and "chevron-up" or "chevron-down")
 	return groups, focus
 end
@@ -2489,6 +2518,9 @@ local function build()
 	tip.Text:SetSpacing(3)
 	tip.Text:SetPoint("TOPLEFT", tip, "TOPLEFT", TEXT_X, -6)
 	tip.Toggle = W.IconButton(tip, "chevron-down", 18, nil, nil, 10)
+	-- The step's picture, shown while the tip is open (layoutCard).
+	tip.Image = tip:CreateTexture(nil, "ARTWORK")
+	tip.Image:Hide()
 	tip.Toggle:EnableMouse(false)
 	tip.Toggle:SetPoint("TOPLEFT", tip, "TOPLEFT", PAD - 2, -3)
 	tip:SetScript("OnClick", function()

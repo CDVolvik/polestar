@@ -353,6 +353,7 @@ L["Guide progress"] = "Guide-Fortschritt"
 -- L["%s (known)"] = ""
 -- L["%s (from level %d)"] = ""
 -- L["Points the arrow at the nearest vendor, repair, inn, flight master or trainer."] = ""
+-- L["Picture of this spot"] = ""
 -- L["Along the way"] = ""
 
 -- UI/Lookup.lua

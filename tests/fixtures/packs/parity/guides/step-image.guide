@@ -1,0 +1,10 @@
+# Fixture: tests/packs-parity.test.js. Lint rejects it; the runtime refuses its compiled twin.
+guide parity/step-image
+title Parity step-image
+faction Alliance
+levels 1-10
+zone Elwynn Forest
+
+step Outside the pack
+  image ../outside.tga
+  level 2

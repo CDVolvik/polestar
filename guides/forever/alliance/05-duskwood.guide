@@ -131,7 +131,7 @@ step Wolves, spiders and ghouls
 # ---------------------------------------------------------------- Back east
 
 step Watcher Dodds
-  tip Ride back east along the road to the Yorgen Farmstead.
+  tip Head back east along the road to the Yorgen Farmstead.
   turnin 245
 
 step Yorgen Farmstead
@@ -160,7 +160,7 @@ step Madame Eva
 # ---------------------------------------------------------------- West again
 
 step Abercrombie
-  tip Ride west along the road once more.
+  tip Head west along the road once more.
   turnin 157
   accept 158
 
@@ -170,7 +170,7 @@ step Sven's Camp
   turnin 226                              -- Lars
 
 step Back to Darkshire
-  tip Ride back east to Darkshire.
+  tip Head back east to Darkshire.
   turnin 262                              -- Madame Eva
   accept 265
   turnin 265                              -- Clerk Daltry, in the town hall
@@ -192,7 +192,7 @@ step Tavernkeep Smitts
 # ---------------------------------------------------------------- Raven Hill
 
 step Abercrombie
-  tip Ride west to the hermit once more.
+  tip Head west to the hermit once more.
   turnin 159
   accept 133
 
@@ -217,7 +217,7 @@ step Sven's Camp
 step Agent Kearnen
   only Rogue
   zone Westfall
-  tip Ride west along the road out of Raven Hill into Westfall. Agent Kearnen watches Klaven Mortwake's tower from the hills just inside the border. The Malformed Defias Drone (level 23) guarding the tower carries its key; Klaven's journal is in the chest at the top.
+  tip Head west along the road out of Raven Hill into Westfall. Agent Kearnen watches Klaven Mortwake's tower from the hills just inside the border. The Malformed Defias Drone (level 23) guarding the tower carries its key; Klaven's journal is in the chest at the top.
   turnin 2360                                 -- Agent Kearnen
   accept 2359
   collect 7923 quest 2359.2                   -- Defias Tower Key: Malformed Defias Drone
@@ -226,7 +226,7 @@ step Agent Kearnen
 step Master Mathias Shaw
   only Rogue
   zone Stormwind City
-  tip Ride north through Elwynn to Stormwind; Mathias Shaw is at SI:7 in Old Town.
+  tip Head north through Elwynn to Stormwind; Mathias Shaw is at SI:7 in Old Town.
   turnin 2359 reward 18160                    -- Master Mathias Shaw: Poisons, and Recipe: Thistle Tea
   accept 2607 optional                        -- The Touch of Zanzil: Doc Mixilpixil, in the cellar of the Barracks
   turnin 2607 optional
@@ -237,7 +237,7 @@ step Master Mathias Shaw
   buy 3421 x1 npc 1302 optional               -- Simple Wildflowers: Bernard Gump
   buy 3372 x1 npc 1313 optional               -- Leaded Vial: Maria Lumere, Alchemy Supplies
   buy 4371 x1 npc 5519 optional               -- Bronze Tube: Billibub Cogspinner, Dwarven District
-  collect 8431 quest 2609.4 optional @50.6,60.1 -- Spool of Light Chartreuse Silk Thread
+  collect 8431 quest 2609.4 optional @50.6,60.1 live -- Spool of Light Chartreuse Silk Thread
   turnin 2609 optional                        -- Doc Mixilpixil: Eau de Mixilpixil
 
 # ---------------------------------------------------------------- Stormwind and the boat

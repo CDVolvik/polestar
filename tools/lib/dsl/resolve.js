@@ -730,6 +730,13 @@ function resolveGuide(ast, data, diag, opts = {}) {
 		const step = {};
 		setIf(step, 'title', s.title);
 		setIf(step, 'note', s.tip);
+		// The picture's path in the pack's addon folder, as the client writes
+		// paths; its file and size are checked against the pack folder later
+		// (images.js checkImages), which fills in a size the author left out.
+		if (s.image) {
+			step.image = s.image.w ? { file: s.image.path.split('/').join('\\'), w: s.image.w, h: s.image.h } : { file: s.image.path.split('/').join('\\') };
+			hidden(step, '_imageSpec', s.image);
+		}
 		setIf(step, 'only', onlyOf(s.only));
 		const stepZone = resolveZone(s.zone || (s.goals[0] && s.goals[0].zone));
 		setIf(step, 'when', resolveWhen(s.when, stepZone ? stepZone.id : null, h.levels ? [h.levels.min, h.levels.max] : null, data, warn));

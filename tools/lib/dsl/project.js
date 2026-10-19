@@ -14,6 +14,7 @@ const { tokeniseGuides } = require('./tokens');
 const { emitGuides, emitPack, emitToc, emitTextsToc, emitTexts, emitMapFrames, emitLicense } = require('./emit');
 const { ownsGuideId, GENERATED_MARKER, formatFor } = require('../pack/format');
 const { heightCounts } = require('./heights');
+const { checkImages, imageFiles } = require('./images');
 const { HEIGHTS_SOURCE } = require('../travel/cmangos');
 
 const { ROOT, DATA } = require('../paths');
@@ -100,7 +101,7 @@ function compileProject({ packDir, manifest, dataDir, includeDrafts = false, dat
 		if (!contextData) contextData = contextDataDir && path.resolve(contextDataDir) !== path.resolve(dataDir || '') ? loadProjectData(contextDataDir, diag) : data;
 		context = { sources: readSources(contextDir, findGuideFiles(contextDir)), data: contextData };
 	}
-	return { ...compileSources(readSources(packDir, sources), data, diag, { pack: manifest && manifest.id, author: manifest && manifest.author, context }), data, sources };
+	return { ...compileSources(readSources(packDir, sources), data, diag, { pack: manifest && manifest.id, author: manifest && manifest.author, context, packDir }), data, sources };
 }
 
 // Parse and resolve sources into guides of `pack` (ours when absent); a
@@ -121,9 +122,11 @@ function resolveSources(sources, data, diag, pack, author) {
 // guides belong to pack `opts.pack` (ours when absent), by `opts.author`
 // (the pack's author) unless they name their own; when `opts.pack` is given,
 // each guide id must be one the pack owns. `opts.context` ({ sources, data }):
-// our guides, read as context (see compileProject).
+// our guides, read as context (see compileProject). `opts.packDir`: the pack
+// folder the steps' pictures are looked up in (images.js checkImages).
 function compileSources(sources, data, diag = new Diagnostics(), opts = {}) {
 	const guides = resolveSources(sources, data, diag, opts.pack, opts.author);
+	if (opts.packDir) checkImages(guides, opts.packDir, diag);
 	if (opts.pack !== undefined) {
 		for (const g of guides) {
 			if (ownsGuideId(g.pack, g.id)) continue;
@@ -174,7 +177,9 @@ function referencedFrames(guides, data) {
 
 // A pack's addon folder as { name: content }, deterministic: exactly
 // <folder>.toc, Pack.lua, MapFrames.lua, Guides.lua and LICENSE-DATA.txt,
-// plus LICENSE.txt holding `license` (the pack's LICENSE file) when given.
+// plus LICENSE.txt holding `license` (the pack's LICENSE file) when given,
+// and the picture files the steps show (images.js: at their paths in the
+// pack folder, as Buffers; only when compileProject found them).
 // LICENSE-DATA.txt names meta.json's sources, and CMaNGOS classic-db when a
 // goal, smart-target candidate or spawn spot carries a height (heights.js)
 // and meta.json does not name it already.
@@ -195,6 +200,7 @@ function buildPackFiles({ guides, manifest, data, license = null, translations =
 		'LICENSE-DATA.txt': emitLicense(meta),
 	};
 	if (license != null) files['LICENSE.txt'] = license;
+	for (const [rel, abs] of imageFiles(guides)) files[rel] = fs.readFileSync(abs);
 	for (const locale of Object.keys(translations).sort()) {
 		const name = textsAddon(manifest.folder, locale);
 		files[`../${name}/${name}.toc`] = emitTextsToc(manifest, locale, LOCALES[locale].language, iface);
@@ -292,7 +298,11 @@ function writePackDir(outDir, files) {
 	fs.rmSync(path.join(outDir, 'Guides'), { recursive: true, force: true });
 	fs.rmSync(path.join(outDir, 'Pack.xml'), { force: true });
 	if (!('LICENSE.txt' in files)) fs.rmSync(path.join(outDir, 'LICENSE.txt'), { force: true });
-	for (const name of Object.keys(files).sort()) if (!name.startsWith('../')) fs.writeFileSync(path.join(outDir, name), files[name]);
+	for (const name of Object.keys(files).sort()) {
+		if (name.startsWith('../')) continue;
+		if (name.includes('/')) fs.mkdirSync(path.join(outDir, path.dirname(name)), { recursive: true });
+		fs.writeFileSync(path.join(outDir, name), files[name]);
+	}
 	for (const locale of LOCALE_CODES) {
 		const folder = textsAddon(base, locale);
 		const dir = path.join(parent, folder);
