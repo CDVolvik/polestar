@@ -2,16 +2,25 @@
 // Guide sequences (normalized events from tools/lib/sim/baselines) and
 // package routes as flat step lists for Evaluator.evaluateSequence.
 //
-// Events: { t: 'accept'|'turnin'|'complete', q } and { t: 'level', level, xp }.
-// - accept: at the quest's giver (a quest-starting item costs its kills);
+// Events: { t: 'accept'|'turnin'|'complete', q, npc?, object? } and { t: 'level', level, xp }.
+// - accept: at the quest's giver, the one the event names when the quest has
+//   several (a quest-starting item costs its kills);
 // - complete: every objective site of the quest, in world order;
-// - turnin: any site not yet done, then the ender;
+// - turnin: any site not yet done, then the ender (the named one, as for accept);
 // - level: a checkpoint (grind to it when honoring checkpoints, else only marked);
 // - dungeon quests (dungeon family): their objectives are the dungeon run,
 //   inserted before the first complete/turn-in that needs it.
 // Quests the character cannot take or the world lacks are listed in `unknown`.
 
 const { K_ACCEPT, K_TASK, K_TURNIN, K_GRIND, K_DUNGEON } = require('./run');
+
+// The point of the giver or ender an event names (`npc`/`object`), when the
+// quest has more than one; else null (the world's own giver or ender).
+function named(alts, qi, e) {
+	const key = e.npc != null ? `npc:${e.npc}` : e.object != null ? `object:${e.object}` : null;
+	const m = key && alts && alts.get(qi);
+	return (m && m.get(key)) ?? null;
+}
 
 function compileSequence(run, events) {
 	const kind = [];
@@ -51,11 +60,11 @@ function compileSequence(run, events) {
 			unknown.add(Number(e.q));
 			continue;
 		}
-		if (e.t === 'accept') push(K_ACCEPT, qi, run.qAccept[qi], run.qGiver[qi]);
+		if (e.t === 'accept') push(K_ACCEPT, qi, run.qAccept[qi], named(run.qGiverAlt, qi, e) ?? run.qGiver[qi]);
 		else if (e.t === 'complete') tasksOf(qi);
 		else if (e.t === 'turnin') {
 			tasksOf(qi);
-			push(K_TURNIN, qi, -1, run.qEnder[qi]);
+			push(K_TURNIN, qi, -1, named(run.qEnderAlt, qi, e) ?? run.qEnder[qi]);
 		}
 	}
 	return {

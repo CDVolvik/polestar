@@ -21,11 +21,15 @@ const { blockingPrereqs } = require('../data/prereqs');
 const { clusterPoints, scaleOf } = require('../questdb/cluster');
 const { groupOf, isElite, isRare, hostileTo } = require('./group');
 const { goalHeight, spotHeight } = require('./heights');
-const { goalArea, goalNode, goalInnkeeper } = require('./places');
+const { goalArea, goalNode, goalInnkeeper, goalFlightMaster } = require('./places');
 
 // A collect's sources are named only for an item that few creatures or
 // objects drop (at 2% or more, with spawns); past this it drops everywhere.
 const MAX_NAMED_SOURCES = 8;
+
+// `fromNpcs` on a collect: the mobs its point and spots belong to, for the
+// target button, which cycles at most this many names.
+const MAX_SOURCE_NPCS = 5;
 
 // Standard rank caps and the skill each rank can first be trained at (Classic).
 const RANK_CAPS = [75, 150, 225, 300];
@@ -146,6 +150,46 @@ function onMap(data, all, map, sides, rares = false) {
 		if (likely.length) on = likely;
 	}
 	return { on, elites };
+}
+
+// The NPC sources a goal's point and spawn areas belong to (pickSpawn's
+// `sources`, onMap's likely droppers on that map), `first` (the source the
+// point itself belongs to, when it is one of them) leading: the mobs the
+// arrow leads to. The target button names them, which the item's own droppers
+// cannot give it, as those rank over the whole world: the best droppers of an
+// item many creatures drop are usually in other zones (Small Spider Leg's are
+// in Elwynn Forest, Loch Modan and Silverpine, not the Teldrassil spiders a
+// Teldrassil goal points at). Objects are left out: a macro can only target a
+// creature.
+// -> [{ npc, npcName }] | undefined
+function sourceNpcs(data, first, sources) {
+	const list = sources || [];
+	const out = [];
+	const seen = new Set();
+	for (const s of list.includes(first) ? [first, ...list] : list) {
+		if (out.length >= MAX_SOURCE_NPCS) break;
+		if (!s || s.kind !== 'npc' || seen.has(s.id)) continue;
+		seen.add(s.id);
+		const rec = data.npc(s.id);
+		if (rec && rec.name) out.push({ npc: s.id, npcName: String(rec.name) });
+	}
+	return out.length ? out : undefined;
+}
+
+// The sources a hand-placed point stands among: those with a spawn within
+// `near` yards of it (handSpots' own test for a point the data knows),
+// nearest spawn first. The point is the author's, so the creature it belongs
+// to is the nearest one, not the best dropper pickSpawn would have chosen.
+// -> [{ kind, id, chance? }]
+function pointSources(data, sources, map, f, x, y, near) {
+	const out = [];
+	for (const src of sources) {
+		let d = Infinity;
+		for (const p of spawnPointsOf(data, [src], map, f)) d = Math.min(d, distance(data, map, p[0], p[1], x, y));
+		if (d <= near) out.push({ src, d });
+	}
+	out.sort((a, b) => a.d - b.d);
+	return out.map((o) => o.src);
 }
 
 // Sources ([{ kind, id, chance? }]) that elites (group.js isElite, and rares
@@ -370,7 +414,7 @@ function gatherNode(data, src) {
 function spawnSpots(data, sources, map, f, x, y, elites = []) {
 	const pts = spawnPointsOf(data, sources, map, f);
 	if (pts.length < 2) return undefined;
-	const frame = data.eraFrame(map);
+	const frame = data.frame(map);
 	const spread = extent90(pts, frame) > SPREAD_YARDS;
 	let clusters;
 	if (pts.length <= SPOT_CAP) clusters = clusterPoints(pts, frame, { radius: SPOT_CLUSTER_YARDS, cap: Infinity, minRadius: SPOT_MIN_RADIUS });
@@ -1044,12 +1088,15 @@ function resolveGoal(g, zoneMap, prev, data, err, warn, ctx = { sides: ['Allianc
 			if (g.nearest && v === 'sethome') smart(goal, data.npcsWithRole('innkeeper').map((id) => ({ npc: id })), 'innkeeper');
 			// A located `sethome` naming no npc: its inn's innkeeper, for the
 			// factions the goal applies to, so the arrow leads there (places.js).
-			if (v === 'sethome' && g.npc === undefined && !g.nearest) {
-				const keeper = goalInnkeeper(data, g.location, smartSides(ctx.sides, applicable(ctx.layers || [])));
-				if (keeper) {
-					goal.npc = keeper.npc;
-					setIf(goal, 'npcName', nameOf(data, 'npc', keeper.npc) || keeper.npcName || undefined);
-					candidates = [{ kind: 'npc', id: keeper.npc }];
+			// A located `getfp` naming no npc: its taxi node's flight master,
+			// the same way (places.js).
+			if ((v === 'sethome' || v === 'getfp') && g.npc === undefined && !g.nearest) {
+				const sides = smartSides(ctx.sides, applicable(ctx.layers || []));
+				const host = v === 'sethome' ? goalInnkeeper(data, g.location, sides) : goalFlightMaster(data, g.location, sides);
+				if (host) {
+					goal.npc = host.npc;
+					setIf(goal, 'npcName', nameOf(data, 'npc', host.npc) || host.npcName || undefined);
+					candidates = [{ kind: 'npc', id: host.npc }];
 					checkKinds = candidates;
 				}
 			}
@@ -1360,6 +1407,7 @@ function resolveGoal(g, zoneMap, prev, data, err, warn, ctx = { sides: ['Allianc
 					goal.y = sp.at.y;
 				}
 			}
+			if (v === 'collect') setIf(goal, 'fromNpcs', sourceNpcs(data, c, picked.sources));
 		} else if (g.explicitCoords && goal.x !== undefined) {
 			// Hand-placed: the sources known to give the item (a drop chance, or a
 			// gathering node; not loot of unknown odds). A mob or object spawns
@@ -1372,6 +1420,10 @@ function resolveGoal(g, zoneMap, prev, data, err, warn, ctx = { sides: ['Allianc
 			const sources = onMap(data, all, goal.map, dropSides, passRares).on.map((o) => o.cand);
 			const near = !area ? SPAWN_CHECK_YARDS : sources.length && sources.every((s) => gatherNode(data, s)) ? Infinity : SPREAD_YARDS;
 			setIf(goal, 'spots', handSpots(data, sources, goal.map, goal.f, goal.x, goal.y, near));
+			if (v === 'collect') {
+				const own = pointSources(data, sources, goal.map, goal.f, goal.x, goal.y, near);
+				setIf(goal, 'fromNpcs', sourceNpcs(data, own[0], own));
+			}
 		}
 	}
 	if (g.r !== undefined) goal.r = g.r;
