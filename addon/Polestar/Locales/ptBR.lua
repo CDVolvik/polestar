@@ -1102,6 +1102,8 @@ L["Collectibles"] = "Colecionáveis"
 L["Sections"] = "Seções"
 L["guide status: Completed"] = "Concluído"
 L["Miscellaneous"] = "Diversos"
+-- L["If you finish this guide"] = ""
+-- L["You are level %d. Level %d is recommended for this guide; from there:"] = ""
 
 -- UI/Lookup.lua
 L["Companion"] = "Mascote"
@@ -1312,6 +1314,18 @@ L["Dungeons need the Codex"] = "Masmorras precisam do Codex"
 L["Nothing is left to do for it."] = "Não falta nada a fazer."
 L["The map can't open in combat: press Show on map again when it ends."] = "O mapa não abre em combate: aperte \"Mostrar no mapa\" de novo quando acabar."
 L["Search dungeons"] = "Buscar masmorras"
+-- L["+%s levels"] = ""
+-- L["+%d%% of a level"] = ""
+-- L["If you finish the quests here"] = ""
+-- L["Now: %d%% into level %d"] = ""
+-- L["After: level %d"] = ""
+-- L["After: %d%% into level %d"] = ""
+-- L["1 gives less XP: by then you are 6 or more levels above it."] = ""
+-- L["%d give less XP: by then you are 6 or more levels above them."] = ""
+-- L["1 more has no XP known and is not counted."] = ""
+-- L["%d more have no XP known and are not counted."] = ""
+-- L["Quests you have done are left out."] = ""
+-- L["You are level %d. Level %d is recommended for the quests here; from there:"] = ""
 
 -- UI/RouteChoice.lua
 L["Right here"] = "Bem aqui"
@@ -2093,6 +2107,15 @@ L["Guides someone shared with you, as an import string or a community addon."] =
 -- L["Subtle"] = ""
 -- L["Dazzling"] = ""
 -- L["Route line style"] = ""
+
+-- UI/LevelTip.lua
+-- L["1 quest for you, not done yet."] = ""
+-- L["%d quests for you, not done yet."] = ""
+-- L["%s XP from quests, about %s from %d kills the guide asks for."] = ""
+-- L["1 kill or loot goal could not be estimated."] = ""
+-- L["%d kill or loot goals could not be estimated."] = ""
+-- L["Start: level %d"] = ""
+-- L["Recommended: level %d"] = ""
 
 -- No longer in the code (its English changed or it went away): reuse or delete.
 -- L["Shortest Path Forever is guiding. Turn off \"Guide with Shortest Path Forever when it's installed\" (Options, Arrow & routes) to use Polestar's arrow."] = "Shortest Path Forever está guiando. Desative \"Guiar com Shortest Path Forever quando instalado\" (Opções, Seta e rotas) para usar a seta do Polestar."

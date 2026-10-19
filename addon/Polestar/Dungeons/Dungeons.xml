@@ -3,4 +3,5 @@
 	<Script file="Pickup.lua"/>
 	<Script file="Handin.lua"/>
 	<Script file="Attune.lua"/>
+	<Script file="XP.lua"/>
 </Ui>

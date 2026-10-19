@@ -21,8 +21,9 @@
 -- guides · 1 open", or the search's result count). The list runs to the
 -- window's bottom.
 -- Right: the selected guide's details: its zone's art from the client (the
--- night band without it) with the title on it, chips (levels, group,
--- faction, races, classes), progress, the facts (what the guide's goal gives
+-- night band without it) with the title on it, chips (levels, on a leveling
+-- guide what its turn-ins are worth in levels with a panel on hover
+-- (UI/LevelTip.lua), group, faction, races, classes), progress, the facts (what the guide's goal gives
 -- and why: a Class guide's `reward`, item and spell icons with the game's
 -- tooltip on hover, and its `why`; steps, the quests this character takes,
 -- the zones in route order, what comes next), pitch, pros and cons,
@@ -380,6 +381,22 @@ local function guideFacts(g)
 	if #f.zones == 0 then f.zones[1] = UI.GuidePlace(g) end
 	if player then factCache[g.id] = f end
 	return f
+end
+
+-- What a guide's turn-ins are worth to this character (Levels.ForGuide),
+-- kept while their level and XP stay the same: a turn-in moves the XP.
+local xpCache = {}
+local function guideXP(id)
+	local Lv = ns.Levels
+	if not (Lv and Lv.ForGuide) then return nil end
+	local p = Lv.Player()
+	local key = (p.level or 0) .. ":" .. (p.xp or 0)
+	local hit = xpCache[id]
+	if hit and hit.key == key then return hit.s end
+	local s = Lv.ForGuide(id, p)
+	-- Nothing yet (no Codex) is asked again: the Codex may load later.
+	if s then xpCache[id] = { key = key, s = s } end
+	return s
 end
 
 -- Where a guide leads: "Title (lo-hi)", or "Your choice: A or B" for a
@@ -873,6 +890,9 @@ local function buildDetails()
 	end)
 
 	d.Chips = {}
+	-- What a leveling guide is worth in levels; hovering opens its panel
+	-- (UI/LevelTip.lua) on the window.
+	d.XP = UI.LevelTip.Chip(d, win)
 	d.ProgLabel = W.Text(d, "small", "textDim")
 	d.ProgPct = W.Text(d, "number", "textDim")
 	d.ProgPct:SetJustifyH("RIGHT")
@@ -969,6 +989,7 @@ local function renderDetails(byId, tabs, active)
 		d.psArt = ZoneArt.Paint(d.Art, nil, nil, nil, 1)
 		for _, p in ipairs(parts) do p:Hide() end
 		for _, c in ipairs(d.Chips) do c:Hide() end
+		UI.LevelTip.Set(d.XP, nil)
 		for _, f in ipairs(d.Facts) do
 			f.Label:Hide()
 			f.Value:Hide()
@@ -990,28 +1011,43 @@ local function renderDetails(byId, tabs, active)
 	d.Star.psTip = fav and L["Remove from favourites"] or L["Add to favourites"]
 	d.Title:SetText(g.title or g.id)
 
-	-- Chips: levels, group content, faction, races, classes; on two lines at most.
+	-- Chips: levels, what a leveling guide is worth in levels, group content,
+	-- faction, races, classes; on two lines at most.
 	local y = ART_H + 16
 	local n, x, line, full = 0, DPAD, 0, false
-	local function addChip(text, kind)
-		if full then return end
-		local c = detailChip(n + 1)
-		local w = W.SetChip(c, text, kind)
+	local function place(c, w)
+		if full then
+			c:Hide()
+			return false
+		end
 		if x > DPAD and x + w > DPAD + inner then
 			if line == 1 then
 				c:Hide()
 				full = true
-				return
+				return false
 			end
 			line, x = 1, DPAD
 		end
-		n = n + 1
 		c:ClearAllPoints()
 		c:SetPoint("TOPLEFT", d, "TOPLEFT", x, -(y + line * (W.CHIP_H + 6)))
 		x = x + w + 6
+		return true
+	end
+	local function addChip(text, kind)
+		if full then return end
+		local c = detailChip(n + 1)
+		if place(c, W.SetChip(c, text, kind)) then n = n + 1 end
 	end
 	local lv = UI.LevelRange(g.minLevel, g.maxLevel)
 	if lv then addChip(L["Levels"] .. " " .. lv, "accent") end
+	local xw = UI.LevelTip.Set(d.XP, g.category == "Leveling" and guideXP(g.id) or nil,
+		{ head = L["If you finish this guide"], need = L["You are level %d. Level %d is recommended for this guide; from there:"] })
+	if xw and place(d.XP, xw) then
+		-- Its panel starts on the details' text edge, not the chip's: the
+		-- pane ends at the window's right edge.
+		local _, _, _, cx = d.XP:GetPoint(1)
+		d.XP.psTipX = DPAD - (cx or DPAD)
+	end
 	if g.group == true then addChip(L["Group"], "dungeon") end
 	addChip(ns.FactionName(g.faction) or L["Both factions"])
 	if type(g.races) == "table" then for _, race in ipairs(g.races) do addChip(UI.RaceName(race)) end end

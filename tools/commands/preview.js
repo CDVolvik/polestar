@@ -173,6 +173,36 @@ function codexStub() {
 	if (!codexPack) codexPack = writeCodexPack(previewCodex());
 	return codexPack.stubLua;
 }
+// The guide menu's levels chip (panel.levels): the sample Codex with the
+// sample Elwynn guide's turn-ins (stub_ui.lua: quests 783, 7, 33) at the XP
+// the tools take for a typical quest of their level (tools/lib/game/xp.js
+// baseQuestXp), not their real rewards, and its kill goals' mobs.
+let levelsPack = null;
+function levelsStub() {
+	if (!levelsPack) {
+		const { baseQuestXp } = require('../lib/game/xp');
+		const codex = previewCodex();
+		const quest = (id, title, level) => {
+			codex.quests[id] = { ...codex.quests[33], id, title, level, minLevel: 1, objectives: [], xp: baseQuestXp(level) };
+		};
+		quest(783, 'A Threat Within', 1);
+		quest(7, 'Kobold Camp Cleanup', 2);
+		quest(33, 'Wolves Across the Border', 6);
+		// The guide's two kill goals' mobs, at sample levels.
+		const npc = (id, name, level) => {
+			codex.npcs[id] = { id, name, level, levelMax: null, faction: null, rare: false, elite: false, boss: false, instance: null, roles: [], loot: [], spawns: [] };
+		};
+		npc(6, 'Kobold Vermin', 2);
+		npc(257, 'Kobold Worker', 4);
+		levelsPack = writeCodexPack(codex);
+	}
+	return levelsPack.stubLua;
+}
+// A level 4 Human, 1,800 of 2,100 XP into the level, Elwynn Forest selected
+// and its levels chip hovered.
+const LEVELS = `uistub.player.xp, uistub.player.xpMax = 1800, 2100
+Polestar.UI.ShowPicker(); Polestar.UI.Picker.Select(uistub.elwynn)
+Polestar.UI.LevelTip.Show(Polestar.UI.Picker.details.XP)`;
 // Dungeons scenes (panel.dungeons): the synthetic fixture
 // tests/fixtures/codex/dungeons.json (game names, sample numbers: Wailing
 // Caverns with its quests and bosses, the Deadmines, a Forever dungeon with
@@ -1147,6 +1177,15 @@ end`,
 		],
 	})),
 	{
+		file: 'picker-levels.svg',
+		title: 'Guide menu: Elwynn Forest selected for a level 4 Human at 1,800 of 2,100 XP, its levels chip hovered: the XP its turn-ins and kills give, a bar from level 4 into 5, what was counted; the same in the Halo skin, the Graphite scheme and an accent of your own; the guide set to start at 6: level 6 recommended, the sums from there',
+		panels: [
+			{ levels: true, roots: PICKER, script: pickerScene(`${TABS}; ${LEVELS}`) },
+			{ levels: true, roots: PICKER, script: pickerScene(`Polestar.Set("ui.skin", "halo"); Polestar.Set("ui.scheme", "graphite"); Polestar.Set("ui.accent", { 0.36, 0.78, 0.62 }); ${TABS}; ${LEVELS}`) },
+			{ levels: true, roots: PICKER, script: pickerScene(`uistub.guides["forever/alliance/human/01-elwynn-forest"].minLevel = 6; ${TABS}; ${LEVELS}`) },
+		],
+	},
+	{
 		file: 'picker.svg',
 		title: 'Guide menu: Home (Continue, Suggested) with the details; Leveling folders by faction and band',
 		panels: [
@@ -1323,6 +1362,14 @@ Polestar.UI.Picker.SetCategory("Leveling"); Polestar.UI.Picker.Select("forever/h
 		],
 	},
 	{
+		file: 'dungeons-xp.svg',
+		title: 'Wailing Caverns: the levels its quests are worth, the chip beside the name hovered: at 19,800 of 23,200 XP into level 20 they carry the Tauren into 21; at 27 the lowest gives a tenth of its XP',
+		panels: [
+			{ dungeons: true, roots: PICKER, script: dungeonsScene('uistub.player.xp, uistub.player.xpMax = 19800, 23200; Polestar.Dungeons.Open("wailing-caverns"); Polestar.UI.LevelTip.Show(select(3, DS.Frames()).XP)') },
+			{ dungeons: true, roots: PICKER, script: dungeonsScene('uistub.player.level, uistub.player.xp, uistub.player.xpMax = 27, 9000, 38900; UnitLevel = function() return 27 end; Polestar.Dungeons.Open("wailing-caverns"); Polestar.UI.LevelTip.Show(select(3, DS.Frames()).XP)') },
+		],
+	},
+	{
 		file: 'dungeons-bosses.svg',
 		title: 'Wailing Caverns: the Bosses tab (kill order and the quests each serves) and the Map tab (the entrance and the quest givers near it); All dungeons with the filter on All',
 		panels: [
@@ -1375,6 +1422,7 @@ function dumpPanel(panel, prelude) {
 	if (panel.eui) before.push('stub.withEllesmere()');
 	if (panel.before) before.push(panel.before);
 	if (panel.codex) before.push(codexStub());
+	if (panel.levels) before.push(levelsStub());
 	if (panel.dungeons) before.push(dungeonsStub());
 	if (panel.rares) before.push(raresStub());
 	const { emitted } = runAddon({
@@ -1393,6 +1441,8 @@ function dumpPanel(panel, prelude) {
 function cleanupPacks() {
 	if (codexPack) codexPack.cleanup();
 	codexPack = null;
+	if (levelsPack) levelsPack.cleanup();
+	levelsPack = null;
 	if (dungeonsPack) dungeonsPack.cleanup();
 	dungeonsPack = null;
 	if (raresPack) raresPack.cleanup();

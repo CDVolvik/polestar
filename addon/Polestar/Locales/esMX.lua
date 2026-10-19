@@ -1006,6 +1006,18 @@ L["Nothing the sources Polestar reads names opens this dungeon's way in or its d
 L["Keys"] = "Llaves"
 L["Nothing is left to do for it."] = "No queda nada por hacer."
 L["The map can't open in combat: press Show on map again when it ends."] = "El mapa no se puede abrir en combate: pulsa Ver en el mapa otra vez cuando termine."
+-- L["+%s levels"] = ""
+-- L["+%d%% of a level"] = ""
+-- L["If you finish the quests here"] = ""
+-- L["Now: %d%% into level %d"] = ""
+-- L["After: level %d"] = ""
+-- L["After: %d%% into level %d"] = ""
+-- L["1 gives less XP: by then you are 6 or more levels above it."] = ""
+-- L["%d give less XP: by then you are 6 or more levels above them."] = ""
+-- L["1 more has no XP known and is not counted."] = ""
+-- L["%d more have no XP known and are not counted."] = ""
+-- L["Quests you have done are left out."] = ""
+-- L["You are level %d. Level %d is recommended for the quests here; from there:"] = ""
 
 -- UI/GearPick.lua
 L["new"] = "nuevo"
@@ -1527,6 +1539,8 @@ L["Why"] = "Por qué"
 L["Sections"] = "Secciones"
 L["guide status: Completed"] = "Completada"
 L["Miscellaneous"] = "Miscelánea"
+-- L["If you finish this guide"] = ""
+-- L["You are level %d. Level %d is recommended for this guide; from there:"] = ""
 
 -- UI/Report.lua
 L["Polestar %s"] = "Polestar %s"
@@ -2092,6 +2106,15 @@ L["Guides someone shared with you, as an import string or a community addon."] =
 -- L["Subtle"] = ""
 -- L["Dazzling"] = ""
 -- L["Route line style"] = ""
+
+-- UI/LevelTip.lua
+-- L["1 quest for you, not done yet."] = ""
+-- L["%d quests for you, not done yet."] = ""
+-- L["%s XP from quests, about %s from %d kills the guide asks for."] = ""
+-- L["1 kill or loot goal could not be estimated."] = ""
+-- L["%d kill or loot goals could not be estimated."] = ""
+-- L["Start: level %d"] = ""
+-- L["Recommended: level %d"] = ""
 
 -- No longer in the code (its English changed or it went away): reuse or delete.
 -- L["The arrow's target, the stops of its travel route, the step's other goals and the areas their mobs and objects spawn in."] = "El objetivo de la flecha, las paradas de su ruta de viaje, los demás objetivos del paso y las zonas donde aparecen sus monstruos y objetos."

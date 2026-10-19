@@ -20,7 +20,10 @@
 -- Dungeons.PickUp), each in a new tab, "Guide me to the entrance" (primary
 -- otherwise, with "Nothing to pick up" saying why) and "Show on map"; the
 -- tab row holds Quests, Attunement (Keys when each is a key, on pages that
--- have one), Bosses and Map.
+-- have one), Bosses and Map. Beside the name, a chip says what the page's
+-- quests still to do are worth in levels (Dungeons.QuestXP); hovering it
+-- opens a panel with the XP, a bar of the levels it spans (earned, then
+-- gained) and what was counted.
 --   Quests: one block per quest, hairlines between: the name in its
 --   difficulty colour (lifted to 4.5:1 on the ground), this character's
 --   state (done, in the log, ready, too low), level and requirement,
@@ -770,6 +773,9 @@ function DS.Build(parent, shell)
 	pg.Title:SetPoint("TOPLEFT", art, "TOPLEFT", PAD, -32)
 	pg.Forever = W.Chip(over)
 	pg.Forever:SetPoint("LEFT", pg.Title, "RIGHT", 12, 0)
+	-- The levels the quests here are worth (pageHeader places it after the
+	-- Forever chip); hovering opens its panel on the hub (UI/LevelTip.lua).
+	pg.XP = UI.LevelTip.Chip(over, hub)
 	pg.Sub = textShadow(W.Text(over, "note", "textDim"))
 	pg.Sub:SetSpacing(2)
 	pg.Sub:SetPoint("TOPLEFT", pg.Title, "BOTTOMLEFT", 0, -8)
@@ -834,6 +840,7 @@ function DS.Build(parent, shell)
 
 	root:SetScript("OnHide", function()
 		restoreHeader()
+		UI.LevelTip.Hide()
 		for _, b in ipairs(segs) do b:Hide() end
 	end)
 	return root
@@ -1076,6 +1083,17 @@ local function pageHeader(d)
 		W.SetChip(pg.Forever, L["Forever"])
 	else
 		pg.Forever:Hide()
+	end
+	-- The levels chip: what the quests still to do are worth, after the
+	-- Forever chip; none at 60 or with no XP to count.
+	local xs = D().QuestXP and D().QuestXP(d.key)
+	if UI.LevelTip.Set(pg.XP, xs, { head = L["If you finish the quests here"], need = L["You are level %d. Level %d is recommended for the quests here; from there:"] }) then
+		pg.XP:ClearAllPoints()
+		if d.forever then
+			pg.XP:SetPoint("LEFT", pg.Forever, "RIGHT", 6, 0)
+		else
+			pg.XP:SetPoint("LEFT", pg.Title, "RIGHT", 12, 0)
+		end
 	end
 	-- The actions, right to left: the primary first.
 	local go = e ~= nil and ns.Nav ~= nil
