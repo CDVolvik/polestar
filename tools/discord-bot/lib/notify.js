@@ -1,11 +1,11 @@
 'use strict';
 // GitHub back to Discord, run by the Actions: an issue filed from a #bugs
-// post closed or reopened, and a release that ships the fixes. The player
-// hears it in their own thread, which gets the matching status tag (Fixed,
-// Won't fix, Duplicate, Tracked again) and is locked while the issue is
-// closed. Every such message pings only the reporter. A prerelease (a
-// release candidate) tells no thread: it pings the tester role once in the
-// testers channel instead.
+// post gets its first pull request, is closed or reopened, and a release
+// ships the fixes. The player hears it in their own thread, which gets the
+// matching status tag (In progress, Fixed, Won't fix, Duplicate, Tracked
+// again) and is locked while the issue is closed. Every such message pings
+// only the reporter. A prerelease (a release candidate) tells no thread: it
+// pings the tester role once in the testers channel instead.
 
 const I = require('./issue');
 const { statusTags, withStatus } = require('./discord');
@@ -24,12 +24,13 @@ function clip(text, n) {
 const quote = (text) => text.split('\n').map((l) => '> ' + l).join('\n');
 
 // The last thing a maintainer said on the issue (not the bot's copies of
-// Discord follow-ups), as the reason for closing it.
+// Discord follow-ups or its pull request lists), as the reason for closing
+// it or the question to ask.
 function maintainerNote(comments) {
 	const team = new Set(['OWNER', 'MEMBER', 'COLLABORATOR']);
 	for (let i = comments.length - 1; i >= 0; i--) {
 		const c = comments[i];
-		if (!team.has(c.author_association) || !c.body || c.body.includes(I.FOLLOWUP_MARK)) continue;
+		if (!team.has(c.author_association) || !c.body || c.body.includes(I.FOLLOWUP_MARK) || c.body.includes('<!-- polestar:pr-')) continue;
 		if (c.user && c.user.type === 'Bot') continue;
 		return c.body.trim();
 	}
@@ -109,18 +110,60 @@ async function postIn(discord, thread, content, users) {
 	await discord.send(thread.id, content, users);
 }
 
+// A maintainer's question, relayed when the issue gets needs-info: the
+// reporter answers in the thread, and the bot carries the answer back.
+function questionMessage({ repo, issue, owner, note }) {
+	const ping = owner ? `<@${owner}> ` : '';
+	return `${ping}We need a little more to go on with this one:\n${quote(clip(note, MAX_REASON))}\nPlease answer here in the thread. (${issueLink(repo, issue.number)})`;
+}
+
 async function onIssue({ discord, github, event, forumId, log = console }) {
 	const issue = event.issue;
 	const action = event.action;
-	if (action !== 'closed' && action !== 'reopened') return false;
+	const asking = action === 'labeled' && event.label && event.label.name === 'needs-info';
+	if (action !== 'closed' && action !== 'reopened' && !asking) return false;
 	const thread = await threadOf(discord, issue, forumId, log);
 	if (!thread) return false;
-	const comments = action === 'closed' ? await github.comments(issue.number) : [];
+	const comments = action === 'reopened' ? [] : await github.comments(issue.number);
+	const users = thread.owner_id ? [thread.owner_id] : [];
+	if (asking) {
+		const note = maintainerNote(comments);
+		if (!note) {
+			log.info(`#${issue.number}: needs-info with no maintainer comment to relay`);
+			return false;
+		}
+		await postIn(discord, thread, questionMessage({ repo: github.repo, issue, owner: thread.owner_id, note }), users);
+		log.info(`#${issue.number} needs-info: asked in thread ${thread.id}`);
+		return true;
+	}
 	const msg = issueMessage({ repo: github.repo, issue, action, owner: thread.owner_id, comments });
-	await postIn(discord, thread, msg.content, thread.owner_id ? [thread.owner_id] : []);
+	await postIn(discord, thread, msg.content, users);
 	const forum = await discord.getChannel(thread.parent_id);
 	await discord.editThread(thread.id, { applied_tags: withStatus(thread.applied_tags, statusTags(forum), msg.role), locked: msg.locked });
 	log.info(`#${issue.number} ${action} (${issue.state_reason || 'reopened'}): told thread ${thread.id}`);
+	return true;
+}
+
+// The message for an issue's first open pull request: someone is on it, it
+// is not reviewed yet.
+function progressMessage({ repo, issue, prs, owner }) {
+	const ping = owner ? `<@${owner}> ` : '';
+	const links = prs.map((p) => `[#${p.number}](<https://github.com/${repo}/pull/${p.number}>)`).join(', ');
+	const what = prs.length > 1 ? `Fixes for this are open (${links})` : `A fix for this is open (${links})`;
+	return `${ping}${what}. It still has to be reviewed; we'll tell you here when it's fixed. (${issueLink(repo, issue.number)})`;
+}
+
+// Tells the reporter a fix is open and tags the thread In progress. True
+// when told; false when the issue has no thread, so the next run tries again
+// only if a thread appears.
+async function onProgress({ discord, github, issue, prs, forumId, log = console }) {
+	const thread = await threadOf(discord, issue, forumId, log);
+	if (!thread) return false;
+	await postIn(discord, thread, progressMessage({ repo: github.repo, issue, prs, owner: thread.owner_id }), thread.owner_id ? [thread.owner_id] : []);
+	const forum = await discord.getChannel(thread.parent_id);
+	const tags = statusTags(forum);
+	if (tags.progress) await discord.editThread(thread.id, { applied_tags: withStatus(thread.applied_tags, tags, 'progress') });
+	log.info(`#${issue.number}: fix open in ${prs.map((p) => `#${p.number}`).join(', ')}; told thread ${thread.id}`);
 	return true;
 }
 
@@ -293,4 +336,4 @@ async function onRelease({ discord, github, event, forumId, testers = null, log 
 	return { told, failed };
 }
 
-module.exports = { onIssue, onRelease, issueMessage, releaseMessage, candidateMessage, shippedBy, isPrerelease, maintainerNote };
+module.exports = { onIssue, onRelease, onProgress, issueMessage, releaseMessage, progressMessage, candidateMessage, shippedBy, isPrerelease, maintainerNote };
