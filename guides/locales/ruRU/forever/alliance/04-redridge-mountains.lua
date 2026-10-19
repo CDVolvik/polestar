@@ -12,8 +12,8 @@ return {
 	["Level 18 and 20 spells"] = "Заклинания 18-го и 20-го уровней",
 	-- {npc:1646} Baros Alexston · {area:442} Auberdine
 	["{npc:1646}: Thundris' letter from {area:442}"] = "{npc:1646}: письмо Тандриса из места {area:442}",
-	-- {npc:3649} Thundris Windweaver · {area:442} Auberdine
-	["For {npc:3649}, on the return to {area:442} (06-ashenvale)"] = "Для NPC {npc:3649}, по возвращении в {area:442} (06-ashenvale)",
+	-- {quest:97914} Expanding Horizons · {npc:3649} Thundris Windweaver · {area:442} Auberdine
+	["Only once {quest:97914} is handed in: for {npc:3649}, back in {area:442} (06-ashenvale)"] = "",
 
 	-- Step 2: Shaman training
 	["Shaman training"] = "Обучение шамана",
@@ -38,7 +38,7 @@ return {
 
 	-- Step 4: Half Pendant of Aquatic Endurance
 	-- {area:108} Sentinel Hill · {object:177790} Strange Lockbox
-	["Fly to {area:108} and ride north-west to the coast: the {object:177790} lies on the sea floor off the shore. Then ride east along the road through Elwynn to Redridge."] = "Летите сюда: {area:108}. Скачите на северо-запад к побережью: {object:177790} лежит на морском дне недалеко от берега. Затем скачите на восток по дороге через Элвиннский лес в Красногорье.",
+	["Fly to {area:108} and head north-west to the coast: the {object:177790} lies on the sea floor off the shore. Then head east along the road through Elwynn to Redridge."] = "",
 	-- {item:15882} Half Pendant of Aquatic Endurance · {object:177790} Strange Lockbox
 	["{item:15882}: the {object:177790}"] = "{item:15882}: {object:177790}",
 
@@ -87,11 +87,8 @@ return {
 	["Murloc Flesheaters and Tidecallers line the south shore east of the bridge. Any of them can carry a {item:1467} or a fin."] = "Мурлоки-трупоеды и мурлоки-волномуты стоят вдоль южного берега к востоку от моста. У любого из них может оказаться {item:1467} или плавник.",
 
 	-- Step 14: Alther's Mill
-	-- plural, as words: Greater Tarantulas = {npc:505} Greater Tarantula · Blackrock Renegades = {npc:437} Blackrock Renegade
-	["Greater Tarantulas crawl on the slopes around the mill north-east of the lake; Blackrock Renegades hold the mill itself."] = "Крупные тарантулы ползают по склонам вокруг лесопилки к северо-востоку от озера; перебежчики из клана Черной Горы удерживают саму лесопилку.",
-	-- {item:3014} Battleworn Axe
-	-- plural, as words: Blackrock Renegades = {npc:437} Blackrock Renegade
-	["{item:3014}: the Blackrock Renegades at the mill"] = "{item:3014}: перебежчики из клана Черной Горы на мельнице",
+	-- plural, as words: Greater Tarantulas = {npc:505} Greater Tarantula
+	["Greater Tarantulas crawl on the slopes around the mill north-east of the lake."] = "",
 
 	-- Step 15: Galardell Valley
 	-- {npc:703} Lieutenant Fangore · {area:2099} Stonewatch Keep
@@ -99,22 +96,27 @@ return {
 	-- {item:1075} Shadowhide Pendant
 	["{item:1075}: any Shadowhide gnoll"] = "{item:1075}: любой гнолл из стаи Темношкуров",
 
-	-- Step 16: Back to Lakeshire
+	-- Step 16: Blackrock camps
+	["Blackrock camps"] = "",
+	-- {area:2099} Stonewatch Keep
+	["South down the valley's east side to the Blackrock camps east of {area:2099}. Renegades, Grunts and Outrunners fill them; keep east of the keep, whose orcs are elite."] = "",
+
+	-- Step 17: Back to Lakeshire
 	-- {area:69} Lakeshire
 	["Back to {area:69}"] = "Обратно: {area:69}",
 	-- {npc:344} Magistrate Solomon
 	["{npc:344}, in the town hall"] = "{npc:344}, в ратуше",
 
-	-- Step 17: Render's Valley
+	-- Step 18: Render's Valley
 	-- {area:69} Lakeshire · {area:95} Redridge Canyons · {area:997} Render's Valley
 	-- plural, as words: Blackrock Champions = {npc:435} Blackrock Champion
 	["Head north out of {area:69} up the {area:95} to {area:997}. Blackrock Champions camp in the valley."] = "Идите на север из места {area:69} вверх через {area:95} сюда: {area:997}. В долине стоят лагерем воители из клана Черной Горы.",
 
-	-- Step 18: Corporal Keeshan
+	-- Step 19: Corporal Keeshan
 	-- {zone:1428} Burning Steppes · {area:69} Lakeshire
 	["Keeshan hides at the very north end of the valley, by the {zone:1428} border. Escort him down to {area:69}; Blackrock orcs ambush you on the way."] = "Кеешан прячется в самом северном конце долины, у границы зоны {zone:1428}. Проводите его вниз до места {area:69}; по пути на вас нападут орки клана Черной Горы.",
 
-	-- Step 19: Lakeshire
+	-- Step 20: Lakeshire
 	-- {npc:903} Guard Howe
 	["{npc:903}, by the gryphons south of the bridge"] = "{npc:903}, у грифонов к югу от моста",
 	-- {zone:1431} Duskwood · {area:1002} Three Corners · {area:42} Darkshire
@@ -122,6 +124,10 @@ return {
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Bellygrub"] = "Грубобрюх",
+	-- ["Fly to {area:108} and ride north-west to the coast: the {object:177790} lies on the sea floor off the shore. Then ride east along the road through Elwynn to Redridge."] = "Летите сюда: {area:108}. Скачите на северо-запад к побережью: {object:177790} лежит на морском дне недалеко от берега. Затем скачите на восток по дороге через Элвиннский лес в Красногорье.",
+	-- ["For {npc:3649}, on the return to {area:442} (06-ashenvale)"] = "Для NPC {npc:3649}, по возвращении в {area:442} (06-ashenvale)",
+	-- ["Greater Tarantulas crawl on the slopes around the mill north-east of the lake; Blackrock Renegades hold the mill itself."] = "Крупные тарантулы ползают по склонам вокруг лесопилки к северо-востоку от озера; перебежчики из клана Черной Горы удерживают саму лесопилку.",
 	-- ["Redridge Mongrels and other gnolls hold the hills east of {area:1002}, north of the road; Redridge Thrashers prowl among them, Poachers camp south of the road. Dire Condors and Great Goretusks roam the same hills."] = "Полукровки из стаи Красногорья и другие гноллы удерживают холмы к востоку от места {area:1002}, к северу от дороги; между ними бродят твердозубы из стаи Красногорья, а браконьеры стоят лагерем к югу от дороги. По тем же холмам бродят ужасающие кондоры и большие жутевепри.",
 	-- ["{item:3014}: any Blackrock orc"] = "{item:3014}: любой орк клана Черной Горы",
+	-- ["{item:3014}: the Blackrock Renegades at the mill"] = "{item:3014}: перебежчики из клана Черной Горы на мельнице",
 }

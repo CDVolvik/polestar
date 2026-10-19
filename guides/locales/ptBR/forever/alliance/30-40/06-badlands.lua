@@ -8,7 +8,7 @@
 return {
 	-- Step 1: Hammertoe's Digsite
 	-- {zone:1432} Loch Modan · {zone:1418} Badlands · {npc:2910} Prospector Ryedol · {npc:2860} Sigrun Ironhew
-	["Ride back west to the road and follow it south out of {zone:1432} through the pass into the {zone:1418}. {npc:2910} and {npc:2860} camp side by side at the dig."] = "Volte a oeste até a estrada e siga por ela para o sul, saindo de {zone:1432} pelo desfiladeiro até {zone:1418}. {npc:2910} e {npc:2860} acampam lado a lado na escavação.",
+	["Head back west to the road and follow it south out of {zone:1432} through the pass into the {zone:1418}. {npc:2910} and {npc:2860} camp side by side at the dig."] = "",
 
 	-- Step 2: Shadowforge camp
 	["Shadowforge camp"] = "Acampamento de Umbraforja",
@@ -17,7 +17,7 @@ return {
 
 	-- Step 3: The excavation crate
 	["The excavation crate"] = "O caixote da escavação",
-	["Ride north-east to the abandoned dig; the supply crate lies there among the Dustbelcher ogres."] = "Cavalgue para o nordeste até a escavação abandonada; o caixote de suprimentos está lá, entre os ogros Arrota-pó.",
+	["Head north-east to the abandoned dig; the supply crate lies there among the Dustbelcher ogres."] = "",
 
 	-- Step 4: Hammertoe's Digsite
 	-- {area:1517} Uldaman
@@ -43,7 +43,7 @@ return {
 
 	-- Step 9: Lotwil Veriatus
 	-- {area:1878} Dustbowl · {npc:2921} Lotwil Veriatus
-	["Ride west into the {area:1878}; {npc:2921} works by his machines in the middle of it."] = "Cavalgue para o oeste até {area:1878}; {npc:2921} trabalha junto às máquinas dele, no meio da área.",
+	["Head west into the {area:1878}; {npc:2921} works by his machines in the middle of it."] = "",
 
 	-- Step 10: Lesser Rock Elementals
 	-- plural, as words: Lesser Rock Elementals = {npc:2735} Lesser Rock Elemental
@@ -78,11 +78,11 @@ return {
 	-- {object:126260} Ancient Chest
 	["The {object:126260}"] = "{object:126260}",
 	-- {zone:1418} Badlands · {npc:2745} Ambassador Infernus
-	["Ride north-east to the dwarven ruins in the north of the {zone:1418}; the chest sits among the Shadowforge dwarves. {npc:2745} nearby is elite: give him room."] = "Cavalgue para o nordeste até as ruínas anãs no norte de {zone:1418}; o baú fica entre os anões de Umbraforja. {npc:2745}, ali perto, é elite: mantenha distância.",
+	["Head north-east to the dwarven ruins in the north of the {zone:1418}; the chest sits among the Shadowforge dwarves. {npc:2745} nearby is elite: give him room."] = "",
 
 	-- Step 18: Theldurin the Lost
 	-- {area:345} Agmond's End
-	["Ride south to {area:345}."] = "Cavalgue para o sul até {area:345}.",
+	["Head south to {area:345}."] = "",
 	-- {npc:2786} Gerrig Bonegrip · {zone:1455} Ironforge
 	["for {npc:2786} in {zone:1455}: keep it"] = "para {npc:2786} em {zone:1455}: guarde-a",
 
@@ -166,5 +166,10 @@ return {
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Follow the road west across the north of {zone:1443} to the ruins of {area:2405}; the wrecked ship's chest lies on the shore just west of them."] = "Siga a estrada para o oeste pelo norte de {zone:1443} até as ruínas de {area:2405}; o baú do navio naufragado está na praia logo a oeste delas.",
+	-- ["Ride back west to the road and follow it south out of {zone:1432} through the pass into the {zone:1418}. {npc:2910} and {npc:2860} camp side by side at the dig."] = "Volte a oeste até a estrada e siga por ela para o sul, saindo de {zone:1432} pelo desfiladeiro até {zone:1418}. {npc:2910} e {npc:2860} acampam lado a lado na escavação.",
+	-- ["Ride north-east to the abandoned dig; the supply crate lies there among the Dustbelcher ogres."] = "Cavalgue para o nordeste até a escavação abandonada; o caixote de suprimentos está lá, entre os ogros Arrota-pó.",
+	-- ["Ride north-east to the dwarven ruins in the north of the {zone:1418}; the chest sits among the Shadowforge dwarves. {npc:2745} nearby is elite: give him room."] = "Cavalgue para o nordeste até as ruínas anãs no norte de {zone:1418}; o baú fica entre os anões de Umbraforja. {npc:2745}, ali perto, é elite: mantenha distância.",
+	-- ["Ride south to {area:345}."] = "Cavalgue para o sul até {area:345}.",
+	-- ["Ride west into the {area:1878}; {npc:2921} works by his machines in the middle of it."] = "Cavalgue para o oeste até {area:1878}; {npc:2921} trabalha junto às máquinas dele, no meio da área.",
 	-- ["{npc:11863}'s tower stands on the hill east of the wreck."] = "A torre de {npc:11863} fica no morro a leste do naufrágio.",
 }

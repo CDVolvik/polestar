@@ -160,6 +160,9 @@ return {
 	-- Step 34: Mage Quarter
 	-- {npc:2708} Archmage Malin · {object:2164} Slaughtered Lamb · {npc:211033} Garion Wendell · {npc:5081} Connor Rivers · {object:2101} Mage Quarter
 	["{npc:2708} is in the {object:2164}; {npc:211033} near the canal; {npc:5081} south of the {object:2101}."] = "{npc:2708} está em {object:2164}; {npc:211033}, perto do canal; {npc:5081}, ao sul de {object:2101}.",
+	-- {npc:211033} Garion Wendell
+	-- plural, as words: Library Books = {object:386691} Library Book
+	["{npc:211033}: only offered once you have handed in library books (the Library Books guide)"] = "",
 
 	-- Step 36: Druid training
 	["Druid training"] = "Treinamento de druida",

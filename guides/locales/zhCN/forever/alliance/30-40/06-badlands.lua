@@ -8,7 +8,7 @@
 return {
 	-- Step 1: Hammertoe's Digsite
 	-- {zone:1432} Loch Modan · {zone:1418} Badlands · {npc:2910} Prospector Ryedol · {npc:2860} Sigrun Ironhew
-	["Ride back west to the road and follow it south out of {zone:1432} through the pass into the {zone:1418}. {npc:2910} and {npc:2860} camp side by side at the dig."] = "向西骑回道路，沿路向南离开{zone:1432}，穿过山口进入{zone:1418}。{npc:2910}和{npc:2860}在挖掘场并排扎营。",
+	["Head back west to the road and follow it south out of {zone:1432} through the pass into the {zone:1418}. {npc:2910} and {npc:2860} camp side by side at the dig."] = "",
 
 	-- Step 2: Shadowforge camp
 	["Shadowforge camp"] = "暗炉营地",
@@ -17,7 +17,7 @@ return {
 
 	-- Step 3: The excavation crate
 	["The excavation crate"] = "挖掘补给箱",
-	["Ride north-east to the abandoned dig; the supply crate lies there among the Dustbelcher ogres."] = "向东北骑到废弃的挖掘场；补给箱在那里的火烟食人魔之间。",
+	["Head north-east to the abandoned dig; the supply crate lies there among the Dustbelcher ogres."] = "",
 
 	-- Step 4: Hammertoe's Digsite
 	-- {area:1517} Uldaman
@@ -43,7 +43,7 @@ return {
 
 	-- Step 9: Lotwil Veriatus
 	-- {area:1878} Dustbowl · {npc:2921} Lotwil Veriatus
-	["Ride west into the {area:1878}; {npc:2921} works by his machines in the middle of it."] = "向西骑进{area:1878}；{npc:2921}在中间的机器旁工作。",
+	["Head west into the {area:1878}; {npc:2921} works by his machines in the middle of it."] = "",
 
 	-- Step 10: Lesser Rock Elementals
 	-- plural, as words: Lesser Rock Elementals = {npc:2735} Lesser Rock Elemental
@@ -78,11 +78,11 @@ return {
 	-- {object:126260} Ancient Chest
 	["The {object:126260}"] = "{object:126260}",
 	-- {zone:1418} Badlands · {npc:2745} Ambassador Infernus
-	["Ride north-east to the dwarven ruins in the north of the {zone:1418}; the chest sits among the Shadowforge dwarves. {npc:2745} nearby is elite: give him room."] = "向东北骑到{zone:1418}北部的矮人废墟；箱子在暗炉矮人之间。附近的{npc:2745}是精英：离他远点。",
+	["Head north-east to the dwarven ruins in the north of the {zone:1418}; the chest sits among the Shadowforge dwarves. {npc:2745} nearby is elite: give him room."] = "",
 
 	-- Step 18: Theldurin the Lost
 	-- {area:345} Agmond's End
-	["Ride south to {area:345}."] = "向南骑到{area:345}。",
+	["Head south to {area:345}."] = "",
 	-- {npc:2786} Gerrig Bonegrip · {zone:1455} Ironforge
 	["for {npc:2786} in {zone:1455}: keep it"] = "交给{zone:1455}的{npc:2786}：先留着",
 
@@ -166,5 +166,10 @@ return {
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Follow the road west across the north of {zone:1443} to the ruins of {area:2405}; the wrecked ship's chest lies on the shore just west of them."] = "沿道路向西穿过{zone:1443}北部，到{area:2405}的废墟；失事船只的箱子在废墟西边的岸上。",
+	-- ["Ride back west to the road and follow it south out of {zone:1432} through the pass into the {zone:1418}. {npc:2910} and {npc:2860} camp side by side at the dig."] = "向西骑回道路，沿路向南离开{zone:1432}，穿过山口进入{zone:1418}。{npc:2910}和{npc:2860}在挖掘场并排扎营。",
+	-- ["Ride north-east to the abandoned dig; the supply crate lies there among the Dustbelcher ogres."] = "向东北骑到废弃的挖掘场；补给箱在那里的火烟食人魔之间。",
+	-- ["Ride north-east to the dwarven ruins in the north of the {zone:1418}; the chest sits among the Shadowforge dwarves. {npc:2745} nearby is elite: give him room."] = "向东北骑到{zone:1418}北部的矮人废墟；箱子在暗炉矮人之间。附近的{npc:2745}是精英：离他远点。",
+	-- ["Ride south to {area:345}."] = "向南骑到{area:345}。",
+	-- ["Ride west into the {area:1878}; {npc:2921} works by his machines in the middle of it."] = "向西骑进{area:1878}；{npc:2921}在中间的机器旁工作。",
 	-- ["{npc:11863}'s tower stands on the hill east of the wreck."] = "{npc:11863}的塔在残骸东边的山丘上。",
 }

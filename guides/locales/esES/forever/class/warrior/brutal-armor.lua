@@ -51,7 +51,7 @@ return {
 	["Hillsbrad Miners"] = "Mineros de Trabalomas",
 	-- {zone:1424} Hillsbrad Foothills · {item:7127} Powdered Azurite · {zone:1454} Orgrimmar · {zone:1420} Tirisfal Glades · {zone:1421} Silverpine Forest
 	-- plural, as words: Hillsbrad Miners = {npc:2269} Hillsbrad Miner
-	["The Hillsbrad Miners work the mine in the west of {zone:1424}; they drop the {item:7127}. Take the zeppelin from {zone:1454} to {zone:1420} and ride south through {zone:1421}."] = "Los mineros de Trabalomas trabajan en la mina del oeste de {zone:1424}; sueltan {item:7127}. Toma el zepelín de {zone:1454} a {zone:1420} y cabalga al sur por {zone:1421}.",
+	["The Hillsbrad Miners work the mine in the west of {zone:1424}; they drop the {item:7127}. Take the zeppelin from {zone:1454} to {zone:1420} and head south through {zone:1421}."] = "",
 	-- {item:7127} Powdered Azurite
 	-- plural, as words: Hillsbrad Miners = {npc:2269} Hillsbrad Miner
 	["{item:7127} from the Hillsbrad Miners"] = "{item:7127} de los mineros de Trabalomas",
@@ -99,6 +99,7 @@ return {
 	["Sturdy Dragonmaw Shinbones"] = "Tibias de Faucedraco robustas",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["The Hillsbrad Miners work the mine in the west of {zone:1424}; they drop the {item:7127}. Take the zeppelin from {zone:1454} to {zone:1420} and ride south through {zone:1421}."] = "Los mineros de Trabalomas trabajan en la mina del oeste de {zone:1424}; sueltan {item:7127}. Toma el zepelín de {zone:1454} a {zone:1420} y cabalga al sur por {zone:1421}.",
 	-- ["The {area:287} Miners work the mine in the west of {zone:1424}; they drop the {item:7127}. Take the zeppelin from {zone:1454} to {zone:1420} and ride south through {zone:1421}."] = "Los Mineros de {area:287} trabajan en la mina del oeste de {zone:1424}; sueltan {item:7127}. Toma el zepelín de {zone:1454} a {zone:1420} y cabalga al sur por {zone:1421}.",
 	-- ["{area:287} Miners"] = "Mineros de {area:287}",
 	-- ["{item:7127} from the {area:287} Miners"] = "{item:7127} de los Mineros de {area:287}",

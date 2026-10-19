@@ -9,6 +9,8 @@ return {
 	-- Step 1: Kadrak
 	-- {area:380} Crossroads · {npc:8582} Kadrak · {area:1703} Mor'shan Rampart · {zone:1440} Ashenvale · {item:16783} Bundle of Reports
 	["From the {area:380} follow the road north. {npc:8582} stands on the watch tower of the {area:1703} where the road enters {zone:1440}. Open the {item:16783} he gives you."] = "從{area:380}沿著道路向北走。{npc:8582}站在道路進入{zone:1440}處的{area:1703}瞭望塔上。打開他給你的{item:16783}。",
+	-- {item:16746} Warsong Report · {item:16783} Bundle of Reports
+	["{item:16746}, from the {item:16783}"] = "",
 
 	-- Step 2: Warsong Scout
 	-- {npc:12862} Warsong Scout
@@ -31,7 +33,7 @@ return {
 	-- Step 6: Va'xug Firefure
 	-- {npc:267214} Va'xug Firefure · {area:415} Astranaar
 	-- plural, as words: Shadowhorn Stags = {npc:3817} Shadowhorn Stag · Ashenvale Bears = {npc:3809} Ashenvale Bear
-	["On the ride west, {npc:267214} is stuck in a ravine south of the main road, south-east of {area:415}. Shadowhorn Stags and Ashenvale Bears roam the woods all around it."] = "向西騎的途中，{npc:267214}困在主要道路南邊、{area:415}東南方的峽谷裡。黑角鹿和梣谷熊在周圍的樹林中遊蕩。",
+	["On the way west, {npc:267214} is stuck in a ravine south of the main road, south-east of {area:415}. Shadowhorn Stags and Ashenvale Bears roam the woods all around it."] = "",
 
 	-- Step 7: A Void Path
 	-- {npc:267214} Va'xug Firefure · {npc:271181} Eye of Kilrogg
@@ -41,7 +43,7 @@ return {
 
 	-- Step 8: Zoram'gar Outpost
 	-- {zone:1440} Ashenvale · {area:415} Astranaar · {area:2897} Zoram'gar Outpost · {area:414} Zoram Strand
-	["Ride west along the main road across {zone:1440}, past {area:415} (Alliance: keep to the road), to the coast. {area:2897} is on the {area:414} in the north-west. Its other quests are for the next visit, at 27."] = "沿著主要道路向西穿過{zone:1440}，經過{area:415}（聯盟據點：沿著道路走），前往海岸。{area:2897}在西北方的{area:414}。那裡的其他任務留到27級下次造訪再做。",
+	["Head west along the main road across {zone:1440}, past {area:415} (Alliance: keep to the road), to the coast. {area:2897} is on the {area:414} in the north-west. Its other quests are for the next visit, at 27."] = "",
 
 	-- Step 9: Naga heads
 	["Naga heads"] = "納迦頭顱",
@@ -51,11 +53,11 @@ return {
 	-- {npc:8582} Kadrak
 	["Back to {npc:8582}"] = "返回{npc:8582}",
 	-- {area:431} Splintertree Post · {area:1703} Mor'shan Rampart
-	["Fly to {area:431} and ride south down the road to the {area:1703}."] = "飛往{area:431}，沿著道路向南騎往{area:1703}。",
+	["Fly to {area:431} and head south down the road to the {area:1703}."] = "",
 
 	-- Step 12: Malaka'jin
 	-- {area:380} Crossroads · {zone:1413} Barrens · {area:2539} Malaka'jin
-	["Ride south to the {area:380}, then west along the road out of the {zone:1413} into Stonetalon. The troll village of {area:2539} sits at the entrance of the canyon."] = "向南騎往{area:380}，然後沿著道路向西離開{zone:1413}進入石爪山脈。食人妖村莊{area:2539}位於峽谷入口。",
+	["Head south to the {area:380}, then west along the road out of the {zone:1413} into Stonetalon. The troll village of {area:2539} sits at the entrance of the canyon."] = "",
 
 	-- Step 13: Ziz Fizziks
 	-- {area:1076} Webwinder Path · {quest:1483} Ziz Fizziks · {area:461} Windshear Crag
@@ -115,13 +117,13 @@ return {
 
 	-- Step 22: Malaka'jin
 	-- {area:1076} Webwinder Path · {area:2539} Malaka'jin
-	["Ride back down the {area:1076} to {area:2539}."] = "沿著{area:1076}騎回{area:2539}。",
+	["Head back down the {area:1076} to {area:2539}."] = "",
 
 	-- Step 23: To the Undercity
 	-- {area:1497} Undercity
 	["To the {area:1497}"] = "前往{area:1497}",
 	-- {area:380} Crossroads · {zone:1454} Orgrimmar · {zone:1420} Tirisfal Glades · {area:1497} Undercity · {area:153} Ruins of Lordaeron · {object:36078} Trade Quarter
-	["Ride east to the {area:380} and fly to {zone:1454}. Take the zeppelin from the towers outside {zone:1454} to {zone:1420}; the {area:1497} lies below the {area:153}. The bat handler is in the {object:36078}."] = "向東騎往{area:380}，飛往{zone:1454}。在{zone:1454}外的塔搭飛艇前往{zone:1420}；{area:1497}位於{area:153}下方。蝙蝠管理員在{object:36078}。",
+	["Head east to the {area:380} and fly to {zone:1454}. Take the zeppelin from the towers outside {zone:1454} to {zone:1420}; the {area:1497} lies below the {area:153}. The bat handler is in the {object:36078}."] = "",
 	-- {npc:10181} Lady Sylvanas Windrunner · {object:36126} Royal Quarter · {quest:93739} Exploring the Horde
 	["Speak with {npc:10181}, in the {object:36126}: {quest:93739}"] = "與{object:36126}的{npc:10181}交談：{quest:93739}",
 
@@ -131,7 +133,7 @@ return {
 
 	-- Step 25: Beren's Peril
 	-- {area:272} Tarren Mill · {zone:1458} Undercity · {area:228} Sepulcher · {area:231} Beren's Peril · {npc:1973} Ravenclaw Guardian · {item:271343} Note Scrap · {object:645153} Offering Stone (no name in this language: may be words)
-	["If you already know the {area:272} flight path, fly there and skip to {area:272}. Otherwise fly from the {zone:1458} to the {area:228} and ride south down the road past Pyrewood. The Ravenclaw undead haunt the ruins of {area:231} east of the road in the south-east of the forest; a {npc:1973} drops the {item:271343} that leads to the {object:645153}."] = "如果你已經知道{area:272}的飛行路線，就飛過去並直接跳到{area:272}。否則從{zone:1458}飛往{area:228}，沿著道路向南騎過焚木村。鴉爪亡靈出沒於森林東南部、道路東邊的{area:231}廢墟；{npc:1973}會掉落{item:271343}，它會帶你找到{object:645153}。",
+	["If you already know the {area:272} flight path, fly there and skip to {area:272}. Otherwise fly from the {zone:1458} to the {area:228} and head south down the road past Pyrewood. The Ravenclaw undead haunt the ruins of {area:231} east of the road in the south-east of the forest; a {npc:1973} drops the {item:271343} that leads to the {object:645153}."] = "",
 	-- {item:271343} Note Scrap · {npc:1973} Ravenclaw Guardian
 	["{item:271343}, from a {npc:1973}"] = "{item:271343}，來自{npc:1973}",
 	-- {item:271350} Tortured Soul
@@ -153,5 +155,12 @@ return {
 	["Follow the road east along the river, then north-east up into the hills to {area:272}."] = "沿著河岸的道路向東走，然後往東北爬上山丘前往{area:272}。",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Fly to {area:431} and ride south down the road to the {area:1703}."] = "飛往{area:431}，沿著道路向南騎往{area:1703}。",
+	-- ["If you already know the {area:272} flight path, fly there and skip to {area:272}. Otherwise fly from the {zone:1458} to the {area:228} and ride south down the road past Pyrewood. The Ravenclaw undead haunt the ruins of {area:231} east of the road in the south-east of the forest; a {npc:1973} drops the {item:271343} that leads to the {object:645153}."] = "如果你已經知道{area:272}的飛行路線，就飛過去並直接跳到{area:272}。否則從{zone:1458}飛往{area:228}，沿著道路向南騎過焚木村。鴉爪亡靈出沒於森林東南部、道路東邊的{area:231}廢墟；{npc:1973}會掉落{item:271343}，它會帶你找到{object:645153}。",
+	-- ["On the ride west, {npc:267214} is stuck in a ravine south of the main road, south-east of {area:415}. Shadowhorn Stags and Ashenvale Bears roam the woods all around it."] = "向西騎的途中，{npc:267214}困在主要道路南邊、{area:415}東南方的峽谷裡。黑角鹿和梣谷熊在周圍的樹林中遊蕩。",
+	-- ["Ride back down the {area:1076} to {area:2539}."] = "沿著{area:1076}騎回{area:2539}。",
+	-- ["Ride east to the {area:380} and fly to {zone:1454}. Take the zeppelin from the towers outside {zone:1454} to {zone:1420}; the {area:1497} lies below the {area:153}. The bat handler is in the {object:36078}."] = "向東騎往{area:380}，飛往{zone:1454}。在{zone:1454}外的塔搭飛艇前往{zone:1420}；{area:1497}位於{area:153}下方。蝙蝠管理員在{object:36078}。",
+	-- ["Ride south to the {area:380}, then west along the road out of the {zone:1413} into Stonetalon. The troll village of {area:2539} sits at the entrance of the canyon."] = "向南騎往{area:380}，然後沿著道路向西離開{zone:1413}進入石爪山脈。食人妖村莊{area:2539}位於峽谷入口。",
+	-- ["Ride west along the main road across {zone:1440}, past {area:415} (Alliance: keep to the road), to the coast. {area:2897} is on the {area:414} in the north-west. Its other quests are for the next visit, at 27."] = "沿著主要道路向西穿過{zone:1440}，經過{area:415}（聯盟據點：沿著道路走），前往海岸。{area:2897}在西北方的{area:414}。那裡的其他任務留到27級下次造訪再做。",
 	-- ["South-west of Sun Rock lies the burned {area:465}. Plant the Gaea Seeds in the dirt mounds on the valley floor; the fire elementals drop {item:16312}. Bloodfury Harpies and Ambushers nest on the north side, Slayers and Roguefeathers to the south."] = "烈日石居西南方是燒焦的{area:465}。把蓋亞之種種在谷底的土堆裡；火元素會掉落{item:16312}。血怒鷹身人和血怒伏擊者在北側築巢，血怒殺戮者和血怒遊蕩者在南側。",
 }

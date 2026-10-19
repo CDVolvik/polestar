@@ -225,11 +225,11 @@ return {
 
 	-- Step 55: Back to Thunder Bluff
 	-- {area:222} Bloodhoof Village · {area:1639} Elder Rise
-	["Hearth to {area:222} and ride north to {area:1639}."] = "用炉石返回{area:222}，然后向北骑到{area:1639}。",
+	["Hearth to {area:222} and head north to {area:1639}."] = "",
 
 	-- Step 56: Yaw Sharpmane
 	-- {area:222} Bloodhoof Village · {item:15908} Taming Rod · {npc:2956} Adult Plainstrider · {npc:2959} Prairie Stalker
-	["Ride down to {area:222} and tame with the {item:15908}: an {npc:2956} on the plains, a {npc:2959} north of the village, a Swoop to the north-west."] = "骑到{area:222}，用{item:15908}驯服：平原上的一只{npc:2956}，村子北边的一只{npc:2959}，西北方的一只猛鹫。",
+	["Head down to {area:222} and tame with the {item:15908}: an {npc:2956} on the plains, a {npc:2959} north of the village, a Swoop to the north-west."] = "",
 	-- {item:15908} Taming Rod
 	["Tame it with the {item:15908}"] = "用{item:15908}驯服它",
 
@@ -251,6 +251,8 @@ return {
 	-- ["Battleboars graze north of the shrine; the Bristleback quilboar hold the ravine to the north-east. {npc:8554} stands at its eastern end, and the {item:4851} lies on the ground in the camp."] = "斗猪在神龛北边吃草；刺背野猪人占据着东北方的峡谷。{npc:8554}站在峡谷东端，{item:4851}在营地的地上。",
 	-- ["Flatland Prowlers roam the plains around {area:225}"] = "{npc:3566}在{area:225}周围的平原上游荡",
 	-- ["Galak centaurs and Prairie Wolf Alphas"] = "加拉克半人马和{npc:2960}",
+	-- ["Hearth to {area:222} and ride north to {area:1639}."] = "用炉石返回{area:222}，然后向北骑到{area:1639}。",
+	-- ["Ride down to {area:222} and tame with the {item:15908}: an {npc:2956} on the plains, a {npc:2959} north of the village, a Swoop to the north-west."] = "骑到{area:222}，用{item:15908}驯服：平原上的一只{npc:2956}，村子北边的一只{npc:2959}，西北方的一只猛鹫。",
 	-- ["The Galak centaurs camp on the plains north of the {area:821}; Herak leads them. Prairie Wolf Alphas roam among the wolves."] = "加拉克半人马在{area:821}北边的平原上扎营；掠夺者赫拉克是他们的首领。{npc:2960}在狼群中游荡。",
 	-- ["The dwarves of the {area:404} carry the Prospector's Picks. Smash them at the forge in {area:222}."] = "{area:404}的矮人带着{item:4702}。在{area:222}的熔炉上砸碎它们。",
 	-- ["The well lies north of the village. Well Stones sit around the well, {item:4809} lies under the trees nearby. Kill wolves, cougars, plainstriders and swoops on the way for {quest:766} and {quest:761}."] = "水井在村子北边。{item:4808}在水井周围，{item:4809}在附近的树下。沿途击杀狼、美洲狮、平原陆行鸟和猛鹫，完成{quest:766}和{quest:761}。",

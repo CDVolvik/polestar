@@ -328,7 +328,7 @@ return {
 
 	-- Step 68: Surena Caledon
 	-- {area:87} Goldshire · {area:62} Brackwell Pumpkin Patch · {npc:881} Surena Caledon
-	["Ride back out through {area:87} and east along the road to the {area:62}. {npc:881} (level 9) stands by its farmhouse."] = "{area:87}을(를) 지나 다시 나가 동쪽 길을 따라 {area:62}(으)로 가십시오. {npc:881}(9레벨)은(는) 농가 옆에 있습니다.",
+	["Head back out through {area:87} and east along the road to the {area:62}. {npc:881} (level 9) stands by its farmhouse."] = "{area:87}을 통해 돌아 나와 도로를 따라 동쪽 {area:62}으로 가세요. {npc:881} (9레벨)이 농가 옆에 있습니다.",
 
 	-- Step 69: The Binding
 	-- {npc:6122} Gakin the Darkbinder · {item:6928} Bloodstone Choker · {object:2164} Slaughtered Lamb
@@ -344,7 +344,7 @@ return {
 	-- Step 71: Henze Faulk
 	-- {area:87} Goldshire · {area:86} Stone Cairn Lake · {npc:6172} Henze Faulk · {item:6866} Symbol of Life · {item:6846} Defias Script
 	-- plural, as words: Defias Rogue Wizards = {npc:474} Defias Rogue Wizard
-	["Ride back out through {area:87} and east to {area:86}. {npc:6172} lies south of the lake: use the {item:6866} on him. The Defias Rogue Wizards around him carry the {item:6846}."] = "{area:87}을(를) 지나 다시 나가 동쪽 {area:86}(으)로 가십시오. {npc:6172}은(는) 호수 남쪽에 쓰러져 있으니 {item:6866}을(를) 사용하십시오. 주변의 데피아즈단 견습마술사가 {item:6846}을(를) 가지고 있습니다.",
+	["Head back out through {area:87} and east to {area:86}. {npc:6172} lies south of the lake: use the {item:6866} on him. The Defias Rogue Wizards around him carry the {item:6846}."] = "{area:87}을 통해 돌아 나와 동쪽 {area:86}으로 가세요. {npc:6172}이 호수 남쪽에 있습니다: {item:6866}을 그에게 사용하세요. 주변의 디파이어스 불량 마법사들이 {item:6846}을 가지고 있습니다.",
 	-- {item:6866} Symbol of Life · {npc:6172} Henze Faulk
 	["Use the {item:6866} on {npc:6172}"] = "{npc:6172}에게 {item:6866} 사용",
 	-- {item:6846} Defias Script
@@ -356,14 +356,19 @@ return {
 	-- {npc:6171} Duthorian Rall
 	["{npc:6171}: Redemption"] = "{npc:6171}: 구원",
 
-	-- Step 73: Sentinel Hill
-	-- {zone:1436} Westfall · {area:108} Sentinel Hill · {npc:523} Thor
-	["Follow the road west past Westbrook into {zone:1436}, then south along it to {area:108}. {npc:523}, the gryphon master, stands on the hill."] = "길을 따라 서쪽으로 서부 주둔지를 지나 {zone:1436}(으)로 간 뒤, 남쪽으로 따라가 {area:108}(으)로 가십시오. 그리폰 조련사 {npc:523}가 언덕 위에 있습니다.",
+	-- Step 73: Westbrook Garrison
+	-- {area:120} Westbrook Garrison · {zone:1436} Westfall · {npc:963} Deputy Rainer
+	["Follow the road west to the {area:120}, on the way into {zone:1436}. {npc:963} stands outside the barracks."] = "서쪽으로 도로를 따라 {zone:1436}으로 가는 길의 {area:120}으로 가세요. {npc:963}이 막사 밖에 서 있습니다.",
+	-- {npc:963} Deputy Rainer · {npc:234} Gryan Stoutmantle · {area:108} Sentinel Hill
+	["{npc:963}: for {npc:234} at {area:108}"] = "{npc:963}: {area:108}의 {npc:234}를 위해",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Back to Gakin. Use the {item:6928} at the summoning circle in the {object:2164}'s cellar and defeat the voidwalker it calls."] = "가킨에게 돌아가십시오. {object:2164} 지하실의 소환진에서 {item:6928}을(를) 사용하고 소환된 공허방랑자를 쓰러뜨리십시오.",
+	-- ["Follow the road west past Westbrook into {zone:1436}, then south along it to {area:108}. {npc:523}, the gryphon master, stands on the hill."] = "길을 따라 서쪽으로 서부 주둔지를 지나 {zone:1436}(으)로 간 뒤, 남쪽으로 따라가 {area:108}(으)로 가십시오. 그리폰 조련사 {npc:523}가 언덕 위에 있습니다.",
 	-- ["Murloc Foragers and Lurkers line the river south of the bridge. {npc:473}, a Defias, walks the {area:62} west of it. Finish the Prowlers and Young Forest Bears on the way."] = "멀록 채집꾼과 멀록 잠복꾼이 다리 남쪽 강을 따라 있습니다. 데피아즈단인 {npc:473}이(가) 그 서쪽 {area:62}을(를) 돌아다닙니다. 가는 길에 굶주린 늑대와 새끼곰을 마저 처치하십시오.",
+	-- ["Ride back out through {area:87} and east along the road to the {area:62}. {npc:881} (level 9) stands by its farmhouse."] = "{area:87}을(를) 지나 다시 나가 동쪽 길을 따라 {area:62}(으)로 가십시오. {npc:881}(9레벨)은(는) 농가 옆에 있습니다.",
 	-- ["Ride back out through {area:87} and east along the road to the {area:62}. {quest:1688} (level 9) stands by its farmhouse."] = "{area:87}을(를) 지나 다시 나가 동쪽 길을 따라 {area:62}(으)로 가십시오. {quest:1688}(9레벨)은(는) 농가 옆에 있습니다.",
+	-- ["Ride back out through {area:87} and east to {area:86}. {npc:6172} lies south of the lake: use the {item:6866} on him. The Defias Rogue Wizards around him carry the {item:6846}."] = "{area:87}을(를) 지나 다시 나가 동쪽 {area:86}(으)로 가십시오. {npc:6172}은(는) 호수 남쪽에 쓰러져 있으니 {item:6866}을(를) 사용하십시오. 주변의 데피아즈단 견습마술사가 {item:6846}을(를) 가지고 있습니다.",
 	-- ["{area:57}'s mouth"] = "{area:57} 입구",
 	-- ["{item:1006}: Princess"] = "{item:1006}: 공주",
 }

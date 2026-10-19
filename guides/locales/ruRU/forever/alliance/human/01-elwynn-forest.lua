@@ -328,7 +328,7 @@ return {
 
 	-- Step 68: Surena Caledon
 	-- {area:87} Goldshire · {area:62} Brackwell Pumpkin Patch · {npc:881} Surena Caledon
-	["Ride back out through {area:87} and east along the road to the {area:62}. {npc:881} (level 9) stands by its farmhouse."] = "Езжайте обратно через {area:87} и по дороге на восток. Цель: {area:62}. {npc:881} (9-й уровень) стоит у фермерского дома.",
+	["Head back out through {area:87} and east along the road to the {area:62}. {npc:881} (level 9) stands by its farmhouse."] = "Возвращайтесь через {area:87} и на восток вдоль дороги к {area:62}. {npc:881} (9 уровня) стоит у фермерского домика.",
 
 	-- Step 69: The Binding
 	-- {npc:6122} Gakin the Darkbinder · {item:6928} Bloodstone Choker · {object:2164} Slaughtered Lamb
@@ -344,7 +344,7 @@ return {
 	-- Step 71: Henze Faulk
 	-- {area:87} Goldshire · {area:86} Stone Cairn Lake · {npc:6172} Henze Faulk · {item:6866} Symbol of Life · {item:6846} Defias Script
 	-- plural, as words: Defias Rogue Wizards = {npc:474} Defias Rogue Wizard
-	["Ride back out through {area:87} and east to {area:86}. {npc:6172} lies south of the lake: use the {item:6866} on him. The Defias Rogue Wizards around him carry the {item:6846}."] = "Езжайте обратно через {area:87} и на восток. Цель: {area:86}. {npc:6172} лежит к югу от озера: используйте на нем {item:6866}. {item:6846} – у волшебников-плутов из Братства Справедливости вокруг.",
+	["Head back out through {area:87} and east to {area:86}. {npc:6172} lies south of the lake: use the {item:6866} on him. The Defias Rogue Wizards around him carry the {item:6846}."] = "Возвращайтесь через {area:87} и на восток к {area:86}. {npc:6172} лежит к югу от озера: используйте на нём {item:6866}. Бесчестные маги Братства Справедливости вокруг него несут {item:6846}.",
 	-- {item:6866} Symbol of Life · {npc:6172} Henze Faulk
 	["Use the {item:6866} on {npc:6172}"] = "Используйте {item:6866}. Цель: {npc:6172}",
 	-- {item:6846} Defias Script
@@ -356,13 +356,18 @@ return {
 	-- {npc:6171} Duthorian Rall
 	["{npc:6171}: Redemption"] = "{npc:6171}: Искупление",
 
-	-- Step 73: Sentinel Hill
-	-- {zone:1436} Westfall · {area:108} Sentinel Hill · {npc:523} Thor
-	["Follow the road west past Westbrook into {zone:1436}, then south along it to {area:108}. {npc:523}, the gryphon master, stands on the hill."] = "Идите по дороге на запад мимо гарнизона у Западного ручья в зону {zone:1436}, затем по ней на юг. Цель: {area:108}. Укротитель грифонов {npc:523} стоит на холме.",
+	-- Step 73: Westbrook Garrison
+	-- {area:120} Westbrook Garrison · {zone:1436} Westfall · {npc:963} Deputy Rainer
+	["Follow the road west to the {area:120}, on the way into {zone:1436}. {npc:963} stands outside the barracks."] = "Следуйте на запад по дороге к {area:120}, по пути в {zone:1436}. {npc:963} стоит снаружи казармы.",
+	-- {npc:963} Deputy Rainer · {npc:234} Gryan Stoutmantle · {area:108} Sentinel Hill
+	["{npc:963}: for {npc:234} at {area:108}"] = "{npc:963}: для {npc:234} у {area:108}",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Follow the road west past Westbrook into {zone:1436}, then south along it to {area:108}. {npc:523}, the gryphon master, stands on the hill."] = "Идите по дороге на запад мимо гарнизона у Западного ручья в зону {zone:1436}, затем по ней на юг. Цель: {area:108}. Укротитель грифонов {npc:523} стоит на холме.",
 	-- ["Murloc Foragers and Lurkers line the river south of the bridge. {npc:473}, a Defias, walks the {area:62} west of it. Finish the Prowlers and Young Forest Bears on the way."] = "Мурлоки-добытчики и мурлоки-скрытни занимают реку к югу от моста. {npc:473} из Братства Справедливости ходит здесь: {area:62}, к западу от нее. По пути добейте лесных хищников и молодых лесных медведей.",
+	-- ["Ride back out through {area:87} and east along the road to the {area:62}. {npc:881} (level 9) stands by its farmhouse."] = "Езжайте обратно через {area:87} и по дороге на восток. Цель: {area:62}. {npc:881} (9-й уровень) стоит у фермерского дома.",
 	-- ["Ride back out through {area:87} and east along the road to the {area:62}. {quest:1688} (level 9) stands by its farmhouse."] = "Езжайте обратно через {area:87} и по дороге на восток. Цель: {area:62}. {quest:1688} (9-й уровень) стоит у фермерского дома.",
+	-- ["Ride back out through {area:87} and east to {area:86}. {npc:6172} lies south of the lake: use the {item:6866} on him. The Defias Rogue Wizards around him carry the {item:6846}."] = "Езжайте обратно через {area:87} и на восток. Цель: {area:86}. {npc:6172} лежит к югу от озера: используйте на нем {item:6866}. {item:6846} – у волшебников-плутов из Братства Справедливости вокруг.",
 	-- ["{area:57}'s mouth"] = "Вход: {area:57}",
 	-- ["{item:1006}: Princess"] = "{item:1006}: Принцесса",
 }

@@ -20,7 +20,7 @@ return {
 
 	-- Step 2: The Sepulcher
 	-- {zone:1421} Silverpine Forest · {area:228} The Sepulcher · {npc:248840} Trevan Rol · {npc:259611} Deathguard Baldren
-	["Ride south through {zone:1421} to the {area:228}. {npc:248840} stands in the town; {npc:259611} keeps watch near its entrance."] = "Siga para o sul por {zone:1421} até o {area:228}. {npc:248840} fica na cidade; {npc:259611} vigia perto da entrada.",
+	["Head south through {zone:1421} to the {area:228}. {npc:248840} stands in the town; {npc:259611} keeps watch near its entrance."] = "",
 
 	-- Step 3: The pyre on Fenris Isle
 	-- {area:172} Fenris Isle
@@ -48,4 +48,7 @@ return {
 	["Once she is clear of {area:235}, {npc:259620} waits for you in the {area:228}. Speak with her again to hear what really happened on the road."] = "Assim que sair de {area:235}, {npc:259620} espera você no {area:228}. Fale com ela de novo para saber o que realmente aconteceu na estrada.",
 	-- {npc:259620} Lumina Windsinger · {area:228} The Sepulcher
 	["{npc:259620}, the {area:228}"] = "{npc:259620}, {area:228}",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Ride south through {zone:1421} to the {area:228}. {npc:248840} stands in the town; {npc:259611} keeps watch near its entrance."] = "Siga para o sul por {zone:1421} até o {area:228}. {npc:248840} fica na cidade; {npc:259611} vigia perto da entrada.",
 }

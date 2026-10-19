@@ -25,7 +25,7 @@ return {
 	-- {area:96} Tower of Ilgalar
 	["The {area:96}"] = "{area:96}",
 	-- {zone:1429} Elwynn Forest
-	["Ride east through {zone:1429} into Redridge. The fallen mage's tower of Ilgalar stands in the east of the zone; the treatise is in his library."] = "向東騎過{zone:1429}進入赤脊山。墮落法師的伊爾加拉之塔位於該區東部；論文在他的書房裡。",
+	["Head east through {zone:1429} into Redridge. The fallen mage's tower of Ilgalar stands in the east of the zone; the treatise is in his library."] = "",
 
 	-- Step 5: Back to Andromath
 	["Back to Andromath"] = "返回高階巫師安多瑪斯",
@@ -40,4 +40,7 @@ return {
 	-- Step 7: Wynne Larson
 	-- {npc:1309} Wynne Larson · {object:23296} Larson Clothiers · {object:2101} Mage Quarter
 	["{npc:1309} works at {object:23296} in the {object:2101}."] = "{npc:1309}在{object:2101}的{object:23296}工作。",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Ride east through {zone:1429} into Redridge. The fallen mage's tower of Ilgalar stands in the east of the zone; the treatise is in his library."] = "向東騎過{zone:1429}進入赤脊山。墮落法師的伊爾加拉之塔位於該區東部；論文在他的書房裡。",
 }

@@ -20,7 +20,7 @@ return {
 
 	-- Step 2: The Sepulcher
 	-- {zone:1421} Silverpine Forest · {area:228} The Sepulcher · {npc:248840} Trevan Rol · {npc:259611} Deathguard Baldren
-	["Ride south through {zone:1421} to the {area:228}. {npc:248840} stands in the town; {npc:259611} keeps watch near its entrance."] = "{zone:1421}을(를) 지나 남쪽의 {area:228}로 가십시오. {npc:248840}은(는) 마을 안에 있고, {npc:259611}은(는) 입구 근처에서 경계를 섭니다.",
+	["Head south through {zone:1421} to the {area:228}. {npc:248840} stands in the town; {npc:259611} keeps watch near its entrance."] = "",
 
 	-- Step 3: The pyre on Fenris Isle
 	-- {area:172} Fenris Isle
@@ -52,7 +52,7 @@ return {
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Back to the {area:228}"] = "{area:228}(으)로 돌아가기",
 	-- ["Once she is clear of {area:235}, Lumina waits for you in the {area:228}. Speak with her again to hear what really happened on the road."] = "{area:235}을(를) 벗어나면 Lumina가 {area:228}에서 기다립니다. 다시 대화하여 길에서 실제로 무슨 일이 있었는지 들으십시오.",
-	-- ["Ride south through {zone:1421} to the {area:228}. {npc:248840} stands in the town; {npc:259611} keeps watch near its entrance."] = "{zone:1421}을(를) 지나 남쪽의 {area:228}(으)로 가십시오. {npc:248840}은(는) 마을 안에 있고, {npc:259611}은(는) 입구 근처에서 경계를 섭니다.",
+	-- ["Ride south through {zone:1421} to the {area:228}. {npc:248840} stands in the town; {npc:259611} keeps watch near its entrance."] = "{zone:1421}을(를) 지나 남쪽의 {area:228}로 가십시오. {npc:248840}은(는) 마을 안에 있고, {npc:259611}은(는) 입구 근처에서 경계를 섭니다.",
 	-- ["{area:172} lies in the lake east of the {area:228}. The charred remains are on its shore."] = "{area:172}은(는) {area:228} 동쪽 호수에 있습니다. 불탄 유해는 그 물가에 있습니다.",
 	-- ["{npc:259620}, the {area:228}"] = "{npc:259620}, {area:228}",
 }

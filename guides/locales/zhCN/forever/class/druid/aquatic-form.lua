@@ -28,7 +28,7 @@ return {
 
 	-- Step 4: Half Pendant of Aquatic Endurance
 	-- {area:442} Auberdine · {zone:1453} Stormwind · {area:108} Sentinel Hill · {object:177790} Strange Lockbox
-	["Take the boat from {area:442} to {zone:1453} and fly to {area:108}. Ride north-west to the coast: the {object:177790} lies on the sea floor off the shore."] = "从{area:442}乘船前往{zone:1453}，再飞往{area:108}。向西北骑到海岸：{object:177790}在近岸的海底。",
+	["Take the boat from {area:442} to {zone:1453} and fly to {area:108}. Head north-west to the coast: the {object:177790} lies on the sea floor off the shore."] = "",
 
 	-- Step 5: Pendant of the Sea Lion
 	-- {spell:18960} Teleport: Moonglade · {item:15885} Pendant of the Sea Lion · {area:2362} Shrine of Remulos · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {area:702} Rut'theran Village
@@ -66,4 +66,5 @@ return {
 	-- ["Cast Teleport: {zone:1450}. Join the two halves into the {item:15885} near the {area:2362}, on the north-west shore of the lake, then see {npc:11802} in {area:2361}. {npc:11798} flies druids to {area:1638}."] = "施放传送：{zone:1450}。在湖西北岸的{area:2362}附近把两半合成{item:15885}，然后去{area:2361}找{npc:11802}。{npc:11798}可送德鲁伊飞往{area:1638}。",
 	-- ["Cast Teleport: {zone:1450}. {npc:11802} is in {area:2361}. Shrine Baubles lie in the containers on the floor of {area:656}, below {area:2361}: take one to the {area:2362} on the north-west shore, use it there and speak to {npc:11799}."] = "施放传送：{zone:1450}。{npc:11802}在{area:2361}。神殿灵珠在{area:2361}下方{area:656}湖底的容器里：拿一个到西北岸的{area:2362}，在那里使用，然后与{npc:11799}交谈。",
 	-- ["Cast Teleport: {zone:1450}. {npc:11802} is in {area:2361}. The Shrine Baubles lie on the bed of {area:656} and fade within minutes: swim one straight to the {area:2362} on the north-west shore, use it there and speak to {npc:11799}."] = "施放传送：{zone:1450}。{npc:11802}在{area:2361}。神殿灵珠在{area:656}湖底，几分钟内就会消失：拿到后直接游到西北岸的{area:2362}，在那里使用，然后与{npc:11799}交谈。",
+	-- ["Take the boat from {area:442} to {zone:1453} and fly to {area:108}. Ride north-west to the coast: the {object:177790} lies on the sea floor off the shore."] = "从{area:442}乘船前往{zone:1453}，再飞往{area:108}。向西北骑到海岸：{object:177790}在近岸的海底。",
 }

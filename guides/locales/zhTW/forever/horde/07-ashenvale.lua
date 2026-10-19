@@ -101,7 +101,7 @@ return {
 
 	-- Step 23: Thunder Bluff
 	-- {area:1638} Thunder Bluff · {area:378} Camp Taurajo · {zone:1412} Mulgore · {area:222} Bloodhoof Village · {npc:2995} Tal
-	["Fly to {area:1638} if you know the flight path. If not, fly to {area:378}, ride west into {zone:1412} past {area:222} to {area:1638} and take its flight path from {npc:2995} on the central rise."] = "如果你知道飛行路線，就飛往{area:1638}。如果不知道，飛往{area:378}，向西騎進{zone:1412}經過{area:222}前往{area:1638}，並在中央高地向{npc:2995}取得飛行路線。",
+	["Fly to {area:1638} if you know the flight path. If not, fly to {area:378}, head west into {zone:1412} past {area:222} to {area:1638} and take its flight path from {npc:2995} on the central rise."] = "",
 	-- {npc:3057} Cairne Bloodhoof · {area:1638} Thunder Bluff · {quest:93739} Exploring the Horde
 	["Speak with {npc:3057}, in {area:1638}: {quest:93739}"] = "與{area:1638}的{npc:3057}交談：{quest:93739}",
 
@@ -216,6 +216,7 @@ return {
 	["The next guide flies on from here to {zone:1454}."] = "下一份指南會從這裡飛往{zone:1454}。",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Fly to {area:1638} if you know the flight path. If not, fly to {area:378}, ride west into {zone:1412} past {area:222} to {area:1638} and take its flight path from {npc:2995} on the central rise."] = "如果你知道飛行路線，就飛往{area:1638}。如果不知道，飛往{area:378}，向西騎進{zone:1412}經過{area:222}前往{area:1638}，並在中央高地向{npc:2995}取得飛行路線。",
 	-- ["Shadumbra"] = "薩杜布拉",
 	-- ["Sharptalon"] = "沙普塔隆",
 	-- ["The {area:1718}"] = "{area:1718}",

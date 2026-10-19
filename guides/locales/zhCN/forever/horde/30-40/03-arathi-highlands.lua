@@ -32,13 +32,13 @@ return {
 	-- {area:272} Tarren Mill
 	["Fly to {area:272}"] = "飞往{area:272}",
 	-- {zone:1458} Undercity · {area:272} Tarren Mill
-	["The zeppelin lands at the towers outside the {zone:1458}: ride down into the city and fly to {area:272}."] = "飞艇降落在{zone:1458}外的塔楼：骑下去进城，飞往{area:272}。",
+	["The zeppelin lands at the towers outside the {zone:1458}: head down into the city and fly to {area:272}."] = "",
 
 	-- Step 6: Boulderfist camp
 	["Boulderfist camp"] = "石拳营地",
 	-- {area:272} Tarren Mill · {area:1857} Thoradin's Wall · {area:313} Northfold Manor
 	-- plural, as words: Boulderfist Ogres = {npc:2562} Boulderfist Ogre
-	["Ride east out of {area:272} through {area:1857} and follow the road east. The Boulderfist Ogres and Enforcers (32-34) camp south of the road, south-east of {area:313}."] = "从{area:272}向东骑出，穿过{area:1857}，沿道路向东。石拳食人魔和石拳执行者（32-34级）在道路南边、{area:313}东南方扎营。",
+	["Head east out of {area:272} through {area:1857} and follow the road east. The Boulderfist Ogres and Enforcers (32-34) camp south of the road, south-east of {area:313}."] = "",
 
 	-- Step 7: The Shards of Myzrael
 	-- {object:138492} Shards of Myzrael
@@ -80,7 +80,7 @@ return {
 
 	-- Step 16: Faldir's Cove
 	-- {npc:2766} Lolo the Lookout
-	["Ride south-west to the goblins' cove on the southern coast. {npc:2766} keeps watch on the cliff above it."] = "向西南骑行到南部海岸的地精海湾。{npc:2766}在海湾上方的悬崖上放哨。",
+	["Head south-west to the goblins' cove on the southern coast. {npc:2766} keeps watch on the cliff above it."] = "",
 
 	-- Step 17: Professor Phizzlethorpe
 	["Escort the professor down to the shore. Two Daggerspine naga ambush him on the way: stay close."] = "护送教授到岸边。途中会有两个刺脊纳迦伏击他：跟紧他。",
@@ -97,7 +97,7 @@ return {
 	-- Step 21: The Stone of Outer Binding
 	-- {object:2690} Stone of Outer Binding
 	["The {object:2690}"] = "{object:2690}",
-	["Ride north; the outer circle stands in the middle of the highlands."] = "向北骑行；外部法阵位于高地中央。",
+	["Head north; the outer circle stands in the middle of the highlands."] = "",
 
 	-- Step 22: Northfold Manor
 	-- plural, as words: Bloodstone Amulets = {item:4495} Bloodstone Amulet
@@ -107,7 +107,7 @@ return {
 	-- {object:2689} Stone of West Binding
 	["The {object:2689}"] = "{object:2689}",
 	-- {area:1857} Thoradin's Wall
-	["The western circle is near {area:1857}, where you rode in."] = "西部法阵在你进来时经过的{area:1857}附近。",
+	["The western circle is near {area:1857}, where you came in."] = "",
 
 	-- Step 24: The Stone of Inner Binding
 	-- {object:2702} Stone of Inner Binding
@@ -132,7 +132,7 @@ return {
 	-- {zone:1418} Badlands
 	["Into the {zone:1418}"] = "进入{zone:1418}",
 	-- {area:880} Thandol Span · {zone:1437} Wetlands · {area:150} Menethil Harbor · {zone:1432} Loch Modan · {zone:1418} Badlands · {area:1877} Valley of Fangs
-	["Ride south-west out of Arathi over {area:880}, south through the {zone:1437} (keep clear of {area:150}) and east into {zone:1432}; the road leaves {zone:1432} to the south into the {zone:1418}. Follow it south to the goblin camp in the {area:1877}."] = "从阿拉希向西南越过{area:880}，向南穿过{zone:1437}（远离{area:150}），向东进入{zone:1432}；道路从{zone:1432}向南通往{zone:1418}。沿路向南到{area:1877}的地精营地。",
+	["Head south-west out of Arathi over {area:880}, south through the {zone:1437} (keep clear of {area:150}) and east into {zone:1432}; the road leaves {zone:1432} to the south into the {zone:1418}. Follow it south to the goblin camp in the {area:1877}."] = "",
 
 	-- Step 29: Valley of Fangs
 	-- {quest:1106} Martek the Exiled · {area:439} Shimmering Flats
@@ -140,7 +140,7 @@ return {
 
 	-- Step 30: The Dustbowl
 	-- {npc:2921} Lotwil Veriatus · {area:1878} The Dustbowl · {area:340} Kargath
-	["Ride west along the road; {npc:2921}'s camp sits in the {area:1878} halfway to {area:340}."] = "沿道路向西骑行；{npc:2921}的营地在前往{area:340}半途的{area:1878}。",
+	["Head west along the road; {npc:2921}'s camp sits in the {area:1878} halfway to {area:340}."] = "",
 
 	-- Step 31: Kargath
 	-- {area:340} Kargath
@@ -176,7 +176,7 @@ return {
 
 	-- Step 38: Kargath
 	-- {area:340} Kargath
-	["Ride north back to {area:340}."] = "向北骑回{area:340}。",
+	["Head north back to {area:340}."] = "",
 
 	-- Step 39: The Dustbowl
 	-- {npc:2920} Lucien Tosselwrench · {item:2868} Patterned Bronze Bracers · {skill:164} Blacksmithing
@@ -201,7 +201,7 @@ return {
 
 	-- Step 45: Agmond's End
 	-- {area:1877} Valley of Fangs
-	["Ride back south down the road, past the {area:1877}."] = "沿道路向南骑回，经过{area:1877}。",
+	["Head back south down the road, past the {area:1877}."] = "",
 
 	-- Step 46: Hearth to Kargath
 	-- {area:340} Kargath
@@ -220,13 +220,13 @@ return {
 
 	-- Step 51: Regthar Deathgate
 	-- {area:380} Crossroads · {area:386} Forgotten Pools · {npc:3389} Regthar Deathgate
-	["Ride north up the road from the {area:380} to the {area:386}; {npc:3389} keeps watch on the rise above the water."] = "从{area:380}沿道路向北骑到{area:386}；{npc:3389}在水边的高地上放哨。",
+	["Head north up the road from the {area:380} to the {area:386}; {npc:3389} keeps watch on the rise above the water."] = "",
 	-- {npc:5395} Felgur Twocuts · {zone:1443} Desolace
 	["for {npc:5395} in {zone:1443}, in the next guide"] = "交给{zone:1443}的{npc:5395}，在下一份指南中",
 
 	-- Step 52: Ratchet
 	-- {area:380} Crossroads · {area:392} Ratchet
-	["Ride back south to the {area:380} and fly to {area:392}."] = "向南骑回{area:380}，飞往{area:392}。",
+	["Head back south to the {area:380} and fly to {area:392}."] = "",
 	-- {item:3713} Soothing Spices · {zone:1445} Dustwallow Marsh
 	["{item:3713}, for \"Swamp Eye\" Jarl in {zone:1445}"] = "{item:3713}，交给{zone:1445}的“沼泽之眼”加尔",
 	-- {zone:1445} Dustwallow Marsh
@@ -234,11 +234,23 @@ return {
 
 	-- Step 53: The Affray
 	-- {area:392} Ratchet · {area:720} Fray Island · {npc:6236} Klannoc Macleod · {npc:6238} Big Will
-	["Ride south along the coast from {area:392} to {area:720}. {npc:6236} stands by the arena: step on the grate to start the fight; the challengers come one at a time, then {npc:6238} (33)."] = "从{area:392}沿海岸向南骑到{area:720}。{npc:6236}站在竞技场旁：踏上格栅开始战斗；挑战者依次上场，然后是{npc:6238}（33级）。",
+	["Head south along the coast from {area:392} to {area:720}. {npc:6236} stands by the arena: step on the grate to start the fight; the challengers come one at a time, then {npc:6238} (33)."] = "",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Ride back south down the road, past the {area:1877}."] = "沿道路向南骑回，经过{area:1877}。",
+	-- ["Ride back south to the {area:380} and fly to {area:392}."] = "向南骑回{area:380}，飞往{area:392}。",
+	-- ["Ride east out of {area:272} through {area:1857} and follow the road east. The Boulderfist Ogres and Enforcers (32-34) camp south of the road, south-east of {area:313}."] = "从{area:272}向东骑出，穿过{area:1857}，沿道路向东。石拳食人魔和石拳执行者（32-34级）在道路南边、{area:313}东南方扎营。",
+	-- ["Ride north back to {area:340}."] = "向北骑回{area:340}。",
+	-- ["Ride north up the road from the {area:380} to the {area:386}; {npc:3389} keeps watch on the rise above the water."] = "从{area:380}沿道路向北骑到{area:386}；{npc:3389}在水边的高地上放哨。",
+	-- ["Ride north; the outer circle stands in the middle of the highlands."] = "向北骑行；外部法阵位于高地中央。",
+	-- ["Ride south along the coast from {area:392} to {area:720}. {npc:6236} stands by the arena: step on the grate to start the fight; the challengers come one at a time, then {npc:6238} (33)."] = "从{area:392}沿海岸向南骑到{area:720}。{npc:6236}站在竞技场旁：踏上格栅开始战斗；挑战者依次上场，然后是{npc:6238}（33级）。",
+	-- ["Ride south-west out of Arathi over {area:880}, south through the {zone:1437} (keep clear of {area:150}) and east into {zone:1432}; the road leaves {zone:1432} to the south into the {zone:1418}. Follow it south to the goblin camp in the {area:1877}."] = "从阿拉希向西南越过{area:880}，向南穿过{zone:1437}（远离{area:150}），向东进入{zone:1432}；道路从{zone:1432}向南通往{zone:1418}。沿路向南到{area:1877}的地精营地。",
+	-- ["Ride south-west to the goblins' cove on the southern coast. {npc:2766} keeps watch on the cliff above it."] = "向西南骑行到南部海岸的地精海湾。{npc:2766}在海湾上方的悬崖上放哨。",
 	-- ["Ride west along the road; Lotwil's camp sits in the {area:1878} halfway to {area:340}."] = "沿道路向西骑行；鲁特维尔的营地在前往{area:340}半途的{area:1878}。",
+	-- ["Ride west along the road; {npc:2921}'s camp sits in the {area:1878} halfway to {area:340}."] = "沿道路向西骑行；{npc:2921}的营地在前往{area:340}半途的{area:1878}。",
 	-- ["The Elder Crag Coyotes and Giant Buzzards roam the basin south of the {area:1878}. Coyotes drop both the jawbones and the fangs; only the buzzards drop wings and gizzards."] = "老峭壁山狗和巨型秃鹫在{area:1878}南边的盆地中游荡。山狗掉落颚骨和尖牙；只有秃鹫掉落翅膀和胃。",
 	-- ["The bigger Rock Elementals stand on the slopes north-west of the {area:1878}; each one drops a slab."] = "更大的石元素站在{area:1878}西北方的山坡上；每个都掉落一块石板。",
+	-- ["The western circle is near {area:1857}, where you rode in."] = "西部法阵在你进来时经过的{area:1857}附近。",
+	-- ["The zeppelin lands at the towers outside the {zone:1458}: ride down into the city and fly to {area:272}."] = "飞艇降落在{zone:1458}外的塔楼：骑下去进城，飞往{area:272}。",
 	-- ["The {area:380}"] = "{area:380}",
 }

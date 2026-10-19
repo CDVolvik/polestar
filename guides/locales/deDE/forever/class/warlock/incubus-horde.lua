@@ -38,11 +38,14 @@ return {
 
 	-- Step 7: Isaac Pearson
 	-- {npc:185334} Isaac Pearson · {area:392} Ratchet · {zone:1413} Barrens · {zone:1411} Durotar
-	["{npc:185334} works in {area:392}, on the {zone:1413} coast. Take the zeppelin to {zone:1411} and ride or fly on to {area:392}."] = "{npc:185334} arbeitet in {area:392}, an der Küste von {zone:1413}. Nimm den Zeppelin nach {zone:1411} und reite oder flieg weiter nach {area:392}.",
+	["{npc:185334} works in {area:392}, on the {zone:1413} coast. Take the zeppelin to {zone:1411} and walk or fly on to {area:392}."] = "",
 
 	-- Step 8: The Binding (Undercity)
 	-- {npc:5675} Carendin Halgar · {object:36082} Magic Quarter
 	["Back to {npc:5675} in the {object:36082}. Place the hearts at the summoning circle below him and defeat the incubus they call."] = "Zurück zu {npc:5675} in {object:36082}. Leg die Herzen am Beschwörungskreis unter ihm ab und besiege den Inkubus, den sie rufen.",
 	-- {npc:5675} Carendin Halgar
 	["{npc:5675}: he binds the incubus to you"] = "{npc:5675}: Er bindet den Inkubus an dich",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["{npc:185334} works in {area:392}, on the {zone:1413} coast. Take the zeppelin to {zone:1411} and ride or fly on to {area:392}."] = "{npc:185334} arbeitet in {area:392}, an der Küste von {zone:1413}. Nimm den Zeppelin nach {zone:1411} und reite oder flieg weiter nach {area:392}.",
 }

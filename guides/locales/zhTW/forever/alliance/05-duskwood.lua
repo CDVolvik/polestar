@@ -68,7 +68,7 @@ return {
 
 	-- Step 11: Watcher Dodds
 	-- {area:245} Yorgen Farmstead
-	["Ride back east along the road to the {area:245}."] = "沿著道路向東騎回{area:245}。",
+	["Head back east along the road to the {area:245}."] = "",
 
 	-- Step 12: Yorgen Farmstead
 	["The mound of loose dirt lies south of the farmhouse, by the old stump."] = "鬆土堆在農舍南邊的老樹樁旁。",
@@ -78,13 +78,13 @@ return {
 	["Her house stands on the hill south-east of {area:42}, above the {area:121}."] = "她的房子在{area:42}東南方的山丘上，位於{area:121}上方。",
 
 	-- Step 16: Abercrombie
-	["Ride west along the road once more."] = "再次沿著道路向西騎。",
+	["Head west along the road once more."] = "",
 
 	-- Step 18: Back to Darkshire
 	-- {area:42} Darkshire
 	["Back to {area:42}"] = "回到{area:42}",
 	-- {area:42} Darkshire
-	["Ride back east to {area:42}."] = "向東騎回{area:42}。",
+	["Head back east to {area:42}."] = "",
 	-- {npc:267} Clerk Daltry
 	["{npc:267}, in the town hall"] = "{npc:267}，在市政廳裡",
 	-- {npc:273} Tavernkeep Smitts
@@ -98,7 +98,7 @@ return {
 	["Skeletal Horrors walk the hillside between {area:42} and the {area:121}, south-east of town; they drop the Rot Blossoms."] = "恐怖骸骨在城鎮東南方、{area:42}與{area:121}之間的山坡上走動；牠們會掉落腐敗之花。",
 
 	-- Step 21: Abercrombie
-	["Ride west to the hermit once more."] = "再次向西騎去找隱士。",
+	["Head west to the hermit once more."] = "",
 
 	-- Step 22: Ghoul Ribs
 	-- plural, as words: Ghoul Ribs = {item:884} Ghoul Rib
@@ -117,13 +117,13 @@ return {
 
 	-- Step 26: Agent Kearnen
 	-- {area:94} Raven Hill · {zone:1436} Westfall · {npc:7024} Agent Kearnen · {npc:7053} Klaven Mortwake · {npc:7051} Malformed Defias Drone
-	["Ride west along the road out of {area:94} into {zone:1436}. {npc:7024} watches {npc:7053}'s tower from the hills just inside the border. The {npc:7051} (level 23) guarding the tower carries its key; Klaven's journal is in the chest at the top."] = "沿著道路向西離開{area:94}進入{zone:1436}。{npc:7024}在邊界內側的山丘上監視{npc:7053}的塔。守衛塔的{npc:7051}（等級23）身上帶著塔的鑰匙；克拉文的日記在塔頂的箱子裡。",
+	["Head west along the road out of {area:94} into {zone:1436}. {npc:7024} watches {npc:7053}'s tower from the hills just inside the border. The {npc:7051} (level 23) guarding the tower carries its key; Klaven's journal is in the chest at the top."] = "",
 	-- {item:7908} Klaven Mortwake's Journal
 	["{item:7908}, in the chest"] = "{item:7908}，在箱子裡",
 
 	-- Step 27: Master Mathias Shaw
 	-- {zone:1453} Stormwind · {object:2100} Old Town
-	["Ride north through Elwynn to {zone:1453}; Mathias Shaw is at SI:7 in {object:2100}."] = "向北騎過艾爾文森林前往{zone:1453}；馬迪亞斯·肖爾在{object:2100}的軍情七處。",
+	["Head north through Elwynn to {zone:1453}; Mathias Shaw is at SI:7 in {object:2100}."] = "",
 	-- {npc:332} Master Mathias Shaw · {item:18160} Recipe: Thistle Tea
 	["{npc:332}: Poisons, and {item:18160}"] = "{npc:332}：毒藥，以及{item:18160}",
 	-- {quest:2607} The Touch of Zanzil · {npc:7207} Doc Mixilpixil
@@ -144,5 +144,11 @@ return {
 	["{zone:1453} has no shaman trainer: take the {area:2257} from the {object:28027} to {zone:1455}, train with {npc:258098}, then ride the tram back for the {area:442} boat."] = "{zone:1453}沒有薩滿訓練師：從{object:28027}搭乘{area:2257}前往{zone:1455}，向{npc:258098}學習，然後搭地鐵回來搭前往{area:442}的船。",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Ride back east along the road to the {area:245}."] = "沿著道路向東騎回{area:245}。",
+	-- ["Ride back east to {area:42}."] = "向東騎回{area:42}。",
+	-- ["Ride north through Elwynn to {zone:1453}; Mathias Shaw is at SI:7 in {object:2100}."] = "向北騎過艾爾文森林前往{zone:1453}；馬迪亞斯·肖爾在{object:2100}的軍情七處。",
+	-- ["Ride west along the road once more."] = "再次沿著道路向西騎。",
+	-- ["Ride west along the road out of {area:94} into {zone:1436}. {npc:7024} watches {npc:7053}'s tower from the hills just inside the border. The {npc:7051} (level 23) guarding the tower carries its key; Klaven's journal is in the chest at the top."] = "沿著道路向西離開{area:94}進入{zone:1436}。{npc:7024}在邊界內側的山丘上監視{npc:7053}的塔。守衛塔的{npc:7051}（等級23）身上帶著塔的鑰匙；克拉文的日記在塔頂的箱子裡。",
+	-- ["Ride west to the hermit once more."] = "再次向西騎去找隱士。",
 	-- ["{npc:332}: {spell:2842}, and {item:18160}"] = "{npc:332}：{spell:2842}，以及{item:18160}",
 }

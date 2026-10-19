@@ -51,7 +51,7 @@ return {
 	["Hillsbrad Miners"] = "希爾斯布萊德礦工",
 	-- {zone:1424} Hillsbrad Foothills · {item:7127} Powdered Azurite · {zone:1454} Orgrimmar · {zone:1420} Tirisfal Glades · {zone:1421} Silverpine Forest
 	-- plural, as words: Hillsbrad Miners = {npc:2269} Hillsbrad Miner
-	["The Hillsbrad Miners work the mine in the west of {zone:1424}; they drop the {item:7127}. Take the zeppelin from {zone:1454} to {zone:1420} and ride south through {zone:1421}."] = "希爾斯布萊德礦工在{zone:1424}西部的礦坑工作；他們會掉落{item:7127}。從{zone:1454}搭飛艇前往{zone:1420}，再向南騎過{zone:1421}。",
+	["The Hillsbrad Miners work the mine in the west of {zone:1424}; they drop the {item:7127}. Take the zeppelin from {zone:1454} to {zone:1420} and head south through {zone:1421}."] = "",
 	-- {item:7127} Powdered Azurite
 	-- plural, as words: Hillsbrad Miners = {npc:2269} Hillsbrad Miner
 	["{item:7127} from the Hillsbrad Miners"] = "從希爾斯布萊德礦工身上取得{item:7127}",
@@ -97,4 +97,7 @@ return {
 	["The Dragonmaw orcs camp in the middle of the {zone:1437}, south of the road; Raiders, Swamprunners, Centurions, Shadowwarders and Bonewarders all drop the Sturdy Dragonmaw Shinbones."] = "龍喉獸人在{zone:1437}中部、道路南邊紮營；龍喉襲擊者、龍喉沼澤行者、龍喉百夫長、龍喉暗影守衛和龍喉白骨守衛都會掉落結實的龍喉脛骨。",
 	-- plural, as words: Sturdy Dragonmaw Shinbones = {item:7134} Sturdy Dragonmaw Shinbone
 	["Sturdy Dragonmaw Shinbones"] = "結實的龍喉脛骨",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["The Hillsbrad Miners work the mine in the west of {zone:1424}; they drop the {item:7127}. Take the zeppelin from {zone:1454} to {zone:1420} and ride south through {zone:1421}."] = "希爾斯布萊德礦工在{zone:1424}西部的礦坑工作；他們會掉落{item:7127}。從{zone:1454}搭飛艇前往{zone:1420}，再向南騎過{zone:1421}。",
 }

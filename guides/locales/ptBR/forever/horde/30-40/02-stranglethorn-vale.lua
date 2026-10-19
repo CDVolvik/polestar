@@ -22,7 +22,7 @@ return {
 
 	-- Step 4: Islen Waterseer
 	-- {zone:1454} Orgrimmar · {object:3202} Grom'gol (no name in this language: may be words) · {area:392} Ratchet · {npc:5901} Islen Waterseer
-	["Take the {zone:1454} zeppelin from the tower on the west side of {object:3202} and fly to {area:392}. {npc:5901} camps on the coast a short ride south of it."] = "Pegue o zepelim de {zone:1454} na torre do lado oeste de {object:3202} e voe até {area:392}. {npc:5901} acampa no litoral, um pouco ao sul de lá.",
+	["Take the {zone:1454} zeppelin from the tower on the west side of {object:3202} and fly to {area:392}. {npc:5901} camps on the coast a short walk south of it."] = "",
 	-- {npc:5901} Islen Waterseer · {npc:3527} Healing Stream Totem · {item:5177} Water Totem
 	["{npc:5901}: {npc:3527} and your {item:5177}"] = "{npc:5901}: {npc:3527} e seu {item:5177}",
 
@@ -105,7 +105,7 @@ return {
 	-- {area:35} Booty Bay
 	["Fly to {area:35}"] = "Voe até {area:35}",
 	-- {object:3202} Grom'gol (no name in this language: may be words) · {area:35} Booty Bay
-	["Ride south down the coast to {object:3202} and fly to {area:35}."] = "Siga para o sul pelo litoral até {object:3202} e voe até {area:35}.",
+	["Head south down the coast to {object:3202} and fly to {area:35}."] = "",
 
 	-- Step 24: Fly to Grom'gol
 	-- {npc:2497} Nimboya
@@ -143,7 +143,7 @@ return {
 
 	-- Step 32: Grom'gol
 	-- {object:3202} Grom'gol (no name in this language: may be words)
-	["Ride back south to {object:3202}."] = "Volte para o sul até {object:3202}.",
+	["Head back south to {object:3202}."] = "",
 
 	-- Step 33: Green Hills pages
 	["Green Hills pages"] = "Páginas de Grande Espinhaço: Veredas",
@@ -181,7 +181,7 @@ return {
 	-- Step 43: Venture Co. camp
 	["Venture Co. camp"] = "Acampamento da Empreendimentos S.A.",
 	-- plural, as words: Venture Co. Geologists = {npc:1096} Venture Co. Geologist · Tumbled Crystals = {item:4106} Tumbled Crystal
-	["Ride north past Nesingwary's camp to the lake. The Venture Co. Geologists (34-36) work the camps along its western shore; they carry the Tumbled Crystals."] = "Siga para o norte passando pelo acampamento de Rosarães Guima até o lago. Os Geólogos da Empreendimentos S.A. (34-36) trabalham nos acampamentos ao longo da margem oeste; eles carregam os Cristais Rolados.",
+	["Head north past Nesingwary's camp to the lake. The Venture Co. Geologists (34-36) work the camps along its western shore; they carry the Tumbled Crystals."] = "",
 
 	-- Step 44: Hearth to Booty Bay
 	-- {area:35} Booty Bay
@@ -191,4 +191,8 @@ return {
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Follow the road north to the camp."] = "Siga a estrada para o norte até o acampamento.",
+	-- ["Ride back south to {object:3202}."] = "Volte para o sul até {object:3202}.",
+	-- ["Ride north past Nesingwary's camp to the lake. The Venture Co. Geologists (34-36) work the camps along its western shore; they carry the Tumbled Crystals."] = "Siga para o norte passando pelo acampamento de Rosarães Guima até o lago. Os Geólogos da Empreendimentos S.A. (34-36) trabalham nos acampamentos ao longo da margem oeste; eles carregam os Cristais Rolados.",
+	-- ["Ride south down the coast to {object:3202} and fly to {area:35}."] = "Siga para o sul pelo litoral até {object:3202} e voe até {area:35}.",
+	-- ["Take the {zone:1454} zeppelin from the tower on the west side of {object:3202} and fly to {area:392}. {npc:5901} camps on the coast a short ride south of it."] = "Pegue o zepelim de {zone:1454} na torre do lado oeste de {object:3202} e voe até {area:392}. {npc:5901} acampa no litoral, um pouco ao sul de lá.",
 }

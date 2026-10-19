@@ -22,9 +22,9 @@ return {
 
 	-- Step 4: Boat to Auberdine
 	-- {area:17203} Stormwind Harbor · {area:442} Auberdine · {npc:3649} Thundris Windweaver · {zone:1439} Darkshore
-	["From {area:17203} take the boat to {area:442}; {npc:3649} stands at the north end of the village. Then ride south along the road through {zone:1439}."] = "De {area:17203}, pegue o navio até {area:442}; {npc:3649} fica no extremo norte da vila. Depois cavalgue para o sul pela estrada através de {zone:1439}.",
-	-- {npc:3649} Thundris Windweaver
-	["{npc:3649}: Alexston's reply"] = "{npc:3649}: a resposta de Alexston",
+	["From {area:17203} take the boat to {area:442}; {npc:3649} stands at the north end of the village. Then head south along the road through {zone:1439}."] = "",
+	-- {npc:3649} Thundris Windweaver · {zone:1453} Stormwind
+	["{npc:3649}: Alexston's reply, if you took it in {zone:1453}"] = "",
 
 	-- Step 5: Kerlonian Evershade
 	-- {area:448} Grove of the Ancients · {zone:1439} Darkshore · {item:13536} Horn of Awakening · {zone:1440} Ashenvale · {npc:11219} Liladris Moonriver · {area:413} Maestra's Post
@@ -46,7 +46,7 @@ return {
 
 	-- Step 10: Teronis' Corpse
 	-- {area:441} Lake Falathim · {item:5463} Glowing Gem
-	["Ride west to the shore of {area:441}. Teronis lies among the Saltspittle murlocs; any murloc can drop the {item:5463}."] = "Cavalgue para oeste até a margem do {area:441}. O cadáver de Teronis está entre os murlocs Babassal; qualquer murloc pode deixar cair a {item:5463}.",
+	["Head west to the shore of {area:441}. Teronis lies among the Saltspittle murlocs; any murloc can drop the {item:5463}."] = "",
 
 	-- Step 11: Shrine of Aessina
 	-- {npc:3585} Therysil · {area:416} Shrine of Aessina
@@ -100,7 +100,7 @@ return {
 
 	-- Step 28: Windshear Crag
 	-- {area:421} Mystral Lake · {area:1276} Talondeep Path · {area:461} Windshear Crag · {npc:4080} Kaela Shadowspear · {npc:4077} Gaxim Rustfizzle · {area:1076} Webwinder Path
-	["Ride south past {area:421} into the {area:1276} tunnel; it comes out in Stonetalon's {area:461}. {npc:4080} and {npc:4077} camp on the {area:1076} south-west of the crag."] = "Cavalgue para o sul, passando o {area:421}, até o túnel da {area:1276}; ele sai no {area:461}, na Cordilheira das Torres de Pedra. {npc:4080} e {npc:4077} acampam na {area:1076}, a sudoeste do penhasco.",
+	["Head south past {area:421} into the {area:1276} tunnel; it comes out in Stonetalon's {area:461}. {npc:4080} and {npc:4077} camp on the {area:1076} south-west of the crag."] = "",
 	-- {npc:4201} Ziz Fizziks
 	["{npc:4201}, in the hut north of them"] = "{npc:4201}, na cabana ao norte deles",
 
@@ -117,7 +117,7 @@ return {
 	-- {area:150} Menethil Harbor
 	["To {area:150}"] = "Até {area:150}",
 	-- {area:1276} Talondeep Path
-	["Hearthstone on cooldown? Ride back north through the {area:1276}."] = "Pedra de Regresso em recarga? Volte para o norte pela {area:1276}.",
+	["Hearthstone on cooldown? Head back north through the {area:1276}."] = "",
 	-- {area:150} Menethil Harbor
 	["Boat to {area:150}"] = "Navio para {area:150}",
 
@@ -227,7 +227,7 @@ return {
 
 	-- Step 59: Ironforge
 	-- {zone:1437} Wetlands · {area:836} Dun Algaz · {zone:1432} Loch Modan · {zone:1426} Dun Morogh · {area:1537} Ironforge
-	["Ride east along the {zone:1437} road, south through {area:836} into {zone:1432} and west through the tunnel into {zone:1426} to {area:1537}."] = "Cavalgue para leste pela estrada do {zone:1437}, para o sul por {area:836} até {zone:1432} e para oeste pelo túnel até {zone:1426}, até {area:1537}.",
+	["Head east along the {zone:1437} road, south through {area:836} into {zone:1432} and west through the tunnel into {zone:1426} to {area:1537}."] = "",
 	-- {npc:1573} Gryth Thurden · {object:32372} Great Forge (no name in this language: may be words)
 	["{npc:1573}, in the {object:32372}"] = "{npc:1573}, na {object:32372}",
 	-- {item:5352} Book: The Powers Below · {zone:1439} Darkshore · {npc:2786} Gerrig Bonegrip · {object:32383} Forlorn Cavern
@@ -275,5 +275,11 @@ return {
 	["Next: fly to {area:42}."] = "Próximo: voe até {area:42}.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["From {area:17203} take the boat to {area:442}; {npc:3649} stands at the north end of the village. Then ride south along the road through {zone:1439}."] = "De {area:17203}, pegue o navio até {area:442}; {npc:3649} fica no extremo norte da vila. Depois cavalgue para o sul pela estrada através de {zone:1439}.",
+	-- ["Hearthstone on cooldown? Ride back north through the {area:1276}."] = "Pedra de Regresso em recarga? Volte para o norte pela {area:1276}.",
+	-- ["Ride east along the {zone:1437} road, south through {area:836} into {zone:1432} and west through the tunnel into {zone:1426} to {area:1537}."] = "Cavalgue para leste pela estrada do {zone:1437}, para o sul por {area:836} até {zone:1432} e para oeste pelo túnel até {zone:1426}, até {area:1537}.",
+	-- ["Ride south past {area:421} into the {area:1276} tunnel; it comes out in Stonetalon's {area:461}. {npc:4080} and {npc:4077} camp on the {area:1076} south-west of the crag."] = "Cavalgue para o sul, passando o {area:421}, até o túnel da {area:1276}; ele sai no {area:461}, na Cordilheira das Torres de Pedra. {npc:4080} e {npc:4077} acampam na {area:1076}, a sudoeste do penhasco.",
+	-- ["Ride west to the shore of {area:441}. Teronis lies among the Saltspittle murlocs; any murloc can drop the {item:5463}."] = "Cavalgue para oeste até a margem do {area:441}. O cadáver de Teronis está entre os murlocs Babassal; qualquer murloc pode deixar cair a {item:5463}.",
 	-- ["The {area:1025}"] = "{area:1025}",
+	-- ["{npc:3649}: Alexston's reply"] = "{npc:3649}: a resposta de Alexston",
 }

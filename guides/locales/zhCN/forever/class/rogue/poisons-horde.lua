@@ -22,7 +22,7 @@ return {
 
 	-- Step 2: Taskmaster Fizzule
 	-- {area:380} Crossroads · {area:382} Sludge Fen · {item:8051} Flare Gun · {npc:7233} Taskmaster Fizzule
-	["Fly to the {area:380} and ride north to the Venture Co. tower north of the {area:382}. In sight of the tower, fire the {item:8051} twice, then /salute {npc:7233} before he attacks you."] = "飞往{area:380}，向北骑到{area:382}以北的风险投资公司塔楼。在能看到塔楼的地方发射两次{item:8051}，然后在{npc:7233}攻击你之前对他使用/salute。",
+	["Fly to the {area:380} and head north to the Venture Co. tower north of the {area:382}. In sight of the tower, fire the {item:8051} twice, then /salute {npc:7233} before he attacks you."] = "",
 	-- {item:8051} Flare Gun
 	["{item:8051}, twice, in sight of the tower"] = "{item:8051}，在能看到塔楼处发射两次",
 
@@ -40,6 +40,10 @@ return {
 
 	-- Step 5: Serge Hinott
 	-- {zone:1454} Orgrimmar · {zone:1458} Undercity · {zone:1421} Silverpine Forest · {area:272} Tarren Mill · {area:287} Hillsbrad · {npc:2391} Serge Hinott
-	["Take the zeppelin from {zone:1454} to the {zone:1458} and ride south through {zone:1421} to {area:272} in {area:287}. {npc:2391} stands in {area:272}; wait beside him while he brews the cure."] = "从{zone:1454}乘飞艇前往{zone:1458}，向南骑行穿过{zone:1421}，到达{area:287}的{area:272}。{npc:2391}站在{area:272}；在他旁边等他调制解药。",
+	["Take the zeppelin from {zone:1454} to the {zone:1458} and head south through {zone:1421} to {area:272} in {area:287}. {npc:2391} stands in {area:272}; wait beside him while he brews the cure."] = "",
 	["Wait for the cure"] = "等待解药",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Fly to the {area:380} and ride north to the Venture Co. tower north of the {area:382}. In sight of the tower, fire the {item:8051} twice, then /salute {npc:7233} before he attacks you."] = "飞往{area:380}，向北骑到{area:382}以北的风险投资公司塔楼。在能看到塔楼的地方发射两次{item:8051}，然后在{npc:7233}攻击你之前对他使用/salute。",
+	-- ["Take the zeppelin from {zone:1454} to the {zone:1458} and ride south through {zone:1421} to {area:272} in {area:287}. {npc:2391} stands in {area:272}; wait beside him while he brews the cure."] = "从{zone:1454}乘飞艇前往{zone:1458}，向南骑行穿过{zone:1421}，到达{area:287}的{area:272}。{npc:2391}站在{area:272}；在他旁边等他调制解药。",
 }

@@ -51,7 +51,7 @@ return {
 	["Hillsbrad Miners"] = "{npc:2269}",
 	-- {zone:1424} Hillsbrad Foothills · {item:7127} Powdered Azurite · {zone:1454} Orgrimmar · {zone:1420} Tirisfal Glades · {zone:1421} Silverpine Forest
 	-- plural, as words: Hillsbrad Miners = {npc:2269} Hillsbrad Miner
-	["The Hillsbrad Miners work the mine in the west of {zone:1424}; they drop the {item:7127}. Take the zeppelin from {zone:1454} to {zone:1420} and ride south through {zone:1421}."] = "{npc:2269}은(는) {zone:1424} 서쪽의 광산에서 일하며 {item:7127}을(를) 떨어뜨립니다. {zone:1454}에서 비행선을 타고 {zone:1420}(으)로 간 뒤 {zone:1421}을(를) 지나 남쪽으로 가세요.",
+	["The Hillsbrad Miners work the mine in the west of {zone:1424}; they drop the {item:7127}. Take the zeppelin from {zone:1454} to {zone:1420} and head south through {zone:1421}."] = "",
 	-- {item:7127} Powdered Azurite
 	-- plural, as words: Hillsbrad Miners = {npc:2269} Hillsbrad Miner
 	["{item:7127} from the Hillsbrad Miners"] = "{item:7127}, {npc:2269}에게서",
@@ -97,4 +97,7 @@ return {
 	["The Dragonmaw orcs camp in the middle of the {zone:1437}, south of the road; Raiders, Swamprunners, Centurions, Shadowwarders and Bonewarders all drop the Sturdy Dragonmaw Shinbones."] = "용아귀부족 오크는 {zone:1437} 한가운데, 길 남쪽에 진을 치고 있습니다. 약탈자, 늪길잡이, 백인대장, 어둠보초병, 해골감시자 모두 {item:7134}을(를) 떨어뜨립니다.",
 	-- plural, as words: Sturdy Dragonmaw Shinbones = {item:7134} Sturdy Dragonmaw Shinbone
 	["Sturdy Dragonmaw Shinbones"] = "{item:7134}",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["The Hillsbrad Miners work the mine in the west of {zone:1424}; they drop the {item:7127}. Take the zeppelin from {zone:1454} to {zone:1420} and ride south through {zone:1421}."] = "{npc:2269}은(는) {zone:1424} 서쪽의 광산에서 일하며 {item:7127}을(를) 떨어뜨립니다. {zone:1454}에서 비행선을 타고 {zone:1420}(으)로 간 뒤 {zone:1421}을(를) 지나 남쪽으로 가세요.",
 }

@@ -20,7 +20,7 @@ return {
 
 	-- Step 2: The Sepulcher
 	-- {zone:1421} Silverpine Forest · {area:228} The Sepulcher · {npc:248840} Trevan Rol · {npc:259611} Deathguard Baldren
-	["Ride south through {zone:1421} to the {area:228}. {npc:248840} stands in the town; {npc:259611} keeps watch near its entrance."] = "Reite nach Süden durch {zone:1421} zum {area:228}. {npc:248840} steht im Ort; {npc:259611} hält nahe dem Eingang Wache.",
+	["Head south through {zone:1421} to the {area:228}. {npc:248840} stands in the town; {npc:259611} keeps watch near its entrance."] = "",
 
 	-- Step 3: The pyre on Fenris Isle
 	-- {area:172} Fenris Isle
@@ -52,7 +52,7 @@ return {
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Back to the {area:228}"] = "Zurück zum Ort {area:228}",
 	-- ["Once she is clear of {area:235}, Lumina waits for you in the {area:228}. Speak with her again to hear what really happened on the road."] = "Sobald sie aus {area:235} heraus ist, wartet Lumina im Ort {area:228} auf dich. Sprich erneut mit ihr, um zu erfahren, was auf der Straße wirklich geschah.",
-	-- ["Ride south through {zone:1421} to the {area:228}. {npc:248840} stands in the town; {npc:259611} keeps watch near its entrance."] = "Reite nach Süden durch {zone:1421} zum Ort {area:228}. {npc:248840} steht im Ort; {npc:259611} hält nahe dem Eingang Wache.",
+	-- ["Ride south through {zone:1421} to the {area:228}. {npc:248840} stands in the town; {npc:259611} keeps watch near its entrance."] = "Reite nach Süden durch {zone:1421} zum {area:228}. {npc:248840} steht im Ort; {npc:259611} hält nahe dem Eingang Wache.",
 	-- ["{area:172} lies in the lake east of the {area:228}. The charred remains are on its shore."] = "Die {area:172} liegt im See östlich vom Ort {area:228}. Die verkohlten Überreste sind am Ufer.",
 	-- ["{npc:259620}, the {area:228}"] = "{npc:259620}, {area:228}",
 }

@@ -279,38 +279,48 @@ return {
 	["{npc:11401}, in the Temple of the Moon: Starshards"] = "{npc:11401}，在月神殿：星辰碎片",
 
 	-- Step 43: Rut'theran Village
-	-- {area:702} Rut'theran Village · {npc:10118} Nessa Shadowsong · {npc:3838} Vesprystus
-	["Take the portal down to {area:702}. {npc:10118} stands on the dock, {npc:3838} by the hippogryphs."] = "乘传送门下到{area:702}。{npc:10118}站在码头上，{npc:3838}在角鹰兽旁边。",
+	-- {area:702} Rut'theran Village · {npc:10118} Nessa Shadowsong · {npc:3838} Vesprystus · {quest:6342} Flight to Auberdine · {area:442} Auberdine · {npc:4200} Laird
+	["Take the portal down to {area:702}. {npc:10118} stands on the dock, {npc:3838} by the hippogryphs. Once you have {quest:6342}, talk to {npc:3838} again and choose the flight to {area:442}: it is free and lands beside {npc:4200}. If the flight map opens instead, close it and talk to him again holding Shift."] = "",
+	-- {npc:3838} Vesprystus · {quest:6342} Flight to Auberdine
+	["talk to {npc:3838} again: free with {quest:6342}"] = "",
 
-	-- Step 45: Moonglade
-	-- {area:442} Auberdine · {spell:18960} Teleport: Moonglade · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {quest:5929} Great Bear Spirit · {area:493} Moonglade · {area:702} Rut'theran Village
-	["Learn the {area:442} flight path on the hill south of the inn, then cast {spell:18960}. {npc:11802} is in {area:2361}; the {quest:5929} sits in the woods to the north-west. Learn the {area:493} flight path in {area:2361} and fly to {area:702} (by way of {area:442})."] = "在旅店南边的山丘上学习{area:442}的飞行路线，然后施放{spell:18960}。{npc:11802}在{area:2361}；{quest:5929}在西北方的树林里。在{area:2361}学习{area:493}的飞行路线，然后飞往{area:702}（途经{area:442}）。",
+	-- Step 44: Auberdine
+	-- {npc:3841} Caylais Moonfeather · {npc:4200} Laird
+	["Learn the flight path from {npc:3841} where you land. {npc:4200}'s fish stall is just north of her, by the docks."] = "",
+
+	-- Step 45: Return to Nessa
+	-- {area:702} Rut'theran Village · {npc:3841} Caylais Moonfeather · {item:16263} Laird's Response · {npc:10118} Nessa Shadowsong · {area:442} Auberdine
+	["Fly back to {area:702} from {npc:3841}, hand {item:16263} to {npc:10118} on the dock, then fly back to {area:442} for the boat."] = "",
+
+	-- Step 46: Moonglade
+	-- {spell:18960} Teleport: Moonglade · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {quest:5929} Great Bear Spirit · {area:493} Moonglade · {area:702} Rut'theran Village · {area:442} Auberdine
+	["Cast {spell:18960}. {npc:11802} is in {area:2361}; the {quest:5929} sits in the woods to the north-west. Learn the {area:493} flight path in {area:2361} and fly to {area:702} (by way of {area:442})."] = "",
 	-- {quest:5929} Great Bear Spirit
 	["Speak with the {quest:5929}"] = "与{quest:5929}交谈",
 
-	-- Step 46: Back to Darnassus
-	-- {area:702} Rut'theran Village · {npc:4217} Mathrengyl Bearwalker · {area:1658} Cenarion Enclave
-	["Take the portal up from {area:702} to {npc:4217} in the {area:1658}."] = "从{area:702}乘传送门上到{area:1658}找{npc:4217}。",
+	-- Step 47: Back to Darnassus
+	-- {npc:10118} Nessa Shadowsong · {npc:4217} Mathrengyl Bearwalker · {area:1658} Cenarion Enclave
+	["{npc:10118} stands on the Rut'theran dock where you land. Then take the portal up to {npc:4217} in the {area:1658}."] = "",
 
-	-- Step 47: The Moonkin Stone
+	-- Step 48: The Moonkin Stone
 	-- {object:177525} Moonkin Stone
 	["The {object:177525}"] = "{object:177525}",
 	-- {area:702} Rut'theran Village · {area:442} Auberdine · {object:177525} Moonkin Stone · {item:15208} Cenarion Moondust · {npc:12144} Lunaclaw Spirit
 	["Go back down to {area:702} and fly to {area:442}. The {object:177525} stands in the hills just east of the village: use the {item:15208} there, defeat Lunaclaw and speak to the {npc:12144}."] = "回到{area:702}，飞往{area:442}。{object:177525}立在村子东边的山丘上：在那里使用{item:15208}，击败月爪枭兽，然后与{npc:12144}交谈。",
 
-	-- Step 48: Body and Heart
+	-- Step 49: Body and Heart
 	-- {area:702} Rut'theran Village · {npc:4217} Mathrengyl Bearwalker · {area:442} Auberdine
 	["Fly to {area:702} once more and take the portal up to {npc:4217}, then fly back to {area:442} for the boat."] = "再次飞往{area:702}，乘传送门上去找{npc:4217}，然后飞回{area:442}乘船。",
 
-	-- Step 49: Auberdine
-	-- {npc:4200} Laird · {zone:1453} Stormwind
-	["{npc:4200}'s fish stall is by the docks. Then take the boat to {zone:1453}."] = "{npc:4200}的鱼摊在码头旁。然后乘船前往{zone:1453}。",
+	-- Step 50: Boat to Stormwind
 	-- {zone:1453} Stormwind
 	["Boat to {zone:1453}"] = "乘船前往{zone:1453}",
+	-- {zone:1453} Stormwind · {area:442} Auberdine
+	["Take the boat to {zone:1453} from {area:442}'s docks."] = "",
 	-- {area:17203} Stormwind Harbor · {zone:1429} Elwynn Forest · {zone:1436} Westfall
-	["From {area:17203}, ride through the city gates into {zone:1429} and follow the road west to {zone:1436}."] = "从{area:17203}穿过城门进入{zone:1429}，沿道路向西前往{zone:1436}。",
+	["From {area:17203}, head through the city gates into {zone:1429} and follow the road west to {zone:1436}."] = "",
 
-	-- Step 50: Defensive Stance
+	-- Step 51: Defensive Stance
 	-- {object:2100} Old Town · {npc:5480} Ilsa Corbin · {npc:6089} Harry Burlguard · {npc:6090} Bartleby · {object:2152} Pig and Whistle Tavern
 	["From the harbour walk into {object:2100}. {npc:5480} trains warriors there; {npc:6089} and {npc:6090} stand together by the {object:2152}. {npc:6090} fights you for his mug."] = "从港口步行进入{object:2100}。{npc:5480}在那里训练战士；{npc:6089}和{npc:6090}一起站在{object:2152}旁。{npc:6090}会为了他的杯子和你打一架。",
 
@@ -318,13 +328,18 @@ return {
 	-- ["Defensive Stance"] = "防御姿态",
 	-- ["Each of {npc:3601}'s quests hands you a {item:15908}: use it on the beast he names, then bring the rod back to him in {area:186}. Webwood Lurkers creep around the village, Nightsaber Stalkers and Strigid Screechers roam the woods south of it."] = "{npc:3601}的每个任务都会给你一根{item:15908}：对他指定的野兽使用，然后把棍子带回{area:186}交给他。树林潜伏者在村子周围爬行，夜刃捕食者和巨翼恶枭在村子南边的树林里游荡。",
 	-- ["Follow the road south-west out of {area:188} to {area:186}."] = "沿道路向西南离开{area:188}前往{area:186}。",
+	-- ["From {area:17203}, ride through the city gates into {zone:1429} and follow the road west to {zone:1436}."] = "从{area:17203}穿过城门进入{zone:1429}，沿道路向西前往{zone:1436}。",
+	-- ["Learn the {area:442} flight path on the hill south of the inn, then cast {spell:18960}. {npc:11802} is in {area:2361}; the {quest:5929} sits in the woods to the north-west. Learn the {area:493} flight path in {area:2361} and fly to {area:702} (by way of {area:442})."] = "在旅店南边的山丘上学习{area:442}的飞行路线，然后施放{spell:18960}。{npc:11802}在{area:2361}；{quest:5929}在西北方的树林里。在{area:2361}学习{area:493}的飞行路线，然后飞往{area:702}（途经{area:442}）。",
 	-- ["Nightsabers, Strigid Owls and Webwood Lurkers live along the road east. The moonwell is at the west edge of {area:260}."] = "夜刃豹、巨翼枭和树林潜伏者生活在向东的道路沿途。月亮井在{area:260}的西缘。",
+	-- ["Take the portal down to {area:702}. {npc:10118} stands on the dock, {npc:3838} by the hippogryphs."] = "乘传送门下到{area:702}。{npc:10118}站在码头上，{npc:3838}在角鹰兽旁边。",
+	-- ["Take the portal up from {area:702} to {npc:4217} in the {area:1658}."] = "从{area:702}乘传送门上到{area:1658}找{npc:4217}。",
 	-- ["Tame Beast"] = "驯服野兽",
 	-- ["The {area:264}"] = "{area:264}",
 	-- ["{npc:11401}, in the Temple of the Moon: {spell:10797}"] = "{npc:11401}，在月神殿：{spell:10797}",
 	-- ["{npc:2150} sits by the road just east of {area:186}, on the way to {area:260}."] = "{npc:2150}坐在{area:186}东边不远的路旁，在去{area:260}的路上。",
 	-- ["{npc:3595}, inside the tree"] = "{npc:3595}，在巨树内",
 	-- ["{npc:3595}, the priest trainer, inside the tree"] = "{npc:3595}，牧师训练师，在巨树内",
+	-- ["{npc:4200}'s fish stall is by the docks. Then take the boat to {zone:1453}."] = "{npc:4200}的鱼摊在码头旁。然后乘船前往{zone:1453}。",
 	-- ["{npc:4217}: Bear Form"] = "{npc:4217}：熊形态",
 	-- ["{npc:6089}: Defensive Stance"] = "{npc:6089}：防御姿态",
 	-- ["{quest:97979}: cast {spell:1259799} and {spell:20580}, then hand it back to {npc:3595}"] = "{quest:97979}：施放{spell:1259799}和{spell:20580}，然后交还给{npc:3595}",

@@ -24,7 +24,7 @@ return {
 
 	-- Step 3: Master Mathias Shaw
 	-- {zone:1453} Stormwind · {object:2100} Old Town
-	["Ride north through Elwynn to {zone:1453}; Mathias Shaw is at SI:7 in {object:2100}."] = "Chevauchez vers le nord à travers Elwynn jusqu'à {zone:1453} ; Mathias Shaw se trouve au SI:7, dans {object:2100}.",
+	["Head north through Elwynn to {zone:1453}; Mathias Shaw is at SI:7 in {object:2100}."] = "",
 
 	-- Step 4: Doc Mixilpixil
 	-- {npc:7207} Doc Mixilpixil
@@ -39,4 +39,7 @@ return {
 	-- Step 6: Back to Doc Mixilpixil
 	-- {npc:7207} Doc Mixilpixil
 	["Back to {npc:7207}"] = "Retour auprès de {npc:7207}",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Ride north through Elwynn to {zone:1453}; Mathias Shaw is at SI:7 in {object:2100}."] = "Chevauchez vers le nord à travers Elwynn jusqu'à {zone:1453} ; Mathias Shaw se trouve au SI:7, dans {object:2100}.",
 }

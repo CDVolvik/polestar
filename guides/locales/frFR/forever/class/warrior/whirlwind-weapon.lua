@@ -32,7 +32,7 @@ return {
 
 	-- Step 6: The Affray
 	-- {area:392} Ratchet · {area:720} Fray Island · {npc:6236} Klannoc Macleod · {npc:6238} Big Will
-	["Ride south along the coast from {area:392} to {area:720}. {npc:6236} stands by the arena: step on the grate to start the fight; the challengers come one at a time, then {npc:6238} (33)."] = "Longez la côte vers le sud de {area:392} jusqu'à l'{area:720}. {npc:6236} se tient près de l'arène : montez sur la grille pour lancer le combat ; les adversaires arrivent un par un, puis {npc:6238} (33).",
+	["Head south along the coast from {area:392} to {area:720}. {npc:6236} stands by the arena: step on the grate to start the fight; the challengers come one at a time, then {npc:6238} (33)."] = "",
 	-- {npc:6238} Big Will
 	["Defeat the challengers and {npc:6238}"] = "Vainquez les adversaires et {npc:6238}",
 
@@ -68,4 +68,7 @@ return {
 	["{quest:1712} waits just north of {npc:6176}'s camp and carries the {item:6894}. {quest:1712} is elite: grouping up is advised."] = "{quest:1712} attend juste au nord du camp de {npc:6176} et porte le {item:6894}. {quest:1712} est élite : un groupe est conseillé.",
 	-- {item:6894} Whirlwind Heart · {quest:1712} Cyclonian
 	["{item:6894} from {quest:1712}"] = "{item:6894} sur {quest:1712}",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Ride south along the coast from {area:392} to {area:720}. {npc:6236} stands by the arena: step on the grate to start the fight; the challengers come one at a time, then {npc:6238} (33)."] = "Longez la côte vers le sud de {area:392} jusqu'à l'{area:720}. {npc:6236} se tient près de l'arène : montez sur la grille pour lancer le combat ; les adversaires arrivent un par un, puis {npc:6238} (33).",
 }

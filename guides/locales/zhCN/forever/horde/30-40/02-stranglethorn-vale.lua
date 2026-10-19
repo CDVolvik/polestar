@@ -22,7 +22,7 @@ return {
 
 	-- Step 4: Islen Waterseer
 	-- {zone:1454} Orgrimmar · {object:3202} Grom'gol · {area:392} Ratchet · {npc:5901} Islen Waterseer
-	["Take the {zone:1454} zeppelin from the tower on the west side of {object:3202} and fly to {area:392}. {npc:5901} camps on the coast a short ride south of it."] = "在{object:3202}西侧的塔上乘坐前往{zone:1454}的飞艇，然后飞往{area:392}。{npc:5901}在它南边不远的海岸上扎营。",
+	["Take the {zone:1454} zeppelin from the tower on the west side of {object:3202} and fly to {area:392}. {npc:5901} camps on the coast a short walk south of it."] = "",
 	-- {npc:5901} Islen Waterseer · {npc:3527} Healing Stream Totem · {item:5177} Water Totem
 	["{npc:5901}: {npc:3527} and your {item:5177}"] = "{npc:5901}：{npc:3527}和你的{item:5177}",
 
@@ -105,7 +105,7 @@ return {
 	-- {area:35} Booty Bay
 	["Fly to {area:35}"] = "飞往{area:35}",
 	-- {object:3202} Grom'gol · {area:35} Booty Bay
-	["Ride south down the coast to {object:3202} and fly to {area:35}."] = "沿海岸向南骑往{object:3202}，然后飞往{area:35}。",
+	["Head south down the coast to {object:3202} and fly to {area:35}."] = "",
 
 	-- Step 24: Fly to Grom'gol
 	-- {npc:2497} Nimboya
@@ -143,7 +143,7 @@ return {
 
 	-- Step 32: Grom'gol
 	-- {object:3202} Grom'gol
-	["Ride back south to {object:3202}."] = "向南骑回{object:3202}。",
+	["Head back south to {object:3202}."] = "",
 
 	-- Step 33: Green Hills pages
 	["Green Hills pages"] = "荆棘谷的青山书页",
@@ -181,7 +181,7 @@ return {
 	-- Step 43: Venture Co. camp
 	["Venture Co. camp"] = "风险投资公司营地",
 	-- plural, as words: Venture Co. Geologists = {npc:1096} Venture Co. Geologist · Tumbled Crystals = {item:4106} Tumbled Crystal
-	["Ride north past Nesingwary's camp to the lake. The Venture Co. Geologists (34-36) work the camps along its western shore; they carry the Tumbled Crystals."] = "向北骑过奈辛瓦里的营地前往湖边。风险投资公司地质学家（34-36级）在湖西岸的营地里干活；他们携带打磨过的水晶。",
+	["Head north past Nesingwary's camp to the lake. The Venture Co. Geologists (34-36) work the camps along its western shore; they carry the Tumbled Crystals."] = "",
 
 	-- Step 44: Hearth to Booty Bay
 	-- {area:35} Booty Bay
@@ -191,4 +191,8 @@ return {
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Follow the road north to the camp."] = "沿道路向北前往营地。",
+	-- ["Ride back south to {object:3202}."] = "向南骑回{object:3202}。",
+	-- ["Ride north past Nesingwary's camp to the lake. The Venture Co. Geologists (34-36) work the camps along its western shore; they carry the Tumbled Crystals."] = "向北骑过奈辛瓦里的营地前往湖边。风险投资公司地质学家（34-36级）在湖西岸的营地里干活；他们携带打磨过的水晶。",
+	-- ["Ride south down the coast to {object:3202} and fly to {area:35}."] = "沿海岸向南骑往{object:3202}，然后飞往{area:35}。",
+	-- ["Take the {zone:1454} zeppelin from the tower on the west side of {object:3202} and fly to {area:392}. {npc:5901} camps on the coast a short ride south of it."] = "在{object:3202}西侧的塔上乘坐前往{zone:1454}的飞艇，然后飞往{area:392}。{npc:5901}在它南边不远的海岸上扎营。",
 }

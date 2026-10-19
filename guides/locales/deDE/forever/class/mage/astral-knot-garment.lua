@@ -25,7 +25,7 @@ return {
 	-- {area:96} Tower of Ilgalar
 	["The {area:96}"] = "{area:96}",
 	-- {zone:1429} Elwynn Forest
-	["Ride east through {zone:1429} into Redridge. The fallen mage's tower of Ilgalar stands in the east of the zone; the treatise is in his library."] = "Reite nach Osten durch {zone:1429} ins Rotkammgebirge. Der Turm des gefallenen Magiers Ilgalar steht im Osten des Gebiets; die Abhandlung liegt in seiner Bibliothek.",
+	["Head east through {zone:1429} into Redridge. The fallen mage's tower of Ilgalar stands in the east of the zone; the treatise is in his library."] = "",
 
 	-- Step 5: Back to Andromath
 	["Back to Andromath"] = "Zurück zu Andromath",
@@ -40,4 +40,7 @@ return {
 	-- Step 7: Wynne Larson
 	-- {npc:1309} Wynne Larson · {object:23296} Larson Clothiers · {object:2101} Mage Quarter
 	["{npc:1309} works at {object:23296} in the {object:2101}."] = "{npc:1309} arbeitet bei {object:23296} in {object:2101}.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Ride east through {zone:1429} into Redridge. The fallen mage's tower of Ilgalar stands in the east of the zone; the treatise is in his library."] = "Reite nach Osten durch {zone:1429} ins Rotkammgebirge. Der Turm des gefallenen Magiers Ilgalar steht im Osten des Gebiets; die Abhandlung liegt in seiner Bibliothek.",
 }

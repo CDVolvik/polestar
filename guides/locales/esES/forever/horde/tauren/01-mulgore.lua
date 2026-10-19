@@ -225,11 +225,11 @@ return {
 
 	-- Step 55: Back to Thunder Bluff
 	-- {area:222} Bloodhoof Village · {area:1639} Elder Rise
-	["Hearth to {area:222} and ride north to {area:1639}."] = "Usa la Piedra de hogar para ir a {area:222} y ve al norte hasta {area:1639}.",
+	["Hearth to {area:222} and head north to {area:1639}."] = "",
 
 	-- Step 56: Yaw Sharpmane
 	-- {area:222} Bloodhoof Village · {item:15908} Taming Rod · {npc:2956} Adult Plainstrider · {npc:2959} Prairie Stalker
-	["Ride down to {area:222} and tame with the {item:15908}: an {npc:2956} on the plains, a {npc:2959} north of the village, a Swoop to the north-west."] = "Baja a {area:222} y domestica con {item:15908}: un {npc:2956} en las llanuras, un {npc:2959} al norte del poblado y un aguilón al noroeste.",
+	["Head down to {area:222} and tame with the {item:15908}: an {npc:2956} on the plains, a {npc:2959} north of the village, a Swoop to the north-west."] = "",
 	-- {item:15908} Taming Rod
 	["Tame it with the {item:15908}"] = "Domestícalo con {item:15908}",
 
@@ -252,6 +252,8 @@ return {
 	-- ["Flatland Prowlers roam the plains around {area:225}"] = "Los merodeadores de las estepas recorren las llanuras alrededor de {area:225}",
 	-- ["Galak centaurs and Prairie Wolf Alphas"] = "Centauros Galak y Lobos alfa de pradera",
 	-- ["Galak centaurs and {npc:2958} Alphas"] = "Centauros Galak y alfas de {npc:2958}",
+	-- ["Hearth to {area:222} and ride north to {area:1639}."] = "Usa la Piedra de hogar para ir a {area:222} y ve al norte hasta {area:1639}.",
+	-- ["Ride down to {area:222} and tame with the {item:15908}: an {npc:2956} on the plains, a {npc:2959} north of the village, a Swoop to the north-west."] = "Baja a {area:222} y domestica con {item:15908}: un {npc:2956} en las llanuras, un {npc:2959} al norte del poblado y un aguilón al noroeste.",
 	-- ["Tame Beast"] = "Domesticar bestia",
 	-- ["The Galak centaurs camp on the plains north of the {area:821}; Herak leads them. Prairie Wolf Alphas roam among the wolves."] = "Los centauros Galak acampan en las llanuras al norte de {area:821}; Herak el Saqueador los dirige. Los Lobos alfa de pradera rondan entre los lobos.",
 	-- ["The Galak centaurs camp on the plains north of the {area:821}; Herak leads them. {npc:2958} Alphas roam among the wolves."] = "Los centauros Galak acampan en las llanuras al norte de {area:821}; Herak el Saqueador los dirige. Los alfas de {npc:2958} rondan entre los lobos.",

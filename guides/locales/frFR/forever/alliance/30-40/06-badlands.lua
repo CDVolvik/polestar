@@ -8,7 +8,7 @@
 return {
 	-- Step 1: Hammertoe's Digsite
 	-- {zone:1432} Loch Modan · {zone:1418} Badlands · {npc:2910} Prospector Ryedol · {npc:2860} Sigrun Ironhew
-	["Ride back west to the road and follow it south out of {zone:1432} through the pass into the {zone:1418}. {npc:2910} and {npc:2860} camp side by side at the dig."] = "Revenez vers l'ouest jusqu'à la route et suivez-la vers le sud hors du {zone:1432}, par le col, jusqu'aux {zone:1418}. {npc:2910} et {npc:2860} campent côte à côte sur le site de fouilles.",
+	["Head back west to the road and follow it south out of {zone:1432} through the pass into the {zone:1418}. {npc:2910} and {npc:2860} camp side by side at the dig."] = "",
 
 	-- Step 2: Shadowforge camp
 	["Shadowforge camp"] = "Camp Ombreforge",
@@ -17,7 +17,7 @@ return {
 
 	-- Step 3: The excavation crate
 	["The excavation crate"] = "La caisse d'excavation",
-	["Ride north-east to the abandoned dig; the supply crate lies there among the Dustbelcher ogres."] = "Partez au nord-est vers le site de fouilles abandonné ; la caisse de ravitaillement s'y trouve, parmi les ogres Crache-poussières.",
+	["Head north-east to the abandoned dig; the supply crate lies there among the Dustbelcher ogres."] = "",
 
 	-- Step 4: Hammertoe's Digsite
 	-- {area:1517} Uldaman
@@ -43,7 +43,7 @@ return {
 
 	-- Step 9: Lotwil Veriatus
 	-- {area:1878} Dustbowl · {npc:2921} Lotwil Veriatus
-	["Ride west into the {area:1878}; {npc:2921} works by his machines in the middle of it."] = "Partez à l'ouest dans {area:1878} ; {npc:2921} travaille près de ses machines, en son milieu.",
+	["Head west into the {area:1878}; {npc:2921} works by his machines in the middle of it."] = "",
 
 	-- Step 10: Lesser Rock Elementals
 	-- plural, as words: Lesser Rock Elementals = {npc:2735} Lesser Rock Elemental
@@ -78,11 +78,11 @@ return {
 	-- {object:126260} Ancient Chest
 	["The {object:126260}"] = "{object:126260}",
 	-- {zone:1418} Badlands · {npc:2745} Ambassador Infernus
-	["Ride north-east to the dwarven ruins in the north of the {zone:1418}; the chest sits among the Shadowforge dwarves. {npc:2745} nearby is elite: give him room."] = "Partez au nord-est vers les ruines naines au nord des {zone:1418} ; le coffre se trouve parmi les nains Ombreforge. {npc:2745}, tout près, est élite : gardez vos distances.",
+	["Head north-east to the dwarven ruins in the north of the {zone:1418}; the chest sits among the Shadowforge dwarves. {npc:2745} nearby is elite: give him room."] = "",
 
 	-- Step 18: Theldurin the Lost
 	-- {area:345} Agmond's End
-	["Ride south to {area:345}."] = "Partez au sud jusqu'à {area:345}.",
+	["Head south to {area:345}."] = "",
 	-- {npc:2786} Gerrig Bonegrip · {zone:1455} Ironforge
 	["for {npc:2786} in {zone:1455}: keep it"] = "pour {npc:2786} à {zone:1455} : gardez-la",
 
@@ -166,6 +166,11 @@ return {
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Follow the road west across the north of {zone:1443} to the ruins of {area:2405}; the wrecked ship's chest lies on the shore just west of them."] = "Suivez la route vers l'ouest à travers le nord de {zone:1443} jusqu'aux ruines d'{area:2405} ; le coffre du navire échoué se trouve sur le rivage, juste à l'ouest.",
+	-- ["Ride back west to the road and follow it south out of {zone:1432} through the pass into the {zone:1418}. {npc:2910} and {npc:2860} camp side by side at the dig."] = "Revenez vers l'ouest jusqu'à la route et suivez-la vers le sud hors du {zone:1432}, par le col, jusqu'aux {zone:1418}. {npc:2910} et {npc:2860} campent côte à côte sur le site de fouilles.",
+	-- ["Ride north-east to the abandoned dig; the supply crate lies there among the Dustbelcher ogres."] = "Partez au nord-est vers le site de fouilles abandonné ; la caisse de ravitaillement s'y trouve, parmi les ogres Crache-poussières.",
+	-- ["Ride north-east to the dwarven ruins in the north of the {zone:1418}; the chest sits among the Shadowforge dwarves. {npc:2745} nearby is elite: give him room."] = "Partez au nord-est vers les ruines naines au nord des {zone:1418} ; le coffre se trouve parmi les nains Ombreforge. {npc:2745}, tout près, est élite : gardez vos distances.",
+	-- ["Ride south to {area:345}."] = "Partez au sud jusqu'à {area:345}.",
+	-- ["Ride west into the {area:1878}; {npc:2921} works by his machines in the middle of it."] = "Partez à l'ouest dans {area:1878} ; {npc:2921} travaille près de ses machines, en son milieu.",
 	-- ["{item:7337} Elementals roam south-east of Lotwil; Giant Buzzards and Elder Crag Coyotes share the plain to their west."] = "Les Elémentaires de roche ({item:7337}) rôdent au sud-est de Lotwil ; des Busards géants et des Anciens coyotes des rochers occupent la plaine à leur ouest.",
 	-- ["{npc:11863}'s tower stands on the hill east of the wreck."] = "La tour d'{npc:11863} se dresse sur la colline à l'est de l'épave.",
 }

@@ -32,13 +32,13 @@ return {
 	-- {area:272} Tarren Mill
 	["Fly to {area:272}"] = "Voe para {area:272}",
 	-- {zone:1458} Undercity · {area:272} Tarren Mill
-	["The zeppelin lands at the towers outside the {zone:1458}: ride down into the city and fly to {area:272}."] = "O zepelim pousa nas torres do lado de fora de {zone:1458}: desça até a cidade e voe para {area:272}.",
+	["The zeppelin lands at the towers outside the {zone:1458}: head down into the city and fly to {area:272}."] = "",
 
 	-- Step 6: Boulderfist camp
 	["Boulderfist camp"] = "Acampamento Punho de Pedra",
 	-- {area:272} Tarren Mill · {area:1857} Thoradin's Wall · {area:313} Northfold Manor
 	-- plural, as words: Boulderfist Ogres = {npc:2562} Boulderfist Ogre
-	["Ride east out of {area:272} through {area:1857} and follow the road east. The Boulderfist Ogres and Enforcers (32-34) camp south of the road, south-east of {area:313}."] = "Cavalgue para leste saindo de {area:272} por {area:1857} e siga a estrada para leste. Os Ogros e Impositores Punho de Pedra (32-34) acampam ao sul da estrada, a sudeste de {area:313}.",
+	["Head east out of {area:272} through {area:1857} and follow the road east. The Boulderfist Ogres and Enforcers (32-34) camp south of the road, south-east of {area:313}."] = "",
 
 	-- Step 7: The Shards of Myzrael
 	-- {object:138492} Shards of Myzrael
@@ -80,7 +80,7 @@ return {
 
 	-- Step 16: Faldir's Cove
 	-- {npc:2766} Lolo the Lookout
-	["Ride south-west to the goblins' cove on the southern coast. {npc:2766} keeps watch on the cliff above it."] = "Cavalgue para sudoeste até a enseada dos goblins no litoral sul. {npc:2766} vigia do penhasco acima dela.",
+	["Head south-west to the goblins' cove on the southern coast. {npc:2766} keeps watch on the cliff above it."] = "",
 
 	-- Step 17: Professor Phizzlethorpe
 	["Escort the professor down to the shore. Two Daggerspine naga ambush him on the way: stay close."] = "Escolte o professor até a margem. Duas nagas Espinhadaga o emboscam no caminho: fique perto.",
@@ -97,7 +97,7 @@ return {
 	-- Step 21: The Stone of Outer Binding
 	-- {object:2690} Stone of Outer Binding
 	["The {object:2690}"] = "{object:2690}",
-	["Ride north; the outer circle stands in the middle of the highlands."] = "Cavalgue para o norte; o círculo externo fica no meio do planalto.",
+	["Head north; the outer circle stands in the middle of the highlands."] = "",
 
 	-- Step 22: Northfold Manor
 	-- plural, as words: Bloodstone Amulets = {item:4495} Bloodstone Amulet
@@ -107,7 +107,7 @@ return {
 	-- {object:2689} Stone of West Binding
 	["The {object:2689}"] = "{object:2689}",
 	-- {area:1857} Thoradin's Wall
-	["The western circle is near {area:1857}, where you rode in."] = "O círculo oeste fica perto de {area:1857}, por onde você entrou.",
+	["The western circle is near {area:1857}, where you came in."] = "",
 
 	-- Step 24: The Stone of Inner Binding
 	-- {object:2702} Stone of Inner Binding
@@ -132,7 +132,7 @@ return {
 	-- {zone:1418} Badlands
 	["Into the {zone:1418}"] = "Rumo a {zone:1418}",
 	-- {area:880} Thandol Span · {zone:1437} Wetlands · {area:150} Menethil Harbor · {zone:1432} Loch Modan · {zone:1418} Badlands · {area:1877} Valley of Fangs
-	["Ride south-west out of Arathi over {area:880}, south through the {zone:1437} (keep clear of {area:150}) and east into {zone:1432}; the road leaves {zone:1432} to the south into the {zone:1418}. Follow it south to the goblin camp in the {area:1877}."] = "Cavalgue para sudoeste saindo de Arathi por {area:880}, para o sul por {zone:1437} (fique longe de {area:150}) e para o leste até {zone:1432}; a estrada sai de {zone:1432} pelo sul até {zone:1418}. Siga-a para o sul até o acampamento goblin em {area:1877}.",
+	["Head south-west out of Arathi over {area:880}, south through the {zone:1437} (keep clear of {area:150}) and east into {zone:1432}; the road leaves {zone:1432} to the south into the {zone:1418}. Follow it south to the goblin camp in the {area:1877}."] = "",
 
 	-- Step 29: Valley of Fangs
 	-- {quest:1106} Martek the Exiled · {area:439} Shimmering Flats
@@ -140,7 +140,7 @@ return {
 
 	-- Step 30: The Dustbowl
 	-- {npc:2921} Lotwil Veriatus · {area:1878} The Dustbowl · {area:340} Kargath
-	["Ride west along the road; {npc:2921}'s camp sits in the {area:1878} halfway to {area:340}."] = "Cavalgue para o oeste pela estrada; o acampamento de {npc:2921} fica em {area:1878}, a meio caminho de {area:340}.",
+	["Head west along the road; {npc:2921}'s camp sits in the {area:1878} halfway to {area:340}."] = "",
 
 	-- Step 31: Kargath
 	-- {area:340} Kargath
@@ -176,7 +176,7 @@ return {
 
 	-- Step 38: Kargath
 	-- {area:340} Kargath
-	["Ride north back to {area:340}."] = "Cavalgue para o norte de volta a {area:340}.",
+	["Head north back to {area:340}."] = "",
 
 	-- Step 39: The Dustbowl
 	-- {npc:2920} Lucien Tosselwrench · {item:2868} Patterned Bronze Bracers · {skill:164} Blacksmithing
@@ -201,7 +201,7 @@ return {
 
 	-- Step 45: Agmond's End
 	-- {area:1877} Valley of Fangs
-	["Ride back south down the road, past the {area:1877}."] = "Cavalgue de volta para o sul pela estrada, passando por {area:1877}.",
+	["Head back south down the road, past the {area:1877}."] = "",
 
 	-- Step 46: Hearth to Kargath
 	-- {area:340} Kargath
@@ -220,13 +220,13 @@ return {
 
 	-- Step 51: Regthar Deathgate
 	-- {area:380} Crossroads · {area:386} Forgotten Pools · {npc:3389} Regthar Deathgate
-	["Ride north up the road from the {area:380} to the {area:386}; {npc:3389} keeps watch on the rise above the water."] = "Cavalgue para o norte pela estrada de {area:380} até {area:386}; {npc:3389} vigia da elevação acima da água.",
+	["Head north up the road from the {area:380} to the {area:386}; {npc:3389} keeps watch on the rise above the water."] = "",
 	-- {npc:5395} Felgur Twocuts · {zone:1443} Desolace
 	["for {npc:5395} in {zone:1443}, in the next guide"] = "para {npc:5395}, em {zone:1443}, no próximo guia",
 
 	-- Step 52: Ratchet
 	-- {area:380} Crossroads · {area:392} Ratchet
-	["Ride back south to the {area:380} and fly to {area:392}."] = "Cavalgue de volta para o sul até {area:380} e voe para {area:392}.",
+	["Head back south to the {area:380} and fly to {area:392}."] = "",
 	-- {item:3713} Soothing Spices · {zone:1445} Dustwallow Marsh
 	["{item:3713}, for \"Swamp Eye\" Jarl in {zone:1445}"] = "{item:3713}, para Zé \"Olho de Lama\", em {zone:1445}",
 	-- {zone:1445} Dustwallow Marsh
@@ -234,8 +234,20 @@ return {
 
 	-- Step 53: The Affray
 	-- {area:392} Ratchet · {area:720} Fray Island · {npc:6236} Klannoc Macleod · {npc:6238} Big Will
-	["Ride south along the coast from {area:392} to {area:720}. {npc:6236} stands by the arena: step on the grate to start the fight; the challengers come one at a time, then {npc:6238} (33)."] = "Cavalgue para o sul pela costa, de {area:392} até {area:720}. {npc:6236} fica junto à arena: pise na grade para começar a luta; os desafiantes vêm um de cada vez, depois {npc:6238} (33).",
+	["Head south along the coast from {area:392} to {area:720}. {npc:6236} stands by the arena: step on the grate to start the fight; the challengers come one at a time, then {npc:6238} (33)."] = "",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Ride back south down the road, past the {area:1877}."] = "Cavalgue de volta para o sul pela estrada, passando por {area:1877}.",
+	-- ["Ride back south to the {area:380} and fly to {area:392}."] = "Cavalgue de volta para o sul até {area:380} e voe para {area:392}.",
+	-- ["Ride east out of {area:272} through {area:1857} and follow the road east. The Boulderfist Ogres and Enforcers (32-34) camp south of the road, south-east of {area:313}."] = "Cavalgue para leste saindo de {area:272} por {area:1857} e siga a estrada para leste. Os Ogros e Impositores Punho de Pedra (32-34) acampam ao sul da estrada, a sudeste de {area:313}.",
+	-- ["Ride north back to {area:340}."] = "Cavalgue para o norte de volta a {area:340}.",
+	-- ["Ride north up the road from the {area:380} to the {area:386}; {npc:3389} keeps watch on the rise above the water."] = "Cavalgue para o norte pela estrada de {area:380} até {area:386}; {npc:3389} vigia da elevação acima da água.",
+	-- ["Ride north; the outer circle stands in the middle of the highlands."] = "Cavalgue para o norte; o círculo externo fica no meio do planalto.",
+	-- ["Ride south along the coast from {area:392} to {area:720}. {npc:6236} stands by the arena: step on the grate to start the fight; the challengers come one at a time, then {npc:6238} (33)."] = "Cavalgue para o sul pela costa, de {area:392} até {area:720}. {npc:6236} fica junto à arena: pise na grade para começar a luta; os desafiantes vêm um de cada vez, depois {npc:6238} (33).",
+	-- ["Ride south-west out of Arathi over {area:880}, south through the {zone:1437} (keep clear of {area:150}) and east into {zone:1432}; the road leaves {zone:1432} to the south into the {zone:1418}. Follow it south to the goblin camp in the {area:1877}."] = "Cavalgue para sudoeste saindo de Arathi por {area:880}, para o sul por {zone:1437} (fique longe de {area:150}) e para o leste até {zone:1432}; a estrada sai de {zone:1432} pelo sul até {zone:1418}. Siga-a para o sul até o acampamento goblin em {area:1877}.",
+	-- ["Ride south-west to the goblins' cove on the southern coast. {npc:2766} keeps watch on the cliff above it."] = "Cavalgue para sudoeste até a enseada dos goblins no litoral sul. {npc:2766} vigia do penhasco acima dela.",
+	-- ["Ride west along the road; {npc:2921}'s camp sits in the {area:1878} halfway to {area:340}."] = "Cavalgue para o oeste pela estrada; o acampamento de {npc:2921} fica em {area:1878}, a meio caminho de {area:340}.",
+	-- ["The western circle is near {area:1857}, where you rode in."] = "O círculo oeste fica perto de {area:1857}, por onde você entrou.",
+	-- ["The zeppelin lands at the towers outside the {zone:1458}: ride down into the city and fly to {area:272}."] = "O zepelim pousa nas torres do lado de fora de {zone:1458}: desça até a cidade e voe para {area:272}.",
 	-- ["The {area:380}"] = "{area:380}",
 }

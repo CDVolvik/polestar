@@ -22,7 +22,7 @@ return {
 
 	-- Step 4: Islen Waterseer
 	-- {zone:1454} Orgrimmar · {object:3202} Grom'gol (no name in this language: may be words) · {area:392} Ratchet · {npc:5901} Islen Waterseer
-	["Take the {zone:1454} zeppelin from the tower on the west side of {object:3202} and fly to {area:392}. {npc:5901} camps on the coast a short ride south of it."] = "Nimm den Zeppelin nach {zone:1454} vom Turm auf der Westseite von {object:3202} und flieg nach {area:392}. {npc:5901} lagert an der Küste, ein kurzes Stück südlich davon.",
+	["Take the {zone:1454} zeppelin from the tower on the west side of {object:3202} and fly to {area:392}. {npc:5901} camps on the coast a short walk south of it."] = "",
 	-- {npc:5901} Islen Waterseer · {npc:3527} Healing Stream Totem · {item:5177} Water Totem
 	["{npc:5901}: {npc:3527} and your {item:5177}"] = "{npc:5901}: {npc:3527} und dein {item:5177}",
 
@@ -105,7 +105,7 @@ return {
 	-- {area:35} Booty Bay
 	["Fly to {area:35}"] = "Flieg nach {area:35}",
 	-- {object:3202} Grom'gol (no name in this language: may be words) · {area:35} Booty Bay
-	["Ride south down the coast to {object:3202} and fly to {area:35}."] = "Reite die Küste hinunter nach Süden nach {object:3202} und flieg nach {area:35}.",
+	["Head south down the coast to {object:3202} and fly to {area:35}."] = "",
 
 	-- Step 24: Fly to Grom'gol
 	-- {npc:2497} Nimboya
@@ -143,7 +143,7 @@ return {
 
 	-- Step 32: Grom'gol
 	-- {object:3202} Grom'gol (no name in this language: may be words)
-	["Ride back south to {object:3202}."] = "Reite zurück nach Süden nach {object:3202}.",
+	["Head back south to {object:3202}."] = "",
 
 	-- Step 33: Green Hills pages
 	["Green Hills pages"] = "Seiten der Grünen Hügel",
@@ -181,7 +181,7 @@ return {
 	-- Step 43: Venture Co. camp
 	["Venture Co. camp"] = "Lager der Venture Co.",
 	-- plural, as words: Venture Co. Geologists = {npc:1096} Venture Co. Geologist · Tumbled Crystals = {item:4106} Tumbled Crystal
-	["Ride north past Nesingwary's camp to the lake. The Venture Co. Geologists (34-36) work the camps along its western shore; they carry the Tumbled Crystals."] = "Reite nördlich an Nesingwarys Lager vorbei zum See. Die Geologen der Venture Co. (34-36) arbeiten in den Lagern am Westufer; sie tragen die Gerommelten Kristalle.",
+	["Head north past Nesingwary's camp to the lake. The Venture Co. Geologists (34-36) work the camps along its western shore; they carry the Tumbled Crystals."] = "",
 
 	-- Step 44: Hearth to Booty Bay
 	-- {area:35} Booty Bay
@@ -191,4 +191,8 @@ return {
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Follow the road north to the camp."] = "Folge der Straße nach Norden zum Lager.",
+	-- ["Ride back south to {object:3202}."] = "Reite zurück nach Süden nach {object:3202}.",
+	-- ["Ride north past Nesingwary's camp to the lake. The Venture Co. Geologists (34-36) work the camps along its western shore; they carry the Tumbled Crystals."] = "Reite nördlich an Nesingwarys Lager vorbei zum See. Die Geologen der Venture Co. (34-36) arbeiten in den Lagern am Westufer; sie tragen die Gerommelten Kristalle.",
+	-- ["Ride south down the coast to {object:3202} and fly to {area:35}."] = "Reite die Küste hinunter nach Süden nach {object:3202} und flieg nach {area:35}.",
+	-- ["Take the {zone:1454} zeppelin from the tower on the west side of {object:3202} and fly to {area:392}. {npc:5901} camps on the coast a short ride south of it."] = "Nimm den Zeppelin nach {zone:1454} vom Turm auf der Westseite von {object:3202} und flieg nach {area:392}. {npc:5901} lagert an der Küste, ein kurzes Stück südlich davon.",
 }

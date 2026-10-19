@@ -28,7 +28,7 @@ return {
 
 	-- Step 4: Half Pendant of Aquatic Endurance
 	-- {area:442} Auberdine · {zone:1453} Stormwind · {area:108} Sentinel Hill · {object:177790} Strange Lockbox
-	["Take the boat from {area:442} to {zone:1453} and fly to {area:108}. Ride north-west to the coast: the {object:177790} lies on the sea floor off the shore."] = "Nimm das Boot von {area:442} nach {zone:1453} und flieg zur {area:108}. Reite nach Nordwesten zur Küste: Die {object:177790} liegt vor dem Ufer auf dem Meeresgrund.",
+	["Take the boat from {area:442} to {zone:1453} and fly to {area:108}. Head north-west to the coast: the {object:177790} lies on the sea floor off the shore."] = "",
 
 	-- Step 5: Pendant of the Sea Lion
 	-- {spell:18960} Teleport: Moonglade · {item:15885} Pendant of the Sea Lion · {area:2362} Shrine of Remulos · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {area:702} Rut'theran Village
@@ -60,4 +60,7 @@ return {
 	-- Step 11: Pendant of the Sea Lion
 	-- {spell:18960} Teleport: Moonglade · {item:15885} Pendant of the Sea Lion · {area:2362} Shrine of Remulos · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {npc:11798} Bunthen Plainswind · {area:1638} Thunder Bluff
 	["Cast {spell:18960}. Join the two halves into the {item:15885} near the {area:2362}, on the north-west shore of the lake, then see {npc:11802} in {area:2361}. {npc:11798} flies druids to {area:1638}."] = "Wirke {spell:18960}. Füge die beiden Hälften beim {area:2362} am Nordwestufer des Sees zu {item:15885} zusammen und geh dann zu {npc:11802} in {area:2361}. {npc:11798} fliegt Druiden nach {area:1638}.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Take the boat from {area:442} to {zone:1453} and fly to {area:108}. Ride north-west to the coast: the {object:177790} lies on the sea floor off the shore."] = "Nimm das Boot von {area:442} nach {zone:1453} und flieg zur {area:108}. Reite nach Nordwesten zur Küste: Die {object:177790} liegt vor dem Ufer auf dem Meeresgrund.",
 }

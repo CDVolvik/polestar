@@ -28,7 +28,7 @@ return {
 
 	-- Step 4: Half Pendant of Aquatic Endurance
 	-- {area:442} Auberdine · {zone:1453} Stormwind · {area:108} Sentinel Hill · {object:177790} Strange Lockbox
-	["Take the boat from {area:442} to {zone:1453} and fly to {area:108}. Ride north-west to the coast: the {object:177790} lies on the sea floor off the shore."] = "Toma el barco de {area:442} a {zone:1453} y vuela a {area:108}. Cabalga al noroeste hasta la costa: la {object:177790} está en el fondo del mar frente a la orilla.",
+	["Take the boat from {area:442} to {zone:1453} and fly to {area:108}. Head north-west to the coast: the {object:177790} lies on the sea floor off the shore."] = "",
 
 	-- Step 5: Pendant of the Sea Lion
 	-- {spell:18960} Teleport: Moonglade · {item:15885} Pendant of the Sea Lion · {area:2362} Shrine of Remulos · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {area:702} Rut'theran Village
@@ -66,4 +66,5 @@ return {
 	-- ["Cast Teleport: {zone:1450}. Join the two halves into the {item:15885} near the {area:2362}, on the north-west shore of the lake, then see {npc:11802} in {area:2361}. {npc:11798} flies druids to {area:1638}."] = "Lanza Teletransporte: {zone:1450}. Une las dos mitades en {item:15885} cerca del {area:2362}, en la orilla noroeste del lago, y luego ve a ver a {npc:11802} en {area:2361}. {npc:11798} lleva a los druidas a {area:1638}.",
 	-- ["Cast Teleport: {zone:1450}. {npc:11802} is in {area:2361}. Shrine Baubles lie in the containers on the floor of {area:656}, below {area:2361}: take one to the {area:2362} on the north-west shore, use it there and speak to {npc:11799}."] = "Lanza Teletransporte: {zone:1450}. {npc:11802} está en {area:2361}. Los Adornos de altar están en los contenedores del fondo de {area:656}, bajo {area:2361}: lleva uno al {area:2362}, en la orilla noroeste, úsalo allí y habla con {npc:11799}.",
 	-- ["Cast Teleport: {zone:1450}. {npc:11802} is in {area:2361}. The Shrine Baubles lie on the bed of {area:656} and fade within minutes: swim one straight to the {area:2362} on the north-west shore, use it there and speak to {npc:11799}."] = "Lanza Teletransporte: {zone:1450}. {npc:11802} está en {area:2361}. Los Adornos de altar están en el fondo de {area:656} y desaparecen en pocos minutos: lleva uno a nado directamente al {area:2362}, en la orilla noroeste, úsalo allí y habla con {npc:11799}.",
+	-- ["Take the boat from {area:442} to {zone:1453} and fly to {area:108}. Ride north-west to the coast: the {object:177790} lies on the sea floor off the shore."] = "Toma el barco de {area:442} a {zone:1453} y vuela a {area:108}. Cabalga al noroeste hasta la costa: la {object:177790} está en el fondo del mar frente a la orilla.",
 }

@@ -92,6 +92,11 @@ return {
 	-- {quest:5050} Good Luck Charm · {npc:10778} Janice Felstone · {zone:1422} Western Plaguelands
 	["{quest:5050} goes back to {npc:10778} in the {zone:1422}: keep it."] = "{quest:5050}은(는) {zone:1422}의 {npc:10778}에게 돌아갑니다. 보관하세요.",
 
+	-- Step 20: Owen Thadd
+	-- {quest:79095} The Apothecary's Metaphysical Primer · {area:159} Brill
+	-- plural, as words: Library Books = {object:386691} Library Book
+	["Only with {quest:79095} from {area:159}'s alchemy shop in your bags (the Library Books guide)"] = "",
+
 	-- Step 21: Prompt Potion Runner
 	-- {npc:11044} Doctor Martin Felben
 	["{npc:11044}, in the Apothecarium"] = "연금술 실험실의 {npc:11044}",

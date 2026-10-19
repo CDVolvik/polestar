@@ -22,7 +22,7 @@ return {
 
 	-- Step 4: Islen Waterseer
 	-- {zone:1454} Orgrimmar · {object:3202} Grom'gol · {area:392} Ratchet · {npc:5901} Islen Waterseer
-	["Take the {zone:1454} zeppelin from the tower on the west side of {object:3202} and fly to {area:392}. {npc:5901} camps on the coast a short ride south of it."] = "{object:3202} 서쪽 탑에서 {zone:1454}행 비행선을 타고 {area:392}(으)로 날아가세요. {npc:5901}은(는) 그 남쪽으로 조금 떨어진 해안에 야영하고 있습니다.",
+	["Take the {zone:1454} zeppelin from the tower on the west side of {object:3202} and fly to {area:392}. {npc:5901} camps on the coast a short walk south of it."] = "",
 	-- {npc:5901} Islen Waterseer · {npc:3527} Healing Stream Totem · {item:5177} Water Totem
 	["{npc:5901}: {npc:3527} and your {item:5177}"] = "{npc:5901}: {npc:3527}와(과) {item:5177}",
 
@@ -105,7 +105,7 @@ return {
 	-- {area:35} Booty Bay
 	["Fly to {area:35}"] = "{area:35}(으)로 날아가기",
 	-- {object:3202} Grom'gol · {area:35} Booty Bay
-	["Ride south down the coast to {object:3202} and fly to {area:35}."] = "해안을 따라 남쪽의 {object:3202}(으)로 간 뒤 {area:35}(으)로 날아가세요.",
+	["Head south down the coast to {object:3202} and fly to {area:35}."] = "",
 
 	-- Step 24: Fly to Grom'gol
 	-- {npc:2497} Nimboya
@@ -143,7 +143,7 @@ return {
 
 	-- Step 32: Grom'gol
 	-- {object:3202} Grom'gol
-	["Ride back south to {object:3202}."] = "남쪽의 {object:3202}(으)로 돌아가세요.",
+	["Head back south to {object:3202}."] = "",
 
 	-- Step 33: Green Hills pages
 	["Green Hills pages"] = "푸른 언덕의 쪽",
@@ -181,7 +181,7 @@ return {
 	-- Step 43: Venture Co. camp
 	["Venture Co. camp"] = "투자개발회사 야영지",
 	-- plural, as words: Venture Co. Geologists = {npc:1096} Venture Co. Geologist · Tumbled Crystals = {item:4106} Tumbled Crystal
-	["Ride north past Nesingwary's camp to the lake. The Venture Co. Geologists (34-36) work the camps along its western shore; they carry the Tumbled Crystals."] = "네싱워리의 야영지를 지나 북쪽 호수로 가세요. 투자개발회사 지질학자(34-36)가 서쪽 호숫가의 야영지에서 일하며, 연마된 수정을 지니고 있습니다.",
+	["Head north past Nesingwary's camp to the lake. The Venture Co. Geologists (34-36) work the camps along its western shore; they carry the Tumbled Crystals."] = "",
 
 	-- Step 44: Hearth to Booty Bay
 	-- {area:35} Booty Bay
@@ -191,4 +191,8 @@ return {
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Follow the road north to the camp."] = "길을 따라 북쪽의 야영지로 가세요.",
+	-- ["Ride back south to {object:3202}."] = "남쪽의 {object:3202}(으)로 돌아가세요.",
+	-- ["Ride north past Nesingwary's camp to the lake. The Venture Co. Geologists (34-36) work the camps along its western shore; they carry the Tumbled Crystals."] = "네싱워리의 야영지를 지나 북쪽 호수로 가세요. 투자개발회사 지질학자(34-36)가 서쪽 호숫가의 야영지에서 일하며, 연마된 수정을 지니고 있습니다.",
+	-- ["Ride south down the coast to {object:3202} and fly to {area:35}."] = "해안을 따라 남쪽의 {object:3202}(으)로 간 뒤 {area:35}(으)로 날아가세요.",
+	-- ["Take the {zone:1454} zeppelin from the tower on the west side of {object:3202} and fly to {area:392}. {npc:5901} camps on the coast a short ride south of it."] = "{object:3202} 서쪽 탑에서 {zone:1454}행 비행선을 타고 {area:392}(으)로 날아가세요. {npc:5901}은(는) 그 남쪽으로 조금 떨어진 해안에 야영하고 있습니다.",
 }

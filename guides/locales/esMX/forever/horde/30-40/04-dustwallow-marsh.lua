@@ -14,7 +14,7 @@ return {
 
 	-- Step 2: Shady Rest Inn
 	-- {area:378} Camp Taurajo · {area:403} Shady Rest Inn
-	["Ride east from {area:378} along the road into the marsh. The burned-out {area:403} stands beside it just past the border; the shield, the badge and the hoofprints are in and beside the ruin."] = "Cabalga al este desde {area:378} por el camino hacia el pantano. {area:403}, calcinada, está a un lado justo después de la frontera; el escudo, la insignia y las huellas de pezuña están dentro y junto a la ruina.",
+	["Head east from {area:378} along the road into the marsh. The burned-out {area:403} stands beside it just past the border; the shield, the badge and the hoofprints are in and beside the ruin."] = "",
 
 	-- Step 3: Brackenwall Village
 	["Take the road north at the fork to the ogre village of Brackenwall."] = "Toma el camino al norte en la bifurcación hasta el poblado ogro de Poblado Murohelecho.",
@@ -28,7 +28,7 @@ return {
 	-- Step 5: Stinky Ignatz
 	["Stinky Ignatz"] = "Stinky Ignatz",
 	-- {area:502} Witch Hill
-	["Ride north to {area:502}. Stinky stands at the foot of the hill; escort him while he gathers Bogbean Leaves just south of it."] = "Cabalga al norte hasta {area:502}. Stinky está al pie de la colina; escóltalo mientras recoge hojas de frijol de pantano justo al sur.",
+	["Head north to {area:502}. Stinky stands at the foot of the hill; escort him while he gathers Bogbean Leaves just south of it."] = "",
 
 	-- Step 6: Mirefin murlocs
 	["Mirefin murlocs"] = "Múrlocs Ancalodo",
@@ -45,21 +45,21 @@ return {
 	-- Step 8: Darkfang spiders
 	["Darkfang spiders"] = "Arañas Colmiumbrío",
 	-- plural, as words: Darkfang Venomspitters = {npc:4414} Darkfang Venomspitter · Theramore Infiltrators = {npc:4834} Theramore Infiltrator
-	["Ride west back across the marsh. The Darkfang Venomspitters on the ridges north of Brackenwall drop the venom sacs. Theramore Infiltrators (35-36) sneak through the same woods: they are stealthed, so look closely."] = "Cabalga al oeste, de vuelta por el pantano. Los Escupetósigos Colmiumbrío ({npc:4414}) en las lomas al norte de Poblado Murohelecho sueltan las bolsas de veneno. Los Infiltrados de Theramore ({npc:4834}) (35-36) se mueven por el mismo bosque: usan sigilo, así que mira con atención.",
+	["Head west back across the marsh. The Darkfang Venomspitters on the ridges north of Brackenwall drop the venom sacs. Theramore Infiltrators (35-36) sneak through the same woods: they are stealthed, so look closely."] = "",
 
 	-- Step 9: Darkmist Cavern
 	["The Darkmist spiders swarm the cavern mouth north-west of Brackenwall; every kind drops eyes."] = "Las arañas Niebla Negra pululan en la entrada de la cueva al noroeste de Poblado Murohelecho; todos los tipos sueltan ojos.",
 
 	-- Step 11: Swamp Eye Jarl
 	-- {area:497} Swamplight Manor
-	["Ride east back to the {area:497}."] = "Regresa cabalgando al este a {area:497}.",
+	["Head east back to the {area:497}."] = "",
 	-- {item:3853} Moonsteel Broadsword · {skill:164} Blacksmithing
 	["only if you carry a {item:3853} ({skill:164} or the Auction House)"] = "solo si llevas una {item:3853} ({skill:164} o la casa de subastas)",
 	-- {object:20985} Loose Dirt · {npc:4791} Nazeer Bloodpike
 	["{object:20985}, now that {npc:4791} has read the report"] = "{object:20985}, ahora que {npc:4791} leyó el informe",
 
 	-- Step 12: Brackenwall Village
-	["Ride back west to Brackenwall with the head."] = "Regresa cabalgando al oeste a Poblado Murohelecho con la cabeza.",
+	["Head back west to Brackenwall with the head."] = "",
 	-- {npc:2519} Kin'weelay · {object:3202} Grom'gol (no name in this language: may be words)
 	["For {npc:2519} at {object:3202}, in the next guide"] = "Para {npc:2519} en {object:3202}, en la siguiente guía",
 
@@ -69,7 +69,7 @@ return {
 
 	-- Step 15: Melizza Brimbuzzle
 	-- {area:607} Valley of Spears · {npc:12277} Melizza Brimbuzzle
-	["Ride north-east to the {area:607}. {npc:12277} is held in the Maraudine centaur camp; free her and escort her out east of the valley."] = "Cabalga al noreste hasta {area:607}. {npc:12277} está cautiva en el campamento de los centauros Maraudine; libérala y escóltala fuera del valle por el este.",
+	["Head north-east to the {area:607}. {npc:12277} is held in the Maraudine centaur camp; free her and escort her out east of the valley."] = "",
 
 	-- Step 16: Kodo Graveyard
 	-- {npc:6019} Hornizz Brimbuzzle · {area:596} Kodo Graveyard
@@ -88,7 +88,7 @@ return {
 	["{npc:5395} and {npc:5412} stand in the post just west of {npc:11596}'s camp."] = "{npc:5395} y {npc:5412} están en el poblado justo al oeste del campamento de {npc:11596}.",
 
 	-- Step 20: Kormek's Hut
-	["Ride north up the road to the hut by the road north of the graveyard."] = "Cabalga al norte por el camino hasta la choza junto al camino al norte del cementerio.",
+	["Head north up the road to the hut by the road north of the graveyard."] = "",
 
 	-- Step 21: Kodo bones and ghosts
 	["Kodo bones and ghosts"] = "Huesos de kodo y fantasmas",
@@ -101,7 +101,7 @@ return {
 
 	-- Step 25: Ethel Rethor
 	-- {npc:11863} Azore Aldamort · {area:2405} Ethel Rethor
-	["Ride west to {npc:11863}'s tower at {area:2405} on the north-west coast."] = "Cabalga al oeste hasta la torre de {npc:11863} en {area:2405}, en la costa noroeste.",
+	["Head west to {npc:11863}'s tower at {area:2405} on the north-west coast."] = "",
 
 	-- Step 26: Slitherblade coast
 	["Slitherblade coast"] = "Costa Filozante",
@@ -112,21 +112,35 @@ return {
 	["Maraudine totems"] = "Tótems Maraudine",
 	-- {area:2405} Ethel Rethor · {area:607} Valley of Spears · {quest:93225} Carved Centaur Totems
 	-- plural, as words: Maraudine Scouts = {npc:4654} Maraudine Scout
-	["Ride south from {area:2405} into the {area:607}. The Maraudine Scouts, Wranglers, Maulers, Windchasers and Marauders (36-39) drop the {quest:93225}."] = "Cabalga al sur desde {area:2405} hacia {area:607}. Los Exploradores Maraudine ({npc:4654}), Retadores, Aplastadores, Cazavientos y Merodeadores (36-39) sueltan {quest:93225}.",
+	["Head south from {area:2405} into the {area:607}. The Maraudine Scouts, Wranglers, Maulers, Windchasers and Marauders (36-39) drop the {quest:93225}."] = "",
 
 	-- Step 29: Shadowprey Village
-	["Ride on south-west to Shadowprey."] = "Sigue cabalgando al suroeste hasta Aldea Cazasombras.",
+	["Head on south-west to Shadowprey."] = "",
 
 	-- Step 30: Portals of the Legion
 	-- {area:602} Mannoroc Coven
-	["Ride east to {area:602}. Use the Rod of Banishing by each demon portal to close six of them."] = "Cabalga al este hasta {area:602}. Usa la vara de destierro junto a cada portal demoníaco para cerrar seis de ellos.",
+	["Head east to {area:602}. Use the Rod of Banishing by each demon portal to close six of them."] = "",
 
 	-- Step 31: Ghost Walker Post
 	-- {npc:5412} Gurda Wildmane · {area:597} Ghost Walker Post
-	["Ride north from the coven to {npc:5412} at {area:597}."] = "Cabalga al norte desde el aquelarre hasta {npc:5412}, en {area:597}.",
+	["Head north from the coven to {npc:5412} at {area:597}."] = "",
 
 	-- Step 32: Hearth to Shadowprey
 	["Hearth to Shadowprey"] = "Usa tu piedra de hogar para ir a Aldea Cazasombras",
 	-- {zone:1434} Stranglethorn Vale
 	["The next guide takes you back to {zone:1434}."] = "La siguiente guía te lleva de vuelta a {zone:1434}.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Ride back west to Brackenwall with the head."] = "Regresa cabalgando al oeste a Poblado Murohelecho con la cabeza.",
+	-- ["Ride east back to the {area:497}."] = "Regresa cabalgando al este a {area:497}.",
+	-- ["Ride east from {area:378} along the road into the marsh. The burned-out {area:403} stands beside it just past the border; the shield, the badge and the hoofprints are in and beside the ruin."] = "Cabalga al este desde {area:378} por el camino hacia el pantano. {area:403}, calcinada, está a un lado justo después de la frontera; el escudo, la insignia y las huellas de pezuña están dentro y junto a la ruina.",
+	-- ["Ride east to {area:602}. Use the Rod of Banishing by each demon portal to close six of them."] = "Cabalga al este hasta {area:602}. Usa la vara de destierro junto a cada portal demoníaco para cerrar seis de ellos.",
+	-- ["Ride north from the coven to {npc:5412} at {area:597}."] = "Cabalga al norte desde el aquelarre hasta {npc:5412}, en {area:597}.",
+	-- ["Ride north to {area:502}. Stinky stands at the foot of the hill; escort him while he gathers Bogbean Leaves just south of it."] = "Cabalga al norte hasta {area:502}. Stinky está al pie de la colina; escóltalo mientras recoge hojas de frijol de pantano justo al sur.",
+	-- ["Ride north up the road to the hut by the road north of the graveyard."] = "Cabalga al norte por el camino hasta la choza junto al camino al norte del cementerio.",
+	-- ["Ride north-east to the {area:607}. {npc:12277} is held in the Maraudine centaur camp; free her and escort her out east of the valley."] = "Cabalga al noreste hasta {area:607}. {npc:12277} está cautiva en el campamento de los centauros Maraudine; libérala y escóltala fuera del valle por el este.",
+	-- ["Ride on south-west to Shadowprey."] = "Sigue cabalgando al suroeste hasta Aldea Cazasombras.",
+	-- ["Ride south from {area:2405} into the {area:607}. The Maraudine Scouts, Wranglers, Maulers, Windchasers and Marauders (36-39) drop the {quest:93225}."] = "Cabalga al sur desde {area:2405} hacia {area:607}. Los Exploradores Maraudine ({npc:4654}), Retadores, Aplastadores, Cazavientos y Merodeadores (36-39) sueltan {quest:93225}.",
+	-- ["Ride west back across the marsh. The Darkfang Venomspitters on the ridges north of Brackenwall drop the venom sacs. Theramore Infiltrators (35-36) sneak through the same woods: they are stealthed, so look closely."] = "Cabalga al oeste, de vuelta por el pantano. Los Escupetósigos Colmiumbrío ({npc:4414}) en las lomas al norte de Poblado Murohelecho sueltan las bolsas de veneno. Los Infiltrados de Theramore ({npc:4834}) (35-36) se mueven por el mismo bosque: usan sigilo, así que mira con atención.",
+	-- ["Ride west to {npc:11863}'s tower at {area:2405} on the north-west coast."] = "Cabalga al oeste hasta la torre de {npc:11863} en {area:2405}, en la costa noroeste.",
 }

@@ -14,7 +14,7 @@ return {
 
 	-- Step 2: Shady Rest Inn
 	-- {area:378} Camp Taurajo · {area:403} Shady Rest Inn
-	["Ride east from {area:378} along the road into the marsh. The burned-out {area:403} stands beside it just past the border; the shield, the badge and the hoofprints are in and beside the ruin."] = "Cavalgue para leste do {area:378} pela estrada até o pântano. A {area:403} queimada fica ao lado dela, logo depois da divisa; o escudo, o distintivo e as pegadas estão dentro e ao lado da ruína.",
+	["Head east from {area:378} along the road into the marsh. The burned-out {area:403} stands beside it just past the border; the shield, the badge and the hoofprints are in and beside the ruin."] = "",
 
 	-- Step 3: Brackenwall Village
 	["Take the road north at the fork to the ogre village of Brackenwall."] = "Pegue a estrada para o norte na bifurcação até a aldeia ogra de Muralha Verde.",
@@ -28,7 +28,7 @@ return {
 	-- Step 5: Stinky Ignatz
 	["Stinky Ignatz"] = "Inácio \"Cascão\"",
 	-- {area:502} Witch Hill
-	["Ride north to {area:502}. Stinky stands at the foot of the hill; escort him while he gathers Bogbean Leaves just south of it."] = "Cavalgue para o norte até o {area:502}. Cascão fica ao pé do morro; escolte-o enquanto ele colhe folhas de feijão-do-brejo logo ao sul.",
+	["Head north to {area:502}. Stinky stands at the foot of the hill; escort him while he gathers Bogbean Leaves just south of it."] = "",
 
 	-- Step 6: Mirefin murlocs
 	["Mirefin murlocs"] = "Murlocs Lamapina",
@@ -45,21 +45,21 @@ return {
 	-- Step 8: Darkfang spiders
 	["Darkfang spiders"] = "Aranhas Presanegra",
 	-- plural, as words: Darkfang Venomspitters = {npc:4414} Darkfang Venomspitter · Theramore Infiltrators = {npc:4834} Theramore Infiltrator
-	["Ride west back across the marsh. The Darkfang Venomspitters on the ridges north of Brackenwall drop the venom sacs. Theramore Infiltrators (35-36) sneak through the same woods: they are stealthed, so look closely."] = "Cavalgue para oeste atravessando o pântano. Os Cospeçonhas Presanegra nas cristas ao norte de Muralha Verde deixam cair as glândulas de veneno. Infiltradores de Theramore (35-36) se esgueiram pela mesma mata: estão furtivos, então olhe com atenção.",
+	["Head west back across the marsh. The Darkfang Venomspitters on the ridges north of Brackenwall drop the venom sacs. Theramore Infiltrators (35-36) sneak through the same woods: they are stealthed, so look closely."] = "",
 
 	-- Step 9: Darkmist Cavern
 	["The Darkmist spiders swarm the cavern mouth north-west of Brackenwall; every kind drops eyes."] = "As aranhas Névoa Negra lotam a entrada da caverna a noroeste de Muralha Verde; todo tipo deixa cair olhos.",
 
 	-- Step 11: Swamp Eye Jarl
 	-- {area:497} Swamplight Manor
-	["Ride east back to the {area:497}."] = "Cavalgue para leste de volta ao {area:497}.",
+	["Head east back to the {area:497}."] = "",
 	-- {item:3853} Moonsteel Broadsword · {skill:164} Blacksmithing
 	["only if you carry a {item:3853} ({skill:164} or the Auction House)"] = "só se você tiver uma {item:3853} ({skill:164} ou a Casa de Leilões)",
 	-- {object:20985} Loose Dirt · {npc:4791} Nazeer Bloodpike
 	["{object:20985}, now that {npc:4791} has read the report"] = "{object:20985}, agora que {npc:4791} leu o relatório",
 
 	-- Step 12: Brackenwall Village
-	["Ride back west to Brackenwall with the head."] = "Cavalgue de volta para oeste até Muralha Verde com a cabeça.",
+	["Head back west to Brackenwall with the head."] = "",
 	-- {npc:2519} Kin'weelay · {object:3202} Grom'gol (no name in this language: may be words)
 	["For {npc:2519} at {object:3202}, in the next guide"] = "Para {npc:2519} em {object:3202}, no próximo guia",
 
@@ -69,7 +69,7 @@ return {
 
 	-- Step 15: Melizza Brimbuzzle
 	-- {area:607} Valley of Spears · {npc:12277} Melizza Brimbuzzle
-	["Ride north-east to the {area:607}. {npc:12277} is held in the Maraudine centaur camp; free her and escort her out east of the valley."] = "Cavalgue para nordeste até o {area:607}. {npc:12277} está presa no acampamento dos centauros Maraudinos; liberte-a e escolte-a para fora, a leste do vale.",
+	["Head north-east to the {area:607}. {npc:12277} is held in the Maraudine centaur camp; free her and escort her out east of the valley."] = "",
 
 	-- Step 16: Kodo Graveyard
 	-- {npc:6019} Hornizz Brimbuzzle · {area:596} Kodo Graveyard
@@ -88,7 +88,7 @@ return {
 	["{npc:5395} and {npc:5412} stand in the post just west of {npc:11596}'s camp."] = "{npc:5395} e {npc:5412} ficam no posto logo a oeste do acampamento de {npc:11596}.",
 
 	-- Step 20: Kormek's Hut
-	["Ride north up the road to the hut by the road north of the graveyard."] = "Cavalgue para o norte pela estrada até a cabana junto à estrada ao norte do cemitério.",
+	["Head north up the road to the hut by the road north of the graveyard."] = "",
 
 	-- Step 21: Kodo bones and ghosts
 	["Kodo bones and ghosts"] = "Ossos de kodo e fantasmas",
@@ -101,7 +101,7 @@ return {
 
 	-- Step 25: Ethel Rethor
 	-- {npc:11863} Azore Aldamort · {area:2405} Ethel Rethor
-	["Ride west to {npc:11863}'s tower at {area:2405} on the north-west coast."] = "Cavalgue para oeste até a torre de {npc:11863} em {area:2405}, na costa noroeste.",
+	["Head west to {npc:11863}'s tower at {area:2405} on the north-west coast."] = "",
 
 	-- Step 26: Slitherblade coast
 	["Slitherblade coast"] = "Costa dos Sibilâmina",
@@ -112,21 +112,35 @@ return {
 	["Maraudine totems"] = "Totens Maraudinos",
 	-- {area:2405} Ethel Rethor · {area:607} Valley of Spears · {quest:93225} Carved Centaur Totems
 	-- plural, as words: Maraudine Scouts = {npc:4654} Maraudine Scout
-	["Ride south from {area:2405} into the {area:607}. The Maraudine Scouts, Wranglers, Maulers, Windchasers and Marauders (36-39) drop the {quest:93225}."] = "Cavalgue para o sul de {area:2405} até o {area:607}. Os Batedores, Cavalgantes, Espancadores, Ventilhãs e Espoliadores Maraudinos (36-39) deixam cair os {quest:93225}.",
+	["Head south from {area:2405} into the {area:607}. The Maraudine Scouts, Wranglers, Maulers, Windchasers and Marauders (36-39) drop the {quest:93225}."] = "",
 
 	-- Step 29: Shadowprey Village
-	["Ride on south-west to Shadowprey."] = "Siga cavalgando para sudoeste até a Aldeia Pescassombra.",
+	["Head on south-west to Shadowprey."] = "",
 
 	-- Step 30: Portals of the Legion
 	-- {area:602} Mannoroc Coven
-	["Ride east to {area:602}. Use the Rod of Banishing by each demon portal to close six of them."] = "Cavalgue para leste até o {area:602}. Use o bastão de banimento junto a cada portal demoníaco para fechar seis deles.",
+	["Head east to {area:602}. Use the Rod of Banishing by each demon portal to close six of them."] = "",
 
 	-- Step 31: Ghost Walker Post
 	-- {npc:5412} Gurda Wildmane · {area:597} Ghost Walker Post
-	["Ride north from the coven to {npc:5412} at {area:597}."] = "Cavalgue para o norte do conciliábulo até {npc:5412} no {area:597}.",
+	["Head north from the coven to {npc:5412} at {area:597}."] = "",
 
 	-- Step 32: Hearth to Shadowprey
 	["Hearth to Shadowprey"] = "Regressar para a Aldeia Pescassombra",
 	-- {zone:1434} Stranglethorn Vale
 	["The next guide takes you back to {zone:1434}."] = "O próximo guia leva você de volta à {zone:1434}.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Ride back west to Brackenwall with the head."] = "Cavalgue de volta para oeste até Muralha Verde com a cabeça.",
+	-- ["Ride east back to the {area:497}."] = "Cavalgue para leste de volta ao {area:497}.",
+	-- ["Ride east from {area:378} along the road into the marsh. The burned-out {area:403} stands beside it just past the border; the shield, the badge and the hoofprints are in and beside the ruin."] = "Cavalgue para leste do {area:378} pela estrada até o pântano. A {area:403} queimada fica ao lado dela, logo depois da divisa; o escudo, o distintivo e as pegadas estão dentro e ao lado da ruína.",
+	-- ["Ride east to {area:602}. Use the Rod of Banishing by each demon portal to close six of them."] = "Cavalgue para leste até o {area:602}. Use o bastão de banimento junto a cada portal demoníaco para fechar seis deles.",
+	-- ["Ride north from the coven to {npc:5412} at {area:597}."] = "Cavalgue para o norte do conciliábulo até {npc:5412} no {area:597}.",
+	-- ["Ride north to {area:502}. Stinky stands at the foot of the hill; escort him while he gathers Bogbean Leaves just south of it."] = "Cavalgue para o norte até o {area:502}. Cascão fica ao pé do morro; escolte-o enquanto ele colhe folhas de feijão-do-brejo logo ao sul.",
+	-- ["Ride north up the road to the hut by the road north of the graveyard."] = "Cavalgue para o norte pela estrada até a cabana junto à estrada ao norte do cemitério.",
+	-- ["Ride north-east to the {area:607}. {npc:12277} is held in the Maraudine centaur camp; free her and escort her out east of the valley."] = "Cavalgue para nordeste até o {area:607}. {npc:12277} está presa no acampamento dos centauros Maraudinos; liberte-a e escolte-a para fora, a leste do vale.",
+	-- ["Ride on south-west to Shadowprey."] = "Siga cavalgando para sudoeste até a Aldeia Pescassombra.",
+	-- ["Ride south from {area:2405} into the {area:607}. The Maraudine Scouts, Wranglers, Maulers, Windchasers and Marauders (36-39) drop the {quest:93225}."] = "Cavalgue para o sul de {area:2405} até o {area:607}. Os Batedores, Cavalgantes, Espancadores, Ventilhãs e Espoliadores Maraudinos (36-39) deixam cair os {quest:93225}.",
+	-- ["Ride west back across the marsh. The Darkfang Venomspitters on the ridges north of Brackenwall drop the venom sacs. Theramore Infiltrators (35-36) sneak through the same woods: they are stealthed, so look closely."] = "Cavalgue para oeste atravessando o pântano. Os Cospeçonhas Presanegra nas cristas ao norte de Muralha Verde deixam cair as glândulas de veneno. Infiltradores de Theramore (35-36) se esgueiram pela mesma mata: estão furtivos, então olhe com atenção.",
+	-- ["Ride west to {npc:11863}'s tower at {area:2405} on the north-west coast."] = "Cavalgue para oeste até a torre de {npc:11863} em {area:2405}, na costa noroeste.",
 }

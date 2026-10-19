@@ -328,7 +328,7 @@ return {
 
 	-- Step 68: Surena Caledon
 	-- {area:87} Goldshire · {area:62} Brackwell Pumpkin Patch · {npc:881} Surena Caledon
-	["Ride back out through {area:87} and east along the road to the {area:62}. {npc:881} (level 9) stands by its farmhouse."] = "騎馬穿過{area:87}，沿著道路向東前往{area:62}。{npc:881}（等級9）站在農舍旁。",
+	["Head back out through {area:87} and east along the road to the {area:62}. {npc:881} (level 9) stands by its farmhouse."] = "穿過{area:87}返回，沿路向東到{area:62}。{npc:881}（9級）站在農舍旁。",
 
 	-- Step 69: The Binding
 	-- {npc:6122} Gakin the Darkbinder · {item:6928} Bloodstone Choker · {object:2164} Slaughtered Lamb
@@ -344,7 +344,7 @@ return {
 	-- Step 71: Henze Faulk
 	-- {area:87} Goldshire · {area:86} Stone Cairn Lake · {npc:6172} Henze Faulk · {item:6866} Symbol of Life · {item:6846} Defias Script
 	-- plural, as words: Defias Rogue Wizards = {npc:474} Defias Rogue Wizard
-	["Ride back out through {area:87} and east to {area:86}. {npc:6172} lies south of the lake: use the {item:6866} on him. The Defias Rogue Wizards around him carry the {item:6846}."] = "騎馬穿過{area:87}，向東前往{area:86}。{npc:6172}躺在湖的南邊：對他使用{item:6866}。他周圍的迪菲亞流浪巫師身上帶著{item:6846}。",
+	["Head back out through {area:87} and east to {area:86}. {npc:6172} lies south of the lake: use the {item:6866} on him. The Defias Rogue Wizards around him carry the {item:6846}."] = "穿過{area:87}返回，向東到{area:86}。{npc:6172}躺在湖南邊：對他使用{item:6866}。他周圍的{npc:474}帶著{item:6846}。",
 	-- {item:6866} Symbol of Life · {npc:6172} Henze Faulk
 	["Use the {item:6866} on {npc:6172}"] = "對{npc:6172}使用{item:6866}",
 	-- {item:6846} Defias Script
@@ -356,13 +356,18 @@ return {
 	-- {npc:6171} Duthorian Rall
 	["{npc:6171}: Redemption"] = "{npc:6171}：救贖",
 
-	-- Step 73: Sentinel Hill
-	-- {zone:1436} Westfall · {area:108} Sentinel Hill · {npc:523} Thor
-	["Follow the road west past Westbrook into {zone:1436}, then south along it to {area:108}. {npc:523}, the gryphon master, stands on the hill."] = "沿著道路向西經過西泉要塞進入{zone:1436}，再沿路向南前往{area:108}。獅鷲管理員{npc:523}站在山丘上。",
+	-- Step 73: Westbrook Garrison
+	-- {area:120} Westbrook Garrison · {zone:1436} Westfall · {npc:963} Deputy Rainer
+	["Follow the road west to the {area:120}, on the way into {zone:1436}. {npc:963} stands outside the barracks."] = "沿路向西到{area:120}，途中進入{zone:1436}。{npc:963}站在兵營外面。",
+	-- {npc:963} Deputy Rainer · {npc:234} Gryan Stoutmantle · {area:108} Sentinel Hill
+	["{npc:963}: for {npc:234} at {area:108}"] = "{npc:963}：給{area:108}的{npc:234}",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Follow the road west past Westbrook into {zone:1436}, then south along it to {area:108}. {npc:523}, the gryphon master, stands on the hill."] = "沿著道路向西經過西泉要塞進入{zone:1436}，再沿路向南前往{area:108}。獅鷲管理員{npc:523}站在山丘上。",
 	-- ["Murloc Foragers and Lurkers line the river south of the bridge. {npc:473}, a Defias, walks the {area:62} west of it. Finish the Prowlers and Young Forest Bears on the way."] = "魚人強盜和魚人潛伏者分布在橋南邊的河岸。迪菲亞的{npc:473}在橋西邊的{area:62}走動。沿途把覓食的灰狼和小森林熊殺完。",
+	-- ["Ride back out through {area:87} and east along the road to the {area:62}. {npc:881} (level 9) stands by its farmhouse."] = "騎馬穿過{area:87}，沿著道路向東前往{area:62}。{npc:881}（等級9）站在農舍旁。",
 	-- ["Ride back out through {area:87} and east along the road to the {area:62}. {quest:1688} (level 9) stands by its farmhouse."] = "騎馬穿過{area:87}，沿著道路向東前往{area:62}。{quest:1688}（等級9）站在農舍旁。",
+	-- ["Ride back out through {area:87} and east to {area:86}. {npc:6172} lies south of the lake: use the {item:6866} on him. The Defias Rogue Wizards around him carry the {item:6846}."] = "騎馬穿過{area:87}，向東前往{area:86}。{npc:6172}躺在湖的南邊：對他使用{item:6866}。他周圍的迪菲亞流浪巫師身上帶著{item:6846}。",
 	-- ["{area:57}'s mouth"] = "{area:57}入口",
 	-- ["{item:1006}: Princess"] = "{item:1006}：公主",
 }

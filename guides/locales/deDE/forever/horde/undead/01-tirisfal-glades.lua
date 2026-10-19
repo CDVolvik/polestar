@@ -43,16 +43,15 @@ return {
 	-- {npc:1569} Shadow Priest Sarvis · {npc:244808} Aramis Hammerhand
 	["{npc:1569}: the scroll for {npc:244808}"] = "{npc:1569}: die Schriftrolle für {npc:244808}",
 
-	-- Step 6: Rattlecages, scavengers and duskbats
+	-- Step 6: Injured Deathguard
+	-- {quest:90902} Rediscovering the Light · {npc:259377} Injured Deathguard · {spell:635} Holy Light
+	["{quest:90902}: the {npc:259377} lie around the church. Heal five of them with {spell:635}."] = "",
+
+	-- Step 7: Rattlecages, scavengers and duskbats
 	["Rattlecages, scavengers and duskbats"] = "Klappernde Skelette, Aasfresser und Nachtsauger",
 	-- {area:154} Deathknell
 	-- plural, as words: Rattlecage Skeletons = {npc:1890} Rattlecage Skeleton · Young Scavengers = {npc:1508} Young Scavenger · Duskbats = {npc:1512} Duskbat · Ragged Scavengers = {npc:1509} Ragged Scavenger · Mangy Duskbats = {npc:1513} Mangy Duskbat
 	["Rattlecage Skeletons wander the ruined houses in the north half of {area:154}. Young Scavengers and Duskbats roam all around the village; the Ragged Scavengers and Mangy Duskbats are on its east side."] = "Klappernde Skelette streifen durch die zerstörten Häuser in der Nordhälfte von {area:154}. Junge Aasfresser und Nachtsauger streifen überall im Dorf umher; die Struppigen Aasfresser und Räudigen Nachtsauger sind auf seiner Ostseite.",
-
-	-- Step 7: Rattlecage skulls
-	["Rattlecage skulls"] = "Schädel klappernder Skelette",
-	-- plural, as words: Rattlecage Skeletons = {npc:1890} Rattlecage Skeleton
-	["The Rattlecage Skeletons in the ruined houses drop the skulls."] = "Die Klappernden Skelette in den zerstörten Häusern lassen die Schädel fallen.",
 
 	-- Step 8: Back to the church
 	["Back to the church"] = "Zurück zur Kirche",
@@ -113,10 +112,10 @@ return {
 	-- Step 21: Brill
 	-- {area:159} Brill · {npc:10665} Junior Apothecary Holland · {area:2119} Gallows' End Tavern · {npc:1515} Executor Zygand
 	["Follow the road east to {area:159}. {npc:10665} stands at the north-west edge of town; the {area:2119} is the big inn in the middle, with {npc:1515} in front of it."] = "Folge der Straße nach Osten nach {area:159}. {npc:10665} steht am Nordwestrand des Ortes; {area:2119} ist das große Gasthaus in der Mitte, mit {npc:1515} davor.",
-	-- {npc:246152} Shari Stilwell
-	["{npc:246152}, the Paladin trainer"] = "{npc:246152}, die Paladinlehrerin",
 	-- {npc:1496} Deathguard Dillinger
 	["Ask {npc:1496} for his report"] = "Bitte {npc:1496} um seinen Bericht",
+	-- {npc:246152} Shari Stilwell
+	["{npc:246152}, the Paladin trainer"] = "{npc:246152}, die Paladinlehrerin",
 	-- {area:159} Brill
 	["The {area:159} trainers are in and around the inn"] = "Die Lehrer von {area:159} sind im Gasthaus und drumherum",
 
@@ -234,18 +233,13 @@ return {
 	["Vile Fin shore"] = "Ufer der Finsterflossen",
 	["More Vile Fin murlocs walk the shore just north of the outpost."] = "Weitere Murlocs der Finsterflossen laufen am Ufer direkt nördlich des Außenpostens.",
 
-	-- Step 43: Paladin: Whispering Forest
-	-- {area:16616} Whispering Forest
-	["Paladin: {area:16616}"] = "Paladin: {area:16616}",
-	-- {area:16616} Whispering Forest · {npc:246389} Hilda the Breaker · {npc:259190} Ephram Barbaro
-	["Head west into the {area:16616}; {npc:246389} and {npc:259190} camp at its edge."] = "Geh nach Westen in {area:16616}; {npc:246389} und {npc:259190} lagern an seinem Rand.",
-
-	-- Step 44: Shadowvale
-	-- {area:16881} Shadowvale · {item:286269} Glowing Crystal Fragment
+	-- Step 43: Shadowvale
+	-- {area:16881} Shadowvale
 	-- plural, as words: Shadowvale Lurchers = {npc:260428} Shadowvale Lurcher
-	["{area:16881} is the hollow at the west edge of the glades. The Shadowvale Lurchers and Mystics drop the bones; the bottles lie on the ground among them, and the {item:286269} is at the south end."] = "{area:16881} ist die Senke am Westrand von Tirisfal. Die Schattentalschlinger und Schattentalmystiker lassen die Knochen fallen; die Flaschen liegen zwischen ihnen am Boden, und {item:286269} ist am Südende.",
+	["{area:16881} is the hollow at the west edge of the glades. Go down into the big basement under the ruined house (only a floor and a few pillars left, not the two-storey house): the bottles lie on its floor among the Shadowvale Lurchers and Mystics."] = "",
+	["the basement under the ruined house"] = "",
 
-	-- Step 47: Brill
+	-- Step 45: Brill
 	-- {npc:1560} Yvette Farthing
 	["{npc:1560}, in the inn"] = "{npc:1560}, im Gasthaus",
 	-- {npc:1931} Captured Scarlet Zealot
@@ -253,41 +247,41 @@ return {
 	-- {npc:2128} Cain Firesong · {npc:4568} Anastasia Hartwell · {zone:1458} Undercity
 	["{npc:2128}: {npc:4568} in the {zone:1458} takes it"] = "{npc:2128}: {npc:4568} in {zone:1458} nimmt es an",
 
-	-- Step 48: Ulag the Cleaver
+	-- Step 46: Ulag the Cleaver
 	-- {npc:1496} Deathguard Dillinger · {area:159} Brill · {npc:6390} Ulag the Cleaver
 	["{npc:1496} stands in {area:159}. {npc:6390} waits in the mausoleum on the hill just north of town: open the gate and fight him."] = "{npc:1496} steht in {area:159}. {npc:6390} wartet im Mausoleum auf dem Hügel direkt nördlich des Ortes: Öffne das Tor und kämpfe gegen ihn.",
 
-	-- Step 49: Carendin Halgar
+	-- Step 47: Carendin Halgar
 	-- {area:159} Brill · {area:153} Ruins of Lordaeron · {zone:1458} Undercity · {npc:5675} Carendin Halgar · {object:36082} Magic Quarter
 	["Walk south from {area:159} to the {area:153} and down into the {zone:1458}. {npc:5675} stands in the {object:36082}. The Scarlet camp is just west of the ruins."] = "Geh von {area:159} nach Süden zu {area:153} und hinab nach {zone:1458}. {npc:5675} steht im {object:36082}. Das scharlachrote Lager liegt direkt westlich der Ruinen.",
 
-	-- Step 50: Anastasia Hartwell
+	-- Step 48: Anastasia Hartwell
 	-- {area:159} Brill · {area:153} Ruins of Lordaeron · {zone:1458} Undercity · {npc:4568} Anastasia Hartwell · {object:36082} Magic Quarter
 	["Walk south from {area:159} to the {area:153} and down into the {zone:1458}. {npc:4568} stands in the {object:36082}. The Scarlet camp is just west of the ruins."] = "Geh von {area:159} nach Süden zu {area:153} und hinab nach {zone:1458}. {npc:4568} steht im {object:36082}. Das scharlachrote Lager liegt direkt westlich der Ruinen.",
 
-	-- Step 51: The Scarlet camp
+	-- Step 49: The Scarlet camp
 	["The Scarlet camp"] = "Das scharlachrote Lager",
 	-- {area:159} Brill · {npc:1662} Captain Perrine
 	["Follow the road south-west from {area:159} to the Scarlet Crusade camp. {npc:1662} stands at its south end; every Scarlet there can drop a ring."] = "Folge der Straße von {area:159} nach Südwesten zum Lager des Scharlachroten Kreuzzugs. {npc:1662} steht an seinem Südende; jeder Scharlachrote dort kann einen Ring fallen lassen.",
 
-	-- Step 52: Perrine's Chest
+	-- Step 50: Perrine's Chest
 	-- {object:37098} Perrine's Chest · {npc:1662} Captain Perrine
 	["{object:37098} stands beside {npc:1662} at the camp's south end."] = "{object:37098} steht neben {npc:1662} am Südende des Lagers.",
 
-	-- Step 54: Deathguard Terrence
+	-- Step 52: Deathguard Terrence
 	-- {area:159} Brill
 	["Take the road south-east out of {area:159}; Terrence stands on it short of the zeppelin towers."] = "Nimm die Straße von {area:159} nach Südosten; Terrence steht darauf, kurz vor den Zeppelintürmen.",
 
-	-- Step 55: Hadric Harlson
+	-- Step 53: Hadric Harlson
 	-- {npc:267009} Hadric Harlson · {npc:1495} Deathguard Linnea
 	["{npc:267009} stands at {npc:1495}'s camp."] = "{npc:267009} steht im Lager von {npc:1495}.",
 
-	-- Step 56: Balnir Farmstead
+	-- Step 54: Balnir Farmstead
 	-- {quest:96897} The Cult of the Damned
 	-- plural, as words: Necrotic Crystal Fragments = {item:275851} Necrotic Crystal Fragment
 	["{quest:96897} holds the farm just south-east of the camp. The Necrotic Crystal Fragments lie on the ground among the cultists, and the cultists carry some too."] = "{quest:96897} hält den Hof direkt südöstlich des Lagers. Die Nekrotischen Kristallfragmente liegen zwischen den Kultisten am Boden, und die Kultisten tragen auch einige bei sich.",
 
-	-- Step 57: Balnir graves
+	-- Step 55: Balnir graves
 	["Balnir graves"] = "Gräber von Balnirs Bauernhof",
 	-- {quest:99142} Tomb Weed
 	-- plural, as words: Bleeding Horrors = {npc:1529} Bleeding Horror · Wandering Spirits = {npc:1532} Wandering Spirit
@@ -295,66 +289,83 @@ return {
 	-- {item:7227} Balnir Snapdragons
 	["{item:7227}, in the farmstead's garden"] = "{item:7227}, im Garten des Hofs",
 
-	-- Step 58: Captain Vachon
+	-- Step 56: Captain Vachon
 	-- {npc:1664} Captain Vachon
 	-- plural, as words: Scarlet Friars = {npc:1538} Scarlet Friar
 	["The Scarlet Friars camp just north-east of the graves; {npc:1664} stands among them."] = "Die Scharlachroten Ordensmitglieder lagern direkt nordöstlich der Gräber; {npc:1664} steht zwischen ihnen.",
 
-	-- Step 59: Vicious Night Web Spiders
+	-- Step 57: Vicious Night Web Spiders
 	-- plural, as words: Vicious Night Web Spiders = {npc:1555} Vicious Night Web Spider
 	["Vicious Night Web Spiders"] = "Heimtückische Nachtweber",
 	["The spiders lurk in the woods at the far east end of the glades."] = "Die Spinnen lauern in den Wäldern am äußersten Ostende von Tirisfal.",
 
-	-- Step 60: Hides for the Forsaken
+	-- Step 58: Hides for the Forsaken
 	-- plural, as words: Duskbats = {npc:1512} Duskbat
 	["Duskbats and Darkhounds roam all along the road back west; finish the wings and hides on the way."] = "Nachtsauger und Schattenhunde streifen überall entlang der Straße zurück nach Westen umher; sammle unterwegs die restlichen Flügel und Felle.",
 
-	-- Step 61: Deathguard Linnea's camp
+	-- Step 59: Deathguard Linnea's camp
 	-- {npc:1495} Deathguard Linnea
 	["{npc:1495}'s camp"] = "Lager von {npc:1495}",
 
-	-- Step 62: Brill
+	-- Step 60: Brill
 	-- {npc:2211} Captured Mountaineer
 	["The {npc:2211}, in the town hall basement"] = "Der {npc:2211}, im Keller des Rathauses",
 
-	-- Step 63: Captain Melrache
+	-- Step 61: Captain Melrache
 	-- {area:159} Brill · {area:162} Brightwater Lake · {npc:1665} Captain Melrache · {area:459} Scarlet Watch Post
 	-- plural, as words: Scarlet Bodyguards = {npc:1660} Scarlet Bodyguard
 	["Follow the road north-east from {area:159} past {area:162}. {npc:1665} and his two Scarlet Bodyguards hold the Scarlet watchtower on the north-east coast, north of the {area:459}: pull the bodyguards first."] = "Folge der Straße von {area:159} nach Nordosten an {area:162} vorbei. {npc:1665} und seine zwei Scharlachroten Leibwachen halten den scharlachroten Wachturm an der Nordostküste, nördlich von {area:459}: Zieh zuerst die Leibwachen.",
 
-	-- Step 64: Executor Zygand
+	-- Step 62: Executor Zygand
 	-- {area:159} Brill
 	["Back to {area:159}."] = "Zurück nach {area:159}.",
 
-	-- Step 65: Leonid Barthalomew
+	-- Step 63: Leonid Barthalomew
 	-- {area:157} Agamand Mills · {area:16616} Whispering Forest · {npc:246389} Hilda the Breaker
 	["Follow the road west past {area:157} to the {area:16616}. Leonid stands just north of {npc:246389}'s camp."] = "Folge der Straße nach Westen an {area:157} vorbei zu {area:16616}. Leonid steht direkt nördlich von {npc:246389}s Lager.",
 	-- {npc:246378} Danitha Morr
 	["Listen to Leonid and {npc:246378}, then talk to him again"] = "Hör Leonid und {npc:246378} zu, dann sprich erneut mit ihm",
 
-	-- Step 67: The Undercity
+	-- Step 64: Paladin: Whispering Forest
+	-- {area:16616} Whispering Forest
+	["Paladin: {area:16616}"] = "Paladin: {area:16616}",
+	-- {npc:246389} Hilda the Breaker · {npc:259190} Ephram Barbaro
+	["{npc:246389} and {npc:259190} camp at the forest's edge, just south of Leonid. Their quests need level 10."] = "",
+
+	-- Step 65: Paladin: Shadowvale
+	-- {area:16881} Shadowvale
+	["Paladin: {area:16881}"] = "",
+	-- {area:16881} Shadowvale · {item:286269} Glowing Crystal Fragment
+	-- plural, as words: Shadowvale Lurchers = {npc:260428} Shadowvale Lurcher
+	["Back to {area:16881} and down into the basement under the ruined house: the Shadowvale Lurchers and Mystics there drop the bones, and the {item:286269} is at the basement's south end."] = "",
+
+	-- Step 68: The Undercity
 	-- {object:1661} The Undercity · {area:153} Ruins of Lordaeron · {npc:5675} Carendin Halgar · {object:36082} Magic Quarter · {item:6284} Runes of Summoning · {npc:4606} Aelthalyste · {object:36070} War Quarter · {npc:4568} Anastasia Hartwell
 	["{object:1661} is under the {area:153}, beside the zeppelin towers. {npc:5675} is in the {object:36082}: use the {item:6284} on the summoning circle beside him and defeat the voidwalker. {npc:4606} is in the {object:36070}. {npc:4568} is in the {object:36082} too."] = "{object:1661} liegt unter {area:153}, neben den Zeppelintürmen. {npc:5675} ist im {object:36082}: Benutze die {item:6284} am Beschwörungskreis neben ihm und besiege den Leerwandler. {npc:4606} ist im {object:36070}. {npc:4568} ist ebenfalls im {object:36082}.",
 
-	-- Step 68: Zeppelin to Durotar
+	-- Step 69: Zeppelin to Durotar
 	-- {zone:1411} Durotar
 	["Zeppelin to {zone:1411}"] = "Zeppelin nach {zone:1411}",
 	-- {area:159} Brill · {area:153} Ruins of Lordaeron · {zone:1454} Orgrimmar · {object:3202} Grom'gol (no name in this language: may be words)
 	["Walk south-east from {area:159} to the zeppelin towers outside the {area:153} and board the zeppelin to {zone:1454} (the other one goes to {object:3202})."] = "Geh von {area:159} nach Südosten zu den Zeppelintürmen vor {area:153} und steig in den Zeppelin nach {zone:1454} (der andere fliegt nach {object:3202}).",
 	["Zeppelin tower"] = "Zeppelinturm",
 
-	-- Step 69: The Crossroads
+	-- Step 70: The Crossroads
 	-- {zone:1454} Orgrimmar · {zone:1411} Durotar · {area:815} Southfury River · {area:379} Far Watch Post · {area:380} The Crossroads
 	["The zeppelin lands at the tower just north-east of {zone:1454}'s main gate. Follow the road south into {zone:1411}, cross the {area:815} bridge below {area:379} and follow the road west to the {area:380}."] = "Der Zeppelin landet am Turm direkt nordöstlich des Haupttors von {zone:1454}. Folge der Straße nach Süden nach {zone:1411}, überquere die Brücke über {area:815} unterhalb von {area:379} und folge der Straße nach Westen nach {area:380}.",
 	-- {npc:3615} Devrak
 	["{npc:3615}, the wind rider master"] = "{npc:3615}, der Windreitermeister",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Head west into the {area:16616}; {npc:246389} and {npc:259190} camp at its edge."] = "Geh nach Westen in {area:16616}; {npc:246389} und {npc:259190} lagern an seinem Rand.",
+	-- ["Rattlecage skulls"] = "Schädel klappernder Skelette",
+	-- ["The Rattlecage Skeletons in the ruined houses drop the skulls."] = "Die Klappernden Skelette in den zerstörten Häusern lassen die Schädel fallen.",
 	-- ["The pumpkins grow in the Scarlet-held fields north-west of Solliden."] = "Die Kürbisse wachsen auf den von den Scharlachroten gehaltenen Feldern nordwestlich von Sollidens Bauernhof.",
 	-- ["The spiders lurk in the woods at the far east end of the glades. {npc:276020}, a rogue abomination, wanders just north-west of them. {npc:276020} is elite: grouping up is advised."] = "Die Spinnen lauern in den Wäldern am äußersten Ostende von Tirisfal. {npc:276020}, eine abtrünnige Monstrosität, streift direkt nordwestlich von ihnen umher. {npc:276020} ist Elite: Eine Gruppe wird empfohlen.",
 	-- ["The zeppelin lands at the tower just north-east of {zone:1454}'s main gate. Follow the road south into {zone:1411}, cross the {area:815} bridge below {area:379} and follow the road west to the {area:380}."] = "Der Zeppelin landet am Turm direkt nordöstlich des Haupttors von {zone:1454}. Folge der Straße nach Süden nach {zone:1411}, überquere die Brücke über {area:815} unterhalb von {area:379} und folge der Straße nach Westen zu {area:380}.",
 	-- ["Walk on west to {npc:6784} and talk to him: he wants a duel."] = "Geh weiter nach Westen zu {npc:6784} und sprich mit ihm: Er will ein Duell.",
 	-- ["Walk south-west to the {area:156}; Simmer stands at the farm."] = "Geh nach Südwesten zu {area:156}; Simmer steht beim Hof.",
+	-- ["{area:16881} is the hollow at the west edge of the glades. The Shadowvale Lurchers and Mystics drop the bones; the bottles lie on the ground among them, and the {item:286269} is at the south end."] = "{area:16881} ist die Senke am Westrand von Tirisfal. Die Schattentalschlinger und Schattentalmystiker lassen die Knochen fallen; die Flaschen liegen zwischen ihnen am Boden, und {item:286269} ist am Südende.",
 	-- ["{item:286326}, from {npc:276020}"] = "{item:286326}, von {npc:276020}",
 	-- ["{npc:1495}: {npc:276020}, an elite abomination in the east"] = "{npc:1495}: {npc:276020}, eine Elite-Monstrosität im Osten",
 }

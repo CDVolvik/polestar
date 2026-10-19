@@ -225,11 +225,11 @@ return {
 
 	-- Step 55: Back to Thunder Bluff
 	-- {area:222} Bloodhoof Village · {area:1639} Elder Rise
-	["Hearth to {area:222} and ride north to {area:1639}."] = "Utilisez votre Pierre de foyer pour aller à {area:222} et remontez au nord jusqu'à {area:1639}.",
+	["Hearth to {area:222} and head north to {area:1639}."] = "",
 
 	-- Step 56: Yaw Sharpmane
 	-- {area:222} Bloodhoof Village · {item:15908} Taming Rod · {npc:2956} Adult Plainstrider · {npc:2959} Prairie Stalker
-	["Ride down to {area:222} and tame with the {item:15908}: an {npc:2956} on the plains, a {npc:2959} north of the village, a Swoop to the north-west."] = "Redescendez à {area:222} et apprivoisez avec le {item:15908} : un {npc:2956} dans les plaines, un {npc:2959} au nord du village, un Rapace au nord-ouest.",
+	["Head down to {area:222} and tame with the {item:15908}: an {npc:2956} on the plains, a {npc:2959} north of the village, a Swoop to the north-west."] = "",
 	-- {item:15908} Taming Rod
 	["Tame it with the {item:15908}"] = "Apprivoisez-le avec le {item:15908}",
 
@@ -252,6 +252,8 @@ return {
 	-- ["Flatland Prowlers roam the plains around {area:225}"] = "Les Rôdeurs des basses plaines parcourent les plaines autour de {area:225}",
 	-- ["Galak centaurs and Prairie Wolf Alphas"] = "Centaures galak et Loups Alpha des prairies ({npc:2960})",
 	-- ["Galak centaurs and {npc:2958} Alphas"] = "Centaures galak et Loups Alpha ({npc:2958})",
+	-- ["Hearth to {area:222} and ride north to {area:1639}."] = "Utilisez votre Pierre de foyer pour aller à {area:222} et remontez au nord jusqu'à {area:1639}.",
+	-- ["Ride down to {area:222} and tame with the {item:15908}: an {npc:2956} on the plains, a {npc:2959} north of the village, a Swoop to the north-west."] = "Redescendez à {area:222} et apprivoisez avec le {item:15908} : un {npc:2956} dans les plaines, un {npc:2959} au nord du village, un Rapace au nord-ouest.",
 	-- ["Tame Beast"] = "Apprivoiser une bête",
 	-- ["The Galak centaurs camp on the plains north of the {area:821}; Herak leads them. Prairie Wolf Alphas roam among the wolves."] = "Les centaures galak campent dans les plaines au nord des {area:821} ; Herak le Pilleur les dirige. Des Loups Alpha des prairies ({npc:2960}) rôdent parmi les loups.",
 	-- ["The Galak centaurs camp on the plains north of the {area:821}; Herak leads them. {npc:2958} Alphas roam among the wolves."] = "Les centaures galak campent dans les plaines au nord de {area:821} ; Herak les mène. Les Loups Alpha des prairies ({npc:2958}) rôdent parmi les loups.",

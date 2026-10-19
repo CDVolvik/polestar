@@ -32,13 +32,13 @@ return {
 	-- {area:272} Tarren Mill
 	["Fly to {area:272}"] = "Vuela a {area:272}",
 	-- {zone:1458} Undercity · {area:272} Tarren Mill
-	["The zeppelin lands at the towers outside the {zone:1458}: ride down into the city and fly to {area:272}."] = "El zepelín aterriza en las torres a las afueras de {zone:1458}: baja a la ciudad y vuela a {area:272}.",
+	["The zeppelin lands at the towers outside the {zone:1458}: head down into the city and fly to {area:272}."] = "",
 
 	-- Step 6: Boulderfist camp
 	["Boulderfist camp"] = "Campamento Puño de Roca",
 	-- {area:272} Tarren Mill · {area:1857} Thoradin's Wall · {area:313} Northfold Manor
 	-- plural, as words: Boulderfist Ogres = {npc:2562} Boulderfist Ogre
-	["Ride east out of {area:272} through {area:1857} and follow the road east. The Boulderfist Ogres and Enforcers (32-34) camp south of the road, south-east of {area:313}."] = "Cabalga al este desde {area:272} por {area:1857} y sigue el camino al este. Los ogros y déspotas Puño de Roca (32-34) acampan al sur del camino, al sureste de {area:313}.",
+	["Head east out of {area:272} through {area:1857} and follow the road east. The Boulderfist Ogres and Enforcers (32-34) camp south of the road, south-east of {area:313}."] = "",
 
 	-- Step 7: The Shards of Myzrael
 	-- {object:138492} Shards of Myzrael
@@ -80,7 +80,7 @@ return {
 
 	-- Step 16: Faldir's Cove
 	-- {npc:2766} Lolo the Lookout
-	["Ride south-west to the goblins' cove on the southern coast. {npc:2766} keeps watch on the cliff above it."] = "Cabalga al suroeste hasta la cala de los goblins en la costa sur. {npc:2766} vigila desde el acantilado sobre ella.",
+	["Head south-west to the goblins' cove on the southern coast. {npc:2766} keeps watch on the cliff above it."] = "",
 
 	-- Step 17: Professor Phizzlethorpe
 	["Escort the professor down to the shore. Two Daggerspine naga ambush him on the way: stay close."] = "Escolta al profesor hasta la orilla. Dos nagas Espinadaga lo emboscan por el camino: no te alejes.",
@@ -97,7 +97,7 @@ return {
 	-- Step 21: The Stone of Outer Binding
 	-- {object:2690} Stone of Outer Binding
 	["The {object:2690}"] = "{object:2690}",
-	["Ride north; the outer circle stands in the middle of the highlands."] = "Cabalga al norte; el círculo exterior está en medio de las tierras altas.",
+	["Head north; the outer circle stands in the middle of the highlands."] = "",
 
 	-- Step 22: Northfold Manor
 	-- plural, as words: Bloodstone Amulets = {item:4495} Bloodstone Amulet
@@ -107,7 +107,7 @@ return {
 	-- {object:2689} Stone of West Binding
 	["The {object:2689}"] = "{object:2689}",
 	-- {area:1857} Thoradin's Wall
-	["The western circle is near {area:1857}, where you rode in."] = "El círculo del oeste está cerca de {area:1857}, por donde entraste.",
+	["The western circle is near {area:1857}, where you came in."] = "",
 
 	-- Step 24: The Stone of Inner Binding
 	-- {object:2702} Stone of Inner Binding
@@ -132,7 +132,7 @@ return {
 	-- {zone:1418} Badlands
 	["Into the {zone:1418}"] = "A {zone:1418}",
 	-- {area:880} Thandol Span · {zone:1437} Wetlands · {area:150} Menethil Harbor · {zone:1432} Loch Modan · {zone:1418} Badlands · {area:1877} Valley of Fangs
-	["Ride south-west out of Arathi over {area:880}, south through the {zone:1437} (keep clear of {area:150}) and east into {zone:1432}; the road leaves {zone:1432} to the south into the {zone:1418}. Follow it south to the goblin camp in the {area:1877}."] = "Cabalga al suroeste desde Arathi por {area:880}, al sur por {zone:1437} (aléjate de {area:150}) y al este hacia {zone:1432}; el camino sale de {zone:1432} al sur hacia {zone:1418}. Síguelo al sur hasta el campamento goblin de {area:1877}.",
+	["Head south-west out of Arathi over {area:880}, south through the {zone:1437} (keep clear of {area:150}) and east into {zone:1432}; the road leaves {zone:1432} to the south into the {zone:1418}. Follow it south to the goblin camp in the {area:1877}."] = "",
 
 	-- Step 29: Valley of Fangs
 	-- {quest:1106} Martek the Exiled · {area:439} Shimmering Flats
@@ -140,7 +140,7 @@ return {
 
 	-- Step 30: The Dustbowl
 	-- {npc:2921} Lotwil Veriatus · {area:1878} The Dustbowl · {area:340} Kargath
-	["Ride west along the road; {npc:2921}'s camp sits in the {area:1878} halfway to {area:340}."] = "Cabalga al oeste por el camino; el campamento de {npc:2921} está en {area:1878}, a medio camino de {area:340}.",
+	["Head west along the road; {npc:2921}'s camp sits in the {area:1878} halfway to {area:340}."] = "",
 
 	-- Step 31: Kargath
 	-- {area:340} Kargath
@@ -176,7 +176,7 @@ return {
 
 	-- Step 38: Kargath
 	-- {area:340} Kargath
-	["Ride north back to {area:340}."] = "Cabalga al norte de vuelta a {area:340}.",
+	["Head north back to {area:340}."] = "",
 
 	-- Step 39: The Dustbowl
 	-- {npc:2920} Lucien Tosselwrench · {item:2868} Patterned Bronze Bracers · {skill:164} Blacksmithing
@@ -201,7 +201,7 @@ return {
 
 	-- Step 45: Agmond's End
 	-- {area:1877} Valley of Fangs
-	["Ride back south down the road, past the {area:1877}."] = "Cabalga de vuelta al sur por el camino, pasando {area:1877}.",
+	["Head back south down the road, past the {area:1877}."] = "",
 
 	-- Step 46: Hearth to Kargath
 	-- {area:340} Kargath
@@ -220,13 +220,13 @@ return {
 
 	-- Step 51: Regthar Deathgate
 	-- {area:380} Crossroads · {area:386} Forgotten Pools · {npc:3389} Regthar Deathgate
-	["Ride north up the road from the {area:380} to the {area:386}; {npc:3389} keeps watch on the rise above the water."] = "Cabalga al norte por el camino desde {area:380} hasta {area:386}; {npc:3389} vigila desde la elevación sobre el agua.",
+	["Head north up the road from the {area:380} to the {area:386}; {npc:3389} keeps watch on the rise above the water."] = "",
 	-- {npc:5395} Felgur Twocuts · {zone:1443} Desolace
 	["for {npc:5395} in {zone:1443}, in the next guide"] = "para {npc:5395} en {zone:1443}, en la siguiente guía",
 
 	-- Step 52: Ratchet
 	-- {area:380} Crossroads · {area:392} Ratchet
-	["Ride back south to the {area:380} and fly to {area:392}."] = "Cabalga de vuelta al sur hasta {area:380} y vuela a {area:392}.",
+	["Head back south to the {area:380} and fly to {area:392}."] = "",
 	-- {item:3713} Soothing Spices · {zone:1445} Dustwallow Marsh
 	["{item:3713}, for \"Swamp Eye\" Jarl in {zone:1445}"] = "{item:3713}, para \"Ojolodo\" Jarl en {zone:1445}",
 	-- {zone:1445} Dustwallow Marsh
@@ -234,12 +234,24 @@ return {
 
 	-- Step 53: The Affray
 	-- {area:392} Ratchet · {area:720} Fray Island · {npc:6236} Klannoc Macleod · {npc:6238} Big Will
-	["Ride south along the coast from {area:392} to {area:720}. {npc:6236} stands by the arena: step on the grate to start the fight; the challengers come one at a time, then {npc:6238} (33)."] = "Cabalga al sur por la costa desde {area:392} hasta {area:720}. {npc:6236} está junto a la arena: pisa la rejilla para empezar la pelea; los retadores vienen de uno en uno y luego {npc:6238} (33).",
+	["Head south along the coast from {area:392} to {area:720}. {npc:6236} stands by the arena: step on the grate to start the fight; the challengers come one at a time, then {npc:6238} (33)."] = "",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Ride back south down the road, past the {area:1877}."] = "Cabalga de vuelta al sur por el camino, pasando {area:1877}.",
+	-- ["Ride back south to the {area:380} and fly to {area:392}."] = "Cabalga de vuelta al sur hasta {area:380} y vuela a {area:392}.",
+	-- ["Ride east out of {area:272} through {area:1857} and follow the road east. The Boulderfist Ogres and Enforcers (32-34) camp south of the road, south-east of {area:313}."] = "Cabalga al este desde {area:272} por {area:1857} y sigue el camino al este. Los ogros y déspotas Puño de Roca (32-34) acampan al sur del camino, al sureste de {area:313}.",
+	-- ["Ride north back to {area:340}."] = "Cabalga al norte de vuelta a {area:340}.",
+	-- ["Ride north up the road from the {area:380} to the {area:386}; {npc:3389} keeps watch on the rise above the water."] = "Cabalga al norte por el camino desde {area:380} hasta {area:386}; {npc:3389} vigila desde la elevación sobre el agua.",
+	-- ["Ride north; the outer circle stands in the middle of the highlands."] = "Cabalga al norte; el círculo exterior está en medio de las tierras altas.",
+	-- ["Ride south along the coast from {area:392} to {area:720}. {npc:6236} stands by the arena: step on the grate to start the fight; the challengers come one at a time, then {npc:6238} (33)."] = "Cabalga al sur por la costa desde {area:392} hasta {area:720}. {npc:6236} está junto a la arena: pisa la rejilla para empezar la pelea; los retadores vienen de uno en uno y luego {npc:6238} (33).",
+	-- ["Ride south-west out of Arathi over {area:880}, south through the {zone:1437} (keep clear of {area:150}) and east into {zone:1432}; the road leaves {zone:1432} to the south into the {zone:1418}. Follow it south to the goblin camp in the {area:1877}."] = "Cabalga al suroeste desde Arathi por {area:880}, al sur por {zone:1437} (aléjate de {area:150}) y al este hacia {zone:1432}; el camino sale de {zone:1432} al sur hacia {zone:1418}. Síguelo al sur hasta el campamento goblin de {area:1877}.",
+	-- ["Ride south-west to the goblins' cove on the southern coast. {npc:2766} keeps watch on the cliff above it."] = "Cabalga al suroeste hasta la cala de los goblins en la costa sur. {npc:2766} vigila desde el acantilado sobre ella.",
 	-- ["Ride west along the road; Lotwil's camp sits in the {area:1878} halfway to {area:340}."] = "Cabalga al oeste por el camino; el campamento de Lotwil está en {area:1878}, a medio camino de {area:340}.",
+	-- ["Ride west along the road; {npc:2921}'s camp sits in the {area:1878} halfway to {area:340}."] = "Cabalga al oeste por el camino; el campamento de {npc:2921} está en {area:1878}, a medio camino de {area:340}.",
 	-- ["The Elder Crag Coyotes and Giant Buzzards roam the basin south of the {area:1878}. Coyotes drop both the jawbones and the fangs; only the buzzards drop wings and gizzards."] = "Los coyotes del risco mayores y las águilas ratoneras gigantes deambulan por la cuenca al sur de {area:1878}. Los coyotes sueltan tanto las mandíbulas como los colmillos; solo las águilas ratoneras sueltan alas y mollejas.",
 	-- ["The bigger Rock Elementals stand on the slopes north-west of the {area:1878}; each one drops a slab."] = "Los elementales de roca más grandes están en las laderas al noroeste de {area:1878}; cada uno suelta una losa.",
+	-- ["The western circle is near {area:1857}, where you rode in."] = "El círculo del oeste está cerca de {area:1857}, por donde entraste.",
+	-- ["The zeppelin lands at the towers outside the {zone:1458}: ride down into the city and fly to {area:272}."] = "El zepelín aterriza en las torres a las afueras de {zone:1458}: baja a la ciudad y vuela a {area:272}.",
 	-- ["The {area:380}"] = "{area:380}",
 	-- ["{npc:6236}: Berserker Stance"] = "{npc:6236}: Actitud rabiosa",
 }

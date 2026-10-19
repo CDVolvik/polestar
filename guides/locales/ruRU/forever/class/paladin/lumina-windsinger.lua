@@ -20,7 +20,7 @@ return {
 
 	-- Step 2: The Sepulcher
 	-- {zone:1421} Silverpine Forest · {area:228} The Sepulcher · {npc:248840} Trevan Rol · {npc:259611} Deathguard Baldren
-	["Ride south through {zone:1421} to the {area:228}. {npc:248840} stands in the town; {npc:259611} keeps watch near its entrance."] = "Езжайте на юг через {zone:1421} к {area:228}. {npc:248840} стоит в поселении; {npc:259611} стоит на страже у входа.",
+	["Head south through {zone:1421} to the {area:228}. {npc:248840} stands in the town; {npc:259611} keeps watch near its entrance."] = "",
 
 	-- Step 3: The pyre on Fenris Isle
 	-- {area:172} Fenris Isle
@@ -52,7 +52,7 @@ return {
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Back to the {area:228}"] = "Вернитесь: {area:228}",
 	-- ["Once she is clear of {area:235}, Lumina waits for you in the {area:228}. Speak with her again to hear what really happened on the road."] = "Когда она выберется из места {area:235}, Люмина ждет вас здесь: {area:228}. Поговорите с ней снова, чтобы узнать, что на самом деле случилось в дороге.",
-	-- ["Ride south through {zone:1421} to the {area:228}. {npc:248840} stands in the town; {npc:259611} keeps watch near its entrance."] = "Езжайте на юг через {zone:1421} к месту {area:228}. {npc:248840} стоит в поселении; {npc:259611} стоит на страже у входа.",
+	-- ["Ride south through {zone:1421} to the {area:228}. {npc:248840} stands in the town; {npc:259611} keeps watch near its entrance."] = "Езжайте на юг через {zone:1421} к {area:228}. {npc:248840} стоит в поселении; {npc:259611} стоит на страже у входа.",
 	-- ["{area:172} lies in the lake east of the {area:228}. The charred remains are on its shore."] = "{area:172} — остров в озере к востоку от места {area:228}. Обугленные останки лежат на его берегу.",
 	-- ["{npc:259620}, the {area:228}"] = "{npc:259620}, {area:228}",
 }

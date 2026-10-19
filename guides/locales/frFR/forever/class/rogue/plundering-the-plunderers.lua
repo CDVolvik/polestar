@@ -26,7 +26,7 @@ return {
 
 	-- Step 4: Wrenix the Wretched
 	-- {area:392} Ratchet · {zone:1413} Barrens · {npc:7161} Wrenix the Wretched · {item:7970} E.C.A.C. · {item:5060} Thieves' Tools
-	["Fly or ride to {area:392} on the {zone:1413} coast. {npc:7161} stands in town with his Gizmotronic Apparatus: buy an {item:7970} and {item:5060} from the apparatus before you go."] = "Prenez un vol ou chevauchez jusqu'à {area:392}, sur la côte de {zone:1413}. {npc:7161} se tient en ville avec son Appareil bidulotronique : achetez-y un {item:7970} et des {item:5060} avant de partir.",
+	["Fly or walk to {area:392} on the {zone:1413} coast. {npc:7161} stands in town with his Gizmotronic Apparatus: buy an {item:7970} and {item:5060} from the apparatus before you go."] = "",
 
 	-- Step 5: Southsea Treasure
 	-- {area:392} Ratchet · {item:7970} E.C.A.C.
@@ -40,7 +40,7 @@ return {
 
 	-- Step 7: Fenwick Thatros
 	-- {zone:1454} Orgrimmar · {zone:1458} Undercity · {quest:1998} Fenwick Thatros · {area:228} Sepulcher
-	["Take the zeppelin from {zone:1454} to the {zone:1458} and ride south into Silverpine. {quest:1998} stands north-east of the {area:228}."] = "Prenez le zeppelin de {zone:1454} à {zone:1458} et chevauchez vers le sud jusqu'aux Pins argentés. {quest:1998} se trouve au nord-est de {area:228}.",
+	["Take the zeppelin from {zone:1454} to the {zone:1458} and head south into Silverpine. {quest:1998} stands north-east of the {area:228}."] = "",
 
 	-- Step 9: Ambermill
 	-- {area:233} Ambermill · {object:103815} Ambermill Strongbox
@@ -49,4 +49,8 @@ return {
 	-- Step 10: Back to Mennet Carkad
 	-- {npc:6467} Mennet Carkad
 	["Back to {npc:6467}"] = "Retour auprès de {npc:6467}",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Fly or ride to {area:392} on the {zone:1413} coast. {npc:7161} stands in town with his Gizmotronic Apparatus: buy an {item:7970} and {item:5060} from the apparatus before you go."] = "Prenez un vol ou chevauchez jusqu'à {area:392}, sur la côte de {zone:1413}. {npc:7161} se tient en ville avec son Appareil bidulotronique : achetez-y un {item:7970} et des {item:5060} avant de partir.",
+	-- ["Take the zeppelin from {zone:1454} to the {zone:1458} and ride south into Silverpine. {quest:1998} stands north-east of the {area:228}."] = "Prenez le zeppelin de {zone:1454} à {zone:1458} et chevauchez vers le sud jusqu'aux Pins argentés. {quest:1998} se trouve au nord-est de {area:228}.",
 }

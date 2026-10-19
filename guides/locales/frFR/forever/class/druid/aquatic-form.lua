@@ -28,7 +28,7 @@ return {
 
 	-- Step 4: Half Pendant of Aquatic Endurance
 	-- {area:442} Auberdine · {zone:1453} Stormwind · {area:108} Sentinel Hill · {object:177790} Strange Lockbox
-	["Take the boat from {area:442} to {zone:1453} and fly to {area:108}. Ride north-west to the coast: the {object:177790} lies on the sea floor off the shore."] = "Prenez le bateau d'{area:442} à {zone:1453} et volez jusqu'à la {area:108}. Allez vers le nord-ouest jusqu'à la côte : l'{object:177790} repose sur le fond marin au large du rivage.",
+	["Take the boat from {area:442} to {zone:1453} and fly to {area:108}. Head north-west to the coast: the {object:177790} lies on the sea floor off the shore."] = "",
 
 	-- Step 5: Pendant of the Sea Lion
 	-- {spell:18960} Teleport: Moonglade · {item:15885} Pendant of the Sea Lion · {area:2362} Shrine of Remulos · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {area:702} Rut'theran Village
@@ -66,4 +66,5 @@ return {
 	-- ["Cast Teleport: {zone:1450}. Join the two halves into the {item:15885} near the {area:2362}, on the north-west shore of the lake, then see {npc:11802} in {area:2361}. {npc:11798} flies druids to {area:1638}."] = "Lancez Téléportation : {zone:1450}. Assemblez les deux moitiés pour obtenir {item:15885} près du {area:2362}, sur la rive nord-ouest du lac, puis allez voir {npc:11802} à {area:2361}. {npc:11798} emmène les druides en vol jusqu'à {area:1638}.",
 	-- ["Cast Teleport: {zone:1450}. {npc:11802} is in {area:2361}. Shrine Baubles lie in the containers on the floor of {area:656}, below {area:2361}: take one to the {area:2362} on the north-west shore, use it there and speak to {npc:11799}."] = "Lancez Téléportation : {zone:1450}. {npc:11802} se trouve à {area:2361}. Les Colifichets du sanctuaire reposent dans les conteneurs au fond du {area:656}, en contrebas d'{area:2361} : apportez-en une au {area:2362}, sur la rive nord-ouest, utilisez-la là-bas et parlez à {npc:11799}.",
 	-- ["Cast Teleport: {zone:1450}. {npc:11802} is in {area:2361}. The Shrine Baubles lie on the bed of {area:656} and fade within minutes: swim one straight to the {area:2362} on the north-west shore, use it there and speak to {npc:11799}."] = "Lancez Téléportation : {zone:1450}. {npc:11802} se trouve à {area:2361}. Les Colifichets du sanctuaire reposent au fond du {area:656} et disparaissent en quelques minutes : nagez directement avec l'une d'elles jusqu'au {area:2362}, sur la rive nord-ouest, utilisez-la là-bas et parlez à {npc:11799}.",
+	-- ["Take the boat from {area:442} to {zone:1453} and fly to {area:108}. Ride north-west to the coast: the {object:177790} lies on the sea floor off the shore."] = "Prenez le bateau d'{area:442} à {zone:1453} et volez jusqu'à la {area:108}. Allez vers le nord-ouest jusqu'à la côte : l'{object:177790} repose sur le fond marin au large du rivage.",
 }

@@ -24,7 +24,7 @@ return {
 
 	-- Step 3: Master Mathias Shaw
 	-- {zone:1453} Stormwind · {object:2100} Old Town
-	["Ride north through Elwynn to {zone:1453}; Mathias Shaw is at SI:7 in {object:2100}."] = "向北騎過艾爾文森林前往{zone:1453}；馬迪亞斯·肖爾在{object:2100}的軍情七處。",
+	["Head north through Elwynn to {zone:1453}; Mathias Shaw is at SI:7 in {object:2100}."] = "",
 
 	-- Step 4: Doc Mixilpixil
 	-- {npc:7207} Doc Mixilpixil
@@ -39,4 +39,7 @@ return {
 	-- Step 6: Back to Doc Mixilpixil
 	-- {npc:7207} Doc Mixilpixil
 	["Back to {npc:7207}"] = "返回{npc:7207}",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Ride north through Elwynn to {zone:1453}; Mathias Shaw is at SI:7 in {object:2100}."] = "向北騎過艾爾文森林前往{zone:1453}；馬迪亞斯·肖爾在{object:2100}的軍情七處。",
 }

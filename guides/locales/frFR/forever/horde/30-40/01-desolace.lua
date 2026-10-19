@@ -34,7 +34,7 @@ return {
 
 	-- Step 6: Ratchet
 	-- {area:392} Ratchet · {npc:5901} Islen Waterseer
-	["Fly to {area:392}. {npc:5901} camps on the coast a short ride south of the town."] = "Prenez un vol pour {area:392}. {npc:5901} campe sur la côte, un peu au sud de la ville.",
+	["Fly to {area:392}. {npc:5901} camps on the coast a short walk south of the town."] = "",
 
 	-- Step 7: Prate Cloudseer
 	-- {area:484} Freewind Post · {npc:5905} Prate Cloudseer
@@ -51,7 +51,7 @@ return {
 	-- Step 9: Gizelton caravan
 	["Gizelton caravan"] = "Caravane de Gizelton",
 	-- {zone:1443} Desolace · {area:608} Nijel's Point · {npc:11625} Cork Gizelton · {area:609} Kolkar Village
-	["Follow the road south-west out of Sun Rock into {zone:1443} and on south past {area:608}. {npc:11625}'s kodo caravan waits by the road north of {area:609}; if it has already left, ride on."] = "Suivez la route au sud-ouest depuis Roche-Soleil jusqu'en {zone:1443}, puis vers le sud au-delà de {area:608}. La caravane de kodos de {npc:11625} attend au bord de la route, au nord de {area:609} ; si elle est déjà partie, continuez.",
+	["Follow the road south-west out of Sun Rock into {zone:1443} and on south past {area:608}. {npc:11625}'s kodo caravan waits by the road north of {area:609}; if it has already left, head on."] = "",
 
 	-- Step 10: Bodyguard for Hire
 	-- {area:609} Kolkar Village · {npc:11625} Cork Gizelton · {area:2617} Scrabblescrew's Camp · {area:597} Ghost Walker Post
@@ -67,7 +67,7 @@ return {
 
 	-- Step 14: Khan Dez'hepah
 	-- {area:609} Kolkar Village · {quest:1365} Khan Dez'hepah
-	["Ride north-east to {area:609}. {quest:1365} (35) walks among the tents on the east side with a Battle Lord or two (32-33): clear around him, then pull him alone at full health."] = "Allez au nord-est jusqu'à {area:609}. {quest:1365} (35) circule entre les tentes du côté est avec un ou deux Seigneurs de guerre (32-33) : nettoyez les alentours, puis attirez-le seul, en pleine santé.",
+	["Head north-east to {area:609}. {quest:1365} (35) walks among the tents on the east side with a Battle Lord or two (32-33): clear around him, then pull him alone at full health."] = "",
 
 	-- Step 15: Sargeron
 	-- {area:603} Sargeron
@@ -75,10 +75,10 @@ return {
 
 	-- Step 16: Thunder Axe Fortress
 	-- {area:599} Thunder Axe Fortress · {item:6436} Burning Gem · {item:6435} Infused Burning Gem · {item:20310} Flayed Demon Skin
-	["Ride west to {area:599}. Beat a Burning Blade cultist down, then use the {item:6436} on it before it dies to fill one {item:6435}. They also drop a {item:20310} now and then (1-5%); if one drops, read it."] = "Allez à l'ouest jusqu'à {area:599}. Affaiblissez un Sectateur de la Lame ardente, puis utilisez la {item:6436} sur lui avant sa mort pour obtenir une {item:6435}. Ils laissent parfois tomber une {item:20310} (1-5 %) : si vous en obtenez une, lisez-la.",
+	["Head west to {area:599}. Beat a Burning Blade cultist down, then use the {item:6436} on it before it dies to fill one {item:6435}. They also drop a {item:20310} now and then (1-5%); if one drops, read it."] = "",
 
 	-- Step 17: Ghost Walker Post
-	["Ride back south to the post."] = "Retournez au poste, au sud.",
+	["Head back south to the post."] = "",
 	-- {npc:5641} Takata Steelblade · {quest:1431} Alliance Relations · {zone:1454} Orgrimmar
 	["{npc:5641}'s next {quest:1431} sends you back to {zone:1454} for nothing: leave it."] = "La quête suivante de {npc:5641}, {quest:1431}, vous renvoie à {zone:1454} pour rien : laissez-la.",
 
@@ -95,14 +95,14 @@ return {
 
 	-- Step 21: Shadowprey Village
 	-- {area:606} Gelkis Village
-	["Ride south-west to the troll village on the coast, keeping clear of the {area:606} on the way."] = "Allez au sud-ouest jusqu'au village troll sur la côte, en évitant {area:606} en chemin.",
+	["Head south-west to the troll village on the coast, keeping clear of the {area:606} on the way."] = "",
 	-- {npc:11877} Roon Wildmane · {npc:715} Hemet Nesingwary
 	["{npc:11877}: for {npc:715} in Stranglethorn"] = "{npc:11877} : pour {npc:715} à Strangleronce",
 
 	-- Step 22: Clam beds
 	["Clam beds"] = "Bancs de praires",
 	-- plural, as words: Giant Softshell Clams = {object:177784} Giant Softshell Clam · Enraged Reef Crawlers = {npc:12347} Enraged Reef Crawler
-	["Ride north up the coast. Giant Softshell Clams lie in the shallows and the Enraged Reef Crawlers walk the beach; open each clam in your bags for its meat."] = "Remontez la côte vers le nord. Les Praires géantes reposent dans les hauts-fonds et les Clampants des récifs enragés arpentent la plage ; ouvrez chaque praire dans vos sacs pour en obtenir la chair.",
+	["Head north up the coast. Giant Softshell Clams lie in the shallows and the Enraged Reef Crawlers walk the beach; open each clam in your bags for its meat."] = "",
 
 	-- Step 23: Slitherblade Oracles
 	-- plural, as words: Slitherblade Oracles = {npc:4718} Slitherblade Oracle
@@ -122,12 +122,12 @@ return {
 	["His next errand is not on this route."] = "Sa mission suivante ne fait pas partie de cet itinéraire.",
 
 	-- Step 27: Ghost Walker Post
-	["Ride south-east to the post."] = "Allez au sud-est jusqu'au poste.",
+	["Head south-east to the post."] = "",
 	-- {npc:5641} Takata Steelblade
 	["{npc:5641}'s next errand sends you after a demon lord with an elite guard: skip it."] = "La mission suivante de {npc:5641} vous envoie contre un seigneur démon escorté d'élites : passez-la.",
 
 	-- Step 28: Gelkis Village
-	["Ride south-west towards Shadowprey. The Gelkis centaurs (32-35) around their village are a good camp; fight them until level 32."] = "Allez au sud-ouest vers Proie-de-l'Ombre. Les centaures gelkis (32-35) autour de leur village sont un bon endroit : combattez-les jusqu'au niveau 32.",
+	["Head south-west towards Shadowprey. The Gelkis centaurs (32-35) around their village are a good camp; fight them until level 32."] = "",
 	-- {area:606} Gelkis Village · {zone:1443} Desolace
 	-- plural, as words: Gelkis Stampers = {npc:4648} Gelkis Stamper
 	["grind on Gelkis Stampers and Windchasers at the {area:606}, {zone:1443}"] = "tuez des Poinçonneurs gelkis et des Chasse-vent gelkis à {area:606}, {zone:1443}",
@@ -176,7 +176,7 @@ return {
 	-- Step 37: Daggerspine naga
 	["Daggerspine naga"] = "Nagas Daguéchine",
 	-- {area:271} Southshore
-	["Ride south, east of {area:271}, down to the coast. The Daggerspine naga line the shore south-east of the town."] = "Descendez au sud jusqu'à la côte, à l'est d'{area:271}. Les nagas Daguéchine bordent le rivage au sud-est de la ville.",
+	["Head south, east of {area:271}, down to the coast. The Daggerspine naga line the shore south-east of the town."] = "",
 	["Daggerspine shore"] = "Rivage des Daguéchine",
 
 	-- Step 38: Torn Fin murlocs
@@ -187,7 +187,7 @@ return {
 
 	-- Step 39: Apothecary Lydon
 	-- {area:272} Tarren Mill · {area:271} Southshore
-	["Ride back north to {area:272}, keeping west of {area:271}."] = "Retournez au nord jusqu'à {area:272}, en restant à l'ouest d'{area:271}.",
+	["Head back north to {area:272}, keeping west of {area:271}."] = "",
 
 	-- Step 40: Shindigger keg
 	["Shindigger keg"] = "Tonneau de Shindigger",
@@ -197,7 +197,7 @@ return {
 	-- Step 41: Back to Tarren Mill
 	-- {area:272} Tarren Mill
 	["Back to {area:272}"] = "Retour à {area:272}",
-	["Hearth back (or ride north if it is on cooldown)."] = "Utilisez votre Pierre de foyer (ou remontez au nord si elle n'est pas prête).",
+	["Hearth back (or head north if it is on cooldown)."] = "",
 	-- {object:1729} Tainted Keg · {object:1728} Dusty Rug
 	["Place the {object:1729} on the {object:1728} beside the inn"] = "Placez le {object:1729} sur la {object:1728} à côté de l'auberge",
 
@@ -224,17 +224,17 @@ return {
 
 	-- Step 46: Tarren Mill
 	-- {area:272} Tarren Mill
-	["Ride back east to {area:272}."] = "Retournez à l'est jusqu'à {area:272}.",
+	["Head back east to {area:272}."] = "",
 	-- {area:271} Southshore
 	["Thaivand's next task ends at {area:271}'s graveyard and the magus offers a dungeon errand: leave both."] = "La tâche suivante de Thaivand se termine au cimetière d'{area:271} et le magus propose une mission de donjon : laissez les deux.",
 
 	-- Step 47: Gol'dir
 	-- {quest:535} Valik · {area:280} Strahnbrad · {npc:2431} Jailor Borhuin · {item:3704} Rusted Iron Key · {quest:503} Gol'dir
-	["Ride north past {quest:535}'s camp to {area:280}, the Syndicate-held village (35-37). {npc:2431} carries the {item:3704}; {quest:503} sits in a cage in the house on the north side."] = "Allez au nord au-delà du camp de {quest:535} jusqu'à {area:280}, le village tenu par le Syndicat (35-37). {npc:2431} porte la {item:3704} ; {quest:503} est enfermé dans une cage, dans la maison du côté nord.",
+	["Head north past {quest:535}'s camp to {area:280}, the Syndicate-held village (35-37). {npc:2431} carries the {item:3704}; {quest:503} sits in a cage in the house on the north side."] = "",
 
 	-- Step 48: Tarren Mill
 	-- {area:272} Tarren Mill
-	["Ride back south to {area:272}."] = "Retournez au sud jusqu'à {area:272}.",
+	["Head back south to {area:272}."] = "",
 
 	-- Step 49: Fly to the Undercity
 	-- {area:1497} Undercity
@@ -244,6 +244,21 @@ return {
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Do your shopping in the {area:1497} first, then fly to the {area:228}. The {object:113791} stands on the hill just south-west of it: beat the Corrupt {npc:11256} beside it, place its bracers in the brazier, speak to the {npc:5895} and keep the {item:7813} for Islen. Fly on to {area:272} from the {area:228}."] = "Faites d'abord vos achats à {area:1497}, puis prenez un vol pour {area:228}. Le {object:113791} se dresse sur la colline juste au sud-ouest : vainquez la {npc:11256} corrompue à côté, placez ses brassards dans le brasero, parlez à la {npc:5895} et gardez l'{item:7813} pour Islen. Depuis {area:228}, prenez un vol pour {area:272}.",
+	-- ["Fly to {area:392}. {npc:5901} camps on the coast a short ride south of the town."] = "Prenez un vol pour {area:392}. {npc:5901} campe sur la côte, un peu au sud de la ville.",
+	-- ["Follow the road south-west out of Sun Rock into {zone:1443} and on south past {area:608}. {npc:11625}'s kodo caravan waits by the road north of {area:609}; if it has already left, ride on."] = "Suivez la route au sud-ouest depuis Roche-Soleil jusqu'en {zone:1443}, puis vers le sud au-delà de {area:608}. La caravane de kodos de {npc:11625} attend au bord de la route, au nord de {area:609} ; si elle est déjà partie, continuez.",
 	-- ["Head west along the foot of the mountains to the violet dome of {area:279}. Ricter, Alina and Dermot (33-34) stand together inside the crater's eastern rim, {npc:2414} (35) a little west of them; each carries one Bloodstone piece. The Shield Guards and Theurgists (31-32) around them drop the Worn {quest:556}."] = "Allez à l'ouest au pied des montagnes jusqu'au dôme violet de {area:279}. Ricter, Alina et Dermot (33-34) se tiennent ensemble au bord est du cratère, {npc:2414} (35) un peu à l'ouest d'eux ; chacun porte un fragment de pierre de sang. Les Défenseurs et Théurges de Dalaran (31-32) autour d'eux laissent tomber les runes usées pour {quest:556}.",
+	-- ["Hearth back (or ride north if it is on cooldown)."] = "Utilisez votre Pierre de foyer (ou remontez au nord si elle n'est pas prête).",
+	-- ["Ride back east to {area:272}."] = "Retournez à l'est jusqu'à {area:272}.",
+	-- ["Ride back north to {area:272}, keeping west of {area:271}."] = "Retournez au nord jusqu'à {area:272}, en restant à l'ouest d'{area:271}.",
+	-- ["Ride back south to the post."] = "Retournez au poste, au sud.",
+	-- ["Ride back south to {area:272}."] = "Retournez au sud jusqu'à {area:272}.",
+	-- ["Ride north past {quest:535}'s camp to {area:280}, the Syndicate-held village (35-37). {npc:2431} carries the {item:3704}; {quest:503} sits in a cage in the house on the north side."] = "Allez au nord au-delà du camp de {quest:535} jusqu'à {area:280}, le village tenu par le Syndicat (35-37). {npc:2431} porte la {item:3704} ; {quest:503} est enfermé dans une cage, dans la maison du côté nord.",
+	-- ["Ride north up the coast. Giant Softshell Clams lie in the shallows and the Enraged Reef Crawlers walk the beach; open each clam in your bags for its meat."] = "Remontez la côte vers le nord. Les Praires géantes reposent dans les hauts-fonds et les Clampants des récifs enragés arpentent la plage ; ouvrez chaque praire dans vos sacs pour en obtenir la chair.",
+	-- ["Ride north-east to {area:609}. {quest:1365} (35) walks among the tents on the east side with a Battle Lord or two (32-33): clear around him, then pull him alone at full health."] = "Allez au nord-est jusqu'à {area:609}. {quest:1365} (35) circule entre les tentes du côté est avec un ou deux Seigneurs de guerre (32-33) : nettoyez les alentours, puis attirez-le seul, en pleine santé.",
+	-- ["Ride south, east of {area:271}, down to the coast. The Daggerspine naga line the shore south-east of the town."] = "Descendez au sud jusqu'à la côte, à l'est d'{area:271}. Les nagas Daguéchine bordent le rivage au sud-est de la ville.",
+	-- ["Ride south-east to the post."] = "Allez au sud-est jusqu'au poste.",
+	-- ["Ride south-west to the troll village on the coast, keeping clear of the {area:606} on the way."] = "Allez au sud-ouest jusqu'au village troll sur la côte, en évitant {area:606} en chemin.",
+	-- ["Ride south-west towards Shadowprey. The Gelkis centaurs (32-35) around their village are a good camp; fight them until level 32."] = "Allez au sud-ouest vers Proie-de-l'Ombre. Les centaures gelkis (32-35) autour de leur village sont un bon endroit : combattez-les jusqu'au niveau 32.",
+	-- ["Ride west to {area:599}. Beat a Burning Blade cultist down, then use the {item:6436} on it before it dies to fill one {item:6435}. They also drop a {item:20310} now and then (1-5%); if one drops, read it."] = "Allez à l'ouest jusqu'à {area:599}. Affaiblissez un Sectateur de la Lame ardente, puis utilisez la {item:6436} sur lui avant sa mort pour obtenir une {item:6435}. Ils laissent parfois tomber une {item:20310} (1-5 %) : si vous en obtenez une, lisez-la.",
 	-- ["{npc:5639} waits in the {object:172959}; {npc:5640} stands in the {object:172961} on the west side of the city. Skyborne: {npc:4949} waits in Grommash Hold, in the {object:172957}."] = "{npc:5639} attend dans {object:172959} ; {npc:5640} se tient dans {object:172961}, à l'ouest de la ville. Skyborne : {npc:4949} attend à Grommash Hold, dans {object:172957}.",
 }

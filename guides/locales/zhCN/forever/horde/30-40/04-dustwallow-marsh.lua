@@ -14,7 +14,7 @@ return {
 
 	-- Step 2: Shady Rest Inn
 	-- {area:378} Camp Taurajo · {area:403} Shady Rest Inn
-	["Ride east from {area:378} along the road into the marsh. The burned-out {area:403} stands beside it just past the border; the shield, the badge and the hoofprints are in and beside the ruin."] = "从{area:378}沿道路向东骑进沼泽。烧毁的{area:403}就在边界过去一点的路旁；盾牌、徽章和蹄印都在废墟里面和旁边。",
+	["Head east from {area:378} along the road into the marsh. The burned-out {area:403} stands beside it just past the border; the shield, the badge and the hoofprints are in and beside the ruin."] = "",
 
 	-- Step 3: Brackenwall Village
 	["Take the road north at the fork to the ogre village of Brackenwall."] = "在岔路口沿道路向北，前往食人魔村庄蕨墙村。",
@@ -28,7 +28,7 @@ return {
 	-- Step 5: Stinky Ignatz
 	["Stinky Ignatz"] = "伊格纳兹",
 	-- {area:502} Witch Hill
-	["Ride north to {area:502}. Stinky stands at the foot of the hill; escort him while he gathers Bogbean Leaves just south of it."] = "向北骑往{area:502}。伊格纳兹站在山脚下；在他到山南边采集叶子时护送他。",
+	["Head north to {area:502}. Stinky stands at the foot of the hill; escort him while he gathers Bogbean Leaves just south of it."] = "",
 
 	-- Step 6: Mirefin murlocs
 	["Mirefin murlocs"] = "黑鳍鱼人",
@@ -45,21 +45,21 @@ return {
 	-- Step 8: Darkfang spiders
 	["Darkfang spiders"] = "暗牙蜘蛛",
 	-- plural, as words: Darkfang Venomspitters = {npc:4414} Darkfang Venomspitter · Theramore Infiltrators = {npc:4834} Theramore Infiltrator
-	["Ride west back across the marsh. The Darkfang Venomspitters on the ridges north of Brackenwall drop the venom sacs. Theramore Infiltrators (35-36) sneak through the same woods: they are stealthed, so look closely."] = "向西骑回沼泽对面。蕨墙村北边山脊上的暗牙毒蜘蛛掉落毒囊。塞拉摩间谍（35-36级）潜伏在同一片树林里：他们处于潜行状态，所以要仔细看。",
+	["Head west back across the marsh. The Darkfang Venomspitters on the ridges north of Brackenwall drop the venom sacs. Theramore Infiltrators (35-36) sneak through the same woods: they are stealthed, so look closely."] = "",
 
 	-- Step 9: Darkmist Cavern
 	["The Darkmist spiders swarm the cavern mouth north-west of Brackenwall; every kind drops eyes."] = "黑雾蜘蛛聚集在蕨墙村西北的洞口；每种都会掉落眼球。",
 
 	-- Step 11: Swamp Eye Jarl
 	-- {area:497} Swamplight Manor
-	["Ride east back to the {area:497}."] = "向东骑回{area:497}。",
+	["Head east back to the {area:497}."] = "",
 	-- {item:3853} Moonsteel Broadsword · {skill:164} Blacksmithing
 	["only if you carry a {item:3853} ({skill:164} or the Auction House)"] = "仅当你带着{item:3853}时（{skill:164}或拍卖行）",
 	-- {object:20985} Loose Dirt · {npc:4791} Nazeer Bloodpike
 	["{object:20985}, now that {npc:4791} has read the report"] = "{object:20985}，现在{npc:4791}已经读过报告了",
 
 	-- Step 12: Brackenwall Village
-	["Ride back west to Brackenwall with the head."] = "带着头颅向西骑回蕨墙村。",
+	["Head back west to Brackenwall with the head."] = "",
 	-- {npc:2519} Kin'weelay · {object:3202} Grom'gol
 	["For {npc:2519} at {object:3202}, in the next guide"] = "交给{object:3202}的{npc:2519}，在下一个指南中",
 
@@ -69,7 +69,7 @@ return {
 
 	-- Step 15: Melizza Brimbuzzle
 	-- {area:607} Valley of Spears · {npc:12277} Melizza Brimbuzzle
-	["Ride north-east to the {area:607}. {npc:12277} is held in the Maraudine centaur camp; free her and escort her out east of the valley."] = "向东北骑往{area:607}。{npc:12277}被关在玛洛迪半人马的营地里；救出她，护送她从山谷东边出去。",
+	["Head north-east to the {area:607}. {npc:12277} is held in the Maraudine centaur camp; free her and escort her out east of the valley."] = "",
 
 	-- Step 16: Kodo Graveyard
 	-- {npc:6019} Hornizz Brimbuzzle · {area:596} Kodo Graveyard
@@ -88,7 +88,7 @@ return {
 	["{npc:5395} and {npc:5412} stand in the post just west of {npc:11596}'s camp."] = "{npc:5395}和{npc:5412}站在{npc:11596}营地正西的哨站里。",
 
 	-- Step 20: Kormek's Hut
-	["Ride north up the road to the hut by the road north of the graveyard."] = "沿道路向北骑往坟场北边路旁的小屋。",
+	["Head north up the road to the hut by the road north of the graveyard."] = "",
 
 	-- Step 21: Kodo bones and ghosts
 	["Kodo bones and ghosts"] = "科多兽骨和幽灵",
@@ -101,7 +101,7 @@ return {
 
 	-- Step 25: Ethel Rethor
 	-- {npc:11863} Azore Aldamort · {area:2405} Ethel Rethor
-	["Ride west to {npc:11863}'s tower at {area:2405} on the north-west coast."] = "向西骑往西北海岸{area:2405}的{npc:11863}之塔。",
+	["Head west to {npc:11863}'s tower at {area:2405} on the north-west coast."] = "",
 
 	-- Step 26: Slitherblade coast
 	["Slitherblade coast"] = "滑刃海岸",
@@ -112,21 +112,35 @@ return {
 	["Maraudine totems"] = "玛洛迪图腾",
 	-- {area:2405} Ethel Rethor · {area:607} Valley of Spears · {quest:93225} Carved Centaur Totems
 	-- plural, as words: Maraudine Scouts = {npc:4654} Maraudine Scout
-	["Ride south from {area:2405} into the {area:607}. The Maraudine Scouts, Wranglers, Maulers, Windchasers and Marauders (36-39) drop the {quest:93225}."] = "从{area:2405}向南骑进{area:607}。玛洛迪斥候、玛洛迪争斗者、玛洛迪虐待者、玛洛迪逐风者和玛洛迪掠夺者（36-39级）掉落{quest:93225}。",
+	["Head south from {area:2405} into the {area:607}. The Maraudine Scouts, Wranglers, Maulers, Windchasers and Marauders (36-39) drop the {quest:93225}."] = "",
 
 	-- Step 29: Shadowprey Village
-	["Ride on south-west to Shadowprey."] = "继续向西南骑往葬影村。",
+	["Head on south-west to Shadowprey."] = "",
 
 	-- Step 30: Portals of the Legion
 	-- {area:602} Mannoroc Coven
-	["Ride east to {area:602}. Use the Rod of Banishing by each demon portal to close six of them."] = "向东骑往{area:602}。在每个恶魔传送门旁使用任务给你的放逐法杖，关闭其中六个。",
+	["Head east to {area:602}. Use the Rod of Banishing by each demon portal to close six of them."] = "",
 
 	-- Step 31: Ghost Walker Post
 	-- {npc:5412} Gurda Wildmane · {area:597} Ghost Walker Post
-	["Ride north from the coven to {npc:5412} at {area:597}."] = "从集会所向北骑往{area:597}的{npc:5412}。",
+	["Head north from the coven to {npc:5412} at {area:597}."] = "",
 
 	-- Step 32: Hearth to Shadowprey
 	["Hearth to Shadowprey"] = "用炉石回到葬影村",
 	-- {zone:1434} Stranglethorn Vale
 	["The next guide takes you back to {zone:1434}."] = "下一个指南会带你回到{zone:1434}。",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Ride back west to Brackenwall with the head."] = "带着头颅向西骑回蕨墙村。",
+	-- ["Ride east back to the {area:497}."] = "向东骑回{area:497}。",
+	-- ["Ride east from {area:378} along the road into the marsh. The burned-out {area:403} stands beside it just past the border; the shield, the badge and the hoofprints are in and beside the ruin."] = "从{area:378}沿道路向东骑进沼泽。烧毁的{area:403}就在边界过去一点的路旁；盾牌、徽章和蹄印都在废墟里面和旁边。",
+	-- ["Ride east to {area:602}. Use the Rod of Banishing by each demon portal to close six of them."] = "向东骑往{area:602}。在每个恶魔传送门旁使用任务给你的放逐法杖，关闭其中六个。",
+	-- ["Ride north from the coven to {npc:5412} at {area:597}."] = "从集会所向北骑往{area:597}的{npc:5412}。",
+	-- ["Ride north to {area:502}. Stinky stands at the foot of the hill; escort him while he gathers Bogbean Leaves just south of it."] = "向北骑往{area:502}。伊格纳兹站在山脚下；在他到山南边采集叶子时护送他。",
+	-- ["Ride north up the road to the hut by the road north of the graveyard."] = "沿道路向北骑往坟场北边路旁的小屋。",
+	-- ["Ride north-east to the {area:607}. {npc:12277} is held in the Maraudine centaur camp; free her and escort her out east of the valley."] = "向东北骑往{area:607}。{npc:12277}被关在玛洛迪半人马的营地里；救出她，护送她从山谷东边出去。",
+	-- ["Ride on south-west to Shadowprey."] = "继续向西南骑往葬影村。",
+	-- ["Ride south from {area:2405} into the {area:607}. The Maraudine Scouts, Wranglers, Maulers, Windchasers and Marauders (36-39) drop the {quest:93225}."] = "从{area:2405}向南骑进{area:607}。玛洛迪斥候、玛洛迪争斗者、玛洛迪虐待者、玛洛迪逐风者和玛洛迪掠夺者（36-39级）掉落{quest:93225}。",
+	-- ["Ride west back across the marsh. The Darkfang Venomspitters on the ridges north of Brackenwall drop the venom sacs. Theramore Infiltrators (35-36) sneak through the same woods: they are stealthed, so look closely."] = "向西骑回沼泽对面。蕨墙村北边山脊上的暗牙毒蜘蛛掉落毒囊。塞拉摩间谍（35-36级）潜伏在同一片树林里：他们处于潜行状态，所以要仔细看。",
+	-- ["Ride west to {npc:11863}'s tower at {area:2405} on the north-west coast."] = "向西骑往西北海岸{area:2405}的{npc:11863}之塔。",
 }

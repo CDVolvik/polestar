@@ -34,7 +34,7 @@ return {
 
 	-- Step 6: Ratchet
 	-- {area:392} Ratchet · {npc:5901} Islen Waterseer
-	["Fly to {area:392}. {npc:5901} camps on the coast a short ride south of the town."] = "{area:392}(으)로 날아가세요. {npc:5901}은(는) 마을 남쪽으로 조금 떨어진 해안에 야영하고 있습니다.",
+	["Fly to {area:392}. {npc:5901} camps on the coast a short walk south of the town."] = "",
 
 	-- Step 7: Prate Cloudseer
 	-- {area:484} Freewind Post · {npc:5905} Prate Cloudseer
@@ -51,7 +51,7 @@ return {
 	-- Step 9: Gizelton caravan
 	["Gizelton caravan"] = "기젤톤 대상단",
 	-- {zone:1443} Desolace · {area:608} Nijel's Point · {npc:11625} Cork Gizelton · {area:609} Kolkar Village
-	["Follow the road south-west out of Sun Rock into {zone:1443} and on south past {area:608}. {npc:11625}'s kodo caravan waits by the road north of {area:609}; if it has already left, ride on."] = "해바위 야영지에서 길을 따라 남서쪽으로 {zone:1443}에 들어가 {area:608}을(를) 지나 계속 남쪽으로 가세요. {npc:11625}의 코도 대상단은 {area:609} 북쪽 길가에서 기다립니다. 이미 떠났다면 계속 가세요.",
+	["Follow the road south-west out of Sun Rock into {zone:1443} and on south past {area:608}. {npc:11625}'s kodo caravan waits by the road north of {area:609}; if it has already left, head on."] = "",
 
 	-- Step 10: Bodyguard for Hire
 	-- {area:609} Kolkar Village · {npc:11625} Cork Gizelton · {area:2617} Scrabblescrew's Camp · {area:597} Ghost Walker Post
@@ -67,7 +67,7 @@ return {
 
 	-- Step 14: Khan Dez'hepah
 	-- {area:609} Kolkar Village · {quest:1365} Khan Dez'hepah
-	["Ride north-east to {area:609}. {quest:1365} (35) walks among the tents on the east side with a Battle Lord or two (32-33): clear around him, then pull him alone at full health."] = "북동쪽의 {area:609}(으)로 가세요. {quest:1365}(35)은(는) 전투대장 한두 명(32-33)과 함께 동쪽 천막 사이를 돌아다닙니다. 주변을 정리한 뒤 생명력이 가득 찬 상태에서 그만 끌어오세요.",
+	["Head north-east to {area:609}. {quest:1365} (35) walks among the tents on the east side with a Battle Lord or two (32-33): clear around him, then pull him alone at full health."] = "",
 
 	-- Step 15: Sargeron
 	-- {area:603} Sargeron
@@ -75,10 +75,10 @@ return {
 
 	-- Step 16: Thunder Axe Fortress
 	-- {area:599} Thunder Axe Fortress · {item:6436} Burning Gem · {item:6435} Infused Burning Gem · {item:20310} Flayed Demon Skin
-	["Ride west to {area:599}. Beat a Burning Blade cultist down, then use the {item:6436} on it before it dies to fill one {item:6435}. They also drop a {item:20310} now and then (1-5%); if one drops, read it."] = "서쪽의 {area:599}(으)로 가세요. 불타는 칼날단 이교도를 거의 죽을 때까지 때린 뒤, 죽기 전에 {item:6436}을(를) 사용해 {item:6435}을(를) 하나 채우세요. 가끔(1-5%) {item:20310}도 떨어뜨립니다. 얻으면 읽으세요.",
+	["Head west to {area:599}. Beat a Burning Blade cultist down, then use the {item:6436} on it before it dies to fill one {item:6435}. They also drop a {item:20310} now and then (1-5%); if one drops, read it."] = "",
 
 	-- Step 17: Ghost Walker Post
-	["Ride back south to the post."] = "남쪽의 주둔지로 돌아가세요.",
+	["Head back south to the post."] = "",
 	-- {npc:5641} Takata Steelblade · {quest:1431} Alliance Relations · {zone:1454} Orgrimmar
 	["{npc:5641}'s next {quest:1431} sends you back to {zone:1454} for nothing: leave it."] = "{npc:5641}의 다음 퀘스트인 {quest:1431}은(는) 아무 소득 없이 {zone:1454}(으)로 돌려보냅니다. 받지 마세요.",
 
@@ -95,14 +95,14 @@ return {
 
 	-- Step 21: Shadowprey Village
 	-- {area:606} Gelkis Village
-	["Ride south-west to the troll village on the coast, keeping clear of the {area:606} on the way."] = "남서쪽 해안의 트롤 마을로 가세요. 가는 길에 {area:606}은(는) 피하세요.",
+	["Head south-west to the troll village on the coast, keeping clear of the {area:606} on the way."] = "",
 	-- {npc:11877} Roon Wildmane · {npc:715} Hemet Nesingwary
 	["{npc:11877}: for {npc:715} in Stranglethorn"] = "{npc:11877}: 가시덤불 골짜기의 {npc:715}에게",
 
 	-- Step 22: Clam beds
 	["Clam beds"] = "조개 서식지",
 	-- plural, as words: Giant Softshell Clams = {object:177784} Giant Softshell Clam · Enraged Reef Crawlers = {npc:12347} Enraged Reef Crawler
-	["Ride north up the coast. Giant Softshell Clams lie in the shallows and the Enraged Reef Crawlers walk the beach; open each clam in your bags for its meat."] = "해안을 따라 북쪽으로 가세요. 커다란 연갑 조개는 얕은 물에 있고, 사나운 모래톱게는 해변을 돌아다닙니다. 조개는 가방에서 열어 살을 꺼내세요.",
+	["Head north up the coast. Giant Softshell Clams lie in the shallows and the Enraged Reef Crawlers walk the beach; open each clam in your bags for its meat."] = "",
 
 	-- Step 23: Slitherblade Oracles
 	-- plural, as words: Slitherblade Oracles = {npc:4718} Slitherblade Oracle
@@ -122,12 +122,12 @@ return {
 	["His next errand is not on this route."] = "그의 다음 심부름은 이 경로에 없습니다.",
 
 	-- Step 27: Ghost Walker Post
-	["Ride south-east to the post."] = "남동쪽의 주둔지로 가세요.",
+	["Head south-east to the post."] = "",
 	-- {npc:5641} Takata Steelblade
 	["{npc:5641}'s next errand sends you after a demon lord with an elite guard: skip it."] = "{npc:5641}의 다음 심부름은 정예 호위병을 거느린 악마 군주를 쫓게 합니다. 건너뛰세요.",
 
 	-- Step 28: Gelkis Village
-	["Ride south-west towards Shadowprey. The Gelkis centaurs (32-35) around their village are a good camp; fight them until level 32."] = "남서쪽의 그늘수렵 마을 쪽으로 가세요. 마을 주변의 겔키스일족 켄타우로스(32-35)는 사냥하기 좋습니다. 32레벨까지 처치하세요.",
+	["Head south-west towards Shadowprey. The Gelkis centaurs (32-35) around their village are a good camp; fight them until level 32."] = "",
 	-- {area:606} Gelkis Village · {zone:1443} Desolace
 	-- plural, as words: Gelkis Stampers = {npc:4648} Gelkis Stamper
 	["grind on Gelkis Stampers and Windchasers at the {area:606}, {zone:1443}"] = "{zone:1443} {area:606}에서 겔키스일족 곤봉잡이와 바람전사 사냥",
@@ -176,7 +176,7 @@ return {
 	-- Step 37: Daggerspine naga
 	["Daggerspine naga"] = "비수가시일족 나가",
 	-- {area:271} Southshore
-	["Ride south, east of {area:271}, down to the coast. The Daggerspine naga line the shore south-east of the town."] = "{area:271} 동쪽으로 남쪽 해안까지 내려가세요. 비수가시일족 나가가 마을 남동쪽 해안에 늘어서 있습니다.",
+	["Head south, east of {area:271}, down to the coast. The Daggerspine naga line the shore south-east of the town."] = "",
 	["Daggerspine shore"] = "비수가시일족 해안",
 
 	-- Step 38: Torn Fin murlocs
@@ -187,7 +187,7 @@ return {
 
 	-- Step 39: Apothecary Lydon
 	-- {area:272} Tarren Mill · {area:271} Southshore
-	["Ride back north to {area:272}, keeping west of {area:271}."] = "{area:271} 서쪽으로 북쪽의 {area:272}까지 돌아가세요.",
+	["Head back north to {area:272}, keeping west of {area:271}."] = "",
 
 	-- Step 40: Shindigger keg
 	["Shindigger keg"] = "신디거 흑맥주 통",
@@ -197,7 +197,7 @@ return {
 	-- Step 41: Back to Tarren Mill
 	-- {area:272} Tarren Mill
 	["Back to {area:272}"] = "{area:272}(으)로 돌아가기",
-	["Hearth back (or ride north if it is on cooldown)."] = "귀환석으로 돌아가세요(재사용 대기 중이면 북쪽으로 달려가세요).",
+	["Hearth back (or head north if it is on cooldown)."] = "",
 	-- {object:1729} Tainted Keg · {object:1728} Dusty Rug
 	["Place the {object:1729} on the {object:1728} beside the inn"] = "여관 옆의 {object:1728} 위에 {object:1729}을(를) 놓으세요",
 
@@ -224,21 +224,38 @@ return {
 
 	-- Step 46: Tarren Mill
 	-- {area:272} Tarren Mill
-	["Ride back east to {area:272}."] = "동쪽의 {area:272}(으)로 돌아가세요.",
+	["Head back east to {area:272}."] = "",
 	-- {area:271} Southshore
 	["Thaivand's next task ends at {area:271}'s graveyard and the magus offers a dungeon errand: leave both."] = "타이반드의 다음 임무는 {area:271} 묘지에서 끝나고, 마법사는 던전 심부름을 줍니다. 둘 다 받지 마세요.",
 
 	-- Step 47: Gol'dir
 	-- {quest:535} Valik · {area:280} Strahnbrad · {npc:2431} Jailor Borhuin · {item:3704} Rusted Iron Key · {quest:503} Gol'dir
-	["Ride north past {quest:535}'s camp to {area:280}, the Syndicate-held village (35-37). {npc:2431} carries the {item:3704}; {quest:503} sits in a cage in the house on the north side."] = "{quest:535}의 야영지를 지나 북쪽으로 비밀결사대가 차지한 마을 {area:280}(35-37)(으)로 가세요. {npc:2431}이(가) {item:3704}을(를) 지니고 있습니다. {quest:503}은(는) 북쪽 집 안의 우리에 갇혀 있습니다.",
+	["Head north past {quest:535}'s camp to {area:280}, the Syndicate-held village (35-37). {npc:2431} carries the {item:3704}; {quest:503} sits in a cage in the house on the north side."] = "",
 
 	-- Step 48: Tarren Mill
 	-- {area:272} Tarren Mill
-	["Ride back south to {area:272}."] = "남쪽의 {area:272}(으)로 돌아가세요.",
+	["Head back south to {area:272}."] = "",
 
 	-- Step 49: Fly to the Undercity
 	-- {area:1497} Undercity
 	["Fly to the {area:1497}"] = "{area:1497}(으)로 날아가기",
 	-- {area:1497} Undercity · {object:3202} Grom'gol
 	["The next guide starts in the {area:1497}, at the {object:3202} zeppelin."] = "다음 가이드는 {area:1497}의 {object:3202}행 비행선에서 시작합니다.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Fly to {area:392}. {npc:5901} camps on the coast a short ride south of the town."] = "{area:392}(으)로 날아가세요. {npc:5901}은(는) 마을 남쪽으로 조금 떨어진 해안에 야영하고 있습니다.",
+	-- ["Follow the road south-west out of Sun Rock into {zone:1443} and on south past {area:608}. {npc:11625}'s kodo caravan waits by the road north of {area:609}; if it has already left, ride on."] = "해바위 야영지에서 길을 따라 남서쪽으로 {zone:1443}에 들어가 {area:608}을(를) 지나 계속 남쪽으로 가세요. {npc:11625}의 코도 대상단은 {area:609} 북쪽 길가에서 기다립니다. 이미 떠났다면 계속 가세요.",
+	-- ["Hearth back (or ride north if it is on cooldown)."] = "귀환석으로 돌아가세요(재사용 대기 중이면 북쪽으로 달려가세요).",
+	-- ["Ride back east to {area:272}."] = "동쪽의 {area:272}(으)로 돌아가세요.",
+	-- ["Ride back north to {area:272}, keeping west of {area:271}."] = "{area:271} 서쪽으로 북쪽의 {area:272}까지 돌아가세요.",
+	-- ["Ride back south to the post."] = "남쪽의 주둔지로 돌아가세요.",
+	-- ["Ride back south to {area:272}."] = "남쪽의 {area:272}(으)로 돌아가세요.",
+	-- ["Ride north past {quest:535}'s camp to {area:280}, the Syndicate-held village (35-37). {npc:2431} carries the {item:3704}; {quest:503} sits in a cage in the house on the north side."] = "{quest:535}의 야영지를 지나 북쪽으로 비밀결사대가 차지한 마을 {area:280}(35-37)(으)로 가세요. {npc:2431}이(가) {item:3704}을(를) 지니고 있습니다. {quest:503}은(는) 북쪽 집 안의 우리에 갇혀 있습니다.",
+	-- ["Ride north up the coast. Giant Softshell Clams lie in the shallows and the Enraged Reef Crawlers walk the beach; open each clam in your bags for its meat."] = "해안을 따라 북쪽으로 가세요. 커다란 연갑 조개는 얕은 물에 있고, 사나운 모래톱게는 해변을 돌아다닙니다. 조개는 가방에서 열어 살을 꺼내세요.",
+	-- ["Ride north-east to {area:609}. {quest:1365} (35) walks among the tents on the east side with a Battle Lord or two (32-33): clear around him, then pull him alone at full health."] = "북동쪽의 {area:609}(으)로 가세요. {quest:1365}(35)은(는) 전투대장 한두 명(32-33)과 함께 동쪽 천막 사이를 돌아다닙니다. 주변을 정리한 뒤 생명력이 가득 찬 상태에서 그만 끌어오세요.",
+	-- ["Ride south, east of {area:271}, down to the coast. The Daggerspine naga line the shore south-east of the town."] = "{area:271} 동쪽으로 남쪽 해안까지 내려가세요. 비수가시일족 나가가 마을 남동쪽 해안에 늘어서 있습니다.",
+	-- ["Ride south-east to the post."] = "남동쪽의 주둔지로 가세요.",
+	-- ["Ride south-west to the troll village on the coast, keeping clear of the {area:606} on the way."] = "남서쪽 해안의 트롤 마을로 가세요. 가는 길에 {area:606}은(는) 피하세요.",
+	-- ["Ride south-west towards Shadowprey. The Gelkis centaurs (32-35) around their village are a good camp; fight them until level 32."] = "남서쪽의 그늘수렵 마을 쪽으로 가세요. 마을 주변의 겔키스일족 켄타우로스(32-35)는 사냥하기 좋습니다. 32레벨까지 처치하세요.",
+	-- ["Ride west to {area:599}. Beat a Burning Blade cultist down, then use the {item:6436} on it before it dies to fill one {item:6435}. They also drop a {item:20310} now and then (1-5%); if one drops, read it."] = "서쪽의 {area:599}(으)로 가세요. 불타는 칼날단 이교도를 거의 죽을 때까지 때린 뒤, 죽기 전에 {item:6436}을(를) 사용해 {item:6435}을(를) 하나 채우세요. 가끔(1-5%) {item:20310}도 떨어뜨립니다. 얻으면 읽으세요.",
 }

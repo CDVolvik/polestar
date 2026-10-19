@@ -34,7 +34,7 @@ return {
 
 	-- Step 6: Ratchet
 	-- {area:392} Ratchet · {npc:5901} Islen Waterseer
-	["Fly to {area:392}. {npc:5901} camps on the coast a short ride south of the town."] = "飛往{area:392}。{npc:5901}在城鎮南邊不遠的海岸紮營。",
+	["Fly to {area:392}. {npc:5901} camps on the coast a short walk south of the town."] = "",
 
 	-- Step 7: Prate Cloudseer
 	-- {area:484} Freewind Post · {npc:5905} Prate Cloudseer
@@ -51,7 +51,7 @@ return {
 	-- Step 9: Gizelton caravan
 	["Gizelton caravan"] = "基澤爾頓車隊",
 	-- {zone:1443} Desolace · {area:608} Nijel's Point · {npc:11625} Cork Gizelton · {area:609} Kolkar Village
-	["Follow the road south-west out of Sun Rock into {zone:1443} and on south past {area:608}. {npc:11625}'s kodo caravan waits by the road north of {area:609}; if it has already left, ride on."] = "沿道路從烈日石居向西南進入{zone:1443}，繼續向南經過{area:608}。{npc:11625}的科多獸商隊在{area:609}北邊的路旁等著；如果已經出發，就繼續騎。",
+	["Follow the road south-west out of Sun Rock into {zone:1443} and on south past {area:608}. {npc:11625}'s kodo caravan waits by the road north of {area:609}; if it has already left, head on."] = "",
 
 	-- Step 10: Bodyguard for Hire
 	-- {area:609} Kolkar Village · {npc:11625} Cork Gizelton · {area:2617} Scrabblescrew's Camp · {area:597} Ghost Walker Post
@@ -67,7 +67,7 @@ return {
 
 	-- Step 14: Khan Dez'hepah
 	-- {area:609} Kolkar Village · {quest:1365} Khan Dez'hepah
-	["Ride north-east to {area:609}. {quest:1365} (35) walks among the tents on the east side with a Battle Lord or two (32-33): clear around him, then pull him alone at full health."] = "向東北騎到{area:609}。{quest:1365}（35級）帶著一兩名科卡爾隊長（32-33級）在東側帳篷間走動：先清掉他周圍，再在滿血時單獨把他拉過來。",
+	["Head north-east to {area:609}. {quest:1365} (35) walks among the tents on the east side with a Battle Lord or two (32-33): clear around him, then pull him alone at full health."] = "",
 
 	-- Step 15: Sargeron
 	-- {area:603} Sargeron
@@ -75,10 +75,10 @@ return {
 
 	-- Step 16: Thunder Axe Fortress
 	-- {area:599} Thunder Axe Fortress · {item:6436} Burning Gem · {item:6435} Infused Burning Gem · {item:20310} Flayed Demon Skin
-	["Ride west to {area:599}. Beat a Burning Blade cultist down, then use the {item:6436} on it before it dies to fill one {item:6435}. They also drop a {item:20310} now and then (1-5%); if one drops, read it."] = "向西騎到{area:599}。把一名燃刃氏族教徒打到殘血，在牠死前對牠使用{item:6436}以填滿一顆{item:6435}。他們偶爾也會掉落{item:20310}（1-5%）；掉了就閱讀它。",
+	["Head west to {area:599}. Beat a Burning Blade cultist down, then use the {item:6436} on it before it dies to fill one {item:6435}. They also drop a {item:20310} now and then (1-5%); if one drops, read it."] = "",
 
 	-- Step 17: Ghost Walker Post
-	["Ride back south to the post."] = "向南騎回哨站。",
+	["Head back south to the post."] = "",
 	-- {npc:5641} Takata Steelblade · {quest:1431} Alliance Relations · {zone:1454} Orgrimmar
 	["{npc:5641}'s next {quest:1431} sends you back to {zone:1454} for nothing: leave it."] = "{npc:5641}的下一個{quest:1431}會白白把你派回{zone:1454}：不用理會。",
 
@@ -95,14 +95,14 @@ return {
 
 	-- Step 21: Shadowprey Village
 	-- {area:606} Gelkis Village
-	["Ride south-west to the troll village on the coast, keeping clear of the {area:606} on the way."] = "向西南騎到海岸上的食人妖村落，途中避開{area:606}。",
+	["Head south-west to the troll village on the coast, keeping clear of the {area:606} on the way."] = "",
 	-- {npc:11877} Roon Wildmane · {npc:715} Hemet Nesingwary
 	["{npc:11877}: for {npc:715} in Stranglethorn"] = "{npc:11877}：給荊棘谷的{npc:715}",
 
 	-- Step 22: Clam beds
 	["Clam beds"] = "蚌床",
 	-- plural, as words: Giant Softshell Clams = {object:177784} Giant Softshell Clam · Enraged Reef Crawlers = {npc:12347} Enraged Reef Crawler
-	["Ride north up the coast. Giant Softshell Clams lie in the shallows and the Enraged Reef Crawlers walk the beach; open each clam in your bags for its meat."] = "沿海岸向北騎。巨型軟殼蚌在淺水中，狂怒的暗礁蟹在海灘上走動；在背包中打開每個蚌取出蚌肉。",
+	["Head north up the coast. Giant Softshell Clams lie in the shallows and the Enraged Reef Crawlers walk the beach; open each clam in your bags for its meat."] = "",
 
 	-- Step 23: Slitherblade Oracles
 	-- plural, as words: Slitherblade Oracles = {npc:4718} Slitherblade Oracle
@@ -122,12 +122,12 @@ return {
 	["His next errand is not on this route."] = "他的下一個差事不在本路線上。",
 
 	-- Step 27: Ghost Walker Post
-	["Ride south-east to the post."] = "向東南騎到哨站。",
+	["Head south-east to the post."] = "",
 	-- {npc:5641} Takata Steelblade
 	["{npc:5641}'s next errand sends you after a demon lord with an elite guard: skip it."] = "{npc:5641}的下一個差事要你去對付一名帶著精英守衛的惡魔領主：跳過它。",
 
 	-- Step 28: Gelkis Village
-	["Ride south-west towards Shadowprey. The Gelkis centaurs (32-35) around their village are a good camp; fight them until level 32."] = "向西南往葬影村騎。吉爾吉斯半人馬（32-35級）在他們的村子周圍，是很好的刷怪點；打到32級。",
+	["Head south-west towards Shadowprey. The Gelkis centaurs (32-35) around their village are a good camp; fight them until level 32."] = "",
 	-- {area:606} Gelkis Village · {zone:1443} Desolace
 	-- plural, as words: Gelkis Stampers = {npc:4648} Gelkis Stamper
 	["grind on Gelkis Stampers and Windchasers at the {area:606}, {zone:1443}"] = "在{zone:1443}的{area:606}刷吉爾吉斯踐踏者和吉爾吉斯逐風者",
@@ -176,7 +176,7 @@ return {
 	-- Step 37: Daggerspine naga
 	["Daggerspine naga"] = "刺脊納迦",
 	-- {area:271} Southshore
-	["Ride south, east of {area:271}, down to the coast. The Daggerspine naga line the shore south-east of the town."] = "向南騎，從{area:271}東邊下到海岸。刺脊納迦散布在城鎮東南方的海岸上。",
+	["Head south, east of {area:271}, down to the coast. The Daggerspine naga line the shore south-east of the town."] = "",
 	["Daggerspine shore"] = "刺脊海岸",
 
 	-- Step 38: Torn Fin murlocs
@@ -187,7 +187,7 @@ return {
 
 	-- Step 39: Apothecary Lydon
 	-- {area:272} Tarren Mill · {area:271} Southshore
-	["Ride back north to {area:272}, keeping west of {area:271}."] = "向北騎回{area:272}，保持在{area:271}西邊。",
+	["Head back north to {area:272}, keeping west of {area:271}."] = "",
 
 	-- Step 40: Shindigger keg
 	["Shindigger keg"] = "鐵鏟酒桶",
@@ -197,7 +197,7 @@ return {
 	-- Step 41: Back to Tarren Mill
 	-- {area:272} Tarren Mill
 	["Back to {area:272}"] = "返回{area:272}",
-	["Hearth back (or ride north if it is on cooldown)."] = "用爐石回去（如果在冷卻中就向北騎）。",
+	["Hearth back (or head north if it is on cooldown)."] = "",
 	-- {object:1729} Tainted Keg · {object:1728} Dusty Rug
 	["Place the {object:1729} on the {object:1728} beside the inn"] = "把{object:1729}放在旅店旁的{object:1728}上",
 
@@ -224,21 +224,38 @@ return {
 
 	-- Step 46: Tarren Mill
 	-- {area:272} Tarren Mill
-	["Ride back east to {area:272}."] = "向東騎回{area:272}。",
+	["Head back east to {area:272}."] = "",
 	-- {area:271} Southshore
 	["Thaivand's next task ends at {area:271}'s graveyard and the magus offers a dungeon errand: leave both."] = "學徒塞萬德的下一個任務在{area:271}的墓地結束，而法師提供的是地城差事：兩個都不用理會。",
 
 	-- Step 47: Gol'dir
 	-- {quest:535} Valik · {area:280} Strahnbrad · {npc:2431} Jailor Borhuin · {item:3704} Rusted Iron Key · {quest:503} Gol'dir
-	["Ride north past {quest:535}'s camp to {area:280}, the Syndicate-held village (35-37). {npc:2431} carries the {item:3704}; {quest:503} sits in a cage in the house on the north side."] = "向北經過{quest:535}的營地，前往辛迪加佔據的村落{area:280}（35-37級）。{npc:2431}身上帶著{item:3704}；{quest:503}被關在北側房子的籠子裡。",
+	["Head north past {quest:535}'s camp to {area:280}, the Syndicate-held village (35-37). {npc:2431} carries the {item:3704}; {quest:503} sits in a cage in the house on the north side."] = "",
 
 	-- Step 48: Tarren Mill
 	-- {area:272} Tarren Mill
-	["Ride back south to {area:272}."] = "向南騎回{area:272}。",
+	["Head back south to {area:272}."] = "",
 
 	-- Step 49: Fly to the Undercity
 	-- {area:1497} Undercity
 	["Fly to the {area:1497}"] = "飛往{area:1497}",
 	-- {area:1497} Undercity · {object:3202} Grom'gol
 	["The next guide starts in the {area:1497}, at the {object:3202} zeppelin."] = "下一份指南從{area:1497}的{object:3202}飛艇開始。",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Fly to {area:392}. {npc:5901} camps on the coast a short ride south of the town."] = "飛往{area:392}。{npc:5901}在城鎮南邊不遠的海岸紮營。",
+	-- ["Follow the road south-west out of Sun Rock into {zone:1443} and on south past {area:608}. {npc:11625}'s kodo caravan waits by the road north of {area:609}; if it has already left, ride on."] = "沿道路從烈日石居向西南進入{zone:1443}，繼續向南經過{area:608}。{npc:11625}的科多獸商隊在{area:609}北邊的路旁等著；如果已經出發，就繼續騎。",
+	-- ["Hearth back (or ride north if it is on cooldown)."] = "用爐石回去（如果在冷卻中就向北騎）。",
+	-- ["Ride back east to {area:272}."] = "向東騎回{area:272}。",
+	-- ["Ride back north to {area:272}, keeping west of {area:271}."] = "向北騎回{area:272}，保持在{area:271}西邊。",
+	-- ["Ride back south to the post."] = "向南騎回哨站。",
+	-- ["Ride back south to {area:272}."] = "向南騎回{area:272}。",
+	-- ["Ride north past {quest:535}'s camp to {area:280}, the Syndicate-held village (35-37). {npc:2431} carries the {item:3704}; {quest:503} sits in a cage in the house on the north side."] = "向北經過{quest:535}的營地，前往辛迪加佔據的村落{area:280}（35-37級）。{npc:2431}身上帶著{item:3704}；{quest:503}被關在北側房子的籠子裡。",
+	-- ["Ride north up the coast. Giant Softshell Clams lie in the shallows and the Enraged Reef Crawlers walk the beach; open each clam in your bags for its meat."] = "沿海岸向北騎。巨型軟殼蚌在淺水中，狂怒的暗礁蟹在海灘上走動；在背包中打開每個蚌取出蚌肉。",
+	-- ["Ride north-east to {area:609}. {quest:1365} (35) walks among the tents on the east side with a Battle Lord or two (32-33): clear around him, then pull him alone at full health."] = "向東北騎到{area:609}。{quest:1365}（35級）帶著一兩名科卡爾隊長（32-33級）在東側帳篷間走動：先清掉他周圍，再在滿血時單獨把他拉過來。",
+	-- ["Ride south, east of {area:271}, down to the coast. The Daggerspine naga line the shore south-east of the town."] = "向南騎，從{area:271}東邊下到海岸。刺脊納迦散布在城鎮東南方的海岸上。",
+	-- ["Ride south-east to the post."] = "向東南騎到哨站。",
+	-- ["Ride south-west to the troll village on the coast, keeping clear of the {area:606} on the way."] = "向西南騎到海岸上的食人妖村落，途中避開{area:606}。",
+	-- ["Ride south-west towards Shadowprey. The Gelkis centaurs (32-35) around their village are a good camp; fight them until level 32."] = "向西南往葬影村騎。吉爾吉斯半人馬（32-35級）在他們的村子周圍，是很好的刷怪點；打到32級。",
+	-- ["Ride west to {area:599}. Beat a Burning Blade cultist down, then use the {item:6436} on it before it dies to fill one {item:6435}. They also drop a {item:20310} now and then (1-5%); if one drops, read it."] = "向西騎到{area:599}。把一名燃刃氏族教徒打到殘血，在牠死前對牠使用{item:6436}以填滿一顆{item:6435}。他們偶爾也會掉落{item:20310}（1-5%）；掉了就閱讀它。",
 }

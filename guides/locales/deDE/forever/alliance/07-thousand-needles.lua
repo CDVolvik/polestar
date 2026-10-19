@@ -53,7 +53,7 @@ return {
 
 	-- Step 9: Abercrombie
 	-- {area:492} Raven Hill Cemetery
-	["Ride west along the road; the hermit's shack stands north-east of the {area:492}."] = "Reite die Straße nach Westen; die Hütte des Einsiedlers steht nordöstlich des {area:492}.",
+	["Head west along the road; the hermit's shack stands north-east of the {area:492}."] = "",
 
 	-- Step 10: Plague Spreaders
 	-- plural, as words: Plague Spreaders = {npc:604} Plague Spreader
@@ -83,7 +83,7 @@ return {
 
 	-- Step 15: Vul'Gol Ogre Mound
 	-- {object:119} Abercrombie's Crate
-	["Ride east to the ogre mound. {object:119} sits in the camp at its entrance; Splinter Fist ogres guard it."] = "Reite nach Osten zum Ogerhügel. {object:119} steht im Lager an seinem Eingang; Oger der Splitterfäuste bewachen sie.",
+	["Head east to the ogre mound. {object:119} sits in the camp at its entrance; Splinter Fist ogres guard it."] = "",
 	-- {npc:272273} Lost Watcher · {quest:96138} Merrick's Bow
 	["Only if a {npc:272273} dropped {quest:96138}: right-click it"] = "Nur falls ein {npc:272273} {quest:96138} fallen ließ: Rechtsklick darauf",
 
@@ -148,13 +148,13 @@ return {
 
 	-- Step 28: Captain Stoutfist
 	-- {area:150} Menethil Harbor
-	["Ride back west along the road to {area:150}."] = "Reite die Straße zurück nach Westen nach {area:150}.",
+	["Head back west along the road to {area:150}."] = "",
 	-- {quest:98221} From the Ashes · {quest:465} Nek'rosh's Gambit
 	["{quest:98221}: {quest:465} comes after it on Forever"] = "{quest:98221}: {quest:465} folgt darauf in Forever",
 
 	-- Step 29: Angerfang Encampment
 	-- {area:1036} Angerfang Encampment · {npc:2091} Chieftain Nek'rosh
-	["Ride east again to the Dragonmaw camp. The four sets of Attack Plans lie in the {area:1036}; {npc:2091}, an elite, stands in the camp too."] = "Reite wieder nach Osten zum Lager der Dragonmaw. Die vier Sätze Angriffspläne liegen im {area:1036}; {npc:2091}, ein Elite, steht ebenfalls im Lager.",
+	["Head east again to the Dragonmaw camp. The four sets of Attack Plans lie in the {area:1036}; {npc:2091}, an elite, stands in the camp too."] = "",
 
 	-- Step 30: To Theramore
 	["To Theramore"] = "Nach Theramore",
@@ -200,7 +200,11 @@ return {
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Dragonmaw catapult"] = "Katapult der Dragonmaw",
+	-- ["Ride back west along the road to {area:150}."] = "Reite die Straße zurück nach Westen nach {area:150}.",
+	-- ["Ride east again to the Dragonmaw camp. The four sets of Attack Plans lie in the {area:1036}; {npc:2091}, an elite, stands in the camp too."] = "Reite wieder nach Osten zum Lager der Dragonmaw. Die vier Sätze Angriffspläne liegen im {area:1036}; {npc:2091}, ein Elite, steht ebenfalls im Lager.",
 	-- ["Ride east again; the catapult stands at the Dragonmaw camp south of the road."] = "Reite wieder nach Osten; das Katapult steht im Lager der Dragonmaw südlich der Straße.",
 	-- ["Ride east to the ogre mound. {item:1349} sits in the camp at its entrance; Splinter Fist ogres guard it."] = "Reite nach Osten zum Ogerhort Vul'Gol. {item:1349} liegt im Lager am Eingang; Oger der Splitterfäuste bewachen es.",
+	-- ["Ride east to the ogre mound. {object:119} sits in the camp at its entrance; Splinter Fist ogres guard it."] = "Reite nach Osten zum Ogerhügel. {object:119} steht im Lager an seinem Eingang; Oger der Splitterfäuste bewachen sie.",
+	-- ["Ride west along the road; the hermit's shack stands north-east of the {area:492}."] = "Reite die Straße nach Westen; die Hütte des Einsiedlers steht nordöstlich des {area:492}.",
 	-- ["The next step, Defeat Nek'rosh, pits you against an elite chieftain: skip it."] = "Der nächste Schritt, Sieg über Nek'rosh, stellt dich gegen einen Elite-Häuptling: Überspring ihn.",
 }
