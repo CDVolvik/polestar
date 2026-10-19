@@ -158,3 +158,33 @@ test('Stormwind: the walk to the Deeprun Tram ends at its entrance, not on the r
 	const end = pts.filter((p) => p[2] !== false).pop();
 	assert.ok(Math.abs(end[2] - tram.z) < 5, `it ends at the entrance's height (${end[2]}, the entrance ${tram.z})`);
 });
+
+// #314 (Tac), Stormwind, Alliance: from the shore north-west of the city
+// (1415 41.08,62.23) to Grimand Elmore in the Dwarven District (1453
+// 59.73,33.78, his spawn; the report cut the target's coordinates short) the
+// walk crossed the cliffs and rocky ground just north-west of the walls, which
+// the player could not climb. The maps cross them above the city's map (1453
+// 30 to 52 across, -16 to 6 down): up from 70 to 162 yd at 50 to 59 degrees,
+// then 24 yd down at 58 degrees into the city. Open, one of #98's slopes.
+test('Stormwind: the walk from the shore north-west of the city to Grimand Elmore does not cross the cliffs north-west of the walls (#314)', { skip, todo: 'open: the maps still cross the cliffs (#98)' }, () => {
+	const from = world(1415, 41.08, 62.23);
+	const to = world(1453, 59.73, 33.78);
+	const got = walk(from, to, 'Alliance');
+	assert.ok(got, 'the engine finds a walk');
+	const pts = got.points;
+	const last = pts[pts.length - 1];
+	assert.ok(Math.hypot(last[0] - to.x, last[1] - to.y) < 10, 'to Grimand Elmore');
+	const a = world(1453, 30, -16);
+	const b = world(1453, 52, 6);
+	const inside = (x, y) => x <= a.x && x >= b.x && y <= a.y && y >= b.y;
+	for (let i = 1; i < pts.length; i++) {
+		const [ax, ay] = pts[i - 1];
+		const [bx, by] = pts[i];
+		const steps = Math.ceil(Math.hypot(bx - ax, by - ay) / 2);
+		for (let s = 0; s <= steps; s++) {
+			const x = ax + ((bx - ax) * s) / steps;
+			const y = ay + ((by - ay) * s) / steps;
+			assert.ok(!inside(x, y), `the leg from ${ax.toFixed(1)},${ay.toFixed(1)} to ${bx.toFixed(1)},${by.toFixed(1)} crosses the cliffs (${pts.length} points, ${Math.round(yardsOf(pts))} yd)`);
+		}
+	}
+});
