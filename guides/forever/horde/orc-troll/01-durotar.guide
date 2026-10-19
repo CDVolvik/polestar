@@ -314,7 +314,6 @@ step Tiragarde Keep
   kill 3129 quest 784.2
   collect 4870 quest 791.1
   kill 3192 quest 784.3
-  collect 4882 "Benedict's Key"
   collect 4881 @59.3,57.6
   accept 830
 

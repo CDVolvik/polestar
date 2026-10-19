@@ -1,6 +1,6 @@
 ---
 name: polestar-contributing
-description: The rules for working on the Polestar repository (the WoW Forever leveling guide addon, fitzforge/polestar) for a contributor - checking that no one else is already fixing an issue, which branch a change goes to, linking the issue, generated files, changelog fragments, tests, what a pull request must never do, and how to post on issues. Use for any change, pull request, commit or issue comment in a Polestar clone; read polestar-triage first for a bug report and polestar-guide-fix for a guide fix.
+description: The rules for working on the Polestar repository (the WoW Forever leveling guide addon, fitzforge/polestar) for a contributor - checking that no one else is already fixing an issue, that every pull request goes to next (patch fixes arrive by backport), linking the issue, generated files, changelog fragments, tests, what a pull request must never do, and how to post on issues. Use for any change, pull request, commit or issue comment in a Polestar clone; read polestar-triage first for a bug report and polestar-guide-fix for a guide fix.
 compatibility: A clone of fitzforge/polestar with Node 24 or newer. Reference data (data/forever) and Lua 5.1 are needed for the guide checks.
 ---
 
@@ -63,8 +63,8 @@ requests for one bug waste both. Before you write any code for an issue:
    while unfinished).
 4. **Link every issue it fixes** so the workflow lists the pull request on
    the issue and labels it `has-pr`: the number in the title (`(#302)`), or
-   "closes #302" (into `next`) / "fixes #302" (into `hotfix/`) in the
-   description, once per issue. "See #302" or "refs #302" is only a link.
+   "closes #302" in the description, once per issue. "See #302" or
+   "refs #302" is only a link.
    Don't link an issue you are not fixing: a Discord reporter is told a fix
    is open when the first pull request for their issue appears.
 5. **The label `overlap`** on your pull request means another open pull
@@ -79,24 +79,17 @@ the issue first. CONTRIBUTING.md, "Before you start", is the long form.
 
 | Your change | Base branch | Ships in |
 |---|---|---|
-| A guide fix for a bug players have in the latest release: `guides/`, the recompiled `addon/Polestar_Guides/`, its test, `tools/lib/data/corrections.json`, its fragment in `changes/` | `hotfix/<next patch>`, e.g. `hotfix/0.2.5` | the next patch release |
-| Anything else: addon Lua, tools, data builds, UI, translations, new guides, route refreshes | `next` (the default branch) | the next feature release |
-| Not sure | `next` | |
+| Anything: guide fixes, addon Lua, tools, data builds, UI, translations, new guides, route refreshes | `next` (the default branch) | the next feature release |
+| A guide-only fix players need sooner: `guides/`, the recompiled `addon/Polestar_Guides/`, its test, `tools/lib/data/corrections.json`, its fragment in `changes/` | `next` as well; the maintainer labels it `backport` after it merges | the next patch release too |
 
-- `main` is what players have. Never open a pull request against it, and
-  never push to `main`, `next` or a `hotfix/` branch directly.
-- A patch fix has to work against the released engine. If it needs an addon
-  or tools change that is only on `next`, it is not a patch fix: target
-  `next`.
-- The maintainer creates `hotfix/<next patch>` right after each release
-  (`git branch -r --list 'origin/hotfix/*'`). If it does not exist, target
-  `next`. The `Base branch` check fails a pull request to `main`, and one to
-  `hotfix/` that changes anything outside the first row.
-- GitHub closes issues ("closes #83") only for pull requests merged into
-  `next`. On a `hotfix/` pull request, write "fixes #83" in the description;
-  the maintainer closes the issue when the patch ships.
-- A fix that went to `next` but belongs in the patch too: ask for the
-  `backport` label instead of opening a second pull request.
+- Never open a pull request against `main` or a `hotfix/` branch, and never
+  push to `main`, `next` or a `hotfix/` branch directly. The `Base branch`
+  check fails a contributor's pull request to either.
+- The `backport` label opens the patch pull request on the open `hotfix/`
+  branch on its own. Don't open a second pull request for it; if you think
+  your fix belongs in the patch, say so in the description.
+- A patch fix has to work against the released addon. If it needs an addon
+  or tools change that is only on `next`, it waits for the feature release.
 - Never tag, release, bump the version (`polestar version`) or upload. Only
   the maintainer does that, after playing the build in the game.
 

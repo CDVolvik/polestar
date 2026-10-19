@@ -121,11 +121,11 @@ Suggest the labels with the draft; a maintainer sets them:
 
 | Verdict | Label | Then |
 |---|---|---|
-| Confirmed | `confirmed`, plus `patch-candidate` when the fix is guide-only (CONTRIBUTING.md, "Branches") | the fix |
+| Confirmed | `confirmed`, plus `patch-candidate` when the fix is guide-only: its pull request goes to `next`, and the maintainer labels it `backport` when it merges (CONTRIBUTING.md, "Branches") | the fix |
 | Already fixed | none | closed as completed. The release workflow tells a Discord thread when the fix ships and labels the issue `released:<tag>` |
 | Unclear | `needs-info` | without a reply it closes on its own after three weeks; a maintainer reopens it when the answer comes |
-| Mistaken | none | closed as not planned, once the reporter has had the explanation |
-| Duplicate | none | closed as a duplicate, linking the earlier issue |
+| Mistaken | `resolution:no-action` | closed as not planned, once the reporter has had the explanation: `gh issue edit <N> --add-label resolution:no-action`, then `gh issue close <N> --reason "not planned"`. Every not-planned close gets its `resolution:` label, so the Discord thread's first line fits: `resolution:no-action` (works as designed, or mistaken), `resolution:cannot-reproduce`, `resolution:not-resolved`, `resolution:wontfix` (`gh label create <label>` first when it is missing) |
+| Duplicate | none | `gh issue close <N> --duplicate-of <M>`, with one plain comment first saying what the earlier issue covers and where it stands (confirmed, fix merged, released, open). The Discord thread is told #M's status and quotes that comment. Not `--reason "not planned"` with a `Duplicate of #M` comment |
 
 ## 6. Only then, fix
 

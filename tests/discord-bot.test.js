@@ -247,6 +247,87 @@ test('a duplicate points at the issue it duplicates; reopening unlocks and track
 	assert.equal(t.thread_metadata.locked, false);
 });
 
+// The issue #1 (thread 1001) duplicates: #2, filed on GitHub, in the state given.
+async function duplicated(fields = {}, labels = [], note = null) {
+	const s = await filed();
+	const m = await s.github.createIssue({ title: 'arrow', body: '', labels });
+	Object.assign(m, fields);
+	if (note) await s.github.comment(m.number, note);
+	return s;
+}
+
+test("closed as duplicate by GitHub's marker alone points at the issue, tags Duplicate and locks", async () => {
+	const { discord, github } = await duplicated({}, ['has-pr']);
+	Object.assign(github.issues[0], { duplicate_of: 2 });
+	await onIssue({ discord, github, event: { action: 'closed', issue: { ...github.issues[0], state_reason: 'duplicate' } }, log: quietLog });
+	assert.match(discord.sent.at(-1).content, /^<@u1> This was already reported, so we're tracking it in \[fitzforge\/polestar#2\]\(<[^>]+>\)\. A fix is in progress\.\nThanks for the report!/);
+	const t = discord.channels.get('1001');
+	assert.deepEqual(t.applied_tags, ['t-questing', 't-dup']);
+	assert.equal(t.thread_metadata.locked, true);
+});
+
+test('closed as not planned with a "Duplicate of #M" comment is a duplicate, quoting the explanation and not the bare line', async () => {
+	const { discord, github } = await duplicated({}, ['fix-merged']);
+	await github.comment(1, 'Thanks! This is the same bug as #2: the arrow points at the wrong spot.');
+	await github.comment(1, 'Duplicate of #2.');
+	await onIssue({ discord, github, event: { action: 'closed', issue: { ...github.issues[0], state_reason: 'not_planned' } }, log: quietLog });
+	const last = discord.sent.at(-1).content;
+	assert.match(last, /^<@u1> It's the same bug as \[fitzforge\/polestar#2\]\(<[^>]+>\), and that's already fixed: it ships in the next Polestar update\.\n> Thanks! This is the same bug as #2: the arrow points at the wrong spot\.\nThanks for the report!/);
+	assert.doesNotMatch(last, /not to change|> Duplicate of/);
+	const t = discord.channels.get('1001');
+	assert.deepEqual(t.applied_tags, ['t-questing', 't-dup']);
+	assert.equal(t.thread_metadata.locked, true);
+});
+
+test("a duplicate's message says where the issue it duplicates stands", async () => {
+	const long = 'x'.repeat(400);
+	const cases = [
+		[{ state: 'closed', state_reason: 'completed' }, [], null, /It's the same bug as \[fitzforge\/polestar#2\]\S+, and that's already fixed: it ships in the next Polestar update\./],
+		[{ state: 'closed', state_reason: 'completed' }, ['released:v0.2.6'], null, /It's the same bug as \[fitzforge\/polestar#2\]\S+, and the fix is out in Polestar 0\.2\.6: update Polestar to get it\./],
+		[{ state: 'closed', state_reason: 'not_planned' }, [], 'Works as designed: the arrow points at the giver.', /It's the same as \[fitzforge\/polestar#2\]\S+, and we've decided not to change it:\n> Works as designed: the arrow points at the giver\.\n\n> Same arrow\./],
+		[{ state: 'closed', state_reason: 'not_planned' }, ['resolution:cannot-reproduce'], long, /It's the same as \[fitzforge\/polestar#2\]\S+, and we couldn't reproduce that one\.\n> Same arrow\./],
+		[{ state: 'open' }, [], null, /This was already reported, so we're tracking it in \[fitzforge\/polestar#2\]\S+\.\n> Same arrow\./],
+	];
+	for (const [fields, labels, note, want] of cases) {
+		const { discord, github } = await duplicated(fields, labels, note);
+		await github.comment(1, 'Duplicate of #2\n\nSame arrow.');
+		await onIssue({ discord, github, event: { action: 'closed', issue: { ...github.issues[0], state_reason: 'duplicate' } }, log: quietLog });
+		const last = discord.sent.at(-1).content;
+		assert.match(last, want);
+		assert.doesNotMatch(last, /x{400}|A fix is in progress/);
+	}
+});
+
+test('a release tells the threads of duplicates of what it ships, once, wherever the shipped issue was filed', async () => {
+	const { discord, github, sync } = setup();
+	for (const id of ['1', '2', '3', '4']) {
+		discord.post(id, { content: 'bug ' + id });
+		await sync.newPost(id);
+	}
+	const fix = await github.createIssue({ title: 'filed on GitHub', body: '', labels: [] }); // #5
+	const close = (n, fields) => Object.assign(github.issues[n - 1], { state: 'closed', closed_at: '2026-10-15T00:00:00Z', ...fields });
+	close(1, { state_reason: 'completed' });
+	close(2, { state_reason: 'not_planned' });
+	await github.comment(2, 'Duplicate of #1');
+	close(3, { state_reason: 'duplicate', duplicate_of: fix.number });
+	close(fix.number, { state_reason: 'completed' });
+	close(4, { state_reason: 'not_planned' });
+	await github.comment(4, 'Duplicate of #9'); // not in this release
+	github.releasesList.push({ id: 1, tag_name: 'v0.2.5', published_at: '2026-10-14T00:00:00Z' });
+	const release = { id: 2, tag_name: 'v0.2.6', name: 'Polestar 0.2.6', html_url: 'https://github.com/fitzforge/polestar/releases/tag/v0.2.6', published_at: '2026-10-16T00:00:00Z' };
+	github.releasesList.push(release);
+
+	const before = discord.sent.length;
+	assert.deepEqual(await onRelease({ discord, github, event: { release }, log: quietLog }), { told: 3, failed: 0 });
+	const told = discord.sent.slice(before);
+	assert.deepEqual(told.map((s) => s.channel), ['1', '2', '3']);
+	assert.match(told[1].content, /^<@u1> The fix for \[fitzforge\/polestar#1\]\S+, the same bug as yours, is out in \*\*Polestar 0\.2\.6\*\*/);
+	assert.match(told[2].content, /The fix for \[fitzforge\/polestar#5\]/);
+	for (const n of [2, 3]) assert.ok(github.issues[n - 1].labels.some((l) => l.name === 'released:v0.2.6'));
+
+	assert.deepEqual(await onRelease({ discord, github, event: { release }, log: quietLog }), { told: 0, failed: 0 });
+});
+
 test('a release tells the threads of fixes closed since the last release, once', async () => {
 	const { discord, github, sync } = setup();
 	for (const id of ['1', '2', '3', '4']) {
