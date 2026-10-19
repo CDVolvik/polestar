@@ -72,7 +72,8 @@ return {
 	["Down to {area:35}"] = "Вниз: {area:35}",
 	-- {object:3202} Grom'gol · {area:35} Booty Bay
 	["Follow the main road south the length of the jungle, past the {object:3202} turn-off, to {area:35} on the southern cape."] = "Идите по главной дороге на юг через все джунгли, мимо поворота на {object:3202}, до южного мыса: {area:35}.",
-	["Gyll, on the top floor by the docks"] = "Гилл – на верхнем этаже у причалов",
+	-- {npc:2859} Gyll
+	["{npc:2859}, on the top floor by the docks"] = "{npc:2859} – на верхнем этаже у причалов",
 	-- {npc:2832} Nixxrax Fillamug · {object:56910} The Salty Sailor Tavern
 	["{npc:2832}, in the {object:56910}"] = "{npc:2832} – {object:56910}",
 	-- {npc:2495} Drizzlik
