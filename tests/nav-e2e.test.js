@@ -106,6 +106,17 @@ local function indexOf(rec, x, y)
 		if math.abs(p.x - x) < 1e-6 and math.abs(p.y - y) < 1e-6 then return i end
 	end
 end
+-- The path index the arrow aims at: point i, or i - 0.5 for the middle of
+-- points i - 1 and i (Walk.lua's look-ahead), or nil.
+local function aimIndex(rec, x, y)
+	local i = indexOf(rec, x, y)
+	if i then return i end
+	local pts = rec and rec.points or {}
+	for k = 2, #pts do
+		local a, b = pts[k - 1], pts[k]
+		if math.abs((a.x + b.x) / 2 - x) < 1e-6 and math.abs((a.y + b.y) / 2 - y) < 1e-6 then return k - 0.5 end
+	end
+end
 local function length(points)
 	local len = 0
 	for i = 2, #points do len = len + sqrt((points[i].x - points[i - 1].x) ^ 2 + (points[i].y - points[i - 1].y) ^ 2) end
@@ -359,13 +370,16 @@ test('b: where the straight line is blocked (Thelsamar to the Stonewrought Dam) 
 		local f = guide(1432, 48, 15, "Stonewrought Dam")
 		local a = aim()
 		local _, tx, ty = N.GetTargetWorld()
-		emit({ map = f.map, n = #f.points, length = length(f.points), straight = dist(sx, sy, tx, ty), index = indexOf(f, a.x, a.y),
+		emit({ map = f.map, n = #f.points, length = length(f.points), straight = dist(sx, sy, tx, ty), index = aimIndex(f, a.x, a.y),
 			toTarget = dist(a.x, a.y, tx, ty), endGap = dist(f.points[#f.points].x, f.points[#f.points].y, tx, ty), dist = a.dist,
-			second = dist(sx, sy, f.points[2].x, f.points[2].y) })`);
+			second = dist(sx, sy, f.points[2].x, f.points[2].y), ahead = dist(sx, sy, a.x, a.y) })`);
 	assert.equal(out.map, 0);
 	assert.ok(out.length > out.straight * 1.2, `path ${out.length.toFixed(0)} yd against ${out.straight.toFixed(0)} yd straight`);
 	// The path's second point is the start cell's centre; within Walk.lua's POINT_REACH (5 yd) it counts as passed.
-	assert.equal(out.index, out.second > 5 ? 2 : 3, `the arrow aims at the detour's first corner (of ${out.n} points; the second is ${out.second.toFixed(1)} yd away)`);
+	// From the next point the arrow looks up to 30 yd along the path (Walk.lua's AHEAD).
+	const next = out.second > 5 ? 2 : 3;
+	assert.ok(out.index >= next, `the arrow aims along the detour from its first corner on (point ${out.index} of ${out.n}; the second is ${out.second.toFixed(1)} yd away)`);
+	assert.ok(out.index === next || out.ahead <= 30, `no further than 30 yd ahead (${out.ahead.toFixed(1)} yd)`);
 	assert.ok(out.toTarget > 100);
 	assert.ok(out.endGap < 10);
 	// Measured along the path from where the player stands on it (within the passed first segment).

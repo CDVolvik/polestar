@@ -118,6 +118,30 @@ function createGitHub({ token, repo, api = API, fetch: fetchImpl = fetch }) {
 			if (since) q += `&since=${encodeURIComponent(since)}`;
 			return (await list(q, max)).filter((i) => !i.pull_request);
 		},
+		// Issues and pull requests a search finds (`q` in GitHub's search
+		// syntax, its repo: included), up to `max`.
+		searchIssues: async (q, max = 300) => {
+			const out = [];
+			for (let page = 1; out.length < max; page++) {
+				const res = await request('GET', `/search/issues?q=${encodeURIComponent(q)}&per_page=100&page=${page}`);
+				out.push(...res.items);
+				if (res.items.length < 100) break;
+			}
+			return out.slice(0, max);
+		},
+		// The issue GitHub marks this one a duplicate of (`gh issue close
+		// --duplicate-of`, "Close as duplicate" on the website), or null. Only
+		// GraphQL tells it.
+		duplicateOf: async (n) => {
+			const [owner, name] = repo.split('/');
+			const res = await request('POST', '/graphql', {
+				query: 'query($owner: String!, $name: String!, $n: Int!) { repository(owner: $owner, name: $name) { issue(number: $n) { duplicateOf { number } } } }',
+				variables: { owner, name, n },
+			});
+			if (res.errors && res.errors.length) throw new Error(`GitHub GraphQL: ${res.errors[0].message}`);
+			const issue = res.data && res.data.repository && res.data.repository.issue;
+			return issue && issue.duplicateOf ? issue.duplicateOf.number : null;
+		},
 		// Creates each label missing from the repository, with infoFor(name)'s colour and description.
 		async ensureLabels(names, infoFor) {
 			for (const name of names) {

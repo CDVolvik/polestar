@@ -20,7 +20,18 @@
 //   lines, over the z range of that crossing (as walls, a leaning cave wall
 //   at head height closed passages one walks through in the client).
 //
-// rasterise({ tris, kind }, { col, row }) -> Heightfield
+// Reviewed openings (decided 2026-10-19, #366). A doorway narrower than about
+// three yards still lost to the columns when a jamb's moulding (a walkable
+// slope, so a span over the whole column) or a reveal (a wall on a
+// half-line) sat on the doorway's column centre lines: Brill's town hall,
+// whose only way in is a 2.9 yd side door into its tower room, was a sealed
+// pocket. geom.openings (tools/lib/nav/geom/openings.json, placed by
+// tileGeometry) are cut out after the triangles: in every column whose centre
+// lies inside a cut's footprint, spans and walls between CUT_FLOOR above the
+// portal's bottom and its top are trimmed away (carve), so the threshold's
+// own floor stays and the doorway is open to its full height.
+//
+// rasterise({ tris, kind, openings? }, { col, row }) -> Heightfield
 //   head: Int32Array(COLUMNS) first span of each column (ascending z), -1 none
 //   next, smin, smax, slope (Uint8, degrees), kind (Uint8) per span
 //   tslope (Uint8, degrees) per span: the steepest terrain triangle merged
@@ -28,6 +39,8 @@
 //   walls(): the walls (format.js WALLS), merged per half-line
 
 const { ADT, CELL, TILE_CELLS, COLUMNS, MERGE_TOP, WALK_MAX, WALL_MIN, HALF, wallIndex } = require('./format');
+
+const CUT_FLOOR = 0.25; // yd above a cut's bottom that its threshold's floor may reach
 
 class Heightfield {
 	constructor(capacity = 1 << 18) {
@@ -60,7 +73,65 @@ class Heightfield {
 		this.wn++;
 	}
 
+	// Trims column k's spans and walls to outside (lo, hi): a span or wall
+	// inside goes, one across the whole range splits in two.
+	carve(k, lo, hi) {
+		let prev = -1;
+		let cur = this.head[k];
+		while (cur !== -1) {
+			const a = this.smin[cur];
+			const b = this.smax[cur];
+			const nx = this.next[cur];
+			if (b <= lo || a >= hi) {
+				prev = cur;
+			} else if (a >= lo && b <= hi) {
+				this.release(cur);
+				if (prev === -1) this.head[k] = nx;
+				else this.next[prev] = nx;
+			} else if (a < lo && b > hi) {
+				const s = this.alloc();
+				this.smin[s] = hi;
+				this.smax[s] = b;
+				this.slope[s] = this.slope[cur];
+				this.kind[s] = this.kind[cur];
+				this.tslope[s] = this.tslope[cur];
+				this.smax[cur] = lo;
+				this.next[s] = nx;
+				this.next[cur] = s;
+				prev = s;
+			} else {
+				if (a < lo) this.smax[cur] = lo;
+				else this.smin[cur] = hi;
+				prev = cur;
+			}
+			cur = nx;
+		}
+		const n = this.wn;
+		for (let w = 0; w < n; w++) {
+			if (this.wKey[w] >> 2 !== k) continue;
+			const a = this.wLo[w];
+			const b = this.wHi[w];
+			if (b <= lo || a >= hi) continue;
+			if (a < lo && b > hi) {
+				this.wHi[w] = lo;
+				this.addWall(k, this.wKey[w] & 3, hi, b);
+			} else if (a >= lo && b <= hi) {
+				this.wLo[w] = Infinity; // dropped by walls()
+			} else if (a < lo) this.wHi[w] = lo;
+			else this.wLo[w] = hi;
+		}
+	}
+
 	walls() {
+		let n = 0;
+		for (let w = 0; w < this.wn; w++) {
+			if (this.wLo[w] === Infinity) continue;
+			this.wKey[n] = this.wKey[w];
+			this.wLo[n] = this.wLo[w];
+			this.wHi[n] = this.wHi[w];
+			n++;
+		}
+		this.wn = n;
 		return wallIndex(this.wKey.subarray(0, this.wn), this.wLo.subarray(0, this.wn), this.wHi.subarray(0, this.wn));
 	}
 
@@ -382,7 +453,37 @@ function rasterise(geom, { col, row }) {
 			}
 		}
 	}
+	for (const cut of geom.openings || []) carveOpening(hf, cut, west, north, inv);
 	return hf;
 }
 
-module.exports = { rasterise, Heightfield };
+// One reviewed opening { pts: [wx, wy] x 4 (a convex footprint), zlo, zhi }:
+// carves every column of the tile whose centre lies inside the footprint.
+function carveOpening(hf, { pts, zlo, zhi }, west, north, inv) {
+	const q = pts.map(([wx, wy]) => [(west - wy) * inv, (north - wx) * inv]);
+	const us = q.map((p) => p[0]);
+	const vs = q.map((p) => p[1]);
+	const x0 = Math.max(0, Math.floor(Math.min(...us)));
+	const x1 = Math.min(TILE_CELLS - 1, Math.floor(Math.max(...us)));
+	const y0 = Math.max(0, Math.floor(Math.min(...vs)));
+	const y1 = Math.min(TILE_CELLS - 1, Math.floor(Math.max(...vs)));
+	for (let y = y0; y <= y1; y++) {
+		for (let x = x0; x <= x1; x++) {
+			const cu = x + 0.5;
+			const cv = y + 0.5;
+			let pos = 0;
+			let neg = 0;
+			for (let i = 0; i < q.length; i++) {
+				const [au, av] = q[i];
+				const [bu, bv] = q[(i + 1) % q.length];
+				const cross = (bu - au) * (cv - av) - (bv - av) * (cu - au);
+				if (cross > 0) pos++;
+				else if (cross < 0) neg++;
+			}
+			if (pos && neg) continue;
+			hf.carve(y * TILE_CELLS + x, zlo + CUT_FLOOR, zhi);
+		}
+	}
+}
+
+module.exports = { rasterise, Heightfield, CUT_FLOOR };

@@ -1946,7 +1946,8 @@ function Travel.Aim(pc, px, py)
 				if W then
 					local gc, gx, gy, gz = to.c, to.wx, to.wy, to.z
 					if P then gc, gx, gy, gz = P.c, P.wx, P.wy, P.leg.to.z end
-					local wc, wx, wy, left = W.Aim(pc, px, py, gc, gx, gy, leg.handmade, gz)
+					-- A piece aims no further than the path point before its chokepoint (leg.seg).
+					local wc, wx, wy, left = W.Aim(pc, px, py, gc, gx, gy, leg.handmade, gz, P and leg.seg)
 					if wc then
 						left = left - (leg.tail or 0)
 						if left < 0 then left = 0 end

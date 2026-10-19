@@ -538,6 +538,20 @@ test(`${DUROTAR}: AndarKerran's report: A Pain in the Neck is not offered to a T
 	assert.deepEqual(painInTheNeck({ after: 'stub.world.learnSkill(333, "Enchanting", 1, 75)' }), offered);
 });
 
+// --- Durotar (defect, #357): The Admiral's Orders (830) starts from the Aged
+// Envelope in Benedict's Chest, opened with Benedict's Key. A player who took
+// the quest before the route reached Tiragarde Keep holds neither: the
+// envelope went into the quest, the key into the chest. Benedict is a kill of
+// Riders on the Storm (784.3), so his key needs no goal of its own.
+test(`${DUROTAR}: defect's report (#357): with The Admiral's Orders taken, Tiragarde Keep waits for neither Benedict's Key nor the Aged Envelope`, { skip }, () => {
+	const s = compiled(DUROTAR).steps.findIndex((step) => step.goals.some((g) => g.t === 'accept' && g.quest === 830)) + 1;
+	assert.ok(s > 0, 'a step takes 830');
+	const view = stepView(DUROTAR, TROLL_WARRIOR, s, 'w.accept(830, {})');
+	const open = view.goals.filter((g) => g.t === 'collect' && !g.quest && g.status !== 'done');
+	assert.deepEqual(open, [], 'no bag collect left open once 830 is in the log');
+	assert.ok(goals(DUROTAR).some(({ s: n, goal }) => n === s && goal.t === 'kill' && goal.npc === 3192), 'Benedict is still a kill of the step');
+});
+
 // Recipe of the Kaldorei (4161) is offered to cooks only (QuestieDB's Forever
 // store: Cooking 1): Teldrassil teaches Cooking at Zarrin's door first.
 test(`${TELDRASSIL}: Recipe of the Kaldorei is taken after the guide teaches Cooking`, { skip }, () => {
@@ -1513,5 +1527,37 @@ test(`${REDRIDGE}: Avtom's report (#280): Iron Pike and Iron Rivet lead to the g
 			assert.ok(!near(p, camp, 60), `item ${item}: ${p.x},${p.y} is in Ribchaser's camp`);
 			assert.ok(near(p, spawns, 120), `item ${item}: ${p.x},${p.y} is by a common dropper`);
 		}
+	}
+});
+
+// Pynte (#327): "Timberling Seeds quest points me to the north of Teldrassil
+// instead of just around the quest giver." XrayAlpha's diagnosis: QuestieDB's
+// server drop table gives the Elder Timberling (level 10) 100% for the seed and
+// the Timberlings round Denalan (level 5) 37%, so only the Elder counted as
+// likely and the arrow went 1,400 yards north. A dropper 3 or more levels above
+// the quest no longer sets the likely-dropper bar where it would crowd out the
+// ones near the quest's level (resolve.js, levelSplit). The Southsea Kidnapper
+// stood alone on Pirate Hats Ahoy! with pfQuest's 50% against 10% for the other
+// pirates; it does not drop the hat (corrections.json removeDrops). Both tests
+// are XrayAlpha's.
+
+test(`${TELDRASSIL}: Pynte's report (#327): the Timberling Seed arrow stays round Denalan with the Timberlings, not with the Elder Timberlings in the north`, { skip }, () => {
+	const list = goals(TELDRASSIL);
+	const { goal } = list[at(list, 'the Timberling Seed collect', (g) => g.t === 'collect' && g.quest === 918 && g.item === 5168)];
+	const ids = (goal.fromNpcs || []).map((n) => n.npc);
+	assert.notEqual(goal.from, 'Elder Timberling', 'the goal names the Timberlings, not the Elder');
+	assert.ok(ids.includes(2022), `the Timberlings (2022) are among the droppers (${ids.join(', ')})`);
+	assert.ok(!ids.includes(2030), 'the Elder Timberling (2030) is not');
+	const denalan = { map: 1438, x: 60.9, y: 68.49 };
+	assert.ok(yards(goal, denalan) <= 150, `the arrow at ${goal.x},${goal.y} is by Denalan, not ${Math.round(yards(goal, denalan))} yd off`);
+});
+
+test('#327: Pirate Hats Ahoy! names every pirate that drops the hat, not the Southsea Kidnapper alone, in both guides', { skip }, () => {
+	for (const guide of [TANARIS_ALLIANCE, 'forever/horde/40-50/02-feralas.guide']) {
+		const list = goals(guide);
+		const { goal } = list[at(list, `${guide}: the Southsea Pirate Hat collect`, (g) => g.t === 'collect' && g.quest === 8365 && g.item === 20519)];
+		const ids = (goal.fromNpcs || []).map((n) => n.npc);
+		for (const pirate of [7855, 7856, 7857, 7858]) assert.ok(ids.includes(pirate), `${guide}: pirate ${pirate} is among the droppers (${ids.join(', ')})`);
+		assert.notEqual(goal.from, 'Southsea Kidnapper', `${guide}: the goal does not send the player after the Kidnapper alone`);
 	}
 });
