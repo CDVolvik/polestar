@@ -1645,7 +1645,11 @@ scheme.
 - Ground opacity: `ui.bgOpacity` for every window skin.
 - Font: EllesmereUI's when `ui.matchFont` (default off) and installed, else
   `ui.font` (`skin` by default: the skin's | `game` | `inter` | `fira`; CJK
-  clients always the game font).
+  clients always the game font). A string holding Hangul, kana or Chinese
+  characters on a client whose locale does not draw that script (a player's
+  name in Chinese on an English client) takes the client's font for it
+  (`Theme.ScriptFont`: Fonts\2002.TTF, Fonts\ARKai_T.ttf), checked again
+  whenever the text changes.
 - Settings from before schemes: a stored accent equal to the old gold default
   is dropped at load (Theme.lua's `migrate`); any other stays the user's own.
 - Window frame (the `window` skin of every top-level window, live):
