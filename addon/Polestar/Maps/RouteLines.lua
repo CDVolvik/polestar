@@ -29,24 +29,40 @@
 -- nav.routeLines turns the lines on; nav.worldPins and nav.minimapPins pick
 -- the surfaces, as for Nav's pins. Polestar.Pins' trail dots (Nav/Layers.lua)
 -- stand in while the lines are off.
+--
+-- nav.lineStyle "sparkle" draws the same paths as twinkling sparkles instead
+-- (Maps/RouteSparkle.lua: where each one sits and how it twinkles), on the
+-- same two frames, each from its own pool of star and halo textures. They
+-- move, so both surfaces redraw them about 30 times a second while they
+-- show; with OpenMap's stitched world map on, the world map places them
+-- through OpenMapAPI.CanvasFromWorldPos, above OpenMap's art. A draw looks
+-- only along the stretches of the route that reach the minimap's face or the
+-- map's canvas (Sparkle.Spans; the route projected on the map once per
+-- route, map or size), so its cost follows the sparkles shown, not the
+-- route's length, and it sets colours and shows textures only when they change.
 
 local ADDON, ns = ...
-local Nav, Strokes = ns.Nav, ns.RouteStrokes
+local Nav, Strokes, Sparkle = ns.Nav, ns.RouteStrokes, ns.RouteSparkle
 -- Without Nav there is no route (and no nav.* setting to show).
 if not (Nav and Nav.GetRouteGeometry and Strokes) then return end
 
-local type, ipairs, pairs, abs = type, ipairs, pairs, math.abs
+local type, ipairs, pairs, abs, cos, sin, pcall = type, ipairs, pairs, math.abs, math.cos, math.sin, pcall
 
 local RouteLines = {}
 ns.RouteLines = RouteLines
 
-ns.RegisterDefaults("nav", { routeLines = true })
+ns.RegisterDefaults("nav", { routeLines = true, lineStyle = "dots" })
+if Sparkle then ns.RegisterDefaults("nav", Sparkle.DEFAULTS) end
 
 local MEDIA = "Interface\\AddOns\\" .. ADDON .. "\\Media\\Nav\\"
 local DOT_TEXTURE = MEDIA .. "pin-fill"
 local UNDER_ALPHA = 0.5
 local MINIMAP_LIMIT = 600 -- strokes on the minimap: a full face of breadcrumbs, with room
 local DRIVE_INTERVAL = 0.1
+local SPARKLE_TEXTURE, GLOW_TEXTURE = MEDIA .. "sparkle", MEDIA .. "glow"
+local SPARKLE_INTERVAL = 1 / 30 -- sparkle redraws a second, per surface
+local SPARKLE_SCAN = 4000 -- places looked at per surface per draw, whatever is shown
+local PROGRESS_INTERVAL = 0.25
 -- The marks the dots leave a gap around, as Nav/Layers.lua sizes its pins
 -- (Pins: 16 px on the world map, 14 on the minimap; the target at 1.4, the
 -- route's stops at 0.9), as radii.
@@ -72,6 +88,23 @@ local markCount = 0
 local goalC, goalX, goalY -- the route's end
 local live, liveC, liveX, liveY = nil, nil, nil, nil -- the walk's live start: index ahead, player
 local revision = 0        -- bumps on every change the painters must redraw for
+
+-- The sparkle style: on or off, its look (Sparkle.Style), the paths as
+-- measured runs, and where each run's sparkles start (yards in: the walk
+-- being walked starts at the player).
+local sparkling, sparkleStyle = false, nil
+local runs, runFrom = {}, {}
+local phase, phaseAt = 0, 0 -- sparkle spacings flowed toward the goal by GetTime() phaseAt
+local progressAt = 0
+
+local function sparkleClock()
+	return GetTime and GetTime() or 0
+end
+
+-- Sparkles drift on at the flow rate; a new rate carries on from where they are.
+local function sparklePhase(now)
+	return phase + (now - phaseAt) * (sparkleStyle and sparkleStyle.flow or 0)
+end
 
 local function surfaces()
 	if not ns.Get("nav.routeLines") then return false, false end
@@ -114,6 +147,44 @@ local function rebuild()
 		end
 	end
 	if markCount > 0 then marks[markCount * 4] = GOAL_MARK end
+end
+
+-- The player's world position, or nil when unknown or unreadable (secret:
+-- NAV_QA C5).
+local function playerPosition()
+	local C = ns.Compat
+	if not (C and C.GetPlayerWorldPosition) then return nil end
+	local pc, px, py = C.GetPlayerWorldPosition()
+	local secret = C.IsSecret
+	if secret and (secret(pc) or secret(px) or secret(py)) then return nil end
+	return pc, px, py
+end
+
+-- Where the sparkles start on each run: the first, when it is the leg being
+-- travelled and the player is on it, at the player.
+local function sparkleProgress()
+	for i = 1, #runs do runFrom[i] = 0 end
+	local first = runs[1]
+	if not (first and not first.later) then return end
+	local pc, px, py = playerPosition()
+	if not pc then return end
+	local along, off = Sparkle.Nearest(first, pc, px, py)
+	if along and off <= LIVE_REACH then runFrom[1] = along end
+end
+
+local function restyle()
+	sparkling = Sparkle ~= nil and ns.Get("nav.lineStyle") == "sparkle"
+	if not sparkling then return end
+	local now = sparkleClock()
+	phase, phaseAt = sparklePhase(now), now
+	sparkleStyle = Sparkle.Style(function(key) return ns.Get("nav." .. key) end)
+end
+
+local function rebuildRuns()
+	for i = #runs, 1, -1 do runs[i], runFrom[i] = nil, nil end
+	if not sparkling then return end
+	for i, run in ipairs(Sparkle.Paths(paths, sparkleStyle.later)) do runs[i] = run end
+	sparkleProgress()
 end
 
 -- Whether a geometry leg draws anything: a way (not a jump) of a kind with a
@@ -205,7 +276,76 @@ end
 
 local function newOwner(owner)
 	owner.lines, owner.outlines, owner.dots, owner.used = {}, {}, {}, 0
+	-- Per sparkle: its colour (the table, and the revision it was set at:
+	-- route colours change in place with the theme) and whether its halo shows.
+	owner.stars, owner.halos, owner.sparkles, owner.tints, owner.tinted, owner.glows = {}, {}, 0, {}, {}, {}
 	return owner
+end
+
+---------------------------------------------------------------------------
+-- Sparkles: a star over a soft halo per sparkle, pooled per frame as the
+-- lines are, created on demand and only ever hidden. A draw sets what moves
+-- (place, size, alpha, rotation); colour and Show only when they change.
+---------------------------------------------------------------------------
+
+local rotates = true -- SetRotation on a texture; off for good once it fails
+
+local function sparkle(owner, i, x, y, size, alpha, rotation, c)
+	local star, halo = owner.stars[i], owner.halos[i]
+	if not star then
+		halo = owner:CreateTexture(nil, "ARTWORK", nil, 1)
+		halo:SetTexture(GLOW_TEXTURE)
+		halo:SetBlendMode("ADD")
+		halo:Hide()
+		star = owner:CreateTexture(nil, "ARTWORK", nil, 2)
+		star:SetTexture(SPARKLE_TEXTURE)
+		star:SetBlendMode("ADD")
+		owner.stars[i], owner.halos[i] = star, halo
+	end
+	if owner.tints[i] ~= c or owner.tinted[i] ~= revision then
+		owner.tints[i], owner.tinted[i] = c, revision
+		star:SetVertexColor(c[1], c[2], c[3])
+		halo:SetVertexColor(c[1], c[2], c[3])
+	end
+	star:ClearAllPoints()
+	star:SetPoint("CENTER", owner, "TOPLEFT", x, y)
+	star:SetSize(size, size)
+	star:SetAlpha(alpha)
+	if rotates and star.SetRotation and not pcall(star.SetRotation, star, rotation) then rotates = false end
+	if i > owner.sparkles then star:Show() end -- the last draw showed 1..owner.sparkles
+	local st = sparkleStyle
+	local h = st.alpha > 0 and st.halo * alpha / st.alpha or 0
+	if h > 0.01 then
+		halo:ClearAllPoints()
+		halo:SetPoint("CENTER", owner, "TOPLEFT", x, y)
+		halo:SetSize(size * 2.2, size * 2.2)
+		halo:SetAlpha(h)
+		if not owner.glows[i] then
+			owner.glows[i] = true
+			halo:Show()
+		end
+	elseif owner.glows[i] then
+		owner.glows[i] = false
+		halo:Hide()
+	end
+end
+
+local function finishSparkles(owner, used)
+	local glows = owner.glows
+	for i = used + 1, owner.sparkles do
+		owner.stars[i]:Hide()
+		if glows[i] then
+			glows[i] = false
+			owner.halos[i]:Hide()
+		end
+	end
+	owner.sparkles = used
+end
+
+-- A run's colour: the style's, or its leg's (the dots' colours), and how
+-- strongly it shows (the legs after this one recede, as the dots do).
+local function runLook(run)
+	return sparkleStyle.color or colors[run.kind] or colors.walk, run.later and Strokes.LATER_ALPHA or 1
 end
 
 ---------------------------------------------------------------------------
@@ -241,17 +381,6 @@ local function isSmall(mapID)
 	return C and C.GetContinentMap and C.GetContinentMap(mapID) == mapID or false
 end
 
--- The player's world position, or nil when unknown or unreadable (secret:
--- NAV_QA C5).
-local function playerPosition()
-	local C = ns.Compat
-	if not (C and C.GetPlayerWorldPosition) then return nil end
-	local pc, px, py = C.GetPlayerWorldPosition()
-	local secret = C.IsSecret
-	if secret and (secret(pc) or secret(px) or secret(py)) then return nil end
-	return pc, px, py
-end
-
 -- The live start of the walk being walked: progress along it only moves on.
 -- Shared by both surfaces; returns true when the point ahead changed.
 local function advance(pc, px, py)
@@ -269,7 +398,146 @@ local function advance(pc, px, py)
 	return false
 end
 
+-- OpenMap (OpenMapAPI, its docs/api.md v2) stitches the world into one map
+-- on the world map's canvas; while it does, a world point's place on the
+-- canvas is its CanvasFromWorldPos (fractions of the canvas, and past them
+-- where the view shows beyond it), and its art reaches ArtTopLevel. Only read.
+local function openMap()
+	local O = _G.OpenMapAPI
+	if type(O) ~= "table" or type(O.CanvasFromWorldPos) ~= "function" or type(O.IsStitched) ~= "function" then return nil end
+	local ok, stitched = pcall(O.IsStitched)
+	return ok and stitched and O or nil
+end
+
+-- What the open map shows as a projector (O: OpenMap's API while it
+-- stitches): project(c, wx, wy) -> canvas fractions u, v or nil; the canvas
+-- units a yard spans near (c, wx, wy); the range of u, v worth drawing in.
+local function projector(O, c, wx, wy, width, height)
+	if O then
+		local project = function(pc, x, y)
+			local ok, u, v = pcall(O.CanvasFromWorldPos, pc, x, y)
+			if ok and type(u) == "number" and type(v) == "number" then return u, v end
+		end
+		local u1, v1 = project(c, wx, wy)
+		local u2, v2 = project(c, wx + 100, wy)
+		if not (u1 and u2) then return nil end
+		local du, dv = (u2 - u1) * width, (v2 - v1) * height
+		local perYard = math.sqrt(du * du + dv * dv) / 100
+		if perYard <= 0 then return nil end
+		return project, perYard, -1, 2
+	end
+	local b = view.mapID and boundsOf(view.mapID)
+	if not b then return nil end
+	local project = function(pc, x, y)
+		if pc ~= b.c then return nil end
+		return (y - b.left) * b.kx, (x - b.top) * b.ky
+	end
+	return project, (width * abs(b.kx) + height * abs(b.ky)) / 2, 0, 1
+end
+
+-- The world map's projection and every run's points on it (us[i], vs[i] for
+-- runs[i]), worked out again only when the route, the map, the canvas size
+-- or OpenMap's stitching changes, so a 30 Hz draw only reads them.
+local projection = { us = {}, vs = {} }
+
+local function worldProjection(width, height)
+	local P, O = projection, openMap()
+	if P.project and P.revision == revision and P.O == O and P.mapID == view.mapID and P.width == width and P.height == height then
+		return P
+	end
+	-- Nothing kept until a projection works (OpenMap's may not answer yet).
+	P.project = nil
+	local ref = runs[1]
+	if not ref then return nil end
+	local project, perYard, lo, hi = projector(O, ref.c, ref.xs[1], ref.ys[1], width, height)
+	if not project then return nil end
+	P.revision, P.O, P.mapID, P.width, P.height = revision, O, view.mapID, width, height
+	P.project, P.perYard, P.lo, P.hi = project, perYard, lo, hi
+	for i = 1, #runs do
+		local run, us, vs = runs[i], P.us[i] or {}, P.vs[i] or {}
+		P.us[i], P.vs[i] = us, vs
+		for j = 1, run.n do us[j], vs[j] = project(run.c, run.xs[j], run.ys[j]) end
+	end
+	return P
+end
+
+local spans = {} -- Sparkle.Spans' stretches, reused by every draw
+
+-- One world map draw, for worldSparkle (Sparkle.Emit's fn: no closure per draw).
+local worldDraw = { used = 0 }
+
+local function worldSparkle(wx, wy, k, nx, ny, fade)
+	local d, st = worldDraw, sparkleStyle
+	local alpha, scale, rotation, side = Sparkle.Twinkle(k, d.now, st, fade)
+	alpha = alpha * d.strength
+	if alpha <= 0.01 then return end
+	local s = d.size * scale
+	local shift = side * st.jitter * s / d.perYard
+	local u, v = d.project(d.c, wx + nx * shift, wy + ny * shift)
+	local lo, hi = d.lo, d.hi
+	if u and u >= lo and u <= hi and v >= lo and v <= hi then
+		local used = d.used + 1
+		d.used = used
+		sparkle(d.pin, used, u * d.width, -v * d.height, s, alpha, rotation, d.color)
+		if used >= st.max then return false end
+	end
+end
+
+local function drawWorldSparkles(pin)
+	local d = worldDraw
+	d.used = 0
+	local width, height = view.width or 0, view.height or 0
+	local P = width > 0 and height > 0 and worldProjection(width, height) or nil
+	if P then
+		pin:SetSize(width, height)
+		local level = view:Level("PIN_FRAME_LEVEL_QUEST_BLOB")
+		local O = P.O
+		if O and type(O.ArtTopLevel) == "function" then
+			local ok, top = pcall(O.ArtTopLevel)
+			if ok and type(top) == "number" and top + 1 > level then level = top + 1 end
+		end
+		if pin:GetFrameLevel() ~= level then pin:SetFrameLevel(level) end
+		local st = sparkleStyle
+		local now = sparkleClock()
+		local at = sparklePhase(now)
+		-- Sizes and spacing hold on screen while the canvas zooms under them, as the pins' do.
+		local zoom = view.scale and view.scale > 0 and view.scale or 1
+		d.pin, d.now, d.size, d.perYard, d.project = pin, now, st.size / zoom, P.perYard, P.project
+		d.lo, d.hi, d.width, d.height = P.lo, P.hi, width, height
+		local spacing = st.spacing / zoom / P.perYard
+		-- Only the stretches that reach the canvas, with room for a sparkle's
+		-- jitter off the run (doubled: OpenMap's yards needn't be the same size everywhere).
+		local margin = 2 * st.jitter * 1.2 * d.size + 1
+		local mu, mv = margin / width, margin / height
+		local x1, x2, y1, y2 = P.lo - mu, P.hi + mu, P.lo - mv, P.hi + mv
+		local mapAlpha = view.alpha or 1
+		local budget = SPARKLE_SCAN
+		for i = 1, #runs do
+			if d.used >= st.max or budget <= 0 then break end
+			local run = runs[i]
+			local c, strength = runLook(run)
+			d.color, d.strength, d.c = c, strength * mapAlpha, run.c
+			local from = runFrom[i] or 0
+			for j = 1, Sparkle.Spans(run, P.us[i], P.vs[i], x1, x2, y1, y2, spans) do
+				budget = budget - Sparkle.Emit(run, from, spacing, at, budget, worldSparkle, spans[j * 2 - 1], spans[j * 2])
+				if d.used >= st.max or budget <= 0 then break end
+			end
+		end
+	end
+	finishSparkles(pin, d.used)
+end
+
 local function drawWorld(pin)
+	if sparkling then
+		if pin.used > 0 then
+			worldStrokes.n = 0
+			paint(pin, worldStrokes)
+		end
+		drawWorldSparkles(pin)
+		pin.revision = revision
+		return
+	end
+	finishSparkles(pin, 0)
 	local mapID = view.mapID
 	local b = mapID and boundsOf(mapID)
 	if not b then
@@ -309,6 +577,17 @@ end
 local WORLD_INTERVAL, WORLD_MOVED = 0.25, 10
 local function worldTick(pin, elapsed)
 	pin.elapsed = (pin.elapsed or 0) + elapsed
+	if sparkling then
+		if pin.elapsed < SPARKLE_INTERVAL then return end
+		pin.elapsed = 0
+		local now = sparkleClock()
+		if now - progressAt >= PROGRESS_INTERVAL then
+			progressAt = now
+			sparkleProgress()
+		end
+		drawWorldSparkles(pin)
+		return
+	end
 	if pin.elapsed < WORLD_INTERVAL then return end
 	pin.elapsed = 0
 	local first = paths[1]
@@ -367,6 +646,59 @@ local minimapView = { width = 0, height = 0, scale = 1, colors = colors }
 local last = {}
 local elapsedSince = 0
 
+-- One minimap draw, for minimapSparkle (Sparkle.Emit's fn).
+local minimapDraw = { used = 0 }
+
+local function minimapSparkle(wx, wy, k, nx, ny, fade)
+	local d, st = minimapDraw, sparkleStyle
+	local alpha, scale, rotation, side = Sparkle.Twinkle(k, d.now, st, fade)
+	alpha = alpha * d.strength
+	if alpha <= 0.01 then return end
+	local s = st.size * scale
+	local shift = side * st.jitter * s / d.perYard
+	local x, y = Strokes.Project(wx + nx * shift, wy + ny * shift, d.px, d.py, d.radius, d.cosine, d.sine)
+	if Sparkle.OnFace(x, y, d.square, d.inset) then
+		local used = d.used + 1
+		d.used = used
+		sparkle(mm, used, (x + 1) * d.width / 2, (y - 1) * d.height / 2, s, alpha, rotation, d.color)
+		if used >= st.max then return false end
+	end
+end
+
+local function drawMinimapSparkles(pc, px, py, radius, facing, square, width, height)
+	local d = minimapDraw
+	d.used = 0
+	local half = width / 2
+	if pc and radius and radius > 0 and half > 0 and #runs > 0 then
+		local st = sparkleStyle
+		local now = sparkleClock()
+		local at = sparklePhase(now)
+		local perYard = half / radius
+		local spacing = st.spacing / perYard
+		d.now, d.perYard, d.px, d.py, d.radius, d.square, d.width, d.height = now, perYard, px, py, radius, square, width, height
+		d.inset = 1 - st.size / 2 / half
+		d.cosine, d.sine = cos(facing or 0), sin(facing or 0)
+		-- Only the stretches near the player: the face, turned any way, lies
+		-- within radius * sqrt(2), and a sparkle on it up to its jitter off the run.
+		local reach = radius * 1.415 + st.jitter * 1.2 * st.size / perYard + 1
+		local x1, x2, y1, y2 = px - reach, px + reach, py - reach, py + reach
+		local budget = SPARKLE_SCAN
+		for i = 1, #runs do
+			local run = runs[i]
+			if d.used >= st.max or budget <= 0 then break end
+			if run.c == pc then
+				d.color, d.strength = runLook(run)
+				local from = runFrom[i] or 0
+				for j = 1, Sparkle.Spans(run, run.xs, run.ys, x1, x2, y1, y2, spans) do
+					budget = budget - Sparkle.Emit(run, from, spacing, at, budget, minimapSparkle, spans[j * 2 - 1], spans[j * 2])
+					if d.used >= st.max or budget <= 0 then break end
+				end
+			end
+		end
+	end
+	finishSparkles(mm, d.used)
+end
+
 local function drawMinimap(force)
 	local C = ns.Compat
 	local pc, px, py
@@ -379,11 +711,22 @@ local function drawMinimap(force)
 			minimapStrokes.n = 0
 			paint(mm, minimapStrokes)
 		end
+		finishSparkles(mm, 0)
 		last.revision = nil
 		return
 	end
 	-- mm covers the minimap (SetAllPoints): its size is the minimap's.
 	local width, height, scale = Minimap:GetWidth(), Minimap:GetHeight(), mm:GetEffectiveScale()
+	if sparkling then
+		if minimapStrokes.n > 0 then
+			minimapStrokes.n = 0
+			paint(mm, minimapStrokes)
+		end
+		last.revision = nil
+		drawMinimapSparkles(pc, px, py, radius, facing, square, width, height)
+		return
+	end
+	finishSparkles(mm, 0)
 	if not force and last.c == pc and last.x == px and last.y == py and last.radius == radius and last.facing == facing
 		and last.square == square and last.width == width and last.height == height and last.scale == scale
 		and last.revision == revision then
@@ -403,8 +746,15 @@ end
 
 local function tick(_, elapsed)
 	elapsedSince = elapsedSince + elapsed
-	if elapsedSince < DRIVE_INTERVAL then return end
+	if elapsedSince < (sparkling and SPARKLE_INTERVAL or DRIVE_INTERVAL) then return end
 	elapsedSince = 0
+	if sparkling then
+		local now = sparkleClock()
+		if now - progressAt >= PROGRESS_INTERVAL then
+			progressAt = now
+			sparkleProgress()
+		end
+	end
 	drawMinimap(false)
 end
 
@@ -448,7 +798,9 @@ local function recolor()
 end
 
 function RouteLines.Refresh()
+	restyle()
 	rebuild()
+	rebuildRuns()
 	revision = revision + 1
 	installWorld()
 	refreshWorld()
@@ -467,13 +819,38 @@ function RouteLines.GetStrokes(surface)
 	return surface == "minimap" and minimapStrokes or worldStrokes
 end
 
+-- The sparkles shown on a surface ("world" | "minimap") and the runs they
+-- sit on, while nav.lineStyle is "sparkle" (tests and diagnostics).
+function RouteLines.GetSparkles(surface)
+	local owner = surface == "minimap" and mm or worldPin
+	return owner and owner:IsShown() and owner.sparkles or 0, runs
+end
+
+-- Put the sparkle settings to one of Sparkle.PRESETS ("subtle", "default",
+-- "dazzling"). -> true when it is one
+function RouteLines.ApplySparklePreset(name)
+	local preset = Sparkle and Sparkle.PRESETS[name]
+	if not preset then return false end
+	for key, value in pairs(preset) do ns.Set("nav." .. key, value) end
+	return true
+end
+
 ns.On("NAV_ROUTE_GEOMETRY", function()
 	if ns.IsLoggedIn() then RouteLines.Refresh() end
 end)
 
-local WATCH = { ["nav.routeLines"] = true, ["nav.worldPins"] = true, ["nav.minimapPins"] = true, ["nav"] = true, [""] = true }
+local WATCH = {
+	["nav.routeLines"] = true, ["nav.worldPins"] = true, ["nav.minimapPins"] = true, ["nav"] = true, [""] = true,
+	["nav.lineStyle"] = true, ["nav.sparkleLater"] = true,
+}
 ns.On("SETTING_CHANGED", function(path)
-	if WATCH[path] and ns.IsLoggedIn() then RouteLines.Refresh() end
+	if not ns.IsLoggedIn() then return end
+	if WATCH[path] then
+		RouteLines.Refresh()
+	elseif sparkling and type(path) == "string" and Sparkle.DEFAULTS[path:match("^nav%.(.+)$") or ""] ~= nil then
+		-- The look alone: the sparkles move, so the next draw shows it.
+		restyle()
+	end
 end)
 
 ns.OnLogin(function()

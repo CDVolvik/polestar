@@ -188,7 +188,11 @@ during their step, and conditions that can stop holding later (goto,
 sethome, hearth, fly, getfp, buy, bag-count collect, `train class` with
 nothing to learn) are latched once the route moves past their step, so
 leaving a zone, rebinding the hearthstone or levelling up never drags the
-guide backwards. Quest goals are never latched, but for a `direct` turn-in's
+guide backwards. A hearth or fly that landed is also latched within its step
+while that step is the live one, even while the player looks at another
+step, so walking out of the arrival's subzone does not send the player back
+to the flight master (#362); a step only looked at ahead never latches it,
+and stepping back (Prev) keeps it. Quest goals are never latched, but for a `direct` turn-in's
 QUEST_TURNED_IN during its step (a repeatable is never flagged completed): abandoning a
 quest reopens its step (unless the player ticked it). `skipped` holds the
 steps the player skipped (step number) and the optional goals they skipped
@@ -758,6 +762,7 @@ Polestar.RegisterGuide({
       title = "Deputy Willem",     -- optional
       note = "...",                -- optional, player-facing
       only = { classes = { "WARRIOR" }, races = { "Human" }, factions = { "Alliance" } },  -- optional, AND across keys, OR within
+      when = { { k = "level", op = "<", n = 6 }, { k = "onquest", q = { 788 } } },  -- optional (format 4): conditions checked during play, all must hold
       goals = { goal, ... },       -- at least one
     },
   },
@@ -825,9 +830,9 @@ as on a bag item (`W.ItemClick`: Shift links, Ctrl tries it on, Alt guides;
 | `interact` | `object`, `objName` | `quest`, `oi` | objective state if `quest` (the line named after the object, else `oi`); else manual |
 | `use` | `item`, `itemName` | `quest`, `oi` | objective state if `quest`; else manual |
 | `sethome` | `location` | `npc`, `npcName`, `area` | bound at the goal's inn (`npc`'s, else the inn `location` names, in Nav/Travel.lua's data), by any of: the inn Travel finds for `GetBindLocation()` (`Nav.BoundInn`: the innkeeper learned at bind time in `flags.inn`, else the inn whose `area` the client names so, else its names); `GetBindLocation()` equal to the client's name of that inn's or the goal's `area` (`Compat.GetAreaName`); last, equal to `location` (case-insensitive). Binding at that innkeeper during the step latches it |
-| `hearth` | `location` | `area` | zone or subzone equals the client's name of `area` (without one, `location`), else manual |
+| `hearth` | `location` | `area` | zone or subzone equals the client's name of `area` (without one, `location`), else manual; latched once it lands in its live step |
 | `getfp` | `location` | `npc`, `npcName`, `node`, `area` | with `node`: that taxi node among the known ones (`flags.taxi`, recorded by Nav/Travel.lua from the flight map); without: taxi map opened at a flight master of that name (persisted in `flags.fp`); else manual |
-| `fly` | `location` | `area`, `node` | as `hearth` (`node`: the flight point, named in the client's language where no `area` names the place) |
+| `fly` | `location` | `area`, `node` | as `hearth`, including the in-step latch (`node`: the flight point, named in the client's language where no `area` names the place) |
 | `train` | — | `npc`, `npcName`, `text` | trainer window opened during this step, else manual |
 | `buy` | `item`, `itemName` | `count`, `npc`, `npcName` | item count ≥ `count` (default 1) |
 | `vendor` | — | `npc`, `npcName`, `text` | merchant window opened during this step, else manual |
@@ -875,7 +880,7 @@ implements them:
   until that addon's `ADDON_LOADED`; guides registered before their pack are
   refused, their ids kept in a per-pack list and listed as `guide-refused`
   problems when it comes.
-- Format: `Guides.FORMATS` (the formats this Polestar reads, `1` and `2`);
+- Format: `Guides.FORMATS` (the formats this Polestar reads, `1` to `4`);
   `Guides.Validate` checks each guide against the `REQUIRED` verb table
   (`Guides.VERBS`).
 - Problems: each refusal goes on the pack's record,
@@ -1023,6 +1028,28 @@ Polestar.Engine.GetProgress() -> doneSteps, totalSteps
   `train` goal (an npc in the registry or `train class`). The UI shows a slim
   banner with Show (temporary `Nav.SetTarget`) and Later, cleared by
   `CLASS_TRAINED`; Options → Guide → Automation → "Trainer reminders".
+- **Conditions checked during play.** A step with `when` (format 4;
+  GUIDE_FORMAT, "Conditions checked during play") applies only while every
+  predicate holds (`Own.whenFails`, `Own.predicateHolds`): the level, quests
+  in the log, ready to turn in, handed in or available (an accept's own
+  test: level, `pre`/`preAll` through `missingPre`, `closedBy`), an item
+  count in the bags, the zone or subzone text, the bind location (place
+  names as the area's name in the client's language, `Compat.GetAreaName`,
+  else as written). `stepApplies` reads them, so such a step counts as one
+  for other characters while they fail, and a turn-in whose only accept sits
+  there goes with it (`orphaned`). When the route moves past a step
+  (`latchPassed`), its outcome is stored per character (`Own.latchWhen`): a
+  `when` that held in `CharState().when[guideId][step]`, one that failed as
+  a skip in `CharState().skipped`, read from then on (`Own.whenHolds`): a
+  step passed because its condition failed never comes back when the
+  condition changes, one that applied stays applied, and `Unskip` brings a
+  wrongly stored step back (storing it as held). Nothing is stored before
+  `QUEST_LOG_UPDATE` (`logReady`; the log lags `PLAYER_LOGIN`):
+  `Own.latchCaughtUp` stores the steps passed meanwhile once it can.
+  `ResetProgress` forgets them; a pack update moves them with the steps
+  (`Own.remap`). The live state they read already re-evaluates the guide
+  (quest log, `BAG_UPDATE_DELAYED`, zone changes, `PLAYER_LEVEL_UP`,
+  `HEARTHSTONE_BOUND`).
 - **Unavailable quests.** An `accept` whose `closedBy` names a quest that is
   in the log or done is unavailable before any visit (reason `"closed"`,
   "No longer offered: you took <quest>"): a breadcrumb whose follow-up is
@@ -1291,8 +1318,8 @@ Step view (render-ready; the UI never re-derives status):
 }
 ```
 
-Current step = first step, in order, that is applicable (`only` matches),
-not skipped, and not done. A step is done when every applicable,
+Current step = first step, in order, that is applicable (`only` matches
+and, with `when`, its predicates hold), not skipped, and not done. A step is done when every applicable,
 non-optional goal is done; a step of only notes/optional goals is done at
 once. Step views for indices before the current step report `done`,
 `skipped` or `na`; after it, `upcoming` or `na`.
@@ -2011,6 +2038,19 @@ inside the visible disc or square, 5 px, at most 40. World map: every max(15,
 map width / 60) yd, clipped to the map, 6 px (counter-scaled like the pins)
 under the pins, textures on one no-mouse frame, at most 300. One 20 Hz driver runs only while dots show.
 `nav.trailDots` (default on) with `nav.worldPins` / `nav.minimapPins` per surface.
+On OpenMap's stitched world map (`OpenMapAPI`, OpenMap's `docs/api.md`; an
+optional dependency), the world map frame shows only the map under the view's
+centre while OpenMap draws the rest, so the trail goes through OpenMap's own
+placement instead: each run's continent yards to the shown map's percent through
+a reference map on that continent (the shown map, or on the world map its
+children), placed by `OpenMapAPI.WorldFromMap` / `MapFromWorld`; clipped to what
+the map's scroll frame shows (and 4% past it), not to the map; every max(15,
+view width / 60) yd rounded up to 15 yd times a power of two, so dots keep their
+places through a zoom within a step; redrawn when a pan or zoom moves the view
+(the canvas's and its scroll frame's place, read each frame) and when OpenMap
+switches its map on or off (`OpenMap_StitchedChanged`). `nav.openmapDots`
+(default on) is a switch of Polestar's in OpenMap's menu; it hides the dots on
+OpenMap's map only. Only OpenMap's table is called; the map frame is only read.
 The trail stands in only while route lines draw nothing (`nav.routeLines` off):
 `Nav/Layers.lua` clears it while `Polestar.RouteLines.Active()`.
 
@@ -2052,6 +2092,30 @@ permission; `addon/Polestar_Nav/CREDITS.md`).
   outlines `scrim` at 50%.
 - `nav.routeLines` (default on) with `nav.worldPins` / `nav.minimapPins` per
   surface.
+- Line style (`Maps/RouteSparkle.lua`, `UI/LineStyle.lua`): `nav.lineStyle`
+  `"dots"` (the default, the above) or `"sparkle"`, set in the window the
+  gear beside "Route lines" opens (Options, Guide, Arrow & routes; the gear
+  is `W.Toggle`'s `opts.gear`). Sparkles (ported from Forever Sparkle Trail)
+  sit along the same draw paths, measured in yards and split by continent:
+  evenly spaced on screen at any zoom (`nav.sparkleDensity`, 36 px at 1 to
+  9 px at 10), each a `Media/Nav/sparkle` star over `Media/Nav/glow`,
+  additive and tinted (`nav.sparkleColor`: loot gold and four others, or
+  each leg's dot colour), twinkling on its own hash and drifting toward the
+  goal (`nav.sparkleFlow`); `nav.sparkleIntensity`, `nav.sparkleSubtlety`,
+  `nav.sparkleSize`, `nav.sparkleMax` (per surface) and `nav.sparkleLater`
+  (the legs after this one, at 40%), with three presets
+  (`RouteLines.ApplySparklePreset`). They are painted on the same two frames
+  from their own pools, redrawn 30 times a second while shown; the leg being
+  travelled starts at the player (within 60 yd, checked every 0.25 s). A
+  draw emits only along the stretches of each run whose segments reach the
+  minimap's face (within radius × √2 of the player, plus a sparkle's jitter)
+  or the map's canvas (`Sparkle.Spans`, over the run projected once per
+  route, map, canvas size or OpenMap change), at most 4000 places per
+  surface, and sets a texture's colour or shows it only when that changes:
+  its cost follows the sparkles shown, not the route's length. With
+  OpenMap's stitched world map on (`OpenMapAPI.IsStitched`), the world map
+  places them with `OpenMapAPI.CanvasFromWorldPos` and lifts the frame above
+  `OpenMapAPI.ArtTopLevel()`.
 - Chokepoints: a Travel leg ending at one carries `choke = { kind, name }`;
   `Nav/Layers.lua` gives its route stop (`nav.route`) the kind's glyph on a
   scrim disc in the accent (`icon-lift`; `icon-gate` for gates and building
@@ -2426,7 +2490,12 @@ committed, written by `node tools/polestar.js travel import --carbonite
 connections (GPL-3.0; `tools/lib/travel/carbonite.js`): its walks between
 two zones of one continent, both ways unless Carbonite marks one way, every
 end with a 30 yd arrival radius (Carbonite gives none); its boats, zeppelins,
-tram and portals are TravelData's own transports and are left out. `travel
+tram and portals are TravelData's own transports and are left out. Its
+`open` pairs are not Carbonite's: borders the navigation grid finds walkable
+along their length (`nav aids` open pairs; Elwynn Forest and Duskwood,
+Duskwood and Westfall, whose river the walking engine swims), so a walk
+across them is not sent round to a road crossing (#371, #421); a re-import
+keeps them and its `source` says so. `travel
 build --shipped none` builds without them (the test fixtures). An optional
 local crossings file, `data/local/crossings.json` (gitignored), adds to them:
 the build validates it and writes it into the local data addon

@@ -6,7 +6,7 @@
 // TravelData.lua.
 //
 //   const { parseZoneConnections, carboniteCrossings } = require('tools/lib/travel/carbonite');
-//   const doc = carboniteCrossings(text, frames, { source, radius });   // throws when nothing parses
+//   const doc = carboniteCrossings(text, frames, { source, radius, keep });   // throws when nothing parses
 //
 // Each entry is "flags|kind|name1|uiMap1|x1|y1|name2|uiMap2|x2|y2" (Carbonite's
 // MapEngine.lua reads it the same way): flags bit 1 joins both ways, kind 1 is
@@ -15,9 +15,15 @@
 // left out. Map percent of the Classic Era client maps, as our crossings file.
 // Carbonite gives no arrival radius: RADIUS yards (decided here, the radius
 // most crossings in a hand-made set use).
+//
+// Open borders are not Carbonite's: `open` holds the zone pairs whose border
+// Polestar's navigation grid finds walkable along its length (`nav aids`),
+// such as a river the walking engine swims. A re-import keeps those of the
+// file it replaces (`keep`) and says so in `source`.
 
 const RADIUS = 30;
 const WALK = 1;
+const OPEN_NOTE = "open borders (open): from Polestar's navigation grid (nav aids)";
 
 // Lua source -> [{ flags, kind, a: { map, x, y }, b: { map, x, y } }].
 function parseZoneConnections(text) {
@@ -40,7 +46,7 @@ const slug = (s) => String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(
 // Lua source -> a crossings file document: the walks between zones, two-way
 // unless flags bit 1 is clear, ids "carbonite-<zone>--<zone>" (-2, -3 ... for
 // a second point on the same border).
-function carboniteCrossings(text, frames, { source, radius = RADIUS } = {}) {
+function carboniteCrossings(text, frames, { source, radius = RADIUS, keep = null } = {}) {
 	const walks = parseZoneConnections(text).filter((e) => e.kind === WALK && (e.a.x !== 0 || e.a.y !== 0));
 	if (!walks.length) throw new Error('no walking zone connections in the file (expected "7|1|...|uiMap|x|y|...|uiMap|x|y" entries)');
 	const seen = new Map();
@@ -53,7 +59,9 @@ function carboniteCrossings(text, frames, { source, radius = RADIUS } = {}) {
 		if ((e.flags & 1) === 0) c.oneWay = true;
 		return c;
 	});
-	return { schema: 1, frame: 'e', source, crossings };
+	const open = keep && Array.isArray(keep.open) ? keep.open : [];
+	if (!open.length) return { schema: 1, frame: 'e', source, crossings };
+	return { schema: 1, frame: 'e', source: `${source}; ${OPEN_NOTE}`, crossings, open };
 }
 
-module.exports = { parseZoneConnections, carboniteCrossings, RADIUS };
+module.exports = { parseZoneConnections, carboniteCrossings, RADIUS, OPEN_NOTE };

@@ -418,6 +418,50 @@ test('`complete` on a quest without objectives warns: the turn-in is the action'
 	]);
 });
 
+// #285: the Horde Zephras Isle guide turned in The Broken Construct without
+// ever sending the player for its Enchanted Gyrozephyr.
+test('a turn-in whose quest needs an item no earlier goal gets warns, naming the item and its objective', () => {
+	const turnin = (body) => only(compile(guideText(['step S', '  accept 33', ...body, '  turnin 33'])).warnings, /is turned in, but/);
+	const src = guideText(['step S', '  accept 33', '  turnin 33']);
+	assert.deepEqual(only(compile(src).warnings, /is turned in, but/), [
+		`test.guide:${lineOf(src, '  turnin 33')}: quest 33 (Wolves Across the Border) is turned in, but no earlier goal in this guide or a guide chaining into it gets Tough Wolf Meat (750, objective 33.1)`,
+	]);
+	// Got by a collect of the item, a kill linked to its objective, or `complete`: quiet.
+	assert.deepEqual(turnin(['  collect 750 x8 quest 33']), []);
+	assert.deepEqual(turnin(['  collect 750 x8']), []);
+	assert.deepEqual(turnin(['  kill 69 x8 quest 33.1']), []);
+	assert.deepEqual(turnin(['  complete 33']), []);
+	// Too late: after the turn-in.
+	assert.equal(only(compile(guideText(['step S', '  accept 33', '  turnin 33', '  collect 750 x8'])).warnings, /is turned in, but/).length, 1);
+	// Got in a guide chaining into this one.
+	const r = compile({
+		'a.guide': text('t/a', ['step S', '  accept 33', '  collect 750 x8 quest 33'], ['next t/b']),
+		'b.guide': text('t/b', ['step S', '  turnin 33']),
+	});
+	assert.deepEqual(only(r.warnings, /is turned in, but/), []);
+});
+
+test('an item the quest or an NPC hands over (no drop, vendor or container) needs no goal', () => {
+	const base = fixtureData();
+	const items = { ...base.items, 95102: { id: 95102, name: 'Sealed Letter', drops: { npc: {}, object: {} }, vendors: [] } };
+	const quests = { ...base.quests, 9701: { ...base.quests[7], id: 9701, title: 'Letters', pre: [], objectives: [{ type: 'item', id: 95102, count: 1 }] } };
+	const data = new Data({ quests, npcs: base.npcs, objects: base.objects, items, zones: base.zones, 'map-frames': base.mapFrames, meta: base.meta }, { dir: base.dir });
+	assert.deepEqual(only(compile(guideText(['step S', '  accept 9701', '  turnin 9701']), data).warnings, /is turned in, but/), []);
+});
+
+// #395: the Alliance Zephras Isle guide's `complete 94489` had nothing to point at.
+test('a `complete` with no place on a quest whose objectives have places warns', () => {
+	const src = guideText(['step S', '  accept 7', '  complete 7', '  turnin 7']);
+	const d = compile(src).diag.warnings.filter((x) => /has no place/.test(x.message));
+	assert.deepEqual(
+		d.map((x) => [x.line, x.message, x.hint]),
+		[[lineOf(src, '  complete 7'), '`complete` for quest 7 (Kobold Camp Cleanup) has no place, but its objectives do (7.1 = kill Kobold Vermin x10): the arrow has nowhere to point', 'write a goal per objective (`kill <npc> quest 7.<n>`, `collect <item> quest 7.<n>`), or give the `complete` a `goto` or coordinates']],
+	);
+	// A `goto` earlier in the step gives the arrow its place; a quest without objectives is the other warning.
+	assert.deepEqual(only(compile(guideText(['step S', '  accept 7', '  goto 48,31', '  complete 7', '  turnin 7'])).warnings, /has no place/), []);
+	assert.deepEqual(only(compile(guideText(['step S', '  accept 783', '  complete 783', '  turnin 783'])).warnings, /has no place/), []);
+});
+
 // The fixture data plus elite work: 95003 Elite Kobold (rank 1, hostile) is
 // already there; 95030 is a friendly rank-1 talk credit (like 8479 Kalaran
 // Windblade); item 95100 drops only from the Elite Kobold, 95101 also from a

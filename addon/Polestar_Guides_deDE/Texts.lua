@@ -174,7 +174,6 @@ t.guides["forever/alliance/04-redridge-mountains"] = (function() return {
 		["Lake murlocs"] = "Murlocs am See",
 		["Level 18 and 20 spells"] = "Zauber der Stufen 18 und 20",
 		["Murloc Flesheaters and Tidecallers line the south shore east of the bridge. Any of them can carry a {item:1467} or a fin."] = "Murlocfleischfresser und Murlocgezeitenrufer säumen das Südufer östlich der Brücke. Jeder von ihnen kann {item:1467} oder eine Flosse tragen.",
-		["Redridge Mongrels and other gnolls hold the hills east of {area:1002}, north of the road; Redridge Thrashers prowl among them, Poachers camp south of the road. Dire Condors and Great Goretusks roam the same hills."] = "Bastarde der Rotkammgnolle und andere Gnolle halten die Hügel östlich von {area:1002}, nördlich der Straße; Hauer der Rotkammgnolle streifen zwischen ihnen umher, Wilderer lagern südlich der Straße. Terrorkondore und Große Geiferzähne streifen durch dieselben Hügel.",
 		["Shaman training"] = "Schamanentraining",
 		["Swim east from the bridge into {area:68}; the chest lies on the lake bed."] = "Schwimm von der Brücke nach Osten in {area:68}; die Truhe liegt auf dem Seegrund.",
 		["The Wanted poster by the inn: {npc:703}, in {area:1000}"] = "Der Steckbrief am Gasthaus: {npc:703}, im {area:1000}",

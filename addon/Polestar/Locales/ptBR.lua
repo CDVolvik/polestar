@@ -634,7 +634,6 @@ L["Wearing %s (%s)."] = "Equipado: %s (%s)."
 L["Wearing %s."] = "Equipado: %s."
 
 -- QoL/Flight.lua
-L["Route"] = "Rota"
 L["Route: fly to %s."] = "Rota: voe para %s."
 
 -- QoL/Death.lua
@@ -1100,6 +1099,7 @@ L["Legacy"] = "Legado"
 L["Collectibles"] = "Colecionáveis"
 L["Sections"] = "Seções"
 L["guide status: Completed"] = "Concluído"
+L["Miscellaneous"] = "Diversos"
 
 -- UI/Lookup.lua
 L["Companion"] = "Mascote"
@@ -1678,6 +1678,7 @@ L["The skin's arrow"] = "A seta do tema"
 -- L["Stops stray drags on the arrow, the action buttons and the flight and instance timers. Shift-drag still moves them."] = ""
 -- L["In dungeons"] = ""
 -- L["What the window does in dungeons and raids. /polestar or the key binding opens it there until you leave."] = ""
+-- L["Line style"] = ""
 
 -- Rares/Rares.lua
 L["Raid warning"] = "Aviso de raide"
@@ -2003,6 +2004,38 @@ L["Spare points go to Divine Strength and Holy's Improved Seals for damage, then
 L["Hand guiding to Shortest Path Forever"] = "Passar a guia ao Shortest Path Forever"
 L["Shortest Path Forever's arrow, route and journey take you to each goal. Polestar's arrow, route lines, journey steps, travel button, transport alerts, map clicks and /way step aside; the guide window and map pins stay. Off: Polestar guides, and steps aside only while a journey you started in Shortest Path Forever runs."] = "A seta, a rota e a jornada do Shortest Path Forever levam você a cada objetivo. A seta do Polestar, linhas de rota, etapas da jornada, botão de viagem, alertas de transporte, cliques no mapa e /way saem de cena; a janela do guia e os marcadores no mapa ficam. Desligado: o Polestar guia e só sai de cena durante uma jornada iniciada no Shortest Path Forever."
 
+-- Nav/Pins.lua
+-- L["Polestar trail dots"] = ""
+
+-- UI/LineStyle.lua
+-- L["How the route lines are drawn: Polestar's dots, or sparkles that drift along the way to the goal."] = ""
+-- L["Dots"] = ""
+-- L["Sparkle"] = ""
+-- L["Intensity"] = ""
+-- L["How bright each sparkle and its glow are."] = ""
+-- L["Density"] = ""
+-- L["How close together the sparkles sit, the same at any zoom."] = ""
+-- L["Smaller, dimmer, calmer twinkles that drift less; no glow at 100%."] = ""
+-- L["Sparkle size"] = ""
+-- L["Each sparkle's size before subtlety."] = ""
+-- L["Flow toward goal"] = ""
+-- L["How fast the sparkles drift toward the goal; 0 holds them still."] = ""
+-- L["Most sparkles shown"] = ""
+-- L["A ceiling on each map, whatever the density."] = ""
+-- L["Sparkle colour"] = ""
+-- L["Loot gold is the colour of the game's own loot sparkle. Route colours tint each leg as the dots are."] = ""
+-- L["Loot gold"] = ""
+-- L["Arcane blue"] = ""
+-- L["Fel green"] = ""
+-- L["Rose"] = ""
+-- L["Starlight"] = ""
+-- L["Route colours"] = ""
+-- L["Whole route"] = ""
+-- L["Sparkle the legs after this one too, fainter. Off: only the leg you are on."] = ""
+-- L["Subtle"] = ""
+-- L["Dazzling"] = ""
+-- L["Route line style"] = ""
+
 -- No longer in the code (its English changed or it went away): reuse or delete.
 -- L["Shortest Path Forever is guiding. Turn off \"Guide with Shortest Path Forever when it's installed\" (Options, Arrow & routes) to use Polestar's arrow."] = "Shortest Path Forever está guiando. Desative \"Guiar com Shortest Path Forever quando instalado\" (Opções, Seta e rotas) para usar a seta do Polestar."
 -- L["Shortest Path Forever is guiding. Turn off \"Guide with Shortest Path Forever when it's installed\" (Options, Integrations) to use Polestar's arrow."] = "Shortest Path Forever está guiando. Desative \"Guiar com Shortest Path Forever quando instalado\" (Opções, Integrações) para usar a seta do Polestar."
@@ -2019,3 +2052,4 @@ L["Shortest Path Forever's arrow, route and journey take you to each goal. Poles
 -- L["Next lift in about %s"] = "Próximo elevador em cerca de %s"
 -- L["leaves in about %s"] = "parte em cerca de %s"
 -- L["Scale of the quest item, Hearthstone and target buttons. Drag one to move them all."] = "Escala dos botões de item de missão, Pedra de Regresso e alvo. Arraste um para mover todos."
+-- L["Route"] = "Rota"
