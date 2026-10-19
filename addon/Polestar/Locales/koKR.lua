@@ -1009,6 +1009,7 @@ L["Back to the guide"] = "가이드로 돌아가기"
 L["%s (known)"] = "%s (이미 배움)"
 L["%s (from level %d)"] = "%s (%d레벨부터)"
 L["Points the arrow at the nearest vendor, repair, inn, flight master or trainer."] = "가장 가까운 상인, 수리, 여관, 비행 조련사 또는 전문가를 화살표로 가리킵니다."
+-- L["Picture of this spot"] = ""
 
 -- UI/JourneyPanel.lua
 L["Lift to %s"] = "%s행 승강기"

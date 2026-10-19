@@ -1009,6 +1009,7 @@ L["Back to the guide"] = "Volver a la guía"
 L["%s (known)"] = "%s (ya la tienes)"
 L["%s (from level %d)"] = "%s (desde el nivel %d)"
 L["Points the arrow at the nearest vendor, repair, inn, flight master or trainer."] = "Lleva la flecha al vendedor, la reparación, la posada, el maestro de vuelo o el instructor más cercano."
+-- L["Picture of this spot"] = ""
 
 -- UI/JourneyPanel.lua
 L["Lift to %s"] = "Ascensor a %s"

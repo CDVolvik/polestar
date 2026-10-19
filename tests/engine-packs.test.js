@@ -215,3 +215,18 @@ test('a tab reopened after its pack returns is no longer absent: closed, it stay
 	assert.deepEqual(out.again, ['test/x']);
 	assert.deepEqual(out.saved, ['test/x']);
 });
+
+test('the step view carries the step\'s picture with its texture path, and a step without one has none', () => {
+	const [out] = run({
+		script: `
+			Polestar.RegisterGuide({ id = "joe/pic", pack = "joe", title = "Pic", category = "Exploration", steps = {
+				{ note = "Inside the mine.", image = { file = "media\\\\cave", w = 512, h = 256 }, goals = { { t = "level", level = 50 } } },
+				{ goals = { { t = "level", level = 55 } } },
+			} })
+			E.OpenTab("joe/pic"); flush()
+			emit({ first = E.GetStepView(1).image, second = E.GetStepView(2).image == nil })
+		`,
+	});
+	assert.deepEqual(out.first, { file: 'media\\cave', w: 512, h: 256, texture: 'Interface\\AddOns\\JoeAddon\\media\\cave' });
+	assert.equal(out.second, true);
+});
