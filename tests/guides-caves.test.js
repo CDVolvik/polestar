@@ -40,6 +40,13 @@ const CASES = [
 		mouth: { map: 1426, x: 26.93, y: 80.03 }, // marked in game (PR #16)
 		tip: /inside the troll cave/,
 	},
+	{
+		// Onrevax (#392): the Whispering Elixir bottles are in the basement under Shadowvale's ruined house.
+		guide: 'forever/horde/undead/01-tirisfal-glades.guide',
+		target: (g) => g.t === 'collect' && g.item === 268801, // Bottle of Whispering Elixir
+		mouth: { map: 1420, x: 12.9, y: 65.7 }, // players' notes on quest 95314 in Forever's quest data: "entrance to the basement at 12.9, 65.7"
+		tip: /basement under the ruined house/,
+	},
 ];
 
 let data;

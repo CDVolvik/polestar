@@ -33298,10 +33298,11 @@ do
 				},
 				{
 					title = "{area:16881}",
-					note = "{area:16881} is the hollow at the west edge of the glades. The Shadowvale Lurchers and Mystics drop the bones; the bottles lie on the ground among them, and the {item:286269} is at the south end.",
+					note = "{area:16881} is the hollow at the west edge of the glades. Go down into the big basement under the ruined house (only a floor and a few pillars left, not the two-storey house): the bottles lie on its floor among the Shadowvale Lurchers and Mystics, which drop the bones, and the {item:286269} is at its south end.",
 					goals = {
-						{ t = "collect", quest = 99152, title = "As Above, So Below", item = 286259, itemName = "Faintly Glowing Bone", count = 6, oi = 1, map = 1420, x = 9.74, y = 59.43, f = "e", spots = { { x = 9.2, y = 60.4, r = 45, n = 18 }, { x = 9.4, y = 63.9, r = 54, n = 19 }, { x = 9.5, y = 66.1, r = 58, n = 68 }, { x = 11.6, y = 65.8, r = 51, n = 24 }, { x = 9.7, y = 68, r = 46, n = 27 } }, only = { classes = { "PALADIN" } } },
-						{ t = "collect", quest = 95314, title = "That Shadowvale Green Elixir", item = 268801, itemName = "Bottle of Whispering Elixir", count = 8, oi = 1, map = 1420, x = 9.8, y = 59.4, f = "e", spots = { { x = 9.3, y = 59.7, r = 33, n = 4 }, { x = 9.5, y = 62.5, r = 21, n = 2 }, { x = 11.1, y = 66, r = 44, n = 4 }, { x = 9.2, y = 66.7, r = 59, n = 6 }, { x = 10.1, y = 70.1, r = 15, n = 1, alt = true } } },
+						{ t = "goto", text = "the basement under the ruined house", map = 1420, x = 12.9, y = 65.7, f = "e" },
+						{ t = "collect", quest = 95314, title = "That Shadowvale Green Elixir", item = 268801, itemName = "Bottle of Whispering Elixir", count = 8, oi = 1, map = 1420, x = 11.8, y = 66.4, f = "e", spots = { { x = 11.1, y = 66, r = 44, n = 4 }, { x = 9.2, y = 66.7, r = 59, n = 6 }, { x = 9.5, y = 62.5, r = 21, n = 2 }, { x = 9.3, y = 59.7, r = 33, n = 4 }, { x = 10.1, y = 70.1, r = 15, n = 1, alt = true } } },
+						{ t = "collect", quest = 99152, title = "As Above, So Below", item = 286259, itemName = "Faintly Glowing Bone", count = 6, oi = 1, map = 1420, x = 11.79, y = 66.43, f = "e", spots = { { x = 11.6, y = 65.8, r = 51, n = 24 }, { x = 9.5, y = 66.1, r = 58, n = 68 }, { x = 9.7, y = 68, r = 46, n = 27 }, { x = 9.4, y = 63.9, r = 54, n = 19 }, { x = 9.2, y = 60.4, r = 45, n = 18 } }, only = { classes = { "PALADIN" } } },
 						{ t = "collect", quest = 99153, title = "The One That Got Away", item = 286269, itemName = "Glowing Crystal Fragment", oi = 1, map = 1420, x = 9.8, y = 69.3, f = "e", only = { classes = { "PALADIN" } }, from = "Glowing Crystal Fragment", fromKind = "object", fromId = 694895 },
 					},
 				},
