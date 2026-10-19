@@ -884,6 +884,11 @@ function Theme.FontSpec(role)
 	end
 	local locale = GetLocale and GetLocale()
 	local face = Theme.FontKey()
+	-- The ruRU client font (FRIZQT___CYR) has no middle dot, which the UI and
+	-- guide text use as a separator; Fira Sans has it and covers Cyrillic.
+	-- Only when the skin picks the face: choosing "the game's" font keeps it.
+	local f = get("ui.font")
+	if face == "game" and locale == "ruRU" and (f == nil or f == "skin") then face = "fira" end
 	if face == "game" or CJK[locale] then
 		return STANDARD_TEXT_FONT or "Fonts\\FRIZQT__.TTF", size, ""
 	end
@@ -936,6 +941,18 @@ local function paintShadow(fs)
 	fs:SetShadowColor(r, g, b, flat[fs] and 0 or (outlined[fs] and 1 or 0.6))
 end
 
+-- Forever leaves a string blank after a new font until its text changes
+-- (the options' values and tiles after a skin change): set it again.
+local function textAgain(fs)
+	local text = fs.GetText and fs:GetText()
+	if text and text ~= "" then
+		fs:SetText(text .. " ")
+		fs:SetText(text)
+	end
+end
+
+local retextQueued = false
+
 local function paintFont(fs, role)
 	local path, size, flags = Theme.FontSpec(role)
 	local text = fs.GetText and fs:GetText()
@@ -947,12 +964,7 @@ local function paintFont(fs, role)
 		fs:SetFont(STANDARD_TEXT_FONT or "Fonts\\FRIZQT__.TTF", size, flags)
 	end
 	paintShadow(fs)
-	-- Forever leaves a string blank after a new font until its text changes
-	-- (the options' values and tiles after a skin change): set it again.
-	if text and text ~= "" then
-		fs:SetText(text .. " ")
-		fs:SetText(text)
-	end
+	textAgain(fs)
 end
 
 -- New text in another script than the font drawn (a name in Chinese, #353):
@@ -1597,6 +1609,16 @@ function Theme.Refresh()
 	for sky in pairs(bands) do paintBand(sky) end
 	for frame, kind in pairs(skinned) do paint(frame, kind) end
 	for fs, role in pairs(fonted) do paintFont(fs, role) end
+	-- EllesmereUI's font is handed over at login, in the frame the window is
+	-- first drawn: a string set again in that frame can stay blank, so once more
+	-- a frame later.
+	if Theme.FollowsEllesmereFont() and C_Timer and C_Timer.After and not retextQueued then
+		retextQueued = true
+		C_Timer.After(0, function()
+			retextQueued = false
+			for fs in pairs(fonted) do textAgain(fs) end
+		end)
+	end
 	for i = 1, #handlers do
 		local ok, err = pcall(handlers[i])
 		if not ok and geterrorhandler then geterrorhandler()(err) end

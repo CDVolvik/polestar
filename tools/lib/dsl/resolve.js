@@ -19,9 +19,12 @@ const { objectiveLabel } = require('./data');
 const { checkLocation } = require('./places');
 const { blockingPrereqs } = require('../data/prereqs');
 const { clusterPoints, scaleOf } = require('../questdb/cluster');
-const { groupOf, isElite, hostileTo } = require('./group');
+const { groupOf, isElite, isRare, hostileTo } = require('./group');
+const { escortOf } = require('./escort');
 const { goalHeight, spotHeight } = require('./heights');
 const { goalArea, goalNode, goalInnkeeper, goalFlightMaster } = require('./places');
+const { areaNamed } = require('../data/areas');
+const { levelRange } = require('./when');
 
 // A collect's sources are named only for an item that few creatures or
 // objects drop (at 2% or more, with spawns); past this it drops everywhere.
@@ -94,7 +97,7 @@ function pickSpawn(data, candidates, zoneMap, prev, opts = {}) {
 	if (zoneMap != null) maps.push(zoneMap);
 	for (const m of opts.usedMaps || []) if (!maps.includes(m)) maps.push(m);
 	for (const m of maps) {
-		const { on, elites } = onMap(data, all, m, opts.sides);
+		const { on, elites } = onMap(data, all, m, opts.sides, opts.rares);
 		if (!on.length) continue;
 		const found = { sources: on.map((o) => o.cand), elites: elites.map((o) => o.cand) };
 		if (prev && prev.map === m) {
@@ -126,11 +129,12 @@ function pickSpawn(data, candidates, zoneMap, prev, opts = {}) {
 // at 1%), only the normal ones count, at any chance the elites have: a
 // player farms the normal mobs, not the elite camp beside them. The elites
 // passed over are `elites` (spawnSpots keeps the arrow out of their camps).
-// An item only elites drop here keeps them.
+// An item only elites drop here keeps them. With `rares` (see rareLeads) a
+// rare (isRare) is passed over the same way.
 //
 // Sources with a drop chance: only the likely ones count (at least half the
 // best chance here; sub-1% drops only when nothing better drops here).
-function onMap(data, all, map, sides) {
+function onMap(data, all, map, sides, rares = false) {
 	let on = [];
 	let elites = [];
 	for (const { cand, spawns } of all) {
@@ -138,7 +142,7 @@ function onMap(data, all, map, sides) {
 		if (s) on.push({ cand, s });
 	}
 	const chanceOf = (o) => o.cand.chance || 0;
-	const split = sides ? eliteSplit(data, on.map((o) => o.cand), sides) : null;
+	const split = sides ? eliteSplit(data, on.map((o) => o.cand), sides, rares) : null;
 	if (split) {
 		elites = on.filter((o) => split.elites.includes(o.cand));
 		on = on.filter((o) => split.normal.includes(o.cand));
@@ -191,28 +195,41 @@ function pointSources(data, sources, map, f, x, y, near) {
 	return out.map((o) => o.src);
 }
 
-// Sources ([{ kind, id, chance? }]) that elites (group.js isElite) and normal
-// sources (a non-elite npc hostile to one of `sides`, or an object) both drop
-// at 1% or more (any chance when none drops it at 1%, or none has a chance).
+// Sources ([{ kind, id, chance? }]) that elites (group.js isElite, and rares
+// with `rares`) and normal sources (a non-elite npc hostile to one of
+// `sides`, or an object) both drop at 1% or more (any chance when none drops
+// it at 1%, or none has a chance).
 // -> { normal, elites } | null (not both)
-function eliteSplit(data, cands, sides) {
+function eliteSplit(data, cands, sides, rares = false) {
 	const chances = cands.some((c) => typeof c.chance === 'number');
 	const best = Math.max(0, ...cands.map((c) => c.chance || 0));
 	const real = cands.filter((c) => !chances || (c.chance || 0) >= 1 || best < 1);
-	const elites = real.filter((c) => eliteSource(data, c, sides));
-	const normal = real.filter((c) => normalSource(data, c, sides));
+	const elites = real.filter((c) => eliteSource(data, c, sides, rares));
+	const normal = real.filter((c) => normalSource(data, c, sides, rares));
 	return elites.length && normal.length ? { normal, elites } : null;
 }
 
-function eliteSource(data, cand, sides) {
-	const n = cand.kind === 'npc' ? data.npc(cand.id) : null;
-	return !!(n && isElite(n.rank, n.faction, sides));
+// Whether a rare drops the item at the highest chance while normal sources
+// drop it at 50% or more (the `fromAlso` bar): the goal would read "Kill
+// <rare> or <normal>", and the arrow would lead to the rare's spawns, which
+// are the camps of other mobs (Ribchaser stands among the Redridge Mongrels,
+// who drop nothing). Not for an item that drops all over the world.
+function rareLeads(data, cands, sides) {
+	const top = cands.reduce((a, b) => (b.chance > a.chance ? b : a), cands[0] || { chance: 0 });
+	const n = top.kind === 'npc' ? data.npc(top.id) : null;
+	if (!n || !isRare(n.rank, n.faction, sides)) return false;
+	return cands.some((c) => c.chance >= 50 && normalSource(data, c, sides, true));
 }
 
-function normalSource(data, cand, sides) {
+function eliteSource(data, cand, sides, rares) {
+	const n = cand.kind === 'npc' ? data.npc(cand.id) : null;
+	return !!(n && (isElite(n.rank, n.faction, sides) || (rares && isRare(n.rank, n.faction, sides))));
+}
+
+function normalSource(data, cand, sides, rares) {
 	if (cand.kind !== 'npc') return true;
 	const n = data.npc(cand.id);
-	return !!(n && hostileTo(n.faction, sides) && !isElite(n.rank, n.faction, sides));
+	return !!(n && hostileTo(n.faction, sides) && !isElite(n.rank, n.faction, sides) && !(rares && isRare(n.rank, n.faction, sides)));
 }
 
 function point(cand, map, x, y, f) {
@@ -638,6 +655,8 @@ function resolveGuide(ast, data, diag, opts = {}) {
 		setIf(step, 'title', s.title);
 		setIf(step, 'note', s.tip);
 		setIf(step, 'only', onlyOf(s.only));
+		const stepZone = resolveZone(s.zone || (s.goals[0] && s.goals[0].zone));
+		setIf(step, 'when', resolveWhen(s.when, stepZone ? stepZone.id : null, h.levels ? [h.levels.min, h.levels.max] : null, data, warn));
 		step.goals = [];
 		hidden(step, '_line', s.line);
 		hidden(step, '_only', s.only);
@@ -703,13 +722,129 @@ function resolveGuide(ast, data, diag, opts = {}) {
 	return guide;
 }
 
+// What an accept of quest `id` (record `q`, or null) waits on, for the
+// engine: blocking prerequisites only (breadcrumbs dropped: `pre` = one of
+// them suffices, `preAll` = every one is needed), the quests that close it
+// for good once taken or done (the quest a breadcrumb leads to, and its
+// exclusive group: another race's or class's version of the same chain), and
+// their titles for the engine's "needs <quest> first" / "you took <quest>" text.
+function acceptGate(q, id, data) {
+	const out = {};
+	const { all, any } = blockingPrereqs(q, (p) => data.quest(p));
+	if (any.length) out.pre = any;
+	if (all.length) out.preAll = all;
+	const closedBy = [];
+	for (const c of [Number(q && q.breadcrumbFor), ...((q && q.excl) || []).map(Number)]) {
+		if (Number.isInteger(c) && c > 0 && c !== id && !closedBy.includes(c)) closedBy.push(c);
+	}
+	if (closedBy.length) out.closedBy = closedBy;
+	const titles = {};
+	for (const p of [...all, ...any, ...closedBy]) {
+		const pq = data.quest(p);
+		if (pq && pq.title) titles[p] = String(pq.title);
+	}
+	if (Object.keys(titles).length) out.preTitles = titles;
+	return out;
+}
+
+// A step's `when` predicates (tools/lib/dsl/when.js) as the engine reads them
+// (docs/PACK_FORMAT.md, "Format 4"): quest and item ids checked against the
+// data; `available` with what an accept of the quest waits on (minLevel,
+// pre, preAll, closedBy); a zone, subzone or bind location with its area
+// (places.js, "Places by ID"), the subzone looked up in the step's zone.
+// `levels`: the guide's [min, max], to warn about a step no character in
+// that range sees.
+function resolveWhen(list, zoneId, levels, data, warn) {
+	if (!list || !list.length) return undefined;
+	const haveQuests = Object.keys(data.quests || {}).length > 0;
+	const haveItems = Object.keys(data.items || {}).length > 0;
+	const haveZones = Object.keys(data.zones || {}).length > 0;
+	const out = list.map((p) => {
+		const w = { k: p.k };
+		if (p.neg) w.neg = true;
+		switch (p.k) {
+			case 'level':
+				w.op = p.op;
+				w.n = p.n;
+				break;
+			case 'onquest':
+			case 'complete':
+			case 'turnedin':
+			case 'available': {
+				w.q = Array.isArray(p.q) ? p.q.slice() : p.q;
+				for (const id of [].concat(p.q)) {
+					if (haveQuests && !data.quest(id)) warn(p.line, `quest ${id} is not in data (new Forever content?)`);
+				}
+				if (p.k === 'available') {
+					const q = data.quest(p.q);
+					if (q && q.minLevel > 0) w.minLevel = Number(q.minLevel);
+					const gate = acceptGate(q, p.q, data);
+					setIf(w, 'pre', gate.pre);
+					setIf(w, 'preAll', gate.preAll);
+					setIf(w, 'closedBy', gate.closedBy);
+				}
+				break;
+			}
+			case 'has':
+				w.item = p.item;
+				w.n = p.n;
+				if (haveItems && !data.item(p.item)) warn(p.line, `item ${p.item} is not in data (new Forever content?)`);
+				break;
+			case 'zone': {
+				w.name = p.name;
+				const found = data.zoneNamed(p.name);
+				if (found && found.zone.areaId) w.area = Number(found.zone.areaId);
+				else if (!found && haveZones) warn(p.line, `zone "${p.name}" is not in zones.json: the game never reports that zone name, so the predicate never holds there`, 'write the zone as the game names it (`polestar find --kind zone <text>`)');
+				break;
+			}
+			case 'subzone': {
+				w.name = p.name;
+				const z = zoneId != null ? data.zone(zoneId) : null;
+				const area = areaNamed(data.areas, p.name, z && z.areaId);
+				if (area) w.area = area.id;
+				else if (data.areas) warn(p.line, `subzone "${p.name}" names no single area${z && z.name ? ` in ${z.name}` : ''}: the predicate compares the subzone text as written, in English only`);
+				break;
+			}
+			default: {
+				// bound
+				w.name = p.name;
+				const bad = checkLocation(data, 'sethome', p.name);
+				if (bad) warn(p.line, bad.message.replace(/^sethome/, 'bound'), bad.hint);
+				const area = areaNamed(data.areas, p.name);
+				if (area) w.area = area.id;
+			}
+		}
+		return w;
+	});
+	// No character in the guide's levels sees a step whose `level` predicates
+	// leave no level; nor any character a step that asks for one state both ways.
+	const lv = list.filter((p) => p.k === 'level');
+	if (lv.length && levels) {
+		let [lo, hi] = levels;
+		for (const p of lv) {
+			const [a, b] = levelRange(p);
+			lo = Math.max(lo, a);
+			hi = Math.min(hi, b);
+		}
+		if (lo > hi) warn(lv[lv.length - 1].line, `the step's \`when level\` never holds for this guide's levels (${levels[0]}-${levels[1]}): no character sees the step`);
+	}
+	const key = (p) => JSON.stringify({ ...p, neg: undefined, line: undefined });
+	for (const p of list) {
+		if (p.k !== 'level' && list.some((o) => o !== p && !!o.neg !== !!p.neg && key(o) === key(p))) {
+			warn(p.line, `the step asks for \`${p.k}\` and \`!${p.k}\` of the same ${p.k === 'has' ? 'item' : p.k === 'onquest' || p.k === 'complete' || p.k === 'turnedin' || p.k === 'available' ? 'quest' : 'place'}: no character sees it`);
+			break;
+		}
+	}
+	return out;
+}
+
 function objectiveFor(q, kind, id) {
 	if (!q || !Array.isArray(q.objectives)) return null;
 	const idx = q.objectives.findIndex((o) => o && o.id === id && (kind === null || o.type === kind));
 	return idx < 0 ? null : idx + 1;
 }
 
-const CATEGORIES = ['Leveling', 'Class', 'Professions', 'Reputation', 'Legacy', 'Exploration', 'Collectibles', 'Dungeons'];
+const CATEGORIES = ['Leveling', 'Class', 'Professions', 'Reputation', 'Legacy', 'Exploration', 'Collectibles', 'Miscellaneous', 'Dungeons'];
 
 // Documented categories are matched case-insensitively; others pass through with a warning.
 function canonicalCategory(raw, ast, warn) {
@@ -811,6 +946,7 @@ function resolveGoal(g, zoneMap, prev, data, err, warn, ctx = { sides: ['Allianc
 	let candidates = []; // entities whose spawns give coordinates
 	let checkKinds = null; // entities for the explicit-coordinates check
 	let questFields = false;
+	let passRares = false; // a collect whose rare tops its few droppers: the common ones lead (see onMap)
 
 	const requireName = (kind, id, explicit, label) => {
 		const name = explicit || nameOf(data, kind, id);
@@ -898,26 +1034,7 @@ function resolveGoal(g, zoneMap, prev, data, err, warn, ctx = { sides: ['Allianc
 				setIf(goal, 'minLevel', ml);
 				// For the engine's grey-quest skipping.
 				if (q && Number(q.level) > 0) goal.qlvl = Number(q.level);
-				// Blocking prerequisites only (breadcrumbs dropped): `pre` = one of
-				// them suffices, `preAll` = every one is needed.
-				const { all, any } = blockingPrereqs(q, (id) => data.quest(id));
-				if (any.length) goal.pre = any;
-				if (all.length) goal.preAll = all;
-				// Quests that close this one for good once taken or done: the quest a
-				// breadcrumb leads to, and its exclusive group (another race's or
-				// class's version of the same chain).
-				const closedBy = [];
-				for (const id of [Number(q && q.breadcrumbFor), ...((q && q.excl) || []).map(Number)]) {
-					if (Number.isInteger(id) && id > 0 && id !== goal.quest && !closedBy.includes(id)) closedBy.push(id);
-				}
-				if (closedBy.length) goal.closedBy = closedBy;
-				// Titles for the engine's "needs <quest> first" / "you took <quest>" text.
-				const titles = {};
-				for (const id of [...all, ...any, ...closedBy]) {
-					const pq = data.quest(id);
-					if (pq && pq.title) titles[id] = String(pq.title);
-				}
-				if (Object.keys(titles).length) goal.preTitles = titles;
+				Object.assign(goal, acceptGate(q, goal.quest, data));
 			}
 			if (v === 'turnin') {
 				const rewards = {};
@@ -989,7 +1106,31 @@ function resolveGoal(g, zoneMap, prev, data, err, warn, ctx = { sides: ['Allianc
 				}
 				break;
 			}
+			// `npc <id>`: the NPC who hands the item over, for an item the data
+			// has no source for — a quest report given in a gossip window, where
+			// `drops` is empty, so nothing names anyone to target. The target
+			// button and the step key read a collect's `npc` (QoL/Buttons.lua,
+			// `TargetNames`), and the point is that NPC's spawn unless the author
+			// places it.
+			if (g.npc !== undefined) {
+				goal.npc = g.npc;
+				setIf(goal, 'npcName', optionalName('npc', g.npc));
+				candidates = [{ kind: 'npc', id: g.npc }];
+				checkKinds = candidates;
+				questFields = true;
+				break;
+			}
 			candidates = sources.filter((s) => data.spawns(s.kind, s.id).length);
+			// A quest item nothing drops, whose data lists an NPC as its "vendor":
+			// he hands it over in his gossip window (the Warsong Scout's update),
+			// and no dropper can give the target button that name. Only for a
+			// quest objective of a quest item, so a trade good a vendor happens to
+			// stock (Rugged Leather, farmed at a spot) names nobody. Named, never
+			// placed: `buy … nearest` is the vendor path.
+			if (!candidates.length && g.quest !== undefined && it && it.questItem) {
+				const handover = (it.vendors || []).map((id) => ({ kind: 'npc', id: Number(id) })).filter((h) => data.spawns('npc', h.id).length);
+				setIf(goal, 'fromNpcs', sourceNpcs(data, handover[0], handover));
+			}
 			// The sources that matter, named for the reading flow ("Kill Aean
 			// Swiftriver (rare elite)", "Kill Grell or Grellkin"): the item's
 			// game objective only says "Fel Moss: 0/8", so quest objectives get
@@ -1000,9 +1141,11 @@ function resolveGoal(g, zoneMap, prev, data, err, warn, ctx = { sides: ['Allianc
 			// says nothing about where to farm it). `fromFaction` lets the
 			// engine tell an enemy from a friend of the character's faction.
 			// Where normal droppers and elites both drop it, only the normal
-			// ones are named, as the arrow leads to them (onMap).
+			// ones are named, as the arrow leads to them (onMap); so are they
+			// where a rare tops the droppers (rareLeads).
 			const widespread = candidates.filter((s) => s.chance >= 2).length > MAX_NAMED_SOURCES;
-			const split = eliteSplit(data, candidates, ctx.sides);
+			passRares = !widespread && rareLeads(data, candidates, ctx.sides);
+			const split = eliteSplit(data, candidates, ctx.sides, passRares);
 			const named = split ? split.normal : candidates;
 			if (!widespread && named.length && (candidates.length === 1 || named[0].chance >= 50)) {
 				const top = named[0];
@@ -1348,7 +1491,7 @@ function resolveGoal(g, zoneMap, prev, data, err, warn, ctx = { sides: ['Allianc
 	}
 	// A collect's droppers: the normal ones over elites beside them (onMap).
 	const dropSides = v === 'collect' ? ctx.sides : undefined;
-	const picked = pickSpawn(data, candidates, map, prev, { usedMaps: ctx.usedMaps, sides: dropSides });
+	const picked = pickSpawn(data, candidates, map, prev, { usedMaps: ctx.usedMaps, sides: dropSides, rares: passRares });
 	if (picked) {
 		const c = picked.cand;
 		if (v === 'accept' || v === 'turnin') {
@@ -1390,7 +1533,8 @@ function resolveGoal(g, zoneMap, prev, data, err, warn, ctx = { sides: ['Allianc
 					goal.y = sp.at.y;
 				}
 			}
-			if (v === 'collect') setIf(goal, 'fromNpcs', sourceNpcs(data, c, picked.sources));
+			// An authored `npc` already names the one creature to target.
+			if (v === 'collect' && goal.npc === undefined) setIf(goal, 'fromNpcs', sourceNpcs(data, c, picked.sources));
 		} else if (g.explicitCoords && goal.x !== undefined) {
 			// Hand-placed: the sources known to give the item (a drop chance, or a
 			// gathering node; not loot of unknown odds). A mob or object spawns
@@ -1400,10 +1544,10 @@ function resolveGoal(g, zoneMap, prev, data, err, warn, ctx = { sides: ['Allianc
 			// point anywhere in it lists every node place.
 			const known = area ? candidates.filter((s) => s.chance === undefined || s.chance > 0 || gatherNode(data, s)) : [c];
 			const all = known.map((cand) => ({ cand, spawns: data.spawns(cand.kind, cand.id) }));
-			const sources = onMap(data, all, goal.map, dropSides).on.map((o) => o.cand);
+			const sources = onMap(data, all, goal.map, dropSides, passRares).on.map((o) => o.cand);
 			const near = !area ? SPAWN_CHECK_YARDS : sources.length && sources.every((s) => gatherNode(data, s)) ? Infinity : SPREAD_YARDS;
 			setIf(goal, 'spots', handSpots(data, sources, goal.map, goal.f, goal.x, goal.y, near));
-			if (v === 'collect') {
+			if (v === 'collect' && goal.npc === undefined) {
 				const own = pointSources(data, sources, goal.map, goal.f, goal.x, goal.y, near);
 				setIf(goal, 'fromNpcs', sourceNpcs(data, own[0], own));
 			}
@@ -1411,10 +1555,17 @@ function resolveGoal(g, zoneMap, prev, data, err, warn, ctx = { sides: ['Allianc
 	}
 	if (g.r !== undefined) goal.r = g.r;
 	if (g.optional) goal.optional = true;
-	// `turnin ... direct`: handed in from the giver's window with no accept.
-	if (g.direct) goal.direct = true;
+	// `turnin ... direct`: handed in from the giver's window with no accept;
+	// its quest's level, as an accept's, for the engine's grey-quest skipping.
+	if (g.direct) {
+		goal.direct = true;
+		const q = goal.quest !== undefined ? data.quest(goal.quest) : null;
+		if (q && Number(q.level) > 0) goal.qlvl = Number(q.level);
+	}
 	// Group content (group.js): the author's `group [N]`, else derived.
 	setIf(goal, 'group', groupOf(goal, g.group, ctx.sides, data));
+	// An escort quest's accept and objectives (escort.js).
+	setIf(goal, 'escort', escortOf(goal, data));
 	setIf(goal, 'only', onlyOf(g.only));
 	setIf(goal, 'note', g.note);
 	// The height of the NPC or object the goal's point stands for, and of each

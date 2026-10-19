@@ -66,7 +66,7 @@ Every line before the first `step`.
 | `race` | no | comma list (see Conditions) |
 | `class` | no | comma list |
 | `next` | no | id of the guide that follows, or several ids separated by commas: a **route choice**. The player picks where to level next in the "Choose your path" window; the first id is the author's default. Every option must be the guide's own faction. |
-| `category` | no | default `Leveling`; others: `Class` (class quest chains, mounts and weapons; pair with a `class` header), `Professions`, `Reputation`, `Legacy`, `Exploration`, `Collectibles`, `Dungeons` |
+| `category` | no | default `Leveling`; others: `Class` (class quest chains, mounts and weapons; pair with a `class` header), `Professions`, `Reputation`, `Legacy`, `Exploration`, `Collectibles`, `Miscellaneous` (side chains and collections that fit no other category: the Cozy Sleeping Bag), `Dungeons` |
 | `folder` | no | the guide menu folder this guide is listed under, any category (e.g. `Mounts · Level 40`, `Companion pets · Vendors`). Guides sharing a folder sort by faction (yours first), then level. Without it: the category's folder (Leveling: by faction and level band). |
 | `keywords` | no | comma list of extra words the guide menu search matches (e.g. the colours a mount guide covers); an empty entry is an error, a repeated one a warning |
 | `collects` | no | comma list of item ids this guide obtains (a mount guide: every colour it sells). Compiled as `collects = { ... }`; the Lookup module opens this guide for those items instead of building one. Malformed or repeated ids are errors; an id missing from `items.json` is a warning. |
@@ -109,6 +109,7 @@ Step directives:
 |---|---|
 | `zone <Name>` / `zone map <uiMapID>` | Current zone for coordinates from here on (sticky across later steps, also when its step has `only`: after a class trip, the next step everyone sees names its zone again). |
 | `only <cond>[,<cond>...]` | The step applies only to matching characters. |
+| `when <predicate>` | The step applies only while the predicate holds when the route reaches it; several `when` lines must all hold. See "Conditions checked during play". |
 | `tip <text>` | Player-facing step note (compiled to `step.note`). |
 
 A step must contain at least one goal.
@@ -125,7 +126,7 @@ A step must contain at least one goal.
 | `turnin` | `<questId> ["Title"]` | Turn-in NPC/object from data. |
 | `complete` | `<questId> ["Title"]` | Finish all objectives. |
 | `kill` | `<npcId>` or `"Target name"` | Pair with `quest Q.O` to track a quest objective. |
-| `collect` | `<itemId> ["Item name"]` | Pair with `quest Q.O`; otherwise tracked by bag count `xN`. `collect <item> xN nearest` (no `quest`) compiles to farm spots: clusters of normal or rare mobs that drop the item at 2% or more, outside towns and guard posts, each with the zone's safety (`A`/`H` faction zone, `AH` contested), mob level range, items per kill and spawn count; at most 16 per continent, spread over safety and 10-level bands. The engine picks one by the player's level, faction and travel time. |
+| `collect` | `<itemId> ["Item name"]` | Pair with `quest Q.O`; otherwise tracked by bag count `xN`. `npc <id>` names the NPC who hands the item over, for an item nothing drops and no data lists a source for (a quest report given in a gossip window): the target button then has someone to target, and the point is that NPC's spawn unless you place it. `collect <item> xN nearest` (no `quest`) compiles to farm spots: clusters of normal or rare mobs that drop the item at 2% or more, outside towns and guard posts, each with the zone's safety (`A`/`H` faction zone, `AH` contested), mob level range, items per kill and spawn count; at most 16 per continent, spread over safety and 10-level bands. The engine picks one by the player's level, faction and travel time. |
 | `goto` | `<x>,<y> ["Label"]` | Coordinates are mandatory here. A label that is a subzone's name as the game spells it (`"Fargodeep Mine"`, not `"Fargodeep Mine's mouth"`) gets its area ("Places by ID"); at a cave's or mine's mouth the goto then also counts as arrived once the player walks into it past the point (in that subzone and indoors). |
 | `talk` | `<npcId>` | |
 | `interact` | `<objectId>` | Click a game object. |
@@ -202,6 +203,63 @@ Comma-separated names, case-insensitive:
 Classes OR together, races OR together, factions OR together; the three groups
 AND. `only Warrior,Paladin,Dwarf` = (Warrior or Paladin) and Dwarf.
 
+## Conditions checked during play
+
+`only` says who a step is for; `when` says in which state. A step with
+`when` applies only while its predicate holds, checked on the character's
+live state while the step is the current one or still ahead. Several `when`
+lines must all hold; for "one or the other", write the step twice.
+
+```
+step Back to Gornek
+  when onquest 788
+  when level<6
+  turnin 788
+```
+
+| Predicate | Holds when |
+|---|---|
+| `level<N`, `level<=N`, `level>N`, `level>=N` | the character's level compares so with N (1-60); `level` takes no `!` |
+| `onquest <quest>[,<quest>...]` | any of the quests is in the log |
+| `complete <quest>` | the quest is in the log, ready to turn in |
+| `turnedin <quest>` | the quest is handed in |
+| `available <quest>` | the quest can be taken now: not in the log or done, the level reached, its prerequisites done and none of the quests that close it taken or done (the compiler copies these from the data, as for an `accept`) |
+| `has <item> [xN]` | the bags hold N (default 1) or more |
+| `zone "<Name>"` | the zone text reads so (the zone as the game names it) |
+| `subzone "<Name>"` | the subzone text reads so |
+| `bound "<Location>"` | the hearthstone is bound there (a bind location, as for `sethome`) |
+
+`!` in front of any predicate but `level` turns it around: `!onquest 788`
+holds while the quest is not in the log, `!has 159 x5` while the bags hold
+fewer than five. Names can be quoted or bare.
+
+**Once the route moves past a step, its outcome stays.** Polestar stores
+whether the step's `when` held at that moment (once the quest log can be
+read after login), and reads that from then on: a "buy water" step passed
+because the bags were full is stored as skipped and does not come back when
+the water runs out, and a step that applied stays done. The player can
+unskip such a step like any other; it then applies whatever its `when`.
+Resetting the guide's progress forgets the stored outcomes.
+
+While its `when` fails, a step counts as one that does not apply: like a step
+for another class, it never holds the guide, and a turn-in whose only accept
+is in such a step goes with it.
+
+A step with `when onquest Q` (or `when complete Q`) can hand in Q with no
+`accept Q` before it: "hand it in if you picked it up elsewhere". A `turnin`
+whose quest is accepted earlier only in steps with `when` warns: characters
+who passed those steps never see it, so give it the same `when` or a
+`when onquest`.
+
+Zone, subzone and bind location names work on every client language: the
+compiler gives each its area ID where the data names one (see "Places by
+ID"), and Polestar compares the game's own name for it, then the name you
+wrote.
+
+A pack with a `when` anywhere is written in pack format 4, which Polestar
+0.3.0 and later read (docs/PACK_FORMAT.md); a pack without stays readable by
+older versions.
+
 ## What the compiler fills in
 
 | Missing | Filled from |
@@ -211,8 +269,8 @@ AND. `only Warrior,Paladin,Dwarf` = (Warrior or Paladin) and Dwarf.
 | coordinates | the target's spawns, trying maps in order: the current zone, then maps the guide already used (most recent first), then anywhere. On the chosen map: the spawn nearest the previous goal when that goal is on the same map, else the centroid of the highest-priority candidate |
 | `kill` target name | `npcs.json` |
 | `collect` coordinates | every drop source with spawns, ranked as above (zone, used maps, nearness), then by drop chance. On the chosen map only the likely sources count (at least half the best chance there). Where elites (rank 1-3, hostile) drop the item beside normal mobs or objects, each at 1% or more, only the normal ones count, whatever the elites' chance, and a place of theirs with more elite spawns than its own within its radius (at least 70 yd) is an alternative spot: the point and the arrow lead to the normal mobs, not into the elite camp. An item only elites drop there keeps them |
-| `collect` source `from`, `fromAlso`, `fromId`, `fromAlsoId`, `fromKind`, `fromRank`, `fromFaction` | a `collect` (quest objectives too) whose item has one source with spawns, or one that drops it at 50% or more, and at most 8 sources at 2% or more (not cloth that drops everywhere); where normal mobs or objects and elites both drop it at 1% or more, only the normal ones are named, as the arrow leads to them: the source's name, a second source of the same kind at 50% or more, their ids, `npc` or `object`, the NPC's rank (1 elite, 2 rare elite, 3 boss, 4 rare) and faction (`A`, `H`, `AH`; none for a hostile mob). The goal line names it, in the client's language by its id: "Kill Grell or Grellkin for Fel Moss" for an enemy, "Collect Oats from Sack of Oats" otherwise (nothing added for an object named as the item); with author `text` the line under it says "Kill Aean Swiftriver (rare elite)" or "From <name>"; a quest started by that item reads as one line ("Runed Scroll: kill Aean Swiftriver (rare elite)") |
-| `collect` source NPCs `fromNpcs` | every `collect` placed among its sources, whether the data placed the point or the author did and the data has the target there (as `spots`): the creatures its point and spawn areas belong to, the one the point itself belongs to first, then the other likely sources there (as above), at most 5. Objects are left out, as a macro can only target a creature. The target button names them, in the client's language by their ids, before the item's own droppers, whose drop chances rank them over the whole world: for an item many creatures drop, those are mostly in other zones |
+| `collect` source `from`, `fromAlso`, `fromId`, `fromAlsoId`, `fromKind`, `fromRank`, `fromFaction` | a `collect` (quest objectives too) whose item has one source with spawns, or one that drops it at 50% or more, and at most 8 sources at 2% or more (not cloth that drops everywhere); where normal mobs or objects and elites both drop it at 1% or more, only the normal ones are named, as the arrow leads to them (so are they where a rare tops the droppers and normal mobs drop it at 50% or more): the source's name, a second source of the same kind at 50% or more, their ids, `npc` or `object`, the NPC's rank (1 elite, 2 rare elite, 3 boss, 4 rare) and faction (`A`, `H`, `AH`; none for a hostile mob). The goal line names it, in the client's language by its id: "Kill Grell or Grellkin for Fel Moss" for an enemy, "Collect Oats from Sack of Oats" otherwise (nothing added for an object named as the item); with author `text` the line under it says "Kill Aean Swiftriver (rare elite)" or "From <name>"; a quest started by that item reads as one line ("Runed Scroll: kill Aean Swiftriver (rare elite)") |
+| `collect` source NPCs `fromNpcs` | every `collect` placed among its sources, whether the data placed the point or the author did and the data has the target there (as `spots`): the creatures its point and spawn areas belong to, the one the point itself belongs to first, then the other likely sources there (as above), at most 5. Objects are left out, as a macro can only target a creature. An item nothing drops gets the NPCs the data lists as its vendors instead, where they have spawns: those hand it over in their gossip window (the Warsong Scout's update), and nothing else would name them; a `collect` whose author named an `npc` carries that instead. The target button names them, in the client's language by their ids, before the item's own droppers, whose drop chances rank them over the whole world: for an item many creatures drop, those are mostly in other zones |
 | profession, recipe, trainer | `professions.json` (skill line, recipe name, created item, reagents, recipe item; a trainer-taught `learn` gets every trainer of the rank that teaches it, both factions (a smart target), unless `npc <id>` names one). Classic profession names resolve without it. |
 | faction | `factions.json` by name (lowest id on ties) or id |
 | objective index | the quest's objective whose `id` matches the npc/item, when `quest Q` has no `.O` |
@@ -220,6 +278,7 @@ AND. `only Warrior,Paladin,Dwarf` = (Warrior or Paladin) and Dwarf.
 | Era frame flag `f = "e"` | when coordinates come from Era-frame data, or were typed in an `era` guide/goal |
 | spawn areas `spots` | every goal placed at an NPC or object that spawns at more than one place, and hand-placed `@x,y` goals whose target the data also knows: see "Spawn areas" below |
 | group content `group` | elite work, dungeon and raid quests and goals on an instance map: see "Group content" below |
+| escort `escort` | the accept, `complete` and objective goals of an escort quest: see "Escort quests" below |
 | height `z` | a goal at an NPC or object: the height of that NPC's or object's spawn (`spawnz.json`), so the walk ends on its floor: see "Heights" below |
 | place area `area` | `sethome`, `hearth`, `fly` and `getfp` (their location) and `goto` (its label): the AreaTable area of that name, so the goal completes and reads right on every client language: see "Places by ID" below |
 | taxi node `node` | `getfp`: its flight point's taxi node (`travel.json`): see "Places by ID" below |
@@ -423,6 +482,21 @@ The instances come from the Forever client's `Map.csv`, `AreaTable.csv` and
 build` cache them). Without them only `group [N]` and elite work apply. The
 guide's `group = true` is set when any goal that is not `optional` has `group`.
 
+## Escort quests
+
+An escort quest's NPC walks off with whoever took the quest last and is gone
+until it respawns. The guide window says so under the quest's accept,
+`complete` and objective goals (once per card): "Escort: if the NPC is not
+there, wait for it to respawn". Its turn-in has no such line. The compiler
+writes `escort = true` on those goals (`tools/lib/dsl/escort.js`) when the
+quest's own words say escort: an `event` objective's text ("Escort Miran to
+the excavation site") or the quest's `objectiveText` ("Escort the captive
+fire elemental out of Dun Modr"). A quest's `escort` in `quests.json` wins,
+set by `tools/lib/data/corrections.json` with its source: `true` for an
+escort worded otherwise ("Protect Volcor until you reach the road"), `false`
+for a quest whose text wrongly says escort (Lost! 4492 carries the objective
+of the escort after it). There is no modifier: a wrong label is a data fix.
+
 ## Validation
 
 Errors fail `compile` and `lint`; warnings print.
@@ -467,6 +541,11 @@ Errors:
   as `elite`, unless the goal was already reported as elite
 
 Warnings:
+- a `when` predicate naming a quest or item the data lacks, a zone not in
+  `zones.json`, a bind location no inn has, or a subzone that names no single
+  area; a step whose `when level` leaves none of the guide's levels, or that
+  asks for one predicate both ways (`onquest 7` and `!onquest 7`): no
+  character sees it
 - an `accept` whose prerequisites (`pre`, any one suffices) are none of them turned in earlier in the chain
 - an `accept` above the level the route plausibly reaches (when XP data exists)
 - an `accept` of a quest whose `excl` (exclusive) quest is accepted or turned in
@@ -477,6 +556,15 @@ Warnings:
   leaves out the characters still holding the quest, the warning says so (its
   turn-ins do not count for them)
 - `complete` on a quest with no objectives: the turn-in is the action; use `turnin`
+- a `turnin` whose quest's objectives ask for an item the world gives (a drop,
+  an object, a vendor or a container; not one the quest or an NPC hands over)
+  that no earlier goal in the guide or a guide chaining into it gets: a goal
+  for the item (`collect`, `buy`), one linked to its objective (`kill … quest
+  Q.O`), or a `complete` of the quest
+- a `complete` with no place (no coordinates and no `goto` earlier in its step)
+  on a quest whose objectives have places (an npc or object with spawns, an
+  item with a placed dropper or vendor): the arrow has nowhere to point; write a
+  goal per objective
 - explicit coordinates more than 50 yards from every known spawn of the entity
 - ids missing from data but given explicit names/coordinates (new Forever content)
 - objective-capable goals with no coordinates

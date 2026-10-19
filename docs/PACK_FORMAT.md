@@ -15,7 +15,7 @@ The handbook is [PACKS.md](PACKS.md).
 **On this page:** [`pack.json`](#packjson) ·
 [The addon](#the-addon) · [TOC fields](#toc-fields) ·
 [Rules Polestar enforces](#rules-polestar-enforces) ·
-[Format 3](#format-3) · [Versioning](#versioning)
+[Format 3](#format-3) · [Format 4](#format-4) · [Versioning](#versioning)
 
 A community addon is an addon for World of Warcraft: Forever that depends
 on Polestar and registers guides with it. It is built from a pack: a folder
@@ -218,7 +218,8 @@ has nothing for the character.
 
 ## Format 3
 
-The format the compiler writes. Format 2 is format 1 with the two `group`
+The format the compiler writes for a pack whose steps have no `when`
+(format 4, below). Format 2 is format 1 with the two `group`
 keys (a guide's and a goal's) and a guide's `reward` and `why`, marked
 "format 2" below; Polestar 0.2.4 and later read it. Format 3 is format 2
 with **name tokens** in the texts and a guide's `names`, marked "format 3"
@@ -238,6 +239,39 @@ wrote it (a text that spells a name otherwise, "Dendrite" for Dendrite
 Starblaze, is in the guide's `written` with the author's words). The
 compiler writes the tokens (GUIDE_FORMAT.md, "Names in
 texts"); an older Polestar would show them as written, hence the format.
+
+## Format 4
+
+Format 3 with a step's **`when`**: the conditions checked during play
+(GUIDE_FORMAT.md, "Conditions checked during play"). Polestar 0.3.0 and later
+read it. The compiler writes a pack in format 4 only when a step of its
+guides has `when`; any other pack stays in format 3, so the Polestar it needs
+does not change. An older Polestar would show every conditional step to
+every character (it ignores keys it does not know), hence the format.
+
+`when` is a list of predicates, each a table with its kind `k`, `neg = true`
+to turn it around, and the kind's keys; a step applies while all of them
+hold:
+
+| `k` | Keys | Holds when |
+|---|---|---|
+| `"level"` | `op` (`"<"`, `"<="`, `">"`, `">="`), `n` | the character's level compares so with `n` |
+| `"onquest"` | `q`: a list of quest ids | any of them is in the log |
+| `"complete"` | `q` | the quest is in the log, ready to turn in |
+| `"turnedin"` | `q` | the quest is handed in |
+| `"available"` | `q`; optional `minLevel`, `pre`, `preAll`, `closedBy` (as on an `accept`) | the quest is not in the log or done, the level is reached, one of `pre` and every one of `preAll` is done, and none of `closedBy` is in the log or done |
+| `"has"` | `item`; optional `n` (default 1) | the bags hold `n` or more |
+| `"zone"`, `"subzone"` | `name`; optional `area` | the zone (subzone) text reads as the area's name in the client's language, or as `name` |
+| `"bound"` | `name`; optional `area` | the bind location reads so |
+
+```lua
+{ title = "Back to Gornek", when = { { k = "onquest", q = { 788 } }, { k = "level", op = "<", n = 6 } }, goals = { ... } }
+```
+
+A `when` that is not a non-empty list, or a predicate of another kind or
+without its keys, refuses the guide. Once the route has moved past a step,
+Polestar stores whether its `when` held (per character, guide and step) and
+reads that from then on.
 
 ### `RegisterPack(meta)`
 
@@ -290,7 +324,7 @@ Guide keys (the compiler writes them in this order):
 | `races` | no | list of race file names (`"Human"`, `"Scourge"`, `"NightElf"`, …); absent: any |
 | `classes` | no | list of class file names (`"WARRIOR"`, …); absent: any |
 | `minLevel`, `maxLevel` | no | numbers |
-| `category` | no | `"Leveling"` (default), `"Class"`, `"Professions"`, `"Reputation"`, `"Legacy"`, `"Exploration"`, `"Collectibles"`, `"Dungeons"`; the compiler passes another name through with a warning |
+| `category` | no | `"Leveling"` (default), `"Class"`, `"Professions"`, `"Reputation"`, `"Legacy"`, `"Exploration"`, `"Collectibles"`, `"Miscellaneous"`, `"Dungeons"`; the compiler passes another name through with a warning |
 | `folder` | no | the guide menu folder |
 | `keywords` | no | list of extra search words |
 | `collects` | no | list of item ids the guide obtains |
@@ -311,7 +345,8 @@ Guide keys (the compiler writes them in this order):
 Step keys: `title` (optional), `note` (optional, player-facing), `only`
 (optional: `{ classes = { ... }, races = { ... }, factions = { ... } }`, AND
 across keys, OR within; Polestar also reads an entry `"!X"` as "not X", but
-the compiler writes positive lists only) and `goals` (at least one).
+the compiler writes positive lists only), `when` (optional, format 4: the
+step's conditions checked during play, below) and `goals` (at least one).
 
 Goal keys common to every verb: `t` (the verb), `text` (display text),
 `note`, `optional` (`true`: never blocks the step), `only` (as on a step),
@@ -327,7 +362,7 @@ frame; absent: the live frame), `r` (arrival radius in yards), `spots`
 | `turnin` | `quest`, `title` | `npc`/`npcName`, `object`/`objName`, `rewards = { choices = { { item, itemName, quality } }, items = { ... }, xp, money }`, `direct` |
 | `complete` | `quest`, `title` | — |
 | `kill` | `target` | `title`, `npc`, `count`, `quest`, `oi`, `spread` |
-| `collect` | `item`, `itemName` | `title`, `count`, `quest`, `oi`, `spread`, `from`, `fromAlso`, `fromId`, `fromAlsoId`, `fromKind`, `fromRank`, `fromFaction`, `fromNpcs`, `candidates` |
+| `collect` | `item`, `itemName` | `title`, `count`, `quest`, `oi`, `spread`, `from`, `fromAlso`, `fromId`, `fromAlsoId`, `fromKind`, `fromRank`, `fromFaction`, `fromNpcs`, `npc`, `npcName`, `candidates` |
 | `goto` | `map`, `x`, `y` | `text`, `r`, `area` |
 | `talk` | `npc`, `npcName` | — |
 | `interact` | `object`, `objName` | `title`, `quest`, `oi`, `spread` |
@@ -377,10 +412,12 @@ The fields:
 | `spread` | `true` with `spots`: an area objective, searched spot by spot |
 | `from`, `fromAlso`, `fromKind`, `fromRank`, `fromFaction` | a `collect`'s main source: name, a second source of the same kind dropping it at 50% or more, `"npc"` or `"object"`, rank (1 elite, 2 rare elite, 3 boss, 4 rare), faction `"A"`, `"H"` or `"AH"` |
 | `fromId`, `fromAlsoId` | the ids of `from` and `fromAlso` (of kind `fromKind`): Polestar names them in the client's language (`Polestar.Names`), keeping `from`/`fromAlso` where it has no name; older Polestar ignores them |
+| `npc`, `npcName` | a `collect` whose guide names the NPC who hands the item over (`npc <id>`), for an item nothing drops: the target button targets them first. The farm spot a `collect … nearest` goal settles on carries the same pair |
 | `fromNpcs` | a `collect`'s source creatures where the goal stands: `{ { npc, npcName } }`, the one its point belongs to first, then the other likely sources there, at most 5 (GUIDE_FORMAT.md, "What the compiler fills in"). Newer Polestar gives them to the target button, named in the client's language by their ids, before the item's own droppers from the quest database, whose drop chances rank them over the whole world. Older Polestar ignores them, so it does not change the format |
 | `candidates` | smart targets: `{ { npc, npcName, map, x, y, z, f, faction, races, classes, lvl, rate, spawns } }` (`z` optional, see `z`); Polestar picks the nearest usable one at runtime |
 | `rewards` | `{ choices = { { item, itemName, quality } }, items = { ... }, xp, money }` (money in copper) |
 | `direct` | `true` on a `turnin`: the quest is handed in straight from the giver's window and never enters the quest log, so the goal needs no `accept` before it and carries no objectives. Polestar counts it done on the hand-in itself and stores that, so a repeatable stays done after a reload |
+| `escort` | `true` on the accept, `complete` and objective goals of an escort quest: the guide window says under the goal that the NPC may have to respawn (GUIDE_FORMAT.md, "Escort quests"). Older Polestar ignores it |
 | `group` | format 2: the goal needs a group, shown under it in the guide window: `{ kind = "elite", rank = 1 }` (rank 1 elite, 2 rare elite, 3 boss: "Elite: group advised"), `{ kind = "dungeon", name = "Dire Maul" }` ("Dungeon: Dire Maul"), `{ kind = "raid", name = "Molten Core" }` ("Raid: Molten Core"), `{ kind = "group", size = 3 }` ("Group of 3 advised"; without `size`, "Group advised"). The compiler derives it or takes the author's `group [N]` (GUIDE_FORMAT.md, "Group content"); Polestar shows nothing for a kind it does not know |
 
 Polestar 0.1.0 reads every verb above; 0.2.4 and later read the `group`
@@ -413,7 +450,9 @@ frames of a pack that is not registered are dropped.
   keeps working when Polestar updates.
 - The compiler writes the first Polestar version that reads the pack's format
   into the TOC as `X-Polestar-Needs`. Format 1 is read by Polestar 0.1.0 and
-  later, format 2 (the `group`, `reward` and `why` keys) by 0.2.4 and later.
+  later, format 2 (the `group`, `reward` and `why` keys) by 0.2.4 and later,
+  format 3 (name tokens) by 0.2.5 and later, format 4 (a step's `when`) by
+  0.3.0 and later.
 - A pack in a format this Polestar does not read registers nothing; the
   Community guides page shows it as `too-new` with "Needs Polestar <version> or
   newer." (rule 5).

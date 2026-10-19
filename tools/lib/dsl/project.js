@@ -12,7 +12,7 @@ const { validateGuides, validatePackFrames, forEachGoalMap } = require('./valida
 const { loadData } = require('./data');
 const { tokeniseGuides } = require('./tokens');
 const { emitGuides, emitPack, emitToc, emitTextsToc, emitTexts, emitMapFrames, emitLicense } = require('./emit');
-const { ownsGuideId, GENERATED_MARKER } = require('../pack/format');
+const { ownsGuideId, GENERATED_MARKER, formatFor } = require('../pack/format');
 const { heightCounts } = require('./heights');
 const { HEIGHTS_SOURCE } = require('../travel/cmangos');
 
@@ -186,9 +186,10 @@ function buildPackFiles({ guides, manifest, data, license = null, translations =
 	const h = heightCounts(guides);
 	const meta = h.withZ + h.candidatesWithZ + h.spotsWithZ && !sources.some((s) => s && s.name === HEIGHTS_SOURCE.name) ? { ...data.meta, sources: [...sources, HEIGHTS_SOURCE] } : data.meta;
 	const iface = coreInterface();
+	const format = formatFor(guides);
 	const files = {
-		[`${manifest.folder}.toc`]: emitToc(manifest, iface),
-		'Pack.lua': emitPack(manifest),
+		[`${manifest.folder}.toc`]: emitToc(manifest, iface, format),
+		'Pack.lua': emitPack(manifest, format),
 		'MapFrames.lua': emitMapFrames(referencedFrames(guides, data), manifest.id),
 		'Guides.lua': emitGuides(guides.map((g) => ({ guide: g._localised || g, source: g._ast && g._ast.source ? g._ast.source : null }))),
 		'LICENSE-DATA.txt': emitLicense(meta),

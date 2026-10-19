@@ -810,6 +810,9 @@ end
 
 -- opts.get() / opts.set(value) stand in for reading and writing the path when
 -- one switch stands for several settings (set(nil) on right-click: defaults).
+-- opts.gear = { tip, onClick }: a gear before the switch that opens the
+-- setting's own options (the route lines' style).
+local GEAR, GEAR_GAP = 22, 6
 function W.Toggle(parent, label, path, desc, depends, opts)
 	local row = settingRow(parent, label, desc)
 	row.psRow = true
@@ -819,7 +822,14 @@ function W.Toggle(parent, label, path, desc, depends, opts)
 	row.Knob = row.Track:CreateTexture(nil, "OVERLAY")
 	row.Knob:SetTexture(Theme.Media("circle"))
 	row.Knob:SetSize(KNOB, KNOB)
-	fitLabel(row, row.Track, function() return 12 + TOGGLE_W + 10 end)
+	local gear = opts and opts.gear
+	if gear then
+		row.Gear = W.IconButton(row, "gear", GEAR, gear.tip, function() gear.onClick() end)
+		row.Gear:SetPoint("RIGHT", row.Track, "LEFT", -GEAR_GAP, 0)
+		fitLabel(row, row.Gear, function() return 12 + TOGGLE_W + GEAR_GAP + GEAR + 10 end)
+	else
+		fitLabel(row, row.Track, function() return 12 + TOGGLE_W + 10 end)
+	end
 	-- Left-click flips it; right-click puts the setting back to its default.
 	row:RegisterForClicks("LeftButtonUp", "RightButtonUp")
 	row:SetScript("OnClick", function(self, button)

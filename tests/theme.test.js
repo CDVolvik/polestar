@@ -173,6 +173,51 @@ test('house style: the game\'s font by default and Inter on request, Polestar go
 	assert.deepEqual(out.schemes.map((c) => c.value), ['dusk', 'night', 'graphite'], 'EllesmereUI is offered only when installed');
 });
 
+// The ruRU game font has no middle dot, so the skin's face becomes Fira Sans
+// there; a face the player picked, and the other locales, are left alone.
+test('fonts: ruRU swaps the skin\'s game font for Fira Sans; an explicit pick and other locales keep theirs', () => {
+	const GAME = 'Fonts\\FRIZQT__.TTF';
+	const FIRA = 'Interface\\AddOns\\Polestar\\Media\\Fonts\\FiraSans-SemiBold.ttf';
+	const INTER = 'Interface\\AddOns\\Polestar\\Media\\Fonts\\Inter-SemiBold.ttf';
+	const faces = (locale) => run(`
+		local out = {}
+		out.default = (T.FontSpec("title"))
+		for _, skin in ipairs({ "hearth", "forever", "blizzard", "classic" }) do
+			Polestar.Set("ui.skin", skin)
+			out[skin] = (T.FontSpec("title"))
+		end
+		Polestar.Set("ui.skin", "polestar")
+		Polestar.Set("ui.font", "skin")
+		out.skinChoice = (T.FontSpec("title"))
+		Polestar.Set("ui.font", "game")
+		out.game = (T.FontSpec("title"))
+		Polestar.Set("ui.skin", "blizzard")
+		out.gameBlizzard = (T.FontSpec("title"))
+		Polestar.Set("ui.skin", "polestar")
+		Polestar.Set("ui.font", "inter")
+		out.inter = (T.FontSpec("title"))
+		emit(out)`, { before: `function GetLocale() return "${locale}" end` })[0];
+
+	const ru = faces('ruRU');
+	assert.equal(ru.default, FIRA, 'ruRU default');
+	assert.equal(ru.skinChoice, FIRA, 'ruRU with the skin\'s own font');
+	for (const skin of ['hearth', 'forever', 'blizzard', 'classic']) assert.equal(ru[skin], FIRA, `ruRU ${skin} by default`);
+	assert.equal(ru.game, GAME, 'ruRU with "the game\'s" font picked');
+	assert.equal(ru.gameBlizzard, GAME, 'ruRU with "the game\'s" font picked on a game skin');
+	assert.equal(ru.inter, INTER, 'ruRU with Inter picked');
+
+	for (const locale of ['zhCN', 'koKR']) {
+		const cjk = faces(locale);
+		assert.equal(cjk.default, GAME, `${locale} default`);
+		assert.equal(cjk.inter, GAME, `${locale} with Inter picked`);
+	}
+
+	const en = faces('enUS');
+	assert.equal(en.default, GAME, 'enUS default');
+	assert.equal(en.game, GAME, 'enUS with the game font picked');
+	assert.equal(en.inter, INTER, 'enUS with Inter picked');
+});
+
 test('settings from before schemes: a stored gold accent was the old default; any other stays the user\'s own', () => {
 	const ui = (accent) => `PolestarDB = { schema = 1, settings = { ui = { accent = ${accent} } } }`;
 	const [gold] = run(`emit({ accent = Polestar.Get("ui.accent"), live = { T.Accent() } })`, { before: ui('{ 0.9, 0.73, 0.4 }') });
@@ -263,6 +308,37 @@ test('EllesmereUI: an optional scheme and follow toggles, never a lock', () => {
 	assert.deepEqual(out.inter.font, ['Interface\\AddOns\\Polestar\\Media\\Fonts\\Inter-Medium.ttf', 13, '']);
 	assert.equal(out.inter.label, 'Inter');
 	assert.deepEqual(out.refollow, ['Interface\\AddOns\\EllesmereUI\\media\\fonts\\Expressway.ttf', 13, '']);
+});
+
+test('EllesmereUI font: a refresh sets the text again a frame later, so a string drawn at login is not left blank', () => {
+	const [out] = run(`
+		local fs = UIParent:CreateFontString()
+		T.Font(fs, "body")
+		fs:SetText("Innkeeper Heather")
+		local sets = 0
+		local set = fs.SetText
+		fs.SetText = function(self, ...) sets = sets + 1 return set(self, ...) end
+		T.Refresh()
+		stub.advance(0.1)
+		local ownFont = sets
+		Polestar.Set("ui.matchFont", true)
+		stub.advance(0.1)
+		sets = 0
+		T.Refresh()
+		local sameFrame = sets
+		stub.advance(0.1)
+		local later = sets - sameFrame
+		sets = 0
+		T.Refresh()
+		T.Refresh()
+		local syncTwo = sets
+		stub.advance(0.1)
+		emit({ ownFont = ownFont, sameFrame = sameFrame, later = later, twiceLater = sets - syncTwo, text = fs:GetText() })`, { before: 'stub.withEllesmere()' });
+	assert.equal(out.ownFont, 2, 'without EllesmereUI\'s font the one re-set stands, nothing is queued');
+	assert.equal(out.sameFrame, 2, 'the refresh sets the text again at once');
+	assert.equal(out.later, 2, 'and once more a frame later');
+	assert.equal(out.twiceLater, 2, 'refreshes in one frame share one later pass');
+	assert.equal(out.text, 'Innkeeper Heather');
 });
 
 // The class colour as the accent: it follows the player's class, lifted until

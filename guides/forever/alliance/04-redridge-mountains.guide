@@ -135,7 +135,7 @@ step Sunken Chest
 # ---------------------------------------------------------------- West of the lake
 
 step Gnolls toward Three Corners
-  tip Redridge Mongrels and other gnolls hold the hills east of Three Corners, north of the road; Redridge Thrashers prowl among them, Poachers camp south of the road. Dire Condors and Great Goretusks roam the same hills.
+  tip Redridge Mongrels and other gnolls hold the hills east of Three Corners, north of the road; Redridge Thrashers prowl among them, Poachers camp south of the road. Redridge Brutes, for the Iron Pikes and Rivets, hold the hills further north; Dire Condors and Great Goretusks roam the hills east of them.
   kill 423 quest 246                          -- Redridge Mongrel
   kill 424 quest 246                          -- Redridge Poacher
   collect 280911 quest 98407                  -- Spiked Collar: Redridge Thrashers

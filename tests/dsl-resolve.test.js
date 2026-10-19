@@ -104,6 +104,28 @@ test('a collect names the sources its point and spawn areas belong to (fromNpcs)
 	assert.equal(goalsOf(['step One', '  kill 6']).goals[0].fromNpcs, undefined);
 });
 
+test('a collect whose item nothing drops names the NPC who hands it over: the data\'s vendors, or the npc the guide names', () => {
+	// Dillinger's Report has no droppers and is a quest item, and the data lists
+	// Brother Danil as its "vendor": for a quest item that means he hands it
+	// over, in his gossip window, so the target button gets his name.
+	const handed = goalsOf(['step One', '  accept 99141', '  collect 286200 quest 99141.1 @48,42']).goals[1];
+	assert.deepEqual(handed.fromNpcs, [{ npc: 152, npcName: 'Brother Danil' }]);
+	assert.equal(handed.npc, undefined, 'a hand-over NPC is named, never placed: `buy … nearest` is the vendor path');
+	// `npc <id>` names one outright, for an item the data links to nobody (a
+	// quest report). Nothing else is then named.
+	const named = goalsOf(['step One', '  accept 99141', '  collect 286200 quest 99141.1 npc 295 @48,42']).goals[1];
+	assert.equal(named.npc, 295);
+	assert.equal(named.npcName, 'Innkeeper Farley');
+	assert.equal(named.fromNpcs, undefined, 'the named NPC stands alone');
+	// A trade good a vendor happens to stock is no hand-over: Refreshing Spring
+	// Water is farmed or bought in bulk, and names nobody to target.
+	const trade = goalsOf(['step One', '  collect 159 x2 @48,42']).goals[0];
+	assert.equal(trade.fromNpcs, undefined);
+	// An item with droppers is untouched: its own sources still lead.
+	const dropped = goalsOf(['step One', '  collect 750 x4']).goals[0];
+	assert.deepEqual(dropped.fromNpcs, [{ npc: 69, npcName: 'Timber Wolf' }, { npc: 299, npcName: 'Diseased Young Wolf' }]);
+});
+
 test('a second source dropping the item at 50% or more is named beside the first; both carry their ids (the names in the client\'s language)', () => {
 	// Fractured Canine: Timber Wolf 70%, Diseased Young Wolf (299) 60%.
 	const g = goalsOf(['step One', '  collect 3299 x2']).goals[0];
@@ -167,6 +189,51 @@ test('a collect that normal mobs drop leads to them, not into the camp of elites
 	assert.ok(near(badge, 30, 30), `the point is at the Sentries: ${badge.x},${badge.y}`);
 	assert.ok(badge.spots.every((s) => near(s, 30, 30)), JSON.stringify(badge.spots));
 	assert.deepEqual([badge.from, badge.fromRank], ['Blackrock Sentry', 1]);
+});
+
+// A rare (rank 4, not elite) among the sources: Blackrock Stalker (rank 4) at
+// 50,50, Blackrock Grunts at 70,70. Item 95113 drops from the Stalker at 80%
+// and the Grunt at 65% (Iron Pike), 95114 only from the Stalker, 95115 from
+// the Stalker at 80% and the Grunt at 0.5%.
+function rareData() {
+	const base = eliteCampData();
+	const camp = (x, y) => [[x, y], [x + 0.3, y + 0.2], [x - 0.2, y + 0.3]];
+	const npcs = {
+		...base.npcs,
+		95052: { id: 95052, name: 'Blackrock Stalker', level: 25, rank: 4, faction: null, spawns: { 1429: { f: 'e', pts: camp(50, 50) } } },
+	};
+	const item = (id, name, npc) => ({ id, name, drops: { npc, object: {} }, vendors: [] });
+	const items = {
+		...base.items,
+		95113: item(95113, 'Orc Pike', { 95052: 80, 95051: 65 }),
+		95114: item(95114, 'Stalker Fang', { 95052: 80 }),
+		95115: item(95115, 'Orc Rivet', { 95052: 80, 95051: 0.5 }),
+	};
+	return new Data({ quests: base.quests, npcs, objects: base.objects, items, zones: base.zones, 'map-frames': base.mapFrames, meta: base.meta }, { dir: base.dir });
+}
+
+test('a collect that common mobs drop leads to them, not to the rare beside them that drops it at a higher chance (#280)', () => {
+	const data = rareData();
+	const goal = (...lines) => {
+		const r = compile(guideText(['step One', ...lines]), data);
+		assert.deepEqual(r.errors, [], r.text);
+		return plain(r.guides[0].steps[0].goals.at(-1));
+	};
+	const near = (s, x, y) => Math.abs(s.x - x) < 2 && Math.abs(s.y - y) < 2;
+	// The Stalker's 80% beats the Grunt's 65%, and the previous goal stands at the Stalker's camp: the Grunts still lead.
+	const pike = goal('  goto 50,51', '  collect 95113 x5');
+	assert.ok(near(pike, 70, 70), `the point is at the Grunts: ${pike.x},${pike.y}`);
+	// The Grunts' places (the camp, and the one among the Sentries), never the Stalker's.
+	assert.ok(pike.spots.length && pike.spots.every((s) => !near(s, 50, 50)), JSON.stringify(pike.spots));
+	assert.deepEqual([pike.from, pike.fromAlso, pike.fromRank], ['Blackrock Grunt', undefined, undefined]);
+	// An item only the rare drops still leads to it, and names it.
+	const fang = goal('  collect 95114 x1 optional');
+	assert.ok(near(fang, 50, 50), `the point is at the Stalker: ${fang.x},${fang.y}`);
+	assert.deepEqual([fang.from, fang.fromRank], ['Blackrock Stalker', 4]);
+	// A common dropper under 1% does not count: the rare stays the source.
+	const rivet = goal('  collect 95115 x1 optional');
+	assert.ok(near(rivet, 50, 50), `the point is at the Stalker: ${rivet.x},${rivet.y}`);
+	assert.equal(rivet.from, 'Blackrock Stalker');
 });
 
 test('kill goals carry the spawn areas of their mob, nearest to the chosen point first, every other place as an alternative; single spawns get none', () => {

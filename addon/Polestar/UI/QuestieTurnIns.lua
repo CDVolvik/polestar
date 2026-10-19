@@ -111,31 +111,47 @@ function Integration.Connect()
 	return true
 end
 
+-- True when a Questie row's text is not the caption Polestar expects.
+local function stale()
+	local completed, changed = {}, false
+	pool.UpdateQuestTitleLines(function(line)
+		if type(line) ~= "table" then return end
+		attach(line)
+		local state = labels[line.label]
+		if not state then return end
+		local expected = (state.base or "") .. (captionFor(line, completed) or "")
+		if line.label:GetText() ~= expected then changed = true end
+	end)
+	return changed
+end
+
+-- Questie 12.1.0's QuestieTracker:Update() does nothing within 0.1 s of its
+-- previous update (#341). A rebuild that left the captions stale is tried
+-- once more 0.2 s later, then left to Questie's next redraw; in combat the
+-- retry waits for PLAYER_REGEN_ENABLED like any refresh.
+local RETRY = 0.2
+local function rebuild(retry)
+	queued = false
+	if combat() then pending = true; return end
+	if not Integration.Connect() then return end
+	pending = false
+	-- Rebuild through Questie's own layout so additional caption lines are
+	-- included in row positions and tracker height (never in combat). Most
+	-- quest-log events have already rendered through the SetText hook or do
+	-- not affect captions; they must not cause a second complete rebuild.
+	if not stale() then return end
+	tracker:Update()
+	if retry or queued or not stale() then return end
+	queued = true
+	C_Timer.After(RETRY, function() rebuild(true) end)
+end
+
 function Integration.Refresh()
 	if not pool and ns.Get("routePlan.questie") ~= true then return end
 	pending = true
 	if queued or combat() then return end
 	queued = true
-	C_Timer.After(0.2, function()
-		queued = false
-		if combat() then return end
-		if not Integration.Connect() then return end
-		pending = false
-		local completed, changed = {}, false
-		pool.UpdateQuestTitleLines(function(line)
-			if type(line) ~= "table" then return end
-			attach(line)
-			local state = labels[line.label]
-			if not state then return end
-			local expected = (state.base or "") .. (captionFor(line, completed) or "")
-			if line.label:GetText() ~= expected then changed = true end
-		end)
-		-- Rebuild through Questie's own layout so additional caption lines are
-		-- included in row positions and tracker height (never in combat). Most
-		-- quest-log events have already rendered through the SetText hook or do
-		-- not affect captions; they must not cause a second complete rebuild.
-		if changed then tracker:Update() end
-	end)
+	C_Timer.After(0.2, function() rebuild(false) end)
 end
 
 for _, event in ipairs({ "GUIDE_CHANGED", "STEP_CHANGED", "STEP_UPDATED", "GUIDE_COMPLETED", "GUIDES_REGISTERED", "PACKS_CHANGED", "ROUTE_CHOSEN", "STEP_SKIPPED" }) do

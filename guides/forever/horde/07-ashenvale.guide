@@ -173,11 +173,12 @@ step Ruins of Stardust fountain
 
 step Alonso
   tip Alonso, a Forever addition, stands on the west shore of Mystral Lake with three quick Dragonslayer quests.
-  accept 78132
+  goto 42.4,70 "Alonso"
+  accept 78132 optional                   -- Alonso may not offer these to every class; if he doesn't, carry on.
   turnin 78132
-  accept 78133
+  accept 78133 optional
   turnin 78133
-  accept 78134
+  accept 78134 optional
   turnin 78134
 
 step Tideress
