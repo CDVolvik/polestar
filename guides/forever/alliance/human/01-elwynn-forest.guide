@@ -16,7 +16,9 @@ next forever/alliance/02-westfall
 # Goldshire -> the east: the Tower of Azora, the bridge, Brackwell, Eastvale,
 # Stone Cairn Lake, the gnoll camps and the Jasperlode Mine -> Goldshire ->
 # the farms and Westbrook -> hearth to Goldshire -> the east again -> the
-# road west to Sentinel Hill in Westfall (flight path).
+# road west: Deputy Rainer at the Westbrook Garrison (Report to Gryan
+# Stoutmantle, 109), then into Westfall (02-westfall takes the farms on the
+# way down and the Sentinel Hill flight path, #416).
 #
 # Optional extras: The Big Picture (91752, Shinyfinder Narf is elite) and
 # what follows it: Follow That Kobold! (91758), Shhh! We're Hunting Kobolds
@@ -571,7 +573,7 @@ step Gakin the Darkbinder
 step Surena Caledon
   only Warlock
   zone Elwynn Forest
-  tip Ride back out through Goldshire and east along the road to the Brackwell Pumpkin Patch. Surena Caledon (level 9) stands by its farmhouse.
+  tip Head back out through Goldshire and east along the road to the Brackwell Pumpkin Patch. Surena Caledon (level 9) stands by its farmhouse.
   collect 6810 quest 1688.1                   -- Surena's Choker: Surena Caledon
 
 step The Binding
@@ -604,7 +606,7 @@ step The Tome of Divinity
 step Henze Faulk
   only Paladin
   zone Elwynn Forest
-  tip Ride back out through Goldshire and east to Stone Cairn Lake. Henze Faulk lies south of the lake: use the Symbol of Life on him. The Defias Rogue Wizards around him carry the Defias Script.
+  tip Head back out through Goldshire and east to Stone Cairn Lake. Henze Faulk lies south of the lake: use the Symbol of Life on him. The Defias Rogue Wizards around him carry the Defias Script.
   complete 1786                               -- Use the Symbol of Life on Henze Faulk
   turnin 1786                                 -- Henze Faulk
   accept 1787
@@ -620,7 +622,7 @@ step Gazin Tenorm
 
 # ---------------------------------------------------------------- To Westfall
 
-step Sentinel Hill
-  zone Westfall
-  tip Follow the road west past Westbrook into Westfall, then south along it to Sentinel Hill. Thor, the gryphon master, stands on the hill.
-  getfp "Sentinel Hill"
+step Westbrook Garrison
+  zone Elwynn Forest
+  tip Follow the road west to the Westbrook Garrison, on the way into Westfall. Deputy Rainer stands outside the barracks.
+  accept 109 npc 963                          -- Deputy Rainer: for Gryan Stoutmantle at Sentinel Hill

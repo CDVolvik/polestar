@@ -246,7 +246,7 @@ step Faldir's Cove
 # ---------------------------------------------------------------- Go'Shek Farm
 
 step Quae
-  tip Ride back north-east past Refuge Pointe; Quae and Kinelory camp in the hills north of Go'Shek Farm.
+  tip Head back north-east past Refuge Pointe; Quae and Kinelory camp in the hills north of Go'Shek Farm.
   turnin 659
   accept 658
 

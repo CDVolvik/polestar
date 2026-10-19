@@ -457,7 +457,7 @@ step Moonglade
 step Back to Thunder Bluff
   only Druid
   zone Thunder Bluff
-  tip Hearth to Bloodhoof Village and ride north to Elder Rise.
+  tip Hearth to Bloodhoof Village and head north to Elder Rise.
   hearth "Bloodhoof Village"
   turnin 5932                         -- Turak Runetotem
   accept 6002
@@ -465,7 +465,7 @@ step Back to Thunder Bluff
 step Yaw Sharpmane
   only Hunter
   zone Mulgore
-  tip Ride down to Bloodhoof Village and tame with the Taming Rod: an Adult Plainstrider on the plains, a Prairie Stalker north of the village, a Swoop to the north-west.
+  tip Head down to Bloodhoof Village and tame with the Taming Rod: an Adult Plainstrider on the plains, a Prairie Stalker north of the village, a Swoop to the north-west.
   turnin 6065
   accept 6061
   kill 2956 quest 6061.1              -- Tame it with the Taming Rod

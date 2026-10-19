@@ -14,9 +14,9 @@ next forever/horde/orc-troll/02-the-barrens
 # against 3.27 h for the one this guide was built from, so the order stays.
 #
 # Flow: Valley of Trials -> Sen'jin Village (report) -> Razor Hill (bind) ->
-# Razormane Grounds -> Tiragarde Keep -> Razor Hill -> the wreckage and the
-# coast -> Sen'jin Village -> Echo Isles and the south-east shore -> Kolkar
-# Crag -> Razor Hill -> Rezlak, Drygulch Ravine, Thunder Ridge and Fizzle
+# Tiragarde Keep -> Razor Hill -> the wreckage and the coast -> Sen'jin
+# Village -> Echo Isles and the south-east shore -> Kolkar Crag -> Razor Hill
+# -> Razormane Grounds -> Rezlak, Drygulch Ravine, Thunder Ridge and Fizzle
 # Darkstorm -> Razor Hill -> Heglan's shore, the naga coast, Margoz and Skull
 # Rock -> Razor Hill -> west over the Southfury River to Far Watch Post and the
 # Crossroads (flight path, bind). The Barrens guide starts at the Crossroads.
@@ -36,6 +36,12 @@ next forever/horde/orc-troll/02-the-barrens
 #   which does not count the second walk through the cave.
 # - Legging It (96821) is taken at Sen'jin on the first visit: its spiders sit
 #   on the road north to Razor Hill, where Gar'Thok takes it.
+# - Encroachment (837) is taken at the Razor Hill stop after Kolkar Crag and
+#   done in the Razormane Grounds just before Thunder Ridge, instead of at
+#   about 7: it is a level 10 quest whose Razormane go up to level 9 (#351).
+#   Tiragarde Keep and the Sen'jin loop come first. 2.4 min faster to 12 and
+#   20 under the simulator (Orc, any class), measured before Thunder Ridge
+#   moved after the south loop (#352).
 # - Rezlak and Thunder Ridge (834, 835, 97281, 97282, 816) come after the
 #   south loop, on the way to Fizzle Darkstorm (806) on the same ridge, at
 #   about 10.3-11.2 instead of 8.4-9.6: Securing the Lines (835) is a level 11
@@ -293,17 +299,6 @@ step Prickly pears
 step Cook Torka
   turnin 96825
   accept 815
-  accept 837                          -- Gar'Thok
-
-step Razormane Grounds
-  tip Quilboars and scouts hold the huts west of town; dustrunners and battleguards hold the camps farther west.
-  kill 3111 quest 837.1
-  kill 3112 quest 837.2
-  kill 3113 quest 837.3
-  kill 3114 quest 837.4
-
-step Gar'Thok
-  turnin 837
 
 step Tiragarde Keep
   tip The keep stands on the coast south-east of Razor Hill. The raiders' axe, bow and shield lie on its outskirts. Sailors and marines drop the Canvas Scraps. Lieutenant Benedict waits at the top of the keep; his key opens the chest beside him, which holds the Aged Envelope.
@@ -398,6 +393,7 @@ step Razor Hill
   accept 806
   accept 99048
   accept 840                          -- Takrin Pathseeker
+  accept 837                          -- Gar'Thok
   train class
   accept 1505 only Warrior            -- Tarshaw Jaggedscar
   accept 2983 only Shaman             -- Swart
@@ -405,10 +401,17 @@ step Razor Hill
   accept 1506 only Warlock            -- Ophek, by the inn
   accept 5654 only Troll,Priest       -- Tai'jin, for Ur'kyo in Orgrimmar: keep it
 
+step Razormane Grounds
+  tip Quilboars and scouts hold the huts west of town; dustrunners and battleguards hold the camps farther west.
+  kill 3111 quest 837.1
+  kill 3112 quest 837.2
+  kill 3113 quest 837.3
+  kill 3114 quest 837.4
+
 # ---------------------------------------------------------------- Thunder Ridge
 
 step Rezlak
-  tip Follow the road north toward Orgrimmar. Rezlak camps beside it; the stolen sacks lie along the road south of him.
+  tip Head north-east to the road toward Orgrimmar. Rezlak camps beside it; the stolen sacks lie along the road south of him.
   accept 834                          -- Rezlak
   collect 4918 quest 834.1
   turnin 834                          -- Rezlak
@@ -447,6 +450,7 @@ step Fizzle Darkstorm
 step Razor Hill
   turnin 806                          -- Orgnil Soulscar
   accept 828
+  turnin 837                          -- Gar'Thok
   turnin 6062 only Hunter             -- Thotar
   accept 6083 only Hunter
 

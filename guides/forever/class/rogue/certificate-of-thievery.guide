@@ -77,7 +77,7 @@ step Renzik "The Shiv"
 
 step Lucius
   zone Redridge Mountains
-  tip Ride east through Elwynn Forest into Redridge, or fly to Lakeshire. Lucius waits on the west side of Lakeshire and gives you Thieves' Tools.
+  tip Head east through Elwynn Forest into Redridge, or fly to Lakeshire. Lucius waits on the west side of Lakeshire and gives you Thieves' Tools.
   turnin 2281                                 -- Lucius
   accept 2282
 

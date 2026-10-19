@@ -44,7 +44,7 @@ step Danitha Morr
 
 step The Sepulcher
   zone Silverpine Forest
-  tip Ride south through Silverpine Forest to the Sepulcher. Trevan Rol stands in the town; Deathguard Baldren keeps watch near its entrance.
+  tip Head south through Silverpine Forest to the Sepulcher. Trevan Rol stands in the town; Deathguard Baldren keeps watch near its entrance.
   turnin 91858                        -- Trevan Rol
   accept 91859
   turnin 91859                        -- Deathguard Baldren

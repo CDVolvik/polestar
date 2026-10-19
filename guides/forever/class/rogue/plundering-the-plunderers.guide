@@ -56,7 +56,7 @@ step Shenthul and Zando'zan
 
 step Wrenix the Wretched
   zone The Barrens
-  tip Fly or ride to Ratchet on the Barrens coast. Wrenix stands in town with his Gizmotronic Apparatus: buy an E.C.A.C. and Thieves' Tools from the apparatus before you go.
+  tip Fly or walk to Ratchet on the Barrens coast. Wrenix stands in town with his Gizmotronic Apparatus: buy an E.C.A.C. and Thieves' Tools from the apparatus before you go.
   getfp "Ratchet" optional
   turnin 2382                                 -- Wrenix the Wretched
   accept 2381
@@ -75,7 +75,7 @@ step Back to Wrenix
 step Fenwick Thatros
   only Undead
   zone Silverpine Forest
-  tip Take the zeppelin from Orgrimmar to the Undercity and ride south into Silverpine. Fenwick Thatros stands north-east of the Sepulcher.
+  tip Take the zeppelin from Orgrimmar to the Undercity and head south into Silverpine. Fenwick Thatros stands north-east of the Sepulcher.
   collect 7306 quest 1998.1                   -- Fenwick's Head: Fenwick Thatros
 
 step Mennet Carkad
