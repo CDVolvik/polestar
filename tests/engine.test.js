@@ -1101,6 +1101,51 @@ test('a flight looked at ahead while standing at its end is not latched (#362)',
 	assert.deepEqual(out, { looked: [2, 'done'], latches: {} });
 });
 
+test('a hearth that landed stays done when the player walks out of the inn\'s town while the step goes on (#362)', () => {
+	const [out] = run({
+		guides: `
+			Polestar.RegisterGuide({ id = "test/hearthed", pack = "test", title = "Hearthed", minLevel = 1, maxLevel = 10, steps = {
+				{ goals = {
+					{ t = "hearth", location = "Goldshire" },
+					{ t = "kill", target = "Kobold Vermin", npc = 6, count = 10, quest = 7, oi = 1, map = 1429, x = 47.6, y = 35.1 },
+				} },
+				{ goals = { { t = "level", level = 99 } } },
+			} })
+		`,
+		before: 'w.onQuest(7, { { required = 10, fulfilled = 0 } }); w.setZone("Stormwind City", "Trade District")',
+		script: `
+			local w = stub.world
+			E.SetGuide("test/hearthed"); flush()
+			local function state() return { E.GetStepIndex(), E.GetStepView(1).goals[1].status, E.GetWaypoint().goalIndex } end
+			local r = { before = state() }
+			w.setZone("Elwynn Forest", "Goldshire"); flush()
+			r.landed = state()
+			w.setZone("Elwynn Forest", ""); flush()
+			r.left = state()
+			emit(r)
+		`,
+	});
+	assert.deepEqual(out, { before: [1, 'active', 2], landed: [1, 'done', 2], left: [1, 'done', 2] });
+});
+
+test('a flight that lands while the player looks ahead at another step still counts for its own step (#362)', () => {
+	const [out] = run({
+		guides: LANDED,
+		before: 'w.onQuest(7, { { required = 10, fulfilled = 0 } }); w.setZone("Stormwind City", "Trade District")',
+		script: `
+			local w = stub.world
+			E.SetGuide("test/landed"); flush()
+			E.Goto(2); flush()
+			w.setZone("Elwynn Forest", "Goldshire"); flush()
+			w.setZone("Elwynn Forest", ""); flush()
+			local ahead = { E.GetStepIndex(), E.GetStepView(1).goals[1].status }
+			E.Goto(1); flush()
+			emit({ ahead = ahead, back = { E.GetStepIndex(), E.GetStepView(1).goals[1].status, E.GetWaypoint().goalIndex } })
+		`,
+	});
+	assert.deepEqual(out, { ahead: [2, 'done'], back: [1, 'done', 2] });
+});
+
 test('bursts of quest events are coalesced to at most 10 evaluations per second', () => {
 	const [out] = run({
 		script: `
