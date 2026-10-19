@@ -129,14 +129,14 @@ step Undercity trainers
 
 step Fly to Tarren Mill
   zone Hillsbrad Foothills
-  tip The zeppelin lands at the towers outside the Undercity: ride down into the city and fly to Tarren Mill.
+  tip The zeppelin lands at the towers outside the Undercity: head down into the city and fly to Tarren Mill.
   fly "Tarren Mill"
 
 # ---------------------------------------------------------------- Into Arathi
 
 step Boulderfist camp
   zone Arathi Highlands
-  tip Ride east out of Tarren Mill through Thoradin's Wall and follow the road east. The Boulderfist Ogres and Enforcers (32-34) camp south of the road, south-east of Northfold Manor.
+  tip Head east out of Tarren Mill through Thoradin's Wall and follow the road east. The Boulderfist Ogres and Enforcers (32-34) camp south of the road, south-east of Northfold Manor.
   kill 2562 quest 676.1
   kill 2564 quest 676.2
 
@@ -203,7 +203,7 @@ step Fleshstalker raptors
 # ---------------------------------------------------------------- Faldir's Cove
 
 step Faldir's Cove
-  tip Ride south-west to the goblins' cove on the southern coast. Lolo the Lookout keeps watch on the cliff above it.
+  tip Head south-west to the goblins' cove on the southern coast. Lolo the Lookout keeps watch on the cliff above it.
   accept 663                          -- Lolo the Lookout
   turnin 663                          -- Shakes O'Breen
   accept 662                          -- First Mate Nilzlix
@@ -239,7 +239,7 @@ step Faldir's Cove
 # ---------------------------------------------------------------- The west
 
 step The Stone of Outer Binding
-  tip Ride north; the outer circle stands in the middle of the highlands.
+  tip Head north; the outer circle stands in the middle of the highlands.
   collect 4485 quest 651              -- Thundering Key
 
 step Northfold Manor
@@ -247,7 +247,7 @@ step Northfold Manor
   collect 4495 quest 671
 
 step The Stone of West Binding
-  tip The western circle is near Thoradin's Wall, where you rode in.
+  tip The western circle is near Thoradin's Wall, where you came in.
   collect 4483 quest 651              -- Burning Key
 
 step The Stone of Inner Binding
@@ -282,7 +282,7 @@ step Drum Fel
 
 step Into the Badlands
   zone Badlands
-  tip Ride south-west out of Arathi over Thandol Span, south through the Wetlands (keep clear of Menethil Harbor) and east into Loch Modan; the road leaves Loch Modan to the south into the Badlands. Follow it south to the goblin camp in the Valley of Fangs.
+  tip Head south-west out of Arathi over Thandol Span, south through the Wetlands (keep clear of Menethil Harbor) and east into Loch Modan; the road leaves Loch Modan to the south into the Badlands. Follow it south to the goblin camp in the Valley of Fangs.
   goto 42.3,52.8 "Valley of Fangs"
 
 step Valley of Fangs
@@ -291,7 +291,7 @@ step Valley of Fangs
   accept 703                          -- Rigglefuzz
 
 step The Dustbowl
-  tip Ride west along the road; Lotwil's camp sits in the Dustbowl halfway to Kargath.
+  tip Head west along the road; Lotwil's camp sits in the Dustbowl halfway to Kargath.
   accept 710                          -- Lotwil Veriatus
 
 step Kargath
@@ -336,7 +336,7 @@ step Greater Rock Elementals
   collect 7848 quest 2258.3
 
 step Kargath
-  tip Ride north back to Kargath.
+  tip Head north back to Kargath.
   turnin 1419                         -- Neeka Bloodscar
   turnin 2258                         -- Jarkal Mossmeld
   vendor nearest
@@ -368,7 +368,7 @@ step Ancient Chest
   collect 4631 quest 709
 
 step Agmond's End
-  tip Ride back south down the road, past the Valley of Fangs.
+  tip Head back south down the road, past the Valley of Fangs.
   turnin 709                          -- Theldurin the Lost
 
 # ---------------------------------------------------------------- To the Barrens
@@ -400,12 +400,12 @@ step The Crossroads
 
 step Regthar Deathgate
   zone The Barrens
-  tip Ride north up the road from the Crossroads to the Forgotten Pools; Regthar keeps watch on the rise above the water.
+  tip Head north up the road from the Crossroads to the Forgotten Pools; Regthar keeps watch on the rise above the water.
   turnin 1361
   accept 1362                         -- for Felgur Twocuts in Desolace, in the next guide
 
 step Ratchet
-  tip Ride back south to the Crossroads and fly to Ratchet.
+  tip Head back south to the Crossroads and fly to Ratchet.
   fly "Ratchet"
   sethome "Ratchet"
   buy 3713 x3 nearest                 -- Soothing Spices, for "Swamp Eye" Jarl in Dustwallow Marsh
@@ -413,7 +413,7 @@ step Ratchet
 
 step The Affray
   only Warrior
-  tip Ride south along the coast from Ratchet to Fray Island. Klannoc Macleod stands by the arena: step on the grate to start the fight; the challengers come one at a time, then Big Will (33).
+  tip Head south along the coast from Ratchet to Fray Island. Klannoc Macleod stands by the arena: step on the grate to start the fight; the challengers come one at a time, then Big Will (33).
   turnin 1718                         -- Klannoc Macleod
   accept 1719
   complete 1719

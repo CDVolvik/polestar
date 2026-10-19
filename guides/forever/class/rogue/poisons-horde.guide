@@ -43,7 +43,7 @@ step The Shattered Salute
 
 step Taskmaster Fizzule
   zone The Barrens
-  tip Fly to the Crossroads and ride north to the Venture Co. tower north of the Sludge Fen. In sight of the tower, fire the Flare Gun twice, then /salute Taskmaster Fizzule before he attacks you.
+  tip Fly to the Crossroads and head north to the Venture Co. tower north of the Sludge Fen. In sight of the tower, fire the Flare Gun twice, then /salute Taskmaster Fizzule before he attacks you.
   use 8051 @55.4,5.6                          -- Flare Gun, twice, in sight of the tower
   turnin 2458 reward 8066                     -- Taskmaster Fizzule: Fizzule's Whistle
   accept 2478
@@ -65,7 +65,7 @@ step Back to Shenthul
 
 step Serge Hinott
   zone Hillsbrad Foothills
-  tip Take the zeppelin from Orgrimmar to the Undercity and ride south through Silverpine Forest to Tarren Mill in Hillsbrad. Serge Hinott stands in Tarren Mill; wait beside him while he brews the cure.
+  tip Take the zeppelin from Orgrimmar to the Undercity and head south through Silverpine Forest to Tarren Mill in Hillsbrad. Serge Hinott stands in Tarren Mill; wait beside him while he brews the cure.
   getfp "Tarren Mill" optional
   turnin 2479                                 -- Serge Hinott
   accept 2480
