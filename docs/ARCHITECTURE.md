@@ -3061,7 +3061,7 @@ Polestar.Codex.Load() / IsLoaded() / Meta()       -- the local Polestar_Codex pa
 Polestar.Codex.Item(id) / Npc(id) / Object(id) / Quest(id) / Instance(key) / Zone(id) / Faction(id) / Spell(spellId)
 Polestar.Codex.Name(kind, id) ; Codex.WithRole(role) ; Codex.Loot(kind, id) ; Codex.Each(kind, fn(id, name, quality, status))
 
-Polestar.Lookup.Sources(kind, id) -> rows, entity     -- ranked for this character
+Polestar.Lookup.Sources(kind, id, direct) -> rows, entity  -- ranked for this character; direct: straight-line travel, no route plan (tooltips)
    -- row = { type, src, label, detail, zone, map, x, y, f, travel, effort, cost, available, why, whyText,
    --         chance, price, standing, guideable }
 Polestar.Lookup.CuratedGuide(kind, id) -> guideId | nil
@@ -3086,7 +3086,10 @@ Polestar.Lookup.QuestStep(quest, from) -> step         -- accept, objectives, tu
   chance and the mob's level, a dungeon run per boss kill, a rare's respawn,
   quest objectives and prerequisites, reagents and missing skill, hours for
   reputation and PvP). Race and class masks are Era masks: a race without a
-  bit is never excluded.
+  bit is never excluded. Item tooltips call `Sources` with `direct`: travel is
+  the straight-line estimate, never a route plan per spawn (a hover must not
+  hitch), so the tooltip's "From …" can name another source than the Lookup
+  window's or Alt-click's routed pick (boats and flights).
 - **Obtainability.** An item's `status` is `retired` (no longer obtainable:
   shown for reference, its rows unavailable, never guided; its tooltip says so)
   or `nosource`. Search ranks, within a kind, items a curated guide `collects`
