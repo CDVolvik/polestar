@@ -11,6 +11,7 @@
 --   Codex.Load() -> loaded, reason   -- Data.Pack("Polestar_Codex"); fires CODEX_LOADED(meta) once
 --   Codex.IsLoaded() ; Codex.Meta()
 --   Codex.Item(id) / Npc(id) / Object(id) / Quest(id) / Instance(key) / Zone(id) / Faction(id)
+--       (a quest's `xp`: its full XP reward, nil when not known or the pack predates it)
 --   Codex.FollowUps(questId) -> { quest, ... }   -- the quests whose pre or preAny names it
 --   Codex.Spell(spellId) -> { id, kind, item, name, class } | nil
 --   Codex.Name(kind, id) -> name | nil   -- no decoding; "item" spans every item kind,
@@ -309,6 +310,9 @@ local function decodeQuest(group, id, s)
 			-- The standing its rewards need: r<faction>,<standing> (1..8, Hated..Exalted).
 			local _, _, fid, standing = find(f, "^r(%d+),(%d+)$")
 			rec.repFaction, rec.repStanding = tonumber(fid), tonumber(standing)
+		elseif lead == "x" then
+			-- Its full XP reward: x<xp>.
+			rec.xp = tonumber(sub(f, 2))
 		end
 	end
 	return rec

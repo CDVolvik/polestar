@@ -4411,7 +4411,9 @@ built.
   is `{ type: vendor|drop|object|quest|craft|rep|pvp|
   container|world, from, ... }`), `npcs.json`, `objects.json`, `quests.json`
   (with `pre` = every blocking prerequisite, `preAny`, rewards from recordings
-  and ForeverLevelingBiS, and `wowhead` on each quest Wowhead Forever's zone,
+  and ForeverLevelingBiS, `xp` = the full XP reward from `data/forever/quests.json`
+  where known (what a guide or dungeon is worth in levels: Core/Levels.lua),
+  and `wowhead` on each quest Wowhead Forever's zone,
   dungeon and raid lists carry: `{ zone, type, side, choices, items, money,
   rep }`, the zone or instance category and the list's rewards, read by the
   journal), `instances.json`, `zones.json`, `factions.json`,

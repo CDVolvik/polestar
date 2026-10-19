@@ -42,10 +42,11 @@
 //            spawns = map,f,x,y,x,y...   (one group per map); loot = item,item,...
 //   object   treasure(1|empty);loot;<spawns>...
 //   quest    level;minLevel;faction;races;classes;zone;startNpc;startObject;startItem;
-//            endNpc;endObject;pre;rewards;choices;preAny;<objective>...[;<rep>]
+//            endNpc;endObject;pre;rewards;choices;preAny;<objective>...[;<rep>][;<xp>]
 //            objective = <k|i|o|e><id>,<count>,<text>
 //            rep = r<faction>,<standing>: the standing its rewards need (an older
 //                  reader skips it: no objective kind is r)
+//            xp = x<xp>: its full XP reward (an older reader skips it too)
 //   instance kind;forever(1|empty);areaId;map;entrance(map,x,y,f[,a]);levels;<boss>...
 //            a: approximate (the client's corpse point, not the way in)
 //            boss = name,ref,item,item...   ref = <npc> | o<object> (a chest boss), then
@@ -256,7 +257,8 @@ function encodeQuest(rec) {
 		return `${t}${num(o.id)},${num(o.count)},${esc(o.text)}`;
 	});
 	const rep = rec.repFaction && rec.repStanding ? [`r${num(rec.repFaction)},${num(rec.repStanding)}`] : [];
-	return [...head, ...objectives, ...rep].join(';');
+	const xp = rec.xp > 0 ? [`x${num(rec.xp)}`] : [];
+	return [...head, ...objectives, ...rep, ...xp].join(';');
 }
 
 function encodeInstance(rec) {
