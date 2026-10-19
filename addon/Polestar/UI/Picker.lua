@@ -382,8 +382,15 @@ local function guideFacts(g)
 	return f
 end
 
+-- Whether guide `fromId`'s `next` offers `id` now (an option with `when`
+-- only while it holds: Engine.RouteOffered).
+local function offered(fromId, id)
+	local E = ns.Engine
+	return not (E and E.RouteOffered) or E.RouteOffered(fromId, id)
+end
+
 -- Where a guide leads: "Title (lo-hi)", or "Your choice: A or B" for a
--- route choice; nil at the end of a line.
+-- route choice; nil at the end of a line. Only the options offered now.
 local function nextFact(g, byId)
 	local function named(id)
 		local h = byId[id]
@@ -393,7 +400,7 @@ local function nextFact(g, byId)
 	end
 	if type(g.nextChoices) == "table" then
 		local ids = {}
-		for _, id in ipairs(g.nextChoices) do if byId[id] then ids[#ids + 1] = id end end
+		for _, id in ipairs(g.nextChoices) do if byId[id] and offered(g.id, id) then ids[#ids + 1] = id end end
 		if #ids > 1 then
 			local titles = {}
 			for i, id in ipairs(ids) do titles[i] = byId[id].title or id end
@@ -402,6 +409,7 @@ local function nextFact(g, byId)
 		elseif #ids == 1 then
 			return named(ids[1])
 		end
+		if g.nextWhen then return nil end
 	end
 	return g.next and named(g.next) or nil
 end
@@ -467,8 +475,9 @@ local function suggestions(byId, tabs, openIndex)
 	for _, t in ipairs(tabs or {}) do
 		local h = byId[t.guideId]
 		if h then
-			add(h.next, true)
-			if type(h.nextChoices) == "table" then for _, c in ipairs(h.nextChoices) do add(c, true) end end
+			for _, c in ipairs(type(h.nextChoices) == "table" and h.nextChoices or { h.next }) do
+				if offered(h.id, c) then add(c, true) end
+			end
 		end
 	end
 	return out

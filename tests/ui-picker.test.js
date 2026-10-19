@@ -662,3 +662,38 @@ test('the details art: the zone\'s painting from the client around the guide\'s 
 	assert.deepEqual(out.other, { painted: false, band: true, tiles: 0 });
 	assert.deepEqual(out.none, [true, true, true, false]);
 });
+
+// A `next` option with `when` is offered only while it holds
+// (Engine.RouteOffered): the "Next" fact and the follow-ups Home suggests
+// name only the options offered now.
+test('the Next fact and the suggested follow-ups list only the options offered now', () => {
+	const [out] = run(`
+		uistub.player.level = 10
+		uistub.openTabs(TABS, 1)
+		local desolace, feralas = "forever/alliance/30-40/02-desolace", "forever/alliance/40-50/03-feralas"
+		local offered = {}
+		Polestar.Engine.RouteOffered = function(from, id) return offered[id] ~= false end
+		UI.ShowPicker()
+		local r = { suggested = lines() }
+		offered["forever/alliance/02-westfall"] = false
+		P.Render()
+		r.hidden = lines()
+		P.SetCategory("Leveling")
+		rowFor("Westfall"):Click()
+		westfall.nextChoices, westfall.nextWhen = { desolace, feralas }, { [feralas] = { { k = "level", op = ">=", n = 43 } } }
+		P.Render()
+		r.both = P.detail.facts[#P.detail.facts]
+		offered[feralas] = false
+		P.Render()
+		r.one = P.detail.facts[#P.detail.facts]
+		offered[desolace] = false
+		P.Render()
+		r.none = P.detail.facts[#P.detail.facts][1]
+		westfall.nextChoices, westfall.nextWhen = nil, nil
+		emit(r)`);
+	assert.deepEqual(out.suggested, ['Elwynn Forest (1\u201313) | Tab 1', 'Westfall (12\u201317)']);
+	assert.deepEqual(out.hidden, ['Elwynn Forest (1\u201313) | Tab 1']);
+	assert.deepEqual(out.both, ['Next', 'Your choice: Desolace or Feralas']);
+	assert.deepEqual(out.one, ['Next', 'Desolace (31\u201334)']);
+	assert.notEqual(out.none, 'Next');
+});

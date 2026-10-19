@@ -1490,3 +1490,24 @@ test('a quest to complete with several objectives lists the open ones under it, 
 	assert.equal(out.sub, 'Plainstrider Meat: 3/7  \u00b7  Plainstrider Feathers: 0/7  \u00b7  Plainstriders roam the grass');
 	assert.equal(out.count, '3/14');
 });
+
+// "Up next" on a finished guide is where the hand-off goes now
+// (Engine.NextGuide): the remembered or only option offered, none when no
+// `next` option is offered (one with `when` that does not hold).
+test('guide complete: Up next names where the hand-off goes now, and asks for a guide when none is offered', () => {
+	const [next, none] = run(`
+		local function state()
+			local e = GF.parts.empty
+			return { text = e.Text:GetText(), primary = e.Primary:IsShown() and e.Primary.Label:GetText() or false }
+		end
+		GF.parts.empty.Primary:Click()
+		Polestar.Engine.NextGuide = function() return "forever/alliance/03-darkshore" end
+		uistub.complete()
+		emit(state())
+		Polestar.Engine.NextGuide = function() return nil end
+		Polestar.Fire("STEP_CHANGED", nil)
+		emit(state())`);
+	assert.match(next.text, /Darkshore/);
+	assert.equal(next.primary, 'Continue');
+	assert.deepEqual(none, { text: 'Nice work. Pick your next guide to keep going.', primary: 'Choose a guide' });
+});

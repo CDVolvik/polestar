@@ -6,12 +6,12 @@
 const { FORMAT, NEEDS, TOC_MARKER, TOC_TITLE_PREFIX, LEGACY_TOC_TITLE_PREFIX } = require('../pack/format');
 const { header } = require('../generated');
 
-const GUIDE_KEYS = ['id', 'pack', 'title', 'faction', 'races', 'classes', 'minLevel', 'maxLevel', 'category', 'folder', 'keywords', 'collects', 'reward', 'why', 'zone', 'zoneName', 'next', 'nextChoices', 'pitch', 'pros', 'cons', 'author', 'version', 'group', 'names', 'written', 'steps'];
+const GUIDE_KEYS = ['id', 'pack', 'title', 'faction', 'races', 'classes', 'minLevel', 'maxLevel', 'category', 'folder', 'keywords', 'collects', 'reward', 'why', 'zone', 'zoneName', 'next', 'nextChoices', 'nextWhen', 'pitch', 'pros', 'cons', 'author', 'version', 'group', 'names', 'written', 'steps'];
 // `image` follows note, so a step without one is emitted as before.
 const STEP_KEYS = ['title', 'note', 'image', 'only', 'when', 'goals'];
 // A step's picture: its path in the pack's addon folder (no extension) and its size in pixels.
 const IMAGE_KEYS = ['file', 'w', 'h'];
-// A step's `when` predicates (format 4), in this key order.
+// A step's `when` predicates and a `next` option's (`nextWhen`, format 4), in this key order.
 const WHEN_KEYS = ['k', 'neg', 'op', 'n', 'frac', 'q', 'item', 'name', 'area', 'minLevel', 'pre', 'preAll', 'closedBy'];
 // Keys only the profession/reputation/exploration/achievement verbs use sit
 // where no other goal has a value, so adding them left older output unchanged.
@@ -139,6 +139,9 @@ function emitGuide(guide, sourceRel) {
 				out.push('\t\t\t\t},');
 			}
 			out.push('\t\t\t},');
+		} else if (k === 'nextWhen') {
+			// guide id -> its predicates, in the order of nextChoices.
+			out.push(`\t\t\tnextWhen = { ${Object.keys(v).map((id) => `[${luaString(id)}] = ${list(v[id], WHEN_KEYS)}`).join(', ')} },`);
 		} else if (k === 'names' || k === 'written') {
 			// The English of the texts' name tokens (tools/lib/dsl/tokens.js), "kind:id" -> name;
 			// written: the author's words of a text that spells a name otherwise, tokenised text -> words.
@@ -200,6 +203,10 @@ function guideData(guide) {
 				}
 				return s;
 			});
+		} else if (k === 'nextWhen') {
+			const m = {};
+			for (const id of Object.keys(v)) m[id] = dataList(v[id], WHEN_KEYS);
+			out[k] = m;
 		} else if (k === 'names' || k === 'written') {
 			const m = {};
 			for (const t of Object.keys(v).sort()) m[t] = String(v[t]);

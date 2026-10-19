@@ -14,20 +14,25 @@ local function nextGuide(g, player)
 		return g.next, false
 	end
 	local options, remembered = {}, (ns.CharState().routes or {})[g.id]
-	local unloaded = false
+	local unloaded, conditional = false, false
 	for _, id in ipairs(g.nextChoices) do
 		local target = G.Get(id)
+		-- An option with `when` (nextWhen) is decided at the hand-off, on the
+		-- character as they are then: not yet known here.
+		local cond = g.nextWhen ~= nil and g.nextWhen[id] ~= nil
 		if not target then
 			unloaded = true
-			if id == remembered then return id, false end
+			if id == remembered and not cond then return id, false end
 		elseif G.GuideMatches(target, player) then
 			options[#options + 1] = id
-			if id == remembered then return id, false end
+			if cond then conditional = true end
+			if id == remembered and not cond then return id, false end
 		end
 	end
 	-- A missing option may apply to this character. Do not silently choose
 	-- the only loaded branch and promise its hand-ins as the selected route.
 	if unloaded then return nil, false, true end
+	if conditional then return nil, true end
 	if #options == 1 then return options[1], false end
 	-- A recommendation can depend on where the player stands. Do not promise
 	-- a hand-in in a branch that has not actually been chosen yet.

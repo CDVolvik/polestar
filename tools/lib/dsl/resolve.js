@@ -667,9 +667,22 @@ function resolveGuide(ast, data, diag, opts = {}) {
 	}
 	// `next`: the default route; with several, `nextChoices` lists every
 	// option in the author's order (the default first) for the route choice.
+	// `next <id> when ...`: `nextWhen` maps such an option to its predicate
+	// (as a step's `when`, the subzone looked up where the guide ends), and
+	// the options are listed in `nextChoices` even when there is one, for the
+	// engine to check at the hand-off.
 	if (h.next && h.next.length) {
 		guide.next = h.next[0];
-		if (h.next.length > 1) guide.nextChoices = h.next.slice();
+		if (h.next.length > 1 || h.nextWhen) guide.nextChoices = h.next.slice();
+	}
+	if (h.nextWhen) {
+		const lastStep = ast.steps[ast.steps.length - 1];
+		const lastGoal = lastStep && lastStep.goals[lastStep.goals.length - 1];
+		const endZone = resolveZone((lastStep && lastStep.zone) || (lastGoal && lastGoal.zone)) || hz;
+		guide.nextWhen = {};
+		for (const id of h.next) {
+			if (h.nextWhen[id]) guide.nextWhen[id] = resolveWhen([h.nextWhen[id]], endZone ? endZone.id : null, null, data, warn);
+		}
 	}
 	setIf(guide, 'pitch', h.pitch);
 	setIf(guide, 'pros', h.pros);

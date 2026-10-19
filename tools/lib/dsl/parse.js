@@ -3,7 +3,8 @@
 // line numbers; filling from reference data happens in resolve.js.
 //
 // parseGuide(text, file, diag) -> guide | null
-//   guide = { file, id, line, header: { ... }, lines: { <headerKey>: line, pros: [line], cons: [line], rewards: [line] }, steps: [step] }
+//   guide = { file, id, line, header: { ... }, lines: { <headerKey>: line, pros: [line], cons: [line], rewards: [line], nextOf: { <id>: line } }, steps: [step] }
+//   (header.next: the `next` guide ids in order; header.nextWhen: { <id>: predicate with its line } for `next <id> when ...`)
 //   step  = { line, title, only, tip, image?, when?: [predicate], goals: [goal] }
 //   (image: { path, ext, w, h, line }, images.js parseImagePath; w/h null unless written)
 //   (when: tools/lib/dsl/when.js predicates, each with its line; only on a step that has one)
@@ -249,7 +250,7 @@ function parseGuide(text, file, diag) {
 				err(ln, `unknown header key "${toks[0].text}"`, `header keys: ${HEADER_KEYS.join(', ')}`);
 				continue;
 			}
-			const repeatable = kw === 'pro' || kw === 'con' || kw === 'reward';
+			const repeatable = kw === 'pro' || kw === 'con' || kw === 'reward' || kw === 'next';
 			if (guide.lines[kw] && !repeatable) {
 				err(ln, `duplicate header key \`${kw}\` (first on line ${guide.lines[kw]})`);
 				continue;
@@ -470,19 +471,41 @@ function parseHeader(guide, kw, line, lex, ln, err, warn) {
 			return;
 		}
 		case 'next': {
-			// `next <id>[, <id>...]`: more than one guide is a choice of route,
-			// the first being the author's default.
-			const ids = rest.split(/[\s,]+/).filter(Boolean);
-			const bad = toks.slice(1).some((t) => t.quoted) ? rest : ids.find((id) => !ID_RE.test(id));
+			// `next <id>[, <id>...]`: the guides to continue with, in order, the
+			// first being the author's default; more than one is a choice of
+			// route. `next <id> when <predicate>` (when.js) offers that one guide
+			// only while the predicate holds at the hand-off. The line repeats,
+			// each adding its guides; a guide is named once.
+			const w = toks.findIndex((t, k) => k >= 2 && !t.quoted && t.text.toLowerCase() === 'when');
+			const idToks = toks.slice(1, w === -1 ? toks.length : w);
+			const idText = w === -1 ? rest : line.slice(idToks[0].start, idToks[idToks.length - 1].end);
+			const ids = idText.split(/[\s,]+/).filter(Boolean);
+			const bad = idToks.some((t) => t.quoted) ? idText : ids.find((id) => !ID_RE.test(id));
 			if (bad !== undefined || !ids.length) {
-				err(ln, `malformed guide id "${bad !== undefined ? bad : rest}" in \`next\``);
+				err(ln, `malformed guide id "${bad !== undefined ? bad : idText}" in \`next\``);
 				return;
 			}
-			if (new Set(ids).size !== ids.length) {
+			let when = null;
+			if (w !== -1) {
+				if (ids.length !== 1) {
+					err(ln, '`next ... when` names one guide: `next <id> when <predicate>`, one line per guide');
+					return;
+				}
+				const p = parseWhen(toks[w + 1] ? line.slice(toks[w + 1].start, lex.end) : '');
+				if (p.error) {
+					err(ln, p.error, p.hint);
+					return;
+				}
+				when = { ...p.value, line: ln };
+			}
+			const all = [...(h.next || []), ...ids];
+			if (new Set(all).size !== all.length) {
 				err(ln, '`next` names the same guide twice');
 				return;
 			}
-			h.next = ids;
+			h.next = all;
+			for (const id of ids) (guide.lines.nextOf ||= {})[id] = ln;
+			if (when) (h.nextWhen ||= {})[ids[0]] = when;
 			return;
 		}
 		case 'version':

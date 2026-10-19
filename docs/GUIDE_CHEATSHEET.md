@@ -162,6 +162,7 @@ the outcome stays.
 | Header line | What it does | Example |
 |---|---|---|
 | `next <id>, <id>, ...` | Several guides after this one: the player picks one, the first is your suggestion | `next joe-routes/westfall, joe-routes/redridge` |
+| `next <id> when <predicate>` | One guide per line, offered only while the predicate (as on a step's `when`) holds when this guide ends; `next` lines add up. One option left: Polestar goes on to it; none: the guide ends there | `next joe-routes/redridge when level>=15` |
 | `pitch <text>` | On a guide offered as a choice: one line on its card | `pitch Short walks between quests.` |
 | `pro <text>` / `con <text>` | One advantage or drawback per line, under the pitch | `pro Ends at a flight point` |
 
