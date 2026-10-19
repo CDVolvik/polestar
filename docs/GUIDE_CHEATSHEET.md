@@ -41,6 +41,7 @@ Before the first `step`. `guide`, `title`, `levels` and `zone` are required.
 |---|---|---|
 | `step [title]` | Starts a step; it is done when its goals are | `step Kobold camp` |
 | `tip <text>` | A note for the whole step, shown in the guide window | `tip Pull one kobold at a time.` |
+| `image <path> [<w>x<h>]` | A picture (a `.tga` or `.blp` in the pack folder) shown under the step's tip, such as a screenshot of a cave mouth | `image media/fargodeep-mine.tga` |
 | `zone <Name>` / `zone map <uiMapID>` | Inside a step: the zone for coordinates from here on, also for the steps after it (after a step with `only` that sets one, name the zone again) | `zone Elwynn Forest` |
 | `only <condition>, ...` | Inside a step: the step is only for matching characters | `only Hunter` |
 | `when <predicate>` | Inside a step: the step is only for characters in that state when the route gets there (see Conditions checked during play) | `when level<6` |
