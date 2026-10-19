@@ -14,12 +14,13 @@ next forever/horde/orc-troll/02-the-barrens
 # against 3.27 h for the one this guide was built from, so the order stays.
 #
 # Flow: Valley of Trials -> Sen'jin Village (report) -> Razor Hill (bind) ->
-# Razormane Grounds -> Tiragarde Keep -> Razor Hill -> Rezlak, Drygulch Ravine
-# and Thunder Ridge -> hearth -> the wreckage and the coast -> Sen'jin Village ->
-# Echo Isles and the south-east shore -> Kolkar Crag -> Razor Hill -> Fizzle
-# Darkstorm -> Razor Hill -> Heglan's shore, the naga coast, Margoz and Skull
-# Rock -> Razor Hill -> west over the Southfury River to Far Watch Post and the
-# Crossroads (flight path, bind). The Barrens guide starts at the Crossroads.
+# Tiragarde Keep -> Razor Hill -> Rezlak, Drygulch Ravine and Thunder Ridge ->
+# hearth -> the wreckage and the coast -> Sen'jin Village -> Echo Isles and
+# the south-east shore -> Kolkar Crag -> Razor Hill -> Razormane Grounds and
+# Fizzle Darkstorm -> Razor Hill -> Heglan's shore, the naga coast, Margoz and
+# Skull Rock -> Razor Hill -> west over the Southfury River to Far Watch Post
+# and the Crossroads (flight path, bind). The Barrens guide starts at the
+# Crossroads.
 #
 # Local order fixed by hand (same quest set as the export unless listed below):
 # - Cutting Teeth (788) is turned in as soon as the boars are done, with the
@@ -36,6 +37,11 @@ next forever/horde/orc-troll/02-the-barrens
 #   which does not count the second walk through the cave.
 # - Legging It (96821) is taken at Sen'jin on the first visit: its spiders sit
 #   on the road north to Razor Hill, where Gar'Thok takes it.
+# - Encroachment (837) is taken at the Razor Hill stop after Kolkar Crag and
+#   done on the way to Fizzle Darkstorm, at about 11.3 instead of 7: it is a
+#   level 10 quest whose Razormane go up to level 9 (#351). Tiragarde Keep and
+#   the Sen'jin loop come first. 2.4 min faster to 12 and 20 under the
+#   simulator (Orc, any class).
 # - Rezlak's second pair (A Simmering Storm 97281, Stormy Potential 97282) and
 #   Lost But Not Forgotten (816) are done on the first Thunder Ridge visit at
 #   about 8.5 instead of a second trip there at 11: the orb drops from the
@@ -285,17 +291,6 @@ step Prickly pears
 step Cook Torka
   turnin 96825
   accept 815
-  accept 837                          -- Gar'Thok
-
-step Razormane Grounds
-  tip Quilboars and scouts hold the huts west of town; dustrunners and battleguards hold the camps farther west.
-  kill 3111 quest 837.1
-  kill 3112 quest 837.2
-  kill 3113 quest 837.3
-  kill 3114 quest 837.4
-
-step Gar'Thok
-  turnin 837
 
 step Tiragarde Keep
   tip The keep stands on the coast south-east of Razor Hill. The raiders' axe, bow and shield lie on its outskirts. Sailors and marines drop the Canvas Scraps. Lieutenant Benedict waits at the top of the keep; his key opens the chest beside him, which holds the Aged Envelope.
@@ -425,12 +420,20 @@ step Razor Hill
   accept 806
   accept 99048
   accept 840                          -- Takrin Pathseeker
+  accept 837                          -- Gar'Thok
   train class
   accept 1505 only Warrior            -- Tarshaw Jaggedscar
   accept 2983 only Shaman             -- Swart
   accept 6062 only Hunter             -- Thotar
   accept 1506 only Warlock            -- Ophek, by the inn
   accept 5654 only Troll,Priest       -- Tai'jin, for Ur'kyo in Orgrimmar: keep it
+
+step Razormane Grounds
+  tip Quilboars and scouts hold the huts west of town; dustrunners and battleguards hold the camps farther west.
+  kill 3111 quest 837.1
+  kill 3112 quest 837.2
+  kill 3113 quest 837.3
+  kill 3114 quest 837.4
 
 step Fizzle Darkstorm
   tip Fizzle holds the Burning Blade camp on Thunder Ridge, north-west of Razor Hill. Hunters: tame a Dire Mottled Boar with the Taming Rod on the way.
@@ -440,6 +443,7 @@ step Fizzle Darkstorm
 step Razor Hill
   turnin 806                          -- Orgnil Soulscar
   accept 828
+  turnin 837                          -- Gar'Thok
   turnin 6062 only Hunter             -- Thotar
   accept 6083 only Hunter
 
