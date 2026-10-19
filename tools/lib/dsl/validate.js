@@ -26,7 +26,7 @@ const { blockingPrereqs } = require('../data/prereqs');
 const SOLO = require('../sim/solo');
 const { eliteWork } = require('./group');
 const { PIPE_HINT } = require('../pack/manifest');
-const { MAX_LEVEL, CUM_XP } = require('../game/xp');
+const { MAX_LEVEL, CUM_XP, LEVEL_XP } = require('../game/xp');
 const { checkTimedItems } = require('./timed');
 const { objectiveLabel } = require('./data');
 
@@ -465,7 +465,7 @@ function validateGuides(guides, data, diag) {
 				// Data XP, else the XP the turn-in line states (`xp <N>`).
 				const qxp = q && q.xp > 0 ? q.xp : goal.rewards && goal.rewards.xp > 0 ? goal.rewards.xp : 0;
 				if (qxp > 0) xp += qxp * ROUTE_XP_FACTOR;
-			} else if (goal.t === 'level') xp = Math.max(xp, xpAt(goal.level));
+			} else if (goal.t === 'level') xp = Math.max(xp, xpAt(goal.level) + (goal.frac ? goal.frac * LEVEL_XP[goal.level] : 0));
 		}
 		return xp;
 	};

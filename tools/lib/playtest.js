@@ -612,6 +612,9 @@ local function act(i, g, r)
 		w.setZone(g.subject, g.subject)
 	elseif t == "level" then
 		w.setLevel(math.max(w.level, tonumber((g.subject or ""):match("%d+")) or (w.level + 1)))
+		-- A point inside the level ("level 12.5"): that share of its XP.
+		local want = r and r.frac and w.level == r.level and math.ceil(r.frac * w.xpMax)
+		if want and w.xp < want then w.setXP(want) end
 	elseif t == "skill" then
 		local line = r.skillLine or r.skill
 		ensureSkill(r, line)

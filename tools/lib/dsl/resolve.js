@@ -766,6 +766,7 @@ function resolveWhen(list, zoneId, levels, data, warn) {
 			case 'level':
 				w.op = p.op;
 				w.n = p.n;
+				if (p.frac) w.frac = p.frac;
 				break;
 			case 'onquest':
 			case 'complete':
@@ -1268,6 +1269,7 @@ function resolveGoal(g, zoneMap, prev, data, err, warn, ctx = { sides: ['Allianc
 		}
 		case 'level':
 			goal.level = g.level;
+			if (g.frac) goal.frac = g.frac;
 			break;
 		case 'note':
 			break;

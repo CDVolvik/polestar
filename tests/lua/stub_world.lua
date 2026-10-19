@@ -11,7 +11,7 @@
 --   w.turnIn(7)
 --   w.repeatable[308] = true               -- a turn-in never flags it completed
 --   w.complete({ 783, 7 })                 -- already turned in (no events): alts
---   w.setLevel(4); w.addItem(750, 2); w.bind("Goldshire"); w.setZone("Elwynn Forest", "Goldshire")
+--   w.setLevel(4); w.setXP(200); w.addItem(750, 2); w.bind("Goldshire"); w.setZone("Elwynn Forest", "Goldshire")
 --   w.gossip(197, { available = { { questID = 7, title = "..." } }, active = { { questID = 783, isComplete = true } } })
 --   w.questDetail(197, 7, { auto = false, pvp = false, objectives = { 10 } })
 --   w.questProgress(197, 783); w.questComplete(197, 783, { choices = 2, money = 0 })
@@ -100,6 +100,12 @@ end
 function world.setLevel(level)
 	world.level = level
 	fire("PLAYER_LEVEL_UP", level, 0, 0, 0, 0, 0, 0, 0, 0)
+	fire("PLAYER_XP_UPDATE", "player")
+end
+
+-- XP into the current level (and the level's total, when given).
+function world.setXP(xp, xpMax)
+	world.xp, world.xpMax = xp, xpMax or world.xpMax
 	fire("PLAYER_XP_UPDATE", "player")
 end
 

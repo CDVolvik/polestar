@@ -102,6 +102,7 @@ L["Kill %s for %s"] = "%s 처치 (%s 획득)"
 L["Collect %s from %s"] = "%s 수집 (출처: %s)"
 L["Riding"] = "탈것 숙련"
 L["Grey, kept: opens %s"] = "회색, 유지됨: %s 퀘스트를 엽니다"
+-- L["level and share of it: %d (%d%%)"] = ""
 
 -- Core/Closes.lua
 L["Taking %s closes %s for good."] = "%s 퀘스트를 받으면 %s 퀘스트는 영영 받을 수 없습니다."

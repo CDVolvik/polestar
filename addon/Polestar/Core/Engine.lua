@@ -88,7 +88,8 @@ local function Compat() return ns.Compat end
 
 local function refreshPlayer()
 	player = Compat().GetPlayerInfo()
-	if levelSeen > (player.level or 0) then player.level = levelSeen end
+	-- The client's XP is still the old level's until UnitLevel catches up.
+	if levelSeen > (player.level or 0) then player.level, player.xp = levelSeen, 0 end
 end
 
 -- A step is for this character (`only`) and, with `when`, its predicates
@@ -452,10 +453,26 @@ function Own.samePlace(text, p)
 	return same(text, area) or same(text, p.name)
 end
 
+-- Whether the character has reached `level`, and with `frac` (0-1) that
+-- share of its XP: a `level 12.5` goal is done at level 12 with half the
+-- level's XP, or at any later level.
+function Own.levelReached(level, frac)
+	local lvl = player.level or 1
+	if lvl ~= level or not frac then return lvl >= level end
+	local max = player.xpMax or 0
+	return max > 0 and (player.xp or 0) / max >= frac
+end
+
 function Own.predicateHolds(p)
 	local C, k, ok = Compat(), p.k, false
 	if k == "level" then
 		local level, n, op = player.level or 1, p.n, p.op
+		if p.frac then
+			-- A point inside a level: the level plus the share of it done.
+			local max = player.xpMax or 0
+			if max > 0 then level = level + (player.xp or 0) / max end
+			n = n + p.frac
+		end
 		return (op == "<" and level < n) or (op == "<=" and level <= n) or (op == ">" and level > n) or (op == ">=" and level >= n)
 	elseif k == "onquest" then
 		for _, q in ipairs(p.q) do
@@ -1436,7 +1453,7 @@ goalDone = function(s, g, goal)
 	elseif t == "getfp" then
 		return fpKnown(goal)
 	elseif t == "level" then
-		return (player.level or 1) >= goal.level
+		return Own.levelReached(goal.level, goal.frac)
 	elseif t == "skill" then
 		if isManual(goal) then return false end
 		return skillState(goal, goal.level)
@@ -2088,6 +2105,7 @@ local function describe(goal)
 		if npcName then return L["Sell and repair at"], npcName, "npc", nil end
 		return L["Sell and repair at"], L["a vendor"], "text", nil
 	elseif t == "level" then
+		if goal.frac then return L["Reach level"], ns.LC("level and share of it", "%d (%d%%)"):format(goal.level, math.floor(goal.frac * 100 + 0.5)), "level", nil end
 		return L["Reach level"], tostring(goal.level), "level", nil
 	elseif t == "skill" then
 		return L["Raise"], skillName(goal), "skill", fmt(L["to %d"], goal.level)
@@ -4106,6 +4124,8 @@ local function onUpdateEvent() requestUpdate() end
 for _, event in ipairs({
 	"QUEST_ACCEPTED", "QUEST_REMOVED", "QUEST_LOG_UPDATE", "QUEST_WATCH_UPDATE",
 	"BAG_UPDATE_DELAYED", "PLAYER_ENTERING_WORLD",
+	-- level (a point inside a level: `level 12.5`)
+	"PLAYER_XP_UPDATE",
 	-- skill / craft
 	"SKILL_LINES_CHANGED", "CHAT_MSG_SKILL", "TRADE_SKILL_SHOW", "TRADE_SKILL_LIST_UPDATE",
 	-- learn
