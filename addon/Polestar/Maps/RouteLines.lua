@@ -35,7 +35,11 @@
 -- same two frames, each from its own pool of star and halo textures. They
 -- move, so both surfaces redraw them about 30 times a second while they
 -- show; with OpenMap's stitched world map on, the world map places them
--- through OpenMapAPI.CanvasFromWorldPos, above OpenMap's art.
+-- through OpenMapAPI.CanvasFromWorldPos, above OpenMap's art. A draw looks
+-- only along the stretches of the route that reach the minimap's face or the
+-- map's canvas (Sparkle.Spans; the route projected on the map once per
+-- route, map or size), so its cost follows the sparkles shown, not the
+-- route's length, and it sets colours and shows textures only when they change.
 
 local ADDON, ns = ...
 local Nav, Strokes, Sparkle = ns.Nav, ns.RouteStrokes, ns.RouteSparkle
@@ -272,13 +276,16 @@ end
 
 local function newOwner(owner)
 	owner.lines, owner.outlines, owner.dots, owner.used = {}, {}, {}, 0
-	owner.stars, owner.halos, owner.sparkles = {}, {}, 0
+	-- Per sparkle: its colour (the table, and the revision it was set at:
+	-- route colours change in place with the theme) and whether its halo shows.
+	owner.stars, owner.halos, owner.sparkles, owner.tints, owner.tinted, owner.glows = {}, {}, 0, {}, {}, {}
 	return owner
 end
 
 ---------------------------------------------------------------------------
 -- Sparkles: a star over a soft halo per sparkle, pooled per frame as the
--- lines are, created on demand and only ever hidden.
+-- lines are, created on demand and only ever hidden. A draw sets what moves
+-- (place, size, alpha, rotation); colour and Show only when they change.
 ---------------------------------------------------------------------------
 
 local rotates = true -- SetRotation on a texture; off for good once it fails
@@ -289,36 +296,48 @@ local function sparkle(owner, i, x, y, size, alpha, rotation, c)
 		halo = owner:CreateTexture(nil, "ARTWORK", nil, 1)
 		halo:SetTexture(GLOW_TEXTURE)
 		halo:SetBlendMode("ADD")
+		halo:Hide()
 		star = owner:CreateTexture(nil, "ARTWORK", nil, 2)
 		star:SetTexture(SPARKLE_TEXTURE)
 		star:SetBlendMode("ADD")
 		owner.stars[i], owner.halos[i] = star, halo
 	end
+	if owner.tints[i] ~= c or owner.tinted[i] ~= revision then
+		owner.tints[i], owner.tinted[i] = c, revision
+		star:SetVertexColor(c[1], c[2], c[3])
+		halo:SetVertexColor(c[1], c[2], c[3])
+	end
 	star:ClearAllPoints()
 	star:SetPoint("CENTER", owner, "TOPLEFT", x, y)
 	star:SetSize(size, size)
-	star:SetVertexColor(c[1], c[2], c[3])
 	star:SetAlpha(alpha)
 	if rotates and star.SetRotation and not pcall(star.SetRotation, star, rotation) then rotates = false end
-	star:Show()
+	if i > owner.sparkles then star:Show() end -- the last draw showed 1..owner.sparkles
 	local st = sparkleStyle
 	local h = st.alpha > 0 and st.halo * alpha / st.alpha or 0
 	if h > 0.01 then
 		halo:ClearAllPoints()
 		halo:SetPoint("CENTER", owner, "TOPLEFT", x, y)
 		halo:SetSize(size * 2.2, size * 2.2)
-		halo:SetVertexColor(c[1], c[2], c[3])
 		halo:SetAlpha(h)
-		halo:Show()
-	else
+		if not owner.glows[i] then
+			owner.glows[i] = true
+			halo:Show()
+		end
+	elseif owner.glows[i] then
+		owner.glows[i] = false
 		halo:Hide()
 	end
 end
 
 local function finishSparkles(owner, used)
+	local glows = owner.glows
 	for i = used + 1, owner.sparkles do
 		owner.stars[i]:Hide()
-		owner.halos[i]:Hide()
+		if glows[i] then
+			glows[i] = false
+			owner.halos[i]:Hide()
+		end
 	end
 	owner.sparkles = used
 end
@@ -390,11 +409,10 @@ local function openMap()
 	return ok and stitched and O or nil
 end
 
--- What the open map shows as a projector: project(c, wx, wy) -> canvas
--- fractions u, v or nil; the canvas units a yard spans near (c, wx, wy); the
--- range of u, v worth drawing in; OpenMap's API when it places them.
-local function projector(c, wx, wy, width, height)
-	local O = openMap()
+-- What the open map shows as a projector (O: OpenMap's API while it
+-- stitches): project(c, wx, wy) -> canvas fractions u, v or nil; the canvas
+-- units a yard spans near (c, wx, wy); the range of u, v worth drawing in.
+local function projector(O, c, wx, wy, width, height)
 	if O then
 		local project = function(pc, x, y)
 			local ok, u, v = pcall(O.CanvasFromWorldPos, pc, x, y)
@@ -406,7 +424,7 @@ local function projector(c, wx, wy, width, height)
 		local du, dv = (u2 - u1) * width, (v2 - v1) * height
 		local perYard = math.sqrt(du * du + dv * dv) / 100
 		if perYard <= 0 then return nil end
-		return project, perYard, -1, 2, O
+		return project, perYard, -1, 2
 	end
 	local b = view.mapID and boundsOf(view.mapID)
 	if not b then return nil end
@@ -417,17 +435,63 @@ local function projector(c, wx, wy, width, height)
 	return project, (width * abs(b.kx) + height * abs(b.ky)) / 2, 0, 1
 end
 
-local function drawWorldSparkles(pin)
-	local used = 0
-	local width, height = view.width or 0, view.height or 0
-	local ref = runs[1]
-	local project, perYard, lo, hi, O
-	if ref and width > 0 and height > 0 then
-		project, perYard, lo, hi, O = projector(ref.c, ref.xs[1], ref.ys[1], width, height)
+-- The world map's projection and every run's points on it (us[i], vs[i] for
+-- runs[i]), worked out again only when the route, the map, the canvas size
+-- or OpenMap's stitching changes, so a 30 Hz draw only reads them.
+local projection = { us = {}, vs = {} }
+
+local function worldProjection(width, height)
+	local P, O = projection, openMap()
+	if P.project and P.revision == revision and P.O == O and P.mapID == view.mapID and P.width == width and P.height == height then
+		return P
 	end
-	if project then
+	-- Nothing kept until a projection works (OpenMap's may not answer yet).
+	P.project = nil
+	local ref = runs[1]
+	if not ref then return nil end
+	local project, perYard, lo, hi = projector(O, ref.c, ref.xs[1], ref.ys[1], width, height)
+	if not project then return nil end
+	P.revision, P.O, P.mapID, P.width, P.height = revision, O, view.mapID, width, height
+	P.project, P.perYard, P.lo, P.hi = project, perYard, lo, hi
+	for i = 1, #runs do
+		local run, us, vs = runs[i], P.us[i] or {}, P.vs[i] or {}
+		P.us[i], P.vs[i] = us, vs
+		for j = 1, run.n do us[j], vs[j] = project(run.c, run.xs[j], run.ys[j]) end
+	end
+	return P
+end
+
+local spans = {} -- Sparkle.Spans' stretches, reused by every draw
+
+-- One world map draw, for worldSparkle (Sparkle.Emit's fn: no closure per draw).
+local worldDraw = { used = 0 }
+
+local function worldSparkle(wx, wy, k, nx, ny, fade)
+	local d, st = worldDraw, sparkleStyle
+	local alpha, scale, rotation, side = Sparkle.Twinkle(k, d.now, st, fade)
+	alpha = alpha * d.strength
+	if alpha <= 0.01 then return end
+	local s = d.size * scale
+	local shift = side * st.jitter * s / d.perYard
+	local u, v = d.project(d.c, wx + nx * shift, wy + ny * shift)
+	local lo, hi = d.lo, d.hi
+	if u and u >= lo and u <= hi and v >= lo and v <= hi then
+		local used = d.used + 1
+		d.used = used
+		sparkle(d.pin, used, u * d.width, -v * d.height, s, alpha, rotation, d.color)
+		if used >= st.max then return false end
+	end
+end
+
+local function drawWorldSparkles(pin)
+	local d = worldDraw
+	d.used = 0
+	local width, height = view.width or 0, view.height or 0
+	local P = width > 0 and height > 0 and worldProjection(width, height) or nil
+	if P then
 		pin:SetSize(width, height)
 		local level = view:Level("PIN_FRAME_LEVEL_QUEST_BLOB")
+		local O = P.O
 		if O and type(O.ArtTopLevel) == "function" then
 			local ok, top = pcall(O.ArtTopLevel)
 			if ok and type(top) == "number" and top + 1 > level then level = top + 1 end
@@ -438,30 +502,29 @@ local function drawWorldSparkles(pin)
 		local at = sparklePhase(now)
 		-- Sizes and spacing hold on screen while the canvas zooms under them, as the pins' do.
 		local zoom = view.scale and view.scale > 0 and view.scale or 1
-		local size = st.size / zoom
-		local spacing = st.spacing / zoom / perYard
+		d.pin, d.now, d.size, d.perYard, d.project = pin, now, st.size / zoom, P.perYard, P.project
+		d.lo, d.hi, d.width, d.height = P.lo, P.hi, width, height
+		local spacing = st.spacing / zoom / P.perYard
+		-- Only the stretches that reach the canvas, with room for a sparkle's
+		-- jitter off the run (doubled: OpenMap's yards needn't be the same size everywhere).
+		local margin = 2 * st.jitter * 1.2 * d.size + 1
+		local mu, mv = margin / width, margin / height
+		local x1, x2, y1, y2 = P.lo - mu, P.hi + mu, P.lo - mv, P.hi + mv
 		local mapAlpha = view.alpha or 1
+		local budget = SPARKLE_SCAN
 		for i = 1, #runs do
-			if used >= st.max then break end
+			if d.used >= st.max or budget <= 0 then break end
 			local run = runs[i]
 			local c, strength = runLook(run)
-			local rc = run.c
-			Sparkle.Emit(run, runFrom[i] or 0, spacing, at, SPARKLE_SCAN, function(wx, wy, k, nx, ny, fade)
-				local alpha, scale, rotation, side = Sparkle.Twinkle(k, now, st, fade)
-				alpha = alpha * strength * mapAlpha
-				if alpha <= 0.01 then return end
-				local s = size * scale
-				local shift = side * st.jitter * s / perYard
-				local u, v = project(rc, wx + nx * shift, wy + ny * shift)
-				if u and u >= lo and u <= hi and v >= lo and v <= hi then
-					used = used + 1
-					sparkle(pin, used, u * width, -v * height, s, alpha, rotation, c)
-					if used >= st.max then return false end
-				end
-			end)
+			d.color, d.strength, d.c = c, strength * mapAlpha, run.c
+			local from = runFrom[i] or 0
+			for j = 1, Sparkle.Spans(run, P.us[i], P.vs[i], x1, x2, y1, y2, spans) do
+				budget = budget - Sparkle.Emit(run, from, spacing, at, budget, worldSparkle, spans[j * 2 - 1], spans[j * 2])
+				if d.used >= st.max or budget <= 0 then break end
+			end
 		end
 	end
-	finishSparkles(pin, used)
+	finishSparkles(pin, d.used)
 end
 
 local function drawWorld(pin)
@@ -583,8 +646,28 @@ local minimapView = { width = 0, height = 0, scale = 1, colors = colors }
 local last = {}
 local elapsedSince = 0
 
+-- One minimap draw, for minimapSparkle (Sparkle.Emit's fn).
+local minimapDraw = { used = 0 }
+
+local function minimapSparkle(wx, wy, k, nx, ny, fade)
+	local d, st = minimapDraw, sparkleStyle
+	local alpha, scale, rotation, side = Sparkle.Twinkle(k, d.now, st, fade)
+	alpha = alpha * d.strength
+	if alpha <= 0.01 then return end
+	local s = st.size * scale
+	local shift = side * st.jitter * s / d.perYard
+	local x, y = Strokes.Project(wx + nx * shift, wy + ny * shift, d.px, d.py, d.radius, d.cosine, d.sine)
+	if Sparkle.OnFace(x, y, d.square, d.inset) then
+		local used = d.used + 1
+		d.used = used
+		sparkle(mm, used, (x + 1) * d.width / 2, (y - 1) * d.height / 2, s, alpha, rotation, d.color)
+		if used >= st.max then return false end
+	end
+end
+
 local function drawMinimapSparkles(pc, px, py, radius, facing, square, width, height)
-	local used = 0
+	local d = minimapDraw
+	d.used = 0
 	local half = width / 2
 	if pc and radius and radius > 0 and half > 0 and #runs > 0 then
 		local st = sparkleStyle
@@ -592,30 +675,28 @@ local function drawMinimapSparkles(pc, px, py, radius, facing, square, width, he
 		local at = sparklePhase(now)
 		local perYard = half / radius
 		local spacing = st.spacing / perYard
-		local inset = 1 - st.size / 2 / half
-		local cosine, sine = cos(facing or 0), sin(facing or 0)
+		d.now, d.perYard, d.px, d.py, d.radius, d.square, d.width, d.height = now, perYard, px, py, radius, square, width, height
+		d.inset = 1 - st.size / 2 / half
+		d.cosine, d.sine = cos(facing or 0), sin(facing or 0)
+		-- Only the stretches near the player: the face, turned any way, lies
+		-- within radius * sqrt(2), and a sparkle on it up to its jitter off the run.
+		local reach = radius * 1.415 + st.jitter * 1.2 * st.size / perYard + 1
+		local x1, x2, y1, y2 = px - reach, px + reach, py - reach, py + reach
+		local budget = SPARKLE_SCAN
 		for i = 1, #runs do
 			local run = runs[i]
-			if used >= st.max then break end
+			if d.used >= st.max or budget <= 0 then break end
 			if run.c == pc then
-				local c, strength = runLook(run)
-				Sparkle.Emit(run, runFrom[i] or 0, spacing, at, SPARKLE_SCAN, function(wx, wy, k, nx, ny, fade)
-					local alpha, scale, rotation, side = Sparkle.Twinkle(k, now, st, fade)
-					alpha = alpha * strength
-					if alpha <= 0.01 then return end
-					local s = st.size * scale
-					local shift = side * st.jitter * s / perYard
-					local x, y = Strokes.Project(wx + nx * shift, wy + ny * shift, px, py, radius, cosine, sine)
-					if Sparkle.OnFace(x, y, square, inset) then
-						used = used + 1
-						sparkle(mm, used, (x + 1) * width / 2, (y - 1) * height / 2, s, alpha, rotation, c)
-						if used >= st.max then return false end
-					end
-				end)
+				d.color, d.strength = runLook(run)
+				local from = runFrom[i] or 0
+				for j = 1, Sparkle.Spans(run, run.xs, run.ys, x1, x2, y1, y2, spans) do
+					budget = budget - Sparkle.Emit(run, from, spacing, at, budget, minimapSparkle, spans[j * 2 - 1], spans[j * 2])
+					if d.used >= st.max or budget <= 0 then break end
+				end
 			end
 		end
 	end
-	finishSparkles(mm, used)
+	finishSparkles(mm, d.used)
 end
 
 local function drawMinimap(force)

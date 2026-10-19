@@ -10,7 +10,8 @@
 --
 --   Sparkle.Paths(drawPaths, later)          measured paths, split by continent
 --   Sparkle.Nearest(path, c, wx, wy)          yards along, yards off
---   Sparkle.Emit(path, from, spacing, phase, limit, fn)
+--   Sparkle.Emit(path, from, spacing, phase, limit, fn, lo, hi)
+--   Sparkle.Spans(path, xs, ys, x1, x2, y1, y2, out) the stretches that can show
 --   Sparkle.Style(settings)                   the settings in pixels and seconds
 --   Sparkle.Twinkle(k, t, style, fade)        one sparkle's alpha, scale, rotation, side
 --   Sparkle.OnFace(x, y, square, inset)       inside the minimap's face
@@ -128,16 +129,19 @@ end
 -- while the trail flows, so a sparkle keeps its number, and its twinkle, as
 -- it drifts toward the goal. From `from` yards on, at most `limit` of them:
 -- fn(wx, wy, k, nx, ny, fade), fade 0..1 easing in at the start and out at
--- the run's end; fn returns false to stop. -> the number emitted
-function Sparkle.Emit(run, from, spacing, phase, limit, fn)
+-- the run's end; fn returns false to stop. lo..hi (yards along, optional)
+-- keeps to one stretch of the run (Sparkle.Spans): the same sparkles, with
+-- the same numbers and fades, as the whole run has there. -> the number emitted
+function Sparkle.Emit(run, from, spacing, phase, limit, fn, lo, hi)
 	if not run or run.n < 2 or not spacing or spacing <= 0 or limit <= 0 then return 0 end
 	from = from or 0
 	local total = run.total
-	local k = ceil(from / spacing - phase)
+	local stop = hi and hi < total and hi or total
+	local k = ceil((lo and lo > from and lo or from) / spacing - phase)
 	local count = 0
 	while count < limit do
 		local along = (k + phase) * spacing
-		if along > total then break end
+		if along > stop then break end
 		local fade = 1
 		local head = (along - from) / spacing
 		if head < 1 then fade = head end
@@ -151,6 +155,31 @@ function Sparkle.Emit(run, from, spacing, phase, limit, fn)
 		k = k + 1
 	end
 	return count
+end
+
+-- The stretches of a run whose segments reach into the box x1..x2, y1..y2,
+-- with the run's points at xs[i], ys[i]: the run's own yards, or the points
+-- projected onto a map (nil where they can't be). Only there can a sparkle
+-- show, so a draw emits only those (a long route mostly lies off the
+-- minimap's face and off a zone map). out gets yards along as pairs
+-- lo1, hi1, lo2, hi2, ..., touching segments merged. -> the number of pairs
+function Sparkle.Spans(run, xs, ys, x1, x2, y1, y2, out)
+	local cum, n, open = run.cum, 0, false
+	for i = 1, run.n - 1 do
+		local ax, ay, bx, by = xs[i], ys[i], xs[i + 1], ys[i + 1]
+		if ax and ay and bx and by and not ((ax < x1 and bx < x1) or (ax > x2 and bx > x2)
+			or (ay < y1 and by < y1) or (ay > y2 and by > y2)) then
+			if open then
+				out[n * 2] = cum[i + 1]
+			else
+				n, open = n + 1, true
+				out[n * 2 - 1], out[n * 2] = cum[i], cum[i + 1]
+			end
+		else
+			open = false
+		end
+	end
+	return n
 end
 
 ---------------------------------------------------------------------------

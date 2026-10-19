@@ -1980,7 +1980,13 @@ permission; `addon/Polestar_Nav/CREDITS.md`).
   (the legs after this one, at 40%), with three presets
   (`RouteLines.ApplySparklePreset`). They are painted on the same two frames
   from their own pools, redrawn 30 times a second while shown; the leg being
-  travelled starts at the player (within 60 yd, checked every 0.25 s). With
+  travelled starts at the player (within 60 yd, checked every 0.25 s). A
+  draw emits only along the stretches of each run whose segments reach the
+  minimap's face (within radius × √2 of the player, plus a sparkle's jitter)
+  or the map's canvas (`Sparkle.Spans`, over the run projected once per
+  route, map, canvas size or OpenMap change), at most 4000 places per
+  surface, and sets a texture's colour or shows it only when that changes:
+  its cost follows the sparkles shown, not the route's length. With
   OpenMap's stitched world map on (`OpenMapAPI.IsStitched`), the world map
   places them with `OpenMapAPI.CanvasFromWorldPos` and lifts the frame above
   `OpenMapAPI.ArtTopLevel()`.

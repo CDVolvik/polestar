@@ -64,6 +64,30 @@ test('the nearest point on a run is measured along it; another continent has non
 	assert.equal(out.other, false);
 });
 
+test('a draw looks only along the stretches that reach the view, and finds the same sparkles there as the whole run', () => {
+	const [out] = sparkle(`
+		-- An L: 1000 yd south, then 1000 yd west; a box over the corner only.
+		local run = Sp.Paths({ path("walk", { { 0, 0, 0 }, { 0, -500, 0 }, { 0, -1000, 0 }, { 0, -1000, -500 }, { 0, -1000, -1000 } }) })[1]
+		local spans = {}
+		local n = Sp.Spans(run, run.xs, run.ys, -1100, -900, -100, 100, spans)
+		local lo, hi = spans[1], spans[2]
+		local inside, whole = {}, {}
+		Sp.Emit(run, 0, 30, 0.4, 1000, function(x, y, k, nx, ny, fade) inside[#inside + 1] = k .. ":" .. fade end, lo, hi)
+		Sp.Emit(run, 0, 30, 0.4, 1000, function(x, y, k, nx, ny, fade)
+			local along = (k + 0.4) * 30
+			if along >= lo and along <= hi then whole[#whole + 1] = k .. ":" .. fade end
+		end)
+		emit({ n = n, lo = lo, hi = hi, inside = inside, whole = whole,
+			none = Sp.Spans(run, run.xs, run.ys, 500, 600, 500, 600, spans),
+			unprojected = Sp.Spans(run, {}, {}, -1e9, 1e9, -1e9, 1e9, spans) })`);
+	assert.equal(out.n, 1, 'the two segments at the corner, merged');
+	assert.ok(near(out.lo, 500) && near(out.hi, 1500), `${out.lo}..${out.hi}`);
+	assert.deepEqual(out.inside, out.whole, 'same numbers, same fades');
+	assert.ok(out.inside.length > 10);
+	assert.equal(out.none, 0, 'nothing reaches a box off the run');
+	assert.equal(out.unprojected, 0, 'points that could not be projected show nothing');
+});
+
 test('the style brings hand-edited settings into range, and subtlety calms every sparkle', () => {
 	const [out] = sparkle(`
 		local function style(over)
@@ -233,6 +257,32 @@ test('the most sparkles shown bounds each surface; a preset sets the look and no
 	assert.equal(out.intensity, 1);
 	assert.equal(out.max, 10, 'the ceiling is kept');
 	assert.equal(out.style, 'sparkle');
+});
+
+test('a long route costs a draw only the sparkles near the view, not its length', () => {
+	const [out] = painted(`
+		walkTo(-600)
+		-- A 3000 yd walk, most of it past the shown map, and a 12000 yd flight on.
+		local walk, flight = {}, {}
+		for i = 0, 199 do walk[#walk + 1] = { 0, 60 * math.sin(i / 7), -i * 15 } end
+		for i = 0, 59 do flight[#flight + 1] = { 0, i * 8000 / 59, -2985 - i * 9000 / 59 } end
+		local geom = { legs = { { kind = "walk", pts = walk, current = true }, { kind = "flight", pts = flight } } }
+		N.GetRouteGeometry = function() return geom end
+		Polestar.Set("nav.lineStyle", "sparkle")
+		Polestar.Set("nav.sparkleLater", true)
+		nav.viewRadius = 150
+		Minimap:SetSize(140, 140)
+		nav.showWorldMap(9000)
+		Polestar.Fire("NAV_ROUTE_GEOMETRY")
+		stub.advance(0.5)
+		local Sp = Polestar.RouteSparkle
+		local twinkle, looked = Sp.Twinkle, 0
+		Sp.Twinkle = function(...) looked = looked + 1; return twinkle(...) end
+		stub.advance(0.05) -- one draw on each surface
+		Sp.Twinkle = twinkle
+		emit({ looked = looked, world = R.GetSparkles("world"), minimap = R.GetSparkles("minimap") })`);
+	assert.ok(out.world > 5 && out.minimap >= 2, `${out.world} + ${out.minimap} shown`);
+	assert.ok(out.looked <= out.world + out.minimap + 10, `${out.looked} places looked at for ${out.world + out.minimap} sparkles`);
 });
 
 test('the whole route sparkles the later legs too, fainter', () => {
