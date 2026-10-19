@@ -406,6 +406,32 @@ describe('QuestieDB merge', () => {
 		assert.deepEqual(read('npcs')[1].spawns, { 1429: { f: 'l', pts: [[47.5, 40.25]] } });
 	});
 
+	// MgM's report (#462): QuestieDB's Forever store gives Deviate Hides (1486)
+	// an Orgrimmar Mailbox and Poor Old Blanchy (151) a Stormwind one as a
+	// second giver, so the Wailing Caverns pick-up page sent a player from
+	// Tirisfal to the Orgrimmar mailbox. Forever's quest data has only the NPC;
+	// corrections.json sets it after the merge.
+	test("MgM's report: corrections.json leaves Nalpak and Verna Furlbrow as the only givers, not the mailboxes", async () => {
+		const { read } = await build({}, {
+			quests: {
+				1486: { name: 'Deviate Hides', questLevel: 17, requiredLevel: 13, startedBy: [[5767], [659159]], finishedBy: [[5767]] },
+				151: { name: 'Poor Old Blanchy', questLevel: 10, requiredLevel: 7, startedBy: [[238], [696264]], finishedBy: [[238]] },
+			},
+			npcs: {
+				5767: { name: 'Nalpak', minLevel: 22, maxLevel: 22, spawns: { 17: [[46, 35.7]] }, friendlyToFaction: 'AH', npcFlags: 2, questStarts: [1486] },
+				238: { name: 'Verna Furlbrow', minLevel: 14, maxLevel: 14, spawns: { 40: [[59.9, 19.4]] }, friendlyToFaction: 'A', npcFlags: 2, questStarts: [151] },
+			},
+			objects: {
+				659159: { name: 'Mailbox', spawns: { 1637: [[50.9, 70.4]] }, questStarts: [1486] },
+				696264: { name: 'Mailbox', spawns: { 1519: [[61.7, 70.7]] }, questStarts: [151] },
+			},
+		});
+		const q = read('quests');
+		assert.deepEqual(q[1486].start, { npc: [5767], object: [], item: [] });
+		assert.deepEqual(q[151].start, { npc: [238], object: [], item: [] });
+		assert.ok(q[1486].source.includes('polestar-correction'));
+	});
+
 	test("objectives come in the game's order: creatures, objects, items, kill credits, the trigger", async () => {
 		const { read } = await build({}, {
 			quests: {
