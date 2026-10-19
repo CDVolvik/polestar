@@ -21,7 +21,7 @@ const { blockingPrereqs } = require('../data/prereqs');
 const { clusterPoints, scaleOf } = require('../questdb/cluster');
 const { groupOf, isElite, hostileTo } = require('./group');
 const { goalHeight, spotHeight } = require('./heights');
-const { goalArea, goalNode, goalInnkeeper } = require('./places');
+const { goalArea, goalNode, goalInnkeeper, goalFlightMaster } = require('./places');
 
 // A collect's sources are named only for an item that few creatures or
 // objects drop (at 2% or more, with spawns); past this it drops everywhere.
@@ -356,7 +356,7 @@ function gatherNode(data, src) {
 function spawnSpots(data, sources, map, f, x, y, elites = []) {
 	const pts = spawnPointsOf(data, sources, map, f);
 	if (pts.length < 2) return undefined;
-	const frame = data.eraFrame(map);
+	const frame = data.frame(map);
 	const spread = extent90(pts, frame) > SPREAD_YARDS;
 	let clusters;
 	if (pts.length <= SPOT_CAP) clusters = clusterPoints(pts, frame, { radius: SPOT_CLUSTER_YARDS, cap: Infinity, minRadius: SPOT_MIN_RADIUS });
@@ -1027,12 +1027,15 @@ function resolveGoal(g, zoneMap, prev, data, err, warn, ctx = { sides: ['Allianc
 			if (g.nearest && v === 'sethome') smart(goal, data.npcsWithRole('innkeeper').map((id) => ({ npc: id })), 'innkeeper');
 			// A located `sethome` naming no npc: its inn's innkeeper, for the
 			// factions the goal applies to, so the arrow leads there (places.js).
-			if (v === 'sethome' && g.npc === undefined && !g.nearest) {
-				const keeper = goalInnkeeper(data, g.location, smartSides(ctx.sides, applicable(ctx.layers || [])));
-				if (keeper) {
-					goal.npc = keeper.npc;
-					setIf(goal, 'npcName', nameOf(data, 'npc', keeper.npc) || keeper.npcName || undefined);
-					candidates = [{ kind: 'npc', id: keeper.npc }];
+			// A located `getfp` naming no npc: its taxi node's flight master,
+			// the same way (places.js).
+			if ((v === 'sethome' || v === 'getfp') && g.npc === undefined && !g.nearest) {
+				const sides = smartSides(ctx.sides, applicable(ctx.layers || []));
+				const host = v === 'sethome' ? goalInnkeeper(data, g.location, sides) : goalFlightMaster(data, g.location, sides);
+				if (host) {
+					goal.npc = host.npc;
+					setIf(goal, 'npcName', nameOf(data, 'npc', host.npc) || host.npcName || undefined);
+					candidates = [{ kind: 'npc', id: host.npc }];
 					checkKinds = candidates;
 				}
 			}

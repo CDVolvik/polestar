@@ -77,7 +77,7 @@ test('header, destination and numbered steps: 36:48 · 8.0k yd, the lift with it
 		['3', 'Walk to Silithus', '25:13'],
 	]);
 	assert.deepEqual(s.rows.map((r) => r.bar), [true, false, false]);
-	assert.equal(s.rows[1].sub, 'leaves in about 0:15 \u00b7 ride 0:10');
+	assert.equal(s.rows[1].sub, 'average wait 0:15 \u00b7 ride 0:10');
 	assert.equal(s.rows[0].sub, false);
 	assert.match(s.rows[0].icon, /icon-lift$/);
 	assert.match(s.rows[2].icon, /icon-goto$/);
@@ -173,11 +173,11 @@ test('K1/C9: a step without a caption reads its kind and place, never "Unknown"'
 	assert.equal(s.rows[2].sub, false, 'a flight leaves at once: no wait');
 });
 
-test('K3: a lift says "leaves in about" until timed, then "leaves in"; walks, gates and bridges carry no wait', () => {
+test('K3: a lift gives its average wait until timed, then "leaves in"; walks, gates and bridges carry no wait', () => {
 	const [about, timed] = run(`
 		R.legs[1].step = "gate"; R.legs[3].step = "bridge"; Polestar.Fire("ROUTE_CHANGED", R.legs); emit(shot())
 		R.timed = true; Polestar.Fire("NAV_TRANSIT"); emit(shot())`);
-	assert.equal(about.rows[1].sub, 'leaves in about 0:15 \u00b7 ride 0:10');
+	assert.equal(about.rows[1].sub, 'average wait 0:15 \u00b7 ride 0:10');
 	assert.equal(timed.rows[1].sub, 'leaves in 0:15 \u00b7 ride 0:10');
 	assert.equal(about.rows[0].sub, false);
 	assert.equal(about.rows[2].sub, false);
@@ -279,6 +279,6 @@ test('a walk that enters a hostile town says so under its step: "Hostile town: S
 		emit(shot())`);
 	assert.equal(s.rows[2].sub, 'Hostile town: Southshore');
 	assert.equal(s.rows[0].sub, 'Hostile town: Tarren Mill, Hammerfall');
-	assert.equal(s.rows[1].sub, 'leaves in about 0:15 \u00b7 ride 0:10', 'a ride keeps its departure line');
+	assert.equal(s.rows[1].sub, 'average wait 0:15 \u00b7 ride 0:10', 'a ride keeps its departure line');
 	assert.ok(s.rows[2].h > 24, 'the warning has its own line');
 });

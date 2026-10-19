@@ -123,6 +123,18 @@ test('combat: the gamepad goes back to the game before the lockdown, nothing is 
 	assert.deepEqual(after, { focusing: false, owner: true, overrides: 11, blocked: 0 });
 });
 
+test('focus mode in a dungeon where the window waits hidden opens it there and starts', () => {
+	const [out] = run(`
+		uistub.setGuide(uistub.elwynn, 3)
+		Polestar.Set("ui.instance", "hide")
+		uistub.instance = "party"
+		stub.fire("PLAYER_ENTERING_WORLD", false, false)
+		local hidden = not PolestarGuideFrame:IsShown()
+		emit({ hidden = hidden, started = G.StartFocus(), shown = PolestarGuideFrame:IsShown() })
+	`);
+	assert.deepEqual(out, { hidden: true, started: true, shown: true });
+});
+
 test('bindings change only out of combat: in a fight a button, a chord or an unbind is refused untouched, and works after it', () => {
 	const [fight, after] = run(`
 		pad.saved.N = "POLESTAR_TOGGLE"
@@ -497,6 +509,38 @@ test('the welcome turns its pages with LB / RB and starts on Next', () => {
 		emit({ first = first, at = at, at2 = at2, at3 = at3 })
 	`);
 	assert.deepEqual(out, { first: true, at: 1, at2: 2, at3: 1 });
+});
+
+test('B on the bar for marking the right spot goes back to the report, as Cancel does: the player\'s words and the step they reported kept', () => {
+	const [out] = run(`
+		uistub.setGuide(uistub.elwynn, 3)
+		UI.ShowReport()
+		local F = PolestarReport
+		F.Desc:SetText("The vermin were all by the tents.")
+		stub.RunScript(F.Desc, "OnTextChanged", true)
+		F.Mark:Click()
+		uistub.setStep(4)
+		stub.press("PAD2")
+		emit({ bar = PolestarMark:IsShown(), report = F:IsShown(), desc = F.Desc:GetText(), context = F.Context:GetText() })
+	`);
+	assert.deepEqual(out, { bar: false, report: true, desc: 'The vermin were all by the tents.', context: 'Step 3 of 8  ·  Kobold Camp  ·  Elwynn Forest' });
+});
+
+test('the report window starts on Copy report, the way to report on Discord, once the player said what went wrong', () => {
+	const [empty, said] = run(`
+		uistub.setGuide(uistub.elwynn, 3)
+		UI.ShowReport()
+		stub.advance(0.3)
+		emit({ copy = G.Focused(PolestarReport) == PolestarReport.Copy, mark = G.Focused(PolestarReport) == PolestarReport.Mark })
+		PolestarReport.Desc:SetText("The vermin were all by the tents.")
+		stub.RunScript(PolestarReport.Desc, "OnTextChanged", true)
+		PolestarReport:Hide()
+		UI.ShowReport()
+		stub.advance(0.3)
+		emit({ copy = G.Focused(PolestarReport) == PolestarReport.Copy })
+	`);
+	assert.deepEqual(empty, { copy: false, mark: true }, 'nothing typed: Copy report waits, and the pad starts on Mark, never on the close button');
+	assert.deepEqual(said, { copy: true });
 });
 
 test('the welcome\'s route style cards: the D-pad reaches them, A picks one, Y puts Balanced back', () => {

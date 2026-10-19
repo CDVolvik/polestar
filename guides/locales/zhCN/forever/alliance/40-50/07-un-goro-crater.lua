@@ -34,7 +34,6 @@ return {
 	-- Step 8: Marshal's Refuge
 	-- {area:541} Marshal's Refuge · {object:157936} Un'Goro Dirt Pile
 	["Ride north along the east side of the crater to {area:541}, the camp in the caves of the northern cliff. Give the elite devilsaurs and stegodons a wide berth. Pick up every Power Crystal and {object:157936} you pass from here on."] = "沿环形山东侧向北骑行到{area:541}，即北面悬崖洞穴中的营地。远离精英魔暴龙和剑龙。从这里开始，沿途遇到的每个能量水晶和{object:157936}都拾取。",
-	["Gryfe"] = "格莱菲",
 	-- {npc:9298} Donova Snowden · {zone:1452} Winterspring
 	["Ends with {npc:9298} in {zone:1452}: keep it"] = "在{zone:1452}的{npc:9298}处结束：留着",
 	-- {npc:9117} J.D. Collie
@@ -199,6 +198,7 @@ return {
 	["Xiggs waits in the {object:32359}."] = "西格斯在{object:32359}等候。",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Gryfe"] = "格莱菲",
 	-- ["Ride south to {area:537} in the middle of the crater, then east into the eastern jungle. Crystal clusters stand all over the crater, many of them around {area:537}: take a few extra of each colour. {item:11316} Lashers and Threshers drop the petals; the expedition's {item:11113} sits at an abandoned camp in the eastern jungle."] = "向南骑行到环形山中央的{area:537}，然后向东进入东部丛林。水晶簇遍布环形山，很多在{area:537}周围：每种颜色多拿几个。{item:11316}鞭笞者和猛击者掉落花瓣；探险队的{item:11113}在东部丛林的一处废弃营地里。",
 	-- ["grind on {npc:5458} at {area:982}, {zone:1446}"] = "在{zone:1446}的{area:982}刷{npc:5458}",
 }
