@@ -4954,6 +4954,13 @@ fileDataID from wago.tools into `data/sources/casc` (local, never shipped):
   ground and 60 yd into water; landing only on stable ground), swims and
   lifts (elevator objects of `data/forever` at their car's travel from the
   client's TransportAnimation); regions; a per-tile graph per movement class.
+  Reviewed openings (`geom/openings.json`): a WMO door narrower than about
+  three yards can lose to the columns when a jamb's moulding or reveal lies
+  on its column centre lines, so each listed portal (by WMO and MOPT index,
+  in every placement of that WMO) is cut out after rasterising: the columns
+  whose centre lies within its span and `depth` yards of its plane lose
+  their spans and walls from just above its bottom to its top (Brill's town
+  hall, whose only way in is a 2.9 yd door into its tower room, #366).
   Fatigue water is never swum: MH2O's deep quads (the server's fatigue; a
   chunk of ocean without attributes is deep throughout, `geom/mh2o.js`)
   give a blocked swim surface (`SWIM | BLOCKED`), so no route crosses open

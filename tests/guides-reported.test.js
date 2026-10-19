@@ -602,6 +602,20 @@ test(`${DUROTAR}: AndarKerran's report: A Pain in the Neck is not offered to a T
 	assert.deepEqual(painInTheNeck({ after: 'stub.world.learnSkill(333, "Enchanting", 1, 75)' }), offered);
 });
 
+// --- Durotar (defect, #357): The Admiral's Orders (830) starts from the Aged
+// Envelope in Benedict's Chest, opened with Benedict's Key. A player who took
+// the quest before the route reached Tiragarde Keep holds neither: the
+// envelope went into the quest, the key into the chest. Benedict is a kill of
+// Riders on the Storm (784.3), so his key needs no goal of its own.
+test(`${DUROTAR}: defect's report (#357): with The Admiral's Orders taken, Tiragarde Keep waits for neither Benedict's Key nor the Aged Envelope`, { skip }, () => {
+	const s = compiled(DUROTAR).steps.findIndex((step) => step.goals.some((g) => g.t === 'accept' && g.quest === 830)) + 1;
+	assert.ok(s > 0, 'a step takes 830');
+	const view = stepView(DUROTAR, TROLL_WARRIOR, s, 'w.accept(830, {})');
+	const open = view.goals.filter((g) => g.t === 'collect' && !g.quest && g.status !== 'done');
+	assert.deepEqual(open, [], 'no bag collect left open once 830 is in the log');
+	assert.ok(goals(DUROTAR).some(({ s: n, goal }) => n === s && goal.t === 'kill' && goal.npc === 3192), 'Benedict is still a kill of the step');
+});
+
 // Recipe of the Kaldorei (4161) is offered to cooks only (QuestieDB's Forever
 // store: Cooking 1): Teldrassil teaches Cooking at Zarrin's door first.
 test(`${TELDRASSIL}: Recipe of the Kaldorei is taken after the guide teaches Cooking`, { skip }, () => {
