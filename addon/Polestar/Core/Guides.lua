@@ -153,6 +153,8 @@ local REQUIRED = {
 	buy = { item = isNum, itemName = isStr },
 	vendor = {},
 	level = { level = isNum },
+	money = { money = isNum },
+	task = { text = isStr },
 	note = { text = isStr },
 	skill = { skill = isStr, level = isNum },
 	learn = { spell = isNum, spellName = isStr },
@@ -218,6 +220,8 @@ local function checkWhen(list)
 		if k == "level" then
 			if not (WHEN_OPS[p.op] and isNum(p.n)) then return false end
 			if p.frac ~= nil and not isFrac(p.frac) then return false end
+		elseif k == "money" then
+			if not (WHEN_OPS[p.op] and isNum(p.n)) then return false end
 		elseif k == "onquest" then
 			if type(p.q) ~= "table" or #p.q == 0 then return false end
 			for j = 1, #p.q do
@@ -440,7 +444,7 @@ Guides.Validate = validate
 ---------------------------------------------------------------------------
 
 -- Every format Polestar has shipped (docs/PACK_FORMAT.md, "Versioning").
-Guides.FORMATS = { [1] = true, [2] = true, [3] = true, [4] = true }
+Guides.FORMATS = { [1] = true, [2] = true, [3] = true, [4] = true, [5] = true }
 Guides.RESERVED = { guides = true, forever = true, lookup = true, draft = true, polestar = true, imported = true }
 local OFFICIAL_ADDON = "Polestar_Guides"
 local REQUIRED_META = { "addon", "title", "author", "version", "license" }

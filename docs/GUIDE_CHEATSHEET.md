@@ -109,6 +109,8 @@ Before the first `step`. `guide`, `title`, `levels` and `zone` are required.
 | `train <npc>` | Visit that trainer | `train 911 only Warrior,Paladin` |
 | `vendor nearest` / `vendor <npc>` | Sell and repair, at the closest vendor or that one | `vendor nearest` |
 | `buy <item> ["Name"]` | Buy an item; `nearest` picks the closest vendor selling it | `buy 159 x5 nearest` |
+| `money <amount>` | Hold that much money (`1g50s`, `7s`, `25c` or copper); stays done for the rest of the step (needs Polestar 0.3.0) | `money 1s` |
+| `task "<text>"` | Something Polestar cannot see: the player ticks it, and it holds the step until then unless `optional` (needs Polestar 0.3.0) | `task "Tame a Venomtail Scorpid"` |
 
 ## Professions
 
@@ -151,6 +153,7 @@ the outcome stays.
 | Line | The step applies while | Example |
 |---|---|---|
 | `when level<N` (`<=`, `>`, `>=`) | the character's level compares so; N may be a point inside a level (`12.5`, `12+2500`) | `when level>=10` |
+| `when money<A` (`<=`, `>`, `>=`) | the character's money compares so (`1g50s`, `7s`, `25c` or copper); no `!` (needs Polestar 0.3.0) | `when money>=1s` |
 | `when onquest <quest>, ...` | any of the quests is in the log | `when onquest 783` |
 | `when complete <quest>` | the quest is ready to turn in | `when complete 7` |
 | `when turnedin <quest>` | the quest is handed in | `when !turnedin 9201` |

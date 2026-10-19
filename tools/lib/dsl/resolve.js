@@ -847,9 +847,9 @@ function checkLabels(steps, err) {
 }
 
 // Goals Polestar checks off only on the step the route is on: arrivals, NPC
-// visits, flights, hearths, and kills, clicks and uses without a quest (the
-// player ticks those). In an along step they never check off.
-const ON_STEP_ONLY = new Set(['goto', 'talk', 'hearth', 'getfp', 'fly', 'vendor']);
+// visits, flights, hearths, and tasks and kills, clicks and uses without a
+// quest (the player ticks those). In an along step they never check off.
+const ON_STEP_ONLY = new Set(['goto', 'talk', 'hearth', 'getfp', 'fly', 'vendor', 'task']);
 function onStepOnly(goal) {
 	if (ON_STEP_ONLY.has(goal.t)) return true;
 	if (goal.t === 'train') return goal.skillLine === undefined;
@@ -910,6 +910,10 @@ function resolveWhen(list, zoneId, levels, data, warn) {
 				w.op = p.op;
 				w.n = p.n;
 				if (p.frac) w.frac = p.frac;
+				break;
+			case 'money':
+				w.op = p.op;
+				w.n = p.n;
 				break;
 			case 'onquest':
 			case 'complete':
@@ -1420,7 +1424,11 @@ function resolveGoal(g, zoneMap, prev, data, err, warn, ctx = { sides: ['Allianc
 			goal.level = g.level;
 			if (g.frac) goal.frac = g.frac;
 			break;
+		case 'money':
+			goal.money = g.money;
+			break;
 		case 'note':
+		case 'task':
 			break;
 		case 'goto':
 			break;

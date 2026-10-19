@@ -284,7 +284,8 @@ emit({
 	ok = V(step({ { k = "level", op = "<", n = 3 }, { k = "onquest", q = { 7 } }, { k = "has", item = 159 }, { k = "zone", name = "Elwynn Forest" } })) or false,
 	empty = V(step({})),
 	op = V(step({ { k = "level", op = "=", n = 3 } })),
-	kind = V(step({ { k = "money", n = 3 } })),
+	kind = V(step({ { k = "weather", n = 3 } })),
+	money = V(step({ { k = "money", n = 3 } })),
 	quests = V(step({ { k = "onquest", q = 7 } })),
 	place = V(step({ { k = "bound" } })),
 })
@@ -295,6 +296,7 @@ emit({
 		empty: 'step 1: bad when',
 		op: 'step 1: bad when',
 		kind: 'step 1: bad when',
+		money: 'step 1: bad when',
 		quests: 'step 1: bad when',
 		place: 'step 1: bad when',
 	});

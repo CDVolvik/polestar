@@ -19,7 +19,7 @@ const WHEN_KEYS = ['k', 'neg', 'op', 'n', 'frac', 'q', 'item', 'name', 'area', '
 // goal without them is emitted as before.
 const GOAL_KEYS = [
 	't', 'class', 'spell', 'spellName', 'faction', 'factionName', 'standing', 'achievement', 'achievementName', 'criteria',
-	'quest', 'title', 'target', 'npc', 'npcName', 'object', 'objName', 'item', 'itemName', 'count', 'oi', 'skill', 'skillLine', 'rank', 'rankMax', 'level', 'frac', 'untilSkill',
+	'quest', 'title', 'target', 'npc', 'npcName', 'object', 'objName', 'item', 'itemName', 'count', 'oi', 'skill', 'skillLine', 'rank', 'rankMax', 'level', 'frac', 'money', 'untilSkill',
 	'reagents', 'location', 'minLevel', 'qlvl', 'pre', 'preAll', 'closedBy', 'preTitles', 'text', 'node', 'area', 'map', 'x', 'y', 'z', 'f', 'r', 'spots', 'spread', 'optional', 'only', 'profLine', 'profName', 'profRank', 'note',
 	'from', 'fromKind', 'fromRank', 'fromFaction', 'fromAlso', 'fromId', 'fromAlsoId', 'fromNpcs', 'candidates', 'rewards', 'group', 'direct', 'escort',
 ];

@@ -143,6 +143,8 @@ A step must contain at least one goal.
 | `buy` | `<itemId> ["Item name"]` | Use `xN` for quantity. Add `nearest` to send the player to the closest own-faction vendor selling it. |
 | `vendor` | `[npcId]` or `nearest` | Sell junk / repair; `nearest` picks the closest own-faction vendor. |
 | `level` | `<N>`, `<N>.<fraction>` or `<N>+<XP>` | Reach level N (grind if needed). `level 12.5` reaches halfway through level 12 and `level 12+2500` 2500 XP into it (converted to a share of the level with the 1.12 XP table): done at level 12 with that share of the level's XP, or at any later level, and the guide window reads "Reach level 12 (50%)". The share is kept to whole percent; one that rounds to 0% or 100% is an error (write `level 12` or `level 13`), as is XP past the level's total; `level 12.0` is plain level 12. A guide that uses either form is written in pack format 4 (see "Conditions checked during play"). |
+| `money` | `<amount>` | Hold that much money: copper (`money 350`) or `1g50s` / `7s` / `25c`. Done once the bags hold it, and it stays done for the rest of its step if the money is spent before the step's other goals are done; the guide window reads "Have at least 1s 50c". For "loot until you can afford it"; pack format 5. |
+| `task` | `"<text>"` | Something to do that Polestar cannot see (a logout skip, a tame, an emote): it holds the step until the player ticks it in the guide window; with `optional` it never holds it. Quotes optional when nothing follows the text. A task has a place with `@x,y` for the arrow. In an `along` step it never checks off (see "Along the way"). Pack format 5. |
 | `note` | `<text...>` | Informational line; never blocks. Quotes optional. |
 | `skill` | `<Profession> <N>` | Reach skill rank N (`Alchemy`, `Blacksmithing`, `Enchanting`, `Engineering`, `Herbalism`, `Leatherworking`, `Mining`, `Skinning`, `Tailoring`, `Cooking`, `Fishing`, `First Aid`, quoted when multi-word). |
 | `learn` | `<spellId> ["Name"]` | Learn a recipe or spell (trainer or recipe item); name from `professions.json`. A trainer-taught spell points at every trainer of its rank (a smart target; `npc <id>` fixes one); `learn <spellId> nearest` for a recipe sold by vendors sends the player to the closest own-faction vendor of the recipe item. |
@@ -232,6 +234,7 @@ step Back to Gornek
 | Predicate | Holds when |
 |---|---|
 | `level<N`, `level<=N`, `level>N`, `level>=N` | the character's level compares so with N (1-60); `level` takes no `!`. N may be a point inside a level as for the `level` goal: `when level<12.5` holds below level 12 and in its first half |
+| `money<A`, `money<=A`, `money>A`, `money>=A` | the character's money compares so with A, written as for the `money` goal (`when money>=1s`: "only if you can afford it"); `money` takes no `!` |
 | `onquest <quest>[,<quest>...]` | any of the quests is in the log |
 | `complete <quest>` | the quest is in the log, ready to turn in |
 | `turnedin <quest>` | the quest is handed in |
@@ -292,8 +295,9 @@ time. A subzone is looked up in the zone where the guide ends.
 
 A pack with a `when` anywhere (on a step or a `next` option), or a `level`
 goal inside a level (`level 12.5`), is written in pack format 4, which
-Polestar 0.2.6 and later read (docs/PACK_FORMAT.md); a pack without stays
-readable by older versions.
+Polestar 0.2.6 and later read. A `when money` predicate (above) writes format 5
+(Polestar 0.3.0 and later), because 0.2.6 knows `when` but not the `money`
+predicate; `money` and `task` goals also need format 5 (docs/PACK_FORMAT.md).
 
 ## Along the way
 
@@ -870,18 +874,21 @@ Locations are written as the game names them; `polestar find --kind inn` and
 with coordinates). `sethome nearest` binds at the nearest inn of the
 player's faction instead.
 
-### Errands: `train`, `buy`, `vendor`, `level`, `note`
+### Errands: `train`, `buy`, `vendor`, `level`, `money`, `task`, `note`
 
 ```
   vendor nearest
   buy 159 x5 nearest                  -- Refreshing Spring Water
   train class
   level 9
+  money 1s                            -- loot until you can afford the next spell
+  task "Tame a Venomtail Scorpid" only Hunter
   note You can train First Aid with any trainer of it in a city.
 ```
 
 `nearest` and `train class` pick the trainer or vendor at runtime, by the
-player's faction and where they stand.
+player's faction and where they stand. A `task` is for what Polestar cannot
+see: the player ticks it; a `note` never holds the step at all.
 
 ### Professions: `train`, `learn`, `craft`, `skill`
 

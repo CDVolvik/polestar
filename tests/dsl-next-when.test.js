@@ -49,7 +49,7 @@ test('`next` repeats: each line adds its guides in order, `next <id> when ...` w
 test('a malformed conditional `next` is an error at its line', () => {
 	const bad = {
 		'next t/b when': '`when` needs a predicate',
-		'next t/b when money<1': 'unknown `when` predicate "money<1"',
+		'next t/b when weather<1': 'unknown `when` predicate "weather<1"',
 		'next t/b when level<70': 'level 70 is out of range (1-60)',
 		'next "t/b" when level<5': 'malformed guide id ""t/b"" in `next`',
 		'next T/B when level<5': 'malformed guide id "T/B" in `next`',

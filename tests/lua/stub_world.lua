@@ -11,7 +11,7 @@
 --   w.turnIn(7)
 --   w.repeatable[308] = true               -- a turn-in never flags it completed
 --   w.complete({ 783, 7 })                 -- already turned in (no events): alts
---   w.setLevel(4); w.setXP(200); w.addItem(750, 2); w.bind("Goldshire"); w.setZone("Elwynn Forest", "Goldshire")
+--   w.setLevel(4); w.setXP(200); w.addItem(750, 2); w.bind("Goldshire"); w.setZone("Elwynn Forest", "Goldshire"); w.setMoney(150)
 --   w.gossip(197, { available = { { questID = 7, title = "..." } }, active = { { questID = 783, isComplete = true } }, options = { { name = "Train me." } } })
 --   w.questDetail(197, 7, { auto = false, pvp = false, objectives = { 10 } })
 --   w.questProgress(197, 783); w.questComplete(197, 783, { choices = 2, money = 0 })
@@ -41,6 +41,7 @@ local world = {
 	facing = 0,
 	onTaxi = false,
 	bindLocation = "Northshire Abbey",
+	money = 0, -- copper
 	zone = "Elwynn Forest", subzone = "Northshire Valley",
 	inInstance = false,
 	indoors = false, -- IsIndoors(): in a cave, mine or building
@@ -118,6 +119,12 @@ end
 function world.bind(location)
 	world.bindLocation = location
 	fire("HEARTHSTONE_BOUND")
+end
+
+-- The character's money, in copper.
+function world.setMoney(copper)
+	world.money = copper
+	fire("PLAYER_MONEY")
 end
 
 local function logChanged(q)
@@ -373,6 +380,7 @@ function GetRealZoneText() return world.zone or "" end
 function GetSubZoneText() return world.subzone or "" end
 function GetMinimapZoneText() return (world.subzone ~= "" and world.subzone) or world.zone or "" end
 function GetBindLocation() return world.bindLocation or "" end
+function GetMoney() return world.money or 0 end
 function GetPlayerFacing() if world.inInstance then return nil end return world.facing end
 function IsInInstance() return world.inInstance, world.inInstance and "party" or "none" end
 

@@ -622,6 +622,8 @@ local function act(i, g, r)
 		-- A point inside the level ("level 12.5"): that share of its XP.
 		local want = r and r.frac and w.level == r.level and math.ceil(r.frac * w.xpMax)
 		if want and w.xp < want then w.setXP(want) end
+	elseif t == "money" then
+		if w.money < (r.money or 0) then w.setMoney(r.money) end
 	elseif t == "skill" then
 		local line = r.skillLine or r.skill
 		ensureSkill(r, line)

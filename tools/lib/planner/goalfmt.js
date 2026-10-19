@@ -34,6 +34,8 @@ const POSITIONAL_ID = {
 };
 const QUEST_POSITIONAL = ['accept', 'turnin', 'complete'];
 const XY_POSITIONAL = ['goto', 'explore'];
+// Verbs whose one positional is their text: written bare when nothing follows.
+const TEXT_POSITIONAL = new Set(['note', 'task']);
 const MOD_WORD_SET = new Set(MOD_WORDS);
 
 function quote(s) {
@@ -223,7 +225,11 @@ function positionalTokens(verb, f) {
 			if (f.levelXp === undefined && f.frac !== undefined && !(f.frac > 0 && f.frac < 1)) throw new Error('the share of the level (`frac`) must be between 0 and 1');
 			if (f.level !== undefined) out.push(`${f.level}${f.levelXp !== undefined ? `+${f.levelXp}` : f.frac !== undefined ? String(f.frac).replace(/^0(?=\.)/, '') : ''}`);
 			break;
+		case 'money':
+			if (f.money !== undefined) out.push(moneyText(f.money));
+			break;
 		case 'note':
+		case 'task':
 			// Written by formatGoal: bare only when nothing follows.
 			break;
 		case 'skill':
@@ -298,7 +304,7 @@ function formatGoal(fields) {
 	if (f.rewardMoney !== undefined) push('money', `money ${moneyText(f.rewardMoney)}`);
 	if (f.direct && verb === 'turnin') push('direct', 'direct');
 	if (f.group) push('group', f.group.size !== undefined ? `group ${f.group.size}` : 'group');
-	const label = f.text !== undefined && !XY_POSITIONAL.includes(verb) && verb !== 'note' ? quote(f.text) : null;
+	const label = f.text !== undefined && !XY_POSITIONAL.includes(verb) && !TEXT_POSITIONAL.has(verb) ? quote(f.text) : null;
 	if (f.optional) push('optional', 'optional');
 	const onlyText = f.onlyText !== undefined ? String(f.onlyText) : f.only ? conditionText(f.only) : '';
 	if (onlyText) push('only', `only ${onlyText.trim().replace(/\s*,\s*/g, ',')}`);
@@ -320,11 +326,11 @@ function formatGoal(fields) {
 		mods.splice(at, 0, { mod: 'text', text: label });
 	}
 	let line = [verb, ...pos, ...mods.map((m) => m.text)].join(' ');
-	if (verb === 'note' && f.text !== undefined) {
-		const bare = `note ${f.text}`;
+	if (TEXT_POSITIONAL.has(verb) && f.text !== undefined) {
+		const bare = `${verb} ${f.text}`;
 		const lex = lexLine(bare);
 		const plain = !mods.length && !lex.error && lex.note === null && lex.tokens.length > 1 && !lex.tokens[1].quoted && bare.slice(lex.tokens[1].start, lex.end).trim() === f.text;
-		line = plain ? bare : ['note', quote(f.text), ...mods.map((m) => m.text)].join(' ');
+		line = plain ? bare : [verb, quote(f.text), ...mods.map((m) => m.text)].join(' ');
 	}
 	if (f.note !== undefined) line += ` -- ${f.note}`;
 	return line;
@@ -383,6 +389,8 @@ const POSITIONAL = {
 	getfp: [fld('location', 'text', 'Flight point', { required: true, kind: 'flight' })],
 	fly: [fld('location', 'text', 'Destination', { required: true, kind: 'flight' })],
 	level: [fld('level', 'int', 'Level', { required: true }), fld('frac', 'number', 'Share of the level (0-1)', { required: false }), fld('levelXp', 'int', 'XP into the level', { required: false })],
+	money: [fld('money', 'int', 'Amount in copper', { required: true })],
+	task: [fld('text', 'text', 'What to do', { required: true })],
 	note: [fld('text', 'text', 'Text', { required: true })],
 	skill: [fld('skill', 'text', 'Profession', { required: true }), fld('level', 'int', 'Skill rank', { required: true })],
 	learn: [idf('spell', 'Spell', true), fld('spellName', 'text', 'Spell name', { required: false })],

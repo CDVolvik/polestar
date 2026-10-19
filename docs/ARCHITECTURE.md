@@ -187,7 +187,7 @@ Modules keep their own keys beside these (`rares`, `instances`, `names` account-
 `manual` holds the player's ticks (`"tick"`, any goal but a note) **and**
 latched results (`true`): NPC interactions (talk/train/vendor) are latched
 during their step, and conditions that can stop holding later (goto,
-sethome, hearth, fly, getfp, buy, bag-count collect, `train class` with
+sethome, hearth, fly, getfp, buy, bag-count collect, `money`, `train class` with
 nothing to learn) are latched once the route moves past their step, so
 leaving a zone, rebinding the hearthstone or levelling up never drags the
 guide backwards. A hearth or fly that landed is also latched within its step
@@ -1085,8 +1085,8 @@ Polestar.Engine.GetProgress() -> doneSteps, totalSteps
   GUIDE_FORMAT, "Conditions checked during play") applies only while every
   predicate holds (`Own.whenFails`, `Own.predicateHolds`): the level, quests
   in the log, ready to turn in, handed in or available (an accept's own
-  test: level, `pre`/`preAll` through `missingPre`, `closedBy`), an item
-  count in the bags, the zone or subzone text, the bind location (place
+  test: level, `pre`/`preAll` through `missingPre`, `closedBy`), the money
+  held (`Compat.GetMoney`, copper), an item count in the bags, the zone or subzone text, the bind location (place
   names as the area's name in the client's language, `Compat.GetAreaName`,
   else as written). `stepApplies` reads them, so such a step counts as one
   for other characters while they fail, and a turn-in whose only accept sits
@@ -1102,7 +1102,7 @@ Polestar.Engine.GetProgress() -> doneSteps, totalSteps
   `ResetProgress` forgets them; a pack update moves them with the steps
   (`Own.remap`). The live state they read already re-evaluates the guide
   (quest log, `BAG_UPDATE_DELAYED`, zone changes, `PLAYER_LEVEL_UP`,
-  `PLAYER_XP_UPDATE`, `HEARTHSTONE_BOUND`). A `level` predicate with `frac`
+  `PLAYER_XP_UPDATE`, `HEARTHSTONE_BOUND`, `PLAYER_MONEY`). A `level` predicate with `frac`
   (`when level>=12.5`) compares the level plus the share of it done
   (XP / XPMax) with `n + frac`.
 - **Along the way.** A step with `along` (format 4; GUIDE_FORMAT, "Along
@@ -1387,7 +1387,7 @@ Step view (render-ready; the UI never re-derives status):
       subjectKind = "quest" | "npc" | "item" | "place" | "object" | "level" | "text",
       detail = "for Kobold Camp Cleanup",  -- or nil
       progress = { cur = 3, max = 10 } | nil,
-      manual = true | false,               -- UI shows a checkbox when true
+      manual = true | false,               -- UI shows a checkbox when true (a `task` always: done only by the tick)
       optional = false, note = nil,
       map = 1429, x = 47.6, y = 35.1, f = nil,   -- when the goal has coordinates
       quest = 7, npc = 6, item = nil,
