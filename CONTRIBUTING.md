@@ -258,7 +258,11 @@ one, start it with `@AGENTS.md`. The rules that matter most:
 - Never claim a check ran when it did not, and never invent quest ids,
   coordinates or names.
 - You answer for what your agent opens, pushes or posts. Read its comments
-  before they go up, and say in the pull request that an agent helped.
+  before they go up, and say in the pull request that an agent helped — tick
+  the checkbox and fill in the exact model name and version and the app or
+  CLI (for example "Claude Sonnet 4.6 via Claude Code", or "GPT-4o via
+  Codex"). The maintainer uses that to decide how carefully to re-verify the
+  work.
 
 ### Installing the skills
 
@@ -334,6 +338,11 @@ unexplained.
 Then the change is reviewed for correctness (tests, the game's limits,
 Options toggles off by default for anything that spends, equips or acts for
 the player) and merged into its base branch.
+
+**AI-assisted pull requests:** the model named in the "Model and tool" line
+sets how carefully the work is re-verified. Pull requests from smaller or
+unnamed models have their claims, generated files and tests re-run before
+merge; pull requests that leave the line blank are treated the same way.
 
 ## Licence
 

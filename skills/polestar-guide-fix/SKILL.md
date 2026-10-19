@@ -145,5 +145,7 @@ Guides.lua to the maintainer.
   its evidence, and which checks ran and which did not.
 - Issues: write "closes #N", once for each issue the pattern fix covers.
   That is what lists the pull request on each issue.
-- Say that an AI agent wrote or helped with it. The person running the
-  agent reads the diff and the description before opening the pull request.
+- Tick the AI-agent checkbox and fill in "Model and tool: <model name and
+  version> via <app or CLI>" (for example "Claude Sonnet 4.6 via Claude
+  Code"). The person running the agent reads the diff and the description
+  before opening the pull request.

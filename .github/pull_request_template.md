@@ -21,3 +21,4 @@
 - [ ] Not run, and why:
 - [ ] A changelog fragment in `changes/` (`node tools/polestar.js changelog add`), crediting the reporter
 - [ ] An AI agent wrote or helped with this
+  - Model and tool: ____ (exact model name and version, and the app or CLI used; list several if more than one was involved)

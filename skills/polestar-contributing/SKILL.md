@@ -143,7 +143,10 @@ A security problem goes in a private report, never an issue (`SECURITY.md`).
 
 - A human reads every comment before it is posted. Don't post as, or for,
   the maintainers.
-- Say in the pull request that an AI agent wrote or helped with it; the
-  template asks.
+- Tick the AI-agent checkbox in the pull request template and fill in
+  "Model and tool: <model name and version> via <app or CLI>" (for example
+  "Claude Sonnet 4.6 via Claude Code", or "GPT-4o via Codex"). List every
+  model that helped if more than one did. Leaving the line blank causes the
+  maintainer to re-verify the work as if the model is unknown.
 - Comment voice: plain, warm, short, evidence first. Don't promise a release
   or a date.
