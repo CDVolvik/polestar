@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Korean words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Zoram'gar Outpost
@@ -27,8 +28,8 @@ return {
 	["The Sapphires are blue crystals on the walls of the tunnels leading to the {area:2797} portal, underground and outside the instance: swim down from the pit, under the wall, into the cave. The satyrs and naga in the tunnels are elite: grouping up is advised. The crystals respawn quickly, so there is no need to go deep."] = "사파이어는 {area:2797} 차원문으로 이어지는 터널 벽에 박힌 푸른 수정으로, 인스턴스 밖 지하에 있습니다. 구덩이에서 헤엄쳐 내려가 벽 아래를 지나 동굴로 들어가세요. 터널의 사티로스와 나가는 정예입니다. 파티를 권장합니다. 수정은 빨리 다시 생기므로 깊이 들어갈 필요는 없습니다.",
 
 	-- Step 5: Zoram'gar Outpost
-	-- {area:2797} Blackfathom Deeps
-	["Je'neu offers a {area:2797} quest next; leave it unless you have a group."] = "다음으로 제네우가 {area:2797} 퀘스트를 줍니다. 파티가 없다면 두세요.",
+	-- {npc:12736} Je'neu Sancrea · {area:2797} Blackfathom Deeps
+	["{npc:12736} offers a {area:2797} quest next; leave it unless you have a group."] = "다음으로 {npc:12736}이(가) {area:2797} 퀘스트를 줍니다. 파티가 없다면 두세요.",
 
 	-- Step 6: Thistlefur Village
 	["East of Zoram'gar, the Thistlefur furbolgs fill the village and the hills around their hold."] = "조람가르 동쪽에서는 엉겅퀴일족 털보숭이가 마을과 소굴 주변 언덕을 가득 메우고 있습니다.",
@@ -61,7 +62,7 @@ return {
 	["{npc:12759}, a corrupted water elemental, drifts in {area:421}. Her {item:16408} starts a quest for Splintertree."] = "타락한 물의 정령 {npc:12759}은(는) {area:421}을(를) 떠다닙니다. 그녀의 {item:16408}은(는) 토막나무 주둔지 퀘스트를 시작합니다.",
 
 	-- Step 13: King of the Foulweald
-	-- {area:421} Mystral Lake · {item:16972} Karang's Banner · {object:178206} Foulweald Totem Mound · {npc:12918} Chief Murgut
+	-- {area:421} Mystral Lake · {item:16972} Karang's Banner · {object:178206} Foulweald Totem Mound (no name in this language: may be words) · {npc:12918} Chief Murgut
 	["The Foulweald furbolgs hold the woods east of {area:421}, south of the road. Place {item:16972} on the {object:178206} and guard it: the furbolgs come to tear it down. {npc:12918} comes last; his totem drops in the basket."] = "썩은나무일족 털보숭이는 {area:421} 동쪽, 길 남쪽의 숲을 차지하고 있습니다. {object:178206}에 {item:16972}을(를) 놓고 지키세요. 털보숭이들이 깃발을 쓰러뜨리러 옵니다. {npc:12918}은(는) 마지막에 오며, 그의 토템은 바구니에 떨어집니다.",
 
 	-- Step 14: Torek's Assault
@@ -104,8 +105,8 @@ return {
 
 	-- Step 24: The Earthen Ring
 	["The Earthen Ring"] = "대지 고리회",
-	-- {area:1638} Thunder Bluff · {npc:264074} Mazu'kon · {npc:264072} Yorn Grimtotem · {npc:259118} Muln Earthfury
-	["Take a lift down from {area:1638}. The Earthen Ring camp stands north of the bluffs: {npc:264074}, {npc:264072} and {npc:259118}."] = "{area:1638}에서 승강기를 타고 내려가세요. 대지 고리회 야영지는 절벽 북쪽에 있습니다: {npc:264074}, {npc:264072}, {npc:259118}.",
+	-- {zone:1456} Thunder Bluff · {npc:264074} Mazu'kon · {npc:264072} Yorn Grimtotem · {npc:259118} Muln Earthfury
+	["Take a lift down from {zone:1456}. The Earthen Ring camp stands north of the bluffs: {npc:264074}, {npc:264072} and {npc:259118}."] = "{zone:1456}에서 승강기를 타고 내려가세요. 대지 고리회 야영지는 절벽 북쪽에 있습니다: {npc:264074}, {npc:264072}, {npc:259118}.",
 
 	-- Step 25: Gloomrise
 	-- {area:17044} Gloomrise · {npc:264074} Mazu'kon · {item:273015} Toxin Extractor · {item:273181} Crystalline Silk · {npc:264082} Broodmother Valraxx · {item:273658} Bloody Parchment · {quest:96294} A Darker Truth
@@ -120,20 +121,18 @@ return {
 	["{item:273658}, from {npc:264082}"] = "{npc:264082}에게서 얻는 {item:273658}",
 
 	-- Step 26: The Earthen Ring
-	-- {area:1638} Thunder Bluff · {area:378} Camp Taurajo
-	["Back south to the camp, then up into {area:1638} for the flight to {area:378}."] = "남쪽 야영지로 돌아간 뒤, {area:1638}에 올라가 {area:378}(으)로 날아가세요.",
+	-- {zone:1456} Thunder Bluff · {area:378} Camp Taurajo
+	["Back south to the camp, then up into {zone:1456} for the flight to {area:378}."] = "남쪽 야영지로 돌아간 뒤, {zone:1456}에 올라가 {area:378}(으)로 날아가세요.",
 
 	-- Step 27: Brine
-	-- {area:1638} Thunder Bluff · {area:378} Camp Taurajo · {npc:5899} Brine · {area:1718} Great Lift
-	["Fly from {area:1638} to {area:378}. {npc:5899}'s hut stands on the ridge above the quilboar watering hole south of the camp, on the road to the {area:1718}."] = "{area:1638}에서 {area:378}(으)로 날아가세요. {npc:5899}의 오두막은 야영지 남쪽, {area:1718}(으)로 가는 길가의 가시멧돼지 물웅덩이 위 능선에 있습니다.",
+	-- {zone:1456} Thunder Bluff · {area:378} Camp Taurajo · {npc:5899} Brine · {area:1718} Great Lift
+	["Fly from {zone:1456} to {area:378}. {npc:5899}'s hut stands on the ridge above the quilboar watering hole south of the camp, on the road to the {area:1718}."] = "{zone:1456}에서 {area:378}(으)로 날아가세요. {npc:5899}의 오두막은 야영지 남쪽, {area:1718}(으)로 가는 길가의 가시멧돼지 물웅덩이 위 능선에 있습니다.",
 	-- {npc:5901} Islen Waterseer · {area:392} Ratchet
 	["for {npc:5901}, south of {area:392}: next guide"] = "{area:392} 남쪽의 {npc:5901}에게: 다음 가이드",
 
-	-- Step 28: The Great Lift
-	-- {area:1718} Great Lift
-	["The {area:1718}"] = "{area:1718}",
-	-- {area:1638} Thunder Bluff · {area:378} Camp Taurajo · {area:1718} Great Lift · {zone:1413} Barrens
-	["Fly from {area:1638} to {area:378} and take the road south to the {area:1718} at the bottom of the {zone:1413}."] = "{area:1638}에서 {area:378}(으)로 날아가 길을 따라 남쪽, {zone:1413} 맨 아래의 {area:1718}(으)로 가세요.",
+	-- Step 28: Great Lift
+	-- {zone:1456} Thunder Bluff · {area:378} Camp Taurajo · {area:1718} Great Lift · {zone:1413} Barrens
+	["Fly from {zone:1456} to {area:378} and take the road south to the {area:1718} at the bottom of the {zone:1413}."] = "{zone:1456}에서 {area:378}(으)로 날아가 길을 따라 남쪽, {zone:1413} 맨 아래의 {area:1718}(으)로 가세요.",
 	-- {npc:10079} Brave Moonhorn
 	["{npc:10079}, at the top of the lift"] = "승강기 꼭대기의 {npc:10079}",
 
@@ -144,7 +143,8 @@ return {
 	["{npc:10377}, by the wind rider master"] = "윈드라이더 조련사 옆의 {npc:10377}",
 	-- {npc:4877} Jandia · {area:487} Roguefeather Den
 	["{npc:4877}, the trade supplies vendor: the Screeching harpies of {area:487}"] = "교역품 상인 {npc:4877}: {area:487}의 회오리 하피",
-	["The Wanted poster beside Cliffwatcher"] = "절벽파수꾼 옆의 현상수배 게시판",
+	-- {npc:10537} Cliffwatcher Longhorn
+	["The Wanted poster beside {npc:10537}"] = "{npc:10537} 옆의 현상수배 게시판",
 
 	-- Step 30: Alien Egg
 	["Take the lift down. The egg lies in a nest on the canyon floor in one of three spots: south-east of the mesas (52.3,55.2), east (56.4,50.4) or south-west (37.6,56.1)."] = "승강기를 타고 내려가세요. 알은 협곡 바닥의 둥지에 있으며, 위치는 세 곳 중 하나입니다: 고원 남동쪽(52.3,55.2), 동쪽(56.4,50.4), 남서쪽(37.6,56.1).",
@@ -172,15 +172,15 @@ return {
 
 	-- Step 36: Lakota Windsong
 	-- {area:2097} Darkcloud Pinnacle · {npc:10646} Lakota Windsong · {npc:10896} Arnak Grimtotem
-	["Climb the path to the top of {area:2097}. {npc:10646} is held captive beside {npc:10896} (29): clear the guards and Arnak first, then free her and protect her on the walk down; Grimtotem ambushers come at you on the way."] = "길을 따라 {area:2097} 꼭대기로 올라가세요. {npc:10646}은(는) {npc:10896}(29) 옆에 붙잡혀 있습니다. 먼저 경비병과 아르낙을 처치한 뒤 그녀를 풀어 주고, 내려가는 동안 보호하세요. 가는 길에 그림토템부족 복병이 덤벼듭니다.",
+	["Climb the path to the top of {area:2097}. {npc:10646} is held captive beside {npc:10896} (29): clear the guards and {npc:10896} first, then free her and protect her on the walk down; Grimtotem ambushers come at you on the way."] = "길을 따라 {area:2097} 꼭대기로 올라가세요. {npc:10646}은(는) {npc:10896}(29) 옆에 붙잡혀 있습니다. 먼저 경비병과 {npc:10896}을 처치한 뒤 그녀를 풀어 주고, 내려가는 동안 보호하세요. 가는 길에 그림토템부족 복병이 덤벼듭니다.",
 
 	-- Step 37: Whitereach Post
 	-- {area:2237} Whitereach Post
 	["Follow the canyon west to {area:2237}."] = "협곡을 따라 서쪽의 {area:2237}(으)로 가세요.",
-	-- {area:1638} Thunder Bluff
-	["Motega's next quest, Sacred Fire, ends in {area:1638}, off this route. Skip it."] = "모테가의 다음 퀘스트인 신성한 불은 이 경로에서 벗어난 {area:1638}에서 끝납니다. 건너뛰세요.",
-	-- {npc:10720} Galak Assassin
-	["Kill the {npc:10720} that comes for Kanati"] = "카나티를 노리고 오는 {npc:10720}을(를) 처치하세요",
+	-- {npc:10428} Motega Firemane · {zone:1456} Thunder Bluff
+	["{npc:10428}'s next quest, Sacred Fire, ends in {zone:1456}, off this route. Skip it."] = "{npc:10428}의 다음 퀘스트인 신성한 불은 이 경로에서 벗어난 {zone:1456}에서 끝납니다. 건너뛰세요.",
+	-- {npc:10720} Galak Assassin · {npc:10638} Kanati Greycloud
+	["Kill the {npc:10720} that comes for {npc:10638}"] = "{npc:10638}을(를) 노리고 오는 {npc:10720}을(를) 처치하세요",
 
 	-- Step 38: Highperch
 	-- {area:482} Highperch · {npc:10427} Pao'ka Swiftmountain · {area:2237} Whitereach Post
@@ -191,8 +191,8 @@ return {
 	["South of Darkcloud, the harpies of {area:487}. {npc:4490} (31) walks among them: thin out the harpies around her before you pull her. The Screeching Harpies, Roguefeathers and Windcallers there are {npc:4877}'s."] = "먹구름 봉우리 남쪽에 {area:487}의 하피들이 있습니다. {npc:4490}(31)은(는) 그들 사이를 돌아다닙니다. 끌어오기 전에 주변 하피를 줄이세요. 그곳의 회오리 하피, 약탈자, 바람마녀는 {npc:4877}의 퀘스트 대상입니다.",
 
 	-- Step 43: Rok'Alim the Pounder
-	-- {area:482} Highperch · {npc:4499} Rok'Alim the Pounder
-	["Rok'Alim, a hard-hitting rock elemental, walks the cliffs of {area:482}. {npc:4499} is elite: grouping up is advised."] = "강하게 때리는 바위 정령 로크알림이 {area:482} 절벽을 돌아다닙니다. {npc:4499}은(는) 정예입니다. 파티를 권장합니다.",
+	-- {npc:4499} Rok'Alim the Pounder · {area:482} Highperch
+	["{npc:4499}, a hard-hitting rock elemental, walks the cliffs of {area:482}. {npc:4499} is elite: grouping up is advised."] = "강하게 때리는 바위 정령 {npc:4499}이 {area:482} 절벽을 돌아다닙니다. {npc:4499}은(는) 정예입니다. 파티를 권장합니다.",
 
 	-- Step 44: Mirage Raceway
 	-- {area:2240} Mirage Raceway
@@ -214,12 +214,9 @@ return {
 	["The next guide flies on from here to {zone:1454}."] = "다음 가이드는 여기서 {zone:1454}(으)로 날아갑니다.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Follow the main road east past {area:415} (Alliance: keep to the road). Ursangous, a big grizzly, roams the {area:418} south of the road, west of {area:421}. His paw starts the next hunt quest."] = "큰길을 따라 동쪽으로 {area:415}을(를) 지나가세요(얼라이언스: 길에서 벗어나지 마세요). 커다란 회색곰 우르산고우스는 길 남쪽, {area:421} 서쪽의 {area:418}을(를) 돌아다닙니다. 그의 발이 다음 사냥 퀘스트를 시작합니다.",
 	-- ["Shadumbra"] = "샤둠브라",
-	-- ["Shadumbra, a shadow panther, stalks the woods around {area:426}, west of the Felmusk camp. Her head starts the next hunt quest."] = "그림자 표범 샤둠브라는 검은유혹의 사티로스 야영지 서쪽, {area:426} 주변 숲에 숨어 있습니다. 그녀의 머리가 다음 사냥 퀘스트를 시작합니다.",
 	-- ["Sharptalon"] = "뾰족발톱",
-	-- ["Sharptalon, a big nightsaber, prowls the woods south-east of the Warsong lumber camp. Her claw starts the next hunt quest."] = "커다란 밤호랑이 뾰족발톱은 전쟁노래부족 벌목기지 남동쪽 숲을 돌아다닙니다. 그녀의 발톱이 다음 사냥 퀘스트를 시작합니다.",
+	-- ["The {area:1718}"] = "{area:1718}",
 	-- ["Tideress"] = "타이더레스",
-	-- ["Tideress, a corrupted water elemental, drifts in {area:421}. Her {item:16408} starts a quest for Splintertree."] = "타락한 물의 정령 타이더레스는 {area:421}을(를) 떠다닙니다. 그녀의 {item:16408}은(는) 토막나무 주둔지 퀘스트를 시작합니다.",
 	-- ["Ursangous"] = "우르산고우스",
 }

@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Russian (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Russian words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Kadrak
@@ -20,8 +21,8 @@ return {
 	-- Step 4: Night Run
 	-- {npc:12696} Senani Thunderheart · {area:428} Night Run
 	["{npc:12696} stands at {area:428}, the Warsong camp just north-east of Splintertree, beside the hunt board."] = "{npc:12696} стоит здесь: {area:428}, лагерь Песни Войны чуть к северо-востоку от заставы Расщепленного Дерева, у доски охоты.",
-	-- {zone:1440} Ashenvale
-	["Senani's hunt targets (Ursangous, Shadumbra, Sharptalon) are for the next {zone:1440} visit, at 27."] = "Цели охоты Сенани (Топтыжень, Тенумбра, Острокоготь) – для следующего визита в зону {zone:1440}, на 27-м уровне.",
+	-- {npc:12696} Senani Thunderheart · {zone:1440} Ashenvale
+	["{npc:12696}'s hunt targets (Ursangous, Shadumbra, Sharptalon) are for the next {zone:1440} visit, at 27."] = "Цели охоты {npc:12696} (Топтыжень, Тенумбра, Острокоготь) – для следующего визита в зону {zone:1440}, на 27-м уровне.",
 
 	-- Step 5: Warsong Outrider
 	-- {npc:12864} Warsong Outrider · {area:428} Night Run · {area:430} Satyrnaar
@@ -33,8 +34,8 @@ return {
 	["On the ride west, {npc:267214} is stuck in a ravine south of the main road, south-east of {area:415}. Shadowhorn Stags and Ashenvale Bears roam the woods all around it."] = "По пути на запад: {npc:267214} застрял в овраге к югу от главной дороги, к юго-востоку от места {area:415}. Вокруг бродят тенероги ({npc:3817}) и медведи Ясеневого леса ({npc:3809}).",
 
 	-- Step 7: A Void Path
-	-- {npc:271181} Eye of Kilrogg
-	["Steer Va'xug's {npc:271181} out of the ravine to the main road within four minutes; if the channel breaks, ask Va'xug again."] = "Выведите NPC {npc:271181} Ва'зага из оврага к главной дороге за четыре минуты; если поддержание прервется, попросите Ва'зага снова.",
+	-- {npc:267214} Va'xug Firefure · {npc:271181} Eye of Kilrogg
+	["Steer {npc:267214}'s {npc:271181} out of the ravine to the main road within four minutes; if the channel breaks, ask {npc:267214} again."] = "Выведите NPC {npc:271181} {npc:267214} из оврага к главной дороге за четыре минуты; если поддержание прервется, попросите {npc:267214} снова.",
 	-- {npc:271181} Eye of Kilrogg
 	["{npc:271181}, on the road"] = "{npc:271181}, на дороге",
 
@@ -71,8 +72,8 @@ return {
 	-- Step 16: Sun Rock Retreat
 	-- {area:460} Sun Rock Retreat
 	["Follow the road west to {area:460}."] = "Идите по дороге на запад: {area:460}.",
-	-- {npc:11860} Maggran Earthbinder · {object:19844} Great Lift
-	["{npc:11860}: Grish is at the {object:19844}, in the next guide"] = "{npc:11860}: Гриш – {object:19844}, в следующем гайде",
+	-- {npc:11860} Maggran Earthbinder · {area:1718} Great Lift
+	["{npc:11860}: Grish is at the {area:1718}, in the next guide"] = "{npc:11860}: Гриш – {area:1718}, в следующем гайде",
 	-- {npc:11860} Maggran Earthbinder
 	-- plural, as words: Glittering Sunstones = {item:277936} Glittering Sunstone
 	["{npc:11860}: Glittering Sunstones from the Bloodfury harpies"] = "{npc:11860}: сверкающие солнечные камни ({item:277936}) с гарпий из стаи Кровавой Ярости",
@@ -94,13 +95,13 @@ return {
 	["Follow the road north toward {area:467}. Antlered Coursers graze along the way; the Sap Beasts, Twilight Runners and Fey Dragons roam the woods below the Peak, and the Cenarion druids hold the grove there."] = "Идите по дороге на север к месту {area:467}. По пути пасутся беговые олени-рогачи ({npc:4018}); сокотвари ({npc:4020}), сумеречные бегуны ({npc:4067}) и волшебные дракончики ({npc:4016}) бродят в лесу под пиком, а кенарийские друиды занимают рощу там.",
 
 	-- Step 19: Sun Rock Retreat
-	-- {zone:1440} Ashenvale
-	["Braelyn's next quest, Ordanus, is on the Alliance side of {zone:1440}. Skip it."] = "Следующее задание Брайлин, «Гордан», – на стороне Альянса в зоне {zone:1440}. Пропустите его.",
+	-- {npc:4198} Braelyn Firehand · {zone:1440} Ashenvale
+	["{npc:4198}'s next quest, Ordanus, is on the Alliance side of {zone:1440}. Skip it."] = "Следующее задание {npc:4198}, «Гордан», – на стороне Альянса в зоне {zone:1440}. Пропустите его.",
 
 	-- Step 20: The Charred Vale
-	-- {item:16312} Incendrites
+	-- {area:465} The Charred Vale · {item:16312} Incendrites
 	-- plural, as words: Gaea Seeds = {item:16205} Gaea Seed
-	["South-west of Sun Rock lies the burned Charred Vale. Plant the Gaea Seeds in the dirt mounds on the valley floor; the fire elementals drop {item:16312}. Bloodfury Harpies and Ambushers nest on the north side, Slayers and Roguefeathers to the south."] = "К юго-западу от Солнечного Камня лежит выжженная Обугленная долина. Посадите семена Геи в земляные курганы на дне долины; с огненных элементалей падают {item:16312}. Гарпии и душительницы из стаи Кровавой Ярости гнездятся на севере, душегубки и бродяжницы – на юге.",
+	["South-west of Sun Rock lies the burned {area:465}. Plant the Gaea Seeds in the dirt mounds on the valley floor; the fire elementals drop {item:16312}. Bloodfury Harpies and Ambushers nest on the north side, Slayers and Roguefeathers to the south."] = "К юго-западу от Солнечного Камня лежит выжженная {area:465}. Посадите семена Геи в земляные курганы на дне долины; с огненных элементалей падают {item:16312}. Гарпии и душительницы из стаи Кровавой Ярости гнездятся на севере, душегубки и бродяжницы – на юге.",
 	-- plural, as words: Gaea Dirt Mounds = {object:177929} Gaea Dirt Mound
 	["Gaea Dirt Mounds"] = "Земляные курганы Геи ({object:177929})",
 	-- {item:277936} Glittering Sunstone

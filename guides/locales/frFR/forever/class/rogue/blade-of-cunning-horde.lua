@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in French (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in French words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -60,16 +61,14 @@ return {
 	-- {npc:6522} Andron Gant
 	["{npc:6522}'s ledger sits on the bookshelf beside him."] = "Le registre de {npc:6522} se trouve sur l'étagère à côté de lui.",
 
-	-- Step 12: Mennet and Varimathras
-	-- {npc:2425} Varimathras
-	["Mennet and {npc:2425}"] = "Mennet et {npc:2425}",
-	-- {npc:2425} Varimathras · {object:36126} Royal Quarter
-	["Mennet sends the ledger on to {npc:2425} in the Hall of the Dark Lady, the {object:36126}."] = "Mennet transmet le registre à {npc:2425}, dans la salle de la Dame noire, le {object:36126}.",
+	-- Step 12: Mennet Carkad and Varimathras
+	-- {npc:6467} Mennet Carkad · {npc:2425} Varimathras
+	["{npc:6467} and {npc:2425}"] = "{npc:6467} et {npc:2425}",
+	-- {npc:6467} Mennet Carkad · {npc:2425} Varimathras · {object:36126} Royal Quarter
+	["{npc:6467} sends the ledger on to {npc:2425} in the Hall of the Dark Lady, the {object:36126}."] = "{npc:6467} transmet le registre à {npc:2425}, dans la salle de la Dame noire, le {object:36126}.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Gamon drinks in the inn in the {object:172982}. Pick his pocket for {item:7208}, then open {item:7209}."] = "Gamon boit à l'auberge de la {object:172982}. Faites-lui les poches pour obtenir la {item:7208}, puis ouvrez la {item:7209}.",
 	-- ["Tazan"] = "Tazan",
-	-- ["Tazan stands on the {zone:1413} coast south of {area:392}. Kill him for his satchel."] = "Tazan se tient sur la côte des {zone:1413} au sud de {area:392}. Tuez-le pour prendre sa sacoche.",
 	-- ["{item:7208}: Gamon"] = "{item:7208} : Gamon",
 	-- ["{item:7209}: Tazan"] = "{item:7209} : Tazan",
 }

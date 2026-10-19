@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Spanish (Latin America) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Spanish (Latin America) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Apprentice Enchanting
@@ -30,7 +31,7 @@ return {
 
 	-- Step 5: Formula: Enchant Cloak - Minor Agility
 	-- {spell:13419} Enchant Cloak - Minor Agility · {skill:333} Enchanting
-	["Teaches {spell:13419} (needs {skill:333} 110). Vendors sell it in limited stock that restocks; the Auction House often has it too."] = "Enseña {spell:13419} (requiere {skill:333} 110). Los mercaderes lo venden en existencias limitadas que se reponen; la casa de subastas también suele tenerlo.",
+	["Teaches {spell:13419} (needs {skill:333} 110). Vendors sell it in limited stock that restocks."] = "Enseña {spell:13419} (requiere {skill:333} 110). Los mercaderes lo venden en existencias limitadas que se reponen.",
 
 	-- Step 6: Shadowgem (Alliance)
 	-- {item:1210} Shadowgem

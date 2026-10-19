@@ -51,6 +51,16 @@ emit(o)`);
 	}
 });
 
+test('Replay: of several arrows into one talent, any one opens it', () => {
+	const [ok, none] = run(`
+local d = { prereq = "full", groups = {}, gates = {}, edges = { { 1, 3 }, { 2, 3 } }, nodes = {
+	[1] = { name = "Bestial Swiftness", max = 1 }, [2] = { name = "Bestial Wrath", max = 1 }, [3] = { name = "Intimidation", max = 1 } } }
+emit(#T.Replay(d, { key = "k", picks = { { order = 1, node = 1, rank = 1 }, { order = 2, node = 3, rank = 1 } } }))
+emit(T.Replay(d, { key = "k", picks = { { order = 1, node = 3, rank = 1 } } })[1])`);
+	assert.equal(ok, 0);
+	assert.match(none, /needs Bestial Swiftness or Bestial Wrath/);
+});
+
 test('Replay: a skipped arrow, an early tier and a skipped rank are caught; "started" relaxes arrows', () => {
 	const [out, started] = run(`
 local ret = plan("retribution")

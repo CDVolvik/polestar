@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (simplified) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (simplified) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Theramore
@@ -63,14 +64,16 @@ return {
 	["only if you carry a {item:3853} (a blacksmith's craft)"] = "仅当你携带{item:3853}（铁匠制造品）时",
 
 	-- Step 15: Balos Jacken
-	["The deserters camp south of the road, west of Mudcrush's hut."] = "逃兵在道路南边、马德克拉什小屋西边扎营。",
+	-- {npc:4503} Mudcrush Durtfeet
+	["The deserters camp south of the road, west of {npc:4503}'s hut."] = "逃兵在道路南边、{npc:4503}小屋西边扎营。",
 
 	-- Step 17: The Affray
 	-- {area:392} Ratchet · {area:720} Fray Island · {area:391} Merchant Coast · {npc:6236} Klannoc Macleod · {npc:6238} Big Will
 	["On the ride north to {area:392}, {area:720} lies off the {area:391} south of the town: wade over the sand bar shallows. {npc:6236} sends four challengers and then {npc:6238} (level 33) at you, one at a time."] = "向北骑往{area:392}的路上，{area:720}位于镇子南边的{area:391}近海：涉水穿过沙洲浅滩。{npc:6236}会让四名挑战者和{npc:6238}（33级）依次与你交战。",
 	-- {npc:6238} Big Will
 	["Defeat the challengers and {npc:6238}"] = "击败挑战者和{npc:6238}",
-	["Klannoc offers The Windwatcher next (1791): the Whirlwind weapon chain, with an elite at the end, is in the Warrior class guide Whirlwind Weapon."] = "克兰诺克·马克雷德接下来提供“捕风者”（1791）：旋风武器任务线最后有一个精英，见战士职业指南“旋风武器”。",
+	-- {npc:6236} Klannoc Macleod
+	["{npc:6236} offers The Windwatcher next (1791): the Whirlwind weapon chain, with an elite at the end, is in the Warrior class guide Whirlwind Weapon."] = "{npc:6236}接下来提供“捕风者”（1791）：旋风武器任务线最后有一个精英，见战士职业指南“旋风武器”。",
 
 	-- Step 18: Ratchet
 	-- {zone:1413} Barrens · {area:392} Ratchet · {npc:16227} Bragok · {area:35} Booty Bay
@@ -101,8 +104,8 @@ return {
 
 	-- Step 22: Bloodsail pirates
 	["Bloodsail pirates"] = "血帆海盗",
-	-- {area:43} Wild Shore · {area:35} Booty Bay
-	["Every Bloodsail drops Snuff and one of them carries Dizzy's eye; the Swashbucklers walk the shore just north of town. The charts and orders lie in the pirate camp on the {area:43}, south of {area:35}."] = "每个血帆海盗都掉落鼻烟，其中一个携带迪兹的眼睛；血帆流氓在镇子北边的岸上游荡。海图和命令在{area:35}南边{area:43}的海盗营地里。",
+	-- {npc:2493} Dizzy One-Eye · {area:43} Wild Shore · {area:35} Booty Bay
+	["Every Bloodsail drops Snuff and one of them carries {npc:2493}'s eye; the Swashbucklers walk the shore just north of town. The charts and orders lie in the pirate camp on the {area:43}, south of {area:35}."] = "每个血帆海盗都掉落鼻烟，其中一个携带{npc:2493}的眼睛；血帆流氓在镇子北边的岸上游荡。海图和命令在{area:35}南边{area:43}的海盗营地里。",
 
 	-- Step 24: The Bloodsail captains
 	["The Bloodsail captains"] = "血帆船长",
@@ -132,8 +135,9 @@ return {
 	-- {npc:2616} Privateer Groy
 	["for {npc:2616} in Theramore: keep it"] = "交给塞拉摩的{npc:2616}：留着",
 
-	-- Step 30: Maury and Jon-Jon
-	["Maury and Jon-Jon"] = "玛雷和乔乔",
+	-- Step 30: Maury "Club Foot" Wilkins and Jon-Jon the Crow
+	-- {npc:2535} Maury "Club Foot" Wilkins · {npc:2536} Jon-Jon the Crow
+	["{npc:2535} and {npc:2536}"] = "{npc:2535}和{npc:2536}",
 	-- {npc:2535} Maury "Club Foot" Wilkins · {npc:2536} Jon-Jon the Crow
 	["Ride north to the hills west of the road. {npc:2535} and {npc:2536} stand together just north of Zanzil's village."] = "向北骑行到道路西边的山丘。{npc:2535}和{npc:2536}一起站在赞吉尔村子北边不远处。",
 
@@ -170,8 +174,8 @@ return {
 
 	-- Step 37: Booty Bay
 	["MacKinley's next task sends you after elite ogres: skip it."] = "马克基雷的下一个任务要你对付精英食人魔：跳过。",
-	-- {zone:1441} Thousand Needles
-	["Crank's next Zanzil errand starts in {zone:1441}: skip it."] = "克兰克的下一个赞吉尔差事从{zone:1441}开始：跳过。",
+	-- {npc:2498} Crank Fizzlebub · {zone:1441} Thousand Needles
+	["{npc:2498}'s next Zanzil errand starts in {zone:1441}: skip it."] = "{npc:2498}的下一个赞吉尔差事从{zone:1441}开始：跳过。",
 
 	-- Step 38: Stormwind
 	-- {npc:1141} Angus Stern · {object:2169} Blue Recluse · {npc:5384} Brohann Caskbelly · {object:28027} Dwarven District
@@ -242,8 +246,8 @@ return {
 	["for {npc:5635} at {area:348}: keep it"] = "交给{area:348}的{npc:5635}：留着",
 
 	-- Step 50: Ironforge
-	-- {area:2257} Deeprun Tram · {object:28027} Dwarven District · {object:32356} Hall of Explorers · {npc:1356} Prospector Stormpike · {npc:2786} Gerrig Bonegrip · {object:32383} Forlorn Cavern · {area:144} Thelsamar
-	["Take the {area:2257} from the {object:28027}. Roetten is in the Reclaimers' hall by the {object:32356}, {npc:1356} in the hall itself, {npc:2786} in the {object:32383}. The next guide flies on to {area:144}."] = "从{object:28027}乘{area:2257}。罗顿在{object:32356}旁的寻物公司大厅，{npc:1356}在大厅内，{npc:2786}在{object:32383}。下一份指南飞往{area:144}。",
+	-- {area:2257} Deeprun Tram · {object:28027} Dwarven District · {npc:5637} Roetten Stonehammer · {object:32356} Hall of Explorers · {npc:1356} Prospector Stormpike · {npc:2786} Gerrig Bonegrip · {object:32383} Forlorn Cavern · {area:144} Thelsamar
+	["Take the {area:2257} from the {object:28027}. {npc:5637} is in the Reclaimers' hall by the {object:32356}, {npc:1356} in the hall itself, {npc:2786} in the {object:32383}. The next guide flies on to {area:144}."] = "从{object:28027}乘{area:2257}。{npc:5637}在{object:32356}旁的寻物公司大厅，{npc:1356}在大厅内，{npc:2786}在{object:32383}。下一份指南飞往{area:144}。",
 	-- {npc:1356} Prospector Stormpike · {npc:1344} Prospector Ironband · {zone:1432} Loch Modan
 	["{npc:1356}: for {npc:1344} in {zone:1432}, keep it"] = "{npc:1356}：交给{zone:1432}的{npc:1344}，留着",
 	-- {zone:1453} Stormwind
@@ -262,10 +266,6 @@ return {
 	["{npc:7955}: other colours, 20g"] = "{npc:7955}：其他颜色，20金",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["At 40 with 100 gold you can learn to ride, and learning it gives you a mount. No Skyborne riding trainer is known; the Forever client files Galestrider Riding under the one Riding skill, so {npc:4732} at {area:88} in eastern {zone:1429}, the nearest trainer to {zone:1453}, should teach it (unconfirmed). The Galestriders are sold by {npc:265756} in {area:16638} on Zephras Isle; Collectibles, Mounts · Level 40 lists them."] = "40级且有100金时可以学习骑术，学会后会获得一匹坐骑。目前不知道天裔的骑术训练师；Forever 客户端将疾风陆行鸟骑术归入同一骑术技能，所以{zone:1429}东部{area:88}的{npc:4732}——离{zone:1453}最近的训练师——应该能教（未确认）。疾风陆行鸟由泽风岛{area:16638}的{npc:265756}出售；收藏指南“坐骑 · 40级”列出了它们。",
-	-- ["Gazban swims off the north-west coast, on the northern loop"] = "加兹班在西北海岸外游动，在北部环线上",
-	-- ["Klannoc offers The Windwatcher next (1791): the Whirlwind weapon chain, with an elite at the end, is in the Warrior class guide Whirlwind Weapon."] = "克兰诺克接下来提供“捕风者”（1791）：旋风武器任务线最后有一个精英，见战士职业指南“旋风武器”。",
 	-- ["Klannoc offers The Windwatcher next (1791): the {spell:1680} weapon chain, with an elite at the end, is in the Warrior class guide Whirlwind Weapon."] = "克兰诺克·马克雷德接下来提供“捕风者”（1791）：{spell:1680}武器任务线最后有一个精英，见战士职业指南“旋风武器”。",
-	-- ["Ride north-west from the mine to the bay on the north-west coast. The Giant Clams lie on its floor and hold the pearls; Gazban swims among them and drops the {item:4034}."] = "从矿井向西北骑行到西北海岸的海湾。巨型蚌壳在海底，里面有珍珠；加兹班在它们中间游动，掉落{item:4034}。",
 	-- ["{npc:6236}: Berserker Stance"] = "{npc:6236}：狂暴姿态",
 }

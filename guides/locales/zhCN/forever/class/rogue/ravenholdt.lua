@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (simplified) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (simplified) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -25,15 +26,16 @@ return {
 	["{npc:6766}: {quest:6701}, repeatable"] = "{npc:6766}：{quest:6701}，可重复",
 
 	-- Step 3: Lord Tomas
-	-- {npc:266216} Lord Tomas · {area:275} Durnholde Keep · {area:287} Hillsbrad
-	["{npc:266216} is inside {area:275}, the Syndicate fortress in eastern {area:287}, south of the manor. Quick and quiet, says Myrokos."] = "{npc:266216}在{area:275}内，即{area:287}东部、庄园南边的辛迪加要塞。麦洛克斯说：要快，要安静。",
+	-- {npc:266216} Lord Tomas · {area:275} Durnholde Keep · {area:287} Hillsbrad · {npc:13085} Myrokos Silentform
+	["{npc:266216} is inside {area:275}, the Syndicate fortress in eastern {area:287}, south of the manor. Quick and quiet, says {npc:13085}."] = "{npc:266216}在{area:275}内，即{area:287}东部、庄园南边的辛迪加要塞。{npc:13085}说：要快，要安静。",
 
 	-- Step 5: What's the Big Idea?
-	-- {area:280} Strahnbrad · {zone:1416} Alterac Mountains
-	["At 36, Myrokos sends you after Barton's scouting report. Barton leads a Syndicate party at {area:280}, in the east of the {zone:1416}: pick his pocket, do not kill him."] = "36级时，麦洛克斯派你去取巴顿的侦察报告。巴顿在{zone:1416}东部的{area:280}带领一支辛迪加队伍：偷他的口袋，不要杀他。",
+	-- {npc:13085} Myrokos Silentform · {area:280} Strahnbrad · {zone:1416} Alterac Mountains
+	["At 36, {npc:13085} sends you after Barton's scouting report. Barton leads a Syndicate party at {area:280}, in the east of the {zone:1416}: pick his pocket, do not kill him."] = "36级时，{npc:13085}派你去取巴顿的侦察报告。巴顿在{zone:1416}东部的{area:280}带领一支辛迪加队伍：偷他的口袋，不要杀他。",
 	-- {item:275482} Barton's Scouting Report
 	["{item:275482}: pickpocket Barton"] = "{item:275482}：对巴顿搜索",
 
-	-- Step 6: Back to Myrokos
-	["Back to Myrokos"] = "回到麦洛克斯处",
+	-- Step 6: Back to Myrokos Silentform
+	-- {npc:13085} Myrokos Silentform
+	["Back to {npc:13085}"] = "回到{npc:13085}处",
 }

@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in German (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in German words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Fly to Gadgetzan
@@ -22,18 +23,19 @@ return {
 	["West of Gadgetzan, use the {item:8584} beside the water hole in the troll camp."] = "Benutze westlich von Gadgetzan das {item:8584} neben dem Wasserloch im Trolllager.",
 
 	-- Step 5: Caliph Scorpidsting
-	["South-east of Gadgetzan the Wastewander bandits camp in the dunes; Caliph stands in the eastern camp."] = "Südöstlich von Gadgetzan lagern die Banditen der Wüstenläufer in den Dünen; Kalif Skorpidstich steht im östlichen Lager.",
+	-- {npc:7847} Caliph Scorpidsting
+	["South-east of Gadgetzan the Wastewander bandits camp in the dunes; {npc:7847} stands in the eastern camp."] = "Südöstlich von Gadgetzan lagern die Banditen der Wüstenläufer in den Dünen; {npc:7847} steht im östlichen Lager.",
 
 	-- Step 6: Marvon Rivetseeker
-	-- {area:1938} Broken Pillar · {item:9978} Gahz'ridian Detector · {area:983} Dunemaul Compound
-	["West along the road south; Marvon camps by the ruins at the {area:1938}. Put on his {item:9978}: it shows the buried ornaments, here and around the {area:983}."] = "Nach Westen entlang der Straße nach Süden; Marvon lagert bei den Ruinen an der {area:1938}. Leg seinen {item:9978} an: Er zeigt die vergrabenen Ornamente, hier und rund um das {area:983}.",
+	-- {npc:7771} Marvon Rivetseeker · {area:1938} Broken Pillar · {item:9978} Gahz'ridian Detector · {area:983} Dunemaul Compound
+	["West along the road south; {npc:7771} camps by the ruins at the {area:1938}. Put on his {item:9978}: it shows the buried ornaments, here and around the {area:983}."] = "Nach Westen entlang der Straße nach Süden; {npc:7771} lagert bei den Ruinen an der {area:1938}. Leg seinen {item:9978} an: Er zeigt die vergrabenen Ornamente, hier und rund um das {area:983}.",
 
 	-- Step 7: The Noxious Lair
 	["West, the Centipaar insects swarm around their hives; any of them drops the parts."] = "Im Westen schwärmen die Insekten der Centipaar um ihre Baue; jedes kann die Teile fallen lassen.",
 
 	-- Step 8: Dunemaul Compound
-	-- {npc:12046} Gor'marok the Ravager · {quest:3161} Gahz'ridian
-	["South of the Noxious Lair the Dunemaul ogres hold their compound, with {npc:12046} at its eastern end. Dig up {quest:3161} ornaments between the fights."] = "Südlich vom Giftigen Unterschlupf halten die Oger der Dünenbrecher ihr Truppenlager, mit {npc:12046} am östlichen Ende. Grab zwischen den Kämpfen {quest:3161}-Ornamente aus.",
+	-- {area:982} The Noxious Lair · {npc:12046} Gor'marok the Ravager · {quest:3161} Gahz'ridian
+	["South of the {area:982} the Dunemaul ogres hold their compound, with {npc:12046} at its eastern end. Dig up {quest:3161} ornaments between the fights."] = "Südlich von {area:982} halten die Oger der Dünenbrecher ihr Truppenlager, mit {npc:12046} am östlichen Ende. Grab zwischen den Kämpfen {quest:3161}-Ornamente aus.",
 
 	-- Step 9: Thistleshrub Valley
 	-- {zone:1446} Tanaris
@@ -159,6 +161,4 @@ return {
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["South of the {area:982} the Dunemaul ogres hold their compound, with {npc:12046} at its eastern end. Dig up {quest:3161} ornaments between the fights."] = "Südlich vom Unterschlupf ({area:982}) halten die Oger der Dünenbrecher ihr Truppenlager, mit {npc:12046} am östlichen Ende. Grab zwischen den Kämpfen {quest:3161}-Ornamente aus.",
-	-- ["South-east of {area:976} the Wastewander bandits camp in the dunes; Caliph stands in the eastern camp."] = "Südöstlich von {area:976} lagern die Banditen der Wüstenläufer in den Dünen; Kalif Skorpidstich steht im östlichen Lager.",
-	-- ["West of {area:976}, use the {item:8584} beside the water hole in the troll camp."] = "Benutze westlich von {area:976} das {item:8584} neben dem Wasserloch im Trolllager.",
 }

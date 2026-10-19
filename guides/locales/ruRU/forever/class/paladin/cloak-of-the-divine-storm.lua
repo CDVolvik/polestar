@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Russian (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Russian words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -33,8 +34,9 @@ return {
 	-- plural, as words: Blackrock Summoners = {npc:4463} Blackrock Summoner
 	["Blackrock Summoners, Champions and Trackers camp in the north-west of Redridge; they drop the {item:209778}."] = "Призыватели, воители и следопыты из клана Черной Горы стоят лагерем на северо-западе Красногорья; с них падает {item:209778}.",
 
-	-- Step 6: Back to Ursula
-	["Back to Ursula"] = "Назад к Урсуле",
+	-- Step 6: Back to Ursula Deline
+	-- {npc:5495} Ursula Deline
+	["Back to {npc:5495}"] = "Назад к {npc:5495}",
 
 	-- Step 7: Motes of Mannoroth
 	["Motes of Mannoroth"] = "Частицы Маннорота",

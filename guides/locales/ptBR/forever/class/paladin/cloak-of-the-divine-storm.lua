@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Portuguese (Brazil) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Portuguese (Brazil) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -33,8 +34,9 @@ return {
 	-- plural, as words: Blackrock Summoners = {npc:4463} Blackrock Summoner
 	["Blackrock Summoners, Champions and Trackers camp in the north-west of Redridge; they drop the {item:209778}."] = "Evocadores, Campeões e Rastreadores Rocha Negra acampam no noroeste das Montanhas Cristarrubra; eles deixam cair o {item:209778}.",
 
-	-- Step 6: Back to Ursula
-	["Back to Ursula"] = "De volta a Úrsula",
+	-- Step 6: Back to Ursula Deline
+	-- {npc:5495} Ursula Deline
+	["Back to {npc:5495}"] = "De volta a {npc:5495}",
 
 	-- Step 7: Motes of Mannoroth
 	["Motes of Mannoroth"] = "Partículas de Mannoroth",
@@ -43,16 +45,14 @@ return {
 	["{area:435} is in south-east {zone:1440}. The Mannoroc Lashers, Searing Infernals, Felguards and Legion Hounds in it drop the Motes of Mannoroth."] = "{area:435} fica no sudeste de {zone:1440}. As Açoitadeiras Mannoroc, Infernais Abrasadores, Guardas Vis e Farejadores Legionários de lá deixam cair as Partículas de Mannoroth.",
 
 	-- Step 8: The Spear of Mannoroth
-	-- {object:409311} Spear of Mannoroth
+	-- {object:409311} Spear of Mannoroth (no name in this language: may be words)
 	["The {object:409311}"] = "A {object:409311}",
-	-- {object:409311} Spear of Mannoroth · {area:435} Demon Fall Canyon · {object:409315} Shattered Orb
+	-- {object:409311} Spear of Mannoroth (no name in this language: may be words) · {area:435} Demon Fall Canyon · {object:409315} Shattered Orb (no name in this language: may be words)
 	["The {object:409311} stands at the east end of {area:435}. Shatter the orb on it; the {object:409315} appears beside it."] = "A {object:409311} fica na ponta leste de {area:435}. Use Estilhaçar no orbe dela; o {object:409315} aparece ao lado.",
-	-- {object:409315} Shattered Orb
+	-- {object:409315} Shattered Orb (no name in this language: may be words)
 	["from the {object:409315}"] = "do {object:409315}",
 
 	-- Step 9: Return to Delgren
 	-- {area:413} Maestra's Post
 	["Back to {area:413}."] = "De volta a {area:413}.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
 }

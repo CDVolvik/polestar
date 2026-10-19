@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Spanish (Spain) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Spanish (Spain) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Orgrimmar
@@ -28,12 +29,10 @@ return {
 	-- Step 5: Liv Rizzlefix
 	-- {area:392} Ratchet · {object:149036} Marvon's Chest
 	["Liv's workshop is at the north end of {area:392}'s docks; {object:149036} stands inside it."] = "El taller de Liv está en el extremo norte de los muelles de {area:392}; {object:149036} está dentro.",
-	-- {object:149036} Marvon's Chest · {item:10556} Stone Circle
-	["Open {object:149036} for the {item:10556}"] = "Abre {object:149036} para coger {item:10556}",
 
 	-- Step 6: Islen Waterseer
-	-- {area:392} Ratchet
-	["Islen camps on the shore just north of {area:392}."] = "Islen acampa en la orilla, justo al norte de {area:392}.",
+	-- {npc:5901} Islen Waterseer · {area:392} Ratchet
+	["{npc:5901} camps on the shore just north of {area:392}."] = "{npc:5901} acampa en la orilla, justo al norte de {area:392}.",
 	-- {area:2479} Emerald Sanctuary · {zone:1448} Felwood
 	["Cleansed Water goes to the {area:2479} in {zone:1448}: keep it for later."] = "El agua purificada se entrega en {area:2479}, en {zone:1448}: guárdala para más adelante.",
 
@@ -73,8 +72,8 @@ return {
 	["Ride back west to {area:1237}."] = "Vuelve al oeste a {area:1237}.",
 
 	-- Step 16: Belgrom Rockmaul
-	-- {area:1637} Orgrimmar · {object:172958} Valley of Honor
-	["Fly to {area:1637}; Belgrom is in the {object:172958}."] = "Vuela a {area:1637}; Belgrom está en {object:172958}.",
+	-- {area:1637} Orgrimmar · {npc:4485} Belgrom Rockmaul · {object:172958} Valley of Honor
+	["Fly to {area:1637}; {npc:4485} is in the {object:172958}."] = "Vuela a {area:1637}; {npc:4485} está en {object:172958}.",
 
 	-- Step 17: Zeppelin to the Undercity
 	-- {zone:1458} Undercity
@@ -98,5 +97,6 @@ return {
 	["{npc:11044}, in the Apothecarium"] = "{npc:11044}, en El Apothecarium",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Open {object:149036} for the {item:10556}"] = "Abre {object:149036} para coger {item:10556}",
 	-- ["{npc:11044}, in the {object:36072}"] = "{npc:11044}, en {object:36072}",
 }

@@ -3,14 +3,15 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in French (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in French words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
-	["Darnassus Reputation"] = "Réputation Darnassus",
+	["Darnassus Reputation"] = "Réputation : Darnassus",
 
 	-- Step 1: Raedon Duskstriker: A Donation of Wool
 	-- {npc:14725} Raedon Duskstriker · {faction:69} Darnassus · {item:14047} Runecloth · {quest:7801} Additional Runecloth
-	["{npc:14725} takes cloth for {faction:69} in {faction:69}. The first donations of Wool, Silk, Mageweave and {item:14047} (60 cloth each) are done once and give the most reputation per cloth; after them, {quest:7801} repeats until Exalted. Exalted with another race's city lets you buy that race's mounts. Forever's Legacy Diplomat perk increases reputation gains."] = "{npc:14725} recueille le tissu pour {faction:69}, à {faction:69}. Les premiers dons de laine, de soie, de tisse-mage et de {item:14047} (60 étoffes chacun) ne se font qu'une fois et rapportent le plus de réputation par étoffe ; ensuite, {quest:7801} se répète jusqu'à Exalté. Être Exalté auprès de la ville d'une autre race permet d'acheter les montures de cette race. L'atout Diplomate du système d'héritage de Forever augmente les gains de réputation.",
+	["{npc:14725} takes cloth for {faction:69} in {faction:69}. The first donations of Wool, Silk, Mageweave and {item:14047} (60 cloth each) are done once and give the most reputation per cloth; after them, {quest:7801} repeats until Exalted. Exalted with another race's city lets you buy that race's mounts. Forever's Legacy Diplomat perk increases reputation gains."] = "{npc:14725} recueille le tissu pour {faction:69}, à {faction:69}. Les premiers dons de laine, de soie, de tisse-mage et de {item:14047} (60 étoffes chacun) ne se font qu'une fois et rapportent le plus de réputation par étoffe ; ensuite, {quest:7801} se répète jusqu'à Exalté. Être Exalté auprès de la ville d'une autre race permet d'acheter les montures de cette race. L'atout Diplomate de l'Héritage de Forever augmente les gains de réputation.",
 
 	-- Step 2: Wool Cloth
 	-- plural, as words: Riverpaw Bandits = {npc:452} Riverpaw Bandit
@@ -51,7 +52,4 @@ return {
 	-- {quest:7801} Additional Runecloth · {faction:69} Darnassus · {item:14047} Runecloth · {zone:1423} Eastern Plaguelands
 	-- plural, as words: Dark Adepts = {npc:8546} Dark Adept
 	["Keep handing in {quest:7801} until {faction:69} is Exalted. {item:14047}: Dark Adepts and Shadowmages (level 58-60) in {zone:1423}, or the Auction House."] = "Continuez à rendre {quest:7801} jusqu'à être Exalté auprès de {faction:69}. {item:14047} : Adeptes noirs et Ombremages (niveau 58-60) dans {zone:1423}, ou l'hôtel des ventes.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["{faction:69} Reputation"] = "Réputation : {faction:69}",
 }

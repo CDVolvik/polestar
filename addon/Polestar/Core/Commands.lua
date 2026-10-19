@@ -152,22 +152,15 @@ ns.RegisterCommand("welcome", function()
 	ns.Fire("SHOW_WELCOME")
 end, L["Show the welcome again"])
 
--- Where the player stands, as guide lines ready to paste into a step: the
--- map (`zone map <uiMapID>`) and a goal there (`goto x,y live`, two decimals
--- like the compiler writes). The client reports live-frame coordinates, and
--- typed coordinates are read in the Era frame unless marked, so the goal
--- modifier `live` goes with them (Forever moved some zones). Printed with a
--- hint for other goals (`@x,y live`), and shown in a box to copy (UI/Copy.lua).
+-- Where the player stands as guide lines (ns.WhereLines, Core/Compat.lua),
+-- printed with a hint for other goals (`@x,y live`), and shown in a box to
+-- copy (UI/Copy.lua).
 ns.RegisterCommand("where", function()
-	local C = ns.Compat
-	local map, x, y
-	if C and C.GetPlayerMapPosition then map, x, y = C.GetPlayerMapPosition() end
-	if not (map and x and y) then
+	local lines, xy = ns.WhereLines()
+	if not lines then
 		ns.Print(L["No position here: the game gives none in instances and on some maps."])
 		return
 	end
-	local xy = ("%.2f,%.2f live"):format(x, y)
-	local lines = { ("zone map %d"):format(map), "goto " .. xy }
 	for i = 1, #lines do ns.Print(lines[i]) end
 	ns.Print((L["For another goal, add %s"]):format("@" .. xy))
 	ns.Fire("SHOW_COPY", L["Your position"], table.concat(lines, "\n"))
@@ -176,5 +169,5 @@ end, L["Print your map and position as guide lines"])
 ns.RegisterCommand("report", function() ns.Fire("SHOW_REPORT") end, L["Report a problem with the step on screen"])
 ns.RegisterCommand("discord", function() ns.Fire("SHOW_DISCORD") end, L["The invite to the Polestar Discord"])
 
-ns.RegisterCommand("packs", function() ns.Fire("SHOW_OPTIONS", "guidepacks") end, L["Open the Guide packs page"])
+ns.RegisterCommand("packs", function() ns.Fire("SHOW_OPTIONS", "guidepacks") end, L["Open the Community guides page"])
 ns.RegisterCommand("gamepad", function() ns.Fire("SHOW_OPTIONS", "gamepad") end, L["Open the Gamepad page: button names and bindings"])

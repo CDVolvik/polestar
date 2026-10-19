@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in German (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in German words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -63,8 +64,8 @@ return {
 	["The Bloodscalp trolls hold the north-west of {zone:1434}; they drop the {item:3901}."] = "Die Trolle der Bloodscalp halten den Nordwesten von {zone:1434}; sie lassen den {item:3901} fallen.",
 
 	-- Step 11: The Summoning
-	-- {quest:1712} Cyclonian · {item:6894} Whirlwind Heart
-	["{quest:1712} waits just north of Bath'rah's camp and carries the {item:6894}. {quest:1712} is elite: grouping up is advised."] = "{quest:1712} wartet direkt nördlich von Bath'rahs Lager und trägt das {item:6894}. {quest:1712} ist Elite: Eine Gruppe wird empfohlen.",
+	-- {quest:1712} Cyclonian · {npc:6176} Bath'rah the Windwatcher · {item:6894} Whirlwind Heart
+	["{quest:1712} waits just north of {npc:6176}'s camp and carries the {item:6894}. {quest:1712} is elite: grouping up is advised."] = "{quest:1712} wartet direkt nördlich von {npc:6176}s Lager und trägt das {item:6894}. {quest:1712} ist Elite: Eine Gruppe wird empfohlen.",
 	-- {item:6894} Whirlwind Heart · {quest:1712} Cyclonian
 	["{item:6894} from {quest:1712}"] = "{item:6894} von {quest:1712}",
 }

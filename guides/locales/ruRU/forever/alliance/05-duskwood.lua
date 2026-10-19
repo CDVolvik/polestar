@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Russian (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Russian words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Darkshire
@@ -22,8 +23,8 @@ return {
 	["{npc:633}, at the south end of town"] = "{npc:633} – в южной части города",
 
 	-- Step 2: Viktori Prism'Antras
-	-- {npc:3133} Herble Baubbletump
-	["Viktori's house stands at the east end of town. {npc:3133} sells engineering goods in the house beside it."] = "Дом Виктора стоит в восточной части города. {npc:3133} продает инженерные товары в соседнем доме.",
+	-- {npc:276} Viktori Prism'Antras · {npc:3133} Herble Baubbletump
+	["{npc:276}'s house stands at the east end of town. {npc:3133} sells engineering goods in the house beside it."] = "Дом {npc:276} стоит в восточной части города. {npc:3133} продает инженерные товары в соседнем доме.",
 	-- {item:4371} Bronze Tube · {npc:3133} Herble Baubbletump · {npc:1448} Neal Allen · {area:150} Menethil Harbor
 	["{item:4371}, from {npc:3133}: limited stock. Sold out? {npc:1448} in {area:150} sells it too."] = "{item:4371}: продает {npc:3133}, запас ограничен. Распродано? Его же продает {npc:1448} ({area:150}).",
 
@@ -52,8 +53,8 @@ return {
 	["The cemetery lies north of the village. Skeletal Horrors and Skeletal Fiends walk its southern half. {npc:522}, an elite, wanders the graves: keep away from him."] = "Кладбище лежит к северу от деревни. В его южной части бродят ужасные скелеты и скелеты-губители. Среди могил бродит элитный противник {npc:522}: держитесь от него подальше.",
 
 	-- Step 8: Sven's Camp
-	-- {npc:893} Lars
-	["Follow the road north-west past the cemetery to Sven's camp on the far west edge of the forest. {npc:893} stands beside Sven."] = "Идите по дороге на северо-запад мимо кладбища к лагерю Свена на дальнем западном краю леса. {npc:893} стоит рядом со Свеном.",
+	-- {npc:311} Sven Yorgen · {npc:893} Lars
+	["Follow the road north-west past the cemetery to {npc:311}'s camp on the far west edge of the forest. {npc:893} stands beside {npc:311}."] = "Идите по дороге на северо-запад мимо кладбища к лагерю {npc:311} на дальнем западном краю леса. {npc:893} стоит рядом со {npc:311}.",
 
 	-- Step 9: Abercrombie
 	-- {area:492} Raven Hill Cemetery

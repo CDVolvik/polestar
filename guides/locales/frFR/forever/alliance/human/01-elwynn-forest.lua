@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in French (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in French words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Northshire Abbey
@@ -115,8 +116,8 @@ return {
 	["Speak with {npc:1430}"] = "Parlez à {npc:1430}",
 
 	-- Step 23: Maybell Maclure
-	-- {area:87} Goldshire · {area:64} Maclure Vineyards
-	["Follow the road south out of {area:87} to the {area:64}. Maybell waits by the house."] = "Suivez la route vers le sud en sortant de {area:87} jusqu'aux {area:64}. Maybell attend près de la maison.",
+	-- {area:87} Goldshire · {area:64} Maclure Vineyards · {npc:251} Maybell Maclure
+	["Follow the road south out of {area:87} to the {area:64}. {npc:251} waits by the house."] = "Suivez la route vers le sud en sortant de {area:87} jusqu'aux {area:64}. {npc:251} attend près de la maison.",
 
 	-- Step 24: The Fargodeep Mine
 	-- {npc:248464} Nimsy
@@ -160,10 +161,6 @@ return {
 
 	-- Step 31: "Auntie" Bernice Stonefield
 	["\"Auntie\" Bernice Stonefield"] = "\"Tatie\" Bernice Stonefield",
-
-	-- Step 32: Billy Maclure
-	-- {area:57} Fargodeep Mine
-	["{area:57}'s mouth"] = "Entrée de la {area:57}",
 
 	-- Step 33: Goldtooth
 	-- {quest:87} Goldtooth · {area:57} Fargodeep Mine · {item:1972} Westfall Deed
@@ -235,8 +232,8 @@ return {
 	["Follow the hills south to the tower."] = "Suivez les collines vers le sud jusqu'à la tour.",
 
 	-- Step 48: Goldshire
-	-- {area:87} Goldshire
-	["Follow the road west back to {area:87}; Helene and Jason stand on the lake shore before town."] = "Suivez la route vers l'ouest pour revenir à {area:87} ; Helene et Jason se tiennent sur la rive du lac avant le village.",
+	-- {area:87} Goldshire · {npc:6306} Helene Peltskinner
+	["Follow the road west back to {area:87}; {npc:6306} and Jason stand on the lake shore before town."] = "Suivez la route vers l'ouest pour revenir à {area:87} ; {npc:6306} et Jason se tiennent sur la rive du lac avant le village.",
 
 	-- Step 49: Maybell Maclure
 	-- {area:64} Maclure Vineyards
@@ -275,20 +272,24 @@ return {
 
 	-- Step 57: Murlocs and the Collector
 	["Murlocs and the Collector"] = "Les murlocs et le Collecteur",
-	-- {npc:473} Morgan the Collector · {area:62} Brackwell Pumpkin Patch
+	-- {npc:473} Morgan the Collector · {area:62} Brackwell Pumpkin Patch · {npc:248278} Croaky
 	-- plural, as words: Murloc Foragers = {npc:46} Murloc Forager · Prowlers = {npc:118} Prowler · Young Forest Bears = {npc:822} Young Forest Bear
-	["Murloc Foragers and Lurkers line the river south of the bridge. {npc:473}, a Defias, walks the {area:62} west of it. Finish the Prowlers and Young Forest Bears on the way."] = "Les Fourrageurs murlocs et les Rôdeurs murlocs bordent la rivière au sud du pont. {npc:473}, un Défias, arpente le {area:62} à l'ouest de celle-ci. Achevez les Rôdeurs et les Jeunes ours des forêts en chemin.",
+	["Murloc Foragers and Lurkers line the river south of the bridge. {npc:473}, a Defias, walks the {area:62} west of it. Finish the Prowlers and Young Forest Bears on the way. {npc:248278} roams the murloc shore too: right-click the head it drops. {npc:248278} is elite: grouping up is advised."] = "Les Fourrageurs murlocs et les Rôdeurs murlocs bordent la rivière au sud du pont. {npc:473}, un Défias, arpente le {area:62} à l'ouest de celle-ci. Achevez les Rôdeurs et les Jeunes ours des forêts en chemin. {npc:248278} rôde aussi sur la rive des murlocs : faites un clic droit sur la tête qu'il laisse tomber. {npc:248278} est un élite : mieux vaut être en groupe.",
 	-- plural, as words: Torn Murloc Fins = {item:780} Torn Murloc Fin
 	["Torn Murloc Fins"] = "Ailerons de murloc déchirés",
 
-	-- Step 60: Stone Cairn Lake
+	-- Step 58: Ridgepoint Tower
+	-- {npc:248277} Merell Ross · {area:798} Ridgepoint Tower
+	["{npc:248277} keeps watch at {area:798}, east of the murloc shore. Then head north-west back to the bridge."] = "{npc:248277} monte la garde à {area:798}, à l'est de la rive des murlocs. Repartez ensuite vers le nord-ouest jusqu'au pont.",
+
+	-- Step 61: Stone Cairn Lake
 	-- plural, as words: Defias Rogue Wizards = {npc:474} Defias Rogue Wizard
 	["North-east of the logging camp. Defias Rogue Wizards camp on the shores of the lake."] = "Au nord-est du camp de bûcherons. Les Sorciers-voleurs défias campent sur les rives du lac.",
 
-	-- Step 61: The Tower of Azora
+	-- Step 62: The Tower of Azora
 	["Follow the hills south to the tower, on the road west."] = "Suivez les collines vers le sud jusqu'à la tour, sur la route de l'ouest.",
 
-	-- Step 62: Goldshire
+	-- Step 63: Goldshire
 	-- {area:87} Goldshire
 	["Follow the road west back to {area:87}."] = "Suivez la route vers l'ouest pour revenir à {area:87}.",
 	-- {npc:6121} Remen Marcot · {npc:6122} Gakin the Darkbinder · {zone:1453} Stormwind
@@ -300,7 +301,7 @@ return {
 	-- {npc:328} Zaldimar Wefhellt · {npc:5497} Jennea Cannon · {zone:1453} Stormwind
 	["{npc:328}: {npc:5497} in {zone:1453} takes it"] = "{npc:328} : {npc:5497} à {zone:1453} la reçoit",
 
-	-- Step 63: Taming the Beast
+	-- Step 64: Taming the Beast
 	-- {npc:251507} Josephine Carson · {area:87} Goldshire · {item:15908} Taming Rod · {area:64} Maclure Vineyards · {area:18} Crystal Lake
 	-- plural, as words: Rockhide Boars = {npc:524} Rockhide Boar · Young Forest Bears = {npc:822} Young Forest Bear
 	["{npc:251507} stands with the {area:87} trainers. Each of her quests hands you a {item:15908}: use it on the beast she names, then bring the rod back to her. Rockhide Boars and Young Forest Bears roam the hills south of the {area:64}, Gray Forest Wolves the woods east of {area:18}."] = "{npc:251507} se tient avec les maîtres de {area:87}. Chacune de ses quêtes vous remet un {item:15908} : utilisez-le sur la bête qu'elle désigne, puis rapportez-lui le bâton. Les Sangliers Rochecuir et les Jeunes ours des forêts rôdent dans les collines au sud des {area:64}, les Loups forestiers gris dans les bois à l'est du {area:18}.",
@@ -313,34 +314,34 @@ return {
 	-- {npc:258930} Isaac Chan · {spell:5149} Beast Training
 	["{npc:258930}, beside her: {spell:5149}"] = "{npc:258930}, à côté d'elle : {spell:5149}",
 
-	-- Step 64: Jennea Cannon
+	-- Step 65: Jennea Cannon
 	-- {area:87} Goldshire · {zone:1453} Stormwind · {npc:5497} Jennea Cannon · {object:2101} Mage Quarter · {quest:1861} Mirror Lake
 	["Follow the road north from {area:87} into {zone:1453}. {npc:5497} stands in the Wizard's Sanctum, the tower of the {object:2101}; she gives you a flask for the {quest:1861} waterfall."] = "Suivez la route vers le nord depuis {area:87} jusqu'à {zone:1453}. {npc:5497} se tient dans le Sanctuaire du Sorcier, la tour du {object:2101} ; elle vous remet une flasque pour la cascade du {quest:1861}.",
 
-	-- Step 65: Mirror Lake
+	-- Step 66: Mirror Lake
 	-- {zone:1453} Stormwind · {quest:1861} Mirror Lake · {zone:1436} Westfall · {item:7207} Jennea's Flask
 	["Leave {zone:1453} by the main gate. The {quest:1861} waterfall is south-west of the gates, on the way west to {zone:1436}: fill {item:7207} at its base."] = "Quittez {zone:1453} par la porte principale. La cascade du {quest:1861} se trouve au sud-ouest des portes, sur le chemin de la {zone:1436} à l'ouest : remplissez la {item:7207} à son pied.",
 
-	-- Step 66: Gakin the Darkbinder
+	-- Step 67: Gakin the Darkbinder
 	-- {area:87} Goldshire · {zone:1453} Stormwind · {npc:6122} Gakin the Darkbinder · {object:2164} Slaughtered Lamb · {object:2101} Mage Quarter
 	["Follow the road north from {area:87} into {zone:1453}. {npc:6122} waits in the cellar of the {object:2164}, in the {object:2101}."] = "Suivez la route vers le nord depuis {area:87} jusqu'à {zone:1453}. {npc:6122} attend dans la cave de l'{object:2164}, dans le {object:2101}.",
 
-	-- Step 67: Surena Caledon
+	-- Step 68: Surena Caledon
 	-- {area:87} Goldshire · {area:62} Brackwell Pumpkin Patch · {npc:881} Surena Caledon
 	["Ride back out through {area:87} and east along the road to the {area:62}. {npc:881} (level 9) stands by its farmhouse."] = "Ressortez par {area:87} et suivez la route vers l'est jusqu'au {area:62}. {npc:881} (niveau 9) se tient près de la ferme.",
 
-	-- Step 68: The Binding
-	-- {item:6928} Bloodstone Choker · {object:2164} Slaughtered Lamb
-	["Back to Gakin. Use the {item:6928} at the summoning circle in the {object:2164}'s cellar and defeat the voidwalker it calls."] = "Retournez voir Gakin. Utilisez l'{item:6928} sur le cercle d'invocation dans la cave de l'{object:2164} et vainquez le marcheur du Vide qu'elle appelle.",
+	-- Step 69: The Binding
+	-- {npc:6122} Gakin the Darkbinder · {item:6928} Bloodstone Choker · {object:2164} Slaughtered Lamb
+	["Back to {npc:6122}. Use the {item:6928} at the summoning circle in the {object:2164}'s cellar and defeat the voidwalker it calls."] = "Retournez voir {npc:6122}. Utilisez l'{item:6928} sur le cercle d'invocation dans la cave de l'{object:2164} et vainquez le marcheur du Vide qu'elle appelle.",
 	["Subdue the voidwalker"] = "Soumettez le marcheur du Vide",
 
-	-- Step 69: The Tome of Divinity
+	-- Step 70: The Tome of Divinity
 	-- {area:87} Goldshire · {zone:1453} Stormwind · {npc:6171} Duthorian Rall · {npc:6173} Gazin Tenorm · {npc:6174} Stephanie Turner · {object:2100} Old Town · {item:2589} Linen Cloth
 	["Follow the road north from {area:87} into {zone:1453}. {npc:6171} and {npc:6173} are in the Cathedral of Light; {npc:6174} stands in {object:2100} and asks for ten {item:2589} (humanoids drop it; the Auction House sells it)."] = "Suivez la route vers le nord depuis {area:87} jusqu'à {zone:1453}. {npc:6171} et {npc:6173} sont dans la cathédrale de la Lumière ; {npc:6174} se tient dans la {object:2100} et demande dix {item:2589} (les humanoïdes en laissent tomber ; l'hôtel des ventes en vend).",
 	-- {quest:2998} Tome of Divinity
 	["From the {quest:2998} he gives you"] = "Grâce au {quest:2998} qu'il vous remet",
 
-	-- Step 70: Henze Faulk
+	-- Step 71: Henze Faulk
 	-- {area:87} Goldshire · {area:86} Stone Cairn Lake · {npc:6172} Henze Faulk · {item:6866} Symbol of Life · {item:6846} Defias Script
 	-- plural, as words: Defias Rogue Wizards = {npc:474} Defias Rogue Wizard
 	["Ride back out through {area:87} and east to {area:86}. {npc:6172} lies south of the lake: use the {item:6866} on him. The Defias Rogue Wizards around him carry the {item:6846}."] = "Ressortez par {area:87} et allez vers l'est jusqu'au {area:86}. {npc:6172} gît au sud du lac : utilisez le {item:6866} sur lui. Les Sorciers-voleurs défias autour de lui portent le {item:6846}.",
@@ -350,26 +351,22 @@ return {
 	-- plural, as words: Defias Rogue Wizards = {npc:474} Defias Rogue Wizard
 	["{item:6846}: Defias Rogue Wizards"] = "{item:6846} : Sorciers-voleurs défias",
 
-	-- Step 71: Gazin Tenorm
+	-- Step 72: Gazin Tenorm
 	["Back to the Cathedral of Light."] = "Retournez à la cathédrale de la Lumière.",
 	-- {npc:6171} Duthorian Rall
 	["{npc:6171}: Redemption"] = "{npc:6171} : Rédemption",
 
-	-- Step 72: Sentinel Hill
-	-- {zone:1436} Westfall · {area:108} Sentinel Hill
-	["Follow the road west past Westbrook into {zone:1436}, then south along it to {area:108}. Thor, the gryphon master, stands on the hill."] = "Suivez la route vers l'ouest, au-delà de la garnison du ruisseau de l'ouest, jusqu'en {zone:1436}, puis vers le sud jusqu'à la {area:108}. Thor, le maître des griffons, se tient sur la colline.",
+	-- Step 73: Sentinel Hill
+	-- {zone:1436} Westfall · {area:108} Sentinel Hill · {npc:523} Thor
+	["Follow the road west past Westbrook into {zone:1436}, then south along it to {area:108}. {npc:523}, the gryphon master, stands on the hill."] = "Suivez la route vers l'ouest, au-delà de la garnison du ruisseau de l'ouest, jusqu'en {zone:1436}, puis vers le sud jusqu'à la {area:108}. {npc:523}, le maître des griffons, se tient sur la colline.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Fun with Elementals: Nimsy"] = "Les Joyeux Élémentaires : Nimsy",
+	-- ["Murloc Foragers and Lurkers line the river south of the bridge. {npc:473}, a Defias, walks the {area:62} west of it. Finish the Prowlers and Young Forest Bears on the way."] = "Les Fourrageurs murlocs et les Rôdeurs murlocs bordent la rivière au sud du pont. {npc:473}, un Défias, arpente le {area:62} à l'ouest de celle-ci. Achevez les Rôdeurs et les Jeunes ours des forêts en chemin.",
 	-- ["Ride back out through {area:87} and east along the road to the {area:62}. {quest:1688} (level 9) stands by its farmhouse."] = "Ressortez par {area:87} et suivez la route vers l'est jusqu'au {area:62}. {quest:1688} (niveau 9) se tient près de la ferme.",
-	-- ["Sit (/sit) by his campfire until you have Boosted Rest"] = "Asseyez-vous (/asseoir) près de son feu de camp jusqu'à obtenir Boosted Rest",
 	-- ["Summon Voidwalker"] = "Invocation d'un marcheur du Vide",
 	-- ["Tame Beast"] = "Apprivoiser une bête",
-	-- ["The mine is west of the vineyards. Kobold Miners and Tunnelers fill both levels; Nimsy, a named kobold, holds the picture book in the lower tunnels. Nimsy is elite: grouping up is advised."] = "La mine se trouve à l'ouest des vignes. Les Mineurs kobolds et les Tunneliers kobolds occupent les deux niveaux ; Nimsy, un kobold nommé, détient le livre d'images dans les tunnels inférieurs. Nimsy est élite : il est conseillé de former un groupe.",
-	-- ["The {item:247813}, Axe and Toolbox lie in the river south of the bridge. Princess, a big boar, roots in the {area:62} west of the river with her {npc:390}: pull the piglets away first. Kill Prowlers and Young Forest Bears on the way."] = "La {item:247813}, la Hache détrempée et la Boîte à outils détrempée se trouvent dans la rivière au sud du pont. Princesse, une grosse truie, fouille le {area:62} à l'ouest de la rivière avec son {npc:390} : attirez d'abord les porcelets à l'écart. Tuez des Rôdeurs et des Jeunes ours des forêts en chemin.",
 	-- ["The {skill:356} Traps sit along the west shore of the lake."] = "Les pièges de {skill:356} sont disposés le long de la rive ouest du lac.",
+	-- ["{area:57}'s mouth"] = "Entrée de la {area:57}",
 	-- ["{item:1006}: Princess"] = "{item:1006} : Princesse",
-	-- ["{npc:258930}, beside her: Beast Training"] = "{npc:258930}, à côté d'elle : Dressage des bêtes",
 	-- ["{npc:459}: Summon Imp"] = "{npc:459} : Invocation d'un diablotin",
-	-- ["{quest:91733} and Princess"] = "{quest:91733} et Princesse",
 }

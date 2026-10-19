@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (traditional) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (traditional) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Fly to Orgrimmar
@@ -40,8 +41,8 @@ return {
 	["Fly to {area:484}. {npc:5905} hides in a small cave in the canyon wall north-east of the post."] = "飛往{area:484}。{npc:5905}躲在營地東北方峽谷崖壁的小洞穴中。",
 	-- {npc:5905} Prate Cloudseer · {item:5178} Air Totem
 	["{npc:5905}: your {item:5178}"] = "{npc:5905}：你的{item:5178}",
-	-- {area:1717} Razorfen Kraul
-	["Prate also starts Elemental Aid ({area:1717}), the 33-40 chain to The Tempest's Weapons: forever/class/shaman/call-of-air-horde."] = "普拉特·白雲也會開啟Elemental Aid（{area:1717}），這是通往風暴武器的33-40級任務鏈：forever/class/shaman/call-of-air-horde。",
+	-- {npc:5905} Prate Cloudseer · {area:1717} Razorfen Kraul
+	["{npc:5905} also starts Elemental Aid ({area:1717}), the 33-40 chain to The Tempest's Weapons: forever/class/shaman/call-of-air-horde."] = "{npc:5905}也會開啟Elemental Aid（{area:1717}），這是通往風暴武器的33-40級任務鏈：forever/class/shaman/call-of-air-horde。",
 
 	-- Step 8: Fly to Sun Rock Retreat
 	-- {area:460} Sun Rock Retreat
@@ -53,16 +54,16 @@ return {
 	["Follow the road south-west out of Sun Rock into {zone:1443} and on south past {area:608}. {npc:11625}'s kodo caravan waits by the road north of {area:609}; if it has already left, ride on."] = "沿道路從烈日石居向西南進入{zone:1443}，繼續向南經過{area:608}。{npc:11625}的科多獸商隊在{area:609}北邊的路旁等著；如果已經出發，就繼續騎。",
 
 	-- Step 10: Bodyguard for Hire
-	-- {area:609} Kolkar Village · {area:2617} Scrabblescrew's Camp · {area:597} Ghost Walker Post
-	["The caravan rolls south past {area:609}. Kolkar raiders ambush it in waves: kill them before they reach Cork. It stops by {area:2617}, east of {area:597}."] = "商隊向南經過{area:609}。科卡爾掠奪者會一波波伏擊：在他們接近考克·基澤爾頓之前殺掉。商隊停在{area:597}東邊的{area:2617}旁。",
+	-- {area:609} Kolkar Village · {npc:11625} Cork Gizelton · {area:2617} Scrabblescrew's Camp · {area:597} Ghost Walker Post
+	["The caravan rolls south past {area:609}. Kolkar raiders ambush it in waves: kill them before they reach {npc:11625}. It stops by {area:2617}, east of {area:597}."] = "商隊向南經過{area:609}。科卡爾掠奪者會一波波伏擊：在他們接近{npc:11625}之前殺掉。商隊停在{area:597}東邊的{area:2617}旁。",
 
 	-- Step 12: Ghost Walker Post
-	-- {npc:5641} Takata Steelblade · {npc:4498} Maurin Bonesplitter · {area:596} Kodo Graveyard
-	["Felgur stands in the post; {npc:5641} and {npc:4498} wait on the rise west of it, above the {area:596}."] = "費古爾·雙刃站在哨站裡；{npc:5641}和{npc:4498}在哨站西邊、{area:596}上方的高地等著。",
+	-- {npc:5395} Felgur Twocuts · {npc:5641} Takata Steelblade · {npc:4498} Maurin Bonesplitter · {area:596} Kodo Graveyard
+	["{npc:5395} stands in the post; {npc:5641} and {npc:4498} wait on the rise west of it, above the {area:596}."] = "{npc:5395}站在哨站裡；{npc:5641}和{npc:4498}在哨站西邊、{area:596}上方的高地等著。",
 
 	-- Step 13: Kodo Roundup
-	-- {item:13892} Kodo Kombobulator · {npc:4702} Ancient Kodo
-	["Use Smeed's {item:13892} on an Aged, Dying or {npc:4702} in the graveyard and walk the tamed kodo back to Smeed. Five kodos, one at a time."] = "對墓地裡的老邁的科多獸、瀕死的科多獸或{npc:4702}使用斯米德·瑟卡布斯庫的{item:13892}，把馴服的科多獸帶回給斯米德。共五隻，一次一隻。",
+	-- {npc:11596} Smeed Scrabblescrew · {item:13892} Kodo Kombobulator · {npc:4702} Ancient Kodo
+	["Use {npc:11596}'s {item:13892} on an Aged, Dying or {npc:4702} in the graveyard and walk the tamed kodo back to {npc:11596}. Five kodos, one at a time."] = "對墓地裡的老邁的科多獸、瀕死的科多獸或{npc:4702}使用{npc:11596}的{item:13892}，把馴服的科多獸帶回給{npc:11596}。共五隻，一次一隻。",
 
 	-- Step 14: Khan Dez'hepah
 	-- {area:609} Kolkar Village · {quest:1365} Khan Dez'hepah
@@ -73,13 +74,13 @@ return {
 	["North along the eastern hills, the satyrs hold the ruins of {area:603}. The Shadowstalkers walk unseen; the four kinds you need do not."] = "沿東部丘陵向北，薩特佔據{area:603}的廢墟。怨怒巡影者隱形行走；你需要的四種則不會。",
 
 	-- Step 16: Thunder Axe Fortress
-	-- {area:599} Thunder Axe Fortress · {spell:1294269} Burning Blade · {item:6436} Burning Gem · {item:6435} Infused Burning Gem · {item:20310} Flayed Demon Skin
-	["Ride west to {area:599}. Beat a {spell:1294269} cultist down, then use the {item:6436} on it before it dies to fill one {item:6435}. They also drop a {item:20310} now and then (1-5%); if one drops, read it."] = "向西騎到{area:599}。把一名{spell:1294269}教徒打到殘血，在牠死前對牠使用{item:6436}以填滿一顆{item:6435}。他們偶爾也會掉落{item:20310}（1-5%）；掉了就閱讀它。",
+	-- {area:599} Thunder Axe Fortress · {item:6436} Burning Gem · {item:6435} Infused Burning Gem · {item:20310} Flayed Demon Skin
+	["Ride west to {area:599}. Beat a Burning Blade cultist down, then use the {item:6436} on it before it dies to fill one {item:6435}. They also drop a {item:20310} now and then (1-5%); if one drops, read it."] = "向西騎到{area:599}。把一名燃刃氏族教徒打到殘血，在牠死前對牠使用{item:6436}以填滿一顆{item:6435}。他們偶爾也會掉落{item:20310}（1-5%）；掉了就閱讀它。",
 
 	-- Step 17: Ghost Walker Post
 	["Ride back south to the post."] = "向南騎回哨站。",
-	-- {quest:1431} Alliance Relations · {zone:1454} Orgrimmar
-	["Takata's next {quest:1431} sends you back to {zone:1454} for nothing: leave it."] = "塔卡塔的下一個{quest:1431}會白白把你派回{zone:1454}：不用理會。",
+	-- {npc:5641} Takata Steelblade · {quest:1431} Alliance Relations · {zone:1454} Orgrimmar
+	["{npc:5641}'s next {quest:1431} sends you back to {zone:1454} for nothing: leave it."] = "{npc:5641}的下一個{quest:1431}會白白把你派回{zone:1454}：不用理會。",
 
 	-- Step 18: Kolkar ears
 	["Kolkar ears"] = "科卡爾耳朵",
@@ -122,7 +123,8 @@ return {
 
 	-- Step 27: Ghost Walker Post
 	["Ride south-east to the post."] = "向東南騎到哨站。",
-	["Takata's next errand sends you after a demon lord with an elite guard: skip it."] = "塔卡塔的下一個差事要你去對付一名帶著精英守衛的惡魔領主：跳過它。",
+	-- {npc:5641} Takata Steelblade
+	["{npc:5641}'s next errand sends you after a demon lord with an elite guard: skip it."] = "{npc:5641}的下一個差事要你去對付一名帶著精英守衛的惡魔領主：跳過它。",
 
 	-- Step 28: Gelkis Village
 	["Ride south-west towards Shadowprey. The Gelkis centaurs (32-35) around their village are a good camp; fight them until level 32."] = "向西南往葬影村騎。吉爾吉斯半人馬（32-35級）在他們的村子周圍，是很好的刷怪點；打到32級。",
@@ -150,8 +152,8 @@ return {
 	["{npc:260093} trains Paladins in the {area:1497}."] = "{npc:260093}在{area:1497}訓練聖騎士。",
 
 	-- Step 34: Brazier of Everfount
-	-- {area:1497} Undercity · {area:228} Sepulcher · {object:113791} Brazier of Everfount · {npc:5895} Minor Manifestation of Water · {item:7813} Shard of Water · {area:272} Tarren Mill
-	["Do your shopping in the {area:1497} first, then fly to the {area:228}. The {object:113791} stands on the hill just south-west of it: beat the Corrupt Manifestation of Water beside it, place its bracers in the brazier, speak to the {npc:5895} and keep the {item:7813} for Islen. Fly on to {area:272} from the {area:228}."] = "先在{area:1497}採買，再飛往{area:228}。{object:113791}在它西南方不遠的山丘上：擊敗旁邊的Corrupt Manifestation of Water，把它的護腕放進火盆，與{npc:5895}交談，並把{item:7813}留給伊斯倫。從{area:228}繼續飛往{area:272}。",
+	-- {area:1497} Undercity · {area:228} Sepulcher · {object:113791} Brazier of Everfount (no name in this language: may be words) · {npc:5895} Minor Manifestation of Water · {item:7813} Shard of Water · {npc:5901} Islen Waterseer · {area:272} Tarren Mill
+	["Do your shopping in the {area:1497} first, then fly to the {area:228}. The {object:113791} stands on the hill just south-west of it: beat the Corrupt Manifestation of Water beside it, place its bracers in the brazier, speak to the {npc:5895} and keep the {item:7813} for {npc:5901}. Fly on to {area:272} from the {area:228}."] = "先在{area:1497}採買，再飛往{area:228}。{object:113791}在它西南方不遠的山丘上：擊敗旁邊的Corrupt Manifestation of Water，把它的護腕放進火盆，與{npc:5895}交談，並把{item:7813}留給{npc:5901}。從{area:228}繼續飛往{area:272}。",
 	-- {npc:5901} Islen Waterseer
 	["for {npc:5901}: from Stranglethorn, next guide"] = "給{npc:5901}：來自荊棘谷，下一份指南",
 
@@ -239,7 +241,4 @@ return {
 	["Fly to the {area:1497}"] = "飛往{area:1497}",
 	-- {area:1497} Undercity · {object:3202} Grom'gol
 	["The next guide starts in the {area:1497}, at the {object:3202} zeppelin."] = "下一份指南從{area:1497}的{object:3202}飛艇開始。",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Head west along the foot of the mountains to the violet dome of {area:279}. Ricter, Alina and Dermot (33-34) stand together inside the crater's eastern rim, {npc:2414} (35) a little west of them; each carries one Bloodstone piece. The Shield Guards and Theurgists (31-32) around them drop the Worn Stone Tokens."] = "沿山腳向西前往{area:279}的紫色穹頂。瑞克特爾、奧麗娜和德莫特（33-34級）一起站在坑洞東緣內側，{npc:2414}（35級）在他們西邊不遠；每人各帶一塊血石。周圍的達拉然持盾守衛和達拉然法師（31-32級）會掉落用舊的石雕。",
 }

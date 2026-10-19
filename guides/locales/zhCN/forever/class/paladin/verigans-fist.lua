@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (simplified) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (simplified) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -38,10 +39,11 @@ return {
 	-- {object:92420} Bailor's Ore
 	["{object:92420} crate"] = "{object:92420}箱子",
 
-	-- Step 8: Back to Bailor
-	["Back to Bailor"] = "回到白洛尔处",
-	-- {item:6993} Jordan's Refined Ore Shipment
-	["Bailor turns the ore into {item:6993}."] = "白洛尔会把矿石变成{item:6993}。",
+	-- Step 8: Back to Bailor Stonehand
+	-- {npc:6241} Bailor Stonehand
+	["Back to {npc:6241}"] = "回到{npc:6241}处",
+	-- {npc:6241} Bailor Stonehand · {item:6993} Jordan's Refined Ore Shipment
+	["{npc:6241} turns the ore into {item:6993}."] = "{npc:6241}会把矿石变成{item:6993}。",
 
 	-- Step 9: Whitestone Oak Lumber
 	-- {area:1581} The Deadmines · {area:20} Moonbrook
@@ -71,8 +73,8 @@ return {
 	-- Step 13: The Purified Kor Gem
 	-- {item:7083} Purified Kor Gem
 	["The {item:7083}"] = "{item:7083}",
-	-- {area:442} Auberdine
-	["Back to Thundris in {area:442}: he purifies the gem."] = "回到{area:442}找桑迪斯：他会净化宝石。",
+	-- {npc:3649} Thundris Windweaver · {area:442} Auberdine
+	["Back to {npc:3649} in {area:442}: he purifies the gem."] = "回到{area:442}找{npc:3649}：他会净化宝石。",
 
 	-- Step 14: Verigan's Fist
 	-- {npc:6181} Jordan Stilwell · {zone:1455} Ironforge

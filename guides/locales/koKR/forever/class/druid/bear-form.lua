@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Korean words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -35,8 +36,8 @@ return {
 	["Fly from {area:702} to {area:442}. The {object:177525} stands in the hills just east of the village: use the {item:15208} there, defeat Lunaclaw and speak to the {npc:12144}."] = "{area:702}에서 {area:442}(으)로 날아가세요. {object:177525}은(는) 마을 바로 동쪽 언덕에 있습니다. 그곳에서 {item:15208}을(를) 사용하고, 초승달발톱을 쓰러뜨린 뒤 {npc:12144}와(과) 대화하세요.",
 
 	-- Step 6: Body and Heart
-	-- {area:702} Rut'theran Village
-	["Fly back to {area:702} and take the portal up to Mathrengyl."] = "{area:702}(으)로 날아가 차원문을 타고 마스렌길에게 올라가세요.",
+	-- {area:702} Rut'theran Village · {npc:4217} Mathrengyl Bearwalker
+	["Fly back to {area:702} and take the portal up to {npc:4217}."] = "{area:702}(으)로 날아가 차원문을 타고 {npc:4217}에게 올라가세요.",
 
 	-- Step 7: Heeding the Call
 	-- {npc:3064} Gennia Runetotem · {area:222} Bloodhoof Village · {npc:6746} Innkeeper Pala · {zone:1456} Thunder Bluff · {npc:6929} Innkeeper Gryshka · {zone:1454} Orgrimmar · {npc:3033} Turak Runetotem · {area:1639} Elder Rise
@@ -64,17 +65,17 @@ return {
 
 	-- Step 13: Skyboat from Dalaran
 	-- {area:279} Dalaran
-	["Skyboat from {area:279}"] = "{area:279}에서 비행선 타기",
+	["Skyboat from {area:279}"] = "{area:279}에서 하늘배 타기",
 	-- {spell:5487} Bear Form · {zone:2521} Zephras Isle · {area:279} Dalaran
-	["{spell:5487} is taught on {zone:2521}. Skip this if you are still on the isle; otherwise take the skyboat from the north side of {area:279}."] = "{spell:5487}은(는) {zone:2521}에서 배웁니다. 아직 섬에 있다면 건너뛰세요. 아니면 {area:279} 북쪽에서 비행선을 타세요.",
+	["{spell:5487} is taught on {zone:2521}. Skip this if you are still on the isle; otherwise take the skyboat from the north side of {area:279}."] = "{spell:5487}은(는) {zone:2521}에서 배웁니다. 아직 섬에 있다면 건너뛰세요. 아니면 {area:279} 북쪽에서 하늘배를 타세요.",
 	-- {zone:2521} Zephras Isle
-	["Skyboat to {zone:2521}"] = "비행선으로 {zone:2521}에 가기",
+	["Skyboat to {zone:2521}"] = "하늘배로 {zone:2521}에 가기",
 
 	-- Step 14: Skyboat from Thunder Bluff
 	-- {zone:1456} Thunder Bluff
-	["Skyboat from {zone:1456}"] = "{zone:1456}에서 비행선 타기",
+	["Skyboat from {zone:1456}"] = "{zone:1456}에서 하늘배 타기",
 	-- {spell:5487} Bear Form · {zone:2521} Zephras Isle · {area:17045} Skywatcher Plateau · {zone:1456} Thunder Bluff
-	["{spell:5487} is taught on {zone:2521}. Skip this if you are still on the isle; otherwise take the skyboat from the cliffs south of {area:17045}, north of {zone:1456}."] = "{spell:5487}은(는) {zone:2521}에서 배웁니다. 아직 섬에 있다면 건너뛰세요. 아니면 {zone:1456} 북쪽, {area:17045} 남쪽 절벽에서 비행선을 타세요.",
+	["{spell:5487} is taught on {zone:2521}. Skip this if you are still on the isle; otherwise take the skyboat from the cliffs south of {area:17045}, north of {zone:1456}."] = "{spell:5487}은(는) {zone:2521}에서 배웁니다. 아직 섬에 있다면 건너뛰세요. 아니면 {zone:1456} 북쪽, {area:17045} 남쪽 절벽에서 하늘배를 타세요.",
 
 	-- Step 15: Lotheluum Starbreeze
 	-- {npc:252359} Lotheluum Starbreeze · {area:16638} Valanaar
@@ -109,7 +110,4 @@ return {
 	-- Step 22: Dendrite Starblaze
 	-- {spell:18960} Teleport: Moonglade · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {area:493} Moonglade
 	["Cast {spell:18960}. {npc:11802} is in {area:2361}. Learn the {area:493} flight path while you are here."] = "{spell:18960}을(를) 시전하세요. {npc:11802}은(는) {area:2361}에 있습니다. 여기 있는 동안 {area:493} 비행 경로를 배우세요.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["At 10 a druid's call reaches you: {npc:3602} in {area:186}, Denatharion in {zone:1457} or Theridran in {zone:1453}. Any one of them sends you to {npc:4217} in the Cenarion Enclave of {zone:1457}."] = "10레벨이 되면 드루이드의 부름이 옵니다: {area:186}의 {npc:3602}, {zone:1457}의 데나타리온, {zone:1453}의 테리드란. 누구든 {zone:1457} 세나리온 자치령의 {npc:4217}에게 보냅니다.",
 }

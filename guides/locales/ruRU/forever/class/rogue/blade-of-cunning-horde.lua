@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Russian (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Russian words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -60,16 +61,14 @@ return {
 	-- {npc:6522} Andron Gant
 	["{npc:6522}'s ledger sits on the bookshelf beside him."] = "Гроссбух (владелец: {npc:6522}) лежит на книжной полке рядом с ним.",
 
-	-- Step 12: Mennet and Varimathras
-	-- {npc:2425} Varimathras
-	["Mennet and {npc:2425}"] = "Меннит и {npc:2425}",
-	-- {npc:2425} Varimathras · {object:36126} Royal Quarter
-	["Mennet sends the ledger on to {npc:2425} in the Hall of the Dark Lady, the {object:36126}."] = "Меннит передаст гроссбух дальше. Цель: {npc:2425}, Чертог Темной госпожи ({object:36126}).",
+	-- Step 12: Mennet Carkad and Varimathras
+	-- {npc:6467} Mennet Carkad · {npc:2425} Varimathras
+	["{npc:6467} and {npc:2425}"] = "{npc:6467} и {npc:2425}",
+	-- {npc:6467} Mennet Carkad · {npc:2425} Varimathras · {object:36126} Royal Quarter
+	["{npc:6467} sends the ledger on to {npc:2425} in the Hall of the Dark Lady, the {object:36126}."] = "{npc:6467} передаст гроссбух дальше. Цель: {npc:2425}, Чертог Темной госпожи ({object:36126}).",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Gamon drinks in the inn in the {object:172982}. Pick his pocket for {item:7208}, then open {item:7209}."] = "Гамон пьет в таверне ({object:172982}). Обчистите его карманы и добудьте {item:7208}, затем откройте {item:7209}.",
 	-- ["Tazan"] = "Тазан",
-	-- ["Tazan stands on the {zone:1413} coast south of {area:392}. Kill him for his satchel."] = "Тазан стоит на побережье зоны {zone:1413} к югу от места {area:392}. Убейте его и заберите сумку.",
 	-- ["{item:7208}: Gamon"] = "{item:7208}: Гамон",
 	-- ["{item:7209}: Tazan"] = "{item:7209}: Тазан",
 }

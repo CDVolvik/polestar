@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in French (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in French words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -38,8 +39,9 @@ return {
 	-- {npc:1416} Grimand Elmore · {zone:1453} Stormwind · {object:28027} Dwarven District
 	["{npc:1416} works in {zone:1453}'s {object:28027}."] = "{npc:1416} travaille à {zone:1453}, dans {object:28027}.",
 
-	-- Step 8: Grimand's materials
-	["Grimand's materials"] = "Matériaux de Grimand",
+	-- Step 8: Grimand Elmore's materials
+	-- {npc:1416} Grimand Elmore
+	["{npc:1416}'s materials"] = "Matériaux de {npc:1416}",
 	-- {item:14047} Runecloth · {item:8836} Arthas' Tears · {zone:1448} Felwood · {skill:171} Alchemy · {zone:1453} Stormwind · {object:2096} Trade District
 	-- plural, as words: Arcanite Bars = {item:12360} Arcanite Bar
 	["{item:14047} drops from humanoids around level 50 and up; {item:8836} is an herb of the Plaguelands and {zone:1448}; Arcanite Bars are an {skill:171} transmute. The Auction House in {zone:1453}'s {object:2096} sells all three, and so do crafters."] = "{item:14047} est lâchée par les humanoïdes à partir du niveau 50 environ ; {item:8836} est une herbe des Maleterres et de {zone:1448} ; les Barres d'arcanite sont une transmutation d'{skill:171}. L'hôtel des ventes de {zone:1453}, dans {object:2096}, vend les trois, tout comme les artisans.",
@@ -54,7 +56,8 @@ return {
 	["Supply Crates, inside"] = "Caisses de fournitures, à l'intérieur",
 
 	-- Step 10: Grimand Elmore
-	["Bring 150 gold for Grimand along with the materials."] = "Apportez 150 pièces d'or pour Grimand avec les matériaux.",
+	-- {npc:1416} Grimand Elmore
+	["Bring 150 gold for {npc:1416} along with the materials."] = "Apportez 150 pièces d'or pour {npc:1416} avec les matériaux.",
 	-- {npc:1416} Grimand Elmore
 	["{npc:1416}: 150 gold"] = "{npc:1416} : 150 pièces d'or",
 
@@ -91,10 +94,9 @@ return {
 	["he hands you the {item:18746}"] = "il vous remet {item:18746}",
 
 	-- Step 18: The Great Ossuary
-	-- {area:2057} Scholomance · {area:2298} Caer Darrow · {zone:1422} Western Plaguelands · {item:18746} Divination Scryer · {npc:14516} Death Knight Darkreaver · {item:18799} Charger's Redeemed Soul · {item:18792} Blessed Arcanite Barding
-	["{area:2057} lies under {area:2298}, the island town in the south-east of the {zone:1422}. Use the {item:18746} in the heart of the Great Ossuary's basement, defeat the spirits it calls and then {npc:14516}, and give his Fallen Charger the {item:18799} and the {item:18792}. All are elite: bring a group. If the attempt fails, Lord Grayson gives you a new scryer through Again Into the Great Ossuary."] = "{area:2057} se trouve sous {area:2298}, la ville insulaire au sud-est de {zone:1422}. Utilisez {item:18746} au cœur du sous-sol du Grand ossuaire, vainquez les esprits qu'il appelle puis {npc:14516}, et donnez à son Destrier déchu {item:18799} et {item:18792}. Tous sont élites : venez en groupe. Si la tentative échoue, le seigneur Grayson vous donne un nouveau cristal via la quête Retour au Grand ossuaire.",
+	-- {area:2057} Scholomance · {area:2298} Caer Darrow · {zone:1422} Western Plaguelands · {item:18746} Divination Scryer · {object:179746} The Great Ossuary (no name in this language: may be words) · {npc:14516} Death Knight Darkreaver · {item:18799} Charger's Redeemed Soul · {item:18792} Blessed Arcanite Barding
+	["{area:2057} lies under {area:2298}, the island town in the south-east of the {zone:1422}. Use the {item:18746} in the heart of the {object:179746}'s basement, defeat the spirits it calls and then {npc:14516}, and give his Fallen Charger the {item:18799} and the {item:18792}. All are elite: bring a group. If the attempt fails, Lord Grayson gives you a new scryer through Again Into the {object:179746}."] = "{area:2057} se trouve sous {area:2298}, la ville insulaire au sud-est de {zone:1422}. Utilisez {item:18746} au cœur du sous-sol du Grand ossuaire, vainquez les esprits qu'il appelle puis {npc:14516}, et donnez à son Destrier déchu {item:18799} et {item:18792}. Tous sont élites : venez en groupe. Si la tentative échoue, le seigneur Grayson vous donne un nouveau cristal via la quête Retour au Grand ossuaire.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["{area:2057} lies under {area:2298}, the island town in the south-east of the {zone:1422}. Use the {item:18746} in the heart of the {object:179746}'s basement, defeat the spirits it calls and then {npc:14516}, and give his Fallen Charger the {item:18799} and the {item:18792}. All are elite: bring a group. If the attempt fails, Lord Grayson gives you a new scryer through Again Into the {object:179746}."] = "{area:2057} se trouve sous {area:2298}, la ville insulaire au sud-est de {zone:1422}. Utilisez {item:18746} au cœur du sous-sol de {object:179746}, vainquez les esprits qu'il appelle puis {npc:14516}, et donnez à son Destrier déchu {item:18799} et {item:18792}. Tous sont élites : venez en groupe. Si la tentative échoue, le seigneur Grayson vous donne un nouveau cristal via la quête Retour au Grand ossuaire ({object:179746}).",
-	-- ["{area:2627} Spirits"] = "Esprits de {area:2627}",
 }

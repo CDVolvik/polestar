@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Spanish (Spain) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Spanish (Spain) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Aquatic Form
@@ -52,18 +53,18 @@ return {
 	["South of the murlocs, {npc:3585} waits at the {area:416}."] = "Al sur de los múrlocs, {npc:3585} espera en {area:416}.",
 
 	-- Step 12: Ilkrud Magthrull
-	-- {area:412} Ruins of Ordil'Aran
-	["Ilkrud and his voidwalkers hold the {area:412} south of the shrine. Pull his guards first."] = "Ilkrud y sus abisarios ocupan {area:412}, al sur del santuario. Atrae primero a sus guardias.",
+	-- {npc:3664} Ilkrud Magthrull · {area:412} Ruins of Ordil'Aran
+	["{npc:3664} and his voidwalkers hold the {area:412} south of the shrine. Pull his guards first."] = "{npc:3664} y sus abisarios ocupan {area:412}, al sur del santuario. Atrae primero a sus guardias.",
 
 	-- Step 13: The Zoram Strand
-	-- {npc:3846} Talen
-	["Follow the coast north to the Zoram Strand. {npc:3846} camps on the beach; Wrathtail nagas fill the shore."] = "Sigue la costa al norte hasta La Ensenada de Zoram. {npc:3846} acampa en la playa; los nagas Colafuria llenan la orilla.",
+	-- {area:414} The Zoram Strand · {npc:3846} Talen
+	["Follow the coast north to the {area:414}. {npc:3846} camps on the beach; Wrathtail nagas fill the shore."] = "Sigue la costa al norte hasta {area:414}. {npc:3846} acampa en la playa; los nagas Colafuria llenan la orilla.",
 	-- {item:5424} Ancient Statuette
 	["{item:5424}, in the ruins on the shore"] = "{item:5424}, en las ruinas de la orilla",
 
 	-- Step 15: Ruuzel
-	-- {quest:1009} Ruuzel
-	["{quest:1009} walks the northern tip of the Zoram Strand with Wrathtail guards."] = "{quest:1009} recorre la punta norte de La Ensenada de Zoram con guardias Colafuria.",
+	-- {quest:1009} Ruuzel · {area:414} The Zoram Strand
+	["{quest:1009} walks the northern tip of the {area:414} with Wrathtail guards."] = "{quest:1009} recorre la punta norte de {area:414} con guardias Colafuria.",
 
 	-- Step 19: Dal Bloodclaw
 	-- {npc:3987} Dal Bloodclaw · {area:415} Astranaar
@@ -94,8 +95,8 @@ return {
 	["West of Mystral Lake, the stardust bushes grow among the ruins."] = "Al oeste del Lago Mystral, los arbustos de polvo estelar crecen entre las ruinas.",
 
 	-- Step 27: Windshear Crag
-	-- {area:421} Mystral Lake · {area:1276} Talondeep Path · {area:461} Windshear Crag · {area:1076} Webwinder Path
-	["Ride south past {area:421} into the {area:1276} tunnel; it comes out in Stonetalon's {area:461}. Kaela and Gaxim camp on the {area:1076} south-west of the crag."] = "Cabalga al sur pasando {area:421} hasta el túnel de {area:1276}; sale en {area:461}, en Sierra Espolón. Kaela y Gaxim acampan en {area:1076}, al suroeste del risco.",
+	-- {area:421} Mystral Lake · {area:1276} Talondeep Path · {area:461} Windshear Crag · {npc:4080} Kaela Shadowspear · {npc:4077} Gaxim Rustfizzle · {area:1076} Webwinder Path
+	["Ride south past {area:421} into the {area:1276} tunnel; it comes out in Stonetalon's {area:461}. {npc:4080} and {npc:4077} camp on the {area:1076} south-west of the crag."] = "Cabalga al sur pasando {area:421} hasta el túnel de {area:1276}; sale en {area:461}, en Sierra Espolón. {npc:4080} y {npc:4077} acampan en {area:1076}, al suroeste del risco.",
 	-- {npc:4201} Ziz Fizziks
 	["{npc:4201}, in the hut north of them"] = "{npc:4201}, en la choza al norte de ellos",
 
@@ -178,13 +179,11 @@ return {
 	-- Step 47: Black Oozes
 	-- plural, as words: Black Oozes = {npc:1032} Black Ooze
 	["Black Oozes"] = "Mocos negros",
-	-- {area:1025} Green Belt · {npc:2111} Sida
+	-- {area:1025} Green Belt · {npc:2093} Einar Stonegrip · {npc:2111} Sida
 	-- plural, as words: Black Oozes = {npc:1032} Black Ooze
-	["Black Oozes creep through the marsh north of the {area:1025} road, west of Einar's camp. Any ooze may hold {npc:2111}'s bag."] = "Los Mocos negros se arrastran por la marisma al norte del camino de {area:1025}, al oeste del campamento de Einar. Cualquier moco puede llevar la bolsa de {npc:2111}.",
+	["Black Oozes creep through the marsh north of the {area:1025} road, west of {npc:2093}'s camp. Any ooze may hold {npc:2111}'s bag."] = "Los Mocos negros se arrastran por la marisma al norte del camino de {area:1025}, al oeste del campamento de {npc:2093}. Cualquier moco puede llevar la bolsa de {npc:2111}.",
 
-	-- Step 48: The Green Belt
-	-- {area:1025} Green Belt
-	["The {area:1025}"] = "{area:1025}",
+	-- Step 48: Green Belt
 	-- {npc:2093} Einar Stonegrip · {npc:1244} Rethiel the Greenwarden
 	["{npc:2093} camps by the road; {npc:1244} stands farther east, by the river."] = "{npc:2093} acampa junto al camino; {npc:1244} está más al este, junto al río.",
 
@@ -195,8 +194,9 @@ return {
 	["Mosshide Gnolls and Mongrels hold the hills south-east of the {area:1025}."] = "Los Gnolls Pellejomusgo y los bastardos ocupan las colinas al sureste de {area:1025}.",
 
 	-- Step 51: Crude Flint
+	-- {npc:1244} Rethiel the Greenwarden
 	-- plural, as words: Mosshide Fenrunners = {npc:1010} Mosshide Fenrunner
-	["Mosshide Fenrunners and Mistweavers roam the riverbanks just west and south of Rethiel; almost every one drops flint."] = "Los Correcubiles Pellejomusgo y los tejebrumas recorren las orillas del río justo al oeste y al sur de Rethiel; casi todos sueltan pedernal.",
+	["Mosshide Fenrunners and Mistweavers roam the riverbanks just west and south of {npc:1244}; almost every one drops flint."] = "Los Correcubiles Pellejomusgo y los tejebrumas recorren las orillas del río justo al oeste y al sur de {npc:1244}; casi todos sueltan pedernal.",
 
 	-- Step 53: Fen Creepers
 	-- plural, as words: Fen Creepers = {npc:1040} Fen Creeper
@@ -224,7 +224,7 @@ return {
 	-- Step 58: Ironforge
 	-- {zone:1437} Wetlands · {area:836} Dun Algaz · {zone:1432} Loch Modan · {zone:1426} Dun Morogh · {area:1537} Ironforge
 	["Ride east along the {zone:1437} road, south through {area:836} into {zone:1432} and west through the tunnel into {zone:1426} to {area:1537}."] = "Cabalga al este por el camino de {zone:1437}, al sur por {area:836} hasta {zone:1432} y al oeste por el túnel hasta {zone:1426}, hasta {area:1537}.",
-	-- {npc:1573} Gryth Thurden · {object:32372} Great Forge
+	-- {npc:1573} Gryth Thurden · {object:32372} Great Forge (no name in this language: may be words)
 	["{npc:1573}, in the {object:32372}"] = "{npc:1573}, en {object:32372}",
 	-- {item:5352} Book: The Powers Below · {zone:1439} Darkshore · {npc:2786} Gerrig Bonegrip · {object:32383} Forlorn Cavern
 	["Only with {item:5352} from {zone:1439}: {npc:2786}, the {object:32383}"] = "Solo con {item:5352} de {zone:1439}: {npc:2786}, {object:32383}",
@@ -232,7 +232,7 @@ return {
 	-- Step 59: Ironforge priests
 	-- {zone:1455} Ironforge
 	["{zone:1455} priests"] = "Sacerdotes de {zone:1455}",
-	-- {npc:11406} High Priest Rohan · {npc:258785} High Priestess Mims · {object:32386} Hall of Mysteries · {object:32362} Mystic Ward
+	-- {npc:11406} High Priest Rohan · {npc:258785} High Priestess Mims · {object:32386} Hall of Mysteries (no name in this language: may be words) · {object:32362} Mystic Ward (no name in this language: may be words)
 	["{npc:11406} and {npc:258785} are in the {object:32386}, in the {object:32362}."] = "{npc:11406} y {npc:258785} están en {object:32386}, en {object:32362}.",
 
 	-- Step 60: Cathedral of Light
@@ -271,14 +271,11 @@ return {
 	["Next: fly to {area:42}."] = "Siguiente: vuela a {area:42}.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Follow the coast north out of Menethil. Bluegill Murlocs fill the marsh; Gobbler walks with a pack in the middle of it."] = "Sigue la costa al norte desde Puerto de Menethil. Los Múrlocs Branquiazul llenan la marisma; Engullidor camina con un grupo en medio.",
 	-- ["Follow the coast north to the {area:414}. {npc:3846} camps on the beach; Wrathtail nagas fill the shore."] = "Sigue la costa al norte hasta {area:414}. {npc:3846} acampa en la playa; los nagas Colafuria llenan la orilla.",
-	-- ["Follow the road east. Young {zone:1437} Crocolisks lurk in the pools north of the excavation site."] = "Sigue el camino al este. Los Crocoliscos jóvenes de {zone:1437} acechan en las charcas al norte de la excavación.",
 	-- ["Kill the elementals for 5 Intact {quest:1016}, then use the {item:5456}"] = "Mata a los elementales para conseguir 5 Brazales elementales intactos ({quest:1016}) y luego usa el {item:5456}",
-	-- ["North of {area:413}, plant bundles lie around the ruins of {area:411}. Dark Strand cultists hold the ruins just south of them: any of them can drop the {item:5366}."] = "Al norte de {area:413}, hay haces de plantas alrededor de las ruinas de {area:411}. Los sectarios de la Facción Oscura ocupan las ruinas justo al sur: cualquiera de ellos puede soltar la {item:5366}.",
 	-- ["Take the boat from {area:17203} to {area:442}. Join the two half pendants into the {item:15885} and cast Teleport: {zone:1450}: {npc:11802} is in {area:2361}. Then fly to {area:702} (by way of {area:442})."] = "Toma el barco de {area:17203} a {area:442}. Une las dos mitades del colgante en {item:15885} y lanza Teletransporte: {zone:1450}; {npc:11802} está en {area:2361}. Después vuela a {area:702} (pasando por {area:442}).",
 	-- ["The Foulweald furbolgs live in the woods south of the road, south-east of {area:415}. {area:364} Watcher and the Ursas guard the den."] = "Los fúrbolgs Maderiza viven en el bosque al sur del camino, al sureste de {area:415}. El vigilante de {area:364} y los ursas guardan el cubil.",
-	-- ["West of {area:421}, the stardust bushes grow among the ruins."] = "Al oeste de {area:421}, los arbustos de polvo estelar crecen entre las ruinas.",
+	-- ["The {area:1025}"] = "{area:1025}",
 	-- ["{object:176364} Harbor"] = "{object:176364} (Puerto de Menethil)",
 	-- ["{quest:1009} walks the northern tip of the {area:414} with Wrathtail guards."] = "{quest:1009} recorre la punta norte de {area:414} con guardias Colafuria.",
 }

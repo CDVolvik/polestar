@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (traditional) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (traditional) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Fly to the Undercity
@@ -12,8 +13,8 @@ return {
 	["From {area:3317}'s flight master, fly to the {area:1497}."] = "在{area:3317}的飛行管理員處飛往{area:1497}。",
 
 	-- Step 2: Oran Snakewrithe
-	-- {object:36082} Magic Quarter
-	["Oran stands in the {object:36082}."] = "奧蘭站在{object:36082}。",
+	-- {npc:7825} Oran Snakewrithe · {object:36082} Magic Quarter
+	["{npc:7825} stands in the {object:36082}."] = "{npc:7825}站在{object:36082}。",
 
 	-- Step 3: Zeppelin to Orgrimmar
 	-- {zone:1454} Orgrimmar
@@ -68,8 +69,8 @@ return {
 	-- Step 15: Jediga
 	-- {area:1237} Valormok
 	["Ride west back to {area:1237}."] = "向西騎回{area:1237}。",
-	-- {npc:8659} Jes'rimon · {npc:6522} Andron Gant · {zone:1456} Thunder Bluff · {zone:1454} Orgrimmar · {zone:1458} Undercity
-	["Keep the deliveries for Magatha, {npc:8659} and {npc:6522}: you pass {zone:1456}, {zone:1454} and the {zone:1458} later."] = "保留要交給瑪加薩、{npc:8659}和{npc:6522}的貨物：你稍後會經過{zone:1456}、{zone:1454}和{zone:1458}。",
+	-- {npc:4046} Magatha Grimtotem · {npc:8659} Jes'rimon · {npc:6522} Andron Gant · {zone:1456} Thunder Bluff · {zone:1454} Orgrimmar · {zone:1458} Undercity
+	["Keep the deliveries for {npc:4046}, {npc:8659} and {npc:6522}: you pass {zone:1456}, {zone:1454} and the {zone:1458} later."] = "保留要交給{npc:4046}、{npc:8659}和{npc:6522}的貨物：你稍後會經過{zone:1456}、{zone:1454}和{zone:1458}。",
 
 	-- Step 16: Archmage Xylem
 	-- {area:1237} Valormok
@@ -110,16 +111,16 @@ return {
 	["Keep {npc:8659}'s payment and Ag'tor's {quest:3504}: they go back to {area:1237} on a later visit."] = "保留{npc:8659}的報酬和阿格圖的{quest:3504}：下次造訪時帶回{area:1237}。",
 
 	-- Step 24: Thunder Bluff
-	-- {area:1638} Thunder Bluff · {area:1099} Camp Mojache · {area:378} Camp Taurajo · {zone:1412} Mulgore · {area:1639} Elder Rise · {npc:3033} Turak Runetotem · {npc:246344} Alodan the Hopeful
-	["Fly to {area:1638}; it is on the way to {area:1099}. No flight path there yet? Fly to {area:378} and ride west through {zone:1412}. Hamuul and Magatha are on the {area:1639}; Druids and Paladins train here ({npc:3033}, {npc:246344})."] = "飛往{area:1638}；它在前往{area:1099}的路上。還沒有那裡的飛行路線？飛往{area:378}，然後向西騎過{zone:1412}。哈繆爾和瑪加薩在{area:1639}；德魯伊和聖騎士在這裡學習（{npc:3033}、{npc:246344}）。",
-	-- {quest:3761} Un'Goro Soil · {npc:8587} Jediga
-	["{quest:3761} is gathered in the next guide; Magatha's payment goes back to {npc:8587} later."] = "{quest:3761}在下一份指南中收集；瑪加薩的報酬稍後交回給{npc:8587}。",
+	-- {area:1638} Thunder Bluff · {area:1099} Camp Mojache · {area:378} Camp Taurajo · {zone:1412} Mulgore · {npc:4046} Magatha Grimtotem · {area:1639} Elder Rise · {npc:3033} Turak Runetotem · {npc:246344} Alodan the Hopeful
+	["Fly to {area:1638}; it is on the way to {area:1099}. No flight path there yet? Fly to {area:378} and ride west through {zone:1412}. Hamuul and {npc:4046} are on the {area:1639}; Druids and Paladins train here ({npc:3033}, {npc:246344})."] = "飛往{area:1638}；它在前往{area:1099}的路上。還沒有那裡的飛行路線？飛往{area:378}，然後向西騎過{zone:1412}。哈繆爾和{npc:4046}在{area:1639}；德魯伊和聖騎士在這裡學習（{npc:3033}、{npc:246344}）。",
+	-- {quest:3761} Un'Goro Soil · {npc:4046} Magatha Grimtotem · {npc:8587} Jediga
+	["{quest:3761} is gathered in the next guide; {npc:4046}'s payment goes back to {npc:8587} later."] = "{quest:3761}在下一份指南中收集；{npc:4046}的報酬稍後交回給{npc:8587}。",
 
 	-- Step 25: Camp Mojache
 	-- {npc:7776} Talo Thornhoof · {zone:1448} Felwood
 	["{npc:7776}: the bears are in {zone:1448}"] = "{npc:7776}：熊在{zone:1448}",
-	-- {area:1417} Sunken Temple · {zone:1446} Tanaris
-	["Keep {area:1417} for Marvon in {zone:1446}."] = "保留{area:1417}，交給{zone:1446}的瑪爾馮。",
+	-- {area:1417} Sunken Temple · {npc:7771} Marvon Rivetseeker · {zone:1446} Tanaris
+	["Keep {area:1417} for {npc:7771} in {zone:1446}."] = "保留{area:1417}，交給{zone:1446}的{npc:7771}。",
 
 	-- Step 26: Frayfeather Hippogryphs
 	-- plural, as words: Frayfeather Hippogryphs = {npc:5300} Frayfeather Hippogryph
@@ -138,8 +139,8 @@ return {
 	["The treants wander the forest roads between the camp and the middle of {zone:1444}; there are only a few, so look along the paths."] = "樹人在營地和{zone:1444}中部之間的林間道路上遊蕩；數量不多，沿著小路找找。",
 
 	-- Step 32: Zorbin Fandazzle
-	-- {area:1108} Forgotten Coast
-	["Ride north-west to the {area:1108}; Zorbin waits on the dock."] = "向西北騎往{area:1108}；索爾賓在碼頭等候。",
+	-- {area:1108} Forgotten Coast · {npc:14637} Zorbin Fandazzle
+	["Ride north-west to the {area:1108}; {npc:14637} waits on the dock."] = "向西北騎往{area:1108}；{npc:14637}在碼頭等候。",
 
 	-- Step 33: Zapped giants
 	["Zapped giants"] = "被縮小的巨人",
@@ -165,6 +166,6 @@ return {
 	-- Step 38: Broken Pillar
 	-- {area:1938} Broken Pillar · {npc:7771} Marvon Rivetseeker · {zone:1449} Un'Goro Crater
 	["Ride south along the road to the {area:1938}; {npc:7771} camps beside it. From here the road west leads down into {zone:1449}, where the next guide starts."] = "沿著道路向南前往{area:1938}；{npc:7771}在旁邊紮營。從這裡往西的道路會下到{zone:1449}，下一份指南從那裡開始。",
-	-- {quest:3444} The Stone Circle
-	["Keep {quest:3444}: Marvon's chest is opened on a later visit."] = "保留{quest:3444}：瑪爾馮的箱子要在下次造訪時打開。",
+	-- {quest:3444} The Stone Circle · {npc:7771} Marvon Rivetseeker
+	["Keep {quest:3444}: {npc:7771}'s chest is opened on a later visit."] = "保留{quest:3444}：{npc:7771}的箱子要在下次造訪時打開。",
 }

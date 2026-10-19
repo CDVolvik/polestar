@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (simplified) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (simplified) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -46,5 +47,4 @@ return {
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["At 50 any Alliance hunter trainer offers it: {npc:5516} in {zone:1453}'s {object:28027}, {npc:5116} in {zone:1455}'s {object:32390} or Dorion in {zone:1457}' {area:1658}."] = "50级时任何联盟猎人训练师都提供此任务：{zone:1453}{object:28027}的{npc:5516}、{zone:1455}{object:32390}的{npc:5116}，或{zone:1457}{area:1658}的多利安。",
-	-- ["Mosshoof Coursers graze all over {zone:1447}; one in a dozen or so drops a pair of Perfect {quest:8153}."] = "苔蹄快步者遍布{zone:1447}；大约每十几只会掉落一对完美的鹿角（任务：{quest:8153}）。",
 }

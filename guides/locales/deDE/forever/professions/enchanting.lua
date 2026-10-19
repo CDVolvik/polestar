@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in German (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in German words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Apprentice Enchanting
@@ -30,7 +31,7 @@ return {
 
 	-- Step 5: Formula: Enchant Cloak - Minor Agility
 	-- {spell:13419} Enchant Cloak - Minor Agility · {skill:333} Enchanting
-	["Teaches {spell:13419} (needs {skill:333} 110). Vendors sell it in limited stock that restocks; the Auction House often has it too."] = "Lehrt {spell:13419} (erfordert {skill:333} 110). Händler verkaufen es in begrenzter Stückzahl, die wieder aufgefüllt wird; das Auktionshaus hat es oft auch.",
+	["Teaches {spell:13419} (needs {skill:333} 110). Vendors sell it in limited stock that restocks."] = "Lehrt {spell:13419} (erfordert {skill:333} 110). Händler verkaufen es in begrenzter Stückzahl, die wieder aufgefüllt wird.",
 
 	-- Step 6: Shadowgem (Alliance)
 	-- {item:1210} Shadowgem

@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (traditional) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (traditional) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Learn Cooking
@@ -73,8 +74,8 @@ return {
 	-- Step 17: Goretusk Liver Pie: ingredients
 	-- {item:724} Goretusk Liver Pie
 	["{item:724}: ingredients"] = "{item:724}：材料",
-	-- {npc:547} Great Goretusk · {zone:1436} Westfall
-	["{npc:547} (35%), Goretusk (34%) in {zone:1436}, or wherever the arrow points"] = "{zone:1436}的{npc:547}（35%）、血牙野豬（34%），或箭頭指向的地方",
+	-- {npc:547} Great Goretusk · {npc:157} Goretusk · {zone:1436} Westfall
+	["{npc:547} (35%), {npc:157} (34%) in {zone:1436}, or wherever the arrow points"] = "{zone:1436}的{npc:547}（35%）、{npc:157}（34%），或箭頭指向的地方",
 
 	-- Step 18: Goretusk Liver Pie (50-100)
 	-- {item:724} Goretusk Liver Pie · {object:29784} Basic Campfire · {skill:185} Cooking
@@ -159,8 +160,8 @@ return {
 	-- Step 35: Crispy Lizard Tail: ingredients
 	-- {item:5479} Crispy Lizard Tail
 	["{item:5479}: ingredients"] = "{item:5479}：材料",
-	-- {zone:1413} The Barrens
-	["Thunderhead (59%), Owatanka (35%) in {zone:1413}, or wherever the arrow points"] = "{zone:1413}的電角蜥蜴（59%）、奧瓦坦卡（35%），或箭頭指向的地方",
+	-- {npc:3239} Thunderhead · {zone:1413} The Barrens
+	["{npc:3239} (59%), Owatanka (35%) in {zone:1413}, or wherever the arrow points"] = "{zone:1413}的{npc:3239}（59%）、奧瓦坦卡（35%），或箭頭指向的地方",
 
 	-- Step 36: Crispy Lizard Tail (100-125)
 	-- {item:5479} Crispy Lizard Tail · {object:29784} Basic Campfire · {skill:185} Cooking
@@ -248,11 +249,11 @@ return {
 
 	-- Step 62: Dirge Quikcleave
 	-- {skill:185} Cooking · {npc:8125} Dirge Quikcleave · {area:976} Gadgetzan · {zone:1446} Tanaris · {zone:1455} Ironforge
-	["Artisan {skill:185} comes from {npc:8125} in {area:976} ({zone:1446}). The cooking trainer in {zone:1455} sends you; it needs skill 225 and level 35."] = "專家{skill:185}由{area:976}（{zone:1446}）的{npc:8125}傳授。{zone:1455}的烹飪訓練師會派你去；需要技能225和等級35。",
+	["Artisan {skill:185} comes from {npc:8125} in {area:976} ({zone:1446}). The cooking trainer in {zone:1455} sends you; it needs skill 225 and level 35."] = "專家級{skill:185}由{area:976}（{zone:1446}）的{npc:8125}傳授。{zone:1455}的烹飪訓練師會派你去；需要技能225和等級35。",
 
 	-- Step 63: Dirge Quikcleave
 	-- {skill:185} Cooking · {npc:8125} Dirge Quikcleave · {area:976} Gadgetzan · {zone:1446} Tanaris · {zone:1454} Orgrimmar
-	["Artisan {skill:185} comes from {npc:8125} in {area:976} ({zone:1446}). The cooking trainer in {zone:1454} sends you; it needs skill 225 and level 35."] = "專家{skill:185}由{area:976}（{zone:1446}）的{npc:8125}傳授。{zone:1454}的烹飪訓練師會派你去；需要技能225和等級35。",
+	["Artisan {skill:185} comes from {npc:8125} in {area:976} ({zone:1446}). The cooking trainer in {zone:1454} sends you; it needs skill 225 and level 35."] = "專家級{skill:185}由{area:976}（{zone:1446}）的{npc:8125}傳授。{zone:1454}的烹飪訓練師會派你去；需要技能225和等級35。",
 
 	-- Step 65: Alterac Swiss
 	-- {quest:6610} Clamlette Surprise · {item:8932} Alterac Swiss
@@ -266,12 +267,12 @@ return {
 	["Giant Eggs drop from the Ironbeak owls of {zone:1448}."] = "巨蛋由{zone:1448}的鐵喙貓頭鷹掉落。",
 
 	-- Step 67: Zesty Clam Meat
-	-- {item:7974} Zesty Clam Meat
-	["{item:7974} has no drop data: buy it at the Gadgetzan Auction House, next to Dirge, or open clams looted from coastal creatures."] = "{item:7974}沒有掉落資料：在迪爾格·奎克里弗旁邊的加基森拍賣場購買，或打開從海岸生物身上拾取的蚌殼。",
+	-- {item:7974} Zesty Clam Meat · {npc:8125} Dirge Quikcleave
+	["{item:7974} has no drop data: buy it at the Gadgetzan Auction House, next to {npc:8125}, or open clams looted from coastal creatures."] = "{item:7974}沒有掉落資料：在{npc:8125}旁邊的加基森拍賣場購買，或打開從海岸生物身上拾取的蚌殼。",
 
 	-- Step 68: Dirge Quikcleave
 	-- {skill:185} Cooking
-	["Artisan {skill:185}"] = "專家{skill:185}",
+	["Artisan {skill:185}"] = "專家級{skill:185}",
 
 	-- Step 71: Heavy Kodo Stew (225-240)
 	-- {item:12215} Heavy Kodo Stew · {object:29784} Basic Campfire · {skill:185} Cooking

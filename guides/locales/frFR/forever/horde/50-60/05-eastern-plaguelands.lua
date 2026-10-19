@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in French (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in French words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Fly to Light's Hope Chapel
@@ -97,8 +98,8 @@ return {
 	["Only if a {quest:8471} dropped for you: {npc:11558} waits at the {zone:1448} entrance of {area:1769}, and speaks to you only at Neutral with the Timbermaw."] = "Seulement si l'objet de la quête {quest:8471} est tombé pour vous : {npc:11558} attend à l'entrée de {area:1769} côté {zone:1448}, et ne vous parle qu'au niveau Neutre auprès des Grumegueules.",
 
 	-- Step 22: Rabine Saturna
-	-- {area:1769} Timbermaw Hold · {zone:1450} Moonglade · {area:2361} Nighthaven
-	["Go through {area:1769} and take the {zone:1450} branch of the tunnel. Rabine is in {area:2361}."] = "Traversez {area:1769} et prenez l'embranchement du tunnel vers {zone:1450}. Rabine Saturna se trouve à {area:2361}.",
+	-- {area:1769} Timbermaw Hold · {zone:1450} Moonglade · {npc:11801} Rabine Saturna · {area:2361} Nighthaven
+	["Go through {area:1769} and take the {zone:1450} branch of the tunnel. {npc:11801} is in {area:2361}."] = "Traversez {area:1769} et prenez l'embranchement du tunnel vers {zone:1450}. {npc:11801} Saturna se trouve à {area:2361}.",
 	-- {zone:1451} Silithus
 	["Both quests lead to {zone:1451}: keep them."] = "Les deux quêtes mènent à {zone:1451} : gardez-les.",
 
@@ -134,8 +135,8 @@ return {
 	["{quest:3914} goes back to Linken in Un'Goro: keep it."] = "{quest:3914} se rend à Linken, dans le Cratère d'Un'Goro : gardez-la.",
 
 	-- Step 29: Marvon Rivetseeker
-	-- {area:1336} Lost Rigger Cove · {area:976} Gadgetzan
-	["Marvon camps by the {area:1336} road, south of {area:976}."] = "Marvon Rivetseeker campe près de la route de {area:1336}, au sud de {area:976}.",
+	-- {npc:7771} Marvon Rivetseeker · {area:1336} Lost Rigger Cove · {area:976} Gadgetzan
+	["{npc:7771} camps by the {area:1336} road, south of {area:976}."] = "{npc:7771} Rivetseeker campe près de la route de {area:1336}, au sud de {area:976}.",
 
 	-- Step 30: Hippogryph eggs
 	["Hippogryph eggs"] = "Oeufs d'hippogryphe",
@@ -147,7 +148,4 @@ return {
 	["On to {zone:1451}"] = "En route pour {zone:1451}",
 	-- {area:541} Marshal's Refuge · {zone:1451} Silithus · {area:3077} Valor's Rest
 	["Fly to {area:541}, then ride south-west through Un'Goro to the pass into {zone:1451}. The next guide opens at {area:3077}, where the pass comes out."] = "Prenez un vol pour {area:541}, puis traversez le Cratère d'Un'Goro vers le sud-ouest jusqu'au col menant à {zone:1451}. Le guide suivant commence à {area:3077}, à la sortie du col.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["{npc:8597} Runts and Plaguebats roam the hills north of the {area:2260}, Carrion Grubs crawl among them; work north toward {area:2627}."] = "Les Chiens pestiférés chétifs ({npc:8597}) et les Chauves-souris pestiférées rôdent dans les collines au nord de {area:2260}, et les Larves putrides rampent parmi eux ; progressez vers le nord en direction de {area:2627}.",
 }

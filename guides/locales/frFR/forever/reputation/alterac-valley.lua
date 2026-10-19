@@ -3,16 +3,17 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in French (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in French words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
-	["Alterac Valley Reputation"] = "Réputation de la vallée d'Alterac",
+	["Alterac Valley Reputation"] = "Réputation : Vallée d'Alterac",
 
 	-- Step 1: Stormpike Guard to Friendly
 	-- {faction:730} Stormpike Guard
 	["{faction:730} to Friendly"] = "{faction:730} : Amical",
 	-- {faction:730} Stormpike Guard · {area:2959} Dun Baldar · {zone:1459} Alterac Valley · {quest:7223} Armor Scraps · {npc:13257} Murgot Deepforge
-	["The {faction:730} holds {area:2959} in the north of {zone:1459}. Destroying towers, taking graveyards and mines, and killing captains and generals all pay reputation to the whole team. Loot {quest:7223} from fallen enemies for {npc:13257}. Forever's Legacy Diplomat perk increases reputation gains."] = "La {faction:730} tient {area:2959}, dans le nord de {zone:1459}. Détruire des tours, prendre des cimetières et des mines, et tuer capitaines et généraux rapportent de la réputation à toute l'équipe. Ramassez des {quest:7223} sur les ennemis tombés pour {npc:13257}. Le bonus Diplomate d'héritage de Forever augmente les gains de réputation.",
+	["The {faction:730} holds {area:2959} in the north of {zone:1459}. Destroying towers, taking graveyards and mines, and killing captains and generals all pay reputation to the whole team. Loot {quest:7223} from fallen enemies for {npc:13257}. Forever's Legacy Diplomat perk increases reputation gains."] = "La {faction:730} tient {area:2959}, dans le nord de {zone:1459}. Détruire des tours, prendre des cimetières et des mines, et tuer capitaines et généraux rapportent de la réputation à toute l'équipe. Ramassez des {quest:7223} sur les ennemis tombés pour {npc:13257}. L'atout Diplomate de l'Héritage de Forever augmente les gains de réputation.",
 	-- {npc:12096} Stormpike Quartermaster · {item:17542} Coldtooth Supplies
 	["{npc:12096}: Irondeep and {item:17542} from the mines"] = "{npc:12096} : Fournitures de Gouffrefer et de Froide-dent ({item:17542}) des mines",
 
@@ -43,7 +44,7 @@ return {
 	-- {faction:729} Frostwolf Clan
 	["{faction:729} to Friendly"] = "{faction:729} : Amical",
 	-- {faction:729} Frostwolf Clan · {area:2978} Frostwolf Keep · {zone:1459} Alterac Valley · {item:17422} Armor Scraps · {npc:13176} Smith Regzar
-	["The {faction:729} holds {area:2978} in the south of {zone:1459}. Destroying towers, taking graveyards and mines, and killing captains and generals all pay reputation to the whole team. Loot {item:17422} from fallen enemies for {npc:13176}. Forever's Legacy Diplomat perk increases reputation gains."] = "Le {faction:729} tient {area:2978}, dans le sud de {zone:1459}. Détruire des tours, prendre des cimetières et des mines, et tuer capitaines et généraux rapportent de la réputation à toute l'équipe. Ramassez des {item:17422} sur les ennemis tombés pour {npc:13176}. Le bonus Diplomate d'héritage de Forever augmente les gains de réputation.",
+	["The {faction:729} holds {area:2978} in the south of {zone:1459}. Destroying towers, taking graveyards and mines, and killing captains and generals all pay reputation to the whole team. Loot {item:17422} from fallen enemies for {npc:13176}. Forever's Legacy Diplomat perk increases reputation gains."] = "Le {faction:729} tient {area:2978}, dans le sud de {zone:1459}. Détruire des tours, prendre des cimetières et des mines, et tuer capitaines et généraux rapportent de la réputation à toute l'équipe. Ramassez des {item:17422} sur les ennemis tombés pour {npc:13176}. L'atout Diplomate de l'Héritage de Forever augmente les gains de réputation.",
 	-- {npc:12097} Frostwolf Quartermaster · {item:17522} Irondeep Supplies
 	["{npc:12097}: Coldtooth and {item:17522} from the mines"] = "{npc:12097} : Fournitures de Froide-dent et de Gouffrefer ({item:17522}) des mines",
 
@@ -72,5 +73,4 @@ return {
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Keep winning {zone:1459}. More Booty! ({npc:13176}), {item:17306} for {npc:13236} (it summons {npc:13256}) and {npc:10990} Hides for the {npc:13441} all repeat."] = "Continuez à gagner {zone:1459}. Plus de butin ! ({npc:13176}), du {item:17306} pour {npc:13236} (il invoque {npc:13256}) et des peaux de {npc:10990} pour le {npc:13441} : tout cela se répète.",
-	-- ["{zone:1459} Reputation"] = "Réputation {zone:1459}",
 }

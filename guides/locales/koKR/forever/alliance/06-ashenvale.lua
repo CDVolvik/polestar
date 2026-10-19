@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Korean words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Aquatic Form
@@ -52,18 +53,18 @@ return {
 	["South of the murlocs, {npc:3585} waits at the {area:416}."] = "멀록들 남쪽, {area:416}에서 {npc:3585}이(가) 기다립니다.",
 
 	-- Step 12: Ilkrud Magthrull
-	-- {area:412} Ruins of Ordil'Aran
-	["Ilkrud and his voidwalkers hold the {area:412} south of the shrine. Pull his guards first."] = "일크루드와 그의 공허방랑자들은 성소 남쪽의 {area:412}을(를) 차지하고 있습니다. 경비병을 먼저 끌어오세요.",
+	-- {npc:3664} Ilkrud Magthrull · {area:412} Ruins of Ordil'Aran
+	["{npc:3664} and his voidwalkers hold the {area:412} south of the shrine. Pull his guards first."] = "{npc:3664}와(과) 그의 공허방랑자들은 성소 남쪽의 {area:412}을(를) 차지하고 있습니다. 경비병을 먼저 끌어오세요.",
 
 	-- Step 13: The Zoram Strand
-	-- {npc:3846} Talen
-	["Follow the coast north to the Zoram Strand. {npc:3846} camps on the beach; Wrathtail nagas fill the shore."] = "해안을 따라 북쪽으로 조람 해안까지 가세요. {npc:3846}은(는) 해변에 진을 치고 있고, 해안에는 성난지느러미일족 나가가 가득합니다.",
+	-- {area:414} The Zoram Strand · {npc:3846} Talen
+	["Follow the coast north to the {area:414}. {npc:3846} camps on the beach; Wrathtail nagas fill the shore."] = "해안을 따라 북쪽으로 {area:414}까지 가세요. {npc:3846}은(는) 해변에 진을 치고 있고, 해안에는 성난지느러미일족 나가가 가득합니다.",
 	-- {item:5424} Ancient Statuette
 	["{item:5424}, in the ruins on the shore"] = "{item:5424}, 해안의 폐허 안",
 
 	-- Step 15: Ruuzel
-	-- {quest:1009} Ruuzel
-	["{quest:1009} walks the northern tip of the Zoram Strand with Wrathtail guards."] = "{quest:1009}은(는) 성난지느러미일족 경비병과 함께 조람 해안의 북쪽 끝을 돌아다닙니다.",
+	-- {quest:1009} Ruuzel · {area:414} The Zoram Strand
+	["{quest:1009} walks the northern tip of the {area:414} with Wrathtail guards."] = "{quest:1009}은(는) 성난지느러미일족 경비병과 함께 {area:414}의 북쪽 끝을 돌아다닙니다.",
 
 	-- Step 19: Dal Bloodclaw
 	-- {npc:3987} Dal Bloodclaw · {area:415} Astranaar
@@ -94,8 +95,8 @@ return {
 	["West of Mystral Lake, the stardust bushes grow among the ruins."] = "미스트랄 호수 서쪽, 폐허 사이에 별가루 덤불이 자랍니다.",
 
 	-- Step 27: Windshear Crag
-	-- {area:421} Mystral Lake · {area:1276} Talondeep Path · {area:461} Windshear Crag · {area:1076} Webwinder Path
-	["Ride south past {area:421} into the {area:1276} tunnel; it comes out in Stonetalon's {area:461}. Kaela and Gaxim camp on the {area:1076} south-west of the crag."] = "{area:421}을(를) 지나 남쪽으로 {area:1276} 굴에 들어가세요. 굴은 돌발톱 산맥의 {area:461}(으)로 이어집니다. 캘라와 각심은 바위산 남서쪽 {area:1076}에 진을 치고 있습니다.",
+	-- {area:421} Mystral Lake · {area:1276} Talondeep Path · {area:461} Windshear Crag · {npc:4080} Kaela Shadowspear · {npc:4077} Gaxim Rustfizzle · {area:1076} Webwinder Path
+	["Ride south past {area:421} into the {area:1276} tunnel; it comes out in Stonetalon's {area:461}. {npc:4080} and {npc:4077} camp on the {area:1076} south-west of the crag."] = "{area:421}을(를) 지나 남쪽으로 {area:1276} 굴에 들어가세요. 굴은 돌발톱 산맥의 {area:461}(으)로 이어집니다. {npc:4080}와(과) {npc:4077}은(는) 바위산 남서쪽 {area:1076}에 진을 치고 있습니다.",
 	-- {npc:4201} Ziz Fizziks
 	["{npc:4201}, in the hut north of them"] = "{npc:4201}, 그들 북쪽의 오두막 안",
 
@@ -178,13 +179,11 @@ return {
 	-- Step 47: Black Oozes
 	-- plural, as words: Black Oozes = {npc:1032} Black Ooze
 	["Black Oozes"] = "검은 수액괴물",
-	-- {area:1025} Green Belt · {npc:2111} Sida
+	-- {area:1025} Green Belt · {npc:2093} Einar Stonegrip · {npc:2111} Sida
 	-- plural, as words: Black Oozes = {npc:1032} Black Ooze
-	["Black Oozes creep through the marsh north of the {area:1025} road, west of Einar's camp. Any ooze may hold {npc:2111}'s bag."] = "검은 수액괴물은 {area:1025} 길 북쪽, 아이나르의 야영지 서쪽 늪을 기어다닙니다. 어느 수액괴물이든 {npc:2111}의 가방을 지니고 있을 수 있습니다.",
+	["Black Oozes creep through the marsh north of the {area:1025} road, west of {npc:2093}'s camp. Any ooze may hold {npc:2111}'s bag."] = "검은 수액괴물은 {area:1025} 길 북쪽, {npc:2093}의 야영지 서쪽 늪을 기어다닙니다. 어느 수액괴물이든 {npc:2111}의 가방을 지니고 있을 수 있습니다.",
 
-	-- Step 48: The Green Belt
-	-- {area:1025} Green Belt
-	["The {area:1025}"] = "{area:1025}",
+	-- Step 48: Green Belt
 	-- {npc:2093} Einar Stonegrip · {npc:1244} Rethiel the Greenwarden
 	["{npc:2093} camps by the road; {npc:1244} stands farther east, by the river."] = "{npc:2093}은(는) 길가에 진을 치고 있고, {npc:1244}은(는) 더 동쪽 강가에 서 있습니다.",
 
@@ -195,8 +194,9 @@ return {
 	["Mosshide Gnolls and Mongrels hold the hills south-east of the {area:1025}."] = "이끼가죽 놀과 이끼가죽일족 싸움꾼이 {area:1025} 남동쪽 언덕을 차지하고 있습니다.",
 
 	-- Step 51: Crude Flint
+	-- {npc:1244} Rethiel the Greenwarden
 	-- plural, as words: Mosshide Fenrunners = {npc:1010} Mosshide Fenrunner
-	["Mosshide Fenrunners and Mistweavers roam the riverbanks just west and south of Rethiel; almost every one drops flint."] = "이끼가죽일족 길잡이와 안개마술사가 레시엘 바로 서쪽과 남쪽 강둑을 돌아다닙니다. 거의 모두가 부싯돌을 떨어뜨립니다.",
+	["Mosshide Fenrunners and Mistweavers roam the riverbanks just west and south of {npc:1244}; almost every one drops flint."] = "이끼가죽일족 길잡이와 안개마술사가 {npc:1244} 바로 서쪽과 남쪽 강둑을 돌아다닙니다. 거의 모두가 부싯돌을 떨어뜨립니다.",
 
 	-- Step 53: Fen Creepers
 	-- plural, as words: Fen Creepers = {npc:1040} Fen Creeper
@@ -224,7 +224,7 @@ return {
 	-- Step 58: Ironforge
 	-- {zone:1437} Wetlands · {area:836} Dun Algaz · {zone:1432} Loch Modan · {zone:1426} Dun Morogh · {area:1537} Ironforge
 	["Ride east along the {zone:1437} road, south through {area:836} into {zone:1432} and west through the tunnel into {zone:1426} to {area:1537}."] = "{zone:1437} 길을 따라 동쪽으로 가서 남쪽으로 {area:836}을(를) 지나 {zone:1432}에 들어간 뒤, 서쪽 굴을 지나 {zone:1426}의 {area:1537}(으)로 가세요.",
-	-- {npc:1573} Gryth Thurden · {object:32372} Great Forge
+	-- {npc:1573} Gryth Thurden · {object:32372} Great Forge (no name in this language: may be words)
 	["{npc:1573}, in the {object:32372}"] = "{npc:1573}, {object:32372} 안",
 	-- {item:5352} Book: The Powers Below · {zone:1439} Darkshore · {npc:2786} Gerrig Bonegrip · {object:32383} Forlorn Cavern
 	["Only with {item:5352} from {zone:1439}: {npc:2786}, the {object:32383}"] = "{zone:1439}에서 얻은 {item:5352}이(가) 있을 때만: {npc:2786}, {object:32383}",
@@ -232,7 +232,7 @@ return {
 	-- Step 59: Ironforge priests
 	-- {zone:1455} Ironforge
 	["{zone:1455} priests"] = "{zone:1455} 사제",
-	-- {npc:11406} High Priest Rohan · {npc:258785} High Priestess Mims · {object:32386} Hall of Mysteries · {object:32362} Mystic Ward
+	-- {npc:11406} High Priest Rohan · {npc:258785} High Priestess Mims · {object:32386} Hall of Mysteries (no name in this language: may be words) · {object:32362} Mystic Ward (no name in this language: may be words)
 	["{npc:11406} and {npc:258785} are in the {object:32386}, in the {object:32362}."] = "{npc:11406}와(과) {npc:258785}은(는) {object:32362}의 {object:32386}에 있습니다.",
 
 	-- Step 60: Cathedral of Light
@@ -271,9 +271,7 @@ return {
 	["Next: fly to {area:42}."] = "다음: {area:42}(으)로 날아가세요.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Follow the coast north out of Menethil. Bluegill Murlocs fill the marsh; Gobbler walks with a pack in the middle of it."] = "해안을 따라 북쪽으로 메네실 항구를 나가세요. 푸른아가미멀록이 늪에 가득하고, 고블러는 그 한가운데에서 무리와 함께 돌아다닙니다.",
 	-- ["Follow the coast north to the {area:414}. {npc:3846} camps on the beach; Wrathtail nagas fill the shore."] = "해안을 따라 북쪽으로 {area:414}까지 가세요. {npc:3846}은(는) 해변에 진을 치고 있고, 해안에는 성난지느러미일족 나가가 가득합니다.",
-	-- ["North of {area:413}, plant bundles lie around the ruins of {area:411}. Dark Strand cultists hold the ruins just south of them: any of them can drop the {item:5366}."] = "{area:413} 북쪽, {area:411} 폐허 주변에 식물 꾸러미가 놓여 있습니다. 암흑이교도는 그 바로 남쪽 폐허를 차지하고 있으며, 누구든 {item:5366}을(를) 떨어뜨릴 수 있습니다.",
-	-- ["West of {area:421}, the stardust bushes grow among the ruins."] = "{area:421} 서쪽, 폐허 사이에 별가루 덤불이 자랍니다.",
+	-- ["The {area:1025}"] = "{area:1025}",
 	-- ["{quest:1009} walks the northern tip of the {area:414} with Wrathtail guards."] = "{quest:1009}은(는) 성난지느러미일족 경비병과 함께 {area:414}의 북쪽 끝을 돌아다닙니다.",
 }

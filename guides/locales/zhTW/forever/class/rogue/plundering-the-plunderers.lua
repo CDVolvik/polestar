@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (traditional) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (traditional) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -24,15 +25,16 @@ return {
 	["Undead take the zeppelin from the towers outside the {zone:1458} to {zone:1411}. {npc:3401} and {quest:2379} stand in the {object:172960}, the canyon under the {object:172982}."] = "不死族從{zone:1458}外的塔搭飛艇前往{zone:1411}。{npc:3401}和{quest:2379}站在{object:172960}，就是{object:172982}下方的峽谷。",
 
 	-- Step 4: Wrenix the Wretched
-	-- {area:392} Ratchet · {zone:1413} Barrens · {item:7970} E.C.A.C. · {item:5060} Thieves' Tools
-	["Fly or ride to {area:392} on the {zone:1413} coast. Wrenix stands in town with his Gizmotronic Apparatus: buy an {item:7970} and {item:5060} from the apparatus before you go."] = "飛往或騎往{zone:1413}海岸的{area:392}。維尼克斯和他的機械設備站在鎮上：出發前從機械設備購買{item:7970}和{item:5060}。",
+	-- {area:392} Ratchet · {zone:1413} Barrens · {npc:7161} Wrenix the Wretched · {item:7970} E.C.A.C. · {item:5060} Thieves' Tools
+	["Fly or ride to {area:392} on the {zone:1413} coast. {npc:7161} stands in town with his Gizmotronic Apparatus: buy an {item:7970} and {item:5060} from the apparatus before you go."] = "飛往或騎往{zone:1413}海岸的{area:392}。{npc:7161}和他的機械設備站在鎮上：出發前從機械設備購買{item:7970}和{item:5060}。",
 
 	-- Step 5: Southsea Treasure
 	-- {area:392} Ratchet · {item:7970} E.C.A.C.
 	["South along the coast from {area:392}, at the Southsea pirates' camp. If an unusually hostile parrot attacks you, use the {item:7970} on it (the quest's own advice)."] = "在{area:392}沿海岸往南的南海海盜營地。如果有一隻特別兇的鸚鵡攻擊你，對牠使用{item:7970}（任務本身的建議）。",
 
-	-- Step 6: Back to Wrenix
-	["Back to Wrenix"] = "回到維尼克斯那裡",
+	-- Step 6: Back to Wrenix the Wretched
+	-- {npc:7161} Wrenix the Wretched
+	["Back to {npc:7161}"] = "回到{npc:7161}那裡",
 	-- {npc:7161} Wrenix the Wretched · {item:7676} Thistle Tea
 	["{npc:7161}: ten {item:7676}"] = "{npc:7161}：十個{item:7676}",
 
@@ -44,6 +46,7 @@ return {
 	-- {area:233} Ambermill · {object:103815} Ambermill Strongbox
 	["The Kirin Tor keep their reports at {area:233}, in south-east Silverpine: pick the lock on the {object:103815}."] = "祈倫托把他們的報告放在銀松森林東南部的{area:233}：撬開{object:103815}的鎖。",
 
-	-- Step 10: Back to Mennet
-	["Back to Mennet"] = "回到米奈特那裡",
+	-- Step 10: Back to Mennet Carkad
+	-- {npc:6467} Mennet Carkad
+	["Back to {npc:6467}"] = "回到{npc:6467}那裡",
 }

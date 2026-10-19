@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in German (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in German words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -10,7 +11,7 @@ return {
 
 	-- Step 1: Duke Hydraxis
 	-- {npc:13278} Duke Hydraxis · {zone:1447} Azshara · {faction:749} Hydraxian Waterlords
-	["{npc:13278} stands on a small island off the eastern coast of {zone:1447}; swim or walk the shallows out to him. The {faction:749} start out Neutral. Forever's Legacy Diplomat perk increases reputation gains."] = "{npc:13278} steht auf einer kleinen Insel vor der Ostküste von {zone:1447}; schwimm oder lauf durch das seichte Wasser zu ihm. Bei {faction:749} beginnst du neutral. Das Vermächtnis-Perk „Diplomat“ von Forever erhöht den Rufgewinn.",
+	["{npc:13278} stands on a small island off the eastern coast of {zone:1447}; swim or walk the shallows out to him. The {faction:749} start out Neutral. Forever's Legacy Diplomat perk increases reputation gains."] = "{npc:13278} steht auf einer kleinen Insel vor der Ostküste von {zone:1447}; schwimm oder lauf durch das seichte Wasser zu ihm. Bei {faction:749} beginnst du neutral. Der Vermächtnis-Vorteil „Diplomat“ von Forever erhöht den Rufgewinn.",
 
 	-- Step 2: Dust Stormers and Desert Rumblers
 	-- plural, as words: Dust Stormers = {npc:11744} Dust Stormer · Desert Rumblers = {npc:11746} Desert Rumbler
@@ -20,7 +21,7 @@ return {
 
 	-- Step 3: Poisoned Water
 	-- {item:17310} Aspect of Neptulon · {zone:1423} Eastern Plaguelands · {item:17309} Discordant Bracers
-	["Use the {item:17310} on the poisoned water elementals of {zone:1423}, then loot their {item:17309} (12). Our data has no spawn points for those elementals."] = "Benutze {item:17310} an den vergifteten Wasserelementaren in den {zone:1423} und plündere dann ihre {item:17309} (12). Unsere Daten haben keine Fundorte für diese Elementare.",
+	["Use the {item:17310} on the poisoned water elementals of {zone:1423}, then loot their {item:17309} (12)."] = "Benutze {item:17310} an den vergifteten Wasserelementaren in den {zone:1423} und plündere dann ihre {item:17309} (12).",
 
 	-- Step 4: Back to Duke Hydraxis
 	-- {npc:13278} Duke Hydraxis
@@ -53,4 +54,7 @@ return {
 	["{faction:749} to Exalted"] = "{faction:749} bis Ehrfürchtig",
 	-- {area:2717} Molten Core
 	["Keep clearing the {area:2717} until Exalted."] = "Säubere weiter den {area:2717}, bis du ehrfürchtig bist.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Use the {item:17310} on the poisoned water elementals of {zone:1423}, then loot their {item:17309} (12). Our data has no spawn points for those elementals."] = "Benutze {item:17310} an den vergifteten Wasserelementaren in den {zone:1423} und plündere dann ihre {item:17309} (12). Unsere Daten haben keine Fundorte für diese Elementare.",
 }

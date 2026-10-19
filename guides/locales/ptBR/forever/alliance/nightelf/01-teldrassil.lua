@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Portuguese (Brazil) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Portuguese (Brazil) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Aldrassil
@@ -26,7 +27,7 @@ return {
 	-- {npc:2082} Gilshalan Windwalker
 	["{npc:2082}, on the tree's ramp"] = "{npc:2082}, na rampa da árvore",
 	-- {npc:3595} Shanda
-	["{npc:3595}, inside the tree"] = "{npc:3595}, dentro da árvore",
+	["{npc:3595}: in at the tree's front entrance and up the ramp"] = "",
 	-- {quest:97979} The Goddess Provides · {spell:1259799} Elune's Light · {npc:3595} Shanda
 	["{quest:97979}: cast {spell:1259799} and Shadowmeld, then hand it back to {npc:3595}"] = "{quest:97979}: lance {spell:1259799} e Fusão Sombria e depois entregue a {npc:3595}",
 	-- {npc:8583} Dirania Silvershine
@@ -49,7 +50,7 @@ return {
 	-- {npc:3594} Frahun Shadewhisper
 	["{npc:3594}, the rogue trainer"] = "{npc:3594}, o instrutor de ladino",
 	-- {npc:3595} Shanda
-	["{npc:3595}, the priest trainer, inside the tree"] = "{npc:3595}, a instrutora de sacerdote, dentro da árvore",
+	["{npc:3595}, the priest trainer: in at the tree's front entrance and up the ramp"] = "",
 	-- {npc:3597} Mardant Strongoak · {area:256} Aldrassil
 	["{npc:3597}, the druid trainer at {area:256}"] = "{npc:3597}, o instrutor de druida em {area:256}",
 
@@ -80,24 +81,22 @@ return {
 	-- {area:188} Shadowglen · {area:256} Aldrassil · {npc:6780} Porthannius · {area:186} Dolanaar
 	["Leave {area:188} by the path south-east of {area:256}: {npc:6780} stands beside it, where it goes down towards the road to {area:186}."] = "Saia de {area:188} pela trilha a sudeste de {area:256}: {npc:6780} fica ao lado dela, onde ela desce em direção à estrada para {area:186}.",
 
-	-- Step 12: Dolanaar
-	-- {area:188} Shadowglen · {area:186} Dolanaar
-	["Follow the road south-west out of {area:188} to {area:186}."] = "Siga a estrada para o sudoeste, saindo de {area:188}, até {area:186}.",
+	-- Step 12: Zenn Foulhoof
+	-- {area:188} Shadowglen · {npc:2150} Zenn Foulhoof · {area:186} Dolanaar
+	["Follow the road south-west out of {area:188}. {npc:2150} sits beside it just east of {area:186}."] = "Siga a estrada para o sudoeste, saindo de {area:188}. {npc:2150} fica junto a ela, logo a leste de {area:186}.",
+
+	-- Step 13: Dolanaar
 	-- {npc:265811} Lyreena Duskblade
 	["{npc:265811}, by the campfire"] = "{npc:265811}, junto à fogueira",
 	-- {npc:3515} Corithras Moonrage
 	["{npc:3515}, south of the inn"] = "{npc:3515}, ao sul da estalagem",
 
-	-- Step 13: Zenn Foulhoof
-	-- {area:186} Dolanaar · {area:260} Starbreeze Village
-	["Zenn sits by the road just east of {area:186}, on the way to {area:260}."] = "Zenn Cascovil fica junto à estrada, logo a leste de {area:186}, a caminho de {area:260}.",
-
 	-- Step 14: Zenn's Bidding and the Starbreeze moonwell
 	-- {quest:488} Zenn's Bidding
 	["{quest:488} and the Starbreeze moonwell"] = "{quest:488} e o poço lunar do Vilarejo Brisastral",
-	-- {area:260} Starbreeze Village
+	-- {area:186} Dolanaar · {area:260} Starbreeze Village
 	-- plural, as words: Strigid Owls = {npc:1995} Strigid Owl · Webwood Lurkers = {npc:1998} Webwood Lurker
-	["Nightsabers, Strigid Owls and Webwood Lurkers live along the road east. The moonwell is at the west edge of {area:260}."] = "Sabres-da-noite, Corujas Estrígidas e Tocaieiras Lenhateia vivem ao longo da estrada para o leste. O poço lunar fica na borda oeste de {area:260}.",
+	["Nightsabers, Strigid Owls and Webwood Lurkers roam all around {area:186} and along the road east. The moonwell is at the west edge of {area:260}."] = "Sabres-da-noite, Corujas Estrígidas e Tocaieiras Lenhateia rondam por todo {area:186} e ao longo da estrada para o leste. O poço lunar fica na borda oeste de {area:260}.",
 	-- {item:5619} Jade Phial
 	["Use the {item:5619} at the moonwell"] = "Use o {item:5619} no poço lunar",
 	-- {npc:2150} Zenn Foulhoof
@@ -108,17 +107,17 @@ return {
 	["{area:186} quests"] = "Missões de {area:186}",
 
 	-- Step 16: The Great Outdoors
-	-- {spell:1229451} Boosted Rest
-	["/sit by Lyreena's campfire until you get {spell:1229451}"] = "Use /sentar junto à fogueira de Lirena até receber {spell:1229451}",
+	-- {npc:265811} Lyreena Duskblade · {spell:1229451} Boosted Rest
+	["/sit by {npc:265811}'s campfire until you get {spell:1229451}"] = "Use /sentar junto à fogueira de {npc:265811} até receber {spell:1229451}",
 	-- {npc:6286} Zarrin
 	["Speak with {npc:6286}, south of the inn"] = "Fale com {npc:6286}, ao sul da estalagem",
 
 	-- Step 17: East to Starbreeze Village
 	-- {area:260} Starbreeze Village
 	["East to {area:260}"] = "Ao leste, para {area:260}",
-	-- {area:186} Dolanaar · {object:126158} Tallonkai's Dresser
+	-- {area:186} Dolanaar · {npc:2150} Zenn Foulhoof · {object:126158} Tallonkai's Dresser
 	-- plural, as words: Fel Cones = {object:1673} Fel Cone · Webwood Lurkers = {npc:1998} Webwood Lurker
-	["Fel Cones lie under the trees all around {area:186} and Zenn. Nightsabers and Webwood Lurkers keep roaming the road east. {object:126158} is in the house on the hill at the east end of the village."] = "As Pinhas Vis ficam sob as árvores ao redor de {area:186} e de Zenn Cascovil. Sabres-da-noite e Tocaieiras Lenhateia continuam vagando pela estrada para o leste. {object:126158} está na casa da colina, no extremo leste da aldeia.",
+	["Fel Cones lie under the trees all around {area:186} and {npc:2150}. Nightsabers and Webwood Lurkers keep roaming the road east. {object:126158} is in the house on the hill at the east end of the village."] = "As Pinhas Vis ficam sob as árvores ao redor de {area:186} e de {npc:2150}. Sabres-da-noite e Tocaieiras Lenhateia continuam vagando pela estrada para o leste. {object:126158} está na casa da colina, no extremo leste da aldeia.",
 	["Nightsabers"] = "Sabres-da-noite",
 	-- plural, as words: Webwood Lurkers = {npc:1998} Webwood Lurker
 	["Webwood Lurkers"] = "Tocaieiras Lenhateia",
@@ -129,6 +128,8 @@ return {
 	["South of Zenn. {npc:2080} tends his saplings on the shore; Lasher Sproutlings and Timberlings wander around him, and the {quest:919} grow among them."] = "Ao sul de Zenn Cascovil. {npc:2080} cuida das mudas dele na margem; Brotos de Açoitadeira e Muscoides vagueiam ao redor dele, e {quest:919} crescem entre eles.",
 
 	-- Step 20: Dolanaar
+	-- {npc:2151} Moon Priestess Amara
+	["{npc:2151} patrols the road west of the village: if she isn't at the arrow, follow the road until you meet her."] = "{npc:2151} patrulha a estrada a oeste da aldeia: se ela não estiver na seta, siga a estrada até encontrá-la.",
 	-- {npc:2151} Moon Priestess Amara
 	["{npc:2151}, on the road west of the village"] = "{npc:2151}, na estrada a oeste da aldeia",
 
@@ -188,10 +189,8 @@ return {
 	-- {area:186} Dolanaar · {area:264} Oracle Glade
 	["Take the road north-west from {area:186} towards the {area:264}; she lies hurt beside it."] = "Pegue a estrada para o noroeste a partir de {area:186}, em direção a {area:264}; ela está ferida à beira da estrada.",
 
-	-- Step 31: The Oracle Glade
-	-- {area:264} Oracle Glade
-	["The {area:264}"] = "{area:264}",
-	-- {object:6752} Strange Fronded Plant
+	-- Step 31: Oracle Glade
+	-- {object:6752} Strange Fronded Plant (no name in this language: may be words)
 	["The moonwell is in the middle of the glade. The {object:6752} grows at its north end."] = "O poço lunar fica no meio da clareira. {object:6752} cresce no extremo norte dela.",
 	-- {item:5623} Amethyst Phial
 	["Use the {item:5623} at the moonwell"] = "Use o {item:5623} no poço lunar",
@@ -212,7 +211,7 @@ return {
 
 	-- Step 35: Sentinel Arynia again
 	["Sentinel Arynia again"] = "Sentinela Arynia de novo",
-	-- {object:673378} Oracle Tree Bark
+	-- {object:673378} Oracle Tree Bark (no name in this language: may be words)
 	["{object:673378}, just west of the moonwell"] = "{object:673378}, logo a oeste do poço lunar",
 
 	-- Step 36: Ursal the Mauler
@@ -277,11 +276,11 @@ return {
 	-- {npc:7999} Tyrande Whisperwind · {npc:4092} Lariia
 	["{npc:7999}, above {npc:4092}"] = "{npc:7999}, acima de {npc:4092}",
 	-- {npc:11401} Priestess Alathea
-	["{npc:11401}, in the Temple of the Moon: Starshards"] = "{npc:11401}, no Templo da Lua: Estilhaços Estelares",
+	["{npc:11401}, in the Temple of the Moon: Starshards"] = "{npc:11401}, no Templo da Lua: Fragmentos Estelares",
 
 	-- Step 43: Rut'theran Village
-	-- {area:702} Rut'theran Village · {npc:3838} Vesprystus
-	["Take the portal down to {area:702}. Nessa stands on the dock, {npc:3838} by the hippogryphs."] = "Pegue o portal para descer até {area:702}. Nessa Cantonegro fica no cais, {npc:3838} junto aos hipogrifos.",
+	-- {area:702} Rut'theran Village · {npc:10118} Nessa Shadowsong · {npc:3838} Vesprystus
+	["Take the portal down to {area:702}. {npc:10118} stands on the dock, {npc:3838} by the hippogryphs."] = "Pegue o portal para descer até {area:702}. {npc:10118} fica no cais, {npc:3838} junto aos hipogrifos.",
 
 	-- Step 45: Moonglade
 	-- {area:442} Auberdine · {spell:18960} Teleport: Moonglade · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {quest:5929} Great Bear Spirit · {area:493} Moonglade · {area:702} Rut'theran Village
@@ -290,8 +289,8 @@ return {
 	["Speak with the {quest:5929}"] = "Fale com {quest:5929}",
 
 	-- Step 46: Back to Darnassus
-	-- {area:702} Rut'theran Village · {area:1658} Cenarion Enclave
-	["Take the portal up from {area:702} to Mathrengyl in the {area:1658}."] = "Pegue o portal para subir de {area:702} até Mathrengyl Ursivagus em {area:1658}.",
+	-- {area:702} Rut'theran Village · {npc:4217} Mathrengyl Bearwalker · {area:1658} Cenarion Enclave
+	["Take the portal up from {area:702} to {npc:4217} in the {area:1658}."] = "Pegue o portal para subir de {area:702} até {npc:4217} em {area:1658}.",
 
 	-- Step 47: The Moonkin Stone
 	-- {object:177525} Moonkin Stone
@@ -300,8 +299,8 @@ return {
 	["Go back down to {area:702} and fly to {area:442}. The {object:177525} stands in the hills just east of the village: use the {item:15208} there, defeat Lunaclaw and speak to the {npc:12144}."] = "Desça de volta até {area:702} e voe para {area:442}. {object:177525} fica nas colinas logo a leste da vila: use o {item:15208} ali, derrote Lunagarra e fale com {npc:12144}.",
 
 	-- Step 48: Body and Heart
-	-- {area:702} Rut'theran Village · {area:442} Auberdine
-	["Fly to {area:702} once more and take the portal up to Mathrengyl, then fly back to {area:442} for the boat."] = "Voe para {area:702} mais uma vez e pegue o portal para subir até Mathrengyl Ursivagus; depois volte voando para {area:442} para pegar o barco.",
+	-- {area:702} Rut'theran Village · {npc:4217} Mathrengyl Bearwalker · {area:442} Auberdine
+	["Fly to {area:702} once more and take the portal up to {npc:4217}, then fly back to {area:442} for the boat."] = "Voe para {area:702} mais uma vez e pegue o portal para subir até {npc:4217}; depois volte voando para {area:442} para pegar o barco.",
 
 	-- Step 49: Auberdine
 	-- {npc:4200} Laird · {zone:1453} Stormwind
@@ -316,4 +315,10 @@ return {
 	["From the harbour walk into {object:2100}. {npc:5480} trains warriors there; {npc:6089} and {npc:6090} stand together by the {object:2152}. {npc:6090} fights you for his mug."] = "Do porto, entre em {object:2100}. {npc:5480} treina guerreiros ali; {npc:6089} e {npc:6090} ficam juntos perto de {object:2152}. {npc:6090} luta com você pela caneca dele.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Follow the road south-west out of {area:188} to {area:186}."] = "Siga a estrada para o sudoeste, saindo de {area:188}, até {area:186}.",
+	-- ["Nightsabers, Strigid Owls and Webwood Lurkers live along the road east. The moonwell is at the west edge of {area:260}."] = "Sabres-da-noite, Corujas Estrígidas e Tocaieiras Lenhateia vivem ao longo da estrada para o leste. O poço lunar fica na borda oeste de {area:260}.",
+	-- ["The {area:264}"] = "{area:264}",
+	-- ["{npc:2150} sits by the road just east of {area:186}, on the way to {area:260}."] = "{npc:2150} fica junto à estrada, logo a leste de {area:186}, a caminho de {area:260}.",
+	-- ["{npc:3595}, inside the tree"] = "{npc:3595}, dentro da árvore",
+	-- ["{npc:3595}, the priest trainer, inside the tree"] = "{npc:3595}, a instrutora de sacerdote, dentro da árvore",
 }

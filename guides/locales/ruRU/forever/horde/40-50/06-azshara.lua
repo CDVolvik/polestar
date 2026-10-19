@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Russian (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Russian words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Fly to the Undercity
@@ -12,8 +13,8 @@ return {
 	["From {area:3317}'s flight master, fly to the {area:1497}."] = "От распорядителя полетов ({area:3317}) летите в {area:1497}.",
 
 	-- Step 2: Oran Snakewrithe
-	-- {object:36082} Magic Quarter
-	["Oran stands in the {object:36082}."] = "Оран стоит здесь: {object:36082}.",
+	-- {npc:7825} Oran Snakewrithe · {object:36082} Magic Quarter
+	["{npc:7825} stands in the {object:36082}."] = "{npc:7825} стоит здесь: {object:36082}.",
 
 	-- Step 3: Zeppelin to Orgrimmar
 	-- {zone:1454} Orgrimmar
@@ -68,8 +69,8 @@ return {
 	-- Step 15: Jediga
 	-- {area:1237} Valormok
 	["Ride west back to {area:1237}."] = "Езжайте на запад обратно: {area:1237}.",
-	-- {npc:8659} Jes'rimon · {npc:6522} Andron Gant · {zone:1456} Thunder Bluff · {zone:1454} Orgrimmar · {zone:1458} Undercity
-	["Keep the deliveries for Magatha, {npc:8659} and {npc:6522}: you pass {zone:1456}, {zone:1454} and the {zone:1458} later."] = "Сохраните доставки для Магаты, NPC {npc:8659} и {npc:6522}: позже вы будете проезжать {zone:1456}, {zone:1454} и {zone:1458}.",
+	-- {npc:4046} Magatha Grimtotem · {npc:8659} Jes'rimon · {npc:6522} Andron Gant · {zone:1456} Thunder Bluff · {zone:1454} Orgrimmar · {zone:1458} Undercity
+	["Keep the deliveries for {npc:4046}, {npc:8659} and {npc:6522}: you pass {zone:1456}, {zone:1454} and the {zone:1458} later."] = "Сохраните доставки для {npc:4046}, NPC {npc:8659} и {npc:6522}: позже вы будете проезжать {zone:1456}, {zone:1454} и {zone:1458}.",
 
 	-- Step 16: Archmage Xylem
 	-- {area:1237} Valormok
@@ -110,16 +111,16 @@ return {
 	["Keep {npc:8659}'s payment and Ag'tor's {quest:3504}: they go back to {area:1237} on a later visit."] = "Сохраните плату ({npc:8659}) и задание Аг'тора «{quest:3504}»: они вернутся в {area:1237} при следующем визите.",
 
 	-- Step 24: Thunder Bluff
-	-- {area:1638} Thunder Bluff · {area:1099} Camp Mojache · {area:378} Camp Taurajo · {zone:1412} Mulgore · {area:1639} Elder Rise · {npc:3033} Turak Runetotem · {npc:246344} Alodan the Hopeful
-	["Fly to {area:1638}; it is on the way to {area:1099}. No flight path there yet? Fly to {area:378} and ride west through {zone:1412}. Hamuul and Magatha are on the {area:1639}; Druids and Paladins train here ({npc:3033}, {npc:246344})."] = "Летите в {area:1638}; это по пути к месту {area:1099}. Маршрута полета туда еще нет? Летите в {area:378} и езжайте на запад через {zone:1412}. Хамуул и Магата — здесь: {area:1639}; друиды и паладины обучаются здесь ({npc:3033}, {npc:246344}).",
-	-- {quest:3761} Un'Goro Soil · {npc:8587} Jediga
-	["{quest:3761} is gathered in the next guide; Magatha's payment goes back to {npc:8587} later."] = "{quest:3761} собирается в следующем гайде; плату Магаты позже отнесете: {npc:8587}.",
+	-- {area:1638} Thunder Bluff · {area:1099} Camp Mojache · {area:378} Camp Taurajo · {zone:1412} Mulgore · {npc:4046} Magatha Grimtotem · {area:1639} Elder Rise · {npc:3033} Turak Runetotem · {npc:246344} Alodan the Hopeful
+	["Fly to {area:1638}; it is on the way to {area:1099}. No flight path there yet? Fly to {area:378} and ride west through {zone:1412}. Hamuul and {npc:4046} are on the {area:1639}; Druids and Paladins train here ({npc:3033}, {npc:246344})."] = "Летите в {area:1638}; это по пути к месту {area:1099}. Маршрута полета туда еще нет? Летите в {area:378} и езжайте на запад через {zone:1412}. Хамуул и {npc:4046} — здесь: {area:1639}; друиды и паладины обучаются здесь ({npc:3033}, {npc:246344}).",
+	-- {quest:3761} Un'Goro Soil · {npc:4046} Magatha Grimtotem · {npc:8587} Jediga
+	["{quest:3761} is gathered in the next guide; {npc:4046}'s payment goes back to {npc:8587} later."] = "{quest:3761} собирается в следующем гайде; плату {npc:4046} позже отнесете: {npc:8587}.",
 
 	-- Step 25: Camp Mojache
 	-- {npc:7776} Talo Thornhoof · {zone:1448} Felwood
 	["{npc:7776}: the bears are in {zone:1448}"] = "{npc:7776}: медведи — в зоне {zone:1448}",
-	-- {area:1417} Sunken Temple · {zone:1446} Tanaris
-	["Keep {area:1417} for Marvon in {zone:1446}."] = "Сохраните {area:1417} для Марвона ({zone:1446}).",
+	-- {area:1417} Sunken Temple · {npc:7771} Marvon Rivetseeker · {zone:1446} Tanaris
+	["Keep {area:1417} for {npc:7771} in {zone:1446}."] = "Сохраните {area:1417} для {npc:7771} ({zone:1446}).",
 
 	-- Step 26: Frayfeather Hippogryphs
 	-- plural, as words: Frayfeather Hippogryphs = {npc:5300} Frayfeather Hippogryph
@@ -138,8 +139,8 @@ return {
 	["The treants wander the forest roads between the camp and the middle of {zone:1444}; there are only a few, so look along the paths."] = "Древни бродят по лесным дорогам между лагерем и центром зоны {zone:1444}; их немного, так что ищите вдоль троп.",
 
 	-- Step 32: Zorbin Fandazzle
-	-- {area:1108} Forgotten Coast
-	["Ride north-west to the {area:1108}; Zorbin waits on the dock."] = "Езжайте на северо-запад: {area:1108}; Зорбин ждет на причале.",
+	-- {area:1108} Forgotten Coast · {npc:14637} Zorbin Fandazzle
+	["Ride north-west to the {area:1108}; {npc:14637} waits on the dock."] = "Езжайте на северо-запад: {area:1108}; {npc:14637} ждет на причале.",
 
 	-- Step 33: Zapped giants
 	["Zapped giants"] = "Уменьшенные великаны",
@@ -165,6 +166,6 @@ return {
 	-- Step 38: Broken Pillar
 	-- {area:1938} Broken Pillar · {npc:7771} Marvon Rivetseeker · {zone:1449} Un'Goro Crater
 	["Ride south along the road to the {area:1938}; {npc:7771} camps beside it. From here the road west leads down into {zone:1449}, where the next guide starts."] = "Езжайте на юг по дороге к месту {area:1938}; {npc:7771} стоит лагерем рядом. Отсюда дорога на запад ведет вниз в {zone:1449}, где начинается следующий гайд.",
-	-- {quest:3444} The Stone Circle
-	["Keep {quest:3444}: Marvon's chest is opened on a later visit."] = "Сохраните {quest:3444}: сундук Марвона откроется при следующем визите.",
+	-- {quest:3444} The Stone Circle · {npc:7771} Marvon Rivetseeker
+	["Keep {quest:3444}: {npc:7771}'s chest is opened on a later visit."] = "Сохраните {quest:3444}: сундук {npc:7771} откроется при следующем визите.",
 }

@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Russian (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Russian words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -11,7 +12,7 @@ return {
 
 	-- Step 1: Devourer of Souls (Orgrimmar)
 	-- {npc:5875} Gan'rul Bloodeye · {object:172960} Cleft of Shadow · {object:172982} Valley of Strength · {npc:5909} Cazul · {npc:5675} Carendin Halgar · {zone:1458} Undercity · {quest:1472} Devourer of Souls
-	["At 20 {npc:5875}, in the {object:172960} under the {object:172982}, sends you to {npc:5909} a few steps away. Two trainers offer the incubus, Gan'rul here and {npc:5675} in the {zone:1458}, and you can take only one: this guide follows whichever {quest:1472} you took."] = "На 20-м уровне {npc:5875} ({object:172960} под районом {object:172982}) отправит вас в нескольких шагах отсюда: {npc:5909}. Инкуба предлагают два учителя – Ган'рул здесь и {npc:5675} ({zone:1458}), – и можно взять только одно задание: гайд следует тому {quest:1472}, которое вы взяли.",
+	["At 20 {npc:5875}, in the {object:172960} under the {object:172982}, sends you to {npc:5909} a few steps away. Two trainers offer the incubus, {npc:5875} here and {npc:5675} in the {zone:1458}, and you can take only one: this guide follows whichever {quest:1472} you took."] = "На 20-м уровне {npc:5875} ({object:172960} под районом {object:172982}) отправит вас в нескольких шагах отсюда: {npc:5909}. Инкуба предлагают два учителя – {npc:5875} здесь и {npc:5675} ({zone:1458}), – и можно взять только одно задание: гайд следует тому {quest:1472}, которое вы взяли.",
 
 	-- Step 2: Magar
 	-- {npc:3363} Magar · {object:173018} Magar's Cloth Goods · {object:172960} Cleft of Shadow
@@ -22,14 +23,14 @@ return {
 	["{area:422} lies in southern {zone:1440}, south of {area:431}. The Shadethicket bog beasts around the lake drop the {item:190232}, about one in twenty."] = "{area:422} – на юге зоны {zone:1440}, к югу от места {area:431}. {item:190232} падает с чащобных болотных зверей вокруг озера, примерно в одном случае из двадцати.",
 
 	-- Step 4: The Binding (Orgrimmar)
-	-- {object:172960} Cleft of Shadow · {npc:3216} Neeru Fireblade
-	["Back to Gan'rul in the {object:172960}. Take the scarf to the summoning circle in {npc:3216}'s tent nearby and defeat the incubus it calls."] = "Назад к Ган'рулу ({object:172960}). Отнесите шарф к кругу призыва в палатке рядом (хозяин: {npc:3216}) и победите призванного инкуба.",
+	-- {npc:5875} Gan'rul Bloodeye · {object:172960} Cleft of Shadow · {npc:3216} Neeru Fireblade
+	["Back to {npc:5875} in the {object:172960}. Take the scarf to the summoning circle in {npc:3216}'s tent nearby and defeat the incubus it calls."] = "Назад к {npc:5875} ({object:172960}). Отнесите шарф к кругу призыва в палатке рядом (хозяин: {npc:3216}) и победите призванного инкуба.",
 	-- {npc:5875} Gan'rul Bloodeye
 	["{npc:5875}: he binds the incubus to you"] = "{npc:5875}: он привяжет к вам инкуба",
 
 	-- Step 5: Devourer of Souls (Undercity)
-	-- {object:1661} The Undercity · {npc:5675} Carendin Halgar · {quest:1472} Devourer of Souls · {object:36082} Magic Quarter · {npc:5693} Godrick Farsan
-	["{object:1661}'s version, for warlocks who took {npc:5675}'s {quest:1472} instead of Gan'rul's. At 20 Carendin, in the {object:36082}, sends you to {npc:5693} in the Temple of the Damned, just north of him."] = "Вариант для {object:1661} – для чернокнижников, взявших {quest:1472} у NPC {npc:5675}, а не у Ган'рула. На 20-м уровне Карендин ({object:36082}) отправит вас в Храм Проклятых, чуть севернее. Цель: {npc:5693}.",
+	-- {object:1661} The Undercity · {npc:5675} Carendin Halgar · {quest:1472} Devourer of Souls · {npc:5875} Gan'rul Bloodeye · {object:36082} Magic Quarter · {npc:5693} Godrick Farsan
+	["{object:1661}'s version, for warlocks who took {npc:5675}'s {quest:1472} instead of {npc:5875}'s. At 20 {npc:5675}, in the {object:36082}, sends you to {npc:5693} in the Temple of the Damned, just north of him."] = "Вариант для {object:1661} – для чернокнижников, взявших {quest:1472} у NPC {npc:5675}, а не у {npc:5875}. На 20-м уровне {npc:5675} ({object:36082}) отправит вас в Храм Проклятых, чуть севернее. Цель: {npc:5693}.",
 
 	-- Step 6: Avelina Lilly
 	-- {npc:185333} Avelina Lilly · {area:279} Dalaran · {area:233} Ambermill · {zone:1421} Silverpine Forest
@@ -40,8 +41,8 @@ return {
 	["{npc:185334} works in {area:392}, on the {zone:1413} coast. Take the zeppelin to {zone:1411} and ride or fly on to {area:392}."] = "{npc:185334} работает здесь: {area:392}, на побережье зоны {zone:1413}. Сядьте на дирижабль в зону {zone:1411}, затем езжайте или летите дальше. Цель: {area:392}.",
 
 	-- Step 8: The Binding (Undercity)
-	-- {object:36082} Magic Quarter
-	["Back to Carendin in the {object:36082}. Place the hearts at the summoning circle below him and defeat the incubus they call."] = "Назад к Карендину ({object:36082}). Положите сердца у круга призыва под ним и победите призванного инкуба.",
+	-- {npc:5675} Carendin Halgar · {object:36082} Magic Quarter
+	["Back to {npc:5675} in the {object:36082}. Place the hearts at the summoning circle below him and defeat the incubus they call."] = "Назад к {npc:5675} ({object:36082}). Положите сердца у круга призыва под ним и победите призванного инкуба.",
 	-- {npc:5675} Carendin Halgar
 	["{npc:5675}: he binds the incubus to you"] = "{npc:5675}: он привяжет к вам инкуба",
 }

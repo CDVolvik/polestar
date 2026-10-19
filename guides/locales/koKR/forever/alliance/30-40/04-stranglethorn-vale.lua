@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Korean words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Ironforge
@@ -15,7 +16,7 @@ return {
 	["{area:1537} has no druid trainer: take the {area:2257} from {object:171524} to {zone:1453} and train with {npc:5504}."] = "{area:1537}에는 드루이드 상급자가 없습니다. {object:171524}에서 {area:2257}을(를) 타고 {zone:1453}(으)로 가서 {npc:5504}에게 배우세요.",
 
 	-- Step 3: Darkshire
-	-- {area:42} Darkshire · {npc:1573} Gryth Thurden · {area:1537} Ironforge · {object:32372} Great Forge · {npc:352} Dungar Longdrink · {zone:1453} Stormwind · {object:2096} Trade District
+	-- {area:42} Darkshire · {npc:1573} Gryth Thurden · {area:1537} Ironforge · {object:32372} Great Forge (no name in this language: may be words) · {npc:352} Dungar Longdrink · {zone:1453} Stormwind · {object:2096} Trade District
 	["Fly to {area:42}: {npc:1573} in {area:1537}'s {object:32372}, or {npc:352} in {zone:1453}'s {object:2096}."] = "{area:42}(으)로 날아가세요: {area:1537} {object:32372}의 {npc:1573}, 또는 {zone:1453} {object:2096}의 {npc:352}.",
 
 	-- Step 4: Nesingwary's Expedition
@@ -39,7 +40,7 @@ return {
 
 	-- Step 9: Rebel Camp
 	-- {npc:738} Private Thorsen
-	["Take the road north; {npc:738} stands on it, the camp sits in the hills to the west."] = "길을 따라 북쪽으로 가세요. {npc:738}은(는) 길 위에 서 있고, 야영지는 서쪽 언덕에 있습니다.",
+	["Take the road north; {npc:738} patrols it, the camp sits in the hills to the west."] = "길을 따라 북쪽으로 가세요. {npc:738}은(는) 길을 순찰하고, 야영지는 서쪽 언덕에 있습니다.",
 	-- {npc:469} Lieutenant Doren
 	["{npc:469}, in the hut"] = "{npc:469}, 오두막 안",
 
@@ -71,9 +72,10 @@ return {
 	["Down to {area:35}"] = "{area:35}(으)로 내려가기",
 	-- {object:3202} Grom'gol · {area:35} Booty Bay
 	["Follow the main road south the length of the jungle, past the {object:3202} turn-off, to {area:35} on the southern cape."] = "큰길을 따라 밀림을 끝까지 남쪽으로 가서 {object:3202} 갈림길을 지나 남쪽 곶의 {area:35}에 도착하세요.",
-	["Gyll, on the top floor by the docks"] = "가일, 부두 옆 꼭대기 층",
-	-- {npc:2832} Nixxrax Fillamug
-	["{npc:2832}, in the Salty Sailor Tavern"] = "{npc:2832}, 뱃사공의 선술집 안",
+	-- {npc:2859} Gyll
+	["{npc:2859}, on the top floor by the docks"] = "{npc:2859}, 부두 옆 꼭대기 층",
+	-- {npc:2832} Nixxrax Fillamug · {object:56910} The Salty Sailor Tavern
+	["{npc:2832}, in the {object:56910}"] = "{npc:2832}, {object:56910} 안",
 	-- {npc:2495} Drizzlik
 	["{npc:2495}, by the bank"] = "{npc:2495}, 은행 옆",
 	-- {npc:773} Krazek
@@ -120,8 +122,8 @@ return {
 	["Follow the west coast north; the haunted island lies off the shore west of Nesingwary's camp. Just reach it."] = "서쪽 해안을 따라 북쪽으로 가세요. 유령의 섬은 네싱워리 야영지 서쪽 앞바다에 있습니다. 도착만 하면 됩니다.",
 
 	-- Step 26: Nesingwary's Expedition
-	-- {item:2755} Green Hills of Stranglethorn
-	["Barnil collects the {item:2755}: the pages drop from almost every humanoid in the jungle. Turn the pages into chapters as you go."] = "바닐이 {item:2755}을(를) 모읍니다. 책장은 밀림의 거의 모든 인간형 몹이 떨어뜨립니다. 모이는 대로 책장을 장(章)으로 묶으세요.",
+	-- {npc:716} Barnil Stonepot · {item:2755} Green Hills of Stranglethorn
+	["{npc:716} collects the {item:2755}: the pages drop from almost every humanoid in the jungle. Turn the pages into chapters as you go."] = "{npc:716}이(가) {item:2755}을(를) 모읍니다. 책장은 밀림의 거의 모든 인간형 몹이 떨어뜨립니다. 모이는 대로 책장을 장(章)으로 묶으세요.",
 
 	-- Step 28: Kurzen's Compound
 	["Headshrinkers stand deeper in the compound; the Commandos lurk stealthed around it and in the cave. Pick up Green Hills pages as they drop."] = "쿠르젠 심리학자는 주둔지 더 안쪽에 서 있고, 쿠르젠 특전사는 은신한 채 주변과 동굴 안에 숨어 있습니다. 푸른 언덕 책장이 떨어지면 챙기세요.",
@@ -131,8 +133,6 @@ return {
 	-- {area:37} Lake Nazferiti
 	-- plural, as words: Shadowmaw Panthers = {npc:684} Shadowmaw Panther · Tumbled Crystals = {item:4106} Tumbled Crystal
 	["Loop through the troll ruins of the north and centre: each holds one stone tablet of the troll legends. Shadowmaw Panthers prowl stealthed in the jungle around them; the Venture Co. camp on {area:37} carries the Tumbled Crystals."] = "북쪽과 중앙의 트롤 폐허를 한 바퀴 도세요. 폐허마다 트롤 전설이 새겨진 석판이 하나씩 있습니다. {npc:684}은(는) 그 주변 밀림에서 은신한 채 어슬렁거리고, {area:37}의 투자개발회사 야영지가 {item:4106}을(를) 가지고 있습니다.",
-	-- {quest:207} Kurzen's Mystery
-	["{quest:207}: four troll legends"] = "{quest:207}: 트롤 전설 4개",
 
 	-- Step 30: Rebel Camp
 	-- {npc:770} Corporal Kaleb · {npc:773} Krazek · {area:35} Booty Bay
@@ -152,5 +152,7 @@ return {
 	["For Archmage Ansirem in {zone:1416}"] = "{zone:1416}의 대마법사 앤자이럼 룬위버에게",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Take the road north; {npc:738} stands on it, the camp sits in the hills to the west."] = "길을 따라 북쪽으로 가세요. {npc:738}은(는) 길 위에 서 있고, 야영지는 서쪽 언덕에 있습니다.",
 	-- ["{npc:2832}, in the {object:56910}"] = "{npc:2832}, {object:56910} 안",
+	-- ["{quest:207}: four troll legends"] = "{quest:207}: 트롤 전설 4개",
 }

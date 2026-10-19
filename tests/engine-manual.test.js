@@ -168,7 +168,7 @@ test('a reload keeps the position: a skipped step stays skipped even with its qu
 	assert.deepEqual(out, { at: 4, skipped: '3' });
 });
 
-test('a reload keeps the position: quests their giver did not offer stay passed until a level or a turn-in', () => {
+test('a reload or a relog at a new level keeps the position: quests their giver did not offer stay passed until the giver offers them (#161)', () => {
 	const GUIDE = `
 		Polestar.RegisterGuide({ id = "test/xr", pack = "test", title = "Crossroads", minLevel = 10, maxLevel = 20, steps = {
 			{ title = "Thork", goals = {
@@ -197,8 +197,19 @@ test('a reload keeps the position: quests their giver did not offer stay passed 
 	const script = `emit({ at = E.GetStepIndex(), status = E.GetStepView(1).goals[1].status, why = E.GetStepView(1).goals[1].unavailable or false })`;
 	const [reload] = run({ guides: GUIDE, before: `${before}; w.onQuest(869, { 12 })`, saved: reloadOf(first.db), script });
 	assert.deepEqual(reload, { at: 2, status: 'skipped', why: 'offer' }, 'the reload keeps the player at the raptors');
-	const [levelled] = run({ guides: GUIDE, before: `w.level = 13; w.onQuest(869, { 12 })`, saved: reloadOf(first.db), script });
-	assert.deepEqual(levelled, { at: 1, status: 'active', why: false }, 'a level later Thork may offer it: asked again');
+	const asked = `
+		local w = stub.world
+		local r = { at = E.GetStepIndex(), why = E.GetStepView(1).goals[1].unavailable or false }
+		w.gossip(3429, { available = { { questID = 870 } } }); flush()
+		r.offered = E.GetStepIndex()
+		emit(r)
+	`;
+	const [levelled] = run({ guides: GUIDE, before: `w.level = 13; w.onQuest(869, { 12 })`, saved: reloadOf(first.db), script: asked });
+	assert.deepEqual(levelled, { at: 2, why: 'offer', offered: 1 }, 'a level later the guide stays at the raptors; Thork offering it takes it back');
+	// Saves from before kept the level the quest was refused at.
+	const older = reloadOf({ ...first.db, offers: { 870: 12 } });
+	const [old] = run({ guides: GUIDE, before: `w.level = 13; w.onQuest(869, { 12 })`, saved: older, script: asked });
+	assert.deepEqual(old, { at: 2, why: 'offer', offered: 1 });
 });
 
 test('a pack update that moves steps keeps check-offs, skips and the place the player was looking at', () => {
@@ -573,4 +584,64 @@ test('a spawn spot holds while the player is on another continent, and is picked
 	});
 	assert.equal(out.start, 80);
 	assert.deepEqual(out.away, [80, 80, 80, 80]);
+});
+
+// #221: a turn-in in a step of its own after an `optional` accept (Croaky's
+// Head: the head drops on the murloc shore, Merell Ross takes it at
+// Ridgepoint Tower). It holds only a player who took the quest: one who
+// never did passes the step, one who has it in the log is led to the ender,
+// and one who already handed it in finds the step done.
+const OPTIONAL_TAKE = `
+	Polestar.RegisterGuide({ id = "test/optional", pack = "test", title = "Optional", minLevel = 1, maxLevel = 20, steps = {
+		{ title = "Murlocs", goals = {
+			{ t = "collect", item = 780, itemName = "Torn Murloc Fin", count = 8, quest = 46, oi = 1, map = 1429, x = 76.5, y = 79.7 },
+			{ t = "accept", quest = 91740, title = "Croaky's Head", item = 247826, itemName = "Croaky's Head", optional = true },
+		} },
+		{ title = "Ridgepoint Tower", goals = {
+			{ t = "turnin", quest = 91740, title = "Croaky's Head", npc = 248277, npcName = "Merell Ross", map = 1429, x = 84.75, y = 79.3 },
+		} },
+		{ title = "Guard Thomas", goals = {
+			{ t = "turnin", quest = 46, title = "Bounty on Murlocs", npc = 261, npcName = "Guard Thomas", map = 1429, x = 74.0, y = 72.2 },
+		} },
+	} })`;
+
+function optionalTake(take) {
+	const [out] = run({
+		guides: OPTIONAL_TAKE,
+		before: `w.onQuest(46, { 8 })${take === 'done' ? '; w.complete({ 91740 })' : ''}`,
+		saved: 'PolestarCharDB = { schema = 1, guide = "test/optional" }',
+		script: `
+			local r = { start = E.GetStepIndex() }
+			${take === 'taken' ? 'stub.world.accept(91740, {}); flush()' : ''}
+			stub.world.finish(46); flush()
+			local wp = E.GetWaypoint()
+			r.at, r.ridgepoint = E.GetStepIndex(), E.GetStepView(2).goals[1].status
+			r.wp = wp and { wp.stepIndex, wp.map, wp.x, wp.y } or false
+			${take === 'taken' ? 'stub.world.turnIn(91740); flush(); r.after = E.GetStepIndex()' : ''}
+			emit(r)
+		`,
+	});
+	return out;
+}
+
+test('#221: a turn-in after an optional accept the player never took no longer holds the guide', () => {
+	const out = optionalTake('no');
+	assert.equal(out.start, 1);
+	assert.equal(out.ridgepoint, 'na', 'the turn-in is not this player\'s');
+	assert.equal(out.at, 3, 'Ridgepoint Tower is passed: on to Guard Thomas');
+	assert.deepEqual(out.wp, [3, 1429, 74.0, 72.2]);
+});
+
+test('#221: a turn-in after an optional accept holds a player who took the quest, and the arrow leads to the ender', () => {
+	const out = optionalTake('taken');
+	assert.equal(out.at, 2, 'Ridgepoint Tower holds with the quest in the log');
+	assert.equal(out.ridgepoint, 'active');
+	assert.deepEqual(out.wp, [2, 1429, 84.75, 79.3], 'the arrow leads to Merell Ross');
+	assert.equal(out.after, 3, 'handed in: on to Guard Thomas');
+});
+
+test('#221: a turn-in after an optional accept is done for a player who already handed the quest in', () => {
+	const out = optionalTake('done');
+	assert.equal(out.ridgepoint, 'done');
+	assert.equal(out.at, 3);
 });

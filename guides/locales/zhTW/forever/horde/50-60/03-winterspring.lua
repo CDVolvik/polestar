@@ -3,11 +3,14 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (traditional) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (traditional) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Everlook
 	-- {area:2255} Everlook
 	["{area:2255} is the goblin town on the east side of the valley."] = "{area:2255}是山谷東側的哥布林城鎮。",
+	-- {npc:11118} Innkeeper Vizzie
+	["{npc:11118}: the last guide binds here, so this usually ticks at once"] = "{npc:11118}：上一份指南在這裡綁定爐石，所以這一步通常會立即完成",
 	["Gregor's and Harlo's quests lead to other zones: keep them."] = "格雷戈和哈魯的任務會通往其他地區：保留它們。",
 
 	-- Step 2: Ice Thistle yetis
@@ -37,8 +40,8 @@ return {
 	["Ride west along the road past {area:2251}; Raging Owlbeasts roam the hills north of it."] = "沿著道路向西騎過{area:2251}；狂怒的梟獸在湖北邊的山丘上遊蕩。",
 
 	-- Step 9: Donova Snowden
-	-- {area:2246} Frostfire Hot Springs
-	["Donova camps among the steaming pools of {area:2246}, in the west of the valley."] = "多諾瓦在山谷西部{area:2246}冒著蒸氣的池塘之間紮營。",
+	-- {npc:9298} Donova Snowden · {area:2246} Frostfire Hot Springs
+	["{npc:9298} camps among the steaming pools of {area:2246}, in the west of the valley."] = "{npc:9298}在山谷西部{area:2246}冒著蒸氣的池塘之間紮營。",
 	["From Krakle in Un'Goro"] = "來自安戈洛的克拉蘭克",
 	["Linken's letter"] = "林克的信",
 	-- {quest:3909} The Videre Elixir · {npc:7775} Gregan Brewspewer · {zone:1444} Feralas
@@ -119,8 +122,8 @@ return {
 	["{quest:1123} waits in {zone:1450}: keep it for later."] = "{quest:1123}在{zone:1450}等著：保留到稍後。",
 
 	-- Step 29: Bashana Runetotem
-	-- {item:11040} Morrowgrain · {quest:3761} Un'Goro Soil
-	["Bashana buys {item:11040} grown from your {quest:3761}."] = "巴珊娜收購用你的{quest:3761}種出來的{item:11040}。",
+	-- {npc:9087} Bashana Runetotem · {item:11040} Morrowgrain · {quest:3761} Un'Goro Soil
+	["{npc:9087} buys {item:11040} grown from your {quest:3761}."] = "{npc:9087}收購用你的{quest:3761}種出來的{item:11040}。",
 
 	-- Step 30: Fly to Orgrimmar
 	-- {area:1637} Orgrimmar

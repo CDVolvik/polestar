@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Spanish (Spain) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Spanish (Spain) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -62,8 +63,8 @@ return {
 	["Back to {npc:5413} in the {object:28027}. He sends you on to a smith of your own race."] = "Vuelve con {npc:5413} en {object:28027}. Te envía con un herrero de tu raza.",
 
 	-- Step 10: Grimand Elmore
-	-- {npc:1416} Grimand Elmore · {zone:1453} Stormwind
-	["{npc:1416} is in {zone:1453}, a short walk from Furen."] = "{npc:1416} está en {zone:1453}, a poca distancia de Furen.",
+	-- {npc:1416} Grimand Elmore · {zone:1453} Stormwind · {npc:5413} Furen Longbeard
+	["{npc:1416} is in {zone:1453}, a short walk from {npc:5413}."] = "{npc:1416} está en {zone:1453}, a poca distancia de {npc:5413}.",
 
 	-- Step 11: Burning Blood
 	-- {zone:1431} Duskwood · {quest:1705} Burning Blood · {npc:6170} Gutspill · {item:6845} Burning Rock
@@ -88,10 +89,4 @@ return {
 	-- Step 17: Iron Coral
 	-- {quest:1708} Iron Coral · {zone:1437} Wetlands · {area:150} Menethil Harbor
 	["The {quest:1708} grows along the {zone:1437}' west coast, south of {area:150}."] = "{quest:1708} crece en la costa oeste de {zone:1437}, al sur de {area:150}.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["The Nightbane worgen of {zone:1431} drop the {quest:1705}. Gutspill walks in the far south-east of {zone:1431} and carries the {item:6845}."] = "Los huargos Nocturno de {zone:1431} sueltan {quest:1705}. Gutspill recorre el extremo sureste de {zone:1431} y lleva {item:6845}.",
-	-- ["{item:6845} from Gutspill"] = "{item:6845} de Gutspill",
-	-- ["{npc:5413} works in the Dwarven District of {zone:1453}. He keeps the {item:6843} and gives you {item:6970}, a shield; {quest:1701} is a level 28 quest."] = "{npc:5413} trabaja en el Distrito enano de {zone:1453}. Se queda {item:6843} y te da {item:6970}, un escudo; {quest:1701} es una misión de nivel 28.",
-	-- ["{npc:5413} works in the {object:28027} of {zone:1453}. He keeps the {item:6843} and gives you {item:6970}, a shield; {quest:1701} is a level 28 quest."] = "{npc:5413} trabaja en {object:28027} de {zone:1453}. Se queda {item:6843} y te da {item:6970}, un escudo; {quest:1701} es una misión de nivel 28.",
 }

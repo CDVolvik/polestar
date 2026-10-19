@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Russian (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Russian words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Thelsamar
@@ -53,23 +54,27 @@ return {
 	["Raleigh's next errand is in the {area:796}: skip it."] = "Следующее поручение Ролея – здесь: {area:796}. Пропустите его.",
 
 	-- Step 11: Aerie Peak
-	-- {area:271} Southshore · {area:348} Aerie Peak · {quest:1450} Gryphon Master Talonaxe · {npc:7884} Fraggar Thundermantle
-	["Ride north-east out of {area:271} on the road into the Hinterlands; {area:348} sits just past the border. Falstad holds court at the top, {quest:1450} tends the aviary and {npc:7884} stands by the inn."] = "Из места {area:271} езжайте по дороге на северо-восток во Внутренние земли; {area:348} – сразу за границей. Фалстад принимает наверху, у птичника – {quest:1450}, у таверны стоит {npc:7884}.",
+	-- {area:271} Southshore · {zone:1425} The Hinterlands · {area:348} Aerie Peak · {npc:5635} Falstad Wildhammer · {quest:1450} Gryphon Master Talonaxe · {npc:7884} Fraggar Thundermantle
+	["Ride north-east out of {area:271} on the road into the {zone:1425}; {area:348} sits just past the border. {npc:5635} holds court at the top, {quest:1450} tends the aviary and {npc:7884} stands by the inn."] = "Из места {area:271} езжайте по дороге на северо-восток во {zone:1425}; {area:348} – сразу за границей. {npc:5635} принимает наверху, у птичника – {quest:1450}, у таверны стоит {npc:7884}.",
 
 	-- Step 12: Rhapsody Shindigger
-	-- {area:348} Aerie Peak
-	["Rhapsody camps on the road east of {area:348}."] = "Рапсод стоит лагерем на дороге к востоку (ориентир: {area:348}).",
-	["Rhapsody's cocktail needs parts from Kalimdor: skip it."] = "Для коктейля Рапсода нужны ингредиенты из Калимдора: пропустите задание.",
+	-- {npc:5634} Rhapsody Shindigger · {area:348} Aerie Peak
+	["{npc:5634} camps on the road east of {area:348}."] = "{npc:5634} стоит лагерем на дороге к востоку (ориентир: {area:348}).",
+	-- {npc:5634} Rhapsody Shindigger
+	["{npc:5634}'s cocktail needs parts from Kalimdor: skip it."] = "Для коктейля {npc:5634} нужны ингредиенты из Калимдора: пропустите задание.",
 
 	-- Step 13: Witherbark villages
 	["Witherbark villages"] = "Деревни племени Сухокожих",
-	["The first two cages stand together in the Witherbark village south of Rhapsody; the third is in the next village to the east. Every Witherbark troll can drop a necklace."] = "Первые две клетки стоят рядом в деревне племени Сухокожих к югу от Рапсода; третья – в следующей деревне к востоку. Ожерелье может упасть с любого тролля из племени Сухокожих.",
+	-- {npc:5634} Rhapsody Shindigger
+	["The first two cages stand together in the Witherbark village south of {npc:5634}; the third is in the next village to the east. Every Witherbark troll can drop a necklace."] = "Первые две клетки стоят рядом в деревне племени Сухокожих к югу от {npc:5634}; третья – в следующей деревне к востоку. Ожерелье может упасть с любого тролля из племени Сухокожих.",
 
 	-- Step 14: Aerie Peak
-	["Fraggar keeps paying for necklaces: hand in any extras"] = "Фраггар продолжает платить за ожерелья: сдайте лишние",
+	-- {npc:7884} Fraggar Thundermantle
+	["{npc:7884} keeps paying for necklaces: hand in any extras"] = "{npc:7884} продолжает платить за ожерелья: сдайте лишние",
 	-- {npc:5636} Gryphon Master Talonaxe
 	["{npc:5636}, beside the flight master at the top"] = "{npc:5636}, наверху рядом с распорядителем полетов",
-	["Talonaxe's next task waits for a later Hinterlands guide."] = "Следующее задание Разящего Когтя подождет до более позднего гайда по Внутренним землям.",
+	-- {zone:1425} The Hinterlands
+	["Talonaxe's next task waits for a later {zone:1425} guide."] = "Следующее задание Разящего Когтя подождет до более позднего гайда по {zone:1425}.",
 
 	-- Step 15: Menethil Harbor
 	["Take the boat to Theramore from the far pier."] = "Сядьте на корабль до острова Терамор у дальнего причала.",

@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (traditional) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (traditional) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Fly to Ratchet
@@ -34,8 +35,8 @@ return {
 	-- Step 6: The Wild Shore
 	-- {area:43} Wild Shore
 	["The {area:43}"] = "{area:43}",
-	-- {area:43} Wild Shore
-	["South of Booty Bay the Bloodsail swashbucklers camp on the {area:43}; the charts and the orders lie in their tents. Any Bloodsail can carry snuff and Dizzy's eye, so keep killing until you have both."] = "在藏寶海灣南邊，血帆流氓在{area:43}紮營；海圖和命令在他們的帳篷裡。任何血帆海盜都可能帶著鼻煙和獨眼迪茲的眼睛，所以持續擊殺直到兩樣都拿到。",
+	-- {area:43} Wild Shore · {npc:2493} Dizzy One-Eye
+	["South of Booty Bay the Bloodsail swashbucklers camp on the {area:43}; the charts and the orders lie in their tents. Any Bloodsail can carry snuff and {npc:2493}'s eye, so keep killing until you have both."] = "在藏寶海灣南邊，血帆流氓在{area:43}紮營；海圖和命令在他們的帳篷裡。任何血帆海盜都可能帶著鼻煙和{npc:2493}的眼睛，所以持續擊殺直到兩樣都拿到。",
 
 	-- Step 8: The Bloodsail ships
 	["The Bloodsail ships"] = "血帆海盜船",
@@ -53,7 +54,8 @@ return {
 	["The gorillas roam the valley around Unbagwa. The elders drop the giblets; any of them can drop a fang."] = "猩猩在巫醫安巴格瓦周圍的山谷遊蕩。老邁的迷霧谷猩猩會掉落內臟；任何一隻都可能掉落尖牙。",
 
 	-- Step 12: Mokk the Savage
-	["Hand Unbagwa the fangs and stay by him: he calls three waves of gorillas, then Mokk. Fight them one at a time."] = "把尖牙交給巫醫安巴格瓦並待在他身邊：他會召來三波猩猩，然後是野蠻的莫克。一次對付一隻。",
+	-- {npc:1514} Mokk the Savage
+	["Hand Unbagwa the fangs and stay by him: he calls three waves of gorillas, then {npc:1514}. Fight them one at a time."] = "把尖牙交給巫醫安巴格瓦並待在他身邊：他會召來三波猩猩，然後是{npc:1514}。一次對付一隻。",
 
 	-- Step 13: Zanzil's camps
 	["Zanzil's camps"] = "贊吉爾的營地",
@@ -74,8 +76,8 @@ return {
 
 	-- Step 17: Zul'Kunda
 	["Zul'Kunda"] = "祖昆達廢墟",
-	-- {npc:1061} Gan'zulah
-	["West of the expedition, the Bloodscalp chiefs {npc:1061} and Nezzliok stand together in the ruins of Zul'Kunda. Clear their guards first, then pull them."] = "遠征隊營地西邊，血頂酋長{npc:1061}和可怕的奈茲里奧克一起站在祖昆達廢墟中。先清掉他們的守衛，再把他們拉過來。",
+	-- {npc:1061} Gan'zulah · {npc:1062} Nezzliok the Dire
+	["West of the expedition, the Bloodscalp chiefs {npc:1061} and {npc:1062} stand together in the ruins of Zul'Kunda. Clear their guards first, then pull them."] = "遠征隊營地西邊，血頂酋長{npc:1061}和{npc:1062}一起站在祖昆達廢墟中。先清掉他們的守衛，再把他們拉過來。",
 
 	-- Step 18: Hearth to Grom'gol
 	-- {object:3202} Grom'gol
@@ -100,8 +102,8 @@ return {
 
 	-- Step 22: Pirate ghosts
 	["Pirate ghosts"] = "海盜鬼魂",
-	-- {area:35} Booty Bay
-	["The three ghostly pirates haunt the jungle north of {area:35}, near Zanzil's camps: Maury and Jon-Jon stand together, Chucky further east."] = "三個海盜鬼魂在{area:35}北邊、贊吉爾營地附近的叢林出沒：「畸形足」瑪雷·維爾金斯和火柴棍喬喬站在一起，拇指蘇克在更東邊。",
+	-- {area:35} Booty Bay · {npc:2535} Maury "Club Foot" Wilkins · {npc:2536} Jon-Jon the Crow · {npc:2537} Chucky "Ten Thumbs"
+	["The three ghostly pirates haunt the jungle north of {area:35}, near Zanzil's camps: {npc:2535} and {npc:2536} stand together, {npc:2537} further east."] = "三個海盜鬼魂在{area:35}北邊、贊吉爾營地附近的叢林出沒：{npc:2535}和{npc:2536}站在一起，{npc:2537}在更東邊。",
 
 	-- Step 23: Zul'Mamwe
 	["Zul'Mamwe"] = "祖瑪維廢墟",
@@ -162,12 +164,10 @@ return {
 
 	-- Step 36: Sawtooth crocolisks
 	["Sawtooth crocolisks"] = "鹽齒鱷魚",
-	-- {area:75} Stonard
-	["The crocolisks wallow in the pools around Galen's camp and south towards {area:75}; about one in four drops a flank."] = "鹽齒鱷魚在加林·古瓦德營地周圍和往南到{area:75}的水池中打滾；約四隻有一隻掉落側腹肉。",
+	-- {npc:5391} Galen Goodward · {area:75} Stonard
+	["The crocolisks wallow in the pools around {npc:5391}'s camp and south towards {area:75}; about one in four drops a flank."] = "鹽齒鱷魚在{npc:5391}營地周圍和往南到{area:75}的水池中打滾；約四隻有一隻掉落側腹肉。",
 
-	-- Step 37: The Harborage
-	-- {area:657} Harborage
-	["The {area:657}"] = "{area:657}",
+	-- Step 37: Harborage
 	-- {area:657} Harborage · {zone:1430} Deadwind Pass
 	["Ride west along the road to the draenei camp at the {area:657}, near the way in from {zone:1430}."] = "沿道路向西騎到{area:657}的德萊尼營地，靠近{zone:1430}的入口。",
 
@@ -184,5 +184,5 @@ return {
 	["The next guide starts here and takes you to {zone:1446}."] = "下一份指南從這裡開始，帶你前往{zone:1446}。",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["South of {area:35} the Bloodsail swashbucklers camp on the {area:43}; the charts and the orders lie in their tents. Any Bloodsail can carry snuff and Dizzy's eye, so keep killing until you have both."] = "在{area:35}南邊，血帆流氓在{area:43}紮營；海圖和命令在他們的帳篷裡。任何血帆海盜都可能帶著鼻煙和獨眼迪茲的眼睛，所以持續擊殺直到兩樣都拿到。",
+	-- ["The {area:657}"] = "{area:657}",
 }

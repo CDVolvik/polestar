@@ -3,14 +3,15 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in French (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in French words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
-	["Hydraxian Waterlords Reputation"] = "Réputation Les Hydraxiens",
+	["Hydraxian Waterlords Reputation"] = "Réputation : Les Hydraxiens",
 
 	-- Step 1: Duke Hydraxis
 	-- {npc:13278} Duke Hydraxis · {zone:1447} Azshara · {faction:749} Hydraxian Waterlords
-	["{npc:13278} stands on a small island off the eastern coast of {zone:1447}; swim or walk the shallows out to him. The {faction:749} start out Neutral. Forever's Legacy Diplomat perk increases reputation gains."] = "{npc:13278} se tient sur un petit îlot au large de la côte est de {zone:1447} ; rejoignez-le à la nage ou par les hauts-fonds. {faction:749} : vous partez de Neutre. L'avantage Legacy Diplomat de Forever augmente les gains de réputation.",
+	["{npc:13278} stands on a small island off the eastern coast of {zone:1447}; swim or walk the shallows out to him. The {faction:749} start out Neutral. Forever's Legacy Diplomat perk increases reputation gains."] = "{npc:13278} se tient sur un petit îlot au large de la côte est de {zone:1447} ; rejoignez-le à la nage ou par les hauts-fonds. {faction:749} : vous partez de Neutre. L'atout Diplomate de l'Héritage de Forever augmente les gains de réputation.",
 
 	-- Step 2: Dust Stormers and Desert Rumblers
 	-- plural, as words: Dust Stormers = {npc:11744} Dust Stormer · Desert Rumblers = {npc:11746} Desert Rumbler
@@ -20,7 +21,7 @@ return {
 
 	-- Step 3: Poisoned Water
 	-- {item:17310} Aspect of Neptulon · {zone:1423} Eastern Plaguelands · {item:17309} Discordant Bracers
-	["Use the {item:17310} on the poisoned water elementals of {zone:1423}, then loot their {item:17309} (12). Our data has no spawn points for those elementals."] = "Utilisez {item:17310} sur les élémentaires d'eau empoisonnés de {zone:1423}, puis prenez leurs {item:17309} (12). Nos données n'ont aucun point d'apparition pour ces élémentaires.",
+	["Use the {item:17310} on the poisoned water elementals of {zone:1423}, then loot their {item:17309} (12)."] = "Utilisez {item:17310} sur les élémentaires d'eau empoisonnés de {zone:1423}, puis prenez leurs {item:17309} (12).",
 
 	-- Step 4: Back to Duke Hydraxis
 	-- {npc:13278} Duke Hydraxis
@@ -55,6 +56,6 @@ return {
 	["Keep clearing the {area:2717} until Exalted."] = "Continuez à nettoyer {area:2717} jusqu'à Exalté.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["{faction:749} Reputation"] = "Réputation : {faction:749}",
+	-- ["Use the {item:17310} on the poisoned water elementals of {zone:1423}, then loot their {item:17309} (12). Our data has no spawn points for those elementals."] = "Utilisez {item:17310} sur les élémentaires d'eau empoisonnés de {zone:1423}, puis prenez leurs {item:17309} (12). Nos données n'ont aucun point d'apparition pour ces élémentaires.",
 	-- ["{npc:9816} in Upper {area:1583} drops the {quest:6821}. This needs a raid group."] = "{npc:9816}, dans la partie supérieure de {area:1583}, laisse {quest:6821}. Il faut un groupe de raid.",
 }

@@ -3,13 +3,14 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Korean words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
 	["The Alliance paladin's rare two-handed mace for the 20s, with a shield on the way."] = "20대 얼라이언스 성기사용 희귀 양손 둔기, 도중에 방패도 얻습니다.",
 
 	-- Step 1: The Tome of Valor (Ironforge)
-	-- {npc:6179} Tiza Battleforge · {object:32362} Mystic Ward · {item:6776} Tome of Valor · {npc:6171} Duthorian Rall · {zone:1453} Stormwind · {zone:1455} Ironforge
+	-- {npc:6179} Tiza Battleforge · {object:32362} Mystic Ward (no name in this language: may be words) · {item:6776} Tome of Valor · {npc:6171} Duthorian Rall · {zone:1453} Stormwind · {zone:1455} Ironforge
 	["At 20 {npc:6179} in the {object:32362} gives you the {item:6776}; it sends you to {npc:6171} in {zone:1453}'s Cathedral of Light. Take the tram from {zone:1455} to {zone:1453}."] = "20레벨에 {object:32362}의 {npc:6179}이(가) {item:6776}을(를) 줍니다. 이것은 {zone:1453} 빛의 대성당의 {npc:6171}에게 보냅니다. {zone:1455}에서 지하철을 타고 {zone:1453}(으)로 가세요.",
 
 	-- Step 2: The Tome of Valor
@@ -38,10 +39,11 @@ return {
 	-- {object:92420} Bailor's Ore
 	["{object:92420} crate"] = "{object:92420} 상자",
 
-	-- Step 8: Back to Bailor
-	["Back to Bailor"] = "베일러에게 돌아가기",
-	-- {item:6993} Jordan's Refined Ore Shipment
-	["Bailor turns the ore into {item:6993}."] = "베일러가 광석을 {item:6993}(으)로 만들어 줍니다.",
+	-- Step 8: Back to Bailor Stonehand
+	-- {npc:6241} Bailor Stonehand
+	["Back to {npc:6241}"] = "{npc:6241}에게 돌아가기",
+	-- {npc:6241} Bailor Stonehand · {item:6993} Jordan's Refined Ore Shipment
+	["{npc:6241} turns the ore into {item:6993}."] = "{npc:6241}이(가) 광석을 {item:6993}(으)로 만들어 줍니다.",
 
 	-- Step 9: Whitestone Oak Lumber
 	-- {area:1581} The Deadmines · {area:20} Moonbrook
@@ -71,8 +73,8 @@ return {
 	-- Step 13: The Purified Kor Gem
 	-- {item:7083} Purified Kor Gem
 	["The {item:7083}"] = "{item:7083}",
-	-- {area:442} Auberdine
-	["Back to Thundris in {area:442}: he purifies the gem."] = "{area:442}의 툰드리스에게 돌아가세요. 그가 보석을 정화합니다.",
+	-- {npc:3649} Thundris Windweaver · {area:442} Auberdine
+	["Back to {npc:3649} in {area:442}: he purifies the gem."] = "{area:442}의 {npc:3649}에게 돌아가세요. 그가 보석을 정화합니다.",
 
 	-- Step 14: Verigan's Fist
 	-- {npc:6181} Jordan Stilwell · {zone:1455} Ironforge

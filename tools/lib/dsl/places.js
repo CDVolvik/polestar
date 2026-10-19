@@ -24,8 +24,15 @@
 //         else the one node of that name or town serving every faction the
 //         goal applies to. The addon checks the nodes the flight map lists.
 // A name with no single match gets neither; the goal keeps its name match.
+//
+// A `sethome` naming no npc gets its inn's innkeeper (goalInnkeeper): of the
+// inns (travel.json) the location names, the one whose innkeeper serves every
+// faction the goal applies to, so the arrow has someone to lead to. A
+// `getfp` naming no npc gets its flight master the same way
+// (goalFlightMaster): the npc of the taxi node `node` stands for.
 
 const { areaNamed } = require('../data/areas');
+const { factionTag, usableBy } = require('./candidates');
 
 const DATA = new WeakMap();
 
@@ -132,23 +139,56 @@ function goalArea(data, goal) {
 	return area ? area.id : undefined;
 }
 
-// A getfp's taxi node ID, or undefined: the node of its flight master
+// A getfp's or fly's taxi node ID, or undefined: the node of its flight master
 // (`npc`), else the one node whose name or town is its location and that
 // serves every faction in `sides` (the factions the goal applies to).
 function goalNode(data, goal, sides) {
-	if (goal.t !== 'getfp' || typeof goal.location !== 'string') return undefined;
+	if ((goal.t !== 'getfp' && goal.t !== 'fly') || typeof goal.location !== 'string') return undefined;
 	const nodes = data.flightNodes();
 	if (goal.npc !== undefined) {
 		const own = nodes.filter((n) => n.npc === goal.npc);
 		if (own.length === 1) return own[0].id;
 	}
-	const want = goal.location.trim().toLowerCase();
+	const named = namedNode(nodes, goal.location, sides);
+	return named ? named.id : undefined;
+}
+
+// The one taxi node whose name or town is `location` (ignoring case) and that
+// serves every faction in `sides`, or null.
+function namedNode(nodes, location, sides) {
+	const want = location.trim().toLowerCase();
 	const mask = (sides || []).reduce((m, s) => m | (SIDE_MASK[s] || 0), 0);
 	const named = nodes.filter((n) => {
 		const full = String(n.name).toLowerCase();
 		return (full === want || town(full) === want) && (n.faction & mask) === mask;
 	});
-	return named.length === 1 ? named[0].id : undefined;
+	return named.length === 1 ? named[0] : null;
+}
+
+// A getfp's flight master, or null: the npc of the one taxi node (travel.json)
+// its location names that serves every faction in `sides`, the node goalNode
+// gives it.
+function goalFlightMaster(data, location, sides) {
+	if (typeof location !== 'string') return null;
+	const node = namedNode(data.flightNodes(), location, sides);
+	return node && Number(node.npc) > 0 ? { npc: Number(node.npc), npcName: node.npcName || null } : null;
+}
+
+// A sethome's innkeeper, or null: the npc of the one inn (travel.json) whose
+// bind location (any of its names, ignoring case) is `location` and whose
+// innkeeper serves every faction in `sides` (neutral towns' goblins serve
+// both: candidates.js factionTag).
+function goalInnkeeper(data, location, sides) {
+	if (typeof location !== 'string') return null;
+	const want = location.trim().toLowerCase();
+	const named = data.inns().filter((i) => {
+		if (!(Number(i.npc) > 0)) return false;
+		const names = Array.isArray(i.names) && i.names.length ? i.names : [i.location];
+		if (!names.some((n) => String(n).toLowerCase() === want)) return false;
+		const tag = factionTag(data.npc(i.npc) || { faction: null, roles: ['innkeeper'] });
+		return (sides || []).every((s) => usableBy(tag, s));
+	});
+	return named.length === 1 ? { npc: Number(named[0].npc), npcName: named[0].npcName || null } : null;
 }
 
 // -> { places, withArea, getfp, withNode }: goals naming a place and how many
@@ -172,4 +212,4 @@ function placeCounts(guides) {
 	return out;
 }
 
-module.exports = { checkLocation, goalArea, goalNode, placeCounts };
+module.exports = { checkLocation, goalArea, goalNode, goalInnkeeper, goalFlightMaster, placeCounts };

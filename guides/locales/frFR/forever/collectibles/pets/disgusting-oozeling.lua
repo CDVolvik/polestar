@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in French (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in French words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Oozing Bag
@@ -18,7 +19,4 @@ return {
 	["Open the {item:20768}"] = "Ouvrir le {item:20768}",
 	-- {item:20768} Oozing Bag
 	["Open the {item:20768} from your bags."] = "Ouvrez le {item:20768} depuis vos sacs.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Oozes drop the {item:20768}: the Vile Slimes, Large Vile Slimes and Devouring Oozes of {zone:1422}, and the oozes of {zone:1448}, {zone:1449} and {zone:1423}, at about 0.07-0.09% per kill in our data. The waypoint is a {npc:1806} spawn in eastern {zone:1422}."] = "Les limons laissent tomber le {item:20768} : les Gelées maléfiques, Grandes gelées maléfiques et Limons dévorants des {zone:1422}, et les limons de {zone:1448}, du {zone:1449} et des {zone:1423}, à environ 0.07-0.09% par mort selon nos données. Le point de passage est une apparition de {npc:1806} à l'est des {zone:1422}.",
 }

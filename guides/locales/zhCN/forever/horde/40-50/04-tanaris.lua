@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (simplified) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (simplified) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Fly to Gadgetzan
@@ -22,18 +23,19 @@ return {
 	["West of Gadgetzan, use the {item:8584} beside the water hole in the troll camp."] = "在加基森西边，在巨魔营地的水坑旁使用{item:8584}。",
 
 	-- Step 5: Caliph Scorpidsting
-	["South-east of Gadgetzan the Wastewander bandits camp in the dunes; Caliph stands in the eastern camp."] = "在加基森东南，废土强盗在沙丘里扎营；卡利夫站在东边的营地里。",
+	-- {npc:7847} Caliph Scorpidsting
+	["South-east of Gadgetzan the Wastewander bandits camp in the dunes; {npc:7847} stands in the eastern camp."] = "在加基森东南，废土强盗在沙丘里扎营；{npc:7847}站在东边的营地里。",
 
 	-- Step 6: Marvon Rivetseeker
-	-- {area:1938} Broken Pillar · {item:9978} Gahz'ridian Detector · {area:983} Dunemaul Compound
-	["West along the road south; Marvon camps by the ruins at the {area:1938}. Put on his {item:9978}: it shows the buried ornaments, here and around the {area:983}."] = "沿道路向西再向南；玛尔冯在{area:1938}的废墟旁扎营。戴上他的{item:9978}：它会显示埋在这里和{area:983}周围的饰物。",
+	-- {npc:7771} Marvon Rivetseeker · {area:1938} Broken Pillar · {item:9978} Gahz'ridian Detector · {area:983} Dunemaul Compound
+	["West along the road south; {npc:7771} camps by the ruins at the {area:1938}. Put on his {item:9978}: it shows the buried ornaments, here and around the {area:983}."] = "沿道路向西再向南；{npc:7771}在{area:1938}的废墟旁扎营。戴上他的{item:9978}：它会显示埋在这里和{area:983}周围的饰物。",
 
 	-- Step 7: The Noxious Lair
 	["West, the Centipaar insects swarm around their hives; any of them drops the parts."] = "向西，森提帕尔虫群聚集在它们的巢穴周围；任何一只都会掉落森提帕尔昆虫肢体。",
 
 	-- Step 8: Dunemaul Compound
-	-- {npc:12046} Gor'marok the Ravager · {quest:3161} Gahz'ridian
-	["South of the Noxious Lair the Dunemaul ogres hold their compound, with {npc:12046} at its eastern end. Dig up {quest:3161} ornaments between the fights."] = "在腐化之巢南边，砂槌食人魔占据着他们的营地，{npc:12046}在营地东端。在战斗间隙挖出{quest:3161}饰物。",
+	-- {area:982} The Noxious Lair · {npc:12046} Gor'marok the Ravager · {quest:3161} Gahz'ridian
+	["South of the {area:982} the Dunemaul ogres hold their compound, with {npc:12046} at its eastern end. Dig up {quest:3161} ornaments between the fights."] = "在{area:982}南边，砂槌食人魔占据着他们的营地，{npc:12046}在营地东端。在战斗间隙挖出{quest:3161}饰物。",
 
 	-- Step 9: Thistleshrub Valley
 	-- {zone:1446} Tanaris
@@ -159,6 +161,4 @@ return {
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["South of the {area:982} the Dunemaul ogres hold their compound, with {npc:12046} at its eastern end. Dig up {quest:3161} ornaments between the fights."] = "在{area:982}南边，砂槌食人魔占据着他们的营地，{npc:12046}在营地东端。在战斗间隙挖出{quest:3161}饰物。",
-	-- ["South-east of {area:976} the Wastewander bandits camp in the dunes; Caliph stands in the eastern camp."] = "在{area:976}东南，废土强盗在沙丘里扎营；卡利夫站在东边的营地里。",
-	-- ["West of {area:976}, use the {item:8584} beside the water hole in the troll camp."] = "在{area:976}西边，在巨魔营地的水坑旁使用{item:8584}。",
 }

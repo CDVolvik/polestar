@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (traditional) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (traditional) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -58,7 +59,7 @@ return {
 
 	-- Step 10: PvP: battleground reputations (Alliance)
 	["PvP: battleground reputations (Alliance)"] = "PvP：戰場聲望（聯盟）",
-	["Exalted with each battleground faction is worth a point (4 in all; this page shows three, see the note). Follow the Polestar Reputation guides Warsong Gulch Reputation, Arathi Basin Reputation and Alterac Valley Reputation. The Diplomat Legacy perk increases reputation gains."] = "每個戰場陣營達到崇拜各值1點（共4點；此頁顯示三個，請見備註）。請參照Polestar聲望指南「戰歌峽谷聲望」、「阿拉希盆地聲望」和「奧特蘭克山谷聲望」。「外交官」傳承天賦可提高聲望獲得量。",
+	["Exalted with each battleground faction is worth a point (4 in all; this page shows three, see the note). Follow the Polestar Reputation guides Warsong Gulch Reputation, Arathi Basin Reputation and Alterac Valley Reputation. The Diplomat Legacy perk increases reputation gains."] = "每個戰場陣營達到崇拜各值1點（共4點；此頁顯示三個，請見備註）。請參照Polestar聲望指南「戰歌峽谷聲望」、「阿拉希盆地聲望」和「奧特蘭克山谷聲望」。傳承外交官天賦可提高聲望獲得量。",
 	-- {zone:1460} Warsong Gulch · {zone:1461} Arathi Basin · {zone:1459} Alterac Valley
 	["Blizzard counts four battleground reputations, but our faction data has three per side ({zone:1460}, {zone:1461}, {zone:1459}). The fourth is likely tied to Forever's new PvP content; check the in-game Legacy panel."] = "暴雪計算四個戰場聲望，但我們的陣營資料每方只有三個（{zone:1460}、{zone:1461}、{zone:1459}）。第四個可能與Forever新的PvP內容有關；請查看遊戲內的傳承面板。",
 
@@ -68,10 +69,18 @@ return {
 	-- Step 12: PvP: honor ranks
 	["PvP: honor ranks"] = "PvP：榮譽等級",
 	["Ranks 3, 7, 10, 13 and 14 are a point each. Polestar cannot read your highest rank yet, so tick each one off yourself. Forever's honor rules for reaching a rank have not been published in detail; in Classic, ranks come from your weekly honor standing, and 13-14 take many weeks of top standing."] = "等級3、7、10、13和14各值1點。Polestar目前還無法讀取你的最高等級，所以請自行逐一勾選。Forever達到各等級的榮譽規則尚未詳細公布；在經典版中，等級取決於你每週的榮譽排名，13-14級需要好幾週的頂尖排名。",
+	["enemy players for honor until PvP Rank 3"] = "敵對玩家以獲取榮譽，直到PvP軍階3級",
+	["enemy players for honor until PvP Rank 7"] = "敵對玩家以獲取榮譽，直到PvP軍階7級",
+	["enemy players for honor until PvP Rank 10"] = "敵對玩家以獲取榮譽，直到PvP軍階10級",
+	["enemy players for honor until PvP Rank 13"] = "敵對玩家以獲取榮譽，直到PvP軍階13級",
+	["enemy players for honor until PvP Rank 14"] = "敵對玩家以獲取榮譽，直到PvP軍階14級",
 
 	-- Step 13: PvP: Field of Honor
 	["PvP: Field of Honor"] = "PvP：Field of Honor",
 	["The Field of Honor PvP season has weekly journey quests; finishing the ones for weeks 4, 7 and 10 is a point each. These quests are new in Forever and not in our data, so tick each one off yourself."] = "Field of Honor PvP賽季有每週的歷程任務；完成第4、7和10週的任務各值1點。這些任務是Forever新增的，不在我們的資料中，所以請自行逐一勾選。",
+	["enemy players and finish the Field of Honor week 4 journey quest"] = "敵對玩家，並完成榮譽戰場第4週的旅程任務",
+	["enemy players and finish the Field of Honor week 7 journey quest"] = "敵對玩家，並完成榮譽戰場第7週的旅程任務",
+	["enemy players and finish the Field of Honor week 10 journey quest"] = "敵對玩家，並完成榮譽戰場第10週的旅程任務",
 
 	-- Step 14: Adventure: explore the world map
 	["Adventure: explore the world map"] = "冒險：探索世界地圖",
@@ -82,8 +91,10 @@ return {
 	-- Step 15: Adventure: Lord Valthalak
 	-- {npc:16042} Lord Valthalak
 	["Adventure: {npc:16042}"] = "冒險：{npc:16042}",
-	-- {npc:16042} Lord Valthalak · {npc:16013} Deliana · {zone:1455} Ironforge · {npc:16012} Mokvar · {zone:1454} Orgrimmar · {npc:16033} Bodley · {area:254} Blackrock Mountain · {quest:8996} Return to Bodley · {quest:8997} Back to the Beginning
-	["The {npc:16042} questline is a point. It is the level 60 dungeon-set chain: {npc:16013} ({zone:1455}) or {npc:16012} ({zone:1454}) send you through In Search of Anthion and Anthion's Parting Words to {npc:16033} at {area:254}, whose Three Kings of Flame, the Left and Right Pieces of Lord Valthalak's Amulet, Final Preparations and Mea Culpa, {npc:16042} end with {quest:8996}. {quest:8997} then leads to the class Saving the Best for Last quests."] = "{npc:16042}任務線值1點。這是60級地城套裝任務鏈：{npc:16013}（{zone:1455}）或{npc:16012}（{zone:1454}）會帶你完成「尋找安希恩」和「安希恩的離別感言」，前往{area:254}的{npc:16033}，他的「烈焰三巨頭」、「瓦薩拉克護符的左半塊」和「瓦薩拉克護符的右半塊」（瓦薩拉克的護符）、「最後的準備」和「認錯，瓦薩拉克」，以及{npc:16042}，最後以{quest:8996}結束。{quest:8997}接著會引導至各職業的「最後的獎賞」任務。",
+	-- {npc:16042} Lord Valthalak · {npc:16013} Deliana · {zone:1455} Ironforge · {npc:16012} Mokvar · {zone:1454} Orgrimmar · {npc:16033} Bodley · {area:254} Blackrock Mountain · {quest:8995} Mea Culpa, Lord Valthalak · {quest:8996} Return to Bodley · {quest:8997} Back to the Beginning
+	["The {npc:16042} questline is a point. It is the level 60 dungeon-set chain: {npc:16013} ({zone:1455}) or {npc:16012} ({zone:1454}) send you through In Search of Anthion and Anthion's Parting Words to {npc:16033} at {area:254}, whose Three Kings of Flame, the Left and Right Pieces of Lord Valthalak's Amulet, Final Preparations and {quest:8995} end with {quest:8996}. {quest:8997} then leads to the class Saving the Best for Last quests."] = "{npc:16042}任務線值1點。這是60級地城套裝任務鏈：{npc:16013}（{zone:1455}）或{npc:16012}（{zone:1454}）會帶你完成「尋找安希恩」和「安希恩的離別感言」，前往{area:254}的{npc:16033}，他的「烈焰三巨頭」、「瓦薩拉克護符的左半塊」和「瓦薩拉克護符的右半塊」、「最後的準備」和{quest:8995}，最後以{quest:8996}結束。{quest:8997}接著會引導至各職業的「最後的獎賞」任務。",
+	-- {npc:16073} Spirit of Lord Valthalak · {npc:16033} Bodley · {area:254} Blackrock Mountain
+	["{npc:16073}, inside Upper Blackrock Spire after Mea Culpa (no spawn in the data: the arrow leads to {npc:16033}'s {area:254})"] = "{npc:16073}，在黑石塔上層完成「認錯，瓦薩拉克」之後（資料中沒有重生點：箭頭指向{npc:16033}所在的{area:254}）",
 	-- {npc:16033} Bodley · {quest:8996} Return to Bodley
 	["{npc:16033} offers it once {quest:8996} is turned in"] = "{quest:8996}繳交後，{npc:16033}會提供此任務",
 	-- {quest:8996} Return to Bodley
@@ -107,7 +118,7 @@ return {
 	-- {area:718} Wailing Caverns · {npc:3678} Disciple of Naralex
 	["{area:718} (appears after the {npc:3678}'s event)"] = "{area:718}（在{npc:3678}的事件之後出現）",
 	-- {area:717} The Stockade
-	["{area:717}: the usual last kill; the Stockade has no fixed final boss"] = "{area:717}：通常最後擊殺的目標；監獄沒有固定的最終首領",
+	["{area:717}: the usual last kill; the {area:717} has no fixed final boss"] = "{area:717}：通常最後擊殺的目標；{area:717}沒有固定的最終首領",
 	-- {area:16919} Hall of Thanes · {area:153} Ruins of Lordaeron
 	["Forever adds the dungeons {area:16919} and {area:153}; their bosses and brackets are not in our data yet."] = "Forever新增了地城{area:16919}和{area:153}；它們的首領和等級分組尚未收錄在我們的資料中。",
 
@@ -144,6 +155,10 @@ return {
 	["Forever's new dungeons"] = "Forever的新地城",
 	-- {area:16919} Hall of Thanes · {area:153} Ruins of Lordaeron
 	["{area:16919} and {area:153} are new in Forever. Their bosses, levels and Legacy bracket are not in our data, so tick them off yourself."] = "{area:16919}和{area:153}是Forever新增的。它們的首領、等級和傳承分組不在我們的資料中，所以請自行勾選。",
+	-- {area:16919} Hall of Thanes
+	["the final boss of {area:16919}"] = "{area:16919}的最終首領",
+	-- {area:153} Ruins of Lordaeron
+	["the final boss of {area:153}"] = "{area:153}的最終首領",
 
 	-- Step 22: Raids: Onyxia
 	-- {npc:10184} Onyxia
@@ -154,12 +169,15 @@ return {
 	-- Step 23: Raids: Hyjal Summit
 	["Raids: Hyjal Summit"] = "團隊：Hyjal Summit",
 	["All 13 Hyjal Summit bosses are a point. Hyjal Summit is a new Forever raid; its bosses are not in our data, so tick it off once all 13 are down."] = "擊敗Hyjal Summit的全部13個首領值1點。Hyjal Summit是Forever新增的團隊副本；它的首領不在我們的資料中，所以全部13個首領都倒下後請自行勾選。",
+	["all 13 Hyjal Summit bosses"] = "海加爾山的全部13個首領",
 
 	-- Step 24: Raids: Barrow Deeps
 	["Raids: Barrow Deeps"] = "團隊：Barrow Deeps",
 	["All 8 Barrow Deeps bosses are a point. Barrow Deeps is a new Forever raid; its bosses are not in our data, so tick it off once all 8 are down."] = "擊敗Barrow Deeps的全部8個首領值1點。Barrow Deeps是Forever新增的團隊副本；它的首領不在我們的資料中，所以全部8個首領都倒下後請自行勾選。",
+	["all 8 Barrow Deeps bosses"] = "古墓深淵的全部8個首領",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["The {npc:16042} questline is a point. It is the level 60 dungeon-set chain: {npc:16013} ({zone:1455}) or {npc:16012} ({zone:1454}) send you through In Search of Anthion and Anthion's Parting Words to {npc:16033} at {area:254}, whose Three Kings of Flame, the Left and Right Pieces of Lord Valthalak's Amulet, Final Preparations and Mea Culpa, {npc:16042} end with {quest:8996}. {quest:8997} then leads to the class Saving the Best for Last quests."] = "{npc:16042}任務線值1點。這是60級地城套裝任務鏈：{npc:16013}（{zone:1455}）或{npc:16012}（{zone:1454}）會帶你完成「尋找安希恩」和「安希恩的離別感言」，前往{area:254}的{npc:16033}，他的「烈焰三巨頭」、「瓦薩拉克護符的左半塊」和「瓦薩拉克護符的右半塊」（瓦薩拉克的護符）、「最後的準備」和「認錯，瓦薩拉克」，以及{npc:16042}，最後以{quest:8996}結束。{quest:8997}接著會引導至各職業的「最後的獎賞」任務。",
 	-- ["The {npc:16042} questline is a point. It is the level 60 dungeon-set chain: {npc:16013} ({zone:1455}) or {npc:16012} ({zone:1454}) send you through In Search of Anthion and Anthion's Parting Words to {npc:16033} at {area:254}, whose Three Kings of Flame, the Left and Right Pieces of {item:22048}, Final Preparations and Mea Culpa, {npc:16042} end with {quest:8996}. {quest:8997} then leads to the class Saving the Best for Last quests."] = "{npc:16042}任務線值1點。這是60級地城套裝任務鏈：{npc:16013}（{zone:1455}）或{npc:16012}（{zone:1454}）會帶你完成「尋找安希恩」和「安希恩的離別感言」，前往{area:254}的{npc:16033}，他的「烈焰三巨頭」、「瓦薩拉克護符的左半塊」和「瓦薩拉克護符的右半塊」（{item:22048}）、「最後的準備」和「Mea Culpa」，以及{npc:16042}，最後以{quest:8996}結束。{quest:8997}接著會引導至各職業的「最後的獎賞」任務。",
 	-- ["{area:717}: the usual last kill; the {area:717} has no fixed final boss"] = "{area:717}：通常最後擊殺的目標；{area:717}沒有固定的最終首領",
 }

@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Korean words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -27,8 +28,8 @@ return {
 	["Twitching Antennae from the silithid"] = "실리시드에게서 꿈틀거리는 더듬이",
 
 	-- Step 5: Thun'grim Firegaze
-	-- {area:380} Crossroads · {quest:1838} Brutal Armor
-	["Thun'grim camps beside the road east of the {area:380}. {quest:1838} is a level 30 quest; you can take it now and gather for it on the way."] = "툰그림은 {area:380} 동쪽 길가에 진을 치고 있습니다. {quest:1838}은(는) 30레벨 퀘스트이지만 지금 받아서 가는 길에 재료를 모을 수 있습니다.",
+	-- {npc:5878} Thun'grim Firegaze · {area:380} Crossroads · {quest:1838} Brutal Armor
+	["{npc:5878} camps beside the road east of the {area:380}. {quest:1838} is a level 30 quest; you can take it now and gather for it on the way."] = "{npc:5878}은(는) {area:380} 동쪽 길가에 진을 치고 있습니다. {quest:1838}은(는) 30레벨 퀘스트이지만 지금 받아서 가는 길에 재료를 모을 수 있습니다.",
 
 	-- Step 6: Roogug in Razorfen Kraul
 	-- {area:1717} Razorfen Kraul
@@ -66,8 +67,8 @@ return {
 	["Iron Bars: {npc:8673}"] = "철 주괴: {npc:8673}",
 
 	-- Step 10: Brutal Hauberk
-	-- {area:380} Crossroads · {quest:1848} Brutal Hauberk
-	["Back to Thun'grim beside the road east of the {area:380}. {quest:1848} is the first piece; he then sends you to three crafters for the rest."] = "{area:380} 동쪽 길가의 툰그림에게 돌아가세요. {quest:1848}이(가) 첫 번째 부위이며, 그 후 나머지를 위해 장인 세 명에게 보냅니다.",
+	-- {npc:5878} Thun'grim Firegaze · {area:380} Crossroads · {quest:1848} Brutal Hauberk
+	["Back to {npc:5878} beside the road east of the {area:380}. {quest:1848} is the first piece; he then sends you to three crafters for the rest."] = "{area:380} 동쪽 길가의 {npc:5878}에게 돌아가세요. {quest:1848}이(가) 첫 번째 부위이며, 그 후 나머지를 위해 장인 세 명에게 보냅니다.",
 
 	-- Step 11: Ula'elek
 	-- {npc:6408} Ula'elek · {area:367} Sen'jin Village · {zone:1411} Durotar
@@ -96,7 +97,4 @@ return {
 	["The Dragonmaw orcs camp in the middle of the {zone:1437}, south of the road; Raiders, Swamprunners, Centurions, Shadowwarders and Bonewarders all drop the Sturdy Dragonmaw Shinbones."] = "용아귀부족 오크는 {zone:1437} 한가운데, 길 남쪽에 진을 치고 있습니다. 약탈자, 늪길잡이, 백인대장, 어둠보초병, 해골감시자 모두 {item:7134}을(를) 떨어뜨립니다.",
 	-- plural, as words: Sturdy Dragonmaw Shinbones = {item:7134} Sturdy Dragonmaw Shinbone
 	["Sturdy Dragonmaw Shinbones"] = "{item:7134}",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Uncloven Satyr Hooves"] = "사티로스 통발굽",
 }

@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Spanish (Spain) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Spanish (Spain) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -19,7 +20,4 @@ return {
 	["{area:2279} is a group of five, level 58-60. The {object:175461} at {object:175440}, in north-western {zone:1423}, leads to the undead side; {npc:10440} waits in the Slaughter House at its end. Our data gives the reins a 0.02% drop chance (pfQuest, Era): one in about five thousand kills. Nothing shows Forever changing it."] = "{area:2279} es para un grupo de cinco, nivel 58-60. {object:175461} de {object:175440}, en el noroeste de las {zone:1423}, lleva a la parte no-muerta; {npc:10440} espera en el matadero, al final. Nuestros datos dan a las riendas un 0.02% de probabilidad de botín (pfQuest, Era): una de cada cinco mil muertes aprox. Nada indica que Forever lo haya cambiado.",
 	-- {object:175461} Service Entrance
 	["Stratholme {object:175461}"] = "{object:175461} de Stratholme",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Stratholme Service Entrance"] = "Entrada de servicio de Stratholme",
 }

@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Korean words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Fly to Light's Hope Chapel
@@ -97,8 +98,8 @@ return {
 	["Only if a {quest:8471} dropped for you: {npc:11558} waits at the {zone:1448} entrance of {area:1769}, and speaks to you only at Neutral with the Timbermaw."] = "{quest:8471}을(를) 얻었을 때만: {npc:11558}은(는) {area:1769}의 {zone:1448} 쪽 입구에서 기다리며, 나무구렁 평판이 중립일 때만 말을 겁니다.",
 
 	-- Step 22: Rabine Saturna
-	-- {area:1769} Timbermaw Hold · {zone:1450} Moonglade · {area:2361} Nighthaven
-	["Go through {area:1769} and take the {zone:1450} branch of the tunnel. Rabine is in {area:2361}."] = "{area:1769}을(를) 지나 터널의 {zone:1450} 갈래로 가세요. 라빈은 {area:2361}에 있습니다.",
+	-- {area:1769} Timbermaw Hold · {zone:1450} Moonglade · {npc:11801} Rabine Saturna · {area:2361} Nighthaven
+	["Go through {area:1769} and take the {zone:1450} branch of the tunnel. {npc:11801} is in {area:2361}."] = "{area:1769}을(를) 지나 터널의 {zone:1450} 갈래로 가세요. {npc:11801}은(는) {area:2361}에 있습니다.",
 	-- {zone:1451} Silithus
 	["Both quests lead to {zone:1451}: keep them."] = "두 퀘스트 모두 {zone:1451}(으)로 이어집니다. 보관하세요.",
 
@@ -134,8 +135,8 @@ return {
 	["{quest:3914} goes back to Linken in Un'Goro: keep it."] = "{quest:3914}은(는) 운고로 분화구의 링쿠에게 돌아갑니다. 보관하세요.",
 
 	-- Step 29: Marvon Rivetseeker
-	-- {area:1336} Lost Rigger Cove · {area:976} Gadgetzan
-	["Marvon camps by the {area:1336} road, south of {area:976}."] = "마본은 {area:976} 남쪽, {area:1336}(으)로 가는 길가에 야영하고 있습니다.",
+	-- {npc:7771} Marvon Rivetseeker · {area:1336} Lost Rigger Cove · {area:976} Gadgetzan
+	["{npc:7771} camps by the {area:1336} road, south of {area:976}."] = "{npc:7771}은(는) {area:976} 남쪽, {area:1336}(으)로 가는 길가에 야영하고 있습니다.",
 
 	-- Step 30: Hippogryph eggs
 	["Hippogryph eggs"] = "히포그리프 알",

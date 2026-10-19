@@ -77,7 +77,7 @@ test('header, destination and numbered steps: 36:48 · 8.0k yd, the lift with it
 		['3', 'Walk to Silithus', '25:13'],
 	]);
 	assert.deepEqual(s.rows.map((r) => r.bar), [true, false, false]);
-	assert.equal(s.rows[1].sub, 'leaves in about 0:15 \u00b7 ride 0:10');
+	assert.equal(s.rows[1].sub, 'average wait 0:15 \u00b7 ride 0:10');
 	assert.equal(s.rows[0].sub, false);
 	assert.match(s.rows[0].icon, /icon-lift$/);
 	assert.match(s.rows[2].icon, /icon-goto$/);
@@ -173,11 +173,11 @@ test('K1/C9: a step without a caption reads its kind and place, never "Unknown"'
 	assert.equal(s.rows[2].sub, false, 'a flight leaves at once: no wait');
 });
 
-test('K3: a lift says "leaves in about" until timed, then "leaves in"; walks, gates and bridges carry no wait', () => {
+test('K3: a lift gives its average wait until timed, then "leaves in"; walks, gates and bridges carry no wait', () => {
 	const [about, timed] = run(`
 		R.legs[1].step = "gate"; R.legs[3].step = "bridge"; Polestar.Fire("ROUTE_CHANGED", R.legs); emit(shot())
 		R.timed = true; Polestar.Fire("NAV_TRANSIT"); emit(shot())`);
-	assert.equal(about.rows[1].sub, 'leaves in about 0:15 \u00b7 ride 0:10');
+	assert.equal(about.rows[1].sub, 'average wait 0:15 \u00b7 ride 0:10');
 	assert.equal(timed.rows[1].sub, 'leaves in 0:15 \u00b7 ride 0:10');
 	assert.equal(about.rows[0].sub, false);
 	assert.equal(about.rows[2].sub, false);
@@ -263,4 +263,22 @@ test('review P3-11: at the dock, a boat leaving within the boarding window shows
 	assert.equal(docked.rows[0].sub, 'leaves in 0:08 \u00b7 ride 2:00');
 	assert.equal(docked.rows[0].time, '2:08');
 	assert.equal(away.rows[0].sub, 'leaves in 10:00 \u00b7 ride 2:00');
+});
+
+test('a walk that enters a hostile town says so under its step: "Hostile town: Southshore"', () => {
+	const [s] = run(`
+		-- Travel.HubText's wording (the panel asks Nav.travel for it).
+		Polestar.Nav.travel.HubText = function(leg)
+			local names = {}
+			for _, h in ipairs(leg.hubs or {}) do names[#names + 1] = h.name end
+			return #names > 0 and ("Hostile town: " .. table.concat(names, ", ")) or nil
+		end
+		R.legs[3].hubs = { { id = 12, name = "Southshore" } }
+		R.legs[1].hubs = { { id = 13, name = "Tarren Mill" }, { id = 14, name = "Hammerfall" } }
+		Polestar.Fire("ROUTE_CHANGED", R.legs)
+		emit(shot())`);
+	assert.equal(s.rows[2].sub, 'Hostile town: Southshore');
+	assert.equal(s.rows[0].sub, 'Hostile town: Tarren Mill, Hammerfall');
+	assert.equal(s.rows[1].sub, 'average wait 0:15 \u00b7 ride 0:10', 'a ride keeps its departure line');
+	assert.ok(s.rows[2].h > 24, 'the warning has its own line');
 });

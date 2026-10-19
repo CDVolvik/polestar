@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Korean words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -12,7 +13,7 @@ return {
 	-- Step 1: Blasted Lands (1/2)
 	-- {zone:1435} Swamp of Sorrows · {zone:1415} Eastern Kingdoms
 	["Starts where the 30-45 guide ends, in the {zone:1435}. The last area of this guide completes the {zone:1415} map. 9 areas to discover here, levels 46-63."] = "30-45 가이드가 끝나는 {zone:1435}에서 시작합니다. 이 가이드의 마지막 지역으로 {zone:1415} 지도가 완성됩니다. 이곳에서 발견할 지역 9곳, 레벨 46-63.",
-	["Exploring the entire world map on one character is a Forever Legacy Challenge (1 account-wide Legacy Point)."] = "한 캐릭터로 세계 지도 전체를 탐험하는 것은 Forever Legacy 도전 과제입니다(계정 공통 Legacy Point 1점).",
+	["Exploring the entire world map on one character is a Forever Legacy Challenge (1 account-wide Legacy Point)."] = "한 캐릭터로 세계 지도 전체를 탐험하는 것은 Forever 유산 도전입니다(계정 공통 유산 점수 1점).",
 	-- {zone:1419} Blasted Lands · {zone:1435} Swamp of Sorrows · {area:1438} Nethergarde Keep
 	["The {zone:1419} are south of the {zone:1435}; the road arrives at {area:1438} (Alliance)."] = "{zone:1419}은(는) {zone:1435} 남쪽에 있습니다. 길은 {area:1438}(얼라이언스)에 닿습니다.",
 	-- {area:1438} Nethergarde Keep · {npc:8609} Alexandra Constantine
@@ -51,10 +52,10 @@ return {
 
 	-- Step 7: The Hinterlands (1/2)
 	["14 areas to discover here, levels 41-49."] = "이곳에서 발견할 지역 14곳, 레벨 41-49.",
-	-- {area:348} Aerie Peak · {area:271} Southshore · {zone:1424} Hillsbrad Foothills
-	["Fly to {area:348} if you have it; otherwise fly to {area:271} and walk north-east from {zone:1424} into the Hinterlands."] = "{area:348} 비행 경로가 있으면 그곳으로 비행하고, 없으면 {area:271}(으)로 비행한 뒤 {zone:1424}에서 북동쪽 동부 내륙지로 걸어가십시오.",
-	-- {area:3317} Revantusk Village · {area:272} Tarren Mill · {zone:1424} Hillsbrad Foothills
-	["Fly to {area:3317} if you have it; otherwise fly to {area:272} and walk east from {zone:1424} into the Hinterlands."] = "{area:3317} 비행 경로가 있으면 그곳으로 비행하고, 없으면 {area:272}(으)로 비행한 뒤 {zone:1424}에서 동쪽 동부 내륙지로 걸어가십시오.",
+	-- {area:348} Aerie Peak · {area:271} Southshore · {zone:1424} Hillsbrad Foothills · {zone:1425} The Hinterlands
+	["Fly to {area:348} if you have it; otherwise fly to {area:271} and walk north-east from {zone:1424} into the {zone:1425}."] = "{area:348} 비행 경로가 있으면 그곳으로 비행하고, 없으면 {area:271}(으)로 비행한 뒤 {zone:1424}에서 북동쪽 {zone:1425}로 걸어가십시오.",
+	-- {area:3317} Revantusk Village · {area:272} Tarren Mill · {zone:1424} Hillsbrad Foothills · {zone:1425} The Hinterlands
+	["Fly to {area:3317} if you have it; otherwise fly to {area:272} and walk east from {zone:1424} into the {zone:1425}."] = "{area:3317} 비행 경로가 있으면 그곳으로 비행하고, 없으면 {area:272}(으)로 비행한 뒤 {zone:1424}에서 동쪽 {zone:1425}로 걸어가십시오.",
 	-- {area:348} Aerie Peak · {npc:8018} Guthrum Thunderfist
 	["Flight path here: {area:348} ({npc:8018})."] = "이곳의 비행 경로: {area:348}({npc:8018}).",
 	-- {area:3317} Revantusk Village

@@ -3,11 +3,14 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Korean words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Fly to Camp Taurajo
 	-- {area:378} Camp Taurajo
 	["Fly to {area:378}"] = "{area:378}(으)로 날아가기",
+	-- {npc:6791} Innkeeper Wiley
+	["{npc:6791}: the last guide binds here, so this usually ticks at once"] = "{npc:6791}: 이전 가이드에서 이곳에 귀환 지점을 정하므로 보통 바로 완료됩니다",
 
 	-- Step 2: Shady Rest Inn
 	-- {area:378} Camp Taurajo · {area:403} Shady Rest Inn
@@ -52,8 +55,8 @@ return {
 	["Ride east back to the {area:497}."] = "동쪽의 {area:497}(으)로 돌아가세요.",
 	-- {item:3853} Moonsteel Broadsword · {skill:164} Blacksmithing
 	["only if you carry a {item:3853} ({skill:164} or the Auction House)"] = "{item:3853}을(를) 가지고 있을 때만({skill:164} 또는 경매장)",
-	-- {object:20985} Loose Dirt
-	["{object:20985}, now that Nazeer has read the report"] = "나지르가 보고서를 읽은 뒤의 {object:20985}",
+	-- {object:20985} Loose Dirt · {npc:4791} Nazeer Bloodpike
+	["{object:20985}, now that {npc:4791} has read the report"] = "{npc:4791}이(가) 보고서를 읽은 뒤의 {object:20985}",
 
 	-- Step 12: Brackenwall Village
 	["Ride back west to Brackenwall with the head."] = "머리를 가지고 서쪽의 담쟁이 마을로 돌아가세요.",
@@ -65,24 +68,24 @@ return {
 	["Hearth to {area:392}"] = "귀환석으로 {area:392}에 가기",
 
 	-- Step 15: Melizza Brimbuzzle
-	-- {area:607} Valley of Spears
-	["Ride north-east to the {area:607}. Melizza is held in the Maraudine centaur camp; free her and escort her out east of the valley."] = "북동쪽의 {area:607}(으)로 가세요. 멜릿자는 마라우돈일족 켄타우로스 야영지에 붙잡혀 있습니다. 풀어 주고 골짜기 동쪽 밖까지 호위하세요.",
+	-- {area:607} Valley of Spears · {npc:12277} Melizza Brimbuzzle
+	["Ride north-east to the {area:607}. {npc:12277} is held in the Maraudine centaur camp; free her and escort her out east of the valley."] = "북동쪽의 {area:607}(으)로 가세요. {npc:12277}은(는) 마라우돈일족 켄타우로스 야영지에 붙잡혀 있습니다. 풀어 주고 골짜기 동쪽 밖까지 호위하세요.",
 
 	-- Step 16: Kodo Graveyard
-	-- {area:596} Kodo Graveyard
-	["Hornizz waits at the goblin camp on the west side of the {area:596}."] = "호르니즈는 {area:596} 서쪽의 고블린 야영지에서 기다립니다.",
+	-- {npc:6019} Hornizz Brimbuzzle · {area:596} Kodo Graveyard
+	["{npc:6019} waits at the goblin camp on the west side of the {area:596}."] = "{npc:6019}은(는) {area:596} 서쪽의 고블린 야영지에서 기다립니다.",
 
 	-- Step 17: Gizelton Caravan
 	-- {npc:11626} Rigger Gizelton · {area:602} Mannoroc Coven
 	["{npc:11626}'s caravan stops on the road at the edge of {area:602}. Escort it east past the coven; demons attack it twice."] = "{npc:11626}의 대상단은 {area:602} 가장자리 길에 멈춰 있습니다. 동쪽으로 소굴을 지날 때까지 호위하세요. 악마가 두 번 습격합니다.",
 
 	-- Step 18: Scrabblescrew's Camp
-	-- {area:596} Kodo Graveyard
-	["The caravan ends at Smeed's camp on the east side of the {area:596}."] = "대상단은 {area:596} 동쪽의 스미드 야영지에서 끝납니다.",
+	-- {npc:11596} Smeed Scrabblescrew · {area:596} Kodo Graveyard
+	["The caravan ends at {npc:11596}'s camp on the east side of the {area:596}."] = "대상단은 {area:596} 동쪽의 {npc:11596} 야영지에서 끝납니다.",
 
 	-- Step 19: Ghost Walker Post
-	-- {npc:5395} Felgur Twocuts · {npc:5412} Gurda Wildmane
-	["{npc:5395} and {npc:5412} stand in the post just west of Smeed's camp."] = "{npc:5395}와(과) {npc:5412}은(는) 스미드 야영지 바로 서쪽의 주둔지에 서 있습니다.",
+	-- {npc:5395} Felgur Twocuts · {npc:5412} Gurda Wildmane · {npc:11596} Smeed Scrabblescrew
+	["{npc:5395} and {npc:5412} stand in the post just west of {npc:11596}'s camp."] = "{npc:5395}와(과) {npc:5412}은(는) {npc:11596} 야영지 바로 서쪽의 주둔지에 서 있습니다.",
 
 	-- Step 20: Kormek's Hut
 	["Ride north up the road to the hut by the road north of the graveyard."] = "길을 따라 북쪽으로 묘지 북쪽 길가의 오두막으로 가세요.",
@@ -93,8 +96,8 @@ return {
 	["Pick up the kodo bones scattered across the graveyard, and use the {item:15848} among the bones: the ghosts it draws drop the ghost-o-plasm."] = "묘지 곳곳에 흩어진 코도 뼈를 줍고, 뼈 사이에서 {item:15848}을(를) 사용하세요. 끌려온 유령이 유령 원형질을 떨어뜨립니다.",
 
 	-- Step 24: Thunder Axe Fortress
-	-- {spell:1294269} Burning Blade · {area:2407} Kormek's Hut · {item:14523} Demon Pick · {npc:11876} Demon Spirit · {item:13542} Demon Box
-	["The {spell:1294269} hold the fortress north-west of {area:2407}. Use the {item:14523} on the {npc:11876} in the fortress to get the {item:13542}."] = "{spell:1294269}이(가) {area:2407} 북서쪽 요새를 차지하고 있습니다. 요새 안의 {npc:11876}에게 {item:14523}을(를) 사용해 {item:13542}을(를) 얻으세요.",
+	-- {area:2407} Kormek's Hut · {item:14523} Demon Pick · {npc:11876} Demon Spirit · {item:13542} Demon Box
+	["The Burning Blade hold the fortress north-west of {area:2407}. Use the {item:14523} on the {npc:11876} in the fortress to get the {item:13542}."] = "불타는 칼날단이(가) {area:2407} 북서쪽 요새를 차지하고 있습니다. 요새 안의 {npc:11876}에게 {item:14523}을(를) 사용해 {item:13542}을(를) 얻으세요.",
 
 	-- Step 25: Ethel Rethor
 	-- {npc:11863} Azore Aldamort · {area:2405} Ethel Rethor

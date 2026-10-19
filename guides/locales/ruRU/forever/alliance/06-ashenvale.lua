@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Russian (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Russian words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Aquatic Form
@@ -52,18 +53,18 @@ return {
 	["South of the murlocs, {npc:3585} waits at the {area:416}."] = "К югу от мурлоков {npc:3585} ждет здесь: {area:416}.",
 
 	-- Step 12: Ilkrud Magthrull
-	-- {area:412} Ruins of Ordil'Aran
-	["Ilkrud and his voidwalkers hold the {area:412} south of the shrine. Pull his guards first."] = "Илкруд и его демоны Бездны удерживают {area:412} к югу от святилища. Сначала выманите его стражей.",
+	-- {npc:3664} Ilkrud Magthrull · {area:412} Ruins of Ordil'Aran
+	["{npc:3664} and his voidwalkers hold the {area:412} south of the shrine. Pull his guards first."] = "{npc:3664} и его демоны Бездны удерживают {area:412} к югу от святилища. Сначала выманите его стражей.",
 
 	-- Step 13: The Zoram Strand
-	-- {npc:3846} Talen
-	["Follow the coast north to the Zoram Strand. {npc:3846} camps on the beach; Wrathtail nagas fill the shore."] = "Идите вдоль побережья на север к Зорамскому взморью. {npc:3846} стоит лагерем на пляже; берег кишит нагами из клана Зловещего Хвоста.",
+	-- {area:414} The Zoram Strand · {npc:3846} Talen
+	["Follow the coast north to the {area:414}. {npc:3846} camps on the beach; Wrathtail nagas fill the shore."] = "Идите вдоль побережья на север к {area:414}. {npc:3846} стоит лагерем на пляже; берег кишит нагами из клана Зловещего Хвоста.",
 	-- {item:5424} Ancient Statuette
 	["{item:5424}, in the ruins on the shore"] = "{item:5424}, в руинах на берегу",
 
 	-- Step 15: Ruuzel
-	-- {quest:1009} Ruuzel
-	["{quest:1009} walks the northern tip of the Zoram Strand with Wrathtail guards."] = "{quest:1009} ходит по северной оконечности Зорамского взморья со стражами из клана Зловещего Хвоста.",
+	-- {quest:1009} Ruuzel · {area:414} The Zoram Strand
+	["{quest:1009} walks the northern tip of the {area:414} with Wrathtail guards."] = "{quest:1009} ходит по северной оконечности {area:414} со стражами из клана Зловещего Хвоста.",
 
 	-- Step 19: Dal Bloodclaw
 	-- {npc:3987} Dal Bloodclaw · {area:415} Astranaar
@@ -94,8 +95,8 @@ return {
 	["West of Mystral Lake, the stardust bushes grow among the ruins."] = "К западу от озера Мистраль среди руин растут кусты, покрытые звездной пылью.",
 
 	-- Step 27: Windshear Crag
-	-- {area:421} Mystral Lake · {area:1276} Talondeep Path · {area:461} Windshear Crag · {area:1076} Webwinder Path
-	["Ride south past {area:421} into the {area:1276} tunnel; it comes out in Stonetalon's {area:461}. Kaela and Gaxim camp on the {area:1076} south-west of the crag."] = "Скачите на юг мимо места {area:421} в туннель ({area:1276}); он выходит здесь: {area:461} (Когтистые горы). Кела и Гаксим стоят лагерем здесь: {area:1076}, к юго-западу от утеса.",
+	-- {area:421} Mystral Lake · {area:1276} Talondeep Path · {area:461} Windshear Crag · {npc:4080} Kaela Shadowspear · {npc:4077} Gaxim Rustfizzle · {area:1076} Webwinder Path
+	["Ride south past {area:421} into the {area:1276} tunnel; it comes out in Stonetalon's {area:461}. {npc:4080} and {npc:4077} camp on the {area:1076} south-west of the crag."] = "Скачите на юг мимо места {area:421} в туннель ({area:1276}); он выходит здесь: {area:461} (Когтистые горы). {npc:4080} и {npc:4077} стоят лагерем здесь: {area:1076}, к юго-западу от утеса.",
 	-- {npc:4201} Ziz Fizziks
 	["{npc:4201}, in the hut north of them"] = "{npc:4201}, в хижине к северу от них",
 
@@ -178,13 +179,11 @@ return {
 	-- Step 47: Black Oozes
 	-- plural, as words: Black Oozes = {npc:1032} Black Ooze
 	["Black Oozes"] = "Черные слизнюки",
-	-- {area:1025} Green Belt · {npc:2111} Sida
+	-- {area:1025} Green Belt · {npc:2093} Einar Stonegrip · {npc:2111} Sida
 	-- plural, as words: Black Oozes = {npc:1032} Black Ooze
-	["Black Oozes creep through the marsh north of the {area:1025} road, west of Einar's camp. Any ooze may hold {npc:2111}'s bag."] = "Черные слизнюки ползают по болоту к северу от дороги ({area:1025}), к западу от лагеря Эйнара. В любом слизнюке может оказаться сумка NPC {npc:2111}.",
+	["Black Oozes creep through the marsh north of the {area:1025} road, west of {npc:2093}'s camp. Any ooze may hold {npc:2111}'s bag."] = "Черные слизнюки ползают по болоту к северу от дороги ({area:1025}), к западу от лагеря {npc:2093}. В любом слизнюке может оказаться сумка NPC {npc:2111}.",
 
-	-- Step 48: The Green Belt
-	-- {area:1025} Green Belt
-	["The {area:1025}"] = "{area:1025}",
+	-- Step 48: Green Belt
 	-- {npc:2093} Einar Stonegrip · {npc:1244} Rethiel the Greenwarden
 	["{npc:2093} camps by the road; {npc:1244} stands farther east, by the river."] = "{npc:2093} стоит лагерем у дороги; {npc:1244} стоит восточнее, у реки.",
 
@@ -195,8 +194,9 @@ return {
 	["Mosshide Gnolls and Mongrels hold the hills south-east of the {area:1025}."] = "Гноллы и полукровки из стаи Мохошкуров удерживают холмы к юго-востоку от места {area:1025}.",
 
 	-- Step 51: Crude Flint
+	-- {npc:1244} Rethiel the Greenwarden
 	-- plural, as words: Mosshide Fenrunners = {npc:1010} Mosshide Fenrunner
-	["Mosshide Fenrunners and Mistweavers roam the riverbanks just west and south of Rethiel; almost every one drops flint."] = "Бегуны топей и туманоплеты из стаи Мохошкуров бродят по берегам реки чуть западнее и южнее Ретиля; почти с каждого падает кремень.",
+	["Mosshide Fenrunners and Mistweavers roam the riverbanks just west and south of {npc:1244}; almost every one drops flint."] = "Бегуны топей и туманоплеты из стаи Мохошкуров бродят по берегам реки чуть западнее и южнее {npc:1244}; почти с каждого падает кремень.",
 
 	-- Step 53: Fen Creepers
 	-- plural, as words: Fen Creepers = {npc:1040} Fen Creeper
@@ -271,9 +271,7 @@ return {
 	["Next: fly to {area:42}."] = "Далее: летите сюда: {area:42}.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Follow the coast north out of Menethil. Bluegill Murlocs fill the marsh; Gobbler walks with a pack in the middle of it."] = "Идите вдоль побережья на север из Гавани Менетилов. Болото полно мурлоков из племени Синежабрых; Жрун бродит со стаей посреди него.",
 	-- ["Follow the coast north to the {area:414}. {npc:3846} camps on the beach; Wrathtail nagas fill the shore."] = "Идите вдоль побережья на север сюда: {area:414}. {npc:3846} стоит лагерем на пляже; берег кишит нагами из клана Зловещего Хвоста.",
-	-- ["North of {area:413}, plant bundles lie around the ruins of {area:411}. Dark Strand cultists hold the ruins just south of them: any of them can drop the {item:5366}."] = "К северу от места {area:413} вокруг руин ({area:411}) лежат пучки трав. Сектанты из клана Темной Нити удерживают руины чуть южнее: с любого из них может выпасть {item:5366}.",
-	-- ["West of {area:421}, the stardust bushes grow among the ruins."] = "К западу от места {area:421} среди руин растут кусты, покрытые звездной пылью.",
+	-- ["The {area:1025}"] = "{area:1025}",
 	-- ["{quest:1009} walks the northern tip of the {area:414} with Wrathtail guards."] = "{quest:1009} ходит по северной оконечности места {area:414} со стражами из клана Зловещего Хвоста.",
 }

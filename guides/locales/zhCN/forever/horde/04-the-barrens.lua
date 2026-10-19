@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (simplified) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (simplified) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Fly to Ratchet
@@ -41,9 +42,7 @@ return {
 	-- plural, as words: Sunscale Scytheclaws = {npc:3256} Sunscale Scytheclaw
 	["Sunscale Scytheclaws hunt the plains south of the {area:380}, around the {area:1697}; they drop the horns. Hand them in on your next pass through {area:392}."] = "赤鳞镰爪龙在{area:380}南边的平原上、{area:1697}一带捕猎；它们掉落角。下次路过{area:392}时交还。",
 
-	-- Step 9: The Crossroads
-	-- {area:380} Crossroads
-	["The {area:380}"] = "{area:380}",
+	-- Step 9: Crossroads
 	-- {npc:3429} Thork · {area:1703} Mor'shan Rampart
 	["{npc:3429}. Keep it: Kadrak at the {area:1703}, next guide"] = "{npc:3429}。留着它：交给{area:1703}的卡德拉克，见下一个指南",
 	-- {npc:3428} Korran · {area:390} Field of Giants
@@ -97,11 +96,12 @@ return {
 	["Back to the {area:380}"] = "返回{area:380}",
 
 	-- Step 18: Regthar Deathgate
-	-- {area:380} Crossroads
-	["Regthar stands at the Kolkar watch post just west of the {area:380}."] = "雷戈萨站在{area:380}正西的科卡尔哨所。",
+	-- {npc:3389} Regthar Deathgate · {area:380} Crossroads
+	["{npc:3389} stands at the Kolkar watch post just west of the {area:380}."] = "{npc:3389}站在{area:380}正西的科卡尔哨所。",
 
 	-- Step 19: Barak Kodobane
-	["Barak stands in the Kolkar camp north-west of Regthar."] = "巴拉克站在雷戈萨西北的科卡尔营地里。",
+	-- {npc:3394} Barak Kodobane · {npc:3389} Regthar Deathgate
+	["{npc:3394} stands in the Kolkar camp north-west of {npc:3389}."] = "{npc:3394}站在{npc:3389}西北的科卡尔营地里。",
 	-- {item:15852} Kodo Horn
 	-- plural, as words: Lost Barrens Kodos = {npc:3234} Lost Barrens Kodo
 	["{item:15852}: Lost Barrens Kodos on the plains around the Kolkar camp"] = "{item:15852}：科卡尔营地周围平原上的落单的草原科多兽",
@@ -109,16 +109,14 @@ return {
 	["{item:2449}: herbalists pick it here"] = "{item:2449}：草药师可在这里采集",
 
 	-- Step 21: Ken'zigla
-	-- {npc:4197} Ken'zigla · {area:2539} Malaka'jin
-	["{npc:4197} lives in {area:2539}, the troll village just inside Stonetalon at the end of the road west from Regthar."] = "{npc:4197}住在{area:2539}，那是从雷戈萨处向西的道路尽头、刚进入石爪山脉的巨魔村庄。",
+	-- {npc:4197} Ken'zigla · {area:2539} Malaka'jin · {npc:3389} Regthar Deathgate
+	["{npc:4197} lives in {area:2539}, the troll village just inside Stonetalon at the end of the road west from {npc:3389}."] = "{npc:4197}住在{area:2539}，那是从{npc:3389}处向西的道路尽头、刚进入石爪山脉的巨魔村庄。",
 
 	-- Step 22: Vrang Wildgore
 	-- {area:383} Dry Hills · {npc:3682} Vrang Wildgore · {npc:261366} Walton
-	["North to the {area:383}. {npc:3682} camps below the hills; {npc:261366}, the hermit on the ridge behind him, has work for you only once Vrang sends you up."] = "向北前往{area:383}。{npc:3682}在山下扎营；他身后山脊上的隐士{npc:261366}要等弗朗恩派你上去后才会给你任务。",
+	["North to the {area:383}. {npc:3682} camps below the hills; {npc:261366}, the hermit on the ridge behind him, has work for you only once {npc:3682} sends you up."] = "向北前往{area:383}。{npc:3682}在山下扎营；他身后山脊上的隐士{npc:261366}要等{npc:3682}派你上去后才会给你任务。",
 
-	-- Step 23: The Dry Hills
-	-- {area:383} Dry Hills
-	["The {area:383}"] = "{area:383}",
+	-- Step 23: Dry Hills
 	-- {quest:876} Serena Bloodfeather
 	-- plural, as words: Savannah Patriarchs = {npc:3241} Savannah Patriarch · Sprung Traps = {object:640104} Sprung Trap
 	["Savannah Patriarchs roam the plains east of the hills, and the Sprung Traps lie among them. {quest:876} leads the Witchwing harpies in the hills to the west."] = "草原狮王在山丘东边的平原上游荡，爆炸陷阱就散落在它们中间。{quest:876}率领着西边山丘里的巫翼鹰身人。",
@@ -164,8 +162,8 @@ return {
 	["He gives you the {item:15826}"] = "他会给你{item:15826}",
 
 	-- Step 35: Verog the Dervish
-	-- {area:388} Stagnant Oasis · {area:380} Crossroads
-	["Verog walks among the Kolkar at the {area:388} south-east of the {area:380}."] = "狂热的维罗戈在{area:380}东南的{area:388}，在科卡尔半人马中间走动。",
+	-- {npc:3395} Verog the Dervish · {area:388} Stagnant Oasis · {area:380} Crossroads
+	["{npc:3395} walks among the Kolkar at the {area:388} south-east of the {area:380}."] = "{npc:3395}在{area:380}东南的{area:388}，在科卡尔半人马中间走动。",
 	-- {npc:12296} Sickly Gazelle · {item:15826} Curative Animal Salve · {area:380} Crossroads
 	["{npc:12296}: use the {item:15826} on them; they roam the plains all around the {area:380}"] = "{npc:12296}：对它们使用{item:15826}；它们在{area:380}周围的平原上游荡",
 
@@ -184,28 +182,28 @@ return {
 
 	-- Step 38: Grunt Dogran
 	["Dogran is chained up in the quilboar camp west of the road."] = "多格兰被锁在道路西边的野猪人营地里。",
-	-- {zone:1454} Orgrimmar
-	["Keep it: Gan'rul in {zone:1454}, at the end of this guide"] = "留着它：交给{zone:1454}的甘鲁尔，在本指南结尾",
+	-- {npc:5875} Gan'rul Bloodeye · {zone:1454} Orgrimmar
+	["Keep it: {npc:5875} in {zone:1454}, at the end of this guide"] = "留着它：交给{zone:1454}的{npc:5875}，在本指南结尾",
 
 	-- Step 40: Stolen Silver
 	-- {area:385} Northwatch Hold
 	["East across the plains toward the coast: the stolen silver lies in a raptor nest north-west of {area:385}."] = "向东穿过平原前往海岸：被偷的银子在{area:385}西北的一个迅猛龙巢穴里。",
 
 	-- Step 41: Islen Waterseer
-	-- {area:392} Ratchet
-	["Islen waits on the hill south of {area:392}, on your way north."] = "伊斯伦在{area:392}南边的山上等候，就在你北上的路上。",
+	-- {npc:5901} Islen Waterseer · {area:392} Ratchet
+	["{npc:5901} waits on the hill south of {area:392}, on your way north."] = "{npc:5901}在{area:392}南边的山上等候，就在你北上的路上。",
 
 	-- Step 43: Ishamuhale
 	-- {quest:882} Ishamuhale · {area:392} Ratchet · {area:380} Crossroads
 	["{quest:882}, a big Sunscale raptor, hunts the plains north of the road from {area:392} to the {area:380}."] = "{quest:882}是一只大型赤鳞迅猛龙，在从{area:392}到{area:380}的道路北边的平原上捕猎。",
 
-	-- Step 44: The Crossroads
+	-- Step 44: Crossroads
 	-- {npc:3432} Mankrik · {quest:95774} Her Name Is Olgra · {quest:4921} Lost in Battle
 	["{npc:3432} offers {quest:95774} once {quest:4921} is handed in"] = "{quest:4921}交还后，{npc:3432}会提供{quest:95774}",
 
 	-- Step 46: Hezrul Bloodmark
-	-- {area:387} Lushwater Oasis · {area:380} Crossroads
-	["Hezrul leads the Kolkar on the west shore of {area:387}, south of Regthar. Hand his head to Regthar on your last {area:380} stop."] = "赫兹鲁尔率领着{area:387}西岸的科卡尔半人马，位于雷戈萨南边。最后一次在{area:380}停留时把他的头颅交给雷戈萨。",
+	-- {npc:3396} Hezrul Bloodmark · {area:387} Lushwater Oasis · {npc:3389} Regthar Deathgate · {area:380} Crossroads
+	["{npc:3396} leads the Kolkar on the west shore of {area:387}, south of {npc:3389}. Hand his head to {npc:3389} on your last {area:380} stop."] = "{npc:3396}率领着{area:387}西岸的科卡尔半人马，位于{npc:3389}南边。最后一次在{area:380}停留时把他的头颅交给{npc:3389}。",
 
 	-- Step 47: Olgra's Adornments
 	-- {area:458} Gold Road · {area:378} Camp Taurajo · {item:277277} Olgra's Adornments · {npc:3432} Mankrik · {area:380} Crossroads
@@ -233,23 +231,23 @@ return {
 	["South of Camp Taurajo the Silithid Mounds dot the {area:390}; the eggs lie in them, and Silithid Swarmers come out to defend them. Silithid Harvesters are rare: if you see one, kill it for its head."] = "陶拉祖营地南边，{object:3685}遍布{area:390}；蛋就在土丘里，{npc:3252}会出来保护它们。{npc:3253}很稀有：如果看到，杀死它取下它的头。",
 
 	-- Step 54: Gann Stonespire
-	-- {area:359} Bael Modan
-	["Gann waits in a small camp further south, on the road toward {area:359}."] = "加恩在更南边通往{area:359}的道路旁的一个小营地里等候。",
-	-- {npc:14242} Sulhasa
-	["{npc:14242}, up in the tree just east of Gann"] = "{npc:14242}，在加恩正东的树上",
-	-- {npc:5899} Brine
-	["{npc:5899}, just west of Gann"] = "{npc:5899}，就在加恩西边",
+	-- {npc:3341} Gann Stonespire · {area:359} Bael Modan
+	["{npc:3341} waits in a small camp further south, on the road toward {area:359}."] = "{npc:3341}在更南边通往{area:359}的道路旁的一个小营地里等候。",
+	-- {npc:14242} Sulhasa · {npc:3341} Gann Stonespire
+	["{npc:14242}, up in the tree just east of {npc:3341}"] = "{npc:14242}，在{npc:3341}正东的树上",
+	-- {npc:5899} Brine · {npc:3341} Gann Stonespire
+	["{npc:5899}, just west of {npc:3341}"] = "{npc:5899}，就在{npc:3341}西边",
 	-- {item:7766} Empty Brown Waterskin
 	["Fill the {item:7766} at the quilboar watering hole"] = "在野猪人的水坑装满{item:7766}",
 	-- {object:107045} Spring Well · {area:272} Tarren Mill
 	["Keep it: the {object:107045} is beside {area:272}"] = "留着它：{object:107045}在{area:272}旁边",
 
 	-- Step 55: Blackthorn Ridge
-	-- {area:1701} Blackthorn Ridge · {npc:3436} Kuz · {npc:3434} Nak · {npc:3435} Lok Orcbane · {npc:5859} Hagg Taurenbane · {npc:3238} Stormhide · {quest:885} Washte Pawne
+	-- {area:1701} Blackthorn Ridge · {npc:3436} Kuz · {npc:3434} Nak · {npc:3435} Lok Orcbane · {npc:5859} Hagg Taurenbane · {npc:3238} Stormhide · {npc:3341} Gann Stonespire · {quest:885} Washte Pawne
 	-- plural, as words: Hecklefang Stalkers = {npc:4128} Hecklefang Stalker
-	["West of Gann, the Razormane hold {area:1701}. {npc:3436} is on the east side, {npc:3434} to the south, {npc:3435} at the west end. Lok (25) and the Warfrenzies (24-25) are a few levels above you; {npc:5859}, a rare elite, sometimes walks the ridge: leave him. Pathfinders and Stalkers drop the Backstabber, Seers the Wand, Warfrenzies the War Shield. {npc:3238} lizards and Hecklefang Stalkers roam the plain between Gann and the ridge. {quest:885}, a rare red wind serpent, flies over the ridge: its feather starts a quest."] = "在加恩西边，钢鬃野猪人占据着{area:1701}。{npc:3436}在东侧，{npc:3434}在南边，{npc:3435}在西端。洛克（25级）和钢鬃战士（24-25级）比你高几级；稀有精英{npc:5859}有时会在山脊上走动：别惹他。钢鬃探路者和钢鬃捕猎者掉落钢鬃背刺匕首，钢鬃先知掉落烧焦的钢鬃魔杖，钢鬃战士掉落钢鬃大盾。{npc:3238}和{npc:4128}在加恩与山脊之间的平原上游荡。{quest:885}是一条稀有的红色风蛇，在山脊上空飞行：它的羽毛可以开始一个任务。",
-	-- {npc:3238} Stormhide
-	["{npc:3238}, on the plain between Gann and the ridge"] = "{npc:3238}，在加恩与山脊之间的平原上",
+	["West of Gann, the Razormane hold {area:1701}. {npc:3436} is on the east side, {npc:3434} to the south, {npc:3435} at the west end. Lok (25) and the Warfrenzies (24-25) are a few levels above you; {npc:5859}, a rare elite, sometimes walks the ridge: leave him. Pathfinders and Stalkers drop the Backstabber, Seers the Wand, Warfrenzies the War Shield. {npc:3238} lizards and Hecklefang Stalkers roam the plain between {npc:3341} and the ridge. {quest:885}, a rare red wind serpent, flies over the ridge: its feather starts a quest."] = "在{npc:3341}西边，钢鬃野猪人占据着{area:1701}。{npc:3436}在东侧，{npc:3434}在南边，{npc:3435}在西端。洛克（25级）和钢鬃战士（24-25级）比你高几级；稀有精英{npc:5859}有时会在山脊上走动：别惹他。钢鬃探路者和钢鬃捕猎者掉落钢鬃背刺匕首，钢鬃先知掉落烧焦的钢鬃魔杖，钢鬃战士掉落钢鬃大盾。{npc:3238}和乱齿捕猎者在加恩与山脊之间的平原上游荡。{quest:885}是一条稀有的红色风蛇，在山脊上空飞行：它的羽毛可以开始一个任务。",
+	-- {npc:3238} Stormhide · {npc:3341} Gann Stonespire
+	["{npc:3238}, on the plain between {npc:3341} and the ridge"] = "{npc:3238}，在{npc:3341}与山脊之间的平原上",
 
 	-- Step 56: Bael Modan
 	-- {area:359} Bael Modan · {npc:3392} Prospector Khazgorm
@@ -272,8 +270,8 @@ return {
 	["Twitching Antennae from the silithid"] = "从异种蝎身上获取颤抖的触角",
 
 	-- Step 66: Thun'grim Firegaze
-	-- {area:380} Crossroads
-	["Thun'grim camps beside the road east of the {area:380}."] = "索恩格瑞姆在{area:380}东边的路旁扎营。",
+	-- {npc:5878} Thun'grim Firegaze · {area:380} Crossroads
+	["{npc:5878} camps beside the road east of the {area:380}."] = "{npc:5878}在{area:380}东边的路旁扎营。",
 	-- {quest:1838} Brutal Armor · {area:1717} Razorfen Kraul
 	["He offers {quest:1838} next (1838, level 30): it needs {area:1717} and sends you all over Kalimdor and the Eastern Kingdoms. The Warrior class guide {quest:1838} covers it."] = "他接下来会提供{quest:1838}（1838，30级）：它需要{area:1717}，还会让你跑遍卡利姆多和东部王国。战士职业指南{quest:1838}涵盖了它。",
 
@@ -302,8 +300,8 @@ return {
 	["Cast {spell:18960}. Tauren: join the two pendant halves at the {area:2362}, on the north-west shore of the lake, before you see {npc:11802} in {area:2361}."] = "施放{spell:18960}。牛头人：在{area:2361}见{npc:11802}之前，先在湖西北岸的{area:2362}把两半坠饰合在一起。",
 	-- {item:15885} Pendant of the Sea Lion · {area:2362} Shrine of Remulos
 	["{item:15885}: use a half at the {area:2362}"] = "{item:15885}：在{area:2362}使用其中一半",
-	-- {npc:11802} Dendrite Starblaze
-	["{npc:11802}: the welcome from Turak"] = "{npc:11802}：图拉克的问候",
+	-- {npc:11802} Dendrite Starblaze · {npc:3033} Turak Runetotem
+	["{npc:11802}: the welcome from {npc:3033}"] = "{npc:11802}：{npc:3033}的问候",
 
 	-- Step 73: The Stormrage Barrow Dens
 	-- {area:2363} Stormrage Barrow Dens
@@ -320,11 +318,9 @@ return {
 	["Fly back to the {area:380}. The next guide starts here and takes the road north to the {area:1703} and {zone:1440}."] = "飞回{area:380}。下一个指南从这里开始，沿道路向北前往{area:1703}和{zone:1440}。",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Assist Walton: stay by him when {npc:261367} and the {area:21} marines come up the ridge"] = "协助沃尔顿：当{npc:261367}和{area:21}水兵走上山脊时，待在他身边",
 	-- ["Bruuz"] = "布鲁兹",
-	-- ["Bruuz swims in the harbour just off {area:392}'s docks. Bruuz is elite: grouping up is advised."] = "布鲁兹在{area:392}码头外的港湾里游动。布鲁兹是精英：建议组队。",
-	-- ["South of {area:378} the Silithid Mounds dot the {area:390}; the eggs lie in them, and Silithid Swarmers come out to defend them. Silithid Harvesters are rare: if you see one, kill it for its head."] = "{area:378}南边，异种蝎土丘遍布{area:390}；蛋就在土丘里，异种群居蝎会出来保护它们。异种收割者很稀有：如果看到，杀死它取下它的头。",
+	-- ["The {area:380}"] = "{area:380}",
+	-- ["The {area:383}"] = "{area:383}",
 	-- ["The {object:177790} lies at the north edge of the {area:382}, by the Venture Co. tower. It holds the {item:15883} for {quest:30}."] = "{object:177790}位于{area:382}北缘、风险投资公司的塔旁。里面装着{quest:30}所需的{item:15883}。",
-	-- ["West of Gann, the Razormane hold {area:1701}. Kuz is on the east side, Nak to the south, {npc:3435} at the west end. Lok (25) and the Warfrenzies (24-25) are a few levels above you; {npc:5859}, a rare elite, sometimes walks the ridge: leave him. Pathfinders and Stalkers drop the Backstabber, Seers the Wand, Warfrenzies the War Shield. {npc:3238} lizards and Hecklefang Stalkers roam the plain between Gann and the ridge. {quest:885}, a rare red wind serpent, flies over the ridge: its feather starts a quest."] = "在加恩西边，钢鬃野猪人占据着{area:1701}。卡兹在东侧，纳克在南边，{npc:3435}在西端。洛克（25级）和钢鬃战士（24-25级）比你高几级；稀有精英{npc:5859}有时会在山脊上走动：别惹他。钢鬃探路者和钢鬃捕猎者掉落钢鬃背刺匕首，钢鬃先知掉落烧焦的钢鬃魔杖，钢鬃战士掉落钢鬃大盾。{npc:3238}和乱齿捕猎者在加恩与山脊之间的平原上游荡。{quest:885}是一条稀有的红色风蛇，在山脊上空飞行：它的羽毛可以开始一个任务。",
 	-- ["{npc:2391} in {area:272} teaches {spell:2842}: keep it"] = "{area:272}的{npc:2391}教授{spell:2842}：留着它",
 }

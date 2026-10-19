@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (simplified) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (simplified) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -58,7 +59,7 @@ return {
 
 	-- Step 10: PvP: battleground reputations (Alliance)
 	["PvP: battleground reputations (Alliance)"] = "PvP：战场声望（联盟）",
-	["Exalted with each battleground faction is worth a point (4 in all; this page shows three, see the note). Follow the Polestar Reputation guides Warsong Gulch Reputation, Arathi Basin Reputation and Alterac Valley Reputation. The Diplomat Legacy perk increases reputation gains."] = "每个战场阵营达到崇拜可获得1点（共4点；本页显示三个，见备注）。按照 Polestar 声望指南：战歌峡谷声望、阿拉希盆地声望和奥特兰克山谷声望。传承天赋“外交官”可提高声望获取。",
+	["Exalted with each battleground faction is worth a point (4 in all; this page shows three, see the note). Follow the Polestar Reputation guides Warsong Gulch Reputation, Arathi Basin Reputation and Alterac Valley Reputation. The Diplomat Legacy perk increases reputation gains."] = "每个战场阵营达到崇拜可获得1点（共4点；本页显示三个，见备注）。按照 Polestar 声望指南：战歌峡谷声望、阿拉希盆地声望和奥特兰克山谷声望。传承外交官特权可提高声望获取。",
 	-- {zone:1460} Warsong Gulch · {zone:1461} Arathi Basin · {zone:1459} Alterac Valley
 	["Blizzard counts four battleground reputations, but our faction data has three per side ({zone:1460}, {zone:1461}, {zone:1459}). The fourth is likely tied to Forever's new PvP content; check the in-game Legacy panel."] = "暴雪计算了四个战场声望，但我们的阵营数据中每方只有三个（{zone:1460}、{zone:1461}、{zone:1459}）。第四个可能与 Forever 新的PvP内容有关；请查看游戏内的传承面板。",
 
@@ -68,10 +69,18 @@ return {
 	-- Step 12: PvP: honor ranks
 	["PvP: honor ranks"] = "PvP：荣誉军衔",
 	["Ranks 3, 7, 10, 13 and 14 are a point each. Polestar cannot read your highest rank yet, so tick each one off yourself. Forever's honor rules for reaching a rank have not been published in detail; in Classic, ranks come from your weekly honor standing, and 13-14 take many weeks of top standing."] = "军衔3、7、10、13和14各计1点。Polestar 目前还无法读取你的最高军衔，所以请自行勾选每一项。Forever 达到军衔的荣誉规则尚未详细公布；在经典版中，军衔来自你每周的荣誉排名，13-14级需要连续许多周的顶尖排名。",
+	["enemy players for honor until PvP Rank 3"] = "敌对玩家以获取荣誉，直到PvP军衔3级",
+	["enemy players for honor until PvP Rank 7"] = "敌对玩家以获取荣誉，直到PvP军衔7级",
+	["enemy players for honor until PvP Rank 10"] = "敌对玩家以获取荣誉，直到PvP军衔10级",
+	["enemy players for honor until PvP Rank 13"] = "敌对玩家以获取荣誉，直到PvP军衔13级",
+	["enemy players for honor until PvP Rank 14"] = "敌对玩家以获取荣誉，直到PvP军衔14级",
 
 	-- Step 13: PvP: Field of Honor
 	["PvP: Field of Honor"] = "PvP：Field of Honor",
 	["The Field of Honor PvP season has weekly journey quests; finishing the ones for weeks 4, 7 and 10 is a point each. These quests are new in Forever and not in our data, so tick each one off yourself."] = "Field of Honor PvP赛季有每周的旅程任务；完成第4、7和10周的任务各计1点。这些任务是 Forever 新增的，不在我们的数据中，所以请自行勾选每一项。",
+	["enemy players and finish the Field of Honor week 4 journey quest"] = "敌对玩家，并完成荣誉战场第4周的旅程任务",
+	["enemy players and finish the Field of Honor week 7 journey quest"] = "敌对玩家，并完成荣誉战场第7周的旅程任务",
+	["enemy players and finish the Field of Honor week 10 journey quest"] = "敌对玩家，并完成荣誉战场第10周的旅程任务",
 
 	-- Step 14: Adventure: explore the world map
 	["Adventure: explore the world map"] = "冒险：探索世界地图",
@@ -82,8 +91,10 @@ return {
 	-- Step 15: Adventure: Lord Valthalak
 	-- {npc:16042} Lord Valthalak
 	["Adventure: {npc:16042}"] = "冒险：{npc:16042}",
-	-- {npc:16042} Lord Valthalak · {npc:16013} Deliana · {zone:1455} Ironforge · {npc:16012} Mokvar · {zone:1454} Orgrimmar · {npc:16033} Bodley · {area:254} Blackrock Mountain · {quest:8996} Return to Bodley · {quest:8997} Back to the Beginning
-	["The {npc:16042} questline is a point. It is the level 60 dungeon-set chain: {npc:16013} ({zone:1455}) or {npc:16012} ({zone:1454}) send you through In Search of Anthion and Anthion's Parting Words to {npc:16033} at {area:254}, whose Three Kings of Flame, the Left and Right Pieces of Lord Valthalak's Amulet, Final Preparations and Mea Culpa, {npc:16042} end with {quest:8996}. {quest:8997} then leads to the class Saving the Best for Last quests."] = "{npc:16042}任务线计1点。这是60级地下城套装任务链：{npc:16013}（{zone:1455}）或{npc:16012}（{zone:1454}）通过“寻找安泰恩”和“告别安泰恩”把你送到{area:254}的{npc:16033}处，他的“烈焰之王”、瓦塔拉克公爵的护符左瓣和右瓣、“最后的准备”和“{npc:16042}”，最终以{quest:8996}结束。之后{quest:8997}会引向各职业的最终套装升级任务。",
+	-- {npc:16042} Lord Valthalak · {npc:16013} Deliana · {zone:1455} Ironforge · {npc:16012} Mokvar · {zone:1454} Orgrimmar · {npc:16033} Bodley · {area:254} Blackrock Mountain · {quest:8995} Mea Culpa, Lord Valthalak · {quest:8996} Return to Bodley · {quest:8997} Back to the Beginning
+	["The {npc:16042} questline is a point. It is the level 60 dungeon-set chain: {npc:16013} ({zone:1455}) or {npc:16012} ({zone:1454}) send you through In Search of Anthion and Anthion's Parting Words to {npc:16033} at {area:254}, whose Three Kings of Flame, the Left and Right Pieces of Lord Valthalak's Amulet, Final Preparations and {quest:8995} end with {quest:8996}. {quest:8997} then leads to the class Saving the Best for Last quests."] = "{npc:16042}任务线计1点。这是60级地下城套装任务链：{npc:16013}（{zone:1455}）或{npc:16012}（{zone:1454}）通过“寻找安泰恩”和“告别安泰恩”把你送到{area:254}的{npc:16033}处，他的“烈焰之王”、瓦塔拉克饰品的左瓣和右瓣、“最后的准备”和{quest:8995}，最终以{quest:8996}结束。之后{quest:8997}会引向各职业的“最后的奖赏”任务。",
+	-- {npc:16073} Spirit of Lord Valthalak · {npc:16033} Bodley · {area:254} Blackrock Mountain
+	["{npc:16073}, inside Upper Blackrock Spire after Mea Culpa (no spawn in the data: the arrow leads to {npc:16033}'s {area:254})"] = "{npc:16073}，在黑石塔上层完成“瓦塔拉克公爵”之后（数据中没有刷新点：箭头指向{npc:16033}所在的{area:254}）",
 	-- {npc:16033} Bodley · {quest:8996} Return to Bodley
 	["{npc:16033} offers it once {quest:8996} is turned in"] = "交还{quest:8996}后，{npc:16033}会提供此任务",
 	-- {quest:8996} Return to Bodley
@@ -107,7 +118,7 @@ return {
 	-- {area:718} Wailing Caverns · {npc:3678} Disciple of Naralex
 	["{area:718} (appears after the {npc:3678}'s event)"] = "{area:718}（在{npc:3678}的事件之后出现）",
 	-- {area:717} The Stockade
-	["{area:717}: the usual last kill; the Stockade has no fixed final boss"] = "{area:717}：通常的最后一个击杀；监狱没有固定的最终首领",
+	["{area:717}: the usual last kill; the {area:717} has no fixed final boss"] = "{area:717}：通常的最后一个击杀；{area:717}没有固定的最终首领",
 	-- {area:16919} Hall of Thanes · {area:153} Ruins of Lordaeron
 	["Forever adds the dungeons {area:16919} and {area:153}; their bosses and brackets are not in our data yet."] = "Forever 新增了地下城{area:16919}和{area:153}；它们的首领和等级段还不在我们的数据中。",
 
@@ -144,6 +155,10 @@ return {
 	["Forever's new dungeons"] = "Forever 的新地下城",
 	-- {area:16919} Hall of Thanes · {area:153} Ruins of Lordaeron
 	["{area:16919} and {area:153} are new in Forever. Their bosses, levels and Legacy bracket are not in our data, so tick them off yourself."] = "{area:16919}和{area:153}是 Forever 新增的。它们的首领、等级和传承等级段不在我们的数据中，所以请自行勾选。",
+	-- {area:16919} Hall of Thanes
+	["the final boss of {area:16919}"] = "{area:16919}的最终首领",
+	-- {area:153} Ruins of Lordaeron
+	["the final boss of {area:153}"] = "{area:153}的最终首领",
 
 	-- Step 22: Raids: Onyxia
 	-- {npc:10184} Onyxia
@@ -154,12 +169,15 @@ return {
 	-- Step 23: Raids: Hyjal Summit
 	["Raids: Hyjal Summit"] = "团队副本：Hyjal Summit",
 	["All 13 Hyjal Summit bosses are a point. Hyjal Summit is a new Forever raid; its bosses are not in our data, so tick it off once all 13 are down."] = "击败 Hyjal Summit 全部13个首领计1点。Hyjal Summit 是 Forever 新增的团队副本；它的首领不在我们的数据中，所以全部13个都击败后请自行勾选。",
+	["all 13 Hyjal Summit bosses"] = "海加尔峰的全部13个首领",
 
 	-- Step 24: Raids: Barrow Deeps
 	["Raids: Barrow Deeps"] = "团队副本：Barrow Deeps",
 	["All 8 Barrow Deeps bosses are a point. Barrow Deeps is a new Forever raid; its bosses are not in our data, so tick it off once all 8 are down."] = "击败 Barrow Deeps 全部8个首领计1点。Barrow Deeps 是 Forever 新增的团队副本；它的首领不在我们的数据中，所以全部8个都击败后请自行勾选。",
+	["all 8 Barrow Deeps bosses"] = "古墓深渊的全部8个首领",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["The {npc:16042} questline is a point. It is the level 60 dungeon-set chain: {npc:16013} ({zone:1455}) or {npc:16012} ({zone:1454}) send you through In Search of Anthion and Anthion's Parting Words to {npc:16033} at {area:254}, whose Three Kings of Flame, the Left and Right Pieces of Lord Valthalak's Amulet, Final Preparations and Mea Culpa, {npc:16042} end with {quest:8996}. {quest:8997} then leads to the class Saving the Best for Last quests."] = "{npc:16042}任务线计1点。这是60级地下城套装任务链：{npc:16013}（{zone:1455}）或{npc:16012}（{zone:1454}）通过“寻找安泰恩”和“告别安泰恩”把你送到{area:254}的{npc:16033}处，他的“烈焰之王”、瓦塔拉克公爵的护符左瓣和右瓣、“最后的准备”和“{npc:16042}”，最终以{quest:8996}结束。之后{quest:8997}会引向各职业的最终套装升级任务。",
 	-- ["The {npc:16042} questline is a point. It is the level 60 dungeon-set chain: {npc:16013} ({zone:1455}) or {npc:16012} ({zone:1454}) send you through In Search of Anthion and Anthion's Parting Words to {npc:16033} at {area:254}, whose Three Kings of Flame, the Left and Right Pieces of {item:22048}, Final Preparations and Mea Culpa, {npc:16042} end with {quest:8996}. {quest:8997} then leads to the class Saving the Best for Last quests."] = "{npc:16042}任务线计1点。这是60级地下城套装任务链：{npc:16013}（{zone:1455}）或{npc:16012}（{zone:1454}）通过“寻找安泰恩”和“告别安泰恩”把你送到{area:254}的{npc:16033}处，他的“烈焰之王”、{item:22048}的左瓣和右瓣、“最后的准备”和“{npc:16042}”，最终以{quest:8996}结束。之后{quest:8997}会引向各职业的最终套装升级任务。",
 	-- ["{area:717}: the usual last kill; the {area:717} has no fixed final boss"] = "{area:717}：通常的最后一个击杀；{area:717}没有固定的最终首领",
 }

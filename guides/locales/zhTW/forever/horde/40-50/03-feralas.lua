@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (traditional) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (traditional) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Stonard
@@ -101,12 +102,10 @@ return {
 	["South of the vale the Frayfeather hippogryphs roost on the slopes; nearly every one drops sinew and metallic fragments."] = "山谷南邊，亂羽角鷹獸棲息在山坡上；幾乎每一隻都會掉落肌腱和金屬碎片。",
 
 	-- Step 25: Zorbin Fandazzle
-	-- {area:1108} Forgotten Coast
-	["Ride north-west to the {area:1108}; Zorbin waits on the dock."] = "向西北騎到{area:1108}；索爾賓·范達瑟在碼頭上等著。",
+	-- {area:1108} Forgotten Coast · {npc:14637} Zorbin Fandazzle
+	["Ride north-west to the {area:1108}; {npc:14637} waits on the dock."] = "向西北騎到{area:1108}；{npc:14637}在碼頭上等著。",
 
-	-- Step 26: The Forgotten Coast
-	-- {area:1108} Forgotten Coast
-	["The {area:1108}"] = "{area:1108}",
+	-- Step 26: Forgotten Coast
 	-- {item:18904} Zorbin's Ultra-Shrinker
 	["Sea elementals and sea sprays wash along the shore around the dock. Zap the giants with {item:18904} first: shrunken, they lose their elite strength. Shore striders wade in the water; the land walkers and cliff giants roam the hills further north."] = "海元素和巨型海元素在碼頭周圍的海岸邊漂流。先用{item:18904}電擊巨人：縮小後就失去精英的力量。海岸巨人在水中涉行；大地行者和峭壁巨人在更北邊的山丘遊蕩。",
 
@@ -124,4 +123,7 @@ return {
 	-- Step 31: Camp Mojache
 	-- {area:976} Gadgetzan
 	["Ride back east to the camp. Stay here: the next guide starts with the flight to {area:976}."] = "向東騎回營地。留在這裡：下一份指南從飛往{area:976}開始。",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["The {area:1108}"] = "{area:1108}",
 }

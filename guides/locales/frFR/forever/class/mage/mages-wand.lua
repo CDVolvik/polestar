@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in French (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in French words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -47,7 +48,4 @@ return {
 	-- Step 9: Tabetha's ritual
 	-- {npc:6546} Tabetha
 	["{npc:6546}'s ritual"] = "Le rituel de {npc:6546}",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["{quest:1951}: {area:796} Library"] = "{quest:1951} : Bibliothèque du {area:796}",
 }

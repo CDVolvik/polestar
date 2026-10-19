@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Russian (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Russian words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Fly to Ratchet
@@ -34,8 +35,8 @@ return {
 	-- Step 6: The Wild Shore
 	-- {area:43} Wild Shore
 	["The {area:43}"] = "{area:43}",
-	-- {area:43} Wild Shore
-	["South of Booty Bay the Bloodsail swashbucklers camp on the {area:43}; the charts and the orders lie in their tents. Any Bloodsail can carry snuff and Dizzy's eye, so keep killing until you have both."] = "К югу от Пиратской бухты висельники из шайки Кровавого Паруса стоят лагерем здесь: {area:43}; карты и приказы лежат в их палатках. Нюхательный табак и глаз Диззи может нести любой пират Кровавого Паруса: убивайте, пока не получите оба.",
+	-- {area:43} Wild Shore · {npc:2493} Dizzy One-Eye
+	["South of Booty Bay the Bloodsail swashbucklers camp on the {area:43}; the charts and the orders lie in their tents. Any Bloodsail can carry snuff and {npc:2493}'s eye, so keep killing until you have both."] = "К югу от Пиратской бухты висельники из шайки Кровавого Паруса стоят лагерем здесь: {area:43}; карты и приказы лежат в их палатках. Нюхательный табак и глаз {npc:2493} может нести любой пират Кровавого Паруса: убивайте, пока не получите оба.",
 
 	-- Step 8: The Bloodsail ships
 	["The Bloodsail ships"] = "Корабли Кровавого Паруса",
@@ -53,7 +54,8 @@ return {
 	["The gorillas roam the valley around Unbagwa. The elders drop the giblets; any of them can drop a fang."] = "Гориллы бродят по долине вокруг Унбагвы. Потроха падают со старых горилл; клык может упасть с любой.",
 
 	-- Step 12: Mokk the Savage
-	["Hand Unbagwa the fangs and stay by him: he calls three waves of gorillas, then Mokk. Fight them one at a time."] = "Отдайте Унбагве клыки и оставайтесь рядом: он призовет три волны горилл, затем Мокка. Бейтесь с ними по одному.",
+	-- {npc:1514} Mokk the Savage
+	["Hand Unbagwa the fangs and stay by him: he calls three waves of gorillas, then {npc:1514}. Fight them one at a time."] = "Отдайте Унбагве клыки и оставайтесь рядом: он призовет три волны горилл, затем {npc:1514}. Бейтесь с ними по одному.",
 
 	-- Step 13: Zanzil's camps
 	["Zanzil's camps"] = "Лагеря Занзила",
@@ -74,8 +76,8 @@ return {
 
 	-- Step 17: Zul'Kunda
 	["Zul'Kunda"] = "Зул'Кунда",
-	-- {npc:1061} Gan'zulah
-	["West of the expedition, the Bloodscalp chiefs {npc:1061} and Nezzliok stand together in the ruins of Zul'Kunda. Clear their guards first, then pull them."] = "К западу от экспедиции вожди племени Кровавого Скальпа – {npc:1061} и Неззилок – стоят вместе в руинах Зул'Кунды. Сначала перебейте охрану, затем выманите их.",
+	-- {npc:1061} Gan'zulah · {npc:1062} Nezzliok the Dire
+	["West of the expedition, the Bloodscalp chiefs {npc:1061} and {npc:1062} stand together in the ruins of Zul'Kunda. Clear their guards first, then pull them."] = "К западу от экспедиции вожди племени Кровавого Скальпа – {npc:1061} и {npc:1062} – стоят вместе в руинах Зул'Кунды. Сначала перебейте охрану, затем выманите их.",
 
 	-- Step 18: Hearth to Grom'gol
 	-- {object:3202} Grom'gol
@@ -100,8 +102,8 @@ return {
 
 	-- Step 22: Pirate ghosts
 	["Pirate ghosts"] = "Призраки пиратов",
-	-- {area:35} Booty Bay
-	["The three ghostly pirates haunt the jungle north of {area:35}, near Zanzil's camps: Maury and Jon-Jon stand together, Chucky further east."] = "Три призрачных пирата бродят в джунглях к северу от места {area:35}, у лагерей Занзила: Моури и Джон-Джон стоят вместе, Чаки – дальше к востоку.",
+	-- {area:35} Booty Bay · {npc:2535} Maury "Club Foot" Wilkins · {npc:2536} Jon-Jon the Crow · {npc:2537} Chucky "Ten Thumbs"
+	["The three ghostly pirates haunt the jungle north of {area:35}, near Zanzil's camps: {npc:2535} and {npc:2536} stand together, {npc:2537} further east."] = "Три призрачных пирата бродят в джунглях к северу от места {area:35}, у лагерей Занзила: {npc:2535} и {npc:2536} стоят вместе, {npc:2537} – дальше к востоку.",
 
 	-- Step 23: Zul'Mamwe
 	["Zul'Mamwe"] = "Зул'Мамбве",
@@ -162,12 +164,10 @@ return {
 
 	-- Step 36: Sawtooth crocolisks
 	["Sawtooth crocolisks"] = "Острозубые кроколиски",
-	-- {area:75} Stonard
-	["The crocolisks wallow in the pools around Galen's camp and south towards {area:75}; about one in four drops a flank."] = "Кроколиски лежат в лужах вокруг лагеря Галена и к югу, к месту {area:75}; бок падает примерно с каждого четвертого.",
+	-- {npc:5391} Galen Goodward · {area:75} Stonard
+	["The crocolisks wallow in the pools around {npc:5391}'s camp and south towards {area:75}; about one in four drops a flank."] = "Кроколиски лежат в лужах вокруг лагеря {npc:5391} и к югу, к месту {area:75}; бок падает примерно с каждого четвертого.",
 
-	-- Step 37: The Harborage
-	-- {area:657} Harborage
-	["The {area:657}"] = "{area:657}",
+	-- Step 37: Harborage
 	-- {area:657} Harborage · {zone:1430} Deadwind Pass
 	["Ride west along the road to the draenei camp at the {area:657}, near the way in from {zone:1430}."] = "Езжайте на запад по дороге к лагерю дренеев ({area:657}), у въезда со стороны края {zone:1430}.",
 
@@ -184,5 +184,5 @@ return {
 	["The next guide starts here and takes you to {zone:1446}."] = "Следующее руководство начинается здесь и ведет в край {zone:1446}.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["South of {area:35} the Bloodsail swashbucklers camp on the {area:43}; the charts and the orders lie in their tents. Any Bloodsail can carry snuff and Dizzy's eye, so keep killing until you have both."] = "К югу от места {area:35} висельники из шайки Кровавого Паруса стоят лагерем здесь: {area:43}; карты и приказы лежат в их палатках. Нюхательный табак и глаз Диззи может нести любой пират Кровавого Паруса: убивайте, пока не получите оба.",
+	-- ["The {area:657}"] = "{area:657}",
 }

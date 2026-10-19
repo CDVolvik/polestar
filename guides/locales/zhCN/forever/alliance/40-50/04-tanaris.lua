@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (simplified) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (simplified) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Mirage Raceway
@@ -30,6 +31,8 @@ return {
 	-- {npc:7881} Stoley
 	["{npc:7881}, in the port's tavern"] = "{npc:7881}，在港口的酒馆里",
 	["The Wanted poster beside him"] = "他旁边的通缉布告",
+	-- {npc:7847} Caliph Scorpidsting · {area:976} Gadgetzan
+	["The same poster: {npc:7847} comes much later, after {area:976}"] = "同一张告示：{npc:7847}要很久以后才会出现，在{area:976}之后",
 
 	-- Step 6: Lost Rigger Cove
 	-- {npc:7883} Andre Firebeard · {npc:7881} Stoley
@@ -65,8 +68,8 @@ return {
 	-- Step 14: The Broken Pillar
 	-- {area:1938} Broken Pillar
 	["The {area:1938}"] = "{area:1938}",
-	-- {area:1938} Broken Pillar · {quest:3161} Gahz'ridian
-	["Ride south to the dig camp at the {area:1938}. Marvon hands you a detector helm: wear it to see the {quest:3161} mounds, which lie thick in the sand around the camp and south-west toward the ogres."] = "向南骑到{area:1938}的挖掘营地。玛尔冯·瑞文斯克会给你一顶探测头盔：戴上它才能看到{quest:3161}土堆，营地周围和向西南通往食人魔的沙地里到处都是。",
+	-- {area:1938} Broken Pillar · {npc:7771} Marvon Rivetseeker · {quest:3161} Gahz'ridian
+	["Ride south to the dig camp at the {area:1938}. {npc:7771} hands you a detector helm: wear it to see the {quest:3161} mounds, which lie thick in the sand around the camp and south-west toward the ogres."] = "向南骑到{area:1938}的挖掘营地。{npc:7771}会给你一顶探测头盔：戴上它才能看到{quest:3161}土堆，营地周围和向西南通往食人魔的沙地里到处都是。",
 
 	-- Step 15: Dunemaul Compound
 	-- {npc:12046} Gor'marok the Ravager
@@ -86,11 +89,7 @@ return {
 	-- {npc:5955} Tooga · {npc:6015} Torta · {area:977} Steamwheedle Port
 	["The little turtle {npc:5955} hides at the north end of the valley. Lead him home to his wife {npc:6015}, by the water just east of {area:977}: he walks slowly and the desert's beasts go for him, so keep him alive."] = "小乌龟{npc:5955}躲在山谷北端。带他回家去找他妻子{npc:6015}，她在{area:977}东边不远处的水边：他走得慢，沙漠里的野兽会攻击他，保护好他。",
 
-	-- Step 19: Steamwheedle Port
-	-- {npc:7882} Security Chief Bilgewhizzle
-	["The Wanted poster by {npc:7882}"] = "{npc:7882}旁的通缉布告",
-
-	-- Step 20: Gadgetzan
+	-- Step 19: Gadgetzan
 	-- {area:976} Gadgetzan
 	["Ride back west to {area:976}."] = "向西骑回{area:976}。",
 	-- {npc:11758} Andi Lynn
@@ -98,29 +97,30 @@ return {
 	-- {npc:7583} Sprinkle · {zone:1425} Hinterlands
 	["{npc:7583}'s next ingredient grows in the {zone:1425}, and the route never brings it back: skip it."] = "{npc:7583}的下一种材料生长在{zone:1425}，路线不会再回来：跳过。",
 
-	-- Step 21: Caliph Scorpidsting
-	-- {area:985} Waterspring Field
-	["Ride south-east to {area:985}. Caliph stands in the middle of the southern Wastewander camp: clear around him first."] = "向东南骑到{area:985}。卡利夫·斯科比斯汀站在南边废土营地的中央：先清理他周围。",
+	-- Step 20: Caliph Scorpidsting
+	-- {area:985} Waterspring Field · {npc:7847} Caliph Scorpidsting
+	["Ride south-east to {area:985}. {npc:7847} stands in the middle of the southern Wastewander camp: clear around him first."] = "向东南骑到{area:985}。{npc:7847}站在南边废土营地的中央：先清理他周围。",
 
-	-- Step 22: The Gaping Chasm
-	-- {area:1938} Broken Pillar
-	["Ride south past the {area:1938} to the Gaping Chasm, the Hazzali tunnels; Scrimshank's gear lies deep inside."] = "向南经过{area:1938}到大裂口，即哈扎里隧道；谢申克的勘探设备在深处。",
+	-- Step 21: The Gaping Chasm
+	-- {area:1938} Broken Pillar · {area:981} The Gaping Chasm
+	["Ride south past the {area:1938} to the {area:981}, the Hazzali tunnels; Scrimshank's gear lies deep inside."] = "向南经过{area:1938}到{area:981}，即哈扎里隧道；谢申克的勘探设备在深处。",
 
-	-- Step 23: Gadgetzan
+	-- Step 22: Gadgetzan
 	-- {area:976} Gadgetzan
 	["Hearth to {area:976}."] = "用炉石返回{area:976}。",
 	-- {zone:1457} Darnassus
 	["for {zone:1457}: the route takes you there at 47"] = "交给{zone:1457}：路线会在47级带你去那里",
 
-	-- Step 24: Ironforge
+	-- Step 23: Ironforge
 	-- {area:976} Gadgetzan · {area:150} Menethil Harbor · {area:1537} Ironforge
 	["Fly from {area:976} to Theramore, take the boat to {area:150} and fly to {area:1537}. Train."] = "从{area:976}飞往塞拉摩岛，乘船前往{area:150}，再飞往{area:1537}。学习技能。",
 
-	-- Step 25: Aerie Peak
+	-- Step 24: Aerie Peak
 	-- {area:348} Aerie Peak · {zone:1425} Hinterlands
-	["Fly to {area:348}. The {zone:1425} guide starts here."] = "飞往{area:348}。{zone:1425}指南从这里开始。",
+	["Fly to {area:348}. {zone:1425} guide starts here."] = "飞往{area:348}。{zone:1425}指南从这里开始。",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Fly to {area:348}. {zone:1425} guide starts here."] = "飞往{area:348}。{zone:1425}指南从这里开始。",
 	-- ["Ride south past the {area:1938} to the {area:981}, the Hazzali tunnels; Scrimshank's gear lies deep inside."] = "向南经过{area:1938}到{area:981}，即哈扎里隧道；谢申克的勘探设备在深处。",
+	-- ["The Wanted poster by {npc:7882}"] = "{npc:7882}旁的通缉布告",
 }

@@ -3,13 +3,14 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Korean words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Apprentice Enchanting
 	-- {skill:333} Enchanting
 	["Apprentice {skill:333}"] = "초급 {skill:333}",
 	-- {skill:333} Enchanting
-	["{skill:333} runs alongside leveling. Forever's Legacy System rewards crafting professions at skill 150, 225 and 300 (the Journeyman, Expert and Artisan caps), so each of those checkpoints counts. Materials for 1-75 are worth about 4g 3s in all."] = "{skill:333}은(는) 레벨업과 함께 진행합니다. Forever의 유산 시스템은 제작 전문 기술 숙련도 150, 225, 300(중급, 고급, 전문 최대치)에 보상을 주므로, 각 단계가 중요합니다. 1-75 재료는 모두 약 4골드 3실버입니다.",
+	["{skill:333} runs alongside leveling. Forever's Legacy System rewards crafting professions at skill 150, 225 and 300 (the Journeyman, Expert and Artisan caps), so each of those checkpoints counts. Materials for 1-75 are worth about 4g 3s in all."] = "{skill:333}은(는) 레벨업과 함께 진행합니다. Forever의 유산 시스템은 제작 전문 기술 숙련도 150, 225, 300(수습, 숙련, 전문 최대치)에 보상을 주므로, 각 단계가 중요합니다. 1-75 재료는 모두 약 4골드 3실버입니다.",
 
 	-- Step 2: Enchant Bracer - Inferior Stamina to 25
 	-- {spell:7418} Enchant Bracer - Inferior Stamina
@@ -24,13 +25,13 @@ return {
 
 	-- Step 4: Journeyman Enchanting
 	-- {skill:333} Enchanting
-	["Journeyman {skill:333}"] = "중급 {skill:333}",
+	["Journeyman {skill:333}"] = "수습 {skill:333}",
 	-- {skill:333} Enchanting
-	["Journeyman needs character level 10 and {skill:333} 50; it raises the cap to 150. Materials for 75-150 are worth about 7g 51s in all."] = "중급은(는) 캐릭터 레벨 10, {skill:333} 50이(가) 필요하며 최대 숙련도를 150(으)로 올립니다. 75-150 재료는 모두 약 7골드 51실버입니다.",
+	["Journeyman needs character level 10 and {skill:333} 50; it raises the cap to 150. Materials for 75-150 are worth about 7g 51s in all."] = "수습은(는) 캐릭터 레벨 10, {skill:333} 50이(가) 필요하며 최대 숙련도를 150(으)로 올립니다. 75-150 재료는 모두 약 7골드 51실버입니다.",
 
 	-- Step 5: Formula: Enchant Cloak - Minor Agility
 	-- {spell:13419} Enchant Cloak - Minor Agility · {skill:333} Enchanting
-	["Teaches {spell:13419} (needs {skill:333} 110). Vendors sell it in limited stock that restocks; the Auction House often has it too."] = "{spell:13419}을(를) 배웁니다({skill:333} 110 필요). 상인이 한정 수량으로 팔며 재입고됩니다. 경매장에도 자주 있습니다.",
+	["Teaches {spell:13419} (needs {skill:333} 110). Vendors sell it in limited stock that restocks."] = "{spell:13419}을(를) 배웁니다({skill:333} 110 필요). 상인이 한정 수량으로 팔며 재입고됩니다.",
 
 	-- Step 6: Shadowgem (Alliance)
 	-- {item:1210} Shadowgem
@@ -93,9 +94,9 @@ return {
 
 	-- Step 16: Expert Enchanting
 	-- {skill:333} Enchanting
-	["Expert {skill:333}"] = "고급 {skill:333}",
+	["Expert {skill:333}"] = "숙련 {skill:333}",
 	-- {skill:333} Enchanting
-	["Expert needs character level 20 and {skill:333} 125; it raises the cap to 225. Materials for 150-225 are worth about 13s in all."] = "고급은(는) 캐릭터 레벨 20, {skill:333} 125이(가) 필요하며 최대 숙련도를 225(으)로 올립니다. 150-225 재료는 모두 약 13실버입니다.",
+	["Expert needs character level 20 and {skill:333} 125; it raises the cap to 225. Materials for 150-225 are worth about 13s in all."] = "숙련은(는) 캐릭터 레벨 20, {skill:333} 125이(가) 필요하며 최대 숙련도를 225(으)로 올립니다. 150-225 재료는 모두 약 13실버입니다.",
 
 	-- Step 17: Iridescent Pearl (Alliance)
 	-- {item:5500} Iridescent Pearl

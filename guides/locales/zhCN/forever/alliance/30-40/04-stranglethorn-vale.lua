@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (simplified) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (simplified) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Ironforge
@@ -39,7 +40,7 @@ return {
 
 	-- Step 9: Rebel Camp
 	-- {npc:738} Private Thorsen
-	["Take the road north; {npc:738} stands on it, the camp sits in the hills to the west."] = "沿道路向北；{npc:738}站在路上，营地在西边的山丘中。",
+	["Take the road north; {npc:738} patrols it, the camp sits in the hills to the west."] = "沿道路向北；{npc:738}在路上巡逻，营地在西边的山丘中。",
 	-- {npc:469} Lieutenant Doren
 	["{npc:469}, in the hut"] = "{npc:469}，在小屋里",
 
@@ -71,9 +72,10 @@ return {
 	["Down to {area:35}"] = "南下{area:35}",
 	-- {object:3202} Grom'gol · {area:35} Booty Bay
 	["Follow the main road south the length of the jungle, past the {object:3202} turn-off, to {area:35} on the southern cape."] = "沿主路向南穿过整片丛林，经过{object:3202}岔路，到达南部海角的{area:35}。",
-	["Gyll, on the top floor by the docks"] = "盖尔，在码头旁的顶楼",
-	-- {npc:2832} Nixxrax Fillamug
-	["{npc:2832}, in the Salty Sailor Tavern"] = "{npc:2832}，在咸水手酒馆",
+	-- {npc:2859} Gyll
+	["{npc:2859}, on the top floor by the docks"] = "{npc:2859}，在码头旁的顶楼",
+	-- {npc:2832} Nixxrax Fillamug · {object:56910} The Salty Sailor Tavern
+	["{npc:2832}, in the {object:56910}"] = "{npc:2832}，在{object:56910}",
 	-- {npc:2495} Drizzlik
 	["{npc:2495}, by the bank"] = "{npc:2495}，在银行旁",
 	-- {npc:773} Krazek
@@ -120,8 +122,8 @@ return {
 	["Follow the west coast north; the haunted island lies off the shore west of Nesingwary's camp. Just reach it."] = "沿西海岸向北；闹鬼的小岛在奈辛瓦里营地西边的近海。到达即可。",
 
 	-- Step 26: Nesingwary's Expedition
-	-- {item:2755} Green Hills of Stranglethorn
-	["Barnil collects the {item:2755}: the pages drop from almost every humanoid in the jungle. Turn the pages into chapters as you go."] = "巴尼尔收集{item:2755}：丛林中几乎所有人型怪都会掉落书页。边走边把书页合成章节。",
+	-- {npc:716} Barnil Stonepot · {item:2755} Green Hills of Stranglethorn
+	["{npc:716} collects the {item:2755}: the pages drop from almost every humanoid in the jungle. Turn the pages into chapters as you go."] = "{npc:716}收集{item:2755}：丛林中几乎所有人型怪都会掉落书页。边走边把书页合成章节。",
 
 	-- Step 28: Kurzen's Compound
 	["Headshrinkers stand deeper in the compound; the Commandos lurk stealthed around it and in the cave. Pick up Green Hills pages as they drop."] = "库尔森精神医师在营地深处；库尔森特种兵潜行在营地周围和洞穴中。掉落的荆棘谷的青山书页顺手拾取。",
@@ -131,8 +133,6 @@ return {
 	-- {area:37} Lake Nazferiti
 	-- plural, as words: Shadowmaw Panthers = {npc:684} Shadowmaw Panther · Tumbled Crystals = {item:4106} Tumbled Crystal
 	["Loop through the troll ruins of the north and centre: each holds one stone tablet of the troll legends. Shadowmaw Panthers prowl stealthed in the jungle around them; the Venture Co. camp on {area:37} carries the Tumbled Crystals."] = "绕行北部和中部的巨魔废墟：每处都有一块记载巨魔传说的石板。深喉猎豹潜行在周围的丛林中；{area:37}的风险投资公司营地携带打磨过的水晶。",
-	-- {quest:207} Kurzen's Mystery
-	["{quest:207}: four troll legends"] = "{quest:207}：四个巨魔传说",
 
 	-- Step 30: Rebel Camp
 	-- {npc:770} Corporal Kaleb · {npc:773} Krazek · {area:35} Booty Bay
@@ -152,5 +152,7 @@ return {
 	["For Archmage Ansirem in {zone:1416}"] = "交给{zone:1416}的大法师安斯雷姆",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Take the road north; {npc:738} stands on it, the camp sits in the hills to the west."] = "沿道路向北；{npc:738}站在路上，营地在西边的山丘中。",
 	-- ["{npc:2832}, in the {object:56910}"] = "{npc:2832}，在{object:56910}",
+	-- ["{quest:207}: four troll legends"] = "{quest:207}：四个巨魔传说",
 }

@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Korean words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Fly to Grom'gol
@@ -155,8 +156,8 @@ return {
 	["Keep riding west to the coast. The Coast Crawl Deepseers and Snapclaws on the beaches drop OOX-22/FE's distress beacon about one kill in forty: if one drops, use it to start the quest."] = "계속 서쪽 해안으로 가세요. 해변의 점쟁이 바다마크루라와 집게발 바다마크루라는 마흔 마리에 한 번꼴로 OOX-22/FE 조난 탐지기를 떨어뜨립니다. 얻으면 사용해 퀘스트를 시작하세요.",
 
 	-- Step 34: Homing Robot OOX-22/FE
-	-- {area:1105} Feral Scar Vale · {area:35} Booty Bay
-	["Only with the distress beacon: the robot sits in a small cave on the north side of {area:1105}. Escort it to the dock on the Forgotten Coast; yetis and gorillas ambush you on the way. Its reward waits in {area:35} for a later visit."] = "조난 탐지기가 있을 때만: 로봇은 {area:1105} 북쪽의 작은 동굴에 있습니다. 잊혀진 해안의 부두까지 호위하세요. 가는 길에 설인과 고릴라가 습격합니다. 보상은 나중에 {area:35}에 들를 때 받습니다.",
+	-- {area:1105} Feral Scar Vale · {area:1108} The Forgotten Coast · {area:35} Booty Bay
+	["Only with the distress beacon: the robot sits in a small cave on the north side of {area:1105}. Escort it to the dock on the {area:1108}; yetis and gorillas ambush you on the way. Its reward waits in {area:35} for a later visit."] = "조난 탐지기가 있을 때만: 로봇은 {area:1105} 북쪽의 작은 동굴에 있습니다. {area:1108}의 부두까지 호위하세요. 가는 길에 설인과 고릴라가 습격합니다. 보상은 나중에 {area:35}에 들를 때 받습니다.",
 
 	-- Step 35: Hearth to Camp Mojache
 	-- {area:1099} Camp Mojache

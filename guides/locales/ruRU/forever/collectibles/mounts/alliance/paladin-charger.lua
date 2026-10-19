@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Russian (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Russian words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -38,8 +39,9 @@ return {
 	-- {npc:1416} Grimand Elmore · {zone:1453} Stormwind · {object:28027} Dwarven District
 	["{npc:1416} works in {zone:1453}'s {object:28027}."] = "{npc:1416} работает здесь: {object:28027} ({zone:1453}).",
 
-	-- Step 8: Grimand's materials
-	["Grimand's materials"] = "Материалы Гриманда",
+	-- Step 8: Grimand Elmore's materials
+	-- {npc:1416} Grimand Elmore
+	["{npc:1416}'s materials"] = "Материалы {npc:1416}",
 	-- {item:14047} Runecloth · {item:8836} Arthas' Tears · {zone:1448} Felwood · {skill:171} Alchemy · {zone:1453} Stormwind · {object:2096} Trade District
 	-- plural, as words: Arcanite Bars = {item:12360} Arcanite Bar
 	["{item:14047} drops from humanoids around level 50 and up; {item:8836} is an herb of the Plaguelands and {zone:1448}; Arcanite Bars are an {skill:171} transmute. The Auction House in {zone:1453}'s {object:2096} sells all three, and so do crafters."] = "{item:14047} падает с гуманоидов примерно с 50-го уровня; {item:8836} — трава Чумных земель и зоны {zone:1448}; арканитовые слитки получают трансмутацией ({skill:171}). Все три продаются на аукционе ({zone:1453}, {object:2096}), а также у ремесленников.",
@@ -54,7 +56,8 @@ return {
 	["Supply Crates, inside"] = "Ящики с припасами, внутри",
 
 	-- Step 10: Grimand Elmore
-	["Bring 150 gold for Grimand along with the materials."] = "Вместе с материалами возьмите 150 золотых для Гриманда.",
+	-- {npc:1416} Grimand Elmore
+	["Bring 150 gold for {npc:1416} along with the materials."] = "Вместе с материалами возьмите 150 золотых для {npc:1416}.",
 	-- {npc:1416} Grimand Elmore
 	["{npc:1416}: 150 gold"] = "{npc:1416}: 150 золотых",
 
@@ -91,8 +94,8 @@ return {
 	["he hands you the {item:18746}"] = "он вручает вам {item:18746}",
 
 	-- Step 18: The Great Ossuary
-	-- {area:2057} Scholomance · {area:2298} Caer Darrow · {zone:1422} Western Plaguelands · {item:18746} Divination Scryer · {npc:14516} Death Knight Darkreaver · {item:18799} Charger's Redeemed Soul · {item:18792} Blessed Arcanite Barding
-	["{area:2057} lies under {area:2298}, the island town in the south-east of the {zone:1422}. Use the {item:18746} in the heart of the Great Ossuary's basement, defeat the spirits it calls and then {npc:14516}, and give his Fallen Charger the {item:18799} and the {item:18792}. All are elite: bring a group. If the attempt fails, Lord Grayson gives you a new scryer through Again Into the Great Ossuary."] = "{area:2057} находится под местом {area:2298} — городком на острове на юго-востоке зоны {zone:1422}. Используйте {item:18746} в центре подвала Главного склепа, победите призванных духов, а затем: {npc:14516}; отдайте его падшему скакуну {item:18799} и {item:18792}. Все они элитные: возьмите группу. Если попытка не удалась, лорд Грейсон даст вам новый прорицатель через задание «Снова в Главный склеп».",
+	-- {area:2057} Scholomance · {area:2298} Caer Darrow · {zone:1422} Western Plaguelands · {item:18746} Divination Scryer · {object:179746} The Great Ossuary (no name in this language: may be words) · {npc:14516} Death Knight Darkreaver · {item:18799} Charger's Redeemed Soul · {item:18792} Blessed Arcanite Barding
+	["{area:2057} lies under {area:2298}, the island town in the south-east of the {zone:1422}. Use the {item:18746} in the heart of the {object:179746}'s basement, defeat the spirits it calls and then {npc:14516}, and give his Fallen Charger the {item:18799} and the {item:18792}. All are elite: bring a group. If the attempt fails, Lord Grayson gives you a new scryer through Again Into the {object:179746}."] = "{area:2057} находится под местом {area:2298} — городком на острове на юго-востоке зоны {zone:1422}. Используйте {item:18746} в центре подвала Главного склепа, победите призванных духов, а затем: {npc:14516}; отдайте его падшему скакуну {item:18799} и {item:18792}. Все они элитные: возьмите группу. Если попытка не удалась, лорд Грейсон даст вам новый прорицатель через задание «Снова в Главный склеп».",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["{area:2057} lies under {area:2298}, the island town in the south-east of the {zone:1422}. Use the {item:18746} in the heart of the {object:179746}'s basement, defeat the spirits it calls and then {npc:14516}, and give his Fallen Charger the {item:18799} and the {item:18792}. All are elite: bring a group. If the attempt fails, Lord Grayson gives you a new scryer through Again Into the {object:179746}."] = "{area:2057} находится под местом {area:2298} — городком на острове на юго-востоке зоны {zone:1422}. Используйте {item:18746} в центре подвала ({object:179746}), победите призванных духов, а затем: {npc:14516}; отдайте его падшему скакуну {item:18799} и {item:18792}. Все они элитные: возьмите группу. Если попытка не удалась, лорд Грейсон даст вам новый прорицатель через задание «Снова в {object:179746}».",

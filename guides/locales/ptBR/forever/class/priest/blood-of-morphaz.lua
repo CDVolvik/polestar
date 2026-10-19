@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Portuguese (Brazil) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Portuguese (Brazil) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -13,13 +14,13 @@ return {
 	-- Step 1: Cenarion Aid (Alliance)
 	-- {quest:8254} Cenarion Aid
 	["{quest:8254} (Alliance)"] = "{quest:8254} (Aliança)",
-	-- {npc:5489} Brother Joshua · {zone:1453} Stormwind · {npc:11406} High Priest Rohan · {zone:1455} Ironforge · {object:32386} Hall of Mysteries
+	-- {npc:5489} Brother Joshua · {zone:1453} Stormwind · {npc:11406} High Priest Rohan · {zone:1455} Ironforge · {object:32386} Hall of Mysteries (no name in this language: may be words)
 	["At 50 {npc:5489} in {zone:1453}'s Cathedral of Light or {npc:11406} in {zone:1455}'s {object:32386} offers it."] = "No nível 50, {npc:5489}, na Catedral da Luz de {zone:1453}, ou {npc:11406}, no {object:32386} de {zone:1455}, oferece a missão.",
 
 	-- Step 2: Cenarion Aid (Horde)
 	-- {quest:8254} Cenarion Aid
 	["{quest:8254} (Horde)"] = "{quest:8254} (Horda)",
-	-- {npc:6018} Ur'kyo · {zone:1454} Orgrimmar · {object:172961} Valley of Spirits
+	-- {npc:6018} Ur'kyo · {zone:1454} Orgrimmar · {object:172961} Valley of Spirits (no name in this language: may be words)
 	["At 50 {npc:6018} in {zone:1454}'s {object:172961} offers it."] = "No nível 50, {npc:6018}, no {object:172961} de {zone:1454}, oferece a missão.",
 
 	-- Step 3: Ogtinc

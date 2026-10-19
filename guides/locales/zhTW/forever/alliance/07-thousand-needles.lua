@@ -3,11 +3,12 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (traditional) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (traditional) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Darkshire
-	-- {item:4371} Bronze Tube · {quest:174} Look to the Stars · {npc:3133} Herble Baubbletump · {npc:1448} Neal Allen · {area:150} Menethil Harbor
-	["No {item:4371} for {quest:174}? {npc:3133} sells it in the house beside Viktori, in limited stock; {npc:1448} in {area:150} sells it too."] = "沒有{quest:174}要的{item:4371}？{npc:3133}在維克托旁邊的房子裡限量出售；{area:150}的{npc:1448}也有賣。",
+	-- {item:4371} Bronze Tube · {quest:174} Look to the Stars · {npc:3133} Herble Baubbletump · {npc:276} Viktori Prism'Antras · {npc:1448} Neal Allen · {area:150} Menethil Harbor
+	["No {item:4371} for {quest:174}? {npc:3133} sells it in the house beside {npc:276}, in limited stock; {npc:1448} in {area:150} sells it too."] = "沒有{quest:174}要的{item:4371}？{npc:3133}在{npc:276}旁邊的房子裡限量出售；{area:150}的{npc:1448}也有賣。",
 	-- {npc:352} Dungar Longdrink · {zone:1453} Stormwind
 	["From {npc:352} in {zone:1453}"] = "向{zone:1453}的{npc:352}取得",
 	-- {npc:6790} Innkeeper Trelayne
@@ -61,16 +62,18 @@ return {
 	-- plural, as words: Plague Spreaders = {npc:604} Plague Spreader
 	["The Plague Spreaders walk the northern half of the {area:492}. {npc:522}, an elite, wanders the graves: keep away from him."] = "瘟疫食屍鬼在{area:492}北半部走動。精英{npc:522}在墓地之間遊蕩：遠離他。",
 
-	-- Step 11: Sven's Camp
-	["Sven's Camp"] = "斯溫的營地",
+	-- Step 11: Sven Yorgen's Camp
+	-- {npc:311} Sven Yorgen
+	["{npc:311}'s Camp"] = "{npc:311}的營地",
 
 	-- Step 12: Raven Hill Cemetery, west
 	-- {area:492} Raven Hill Cemetery
 	["{area:492}, west"] = "{area:492}西側",
+	-- {npc:311} Sven Yorgen
 	-- plural, as words: Skeletal Raiders = {npc:1110} Skeletal Raider
-	["Skeletal Raiders, Healers and Warders hold the west part of the cemetery, just east of Sven's camp."] = "骷髏襲擊者、骷髏醫師和骷髏看守佔據墓地西側，就在斯溫營地的東邊。",
+	["Skeletal Raiders, Healers and Warders hold the west part of the cemetery, just east of {npc:311}'s camp."] = "骷髏襲擊者、骷髏醫師和骷髏看守佔據墓地西側，就在{npc:311}營地的東邊。",
 
-	-- Step 13: Sven's Camp
+	-- Step 13: Sven Yorgen's Camp
 	-- {npc:1212} Bishop Farthing · {zone:1453} Stormwind
 	["For {npc:1212} in {zone:1453}, in the next guide"] = "交給{zone:1453}的{npc:1212}，在下一份指南",
 
@@ -135,8 +138,9 @@ return {
 	-- {item:2661} Neru Fragment · {object:331} Loose Soil
 	["{item:2661}: the {object:331}"] = "{item:2661}：{object:331}",
 
-	-- Step 26: Ormer and Whelgar
-	["Ormer and Whelgar"] = "奧莫爾與維爾加",
+	-- Step 26: Ormer Ironbraid and Whelgar
+	-- {npc:1078} Ormer Ironbraid
+	["{npc:1078} and Whelgar"] = "{npc:1078}與維爾加",
 
 	-- Step 27: Dragonmaw camp
 	["Dragonmaw camp"] = "龍喉營地",
@@ -145,14 +149,19 @@ return {
 	-- Step 28: Captain Stoutfist
 	-- {area:150} Menethil Harbor
 	["Ride back west along the road to {area:150}."] = "沿著道路向西騎回{area:150}。",
+	-- {quest:98221} From the Ashes · {quest:465} Nek'rosh's Gambit
+	["{quest:98221}: {quest:465} comes after it on Forever"] = "{quest:98221}：在Forever上，{quest:465}排在它之後",
 
-	-- Step 29: Dragonmaw catapult
-	["Dragonmaw catapult"] = "龍喉投石車",
-	["Ride east again; the catapult stands at the Dragonmaw camp south of the road."] = "再次向東騎；投石車在道路南邊的龍喉營地裡。",
-	["The next step, Defeat Nek'rosh, pits you against an elite chieftain: skip it."] = "下一步「擊敗納克羅西」要你對付一個精英酋長：跳過。",
+	-- Step 29: Angerfang Encampment
+	-- {area:1036} Angerfang Encampment · {npc:2091} Chieftain Nek'rosh
+	["Ride east again to the Dragonmaw camp. The four sets of Attack Plans lie in the {area:1036}; {npc:2091}, an elite, stands in the camp too."] = "再次向東騎到龍喉營地。四份攻擊計畫在{area:1036}；精英{npc:2091}也站在營地裡。",
 
 	-- Step 30: To Theramore
 	["To Theramore"] = "前往塞拉摩",
+	-- {npc:2104} Captain Stoutfist · {area:2103} Menethil Keep
+	["{npc:2104}, in {area:2103}"] = "{npc:2104}，在{area:2103}",
+	-- {zone:1437} Wetlands
+	["For the Dragonmaw catapult, on the {zone:1437} loop of the next guide"] = "龍喉投石車在下一份指南的{zone:1437}路線中完成",
 	-- {area:513} Theramore Isle · {zone:1445} Dustwallow Marsh
 	["Take the boat from Menethil's pier to {area:513} in {zone:1445}."] = "從米奈希爾的碼頭搭船前往{zone:1445}的{area:513}。",
 
@@ -190,7 +199,8 @@ return {
 	["Back to Menethil"] = "回到米奈希爾",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Dragonmaw catapult"] = "龍喉投石車",
+	-- ["Ride east again; the catapult stands at the Dragonmaw camp south of the road."] = "再次向東騎；投石車在道路南邊的龍喉營地裡。",
 	-- ["Ride east to the ogre mound. {item:1349} sits in the camp at its entrance; Splinter Fist ogres guard it."] = "向東騎往巨魔山。{item:1349}放在入口處的營地裡；裂拳巨魔守衛著它。",
-	-- ["The dig and Sarltooth"] = "挖掘場與薩爾圖斯",
-	-- ["The relics lie in the dig itself. Sarltooth, a big Razormaw, prowls the raptor valley just west of it."] = "文物就在挖掘場裡。薩爾圖斯是一隻大型刺喉龍，在挖掘場西邊的迅猛龍山谷徘徊。",
+	-- ["The next step, Defeat Nek'rosh, pits you against an elite chieftain: skip it."] = "下一步「擊敗納克羅西」要你對付一個精英酋長：跳過。",
 }

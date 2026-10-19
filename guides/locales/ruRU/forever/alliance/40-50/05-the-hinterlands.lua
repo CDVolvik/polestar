@@ -3,16 +3,21 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Russian (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Russian words instead.
 -- The comments are rewritten by sync.
 return {
+	-- Step 1: Aerie Peak
+	-- {npc:7744} Innkeeper Thulfram
+	["{npc:7744}: the last guide binds here, so this usually ticks at once"] = "{npc:7744}: предыдущий гайд привязывает вас здесь, так что это обычно отмечается сразу",
+
 	-- Step 2: The Altar of Zul
-	-- {area:355} Altar of Zul · {npc:8636} Morta'gya the Keeper
-	["Ride south-east to the {area:355}, the stepped Vilebranch temple in the south of the Hinterlands, and climb to the top. Qiaga and {npc:8636} (elite, 50) stand up there: touch the top and come straight back down."] = "Езжайте на юго-восток к месту {area:355}, ступенчатому храму племени Порочной Ветви на юге Внутренних земель, и поднимитесь на вершину. Квиага и {npc:8636} (элита, 50) стоят наверху: коснитесь вершины и сразу спускайтесь.",
+	-- {area:355} Altar of Zul · {zone:1425} The Hinterlands · {npc:8636} Morta'gya the Keeper
+	["Ride south-east to the {area:355}, the stepped Vilebranch temple in the south of the {zone:1425}, and climb to the top. Qiaga and {npc:8636} (elite, 50) stand up there: touch the top and come straight back down."] = "Езжайте на юго-восток к месту {area:355}, ступенчатому храму племени Порочной Ветви на юге края {zone:1425}, и поднимитесь на вершину. Квиага и {npc:8636} (элита, 50) стоят наверху: коснитесь вершины и сразу спускайтесь.",
 
 	-- Step 3: Skulk Rock
-	-- {area:351} Skulk Rock
+	-- {area:351} Skulk Rock · {zone:1425} The Hinterlands
 	-- plural, as words: Green Sludges = {npc:2655} Green Sludge · Jade Oozes = {npc:2656} Jade Ooze
-	["Ride north to {area:351} in the middle of the Hinterlands. Green Sludges and Jade Oozes crawl all around it."] = "Езжайте на север, в центр Внутренних земель: {area:351}. Вокруг ползают зеленые слякочи и нефритовые слизнюки.",
+	["Ride north to {area:351} in the middle of the {zone:1425}. Green Sludges and Jade Oozes crawl all around it."] = "Езжайте на север, в центр края {zone:1425}: {area:351}. Вокруг ползают зеленые слякочи и нефритовые слизнюки.",
 
 	-- Step 4: Aerie Peak
 	-- {area:348} Aerie Peak
@@ -35,8 +40,8 @@ return {
 	["Ride on east along the road to the keep first: the {item:6091} expires an hour after {area:42}, and the bloodmages' beasts take longer than that."] = "Сначала езжайте дальше на восток по дороге к крепости: {item:6091} пропадет через час после места {area:42}, а звери магов крови займут больше времени.",
 	-- {quest:2990} Thadius Grimshade
 	["{quest:2990}, at the top of the keep"] = "{quest:2990}, на вершине крепости",
-	-- {item:9471} Nekrum's Medallion · {area:978} Zul'Farrak
-	["Thadius' next task, {item:9471}, is a {area:978} quest: skip it."] = "Следующее поручение Тадиуса, {item:9471}, — задание для подземелья {area:978}: пропустите.",
+	-- {npc:8022} Thadius Grimshade · {item:9471} Nekrum's Medallion · {area:978} Zul'Farrak
+	["{npc:8022}' next task, {item:9471}, is a {area:978} quest: skip it."] = "Следующее поручение {npc:8022}, {item:9471}, — задание для подземелья {area:978}: пропустите.",
 
 	-- Step 8: Boars and basilisks
 	["Boars and basilisks"] = "Кабаны и василиски",
@@ -72,8 +77,8 @@ return {
 	-- {area:144} Thelsamar · {area:150} Menethil Harbor · {area:442} Auberdine · {area:702} Rut'theran Village
 	["Fly from {area:144} to {area:150}, take the boat to {area:442} and fly to {area:702}."] = "Летите из места {area:144} в {area:150}, плывите на корабле в {area:442} и летите в {area:702}.",
 	["the book on her table"] = "книга на ее столе",
-	-- {zone:1446} Tanaris
-	["Daryn's next errand goes to {zone:1446}: skip it."] = "Следующее поручение Дарин ведет в {zone:1446}: пропустите.",
+	-- {npc:7907} Daryn Lightwind · {zone:1446} Tanaris
+	["{npc:7907}'s next errand goes to {zone:1446}: skip it."] = "Следующее поручение {npc:7907} ведет в {zone:1446}: пропустите.",
 	-- {npc:7916} Erelas Ambersky · {zone:1428} Burning Steppes
 	["{npc:7916}: keep it, the feathers come at the end of the {zone:1428} guide"] = "{npc:7916}: сохраните задание, перья будут в конце гайда по зоне {zone:1428}",
 

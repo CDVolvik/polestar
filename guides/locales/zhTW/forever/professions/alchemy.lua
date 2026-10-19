@@ -3,13 +3,14 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (traditional) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (traditional) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Apprentice Alchemy
 	-- {skill:171} Alchemy
 	["Apprentice {skill:171}"] = "初級{skill:171}",
 	-- {skill:171} Alchemy
-	["{skill:171} runs alongside leveling. Forever's Legacy System rewards crafting professions at skill 150, 225 and 300 (the Journeyman, Expert and Artisan caps), so each of those checkpoints counts. Materials for 1-75 are worth about 68s in all."] = "{skill:171}可以邊升級邊練。Forever的傳承系統會在技能150、225和300（中級、高級和專家的上限）獎勵製造專業，所以每個關卡都很重要。1-75的材料總價約68銀。",
+	["{skill:171} runs alongside leveling. Forever's Legacy System rewards crafting professions at skill 150, 225 and 300 (the Journeyman, Expert and Artisan caps), so each of those checkpoints counts. Materials for 1-75 are worth about 68s in all."] = "{skill:171}可以邊升級邊練。Forever的傳承系統會在技能150、225和300（中級、高級和專家級的上限）獎勵製造專業，所以每個關卡都很重要。1-75的材料總價約68銀。",
 
 	-- Step 2: Silverleaf (Alliance)
 	-- {item:765} Silverleaf
@@ -44,7 +45,7 @@ return {
 
 	-- Step 8: Recipe: Holy Protection Potion
 	-- {item:6051} Holy Protection Potion · {skill:171} Alchemy
-	["Teaches {item:6051} (needs {skill:171} 100). Vendors sell it in limited stock that restocks; the Auction House often has it too."] = "學會{item:6051}（需要{skill:171}100）。商人限量販售，會補貨；拍賣場也常有。",
+	["Teaches {item:6051} (needs {skill:171} 100). Vendors sell it in limited stock that restocks."] = "學會{item:6051}（需要{skill:171}100）。商人限量販售，會補貨。",
 
 	-- Step 9: Murloc Eye (Alliance)
 	-- {item:730} Murloc Eye
@@ -242,9 +243,9 @@ return {
 
 	-- Step 48: Artisan Alchemy
 	-- {skill:171} Alchemy
-	["Artisan {skill:171}"] = "專家{skill:171}",
+	["Artisan {skill:171}"] = "專家級{skill:171}",
 	-- {skill:171} Alchemy
-	["Artisan needs character level 35 and {skill:171} 200; it raises the cap to 300. Materials for 225-300 are worth about 7g 80s in all."] = "專家需要角色等級35和{skill:171}200；上限提高到300。225-300的材料總價約7金80銀。",
+	["Artisan needs character level 35 and {skill:171} 200; it raises the cap to 300. Materials for 225-300 are worth about 7g 80s in all."] = "專家級需要角色等級35和{skill:171}200；上限提高到300。225-300的材料總價約7金80銀。",
 
 	-- Step 49: Recipe: Elixir of Superior Defense
 	-- {item:8951} Elixir of Greater Defense · {skill:171} Alchemy

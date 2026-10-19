@@ -3,11 +3,14 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Spanish (Latin America) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Spanish (Latin America) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Everlook
 	-- {area:2255} Everlook
 	["{area:2255} is the goblin town on the east side of the valley."] = "{area:2255} es el pueblo goblin en el lado este del valle.",
+	-- {npc:11118} Innkeeper Vizzie
+	["{npc:11118}: the last guide binds here, so this usually ticks at once"] = "{npc:11118}: la guía anterior te vincula aquí, así que esto suele marcarse de inmediato",
 	["Gregor's and Harlo's quests lead to other zones: keep them."] = "Las misiones de Gregor y Harlo llevan a otras zonas: guárdalas.",
 
 	-- Step 2: Ice Thistle yetis
@@ -37,8 +40,8 @@ return {
 	["Ride west along the road past {area:2251}; Raging Owlbeasts roam the hills north of it."] = "Cabalga al oeste por el camino pasando {area:2251}; las Lechubestias enfurecidas ({npc:7451}) recorren las colinas al norte.",
 
 	-- Step 9: Donova Snowden
-	-- {area:2246} Frostfire Hot Springs
-	["Donova camps among the steaming pools of {area:2246}, in the west of the valley."] = "Donova acampa entre las pozas humeantes de {area:2246}, en el oeste del valle.",
+	-- {npc:9298} Donova Snowden · {area:2246} Frostfire Hot Springs
+	["{npc:9298} camps among the steaming pools of {area:2246}, in the west of the valley."] = "{npc:9298} acampa entre las pozas humeantes de {area:2246}, en el oeste del valle.",
 	["From Krakle in Un'Goro"] = "De Krakle, en Un'Goro",
 	["Linken's letter"] = "La carta de Linken",
 	-- {quest:3909} The Videre Elixir · {npc:7775} Gregan Brewspewer · {zone:1444} Feralas
@@ -119,8 +122,8 @@ return {
 	["{quest:1123} waits in {zone:1450}: keep it for later."] = "{quest:1123} te espera en {zone:1450}: guárdala para después.",
 
 	-- Step 29: Bashana Runetotem
-	-- {item:11040} Morrowgrain · {quest:3761} Un'Goro Soil
-	["Bashana buys {item:11040} grown from your {quest:3761}."] = "Bashana compra el {item:11040} que cultives con tu {quest:3761}.",
+	-- {npc:9087} Bashana Runetotem · {item:11040} Morrowgrain · {quest:3761} Un'Goro Soil
+	["{npc:9087} buys {item:11040} grown from your {quest:3761}."] = "{npc:9087} compra el {item:11040} que cultives con tu {quest:3761}.",
 
 	-- Step 30: Fly to Orgrimmar
 	-- {area:1637} Orgrimmar

@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (traditional) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (traditional) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -12,13 +13,16 @@ return {
 	-- Step 1: Astranaar
 	-- {area:392} Ratchet · {area:415} Astranaar
 	["You start in {area:392}, where the previous guide hearthed you. Fly to {area:415}."] = "你從{area:392}開始，上一份指南讓你用爐石回到這裡。飛往{area:415}。",
+	-- {npc:6791} Innkeeper Wiley
+	["{npc:6791}: the last guide hearths you here, so this usually ticks at once"] = "{npc:6791}：上一份指南用爐石把你送到這裡，所以這一步通常會立即完成",
 
 	-- Step 2: The Emerald Sanctuary
 	-- {area:2479} Emerald Sanctuary
 	["The {area:2479}"] = "{area:2479}",
 	-- {area:415} Astranaar · {zone:1448} Felwood
 	["Ride north out of {area:415} into {zone:1448} to the druids' camp on the road just past the border."] = "騎出{area:415}向北進入{zone:1448}，前往剛越過邊界後道路旁的德魯伊營地。",
-	["Wait a moment for Eridan"] = "稍等一下艾瑞丹",
+	-- {npc:9116} Eridan Bluewind
+	["Wait a moment for {npc:9116}"] = "稍等一下{npc:9116}",
 	-- {npc:10924} Ivy Leafrunner · {zone:1452} Winterspring
 	["{npc:10924}: ends in {zone:1452}, keep it"] = "{npc:10924}：在{zone:1452}完成，保留此任務",
 
@@ -75,13 +79,13 @@ return {
 	["Ride south-west to {npc:7771}'s camp at the {area:1938}."] = "向西南騎往{area:1938}的{npc:7771}營地。",
 
 	-- Step 13: The Slithering Scar
-	-- {npc:10041} Gorishi Hive Queen
-	["Take the road west down into the crater and ride to the Slithering Scar, the silithid cave in the south. The {npc:10041} waits in its deepest chamber."] = "沿著道路向西下到環形山中，騎往南部的異種蟲洞穴巨痕谷。{npc:10041}在最深處的洞室等著。",
+	-- {area:540} The Slithering Scar · {npc:10041} Gorishi Hive Queen
+	["Take the road west down into the crater and ride to the {area:540}, the silithid cave in the south. The {npc:10041} waits in its deepest chamber."] = "沿著道路向西下到環形山中，騎往南部的異種蟲洞穴{area:540}。{npc:10041}在最深處的洞室等著。",
 
 	-- Step 14: Fire Plume Ridge
-	-- {area:537} Fire Plume Ridge · {item:14644} Skeleton Key Mold
+	-- {area:537} Fire Plume Ridge · {item:14644} Skeleton Key Mold · {npc:9616} Laris Geardawdle
 	-- plural, as words: Thorium Bars = {item:12359} Thorium Bar · Empty Pure Sample Jars = {item:11953} Empty Pure Sample Jar · Primal Oozes = {npc:6557} Primal Ooze
-	["Climb {area:537} in the middle of the crater and use the {item:14644} by the lava lake at the top, with two Thorium Bars in your bags. Fill Laris's Empty Pure Sample Jars on the Primal Oozes in the pools around the ridge."] = "爬上環形山中央的{area:537}，背包裡帶著兩塊瑟銀錠，在山頂熔岩湖旁使用{item:14644}。在山脊周圍水池中的原生軟泥怪身上裝滿拉里斯的純淨樣本瓶。",
+	["Climb {area:537} in the middle of the crater and use the {item:14644} by the lava lake at the top, with two Thorium Bars in your bags. Fill {npc:9616}'s Empty Pure Sample Jars on the Primal Oozes in the pools around the ridge."] = "爬上環形山中央的{area:537}，背包裡帶著兩塊瑟銀錠，在山頂熔岩湖旁使用{item:14644}。在山脊周圍水池中的原生軟泥怪身上裝滿{npc:9616}的純淨樣本瓶。",
 	["Use the jars on slain oozes"] = "對被殺死的軟泥怪使用瓶子",
 
 	-- Step 15: Marshal's Refuge
@@ -100,7 +104,8 @@ return {
 	-- Step 17: Cenarion Hold
 	-- {area:3425} Cenarion Hold
 	["Follow the road south-west out of the pass to {area:3425}."] = "沿著道路從山口向西南前往{area:3425}。",
-	["Calandrath, the innkeeper"] = "卡蘭德拉斯，旅店老闆",
+	-- {npc:15174} Calandrath
+	["{npc:15174}, the innkeeper"] = "{npc:15174}，旅店老闆",
 	-- {npc:17082} Rifleman Torrig
 	["{npc:17082}, at the Alliance tents"] = "{npc:17082}，在聯盟帳篷旁",
 
@@ -139,8 +144,8 @@ return {
 
 	-- Step 24: Bronzebeard's Encampment
 	["Bronzebeard's Encampment"] = "銅鬚營地",
-	-- {npc:15171} Frankal Stonebridge · {npc:15170} Rutgar Glyphshaper
-	["Ride south-west to the dwarves' camp near the southern mountains and question {npc:15171} and {npc:15170}. Noggle's satchel lies in the sand just south-east of the camp."] = "向西南騎往南部山脈附近的矮人營地，詢問{npc:15171}和{npc:15170}。諾格的背包就在營地東南方的沙地上。",
+	-- {npc:15171} Frankal Stonebridge · {npc:15170} Rutgar Glyphshaper · {npc:15190} Noggle Ficklespragg
+	["Ride south-west to the dwarves' camp near the southern mountains and question {npc:15171} and {npc:15170}. {npc:15190}'s satchel lies in the sand just south-east of the camp."] = "向西南騎往南部山脈附近的矮人營地，詢問{npc:15171}和{npc:15170}。{npc:15190}的背包就在營地東南方的沙地上。",
 
 	-- Step 25: The Twilight Post
 	-- {area:3098} Twilight Post
@@ -197,11 +202,12 @@ return {
 	["Ride back north to {area:2255} and west along the road to the night elf village."] = "向北騎回{area:2255}，再沿著道路向西前往墜星村。",
 
 	-- Step 38: Donova Snowden
-	["Keep west on the road to Donova's camp beside the hot springs."] = "繼續沿路向西，前往溫泉旁多諾瓦的營地。",
+	-- {npc:9298} Donova Snowden
+	["Keep west on the road to {npc:9298}'s camp beside the hot springs."] = "繼續沿路向西，前往溫泉旁{npc:9298}的營地。",
 
 	-- Step 39: Umber
-	-- {area:1769} Timbermaw Hold · {zone:1452} Winterspring · {area:493} Moonglade · {area:2361} Nighthaven · {npc:11939} Umber
-	["Take the {area:1769} tunnel from its {zone:1452} mouth, west of Donova, and follow the {area:493} branch to {area:2361}. {npc:11939} studies by the lake shore."] = "從多諾瓦西邊位於{zone:1452}的入口進入{area:1769}隧道，沿著{area:493}的岔路前往{area:2361}。{npc:11939}在湖岸邊做研究。",
+	-- {area:1769} Timbermaw Hold · {zone:1452} Winterspring · {npc:9298} Donova Snowden · {area:493} Moonglade · {area:2361} Nighthaven · {npc:11939} Umber
+	["Take the {area:1769} tunnel from its {zone:1452} mouth, west of {npc:9298}, and follow the {area:493} branch to {area:2361}. {npc:11939} studies by the lake shore."] = "從{npc:9298}西邊位於{zone:1452}的入口進入{area:1769}隧道，沿著{area:493}的岔路前往{area:2361}。{npc:11939}在湖岸邊做研究。",
 
 	-- Step 40: Rabine Saturna
 	-- {npc:11801} Rabine Saturna · {area:2361} Nighthaven · {npc:11939} Umber
@@ -226,8 +232,8 @@ return {
 	["{npc:3516}, atop the {area:1658}"] = "{npc:3516}，在{area:1658}頂端",
 
 	-- Step 45: Stormwind
-	-- {area:702} Rut'theran Village · {area:442} Auberdine · {area:17203} Stormwind Harbor · {item:14047} Runecloth
-	["Go back down to {area:702}, take the boat to {area:442} and the boat on to {area:17203}. Bring sixty Silk, sixty Mageweave and sixty {item:14047} for Clavicus: buy what you lack at the Auction House."] = "下到{area:702}，搭船前往{area:442}，再轉船前往{area:17203}。為克拉維斯準備六十份絲綢、六十份魔紋布和六十份{item:14047}：缺少的到拍賣場購買。",
+	-- {area:702} Rut'theran Village · {area:442} Auberdine · {area:17203} Stormwind Harbor · {item:14047} Runecloth · {npc:14722} Clavicus Knavingham
+	["Go back down to {area:702}, take the boat to {area:442} and the boat on to {area:17203}. Bring sixty Silk, sixty Mageweave and sixty {item:14047} for {npc:14722}: buy what you lack at the Auction House."] = "下到{area:702}，搭船前往{area:442}，再轉船前往{area:17203}。為{npc:14722}準備六十份絲綢、六十份魔紋布和六十份{item:14047}：缺少的到拍賣場購買。",
 	-- {npc:14722} Clavicus Knavingham · {object:2096} Trade District
 	["{npc:14722}, in the {object:2096}"] = "{npc:14722}，在{object:2096}",
 
@@ -248,9 +254,9 @@ return {
 	["Araj is elite: grouping up is advised."] = "阿拉基是精英：建議組隊。",
 
 	-- Step 49: Felstone Field
-	-- {area:199} Felstone Field
+	-- {npc:10778} Janice Felstone · {area:199} Felstone Field
 	-- plural, as words: Jabbering Ghouls = {npc:10801} Jabbering Ghoul
-	["Janice's ghost wanders by the farmhouse of {area:199}, west of Andorhal. The Jabbering Ghouls in the field carry the other half of the charm: combine the two halves."] = "詹妮絲的鬼魂在{area:199}的農舍旁徘徊，位於安多哈爾西邊。田裡喋喋不休的食屍鬼身上帶著護符的另一半：把兩半合起來。",
+	["{npc:10778}'s ghost wanders by the farmhouse of {area:199}, west of Andorhal. The Jabbering Ghouls in the field carry the other half of the charm: combine the two halves."] = "{npc:10778}的鬼魂在{area:199}的農舍旁徘徊，位於安多哈爾西邊。田裡喋喋不休的食屍鬼身上帶著護符的另一半：把兩半合起來。",
 
 	-- Step 50: Northridge Lumber Camp
 	["Ride north up the road to the lumber mill and set the termite barrel down in the middle of it."] = "沿著道路向北騎往伐木場，把白蟻桶放在伐木場中央。",
@@ -258,8 +264,8 @@ return {
 	-- Step 51: Tirion Fordring (optional)
 	-- {npc:1855} Tirion Fordring
 	["{npc:1855} (optional)"] = "{npc:1855}（可選）",
-	-- {quest:5781} Of Forgotten Memories
-	["Tirion lives in a small hut on the border river, north-east of the lumber camp. Hand in {quest:5781} if you finished it."] = "提里奧住在伐木場東北方、邊界河畔的小屋裡。如果你已完成{quest:5781}，就交給他。",
+	-- {npc:1855} Tirion Fordring · {quest:5781} Of Forgotten Memories
+	["{npc:1855} lives in a small hut on the border river, north-east of the lumber camp. Hand in {quest:5781} if you finished it."] = "{npc:1855}住在伐木場東北方、邊界河畔的小屋裡。如果你已完成{quest:5781}，就交給他。",
 
 	-- Step 52: Scholomance (optional)
 	-- {area:2057} Scholomance
@@ -271,9 +277,9 @@ return {
 
 	-- Step 53: Grind to 60
 	["Grind to 60"] = "練到60級",
-	-- {area:2627} Terrordale
+	-- {npc:1855} Tirion Fordring · {area:2627} Terrordale
 	-- plural, as words: Terrordale Spirits = {npc:14564} Terrordale Spirit
-	["Cross the river east of Tirion into {area:2627}. The Terrordale Spirits haunt the woods there."] = "渡過提里奧東邊的河進入{area:2627}。恐懼谷的靈魂在那裡的樹林中出沒。",
+	["Cross the river east of {npc:1855} into {area:2627}. The Terrordale Spirits haunt the woods there."] = "渡過{npc:1855}東邊的河進入{area:2627}。恐懼谷的靈魂在那裡的樹林中出沒。",
 	-- {npc:14564} Terrordale Spirit · {area:2627} Terrordale · {zone:1423} Eastern Plaguelands
 	["grind on {npc:14564} at {area:2627}, {zone:1423}"] = "在{zone:1423}的{area:2627}擊殺{npc:14564}練等",
 

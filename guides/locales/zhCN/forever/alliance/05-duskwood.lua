@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (simplified) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (simplified) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Darkshire
@@ -22,8 +23,8 @@ return {
 	["{npc:633}, at the south end of town"] = "{npc:633}，在镇子南端",
 
 	-- Step 2: Viktori Prism'Antras
-	-- {npc:3133} Herble Baubbletump
-	["Viktori's house stands at the east end of town. {npc:3133} sells engineering goods in the house beside it."] = "维克托的房子在镇子东端。{npc:3133}在旁边的房子里出售工程学物品。",
+	-- {npc:276} Viktori Prism'Antras · {npc:3133} Herble Baubbletump
+	["{npc:276}'s house stands at the east end of town. {npc:3133} sells engineering goods in the house beside it."] = "{npc:276}的房子在镇子东端。{npc:3133}在旁边的房子里出售工程学物品。",
 	-- {item:4371} Bronze Tube · {npc:3133} Herble Baubbletump · {npc:1448} Neal Allen · {area:150} Menethil Harbor
 	["{item:4371}, from {npc:3133}: limited stock. Sold out? {npc:1448} in {area:150} sells it too."] = "{item:4371}，向{npc:3133}购买：存货有限。卖完了？{area:150}的{npc:1448}也有售。",
 
@@ -39,9 +40,9 @@ return {
 	["{npc:888} stands south of the road, at the {area:245}."] = "{npc:888}站在道路南边的{area:245}。",
 
 	-- Step 6: Raven Hill
-	-- {area:94} Raven Hill · {object:673515} Memory of Valor
+	-- {area:94} Raven Hill · {object:673515} Memory of Valor (no name in this language: may be words)
 	["Continue west to {area:94}. The {object:673515} glows by the ruined house south of the road."] = "继续向西到{area:94}。{object:673515}在道路南边的废弃房屋旁发光。",
-	-- {item:281046} Raven Hill Tome · {object:673515} Memory of Valor
+	-- {item:281046} Raven Hill Tome · {object:673515} Memory of Valor (no name in this language: may be words)
 	["{item:281046}, from the {object:673515}"] = "{item:281046}，来自{object:673515}",
 
 	-- Step 7: Raven Hill Cemetery, south
@@ -52,8 +53,8 @@ return {
 	["The cemetery lies north of the village. Skeletal Horrors and Skeletal Fiends walk its southern half. {npc:522}, an elite, wanders the graves: keep away from him."] = "墓地位于村子北边。恐怖骸骨和骸骨魔在墓地南半部游荡。精英{npc:522}在墓地间徘徊：离他远点。",
 
 	-- Step 8: Sven's Camp
-	-- {npc:893} Lars
-	["Follow the road north-west past the cemetery to Sven's camp on the far west edge of the forest. {npc:893} stands beside Sven."] = "沿道路向西北经过墓地，前往森林最西缘的斯温营地。{npc:893}站在斯温旁边。",
+	-- {npc:311} Sven Yorgen · {npc:893} Lars
+	["Follow the road north-west past the cemetery to {npc:311}'s camp on the far west edge of the forest. {npc:893} stands beside {npc:311}."] = "沿道路向西北经过墓地，前往森林最西缘的{npc:311}营地。{npc:893}站在{npc:311}旁边。",
 
 	-- Step 9: Abercrombie
 	-- {area:492} Raven Hill Cemetery
@@ -146,6 +147,5 @@ return {
 	-- ["Skeletal Horrors walk the hillside between {area:42} and the {area:121}, south-east of town; they drop the {npc:14235} Blossoms."] = "恐怖骸骨在镇子东南方{area:42}和{area:121}之间的山坡上游荡；它们掉落{npc:14235}之花。",
 	-- ["{item:3372}: {npc:1313}, {skill:171} Supplies"] = "{item:3372}：{npc:1313}，{skill:171}用品",
 	-- ["{npc:14235} Blossoms"] = "{npc:14235}之花",
-	-- ["{npc:332}: Poisons, and {item:18160}"] = "{npc:332}：毒药，以及{item:18160}",
 	-- ["{npc:332}: {spell:2842}, and {item:18160}"] = "{npc:332}：{spell:2842}，以及{item:18160}",
 }

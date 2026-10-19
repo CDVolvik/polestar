@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Russian (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Russian words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Northshire Abbey
@@ -115,8 +116,8 @@ return {
 	["Speak with {npc:1430}"] = "Поговорить: {npc:1430}",
 
 	-- Step 23: Maybell Maclure
-	-- {area:87} Goldshire · {area:64} Maclure Vineyards
-	["Follow the road south out of {area:87} to the {area:64}. Maybell waits by the house."] = "Идите по дороге на юг из места {area:87}. Цель: {area:64}. Мейбелл ждет у дома.",
+	-- {area:87} Goldshire · {area:64} Maclure Vineyards · {npc:251} Maybell Maclure
+	["Follow the road south out of {area:87} to the {area:64}. {npc:251} waits by the house."] = "Идите по дороге на юг из места {area:87}. Цель: {area:64}. {npc:251} ждет у дома.",
 
 	-- Step 24: The Fargodeep Mine
 	-- {npc:248464} Nimsy
@@ -160,10 +161,6 @@ return {
 
 	-- Step 31: "Auntie" Bernice Stonefield
 	["\"Auntie\" Bernice Stonefield"] = "\"Тетушка\" Бернис Стоунфилд",
-
-	-- Step 32: Billy Maclure
-	-- {area:57} Fargodeep Mine
-	["{area:57}'s mouth"] = "Вход: {area:57}",
 
 	-- Step 33: Goldtooth
 	-- {quest:87} Goldtooth · {area:57} Fargodeep Mine · {item:1972} Westfall Deed
@@ -235,8 +232,8 @@ return {
 	["Follow the hills south to the tower."] = "Идите по холмам на юг к башне.",
 
 	-- Step 48: Goldshire
-	-- {area:87} Goldshire
-	["Follow the road west back to {area:87}; Helene and Jason stand on the lake shore before town."] = "Идите по дороге на запад обратно. Цель: {area:87}; Хелена и Джейсон стоят на берегу озера перед городком.",
+	-- {area:87} Goldshire · {npc:6306} Helene Peltskinner
+	["Follow the road west back to {area:87}; {npc:6306} and Jason stand on the lake shore before town."] = "Идите по дороге на запад обратно. Цель: {area:87}; {npc:6306} и Джейсон стоят на берегу озера перед городком.",
 
 	-- Step 49: Maybell Maclure
 	-- {area:64} Maclure Vineyards
@@ -275,20 +272,24 @@ return {
 
 	-- Step 57: Murlocs and the Collector
 	["Murlocs and the Collector"] = "Мурлоки и Собиратель",
-	-- {npc:473} Morgan the Collector · {area:62} Brackwell Pumpkin Patch
+	-- {npc:473} Morgan the Collector · {area:62} Brackwell Pumpkin Patch · {npc:248278} Croaky
 	-- plural, as words: Murloc Foragers = {npc:46} Murloc Forager · Prowlers = {npc:118} Prowler · Young Forest Bears = {npc:822} Young Forest Bear
-	["Murloc Foragers and Lurkers line the river south of the bridge. {npc:473}, a Defias, walks the {area:62} west of it. Finish the Prowlers and Young Forest Bears on the way."] = "Мурлоки-добытчики и мурлоки-скрытни занимают реку к югу от моста. {npc:473} из Братства Справедливости ходит здесь: {area:62}, к западу от нее. По пути добейте лесных хищников и молодых лесных медведей.",
+	["Murloc Foragers and Lurkers line the river south of the bridge. {npc:473}, a Defias, walks the {area:62} west of it. Finish the Prowlers and Young Forest Bears on the way. {npc:248278} roams the murloc shore too: right-click the head it drops. {npc:248278} is elite: grouping up is advised."] = "Мурлоки-добытчики и мурлоки-скрытни занимают реку к югу от моста. {npc:473} из Братства Справедливости ходит здесь: {area:62}, к западу от нее. По пути добейте лесных хищников и молодых лесных медведей. {npc:248278} тоже бродит по берегу мурлоков: щелкните правой кнопкой по голове, которую он оставит. {npc:248278} – элитный противник: лучше собрать группу.",
 	-- plural, as words: Torn Murloc Fins = {item:780} Torn Murloc Fin
 	["Torn Murloc Fins"] = "Рваные плавники мурлока",
 
-	-- Step 60: Stone Cairn Lake
+	-- Step 58: Ridgepoint Tower
+	-- {npc:248277} Merell Ross · {area:798} Ridgepoint Tower
+	["{npc:248277} keeps watch at {area:798}, east of the murloc shore. Then head north-west back to the bridge."] = "{npc:248277} несет дозор здесь: {area:798}, к востоку от берега мурлоков. Затем возвращайтесь на северо-запад к мосту.",
+
+	-- Step 61: Stone Cairn Lake
 	-- plural, as words: Defias Rogue Wizards = {npc:474} Defias Rogue Wizard
 	["North-east of the logging camp. Defias Rogue Wizards camp on the shores of the lake."] = "К северо-востоку от лесозаготовок. Волшебники-плуты из Братства Справедливости стоят лагерем на берегах озера.",
 
-	-- Step 61: The Tower of Azora
+	-- Step 62: The Tower of Azora
 	["Follow the hills south to the tower, on the road west."] = "Идите по холмам на юг к башне, по дороге на запад.",
 
-	-- Step 62: Goldshire
+	-- Step 63: Goldshire
 	-- {area:87} Goldshire
 	["Follow the road west back to {area:87}."] = "Идите по дороге на запад обратно. Цель: {area:87}.",
 	-- {npc:6121} Remen Marcot · {npc:6122} Gakin the Darkbinder · {zone:1453} Stormwind
@@ -300,7 +301,7 @@ return {
 	-- {npc:328} Zaldimar Wefhellt · {npc:5497} Jennea Cannon · {zone:1453} Stormwind
 	["{npc:328}: {npc:5497} in {zone:1453} takes it"] = "{npc:328}: принимает {npc:5497} ({zone:1453})",
 
-	-- Step 63: Taming the Beast
+	-- Step 64: Taming the Beast
 	-- {npc:251507} Josephine Carson · {area:87} Goldshire · {item:15908} Taming Rod · {area:64} Maclure Vineyards · {area:18} Crystal Lake
 	-- plural, as words: Rockhide Boars = {npc:524} Rockhide Boar · Young Forest Bears = {npc:822} Young Forest Bear
 	["{npc:251507} stands with the {area:87} trainers. Each of her quests hands you a {item:15908}: use it on the beast she names, then bring the rod back to her. Rockhide Boars and Young Forest Bears roam the hills south of the {area:64}, Gray Forest Wolves the woods east of {area:18}."] = "{npc:251507} стоит с учителями ({area:87}). Каждое ее задание дает вам {item:15908}: используйте его на названном звере, затем верните жезл ей. Твердошкурые вепри и молодые лесные медведи бродят по холмам к югу от места {area:64}, серые лесные волки – по лесу к востоку (ориентир: {area:18}).",
@@ -313,34 +314,34 @@ return {
 	-- {npc:258930} Isaac Chan · {spell:5149} Beast Training
 	["{npc:258930}, beside her: {spell:5149}"] = "{npc:258930}, рядом с ней: {spell:5149}",
 
-	-- Step 64: Jennea Cannon
+	-- Step 65: Jennea Cannon
 	-- {area:87} Goldshire · {zone:1453} Stormwind · {npc:5497} Jennea Cannon · {object:2101} Mage Quarter · {quest:1861} Mirror Lake
 	["Follow the road north from {area:87} into {zone:1453}. {npc:5497} stands in the Wizard's Sanctum, the tower of the {object:2101}; she gives you a flask for the {quest:1861} waterfall."] = "Идите по дороге на север от места {area:87} в город {zone:1453}. {npc:5497} стоит в башне ({object:2101}); она даст вам флягу для водопада ({quest:1861}).",
 
-	-- Step 65: Mirror Lake
+	-- Step 66: Mirror Lake
 	-- {zone:1453} Stormwind · {quest:1861} Mirror Lake · {zone:1436} Westfall · {item:7207} Jennea's Flask
 	["Leave {zone:1453} by the main gate. The {quest:1861} waterfall is south-west of the gates, on the way west to {zone:1436}: fill {item:7207} at its base."] = "Выйдите из города {zone:1453} через главные ворота. Водопад ({quest:1861}) – к юго-западу от ворот, по пути на запад в зону {zone:1436}: наполните {item:7207} у его подножия.",
 
-	-- Step 66: Gakin the Darkbinder
+	-- Step 67: Gakin the Darkbinder
 	-- {area:87} Goldshire · {zone:1453} Stormwind · {npc:6122} Gakin the Darkbinder · {object:2164} Slaughtered Lamb · {object:2101} Mage Quarter
 	["Follow the road north from {area:87} into {zone:1453}. {npc:6122} waits in the cellar of the {object:2164}, in the {object:2101}."] = "Идите по дороге на север от места {area:87} в город {zone:1453}. {npc:6122} ждет в подвале ({object:2164}, {object:2101}).",
 
-	-- Step 67: Surena Caledon
+	-- Step 68: Surena Caledon
 	-- {area:87} Goldshire · {area:62} Brackwell Pumpkin Patch · {npc:881} Surena Caledon
 	["Ride back out through {area:87} and east along the road to the {area:62}. {npc:881} (level 9) stands by its farmhouse."] = "Езжайте обратно через {area:87} и по дороге на восток. Цель: {area:62}. {npc:881} (9-й уровень) стоит у фермерского дома.",
 
-	-- Step 68: The Binding
-	-- {item:6928} Bloodstone Choker · {object:2164} Slaughtered Lamb
-	["Back to Gakin. Use the {item:6928} at the summoning circle in the {object:2164}'s cellar and defeat the voidwalker it calls."] = "Назад к Гакину. Используйте {item:6928} у круга призыва в подвале ({object:2164}) и победите призванного демона Бездны.",
+	-- Step 69: The Binding
+	-- {npc:6122} Gakin the Darkbinder · {item:6928} Bloodstone Choker · {object:2164} Slaughtered Lamb
+	["Back to {npc:6122}. Use the {item:6928} at the summoning circle in the {object:2164}'s cellar and defeat the voidwalker it calls."] = "Назад к {npc:6122}. Используйте {item:6928} у круга призыва в подвале ({object:2164}) и победите призванного демона Бездны.",
 	["Subdue the voidwalker"] = "Одолейте демона Бездны",
 
-	-- Step 69: The Tome of Divinity
+	-- Step 70: The Tome of Divinity
 	-- {area:87} Goldshire · {zone:1453} Stormwind · {npc:6171} Duthorian Rall · {npc:6173} Gazin Tenorm · {npc:6174} Stephanie Turner · {object:2100} Old Town · {item:2589} Linen Cloth
 	["Follow the road north from {area:87} into {zone:1453}. {npc:6171} and {npc:6173} are in the Cathedral of Light; {npc:6174} stands in {object:2100} and asks for ten {item:2589} (humanoids drop it; the Auction House sells it)."] = "Идите по дороге на север от места {area:87} в город {zone:1453}. {npc:6171} и {npc:6173} – в Соборе Света; {npc:6174} стоит здесь: {object:2100} – и просит десять штук: {item:2589} (падает с гуманоидов; продается на аукционе).",
 	-- {quest:2998} Tome of Divinity
 	["From the {quest:2998} he gives you"] = "Из книги ({quest:2998}), которую он вам даст",
 
-	-- Step 70: Henze Faulk
+	-- Step 71: Henze Faulk
 	-- {area:87} Goldshire · {area:86} Stone Cairn Lake · {npc:6172} Henze Faulk · {item:6866} Symbol of Life · {item:6846} Defias Script
 	-- plural, as words: Defias Rogue Wizards = {npc:474} Defias Rogue Wizard
 	["Ride back out through {area:87} and east to {area:86}. {npc:6172} lies south of the lake: use the {item:6866} on him. The Defias Rogue Wizards around him carry the {item:6846}."] = "Езжайте обратно через {area:87} и на восток. Цель: {area:86}. {npc:6172} лежит к югу от озера: используйте на нем {item:6866}. {item:6846} – у волшебников-плутов из Братства Справедливости вокруг.",
@@ -350,20 +351,18 @@ return {
 	-- plural, as words: Defias Rogue Wizards = {npc:474} Defias Rogue Wizard
 	["{item:6846}: Defias Rogue Wizards"] = "{item:6846}: волшебники-плуты из Братства Справедливости",
 
-	-- Step 71: Gazin Tenorm
+	-- Step 72: Gazin Tenorm
 	["Back to the Cathedral of Light."] = "Назад в Собор Света.",
 	-- {npc:6171} Duthorian Rall
 	["{npc:6171}: Redemption"] = "{npc:6171}: Искупление",
 
-	-- Step 72: Sentinel Hill
-	-- {zone:1436} Westfall · {area:108} Sentinel Hill
-	["Follow the road west past Westbrook into {zone:1436}, then south along it to {area:108}. Thor, the gryphon master, stands on the hill."] = "Идите по дороге на запад мимо гарнизона у Западного ручья в зону {zone:1436}, затем по ней на юг. Цель: {area:108}. Укротитель грифонов Тор стоит на холме.",
+	-- Step 73: Sentinel Hill
+	-- {zone:1436} Westfall · {area:108} Sentinel Hill · {npc:523} Thor
+	["Follow the road west past Westbrook into {zone:1436}, then south along it to {area:108}. {npc:523}, the gryphon master, stands on the hill."] = "Идите по дороге на запад мимо гарнизона у Западного ручья в зону {zone:1436}, затем по ней на юг. Цель: {area:108}. Укротитель грифонов {npc:523} стоит на холме.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Fun with Elementals: Nimsy"] = "«Забавы с элементалями»: Нимси",
+	-- ["Murloc Foragers and Lurkers line the river south of the bridge. {npc:473}, a Defias, walks the {area:62} west of it. Finish the Prowlers and Young Forest Bears on the way."] = "Мурлоки-добытчики и мурлоки-скрытни занимают реку к югу от моста. {npc:473} из Братства Справедливости ходит здесь: {area:62}, к западу от нее. По пути добейте лесных хищников и молодых лесных медведей.",
 	-- ["Ride back out through {area:87} and east along the road to the {area:62}. {quest:1688} (level 9) stands by its farmhouse."] = "Езжайте обратно через {area:87} и по дороге на восток. Цель: {area:62}. {quest:1688} (9-й уровень) стоит у фермерского дома.",
-	-- ["The mine is west of the vineyards. Kobold Miners and Tunnelers fill both levels; Nimsy, a named kobold, holds the picture book in the lower tunnels. Nimsy is elite: grouping up is advised."] = "Рудник – к западу от виноградников. Оба уровня полны кобольдов-шахтеров и кобольдов-проходчиков; книжка с картинками – у Нимси, именного кобольда в нижних туннелях. Нимси – элита: лучше собрать группу.",
-	-- ["The {item:247813}, Axe and Toolbox lie in the river south of the bridge. Princess, a big boar, roots in the {area:62} west of the river with her {npc:390}: pull the piglets away first. Kill Prowlers and Young Forest Bears on the way."] = "{item:247813}, топор и ящик с инструментами лежат в реке к югу от моста. Принцесса, большая свинья, роется здесь: {area:62}, к западу от реки, вместе с поросятами ({npc:390}): сначала отманите поросят. По пути убивайте лесных хищников и молодых лесных медведей.",
+	-- ["{area:57}'s mouth"] = "Вход: {area:57}",
 	-- ["{item:1006}: Princess"] = "{item:1006}: Принцесса",
-	-- ["{quest:91733} and Princess"] = "{quest:91733} и Принцесса",
 }

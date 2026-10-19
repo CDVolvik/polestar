@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Russian (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Russian words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -10,7 +11,7 @@ return {
 
 	-- Step 1: Ralston Farnsley: A Donation of Wool
 	-- {npc:14729} Ralston Farnsley · {faction:68} Undercity · {item:14047} Runecloth · {quest:7819} Additional Runecloth
-	["{npc:14729} takes cloth for {faction:68} in {faction:68}. The first donations of Wool, Silk, Mageweave and {item:14047} (60 cloth each) are done once and give the most reputation per cloth; after them, {quest:7819} repeats until Exalted. Exalted with another race's city lets you buy that race's mounts. Forever's Legacy Diplomat perk increases reputation gains."] = "{npc:14729} принимает ткань для фракции {faction:68} (локация: {faction:68}). Первые пожертвования шерсти, шелкового материала, магической ткани и предмета {item:14047} (по 60 штук) делаются один раз и дают больше всего репутации за единицу ткани; после них {quest:7819} повторяется до превознесения. Превознесение у города другой расы позволяет покупать ее транспорт. Бонус Forever «Legacy Diplomat» увеличивает получаемую репутацию.",
+	["{npc:14729} takes cloth for {faction:68} in {faction:68}. The first donations of Wool, Silk, Mageweave and {item:14047} (60 cloth each) are done once and give the most reputation per cloth; after them, {quest:7819} repeats until Exalted. Exalted with another race's city lets you buy that race's mounts. Forever's Legacy Diplomat perk increases reputation gains."] = "{npc:14729} принимает ткань для фракции {faction:68} (локация: {faction:68}). Первые пожертвования шерсти, шелкового материала, магической ткани и предмета {item:14047} (по 60 штук) делаются один раз и дают больше всего репутации за единицу ткани; после них {quest:7819} повторяется до превознесения. Превознесение у города другой расы позволяет покупать ее транспорт. Бонус наследия Forever «Дипломат» увеличивает получаемую репутацию.",
 
 	-- Step 2: Wool Cloth
 	-- {area:381} Boulder Lode Mine

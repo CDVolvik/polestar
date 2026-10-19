@@ -3,11 +3,12 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in French (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in French words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
-	-- {npc:12396} Doomguard Commander · {zone:1419} Blasted Lands
-	["A rare off-hand at 60, Daio's payment for capturing a {npc:12396} in the {zone:1419}."] = "Une main gauche rare au niveau 60, le paiement de Daio le Décrépit pour la capture d'un {npc:12396} dans {zone:1419}.",
+	-- {npc:14463} Daio the Decrepit · {npc:12396} Doomguard Commander · {zone:1419} Blasted Lands
+	["A rare off-hand at 60, {npc:14463}'s payment for capturing a {npc:12396} in the {zone:1419}."] = "Une main gauche rare au niveau 60, le paiement de {npc:14463} pour la capture d'un {npc:12396} dans {zone:1419}.",
 
 	-- Step 1: Daio the Decrepit
 	-- {npc:14463} Daio the Decrepit · {area:73} Tainted Scar · {zone:1419} Blasted Lands
@@ -24,11 +25,12 @@ return {
 	["The Hederine demons hold {area:2256}, in southern {zone:1452}. They are elite: grouping up is advised."] = "Les démons Hederine tiennent {area:2256}, au sud de {zone:1452}. Ils sont élites : il est conseillé de grouper.",
 
 	-- Step 4: Suppression
-	-- {npc:12396} Doomguard Commander · {area:73} Tainted Scar · {item:18601} Glowing Crystal Prison
-	["Hand both in to Daio, then find the {npc:12396} in the {area:73} and use the {item:18601} on him. He is elite and fights to escape: grouping up is advised."] = "Rendez les deux à Daio le Décrépit, puis trouvez {npc:12396} dans {area:73} et utilisez {item:18601} sur lui. Il est élite et se bat pour s'échapper : il est conseillé de grouper.",
+	-- {npc:14463} Daio the Decrepit · {npc:12396} Doomguard Commander · {area:73} Tainted Scar · {item:18601} Glowing Crystal Prison
+	["Hand both in to {npc:14463}, then find the {npc:12396} in the {area:73} and use the {item:18601} on him. He is elite and fights to escape: grouping up is advised."] = "Rendez les deux à {npc:14463}, puis trouvez {npc:12396} dans {area:73} et utilisez {item:18601} sur lui. Il est élite et se bat pour s'échapper : il est conseillé de grouper.",
 	-- {item:18601} Glowing Crystal Prison · {npc:12396} Doomguard Commander
 	["{item:18601}, on the {npc:12396}"] = "{item:18601}, sur {npc:12396}",
 
-	-- Step 5: Back to Daio
-	["Back to Daio"] = "Retour auprès de Daio le Décrépit",
+	-- Step 5: Back to Daio the Decrepit
+	-- {npc:14463} Daio the Decrepit
+	["Back to {npc:14463}"] = "Retour auprès de {npc:14463}",
 }

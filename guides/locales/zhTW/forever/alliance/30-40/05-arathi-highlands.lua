@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (traditional) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (traditional) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Fly to Darkshire
@@ -26,14 +27,16 @@ return {
 	["The wrecked caravan lies off the road near Biggs."] = "失事的商隊在衛兵比格斯附近的路邊。",
 
 	-- Step 7: The Harborage
-	["Follow the road north to the draenei of the Harborage."] = "沿道路向北前往避難營的德萊尼人那裡。",
+	-- {area:657} The Harborage
+	["Follow the road north to the draenei of the {area:657}."] = "沿道路向北前往{area:657}的德萊尼人那裡。",
 
 	-- Step 8: Fallow Sanctuary
 	-- {area:76} Fallow Sanctuary · {npc:256028} The Lost One
 	["East along the road to the {area:76}. {npc:256028} mobs drop the crystals; Noboru walks the ruins and drops his cudgel."] = "沿道路向東前往{area:76}。{npc:256028}怪物會掉落水晶；木棒諾博魯在廢墟中走動，會掉落他的木棒。",
 
 	-- Step 9: Galen Goodward
-	["Galen is caged at the north end of the sanctuary. Free him and keep him alive on the walk out; his strongbox waits by the road afterwards."] = "加林·古瓦德被關在聖所北端的籠子裡。釋放他並在走出去的路上保護他；之後他的保險箱就在路邊。",
+	-- {npc:5391} Galen Goodward
+	["{npc:5391} is caged at the north end of the sanctuary. Free him and keep him alive on the walk out; his strongbox waits by the road afterwards."] = "{npc:5391}被關在聖所北端的籠子裡。釋放他並在走出去的路上保護他；之後他的保險箱就在路邊。",
 
 	-- Step 11: Fly to Stormwind
 	-- {zone:1453} Stormwind
@@ -57,7 +60,8 @@ return {
 	["{quest:65602}, if you took it"] = "{quest:65602}，如果你有接",
 	-- {npc:185335} Summoned Incubus
 	["{npc:185335}, at the same circle"] = "{npc:185335}，在同一個法陣",
-	["Gakin binds the incubus to you"] = "黑暗縛靈者加科因會把夢魘束縛給你",
+	-- {npc:6122} Gakin the Darkbinder
+	["{npc:6122} binds the incubus to you"] = "{npc:6122}會把夢魘束縛給你",
 
 	-- Step 14: Shaman training
 	["Shaman training"] = "薩滿訓練",
@@ -149,7 +153,8 @@ return {
 	["Each key lies at one of the Highlands' standing-stone circles: east of the shards, near {area:320} and in the west. The {object:2702} stands west of {area:320}."] = "每把鑰匙都在高地的一處立石圈：碎片東邊、{area:320}附近，以及西部。{object:2702}在{area:320}西邊。",
 
 	-- Step 39: Kor'gresh Coldrage
-	["Kor'gresh, an ogre mage, holds the cave at the southern end of the Witherbark valley."] = "巨魔法師考格雷什佔據枯木山谷南端的洞穴。",
+	-- {npc:2793} Kor'gresh Coldrage
+	["{npc:2793}, an ogre mage, holds the cave at the southern end of the Witherbark valley."] = "巨魔法師{npc:2793}佔據枯木山谷南端的洞穴。",
 
 	-- Step 41: Alterac Mountains
 	-- {area:271} Southshore · {area:280} Strahnbrad · {npc:2306} Baron Vardus
@@ -164,18 +169,20 @@ return {
 	-- {area:280} Strahnbrad
 	-- plural, as words: Argus Shadow Mages = {npc:2318} Argus Shadow Mage
 	["The tomes lie in the ruined keep west of {area:280}; Argus Shadow Mages hold the ruins."] = "書卷在{area:280}西邊的城堡廢墟中；暗影大法師佔據著廢墟。",
+	-- {item:3658} Recovered Tome
+	["{item:3658}: Crushridge ogres"] = "{item:3658}：破碎嶺巨魔",
+	-- {item:3659} Worn Leather Book · {object:1760} Weathered Bookcase
+	["{item:3659}: the {object:1760}"] = "{item:3659}：{object:1760}",
 
 	-- Step 44: Dalaran
 	-- {area:279} Dalaran · {zone:1421} Silverpine Forest · {npc:269127} Image of Archmage Modera
 	["South-west to the Kirin Tor camp on the lake shore west of {area:279}, just over the border into {zone:1421}: the {npc:269127} stands there. Archmage Ansirem stands south-east of it, by the dome."] = "向西南前往{area:279}西邊湖岸的祈倫托營地，就在越過邊界進入{zone:1421}之處：{npc:269127}站在那裡。大法師安斯雷姆·魯因維沃爾站在它東南方的穹頂旁。",
 	-- {npc:2542} Catelyn the Blade · {area:35} Booty Bay
 	["For {npc:2542} in {area:35}: keep it"] = "給{area:35}的{npc:2542}：先留著",
-	-- {npc:252085} Archmage Celindra
-	["{npc:252085}, in the City of Dalaran"] = "{npc:252085}，在達拉然城內",
 
 	-- Step 45: Southshore
-	-- {item:2321} Fine Thread · {npc:2381} Micha Yance
-	["{item:2321} for Bartolo's cloak, from {npc:2381}, if you have none"] = "如果你沒有，向{npc:2381}購買巴圖羅·吉塞提的披風所需的{item:2321}",
+	-- {item:2321} Fine Thread · {npc:2438} Bartolo Ginsetti · {npc:2381} Micha Yance
+	["{item:2321} for {npc:2438}'s cloak, from {npc:2381}, if you have none"] = "如果你沒有，向{npc:2381}購買{npc:2438}的披風所需的{item:2321}",
 	-- {npc:1440} Milton Sheaf · {zone:1453} Stormwind
 	["For {npc:1440} in {zone:1453}: keep it"] = "給{zone:1453}的{npc:1440}：先留著",
 
@@ -188,6 +195,5 @@ return {
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Follow the road north to the draenei of the {area:657}."] = "沿道路向北前往{area:657}的德萊尼人那裡。",
-	-- ["The Crushridge ogres hold the hills north of {area:280}. Farther north, a worn wooden chest holds the {item:3706}; Nagaz of the {quest:537} stands right by it."] = "破碎嶺巨魔佔據{area:280}北邊的丘陵。再往北，一個破舊的木箱裡有{item:3706}；{quest:537}的納伽茲就站在旁邊。",
-	-- ["{npc:252085}, in the City of {area:279}"] = "{npc:252085}，在{area:279}城內",
+	-- ["{npc:252085}, in the City of Dalaran"] = "{npc:252085}，在達拉然城內",
 }

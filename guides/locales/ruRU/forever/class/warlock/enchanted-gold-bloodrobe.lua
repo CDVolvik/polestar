@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Russian (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Russian words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -30,15 +31,16 @@ return {
 	["{npc:6266} stands in the tower on the hill above {area:392}, beside {npc:6251}."] = "{npc:6266} стоит в башне на холме над местом {area:392}, рядом с персонажем {npc:6251}.",
 
 	-- Step 6: Robes of Arcana
-	-- {item:5770} Robes of Arcana · {item:3577} Gold Bar · {item:2776} Gold Ore
-	["Bring Menara a {item:5770}: tailors sew it from a pattern that drops; otherwise buy one at the Auction House. Her next errand needs a {item:3577}: smelted from {item:2776}, or from the Auction House."] = "Принесите Менаре предмет {item:5770}: портные шьют его по выкройке, которая падает с врагов; иначе купите на аукционе. Для следующего поручения нужен {item:3577}: выплавьте из предмета {item:2776} или купите на аукционе.",
+	-- {npc:6266} Menara Voidrender · {item:5770} Robes of Arcana · {item:3577} Gold Bar · {item:2776} Gold Ore
+	["Bring {npc:6266} a {item:5770}: tailors sew it from a pattern that drops; otherwise buy one at the Auction House. Her next errand needs a {item:3577}: smelted from {item:2776}, or from the Auction House."] = "Принесите {npc:6266} предмет {item:5770}: портные шьют его по выкройке, которая падает с врагов; иначе купите на аукционе. Для следующего поручения нужен {item:3577}: выплавьте из предмета {item:2776} или купите на аукционе.",
 
 	-- Step 7: Xizk Goodstitch
 	-- {npc:2670} Xizk Goodstitch · {area:35} Booty Bay · {item:3577} Gold Bar
 	["{npc:2670} sells tailoring supplies in {area:35}. Bring him the {item:3577}."] = "{npc:2670} продает товары для портных ({area:35}). Принесите ему: {item:3577}.",
 
-	-- Step 8: Back to Menara
-	["Back to Menara"] = "Назад к Менаре",
+	-- Step 8: Back to Menara Voidrender
+	-- {npc:6266} Menara Voidrender
+	["Back to {npc:6266}"] = "Назад к {npc:6266}",
 
 	-- Step 9: Desolace demons
 	-- {zone:1443} Desolace
@@ -48,8 +50,9 @@ return {
 	["The Hatefury satyrs of {area:603}, in north-eastern {zone:1443}, carry the blood; the Lesser Infernals of Mannoroc Coven, in the south, the stone."] = "Кровь носят сатиры из племени Ярой Ненависти ({area:603}, северо-восток зоны {zone:1443}), камень – младшие инферналы на юге (Поле Маннорок).",
 	["Vials of Hatefury Blood"] = "Фиалы крови сатира из клана Ярой Ненависти",
 
-	-- Step 10: Menara again
-	["Menara again"] = "Снова Менара",
+	-- Step 10: Menara Voidrender again
+	-- {npc:6266} Menara Voidrender
+	["{npc:6266} again"] = "Снова {npc:6266}",
 
 	-- Step 11: Fine Gold Thread
 	-- {npc:2670} Xizk Goodstitch · {area:35} Booty Bay
@@ -61,8 +64,8 @@ return {
 	["The Burning Exiles, fire elementals in western {zone:1417}, drop the coal."] = "Уголь падает с пылающих изгоев – огненных элементалей на западе зоны {zone:1417}.",
 
 	-- Step 13: The Completed Robe
-	-- {item:6265} Soul Shard
-	["Back to Menara with the thread, the coal and a {item:6265}. Wait while she completes the robe, then speak to her again."] = "Вернитесь к Менаре с нитью, углем и предметом {item:6265}. Подождите, пока она закончит одеяние, затем снова поговорите с ней.",
+	-- {npc:6266} Menara Voidrender · {item:6265} Soul Shard
+	["Back to {npc:6266} with the thread, the coal and a {item:6265}. Wait while she completes the robe, then speak to her again."] = "Вернитесь к {npc:6266} с нитью, углем и предметом {item:6265}. Подождите, пока она закончит одеяние, затем снова поговорите с ней.",
 	["Wait for the robe"] = "Дождитесь одеяния",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.

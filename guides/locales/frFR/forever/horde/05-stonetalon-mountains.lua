@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in French (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in French words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Kadrak
@@ -20,8 +21,8 @@ return {
 	-- Step 4: Night Run
 	-- {npc:12696} Senani Thunderheart · {area:428} Night Run
 	["{npc:12696} stands at {area:428}, the Warsong camp just north-east of Splintertree, beside the hunt board."] = "{npc:12696} se tient à {area:428}, le camp Warsong juste au nord-est de Bois-brisé, à côté du tableau de chasse.",
-	-- {zone:1440} Ashenvale
-	["Senani's hunt targets (Ursangous, Shadumbra, Sharptalon) are for the next {zone:1440} visit, at 27."] = "Les cibles de chasse de Senani (Ursangous, Shadumbra, Serres-tranchantes) sont pour la prochaine visite en {zone:1440}, au niveau 27.",
+	-- {npc:12696} Senani Thunderheart · {zone:1440} Ashenvale
+	["{npc:12696}'s hunt targets (Ursangous, Shadumbra, Sharptalon) are for the next {zone:1440} visit, at 27."] = "Les cibles de chasse de {npc:12696} (Ursangous, Shadumbra, Serres-tranchantes) sont pour la prochaine visite en {zone:1440}, au niveau 27.",
 
 	-- Step 5: Warsong Outrider
 	-- {npc:12864} Warsong Outrider · {area:428} Night Run · {area:430} Satyrnaar
@@ -33,8 +34,8 @@ return {
 	["On the ride west, {npc:267214} is stuck in a ravine south of the main road, south-east of {area:415}. Shadowhorn Stags and Ashenvale Bears roam the woods all around it."] = "En chevauchant vers l'ouest, {npc:267214} est coincé dans un ravin au sud de la route principale, au sud-est d'{area:415}. Des Cerfs à corne noire ({npc:3817}) et des Ours d’Ashenvale ({npc:3809}) parcourent les bois tout autour.",
 
 	-- Step 7: A Void Path
-	-- {npc:271181} Eye of Kilrogg
-	["Steer Va'xug's {npc:271181} out of the ravine to the main road within four minutes; if the channel breaks, ask Va'xug again."] = "Guidez {npc:271181} de Va'xug hors du ravin jusqu'à la route principale en moins de quatre minutes ; si la canalisation se rompt, redemandez à Va'xug.",
+	-- {npc:267214} Va'xug Firefure · {npc:271181} Eye of Kilrogg
+	["Steer {npc:267214}'s {npc:271181} out of the ravine to the main road within four minutes; if the channel breaks, ask {npc:267214} again."] = "Guidez {npc:271181} de {npc:267214} hors du ravin jusqu'à la route principale en moins de quatre minutes ; si la canalisation se rompt, redemandez à {npc:267214}.",
 	-- {npc:271181} Eye of Kilrogg
 	["{npc:271181}, on the road"] = "{npc:271181}, sur la route",
 
@@ -71,8 +72,8 @@ return {
 	-- Step 16: Sun Rock Retreat
 	-- {area:460} Sun Rock Retreat
 	["Follow the road west to {area:460}."] = "Suivez la route vers l'ouest jusqu'à {area:460}.",
-	-- {npc:11860} Maggran Earthbinder · {object:19844} Great Lift
-	["{npc:11860}: Grish is at the {object:19844}, in the next guide"] = "{npc:11860} : Grish est au {object:19844}, dans le prochain guide",
+	-- {npc:11860} Maggran Earthbinder · {area:1718} Great Lift
+	["{npc:11860}: Grish is at the {area:1718}, in the next guide"] = "{npc:11860} : Grish est au {area:1718}, dans le prochain guide",
 	-- {npc:11860} Maggran Earthbinder
 	-- plural, as words: Glittering Sunstones = {item:277936} Glittering Sunstone
 	["{npc:11860}: Glittering Sunstones from the Bloodfury harpies"] = "{npc:11860} : Héliolites lumineuses ({item:277936}) sur les harpies Rougefurie",
@@ -94,13 +95,13 @@ return {
 	["Follow the road north toward {area:467}. Antlered Coursers graze along the way; the Sap Beasts, Twilight Runners and Fey Dragons roam the woods below the Peak, and the Cenarion druids hold the grove there."] = "Suivez la route vers le nord en direction du {area:467}. Des Coursiers à ramure ({npc:4018}) paissent en chemin ; Bêtes de sève ({npc:4020}), Coureurs crépusculaires ({npc:4067}) et Dragons-faë ({npc:4016}) parcourent les bois sous le pic, et les druides cénariens tiennent le bosquet là-bas.",
 
 	-- Step 19: Sun Rock Retreat
-	-- {zone:1440} Ashenvale
-	["Braelyn's next quest, Ordanus, is on the Alliance side of {zone:1440}. Skip it."] = "La quête suivante de Braelyn, Ordanus, se trouve du côté Alliance d'{zone:1440}. Passez-la.",
+	-- {npc:4198} Braelyn Firehand · {zone:1440} Ashenvale
+	["{npc:4198}'s next quest, Ordanus, is on the Alliance side of {zone:1440}. Skip it."] = "La quête suivante de {npc:4198}, Ordanus, se trouve du côté Alliance d'{zone:1440}. Passez-la.",
 
 	-- Step 20: The Charred Vale
-	-- {item:16312} Incendrites
+	-- {area:465} The Charred Vale · {item:16312} Incendrites
 	-- plural, as words: Gaea Seeds = {item:16205} Gaea Seed
-	["South-west of Sun Rock lies the burned Charred Vale. Plant the Gaea Seeds in the dirt mounds on the valley floor; the fire elementals drop {item:16312}. Bloodfury Harpies and Ambushers nest on the north side, Slayers and Roguefeathers to the south."] = "Au sud-ouest de Roche-Soleil s'étend le Val calciné. Plantez les Graines de Gaea dans les monticules de terre au fond de la vallée ; les élémentaires de feu lâchent {item:16312}. Harpies et Embusquées Rougefurie nichent au nord, Tueuses et Volplumes au sud.",
+	["South-west of Sun Rock lies the burned {area:465}. Plant the Gaea Seeds in the dirt mounds on the valley floor; the fire elementals drop {item:16312}. Bloodfury Harpies and Ambushers nest on the north side, Slayers and Roguefeathers to the south."] = "Au sud-ouest de Roche-Soleil s'étend le {area:465}. Plantez les Graines de Gaea dans les monticules de terre au fond de la vallée ; les élémentaires de feu lâchent {item:16312}. Harpies et Embusquées Rougefurie nichent au nord, Tueuses et Volplumes au sud.",
 	-- plural, as words: Gaea Dirt Mounds = {object:177929} Gaea Dirt Mound
 	["Gaea Dirt Mounds"] = "Monticules de poussière de Gaea ({object:177929})",
 	-- {item:277936} Glittering Sunstone

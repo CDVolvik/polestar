@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in French (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in French words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Learn Cooking
@@ -73,8 +74,8 @@ return {
 	-- Step 17: Goretusk Liver Pie: ingredients
 	-- {item:724} Goretusk Liver Pie
 	["{item:724}: ingredients"] = "{item:724} : ingrédients",
-	-- {npc:547} Great Goretusk · {zone:1436} Westfall
-	["{npc:547} (35%), Goretusk (34%) in {zone:1436}, or wherever the arrow points"] = "{npc:547} (35%), Broche-tripes (34%) ({zone:1436}), ou là où pointe la flèche",
+	-- {npc:547} Great Goretusk · {npc:157} Goretusk · {zone:1436} Westfall
+	["{npc:547} (35%), {npc:157} (34%) in {zone:1436}, or wherever the arrow points"] = "{npc:547} (35%), {npc:157} (34%) ({zone:1436}), ou là où pointe la flèche",
 
 	-- Step 18: Goretusk Liver Pie (50-100)
 	-- {item:724} Goretusk Liver Pie · {object:29784} Basic Campfire · {skill:185} Cooking
@@ -159,8 +160,8 @@ return {
 	-- Step 35: Crispy Lizard Tail: ingredients
 	-- {item:5479} Crispy Lizard Tail
 	["{item:5479}: ingredients"] = "{item:5479} : ingrédients",
-	-- {zone:1413} The Barrens
-	["Thunderhead (59%), Owatanka (35%) in {zone:1413}, or wherever the arrow points"] = "Tête-tonnerre (59%), Owatanka (35%) ({zone:1413}), ou là où pointe la flèche",
+	-- {npc:3239} Thunderhead · {zone:1413} The Barrens
+	["{npc:3239} (59%), Owatanka (35%) in {zone:1413}, or wherever the arrow points"] = "{npc:3239} (59%), Owatanka (35%) ({zone:1413}), ou là où pointe la flèche",
 
 	-- Step 36: Crispy Lizard Tail (100-125)
 	-- {item:5479} Crispy Lizard Tail · {object:29784} Basic Campfire · {skill:185} Cooking
@@ -266,8 +267,8 @@ return {
 	["Giant Eggs drop from the Ironbeak owls of {zone:1448}."] = "Les Oeufs géants sont laissés par les chouettes Bec-de-fer de {zone:1448}.",
 
 	-- Step 67: Zesty Clam Meat
-	-- {item:7974} Zesty Clam Meat
-	["{item:7974} has no drop data: buy it at the Gadgetzan Auction House, next to Dirge, or open clams looted from coastal creatures."] = "{item:7974} n'a pas de données de butin : achetez-la à l'hôtel des ventes de Gadgetzan, à côté de Dirge, ou ouvrez les palourdes ramassées sur les créatures côtières.",
+	-- {item:7974} Zesty Clam Meat · {npc:8125} Dirge Quikcleave
+	["{item:7974} has no drop data: buy it at the Gadgetzan Auction House, next to {npc:8125}, or open clams looted from coastal creatures."] = "{item:7974} n'a pas de données de butin : achetez-la à l'hôtel des ventes de Gadgetzan, à côté de {npc:8125}, ou ouvrez les palourdes ramassées sur les créatures côtières.",
 
 	-- Step 68: Dirge Quikcleave
 	-- {skill:185} Cooking

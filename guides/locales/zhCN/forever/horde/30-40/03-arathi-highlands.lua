@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (simplified) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (simplified) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Fly to Grom'gol
@@ -46,7 +47,8 @@ return {
 	["The violet shards glow just off the road a short way west of {area:321}."] = "紫色碎片在{area:321}西边不远处的路旁发光。",
 
 	-- Step 8: Hammerfall
-	["The orc stronghold at the eastern end of the road. Urda, the wind rider master, stands by the gate."] = "道路东端的兽人要塞。双足飞龙管理员尤尔达站在大门旁。",
+	-- {npc:2851} Urda
+	["The orc stronghold at the eastern end of the road. {npc:2851}, the wind rider master, stands by the gate."] = "道路东端的兽人要塞。双足飞龙管理员{npc:2851}站在大门旁。",
 
 	-- Step 9: Highland raptors
 	["Highland raptors"] = "高地迅猛龙",
@@ -137,8 +139,8 @@ return {
 	["{quest:1106}: Fizzle's letter from the {area:439}"] = "{quest:1106}：来自{area:439}的菲兹尔的信",
 
 	-- Step 30: The Dustbowl
-	-- {area:340} Kargath
-	["Ride west along the road; Lotwil's camp sits in the Dustbowl halfway to {area:340}."] = "沿道路向西骑行；鲁特维尔的营地在前往{area:340}半途的漫尘盆地。",
+	-- {npc:2921} Lotwil Veriatus · {area:1878} The Dustbowl · {area:340} Kargath
+	["Ride west along the road; {npc:2921}'s camp sits in the {area:1878} halfway to {area:340}."] = "沿道路向西骑行；{npc:2921}的营地在前往{area:340}半途的{area:1878}。",
 
 	-- Step 31: Kargath
 	-- {area:340} Kargath
@@ -149,19 +151,22 @@ return {
 	-- Step 32: Lesser Rock Elementals
 	-- plural, as words: Lesser Rock Elementals = {npc:2735} Lesser Rock Elemental
 	["Lesser Rock Elementals"] = "次级石元素",
+	-- {npc:2921} Lotwil Veriatus · {npc:6868} Jarkal Mossmeld
 	-- plural, as words: Rock Elemental Shards = {item:7848} Rock Elemental Shard
-	["The small elementals drift across the flats just west of Lotwil's camp. Every rock elemental in the zone can drop Jarkal's Rock Elemental Shards: keep them."] = "小型元素在鲁特维尔营地正西的平地上飘荡。这个地区的每个石元素都可能掉落加卡尔要的石元素的碎片：留着它们。",
+	["The small elementals drift across the flats just west of {npc:2921}'s camp. Every rock elemental in the zone can drop {npc:6868}'s Rock Elemental Shards: keep them."] = "小型元素在{npc:2921}营地正西的平地上飘荡。这个地区的每个石元素都可能掉落{npc:6868}要的石元素的碎片：留着它们。",
 
 	-- Step 34: Rock Elementals
 	-- plural, as words: Rock Elementals = {npc:92} Rock Elemental
 	["Rock Elementals"] = "石元素",
+	-- {area:1878} The Dustbowl
 	-- plural, as words: Rock Elementals = {npc:92} Rock Elemental
-	["The bigger Rock Elementals stand on the slopes north-west of the Dustbowl; each one drops a slab."] = "更大的{npc:92}站在漫尘盆地西北方的山坡上；每个都掉落一块石板。",
+	["The bigger Rock Elementals stand on the slopes north-west of the {area:1878}; each one drops a slab."] = "更大的{npc:92}站在{area:1878}西北方的山坡上；每个都掉落一块石板。",
 
 	-- Step 36: Coyotes and buzzards
 	["Coyotes and buzzards"] = "山狗和秃鹫",
+	-- {area:1878} The Dustbowl
 	-- plural, as words: Elder Crag Coyotes = {npc:2729} Elder Crag Coyote · Giant Buzzards = {npc:2831} Giant Buzzard
-	["The Elder Crag Coyotes and Giant Buzzards roam the basin south of the Dustbowl. Coyotes drop both the jawbones and the fangs; only the buzzards drop wings and gizzards."] = "{npc:2729}和{npc:2831}在漫尘盆地南边的盆地中游荡。山狗掉落颚骨和尖牙；只有秃鹫掉落翅膀和胃。",
+	["The Elder Crag Coyotes and Giant Buzzards roam the basin south of the {area:1878}. Coyotes drop both the jawbones and the fangs; only the buzzards drop wings and gizzards."] = "{npc:2729}和{npc:2831}在{area:1878}南边的盆地中游荡。山狗掉落颚骨和尖牙；只有秃鹫掉落翅膀和胃。",
 
 	-- Step 37: Greater Rock Elementals
 	-- plural, as words: Greater Rock Elementals = {npc:2736} Greater Rock Elemental
@@ -187,7 +192,8 @@ return {
 	["Theldurin sits among the dwarven ruins at {area:345}, south of the {area:1877}."] = "塞尔杜林坐在{area:1877}南边{area:345}的矮人废墟中。",
 
 	-- Step 43: Valley of Fangs
-	["Follow the road north; Martek's camp is on the way."] = "沿道路向北；马特克的营地就在路上。",
+	-- {npc:4618} Martek the Exiled
+	["Follow the road north; {npc:4618}'s camp is on the way."] = "沿道路向北；{npc:4618}的营地就在路上。",
 
 	-- Step 44: Ancient Chest
 	-- {area:1517} Uldaman
@@ -212,13 +218,9 @@ return {
 	-- {area:1638} Thunder Bluff · {zone:1454} Orgrimmar · {npc:3033} Turak Runetotem · {area:1639} Elder Rise · {npc:246344} Alodan the Hopeful · {area:380} Crossroads
 	["Your trainer is in {area:1638}, one flight from {zone:1454}: {npc:3033} (Druids) on {area:1639}, {npc:246344} (Paladins). Fly on to the {area:380} from there."] = "你的训练师在{area:1638}，从{zone:1454}飞一次即到：{area:1639}的{npc:3033}（德鲁伊），{npc:246344}（圣骑士）。然后从那里飞往{area:380}。",
 
-	-- Step 50: The Crossroads
-	-- {area:380} Crossroads
-	["The {area:380}"] = "{area:380}",
-
 	-- Step 51: Regthar Deathgate
-	-- {area:380} Crossroads · {area:386} Forgotten Pools
-	["Ride north up the road from the {area:380} to the {area:386}; Regthar keeps watch on the rise above the water."] = "从{area:380}沿道路向北骑到{area:386}；雷戈萨在水边的高地上放哨。",
+	-- {area:380} Crossroads · {area:386} Forgotten Pools · {npc:3389} Regthar Deathgate
+	["Ride north up the road from the {area:380} to the {area:386}; {npc:3389} keeps watch on the rise above the water."] = "从{area:380}沿道路向北骑到{area:386}；{npc:3389}在水边的高地上放哨。",
 	-- {npc:5395} Felgur Twocuts · {zone:1443} Desolace
 	["for {npc:5395} in {zone:1443}, in the next guide"] = "交给{zone:1443}的{npc:5395}，在下一份指南中",
 
@@ -235,8 +237,8 @@ return {
 	["Ride south along the coast from {area:392} to {area:720}. {npc:6236} stands by the arena: step on the grate to start the fight; the challengers come one at a time, then {npc:6238} (33)."] = "从{area:392}沿海岸向南骑到{area:720}。{npc:6236}站在竞技场旁：踏上格栅开始战斗；挑战者依次上场，然后是{npc:6238}（33级）。",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["North-east of {area:321} the Drywhisker kobolds mine the gorge; the Kobolds at the mouth and the Diggers and Surveyors deeper in all drop the Motes of Myzrael."] = "{area:321}东北方，枯须狗头人在峡谷中采矿；峡谷口的枯须狗头人和深处的枯须掘地工、枯须勘探员都会掉落密斯莱尔之尘。",
 	-- ["Ride west along the road; Lotwil's camp sits in the {area:1878} halfway to {area:340}."] = "沿道路向西骑行；鲁特维尔的营地在前往{area:340}半途的{area:1878}。",
 	-- ["The Elder Crag Coyotes and Giant Buzzards roam the basin south of the {area:1878}. Coyotes drop both the jawbones and the fangs; only the buzzards drop wings and gizzards."] = "老峭壁山狗和巨型秃鹫在{area:1878}南边的盆地中游荡。山狗掉落颚骨和尖牙；只有秃鹫掉落翅膀和胃。",
 	-- ["The bigger Rock Elementals stand on the slopes north-west of the {area:1878}; each one drops a slab."] = "更大的石元素站在{area:1878}西北方的山坡上；每个都掉落一块石板。",
+	-- ["The {area:380}"] = "{area:380}",
 }

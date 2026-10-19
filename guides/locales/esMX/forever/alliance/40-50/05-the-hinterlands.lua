@@ -3,16 +3,21 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Spanish (Latin America) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Spanish (Latin America) words instead.
 -- The comments are rewritten by sync.
 return {
+	-- Step 1: Aerie Peak
+	-- {npc:7744} Innkeeper Thulfram
+	["{npc:7744}: the last guide binds here, so this usually ticks at once"] = "{npc:7744}: la guía anterior te vincula aquí, así que esto suele marcarse de inmediato",
+
 	-- Step 2: The Altar of Zul
-	-- {area:355} Altar of Zul · {npc:8636} Morta'gya the Keeper
-	["Ride south-east to the {area:355}, the stepped Vilebranch temple in the south of the Hinterlands, and climb to the top. Qiaga and {npc:8636} (elite, 50) stand up there: touch the top and come straight back down."] = "Cabalga al sureste hasta {area:355}, el templo escalonado Vilrama en el sur de Tierras del Interior, y sube a la cima. Qiaga la Vigilante y {npc:8636} (élite, 50) están allí arriba: toca la cima y baja enseguida.",
+	-- {area:355} Altar of Zul · {zone:1425} The Hinterlands · {npc:8636} Morta'gya the Keeper
+	["Ride south-east to the {area:355}, the stepped Vilebranch temple in the south of the {zone:1425}, and climb to the top. Qiaga and {npc:8636} (elite, 50) stand up there: touch the top and come straight back down."] = "Cabalga al sureste hasta {area:355}, el templo escalonado Vilrama en el sur de {zone:1425}, y sube a la cima. Qiaga la Vigilante y {npc:8636} (élite, 50) están allí arriba: toca la cima y baja enseguida.",
 
 	-- Step 3: Skulk Rock
-	-- {area:351} Skulk Rock
+	-- {area:351} Skulk Rock · {zone:1425} The Hinterlands
 	-- plural, as words: Green Sludges = {npc:2655} Green Sludge · Jade Oozes = {npc:2656} Jade Ooze
-	["Ride north to {area:351} in the middle of the Hinterlands. Green Sludges and Jade Oozes crawl all around it."] = "Cabalga al norte hasta {area:351}, en el centro de Tierras del Interior. Los Lodos verdes ({npc:2655}) y los Mocos de jade ({npc:2656}) se arrastran por todo el lugar.",
+	["Ride north to {area:351} in the middle of the {zone:1425}. Green Sludges and Jade Oozes crawl all around it."] = "Cabalga al norte hasta {area:351}, en el centro de {zone:1425}. Los Lodos verdes ({npc:2655}) y los Mocos de jade ({npc:2656}) se arrastran por todo el lugar.",
 
 	-- Step 4: Aerie Peak
 	-- {area:348} Aerie Peak
@@ -35,8 +40,8 @@ return {
 	["Ride on east along the road to the keep first: the {item:6091} expires an hour after {area:42}, and the bloodmages' beasts take longer than that."] = "Primero sigue al este por el camino hasta el castillo: la {item:6091} caduca una hora después de {area:42}, y las bestias de los magos de sangre llevan más tiempo.",
 	-- {quest:2990} Thadius Grimshade
 	["{quest:2990}, at the top of the keep"] = "{quest:2990}, en lo alto del castillo",
-	-- {item:9471} Nekrum's Medallion · {area:978} Zul'Farrak
-	["Thadius' next task, {item:9471}, is a {area:978} quest: skip it."] = "La siguiente tarea de Thadius Sombramacabra, {item:9471}, es una misión de {area:978}: omítela.",
+	-- {npc:8022} Thadius Grimshade · {item:9471} Nekrum's Medallion · {area:978} Zul'Farrak
+	["{npc:8022}' next task, {item:9471}, is a {area:978} quest: skip it."] = "La siguiente tarea de {npc:8022}, {item:9471}, es una misión de {area:978}: omítela.",
 
 	-- Step 8: Boars and basilisks
 	["Boars and basilisks"] = "Jabalíes y basiliscos",
@@ -72,8 +77,8 @@ return {
 	-- {area:144} Thelsamar · {area:150} Menethil Harbor · {area:442} Auberdine · {area:702} Rut'theran Village
 	["Fly from {area:144} to {area:150}, take the boat to {area:442} and fly to {area:702}."] = "Vuela de {area:144} a {area:150}, toma el barco a {area:442} y vuela a {area:702}.",
 	["the book on her table"] = "el libro de su mesa",
-	-- {zone:1446} Tanaris
-	["Daryn's next errand goes to {zone:1446}: skip it."] = "El siguiente encargo de Daryn Brisela va a {zone:1446}: omítelo.",
+	-- {npc:7907} Daryn Lightwind · {zone:1446} Tanaris
+	["{npc:7907}'s next errand goes to {zone:1446}: skip it."] = "El siguiente encargo de {npc:7907} va a {zone:1446}: omítelo.",
 	-- {npc:7916} Erelas Ambersky · {zone:1428} Burning Steppes
 	["{npc:7916}: keep it, the feathers come at the end of the {zone:1428} guide"] = "{npc:7916}: guárdala, las plumas llegan al final de la guía de {zone:1428}",
 

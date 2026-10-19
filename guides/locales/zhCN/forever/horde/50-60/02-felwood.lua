@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (simplified) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (simplified) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Fly to the Undercity
@@ -12,8 +13,8 @@ return {
 	["From {area:2268}'s flight master, fly to the {area:1497}."] = "从{area:2268}的飞行管理员处飞往{area:1497}。",
 
 	-- Step 2: Janice Felstone
-	-- {area:1497} Undercity · {zone:1420} Tirisfal Glades · {area:152} Bulwark
-	["Leave the {area:1497} and ride east along the road through {zone:1420}, past the {area:152}. Felstone Farm is the first farm along the road; Janice waits in the house."] = "离开{area:1497}，沿道路向东穿过{zone:1420}，经过{area:152}。费尔斯通农场是路边的第一座农场；詹妮丝在房子里等候。",
+	-- {area:1497} Undercity · {zone:1420} Tirisfal Glades · {area:152} Bulwark · {npc:10778} Janice Felstone
+	["Leave the {area:1497} and ride east along the road through {zone:1420}, past the {area:152}. Felstone Farm is the first farm along the road; {npc:10778} waits in the house."] = "离开{area:1497}，沿道路向东穿过{zone:1420}，经过{area:152}。费尔斯通农场是路边的第一座农场；{npc:10778}在房子里等候。",
 	-- {object:175894} Janice's Parcel
 	["{object:175894}, beside the house"] = "{object:175894}，在房子旁边",
 	-- {npc:10781} Royal Overseer Bauhaus · {area:1497} Undercity
@@ -35,8 +36,8 @@ return {
 	["He camps by the {area:202}, south-east of {area:200}."] = "他在{area:200}东南的{area:202}旁扎营。",
 
 	-- Step 6: Sorrow Hill
-	-- {area:202} Writhing Haunt · {area:197} Sorrow Hill · {npc:10936} Joseph Redpath
-	["Ride south past the {area:202} to {area:197}; Marlene's house stands by the road, and {npc:10936}'s monument is in the graveyard behind it. Kill the Diseased Wolves you meet in the fields on the way."] = "向南骑过{area:202}前往{area:197}；玛莱恩的房子在路旁，{npc:10936}的纪念碑在房后的墓地里。路上把在田野里遇到的生病的狼都杀掉。",
+	-- {area:202} Writhing Haunt · {area:197} Sorrow Hill · {npc:10927} Marlene Redpath · {npc:10936} Joseph Redpath
+	["Ride south past the {area:202} to {area:197}; {npc:10927}'s house stands by the road, and {npc:10936}'s monument is in the graveyard behind it. Kill the Diseased Wolves you meet in the fields on the way."] = "向南骑过{area:202}前往{area:197}；{npc:10927}的房子在路旁，{npc:10936}的纪念碑在房后的墓地里。路上把在田野里遇到的生病的狼都杀掉。",
 	-- {npc:10840} Argent Officer Pureheart
 	["{npc:10840}, at the graveyard's south end"] = "{npc:10840}，在墓地南端",
 	-- {quest:5142} Little Pamela · {area:2262} Darrowshire
@@ -69,14 +70,14 @@ return {
 	["Keep the branch: {npc:5770} is in {zone:1456}."] = "留着树枝：{npc:5770}在{zone:1456}。",
 
 	-- Step 14: Tirion Fordring
-	-- {area:2620} Thondroril River · {zone:1423} Eastern Plaguelands
-	["Ride north along the eastern hills; Tirion lives in a small house by the {area:2620}, at the border with the {zone:1423}."] = "沿东边的山丘向北骑行；提里奥住在{area:2620}旁的一间小房子里，就在与{zone:1423}的交界处。",
-	-- {zone:1423} Eastern Plaguelands
-	["Tirion's hunts are in the {zone:1423}: keep them for later."] = "提里奥的狩猎任务在{zone:1423}：留到之后。",
+	-- {npc:1855} Tirion Fordring · {area:2619} Thondroril River · {zone:1423} Eastern Plaguelands
+	["Ride north along the eastern hills; {npc:1855} lives in a small house by the {area:2619}, at the border with the {zone:1423}."] = "沿东边的山丘向北骑行；{npc:1855}住在{area:2619}旁的一间小房子里，就在与{zone:1423}的交界处。",
+	-- {npc:1855} Tirion Fordring · {zone:1423} Eastern Plaguelands
+	["{npc:1855}'s hunts are in the {zone:1423}: keep them for later."] = "{npc:1855}的狩猎任务在{zone:1423}：留到之后。",
 
 	-- Step 15: Kirsta Deepshadow
-	-- {area:192} Northridge Lumber Camp
-	["Ride west to the {area:192}; Kirsta hides on the hill north-east of it."] = "向西骑往{area:192}；科尔斯塔躲在它东北的山上。",
+	-- {area:192} Northridge Lumber Camp · {npc:11610} Kirsta Deepshadow
+	["Ride west to the {area:192}; {npc:11610} hides on the hill north-east of it."] = "向西骑往{area:192}；{npc:11610}躲在它东北的山上。",
 
 	-- Step 16: Scarlet Crusade
 	["Scarlet Crusade"] = "血色十字军",
@@ -85,12 +86,13 @@ return {
 
 	-- Step 18: Radley and Durgen
 	["Radley and Durgen"] = "莱德雷和杜尔根",
-	-- {npc:11613} Huntsman Radley · {npc:11611} Cavalier Durgen · {area:190} Hearthglen
-	["{npc:11613} stands east of the lumber camp; {npc:11611} guards the road north-east of Kirsta, toward {area:190}."] = "{npc:11613}站在伐木场东边；{npc:11611}守着科尔斯塔东北、通往{area:190}的道路。",
+	-- {npc:11613} Huntsman Radley · {npc:11611} Cavalier Durgen · {npc:11610} Kirsta Deepshadow · {area:190} Hearthglen
+	["{npc:11613} stands east of the lumber camp; {npc:11611} guards the road north-east of {npc:11610}, toward {area:190}."] = "{npc:11613}站在伐木场东边；{npc:11611}守着{npc:11610}东北、通往{area:190}的道路。",
 
 	-- Step 20: Northridge Lumber Camp
+	-- {npc:11610} Kirsta Deepshadow
 	-- plural, as words: Scarlet Knights = {npc:1833} Scarlet Knight
-	["Kirsta's last task needs level 53. The Scarlet Knights and Magi (54-55) working the lumber camp just south-west of her are the closest camp."] = "科尔斯塔的最后一个任务需要53级。在她西南不远的伐木场干活的血色骑士和血色占星师（54-55级）是最近的刷怪点。",
+	["{npc:11610}'s last task needs level 53. The Scarlet Knights and Magi (54-55) working the lumber camp just south-west of her are the closest camp."] = "{npc:11610}的最后一个任务需要53级。在她西南不远的伐木场干活的血色骑士和血色占星师（54-55级）是最近的刷怪点。",
 	-- {area:192} Northridge Lumber Camp · {zone:1422} Western Plaguelands
 	-- plural, as words: Scarlet Knights = {npc:1833} Scarlet Knight
 	["grind on Scarlet Knights at {area:192}, {zone:1422}"] = "在{zone:1422}的{area:192}刷血色骑士",
@@ -99,12 +101,11 @@ return {
 	-- {area:190} Hearthglen
 	["{area:190}'s Scarlets are level 58-60. Ride in to the high point marked on your map, look over the town, and get out."] = "{area:190}的血色十字军是58-60级。骑到地图上标记的高处，俯瞰城镇，然后离开。",
 
-	-- Step 24: The Bulwark
-	-- {area:152} Bulwark
-	["The {area:152}"] = "{area:152}",
+	-- Step 24: Bulwark
 	-- {area:152} Bulwark
 	["Ride south-west past Felstone Farm and follow the road west back to the {area:152}."] = "向西南骑过费尔斯通农场，沿道路向西回到{area:152}。",
-	["Derrington's watchtowers, Vandis' cauldron and Mickey's barrel are done on a later visit: keep them."] = "德灵顿的哨塔、范蒂丝的瘟疫之锅和米克的木桶留到之后再来时完成：留着它们。",
+	-- {npc:11615} Mickey Levine
+	["Derrington's watchtowers, Vandis' cauldron and {npc:11615}'s barrel are done on a later visit: keep them."] = "德灵顿的哨塔、范蒂丝的瘟疫之锅和{npc:11615}的木桶留到之后再来时完成：留着它们。",
 
 	-- Step 25: To Felwood
 	-- {zone:1448} Felwood
@@ -143,8 +144,8 @@ return {
 	-- Step 32: The Jaedenar moonwell
 	-- {area:1763} Jaedenar
 	["The {area:1763} moonwell"] = "{area:1763}的月亮井",
-	-- {area:1763} Jaedenar
-	["Back north to {area:1763}. Fill Greta's canteen at the corrupted moonwell in the middle of the southern camp."] = "向北回到{area:1763}。在南部营地中央被腐化的月亮井装满格雷塔的水壶。",
+	-- {area:1763} Jaedenar · {npc:10922} Greta Mosshoof
+	["Back north to {area:1763}. Fill {npc:10922}'s canteen at the corrupted moonwell in the middle of the southern camp."] = "向北回到{area:1763}。在南部营地中央被腐化的月亮井装满{npc:10922}的水壶。",
 
 	-- Step 33: Rakaiah
 	-- {npc:11018} Arko'narin · {npc:9518} Rakaiah · {area:1763} Jaedenar · {npc:11020} Remains of Trey Lightforge
@@ -158,13 +159,14 @@ return {
 
 	-- Step 35: The Jadefire moonwell
 	["The Jadefire moonwell"] = "碧火月亮井",
-	-- {area:1763} Jaedenar
-	["Ride back south past {area:1763} to the corrupted moonwell of the Jadefire satyrs and fill Winna's flasket there."] = "向南骑过{area:1763}，前往碧火萨特那口被腐化的月亮井，在那里装满温娜的小瓶。",
+	-- {area:1763} Jaedenar · {npc:9996} Winna Hazzard
+	["Ride back south past {area:1763} to the corrupted moonwell of the Jadefire satyrs and fill {npc:9996}'s flasket there."] = "向南骑过{area:1763}，前往碧火萨特那口被腐化的月亮井，在那里装满{npc:9996}的小瓶。",
 
-	-- Step 37: Winna's kitten
-	["Winna's kitten"] = "温娜的小猫",
-	-- {npc:10042} Corrupted Saber
-	["Take the kitten to the same moonwell and release it there; once it has turned into a {npc:10042}, bring it back to Winna and click on it to hand it over."] = "把小猫带到同一口月亮井并在那里放出它；它变成{npc:10042}后，把它带回温娜那里，点击它交给她。",
+	-- Step 37: Winna Hazzard's kitten
+	-- {npc:9996} Winna Hazzard
+	["{npc:9996}'s kitten"] = "{npc:9996}的小猫",
+	-- {npc:10042} Corrupted Saber · {npc:9996} Winna Hazzard
+	["Take the kitten to the same moonwell and release it there; once it has turned into a {npc:10042}, bring it back to {npc:9996} and click on it to hand it over."] = "把小猫带到同一口月亮井并在那里放出它；它变成{npc:10042}后，把它带回{npc:9996}那里，点击它交给她。",
 	["Jadefire moonwell"] = "碧火月亮井",
 
 	-- Step 39: Shatter Scar Vale
@@ -226,5 +228,5 @@ return {
 	["Walk into the {area:1769} tunnel beside {npc:15395} and never attack the Timbermaw furbolgs inside. The tunnel opens into {zone:1452}; follow the road east to {area:2255}, the goblin town where the next guide starts."] = "走进{npc:15395}旁边的{area:1769}隧道，千万别攻击里面的木喉熊怪。隧道出口在{zone:1452}；沿道路向东前往地精城镇{area:2255}，下一个指南从那里开始。",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["East of {area:1997}, the cratered vale where the Entropic Beasts and Horrors roam. Kill two of each, then walk to each of the three fel-water craters."] = "在{area:1997}东边，是热能野兽和热能恐兽游荡的坑洼山谷。每种各杀两只，然后走到三个邪能水坑的每一个那里。",
+	-- ["The {area:152}"] = "{area:152}",
 }

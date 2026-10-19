@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in German (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in German words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -12,13 +13,16 @@ return {
 	-- Step 1: Astranaar
 	-- {area:392} Ratchet · {area:415} Astranaar
 	["You start in {area:392}, where the previous guide hearthed you. Fly to {area:415}."] = "Du beginnst in {area:392}, wohin dich der vorige Guide per Ruhestein gebracht hat. Flieg nach {area:415}.",
+	-- {npc:6791} Innkeeper Wiley
+	["{npc:6791}: the last guide hearths you here, so this usually ticks at once"] = "{npc:6791}: Der letzte Guide bringt dich per Ruhestein hierher, daher ist das meist sofort abgehakt",
 
 	-- Step 2: The Emerald Sanctuary
 	-- {area:2479} Emerald Sanctuary
 	["The {area:2479}"] = "{area:2479}",
 	-- {area:415} Astranaar · {zone:1448} Felwood
 	["Ride north out of {area:415} into {zone:1448} to the druids' camp on the road just past the border."] = "Reite nach Norden aus {area:415} hinaus in den {zone:1448} zum Lager der Druiden an der Straße gleich hinter der Grenze.",
-	["Wait a moment for Eridan"] = "Warte kurz auf Eridan",
+	-- {npc:9116} Eridan Bluewind
+	["Wait a moment for {npc:9116}"] = "Warte kurz auf {npc:9116}",
 	-- {npc:10924} Ivy Leafrunner · {zone:1452} Winterspring
 	["{npc:10924}: ends in {zone:1452}, keep it"] = "{npc:10924}: endet in {zone:1452}, behalte es",
 
@@ -75,13 +79,13 @@ return {
 	["Ride south-west to {npc:7771}'s camp at the {area:1938}."] = "Reite nach Südwesten zum Lager von {npc:7771} bei {area:1938}.",
 
 	-- Step 13: The Slithering Scar
-	-- {npc:10041} Gorishi Hive Queen
-	["Take the road west down into the crater and ride to the Slithering Scar, the silithid cave in the south. The {npc:10041} waits in its deepest chamber."] = "Nimm die Straße nach Westen hinab in den Krater und reite zur Wuchernden Narbe, der Silithidenhöhle im Süden. {npc:10041} wartet in ihrer tiefsten Kammer.",
+	-- {area:540} The Slithering Scar · {npc:10041} Gorishi Hive Queen
+	["Take the road west down into the crater and ride to the {area:540}, the silithid cave in the south. The {npc:10041} waits in its deepest chamber."] = "Nimm die Straße nach Westen hinab in den Krater und reite zu {area:540}, der Silithidenhöhle im Süden. {npc:10041} wartet in ihrer tiefsten Kammer.",
 
 	-- Step 14: Fire Plume Ridge
-	-- {area:537} Fire Plume Ridge · {item:14644} Skeleton Key Mold
+	-- {area:537} Fire Plume Ridge · {item:14644} Skeleton Key Mold · {npc:9616} Laris Geardawdle
 	-- plural, as words: Thorium Bars = {item:12359} Thorium Bar · Empty Pure Sample Jars = {item:11953} Empty Pure Sample Jar · Primal Oozes = {npc:6557} Primal Ooze
-	["Climb {area:537} in the middle of the crater and use the {item:14644} by the lava lake at the top, with two Thorium Bars in your bags. Fill Laris's Empty Pure Sample Jars on the Primal Oozes in the pools around the ridge."] = "Klettere auf den {area:537} in der Mitte des Kraters und benutze {item:14644} am Lavasee oben, mit zwei Thoriumbarren im Gepäck. Füll Laris' Leere reine Probenkrüge an den Urzeitbrühschlammern in den Tümpeln um den Grat.",
+	["Climb {area:537} in the middle of the crater and use the {item:14644} by the lava lake at the top, with two Thorium Bars in your bags. Fill {npc:9616}'s Empty Pure Sample Jars on the Primal Oozes in the pools around the ridge."] = "Klettere auf den {area:537} in der Mitte des Kraters und benutze {item:14644} am Lavasee oben, mit zwei Thoriumbarren im Gepäck. Füll {npc:9616}' Leere reine Probenkrüge an den Urzeitbrühschlammern in den Tümpeln um den Grat.",
 	["Use the jars on slain oozes"] = "Benutze die Krüge an getöteten Brühschlammern",
 
 	-- Step 15: Marshal's Refuge
@@ -100,7 +104,8 @@ return {
 	-- Step 17: Cenarion Hold
 	-- {area:3425} Cenarion Hold
 	["Follow the road south-west out of the pass to {area:3425}."] = "Folge der Straße aus dem Pass nach Südwesten zur {area:3425}.",
-	["Calandrath, the innkeeper"] = "Calandrath, der Gastwirt",
+	-- {npc:15174} Calandrath
+	["{npc:15174}, the innkeeper"] = "{npc:15174}, der Gastwirt",
 	-- {npc:17082} Rifleman Torrig
 	["{npc:17082}, at the Alliance tents"] = "{npc:17082}, bei den Zelten der Allianz",
 
@@ -139,8 +144,8 @@ return {
 
 	-- Step 24: Bronzebeard's Encampment
 	["Bronzebeard's Encampment"] = "Bronzebeards Lager",
-	-- {npc:15171} Frankal Stonebridge · {npc:15170} Rutgar Glyphshaper
-	["Ride south-west to the dwarves' camp near the southern mountains and question {npc:15171} and {npc:15170}. Noggle's satchel lies in the sand just south-east of the camp."] = "Reite nach Südwesten zum Lager der Zwerge nahe den südlichen Bergen und befrag {npc:15171} und {npc:15170}. Noggles Ranzen liegt im Sand gleich südöstlich des Lagers.",
+	-- {npc:15171} Frankal Stonebridge · {npc:15170} Rutgar Glyphshaper · {npc:15190} Noggle Ficklespragg
+	["Ride south-west to the dwarves' camp near the southern mountains and question {npc:15171} and {npc:15170}. {npc:15190}'s satchel lies in the sand just south-east of the camp."] = "Reite nach Südwesten zum Lager der Zwerge nahe den südlichen Bergen und befrag {npc:15171} und {npc:15170}. {npc:15190}s Ranzen liegt im Sand gleich südöstlich des Lagers.",
 
 	-- Step 25: The Twilight Post
 	-- {area:3098} Twilight Post
@@ -197,11 +202,12 @@ return {
 	["Ride back north to {area:2255} and west along the road to the night elf village."] = "Reite zurück nach Norden nach {area:2255} und die Straße nach Westen zum Nachtelfendorf.",
 
 	-- Step 38: Donova Snowden
-	["Keep west on the road to Donova's camp beside the hot springs."] = "Bleib auf der Straße nach Westen bis zu Donovas Lager neben den heißen Quellen.",
+	-- {npc:9298} Donova Snowden
+	["Keep west on the road to {npc:9298}'s camp beside the hot springs."] = "Bleib auf der Straße nach Westen bis zu {npc:9298}s Lager neben den heißen Quellen.",
 
 	-- Step 39: Umber
-	-- {area:1769} Timbermaw Hold · {zone:1452} Winterspring · {area:493} Moonglade · {area:2361} Nighthaven · {npc:11939} Umber
-	["Take the {area:1769} tunnel from its {zone:1452} mouth, west of Donova, and follow the {area:493} branch to {area:2361}. {npc:11939} studies by the lake shore."] = "Nimm den Tunnel der {area:1769} von seinem Eingang in {zone:1452}, westlich von Donova, und folge dem Abzweig nach {area:493} bis {area:2361}. {npc:11939} forscht am Seeufer.",
+	-- {area:1769} Timbermaw Hold · {zone:1452} Winterspring · {npc:9298} Donova Snowden · {area:493} Moonglade · {area:2361} Nighthaven · {npc:11939} Umber
+	["Take the {area:1769} tunnel from its {zone:1452} mouth, west of {npc:9298}, and follow the {area:493} branch to {area:2361}. {npc:11939} studies by the lake shore."] = "Nimm den Tunnel der {area:1769} von seinem Eingang in {zone:1452}, westlich von {npc:9298}, und folge dem Abzweig nach {area:493} bis {area:2361}. {npc:11939} forscht am Seeufer.",
 
 	-- Step 40: Rabine Saturna
 	-- {npc:11801} Rabine Saturna · {area:2361} Nighthaven · {npc:11939} Umber
@@ -226,8 +232,8 @@ return {
 	["{npc:3516}, atop the {area:1658}"] = "{npc:3516}, oben im {area:1658}",
 
 	-- Step 45: Stormwind
-	-- {area:702} Rut'theran Village · {area:442} Auberdine · {area:17203} Stormwind Harbor · {item:14047} Runecloth
-	["Go back down to {area:702}, take the boat to {area:442} and the boat on to {area:17203}. Bring sixty Silk, sixty Mageweave and sixty {item:14047} for Clavicus: buy what you lack at the Auction House."] = "Geh zurück hinab nach {area:702}, nimm das Boot nach {area:442} und dann das Boot weiter zum {area:17203}. Bring je sechzig Seidenstoff, Magiestoff und {item:14047} für Clavicus mit: Kauf, was dir fehlt, im Auktionshaus.",
+	-- {area:702} Rut'theran Village · {area:442} Auberdine · {area:17203} Stormwind Harbor · {item:14047} Runecloth · {npc:14722} Clavicus Knavingham
+	["Go back down to {area:702}, take the boat to {area:442} and the boat on to {area:17203}. Bring sixty Silk, sixty Mageweave and sixty {item:14047} for {npc:14722}: buy what you lack at the Auction House."] = "Geh zurück hinab nach {area:702}, nimm das Boot nach {area:442} und dann das Boot weiter zum {area:17203}. Bring je sechzig Seidenstoff, Magiestoff und {item:14047} für {npc:14722} mit: Kauf, was dir fehlt, im Auktionshaus.",
 	-- {npc:14722} Clavicus Knavingham · {object:2096} Trade District
 	["{npc:14722}, in the {object:2096}"] = "{npc:14722}, im {object:2096}",
 
@@ -248,9 +254,9 @@ return {
 	["Araj is elite: grouping up is advised."] = "Araj ist Elite: Eine Gruppe wird empfohlen.",
 
 	-- Step 49: Felstone Field
-	-- {area:199} Felstone Field
+	-- {npc:10778} Janice Felstone · {area:199} Felstone Field
 	-- plural, as words: Jabbering Ghouls = {npc:10801} Jabbering Ghoul
-	["Janice's ghost wanders by the farmhouse of {area:199}, west of Andorhal. The Jabbering Ghouls in the field carry the other half of the charm: combine the two halves."] = "Janices Geist wandert beim Bauernhaus von {area:199}, westlich von Andorhal. Die Plappernden Ghule auf dem Feld tragen die andere Hälfte des Talismans: Füg die beiden Hälften zusammen.",
+	["{npc:10778}'s ghost wanders by the farmhouse of {area:199}, west of Andorhal. The Jabbering Ghouls in the field carry the other half of the charm: combine the two halves."] = "{npc:10778}s Geist wandert beim Bauernhaus von {area:199}, westlich von Andorhal. Die Plappernden Ghule auf dem Feld tragen die andere Hälfte des Talismans: Füg die beiden Hälften zusammen.",
 
 	-- Step 50: Northridge Lumber Camp
 	["Ride north up the road to the lumber mill and set the termite barrel down in the middle of it."] = "Reite die Straße nach Norden zum Holzlager und stell das Termitenfass in dessen Mitte ab.",
@@ -258,8 +264,8 @@ return {
 	-- Step 51: Tirion Fordring (optional)
 	-- {npc:1855} Tirion Fordring
 	["{npc:1855} (optional)"] = "{npc:1855} (optional)",
-	-- {quest:5781} Of Forgotten Memories
-	["Tirion lives in a small hut on the border river, north-east of the lumber camp. Hand in {quest:5781} if you finished it."] = "Tirion lebt in einer kleinen Hütte am Grenzfluss, nordöstlich des Holzlagers. Gib {quest:5781} ab, falls du sie abgeschlossen hast.",
+	-- {npc:1855} Tirion Fordring · {quest:5781} Of Forgotten Memories
+	["{npc:1855} lives in a small hut on the border river, north-east of the lumber camp. Hand in {quest:5781} if you finished it."] = "{npc:1855} lebt in einer kleinen Hütte am Grenzfluss, nordöstlich des Holzlagers. Gib {quest:5781} ab, falls du sie abgeschlossen hast.",
 
 	-- Step 52: Scholomance (optional)
 	-- {area:2057} Scholomance
@@ -271,9 +277,9 @@ return {
 
 	-- Step 53: Grind to 60
 	["Grind to 60"] = "Grinde bis 60",
-	-- {area:2627} Terrordale
+	-- {npc:1855} Tirion Fordring · {area:2627} Terrordale
 	-- plural, as words: Terrordale Spirits = {npc:14564} Terrordale Spirit
-	["Cross the river east of Tirion into {area:2627}. The Terrordale Spirits haunt the woods there."] = "Überquere den Fluss östlich von Tirion nach {area:2627}. Die Schreckenstalgeister spuken dort in den Wäldern.",
+	["Cross the river east of {npc:1855} into {area:2627}. The Terrordale Spirits haunt the woods there."] = "Überquere den Fluss östlich von {npc:1855} nach {area:2627}. Die Schreckenstalgeister spuken dort in den Wäldern.",
 	-- {npc:14564} Terrordale Spirit · {area:2627} Terrordale · {zone:1423} Eastern Plaguelands
 	["grind on {npc:14564} at {area:2627}, {zone:1423}"] = "Grinde an {npc:14564} in {area:2627}, {zone:1423}",
 

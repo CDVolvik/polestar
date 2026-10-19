@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Portuguese (Brazil) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Portuguese (Brazil) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Learn Cooking
@@ -62,9 +63,9 @@ return {
 
 	-- Step 15: Journeyman Cooking
 	-- {skill:185} Cooking
-	["Journeyman {skill:185}"] = "{skill:185} Artesão",
+	["Journeyman {skill:185}"] = "{skill:185} (Profissional)",
 	-- {skill:185} Cooking
-	["Journeyman {skill:185} raises the cap to 150; it needs skill 50 and character level 10: the arrow picks the nearest {skill:185} trainer of your faction."] = "{skill:185} Artesão eleva o limite para 150; requer perícia 50 e nível de personagem 10: a seta escolhe o instrutor de {skill:185} mais próximo da sua facção.",
+	["Journeyman {skill:185} raises the cap to 150; it needs skill 50 and character level 10: the arrow picks the nearest {skill:185} trainer of your faction."] = "{skill:185} Profissional eleva o limite para 150; requer perícia 50 e nível de personagem 10: a seta escolhe o instrutor de {skill:185} mais próximo da sua facção.",
 
 	-- Step 16: Goretusk Liver Pie: shopping
 	-- {item:724} Goretusk Liver Pie
@@ -73,8 +74,8 @@ return {
 	-- Step 17: Goretusk Liver Pie: ingredients
 	-- {item:724} Goretusk Liver Pie
 	["{item:724}: ingredients"] = "{item:724}: ingredientes",
-	-- {npc:547} Great Goretusk · {zone:1436} Westfall
-	["{npc:547} (35%), Goretusk (34%) in {zone:1436}, or wherever the arrow points"] = "{npc:547} (35%), Goretusco (34%) em {zone:1436}, ou onde a seta apontar",
+	-- {npc:547} Great Goretusk · {npc:157} Goretusk · {zone:1436} Westfall
+	["{npc:547} (35%), {npc:157} (34%) in {zone:1436}, or wherever the arrow points"] = "{npc:547} (35%), {npc:157} (34%) em {zone:1436}, ou onde a seta apontar",
 
 	-- Step 18: Goretusk Liver Pie (50-100)
 	-- {item:724} Goretusk Liver Pie · {object:29784} Basic Campfire · {skill:185} Cooking
@@ -159,8 +160,8 @@ return {
 	-- Step 35: Crispy Lizard Tail: ingredients
 	-- {item:5479} Crispy Lizard Tail
 	["{item:5479}: ingredients"] = "{item:5479}: ingredientes",
-	-- {zone:1413} The Barrens
-	["Thunderhead (59%), Owatanka (35%) in {zone:1413}, or wherever the arrow points"] = "Cabeça-de-trovão (59%), Owatanka (35%) em {zone:1413}, ou onde a seta apontar",
+	-- {npc:3239} Thunderhead · {zone:1413} The Barrens
+	["{npc:3239} (59%), Owatanka (35%) in {zone:1413}, or wherever the arrow points"] = "{npc:3239} (59%), Owatanka (35%) em {zone:1413}, ou onde a seta apontar",
 
 	-- Step 36: Crispy Lizard Tail (100-125)
 	-- {item:5479} Crispy Lizard Tail · {object:29784} Basic Campfire · {skill:185} Cooking
@@ -168,11 +169,11 @@ return {
 
 	-- Step 37: Expert Cooking
 	-- {skill:185} Cooking
-	["Expert {skill:185}"] = "{skill:185} Especialista",
+	["Expert {skill:185}"] = "{skill:185} (Perito)",
 	-- {skill:185} Cooking · {item:16072} Expert Cookbook
-	["Expert {skill:185} raises the cap to 225; it needs skill 125 and character level 20: it is a book, {item:16072}; the arrow picks its nearest seller for your faction. Buy it and read it."] = "{skill:185} Especialista eleva o limite para 225; requer perícia 125 e nível de personagem 20: é um livro, {item:16072}; a seta escolhe o vendedor mais próximo da sua facção. Compre-o e leia-o.",
+	["Expert {skill:185} raises the cap to 225; it needs skill 125 and character level 20: it is a book, {item:16072}; the arrow picks its nearest seller for your faction. Buy it and read it."] = "{skill:185} (Perito) eleva o limite para 225; requer perícia 125 e nível de personagem 20: é um livro, {item:16072}; a seta escolhe o vendedor mais próximo da sua facção. Compre-o e leia-o.",
 	-- {item:16072} Expert Cookbook · {skill:185} Cooking
-	["Buy and read {item:16072} (Expert {skill:185})"] = "Compre e leia {item:16072} ({skill:185} Especialista)",
+	["Buy and read {item:16072} (Expert {skill:185})"] = "Compre e leia {item:16072} ({skill:185} (Perito))",
 
 	-- Step 40: Crocolisk Steak (125-130)
 	-- {spell:3370} Crocolisk Steak · {object:29784} Basic Campfire · {skill:185} Cooking
@@ -266,12 +267,12 @@ return {
 	["Giant Eggs drop from the Ironbeak owls of {zone:1448}."] = "Ovos Gigantescos caem das Corujas Bico-de-ferro de {zone:1448}.",
 
 	-- Step 67: Zesty Clam Meat
-	-- {item:7974} Zesty Clam Meat
-	["{item:7974} has no drop data: buy it at the Gadgetzan Auction House, next to Dirge, or open clams looted from coastal creatures."] = "{item:7974} não tem dados de saque: compre na Casa de Leilões de Geringontzan, ao lado de Funesto, ou abra mariscos saqueados de criaturas costeiras.",
+	-- {item:7974} Zesty Clam Meat · {npc:8125} Dirge Quikcleave
+	["{item:7974} has no drop data: buy it at the Gadgetzan Auction House, next to {npc:8125}, or open clams looted from coastal creatures."] = "{item:7974} não tem dados de saque: compre na Casa de Leilões de Geringontzan, ao lado de {npc:8125}, ou abra mariscos saqueados de criaturas costeiras.",
 
 	-- Step 68: Dirge Quikcleave
 	-- {skill:185} Cooking
-	["Artisan {skill:185}"] = "{skill:185} Artífice",
+	["Artisan {skill:185}"] = "{skill:185} (Artífice)",
 
 	-- Step 71: Heavy Kodo Stew (225-240)
 	-- {item:12215} Heavy Kodo Stew · {object:29784} Basic Campfire · {skill:185} Cooking

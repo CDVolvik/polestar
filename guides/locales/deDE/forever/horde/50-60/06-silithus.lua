@@ -3,11 +3,12 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in German (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in German words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Layo Starstrike
-	-- {area:3077} Valor's Rest · {zone:1451} Silithus
-	["The pass from Un'Goro comes out at {area:3077}, the graveyard in north-east {zone:1451}. Layo stands among the graves."] = "Der Pass aus dem Un'Goro-Krater endet an der {area:3077}, dem Friedhof im Nordosten von {zone:1451}. Layo steht zwischen den Gräbern.",
+	-- {area:3077} Valor's Rest · {zone:1451} Silithus · {npc:13220} Layo Starstrike
+	["The pass from Un'Goro comes out at {area:3077}, the graveyard in north-east {zone:1451}. {npc:13220} stands among the graves."] = "Der Pass aus dem Un'Goro-Krater endet an der {area:3077}, dem Friedhof im Nordosten von {zone:1451}. {npc:13220} steht zwischen den Gräbern.",
 
 	-- Step 2: The Spirits of Southwind
 	-- {area:2738} Southwind Village · {object:179565} Dusty Reliquary · {npc:11801} Rabine Saturna
@@ -111,12 +112,13 @@ return {
 	["Take the zeppelin from the tower outside {area:1637} to {zone:1420} and ride into the {zone:1458}. Lady Sylvanas holds the {object:36126}."] = "Nimm den Zeppelin vom Turm vor {area:1637} nach {zone:1420} und reite nach {zone:1458}. Fürstin Sylvanas hält das {object:36126}.",
 
 	-- Step 26: The Bulwark
-	["Ride east along the road to the Bulwark on the border."] = "Reite die Straße entlang nach Osten zum Bollwerk an der Grenze.",
+	-- {area:152} The Bulwark
+	["Ride east along the road to the {area:152} on the border."] = "Reite die Straße entlang nach Osten zum {area:152} an der Grenze.",
 
 	-- Step 27: Felstone Field
-	-- {npc:10778} Janice Felstone · {npc:11075} Cauldron Lord Bilemaw
+	-- {npc:10778} Janice Felstone · {area:152} The Bulwark · {npc:11075} Cauldron Lord Bilemaw
 	-- plural, as words: Jabbering Ghouls = {npc:10801} Jabbering Ghoul
-	["{npc:10778}'s farm is the first one east of the Bulwark. Jabbering Ghouls on the farm carry the other half of her charm; {npc:11075} guards the cauldron in the field."] = "Der Hof von {npc:10778} ist der erste östlich vom Bollwerk. Plappernde Ghule auf dem Hof tragen die andere Hälfte ihres Amuletts; {npc:11075} bewacht den Kessel auf dem Feld.",
+	["{npc:10778}'s farm is the first one east of the {area:152}. Jabbering Ghouls on the farm carry the other half of her charm; {npc:11075} guards the cauldron in the field."] = "Der Hof von {npc:10778} ist der erste östlich vom {area:152}. Plappernde Ghule auf dem Hof tragen die andere Hälfte ihres Amuletts; {npc:11075} bewacht den Kessel auf dem Feld.",
 
 	-- Step 28: Andorhal watchtowers and silos
 	["Andorhal watchtowers and silos"] = "Wachtürme und Silos von Andorhal",
@@ -148,12 +150,12 @@ return {
 	["The libram lies further north, on the way to {area:190}."] = "Davils Buchband liegt weiter nördlich, auf dem Weg nach {area:190}.",
 
 	-- Step 33: Tirion Fordring
-	-- {area:2619} Thondroril River
-	["Ride east to Tirion's hut by the {area:2619} and hear him out."] = "Reite nach Osten zu Tirions Hütte am Fluss {area:2619} und hör ihn an.",
+	-- {npc:1855} Tirion Fordring · {area:2619} Thondroril River
+	["Ride east to {npc:1855}'s hut by the {area:2619} and hear him out."] = "Reite nach Osten zu {npc:1855}s Hütte am Fluss {area:2619} und hör ihn an.",
 
 	-- Step 34: Redpath's Shield
-	-- {area:201} Gahrron's Withering
-	["The shield lies at {area:201}, south of Tirion's hut."] = "Der Schild liegt bei {area:201}, südlich von Tirions Hütte.",
+	-- {area:201} Gahrron's Withering · {npc:1855} Tirion Fordring
+	["The shield lies at {area:201}, south of {npc:1855}'s hut."] = "Der Schild liegt bei {area:201}, südlich von {npc:1855}s Hütte.",
 
 	-- Step 35: Light's Hope Chapel
 	["Ride east across the plaguelands to the chapel."] = "Reite nach Osten durch die Pestländer zur Kapelle.",
@@ -161,25 +163,29 @@ return {
 	-- Step 36: Scourge Champions
 	-- plural, as words: Scourge Champions = {npc:8529} Scourge Champion
 	["Scourge Champions"] = "Champions der Geißel",
-	-- {area:2270} Noxious Glade · {item:13156} Mystic Crystal
+	-- {area:2270} Noxious Glade · {npc:11063} Carlin Redpath · {item:13156} Mystic Crystal
 	-- plural, as words: Scourge Champions = {npc:8529} Scourge Champion
-	["Scourge Champions roam the {area:2270}, north of the chapel. Pass Carlin's {item:13156} over each one you kill: the skulls that resonate are the ones he wants."] = "Champions der Geißel streifen durch das Tal ({area:2270}) nördlich der Kapelle. Führe Carlins {item:13156} über jeden, den du tötest: Die Schädel, die mitschwingen, sind die, die er will.",
+	["Scourge Champions roam the {area:2270}, north of the chapel. Pass {npc:11063}'s {item:13156} over each one you kill: the skulls that resonate are the ones he wants."] = "Champions der Geißel streifen durch das Tal ({area:2270}) nördlich der Kapelle. Führe {npc:11063}s {item:13156} über jeden, den du tötest: Die Schädel, die mitschwingen, sind die, die er will.",
 
-	-- Step 38: Pamela and the Undercroft
-	-- {area:2261} Undercroft
-	["Pamela and the {area:2261}"] = "Pamela und {area:2261}",
-	-- {area:2262} Darrowshire · {npc:11886} Mercutio Filthgorger · {area:2261} Undercroft
-	["Ride to {area:2262} in the south-west; Pamela plays among the houses. {npc:11886} lurks in the {area:2261}, the crypt just west of the town."] = "Reite nach {area:2262} im Südwesten; Pamela spielt zwischen den Häusern. {npc:11886} lauert im Tiefgewölbe ({area:2261}), der Gruft gleich westlich des Orts.",
-	["Pamela's own errand is not on this route. Skip it."] = "Pamelas eigener Auftrag ist nicht auf dieser Route. Überspring ihn.",
+	-- Step 38: Pamela Redpath and the Undercroft
+	-- {npc:10926} Pamela Redpath · {area:2261} Undercroft
+	["{npc:10926} and the {area:2261}"] = "{npc:10926} und {area:2261}",
+	-- {area:2262} Darrowshire · {npc:10926} Pamela Redpath · {npc:11886} Mercutio Filthgorger · {area:2261} Undercroft
+	["Ride to {area:2262} in the south-west; {npc:10926} plays among the houses. {npc:11886} lurks in the {area:2261}, the crypt just west of the town."] = "Reite nach {area:2262} im Südwesten; {npc:10926} spielt zwischen den Häusern. {npc:11886} lauert im Tiefgewölbe ({area:2261}), der Gruft gleich westlich des Orts.",
+	-- {npc:10926} Pamela Redpath
+	["{npc:10926}'s own errand is not on this route. Skip it."] = "{npc:10926}s eigener Auftrag ist nicht auf dieser Route. Überspring ihn.",
 
 	-- Step 39: Nathanos Blightcaller
 	-- {npc:15193} The Banshee Queen · {area:2260} Marris Stead · {area:2261} Undercroft
 	["{npc:15193}'s champion holds the {area:2260} farmhouse, north of the {area:2261}."] = "Der Champion von {npc:15193} hält das Bauernhaus von {area:2260}, nördlich vom Tiefgewölbe ({area:2261}).",
-	["Nathanos' errands are not on this route. Skip them."] = "Die Aufträge von Nathanos sind nicht auf dieser Route. Überspring sie.",
+	-- {npc:11878} Nathanos Blightcaller
+	["{npc:11878}' errands are not on this route. Skip them."] = "Die Aufträge von {npc:11878} sind nicht auf dieser Route. Überspring sie.",
 
 	-- Step 40: Tirion Fordring
-	["Ride north-west to Tirion's hut."] = "Reite nach Nordwesten zu Tirions Hütte.",
-	["Tirion's next task, Of Lost Honor, is not on this route. Skip it."] = "Tirions nächste Aufgabe, Von verlorener Ehre, ist nicht auf dieser Route. Überspring sie.",
+	-- {npc:1855} Tirion Fordring
+	["Ride north-west to {npc:1855}'s hut."] = "Reite nach Nordwesten zu {npc:1855}s Hütte.",
+	-- {npc:1855} Tirion Fordring
+	["{npc:1855}'s next task, Of Lost Honor, is not on this route. Skip it."] = "{npc:1855}s nächste Aufgabe, Von verlorener Ehre, ist nicht auf dieser Route. Überspring sie.",
 
 	-- Step 41: Chromie
 	-- {npc:10667} Chromie
@@ -188,12 +194,11 @@ return {
 	["{npc:10667}'s Battle of Darrowshire ends against elites. Skip it."] = "Die Schlacht um Darrowshire von {npc:10667} endet gegen Elitegegner. Überspring sie.",
 
 	-- Step 42: The Bulwark
-	-- {zone:1458} Undercity
-	["West to the Bulwark. The next guide starts in the {zone:1458}, a short ride west."] = "Nach Westen zum Bollwerk. Der nächste Guide beginnt in {zone:1458}, ein kurzer Ritt nach Westen.",
+	-- {area:152} The Bulwark · {zone:1458} Undercity
+	["West to the {area:152}. The next guide starts in the {zone:1458}, a short ride west."] = "Nach Westen zum {area:152}. Der nächste Guide beginnt in {zone:1458}, ein kurzer Ritt nach Westen.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Ride east along the road to the {area:152} on the border."] = "Reite die Straße entlang nach Osten zum Bollwerk ({area:152}) an der Grenze.",
 	-- ["West to the {area:152}. The next guide starts in the {zone:1458}, a short ride west."] = "Nach Westen zum Bollwerk ({area:152}). Der nächste Guide beginnt in {zone:1458}, ein kurzer Ritt nach Westen.",
-	-- ["{npc:10667}'s Battle of {area:2262} ends against elites. Skip it."] = "Die Schlacht um {area:2262} von {npc:10667} endet gegen Elitegegner. Überspring sie.",
 	-- ["{npc:10778}'s farm is the first one east of the {area:152}. Jabbering Ghouls on the farm carry the other half of her charm; {npc:11075} guards the cauldron in the field."] = "Der Hof von {npc:10778} ist der erste östlich vom Bollwerk ({area:152}). Plappernde Ghule auf dem Hof tragen die andere Hälfte ihres Amuletts; {npc:11075} bewacht den Kessel auf dem Feld.",
 }

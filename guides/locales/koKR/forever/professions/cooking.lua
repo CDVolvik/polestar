@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Korean words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Learn Cooking
@@ -62,9 +63,9 @@ return {
 
 	-- Step 15: Journeyman Cooking
 	-- {skill:185} Cooking
-	["Journeyman {skill:185}"] = "중급 {skill:185}",
+	["Journeyman {skill:185}"] = "수습 {skill:185}",
 	-- {skill:185} Cooking
-	["Journeyman {skill:185} raises the cap to 150; it needs skill 50 and character level 10: the arrow picks the nearest {skill:185} trainer of your faction."] = "중급 {skill:185}은(는) 최대 숙련도를 150으로 올립니다. 숙련도 50, 캐릭터 레벨 10이 필요합니다. 화살표가 진영의 가장 가까운 {skill:185} 상급자를 가리킵니다.",
+	["Journeyman {skill:185} raises the cap to 150; it needs skill 50 and character level 10: the arrow picks the nearest {skill:185} trainer of your faction."] = "수습 {skill:185}은(는) 최대 숙련도를 150으로 올립니다. 숙련도 50, 캐릭터 레벨 10이 필요합니다. 화살표가 진영의 가장 가까운 {skill:185} 상급자를 가리킵니다.",
 
 	-- Step 16: Goretusk Liver Pie: shopping
 	-- {item:724} Goretusk Liver Pie
@@ -73,8 +74,8 @@ return {
 	-- Step 17: Goretusk Liver Pie: ingredients
 	-- {item:724} Goretusk Liver Pie
 	["{item:724}: ingredients"] = "{item:724}: 재료",
-	-- {npc:547} Great Goretusk · {zone:1436} Westfall
-	["{npc:547} (35%), Goretusk (34%) in {zone:1436}, or wherever the arrow points"] = "{zone:1436}의 {npc:547} (35%), 뿔엄니멧돼지 (34%), 또는 화살표가 가리키는 곳",
+	-- {npc:547} Great Goretusk · {npc:157} Goretusk · {zone:1436} Westfall
+	["{npc:547} (35%), {npc:157} (34%) in {zone:1436}, or wherever the arrow points"] = "{zone:1436}의 {npc:547} (35%), {npc:157} (34%), 또는 화살표가 가리키는 곳",
 
 	-- Step 18: Goretusk Liver Pie (50-100)
 	-- {item:724} Goretusk Liver Pie · {object:29784} Basic Campfire · {skill:185} Cooking
@@ -159,8 +160,8 @@ return {
 	-- Step 35: Crispy Lizard Tail: ingredients
 	-- {item:5479} Crispy Lizard Tail
 	["{item:5479}: ingredients"] = "{item:5479}: 재료",
-	-- {zone:1413} The Barrens
-	["Thunderhead (59%), Owatanka (35%) in {zone:1413}, or wherever the arrow points"] = "{zone:1413}의 천둥꼬리도마뱀 (59%), 오와탄카 (35%), 또는 화살표가 가리키는 곳",
+	-- {npc:3239} Thunderhead · {zone:1413} The Barrens
+	["{npc:3239} (59%), Owatanka (35%) in {zone:1413}, or wherever the arrow points"] = "{zone:1413}의 {npc:3239} (59%), 오와탄카 (35%), 또는 화살표가 가리키는 곳",
 
 	-- Step 36: Crispy Lizard Tail (100-125)
 	-- {item:5479} Crispy Lizard Tail · {object:29784} Basic Campfire · {skill:185} Cooking
@@ -168,11 +169,11 @@ return {
 
 	-- Step 37: Expert Cooking
 	-- {skill:185} Cooking
-	["Expert {skill:185}"] = "고급 {skill:185}",
+	["Expert {skill:185}"] = "숙련 {skill:185}",
 	-- {skill:185} Cooking · {item:16072} Expert Cookbook
-	["Expert {skill:185} raises the cap to 225; it needs skill 125 and character level 20: it is a book, {item:16072}; the arrow picks its nearest seller for your faction. Buy it and read it."] = "고급 {skill:185}은(는) 최대 숙련도를 225로 올립니다. 숙련도 125, 캐릭터 레벨 20이 필요합니다. 책 {item:16072}(으)로 배우며, 화살표가 진영의 가장 가까운 판매 상인을 가리킵니다. 사서 읽으세요.",
+	["Expert {skill:185} raises the cap to 225; it needs skill 125 and character level 20: it is a book, {item:16072}; the arrow picks its nearest seller for your faction. Buy it and read it."] = "숙련 {skill:185}은(는) 최대 숙련도를 225로 올립니다. 숙련도 125, 캐릭터 레벨 20이 필요합니다. 책 {item:16072}(으)로 배우며, 화살표가 진영의 가장 가까운 판매 상인을 가리킵니다. 사서 읽으세요.",
 	-- {item:16072} Expert Cookbook · {skill:185} Cooking
-	["Buy and read {item:16072} (Expert {skill:185})"] = "{item:16072} 사서 읽기 (고급 {skill:185})",
+	["Buy and read {item:16072} (Expert {skill:185})"] = "{item:16072} 사서 읽기 (숙련 {skill:185})",
 
 	-- Step 40: Crocolisk Steak (125-130)
 	-- {spell:3370} Crocolisk Steak · {object:29784} Basic Campfire · {skill:185} Cooking
@@ -266,8 +267,8 @@ return {
 	["Giant Eggs drop from the Ironbeak owls of {zone:1448}."] = "거대한 알은 {zone:1448}의 무쇠부리 올빼미가 떨어뜨립니다.",
 
 	-- Step 67: Zesty Clam Meat
-	-- {item:7974} Zesty Clam Meat
-	["{item:7974} has no drop data: buy it at the Gadgetzan Auction House, next to Dirge, or open clams looted from coastal creatures."] = "{item:7974}은(는) 획득 데이터가 없습니다. 가젯잔 경매장(더지 퀵클레이브 옆)에서 사거나, 해안 생물에게서 얻은 조개를 여세요.",
+	-- {item:7974} Zesty Clam Meat · {npc:8125} Dirge Quikcleave
+	["{item:7974} has no drop data: buy it at the Gadgetzan Auction House, next to {npc:8125}, or open clams looted from coastal creatures."] = "{item:7974}은(는) 획득 데이터가 없습니다. 가젯잔 경매장({npc:8125} 옆)에서 사거나, 해안 생물에게서 얻은 조개를 여세요.",
 
 	-- Step 68: Dirge Quikcleave
 	-- {skill:185} Cooking

@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Korean words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -10,7 +11,7 @@ return {
 
 	-- Step 1: Rashona Straglash: A Donation of Wool
 	-- {npc:14726} Rashona Straglash · {faction:76} Orgrimmar · {item:14047} Runecloth · {quest:7832} Additional Runecloth
-	["{npc:14726} takes cloth for {faction:76} in {faction:76}. The first donations of Wool, Silk, Mageweave and {item:14047} (60 cloth each) are done once and give the most reputation per cloth; after them, {quest:7832} repeats until Exalted. Exalted with another race's city lets you buy that race's mounts. Forever's Legacy Diplomat perk increases reputation gains."] = "{npc:14726}은(는) {faction:76}에서 {faction:76}을(를) 위한 옷감을 받습니다. 양모, 비단, 마법 옷감, {item:14047}의 첫 기부(각 옷감 60개)는 한 번만 할 수 있고 옷감당 평판이 가장 많습니다. 그 뒤로는 {quest:7832}을(를) 확고한 동맹까지 반복합니다. 다른 종족의 도시와 확고한 동맹이 되면 그 종족의 탈것을 구매할 수 있습니다. Forever의 Legacy Diplomat 특전은 평판 획득량을 늘려 줍니다.",
+	["{npc:14726} takes cloth for {faction:76} in {faction:76}. The first donations of Wool, Silk, Mageweave and {item:14047} (60 cloth each) are done once and give the most reputation per cloth; after them, {quest:7832} repeats until Exalted. Exalted with another race's city lets you buy that race's mounts. Forever's Legacy Diplomat perk increases reputation gains."] = "{npc:14726}은(는) {faction:76}에서 {faction:76}을(를) 위한 옷감을 받습니다. 양모, 비단, 마법 옷감, {item:14047}의 첫 기부(각 옷감 60개)는 한 번만 할 수 있고 옷감당 평판이 가장 많습니다. 그 뒤로는 {quest:7832}을(를) 확고한 동맹까지 반복합니다. 다른 종족의 도시와 확고한 동맹이 되면 그 종족의 탈것을 구매할 수 있습니다. Forever의 외교관 유산 특전은 평판 획득량을 늘려 줍니다.",
 
 	-- Step 2: Wool Cloth
 	-- {area:381} Boulder Lode Mine

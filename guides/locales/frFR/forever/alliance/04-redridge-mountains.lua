@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in French (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in French words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Stormwind
@@ -74,6 +75,8 @@ return {
 	["{npc:345} (level 24) roots around the pen just west of {area:69}. Pull him away from the other boars and fight at full health."] = "{npc:345} (niveau 24) fouille autour de l'enclos juste à l'ouest de {area:69}. Éloignez-le des autres sangliers et combattez-le en pleine santé.",
 
 	-- Step 12: Lakeshire
+	-- {npc:341} Foreman Oslow · {quest:89} The Everstill Bridge
+	["{npc:341}: after {quest:89}"] = "{npc:341} : après {quest:89}",
 	-- {npc:703} Lieutenant Fangore · {area:1000} Galardell Valley
 	["The Wanted poster by the inn: {npc:703}, in {area:1000}"] = "L'avis de recherche près de l'auberge : {npc:703}, à {area:1000}",
 
@@ -87,7 +90,8 @@ return {
 	-- plural, as words: Greater Tarantulas = {npc:505} Greater Tarantula · Blackrock Renegades = {npc:437} Blackrock Renegade
 	["Greater Tarantulas crawl on the slopes around the mill north-east of the lake; Blackrock Renegades hold the mill itself."] = "Des Grandes tarentules rampent sur les pentes autour du moulin, au nord-est du lac ; des Renégats Blackrock occupent le moulin.",
 	-- {item:3014} Battleworn Axe
-	["{item:3014}: any Blackrock orc"] = "{item:3014} : tout orc Blackrock",
+	-- plural, as words: Blackrock Renegades = {npc:437} Blackrock Renegade
+	["{item:3014}: the Blackrock Renegades at the mill"] = "{item:3014} : les Renégats Blackrock du moulin",
 
 	-- Step 15: Galardell Valley
 	-- {npc:703} Lieutenant Fangore · {area:2099} Stonewatch Keep
@@ -118,5 +122,5 @@ return {
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Bellygrub"] = "Fouailleventre",
-	-- ["Bellygrub (level 24) roots around the pen just west of {area:69}. Pull him away from the other boars and fight at full health."] = "Fouailleventre (niveau 24) fouille autour de l'enclos juste à l'ouest de {area:69}. Éloignez-le des autres sangliers et combattez-le en pleine santé.",
+	-- ["{item:3014}: any Blackrock orc"] = "{item:3014} : tout orc Blackrock",
 }

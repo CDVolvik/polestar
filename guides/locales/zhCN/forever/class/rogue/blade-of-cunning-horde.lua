@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (simplified) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (simplified) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -60,16 +61,14 @@ return {
 	-- {npc:6522} Andron Gant
 	["{npc:6522}'s ledger sits on the bookshelf beside him."] = "{npc:6522}的账本放在他身旁的书架上。",
 
-	-- Step 12: Mennet and Varimathras
-	-- {npc:2425} Varimathras
-	["Mennet and {npc:2425}"] = "米奈特与{npc:2425}",
-	-- {npc:2425} Varimathras · {object:36126} Royal Quarter
-	["Mennet sends the ledger on to {npc:2425} in the Hall of the Dark Lady, the {object:36126}."] = "米奈特会把账本转交给{object:36126}的{npc:2425}。",
+	-- Step 12: Mennet Carkad and Varimathras
+	-- {npc:6467} Mennet Carkad · {npc:2425} Varimathras
+	["{npc:6467} and {npc:2425}"] = "{npc:6467}与{npc:2425}",
+	-- {npc:6467} Mennet Carkad · {npc:2425} Varimathras · {object:36126} Royal Quarter
+	["{npc:6467} sends the ledger on to {npc:2425} in the Hall of the Dark Lady, the {object:36126}."] = "{npc:6467}会把账本转交给{object:36126}的{npc:2425}。",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Gamon drinks in the inn in the {object:172982}. Pick his pocket for {item:7208}, then open {item:7209}."] = "加摩尔在{object:172982}的旅店里喝酒。从他身上偷取{item:7208}，然后打开{item:7209}。",
 	-- ["Tazan"] = "塔赞",
-	-- ["Tazan stands on the {zone:1413} coast south of {area:392}. Kill him for his satchel."] = "塔赞站在{area:392}南边的{zone:1413}海岸。杀死他拿到他的挎包。",
 	-- ["{item:7208}: Gamon"] = "{item:7208}：加摩尔",
 	-- ["{item:7209}: Tazan"] = "{item:7209}：塔赞",
 }

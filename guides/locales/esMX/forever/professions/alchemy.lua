@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Spanish (Latin America) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Spanish (Latin America) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Apprentice Alchemy
@@ -44,7 +45,7 @@ return {
 
 	-- Step 8: Recipe: Holy Protection Potion
 	-- {item:6051} Holy Protection Potion · {skill:171} Alchemy
-	["Teaches {item:6051} (needs {skill:171} 100). Vendors sell it in limited stock that restocks; the Auction House often has it too."] = "Enseña {item:6051} (requiere {skill:171} 100). Los mercaderes lo venden en existencias limitadas que se reponen; la casa de subastas también suele tenerlo.",
+	["Teaches {item:6051} (needs {skill:171} 100). Vendors sell it in limited stock that restocks."] = "Enseña {item:6051} (requiere {skill:171} 100). Los mercaderes lo venden en existencias limitadas que se reponen.",
 
 	-- Step 9: Murloc Eye (Alliance)
 	-- {item:730} Murloc Eye

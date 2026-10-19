@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (simplified) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (simplified) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -62,13 +63,13 @@ return {
 	-- Step 10: The Orb of Dar'Orahil
 	-- {item:15108} Orb of Dar'Orahil
 	["The {item:15108}"] = "{item:15108}",
-	-- {area:392} Ratchet · {item:15108} Orb of Dar'Orahil
-	["Back to Menara in the tower above {area:392} with the cleansed orb. On the felhound path, wait while she completes the {item:15108}, then speak to her again."] = "带着净化后的宝珠回到{area:392}上方塔里找梅纳拉。地狱犬路线：等她完成{item:15108}，然后再次与她交谈。",
+	-- {npc:6266} Menara Voidrender · {area:392} Ratchet · {item:15108} Orb of Dar'Orahil
+	["Back to {npc:6266} in the tower above {area:392} with the cleansed orb. On the felhound path, wait while she completes the {item:15108}, then speak to her again."] = "带着净化后的宝珠回到{area:392}上方塔里找{npc:6266}。地狱犬路线：等她完成{item:15108}，然后再次与她交谈。",
 	["Wait for the orb"] = "等待宝珠",
 
 	-- Step 11: The Orb of Noh'Orahil
 	-- {item:15107} Orb of Noh'Orahil
 	["The {item:15107}"] = "{item:15107}",
-	-- {item:15107} Orb of Noh'Orahil
-	["On the infernal path, wait while Menara completes the {item:15107}, then speak to her again."] = "地狱火路线：等梅纳拉完成{item:15107}，然后再次与她交谈。",
+	-- {npc:6266} Menara Voidrender · {item:15107} Orb of Noh'Orahil
+	["On the infernal path, wait while {npc:6266} completes the {item:15107}, then speak to her again."] = "地狱火路线：等{npc:6266}完成{item:15107}，然后再次与她交谈。",
 }

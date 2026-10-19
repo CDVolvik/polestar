@@ -3,11 +3,14 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Russian (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Russian words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Fly to Camp Taurajo
 	-- {area:378} Camp Taurajo
 	["Fly to {area:378}"] = "Летите сюда: {area:378}",
+	-- {npc:6791} Innkeeper Wiley
+	["{npc:6791}: the last guide binds here, so this usually ticks at once"] = "{npc:6791}: предыдущий гайд привязывает вас здесь, так что это обычно отмечается сразу",
 
 	-- Step 2: Shady Rest Inn
 	-- {area:378} Camp Taurajo · {area:403} Shady Rest Inn
@@ -52,8 +55,8 @@ return {
 	["Ride east back to the {area:497}."] = "Возвращайтесь на восток сюда: {area:497}.",
 	-- {item:3853} Moonsteel Broadsword · {skill:164} Blacksmithing
 	["only if you carry a {item:3853} ({skill:164} or the Auction House)"] = "только если у вас есть {item:3853} ({skill:164} или аукцион)",
-	-- {object:20985} Loose Dirt
-	["{object:20985}, now that Nazeer has read the report"] = "{object:20985}, теперь, когда Назир прочел донесение",
+	-- {object:20985} Loose Dirt · {npc:4791} Nazeer Bloodpike
+	["{object:20985}, now that {npc:4791} has read the report"] = "{object:20985}, теперь, когда {npc:4791} прочел донесение",
 
 	-- Step 12: Brackenwall Village
 	["Ride back west to Brackenwall with the head."] = "Возвращайтесь с головой на запад в Гиблотопь.",
@@ -65,24 +68,24 @@ return {
 	["Hearth to {area:392}"] = "Камень возвращения: {area:392}",
 
 	-- Step 15: Melizza Brimbuzzle
-	-- {area:607} Valley of Spears
-	["Ride north-east to the {area:607}. Melizza is held in the Maraudine centaur camp; free her and escort her out east of the valley."] = "Езжайте на северо-восток сюда: {area:607}. Мелицца в плену в лагере кентавров Мародин; освободите ее и выведите на восток из долины.",
+	-- {area:607} Valley of Spears · {npc:12277} Melizza Brimbuzzle
+	["Ride north-east to the {area:607}. {npc:12277} is held in the Maraudine centaur camp; free her and escort her out east of the valley."] = "Езжайте на северо-восток сюда: {area:607}. {npc:12277} в плену в лагере кентавров Мародин; освободите ее и выведите на восток из долины.",
 
 	-- Step 16: Kodo Graveyard
-	-- {area:596} Kodo Graveyard
-	["Hornizz waits at the goblin camp on the west side of the {area:596}."] = "Хормиц ждет в лагере гоблинов в западной части места {area:596}.",
+	-- {npc:6019} Hornizz Brimbuzzle · {area:596} Kodo Graveyard
+	["{npc:6019} waits at the goblin camp on the west side of the {area:596}."] = "{npc:6019} ждет в лагере гоблинов в западной части места {area:596}.",
 
 	-- Step 17: Gizelton Caravan
 	-- {npc:11626} Rigger Gizelton · {area:602} Mannoroc Coven
 	["{npc:11626}'s caravan stops on the road at the edge of {area:602}. Escort it east past the coven; demons attack it twice."] = "Караван ({npc:11626}) останавливается на дороге у края места {area:602}. Сопроводите его на восток мимо ковена; демоны нападут дважды.",
 
 	-- Step 18: Scrabblescrew's Camp
-	-- {area:596} Kodo Graveyard
-	["The caravan ends at Smeed's camp on the east side of the {area:596}."] = "Караван заканчивает путь у лагеря Смида в восточной части места {area:596}.",
+	-- {npc:11596} Smeed Scrabblescrew · {area:596} Kodo Graveyard
+	["The caravan ends at {npc:11596}'s camp on the east side of the {area:596}."] = "Караван заканчивает путь у лагеря {npc:11596} в восточной части места {area:596}.",
 
 	-- Step 19: Ghost Walker Post
-	-- {npc:5395} Felgur Twocuts · {npc:5412} Gurda Wildmane
-	["{npc:5395} and {npc:5412} stand in the post just west of Smeed's camp."] = "{npc:5395} и {npc:5412} стоят в лагере чуть к западу от лагеря Смида.",
+	-- {npc:5395} Felgur Twocuts · {npc:5412} Gurda Wildmane · {npc:11596} Smeed Scrabblescrew
+	["{npc:5395} and {npc:5412} stand in the post just west of {npc:11596}'s camp."] = "{npc:5395} и {npc:5412} стоят в лагере чуть к западу от лагеря {npc:11596}.",
 
 	-- Step 20: Kormek's Hut
 	["Ride north up the road to the hut by the road north of the graveyard."] = "Езжайте на север по дороге к хижине у дороги к северу от кладбища.",
@@ -93,8 +96,8 @@ return {
 	["Pick up the kodo bones scattered across the graveyard, and use the {item:15848} among the bones: the ghosts it draws drop the ghost-o-plasm."] = "Собирайте кости кодо по всему кладбищу и используйте предмет {item:15848} среди костей: с призванных призраков падает призракоплазма.",
 
 	-- Step 24: Thunder Axe Fortress
-	-- {spell:1294269} Burning Blade · {area:2407} Kormek's Hut · {item:14523} Demon Pick · {npc:11876} Demon Spirit · {item:13542} Demon Box
-	["The {spell:1294269} hold the fortress north-west of {area:2407}. Use the {item:14523} on the {npc:11876} in the fortress to get the {item:13542}."] = "Культисты ({spell:1294269}) занимают крепость к северо-западу от места {area:2407}. Примените предмет {item:14523} на персонаже {npc:11876} в крепости, чтобы получить {item:13542}.",
+	-- {area:2407} Kormek's Hut · {item:14523} Demon Pick · {npc:11876} Demon Spirit · {item:13542} Demon Box
+	["The Burning Blade hold the fortress north-west of {area:2407}. Use the {item:14523} on the {npc:11876} in the fortress to get the {item:13542}."] = "Культисты (Пылающий Клинок) занимают крепость к северо-западу от места {area:2407}. Примените предмет {item:14523} на персонаже {npc:11876} в крепости, чтобы получить {item:13542}.",
 
 	-- Step 25: Ethel Rethor
 	-- {npc:11863} Azore Aldamort · {area:2405} Ethel Rethor

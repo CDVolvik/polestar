@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Spanish (Spain) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Spanish (Spain) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Apprentice Leatherworking
@@ -276,11 +277,11 @@ return {
 
 	-- Step 52: Pattern: Wicked Leather Gauntlets
 	-- {item:15083} Wicked Leather Gauntlets · {skill:165} Leatherworking
-	["Teaches {item:15083} (needs {skill:165} 235). Vendors sell it in limited stock that restocks; the Auction House often has it too."] = "Enseña {item:15083} (requiere {skill:165} 235). Los mercaderes lo venden en existencias limitadas que se reponen; la casa de subastas también suele tenerlo.",
+	["Teaches {item:15083} (needs {skill:165} 235). Vendors sell it in limited stock that restocks."] = "Enseña {item:15083} (requiere {skill:165} 235). Los mercaderes lo venden en existencias limitadas que se reponen.",
 
 	-- Step 53: Pattern: Runic Leather Headband
 	-- {item:15094} Runic Leather Headband · {skill:165} Leatherworking
-	["Teaches {item:15094} (needs {skill:165} 265). Vendors sell it in limited stock that restocks; the Auction House often has it too."] = "Enseña {item:15094} (requiere {skill:165} 265). Los mercaderes lo venden en existencias limitadas que se reponen; la casa de subastas también suele tenerlo.",
+	["Teaches {item:15094} (needs {skill:165} 265). Vendors sell it in limited stock that restocks."] = "Enseña {item:15094} (requiere {skill:165} 265). Los mercaderes lo venden en existencias limitadas que se reponen.",
 
 	-- Step 54: Rugged Leather (Alliance)
 	-- {item:8170} Rugged Leather
@@ -321,7 +322,4 @@ return {
 	["{item:15094} to 300"] = "{item:15094} hasta 300",
 	-- {skill:165} Leatherworking
 	["Orange (a point every craft) until 285, yellow until 295, green until 305. {skill:165} 300 is a Legacy System milestone."] = "Naranja (un punto con cada fabricación) hasta 285, amarillo hasta 295 y verde hasta 305. {skill:165} 300 es un hito del sistema de Legado.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["{skill:171}: Elixir of Ogre Strength (or the Auction House)"] = "{skill:171}: Elixir de fuerza de ogro (o la casa de subastas)",
 }

@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Russian (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Russian words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -62,13 +63,13 @@ return {
 	-- Step 10: The Orb of Dar'Orahil
 	-- {item:15108} Orb of Dar'Orahil
 	["The {item:15108}"] = "{item:15108}",
-	-- {area:392} Ratchet · {item:15108} Orb of Dar'Orahil
-	["Back to Menara in the tower above {area:392} with the cleansed orb. On the felhound path, wait while she completes the {item:15108}, then speak to her again."] = "Вернитесь с очищенной сферой к Менаре в башню над местом {area:392}. На пути гончей Скверны подождите, пока она завершит {item:15108}, затем снова поговорите с ней.",
+	-- {npc:6266} Menara Voidrender · {area:392} Ratchet · {item:15108} Orb of Dar'Orahil
+	["Back to {npc:6266} in the tower above {area:392} with the cleansed orb. On the felhound path, wait while she completes the {item:15108}, then speak to her again."] = "Вернитесь с очищенной сферой к {npc:6266} в башню над местом {area:392}. На пути гончей Скверны подождите, пока она завершит {item:15108}, затем снова поговорите с ней.",
 	["Wait for the orb"] = "Дождитесь сферы",
 
 	-- Step 11: The Orb of Noh'Orahil
 	-- {item:15107} Orb of Noh'Orahil
 	["The {item:15107}"] = "{item:15107}",
-	-- {item:15107} Orb of Noh'Orahil
-	["On the infernal path, wait while Menara completes the {item:15107}, then speak to her again."] = "На пути инфернала подождите, пока Менара завершит {item:15107}, затем снова поговорите с ней.",
+	-- {npc:6266} Menara Voidrender · {item:15107} Orb of Noh'Orahil
+	["On the infernal path, wait while {npc:6266} completes the {item:15107}, then speak to her again."] = "На пути инфернала подождите, пока {npc:6266} завершит {item:15107}, затем снова поговорите с ней.",
 }

@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Spanish (Spain) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Spanish (Spain) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -33,8 +34,9 @@ return {
 	-- plural, as words: Blackrock Summoners = {npc:4463} Blackrock Summoner
 	["Blackrock Summoners, Champions and Trackers camp in the north-west of Redridge; they drop the {item:209778}."] = "Los invocadores, campeones y rastreadores Roca Negra acampan en el noroeste de las Montañas Crestagrana; sueltan la {item:209778}.",
 
-	-- Step 6: Back to Ursula
-	["Back to Ursula"] = "De vuelta con Ursula",
+	-- Step 6: Back to Ursula Deline
+	-- {npc:5495} Ursula Deline
+	["Back to {npc:5495}"] = "De vuelta con {npc:5495}",
 
 	-- Step 7: Motes of Mannoroth
 	["Motes of Mannoroth"] = "Motas de Mannoroth",
@@ -43,11 +45,11 @@ return {
 	["{area:435} is in south-east {zone:1440}. The Mannoroc Lashers, Searing Infernals, Felguards and Legion Hounds in it drop the Motes of Mannoroth."] = "{area:435} está en el sureste de {zone:1440}. Los Mannoroc Latiguez, infernales abrasadores, guardias malditos y canes de la Legión de allí sueltan las motas de Mannoroth.",
 
 	-- Step 8: The Spear of Mannoroth
-	-- {object:409311} Spear of Mannoroth
+	-- {object:409311} Spear of Mannoroth (no name in this language: may be words)
 	["The {object:409311}"] = "La {object:409311}",
-	-- {object:409311} Spear of Mannoroth · {area:435} Demon Fall Canyon · {object:409315} Shattered Orb
+	-- {object:409311} Spear of Mannoroth (no name in this language: may be words) · {area:435} Demon Fall Canyon · {object:409315} Shattered Orb (no name in this language: may be words)
 	["The {object:409311} stands at the east end of {area:435}. Shatter the orb on it; the {object:409315} appears beside it."] = "{object:409311} está en el extremo este de {area:435}. Rompe el orbe que hay en ella; {object:409315} aparece a su lado.",
-	-- {object:409315} Shattered Orb
+	-- {object:409315} Shattered Orb (no name in this language: may be words)
 	["from the {object:409315}"] = "del {object:409315}",
 
 	-- Step 9: Return to Delgren
@@ -55,7 +57,5 @@ return {
 	["Back to {area:413}."] = "Vuelve a {area:413}.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["A rare cloak at 30 from the old Divine Storm story; for now only Alliance paladins can finish it."] = "Una capa rara a nivel 30 de la antigua historia de Tormenta Divina; por ahora solo los paladines de la Alianza pueden terminarla.",
-	-- ["The {object:409311} stands at the east end of {area:435}. Shatter the orb on it; the {object:409315} appears beside it."] = "La {object:409311} está en el extremo este de {area:435}. Rompe el orbe sobre ella; el {object:409315} aparece a su lado.",
 	-- ["The {object:409311} stands at the east end of {area:435}. {spell:11170} the orb on it; the {object:409315} appears beside it."] = "{object:409311} está en el extremo este de {area:435}. Lanza {spell:11170} sobre el orbe que hay en ella; {object:409315} aparece a su lado.",
 }

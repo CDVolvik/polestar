@@ -3,18 +3,19 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in German (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in German words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Fly to Grom'gol
-	-- {object:3202} Grom'gol
+	-- {object:3202} Grom'gol (no name in this language: may be words)
 	["Fly to {object:3202}"] = "Flieg nach {object:3202}",
-	-- {area:1978} Misty Reed Post · {area:75} Stonard · {object:3202} Grom'gol
+	-- {area:1978} Misty Reed Post · {area:75} Stonard · {object:3202} Grom'gol (no name in this language: may be words)
 	["Ride back north-west from {area:1978} to {area:75} and fly to {object:3202}."] = "Reite von {area:1978} zurück nach Nordwesten nach {area:75} und flieg nach {object:3202}.",
 
 	-- Step 2: Zeppelin to Orgrimmar
 	-- {zone:1454} Orgrimmar
 	["Zeppelin to {zone:1454}"] = "Zeppelin nach {zone:1454}",
-	-- {zone:1454} Orgrimmar · {object:3202} Grom'gol
+	-- {zone:1454} Orgrimmar · {object:3202} Grom'gol (no name in this language: may be words)
 	["The {zone:1454} zeppelin leaves from the tower beside {object:3202}; it lands just outside {zone:1454}'s main gate."] = "Der Zeppelin nach {zone:1454} startet vom Turm neben {object:3202}; er landet gleich vor dem Haupttor von {zone:1454}.",
 	["Zeppelin tower"] = "Zeppelinturm",
 
@@ -155,8 +156,8 @@ return {
 	["Keep riding west to the coast. The Coast Crawl Deepseers and Snapclaws on the beaches drop OOX-22/FE's distress beacon about one kill in forty: if one drops, use it to start the quest."] = "Reite weiter nach Westen zur Küste. Die Küstenkriechertiefseher und Küstenkriecherschnappklauen an den Stränden lassen etwa bei jedem vierzigsten Kill das Notsignal von OOX-22/FE fallen: Fällt eins, benutze es, um die Quest zu starten.",
 
 	-- Step 34: Homing Robot OOX-22/FE
-	-- {area:1105} Feral Scar Vale · {area:35} Booty Bay
-	["Only with the distress beacon: the robot sits in a small cave on the north side of {area:1105}. Escort it to the dock on the Forgotten Coast; yetis and gorillas ambush you on the way. Its reward waits in {area:35} for a later visit."] = "Nur mit dem Notsignalgeber: Der Roboter sitzt in einer kleinen Höhle auf der Nordseite von {area:1105}. Eskortiere ihn zum Steg an der Vergessenen Küste; Yetis und Gorillas überfallen euch unterwegs. Seine Belohnung wartet in {area:35} auf einen späteren Besuch.",
+	-- {area:1105} Feral Scar Vale · {area:1108} The Forgotten Coast · {area:35} Booty Bay
+	["Only with the distress beacon: the robot sits in a small cave on the north side of {area:1105}. Escort it to the dock on the {area:1108}; yetis and gorillas ambush you on the way. Its reward waits in {area:35} for a later visit."] = "Nur mit dem Notsignalgeber: Der Roboter sitzt in einer kleinen Höhle auf der Nordseite von {area:1105}. Eskortiere ihn zum Steg an {area:1108}; Yetis und Gorillas überfallen euch unterwegs. Seine Belohnung wartet in {area:35} auf einen späteren Besuch.",
 
 	-- Step 35: Hearth to Camp Mojache
 	-- {area:1099} Camp Mojache
@@ -169,9 +170,9 @@ return {
 	["for the {zone:1425}, around level 48"] = "für das {zone:1425}, etwa ab Stufe 48",
 
 	-- Step 37: Zeppelin to Grom'gol
-	-- {object:3202} Grom'gol
+	-- {object:3202} Grom'gol (no name in this language: may be words)
 	["Zeppelin to {object:3202}"] = "Zeppelin nach {object:3202}",
-	-- {object:3202} Grom'gol · {zone:1454} Orgrimmar
+	-- {object:3202} Grom'gol (no name in this language: may be words) · {zone:1454} Orgrimmar
 	["The {object:3202} zeppelin leaves from the tower just north-east of {zone:1454}'s main gate."] = "Der Zeppelin nach {object:3202} startet vom Turm gleich nordöstlich des Haupttors von {zone:1454}.",
 
 	-- Step 38: Fly to Stonard

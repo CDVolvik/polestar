@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Korean words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -23,7 +24,7 @@ return {
 	["{area:392} is on the {zone:1413} coast; {npc:6251} stands on the hill in town."] = "{area:392}은(는) {zone:1413} 해안에 있으며, {npc:6251}은(는) 마을 언덕 위에 있습니다.",
 
 	-- Step 4: Krom Stoutarm
-	-- {npc:6294} Krom Stoutarm · {object:32356} Hall of Explorers
+	-- {npc:6294} Krom Stoutarm · {object:32356} Hall of Explorers (no name in this language: may be words)
 	["{npc:6294} stands in the {object:32356}."] = "{npc:6294}은(는) {object:32356}에 있습니다.",
 
 	-- Step 5: Moldy Tome

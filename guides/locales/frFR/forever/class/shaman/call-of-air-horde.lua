@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in French (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in French words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -21,7 +22,7 @@ return {
 
 	-- Step 3: Prate Cloudseer
 	-- {area:484} Freewind Post · {npc:5905} Prate Cloudseer · {quest:1531} Call of Air
-	["Fly to {area:484}. {npc:5905} hides in a small cave in the canyon wall north-east of the post. Skyborne: your own {quest:1531} (96136) ends with her too."] = "Volez jusqu'au {area:484}. {npc:5905} se cache dans une petite grotte de la paroi du canyon, au nord-est du poste. Skyborne : votre propre {quest:1531} (96136) se rend aussi auprès d'elle.",
+	["Fly to {area:484}. {npc:5905} hides in a small cave in the canyon wall north-east of the post. Skyborne: your own {quest:1531} (96136) ends with her too."] = "Volez jusqu'au {area:484}. {npc:5905} se cache dans une petite grotte de la paroi du canyon, au nord-est du poste. Éolides : votre propre {quest:1531} (96136) se rend aussi auprès d'elle.",
 	-- {npc:5905} Prate Cloudseer · {item:5178} Air Totem
 	["{npc:5905}: your {item:5178}"] = "{npc:5905} : votre {item:5178}",
 
@@ -65,14 +66,14 @@ return {
 
 	-- Step 12: The steam pools
 	["The steam pools"] = "Les bassins de vapeur",
-	-- {item:268582} Corrupted Totems · {area:484} Freewind Post · {npc:216474} Ravaging Tempest · {quest:79366} Heed My Call
-	["Prate hands you the {item:268582}: place them at the steam pools west of {area:484} and defeat the {npc:216474} they call. {quest:79366} is an elite quest: grouping up is advised."] = "Prate Cloudseer vous remet {item:268582} : placez-les aux bassins de vapeur à l'ouest du {area:484} et vainquez {npc:216474} qu'ils appellent. {quest:79366} est une quête élite : il est conseillé de grouper.",
+	-- {npc:5905} Prate Cloudseer · {item:268582} Corrupted Totems · {area:484} Freewind Post · {npc:216474} Ravaging Tempest · {quest:79366} Heed My Call
+	["{npc:5905} hands you the {item:268582}: place them at the steam pools west of {area:484} and defeat the {npc:216474} they call. {quest:79366} is an elite quest: grouping up is advised."] = "{npc:5905} Cloudseer vous remet {item:268582} : placez-les aux bassins de vapeur à l'ouest du {area:484} et vainquez {npc:216474} qu'ils appellent. {quest:79366} est une quête élite : il est conseillé de grouper.",
 	-- {item:212792} Eye of the Tempest · {npc:216474} Ravaging Tempest
 	["{item:212792}, from the {npc:216474}"] = "{item:212792}, sur {npc:216474}",
 
 	-- Step 14: Bath'rah the Windwatcher
-	-- {zone:1416} Alterac Mountains · {area:272} Tarren Mill
-	["Bath'rah camps in the east of {zone:1416}, north-east of {area:272}."] = "Bath'rah la Vigie des vents campe dans l'est de {zone:1416}, au nord-est de {area:272}.",
+	-- {npc:6176} Bath'rah the Windwatcher · {zone:1416} Alterac Mountains · {area:272} Tarren Mill
+	["{npc:6176} camps in the east of {zone:1416}, north-east of {area:272}."] = "{npc:6176} campe dans l'est de {zone:1416}, au nord-est de {area:272}.",
 	-- {npc:6176} Bath'rah the Windwatcher · {item:213086} Rune of the Storm
 	["{npc:6176}: the {item:213086} and your weapon"] = "{npc:6176} : {item:213086} et votre arme",
 }

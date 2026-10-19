@@ -3,13 +3,14 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Korean words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
 	["A robe or a blouse for Human and Gnome mages in their late 20s."] = "20대 후반 인간과 노움 마법사를 위한 로브 또는 블라우스입니다.",
 
 	-- Step 1: Bink (Ironforge)
-	-- {npc:5144} Bink · {zone:1455} Ironforge · {object:32362} Mystic Ward · {area:2257} Deeprun Tram · {object:171524} Tinker Town · {zone:1453} Stormwind
+	-- {npc:5144} Bink · {zone:1455} Ironforge · {object:32362} Mystic Ward (no name in this language: may be words) · {area:2257} Deeprun Tram · {object:171524} Tinker Town · {zone:1453} Stormwind
 	["{npc:5144} teaches mages in {zone:1455}'s {object:32362}. Take the {area:2257} from {object:171524} to {zone:1453} afterwards."] = "{npc:5144}은(는) {zone:1455}의 {object:32362}에서 마법사를 가르칩니다. 이후 {object:171524}에서 {area:2257}을(를) 타고 {zone:1453}(으)로 가십시오.",
 
 	-- Step 2: Jennea Cannon (Stormwind)

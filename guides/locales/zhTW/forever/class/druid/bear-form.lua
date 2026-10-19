@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (traditional) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (traditional) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -35,8 +36,8 @@ return {
 	["Fly from {area:702} to {area:442}. The {object:177525} stands in the hills just east of the village: use the {item:15208} there, defeat Lunaclaw and speak to the {npc:12144}."] = "從{area:702}飛往{area:442}。{object:177525}位於村莊東邊不遠處的山丘上：在那裡使用{item:15208}，擊敗月爪梟獸並與{npc:12144}交談。",
 
 	-- Step 6: Body and Heart
-	-- {area:702} Rut'theran Village
-	["Fly back to {area:702} and take the portal up to Mathrengyl."] = "飛回{area:702}，走傳送門上去找瑪斯雷。",
+	-- {area:702} Rut'theran Village · {npc:4217} Mathrengyl Bearwalker
+	["Fly back to {area:702} and take the portal up to {npc:4217}."] = "飛回{area:702}，走傳送門上去找{npc:4217}。",
 
 	-- Step 7: Heeding the Call
 	-- {npc:3064} Gennia Runetotem · {area:222} Bloodhoof Village · {npc:6746} Innkeeper Pala · {zone:1456} Thunder Bluff · {npc:6929} Innkeeper Gryshka · {zone:1454} Orgrimmar · {npc:3033} Turak Runetotem · {area:1639} Elder Rise
@@ -64,17 +65,17 @@ return {
 
 	-- Step 13: Skyboat from Dalaran
 	-- {area:279} Dalaran
-	["Skyboat from {area:279}"] = "從{area:279}搭乘飛艇",
+	["Skyboat from {area:279}"] = "從{area:279}搭乘天空船",
 	-- {spell:5487} Bear Form · {zone:2521} Zephras Isle · {area:279} Dalaran
-	["{spell:5487} is taught on {zone:2521}. Skip this if you are still on the isle; otherwise take the skyboat from the north side of {area:279}."] = "{spell:5487}在{zone:2521}教授。如果你還在島上就跳過此步驟；否則從{area:279}北側搭乘飛艇。",
+	["{spell:5487} is taught on {zone:2521}. Skip this if you are still on the isle; otherwise take the skyboat from the north side of {area:279}."] = "{spell:5487}在{zone:2521}教授。如果你還在島上就跳過此步驟；否則從{area:279}北側搭乘天空船。",
 	-- {zone:2521} Zephras Isle
-	["Skyboat to {zone:2521}"] = "搭飛艇前往{zone:2521}",
+	["Skyboat to {zone:2521}"] = "搭天空船前往{zone:2521}",
 
 	-- Step 14: Skyboat from Thunder Bluff
 	-- {zone:1456} Thunder Bluff
-	["Skyboat from {zone:1456}"] = "從{zone:1456}搭乘飛艇",
+	["Skyboat from {zone:1456}"] = "從{zone:1456}搭乘天空船",
 	-- {spell:5487} Bear Form · {zone:2521} Zephras Isle · {area:17045} Skywatcher Plateau · {zone:1456} Thunder Bluff
-	["{spell:5487} is taught on {zone:2521}. Skip this if you are still on the isle; otherwise take the skyboat from the cliffs south of {area:17045}, north of {zone:1456}."] = "{spell:5487}在{zone:2521}教授。如果你還在島上就跳過此步驟；否則從{zone:1456}北邊、{area:17045}南方的懸崖搭乘飛艇。",
+	["{spell:5487} is taught on {zone:2521}. Skip this if you are still on the isle; otherwise take the skyboat from the cliffs south of {area:17045}, north of {zone:1456}."] = "{spell:5487}在{zone:2521}教授。如果你還在島上就跳過此步驟；否則從{zone:1456}北邊、{area:17045}南方的懸崖搭乘天空船。",
 
 	-- Step 15: Lotheluum Starbreeze
 	-- {npc:252359} Lotheluum Starbreeze · {area:16638} Valanaar
@@ -109,7 +110,4 @@ return {
 	-- Step 22: Dendrite Starblaze
 	-- {spell:18960} Teleport: Moonglade · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {area:493} Moonglade
 	["Cast {spell:18960}. {npc:11802} is in {area:2361}. Learn the {area:493} flight path while you are here."] = "施放{spell:18960}。{npc:11802}在{area:2361}。趁你在這裡時學會{area:493}的飛行路線。",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["At 10 a druid's call reaches you: {npc:3602} in {area:186}, Denatharion in {zone:1457} or Theridran in {zone:1453}. Any one of them sends you to {npc:4217} in the Cenarion Enclave of {zone:1457}."] = "10級時，德魯伊的召喚會找上你：{area:186}的{npc:3602}、{zone:1457}的德納薩里安或{zone:1453}的塞瑞德蘭。他們任何一位都會派你去{zone:1457}塞納里奧區的{npc:4217}處。",
 }

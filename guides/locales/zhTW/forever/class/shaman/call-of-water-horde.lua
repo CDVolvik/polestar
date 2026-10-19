@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (traditional) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (traditional) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -20,8 +21,8 @@ return {
 	["At 20 {npc:5906}, a shaman trainer in {zone:1456}, sends you to {npc:5901} in the {zone:1413}."] = "20級時，{zone:1456}的薩滿訓練師{npc:5906}會派你去找{zone:1413}的{npc:5901}。",
 
 	-- Step 3: Islen Waterseer
-	-- {area:392} Ratchet
-	["Islen waits on the hill south of {area:392}."] = "伊斯倫在{area:392}南邊的山丘上等候。",
+	-- {npc:5901} Islen Waterseer · {area:392} Ratchet
+	["{npc:5901} waits on the hill south of {area:392}."] = "{npc:5901}在{area:392}南邊的山丘上等候。",
 
 	-- Step 4: Brine
 	-- {npc:5899} Brine · {area:378} Camp Taurajo
@@ -38,24 +39,24 @@ return {
 	["Fill the {item:7768} at the {object:107045}"] = "在{object:107045}裝滿{item:7768}",
 
 	-- Step 7: The Ruins of Stardust
-	-- {zone:1440} Ashenvale
-	["The fountain stands in the middle of the Ruins of Stardust, in south-western {zone:1440}."] = "噴泉位於{zone:1440}西南部的星塵廢墟中央。",
+	-- {area:418} The Ruins of Stardust · {zone:1440} Ashenvale
+	["The fountain stands in the middle of the {area:418}, in south-western {zone:1440}."] = "噴泉位於{zone:1440}西南部的{area:418}中央。",
 	-- {item:7767} Empty Blue Waterskin
 	["Fill the {item:7767} at the fountain"] = "在噴泉裝滿{item:7767}",
 
 	-- Step 8: Brine
-	-- {item:7810} Vial of Purest Water
-	["the {item:7810}, for Islen"] = "{item:7810}，交給伊斯倫",
+	-- {item:7810} Vial of Purest Water · {npc:5901} Islen Waterseer
+	["the {item:7810}, for {npc:5901}"] = "{item:7810}，交給{npc:5901}",
 
 	-- Step 9: Islen Waterseer
 	-- {npc:5901} Islen Waterseer · {item:6637} Water Sapta
 	["{npc:5901}: your {item:6637}"] = "{npc:5901}：你的{item:6637}",
 
 	-- Step 10: The Brazier of Everfount
-	-- {object:113791} Brazier of Everfount
+	-- {object:113791} Brazier of Everfount (no name in this language: may be words)
 	["The {object:113791}"] = "{object:113791}",
-	-- {area:228} Sepulcher · {object:113791} Brazier of Everfount · {item:6637} Water Sapta · {npc:5894} Corrupt Minor Manifestation of Water · {npc:5895} Minor Manifestation of Water · {item:7813} Shard of Water
-	["Fly to the {area:228}: the {object:113791} stands on the hill just south-west of it. Drink the {item:6637} there, beat the {npc:5894} for its bracers and place them in the brazier, then speak to the {npc:5895} and keep the {item:7813} for Islen."] = "飛往{area:228}：{object:113791}就在它西南方的山丘上。在那裡喝下{item:6637}，擊敗{npc:5894}取得它的護腕並放進火盆，然後與{npc:5895}交談，保留{item:7813}交給伊斯倫。",
+	-- {area:228} Sepulcher · {object:113791} Brazier of Everfount (no name in this language: may be words) · {item:6637} Water Sapta · {npc:5894} Corrupt Minor Manifestation of Water · {npc:5895} Minor Manifestation of Water · {item:7813} Shard of Water · {npc:5901} Islen Waterseer
+	["Fly to the {area:228}: the {object:113791} stands on the hill just south-west of it. Drink the {item:6637} there, beat the {npc:5894} for its bracers and place them in the brazier, then speak to the {npc:5895} and keep the {item:7813} for {npc:5901}."] = "飛往{area:228}：{object:113791}就在它西南方的山丘上。在那裡喝下{item:6637}，擊敗{npc:5894}取得它的護腕並放進火盆，然後與{npc:5895}交談，保留{item:7813}交給{npc:5901}。",
 
 	-- Step 11: Islen Waterseer
 	-- {npc:5901} Islen Waterseer · {spell:5394} Healing Stream Totem · {item:5177} Water Totem

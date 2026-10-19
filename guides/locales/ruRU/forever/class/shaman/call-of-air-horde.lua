@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Russian (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Russian words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -65,14 +66,14 @@ return {
 
 	-- Step 12: The steam pools
 	["The steam pools"] = "Паровые озерца",
-	-- {item:268582} Corrupted Totems · {area:484} Freewind Post · {npc:216474} Ravaging Tempest · {quest:79366} Heed My Call
-	["Prate hands you the {item:268582}: place them at the steam pools west of {area:484} and defeat the {npc:216474} they call. {quest:79366} is an elite quest: grouping up is advised."] = "Прейт вручает вам {item:268582}: поставьте их у паровых озерец к западу от места {area:484} и победите призванного ими NPC {npc:216474}. {quest:79366} — элитное задание: лучше собрать группу.",
+	-- {npc:5905} Prate Cloudseer · {item:268582} Corrupted Totems · {area:484} Freewind Post · {npc:216474} Ravaging Tempest · {quest:79366} Heed My Call
+	["{npc:5905} hands you the {item:268582}: place them at the steam pools west of {area:484} and defeat the {npc:216474} they call. {quest:79366} is an elite quest: grouping up is advised."] = "{npc:5905} вручает вам {item:268582}: поставьте их у паровых озерец к западу от места {area:484} и победите призванного ими NPC {npc:216474}. {quest:79366} — элитное задание: лучше собрать группу.",
 	-- {item:212792} Eye of the Tempest · {npc:216474} Ravaging Tempest
 	["{item:212792}, from the {npc:216474}"] = "{item:212792}, с NPC {npc:216474}",
 
 	-- Step 14: Bath'rah the Windwatcher
-	-- {zone:1416} Alterac Mountains · {area:272} Tarren Mill
-	["Bath'rah camps in the east of {zone:1416}, north-east of {area:272}."] = "Бат'ра разбил лагерь на востоке зоны {zone:1416}, к северо-востоку от места {area:272}.",
+	-- {npc:6176} Bath'rah the Windwatcher · {zone:1416} Alterac Mountains · {area:272} Tarren Mill
+	["{npc:6176} camps in the east of {zone:1416}, north-east of {area:272}."] = "{npc:6176} разбил лагерь на востоке зоны {zone:1416}, к северо-востоку от места {area:272}.",
 	-- {npc:6176} Bath'rah the Windwatcher · {item:213086} Rune of the Storm
 	["{npc:6176}: the {item:213086} and your weapon"] = "{npc:6176}: {item:213086} и ваше оружие",
 }

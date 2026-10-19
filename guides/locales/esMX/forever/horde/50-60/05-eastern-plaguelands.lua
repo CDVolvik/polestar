@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Spanish (Latin America) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Spanish (Latin America) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Fly to Light's Hope Chapel
@@ -97,8 +98,8 @@ return {
 	["Only if a {quest:8471} dropped for you: {npc:11558} waits at the {zone:1448} entrance of {area:1769}, and speaks to you only at Neutral with the Timbermaw."] = "Solo si te salió un {quest:8471}: {npc:11558} espera en la entrada de {area:1769} del lado de {zone:1448}, y solo te habla si eres Neutral con los Fauces de Madera.",
 
 	-- Step 22: Rabine Saturna
-	-- {area:1769} Timbermaw Hold · {zone:1450} Moonglade · {area:2361} Nighthaven
-	["Go through {area:1769} and take the {zone:1450} branch of the tunnel. Rabine is in {area:2361}."] = "Atraviesa {area:1769} y toma el ramal del túnel hacia {zone:1450}. Rabine está en {area:2361}.",
+	-- {area:1769} Timbermaw Hold · {zone:1450} Moonglade · {npc:11801} Rabine Saturna · {area:2361} Nighthaven
+	["Go through {area:1769} and take the {zone:1450} branch of the tunnel. {npc:11801} is in {area:2361}."] = "Atraviesa {area:1769} y toma el ramal del túnel hacia {zone:1450}. {npc:11801} está en {area:2361}.",
 	-- {zone:1451} Silithus
 	["Both quests lead to {zone:1451}: keep them."] = "Ambas misiones llevan a {zone:1451}: guárdalas.",
 
@@ -134,8 +135,8 @@ return {
 	["{quest:3914} goes back to Linken in Un'Goro: keep it."] = "{quest:3914} regresa con Linken en Un'Goro: guárdala.",
 
 	-- Step 29: Marvon Rivetseeker
-	-- {area:1336} Lost Rigger Cove · {area:976} Gadgetzan
-	["Marvon camps by the {area:1336} road, south of {area:976}."] = "Marvon acampa junto al camino de {area:1336}, al sur de {area:976}.",
+	-- {npc:7771} Marvon Rivetseeker · {area:1336} Lost Rigger Cove · {area:976} Gadgetzan
+	["{npc:7771} camps by the {area:1336} road, south of {area:976}."] = "{npc:7771} acampa junto al camino de {area:1336}, al sur de {area:976}.",
 
 	-- Step 30: Hippogryph eggs
 	["Hippogryph eggs"] = "Huevos de hipogrifo",

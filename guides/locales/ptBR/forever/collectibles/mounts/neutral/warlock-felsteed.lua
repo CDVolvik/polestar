@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Portuguese (Brazil) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Portuguese (Brazil) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -18,11 +19,11 @@ return {
 	["At 40 {npc:5172} in {zone:1455} sends you to {npc:6251} in {area:392}."] = "No nível 40, {npc:5172}, em {zone:1455}, envia você a {npc:6251} em {area:392}.",
 
 	-- Step 3: Summon Felsteed (Orgrimmar)
-	-- {npc:3326} Zevrost · {object:172960} Cleft of Shadow · {npc:6251} Strahad Farsan · {area:392} Ratchet
+	-- {npc:3326} Zevrost · {object:172960} Cleft of Shadow (no name in this language: may be words) · {npc:6251} Strahad Farsan · {area:392} Ratchet
 	["At 40 {npc:3326} in the {object:172960} sends you to {npc:6251} in {area:392}."] = "No nível 40, {npc:3326}, na {object:172960}, envia você a {npc:6251} em {area:392}.",
 
 	-- Step 4: Summon Felsteed (Undercity)
-	-- {npc:4563} Kaal Soulreaper · {object:36082} Magic Quarter · {npc:6251} Strahad Farsan · {area:392} Ratchet · {zone:1420} Tirisfal Glades · {zone:1411} Durotar
+	-- {npc:4563} Kaal Soulreaper · {object:36082} Magic Quarter (no name in this language: may be words) · {npc:6251} Strahad Farsan · {area:392} Ratchet · {zone:1420} Tirisfal Glades · {zone:1411} Durotar
 	["At 40 {npc:4563} in the {object:36082} sends you to {npc:6251} in {area:392}. The zeppelin from {zone:1420} flies to {zone:1411}."] = "No nível 40, {npc:4563}, no {object:36082}, envia você a {npc:6251} em {area:392}. O zepelim de {zone:1420} voa para {zone:1411}.",
 
 	-- Step 5: Strahad Farsan in Ratchet

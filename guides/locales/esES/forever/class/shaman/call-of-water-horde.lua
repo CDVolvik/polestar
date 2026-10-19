@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Spanish (Spain) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Spanish (Spain) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -20,8 +21,8 @@ return {
 	["At 20 {npc:5906}, a shaman trainer in {zone:1456}, sends you to {npc:5901} in the {zone:1413}."] = "A nivel 20, {npc:5906}, instructora de chamanes en {zone:1456}, te envía con {npc:5901} en {zone:1413}.",
 
 	-- Step 3: Islen Waterseer
-	-- {area:392} Ratchet
-	["Islen waits on the hill south of {area:392}."] = "Islen espera en la colina al sur de {area:392}.",
+	-- {npc:5901} Islen Waterseer · {area:392} Ratchet
+	["{npc:5901} waits on the hill south of {area:392}."] = "{npc:5901} espera en la colina al sur de {area:392}.",
 
 	-- Step 4: Brine
 	-- {npc:5899} Brine · {area:378} Camp Taurajo
@@ -38,14 +39,14 @@ return {
 	["Fill the {item:7768} at the {object:107045}"] = "Llena {item:7768} en {object:107045}",
 
 	-- Step 7: The Ruins of Stardust
-	-- {zone:1440} Ashenvale
-	["The fountain stands in the middle of the Ruins of Stardust, in south-western {zone:1440}."] = "La fuente está en el centro de Las Ruinas del Polvo Estelar, en el suroeste de {zone:1440}.",
+	-- {area:418} The Ruins of Stardust · {zone:1440} Ashenvale
+	["The fountain stands in the middle of the {area:418}, in south-western {zone:1440}."] = "La fuente está en el centro de {area:418}, en el suroeste de {zone:1440}.",
 	-- {item:7767} Empty Blue Waterskin
 	["Fill the {item:7767} at the fountain"] = "Llena {item:7767} en la fuente",
 
 	-- Step 8: Brine
-	-- {item:7810} Vial of Purest Water
-	["the {item:7810}, for Islen"] = "{item:7810}, para Islen",
+	-- {item:7810} Vial of Purest Water · {npc:5901} Islen Waterseer
+	["the {item:7810}, for {npc:5901}"] = "{item:7810}, para {npc:5901}",
 
 	-- Step 9: Islen Waterseer
 	-- {npc:5901} Islen Waterseer · {item:6637} Water Sapta
@@ -54,8 +55,8 @@ return {
 	-- Step 10: The Brazier of Everfount
 	-- {object:113791} Brazier of Everfount
 	["The {object:113791}"] = "{object:113791}",
-	-- {area:228} Sepulcher · {object:113791} Brazier of Everfount · {item:6637} Water Sapta · {npc:5894} Corrupt Minor Manifestation of Water · {npc:5895} Minor Manifestation of Water · {item:7813} Shard of Water
-	["Fly to the {area:228}: the {object:113791} stands on the hill just south-west of it. Drink the {item:6637} there, beat the {npc:5894} for its bracers and place them in the brazier, then speak to the {npc:5895} and keep the {item:7813} for Islen."] = "Vuela a {area:228}: {object:113791} está en la colina justo al suroeste. Bebe allí {item:6637}, derrota a la {npc:5894} para conseguir sus brazales y ponlos en el blandón; luego habla con la {npc:5895} y guarda {item:7813} para Islen.",
+	-- {area:228} Sepulcher · {object:113791} Brazier of Everfount · {item:6637} Water Sapta · {npc:5894} Corrupt Minor Manifestation of Water · {npc:5895} Minor Manifestation of Water · {item:7813} Shard of Water · {npc:5901} Islen Waterseer
+	["Fly to the {area:228}: the {object:113791} stands on the hill just south-west of it. Drink the {item:6637} there, beat the {npc:5894} for its bracers and place them in the brazier, then speak to the {npc:5895} and keep the {item:7813} for {npc:5901}."] = "Vuela a {area:228}: {object:113791} está en la colina justo al suroeste. Bebe allí {item:6637}, derrota a la {npc:5894} para conseguir sus brazales y ponlos en el blandón; luego habla con la {npc:5895} y guarda {item:7813} para {npc:5901}.",
 
 	-- Step 11: Islen Waterseer
 	-- {npc:5901} Islen Waterseer · {spell:5394} Healing Stream Totem · {item:5177} Water Totem

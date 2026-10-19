@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (simplified) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (simplified) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -33,7 +34,7 @@ return {
 	-- Step 6: Shadowvale
 	-- {quest:91317} The Tarnished · {area:16881} Shadowvale · {area:16616} Whispering Forest · {item:246213} Sturdy Lumber · {npc:259431} Rudolph Gelhardt
 	["{quest:91317} hold the ruined village of {area:16881} in the {area:16616}, south-west of the keep. The {item:246213} is piled in the root cellar of one of its houses; Commander {npc:259431} walks among his Tarnished."] = "{quest:91317}占据着要塞西南方{area:16616}中的废弃村庄{area:16881}。{item:246213}堆放在其中一座房屋的地窖里；{npc:259431}指挥官在他的部下之间走动。",
-	-- {object:554626} Lumber Pile
+	-- {object:554626} Lumber Pile (no name in this language: may be words)
 	["{object:554626}, in the root cellar"] = "{object:554626}，在地窖里",
 	-- plural, as words: Tarnished Drudges = {npc:259434} Tarnished Drudge
 	["Tarnished Drudges"] = "{npc:259434}",
@@ -44,22 +45,23 @@ return {
 	["Back to the keep"] = "回到要塞",
 
 	-- Step 8: A Lesson in Divinity
-	["Danitha offers the first Lesson in Divinity at level 12."] = "丹妮莎在12级时提供第一堂神圣课程。",
+	-- {npc:246378} Danitha Morr
+	["{npc:246378} offers the first Lesson in Divinity at level 12."] = "{npc:246378}在12级时提供第一堂神圣课程。",
 
 	-- Step 9: The Undercity
 	-- {area:159} Brill · {area:153} Ruins of Lordaeron · {zone:1458} Undercity · {npc:10181} Lady Sylvanas Windrunner · {object:36126} Royal Quarter · {npc:257648} Tanis Alderwood · {object:36078} Trade Quarter
 	["Walk south from {area:159} to the {area:153} and down into the {zone:1458}. {npc:10181} holds court in the {object:36126}; {npc:257648} begs in the {object:36078}."] = "从{area:159}向南走到{area:153}，再下到{zone:1458}。{npc:10181}在{object:36126}接见臣民；{npc:257648}在{object:36078}乞讨。",
 
 	-- Step 10: Linen Cloth
-	-- {item:2589} Linen Cloth
+	-- {npc:257648} Tanis Alderwood · {item:2589} Linen Cloth
 	-- plural, as words: Scarlet Zealots = {npc:1537} Scarlet Zealot · Scarlet Friars = {npc:1538} Scarlet Friar
-	["Tanis needs 10 {item:2589}. Scarlet Zealots and Scarlet Friars drop it about three times in ten; bring it along if you already carry some."] = "塔尼斯需要10块{item:2589}。{npc:1537}和{npc:1538}大约十次掉落三次；如果你身上已经有一些，带上即可。",
+	["{npc:257648} needs 10 {item:2589}. Scarlet Zealots and Scarlet Friars drop it about three times in ten; bring it along if you already carry some."] = "{npc:257648}需要10块{item:2589}。{npc:1537}和{npc:1538}大约十次掉落三次；如果你身上已经有一些，带上即可。",
 
 	-- Step 12: The Symbol of Life
 	-- {item:6866} Symbol of Life
 	["The {item:6866}"] = "{item:6866}",
-	-- {area:16602} Bandarion Keep · {item:6866} Symbol of Life · {npc:257655} Deathguard Billmuth
-	["Back to {area:16602}. Danitha gives you the {item:6866}; {npc:257655} waits downstairs in the keep."] = "回到{area:16602}。丹妮莎会给你{item:6866}；{npc:257655}在要塞楼下等候。",
+	-- {area:16602} Bandarion Keep · {npc:246378} Danitha Morr · {item:6866} Symbol of Life · {npc:257655} Deathguard Billmuth
+	["Back to {area:16602}. {npc:246378} gives you the {item:6866}; {npc:257655} waits downstairs in the keep."] = "回到{area:16602}。{npc:246378}会给你{item:6866}；{npc:257655}在要塞楼下等候。",
 
 	-- Step 13: Deathguard Falgan
 	-- {area:812} Venomweb Vale · {item:6866} Symbol of Life · {npc:257663} Deathguard Falgan · {npc:246378} Danitha Morr
@@ -72,10 +74,9 @@ return {
 	["The Scarlet Crusaders camped around {area:812} carry the attack plans."] = "在{area:812}周围扎营的{npc:239036}身上带着进攻计划。",
 
 	-- Step 15: Redemption
-	-- {area:16602} Bandarion Keep · {spell:7328} Redemption
-	["Back to {area:16602}: Billmuth takes the plans, Danitha teaches you {spell:7328}."] = "回到{area:16602}：比尔穆斯收下计划，丹妮莎教你{spell:7328}。",
+	-- {area:16602} Bandarion Keep · {npc:246378} Danitha Morr · {spell:7328} Redemption
+	["Back to {area:16602}: Billmuth takes the plans, {npc:246378} teaches you {spell:7328}."] = "回到{area:16602}：比尔穆斯收下计划，{npc:246378}教你{spell:7328}。",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["{object:181686}, in the root cellar"] = "{object:181686}，在地窖里",
-	-- ["{quest:91317} hold the ruined village of {area:16881} in the {area:16616}, south-west of the keep. The {item:246213} is piled in the root cellar of one of its houses; Commander Rudolph Gelhardt walks among his Tarnished."] = "{quest:91317}占据着要塞西南方{area:16616}中的废弃村庄{area:16881}。{item:246213}堆放在其中一座房屋的地窖里；鲁道夫·盖尔哈特指挥官在他的部下之间走动。",
 }

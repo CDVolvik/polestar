@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (traditional) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (traditional) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -38,8 +39,9 @@ return {
 	-- {npc:1416} Grimand Elmore · {zone:1453} Stormwind · {object:28027} Dwarven District
 	["{npc:1416} works in {zone:1453}'s {object:28027}."] = "{npc:1416}在{zone:1453}的{object:28027}工作。",
 
-	-- Step 8: Grimand's materials
-	["Grimand's materials"] = "格瑞曼德的材料",
+	-- Step 8: Grimand Elmore's materials
+	-- {npc:1416} Grimand Elmore
+	["{npc:1416}'s materials"] = "{npc:1416}的材料",
 	-- {item:14047} Runecloth · {item:8836} Arthas' Tears · {zone:1448} Felwood · {skill:171} Alchemy · {zone:1453} Stormwind · {object:2096} Trade District
 	-- plural, as words: Arcanite Bars = {item:12360} Arcanite Bar
 	["{item:14047} drops from humanoids around level 50 and up; {item:8836} is an herb of the Plaguelands and {zone:1448}; Arcanite Bars are an {skill:171} transmute. The Auction House in {zone:1453}'s {object:2096} sells all three, and so do crafters."] = "{item:14047}由50級以上的人型生物掉落；{item:8836}是瘟疫之地和{zone:1448}的草藥；奧金錠是{skill:171}轉化產物。{zone:1453}{object:2096}的拍賣場三樣都有賣，工匠也有。",
@@ -54,7 +56,8 @@ return {
 	["Supply Crates, inside"] = "補給箱，在裡面",
 
 	-- Step 10: Grimand Elmore
-	["Bring 150 gold for Grimand along with the materials."] = "除了材料，再帶150金幣給格瑞曼德。",
+	-- {npc:1416} Grimand Elmore
+	["Bring 150 gold for {npc:1416} along with the materials."] = "除了材料，再帶150金幣給{npc:1416}。",
 	-- {npc:1416} Grimand Elmore
 	["{npc:1416}: 150 gold"] = "{npc:1416}：150金幣",
 
@@ -91,8 +94,8 @@ return {
 	["he hands you the {item:18746}"] = "他會給你{item:18746}",
 
 	-- Step 18: The Great Ossuary
-	-- {area:2057} Scholomance · {area:2298} Caer Darrow · {zone:1422} Western Plaguelands · {item:18746} Divination Scryer · {npc:14516} Death Knight Darkreaver · {item:18799} Charger's Redeemed Soul · {item:18792} Blessed Arcanite Barding
-	["{area:2057} lies under {area:2298}, the island town in the south-east of the {zone:1422}. Use the {item:18746} in the heart of the Great Ossuary's basement, defeat the spirits it calls and then {npc:14516}, and give his Fallen Charger the {item:18799} and the {item:18792}. All are elite: bring a group. If the attempt fails, Lord Grayson gives you a new scryer through Again Into the Great Ossuary."] = "{area:2057}位於{zone:1422}東南部的島上城鎮{area:2298}之下。在大藏骨堂地下室的中央使用{item:18746}，擊敗它召來的靈魂，再擊敗{npc:14516}，然後把{item:18799}和{item:18792}交給達克雷爾的墮落戰馬。全都是精英：請帶小隊。如果失敗，格雷森公爵會透過「重回大藏骨堂」給你新的預言水晶球。",
+	-- {area:2057} Scholomance · {area:2298} Caer Darrow · {zone:1422} Western Plaguelands · {item:18746} Divination Scryer · {object:179746} The Great Ossuary (no name in this language: may be words) · {npc:14516} Death Knight Darkreaver · {item:18799} Charger's Redeemed Soul · {item:18792} Blessed Arcanite Barding
+	["{area:2057} lies under {area:2298}, the island town in the south-east of the {zone:1422}. Use the {item:18746} in the heart of the {object:179746}'s basement, defeat the spirits it calls and then {npc:14516}, and give his Fallen Charger the {item:18799} and the {item:18792}. All are elite: bring a group. If the attempt fails, Lord Grayson gives you a new scryer through Again Into the {object:179746}."] = "{area:2057}位於{zone:1422}東南部的島上城鎮{area:2298}之下。在大藏骨堂地下室的中央使用{item:18746}，擊敗它召來的靈魂，再擊敗{npc:14516}，然後把{item:18799}和{item:18792}交給達克雷爾的墮落戰馬。全都是精英：請帶小隊。如果失敗，格雷森公爵會透過「重回大藏骨堂」給你新的預言水晶球。",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["{area:2057} lies under {area:2298}, the island town in the south-east of the {zone:1422}. Use the {item:18746} in the heart of the {object:179746}'s basement, defeat the spirits it calls and then {npc:14516}, and give his Fallen Charger the {item:18799} and the {item:18792}. All are elite: bring a group. If the attempt fails, Lord Grayson gives you a new scryer through Again Into the {object:179746}."] = "{area:2057}位於{zone:1422}東南部的島上城鎮{area:2298}之下。在{object:179746}地下室的中央使用{item:18746}，擊敗它召來的靈魂，再擊敗{npc:14516}，然後把{item:18799}和{item:18792}交給達克雷爾的墮落戰馬。全都是精英：請帶小隊。如果失敗，格雷森公爵會透過「重回{object:179746}」給你新的預言水晶球。",

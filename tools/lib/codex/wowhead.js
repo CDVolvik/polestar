@@ -4,8 +4,7 @@
 // credited in THIRD_PARTY.md; provenance `wowhead`, below recordings and the
 // client tables (docs/SUITE.md, "Data layer").
 //
-// Polestar no longer fetches from Wowhead (its terms don't allow automated
-// requests); builds read what is already cached in data/sources/wowhead/.
+// Builds read what is cached in data/sources/wowhead/.
 // No cache: empty facts, and the build goes on without them.
 //
 // <sources>/wowhead/codex/<type>/<id>.json, one entity each ({ notFound: true }

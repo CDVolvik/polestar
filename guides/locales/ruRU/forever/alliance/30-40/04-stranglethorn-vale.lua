@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Russian (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Russian words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Ironforge
@@ -39,7 +40,7 @@ return {
 
 	-- Step 9: Rebel Camp
 	-- {npc:738} Private Thorsen
-	["Take the road north; {npc:738} stands on it, the camp sits in the hills to the west."] = "Идите по дороге на север; {npc:738} стоит на ней, лагерь – в холмах к западу.",
+	["Take the road north; {npc:738} patrols it, the camp sits in the hills to the west."] = "Идите по дороге на север; {npc:738} патрулирует ее, лагерь – в холмах к западу.",
 	-- {npc:469} Lieutenant Doren
 	["{npc:469}, in the hut"] = "{npc:469} – в хижине",
 
@@ -71,9 +72,10 @@ return {
 	["Down to {area:35}"] = "Вниз: {area:35}",
 	-- {object:3202} Grom'gol · {area:35} Booty Bay
 	["Follow the main road south the length of the jungle, past the {object:3202} turn-off, to {area:35} on the southern cape."] = "Идите по главной дороге на юг через все джунгли, мимо поворота на {object:3202}, до южного мыса: {area:35}.",
-	["Gyll, on the top floor by the docks"] = "Гилл – на верхнем этаже у причалов",
-	-- {npc:2832} Nixxrax Fillamug
-	["{npc:2832}, in the Salty Sailor Tavern"] = "{npc:2832} – таверна «Старый моряк»",
+	-- {npc:2859} Gyll
+	["{npc:2859}, on the top floor by the docks"] = "{npc:2859} – на верхнем этаже у причалов",
+	-- {npc:2832} Nixxrax Fillamug · {object:56910} The Salty Sailor Tavern
+	["{npc:2832}, in the {object:56910}"] = "{npc:2832} – {object:56910}",
 	-- {npc:2495} Drizzlik
 	["{npc:2495}, by the bank"] = "{npc:2495} – у банка",
 	-- {npc:773} Krazek
@@ -120,8 +122,8 @@ return {
 	["Follow the west coast north; the haunted island lies off the shore west of Nesingwary's camp. Just reach it."] = "Идите вдоль западного побережья на север; остров духов лежит у берега к западу от лагеря Эрнестуэя. Достаточно добраться до него.",
 
 	-- Step 26: Nesingwary's Expedition
-	-- {item:2755} Green Hills of Stranglethorn
-	["Barnil collects the {item:2755}: the pages drop from almost every humanoid in the jungle. Turn the pages into chapters as you go."] = "Барнил собирает страницы ({item:2755}): они падают почти со всех гуманоидов в джунглях. По ходу дела собирайте из страниц главы.",
+	-- {npc:716} Barnil Stonepot · {item:2755} Green Hills of Stranglethorn
+	["{npc:716} collects the {item:2755}: the pages drop from almost every humanoid in the jungle. Turn the pages into chapters as you go."] = "{npc:716} собирает страницы ({item:2755}): они падают почти со всех гуманоидов в джунглях. По ходу дела собирайте из страниц главы.",
 
 	-- Step 28: Kurzen's Compound
 	["Headshrinkers stand deeper in the compound; the Commandos lurk stealthed around it and in the cave. Pick up Green Hills pages as they drop."] = "Охотники за головами Курцена стоят в глубине лагеря; коммандо Курцена прячутся в незаметности вокруг него и в пещере. Подбирайте выпавшие страницы «Зеленых холмов».",
@@ -131,8 +133,6 @@ return {
 	-- {area:37} Lake Nazferiti
 	-- plural, as words: Shadowmaw Panthers = {npc:684} Shadowmaw Panther · Tumbled Crystals = {item:4106} Tumbled Crystal
 	["Loop through the troll ruins of the north and centre: each holds one stone tablet of the troll legends. Shadowmaw Panthers prowl stealthed in the jungle around them; the Venture Co. camp on {area:37} carries the Tumbled Crystals."] = "Обойдите по кругу руины троллей на севере и в центре: в каждых лежит одна каменная табличка с легендами троллей. В джунглях вокруг них в незаметности рыщут тенебрюхие пантеры; упавшие кристаллы носят члены Торговой компании из лагеря у озера ({area:37}).",
-	-- {quest:207} Kurzen's Mystery
-	["{quest:207}: four troll legends"] = "{quest:207}: четыре легенды троллей",
 
 	-- Step 30: Rebel Camp
 	-- {npc:770} Corporal Kaleb · {npc:773} Krazek · {area:35} Booty Bay
@@ -152,5 +152,7 @@ return {
 	["For Archmage Ansirem in {zone:1416}"] = "Для верховного мага Ансарема (зона {zone:1416})",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Take the road north; {npc:738} stands on it, the camp sits in the hills to the west."] = "Идите по дороге на север; {npc:738} стоит на ней, лагерь – в холмах к западу.",
 	-- ["{npc:2832}, in the {object:56910}"] = "{npc:2832} – {object:56910}",
+	-- ["{quest:207}: four troll legends"] = "{quest:207}: четыре легенды троллей",
 }

@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (traditional) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (traditional) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -36,11 +37,12 @@ return {
 	["{npc:5165} stands in the north of {zone:1455}."] = "{npc:5165}站在{zone:1455}北部。",
 
 	-- Step 7: Onin MacHammar
-	-- {area:133} Gnomeregan · {zone:1426} Dun Morogh
-	["Onin waits near {area:133}, in western {zone:1426}."] = "奧寧在{zone:1426}西部的{area:133}附近等候。",
+	-- {npc:6886} Onin MacHammar · {area:133} Gnomeregan · {zone:1426} Dun Morogh
+	["{npc:6886} waits near {area:133}, in western {zone:1426}."] = "{npc:6886}在{zone:1426}西部的{area:133}附近等候。",
 
-	-- Step 8: Back to Hulfdan
-	["Back to Hulfdan"] = "回到霍夫丹那裡",
+	-- Step 8: Back to Hulfdan Blackbeard
+	-- {npc:5165} Hulfdan Blackbeard
+	["Back to {npc:5165}"] = "回到{npc:5165}那裡",
 
 	-- Step 9: The Apple Falls
 	-- {npc:3599} Jannok Breezesong · {area:186} Dolanaar · {npc:4163} Syurna · {zone:1457} Darnassus

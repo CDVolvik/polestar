@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Korean words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -21,7 +22,7 @@ return {
 
 	-- Step 3: Prate Cloudseer
 	-- {area:484} Freewind Post · {npc:5905} Prate Cloudseer · {quest:1531} Call of Air
-	["Fly to {area:484}. {npc:5905} hides in a small cave in the canyon wall north-east of the post. Skyborne: your own {quest:1531} (96136) ends with her too."] = "{area:484}(으)로 날아가세요. {npc:5905}은(는) 거점 북동쪽 협곡 벽의 작은 동굴에 숨어 있습니다. Skyborne: 당신의 {quest:1531}(96136)도 그녀에게서 끝납니다.",
+	["Fly to {area:484}. {npc:5905} hides in a small cave in the canyon wall north-east of the post. Skyborne: your own {quest:1531} (96136) ends with her too."] = "{area:484}(으)로 날아가세요. {npc:5905}은(는) 거점 북동쪽 협곡 벽의 작은 동굴에 숨어 있습니다. 스카이본: 당신의 {quest:1531}(96136)도 그녀에게서 끝납니다.",
 	-- {npc:5905} Prate Cloudseer · {item:5178} Air Totem
 	["{npc:5905}: your {item:5178}"] = "{npc:5905}: {item:5178}",
 
@@ -65,14 +66,14 @@ return {
 
 	-- Step 12: The steam pools
 	["The steam pools"] = "증기 웅덩이",
-	-- {item:268582} Corrupted Totems · {area:484} Freewind Post · {npc:216474} Ravaging Tempest · {quest:79366} Heed My Call
-	["Prate hands you the {item:268582}: place them at the steam pools west of {area:484} and defeat the {npc:216474} they call. {quest:79366} is an elite quest: grouping up is advised."] = "프레이트가 {item:268582}을(를) 줍니다. {area:484} 서쪽 증기 웅덩이에 놓고 나타나는 {npc:216474}을(를) 물리치세요. {quest:79366}은(는) 정예 퀘스트이니 파티를 권장합니다.",
+	-- {npc:5905} Prate Cloudseer · {item:268582} Corrupted Totems · {area:484} Freewind Post · {npc:216474} Ravaging Tempest · {quest:79366} Heed My Call
+	["{npc:5905} hands you the {item:268582}: place them at the steam pools west of {area:484} and defeat the {npc:216474} they call. {quest:79366} is an elite quest: grouping up is advised."] = "{npc:5905}이(가) {item:268582}을(를) 줍니다. {area:484} 서쪽 증기 웅덩이에 놓고 나타나는 {npc:216474}을(를) 물리치세요. {quest:79366}은(는) 정예 퀘스트이니 파티를 권장합니다.",
 	-- {item:212792} Eye of the Tempest · {npc:216474} Ravaging Tempest
 	["{item:212792}, from the {npc:216474}"] = "{item:212792}, {npc:216474}에게서",
 
 	-- Step 14: Bath'rah the Windwatcher
-	-- {zone:1416} Alterac Mountains · {area:272} Tarren Mill
-	["Bath'rah camps in the east of {zone:1416}, north-east of {area:272}."] = "바스라는 {zone:1416} 동쪽, {area:272} 북동쪽에 진을 치고 있습니다.",
+	-- {npc:6176} Bath'rah the Windwatcher · {zone:1416} Alterac Mountains · {area:272} Tarren Mill
+	["{npc:6176} camps in the east of {zone:1416}, north-east of {area:272}."] = "{npc:6176}은(는) {zone:1416} 동쪽, {area:272} 북동쪽에 진을 치고 있습니다.",
 	-- {npc:6176} Bath'rah the Windwatcher · {item:213086} Rune of the Storm
 	["{npc:6176}: the {item:213086} and your weapon"] = "{npc:6176}: {item:213086}와(과) 무기",
 }

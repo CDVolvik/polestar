@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Spanish (Latin America) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Spanish (Latin America) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -60,16 +61,14 @@ return {
 	-- {npc:6522} Andron Gant
 	["{npc:6522}'s ledger sits on the bookshelf beside him."] = "El libro de cuentas de {npc:6522} está en el librero junto a él.",
 
-	-- Step 12: Mennet and Varimathras
-	-- {npc:2425} Varimathras
-	["Mennet and {npc:2425}"] = "Mennet y {npc:2425}",
-	-- {npc:2425} Varimathras · {object:36126} Royal Quarter
-	["Mennet sends the ledger on to {npc:2425} in the Hall of the Dark Lady, the {object:36126}."] = "Mennet envía el libro de cuentas a {npc:2425}, en el Hall of the Dark Lady, {object:36126}.",
+	-- Step 12: Mennet Carkad and Varimathras
+	-- {npc:6467} Mennet Carkad · {npc:2425} Varimathras
+	["{npc:6467} and {npc:2425}"] = "{npc:6467} y {npc:2425}",
+	-- {npc:6467} Mennet Carkad · {npc:2425} Varimathras · {object:36126} Royal Quarter
+	["{npc:6467} sends the ledger on to {npc:2425} in the Hall of the Dark Lady, the {object:36126}."] = "{npc:6467} envía el libro de cuentas a {npc:2425}, en el Hall of the Dark Lady, {object:36126}.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Gamon drinks in the inn in the {object:172982}. Pick his pocket for {item:7208}, then open {item:7209}."] = "Gamon bebe en la posada de {object:172982}. Róbale {item:7208} y luego abre {item:7209}.",
 	-- ["Tazan"] = "Tazan",
-	-- ["Tazan stands on the {zone:1413} coast south of {area:392}. Kill him for his satchel."] = "Tazan está en la costa de {zone:1413}, al sur de {area:392}. Mátalo para obtener su cartera.",
 	-- ["{item:7208}: Gamon"] = "{item:7208}: Gamon",
 	-- ["{item:7209}: Tazan"] = "{item:7209}: Tazan",
 }

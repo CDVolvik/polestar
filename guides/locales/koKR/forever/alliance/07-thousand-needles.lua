@@ -3,11 +3,12 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Korean words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Darkshire
-	-- {item:4371} Bronze Tube · {quest:174} Look to the Stars · {npc:3133} Herble Baubbletump · {npc:1448} Neal Allen · {area:150} Menethil Harbor
-	["No {item:4371} for {quest:174}? {npc:3133} sells it in the house beside Viktori, in limited stock; {npc:1448} in {area:150} sells it too."] = "{quest:174}에 쓸 {item:4371}이(가) 없나요? 빅토리 옆집의 {npc:3133}이(가) 한정 수량으로 팔고, {area:150}의 {npc:1448}도 팝니다.",
+	-- {item:4371} Bronze Tube · {quest:174} Look to the Stars · {npc:3133} Herble Baubbletump · {npc:276} Viktori Prism'Antras · {npc:1448} Neal Allen · {area:150} Menethil Harbor
+	["No {item:4371} for {quest:174}? {npc:3133} sells it in the house beside {npc:276}, in limited stock; {npc:1448} in {area:150} sells it too."] = "{quest:174}에 쓸 {item:4371}이(가) 없나요? {npc:276} 옆집의 {npc:3133}이(가) 한정 수량으로 팔고, {area:150}의 {npc:1448}도 팝니다.",
 	-- {npc:352} Dungar Longdrink · {zone:1453} Stormwind
 	["From {npc:352} in {zone:1453}"] = "{zone:1453}의 {npc:352}에게서",
 	-- {npc:6790} Innkeeper Trelayne
@@ -61,16 +62,18 @@ return {
 	-- plural, as words: Plague Spreaders = {npc:604} Plague Spreader
 	["The Plague Spreaders walk the northern half of the {area:492}. {npc:522}, an elite, wanders the graves: keep away from him."] = "{npc:604}은(는) {area:492} 북쪽 절반을 걸어다닙니다. 정예인 {npc:522}이(가) 무덤 사이를 배회하니 가까이 가지 마세요.",
 
-	-- Step 11: Sven's Camp
-	["Sven's Camp"] = "스벤의 야영지",
+	-- Step 11: Sven Yorgen's Camp
+	-- {npc:311} Sven Yorgen
+	["{npc:311}'s Camp"] = "{npc:311}의 야영지",
 
 	-- Step 12: Raven Hill Cemetery, west
 	-- {area:492} Raven Hill Cemetery
 	["{area:492}, west"] = "{area:492}, 서쪽",
+	-- {npc:311} Sven Yorgen
 	-- plural, as words: Skeletal Raiders = {npc:1110} Skeletal Raider
-	["Skeletal Raiders, Healers and Warders hold the west part of the cemetery, just east of Sven's camp."] = "{npc:1110}, 해골 치료사, 해골 문지기가 스벤의 야영지 바로 동쪽, 묘지 서쪽 구역을 차지하고 있습니다.",
+	["Skeletal Raiders, Healers and Warders hold the west part of the cemetery, just east of {npc:311}'s camp."] = "{npc:1110}, 해골 치료사, 해골 문지기가 {npc:311}의 야영지 바로 동쪽, 묘지 서쪽 구역을 차지하고 있습니다.",
 
-	-- Step 13: Sven's Camp
+	-- Step 13: Sven Yorgen's Camp
 	-- {npc:1212} Bishop Farthing · {zone:1453} Stormwind
 	["For {npc:1212} in {zone:1453}, in the next guide"] = "다음 가이드에서 {zone:1453}의 {npc:1212}에게",
 
@@ -135,8 +138,9 @@ return {
 	-- {item:2661} Neru Fragment · {object:331} Loose Soil
 	["{item:2661}: the {object:331}"] = "{item:2661}: {object:331}",
 
-	-- Step 26: Ormer and Whelgar
-	["Ormer and Whelgar"] = "오머와 웰가르",
+	-- Step 26: Ormer Ironbraid and Whelgar
+	-- {npc:1078} Ormer Ironbraid
+	["{npc:1078} and Whelgar"] = "{npc:1078}와(과) 웰가르",
 
 	-- Step 27: Dragonmaw camp
 	["Dragonmaw camp"] = "용아귀부족 야영지",
@@ -145,14 +149,19 @@ return {
 	-- Step 28: Captain Stoutfist
 	-- {area:150} Menethil Harbor
 	["Ride back west along the road to {area:150}."] = "길을 따라 서쪽으로 {area:150}까지 돌아가세요.",
+	-- {quest:98221} From the Ashes · {quest:465} Nek'rosh's Gambit
+	["{quest:98221}: {quest:465} comes after it on Forever"] = "{quest:98221}: Forever에서는 {quest:465}이(가) 그 뒤에 이어집니다",
 
-	-- Step 29: Dragonmaw catapult
-	["Dragonmaw catapult"] = "용아귀부족 투석기",
-	["Ride east again; the catapult stands at the Dragonmaw camp south of the road."] = "다시 동쪽으로 가세요. 투석기는 길 남쪽의 용아귀부족 야영지에 있습니다.",
-	["The next step, Defeat Nek'rosh, pits you against an elite chieftain: skip it."] = "다음 단계인 네크로쉬 처치는 정예 족장과 싸워야 합니다. 건너뛰세요.",
+	-- Step 29: Angerfang Encampment
+	-- {area:1036} Angerfang Encampment · {npc:2091} Chieftain Nek'rosh
+	["Ride east again to the Dragonmaw camp. The four sets of Attack Plans lie in the {area:1036}; {npc:2091}, an elite, stands in the camp too."] = "다시 동쪽의 용아귀부족 야영지로 가세요. 공격 계획서 네 묶음은 {area:1036}에 있습니다. 정예인 {npc:2091}도 야영지에 서 있습니다.",
 
 	-- Step 30: To Theramore
 	["To Theramore"] = "테라모어로",
+	-- {npc:2104} Captain Stoutfist · {area:2103} Menethil Keep
+	["{npc:2104}, in {area:2103}"] = "{area:2103}의 {npc:2104}",
+	-- {zone:1437} Wetlands
+	["For the Dragonmaw catapult, on the {zone:1437} loop of the next guide"] = "용아귀부족 투석기는 다음 가이드의 {zone:1437} 순환에서",
 	-- {area:513} Theramore Isle · {zone:1445} Dustwallow Marsh
 	["Take the boat from Menethil's pier to {area:513} in {zone:1445}."] = "메네실 부두에서 배를 타고 {zone:1445}의 {area:513}(으)로 가세요.",
 
@@ -190,7 +199,8 @@ return {
 	["Back to Menethil"] = "메네실로 돌아가기",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Dragonmaw catapult"] = "용아귀부족 투석기",
+	-- ["Ride east again; the catapult stands at the Dragonmaw camp south of the road."] = "다시 동쪽으로 가세요. 투석기는 길 남쪽의 용아귀부족 야영지에 있습니다.",
 	-- ["Ride east to the ogre mound. {item:1349} sits in the camp at its entrance; Splinter Fist ogres guard it."] = "동쪽의 오우거 소굴로 가세요. {item:1349}은(는) 입구의 야영지에 있으며 망치주먹 오우거가 지킵니다.",
-	-- ["The dig and Sarltooth"] = "발굴지와 살투스",
-	-- ["The relics lie in the dig itself. Sarltooth, a big Razormaw, prowls the raptor valley just west of it."] = "유물은 발굴지 안에 있습니다. 커다란 무쇠턱 랩터인 살투스는 그 바로 서쪽의 랩터 계곡을 어슬렁거립니다.",
+	-- ["The next step, Defeat Nek'rosh, pits you against an elite chieftain: skip it."] = "다음 단계인 네크로쉬 처치는 정예 족장과 싸워야 합니다. 건너뛰세요.",
 }

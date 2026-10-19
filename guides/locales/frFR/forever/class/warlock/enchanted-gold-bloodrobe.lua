@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in French (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in French words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -30,15 +31,16 @@ return {
 	["{npc:6266} stands in the tower on the hill above {area:392}, beside {npc:6251}."] = "{npc:6266} se trouve dans la tour sur la colline au-dessus de {area:392}, à côté de {npc:6251}.",
 
 	-- Step 6: Robes of Arcana
-	-- {item:5770} Robes of Arcana · {item:3577} Gold Bar · {item:2776} Gold Ore
-	["Bring Menara a {item:5770}: tailors sew it from a pattern that drops; otherwise buy one at the Auction House. Her next errand needs a {item:3577}: smelted from {item:2776}, or from the Auction House."] = "Apportez à Menara une {item:5770} : les tailleurs la cousent à partir d'un patron trouvé sur les monstres ; sinon, achetez-en une à l'hôtel des ventes. Sa course suivante demande un {item:3577} : fondu à partir de {item:2776}, ou acheté à l'hôtel des ventes.",
+	-- {npc:6266} Menara Voidrender · {item:5770} Robes of Arcana · {item:3577} Gold Bar · {item:2776} Gold Ore
+	["Bring {npc:6266} a {item:5770}: tailors sew it from a pattern that drops; otherwise buy one at the Auction House. Her next errand needs a {item:3577}: smelted from {item:2776}, or from the Auction House."] = "Apportez à {npc:6266} une {item:5770} : les tailleurs la cousent à partir d'un patron trouvé sur les monstres ; sinon, achetez-en une à l'hôtel des ventes. Sa course suivante demande un {item:3577} : fondu à partir de {item:2776}, ou acheté à l'hôtel des ventes.",
 
 	-- Step 7: Xizk Goodstitch
 	-- {npc:2670} Xizk Goodstitch · {area:35} Booty Bay · {item:3577} Gold Bar
 	["{npc:2670} sells tailoring supplies in {area:35}. Bring him the {item:3577}."] = "{npc:2670} vend des fournitures de couture à {area:35}. Apportez-lui le {item:3577}.",
 
-	-- Step 8: Back to Menara
-	["Back to Menara"] = "Retour auprès de Menara",
+	-- Step 8: Back to Menara Voidrender
+	-- {npc:6266} Menara Voidrender
+	["Back to {npc:6266}"] = "Retour auprès de {npc:6266}",
 
 	-- Step 9: Desolace demons
 	-- {zone:1443} Desolace
@@ -48,8 +50,9 @@ return {
 	["The Hatefury satyrs of {area:603}, in north-eastern {zone:1443}, carry the blood; the Lesser Infernals of Mannoroc Coven, in the south, the stone."] = "Les satyres Fielfurie de {area:603}, dans le nord-est de {zone:1443}, portent le sang ; les Infernaux mineurs du Convent de Mannoroc, au sud, la pierre.",
 	["Vials of Hatefury Blood"] = "Fioles de sang de Fielfurie",
 
-	-- Step 10: Menara again
-	["Menara again"] = "Encore Menara",
+	-- Step 10: Menara Voidrender again
+	-- {npc:6266} Menara Voidrender
+	["{npc:6266} again"] = "Encore {npc:6266}",
 
 	-- Step 11: Fine Gold Thread
 	-- {npc:2670} Xizk Goodstitch · {area:35} Booty Bay
@@ -61,8 +64,8 @@ return {
 	["The Burning Exiles, fire elementals in western {zone:1417}, drop the coal."] = "Les Exilés ardents, des élémentaires de feu de l'ouest de {zone:1417}, laissent tomber le charbon.",
 
 	-- Step 13: The Completed Robe
-	-- {item:6265} Soul Shard
-	["Back to Menara with the thread, the coal and a {item:6265}. Wait while she completes the robe, then speak to her again."] = "Retournez voir Menara avec le fil, le charbon et un {item:6265}. Attendez qu'elle termine la robe, puis parlez-lui de nouveau.",
+	-- {npc:6266} Menara Voidrender · {item:6265} Soul Shard
+	["Back to {npc:6266} with the thread, the coal and a {item:6265}. Wait while she completes the robe, then speak to her again."] = "Retournez voir {npc:6266} avec le fil, le charbon et un {item:6265}. Attendez qu'elle termine la robe, puis parlez-lui de nouveau.",
 	["Wait for the robe"] = "Attendre la robe",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.

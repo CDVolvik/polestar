@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in German (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in German words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Orgrimmar
@@ -28,12 +29,10 @@ return {
 	-- Step 5: Liv Rizzlefix
 	-- {area:392} Ratchet · {object:149036} Marvon's Chest
 	["Liv's workshop is at the north end of {area:392}'s docks; {object:149036} stands inside it."] = "Livs Werkstatt ist am Nordende der Docks von {area:392}; {object:149036} steht darin.",
-	-- {object:149036} Marvon's Chest · {item:10556} Stone Circle
-	["Open {object:149036} for the {item:10556}"] = "Öffne {object:149036} für {item:10556}",
 
 	-- Step 6: Islen Waterseer
-	-- {area:392} Ratchet
-	["Islen camps on the shore just north of {area:392}."] = "Islen lagert am Ufer gleich nördlich von {area:392}.",
+	-- {npc:5901} Islen Waterseer · {area:392} Ratchet
+	["{npc:5901} camps on the shore just north of {area:392}."] = "{npc:5901} lagert am Ufer gleich nördlich von {area:392}.",
 	-- {area:2479} Emerald Sanctuary · {zone:1448} Felwood
 	["Cleansed Water goes to the {area:2479} in {zone:1448}: keep it for later."] = "Gesäubertes Wasser wird zum Teufelswald gebracht führt zum {area:2479} im {zone:1448}: Behalte sie für später.",
 
@@ -73,8 +72,8 @@ return {
 	["Ride back west to {area:1237}."] = "Reite zurück nach Westen nach {area:1237}.",
 
 	-- Step 16: Belgrom Rockmaul
-	-- {area:1637} Orgrimmar · {object:172958} Valley of Honor
-	["Fly to {area:1637}; Belgrom is in the {object:172958}."] = "Flieg nach {area:1637}; Belgrom ist im {object:172958}.",
+	-- {area:1637} Orgrimmar · {npc:4485} Belgrom Rockmaul · {object:172958} Valley of Honor
+	["Fly to {area:1637}; {npc:4485} is in the {object:172958}."] = "Flieg nach {area:1637}; {npc:4485} ist im {object:172958}.",
 
 	-- Step 17: Zeppelin to the Undercity
 	-- {zone:1458} Undercity
@@ -96,4 +95,7 @@ return {
 	-- Step 21: Prompt Potion Runner
 	-- {npc:11044} Doctor Martin Felben
 	["{npc:11044}, in the Apothecarium"] = "{npc:11044}, im Apothekarium",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Open {object:149036} for the {item:10556}"] = "Öffne {object:149036} für {item:10556}",
 }

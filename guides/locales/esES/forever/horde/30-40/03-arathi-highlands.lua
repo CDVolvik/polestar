@@ -3,12 +3,13 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Spanish (Spain) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Spanish (Spain) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Fly to Grom'gol
-	-- {object:3202} Grom'gol
+	-- {object:3202} Grom'gol (no name in this language: may be words)
 	["Fly to {object:3202}"] = "Vuela a {object:3202}",
-	-- {area:35} Booty Bay · {object:3202} Grom'gol · {object:1661} The Undercity
+	-- {area:35} Booty Bay · {object:3202} Grom'gol (no name in this language: may be words) · {object:1661} The Undercity
 	["From {area:35}, fly to {object:3202}. {object:1661} zeppelin leaves from the tower on the west side of the camp."] = "Desde {area:35}, vuela a {object:3202}. El zepelín de {object:1661} sale de la torre del lado oeste del campamento.",
 	-- {zone:1458} Undercity
 	["Zeppelin to the {zone:1458}"] = "Zepelín a {zone:1458}",
@@ -46,7 +47,8 @@ return {
 	["The violet shards glow just off the road a short way west of {area:321}."] = "Los fragmentos violetas brillan junto al camino, un poco al oeste de {area:321}.",
 
 	-- Step 8: Hammerfall
-	["The orc stronghold at the eastern end of the road. Urda, the wind rider master, stands by the gate."] = "La fortaleza orca al final del camino por el este. Urda, la maestra de jinetes del viento, está junto a la puerta.",
+	-- {npc:2851} Urda
+	["The orc stronghold at the eastern end of the road. {npc:2851}, the wind rider master, stands by the gate."] = "La fortaleza orca al final del camino por el este. {npc:2851}, la maestra de jinetes del viento, está junto a la puerta.",
 
 	-- Step 9: Highland raptors
 	["Highland raptors"] = "Raptores de las Tierras Altas",
@@ -137,8 +139,8 @@ return {
 	["{quest:1106}: Fizzle's letter from the {area:439}"] = "{quest:1106}: la carta de Fizzle desde {area:439}",
 
 	-- Step 30: The Dustbowl
-	-- {area:340} Kargath
-	["Ride west along the road; Lotwil's camp sits in the Dustbowl halfway to {area:340}."] = "Cabalga al oeste por el camino; el campamento de Lotwil está en Terraseca, a medio camino de {area:340}.",
+	-- {npc:2921} Lotwil Veriatus · {area:1878} The Dustbowl · {area:340} Kargath
+	["Ride west along the road; {npc:2921}'s camp sits in the {area:1878} halfway to {area:340}."] = "Cabalga al oeste por el camino; el campamento de {npc:2921} está en {area:1878}, a medio camino de {area:340}.",
 
 	-- Step 31: Kargath
 	-- {area:340} Kargath
@@ -149,19 +151,22 @@ return {
 	-- Step 32: Lesser Rock Elementals
 	-- plural, as words: Lesser Rock Elementals = {npc:2735} Lesser Rock Elemental
 	["Lesser Rock Elementals"] = "Elementales de piedra inferiores",
+	-- {npc:2921} Lotwil Veriatus · {npc:6868} Jarkal Mossmeld
 	-- plural, as words: Rock Elemental Shards = {item:7848} Rock Elemental Shard
-	["The small elementals drift across the flats just west of Lotwil's camp. Every rock elemental in the zone can drop Jarkal's Rock Elemental Shards: keep them."] = "Los elementales pequeños vagan por la llanura justo al oeste del campamento de Lotwil. Cualquier elemental de roca de la zona puede soltar los Fragmentos de roca elemental de Jarkal: guárdalos.",
+	["The small elementals drift across the flats just west of {npc:2921}'s camp. Every rock elemental in the zone can drop {npc:6868}'s Rock Elemental Shards: keep them."] = "Los elementales pequeños vagan por la llanura justo al oeste del campamento de {npc:2921}. Cualquier elemental de roca de la zona puede soltar los Fragmentos de roca elemental de {npc:6868}: guárdalos.",
 
 	-- Step 34: Rock Elementals
 	-- plural, as words: Rock Elementals = {npc:92} Rock Elemental
 	["Rock Elementals"] = "Elementales de piedra",
+	-- {area:1878} The Dustbowl
 	-- plural, as words: Rock Elementals = {npc:92} Rock Elemental
-	["The bigger Rock Elementals stand on the slopes north-west of the Dustbowl; each one drops a slab."] = "Los Elementales de piedra más grandes están en las laderas al noroeste de Terraseca; cada uno suelta una losa.",
+	["The bigger Rock Elementals stand on the slopes north-west of the {area:1878}; each one drops a slab."] = "Los Elementales de piedra más grandes están en las laderas al noroeste de {area:1878}; cada uno suelta una losa.",
 
 	-- Step 36: Coyotes and buzzards
 	["Coyotes and buzzards"] = "Coyotes y águilas ratoneras",
+	-- {area:1878} The Dustbowl
 	-- plural, as words: Elder Crag Coyotes = {npc:2729} Elder Crag Coyote · Giant Buzzards = {npc:2831} Giant Buzzard
-	["The Elder Crag Coyotes and Giant Buzzards roam the basin south of the Dustbowl. Coyotes drop both the jawbones and the fangs; only the buzzards drop wings and gizzards."] = "Los Coyotes del risco mayores y las Águilas ratoneras gigantes recorren la cuenca al sur de Terraseca. Los coyotes sueltan tanto las mandíbulas como los colmillos; solo las águilas ratoneras sueltan alas y mollejas.",
+	["The Elder Crag Coyotes and Giant Buzzards roam the basin south of the {area:1878}. Coyotes drop both the jawbones and the fangs; only the buzzards drop wings and gizzards."] = "Los Coyotes del risco mayores y las Águilas ratoneras gigantes recorren la cuenca al sur de {area:1878}. Los coyotes sueltan tanto las mandíbulas como los colmillos; solo las águilas ratoneras sueltan alas y mollejas.",
 
 	-- Step 37: Greater Rock Elementals
 	-- plural, as words: Greater Rock Elementals = {npc:2736} Greater Rock Elemental
@@ -187,7 +192,8 @@ return {
 	["Theldurin sits among the dwarven ruins at {area:345}, south of the {area:1877}."] = "Theldurin está entre las ruinas enanas de {area:345}, al sur de {area:1877}.",
 
 	-- Step 43: Valley of Fangs
-	["Follow the road north; Martek's camp is on the way."] = "Sigue el camino al norte; el campamento de Martek está de camino.",
+	-- {npc:4618} Martek the Exiled
+	["Follow the road north; {npc:4618}'s camp is on the way."] = "Sigue el camino al norte; el campamento de {npc:4618} está de camino.",
 
 	-- Step 44: Ancient Chest
 	-- {area:1517} Uldaman
@@ -204,7 +210,7 @@ return {
 	-- Step 47: Zeppelin to Orgrimmar
 	-- {zone:1454} Orgrimmar
 	["Zeppelin to {zone:1454}"] = "Zepelín a {zone:1454}",
-	-- {zone:1454} Orgrimmar · {object:3202} Grom'gol
+	-- {zone:1454} Orgrimmar · {object:3202} Grom'gol (no name in this language: may be words)
 	["Take the {zone:1454} zeppelin from the tower on the west side of {object:3202}."] = "Toma el zepelín de {zone:1454} en la torre del lado oeste de {object:3202}.",
 	["Zeppelin tower"] = "Torre del zepelín",
 
@@ -212,13 +218,9 @@ return {
 	-- {area:1638} Thunder Bluff · {zone:1454} Orgrimmar · {npc:3033} Turak Runetotem · {area:1639} Elder Rise · {npc:246344} Alodan the Hopeful · {area:380} Crossroads
 	["Your trainer is in {area:1638}, one flight from {zone:1454}: {npc:3033} (Druids) on {area:1639}, {npc:246344} (Paladins). Fly on to the {area:380} from there."] = "Tu instructor está en {area:1638}, a un vuelo de {zone:1454}: {npc:3033} (druidas) en {area:1639}, {npc:246344} (paladines). Desde allí, vuela a {area:380}.",
 
-	-- Step 50: The Crossroads
-	-- {area:380} Crossroads
-	["The {area:380}"] = "{area:380}",
-
 	-- Step 51: Regthar Deathgate
-	-- {area:380} Crossroads · {area:386} Forgotten Pools
-	["Ride north up the road from the {area:380} to the {area:386}; Regthar keeps watch on the rise above the water."] = "Cabalga al norte por el camino desde {area:380} hasta {area:386}; Regthar vigila desde la loma sobre el agua.",
+	-- {area:380} Crossroads · {area:386} Forgotten Pools · {npc:3389} Regthar Deathgate
+	["Ride north up the road from the {area:380} to the {area:386}; {npc:3389} keeps watch on the rise above the water."] = "Cabalga al norte por el camino desde {area:380} hasta {area:386}; {npc:3389} vigila desde la loma sobre el agua.",
 	-- {npc:5395} Felgur Twocuts · {zone:1443} Desolace
 	["for {npc:5395} in {zone:1443}, in the next guide"] = "para {npc:5395} en {zone:1443}, en la próxima guía",
 
@@ -236,10 +238,9 @@ return {
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Cast Teleport: {zone:1450} and take {npc:11798}'s flight to {area:1638}; {npc:3033} trains you on {area:1639}. Then fly to {zone:1454} and take the {zone:1458} zeppelin from the tower outside the main gate."] = "Lanza Teletransporte: {zone:1450} y toma el vuelo de {npc:11798} a {area:1638}; {npc:3033} te entrena en {area:1639}. Luego vuela a {zone:1454} y toma el zepelín de {zone:1458} en la torre de fuera de la puerta principal.",
-	-- ["North-east of {area:321} the Drywhisker kobolds mine the gorge; the Kobolds at the mouth and the Diggers and Surveyors deeper in all drop the Motes of Myzrael."] = "Al noreste de {area:321}, los kobolds Mostacho Seco excavan la garganta; los kobolds de la entrada y los excavadores y topógrafos del fondo sueltan las Motas de Myzrael.",
 	-- ["Ride west along the road; Lotwil's camp sits in the {area:1878} halfway to {area:340}."] = "Cabalga al oeste por el camino; el campamento de Lotwil está en {area:1878}, a medio camino de {area:340}.",
 	-- ["The Elder Crag Coyotes and Giant Buzzards roam the basin south of the {area:1878}. Coyotes drop both the jawbones and the fangs; only the buzzards drop wings and gizzards."] = "Los Coyotes del risco mayores y las Águilas ratoneras gigantes recorren la cuenca al sur de {area:1878}. Los coyotes sueltan tanto las mandíbulas como los colmillos; solo las águilas ratoneras sueltan alas y mollejas.",
 	-- ["The bigger Rock Elementals stand on the slopes north-west of the {area:1878}; each one drops a slab."] = "Los Elementales de piedra más grandes están en las laderas al noroeste de {area:1878}; cada uno suelta una losa.",
-	-- ["The small elementals drift across the flats just west of Lotwil's camp. Every rock elemental in the zone can drop Jarkal's {npc:92} Shards: keep them."] = "Los elementales pequeños vagan por la llanura justo al oeste del campamento de Lotwil. Cualquier elemental de piedra de la zona puede soltar los fragmentos de {npc:92} de Jarkal: guárdalos.",
+	-- ["The {area:380}"] = "{area:380}",
 	-- ["{npc:6236}: Berserker Stance"] = "{npc:6236}: Actitud rabiosa",
 }

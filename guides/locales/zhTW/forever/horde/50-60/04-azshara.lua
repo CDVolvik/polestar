@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (traditional) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (traditional) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Orgrimmar
@@ -28,12 +29,10 @@ return {
 	-- Step 5: Liv Rizzlefix
 	-- {area:392} Ratchet · {object:149036} Marvon's Chest
 	["Liv's workshop is at the north end of {area:392}'s docks; {object:149036} stands inside it."] = "莉芙的工作室在{area:392}碼頭北端；{object:149036}就在裡面。",
-	-- {object:149036} Marvon's Chest · {item:10556} Stone Circle
-	["Open {object:149036} for the {item:10556}"] = "打開{object:149036}取得{item:10556}",
 
 	-- Step 6: Islen Waterseer
-	-- {area:392} Ratchet
-	["Islen camps on the shore just north of {area:392}."] = "伊斯倫在{area:392}北邊不遠處的岸邊紮營。",
+	-- {npc:5901} Islen Waterseer · {area:392} Ratchet
+	["{npc:5901} camps on the shore just north of {area:392}."] = "{npc:5901}在{area:392}北邊不遠處的岸邊紮營。",
 	-- {area:2479} Emerald Sanctuary · {zone:1448} Felwood
 	["Cleansed Water goes to the {area:2479} in {zone:1448}: keep it for later."] = "淨化過的水要送到{zone:1448}的{area:2479}：保留到稍後。",
 
@@ -65,7 +64,7 @@ return {
 	-- Step 14: Magus Rimtori's camp
 	-- {npc:8578} Magus Rimtori
 	["{npc:8578}'s camp"] = "{npc:8578}的營地",
-	-- {object:151286} Kaldorei Tome of Summoning
+	-- {object:151286} Kaldorei Tome of Summoning (no name in this language: may be words)
 	["Rimtori's camp is at the east end of the base camp. Read the {object:151286} there, then kill the Magus."] = "雷姆托里的營地在基地營的東端。閱讀那裡的{object:151286}，然後殺死法師。",
 
 	-- Step 15: Ag'tor Bloodfist
@@ -73,8 +72,8 @@ return {
 	["Ride back west to {area:1237}."] = "向西騎回{area:1237}。",
 
 	-- Step 16: Belgrom Rockmaul
-	-- {area:1637} Orgrimmar · {object:172958} Valley of Honor
-	["Fly to {area:1637}; Belgrom is in the {object:172958}."] = "飛往{area:1637}；貝爾戈洛姆在{object:172958}。",
+	-- {area:1637} Orgrimmar · {npc:4485} Belgrom Rockmaul · {object:172958} Valley of Honor
+	["Fly to {area:1637}; {npc:4485} is in the {object:172958}."] = "飛往{area:1637}；{npc:4485}在{object:172958}。",
 
 	-- Step 17: Zeppelin to the Undercity
 	-- {zone:1458} Undercity
@@ -96,4 +95,7 @@ return {
 	-- Step 21: Prompt Potion Runner
 	-- {npc:11044} Doctor Martin Felben
 	["{npc:11044}, in the Apothecarium"] = "{npc:11044}，在 Apothecarium",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Open {object:149036} for the {item:10556}"] = "打開{object:149036}取得{item:10556}",
 }

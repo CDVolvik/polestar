@@ -3,16 +3,21 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (traditional) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (traditional) words instead.
 -- The comments are rewritten by sync.
 return {
+	-- Step 1: Aerie Peak
+	-- {npc:7744} Innkeeper Thulfram
+	["{npc:7744}: the last guide binds here, so this usually ticks at once"] = "{npc:7744}：上一份指南在這裡綁定爐石，所以這一步通常會立即完成",
+
 	-- Step 2: The Altar of Zul
-	-- {area:355} Altar of Zul · {npc:8636} Morta'gya the Keeper
-	["Ride south-east to the {area:355}, the stepped Vilebranch temple in the south of the Hinterlands, and climb to the top. Qiaga and {npc:8636} (elite, 50) stand up there: touch the top and come straight back down."] = "向東南騎到辛特蘭南部的{area:355}（邪枝食人妖的階梯神廟），爬到頂端。守護者奇爾加和{npc:8636}（精英，50級）站在上面：碰到頂端就立刻下來。",
+	-- {area:355} Altar of Zul · {zone:1425} The Hinterlands · {npc:8636} Morta'gya the Keeper
+	["Ride south-east to the {area:355}, the stepped Vilebranch temple in the south of the {zone:1425}, and climb to the top. Qiaga and {npc:8636} (elite, 50) stand up there: touch the top and come straight back down."] = "向東南騎到{zone:1425}南部的{area:355}（邪枝食人妖的階梯神廟），爬到頂端。守護者奇爾加和{npc:8636}（精英，50級）站在上面：碰到頂端就立刻下來。",
 
 	-- Step 3: Skulk Rock
-	-- {area:351} Skulk Rock
+	-- {area:351} Skulk Rock · {zone:1425} The Hinterlands
 	-- plural, as words: Green Sludges = {npc:2655} Green Sludge · Jade Oozes = {npc:2656} Jade Ooze
-	["Ride north to {area:351} in the middle of the Hinterlands. Green Sludges and Jade Oozes crawl all around it."] = "向北騎到辛特蘭中部的{area:351}。綠色淤泥怪和玉石軟泥怪在周圍到處爬行。",
+	["Ride north to {area:351} in the middle of the {zone:1425}. Green Sludges and Jade Oozes crawl all around it."] = "向北騎到{zone:1425}中部的{area:351}。綠色淤泥怪和玉石軟泥怪在周圍到處爬行。",
 
 	-- Step 4: Aerie Peak
 	-- {area:348} Aerie Peak
@@ -35,8 +40,8 @@ return {
 	["Ride on east along the road to the keep first: the {item:6091} expires an hour after {area:42}, and the bloodmages' beasts take longer than that."] = "先沿道路繼續向東前往要塞：{item:6091}在離開{area:42}一小時後過期，而血法師要的野獸會花更久。",
 	-- {quest:2990} Thadius Grimshade
 	["{quest:2990}, at the top of the keep"] = "{quest:2990}，在要塞頂端",
-	-- {item:9471} Nekrum's Medallion · {area:978} Zul'Farrak
-	["Thadius' next task, {item:9471}, is a {area:978} quest: skip it."] = "薩迪斯的下一個任務{item:9471}是{area:978}的任務：跳過它。",
+	-- {npc:8022} Thadius Grimshade · {item:9471} Nekrum's Medallion · {area:978} Zul'Farrak
+	["{npc:8022}' next task, {item:9471}, is a {area:978} quest: skip it."] = "{npc:8022}的下一個任務{item:9471}是{area:978}的任務：跳過它。",
 
 	-- Step 8: Boars and basilisks
 	["Boars and basilisks"] = "野豬與蜥蜴",
@@ -72,8 +77,8 @@ return {
 	-- {area:144} Thelsamar · {area:150} Menethil Harbor · {area:442} Auberdine · {area:702} Rut'theran Village
 	["Fly from {area:144} to {area:150}, take the boat to {area:442} and fly to {area:702}."] = "從{area:144}飛往{area:150}，搭船到{area:442}，再飛往{area:702}。",
 	["the book on her table"] = "她桌上的書",
-	-- {zone:1446} Tanaris
-	["Daryn's next errand goes to {zone:1446}: skip it."] = "達蕾恩·輕風的下一個差事要去{zone:1446}：跳過它。",
+	-- {npc:7907} Daryn Lightwind · {zone:1446} Tanaris
+	["{npc:7907}'s next errand goes to {zone:1446}: skip it."] = "{npc:7907}的下一個差事要去{zone:1446}：跳過它。",
 	-- {npc:7916} Erelas Ambersky · {zone:1428} Burning Steppes
 	["{npc:7916}: keep it, the feathers come at the end of the {zone:1428} guide"] = "{npc:7916}：先留著，羽毛在{zone:1428}指南的最後",
 

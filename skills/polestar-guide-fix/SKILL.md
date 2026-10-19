@@ -17,6 +17,12 @@ nobody has checked it yet, run the polestar-triage skill
 (`skills/polestar-triage/SKILL.md`) first. A fix needs a verdict of
 "confirmed" or "partly right" and the evidence behind it.
 
+Then make sure no one is fixing it already: the issue's "Pull requests for
+this issue" comment (label `has-pr`), and
+`gh pr list --state open --search "<issue number>"`, then the quest id. An
+open pull request that covers it means you help on that one instead
+(polestar-contributing, "Before you start on an issue").
+
 ## 1. Pick the branch
 
 | The fix | Base branch |
@@ -89,11 +95,31 @@ node --test tests/guides-reported.test.js
 npm test
 ```
 
-Commit the recompiled `addon/Polestar_Guides/` with the fix, and never edit
-Guides.lua by hand. Lint and playtest must pass, and so must every class
-playtest plays. If a guide you did not touch changes in Guides.lua, your
-local data is older or newer than the branch's: say so in the pull request
-rather than committing the unrelated changes.
+Commit the recompiled `addon/Polestar_Guides/` with the fix. Lint and
+playtest must pass, and so must every class playtest plays.
+
+Guides.lua is only ever the file `polestar compile` writes: never edit it by
+hand and never splice in hunks from another compile. A spliced hunk can be
+valid Lua that loads without an error while the game never sees its goals (a
+goal left between a step's `title` and its `goals = {`, a step's goals left
+open so the next step becomes one of its goals).
+
+If a guide you did not touch changes in Guides.lua, your local data is older
+or newer than the branch's. Keep only your change: compile the guides before
+and after it with the same data, and merge that difference into the
+committed file:
+
+```sh
+tmp=$(mktemp -d)
+git archive <base branch> guides | tar -x -C "$tmp"   # the guides your change starts from
+polestar compile --guides "$tmp/guides" --out "$tmp/before"
+polestar compile --out "$tmp/after"
+git merge-file addon/Polestar_Guides/Guides.lua "$tmp/before/Guides.lua" "$tmp/after/Guides.lua"
+```
+
+A conflict means your data differs from the branch's in the lines your change
+touches: rebuild the data, or say so in the pull request and leave
+Guides.lua to the maintainer.
 
 ## 6. Changelog and commit
 
@@ -117,6 +143,7 @@ rather than committing the unrelated changes.
   its evidence, and which checks ran and which did not.
 - Issues: write "closes #N" on `next`, or "fixes #N" on a `hotfix/` branch
   (GitHub does not close issues for those, so the maintainer does it when
-  the patch ships).
+  the patch ships), once for each issue the pattern fix covers. That is
+  what lists the pull request on each issue.
 - Say that an AI agent wrote or helped with it. The person running the
   agent reads the diff and the description before opening the pull request.

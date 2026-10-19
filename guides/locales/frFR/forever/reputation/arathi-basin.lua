@@ -3,15 +3,16 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in French (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in French words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
-	["Arathi Basin Reputation"] = "Réputation du Bassin Arathi",
+	["Arathi Basin Reputation"] = "Réputation : Bassin Arathi",
 
 	-- Step 1: League of Arathor to Friendly
 	["League of Arathor to Friendly"] = "La Ligue d'Arathor : Amical",
 	-- {faction:509} The League of Arathor · {zone:1461} Arathi Basin · {area:320} Refuge Pointe
-	["{faction:509} fights for {zone:1461} from {area:320}. Their reputation comes from the battleground: the resources your team gathers pay it to everyone, so holding more bases for longer pays more. Queue at any battlemaster. Forever's Legacy Diplomat perk increases reputation gains."] = "{faction:509} se bat pour {zone:1461} depuis {area:320}. Sa réputation vient du champ de bataille : les ressources que votre équipe accumule la rapportent à tous, donc tenir plus de bases plus longtemps rapporte plus. Inscrivez-vous auprès de n'importe quel maître de guerre. Le bonus Diplomate d'héritage de Forever augmente les gains de réputation.",
+	["{faction:509} fights for {zone:1461} from {area:320}. Their reputation comes from the battleground: the resources your team gathers pay it to everyone, so holding more bases for longer pays more. Queue at any battlemaster. Forever's Legacy Diplomat perk increases reputation gains."] = "{faction:509} se bat pour {zone:1461} depuis {area:320}. Sa réputation vient du champ de bataille : les ressources que votre équipe accumule la rapportent à tous, donc tenir plus de bases plus longtemps rapporte plus. Inscrivez-vous auprès de n'importe quel maître de guerre. L'atout Diplomate de l'Héritage de Forever augmente les gains de réputation.",
 	-- {npc:14983} Field Marshal Oslight · {zone:1461} Arathi Basin · {npc:14984} Sergeant Maclear
 	-- plural, as words: Arathi Resource Crates = {item:19725} Arathi Resource Crate
 	["{npc:14983}'s The Battle for {zone:1461}! (assault every base) and Control Four Bases / Control Five Bases are one-time quests; {npc:14984} beside him takes Arathi Resource Crates."] = "La bataille pour {zone:1461} ! de {npc:14983} (attaquer chaque base) et Contrôler quatre bases / Prendre cinq bases sont des quêtes uniques ; {npc:14984}, à côté de lui, prend les Caisses de ressources d'Arathi.",
@@ -36,7 +37,7 @@ return {
 	-- {faction:510} The Defilers
 	["{faction:510} to Friendly"] = "{faction:510} : Amical",
 	-- {faction:510} The Defilers · {zone:1461} Arathi Basin · {area:321} Hammerfall
-	["{faction:510} fight for {zone:1461} from {area:321}. Their reputation comes from the battleground: the resources your team gathers pay it to everyone, so holding more bases for longer pays more. Queue at any battlemaster. Forever's Legacy Diplomat perk increases reputation gains."] = "{faction:510} se battent pour {zone:1461} depuis {area:321}. Leur réputation vient du champ de bataille : les ressources que votre équipe accumule la rapportent à tous, donc tenir plus de bases plus longtemps rapporte plus. Inscrivez-vous auprès de n'importe quel maître de guerre. Le bonus Diplomate d'héritage de Forever augmente les gains de réputation.",
+	["{faction:510} fight for {zone:1461} from {area:321}. Their reputation comes from the battleground: the resources your team gathers pay it to everyone, so holding more bases for longer pays more. Queue at any battlemaster. Forever's Legacy Diplomat perk increases reputation gains."] = "{faction:510} se battent pour {zone:1461} depuis {area:321}. Leur réputation vient du champ de bataille : les ressources que votre équipe accumule la rapportent à tous, donc tenir plus de bases plus longtemps rapporte plus. Inscrivez-vous auprès de n'importe quel maître de guerre. L'atout Diplomate de l'Héritage de Forever augmente les gains de réputation.",
 	-- {npc:15021} Deathmaster Dwire · {zone:1461} Arathi Basin · {npc:15022} Deathstalker Mortis
 	-- plural, as words: Arathi Resource Crates = {item:19725} Arathi Resource Crate
 	["{npc:15021}'s The Battle for {zone:1461}! (assault every base) and Take Four Bases / Take Five Bases are one-time quests; {npc:15022} beside him takes Arathi Resource Crates."] = "La bataille pour {zone:1461} ! de {npc:15021} (attaquer chaque base) et Prendre quatre bases / Prendre cinq bases sont des quêtes uniques ; {npc:15022}, à côté de lui, prend les Caisses de ressources d'Arathi.",
@@ -58,9 +59,4 @@ return {
 	["{faction:510} to Exalted"] = "{faction:510} : Exalté",
 	-- {faction:510} The Defilers
 	["Exalted with {faction:510} earns a Legacy Point."] = "Être exalté auprès de {faction:510} rapporte un point d'héritage.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Keep playing {zone:1461}. On Call to Arms: {zone:1461} weekends the {npc:15350} in the capitals takes three {zone:1461} Marks of Honor for extra reputation."] = "Continuez à jouer {zone:1461}. Pendant les week-ends Appel aux armes : {zone:1461}, le {npc:15350} des capitales prend trois Marques d'honneur de {zone:1461} contre de la réputation en plus.",
-	-- ["Keep playing {zone:1461}. On Call to Arms: {zone:1461} weekends the {npc:15351} in the capitals takes three {zone:1461} Marks of Honor for extra reputation."] = "Continuez à jouer {zone:1461}. Pendant les week-ends Appel aux armes : {zone:1461}, le {npc:15351} des capitales prend trois Marques d'honneur de {zone:1461} contre de la réputation en plus.",
-	-- ["{zone:1461} Reputation"] = "Réputation {zone:1461}",
 }

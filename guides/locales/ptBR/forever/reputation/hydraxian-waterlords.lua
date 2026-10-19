@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Portuguese (Brazil) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Portuguese (Brazil) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -20,7 +21,7 @@ return {
 
 	-- Step 3: Poisoned Water
 	-- {item:17310} Aspect of Neptulon · {zone:1423} Eastern Plaguelands · {item:17309} Discordant Bracers
-	["Use the {item:17310} on the poisoned water elementals of {zone:1423}, then loot their {item:17309} (12). Our data has no spawn points for those elementals."] = "Use o {item:17310} nos elementais da água envenenados de {zone:1423} e depois saqueie as {item:17309} (12). Nossos dados não têm pontos de surgimento desses elementais.",
+	["Use the {item:17310} on the poisoned water elementals of {zone:1423}, then loot their {item:17309} (12)."] = "Use o {item:17310} nos elementais da água envenenados de {zone:1423} e depois saqueie as {item:17309} (12).",
 
 	-- Step 4: Back to Duke Hydraxis
 	-- {npc:13278} Duke Hydraxis
@@ -53,4 +54,7 @@ return {
 	["{faction:749} to Exalted"] = "{faction:749} até Exaltado",
 	-- {area:2717} Molten Core
 	["Keep clearing the {area:2717} until Exalted."] = "Continue limpando {area:2717} até Exaltado.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Use the {item:17310} on the poisoned water elementals of {zone:1423}, then loot their {item:17309} (12). Our data has no spawn points for those elementals."] = "Use o {item:17310} nos elementais da água envenenados de {zone:1423} e depois saqueie as {item:17309} (12). Nossos dados não têm pontos de surgimento desses elementais.",
 }

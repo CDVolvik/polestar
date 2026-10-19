@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Korean words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Fly to Orgrimmar
@@ -40,8 +41,8 @@ return {
 	["Fly to {area:484}. {npc:5905} hides in a small cave in the canyon wall north-east of the post."] = "{area:484}(으)로 날아가세요. {npc:5905}은(는) 주둔지 북동쪽 협곡 벽의 작은 동굴에 숨어 있습니다.",
 	-- {npc:5905} Prate Cloudseer · {item:5178} Air Totem
 	["{npc:5905}: your {item:5178}"] = "{npc:5905}: {item:5178}",
-	-- {area:1717} Razorfen Kraul
-	["Prate also starts Elemental Aid ({area:1717}), the 33-40 chain to The Tempest's Weapons: forever/class/shaman/call-of-air-horde."] = "프레이트는 폭풍의 무기로 이어지는 33-40 연계 퀘스트인 정기의 도움({area:1717})도 줍니다: forever/class/shaman/call-of-air-horde.",
+	-- {npc:5905} Prate Cloudseer · {area:1717} Razorfen Kraul
+	["{npc:5905} also starts Elemental Aid ({area:1717}), the 33-40 chain to The Tempest's Weapons: forever/class/shaman/call-of-air-horde."] = "{npc:5905}은(는) 폭풍의 무기로 이어지는 33-40 연계 퀘스트인 정기의 도움({area:1717})도 줍니다: forever/class/shaman/call-of-air-horde.",
 
 	-- Step 8: Fly to Sun Rock Retreat
 	-- {area:460} Sun Rock Retreat
@@ -53,16 +54,16 @@ return {
 	["Follow the road south-west out of Sun Rock into {zone:1443} and on south past {area:608}. {npc:11625}'s kodo caravan waits by the road north of {area:609}; if it has already left, ride on."] = "해바위 야영지에서 길을 따라 남서쪽으로 {zone:1443}에 들어가 {area:608}을(를) 지나 계속 남쪽으로 가세요. {npc:11625}의 코도 대상단은 {area:609} 북쪽 길가에서 기다립니다. 이미 떠났다면 계속 가세요.",
 
 	-- Step 10: Bodyguard for Hire
-	-- {area:609} Kolkar Village · {area:2617} Scrabblescrew's Camp · {area:597} Ghost Walker Post
-	["The caravan rolls south past {area:609}. Kolkar raiders ambush it in waves: kill them before they reach Cork. It stops by {area:2617}, east of {area:597}."] = "대상단은 {area:609}을(를) 지나 남쪽으로 이동합니다. 콜카르일족 약탈자가 여러 차례 습격합니다. 코크에게 닿기 전에 처치하세요. 대상단은 {area:597} 동쪽의 {area:2617} 옆에서 멈춥니다.",
+	-- {area:609} Kolkar Village · {npc:11625} Cork Gizelton · {area:2617} Scrabblescrew's Camp · {area:597} Ghost Walker Post
+	["The caravan rolls south past {area:609}. Kolkar raiders ambush it in waves: kill them before they reach {npc:11625}. It stops by {area:2617}, east of {area:597}."] = "대상단은 {area:609}을(를) 지나 남쪽으로 이동합니다. 콜카르일족 약탈자가 여러 차례 습격합니다. {npc:11625}에게 닿기 전에 처치하세요. 대상단은 {area:597} 동쪽의 {area:2617} 옆에서 멈춥니다.",
 
 	-- Step 12: Ghost Walker Post
-	-- {npc:5641} Takata Steelblade · {npc:4498} Maurin Bonesplitter · {area:596} Kodo Graveyard
-	["Felgur stands in the post; {npc:5641} and {npc:4498} wait on the rise west of it, above the {area:596}."] = "펠굴은 주둔지에 있고, {npc:5641}와(과) {npc:4498}은(는) 그 서쪽, {area:596} 위의 언덕에서 기다립니다.",
+	-- {npc:5395} Felgur Twocuts · {npc:5641} Takata Steelblade · {npc:4498} Maurin Bonesplitter · {area:596} Kodo Graveyard
+	["{npc:5395} stands in the post; {npc:5641} and {npc:4498} wait on the rise west of it, above the {area:596}."] = "{npc:5395}은(는) 주둔지에 있고, {npc:5641}와(과) {npc:4498}은(는) 그 서쪽, {area:596} 위의 언덕에서 기다립니다.",
 
 	-- Step 13: Kodo Roundup
-	-- {item:13892} Kodo Kombobulator · {npc:4702} Ancient Kodo
-	["Use Smeed's {item:13892} on an Aged, Dying or {npc:4702} in the graveyard and walk the tamed kodo back to Smeed. Five kodos, one at a time."] = "묘지의 늙은 코도, 임종의 코도, {npc:4702}에게 스미드의 {item:13892}을(를) 사용하고, 길들인 코도를 스미드에게 데려가세요. 다섯 마리를 한 번에 한 마리씩 데려갑니다.",
+	-- {npc:11596} Smeed Scrabblescrew · {item:13892} Kodo Kombobulator · {npc:4702} Ancient Kodo
+	["Use {npc:11596}'s {item:13892} on an Aged, Dying or {npc:4702} in the graveyard and walk the tamed kodo back to {npc:11596}. Five kodos, one at a time."] = "묘지의 늙은 코도, 임종의 코도, {npc:4702}에게 {npc:11596}의 {item:13892}을(를) 사용하고, 길들인 코도를 {npc:11596}에게 데려가세요. 다섯 마리를 한 번에 한 마리씩 데려갑니다.",
 
 	-- Step 14: Khan Dez'hepah
 	-- {area:609} Kolkar Village · {quest:1365} Khan Dez'hepah
@@ -73,13 +74,13 @@ return {
 	["North along the eastern hills, the satyrs hold the ruins of {area:603}. The Shadowstalkers walk unseen; the four kinds you need do not."] = "동쪽 언덕을 따라 북쪽으로 가면 사티로스가 {area:603}의 폐허를 차지하고 있습니다. 그림자추적자는 보이지 않게 다니지만, 필요한 네 종류는 그렇지 않습니다.",
 
 	-- Step 16: Thunder Axe Fortress
-	-- {area:599} Thunder Axe Fortress · {spell:1294269} Burning Blade · {item:6436} Burning Gem · {item:6435} Infused Burning Gem · {item:20310} Flayed Demon Skin
-	["Ride west to {area:599}. Beat a {spell:1294269} cultist down, then use the {item:6436} on it before it dies to fill one {item:6435}. They also drop a {item:20310} now and then (1-5%); if one drops, read it."] = "서쪽의 {area:599}(으)로 가세요. {spell:1294269} 이교도를 거의 죽을 때까지 때린 뒤, 죽기 전에 {item:6436}을(를) 사용해 {item:6435}을(를) 하나 채우세요. 가끔(1-5%) {item:20310}도 떨어뜨립니다. 얻으면 읽으세요.",
+	-- {area:599} Thunder Axe Fortress · {item:6436} Burning Gem · {item:6435} Infused Burning Gem · {item:20310} Flayed Demon Skin
+	["Ride west to {area:599}. Beat a Burning Blade cultist down, then use the {item:6436} on it before it dies to fill one {item:6435}. They also drop a {item:20310} now and then (1-5%); if one drops, read it."] = "서쪽의 {area:599}(으)로 가세요. 불타는 칼날단 이교도를 거의 죽을 때까지 때린 뒤, 죽기 전에 {item:6436}을(를) 사용해 {item:6435}을(를) 하나 채우세요. 가끔(1-5%) {item:20310}도 떨어뜨립니다. 얻으면 읽으세요.",
 
 	-- Step 17: Ghost Walker Post
 	["Ride back south to the post."] = "남쪽의 주둔지로 돌아가세요.",
-	-- {quest:1431} Alliance Relations · {zone:1454} Orgrimmar
-	["Takata's next {quest:1431} sends you back to {zone:1454} for nothing: leave it."] = "타카타의 다음 퀘스트인 {quest:1431}은(는) 아무 소득 없이 {zone:1454}(으)로 돌려보냅니다. 받지 마세요.",
+	-- {npc:5641} Takata Steelblade · {quest:1431} Alliance Relations · {zone:1454} Orgrimmar
+	["{npc:5641}'s next {quest:1431} sends you back to {zone:1454} for nothing: leave it."] = "{npc:5641}의 다음 퀘스트인 {quest:1431}은(는) 아무 소득 없이 {zone:1454}(으)로 돌려보냅니다. 받지 마세요.",
 
 	-- Step 18: Kolkar ears
 	["Kolkar ears"] = "콜카르일족 귀",
@@ -122,7 +123,8 @@ return {
 
 	-- Step 27: Ghost Walker Post
 	["Ride south-east to the post."] = "남동쪽의 주둔지로 가세요.",
-	["Takata's next errand sends you after a demon lord with an elite guard: skip it."] = "타카타의 다음 심부름은 정예 호위병을 거느린 악마 군주를 쫓게 합니다. 건너뛰세요.",
+	-- {npc:5641} Takata Steelblade
+	["{npc:5641}'s next errand sends you after a demon lord with an elite guard: skip it."] = "{npc:5641}의 다음 심부름은 정예 호위병을 거느린 악마 군주를 쫓게 합니다. 건너뛰세요.",
 
 	-- Step 28: Gelkis Village
 	["Ride south-west towards Shadowprey. The Gelkis centaurs (32-35) around their village are a good camp; fight them until level 32."] = "남서쪽의 그늘수렵 마을 쪽으로 가세요. 마을 주변의 겔키스일족 켄타우로스(32-35)는 사냥하기 좋습니다. 32레벨까지 처치하세요.",
@@ -150,8 +152,8 @@ return {
 	["{npc:260093} trains Paladins in the {area:1497}."] = "{npc:260093}은(는) {area:1497}에서 성기사를 가르칩니다.",
 
 	-- Step 34: Brazier of Everfount
-	-- {area:1497} Undercity · {area:228} Sepulcher · {object:113791} Brazier of Everfount · {npc:5895} Minor Manifestation of Water · {item:7813} Shard of Water · {area:272} Tarren Mill
-	["Do your shopping in the {area:1497} first, then fly to the {area:228}. The {object:113791} stands on the hill just south-west of it: beat the Corrupt Manifestation of Water beside it, place its bracers in the brazier, speak to the {npc:5895} and keep the {item:7813} for Islen. Fly on to {area:272} from the {area:228}."] = "먼저 {area:1497}에서 쇼핑을 마친 뒤 {area:228}(으)로 날아가세요. {object:113791}은(는) 그 바로 남서쪽 언덕에 있습니다. 옆의 타락한 물의 현신을 쓰러뜨리고, 그 손목보호대를 화로에 넣은 뒤 {npc:5895}에게 말을 걸고, {item:7813}은(는) 이슬렌을 위해 보관하세요. {area:228}에서 {area:272}(으)로 날아가세요.",
+	-- {area:1497} Undercity · {area:228} Sepulcher · {object:113791} Brazier of Everfount · {npc:5895} Minor Manifestation of Water · {item:7813} Shard of Water · {npc:5901} Islen Waterseer · {area:272} Tarren Mill
+	["Do your shopping in the {area:1497} first, then fly to the {area:228}. The {object:113791} stands on the hill just south-west of it: beat the Corrupt Manifestation of Water beside it, place its bracers in the brazier, speak to the {npc:5895} and keep the {item:7813} for {npc:5901}. Fly on to {area:272} from the {area:228}."] = "먼저 {area:1497}에서 쇼핑을 마친 뒤 {area:228}(으)로 날아가세요. {object:113791}은(는) 그 바로 남서쪽 언덕에 있습니다. 옆의 타락한 물의 현신을 쓰러뜨리고, 그 손목보호대를 화로에 넣은 뒤 {npc:5895}에게 말을 걸고, {item:7813}은(는) {npc:5901}을(를) 위해 보관하세요. {area:228}에서 {area:272}(으)로 날아가세요.",
 	-- {npc:5901} Islen Waterseer
 	["for {npc:5901}: from Stranglethorn, next guide"] = "{npc:5901}에게: 다음 가이드에서 가시덤불 골짜기에서",
 
@@ -239,7 +241,4 @@ return {
 	["Fly to the {area:1497}"] = "{area:1497}(으)로 날아가기",
 	-- {area:1497} Undercity · {object:3202} Grom'gol
 	["The next guide starts in the {area:1497}, at the {object:3202} zeppelin."] = "다음 가이드는 {area:1497}의 {object:3202}행 비행선에서 시작합니다.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Head west along the foot of the mountains to the violet dome of {area:279}. Ricter, Alina and Dermot (33-34) stand together inside the crater's eastern rim, {npc:2414} (35) a little west of them; each carries one Bloodstone piece. The Shield Guards and Theurgists (31-32) around them drop the Worn Stone Tokens."] = "산기슭을 따라 서쪽으로 {area:279}의 보랏빛 돔으로 가세요. 릭터, 앨리나, 더모트(33-34)는 분화구 동쪽 가장자리 안쪽에 함께 서 있고, {npc:2414}(35)은(는) 그 조금 서쪽에 있습니다. 각자 피의 돌 조각을 하나씩 지니고 있습니다. 주변의 수호기사와 사술사(31-32)가 {item:3714}을(를) 떨어뜨립니다.",
 }

@@ -3,10 +3,11 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Spanish (Spain) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Spanish (Spain) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
-	["Gnomeregan Exiles Reputation"] = "Reputación con los Exiliados de Gnomeregan",
+	["Gnomeregan Exiles Reputation"] = "Reputación: Exiliado de Gnomeregan",
 
 	-- Step 1: Bubulo Acerbus: A Donation of Wool
 	-- {npc:14724} Bubulo Acerbus · {faction:54} Gnomeregan Exiles · {object:171524} Tinker Town · {zone:1455} Ironforge · {item:14047} Runecloth · {quest:7812} Additional Runecloth
@@ -51,7 +52,4 @@ return {
 	-- {quest:7812} Additional Runecloth · {faction:54} Gnomeregan Exiles · {item:14047} Runecloth · {zone:1423} Eastern Plaguelands
 	-- plural, as words: Dark Adepts = {npc:8546} Dark Adept
 	["Keep handing in {quest:7812} until {faction:54} is Exalted. {item:14047}: Dark Adepts and Shadowmages (level 58-60) in {zone:1423}, or the Auction House."] = "Sigue entregando {quest:7812} hasta ser Exaltado con {faction:54}. {item:14047}: Adeptos oscuros y Magos oscuros (nivel 58-60) en {zone:1423}, o la casa de subastas.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["{faction:54} Reputation"] = "Reputación de {faction:54}",
 }

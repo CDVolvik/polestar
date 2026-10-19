@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in German (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in German words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Thendal Grove
@@ -29,12 +30,11 @@ return {
 	["{npc:251389}, in the watchtower"] = "{npc:251389}, im Wachturm",
 	-- {npc:251379} Dorii Brightwhisper · {item:282416} Glowing Recall Crystal
 	["{npc:251379}, the mage trainer: read the {item:282416} first"] = "{npc:251379}, die Magierlehrerin: Lies zuerst den {item:282416}",
-	-- {quest:92485} A Student of Nature
-	["Rorian: {quest:92485}"] = "Rorian: {quest:92485}",
-	-- {npc:251373} Xyton Silverwind
-	["{npc:251373}, the druid trainer, on the ground floor of the tree behind Rorian"] = "{npc:251373}, der Druidenlehrer, im Erdgeschoss des Baumes hinter Rorian",
+	-- {npc:251373} Xyton Silverwind · {npc:251361} Rorian the Dayseeker
+	["{npc:251373}, the druid trainer, on the ground floor of the tree behind {npc:251361}"] = "{npc:251373}, der Druidenlehrer, im Erdgeschoss des Baumes hinter {npc:251361}",
 	["The class trainers stand together in the grove"] = "Die Klassenlehrer stehen zusammen im Hain",
-	["Listen to Halaan"] = "Hör Halaan zu",
+	-- {npc:257554} Halaan Hawk-Eye
+	["Listen to {npc:257554}"] = "Hör {npc:257554} zu",
 	-- {spell:1259416} Walk on Air
 	["Use {spell:1259416}"] = "Benutze {spell:1259416}",
 
@@ -42,16 +42,16 @@ return {
 	-- {npc:251404} Cirrusfly Queen
 	-- plural, as words: Raw Windstones = {object:613286} Raw Windstone
 	["Raw Windstones and the {npc:251404}"] = "Rohe Windsteine und die {npc:251404}",
-	-- {quest:92463} The Cirrusfly Queen
+	-- {quest:92463} The Cirrusfly Queen · {npc:249363} Yala Windwatcher
 	-- plural, as words: Raw Windstones = {object:613286} Raw Windstone
-	["The Raw Windstones glitter on the ground just south of the grove. {quest:92463} hovers over the meadow further east, on the way to Yala."] = "Die Rohen Windsteine glitzern auf dem Boden direkt südlich des Hains. {quest:92463} schwebt weiter östlich über der Wiese, auf dem Weg zu Yala.",
+	["The Raw Windstones glitter on the ground just south of the grove. {quest:92463} hovers over the meadow further east, on the way to {npc:249363}."] = "Die Rohen Windsteine glitzern auf dem Boden direkt südlich des Hains. {quest:92463} schwebt weiter östlich über der Wiese, auf dem Weg zu {npc:249363}.",
 
 	-- Step 5: Yala Windwatcher
-	-- {npc:249363} Yala Windwatcher · {npc:251143} Roiling Winds · {object:460002} Ley Line
+	-- {npc:249363} Yala Windwatcher · {npc:251143} Roiling Winds · {object:460002} Ley Line (no name in this language: may be words) · {spell:1259705} Read Leyline
 	-- plural, as words: Al'Aketh Converts = {npc:251160} Al'Aketh Convert
-	["{npc:249363} keeps watch east of the grove. The {npc:251143} and Al'Aketh Converts gather just north of her; the {object:460002} rises further north: cast your Read Ley Line racial ability at it."] = "{npc:249363} hält östlich des Hains Wache. {npc:251143} und Konvertiten der Al'Aketh sammeln sich direkt nördlich von ihr; {object:460002} erhebt sich weiter nördlich: Wirk dort deine Volksfähigkeit zum Lesen von Leylinien.",
-	-- {object:460002} Ley Line
-	["Cast Read Ley Line at the {object:460002}"] = "Lies {object:460002} mit deiner Volksfähigkeit",
+	["{npc:249363} keeps watch east of the grove. The {npc:251143} and Al'Aketh Converts gather just north of her; the {object:460002} rises further north: cast your {spell:1259705} racial ability at it."] = "{npc:249363} hält östlich des Hains Wache. {npc:251143} und Konvertiten der Al'Aketh sammeln sich direkt nördlich von ihr; die Leylinie erhebt sich weiter nördlich: Wirk dort deine Volksfähigkeit {spell:1259705}.",
+	-- {spell:1259705} Read Leyline · {object:460002} Ley Line (no name in this language: may be words)
+	["Cast {spell:1259705} at the {object:460002}"] = "Wirk {spell:1259705} auf die Leylinie",
 
 	-- Step 6: Thendal Grove turn-ins
 	-- {area:16622} Thendal Grove
@@ -79,8 +79,8 @@ return {
 	["Speak with {npc:251903} and {npc:254089}, north-west of the village"] = "Sprich mit {npc:251903} und {npc:254089}, nordwestlich des Dorfes",
 
 	-- Step 11: Raan Wildwind
-	-- {spell:1229451} Boosted Rest
-	["/sit by Raan's campfire until you get {spell:1229451}"] = "/sit an Raans Lagerfeuer, bis du {spell:1229451} bekommst",
+	-- {npc:263664} Raan Wildwind · {spell:1229451} Boosted Rest
+	["/sit by {npc:263664}'s campfire until you get {spell:1229451}"] = "/sit an {npc:263664}s Lagerfeuer, bis du {spell:1229451} bekommst",
 
 	-- Step 12: Village quests
 	["Village quests"] = "Dorfquests",
@@ -126,7 +126,7 @@ return {
 
 	-- Step 22: Vulgara the Insatiable
 	-- {npc:254589} Vulgara the Insatiable
-	["Vulgara lurks in the hills south-west of the village, on the way back. {npc:254589} is elite: grouping up is advised."] = "Vulgara lauert auf dem Rückweg in den Hügeln südwestlich des Dorfes. {npc:254589} ist Elite: Eine Gruppe wird empfohlen.",
+	["{npc:254589} lurks in the hills south-west of the village, on the way back. {npc:254589} is elite: grouping up is advised."] = "{npc:254589} lauert auf dem Rückweg in den Hügeln südwestlich des Dorfes. {npc:254589} ist Elite: Eine Gruppe wird empfohlen.",
 
 	-- Step 23: Windshaper Novice Seers
 	-- plural, as words: Windshaper Novice Seers = {npc:257532} Windshaper Novice Seer
@@ -174,8 +174,9 @@ return {
 	-- plural, as words: Ripe Stormapples = {item:253591} Ripe Stormapple · Hungry Bandits = {npc:252802} Hungry Bandit · Ornery Galestriders = {npc:251707} Ornery Galestrider
 	["Ripe Stormapples and Hungry Bandits are in the orchard by the farm, {quest:92683} in the fields north-east of it, Ornery Galestriders all around. The {npc:250929} stands in the field north-east of the farm."] = "Reife Sturmäpfel und Hungrige Banditen findest du im Obstgarten beim Hof, {quest:92683} auf den Feldern nordöstlich davon, Störrische Windschreiter überall ringsum. Das {npc:250929} steht auf dem Feld nordöstlich des Hofs.",
 
-	-- Step 31: Aamelia again
-	["Aamelia again"] = "Wieder zu Aamelia",
+	-- Step 31: Aamelia Windfield again
+	-- {npc:252800} Aamelia Windfield
+	["{npc:252800} again"] = "Wieder zu {npc:252800}",
 
 	-- Step 32: Bandit Highwaymen
 	["Bandit Highwaymen"] = "Banditenstraßenräuber",
@@ -183,8 +184,8 @@ return {
 
 	-- Step 33: Standing our ground
 	["Standing our ground"] = "Standhalten",
-	-- {npc:252863} Ferauu the Bludgeon
-	["Stand with Aamelia against {npc:252863}"] = "Kämpfe an Aamelias Seite gegen {npc:252863}",
+	-- {npc:252800} Aamelia Windfield · {npc:252863} Ferauu the Bludgeon
+	["Stand with {npc:252800} against {npc:252863}"] = "Kämpfe an {npc:252800}s Seite gegen {npc:252863}",
 
 	-- Step 34: Valanaar turn-ins
 	-- {area:16638} Valanaar
@@ -195,9 +196,9 @@ return {
 	["{npc:252373}, the mage trainer"] = "{npc:252373}, der Magierlehrer",
 
 	-- Step 35: Taming the Beast
-	-- {item:15908} Taming Rod · {area:16638} Valanaar · {area:16626} Gustberry Lowlands
+	-- {item:15908} Taming Rod · {area:16638} Valanaar · {area:16626} Gustberry Lowlands · {npc:254411} Quel'dora Quickgale
 	-- plural, as words: Windsong Crawlers = {npc:254588} Windsong Crawler · Vuldren Alphas = {npc:250874} Vuldren Alpha · Ornery Galestriders = {npc:251707} Ornery Galestrider
-	["Each of Quel'ana's quests hands you a {item:15908}: use it on the beast she names, then bring the rod back to her in {area:16638}. Windsong Crawlers line the shore west of town; Vuldren Alphas and Ornery Galestriders roam the {area:16626} around the Windfield farm. Her sister Quel'dora stands beside her."] = "Jede Quest von Quel'ana gibt dir eine {item:15908}: Benutze sie am genannten Wildtier und bring die Rute dann zu ihr nach {area:16638} zurück. Windweisenkriecher säumen das Ufer westlich der Stadt; Vuldrenalphas und Störrische Windschreiter streifen im Gebiet {area:16626} rund um den Hof der Windfields. Ihre Schwester Quel'dora steht neben ihr.",
+	["Each of Quel'ana's quests hands you a {item:15908}: use it on the beast she names, then bring the rod back to her in {area:16638}. Windsong Crawlers line the shore west of town; Vuldren Alphas and Ornery Galestriders roam the {area:16626} around the Windfield farm. Her sister {npc:254411} stands beside her."] = "Jede Quest von Quel'ana gibt dir eine {item:15908}: Benutze sie am genannten Wildtier und bring die Rute dann zu ihr nach {area:16638} zurück. Windweisenkriecher säumen das Ufer westlich der Stadt; Vuldrenalphas und Störrische Windschreiter streifen im Gebiet {area:16626} rund um den Hof der Windfields. Ihre Schwester {npc:254411} steht neben ihr.",
 	-- {npc:254588} Windsong Crawler · {item:15908} Taming Rod
 	["{npc:254588}: tame it with the {item:15908}"] = "{npc:254588}: Zähme ihn mit der {item:15908}",
 	-- {item:15908} Taming Rod
@@ -234,8 +235,8 @@ return {
 
 	-- Step 42: Desperate times
 	["Desperate times"] = "Verzweifelte Zeiten",
-	-- {npc:251968} Ayessa Dawnsinger
-	["Rally Valennia, {npc:251968} (west of town) and Elaadrin"] = "Sammle Valennia, {npc:251968} (westlich der Stadt) und Elaadrin",
+	-- {npc:251968} Ayessa Dawnsinger · {npc:252475} Elaadrin Evengale
+	["Rally Valennia, {npc:251968} (west of town) and {npc:252475}"] = "Sammle Valennia, {npc:251968} (westlich der Stadt) und {npc:252475}",
 	["Meet Valennia at the gate"] = "Triff Valennia am Tor",
 
 	-- Step 43: Strength and Mercy
@@ -245,8 +246,8 @@ return {
 	-- Step 44: The Shrine of Akir
 	-- {area:16629} Shrine of Akir
 	["The {area:16629}"] = "Der {area:16629}",
-	-- {area:16629} Shrine of Akir · {npc:253576} Hyusaa Quickbreeze
-	["Fight north to the {area:16629}. Guardians, Spiritcallers and Blademasters hold the approach; {npc:253576} waits at the shrine's door, Valennia inside the inner sanctum."] = "Kämpf dich nach Norden zum {area:16629} durch. Wächter, Geisterrufer und Klingenmeister halten den Zugang; {npc:253576} wartet an der Tür des Schreins, Valennia im inneren Sanktum.",
+	-- {area:16629} Shrine of Akir · {npc:253576} Hyusaa Quickbreeze · {npc:253590} Valennia Stormfist
+	["Fight north to the {area:16629}. Guardians, Spiritcallers and Blademasters hold the approach; {npc:253576} waits at the shrine's door, {npc:253590} inside the inner sanctum."] = "Kämpf dich nach Norden zum {area:16629} durch. Wächter, Geisterrufer und Klingenmeister halten den Zugang; {npc:253576} wartet an der Tür des Schreins, {npc:253590} im inneren Sanktum.",
 	-- {npc:253590} Valennia Stormfist
 	["{npc:253590}, in the sanctum"] = "{npc:253590}, im Sanktum",
 	-- {item:263993} Skybreaker Bulwark · {npc:257196} Zaal Stormshield
@@ -257,26 +258,28 @@ return {
 	["Head north into {area:16631}. {npc:257944} camps in its east."] = "Geh nach Norden in den {area:16631}. {npc:257944} lagert im Osten.",
 
 	-- Step 46: Shadowgale Forest
-	-- {item:265105} Lady's Tear Moss
+	-- {npc:257944} Elegael Thornpaw · {item:265105} Lady's Tear Moss
 	-- plural, as words: Al'Aketh Stormchasers = {npc:252664} Al'Aketh Stormchaser
-	["Al'Aketh Stormchasers and Footsoldiers camp just north of Elegael and drop the heirloom; the Shrieklings west of her drop the feathers and talons; the {item:265105} grows along the stream west of her."] = "Sturmjäger und Fußsoldaten der Al'Aketh lagern direkt nördlich von Elegael und lassen das Erbstück fallen; die Schattenwindkreischlinge westlich von ihr lassen die Federn und Krallen fallen; das {item:265105} wächst am Bach westlich von ihr.",
+	["Al'Aketh Stormchasers and Footsoldiers camp just north of {npc:257944} and drop the heirloom; the Shrieklings west of her drop the feathers and talons; the {item:265105} grows along the stream west of her."] = "Sturmjäger und Fußsoldaten der Al'Aketh lagern direkt nördlich von {npc:257944} und lassen das Erbstück fallen; die Schattenwindkreischlinge westlich von ihr lassen die Federn und Krallen fallen; das {item:265105} wächst am Bach westlich von ihr.",
 
-	-- Step 47: Elegael again
-	["Elegael again"] = "Wieder zu Elegael",
+	-- Step 47: Elegael Thornpaw again
+	-- {npc:257944} Elegael Thornpaw
+	["{npc:257944} again"] = "Wieder zu {npc:257944}",
 
 	-- Step 48: Vayn Moongaze
-	-- {npc:254151} Vayn Moongaze · {npc:258130} Jorel Windsinger · {npc:258134} Naaleos Leafwhisper · {npc:253622} Commander Haalien · {quest:94490} Ripped Missive
-	["{npc:254151}, {npc:258130} and {npc:258134} are north-east of Elegael; {npc:253622} stands east of them. Haalien also drops a {quest:94490}."] = "{npc:254151}, {npc:258130} und {npc:258134} sind nordöstlich von Elegael; {npc:253622} steht östlich von ihnen. Haalien lässt auch ein {quest:94490} fallen.",
-	["Heal 7 druids in the Nightfang Den, then find Jorel"] = "Heile 7 Druiden im Nightfang Den und finde dann Jorel",
+	-- {npc:254151} Vayn Moongaze · {npc:258130} Jorel Windsinger · {npc:258134} Naaleos Leafwhisper · {npc:257944} Elegael Thornpaw · {npc:253622} Commander Haalien · {quest:94490} Ripped Missive
+	["{npc:254151}, {npc:258130} and {npc:258134} are north-east of {npc:257944}; {npc:253622} stands east of them. Haalien also drops a {quest:94490}."] = "{npc:254151}, {npc:258130} und {npc:258134} sind nordöstlich von {npc:257944}; {npc:253622} steht östlich von ihnen. Haalien lässt auch ein {quest:94490} fallen.",
+	-- {npc:258130} Jorel Windsinger
+	["Heal 7 druids in the Nightfang Den, then find {npc:258130}"] = "Heile 7 Druiden im Nightfang Den und finde dann {npc:258130}",
 
 	-- Step 49: Elegael Thornpaw, the missive
 	-- {npc:257944} Elegael Thornpaw
 	["{npc:257944}, the missive"] = "{npc:257944}, das Schreiben",
 
 	-- Step 50: The Strange Hermit
-	-- {quest:93159} The Strange Hermit
+	-- {quest:93159} The Strange Hermit · {npc:257944} Elegael Thornpaw
 	-- plural, as words: Zephyrseed Cones = {object:613238} Zephyrseed Cone
-	["{quest:93159} lives west of Elegael. The Zephyrseed Cones lie in the woods between his hut and Elegael."] = "{quest:93159} lebt westlich von Elegael. Die Zephyrzapfen liegen im Wald zwischen seiner Hütte und Elegael.",
+	["{quest:93159} lives west of {npc:257944}. The Zephyrseed Cones lie in the woods between his hut and {npc:257944}."] = "{quest:93159} lebt westlich von {npc:257944}. Die Zephyrzapfen liegen im Wald zwischen seiner Hütte und {npc:257944}.",
 
 	-- Step 51: The refugees' camp
 	["The refugees' camp"] = "Das Flüchtlingslager",
@@ -305,10 +308,10 @@ return {
 	["Skycutter to {area:279}"] = "Himmelssegler nach {area:279}",
 
 	-- Step 56: Denaaris Stargale
-	-- {zone:1453} Stormwind
-	["Denaaris stands beside the Skyborne Portal where the zeppelin lands. The portal takes you to {zone:1453}."] = "Denaaris steht neben dem Portal der Himmelsgeborenen, wo der Zeppelin landet. Das Portal bringt dich nach {zone:1453}.",
-	-- {npc:270459} Alfina Nightgaze · {npc:5504} Sheldras Moontree · {zone:1453} Stormwind
-	["{npc:270459}, beside Denaaris: for {npc:5504} in {zone:1453}"] = "{npc:270459}, neben Denaaris: für {npc:5504} in {zone:1453}",
+	-- {npc:259084} Denaaris Stargale · {zone:1453} Stormwind
+	["{npc:259084} stands beside the Skyborne Portal where the zeppelin lands. The portal takes you to {zone:1453}."] = "{npc:259084} steht neben dem Portal der Himmelsgeborenen, wo der Zeppelin landet. Das Portal bringt dich nach {zone:1453}.",
+	-- {npc:270459} Alfina Nightgaze · {npc:259084} Denaaris Stargale · {npc:5504} Sheldras Moontree · {zone:1453} Stormwind
+	["{npc:270459}, beside {npc:259084}: for {npc:5504} in {zone:1453}"] = "{npc:270459}, neben {npc:259084}: für {npc:5504} in {zone:1453}",
 
 	-- Step 57: Stormwind Keep
 	-- {object:2117} Stormwind Keep · {zone:1436} Westfall
@@ -329,5 +332,7 @@ return {
 	["Leave {zone:1453} by the main gate. The {quest:1861} waterfall is south-west of the gates, on the way west to {zone:1436}: fill {item:7207} at its base."] = "Verlass {zone:1453} durch das Haupttor. Der Wasserfall am {quest:1861} liegt südwestlich der Tore, auf dem Weg nach Westen nach {zone:1436}: Fülle {item:7207} an seinem Fuß.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["North-west of {area:16638} along the road: {npc:273017} watches the {quest:98512}; the dead cultist lies just north of him."] = "Nordwestlich von {area:16638} an der Straße: {npc:273017} beobachtet die {quest:98512}; der tote Kultist liegt direkt nördlich von ihm.",
+	-- ["Cast Read Ley Line at the {object:460002}"] = "Lies {object:460002} mit deiner Volksfähigkeit",
+	-- ["Rorian: {quest:92485}"] = "Rorian: {quest:92485}",
+	-- ["{npc:249363} keeps watch east of the grove. The {npc:251143} and Al'Aketh Converts gather just north of her; the {object:460002} rises further north: cast your Read Ley Line racial ability at it."] = "{npc:249363} hält östlich des Hains Wache. {npc:251143} und Konvertiten der Al'Aketh sammeln sich direkt nördlich von ihr; {object:460002} erhebt sich weiter nördlich: Wirk dort deine Volksfähigkeit zum Lesen von Leylinien.",
 }

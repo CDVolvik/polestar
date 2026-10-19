@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in French (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in French words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -44,22 +45,23 @@ return {
 	["Back to the keep"] = "Retour au donjon",
 
 	-- Step 8: A Lesson in Divinity
-	["Danitha offers the first Lesson in Divinity at level 12."] = "Danitha propose la première Leçon de divinité au niveau 12.",
+	-- {npc:246378} Danitha Morr
+	["{npc:246378} offers the first Lesson in Divinity at level 12."] = "{npc:246378} propose la première Leçon de divinité au niveau 12.",
 
 	-- Step 9: The Undercity
 	-- {area:159} Brill · {area:153} Ruins of Lordaeron · {zone:1458} Undercity · {npc:10181} Lady Sylvanas Windrunner · {object:36126} Royal Quarter · {npc:257648} Tanis Alderwood · {object:36078} Trade Quarter
 	["Walk south from {area:159} to the {area:153} and down into the {zone:1458}. {npc:10181} holds court in the {object:36126}; {npc:257648} begs in the {object:36078}."] = "Marchez vers le sud depuis {area:159} jusqu'aux {area:153} et descendez dans {zone:1458}. {npc:10181} tient sa cour dans le {object:36126} ; {npc:257648} mendie dans le {object:36078}.",
 
 	-- Step 10: Linen Cloth
-	-- {item:2589} Linen Cloth
+	-- {npc:257648} Tanis Alderwood · {item:2589} Linen Cloth
 	-- plural, as words: Scarlet Zealots = {npc:1537} Scarlet Zealot · Scarlet Friars = {npc:1538} Scarlet Friar
-	["Tanis needs 10 {item:2589}. Scarlet Zealots and Scarlet Friars drop it about three times in ten; bring it along if you already carry some."] = "Tanis a besoin de 10 {item:2589}. Les Zélotes écarlates et les Frères écarlates en laissent tomber environ trois fois sur dix ; apportez-en si vous en avez déjà.",
+	["{npc:257648} needs 10 {item:2589}. Scarlet Zealots and Scarlet Friars drop it about three times in ten; bring it along if you already carry some."] = "{npc:257648} a besoin de 10 {item:2589}. Les Zélotes écarlates et les Frères écarlates en laissent tomber environ trois fois sur dix ; apportez-en si vous en avez déjà.",
 
 	-- Step 12: The Symbol of Life
 	-- {item:6866} Symbol of Life
 	["The {item:6866}"] = "Le {item:6866}",
-	-- {area:16602} Bandarion Keep · {item:6866} Symbol of Life · {npc:257655} Deathguard Billmuth
-	["Back to {area:16602}. Danitha gives you the {item:6866}; {npc:257655} waits downstairs in the keep."] = "Retour à {area:16602}. Danitha vous remet le {item:6866} ; {npc:257655} attend au rez-de-chaussée du donjon.",
+	-- {area:16602} Bandarion Keep · {npc:246378} Danitha Morr · {item:6866} Symbol of Life · {npc:257655} Deathguard Billmuth
+	["Back to {area:16602}. {npc:246378} gives you the {item:6866}; {npc:257655} waits downstairs in the keep."] = "Retour à {area:16602}. {npc:246378} vous remet le {item:6866} ; {npc:257655} attend au rez-de-chaussée du donjon.",
 
 	-- Step 13: Deathguard Falgan
 	-- {area:812} Venomweb Vale · {item:6866} Symbol of Life · {npc:257663} Deathguard Falgan · {npc:246378} Danitha Morr
@@ -72,11 +74,9 @@ return {
 	["The Scarlet Crusaders camped around {area:812} carry the attack plans."] = "Les membres de la Croisade écarlate qui campent autour de la {area:812} portent les plans d'attaque.",
 
 	-- Step 15: Redemption
-	-- {area:16602} Bandarion Keep · {spell:7328} Redemption
-	["Back to {area:16602}: Billmuth takes the plans, Danitha teaches you {spell:7328}."] = "Retour à {area:16602} : Billmuth prend les plans, Danitha vous apprend {spell:7328}.",
+	-- {area:16602} Bandarion Keep · {npc:246378} Danitha Morr · {spell:7328} Redemption
+	["Back to {area:16602}: Billmuth takes the plans, {npc:246378} teaches you {spell:7328}."] = "Retour à {area:16602} : Billmuth prend les plans, {npc:246378} vous apprend {spell:7328}.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["{object:181686}, in the root cellar"] = "{object:181686}, dans le cellier",
-	-- ["{quest:91317} hold the ruined village of {area:16881} in the {area:16616}, south-west of the keep. The {item:246213} is piled in the root cellar of one of its houses; Commander Rudolph Gelhardt walks among his Tarnished."] = "{quest:91317} tiennent le village en ruine de {area:16881} dans {area:16616}, au sud-ouest du donjon. {item:246213} est empilé dans la cave à légumes de l'une de ses maisons ; le commandant Rudolph Gelhardt marche parmi ses Ternis.",
-	-- ["{quest:91317} hold the ruined village of {area:16881} in the {area:16616}, south-west of the keep. The {item:246213} is piled in the root cellar of one of its houses; Commander {npc:259431} walks among his Tarnished."] = "{quest:91317} occupent le village en ruine de {area:16881}, dans la {area:16616}, au sud-ouest du donjon. Le {item:246213} est empilé dans le cellier de l'une de ses maisons ; le commandant {npc:259431} circule parmi ses Ternis.",
 }

@@ -3,10 +3,11 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Spanish (Spain) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Spanish (Spain) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
-	["Thorium Brotherhood Reputation"] = "Reputación con la Hermandad del torio",
+	["Thorium Brotherhood Reputation"] = "Reputación: Hermandad del torio",
 
 	-- Step 1: Master Smith Burninate
 	-- {area:1446} Thorium Point · {zone:1427} Searing Gorge · {faction:59} Thorium Brotherhood
@@ -51,10 +52,4 @@ return {
 	["{faction:59} to Exalted"] = "{faction:59} hasta Exaltado",
 	-- {area:2717} Molten Core · {item:11099} Dark Iron Ore
 	["Keep turning in {area:2717} materials and {item:11099} at Lokhtos until Exalted."] = "Sigue entregando materiales de {area:2717} y {item:11099} a Lokhtos hasta Exaltado.",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Restoring {item:18942} Supplies repeats in three versions: {item:3356}, Iron Bars or {item:4234}, each with Coal and an {item:18944}. Incendosaurs (level 47-49) in the north of {zone:1427} drop a scale every time; Burninate himself sells Coal."] = "Fabricar {item:18942} se repite en tres versiones: con {item:3356}, Lingotes de hierro o {item:4234}, cada una con Carbón y una {item:18944}. Los incendosaurios (nivel 47-49) del norte de {zone:1427} sueltan siempre una escama; el propio Cremación vende Carbón.",
-	-- ["{faction:59} Reputation"] = "Reputación con la {faction:59}",
-	-- ["{npc:12944} trades in the Grim Guzzler inside {area:1584}. His Favor Amongst the Brotherhood turn-ins take {item:11099} (mined from {object:147516} Deposits with {skill:186}), {item:11382}, {item:17010}, {item:17011} and {item:17012}. {npc:14387} at the {area:1445} entrance offers attunement to the {area:2717}."] = "{npc:12944} comercia en la taberna dentro de {area:1584}. Sus entregas de El favor de la Hermandad piden {item:11099} (extraído de depósitos de {object:147516} con {skill:186}), {item:11382}, {item:17010}, {item:17011} y {item:17012}. {npc:14387}, en la entrada de {area:1445}, ofrece la armonización con {area:2717}.",
-	-- ["{npc:14624}: Restoring {item:18942} Supplies"] = "{npc:14624}: fabricar {item:18942}",
 }

@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Korean words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Fly to Darkshire
@@ -26,14 +27,16 @@ return {
 	["The wrecked caravan lies off the road near Biggs."] = "부서진 대상단 마차는 비그스 근처 길가에 있습니다.",
 
 	-- Step 7: The Harborage
-	["Follow the road north to the draenei of the Harborage."] = "길을 따라 북쪽으로 피난처의 드레나이에게 가세요.",
+	-- {area:657} The Harborage
+	["Follow the road north to the draenei of the {area:657}."] = "길을 따라 북쪽으로 {area:657}의 드레나이에게 가세요.",
 
 	-- Step 8: Fallow Sanctuary
 	-- {area:76} Fallow Sanctuary · {npc:256028} The Lost One
 	["East along the road to the {area:76}. {npc:256028} mobs drop the crystals; Noboru walks the ruins and drops his cudgel."] = "길을 따라 동쪽으로 {area:76}까지 가세요. {npc:256028} 몹이 수정을 떨어뜨리고, 노보루는 폐허를 돌아다니며 곤봉을 떨어뜨립니다.",
 
 	-- Step 9: Galen Goodward
-	["Galen is caged at the north end of the sanctuary. Free him and keep him alive on the walk out; his strongbox waits by the road afterwards."] = "갈렌은 성역 북쪽 끝에 갇혀 있습니다. 그를 풀어주고 나가는 동안 살려두세요. 그 후 그의 금고가 길가에서 기다립니다.",
+	-- {npc:5391} Galen Goodward
+	["{npc:5391} is caged at the north end of the sanctuary. Free him and keep him alive on the walk out; his strongbox waits by the road afterwards."] = "{npc:5391}은(는) 성역 북쪽 끝에 갇혀 있습니다. 그를 풀어주고 나가는 동안 살려두세요. 그 후 그의 금고가 길가에서 기다립니다.",
 
 	-- Step 11: Fly to Stormwind
 	-- {zone:1453} Stormwind
@@ -57,11 +60,12 @@ return {
 	["{quest:65602}, if you took it"] = "{quest:65602}, 받았다면",
 	-- {npc:185335} Summoned Incubus
 	["{npc:185335}, at the same circle"] = "{npc:185335}, 같은 소환진에서",
-	["Gakin binds the incubus to you"] = "가킨이 인큐버스를 당신에게 귀속시킵니다",
+	-- {npc:6122} Gakin the Darkbinder
+	["{npc:6122} binds the incubus to you"] = "{npc:6122}이(가) 인큐버스를 당신에게 귀속시킵니다",
 
 	-- Step 14: Shaman training
 	["Shaman training"] = "주술사 훈련",
-	-- {zone:1453} Stormwind · {area:2257} Deeprun Tram · {object:28027} Dwarven District · {zone:1455} Ironforge · {npc:258098} Eldrun Stormbreaker · {npc:1573} Gryth Thurden · {object:32372} Great Forge · {area:271} Southshore
+	-- {zone:1453} Stormwind · {area:2257} Deeprun Tram · {object:28027} Dwarven District · {zone:1455} Ironforge · {npc:258098} Eldrun Stormbreaker · {npc:1573} Gryth Thurden · {object:32372} Great Forge (no name in this language: may be words) · {area:271} Southshore
 	["{zone:1453} has no shaman trainer: take the {area:2257} from the {object:28027} to {zone:1455} and train with {npc:258098}. {npc:1573} in the {object:32372} flies to {area:271} too."] = "{zone:1453}에는 주술사 상급자가 없습니다. {object:28027}에서 {area:2257}을(를) 타고 {zone:1455}(으)로 가서 {npc:258098}에게 훈련을 받으세요. {object:32372}의 {npc:1573}도 {area:271}(으)로 날아갑니다.",
 
 	-- Step 15: Fly to Southshore
@@ -149,7 +153,8 @@ return {
 	["Each key lies at one of the Highlands' standing-stone circles: east of the shards, near {area:320} and in the west. The {object:2702} stands west of {area:320}."] = "각 열쇠는 아라시 고원의 선돌 원 중 하나에 있습니다. 파편 동쪽, {area:320} 근처, 그리고 서쪽입니다. {object:2702}은(는) {area:320} 서쪽에 서 있습니다.",
 
 	-- Step 39: Kor'gresh Coldrage
-	["Kor'gresh, an ogre mage, holds the cave at the southern end of the Witherbark valley."] = "오우거 마법사 코르그레쉬는 마른나무껍질 계곡 남쪽 끝의 동굴을 차지하고 있습니다.",
+	-- {npc:2793} Kor'gresh Coldrage
+	["{npc:2793}, an ogre mage, holds the cave at the southern end of the Witherbark valley."] = "오우거 마법사 {npc:2793}은(는) 마른나무껍질 계곡 남쪽 끝의 동굴을 차지하고 있습니다.",
 
 	-- Step 41: Alterac Mountains
 	-- {area:271} Southshore · {area:280} Strahnbrad · {npc:2306} Baron Vardus
@@ -164,18 +169,20 @@ return {
 	-- {area:280} Strahnbrad
 	-- plural, as words: Argus Shadow Mages = {npc:2318} Argus Shadow Mage
 	["The tomes lie in the ruined keep west of {area:280}; Argus Shadow Mages hold the ruins."] = "고서는 {area:280} 서쪽의 무너진 성채에 있습니다. 아르거스재림회 어둠마법사가 폐허를 차지하고 있습니다.",
+	-- {item:3658} Recovered Tome
+	["{item:3658}: Crushridge ogres"] = "{item:3658}: 산사태 오우거",
+	-- {item:3659} Worn Leather Book · {object:1760} Weathered Bookcase
+	["{item:3659}: the {object:1760}"] = "{item:3659}: {object:1760}",
 
 	-- Step 44: Dalaran
 	-- {area:279} Dalaran · {zone:1421} Silverpine Forest · {npc:269127} Image of Archmage Modera
 	["South-west to the Kirin Tor camp on the lake shore west of {area:279}, just over the border into {zone:1421}: the {npc:269127} stands there. Archmage Ansirem stands south-east of it, by the dome."] = "남서쪽으로 {area:279} 서쪽 호숫가의 키린 토 야영지로 가세요. {zone:1421} 경계를 막 넘은 곳으로, {npc:269127}이(가) 그곳에 서 있습니다. 대마법사 앤자이럼은 그 남동쪽, 돔 옆에 서 있습니다.",
 	-- {npc:2542} Catelyn the Blade · {area:35} Booty Bay
 	["For {npc:2542} in {area:35}: keep it"] = "{area:35}의 {npc:2542}에게: 보관하세요",
-	-- {npc:252085} Archmage Celindra
-	["{npc:252085}, in the City of Dalaran"] = "{npc:252085}, 달라란 도시 안",
 
 	-- Step 45: Southshore
-	-- {item:2321} Fine Thread · {npc:2381} Micha Yance
-	["{item:2321} for Bartolo's cloak, from {npc:2381}, if you have none"] = "바르톨로의 망토용 {item:2321}, 없다면 {npc:2381}에게서",
+	-- {item:2321} Fine Thread · {npc:2438} Bartolo Ginsetti · {npc:2381} Micha Yance
+	["{item:2321} for {npc:2438}'s cloak, from {npc:2381}, if you have none"] = "{npc:2438}의 망토용 {item:2321}, 없다면 {npc:2381}에게서",
 	-- {npc:1440} Milton Sheaf · {zone:1453} Stormwind
 	["For {npc:1440} in {zone:1453}: keep it"] = "{zone:1453}의 {npc:1440}에게: 보관하세요",
 
@@ -189,6 +196,5 @@ return {
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Follow the road north to the draenei of the {area:657}."] = "길을 따라 북쪽으로 {area:657}의 드레나이에게 가세요.",
 	-- ["Summon Succubus"] = "서큐버스 소환",
-	-- ["The Crushridge ogres hold the hills north of {area:280}. Farther north, a worn wooden chest holds the {item:3706}; Nagaz of the {quest:537} stands right by it."] = "산사태 오우거는 {area:280} 북쪽 언덕을 차지하고 있습니다. 더 북쪽의 낡은 나무 상자에 {item:3706}이(가) 들어 있고, {quest:537}의 나가즈가 바로 옆에 서 있습니다.",
-	-- ["{npc:252085}, in the City of {area:279}"] = "{npc:252085}, {area:279} 도시 안",
+	-- ["{npc:252085}, in the City of Dalaran"] = "{npc:252085}, 달라란 도시 안",
 }

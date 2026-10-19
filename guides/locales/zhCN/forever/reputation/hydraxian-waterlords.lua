@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (simplified) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (simplified) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -20,7 +21,7 @@ return {
 
 	-- Step 3: Poisoned Water
 	-- {item:17310} Aspect of Neptulon · {zone:1423} Eastern Plaguelands · {item:17309} Discordant Bracers
-	["Use the {item:17310} on the poisoned water elementals of {zone:1423}, then loot their {item:17309} (12). Our data has no spawn points for those elementals."] = "对{zone:1423}中被污染的水元素使用{item:17310}，然后拾取它们的{item:17309}（12个）。我们的数据中没有这些元素的刷新点。",
+	["Use the {item:17310} on the poisoned water elementals of {zone:1423}, then loot their {item:17309} (12)."] = "对{zone:1423}中被污染的水元素使用{item:17310}，然后拾取它们的{item:17309}（12个）。",
 
 	-- Step 4: Back to Duke Hydraxis
 	-- {npc:13278} Duke Hydraxis
@@ -55,6 +56,6 @@ return {
 	["Keep clearing the {area:2717} until Exalted."] = "继续通关{area:2717}，直到崇拜。",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["{faction:749} Reputation"] = "{faction:749}声望",
+	-- ["Use the {item:17310} on the poisoned water elementals of {zone:1423}, then loot their {item:17309} (12). Our data has no spawn points for those elementals."] = "对{zone:1423}中被污染的水元素使用{item:17310}，然后拾取它们的{item:17309}（12个）。我们的数据中没有这些元素的刷新点。",
 	-- ["{npc:9816} in Upper {area:1583} drops the {quest:6821}. This needs a raid group."] = "{area:1583}上层的{npc:9816}掉落{quest:6821}。这需要团队。",
 }

@@ -3,13 +3,14 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (traditional) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (traditional) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
 	-- {item:18608} Benediction
 	["{item:18608} and Anathema"] = "{item:18608}與咒逐",
-	-- {item:18608} Benediction
-	["Eris's splinter and the two Eyes make {item:18608}, the epic priest staff that turns into Anathema."] = "艾瑞斯的碎片和兩顆眼睛可以製成{item:18608}，這把史詩牧師法杖可以轉變成咒逐。",
+	-- {npc:14494} Eris Havenfire · {item:18608} Benediction
+	["{npc:14494}'s splinter and the two Eyes make {item:18608}, the epic priest staff that turns into Anathema."] = "{npc:14494}的碎片和兩顆眼睛可以製成{item:18608}，這把史詩牧師法杖可以轉變成咒逐。",
 
 	-- Step 1: The Eye of Shadow
 	-- {item:18646} The Eye of Divinity · {object:179703} Cache of the Firelord · {npc:12018} Majordomo Executus · {area:2717} Molten Core · {item:18665} The Eye of Shadow · {npc:12397} Lord Kazzak

@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (traditional) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (traditional) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Zoram'gar Outpost
@@ -27,8 +28,8 @@ return {
 	["The Sapphires are blue crystals on the walls of the tunnels leading to the {area:2797} portal, underground and outside the instance: swim down from the pit, under the wall, into the cave. The satyrs and naga in the tunnels are elite: grouping up is advised. The crystals respawn quickly, so there is no need to go deep."] = "藍寶石是通往{area:2797}傳送門的隧道牆上的藍色水晶，位於地下、副本之外：從坑洞往下游，穿過牆下進入洞穴。隧道裡的薩特和納迦是精英：建議組隊。水晶重生得很快，不必深入。",
 
 	-- Step 5: Zoram'gar Outpost
-	-- {area:2797} Blackfathom Deeps
-	["Je'neu offers a {area:2797} quest next; leave it unless you have a group."] = "耶努薩克雷接著會提供一個{area:2797}任務；除非你有小隊，否則先不要做。",
+	-- {npc:12736} Je'neu Sancrea · {area:2797} Blackfathom Deeps
+	["{npc:12736} offers a {area:2797} quest next; leave it unless you have a group."] = "{npc:12736}接著會提供一個{area:2797}任務；除非你有小隊，否則先不要做。",
 
 	-- Step 6: Thistlefur Village
 	["East of Zoram'gar, the Thistlefur furbolgs fill the village and the hills around their hold."] = "在左拉姆加東邊，薊皮熊怪佔據村莊和他們巢穴周圍的山丘。",
@@ -61,7 +62,7 @@ return {
 	["{npc:12759}, a corrupted water elemental, drifts in {area:421}. Her {item:16408} starts a quest for Splintertree."] = "{npc:12759}是一隻被腐化的水元素，在{area:421}中漂浮。她的{item:16408}會開始一個交給碎木崗哨的任務。",
 
 	-- Step 13: King of the Foulweald
-	-- {area:421} Mystral Lake · {item:16972} Karang's Banner · {object:178206} Foulweald Totem Mound · {npc:12918} Chief Murgut
+	-- {area:421} Mystral Lake · {item:16972} Karang's Banner · {object:178206} Foulweald Totem Mound (no name in this language: may be words) · {npc:12918} Chief Murgut
 	["The Foulweald furbolgs hold the woods east of {area:421}, south of the road. Place {item:16972} on the {object:178206} and guard it: the furbolgs come to tear it down. {npc:12918} comes last; his totem drops in the basket."] = "汙林熊怪佔據{area:421}東邊、道路南邊的樹林。把{item:16972}放在{object:178206}上並守住它：熊怪會來把它拆掉。{npc:12918}最後出現；他的圖騰會掉在籃子裡。",
 
 	-- Step 14: Torek's Assault
@@ -104,8 +105,8 @@ return {
 
 	-- Step 24: The Earthen Ring
 	["The Earthen Ring"] = "陶土議會",
-	-- {area:1638} Thunder Bluff · {npc:264074} Mazu'kon · {npc:264072} Yorn Grimtotem · {npc:259118} Muln Earthfury
-	["Take a lift down from {area:1638}. The Earthen Ring camp stands north of the bluffs: {npc:264074}, {npc:264072} and {npc:259118}."] = "從{area:1638}搭升降梯下去。陶土議會營地位於峭壁北邊：{npc:264074}、{npc:264072}和{npc:259118}。",
+	-- {zone:1456} Thunder Bluff · {npc:264074} Mazu'kon · {npc:264072} Yorn Grimtotem · {npc:259118} Muln Earthfury
+	["Take a lift down from {zone:1456}. The Earthen Ring camp stands north of the bluffs: {npc:264074}, {npc:264072} and {npc:259118}."] = "從{zone:1456}搭升降梯下去。陶土議會營地位於峭壁北邊：{npc:264074}、{npc:264072}和{npc:259118}。",
 
 	-- Step 25: Gloomrise
 	-- {area:17044} Gloomrise · {npc:264074} Mazu'kon · {item:273015} Toxin Extractor · {item:273181} Crystalline Silk · {npc:264082} Broodmother Valraxx · {item:273658} Bloody Parchment · {quest:96294} A Darker Truth
@@ -120,20 +121,18 @@ return {
 	["{item:273658}, from {npc:264082}"] = "{item:273658}，來自{npc:264082}",
 
 	-- Step 26: The Earthen Ring
-	-- {area:1638} Thunder Bluff · {area:378} Camp Taurajo
-	["Back south to the camp, then up into {area:1638} for the flight to {area:378}."] = "向南回到營地，然後上到{area:1638}搭乘飛往{area:378}的飛行路線。",
+	-- {zone:1456} Thunder Bluff · {area:378} Camp Taurajo
+	["Back south to the camp, then up into {zone:1456} for the flight to {area:378}."] = "向南回到營地，然後上到{zone:1456}搭乘飛往{area:378}的飛行路線。",
 
 	-- Step 27: Brine
-	-- {area:1638} Thunder Bluff · {area:378} Camp Taurajo · {npc:5899} Brine · {area:1718} Great Lift
-	["Fly from {area:1638} to {area:378}. {npc:5899}'s hut stands on the ridge above the quilboar watering hole south of the camp, on the road to the {area:1718}."] = "從{area:1638}飛往{area:378}。{npc:5899}的小屋在營地南邊野豬人飲水處上方的山脊上，位於前往{area:1718}的路上。",
+	-- {zone:1456} Thunder Bluff · {area:378} Camp Taurajo · {npc:5899} Brine · {area:1718} Great Lift
+	["Fly from {zone:1456} to {area:378}. {npc:5899}'s hut stands on the ridge above the quilboar watering hole south of the camp, on the road to the {area:1718}."] = "從{zone:1456}飛往{area:378}。{npc:5899}的小屋在營地南邊野豬人飲水處上方的山脊上，位於前往{area:1718}的路上。",
 	-- {npc:5901} Islen Waterseer · {area:392} Ratchet
 	["for {npc:5901}, south of {area:392}: next guide"] = "給{area:392}南邊的{npc:5901}：下一份指南",
 
-	-- Step 28: The Great Lift
-	-- {area:1718} Great Lift
-	["The {area:1718}"] = "{area:1718}",
-	-- {area:1638} Thunder Bluff · {area:378} Camp Taurajo · {area:1718} Great Lift · {zone:1413} Barrens
-	["Fly from {area:1638} to {area:378} and take the road south to the {area:1718} at the bottom of the {zone:1413}."] = "從{area:1638}飛往{area:378}，沿著道路向南前往{zone:1413}底端的{area:1718}。",
+	-- Step 28: Great Lift
+	-- {zone:1456} Thunder Bluff · {area:378} Camp Taurajo · {area:1718} Great Lift · {zone:1413} Barrens
+	["Fly from {zone:1456} to {area:378} and take the road south to the {area:1718} at the bottom of the {zone:1413}."] = "從{zone:1456}飛往{area:378}，沿著道路向南前往{zone:1413}底端的{area:1718}。",
 	-- {npc:10079} Brave Moonhorn
 	["{npc:10079}, at the top of the lift"] = "{npc:10079}，在升降梯頂端",
 
@@ -144,7 +143,8 @@ return {
 	["{npc:10377}, by the wind rider master"] = "{npc:10377}，在雙足飛龍管理員旁",
 	-- {npc:4877} Jandia · {area:487} Roguefeather Den
 	["{npc:4877}, the trade supplies vendor: the Screeching harpies of {area:487}"] = "{npc:4877}，商業用品商人：{area:487}的尖嘯的鷹身人",
-	["The Wanted poster beside Cliffwatcher"] = "峭壁衛兵旁的通緝告示",
+	-- {npc:10537} Cliffwatcher Longhorn
+	["The Wanted poster beside {npc:10537}"] = "{npc:10537}旁的通緝告示",
 
 	-- Step 30: Alien Egg
 	["Take the lift down. The egg lies in a nest on the canyon floor in one of three spots: south-east of the mesas (52.3,55.2), east (56.4,50.4) or south-west (37.6,56.1)."] = "搭升降梯下去。蛋在峽谷底部的巢裡，位於三處之一：台地東南方（52.3,55.2）、東方（56.4,50.4）或西南方（37.6,56.1）。",
@@ -172,15 +172,15 @@ return {
 
 	-- Step 36: Lakota Windsong
 	-- {area:2097} Darkcloud Pinnacle · {npc:10646} Lakota Windsong · {npc:10896} Arnak Grimtotem
-	["Climb the path to the top of {area:2097}. {npc:10646} is held captive beside {npc:10896} (29): clear the guards and Arnak first, then free her and protect her on the walk down; Grimtotem ambushers come at you on the way."] = "沿著小路爬到{area:2097}頂端。{npc:10646}被囚禁在{npc:10896}（29級）旁邊：先清掉守衛和阿納克，再救出她，並在下山途中保護她；路上會有恐怖圖騰伏擊者來攻擊你。",
+	["Climb the path to the top of {area:2097}. {npc:10646} is held captive beside {npc:10896} (29): clear the guards and {npc:10896} first, then free her and protect her on the walk down; Grimtotem ambushers come at you on the way."] = "沿著小路爬到{area:2097}頂端。{npc:10646}被囚禁在{npc:10896}（29級）旁邊：先清掉守衛和{npc:10896}，再救出她，並在下山途中保護她；路上會有恐怖圖騰伏擊者來攻擊你。",
 
 	-- Step 37: Whitereach Post
 	-- {area:2237} Whitereach Post
 	["Follow the canyon west to {area:2237}."] = "沿著峽谷向西前往{area:2237}。",
-	-- {area:1638} Thunder Bluff
-	["Motega's next quest, Sacred Fire, ends in {area:1638}, off this route. Skip it."] = "莫特加的下一個任務「聖火」在{area:1638}完成，不在這條路線上。跳過。",
-	-- {npc:10720} Galak Assassin
-	["Kill the {npc:10720} that comes for Kanati"] = "擊殺前來對付卡納提的{npc:10720}",
+	-- {npc:10428} Motega Firemane · {zone:1456} Thunder Bluff
+	["{npc:10428}'s next quest, Sacred Fire, ends in {zone:1456}, off this route. Skip it."] = "{npc:10428}的下一個任務「聖火」在{zone:1456}完成，不在這條路線上。跳過。",
+	-- {npc:10720} Galak Assassin · {npc:10638} Kanati Greycloud
+	["Kill the {npc:10720} that comes for {npc:10638}"] = "擊殺前來對付{npc:10638}的{npc:10720}",
 
 	-- Step 38: Highperch
 	-- {area:482} Highperch · {npc:10427} Pao'ka Swiftmountain · {area:2237} Whitereach Post
@@ -191,8 +191,8 @@ return {
 	["South of Darkcloud, the harpies of {area:487}. {npc:4490} (31) walks among them: thin out the harpies around her before you pull her. The Screeching Harpies, Roguefeathers and Windcallers there are {npc:4877}'s."] = "暗雲峰南邊是{area:487}的鷹身人。{npc:4490}（31級）在牠們之間走動：先清掉她周圍的鷹身人再拉她。那裡的尖嘯的鷹身人、尖嘯的遊蕩者和尖嘯的喚風者是{npc:4877}的任務目標。",
 
 	-- Step 43: Rok'Alim the Pounder
-	-- {area:482} Highperch · {npc:4499} Rok'Alim the Pounder
-	["Rok'Alim, a hard-hitting rock elemental, walks the cliffs of {area:482}. {npc:4499} is elite: grouping up is advised."] = "羅卡里姆是一隻攻擊力很強的石元素，在{area:482}的懸崖上走動。{npc:4499}是精英：建議組隊。",
+	-- {npc:4499} Rok'Alim the Pounder · {area:482} Highperch
+	["{npc:4499}, a hard-hitting rock elemental, walks the cliffs of {area:482}. {npc:4499} is elite: grouping up is advised."] = "{npc:4499}是一隻攻擊力很強的石元素，在{area:482}的懸崖上走動。{npc:4499}是精英：建議組隊。",
 
 	-- Step 44: Mirage Raceway
 	-- {area:2240} Mirage Raceway
@@ -214,12 +214,9 @@ return {
 	["The next guide flies on from here to {zone:1454}."] = "下一份指南會從這裡飛往{zone:1454}。",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Follow the main road east past {area:415} (Alliance: keep to the road). Ursangous, a big grizzly, roams the {area:418} south of the road, west of {area:421}. His paw starts the next hunt quest."] = "沿著主要道路向東經過{area:415}（聯盟據點：沿著道路走）。烏薩苟斯是一頭大灰熊，在道路南邊、{area:421}西邊的{area:418}遊蕩。牠的爪子會開始下一個狩獵任務。",
 	-- ["Shadumbra"] = "薩杜布拉",
-	-- ["Shadumbra, a shadow panther, stalks the woods around {area:426}, west of the Felmusk camp. Her head starts the next hunt quest."] = "薩杜布拉是一隻暗影豹，在魔草營地西邊的{area:426}周圍的樹林中潛行。她的頭顱會開始下一個狩獵任務。",
 	-- ["Sharptalon"] = "沙普塔隆",
-	-- ["Sharptalon, a big nightsaber, prowls the woods south-east of the Warsong lumber camp. Her claw starts the next hunt quest."] = "沙普塔隆是一隻大型夜刃豹，在戰歌伐木營地東南方的樹林中徘徊。她的爪子會開始下一個狩獵任務。",
+	-- ["The {area:1718}"] = "{area:1718}",
 	-- ["Tideress"] = "泰德雷斯",
-	-- ["Tideress, a corrupted water elemental, drifts in {area:421}. Her {item:16408} starts a quest for Splintertree."] = "泰德雷斯是一隻被腐化的水元素，在{area:421}中漂浮。她的{item:16408}會開始一個交給碎木崗哨的任務。",
 	-- ["Ursangous"] = "烏薩苟斯",
 }

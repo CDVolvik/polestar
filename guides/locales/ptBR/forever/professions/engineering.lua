@@ -3,13 +3,14 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Portuguese (Brazil) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Portuguese (Brazil) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Apprentice Engineering
 	-- {skill:202} Engineering
-	["Apprentice {skill:202}"] = "Aprendiz em {skill:202}",
+	["Apprentice {skill:202}"] = "{skill:202} (Aprendiz)",
 	-- {skill:202} Engineering
-	["{skill:202} runs alongside leveling. Forever's Legacy System rewards crafting professions at skill 150, 225 and 300 (the Journeyman, Expert and Artisan caps), so each of those checkpoints counts. Materials for 1-75 are worth about 62s in all."] = "{skill:202} avança junto com o nivelamento. O Sistema de Legado do Forever recompensa profissões de criação nas perícias 150, 225 e 300 (os limites de Artesão, Especialista e Artífice), então cada um desses marcos conta. Os materiais de 1-75 valem cerca de 62s no total.",
+	["{skill:202} runs alongside leveling. Forever's Legacy System rewards crafting professions at skill 150, 225 and 300 (the Journeyman, Expert and Artisan caps), so each of those checkpoints counts. Materials for 1-75 are worth about 62s in all."] = "{skill:202} avança junto com o nivelamento. O Sistema de Legado do Forever recompensa profissões de criação nas perícias 150, 225 e 300 (os limites de Profissional, Perito e Artífice), então cada um desses marcos conta. Os materiais de 1-75 valem cerca de 62s no total.",
 	-- {item:5956} Blacksmith Hammer
 	["{item:5956}: a tool, keep it in your bags"] = "{item:5956}: uma ferramenta, mantenha-a nas bolsas",
 
@@ -67,9 +68,9 @@ return {
 
 	-- Step 12: Journeyman Engineering
 	-- {skill:202} Engineering
-	["Journeyman {skill:202}"] = "Artesão em {skill:202}",
+	["Journeyman {skill:202}"] = "{skill:202} (Profissional)",
 	-- {skill:202} Engineering
-	["Journeyman needs character level 10 and {skill:202} 50; it raises the cap to 150. Materials for 75-150 are worth about 3g 23s in all."] = "Artesão exige nível de personagem 10 e {skill:202} 50; eleva o limite para 150. Os materiais de 75-150 valem cerca de 3g 23s no total.",
+	["Journeyman needs character level 10 and {skill:202} 50; it raises the cap to 150. Materials for 75-150 are worth about 3g 23s in all."] = "Profissional exige nível de personagem 10 e {skill:202} 50; eleva o limite para 150. Os materiais de 75-150 valem cerca de 3g 23s no total.",
 
 	-- Step 14: Wool Cloth (Alliance)
 	-- {item:2592} Wool Cloth
@@ -184,9 +185,9 @@ return {
 
 	-- Step 36: Expert Engineering
 	-- {skill:202} Engineering
-	["Expert {skill:202}"] = "Especialista em {skill:202}",
+	["Expert {skill:202}"] = "{skill:202} (Perito)",
 	-- {skill:202} Engineering
-	["Expert needs character level 20 and {skill:202} 125; it raises the cap to 225. Materials for 150-225 are worth about 15g in all."] = "Especialista exige nível de personagem 20 e {skill:202} 125; eleva o limite para 225. Os materiais de 150-225 valem cerca de 15g no total.",
+	["Expert needs character level 20 and {skill:202} 125; it raises the cap to 225. Materials for 150-225 are worth about 15g in all."] = "Perito exige nível de personagem 20 e {skill:202} 125; eleva o limite para 225. Os materiais de 150-225 valem cerca de 15g no total.",
 
 	-- Step 37: Medium Leather (Alliance)
 	-- {item:2319} Medium Leather
@@ -248,7 +249,7 @@ return {
 
 	-- Step 48: Artisan Engineering
 	-- {skill:202} Engineering
-	["Artisan {skill:202}"] = "Artífice em {skill:202}",
+	["Artisan {skill:202}"] = "{skill:202} (Artífice)",
 	-- {skill:202} Engineering
 	["Artisan needs character level 35 and {skill:202} 200; it raises the cap to 300. Materials for 225-300 are worth about 67g in all."] = "Artífice exige nível de personagem 35 e {skill:202} 200; eleva o limite para 300. Os materiais de 225-300 valem cerca de 67g no total.",
 
@@ -258,7 +259,7 @@ return {
 
 	-- Step 50: Schematic: Thorium Tube
 	-- {item:16000} Thorium Tube · {skill:202} Engineering
-	["Teaches {item:16000} (needs {skill:202} 275). Vendors sell it in limited stock that restocks; the Auction House often has it too."] = "Ensina {item:16000} (exige {skill:202} 275). Mercadores vendem em estoque limitado que se renova; a Casa de Leilões também costuma ter.",
+	["Teaches {item:16000} (needs {skill:202} 275). Vendors sell it in limited stock that restocks."] = "Ensina {item:16000} (exige {skill:202} 275). Mercadores vendem em estoque limitado que se renova.",
 
 	-- Step 53: Runecloth (Alliance)
 	-- {item:14047} Runecloth

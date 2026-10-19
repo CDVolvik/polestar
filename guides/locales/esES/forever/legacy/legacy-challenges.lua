@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Spanish (Spain) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Spanish (Spain) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -58,7 +59,7 @@ return {
 
 	-- Step 10: PvP: battleground reputations (Alliance)
 	["PvP: battleground reputations (Alliance)"] = "JcJ: reputaciones de campos de batalla (Alianza)",
-	["Exalted with each battleground faction is worth a point (4 in all; this page shows three, see the note). Follow the Polestar Reputation guides Warsong Gulch Reputation, Arathi Basin Reputation and Alterac Valley Reputation. The Diplomat Legacy perk increases reputation gains."] = "Exaltado con cada facción de campo de batalla vale un punto (4 en total; esta página muestra tres, mira la nota). Sigue las guías de reputación de Polestar Reputación de la Garganta Grito de Guerra, Reputación de la Cuenca de Arathi y Reputación del Valle de Alterac. La ventaja de Legado Diplomático aumenta la reputación obtenida.",
+	["Exalted with each battleground faction is worth a point (4 in all; this page shows three, see the note). Follow the Polestar Reputation guides Warsong Gulch Reputation, Arathi Basin Reputation and Alterac Valley Reputation. The Diplomat Legacy perk increases reputation gains."] = "Exaltado con cada facción de campo de batalla vale un punto (4 en total; esta página muestra tres, mira la nota). Sigue las guías de reputación de Polestar Reputación: Garganta Grito de Guerra, Reputación: Cuenca de Arathi y Reputación: Valle de Alterac. La ventaja de Legado Diplomático aumenta la reputación obtenida.",
 	-- {zone:1460} Warsong Gulch · {zone:1461} Arathi Basin · {zone:1459} Alterac Valley
 	["Blizzard counts four battleground reputations, but our faction data has three per side ({zone:1460}, {zone:1461}, {zone:1459}). The fourth is likely tied to Forever's new PvP content; check the in-game Legacy panel."] = "Blizzard cuenta cuatro reputaciones de campos de batalla, pero nuestros datos de facciones tienen tres por bando ({zone:1460}, {zone:1461}, {zone:1459}). La cuarta probablemente está ligada al nuevo contenido JcJ de Forever; consulta el panel de Legado del juego.",
 
@@ -68,10 +69,18 @@ return {
 	-- Step 12: PvP: honor ranks
 	["PvP: honor ranks"] = "JcJ: rangos de honor",
 	["Ranks 3, 7, 10, 13 and 14 are a point each. Polestar cannot read your highest rank yet, so tick each one off yourself. Forever's honor rules for reaching a rank have not been published in detail; in Classic, ranks come from your weekly honor standing, and 13-14 take many weeks of top standing."] = "Los rangos 3, 7, 10, 13 y 14 valen un punto cada uno. Polestar aún no puede leer tu rango más alto, así que márcalos tú mismo. Las reglas de honor de Forever para alcanzar un rango no se han publicado en detalle; en Classic, los rangos dependen de tu posición semanal de honor, y el 13-14 requieren muchas semanas en lo más alto.",
+	["enemy players for honor until PvP Rank 3"] = "jugadores enemigos por honor hasta el rango JcJ 3",
+	["enemy players for honor until PvP Rank 7"] = "jugadores enemigos por honor hasta el rango JcJ 7",
+	["enemy players for honor until PvP Rank 10"] = "jugadores enemigos por honor hasta el rango JcJ 10",
+	["enemy players for honor until PvP Rank 13"] = "jugadores enemigos por honor hasta el rango JcJ 13",
+	["enemy players for honor until PvP Rank 14"] = "jugadores enemigos por honor hasta el rango JcJ 14",
 
 	-- Step 13: PvP: Field of Honor
 	["PvP: Field of Honor"] = "JcJ: Campo de Honor",
 	["The Field of Honor PvP season has weekly journey quests; finishing the ones for weeks 4, 7 and 10 is a point each. These quests are new in Forever and not in our data, so tick each one off yourself."] = "La temporada JcJ Campo de Honor tiene misiones de trayecto semanales; completar las de las semanas 4, 7 y 10 vale un punto cada una. Estas misiones son nuevas en Forever y no están en nuestros datos, así que márcalas tú mismo.",
+	["enemy players and finish the Field of Honor week 4 journey quest"] = "jugadores enemigos y completa la misión de travesía de la semana 4 del Campo de Honor",
+	["enemy players and finish the Field of Honor week 7 journey quest"] = "jugadores enemigos y completa la misión de travesía de la semana 7 del Campo de Honor",
+	["enemy players and finish the Field of Honor week 10 journey quest"] = "jugadores enemigos y completa la misión de travesía de la semana 10 del Campo de Honor",
 
 	-- Step 14: Adventure: explore the world map
 	["Adventure: explore the world map"] = "Aventura: explora el mapa del mundo",
@@ -82,8 +91,10 @@ return {
 	-- Step 15: Adventure: Lord Valthalak
 	-- {npc:16042} Lord Valthalak
 	["Adventure: {npc:16042}"] = "Aventura: {npc:16042}",
-	-- {npc:16042} Lord Valthalak · {npc:16013} Deliana · {zone:1455} Ironforge · {npc:16012} Mokvar · {zone:1454} Orgrimmar · {npc:16033} Bodley · {area:254} Blackrock Mountain · {quest:8996} Return to Bodley · {quest:8997} Back to the Beginning
-	["The {npc:16042} questline is a point. It is the level 60 dungeon-set chain: {npc:16013} ({zone:1455}) or {npc:16012} ({zone:1454}) send you through In Search of Anthion and Anthion's Parting Words to {npc:16033} at {area:254}, whose Three Kings of Flame, the Left and Right Pieces of Lord Valthalak's Amulet, Final Preparations and Mea Culpa, {npc:16042} end with {quest:8996}. {quest:8997} then leads to the class Saving the Best for Last quests."] = "La cadena de {npc:16042} vale un punto. Es la cadena del conjunto de mazmorra de nivel 60: {npc:16013} ({zone:1455}) o {npc:16012} ({zone:1454}) te envían con Buscando a Anthion y La despedida de Anthion hasta {npc:16033} en {area:254}, cuyas Tres reyes de Fuego, La parte izquierda y La parte derecha del Amuleto de Lord Valthalak, Últimos preparativos y Mea Culpa, {npc:16042} terminan con {quest:8996}. Después, {quest:8997} lleva a las misiones de clase Guardar lo mejor para el final.",
+	-- {npc:16042} Lord Valthalak · {npc:16013} Deliana · {zone:1455} Ironforge · {npc:16012} Mokvar · {zone:1454} Orgrimmar · {npc:16033} Bodley · {area:254} Blackrock Mountain · {quest:8995} Mea Culpa, Lord Valthalak · {quest:8996} Return to Bodley · {quest:8997} Back to the Beginning
+	["The {npc:16042} questline is a point. It is the level 60 dungeon-set chain: {npc:16013} ({zone:1455}) or {npc:16012} ({zone:1454}) send you through In Search of Anthion and Anthion's Parting Words to {npc:16033} at {area:254}, whose Three Kings of Flame, the Left and Right Pieces of Lord Valthalak's Amulet, Final Preparations and {quest:8995} end with {quest:8996}. {quest:8997} then leads to the class Saving the Best for Last quests."] = "La cadena de {npc:16042} vale un punto. Es la cadena del conjunto de mazmorra de nivel 60: {npc:16013} ({zone:1455}) o {npc:16012} ({zone:1454}) te envían con Buscando a Anthion y La despedida de Anthion hasta {npc:16033} en {area:254}, cuyas Tres reyes de Fuego, La parte izquierda y La parte derecha del Amuleto de Lord Valthalak, Últimos preparativos y {quest:8995} terminan con {quest:8996}. Después, {quest:8997} lleva a las misiones de clase Guardar lo mejor para el final.",
+	-- {npc:16073} Spirit of Lord Valthalak · {npc:16033} Bodley · {area:254} Blackrock Mountain
+	["{npc:16073}, inside Upper Blackrock Spire after Mea Culpa (no spawn in the data: the arrow leads to {npc:16033}'s {area:254})"] = "{npc:16073}, dentro de la Cumbre de Roca Negra superior después de Mea Culpa (sin punto de aparición en los datos: la flecha lleva a {area:254}, donde está {npc:16033})",
 	-- {npc:16033} Bodley · {quest:8996} Return to Bodley
 	["{npc:16033} offers it once {quest:8996} is turned in"] = "{npc:16033} la ofrece cuando entregas {quest:8996}",
 	-- {quest:8996} Return to Bodley
@@ -107,7 +118,7 @@ return {
 	-- {area:718} Wailing Caverns · {npc:3678} Disciple of Naralex
 	["{area:718} (appears after the {npc:3678}'s event)"] = "{area:718} (aparece tras el evento del {npc:3678})",
 	-- {area:717} The Stockade
-	["{area:717}: the usual last kill; the Stockade has no fixed final boss"] = "{area:717}: la última muerte habitual; Las Mazmorras no tienen un jefe final fijo",
+	["{area:717}: the usual last kill; the {area:717} has no fixed final boss"] = "{area:717}: la última muerte habitual; {area:717} no tienen un jefe final fijo",
 	-- {area:16919} Hall of Thanes · {area:153} Ruins of Lordaeron
 	["Forever adds the dungeons {area:16919} and {area:153}; their bosses and brackets are not in our data yet."] = "Forever añade las mazmorras {area:16919} y {area:153}; sus jefes y tramos aún no están en nuestros datos.",
 
@@ -144,6 +155,10 @@ return {
 	["Forever's new dungeons"] = "Las nuevas mazmorras de Forever",
 	-- {area:16919} Hall of Thanes · {area:153} Ruins of Lordaeron
 	["{area:16919} and {area:153} are new in Forever. Their bosses, levels and Legacy bracket are not in our data, so tick them off yourself."] = "{area:16919} y {area:153} son nuevas en Forever. Sus jefes, niveles y tramo de Legado no están en nuestros datos, así que márcalas tú mismo.",
+	-- {area:16919} Hall of Thanes
+	["the final boss of {area:16919}"] = "jefe final de {area:16919}",
+	-- {area:153} Ruins of Lordaeron
+	["the final boss of {area:153}"] = "jefe final de {area:153}",
 
 	-- Step 22: Raids: Onyxia
 	-- {npc:10184} Onyxia
@@ -154,13 +169,15 @@ return {
 	-- Step 23: Raids: Hyjal Summit
 	["Raids: Hyjal Summit"] = "Bandas: Hyjal Summit",
 	["All 13 Hyjal Summit bosses are a point. Hyjal Summit is a new Forever raid; its bosses are not in our data, so tick it off once all 13 are down."] = "Los 13 jefes de Hyjal Summit valen un punto. Hyjal Summit es una banda nueva de Forever; sus jefes no están en nuestros datos, así que márcala cuando caigan los 13.",
+	["all 13 Hyjal Summit bosses"] = "todos los 13 jefes de la Cima Hyjal",
 
 	-- Step 24: Raids: Barrow Deeps
 	["Raids: Barrow Deeps"] = "Bandas: Barrow Deeps",
 	["All 8 Barrow Deeps bosses are a point. Barrow Deeps is a new Forever raid; its bosses are not in our data, so tick it off once all 8 are down."] = "Los 8 jefes de Barrow Deeps valen un punto. Barrow Deeps es una banda nueva de Forever; sus jefes no están en nuestros datos, así que márcala cuando caigan los 8.",
+	["all 8 Barrow Deeps bosses"] = "todos los 8 jefes de las Profundidades de los Túmulos",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Exalted with each battleground faction is worth a point (4 in all; this page shows three, see the note). Follow the Polestar Reputation guides {zone:1460} Reputation, {zone:1461} Reputation and {zone:1459} Reputation. The Diplomat Legacy perk increases reputation gains."] = "Exaltado con cada facción de campo de batalla vale un punto (4 en total; esta página muestra tres, mira la nota). Sigue las guías de Reputación de Polestar Reputación de {zone:1460}, Reputación de {zone:1461} y Reputación de {zone:1459}. La ventaja de Legado Diplomático aumenta la reputación obtenida.",
+	-- ["The {npc:16042} questline is a point. It is the level 60 dungeon-set chain: {npc:16013} ({zone:1455}) or {npc:16012} ({zone:1454}) send you through In Search of Anthion and Anthion's Parting Words to {npc:16033} at {area:254}, whose Three Kings of Flame, the Left and Right Pieces of Lord Valthalak's Amulet, Final Preparations and Mea Culpa, {npc:16042} end with {quest:8996}. {quest:8997} then leads to the class Saving the Best for Last quests."] = "La cadena de {npc:16042} vale un punto. Es la cadena del conjunto de mazmorra de nivel 60: {npc:16013} ({zone:1455}) o {npc:16012} ({zone:1454}) te envían con Buscando a Anthion y La despedida de Anthion hasta {npc:16033} en {area:254}, cuyas Tres reyes de Fuego, La parte izquierda y La parte derecha del Amuleto de Lord Valthalak, Últimos preparativos y Mea Culpa, {npc:16042} terminan con {quest:8996}. Después, {quest:8997} lleva a las misiones de clase Guardar lo mejor para el final.",
 	-- ["The {npc:16042} questline is a point. It is the level 60 dungeon-set chain: {npc:16013} ({zone:1455}) or {npc:16012} ({zone:1454}) send you through In Search of Anthion and Anthion's Parting Words to {npc:16033} at {area:254}, whose Three Kings of Flame, the Left and Right Pieces of {item:22048}, Final Preparations and Mea Culpa, {npc:16042} end with {quest:8996}. {quest:8997} then leads to the class Saving the Best for Last quests."] = "La cadena de {npc:16042} vale un punto. Es la cadena del conjunto de mazmorra de nivel 60: {npc:16013} ({zone:1455}) o {npc:16012} ({zone:1454}) te envían con Buscando a Anthion y La despedida de Anthion hasta {npc:16033} en {area:254}, cuyas Tres reyes de Fuego, La parte izquierda y La parte derecha de {item:22048}, Últimos preparativos y Mea Culpa, {npc:16042} terminan con {quest:8996}. Después, {quest:8997} lleva a las misiones de clase Guardar lo mejor para el final.",
 	-- ["{area:2577} East"] = "{area:2577} Este",
 	-- ["{area:2577} North"] = "{area:2577} Norte",

@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in French (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in French words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -33,8 +34,9 @@ return {
 	-- plural, as words: Blackrock Summoners = {npc:4463} Blackrock Summoner
 	["Blackrock Summoners, Champions and Trackers camp in the north-west of Redridge; they drop the {item:209778}."] = "Les Invocateurs, Champions et Pisteurs Blackrock campent dans le nord-ouest des Carmines ; ils laissent tomber le {item:209778}.",
 
-	-- Step 6: Back to Ursula
-	["Back to Ursula"] = "Retour auprès d'Ursula",
+	-- Step 6: Back to Ursula Deline
+	-- {npc:5495} Ursula Deline
+	["Back to {npc:5495}"] = "Retour auprès d'{npc:5495}",
 
 	-- Step 7: Motes of Mannoroth
 	["Motes of Mannoroth"] = "Granules de Mannoroth",
@@ -55,7 +57,5 @@ return {
 	["Back to {area:413}."] = "Retour à {area:413}.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["A rare cloak at 30 from the old Divine Storm story; for now only Alliance paladins can finish it."] = "Une cape rare au niveau 30, issue de l'ancienne histoire de Tempête divine ; pour l'instant, seuls les paladins de l'Alliance peuvent la terminer.",
-	-- ["The {object:409311} stands at the east end of {area:435}. Shatter the orb on it; the {object:409315} appears beside it."] = "{object:409311} se dresse à l'extrémité est de {area:435}. Brisez l'orbe dessus ; l'{object:409315} apparaît à côté.",
 	-- ["The {object:409311} stands at the east end of {area:435}. {spell:11170} the orb on it; the {object:409315} appears beside it."] = "{object:409311} se dresse à l'extrémité est de {area:435}. Lancez {spell:11170} sur l'orbe qui s'y trouve ; {object:409315} apparaît à côté.",
 }

@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in German (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in German words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -24,15 +25,16 @@ return {
 	["Undead take the zeppelin from the towers outside the {zone:1458} to {zone:1411}. {npc:3401} and {quest:2379} stand in the {object:172960}, the canyon under the {object:172982}."] = "Untote nehmen den Zeppelin von den Türmen außerhalb von {zone:1458} nach {zone:1411}. {npc:3401} und {quest:2379} stehen in der {object:172960}, der Schlucht unter dem {object:172982}.",
 
 	-- Step 4: Wrenix the Wretched
-	-- {area:392} Ratchet · {zone:1413} Barrens · {item:7970} E.C.A.C. · {item:5060} Thieves' Tools
-	["Fly or ride to {area:392} on the {zone:1413} coast. Wrenix stands in town with his Gizmotronic Apparatus: buy an {item:7970} and {item:5060} from the apparatus before you go."] = "Flieg oder reite nach {area:392} an der Küste von {zone:1413}. Wrenix der Jämmerliche steht mit Wrenix' Elektrodingsda-Apparat im Ort: Kauf vor dem Aufbruch einen {item:7970} und {item:5060} am Apparat.",
+	-- {area:392} Ratchet · {zone:1413} Barrens · {npc:7161} Wrenix the Wretched · {item:7970} E.C.A.C. · {item:5060} Thieves' Tools
+	["Fly or ride to {area:392} on the {zone:1413} coast. {npc:7161} stands in town with his Gizmotronic Apparatus: buy an {item:7970} and {item:5060} from the apparatus before you go."] = "Flieg oder reite nach {area:392} an der Küste von {zone:1413}. {npc:7161} steht mit Wrenix' Elektrodingsda-Apparat im Ort: Kauf vor dem Aufbruch einen {item:7970} und {item:5060} am Apparat.",
 
 	-- Step 5: Southsea Treasure
 	-- {area:392} Ratchet · {item:7970} E.C.A.C.
 	["South along the coast from {area:392}, at the Southsea pirates' camp. If an unusually hostile parrot attacks you, use the {item:7970} on it (the quest's own advice)."] = "Südlich entlang der Küste von {area:392}, im Lager der Südmeerfreibeuter. Greift dich ein ungewöhnlich feindseliger Papagei an, benutze den {item:7970} an ihm (der eigene Rat der Quest).",
 
-	-- Step 6: Back to Wrenix
-	["Back to Wrenix"] = "Zurück zu Wrenix",
+	-- Step 6: Back to Wrenix the Wretched
+	-- {npc:7161} Wrenix the Wretched
+	["Back to {npc:7161}"] = "Zurück zu {npc:7161}",
 	-- {npc:7161} Wrenix the Wretched · {item:7676} Thistle Tea
 	["{npc:7161}: ten {item:7676}"] = "{npc:7161}: zehn {item:7676}",
 
@@ -44,6 +46,7 @@ return {
 	-- {area:233} Ambermill · {object:103815} Ambermill Strongbox
 	["The Kirin Tor keep their reports at {area:233}, in south-east Silverpine: pick the lock on the {object:103815}."] = "Die Kirin Tor bewahren ihre Berichte in {area:233} auf, im Südosten des Silberwalds: Knack das Schloss des {object:103815}.",
 
-	-- Step 10: Back to Mennet
-	["Back to Mennet"] = "Zurück zu Mennet",
+	-- Step 10: Back to Mennet Carkad
+	-- {npc:6467} Mennet Carkad
+	["Back to {npc:6467}"] = "Zurück zu {npc:6467}",
 }

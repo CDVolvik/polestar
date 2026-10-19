@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (simplified) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (simplified) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -51,10 +52,4 @@ return {
 	["{faction:59} to Exalted"] = "{faction:59}刷到崇拜",
 	-- {area:2717} Molten Core · {item:11099} Dark Iron Ore
 	["Keep turning in {area:2717} materials and {item:11099} at Lokhtos until Exalted."] = "继续在罗克图斯处交还{area:2717}材料和{item:11099}，直到崇拜。",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Restoring {item:18942} Supplies repeats in three versions: {item:3356}, Iron Bars or {item:4234}, each with Coal and an {item:18944}. Incendosaurs (level 47-49) in the north of {zone:1427} drop a scale every time; Burninate himself sells Coal."] = "{item:18942}的补给任务有三个可重复版本：{item:3356}、铁锭或{item:4234}，每个都需要煤块和一个{item:18944}。{zone:1427}北部的熏火龙（47-49级）每次都会掉落鳞片；博恩奈特本人出售煤块。",
-	-- ["{faction:59} Reputation"] = "{faction:59}声望",
-	-- ["{npc:12944} trades in the Grim Guzzler inside {area:1584}. His Favor Amongst the Brotherhood turn-ins take {item:11099} (mined from {object:147516} Deposits with {skill:186}), {item:11382}, {item:17010}, {item:17011} and {item:17012}. {npc:14387} at the {area:1445} entrance offers attunement to the {area:2717}."] = "{npc:12944}在{area:1584}内的黑铁酒吧交易。他的“兄弟会的好感”任务收取{item:11099}（用{skill:186}从{object:147516}矿床开采）、{item:11382}、{item:17010}、{item:17011}和{item:17012}。{area:1445}入口处的{npc:14387}提供{area:2717}的进入资格任务。",
-	-- ["{npc:14624}: Restoring {item:18942} Supplies"] = "{npc:14624}：{item:18942}的补给",
 }

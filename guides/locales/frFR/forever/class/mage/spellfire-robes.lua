@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in French (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in French words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -44,5 +45,4 @@ return {
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Algernon's alchemist shop is in the {object:36072}. Use the {item:7308} there to make the {npc:6492} visible, subdue one with your spells, then use the {item:7247} to throw down a coffer and capture it."] = "La boutique d'alchimie d'Algernon est dans {object:36072}. Utilisez-y la {item:7308} pour rendre visible le {npc:6492}, affaiblissez-en un avec vos sorts, puis utilisez le {item:7247} pour poser un coffret et le capturer.",
-	-- ["Humanoids drop {item:2589}; the {zone:1458} Auction House sells it."] = "Les humanoïdes lâchent du {item:2589} ; l'hôtel des ventes de {zone:1458} en vend.",
 }

@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Korean words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -22,8 +23,8 @@ return {
 	["From {area:415} take the road west to {area:413}: the figurine lies in a house among the trees north of the post."] = "{area:415}에서 서쪽 길을 따라 {area:413}(으)로 가십시오: 조각상은 초소 북쪽 나무 사이 집 안에 있습니다.",
 
 	-- Step 4: The Binding
-	-- {object:2164} Slaughtered Lamb
-	["Back to Gakin in the {object:2164}. Place the figurine at the summoning circle in the crypt below him and defeat the incubus it calls."] = "{object:2164}의 게이킨에게 돌아가십시오. 그 아래 지하 묘지의 소환진에 조각상을 놓고, 불러낸 인큐버스를 처치하십시오.",
+	-- {npc:6122} Gakin the Darkbinder · {object:2164} Slaughtered Lamb
+	["Back to {npc:6122} in the {object:2164}. Place the figurine at the summoning circle in the crypt below him and defeat the incubus it calls."] = "{object:2164}의 {npc:6122}에게 돌아가십시오. 그 아래 지하 묘지의 소환진에 조각상을 놓고, 불러낸 인큐버스를 처치하십시오.",
 	-- {npc:6122} Gakin the Darkbinder
 	["{npc:6122}: he binds the incubus to you"] = "{npc:6122}: 인큐버스를 당신에게 귀속시킵니다",
 }

@@ -3,12 +3,13 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Portuguese (Brazil) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Portuguese (Brazil) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Orgrimmar
-	-- {npc:8659} Jes'rimon · {object:172960} Cleft of Shadow
+	-- {npc:8659} Jes'rimon · {object:172960} Cleft of Shadow (no name in this language: may be words)
 	["{npc:8659}, the {object:172960}"] = "{npc:8659}, {object:172960}",
-	-- {npc:15188} Cenarion Emissary Blackhoof · {object:172957} Valley of Wisdom · {zone:1451} Silithus
+	-- {npc:15188} Cenarion Emissary Blackhoof · {object:172957} Valley of Wisdom (no name in this language: may be words) · {zone:1451} Silithus
 	["{npc:15188}, {object:172957}: keep it for {zone:1451}"] = "{npc:15188}, {object:172957}: guarde-a para {zone:1451}",
 
 	-- Step 2: Fly to the Crossroads
@@ -28,12 +29,10 @@ return {
 	-- Step 5: Liv Rizzlefix
 	-- {area:392} Ratchet · {object:149036} Marvon's Chest
 	["Liv's workshop is at the north end of {area:392}'s docks; {object:149036} stands inside it."] = "A oficina de Liv fica no extremo norte das docas de {area:392}; {object:149036} está lá dentro.",
-	-- {object:149036} Marvon's Chest · {item:10556} Stone Circle
-	["Open {object:149036} for the {item:10556}"] = "Abra {object:149036} para pegar o {item:10556}",
 
 	-- Step 6: Islen Waterseer
-	-- {area:392} Ratchet
-	["Islen camps on the shore just north of {area:392}."] = "Islen acampa na praia logo ao norte de {area:392}.",
+	-- {npc:5901} Islen Waterseer · {area:392} Ratchet
+	["{npc:5901} camps on the shore just north of {area:392}."] = "{npc:5901} acampa na praia logo ao norte de {area:392}.",
 	-- {area:2479} Emerald Sanctuary · {zone:1448} Felwood
 	["Cleansed Water goes to the {area:2479} in {zone:1448}: keep it for later."] = "A Água Purificada vai para o {area:2479} em {zone:1448}: guarde-a para depois.",
 
@@ -42,11 +41,11 @@ return {
 	["Fly to {area:1637}"] = "Voe para {area:1637}",
 
 	-- Step 8: Vehena
-	-- {object:172961} Valley of Spirits
+	-- {object:172961} Valley of Spirits (no name in this language: may be words)
 	["In the {object:172961}. Have the Wool, Silk and Mageweave in your bags."] = "No {object:172961}. Tenha Lã, Seda e Magitrama na bolsa.",
 
 	-- Step 9: Rashona Straglash
-	-- {object:172958} Valley of Honor
+	-- {object:172958} Valley of Honor (no name in this language: may be words)
 	["In the {object:172958}."] = "No {object:172958}.",
 	-- {item:14047} Runecloth
 	["Both {item:14047} donations are handed in later in the route: start saving {item:14047}."] = "As duas doações de {item:14047} são entregues mais adiante na rota: comece a guardar {item:14047}.",
@@ -73,8 +72,8 @@ return {
 	["Ride back west to {area:1237}."] = "Volte para oeste até {area:1237}.",
 
 	-- Step 16: Belgrom Rockmaul
-	-- {area:1637} Orgrimmar · {object:172958} Valley of Honor
-	["Fly to {area:1637}; Belgrom is in the {object:172958}."] = "Voe para {area:1637}; Belgrom está no {object:172958}.",
+	-- {area:1637} Orgrimmar · {npc:4485} Belgrom Rockmaul · {object:172958} Valley of Honor (no name in this language: may be words)
+	["Fly to {area:1637}; {npc:4485} is in the {object:172958}."] = "Voe para {area:1637}; {npc:4485} está no {object:172958}.",
 
 	-- Step 17: Zeppelin to the Undercity
 	-- {zone:1458} Undercity
@@ -96,4 +95,7 @@ return {
 	-- Step 21: Prompt Potion Runner
 	-- {npc:11044} Doctor Martin Felben
 	["{npc:11044}, in the Apothecarium"] = "{npc:11044}, no Apothecarium",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Open {object:149036} for the {item:10556}"] = "Abra {object:149036} para pegar o {item:10556}",
 }

@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Spanish (Spain) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Spanish (Spain) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Darkshire
@@ -22,8 +23,8 @@ return {
 	["{npc:633}, at the south end of town"] = "{npc:633}, en el extremo sur del pueblo",
 
 	-- Step 2: Viktori Prism'Antras
-	-- {npc:3133} Herble Baubbletump
-	["Viktori's house stands at the east end of town. {npc:3133} sells engineering goods in the house beside it."] = "La casa de Viktori está en el extremo este del pueblo. {npc:3133} vende artículos de ingeniería en la casa de al lado.",
+	-- {npc:276} Viktori Prism'Antras · {npc:3133} Herble Baubbletump
+	["{npc:276}'s house stands at the east end of town. {npc:3133} sells engineering goods in the house beside it."] = "La casa de {npc:276} está en el extremo este del pueblo. {npc:3133} vende artículos de ingeniería en la casa de al lado.",
 	-- {item:4371} Bronze Tube · {npc:3133} Herble Baubbletump · {npc:1448} Neal Allen · {area:150} Menethil Harbor
 	["{item:4371}, from {npc:3133}: limited stock. Sold out? {npc:1448} in {area:150} sells it too."] = "{item:4371}, de {npc:3133}: existencias limitadas. ¿Agotado? {npc:1448}, en {area:150}, también lo vende.",
 
@@ -52,8 +53,8 @@ return {
 	["The cemetery lies north of the village. Skeletal Horrors and Skeletal Fiends walk its southern half. {npc:522}, an elite, wanders the graves: keep away from him."] = "El cementerio está al norte de la aldea. Horrores esqueléticos y Mefistos esqueléticos recorren su mitad sur. {npc:522}, un élite, deambula entre las tumbas: mantente lejos de él.",
 
 	-- Step 8: Sven's Camp
-	-- {npc:893} Lars
-	["Follow the road north-west past the cemetery to Sven's camp on the far west edge of the forest. {npc:893} stands beside Sven."] = "Sigue el camino al noroeste, pasado el cementerio, hasta el campamento de Sven, en el extremo oeste del bosque. {npc:893} está junto a Sven.",
+	-- {npc:311} Sven Yorgen · {npc:893} Lars
+	["Follow the road north-west past the cemetery to {npc:311}'s camp on the far west edge of the forest. {npc:893} stands beside {npc:311}."] = "Sigue el camino al noroeste, pasado el cementerio, hasta el campamento de {npc:311}, en el extremo oeste del bosque. {npc:893} está junto a {npc:311}.",
 
 	-- Step 9: Abercrombie
 	-- {area:492} Raven Hill Cemetery
@@ -146,6 +147,5 @@ return {
 	-- ["Skeletal Horrors walk the hillside between {area:42} and the {area:121}, south-east of town; they drop the {npc:14235} Blossoms."] = "Los Horrores esqueléticos recorren la ladera entre {area:42} y el {area:121}, al sureste del pueblo; sueltan las flores de {npc:14235}.",
 	-- ["{item:3372}: {npc:1313}, {skill:171} Supplies"] = "{item:3372}: {npc:1313}, suministros de {skill:171}",
 	-- ["{npc:14235} Blossoms"] = "Flores de {npc:14235}",
-	-- ["{npc:332}: Poisons, and {item:18160}"] = "{npc:332}: Venenos y {item:18160}",
 	-- ["{npc:332}: {spell:2842}, and {item:18160}"] = "{npc:332}: {spell:2842} y {item:18160}",
 }

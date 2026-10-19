@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Korean words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Fly to Ratchet
@@ -41,9 +42,7 @@ return {
 	-- plural, as words: Sunscale Scytheclaws = {npc:3256} Sunscale Scytheclaw
 	["Sunscale Scytheclaws hunt the plains south of the {area:380}, around the {area:1697}; they drop the horns. Hand them in on your next pass through {area:392}."] = "갈퀴발톱 열대초원랩터가 {area:380} 남쪽, {area:1697} 주변 평원에서 사냥하며 뿔을 떨어뜨립니다. 다음에 {area:392}을(를) 지날 때 제출하십시오.",
 
-	-- Step 9: The Crossroads
-	-- {area:380} Crossroads
-	["The {area:380}"] = "{area:380}",
+	-- Step 9: Crossroads
 	-- {npc:3429} Thork · {area:1703} Mor'shan Rampart
 	["{npc:3429}. Keep it: Kadrak at the {area:1703}, next guide"] = "{npc:3429}. 보관하십시오: 다음 가이드의 {area:1703}에 있는 카드라크",
 	-- {npc:3428} Korran · {area:390} Field of Giants
@@ -52,7 +51,7 @@ return {
 	["{npc:3429}, at the top of the tower"] = "{npc:3429}, 탑 꼭대기",
 
 	-- Step 10: Dreadmist Peak
-	-- {area:380} Crossroads · {area:384} Dreadmist Peak · {item:15842} Empty Dreadmist Peak Sampler · {object:19464} Dreadmist Peak Pool · {npc:3448} Tonga Runetotem · {skill:182} Herbalism · {npc:3490} Hula'mahi · {item:2449} Earthroot
+	-- {area:380} Crossroads · {area:384} Dreadmist Peak · {item:15842} Empty Dreadmist Peak Sampler · {object:19464} Dreadmist Peak Pool (no name in this language: may be words) · {npc:3448} Tonga Runetotem · {skill:182} Herbalism · {npc:3490} Hula'mahi · {item:2449} Earthroot
 	["Ride north from the {area:380} to {area:384} and fill the {item:15842} at the {object:19464}, then back to {npc:3448} in the {area:380}. No {skill:182}? {npc:3490} beside him sells {item:2449}, three at a time until he restocks."] = "{area:380}에서 북쪽 {area:384}(으)로 가서 {object:19464}에서 {item:15842}을(를) 채운 뒤, {area:380}의 {npc:3448}에게 돌아가십시오. {skill:182}이(가) 없다면 옆의 {npc:3490}이(가) {item:2449}을(를) 판매합니다. 재입고될 때까지 한 번에 세 개입니다.",
 	-- {item:2449} Earthroot · {npc:3490} Hula'mahi
 	["{item:2449} from {npc:3490}; herbalists pick it on the plains"] = "{npc:3490}에게서 {item:2449}. 약초채집가는 평원에서 채집하십시오",
@@ -97,11 +96,12 @@ return {
 	["Back to the {area:380}"] = "{area:380}(으)로 돌아가기",
 
 	-- Step 18: Regthar Deathgate
-	-- {area:380} Crossroads
-	["Regthar stands at the Kolkar watch post just west of the {area:380}."] = "렉타르는 {area:380} 바로 서쪽의 콜카르일족 감시 초소에 있습니다.",
+	-- {npc:3389} Regthar Deathgate · {area:380} Crossroads
+	["{npc:3389} stands at the Kolkar watch post just west of the {area:380}."] = "{npc:3389}은(는) {area:380} 바로 서쪽의 콜카르일족 감시 초소에 있습니다.",
 
 	-- Step 19: Barak Kodobane
-	["Barak stands in the Kolkar camp north-west of Regthar."] = "바라크는 렉타르 북서쪽 콜카르일족 야영지에 있습니다.",
+	-- {npc:3394} Barak Kodobane · {npc:3389} Regthar Deathgate
+	["{npc:3394} stands in the Kolkar camp north-west of {npc:3389}."] = "{npc:3394}은(는) {npc:3389} 북서쪽 콜카르일족 야영지에 있습니다.",
 	-- {item:15852} Kodo Horn
 	-- plural, as words: Lost Barrens Kodos = {npc:3234} Lost Barrens Kodo
 	["{item:15852}: Lost Barrens Kodos on the plains around the Kolkar camp"] = "{item:15852}: 콜카르일족 야영지 주변 평원의 길잃은 황무지 코도",
@@ -109,16 +109,14 @@ return {
 	["{item:2449}: herbalists pick it here"] = "{item:2449}: 약초채집가는 여기서 채집하십시오",
 
 	-- Step 21: Ken'zigla
-	-- {npc:4197} Ken'zigla · {area:2539} Malaka'jin
-	["{npc:4197} lives in {area:2539}, the troll village just inside Stonetalon at the end of the road west from Regthar."] = "{npc:4197}은(는) 렉타르에서 서쪽으로 가는 길 끝, 돌발톱 산맥 입구의 트롤 마을 {area:2539}에 삽니다.",
+	-- {npc:4197} Ken'zigla · {area:2539} Malaka'jin · {npc:3389} Regthar Deathgate
+	["{npc:4197} lives in {area:2539}, the troll village just inside Stonetalon at the end of the road west from {npc:3389}."] = "{npc:4197}은(는) {npc:3389}에서 서쪽으로 가는 길 끝, 돌발톱 산맥 입구의 트롤 마을 {area:2539}에 삽니다.",
 
 	-- Step 22: Vrang Wildgore
 	-- {area:383} Dry Hills · {npc:3682} Vrang Wildgore · {npc:261366} Walton
-	["North to the {area:383}. {npc:3682} camps below the hills; {npc:261366}, the hermit on the ridge behind him, has work for you only once Vrang sends you up."] = "북쪽 {area:383}(으)로 가십시오. {npc:3682}은(는) 언덕 아래에 야영하고 있으며, 그 뒤 능선의 은둔자 {npc:261366}은(는) 브랑이 올려 보낸 뒤에만 일을 줍니다.",
+	["North to the {area:383}. {npc:3682} camps below the hills; {npc:261366}, the hermit on the ridge behind him, has work for you only once {npc:3682} sends you up."] = "북쪽 {area:383}(으)로 가십시오. {npc:3682}은(는) 언덕 아래에 야영하고 있으며, 그 뒤 능선의 은둔자 {npc:261366}은(는) {npc:3682}이 올려 보낸 뒤에만 일을 줍니다.",
 
-	-- Step 23: The Dry Hills
-	-- {area:383} Dry Hills
-	["The {area:383}"] = "{area:383}",
+	-- Step 23: Dry Hills
 	-- {quest:876} Serena Bloodfeather
 	-- plural, as words: Savannah Patriarchs = {npc:3241} Savannah Patriarch · Sprung Traps = {object:640104} Sprung Trap
 	["Savannah Patriarchs roam the plains east of the hills, and the Sprung Traps lie among them. {quest:876} leads the Witchwing harpies in the hills to the west."] = "우두머리 사바나 사자가 언덕 동쪽 평원을 돌아다니며, 용수철 덫은 그들 사이에 있습니다. {quest:876}이(가) 서쪽 언덕의 칼날바람하피를 이끕니다.",
@@ -164,8 +162,8 @@ return {
 	["He gives you the {item:15826}"] = "그가 {item:15826}을(를) 줍니다",
 
 	-- Step 35: Verog the Dervish
-	-- {area:388} Stagnant Oasis · {area:380} Crossroads
-	["Verog walks among the Kolkar at the {area:388} south-east of the {area:380}."] = "광신자 베로그는 {area:380} 남동쪽 {area:388}의 콜카르일족 사이를 걷습니다.",
+	-- {npc:3395} Verog the Dervish · {area:388} Stagnant Oasis · {area:380} Crossroads
+	["{npc:3395} walks among the Kolkar at the {area:388} south-east of the {area:380}."] = "{npc:3395}은(는) {area:380} 남동쪽 {area:388}의 콜카르일족 사이를 걷습니다.",
 	-- {npc:12296} Sickly Gazelle · {item:15826} Curative Animal Salve · {area:380} Crossroads
 	["{npc:12296}: use the {item:15826} on them; they roam the plains all around the {area:380}"] = "{npc:12296}: {item:15826}을(를) 사용하십시오. {area:380} 주변 평원 곳곳을 돌아다닙니다",
 
@@ -184,28 +182,28 @@ return {
 
 	-- Step 38: Grunt Dogran
 	["Dogran is chained up in the quilboar camp west of the road."] = "도그란은 길 서쪽 가시멧돼지 야영지에 사슬로 묶여 있습니다.",
-	-- {zone:1454} Orgrimmar
-	["Keep it: Gan'rul in {zone:1454}, at the end of this guide"] = "보관하십시오: 이 가이드 마지막에 {zone:1454}의 간룰",
+	-- {npc:5875} Gan'rul Bloodeye · {zone:1454} Orgrimmar
+	["Keep it: {npc:5875} in {zone:1454}, at the end of this guide"] = "보관하십시오: 이 가이드 마지막에 {zone:1454}의 {npc:5875}",
 
 	-- Step 40: Stolen Silver
 	-- {area:385} Northwatch Hold
 	["East across the plains toward the coast: the stolen silver lies in a raptor nest north-west of {area:385}."] = "동쪽 평원을 가로질러 해안 쪽으로 가십시오. 도둑맞은 은은 {area:385} 북서쪽 랩터 둥지에 있습니다.",
 
 	-- Step 41: Islen Waterseer
-	-- {area:392} Ratchet
-	["Islen waits on the hill south of {area:392}, on your way north."] = "이슬렌은 북쪽으로 가는 길, {area:392} 남쪽 언덕에서 기다립니다.",
+	-- {npc:5901} Islen Waterseer · {area:392} Ratchet
+	["{npc:5901} waits on the hill south of {area:392}, on your way north."] = "{npc:5901}은(는) 북쪽으로 가는 길, {area:392} 남쪽 언덕에서 기다립니다.",
 
 	-- Step 43: Ishamuhale
 	-- {quest:882} Ishamuhale · {area:392} Ratchet · {area:380} Crossroads
 	["{quest:882}, a big Sunscale raptor, hunts the plains north of the road from {area:392} to the {area:380}."] = "큰 열대초원랩터 {quest:882}이(가) {area:392}에서 {area:380}(으)로 가는 길 북쪽 평원에서 사냥합니다.",
 
-	-- Step 44: The Crossroads
+	-- Step 44: Crossroads
 	-- {npc:3432} Mankrik · {quest:95774} Her Name Is Olgra · {quest:4921} Lost in Battle
 	["{npc:3432} offers {quest:95774} once {quest:4921} is handed in"] = "{quest:4921}을(를) 제출하면 {npc:3432}이(가) {quest:95774}을(를) 줍니다",
 
 	-- Step 46: Hezrul Bloodmark
-	-- {area:387} Lushwater Oasis · {area:380} Crossroads
-	["Hezrul leads the Kolkar on the west shore of {area:387}, south of Regthar. Hand his head to Regthar on your last {area:380} stop."] = "헤즈룰은 렉타르 남쪽, {area:387} 서쪽 기슭의 콜카르일족을 이끕니다. 마지막으로 {area:380}에 들를 때 머리를 렉타르에게 건네십시오.",
+	-- {npc:3396} Hezrul Bloodmark · {area:387} Lushwater Oasis · {npc:3389} Regthar Deathgate · {area:380} Crossroads
+	["{npc:3396} leads the Kolkar on the west shore of {area:387}, south of {npc:3389}. Hand his head to {npc:3389} on your last {area:380} stop."] = "{npc:3396}은(는) {npc:3389} 남쪽, {area:387} 서쪽 기슭의 콜카르일족을 이끕니다. 마지막으로 {area:380}에 들를 때 머리를 {npc:3389}에게 건네십시오.",
 
 	-- Step 47: Olgra's Adornments
 	-- {area:458} Gold Road · {area:378} Camp Taurajo · {item:277277} Olgra's Adornments · {npc:3432} Mankrik · {area:380} Crossroads
@@ -233,23 +231,23 @@ return {
 	["South of Camp Taurajo the Silithid Mounds dot the {area:390}; the eggs lie in them, and Silithid Swarmers come out to defend them. Silithid Harvesters are rare: if you see one, kill it for its head."] = "타우라조 야영지 남쪽 {area:390}에 실리시드 흙더미가 흩어져 있습니다. 알은 그 안에 있으며, 우두머리 실리시드가 나와 지킵니다. 여왕 실리시드는 드무니 보이면 처치해 머리를 얻으십시오.",
 
 	-- Step 54: Gann Stonespire
-	-- {area:359} Bael Modan
-	["Gann waits in a small camp further south, on the road toward {area:359}."] = "갠은 더 남쪽, {area:359}(으)로 가는 길가의 작은 야영지에서 기다립니다.",
-	-- {npc:14242} Sulhasa
-	["{npc:14242}, up in the tree just east of Gann"] = "{npc:14242}, 갠 바로 동쪽 나무 위",
-	-- {npc:5899} Brine
-	["{npc:5899}, just west of Gann"] = "{npc:5899}, 갠 바로 서쪽",
+	-- {npc:3341} Gann Stonespire · {area:359} Bael Modan
+	["{npc:3341} waits in a small camp further south, on the road toward {area:359}."] = "{npc:3341}은(는) 더 남쪽, {area:359}(으)로 가는 길가의 작은 야영지에서 기다립니다.",
+	-- {npc:14242} Sulhasa · {npc:3341} Gann Stonespire
+	["{npc:14242}, up in the tree just east of {npc:3341}"] = "{npc:14242}, {npc:3341} 바로 동쪽 나무 위",
+	-- {npc:5899} Brine · {npc:3341} Gann Stonespire
+	["{npc:5899}, just west of {npc:3341}"] = "{npc:5899}, {npc:3341} 바로 서쪽",
 	-- {item:7766} Empty Brown Waterskin
 	["Fill the {item:7766} at the quilboar watering hole"] = "가시멧돼지 물웅덩이에서 {item:7766} 채우기",
 	-- {object:107045} Spring Well · {area:272} Tarren Mill
 	["Keep it: the {object:107045} is beside {area:272}"] = "보관하십시오: {object:107045}은(는) {area:272} 옆에 있습니다",
 
 	-- Step 55: Blackthorn Ridge
-	-- {area:1701} Blackthorn Ridge · {npc:3436} Kuz · {npc:3434} Nak · {npc:3435} Lok Orcbane · {npc:5859} Hagg Taurenbane · {npc:3238} Stormhide · {quest:885} Washte Pawne
+	-- {area:1701} Blackthorn Ridge · {npc:3436} Kuz · {npc:3434} Nak · {npc:3435} Lok Orcbane · {npc:5859} Hagg Taurenbane · {npc:3238} Stormhide · {npc:3341} Gann Stonespire · {quest:885} Washte Pawne
 	-- plural, as words: Hecklefang Stalkers = {npc:4128} Hecklefang Stalker
-	["West of Gann, the Razormane hold {area:1701}. {npc:3436} is on the east side, {npc:3434} to the south, {npc:3435} at the west end. Lok (25) and the Warfrenzies (24-25) are a few levels above you; {npc:5859}, a rare elite, sometimes walks the ridge: leave him. Pathfinders and Stalkers drop the Backstabber, Seers the Wand, Warfrenzies the War Shield. {npc:3238} lizards and Hecklefang Stalkers roam the plain between Gann and the ridge. {quest:885}, a rare red wind serpent, flies over the ridge: its feather starts a quest."] = "갠 서쪽의 {area:1701}은(는) 서슬갈기일족이 차지하고 있습니다. {npc:3436}은(는) 동쪽에, {npc:3434}은(는) 남쪽에, {npc:3435}은(는) 서쪽 끝에 있습니다. 로크(25)와 서슬갈기일족 광전사(24-25)는 몇 레벨 높습니다. 희귀 정예 {npc:5859}이(가) 가끔 능선을 걸으니 피하십시오. 서슬갈기일족 길잡이와 정찰꾼이 기습용 단검을, 점쟁이가 마법봉을, 광전사가 전투용 방패를 떨어뜨립니다. {npc:3238} 도마뱀과 긴발톱 빗송곳니하이에나가 갠과 능선 사이 평원을 돌아다닙니다. 희귀한 붉은 바람뱀 {quest:885}이(가) 능선 위를 날며, 그 깃털로 퀘스트가 시작됩니다.",
-	-- {npc:3238} Stormhide
-	["{npc:3238}, on the plain between Gann and the ridge"] = "{npc:3238}, 갠과 능선 사이 평원",
+	["West of Gann, the Razormane hold {area:1701}. {npc:3436} is on the east side, {npc:3434} to the south, {npc:3435} at the west end. Lok (25) and the Warfrenzies (24-25) are a few levels above you; {npc:5859}, a rare elite, sometimes walks the ridge: leave him. Pathfinders and Stalkers drop the Backstabber, Seers the Wand, Warfrenzies the War Shield. {npc:3238} lizards and Hecklefang Stalkers roam the plain between {npc:3341} and the ridge. {quest:885}, a rare red wind serpent, flies over the ridge: its feather starts a quest."] = "갠 서쪽의 {area:1701}은(는) 서슬갈기일족이 차지하고 있습니다. {npc:3436}은(는) 동쪽에, {npc:3434}은(는) 남쪽에, {npc:3435}은(는) 서쪽 끝에 있습니다. 로크(25)와 서슬갈기일족 광전사(24-25)는 몇 레벨 높습니다. 희귀 정예 {npc:5859}이(가) 가끔 능선을 걸으니 피하십시오. 서슬갈기일족 길잡이와 정찰꾼이 기습용 단검을, 점쟁이가 마법봉을, 광전사가 전투용 방패를 떨어뜨립니다. {npc:3238} 도마뱀과 긴발톱 빗송곳니하이에나가 {npc:3341}와(과) 능선 사이 평원을 돌아다닙니다. 희귀한 붉은 바람뱀 {quest:885}이(가) 능선 위를 날며, 그 깃털로 퀘스트가 시작됩니다.",
+	-- {npc:3238} Stormhide · {npc:3341} Gann Stonespire
+	["{npc:3238}, on the plain between {npc:3341} and the ridge"] = "{npc:3238}, {npc:3341}와(과) 능선 사이 평원",
 
 	-- Step 56: Bael Modan
 	-- {area:359} Bael Modan · {npc:3392} Prospector Khazgorm
@@ -272,8 +270,8 @@ return {
 	["Twitching Antennae from the silithid"] = "실리시드에게서 꿈틀거리는 더듬이",
 
 	-- Step 66: Thun'grim Firegaze
-	-- {area:380} Crossroads
-	["Thun'grim camps beside the road east of the {area:380}."] = "툰그림은 {area:380} 동쪽 길가에 야영하고 있습니다.",
+	-- {npc:5878} Thun'grim Firegaze · {area:380} Crossroads
+	["{npc:5878} camps beside the road east of the {area:380}."] = "{npc:5878}은(는) {area:380} 동쪽 길가에 야영하고 있습니다.",
 	-- {quest:1838} Brutal Armor · {area:1717} Razorfen Kraul
 	["He offers {quest:1838} next (1838, level 30): it needs {area:1717} and sends you all over Kalimdor and the Eastern Kingdoms. The Warrior class guide {quest:1838} covers it."] = "다음으로 {quest:1838}(1838, 30레벨)을(를) 줍니다. {area:1717}이(가) 필요하며 칼림도어와 동부 왕국 곳곳을 돌아다니게 합니다. 전사 직업 가이드 {quest:1838}에서 다룹니다.",
 
@@ -291,7 +289,7 @@ return {
 
 	-- Step 70: Shenthul
 	-- {npc:2391} Serge Hinott · {area:272} Tarren Mill
-	["{npc:2391} in {area:272} teaches Poisons: keep it"] = "{area:272}의 {npc:2391}이(가) 독을 가르칩니다: 보관하세요",
+	["{npc:2391} in {area:272} teaches Poisons: keep it"] = "{area:272}의 {npc:2391}이(가) 독 조제를 가르칩니다: 보관하세요",
 
 	-- Step 71: The Great Cat Spirit
 	-- {area:1638} Thunder Bluff · {npc:3033} Turak Runetotem · {area:1639} Elder Rise
@@ -302,14 +300,14 @@ return {
 	["Cast {spell:18960}. Tauren: join the two pendant halves at the {area:2362}, on the north-west shore of the lake, before you see {npc:11802} in {area:2361}."] = "{spell:18960}을(를) 시전하세요. 타우렌: {area:2361}의 {npc:11802}을(를) 만나기 전에 호수 북서쪽 기슭 {area:2362}에서 펜던트 두 조각을 합치세요.",
 	-- {item:15885} Pendant of the Sea Lion · {area:2362} Shrine of Remulos
 	["{item:15885}: use a half at the {area:2362}"] = "{item:15885}: {area:2362}에서 조각을 사용하십시오",
-	-- {npc:11802} Dendrite Starblaze
-	["{npc:11802}: the welcome from Turak"] = "{npc:11802}: 투락이 보낸 환영 인사",
+	-- {npc:11802} Dendrite Starblaze · {npc:3033} Turak Runetotem
+	["{npc:11802}: the welcome from {npc:3033}"] = "{npc:11802}: {npc:3033}이(가) 보낸 환영 인사",
 
 	-- Step 73: The Stormrage Barrow Dens
 	-- {area:2363} Stormrage Barrow Dens
 	["The {area:2363}"] = "{area:2363}",
 	-- {npc:11957} Great Cat Spirit · {npc:272054} Avatar of Saeyleenan · {item:280680} Relic of the Silent Shadow
-	["Tauren: the {npc:11957} waits on the southern hill above the bridge. Skyborne: the {npc:272054} stands south of the twin bridges. Then the dens east of the lake: leave your form, click the statue at the entrance for five minutes of stealth, keep clear of the spirits inside and take one of each relic; the {item:280680} lies at the foot of the white cat statue."] = "타우렌: {npc:11957}은(는) 다리 위 남쪽 언덕에서 기다립니다. Skyborne: {npc:272054}은(는) 쌍둥이 다리 남쪽에 있습니다. 그다음 호수 동쪽 굴로 가십시오. 변신을 풀고, 입구의 석상을 클릭해 5분간 은신하고, 안의 혼령을 피해 유물을 하나씩 가져가십시오. {item:280680}은(는) 흰 살쾡이 석상 아래에 있습니다.",
+	["Tauren: the {npc:11957} waits on the southern hill above the bridge. Skyborne: the {npc:272054} stands south of the twin bridges. Then the dens east of the lake: leave your form, click the statue at the entrance for five minutes of stealth, keep clear of the spirits inside and take one of each relic; the {item:280680} lies at the foot of the white cat statue."] = "타우렌: {npc:11957}은(는) 다리 위 남쪽 언덕에서 기다립니다. 스카이본: {npc:272054}은(는) 쌍둥이 다리 남쪽에 있습니다. 그다음 호수 동쪽 굴로 가십시오. 변신을 풀고, 입구의 석상을 클릭해 5분간 은신하고, 안의 혼령을 피해 유물을 하나씩 가져가십시오. {item:280680}은(는) 흰 살쾡이 석상 아래에 있습니다.",
 
 	-- Step 75: Turak Runetotem
 	-- {npc:11798} Bunthen Plainswind · {area:2361} Nighthaven
@@ -320,11 +318,9 @@ return {
 	["Fly back to the {area:380}. The next guide starts here and takes the road north to the {area:1703} and {zone:1440}."] = "{area:380}(으)로 비행해 돌아가십시오. 다음 가이드는 여기서 시작해 북쪽 길로 {area:1703}와(과) {zone:1440}(으)로 갑니다.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Assist Walton: stay by him when {npc:261367} and the {area:21} marines come up the ridge"] = "월튼 돕기: {npc:261367}와(과) {area:21} 해병이 능선을 올라오면 그의 곁에 있으세요",
 	-- ["Bruuz"] = "브루즈",
-	-- ["Bruuz swims in the harbour just off {area:392}'s docks. Bruuz is elite: grouping up is advised."] = "브루즈는 {area:392} 부두 바로 앞 항구에서 헤엄칩니다. 정예이므로 파티를 권장합니다.",
-	-- ["South of {area:378} the Silithid Mounds dot the {area:390}; the eggs lie in them, and Silithid Swarmers come out to defend them. Silithid Harvesters are rare: if you see one, kill it for its head."] = "{area:378} 남쪽 {area:390}에 실리시드 흙더미가 흩어져 있습니다. 알은 그 안에 있으며, 우두머리 실리시드가 나와 지킵니다. 여왕 실리시드는 드무니 보이면 처치해 머리를 얻으십시오.",
+	-- ["The {area:380}"] = "{area:380}",
+	-- ["The {area:383}"] = "{area:383}",
 	-- ["The {object:177790} lies at the north edge of the {area:382}, by the Venture Co. tower. It holds the {item:15883} for {quest:30}."] = "{object:177790}은(는) {area:382} 북쪽 가장자리, 투자개발회사 탑 옆에 있습니다. {quest:30}용 {item:15883}이(가) 들어 있습니다.",
-	-- ["West of Gann, the Razormane hold {area:1701}. Kuz is on the east side, Nak to the south, {npc:3435} at the west end. Lok (25) and the Warfrenzies (24-25) are a few levels above you; {npc:5859}, a rare elite, sometimes walks the ridge: leave him. Pathfinders and Stalkers drop the Backstabber, Seers the Wand, Warfrenzies the War Shield. {npc:3238} lizards and Hecklefang Stalkers roam the plain between Gann and the ridge. {quest:885}, a rare red wind serpent, flies over the ridge: its feather starts a quest."] = "갠 서쪽의 {area:1701}은(는) 서슬갈기일족이 차지하고 있습니다. 쿠즈는 동쪽에, 나크는 남쪽에, {npc:3435}은(는) 서쪽 끝에 있습니다. 로크(25)와 서슬갈기일족 광전사(24-25)는 몇 레벨 높습니다. 희귀 정예 {npc:5859}이(가) 가끔 능선을 걸으니 피하십시오. 서슬갈기일족 길잡이와 정찰꾼이 기습용 단검을, 점쟁이가 마법봉을, 광전사가 전투용 방패를 떨어뜨립니다. {npc:3238} 도마뱀과 긴발톱 빗송곳니하이에나가 갠과 능선 사이 평원을 돌아다닙니다. 희귀한 붉은 바람뱀 {quest:885}이(가) 능선 위를 날며, 그 깃털로 퀘스트가 시작됩니다.",
 	-- ["{npc:2391} in {area:272} teaches {spell:2842}: keep it"] = "{area:272}의 {npc:2391}이(가) {spell:2842}을(를) 가르칩니다: 보관하세요",
 }

@@ -3,11 +3,14 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Korean words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Everlook
 	-- {area:2255} Everlook
 	["{area:2255} is the goblin town on the east side of the valley."] = "{area:2255}은(는) 골짜기 동쪽의 고블린 마을입니다.",
+	-- {npc:11118} Innkeeper Vizzie
+	["{npc:11118}: the last guide binds here, so this usually ticks at once"] = "{npc:11118}: 이전 가이드에서 이곳에 귀환 지점을 정하므로 보통 바로 완료됩니다",
 	["Gregor's and Harlo's quests lead to other zones: keep them."] = "그레고르와 하를로의 퀘스트는 다른 지역으로 이어집니다. 보관하세요.",
 
 	-- Step 2: Ice Thistle yetis
@@ -37,8 +40,8 @@ return {
 	["Ride west along the road past {area:2251}; Raging Owlbeasts roam the hills north of it."] = "길을 따라 서쪽으로 {area:2251}을(를) 지나가세요. 흉포한 올빼미야수는 그 북쪽 언덕을 돌아다닙니다.",
 
 	-- Step 9: Donova Snowden
-	-- {area:2246} Frostfire Hot Springs
-	["Donova camps among the steaming pools of {area:2246}, in the west of the valley."] = "도노바는 골짜기 서쪽, {area:2246}의 김이 오르는 웅덩이 사이에 야영하고 있습니다.",
+	-- {npc:9298} Donova Snowden · {area:2246} Frostfire Hot Springs
+	["{npc:9298} camps among the steaming pools of {area:2246}, in the west of the valley."] = "{npc:9298}은(는) 골짜기 서쪽, {area:2246}의 김이 오르는 웅덩이 사이에 야영하고 있습니다.",
 	["From Krakle in Un'Goro"] = "운고로 분화구의 크래클에게서",
 	["Linken's letter"] = "링쿠의 편지",
 	-- {quest:3909} The Videre Elixir · {npc:7775} Gregan Brewspewer · {zone:1444} Feralas
@@ -119,8 +122,8 @@ return {
 	["{quest:1123} waits in {zone:1450}: keep it for later."] = "{quest:1123}은(는) {zone:1450}에서 기다립니다. 나중을 위해 보관하세요.",
 
 	-- Step 29: Bashana Runetotem
-	-- {item:11040} Morrowgrain · {quest:3761} Un'Goro Soil
-	["Bashana buys {item:11040} grown from your {quest:3761}."] = "바샤나는 {quest:3761}(으)로 기른 {item:11040}을(를) 삽니다.",
+	-- {npc:9087} Bashana Runetotem · {item:11040} Morrowgrain · {quest:3761} Un'Goro Soil
+	["{npc:9087} buys {item:11040} grown from your {quest:3761}."] = "{npc:9087}은(는) {quest:3761}(으)로 기른 {item:11040}을(를) 삽니다.",
 
 	-- Step 30: Fly to Orgrimmar
 	-- {area:1637} Orgrimmar

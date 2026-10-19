@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Korean words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -10,7 +11,7 @@ return {
 
 	-- Step 1: Ralston Farnsley: A Donation of Wool
 	-- {npc:14729} Ralston Farnsley · {faction:68} Undercity · {item:14047} Runecloth · {quest:7819} Additional Runecloth
-	["{npc:14729} takes cloth for {faction:68} in {faction:68}. The first donations of Wool, Silk, Mageweave and {item:14047} (60 cloth each) are done once and give the most reputation per cloth; after them, {quest:7819} repeats until Exalted. Exalted with another race's city lets you buy that race's mounts. Forever's Legacy Diplomat perk increases reputation gains."] = "{npc:14729}이(가) {faction:68}에서 {faction:68}을(를) 위해 옷감을 받습니다. 양모 옷감, 비단 옷감, 마법 옷감, {item:14047}의 첫 기부(각 60개)는 한 번만 할 수 있고 옷감당 평판을 가장 많이 줍니다. 그 후에는 {quest:7819}을(를) 확고한 동맹까지 반복합니다. 다른 종족 도시와 확고한 동맹이 되면 그 종족의 탈것을 살 수 있습니다. Forever의 유산 외교관 특성으로 평판 획득량이 늘어납니다.",
+	["{npc:14729} takes cloth for {faction:68} in {faction:68}. The first donations of Wool, Silk, Mageweave and {item:14047} (60 cloth each) are done once and give the most reputation per cloth; after them, {quest:7819} repeats until Exalted. Exalted with another race's city lets you buy that race's mounts. Forever's Legacy Diplomat perk increases reputation gains."] = "{npc:14729}이(가) {faction:68}에서 {faction:68}을(를) 위해 옷감을 받습니다. 양모 옷감, 비단 옷감, 마법 옷감, {item:14047}의 첫 기부(각 60개)는 한 번만 할 수 있고 옷감당 평판을 가장 많이 줍니다. 그 후에는 {quest:7819}을(를) 확고한 동맹까지 반복합니다. 다른 종족 도시와 확고한 동맹이 되면 그 종족의 탈것을 살 수 있습니다. Forever의 외교관 유산 특전은 평판 획득량을 늘려 줍니다.",
 
 	-- Step 2: Wool Cloth
 	-- {area:381} Boulder Lode Mine

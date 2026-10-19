@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (simplified) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (simplified) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Apprentice Engineering
@@ -258,7 +259,7 @@ return {
 
 	-- Step 50: Schematic: Thorium Tube
 	-- {item:16000} Thorium Tube · {skill:202} Engineering
-	["Teaches {item:16000} (needs {skill:202} 275). Vendors sell it in limited stock that restocks; the Auction House often has it too."] = "学会{item:16000}（需要{skill:202} 275）。商人限量出售并会补货；拍卖行也常有。",
+	["Teaches {item:16000} (needs {skill:202} 275). Vendors sell it in limited stock that restocks."] = "学会{item:16000}（需要{skill:202} 275）。商人限量出售并会补货。",
 
 	-- Step 53: Runecloth (Alliance)
 	-- {item:14047} Runecloth

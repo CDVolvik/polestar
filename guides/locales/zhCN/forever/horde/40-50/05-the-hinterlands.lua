@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (simplified) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (simplified) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Fly to Stonard
@@ -53,10 +54,11 @@ return {
 	-- {area:272} Tarren Mill
 	["Fly to {area:272}"] = "飞往{area:272}",
 
-	-- Step 10: Gilveradin's camp
-	["Gilveradin's camp"] = "基沃拉丁的营地",
-	-- {area:272} Tarren Mill · {npc:7801} Gilveradin Sunchaser · {area:350} Quel'Danil Lodge
-	["Ride north-east from {area:272} into the Hinterlands and east along the road; {npc:7801} camps on the hill south of the elves' {area:350}."] = "从{area:272}向东北骑进辛特兰，再沿道路向东；{npc:7801}在精灵的{area:350}南边的山上扎营。",
+	-- Step 10: Gilveradin Sunchaser's camp
+	-- {npc:7801} Gilveradin Sunchaser
+	["{npc:7801}'s camp"] = "{npc:7801}的营地",
+	-- {area:272} Tarren Mill · {zone:1425} The Hinterlands · {npc:7801} Gilveradin Sunchaser · {area:350} Quel'Danil Lodge
+	["Ride north-east from {area:272} into the {zone:1425} and east along the road; {npc:7801} camps on the hill south of the elves' {area:350}."] = "从{area:272}向东北骑进{zone:1425}，再沿道路向东；{npc:7801}在精灵的{area:350}南边的山上扎营。",
 
 	-- Step 11: Highvale
 	["Highvale"] = "高原精灵",
@@ -75,7 +77,8 @@ return {
 	["South-west again, the exile hides by the ruins of {area:353}."] = "再次向西南，流放者躲在{area:353}的废墟旁。",
 
 	-- Step 15: Revantusk Village
-	["Follow the roads east across the Hinterlands to the troll village on the eastern coast."] = "沿道路向东穿过辛特兰，前往东海岸的巨魔村庄。",
+	-- {zone:1425} The Hinterlands
+	["Follow the roads east across the {zone:1425} to the troll village on the eastern coast."] = "沿道路向东穿过{zone:1425}，前往东海岸的巨魔村庄。",
 
 	-- Step 16: Saltwater Snapjaws
 	-- plural, as words: Saltwater Snapjaws = {npc:2505} Saltwater Snapjaw
@@ -104,9 +107,9 @@ return {
 
 	-- Step 20: The central hills
 	["The central hills"] = "中部山丘",
-	-- {area:351} Skulk Rock · {item:9618} Wildkin Muisek Vessel
+	-- {area:351} Skulk Rock · {item:9618} Wildkin Muisek Vessel · {npc:14738} Otho Moji'ko
 	-- plural, as words: Silvermane Stalkers = {npc:2926} Silvermane Stalker · Savage Owlbeasts = {npc:2929} Savage Owlbeast · Razorbeak Skylords = {npc:2659} Razorbeak Skylord · Long Elegant Feathers = {item:4589} Long Elegant Feather
-	["The Silvermane Stalkers, Savage Owlbeasts and Razorbeak Skylords share the hills between the temples and {area:351}. Use the {item:9618} on the owlbeasts you kill. The Skylords also drop Long Elegant Feathers: keep ten for Otho's second message."] = "银鬃捕猎者、野蛮的枭兽和翱翔的锋喙狮鹫共处于神殿与{area:351}之间的山丘上。对你杀死的枭兽使用{item:9618}。锋喙狮鹫还会掉落细长的狮鹫羽毛：留十根给奥索的第二个口信用。",
+	["The Silvermane Stalkers, Savage Owlbeasts and Razorbeak Skylords share the hills between the temples and {area:351}. Use the {item:9618} on the owlbeasts you kill. The Skylords also drop Long Elegant Feathers: keep ten for {npc:14738}'s second message."] = "银鬃捕猎者、野蛮的枭兽和翱翔的锋喙狮鹫共处于神殿与{area:351}之间的山丘上。对你杀死的枭兽使用{item:9618}。锋喙狮鹫还会掉落细长的狮鹫羽毛：留十根给{npc:14738}的第二个口信用。",
 
 	-- Step 21: Skulk Rock
 	-- {item:8684} Hinterlands Honey Ripple · {area:351} Skulk Rock
@@ -127,7 +130,7 @@ return {
 	-- {area:350} Quel'Danil Lodge
 	["Back west to {area:350}; rangers and marksmen stay near the lodge, scouts and outrunners on the slopes south of it."] = "向西回到{area:350}；高原游侠和高原神射手待在旅舍附近，高原斥候和高原前锋在旅舍南边的山坡上。",
 
-	-- Step 25: Gilveradin's camp
+	-- Step 25: Gilveradin Sunchaser's camp
 	-- {npc:6986} Dran Droffers · {zone:1454} Orgrimmar
 	["for {npc:6986} in {zone:1454}, around level 50"] = "交给{zone:1454}的{npc:6986}，大约50级时",
 

@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (simplified) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (simplified) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Apprentice Alchemy
@@ -44,7 +45,7 @@ return {
 
 	-- Step 8: Recipe: Holy Protection Potion
 	-- {item:6051} Holy Protection Potion · {skill:171} Alchemy
-	["Teaches {item:6051} (needs {skill:171} 100). Vendors sell it in limited stock that restocks; the Auction House often has it too."] = "教授{item:6051}（需要{skill:171}100）。商人限量出售，会定期补货；拍卖行也常有。",
+	["Teaches {item:6051} (needs {skill:171} 100). Vendors sell it in limited stock that restocks."] = "教授{item:6051}（需要{skill:171}100）。商人限量出售，会定期补货。",
 
 	-- Step 9: Murloc Eye (Alliance)
 	-- {item:730} Murloc Eye

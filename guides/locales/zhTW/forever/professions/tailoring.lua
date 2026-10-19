@@ -3,13 +3,14 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (traditional) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (traditional) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Apprentice Tailoring
 	-- {skill:197} Tailoring
 	["Apprentice {skill:197}"] = "初級{skill:197}",
 	-- {skill:197} Tailoring
-	["{skill:197} runs alongside leveling. Forever's Legacy System rewards crafting professions at skill 150, 225 and 300 (the Journeyman, Expert and Artisan caps), so each of those checkpoints counts. Materials for 1-75 are worth about 1g 8s in all."] = "{skill:197}可與升級同步進行。Forever 的傳承系統會在技能 150、225 和 300（中級、高級和專家的上限）時獎勵製造專業，因此每個檢查點都很重要。1-75 的材料總值約 1g 8s。",
+	["{skill:197} runs alongside leveling. Forever's Legacy System rewards crafting professions at skill 150, 225 and 300 (the Journeyman, Expert and Artisan caps), so each of those checkpoints counts. Materials for 1-75 are worth about 1g 8s in all."] = "{skill:197}可與升級同步進行。Forever 的傳承系統會在技能 150、225 和 300（中級、高級和專家級的上限）時獎勵製造專業，因此每個檢查點都很重要。1-75 的材料總值約 1g 8s。",
 
 	-- Step 2: Linen Cloth
 	["Kill the mobs that drop it at the farm spot Polestar picks for your level and faction. The Auction House works too."] = "在 Polestar 依你的等級和陣營挑選的刷怪點擊殺會掉落它的怪物。也可以在拍賣場購買。",
@@ -102,7 +103,7 @@ return {
 
 	-- Step 19: Pattern: Azure Silk Cloak
 	-- {item:7053} Azure Silk Cloak · {skill:197} Tailoring
-	["Teaches {item:7053} (needs {skill:197} 140). Vendors sell it in limited stock that restocks; the Auction House often has it too."] = "教你{item:7053}（需要{skill:197} 140）。商人限量販售並會補貨；拍賣場也常有。",
+	["Teaches {item:7053} (needs {skill:197} 140). Vendors sell it in limited stock that restocks."] = "教你{item:7053}（需要{skill:197} 140）。商人限量販售並會補貨。",
 
 	-- Step 21: Mageweave Cloth (Alliance)
 	-- {item:4338} Mageweave Cloth
@@ -158,13 +159,13 @@ return {
 
 	-- Step 30: Artisan Tailoring
 	-- {skill:197} Tailoring
-	["Artisan {skill:197}"] = "專家{skill:197}",
+	["Artisan {skill:197}"] = "專家級{skill:197}",
 	-- {skill:197} Tailoring
-	["Artisan needs character level 35 and {skill:197} 200; it raises the cap to 300. Materials for 225-300 are worth about 845g in all."] = "專家需要角色等級 35 且{skill:197} 200；上限提高到 300。225-300 的材料總值約 845g。",
+	["Artisan needs character level 35 and {skill:197} 200; it raises the cap to 300. Materials for 225-300 are worth about 845g in all."] = "專家級需要角色等級 35 且{skill:197} 200；上限提高到 300。225-300 的材料總值約 845g。",
 
 	-- Step 31: Pattern: Runecloth Gloves
 	-- {item:13863} Runecloth Gloves · {skill:197} Tailoring
-	["Teaches {item:13863} (needs {skill:197} 230). Vendors sell it in limited stock that restocks; the Auction House often has it too."] = "教你{item:13863}（需要{skill:197} 230）。商人限量販售並會補貨；拍賣場也常有。",
+	["Teaches {item:13863} (needs {skill:197} 230). Vendors sell it in limited stock that restocks."] = "教你{item:13863}（需要{skill:197} 230）。商人限量販售並會補貨。",
 
 	-- Step 32: Pattern: Runecloth Cuffs
 	-- {item:254123} Runecloth Cuffs · {skill:197} Tailoring

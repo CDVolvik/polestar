@@ -3,15 +3,14 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Portuguese (Brazil) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Portuguese (Brazil) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Menethil Harbor
-	-- {npc:2104} Captain Stoutfist · {area:2103} Menethil Keep · {npc:2094} James Halloran · {npc:270844} Sylessa Duskwhisper
-	["{npc:2104} stands in {area:2103}; {npc:2094} and {npc:270844} stand together by the north gate."] = "{npc:2104} fica em {area:2103}; {npc:2094} e {npc:270844} ficam juntos perto do portão norte.",
+	-- {npc:2104} Captain Stoutfist · {area:2103} Menethil Keep · {npc:2094} James Halloran
+	["{npc:2104} stands in {area:2103}; {npc:2094} stands by the north gate."] = "{npc:2104} fica em {area:2103}; {npc:2094} fica perto do portão norte.",
 	-- {npc:2104} Captain Stoutfist · {npc:270637} Howin Kindfeather
 	["{npc:2104}: for {npc:270637}"] = "{npc:2104}: para {npc:270637}",
-	-- {npc:270844} Sylessa Duskwhisper · {npc:3649} Thundris Windweaver · {area:442} Auberdine
-	["{npc:270844}: for {npc:3649} in {area:442} (02-desolace)"] = "{npc:270844}: para {npc:3649} em {area:442} (02-desolace)",
 
 	-- Step 2: Prospector Whelgar
 	-- {area:118} Whelgar's Excavation Site
@@ -27,16 +26,15 @@ return {
 	["A new {item:279996}, for the four titan watchers around the {zone:1437}"] = "Uma nova {item:279996}, para os quatro vigias titânicos espalhados por {zone:1437}",
 
 	-- Step 5: The Green Belt
-	-- {npc:270637} Howin Kindfeather · {npc:1244} Rethiel the Greenwarden
-	["Follow the road north-east into the Green Belt: {npc:270637} camps beside it, {npc:1244} a short way east."] = "Siga a estrada para o nordeste até a Zona Verde: {npc:270637} acampa ao lado dela; {npc:1244}, um pouco a leste.",
+	-- {area:1025} The Green Belt · {npc:270637} Howin Kindfeather · {npc:1244} Rethiel the Greenwarden
+	["Follow the road north-east into the {area:1025}: {npc:270637} camps beside it, {npc:1244} a short way east."] = "Siga a estrada para o nordeste até a {area:1025}: {npc:270637} acampa ao lado dela; {npc:1244}, um pouco a leste.",
 	-- {npc:1244} Rethiel the Greenwarden · {quest:98283} Carnage
 	["{npc:1244}: {quest:98283}, an elite raptor"] = "{npc:1244}: {quest:98283}, um raptor elite",
 
 	-- Step 6: Angerfang Encampment
 	-- {area:1036} Angerfang Encampment · {object:671518} Tattered Spellbook
-	["South to the Dragonmaw's {area:1036}; the {object:671518} lies in the camp."] = "Para o sul, até {area:1036}, dos Presa do Dragão; {object:671518} está no acampamento.",
-	-- {quest:98221} From the Ashes
-	["Destroy the four sets of Attack Plans in the camp for {quest:98221}."] = "Destrua os quatro conjuntos de Planos de Ataque no acampamento para {quest:98221}.",
+	["South to the Dragonmaw's {area:1036}: the first catapult stands on the way, and the {object:671518} lies in the camp."] = "Para o sul, até {area:1036}, dos Presa do Dragão: a primeira catapulta fica no caminho, e {object:671518} está no acampamento.",
+	["The next step, Defeat Nek'rosh, pits you against an elite chieftain: skip it."] = "A etapa seguinte, Derrotar Nek'rosh, coloca você contra um chefe elite: pule-a.",
 	-- {object:671518} Tattered Spellbook · {npc:2104} Captain Stoutfist
 	["{object:671518}: for {npc:2104}"] = "{object:671518}: para {npc:2104}",
 
@@ -45,15 +43,15 @@ return {
 	["{npc:271462} stands in the south-eastern hills: use the {item:279996} beside it."] = "{npc:271462} fica nas colinas do sudeste: use a {item:279996} ao lado dele.",
 
 	-- Step 8: Dragonmaw Gates
-	-- {area:1038} Dragonmaw Gates · {npc:271373} Subdued Dragonspawn · {npc:271338} Ados · {item:279996} Goaz Stone
-	["North-east to the {area:1038}: the {npc:271373} are held there, and {npc:271338} stands at the gates (use the {item:279996})."] = "Para o nordeste, até {area:1038}: {npc:271373} está preso lá, e {npc:271338} fica nos portões (use a {item:279996}).",
+	-- {area:1038} Dragonmaw Gates · {npc:271338} Ados · {item:279996} Goaz Stone
+	["North-east to the {area:1038}: {npc:271338} stands at the gates (use the {item:279996})."] = "",
 
 	-- Step 9: Whelps, raptors and Neru
 	-- {npc:271458} Neru
 	["Whelps, raptors and {npc:271458}"] = "Dragonetes, raptores e {npc:271458}",
-	-- {npc:271458} Neru · {item:279996} Goaz Stone · {quest:98283} Carnage
+	-- {area:1025} The Green Belt · {npc:271458} Neru · {item:279996} Goaz Stone · {quest:98283} Carnage
 	-- plural, as words: Maddened Rotclaws = {npc:271334} Maddened Rotclaw
-	["Red whelps fill the hills west of the gates, Maddened Rotclaws the Green Belt, Razormaws the northern slopes; {npc:271458} stands in the north-east (use the {item:279996}).\n{quest:98283} is elite: grouping up is advised."] = "Dragonetes Vermelhos enchem as colinas a oeste dos portões; {npc:271334}, a Zona Verde; Rasgaqueixos, as encostas do norte. {npc:271458} fica no nordeste (use a {item:279996}).\n{quest:98283} é elite: recomenda-se formar um grupo.",
+	["Red whelps fill the hills west of the gates, Maddened Rotclaws the {area:1025}, Razormaws the northern slopes; {npc:271458} stands in the north-east (use the {item:279996}).\n{quest:98283} is elite: grouping up is advised."] = "Dragonetes Vermelhos enchem as colinas a oeste dos portões; {npc:271334}, a {area:1025}; Rasgaqueixos, as encostas do norte. {npc:271458} fica no nordeste (use a {item:279996}).\n{quest:98283} é elite: recomenda-se formar um grupo.",
 
 	-- Step 10: The Green Belt
 	-- {zone:1455} Ironforge
@@ -65,8 +63,8 @@ return {
 
 	-- Step 12: The Villards
 	["The Villards"] = "Os Villard",
-	-- {npc:5683} Comar Villard · {area:205} Dun Modr · {area:881} Thandol Span
-	["{npc:5683} waits north of {area:205} by the {area:881}; Essene a short walk further north-east."] = "{npc:5683} espera ao norte de {area:205}, perto de {area:881}; Essene, um pouco mais a nordeste.",
+	-- {npc:5683} Comar Villard · {area:205} Dun Modr · {area:881} Thandol Span · {npc:271322} Essene Villard
+	["{npc:5683} waits north of {area:205} by the {area:881}; {npc:271322} a short walk further north-east."] = "{npc:5683} espera ao norte de {area:205}, perto de {area:881}; {npc:271322}, um pouco mais a nordeste.",
 
 	-- Step 13: Prospector Whelgar
 	["Back south down the road to the excavation site."] = "Volte para o sul pela estrada até o sítio de escavação.",
@@ -127,8 +125,8 @@ return {
 	["Yeti cave"] = "Caverna dos yetis",
 	-- {area:271} Southshore
 	["The yetis live in the cave in the hills north of {area:271}, on your way back south."] = "Os yetis vivem na caverna nas colinas ao norte de {area:271}, no caminho de volta para o sul.",
-	-- {item:3719} Hillman's Cloak · {item:2997} Bolt of Woolen Cloth · {item:2321} Fine Thread · {area:271} Southshore
-	["Bartolo also wants a {item:3719}, a {item:2997} and {item:2321}: crafted or bought; the cloak is turned in when you are back in {area:271} later."] = "Bartolo também quer um {item:3719}, um {item:2997} e {item:2321}: fabricados ou comprados; o manto é entregue quando você voltar a {area:271} mais tarde.",
+	-- {npc:2438} Bartolo Ginsetti · {item:3719} Hillman's Cloak · {item:2997} Bolt of Woolen Cloth · {item:2321} Fine Thread · {area:271} Southshore
+	["{npc:2438} also wants a {item:3719}, a {item:2997} and {item:2321}: crafted or bought; the cloak is turned in when you are back in {area:271} later."] = "{npc:2438} também quer um {item:3719}, um {item:2997} e {item:2321}: fabricados ou comprados; o manto é entregue quando você voltar a {area:271} mais tarde.",
 
 	-- Step 26: Hillsbrad's town hall
 	-- {area:287} Hillsbrad
@@ -138,8 +136,9 @@ return {
 	-- {area:287} Hillsbrad
 	["{area:287} town hall"] = "Prefeitura de {area:287}",
 
-	-- Step 28: Fly to Stormwind
-	["Fly to Stormwind"] = "Voe para Ventobravo",
+	-- Step 28: Fly to Stormwind City
+	-- {zone:1453} Stormwind City
+	["Fly to {zone:1453}"] = "Voe para {zone:1453}",
 	-- {npc:2432} Darla Harris · {area:271} Southshore
 	["From {npc:2432} in {area:271}"] = "Com {npc:2432} em {area:271}",
 
@@ -148,8 +147,8 @@ return {
 	["The cheese shop in the {object:2096}."] = "A loja de queijos em {object:2096}.",
 
 	-- Step 30: Dashel Stonefist
-	-- {object:2100} Old Town
-	["Dashel waits in the Pig and Whistle tavern in {object:2100}; he and his two thugs fight you, but stop once beaten."] = "Dashel espera na Taberna do Javatusco Saltitante, em {object:2100}; ele e seus dois capangas lutam com você, mas param quando derrotados.",
+	-- {npc:4961} Dashel Stonefist · {object:2100} Old Town
+	["{npc:4961} waits in the Pig and Whistle tavern in {object:2100}; he and his two thugs fight you, but stop once beaten."] = "{npc:4961} espera na Taberna do Javatusco Saltitante, em {object:2100}; ele e seus dois capangas lutam com você, mas param quando derrotados.",
 
 	-- Step 31: The Islander
 	-- {npc:5479} Wu Shen · {object:2100} Old Town · {npc:6236} Klannoc Macleod · {area:720} Fray Island · {zone:1413} Barrens · {area:392} Ratchet
@@ -164,8 +163,8 @@ return {
 
 	-- Step 36: Druid training
 	["Druid training"] = "Treinamento de druida",
-	-- {zone:1455} Ironforge · {npc:5504} Sheldras Moontree
-	["{zone:1455} has no druid trainer: train with {npc:5504} in Stormwind before the tram."] = "{zone:1455} não tem instrutor de druidas: treine com {npc:5504} em Ventobravo antes do metrô.",
+	-- {zone:1455} Ironforge · {npc:5504} Sheldras Moontree · {zone:1453} Stormwind City
+	["{zone:1455} has no druid trainer: train with {npc:5504} in {zone:1453} before the tram."] = "{zone:1455} não tem instrutor de druidas: treine com {npc:5504} em {zone:1453} antes do metrô.",
 
 	-- Step 37: Deeprun Tram
 	-- {area:2257} Deeprun Tram · {object:28027} Dwarven District · {zone:1455} Ironforge
@@ -175,6 +174,11 @@ return {
 	["Level 30 and 32 spells"] = "Feitiços de nível 30 e 32",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Destroy the four sets of Attack Plans in the camp for {quest:98221}."] = "Destrua os quatro conjuntos de Planos de Ataque no acampamento para {quest:98221}.",
 	-- ["Fly to {zone:1453}"] = "Voe para {zone:1453}",
 	-- ["Golm"] = "Golm",
+	-- ["North-east to the {area:1038}: the {npc:271373} are held there, and {npc:271338} stands at the gates (use the {item:279996})."] = "Para o nordeste, até {area:1038}: {npc:271373} está preso lá, e {npc:271338} fica nos portões (use a {item:279996}).",
+	-- ["South to the Dragonmaw's {area:1036}; the {object:671518} lies in the camp."] = "Para o sul, até {area:1036}, dos Presa do Dragão; {object:671518} está no acampamento.",
+	-- ["{npc:2104} stands in {area:2103}; {npc:2094} and {npc:270844} stand together by the north gate."] = "{npc:2104} fica em {area:2103}; {npc:2094} e {npc:270844} ficam juntos perto do portão norte.",
+	-- ["{npc:270844}: for {npc:3649} in {area:442} (02-desolace)"] = "{npc:270844}: para {npc:3649} em {area:442} (02-desolace)",
 }

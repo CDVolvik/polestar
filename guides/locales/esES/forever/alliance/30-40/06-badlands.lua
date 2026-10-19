@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Spanish (Spain) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Spanish (Spain) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Hammertoe's Digsite
@@ -23,8 +24,8 @@ return {
 	["Ryedol's next errand goes into {area:1517}: skip it."] = "El siguiente encargo del Prospector Ryedol es en {area:1517}: omítelo.",
 
 	-- Step 5: Valley of Fangs
-	-- {npc:2817} Rigglefuzz · {area:1877} Valley of Fangs · {zone:1418} Badlands
-	["Martek and {npc:2817} camp together in the {area:1877}, in the middle of the {zone:1418}."] = "Martek el Exiliado y {npc:2817} acampan juntos en {area:1877}, en el centro de {zone:1418}.",
+	-- {npc:4618} Martek the Exiled · {npc:2817} Rigglefuzz · {area:1877} Valley of Fangs · {zone:1418} Badlands
+	["{npc:4618} and {npc:2817} camp together in the {area:1877}, in the middle of the {zone:1418}."] = "{npc:4618} y {npc:2817} acampan juntos en {area:1877}, en el centro de {zone:1418}.",
 	["The clams lie on Stranglethorn's north-west coast, in the next guide: keep it"] = "Las almejas están en la costa noroeste de la Vega de Tuercespina, en la siguiente guía: guárdala",
 
 	-- Step 6: Ogres and buzzards
@@ -41,21 +42,22 @@ return {
 	["for {npc:4454} in the {area:439}: the {zone:1446} guide crosses them at 45, keep it"] = "para {npc:4454} en {area:439}: la guía de {zone:1446} pasa por allí a nivel 45, guárdala",
 
 	-- Step 9: Lotwil Veriatus
-	-- {area:1878} Dustbowl
-	["Ride west into the {area:1878}; Lotwil works by his machines in the middle of it."] = "Cabalga al oeste hasta {area:1878}; Lotwil Veriatus trabaja junto a sus máquinas en el centro.",
+	-- {area:1878} Dustbowl · {npc:2921} Lotwil Veriatus
+	["Ride west into the {area:1878}; {npc:2921} works by his machines in the middle of it."] = "Cabalga al oeste hasta {area:1878}; {npc:2921} Veriatus trabaja junto a sus máquinas en el centro.",
 
 	-- Step 10: Lesser Rock Elementals
 	-- plural, as words: Lesser Rock Elementals = {npc:2735} Lesser Rock Elemental
 	["Lesser Rock Elementals"] = "Elementales de piedra inferiores",
-	-- {area:1878} Dustbowl
+	-- {area:1878} Dustbowl · {npc:2921} Lotwil Veriatus
 	-- plural, as words: Lesser Rock Elementals = {npc:2735} Lesser Rock Elemental
-	["The Lesser Rock Elementals wander the {area:1878} west of Lotwil."] = "Los Elementales de piedra inferiores deambulan por {area:1878}, al oeste de Lotwil Veriatus.",
+	["The Lesser Rock Elementals wander the {area:1878} west of {npc:2921}."] = "Los Elementales de piedra inferiores deambulan por {area:1878}, al oeste de {npc:2921} Veriatus.",
 
 	-- Step 12: Rock Elementals
 	-- plural, as words: Rock Elementals = {npc:92} Rock Elemental
 	["Rock Elementals"] = "Elementales de piedra",
+	-- {npc:2921} Lotwil Veriatus
 	-- plural, as words: Rock Elementals = {npc:92} Rock Elemental · Giant Buzzards = {npc:2831} Giant Buzzard · Elder Crag Coyotes = {npc:2729} Elder Crag Coyote
-	["The Rock Elementals roam south-east of Lotwil; Giant Buzzards and Elder Crag Coyotes share the plain to their west."] = "Los elementales de piedra ({npc:92}) recorren el sureste de Lotwil; las águilas ratoneras gigantes ({npc:2831}) y los coyotes del risco mayores ({npc:2729}) comparten la llanura al oeste.",
+	["The Rock Elementals roam south-east of {npc:2921}; Giant Buzzards and Elder Crag Coyotes share the plain to their west."] = "Los elementales de piedra ({npc:92}) recorren el sureste de {npc:2921}; las águilas ratoneras gigantes ({npc:2831}) y los coyotes del risco mayores ({npc:2729}) comparten la llanura al oeste.",
 
 	-- Step 14: Greater Rock Elementals
 	-- plural, as words: Greater Rock Elementals = {npc:2736} Greater Rock Elemental
@@ -65,11 +67,12 @@ return {
 	["The Greater Rock Elementals (level 42) walk the far south-west corner below {area:342}; pull them one at a time. The Dustbelcher Wyrmhunters and Maulers at {area:342} also drop scrap."] = "Los Elementales de piedra mayores (nivel 42) recorren el extremo suroeste, por debajo de {area:342}; atráelos de uno en uno. Los Cazavermis Rotapolvo y los Destructores de {area:342} también sueltan chatarra.",
 
 	-- Step 15: Lotwil Veriatus
-	-- {npc:2920} Lucien Tosselwrench
-	["{npc:2920}, beside Lotwil"] = "{npc:2920}, junto a Lotwil Veriatus",
+	-- {npc:2920} Lucien Tosselwrench · {npc:2921} Lotwil Veriatus
+	["{npc:2920}, beside {npc:2921}"] = "{npc:2920}, junto a {npc:2921} Veriatus",
 	-- {item:2868} Patterned Bronze Bracers
 	["only if you carry {item:2868} (a blacksmith's craft)"] = "solo si llevas {item:2868} (los fabrica un herrero)",
-	["Lotwil's next test needs crafted gear: skip it."] = "La siguiente prueba de Lotwil Veriatus requiere equipo fabricado: omítela.",
+	-- {npc:2921} Lotwil Veriatus
+	["{npc:2921}'s next test needs crafted gear: skip it."] = "La siguiente prueba de {npc:2921} Veriatus requiere equipo fabricado: omítela.",
 
 	-- Step 16: The Ancient Chest
 	-- {object:126260} Ancient Chest
@@ -96,28 +99,29 @@ return {
 	["The flight master stands by the gate of {area:514}; {npc:5083} and {npc:4964} are inside the citadel."] = "El maestro de vuelo está junto a la puerta de {area:514}; {npc:5083} y {npc:4964} están dentro de la ciudadela.",
 	["for the Dustwallow loop in the next guide"] = "para la vuelta por Marjal Revolcafango de la siguiente guía",
 
-	-- Step 23: Karnitol's Chest
-	-- {zone:1443} Desolace · {area:2405} Ethel Rethor
-	["Follow the road west across the north of {zone:1443} to the ruins of {area:2405}; the wrecked ship's chest lies on the shore just west of them."] = "Sigue el camino hacia el oeste por el norte de {zone:1443} hasta las ruinas de {area:2405}; el cofre del barco naufragado está en la orilla, justo al oeste.",
+	-- Step 23: Azore Aldamort
+	-- {zone:1443} Desolace · {area:2405} Ethel Rethor · {npc:11863} Azore Aldamort
+	["Follow the road west across the north of {zone:1443} to the ruins of {area:2405}. {npc:11863}'s tower stands on the hill there, on the way to the wreck."] = "Sigue el camino hacia el oeste por el norte de {zone:1443} hasta las ruinas de {area:2405}. La torre de {npc:11863} está en la colina de allí, de camino al naufragio.",
 
-	-- Step 24: Azore Aldamort
-	["Azore's tower stands on the hill east of the wreck."] = "La torre de Azore Aldamort está en la colina al este del naufragio.",
+	-- Step 24: Karnitol's Chest
+	-- {npc:11863} Azore Aldamort
+	["The wrecked ship's chest lies on the shore just west of {npc:11863}'s tower."] = "El cofre del barco naufragado está en la orilla, justo al oeste de la torre de {npc:11863}.",
 
 	-- Step 25: Lord Kragaru
-	-- {npc:12369} Lord Kragaru
-	["{npc:12369}, a centaur chieftain, camps on the north-west coast, north of Azore's tower."] = "{npc:12369}, un jefe centauro, acampa en la costa noroeste, al norte de la torre de Azore Aldamort.",
+	-- {npc:12369} Lord Kragaru · {npc:11863} Azore Aldamort
+	["{npc:12369}, a centaur chieftain, camps on the north-west coast, north of {npc:11863}'s tower."] = "{npc:12369}, un jefe centauro, acampa en la costa noroeste, al norte de la torre de {npc:11863} Aldamort.",
 
 	-- Step 27: Nijel's Point
-	-- {item:6245} Karnitol's Satchel
-	["Kreldig's next task, {item:6245}, is a drop on the far coast: skip it."] = "La siguiente tarea de Kreldig Ungor, {item:6245}, se consigue en la costa lejana: omítela.",
+	-- {npc:5638} Kreldig Ungor · {item:6245} Karnitol's Satchel
+	["{npc:5638}'s next task, {item:6245}, is a drop on the far coast: skip it."] = "La siguiente tarea de {npc:5638} Ungor, {item:6245}, se consigue en la costa lejana: omítela.",
 
 	-- Step 28: Bibbly F'utzbuckle
 	-- {area:2407} Kormek's Hut
 	["Follow the road south to {area:2407}."] = "Sigue el camino hacia el sur hasta {area:2407}.",
 
 	-- Step 29: Kodo Graveyard
-	-- {area:596} Kodo Graveyard · {area:2407} Kormek's Hut · {object:176751} Kodo Bones · {npc:217590} Flesh Picker
-	["Hornizz stands at the edge of the {area:596}, south-west of {area:2407}; {object:176751} lie among the skeletons. A {npc:217590} crawls about the graveyard: catch one with the Entomology Starter Kit, then tick it off."] = "Hornizz Zumbala está al borde de {area:596}, al suroeste de {area:2407}; {object:176751} están entre los esqueletos. Un {npc:217590} se arrastra por el cementerio: atrapa uno con el Entomology Starter Kit y márcalo.",
+	-- {npc:6019} Hornizz Brimbuzzle · {area:596} Kodo Graveyard · {area:2407} Kormek's Hut · {object:176751} Kodo Bones · {npc:217590} Flesh Picker
+	["{npc:6019} stands at the edge of the {area:596}, south-west of {area:2407}; {object:176751} lie among the skeletons. A {npc:217590} crawls about the graveyard: catch one with the Entomology Starter Kit, then tick it off."] = "{npc:6019} está al borde de {area:596}, al suroeste de {area:2407}; {object:176751} están entre los esqueletos. Un {npc:217590} se arrastra por el cementerio: atrapa uno con el Entomology Starter Kit y márcalo.",
 	-- {npc:217590} Flesh Picker
 	["{npc:217590}: catch it, for My Little Friends"] = "{npc:217590}: atrápalo, para My Little Friends",
 
@@ -127,12 +131,14 @@ return {
 	["The Maraudine centaurs hold the {area:607} west of the graveyard; every kind drops the totems."] = "Los centauros Maraudine ocupan {area:607}, al oeste del cementerio; todos sueltan los tótems.",
 
 	-- Step 31: Melizza Brimbuzzle
-	["Melizza is held in the centaur camp west of the graveyard. Free her and keep her alive on the walk out; she stops by the graveyard."] = "Melizza Zumbala está presa en el campamento centauro al oeste del cementerio. Libérala y mantenla con vida al salir; se detiene junto al cementerio.",
-	["escort Melizza back toward the graveyard"] = "escolta a Melizza Zumbala de vuelta hacia el cementerio",
+	-- {npc:12277} Melizza Brimbuzzle
+	["{npc:12277} is held in the centaur camp west of the graveyard. Free her and keep her alive on the walk out; she stops by the graveyard."] = "{npc:12277} está presa en el campamento centauro al oeste del cementerio. Libérala y mantenla con vida al salir; se detiene junto al cementerio.",
+	-- {npc:12277} Melizza Brimbuzzle
+	["escort {npc:12277} back toward the graveyard"] = "escolta a {npc:12277} de vuelta hacia el cementerio",
 
 	-- Step 33: Gizelton Caravan
-	-- {npc:11626} Rigger Gizelton · {area:606} Gelkis Village · {area:602} Mannoroc Coven · {area:596} Kodo Graveyard
-	["{npc:11626}'s caravan stops on the road east of {area:606}. Take the quest and walk with the kodos past the {area:602}, killing the demons that jump them; talk to Smeed at his camp east of the {area:596} afterwards."] = "La caravana de {npc:11626} se detiene en el camino al este de {area:606}. Acepta la misión y acompaña a los kodos pasando {area:602}, matando a los demonios que los asaltan; después habla con Smeed Mezclatornillos en su campamento al este de {area:596}.",
+	-- {npc:11626} Rigger Gizelton · {area:606} Gelkis Village · {area:602} Mannoroc Coven · {npc:11596} Smeed Scrabblescrew · {area:596} Kodo Graveyard
+	["{npc:11626}'s caravan stops on the road east of {area:606}. Take the quest and walk with the kodos past the {area:602}, killing the demons that jump them; talk to {npc:11596} at his camp east of the {area:596} afterwards."] = "La caravana de {npc:11626} se detiene en el camino al este de {area:606}. Acepta la misión y acompaña a los kodos pasando {area:602}, matando a los demonios que los asaltan; después habla con {npc:11596} en su campamento al este de {area:596}.",
 
 	-- Step 34: Mannoroc Coven
 	-- {area:602} Mannoroc Coven · {zone:1443} Desolace
@@ -159,5 +165,7 @@ return {
 	["The next guide starts in Theramore."] = "La siguiente guía empieza en Theramore.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Follow the road west across the north of {zone:1443} to the ruins of {area:2405}; the wrecked ship's chest lies on the shore just west of them."] = "Sigue el camino hacia el oeste por el norte de {zone:1443} hasta las ruinas de {area:2405}; el cofre del barco naufragado está en la orilla, justo al oeste.",
 	-- ["{item:7337} Elementals roam south-east of Lotwil; Giant Buzzards and Elder Crag Coyotes share the plain to their west."] = "Los elementales de {item:7337} recorren el sureste de Lotwil Veriatus; las Águilas ratoneras gigantes y los Coyotes del risco mayores comparten la llanura al oeste.",
+	-- ["{npc:11863}'s tower stands on the hill east of the wreck."] = "La torre de {npc:11863} Aldamort está en la colina al este del naufragio.",
 }

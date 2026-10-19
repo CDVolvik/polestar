@@ -3,16 +3,21 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Korean words instead.
 -- The comments are rewritten by sync.
 return {
+	-- Step 1: Aerie Peak
+	-- {npc:7744} Innkeeper Thulfram
+	["{npc:7744}: the last guide binds here, so this usually ticks at once"] = "{npc:7744}: 이전 가이드에서 이곳에 귀환 지점을 정하므로 보통 바로 완료됩니다",
+
 	-- Step 2: The Altar of Zul
-	-- {area:355} Altar of Zul · {npc:8636} Morta'gya the Keeper
-	["Ride south-east to the {area:355}, the stepped Vilebranch temple in the south of the Hinterlands, and climb to the top. Qiaga and {npc:8636} (elite, 50) stand up there: touch the top and come straight back down."] = "남동쪽으로 동부 내륙지 남쪽에 있는 썩은가지부족의 계단식 신전 {area:355}(으)로 가서 꼭대기까지 올라가십시오. 문지기 퀴아가와 {npc:8636}(정예, 50)이(가) 그곳에 있습니다: 꼭대기에 닿으면 곧바로 내려오십시오.",
+	-- {area:355} Altar of Zul · {zone:1425} The Hinterlands · {npc:8636} Morta'gya the Keeper
+	["Ride south-east to the {area:355}, the stepped Vilebranch temple in the south of the {zone:1425}, and climb to the top. Qiaga and {npc:8636} (elite, 50) stand up there: touch the top and come straight back down."] = "남동쪽으로 {zone:1425} 남쪽에 있는 썩은가지부족의 계단식 신전 {area:355}(으)로 가서 꼭대기까지 올라가십시오. 문지기 퀴아가와 {npc:8636}(정예, 50)이(가) 그곳에 있습니다: 꼭대기에 닿으면 곧바로 내려오십시오.",
 
 	-- Step 3: Skulk Rock
-	-- {area:351} Skulk Rock
+	-- {area:351} Skulk Rock · {zone:1425} The Hinterlands
 	-- plural, as words: Green Sludges = {npc:2655} Green Sludge · Jade Oozes = {npc:2656} Jade Ooze
-	["Ride north to {area:351} in the middle of the Hinterlands. Green Sludges and Jade Oozes crawl all around it."] = "북쪽으로 동부 내륙지 한가운데의 {area:351}까지 가세요. 초록 진흙괴물과 비취 수액괴물이 그 주변 곳곳을 기어다닙니다.",
+	["Ride north to {area:351} in the middle of the {zone:1425}. Green Sludges and Jade Oozes crawl all around it."] = "북쪽으로 {zone:1425} 한가운데의 {area:351}까지 가세요. 초록 진흙괴물과 비취 수액괴물이 그 주변 곳곳을 기어다닙니다.",
 
 	-- Step 4: Aerie Peak
 	-- {area:348} Aerie Peak
@@ -35,8 +40,8 @@ return {
 	["Ride on east along the road to the keep first: the {item:6091} expires an hour after {area:42}, and the bloodmages' beasts take longer than that."] = "먼저 길을 따라 동쪽 요새로 가십시오: {item:6091}은(는) {area:42}에서 받은 지 1시간 후에 사라지는데, 혈법사들의 야수 사냥은 그보다 오래 걸립니다.",
 	-- {quest:2990} Thadius Grimshade
 	["{quest:2990}, at the top of the keep"] = "{quest:2990}, 요새 꼭대기",
-	-- {item:9471} Nekrum's Medallion · {area:978} Zul'Farrak
-	["Thadius' next task, {item:9471}, is a {area:978} quest: skip it."] = "샤디우스 그림섀이드의 다음 임무인 {item:9471}은(는) {area:978} 퀘스트입니다: 건너뛰십시오.",
+	-- {npc:8022} Thadius Grimshade · {item:9471} Nekrum's Medallion · {area:978} Zul'Farrak
+	["{npc:8022}' next task, {item:9471}, is a {area:978} quest: skip it."] = "{npc:8022}의 다음 임무인 {item:9471}은(는) {area:978} 퀘스트입니다: 건너뛰십시오.",
 
 	-- Step 8: Boars and basilisks
 	["Boars and basilisks"] = "멧돼지와 바실리스크",
@@ -72,8 +77,8 @@ return {
 	-- {area:144} Thelsamar · {area:150} Menethil Harbor · {area:442} Auberdine · {area:702} Rut'theran Village
 	["Fly from {area:144} to {area:150}, take the boat to {area:442} and fly to {area:702}."] = "{area:144}에서 {area:150}(으)로 날아가, 배를 타고 {area:442}(으)로 간 다음 {area:702}(으)로 날아가십시오.",
 	["the book on her table"] = "그녀의 탁자 위 책",
-	-- {zone:1446} Tanaris
-	["Daryn's next errand goes to {zone:1446}: skip it."] = "다린 라이트윈드의 다음 심부름은 {zone:1446}(으)로 갑니다: 건너뛰십시오.",
+	-- {npc:7907} Daryn Lightwind · {zone:1446} Tanaris
+	["{npc:7907}'s next errand goes to {zone:1446}: skip it."] = "{npc:7907}의 다음 심부름은 {zone:1446}(으)로 갑니다: 건너뛰십시오.",
 	-- {npc:7916} Erelas Ambersky · {zone:1428} Burning Steppes
 	["{npc:7916}: keep it, the feathers come at the end of the {zone:1428} guide"] = "{npc:7916}: 간직하십시오. 깃털은 {zone:1428} 가이드 끝에서 구합니다",
 

@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Spanish (Latin America) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Spanish (Latin America) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -23,7 +24,7 @@ return {
 	["{area:392} is on the {zone:1413} coast; {npc:6251} stands on the hill in town."] = "{area:392} está en la costa de {zone:1413}; {npc:6251} está en la colina del pueblo.",
 
 	-- Step 4: Krom Stoutarm
-	-- {npc:6294} Krom Stoutarm · {object:32356} Hall of Explorers
+	-- {npc:6294} Krom Stoutarm · {object:32356} Hall of Explorers (no name in this language: may be words)
 	["{npc:6294} stands in the {object:32356}."] = "{npc:6294} está en {object:32356}.",
 
 	-- Step 5: Moldy Tome

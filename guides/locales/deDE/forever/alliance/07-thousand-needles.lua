@@ -3,11 +3,12 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in German (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in German words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Darkshire
-	-- {item:4371} Bronze Tube · {quest:174} Look to the Stars · {npc:3133} Herble Baubbletump · {npc:1448} Neal Allen · {area:150} Menethil Harbor
-	["No {item:4371} for {quest:174}? {npc:3133} sells it in the house beside Viktori, in limited stock; {npc:1448} in {area:150} sells it too."] = "Kein {item:4371} für {quest:174}? {npc:3133} verkauft sie im Haus neben Viktori, in begrenzter Menge; {npc:1448} in {area:150} verkauft sie auch.",
+	-- {item:4371} Bronze Tube · {quest:174} Look to the Stars · {npc:3133} Herble Baubbletump · {npc:276} Viktori Prism'Antras · {npc:1448} Neal Allen · {area:150} Menethil Harbor
+	["No {item:4371} for {quest:174}? {npc:3133} sells it in the house beside {npc:276}, in limited stock; {npc:1448} in {area:150} sells it too."] = "Kein {item:4371} für {quest:174}? {npc:3133} verkauft sie im Haus neben {npc:276}, in begrenzter Menge; {npc:1448} in {area:150} verkauft sie auch.",
 	-- {npc:352} Dungar Longdrink · {zone:1453} Stormwind
 	["From {npc:352} in {zone:1453}"] = "Von {npc:352} in {zone:1453}",
 	-- {npc:6790} Innkeeper Trelayne
@@ -61,16 +62,18 @@ return {
 	-- plural, as words: Plague Spreaders = {npc:604} Plague Spreader
 	["The Plague Spreaders walk the northern half of the {area:492}. {npc:522}, an elite, wanders the graves: keep away from him."] = "Die Seuchenverbreiter wandeln in der nördlichen Hälfte des {area:492}. {npc:522}, ein Elite, wandert zwischen den Gräbern: Halte dich von ihm fern.",
 
-	-- Step 11: Sven's Camp
-	["Sven's Camp"] = "Svens Lager",
+	-- Step 11: Sven Yorgen's Camp
+	-- {npc:311} Sven Yorgen
+	["{npc:311}'s Camp"] = "{npc:311}s Lager",
 
 	-- Step 12: Raven Hill Cemetery, west
 	-- {area:492} Raven Hill Cemetery
 	["{area:492}, west"] = "{area:492}, Westen",
+	-- {npc:311} Sven Yorgen
 	-- plural, as words: Skeletal Raiders = {npc:1110} Skeletal Raider
-	["Skeletal Raiders, Healers and Warders hold the west part of the cemetery, just east of Sven's camp."] = "Skeletträuber, Skelettheiler und Skelettwärter halten den Westteil des Friedhofs, gleich östlich von Svens Lager.",
+	["Skeletal Raiders, Healers and Warders hold the west part of the cemetery, just east of {npc:311}'s camp."] = "Skeletträuber, Skelettheiler und Skelettwärter halten den Westteil des Friedhofs, gleich östlich von {npc:311}s Lager.",
 
-	-- Step 13: Sven's Camp
+	-- Step 13: Sven Yorgen's Camp
 	-- {npc:1212} Bishop Farthing · {zone:1453} Stormwind
 	["For {npc:1212} in {zone:1453}, in the next guide"] = "Für {npc:1212} in {zone:1453}, im nächsten Guide",
 
@@ -135,8 +138,9 @@ return {
 	-- {item:2661} Neru Fragment · {object:331} Loose Soil
 	["{item:2661}: the {object:331}"] = "{item:2661}: die {object:331}",
 
-	-- Step 26: Ormer and Whelgar
-	["Ormer and Whelgar"] = "Ormer und Whelgar",
+	-- Step 26: Ormer Ironbraid and Whelgar
+	-- {npc:1078} Ormer Ironbraid
+	["{npc:1078} and Whelgar"] = "{npc:1078} und Whelgar",
 
 	-- Step 27: Dragonmaw camp
 	["Dragonmaw camp"] = "Lager der Dragonmaw",
@@ -145,14 +149,19 @@ return {
 	-- Step 28: Captain Stoutfist
 	-- {area:150} Menethil Harbor
 	["Ride back west along the road to {area:150}."] = "Reite die Straße zurück nach Westen nach {area:150}.",
+	-- {quest:98221} From the Ashes · {quest:465} Nek'rosh's Gambit
+	["{quest:98221}: {quest:465} comes after it on Forever"] = "{quest:98221}: {quest:465} folgt darauf in Forever",
 
-	-- Step 29: Dragonmaw catapult
-	["Dragonmaw catapult"] = "Katapult der Dragonmaw",
-	["Ride east again; the catapult stands at the Dragonmaw camp south of the road."] = "Reite wieder nach Osten; das Katapult steht im Lager der Dragonmaw südlich der Straße.",
-	["The next step, Defeat Nek'rosh, pits you against an elite chieftain: skip it."] = "Der nächste Schritt, Sieg über Nek'rosh, stellt dich gegen einen Elite-Häuptling: Überspring ihn.",
+	-- Step 29: Angerfang Encampment
+	-- {area:1036} Angerfang Encampment · {npc:2091} Chieftain Nek'rosh
+	["Ride east again to the Dragonmaw camp. The four sets of Attack Plans lie in the {area:1036}; {npc:2091}, an elite, stands in the camp too."] = "Reite wieder nach Osten zum Lager der Dragonmaw. Die vier Sätze Angriffspläne liegen im {area:1036}; {npc:2091}, ein Elite, steht ebenfalls im Lager.",
 
 	-- Step 30: To Theramore
 	["To Theramore"] = "Nach Theramore",
+	-- {npc:2104} Captain Stoutfist · {area:2103} Menethil Keep
+	["{npc:2104}, in {area:2103}"] = "{npc:2104}, in {area:2103}",
+	-- {zone:1437} Wetlands
+	["For the Dragonmaw catapult, on the {zone:1437} loop of the next guide"] = "Für das Katapult der Dragonmaw, auf der Runde durch das {zone:1437} im nächsten Guide",
 	-- {area:513} Theramore Isle · {zone:1445} Dustwallow Marsh
 	["Take the boat from Menethil's pier to {area:513} in {zone:1445}."] = "Nimm das Boot vom Pier von Menethil nach {area:513} in den {zone:1445}.",
 
@@ -190,7 +199,8 @@ return {
 	["Back to Menethil"] = "Zurück nach Menethil",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Dragonmaw catapult"] = "Katapult der Dragonmaw",
+	-- ["Ride east again; the catapult stands at the Dragonmaw camp south of the road."] = "Reite wieder nach Osten; das Katapult steht im Lager der Dragonmaw südlich der Straße.",
 	-- ["Ride east to the ogre mound. {item:1349} sits in the camp at its entrance; Splinter Fist ogres guard it."] = "Reite nach Osten zum Ogerhort Vul'Gol. {item:1349} liegt im Lager am Eingang; Oger der Splitterfäuste bewachen es.",
-	-- ["The dig and Sarltooth"] = "Die Ausgrabung und Sarlatan",
-	-- ["The relics lie in the dig itself. Sarltooth, a big Razormaw, prowls the raptor valley just west of it."] = "Die Relikte liegen in der Ausgrabung selbst. Sarlatan, ein großer Scharfzahn, streift durch das Raptorental gleich westlich davon.",
+	-- ["The next step, Defeat Nek'rosh, pits you against an elite chieftain: skip it."] = "Der nächste Schritt, Sieg über Nek'rosh, stellt dich gegen einen Elite-Häuptling: Überspring ihn.",
 }

@@ -3,11 +3,12 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Russian (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Russian words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Layo Starstrike
-	-- {area:3077} Valor's Rest · {zone:1451} Silithus
-	["The pass from Un'Goro comes out at {area:3077}, the graveyard in north-east {zone:1451}. Layo stands among the graves."] = "Перевал из Ун'Горо выходит сюда: {area:3077} – кладбище на северо-востоке края {zone:1451}. Лайо стоит среди могил.",
+	-- {area:3077} Valor's Rest · {zone:1451} Silithus · {npc:13220} Layo Starstrike
+	["The pass from Un'Goro comes out at {area:3077}, the graveyard in north-east {zone:1451}. {npc:13220} stands among the graves."] = "Перевал из Ун'Горо выходит сюда: {area:3077} – кладбище на северо-востоке края {zone:1451}. {npc:13220} стоит среди могил.",
 
 	-- Step 2: The Spirits of Southwind
 	-- {area:2738} Southwind Village · {object:179565} Dusty Reliquary · {npc:11801} Rabine Saturna
@@ -111,12 +112,13 @@ return {
 	["Take the zeppelin from the tower outside {area:1637} to {zone:1420} and ride into the {zone:1458}. Lady Sylvanas holds the {object:36126}."] = "Садитесь на дирижабль с башни у города {area:1637} в край {zone:1420} и езжайте в город {zone:1458}. Леди Сильвана – здесь: {object:36126}.",
 
 	-- Step 26: The Bulwark
-	["Ride east along the road to the Bulwark on the border."] = "Езжайте на восток по дороге к Бастиону на границе.",
+	-- {area:152} The Bulwark
+	["Ride east along the road to the {area:152} on the border."] = "Езжайте на восток по дороге к {area:152} на границе.",
 
 	-- Step 27: Felstone Field
-	-- {npc:10778} Janice Felstone · {npc:11075} Cauldron Lord Bilemaw
+	-- {npc:10778} Janice Felstone · {area:152} The Bulwark · {npc:11075} Cauldron Lord Bilemaw
 	-- plural, as words: Jabbering Ghouls = {npc:10801} Jabbering Ghoul
-	["{npc:10778}'s farm is the first one east of the Bulwark. Jabbering Ghouls on the farm carry the other half of her charm; {npc:11075} guards the cauldron in the field."] = "Ферма ({npc:10778}) – первая к востоку от Бастиона. У болтливых вурдалаков на ферме – вторая половина ее талисмана; {npc:11075} охраняет котел в поле.",
+	["{npc:10778}'s farm is the first one east of the {area:152}. Jabbering Ghouls on the farm carry the other half of her charm; {npc:11075} guards the cauldron in the field."] = "Ферма ({npc:10778}) – первая к востоку от {area:152}. У болтливых вурдалаков на ферме – вторая половина ее талисмана; {npc:11075} охраняет котел в поле.",
 
 	-- Step 28: Andorhal watchtowers and silos
 	["Andorhal watchtowers and silos"] = "Сторожевые башни и силосы Андорала",
@@ -148,12 +150,12 @@ return {
 	["The libram lies further north, on the way to {area:190}."] = "Либрам лежит дальше к северу, по пути к месту {area:190}.",
 
 	-- Step 33: Tirion Fordring
-	-- {area:2619} Thondroril River
-	["Ride east to Tirion's hut by the {area:2619} and hear him out."] = "Езжайте на восток к хижине Тириона у места {area:2619} и выслушайте его.",
+	-- {npc:1855} Tirion Fordring · {area:2619} Thondroril River
+	["Ride east to {npc:1855}'s hut by the {area:2619} and hear him out."] = "Езжайте на восток к хижине {npc:1855} у места {area:2619} и выслушайте его.",
 
 	-- Step 34: Redpath's Shield
-	-- {area:201} Gahrron's Withering
-	["The shield lies at {area:201}, south of Tirion's hut."] = "Щит лежит здесь: {area:201}, к югу от хижины Тириона.",
+	-- {area:201} Gahrron's Withering · {npc:1855} Tirion Fordring
+	["The shield lies at {area:201}, south of {npc:1855}'s hut."] = "Щит лежит здесь: {area:201}, к югу от хижины {npc:1855}.",
 
 	-- Step 35: Light's Hope Chapel
 	["Ride east across the plaguelands to the chapel."] = "Езжайте на восток через Чумные земли к часовне.",
@@ -161,25 +163,29 @@ return {
 	-- Step 36: Scourge Champions
 	-- plural, as words: Scourge Champions = {npc:8529} Scourge Champion
 	["Scourge Champions"] = "Воители Плети",
-	-- {area:2270} Noxious Glade · {item:13156} Mystic Crystal
+	-- {area:2270} Noxious Glade · {npc:11063} Carlin Redpath · {item:13156} Mystic Crystal
 	-- plural, as words: Scourge Champions = {npc:8529} Scourge Champion
-	["Scourge Champions roam the {area:2270}, north of the chapel. Pass Carlin's {item:13156} over each one you kill: the skulls that resonate are the ones he wants."] = "Воители Плети бродят здесь: {area:2270}, к северу от часовни. Проведите предметом Карлина ({item:13156}) над каждым убитым: нужны черепа, которые отзываются.",
+	["Scourge Champions roam the {area:2270}, north of the chapel. Pass {npc:11063}'s {item:13156} over each one you kill: the skulls that resonate are the ones he wants."] = "Воители Плети бродят здесь: {area:2270}, к северу от часовни. Проведите предметом {npc:11063} ({item:13156}) над каждым убитым: нужны черепа, которые отзываются.",
 
-	-- Step 38: Pamela and the Undercroft
-	-- {area:2261} Undercroft
-	["Pamela and the {area:2261}"] = "Памела и {area:2261}",
-	-- {area:2262} Darrowshire · {npc:11886} Mercutio Filthgorger · {area:2261} Undercroft
-	["Ride to {area:2262} in the south-west; Pamela plays among the houses. {npc:11886} lurks in the {area:2261}, the crypt just west of the town."] = "Езжайте сюда: {area:2262}, на юго-запад; Памела играет среди домов. {npc:11886} прячется здесь: {area:2261} – склеп чуть к западу от города.",
-	["Pamela's own errand is not on this route. Skip it."] = "Поручение самой Памелы не входит в маршрут. Пропустите.",
+	-- Step 38: Pamela Redpath and the Undercroft
+	-- {npc:10926} Pamela Redpath · {area:2261} Undercroft
+	["{npc:10926} and the {area:2261}"] = "{npc:10926} и {area:2261}",
+	-- {area:2262} Darrowshire · {npc:10926} Pamela Redpath · {npc:11886} Mercutio Filthgorger · {area:2261} Undercroft
+	["Ride to {area:2262} in the south-west; {npc:10926} plays among the houses. {npc:11886} lurks in the {area:2261}, the crypt just west of the town."] = "Езжайте сюда: {area:2262}, на юго-запад; {npc:10926} играет среди домов. {npc:11886} прячется здесь: {area:2261} – склеп чуть к западу от города.",
+	-- {npc:10926} Pamela Redpath
+	["{npc:10926}'s own errand is not on this route. Skip it."] = "Поручение самой {npc:10926} не входит в маршрут. Пропустите.",
 
 	-- Step 39: Nathanos Blightcaller
 	-- {npc:15193} The Banshee Queen · {area:2260} Marris Stead · {area:2261} Undercroft
 	["{npc:15193}'s champion holds the {area:2260} farmhouse, north of the {area:2261}."] = "Защитник ({npc:15193}) занимает дом на ферме ({area:2260}) к северу от места {area:2261}.",
-	["Nathanos' errands are not on this route. Skip them."] = "Поручения Натаноса не входят в маршрут. Пропустите.",
+	-- {npc:11878} Nathanos Blightcaller
+	["{npc:11878}' errands are not on this route. Skip them."] = "Поручения {npc:11878} не входят в маршрут. Пропустите.",
 
 	-- Step 40: Tirion Fordring
-	["Ride north-west to Tirion's hut."] = "Езжайте на северо-запад к хижине Тириона.",
-	["Tirion's next task, Of Lost Honor, is not on this route. Skip it."] = "Следующее задание Тириона, о потерянной чести, не входит в маршрут. Пропустите.",
+	-- {npc:1855} Tirion Fordring
+	["Ride north-west to {npc:1855}'s hut."] = "Езжайте на северо-запад к хижине {npc:1855}.",
+	-- {npc:1855} Tirion Fordring
+	["{npc:1855}'s next task, Of Lost Honor, is not on this route. Skip it."] = "Следующее задание {npc:1855}, о потерянной чести, не входит в маршрут. Пропустите.",
 
 	-- Step 41: Chromie
 	-- {npc:10667} Chromie
@@ -188,12 +194,11 @@ return {
 	["{npc:10667}'s Battle of Darrowshire ends against elites. Skip it."] = "Битва за Дарроушир ({npc:10667}) заканчивается боем с элитой. Пропустите.",
 
 	-- Step 42: The Bulwark
-	-- {zone:1458} Undercity
-	["West to the Bulwark. The next guide starts in the {zone:1458}, a short ride west."] = "На запад к Бастиону. Следующее руководство начинается здесь: {zone:1458}, недалеко к западу.",
+	-- {area:152} The Bulwark · {zone:1458} Undercity
+	["West to the {area:152}. The next guide starts in the {zone:1458}, a short ride west."] = "На запад к {area:152}. Следующее руководство начинается здесь: {zone:1458}, недалеко к западу.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Ride east along the road to the {area:152} on the border."] = "Езжайте на восток по дороге сюда: {area:152}, на границе.",
 	-- ["West to the {area:152}. The next guide starts in the {zone:1458}, a short ride west."] = "На запад сюда: {area:152}. Следующее руководство начинается здесь: {zone:1458}, недалеко к западу.",
-	-- ["{npc:10667}'s Battle of {area:2262} ends against elites. Skip it."] = "Битва за {area:2262} ({npc:10667}) заканчивается боем с элитой. Пропустите.",
 	-- ["{npc:10778}'s farm is the first one east of the {area:152}. Jabbering Ghouls on the farm carry the other half of her charm; {npc:11075} guards the cauldron in the field."] = "Ферма ({npc:10778}) – первая к востоку от места {area:152}. У болтливых вурдалаков на ферме – вторая половина ее талисмана; {npc:11075} охраняет котел в поле.",
 }

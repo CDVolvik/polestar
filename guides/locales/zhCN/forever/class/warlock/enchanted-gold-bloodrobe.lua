@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (simplified) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (simplified) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -30,15 +31,16 @@ return {
 	["{npc:6266} stands in the tower on the hill above {area:392}, beside {npc:6251}."] = "{npc:6266}站在{area:392}上方山丘的塔楼里，在{npc:6251}旁边。",
 
 	-- Step 6: Robes of Arcana
-	-- {item:5770} Robes of Arcana · {item:3577} Gold Bar · {item:2776} Gold Ore
-	["Bring Menara a {item:5770}: tailors sew it from a pattern that drops; otherwise buy one at the Auction House. Her next errand needs a {item:3577}: smelted from {item:2776}, or from the Auction House."] = "给梅纳拉带一件{item:5770}：裁缝可用掉落的图样缝制；否则在拍卖行购买。她的下一个差事需要一块{item:3577}：用{item:2776}熔炼，或在拍卖行购买。",
+	-- {npc:6266} Menara Voidrender · {item:5770} Robes of Arcana · {item:3577} Gold Bar · {item:2776} Gold Ore
+	["Bring {npc:6266} a {item:5770}: tailors sew it from a pattern that drops; otherwise buy one at the Auction House. Her next errand needs a {item:3577}: smelted from {item:2776}, or from the Auction House."] = "给{npc:6266}带一件{item:5770}：裁缝可用掉落的图样缝制；否则在拍卖行购买。她的下一个差事需要一块{item:3577}：用{item:2776}熔炼，或在拍卖行购买。",
 
 	-- Step 7: Xizk Goodstitch
 	-- {npc:2670} Xizk Goodstitch · {area:35} Booty Bay · {item:3577} Gold Bar
 	["{npc:2670} sells tailoring supplies in {area:35}. Bring him the {item:3577}."] = "{npc:2670}在{area:35}出售裁缝用品。把{item:3577}交给他。",
 
-	-- Step 8: Back to Menara
-	["Back to Menara"] = "回到梅纳拉处",
+	-- Step 8: Back to Menara Voidrender
+	-- {npc:6266} Menara Voidrender
+	["Back to {npc:6266}"] = "回到{npc:6266}处",
 
 	-- Step 9: Desolace demons
 	-- {zone:1443} Desolace
@@ -48,8 +50,9 @@ return {
 	["The Hatefury satyrs of {area:603}, in north-eastern {zone:1443}, carry the blood; the Lesser Infernals of Mannoroc Coven, in the south, the stone."] = "{zone:1443}东北部{area:603}的怨怒萨特携带鲜血；南部玛诺洛克集会所的{npc:4676}携带石头。",
 	["Vials of Hatefury Blood"] = "怨怒萨特之血",
 
-	-- Step 10: Menara again
-	["Menara again"] = "再次找梅纳拉",
+	-- Step 10: Menara Voidrender again
+	-- {npc:6266} Menara Voidrender
+	["{npc:6266} again"] = "再次找{npc:6266}",
 
 	-- Step 11: Fine Gold Thread
 	-- {npc:2670} Xizk Goodstitch · {area:35} Booty Bay
@@ -61,8 +64,8 @@ return {
 	["The Burning Exiles, fire elementals in western {zone:1417}, drop the coal."] = "{zone:1417}西部的火元素烈焰流放者掉落煤块。",
 
 	-- Step 13: The Completed Robe
-	-- {item:6265} Soul Shard
-	["Back to Menara with the thread, the coal and a {item:6265}. Wait while she completes the robe, then speak to her again."] = "带着金线、煤块和一块{item:6265}回到梅纳拉处。等她完成长袍，然后再次与她交谈。",
+	-- {npc:6266} Menara Voidrender · {item:6265} Soul Shard
+	["Back to {npc:6266} with the thread, the coal and a {item:6265}. Wait while she completes the robe, then speak to her again."] = "带着金线、煤块和一块{item:6265}回到{npc:6266}处。等她完成长袍，然后再次与她交谈。",
 	["Wait for the robe"] = "等待长袍",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.

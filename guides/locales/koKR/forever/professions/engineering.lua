@@ -3,13 +3,14 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Korean words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Apprentice Engineering
 	-- {skill:202} Engineering
 	["Apprentice {skill:202}"] = "초급 {skill:202}",
 	-- {skill:202} Engineering
-	["{skill:202} runs alongside leveling. Forever's Legacy System rewards crafting professions at skill 150, 225 and 300 (the Journeyman, Expert and Artisan caps), so each of those checkpoints counts. Materials for 1-75 are worth about 62s in all."] = "{skill:202}은(는) 레벨업과 함께 진행합니다. Forever의 유산 시스템은 제작 전문 기술 숙련도 150, 225, 300(중급, 고급, 전문 최대치)에 보상을 주므로, 각 단계가 중요합니다. 1-75 재료는 모두 약 62실버입니다.",
+	["{skill:202} runs alongside leveling. Forever's Legacy System rewards crafting professions at skill 150, 225 and 300 (the Journeyman, Expert and Artisan caps), so each of those checkpoints counts. Materials for 1-75 are worth about 62s in all."] = "{skill:202}은(는) 레벨업과 함께 진행합니다. Forever의 유산 시스템은 제작 전문 기술 숙련도 150, 225, 300(수습, 숙련, 전문 최대치)에 보상을 주므로, 각 단계가 중요합니다. 1-75 재료는 모두 약 62실버입니다.",
 	-- {item:5956} Blacksmith Hammer
 	["{item:5956}: a tool, keep it in your bags"] = "{item:5956}: 도구이니 가방에 넣어 두세요",
 
@@ -67,9 +68,9 @@ return {
 
 	-- Step 12: Journeyman Engineering
 	-- {skill:202} Engineering
-	["Journeyman {skill:202}"] = "중급 {skill:202}",
+	["Journeyman {skill:202}"] = "수습 {skill:202}",
 	-- {skill:202} Engineering
-	["Journeyman needs character level 10 and {skill:202} 50; it raises the cap to 150. Materials for 75-150 are worth about 3g 23s in all."] = "중급은(는) 캐릭터 레벨 10, {skill:202} 50이(가) 필요하며 최대 숙련도를 150(으)로 올립니다. 75-150 재료는 모두 약 3골드 23실버입니다.",
+	["Journeyman needs character level 10 and {skill:202} 50; it raises the cap to 150. Materials for 75-150 are worth about 3g 23s in all."] = "수습은(는) 캐릭터 레벨 10, {skill:202} 50이(가) 필요하며 최대 숙련도를 150(으)로 올립니다. 75-150 재료는 모두 약 3골드 23실버입니다.",
 
 	-- Step 14: Wool Cloth (Alliance)
 	-- {item:2592} Wool Cloth
@@ -184,9 +185,9 @@ return {
 
 	-- Step 36: Expert Engineering
 	-- {skill:202} Engineering
-	["Expert {skill:202}"] = "고급 {skill:202}",
+	["Expert {skill:202}"] = "숙련 {skill:202}",
 	-- {skill:202} Engineering
-	["Expert needs character level 20 and {skill:202} 125; it raises the cap to 225. Materials for 150-225 are worth about 15g in all."] = "고급은(는) 캐릭터 레벨 20, {skill:202} 125이(가) 필요하며 최대 숙련도를 225(으)로 올립니다. 150-225 재료는 모두 약 15골드입니다.",
+	["Expert needs character level 20 and {skill:202} 125; it raises the cap to 225. Materials for 150-225 are worth about 15g in all."] = "숙련은(는) 캐릭터 레벨 20, {skill:202} 125이(가) 필요하며 최대 숙련도를 225(으)로 올립니다. 150-225 재료는 모두 약 15골드입니다.",
 
 	-- Step 37: Medium Leather (Alliance)
 	-- {item:2319} Medium Leather
@@ -258,7 +259,7 @@ return {
 
 	-- Step 50: Schematic: Thorium Tube
 	-- {item:16000} Thorium Tube · {skill:202} Engineering
-	["Teaches {item:16000} (needs {skill:202} 275). Vendors sell it in limited stock that restocks; the Auction House often has it too."] = "{item:16000}을(를) 배웁니다({skill:202} 275 필요). 상인이 한정 수량으로 팔며 재입고됩니다. 경매장에도 자주 있습니다.",
+	["Teaches {item:16000} (needs {skill:202} 275). Vendors sell it in limited stock that restocks."] = "{item:16000}을(를) 배웁니다({skill:202} 275 필요). 상인이 한정 수량으로 팔며 재입고됩니다.",
 
 	-- Step 53: Runecloth (Alliance)
 	-- {item:14047} Runecloth

@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Portuguese (Brazil) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Portuguese (Brazil) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -22,8 +23,8 @@ return {
 	["From {area:415} take the road west to {area:413}: the figurine lies in a house among the trees north of the post."] = "De {area:415} pegue a estrada para oeste até {area:413}: a estatueta está numa casa entre as árvores ao norte do posto.",
 
 	-- Step 4: The Binding
-	-- {object:2164} Slaughtered Lamb
-	["Back to Gakin in the {object:2164}. Place the figurine at the summoning circle in the crypt below him and defeat the incubus it calls."] = "De volta a Gakin no {object:2164}. Ponha a estatueta no círculo de evocação da cripta abaixo dele e derrote o íncubo que ela invoca.",
+	-- {npc:6122} Gakin the Darkbinder · {object:2164} Slaughtered Lamb
+	["Back to {npc:6122} in the {object:2164}. Place the figurine at the summoning circle in the crypt below him and defeat the incubus it calls."] = "De volta a {npc:6122} no {object:2164}. Ponha a estatueta no círculo de evocação da cripta abaixo dele e derrote o íncubo que ela invoca.",
 	-- {npc:6122} Gakin the Darkbinder
 	["{npc:6122}: he binds the incubus to you"] = "{npc:6122}: ele vincula o íncubo a você",
 }

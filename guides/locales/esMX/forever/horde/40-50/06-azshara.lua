@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Spanish (Latin America) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Spanish (Latin America) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Fly to the Undercity
@@ -12,8 +13,8 @@ return {
 	["From {area:3317}'s flight master, fly to the {area:1497}."] = "Desde el maestro de vuelo de {area:3317}, vuela a {area:1497}.",
 
 	-- Step 2: Oran Snakewrithe
-	-- {object:36082} Magic Quarter
-	["Oran stands in the {object:36082}."] = "Oran está en {object:36082}.",
+	-- {npc:7825} Oran Snakewrithe · {object:36082} Magic Quarter
+	["{npc:7825} stands in the {object:36082}."] = "{npc:7825} está en {object:36082}.",
 
 	-- Step 3: Zeppelin to Orgrimmar
 	-- {zone:1454} Orgrimmar
@@ -68,17 +69,17 @@ return {
 	-- Step 15: Jediga
 	-- {area:1237} Valormok
 	["Ride west back to {area:1237}."] = "Cabalga al oeste de vuelta a {area:1237}.",
-	-- {npc:8659} Jes'rimon · {npc:6522} Andron Gant · {zone:1456} Thunder Bluff · {zone:1454} Orgrimmar · {zone:1458} Undercity
-	["Keep the deliveries for Magatha, {npc:8659} and {npc:6522}: you pass {zone:1456}, {zone:1454} and the {zone:1458} later."] = "Guarda las entregas para Magatha, {npc:8659} y {npc:6522}: pasas por {zone:1456}, {zone:1454} y {zone:1458} más adelante.",
+	-- {npc:4046} Magatha Grimtotem · {npc:8659} Jes'rimon · {npc:6522} Andron Gant · {zone:1456} Thunder Bluff · {zone:1454} Orgrimmar · {zone:1458} Undercity
+	["Keep the deliveries for {npc:4046}, {npc:8659} and {npc:6522}: you pass {zone:1456}, {zone:1454} and the {zone:1458} later."] = "Guarda las entregas para {npc:4046}, {npc:8659} y {npc:6522}: pasas por {zone:1456}, {zone:1454} y {zone:1458} más adelante.",
 
 	-- Step 16: Archmage Xylem
 	-- {area:1237} Valormok
 	["Xylem's tower stands on the cliff just north of {area:1237}; the path winds up its north side."] = "La torre de Xylem está en el acantilado justo al norte de {area:1237}; el sendero sube serpenteando por su lado norte.",
 
 	-- Step 18: To Grom'gol
-	-- {object:3202} Grom'gol
+	-- {object:3202} Grom'gol (no name in this language: may be words)
 	["To {object:3202}"] = "A {object:3202}",
-	-- {area:1237} Valormok · {zone:1454} Orgrimmar · {object:3202} Grom'gol
+	-- {area:1237} Valormok · {zone:1454} Orgrimmar · {object:3202} Grom'gol (no name in this language: may be words)
 	["Fly from {area:1237} to {zone:1454}, walk out of the main gate to the zeppelin towers and take the zeppelin to {object:3202}."] = "Vuela de {area:1237} a {zone:1454}, sal por la puerta principal hacia las torres de zepelín y toma el zepelín a {object:3202}.",
 
 	-- Step 19: Grom'gol Base Camp
@@ -96,7 +97,7 @@ return {
 	["Only once all three robots are home"] = "Solo cuando los tres robots estén en casa",
 
 	-- Step 22: Back to Grom'gol
-	-- {object:3202} Grom'gol
+	-- {object:3202} Grom'gol (no name in this language: may be words)
 	["Back to {object:3202}"] = "De vuelta a {object:3202}",
 
 	-- Step 23: Orgrimmar
@@ -110,16 +111,16 @@ return {
 	["Keep {npc:8659}'s payment and Ag'tor's {quest:3504}: they go back to {area:1237} on a later visit."] = "Guarda el pago de {npc:8659} y {quest:3504} de Ag'tor: vuelven a {area:1237} en una visita posterior.",
 
 	-- Step 24: Thunder Bluff
-	-- {area:1638} Thunder Bluff · {area:1099} Camp Mojache · {area:378} Camp Taurajo · {zone:1412} Mulgore · {area:1639} Elder Rise · {npc:3033} Turak Runetotem · {npc:246344} Alodan the Hopeful
-	["Fly to {area:1638}; it is on the way to {area:1099}. No flight path there yet? Fly to {area:378} and ride west through {zone:1412}. Hamuul and Magatha are on the {area:1639}; Druids and Paladins train here ({npc:3033}, {npc:246344})."] = "Vuela a {area:1638}; está camino a {area:1099}. ¿Aún no tienes esa ruta de vuelo? Vuela a {area:378} y cabalga al oeste por {zone:1412}. Hamuul y Magatha están en {area:1639}; los druidas y paladines entrenan aquí ({npc:3033}, {npc:246344}).",
-	-- {quest:3761} Un'Goro Soil · {npc:8587} Jediga
-	["{quest:3761} is gathered in the next guide; Magatha's payment goes back to {npc:8587} later."] = "{quest:3761} se reúne en la siguiente guía; el pago de Magatha vuelve a {npc:8587} más adelante.",
+	-- {area:1638} Thunder Bluff · {area:1099} Camp Mojache · {area:378} Camp Taurajo · {zone:1412} Mulgore · {npc:4046} Magatha Grimtotem · {area:1639} Elder Rise · {npc:3033} Turak Runetotem · {npc:246344} Alodan the Hopeful
+	["Fly to {area:1638}; it is on the way to {area:1099}. No flight path there yet? Fly to {area:378} and ride west through {zone:1412}. Hamuul and {npc:4046} are on the {area:1639}; Druids and Paladins train here ({npc:3033}, {npc:246344})."] = "Vuela a {area:1638}; está camino a {area:1099}. ¿Aún no tienes esa ruta de vuelo? Vuela a {area:378} y cabalga al oeste por {zone:1412}. Hamuul y {npc:4046} están en {area:1639}; los druidas y paladines entrenan aquí ({npc:3033}, {npc:246344}).",
+	-- {quest:3761} Un'Goro Soil · {npc:4046} Magatha Grimtotem · {npc:8587} Jediga
+	["{quest:3761} is gathered in the next guide; {npc:4046}'s payment goes back to {npc:8587} later."] = "{quest:3761} se reúne en la siguiente guía; el pago de {npc:4046} vuelve a {npc:8587} más adelante.",
 
 	-- Step 25: Camp Mojache
 	-- {npc:7776} Talo Thornhoof · {zone:1448} Felwood
 	["{npc:7776}: the bears are in {zone:1448}"] = "{npc:7776}: los osos están en {zone:1448}",
-	-- {area:1417} Sunken Temple · {zone:1446} Tanaris
-	["Keep {area:1417} for Marvon in {zone:1446}."] = "Guarda {area:1417} para Marvon en {zone:1446}.",
+	-- {area:1417} Sunken Temple · {npc:7771} Marvon Rivetseeker · {zone:1446} Tanaris
+	["Keep {area:1417} for {npc:7771} in {zone:1446}."] = "Guarda {area:1417} para {npc:7771} en {zone:1446}.",
 
 	-- Step 26: Frayfeather Hippogryphs
 	-- plural, as words: Frayfeather Hippogryphs = {npc:5300} Frayfeather Hippogryph
@@ -138,8 +139,8 @@ return {
 	["The treants wander the forest roads between the camp and the middle of {zone:1444}; there are only a few, so look along the paths."] = "Los antárboles deambulan por los caminos del bosque entre el campamento y el centro de {zone:1444}; hay pocos, así que búscalos por los senderos.",
 
 	-- Step 32: Zorbin Fandazzle
-	-- {area:1108} Forgotten Coast
-	["Ride north-west to the {area:1108}; Zorbin waits on the dock."] = "Cabalga al noroeste hasta {area:1108}; Zorbin espera en el muelle.",
+	-- {area:1108} Forgotten Coast · {npc:14637} Zorbin Fandazzle
+	["Ride north-west to the {area:1108}; {npc:14637} waits on the dock."] = "Cabalga al noroeste hasta {area:1108}; {npc:14637} espera en el muelle.",
 
 	-- Step 33: Zapped giants
 	["Zapped giants"] = "Gigantes encogidos",
@@ -165,6 +166,6 @@ return {
 	-- Step 38: Broken Pillar
 	-- {area:1938} Broken Pillar · {npc:7771} Marvon Rivetseeker · {zone:1449} Un'Goro Crater
 	["Ride south along the road to the {area:1938}; {npc:7771} camps beside it. From here the road west leads down into {zone:1449}, where the next guide starts."] = "Cabalga al sur por el camino hasta {area:1938}; {npc:7771} acampa al lado. Desde aquí, el camino al oeste baja a {zone:1449}, donde empieza la siguiente guía.",
-	-- {quest:3444} The Stone Circle
-	["Keep {quest:3444}: Marvon's chest is opened on a later visit."] = "Guarda {quest:3444}: el cofre de Marvon se abre en una visita posterior.",
+	-- {quest:3444} The Stone Circle · {npc:7771} Marvon Rivetseeker
+	["Keep {quest:3444}: {npc:7771}'s chest is opened on a later visit."] = "Guarda {quest:3444}: el cofre de {npc:7771} se abre en una visita posterior.",
 }

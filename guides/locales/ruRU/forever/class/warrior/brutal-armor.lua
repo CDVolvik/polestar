@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Russian (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Russian words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -27,8 +28,8 @@ return {
 	["Twitching Antennae from the silithid"] = "Дергающиеся усики с силитидов",
 
 	-- Step 5: Thun'grim Firegaze
-	-- {area:380} Crossroads · {quest:1838} Brutal Armor
-	["Thun'grim camps beside the road east of the {area:380}. {quest:1838} is a level 30 quest; you can take it now and gather for it on the way."] = "Тун'грим разбил лагерь у дороги к востоку от места {area:380}. {quest:1838} — задание 30-го уровня; можно взять его сейчас и собирать нужное по пути.",
+	-- {npc:5878} Thun'grim Firegaze · {area:380} Crossroads · {quest:1838} Brutal Armor
+	["{npc:5878} camps beside the road east of the {area:380}. {quest:1838} is a level 30 quest; you can take it now and gather for it on the way."] = "{npc:5878} разбил лагерь у дороги к востоку от места {area:380}. {quest:1838} — задание 30-го уровня; можно взять его сейчас и собирать нужное по пути.",
 
 	-- Step 6: Roogug in Razorfen Kraul
 	-- {area:1717} Razorfen Kraul
@@ -66,8 +67,8 @@ return {
 	["Iron Bars: {npc:8673}"] = "Железные слитки: {npc:8673}",
 
 	-- Step 10: Brutal Hauberk
-	-- {area:380} Crossroads · {quest:1848} Brutal Hauberk
-	["Back to Thun'grim beside the road east of the {area:380}. {quest:1848} is the first piece; he then sends you to three crafters for the rest."] = "Вернитесь к Тун'гриму у дороги к востоку от места {area:380}. {quest:1848} — первая часть; затем он отправляет вас к трем мастерам за остальным.",
+	-- {npc:5878} Thun'grim Firegaze · {area:380} Crossroads · {quest:1848} Brutal Hauberk
+	["Back to {npc:5878} beside the road east of the {area:380}. {quest:1848} is the first piece; he then sends you to three crafters for the rest."] = "Вернитесь к {npc:5878} у дороги к востоку от места {area:380}. {quest:1848} — первая часть; затем он отправляет вас к трем мастерам за остальным.",
 
 	-- Step 11: Ula'elek
 	-- {npc:6408} Ula'elek · {area:367} Sen'jin Village · {zone:1411} Durotar
@@ -96,7 +97,4 @@ return {
 	["The Dragonmaw orcs camp in the middle of the {zone:1437}, south of the road; Raiders, Swamprunners, Centurions, Shadowwarders and Bonewarders all drop the Sturdy Dragonmaw Shinbones."] = "Орки клана Драконьей Пасти стоят лагерем в центре зоны {zone:1437}, к югу от дороги; с налетчиков, болотных бегунов, центурионов, хранителей теней и костостражей падают прочные берцовые кости Драконьей Пасти.",
 	-- plural, as words: Sturdy Dragonmaw Shinbones = {item:7134} Sturdy Dragonmaw Shinbone
 	["Sturdy Dragonmaw Shinbones"] = "Прочные берцовые кости Драконьей Пасти",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Uncloven Satyr Hooves"] = "Нераздвоенные копыта сатира",
 }

@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in German (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in German words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Auberdine
@@ -49,7 +50,10 @@ return {
 	-- Step 7: Ameth'Aran
 	-- {npc:3639} Sentinel Tysha Moonblade · {npc:2178} Wailing Highborne · {npc:3667} Anaya Dawnrunner · {npc:270196} Jai'vhanel · {quest:4722} Beached Sea Turtle
 	["{npc:3639} stands at the north edge of the ruins. Cursed, Writhing and {npc:2178} haunt them; {npc:3667}'s ghost walks among them, {npc:270196} the owl circles east of them. The two tablets lie in the ruins; a {quest:4722} lies on the shore west of them."] = "{npc:3639} steht am Nordrand der Ruinen. Verfluchte und Zuckende Hochgeborene sowie {npc:2178} spuken dort; der Geist von {npc:3667} wandelt zwischen ihnen, die Eule {npc:270196} kreist östlich davon. Die beiden Schrifttafeln liegen in den Ruinen; eine {quest:4722} liegt westlich davon am Ufer.",
-	["Read both tablets"] = "Lies beide Schrifttafeln",
+	-- {object:17188} Lay of Ameth'Aran
+	["Read the {object:17188}"] = "Lies {object:17188}",
+	-- {object:17189} Fall of Ameth'Aran
+	["Read the {object:17189}"] = "Lies {object:17189}",
 	-- plural, as words: Highborne Relics = {item:5360} Highborne Relic
 	["Highborne Relics"] = "Hochgeborenenrelikte",
 
@@ -59,9 +63,9 @@ return {
 	["Climb the eastern mountains east of {area:447}; the {object:175524} sits on a ledge."] = "Klettere östlich von {area:447} in die östlichen Berge; der {object:175524} liegt auf einem Felsvorsprung.",
 
 	-- Step 9: Bashal'Aran
-	-- {npc:3650} Asterion · {quest:954} Bashal'Aran · {quest:1001} Buzzbox 411
+	-- {npc:3650} Asterion · {quest:954} Bashal'Aran · {quest:1001} Buzzbox 411 · {quest:4723} Beached Sea Creature
 	-- plural, as words: Wild Grells = {npc:2190} Wild Grell · Vile Sprites = {npc:2189} Vile Sprite · Deth'ryll Satyrs = {npc:2212} Deth'ryll Satyr
-	["North along the hills. {npc:3650} waits in the ruins of {quest:954}; Wild Grells and Vile Sprites fill them, Deth'ryll Satyrs the eastern edge. {quest:1001} stands by the road west of the ruins."] = "Nach Norden durch die Hügel. {npc:3650} wartet in den Ruinen von {quest:954}; Wilde Grells und Üble Grimmlinge füllen sie, Satyrn der Deth'ryll den Ostrand. {quest:1001} steht an der Straße westlich der Ruinen.",
+	["North along the hills. {npc:3650} waits in the ruins of {quest:954}; Wild Grells and Vile Sprites fill them, Deth'ryll Satyrs the eastern edge. {quest:1001} stands by the road west of the ruins; a {quest:4723} lies on the shore on the way to him."] = "Nach Norden durch die Hügel. {npc:3650} wartet in den Ruinen von {quest:954}; Wilde Grells und Üble Grimmlinge füllen sie, Satyrn der Deth'ryll den Ostrand. {quest:1001} steht an der Straße westlich der Ruinen; eine {quest:4723} liegt auf dem Weg zu ihm am Ufer.",
 	-- plural, as words: Grell Earrings = {item:5336} Grell Earring
 	["Grell Earrings"] = "Grell-Ohrringe",
 	-- {item:5338} Ancient Moonstone Seal
@@ -70,12 +74,9 @@ return {
 
 	-- Step 10: The Tower of Althalaxx
 	-- {quest:954} Bashal'Aran · {quest:1002} Buzzbox 323
-	-- plural, as words: Grizzled Thistle Bears = {npc:2165} Grizzled Thistle Bear
-	["Moonstalkers prowl the hills between {quest:954} and the tower. {quest:1002} stands on the hill west of the tower; Grizzled Thistle Bears roam around it."] = "Mondpirscher streifen durch die Hügel zwischen {quest:954} und dem Turm. {quest:1002} steht auf dem Hügel westlich des Turms; Ergraute Distelbären streifen um ihn herum.",
+	["Moonstalkers prowl the hills between {quest:954} and the tower. {quest:1002} stands on the hill west of the tower."] = "Mondpirscher streifen durch die Hügel zwischen {quest:954} und dem Turm. {quest:1002} steht auf dem Hügel westlich des Turms.",
 	-- plural, as words: Moonstalker Fangs = {item:5413} Moonstalker Fang
 	["Moonstalker Fangs"] = "Mondpirscher-Fangzähne",
-	-- plural, as words: Grizzled Scalps = {item:5414} Grizzled Scalp
-	["Grizzled Scalps"] = "Ergraute Skalpe",
 
 	-- Step 11: Hearth to Auberdine
 	-- {area:442} Auberdine
@@ -114,20 +115,24 @@ return {
 	-- Step 16: The southern beaches
 	["The southern beaches"] = "Die südlichen Strände",
 	-- {area:447} Ameth'Aran · {quest:4728} Beached Sea Creature · {area:450} Remtravel's Excavation
-	["Follow the coast south past {area:447}: one {quest:4728} lies on the shore west of the Grove, another further south near {area:450}."] = "Folge der Küste nach Süden an {area:447} vorbei: Eine {quest:4728} liegt am Ufer westlich des Hains, eine weitere weiter südlich nahe {area:450}.",
+	-- plural, as words: Greymist Oracles = {npc:2207} Greymist Oracle
+	["Follow the coast south past {area:447}: one {quest:4728} lies on the shore west of the Grove, another further south near {area:450}. Three more remains lie further south-west among Greymist Oracles and Tidehunters (18-20): the guide leaves them for the last loop, when you are closer to their level."] = "Folge der Küste nach Süden an {area:447} vorbei: Eine {quest:4728} liegt am Ufer westlich des Hains, eine weitere weiter südlich nahe {area:450}. Drei weitere Überreste liegen weiter südwestlich zwischen Orakeln und Gezeitenjägern der Grauflossen (18-20): Der Guide hebt sie für die letzte Runde auf, wenn du näher an ihrer Stufe bist.",
 
 	-- Step 17: The Grove of the Ancients
 	-- {area:448} Grove of the Ancients
 	["The {area:448}"] = "Zum Ort {area:448}",
 	-- {quest:1003} Buzzbox 525
-	["{quest:1003} stands west of the Grove."] = "{quest:1003} steht westlich des Hains.",
+	-- plural, as words: Grizzled Thistle Bears = {npc:2165} Grizzled Thistle Bear
+	["Grizzled Thistle Bears roam the hills around the Grove; {quest:1003} stands west of it among them."] = "Ergraute Distelbären streifen durch die Hügel rund um den Hain; {quest:1003} steht westlich davon zwischen ihnen.",
+	-- plural, as words: Grizzled Scalps = {item:5414} Grizzled Scalp
+	["Grizzled Scalps"] = "Ergraute Skalpe",
 
 	-- Step 18: The red crystal
 	["Back north-east into the mountains to the crystal."] = "Zurück nach Nordosten in die Berge zum Kristall.",
 
 	-- Step 19: Cliffspring Falls
 	-- {area:456} Cliffspring River · {area:443} Ruins of Mathystra · {quest:954} Bashal'Aran
-	["Follow the hills north to the {area:456} and up to the falls. Three more beached remains lie on the north shore: near the {area:443}, north of {quest:954} and west of {quest:954}."] = "Folge den Hügeln nach Norden zum Fluss {area:456} und hinauf zu den Fällen. Drei weitere gestrandete Überreste liegen an der Nordküste: nahe dem Gebiet {area:443}, nördlich von {quest:954} und westlich von {quest:954}.",
+	["Follow the hills north to the {area:456} and up to the falls. Two more beached remains lie on the north shore: near the {area:443} and north of {quest:954}."] = "Folge den Hügeln nach Norden zum Fluss {area:456} und hinauf zu den Fällen. Zwei weitere gestrandete Überreste liegen an der Nordküste: nahe dem Gebiet {area:443} und nördlich von {quest:954}.",
 	-- {item:12349} Cliffspring River Sample
 	["{item:12349}, at the waterfall"] = "{item:12349}, am Wasserfall",
 	-- {item:15845} Filled Cliffspring Falls Sampler
@@ -147,7 +152,7 @@ return {
 	["The {area:443}"] = "Zum Gebiet {area:443}",
 	-- {npc:6667} Gelkak Gyromast
 	-- plural, as words: Giant Foreststriders = {npc:2323} Giant Foreststrider · Raging Reef Crawlers = {npc:2236} Raging Reef Crawler
-	["{npc:6667} hides on the little island off the ruins; Stormscale Beastmistresses walk the shore. The key pieces drop from Giant Foreststriders (top), Greymist murlocs (middle) and Raging Reef Crawlers (bottom)."] = "{npc:6667} versteckt sich auf der kleinen Insel vor den Ruinen; Tierbändigerinnen der Sturmschuppen laufen am Ufer entlang. Die Schlüsselteile droppen Riesige Waldschreiter (oben), Murlocs der Grauflossen (Mitte) und Tobende Riffkriecher (unten).",
+	["{npc:6667} hides on the little island off the ruins. The key pieces drop from Giant Foreststriders (top), Greymist murlocs (middle) and Raging Reef Crawlers (bottom)."] = "{npc:6667} versteckt sich auf der kleinen Insel vor den Ruinen. Die Schlüsselteile droppen Riesige Waldschreiter (oben), Murlocs der Grauflossen (Mitte) und Tobende Riffkriecher (unten).",
 	-- {item:15883} Half Pendant of Aquatic Agility · {object:177792} Strange Lockbox
 	["{item:15883}: the {object:177792} under the water off the north coast, west of the ruins"] = "{item:15883}: die {object:177792} unter Wasser vor der Nordküste, westlich der Ruinen",
 
@@ -205,7 +210,7 @@ return {
 	-- {npc:10323} Murkdeep
 	["{npc:10323}'s beach"] = "Der Strand von {npc:10323}",
 	-- {npc:10323} Murkdeep · {area:450} Remtravel's Excavation
-	["{npc:10323} camps on the beach west of the glaive: kill the murlocs at the camp fire; he comes in the third wave with his hound. Three beached remains lie on the beaches south of {area:450}."] = "{npc:10323} lagert am Strand westlich der Gleve: Töte die Murlocs am Lagerfeuer; er kommt in der dritten Welle mit seinem Hund. Drei gestrandete Überreste liegen an den Stränden südlich von {area:450}.",
+	["{npc:10323} camps on the beach west of the glaive: kill the murlocs at the camp fire; he comes in the third wave with his hound. Three beached remains lie on the beaches west and south-west of {area:450}."] = "{npc:10323} lagert am Strand westlich der Gleve: Töte die Murlocs am Lagerfeuer; er kommt in der dritten Welle mit seinem Hund. Drei gestrandete Überreste liegen an den Stränden westlich und südwestlich von {area:450}.",
 
 	-- Step 31: Prospector Remtravel
 	-- {area:450} Remtravel's Excavation · {npc:10323} Murkdeep
@@ -213,6 +218,8 @@ return {
 
 	-- Step 33: Auberdine
 	["Follow the road north."] = "Folge der Straße nach Norden.",
+	-- {quest:87760} Holy Diver · {npc:10219} Gwennyth Bly'Leggonde
+	["{quest:87760}: {npc:10219} offers it once all nine beached remains are handed in"] = "{quest:87760}: {npc:10219} bietet sie an, sobald alle neun gestrandeten Überreste abgegeben sind",
 	-- {item:15826} Curative Animal Salve
 	["She gives you the {item:15826}"] = "Sie gibt dir die {item:15826}",
 
@@ -220,7 +227,7 @@ return {
 	["The naga"] = "Die Naga",
 	-- {area:443} Ruins of Mathystra · {quest:951} Mathystra Relics
 	-- plural, as words: Stormscale Myrmidons = {npc:2181} Stormscale Myrmidon
-	["Follow the coast north-east to the {area:443}. {quest:951} lie among the ruins; Stormscale Myrmidons, Sorceresses and Warriors hold them."] = "Folge der Küste nach Nordosten zum Gebiet {area:443}. {quest:951} liegen in den Ruinen; Myrmidonen, Zauberhexerinnen und Krieger der Sturmschuppen halten sie.",
+	["Follow the coast north-east to the {area:443}. {quest:951} lie among the ruins; Stormscale Myrmidons, Sorceresses and Warriors hold them, and Stormscale Beastmistresses walk the shore."] = "Folge der Küste nach Nordosten zum Gebiet {area:443}. {quest:951} liegen in den Ruinen; Myrmidonen, Zauberhexerinnen und Krieger der Sturmschuppen halten sie, und Tierbändigerinnen der Sturmschuppen laufen am Ufer entlang.",
 
 	-- Step 35: Back south
 	["Back south"] = "Zurück nach Süden",
@@ -257,16 +264,25 @@ return {
 	-- {quest:98394} The Great Cat Spirit · {npc:272054} Avatar of Saeyleenan · {area:493} Moonglade · {area:2363} Stormrage Barrow Dens
 	["{quest:98394} (Night Elves) and the {npc:272054} (Skyborne) wait in southern {area:493}. The three relics lie in the {area:2363}, east of them. Reports from the first weeks say a relic gives no loot while another player is looting it: wait a moment and try again."] = "{quest:98394} (Nachtelfen) und der {npc:272054} (Himmelsgeborene) warten im Süden von {area:493}. Die drei Relikte liegen östlich davon in {area:2363}. Berichten aus den ersten Wochen zufolge gibt ein Relikt keine Beute, während ein anderer Spieler es plündert: Warte einen Moment und versuch es erneut.",
 
-	-- Step 41: Back to Dendrite
-	["Back to Dendrite"] = "Zurück zu Dendrite",
+	-- Step 41: Back to Dendrite Starblaze
+	-- {npc:11802} Dendrite Starblaze
+	["Back to {npc:11802}"] = "Zurück zu {npc:11802}",
 	-- {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {area:702} Rut'theran Village · {area:442} Auberdine
 	["Back to {npc:11802} in {area:2361}, then fly to {area:702} (by way of {area:442})."] = "Zurück zu {npc:11802} in {area:2361}, dann flieg nach {area:702} (über {area:442}).",
 
 	-- Step 42: To Darnassus
-	-- {area:442} Auberdine · {zone:1453} Stormwind
-	["Take the portal up to Mathrengyl, then fly back to {area:442} for the boat to {zone:1453}."] = "Nimm das Portal hinauf zu Mathrengyl und flieg dann zurück nach {area:442} zum Boot nach {zone:1453}.",
+	-- {npc:4217} Mathrengyl Bearwalker · {area:442} Auberdine · {zone:1453} Stormwind
+	["Take the portal up to {npc:4217}, then fly back to {area:442} for the boat to {zone:1453}."] = "Nimm das Portal hinauf zu {npc:4217} und flieg dann zurück nach {area:442} zum Boot nach {zone:1453}.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Follow the coast north-east to the {area:443}. {quest:951} lie among the ruins; Stormscale Myrmidons, Sorceresses and Warriors hold them."] = "Folge der Küste nach Nordosten zum Gebiet {area:443}. {quest:951} liegen in den Ruinen; Myrmidonen, Zauberhexerinnen und Krieger der Sturmschuppen halten sie.",
+	-- ["Follow the coast south past {area:447}: one {quest:4728} lies on the shore west of the Grove, another further south near {area:450}."] = "Folge der Küste nach Süden an {area:447} vorbei: Eine {quest:4728} liegt am Ufer westlich des Hains, eine weitere weiter südlich nahe {area:450}.",
+	-- ["Follow the hills north to the {area:456} and up to the falls. Three more beached remains lie on the north shore: near the {area:443}, north of {quest:954} and west of {quest:954}."] = "Folge den Hügeln nach Norden zum Fluss {area:456} und hinauf zu den Fällen. Drei weitere gestrandete Überreste liegen an der Nordküste: nahe dem Gebiet {area:443}, nördlich von {quest:954} und westlich von {quest:954}.",
+	-- ["North along the hills. {npc:3650} waits in the ruins of {quest:954}; Wild Grells and Vile Sprites fill them, Deth'ryll Satyrs the eastern edge. {quest:1001} stands by the road west of the ruins."] = "Nach Norden durch die Hügel. {npc:3650} wartet in den Ruinen von {quest:954}; Wilde Grells und Üble Grimmlinge füllen sie, Satyrn der Deth'ryll den Ostrand. {quest:1001} steht an der Straße westlich der Ruinen.",
+	-- ["Read both tablets"] = "Lies beide Schrifttafeln",
 	-- ["Tide Crawlers scuttle along the shore below the village; {quest:983} stands on the beach just south of the docks. Darkshore Threshers swim in the shallows. The {quest:4723} lies on the shore just south of the village."] = "Gezeitenkriecher krabbeln unterhalb des Dorfes am Ufer entlang; {quest:983} steht am Strand gleich südlich der Anlegestelle. Drescher der Dunkelküste schwimmen im seichten Wasser. {quest:4723} liegt gleich südlich des Dorfes am Ufer.",
 	-- ["{item:15883}: the {object:177790} under the water off the north coast, west of the ruins"] = "{item:15883}: die {object:177790} unter Wasser vor der Nordküste, westlich der Ruinen",
+	-- ["{npc:10323} camps on the beach west of the glaive: kill the murlocs at the camp fire; he comes in the third wave with his hound. Three beached remains lie on the beaches south of {area:450}."] = "{npc:10323} lagert am Strand westlich der Gleve: Töte die Murlocs am Lagerfeuer; er kommt in der dritten Welle mit seinem Hund. Drei gestrandete Überreste liegen an den Stränden südlich von {area:450}.",
+	-- ["{npc:6667} hides on the little island off the ruins; Stormscale Beastmistresses walk the shore. The key pieces drop from Giant Foreststriders (top), Greymist murlocs (middle) and Raging Reef Crawlers (bottom)."] = "{npc:6667} versteckt sich auf der kleinen Insel vor den Ruinen; Tierbändigerinnen der Sturmschuppen laufen am Ufer entlang. Die Schlüsselteile droppen Riesige Waldschreiter (oben), Murlocs der Grauflossen (Mitte) und Tobende Riffkriecher (unten).",
+	-- ["{quest:1003} stands west of the Grove."] = "{quest:1003} steht westlich des Hains.",
 }

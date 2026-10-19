@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Portuguese (Brazil) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Portuguese (Brazil) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Fly to the Undercity
@@ -12,8 +13,8 @@ return {
 	["From {area:2268}'s flight master, fly to the {area:1497}."] = "Do mestre de voo de {area:2268}, voe para {area:1497}.",
 
 	-- Step 2: Janice Felstone
-	-- {area:1497} Undercity · {zone:1420} Tirisfal Glades · {area:152} Bulwark
-	["Leave the {area:1497} and ride east along the road through {zone:1420}, past the {area:152}. Felstone Farm is the first farm along the road; Janice waits in the house."] = "Saia de {area:1497} e cavalgue para o leste pela estrada através de {zone:1420}, passando por {area:152}. A fazenda Pedravil é a primeira ao longo da estrada; Janice espera na casa.",
+	-- {area:1497} Undercity · {zone:1420} Tirisfal Glades · {area:152} Bulwark · {npc:10778} Janice Felstone
+	["Leave the {area:1497} and ride east along the road through {zone:1420}, past the {area:152}. Felstone Farm is the first farm along the road; {npc:10778} waits in the house."] = "Saia de {area:1497} e cavalgue para o leste pela estrada através de {zone:1420}, passando por {area:152}. A fazenda Pedravil é a primeira ao longo da estrada; {npc:10778} espera na casa.",
 	-- {object:175894} Janice's Parcel
 	["{object:175894}, beside the house"] = "{object:175894}, ao lado da casa",
 	-- {npc:10781} Royal Overseer Bauhaus · {area:1497} Undercity
@@ -35,8 +36,8 @@ return {
 	["He camps by the {area:202}, south-east of {area:200}."] = "Ele acampa junto a {area:202}, a sudeste de {area:200}.",
 
 	-- Step 6: Sorrow Hill
-	-- {area:202} Writhing Haunt · {area:197} Sorrow Hill · {npc:10936} Joseph Redpath
-	["Ride south past the {area:202} to {area:197}; Marlene's house stands by the road, and {npc:10936}'s monument is in the graveyard behind it. Kill the Diseased Wolves you meet in the fields on the way."] = "Cavalgue para o sul, passando por {area:202}, até {area:197}; a casa de Marlene fica junto à estrada, e o monumento de {npc:10936} está no cemitério atrás dela. Mate os Lobos Doentes que encontrar nos campos pelo caminho.",
+	-- {area:202} Writhing Haunt · {area:197} Sorrow Hill · {npc:10927} Marlene Redpath · {npc:10936} Joseph Redpath
+	["Ride south past the {area:202} to {area:197}; {npc:10927}'s house stands by the road, and {npc:10936}'s monument is in the graveyard behind it. Kill the Diseased Wolves you meet in the fields on the way."] = "Cavalgue para o sul, passando por {area:202}, até {area:197}; a casa de {npc:10927} fica junto à estrada, e o monumento de {npc:10936} está no cemitério atrás dela. Mate os Lobos Doentes que encontrar nos campos pelo caminho.",
 	-- {npc:10840} Argent Officer Pureheart
 	["{npc:10840}, at the graveyard's south end"] = "{npc:10840}, no extremo sul do cemitério",
 	-- {quest:5142} Little Pamela · {area:2262} Darrowshire
@@ -69,14 +70,14 @@ return {
 	["Keep the branch: {npc:5770} is in {zone:1456}."] = "Guarde o galho: {npc:5770} está em {zone:1456}.",
 
 	-- Step 14: Tirion Fordring
-	-- {area:2620} Thondroril River · {zone:1423} Eastern Plaguelands
-	["Ride north along the eastern hills; Tirion lives in a small house by the {area:2620}, at the border with the {zone:1423}."] = "Cavalgue para o norte pelas colinas do leste; Tirion mora numa casinha junto a {area:2620}, na fronteira com {zone:1423}.",
-	-- {zone:1423} Eastern Plaguelands
-	["Tirion's hunts are in the {zone:1423}: keep them for later."] = "As caçadas de Tirion ficam em {zone:1423}: guarde-as para depois.",
+	-- {npc:1855} Tirion Fordring · {area:2619} Thondroril River · {zone:1423} Eastern Plaguelands
+	["Ride north along the eastern hills; {npc:1855} lives in a small house by the {area:2619}, at the border with the {zone:1423}."] = "Cavalgue para o norte pelas colinas do leste; {npc:1855} mora numa casinha junto a {area:2619}, na fronteira com {zone:1423}.",
+	-- {npc:1855} Tirion Fordring · {zone:1423} Eastern Plaguelands
+	["{npc:1855}'s hunts are in the {zone:1423}: keep them for later."] = "As caçadas de {npc:1855} ficam em {zone:1423}: guarde-as para depois.",
 
 	-- Step 15: Kirsta Deepshadow
-	-- {area:192} Northridge Lumber Camp
-	["Ride west to the {area:192}; Kirsta hides on the hill north-east of it."] = "Cavalgue para o oeste até {area:192}; Kirsta se esconde na colina a nordeste dele.",
+	-- {area:192} Northridge Lumber Camp · {npc:11610} Kirsta Deepshadow
+	["Ride west to the {area:192}; {npc:11610} hides on the hill north-east of it."] = "Cavalgue para o oeste até {area:192}; {npc:11610} se esconde na colina a nordeste dele.",
 
 	-- Step 16: Scarlet Crusade
 	["Scarlet Crusade"] = "Cruzada Escarlate",
@@ -85,12 +86,13 @@ return {
 
 	-- Step 18: Radley and Durgen
 	["Radley and Durgen"] = "Eiras e Durgen",
-	-- {npc:11613} Huntsman Radley · {npc:11611} Cavalier Durgen · {area:190} Hearthglen
-	["{npc:11613} stands east of the lumber camp; {npc:11611} guards the road north-east of Kirsta, toward {area:190}."] = "{npc:11613} fica a leste do acampamento madeireiro; {npc:11611} guarda a estrada a nordeste de Kirsta, rumo a {area:190}.",
+	-- {npc:11613} Huntsman Radley · {npc:11611} Cavalier Durgen · {npc:11610} Kirsta Deepshadow · {area:190} Hearthglen
+	["{npc:11613} stands east of the lumber camp; {npc:11611} guards the road north-east of {npc:11610}, toward {area:190}."] = "{npc:11613} fica a leste do acampamento madeireiro; {npc:11611} guarda a estrada a nordeste de {npc:11610}, rumo a {area:190}.",
 
 	-- Step 20: Northridge Lumber Camp
+	-- {npc:11610} Kirsta Deepshadow
 	-- plural, as words: Scarlet Knights = {npc:1833} Scarlet Knight
-	["Kirsta's last task needs level 53. The Scarlet Knights and Magi (54-55) working the lumber camp just south-west of her are the closest camp."] = "A última tarefa de Kirsta exige nível 53. Os Cavaleiros e Magos Escarlates (54-55) que trabalham no acampamento madeireiro logo a sudoeste dela são o acampamento mais próximo.",
+	["{npc:11610}'s last task needs level 53. The Scarlet Knights and Magi (54-55) working the lumber camp just south-west of her are the closest camp."] = "A última tarefa de {npc:11610} exige nível 53. Os Cavaleiros e Magos Escarlates (54-55) que trabalham no acampamento madeireiro logo a sudoeste dela são o acampamento mais próximo.",
 	-- {area:192} Northridge Lumber Camp · {zone:1422} Western Plaguelands
 	-- plural, as words: Scarlet Knights = {npc:1833} Scarlet Knight
 	["grind on Scarlet Knights at {area:192}, {zone:1422}"] = "mate Cavaleiros Escarlates em {area:192}, {zone:1422}",
@@ -99,12 +101,11 @@ return {
 	-- {area:190} Hearthglen
 	["{area:190}'s Scarlets are level 58-60. Ride in to the high point marked on your map, look over the town, and get out."] = "Os Escarlates de {area:190} são de nível 58-60. Entre até o ponto alto marcado no seu mapa, observe a cidade e saia.",
 
-	-- Step 24: The Bulwark
-	-- {area:152} Bulwark
-	["The {area:152}"] = "{area:152}",
+	-- Step 24: Bulwark
 	-- {area:152} Bulwark
 	["Ride south-west past Felstone Farm and follow the road west back to the {area:152}."] = "Cavalgue para sudoeste, passando pela fazenda Pedravil, e siga a estrada para o oeste de volta a {area:152}.",
-	["Derrington's watchtowers, Vandis' cauldron and Mickey's barrel are done on a later visit: keep them."] = "As torres de vigia de Arcabuz, o caldeirão de Vandis e o barril de Guel ficam para uma visita posterior: guarde-as.",
+	-- {npc:11615} Mickey Levine
+	["Derrington's watchtowers, Vandis' cauldron and {npc:11615}'s barrel are done on a later visit: keep them."] = "As torres de vigia de Arcabuz, o caldeirão de Vandis e o barril de {npc:11615} ficam para uma visita posterior: guarde-as.",
 
 	-- Step 25: To Felwood
 	-- {zone:1448} Felwood
@@ -143,8 +144,8 @@ return {
 	-- Step 32: The Jaedenar moonwell
 	-- {area:1763} Jaedenar
 	["The {area:1763} moonwell"] = "O poço lunar de {area:1763}",
-	-- {area:1763} Jaedenar
-	["Back north to {area:1763}. Fill Greta's canteen at the corrupted moonwell in the middle of the southern camp."] = "De volta ao norte, até {area:1763}. Encha o cantil de Greta no poço lunar corrompido no meio do acampamento do sul.",
+	-- {area:1763} Jaedenar · {npc:10922} Greta Mosshoof
+	["Back north to {area:1763}. Fill {npc:10922}'s canteen at the corrupted moonwell in the middle of the southern camp."] = "De volta ao norte, até {area:1763}. Encha o cantil de {npc:10922} no poço lunar corrompido no meio do acampamento do sul.",
 
 	-- Step 33: Rakaiah
 	-- {npc:11018} Arko'narin · {npc:9518} Rakaiah · {area:1763} Jaedenar · {npc:11020} Remains of Trey Lightforge
@@ -158,13 +159,14 @@ return {
 
 	-- Step 35: The Jadefire moonwell
 	["The Jadefire moonwell"] = "O poço lunar Flamejade",
-	-- {area:1763} Jaedenar
-	["Ride back south past {area:1763} to the corrupted moonwell of the Jadefire satyrs and fill Winna's flasket there."] = "Cavalgue de volta para o sul, passando por {area:1763}, até o poço lunar corrompido dos sátiros Flamejade, e encha ali o frasquinho de Winna.",
+	-- {area:1763} Jaedenar · {npc:9996} Winna Hazzard
+	["Ride back south past {area:1763} to the corrupted moonwell of the Jadefire satyrs and fill {npc:9996}'s flasket there."] = "Cavalgue de volta para o sul, passando por {area:1763}, até o poço lunar corrompido dos sátiros Flamejade, e encha ali o frasquinho de {npc:9996}.",
 
-	-- Step 37: Winna's kitten
-	["Winna's kitten"] = "O gatinho da Winna",
-	-- {npc:10042} Corrupted Saber
-	["Take the kitten to the same moonwell and release it there; once it has turned into a {npc:10042}, bring it back to Winna and click on it to hand it over."] = "Leve o gatinho ao mesmo poço lunar e solte-o ali; quando ele virar um {npc:10042}, leve-o de volta a Winna e clique nele para entregá-lo.",
+	-- Step 37: Winna Hazzard's kitten
+	-- {npc:9996} Winna Hazzard
+	["{npc:9996}'s kitten"] = "O gatinho da {npc:9996}",
+	-- {npc:10042} Corrupted Saber · {npc:9996} Winna Hazzard
+	["Take the kitten to the same moonwell and release it there; once it has turned into a {npc:10042}, bring it back to {npc:9996} and click on it to hand it over."] = "Leve o gatinho ao mesmo poço lunar e solte-o ali; quando ele virar um {npc:10042}, leve-o de volta a {npc:9996} e clique nele para entregá-lo.",
 	["Jadefire moonwell"] = "Poço lunar Flamejade",
 
 	-- Step 39: Shatter Scar Vale
@@ -226,4 +228,5 @@ return {
 	["Walk into the {area:1769} tunnel beside {npc:15395} and never attack the Timbermaw furbolgs inside. The tunnel opens into {zone:1452}; follow the road east to {area:2255}, the goblin town where the next guide starts."] = "Entre no túnel de {area:1769} ao lado de {npc:15395} e nunca ataque os furbolgs Presamatos lá dentro. O túnel dá em {zone:1452}; siga a estrada para o leste até {area:2255}, a cidade goblin onde o próximo guia começa.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["The {area:152}"] = "{area:152}",
 }

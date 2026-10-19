@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Spanish (Latin America) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Spanish (Latin America) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -27,8 +28,8 @@ return {
 	["Twitching Antennae from the silithid"] = "Antenas agitadas de los silítidos",
 
 	-- Step 5: Thun'grim Firegaze
-	-- {area:380} Crossroads · {quest:1838} Brutal Armor
-	["Thun'grim camps beside the road east of the {area:380}. {quest:1838} is a level 30 quest; you can take it now and gather for it on the way."] = "Thun'grim acampa junto al camino al este de {area:380}. {quest:1838} es una misión de nivel 30; puedes aceptarla ya y reunir lo necesario por el camino.",
+	-- {npc:5878} Thun'grim Firegaze · {area:380} Crossroads · {quest:1838} Brutal Armor
+	["{npc:5878} camps beside the road east of the {area:380}. {quest:1838} is a level 30 quest; you can take it now and gather for it on the way."] = "{npc:5878} acampa junto al camino al este de {area:380}. {quest:1838} es una misión de nivel 30; puedes aceptarla ya y reunir lo necesario por el camino.",
 
 	-- Step 6: Roogug in Razorfen Kraul
 	-- {area:1717} Razorfen Kraul
@@ -66,8 +67,8 @@ return {
 	["Iron Bars: {npc:8673}"] = "Barras de hierro: {npc:8673}",
 
 	-- Step 10: Brutal Hauberk
-	-- {area:380} Crossroads · {quest:1848} Brutal Hauberk
-	["Back to Thun'grim beside the road east of the {area:380}. {quest:1848} is the first piece; he then sends you to three crafters for the rest."] = "Vuelve con Thun'grim junto al camino al este de {area:380}. {quest:1848} es la primera pieza; luego te manda con tres artesanos para el resto.",
+	-- {npc:5878} Thun'grim Firegaze · {area:380} Crossroads · {quest:1848} Brutal Hauberk
+	["Back to {npc:5878} beside the road east of the {area:380}. {quest:1848} is the first piece; he then sends you to three crafters for the rest."] = "Vuelve con {npc:5878} junto al camino al este de {area:380}. {quest:1848} es la primera pieza; luego te manda con tres artesanos para el resto.",
 
 	-- Step 11: Ula'elek
 	-- {npc:6408} Ula'elek · {area:367} Sen'jin Village · {zone:1411} Durotar
@@ -96,7 +97,4 @@ return {
 	["The Dragonmaw orcs camp in the middle of the {zone:1437}, south of the road; Raiders, Swamprunners, Centurions, Shadowwarders and Bonewarders all drop the Sturdy Dragonmaw Shinbones."] = "Los orcos Faucedraco acampan en medio de {zone:1437}, al sur del camino; Asaltantes, Correpantanos, Centuriones, Depositarios de sombras y Guardahuesos sueltan las Tibias de Faucedraco robustas ({item:7134}).",
 	-- plural, as words: Sturdy Dragonmaw Shinbones = {item:7134} Sturdy Dragonmaw Shinbone
 	["Sturdy Dragonmaw Shinbones"] = "Tibias de Faucedraco robustas ({item:7134})",
-
-	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Uncloven Satyr Hooves"] = "Pezuñas de sátiro sin rajar",
 }

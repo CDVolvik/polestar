@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (simplified) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (simplified) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -27,8 +28,8 @@ return {
 	["Twitching Antennae from the silithid"] = "从异种蝎身上获得颤抖的触角",
 
 	-- Step 5: Thun'grim Firegaze
-	-- {area:380} Crossroads · {quest:1838} Brutal Armor
-	["Thun'grim camps beside the road east of the {area:380}. {quest:1838} is a level 30 quest; you can take it now and gather for it on the way."] = "索恩格瑞姆在{area:380}以东的路边扎营。{quest:1838}是30级任务；你现在就可以接受，并在路上收集所需物品。",
+	-- {npc:5878} Thun'grim Firegaze · {area:380} Crossroads · {quest:1838} Brutal Armor
+	["{npc:5878} camps beside the road east of the {area:380}. {quest:1838} is a level 30 quest; you can take it now and gather for it on the way."] = "{npc:5878}在{area:380}以东的路边扎营。{quest:1838}是30级任务；你现在就可以接受，并在路上收集所需物品。",
 
 	-- Step 6: Roogug in Razorfen Kraul
 	-- {area:1717} Razorfen Kraul
@@ -66,8 +67,8 @@ return {
 	["Iron Bars: {npc:8673}"] = "铁锭：{npc:8673}",
 
 	-- Step 10: Brutal Hauberk
-	-- {area:380} Crossroads · {quest:1848} Brutal Hauberk
-	["Back to Thun'grim beside the road east of the {area:380}. {quest:1848} is the first piece; he then sends you to three crafters for the rest."] = "回到{area:380}以东路边的索恩格瑞姆处。{quest:1848}是第一件；之后他会让你去找三位工匠制作其余部件。",
+	-- {npc:5878} Thun'grim Firegaze · {area:380} Crossroads · {quest:1848} Brutal Hauberk
+	["Back to {npc:5878} beside the road east of the {area:380}. {quest:1848} is the first piece; he then sends you to three crafters for the rest."] = "回到{area:380}以东路边的{npc:5878}处。{quest:1848}是第一件；之后他会让你去找三位工匠制作其余部件。",
 
 	-- Step 11: Ula'elek
 	-- {npc:6408} Ula'elek · {area:367} Sen'jin Village · {zone:1411} Durotar
@@ -98,12 +99,7 @@ return {
 	["Sturdy Dragonmaw Shinbones"] = "{item:7134}",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Sturdy {quest:1846}"] = "结实的龙喉胫骨（任务：{quest:1846}）",
-	-- ["The Dragonmaw orcs camp in the middle of the {zone:1437}, south of the road; Raiders, Swamprunners, Centurions, Shadowwarders and Bonewarders all drop the Sturdy {quest:1846}."] = "龙喉兽人在{zone:1437}中部、道路以南扎营；龙喉袭击者、龙喉沼泽行者、龙喉百夫长、龙喉暗影守卫和龙喉白骨守卫都掉落结实的龙喉胫骨（任务：{quest:1846}）。",
 	-- ["The {area:287} Miners work the mine in the west of {zone:1424}; they drop the {item:7127}. Take the zeppelin from {zone:1454} to {zone:1420} and ride south through {zone:1421}."] = "希尔斯布莱德矿工（{area:287}）在{zone:1424}西部的矿洞里干活；他们掉落{item:7127}。从{zone:1454}乘飞艇前往{zone:1420}，再向南骑行穿过{zone:1421}。",
-	-- ["The {area:429} satyrs camp in eastern {zone:1440}, with the Felmusk satyrs further west; both drop Uncloven {quest:1842}."] = "{area:429}萨特在{zone:1440}东部扎营，魔草萨特在更西边；两者都掉落完整的萨特之蹄（任务：{quest:1842}）。",
-	-- ["Uncloven Satyr Hooves"] = "完整的萨特之蹄",
-	-- ["Uncloven {quest:1842}"] = "完整的萨特之蹄（任务：{quest:1842}）",
 	-- ["{area:287} Miners"] = "希尔斯布莱德矿工（{area:287}）",
 	-- ["{item:7127} from the {area:287} Miners"] = "从希尔斯布莱德矿工（{area:287}）身上获得{item:7127}",
 }

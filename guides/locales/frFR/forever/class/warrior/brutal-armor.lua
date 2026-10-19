@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in French (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in French words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -27,8 +28,8 @@ return {
 	["Twitching Antennae from the silithid"] = "Antennes mobiles sur les silithides",
 
 	-- Step 5: Thun'grim Firegaze
-	-- {area:380} Crossroads · {quest:1838} Brutal Armor
-	["Thun'grim camps beside the road east of the {area:380}. {quest:1838} is a level 30 quest; you can take it now and gather for it on the way."] = "Thun'grim campe au bord de la route à l'est de {area:380}. {quest:1838} est une quête de niveau 30 ; vous pouvez la prendre maintenant et rassembler ce qu'il faut en chemin.",
+	-- {npc:5878} Thun'grim Firegaze · {area:380} Crossroads · {quest:1838} Brutal Armor
+	["{npc:5878} camps beside the road east of the {area:380}. {quest:1838} is a level 30 quest; you can take it now and gather for it on the way."] = "{npc:5878} campe au bord de la route à l'est de {area:380}. {quest:1838} est une quête de niveau 30 ; vous pouvez la prendre maintenant et rassembler ce qu'il faut en chemin.",
 
 	-- Step 6: Roogug in Razorfen Kraul
 	-- {area:1717} Razorfen Kraul
@@ -66,8 +67,8 @@ return {
 	["Iron Bars: {npc:8673}"] = "Barres de fer : {npc:8673}",
 
 	-- Step 10: Brutal Hauberk
-	-- {area:380} Crossroads · {quest:1848} Brutal Hauberk
-	["Back to Thun'grim beside the road east of the {area:380}. {quest:1848} is the first piece; he then sends you to three crafters for the rest."] = "Retournez voir Thun'grim au bord de la route à l'est de {area:380}. {quest:1848} est la première pièce ; il vous envoie ensuite voir trois artisans pour le reste.",
+	-- {npc:5878} Thun'grim Firegaze · {area:380} Crossroads · {quest:1848} Brutal Hauberk
+	["Back to {npc:5878} beside the road east of the {area:380}. {quest:1848} is the first piece; he then sends you to three crafters for the rest."] = "Retournez voir {npc:5878} au bord de la route à l'est de {area:380}. {quest:1848} est la première pièce ; il vous envoie ensuite voir trois artisans pour le reste.",
 
 	-- Step 11: Ula'elek
 	-- {npc:6408} Ula'elek · {area:367} Sen'jin Village · {zone:1411} Durotar
@@ -98,12 +99,7 @@ return {
 	["Sturdy Dragonmaw Shinbones"] = "Solides tibias de Dragonmaw ({item:7134})",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Sturdy {quest:1846}"] = "Solides {quest:1846}",
-	-- ["The Dragonmaw orcs camp in the middle of the {zone:1437}, south of the road; Raiders, Swamprunners, Centurions, Shadowwarders and Bonewarders all drop the Sturdy {quest:1846}."] = "Les orcs Dragonmaw campent au centre de {zone:1437}, au sud de la route ; Écumeurs, Arpenteurs, Centurions, Veilleurs des ombres et Gardiens lâchent tous les Solides {quest:1846}.",
 	-- ["The {area:287} Miners work the mine in the west of {zone:1424}; they drop the {item:7127}. Take the zeppelin from {zone:1454} to {zone:1420} and ride south through {zone:1421}."] = "Les Mineurs d'{area:287} travaillent dans la mine à l'ouest de {zone:1424} ; ils lâchent l'{item:7127}. Prenez le zeppelin d'{zone:1454} pour {zone:1420} et chevauchez vers le sud à travers {zone:1421}.",
-	-- ["The {area:429} satyrs camp in eastern {zone:1440}, with the Felmusk satyrs further west; both drop Uncloven {quest:1842}."] = "Les satyres de {area:429} campent dans l'est d'{zone:1440}, et les satyres Gangremusc plus à l'ouest ; tous lâchent des {quest:1842} fendus.",
-	-- ["Uncloven Satyr Hooves"] = "Sabots fendus de satyre",
-	-- ["Uncloven {quest:1842}"] = "{quest:1842} fendus",
 	-- ["{area:287} Miners"] = "Mineurs d'{area:287}",
 	-- ["{item:7127} from the {area:287} Miners"] = "{item:7127} sur les Mineurs d'{area:287}",
 }

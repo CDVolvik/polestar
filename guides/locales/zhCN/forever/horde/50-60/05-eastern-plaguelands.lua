@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Chinese (simplified) (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Chinese (simplified) words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Fly to Light's Hope Chapel
@@ -97,8 +98,8 @@ return {
 	["Only if a {quest:8471} dropped for you: {npc:11558} waits at the {zone:1448} entrance of {area:1769}, and speaks to you only at Neutral with the Timbermaw."] = "仅当你掉落了{quest:8471}时：{npc:11558}在{area:1769}的{zone:1448}入口处等候，只有你在木喉要塞声望达到中立时才会和你说话。",
 
 	-- Step 22: Rabine Saturna
-	-- {area:1769} Timbermaw Hold · {zone:1450} Moonglade · {area:2361} Nighthaven
-	["Go through {area:1769} and take the {zone:1450} branch of the tunnel. Rabine is in {area:2361}."] = "穿过{area:1769}，走隧道通往{zone:1450}的岔路。拉比恩在{area:2361}。",
+	-- {area:1769} Timbermaw Hold · {zone:1450} Moonglade · {npc:11801} Rabine Saturna · {area:2361} Nighthaven
+	["Go through {area:1769} and take the {zone:1450} branch of the tunnel. {npc:11801} is in {area:2361}."] = "穿过{area:1769}，走隧道通往{zone:1450}的岔路。{npc:11801}在{area:2361}。",
 	-- {zone:1451} Silithus
 	["Both quests lead to {zone:1451}: keep them."] = "两个任务都通往{zone:1451}：留着它们。",
 
@@ -134,8 +135,8 @@ return {
 	["{quest:3914} goes back to Linken in Un'Goro: keep it."] = "{quest:3914}要交还给安戈洛的林克：留着它。",
 
 	-- Step 29: Marvon Rivetseeker
-	-- {area:1336} Lost Rigger Cove · {area:976} Gadgetzan
-	["Marvon camps by the {area:1336} road, south of {area:976}."] = "玛尔冯在{area:976}南边通往{area:1336}的路旁扎营。",
+	-- {npc:7771} Marvon Rivetseeker · {area:1336} Lost Rigger Cove · {area:976} Gadgetzan
+	["{npc:7771} camps by the {area:1336} road, south of {area:976}."] = "{npc:7771}在{area:976}南边通往{area:1336}的路旁扎营。",
 
 	-- Step 30: Hippogryph eggs
 	["Hippogryph eggs"] = "角鹰兽蛋",

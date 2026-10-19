@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in German (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in German words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Step 1: Theramore
@@ -63,14 +64,16 @@ return {
 	["only if you carry a {item:3853} (a blacksmith's craft)"] = "nur wenn du einen {item:3853} dabeihast (von Schmieden hergestellt)",
 
 	-- Step 15: Balos Jacken
-	["The deserters camp south of the road, west of Mudcrush's hut."] = "Die Deserteure lagern südlich der Straße, westlich von Mudcrushs Hütte.",
+	-- {npc:4503} Mudcrush Durtfeet
+	["The deserters camp south of the road, west of {npc:4503}'s hut."] = "Die Deserteure lagern südlich der Straße, westlich von {npc:4503}s Hütte.",
 
 	-- Step 17: The Affray
 	-- {area:392} Ratchet · {area:720} Fray Island · {area:391} Merchant Coast · {npc:6236} Klannoc Macleod · {npc:6238} Big Will
 	["On the ride north to {area:392}, {area:720} lies off the {area:391} south of the town: wade over the sand bar shallows. {npc:6236} sends four challengers and then {npc:6238} (level 33) at you, one at a time."] = "Auf dem Ritt nach Norden nach {area:392} liegt {area:720} vor der {area:391} südlich des Orts: Wate über die Untiefen der Sandbank. {npc:6236} schickt dir nacheinander vier Herausforderer und dann {npc:6238} (Stufe 33) entgegen.",
 	-- {npc:6238} Big Will
 	["Defeat the challengers and {npc:6238}"] = "Besiege die Herausforderer und {npc:6238}",
-	["Klannoc offers The Windwatcher next (1791): the Whirlwind weapon chain, with an elite at the end, is in the Warrior class guide Whirlwind Weapon."] = "Klannoc bietet als Nächstes Der Windbehüter (1791) an: Die Questreihe um die Waffe für Wirbelwind, mit einem Elite am Ende, steht im Kriegerklassen-Guide „Wirbelwaffe“.",
+	-- {npc:6236} Klannoc Macleod
+	["{npc:6236} offers The Windwatcher next (1791): the Whirlwind weapon chain, with an elite at the end, is in the Warrior class guide Whirlwind Weapon."] = "{npc:6236} bietet als Nächstes Der Windbehüter (1791) an: Die Questreihe um die Waffe für Wirbelwind, mit einem Elite am Ende, steht im Kriegerklassen-Guide „Wirbelwaffe“.",
 
 	-- Step 18: Ratchet
 	-- {zone:1413} Barrens · {area:392} Ratchet · {npc:16227} Bragok · {area:35} Booty Bay
@@ -101,8 +104,8 @@ return {
 
 	-- Step 22: Bloodsail pirates
 	["Bloodsail pirates"] = "Piraten der Blutsegelbukaniere",
-	-- {area:43} Wild Shore · {area:35} Booty Bay
-	["Every Bloodsail drops Snuff and one of them carries Dizzy's eye; the Swashbucklers walk the shore just north of town. The charts and orders lie in the pirate camp on the {area:43}, south of {area:35}."] = "Jeder Blutsegelbukanier lässt Schnupftabak fallen, und einer trägt Dizzys Auge; die Schwadroneure gehen gleich nördlich des Orts am Ufer entlang. Die Karten und Befehle liegen im Piratenlager an der {area:43} südlich von {area:35}.",
+	-- {npc:2493} Dizzy One-Eye · {area:43} Wild Shore · {area:35} Booty Bay
+	["Every Bloodsail drops Snuff and one of them carries {npc:2493}'s eye; the Swashbucklers walk the shore just north of town. The charts and orders lie in the pirate camp on the {area:43}, south of {area:35}."] = "Jeder Blutsegelbukanier lässt Schnupftabak fallen, und einer trägt {npc:2493}s Auge; die Schwadroneure gehen gleich nördlich des Orts am Ufer entlang. Die Karten und Befehle liegen im Piratenlager an der {area:43} südlich von {area:35}.",
 
 	-- Step 24: The Bloodsail captains
 	["The Bloodsail captains"] = "Die Kapitäne der Blutsegelbukaniere",
@@ -132,8 +135,9 @@ return {
 	-- {npc:2616} Privateer Groy
 	["for {npc:2616} in Theramore: keep it"] = "für {npc:2616} in Theramore: Behalte es",
 
-	-- Step 30: Maury and Jon-Jon
-	["Maury and Jon-Jon"] = "Maury und Jon-Jon",
+	-- Step 30: Maury "Club Foot" Wilkins and Jon-Jon the Crow
+	-- {npc:2535} Maury "Club Foot" Wilkins · {npc:2536} Jon-Jon the Crow
+	["{npc:2535} and {npc:2536}"] = "{npc:2535} und {npc:2536}",
 	-- {npc:2535} Maury "Club Foot" Wilkins · {npc:2536} Jon-Jon the Crow
 	["Ride north to the hills west of the road. {npc:2535} and {npc:2536} stand together just north of Zanzil's village."] = "Reite nach Norden in die Hügel westlich der Straße. {npc:2535} und {npc:2536} stehen zusammen gleich nördlich von Zanzils Dorf.",
 
@@ -170,8 +174,8 @@ return {
 
 	-- Step 37: Booty Bay
 	["MacKinley's next task sends you after elite ogres: skip it."] = "MacKinleys nächster Auftrag schickt dich zu Elite-Ogern: Überspring ihn.",
-	-- {zone:1441} Thousand Needles
-	["Crank's next Zanzil errand starts in {zone:1441}: skip it."] = "Cranks nächster Zanzil-Auftrag beginnt in {zone:1441}: Überspring ihn.",
+	-- {npc:2498} Crank Fizzlebub · {zone:1441} Thousand Needles
+	["{npc:2498}'s next Zanzil errand starts in {zone:1441}: skip it."] = "{npc:2498}s nächster Zanzil-Auftrag beginnt in {zone:1441}: Überspring ihn.",
 
 	-- Step 38: Stormwind
 	-- {npc:1141} Angus Stern · {object:2169} Blue Recluse · {npc:5384} Brohann Caskbelly · {object:28027} Dwarven District
@@ -242,8 +246,8 @@ return {
 	["for {npc:5635} at {area:348}: keep it"] = "für {npc:5635} in {area:348}: Behalte es",
 
 	-- Step 50: Ironforge
-	-- {area:2257} Deeprun Tram · {object:28027} Dwarven District · {object:32356} Hall of Explorers · {npc:1356} Prospector Stormpike · {npc:2786} Gerrig Bonegrip · {object:32383} Forlorn Cavern · {area:144} Thelsamar
-	["Take the {area:2257} from the {object:28027}. Roetten is in the Reclaimers' hall by the {object:32356}, {npc:1356} in the hall itself, {npc:2786} in the {object:32383}. The next guide flies on to {area:144}."] = "Nimm die {area:2257} vom {object:28027}. Roetten ist in der Halle der Forscherliga beim {object:32356}, {npc:1356} in der Halle selbst, {npc:2786} im {object:32383}. Der nächste Guide fliegt weiter nach {area:144}.",
+	-- {area:2257} Deeprun Tram · {object:28027} Dwarven District · {npc:5637} Roetten Stonehammer · {object:32356} Hall of Explorers (no name in this language: may be words) · {npc:1356} Prospector Stormpike · {npc:2786} Gerrig Bonegrip · {object:32383} Forlorn Cavern · {area:144} Thelsamar
+	["Take the {area:2257} from the {object:28027}. {npc:5637} is in the Reclaimers' hall by the {object:32356}, {npc:1356} in the hall itself, {npc:2786} in the {object:32383}. The next guide flies on to {area:144}."] = "Nimm die {area:2257} vom {object:28027}. {npc:5637} ist in der Halle der Forscherliga beim {object:32356}, {npc:1356} in der Halle selbst, {npc:2786} im {object:32383}. Der nächste Guide fliegt weiter nach {area:144}.",
 	-- {npc:1356} Prospector Stormpike · {npc:1344} Prospector Ironband · {zone:1432} Loch Modan
 	["{npc:1356}: for {npc:1344} in {zone:1432}, keep it"] = "{npc:1356}: für {npc:1344} in {zone:1432}, behalte es",
 	-- {zone:1453} Stormwind
@@ -262,7 +266,5 @@ return {
 	["{npc:7955}: other colours, 20g"] = "{npc:7955}: andere Farben, 20g",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["Gazban swims off the north-west coast, on the northern loop"] = "Gazban schwimmt vor der Nordwestküste, auf der nördlichen Runde",
 	-- ["Klannoc offers The Windwatcher next (1791): the {spell:1680} weapon chain, with an elite at the end, is in the Warrior class guide Whirlwind Weapon."] = "Klannoc bietet als Nächstes Der Windbehüter (1791) an: Die Questreihe um die Waffe für {spell:1680}, mit einem Elite am Ende, steht im Kriegerklassen-Guide „Wirbelwind-Waffe“.",
-	-- ["Ride north-west from the mine to the bay on the north-west coast. The Giant Clams lie on its floor and hold the pearls; Gazban swims among them and drops the {item:4034}."] = "Reite von der Mine nach Nordwesten zur Bucht an der Nordwestküste. Die Riesenmuscheln liegen auf ihrem Grund und enthalten die Perlen; Gazban schwimmt zwischen ihnen und lässt das {item:4034} fallen.",
 }

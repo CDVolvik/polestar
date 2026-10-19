@@ -3,6 +3,7 @@
 -- Translate the right-hand sides; "" shows the English. Keep each {kind:id} as it is: the game shows its
 -- name there in Korean (the English is listed above the line). A name the English has in the plural, as words,
 -- may be written with the singular's token from its "plural, as words" line: "Bandidos ({npc:251918})", "{npc:251918} ×8".
+-- A token marked "no name in this language" would show in English: write that name in Korean words instead.
 -- The comments are rewritten by sync.
 return {
 	-- Guide
@@ -30,15 +31,16 @@ return {
 	["{npc:6266} stands in the tower on the hill above {area:392}, beside {npc:6251}."] = "{npc:6266}은(는) {area:392} 위 언덕의 탑에서 {npc:6251} 옆에 서 있습니다.",
 
 	-- Step 6: Robes of Arcana
-	-- {item:5770} Robes of Arcana · {item:3577} Gold Bar · {item:2776} Gold Ore
-	["Bring Menara a {item:5770}: tailors sew it from a pattern that drops; otherwise buy one at the Auction House. Her next errand needs a {item:3577}: smelted from {item:2776}, or from the Auction House."] = "미네라에게 {item:5770}을(를) 가져가십시오: 재봉사는 몹이 떨어뜨리는 도안으로 만들 수 있고, 아니면 경매장에서 구매하십시오. 다음 심부름에는 {item:3577}이(가) 필요합니다: {item:2776}을(를) 제련하거나 경매장에서 구하십시오.",
+	-- {npc:6266} Menara Voidrender · {item:5770} Robes of Arcana · {item:3577} Gold Bar · {item:2776} Gold Ore
+	["Bring {npc:6266} a {item:5770}: tailors sew it from a pattern that drops; otherwise buy one at the Auction House. Her next errand needs a {item:3577}: smelted from {item:2776}, or from the Auction House."] = "{npc:6266}에게 {item:5770}을(를) 가져가십시오: 재봉사는 몹이 떨어뜨리는 도안으로 만들 수 있고, 아니면 경매장에서 구매하십시오. 다음 심부름에는 {item:3577}이(가) 필요합니다: {item:2776}을(를) 제련하거나 경매장에서 구하십시오.",
 
 	-- Step 7: Xizk Goodstitch
 	-- {npc:2670} Xizk Goodstitch · {area:35} Booty Bay · {item:3577} Gold Bar
 	["{npc:2670} sells tailoring supplies in {area:35}. Bring him the {item:3577}."] = "{npc:2670}은(는) {area:35}에서 재봉 용품을 팝니다. 그에게 {item:3577}을(를) 가져가십시오.",
 
-	-- Step 8: Back to Menara
-	["Back to Menara"] = "미네라에게 돌아가기",
+	-- Step 8: Back to Menara Voidrender
+	-- {npc:6266} Menara Voidrender
+	["Back to {npc:6266}"] = "{npc:6266}에게 돌아가기",
 
 	-- Step 9: Desolace demons
 	-- {zone:1443} Desolace
@@ -48,8 +50,9 @@ return {
 	["The Hatefury satyrs of {area:603}, in north-eastern {zone:1443}, carry the blood; the Lesser Infernals of Mannoroc Coven, in the south, the stone."] = "{zone:1443} 북동쪽 {area:603}의 서릿발분노 사티로스가 피를, 남쪽 만노로크 소굴의 하급 지옥불정령이 돌을 가지고 있습니다.",
 	["Vials of Hatefury Blood"] = "서릿발분노의 사티로스 피",
 
-	-- Step 10: Menara again
-	["Menara again"] = "다시 미네라에게",
+	-- Step 10: Menara Voidrender again
+	-- {npc:6266} Menara Voidrender
+	["{npc:6266} again"] = "다시 {npc:6266}에게",
 
 	-- Step 11: Fine Gold Thread
 	-- {npc:2670} Xizk Goodstitch · {area:35} Booty Bay
@@ -61,8 +64,8 @@ return {
 	["The Burning Exiles, fire elementals in western {zone:1417}, drop the coal."] = "{zone:1417} 서부의 불의 정령인 떠도는 불의 정령이 석탄을 떨어뜨립니다.",
 
 	-- Step 13: The Completed Robe
-	-- {item:6265} Soul Shard
-	["Back to Menara with the thread, the coal and a {item:6265}. Wait while she completes the robe, then speak to her again."] = "실, 석탄, {item:6265}을(를) 가지고 미네라에게 돌아가십시오. 로브를 완성할 때까지 기다린 뒤 다시 말을 거십시오.",
+	-- {npc:6266} Menara Voidrender · {item:6265} Soul Shard
+	["Back to {npc:6266} with the thread, the coal and a {item:6265}. Wait while she completes the robe, then speak to her again."] = "실, 석탄, {item:6265}을(를) 가지고 {npc:6266}에게 돌아가십시오. 로브를 완성할 때까지 기다린 뒤 다시 말을 거십시오.",
 	["Wait for the robe"] = "로브 완성 기다리기",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
