@@ -271,6 +271,30 @@ test(`${DUN_MOROGH}: thmastin's report: Camping 101: Cooking waits for the retur
 	assert.equal(list[camping].step, list[at(list, 'turnin 384 (Beer Basted Boar Ribs)', is('turnin', 384))].step, 'on the same visit as the ribs');
 });
 
+test(`${DUN_MOROGH}: thmastin's report: The Reports is taken from Senir with Frostmane Hold and handed to the senator on the way to the tram`, { skip }, () => {
+	const list = goals(DUN_MOROGH);
+	const accept = at(list, 'accept 291 (The Reports)', is('accept', 291));
+	assert.equal(accept, at(list, 'turnin 287 (Frostmane Hold)', is('turnin', 287)) + 1, 'taken right after Frostmane Hold is handed in');
+	const turnin = at(list, 'turnin 291 (Senator Barin Redstone)', is('turnin', 291));
+	assert.ok(turnin > accept, 'handed in later');
+	assert.equal(list[turnin].step, list[at(list, 'goto Deeprun Tram', (g) => g.t === 'goto' && g.text === 'Deeprun Tram')].step, 'in the Deeprun Tram step');
+});
+
+test(`${DUN_MOROGH}: thmastin's report: kills on the way are counted on the way and finished after`, { skip }, () => {
+	const list = goals(DUN_MOROGH);
+	for (const [quest, npc, along, name] of [
+		[99160, 276003, (g) => g.t === 'collect' && g.quest === 99162, "Rime's Wrath's elementals, with Treacherous Cold's rifles"],
+		[319, 1196, (g) => g.t === 'goto' && g.text === 'Frostmane Hold', "A Favor for Evershine's bears, on the walk to Frostmane Hold"],
+	]) {
+		const kills = list.filter(({ goal }) => (goal.t === 'kill' || goal.t === 'collect') && goal.quest === quest && goal.npc === npc);
+		const early = kills.find(({ goal }) => goal.optional);
+		assert.ok(early, `${name}: an optional kill goal`);
+		assert.equal(early.step, list[at(list, name, along)].step, `${name}: in that step`);
+		const later = kills.find(({ goal }) => !goal.optional);
+		assert.ok(later && later.step !== early.step && list.indexOf(later) > list.indexOf(early), `${name}: a required kill goal in a later step finishes it`);
+	}
+});
+
 test(`${DUN_MOROGH}: thmastin's report: Ammo for Rumbleshot is taken beside Beldin and handed in before the walk back to Kharanos`, { skip }, () => {
 	const list = goals(DUN_MOROGH);
 	assert.equal(at(list, 'accept 5541 (Loslor Rudge)', is('accept', 5541)), at(list, 'turnin 400 (Beldin)', is('turnin', 400)) + 1, 'Loslor right after Beldin');

@@ -14,7 +14,8 @@ next forever/alliance/02-westfall
 # Frostmane Hold -> back east to Kharanos and the depot -> Misty Pine
 # Refuge -> Amberstill Ranch and the
 # Gol'Bolar Quarry -> North Gate Outpost -> hearth to Kharanos -> Brewnall ->
-# South Gate Outpost -> Farsen above the quarry -> Old Icebeard's cave ->
+# Farsen above the quarry -> South Gate Outpost -> back to Mehr and Farsen ->
+# Old Icebeard's cave ->
 # Ironforge (training) and the tram to Stormwind.
 #
 # Order changes against the export:
@@ -73,10 +74,15 @@ next forever/alliance/02-westfall
 # - Brewnall's quests are taken before Frostmane Hold, so the bears, boars
 #   and leopards killed on the way to the Hold count toward "A Favor for
 #   Evershine" (319) instead of being wasted.
+# - Farsen's quests and Senator Mehr's "The Public Servant" (433) are taken
+#   on the walk east to the South Gate Outpost, so the Bonesnappers and Dark
+#   Iron Spies along the way count, and handed in on the way back west,
+#   instead of reaching the South Gate first and walking back east for the
+#   kills (played at level 11 in a recorded Dwarf Paladin run).
 #
-# Left out: "The Reports" (291) and "Stout to Kadrell" (414) are accepted by
-# the route but never turned in (the route goes to Westfall, not Ironforge's
-# senator or Loch Modan).
+# Left out: "Stout to Kadrell" (414) is never turned in (the route goes to
+# Westfall, not Loch Modan). "The Reports" (291) is handed to Senator Barin
+# Redstone on the way through Ironforge to the Deeprun Tram.
 # "The Adventurer" (96628) is taken from Thalos once "Senir's Observations"
 # (282) is handed in, and handed to Eric before "The Great Outdoors" (96608),
 # which it leads to: taken after it, Thalos no longer offers it.
@@ -105,7 +111,11 @@ next forever/alliance/02-westfall
 #   Grif Wildheart's taming quests (6064, 6084, 6085: Tame Beast) at
 #   Kharanos after the hearth; Training the Beast (6086) in Ironforge.
 # - Paladin (Dwarf): the Tome of Divinity quests (2999 to 1785, Redemption)
-#   at the end: Ironforge, Narm Faulk by Helm's Bed Lake, Ironforge.
+#   at the end: Ironforge, Narm Faulk by Helm's Bed Lake, then Thelsamar in
+#   Loch Modan for Honor Students (6387, 6391, 6388) and its flight back to
+#   Ironforge: about 70 seconds more than walking back up to the gates, for
+#   about 1,000 XP and the Thelsamar flight point (recorded Dwarf Paladin
+#   run). Return to Brock (6392) is left for a later visit to Loch Modan.
 # - Priest: Desperate Prayer (5637, Dwarf; handed in at the Cathedral of Light
 #   on arrival in Stormwind) and Confounding Flash (94824, Gnome; Ironforge) from
 #   Maxan Anvol in Kharanos.
@@ -357,6 +367,9 @@ step Brewnall Village
   accept 315
   accept 319
   accept 310                                  -- Marleth Barleybrew
+  kill 1196 quest 319 optional                -- Ice Claw Bear, on the way to the Hold
+  kill 1127 quest 319 optional                -- Elder Crag Boar, on the way
+  kill 1201 quest 319 optional                -- Snow Leopard, on the way
   goto 25.1,50.94 live "Frostmane Hold"
 
 step Frostmane Hold
@@ -392,6 +405,7 @@ step Kharanos
   turnin 310                                  -- The Unguarded Thunder Ale Barrel in the distillery
   accept 311
   turnin 287                                  -- Senir Whitebeard
+  accept 291                                  -- Senir Whitebeard: Senator Barin Redstone in Ironforge takes it
   train class
 
 step Steelgrill's Depot
@@ -413,12 +427,16 @@ step Father Gavin
   accept 99160
   accept 99162
 
-step The cold
-  tip Minor Ice Elementals drift around the frozen lake by the refuge. The three rifles are in the snow around it.
-  kill 276003 quest 99160                     -- Minor Ice Elemental
+step Treacherous Cold
+  tip The three rifles lie in the snow around the frozen lake by the refuge. Minor Ice Elementals drift around the lake and along the way: kill them as you go for Rime's Wrath.
   collect 286360 quest 99162.1                -- Stoneanvil's Rifle
   collect 286359 quest 99162.2                -- Sunhammer's Rifle
   collect 286358 quest 99162.3                -- Coalbeard's Rifle
+  kill 276003 quest 99160 optional            -- Minor Ice Elemental, on the way
+
+step Rime's Wrath
+  tip Finish off the Minor Ice Elementals around the small lake just west of the refuge if you are still short.
+  kill 276003 quest 99160 @56.37,44.73 live   -- Minor Ice Elemental, around the small lake
 
 step Father Gavin
   turnin 99162
@@ -511,13 +529,26 @@ step Brewnall Village
   turnin 311                                  -- Marleth Barleybrew
   turnin 315                                  -- Rejold Barleybrew
   accept 413
-  accept 415
-  turnin 415
 
 # ---------------------------------------------------------------- South Gate and Farsen
 
 step Steelgrill's Depot
   accept 96408                                -- Beldin Steelgrill
+
+step Earthseer Farsen
+  tip Farsen camps on the ridge overlooking the Gol'Bolar Quarry from the west. Talk to him for his farsight.
+  turnin 96408
+  accept 96392
+  turnin 96392
+  accept 96390
+  accept 433                                  -- Senator Mehr Stonehallow, in the quarry
+
+step Spies and Bonesnappers
+  tip Rockjaw Bonesnappers prowl the quarry and Helm's Bed Lake; Dark Iron Spies sneak around the lake shore, on the way east to the South Gate. One spy drops the Dark Iron Map.
+  kill 1117 quest 433                         -- Rockjaw Bonesnapper
+  kill 6123 quest 96390                       -- Dark Iron Spy
+  collect 274268                              -- Dark Iron Map
+  accept 96391
 
 step South Gate Outpost
   tip Follow the road all the way east to the South Gate Outpost at the Loch Modan tunnel.
@@ -558,21 +589,6 @@ step Back to Bruegs Kindleborn
   tip Back through the tunnel to Bruegs' cave above the farm.
   turnin 94468 reward 5176 263412             -- Bruegs Kindleborn: Searing Totem, your Fire Totem and the Totem of Charged Flames
 
-step Earthseer Farsen
-  tip Farsen camps on the ridge overlooking the Gol'Bolar Quarry from the west. Talk to him for his farsight.
-  turnin 96408
-  accept 96392
-  turnin 96392
-  accept 96390
-  accept 433                                  -- Senator Mehr Stonehallow, in the quarry
-
-step Spies and Bonesnappers
-  tip Rockjaw Bonesnappers prowl the quarry and Helm's Bed Lake; Dark Iron Spies sneak around the lake shore. One spy drops the Dark Iron Map.
-  kill 1117 quest 433                         -- Rockjaw Bonesnapper
-  kill 6123 quest 96390                       -- Dark Iron Spy
-  collect 274268                              -- Dark Iron Map
-  accept 96391
-
 step Senator Mehr Stonehallow
   turnin 433
 
@@ -583,7 +599,7 @@ step Earthseer Farsen
 # ---------------------------------------------------------------- Old Icebeard
 
 step Tundra MacGrann
-  tip Tundra MacGrann camps in Chill Breeze Valley, south of Brewnall. His meats are in the locker in Old Icebeard's cave to the north-east of his camp: grab them and leave quickly.
+  tip Tundra MacGrann camps in Chill Breeze Valley, south of Brewnall. His meats are in the locker in Old Icebeard's cave, north-east of his camp. Old Icebeard is an elite yeti: wait out of sight until he wanders off on his patrol, then take the meats and leave before he comes back. You don't need to fight him.
   accept 312                                  -- Tundra MacGrann
   collect 2667 quest 312.1                    -- MacGrann's Dried Meats: the meat locker
   turnin 312
@@ -593,7 +609,7 @@ step Tundra MacGrann
 step The Tome of Divinity
   only Paladin
   zone Ironforge
-  tip Follow the road up to Ironforge and take the Mystic Ward: Brandur Ironhammer, Tiza Battleforge and Muiredon Battleforge are in the Hall of Mysteries. John Turner, a beggar, wanders the city. He asks for ten Linen Cloth: the troggs and trolls of Dun Morogh drop it, and the Auction House sells it.
+  tip Follow the road up to Ironforge and take the Mystic Ward: Brandur Ironhammer, Tiza Battleforge and Muiredon Battleforge are in the Hall of Mysteries, Tiza and Muiredon on its upper floor: the stairs up start just north-east of Brandur. John Turner, a beggar, wanders the city. He asks for ten Linen Cloth: the troggs and trolls of Dun Morogh drop it, and the Auction House sells it.
   accept 2999                                 -- Brandur Ironhammer
   turnin 2999                                 -- Tiza Battleforge
   accept 1646                                 -- From the Tome of Divinity she gives you
@@ -612,11 +628,28 @@ step The Tome of Divinity
 step Narm Faulk
   only Paladin
   zone Dun Morogh
-  tip Ride back out of Ironforge and east along the road to Helm's Bed Lake. Narm Faulk lies dead by its shore: use the Symbol of Life on him. The Dark Iron Spies sneaking around the lake carry the script.
+  tip Head back out of Ironforge and east along the road to Helm's Bed Lake. Narm Faulk lies dead by its shore: use the Symbol of Life on him. The Dark Iron Spies sneaking around the lake carry the script.
   complete 1783                               -- Use the Symbol of Life on Narm Faulk
   turnin 1783                                 -- Narm Faulk
   accept 1784
   collect 6847 quest 1784.1                   -- Dark Iron Script: Dark Iron Spies
+
+step Honor Students
+  only Paladin
+  zone Loch Modan
+  tip Instead of walking back up to Ironforge, go east through the South Gate tunnel into Loch Modan and follow the road north to Thelsamar. Brock Stoneseeker stands on the east side of town, past the Stoutlager Inn; his errand pays for a flight back to Ironforge.
+  accept 6387                                 -- Brock Stoneseeker
+  turnin 6387                                 -- Thorgrum Borrelson, the gryphon master
+  accept 6391
+  getfp "Thelsamar"
+  fly "Ironforge"
+
+step Golnir Bouldertoe
+  only Paladin
+  zone Ironforge
+  turnin 6391                                 -- Golnir Bouldertoe, in the Great Forge
+  accept 6388
+  turnin 6388                                 -- Gryth Thurden, the gryphon master where you landed
 
 step Muiredon Battleforge
   only Paladin
@@ -637,6 +670,7 @@ step The Deeprun Tram
   zone Ironforge
   tip Follow the road up to Ironforge and train with your class trainer. The Deeprun Tram leaves from Tinker Town, in the east of the city. Ride it to Stormwind.
   train class
+  turnin 291                                  -- Senator Barin Redstone, in the High Seat with King Magni
   accept 97263 optional                       -- Misplaced Packages, by the mailbox in Tinker Town
   turnin 97263 optional                       -- Eldrun Stormbreaker, the shaman trainer, north of the Great Forge
   goto 78.0,51.4 "Deeprun Tram"
