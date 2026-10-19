@@ -4,7 +4,8 @@
 //
 // parseGuide(text, file, diag) -> guide | null
 //   guide = { file, id, line, header: { ... }, lines: { <headerKey>: line, pros: [line], cons: [line], rewards: [line] }, steps: [step] }
-//   step  = { line, title, only, tip, when?: [predicate], goals: [goal] }
+//   step  = { line, title, only, tip, image?, when?: [predicate], goals: [goal] }
+//   (image: { path, ext, w, h, line }, images.js parseImagePath; w/h null unless written)
 //   (when: tools/lib/dsl/when.js predicates, each with its line; only on a step that has one)
 //   goal  = { line, verb, zone, note, ...positional/modifier fields }
 // `zone` on a goal is the zone spec in effect ({ name } | { map }, with line),
@@ -20,6 +21,7 @@
 const { lexLine } = require('./lexer');
 const { parseConditions, FACTIONS } = require('./conditions');
 const { parseWhen } = require('./when');
+const { parseImagePath, parseImageSize } = require('./images');
 const { levelPoint } = require('../game/xp');
 
 // Slash-separated segments, none empty (an empty one would make a hidden `.lua` file).
@@ -32,7 +34,7 @@ const HEADER_KEYS = ['guide', 'title', 'levels', 'zone', 'faction', 'race', 'cla
 // Lines inside a step that are not goals.
 // `loop`: the step's `goto` points are the spawn areas of its kill, collect
 // and interact goals (resolve.js, applyLoop).
-const STEP_KEYS = ['zone', 'only', 'tip', 'when', 'loop'];
+const STEP_KEYS = ['zone', 'only', 'tip', 'image', 'when', 'loop'];
 
 // `group [N]`: the goal needs a group (of N players), shown in the guide window.
 const COMMON = ['text', 'optional', 'only', 'group'];
@@ -144,6 +146,23 @@ function unquoteRest(line, lex, from) {
 	if (!toks.length) return '';
 	if (toks.length === 1 && toks[0].quoted) return toks[0].text;
 	return line.slice(toks[0].start, lex.end).trim();
+}
+
+// `image <path> [<w>x<h>]`: the step's picture, at most one per step.
+function parseImage(step, toks, ln, err) {
+	const usage = 'image media/<name>.tga [<width>x<height>]';
+	if (step.image) return err(ln, `duplicate \`image\` in step (first on line ${step.image.line}): a step shows one picture`);
+	const args = toks.slice(1);
+	if (!args.length) return err(ln, '`image` needs the picture\'s path in the pack folder', usage);
+	if (args.length > 2) return err(ln, `unexpected "${args[2].text}" after the picture's size`, usage);
+	const p = parseImagePath(args[0].text);
+	if (p.error) return err(ln, p.error, p.hint);
+	let size = null;
+	if (args[1]) {
+		size = args[1].quoted ? null : parseImageSize(args[1].text);
+		if (!size) return err(ln, `malformed picture size "${args[1].text}"`, 'write it as <width>x<height> in pixels, such as 512x256');
+	}
+	step.image = { path: p.path, ext: p.ext, w: size ? size.w : null, h: size ? size.h : null, line: ln };
 }
 
 // Read "x,y" starting at tokens[i] whose text (after an optional "@") is
@@ -269,6 +288,8 @@ function parseGuide(text, file, diag) {
 				const w = parseWhen(line.slice(toks[1] ? toks[1].start : lex.end, lex.end));
 				if (w.error) err(ln, w.error, w.hint);
 				else (step.when ||= []).push({ ...w.value, line: ln });
+			} else if (kw === 'image') {
+				parseImage(step, toks, ln, err);
 			} else if (kw === 'loop') {
 				if (toks.length > 1) err(ln, '`loop` takes nothing');
 				else if (step.loop) err(ln, 'duplicate `loop` in step');

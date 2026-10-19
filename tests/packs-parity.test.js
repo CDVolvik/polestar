@@ -70,13 +70,14 @@ const CASES = [
 	{ file: 'unknown-verb', reason: 'unknown verb fish', lint: /unknown verb "fish"/, goal: '{ t = "fish" }' },
 	{ file: 'coords-range', reason: 'coordinates outside 0-100', lint: /coordinates 150,50 are outside 0-100/, goal: '{ t = "goto", map = 1429, x = 150, y = 50 }' },
 	{ file: 'step-no-goals', reason: 'step 1 has no goals', lint: /step has no goals/, def: '{ steps = { { goals = {} }, { goals = { { t = "level", level = 2 } } } } }' },
+	{ file: 'step-image', reason: 'step 1: bad image', lint: /image path "\.\.\/outside\.tga" leaves the pack folder/, def: '{ steps = { { image = { file = "..\\\\outside" }, goals = { { t = "level", level = 2 } } } } }' },
 	{ file: 'guide-no-steps', reason: 'no steps', lint: /guide has no steps/, def: '{ steps = {} }' },
 	{ file: 'id-outside', reason: OUTSIDE, lint: /is outside pack "parity"/, id: 'forever/parity-outside' },
 ];
 
 // Generic reasons the runtime gives whatever the verb table holds; every
 // other goal-level reason is derived from Guides.VERBS below.
-const GENERIC = ['unknown verb fish', 'coordinates outside 0-100', 'step 1 has no goals', 'no steps', OUTSIDE];
+const GENERIC = ['unknown verb fish', 'coordinates outside 0-100', 'step 1 has no goals', 'step 1: bad image', 'no steps', OUTSIDE];
 
 // Lua: the runtime's verb reasons, derived from Guides.VERBS: for each verb a
 // goal with every required field filled (its own checker picks a number or

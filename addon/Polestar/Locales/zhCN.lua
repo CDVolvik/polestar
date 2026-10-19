@@ -1015,6 +1015,7 @@ L["Back to the guide"] = "返回指南"
 L["%s (known)"] = "%s（已学会）"
 L["%s (from level %d)"] = "%s（%d级起）"
 L["Points the arrow at the nearest vendor, repair, inn, flight master or trainer."] = "让箭头指向最近的商人、修理、旅店、飞行管理员或训练师。"
+-- L["Picture of this spot"] = ""
 
 -- UI/JourneyPanel.lua
 L["Lift to %s"] = "乘升降梯前往%s"

@@ -222,7 +222,10 @@ local GOAL = rec({
 })
 -- A step's `when` predicates (format 4; Guides.Validate checks each kind's keys).
 local WHEN = rec({ k = S, neg = B, op = S, n = N, frac = N, q = NL, item = N, name = S, area = N, minLevel = N, pre = LN, preAll = LN, closedBy = LN })
-local STEP = rec({ title = S, note = S, only = ONLY, when = list(WHEN), goals = list(GOAL) })
+-- A step's picture: read so a string carries the guide as its addon does, but
+-- an imported guide has no addon folder holding the file, so it shows none.
+local IMAGE = rec({ file = S, w = N, h = N })
+local STEP = rec({ title = S, note = S, image = IMAGE, only = ONLY, when = list(WHEN), goals = list(GOAL) })
 local GUIDE = rec({
 	id = S, title = S, faction = S, races = LS, classes = LS, minLevel = N, maxLevel = N, category = S, folder = S, keywords = LS,
 	collects = LN, reward = list(rec({ item = N, itemName = S, quality = N, choice = B, spell = N, spellName = S, text = S })),
@@ -242,7 +245,7 @@ Import.KEYS = {
 	guide = keysOf(GUIDE), step = keysOf(STEP), goal = keysOf(GOAL), only = keysOf(ONLY),
 	reagents = keysOf(GOAL.rec.reagents.list), candidates = keysOf(GOAL.rec.candidates.list), spots = keysOf(GOAL.rec.spots.list),
 	fromNpcs = keysOf(GOAL.rec.fromNpcs.list),
-	items = keysOf(REWARD_ITEM), reward = keysOf(GUIDE.rec.reward.list), when = keysOf(WHEN),
+	items = keysOf(REWARD_ITEM), reward = keysOf(GUIDE.rec.reward.list), when = keysOf(WHEN), image = keysOf(IMAGE),
 }
 
 local function finite(v) return type(v) == "number" and v == v and v ~= huge and v ~= -huge end
