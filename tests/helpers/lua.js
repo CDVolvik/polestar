@@ -56,7 +56,7 @@ function xmlFiles(xmlPath) {
 function expand(addonDir, entries) {
 	const out = [];
 	for (const rel of entries) {
-		const target = path.join(addonDir, norm(rel));
+		const target = path.isAbsolute(rel) ? rel : path.join(addonDir, norm(rel));
 		if (!fs.existsSync(target)) throw new Error(`${path.relative(ROOT, addonDir)}: missing ${rel}`);
 		if (target.toLowerCase().endsWith('.xml')) out.push(...xmlFiles(target));
 		else out.push(target);
