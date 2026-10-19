@@ -16,6 +16,10 @@ The rules that hold for every task:
 
 - A bug report is a lead, not a verdict. Check it against the guide, the
   data and Forever's own sources before agreeing it is a bug.
+- Before fixing an issue, check that no open pull request already does
+  (`gh pr list --state open --search "<N>"`, the issue's `has-pr` label).
+  Help on that one instead of opening a second, and link every issue yours
+  fixes ("closes #N" / "fixes #N").
 - Pull requests go to `next`, or to `hotfix/<version>` for a guide-only fix
   to the latest release. Never to `main`.
 - Never claim a check passed that you did not run, and never invent quest

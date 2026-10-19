@@ -47,7 +47,8 @@ return {
 	["The violet shards glow just off the road a short way west of {area:321}."] = "紫色碎片在{area:321}西边不远处的路旁发光。",
 
 	-- Step 8: Hammerfall
-	["The orc stronghold at the eastern end of the road. Urda, the wind rider master, stands by the gate."] = "道路东端的兽人要塞。双足飞龙管理员尤尔达站在大门旁。",
+	-- {npc:2851} Urda
+	["The orc stronghold at the eastern end of the road. {npc:2851}, the wind rider master, stands by the gate."] = "道路东端的兽人要塞。双足飞龙管理员{npc:2851}站在大门旁。",
 
 	-- Step 9: Highland raptors
 	["Highland raptors"] = "高地迅猛龙",
