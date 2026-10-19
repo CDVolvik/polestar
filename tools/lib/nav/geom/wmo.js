@@ -17,6 +17,8 @@
 //   a group is skipped when MOGP flags & 0x80 (unreachable), & 0x4000000
 //   (antiportal) or its MOGN name is "antiportal".
 // A group is indoor when MOGP flags & 0x2000. Doodads (MODD) are left out.
+// Portals (MOPT: 20 bytes each, first vertex u16 and count u16 into MOPV, 3
+// f32 per vertex) are kept for the reviewed openings (openings.json).
 //
 // Liquids (wowdev.wiki WMO "MLIQ chunk"; TrinityCore wmo.cpp WMOGroup::open,
 // GetLiquidTypeId, and src/common/Collision/Models/WorldModel.cpp
@@ -69,7 +71,24 @@ function parseRoot(buf) {
 	if (gfid.length < nGroups * 4) throw new Error(`WMO root: GFID lists ${gfid.length / 4} groups, MOHD ${nGroups}`);
 	const groups = [];
 	for (let g = 0; g < nGroups; g++) groups.push(gfid.readUInt32LE(g * 4));
-	return { nGroups, flags: mohd.readUInt16LE(0x3c), box, groups, names: chunk(list, 'MOGN') };
+	return { nGroups, flags: mohd.readUInt16LE(0x3c), box, groups, names: chunk(list, 'MOGN'), portals: portals(list) };
+}
+
+// MOPT + MOPV -> [Float32Array (x, y, z per vertex, model space)], one per portal.
+function portals(list) {
+	const mopt = chunk(list, 'MOPT');
+	const mopv = chunk(list, 'MOPV');
+	if (!mopt || !mopv) return [];
+	const out = [];
+	for (let o = 0; o + 20 <= mopt.length; o += 20) {
+		const start = mopt.readUInt16LE(o);
+		const count = mopt.readUInt16LE(o + 2);
+		if ((start + count) * 12 > mopv.length) throw new Error(`WMO root: portal ${o / 20} past MOPV`);
+		const v = new Float32Array(count * 3);
+		for (let i = 0; i < count * 3; i++) v[i] = mopv.readFloatLE(start * 12 + i * 4);
+		out.push(v);
+	}
+	return out;
 }
 
 const nameAt = (names, ofs) => {
@@ -209,7 +228,7 @@ function parseGroup(buf, { names = null, rootFlags = 0 } = {}) {
 // kindOf(liquidTypeId) -> 0 none, 1 water, 2 ocean, 3 magma, 4 slime.
 // -> Promise of the whole WMO, its groups merged: { box, verts, idx,
 // kind: Uint8Array (per triangle: 1 outdoor, 2 indoor),
-// liquid: { verts, idx, kind: Uint8Array (per triangle, 1-4) }, groups, missing: [fdid] }
+// liquid: { verts, idx, kind: Uint8Array (per triangle, 1-4) }, groups, portals, missing: [fdid] }
 async function loadWmo(get, fdid, kindOf) {
 	const root = parseRoot(await get(fdid));
 	const missing = [];
@@ -252,7 +271,7 @@ async function loadWmo(get, fdid, kindOf) {
 	};
 	const solid = merge(parts, (p) => (p.indoor ? 2 : 1));
 	const wet = parts.map((p) => p.liquid && { ...p.liquid, kind: kindOf(p.liquid.type) }).filter((l) => l && l.kind);
-	return { box: root.box, ...solid, liquid: merge(wet, (l) => l.kind), groups: root.groups.length, missing };
+	return { box: root.box, ...solid, liquid: merge(wet, (l) => l.kind), groups: root.groups.length, portals: root.portals, missing };
 }
 
 module.exports = { parseRoot, parseGroup, loadWmo, collides, liquidTypeId };

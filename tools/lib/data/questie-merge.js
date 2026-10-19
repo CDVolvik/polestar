@@ -260,7 +260,7 @@ function objectiveTextOf(lines) {
 // no quest has one before another objective; nor is a spell objective (after
 // the kill credits), which no quest in the store has. Counts come from the
 // objective text (the store has none), else pfQuest's count for the same
-// objective.
+// objective, else CMaNGOS classic-db's (fillCounts).
 function questObjectives(q, pf, names, ctx) {
 	const text = objectiveTextOf(q.objectivesText);
 	const o = q.objectives;
@@ -303,7 +303,33 @@ function questObjectives(q, pf, names, ctx) {
 		if (moved('event')) out.unshift(ev);
 		else out.push(ev);
 	}
+	const classic = ctx.questCounts && ctx.questCounts[Number(q.id)];
+	if (classic) ctx.countsFilled.n += fillCounts(out, classic);
 	return out;
+}
+
+// The kind groups a project objective and a quest_template slot pair within:
+// kills, kill credits and triggers count ReqCreatureOrGO creatures.
+const COUNT_GROUP = { kill: 'kill', event: 'kill', object: 'object', item: 'item' };
+
+// Objectives with no count take one from classic-db's quest_template
+// ({ kill, object, item }: [[id, count]]) of the same group: the counts of
+// the same id, or the slot's when each side has exactly one of the group
+// (Forever changed some ids). Two different counts leave it null; a count it
+// has is never replaced. -> how many were filled.
+function fillCounts(objectives, classic) {
+	let filled = 0;
+	for (const o of objectives) {
+		const group = COUNT_GROUP[o.type];
+		const slots = (group && classic[group]) || [];
+		if (o.count !== null || !slots.length) continue;
+		const counts = new Set(slots.filter(([id]) => id === o.id).map(([, n]) => n));
+		if (slots.length === 1 && objectives.filter((p) => COUNT_GROUP[p.type] === group).length === 1) counts.add(slots[0][1]);
+		if (counts.size !== 1) continue;
+		o.count = [...counts][0];
+		filled++;
+	}
+	return filled;
 }
 
 // One Questie quest -> schema record (before merging).
@@ -431,13 +457,13 @@ function questDiff(pf, merged) {
 }
 
 // tables: { quests, npcs, objects, items } from normalizePfQuest (mutated in place).
-// qz: readQuestie(). ctx: { areaToUiMap, liveMaps, spawnOptions, toWorld(map, f, x, y) }
-// -> stats
+// qz: readQuestie(). ctx: { areaToUiMap, liveMaps, spawnOptions, toWorld(map, f, x, y),
+// questCounts (loadQuestCounts' table, optional) } -> stats
 function applyQuestie(tables, qz, ctx) {
 	const stats = {
 		questieOnlyQuests: 0, questieOnlyNpcs: 0, questieOnlyObjects: 0, questieOnlyItems: 0,
 		questieQuests: 0, questieNpcs: 0, questieObjects: 0, questieItems: 0, unmappedQuestiePoints: 0,
-		questXp: 0, removedQuests: [], changedQuests: {},
+		questXp: 0, removedQuests: [], changedQuests: {}, objectiveCountsFromClassicDb: 0,
 	};
 	const mains = { npc: new Map(), object: new Map() };
 	const rolesAdded = { n: 0 };
@@ -480,6 +506,7 @@ function applyQuestie(tables, qz, ctx) {
 		names: { npc: nameOf(tables.npcs), object: nameOf(tables.objects), item: nameOf(tables.items) },
 		main: (kind, id) => (id === undefined ? null : mains[kind].get(id) ?? null),
 		added: { quests: { n: 0 } },
+		countsFilled: { n: 0 },
 		objectiveFirst: qz.objectiveFirst,
 	};
 	const questieIds = new Set(qz.quests.keys());
@@ -498,6 +525,7 @@ function applyQuestie(tables, qz, ctx) {
 		stats.questieQuests++;
 	}
 	stats.questsRegainedGivers = qctx.added.quests.n;
+	stats.objectiveCountsFromClassicDb = qctx.countsFilled.n;
 	// Reverse links: npc/object questStarts/questEnds and item startQuest
 	// name givers and enders the quest record sometimes lacks (92727 ends at
 	// object 581822, which lists it in questEnds).
