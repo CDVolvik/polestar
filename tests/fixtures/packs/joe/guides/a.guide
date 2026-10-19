@@ -1,5 +1,5 @@
-# Fixture: a community pack (tests/pack-lint.test.js). Accepts quest 33,
-# which b turns in.
+# Fixture: a community pack (tests/pack-lint.test.js). Accepts quest 33 and
+# gets its meat; b turns it in.
 guide joe/a
 title Joe A
 faction Alliance
@@ -9,3 +9,4 @@ next joe/b
 
 step Wolves
   accept 33
+  collect 750 x8 quest 33

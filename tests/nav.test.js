@@ -234,9 +234,10 @@ test('Era-frame targets convert through the registered Era bounds', () => {
 	assert.deepEqual(out.liveCoords, [9000, 52, 48.5]);
 });
 
-test('reaching the target switches to the arrived state, with hysteresis and one chime', () => {
+test('reaching the target switches to the arrived state, with hysteresis, one chime and one NAV_ARRIVED', () => {
 	const [out] = run(`
-		local seen = {}
+		local seen, arrivals = {}, 0
+		Polestar.On("NAV_ARRIVED", function(t) if t == N.GetTarget() then arrivals = arrivals + 1 end end)
 		target(20, 0)
 		stub.advance(0.2)
 		seen[#seen + 1] = { A.GetMode(), A.distText:GetText(), #stub.sounds }
@@ -253,6 +254,7 @@ test('reaching the target switches to the arrived state, with hysteresis and one
 		nav.place(18, 0)
 		stub.advance(0.2)
 		seen[#seen + 1] = { A.GetMode(), #stub.sounds }
+		seen[#seen + 1] = arrivals
 		emit(seen)`);
 	assert.deepEqual(out, [
 		['travel', '20 yd', 0],
@@ -260,6 +262,7 @@ test('reaching the target switches to the arrived state, with hysteresis and one
 		['arrived', 1],
 		['travel', '20 yd', false],
 		['arrived', 1],
+		2,
 	]);
 });
 
@@ -267,6 +270,33 @@ test('reaching the target switches to the arrived state, with hysteresis and one
 // colour far away and the near colour on arrival (both styles, the ring),
 // the target's pin follows the arrow live, and a colour too dark to read as
 // the arrow's text is lifted for the text alone.
+// The catch-up (CATCH_UP from the guide window): an hourglass in the dial's
+// place that turns over, the dial and its text hidden; the arrow comes back.
+test('during the catch-up the arrow shows an hourglass turning over, then comes back', () => {
+	const { emitted } = runAddon({
+		stubs: ['stub_nav.lua'],
+		addons: [{ name: 'Polestar', files: ['Core/Init.lua', 'Theme/Theme.xml', 'Nav/Nav.xml'] }],
+		login: true,
+		script: `${PRELUDE}
+		local function tex(t) return (t:GetTexture() or ""):match("([^\\\\]+)$") end
+		target(300, 400)
+		stub.advance(0.2)
+		Polestar.Fire("CATCH_UP", true)
+		local busy = { glass = A.glass:IsShown(), dial = A.dial:GetAlpha(), text = A.distText:GetAlpha(), tex = tex(A.glassBody), sand = tex(A.glassSand), busy = A.IsBusy() }
+		stub.advance(0.3)
+		local upright = A.glassBody:GetRotation()
+		stub.advance(0.35)
+		local turning = A.glassBody:GetRotation()
+		Polestar.Fire("CATCH_UP", false)
+		emit({ busy = busy, upright = upright, turning = turning, after = { glass = A.glass:IsShown(), dial = A.dial:GetAlpha(), text = A.distText:GetAlpha(), busy = A.IsBusy() } })`,
+	});
+	const [out] = emitted;
+	assert.deepEqual(out.busy, { glass: true, dial: 0, text: 0, tex: 'hourglass', sand: 'hourglass-sand', busy: true });
+	assert.equal(out.upright, 0, 'upright first');
+	assert.ok(out.turning > 0 && out.turning < Math.PI, `then turning over (${out.turning})`);
+	assert.deepEqual(out.after, { glass: false, dial: 1, text: 1, busy: false });
+});
+
 test("the skins' darts: the skin's arrow by default, accent far and arrival green within 40 m, Hearth's baked gold, then the ring and the check", () => {
 	const { emitted } = runAddon({
 		stubs: ['stub_nav.lua'],
@@ -1013,6 +1043,64 @@ test('settings apply live: scale, alpha, visibility, pins, position and Blizzard
 		['track', true],
 		['clear'],
 	]);
+});
+
+test('with the lock on, only a Shift-drag moves the arrow, and the movable wash shows only with Shift held', () => {
+	const [out] = run(`
+		local r = {}
+		target(100, 0)
+		stub.advance(0.1)
+		local f = A.frame
+		local function hover()
+			stub.RunScript(f, "OnEnter")
+			local seen = { A.mover:IsShown(), GameTooltip.lines[2] }
+			stub.RunScript(f, "OnLeave")
+			return seen
+		end
+		local function drag()
+			stub.RunScript(f, "OnDragStart")
+			local started = f.moving == true
+			f:StopMovingOrSizing()
+			return started
+		end
+		r.unlocked = { drag(), hover() }
+		Polestar.Set("ui.lockHud", true)
+		r.locked = { drag(), hover() }
+		r.mouse = f:IsMouseEnabled()
+		stub.keys.shift = true
+		r.shift = { drag(), hover() }
+		-- Shift let go mid-drag: the drag carries on and its end saves the spot.
+		stub.RunScript(f, "OnDragStart")
+		stub.keys.shift = false
+		f:ClearAllPoints()
+		f:SetPoint("CENTER", UIParent, "CENTER", 80, 20)
+		stub.RunScript(f, "OnDragStop")
+		r.saved = PolestarDB.settings.nav.arrowPos
+		r.stopped = f.moving
+		emit(r)`);
+	assert.deepEqual(out.unlocked, [true, [true, 'Drag to move.']], 'off by default: a plain drag moves it');
+	assert.deepEqual(out.locked, [false, [false, 'Shift-drag to move.']], 'locked: a plain drag does nothing, no wash');
+	assert.equal(out.mouse, true, 'locked, the arrow still takes the mouse for clicks');
+	assert.deepEqual(out.shift, [true, [true, 'Shift-drag to move.']], 'locked: Shift-drag moves it');
+	assert.deepEqual(out.saved, { point: 'CENTER', relPoint: 'CENTER', x: 80, y: 20 });
+	assert.equal(out.stopped, false);
+});
+
+test('with the lock on, a drag that does not move the arrow does not save its spot', () => {
+	const [out] = run(`
+		target(100, 0)
+		stub.advance(0.1)
+		local f = A.frame
+		Polestar.Set("ui.lockHud", true)
+		stub.RunScript(f, "OnDragStart")
+		stub.RunScript(f, "OnDragStop")
+		local refused = Polestar.Get("nav.arrowPos") == nil
+		stub.keys.shift = true
+		stub.RunScript(f, "OnDragStart")
+		stub.RunScript(f, "OnDragStop")
+		emit({ refused = refused, shift = Polestar.Get("nav.arrowPos") ~= nil })`);
+	assert.equal(out.refused, true, 'a plain drag on the locked arrow leaves nav.arrowPos alone');
+	assert.equal(out.shift, true, 'a Shift-drag still saves the spot');
 });
 
 test('ETA appears while closing in at running speed', () => {

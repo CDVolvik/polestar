@@ -87,17 +87,16 @@ function emitLua(t) {
 	for (const l of t.taxi.legs) lines.push(`\t\t${l.from},${l.to},${l.yards},`);
 	lines.push('\t},');
 	lines.push('\t-- ends: name, continent, wx, wy, uiMapID, x, y, frame ("e" Era, "l" live), AreaTable area (its name in the client\'s language)');
-	lines.push('\t-- [, board = { wx, wy, z }: where a ship lying off its pier is boarded, on the deck]; seconds riding a->b, b->a and waiting at a, b');
+	lines.push('\t-- [, board = { wx, wy, z }: where a ship lying off its pier is boarded, on the deck; or z: the height of the floor the walk to the end ends on]; seconds riding a->b, b->a and waiting at a, b');
 	lines.push('\ttransports = {');
+	const end = (e) => [e.name, e.c, e.wx, e.wy, e.map, e.x, e.y, e.f, e.area, ...(e.board ? [e.board] : e.z !== undefined ? [e.z] : [])];
 	for (const tr of t.transports) {
-		const end = (e) => [e.name, e.c, e.wx, e.wy, e.map, e.x, e.y, e.f, e.area, ...(e.board ? [e.board] : [])];
 		lines.push(`\t\t${luaVal({ id: tr.id, kind: tr.kind, faction: tr.faction, a: end(tr.a), b: end(tr.b), ab: tr.ab, ba: tr.ba, waitA: tr.waitA, waitB: tr.waitB })},`);
 	}
 	lines.push('\t},');
-	lines.push('\t-- walk-in portals, one way a -> b: id, destination name and area, ends as transports, seconds (the loading screen)');
+	lines.push('\t-- walk-in portals, one way a -> b: id, destination name and area, ends as transports (with z), seconds (the loading screen)');
 	lines.push('\tportals = {');
 	for (const p of t.transit.portals) {
-		const end = (e) => [e.name, e.c, e.wx, e.wy, e.map, e.x, e.y, e.f, e.area];
 		lines.push(`\t\t${luaVal({ id: p.id, name: p.name, area: p.area, a: end(p.a), b: end(p.b), seconds: p.seconds })},`);
 	}
 	lines.push('\t},');
@@ -225,6 +224,9 @@ async function buildTravel({
 	const frames = new Frames(mapFrames.era, zones);
 	const npcs = readJson(path.join(dataDir, 'npcs.json'));
 	const objects = readJson(path.join(dataDir, 'objects.json'));
+	// The dock NPCs' heights (CMaNGOS classic-db's spawns, `data build`); optional.
+	const spawnzFile = path.join(dataDir, 'spawnz.json');
+	const spawnz = fs.existsSync(spawnzFile) ? readJson(spawnzFile) : null;
 	const recordings = readRecordings(recordingsDir);
 	// Live ("l") map frames: what recordings measured, else the Forever client's
 	// (map-frames.json `forever`).
@@ -256,7 +258,7 @@ async function buildTravel({
 
 	const taxi = buildTaxi({ tables: src.tables, frames, npcs, liveFrames });
 	const nav = gridDir ? openNav({ dir: gridDir }) : null;
-	const gridWarnings = nav && nav.available ? [] : [`no navigation grid${gridDir ? ` at ${gridDir}` : ''}: the transports get no board points (\`nav build\`, or --grid)`];
+	const gridWarnings = nav && nav.available ? [] : [`no navigation grid${gridDir ? ` at ${gridDir}` : ''}: the transports and portals get no board points or heights (\`nav build\`, or --grid)`];
 	const tr = buildTransports({
 		tables: src.tables,
 		foreverTables: forever && forever.tables,
@@ -267,6 +269,7 @@ async function buildTravel({
 		objects,
 		liveFrames,
 		nav: nav && nav.available ? nav : null,
+		spawnz,
 	});
 	const transit = buildTimetables({
 		tables: src.tables,
@@ -276,6 +279,7 @@ async function buildTravel({
 		transports: tr.transports,
 		frames,
 		liveFrames,
+		nav: nav && nav.available ? nav : null,
 	});
 	// The inns' areas: the AreaTable `data build` cached (tools/lib/data/areas.js).
 	const areas = loadAreas(sourcesDir);
@@ -299,6 +303,7 @@ async function buildTravel({
 		{ name: 'data/forever map-frames.json', use: 'Era map frames; Forever (live) frames for maps Forever added or redrew' },
 		{ name: 'data/recordings', use: 'learned walking paths and recorded zone crossings', sessions: paths.sessions },
 	);
+	if (spawnz) sources.push({ name: 'data/forever spawnz.json (CMaNGOS classic-db, GPL-3.0)', use: 'the heights of the dock NPCs the zeppelin and wharf ends stand at' });
 	if (shipped) sources.push({ name: 'Carbonite (github.com/IrcDirk/Carbonite-Classic, GPL-3.0)', source: shippedSource, use: 'zone crossings (tools/lib/travel/crossings.json)' });
 	const result = {
 		schema: 1,

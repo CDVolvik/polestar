@@ -213,6 +213,36 @@ test('unchanged quest-log updates do not rebuild Questie while changed captions 
   assert.match(out.text,/Turn in at step 3/);
 });
 
+test('a Questie update dropped by its 0.1 s throttle is retried once, not polled, and waits out combat (#341)', () => {
+  const [out] = run(questie+`
+    -- Questie 12.1.0: QuestieTracker:Update() returns within 0.1 s of the last one.
+    local draw, last = tracker.Update, -1
+    tracker.Update=function(self) local now=GetTime(); if now-last<0.1 then return end; last=now; draw(self) end
+    local function caught() last=GetTime()+0.2-0.05 end -- Questie redraws 0.05 s before Polestar's pass
+    stub.advance(1)
+    caught(); live=4; P.Fire("STEP_CHANGED"); stub.advance(0.25)
+    local first=row.label:GetText()
+    stub.advance(0.25); local retried=row.label:GetText(); local u=updates
+    stub.advance(5); local idle=updates
+    -- every attempt throttled: one retry, then left to Questie's next redraw
+    tracker.Update=function() end
+    local calls=0; local inner=tracker.Update; tracker.Update=function(self) calls=calls+1; inner(self) end
+    live=2; P.Fire("STEP_CHANGED"); stub.advance(5)
+    local bounded=calls
+    -- the caption is still stale (step 3 expected); the retry falls in combat
+    tracker.Update=function(self) local now=GetTime(); if now-last<0.1 then return end; last=now; draw(self) end
+    caught(); P.Fire("STEP_CHANGED"); stub.advance(0.25); stub.inCombat=true; stub.advance(1)
+    local inCombat=row.label:GetText(); stub.inCombat=false; stub.fire("PLAYER_REGEN_ENABLED"); stub.advance(0.3)
+    emit({first=first,retried=retried,u=u,idle=idle,bounded=bounded,inCombat=inCombat,after=row.label:GetText()})
+  `,true);
+  assert.match(out.first,/Turn in at step 3/, 'the throttled update left the caption stale');
+  assert.match(out.retried,/Earlier turn-in/, 'the retry draws it');
+  assert.equal(out.idle,out.u, 'nothing polls afterwards');
+  assert.equal(out.bounded,2, 'one update and one retry');
+  assert.match(out.inCombat,/Earlier turn-in/, 'no update in combat');
+  assert.match(out.after,/Turn in at step 3/, 'drawn once combat ends');
+});
+
 test('skipping a single hand-in refreshes its caption without changing the numbered step', () => {
   const [out] = run(questie+`
     live=3; I.Refresh(); stub.advance(0.3)

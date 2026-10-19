@@ -56,6 +56,8 @@ return {
 	-- Step 11: Alonso
 	-- {npc:210995} Alonso · {area:421} Mystral Lake
 	["{npc:210995}, a Forever addition, stands on the west shore of {area:421} with three quick Dragonslayer quests."] = "{npc:210995}, uma novidade do Forever, fica na margem oeste do {area:421} com três missões rápidas de Matadragões.",
+	-- {npc:210995} Alonso
+	["{npc:210995} may not offer these to every class; if he doesn't, carry on."] = "",
 
 	-- Step 12: Tideress
 	-- {npc:12759} Tideress · {area:421} Mystral Lake · {item:16408} Befouled Water Globe

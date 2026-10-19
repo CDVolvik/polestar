@@ -79,6 +79,7 @@ function createGitHub({ token, repo, api = API, fetch: fetchImpl = fetch }) {
 		updateIssue: (n, fields) => request('PATCH', `${r}/issues/${n}`, fields),
 		comment: (n, body) => request('POST', `${r}/issues/${n}/comments`, { body }),
 		comments: (n) => list(`${r}/issues/${n}/comments`),
+		editComment: (id, body) => request('PATCH', `${r}/issues/comments/${id}`, { body }),
 		addLabels: (n, labels) => request('POST', `${r}/issues/${n}/labels`, { labels }),
 		// Gone already is fine (404).
 		removeLabel: (n, name) => request('DELETE', `${r}/issues/${n}/labels/${encodeURIComponent(name)}`).catch((err) => {
@@ -88,6 +89,8 @@ function createGitHub({ token, repo, api = API, fetch: fetchImpl = fetch }) {
 		// An issue's timeline: its events, closes and cross-references included.
 		timeline: (n) => list(`${r}/issues/${n}/timeline`, 1000),
 		pull: (n) => request('GET', `${r}/pulls/${n}`),
+		// Open pull requests, oldest first.
+		openPulls: () => list(`${r}/pulls?state=open&sort=created&direction=asc`, 1000),
 		// Whether a ref (a tag) holds a commit: the commit is behind the ref or
 		// is it. A commit the repository does not have is in no ref.
 		contains: async (ref, sha) => {
@@ -114,6 +117,30 @@ function createGitHub({ token, repo, api = API, fetch: fetchImpl = fetch }) {
 			let q = `${r}/issues?labels=${encodeURIComponent(label)}&state=${state}&sort=created&direction=desc`;
 			if (since) q += `&since=${encodeURIComponent(since)}`;
 			return (await list(q, max)).filter((i) => !i.pull_request);
+		},
+		// Issues and pull requests a search finds (`q` in GitHub's search
+		// syntax, its repo: included), up to `max`.
+		searchIssues: async (q, max = 300) => {
+			const out = [];
+			for (let page = 1; out.length < max; page++) {
+				const res = await request('GET', `/search/issues?q=${encodeURIComponent(q)}&per_page=100&page=${page}`);
+				out.push(...res.items);
+				if (res.items.length < 100) break;
+			}
+			return out.slice(0, max);
+		},
+		// The issue GitHub marks this one a duplicate of (`gh issue close
+		// --duplicate-of`, "Close as duplicate" on the website), or null. Only
+		// GraphQL tells it.
+		duplicateOf: async (n) => {
+			const [owner, name] = repo.split('/');
+			const res = await request('POST', '/graphql', {
+				query: 'query($owner: String!, $name: String!, $n: Int!) { repository(owner: $owner, name: $name) { issue(number: $n) { duplicateOf { number } } } }',
+				variables: { owner, name, n },
+			});
+			if (res.errors && res.errors.length) throw new Error(`GitHub GraphQL: ${res.errors[0].message}`);
+			const issue = res.data && res.data.repository && res.data.repository.issue;
+			return issue && issue.duplicateOf ? issue.duplicateOf.number : null;
 		},
 		// Creates each label missing from the repository, with infoFor(name)'s colour and description.
 		async ensureLabels(names, infoFor) {

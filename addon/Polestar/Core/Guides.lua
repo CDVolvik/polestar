@@ -99,12 +99,8 @@ local RUN_SPEED = 7 -- yards per second
 local CROSS_CONTINENT = 3600 -- seconds
 ns.TRAVEL_CROSS_CONTINENT = CROSS_CONTINENT
 
-function ns.TravelCost(from, to)
-	local nav = ns.Nav
-	if nav and nav.EstimateTravel then
-		local ok, s = pcall(nav.EstimateTravel, from, to)
-		if ok and type(s) == "number" then return s end
-	end
+-- A cheap direct world-distance estimate: never touches the route planner.
+local function directTravelCost(from, to)
 	local C = ns.Compat
 	local c1, x1, y1 = C.MapToWorld(from.map, from.x, from.y, from.f)
 	local c2, x2, y2 = C.MapToWorld(to.map, to.x, to.y, to.f)
@@ -112,6 +108,16 @@ function ns.TravelCost(from, to)
 	if c1 ~= c2 then return CROSS_CONTINENT end
 	local dx, dy = x2 - x1, y2 - y1
 	return (dx * dx + dy * dy) ^ 0.5 / RUN_SPEED
+end
+ns.DirectTravelCost = directTravelCost
+
+function ns.TravelCost(from, to)
+	local nav = ns.Nav
+	if nav and nav.EstimateTravel then
+		local ok, s = pcall(nav.EstimateTravel, from, to)
+		if ok and type(s) == "number" then return s end
+	end
+	return directTravelCost(from, to)
 end
 
 -- The player's live position as a travel point, or nil (instance, loading).
@@ -190,6 +196,36 @@ local function checkOnly(only)
 			for i = 1, #list do
 				if type(list[i]) ~= "string" then return false end
 			end
+		end
+	end
+	return true
+end
+
+-- A step's `when` (format 4): predicates, each { k, neg?, ... } by kind
+-- (docs/PACK_FORMAT.md, "Format 4"); Engine.lua (Own.whenFails) reads them.
+local WHEN_OPS = { ["<"] = true, ["<="] = true, [">"] = true, [">="] = true }
+local WHEN_QUEST = { complete = true, turnedin = true, available = true }
+local WHEN_PLACE = { zone = true, subzone = true, bound = true }
+local function checkWhen(list)
+	if list == nil then return true end
+	if type(list) ~= "table" or #list == 0 then return false end
+	for i = 1, #list do
+		local p = list[i]
+		if type(p) ~= "table" then return false end
+		local k = p.k
+		if k == "level" then
+			if not (WHEN_OPS[p.op] and isNum(p.n)) then return false end
+		elseif k == "onquest" then
+			if type(p.q) ~= "table" or #p.q == 0 then return false end
+			for j = 1, #p.q do
+				if not isNum(p.q[j]) then return false end
+			end
+		elseif WHEN_QUEST[k] then
+			if not isNum(p.q) then return false end
+		elseif k == "has" then
+			if not isNum(p.item) then return false end
+		elseif not (WHEN_PLACE[k] and isStr(p.name)) then
+			return false
 		end
 	end
 	return true
@@ -331,6 +367,7 @@ local function validate(def)
 		if type(step) ~= "table" then return ("step %d is not a table"):format(s) end
 		if type(step.goals) ~= "table" or #step.goals == 0 then return ("step %d has no goals"):format(s) end
 		if not checkOnly(step.only) then return ("step %d: bad only"):format(s) end
+		if not checkWhen(step.when) then return ("step %d: bad when"):format(s) end
 		for g, goal in ipairs(step.goals) do
 			local err = checkGoal(goal)
 			if err then return ("step %d goal %d: %s"):format(s, g, err) end
@@ -348,8 +385,8 @@ Guides.Validate = validate
 ---------------------------------------------------------------------------
 
 -- Every format Polestar has shipped (docs/PACK_FORMAT.md, "Versioning").
-Guides.FORMATS = { [1] = true, [2] = true, [3] = true }
-Guides.RESERVED = { guides = true, forever = true, lookup = true, draft = true, polestar = true }
+Guides.FORMATS = { [1] = true, [2] = true, [3] = true, [4] = true }
+Guides.RESERVED = { guides = true, forever = true, lookup = true, draft = true, polestar = true, imported = true }
 local OFFICIAL_ADDON = "Polestar_Guides"
 local REQUIRED_META = { "addon", "title", "author", "version", "license" }
 local OPTIONAL_META = { "website", "source", "notes" }
@@ -357,17 +394,24 @@ local OPTIONAL_META = { "website", "source", "notes" }
 local find = string.find
 
 -- Does pack `packId` own guide id `guideId`? Ours (`guides`) owns forever/
--- and draft/, the internal `lookup` pack lookup/, every other pack `<id>/`.
+-- and draft/, the internal `lookup` pack lookup/, the `imported` pack (guides
+-- pasted on the Import page, Core/Import.lua) every `<author>/` that is a
+-- valid pack id no one reserved, every other pack `<id>/`.
 function Guides.OwnsId(packId, guideId)
 	if type(packId) ~= "string" or type(guideId) ~= "string" then return false end
 	if packId == "guides" then return guideId:sub(1, 8) == "forever/" or guideId:sub(1, 6) == "draft/" end
 	if packId == "lookup" then return guideId:sub(1, 7) == "lookup/" end
+	if packId == "imported" then
+		local prefix = guideId:match("^([a-z0-9][a-z0-9%-]*)/.")
+		return prefix ~= nil and #prefix >= 2 and #prefix <= 32 and not Guides.RESERVED[prefix]
+	end
 	return guideId:sub(1, #packId + 1) == packId .. "/"
 end
 local ownsId = Guides.OwnsId
 
 local function prefixOf(packId)
 	if packId == "guides" then return "forever/, draft/" end
+	if packId == "imported" then return "<author>/" end
 	return packId .. "/"
 end
 
@@ -474,6 +518,16 @@ function ns.RegisterPack(meta)
 		r.status = "on"
 		return true
 	end
+	-- The guides pasted on the Import page (Core/Import.lua), registered as
+	-- its file loads, before any pack can: listed in the guide menu as
+	-- "Imported", never on the Community guides page, never suggested.
+	if id == "imported" and meta.imported and not packs[id] then
+		local r = newRecord(meta, nil)
+		r.imported = true
+		packs[id] = r
+		r.status = "on"
+		return true
+	end
 	-- Every other pack, refused ones included, is listed on the Community guides page.
 	local addon = meta.addon
 	local r = newRecord(meta, addon)
@@ -554,6 +608,14 @@ function ns.RegisterGuide(def)
 	end
 	if not ownsId(packId, id) then
 		local message = (L["Guide %s was refused: its id must start with %s."]):format(escape(id), prefixOf(packId))
+		problem(r, "guide-refused", message, id)
+		return false, message
+	end
+	-- An imported guide shares no prefix rule with the packs: an id another
+	-- pack's guide already holds stays that pack's, whichever came second.
+	local held = guides[id]
+	if held and held.pack ~= packId then
+		local message = (L["Guide %s was refused: %s already holds that id."]):format(escape(id), escape(tostring(held.pack)))
 		problem(r, "guide-refused", message, id)
 		return false, message
 	end
@@ -688,12 +750,12 @@ function Guides.Pack(id)
 	return nil
 end
 
--- Every pack record but internal ones (registered and installed, refused
--- ones too): ours first, then by title.
+-- Every pack record but internal ones and the imported guides (registered
+-- and installed, refused ones too): ours first, then by title.
 function Guides.Packs()
 	local out = {}
 	for i = 1, #records do
-		if not records[i].internal then out[#out + 1] = syncStatus(records[i]) end
+		if not (records[i].internal or records[i].imported) then out[#out + 1] = syncStatus(records[i]) end
 	end
 	table.sort(out, function(a, b)
 		if a.official ~= b.official then return a.official end
@@ -936,7 +998,7 @@ end
 local function canSuggest(id)
 	if id == "guides" then return true end
 	local r = type(id) == "string" and packs[id]
-	return r and not r.internal and packVisible(r) and hasLeveling(r) or false
+	return r and not r.internal and not r.imported and packVisible(r) and hasLeveling(r) or false
 end
 
 -- The packs suggestions can come from, ours ("guides") first, then the
@@ -1030,8 +1092,43 @@ function Guides.Suggest()
 	return Guides.Suggestions()[1]
 end
 
+-- Drops an imported guide from the registry (Import.Delete); a guide of any
+-- other pack stays. Fire PACKS_CHANGED("imported") after. -> bool
+function Guides.DropImported(id)
+	local g = type(id) == "string" and guides[id]
+	if not (g and g.pack == "imported") then return false end
+	guides[id], headers[id] = nil, nil
+	for i = #order, 1, -1 do
+		if order[i] == id then table.remove(order, i) end
+	end
+	local r = packs.imported
+	for i = #r.guides, 1, -1 do
+		if r.guides[i] == id then table.remove(r.guides, i) end
+	end
+	r.guideCount = #r.guides
+	return true
+end
+
+-- The leveling guide a new character of the player's race and class starts
+-- with: the suggestion at level 1, from the suggestion source (ours where it
+-- has none). The catch-up opens it when no guide is open and goes through
+-- the guides from there to where the player is (Engine, login).
+function Guides.FirstGuide()
+	local p = {}
+	for k, v in pairs(ns.Compat.GetPlayerInfo()) do p[k] = v end
+	p.level = 1
+	local source = Guides.SuggestSource()
+	local fitting = rank(source, p, nil, nil)
+	if #fitting == 0 and source ~= "guides" then fitting = rank("guides", p, nil, nil) end
+	return fitting[1]
+end
+
 ns.OnLogin(function()
 	loggedIn = true
 	Guides.ScanInstalled()
+	-- The imported guides, now that every community addon has registered and
+	-- every installed one is listed (an addon keeps its ids: Import.Load
+	-- leaves out an imported guide under an addon's id).
+	if ns.Import then ns.Import.Load() end
 	ns.Fire("GUIDES_REGISTERED")
 end)

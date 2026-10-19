@@ -1,9 +1,10 @@
 'use strict';
 // Performance budgets: the whole addon, every module on, against the stubbed
 // world (tests/lua/stub_world.lua) with the local data packs loadable on demand
-// when built (Polestar_QuestDB, Polestar_Codex, Polestar_ItemDB). Addon time is
-// CPU time inside game event handlers, message listeners, OnUpdate scripts and
-// C_Timer callbacks (tests/lua/profile.lua), so harness work does not count.
+// when built (Polestar_QuestDB, Polestar_Codex, Polestar_ItemDB). Only game
+// event handlers, message listeners, OnUpdate scripts and C_Timer callbacks
+// are timed (tests/lua/profile.lua). os.clock is elapsed time on Windows,
+// CPU time elsewhere; harness work is excluded in either case.
 //
 //   - a burst of 50 QUEST_LOG_UPDATE and 50 BAG_UPDATE in one frame, plus the
 //     refreshes it schedules: under 4 ms;
@@ -31,6 +32,8 @@
 // the budgets hold as written; under load the addon keeps its share of the
 // reference, so an addon twice as slow still fails. The gathering guide's
 // wall time is scaled by the same ratio.
+// Like recorder-perf.test.js, allow one measured clock step (at most 1 ms)
+// for quantization. A whole-ms clock cannot resolve a sub-ms walking frame.
 //
 // Needs data/forever (node tools/polestar.js data build); skips without it.
 // To find what broke a budget: node tests/helpers/profile.js <guide> --packs [--sample=1000]
@@ -42,7 +45,7 @@ const path = require('node:path');
 const { ROOT } = require('./helpers/lua');
 const { needs } = require('./helpers/data');
 const { buildSimPack, playGuide, luaValue, SIMULATE } = require('../tools/lib/playtest');
-const { localPacks } = require('./helpers/profile');
+const { localPacks, withinBudget } = require('./helpers/profile');
 
 const LEVELING = 'forever/horde/02-the-barrens.guide';
 const GATHERING = 'forever/professions/mining.guide';
@@ -89,8 +92,9 @@ out.refs = {}
 local function reference()
 	collectgarbage("collect")
 	local t = stub.profile.total()
-	for i = 1, 500 do stub.fire("POLESTAR_TEST_REFERENCE", i) end
-	out.refs[#out.refs + 1] = stub.profile.total() - t
+	-- Keep the 500-event unit; a longer sample reduces whole-ms rounding.
+	for i = 1, 5000 do stub.fire("POLESTAR_TEST_REFERENCE", i) end
+	out.refs[#out.refs + 1] = (stub.profile.total() - t) / 10
 end
 `;
 
@@ -118,6 +122,9 @@ for k, v in pairs(${luaValue(ALL_ON)}) do Polestar.Set(k, v) end
 -- Every pack present, loaded once (what a session pays the first time a
 -- feature needs one), then the delayed work after login.
 local out = { packs = {}, packMs = {} }
+local c0, c1 = os.clock(), os.clock()
+while c1 == c0 do c1 = os.clock() end
+out.resolution = math.min((c1 - c0) * 1000, 1)
 for _, name in ipairs(${luaValue(packs.present)}) do
 	out.packMs[name] = P.measure(function() Polestar.Data.Pack(name) end)
 end
@@ -220,6 +227,7 @@ function measure() {
 	const scale = Math.max(1, refNow / REF_BASELINE);
 	measured = {
 		rounds, scale, refNow,
+		resolution: Math.max(...rounds.map((r) => r.resolution)),
 		burst: pick('burst'), tick: pick('tick'), setGuide: pick('setGuide'), stepChange: pick('stepChange'), idle: pick('idle'),
 		changes: Math.min(...rounds.map((r) => r.changes)),
 		limit: Object.fromEntries(Object.entries(BUDGET).map(([k, v]) => [k, round3(v * scale)])),
@@ -230,14 +238,14 @@ function measure() {
 // A figure fails only when it is over its budget and over the budget scaled
 // by the load the reference saw (scale >= 1, so the scaled budget decides).
 function within(m, k, value) {
-	return value < BUDGET[k] || value < BUDGET[k] * m.scale;
+	return withinBudget(value, BUDGET[k], m.scale, k === 'gatherSeconds' ? m.resolution / 1000 : m.resolution);
 }
 
 test('event bursts, walking frames and step changes stay within budget with every module on', { skip }, () => {
 	const m = measure();
 	const last = m.rounds[m.rounds.length - 1];
 	const report = `budgets (ms) ${JSON.stringify(BUDGET)}; refNow ${round3(m.refNow)} ms, refBaseline ${REF_BASELINE} ms, `
-		+ `scale ${round3(m.scale)}, scaled budgets ${JSON.stringify(m.limit)}; measured (median of ${ROUNDS}) ${JSON.stringify({
+		+ `scale ${round3(m.scale)}, clock step ${round3(m.resolution)} ms, scaled budgets ${JSON.stringify(m.limit)}; measured (median of ${ROUNDS}) ${JSON.stringify({
 			burst: round3(m.burst), tick: round3(m.tick), setGuide: round3(m.setGuide), stepChange: round3(m.stepChange),
 			changes: m.changes, idle: round3(m.idle), packs: last.packs,
 			packMs: Object.fromEntries(Object.entries(last.packMs || {}).map(([k, v]) => [k, +v.toFixed(1)])),

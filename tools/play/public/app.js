@@ -406,11 +406,18 @@
 			const db = changed.map(([k, v]) => `PolestarDB.settings.${k.split('.').map((p) => (/^[A-Za-z_]\w*$/.test(p) ? p : `[${JSON.stringify(p)}]`)).join('.').replace(/\.\[/g, '[')} = ${luaLiteral(v)}`);
 			text = ['-- In game: paste each line into chat', ...run, '', '-- As PolestarDB values (WTF/Account/<account>/SavedVariables/Polestar.lua)', ...db].join('\n');
 		}
+		showCopy('Changed settings', 'Paste the /run lines into chat in game, or set the values in PolestarDB.', text);
+	});
+
+	// The copy dialog with its text selected (and on the clipboard when the browser allows).
+	async function showCopy(title, lede, text) {
+		$('#copy-title').textContent = title;
+		$('#copy-lede').textContent = lede;
 		$('#copy-text').value = text;
 		$('#copy-dialog').showModal();
 		$('#copy-text').select();
 		try { await navigator.clipboard.writeText(text); } catch { /* the dialog shows it */ }
-	});
+	}
 
 	// Guide controls
 	for (const b of $$('[data-act]')) b.addEventListener('click', () => act({ type: b.dataset.act }));
@@ -421,6 +428,15 @@
 	$('#guide-load').addEventListener('click', () => {
 		const id = $('#guide-pick').value;
 		if (id) act({ type: 'loadGuide', guide: id });
+	});
+	// The picked guide as an import string (tools/lib/pack/importstring.js), as `polestar export` prints it.
+	$('#guide-export').addEventListener('click', async () => {
+		const id = $('#guide-pick').value;
+		if (!id) return;
+		let r;
+		try { r = await post('/api/import', { guide: id }); } catch (err) { r = { error: err.message }; }
+		if (r.text) showCopy('Import string', `${id}: paste it on the Import page in game (/polestar import).`, r.text);
+		else showCopy('No import string', `${id} cannot go in an import string.`, r.error || 'unknown error');
 	});
 
 	// Windows

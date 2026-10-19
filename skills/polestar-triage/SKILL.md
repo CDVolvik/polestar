@@ -41,10 +41,11 @@ and note what you found:
 | Cause | How to check |
 |---|---|
 | Already reported | `gh issue list --state all --search "<quest id>"`, then the quest's name and the guide's title. Leave the issue you are triaging out of the results. Link an earlier issue; a duplicate is closed in favour of it. |
+| Already being fixed | `gh pr list --state open --search "<issue number>"`, then the quest id and the guide's name, and the issue's "Pull requests for this issue" comment (label `has-pr`). Read the open pull request's diff: when it fixes the report, the verdict still stands but no second fix is started; say in your answer which pull request covers it. |
 | Already fixed | `git log --oneline -S "<quest id>" -- guides/`, CHANGELOG.md since their version, and `changes/` (fixes merged but not released yet). Compare the fix commit's date with the report's, and check which release carries it with `git tag --contains <commit>` (plain `vX.Y.Z` tags only; `-rc` and `-test` tags are candidates). An unreleased fix on `next` or a `hotfix/` branch still counts as fixed. |
 | Old or mixed install | A version older than the latest release; addon folders from two versions; `Polestar_Guides` missing. |
 | The step was misread | Read the step on the version they run: `git show v<version>:<guide file>`. |
-| Another addon | Quest arrows, waypoints or objective text that Polestar does not draw (Questie, TomTom, other guide addons). The report's "Other addons" field lists them. |
+| Another addon | Quest arrows, waypoints or objective text that Polestar does not draw (Questie, TomTom, other guide addons). The report's "Other addons" field lists them; an issue the bot filed from Discord has them in its "**Addons:**" line, under the player's words. |
 | Classic, not Forever | Forever moved givers, changed prerequisites and levels, and added quests. What a quest does on Classic proves nothing here. |
 | Character state | A quest skipped earlier, an abandoned chain, a race or class the step is not for (`only` lines), a step the guide skipped or is looking ahead to. |
 | The world, not the guide | An NPC that was dead, despawned or busy in an event, or a mob camp cleared by other players, while the data puts it where the guide says. The data's spawn and the reporter's `/polestar where` line settle where; only the game settles when. |
@@ -120,11 +121,11 @@ Suggest the labels with the draft; a maintainer sets them:
 
 | Verdict | Label | Then |
 |---|---|---|
-| Confirmed | `confirmed`, plus `patch-candidate` when the fix is guide-only (CONTRIBUTING.md, "Branches") | the fix |
+| Confirmed | `confirmed`, plus `patch-candidate` when the fix is guide-only: its pull request goes to `next`, and the maintainer labels it `backport` when it merges (CONTRIBUTING.md, "Branches") | the fix |
 | Already fixed | none | closed as completed. The release workflow tells a Discord thread when the fix ships and labels the issue `released:<tag>` |
 | Unclear | `needs-info` | without a reply it closes on its own after three weeks; a maintainer reopens it when the answer comes |
-| Mistaken | none | closed as not planned, once the reporter has had the explanation |
-| Duplicate | none | closed as a duplicate, linking the earlier issue |
+| Mistaken | `resolution:no-action` | closed as not planned, once the reporter has had the explanation: `gh issue edit <N> --add-label resolution:no-action`, then `gh issue close <N> --reason "not planned"`. Every not-planned close gets its `resolution:` label, so the Discord thread's first line fits: `resolution:no-action` (works as designed, or mistaken), `resolution:cannot-reproduce`, `resolution:not-resolved`, `resolution:wontfix` (`gh label create <label>` first when it is missing) |
+| Duplicate | none | `gh issue close <N> --duplicate-of <M>`, with one plain comment first saying what the earlier issue covers and where it stands (confirmed, fix merged, released, open). The Discord thread is told #M's status and quotes that comment. Not `--reason "not planned"` with a `Duplicate of #M` comment |
 
 ## 6. Only then, fix
 

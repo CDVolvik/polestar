@@ -1,8 +1,8 @@
 'use strict';
 // The Discord bug bot (tools/discord-bot): reading the addon's report back
 // out of a #bugs post, filing posts as issues exactly once, carrying the
-// reporter's follow-ups and edits over, and telling the thread when the
-// issue closes, reopens or ships.
+// thread's follow-ups (the reporter's and other players') and edits over,
+// and telling the thread when the issue closes, reopens or ships.
 
 const { test } = require('node:test');
 const assert = require('node:assert/strict');
@@ -66,6 +66,36 @@ test('a translated report parses by shape, not by its words', () => {
 	assert.equal(r.details.routes, 'roads · travel planner off', 'the route settings, found by their words under a translated label');
 	assert.match(I.issueBody({ report: r, reporter: 'x', guild: '1', thread: '2' }), /^\| Routes \| roads · travel planner off \|$/m);
 	assert.ok(I.labelsFor(r).includes('lua-error'));
+});
+
+test('a Chinese report, its labels in full-width colons and brackets, reads like any other', () => {
+	const zh = [
+		'**出了什么问题：** 箭头指向水里',
+		'```',
+		'Polestar 0.2.4 Beta · 客户端 1.60.1（70338） · zhCN',
+		'Human Warrior · 4级 · Alliance',
+		'指南：Elwynn Forest（forever/alliance/human/01-elwynn-forest）',
+		'步骤 3/8：Kobold Camp',
+		'[x] Accept Wolves Across the Border · quest 33 · npc 196 · map 1429 @48.20,40.00 live',
+		'[>] Kill Kobold Vermin 7/10 · quest 7 · npc 6 · map 1429 @47.60,35.10 live',
+		'箭头：Kill Kobold Vermin · 42 yd',
+		'位置：Elwynn Forest · map 1429 @47.00,35.00 live',
+		'路线：balanced',
+		'错误：',
+		'  1x Polestar/Nav/Arrow.lua:40: bad argument',
+		'```',
+	].join('\n');
+	const r = parseReport(zh);
+	assert.equal(r.description, '箭头指向水里', 'the lead-in goes, as in English');
+	const d = r.details;
+	assert.deepEqual([d.client, d.build, d.locale], ['1.60.1', '70338', 'zhCN']);
+	assert.equal(d.character, 'Human Warrior · 4级 · Alliance');
+	assert.deepEqual([d.guideTitle, d.guideId], ['Elwynn Forest', 'forever/alliance/human/01-elwynn-forest']);
+	assert.deepEqual([d.step, d.stepCount, d.stepTitle], [3, 8, 'Kobold Camp']);
+	assert.equal(d.arrow, '箭头：Kill Kobold Vermin · 42 yd', 'the goals are passed over, not read as the arrow or the place');
+	assert.deepEqual([d.zone, d.map, d.routes], ['Elwynn Forest', 1429, 'balanced']);
+	assert.ok(I.labelsFor(r).includes('guide:01-elwynn-forest'));
+	assert.equal(I.issueTitle('**出了什么问题：** 箭头指向水里 ``` Polestar'), '箭头指向水里');
 });
 
 test('a report with no guide open still finds the arrow and position lines', () => {
@@ -143,16 +173,21 @@ test('backfill leaves locked, tagged and older posts alone', async () => {
 	assert.deepEqual(github.issues.map((i) => i.title), ['New one']);
 });
 
-test("the reporter's follow-ups become comments; other people's do not", async () => {
+test("every player's follow-up becomes a comment, the reporter's marked as theirs; the bot's own messages and empty ones do not", async () => {
 	const { discord, github, sync } = setup();
 	discord.post('1001', { content: POST });
 	await sync.newPost('1001');
-	await sync.dispatch('MESSAGE_CREATE', discord.say('1001', { author: 'u2', content: 'same for me' }));
+	await sync.dispatch('MESSAGE_CREATE', discord.say('1001', { author: 'u2', content: 'Shows green until 85, not 100: https://www.wowhead.com/forever/spell=2392' }));
 	await sync.dispatch('MESSAGE_CREATE', discord.say('1001', { author: 'u1', content: 'It happens at step 20 too', attachments: [{ id: 'a9', filename: 'b.jpg', content_type: 'image/jpeg', size: 5, url: 'y' }] }));
+	await sync.dispatch('MESSAGE_CREATE', discord.say('1001', { author: 'u3', content: '' }));
+	await sync.dispatch('MESSAGE_CREATE', discord.say('1001', { author: 'u4', content: 'I am a bot', bot: true }));
 	const comments = github.commentsByIssue.get(1);
-	assert.equal(comments.length, 1);
-	assert.match(comments[0].body, /It happens at step 20 too/);
-	assert.match(comments[0].body, /bug-media\/discord\/1001\/a9-b\.jpg/);
+	assert.equal(comments.length, 2);
+	assert.match(comments[0].body, /^\*\*someone\*\* commented on \[Discord\]/);
+	assert.match(comments[0].body, /green until 85, not 100/);
+	assert.match(comments[1].body, /^\*\*someone\*\* \(the reporter\) added on \[Discord\]/);
+	assert.match(comments[1].body, /It happens at step 20 too/);
+	assert.match(comments[1].body, /bug-media\/discord\/1001\/a9-b\.jpg/);
 });
 
 test('editing the first message rewrites the issue body, once per change', async () => {
@@ -210,6 +245,87 @@ test('a duplicate points at the issue it duplicates; reopening unlocks and track
 	const t = discord.channels.get('1001');
 	assert.deepEqual(t.applied_tags, ['t-questing', 't-tracked']);
 	assert.equal(t.thread_metadata.locked, false);
+});
+
+// The issue #1 (thread 1001) duplicates: #2, filed on GitHub, in the state given.
+async function duplicated(fields = {}, labels = [], note = null) {
+	const s = await filed();
+	const m = await s.github.createIssue({ title: 'arrow', body: '', labels });
+	Object.assign(m, fields);
+	if (note) await s.github.comment(m.number, note);
+	return s;
+}
+
+test("closed as duplicate by GitHub's marker alone points at the issue, tags Duplicate and locks", async () => {
+	const { discord, github } = await duplicated({}, ['has-pr']);
+	Object.assign(github.issues[0], { duplicate_of: 2 });
+	await onIssue({ discord, github, event: { action: 'closed', issue: { ...github.issues[0], state_reason: 'duplicate' } }, log: quietLog });
+	assert.match(discord.sent.at(-1).content, /^<@u1> This was already reported, so we're tracking it in \[fitzforge\/polestar#2\]\(<[^>]+>\)\. A fix is in progress\.\nThanks for the report!/);
+	const t = discord.channels.get('1001');
+	assert.deepEqual(t.applied_tags, ['t-questing', 't-dup']);
+	assert.equal(t.thread_metadata.locked, true);
+});
+
+test('closed as not planned with a "Duplicate of #M" comment is a duplicate, quoting the explanation and not the bare line', async () => {
+	const { discord, github } = await duplicated({}, ['fix-merged']);
+	await github.comment(1, 'Thanks! This is the same bug as #2: the arrow points at the wrong spot.');
+	await github.comment(1, 'Duplicate of #2.');
+	await onIssue({ discord, github, event: { action: 'closed', issue: { ...github.issues[0], state_reason: 'not_planned' } }, log: quietLog });
+	const last = discord.sent.at(-1).content;
+	assert.match(last, /^<@u1> It's the same bug as \[fitzforge\/polestar#2\]\(<[^>]+>\), and that's already fixed: it ships in the next Polestar update\.\n> Thanks! This is the same bug as #2: the arrow points at the wrong spot\.\nThanks for the report!/);
+	assert.doesNotMatch(last, /not to change|> Duplicate of/);
+	const t = discord.channels.get('1001');
+	assert.deepEqual(t.applied_tags, ['t-questing', 't-dup']);
+	assert.equal(t.thread_metadata.locked, true);
+});
+
+test("a duplicate's message says where the issue it duplicates stands", async () => {
+	const long = 'x'.repeat(400);
+	const cases = [
+		[{ state: 'closed', state_reason: 'completed' }, [], null, /It's the same bug as \[fitzforge\/polestar#2\]\S+, and that's already fixed: it ships in the next Polestar update\./],
+		[{ state: 'closed', state_reason: 'completed' }, ['released:v0.2.6'], null, /It's the same bug as \[fitzforge\/polestar#2\]\S+, and the fix is out in Polestar 0\.2\.6: update Polestar to get it\./],
+		[{ state: 'closed', state_reason: 'not_planned' }, [], 'Works as designed: the arrow points at the giver.', /It's the same as \[fitzforge\/polestar#2\]\S+, and we've decided not to change it:\n> Works as designed: the arrow points at the giver\.\n\n> Same arrow\./],
+		[{ state: 'closed', state_reason: 'not_planned' }, ['resolution:cannot-reproduce'], long, /It's the same as \[fitzforge\/polestar#2\]\S+, and we couldn't reproduce that one\.\n> Same arrow\./],
+		[{ state: 'open' }, [], null, /This was already reported, so we're tracking it in \[fitzforge\/polestar#2\]\S+\.\n> Same arrow\./],
+	];
+	for (const [fields, labels, note, want] of cases) {
+		const { discord, github } = await duplicated(fields, labels, note);
+		await github.comment(1, 'Duplicate of #2\n\nSame arrow.');
+		await onIssue({ discord, github, event: { action: 'closed', issue: { ...github.issues[0], state_reason: 'duplicate' } }, log: quietLog });
+		const last = discord.sent.at(-1).content;
+		assert.match(last, want);
+		assert.doesNotMatch(last, /x{400}|A fix is in progress/);
+	}
+});
+
+test('a release tells the threads of duplicates of what it ships, once, wherever the shipped issue was filed', async () => {
+	const { discord, github, sync } = setup();
+	for (const id of ['1', '2', '3', '4']) {
+		discord.post(id, { content: 'bug ' + id });
+		await sync.newPost(id);
+	}
+	const fix = await github.createIssue({ title: 'filed on GitHub', body: '', labels: [] }); // #5
+	const close = (n, fields) => Object.assign(github.issues[n - 1], { state: 'closed', closed_at: '2026-10-15T00:00:00Z', ...fields });
+	close(1, { state_reason: 'completed' });
+	close(2, { state_reason: 'not_planned' });
+	await github.comment(2, 'Duplicate of #1');
+	close(3, { state_reason: 'duplicate', duplicate_of: fix.number });
+	close(fix.number, { state_reason: 'completed' });
+	close(4, { state_reason: 'not_planned' });
+	await github.comment(4, 'Duplicate of #9'); // not in this release
+	github.releasesList.push({ id: 1, tag_name: 'v0.2.5', published_at: '2026-10-14T00:00:00Z' });
+	const release = { id: 2, tag_name: 'v0.2.6', name: 'Polestar 0.2.6', html_url: 'https://github.com/fitzforge/polestar/releases/tag/v0.2.6', published_at: '2026-10-16T00:00:00Z' };
+	github.releasesList.push(release);
+
+	const before = discord.sent.length;
+	assert.deepEqual(await onRelease({ discord, github, event: { release }, log: quietLog }), { told: 3, failed: 0 });
+	const told = discord.sent.slice(before);
+	assert.deepEqual(told.map((s) => s.channel), ['1', '2', '3']);
+	assert.match(told[1].content, /^<@u1> The fix for \[fitzforge\/polestar#1\]\S+, the same bug as yours, is out in \*\*Polestar 0\.2\.6\*\*/);
+	assert.match(told[2].content, /The fix for \[fitzforge\/polestar#5\]/);
+	for (const n of [2, 3]) assert.ok(github.issues[n - 1].labels.some((l) => l.name === 'released:v0.2.6'));
+
+	assert.deepEqual(await onRelease({ discord, github, event: { release }, log: quietLog }), { told: 0, failed: 0 });
 });
 
 test('a release tells the threads of fixes closed since the last release, once', async () => {
