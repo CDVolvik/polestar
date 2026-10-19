@@ -408,6 +408,20 @@ describe('QuestieDB merge', () => {
 		assert.deepEqual(read('npcs')[1].spawns, { 1429: { f: 'l', pts: [[47.5, 40.25]] } });
 	});
 
+	// tools/lib/data/corrections.json: dungeon quests whose Forever XP is about
+	// twice the Classic QuestXP the store has (issue #394), corrected from dated in-game evidence.
+	test('corrections.json gives dungeon quests their Forever XP over QuestieDB\'s QuestXP', async () => {
+		const quest = (name, questLevel) => ({ name, questLevel, requiredLevel: 1, startedBy: [[2]], finishedBy: [[2]] });
+		const { read } = await build({}, {
+			quests: { 377: quest('Crime and Punishment', 26), 1486: quest('Deviate Hides', 17) },
+			files: { 'support/Forever/QuestXP/xpDB-classic.lua': 'local QuestXP = QuestieLoader:ImportModule("QuestXP");\nQuestXP.db = {\n  [377] = {26, 2100},\n  [1486] = {17, 1600},\n}\n' },
+		});
+		const q = read('quests');
+		assert.equal(q[377].xp, 4400, 'Crime and Punishment: The Stockade');
+		assert.equal(q[1486].xp, 3100, 'Deviate Hides: Wailing Caverns');
+		for (const id of [377, 1486]) assert.ok(q[id].source.includes('polestar-correction'), `${id} is tagged as corrected`);
+	});
+
 	// MgM's report (#462): QuestieDB's Forever store gives Deviate Hides (1486)
 	// an Orgrimmar Mailbox and Poor Old Blanchy (151) a Stormwind one as a
 	// second giver, so the Wailing Caverns pick-up page sent a player from
