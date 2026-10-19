@@ -920,7 +920,7 @@ Polestar.Guides.ProblemCount() -> n         -- over every listed pack (the Optio
 Polestar.Guides.OwnsId(packId, guideId) -> bool
 Polestar.Guides.SuggestSources() -> { packId, ... }  -- "guides", then shown packs with leveling guides (never `imported`)
 Polestar.Guides.SuggestSource() -> packId   -- behavior.suggestFrom when it can, else "guides"
-Polestar.Guides.OfferedBy(id) -> { guide, ... }      -- shown guides whose route choice offers id
+Polestar.Guides.OfferedBy(id) -> { guide, ... }      -- shown guides whose route choice offers id now (Engine.RouteOffered)
 Polestar.Guides.DropImported(id) -> bool    -- takes an imported guide out (Import.Delete), nothing else
 ```
 
@@ -1242,7 +1242,9 @@ the same person never splits that person's group.
 
 A guide whose `next` lists several guides compiles to `next` (the author's
 default, the first) plus `nextChoices` (all of them, in order); each option may
-carry `pitch`, `pros`, `cons` (see GUIDE_FORMAT).
+carry `pitch`, `pros`, `cons` (see GUIDE_FORMAT). `next <id> when ...` adds
+`nextWhen` (format 4: option id -> predicates, as a step's `when`), and
+`nextChoices` then lists the options even when there is one.
 
 ```lua
 Polestar.Engine.GetRouteChoice(fromId) -> { from, fromTitle, recommended, chosen, joinsAt,
@@ -1251,6 +1253,8 @@ Polestar.Engine.GetRouteChoice(fromId) -> { from, fromTitle, recommended, chosen
 Polestar.Engine.ChooseRoute(fromId, toId) -> bool   -- remembers, loads, fires ROUTE_CHOSEN
 Polestar.Engine.PendingRouteChoice() -> fromId | nil -- the active tab's finished guide waiting for a choice
 Polestar.Engine.RouteChoiceFor(id) -> fromId | nil  -- the choice that offers guide `id` to this character
+Polestar.Engine.RouteOffered(fromId, toId) -> bool  -- fromId's `next` names toId and its `when`, if any, holds now
+Polestar.Engine.NextGuide(fromId) -> id | nil       -- where the hand-off goes now; nil: none offered, or the player chooses
 Polestar.Engine.OfferRouteChoice() -> fromId | nil  -- /polestar path: fires ROUTE_CHOICE
 Polestar.Engine.GuideFocus(id) -> x, y | nil       -- live-frame percent of where the guide is for this character, for the
                                                     -- guide menu's zone art: open in a tab and unfinished, the current
@@ -1259,7 +1263,12 @@ Polestar.Engine.GuideFocus(id) -> x, y | nil       -- live-frame percent of wher
 ```
 
 - **Options** are the `nextChoices` that fit the character (faction, race,
-  class); `outleveled` when the level is at or past the option's maxLevel.
+  class) and are offered now: an option with `nextWhen` only while its
+  predicates hold (`Own.optionHolds`, `Own.predicateHolds` on the live state,
+  checked each time the options are listed: `routeOptions`, `ChooseRoute`,
+  `RouteOffered`, so `Guides.OfferedBy`, the guide menu's "Next" line and its
+  suggested follow-ups, and "Up next" on a finished guide); nothing is stored.
+  `outleveled` when the level is at or past the option's maxLevel.
   `seconds` is `TravelCost` from the player to the option's first located goal;
   `quests` counts the accepts this character gets there; `joinsAt` names the
   guide every option continues to, when they share one.
@@ -1267,10 +1276,11 @@ Polestar.Engine.GuideFocus(id) -> x, y | nil       -- live-frame percent of wher
   bands), then the author's order.
 - **At completion** (with `behavior.autoNextGuide`, and the guide either
   auto-loaded or seen incomplete): the remembered choice
-  (`CharState().routes[fromId]`), else the only fitting option, else with
-  `behavior.routeChoice = "recommended"` the recommended one. Otherwise the
-  finished guide stays in its tab and `ROUTE_CHOICE(fromId)` fires once, after
-  the evaluation.
+  (`CharState().routes[fromId]`), else the only option offered, else with
+  `behavior.routeChoice = "recommended"` the recommended one. With none
+  offered (every option's `when` fails) the guide ends there, as without
+  `next`. Otherwise the finished guide stays in its tab and
+  `ROUTE_CHOICE(fromId)` fires once, after the evaluation.
 - **Fresh start:** with no saved tabs, when the suggested guide is an option of
   a choice the character fits, and the character is at most one level into
   that guide's range, login also fires `ROUTE_CHOICE` (the suggested route
@@ -1280,7 +1290,13 @@ Polestar.Engine.GuideFocus(id) -> x, y | nil       -- live-frame percent of wher
 - **Never-had quests:** a turn-in, complete or objective goal for a quest the
   character neither has nor has done, and that its guide does not accept (for
   this character) at or before that step, does not apply (status `na`): it was
-  picked up on another route, or skipped. `chainNeeds` follows every route option.
+  picked up on another route, or skipped. `chainNeeds` follows every route
+  option but one whose `when` can no longer hold (`Own.optionClosed`: a
+  `level<N` or `level<=N` the character is past, a `!turnedin` quest handed
+  in); the chain is built again once a kept conditional option closes. The
+  hand-in plan (`Core/RoutePlan.lua`) treats a guide with a conditional
+  option like a choice not made yet, unless the remembered choice is an
+  unconditional option.
 - **UI** (`UI/RouteChoice.lua`, frame `PolestarRouteChoice`): one card per
   option. Each card opens on the zone's art (`UI.ZoneArt`, below) framed on
   `focusX/focusY` (where the route starts), lightly desaturated, fading into

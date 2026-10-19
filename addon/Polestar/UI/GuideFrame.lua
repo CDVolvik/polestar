@@ -1286,7 +1286,10 @@ local function setEmpty(kind)
 	elseif kind == "complete" then
 		glyph, color = "check", "success"
 		local guide = E and E.GetGuide and E.GetGuide()
-		local nextGuide = guide and guide.next and G and G.Get and G.Get(guide.next)
+		-- Where the hand-off goes now: the remembered or only option offered (an
+		-- option with `when` only while it holds), nil with none.
+		local nextId = guide and (E.NextGuide and E.NextGuide(guide.id) or not E.NextGuide and guide.next)
+		local nextGuide = nextId and G and G.Get and G.Get(nextId)
 		local choiceFrom = guide and E.PendingRouteChoice and E.PendingRouteChoice()
 		local afterRun = not choiceFrom and pickupKey(guide)
 		empty.Title:SetText(L["Guide complete"])

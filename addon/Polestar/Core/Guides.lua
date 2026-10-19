@@ -363,6 +363,18 @@ local function validate(def)
 			end
 		end
 	end
+	-- nextWhen (format 4): an option of nextChoices -> its predicates, as a
+	-- step's `when`; Engine.lua (Own.optionHolds) reads them at the hand-off.
+	if def.nextWhen ~= nil then
+		if type(def.nextWhen) ~= "table" or type(def.nextChoices) ~= "table" then return "bad nextWhen" end
+		for id, list in pairs(def.nextWhen) do
+			local listed = false
+			for i = 1, #def.nextChoices do
+				if def.nextChoices[i] == id then listed = true end
+			end
+			if not (listed and list ~= nil and checkWhen(list)) then return "bad nextWhen" end
+		end
+	end
 	for s, step in ipairs(def.steps) do
 		if type(step) ~= "table" then return ("step %d is not a table"):format(s) end
 		if type(step.goals) ~= "table" or #step.goals == 0 then return ("step %d has no goals"):format(s) end
@@ -967,16 +979,18 @@ local function guideStart(g)
 end
 Guides.Start = guideStart
 
--- Shown guides whose route choice (`nextChoices`) offers `id`, in
+-- Shown guides whose route choice (`nextChoices`) offers `id` now (an
+-- option with `when` only while it holds: Engine.RouteOffered), in
 -- registration order.
 function Guides.OfferedBy(id)
 	local out = {}
+	local E = ns.Engine
 	for i = 1, #order do
 		local g = guides[order[i]]
 		if g.nextChoices and visible(g) then
 			for _, c in ipairs(g.nextChoices) do
 				if c == id then
-					out[#out + 1] = g
+					if not (E and E.RouteOffered) or E.RouteOffered(g.id, id) then out[#out + 1] = g end
 					break
 				end
 			end

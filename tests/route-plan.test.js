@@ -332,3 +332,18 @@ test('resetting integration settings removes captions and restores the opt-in de
   `,true);
   assert.equal(out.enabled,false); assert.equal(out.text,'Ready quest');
 });
+
+test('a `next` option with `when` is decided at the hand-off: the plan waits, unless the remembered choice is an unconditional option', () => {
+  const [out] = run(`
+    guides["route/c"]={id="route/c",title="Other",steps={}}
+    guideA.nextChoices={guideB.id}; guideA.nextWhen={[guideB.id]={{k="level",op=">=",n=10}}}
+    local alone=R.GetTurnIn(5)
+    guideA.nextChoices={guideB.id,"route/c"}; guideA.nextWhen={["route/c"]={{k="level",op="<",n=10}}}; P.Fire("ROUTE_CHOSEN")
+    local unchosen=R.GetTurnIn(5)
+    P.CharState().routes={[guideA.id]=guideB.id}; P.Fire("ROUTE_CHOSEN")
+    local chosen=R.GetTurnIn(5)
+    P.CharState().routes={[guideA.id]="route/c"}; P.Fire("ROUTE_CHOSEN")
+    emit({alone=alone.status,unchosen=unchosen.status,chosen=chosen.status,conditional=R.GetTurnIn(5).status})
+  `);
+  assert.deepEqual(out,{alone:'choice',unchosen:'choice',chosen:'later',conditional:'choice'});
+});
