@@ -490,6 +490,7 @@ function emitNamesAddon(locale, built, { version = require('../../../package.jso
 		'## X-License: GPL-3.0-only',
 		`## Version: ${version}`,
 		'## Category: Quests',
+		'## Group: Polestar',
 		'## LoadOnDemand: 1',
 		'## Dependencies: Polestar',
 		'',
