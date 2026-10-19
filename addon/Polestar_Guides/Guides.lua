@@ -8652,8 +8652,8 @@ do
 					goals = {
 						{ t = "turnin", quest = 412, title = "Operation Recombobulation", npc = 1269, npcName = "Razzle Sprysprocket", map = 1426, x = 45.85, y = 49.37, z = 395.4, f = "e" },
 						{ t = "buy", npc = 1247, npcName = "Innkeeper Belm", item = 2686, itemName = "Thunder Ale", count = 1, map = 1426, x = 47.38, y = 52.52, z = 399.7, f = "e", note = "{item:2686}, from {npc:1247} in the distillery" },
-						{ t = "turnin", quest = 403, title = "Guarded Thunderbrew Barrel", object = 269, objName = "Guarded Thunder Ale Barrel", map = 1426, x = 47.72, y = 52.7, z = 393, f = "e", note = "The {object:269} in the basement", direct = true },
-						{ t = "turnin", quest = 308, title = "Distracting Jarven", npc = 1373, npcName = "Jarven Thunderbrew", map = 1426, x = 47.65, y = 52.66, z = 392.4, f = "e", note = "{npc:1373}, beside the barrel", direct = true },
+						{ t = "turnin", quest = 403, title = "Guarded Thunderbrew Barrel", object = 269, objName = "Guarded Thunder Ale Barrel", qlvl = 1, map = 1426, x = 47.72, y = 52.7, z = 393, f = "e", note = "The {object:269} in the basement", direct = true },
+						{ t = "turnin", quest = 308, title = "Distracting Jarven", npc = 1373, npcName = "Jarven Thunderbrew", qlvl = 7, map = 1426, x = 47.65, y = 52.66, z = 392.4, f = "e", note = "{npc:1373}, beside the barrel", direct = true },
 						{ t = "turnin", quest = 310, title = "Bitter Rivals", object = 270, objName = "Unguarded Thunder Ale Barrel", map = 1426, x = 47.72, y = 52.7, z = 393, f = "e", note = "The {object:270} in the distillery" },
 						{ t = "accept", quest = 311, title = "Return to Marleth", object = 270, objName = "Unguarded Thunder Ale Barrel", minLevel = 2, qlvl = 7, pre = { 310 }, preTitles = { [310] = "Bitter Rivals" }, map = 1426, x = 47.72, y = 52.7, z = 393, f = "e" },
 						{ t = "turnin", quest = 287, title = "Frostmane Hold", npc = 1252, npcName = "Senir Whitebeard", map = 1426, x = 46.73, y = 53.83, z = 396.8, f = "e" },
@@ -40129,7 +40129,7 @@ do
 					note = "{quest:7837} takes 20 {item:14047} per turn-in and repeats as often as you like. Bring {item:14047} in multiples of 20 and hand them all in at once, one turn-in after another. {item:14047}: Dark Adepts and Shadowmages (level 58-60) in {zone:1423}, or the Auction House.",
 					goals = {
 						{ t = "collect", item = 14047, itemName = "Runecloth", count = 20, map = 1423, x = 40, y = 51.3, f = "e", optional = true },
-						{ t = "turnin", quest = 7837, title = "Additional Runecloth", npc = 14727, npcName = "Vehena", map = 1454, x = 37.7, y = 87.9, z = 43.6, f = "e", optional = true, direct = true },
+						{ t = "turnin", quest = 7837, title = "Additional Runecloth", npc = 14727, npcName = "Vehena", qlvl = 60, map = 1454, x = 37.7, y = 87.9, z = 43.6, f = "e", optional = true, direct = true },
 						{ t = "rep", faction = 530, factionName = "Darkspear Trolls", standing = 6 },
 					},
 				},
@@ -40138,7 +40138,7 @@ do
 					note = "Keep handing in {quest:7837}, 20 {item:14047} at a time. {item:14047}: Dark Adepts and Shadowmages (level 58-60) in {zone:1423}, or the Auction House.",
 					goals = {
 						{ t = "collect", item = 14047, itemName = "Runecloth", count = 20, map = 1423, x = 40, y = 51.3, f = "e", optional = true },
-						{ t = "turnin", quest = 7837, title = "Additional Runecloth", npc = 14727, npcName = "Vehena", map = 1454, x = 37.7, y = 87.9, z = 43.6, f = "e", optional = true, direct = true },
+						{ t = "turnin", quest = 7837, title = "Additional Runecloth", npc = 14727, npcName = "Vehena", qlvl = 60, map = 1454, x = 37.7, y = 87.9, z = 43.6, f = "e", optional = true, direct = true },
 						{ t = "rep", faction = 530, factionName = "Darkspear Trolls", standing = 7 },
 					},
 				},
@@ -40147,7 +40147,7 @@ do
 					note = "Keep handing in {quest:7837} until {faction:530} is Exalted. {item:14047}: Dark Adepts and Shadowmages (level 58-60) in {zone:1423}, or the Auction House.",
 					goals = {
 						{ t = "collect", item = 14047, itemName = "Runecloth", count = 20, map = 1423, x = 40, y = 51.3, f = "e", optional = true },
-						{ t = "turnin", quest = 7837, title = "Additional Runecloth", npc = 14727, npcName = "Vehena", map = 1454, x = 37.7, y = 87.9, z = 43.6, f = "e", optional = true, direct = true },
+						{ t = "turnin", quest = 7837, title = "Additional Runecloth", npc = 14727, npcName = "Vehena", qlvl = 60, map = 1454, x = 37.7, y = 87.9, z = 43.6, f = "e", optional = true, direct = true },
 						{ t = "rep", faction = 530, factionName = "Darkspear Trolls", standing = 8 },
 					},
 				},
@@ -40245,7 +40245,7 @@ do
 					note = "{quest:7801} takes 20 {item:14047} per turn-in and repeats as often as you like. Bring {item:14047} in multiples of 20 and hand them all in at once, one turn-in after another. {item:14047}: Dark Adepts and Shadowmages (level 58-60) in {zone:1423}, or the Auction House.",
 					goals = {
 						{ t = "collect", item = 14047, itemName = "Runecloth", count = 20, map = 1423, x = 40, y = 51.3, f = "e", optional = true },
-						{ t = "turnin", quest = 7801, title = "Additional Runecloth", npc = 14725, npcName = "Raedon Duskstriker", map = 1457, x = 64.02, y = 23, z = 1333.1, f = "e", optional = true, direct = true },
+						{ t = "turnin", quest = 7801, title = "Additional Runecloth", npc = 14725, npcName = "Raedon Duskstriker", qlvl = 60, map = 1457, x = 64.02, y = 23, z = 1333.1, f = "e", optional = true, direct = true },
 						{ t = "rep", faction = 69, factionName = "Darnassus", standing = 6 },
 					},
 				},
@@ -40254,7 +40254,7 @@ do
 					note = "Keep handing in {quest:7801}, 20 {item:14047} at a time. {item:14047}: Dark Adepts and Shadowmages (level 58-60) in {zone:1423}, or the Auction House.",
 					goals = {
 						{ t = "collect", item = 14047, itemName = "Runecloth", count = 20, map = 1423, x = 40, y = 51.3, f = "e", optional = true },
-						{ t = "turnin", quest = 7801, title = "Additional Runecloth", npc = 14725, npcName = "Raedon Duskstriker", map = 1457, x = 64.02, y = 23, z = 1333.1, f = "e", optional = true, direct = true },
+						{ t = "turnin", quest = 7801, title = "Additional Runecloth", npc = 14725, npcName = "Raedon Duskstriker", qlvl = 60, map = 1457, x = 64.02, y = 23, z = 1333.1, f = "e", optional = true, direct = true },
 						{ t = "rep", faction = 69, factionName = "Darnassus", standing = 7 },
 					},
 				},
@@ -40263,7 +40263,7 @@ do
 					note = "Keep handing in {quest:7801} until {faction:69} is Exalted. {item:14047}: Dark Adepts and Shadowmages (level 58-60) in {zone:1423}, or the Auction House.",
 					goals = {
 						{ t = "collect", item = 14047, itemName = "Runecloth", count = 20, map = 1423, x = 40, y = 51.3, f = "e", optional = true },
-						{ t = "turnin", quest = 7801, title = "Additional Runecloth", npc = 14725, npcName = "Raedon Duskstriker", map = 1457, x = 64.02, y = 23, z = 1333.1, f = "e", optional = true, direct = true },
+						{ t = "turnin", quest = 7801, title = "Additional Runecloth", npc = 14725, npcName = "Raedon Duskstriker", qlvl = 60, map = 1457, x = 64.02, y = 23, z = 1333.1, f = "e", optional = true, direct = true },
 						{ t = "rep", faction = 69, factionName = "Darnassus", standing = 8 },
 					},
 				},
@@ -40361,7 +40361,7 @@ do
 					note = "{quest:7812} takes 20 {item:14047} per turn-in and repeats as often as you like. Bring {item:14047} in multiples of 20 and hand them all in at once, one turn-in after another. {item:14047}: Dark Adepts and Shadowmages (level 58-60) in {zone:1423}, or the Auction House.",
 					goals = {
 						{ t = "collect", item = 14047, itemName = "Runecloth", count = 20, map = 1423, x = 40, y = 51.3, f = "e", optional = true },
-						{ t = "turnin", quest = 7812, title = "Additional Runecloth", npc = 14724, npcName = "Bubulo Acerbus", map = 1455, x = 74.09, y = 48.22, z = 502, f = "e", optional = true, direct = true },
+						{ t = "turnin", quest = 7812, title = "Additional Runecloth", npc = 14724, npcName = "Bubulo Acerbus", qlvl = 60, map = 1455, x = 74.09, y = 48.22, z = 502, f = "e", optional = true, direct = true },
 						{ t = "rep", faction = 54, factionName = "Gnomeregan Exiles", standing = 6 },
 					},
 				},
@@ -40370,7 +40370,7 @@ do
 					note = "Keep handing in {quest:7812}, 20 {item:14047} at a time. {item:14047}: Dark Adepts and Shadowmages (level 58-60) in {zone:1423}, or the Auction House.",
 					goals = {
 						{ t = "collect", item = 14047, itemName = "Runecloth", count = 20, map = 1423, x = 40, y = 51.3, f = "e", optional = true },
-						{ t = "turnin", quest = 7812, title = "Additional Runecloth", npc = 14724, npcName = "Bubulo Acerbus", map = 1455, x = 74.09, y = 48.22, z = 502, f = "e", optional = true, direct = true },
+						{ t = "turnin", quest = 7812, title = "Additional Runecloth", npc = 14724, npcName = "Bubulo Acerbus", qlvl = 60, map = 1455, x = 74.09, y = 48.22, z = 502, f = "e", optional = true, direct = true },
 						{ t = "rep", faction = 54, factionName = "Gnomeregan Exiles", standing = 7 },
 					},
 				},
@@ -40379,7 +40379,7 @@ do
 					note = "Keep handing in {quest:7812} until {faction:54} is Exalted. {item:14047}: Dark Adepts and Shadowmages (level 58-60) in {zone:1423}, or the Auction House.",
 					goals = {
 						{ t = "collect", item = 14047, itemName = "Runecloth", count = 20, map = 1423, x = 40, y = 51.3, f = "e", optional = true },
-						{ t = "turnin", quest = 7812, title = "Additional Runecloth", npc = 14724, npcName = "Bubulo Acerbus", map = 1455, x = 74.09, y = 48.22, z = 502, f = "e", optional = true, direct = true },
+						{ t = "turnin", quest = 7812, title = "Additional Runecloth", npc = 14724, npcName = "Bubulo Acerbus", qlvl = 60, map = 1455, x = 74.09, y = 48.22, z = 502, f = "e", optional = true, direct = true },
 						{ t = "rep", faction = 54, factionName = "Gnomeregan Exiles", standing = 8 },
 					},
 				},
@@ -40580,7 +40580,7 @@ do
 					note = "{quest:7806} takes 20 {item:14047} per turn-in and repeats as often as you like. Bring {item:14047} in multiples of 20 and hand them all in at once, one turn-in after another. {item:14047}: Dark Adepts and Shadowmages (level 58-60) in {zone:1423}, or the Auction House.",
 					goals = {
 						{ t = "collect", item = 14047, itemName = "Runecloth", count = 20, map = 1423, x = 40, y = 51.3, f = "e", optional = true },
-						{ t = "turnin", quest = 7806, title = "Additional Runecloth", npc = 14723, npcName = "Mistina Steelshield", map = 1455, x = 43.22, y = 31.57, z = 502.3, f = "e", optional = true, direct = true },
+						{ t = "turnin", quest = 7806, title = "Additional Runecloth", npc = 14723, npcName = "Mistina Steelshield", qlvl = 60, map = 1455, x = 43.22, y = 31.57, z = 502.3, f = "e", optional = true, direct = true },
 						{ t = "rep", faction = 47, factionName = "Ironforge", standing = 6 },
 					},
 				},
@@ -40589,7 +40589,7 @@ do
 					note = "Keep handing in {quest:7806}, 20 {item:14047} at a time. {item:14047}: Dark Adepts and Shadowmages (level 58-60) in {zone:1423}, or the Auction House.",
 					goals = {
 						{ t = "collect", item = 14047, itemName = "Runecloth", count = 20, map = 1423, x = 40, y = 51.3, f = "e", optional = true },
-						{ t = "turnin", quest = 7806, title = "Additional Runecloth", npc = 14723, npcName = "Mistina Steelshield", map = 1455, x = 43.22, y = 31.57, z = 502.3, f = "e", optional = true, direct = true },
+						{ t = "turnin", quest = 7806, title = "Additional Runecloth", npc = 14723, npcName = "Mistina Steelshield", qlvl = 60, map = 1455, x = 43.22, y = 31.57, z = 502.3, f = "e", optional = true, direct = true },
 						{ t = "rep", faction = 47, factionName = "Ironforge", standing = 7 },
 					},
 				},
@@ -40598,7 +40598,7 @@ do
 					note = "Keep handing in {quest:7806} until {faction:47} is Exalted. {item:14047}: Dark Adepts and Shadowmages (level 58-60) in {zone:1423}, or the Auction House.",
 					goals = {
 						{ t = "collect", item = 14047, itemName = "Runecloth", count = 20, map = 1423, x = 40, y = 51.3, f = "e", optional = true },
-						{ t = "turnin", quest = 7806, title = "Additional Runecloth", npc = 14723, npcName = "Mistina Steelshield", map = 1455, x = 43.22, y = 31.57, z = 502.3, f = "e", optional = true, direct = true },
+						{ t = "turnin", quest = 7806, title = "Additional Runecloth", npc = 14723, npcName = "Mistina Steelshield", qlvl = 60, map = 1455, x = 43.22, y = 31.57, z = 502.3, f = "e", optional = true, direct = true },
 						{ t = "rep", faction = 47, factionName = "Ironforge", standing = 8 },
 					},
 				},
@@ -40784,7 +40784,7 @@ do
 					note = "{quest:7832} takes 20 {item:14047} per turn-in and repeats as often as you like. Bring {item:14047} in multiples of 20 and hand them all in at once, one turn-in after another. {item:14047}: Dark Adepts and Shadowmages (level 58-60) in {zone:1423}, or the Auction House.",
 					goals = {
 						{ t = "collect", item = 14047, itemName = "Runecloth", count = 20, map = 1423, x = 40, y = 51.3, f = "e", optional = true },
-						{ t = "turnin", quest = 7832, title = "Additional Runecloth", npc = 14726, npcName = "Rashona Straglash", map = 1454, x = 63.6, y = 51.23, z = 22.9, f = "e", optional = true, direct = true },
+						{ t = "turnin", quest = 7832, title = "Additional Runecloth", npc = 14726, npcName = "Rashona Straglash", qlvl = 60, map = 1454, x = 63.6, y = 51.23, z = 22.9, f = "e", optional = true, direct = true },
 						{ t = "rep", faction = 76, factionName = "Orgrimmar", standing = 6 },
 					},
 				},
@@ -40793,7 +40793,7 @@ do
 					note = "Keep handing in {quest:7832}, 20 {item:14047} at a time. {item:14047}: Dark Adepts and Shadowmages (level 58-60) in {zone:1423}, or the Auction House.",
 					goals = {
 						{ t = "collect", item = 14047, itemName = "Runecloth", count = 20, map = 1423, x = 40, y = 51.3, f = "e", optional = true },
-						{ t = "turnin", quest = 7832, title = "Additional Runecloth", npc = 14726, npcName = "Rashona Straglash", map = 1454, x = 63.6, y = 51.23, z = 22.9, f = "e", optional = true, direct = true },
+						{ t = "turnin", quest = 7832, title = "Additional Runecloth", npc = 14726, npcName = "Rashona Straglash", qlvl = 60, map = 1454, x = 63.6, y = 51.23, z = 22.9, f = "e", optional = true, direct = true },
 						{ t = "rep", faction = 76, factionName = "Orgrimmar", standing = 7 },
 					},
 				},
@@ -40802,7 +40802,7 @@ do
 					note = "Keep handing in {quest:7832} until {faction:76} is Exalted. {item:14047}: Dark Adepts and Shadowmages (level 58-60) in {zone:1423}, or the Auction House.",
 					goals = {
 						{ t = "collect", item = 14047, itemName = "Runecloth", count = 20, map = 1423, x = 40, y = 51.3, f = "e", optional = true },
-						{ t = "turnin", quest = 7832, title = "Additional Runecloth", npc = 14726, npcName = "Rashona Straglash", map = 1454, x = 63.6, y = 51.23, z = 22.9, f = "e", optional = true, direct = true },
+						{ t = "turnin", quest = 7832, title = "Additional Runecloth", npc = 14726, npcName = "Rashona Straglash", qlvl = 60, map = 1454, x = 63.6, y = 51.23, z = 22.9, f = "e", optional = true, direct = true },
 						{ t = "rep", faction = 76, factionName = "Orgrimmar", standing = 8 },
 					},
 				},
@@ -40900,7 +40900,7 @@ do
 					note = "{quest:7796} takes 20 {item:14047} per turn-in and repeats as often as you like. Bring {item:14047} in multiples of 20 and hand them all in at once, one turn-in after another. {item:14047}: Dark Adepts and Shadowmages (level 58-60) in {zone:1423}, or the Auction House.",
 					goals = {
 						{ t = "collect", item = 14047, itemName = "Runecloth", count = 20, map = 1423, x = 40, y = 51.3, f = "e", optional = true },
-						{ t = "turnin", quest = 7796, title = "Additional Runecloth", npc = 14722, npcName = "Clavicus Knavingham", map = 1453, x = 53.93, y = 81.69, z = 97.4, optional = true, direct = true },
+						{ t = "turnin", quest = 7796, title = "Additional Runecloth", npc = 14722, npcName = "Clavicus Knavingham", qlvl = 60, map = 1453, x = 53.93, y = 81.69, z = 97.4, optional = true, direct = true },
 						{ t = "rep", faction = 72, factionName = "Stormwind", standing = 6 },
 					},
 				},
@@ -40909,7 +40909,7 @@ do
 					note = "Keep handing in {quest:7796}, 20 {item:14047} at a time. {item:14047}: Dark Adepts and Shadowmages (level 58-60) in {zone:1423}, or the Auction House.",
 					goals = {
 						{ t = "collect", item = 14047, itemName = "Runecloth", count = 20, map = 1423, x = 40, y = 51.3, f = "e", optional = true },
-						{ t = "turnin", quest = 7796, title = "Additional Runecloth", npc = 14722, npcName = "Clavicus Knavingham", map = 1453, x = 53.93, y = 81.69, z = 97.4, optional = true, direct = true },
+						{ t = "turnin", quest = 7796, title = "Additional Runecloth", npc = 14722, npcName = "Clavicus Knavingham", qlvl = 60, map = 1453, x = 53.93, y = 81.69, z = 97.4, optional = true, direct = true },
 						{ t = "rep", faction = 72, factionName = "Stormwind", standing = 7 },
 					},
 				},
@@ -40918,7 +40918,7 @@ do
 					note = "Keep handing in {quest:7796} until {faction:72} is Exalted. {item:14047}: Dark Adepts and Shadowmages (level 58-60) in {zone:1423}, or the Auction House.",
 					goals = {
 						{ t = "collect", item = 14047, itemName = "Runecloth", count = 20, map = 1423, x = 40, y = 51.3, f = "e", optional = true },
-						{ t = "turnin", quest = 7796, title = "Additional Runecloth", npc = 14722, npcName = "Clavicus Knavingham", map = 1453, x = 53.93, y = 81.69, z = 97.4, optional = true, direct = true },
+						{ t = "turnin", quest = 7796, title = "Additional Runecloth", npc = 14722, npcName = "Clavicus Knavingham", qlvl = 60, map = 1453, x = 53.93, y = 81.69, z = 97.4, optional = true, direct = true },
 						{ t = "rep", faction = 72, factionName = "Stormwind", standing = 8 },
 					},
 				},
@@ -41091,7 +41091,7 @@ do
 					note = "{quest:7825} takes 20 {item:14047} per turn-in and repeats as often as you like. Bring {item:14047} in multiples of 20 and hand them all in at once, one turn-in after another. {item:14047}: Dark Adepts and Shadowmages (level 58-60) in {zone:1423}, or the Auction House.",
 					goals = {
 						{ t = "collect", item = 14047, itemName = "Runecloth", count = 20, map = 1423, x = 40, y = 51.3, f = "e", optional = true },
-						{ t = "turnin", quest = 7825, title = "Additional Runecloth", npc = 14728, npcName = "Rumstag Proudstrider", map = 1456, x = 43.05, y = 42.72, z = 145.9, f = "e", optional = true, direct = true },
+						{ t = "turnin", quest = 7825, title = "Additional Runecloth", npc = 14728, npcName = "Rumstag Proudstrider", qlvl = 60, map = 1456, x = 43.05, y = 42.72, z = 145.9, f = "e", optional = true, direct = true },
 						{ t = "rep", faction = 81, factionName = "Thunder Bluff", standing = 6 },
 					},
 				},
@@ -41100,7 +41100,7 @@ do
 					note = "Keep handing in {quest:7825}, 20 {item:14047} at a time. {item:14047}: Dark Adepts and Shadowmages (level 58-60) in {zone:1423}, or the Auction House.",
 					goals = {
 						{ t = "collect", item = 14047, itemName = "Runecloth", count = 20, map = 1423, x = 40, y = 51.3, f = "e", optional = true },
-						{ t = "turnin", quest = 7825, title = "Additional Runecloth", npc = 14728, npcName = "Rumstag Proudstrider", map = 1456, x = 43.05, y = 42.72, z = 145.9, f = "e", optional = true, direct = true },
+						{ t = "turnin", quest = 7825, title = "Additional Runecloth", npc = 14728, npcName = "Rumstag Proudstrider", qlvl = 60, map = 1456, x = 43.05, y = 42.72, z = 145.9, f = "e", optional = true, direct = true },
 						{ t = "rep", faction = 81, factionName = "Thunder Bluff", standing = 7 },
 					},
 				},
@@ -41109,7 +41109,7 @@ do
 					note = "Keep handing in {quest:7825} until {faction:81} is Exalted. {item:14047}: Dark Adepts and Shadowmages (level 58-60) in {zone:1423}, or the Auction House.",
 					goals = {
 						{ t = "collect", item = 14047, itemName = "Runecloth", count = 20, map = 1423, x = 40, y = 51.3, f = "e", optional = true },
-						{ t = "turnin", quest = 7825, title = "Additional Runecloth", npc = 14728, npcName = "Rumstag Proudstrider", map = 1456, x = 43.05, y = 42.72, z = 145.9, f = "e", optional = true, direct = true },
+						{ t = "turnin", quest = 7825, title = "Additional Runecloth", npc = 14728, npcName = "Rumstag Proudstrider", qlvl = 60, map = 1456, x = 43.05, y = 42.72, z = 145.9, f = "e", optional = true, direct = true },
 						{ t = "rep", faction = 81, factionName = "Thunder Bluff", standing = 8 },
 					},
 				},
@@ -41335,7 +41335,7 @@ do
 					note = "{quest:7819} takes 20 {item:14047} per turn-in and repeats as often as you like. Bring {item:14047} in multiples of 20 and hand them all in at once, one turn-in after another. {item:14047}: Dark Adepts and Shadowmages (level 58-60) in {zone:1423}, or the Auction House.",
 					goals = {
 						{ t = "collect", item = 14047, itemName = "Runecloth", count = 20, map = 1423, x = 40, y = 51.3, f = "e", optional = true },
-						{ t = "turnin", quest = 7819, title = "Additional Runecloth", npc = 14729, npcName = "Ralston Farnsley", map = 1458, x = 71.66, y = 29.23, z = -62.1, f = "e", optional = true, direct = true },
+						{ t = "turnin", quest = 7819, title = "Additional Runecloth", npc = 14729, npcName = "Ralston Farnsley", qlvl = 60, map = 1458, x = 71.66, y = 29.23, z = -62.1, f = "e", optional = true, direct = true },
 						{ t = "rep", faction = 68, factionName = "Undercity", standing = 6 },
 					},
 				},
@@ -41344,7 +41344,7 @@ do
 					note = "Keep handing in {quest:7819}, 20 {item:14047} at a time. {item:14047}: Dark Adepts and Shadowmages (level 58-60) in {zone:1423}, or the Auction House.",
 					goals = {
 						{ t = "collect", item = 14047, itemName = "Runecloth", count = 20, map = 1423, x = 40, y = 51.3, f = "e", optional = true },
-						{ t = "turnin", quest = 7819, title = "Additional Runecloth", npc = 14729, npcName = "Ralston Farnsley", map = 1458, x = 71.66, y = 29.23, z = -62.1, f = "e", optional = true, direct = true },
+						{ t = "turnin", quest = 7819, title = "Additional Runecloth", npc = 14729, npcName = "Ralston Farnsley", qlvl = 60, map = 1458, x = 71.66, y = 29.23, z = -62.1, f = "e", optional = true, direct = true },
 						{ t = "rep", faction = 68, factionName = "Undercity", standing = 7 },
 					},
 				},
@@ -41353,7 +41353,7 @@ do
 					note = "Keep handing in {quest:7819} until {faction:68} is Exalted. {item:14047}: Dark Adepts and Shadowmages (level 58-60) in {zone:1423}, or the Auction House.",
 					goals = {
 						{ t = "collect", item = 14047, itemName = "Runecloth", count = 20, map = 1423, x = 40, y = 51.3, f = "e", optional = true },
-						{ t = "turnin", quest = 7819, title = "Additional Runecloth", npc = 14729, npcName = "Ralston Farnsley", map = 1458, x = 71.66, y = 29.23, z = -62.1, f = "e", optional = true, direct = true },
+						{ t = "turnin", quest = 7819, title = "Additional Runecloth", npc = 14729, npcName = "Ralston Farnsley", qlvl = 60, map = 1458, x = 71.66, y = 29.23, z = -62.1, f = "e", optional = true, direct = true },
 						{ t = "rep", faction = 68, factionName = "Undercity", standing = 8 },
 					},
 				},

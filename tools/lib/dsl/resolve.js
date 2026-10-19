@@ -1554,8 +1554,13 @@ function resolveGoal(g, zoneMap, prev, data, err, warn, ctx = { sides: ['Allianc
 	}
 	if (g.r !== undefined) goal.r = g.r;
 	if (g.optional) goal.optional = true;
-	// `turnin ... direct`: handed in from the giver's window with no accept.
-	if (g.direct) goal.direct = true;
+	// `turnin ... direct`: handed in from the giver's window with no accept;
+	// its quest's level, as an accept's, for the engine's grey-quest skipping.
+	if (g.direct) {
+		goal.direct = true;
+		const q = goal.quest !== undefined ? data.quest(goal.quest) : null;
+		if (q && Number(q.level) > 0) goal.qlvl = Number(q.level);
+	}
 	// Group content (group.js): the author's `group [N]`, else derived.
 	setIf(goal, 'group', groupOf(goal, g.group, ctx.sides, data));
 	setIf(goal, 'only', onlyOf(g.only));
