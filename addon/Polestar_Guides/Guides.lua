@@ -8979,7 +8979,7 @@ do
 						{ t = "accept", quest = 6387, title = "Honor Students", npc = 1681, npcName = "Brock Stoneseeker", minLevel = 10, qlvl = 10, map = 1432, x = 37.02, y = 47.81, z = 319.6, f = "e" },
 						{ t = "turnin", quest = 6387, title = "Honor Students", npc = 1572, npcName = "Thorgrum Borrelson", map = 1432, x = 33.94, y = 50.95, z = 347.6, f = "e", note = "{npc:1572}, the gryphon master" },
 						{ t = "accept", quest = 6391, title = "Ride to Ironforge", npc = 1572, npcName = "Thorgrum Borrelson", minLevel = 10, qlvl = 10, pre = { 6387 }, preTitles = { [6387] = "Honor Students" }, map = 1432, x = 33.94, y = 50.95, z = 347.6, f = "e" },
-						{ t = "getfp", location = "Thelsamar", node = 8, area = 144 },
+						{ t = "getfp", npc = 1572, npcName = "Thorgrum Borrelson", location = "Thelsamar", node = 8, area = 144, map = 1432, x = 33.94, y = 50.95, z = 347.6, f = "e" },
 						{ t = "fly", location = "Ironforge", node = 6, area = 1537 },
 					},
 				},
