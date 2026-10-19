@@ -67,4 +67,4 @@ async function run(argv) {
 	return reportSync({ 'Builds.lua': result.lua }, outDir, { check: mode === 'check', command: 'talents build' });
 }
 
-module.exports = { name: 'talents', summary: 'Build or check Talents/Builds.lua (talent plans)', usage, run };
+module.exports = { name: 'talents', summary: 'Build or check Talents/Builds.lua (talent plans)', usage, run, BUILD };

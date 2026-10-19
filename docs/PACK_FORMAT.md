@@ -60,10 +60,11 @@ that breaks these rules, is a lint error; an unknown key is a warning; a `|`
 in a displayed value is a warning (it prints literally in game).
 
 The pack folder holds `pack.json`, the `.guide` files in any layout,
-`drafts/` (Recorder drafts, compiled only with `--include-drafts`) and `dist/`
-(build output). The compiler reads every `.guide` file under the folder
-except in `dist/`, `drafts/`, `node_modules/` and folders whose name starts
-with a dot.
+`drafts/` (Recorder drafts, compiled only with `--include-drafts`), `dist/`
+(build output) and the picture files its `image` lines name (`.tga` or
+`.blp`, at any path inside the folder, such as `media/`). The compiler reads
+every `.guide` file under the folder except in `dist/`, `drafts/`,
+`node_modules/` and folders whose name starts with a dot.
 
 ## The addon
 
@@ -77,6 +78,7 @@ PolestarPack_JoesRoutes/
   Guides.lua         one Polestar.RegisterGuide({ ... }) per guide
   LICENSE-DATA.txt   the reference data sources the guides draw on
   LICENSE.txt        the pack folder's LICENSE, copied as is (only when it has one)
+  media/cave.tga     each picture an `image` line names, at its path in the pack folder
 PolestarPack_JoesRoutes_deDE/   one texts addon per language the pack translates
   PolestarPack_JoesRoutes_deDE.toc
   Texts.lua          Polestar.RegisterGuideTexts("deDE", "joe-routes", { ... })
@@ -223,8 +225,9 @@ has nothing for the character.
 
 ## Format 3
 
-The format the compiler writes for a pack whose steps have no `when`
-(format 4, below). Format 2 is format 1 with the two `group`
+The format the compiler writes for a pack whose guides have no `when` (on a
+step or a `next` option) and whose `level` goals have no `frac` (format 4,
+below). Format 2 is format 1 with the two `group`
 keys (a guide's and a goal's) and a guide's `reward` and `why`, marked
 "format 2" below; Polestar 0.2.4 and later read it. Format 3 is format 2
 with **name tokens** in the texts and a guide's `names`, marked "format 3"
@@ -248,11 +251,14 @@ texts"); an older Polestar would show them as written, hence the format.
 ## Format 4
 
 Format 3 with a step's **`when`**: the conditions checked during play
-(GUIDE_FORMAT.md, "Conditions checked during play"). Polestar 0.3.0 and later
-read it. The compiler writes a pack in format 4 only when a step of its
-guides has `when`; any other pack stays in format 3, so the Polestar it needs
-does not change. An older Polestar would show every conditional step to
-every character (it ignores keys it does not know), hence the format.
+(GUIDE_FORMAT.md, "Conditions checked during play"), a `level` goal's
+**`frac`**: a point inside the level, and a guide's **`nextWhen`**:
+conditional hand-offs (GUIDE_FORMAT.md, "Conditional hand-offs"). Polestar
+0.2.6 and later read it. The compiler writes a pack in format 4 only when its
+guides use one of them; any other pack stays in format 3, so the Polestar it
+needs does not change. An older Polestar would show every conditional step to
+every character, count `level 12.5` done at level 12 and offer every `next`
+option (it ignores keys it does not know), hence the format.
 
 `when` is a list of predicates, each a table with its kind `k`, `neg = true`
 to turn it around, and the kind's keys; a step applies while all of them
@@ -260,7 +266,7 @@ hold:
 
 | `k` | Keys | Holds when |
 |---|---|---|
-| `"level"` | `op` (`"<"`, `"<="`, `">"`, `">="`), `n` | the character's level compares so with `n` |
+| `"level"` | `op` (`"<"`, `"<="`, `">"`, `">="`), `n`; optional `frac` (0 < frac < 1) | the character's level compares so with `n`; with `frac`, the level plus the share of it done (XP / XPMax) compares so with `n + frac` |
 | `"onquest"` | `q`: a list of quest ids | any of them is in the log |
 | `"complete"` | `q` | the quest is in the log, ready to turn in |
 | `"turnedin"` | `q` | the quest is handed in |
@@ -277,6 +283,22 @@ A `when` that is not a non-empty list, or a predicate of another kind or
 without its keys, refuses the guide. Once the route has moved past a step,
 Polestar stores whether its `when` held (per character, guide and step) and
 reads that from then on.
+
+`frac` on a `level` goal (format 4) is the share of the level's XP the goal
+asks for, a number with 0 < frac < 1: `{ t = "level", level = 12, frac = 0.5 }`
+is done at level 12 with XP / XPMax >= 0.5, or at any later level. A goal's
+`frac` outside that refuses the guide ("bad frac"); a `level` predicate's,
+"bad when".
+
+`nextWhen` maps a `next` option to its predicates, the same tables as a
+step's `when`: `{ ["joe-routes/barrens-early"] = { { k = "level", op = "<", n = 12 } } }`.
+Every key must be one of `nextChoices`, which the compiler writes whenever
+`nextWhen` is there, even for one option. Polestar offers an option only
+while its predicates hold, checked on the character's live state each time
+it lists the options; with one option offered it goes on to it without
+asking, with none the guide ends there. Nothing is stored. A `nextWhen` that
+is not a table, a key that is not in `nextChoices` or a malformed predicate
+list refuses the guide.
 
 ### `RegisterPack(meta)`
 
@@ -337,7 +359,8 @@ Guide keys (the compiler writes them in this order):
 | `why` | no | format 2: one line on why the goal is worth doing, shown under the reward |
 | `zone`, `zoneName` | no | the default zone's uiMapID and name |
 | `next` | no | the id of the guide that follows: one of the pack's or one of Polestar's |
-| `nextChoices` | no | list of guide ids offered as a route choice (the first is the default) |
+| `nextChoices` | no | list of guide ids offered as a route choice (the first is the default); with `nextWhen`, every option, even one |
+| `nextWhen` | no | format 4: `{ [<guide id>] = { <predicate>, ... } }`, an option of `nextChoices` offered only while its predicates hold (Format 4, above) |
 | `pitch` | no | one line for the route choice card |
 | `pros`, `cons` | no | lists of short lines under the pitch |
 | `author` | no | string; the compiler writes the pack's author when the guide names none |
@@ -347,10 +370,14 @@ Guide keys (the compiler writes them in this order):
 | `written` | no | format 3: `{ ["Back to {npc:3649}"] = "Back to Dendrite", ... }`, a text whose names its tokens' English in `names` would spell otherwise, with the author's words an English client reads |
 | `steps` | yes | list of steps, at least one |
 
-Step keys: `title` (optional), `note` (optional, player-facing), `only`
-(optional: `{ classes = { ... }, races = { ... }, factions = { ... } }`, AND
-across keys, OR within; Polestar also reads an entry `"!X"` as "not X", but
-the compiler writes positive lists only), `when` (optional, format 4: the
+Step keys: `title` (optional), `note` (optional, player-facing), `image`
+(optional: `{ file = "media\\cave", w = 512, h = 256 }`, the step's picture:
+`file` its path in the pack's addon folder without the extension, `\`
+between folders, `w` and `h` its size in pixels; Polestar shows it under the
+step's tip, and an imported guide, which has no addon folder, shows none),
+`only` (optional: `{ classes = { ... }, races = { ... }, factions = { ... } }`,
+AND across keys, OR within; Polestar also reads an entry `"!X"` as "not X",
+but the compiler writes positive lists only), `when` (optional, format 4: the
 step's conditions checked during play, below) and `goals` (at least one).
 
 Goal keys common to every verb: `t` (the verb), `text` (display text),
@@ -379,7 +406,7 @@ frame; absent: the live frame), `r` (arrival radius in yards), `spots`
 | `train` | — | `npc`, `npcName`, `class`, `skill`, `skillLine`, `rank`, `rankMax`, `candidates` |
 | `buy` | `item`, `itemName` | `count`, `npc`, `npcName`, `candidates` |
 | `vendor` | — | `npc`, `npcName`, `candidates` |
-| `level` | `level` | — |
+| `level` | `level` | `frac` (format 4) |
 | `note` | `text` | — |
 | `skill` | `skill`, `level` | `skillLine` |
 | `learn` | `spell`, `spellName` | `skillLine`, `npc`/`npcName`, `item`/`itemName`, `candidates` |
@@ -406,6 +433,7 @@ The fields:
 | `skill` | a profession name; `skillLine` its skill line id |
 | `rank`, `rankMax` | on `train`: the profession rank (1 Apprentice to 4 Artisan; Polestar also reads a rank name or a skill cap) and its skill cap (written by the compiler, not read by Polestar) |
 | `level` | on `level`: the level to reach; on `skill`: the skill to reach |
+| `frac` | on `level` (format 4): the share of the level's XP to reach, 0 < frac < 1 (above) |
 | `untilSkill` | on `craft`: craft until the profession reaches this skill |
 | `reagents` | `{ { item, itemName, count } }` |
 | `standing` | 1 Hated to 8 Exalted |
@@ -518,8 +546,8 @@ or nothing (equal or lower). Imported guides are listed in the guide menu as
 - The compiler writes the first Polestar version that reads the pack's format
   into the TOC as `X-Polestar-Needs`. Format 1 is read by Polestar 0.1.0 and
   later, format 2 (the `group`, `reward` and `why` keys) by 0.2.4 and later,
-  format 3 (name tokens) by 0.2.5 and later, format 4 (a step's `when`) by
-  0.3.0 and later.
+  format 3 (name tokens) by 0.2.5 and later, format 4 (a step's `when`, a
+  `level` goal's `frac`, a guide's `nextWhen`) by 0.2.6 and later.
 - A pack in a format this Polestar does not read registers nothing; the
   Community guides page shows it as `too-new` with "Needs Polestar <version> or
   newer." (rule 5).

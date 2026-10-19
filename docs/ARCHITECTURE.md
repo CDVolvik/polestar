@@ -266,15 +266,15 @@ the next gamepad action there is blocked ("An action was blocked because of
 taint from Polestar"; seen in game as a quest reward was taken, then on every
 panel after it). `SetParent` is not hooked. So every frame of Polestar's
 whose parent is a game frame, or is under one (the map canvases, the
-minimap, the quest reward and talent buttons, and the frames under those),
-is made through `CreateFrameUnder`; frames under Polestar's own windows,
-which hang off `UIParent`, are made with `CreateFrame`. No `CreateFramePool`
-with a game frame either: it calls `CreateFrame` with its parent.
-`tests/lua/wow_stub.lua`'s `CreateFrame` raises on a call from addon code
-whose parent is, or is under, a frame addon code did not make
+minimap, the quest reward and talent buttons, the XP bar, and the frames
+under those), is made through `CreateFrameUnder`; frames under Polestar's
+own windows, which hang off `UIParent`, are made with `CreateFrame`. No
+`CreateFramePool` with a game frame either: it calls `CreateFrame` with its
+parent. `tests/lua/wow_stub.lua`'s `CreateFrame` raises on a call from addon
+code whose parent is, or is under, a frame addon code did not make
 (`stub.underGameFrames`), and `tests/nav-mapcanvas.test.js`,
-`tests/qol.test.js` (the reward marks) and `tests/talents.test.js` (the
-talent marks) check that none was made.
+`tests/qol.test.js` (the reward marks, the XP bar mark) and
+`tests/talents.test.js` (the talent marks) check that none was made.
 
 ### Gamepad interface
 
@@ -783,7 +783,9 @@ they cover every spawn of the target on that map. Camps nearest to the goal's
 place it spawns); with `spread = true` (an area objective, or a few places far
 apart) up to 12 spread over the whole area, as a walk from `x`/`y`. The other
 places follow with `alt = true`; a hand-placed point is the first spot, the
-data's places its alternatives (GUIDE_FORMAT, "Spawn areas"). `x`/`y` stay the
+data's places its alternatives (GUIDE_FORMAT, "Spawn areas"). A `loop` step's
+goals carry its `goto` points instead, in order, with `spread = true` and no
+`n` or alternatives (compile-time: `resolve.js` applyLoop). `x`/`y` stay the
 default point. `z` (optional, 0.2.4) is the height of the NPC or object the
 goal's `x`/`y` stands for (the compiler's, from `spawnz.json`: GUIDE_FORMAT,
 "Heights"); a spot and a smart target's candidate may carry their own `z`
@@ -838,14 +840,14 @@ as on a bag item (`W.ItemClick`: Shift links, Ctrl tries it on, Alt guides;
 | `talk` | `npc`, `npcName` | — | gossip/quest frame opened with that NPC during this step; else manual |
 | `interact` | `object`, `objName` | `quest`, `oi` | objective state if `quest` (the line named after the object, else `oi`); else manual |
 | `use` | `item`, `itemName` | `quest`, `oi` | objective state if `quest`; else manual |
-| `sethome` | `location` | `npc`, `npcName`, `area` | bound at the goal's inn (`npc`'s, else the inn `location` names, in Nav/Travel.lua's data), by any of: the inn Travel finds for `GetBindLocation()` (`Nav.BoundInn`: the innkeeper learned at bind time in `flags.inn`, else the inn whose `area` the client names so, else its names); `GetBindLocation()` equal to the client's name of that inn's or the goal's `area` (`Compat.GetAreaName`); last, equal to `location` (case-insensitive). Binding at that innkeeper during the step latches it |
+| `sethome` | `location` | `npc`, `npcName`, `area` | bound at the goal's inn (`npc`'s, else the inn `location` names, in Nav/Travel.lua's data), by any of: the inn Travel finds for `GetBindLocation()` (`Nav.BoundInn`: the innkeeper learned at bind time in `flags.inn`, else the inn whose `area` the client names so, else its names); `GetBindLocation()` equal to the client's name of that inn's or the goal's `area` (`Compat.GetAreaName`); last, equal to `location` (case-insensitive). Binding at that innkeeper during the step latches it. `Engine.IsSethomeInnkeeper(goal, npc)` says whether `npc` is that innkeeper (for `sethome nearest`, one of its candidates); QoL's bind helper asks it |
 | `hearth` | `location` | `area` | zone or subzone equals the client's name of `area` (without one, `location`), else manual; latched once it lands in its live step |
 | `getfp` | `location` | `npc`, `npcName`, `node`, `area` | with `node`: that taxi node among the known ones (`flags.taxi`, recorded by Nav/Travel.lua from the flight map); without: taxi map opened at a flight master of that name (persisted in `flags.fp`); else manual |
 | `fly` | `location` | `area`, `node` | as `hearth`, including the in-step latch (`node`: the flight point, named in the client's language where no `area` names the place) |
 | `train` | — | `npc`, `npcName`, `text` | trainer window opened during this step, else manual |
 | `buy` | `item`, `itemName` | `count`, `npc`, `npcName` | item count ≥ `count` (default 1) |
 | `vendor` | — | `npc`, `npcName`, `text` | merchant window opened during this step, else manual |
-| `level` | `level` | — | player level ≥ `level` |
+| `level` | `level` | `frac` | player level > `level`, or = `level` with XP / XPMax ≥ `frac` (no `frac`: level ≥ `level`) |
 | `note` | `text` | — | never blocks (informational) |
 | `skill` | `skill` (name), `level` | `skillLine` | skill rank ≥ `level` |
 | `learn` | `spell`, `spellName` | `skillLine`, `npc`/`npcName` (trainer), `item` (recipe item) | spell known |
@@ -920,7 +922,7 @@ Polestar.Guides.ProblemCount() -> n         -- over every listed pack (the Optio
 Polestar.Guides.OwnsId(packId, guideId) -> bool
 Polestar.Guides.SuggestSources() -> { packId, ... }  -- "guides", then shown packs with leveling guides (never `imported`)
 Polestar.Guides.SuggestSource() -> packId   -- behavior.suggestFrom when it can, else "guides"
-Polestar.Guides.OfferedBy(id) -> { guide, ... }      -- shown guides whose route choice offers id
+Polestar.Guides.OfferedBy(id) -> { guide, ... }      -- shown guides whose route choice offers id now (Engine.RouteOffered)
 Polestar.Guides.DropImported(id) -> bool    -- takes an imported guide out (Import.Delete), nothing else
 ```
 
@@ -979,6 +981,7 @@ Polestar.Engine.Next() / Prev() / Goto(i)    -- look at another step; changes no
 Polestar.Engine.Skip() -> stepIndex         -- skip the step shown, saved; fires PLAYER_SKIPPED_STEP
 Polestar.Engine.Unskip(i) -> bool           -- undo a skip
 Polestar.Engine.GetLiveStep() -> i | nil    -- the first open step, whatever step is shown
+Polestar.Engine.LevelTarget(level?) -> N, stepIndex | nil   -- the first `level N` goal from the step shown for this character (step `only`/`when`, goal `only`; skips left out) with N above `level` (default: the character's); QoL's XP bar mark
 Polestar.Engine.StartGate(id) -> gate | nil -- a Class guide this character cannot start yet: { level } or { pre, preTitle }, with giver, map (see "Not yet available")
 Polestar.Engine.ToggleGoal(stepIndex, goalIndex) -> bool   -- tick any goal but a note done, or clear its check-off
 Polestar.Engine.SkipGoal(stepIndex, goalIndex) -> bool     -- skip an optional goal, or bring it back
@@ -1095,7 +1098,9 @@ Polestar.Engine.GetProgress() -> doneSteps, totalSteps
   `ResetProgress` forgets them; a pack update moves them with the steps
   (`Own.remap`). The live state they read already re-evaluates the guide
   (quest log, `BAG_UPDATE_DELAYED`, zone changes, `PLAYER_LEVEL_UP`,
-  `HEARTHSTONE_BOUND`).
+  `PLAYER_XP_UPDATE`, `HEARTHSTONE_BOUND`). A `level` predicate with `frac`
+  (`when level>=12.5`) compares the level plus the share of it done
+  (XP / XPMax) with `n + frac`.
 - **Unavailable quests.** An `accept` whose `closedBy` names a quest that is
   in the log or done is unavailable before any visit (reason `"closed"`,
   "No longer offered: you took <quest>"): a breadcrumb whose follow-up is
@@ -1242,7 +1247,9 @@ the same person never splits that person's group.
 
 A guide whose `next` lists several guides compiles to `next` (the author's
 default, the first) plus `nextChoices` (all of them, in order); each option may
-carry `pitch`, `pros`, `cons` (see GUIDE_FORMAT).
+carry `pitch`, `pros`, `cons` (see GUIDE_FORMAT). `next <id> when ...` adds
+`nextWhen` (format 4: option id -> predicates, as a step's `when`), and
+`nextChoices` then lists the options even when there is one.
 
 ```lua
 Polestar.Engine.GetRouteChoice(fromId) -> { from, fromTitle, recommended, chosen, joinsAt,
@@ -1251,6 +1258,8 @@ Polestar.Engine.GetRouteChoice(fromId) -> { from, fromTitle, recommended, chosen
 Polestar.Engine.ChooseRoute(fromId, toId) -> bool   -- remembers, loads, fires ROUTE_CHOSEN
 Polestar.Engine.PendingRouteChoice() -> fromId | nil -- the active tab's finished guide waiting for a choice
 Polestar.Engine.RouteChoiceFor(id) -> fromId | nil  -- the choice that offers guide `id` to this character
+Polestar.Engine.RouteOffered(fromId, toId) -> bool  -- fromId's `next` names toId and its `when`, if any, holds now
+Polestar.Engine.NextGuide(fromId) -> id | nil       -- where the hand-off goes now; nil: none offered, or the player chooses
 Polestar.Engine.OfferRouteChoice() -> fromId | nil  -- /polestar path: fires ROUTE_CHOICE
 Polestar.Engine.GuideFocus(id) -> x, y | nil       -- live-frame percent of where the guide is for this character, for the
                                                     -- guide menu's zone art: open in a tab and unfinished, the current
@@ -1259,7 +1268,12 @@ Polestar.Engine.GuideFocus(id) -> x, y | nil       -- live-frame percent of wher
 ```
 
 - **Options** are the `nextChoices` that fit the character (faction, race,
-  class); `outleveled` when the level is at or past the option's maxLevel.
+  class) and are offered now: an option with `nextWhen` only while its
+  predicates hold (`Own.optionHolds`, `Own.predicateHolds` on the live state,
+  checked each time the options are listed: `routeOptions`, `ChooseRoute`,
+  `RouteOffered`, so `Guides.OfferedBy`, the guide menu's "Next" line and its
+  suggested follow-ups, and "Up next" on a finished guide); nothing is stored.
+  `outleveled` when the level is at or past the option's maxLevel.
   `seconds` is `TravelCost` from the player to the option's first located goal;
   `quests` counts the accepts this character gets there; `joinsAt` names the
   guide every option continues to, when they share one.
@@ -1267,10 +1281,11 @@ Polestar.Engine.GuideFocus(id) -> x, y | nil       -- live-frame percent of wher
   bands), then the author's order.
 - **At completion** (with `behavior.autoNextGuide`, and the guide either
   auto-loaded or seen incomplete): the remembered choice
-  (`CharState().routes[fromId]`), else the only fitting option, else with
-  `behavior.routeChoice = "recommended"` the recommended one. Otherwise the
-  finished guide stays in its tab and `ROUTE_CHOICE(fromId)` fires once, after
-  the evaluation.
+  (`CharState().routes[fromId]`), else the only option offered, else with
+  `behavior.routeChoice = "recommended"` the recommended one. With none
+  offered (every option's `when` fails) the guide ends there, as without
+  `next`. Otherwise the finished guide stays in its tab and
+  `ROUTE_CHOICE(fromId)` fires once, after the evaluation.
 - **Fresh start:** with no saved tabs, when the suggested guide is an option of
   a choice the character fits, and the character is at most one level into
   that guide's range, login also fires `ROUTE_CHOICE` (the suggested route
@@ -1280,7 +1295,13 @@ Polestar.Engine.GuideFocus(id) -> x, y | nil       -- live-frame percent of wher
 - **Never-had quests:** a turn-in, complete or objective goal for a quest the
   character neither has nor has done, and that its guide does not accept (for
   this character) at or before that step, does not apply (status `na`): it was
-  picked up on another route, or skipped. `chainNeeds` follows every route option.
+  picked up on another route, or skipped. `chainNeeds` follows every route
+  option but one whose `when` can no longer hold (`Own.optionClosed`: a
+  `level<N` or `level<=N` the character is past, a `!turnedin` quest handed
+  in); the chain is built again once a kept conditional option closes. The
+  hand-in plan (`Core/RoutePlan.lua`) treats a guide with a conditional
+  option like a choice not made yet, unless the remembered choice is an
+  unconditional option.
 - **UI** (`UI/RouteChoice.lua`, frame `PolestarRouteChoice`): one card per
   option. Each card opens on the zone's art (`UI.ZoneArt`, below) framed on
   `focusX/focusY` (where the route starts), lightly desaturated, fading into
@@ -1511,6 +1532,20 @@ steps (a `direct` one is picked from the gossip or greeting list of offered
 quests, and only while its goal is not done: the giver of a repeatable keeps
 offering it); never choose among multiple rewards; with `behavior.warnClosing` on,
 never accept a quest that closes another for good (Missable quests).
+
+After its own accept or turn-in, the game often opens the NPC's next window
+by itself: the follow-up of the quest just handed in, or the NPC's other
+quests (#360). With `behavior.closeSkipped` (default on) Automation closes
+that window (`CloseQuest`, `C_GossipInfo.CloseGossip`) on the next frame when
+it shows nothing the guide takes: no `accept` goal not yet taken, no quest in
+the log with a `turnin` goal, no `direct` goal, in the current or next two
+steps, whatever the automation settings. Only the first quest or gossip
+window at the same NPC within 2 seconds of Polestar's accept or turn-in
+counts; a later window, one at another NPC or one the player opens from a
+list stays. Never in combat, with Shift held, on a progress or reward
+window, or on a gossip window with options of its own (a vendor, trainer or
+innkeeper). A quest the guide still wants at that NPC is taken on the next
+talk.
 
 ## Theme — used by UI and Nav
 
@@ -2260,9 +2295,24 @@ on is searched first: player to the current walk leg's end, or to the target,
 with `Path.Find` on the player's continent (from the player's height,
 `Compat.GetPlayerUnitPosition`; a ghost with `waterWalking`). Until the answer, and
 whenever there is none, the arrow points straight as before. With a path,
-`Nav.Sample` aims at its next point (passed within 5 yd; the nearest
-segment among the next 12 decides how far along the player is) and reports
-the yards left along it; `Travel.Aim` returns those yards as a fifth value.
+`Nav.Sample` follows it with padding, so a road's little wiggles do not
+jerk the arrow: the next point is passed
+within 5 yd (the nearest segment among the next 12 decides how far along the
+player is), and from it the arrow aims at the furthest path point up to
+30 yd along the path (`AHEAD`) such that every path point on the way lies
+within 10 yd (`PAD`) of the straight line from the player to it, neither
+behind the player nor beyond it along that line. A real corner (a point
+more than 10 yd off the line) still turns the arrow, gradually from about
+30 yd out and fully at the corner; past the next point it aims at the
+middle of that point and the one before, so a zigzag of points either side
+of the road cancels out. It never aims past a point more than 6 yd
+(`FLOOR_STEP`) above or below the next one (another floor), past the path's
+end (the leg's goal: crossings, approach chains and guide gotos are legs of
+their own), or, on a piece of a split walk, past the last path point before
+its chokepoint (`Travel.Aim` passes `leg.seg`). The yards it reports are
+still the yards left along the path (to the next point, then along it),
+never to the aim point; `Travel.Aim` returns those yards as a fifth value.
+The arrow eases into each new direction (`Nav/Arrow.lua`'s `DAMPING`).
 A new goal (more than 1 yd away from the searched one) cancels the search
 in flight and drops the path; more than 25 yd off the path asks again (at
 most every 2 s, the old path kept meanwhile); a failed search (`nodata`,
@@ -3246,6 +3296,70 @@ Polestar.QoL.Rewards.best, .reason                -- auto-pick's settled answer 
   (`gear.pickTooltip`) appears only when its pick is an upgrade, so it never
   contradicts the coin. `gear.rewards` is the guide window's pick line only.
 
+### Binding at the guide's inn — QoL, asks the Engine
+
+`QoL/Bind.lua`, behind `qol.autoBind` (Quality of Life → Travel →
+Hearthstone; off by default, as it binds for the player). It does one thing:
+while the active tab's current step has an open `sethome` goal, it binds the
+Hearthstone at the innkeeper that goal names, and nowhere else.
+
+```lua
+Polestar.QoL.Bind.Wanted(npc) -> bool        -- an open sethome goal of the current step binds at npc (Engine.IsSethomeInnkeeper), and the character is not bound at that innkeeper's inn (Nav.BoundInn)
+Polestar.QoL.Bind.BinderOption(options) -> option | nil  -- the gossip's bind option: icon or overrideIconID 132052 (BinderGossipIcon)
+Polestar.QoL.Bind.OnGossip() -> bool         -- GOSSIP_SHOW (Toggles.lua: after the flight helper, before skipGossip): picked the bind option
+```
+
+- **Gossip.** At such an innkeeper, the bind option is picked by its icon,
+  never its text (`QoL.SelectGossip`: by `gossipOptionID`, else
+  `orderIndex`). Not with Shift held, and not while the gossip has a quest to
+  pick up or hand in (`QoL.HasQuestBusiness`, which the flight helper shares):
+  the quest automation goes first and the gossip shows again after it.
+- **Confirmation.** Picking the option fires `CONFIRM_BINDER(areaName)`,
+  registered only while the setting is on (`QoL.WhileOn`). While the
+  innkeeper (`"npc"`, else the last gossip's NPC: the client may have closed
+  the gossip) is still `Wanted`, whether the helper or the player picked the
+  option, and Shift was held neither at that gossip nor now, it answers as the
+  popup's Accept does
+  (`C_PlayerInteractionManager.ConfirmationInteraction(Enum.PlayerInteractionType.Binder)`,
+  then `ClearInteraction(Binder)`; Blizzard_StaticPopup_Game
+  GameDialogDefs.lua), closes the "CONFIRM_BINDER" popup on the next frame
+  (`QoL.ClosePopup`, as for summons; left to the player under the gamepad
+  interface style) and prints "Bound your Hearthstone to <area>.". The
+  Engine completes the goal from the bind as it does for one by hand
+  (`HEARTHSTONE_BOUND`).
+
+### Guide level on the XP bar — QoL/XPMark
+
+```lua
+Polestar.QoL.XPMark.Label(level, target) -> text | nil   -- pure: "Guide: 11" (the next level), "Guide: 14 (4 levels)"; nil when target <= level
+Polestar.QoL.XPMark.Refresh()                            -- show, move or hide the mark now
+Polestar.QoL.XPMark.frame                                -- the mark, once made
+```
+
+- **Target** (`qol.xpTargetMark`, on by default; Quality of Life >
+  Trackers > Experience): `Engine.LevelTarget(level)`, the level the guide
+  holds you to before it moves on. Guide levels are whole levels (the
+  compiler takes no fractions), so the mark is always the end of this
+  level's bar: a 2px accent tick at the bar's right edge, standing 2px above
+  and below it, with the label left of it in the accent colour (outlined
+  `small` text). Nothing when the option is off, no guide is open, no `level`
+  goal lies ahead above your level, or you are at the maximum level.
+- **The game's bar is only read.** The experience bar is the one of
+  `StatusTrackingBarManager.barContainers` whose
+  `bars[StatusTrackingBarInfo.BarsEnum.Experience]` is shown
+  (Blizzard_StatusTrackingBar). The mark is Polestar's own frame made under
+  that bar through `CreateFrameUnder`, spanning its `StatusBar` one level
+  above its `OverlayFrame` (MEDIUM strata, like the bar's own text), so it
+  fades, hides and resizes with the bar and its gamepad width. It takes no
+  mouse: the bar's tooltip stays. No scripts, methods or hooks on the bar;
+  no bar shown (another addon replaced or hid it, the maximum level): no
+  mark, and no error.
+- **Updates**, coalesced to the next frame (after the game's bar and the
+  engine took the same event): `PLAYER_XP_UPDATE` and
+  `PLAYER_ENTERING_WORLD` while the option is on (`QoL.WhileOn`),
+  `PLAYER_LEVEL_UP` (its level: `UnitLevel` can lag the event), step
+  changes (`QoL.OnStep`), the setting, and the theme's accent.
+
 ## Lookup — Codex, sources, generated guides, mount spotting
 
 `addon/Polestar/Lookup/` (`Lookup.xml`: Codex, Sources, Guide, Spotter,
@@ -3380,8 +3494,11 @@ guides.
 The pick-up guide is built in game (`addon/Polestar/Dungeons/Pickup.lua`):
 `Dungeons.PickupPlan(key)` takes the page's quests that apply to the character
 (faction, race and class masks through `Lookup.QuestBlock`, the page's class
-list), not done, not in the log (those are `carried`), open by
-max(level, the dungeon's lowest level), picked up outside from an NPC or object
+list), not done, not in the log (those are `carried`), not closed for good (a
+quest of the page's `closedBy` done or in the log: a breadcrumb whose quest is
+taken, such as Klockmort's Essentials once Essential Artificials is; each
+accept carries `closedBy` too, so the Engine passes it once taken on the way),
+open by max(level, the dungeon's lowest level), picked up outside from an NPC or object
 (not from an item, not inside), and not a follow-up of another quest of the
 page; each with its open prerequisites (`Lookup.QuestChain`: all of `pre`, one
 of `preAny` this character can take, in the order they are done). The giver
@@ -3560,8 +3677,11 @@ Reading flow: `docs/DESIGN.md` ("Intent" and "The Guide Window").
   after the goal text (in text, success once complete; the accent is kept
   for the current goal's glyph, the arrow's target mark, tabs, primary
   buttons and the progress fill), a "Then: <next
-  person>" line with "Person n of N", tips folded to one line, and the guide's
-  progress bar with percent. Up next is off by default (`ui.upcoming = 0`).
+  person>" line with "Person n of N", tips folded to one line (an opened tip
+  shows the step's `image` under it: the texture in its pack's addon folder,
+  as wide as the text column, its aspect kept, at most 160 high; none for a
+  pack without an addon folder, or a file the client cannot load), and the
+  guide's progress bar with percent. Up next is off by default (`ui.upcoming = 0`).
   Transparent mode fades the whole navigator (step number with its chevrons)
   until hovered and keeps the progress track as a faint ink line.
 - **Hub** (`UI/Picker.lua`, `UI.ShowPicker(opts)`; the window the guide menu
@@ -4127,7 +4247,9 @@ Polestar.Talents.Show()                                     -- SHOW_TALENTS; /po
   `PLAYER_TALENT_UPDATE` and Gear's spec changes; `TALENTS_UPDATED` follows.
 - **Classes.** One plan file per class (`talents/forever/<class>.json`);
   `talents build` writes them all into `Builds.lua`, one `T.Register` per
-  class, sorted by class. The tool finds each class's tree by its class skill
+  class, sorted by class. `T.Register` keeps only the player's class
+  (`UnitClass("player")`): the other classes' plans are dropped unexpanded,
+  so a character holds one class's plans, not all nine. The tool finds each class's tree by its class skill
   line (`CLASSES` in `tools/lib/talents/build.js`) and leaves out a stray
   copy of a talent far off the grid (1.60.1.70374 and 1.60.1.70450: Hunter node 104982,
   Lightning Reflexes again; Priest node 105865, Holy Specialization again).
@@ -4540,7 +4662,9 @@ built.
 quests.json   { "<id>": { id, title, level, minLevel, races, classes, start: { npc: [], object: [], item: [] },
                           end: { npc: [], object: [] }, pre: [ids], excl: [ids], next, objectives: [
                           { type: "kill"|"item"|"object"|"event", id, count, text } ], objectiveText, zone, xp,
-                          rewards?: { items: [ids], choices: [ids], money }, source: [] } }   (rewards: recorded only)
+                          rewards?: { items: [ids], choices: [ids], money }, source: [] } }   (rewards: recorded only;
+              count: the objective text's, else pfQuest's, else CMaNGOS classic-db quest_template's for the same id or the
+              quest's one objective of that kind, else null; tools/lib/data/questie-merge.js fillCounts)
 npcs.json     { "<id>": { id, name, level, levelMax?, rank?, faction, roles?, spawns: { "<uiMapID>": { f: "e"|"l", pts: [[x, y], ...],
                           more?: [[x, y], ...] } }, instances?: [instance map ids], encounter?: DungeonEncounter id, source: [] } }
 objects.json  { "<id>": { id, name, roles?, spawns: { ... same ... }, instances?: [instance map ids], source: [] } }
@@ -4752,7 +4876,16 @@ above the quest, since Classic reduces XP beyond that, so an over-levelled
 observation never overwrites a full one; `source` names `recorder:xp-base`,
 `recorder:xp-log` or `recorder:xp-turnin`). Then QuestieDB's QuestXP, with
 Wowhead's "Experience X instead of Y" notes applied where it still has the old
-value (above). Then, for quests still without XP, the Forever web databases
+value (above). corrections.json `xp` replaces both: Forever about doubled the
+XP of many dungeon quests, and QuestXP still has the Classic value for some
+(issue #394), so those take the XP shown by in-game evidence dated after the
+1 October 2026 change that halved dungeon quests' extra XP (build 70170; a
+client's quest cache gives difficulty and multiplier, its XP is QuestXP ×
+multiplier, while web databases built from the DB2s give only the Classic
+base), or an undated capture at the dated post-change rate (XP / base) of a
+quest in the same dungeon: the extra XP was twice as much before the change,
+so such a value can't be a pre-change one. Then, for quests
+still without XP, the Forever web databases
 (`--no-web-xp` skips them; results are cached in
 `data/sources/webxp/quest-xp.json`): wowforevertalents.com (Forever beta client
 cache, tag `wowforevertalents:xp`), else foreverchanges.pro (Wowhead's Forever
@@ -4956,6 +5089,13 @@ fileDataID from wago.tools into `data/sources/casc` (local, never shipped):
   ground and 60 yd into water; landing only on stable ground), swims and
   lifts (elevator objects of `data/forever` at their car's travel from the
   client's TransportAnimation); regions; a per-tile graph per movement class.
+  Reviewed openings (`geom/openings.json`): a WMO door narrower than about
+  three yards can lose to the columns when a jamb's moulding or reveal lies
+  on its column centre lines, so each listed portal (by WMO and MOPT index,
+  in every placement of that WMO) is cut out after rasterising: the columns
+  whose centre lies within its span and `depth` yards of its plane lose
+  their spans and walls from just above its bottom to its top (Brill's town
+  hall, whose only way in is a 2.9 yd door into its tower room, #366).
   Fatigue water is never swum: MH2O's deep quads (the server's fatigue; a
   chunk of ocean without attributes is deep throughout, `geom/mh2o.js`)
   give a blocked swim surface (`SWIM | BLOCKED`), so no route crosses open

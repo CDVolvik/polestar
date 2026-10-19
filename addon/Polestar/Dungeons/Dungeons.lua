@@ -24,7 +24,9 @@
 --       quest = { id, title, level, minLevel, faction, classes, inside, shareable,
 --         objectives = { { k = "kill"|"item"|"object"|"event", id, n (count over one), name (English) } },
 --         start, finish (= { kind, id, name, map, x, y, f, inside }), startItem = { id, name },
---         chain = { ids }, rewards = { items = { { id, name, quality, choice } }, xp, money, rep = { { faction, name, value } } },
+--         chain = { ids }, closedBy = { ids } | nil (taken or done, these close it for good:
+--         the quest a breadcrumb leads to, its exclusive group),
+--         rewards = { items = { { id, name, quality, choice } }, xp, money, rep = { { faction, name, value } } },
 --         bosses = { names } }
 --   Dungeons.ObjectiveText(quest) -> text | nil   -- its objectives in the client's language, one a line
 --   Dungeons.Bosses(key) -> { { order, name, npc, level, object, role, encounter, quests = { { id, how, item, itemName } } } }

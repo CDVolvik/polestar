@@ -109,9 +109,9 @@ step Serge Hinott
 
 step Bears, creepers and lions
   tip West of Tarren Mill, Gray Bears, Forest Moss Creepers and Starving Mountain Lions roam the hills on the way down to the farms. The creepers drop Creeper Ichor rarely; you need only one.
-  collect 3476 quest 496.1
+  collect 3476 quest 496.1 @54.3,39.6
   collect 3477 quest 496.2
-  collect 3496 quest 501.1
+  collect 3496 quest 501.1 @54.3,39.6
 
 step Hillsbrad Fields
   tip The farms east of Hillsbrad town. Farmer Ray works the field by the northern farmhouse, Farmer Getz the one further south-east; Farmhands and Farmers are everywhere. Farmer Kalaba tends the field south of the farms.

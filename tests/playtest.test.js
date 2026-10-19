@@ -100,6 +100,17 @@ test('a route choice lands on whichever option the engine recommends, not only t
 	assert.equal(results[0].landed, 'forever/horde/03-silverpine-forest', 'the recommended option here is the second one');
 });
 
+test('a `next` option whose `when` does not hold is no hand-over: the engine goes on to one offered, or the guide ends there', { skip }, () => {
+	const pack = commandPack({ pack: path.join(PACKS, 'handover') });
+	const play = (filter) => playtest({ dir: pack.dir, manifest: pack.manifest, filter, contextDir: pack.contextDir, contextDataDir: pack.contextDataDir }).results;
+	const [one] = play('conditional');
+	assert.equal(one.ok, true, JSON.stringify(one));
+	assert.equal(one.landed, 'forever/horde/02-the-barrens', 'Silverpine, recommended otherwise, is not offered below level 40');
+	const [ends] = play('ends');
+	assert.equal(ends.ok, true, JSON.stringify(ends));
+	assert.equal(ends.landed, 'handover/ends');
+});
+
 test('--class plays only that class; a filter matching nothing exits 1; a class no race can be plays nothing, exit 1', { skip }, async () => {
 	const one = await quiet(() => cmd.run(['--filter', 'northshire', '--pack', path.join(PACKS, 'plays'), '--class', 'mage']));
 	assert.equal(one.result, 0, one.out);
@@ -161,4 +172,11 @@ test('a class no persona\'s race can be is played as the first race of the guide
 	assert.ok(ok.includes('ok  classes/mulgore (Orc Warrior)'), out);
 	assert.ok(ok.includes('ok  classes/druid (Tauren Druid)'), out);
 	assert.deepEqual(ok.filter((l) => l.includes('classes/totems')), ['ok  classes/totems (Orc Shaman)', 'ok  classes/totems (Tauren Shaman)', 'ok  classes/totems (Tauren Druid)']);
+});
+
+test('level goals inside a level play through: the player gets that share of the level\'s XP', { skip }, () => {
+	const pack = commandPack({ pack: path.join(PACKS, 'halflevel') });
+	const { results } = playtest({ dir: pack.dir, manifest: pack.manifest, classes: ['WARRIOR'], contextDir: pack.contextDir, contextDataDir: pack.contextDataDir });
+	assert.ok(results.length > 0);
+	for (const r of results) assert.equal(r.ok, true, JSON.stringify(r));
 });

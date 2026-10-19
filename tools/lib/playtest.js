@@ -134,16 +134,17 @@ function playGuide(pack, g, { race, faction, cls, stubs = [], before = '', scrip
 			SIM_GUIDE = Polestar.Engine.GetGuide() -- a hand-over may replace it before SIMULATE starts
 			stub.advance(0.6)
 			${script == null ? SIMULATE : script}
-			${handOver ? handOverCheck(handOver) : ''}`,
+			${handOver ? handOverCheck(handOver, g.id) : ''}`,
 	}).emitted;
 }
 
 // Where the engine landed after a guide handed over to one of `ids`: which
-// guide is open, whether each of ids is registered, whether its current
-// step holds a goal still to do, and `misfit`: false when the open guide
-// applies to the character (the runtime's rule, Guides.GuideMatches), else
-// the condition that leaves it out ("faction", "race" or "class").
-function handOverCheck(ids) {
+// guide is open, whether each of ids is registered and offered when the
+// guide ends (an option with `when` only while it holds), whether its
+// current step holds a goal still to do, and `misfit`: false when the open
+// guide applies to the character (the runtime's rule, Guides.GuideMatches),
+// else the condition that leaves it out ("faction", "race" or "class").
+function handOverCheck(ids, from) {
 	return `do
 	local E, G = Polestar.Engine, Polestar.Guides
 	local H = E.GetGuide()
@@ -161,9 +162,12 @@ function handOverCheck(ids) {
 		elseif not G.ListMatches(H.races, P.race, G.NormRace) then misfit = "race"
 		else misfit = "class" end
 	end
-	local registered = {}
-	for k, id in ipairs(${luaValue(ids)}) do registered[k] = G.Get(id) ~= nil end
-	emit({ guide = H and H.id or false, registered = registered, step = i or false, open = open, misfit = misfit })
+	local registered, offered = {}, {}
+	for k, id in ipairs(${luaValue(ids)}) do
+		registered[k] = G.Get(id) ~= nil
+		offered[k] = E.RouteOffered(${luaValue(from)}, id)
+	end
+	emit({ guide = H and H.id or false, registered = registered, offered = offered, step = i or false, open = open, misfit = misfit })
 end`;
 }
 
@@ -319,14 +323,17 @@ function matches(dir, rel, filter) {
 // What went wrong in one play, as { stuck, problems }. `hand` (playGuide's
 // second value) is where a hand-over to one of `handOver` (the `next`
 // options) landed; any option counts (the engine picks the recommended one)
-// when it applies to `persona` ({ race, faction, cls }).
+// when it applies to `persona` ({ race, faction, cls }). An option with
+// `when` that does not hold at the end (hand.offered) is no hand-over; with
+// none offered the guide ends there.
 function outcome(out, handOver = null, hand = null, persona = null) {
 	let stuck = null;
+	const offered = handOver && hand && hand.offered ? handOver.filter((_, k) => hand.offered[k] !== false) : handOver;
 	if (!out.done) {
 		const s = out.stuck || {};
 		const reason = s.why || (s.goal ? `goal ${s.goal} (${s.t}${s.text ? ` "${s.text}"` : ''}) stays ${s.status}` : 'the guide stopped before its end');
 		stuck = { step: s.step != null ? s.step : null, title: s.title != null ? s.title : null, reason };
-	} else if (handOver && hand) {
+	} else if (handOver && hand && (offered.length || handOver.includes(hand.guide))) {
 		const one = handOver.length === 1;
 		let reason = null;
 		let to = handOver.join(' or ');
@@ -612,6 +619,9 @@ local function act(i, g, r)
 		w.setZone(g.subject, g.subject)
 	elseif t == "level" then
 		w.setLevel(math.max(w.level, tonumber((g.subject or ""):match("%d+")) or (w.level + 1)))
+		-- A point inside the level ("level 12.5"): that share of its XP.
+		local want = r and r.frac and w.level == r.level and math.ceil(r.frac * w.xpMax)
+		if want and w.xp < want then w.setXP(want) end
 	elseif t == "skill" then
 		local line = r.skillLine or r.skill
 		ensureSkill(r, line)

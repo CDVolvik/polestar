@@ -41,11 +41,14 @@ Before the first `step`. `guide`, `title`, `levels` and `zone` are required.
 |---|---|---|
 | `step [title]` | Starts a step; it is done when its goals are | `step Kobold camp` |
 | `tip <text>` | A note for the whole step, shown in the guide window | `tip Pull one kobold at a time.` |
+| `image <path> [<w>x<h>]` | A picture (a `.tga` or `.blp` in the pack folder) shown under the step's tip, such as a screenshot of a cave mouth | `image media/fargodeep-mine.tga` |
 | `zone <Name>` / `zone map <uiMapID>` | Inside a step: the zone for coordinates from here on, also for the steps after it (after a step with `only` that sets one, name the zone again) | `zone Elwynn Forest` |
 | `only <condition>, ...` | Inside a step: the step is only for matching characters | `only Hunter` |
 | `when <predicate>` | Inside a step: the step is only for characters in that state when the route gets there (see Conditions checked during play) | `when level<6` |
+| `loop` | Inside a step: its `goto` points are the places to search, in order, for the step's kill, collect and interact goals without `@x,y` | `loop` |
 | `note <text>` | A line of information; never holds the player up | `note The camp is busy at night.` |
 | `level <N>` | Reach level N, grinding if need be | `level 2` |
+| `level <N>.<fraction>` / `level <N>+<XP>` | Reach a point inside level N: 12.5 is halfway through 12, 12+2500 is 2500 XP into it (to whole percent; needs Polestar 0.2.6) | `level 12.5` |
 | `# <text>` | A note for you and other authors; players never see it | `# check the patrol route` |
 | `<goal> -- <text>` | Shows the text under that goal | `accept 783 -- He stands at the abbey gate` |
 
@@ -145,7 +148,7 @@ the outcome stays.
 
 | Line | The step applies while | Example |
 |---|---|---|
-| `when level<N` (`<=`, `>`, `>=`) | the character's level compares so | `when level>=10` |
+| `when level<N` (`<=`, `>`, `>=`) | the character's level compares so; N may be a point inside a level (`12.5`, `12+2500`) | `when level>=10` |
 | `when onquest <quest>, ...` | any of the quests is in the log | `when onquest 783` |
 | `when complete <quest>` | the quest is ready to turn in | `when complete 7` |
 | `when turnedin <quest>` | the quest is handed in | `when !turnedin 9201` |
@@ -159,6 +162,7 @@ the outcome stays.
 | Header line | What it does | Example |
 |---|---|---|
 | `next <id>, <id>, ...` | Several guides after this one: the player picks one, the first is your suggestion | `next joe-routes/westfall, joe-routes/redridge` |
+| `next <id> when <predicate>` | One guide per line, offered only while the predicate (as on a step's `when`) holds when this guide ends; `next` lines add up. One option left: Polestar goes on to it; none: the guide ends there | `next joe-routes/redridge when level>=15` |
 | `pitch <text>` | On a guide offered as a choice: one line on its card | `pitch Short walks between quests.` |
 | `pro <text>` / `con <text>` | One advantage or drawback per line, under the pitch | `pro Ends at a flight point` |
 

@@ -86,6 +86,11 @@ register(QOL, L["Travel"], L["Flight masters"], {
 		help = L["Marks where the travel route flies next on the flight map. You still choose the flight."] },
 })
 
+register(QOL, L["Travel"], L["Hearthstone"], {
+	{ kind = "toggle", key = "qol.autoBind", label = L["Set your home at the guide's inn"],
+		help = L["When the step sets your home and you talk to its innkeeper, binds your Hearthstone there. Never at another inn. Hold Shift to skip."] },
+})
+
 register(QOL, L["Travel"], L["Death"], {
 	{ kind = "toggle", key = "qol.deathHelper", label = L["Corpse or Spirit Healer"],
 		help = L["As a ghost, points the arrow at the faster way back: your corpse or the nearest Spirit Healer."] },
@@ -130,6 +135,8 @@ register(QOL, L["Vendors"], L["Trainers"], {
 register(QOL, L["Trackers"], L["Experience"], {
 	{ kind = "toggle", key = "qol.xpTracker", label = L["XP tracker"],
 		help = L["XP per hour, time, kills and quests to level, and level splits (/pole xp)."] },
+	{ kind = "toggle", key = "qol.xpTargetMark", label = L["Guide level on the XP bar"],
+		help = L["A mark at the end of the game's XP bar with the level the guide wants you to reach before it moves on, and how many levels away that is when it is more than one."] },
 	{ kind = "button", label = L["Reset session"], help = L["Start this session's XP per hour from zero."],
 		onClick = function() if QoL.XP then QoL.XP.ResetSession() end end },
 })

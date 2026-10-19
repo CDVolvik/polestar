@@ -106,7 +106,7 @@ step Orgrimmar
 step Islen Waterseer
   only Shaman
   zone The Barrens
-  tip Take the Orgrimmar zeppelin from the tower on the west side of Grom'gol and fly to Ratchet. Islen Waterseer camps on the coast a short ride south of it.
+  tip Take the Orgrimmar zeppelin from the tower on the west side of Grom'gol and fly to Ratchet. Islen Waterseer camps on the coast a short walk south of it.
   fly "Ratchet"
   turnin 96                           -- Islen Waterseer: Healing Stream Totem and your Water Totem
 
@@ -221,7 +221,7 @@ step Basilisks and the Bloodscalp village
   collect 1519 quest 189
 
 step Fly to Booty Bay
-  tip Ride south down the coast to Grom'gol and fly to Booty Bay.
+  tip Head south down the coast to Grom'gol and fly to Booty Bay.
   fly "Booty Bay"                     -- Thysta
   turnin 575                          -- Drizzlik
   accept 577
@@ -275,7 +275,7 @@ step Bloodscalp ruins
   collect 3915 quest 596
 
 step Grom'gol
-  tip Ride back south to Grom'gol.
+  tip Head back south to Grom'gol.
   turnin 596                          -- Kin'weelay
   turnin 629
 
@@ -361,7 +361,7 @@ step Fly to Grom'gol
   turnin 571                          -- Far Seer Mok'thardin
 
 step Venture Co. camp
-  tip Ride north past Nesingwary's camp to the lake. The Venture Co. Geologists (34-36) work the camps along its western shore; they carry the Tumbled Crystals.
+  tip Head north past Nesingwary's camp to the lake. The Venture Co. Geologists (34-36) work the camps along its western shore; they carry the Tumbled Crystals.
   collect 4106 quest 213
 
 step Hearth to Booty Bay

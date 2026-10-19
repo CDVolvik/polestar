@@ -13,6 +13,97 @@
 			},
 			"note": "Trial of the Lake (Druid Aquatic Form, Alliance) is open to Night Elf and Skyborne Druids: Wowhead Forever https://www.wowhead.com/forever/quest=29 lists Races [race=4], [race=95] (checked 2026-10-16). The merged data has races 8 (Night Elf only), while Trial of the Sea Lion (272) before it already has Skyborne, so Skyborne druids stopped halfway."
 		},
+		"151": {
+			"set": {
+				"start": {
+					"npc": [
+						238
+					],
+					"object": [],
+					"item": []
+				}
+			},
+			"note": "Poor Old Blanchy: Forever's quest data (page snapshot 2026-10-17) starts with Verna Furlbrow (npc 238); as its giver the merged data also listed Mailbox (object 696264)."
+		},
+		"171": {
+			"set": {
+				"start": {
+					"npc": [
+						14305
+					],
+					"object": [],
+					"item": []
+				},
+				"end": {
+					"npc": [
+						14450
+					],
+					"object": []
+				}
+			},
+			"note": "A Warden of the Alliance: Forever's quest data (page snapshot 2026-10-17) starts with Human Orphan (npc 14305) and ends with Orphan Matron Nightingale (npc 14450); as its giver the merged data also listed Watcher Callahan (npc 2142); as its ender the merged data also listed Watcher Callahan (npc 2142)."
+		},
+		"172": {
+			"set": {
+				"start": {
+					"npc": [
+						14451
+					],
+					"object": [],
+					"item": []
+				},
+				"end": {
+					"npc": [
+						14444
+					],
+					"object": []
+				}
+			},
+			"note": "Children's Week: Forever's quest data (page snapshot 2026-10-17) starts with Orphan Matron Battlewail (npc 14451) and ends with Orcish Orphan (npc 14444); as its giver the merged data also listed Ambassador Berrybuck (npc 271); as its ender the merged data also listed Ambassador Berrybuck (npc 271)."
+		},
+		"311": {
+			"set": {
+				"start": {
+					"npc": [],
+					"object": [
+						270,
+						269
+					],
+					"item": []
+				}
+			},
+			"note": "Return to Marleth: Forever's quest data (page snapshot 2026-10-17) starts with Guarded Thunder Ale Barrel (object 269) and Unguarded Thunder Ale Barrel (object 270); as its giver the merged data lacked Guarded Thunder Ale Barrel (object 269). The Unguarded Thunder Ale Barrel (270) stays first, as before, so the guide's accept step keeps naming the barrel it already pointed at."
+		},
+		"377": {
+			"set": {
+				"xp": 4400
+			},
+			"note": "Crime and Punishment (The Stockade) rewards 4,400 XP on Forever after Blizzard's 1 October 2026 change to dungeon quest XP (beta build 1.60.1.70170, \"50% less extra experience\"); the merged data had 2,100, the Classic value. Factoruide's database (2026-10-18) has 4,400 from a game client's quest cache of a build after the change: the quest is in none of its client caches on 2026-10-10 (builds 69913, from before the change, and 70334), first appears in them on 2026-10-11 (build 70338), and its XP was first read from those caches on 2026-10-14 (builds 69913 and 70374), so the value comes from build 70374 or later; Factoruide's in-game collector had no XP for it. ForeverDB's player captures agree. Issue #394 (dungeon quest XP)."
+		},
+		"386": {
+			"set": {
+				"xp": 4200
+			},
+			"note": "What Comes Around... (The Stockade) rewards 4,200 XP on Forever; the merged data had 2,000, the Classic value. Factoruide's in-game collector and client quest caches (which may include the pre-change build 69913), ForeverDB's player captures and ForeverLevelingBiS's quest XP table (undated) give 4,200, 2.10 times the Classic base of 2,000 (the client's QuestXP), the same rate as Crime and Punishment (377) and The Color of Blood (388) in the same dungeon, 2.09 to 2.10 times their base from a post-change client quest cache (Factoruide). Before Blizzard's 1 October 2026 change (beta build 1.60.1.70170, \"50% less extra experience\") a dungeon quest's extra XP was twice what it is now, so an undated value at the dated post-change rate of its own dungeon cannot be a pre-change one. Issue #394 (dungeon quest XP)."
+		},
+		"387": {
+			"set": {
+				"xp": 5550
+			},
+			"note": "Quell the Uprising (The Stockade) rewards 5,550 XP on Forever; the merged data had 2,650, the Classic value. Factoruide's in-game collector and client quest caches (which may include the pre-change build 69913), ForeverDB's player captures and ForeverLevelingBiS's quest XP table (undated) give 5,550, 2.09 times the Classic base of 2,650 (the client's QuestXP), the same rate as Crime and Punishment (377) and The Color of Blood (388) in the same dungeon, 2.09 to 2.10 times their base from a post-change client quest cache (Factoruide). Before Blizzard's 1 October 2026 change (beta build 1.60.1.70170, \"50% less extra experience\") a dungeon quest's extra XP was twice what it is now, so an undated value at the dated post-change rate of its own dungeon cannot be a pre-change one. Issue #394 (dungeon quest XP)."
+		},
+		"388": {
+			"set": {
+				"xp": 5550
+			},
+			"note": "The Color of Blood (The Stockade) rewards 5,550 XP on Forever after Blizzard's 1 October 2026 change to dungeon quest XP (beta build 1.60.1.70170, \"50% less extra experience\"); the merged data had 2,650, the Classic value. Factoruide's database (2026-10-18) has 5,550 from a game client's quest cache of a build after the change: the quest is in none of its client caches on 2026-10-10 (builds 69913, from before the change, and 70334), first appears in them on 2026-10-12 (build 70338), and its XP was first read from those caches on 2026-10-14 (builds 69913 and 70374), so the value comes from build 70374 or later; Factoruide's in-game collector had no XP for it. ForeverDB's player captures agree. Issue #394 (dungeon quest XP)."
+		},
+		"391": {
+			"set": {
+				"xp": 4950
+			},
+			"note": "The Stockade Riots (The Stockade) rewards 4,950 XP on Forever; the merged data had 2,950, the Classic value. Factoruide's in-game collector and client quest caches (which may include the pre-change build 69913) and ForeverLevelingBiS's quest XP table (undated) give 4,950, 2.11 times the Classic base of 2,350 (the client's QuestXP), the same rate as Crime and Punishment (377) and The Color of Blood (388) in the same dungeon, 2.09 to 2.10 times their base from a post-change client quest cache (Factoruide). Before Blizzard's 1 October 2026 change (beta build 1.60.1.70170, \"50% less extra experience\") a dungeon quest's extra XP was twice what it is now, so an undated value at the dated post-change rate of its own dungeon cannot be a pre-change one. Issue #394 (dungeon quest XP)."
+		},
 		"425": {
 			"set": {
 				"pre": [
@@ -35,17 +126,152 @@
 			},
 			"note": "Nek'rosh's Gambit (Wetlands, Captain Stoutfist) comes after the Forever quest From the Ashes 98221, not straight after War Banners 464: issue #225 (Lou-Saydus, 2026-10-17, in game at level 29): Stoutfist did not offer 465 with 464 handed in and offered From the Ashes, \"the next quest in the chain after War Banners and before Nek'rosh's Gambit\". Wowhead Forever's quest list marks 465's description reworded. pfQuest and QuestieDB 1.0.5 have the Classic prerequisite 464."
 		},
+		"489": {
+			"set": {
+				"start": {
+					"npc": [
+						2081,
+						2083,
+						2151
+					],
+					"object": [],
+					"item": []
+				}
+			},
+			"note": "Seek Redemption!: Forever's quest data (page snapshot 2026-10-17) starts with Sentinel Kyra Starsong (npc 2081), Syral Bladeleaf (npc 2083) and Moon Priestess Amara (npc 2151); as its giver the merged data also listed Sentinel Shayla Nightbreeze (npc 2155)."
+		},
 		"660": {
 			"set": {
 				"escort": true
 			},
 			"note": "Hints of a New Plague? (Arathi Highlands; Kinelory gives it) is an escort: Wowhead Forever https://www.wowhead.com/forever/quest=660 reads \"Protect Kinelory until she returns to Quae\" (checked 2026-10-17), as quests.json does. No text says escort, and the compiler's escort rule (tools/lib/dsl/escort.js) needs the word escort in the quest's own text. QuestieDB 1.0.6 questFlags has PARTY_ACCEPT (2), as every Classic escort the rule finds does."
 		},
+		"914": {
+			"set": {
+				"xp": 4300
+			},
+			"note": "Leaders of the Fang (Wailing Caverns) rewards 4,300 XP on Forever; the merged data had 2,200, the Classic value. ForeverDB's player captures and ForeverLevelingBiS's quest XP table (undated) give 4,300, 1.95 times the Classic base of 2,200 (the client's QuestXP), the same rate as Deviate Hides (1486) in the same dungeon, 3,100 = 1.94 times 1,600 on an in-game reward panel of 2026-10-19. Before Blizzard's 1 October 2026 change (beta build 1.60.1.70170, \"50% less extra experience\") a dungeon quest's extra XP was twice what it is now, so an undated value at the dated post-change rate of its own dungeon cannot be a pre-change one. Issue #394 (dungeon quest XP)."
+		},
+		"926": {
+			"set": {
+				"start": {
+					"npc": [],
+					"object": [
+						5621
+					],
+					"item": []
+				}
+			},
+			"note": "Flawed Power Stone: Forever's quest data (page snapshot 2026-10-17) starts with Flawed Power Stones (object 5621); as its giver the merged data also listed Flawed Power Stone (object 5619) and Flawed Power Stones (object 5620)."
+		},
+		"959": {
+			"set": {
+				"xp": 2650
+			},
+			"note": "Trouble at the Docks (Wailing Caverns) rewards 2,650 XP on Forever; the merged data had 1,350, the Classic value. ForeverDB's player captures and ForeverLevelingBiS's quest XP table (undated) give 2,650, 1.96 times the Classic base of 1,350 (the client's QuestXP), the same rate as Deviate Hides (1486) in the same dungeon, 3,100 = 1.94 times 1,600 on an in-game reward panel of 2026-10-19. Before Blizzard's 1 October 2026 change (beta build 1.60.1.70170, \"50% less extra experience\") a dungeon quest's extra XP was twice what it is now, so an undated value at the dated post-change rate of its own dungeon cannot be a pre-change one. Issue #394 (dungeon quest XP)."
+		},
+		"962": {
+			"set": {
+				"xp": 3300
+			},
+			"note": "Serpentbloom (Wailing Caverns) rewards 3,300 XP on Forever; the merged data had 1,350, the Classic value. ForeverDB's player captures and ForeverLevelingBiS's quest XP table (undated) give 3,300, 1.94 times the Classic base of 1,700 (the client's QuestXP), the same rate as Deviate Hides (1486) in the same dungeon, 3,100 = 1.94 times 1,600 on an in-game reward panel of 2026-10-19. Before Blizzard's 1 October 2026 change (beta build 1.60.1.70170, \"50% less extra experience\") a dungeon quest's extra XP was twice what it is now, so an undated value at the dated post-change rate of its own dungeon cannot be a pre-change one. Issue #394 (dungeon quest XP)."
+		},
 		"994": {
 			"set": {
 				"escort": true
 			},
 			"note": "Escape Through Force (Darkshore; Volcor gives it) is an escort: Wowhead Forever https://www.wowhead.com/forever/quest=994 reads \"Protect Volcor until you reach the road\" (checked 2026-10-17), as quests.json does. No text says escort, and the compiler's escort rule (tools/lib/dsl/escort.js) needs the word escort in the quest's own text. QuestieDB 1.0.6 questFlags has PARTY_ACCEPT (2)."
+		},
+		"996": {
+			"set": {
+				"start": {
+					"npc": [],
+					"object": [
+						174600
+					],
+					"item": []
+				},
+				"end": {
+					"npc": [],
+					"object": [
+						174600
+					]
+				}
+			},
+			"note": "Corrupted Windblossom: Forever's quest data (page snapshot 2026-10-17) starts with Corrupted Windblossom (object 174600) and ends with Corrupted Windblossom (object 174600); as its giver the merged data also listed Corrupted Windblossom (object 174602); as its ender the merged data also listed Corrupted Windblossom (object 174602)."
+		},
+		"998": {
+			"set": {
+				"start": {
+					"npc": [],
+					"object": [
+						174599
+					],
+					"item": []
+				},
+				"end": {
+					"npc": [],
+					"object": [
+						174599
+					]
+				}
+			},
+			"note": "Corrupted Windblossom: Forever's quest data (page snapshot 2026-10-17) starts with Corrupted Windblossom (object 174599) and ends with Corrupted Windblossom (object 174599); as its giver the merged data also listed Corrupted Windblossom (object 174603); as its ender the merged data also listed Corrupted Windblossom (object 174603)."
+		},
+		"1013": {
+			"set": {
+				"xp": 5600
+			},
+			"note": "The Book of Ur (Shadowfang Keep) rewards 5,600 XP on Forever; the merged data had 2,100, the Classic value. ForeverDB's player captures and ForeverLevelingBiS's quest XP table (undated) give 5,600, 2.67 times the Classic base of 2,100 (the client's QuestXP), the same rate as Deathstalkers in Shadowfang (1098) in the same dungeon, 5,350 = 2.675 times 2,000 in a Polestar Recorder file of build 70338 and the client quest cache of build 70450. Before Blizzard's 1 October 2026 change (beta build 1.60.1.70170, \"50% less extra experience\") a dungeon quest's extra XP was twice what it is now, so an undated value at the dated post-change rate of its own dungeon cannot be a pre-change one. Issue #394 (dungeon quest XP)."
+		},
+		"1014": {
+			"set": {
+				"xp": 8850
+			},
+			"note": "Arugal Must Die (Shadowfang Keep) rewards 8,850 XP on Forever; the merged data had 3,300, the Classic value. ForeverDB's player captures and ForeverLevelingBiS's quest XP table (undated) give 8,850, 2.68 times the Classic base of 3,300 (the client's QuestXP), the same rate as Deathstalkers in Shadowfang (1098) in the same dungeon, 5,350 = 2.675 times 2,000 in a Polestar Recorder file of build 70338 and the client quest cache of build 70450. Before Blizzard's 1 October 2026 change (beta build 1.60.1.70170, \"50% less extra experience\") a dungeon quest's extra XP was twice what it is now, so an undated value at the dated post-change rate of its own dungeon cannot be a pre-change one. Issue #394 (dungeon quest XP)."
+		},
+		"1098": {
+			"set": {
+				"xp": 5350
+			},
+			"note": "Deathstalkers in Shadowfang (Shadowfang Keep) rewards 5,350 XP on Forever after Blizzard's 1 October 2026 change to dungeon quest XP (beta build 1.60.1.70170, \"50% less extra experience\"); the merged data had 2,000, the Classic value. A Polestar Recorder file from build 1.60.1.70338 (2026-10-12) has a reward of 5,350 XP at level 20 (the quest is level 25), and the game client's quest cache of build 1.60.1.70450 (written 2026-10-17) gives the quest XP difficulty 5 and multiplier 2.675: 2,000 (QuestXP, level 25, difficulty 5) x 2.675 = 5,350. ForeverDB's player captures agree. Issue #394 (dungeon quest XP)."
+		},
+		"1194": {
+			"set": {
+				"start": {
+					"npc": [],
+					"object": [
+						20805
+					],
+					"item": []
+				}
+			},
+			"note": "Rizzle's Schematics: Forever's quest data (page snapshot 2026-10-17) starts with Rizzle's Unguarded Plans (object 20805); as its giver the merged data also listed Rizzle's Guarded Plans (object 179888)."
+		},
+		"1486": {
+			"set": {
+				"start": {
+					"npc": [
+						5767
+					],
+					"object": [],
+					"item": []
+				},
+				"xp": 3100
+			},
+			"note": "Deviate Hides: Forever's quest data (page snapshot 2026-10-17) starts with Nalpak (npc 5767); as its giver the merged data also listed Mailbox (object 659159). Deviate Hides (Wailing Caverns) rewards 3,100 XP on Forever after Blizzard's 1 October 2026 change to dungeon quest XP (beta build 1.60.1.70170, \"50% less extra experience\"); the merged data had 1,600, the Classic value. An in-game screenshot of the quest's reward panel, posted on issue #394 on 2026-10-19 by a level 19 Priest (the quest is level 17, so no level reduction), shows Experience: 3,100."
+		},
+		"1487": {
+			"set": {
+				"xp": 4000
+			},
+			"note": "Deviate Eradication (Wailing Caverns) rewards 4,000 XP on Forever; the merged data had 2,050, the Classic value. ForeverDB's player captures and ForeverLevelingBiS's quest XP table (undated) give 4,000, 1.95 times the Classic base of 2,050 (the client's QuestXP), the same rate as Deviate Hides (1486) in the same dungeon, 3,100 = 1.94 times 1,600 on an in-game reward panel of 2026-10-19. Before Blizzard's 1 October 2026 change (beta build 1.60.1.70170, \"50% less extra experience\") a dungeon quest's extra XP was twice what it is now, so an undated value at the dated post-change rate of its own dungeon cannot be a pre-change one. Issue #394 (dungeon quest XP)."
+		},
+		"1491": {
+			"set": {
+				"xp": 2650
+			},
+			"note": "Smart Drinks (Wailing Caverns) rewards 2,650 XP on Forever; the merged data had 1,350, the Classic value. ForeverDB's player captures and ForeverLevelingBiS's quest XP table (undated) give 2,650, 1.96 times the Classic base of 1,350 (the client's QuestXP), the same rate as Deviate Hides (1486) in the same dungeon, 3,100 = 1.94 times 1,600 on an in-game reward panel of 2026-10-19. Before Blizzard's 1 October 2026 change (beta build 1.60.1.70170, \"50% less extra experience\") a dungeon quest's extra XP was twice what it is now, so an undated value at the dated post-change rate of its own dungeon cannot be a pre-change one. Issue #394 (dungeon quest XP)."
 		},
 		"1501": {
 			"set": {
@@ -59,17 +285,81 @@
 			},
 			"note": "The Binding (Warlock voidwalker, after 1501) is open to Orc, Undead and Troll Warlocks: Wowhead Forever https://www.wowhead.com/forever/quest=1504 lists Races [race=2], [race=5], [race=8] (checked 2026-10-14). The merged data has races 2 (Orc only)."
 		},
+		"1514": {
+			"set": {
+				"start": {
+					"npc": [],
+					"object": [
+						173327
+					],
+					"item": []
+				},
+				"end": {
+					"npc": [],
+					"object": [
+						173327
+					]
+				}
+			},
+			"note": "Corrupted Windblossom: Forever's quest data (page snapshot 2026-10-17) starts with Corrupted Windblossom (object 173327) and ends with Corrupted Windblossom (object 173327); as its giver the merged data also listed Corrupted Windblossom (object 174709); as its ender the merged data also listed Corrupted Windblossom (object 174709)."
+		},
 		"1560": {
 			"set": {
 				"escort": true
 			},
 			"note": "Tooga's Quest (Tanaris; Tooga gives it, Torta takes it) is an escort: Forever's quest data reads \"Show Tooga the way back to his wife, Torta\", objective \"Lead Tooga to Torta\", with a 30 minute timer (checked 2026-10-19). No text says escort and its objective is a kill objective in quests.json, so the compiler's escort rule (tools/lib/dsl/escort.js) misses it. Both Tanaris guides route it."
 		},
+		"1684": {
+			"set": {
+				"start": {
+					"npc": [
+						2151,
+						3598
+					],
+					"object": [],
+					"item": []
+				}
+			},
+			"note": "Elanaria: Forever's quest data (page snapshot 2026-10-17) starts with Moon Priestess Amara (npc 2151) and Kyra Windblade (npc 3598); as its giver the merged data also listed Sentinel Elissa Starbreeze (npc 3657)."
+		},
+		"1798": {
+			"set": {
+				"start": {
+					"npc": [
+						6120,
+						6122
+					],
+					"object": [],
+					"item": []
+				}
+			},
+			"note": "Seeking Strahad: Forever's quest data (page snapshot 2026-10-17) starts with Gakin the Darkbinder (npc 6122) only, but the quest is for Human and Gnome Warlocks and Gakin is the Stormwind trainer: Lago Blackwrench (npc 6120, Ironforge's Forlorn Cavern) is the Gnome warlocks' giver, which QuestieDB's Forever store lists and forever/class/warlock/felhunter-alliance uses. Both give it; kept here so a sweep against that data does not drop Lago again."
+		},
+		"1818": {
+			"set": {
+				"start": {
+					"npc": [
+						2131
+					],
+					"object": [],
+					"item": []
+				}
+			},
+			"note": "Speak with Dillinger: Forever's quest data (page snapshot 2026-10-17) starts with Austil de Mon (npc 2131); as its giver the merged data also listed Baltus Fowler (npc 4595)."
+		},
 		"1919": {
 			"set": {
-				"races": 4294967361
+				"races": 4294967361,
+				"start": {
+					"npc": [
+						328,
+						7312
+					],
+					"object": [],
+					"item": []
+				}
 			},
-			"note": "Report to Jennea (Alliance mage robe chain) is open to Human, Gnome and Skyborne Mages: Wowhead Forever https://www.wowhead.com/forever/quest=1919 lists Races [race=1], [race=7], [race=95] (checked 2026-10-16). The merged data has races 65 (Human and Gnome), while Investigate the Blue Recluse (1920) in the middle already has Skyborne."
+			"note": "Report to Jennea (Alliance mage robe chain) is open to Human, Gnome and Skyborne Mages: Wowhead Forever https://www.wowhead.com/forever/quest=1919 lists Races [race=1], [race=7], [race=95] (checked 2026-10-16). The merged data has races 65 (Human and Gnome), while Investigate the Blue Recluse (1920) in the middle already has Skyborne. Report to Jennea: Forever's quest data (page snapshot 2026-10-17) starts with Zaldimar Wefhellt (npc 328) and Dink (npc 7312); as its giver the merged data also listed Magis Sparkmantle (npc 1228)."
 		},
 		"1921": {
 			"set": {
@@ -79,9 +369,18 @@
 		},
 		"1959": {
 			"set": {
-				"races": 146
+				"races": 146,
+				"start": {
+					"npc": [
+						2128,
+						3049,
+						7311
+					],
+					"object": [],
+					"item": []
+				}
 			},
-			"note": "Report to Anastasia (Horde mage robe chain) is open to Orc, Undead and Troll Mages: Wowhead Forever https://www.wowhead.com/forever/quest=1959 lists Races [race=2], [race=5], [race=8] (checked 2026-10-16). The merged data has races 144 (Undead and Troll), which leaves Orc mages out of the chain that 1961 (races 146) continues."
+			"note": "Report to Anastasia (Horde mage robe chain) is open to Orc, Undead and Troll Mages: Wowhead Forever https://www.wowhead.com/forever/quest=1959 lists Races [race=2], [race=5], [race=8] (checked 2026-10-16). The merged data has races 144 (Undead and Troll), which leaves Orc mages out of the chain that 1961 (races 146) continues. Report to Anastasia: Forever's quest data (page snapshot 2026-10-17) starts with Cain Firesong (npc 2128), Thurston Xane (npc 3049) and Uthel'nay (npc 7311); as its giver the merged data also listed Un'Thuwa (npc 5880)."
 		},
 		"1960": {
 			"set": {
@@ -89,11 +388,494 @@
 			},
 			"note": "Investigate the Alchemist Shop (Horde mage robe chain) is open to Orc, Undead and Troll Mages: Wowhead Forever https://www.wowhead.com/forever/quest=1960 lists Races [race=2], [race=5], [race=8] (checked 2026-10-16). The merged data has races 144 (Undead and Troll), which leaves Orc mages out of the chain that 1961 (races 146) continues."
 		},
+		"1962": {
+			"set": {
+				"start": {
+					"npc": [
+						11049
+					],
+					"object": [],
+					"item": []
+				}
+			},
+			"note": "Spellfire Robes: Forever's quest data (page snapshot 2026-10-17) starts with Rhiannon Davis (npc 11049); as its giver the merged data also listed Josef Gregorian (npc 4576) and Victor Ward (npc 11048)."
+		},
+		"2523": {
+			"set": {
+				"start": {
+					"npc": [],
+					"object": [
+						171942
+					],
+					"item": []
+				},
+				"end": {
+					"npc": [],
+					"object": [
+						171942
+					]
+				}
+			},
+			"note": "Corrupted Songflower: Forever's quest data (page snapshot 2026-10-17) starts with Corrupted Songflower (object 171942) and ends with Corrupted Songflower (object 171942); as its giver the merged data also listed Corrupted Songflower (object 164886); as its ender the merged data also listed Corrupted Songflower (object 164886)."
+		},
+		"2861": {
+			"set": {
+				"start": {
+					"npc": [
+						4568,
+						5144,
+						5497,
+						5885
+					],
+					"object": [],
+					"item": []
+				}
+			},
+			"note": "Tabetha's Task: Forever's quest data (page snapshot 2026-10-17) starts with Anastasia Hartwell (npc 4568), Bink (npc 5144), Jennea Cannon (npc 5497) and Deino (npc 5885); as its giver the merged data also listed Ursyn Ghull (npc 3048)."
+		},
+		"2924": {
+			"set": {
+				"xp": 5500
+			},
+			"note": "Essential Artificials (Gnomeregan) rewards 5,500 XP on Forever after Blizzard's 1 October 2026 change to dungeon quest XP (beta build 1.60.1.70170, \"50% less extra experience\"); the merged data had 3,050, the Classic value. Factoruide's database (2026-10-18) has 5,500 from a game client's quest cache of a build after the change: the quest is in none of its client caches on 2026-10-10 (builds 69913, from before the change, and 70334), first appears in them on 2026-10-12 (build 70338), and its XP was first read from those caches on 2026-10-14 (builds 69913 and 70374), so the value comes from build 70374 or later; Factoruide's in-game collector had no XP for it. Issue #394 (dungeon quest XP)."
+		},
+		"2929": {
+			"set": {
+				"xp": 4950
+			},
+			"note": "The Grand Betrayal (Gnomeregan) rewards 4,950 XP on Forever after Blizzard's 1 October 2026 change to dungeon quest XP (beta build 1.60.1.70170, \"50% less extra experience\"); the merged data had 2,750, the Classic value. Factoruide's database (2026-10-18) has 4,950 from a game client's quest cache of a build after the change: the quest is in none of its client caches on 2026-10-10 (builds 69913, from before the change, and 70334), first appears in them on 2026-10-12 (build 70338), and its XP was first read from those caches on 2026-10-14 (builds 69913 and 70374), so the value comes from build 70374 or later; Factoruide's in-game collector had no XP for it. Issue #394 (dungeon quest XP)."
+		},
+		"2930": {
+			"set": {
+				"xp": 6550
+			},
+			"note": "Data Rescue (Gnomeregan) rewards 6,550 XP on Forever after Blizzard's 1 October 2026 change to dungeon quest XP (beta build 1.60.1.70170, \"50% less extra experience\"); the merged data had 3,650, the Classic value. Factoruide's database (2026-10-18) has 6,550 from a game client's quest cache of a build after the change: the quest is in none of its client caches on 2026-10-10 (builds 69913, from before the change, and 70334), first appears in them on 2026-10-12 (build 70338), and its XP was first read from those caches on 2026-10-14 (builds 69913 and 70374), so the value comes from build 70374 or later. 1.79 times the base, the rate of Essential Artificials (2924) and The Grand Betrayal (2929), dated the same way. Issue #394 (dungeon quest XP)."
+		},
+		"2936": {
+			"set": {
+				"end": {
+					"npc": [
+						3188
+					],
+					"object": []
+				}
+			},
+			"note": "The Spider God: Forever's quest data (page snapshot 2026-10-17) ends with Master Gadrin (npc 3188); as its ender the merged data also listed Tablet of Theka (object 142715)."
+		},
+		"2954": {
+			"set": {
+				"start": {
+					"npc": [],
+					"object": [
+						142343
+					],
+					"item": []
+				}
+			},
+			"note": "The Stone Watcher: Forever's quest data (page snapshot 2026-10-17) starts with Uldum Pedestal (object 142343); as its giver the merged data also listed Stone Watcher of Norgannon (npc 7918)."
+		},
+		"3525": {
+			"set": {
+				"start": {
+					"npc": [
+						8516
+					],
+					"object": [],
+					"item": []
+				},
+				"end": {
+					"npc": [],
+					"object": [
+						152097
+					]
+				}
+			},
+			"note": "Extinguishing the Idol: Forever's quest data (page snapshot 2026-10-17) starts with Belnistrasz (npc 8516) and ends with Belnistrasz's Brazier (object 152097); as its giver the merged data also listed Belnistrasz's Brazier (object 152097); as its ender the merged data also listed Belnistrasz (npc 8516)."
+		},
+		"3629": {
+			"set": {
+				"start": {
+					"npc": [
+						5518
+					],
+					"object": [],
+					"item": []
+				}
+			},
+			"note": "Goblin Engineering: Forever's quest data (page snapshot 2026-10-17) starts with Lilliam Sparkspindle (npc 5518); as its giver the merged data listed Springspindle Fizzlegear (npc 5174) instead of Lilliam Sparkspindle (npc 5518)."
+		},
+		"3645": {
+			"set": {
+				"start": {
+					"npc": [
+						7406
+					],
+					"object": [],
+					"item": []
+				},
+				"end": {
+					"npc": [
+						7406
+					],
+					"object": []
+				}
+			},
+			"note": "Membership Card Renewal: Forever's quest data (page snapshot 2026-10-17) starts with Oglethorpe Obnoticus (npc 7406) and ends with Oglethorpe Obnoticus (npc 7406); as its giver the merged data also listed Tinkmaster Overspark (npc 7944); as its ender the merged data also listed Tinkmaster Overspark (npc 7944)."
+		},
+		"3647": {
+			"set": {
+				"start": {
+					"npc": [
+						7944
+					],
+					"object": [],
+					"item": []
+				},
+				"end": {
+					"npc": [
+						7944
+					],
+					"object": []
+				}
+			},
+			"note": "Membership Card Renewal: Forever's quest data (page snapshot 2026-10-17) starts with Tinkmaster Overspark (npc 7944) and ends with Tinkmaster Overspark (npc 7944); as its giver the merged data also listed Oglethorpe Obnoticus (npc 7406); as its ender the merged data also listed Oglethorpe Obnoticus (npc 7406)."
+		},
+		"3912": {
+			"set": {
+				"end": {
+					"npc": [
+						9299,
+						208518
+					],
+					"object": []
+				}
+			},
+			"note": "Meet at the Grave: Forever's quest data (page snapshot 2026-10-17) ends with Gaeriyan (npc 9299) and Gaeriyan (npc 208518); as its ender the merged data lacked Gaeriyan (npc 208518)."
+		},
+		"3913": {
+			"set": {
+				"start": {
+					"npc": [
+						9299,
+						208518
+					],
+					"object": [],
+					"item": []
+				}
+			},
+			"note": "A Grave Situation: Forever's quest data (page snapshot 2026-10-17) starts with Gaeriyan (npc 9299) and Gaeriyan (npc 208518); as its giver the merged data lacked Gaeriyan (npc 208518)."
+		},
+		"4113": {
+			"set": {
+				"start": {
+					"npc": [],
+					"object": [
+						164886
+					],
+					"item": []
+				},
+				"end": {
+					"npc": [],
+					"object": [
+						164886
+					]
+				}
+			},
+			"note": "Corrupted Songflower: Forever's quest data (page snapshot 2026-10-17) starts with Corrupted Songflower (object 164886) and ends with Corrupted Songflower (object 164886); as its giver the merged data also listed Corrupted Songflower (object 174596); as its ender the merged data also listed Corrupted Songflower (object 174596)."
+		},
+		"4114": {
+			"set": {
+				"start": {
+					"npc": [],
+					"object": [
+						174596
+					],
+					"item": []
+				},
+				"end": {
+					"npc": [],
+					"object": [
+						174596
+					]
+				}
+			},
+			"note": "Corrupted Songflower: Forever's quest data (page snapshot 2026-10-17) starts with Corrupted Songflower (object 174596) and ends with Corrupted Songflower (object 174596); as its giver the merged data also listed Corrupted Songflower (object 174597); as its ender the merged data also listed Corrupted Songflower (object 174597)."
+		},
+		"4115": {
+			"set": {
+				"start": {
+					"npc": [],
+					"object": [
+						164887
+					],
+					"item": []
+				},
+				"end": {
+					"npc": [],
+					"object": [
+						164887
+					]
+				}
+			},
+			"note": "Corrupted Windblossom: Forever's quest data (page snapshot 2026-10-17) starts with Corrupted Windblossom (object 164887) and ends with Corrupted Windblossom (object 164887); as its giver the merged data also listed Corrupted Windblossom (object 173327); as its ender the merged data also listed Corrupted Windblossom (object 173327)."
+		},
+		"4116": {
+			"set": {
+				"start": {
+					"npc": [],
+					"object": [
+						174597
+					],
+					"item": []
+				},
+				"end": {
+					"npc": [],
+					"object": [
+						174597
+					]
+				}
+			},
+			"note": "Corrupted Songflower: Forever's quest data (page snapshot 2026-10-17) starts with Corrupted Songflower (object 174597) and ends with Corrupted Songflower (object 174597); as its giver the merged data also listed Corrupted Songflower (object 174598); as its ender the merged data also listed Corrupted Songflower (object 174598)."
+		},
+		"4118": {
+			"set": {
+				"start": {
+					"npc": [],
+					"object": [
+						174598
+					],
+					"item": []
+				},
+				"end": {
+					"npc": [],
+					"object": [
+						174598
+					]
+				}
+			},
+			"note": "Corrupted Songflower: Forever's quest data (page snapshot 2026-10-17) starts with Corrupted Songflower (object 174598) and ends with Corrupted Songflower (object 174598); as its giver the merged data also listed Corrupted Songflower (object 174712); as its ender the merged data also listed Corrupted Songflower (object 174712)."
+		},
+		"4127": {
+			"set": {
+				"start": {
+					"npc": [],
+					"object": [
+						164909
+					],
+					"item": []
+				}
+			},
+			"note": "Boat Wreckage: Forever's quest data (page snapshot 2026-10-17) starts with Wrecked Row Boat (object 164909); as its giver the merged data also listed Wrecked Row Boat (object 186419)."
+		},
+		"4181": {
+			"set": {
+				"start": {
+					"npc": [
+						5174
+					],
+					"object": [],
+					"item": []
+				}
+			},
+			"note": "Goblin Engineering: Forever's quest data (page snapshot 2026-10-17) starts with Springspindle Fizzlegear (npc 5174); as its giver the merged data listed Lilliam Sparkspindle (npc 5518) instead of Springspindle Fizzlegear (npc 5174)."
+		},
+		"4221": {
+			"set": {
+				"start": {
+					"npc": [],
+					"object": [
+						174604
+					],
+					"item": []
+				},
+				"end": {
+					"npc": [],
+					"object": [
+						174604
+					]
+				}
+			},
+			"note": "Corrupted Windblossom: Forever's quest data (page snapshot 2026-10-17) starts with Corrupted Windblossom (object 174604) and ends with Corrupted Windblossom (object 174604); as its giver the merged data also listed Corrupted Windblossom (object 174599); as its ender the merged data also listed Corrupted Windblossom (object 174599)."
+		},
+		"4222": {
+			"set": {
+				"start": {
+					"npc": [],
+					"object": [
+						174603
+					],
+					"item": []
+				},
+				"end": {
+					"npc": [],
+					"object": [
+						174603
+					]
+				}
+			},
+			"note": "Corrupted Windblossom: Forever's quest data (page snapshot 2026-10-17) starts with Corrupted Windblossom (object 174603) and ends with Corrupted Windblossom (object 174603); as its giver the merged data also listed Corrupted Windblossom (object 174600); as its ender the merged data also listed Corrupted Windblossom (object 174600)."
+		},
+		"4343": {
+			"set": {
+				"start": {
+					"npc": [],
+					"object": [
+						174602
+					],
+					"item": []
+				},
+				"end": {
+					"npc": [],
+					"object": [
+						174602
+					]
+				}
+			},
+			"note": "Corrupted Windblossom: Forever's quest data (page snapshot 2026-10-17) starts with Corrupted Windblossom (object 174602) and ends with Corrupted Windblossom (object 174602); as its giver the merged data also listed Corrupted Windblossom (object 164887); as its ender the merged data also listed Corrupted Windblossom (object 164887)."
+		},
+		"4401": {
+			"set": {
+				"start": {
+					"npc": [],
+					"object": [
+						171939
+					],
+					"item": []
+				},
+				"end": {
+					"npc": [],
+					"object": [
+						171939
+					]
+				}
+			},
+			"note": "Corrupted Songflower: Forever's quest data (page snapshot 2026-10-17) starts with Corrupted Songflower (object 171939) and ends with Corrupted Songflower (object 171939); as its giver the merged data also listed Corrupted Songflower (object 174713); as its ender the merged data also listed Corrupted Songflower (object 174713)."
+		},
+		"4464": {
+			"set": {
+				"start": {
+					"npc": [],
+					"object": [
+						174712
+					],
+					"item": []
+				},
+				"end": {
+					"npc": [],
+					"object": [
+						174712
+					]
+				}
+			},
+			"note": "Corrupted Songflower: Forever's quest data (page snapshot 2026-10-17) starts with Corrupted Songflower (object 174712) and ends with Corrupted Songflower (object 174712); as its giver the merged data also listed Corrupted Songflower (object 171942); as its ender the merged data also listed Corrupted Songflower (object 171942)."
+		},
+		"4465": {
+			"set": {
+				"start": {
+					"npc": [],
+					"object": [
+						174713
+					],
+					"item": []
+				},
+				"end": {
+					"npc": [],
+					"object": [
+						174713
+					]
+				}
+			},
+			"note": "Corrupted Songflower: Forever's quest data (page snapshot 2026-10-17) starts with Corrupted Songflower (object 174713) and ends with Corrupted Songflower (object 174713); as its giver the merged data also listed Corrupted Songflower (object 171939); as its ender the merged data also listed Corrupted Songflower (object 171939)."
+		},
+		"4466": {
+			"set": {
+				"start": {
+					"npc": [],
+					"object": [
+						174708
+					],
+					"item": []
+				},
+				"end": {
+					"npc": [],
+					"object": [
+						174708
+					]
+				}
+			},
+			"note": "Corrupted Windblossom: Forever's quest data (page snapshot 2026-10-17) starts with Corrupted Windblossom (object 174708) and ends with Corrupted Windblossom (object 174708); as its giver the merged data also listed Corrupted Windblossom (object 174604); as its ender the merged data also listed Corrupted Windblossom (object 174604)."
+		},
+		"4467": {
+			"set": {
+				"start": {
+					"npc": [],
+					"object": [
+						174709
+					],
+					"item": []
+				},
+				"end": {
+					"npc": [],
+					"object": [
+						174709
+					]
+				}
+			},
+			"note": "Corrupted Windblossom: Forever's quest data (page snapshot 2026-10-17) starts with Corrupted Windblossom (object 174709) and ends with Corrupted Windblossom (object 174709); as its giver the merged data also listed Corrupted Windblossom (object 174708); as its ender the merged data also listed Corrupted Windblossom (object 174708)."
+		},
+		"4485": {
+			"set": {
+				"start": {
+					"npc": [
+						6179
+					],
+					"object": [],
+					"item": []
+				}
+			},
+			"note": "The Tome of Nobility: Forever's quest data (page snapshot 2026-10-17) starts with Tiza Battleforge (npc 6179); as its giver the merged data also listed Arthur the Faithful (npc 5491)."
+		},
 		"4492": {
 			"set": {
 				"escort": false
 			},
 			"note": "Lost! (Un'Goro Crater; Spraggle Frock gives it, Ringo takes it) is not an escort: Wowhead Forever https://www.wowhead.com/forever/quest=4492 asks only to find Ringo at Fire Plume Ridge (checked 2026-10-17), as quests.json's objectiveText does. Its event objective \"Escort Ringo to Spraggle Frock at Marshal's Refuge\" is the next quest's, A Little Help From My Friends (4491, from Ringo), so the escort rule (tools/lib/dsl/escort.js) would label it. QuestieDB 1.0.6 questFlags 0 (4491: PARTY_ACCEPT 2)."
+		},
+		"4742": {
+			"set": {
+				"start": {
+					"npc": [
+						10299
+					],
+					"object": [],
+					"item": []
+				},
+				"end": {
+					"npc": [
+						10299
+					],
+					"object": []
+				}
+			},
+			"note": "Seal of Ascension: Forever's quest data (page snapshot 2026-10-17) starts with Scarshield Infiltrator (npc 10299) and ends with Scarshield Infiltrator (npc 10299); as its giver the merged data also listed Vaelan (npc 10296); as its ender the merged data also listed Vaelan (npc 10296)."
+		},
+		"4743": {
+			"set": {
+				"start": {
+					"npc": [
+						10299
+					],
+					"object": [],
+					"item": []
+				},
+				"end": {
+					"npc": [
+						10299
+					],
+					"object": []
+				}
+			},
+			"note": "Seal of Ascension: Forever's quest data (page snapshot 2026-10-17) starts with Scarshield Infiltrator (npc 10299) and ends with Scarshield Infiltrator (npc 10299); as its giver the merged data also listed Vaelan (npc 10296); as its ender the merged data also listed Vaelan (npc 10296)."
 		},
 		"4901": {
 			"set": {
@@ -101,11 +883,99 @@
 			},
 			"note": "Guardians of the Altar (Winterspring; Ranshalla gives it) is an escort: Wowhead Forever https://www.wowhead.com/forever/quest=4901 reads \"Protect Ranshalla while she attempts to reactivate the Altar of Elune\", lighting the torches in each cave on the way (checked 2026-10-17). No text says escort, and the compiler's escort rule (tools/lib/dsl/escort.js) needs the word escort in the quest's own text. QuestieDB 1.0.6 questFlags has PARTY_ACCEPT (2)."
 		},
+		"5057": {
+			"set": {
+				"end": {
+					"npc": [
+						10303
+					],
+					"object": []
+				}
+			},
+			"note": "Past Endeavors: Forever's quest data (page snapshot 2026-10-17) ends with Storm Shadowhoof (npc 10303); as its ender the merged data also listed Melor Stonehoof (npc 3441)."
+		},
 		"5061": {
 			"set": {
 				"races": 4294967304
 			},
 			"note": "Aquatic Form (Druid Aquatic Form, Alliance) is open to Night Elf and Skyborne Druids: Wowhead Forever https://www.wowhead.com/forever/quest=5061 lists Races [race=4], [race=95] (checked 2026-10-16). The merged data has races 8 (Night Elf only), while Trial of the Sea Lion (272) before it already has Skyborne, so Skyborne druids stopped halfway."
+		},
+		"5511": {
+			"set": {
+				"start": {
+					"npc": [
+						11057
+					],
+					"object": [],
+					"item": []
+				},
+				"end": {
+					"npc": [
+						11057
+					],
+					"object": []
+				}
+			},
+			"note": "The Key to Scholomance: Forever's quest data (page snapshot 2026-10-17) starts with Apothecary Dithers (npc 11057) and ends with Apothecary Dithers (npc 11057); as its giver the merged data also listed High Executor Derrington (npc 10837); as its ender the merged data also listed High Executor Derrington (npc 10837)."
+		},
+		"5631": {
+			"set": {
+				"start": {
+					"npc": [
+						5489
+					],
+					"object": [],
+					"item": []
+				}
+			},
+			"note": "Returning Home: Forever's quest data (page snapshot 2026-10-17) starts with Brother Joshua (npc 5489); as its giver the merged data also listed High Priestess Laurena (npc 376)."
+		},
+		"5633": {
+			"set": {
+				"start": {
+					"npc": [
+						5142
+					],
+					"object": [],
+					"item": []
+				}
+			},
+			"note": "Returning Home: Forever's quest data (page snapshot 2026-10-17) starts with Braenna Flintcrag (npc 5142); as its giver the merged data also listed High Priest Rohan (npc 11406)."
+		},
+		"5674": {
+			"set": {
+				"start": {
+					"npc": [
+						11397
+					],
+					"object": [],
+					"item": []
+				}
+			},
+			"note": "Elune's Grace: Forever's quest data (page snapshot 2026-10-17) starts with Nara Meideros (npc 11397); as its giver the merged data also listed Laurna Morninglight (npc 3600)."
+		},
+		"5944": {
+			"set": {
+				"end": {
+					"npc": [
+						12126
+					],
+					"object": []
+				}
+			},
+			"note": "In Dreams: Forever's quest data (page snapshot 2026-10-17) ends with Lord Tirion Fordring (npc 12126); as its ender the merged data also listed Tirion Fordring (npc 1855)."
+		},
+		"6066": {
+			"set": {
+				"start": {
+					"npc": [
+						3407
+					],
+					"object": [],
+					"item": []
+				}
+			},
+			"note": "The Hunter's Path: Forever's quest data (page snapshot 2026-10-17) starts with Sian'dur (npc 3407); as its giver the merged data also listed Lanka Farshot (npc 3061)."
 		},
 		"6123": {
 			"set": {
@@ -131,6 +1001,76 @@
 			},
 			"note": "Vorsha the Lasher (Ashenvale; Muglash gives it) is an escort: Wowhead Forever https://www.wowhead.com/forever/quest=6641 reads \"Keep Muglash safe as he travels to the brazier\" (checked 2026-10-17), as quests.json does. No text says escort, and the compiler's escort rule (tools/lib/dsl/escort.js) needs the word escort in the quest's own text. QuestieDB 1.0.6 questFlags has PARTY_ACCEPT (2)."
 		},
+		"6721": {
+			"set": {
+				"start": {
+					"npc": [
+						5116
+					],
+					"object": [],
+					"item": []
+				}
+			},
+			"note": "The Hunter's Path: Forever's quest data (page snapshot 2026-10-17) starts with Olmin Burningbeard (npc 5116); as its giver the merged data also listed Regnus Thundergranite (npc 5117)."
+		},
+		"6981": {
+			"set": {
+				"xp": 5150
+			},
+			"note": "The Glowing Shard (Wailing Caverns) rewards 5,150 XP on Forever; the merged data had 2,650, the Classic value. ForeverDB's player captures and ForeverLevelingBiS's quest XP table (undated) give 5,150, 1.94 times the Classic base of 2,650 (the client's QuestXP), the same rate as Deviate Hides (1486) in the same dungeon, 3,100 = 1.94 times 1,600 on an in-game reward panel of 2026-10-19. Before Blizzard's 1 October 2026 change (beta build 1.60.1.70170, \"50% less extra experience\") a dungeon quest's extra XP was twice what it is now, so an undated value at the dated post-change rate of its own dungeon cannot be a pre-change one. Issue #394 (dungeon quest XP)."
+		},
+		"7022": {
+			"set": {
+				"start": {
+					"npc": [
+						13433,
+						216902
+					],
+					"object": [],
+					"item": []
+				}
+			},
+			"note": "Greatfather Winter is Here!: Forever's quest data (page snapshot 2026-10-17) starts with Wulmort Jinglepocket (npc 13433) and Wulmort Jinglepocket (npc 216902); as its giver the merged data lacked Wulmort Jinglepocket (npc 216902)."
+		},
+		"7042": {
+			"set": {
+				"end": {
+					"npc": [
+						13636
+					],
+					"object": []
+				}
+			},
+			"note": "Stolen Winter Veil Treats: Forever's quest data (page snapshot 2026-10-17) ends with Strange Snowman (npc 13636); as its ender the merged data also listed The Abominable Greench (npc 13602)."
+		},
+		"7124": {
+			"set": {
+				"start": {
+					"npc": [
+						12097,
+						13776
+					],
+					"object": [],
+					"item": []
+				}
+			},
+			"note": "Capture a Mine: Forever's quest data (page snapshot 2026-10-17) starts with Frostwolf Quartermaster (npc 12097) and Corporal Teeka Bloodsnarl (npc 13776); as its giver the merged data lacked Frostwolf Quartermaster (npc 12097)."
+		},
+		"7562": {
+			"set": {
+				"start": {
+					"npc": [
+						5520,
+						5753,
+						5815,
+						6382
+					],
+					"object": [],
+					"item": []
+				}
+			},
+			"note": "Mor'zul Bloodbringer: Forever's quest data (page snapshot 2026-10-17) starts with Spackle Thornberry (npc 5520), Martha Strain (npc 5753), Kurgul (npc 5815) and Jubahl Corpseseeker (npc 6382); as its giver the merged data also listed Greshka (npc 12807)."
+		},
 		"7637": {
 			"set": {
 				"pre": [],
@@ -140,6 +1080,979 @@
 				]
 			},
 			"note": "Emphasis on Sacrifice (Paladin charger) is for Human and Dwarf Paladins and starts at Lord Grayson Shadowbreaker: Wowhead Forever https://www.wowhead.com/forever/quest=7637 lists Races [race=1], [race=3] and Start npc=928 (checked 2026-10-16). Both races reach him by their own Lord Grayson Shadowbreaker quest: 7638 for Humans, 7670 for Dwarves, whose next is 7637 in the merged data. The compiled guide had only the Human's 7638 as its prerequisite, so a Dwarf read as lacking it."
+		},
+		"8227": {
+			"set": {
+				"start": {
+					"npc": [],
+					"object": [
+						180366
+					],
+					"item": []
+				}
+			},
+			"note": "Nat's Measuring Tape starts only at the Battered Tackle Box (object 180366), as Forever's quest data (page snapshot 2026-10-17) has it. The merged data also listed the tape itself (item 19973) as a starter, but the client (ItemSparse, Forever 1.60.1 and Era 1.15.9) gives the item no StartQuestID: the box hands you the tape for the quest."
+		},
+		"8228": {
+			"set": {
+				"start": {
+					"npc": [
+						15116
+					],
+					"object": [],
+					"item": []
+				},
+				"end": {
+					"npc": [
+						15116
+					],
+					"object": []
+				}
+			},
+			"note": "Could I get a Fishing Flier?: Forever's quest data (page snapshot 2026-10-17) starts with Grinkle (npc 15116) and ends with Grinkle (npc 15116); as its giver the merged data also listed Barrus (npc 15119); as its ender the merged data also listed Barrus (npc 15119)."
+		},
+		"8229": {
+			"set": {
+				"start": {
+					"npc": [
+						15119
+					],
+					"object": [],
+					"item": []
+				},
+				"end": {
+					"npc": [
+						15119
+					],
+					"object": []
+				}
+			},
+			"note": "Could I get a Fishing Flier?: Forever's quest data (page snapshot 2026-10-17) starts with Barrus (npc 15119) and ends with Barrus (npc 15119); as its giver the merged data also listed Grinkle (npc 15116); as its ender the merged data also listed Grinkle (npc 15116)."
+		},
+		"8233": {
+			"set": {
+				"start": {
+					"npc": [
+						918,
+						3328,
+						4163,
+						4583,
+						5165
+					],
+					"object": [],
+					"item": []
+				}
+			},
+			"note": "A Simple Request: Forever's quest data (page snapshot 2026-10-17) starts with Osborne the Night Man (npc 918), Ormok (npc 3328), Syurna (npc 4163), Miles Dexter (npc 4583) and Hulfdan Blackbeard (npc 5165); as its giver the merged data also listed Fenthwick (npc 5167)."
+		},
+		"8254": {
+			"set": {
+				"start": {
+					"npc": [
+						5489,
+						6018,
+						11406
+					],
+					"object": [],
+					"item": []
+				}
+			},
+			"note": "Cenarion Aid: Forever's quest data (page snapshot 2026-10-17) starts with Brother Joshua (npc 5489), Ur'kyo (npc 6018) and High Priest Rohan (npc 11406); as its giver the merged data also listed Malakai Cross (npc 3045)."
+		},
+		"8417": {
+			"set": {
+				"start": {
+					"npc": [
+						3041,
+						3354,
+						4593,
+						5113,
+						5479,
+						7315
+					],
+					"object": [],
+					"item": []
+				}
+			},
+			"note": "A Troubled Spirit: Forever's quest data (page snapshot 2026-10-17) starts with Sorek (npc 3354), Christoph Walker (npc 4593), Kelv Sternhammer (npc 5113), Wu Shen (npc 5479) and Darnath Bladesinger (npc 7315), every capital's warrior trainer but Thunder Bluff's. Torm Ragetotem (npc 3041, Thunder Bluff) gives it too: QuestieDB's Forever store and the Classic data list him, and forever/class/warrior/voodoo-feathers sends Tauren warriors to him. Kept here so a sweep against that data does not drop him again."
+		},
+		"8792": {
+			"set": {
+				"start": {
+					"npc": [
+						15702
+					],
+					"object": [],
+					"item": []
+				}
+			},
+			"note": "The Horde Needs Your Help!: Forever's quest data (page snapshot 2026-10-17) starts with Senior Sergeant Taiga (npc 15702); as its giver the merged data also listed Senior Sergeant Grimsford (npc 15703) and Senior Sergeant Kai'jin (npc 15704)."
+		},
+		"8795": {
+			"set": {
+				"start": {
+					"npc": [
+						15707
+					],
+					"object": [],
+					"item": []
+				}
+			},
+			"note": "The Alliance Needs Your Help!: Forever's quest data (page snapshot 2026-10-17) starts with Master Sergeant Fizzlebolt (npc 15707); as its giver the merged data also listed Master Sergeant Maclure (npc 15708) and Master Sergeant Moonshadow (npc 15709)."
+		},
+		"8811": {
+			"set": {
+				"start": {
+					"npc": [
+						15731
+					],
+					"object": [],
+					"item": []
+				},
+				"end": {
+					"npc": [
+						15731
+					],
+					"object": []
+				}
+			},
+			"note": "One Commendation Signet: Forever's quest data (page snapshot 2026-10-17) starts with Darnassus Commendation Officer (npc 15731) and ends with Darnassus Commendation Officer (npc 15731); as its giver the merged data also listed Officer Lunalight (npc 15762) and Officer Maloof (npc 15766); as its ender the merged data listed Officer Lunalight (npc 15762) and Officer Maloof (npc 15766) instead of Darnassus Commendation Officer (npc 15731)."
+		},
+		"8812": {
+			"set": {
+				"start": {
+					"npc": [
+						15733
+					],
+					"object": [],
+					"item": []
+				},
+				"end": {
+					"npc": [
+						15733
+					],
+					"object": []
+				}
+			},
+			"note": "One Commendation Signet: Forever's quest data (page snapshot 2026-10-17) starts with Gnomeregan Commendation Officer (npc 15733) and ends with Gnomeregan Commendation Officer (npc 15733); as its giver the merged data also listed Officer Porterhouse (npc 15763) and Officer Ironbeard (npc 15764); as its ender the merged data listed Officer Porterhouse (npc 15763) and Officer Ironbeard (npc 15764) instead of Gnomeregan Commendation Officer (npc 15733)."
+		},
+		"8813": {
+			"set": {
+				"start": {
+					"npc": [
+						15734
+					],
+					"object": [],
+					"item": []
+				},
+				"end": {
+					"npc": [
+						15734
+					],
+					"object": []
+				}
+			},
+			"note": "One Commendation Signet: Forever's quest data (page snapshot 2026-10-17) starts with Ironforge Commendation Officer (npc 15734) and ends with Ironforge Commendation Officer (npc 15734); as its giver the merged data also listed Officer Lunalight (npc 15762) and Officer Ironbeard (npc 15764); as its ender the merged data listed Officer Lunalight (npc 15762) and Officer Ironbeard (npc 15764) instead of Ironforge Commendation Officer (npc 15734)."
+		},
+		"8814": {
+			"set": {
+				"start": {
+					"npc": [
+						15735
+					],
+					"object": [],
+					"item": []
+				},
+				"end": {
+					"npc": [
+						15735
+					],
+					"object": []
+				}
+			},
+			"note": "One Commendation Signet: Forever's quest data (page snapshot 2026-10-17) starts with Stormwind Commendation Officer (npc 15735) and ends with Stormwind Commendation Officer (npc 15735); as its giver the merged data also listed Officer Porterhouse (npc 15763) and Officer Maloof (npc 15766); as its ender the merged data listed Officer Porterhouse (npc 15763) and Officer Maloof (npc 15766) instead of Stormwind Commendation Officer (npc 15735)."
+		},
+		"8815": {
+			"set": {
+				"start": {
+					"npc": [
+						15736
+					],
+					"object": [],
+					"item": []
+				},
+				"end": {
+					"npc": [
+						15736
+					],
+					"object": []
+				}
+			},
+			"note": "One Commendation Signet: Forever's quest data (page snapshot 2026-10-17) starts with Orgrimmar Commendation Officer (npc 15736) and ends with Orgrimmar Commendation Officer (npc 15736); as its giver the merged data also listed Officer Redblade (npc 15765); as its ender the merged data listed Officer Redblade (npc 15765) instead of Orgrimmar Commendation Officer (npc 15736)."
+		},
+		"8816": {
+			"set": {
+				"start": {
+					"npc": [
+						15737
+					],
+					"object": [],
+					"item": []
+				},
+				"end": {
+					"npc": [
+						15737
+					],
+					"object": []
+				}
+			},
+			"note": "One Commendation Signet: Forever's quest data (page snapshot 2026-10-17) starts with Darkspear Commendation Officer (npc 15737) and ends with Darkspear Commendation Officer (npc 15737); as its giver the merged data also listed Officer Vu'Shalay (npc 15761) and Officer Gothena (npc 15768); as its ender the merged data listed Officer Vu'Shalay (npc 15761) and Officer Gothena (npc 15768) instead of Darkspear Commendation Officer (npc 15737)."
+		},
+		"8817": {
+			"set": {
+				"start": {
+					"npc": [
+						15738
+					],
+					"object": [],
+					"item": []
+				},
+				"end": {
+					"npc": [
+						15738
+					],
+					"object": []
+				}
+			},
+			"note": "One Commendation Signet: Forever's quest data (page snapshot 2026-10-17) starts with Undercity Commendation Officer (npc 15738) and ends with Undercity Commendation Officer (npc 15738); as its giver the merged data also listed Officer Thunderstrider (npc 15767) and Officer Gothena (npc 15768); as its ender the merged data listed Officer Thunderstrider (npc 15767) and Officer Gothena (npc 15768) instead of Undercity Commendation Officer (npc 15738)."
+		},
+		"8818": {
+			"set": {
+				"start": {
+					"npc": [
+						15739
+					],
+					"object": [],
+					"item": []
+				},
+				"end": {
+					"npc": [
+						15739
+					],
+					"object": []
+				}
+			},
+			"note": "One Commendation Signet: Forever's quest data (page snapshot 2026-10-17) starts with Thunder Bluff Commendation Officer (npc 15739) and ends with Thunder Bluff Commendation Officer (npc 15739); as its giver the merged data also listed Officer Vu'Shalay (npc 15761) and Officer Thunderstrider (npc 15767); as its ender the merged data listed Officer Vu'Shalay (npc 15761) and Officer Thunderstrider (npc 15767) instead of Thunder Bluff Commendation Officer (npc 15739)."
+		},
+		"8819": {
+			"set": {
+				"start": {
+					"npc": [
+						15731
+					],
+					"object": [],
+					"item": []
+				},
+				"end": {
+					"npc": [
+						15731
+					],
+					"object": []
+				}
+			},
+			"note": "Ten Commendation Signets: Forever's quest data (page snapshot 2026-10-17) starts with Darnassus Commendation Officer (npc 15731) and ends with Darnassus Commendation Officer (npc 15731); as its giver the merged data also listed Officer Lunalight (npc 15762) and Officer Maloof (npc 15766); as its ender the merged data listed Officer Lunalight (npc 15762) and Officer Maloof (npc 15766) instead of Darnassus Commendation Officer (npc 15731)."
+		},
+		"8820": {
+			"set": {
+				"start": {
+					"npc": [
+						15733
+					],
+					"object": [],
+					"item": []
+				},
+				"end": {
+					"npc": [
+						15733
+					],
+					"object": []
+				}
+			},
+			"note": "Ten Commendation Signets: Forever's quest data (page snapshot 2026-10-17) starts with Gnomeregan Commendation Officer (npc 15733) and ends with Gnomeregan Commendation Officer (npc 15733); as its giver the merged data also listed Officer Porterhouse (npc 15763) and Officer Ironbeard (npc 15764); as its ender the merged data listed Officer Porterhouse (npc 15763) and Officer Ironbeard (npc 15764) instead of Gnomeregan Commendation Officer (npc 15733)."
+		},
+		"8821": {
+			"set": {
+				"start": {
+					"npc": [
+						15734
+					],
+					"object": [],
+					"item": []
+				},
+				"end": {
+					"npc": [
+						15734
+					],
+					"object": []
+				}
+			},
+			"note": "Ten Commendation Signets: Forever's quest data (page snapshot 2026-10-17) starts with Ironforge Commendation Officer (npc 15734) and ends with Ironforge Commendation Officer (npc 15734); as its giver the merged data also listed Officer Lunalight (npc 15762) and Officer Ironbeard (npc 15764); as its ender the merged data listed Officer Lunalight (npc 15762) and Officer Ironbeard (npc 15764) instead of Ironforge Commendation Officer (npc 15734)."
+		},
+		"8822": {
+			"set": {
+				"start": {
+					"npc": [
+						15735
+					],
+					"object": [],
+					"item": []
+				},
+				"end": {
+					"npc": [
+						15735
+					],
+					"object": []
+				}
+			},
+			"note": "Ten Commendation Signets: Forever's quest data (page snapshot 2026-10-17) starts with Stormwind Commendation Officer (npc 15735) and ends with Stormwind Commendation Officer (npc 15735); as its giver the merged data also listed Officer Porterhouse (npc 15763) and Officer Maloof (npc 15766); as its ender the merged data listed Officer Porterhouse (npc 15763) and Officer Maloof (npc 15766) instead of Stormwind Commendation Officer (npc 15735)."
+		},
+		"8823": {
+			"set": {
+				"start": {
+					"npc": [
+						15736
+					],
+					"object": [],
+					"item": []
+				},
+				"end": {
+					"npc": [
+						15736
+					],
+					"object": []
+				}
+			},
+			"note": "Ten Commendation Signets: Forever's quest data (page snapshot 2026-10-17) starts with Orgrimmar Commendation Officer (npc 15736) and ends with Orgrimmar Commendation Officer (npc 15736); as its giver the merged data also listed Officer Redblade (npc 15765); as its ender the merged data listed Officer Redblade (npc 15765) instead of Orgrimmar Commendation Officer (npc 15736)."
+		},
+		"8824": {
+			"set": {
+				"start": {
+					"npc": [
+						15737
+					],
+					"object": [],
+					"item": []
+				},
+				"end": {
+					"npc": [
+						15737
+					],
+					"object": []
+				}
+			},
+			"note": "Ten Commendation Signets: Forever's quest data (page snapshot 2026-10-17) starts with Darkspear Commendation Officer (npc 15737) and ends with Darkspear Commendation Officer (npc 15737); as its giver the merged data also listed Officer Vu'Shalay (npc 15761) and Officer Gothena (npc 15768); as its ender the merged data listed Officer Vu'Shalay (npc 15761) and Officer Gothena (npc 15768) instead of Darkspear Commendation Officer (npc 15737)."
+		},
+		"8825": {
+			"set": {
+				"start": {
+					"npc": [
+						15739
+					],
+					"object": [],
+					"item": []
+				},
+				"end": {
+					"npc": [
+						15739
+					],
+					"object": []
+				}
+			},
+			"note": "Ten Commendation Signets: Forever's quest data (page snapshot 2026-10-17) starts with Thunder Bluff Commendation Officer (npc 15739) and ends with Thunder Bluff Commendation Officer (npc 15739); as its giver the merged data also listed Officer Thunderstrider (npc 15767); as its ender the merged data listed Officer Thunderstrider (npc 15767) instead of Thunder Bluff Commendation Officer (npc 15739)."
+		},
+		"8826": {
+			"set": {
+				"start": {
+					"npc": [
+						15738
+					],
+					"object": [],
+					"item": []
+				},
+				"end": {
+					"npc": [
+						15738
+					],
+					"object": []
+				}
+			},
+			"note": "Ten Commendation Signets: Forever's quest data (page snapshot 2026-10-17) starts with Undercity Commendation Officer (npc 15738) and ends with Undercity Commendation Officer (npc 15738); as its giver the merged data also listed Officer Vu'Shalay (npc 15761) and Officer Gothena (npc 15768); as its ender the merged data listed Officer Vu'Shalay (npc 15761) and Officer Gothena (npc 15768) instead of Undercity Commendation Officer (npc 15738)."
+		},
+		"8830": {
+			"set": {
+				"start": {
+					"npc": [
+						15762
+					],
+					"object": [],
+					"item": []
+				},
+				"end": {
+					"npc": [
+						15762
+					],
+					"object": []
+				}
+			},
+			"note": "One Commendation Signet: Forever's quest data (page snapshot 2026-10-17) starts with Officer Lunalight (npc 15762) and ends with Officer Lunalight (npc 15762); as its giver the merged data listed Darnassus Commendation Officer (npc 15731) and Officer Maloof (npc 15766) instead of Officer Lunalight (npc 15762); as its ender the merged data listed Darnassus Commendation Officer (npc 15731) and Officer Maloof (npc 15766) instead of Officer Lunalight (npc 15762)."
+		},
+		"8831": {
+			"set": {
+				"start": {
+					"npc": [
+						15762
+					],
+					"object": [],
+					"item": []
+				},
+				"end": {
+					"npc": [
+						15762
+					],
+					"object": []
+				}
+			},
+			"note": "Ten Commendation Signets: Forever's quest data (page snapshot 2026-10-17) starts with Officer Lunalight (npc 15762) and ends with Officer Lunalight (npc 15762); as its giver the merged data listed Darnassus Commendation Officer (npc 15731) and Officer Maloof (npc 15766) instead of Officer Lunalight (npc 15762); as its ender the merged data listed Darnassus Commendation Officer (npc 15731) and Officer Maloof (npc 15766) instead of Officer Lunalight (npc 15762)."
+		},
+		"8832": {
+			"set": {
+				"start": {
+					"npc": [
+						15768
+					],
+					"object": [],
+					"item": []
+				},
+				"end": {
+					"npc": [
+						15768
+					],
+					"object": []
+				}
+			},
+			"note": "One Commendation Signet: Forever's quest data (page snapshot 2026-10-17) starts with Officer Gothena (npc 15768) and ends with Officer Gothena (npc 15768); as its giver the merged data listed Undercity Commendation Officer (npc 15738) and Officer Redblade (npc 15765) instead of Officer Gothena (npc 15768); as its ender the merged data listed Undercity Commendation Officer (npc 15738) and Officer Redblade (npc 15765) instead of Officer Gothena (npc 15768)."
+		},
+		"8833": {
+			"set": {
+				"start": {
+					"npc": [
+						15768
+					],
+					"object": [],
+					"item": []
+				},
+				"end": {
+					"npc": [
+						15768
+					],
+					"object": []
+				}
+			},
+			"note": "Ten Commendation Signets: Forever's quest data (page snapshot 2026-10-17) starts with Officer Gothena (npc 15768) and ends with Officer Gothena (npc 15768); as its giver the merged data listed Undercity Commendation Officer (npc 15738) and Officer Redblade (npc 15765) instead of Officer Gothena (npc 15768); as its ender the merged data listed Undercity Commendation Officer (npc 15738) and Officer Redblade (npc 15765) instead of Officer Gothena (npc 15768)."
+		},
+		"8834": {
+			"set": {
+				"start": {
+					"npc": [
+						15764
+					],
+					"object": [],
+					"item": []
+				},
+				"end": {
+					"npc": [
+						15764
+					],
+					"object": []
+				}
+			},
+			"note": "One Commendation Signet: Forever's quest data (page snapshot 2026-10-17) starts with Officer Ironbeard (npc 15764) and ends with Officer Ironbeard (npc 15764); as its giver the merged data also listed Ironforge Commendation Officer (npc 15734); as its ender the merged data also listed Ironforge Commendation Officer (npc 15734)."
+		},
+		"8835": {
+			"set": {
+				"start": {
+					"npc": [
+						15764
+					],
+					"object": [],
+					"item": []
+				},
+				"end": {
+					"npc": [
+						15764
+					],
+					"object": []
+				}
+			},
+			"note": "Ten Commendation Signets: Forever's quest data (page snapshot 2026-10-17) starts with Officer Ironbeard (npc 15764) and ends with Officer Ironbeard (npc 15764); as its giver the merged data also listed Ironforge Commendation Officer (npc 15734); as its ender the merged data also listed Ironforge Commendation Officer (npc 15734)."
+		},
+		"8836": {
+			"set": {
+				"start": {
+					"npc": [
+						15766
+					],
+					"object": [],
+					"item": []
+				},
+				"end": {
+					"npc": [
+						15766
+					],
+					"object": []
+				}
+			},
+			"note": "One Commendation Signet: Forever's quest data (page snapshot 2026-10-17) starts with Officer Maloof (npc 15766) and ends with Officer Maloof (npc 15766); as its giver the merged data listed Stormwind Commendation Officer (npc 15735) and Officer Lunalight (npc 15762) instead of Officer Maloof (npc 15766); as its ender the merged data listed Stormwind Commendation Officer (npc 15735) and Officer Lunalight (npc 15762) instead of Officer Maloof (npc 15766)."
+		},
+		"8837": {
+			"set": {
+				"start": {
+					"npc": [
+						15763,
+						15766
+					],
+					"object": [],
+					"item": []
+				},
+				"end": {
+					"npc": [
+						15766
+					],
+					"object": []
+				}
+			},
+			"note": "Ten Commendation Signets: Forever's quest data (page snapshot 2026-10-17) starts with Officer Porterhouse (npc 15763) and Officer Maloof (npc 15766) and ends with Officer Maloof (npc 15766); as its giver the merged data listed Stormwind Commendation Officer (npc 15735) and Officer Lunalight (npc 15762) instead of Officer Porterhouse (npc 15763) and Officer Maloof (npc 15766); as its ender the merged data listed Stormwind Commendation Officer (npc 15735) and Officer Lunalight (npc 15762) instead of Officer Maloof (npc 15766)."
+		},
+		"8838": {
+			"set": {
+				"start": {
+					"npc": [
+						15763
+					],
+					"object": [],
+					"item": []
+				},
+				"end": {
+					"npc": [
+						15763
+					],
+					"object": []
+				}
+			},
+			"note": "One Commendation Signet: Forever's quest data (page snapshot 2026-10-17) starts with Officer Porterhouse (npc 15763) and ends with Officer Porterhouse (npc 15763); as its giver the merged data also listed Gnomeregan Commendation Officer (npc 15733); as its ender the merged data also listed Gnomeregan Commendation Officer (npc 15733)."
+		},
+		"8839": {
+			"set": {
+				"start": {
+					"npc": [
+						15763
+					],
+					"object": [],
+					"item": []
+				},
+				"end": {
+					"npc": [
+						15763
+					],
+					"object": []
+				}
+			},
+			"note": "Ten Commendation Signets: Forever's quest data (page snapshot 2026-10-17) starts with Officer Porterhouse (npc 15763) and ends with Officer Porterhouse (npc 15763); as its giver the merged data also listed Gnomeregan Commendation Officer (npc 15733); as its ender the merged data also listed Gnomeregan Commendation Officer (npc 15733)."
+		},
+		"8840": {
+			"set": {
+				"start": {
+					"npc": [
+						15765
+					],
+					"object": [],
+					"item": []
+				},
+				"end": {
+					"npc": [
+						15765
+					],
+					"object": []
+				}
+			},
+			"note": "One Commendation Signet: Forever's quest data (page snapshot 2026-10-17) starts with Officer Redblade (npc 15765) and ends with Officer Redblade (npc 15765); as its giver the merged data listed Orgrimmar Commendation Officer (npc 15736) and Officer Gothena (npc 15768) instead of Officer Redblade (npc 15765); as its ender the merged data listed Orgrimmar Commendation Officer (npc 15736) and Officer Gothena (npc 15768) instead of Officer Redblade (npc 15765)."
+		},
+		"8841": {
+			"set": {
+				"start": {
+					"npc": [
+						15765
+					],
+					"object": [],
+					"item": []
+				},
+				"end": {
+					"npc": [
+						15765
+					],
+					"object": []
+				}
+			},
+			"note": "Ten Commendation Signets: Forever's quest data (page snapshot 2026-10-17) starts with Officer Redblade (npc 15765) and ends with Officer Redblade (npc 15765); as its giver the merged data listed Orgrimmar Commendation Officer (npc 15736) and Officer Gothena (npc 15768) instead of Officer Redblade (npc 15765); as its ender the merged data listed Orgrimmar Commendation Officer (npc 15736) and Officer Gothena (npc 15768) instead of Officer Redblade (npc 15765)."
+		},
+		"8842": {
+			"set": {
+				"start": {
+					"npc": [
+						15767
+					],
+					"object": [],
+					"item": []
+				},
+				"end": {
+					"npc": [
+						15767
+					],
+					"object": []
+				}
+			},
+			"note": "One Commendation Signet: Forever's quest data (page snapshot 2026-10-17) starts with Officer Thunderstrider (npc 15767) and ends with Officer Thunderstrider (npc 15767); as its giver the merged data also listed Thunder Bluff Commendation Officer (npc 15739); as its ender the merged data also listed Thunder Bluff Commendation Officer (npc 15739)."
+		},
+		"8843": {
+			"set": {
+				"start": {
+					"npc": [
+						15767
+					],
+					"object": [],
+					"item": []
+				},
+				"end": {
+					"npc": [
+						15767
+					],
+					"object": []
+				}
+			},
+			"note": "Ten Commendation Signets: Forever's quest data (page snapshot 2026-10-17) starts with Officer Thunderstrider (npc 15767) and ends with Officer Thunderstrider (npc 15767); as its giver the merged data also listed Thunder Bluff Commendation Officer (npc 15739); as its ender the merged data also listed Thunder Bluff Commendation Officer (npc 15739)."
+		},
+		"8844": {
+			"set": {
+				"start": {
+					"npc": [
+						15761
+					],
+					"object": [],
+					"item": []
+				},
+				"end": {
+					"npc": [
+						15761
+					],
+					"object": []
+				}
+			},
+			"note": "One Commendation Signet: Forever's quest data (page snapshot 2026-10-17) starts with Officer Vu'Shalay (npc 15761) and ends with Officer Vu'Shalay (npc 15761); as its giver the merged data also listed Darkspear Commendation Officer (npc 15737); as its ender the merged data also listed Darkspear Commendation Officer (npc 15737)."
+		},
+		"8845": {
+			"set": {
+				"start": {
+					"npc": [
+						15761
+					],
+					"object": [],
+					"item": []
+				},
+				"end": {
+					"npc": [
+						15761
+					],
+					"object": []
+				}
+			},
+			"note": "Ten Commendation Signets: Forever's quest data (page snapshot 2026-10-17) starts with Officer Vu'Shalay (npc 15761) and ends with Officer Vu'Shalay (npc 15761); as its giver the merged data also listed Darkspear Commendation Officer (npc 15737); as its ender the merged data also listed Darkspear Commendation Officer (npc 15737)."
+		},
+		"8922": {
+			"set": {
+				"start": {
+					"npc": [
+						16013,
+						230319
+					],
+					"object": [],
+					"item": []
+				}
+			},
+			"note": "A Supernatural Device: Forever's quest data (page snapshot 2026-10-17) starts with Deliana (npc 16013) and Deliana (npc 230319); as its giver the merged data lacked Deliana (npc 230319)."
+		},
+		"8923": {
+			"set": {
+				"start": {
+					"npc": [
+						16012,
+						230317
+					],
+					"object": [],
+					"item": []
+				}
+			},
+			"note": "A Supernatural Device: Forever's quest data (page snapshot 2026-10-17) starts with Mokvar (npc 16012) and Mokvar (npc 230317); as its giver the merged data lacked Mokvar (npc 230317)."
+		},
+		"8929": {
+			"set": {
+				"start": {
+					"npc": [
+						16013,
+						230319
+					],
+					"object": [],
+					"item": []
+				}
+			},
+			"note": "In Search of Anthion: Forever's quest data (page snapshot 2026-10-17) starts with Deliana (npc 16013) and Deliana (npc 230319); as its giver the merged data lacked Deliana (npc 230319)."
+		},
+		"8930": {
+			"set": {
+				"start": {
+					"npc": [
+						16012,
+						230317
+					],
+					"object": [],
+					"item": []
+				}
+			},
+			"note": "In Search of Anthion: Forever's quest data (page snapshot 2026-10-17) starts with Mokvar (npc 16012) and Mokvar (npc 230317); as its giver the merged data lacked Mokvar (npc 230317)."
+		},
+		"8960": {
+			"set": {
+				"start": {
+					"npc": [
+						16012,
+						16013,
+						230317,
+						230319
+					],
+					"object": [],
+					"item": []
+				}
+			},
+			"note": "Bodley's Unfortunate Fate: Forever's quest data (page snapshot 2026-10-17) starts with Mokvar (npc 16012), Deliana (npc 16013), Mokvar (npc 230317) and Deliana (npc 230319); as its giver the merged data lacked Mokvar (npc 16012), Mokvar (npc 230317) and Deliana (npc 230319)."
+		},
+		"8977": {
+			"set": {
+				"end": {
+					"npc": [
+						16013,
+						230319
+					],
+					"object": []
+				}
+			},
+			"note": "Return to Deliana: Forever's quest data (page snapshot 2026-10-17) ends with Deliana (npc 16013) and Deliana (npc 230319); as its ender the merged data lacked Deliana (npc 230319)."
+		},
+		"8978": {
+			"set": {
+				"end": {
+					"npc": [
+						16012,
+						230317
+					],
+					"object": []
+				}
+			},
+			"note": "Return to Mokvar: Forever's quest data (page snapshot 2026-10-17) ends with Mokvar (npc 16012) and Mokvar (npc 230317); as its ender the merged data lacked Mokvar (npc 230317)."
+		},
+		"8997": {
+			"set": {
+				"end": {
+					"npc": [
+						16013,
+						230319
+					],
+					"object": []
+				}
+			},
+			"note": "Back to the Beginning: Forever's quest data (page snapshot 2026-10-17) ends with Deliana (npc 16013) and Deliana (npc 230319); as its ender the merged data lacked Deliana (npc 230319)."
+		},
+		"8998": {
+			"set": {
+				"end": {
+					"npc": [
+						16012,
+						230317
+					],
+					"object": []
+				}
+			},
+			"note": "Back to the Beginning: Forever's quest data (page snapshot 2026-10-17) ends with Mokvar (npc 16012) and Mokvar (npc 230317); as its ender the merged data lacked Mokvar (npc 230317)."
+		},
+		"9292": {
+			"set": {
+				"start": {
+					"npc": [
+						16531
+					],
+					"object": [],
+					"item": []
+				}
+			},
+			"note": "Cracked Necrotic Crystal: Forever's quest data (page snapshot 2026-10-17) starts with Faint Necrotic Crystal (npc 16531); as its giver the merged data listed Cracked Necrotic Crystal (npc 16431) instead of Faint Necrotic Crystal (npc 16531)."
+		},
+		"65593": {
+			"set": {
+				"objectives": [
+					{
+						"type": "item",
+						"id": 190179,
+						"count": 1,
+						"text": "Avelina's Heart"
+					},
+					{
+						"type": "item",
+						"id": 190180,
+						"count": 1,
+						"text": "Isaac's Heart"
+					}
+				]
+			},
+			"note": "Hearts of the Lovers (Horde Warlock incubus, Godrick Farsan) needs both hearts, Avelina's Heart first, then Isaac's Heart: Forever's quest data for quest 65593 (checked 2026-10-19), and Phyz's report (#412): with Avelina's heart in the bags the guide passed the Isaac Pearson step, so the log's first line is Avelina's. QuestieDB lists only Isaac's Heart."
+		},
+		"79091": {
+			"set": {
+				"end": {
+					"npc": [
+						211033
+					],
+					"object": []
+				}
+			},
+			"note": "Archmage Antonidas: The Unabridged Autobiography: Forever's quest data (page snapshot 2026-10-17) ends with Garion Wendell (npc 211033); as its ender the merged data also listed Owen Thadd (npc 211022)."
+		},
+		"79094": {
+			"set": {
+				"end": {
+					"npc": [
+						211022
+					],
+					"object": []
+				}
+			},
+			"note": "The Lessons of Ta'zo: Forever's quest data (page snapshot 2026-10-17) ends with Owen Thadd (npc 211022); as its ender the merged data also listed Garion Wendell (npc 211033)."
+		},
+		"79358": {
+			"set": {
+				"end": {
+					"npc": [
+						4722,
+						259023
+					],
+					"object": []
+				}
+			},
+			"note": "Storm, Earth, and Fire is shared by the Horde and Alliance Shaman chains: Forever's quest data (page snapshot 2026-10-17) ends it only at the Horde's Rau Cliffrunner (npc 4722), while it starts at Veyric Thunderhame (npc 259023) in Arathi, its text asks for the totems 'for Veyric Thunderhame in Arathi Highlands', its progress text is Veyric's ('What've ye brought me?'), the sniffed server data has it as an Alliance quest, and forever/class/shaman/call-of-air-alliance hands it in to Veyric. Both end it; kept here so a sweep against that data does not drop Veyric again."
+		},
+		"79361": {
+			"set": {
+				"start": {
+					"npc": [
+						5905,
+						6176
+					],
+					"object": [],
+					"item": []
+				}
+			},
+			"note": "Storm, Earth, and Fire: Forever's quest data (page snapshot 2026-10-17) starts with Prate Cloudseer (npc 5905) and Bath'rah the Windwatcher (npc 6176); as its giver the merged data lacked Prate Cloudseer (npc 5905)."
+		},
+		"79535": {
+			"set": {
+				"end": {
+					"npc": [
+						211022,
+						211033
+					],
+					"object": []
+				}
+			},
+			"note": "Basilisks: Should Petrification be Feared?: Forever's quest data (page snapshot 2026-10-17) ends with Owen Thadd (npc 211022) and Garion Wendell (npc 211033); as its ender the merged data lacked Garion Wendell (npc 211033)."
+		},
+		"79950": {
+			"set": {
+				"end": {
+					"npc": [
+						211022,
+						211033
+					],
+					"object": []
+				}
+			},
+			"note": "Demons and You: Forever's quest data (page snapshot 2026-10-17) ends with Owen Thadd (npc 211022) and Garion Wendell (npc 211033); as its ender the merged data lacked Garion Wendell (npc 211033)."
+		},
+		"81949": {
+			"set": {
+				"end": {
+					"npc": [
+						211022,
+						211033
+					],
+					"object": []
+				}
+			},
+			"note": "Legends of the Tidesages: Forever's quest data (page snapshot 2026-10-17) ends with Owen Thadd (npc 211022) and Garion Wendell (npc 211033); as its ender the merged data lacked Garion Wendell (npc 211033)."
+		},
+		"81954": {
+			"set": {
+				"end": {
+					"npc": [
+						211022,
+						211033
+					],
+					"object": []
+				}
+			},
+			"note": "Venomous Journeys: Forever's quest data (page snapshot 2026-10-17) ends with Owen Thadd (npc 211022) and Garion Wendell (npc 211033); as its ender the merged data lacked Owen Thadd (npc 211022)."
+		},
+		"84396": {
+			"set": {
+				"end": {
+					"npc": [
+						5497,
+						7825
+					],
+					"object": []
+				}
+			},
+			"note": "Magma or Lava?: Forever's quest data (page snapshot 2026-10-17) ends with Jennea Cannon (npc 5497) and Oran Snakewrithe (npc 7825); as its ender the merged data lacked Oran Snakewrithe (npc 7825)."
+		},
+		"84398": {
+			"set": {
+				"end": {
+					"npc": [
+						5497,
+						7825
+					],
+					"object": []
+				}
+			},
+			"note": "A Study of the Light: Forever's quest data (page snapshot 2026-10-17) ends with Jennea Cannon (npc 5497) and Oran Snakewrithe (npc 7825); as its ender the merged data lacked Oran Snakewrithe (npc 7825)."
+		},
+		"84402": {
+			"set": {
+				"end": {
+					"npc": [
+						5497,
+						7825
+					],
+					"object": []
+				}
+			},
+			"note": "Necromancy 101: Forever's quest data (page snapshot 2026-10-17) ends with Jennea Cannon (npc 5497) and Oran Snakewrithe (npc 7825); as its ender the merged data lacked Oran Snakewrithe (npc 7825)."
 		},
 		"87760": {
 			"set": {
@@ -179,6 +2092,43 @@
 				]
 			},
 			"note": "Sentiments of the Lost (Wetlands, Essene Villard) comes after Accessories of the Lost 88757: the quest chain on https://foreverchanges.pro/quest/88758, which for quests new in Forever comes from Wowhead's Forever database (checked 2026-10-17) lists \"1. Hearts of the Lost; 2. Accessories of the Lost; 3. Sentiments of the Lost\", and its text (\"one last favor\") follows Essene's repacking. QuestieDB 1.0.5 has no prerequisite."
+		},
+		"90902": {
+			"set": {
+				"objectives": [
+					{
+						"type": "event",
+						"id": null,
+						"count": null,
+						"text": "Heal 5 Injured Deathguard",
+						"map": 1420,
+						"f": "e",
+						"x": 31.77,
+						"y": 63.85
+					}
+				]
+			},
+			"note": "Rediscovering the Light (Deathknell, Forsaken Paladins): Wowhead Forever https://www.wowhead.com/forever/quest=90902 lists \"Injured Deathguard healed (5)\", to be done \"with your Holy Light ability\", checked 2026-10-18. Encoded as an event and not a kill: it is a heal on friendly NPCs, not a fight. The position is the Injured Deathguard 259377 spawn nearest the centroid of its 24 spawns around the church in data/forever (Tirisfal 31.77,63.85). QuestieDB 1.0.6 has no objectives, so the guide had nothing to hold the step and went straight to the turn-in (Hotline's report, issue #408)."
+		},
+		"91901": {
+			"set": {
+				"start": {
+					"npc": [
+						256386,
+						256390
+					],
+					"object": [],
+					"item": []
+				},
+				"end": {
+					"npc": [
+						256386,
+						256390
+					],
+					"object": []
+				}
+			},
+			"note": "A Sealed Crate: Forever's quest data (page snapshot 2026-10-17) ends with Dokimi (npc 256386) and Marcy Baker (npc 256390); as its ender the merged data lacked Marcy Baker (npc 256390). As giver Forever's quest data names only Marcy Baker, for every crate quest (91899-91906), while Dokimi's own entry there ends them all and starts none: the giver line has only the Alliance side. QuestieDB's Forever store has Dokimi as the giver, and the client tells you to 'Deliver the completed crate to your faction's trade representative' (Dokimi for the Horde, Marcy Baker for the Alliance), so both give it, as 91899, 91900 and 91904 already have."
 		},
 		"91920": {
 			"set": {
@@ -361,6 +2311,18 @@
 			},
 			"note": "Destruction in Deadmines (92819) is step 11 of Alba Fairmoon's Westfall storyline \"Toxic Soil\" 92742 -> 92744 -> 92745 -> 92747 -> 92748 -> 92749 -> 92750 -> 92751 -> 92752 -> 92753 -> 92819 (foreverchanges.pro https://foreverchanges.pro/quest/92753 Storyline box, from Wowhead's Forever database, checked 2026-10-15); a Wowhead Forever comment on quest=92753 (2026-10-01) says to leave the Deadmines by the back door and continue with Alba Fairmoon at the exit. QuestieDB 1.0.5 has no chain links for it. Alba Fairmoon's Toxic Soil chain (Westfall) is not for Humans: Wowhead Forever https://www.wowhead.com/forever/quest=92819 lists Races [race=3], [race=4], [race=7], [race=95] (reqrace 4294967372, checked 2026-10-17); a Wowhead comment asks \"An entire dungeon questline for all alliance races except humans?\". The merged data has races 4294967373, which includes Human (issue #144)."
 		},
+		"92850": {
+			"set": {
+				"end": {
+					"npc": [
+						253204,
+						253285
+					],
+					"object": []
+				}
+			},
+			"note": "The Missing Scholar: Forever's quest data (page snapshot 2026-10-17) ends with Dondallion Whisperwind (npc 253204) and Fillion Flamebreeze (npc 253285); as its ender the merged data lacked Dondallion Whisperwind (npc 253204)."
+		},
 		"92911": {
 			"set": {
 				"pre": [
@@ -397,9 +2359,16 @@
 				],
 				"preAny": [
 					94374
-				]
+				],
+				"start": {
+					"npc": [
+						5891
+					],
+					"object": [],
+					"item": []
+				}
 			},
-			"note": "Third step of the Dwarf Shaman Call of Earth series (Wowhead Forever quest=94375, checked 2026-10-12)."
+			"note": "Third step of the Dwarf Shaman Call of Earth series (Wowhead Forever quest=94375, checked 2026-10-12). Call of Earth: Forever's quest data (page snapshot 2026-10-17) starts with Minor Manifestation of Earth (npc 5891); as its giver the merged data also listed Teo Hammerstorm (npc 257446)."
 		},
 		"94466": {
 			"set": {
@@ -486,11 +2455,36 @@
 			},
 			"note": "Her Name Is Olgra (Barrens, Mankrik) comes after Lost in Battle 4921: Wowhead Forever's Series box on https://www.wowhead.com/forever/quest=95774 lists \"1. Lost in Battle; 2. Her Name Is Olgra\", and its text (\"she has died in battle. Her name is Olgra\") follows finding her body (checked 2026-10-16). Issue #65: Mankrik did not offer it beside Lost in Battle. QuestieDB 1.0.5 has no prerequisite."
 		},
+		"95998": {
+			"set": {
+				"start": {
+					"npc": [
+						263399
+					],
+					"object": [],
+					"item": []
+				}
+			},
+			"note": "The Great Outdoors: Forever's quest data (page snapshot 2026-10-17) starts with Sam Sarsaparilla (npc 263399); as its giver the merged data also listed William Pestle (npc 253)."
+		},
 		"96204": {
 			"set": {
 				"escort": true
 			},
 			"note": "The Windshaper's Wrath (Silverpine Forest, Undead Paladin; Lumina Windsinger gives it) is an escort: Forever's quest data reads \"Accompany Lumina Windsinger and help her escape Fenris Keep\", objective \"Escort Lumina Windsinger to safety\" (checked 2026-10-19). quests.json has no objectives for it, so the compiler's escort rule (tools/lib/dsl/escort.js) misses it. class/paladin/lumina-windsinger.guide routes it."
+		},
+		"96243": {
+			"set": {
+				"start": {
+					"npc": [
+						258098,
+						258113
+					],
+					"object": [],
+					"item": []
+				}
+			},
+			"note": "Call of Earth: Forever's quest data (page snapshot 2026-10-17) starts with Eldrun Stormbreaker (npc 258098) and Ingrid Dunwald (npc 258113); as its giver the merged data lacked Ingrid Dunwald (npc 258113)."
 		},
 		"96395": {
 			"set": {
@@ -511,6 +2505,18 @@
 			},
 			"note": "An Ancient Grudge (The Hall of Thanes) is open to both sides and starts and ends inside with the Ghostly Attendant 265002: Wowhead Forever https://www.wowhead.com/forever/quest=96395 Quick Facts \"Type: Dungeon\", \"Side: None\" (its list row side 0), and two comments (\"Quest starts and ends inside the dungeon\", 2026-09-21; \"The NPC that gives this quest [npc=265002 Ghostly Attendant] is located within the Hall of Thanes\", 2026-10-04), checked 2026-10-15. QuestieDB 1.0.5 has no giver or ender and an Alliance race mask."
 		},
+		"96655": {
+			"set": {
+				"start": {
+					"npc": [
+						265809
+					],
+					"object": [],
+					"item": []
+				}
+			},
+			"note": "Camping 101: Cooking: Forever's quest data (page snapshot 2026-10-17) starts with Brakk (npc 265809); as its giver the merged data also listed Cook Torka (npc 3191)."
+		},
 		"96821": {
 			"set": {
 				"objectives": [
@@ -529,6 +2535,18 @@
 				]
 			},
 			"note": "Legging It (Durotar) lists the Ridgeshade Creepers first, then the Ridgeshade Lurkers: Wowhead Forever https://www.wowhead.com/forever/quest=96821, checked 2026-10-16. The merged data has the two the other way round, so `quest 96821.1` named the Lurkers."
+		},
+		"96825": {
+			"set": {
+				"start": {
+					"npc": [
+						3191
+					],
+					"object": [],
+					"item": []
+				}
+			},
+			"note": "This Fruit Could Bite Back: Forever's quest data (page snapshot 2026-10-17) starts with Cook Torka (npc 3191); as its giver the merged data also listed Grimtak (npc 3881)."
 		},
 		"96899": {
 			"set": {
@@ -687,9 +2705,12 @@
 						"x": 24.67,
 						"y": 59.39
 					}
+				],
+				"pre": [
+					376
 				]
 			},
-			"note": "A Light in the Darkness (Tirisfal): Wowhead Forever https://www.wowhead.com/forever/quest=98389 lists \"Webbed Forsaken freed\" (6), credited by npc=271961 Webbed Forsaken, which is friendly to the Horde and has 8 map points in Night's Web Hollow (https://www.wowhead.com/forever/npc=271961), checked 2026-10-13. Encoded as an event and not a kill: freeing a friendly NPC is an interaction, not a fight. The position is the Webbed Forsaken spawn nearest the centroid of its 24 spawns in data/forever (Tirisfal 24.67,59.39, Era frame = Forever frame). QuestieDB 1.0.5 has no objectives."
+			"note": "A Light in the Darkness (Tirisfal): Wowhead Forever https://www.wowhead.com/forever/quest=98389 lists \"Webbed Forsaken freed\" (6), credited by npc=271961 Webbed Forsaken, which is friendly to the Horde and has 8 map points in Night's Web Hollow (https://www.wowhead.com/forever/npc=271961), checked 2026-10-13. Encoded as an event and not a kill: freeing a friendly NPC is an interaction, not a fight. The position is the Webbed Forsaken spawn nearest the centroid of its 24 spawns in data/forever (Tirisfal 24.67,59.39, Era frame = Forever frame). QuestieDB 1.0.5 has no objectives. Aramis Hammerhand offers it only after The Damned 376 is handed in: a Scourge Warlock was not offered it at level 2, nor at level 3 before the first turn-ins, nor after Rattling the Rattlecages 3901 was turned in, and was offered it once The Damned was handed in (checked in game 2026-10-18). The Wowhead page lists no prerequisite and no Series."
 		},
 		"98418": {
 			"set": {
@@ -804,6 +2825,25 @@
 				]
 			},
 			"note": "Lost in the Shadows (Durotar) is an escort: Wowhead Forever https://www.wowhead.com/forever/quest=99123 lists one objective \"Escort Pal'juh out of Kolkar Crag.\" (1) with no map point (checked 2026-10-13). QuestieDB 1.0.5 has no objectives. No map point: the event runs where it starts (Pal'juh 275811)."
+		},
+		"99130": {
+			"set": {
+				"objectives": [
+					{
+						"type": "item",
+						"id": 286215,
+						"count": 6,
+						"text": "Vial of Animal Blood"
+					},
+					{
+						"type": "item",
+						"id": 286214,
+						"count": 18,
+						"text": "Duskweed Petal"
+					}
+				]
+			},
+			"note": "An Enticing Offer (Elwynn) needs 18 Duskweed Petals and 6 Vials of Animal Blood (Wowhead Forever https://www.wowhead.com/forever/quest=99130, checked 2026-10-17), and the client's quest log lists the blood first: issue #279 (Bashidian Twotao, 0.2.4, in game) shows the petal goal (objective 1) at 3/6 and the blood goal (objective 2) at 14/18. Wowhead lists the petals first, as the merged data does, so each goal counted the other's objective."
 		},
 		"99134": {
 			"set": {
@@ -2023,6 +4063,14 @@
 				]
 			},
 			"note": "Lorgalis Manuscript comes only from the Pitted Iron Chest 13949 in Blackfathom Deeps (QuestieDB 1.0.5 objectDrops [13949]; Wowhead Forever item=5359 contained-in lists only 13949, checked 2026-10-12). pfQuest also lists Document Chest 176344 (Barrens/Thousand Needles), which is a different quest's chest."
+		},
+		"20519": {
+			"removeDrops": {
+				"npc": [
+					15685
+				]
+			},
+			"note": "Southsea Pirate Hat (Pirate Hats Ahoy! 8365) drops from six Southsea pirates: QuestieDB 1.0.6 (Forever store) npcDrops [7855, 7856, 7857, 7858, 7883, 8203], its server drop table the same six at 10%, and CMaNGOS classic-db creature_loot_template has 20519 on exactly those six, none in the Southsea Kidnapper's 15685 loot. Only pfQuest lists 15685, at the same 50% it gives all seven, which the merge kept beside QuestieDB's 10% and so sent the goal to the Kidnapper alone (#327, diagnosed by CDVolvik and XrayAlpha)."
 		}
 	}
 }

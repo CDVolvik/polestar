@@ -34,6 +34,7 @@ ns.RegisterDefaults("behavior", {
 	autoSelectGuide = true,
 	skipGrey = false,
 	warnClosing = false, -- name what an offered quest closes for good, and leave its accept to the player (Closes.lua)
+	closeSkipped = true, -- close the quest window the game opens after an auto accept/turn-in when it shows only quests the guide skips (Automation.lua)
 	routeChoice = "ask", -- "ask" | "recommended": what happens where a guide offers several next zones
 	trainReminder = "2", -- "2" | "1" | "off": remind to visit the class trainer every 2 levels, every level, never
 	suggestFrom = "guides", -- pack id the suggestions come from (Guides.SuggestSource); ours fill in
@@ -88,7 +89,8 @@ local function Compat() return ns.Compat end
 
 local function refreshPlayer()
 	player = Compat().GetPlayerInfo()
-	if levelSeen > (player.level or 0) then player.level = levelSeen end
+	-- The client's XP is still the old level's until UnitLevel catches up.
+	if levelSeen > (player.level or 0) then player.level, player.xp = levelSeen, 0 end
 end
 
 -- A step is for this character (`only`) and, with `when`, its predicates
@@ -121,15 +123,28 @@ end
 
 -- Every accept of a guide and of the guides after it (`next`, every route
 -- choice), and each quest's prerequisite lists: { accepts, pres }. Cached
--- per guide.
+-- per guide. A `next` option whose `when` can no longer hold
+-- (Own.optionClosed) is left out; one that may still hold at the hand-off
+-- stays, and the cache is built again once it is closed.
 local chainNeedsCache = setmetatable({}, { __mode = "k" })
 function Own.chainOf(g)
 	local c = chainNeedsCache[g]
-	if c and c.chain then return c.chain end
+	if c and c.chain then
+		local stale = false
+		for _, o in ipairs(c.open) do
+			if Own.optionClosed(o.from, o.id) then
+				stale = true
+				break
+			end
+		end
+		if not stale then return c.chain end
+		c = nil
+	end
 	if not c then
 		c = {}
 		chainNeedsCache[g] = c
 	end
+	local open = {}
 	local pres, accepts = {}, {}
 	local seenIds, queue, head = {}, { g }, 1
 	while queue[head] and head <= 200 do
@@ -154,12 +169,15 @@ function Own.chainOf(g)
 				end
 			end
 			for _, id in ipairs(cur.nextChoices or { cur.next }) do
-				local nxt = Guides.Get(id)
-				if nxt then queue[#queue + 1] = nxt end
+				if not Own.optionClosed(cur, id) then
+					if cur.nextWhen and cur.nextWhen[id] then open[#open + 1] = { from = cur, id = id } end
+					local nxt = Guides.Get(id)
+					if nxt then queue[#queue + 1] = nxt end
+				end
 			end
 		end
 	end
-	c.chain = { accepts = accepts, pres = pres }
+	c.chain, c.open = { accepts = accepts, pres = pres }, open
 	return c.chain
 end
 
@@ -452,10 +470,26 @@ function Own.samePlace(text, p)
 	return same(text, area) or same(text, p.name)
 end
 
+-- Whether the character has reached `level`, and with `frac` (0-1) that
+-- share of its XP: a `level 12.5` goal is done at level 12 with half the
+-- level's XP, or at any later level.
+function Own.levelReached(level, frac)
+	local lvl = player.level or 1
+	if lvl ~= level or not frac then return lvl >= level end
+	local max = player.xpMax or 0
+	return max > 0 and (player.xp or 0) / max >= frac
+end
+
 function Own.predicateHolds(p)
 	local C, k, ok = Compat(), p.k, false
 	if k == "level" then
 		local level, n, op = player.level or 1, p.n, p.op
+		if p.frac then
+			-- A point inside a level: the level plus the share of it done.
+			local max = player.xpMax or 0
+			if max > 0 then level = level + (player.xp or 0) / max end
+			n = n + p.frac
+		end
 		return (op == "<" and level < n) or (op == "<=" and level <= n) or (op == ">" and level > n) or (op == ">=" and level >= n)
 	elseif k == "onquest" then
 		for _, q in ipairs(p.q) do
@@ -488,6 +522,34 @@ function Own.whenFails(step)
 		if not Own.predicateHolds(p) then return p end
 	end
 	return nil
+end
+
+-- A `next` option's `when` (from.nextWhen[id], format 4): whether it holds
+-- now. Checked each time Polestar lists the options (routeOptions,
+-- ChooseRoute, Engine.RouteOffered: Guides.OfferedBy, the guide menu), on
+-- the character as they are then: at the hand-off, that decides the route.
+function Own.optionHolds(from, id)
+	local list = from.nextWhen and from.nextWhen[id]
+	if not list then return true end
+	if not player then refreshPlayer() end
+	for _, p in ipairs(list) do
+		if not Own.predicateHolds(p) then return false end
+	end
+	return true
+end
+
+-- A `next` option whose `when` can no longer hold, whatever the character
+-- does: a `level<N` or `level<=N` they are past, or `!turnedin` of a quest
+-- handed in. Any other may hold by the hand-off.
+function Own.optionClosed(from, id)
+	local list = from.nextWhen and from.nextWhen[id]
+	if not list then return false end
+	local level = player and player.level
+	for _, p in ipairs(list) do
+		if p.k == "level" and level and ((p.op == "<" and level >= p.n) or (p.op == "<=" and level > p.n)) then return true end
+		if p.k == "turnedin" and p.neg and questDone(p.q) then return true end
+	end
+	return false
 end
 
 -- The loaded guide's step numbers by step table, built once per guide.
@@ -1093,6 +1155,18 @@ local function isCandidate(goal, npc)
 	return false
 end
 
+-- Whether `npc` is an innkeeper a `sethome` goal binds at: a located goal's
+-- inn's (goal.npc, else the innkeeper of the inn its location names, in
+-- Nav/Travel.lua's data); `sethome nearest`, one of its candidates. The
+-- latch below and QoL's bind helper both ask this.
+function Engine.IsSethomeInnkeeper(goal, npc)
+	if not (npc and type(goal) == "table" and goal.t == "sethome") then return false end
+	if not goal.location then return goal.candidates ~= nil and isCandidate(goal, npc) end
+	local nav = ns.Nav
+	local inn = nav and nav.FindInn and nav.FindInn(goal.npc, goal.location)
+	return npc == (inn and inn.npc or goal.npc)
+end
+
 -- Goals whose live condition can stop holding after the step is passed
 -- (leaving the zone, rebinding, selling the items, walking away). Their done
 -- state is stored once the route moves past them, so the guide never jumps
@@ -1436,7 +1510,7 @@ goalDone = function(s, g, goal)
 	elseif t == "getfp" then
 		return fpKnown(goal)
 	elseif t == "level" then
-		return (player.level or 1) >= goal.level
+		return Own.levelReached(goal.level, goal.frac)
 	elseif t == "skill" then
 		if isManual(goal) then return false end
 		return skillState(goal, goal.level)
@@ -2088,6 +2162,7 @@ local function describe(goal)
 		if npcName then return L["Sell and repair at"], npcName, "npc", nil end
 		return L["Sell and repair at"], L["a vendor"], "text", nil
 	elseif t == "level" then
+		if goal.frac then return L["Reach level"], ns.LC("level and share of it", "%d (%d%%)"):format(goal.level, math.floor(goal.frac * 100 + 0.5)), "level", nil end
 		return L["Reach level"], tostring(goal.level), "level", nil
 	elseif t == "skill" then
 		return L["Raise"], skillName(goal), "skill", fmt(L["to %d"], goal.level)
@@ -2904,10 +2979,8 @@ local function latch(kind, npc)
 						ok = goal.npc == npc
 					elseif kind == "sethome" then
 						-- `sethome nearest` on any bind; a located one at its inn's
-						-- innkeeper (goal.npc, else the one of the inn its location names).
-						local nav = goal.location and npc and ns.Nav
-						local inn = nav and nav.FindInn and nav.FindInn(goal.npc, goal.location)
-						ok = not goal.location or (npc ~= nil and npc == (inn and inn.npc or goal.npc))
+						-- innkeeper (Engine.IsSethomeInnkeeper).
+						ok = not goal.location or Engine.IsSethomeInnkeeper(goal, npc)
 					elseif kind == "train" and isProfessionTrain(goal) then
 						ok = false
 					elseif goal.candidates and npc then
@@ -2974,7 +3047,9 @@ local pendingChoices = {} -- ROUTE_CHOICE from-guide ids, fired at the end of th
 -- "recommended", the recommended one; otherwise the finished guide stays in
 -- its tab and ROUTE_CHOICE(fromId) asks the UI. Recommended: an option the
 -- character has not outlevelled, then the quickest to reach from where they
--- stand (1-minute bands), then the author's order.
+-- stand (1-minute bands), then the author's order. An option with `when`
+-- (`nextWhen`) is offered only while it holds (Own.optionHolds): with one
+-- option left the Engine continues to it, with none the guide ends there.
 ---------------------------------------------------------------------------
 
 local ROUTE_TIE = 60 -- seconds of travel that count as a tie
@@ -2985,7 +3060,8 @@ local function routesTable()
 	return s.routes
 end
 
--- The options of `from` that fit the character, in the author's order:
+-- The options of `from` that fit the character and are offered now (their
+-- `when`, if any, holds), in the author's order:
 -- { guide = g, outleveled = bool }.
 local function routeOptions(from)
 	local list = {}
@@ -2994,7 +3070,7 @@ local function routeOptions(from)
 	local level = player.level or 1
 	for _, id in ipairs(from.nextChoices) do
 		local g = Guides.Get(id)
-		if g and Guides.GuideMatches(g, player) then
+		if g and Guides.GuideMatches(g, player) and Own.optionHolds(from, id) then
 			list[#list + 1] = { guide = g, outleveled = (g.maxLevel ~= nil and level >= g.maxLevel) }
 		end
 	end
@@ -3722,7 +3798,7 @@ function Engine.ChooseRoute(fromId, toId)
 	if not (from and to and from.nextChoices) then return false end
 	local offered = false
 	for _, id in ipairs(from.nextChoices) do
-		if id == toId then offered = true end
+		if id == toId then offered = Own.optionHolds(from, id) end
 	end
 	if not offered then return false end
 	routesTable()[fromId] = toId
@@ -3761,6 +3837,30 @@ function Engine.PendingRouteChoice()
 	if not player then refreshPlayer() end
 	local _, asks = routeNext(guide)
 	return asks and guide.id or nil
+end
+
+-- Whether `fromId`'s `next` offers `toId` now: one of its guides, and its
+-- `when`, if any, holds (Own.optionHolds). Guides.OfferedBy and the guide
+-- menu ask this.
+function Engine.RouteOffered(fromId, toId)
+	local from = fromId and Guides.Get(fromId)
+	if not (from and toId) then return false end
+	local listed = from.next == toId
+	for _, id in ipairs(from.nextChoices or NONE) do
+		if id == toId then listed = true end
+	end
+	return listed and Own.optionHolds(from, toId)
+end
+
+-- The guide Polestar goes on with after `fromId` now (as at its hand-off),
+-- or nil: none is offered, or the player has to choose first.
+function Engine.NextGuide(fromId)
+	local from = fromId and Guides.Get(fromId)
+	if not from then return nil end
+	if not player then refreshPlayer() end
+	local id, asks = routeNext(from)
+	if asks then return nil end
+	return id
 end
 
 -- The choice that offers guide `id` to this character (to change route), or nil.
@@ -3840,9 +3940,10 @@ function Engine.GetStepView(i)
 		}
 	end
 	-- `current`: the goal the window marks and the arrow leads to (the
-	-- current step only); `skipped`: the player skipped this step (Unskip).
+	-- current step only); `skipped`: the player skipped this step (Unskip);
+	-- `image`: the step's picture ({ file, w, h, texture }, Guides.lua).
 	return {
-		index = i, title = step.title, note = step.note, status = status, goals = goals,
+		index = i, title = step.title, note = step.note, image = step.image, status = status, goals = goals,
 		groups = outGroups, focus = focus,
 		current = status == "current" and (Own.currentGoal(i, groups, focus)) or nil,
 		skipped = isSkipped(i), live = computed,
@@ -3860,6 +3961,28 @@ end
 -- The live step: the first applicable, not skipped, not done one (nil when
 -- the guide is complete), whatever step the player is looking at.
 function Engine.GetLiveStep() return computed end
+
+-- The level the guide expects next (QoL/XPMark): the first `level N` goal at
+-- or after the step shown that is for this character (the step's `only` and
+-- `when`, the goal's `only`), neither skipped, with N above `level` (the
+-- caller's reading; the character's level by default). N, its step; or nil.
+function Engine.LevelTarget(level)
+	if not (guide and current) then return nil end
+	if not player then refreshPlayer() end
+	level = level or player.level or 1
+	local sk = skippedFor(guide.id)
+	for s = current, #guide.steps do
+		local step = guide.steps[s]
+		if not (sk and sk[s]) and stepApplies(step) then
+			for g, goal in ipairs(step.goals) do
+				if goal.t == "level" and (goal.level or 0) > level and not (sk and sk[Own.key(s, g)]) and goalApplies(goal) then
+					return goal.level, s
+				end
+			end
+		end
+	end
+	return nil
+end
 
 -- What a Class guide waits on before this character can start it
 -- (Own.startGate), for the guide window's notice and the guide menu's row:
@@ -4106,6 +4229,8 @@ local function onUpdateEvent() requestUpdate() end
 for _, event in ipairs({
 	"QUEST_ACCEPTED", "QUEST_REMOVED", "QUEST_LOG_UPDATE", "QUEST_WATCH_UPDATE",
 	"BAG_UPDATE_DELAYED", "PLAYER_ENTERING_WORLD",
+	-- level (a point inside a level: `level 12.5`)
+	"PLAYER_XP_UPDATE",
 	-- skill / craft
 	"SKILL_LINES_CHANGED", "CHAT_MSG_SKILL", "TRADE_SKILL_SHOW", "TRADE_SKILL_LIST_UPDATE",
 	-- learn

@@ -216,6 +216,47 @@ test('a follow-up of a dungeon quest is picked up once that quest is done', () =
 	assert.deepEqual(out, [{ title: 'Dalar Dawnweaver', goals: 'accept:1016' }, FROM_UNDERCITY[4]]);
 });
 
+test('a breadcrumb is not picked up once the quest it leads to is turned in or in the log (#368 Rawbowke: Klockmort\'s Essentials after Essential Artificials)', () => {
+	const c = structuredClone(codex);
+	const i = structuredClone(inputs);
+	const quest = (id, title, giver) => ({
+		id, title, level: 25, minLevel: 18, faction: 'H', races: null, classes: null,
+		start: { npc: [giver], object: [], item: [] }, end: { npc: [6247], object: [] },
+		objectives: [], pre: [], zone: 1458, rewards: [], choices: [], preAny: [],
+	});
+	// Two breadcrumbs to Doan Karhan's The Orb of Soran'ruk (1740): one naming
+	// it as its breadcrumbFor, one only named by 1740's own `breadcrumbs`.
+	c.quests[90300] = quest(90300, "Doan's Summons", 2934);
+	c.quests[90301] = quest(90301, 'Word for Doan', 1498);
+	i.forever.quests[90300] = { area: 209, breadcrumbFor: 1740 };
+	i.forever.quests[90301] = { area: 209 };
+	i.forever.quests[1740] = { ...i.forever.quests[1740], breadcrumbs: [90301] };
+	const own = writeCodexPack(c, { extraFiles: emitJournal(buildJournal(i, c)) });
+	try {
+		const script = `
+local plan = D.PickupPlan("${KEY}")
+local take = {}
+for k, t in ipairs(plan.take) do take[k] = t.quest.id end
+table.sort(take)
+local closedBy = {}
+for _, s in ipairs((D.PickupGuide("${KEY}") or { steps = {} }).steps) do
+	for _, g in ipairs(s.goals) do
+		if g.t == "accept" and g.quest >= 90300 then closedBy[tostring(g.quest)] = table.concat(g.closedBy or {}, ",") end
+	end
+end
+emit({ take = take, closedBy = closedBy })`;
+		const [open] = run(script, { codexPack: own });
+		assert.deepEqual(open.take, [1014, 1740, 90300, 90301], 'Doan\'s quest not taken yet: its breadcrumbs are offered');
+		assert.deepEqual(open.closedBy, { 90300: '1740', 90301: '1740' }, 'each accept knows the quest that closes it, so the Engine passes it once that is taken');
+		const [turnedIn] = run(script, { codexPack: own, done: [1098, 1740] });
+		assert.deepEqual(turnedIn.take, [1014], 'Doan\'s quest turned in: no giver offers its breadcrumbs any more');
+		const [carried] = run(script, { codexPack: own, log: [1013, 1740] });
+		assert.deepEqual(carried.take, [1014], 'Doan\'s quest in the log: neither');
+	} finally {
+		own.cleanup();
+	}
+});
+
 // Travel between the fixture's zones by the way a player goes (seconds):
 // Undercity and Silverpine are next door, the Barrens a zeppelin away.
 const ZONE_TRAVEL = `

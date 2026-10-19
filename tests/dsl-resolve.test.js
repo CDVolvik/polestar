@@ -236,6 +236,52 @@ test('a collect that common mobs drop leads to them, not to the rare beside them
 	assert.equal(rivet.from, 'Blackrock Stalker');
 });
 
+// Two Elwynn groves (#327, Timberling Seeds): level 5 Grove Saplings at 70,70
+// and level 10 Grove Elders at 30,30. Item 95116 drops from the Elder at 100%
+// and the Sapling at 37%, 95117 from the Elder at 40% and the Sapling at 37%;
+// quests 95300 and 95301 (level 7) ask for them.
+function groveData() {
+	const base = fixtureData();
+	const camp = (x, y) => [[x, y], [x + 0.3, y + 0.2], [x - 0.2, y + 0.3]];
+	const npcs = {
+		...base.npcs,
+		95060: { id: 95060, name: 'Grove Elder', level: 10, levelMax: 11, faction: null, spawns: { 1429: { f: 'e', pts: camp(30, 30) } } },
+		95061: { id: 95061, name: 'Grove Sapling', level: 5, levelMax: 6, faction: null, spawns: { 1429: { f: 'e', pts: camp(70, 70) } } },
+	};
+	const item = (id, name, npc) => ({ id, name, drops: { npc, object: {} }, vendors: [], questItem: true });
+	const items = {
+		...base.items,
+		95116: item(95116, 'Grove Seed', { 95060: 100, 95061: 37 }),
+		95117: item(95117, 'Grove Bark', { 95060: 40, 95061: 37 }),
+	};
+	const quest = (id, title, itemId) => ({ ...base.quests[33], id, title, level: 7, minLevel: 4, objectives: [{ count: 8, id: itemId, text: items[itemId].name, type: 'item' }] });
+	const quests = { ...base.quests, 95300: quest(95300, 'Grove Seeds', 95116), 95301: quest(95301, 'Grove Bark', 95117) };
+	return new Data({ quests, npcs, objects: base.objects, items, zones: base.zones, 'map-frames': base.mapFrames, meta: base.meta }, { dir: base.dir });
+}
+
+test('a quest collect leads to the droppers near the quest\'s level, not to ones 3 or more levels above that drop it at more than twice their chance (#327)', () => {
+	const data = groveData();
+	const goal = (...lines) => {
+		const r = compile(guideText(['step One', ...lines]), data);
+		assert.deepEqual(r.errors, [], r.text);
+		return plain(r.guides[0].steps[0].goals.at(-1));
+	};
+	const near = (s, x, y) => Math.abs(s.x - x) < 2 && Math.abs(s.y - y) < 2;
+	// The Elder's 100% would leave out the Sapling's 37%: for a level 7 quest the Saplings lead, and only they are named.
+	const seed = goal('  accept 95300', '  collect 95116 quest 95300');
+	assert.ok(near(seed, 70, 70), `the point is at the Saplings: ${seed.x},${seed.y}`);
+	assert.ok(seed.spots === undefined || seed.spots.every((s) => near(s, 70, 70)), JSON.stringify(seed.spots));
+	assert.deepEqual(seed.fromNpcs, [{ npc: 95061, npcName: 'Grove Sapling' }]);
+	assert.equal(seed.from, undefined, 'the Sapling drops it at 37%: nothing to name');
+	// Without a quest there is no level to go by: the Elder's 100% leads, as before.
+	const loose = goal('  collect 95116 x8');
+	assert.ok(near(loose, 30, 30), `the point is at the Elders: ${loose.x},${loose.y}`);
+	assert.equal(loose.from, 'Grove Elder');
+	// An Elder that crowds nobody out stays a source: 40% and 37% are both likely.
+	const bark = goal('  accept 95301', '  collect 95117 quest 95301');
+	assert.deepEqual(bark.fromNpcs.map((n) => n.npc).sort(), [95060, 95061]);
+});
+
 test('kill goals carry the spawn areas of their mob, nearest to the chosen point first, every other place as an alternative; single spawns get none', () => {
 	// Camp Gnoll: two camps of three 140 yd apart (around 40,70 and 44,70) and a lone spawn at 42,74:
 	// seven spawns, more than six, so the arrow keeps to the camps and the lone one is an alternative.

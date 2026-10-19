@@ -36,17 +36,6 @@ Flight.TAXI_ICON = TAXI_ICON
 -- Gossip
 ---------------------------------------------------------------------------
 
-local function hasQuestBusiness(G)
-	if (G.GetNumAvailableQuests and G.GetNumAvailableQuests() or 0) > 0 then return true end
-	if G.GetActiveQuests then
-		local active = G.GetActiveQuests() or {}
-		for i = 1, #active do
-			if active[i].isComplete then return true end
-		end
-	end
-	return false
-end
-
 -- The taxi option of the open gossip, or nil.
 function Flight.TaxiOption(options)
 	for i = 1, #options do
@@ -63,17 +52,9 @@ function Flight.OnGossip()
 	if not QoL.On("flightAutoOpen") or QoL.Shift() then return false end
 	local G = C_GossipInfo
 	if not (G and G.GetOptions) then return false end
-	if hasQuestBusiness(G) then return false end
+	if QoL.HasQuestBusiness() then return false end
 	local opt = Flight.TaxiOption(G.GetOptions() or {})
-	if not opt then return false end
-	if opt.gossipOptionID and G.SelectOption then
-		G.SelectOption(opt.gossipOptionID)
-	elseif G.SelectOptionByIndex then
-		G.SelectOptionByIndex(opt.orderIndex)
-	else
-		return false
-	end
-	return true
+	return opt ~= nil and QoL.SelectGossip(opt)
 end
 
 ---------------------------------------------------------------------------

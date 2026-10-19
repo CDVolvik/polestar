@@ -57,7 +57,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const { ROOT, DATA, SOURCES } = require('../paths');
-const { LEVEL_XP, MAX_LEVEL, gain, parseQuestXp, baseQuestXp, questXpShare, mobXp } = require('../game/xp');
+const { LEVEL_XP, MAX_LEVEL, gain, levelReached, parseQuestXp, baseQuestXp, questXpShare, mobXp } = require('../game/xp');
 const { loadParamsFile, effective, means } = require('../sim/params');
 const { applicable, maskExcludes } = require('../dsl/conditions');
 const { CLASS_BY_FILE, classLabel } = require('../game/races');
@@ -221,7 +221,7 @@ function goalLabel(goal, names = null) {
 		case 'buy': return `Buy ${goal.itemName || `item ${goal.item}`}${times(goal.count)}`;
 		case 'learn': return `Learn ${goal.spellName || `spell ${goal.spell}`}`;
 		case 'craft': return `Craft ${goal.spellName || `spell ${goal.spell}`}${times(goal.count)}`;
-		case 'level': return `Reach level ${goal.level}`;
+		case 'level': return `Reach level ${goal.level}${goal.frac ? ` (${Math.round(goal.frac * 100)}%)` : ''}`;
 		case 'skill': return `${goal.skill} ${goal.level}`;
 		case 'rep': return `${goal.factionName} ${goal.standing}`;
 		case 'achieve': return goal.achievementName || `Achievement ${goal.achievement}`;
@@ -1026,7 +1026,7 @@ function buildTimeline({ guides, data, geo, params, travel = null, start, charac
 			if (done.has(goal.quest)) return skip('quest already done');
 			if (entry) return skip('quest already in the log');
 		}
-		if (v === 'level' && me.level >= goal.level) return skip(`already level ${goal.level}`);
+		if (v === 'level' && levelReached(me, goal.level, goal.frac)) return skip(`already level ${goal.level}${goal.frac ? ` (${Math.round(goal.frac * 100)}%)` : ''}`);
 		if (v === 'hearth' && !bind) {
 			warn(line, 'hearth without a bind point (no `sethome` before it); skipped');
 			return skip('no bind point');
@@ -1193,7 +1193,7 @@ function buildTimeline({ guides, data, geo, params, travel = null, start, charac
 				moveTo(place.at);
 				hold();
 				let kills = 0;
-				while (me.level < goal.level && me.level < MAX_LEVEL) {
+				while (!levelReached(me, goal.level, goal.frac) && me.level < MAX_LEVEL) {
 					const L = me.level;
 					let best = null;
 					for (let d = 0; d <= 2; d++) {
@@ -1201,7 +1201,8 @@ function buildTimeline({ guides, data, geo, params, travel = null, start, charac
 						const sec = killSec(L, L + d, false);
 						if (xpk > 0 && (!best || xpk / sec > best.rate)) best = { rate: xpk / sec, xpk };
 					}
-					const needXp = LEVEL_XP[L] - me.xp;
+					// To the next level, or into the goal's level as far as its `frac`.
+					const needXp = (L === goal.level && goal.frac ? Math.ceil(goal.frac * LEVEL_XP[L]) : LEVEL_XP[L]) - me.xp;
 					spend('combat', needXp / (best.rate * p.grindEff));
 					kills += needXp / best.xpk;
 					earn(needXp, 'grind', {});

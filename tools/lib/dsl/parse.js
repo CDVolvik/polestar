@@ -3,8 +3,10 @@
 // line numbers; filling from reference data happens in resolve.js.
 //
 // parseGuide(text, file, diag) -> guide | null
-//   guide = { file, id, line, header: { ... }, lines: { <headerKey>: line, pros: [line], cons: [line], rewards: [line] }, steps: [step] }
-//   step  = { line, title, only, tip, when?: [predicate], goals: [goal] }
+//   guide = { file, id, line, header: { ... }, lines: { <headerKey>: line, pros: [line], cons: [line], rewards: [line], nextOf: { <id>: line } }, steps: [step] }
+//   (header.next: the `next` guide ids in order; header.nextWhen: { <id>: predicate with its line } for `next <id> when ...`)
+//   step  = { line, title, only, tip, image?, when?: [predicate], goals: [goal] }
+//   (image: { path, ext, w, h, line }, images.js parseImagePath; w/h null unless written)
 //   (when: tools/lib/dsl/when.js predicates, each with its line; only on a step that has one)
 //   goal  = { line, verb, zone, note, ...positional/modifier fields }
 // `zone` on a goal is the zone spec in effect ({ name } | { map }, with line),
@@ -20,6 +22,8 @@
 const { lexLine } = require('./lexer');
 const { parseConditions, FACTIONS } = require('./conditions');
 const { parseWhen } = require('./when');
+const { parseImagePath, parseImageSize } = require('./images');
+const { levelPoint } = require('../game/xp');
 
 // Slash-separated segments, none empty (an empty one would make a hidden `.lua` file).
 const ID_RE = /^[a-z0-9_-]+(?:\/[a-z0-9_-]+)*$/;
@@ -29,7 +33,9 @@ const COORD_RE = /^(-?\d+(?:\.\d+)?),(-?\d+(?:\.\d+)?)$/;
 
 const HEADER_KEYS = ['guide', 'title', 'levels', 'zone', 'faction', 'race', 'class', 'next', 'category', 'folder', 'keywords', 'collects', 'reward', 'why', 'author', 'version', 'coords', 'pitch', 'pro', 'con'];
 // Lines inside a step that are not goals.
-const STEP_KEYS = ['zone', 'only', 'tip', 'when'];
+// `loop`: the step's `goto` points are the spawn areas of its kill, collect
+// and interact goals (resolve.js, applyLoop).
+const STEP_KEYS = ['zone', 'only', 'tip', 'image', 'when', 'loop'];
 
 // `group [N]`: the goal needs a group (of N players), shown in the guide window.
 const COMMON = ['text', 'optional', 'only', 'group'];
@@ -143,6 +149,23 @@ function unquoteRest(line, lex, from) {
 	return line.slice(toks[0].start, lex.end).trim();
 }
 
+// `image <path> [<w>x<h>]`: the step's picture, at most one per step.
+function parseImage(step, toks, ln, err) {
+	const usage = 'image media/<name>.tga [<width>x<height>]';
+	if (step.image) return err(ln, `duplicate \`image\` in step (first on line ${step.image.line}): a step shows one picture`);
+	const args = toks.slice(1);
+	if (!args.length) return err(ln, '`image` needs the picture\'s path in the pack folder', usage);
+	if (args.length > 2) return err(ln, `unexpected "${args[2].text}" after the picture's size`, usage);
+	const p = parseImagePath(args[0].text);
+	if (p.error) return err(ln, p.error, p.hint);
+	let size = null;
+	if (args[1]) {
+		size = args[1].quoted ? null : parseImageSize(args[1].text);
+		if (!size) return err(ln, `malformed picture size "${args[1].text}"`, 'write it as <width>x<height> in pixels, such as 512x256');
+	}
+	step.image = { path: p.path, ext: p.ext, w: size ? size.w : null, h: size ? size.h : null, line: ln };
+}
+
 // Read "x,y" starting at tokens[i] whose text (after an optional "@") is
 // `first`. Accepts "x,y", "x, y", "x ,y" and "x , y". Returns { x, y, next } or
 // { error }.
@@ -227,7 +250,7 @@ function parseGuide(text, file, diag) {
 				err(ln, `unknown header key "${toks[0].text}"`, `header keys: ${HEADER_KEYS.join(', ')}`);
 				continue;
 			}
-			const repeatable = kw === 'pro' || kw === 'con' || kw === 'reward';
+			const repeatable = kw === 'pro' || kw === 'con' || kw === 'reward' || kw === 'next';
 			if (guide.lines[kw] && !repeatable) {
 				err(ln, `duplicate header key \`${kw}\` (first on line ${guide.lines[kw]})`);
 				continue;
@@ -266,6 +289,12 @@ function parseGuide(text, file, diag) {
 				const w = parseWhen(line.slice(toks[1] ? toks[1].start : lex.end, lex.end));
 				if (w.error) err(ln, w.error, w.hint);
 				else (step.when ||= []).push({ ...w.value, line: ln });
+			} else if (kw === 'image') {
+				parseImage(step, toks, ln, err);
+			} else if (kw === 'loop') {
+				if (toks.length > 1) err(ln, '`loop` takes nothing');
+				else if (step.loop) err(ln, 'duplicate `loop` in step');
+				else step.loop = ln;
 			} else {
 				const tip = unquoteRest(line, lex, 1);
 				if (!tip) {
@@ -442,19 +471,41 @@ function parseHeader(guide, kw, line, lex, ln, err, warn) {
 			return;
 		}
 		case 'next': {
-			// `next <id>[, <id>...]`: more than one guide is a choice of route,
-			// the first being the author's default.
-			const ids = rest.split(/[\s,]+/).filter(Boolean);
-			const bad = toks.slice(1).some((t) => t.quoted) ? rest : ids.find((id) => !ID_RE.test(id));
+			// `next <id>[, <id>...]`: the guides to continue with, in order, the
+			// first being the author's default; more than one is a choice of
+			// route. `next <id> when <predicate>` (when.js) offers that one guide
+			// only while the predicate holds at the hand-off. The line repeats,
+			// each adding its guides; a guide is named once.
+			const w = toks.findIndex((t, k) => k >= 2 && !t.quoted && t.text.toLowerCase() === 'when');
+			const idToks = toks.slice(1, w === -1 ? toks.length : w);
+			const idText = w === -1 ? rest : line.slice(idToks[0].start, idToks[idToks.length - 1].end);
+			const ids = idText.split(/[\s,]+/).filter(Boolean);
+			const bad = idToks.some((t) => t.quoted) ? idText : ids.find((id) => !ID_RE.test(id));
 			if (bad !== undefined || !ids.length) {
-				err(ln, `malformed guide id "${bad !== undefined ? bad : rest}" in \`next\``);
+				err(ln, `malformed guide id "${bad !== undefined ? bad : idText}" in \`next\``);
 				return;
 			}
-			if (new Set(ids).size !== ids.length) {
+			let when = null;
+			if (w !== -1) {
+				if (ids.length !== 1) {
+					err(ln, '`next ... when` names one guide: `next <id> when <predicate>`, one line per guide');
+					return;
+				}
+				const p = parseWhen(toks[w + 1] ? line.slice(toks[w + 1].start, lex.end) : '');
+				if (p.error) {
+					err(ln, p.error, p.hint);
+					return;
+				}
+				when = { ...p.value, line: ln };
+			}
+			const all = [...(h.next || []), ...ids];
+			if (new Set(all).size !== all.length) {
 				err(ln, '`next` names the same guide twice');
 				return;
 			}
-			h.next = ids;
+			h.next = all;
+			for (const id of ids) (guide.lines.nextOf ||= {})[id] = ln;
+			if (when) (h.nextWhen ||= {})[ids[0]] = when;
 			return;
 		}
 		case 'version':
@@ -598,8 +649,14 @@ function parsePositional(verb, goal, toks, line, lex, ln, err, spans) {
 			return i + 1;
 		}
 		case 'level': {
-			if (!t || t.quoted || !INT_RE.test(t.text) || Number(t.text) < 1) return err(ln, `malformed level "${t ? t.text : ''}"`), -1;
-			goal.level = Number(t.text);
+			// `level 12`, `level 12.5` (halfway through 12) or `level 12+2500`
+			// (2500 XP into 12): level, frac and the XP as written (levelXp).
+			const p = t && !t.quoted ? levelPoint(t.text) : null;
+			if (p && p.error) return err(ln, p.error), -1;
+			if (!p || p.level < 1) return err(ln, `malformed level "${t ? t.text : ''}"`), -1;
+			goal.level = p.level;
+			if (p.frac) goal.frac = p.frac;
+			if (p.xp !== undefined) goal.levelXp = p.xp;
 			return i + 1;
 		}
 		case 'note': {

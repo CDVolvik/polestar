@@ -110,6 +110,44 @@ for i, id in ipairs(CHOICES) do
 end
 QoL.Rewards.OnQuestComplete()`;
 
+// The game's XP bar (Blizzard_StatusTrackingBar), drawn in flat colours (the
+// preview has no client art): StatusTrackingBarManager's main container
+// (571×17) with its experience bar (565×11) filled to `fill`, over a strip
+// of the world. QoL/XPMark.lua draws the guide's level on it: a level 6
+// character whose guide's next `level` goal is `target`.
+function xpBarScene(target, fill) {
+	return `UnitLevel = function() return 6 end
+GetMaxPlayerLevel = function() return 60 end
+Polestar.Engine.LevelTarget = function(level) if ${target} > level then return ${target}, 1 end end
+StatusTrackingBarInfo = { BarsEnum = { None = -1, Reputation = 1, Honor = 2, Artifact = 3, Experience = 4, Azerite = 5, HouseFavor = 6 } }
+local M = CreateFrame("Frame", "StatusTrackingBarManager", UIParent)
+M:SetSize(611, 41)
+M:SetPoint("CENTER", UIParent, "CENTER", 0, 0)
+local world = M:CreateTexture(nil, "BACKGROUND")
+world:SetAllPoints()
+world:SetColorTexture(0.16, 0.18, 0.15, 1)
+local C = CreateFrame("Frame", "MainStatusTrackingBarContainer", M)
+C:SetSize(571, 17)
+C:SetPoint("BOTTOM", M, "BOTTOM", 0, 8)
+local art = C:CreateTexture(nil, "BACKGROUND")
+art:SetAllPoints()
+art:SetColorTexture(0.08, 0.07, 0.06, 1)
+local bar = CreateFrame("Frame", nil, C)
+bar:SetSize(565, 11)
+bar:SetPoint("BOTTOMLEFT", C, "BOTTOMLEFT", 3, 3)
+bar.StatusBar = CreateFrame("StatusBar", nil, bar)
+bar.StatusBar:SetAllPoints(bar)
+local fillTex = bar.StatusBar:CreateTexture(nil, "ARTWORK")
+fillTex:SetPoint("TOPLEFT", bar.StatusBar, "TOPLEFT", 0, 0)
+fillTex:SetSize(565 * ${fill}, 11)
+fillTex:SetColorTexture(0.35, 0.2, 0.62, 1)
+bar.OverlayFrame = CreateFrame("Frame", nil, bar)
+bar.OverlayFrame:SetAllPoints(bar)
+C.bars = { [4] = bar }
+M.barContainers = { C }
+Polestar.QoL.XPMark.Refresh()`;
+}
+
 const FONT_FILES = ['Inter-Regular.ttf', 'Inter-Medium.ttf', 'Inter-SemiBold.ttf', 'FiraSans-Regular.ttf', 'FiraSans-Medium.ttf', 'FiraSans-SemiBold.ttf'];
 // Fonts the preview cannot ship (EllesmereUI's, the client's) are set in the
 // nearest Inter weight; widths are measured in the same face that is drawn.
@@ -349,6 +387,12 @@ function pickerScene(script) {
 }
 // Three guides open as tabs, the leveling one active.
 const TABS = 'uistub.openTabs({ { uistub.elwynn, 3 }, { uistub.tailoring, 2 }, { uistub.stormwindRep, 2 } }, 1)';
+// Step pictures (GUIDE_FORMAT.md, `image`) on two sample steps, the field
+// step's beside its tip and one without a tip. A community addon ships its
+// own screenshots; the preview draws Polestar's own textures in their place.
+const PICTURES = `local steps = uistub.guides[uistub.elwynn].steps
+steps[3].image = { file = "Media\\\\UI\\\\band", w = 1024, h = 512, texture = "Interface\\\\AddOns\\\\Polestar\\\\Media\\\\UI\\\\band" }
+steps[5].image = { file = "Media\\\\UI\\\\watermark", w = 256, h = 256, texture = "Interface\\\\AddOns\\\\Polestar\\\\Media\\\\UI\\\\watermark" }`;
 // A route for the journey panel (UI/JourneyPanel.lua): the Nav fake gains a
 // three-leg trip (Shortest Path Forever's example, 36:48 and 8.0k yd), the
 // Great Lift's departures untimed until `timed`.
@@ -802,6 +846,14 @@ const SCENES = [
 			{ roots: GUIDE, script: `${TABS}; uistub.setStep(4)` },
 			{ roots: GUIDE, script: `${TABS}; uistub.goal(4, 1).status = "done"; uistub.goal(4, 2).status = "done"; uistub.setStep(4)` },
 			{ roots: GUIDE, script: `${TABS}; Polestar.UI.GuideFrame.parts.tip:Click()` },
+		],
+	},
+	{
+		file: 'guide-picture.svg',
+		title: "Step pictures: a community addon's screenshot under the step's tip, scaled to the window; a picture with no tip, at most 160 high (Polestar's own textures stand in for the screenshots)",
+		panels: [
+			{ roots: GUIDE, script: `${PICTURES}; ${TABS}` },
+			{ roots: GUIDE, script: `${PICTURES}; ${TABS}; uistub.setStep(5)` },
 		],
 	},
 	{
@@ -1318,6 +1370,15 @@ Polestar.UI.Picker.SetCategory("Leveling"); Polestar.UI.Picker.Select("forever/h
 		panels: [
 			{ roots: ['QuestInfoRewardsFrame'], files: REWARD_FILES, script: `${GEAR_SETUP}\n${REWARD_PANEL}` },
 			{ roots: ['QuestInfoRewardsFrame'], files: REWARD_FILES, script: `${GEAR_SETUP}\nworn[5] = "item:9101"; worn[7] = "item:9103"; worn[16] = "item:9104"; Polestar.Gear.Invalidate("equipment")\n${REWARD_PANEL}` },
+		],
+	},
+	{
+		file: 'xp-bar.svg',
+		title: "The game's XP bar with the level the guide wants you to reach: the next level; four levels away; the setting under Quality of Life, Trackers",
+		panels: [
+			{ roots: ['StatusTrackingBarManager'], files: REWARD_FILES, script: xpBarScene(7, 0.62) },
+			{ roots: ['StatusTrackingBarManager'], files: REWARD_FILES, script: xpBarScene(10, 0.3) },
+			{ files: MODULE_FILES, roots: OPTIONS, script: 'Polestar.UI.ShowOptions("qualityoflife"); Polestar.UI.Options.Select("qualityoflife", "Trackers")' },
 		],
 	},
 	{

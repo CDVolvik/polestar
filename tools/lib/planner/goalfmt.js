@@ -23,7 +23,7 @@ const cap = (w) => w.charAt(0).toUpperCase() + w.slice(1);
 
 // Fields the parser derives from how a line is written; a caller may leave them out.
 const DERIVED = ['explicitCoords', 'npcExplicit', 'objectExplicit', 'itemExplicit', 'skillQuoted', 'factionQuoted'];
-const NUMERIC = ['quest', 'oi', 'npc', 'object', 'item', 'x', 'y', 'coordMap', 'r', 'count', 'minLevel', 'untilSkill', 'criteria', 'rewardXp', 'rewardMoney', 'level', 'spell', 'factionId', 'standing', 'achievement', 'rank'];
+const NUMERIC = ['quest', 'oi', 'npc', 'object', 'item', 'x', 'y', 'coordMap', 'r', 'count', 'minLevel', 'untilSkill', 'criteria', 'rewardXp', 'rewardMoney', 'level', 'frac', 'levelXp', 'spell', 'factionId', 'standing', 'achievement', 'rank'];
 const NUM_TEXT = /^-?\d+(?:\.\d+)?$/;
 
 // Verbs whose positional arguments include the key (written there unless `<key>Explicit`).
@@ -219,7 +219,9 @@ function positionalTokens(verb, f) {
 			else name('location');
 			break;
 		case 'level':
-			id('level');
+			// A point inside the level: `12+2500` (XP as written), else `12.5`.
+			if (f.levelXp === undefined && f.frac !== undefined && !(f.frac > 0 && f.frac < 1)) throw new Error('the share of the level (`frac`) must be between 0 and 1');
+			if (f.level !== undefined) out.push(`${f.level}${f.levelXp !== undefined ? `+${f.levelXp}` : f.frac !== undefined ? String(f.frac).replace(/^0(?=\.)/, '') : ''}`);
 			break;
 		case 'note':
 			// Written by formatGoal: bare only when nothing follows.
@@ -380,7 +382,7 @@ const POSITIONAL = {
 	hearth: [fld('location', 'text', 'Location', { required: true, kind: 'inn' })],
 	getfp: [fld('location', 'text', 'Flight point', { required: true, kind: 'flight' })],
 	fly: [fld('location', 'text', 'Destination', { required: true, kind: 'flight' })],
-	level: [fld('level', 'int', 'Level', { required: true })],
+	level: [fld('level', 'int', 'Level', { required: true }), fld('frac', 'number', 'Share of the level (0-1)', { required: false }), fld('levelXp', 'int', 'XP into the level', { required: false })],
 	note: [fld('text', 'text', 'Text', { required: true })],
 	skill: [fld('skill', 'text', 'Profession', { required: true }), fld('level', 'int', 'Skill rank', { required: true })],
 	learn: [idf('spell', 'Spell', true), fld('spellName', 'text', 'Spell name', { required: false })],

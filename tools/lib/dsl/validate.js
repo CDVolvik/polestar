@@ -26,7 +26,7 @@ const { blockingPrereqs } = require('../data/prereqs');
 const SOLO = require('../sim/solo');
 const { eliteWork } = require('./group');
 const { PIPE_HINT } = require('../pack/manifest');
-const { MAX_LEVEL, CUM_XP } = require('../game/xp');
+const { MAX_LEVEL, CUM_XP, LEVEL_XP } = require('../game/xp');
 const { checkTimedItems } = require('./timed');
 const { objectiveLabel } = require('./data');
 
@@ -401,25 +401,28 @@ function validateGuides(guides, data, diag) {
 		}
 		byId.set(g.id, g);
 	}
-	// Predecessors through `next` and every route choice (`nextChoices`).
+	// Predecessors through `next` and every route choice (`nextChoices`,
+	// conditional options too: any of them can be the route).
 	const preds = new Map();
 	for (const g of byId.values()) {
+		const nextLine = (to) => (g._ast.lines.nextOf && g._ast.lines.nextOf[to]) || g._ast.lines.next;
 		for (const to of g.nextChoices || (g.next ? [g.next] : [])) {
 			if (!byId.has(to)) {
-				diag.error(g._ast.file, g._ast.lines.next, `\`next\` points to unknown guide "${to}"`, 'list guide ids with `polestar find --kind guide <text>`');
+				diag.error(g._ast.file, nextLine(to), `\`next\` points to unknown guide "${to}"`, 'list guide ids with `polestar find --kind guide <text>`');
 				continue;
 			}
 			const other = byId.get(to);
 			if (g.faction && other.faction && other.faction !== g.faction) {
-				diag.error(g._ast.file, g._ast.lines.next, `\`next\` offers ${other.faction} guide "${to}" after a ${g.faction} guide`);
+				diag.error(g._ast.file, nextLine(to), `\`next\` offers ${other.faction} guide "${to}" after a ${g.faction} guide`);
 			} else {
 				const why = followProblem(g, other, data);
-				if (why) diag.error(g._ast.file, g._ast.lines.next, why.message, why.hint);
+				if (why) diag.error(g._ast.file, nextLine(to), why.message, why.hint);
 			}
 			if (!preds.has(to)) preds.set(to, []);
 			preds.get(to).push(g);
 		}
-		if (g.nextChoices) {
+		// A route choice shows its options' pitches; one option (`next <id> when ...` alone) is no choice.
+		if (g.nextChoices && g.nextChoices.length > 1) {
 			for (const to of g.nextChoices) {
 				const other = byId.get(to);
 				if (other && !other.pitch) diag.warn(other._ast.file, other._ast.line, `"${to}" is a route choice after "${g.id}" but has no \`pitch\`; the choice window shows its pitch, pros and cons`);
@@ -465,7 +468,7 @@ function validateGuides(guides, data, diag) {
 				// Data XP, else the XP the turn-in line states (`xp <N>`).
 				const qxp = q && q.xp > 0 ? q.xp : goal.rewards && goal.rewards.xp > 0 ? goal.rewards.xp : 0;
 				if (qxp > 0) xp += qxp * ROUTE_XP_FACTOR;
-			} else if (goal.t === 'level') xp = Math.max(xp, xpAt(goal.level));
+			} else if (goal.t === 'level') xp = Math.max(xp, xpAt(goal.level) + (goal.frac ? goal.frac * LEVEL_XP[goal.level] : 0));
 		}
 		return xp;
 	};

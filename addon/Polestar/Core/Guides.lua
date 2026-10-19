@@ -206,6 +206,8 @@ end
 local WHEN_OPS = { ["<"] = true, ["<="] = true, [">"] = true, [">="] = true }
 local WHEN_QUEST = { complete = true, turnedin = true, available = true }
 local WHEN_PLACE = { zone = true, subzone = true, bound = true }
+-- A point inside a level (format 4): the share of it done, strictly between 0 and 1.
+local function isFrac(v) return isNum(v) and v > 0 and v < 1 end
 local function checkWhen(list)
 	if list == nil then return true end
 	if type(list) ~= "table" or #list == 0 then return false end
@@ -215,6 +217,7 @@ local function checkWhen(list)
 		local k = p.k
 		if k == "level" then
 			if not (WHEN_OPS[p.op] and isNum(p.n)) then return false end
+			if p.frac ~= nil and not isFrac(p.frac) then return false end
 		elseif k == "onquest" then
 			if type(p.q) ~= "table" or #p.q == 0 then return false end
 			for j = 1, #p.q do
@@ -227,6 +230,30 @@ local function checkWhen(list)
 		elseif not (WHEN_PLACE[k] and isStr(p.name)) then
 			return false
 		end
+	end
+	return true
+end
+
+-- A step's picture (docs/PACK_FORMAT.md, step `image`): { file, w?, h? },
+-- `file` a path inside the pack's addon folder: folders and a name of
+-- letters, digits, `_` and `-` separated by `\` or `/`, then `.tga`, `.blp`
+-- or no extension (the compiler's rule, tools/lib/dsl/images.js).
+local function checkImage(image)
+	if image == nil then return true end
+	if type(image) ~= "table" or not isStr(image.file) then return false end
+	for _, key in ipairs({ "w", "h" }) do
+		local v = image[key]
+		if v ~= nil and not (isNum(v) and v > 0) then return false end
+	end
+	local file = image.file
+	local ext = file:match("%.(%w+)$")
+	if ext then
+		ext = ext:lower()
+		if ext ~= "tga" and ext ~= "blp" then return false end
+		file = file:sub(1, #file - #ext - 1)
+	end
+	for part in (file:gsub("/", "\\") .. "\\"):gmatch("(.-)\\") do
+		if not part:find("^[%w_%-]+$") then return false end
 	end
 	return true
 end
@@ -250,6 +277,7 @@ local function checkGoal(goal)
 	if goal.count ~= nil and not isNum(goal.count) then return "bad count" end
 	if goal.text ~= nil and type(goal.text) ~= "string" then return "bad text" end
 	if goal.t == "rep" and (goal.standing < 1 or goal.standing > 8) then return "standing outside 1-8" end
+	if goal.t == "level" and goal.frac ~= nil and not isFrac(goal.frac) then return "bad frac" end
 	for _, key in ipairs(KEYS.goalNumbers) do
 		if goal[key] ~= nil and not isNum(goal[key]) then return "bad " .. key end
 	end
@@ -363,11 +391,24 @@ local function validate(def)
 			end
 		end
 	end
+	-- nextWhen (format 4): an option of nextChoices -> its predicates, as a
+	-- step's `when`; Engine.lua (Own.optionHolds) reads them at the hand-off.
+	if def.nextWhen ~= nil then
+		if type(def.nextWhen) ~= "table" or type(def.nextChoices) ~= "table" then return "bad nextWhen" end
+		for id, list in pairs(def.nextWhen) do
+			local listed = false
+			for i = 1, #def.nextChoices do
+				if def.nextChoices[i] == id then listed = true end
+			end
+			if not (listed and list ~= nil and checkWhen(list)) then return "bad nextWhen" end
+		end
+	end
 	for s, step in ipairs(def.steps) do
 		if type(step) ~= "table" then return ("step %d is not a table"):format(s) end
 		if type(step.goals) ~= "table" or #step.goals == 0 then return ("step %d has no goals"):format(s) end
 		if not checkOnly(step.only) then return ("step %d: bad only"):format(s) end
 		if not checkWhen(step.when) then return ("step %d: bad when"):format(s) end
+		if not checkImage(step.image) then return ("step %d: bad image"):format(s) end
 		for g, goal in ipairs(step.goals) do
 			local err = checkGoal(goal)
 			if err then return ("step %d goal %d: %s"):format(s, g, err) end
@@ -623,6 +664,15 @@ function ns.RegisterGuide(def)
 	if err then
 		problem(r, "guide-refused", (L["Guide %s was refused: %s."]):format(escape(id), escape(err)), id)
 		return false, err
+	end
+	-- A step's picture is a file in the pack's addon folder: its texture path
+	-- from the addon that registered the pack. A pack without an addon
+	-- folder (imported guides, Lookup's) has no files, so shows none.
+	for _, step in ipairs(def.steps) do
+		local image = step.image
+		if image then
+			image.texture = r.addon and ("Interface\\AddOns\\" .. r.addon .. "\\" .. (image.file:gsub("/", "\\"))) or nil
+		end
 	end
 	-- The texts in the client's language (GuideTexts), then escaped like the
 	-- rest. While the pack's files load its names stay English: the pack's
@@ -967,16 +1017,18 @@ local function guideStart(g)
 end
 Guides.Start = guideStart
 
--- Shown guides whose route choice (`nextChoices`) offers `id`, in
+-- Shown guides whose route choice (`nextChoices`) offers `id` now (an
+-- option with `when` only while it holds: Engine.RouteOffered), in
 -- registration order.
 function Guides.OfferedBy(id)
 	local out = {}
+	local E = ns.Engine
 	for i = 1, #order do
 		local g = guides[order[i]]
 		if g.nextChoices and visible(g) then
 			for _, c in ipairs(g.nextChoices) do
 				if c == id then
-					out[#out + 1] = g
+					if not (E and E.RouteOffered) or E.RouteOffered(g.id, id) then out[#out + 1] = g end
 					break
 				end
 			end

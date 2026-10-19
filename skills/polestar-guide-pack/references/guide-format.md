@@ -27,7 +27,7 @@ Before the first `step`. `guide`, `title`, `levels` and `zone` are required.
 | `faction <Faction>` | `Alliance` or `Horde`: only that side is offered the guide |
 | `race <Race>, ...` | Only these races (Conditions) |
 | `class <Class>, ...` | Only these classes |
-| `next <id>, ...` | The guide that follows. Several ids: the player chooses, the first is the default; each must suit this guide's characters (`polestar find <zone> --kind guide --race <Race>`) |
+| `next <id>, ...` | The guide that follows. Several ids: the player chooses, the first is the default; each must suit this guide's characters (`polestar find <zone> --kind guide --race <Race>`). Repeatable; `next <id> when <predicate>` (one guide per line, a predicate as for `when`) offers that guide only while the predicate holds when this guide ends: one option left, Polestar goes on to it; none, the guide ends there |
 | `category <Category>` | `Leveling` (default), `Class`, `Professions`, `Reputation`, `Legacy`, `Exploration`, `Collectibles`, `Miscellaneous`, `Dungeons` |
 | `folder <text>` | The guide menu folder to list it under |
 | `keywords <word>, ...` | Extra words the guide menu search matches |
@@ -49,9 +49,11 @@ every goal in it that is not `optional` is; its goals are open together.
 |---|---|
 | `step [title]` | Starts a step |
 | `tip <text>` | A note for the whole step |
+| `image <path> [<w>x<h>]` | A picture under the step's tip: a `.tga` or `.blp` at that path in the pack folder (`media/cave.tga`), which the addon folder ships; `<w>x<h>` sets its ratio, else the file's own size does |
 | `zone <Name>` / `zone map <uiMapID>` | The zone for coordinates from here on, in later steps too |
 | `only <condition>, ...` | The step is only for matching characters |
 | `when <predicate>` | The step is only for characters in that state when the route gets there; several lines must all hold (see Conditions) |
+| `loop` | The step's `goto` points, in order, are the places to search for its kill, collect and interact goals without `@x,y` (at least two, one map) |
 
 ## Goals
 
@@ -77,7 +79,7 @@ otherwise, the place modifiers `@x,y`, `map`, `r`, `era` / `live`.
 | `train class` / `train <npc>` / `train <Profession> [Rank]` | Visit a trainer: the nearest of the player's class, that one, or the nearest of a profession | `npc` |
 | `buy <item> ["Name"]` | Buy an item; `nearest` picks the closest vendor selling it | `npc`, `xN`, `nearest` |
 | `vendor nearest` / `vendor <npc>` | Sell and repair | `npc` |
-| `level <N>` | Reach level N, grinding if need be | no place modifiers |
+| `level <N>` | Reach level N, grinding if need be; `level 12.5` is halfway through 12, `level 12+2500` 2500 XP into it (whole percent; the pack then needs Polestar 0.2.6) | no place modifiers |
 | `note <text>` | A line of information; never holds the step. With `only`, quote the text | no `"text"`, no `group` |
 | `skill <Profession> <N>` | Reach skill N (`"First Aid"` quoted) | |
 | `learn <spell> ["Name"]` | Learn a recipe or spell | `npc`, `item`, `nearest` |
@@ -129,11 +131,11 @@ Warrior or Paladin).
 - Factions: `Alliance` `Horde`.
 
 `when` checks the character's state instead, one predicate per line:
-`level<N` (also `<=`, `>`, `>=`), `onquest <quest>, ...`, `complete <quest>`,
+`level<N` (also `<=`, `>`, `>=`; N may be `12.5` or `12+2500`), `onquest <quest>, ...`, `complete <quest>`,
 `turnedin <quest>`, `available <quest>`, `has <item> [xN]`, `zone "<Name>"`,
 `subzone "<Name>"`, `bound "<Location>"`; `!` in front of any but `level`
 turns it around. Once the route has passed the step, the outcome stays. A
-pack with `when` needs Polestar 0.3.0 or newer.
+pack with `when` (on a step or a `next` line) needs Polestar 0.2.6 or newer.
 
 ## Lint errors that come up most
 

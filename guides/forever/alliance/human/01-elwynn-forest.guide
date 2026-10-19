@@ -16,7 +16,9 @@ next forever/alliance/02-westfall
 # Goldshire -> the east: the Tower of Azora, the bridge, Brackwell, Eastvale,
 # Stone Cairn Lake, the gnoll camps and the Jasperlode Mine -> Goldshire ->
 # the farms and Westbrook -> hearth to Goldshire -> the east again -> the
-# road west to Sentinel Hill in Westfall (flight path).
+# road west: Deputy Rainer at the Westbrook Garrison (Report to Gryan
+# Stoutmantle, 109), then into Westfall (02-westfall takes the farms on the
+# way down and the Sentinel Hill flight path, #416).
 #
 # Optional extras: The Big Picture (91752, Shinyfinder Narf is elite) and
 # what follows it: Follow That Kobold! (91758), Shhh! We're Hunting Kobolds
@@ -69,6 +71,9 @@ next forever/alliance/02-westfall
 #   after Deputy Willem and Marshal McBride (Willem is at the spawn, Eagan at
 #   the far corner), and Investigate Echo Ridge (15) right after Kobold Camp
 #   Cleanup is handed in to McBride, before the class letters.
+# - Skirmish at Echo Ridge (21) is taken when Investigate Echo Ridge is
+#   handed in to McBride, and Report to Goldshire (54) and The Adventurer
+#   (96627) when Skirmish is: he offers each at once (#310).
 # - Eastvale: Sara Timberlain, on the way in, before Hagar Lowe.
 #
 # Class quests, as class-only steps (the level 10-12 ones from the last
@@ -161,9 +166,9 @@ step Echo Ridge Mine
 
 step Northshire Abbey
   turnin 15                                   -- Marshal McBride
+  accept 21
   turnin 91743                                -- Brother Paxton
   accept 91745
-  accept 21                                   -- Marshal McBride
   turnin 3100 only Warrior                    -- Llane Beshere, the warrior trainer
   turnin 3101 only Paladin                    -- Brother Sammuel, the paladin trainer
   turnin 92479 only Hunter                    -- Tordrin Sternblade, by the Abbey
@@ -213,12 +218,12 @@ step Northshire Abbey
   turnin 3905                                 -- Brother Neals, upstairs
   turnin 6                                    -- Deputy Willem
   turnin 21                                   -- Marshal McBride
+  accept 54
+  accept 96627
   turnin 91752 optional
   accept 91758 optional
   turnin 91758 optional                       -- Tordrin Sternblade
   accept 91772 optional                       -- his kobold tracker shows the kobolds to click on the road to Goldshire
-  accept 54                                   -- Marshal McBride
-  accept 96627
   accept 2158                                 -- Falkhaan Isenstrider, by the stables south of the Abbey
   train class
 
@@ -568,7 +573,7 @@ step Gakin the Darkbinder
 step Surena Caledon
   only Warlock
   zone Elwynn Forest
-  tip Ride back out through Goldshire and east along the road to the Brackwell Pumpkin Patch. Surena Caledon (level 9) stands by its farmhouse.
+  tip Head back out through Goldshire and east along the road to the Brackwell Pumpkin Patch. Surena Caledon (level 9) stands by its farmhouse.
   collect 6810 quest 1688.1                   -- Surena's Choker: Surena Caledon
 
 step The Binding
@@ -601,7 +606,7 @@ step The Tome of Divinity
 step Henze Faulk
   only Paladin
   zone Elwynn Forest
-  tip Ride back out through Goldshire and east to Stone Cairn Lake. Henze Faulk lies south of the lake: use the Symbol of Life on him. The Defias Rogue Wizards around him carry the Defias Script.
+  tip Head back out through Goldshire and east to Stone Cairn Lake. Henze Faulk lies south of the lake: use the Symbol of Life on him. The Defias Rogue Wizards around him carry the Defias Script.
   complete 1786                               -- Use the Symbol of Life on Henze Faulk
   turnin 1786                                 -- Henze Faulk
   accept 1787
@@ -617,7 +622,7 @@ step Gazin Tenorm
 
 # ---------------------------------------------------------------- To Westfall
 
-step Sentinel Hill
-  zone Westfall
-  tip Follow the road west past Westbrook into Westfall, then south along it to Sentinel Hill. Thor, the gryphon master, stands on the hill.
-  getfp "Sentinel Hill"
+step Westbrook Garrison
+  zone Elwynn Forest
+  tip Follow the road west to the Westbrook Garrison, on the way into Westfall. Deputy Rainer stands outside the barracks.
+  accept 109 npc 963                          -- Deputy Rainer: for Gryan Stoutmantle at Sentinel Hill

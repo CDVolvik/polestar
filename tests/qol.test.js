@@ -57,7 +57,7 @@ test('options: every qol setting is registered, on Questing or Quality of Life, 
 			"rewardHighlight", "rewardAutoPick", "flightAutoOpen", "flightHighlight", "deathHelper", "instantQuestText",
 			"skipGossip", "fastLoot", "declineDuels", "repairGuild", "hideErrors", "autoReleasePvP", "declineGuildInvites",
 			"declinePartyStrangers", "acceptPartyFriends", "acceptSummon", "acceptResurrect", "buyGoals", "trainAll",
-			"rewardEquip" }) do keys[k] = Polestar.GetDefault("qol." .. k) end
+			"rewardEquip", "autoBind" }) do keys[k] = Polestar.GetDefault("qol." .. k) end
 		emit(keys)
 	`);
 	const registered = new Set(specs.filter((c) => c.key).map((c) => c.key.replace(/^qol\./, '')));
@@ -71,6 +71,7 @@ test('options: every qol setting is registered, on Questing or Quality of Life, 
 	assert.equal(defaults.buyGoals, false, 'buying for the guide is off by default');
 	assert.equal(defaults.trainAll, false, 'learning at trainers is off by default');
 	assert.equal(defaults.rewardEquip, false, 'wearing rewards is off by default');
+	assert.equal(defaults.autoBind, false, 'binding the Hearthstone is off by default');
 	assert.equal(defaults.sellJunk, true);
 });
 
@@ -897,6 +898,107 @@ test('xp: tracker off returns nil and prints nothing', () => {
 	assert.equal(cmd, true);
 });
 
+// The guide's level on the game's XP bar (QoL/XPMark.lua).
+const XPMARK = `
+local function mark(bar)
+	local f = QoL.XPMark.frame
+	if not (f and f:IsShown()) then return { shown = false } end
+	local point, rel, relPoint = f:GetPoint(1)
+	local tick, tickRel, tickRelPoint = f.Tick:GetPoint(1)
+	local r, g, b = f.Tick:GetVertexColor()
+	local ar, ag, ab = Polestar.Theme.Accent()
+	return {
+		shown = true, text = f.Label:GetText(), underBar = f:GetParent() == bar,
+		spans = point == "TOPLEFT" and rel == bar.StatusBar and f:GetNumPoints() == 2,
+		tick = tick .. ">" .. tickRelPoint, tickOnMark = tickRel == f,
+		accent = r == ar and g == ag and b == ab, aboveText = f:GetFrameLevel() > bar.OverlayFrame:GetFrameLevel(),
+	}
+end
+`;
+
+test('xp mark: the label reads the next level, or the target and how many levels away it is', () => {
+	const [labels] = run(`
+		local M = QoL.XPMark
+		emit({ next = M.Label(10, 11), far = M.Label(10, 14), same = M.Label(10, 10) or "nil", below = M.Label(10, 8) or "nil",
+			none = M.Label(10, nil) or "nil" })
+	`);
+	assert.deepEqual(labels, { next: 'Guide: 11', far: 'Guide: 14 (4 levels)', same: 'nil', below: 'nil', none: 'nil' });
+});
+
+test('xp mark: a tick at the right end of the shown XP bar, labelled with the guide\'s next level target, made through CreateFrameUnder', () => {
+	const [next, far, levelled, under] = run(XPMARK + `
+		local bar = q.xpBar()
+		q.engine.levelTarget = 11
+		q.step({ { t = "level", level = 11 } })
+		emit(mark(bar))
+		q.engine.levelTarget = 14
+		q.step({ { t = "kill", target = "Wolf", quest = 5, oi = 1 } })
+		emit(mark(bar))
+		-- a level-up moves the count down without a step change
+		stub.fire("PLAYER_LEVEL_UP", 11)
+		q.level = 11
+		stub.runTimers()
+		emit(mark(bar))
+		emit(table.concat(stub.underGameFrames, "; "))
+	`);
+	assert.deepEqual(next, {
+		shown: true, text: 'Guide: 11', underBar: true, spans: true, tick: 'TOPRIGHT>TOPRIGHT', tickOnMark: true,
+		accent: true, aboveText: true,
+	});
+	assert.equal(far.text, 'Guide: 14 (4 levels)');
+	assert.equal(far.shown, true);
+	assert.equal(levelled.text, 'Guide: 14 (3 levels)');
+	assert.equal(under, '', 'no frame created with a game frame as its parent');
+});
+
+test('xp mark: hidden with the option off, without a target, without the XP bar or at the maximum level', () => {
+	const [on, off, back, none, noBar, hiddenBar, maxed] = run(XPMARK + `
+		local bar = q.xpBar()
+		q.engine.levelTarget = 12
+		q.step({ { t = "level", level = 12 } })
+		emit(mark(bar).shown)
+		set("xpTargetMark", false)
+		emit(mark(bar).shown)
+		set("xpTargetMark", true)
+		emit(mark(bar).shown)
+		q.engine.levelTarget = nil
+		q.step({ { t = "kill", target = "Wolf", quest = 5, oi = 1 } })
+		emit(mark(bar).shown)
+
+		-- no XP bar at all (another addon's, or none)
+		q.engine.levelTarget = 12
+		StatusTrackingBarManager, StatusTrackingBarInfo = nil, nil
+		q.step({ { t = "level", level = 12 } })
+		emit(mark(bar).shown)
+		-- the game's bar there, but the experience bar not shown
+		local hidden = q.xpBar(false)
+		q.step({ { t = "level", level = 12 } })
+		emit(mark(hidden).shown)
+		-- the maximum level
+		hidden:Show()
+		q.level, q.maxLevel, q.engine.levelTarget = 60, 60, 61
+		q.gainXP(0)
+		stub.runTimers()
+		emit(mark(hidden).shown)
+	`);
+	assert.deepEqual({ on, off, back, none, noBar, hiddenBar, maxed }, {
+		on: true, off: false, back: true, none: false, noBar: false, hiddenBar: false, maxed: false,
+	});
+});
+
+test('xp mark: on by default, on Quality of Life, Trackers, Experience', () => {
+	const [out] = run(`
+		local found
+		for _, spec in ipairs(Polestar.Widgets.OptionsRegistry) do
+			for _, c in ipairs(spec.controls) do
+				if c.key == "qol.xpTargetMark" then found = { page = spec.page, tab = spec.tab, section = spec.section } end
+			end
+		end
+		emit({ default = Polestar.GetDefault("qol.xpTargetMark"), where = found or "none" })
+	`);
+	assert.deepEqual(out, { default: true, where: { page: 'Quality of Life', tab: 'Trackers', section: 'Experience' } });
+});
+
 // ---------------------------------------------------------------------------
 // Merchant
 // ---------------------------------------------------------------------------
@@ -1184,6 +1286,31 @@ test('buying: goods sold in stacks are bought in whole stacks within the stack l
 	assert.equal(out[3], 0, 'nothing refused');
 	assert.deepEqual(out[4], ['2x2'], 'what 90c covers');
 	assert.equal(out[5], true);
+});
+
+test('buying: reads the merchant through C_MerchantFrame.GetItemInfo or GetMerchantItemInfo, whichever the client has, alike', () => {
+	// Forever has both; retail has only the table (RamosJoaquim, #153).
+	const visit = (client) => run(`${GOODS}
+		${client}
+		set("buyGoals", true)
+		q.money = 1000
+		q.goods[1].numAvailable = 6       -- stack size and stock
+		q.goods[2].extendedCost = true    -- another currency: left alone
+		q.step({
+			{ t = "buy", item = 22, count = 12 },
+			{ t = "buy", item = 20, count = 1 },
+			{ t = "buy", item = 23, count = 1 },  -- no itemName: the merchant's name
+		})
+		q.openMerchant()
+		stub.advance(1)
+		emit(bought())
+		emit(q.money)
+		emit(printed("Bought 1 Flagon of Mead for 80c"))
+	`);
+	const both = visit('');
+	assert.deepEqual(both, [['1x5', '3x1'], 895, true]);
+	assert.deepEqual(visit('GetMerchantItemInfo = nil'), both, 'retail: the table only');
+	assert.deepEqual(visit('C_MerchantFrame = nil'), both, 'without the table: GetMerchantItemInfo');
 });
 
 test('buying: selling greys pays for it first; goods for other currencies, Shift and the setting off buy nothing', () => {
@@ -2047,6 +2174,80 @@ test("flight: the mark names the destination node and bobs, unless motion is red
 	assert.equal(out[0][0], 'Sentinel Hill');
 	assert.ok(out[0][1] > 0 && out[0][2] > 0 && out[0][3], 'the arrow bobs and the ring ripples');
 	assert.deepEqual(out[1], [out[0][1], out[0][2], false], 'reduced motion plays neither loop and hides the ripple');
+});
+
+// ---------------------------------------------------------------------------
+// Binding at the guide's inn
+// ---------------------------------------------------------------------------
+
+// An innkeeper's gossip: the bind option (the binder icon, no text read) and
+// the vendor's. visit(npc) returns the option picked (0: none); confirm()
+// fires the bind confirmation Blizzard shows its popup for, and counts what
+// answered it (binder: the interaction type confirmed, 0: none).
+const INN = `
+local BIND = { gossipOptionID = 90, name = "Make this inn your home.", icon = 132052, orderIndex = 0 }
+local SHOP = { gossipOptionID = 91, name = "Let me browse your goods.", icon = 132060, orderIndex = 1 }
+local function visit(npc, opts)
+	q.calls = {}
+	q.openGossip(npc, opts or { options = { SHOP, BIND } })
+	return calls("SelectOption")[1] or 0
+end
+local function confirm()
+	q.calls = {}
+	q.showPopup("CONFIRM_BINDER"); stub.fire("CONFIRM_BINDER", "Goldshire"); stub.runTimers()
+	return { binder = calls("ConfirmationInteraction")[1] or 0, cleared = calls("ClearInteraction")[1] or 0, closed = #calls("StaticPopup_Hide") }
+end
+`;
+
+test("bind: at the step's innkeeper, picks the bind option and confirms the bind; off by default", () => {
+	const out = run(`${INN}
+		q.step({ { t = "sethome", location = "Goldshire", npc = 295 } })
+		emit({ picked = visit(295), answer = confirm(), watching = QoL.Watching("CONFIRM_BINDER") })
+		set("autoBind", true)
+		emit({ picked = visit(295), answer = confirm(), said = printed("Bound your Hearthstone to Goldshire"), watching = QoL.Watching("CONFIRM_BINDER") })
+		-- The icon as overrideIconID; the gossip already closed at the confirmation.
+		emit(visit(295, { options = { { gossipOptionID = 92, name = "?", icon = 0, overrideIconID = 132052, orderIndex = 0 } } }))
+		q.npc = nil
+		emit(confirm())
+		-- sethome nearest: any of its candidates.
+		q.step({ { t = "sethome", candidates = { { npc = 6790 }, { npc = 295 } } } })
+		emit(visit(6790))
+	`);
+	assert.deepEqual(out[0], { picked: 0, answer: { binder: 0, cleared: 0, closed: 0 }, watching: false }, 'off: nothing');
+	assert.deepEqual(out[1], { picked: 90, answer: { binder: 20, cleared: 20, closed: 1 }, said: true, watching: true });
+	assert.equal(out[2], 92);
+	assert.deepEqual(out[3], { binder: 20, cleared: 20, closed: 1 });
+	assert.equal(out[4], 90);
+});
+
+test('bind: nothing at another innkeeper, with Shift, with quests waiting, without an open sethome goal, or when bound there', () => {
+	const [r] = run(`${INN}
+		set("autoBind", true)
+		local r = {}
+		local function both(npc, opts) local picked = visit(npc, opts); return { picked = picked, binder = confirm().binder } end
+		q.step({ { t = "sethome", location = "Goldshire", npc = 295 } })
+		r.other = both(6790)
+		stub.keys.shift = true; r.shift = both(295); stub.keys.shift = false
+		-- Shift held only as the popup shows.
+		visit(295); stub.keys.shift = true; r.shiftAtConfirm = confirm().binder; stub.keys.shift = false
+		-- Quests to pick up or hand in go first; the player picking the bind
+		-- option themselves at the step's innkeeper is still confirmed.
+		r.quests = both(295, { options = { SHOP, BIND }, available = 1 })
+		r.turnin = visit(295, { options = { SHOP, BIND }, active = { { questID = 4, isComplete = true } } })
+		q.step({ { t = "sethome", location = "Goldshire", npc = 295, status = "done" } })
+		r.done = both(295)
+		q.step({ { t = "talk", npc = 295 } })
+		r.noGoal = both(295)
+		q.nav.boundInn = 295
+		q.step({ { t = "sethome", candidates = { { npc = 295 } } } })
+		r.bound = both(295)
+		emit(r)
+	`);
+	const none = { picked: 0, binder: 0 };
+	assert.deepEqual(r, {
+		other: none, shift: none, shiftAtConfirm: 0, quests: { picked: 0, binder: 20 }, turnin: 0,
+		done: none, noGoal: none, bound: none,
+	});
 });
 
 // ---------------------------------------------------------------------------

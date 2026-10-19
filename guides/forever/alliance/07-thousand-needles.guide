@@ -133,7 +133,7 @@ step Darkshire
 # ---------------------------------------------------------------- West
 
 step Abercrombie
-  tip Ride west along the road; the hermit's shack stands north-east of the Raven Hill Cemetery.
+  tip Head west along the road; the hermit's shack stands north-east of the Raven Hill Cemetery.
   accept 134
 
 step Plague Spreaders
@@ -158,7 +158,7 @@ step Defias Strongbox
   collect 5947 quest 1244 @23.9,72.1      -- Defias Docket
 
 step Vul'Gol Ogre Mound
-  tip Ride east to the ogre mound. Abercrombie's Crate sits in the camp at its entrance; Splinter Fist ogres guard it.
+  tip Head east to the ogre mound. Abercrombie's Crate sits in the camp at its entrance; Splinter Fist ogres guard it.
   collect 1349 quest 134 @33.4,76.3       -- Abercrombie's Crate
   accept 96138 optional                   -- Only if a Lost Watcher dropped Merrick's Bow: right-click it
   kill 212 x8 quest 96138.1 optional      -- Splinter Fist Warrior
@@ -247,12 +247,12 @@ step Dragonmaw camp
   collect 3337 quest 464                  -- Dragonmaw War Banner
 
 step Captain Stoutfist
-  tip Ride back west along the road to Menethil Harbor.
+  tip Head back west along the road to Menethil Harbor.
   turnin 464
   accept 98221                            -- From the Ashes: Nek'rosh's Gambit comes after it on Forever
 
 step Angerfang Encampment
-  tip Ride east again to the Dragonmaw camp. The four sets of Attack Plans lie in the Angerfang Encampment; Chieftain Nek'rosh, an elite, stands in the camp too.
+  tip Head east again to the Dragonmaw camp. The four sets of Attack Plans lie in the Angerfang Encampment; Chieftain Nek'rosh, an elite, stands in the camp too.
   complete 98221 @53.5,54.5
 
 # ---------------------------------------------------------------- Thousand Needles
