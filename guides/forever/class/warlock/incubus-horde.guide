@@ -44,10 +44,9 @@ why A second seducer demon, the male sayaad, and a soul shard bag to carry your 
 # replaced its second heart with Corma's Heart, which the data cannot place.
 # Lint warns that 1472, 65593 and 65597 are not offered once 1507 is taken:
 # that is the merge (the engine skips the version you did not take), kept
-# visible, not hidden. Avelina's Heart is not one of Hearts of the Lovers'
-# objectives in the data (only Isaac's Heart is), so lint warns on its
-# `quest 65593`; the tie is kept so the step is skipped with the Undercity
-# version when you took Gan'rul's.
+# visible, not hidden. Hearts of the Lovers lists Avelina's Heart first and
+# Isaac's Heart second (Forever's quest data; corrections.json 65593, #412):
+# each heart's goal reads its own line of the quest log.
 
 step Devourer of Souls (Orgrimmar)
   tip At 20 Gan'rul Bloodeye, in the Cleft of Shadow under the Valley of Strength, sends you to Cazul a few steps away. Two trainers offer the incubus, Gan'rul here and Carendin Halgar in the Undercity, and you can take only one: this guide follows whichever Devourer of Souls you took.
@@ -85,12 +84,12 @@ step Devourer of Souls (Undercity)
 step Avelina Lilly
   zone Silverpine Forest
   tip Avelina Lilly works as a tailor for the Dalaran wizards at Ambermill, in eastern Silverpine Forest. Take her heart.
-  collect 190179 quest 65593          -- Avelina's Heart
+  collect 190179 quest 65593.1        -- Avelina's Heart
 
 step Isaac Pearson
   zone The Barrens
   tip Isaac Pearson works in Ratchet, on the Barrens coast. Take the zeppelin to Durotar and walk or fly on to Ratchet.
-  collect 190180 quest 65593.1        -- Isaac's Heart
+  collect 190180 quest 65593.2        -- Isaac's Heart
 
 step The Binding (Undercity)
   zone Undercity

@@ -16,7 +16,9 @@ next forever/alliance/02-westfall
 # Goldshire -> the east: the Tower of Azora, the bridge, Brackwell, Eastvale,
 # Stone Cairn Lake, the gnoll camps and the Jasperlode Mine -> Goldshire ->
 # the farms and Westbrook -> hearth to Goldshire -> the east again -> the
-# road west to Sentinel Hill in Westfall (flight path).
+# road west: Deputy Rainer at the Westbrook Garrison (Report to Gryan
+# Stoutmantle, 109), then into Westfall (02-westfall takes the farms on the
+# way down and the Sentinel Hill flight path, #416).
 #
 # Optional extras: The Big Picture (91752, Shinyfinder Narf is elite) and
 # what follows it: Follow That Kobold! (91758), Shhh! We're Hunting Kobolds
@@ -620,7 +622,7 @@ step Gazin Tenorm
 
 # ---------------------------------------------------------------- To Westfall
 
-step Sentinel Hill
-  zone Westfall
-  tip Follow the road west past Westbrook into Westfall, then south along it to Sentinel Hill. Thor, the gryphon master, stands on the hill.
-  getfp "Sentinel Hill"
+step Westbrook Garrison
+  zone Elwynn Forest
+  tip Follow the road west to the Westbrook Garrison, on the way into Westfall. Deputy Rainer stands outside the barracks.
+  accept 109 npc 963                          -- Deputy Rainer: for Gryan Stoutmantle at Sentinel Hill

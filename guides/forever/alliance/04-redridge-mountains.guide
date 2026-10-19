@@ -12,8 +12,15 @@ next forever/alliance/05-duskwood
 # Flow: Stormwind (training) -> Elwynn road -> Three Corners -> Lakeridge
 # Highway (flight path) -> Lakeshire (hearth, every quest giver) -> the
 # sunken chest -> the gnoll hills toward Three Corners, Bellygrub -> Deputy
-# Feldon -> Lakeshire -> the lake murlocs, Alther's Mill, Galardell Valley ->
-# hearth -> Render's Valley and Keeshan -> Lakeshire -> Duskwood.
+# Feldon -> Lakeshire -> the lake murlocs, Alther's Mill, Galardell Valley,
+# the Blackrock camps south of it -> hearth -> Render's Valley and Keeshan ->
+# Lakeshire -> Duskwood.
+#
+# The Battleworn Axes (20) come from the Blackrock camps at the south end of
+# Galardell Valley, east of Stonewatch Keep (about 66-74, 63-86): some 40
+# Renegade, Grunt and Outrunner spawns, against about ten east of Alther's
+# Mill, which Tazul found too few and too slow to respawn (#340). The keep's
+# Sentries and Shadowcasters are elite: the camps lie east of them.
 #
 # Deviations from the export:
 # - The simulator took Lakeshire's quests in two batches (20.5 and 21.5) and
@@ -166,15 +173,18 @@ step Lake murlocs
   collect 1468 quest 150                      -- Murloc Fin
 
 step Alther's Mill
-  tip Greater Tarantulas crawl on the slopes around the mill north-east of the lake; Blackrock Renegades hold the mill itself.
+  tip Greater Tarantulas crawl on the slopes around the mill north-east of the lake.
   kill 505 quest 98386                        -- Greater Tarantula
   collect 1081 quest 92                       -- Crisp Spider Meat
-  collect 3014 quest 20 @55.9,43.6 live       -- Battleworn Axe: the Blackrock Renegades at the mill
 
 step Galardell Valley
   tip East past the mill and across the river. Shadowhide gnolls fill the valley; Lieutenant Fangore (26, well above you) leads them at its north end: clear his escort first and fight him at full health. Stay out of Stonewatch Keep to the south: its orcs are elite.
   collect 1075 quest 91                       -- Shadowhide Pendant: any Shadowhide gnoll
   collect 3632 quest 180                      -- Lieutenant Fangore
+
+step Blackrock camps
+  tip South down the valley's east side to the Blackrock camps east of Stonewatch Keep. Renegades, Grunts and Outrunners fill them; keep east of the keep, whose orcs are elite.
+  collect 3014 quest 20 @71.0,70.5 live       -- Battleworn Axe
 
 step Back to Lakeshire
   hearth "Lakeshire"
