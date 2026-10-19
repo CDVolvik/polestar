@@ -174,7 +174,6 @@ t.guides["forever/alliance/04-redridge-mountains"] = (function() return {
 		["Lake murlocs"] = "Múrlocs del lago",
 		["Level 18 and 20 spells"] = "Hechizos de nivel 18 y 20",
 		["Murloc Flesheaters and Tidecallers line the south shore east of the bridge. Any of them can carry a {item:1467} or a fin."] = "Los Comecarnes múrloc y los llamamareas ocupan la orilla sur al este del puente. Cualquiera de ellos puede llevar un {item:1467} o una aleta.",
-		["Redridge Mongrels and other gnolls hold the hills east of {area:1002}, north of the road; Redridge Thrashers prowl among them, Poachers camp south of the road. Dire Condors and Great Goretusks roam the same hills."] = "Los Bastardos de Crestagrana y otros gnols ocupan las colinas al este de {area:1002}, al norte del camino; los Vándalos de Crestagrana merodean entre ellos y los furtivos acampan al sur del camino. Dire Condors y Grandes dentosangre recorren las mismas colinas.",
 		["Shaman training"] = "Entrenamiento de chamán",
 		["Swim east from the bridge into {area:68}; the chest lies on the lake bed."] = "Nada al este desde el puente hasta {area:68}; el cofre está en el fondo del lago.",
 		["The Wanted poster by the inn: {npc:703}, in {area:1000}"] = "El cartel de Se busca junto a la posada: {npc:703}, en {area:1000}",
