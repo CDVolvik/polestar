@@ -40,6 +40,7 @@ function loadCodex() {
 	walk(codex.npcs);
 	walk(codex.objects);
 	walk(codex.instances);
+	walk(codex.quests);
 	for (const q of Object.values(codex.quests)) q.zone = moved(q.zone);
 	codex.frames = Object.fromEntries(Object.keys(codex.frames).map((id) => [moved(Number(id)), era[moved(Number(id))]]));
 	codex.zones = Object.fromEntries(Object.values(codex.zones).map((z) => [moved(z.id), { id: moved(z.id), name: z.name }]));
@@ -130,6 +131,27 @@ test('a quest reward: every prerequisite, one of the any-of ones this character 
 		{ title: 'Alliance Errand', goals: 'accept turnin' },
 		{ title: "The Saddler's Request", goals: 'accept interact complete turnin collect' },
 	], { setup: 'w.complete({ 7001 })' });
+});
+
+test('an event objective (explore, report) is placed where the data puts it, not at the giver (#515)', () => {
+	const [goal] = runAddon({
+		stubs: ['stub_world.lua'],
+		before: `${pack.stubLua}
+local w = stub.world
+${MAPS}
+w.level = 20
+w.moveTo(${HOME}, 50, 50)`,
+		addons: ['Polestar'],
+		script: `
+stub.login()
+local id = Polestar.Lookup.Guide("item", 8001)
+for _, s in ipairs(Polestar.Guides.Get(id).steps) do
+	for _, g in ipairs(s.goals) do
+		if g.t == "complete" and g.quest == 7002 then emit({ map = g.map or false, x = g.x or false, y = g.y or false, f = g.f or false }) end
+	end
+end`,
+	}).emitted;
+	assert.deepEqual(goal, { map: codex.quests[7002].objectives[1].map, x: 66, y: 40, f: 'e' });
 });
 
 test('a craft: learn the profession at its trainer, skill up, learn the recipe, craft', () => {
