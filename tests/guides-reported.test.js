@@ -87,6 +87,23 @@ test(`${DUROTAR}: Tom's report: Cutting Teeth is turned in and Sting of the Scor
 	for (const q of [789, 4402]) assert.ok(at(list, `the objective of ${q}`, (g) => g.t === 'collect' && g.quest === q) < back, `${q}'s objective is done before the Den`);
 });
 
+// --- Durotar (tor, #352): Securing the Lines is a level 11 quest, so Rezlak
+// and Thunder Ridge come after the south loop, with Fizzle Darkstorm.
+
+test(`${DUROTAR}: tor's report: Securing the Lines is taken after the Sen'jin, Echo Isles and Kolkar Crag turn-ins, on Fizzle Darkstorm's visit`, { skip }, () => {
+	const list = goals(DUROTAR);
+	const securing = at(list, 'accept 835 (Securing the Lines)', is('accept', 835));
+	// 835 is level 11 against level 9-10 mobs: the south's level 8 quests are
+	// handed in before it is taken, not left waiting for 11.
+	for (const q of [817, 818, 826, 808, 786]) {
+		assert.ok(at(list, `turnin ${q}`, is('turnin', q)) < securing, `${q} is handed in before Securing the Lines is taken`);
+	}
+	// Rezlak's pair rides along with Fizzle Darkstorm (806) on the same ridge:
+	// taken after 806 is accepted, done before it is handed in.
+	assert.ok(at(list, 'accept 806 (Fizzle Darkstorm)', is('accept', 806)) < at(list, 'accept 834 (Rezlak)', is('accept', 834)), '834 is taken after 806');
+	assert.ok(at(list, 'turnin 835', is('turnin', 835)) < at(list, 'turnin 806', is('turnin', 806)), '835 is done before 806 is handed in');
+});
+
 // --- Caves (Tom): the arrow leads to a cave's mouth before anyone inside it.
 
 // The Den: Kzan Thornslash stands at the back of the cave, behind Gornek just inside it.
