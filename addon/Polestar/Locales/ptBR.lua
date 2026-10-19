@@ -103,6 +103,7 @@ L["Collect %s from %s"] = "Coletar %s de %s"
 L["Riding"] = "Montaria"
 L["Grey, kept: opens %s"] = "Cinza, mantida: libera %s"
 -- L["level and share of it: %d (%d%%)"] = ""
+-- L["Have at least"] = ""
 
 -- Core/Closes.lua
 L["Taking %s closes %s for good."] = "Pegar %s fecha %s para sempre."
@@ -834,6 +835,8 @@ L["Kill %d %s"] = "Matar %d %s"
 L["Collect %s"] = "Coletar %s"
 L["Collect %d %s"] = "Coletar %d %s"
 L["Use %s"] = "Usar %s"
+-- L["Leveling guides take you through this dungeon where they have steps for it. Off: they keep to the solo route."] = ""
+-- L["Dungeons in leveling guides"] = ""
 
 -- Dungeons/Pickup.lua
 L["Quest giver"] = "Recrutador de missões"

@@ -98,6 +98,7 @@ L["Complete"] = "Abschließen"
 L["Riding"] = "Reiten"
 L["Grey, kept: opens %s"] = "Grau, behalten: öffnet %s"
 L["level and share of it: %d (%d%%)"] = "Stufe und Anteil: %d (%d%%)"
+-- L["Have at least"] = ""
 
 -- Core/Guides.lua
 L["Needs Polestar %s or newer."] = "Benötigt Polestar %s oder neuer."
@@ -2142,6 +2143,8 @@ L["Kill %d %s"] = "Töte %d %s"
 L["Collect %s"] = "Sammle %s"
 L["Collect %d %s"] = "Sammle %d %s"
 L["Use %s"] = "Benutze %s"
+-- L["Leveling guides take you through this dungeon where they have steps for it. Off: they keep to the solo route."] = ""
+-- L["Dungeons in leveling guides"] = ""
 
 -- Dungeons/Attune.lua
 L["Lets Lothos Riftwaker in Blackrock Mountain send you to the Molten Core; without it, walk in through Blackrock Depths."] = "Lässt dich Lothos Riftwaker im Blackrock zum Geschmolzenen Kern schicken; ohne ihn läufst du durch die Blackrocktiefen hinein."

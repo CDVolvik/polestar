@@ -103,6 +103,7 @@ L["Collect %s from %s"] = "Собрать %s с %s"
 L["Riding"] = "Верховая езда"
 L["Grey, kept: opens %s"] = "Серое, оставлено: открывает %s"
 -- L["level and share of it: %d (%d%%)"] = ""
+-- L["Have at least"] = ""
 
 -- Core/Closes.lua
 L["Taking %s closes %s for good."] = "Взяв %s, вы навсегда закроете %s."
@@ -834,6 +835,8 @@ L["Kill %d %s"] = "Убить: %2$s (%1$d)"
 L["Collect %s"] = "Собрать: %s"
 L["Collect %d %s"] = "Собрать: %2$s (%1$d)"
 L["Use %s"] = "Использовать: %s"
+-- L["Leveling guides take you through this dungeon where they have steps for it. Off: they keep to the solo route."] = ""
+-- L["Dungeons in leveling guides"] = ""
 
 -- Dungeons/Pickup.lua
 L["Quest giver"] = "Дающий задание"

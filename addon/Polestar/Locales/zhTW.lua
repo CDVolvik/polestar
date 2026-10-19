@@ -103,6 +103,7 @@ L["Collect %s from %s"] = "從 %s 收集 %s"
 L["Riding"] = "騎術"
 L["Grey, kept: opens %s"] = "灰色，保留：開啟%s"
 -- L["level and share of it: %d (%d%%)"] = ""
+-- L["Have at least"] = ""
 
 -- Core/Closes.lua
 L["Taking %s closes %s for good."] = "接受 %s 將永久關閉 %s。"
@@ -834,6 +835,8 @@ L["Kill %d %s"] = "擊殺 %d 個%s"
 L["Collect %s"] = "收集%s"
 L["Collect %d %s"] = "收集 %d 個%s"
 L["Use %s"] = "使用%s"
+-- L["Leveling guides take you through this dungeon where they have steps for it. Off: they keep to the solo route."] = ""
+-- L["Dungeons in leveling guides"] = ""
 
 -- Dungeons/Pickup.lua
 L["Quest giver"] = "任務給予者"

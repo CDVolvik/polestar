@@ -103,6 +103,7 @@ L["Collect %s from %s"] = "%s 수집 (출처: %s)"
 L["Riding"] = "탈것 숙련"
 L["Grey, kept: opens %s"] = "회색, 유지됨: %s 퀘스트를 엽니다"
 -- L["level and share of it: %d (%d%%)"] = ""
+-- L["Have at least"] = ""
 
 -- Core/Closes.lua
 L["Taking %s closes %s for good."] = "%s 퀘스트를 받으면 %s 퀘스트는 영영 받을 수 없습니다."
@@ -834,6 +835,8 @@ L["Kill %d %s"] = "%d %s 처치"
 L["Collect %s"] = "%s 수집"
 L["Collect %d %s"] = "%d %s 수집"
 L["Use %s"] = "%s 사용"
+-- L["Leveling guides take you through this dungeon where they have steps for it. Off: they keep to the solo route."] = ""
+-- L["Dungeons in leveling guides"] = ""
 
 -- Dungeons/Pickup.lua
 L["Quest giver"] = "퀘스트 제공자"

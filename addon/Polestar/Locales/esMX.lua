@@ -107,6 +107,7 @@ L["Collect %s from %s"] = "Consigue %s de %s"
 L["Riding"] = "Equitación"
 L["Grey, kept: opens %s"] = "Gris, se mantiene: abre %s"
 -- L["level and share of it: %d (%d%%)"] = ""
+-- L["Have at least"] = ""
 
 -- Core/Guides.lua
 L["Needs Polestar %s or newer."] = "Requiere Polestar %s o posterior."
@@ -183,6 +184,8 @@ L["Kill %d %s"] = "Mata a %d %s"
 L["Collect %s"] = "Consigue %s"
 L["Collect %d %s"] = "Consigue %d %s"
 L["Use %s"] = "Usa %s"
+-- L["Leveling guides take you through this dungeon where they have steps for it. Off: they keep to the solo route."] = ""
+-- L["Dungeons in leveling guides"] = ""
 
 -- Dungeons/Handin.lua
 L["Not finished yet: %s"] = "Aún sin terminar: %s"
