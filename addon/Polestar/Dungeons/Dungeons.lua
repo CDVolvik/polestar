@@ -55,7 +55,8 @@
 --   Dungeons/Handin.lua. Attunements and keys (AttunementState, AttuneGuide,
 --   Attune): Dungeons/Attune.lua. What the quests are worth in levels
 --   (QuestXP): Dungeons/XP.lua.
--- Settings: dungeons.enabled. Command: /polestar dungeons [name].
+-- Settings: dungeons.enabled; per character, the dungeons run in leveling
+-- guides (Dungeons.ROUTE, Engine.ChooseDungeon). Command: /polestar dungeons [name].
 
 local ADDON, ns = ...
 local L = ns.L
@@ -398,5 +399,31 @@ if ns.RegisterOptions then
 				help = L["A page per dungeon and raid: every quest with where to get it, its chain and rewards, the bosses and the entrance."] },
 		},
 	})
+	if not ok and geterrorhandler then geterrorhandler()(err) end
+
+	-- The dungeons a leveling guide's `when dungeon` steps can be for, one
+	-- toggle each, all off: the solo route is the default. The Classic
+	-- dungeons of the Codex's instances (tools/lib/codex/entrances.json), by
+	-- level, as Map id and English name; the name shows in the client's
+	-- language when it has one (Names.Instance). The choice is per character
+	-- (Engine.ChooseDungeon).
+	local ROUTE = {
+		{ 389, "Ragefire Chasm" }, { 43, "Wailing Caverns" }, { 36, "The Deadmines" }, { 33, "Shadowfang Keep" },
+		{ 48, "Blackfathom Deeps" }, { 34, "The Stockade" }, { 90, "Gnomeregan" }, { 47, "Razorfen Kraul" },
+		{ 189, "Scarlet Monastery" }, { 129, "Razorfen Downs" }, { 70, "Uldaman" }, { 209, "Zul'Farrak" },
+		{ 349, "Maraudon" }, { 109, "Sunken Temple" }, { 230, "Blackrock Depths" }, { 229, "Blackrock Spire" },
+		{ 429, "Dire Maul" }, { 289, "Scholomance" }, { 329, "Stratholme" },
+	}
+	Dungeons.ROUTE = ROUTE
+	local controls = {}
+	for _, d in ipairs(ROUTE) do
+		local map, name = d[1], d[2]
+		controls[#controls + 1] = { kind = "toggle",
+			label = function() return ns.Names and ns.Names.Instance and ns.Names.Instance(map) or name end,
+			help = L["Leveling guides take you through this dungeon where they have steps for it. Off: they keep to the solo route."],
+			get = function() local E = ns.Engine; return E and E.DungeonChosen and E.DungeonChosen(map) or false end,
+			set = function(on) local E = ns.Engine; if E and E.ChooseDungeon then E.ChooseDungeon(map, on) end end }
+	end
+	ok, err = ns.RegisterOptions({ page = L["Discovery"], tab = L["Dungeons"], section = L["Dungeons in leveling guides"], controls = controls })
 	if not ok and geterrorhandler then geterrorhandler()(err) end
 end

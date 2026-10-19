@@ -564,6 +564,12 @@ function Engine.GetProgress()
 	return done, total
 end
 function Engine.ResetProgress() record("ResetProgress") end
+-- The dungeons run in leveling guides, per character (CharState().dungeons).
+function Engine.DungeonChosen(map) return Polestar.CharState().dungeons[map] == true end
+function Engine.ChooseDungeon(map, on)
+	record("ChooseDungeon", map, on)
+	Polestar.CharState().dungeons[map] = on and true or nil
+end
 -- Candidate goals: the next-best trainer/vendor/inn.
 function Engine.CycleCandidate(s, g)
 	record("CycleCandidate", s, g)

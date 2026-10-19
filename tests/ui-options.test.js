@@ -751,3 +751,46 @@ test('Guide, Window: In dungeons keeps the window or hides it in dungeons and ra
 		emit({ label = row.Label:GetText(), before = before, choices = choices, picked = picked, reset = Polestar.Get("ui.instance") })`);
 	assert.deepEqual(out, { label: 'In dungeons', before: 'Keep visible', choices: ['Keep visible', 'Hide'], picked: 'hide', reset: 'show' });
 });
+
+// Discovery, Dungeons: which dungeons the leveling guides' `when dungeon`
+// steps take this character through (Dungeons/Dungeons.lua, Engine.ChooseDungeon).
+test('Discovery, Dungeons: a toggle per Classic dungeon for leveling guides, all off, chosen per character in the client\'s language', () => {
+	const [out] = runAddon({
+		stubs: ['stub_ui.lua'],
+		addons: [{ name: 'Polestar', files: ['Core/Core.xml', 'Theme/Theme.xml', 'Dungeons/Dungeons.xml', 'UI/UI.xml'] }],
+		script: `uistub.install()\nstub.login()\n${HELPERS}\nlocal UI, O, E = Polestar.UI, Polestar.UI.Options, Polestar.Engine
+		Polestar.Names.Instance = function(id) if id == 389 then return "Огненная пропасть" end end
+		UI.ShowOptions("dungeons")
+		local c = O.Controls("discovery", "Dungeons")
+		local labels, on = {}, 0
+		for _, d in ipairs(Polestar.Dungeons.ROUTE) do
+			local row = c[d[1] == 389 and "Огненная пропасть" or d[2]]
+			labels[#labels + 1] = row and row.Label:GetText() or ("missing " .. d[2])
+			if row and row.checked then on = on + 1 end
+		end
+		local rfc, dm = c["Огненная пропасть"], c["The Deadmines"]
+		rfc:Click()
+		dm:Click()
+		local saved = {}
+		for k, v in pairs(PolestarCharDB.dungeons) do saved[k] = v end
+		local clicked = { rfc = rfc.checked, chosen = E.DungeonChosen(389), dm = E.DungeonChosen(36), saved = saved }
+		local account = PolestarDB.settings.dungeons or false
+		dm:Click("RightButton")
+		local right = { dm = dm.checked, chosen = E.DungeonChosen(36) }
+		local _, found = O.Search("Огненная")
+		local b = footerButton("Reset page")
+		b:Click(); b:Click()
+		emit({ title = PolestarOptions.Title:GetText(), labels = labels, on = on, clicked = clicked, right = right, found = found,
+			reset = { rfc = rfc.checked, chosen = E.DungeonChosen(389), saved = PolestarCharDB.dungeons },
+			account = account })`,
+	}).emitted;
+	assert.equal(out.title, 'Discovery');
+	assert.deepEqual(out.labels, ['Огненная пропасть', 'Wailing Caverns', 'The Deadmines', 'Shadowfang Keep', 'Blackfathom Deeps', 'The Stockade', 'Gnomeregan', 'Razorfen Kraul',
+		'Scarlet Monastery', 'Razorfen Downs', 'Uldaman', "Zul'Farrak", 'Maraudon', 'Sunken Temple', 'Blackrock Depths', 'Blackrock Spire', 'Dire Maul', 'Scholomance', 'Stratholme']);
+	assert.equal(out.on, 0, 'every dungeon is off by default: the solo route');
+	assert.deepEqual(out.clicked, { rfc: true, chosen: true, dm: true, saved: { 389: true, 36: true } });
+	assert.deepEqual(out.right, { dm: false, chosen: false }, 'right-click puts it back to off');
+	assert.equal(out.found, 1, 'search finds the dungeon by the name it shows');
+	assert.deepEqual(out.reset, { rfc: false, chosen: false, saved: {} }, 'Reset page turns the choices off too');
+	assert.equal(out.account, false, 'the choice is per character, never an account setting');
+});

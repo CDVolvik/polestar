@@ -3644,7 +3644,15 @@ Polestar.RegisterOptions({
 ```
 
 Controls read and write `Polestar.Get/Set`; `disabled = function() return bool end` is optional;
-registered labels and help are searchable. Pages sort by `order`; Recorder and
+registered labels and help are searchable. A `label` may be a function, asked
+when the control is drawn or searched (a name in the client's language that
+is not loaded at registration, `Names.Instance`). A toggle with `get()` and
+`set(on)` and no `key` holds state that is no setting (per character): it
+reads and writes through them, right-click and Reset page call `set(nil)`.
+Discovery → Dungeons → "Dungeons in leveling guides" is one: a toggle per
+Classic dungeon (`Dungeons.ROUTE`, Map id and English name, from the Codex's
+instances), all off, writing `Engine.ChooseDungeon`. Registered toggles are
+fixed, so the list is not built from the dungeons the loaded guides name. Pages sort by `order`; Recorder and
 About always close the list. A page or tab with no available control is left
 out of the sidebar and tab row. Every row resets to its default on right-click.
 
