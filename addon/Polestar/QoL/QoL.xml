@@ -15,5 +15,6 @@
 	<Script file="Death.lua"/>
 	<Script file="Toggles.lua"/>
 	<Script file="Social.lua"/>
+	<Script file="Riding.lua"/>
 	<Script file="Options.lua"/>
 </Ui>
