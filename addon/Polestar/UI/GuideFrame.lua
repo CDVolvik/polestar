@@ -2068,20 +2068,6 @@ end
 -- Menu
 ---------------------------------------------------------------------------
 
--- The menu's "Do every step": a leveling guide leaves out grey quests and,
--- when it catches up, what is too low behind the player; ticked, it does
--- them all (Engine.SetEveryStep, per character). Ticked and off for a guide
--- that already does every step (not a leveling guide, or its author's).
-function GF.EveryStepItem(E, guide)
-	local on, mine = false, false
-	if guide and E.GetEveryStep then on, mine = E.GetEveryStep(guide.id) end
-	return {
-		text = L["Do every step"], icon = "icon-complete", checked = on and true or false, disabled = not mine,
-		tip = L["Grey quests and the quests behind where you are in the guide too."],
-		onClick = function() E.SetEveryStep(guide.id, not on) end,
-	}
-end
-
 local function openMenu(button)
 	if W.MenuShown(button) then return W.HideMenu() end
 	local E = Engine()
@@ -2091,7 +2077,6 @@ local function openMenu(button)
 		{ text = L["Choose guide"], icon = "search", onClick = function() UI.ShowPicker() end },
 		{ text = L["Open in new tab"], icon = "plus", disabled = not (E and E.OpenTab), onClick = function() UI.ShowPicker({ newTab = true }) end },
 		{ text = L["Skip this step"], icon = "skip", disabled = not hasGuide, onClick = function() GF.SkipStep() end },
-		GF.EveryStepItem(E, hasGuide),
 		{ text = L["Report a problem"], icon = "bug", onClick = function() UI.ShowReport() end },
 		{ separator = true },
 		{ text = L["Compact mode"], icon = "compact", checked = compact(), onClick = function() ns.Set("ui.compact", not compact()) end },
@@ -2630,14 +2615,17 @@ ns.On("STEP_SKIPPED", function(_, to, skips)
 	end)
 end)
 
--- The catch-up (GUIDE_PLACED): once a guide is placed, the window goes over
--- the steps before the one it resumes at, each shown in full (the card, the
--- journey, what follows) one after another faster and faster, then the step
--- placed. Guides passed whole go by first, by title. It plays whenever a
--- guide is placed (game launch, /reload, a guide opened), from step 1. Not
+-- The catch-up (GUIDE_PLACED): once a guide just opened is placed, the
+-- window goes over the steps before the one it resumes at, each shown in
+-- full (the card, the journey, what follows) one after another faster and
+-- faster, then the step placed. Guides passed whole go by first, by title.
+-- It plays when a guide is opened (by the player, the login's pick, a guide
+-- chained to), from step 1; a guide a login or /reload brings back is placed
+-- without it (the Engine fires GUIDE_PLACED for opened guides only). Not
 -- with reduced motion, the window hidden, or a single step to go over. A
--- guide placed before the world is entered waits for it. Only the window moves: the Engine's step, the arrow and the
--- automation stay on the step placed.
+-- guide placed before the world is entered waits for it. Only the window
+-- moves: the Engine's step, the arrow and the automation stay on the step
+-- placed.
 local CATCH_GUIDE = 0.35 -- seconds per guide passed whole (at most 1.2 in all)
 GF.catchUpState = { entered = false }
 

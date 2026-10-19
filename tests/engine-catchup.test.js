@@ -1,12 +1,12 @@
 'use strict';
-// The catch-up: a character who already did part of the route opens a
-// leveling guide and it resumes where they are, as placement does, leaving
-// out what is too low to be worth it: grey quests anywhere, green ones behind
-// the last quest progress, the way to them, and a whole guide they are past
-// (it chains to the next one). A low quest a later quest worth doing needs is
-// kept. Guides that are not leveling ones, a guide whose author says
-// `skip none`, and a guide the player sets to every step do every step.
-// Real Core manifest, stub world.
+// The catch-up, with "Skip grey quests" on (off by default): a character who
+// already did part of the route opens a leveling guide and it resumes where
+// they are, as placement does, leaving out what is too low to be worth it:
+// grey quests anywhere, green ones behind the last quest progress, the way to
+// them, and a whole guide they are past (opened for them, it chains to the
+// next one; opened by them, it stays). A low quest a later quest worth doing
+// needs is kept. Guides that are not leveling ones do every step. Real Core
+// manifest, stub world.
 
 const { test } = require('node:test');
 const assert = require('node:assert/strict');
@@ -53,7 +53,16 @@ Polestar.RegisterGuide({ id = "test/mid", pack = "test", title = "Mid", faction 
 } })
 `;
 
-function run({ before = '', guides = GUIDES, saved, script }) {
+// Saved variables with "Skip grey quests" on (plus `extra` behaviour
+// settings) and the character's own (`db`, none by default).
+function catchUpOn(extra = '', db = 'PolestarCharDB = nil') {
+	return { Polestar: `PolestarDB = { schema = 1, settings = { behavior = { skipGrey = true${extra} } } }; ${db}` };
+}
+const ON = catchUpOn();
+// No guide picked at login: Start guide opens one for the player.
+const PICK_OFF = catchUpOn(', autoSelectGuide = false');
+
+function run({ before = '', guides = GUIDES, saved = ON, script }) {
 	return runAddon({
 		stubs: ['stub_world.lua'],
 		before: WORLD + before,
@@ -89,11 +98,12 @@ const STATUSES = `
 	end
 `;
 
-test('a level-20 character opening a grey guide is taken through it to the next, and resumes at the grey quest a yellow one needs', () => {
+test('a level-20 character given a grey guide is taken through it to the next, and resumes at the grey quest a yellow one needs', () => {
 	const [out] = run({
 		before: DONE,
+		saved: PICK_OFF,
 		script: `${STATUSES}
-			E.SetGuide("test/low"); flush()
+			E.StartGuide(); flush()
 			emit({ guide = E.GetGuide().id, at = E.GetStepIndex(), placed = PLACED[#PLACED], statuses = statuses() })
 		`,
 	});
@@ -118,7 +128,9 @@ test('a low quest in the log goes while it is not done, and stays once it only h
 		} })
 	` + GUIDES;
 	const night = 'stub.world.onQuest(57, { { required = 15, fulfilled = 1 } })';
-	const script = 'E.SetGuide("test/dusk"); flush(); emit({ guide = E.GetGuide().id, at = E.GetStepIndex() })';
+	// Opened for the player (as Start guide does, in place of the login's
+	// pick), so a guide passed whole chains on.
+	const script = 'E.SetGuide(nil); E.OpenTab("test/dusk", true, true); flush(); emit({ guide = E.GetGuide().id, at = E.GetStepIndex() })';
 	const [notDone] = run({
 		before: `stub.world.level = 30
 			stub.world.onQuest(156, { { type = "item", required = 8, fulfilled = 0 } })
@@ -146,31 +158,6 @@ test('without "Skip grey quests" the guide is placed as before: the first quest 
 	assert.deepEqual(out, { guide: 'test/low', at: 3 }, 'the trip to the farm is behind a quest turned in');
 });
 
-test('a leveling guide set to every step, by its player or by its author, keeps its grey quests and what lies behind', () => {
-	const [mine] = run({
-		before: DONE,
-		script: `
-			E.SetGuide("test/mid"); flush()
-			local caught = E.GetStepIndex()
-			local before = { E.GetEveryStep("test/mid") }
-			E.SetEveryStep("test/mid", true); flush()
-			local all = E.GetStepIndex()
-			E.SetEveryStep("test/mid", false); flush()
-			emit({ caught = caught, before = before, all = all, again = E.GetStepIndex(), saved = PolestarCharDB.everyStep or false })
-		`,
-	});
-	// Every step: back to the green quest behind (the trip before it was already passed).
-	assert.deepEqual(mine, { caught: 5, before: [false, true], all: 2, again: 5, saved: false });
-
-	const author = GUIDES.replace('title = "Mid",', 'title = "Mid", everyStep = true,');
-	const [theirs] = run({
-		before: DONE,
-		guides: author,
-		script: 'E.SetGuide("test/mid"); flush(); emit({ at = E.GetStepIndex(), every = { E.GetEveryStep("test/mid") }, set = E.SetEveryStep("test/mid", false) })',
-	});
-	assert.deepEqual(theirs, { at: 2, every: [true, false], set: false });
-});
-
 test('a guide that is not a leveling one does every step: an item guide keeps its quests grey or not', () => {
 	const item = `
 		Polestar.RegisterGuide({ id = "test/bag", pack = "test", title = "Bag", category = "Collectibles", minLevel = 14, maxLevel = 60, steps = {
@@ -183,10 +170,10 @@ test('a guide that is not a leveling one does every step: an item guide keeps it
 		guides: item,
 		script: `${STATUSES}
 			E.SetGuide("test/bag"); flush()
-			emit({ at = E.GetStepIndex(), statuses = statuses(), every = { E.GetEveryStep("test/bag") } })
+			emit({ at = E.GetStepIndex(), statuses = statuses() })
 		`,
 	});
-	assert.deepEqual(out, { at: 1, statuses: ['active', 'pending', 'pending'], every: [true, false] });
+	assert.deepEqual(out, { at: 1, statuses: ['active', 'pending', 'pending'] });
 });
 
 test('a quest left out comes back when the player takes it by hand, and a level the guide waits for keeps it from passing whole', () => {
@@ -212,13 +199,13 @@ test('a quest left out comes back when the player takes it by hand, and a level 
 	assert.equal(held, 'test/low');
 });
 
-test('a reload places the guide again at the same step; with nothing behind the player, the guide is placed as before', () => {
+test('a reload places the saved guide again at the same step, without a catch-up to play; with nothing behind the player, the guide is placed as before', () => {
 	const [reload] = run({
 		before: DONE,
-		saved: { Polestar: 'PolestarCharDB = { schema = 1, tabs = { "test/mid" }, activeTab = 1 }' },
-		script: 'emit({ at = E.GetStepIndex(), placed = PLACED[#PLACED] })',
+		saved: catchUpOn('', 'PolestarCharDB = { schema = 1, tabs = { "test/mid" }, activeTab = 1 }'),
+		script: 'emit({ at = E.GetStepIndex(), placed = #PLACED })',
 	});
-	assert.deepEqual(reload, { at: 5, placed: { id: 'test/mid', step: 5, chain: '' } });
+	assert.deepEqual(reload, { at: 5, placed: 0 }, 'GUIDE_PLACED is for a guide just opened');
 
 	const [fresh] = run({
 		script: 'E.SetGuide("test/mid"); flush(); emit(E.GetStepIndex())',
@@ -231,7 +218,7 @@ test('a reload places the guide again at the same step; with nothing behind the 
 test('with no guide open at login, the catch-up starts from the first guide and goes through to where the character is', () => {
 	const [out] = run({
 		before: DONE,
-		saved: { Polestar: 'PolestarCharDB = nil' },
+		saved: ON,
 		script: 'emit({ guide = E.GetGuide().id, at = E.GetStepIndex(), placed = PLACED[#PLACED], first = Polestar.Guides.FirstGuide(), suggest = Polestar.Guides.Suggest(), start = E.StartingGuide() })',
 	});
 	// The guide window's and the welcome's Start guide open E.StartingGuide() too.
@@ -264,24 +251,30 @@ test('in a guide the character is past, a low chain stays only when three quests
 		} })
 	`;
 	const script = `${STATUSES}
-		E.SetGuide("test/dark"); flush()
+		E.SetGuide(nil); E.OpenTab("test/dark", true, true); flush()
 		emit({ guide = E.GetGuide().id, at = E.GetStepIndex() or false, statuses = E.GetGuide().id == "test/dark" and statuses() or false })`;
-	const [three] = run({ guides: guides(true), saved: { Polestar: 'PolestarCharDB = nil' }, script });
+	const [three] = run({ guides: guides(true), script });
 	assert.deepEqual(three, { guide: 'test/dark', at: 1, statuses: ['active', 'pending', 'pending', 'na', 'na'] }, 'three quests from yellow up: the chain stays, the lone low quest goes');
-	const [two] = run({ guides: guides(false), saved: { Polestar: 'PolestarCharDB = nil' }, script });
+	const [two] = run({ guides: guides(false), script });
 	assert.equal(two.guide, 'test/ashen', 'two only: not worth the detour, the guide passes');
 });
 
 // Yendi: the guide list's check means every quest of the guide is done; a
-// guide the catch-up passed with grey quests never done is not checked. A
-// guide all done, opened by the player, stays open, finished.
-test('a guide is done for the list only once all its quests are; one all done, opened by hand, stays open', () => {
+// guide the catch-up passed whole with grey quests never done is not checked.
+// A guide all done, opened by the player, stays open, finished.
+test('a guide the catch-up passed whole is done for the list only once all its quests are; opened by hand, it stays', () => {
 	const allDone = 'stub.world.complete({ 101, 102, 104, 204 }); stub.world.onQuest(206, {})';
 	const [passed] = run({
 		before: DONE,
-		script: 'E.SetGuide("test/low"); flush(); emit({ guide = E.GetGuide().id, low = E.GetGuideState("test/low") })',
+		saved: PICK_OFF,
+		script: 'E.StartGuide(); flush(); emit({ guide = E.GetGuide().id, low = E.GetGuideState("test/low") })',
 	});
 	assert.deepEqual(passed, { guide: 'test/mid', low: 'started' }, 'passed with a grey quest never done: not done');
+	const [byHand] = run({
+		before: DONE,
+		script: 'E.SetGuide("test/low"); flush(); emit({ guide = E.GetGuide().id, at = E.GetStepIndex() or false, low = E.GetGuideState("test/low") })',
+	});
+	assert.deepEqual(byHand, { guide: 'test/low', at: false, low: 'started' }, 'opened by hand: it stays, not done for the list');
 	const [opened] = run({
 		before: allDone,
 		script: 'E.SetGuide("test/low"); flush(); emit({ guide = E.GetGuide().id, at = E.GetStepIndex() or false, low = E.GetGuideState("test/low") })',
@@ -303,10 +296,9 @@ test('a catch-up goes on to the next guide silently: on a second try, and past a
 	const [out] = run({
 		before: DONE,
 		guides,
-		saved: { Polestar: 'PolestarCharDB = nil' },
 		script: `
 			local first = { E.GetGuide().id, PLACED[#PLACED].chain }
-			E.SetGuide("test/low"); flush()
+			E.SetGuide(nil); E.StartGuide(); flush()
 			emit({ first = first, again = { E.GetGuide().id, PLACED[#PLACED].chain } })`,
 	});
 	assert.deepEqual(out.first, ['test/mid', 'test/low,test/low2'], 'the first run goes through both');
@@ -318,9 +310,100 @@ test('a catch-up goes on to the next guide silently: on a second try, and past a
 // as the login's pick does. The list's own open keeps a finished guide.
 test('Start guide goes on through guides with every quest done; the list keeps such a guide open', () => {
 	const allDone = 'stub.world.complete({ 101, 102, 104, 204 }); stub.world.onQuest(206, {})';
-	const saved = { Polestar: 'PolestarDB = { schema = 1, settings = { behavior = { autoSelectGuide = false } } }; PolestarCharDB = nil' };
+	const saved = PICK_OFF;
 	const [start] = run({ before: allDone, saved, script: 'local none = E.GetGuide() == nil; E.StartGuide(); flush(); emit({ none = none, guide = E.GetGuide().id, at = E.GetStepIndex() or false })' });
 	assert.deepEqual(start, { none: true, guide: 'test/mid', at: 5 });
 	const [list] = run({ before: allDone, saved, script: 'E.OpenTab("test/low"); flush(); emit({ guide = E.GetGuide().id, at = E.GetStepIndex() or false })' });
 	assert.deepEqual(list, { guide: 'test/low', at: false });
 });
+
+// Review of #300: a character who did nothing in a guide got its flight
+// path, hearth and class training stored as done, because a grey quest after
+// them was left out. Only travel goes with a quest left out ahead of the
+// player's progress; the rest holds, as without the catch-up.
+test('a quest left out ahead of any progress takes only the travel to it: no flight path, hearth or training stored as done', () => {
+	const guides = `
+		Polestar.RegisterGuide({ id = "test/utility", pack = "test", title = "Utility", faction = "Alliance", minLevel = 15, maxLevel = 25, steps = {
+			{ goals = { { t = "getfp", location = "Sentinel Hill" } } },
+			{ goals = { { t = "sethome", location = "Lakeshire" } } },
+			{ goals = { { t = "train", class = true, npc = 911, npcName = "Trainer" } } },
+			{ goals = { { t = "goto", map = 1429, x = 40, y = 40, label = "Grey camp" } } },
+			{ goals = { { t = "accept", quest = 501, title = "Grey", qlvl = 8 } } },
+			{ goals = { { t = "accept", quest = 502, title = "Yellow", qlvl = 20 } } },
+		} })
+	`;
+	const [out] = run({
+		guides,
+		saved: ON,
+		script: `E.SetGuide("test/utility"); flush()
+			local m = PolestarCharDB.manual["test/utility"] or {}
+			local keys = {}
+			for k in pairs(m) do keys[#keys + 1] = k end
+			table.sort(keys)
+			emit({ at = E.GetStepIndex(), manual = table.concat(keys, ",") })`,
+	});
+	assert.deepEqual(out, { at: 1, manual: '4:1' }, 'the guide starts with its flight path; only the way to the grey quest passes');
+});
+
+// Review of #300: with "Skip grey quests" on, a guide finished in normal play
+// with a grey quest left out no longer showed as done in the guide list.
+test('a guide finished in play is done for the list, a grey quest left out or not', () => {
+	const guides = `
+		Polestar.RegisterGuide({ id = "test/play", pack = "test", title = "Play", faction = "Alliance", minLevel = 18, maxLevel = 22, steps = {
+			{ goals = { { t = "accept", quest = 601, title = "Grey", qlvl = 8 } } },
+			{ goals = { { t = "accept", quest = 602, title = "Yellow", qlvl = 20 } } },
+			{ goals = { { t = "turnin", quest = 602, title = "Yellow" } } },
+		} })
+	`;
+	const [out] = run({
+		guides,
+		saved: ON,
+		script: `E.SetGuide("test/play"); flush()
+			local at = E.GetStepIndex()
+			stub.world.accept(602, {}, "Yellow"); flush()
+			stub.world.turnIn(602); flush()
+			emit({ at = at, finished = E.GetStepIndex() == nil, state = E.GetGuideState("test/play") })`,
+	});
+	assert.deepEqual(out, { at: 2, finished: true, state: 'done' });
+});
+
+// Review of #300: levelling past a guide during play showed no outgrown
+// banner (and so no hand-over) until a reload.
+test('levelling past a guide during play shows the outgrown banner, the catch-up on or not', () => {
+	const guides = `
+		Polestar.RegisterGuide({ id = "test/young", pack = "test", title = "Young", faction = "Alliance", minLevel = 10, maxLevel = 16, steps = {
+			{ goals = { { t = "accept", quest = 701, title = "Yellow then", qlvl = 15 } } },
+			{ goals = { { t = "turnin", quest = 701, title = "Yellow then" } } },
+		} })
+		Polestar.RegisterGuide({ id = "test/older", pack = "test", title = "Older", faction = "Alliance", minLevel = 17, maxLevel = 24, steps = {
+			{ goals = { { t = "accept", quest = 702, title = "Next", qlvl = 19 } } },
+		} })
+	`;
+	for (const saved of [ON, OFF]) {
+		const [out] = run({
+			before: 'stub.world.level = 16',
+			guides,
+			saved,
+			script: `OUT = {}
+				Polestar.On("GUIDE_OUTLEVELED", function(id, suggested) OUT[#OUT + 1] = id .. ">" .. tostring(suggested) end)
+				E.SetGuide("test/young"); flush()
+				local before = #OUT
+				stub.world.setLevel(19); flush()
+				emit({ before = before, banner = table.concat(OUT, ","), guide = E.GetGuide().id })`,
+		});
+		assert.deepEqual(out, { before: 0, banner: 'test/young>test/older', guide: 'test/young' });
+	}
+});
+
+// Maintainer scope on #300: a guide opened by hand is placed within itself;
+// it never jumps to the next guide on its own.
+test('a guide opened by hand stays, though the catch-up would pass it whole', () => {
+	const [out] = run({
+		before: DONE,
+		saved: ON,
+		script: 'E.SetGuide("test/low"); flush(); emit({ guide = E.GetGuide().id, placed = PLACED[#PLACED] })',
+	});
+	assert.equal(out.guide, 'test/low');
+	assert.deepEqual(out.placed, { id: 'test/low', step: false, chain: '' });
+});
+

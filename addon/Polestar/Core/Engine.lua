@@ -32,7 +32,7 @@ ns.RegisterDefaults("behavior", {
 	autoTurnin = true,
 	autoNextGuide = true,
 	autoSelectGuide = true,
-	skipGrey = true,
+	skipGrey = false,
 	warnClosing = false, -- name what an offered quest closes for good, and leave its accept to the player (Closes.lua)
 	routeChoice = "ask", -- "ask" | "recommended": what happens where a guide offers several next zones
 	trainReminder = "2", -- "2" | "1" | "off": remind to visit the class trainer every 2 levels, every level, never
@@ -117,14 +117,6 @@ local function missingPre(goal)
 	return nil
 end
 
--- Quests a guide or any guide after it (via `next` and every route choice)
--- still needs at a character level: the prerequisites (`pre`, `preAll`) of
--- every accept that is not grey at that level, and of every accept a needed
--- quest's own accept is, down the chain (a grey Buzzbox 827 opens the Buzzbox
--- quests that still give full experience). A quest's own turn-in and
--- objectives are not a need: they go with its accept. Each needed quest maps
--- to the accept that is not grey it leads to, the nearest down the chain
--- (the first in guide order among equals). Cached per guide and level.
 -- Every accept of a guide and of the guides after it (`next`, every route
 -- choice), and each quest's prerequisite lists: { accepts, pres }. Cached
 -- per guide.
@@ -198,6 +190,14 @@ function Own.needsFrom(pres, open)
 	return set
 end
 
+-- Quests a guide or any guide after it (via `next` and every route choice)
+-- still needs at a character level: the prerequisites (`pre`, `preAll`) of
+-- every accept that is not grey at that level, and of every accept a needed
+-- quest's own accept is, down the chain (a grey Buzzbox 827 opens the Buzzbox
+-- quests that still give full experience). A quest's own turn-in and
+-- objectives are not a need: they go with its accept. Each needed quest maps
+-- to the accept that is not grey it leads to, the nearest down the chain
+-- (the first in guide order among equals). Cached per guide and level.
 local function chainNeeds(g, level)
 	local chain = Own.chainOf(g)
 	local c = chainNeedsCache[g]
@@ -216,14 +216,9 @@ end
 
 -- Whether every step of guide g is to be done, grey quests and quests behind
 -- the player's progress included: any guide but a leveling one (an item, a
--- mount, a reputation, a profession, a class quest), a leveling guide whose
--- author says so (`skip none`: every quest of a zone), or one the player
--- chose (Engine.SetEveryStep, saved per character).
+-- mount, a reputation, a profession, a class quest).
 function Own.everyStep(g)
-	if not g then return false end
-	if g.everyStep or not (g.category == nil or g.category == "Leveling") then return true end
-	local mine = ns.CharState().everyStep
-	return type(mine) == "table" and mine[g.id] == true
+	return g ~= nil and not (g.category == nil or g.category == "Leveling")
 end
 
 -- behavior.skipGrey: an accept for a quest already grey for the character
@@ -328,15 +323,24 @@ local function goalApplies(goal)
 	return greyNeed(goal) ~= false and not orphaned(goal)
 end
 
-
 -- The catch-up's quests left out, per guide (guideId -> { [questID] = true |
 -- "log" }), for the session; placement works them out again (Own.catchUp).
 -- Taken by hand, a quest is back; one in the log ("log") is back once done.
 Own.leftOut = {}
--- Guides placement passed whole (guideId -> true): they may chain to `next`
--- like a finished guide; and the guides passed on the way to the one placed,
--- for GUIDE_PLACED.
-Own.placedThrough, Own.placedChain = {}, {}
+-- Guides placement passed whole (guideId -> true), for the session: the
+-- guide list checks such a guide only once every quest of it is done
+-- (Engine.GetGuideState). placedThrough: the ones opened for the player
+-- (autoChain), which chain to `next` like a finished guide; placedChain: the
+-- guides passed on the way to the one placed, for GUIDE_PLACED.
+Own.passedWhole, Own.placedThrough, Own.placedChain = {}, {}, {}
+-- Goals a guide passed for the player passes for the session only (guideId
+-- -> { ["s:g"] = true }): a flight path, a hearth or training in a guide the
+-- character is past and may never have been in is no check-off to store.
+Own.passedNow = {}
+-- Guides just opened in a tab, until placed (guideId -> true): by the player
+-- or for them, not brought back by a login or reload. Only these chain on
+-- when passed whole (with autoChain) and announce GUIDE_PLACED.
+Own.opened = {}
 -- The guides a catch-up passed whole on its current run (guideId -> true),
 -- so a loop of `next` stops it.
 Own.chainSeen = {}
@@ -1206,11 +1210,14 @@ end
 
 -- done, cur, max[, label, kind] for goal g of step s. Notes are never done
 -- (and never block). A stored check-off (the player's tick, or a result the
--- Engine latched) is done whatever the live state says.
+-- Engine latched) is done whatever the live state says, as is a goal the
+-- catch-up passed for the session (Own.passedNow).
 goalDone = function(s, g, goal)
 	local t = goal.t
 	local C = Compat()
 	if checked(s, g) then return true end
+	local now = Own.passedNow[guide.id]
+	if now and now[Own.key(s, g)] then return true end
 	if t == "accept" then
 		return C.IsOnQuest(goal.quest) or questDone(goal.quest)
 	elseif t == "turnin" then
@@ -1529,10 +1536,15 @@ end
 --   hearth, non-quest kill/collect...) in a step before the last quest
 --   progress (anchorStep): the player is demonstrably past them;
 -- - travel goals (goto, fly, hearth, explore) when the player already stands
---   within HERE yards of the start step's work: no travel needed.
+--   within HERE yards of the start step's work: no travel needed;
+-- - with the catch-up, travel goals on the way to a quest it left out, and in
+--   a guide it passes whole.
 -- Soft goals passed are latched. So soft steps never hold the player behind
 -- quest work done further on, yet a fresh guide still begins with its
--- travel and training stops.
+-- travel and training stops: a flight path, a hearth or training ahead of
+-- the last quest progress holds, unless every quest of the guide is done,
+-- or the guide is passed for the player (opened for them, Own.opened), where
+-- it passes for the session only (Own.passedNow).
 local function place()
 	local steps, C = guide.steps, Compat()
 	local level = player.level or 1
@@ -1541,6 +1553,7 @@ local function place()
 	Own.leftOut[guide.id] = nil
 	local anchor = anchorStep()
 	if catchUp then Own.leftOut[guide.id] = Own.catchUp(anchor, level) end
+	Own.passedNow[guide.id], Own.passedWhole[guide.id] = nil, nil
 	local function open(s, g, goal)
 		return blocks(goal) and goalApplies(goal) and not unavailableFor(goal) and not goalDone(s, g, goal)
 	end
@@ -1552,7 +1565,7 @@ local function place()
 		return nil
 	end
 	local out = Own.leftOut[guide.id]
-	local start, later, anyOut, passAll
+	local start, later, anyOut
 	for s = 1, #steps do
 		for _, goal in ipairs(steps[s].goals) do
 			if (goal.t == "accept" or goal.direct) and goal.quest and ((out and out[goal.quest]) or greyNeed(goal) == false) then anyOut = true end
@@ -1578,23 +1591,21 @@ local function place()
 	local limit = start or anchor
 	-- Caught up on a guide the character is past (quests left out as too low,
 	-- or its top level reached) with no quest left to do, none waiting for a
-	-- level or a prerequisite: it passes whole, and chains to the next
-	-- (evaluateLoaded).
+	-- level or a prerequisite: it passes whole. Opened for the player (the
+	-- login's pick, Start guide, a guide chained to), it then chains to the
+	-- next (evaluateLoaded); opened by the player or brought back by a reload,
+	-- it stays, finished.
 	local past = anyOut or (guide.maxLevel ~= nil and level >= guide.maxLevel)
-	local through = catchUp and not start and not later and logReady and past
-	if through then
+	local whole = catchUp and not start and not later and logReady and past
+	local through = whole and autoChain and Own.opened[guide.id]
+	local allDone = whole and Own.allQuestsDone(guide)
+	if whole then
 		limit = #steps + 1
-		-- A guide whose quests are all done, opened by the player, stays: they
-		-- chose to look at it (it shows finished, its travel passed too).
-		if autoChain or not Own.allQuestsDone(guide) then
-			Own.placedThrough[guide.id] = true
-		else
-			through = false
-			limit, passAll = #steps + 1, true
-		end
+		Own.passedWhole[guide.id] = true
+		if through then Own.placedThrough[guide.id] = true end
 	end
 	-- The last step before the start with an accept left out: the way there
-	-- (travel, training, a flight point) passes with it.
+	-- passes with it.
 	local lastOut = 0
 	for s = 1, limit - 1 do
 		for _, goal in ipairs(steps[s].goals) do
@@ -1616,14 +1627,22 @@ local function place()
 			end
 		end
 	end
+	local function travel(t) return t == "goto" or t == "fly" or t == "hearth" or t == "explore" end
 	for s = 1, limit - 1 do
 		if stepApplies(steps[s]) and not (sk and sk[s]) and not stepDone(s) then
 			local goals, passes = steps[s].goals, true
+			-- Soft goals this step passes: all of them behind the progress or
+			-- with every quest done; travel to a quest left out or through a
+			-- guide passed whole; the rest only in a guide passed for the
+			-- player, for the session.
+			local behind = s < anchor or allDone
+			local now = not behind and through
 			for g, goal in ipairs(goals) do
 				local t = goal.t
+				local soft = isManual(goal) or latchable(goal) or isBagCount(goal)
 				if open(s, g, goal) and not gated(goal)
-					and not ((s < anchor or s < lastOut or through or passAll) and (isManual(goal) or latchable(goal) or isBagCount(goal)))
-					and not (here and (t == "goto" or t == "fly" or t == "hearth" or t == "explore")) then
+					and not (soft and (behind or now or ((s < lastOut or whole) and travel(t))))
+					and not (here and travel(t)) then
 					passes = false
 					break
 				end
@@ -1635,6 +1654,10 @@ local function place()
 						local why = gated(goal)
 						if why then
 							unavailable[goal.quest] = { reason = why, accept = goal }
+						elseif now and not travel(goal.t) then
+							local n = Own.passedNow[guide.id] or {}
+							Own.passedNow[guide.id] = n
+							n[Own.key(s, g)] = true
 						else
 							m[s .. ":" .. g] = true
 						end
@@ -2856,8 +2879,6 @@ local function rankRoutes(options)
 	return best
 end
 
--- The guide to continue with after `from` (or nil), and whether the player
--- has to choose it first.
 -- Quest work done in guide g: its accepts and turn-ins of quests the
 -- character has done or holds.
 function Own.doneIn(g)
@@ -2929,6 +2950,8 @@ function Own.likeliestRoute(from)
 	return #best == 1 and best[1].guide.id or rankRoutes(best).guide.id
 end
 
+-- The guide to continue with after `from` (or nil), and whether the player
+-- has to choose it first.
 local function routeNext(from)
 	if not from.nextChoices then return from.next, false end
 	local options = routeOptions(from)
@@ -3083,6 +3106,7 @@ local function resetLoaded(id, auto)
 	guide = Guides.Get(id)
 	current, computed, pin, pinDone, aim, lastSig, passedUpTo = nil, nil, nil, nil, nil, nil, 0
 	autoChain, sawIncomplete, placing = auto and true or false, false, GetTime() + PLACE_SECONDS
+	Own.opened[id] = true
 	tabsDirty = true
 end
 
@@ -3223,6 +3247,7 @@ local function evaluateLoaded(active)
 					completedFired[nextId] = nil
 					if active then Own.placedChain[#Own.placedChain + 1] = id end
 				end
+				Own.opened[id] = nil
 				resetLoaded(nextId, true)
 				persist()
 				if active then ns.Fire("GUIDE_CHANGED", nextId) end
@@ -3231,13 +3256,14 @@ local function evaluateLoaded(active)
 			end
 		end
 	end
-	-- Placed: where the guide resumes, and the guides passed whole on the way
-	-- (the guide window shows the catch-up).
-	if placed then Own.chainSeen = {} end
-	if placed and active then
+	-- Placed: where a guide just opened resumes, and the guides passed whole
+	-- on the way (the guide window shows the catch-up). A guide a login or
+	-- reload brings back is placed without it.
+	if placed then
+		local opened = Own.opened[guide.id]
 		local chain = Own.placedChain
-		Own.placedChain = {}
-		ns.Fire("GUIDE_PLACED", guide.id, computed, chain)
+		Own.chainSeen, Own.placedChain, Own.opened[guide.id] = {}, {}, nil
+		if active and opened then ns.Fire("GUIDE_PLACED", guide.id, computed, chain) end
 	end
 end
 
@@ -3254,12 +3280,9 @@ local function evaluate()
 	end
 	useActive()
 	evaluateLoaded(true)
-	-- Out-levelled: once per guide per session, for a guide that does every
-	-- step (or with "Skip grey quests" off). One that catches up manages
-	-- itself: its quests turn grey and drop out as the player levels, and it
-	-- hands over to `next` once nothing worth doing is left.
-	local catchesUp = ns.Get("behavior.skipGrey") and not Own.everyStep(guide)
-	if guide and guide.maxLevel and (player.level or 1) >= guide.maxLevel + 2 and not outleveled[guide.id] and not catchesUp then
+	-- Out-levelled: once per guide per session, once the guide is placed (a
+	-- catch-up may pass it whole first).
+	if guide and guide.maxLevel and (player.level or 1) >= guide.maxLevel + 2 and not outleveled[guide.id] and not placing then
 		outleveled[guide.id] = true
 		local suggested = Guides.Suggest()
 		ns.Fire("GUIDE_OUTLEVELED", guide.id, suggested ~= guide.id and suggested or nil)
@@ -3309,8 +3332,8 @@ end
 
 -- Already open: activates it (unless activate == false). Full: nil. `auto`:
 -- opened for the player rather than by them (Engine.StartGuide), so a guide
--- with every quest done passes to the next like any the catch-up goes
--- through, instead of staying open, finished.
+-- the catch-up passes whole chains on to the next, as the login's pick does,
+-- instead of staying open, finished.
 function Engine.OpenTab(id, activate, auto)
 	local g = id and Guides.Get(id)
 	if not g or not ns.IsLoggedIn() then return nil end
@@ -3323,6 +3346,7 @@ function Engine.OpenTab(id, activate, auto)
 	local tab = { guide = g, passedUpTo = 0, autoChain = auto and true or false, sawIncomplete = false, placing = GetTime() + PLACE_SECONDS }
 	-- Finished or passed earlier this session, it may finish and chain again.
 	completedFired[id] = nil
+	Own.opened[id] = true
 	tabs[#tabs + 1] = tab
 	local index = #tabs
 	tabsDirty = true
@@ -3383,8 +3407,8 @@ end
 
 -- For the picker: "new", "started" (opened in a tab before, or has
 -- check-offs/skips) or "done" (finished this session, or open and finished;
--- for a guide with quests, only once every quest the character can take in
--- it is turned in: a guide the catch-up passed is not done for that alone);
+-- a guide the catch-up passed whole is done only once every quest the
+-- character can take in it is turned in, not for its quests left out);
 -- doneSteps/totalSteps when the guide is open in a tab.
 function Engine.GetGuideState(id)
 	local g = id and Guides.Get(id)
@@ -3399,7 +3423,7 @@ function Engine.GetGuideState(id)
 		finished = finished or computed == nil
 		useActive()
 	end
-	if finished and Own.allQuestsDone(g) ~= false then return "done", done, total end
+	if finished and not (Own.passedWhole[id] and Own.allQuestsDone(g) == false) then return "done", done, total end
 	local s = ns.CharState()
 	local started = type(s.flags.started) == "table" and s.flags.started[id]
 	if open or started or s.manual[id] or s.skipped[id] then return "started", done, total end
@@ -3745,37 +3769,6 @@ function Engine.Skip()
 	evaluate()
 	ns.Fire("PLAYER_SKIPPED_STEP", id, s)
 	return s
-end
-
--- Every step of guide `id`: whether the guide does them all (Own.everyStep:
--- not a leveling guide, its author's `skip none`, or the player's choice),
--- and whether that is the player's choice, which they can change.
-function Engine.GetEveryStep(id)
-	local g = Guides.Get(id)
-	if not g then return false, false end
-	local fixed = g.everyStep or not (g.category == nil or g.category == "Leveling")
-	return Own.everyStep(g), not fixed
-end
-
--- The player's choice for a leveling guide: on, it no longer leaves out grey
--- quests nor what is behind their progress; off again, it catches up anew
--- (place). Saved per character. True when the choice could be made.
-function Engine.SetEveryStep(id, on)
-	local g = Guides.Get(id)
-	if not g or g.everyStep or not (g.category == nil or g.category == "Leveling") then return false end
-	local st = ns.CharState()
-	if type(st.everyStep) ~= "table" then st.everyStep = {} end
-	st.everyStep[id] = on and true or nil
-	if not next(st.everyStep) then st.everyStep = nil end
-	Own.leftOut[id] = nil
-	refreshPlayer()
-	for i = 1, #tabs do
-		use(tabs[i])
-		if guide and guide.id == id and not on then placing = GetTime() + PLACE_SECONDS end
-	end
-	useActive()
-	evaluate()
-	return true
 end
 
 -- Undo a skip: step i is open again (the live step when it is the first open
@@ -4352,6 +4345,7 @@ ns.OnLogin(function()
 	if #ids == 0 and ns.Get("behavior.autoSelectGuide") then
 		local suggested = Engine.StartingGuide()
 		add(suggested)
+		if suggested then Own.opened[suggested] = true end -- opened for the player
 		local g = suggested and Guides.Get(suggested)
 		local from = g and choiceOffering(suggested)
 		if from and routesTable()[from.id] == nil and (player.level or 1) <= (g.minLevel or 1) + 1 then offerFrom = from.id end
