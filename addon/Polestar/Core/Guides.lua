@@ -99,12 +99,8 @@ local RUN_SPEED = 7 -- yards per second
 local CROSS_CONTINENT = 3600 -- seconds
 ns.TRAVEL_CROSS_CONTINENT = CROSS_CONTINENT
 
-function ns.TravelCost(from, to)
-	local nav = ns.Nav
-	if nav and nav.EstimateTravel then
-		local ok, s = pcall(nav.EstimateTravel, from, to)
-		if ok and type(s) == "number" then return s end
-	end
+-- A cheap direct world-distance estimate: never touches the route planner.
+local function directTravelCost(from, to)
 	local C = ns.Compat
 	local c1, x1, y1 = C.MapToWorld(from.map, from.x, from.y, from.f)
 	local c2, x2, y2 = C.MapToWorld(to.map, to.x, to.y, to.f)
@@ -112,6 +108,16 @@ function ns.TravelCost(from, to)
 	if c1 ~= c2 then return CROSS_CONTINENT end
 	local dx, dy = x2 - x1, y2 - y1
 	return (dx * dx + dy * dy) ^ 0.5 / RUN_SPEED
+end
+ns.DirectTravelCost = directTravelCost
+
+function ns.TravelCost(from, to)
+	local nav = ns.Nav
+	if nav and nav.EstimateTravel then
+		local ok, s = pcall(nav.EstimateTravel, from, to)
+		if ok and type(s) == "number" then return s end
+	end
+	return directTravelCost(from, to)
 end
 
 -- The player's live position as a travel point, or nil (instance, loading).

@@ -53,8 +53,21 @@ const J_PKG = 4;
 const J_DUNGEON = 5;
 const J_VISIT2 = 6;
 const J_VISIT3 = 7;
+const J_ZONE = 8;
+const J_EVER = 9;
+
+// Numeric undo log array ids (shared kill credit, spot cells)
+const U_KILLED = 0;
+const U_CELL = 1;
 
 const MAX_VISITS = 3;
+// Yards: a move this far from where the character's current stretch of
+// work began starts a new one; work again in a spot cell (run.js
+// SPOT_CELL) worked in an earlier stretch is a spot return.
+const SPOT_LEAVE = 600;
+// Levels below the character at which a full quest log gives up a quest
+// (abandonable; its reward is already reduced, SHARE).
+const ABANDON_GAP = 6;
 
 class Evaluator {
 	constructor(run, tables, opts = {}) {
@@ -68,6 +81,20 @@ class Evaluator {
 		this.visit2 = new Uint8Array(run.P); // a second visit of the package
 		this.visit3 = new Uint8Array(run.P); // a third
 		this.dungeonDone = new Uint8Array(Math.max(1, (run.dungeons || []).length));
+		this.everActive = new Uint8Array(run.Q); // accepted at some point (acceptedNeverTurnedIn)
+		this.actLv = new Int32Array(64); // active quests by (clamped) quest level: abandonable()
+		// Smoothness: zones entered so far; per spot cell the stretch (areaId)
+		// of its last work (0: none); per kill work item the kills already
+		// credited by other quests' kills of the same mob (shared kill credit).
+		this.zoneSeen = new Uint8Array(Math.max(1, run.zoneCount));
+		this.cellArea = new Float64Array(Math.max(1, run.cellCount));
+		this.killed = new Float64Array(Math.max(1, run.wKind.length));
+		// Undo log of numeric writes to cellArea / killed (old values): undone
+		// by restore(), cleared by reset().
+		this.uArr = new Uint8Array(1 << 12);
+		this.uIdx = new Int32Array(1 << 12);
+		this.uOld = new Float64Array(1 << 12);
+		this.uLen = 0;
 		// Steps of the package being run whose accept (or dungeon) was deferred
 		// as too low: sized for the longest package.
 		let maxSteps = 0;
@@ -103,7 +130,13 @@ class Evaluator {
 		this.visit2.fill(0);
 		this.visit3.fill(0);
 		this.dungeonDone.fill(0);
+		this.everActive.fill(0);
+		this.actLv.fill(0);
 		this.levelTimes.fill(0);
+		this.zoneSeen.fill(0);
+		this.zoneSeen[r.pZone[r.start.pt]] = 1;
+		for (let k = 0; k < this.uLen; k++) (this.uArr[k] === U_KILLED ? this.killed : this.cellArea)[this.uIdx[k]] = 0;
+		this.uLen = 0;
 		this.jLen = 0;
 		this.time = 0;
 		this.level = 1;
@@ -133,6 +166,16 @@ class Evaluator {
 		this.steps = 0;
 		this.catchUpSec = 0;
 		this.zoneChanges = 0;
+		this.zoneReturns = 0;
+		this.spotReturns = 0;
+		this.sharedKills = 0;
+		this.areaId = 1;
+		this.areaPt = r.start.pt;
+		this.open = 0;
+		this.logPeak = 0;
+		this.logDeferred = 0;
+		this.logSkipped = 0;
+		this.logAbandoned = 0;
 		this.awayPending = false;
 	}
 
@@ -144,14 +187,23 @@ class Evaluator {
 			infeasible: this.infeasible, hearths: this.hearths, flights: this.flights, levelFrom: this.level,
 			xpDungeon: this.xpDungeon, dungeonSec: this.dungeonSec, dungeonsRun: this.dungeonsRun,
 			homeLeft: this.homeLeft, unreachable: this.unreachable, riskCrossings: this.riskCrossings, steps: this.steps, catchUpSec: this.catchUpSec,
-			zoneChanges: this.zoneChanges,
+			zoneChanges: this.zoneChanges, zoneReturns: this.zoneReturns, spotReturns: this.spotReturns, sharedKills: this.sharedKills,
+			areaId: this.areaId, areaPt: this.areaPt, open: this.open, logPeak: this.logPeak, u: this.uLen,
+			logDeferred: this.logDeferred, logSkipped: this.logSkipped, logAbandoned: this.logAbandoned,
 		};
 	}
 
 	restore(s) {
 		// Undo journaled writes back to the snapshot.
-		const arrs = [this.done, this.active, this.taskDone, this.known, this.usedPkg, this.dungeonDone, this.visit2, this.visit3];
-		for (let k = this.jLen - 1; k >= s.j; k--) arrs[this.jArr[k]][this.jIdx[k]] ^= 1;
+		const arrs = [this.done, this.active, this.taskDone, this.known, this.usedPkg, this.dungeonDone, this.visit2, this.visit3, this.zoneSeen, this.everActive];
+		for (let k = this.jLen - 1; k >= s.j; k--) {
+			const id = this.jArr[k];
+			const i = this.jIdx[k];
+			arrs[id][i] ^= 1;
+			if (id === J_ACTIVE) this.actLv[this.run.qLv[i]] += this.active[i] ? 1 : -1;
+		}
+		for (let k = this.uLen - 1; k >= s.u; k--) (this.uArr[k] === U_KILLED ? this.killed : this.cellArea)[this.uIdx[k]] = this.uOld[k];
+		this.uLen = s.u;
 		this.jLen = s.j;
 		for (let l = s.level + 1; l <= 60; l++) this.levelTimes[l] = 0;
 		this.time = s.time;
@@ -182,6 +234,16 @@ class Evaluator {
 		this.steps = s.steps;
 		this.catchUpSec = s.catchUpSec;
 		this.zoneChanges = s.zoneChanges;
+		this.zoneReturns = s.zoneReturns;
+		this.spotReturns = s.spotReturns;
+		this.sharedKills = s.sharedKills;
+		this.areaId = s.areaId;
+		this.areaPt = s.areaPt;
+		this.open = s.open;
+		this.logPeak = s.logPeak;
+		this.logDeferred = s.logDeferred;
+		this.logSkipped = s.logSkipped;
+		this.logAbandoned = s.logAbandoned;
 	}
 
 	// Flip a 0 flag to 1, journaled when trial moves are active.
@@ -200,13 +262,49 @@ class Evaluator {
 			this.jIdx[this.jLen++] = i;
 		}
 	}
-	// Turn-off of `active` at turn-in: journaled as a flip too.
-	set0Active(i) {
-		this.active[i] = 0;
+	// Turn-off of a flag (`active` at turn-in or abandon, `taskDone` at
+	// abandon): journaled as a flip too.
+	set0(arrId, arr, i) {
+		arr[i] = 0;
 		if (this.journaling) {
-			this.jArr[this.jLen] = J_ACTIVE;
+			this.jArr[this.jLen] = arrId;
 			this.jIdx[this.jLen++] = i;
 			if (this.jLen >= this.jArr.length - 4) this.set1Grow();
+		}
+	}
+	set0Active(i) {
+		this.set0(J_ACTIVE, this.active, i);
+		this.actLv[this.run.qLv[i]]--;
+	}
+	set1Active(i) {
+		this.set1(J_ACTIVE, this.active, i);
+		this.actLv[this.run.qLv[i]]++;
+	}
+
+	// The quest a full log gives up (stopgap until the planner keeps the
+	// log): the lowest-level active quest at least ABANDON_GAP levels below
+	// the character, whose reward is already reduced (the first by index
+	// among equals); -1 when none is.
+	abandonable() {
+		const r = this.run;
+		const max = this.level - ABANDON_GAP;
+		for (let L = 0; L <= max && L < 64; L++) {
+			if (!this.actLv[L]) continue;
+			for (let k = r.qLvStart[L]; k < r.qLvStart[L + 1]; k++) if (this.active[r.qByLevel[k]]) return r.qByLevel[k];
+		}
+		return -1;
+	}
+
+	// Abandon quest q: out of the log, its objectives' progress lost (as
+	// in the game); it can be taken again.
+	abandon(q) {
+		const r = this.run;
+		this.set0Active(q);
+		this.open--;
+		this.logAbandoned++;
+		for (let t = r.qTask0[q]; t < r.qTask1[q]; t++) {
+			if (this.taskDone[t]) this.set0(J_TASK, this.taskDone, t);
+			for (let w = r.taskW0[t]; w < r.taskW1[t]; w++) if (this.killed[w] > 0) this.setNum(U_KILLED, w, 0);
 		}
 	}
 	set1Grow() {
@@ -216,6 +314,28 @@ class Evaluator {
 		const b = new Int32Array(this.jIdx.length * 2);
 		b.set(this.jIdx);
 		this.jIdx = b;
+	}
+
+	// A numeric write to cellArea (U_CELL) or killed (U_KILLED), logged with
+	// the old value (restore() undoes it, reset() clears what was written).
+	setNum(arrId, i, v) {
+		if (this.uLen >= this.uArr.length) {
+			const n = this.uArr.length * 2;
+			const a = new Uint8Array(n);
+			a.set(this.uArr);
+			this.uArr = a;
+			const b = new Int32Array(n);
+			b.set(this.uIdx);
+			this.uIdx = b;
+			const c = new Float64Array(n);
+			c.set(this.uOld);
+			this.uOld = c;
+		}
+		const arr = arrId === U_KILLED ? this.killed : this.cellArea;
+		this.uArr[this.uLen] = arrId;
+		this.uIdx[this.uLen] = i;
+		this.uOld[this.uLen++] = arr[i];
+		arr[i] = v;
 	}
 
 	// ---- XP and levels ----
@@ -306,10 +426,70 @@ class Evaluator {
 		this.riskCrossings += risk;
 		this.time += c;
 		this.travelSec += c;
-		if (this.run.pMap[pt] !== this.run.pMap[this.pos]) this.zoneChanges++;
+		const r = this.run;
+		if (r.pMap[pt] !== r.pMap[this.pos]) {
+			this.zoneChanges++;
+			// Back into a zone entered before (and left since).
+			const z = r.pZone[pt];
+			if (this.zoneSeen[z]) this.zoneReturns++;
+			else this.set1(J_ZONE, this.zoneSeen, z);
+		}
+		// A new stretch of work once SPOT_LEAVE from where this one began.
+		const a = this.areaPt;
+		const dx = r.pX[pt] - r.pX[a];
+		const dy = r.pY[pt] - r.pY[a];
+		if (r.pR[pt] !== r.pR[a] || dx * dx + dy * dy > SPOT_LEAVE * SPOT_LEAVE) {
+			this.areaId++;
+			this.areaPt = pt;
+		}
 		this.pos = pt;
 		this.learnAt(pt);
 		return true;
+	}
+
+	// Work done at pt (accept, objective, turn-in): a return when its spot
+	// cell was worked in an earlier stretch.
+	markSpot(pt) {
+		const c = this.run.pCell[pt];
+		const a = this.cellArea[c];
+		if (a === this.areaId) return;
+		if (a > 0) this.spotReturns++;
+		this.setNum(U_CELL, c, this.areaId);
+	}
+
+	// Kills needed for kill item w (expected kills for a drop).
+	killsFor(w) {
+		const r = this.run;
+		return r.wDrop[w] ? r.wCount[w] / this.p.dropMul : r.wCount[w];
+	}
+
+	// Shared kill credit: k kills of item w's mob also count for the other
+	// objective kill items on that mob within SHARE_R (run.js) of active
+	// quests whose objective is not done, up to what each still needs.
+	// Kills before a quest is accepted give it nothing (it is not active).
+	shareKills(w, k) {
+		const r = this.run;
+		for (let i = r.wShare0[w]; i < r.wShare1[w]; i++) {
+			const b = r.shareList[i];
+			const t = r.wTask[b];
+			if (this.taskDone[t] || !this.active[r.tQuest[t]]) continue;
+			const need = this.killsFor(b) - this.killed[b];
+			if (need <= 1e-9) continue;
+			const c = k < need ? k : need;
+			this.setNum(U_KILLED, b, this.killed[b] + c);
+			this.sharedKills += c;
+		}
+	}
+
+	// Whether every work item of a task was done by shared kill credit: the
+	// objective is complete without going there.
+	covered(task) {
+		const r = this.run;
+		const w1 = r.taskW1[task];
+		for (let w = r.taskW0[task]; w < w1; w++) {
+			if (r.wKind[w] !== W_KILL || !(this.killed[w] > 0) || this.killed[w] < this.killsFor(w) - 1e-9) return false;
+		}
+		return w1 > r.taskW0[task];
 	}
 
 	// ---- work ----
@@ -323,6 +503,14 @@ class Evaluator {
 			if (kind === W_KILL) {
 				let n = r.wCount[w] * (1 + p.extraKill);
 				if (r.wDrop[w]) n /= p.dropMul;
+				// Kills already credited by another quest's (shareKills).
+				const had = this.killed[w];
+				const base = had > 0 || r.wShare0[w] < r.wShare1[w] ? this.killsFor(w) : 0;
+				if (had > 0) {
+					if (had >= base - 1e-9) continue;
+					n *= (base - had) / base;
+				}
+				if (r.wShare0[w] < r.wShare1[w]) this.shareKills(w, base - had);
 				const M = r.wLevel[w];
 				const elite = r.wElite[w] === 1;
 				const walk = (r.wSpacing[w] * p.spacing) / (p.runSpeed * (this.mounted ? 1 : 1));
@@ -371,8 +559,10 @@ class Evaluator {
 		return false;
 	}
 
-	// One step. With `this.defer`, an accept above the character's level is
-	// deferred (runPackage takes it once the level allows) instead of grinding for it.
+	// One step. With `this.defer`, an accept above the character's level, or
+	// one the full quest log (run.logCap) has no room for, is deferred
+	// (runPackage takes it once the level allows / a turn-in frees a slot)
+	// instead of grinding for it; without, a full log skips it (counted).
 	step(kind, q, task, pt) {
 		const r = this.run;
 		if (kind === K_ACCEPT) {
@@ -392,22 +582,39 @@ class Evaluator {
 				if (opens < this.gateNeed) this.gateNeed = opens;
 				return;
 			}
+			// The quest log is full: give up a low quest (abandonable), else
+			// wait for a turn-in (this pass), the package's second pass or a
+			// later return.
+			const drop = this.open >= r.logCap ? this.abandonable() : -1;
+			if (this.open >= r.logCap && drop < 0) {
+				if (this.defer) {
+					this.deferred++;
+					this.logDeferred++;
+				} else this.logSkipped++;
+				return;
+			}
 			if (!this.moveTo(pt)) {
 				this.unreachable++;
 				return;
 			}
 			if (this.level < r.qMinLevel[q]) this.grindTo(r.qMinLevel[q]);
 			if (this.level + this.p.dangerGap < r.qLevel[q]) this.grindTo(r.qLevel[q] - this.p.dangerGap);
+			if (drop >= 0) this.abandon(drop);
 			if (task >= 0) this.doWork(task);
 			this.time += this.p.talkSec;
-			this.set1(J_ACTIVE, this.active, q);
+			this.set1Active(q);
+			if (!this.everActive[q]) this.set1(J_EVER, this.everActive, q);
+			if (++this.open > this.logPeak) this.logPeak = this.open;
 		} else if (kind === K_TASK) {
 			if (!this.active[q] || this.taskDone[task]) return;
-			if (!this.moveTo(pt)) {
-				this.unreachable++;
-				return;
+			// Done by kills for other quests: no trip.
+			if (!this.covered(task)) {
+				if (!this.moveTo(pt)) {
+					this.unreachable++;
+					return;
+				}
+				this.doWork(task);
 			}
-			this.doWork(task);
 			this.set1(J_TASK, this.taskDone, task);
 		} else if (kind === K_TURNIN) {
 			if (!this.active[q]) return;
@@ -422,6 +629,7 @@ class Evaluator {
 			const d = this.level - r.qLevel[q];
 			const xp = this.t.qFull[q] * SHARE[d < 0 ? 0 : d > 63 ? 63 : d];
 			this.set0Active(q);
+			this.open--;
 			this.set1(J_DONE, this.done, q);
 			this.questsDone++;
 			this.xpQuest += xp;
@@ -430,6 +638,7 @@ class Evaluator {
 			if (!this.runDungeon(q, pt)) return;
 		}
 		this.steps++;
+		if (kind !== K_DUNGEON && pt === this.pos) this.markSpot(pt);
 		if (this.hook) this.hook(kind, q, pt);
 	}
 
@@ -550,7 +759,7 @@ class Evaluator {
 			const t = pend[i];
 			const kind = r.sKind[t];
 			const q = r.sQuest[t];
-			const open = kind === K_DUNGEON ? this.level >= r.dungeons[q].min : this.level >= r.qMinLevel[q] && this.level + this.p.dangerGap >= r.qLevel[q];
+			const open = kind === K_DUNGEON ? this.level >= r.dungeons[q].min : this.level >= r.qMinLevel[q] && this.level + this.p.dangerGap >= r.qLevel[q] && (this.open < r.logCap || this.abandonable() >= 0);
 			if (!open) {
 				pend[kept++] = t;
 				continue;
@@ -582,6 +791,14 @@ class Evaluator {
 		}
 	}
 
+	// Quests accepted at some point and not turned in (still in the log or
+	// abandoned): wasted accepts.
+	neverTurnedIn() {
+		let n = 0;
+		for (let q = 0; q < this.run.Q; q++) if (this.everActive[q] && !this.done[q]) n++;
+		return n;
+	}
+
 	finish() {
 		if (!this.finished) this.grindTo(60);
 	}
@@ -607,6 +824,14 @@ class Evaluator {
 			riskCrossings: this.riskCrossings,
 			catchUpSeconds: this.catchUpSec,
 			zoneChanges: this.zoneChanges,
+			zoneReturns: this.zoneReturns,
+			spotReturns: this.spotReturns,
+			sharedKills: this.sharedKills,
+			logPeak: this.logPeak,
+			logDeferred: this.logDeferred,
+			logSkipped: this.logSkipped,
+			logAbandoned: this.logAbandoned,
+			acceptedNeverTurnedIn: this.neverTurnedIn(),
 			...extra,
 		};
 	}
@@ -628,11 +853,14 @@ class Evaluator {
 	}
 
 	// Fast path for search: the route's cost (Infinity when infeasible), its
-	// time to 60 with every hour of grinding counted `grindWeight` times and
-	// every move into another zone counted `zoneChange` seconds more (both
-	// policies: routes level by quests, take a hub's quests and do them in one
-	// go, and switch zones when it is clearly worth it; with neither, the
-	// search ground or flew across continents wherever that saved a minute).
+	// time to 60 with every hour of grinding counted `grindWeight` times,
+	// every move into another zone counted `zoneChange` seconds more, every
+	// return into a zone left earlier `zoneReturn` more and every return to
+	// a spot worked in an earlier stretch `spotReturn` more (all policies:
+	// routes level by quests, take a hub's quests and do them in one go,
+	// and switch zones when it is clearly worth it; with none, the search
+	// ground or flew across continents wherever that saved a minute; the
+	// return penalties are the smooth objective's, params.js OBJECTIVES).
 	// Reported times (evaluate) stay real. The number of packages used is
 	// left in this.lastUsed.
 	cost(route) {
@@ -647,7 +875,16 @@ class Evaluator {
 		}
 		this.finish();
 		this.lastUsed = used;
-		return (this.levelTimes[60] || this.time) + ((this.p.grindWeight || 1) - 1) * this.grindSec + (this.p.zoneChange || 0) * this.zoneChanges;
+		return this.costNow();
+	}
+
+	// cost() of the state reached (after finish()).
+	costNow() {
+		let c = (this.levelTimes[60] || this.time) + ((this.p.grindWeight || 1) - 1) * this.grindSec + (this.p.zoneChange || 0) * this.zoneChanges;
+		if (this.p.zoneReturn) c += this.p.zoneReturn * this.zoneReturns;
+		if (this.p.spotReturn) c += this.p.spotReturn * this.spotReturns;
+		if (this.p.wastedAccept) c += this.p.wastedAccept * this.neverTurnedIn();
+		return c;
 	}
 
 	packageRecord(p, s) {
@@ -734,4 +971,4 @@ class Evaluator {
 	}
 }
 
-module.exports = { Evaluator, SHARE, MAX_VISITS };
+module.exports = { Evaluator, SHARE, MAX_VISITS, SPOT_LEAVE };

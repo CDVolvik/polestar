@@ -72,7 +72,8 @@ return {
 	["Down to {area:35}"] = "前往{area:35}",
 	-- {object:3202} Grom'gol · {area:35} Booty Bay
 	["Follow the main road south the length of the jungle, past the {object:3202} turn-off, to {area:35} on the southern cape."] = "沿主要道路向南穿過整片叢林，經過{object:3202}岔路，到達南端海角的{area:35}。",
-	["Gyll, on the top floor by the docks"] = "蓋爾，在碼頭旁的頂樓",
+	-- {npc:2859} Gyll
+	["{npc:2859}, on the top floor by the docks"] = "{npc:2859}，在碼頭旁的頂樓",
 	-- {npc:2832} Nixxrax Fillamug · {object:56910} The Salty Sailor Tavern
 	["{npc:2832}, in the {object:56910}"] = "{npc:2832}，在{object:56910}",
 	-- {npc:2495} Drizzlik

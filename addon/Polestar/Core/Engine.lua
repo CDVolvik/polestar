@@ -154,9 +154,10 @@ local function chainNeeds(g, level)
 							list = {}
 							pres[goal.quest] = list
 						end
-						for _, key in ipairs({ "pre", "preAll" }) do
-							if type(goal[key]) == "table" then list[#list + 1] = goal[key] end
-						end
+						-- Named, not walked: a list of key names here was a table
+						-- per accept of every guide down the chain (#60).
+						if type(goal.pre) == "table" then list[#list + 1] = goal.pre end
+						if type(goal.preAll) == "table" then list[#list + 1] = goal.preAll end
 						if not (goal.qlvl and C.IsQuestTrivial(tonumber(goal.qlvl), level)) then open[#open + 1] = goal end
 					end
 				end
@@ -1098,8 +1099,56 @@ end
 
 local goalDone
 
--- Objective goals: done when objective `oi` is finished or the quest is ready
--- for turn-in or turned in. Returns done, cur, max.
+-- The quest-log line an objective goal reads (#223, #279, #335). The game
+-- does not always list a quest's objectives in the order the guide was
+-- compiled with: Slimy Menace counts Murlocs first where the quest data and
+-- Wowhead list Murloc Streamrunners first, so `oi` alone read the other
+-- objective's count and ticked the other line. With more than one line: the
+-- line labelled with the goal's target (its NPC, item or object, in the
+-- client's language where Polestar.Names has it) wins, else the line holding
+-- that name with the least else in its label ("Murloc" never takes "Murloc
+-- Streamrunner slain"), the compiled `oi` among equals; with no name, or no
+-- line holding it (a label not filled in yet, another language), `oi` as
+-- compiled. (On Own: the main chunk is at 200 locals.)
+Own.OBJECTIVE_NAME = {
+	kill = function(g, N) return N.Npc(g.npc) or g.target end,
+	collect = function(g, N) return N.Item(g.item) or g.itemName end,
+	interact = function(g, N) return N.Object(g.object) or g.objName end,
+}
+function Own.objectiveLine(goal, objs)
+	local oi = goal.oi
+	local nameOf = #objs > 1 and Own.OBJECTIVE_NAME[goal.t]
+	local name = nameOf and nameOf(goal, ns.Names)
+	if type(name) ~= "string" or name == "" then return oi end
+	local label = Compat().ObjectiveLabel
+	local best, bestScore
+	for k = 1, #objs do
+		local l = label(objs[k].text)
+		local score
+		if l == name then
+			score = 0
+		elseif l ~= "" and l:find(name, 1, true) then
+			score = #l - #name
+		end
+		if score and (not bestScore or score < bestScore or (score == bestScore and k == oi)) then
+			best, bestScore = k, score
+		end
+	end
+	return best or oi
+end
+
+-- The quest-log line (an index into Compat.GetQuestObjectives) objective goal
+-- `goal` reads, as Own.objectiveLine picks it; its `oi` while the quest is not in
+-- the log. Party sync reads members' counts by it: theirs come in the same
+-- game order.
+function Engine.ObjectiveLine(goal)
+	if type(goal) ~= "table" or not goal.quest or not goal.oi then return goal and goal.oi end
+	local objs = Compat().GetQuestObjectives(goal.quest)
+	return objs and Own.objectiveLine(goal, objs) or goal.oi
+end
+
+-- Objective goals: done when objective `oi` (its line, Own.objectiveLine) is
+-- finished or the quest is ready for turn-in or turned in. Returns done, cur, max.
 local function objectiveState(goal)
 	local q = goal.quest
 	if questDone(q) then return true end
@@ -1112,7 +1161,7 @@ local function objectiveState(goal)
 		-- not filled them in yet (right after the accept), and its ready flag
 		-- says nothing until it has.
 		if not objs then return false end
-		local o = objs[goal.oi]
+		local o = objs[Own.objectiveLine(goal, objs)]
 		if o then cur, max, finished = o.numFulfilled, o.numRequired, o.finished end
 	end
 	if C.IsQuestReadyForTurnIn(q) then return true, cur, max end
@@ -1192,6 +1241,28 @@ local function exploredAt(goal)
 	return x and fn(goal.map, x, y) or false
 end
 
+-- Whether bag-count collect g of step s gets the one item that starts a
+-- quest: the next `accept Q item I` of that item in the step, before any
+-- other collect of it (the pairing GetStepView folds into one line), and that
+-- quest is in the log or done. Accepting uses the item up, and a player who
+-- took the quest before the route reached the step never held it there
+-- (#309). (On Own: the main chunk is at 200 locals.)
+function Own.starterTaken(s, g, goal)
+	if (goal.count or 1) ~= 1 then return false end
+	local goals = guide.steps[s].goals
+	for j = g + 1, #goals do
+		local a = goals[j]
+		if a.item == goal.item then
+			if a.t == "collect" and not a.quest then return false end
+			if a.t == "accept" and not a.npc and not a.object and goalApplies(a) then
+				local C = Compat()
+				return C.IsOnQuest(a.quest) or questDone(a.quest) or false
+			end
+		end
+	end
+	return false
+end
+
 -- done, cur, max[, label, kind] for goal g of step s. Notes are never done
 -- (and never block). A stored check-off (the player's tick, or a result the
 -- Engine latched) is done whatever the live state says.
@@ -1216,6 +1287,7 @@ goalDone = function(s, g, goal)
 		return false
 	elseif t == "collect" then
 		if goal.quest then return objectiveState(goal) end
+		if Own.starterTaken(s, g, goal) then return true end
 		return countState(goal)
 	elseif t == "buy" then
 		return countState(goal)
@@ -1951,8 +2023,14 @@ end
 -- objective's waypoint also carries `search` (Nav never says arrived),
 -- `spots` (the goal's list, for the map marks) and `spot` (its index).
 -- `z`: the goal's height at that point (posOf), for the walking engine's floor.
-local function waypointOf(g, goal)
-	local map, x, y, f, area, z = posOf(goal)
+-- `at`: a group (stepGroups) whose place stands in for the goal's own.
+local function waypointOf(g, goal, at)
+	local map, x, y, f, area, z
+	if at then
+		map, x, y, f, z = at.map, at.x, at.y, at.f, at.z
+	else
+		map, x, y, f, area, z = posOf(goal)
+	end
 	if not (map and x and y) or not goalApplies(goal) or unavailableFor(goal) or Own.goalSkipped(current, g)
 		or goalDone(current, g, goal) then return nil end
 	local verb, subject, _, detail = describe(goal)
@@ -2014,13 +2092,23 @@ function Own.headerOf(s, grp, after)
 	return nil
 end
 
+-- Whether group grp holds a goal for quest q.
+function Own.dealsWith(grp, goals, q)
+	for _, g in ipairs(grp.goals) do
+		if goals[g].quest == q then return true end
+	end
+	return false
+end
+
 -- The arrow's goal: the one the player chose in the current step (a row
 -- click, the next spot), while it is open; else the current goal's own place;
 -- else the header's; else the focus group's first open located goal
--- (blocking, then optional, then notes). The arrow only ever points at a goal
--- the guide window shows. A done step (no focus, e.g. viewed with Prev) has
--- nothing to point at, even when optional goals are left open; nor has a
--- Class guide the character cannot start yet (Own.startGate), on its live step.
+-- (blocking, then optional, then notes); else, for a quest's current goal,
+-- the place of the focus group or of the nearest group before it for that
+-- quest. The arrow only ever points at a goal the guide window shows. A done
+-- step (no focus, e.g. viewed with Prev) has nothing to point at, even when
+-- optional goals are left open; nor has a Class guide the character cannot
+-- start yet (Own.startGate), on its live step.
 local function findWaypoint()
 	if not current or (current == computed and Own.startGate(guide)) then return nil end
 	local goals = guide.steps[current].goals
@@ -2047,6 +2135,20 @@ local function findWaypoint()
 				wp = waypointOf(g, goal)
 				if wp then return wp end
 			end
+		end
+	end
+	-- Nothing open in the focus group has a place (a bare `complete` after its
+	-- giver's goals, #256): a quest's goal takes the place of its group's work
+	-- (a goto already reached), else of the nearest group before it that
+	-- deals with the same quest (the giver, an escort's start). Never a later
+	-- group's: the window does not show it yet, and a turn-in's place does not
+	-- lead to the objective.
+	local quest = cg and goals[cg].quest
+	if quest then
+		if grp.map then return waypointOf(cg, goals[cg], grp) end
+		for i = focus - 1, 1, -1 do
+			local before = groups[i]
+			if before.map and Own.dealsWith(before, goals, quest) then return waypointOf(cg, goals[cg], before) end
 		end
 	end
 	return nil

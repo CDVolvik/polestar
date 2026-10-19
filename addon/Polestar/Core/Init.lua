@@ -32,6 +32,8 @@ end
 
 -- The Polestar Discord's invite: where players report problems (UI/Report.lua).
 ns.DiscordURL = "https://discord.gg/vMbee6F2e9"
+-- A new issue on Polestar's GitHub: the report window fills one in (UI/Report.lua).
+ns.IssueURL = "https://github.com/fitzforge/polestar/issues/new"
 
 local pcall, type, pairs, select, tostring = pcall, type, pairs, select, tostring
 
@@ -414,6 +416,12 @@ function ns.Set(path, value)
 	if value == lookup(defaults, keys) then value = nil end
 	node[keys[#keys]] = value
 	ns.Fire("SETTING_CHANGED", path, ns.Get(path))
+end
+
+-- The arrow, the action buttons and the timers: with ui.lockHud on, a drag
+-- moves them only while Shift is held, so a stray drag does nothing.
+function ns.DragLocked()
+	return ns.Get("ui.lockHud") and not ns.Compat.IsShiftKeyDown() and true or false
 end
 
 -- Forget stored values for one section (or all), back to defaults.
