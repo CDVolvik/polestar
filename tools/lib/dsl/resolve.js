@@ -1106,7 +1106,31 @@ function resolveGoal(g, zoneMap, prev, data, err, warn, ctx = { sides: ['Allianc
 				}
 				break;
 			}
+			// `npc <id>`: the NPC who hands the item over, for an item the data
+			// has no source for — a quest report given in a gossip window, where
+			// `drops` is empty, so nothing names anyone to target. The target
+			// button and the step key read a collect's `npc` (QoL/Buttons.lua,
+			// `TargetNames`), and the point is that NPC's spawn unless the author
+			// places it.
+			if (g.npc !== undefined) {
+				goal.npc = g.npc;
+				setIf(goal, 'npcName', optionalName('npc', g.npc));
+				candidates = [{ kind: 'npc', id: g.npc }];
+				checkKinds = candidates;
+				questFields = true;
+				break;
+			}
 			candidates = sources.filter((s) => data.spawns(s.kind, s.id).length);
+			// A quest item nothing drops, whose data lists an NPC as its "vendor":
+			// he hands it over in his gossip window (the Warsong Scout's update),
+			// and no dropper can give the target button that name. Only for a
+			// quest objective of a quest item, so a trade good a vendor happens to
+			// stock (Rugged Leather, farmed at a spot) names nobody. Named, never
+			// placed: `buy … nearest` is the vendor path.
+			if (!candidates.length && g.quest !== undefined && it && it.questItem) {
+				const handover = (it.vendors || []).map((id) => ({ kind: 'npc', id: Number(id) })).filter((h) => data.spawns('npc', h.id).length);
+				setIf(goal, 'fromNpcs', sourceNpcs(data, handover[0], handover));
+			}
 			// The sources that matter, named for the reading flow ("Kill Aean
 			// Swiftriver (rare elite)", "Kill Grell or Grellkin"): the item's
 			// game objective only says "Fel Moss: 0/8", so quest objectives get
@@ -1509,7 +1533,8 @@ function resolveGoal(g, zoneMap, prev, data, err, warn, ctx = { sides: ['Allianc
 					goal.y = sp.at.y;
 				}
 			}
-			if (v === 'collect') setIf(goal, 'fromNpcs', sourceNpcs(data, c, picked.sources));
+			// An authored `npc` already names the one creature to target.
+			if (v === 'collect' && goal.npc === undefined) setIf(goal, 'fromNpcs', sourceNpcs(data, c, picked.sources));
 		} else if (g.explicitCoords && goal.x !== undefined) {
 			// Hand-placed: the sources known to give the item (a drop chance, or a
 			// gathering node; not loot of unknown odds). A mob or object spawns
@@ -1522,7 +1547,7 @@ function resolveGoal(g, zoneMap, prev, data, err, warn, ctx = { sides: ['Allianc
 			const sources = onMap(data, all, goal.map, dropSides, passRares).on.map((o) => o.cand);
 			const near = !area ? SPAWN_CHECK_YARDS : sources.length && sources.every((s) => gatherNode(data, s)) ? Infinity : SPREAD_YARDS;
 			setIf(goal, 'spots', handSpots(data, sources, goal.map, goal.f, goal.x, goal.y, near));
-			if (v === 'collect') {
+			if (v === 'collect' && goal.npc === undefined) {
 				const own = pointSources(data, sources, goal.map, goal.f, goal.x, goal.y, near);
 				setIf(goal, 'fromNpcs', sourceNpcs(data, own[0], own));
 			}

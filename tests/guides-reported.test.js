@@ -30,6 +30,7 @@ const TELDRASSIL = 'forever/alliance/nightelf/01-teldrassil.guide';
 const ELWYNN = 'forever/alliance/human/01-elwynn-forest.guide';
 const MULGORE = 'forever/horde/tauren/01-mulgore.guide';
 const TIRISFAL = 'forever/horde/undead/01-tirisfal-glades.guide';
+const STONETALON = 'forever/horde/05-stonetalon-mountains.guide';
 const ASHENVALE = 'forever/alliance/06-ashenvale.guide';
 const ASHENVALE_HORDE = 'forever/horde/07-ashenvale.guide';
 
@@ -104,6 +105,26 @@ test(`${DUROTAR}: tor's report: Securing the Lines is taken after the Sen'jin, E
 	// taken after 806 is accepted, done before it is handed in.
 	assert.ok(at(list, 'accept 806 (Fizzle Darkstorm)', is('accept', 806)) < at(list, 'accept 834 (Rezlak)', is('accept', 834)), '834 is taken after 806');
 	assert.ok(at(list, 'turnin 835', is('turnin', 835)) < at(list, 'turnin 806', is('turnin', 806)), '835 is done before 806 is handed in');
+});
+
+// --- Hand-overs (Onrevax, #337): a report an NPC gives you by hand names him,
+// so the target button and the step key have someone to target.
+
+test(`${TIRISFAL}: Onrevax's report: each Patience report goal names the NPC who hands it over`, { skip }, () => {
+	const list = goals(TIRISFAL);
+	for (const [item, npc, name] of [[286200, 1496, 'Deathguard Dillinger'], [286201, 251001, 'Deathguard Kristof'], [286202, 10666, 'Gordo']]) {
+		const { goal } = list[at(list, `collect ${item} (${name})`, (g) => g.t === 'collect' && g.item === item)];
+		assert.equal(goal.npc, npc, `${name} is named on the goal`);
+		assert.equal(goal.npcName, name);
+	}
+});
+
+test(`${STONETALON}: the Warsong update goals name the scouts who hand them over, from the data`, { skip }, () => {
+	const list = goals(STONETALON);
+	for (const [item, npc, name] of [[16764, 12862, 'Warsong Scout'], [16763, 12863, 'Warsong Runner'], [16765, 12864, 'Warsong Outrider']]) {
+		const { goal } = list[at(list, `collect ${item} (${name})`, (g) => g.t === 'collect' && g.item === item)];
+		assert.deepEqual(goal.fromNpcs, [{ npc, npcName: name }], `${name} is the goal's hand-over NPC`);
+	}
 });
 
 // --- Caves (Tom): the arrow leads to a cave's mouth before anyone inside it.

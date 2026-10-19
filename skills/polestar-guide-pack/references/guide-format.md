@@ -65,7 +65,7 @@ otherwise, the place modifiers `@x,y`, `map`, `r`, `era` / `live`.
 | `turnin <quest> ["Title"]` | Hand a quest in | `npc`, `object`, `choose`, `reward`, `xp`, `money`, `direct` |
 | `complete <quest> ["Title"]` | Finish every objective of a quest with nothing more specific to track | |
 | `kill <npc>` / `kill "<Name>"` | Kill a mob; with `quest Q.O` the quest log counts it, without it the player ticks it | `npc`, `quest`, `xN` |
-| `collect <item> ["Name"]` | Loot or gather items; without `quest`, counted in the bags | `quest`, `xN`, `nearest` |
+| `collect <item> ["Name"]` | Loot or gather items; without `quest`, counted in the bags | `npc`, `quest`, `xN`, `nearest` |
 | `goto <x>,<y> ["Label"]` | Walk there; for travel and places the data has no target for | `map`, `r`, `era` / `live` only |
 | `talk <npc>` | Speak to an NPC | |
 | `interact <object>` | Click a game object | `quest` |
@@ -101,7 +101,7 @@ After the arguments, in any order.
 | `map <uiMapID>` | The map of this goal's `@` coordinates |
 | `r <yards>` | How close counts as arrived (`goto`, default 8) |
 | `era` / `live` | The map frame of this goal's typed coordinates |
-| `npc <id>` / `object <id>` / `item <id>` | Which NPC, object or item, when the data knows several |
+| `npc <id>` / `object <id>` / `item <id>` | Which NPC, object or item, when the data knows several; on `collect`, the NPC who hands the item over, for an item nothing drops (a quest report given in a gossip window) |
 | `quest <id>.<n>` | The quest objective this goal counts, numbered as `polestar find <id> --kind quest` lists them (`quest <id>` alone lets the data pick) |
 | `x<N>` | How many: kills, items, purchases, crafts |
 | `"text"` | Right after an id: the name or title, for content missing from the data; later: the text players see |

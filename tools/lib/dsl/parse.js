@@ -42,7 +42,7 @@ const MODS = {
 	turnin: [...COMMON, ...COORDS, 'npc', 'object', 'reward', 'choose', 'xp', 'money', 'direct'],
 	complete: [...COMMON, ...COORDS],
 	kill: [...COMMON, ...COORDS, 'npc', 'quest', 'count'],
-	collect: [...COMMON, ...COORDS, 'quest', 'count', 'nearest'],
+	collect: [...COMMON, ...COORDS, 'npc', 'quest', 'count', 'nearest'],
 	goto: [...COMMON, 'map', 'r', 'frame'],
 	talk: [...COMMON, ...COORDS],
 	interact: [...COMMON, ...COORDS, 'quest'],
