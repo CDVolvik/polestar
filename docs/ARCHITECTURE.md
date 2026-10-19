@@ -783,7 +783,9 @@ they cover every spawn of the target on that map. Camps nearest to the goal's
 place it spawns); with `spread = true` (an area objective, or a few places far
 apart) up to 12 spread over the whole area, as a walk from `x`/`y`. The other
 places follow with `alt = true`; a hand-placed point is the first spot, the
-data's places its alternatives (GUIDE_FORMAT, "Spawn areas"). `x`/`y` stay the
+data's places its alternatives (GUIDE_FORMAT, "Spawn areas"). A `loop` step's
+goals carry its `goto` points instead, in order, with `spread = true` and no
+`n` or alternatives (compile-time: `resolve.js` applyLoop). `x`/`y` stay the
 default point. `z` (optional, 0.2.4) is the height of the NPC or object the
 goal's `x`/`y` stands for (the compiler's, from `spawnz.json`: GUIDE_FORMAT,
 "Heights"); a spot and a smart target's candidate may carry their own `z`
@@ -4158,7 +4160,9 @@ Polestar.Talents.Show()                                     -- SHOW_TALENTS; /po
   `PLAYER_TALENT_UPDATE` and Gear's spec changes; `TALENTS_UPDATED` follows.
 - **Classes.** One plan file per class (`talents/forever/<class>.json`);
   `talents build` writes them all into `Builds.lua`, one `T.Register` per
-  class, sorted by class. The tool finds each class's tree by its class skill
+  class, sorted by class. `T.Register` keeps only the player's class
+  (`UnitClass("player")`): the other classes' plans are dropped unexpanded,
+  so a character holds one class's plans, not all nine. The tool finds each class's tree by its class skill
   line (`CLASSES` in `tools/lib/talents/build.js`) and leaves out a stray
   copy of a talent far off the grid (1.60.1.70374 and 1.60.1.70450: Hunter node 104982,
   Lightning Reflexes again; Priest node 105865, Holy Specialization again).

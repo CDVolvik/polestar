@@ -10,7 +10,7 @@ const { header } = require('../generated');
 // (formatFor): a pack without stays readable by Polestar 0.2.5.
 const FORMAT = 3;
 const WHEN_FORMAT = 4;
-const NEEDS = { 1: '0.1.0', 2: '0.2.4', 3: '0.2.5', 4: '0.3.0' };
+const NEEDS = { 1: '0.1.0', 2: '0.2.4', 3: '0.2.5', 4: '0.2.6' };
 
 // A `level` goal with `frac` (a point inside the level) needs format 4 too:
 // an older Polestar would count it done at the start of the level.
