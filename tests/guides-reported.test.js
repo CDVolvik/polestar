@@ -21,6 +21,7 @@ const { loadWowhead } = require('../tools/lib/codex/wowhead');
 const { runAddon } = require('./helpers/lua');
 const { writeTestPack } = require('./helpers/dsl');
 const { buildSimPack, playGuide, SIMULATE } = require('../tools/lib/playtest');
+const { makeProjector } = require('../tools/lib/route/geo');
 
 const skip = needs('quests.json', 'npcs.json', 'objects.json', 'map-frames.json');
 
@@ -179,6 +180,14 @@ test(`${MULGORE}: A Task Unfinished at Antur Fallow starts the cougar hunt, with
 	assert.ok(hunt < at(list, 'turnin 750', is('turnin', 750)), 'the hunt ends at Grull');
 });
 
+test(`${TIRISFAL}: Onrevax's report (#365): the Coarse Thread for The Chill of Death is asked for again at the turn-in, from Abigail Shiel`, { skip }, () => {
+	const list = goals(TIRISFAL);
+	const hand = at(list, 'turnin 375 (The Chill of Death)', is('turnin', 375));
+	const thread = list.findIndex(({ goal, s }) => s === list[hand].s && goal.t === 'buy' && goal.item === 2320);
+	assert.ok(thread >= 0 && thread < hand, 'the turn-in step buys the thread before Gretchen');
+	assert.equal(list[thread].goal.npc, 2118, 'from Abigail Shiel, Trade Supplies in Brill');
+});
+
 // --- Bandarion Keep (Mike_, 0.2.3): Hilda the Breaker and Ephram Barbaro offer their quests to Paladins only.
 
 test(`${TIRISFAL}: Mike_'s report: only Paladins are sent to Hilda the Breaker and Ephram Barbaro at Bandarion Keep`, { skip }, () => {
@@ -194,6 +203,34 @@ test(`${TIRISFAL}: Mike_'s report: only Paladins are sent to Hilda the Breaker a
 		const take = at(paladin, `accept ${q} for a Paladin`, is('accept', q));
 		assert.ok(keep.includes(paladin[take].goal.npc), `a Paladin takes ${q} at the keep`);
 		assert.ok(take < at(paladin, `turnin ${q} for a Paladin`, is('turnin', q)));
+	}
+});
+
+test(`${TIRISFAL}: an3vilmonk3y's report (#345): the class letter is taken at Sarvis with Rattling the Rattlecages, and a Warlock's skulls are collected in the Rattlecage step`, { skip }, () => {
+	const SARVIS = 1569;
+	const letters = { WARRIOR: 3095, ROGUE: 3096, PRIEST: 3097, MAGE: 3098, WARLOCK: 3099 };
+	for (const [cls, letter] of Object.entries(letters)) {
+		const list = goals(TIRISFAL).filter(forClass(cls));
+		const first = at(list, `accept 3901 for a ${cls}`, is('accept', 3901));
+		const take = at(list, `accept ${letter} for a ${cls}`, is('accept', letter));
+		assert.ok(take > first, `a ${cls} takes the letter after Rattling the Rattlecages`);
+		assert.deepEqual(list.slice(first, take + 1).filter(({ goal }) => goal.npc !== SARVIS).map(({ goal }) => `${goal.t} ${goal.quest}`), [], `nothing from another giver comes between the two accepts of a ${cls}, so Sarvis's window is one visit`);
+	}
+	const warlock = goals(TIRISFAL).filter(forClass('WARLOCK'));
+	const kill = warlock[at(warlock, 'the skeleton kills (3901)', (g) => g.t === 'kill' && g.quest === 3901)];
+	const skulls = warlock[at(warlock, 'the Rattlecage Skulls (1470)', (g) => g.t === 'collect' && g.quest === 1470)];
+	assert.equal(skulls.s, kill.s, 'the skulls are collected in the step that kills the skeletons');
+	const mage = goals(TIRISFAL).filter(forClass('MAGE'));
+	assert.deepEqual(mage.filter(({ goal }) => goal.quest === 1470).map(({ goal }) => `${goal.t} ${goal.quest}`), [], 'a Mage has no goal for Piercing the Veil');
+});
+
+test(`${TIRISFAL}: an3vilmonk3y's report (#345) and Onrevax's (#120): A Light in the Darkness is taken from Aramis once The Damned is handed in, for every class, and not at Sarvis`, { skip }, () => {
+	for (const cls of ['WARRIOR', 'ROGUE', 'PRIEST', 'MAGE', 'WARLOCK', 'PALADIN']) {
+		const list = goals(TIRISFAL).filter(forClass(cls));
+		const accept = at(list, `accept 98389 for a ${cls}`, is('accept', 98389));
+		assert.ok(accept > at(list, `turnin 376 for a ${cls}`, is('turnin', 376)), `a ${cls} takes it after The Damned is handed in`);
+		assert.ok(list[accept].s > list[at(list, `accept 3901 for a ${cls}`, is('accept', 3901))].s, `a ${cls} is not sent to Aramis in the step that starts at Sarvis`);
+		assert.deepEqual(list[accept].goal.pre, [376], `a ${cls}'s accept needs The Damned`);
 	}
 });
 
@@ -303,6 +340,20 @@ test(`a Priest's report: an event or escort objective holds its step until the q
 		const turnin = at(list, `${guide}: turnin ${quest}`, is('turnin', quest));
 		assert.ok(accept < complete && complete < turnin, `${guide}: ${quest} is completed between its accept and its turn-in`);
 	}
+});
+
+// --- Tirisfal (Hotline, a Scourge Paladin, #408): the guide asked them to
+// turn in Rediscovering the Light (90902) without a step to heal the five
+// Injured Deathguard first. The quest data had no objective to hold a step.
+
+test(`Hotline's report: a Paladin heals the Injured Deathguard before turning in Rediscovering the Light`, { skip }, () => {
+	const list = goals(TIRISFAL).filter(forClass('PALADIN'));
+	const accept = at(list, 'accept 90902', is('accept', 90902));
+	const complete = at(list, 'complete 90902', is('complete', 90902));
+	const turnin = at(list, 'turnin 90902', is('turnin', 90902));
+	assert.ok(accept < complete && complete < turnin, 'healing comes between the accept and the turn-in');
+	const step = list[complete].step;
+	assert.ok(list.some((g) => g.step === step && g.goal.t === 'goto' && located(g)), 'the healing step leads to the Injured Deathguard');
 });
 
 // --- Durotar (AndarKerran): A Pain in the Neck (96873) is for enchanters.
@@ -709,6 +760,17 @@ test(`${TELDRASSIL}: Pynte's report: each class's sigil is handed to its trainer
 	}
 });
 
+// Escaping Ban'ethil is an escort: taken first, Lynessa sets off before the
+// den is done. It is taken once the relics and The Sleeping Druid's chain are.
+test(`${TELDRASSIL}: Pynte's report: Escaping Ban'ethil is taken after the relics and The Sleeping Druid's chain (#334)`, { skip }, () => {
+	const list = goals(TELDRASSIL);
+	const escort = at(list, "accept 99053 (Escaping Ban'ethil)", is('accept', 99053));
+	assert.ok(at(list, 'accept 2541 (The Sleeping Druid)', is('accept', 2541)) < escort, 'The Sleeping Druid is taken first');
+	assert.ok(at(list, 'turnin 2561 (Druid of the Claw)', is('turnin', 2561)) < escort, 'the chain is handed in before the escort');
+	for (const item of [3405, 3406, 3407, 3408]) assert.ok(at(list, `relic ${item}`, (g) => g.t === 'collect' && g.item === item) < escort, `relic ${item} before the escort`);
+	assert.ok(escort < at(list, 'complete 99053', is('complete', 99053)), 'taken before the walk out');
+});
+
 // --- Darkshire (Yendi, 0.2.3): part 1 of Look to the Stars needs a Bronze Tube.
 
 const NEEDLES = 'forever/alliance/07-thousand-needles.guide';
@@ -1102,6 +1164,14 @@ test('#171: every hearth is to an inn the guide binds at first', { skip }, () =>
 	assert.deepEqual(offenders, [], 'hearths to an inn the guide has not bound at');
 });
 
+// An Enticing Offer: the quest log lists the blood before the petals, so each
+// collect counts its own objective (Bashidian Twotao, #279).
+test(`${ELWYNN}: Bashidian Twotao's report (#279): the bait ingredients count their own objectives`, { skip }, () => {
+	const oi = (item) => goals(ELWYNN).find(({ goal }) => goal.t === 'collect' && goal.quest === 99130 && goal.item === item).goal.oi;
+	assert.equal(oi(286215), 1, 'Vial of Animal Blood is objective 1');
+	assert.equal(oi(286214), 2, 'Duskweed Petal is objective 2');
+});
+
 // --- Northshire Abbey (Zepheriel, #310): Skirmish at Echo Ridge is taken from
 // Marshal McBride when Investigate Echo Ridge is handed in to him, not after
 // Brother Paxton in the library and a walk back.
@@ -1268,4 +1338,166 @@ test('#246: no NPC or object goal is on a neighbouring zone\'s map where the two
 		}
 	}
 	assert.deepEqual([...new Set(offenders)], [], 'goals on the map of a zone Wowhead Forever does not place them in');
+});
+
+// --- Elemental Bracers (Tazul | Robin, #391): the step asked only for the
+// Divined Scroll, which the Divining Scroll makes from five Intact Elemental
+// Bracers. With no goal for the bracers, the target button had no elementals
+// to target and the bracers were not counted. The bracer goal is optional:
+// the Divined Scroll holds the step.
+
+const ASHENVALE_ALLIANCE = 'forever/alliance/06-ashenvale.guide';
+
+test(`Tazul's report: Elemental Bracers counts the five bracers before the Divined Scroll`, { skip }, () => {
+	const list = goals(ASHENVALE_ALLIANCE);
+	const bracers = at(list, 'collect 12220', (g) => g.t === 'collect' && g.item === 12220);
+	const scroll = at(list, 'collect 5455', (g) => g.t === 'collect' && g.item === 5455 && g.quest === 1016);
+	assert.equal(list[bracers].goal.count, 5);
+	assert.equal(list[bracers].goal.quest, undefined, 'counted in the bags: the Divining Scroll uses them up');
+	assert.equal(list[bracers].goal.optional, true, 'a scroll made before the step does not wait on bracers it used up');
+	assert.ok(bracers < scroll && list[bracers].s === list[scroll].s, 'the bracers come first, in the same step');
+});
+
+// --- Harvesting the Harvesters (Smuve, #298): the Precessive Autocognition
+// Assembly that starts it drops about once in 900 kills of the Molsen Farm
+// golems and watchers (Wowhead Forever item=255155: 161 of 187,474 Harvest
+// Watchers, 54 of 46,307 Rusty Harvest Golems, checked 2026-10-17). The loot
+// and the accept are optional goals of the farm step, so it does not wait for
+// a drop most players never see; the turn-in at Saldean's Farm is plain and
+// holds only a player who looted it.
+
+test(`${WESTFALL}: Smuve's report (#298): the Molsen Farm step does not wait for the Precessive Autocognition Assembly; with one, it is handed in at Saldean's`, { skip }, () => {
+	const pack = buildSimPack([WESTFALL]);
+	try {
+		const g = pack.guides[0];
+		// The simulated player kills the farm's golems for Ozwin's parts (92909).
+		// Without the Assembly it never drops; with it, it is looted and
+		// right-clicked there. Recorded: the farm step's goals for the Assembly
+		// and its quest, and where Harvesting the Harvesters is handed in.
+		const watch = (assembly) => `
+			local E, w = Polestar.Engine, stub.world
+			local farm, turnedIn = false, false
+			local addItem, progress, turnIn = w.addItem, w.progress, w.turnIn
+			w.addItem = function(item, ...)
+				if item == 255155 and not ${assembly} then return end
+				return addItem(item, ...)
+			end
+			w.progress = function(q, ...)
+				if q == 92909 and not farm then
+					farm = {}
+					if ${assembly} then
+						addItem(255155, 1)
+						w.accept(92910, {}, "Harvesting the Harvesters")
+						stub.advance(0.6)
+					end
+					for _, v in ipairs(E.GetStepView(E.GetStepIndex()).goals) do
+						if v.quest == 92910 or v.item == 255155 then farm[#farm + 1] = v.t .. " " .. tostring(v.optional) end
+					end
+				end
+				return progress(q, ...)
+			end
+			w.turnIn = function(q, ...)
+				if q == 92910 then
+					turnedIn = E.GetStepView(E.GetStepIndex()).title
+					if not w.log[q] then return end
+				end
+				return turnIn(q, ...)
+			end
+			${SIMULATE}
+			emit({ farm = farm, turnedIn = turnedIn, done = C_QuestLog.IsQuestFlaggedCompleted(92910) })`;
+		for (const assembly of [false, true]) {
+			const [out, got] = playGuide(pack, g, { race: 'Human', faction: 'Alliance', cls: 'WARRIOR', script: watch(assembly) });
+			const who = assembly ? 'with the Assembly' : 'without the Assembly';
+			assert.equal(out.stuck, undefined, `${who}: not stuck: ${JSON.stringify(out.stuck)}`);
+			assert.ok(out.done, `${who}: plays to the end`);
+			assert.deepEqual(got.farm, ['collect true', 'accept true'], `${who}: the Assembly and its accept are optional goals of the farm step`);
+			assert.equal(got.done, assembly, `${who}: Harvesting the Harvesters ${assembly ? 'is' : 'is not'} handed in`);
+			assert.equal(got.turnedIn, assembly ? "Saldean's Farm" : false, `${who}: ${assembly ? "handed in at the Saldean's Farm step" : 'nothing is handed in'}`);
+		}
+	} finally {
+		pack.dispose();
+	}
+});
+
+// --- Battleworn Axe (Tazul, #286): the Redridge guide typed the orcs' camp at
+// Alther's Mill as @55.9,43.6, a live-frame spot from the data, in a guide
+// whose coordinates are Era-frame by default. Redridge's Forever map is
+// shifted 5 units from Classic's, so the arrow led into the tarantulas in the
+// middle of the mill, 68 yd west of the nearest orc. A typed coordinate on a
+// goal the data can place is near one of its spawns in the frame it is
+// compiled in, not only in the other one.
+test("#286: a typed coordinate is near its target's spawns in its own map frame, not only in the other one", { skip }, () => {
+	data = data || loadData(DATA);
+	const { point } = makeProjector(data.mapFrames);
+	const offenders = [];
+	for (const guide of allGuides()) {
+		const g = compiled(guide);
+		g._ast.steps.forEach((as, si) => as.goals.forEach((ag, gi) => {
+			const goal = g.steps[si] && g.steps[si].goals[gi];
+			if (!ag.explicitCoords || !goal || goal.map == null || goal.x == null) return;
+			const targets = [];
+			if (goal.t === 'collect') {
+				const item = data.item(goal.item);
+				for (const id of Object.keys((item && item.drops && item.drops.npc) || {})) targets.push(['npc', id]);
+				for (const id of Object.keys((item && item.drops && item.drops.object) || {})) targets.push(['object', id]);
+			} else if (goal.npc) targets.push(['npc', goal.npc]);
+			else if (goal.object) targets.push(['object', goal.object]);
+			const pts = targets.flatMap(([kind, id]) => data.spawns(kind, Number(id)).filter((s) => s.map === goal.map).flatMap((s) => s.pts.map((p) => point(s.map, p[0], p[1], s.f))));
+			if (!pts.length) return;
+			const f = goal.f || 'l';
+			const near = (q) => Math.min(...pts.map((p) => Math.hypot(p.wx - q.wx, p.wy - q.wy)));
+			const own = near(point(goal.map, goal.x, goal.y, f));
+			const other = near(point(goal.map, goal.x, goal.y, f === 'l' ? 'e' : 'l'));
+			if (own > 40 && other < 10) offenders.push(`${guide}:${ag.line} ${goal.t} @${goal.x},${goal.y} (step ${g.steps[si].title}) is ${Math.round(own)} yd from its target in its ${f === 'l' ? 'live' : 'Era'} frame, ${Math.round(other)} yd in the other`);
+		}));
+	}
+	assert.deepEqual(offenders, [], 'typed coordinates written in the other map frame');
+});
+
+// --- Raider's Bow (Lyngtoft, #289): the Durotar guide sent the arrow 124 yd
+// south-west of the bow, to where QuestieDB 1.0.5 had it; 1.0.6 moved it to
+// 59.4,56.4, where the player found it. A quest item that lies on the ground
+// at a few fixed spots is collected where one of them is: the arrow leads
+// within 1 map unit of its object's spawn.
+const AWAY_FROM_ITS_OBJECTS = new Set([
+	// Fish from pools: the schools drift along the shore, and the step points at a stretch of it.
+	'forever/professions/fishing.guide 16968',
+	'forever/professions/fishing.guide 16969',
+	'forever/professions/fishing.guide 16970',
+	// The data has the book at 14.0,24.2 (pfQuest and QuestieDB agree); the guide says the
+	// Terrordale inn at 17.4,31.1. Not checked in game yet; left for its own fix.
+	'forever/horde/50-60/01-un-goro-crater.guide 15884',
+]);
+test("#289: a quest item picked up from objects is collected at one of the objects' spawns", { skip }, () => {
+	data = data || loadData(DATA);
+	const offenders = [];
+	for (const guide of allGuides()) {
+		for (const { step, goal } of goals(guide)) {
+			if (goal.t !== 'collect' || goal.map == null || goal.x == null) continue;
+			const item = data.item(goal.item);
+			if (!item || !item.questItem || !item.drops) continue;
+			const objects = Object.keys(item.drops.object || {});
+			if (!objects.length || Object.keys(item.drops.npc || {}).length) continue;
+			const pts = objects.flatMap((id) => data.spawns('object', Number(id)).filter((s) => s.map === goal.map).flatMap((s) => s.pts));
+			if (!pts.length) continue;
+			const near = Math.min(...[goal, ...(goal.spots || [])].flatMap((g) => pts.map((p) => Math.hypot(p[0] - g.x, p[1] - g.y))));
+			if (near > 1 && !AWAY_FROM_ITS_OBJECTS.has(`${guide} ${goal.item}`)) offenders.push(`${guide} collect ${goal.item} @${goal.x},${goal.y} (step ${step.title}) is ${near.toFixed(2)} from its objects`);
+		}
+	}
+	assert.deepEqual(offenders, [], 'quest items collected away from the objects that hold them');
+});
+
+// --- The Warsong Reports (Hotline, #278): the Warsong Scout, Runner and
+// Outrider each give their update for a Warsong Report, which comes only out
+// of the Bundle of Reports Kadrak hands out. The Kadrak step holds until a
+// report is in the bags, so nobody reaches the scout with the bundle unopened.
+// (Idea and test from PRDesrochers on #293.)
+
+test('forever/horde/05-stonetalon-mountains.guide: Hotline\'s report (#278): the Bundle of Reports is opened at Kadrak, before the Warsong Scout', { skip }, () => {
+	const guide = 'forever/horde/05-stonetalon-mountains.guide';
+	const list = goals(guide);
+	const reports = at(list, 'the Warsong Reports', (g) => g.t === 'collect' && g.item === 16746 && !g.quest);
+	assert.equal(list[reports].goal.count || 1, 1, 'any report in the bags shows the bundle was opened');
+	assert.equal(list[reports].step, list[at(list, 'accept 6543', is('accept', 6543))].step, 'opened on the Kadrak step');
+	for (const update of [16764, 16765, 16763]) assert.ok(reports < at(list, `update ${update}`, (g) => g.t === 'collect' && g.item === update), `a report is in the bags before update ${update}`);
 });
