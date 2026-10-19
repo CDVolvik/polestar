@@ -206,6 +206,19 @@ test(`${TIRISFAL}: Mike_'s report: only Paladins are sent to Hilda the Breaker a
 	}
 });
 
+// MadReign_Ltd (CurseForge, Paladin 12, 0.2.5): Hilda and Ephram did not offer their quests at the guide's
+// step (a Paladin about level 9 there; both need level 10), and did after A Righteous Cause, at 12.
+test(`${TIRISFAL}: MadReign_Ltd's report: a Paladin takes Hilda's and Ephram's quests after A Righteous Cause is handed in`, { skip }, () => {
+	const paladin = goals(TIRISFAL).filter(forClass('PALADIN'));
+	const cause = at(paladin, 'turnin 96896 (A Righteous Cause)', is('turnin', 96896));
+	for (const q of [99152, 99153]) {
+		const take = at(paladin, `accept ${q}`, is('accept', q));
+		assert.ok(cause < take, `${q} is taken after A Righteous Cause is handed in`);
+		const work = at(paladin, `the objective of ${q}`, (g) => g.t === 'collect' && g.quest === q);
+		assert.ok(take < work && work < at(paladin, `turnin ${q}`, is('turnin', q)), `${q}: accept, objective, turn-in`);
+	}
+});
+
 test(`${TIRISFAL}: an3vilmonk3y's report (#345): the class letter is taken at Sarvis with Rattling the Rattlecages, and a Warlock's skulls are collected in the Rattlecage step`, { skip }, () => {
 	const SARVIS = 1569;
 	const letters = { WARRIOR: 3095, ROGUE: 3096, PRIEST: 3097, MAGE: 3098, WARLOCK: 3099 };
@@ -1026,6 +1039,37 @@ test(`${DARKSHORE}: Twerkjob's report: The Red Crystal leads the arrow to the cr
 	// "Locate the large, red crystal on Darkshore's eastern mountain range", the quest's area trigger.
 	const crystal = data.quests[4811].objectives.find((o) => o.type === 'event');
 	assert.ok(yards(lead.goal, crystal) < 30, `the arrow leads to the crystal (${lead.goal.x},${lead.goal.y})`);
+});
+
+// The Blackwood Corrupted's only objective is the Talisman of Corruption, but
+// Xabraxxis' Demon Bag holds it only once the satyr is summoned: the Empty
+// Cleansing Bowl filled at the Auberdine Moonwell, a sample from each of the
+// Blackwood Nut, Fruit and Grain Stores, and the mixed bowl used by the
+// bonfire (the quest's text; its required items in the data).
+test(`${DARKSHORE}: XooVe's report (#302): The Blackwood Corrupted fills the bowl and gathers the three samples before the Talisman, and uses the bowl where Xabraxxis comes`, { skip }, () => {
+	const list = goals(DARKSHORE);
+	const accept = at(list, 'accept 4763 (The Blackwood Corrupted)', is('accept', 4763));
+	const talisman = at(list, 'the Talisman of Corruption', (g) => g.t === 'collect' && g.quest === 4763 && g.item === 12355);
+	const quest = data.quests[4763];
+	const spawn = (kind, id) => {
+		const [x, y] = data[kind][id].spawns[1439].pts[0];
+		return { map: 1439, x, y };
+	};
+	// The samples and the filled bowl: what the quest needs beyond the bowl it hands over.
+	const needed = quest.requiredItems.filter((item) => item !== quest.sourceItem);
+	assert.deepEqual([...needed].sort(), [12341, 12342, 12343, 12347], 'the data lists the three samples and the filled bowl');
+	const got = needed.map((item) => {
+		const i = at(list, `collect ${item} (${data.items[item].name})`, (g) => g.t === 'collect' && g.item === item);
+		assert.ok(i > accept && i < talisman, `${data.items[item].name} is collected after the accept and before the Talisman`);
+		const [source] = Object.keys(data.items[item].drops.object);
+		assert.ok(located(list[i]) && yards(list[i].goal, spawn('objects', source)) < 5, `${data.items[item].name} leads to ${data.objects[source].name}`);
+		return i;
+	});
+	const fill = got[needed.indexOf(12347)];
+	assert.equal(list[fill].step, list[accept].step, 'the bowl is filled in Auberdine, where Thundris gives the quest');
+	const use = at(list, 'use 12347 (Filled Cleansing Bowl)', (g) => g.t === 'use' && g.item === 12347);
+	assert.ok(got.every((i) => i < use) && use < talisman, 'the bowl is used with every sample in the bags, before the Talisman');
+	assert.ok(yards(list[use].goal, spawn('npcs', 10373)) < 10, `the bowl is used where Xabraxxis comes (${list[use].goal.x},${list[use].goal.y})`);
 });
 
 test(`${DUN_MOROGH}: Rumbleshot's Ammo leads to the Ammo Crate by Mountaineer Gretchen, not to Hegnar`, { skip }, () => {
