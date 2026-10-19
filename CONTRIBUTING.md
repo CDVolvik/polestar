@@ -145,10 +145,12 @@ git grep "accept 184"
   ```sh
   node tools/polestar.js lint                        # every compile check, writes nothing
   node tools/polestar.js playtest --filter westfall  # play the matching guides to the end for every class
+  node --test tests/guides-reported.test.js          # or tests/guides-caves.test.js for a cave mouth
   ```
 
   `--filter` plays only the guides whose file or id contains its text;
-  `--class Warrior` narrows it to one class.
+  `--class Warrior` narrows it to one class. You don't need the full test
+  suite; CI runs it on your pull request.
 
 Both need the reference data (below). If you cannot build it, send the fix
 anyway: describe what you changed and why, say that you could not run the
@@ -173,21 +175,20 @@ command.
 
 ## Checks
 
-Run only the checks for what you changed. CI runs the full suite, but a
-contributor's job is to verify the part they touched works — not to
-regenerate files they did not produce.
+Run only the checks for what you changed. CI runs the full suite on every
+pull request and tells you if anything else broke.
 
 | What you changed | What you run |
 |---|---|
-| A guide step (`.guide` file, existing guide) | `node tools/polestar.js lint` and `playtest --filter <guide>` (needs reference data; say so in the PR if you don't have it) |
+| A guide step (`.guide` file, existing guide) | `node tools/polestar.js lint` and `playtest --filter <guide>` (need reference data; say so in the PR if unavailable); for a fix to a reported bug, also `node --test tests/guides-reported.test.js` (or `tests/guides-caves.test.js` for a cave mouth) |
 | A new or renamed guide file | The same lint and playtest; note in the PR that `Guides.lua` needs recompiling — the maintainer does it after merge |
-| The addon's Lua (`addon/Polestar/`) | `npm test` (the addon's own tests: UI, theme, QoL, travel …); for a UI change, optionally `node tools/polestar.js preview` to see the renders before and after |
-| A tool or its library (`tools/`) | That tool's tests (`node --test "tests/<tool>*.test.js"`) |
+| The addon's Lua (`addon/Polestar/`) | The test file(s) for the area you changed: `node --test tests/<area>.test.js`. Find it with `grep -rl <module-name> tests/*.test.js`; for example, a change to `Theme/` → `node --test tests/theme.test.js`. For a UI change, optionally run `node tools/polestar.js preview` to review the renders |
+| A tool or its library (`tools/`) | That tool's tests: `node --test "tests/<tool>*.test.js"` (e.g. `node --test tests/compile.test.js`) |
 | `tools/media/` (texture generators) | `node tools/polestar.js media` to see the textures locally; CI verifies the generators work |
-| Player-facing English strings (`L["..."]`) | `npm test`; translations are updated by the maintainer after merge |
-| `tools/lib/data/corrections.json` | `npm test` |
+| Player-facing English strings (`L["..."]`) | The area's tests (see addon Lua row above); translations are handled by the maintainer after merge — nothing extra from you |
+| `tools/lib/data/corrections.json` | `node --test tests/data-corrections.test.js` |
 | A changelog fragment in `changes/` | `node tools/polestar.js changelog check` |
-| Anything else | `npm test` |
+| Anything else | `node --test tests/<area>.test.js` for what you touched |
 
 A few tests skip automatically when the reference data (`data/forever`) or
 Lua 5.1 is missing. [tests/README.md](tests/README.md) describes the suite;
@@ -203,9 +204,9 @@ The maintainer regenerates those after merging your PR.
 
 - [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) explains how the addon and the
   tools fit together; [docs/README.md](docs/README.md) maps every document.
-- Behaviour changes come with tests that show the behaviour. Run the suite
-  for what you changed (see [Checks](#checks) above); CI runs the full
-  `npm test` on every PR.
+- Behaviour changes come with tests that show the behaviour. Run the tests
+  for what you changed (see [Checks](#checks) above); CI runs the full suite
+  on every PR and tells you if anything else broke.
 - For UI changes, `node tools/polestar.js preview` renders the guide window,
   menu and options to `docs/preview/*.svg`. Run it to review your change
   visually; CI runs it on every PR to verify the renderer still works.

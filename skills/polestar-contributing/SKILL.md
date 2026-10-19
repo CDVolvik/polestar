@@ -95,19 +95,18 @@ the issue first. CONTRIBUTING.md, "Before you start", is the long form.
 
 ## What to run (and not run)
 
-Run only the checks for what you changed. Do not run `npm test` in full unless
-your change touches something that `npm test` specifically exercises; CI runs the
-full suite on every pull request.
+Run only the checks for what you changed. CI runs the full suite on every
+pull request and tells you if anything else broke.
 
 | What you changed | What you run |
 |---|---|
-| A guide step (edit to an existing `.guide` file) | `polestar lint` and `polestar playtest --filter <guide>` (need reference data; say so in PR if unavailable) |
+| A guide step (edit to an existing `.guide` file) | `polestar lint` and `polestar playtest --filter <guide>` (need reference data; say so in PR if unavailable); for a reported-bug fix, also `node --test tests/guides-reported.test.js` |
 | A new or renamed guide file | Same lint and playtest; note in PR that `Guides.lua` needs recompiling — maintainer does it after merge |
-| Addon Lua (`addon/Polestar/`) | `npm test` (the addon tests: UI, theme, QoL, travel …) |
+| Addon Lua (`addon/Polestar/`) | `node --test tests/<area>.test.js` for the area you changed (find it: `grep -rl <module-name> tests/*.test.js`) |
 | A tool or its library (`tools/`) | That tool's tests (`node --test "tests/<tool>*.test.js"`) |
 | `tools/media/` (texture generators) | `polestar media` to see the textures; CI verifies the generators work |
-| Player-facing English strings (`L["..."]`) | `npm test`; `i18n sync` is run by the maintainer after merge |
-| `tools/lib/data/corrections.json` | `npm test` |
+| Player-facing English strings (`L["..."]`) | The area's tests (addon Lua row above); `i18n sync` is run by the maintainer — nothing extra from you |
+| `tools/lib/data/corrections.json` | `node --test tests/data-corrections.test.js` |
 | A changelog fragment in `changes/` | `polestar changelog check` |
 
 ## Making a change

@@ -18,9 +18,11 @@
 
 <!-- Run only what you changed; see CONTRIBUTING.md "Checks" for the table. -->
 
-- [ ] `npm test` (or the specific tests for what I changed)
-- [ ] `node tools/polestar.js lint` and `playtest --filter <guide>` (guide changes; skipped if no reference data — say so)
+- [ ] I ran the tests for what I changed (`node --test tests/<area>.test.js`; guide changes: also `lint` and `playtest --filter <guide>`)
 - [ ] Not run, and why:
 - [ ] A changelog fragment in `changes/` (`node tools/polestar.js changelog add`), crediting the reporter
-- [ ] An AI agent wrote or helped with this
-  - Model and tool: ____ (exact model name and version, and the app or CLI used; list several if more than one was involved)
+- [ ] An AI agent wrote or helped with this — **Model and tool:** ____
+
+## Maintainer review
+
+<!-- Safety read of the full diff before running any code (CONTRIBUTING.md, "How a pull request is reviewed"), pattern sweep, release scope. -->
