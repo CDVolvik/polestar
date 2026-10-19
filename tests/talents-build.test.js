@@ -153,8 +153,44 @@ test('buildAllTalents: two files for one class, or a bad pick, name the class', 
 
 // The committed file matches the plans and the Forever tables (when cached).
 const ROOT = path.join(__dirname, '..');
-const CACHE = path.join(ROOT, 'data', 'sources', 'wago', '1.60.1.70450');
+const { BUILD } = require('../tools/commands/talents');
+const CACHE = path.join(ROOT, 'data', 'sources', 'wago', BUILD);
 const cached = TABLES.every((t) => fs.existsSync(path.join(CACHE, `${t}.csv`)));
+const PLANS = path.join(ROOT, 'talents', 'forever');
+const planFiles = fs.readdirSync(PLANS).filter((f) => f.endsWith('.json')).sort();
+
+test('Builds.lua was built from every plan file on the pinned client build', () => {
+	const head = fs.readFileSync(path.join(ROOT, 'addon', 'Polestar', 'Talents', 'Builds.lua'), 'utf8').split('\n')[0];
+	assert.ok(head.includes(`the Forever ${BUILD} trait tables`), head);
+	const names = planFiles.map((f) => f.replace(/\.json$/, ''));
+	assert.ok(head.includes(names.length === 1 ? `talents/forever/${planFiles[0]}` : `talents/forever/{${names.join(',')}}.json`), head);
+});
+
+test('every plan file: three specs, 51 picks from level 10 to 60, its split, each checked on the pinned build', () => {
+	for (const f of planFiles) {
+		const src = JSON.parse(fs.readFileSync(path.join(PLANS, f), 'utf8'));
+		assert.equal(src.order.length, 3, f);
+		assert.deepEqual(src.builds.map((b) => b.spec), src.order, `${f}: one plan per spec, in order`);
+		assert.equal(src.checkedOn, `WoW: Forever beta ${BUILD}`, `${f}: checkedOn`);
+		for (const b of src.builds) {
+			assert.deepEqual(b.picks.map((p) => p.level), Array.from({ length: 51 }, (_, i) => 10 + i), `${f} ${b.key}: one pick per level`);
+			const spent = src.order.map((t) => b.picks.filter((p) => p.tree === t).length);
+			assert.equal(spent.join('/'), b.split, `${f} ${b.key}: split`);
+			assert.equal(Math.max(...spent), spent[src.order.indexOf(b.spec)], `${f} ${b.key}: most points in ${b.spec}`);
+		}
+	}
+});
+
+test('every plan file replays on its own on the pinned Forever tables', { skip: !cached && 'no cached Forever trait tables' }, async () => {
+	const { loadTables } = require('../tools/lib/professions/tables');
+	const { tables } = await loadTables({ sourcesDir: path.join(ROOT, 'data', 'sources'), build: BUILD, offline: true, tables: TABLES, log: () => {} });
+	for (const f of planFiles) {
+		const src = JSON.parse(fs.readFileSync(path.join(PLANS, f), 'utf8'));
+		const { errors, results } = buildAllTalents([src], tables);
+		assert.deepEqual(errors, [], f);
+		assert.deepEqual(results[0].builds.map((b) => b.picks.length), [51, 51, 51], f);
+	}
+});
 
 test('talents check: Builds.lua is up to date and every plan\'s picks are legal', { skip: !cached && 'no cached Forever trait tables' }, async () => {
 	const cmd = require('../tools/commands/talents');
@@ -169,7 +205,7 @@ test('talents check: Builds.lua is up to date and every plan\'s picks are legal'
 
 test('treeFacts on the Forever tables: three spec columns for every class, Hunter and Priest strays left out', { skip: !cached && 'no cached Forever trait tables' }, async () => {
 	const { loadTables } = require('../tools/lib/professions/tables');
-	const { tables } = await loadTables({ sourcesDir: path.join(ROOT, 'data', 'sources'), build: '1.60.1.70450', offline: true, tables: TABLES, log: () => {} });
+	const { tables } = await loadTables({ sourcesDir: path.join(ROOT, 'data', 'sources'), build: BUILD, offline: true, tables: TABLES, log: () => {} });
 	const strays = {};
 	for (const cls of Object.keys(CLASSES)) {
 		const f = treeFacts(tables, cls);

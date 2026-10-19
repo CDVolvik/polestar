@@ -1,7 +1,8 @@
 name: PR base
 
-# A pull request goes to `next`, or to `hotfix/<version>` for a guide fix to
-# the latest release; never to `main`. A pull request into a hotfix branch may
+# Every pull request goes to `next`; never to `main`. A `hotfix/<version>`
+# branch takes only the backport workflow's pull requests (a fix merged into
+# `next` and labelled `backport`) and the maintainers' own, and those may
 # change only what a patch release carries (`release scope` has the list).
 # CONTRIBUTING.md "Branches" has the rules.
 #
@@ -34,10 +35,29 @@ jobs:
       - name: Not main
         if: github.event.pull_request.base.ref == 'main'
         run: |
-          msg="Pull requests never go to main, which moves only when a release is made. Change the base to next, or to the open hotfix/<version> branch for a guide fix to the latest release (CONTRIBUTING.md, \"Branches\")."
+          msg="Pull requests never go to main, which moves only when a release is made. Change the base to next (CONTRIBUTING.md, \"Branches\")."
           echo "::error::$msg"
           {
             echo '## Base branch: main'
+            echo
+            echo "$msg"
+          } >> "$GITHUB_STEP_SUMMARY"
+          exit 1
+
+      # The author comes from the event payload through env, never written
+      # into the script itself.
+      - name: Not a contributor pull request to hotfix
+        if: startsWith(github.event.pull_request.base.ref, 'hotfix/')
+        env:
+          AUTHOR: ${{ github.event.pull_request.user.login }}
+          ASSOCIATION: ${{ github.event.pull_request.author_association }}
+        run: |
+          case "$ASSOCIATION" in OWNER|MEMBER|COLLABORATOR) exit 0 ;; esac
+          if [ "$AUTHOR" = "github-actions[bot]" ]; then exit 0; fi
+          msg="Pull requests go to next; if this fix belongs in the coming patch, the maintainer adds the backport label after it merges and a patch PR opens on its own. Change the base to next."
+          echo "::error::$msg"
+          {
+            echo "## Base branch: $BASE"
             echo
             echo "$msg"
           } >> "$GITHUB_STEP_SUMMARY"

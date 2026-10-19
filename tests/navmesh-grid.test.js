@@ -310,6 +310,55 @@ test('doorways: outdoor ground into a WMO floor over a threshold, through a door
 	assert.ok(inside.flags & FLAG.INDOOR && linkOf(t, inside.e, W) !== NO_LINK, 'and out again');
 });
 
+test('openings: a reviewed portal cut opens a doorway whose jamb base closes its column (#366)', () => {
+	// The building of the doorways test, but a jamb's base (a block up to
+	// 2 yd) reaches from the jamb at y 100.2 into the doorway's only column
+	// (centred on y 101.04): the grid shuts the door, as Brill town hall's
+	// mouldings and reveal shut its tower door.
+	const build = (openings) => {
+		const s = new Scene();
+		s.box(210, 50, -1, 260, 150, 0.5, 2);
+		s.box(210, 50, 0.5, 210.6, 100.2, 5, 2).box(210, 102.8, 0.5, 210.6, 150, 5, 2);
+		s.box(210, 100.2, 3.5, 210.6, 102.8, 5, 2);
+		s.box(210, 50, 5, 260, 150, 5.4, 2);
+		s.box(209.3, 100, 0.5, 210.6, 100.4, 2, 2); // the jamb's base
+		s.box(209.3, 70, 0.5, 210.6, 70.4, 2, 2); // the same against the wall, no door
+		const g = s.geom();
+		g.openings = openings(s);
+		const { tile } = buildSurfaces(rasterise(g, g), g);
+		const around = Array(9).fill(null);
+		around[4] = tile;
+		Object.assign(tile, linkTile(around));
+		return tile;
+	};
+	const through = (t, y) => {
+		let k = column(t, 203, y)[0].k;
+		let e = top(t, 203, y).e;
+		for (let x = 203; x < 220; x += CELL) {
+			const b = linkOf(t, e, E);
+			if (b === NO_LINK) return false;
+			k += 1;
+			e = t.first[k] + (b & 31);
+		}
+		return t.flags[e] & FLAG.INDOOR && Math.abs(t.z[e] - 0.5) < 0.01;
+	};
+	assert.equal(through(build(() => []), 101), false, 'shut without the cut');
+	// The portal: the door's span (y 100.2..102.8) in the wall's plane, 1.5 yd to each side, floor to lintel.
+	const cut = (s) => {
+		const p = (x, y) => {
+			const w = s.world(x, y);
+			return [w.wx, w.wy];
+		};
+		return [{ id: 'test-door', pts: [p(208.8, 100.2), p(208.8, 102.8), p(211.8, 102.8), p(211.8, 100.2)], zlo: 0.5, zhi: 3.5 }];
+	};
+	const t = build(cut);
+	assert.ok(through(t, 101), 'in through the cut door onto the floor');
+	assert.equal(through(t, 80), false, 'the wall beside it stays shut');
+	const inside = top(t, 220, 101);
+	assert.ok(linkOf(t, inside.e, W) !== NO_LINK, 'and out again');
+	assert.ok(column(t, 209.4, 70).some((c) => c.z > 1.9), 'a jamb base outside the cut keeps its height');
+});
+
 test('components: a pen walled higher than any fall is its own component', () => {
 	const s = new Scene();
 	s.box(100, 100, -1, 200, 104, 40).box(100, 196, -1, 200, 200, 40).box(100, 100, -1, 104, 200, 40).box(196, 100, -1, 200, 200, 40);
