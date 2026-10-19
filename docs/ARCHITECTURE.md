@@ -3246,6 +3246,38 @@ Polestar.QoL.Rewards.best, .reason                -- auto-pick's settled answer 
   (`gear.pickTooltip`) appears only when its pick is an upgrade, so it never
   contradicts the coin. `gear.rewards` is the guide window's pick line only.
 
+### Binding at the guide's inn — QoL, asks the Engine
+
+`QoL/Bind.lua`, behind `qol.autoBind` (Quality of Life → Travel →
+Hearthstone; off by default, as it binds for the player). It does one thing:
+while the active tab's current step has an open `sethome` goal, it binds the
+Hearthstone at the innkeeper that goal names, and nowhere else.
+
+```lua
+Polestar.QoL.Bind.Wanted(npc) -> bool        -- an open sethome goal of the current step binds at npc (Engine.IsSethomeInnkeeper), and the character is not bound at that innkeeper's inn (Nav.BoundInn)
+Polestar.QoL.Bind.BinderOption(options) -> option | nil  -- the gossip's bind option: icon or overrideIconID 132052 (BinderGossipIcon)
+Polestar.QoL.Bind.OnGossip() -> bool         -- GOSSIP_SHOW (Toggles.lua: after the flight helper, before skipGossip): picked the bind option
+```
+
+- **Gossip.** At such an innkeeper, the bind option is picked by its icon,
+  never its text (`QoL.SelectGossip`: by `gossipOptionID`, else
+  `orderIndex`). Not with Shift held, and not while the gossip has a quest to
+  pick up or hand in (`QoL.HasQuestBusiness`, which the flight helper shares):
+  the quest automation goes first and the gossip shows again after it.
+- **Confirmation.** Picking the option fires `CONFIRM_BINDER(areaName)`,
+  registered only while the setting is on (`QoL.WhileOn`). While the
+  innkeeper (`"npc"`, else the last gossip's NPC: the client may have closed
+  the gossip) is still `Wanted`, whether the helper or the player picked the
+  option, and Shift was held neither at that gossip nor now, it answers as the
+  popup's Accept does
+  (`C_PlayerInteractionManager.ConfirmationInteraction(Enum.PlayerInteractionType.Binder)`,
+  then `ClearInteraction(Binder)`; Blizzard_StaticPopup_Game
+  GameDialogDefs.lua), closes the "CONFIRM_BINDER" popup on the next frame
+  (`QoL.ClosePopup`, as for summons; left to the player under the gamepad
+  interface style) and prints "Bound your Hearthstone to <area>.". The
+  Engine completes the goal from the bind as it does for one by hand
+  (`HEARTHSTONE_BOUND`).
+
 ## Lookup — Codex, sources, generated guides, mount spotting
 
 `addon/Polestar/Lookup/` (`Lookup.xml`: Codex, Sources, Guide, Spotter,

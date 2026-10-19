@@ -56,6 +56,7 @@ local defaults = {
 	rewardEquip = false,     -- wear what a turn-in gives when it is an upgrade
 	flightAutoOpen = true,
 	flightHighlight = true,
+	autoBind = false,        -- bind the Hearthstone at the step's innkeeper
 	deathHelper = true,
 	instantQuestText = true,
 	skipGossip = true,
