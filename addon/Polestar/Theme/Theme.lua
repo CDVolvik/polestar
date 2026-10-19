@@ -884,6 +884,9 @@ function Theme.FontSpec(role)
 	end
 	local locale = GetLocale and GetLocale()
 	local face = Theme.FontKey()
+	-- The ruRU client font (FRIZQT___CYR) has no middle dot, which the UI and
+	-- guide text use as a separator; Fira Sans has it and covers Cyrillic.
+	if face == "game" and locale == "ruRU" then face = "fira" end
 	if face == "game" or CJK[locale] then
 		return STANDARD_TEXT_FONT or "Fonts\\FRIZQT__.TTF", size, ""
 	end
