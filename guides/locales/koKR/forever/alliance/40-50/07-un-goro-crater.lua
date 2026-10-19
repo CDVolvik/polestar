@@ -34,7 +34,6 @@ return {
 	-- Step 8: Marshal's Refuge
 	-- {area:541} Marshal's Refuge · {object:157936} Un'Goro Dirt Pile
 	["Ride north along the east side of the crater to {area:541}, the camp in the caves of the northern cliff. Give the elite devilsaurs and stegodons a wide berth. Pick up every Power Crystal and {object:157936} you pass from here on."] = "분화구 동쪽을 따라 북쪽으로 북쪽 절벽 동굴 속 야영지인 {area:541}까지 가세요. 정예 데빌사우루스와 스테고돈은 멀리 피하세요. 여기서부터 지나가는 마력의 수정과 {object:157936}을(를) 모두 챙기세요.",
-	["Gryfe"] = "그리페",
 	-- {npc:9298} Donova Snowden · {zone:1452} Winterspring
 	["Ends with {npc:9298} in {zone:1452}: keep it"] = "{zone:1452}의 {npc:9298}에게서 끝납니다: 보관하세요",
 	-- {npc:9117} J.D. Collie
@@ -199,5 +198,6 @@ return {
 	["Xiggs waits in the {object:32359}."] = "시그스는 {object:32359}에서 기다립니다.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Gryfe"] = "그리페",
 	-- ["grind on {npc:5458} at {area:982}, {zone:1446}"] = "{zone:1446} {area:982}에서 {npc:5458} 사냥",
 }
