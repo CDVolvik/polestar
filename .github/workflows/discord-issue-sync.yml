@@ -2,11 +2,13 @@ name: Discord bug threads
 
 # An issue filed from the Discord #bugs forum (label `discord`) is closed or
 # reopened: tell the player in their thread, set its status tag and lock or
-# unlock it. tools/discord-bot/README.md has the setup.
+# unlock it. Labelled needs-info: ask the player the maintainer's last
+# comment in the thread, so the question reaches them. tools/discord-bot/README.md
+# has the setup.
 
 on:
   issues:
-    types: [closed, reopened]
+    types: [closed, reopened, labeled]
 
 permissions:
   issues: read
@@ -18,7 +20,9 @@ concurrency:
 jobs:
   notify:
     name: Tell the thread
-    if: contains(github.event.issue.labels.*.name, 'discord')
+    if: >
+      contains(github.event.issue.labels.*.name, 'discord') &&
+      (github.event.action != 'labeled' || github.event.label.name == 'needs-info')
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
