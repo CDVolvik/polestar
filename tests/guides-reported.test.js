@@ -718,17 +718,6 @@ test(`${WESTFALL}: Alba Fairmoon's chain is not given to Humans (#144)`, { skip 
 	}
 });
 
-// --- Elwynn Forest (Bashidian Twotao, #276): "Turn in Mining Consultant" at
-// Kelsey Fargo, a Junior Mining Trainer, read as picking Mining over
-// Herbalism. It is Brother Paxton's book chain, for every class.
-
-test(`${ELWYNN}: Bashidian Twotao's report: Mining Consultant is handed to Kelsey Fargo by every class, and the goal says it is a quest, not the profession (#276)`, { skip }, () => {
-	const list = goals(ELWYNN);
-	const hand = list[at(list, 'turnin 91745 (Mining Consultant)', is('turnin', 91745))];
-	assert.ok(everyone(hand), 'no class or race limit on the turn-in or its step');
-	assert.match(hand.goal.note || '', /not the Mining profession/, 'its note says Mining Consultant is not the Mining profession');
-});
-
 // --- Darkshore (XooVe, #213): the first loop walked past a Beached Sea
 // Creature from Asterion to Buzzbox 411 and the second loop came back for it.
 

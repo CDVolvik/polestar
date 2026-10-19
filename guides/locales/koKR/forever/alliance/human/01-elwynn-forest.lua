@@ -69,8 +69,6 @@ return {
 	-- Step 13: Kelsey Fargo
 	-- {npc:248362} Shinyfinder Narf
 	["She stands outside the mine entrance. {npc:248362}, inside, is elite: grouping up is advised."] = "그녀는 광산 입구 밖에 있습니다. 안에 있는 {npc:248362}은(는) 정예이므로 파티를 권장합니다.",
-	-- {quest:91745} Mining Consultant · {npc:951} Brother Paxton · {skill:186} Mining
-	["{quest:91745} is a quest of {npc:951}'s book chain, not the {skill:186} profession: any class hands it in here, no {skill:186} needed"] = "",
 
 	-- Step 14: Inside Echo Ridge Mine
 	-- {area:34} Echo Ridge Mine
