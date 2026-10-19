@@ -11,9 +11,6 @@
 // - dungeon quests (dungeon family): their objectives are the dungeon run,
 //   inserted before the first complete/turn-in that needs it.
 // Quests the character cannot take or the world lacks are listed in `unknown`.
-// An event of a step with `when` carries `cond: { preds }`, one object per
-// step: `cond[i]` is its index in `conds` (-1 for none), and the evaluator
-// decides it once, at the step's first event (Evaluator.whenHolds).
 
 const { K_ACCEPT, K_TASK, K_TURNIN, K_GRIND, K_DUNGEON } = require('./run');
 
@@ -30,10 +27,6 @@ function compileSequence(run, events) {
 	const q = [];
 	const task = [];
 	const pt = [];
-	const cond = [];
-	const conds = [];
-	const condIndex = new Map();
-	let curCond = -1; // the condition of the event being compiled
 	const unknown = new Set();
 	const guides = [];
 	const push = (k, a, b, c) => {
@@ -41,7 +34,6 @@ function compileSequence(run, events) {
 		q.push(a);
 		task.push(b);
 		pt.push(c);
-		cond.push(curCond);
 	};
 	const ran = new Set();
 	const runDungeon = (d) => {
@@ -55,14 +47,6 @@ function compileSequence(run, events) {
 		for (let t = run.qTask0[qi]; t < run.qTask1[qi]; t++) push(K_TASK, qi, t, run.taskPt[t]);
 	};
 	for (const e of events) {
-		curCond = -1;
-		if (e.cond) {
-			if (!condIndex.has(e.cond)) {
-				condIndex.set(e.cond, conds.length);
-				conds.push(e.cond.preds);
-			}
-			curCond = condIndex.get(e.cond);
-		}
 		if (e.t === 'guide') {
 			guides.push({ i: kind.length, title: e.title, zone: e.zone || null, levels: e.levels || null });
 			continue;
@@ -85,7 +69,6 @@ function compileSequence(run, events) {
 	}
 	return {
 		kind: Int32Array.from(kind), q: Int32Array.from(q), task: Int32Array.from(task), pt: Int32Array.from(pt),
-		cond: Int32Array.from(cond), conds,
 		unknown: [...unknown].sort((a, b) => a - b), guides,
 	};
 }

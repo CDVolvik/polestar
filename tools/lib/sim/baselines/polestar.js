@@ -45,9 +45,6 @@ function guideEvents(g, ctx) {
 	const events = [{ t: 'guide', title: g.title, zone: g.zoneName || null, levels: g.minLevel != null ? [g.minLevel, g.maxLevel ?? g.minLevel] : null, id: g.id }];
 	for (const step of g.steps || []) {
 		if (!onlyHolds(step.only, ctx)) continue;
-		// `when`: one object per step, shared by its events, so the evaluator
-		// decides once, where the replay reaches the step (sequence.js).
-		const cond = Array.isArray(step.when) && step.when.length ? { preds: step.when } : null;
 		const seen = new Set();
 		for (const goal of step.goals || []) {
 			if (!onlyHolds(goal.only, ctx)) continue;
@@ -62,7 +59,6 @@ function guideEvents(g, ctx) {
 				e = { t: 'complete', q: goal.quest, obj: goal.oi ?? null };
 			}
 			if (goal.optional) e.optional = true;
-			if (cond) e.cond = cond;
 			events.push(e);
 		}
 	}
