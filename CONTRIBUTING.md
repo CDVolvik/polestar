@@ -91,9 +91,9 @@ steps keep two of you from fixing the same thing without knowing:
 3. **Say you are on it.** Leave a short comment on the issue, and open your
    pull request early, as a draft while it is unfinished. Link the issue so
    it shows: the issue's number in the title (`(#302)`), or "closes #302"
-   (into `next`) or "fixes #302" (into a `hotfix/` branch) in the
-   description, once for each issue it fixes. A plain mention ("see #302")
-   is a link, not a claim, and does not list your pull request on the issue.
+   in the description, once for each issue it fixes. A plain mention
+   ("see #302") is a link, not a claim, and does not list your pull request
+   on the issue.
 4. **If your pull request gets the label `overlap`,** another open pull
    request addresses the same issue (its comment names it). Compare the two
    and say on both what each covers. One is merged: the correct and complete
@@ -148,7 +148,7 @@ git grep "accept 184"
 
   ```sh
   tmp=$(mktemp -d)
-  git archive origin/next guides | tar -x -C "$tmp"   # the guides your change starts from (origin/hotfix/<version> for a patch fix)
+  git archive origin/next guides | tar -x -C "$tmp"   # the guides your change starts from
   node tools/polestar.js compile --guides "$tmp/guides" --out "$tmp/before"
   node tools/polestar.js compile --out "$tmp/after"
   git merge-file addon/Polestar_Guides/Guides.lua "$tmp/before/Guides.lua" "$tmp/after/Guides.lua"
@@ -224,21 +224,18 @@ command.
 | `next` | The next feature release (the repository's default branch). |
 | `hotfix/<version>` | The next patch release, for example `hotfix/0.2.5`: cut from the latest release's tag right after it ships, deleted once the patch is out. |
 
-Open your pull request against:
+Every pull request goes to **`next`**: guide fixes, the addon, the tools,
+the data builds, translations, new guides and route refreshes. Never to
+`main` or a `hotfix/` branch; the `Base branch` check fails those.
 
-- **`hotfix/<version>`** for a guide fix to a bug players have in the latest
-  release: changes to `guides/`, the recompiled `addon/Polestar_Guides/`,
-  the fix's test, `tools/lib/data/corrections.json` and its changelog
-  fragment in `changes/`, nothing else. The `Base branch` check fails a
-  pull request to a `hotfix/` branch that changes anything more. It has
-  to work with the released addon: a fix that needs a change to the addon or
-  the tools that is only on `next` goes to `next`. Write "fixes #N" in the
-  description; GitHub closes issues only for pull requests merged into
-  `next`, so the maintainer closes them when the patch ships.
-- **`next`** for everything else: the addon, the tools, the data builds,
-  translations, new guides and route refreshes. Not sure? Use `next`; a fix
-  there can still go into a patch later.
-- Never `main`.
+A guide fix players need before the next feature release still starts on
+`next`. Once it merges, the maintainer adds the `backport` label, and a
+pull request picking it onto the open `hotfix/` branch opens on its own.
+A patch carries only guide fixes: changes to `guides/`, the recompiled
+`addon/Polestar_Guides/`, the fix's test, `tools/lib/data/corrections.json`
+and its changelog fragment in `changes/`, and it has to work with the
+released addon. You don't need to do anything for this; if you think your
+fix belongs in the coming patch, say so in the pull request.
 
 After a patch ships, `main` is merged into `next`, so `next` always has
 every released fix. docs/RELEASING.md has the release side.
@@ -304,9 +301,10 @@ your request matches it; to be sure, name it: "use polestar-triage on #123".
   the person who reported it at the end of its entry, by the name they
   reported under: "(thanks Tom)". A contribution credits its author the
   same way.
-- A pull request into `next` that should also go out in the coming patch:
-  ask for the `backport` label. When it merges, a pull request picking it
-  onto the `hotfix/` branch opens on its own (docs/RELEASING.md).
+- A guide fix that should also go out in the coming patch: say so in the
+  pull request. The maintainer adds the `backport` label when it merges,
+  and a pull request picking it onto the `hotfix/` branch opens on its own
+  (docs/RELEASING.md).
 
 ## How a pull request is reviewed
 

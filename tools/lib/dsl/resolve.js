@@ -34,6 +34,13 @@ const MAX_NAMED_SOURCES = 8;
 // target button, which cycles at most this many names.
 const MAX_SOURCE_NPCS = 5;
 
+// A collect's droppers this many levels or more above its quest (by their
+// lowest level) do not set the likely-dropper bar where they would crowd out
+// the droppers nearer the quest's level (levelSplit): a level 7 player farms
+// the level 5 Timberlings beside Denalan, not the level 10 Elder Timberlings
+// 1,400 yards away (#327).
+const ABOVE_QUEST_LEVELS = 3;
+
 // Standard rank caps and the skill each rank can first be trained at (Classic).
 const RANK_CAPS = [75, 150, 225, 300];
 const RANK_MIN_SKILL = [0, 50, 125, 225];
@@ -72,8 +79,9 @@ function distance(data, map, ax, ay, bx, by) {
 // { cand } (no usable spawns) | null (no candidates). `sources`: the
 // candidates the point was chosen among on its map (the likely droppers
 // there), `elites`: the elite droppers there passed over for them (see onMap).
-// opts: { usedMaps, sides } (`sides`: the factions the goal applies to, for
-// passing over elite droppers).
+// opts: { usedMaps, sides, rares, qlvl } (`sides`: the factions the goal
+// applies to, for passing over elite droppers; `qlvl`: a collect's quest
+// level, for passing over droppers far above it).
 //
 // Maps are tried in this order: the current zone, then maps the guide has
 // already used (most recent first). On the first map where any candidate
@@ -97,7 +105,7 @@ function pickSpawn(data, candidates, zoneMap, prev, opts = {}) {
 	if (zoneMap != null) maps.push(zoneMap);
 	for (const m of opts.usedMaps || []) if (!maps.includes(m)) maps.push(m);
 	for (const m of maps) {
-		const { on, elites } = onMap(data, all, m, opts.sides, opts.rares);
+		const { on, elites } = onMap(data, all, m, opts.sides, opts.rares, opts.qlvl);
 		if (!on.length) continue;
 		const found = { sources: on.map((o) => o.cand), elites: elites.map((o) => o.cand) };
 		if (prev && prev.map === m) {
@@ -130,11 +138,13 @@ function pickSpawn(data, candidates, zoneMap, prev, opts = {}) {
 // player farms the normal mobs, not the elite camp beside them. The elites
 // passed over are `elites` (spawnSpots keeps the arrow out of their camps).
 // An item only elites drop here keeps them. With `rares` (see rareLeads) a
-// rare (isRare) is passed over the same way.
+// rare (isRare) is passed over the same way. With `qlvl` (a collect's quest
+// level), droppers ABOVE_QUEST_LEVELS or more above it are passed over where
+// they would crowd out the droppers nearer its level (levelSplit).
 //
 // Sources with a drop chance: only the likely ones count (at least half the
 // best chance here; sub-1% drops only when nothing better drops here).
-function onMap(data, all, map, sides, rares = false) {
+function onMap(data, all, map, sides, rares = false, qlvl) {
 	let on = [];
 	let elites = [];
 	for (const { cand, spawns } of all) {
@@ -147,6 +157,8 @@ function onMap(data, all, map, sides, rares = false) {
 		elites = on.filter((o) => split.elites.includes(o.cand));
 		on = on.filter((o) => split.normal.includes(o.cand));
 	}
+	const level = levelSplit(data, on.map((o) => o.cand), qlvl);
+	if (level) on = on.filter((o) => level.near.includes(o.cand));
 	if (on.some((o) => typeof o.cand.chance === 'number')) {
 		const best = Math.max(...on.map(chanceOf));
 		const likely = on.filter((o) => chanceOf(o) >= best / 2 && (chanceOf(o) >= 1 || best < 1));
@@ -207,6 +219,33 @@ function eliteSplit(data, cands, sides, rares = false) {
 	const elites = real.filter((c) => eliteSource(data, c, sides, rares));
 	const normal = real.filter((c) => normalSource(data, c, sides, rares));
 	return elites.length && normal.length ? { normal, elites } : null;
+}
+
+// Sources ([{ kind, id, chance? }], by chance) whose likely ones (at least
+// half the best chance; sub-1% drops only when nothing drops it at 1%) leave
+// out droppers near a quest's level `qlvl` only because an npc whose lowest
+// level is ABOVE_QUEST_LEVELS or more above it drops it at a higher chance:
+// `near`, the likely ones among the droppers near the quest's level (their
+// own best chance sets the bar), `above`, those far above it.
+// -> { near, above } | null (no quest level, no chances, nothing near the
+// quest's level drops it at 1% while something does, or none crowded out)
+function levelSplit(data, cands, qlvl) {
+	if (!(qlvl > 0) || !cands.some((c) => typeof c.chance === 'number')) return null;
+	const chanceOf = (c) => c.chance || 0;
+	const likely = (list) => {
+		const best = Math.max(0, ...list.map(chanceOf));
+		return list.filter((c) => chanceOf(c) >= best / 2 && (chanceOf(c) >= 1 || best < 1));
+	};
+	const above = cands.filter((c) => {
+		const n = c.kind === 'npc' ? data.npc(c.id) : null;
+		return !!n && Number(n.level) >= qlvl + ABOVE_QUEST_LEVELS;
+	});
+	const rest = cands.filter((c) => !above.includes(c));
+	if (!above.length || !rest.length) return null;
+	if (Math.max(...rest.map(chanceOf)) < 1 && Math.max(...cands.map(chanceOf)) >= 1) return null;
+	const all = likely(cands);
+	const near = likely(rest);
+	return near.some((c) => !all.includes(c)) ? { near, above } : null;
 }
 
 // Whether a rare drops the item at the highest chance while normal sources
@@ -960,6 +999,7 @@ function resolveGoal(g, zoneMap, prev, data, err, warn, ctx = { sides: ['Allianc
 	let checkKinds = null; // entities for the explicit-coordinates check
 	let questFields = false;
 	let passRares = false; // a collect whose rare tops its few droppers: the common ones lead (see onMap)
+	let dropLevel; // a collect's quest level: droppers far above it are passed over (see onMap)
 
 	const requireName = (kind, id, explicit, label) => {
 		const name = explicit || nameOf(data, kind, id);
@@ -1155,11 +1195,16 @@ function resolveGoal(g, zoneMap, prev, data, err, warn, ctx = { sides: ['Allianc
 			// engine tell an enemy from a friend of the character's faction.
 			// Where normal droppers and elites both drop it, only the normal
 			// ones are named, as the arrow leads to them (onMap); so are they
-			// where a rare tops the droppers (rareLeads).
+			// where a rare tops the droppers (rareLeads), and the ones near the
+			// quest's level where others are far above it (levelSplit).
 			const widespread = candidates.filter((s) => s.chance >= 2).length > MAX_NAMED_SOURCES;
 			passRares = !widespread && rareLeads(data, candidates, ctx.sides);
+			const q = g.quest !== undefined ? data.quest(g.quest) : null;
+			if (q && Number(q.level) > 0) dropLevel = Number(q.level);
 			const split = eliteSplit(data, candidates, ctx.sides, passRares);
-			const named = split ? split.normal : candidates;
+			const normal = split ? split.normal : candidates;
+			const level = levelSplit(data, normal, dropLevel);
+			const named = level ? level.near : normal;
 			if (!widespread && named.length && (candidates.length === 1 || named[0].chance >= 50)) {
 				const top = named[0];
 				const rec = top.kind === 'npc' ? data.npc(top.id) : data.object(top.id);
@@ -1502,9 +1547,10 @@ function resolveGoal(g, zoneMap, prev, data, err, warn, ctx = { sides: ['Allianc
 	if (g.explicitCoords && (g.nearest || g.classTrain || (g.profession !== undefined && g.npc === undefined))) {
 		err(ln, 'smart targets pick their NPC and position at runtime; drop the coordinates, or name an npc id');
 	}
-	// A collect's droppers: the normal ones over elites beside them (onMap).
+	// A collect's droppers: the normal ones over elites beside them, the ones
+	// near its quest's level over those far above it (onMap).
 	const dropSides = v === 'collect' ? ctx.sides : undefined;
-	const picked = pickSpawn(data, candidates, map, prev, { usedMaps: ctx.usedMaps, sides: dropSides, rares: passRares });
+	const picked = pickSpawn(data, candidates, map, prev, { usedMaps: ctx.usedMaps, sides: dropSides, rares: passRares, qlvl: dropLevel });
 	if (picked) {
 		const c = picked.cand;
 		if (v === 'accept' || v === 'turnin') {
@@ -1557,7 +1603,7 @@ function resolveGoal(g, zoneMap, prev, data, err, warn, ctx = { sides: ['Allianc
 			// point anywhere in it lists every node place.
 			const known = area ? candidates.filter((s) => s.chance === undefined || s.chance > 0 || gatherNode(data, s)) : [c];
 			const all = known.map((cand) => ({ cand, spawns: data.spawns(cand.kind, cand.id) }));
-			const sources = onMap(data, all, goal.map, dropSides, passRares).on.map((o) => o.cand);
+			const sources = onMap(data, all, goal.map, dropSides, passRares, dropLevel).on.map((o) => o.cand);
 			const near = !area ? SPAWN_CHECK_YARDS : sources.length && sources.every((s) => gatherNode(data, s)) ? Infinity : SPREAD_YARDS;
 			setIf(goal, 'spots', handSpots(data, sources, goal.map, goal.f, goal.x, goal.y, near));
 			if (v === 'collect' && goal.npc === undefined) {
