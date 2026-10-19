@@ -111,6 +111,7 @@ Step directives:
 | `only <cond>[,<cond>...]` | The step applies only to matching characters. |
 | `when <predicate>` | The step applies only while the predicate holds when the route reaches it; several `when` lines must all hold. See "Conditions checked during play". |
 | `tip <text>` | Player-facing step note (compiled to `step.note`). |
+| `loop` | The step's `goto` points, in order, are the places to search for its kill, collect and interact goals instead of a path to walk: see "Spawn areas", Loop. |
 
 A step must contain at least one goal.
 
@@ -146,6 +147,14 @@ A step must contain at least one goal.
 | `rep` | `<Faction> <Standing>` | Reach a standing (`Neutral`, `Friendly`, `Honored`, `Revered`, `Exalted`) with a faction named in `factions.json`, or `rep <factionId> <Standing>`. |
 | `explore` | `<x>,<y> ["Area"]` | Discover the map area at those coordinates (current zone). |
 | `achieve` | `<achievementId> ["Name"]` | Complete an achievement / Legacy Challenge; `criteria <n>` targets one criterion. |
+
+**Quests the route leaves out.** Quest automation accepts and hands in only
+the `accept` and `turnin` goals of the step in play and the next two. When the
+game then opens a window of its own at the same NPC (the next quest of the
+chain, or the NPC's other quests) and none of those is a goal there, Polestar
+closes it (Options, Guide, Automation, "Close offers the guide skips", on by
+default). To keep such a follow-up in front of the player, give it an
+`accept` in the same step or the next two.
 
 **Smart targets.** `nearest` (and the profession/class forms of `train`) compile to a
 *candidate set* instead of one NPC: every matching NPC in the data with its faction.
@@ -257,7 +266,7 @@ ID"), and Polestar compares the game's own name for it, then the name you
 wrote.
 
 A pack with a `when` anywhere is written in pack format 4, which Polestar
-0.3.0 and later read (docs/PACK_FORMAT.md); a pack without stays readable by
+0.2.6 and later read (docs/PACK_FORMAT.md); a pack without stays readable by
 older versions.
 
 ## What the compiler fills in
@@ -268,8 +277,8 @@ older versions.
 | quest giver / turn-in target | `start` / `end` of the quest; `npc`/`object` modifiers pick one explicitly |
 | coordinates | the target's spawns, trying maps in order: the current zone, then maps the guide already used (most recent first), then anywhere. On the chosen map: the spawn nearest the previous goal when that goal is on the same map, else the centroid of the highest-priority candidate |
 | `kill` target name | `npcs.json` |
-| `collect` coordinates | every drop source with spawns, ranked as above (zone, used maps, nearness), then by drop chance. On the chosen map only the likely sources count (at least half the best chance there). Where elites (rank 1-3, hostile) drop the item beside normal mobs or objects, each at 1% or more, only the normal ones count, whatever the elites' chance, and a place of theirs with more elite spawns than its own within its radius (at least 70 yd) is an alternative spot: the point and the arrow lead to the normal mobs, not into the elite camp. An item only elites drop there keeps them |
-| `collect` source `from`, `fromAlso`, `fromId`, `fromAlsoId`, `fromKind`, `fromRank`, `fromFaction` | a `collect` (quest objectives too) whose item has one source with spawns, or one that drops it at 50% or more, and at most 8 sources at 2% or more (not cloth that drops everywhere); where normal mobs or objects and elites both drop it at 1% or more, only the normal ones are named, as the arrow leads to them (so are they where a rare tops the droppers and normal mobs drop it at 50% or more): the source's name, a second source of the same kind at 50% or more, their ids, `npc` or `object`, the NPC's rank (1 elite, 2 rare elite, 3 boss, 4 rare) and faction (`A`, `H`, `AH`; none for a hostile mob). The goal line names it, in the client's language by its id: "Kill Grell or Grellkin for Fel Moss" for an enemy, "Collect Oats from Sack of Oats" otherwise (nothing added for an object named as the item); with author `text` the line under it says "Kill Aean Swiftriver (rare elite)" or "From <name>"; a quest started by that item reads as one line ("Runed Scroll: kill Aean Swiftriver (rare elite)") |
+| `collect` coordinates | every drop source with spawns, ranked as above (zone, used maps, nearness), then by drop chance. On the chosen map only the likely sources count (at least half the best chance there). Where elites (rank 1-3, hostile) drop the item beside normal mobs or objects, each at 1% or more, only the normal ones count, whatever the elites' chance, and a place of theirs with more elite spawns than its own within its radius (at least 70 yd) is an alternative spot: the point and the arrow lead to the normal mobs, not into the elite camp. An item only elites drop there keeps them. For a quest objective, mobs 3 or more levels above the quest (their lowest level) are left out where their higher chance would push the likely sources nearer the quest's level under that bar: those set it instead (a level 7 quest's seeds come from the level 5 Timberlings beside the giver, not the level 10 Elder Timberlings across the zone) |
+| `collect` source `from`, `fromAlso`, `fromId`, `fromAlsoId`, `fromKind`, `fromRank`, `fromFaction` | a `collect` (quest objectives too) whose item has one source with spawns, or one that drops it at 50% or more, and at most 8 sources at 2% or more (not cloth that drops everywhere); where normal mobs or objects and elites both drop it at 1% or more, only the normal ones are named, as the arrow leads to them (so are they where a rare tops the droppers and normal mobs drop it at 50% or more, and the sources near a quest's level where mobs 3 or more levels above it would crowd them out, as for the coordinates): the source's name, a second source of the same kind at 50% or more, their ids, `npc` or `object`, the NPC's rank (1 elite, 2 rare elite, 3 boss, 4 rare) and faction (`A`, `H`, `AH`; none for a hostile mob). The goal line names it, in the client's language by its id: "Kill Grell or Grellkin for Fel Moss" for an enemy, "Collect Oats from Sack of Oats" otherwise (nothing added for an object named as the item); with author `text` the line under it says "Kill Aean Swiftriver (rare elite)" or "From <name>"; a quest started by that item reads as one line ("Runed Scroll: kill Aean Swiftriver (rare elite)") |
 | `collect` source NPCs `fromNpcs` | every `collect` placed among its sources, whether the data placed the point or the author did and the data has the target there (as `spots`): the creatures its point and spawn areas belong to, the one the point itself belongs to first, then the other likely sources there (as above), at most 5. Objects are left out, as a macro can only target a creature. An item nothing drops gets the NPCs the data lists as its vendors instead, where they have spawns: those hand it over in their gossip window (the Warsong Scout's update), and nothing else would name them; a `collect` whose author named an `npc` carries that instead. The target button names them, in the client's language by their ids, before the item's own droppers, whose drop chances rank them over the whole world: for an item many creatures drop, those are mostly in other zones |
 | profession, recipe, trainer | `professions.json` (skill line, recipe name, created item, reagents, recipe item; a trainer-taught `learn` gets every trainer of the rank that teaches it, both factions (a smart target), unless `npc <id>` names one). Classic profession names resolve without it. |
 | faction | `factions.json` by name (lowest id on ties) or id |
@@ -390,6 +399,27 @@ gets no `spots`.
   where the data does not (Forever moved it) and gets no `spots`. A route
   through gathering nodes lists every node place of the zone wherever its
   point lies.
+- **Loop** (a step with a `loop` line, for a search the data does not shape
+  the way you want: a circuit through camps, round a lake): the step's `goto`
+  points, in order, become the spawn areas of each of its `kill`, `collect`
+  and `interact` goals that has no `@x,y` of its own and picks no place at
+  runtime (`nearest`), with `spread = true`. The goal's point is the first
+  goto, the spots are exactly the gotos (no alternatives, no spawn count `n`),
+  each as wide as its goto's `r` (default 30 yd), and the gotos leave the
+  step (their labels with them), so the player searches the points one after
+  another as in an area objective. Compile-time
+  only: the compiled step has no `loop`. It is an error when the step has
+  fewer than two gotos, gotos on different maps or frames, an `optional` or
+  `only` goto, or no goal to place.
+
+  ```
+  step Kobold camps
+    loop
+    goto 47.6,35.1
+    goto 49.0,32.4 r 20
+    goto 52.3,26.8
+    kill 6 x10 quest 7.1
+  ```
 
 See docs/ARCHITECTURE.md, Smart logic, "Spawn areas".
 

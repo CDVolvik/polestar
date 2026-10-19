@@ -246,11 +246,24 @@ q.goods = {}
 q.landDelay = 0.1
 function GetMerchantNumItems() return #q.goods end
 function GetMerchantItemID(i) return q.goods[i] and q.goods[i].id end
-function GetMerchantItemInfo(i)
+-- Forever has both: C_MerchantFrame.GetItemInfo (the MerchantItemInfo
+-- table, read first) and GetMerchantItemInfo (the fallback); retail has only
+-- the table. Tests drop either to play the other client.
+local function goodsInfo(i)
 	local g = q.goods[i]
 	if not g then return nil end
 	local it = q.items[g.id] or {}
-	return it.name, 134400, g.price or 0, g.stackCount or 1, g.numAvailable or -1, true, true, g.extendedCost or false
+	return {
+		name = it.name, texture = 134400, price = g.price or 0, stackCount = g.stackCount or 1,
+		numAvailable = g.numAvailable or -1, isPurchasable = true, isUsable = true,
+		hasExtendedCost = g.extendedCost or false, isQuestStartItem = false,
+	}
+end
+C_MerchantFrame = { GetItemInfo = goodsInfo }
+function GetMerchantItemInfo(i)
+	local t = goodsInfo(i)
+	if not t then return nil end
+	return t.name, t.texture, t.price, t.stackCount, t.numAvailable, t.isPurchasable, t.isUsable, t.hasExtendedCost
 end
 function GetMerchantItemMaxStack(i) return q.goods[i] and (q.goods[i].maxStack or 20) or 0 end
 -- The server refuses a purchase over the stack limit, not in whole stacks,

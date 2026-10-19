@@ -34,6 +34,7 @@ ns.RegisterDefaults("behavior", {
 	autoSelectGuide = true,
 	skipGrey = false,
 	warnClosing = false, -- name what an offered quest closes for good, and leave its accept to the player (Closes.lua)
+	closeSkipped = true, -- close the quest window the game opens after an auto accept/turn-in when it shows only quests the guide skips (Automation.lua)
 	routeChoice = "ask", -- "ask" | "recommended": what happens where a guide offers several next zones
 	trainReminder = "2", -- "2" | "1" | "off": remind to visit the class trainer every 2 levels, every level, never
 	suggestFrom = "guides", -- pack id the suggestions come from (Guides.SuggestSource); ours fill in
