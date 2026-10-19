@@ -319,6 +319,12 @@ function pickerScene(script) {
 }
 // Three guides open as tabs, the leveling one active.
 const TABS = 'uistub.openTabs({ { uistub.elwynn, 3 }, { uistub.tailoring, 2 }, { uistub.stormwindRep, 2 } }, 1)';
+// Step pictures (GUIDE_FORMAT.md, `image`) on two sample steps, the field
+// step's beside its tip and one without a tip. A community addon ships its
+// own screenshots; the preview draws Polestar's own textures in their place.
+const PICTURES = `local steps = uistub.guides[uistub.elwynn].steps
+steps[3].image = { file = "Media\\\\UI\\\\band", w = 1024, h = 512, texture = "Interface\\\\AddOns\\\\Polestar\\\\Media\\\\UI\\\\band" }
+steps[5].image = { file = "Media\\\\UI\\\\watermark", w = 256, h = 256, texture = "Interface\\\\AddOns\\\\Polestar\\\\Media\\\\UI\\\\watermark" }`;
 // A route for the journey panel (UI/JourneyPanel.lua): the Nav fake gains a
 // three-leg trip (Shortest Path Forever's example, 36:48 and 8.0k yd), the
 // Great Lift's departures untimed until `timed`.
@@ -772,6 +778,14 @@ const SCENES = [
 			{ roots: GUIDE, script: `${TABS}; uistub.setStep(4)` },
 			{ roots: GUIDE, script: `${TABS}; uistub.goal(4, 1).status = "done"; uistub.goal(4, 2).status = "done"; uistub.setStep(4)` },
 			{ roots: GUIDE, script: `${TABS}; Polestar.UI.GuideFrame.parts.tip:Click()` },
+		],
+	},
+	{
+		file: 'guide-picture.svg',
+		title: "Step pictures: a community addon's screenshot under the step's tip, scaled to the window; a picture with no tip, at most 160 high (Polestar's own textures stand in for the screenshots)",
+		panels: [
+			{ roots: GUIDE, script: `${PICTURES}; ${TABS}` },
+			{ roots: GUIDE, script: `${PICTURES}; ${TABS}; uistub.setStep(5)` },
 		],
 	},
 	{
