@@ -14,7 +14,8 @@
 --   Target: /targetexact for the current step's kill targets and the mobs
 --     that drop its collect items: the ones the guide sends you to for that
 --     goal (`fromNpcs`), then the item's own droppers (Polestar.QuestDB when
---     loaded); every click moves the next name to the front.
+--     loaded), passing over corpses; every click moves the next name to the
+--     front.
 --   Step key: no button on screen, only a binding: the first open goal it can
 --     act on, in guide order (a use goal's item, a hearth goal's Hearthstone,
 --     a kill or collect's mobs, an NPC goal's NPC by name), else the quest
@@ -471,22 +472,36 @@ function Buttons.TargetNames(view, raw)
 	return names
 end
 
--- "/targetexact" lines with names[preferred] last, so it wins when present.
--- A name that is not MacroSafeName never becomes a line.
+-- The macro for names, tried from names[preferred] on in click order. Out of
+-- combat it starts from nothing ("/cleartarget [nocombat]"), so a target that
+-- is none of the names -- a mob clicked by hand, the quest giver just turned
+-- in to -- cannot stop the chain; in a fight the target is left alone, since
+-- clearing it would cut melee swings and Auto Shot. A plain /targetexact
+-- takes the nearest match, corpse or not, so each line is followed by
+-- "/cleartarget [dead]", and every later name is tried only while nothing is
+-- targeted ("[noexists]"): the first living match is kept. A name that is not
+-- MacroSafeName never becomes a line; names past MACRO_LIMIT are dropped from
+-- the end.
 function Buttons.TargetMacro(list, preferred)
 	local n = #list
 	if n == 0 then return nil end
-	local lines = {}
-	for k = 1, n do
-		local idx = (preferred + k - 1) % n + 1
-		if Buttons.MacroSafeName(list[idx]) then lines[#lines + 1] = "/targetexact " .. list[idx] end
+	local order = {}
+	for k = 0, n - 1 do
+		local name = list[(preferred - 1 + k) % n + 1]
+		if Buttons.MacroSafeName(name) then order[#order + 1] = name end
 	end
-	if #lines == 0 then return nil end
-	local text = concat(lines, "\n")
-	while #text > MACRO_LIMIT and #lines > 1 do
-		table.remove(lines, 1)
+	local count = #order
+	if count == 0 then return nil end
+	local text
+	repeat
+		local lines = { "/cleartarget [nocombat]" }
+		for k = 1, count do
+			lines[#lines + 1] = (k == 1 and "/targetexact " or "/targetexact [noexists] ") .. order[k]
+			lines[#lines + 1] = "/cleartarget [dead]"
+		end
 		text = concat(lines, "\n")
-	end
+		count = count - 1
+	until #text <= MACRO_LIMIT or count == 0
 	return text
 end
 
