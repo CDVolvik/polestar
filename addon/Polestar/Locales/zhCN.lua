@@ -634,7 +634,6 @@ L["Wearing %s (%s)."] = "已装备%s（%s）。"
 L["Wearing %s."] = "已装备%s。"
 
 -- QoL/Flight.lua
-L["Route"] = "路线"
 L["Route: fly to %s."] = "路线：飞往%s。"
 
 -- QoL/Death.lua
@@ -2022,3 +2021,4 @@ L["Shortest Path Forever's arrow, route and journey take you to each goal. Poles
 -- L["Next lift in about %s"] = "下次升降梯约 %s后到"
 -- L["leaves in about %s"] = "约%s后出发"
 -- L["Scale of the quest item, Hearthstone and target buttons. Drag one to move them all."] = "任务物品、炉石和目标按钮的缩放。拖动任意一个可整体移动。"
+-- L["Route"] = "路线"

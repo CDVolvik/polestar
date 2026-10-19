@@ -634,7 +634,6 @@ L["Wearing %s (%s)."] = "Надето: %s (%s)."
 L["Wearing %s."] = "Надето: %s."
 
 -- QoL/Flight.lua
-L["Route"] = "Маршрут"
 L["Route: fly to %s."] = "Маршрут: лететь в %s."
 
 -- QoL/Death.lua
@@ -2022,3 +2021,4 @@ L["Shortest Path Forever's arrow, route and journey take you to each goal. Poles
 -- L["Next lift in about %s"] = "Следующий подъемник примерно через %s"
 -- L["leaves in about %s"] = "отправление через ~%s"
 -- L["Scale of the quest item, Hearthstone and target buttons. Drag one to move them all."] = "Масштаб кнопок предмета задания, камня возвращения и цели. Перетащите одну, чтобы сдвинуть все."
+-- L["Route"] = "Маршрут"

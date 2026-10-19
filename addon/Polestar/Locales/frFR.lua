@@ -635,7 +635,6 @@ L["Wearing %s (%s)."] = "%s équipé (%s)."
 L["Wearing %s."] = "%s équipé."
 
 -- QoL/Flight.lua
-L["Route"] = "Itinéraire"
 L["Route: fly to %s."] = "Itinéraire : prenez un vol pour %s."
 
 -- QoL/Death.lua
@@ -2062,3 +2061,4 @@ L["Shortest Path Forever's arrow, route and journey take you to each goal. Poles
 -- L["Next lift in about %s"] = "Prochain ascenseur dans environ %s"
 -- L["leaves in about %s"] = "départ dans environ %s"
 -- L["Scale of the quest item, Hearthstone and target buttons. Drag one to move them all."] = "Échelle des boutons d'objet de quête, de pierre de foyer et de ciblage. Faites-en glisser un pour tous les déplacer."
+-- L["Route"] = "Itinéraire"
