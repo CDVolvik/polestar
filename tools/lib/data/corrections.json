@@ -74,6 +74,36 @@
 			},
 			"note": "Return to Marleth: Forever's quest data (page snapshot 2026-10-17) starts with Guarded Thunder Ale Barrel (object 269) and Unguarded Thunder Ale Barrel (object 270); as its giver the merged data lacked Guarded Thunder Ale Barrel (object 269). The Unguarded Thunder Ale Barrel (270) stays first, as before, so the guide's accept step keeps naming the barrel it already pointed at."
 		},
+		"377": {
+			"set": {
+				"xp": 4400
+			},
+			"note": "Crime and Punishment (The Stockade) rewards 4,400 XP on Forever after Blizzard's 1 October 2026 change to dungeon quest XP (beta build 1.60.1.70170, \"50% less extra experience\"); the merged data had 2,100, the Classic value. Factoruide's database (2026-10-18) has 4,400 from a game client's quest cache of a build after the change: the quest is in none of its client caches on 2026-10-10 (builds 69913, from before the change, and 70334), first appears in them on 2026-10-11 (build 70338), and its XP was first read from those caches on 2026-10-14 (builds 69913 and 70374), so the value comes from build 70374 or later; Factoruide's in-game collector had no XP for it. ForeverDB's player captures agree. Issue #394 (dungeon quest XP)."
+		},
+		"386": {
+			"set": {
+				"xp": 4200
+			},
+			"note": "What Comes Around... (The Stockade) rewards 4,200 XP on Forever; the merged data had 2,000, the Classic value. Factoruide's in-game collector and client quest caches (which may include the pre-change build 69913), ForeverDB's player captures and ForeverLevelingBiS's quest XP table (undated) give 4,200, 2.10 times the Classic base of 2,000 (the client's QuestXP), the same rate as Crime and Punishment (377) and The Color of Blood (388) in the same dungeon, 2.09 to 2.10 times their base from a post-change client quest cache (Factoruide). Before Blizzard's 1 October 2026 change (beta build 1.60.1.70170, \"50% less extra experience\") a dungeon quest's extra XP was twice what it is now, so an undated value at the dated post-change rate of its own dungeon cannot be a pre-change one. Issue #394 (dungeon quest XP)."
+		},
+		"387": {
+			"set": {
+				"xp": 5550
+			},
+			"note": "Quell the Uprising (The Stockade) rewards 5,550 XP on Forever; the merged data had 2,650, the Classic value. Factoruide's in-game collector and client quest caches (which may include the pre-change build 69913), ForeverDB's player captures and ForeverLevelingBiS's quest XP table (undated) give 5,550, 2.09 times the Classic base of 2,650 (the client's QuestXP), the same rate as Crime and Punishment (377) and The Color of Blood (388) in the same dungeon, 2.09 to 2.10 times their base from a post-change client quest cache (Factoruide). Before Blizzard's 1 October 2026 change (beta build 1.60.1.70170, \"50% less extra experience\") a dungeon quest's extra XP was twice what it is now, so an undated value at the dated post-change rate of its own dungeon cannot be a pre-change one. Issue #394 (dungeon quest XP)."
+		},
+		"388": {
+			"set": {
+				"xp": 5550
+			},
+			"note": "The Color of Blood (The Stockade) rewards 5,550 XP on Forever after Blizzard's 1 October 2026 change to dungeon quest XP (beta build 1.60.1.70170, \"50% less extra experience\"); the merged data had 2,650, the Classic value. Factoruide's database (2026-10-18) has 5,550 from a game client's quest cache of a build after the change: the quest is in none of its client caches on 2026-10-10 (builds 69913, from before the change, and 70334), first appears in them on 2026-10-12 (build 70338), and its XP was first read from those caches on 2026-10-14 (builds 69913 and 70374), so the value comes from build 70374 or later; Factoruide's in-game collector had no XP for it. ForeverDB's player captures agree. Issue #394 (dungeon quest XP)."
+		},
+		"391": {
+			"set": {
+				"xp": 4950
+			},
+			"note": "The Stockade Riots (The Stockade) rewards 4,950 XP on Forever; the merged data had 2,950, the Classic value. Factoruide's in-game collector and client quest caches (which may include the pre-change build 69913) and ForeverLevelingBiS's quest XP table (undated) give 4,950, 2.11 times the Classic base of 2,350 (the client's QuestXP), the same rate as Crime and Punishment (377) and The Color of Blood (388) in the same dungeon, 2.09 to 2.10 times their base from a post-change client quest cache (Factoruide). Before Blizzard's 1 October 2026 change (beta build 1.60.1.70170, \"50% less extra experience\") a dungeon quest's extra XP was twice what it is now, so an undated value at the dated post-change rate of its own dungeon cannot be a pre-change one. Issue #394 (dungeon quest XP)."
+		},
 		"425": {
 			"set": {
 				"pre": [
@@ -116,6 +146,12 @@
 			},
 			"note": "Hints of a New Plague? (Arathi Highlands; Kinelory gives it) is an escort: Wowhead Forever https://www.wowhead.com/forever/quest=660 reads \"Protect Kinelory until she returns to Quae\" (checked 2026-10-17), as quests.json does. No text says escort, and the compiler's escort rule (tools/lib/dsl/escort.js) needs the word escort in the quest's own text. QuestieDB 1.0.6 questFlags has PARTY_ACCEPT (2), as every Classic escort the rule finds does."
 		},
+		"914": {
+			"set": {
+				"xp": 4300
+			},
+			"note": "Leaders of the Fang (Wailing Caverns) rewards 4,300 XP on Forever; the merged data had 2,200, the Classic value. ForeverDB's player captures and ForeverLevelingBiS's quest XP table (undated) give 4,300, 1.95 times the Classic base of 2,200 (the client's QuestXP), the same rate as Deviate Hides (1486) in the same dungeon, 3,100 = 1.94 times 1,600 on an in-game reward panel of 2026-10-19. Before Blizzard's 1 October 2026 change (beta build 1.60.1.70170, \"50% less extra experience\") a dungeon quest's extra XP was twice what it is now, so an undated value at the dated post-change rate of its own dungeon cannot be a pre-change one. Issue #394 (dungeon quest XP)."
+		},
 		"926": {
 			"set": {
 				"start": {
@@ -127,6 +163,18 @@
 				}
 			},
 			"note": "Flawed Power Stone: Forever's quest data (page snapshot 2026-10-17) starts with Flawed Power Stones (object 5621); as its giver the merged data also listed Flawed Power Stone (object 5619) and Flawed Power Stones (object 5620)."
+		},
+		"959": {
+			"set": {
+				"xp": 2650
+			},
+			"note": "Trouble at the Docks (Wailing Caverns) rewards 2,650 XP on Forever; the merged data had 1,350, the Classic value. ForeverDB's player captures and ForeverLevelingBiS's quest XP table (undated) give 2,650, 1.96 times the Classic base of 1,350 (the client's QuestXP), the same rate as Deviate Hides (1486) in the same dungeon, 3,100 = 1.94 times 1,600 on an in-game reward panel of 2026-10-19. Before Blizzard's 1 October 2026 change (beta build 1.60.1.70170, \"50% less extra experience\") a dungeon quest's extra XP was twice what it is now, so an undated value at the dated post-change rate of its own dungeon cannot be a pre-change one. Issue #394 (dungeon quest XP)."
+		},
+		"962": {
+			"set": {
+				"xp": 3300
+			},
+			"note": "Serpentbloom (Wailing Caverns) rewards 3,300 XP on Forever; the merged data had 1,350, the Classic value. ForeverDB's player captures and ForeverLevelingBiS's quest XP table (undated) give 3,300, 1.94 times the Classic base of 1,700 (the client's QuestXP), the same rate as Deviate Hides (1486) in the same dungeon, 3,100 = 1.94 times 1,600 on an in-game reward panel of 2026-10-19. Before Blizzard's 1 October 2026 change (beta build 1.60.1.70170, \"50% less extra experience\") a dungeon quest's extra XP was twice what it is now, so an undated value at the dated post-change rate of its own dungeon cannot be a pre-change one. Issue #394 (dungeon quest XP)."
 		},
 		"994": {
 			"set": {
@@ -170,6 +218,24 @@
 			},
 			"note": "Corrupted Windblossom: Forever's quest data (page snapshot 2026-10-17) starts with Corrupted Windblossom (object 174599) and ends with Corrupted Windblossom (object 174599); as its giver the merged data also listed Corrupted Windblossom (object 174603); as its ender the merged data also listed Corrupted Windblossom (object 174603)."
 		},
+		"1013": {
+			"set": {
+				"xp": 5600
+			},
+			"note": "The Book of Ur (Shadowfang Keep) rewards 5,600 XP on Forever; the merged data had 2,100, the Classic value. ForeverDB's player captures and ForeverLevelingBiS's quest XP table (undated) give 5,600, 2.67 times the Classic base of 2,100 (the client's QuestXP), the same rate as Deathstalkers in Shadowfang (1098) in the same dungeon, 5,350 = 2.675 times 2,000 in a Polestar Recorder file of build 70338 and the client quest cache of build 70450. Before Blizzard's 1 October 2026 change (beta build 1.60.1.70170, \"50% less extra experience\") a dungeon quest's extra XP was twice what it is now, so an undated value at the dated post-change rate of its own dungeon cannot be a pre-change one. Issue #394 (dungeon quest XP)."
+		},
+		"1014": {
+			"set": {
+				"xp": 8850
+			},
+			"note": "Arugal Must Die (Shadowfang Keep) rewards 8,850 XP on Forever; the merged data had 3,300, the Classic value. ForeverDB's player captures and ForeverLevelingBiS's quest XP table (undated) give 8,850, 2.68 times the Classic base of 3,300 (the client's QuestXP), the same rate as Deathstalkers in Shadowfang (1098) in the same dungeon, 5,350 = 2.675 times 2,000 in a Polestar Recorder file of build 70338 and the client quest cache of build 70450. Before Blizzard's 1 October 2026 change (beta build 1.60.1.70170, \"50% less extra experience\") a dungeon quest's extra XP was twice what it is now, so an undated value at the dated post-change rate of its own dungeon cannot be a pre-change one. Issue #394 (dungeon quest XP)."
+		},
+		"1098": {
+			"set": {
+				"xp": 5350
+			},
+			"note": "Deathstalkers in Shadowfang (Shadowfang Keep) rewards 5,350 XP on Forever after Blizzard's 1 October 2026 change to dungeon quest XP (beta build 1.60.1.70170, \"50% less extra experience\"); the merged data had 2,000, the Classic value. A Polestar Recorder file from build 1.60.1.70338 (2026-10-12) has a reward of 5,350 XP at level 20 (the quest is level 25), and the game client's quest cache of build 1.60.1.70450 (written 2026-10-17) gives the quest XP difficulty 5 and multiplier 2.675: 2,000 (QuestXP, level 25, difficulty 5) x 2.675 = 5,350. ForeverDB's player captures agree. Issue #394 (dungeon quest XP)."
+		},
 		"1194": {
 			"set": {
 				"start": {
@@ -190,9 +256,22 @@
 					],
 					"object": [],
 					"item": []
-				}
+				},
+				"xp": 3100
 			},
-			"note": "Deviate Hides: Forever's quest data (page snapshot 2026-10-17) starts with Nalpak (npc 5767); as its giver the merged data also listed Mailbox (object 659159)."
+			"note": "Deviate Hides: Forever's quest data (page snapshot 2026-10-17) starts with Nalpak (npc 5767); as its giver the merged data also listed Mailbox (object 659159). Deviate Hides (Wailing Caverns) rewards 3,100 XP on Forever after Blizzard's 1 October 2026 change to dungeon quest XP (beta build 1.60.1.70170, \"50% less extra experience\"); the merged data had 1,600, the Classic value. An in-game screenshot of the quest's reward panel, posted on issue #394 on 2026-10-19 by a level 19 Priest (the quest is level 17, so no level reduction), shows Experience: 3,100."
+		},
+		"1487": {
+			"set": {
+				"xp": 4000
+			},
+			"note": "Deviate Eradication (Wailing Caverns) rewards 4,000 XP on Forever; the merged data had 2,050, the Classic value. ForeverDB's player captures and ForeverLevelingBiS's quest XP table (undated) give 4,000, 1.95 times the Classic base of 2,050 (the client's QuestXP), the same rate as Deviate Hides (1486) in the same dungeon, 3,100 = 1.94 times 1,600 on an in-game reward panel of 2026-10-19. Before Blizzard's 1 October 2026 change (beta build 1.60.1.70170, \"50% less extra experience\") a dungeon quest's extra XP was twice what it is now, so an undated value at the dated post-change rate of its own dungeon cannot be a pre-change one. Issue #394 (dungeon quest XP)."
+		},
+		"1491": {
+			"set": {
+				"xp": 2650
+			},
+			"note": "Smart Drinks (Wailing Caverns) rewards 2,650 XP on Forever; the merged data had 1,350, the Classic value. ForeverDB's player captures and ForeverLevelingBiS's quest XP table (undated) give 2,650, 1.96 times the Classic base of 1,350 (the client's QuestXP), the same rate as Deviate Hides (1486) in the same dungeon, 3,100 = 1.94 times 1,600 on an in-game reward panel of 2026-10-19. Before Blizzard's 1 October 2026 change (beta build 1.60.1.70170, \"50% less extra experience\") a dungeon quest's extra XP was twice what it is now, so an undated value at the dated post-change rate of its own dungeon cannot be a pre-change one. Issue #394 (dungeon quest XP)."
 		},
 		"1501": {
 			"set": {
@@ -352,6 +431,24 @@
 				}
 			},
 			"note": "Tabetha's Task: Forever's quest data (page snapshot 2026-10-17) starts with Anastasia Hartwell (npc 4568), Bink (npc 5144), Jennea Cannon (npc 5497) and Deino (npc 5885); as its giver the merged data also listed Ursyn Ghull (npc 3048)."
+		},
+		"2924": {
+			"set": {
+				"xp": 5500
+			},
+			"note": "Essential Artificials (Gnomeregan) rewards 5,500 XP on Forever after Blizzard's 1 October 2026 change to dungeon quest XP (beta build 1.60.1.70170, \"50% less extra experience\"); the merged data had 3,050, the Classic value. Factoruide's database (2026-10-18) has 5,500 from a game client's quest cache of a build after the change: the quest is in none of its client caches on 2026-10-10 (builds 69913, from before the change, and 70334), first appears in them on 2026-10-12 (build 70338), and its XP was first read from those caches on 2026-10-14 (builds 69913 and 70374), so the value comes from build 70374 or later; Factoruide's in-game collector had no XP for it. Issue #394 (dungeon quest XP)."
+		},
+		"2929": {
+			"set": {
+				"xp": 4950
+			},
+			"note": "The Grand Betrayal (Gnomeregan) rewards 4,950 XP on Forever after Blizzard's 1 October 2026 change to dungeon quest XP (beta build 1.60.1.70170, \"50% less extra experience\"); the merged data had 2,750, the Classic value. Factoruide's database (2026-10-18) has 4,950 from a game client's quest cache of a build after the change: the quest is in none of its client caches on 2026-10-10 (builds 69913, from before the change, and 70334), first appears in them on 2026-10-12 (build 70338), and its XP was first read from those caches on 2026-10-14 (builds 69913 and 70374), so the value comes from build 70374 or later; Factoruide's in-game collector had no XP for it. Issue #394 (dungeon quest XP)."
+		},
+		"2930": {
+			"set": {
+				"xp": 6550
+			},
+			"note": "Data Rescue (Gnomeregan) rewards 6,550 XP on Forever after Blizzard's 1 October 2026 change to dungeon quest XP (beta build 1.60.1.70170, \"50% less extra experience\"); the merged data had 3,650, the Classic value. Factoruide's database (2026-10-18) has 6,550 from a game client's quest cache of a build after the change: the quest is in none of its client caches on 2026-10-10 (builds 69913, from before the change, and 70334), first appears in them on 2026-10-12 (build 70338), and its XP was first read from those caches on 2026-10-14 (builds 69913 and 70374), so the value comes from build 70374 or later. 1.79 times the base, the rate of Essential Artificials (2924) and The Grand Betrayal (2929), dated the same way. Issue #394 (dungeon quest XP)."
 		},
 		"2936": {
 			"set": {
@@ -914,6 +1011,12 @@
 				}
 			},
 			"note": "The Hunter's Path: Forever's quest data (page snapshot 2026-10-17) starts with Olmin Burningbeard (npc 5116); as its giver the merged data also listed Regnus Thundergranite (npc 5117)."
+		},
+		"6981": {
+			"set": {
+				"xp": 5150
+			},
+			"note": "The Glowing Shard (Wailing Caverns) rewards 5,150 XP on Forever; the merged data had 2,650, the Classic value. ForeverDB's player captures and ForeverLevelingBiS's quest XP table (undated) give 5,150, 1.94 times the Classic base of 2,650 (the client's QuestXP), the same rate as Deviate Hides (1486) in the same dungeon, 3,100 = 1.94 times 1,600 on an in-game reward panel of 2026-10-19. Before Blizzard's 1 October 2026 change (beta build 1.60.1.70170, \"50% less extra experience\") a dungeon quest's extra XP was twice what it is now, so an undated value at the dated post-change rate of its own dungeon cannot be a pre-change one. Issue #394 (dungeon quest XP)."
 		},
 		"7022": {
 			"set": {
