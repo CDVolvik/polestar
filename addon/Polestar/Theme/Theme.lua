@@ -241,7 +241,9 @@ Theme.SKIN_ORDER = { "polestar", "halo", "hearth", "forever", "blizzard", "class
 -- naming a hidden skin resolves to the house style at load; the raw saved
 -- value is left alone so the player's choice restores when the skin returns.
 -- See issue #306.
-local HIDDEN_SKINS = { forever = true }
+-- Each entry holds the skin's label so its translations survive in every locale
+-- until the skin returns (the i18n scanner would otherwise flag it as stale).
+local HIDDEN_SKINS = { forever = { label = ns.L["WoW Forever"] } }  -- #306
 -- Tests may set Theme._testShowHidden = true to render hidden skins directly.
 Theme._testShowHidden = false
 -- The skins drawn in game colours and controls (the client's check boxes,
