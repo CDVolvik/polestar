@@ -200,7 +200,7 @@ step Milly Osworth
 
 step Kelsey Fargo
   tip She stands outside the mine entrance. Shinyfinder Narf, inside, is elite: grouping up is advised.
-  turnin 91745
+  turnin 91745                                -- Mining Consultant is a quest of Brother Paxton's book chain, not the Mining profession: any class hands it in here, no Mining needed
   accept 91752 optional
 
 step Inside Echo Ridge Mine

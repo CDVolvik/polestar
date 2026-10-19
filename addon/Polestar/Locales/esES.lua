@@ -743,6 +743,8 @@ L["Start this session's XP per hour from zero."] = "Reinicia el cálculo de XP p
 -- L["Rare button"] = ""
 -- L["Shows a button that targets a rare Polestar spotted nearby, until it dies or is out of sight. Bindable."] = ""
 -- L["Scale of the quest item, Hearthstone, target and rare buttons. Drag one to move them all."] = ""
+L["Guide level on the XP bar"] = "Nivel de la guía en la barra de XP"
+L["A mark at the end of the game's XP bar with the level the guide wants you to reach before it moves on, and how many levels away that is when it is more than one."] = "Una marca al final de la barra de XP del juego con el nivel que la guía quiere que alcances antes de continuar, y cuántos niveles faltan cuando es más de uno."
 
 -- Lookup/Sources.lua
 L["Alliance only"] = "Solo Alianza"
@@ -2256,6 +2258,10 @@ L["Guides someone shared with you, as an import string or a community addon."] =
 -- L["Subtle"] = ""
 -- L["Dazzling"] = ""
 -- L["Route line style"] = ""
+
+-- QoL/XPMark.lua
+L["Guide: %d"] = "Guía: %d"
+L["Guide: %d (%d levels)"] = "Guía: %d (%d niveles)"
 
 -- No longer in the code (its English changed or it went away): reuse or delete.
 -- L["Shortest Path Forever is guiding. Turn off \"Guide with Shortest Path Forever when it's installed\" (Options, Arrow & routes) to use Polestar's arrow."] = "Shortest Path Forever está guiando. Desactiva \"Guiar con Shortest Path Forever si está instalado\" (Opciones, Flecha y rutas) para usar la flecha de Polestar."

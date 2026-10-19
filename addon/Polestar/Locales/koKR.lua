@@ -743,6 +743,8 @@ L["Start this session's XP per hour from zero."] = "이번 접속의 시간당 �
 -- L["Rare button"] = ""
 -- L["Shows a button that targets a rare Polestar spotted nearby, until it dies or is out of sight. Bindable."] = ""
 -- L["Scale of the quest item, Hearthstone, target and rare buttons. Drag one to move them all."] = ""
+L["Guide level on the XP bar"] = "경험치 바에 가이드 레벨 표시"
+L["A mark at the end of the game's XP bar with the level the guide wants you to reach before it moves on, and how many levels away that is when it is more than one."] = "게임 경험치 바 끝에 가이드가 다음으로 넘어가기 전에 도달하기를 원하는 레벨을 표시하고, 한 레벨보다 많이 남았으면 몇 레벨 남았는지도 보여 줍니다."
 
 -- Lookup/Sources.lua
 L["Alliance only"] = "얼라이언스 전용"
@@ -2256,6 +2258,10 @@ L["Guides someone shared with you, as an import string or a community addon."] =
 -- L["Subtle"] = ""
 -- L["Dazzling"] = ""
 -- L["Route line style"] = ""
+
+-- QoL/XPMark.lua
+L["Guide: %d"] = "가이드: %d"
+L["Guide: %d (%d levels)"] = "가이드: %d (%d레벨)"
 
 -- No longer in the code (its English changed or it went away): reuse or delete.
 -- L["Shortest Path Forever is guiding. Turn off \"Guide with Shortest Path Forever when it's installed\" (Options, Arrow & routes) to use Polestar's arrow."] = "Shortest Path Forever가 가이드 중입니다. Polestar 화살표를 쓰려면 \"설치 시 Shortest Path Forever로 가이드\"를 끄십시오(설정, 화살표 및 경로)."

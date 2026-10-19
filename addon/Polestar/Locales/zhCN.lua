@@ -743,6 +743,8 @@ L["Start this session's XP per hour from zero."] = "将本次每小时经验从�
 -- L["Rare button"] = ""
 -- L["Shows a button that targets a rare Polestar spotted nearby, until it dies or is out of sight. Bindable."] = ""
 -- L["Scale of the quest item, Hearthstone, target and rare buttons. Drag one to move them all."] = ""
+L["Guide level on the XP bar"] = "在经验条上显示指南等级"
+L["A mark at the end of the game's XP bar with the level the guide wants you to reach before it moves on, and how many levels away that is when it is more than one."] = "在游戏经验条末端标出指南要求你在继续之前达到的等级；相差不止一级时，还会显示还差几级。"
 
 -- Lookup/Sources.lua
 L["Alliance only"] = "仅限联盟"
@@ -2256,6 +2258,10 @@ L["Guides someone shared with you, as an import string or a community addon."] =
 -- L["Subtle"] = ""
 -- L["Dazzling"] = ""
 -- L["Route line style"] = ""
+
+-- QoL/XPMark.lua
+L["Guide: %d"] = "指南：%d"
+L["Guide: %d (%d levels)"] = "指南：%d（还差 %d 级）"
 
 -- No longer in the code (its English changed or it went away): reuse or delete.
 -- L["Shortest Path Forever is guiding. Turn off \"Guide with Shortest Path Forever when it's installed\" (Options, Arrow & routes) to use Polestar's arrow."] = "Shortest Path Forever 正在导航。要使用 Polestar 的箭头，请关闭“安装 Shortest Path Forever 时由其导航”（选项 > 箭头与路线）。"
