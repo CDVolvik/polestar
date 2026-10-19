@@ -229,6 +229,8 @@ end)`,
 	talents: {
 		about: 'Talents: every class with its builds, and the talent frame',
 		stubs: ['stub_talents.lua'],
+		// No player class at load: Talents keeps every class's plans, so the loop below sees all nine.
+		before: 'stub.talents.class = nil',
 		script: () => `
 leaks.try("talents", function()
 	local T, TS = Polestar.Talents, stub.talents
