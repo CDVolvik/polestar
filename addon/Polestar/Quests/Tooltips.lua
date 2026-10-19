@@ -397,10 +397,20 @@ local function updatePlate(unit)
 		or "Interface\\TargetingFrame\\UI-RaidTargetingIcon_8"
 	f.tex:SetTexture(skullTex)
 	f.tex:SetVertexColor(1, 1, 1, 1)
-	-- Show our count only when the icon is beside a health bar (left of bar,
-	-- below the name): in the no-bar fallback the icon sits near the nameplate
-	-- name and the count would overlap it.
-	local text = f._hasBar and countText(npc) or nil
+	-- Show our count left of the bar. Skip it when the nameplate name already
+	-- starts with "N/M" (the WoW Forever client's built-in objective count),
+	-- and in the no-bar fallback where the icon sits near the name.
+	local clientHasCount = false
+	if f._hasBar then
+		local plate = plateFor(unit)
+		local uf = plate and type(plate.UnitFrame) == "table" and plate.UnitFrame
+		local nameFs = uf and type(uf.name) == "table" and uf.name
+		if nameFs and type(nameFs.GetText) == "function" then
+			local ok, t = pcall(nameFs.GetText, nameFs)
+			if ok then clientHasCount = type(t) == "string" and t:match("^%d+/%d+") ~= nil end
+		end
+	end
+	local text = f._hasBar and not clientHasCount and countText(npc) or nil
 	if text then
 		local tc = Q.Color("text")
 		f.count:SetTextColor(tc.r, tc.g, tc.b, tc.a or 1)
