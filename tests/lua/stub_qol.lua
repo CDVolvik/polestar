@@ -24,6 +24,8 @@
 --   q.combat(true|false)                        -- PLAYER_REGEN_DISABLED / ENABLED
 --   q.click(frame, down)                        -- OnClick + PostClick (button "LeftButton")
 --   q.gainXP(n)                                 -- UnitXP moves, PLAYER_XP_UPDATE (levels up past xpMax)
+--   q.xpBar(shown)                              -- the game's XP bar frames (StatusTrackingBarManager); returns the experience bar
+--   q.engine.levelTarget = N                    -- what Engine.LevelTarget answers above the player's level
 --   q.calls                                     -- { { "UseContainerItem", bag, slot }, { "GetQuestReward", i }, ... }
 
 local q = {
@@ -112,6 +114,36 @@ function q.gainXP(n)
 		q.xpMax = q.xpMaxFor(q.level)
 	end
 	stub.fire("PLAYER_XP_UPDATE", "player")
+end
+
+-- The game's XP bar (Blizzard_StatusTrackingBar): two containers under
+-- StatusTrackingBarManager, each with its own bars by StatusTrackingBarInfo
+-- index; the experience bar in the main one. Made by the client, so the
+-- frames count as game frames (stub.underGameFrames). Returns the XP bar.
+function q.xpBar(shown)
+	StatusTrackingBarInfo = { BarsEnum = { None = -1, Reputation = 1, Honor = 2, Artifact = 3, Experience = 4, Azerite = 5, HouseFavor = 6 } }
+	local manager = CreateFrame("Frame", "StatusTrackingBarManager", UIParent)
+	manager.barContainers = {}
+	local exp
+	for i, name in ipairs({ "MainStatusTrackingBarContainer", "SecondaryStatusTrackingBarContainer" }) do
+		local c = CreateFrame("Frame", name, manager)
+		c:SetSize(571, 17)
+		c.bars = {}
+		for index = 1, 6 do
+			local bar = CreateFrame("Frame", nil, c)
+			bar:SetSize(565, 11)
+			bar.StatusBar = CreateFrame("StatusBar", nil, bar)
+			bar.StatusBar:SetAllPoints(bar)
+			bar.OverlayFrame = CreateFrame("Frame", nil, bar)
+			bar.OverlayFrame:SetFrameLevel(4)
+			bar:Hide()
+			c.bars[index] = bar
+		end
+		manager.barContainers[i] = c
+		if i == 1 then exp = c.bars[4] end
+	end
+	if shown ~= false then exp:Show() end
+	return exp
 end
 
 C_DeathInfo = {}
@@ -564,6 +596,12 @@ function Engine.GetStepView(i) if i == q.engine.step then return q.engine.view e
 function Engine.GetGuide() return q.engine.guide end
 function Engine.GetWaypoint() return q.engine.waypoint end
 function Engine.IsClassTrainer(npc) return npc ~= nil and q.classTrainers[npc] == true end
+-- q.engine.levelTarget: the guide's next `level N`; returned only above `level`.
+function Engine.LevelTarget(level)
+	local t = q.engine.levelTarget
+	if t and q.engine.step and t > (level or q.level) then return t, q.engine.step end
+	return nil
+end
 
 -- A step from raw goals: views get status "active" unless goal.status says otherwise.
 function q.step(goals, index)

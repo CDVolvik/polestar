@@ -191,6 +191,28 @@ test('`only` on steps and goals filters by class and race', () => {
 	});
 });
 
+// The XP bar's guide mark (QoL/XPMark) reads the level the guide expects next.
+test('LevelTarget: the first level goal for this character from the step shown, above their level, not skipped', () => {
+	const [human, gnome] = [false, true].map((isGnome) => run({
+		before: isGnome ? 'w.race = "Gnome"; w.raceName = "Gnome"; w.raceID = 7' : '',
+		script: `
+			E.SetGuide("test/01-northshire"); flush()
+			local out = {}
+			out.start = { E.LevelTarget() }
+			out.at4 = { E.LevelTarget(4) }
+			out.at3 = { E.LevelTarget(3) }
+			E.Goto(6); flush()
+			E.Skip(); flush()
+			E.Goto(3); flush()
+			out.skipped = { E.LevelTarget() }
+			out.shown = E.GetStepIndex()
+			emit(out)
+		`,
+	})[0]);
+	assert.deepEqual(human, { start: [4, 6], at4: {}, at3: [4, 6], skipped: {}, shown: 3 }, "the Gnomes' level 5 is not a Human's");
+	assert.deepEqual(gnome, { start: [5, 6], at4: [5, 6], at3: [5, 6], skipped: {}, shown: 3 });
+});
+
 test('goto completes on arrival via the ticker, which runs only while a goto is active', () => {
 	const [out] = run({
 		before: `w.complete({ 783 }); w.onQuest(7, { 10 })`,
