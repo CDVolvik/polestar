@@ -8,7 +8,7 @@ const { header } = require('../generated');
 
 const GUIDE_KEYS = ['id', 'pack', 'title', 'faction', 'races', 'classes', 'minLevel', 'maxLevel', 'category', 'folder', 'keywords', 'collects', 'reward', 'why', 'zone', 'zoneName', 'next', 'nextChoices', 'nextWhen', 'pitch', 'pros', 'cons', 'author', 'version', 'group', 'names', 'written', 'steps'];
 // `image` follows note, so a step without one is emitted as before.
-const STEP_KEYS = ['title', 'note', 'image', 'only', 'when', 'goals'];
+const STEP_KEYS = ['title', 'note', 'image', 'label', 'only', 'when', 'along', 'goals'];
 // A step's picture: its path in the pack's addon folder (no extension) and its size in pixels.
 const IMAGE_KEYS = ['file', 'w', 'h'];
 // A step's `when` predicates and a `next` option's (`nextWhen`, format 4), in this key order.

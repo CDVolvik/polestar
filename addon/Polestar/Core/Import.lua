@@ -196,7 +196,7 @@ Import.ParseJSON = parseJSON
 -- refuses the string. Built fresh: nothing of the parsed tree is kept.
 ---------------------------------------------------------------------------
 
-local S, N, B, NS, NL = "s", "n", "b", "ns", "nl" -- string, number, boolean, number or string, number or list of numbers
+local S, N, B, NS, NL, BS = "s", "n", "b", "ns", "nl", "bs" -- string, number, boolean, number or string, number or list of numbers, boolean or string
 local function list(of) return { list = of } end
 local function rec(fields) return { rec = fields } end
 local LS, LN = list(S), list(N)
@@ -225,7 +225,7 @@ local WHEN = rec({ k = S, neg = B, op = S, n = N, frac = N, q = NL, item = N, na
 -- A step's picture: read so a string carries the guide as its addon does, but
 -- an imported guide has no addon folder holding the file, so it shows none.
 local IMAGE = rec({ file = S, w = N, h = N })
-local STEP = rec({ title = S, note = S, image = IMAGE, only = ONLY, when = list(WHEN), goals = list(GOAL) })
+local STEP = rec({ title = S, note = S, image = IMAGE, label = S, only = ONLY, when = list(WHEN), along = BS, goals = list(GOAL) })
 local GUIDE = rec({
 	id = S, title = S, faction = S, races = LS, classes = LS, minLevel = N, maxLevel = N, category = S, folder = S, keywords = LS,
 	collects = LN, reward = list(rec({ item = N, itemName = S, quality = N, choice = B, spell = N, spellName = S, text = S })),
@@ -253,7 +253,7 @@ local function finite(v) return type(v) == "number" and v == v and v ~= huge and
 -- v shaped by spec -> a fresh copy; raises { field = where } at the first
 -- key or value that does not fit.
 local function build(v, spec, where)
-	if type(v) == "string" and #v > LIMITS.text and (spec == S or spec == NS) then error({ field = where, long = true }, 0) end
+	if type(v) == "string" and #v > LIMITS.text and (spec == S or spec == NS or spec == BS) then error({ field = where, long = true }, 0) end
 	if spec == S then
 		if type(v) == "string" then return v end
 	elseif spec == N then
@@ -262,6 +262,8 @@ local function build(v, spec, where)
 		if type(v) == "boolean" then return v end
 	elseif spec == NS then
 		if type(v) == "string" or finite(v) then return v end
+	elseif spec == BS then
+		if type(v) == "string" or type(v) == "boolean" then return v end
 	elseif spec == NL then
 		if finite(v) then return v end
 		if type(v) == "table" then return build(v, LN, where) end

@@ -6,22 +6,25 @@ const { header } = require('../generated');
 // The pack format the compiler writes, and the first Polestar version that
 // reads each format (written into the TOC as X-Polestar-Needs). Format 2
 // adds `group` (docs/PACK_FORMAT.md, "Format 2"); format 4 adds a step's
-// `when` and a `next` option's (`nextWhen`), so a pack is written in it only
-// when its guides use one (formatFor): a pack without stays readable by
-// Polestar 0.2.5.
+// `when`, `label` and `along`, a level goal's `frac` and a `next` option's
+// `when` (`nextWhen`), so a pack is written in it only when its guides use
+// one (formatFor): a pack without stays readable by Polestar 0.2.5.
 const FORMAT = 3;
 const WHEN_FORMAT = 4;
 const NEEDS = { 1: '0.1.0', 2: '0.2.4', 3: '0.2.5', 4: '0.2.6' };
+
+// A step with `label` or `along` (an older Polestar would stop at an along step).
+const usesAlong = (s) => s.label !== undefined || s.along !== undefined;
 
 // A `level` goal with `frac` (a point inside the level) needs format 4 too:
 // an older Polestar would count it done at the start of the level.
 const usesLevelFrac = (g) => (g.steps || []).some((s) => (s.goals || []).some((goal) => goal.t === 'level' && goal.frac));
 
 // The format a pack's compiled guides need: WHEN_FORMAT when a step of
-// them has `when`, a level goal has `frac`, or a `next` option has a `when`
-// (`nextWhen`), else FORMAT.
+// them has `when`, `label` or `along`, a level goal has `frac`, or a `next`
+// option has a `when` (`nextWhen`), else FORMAT.
 function formatFor(guides) {
-	const uses = (guides || []).some((g) => (g.steps || []).some((s) => Array.isArray(s.when) && s.when.length));
+	const uses = (guides || []).some((g) => (g.steps || []).some((s) => (Array.isArray(s.when) && s.when.length) || usesAlong(s)));
 	if (uses || (guides || []).some(usesLevelFrac)) return WHEN_FORMAT;
 	const nextWhen = (guides || []).some((g) => g.nextWhen && Object.keys(g.nextWhen).length);
 	if (nextWhen) return WHEN_FORMAT;

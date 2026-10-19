@@ -344,7 +344,6 @@ function XP.Summary(st)
 		parts[#parts + 1] = format(L["%s to level"], QoL.Duration(st.timeToLevel))
 	end
 	if st.killsToLevel then parts[#parts + 1] = format(L["%d kills"], st.killsToLevel) end
-	if st.questsToLevel then parts[#parts + 1] = format(L["%d quests"], st.questsToLevel) end
 	if st.rested > 0 then parts[#parts + 1] = format(L["rested %s"], short(st.rested)) end
 	return table.concat(parts, " · ")
 end
