@@ -29,7 +29,8 @@
 //   encounter: its DungeonEncounter id)
 // Quest: { id, title, level, minLevel, faction 'A'|'H'|null, classes|null, inside, shareable,
 //   objectives: [ { k, id?, n?, name } ]|null (objectivesOf), start|null, finish|null (each { kind, id, name, map, x, y, f, inside }),
-//   startItem: { id, name }|null, chain: [ids, oldest first],
+//   startItem: { id, name }|null, chain: [ids, oldest first], closedBy?: [ids] (the quests that close it
+//   for good once taken or done: the one a breadcrumb leads to, its exclusive group; tools/lib/data/prereqs.js),
 //   rewards: { items: [ { id, name, quality, choice } ], xp, money, rep: [ { faction, name, value } ] },
 //   bosses: [names] }
 //
@@ -39,6 +40,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const { header } = require('../generated');
+const { closedByOf } = require('../data/prereqs');
 
 const SCHEMA = 3; // 3: objective facts (objectives) instead of an English line, instance map, boss encounter
 
@@ -325,6 +327,11 @@ function buildPages(inputs, codex, warnings = []) {
 
 	// How many of a reward item Wowhead's list row gives (quests.json `wowhead`).
 	const countIn = (id, list, it) => ((((fq[id] && fq[id].wowhead) || {})[list] || []).find((p) => p[0] === it) || [])[1];
+	// { closedBy } when taking or finishing other quests closes this one, else {}.
+	const closers = (id) => {
+		const by = closedByOf(id, fq);
+		return by.length ? { closedBy: by } : {};
+	};
 	// A quest from the Codex (and quests.json) alone.
 	const codexQuest = (id) => {
 		const q = cq[id];
@@ -351,6 +358,7 @@ function buildPages(inputs, codex, warnings = []) {
 			finish: placeOf('npc', (e.npc || [])[0], codex) || placeOf('object', (e.object || [])[0], codex),
 			startItem,
 			chain: chainOf(cq, fq, Number(id), faction),
+			...closers(id),
 			rewards: {
 				items: [
 					...(src.rewards || []).map((i) => rewardItem(i, false, codex, null, countIn(id, 'items', i))),
@@ -381,6 +389,7 @@ function buildPages(inputs, codex, warnings = []) {
 			finish: djPlace(q.end) || (c && c.finish),
 			startItem: q.startItem ? { id: q.startItem.item, name: q.startItem.name || names.item(q.startItem.item) } : c ? c.startItem : null,
 			chain: (q.chain || []).filter((x) => x !== q.id),
+			...closers(q.id),
 			rewards: {
 				items: [
 					...(rewards.items || []).map((i) => rewardItem(i.item, false, codex, i, countIn(q.id, 'items', i.item))),
