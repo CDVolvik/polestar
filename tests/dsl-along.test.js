@@ -7,7 +7,7 @@
 const { test } = require('node:test');
 const assert = require('node:assert/strict');
 const { compile, guideText, lineOf, plain, fixtureData } = require('./helpers/dsl');
-const { formatFor, FORMAT, WHEN_FORMAT } = require('../tools/lib/pack/format');
+const { formatFor, FORMAT, WHEN_FORMAT, NEEDS } = require('../tools/lib/pack/format');
 const { readManifest } = require('../tools/lib/pack/manifest');
 const { buildPackFiles } = require('../tools/lib/dsl/project');
 const path = require('node:path');
@@ -105,5 +105,5 @@ test('a pack using `label` or `along` is written in format 4; one without stays 
 	assert.equal(formatFor(pack(['step One', '  accept 783']).guides), FORMAT);
 	const files = pack(['step One', '  along', '  kill 6', 'step Two', '  accept 783']).files;
 	assert.match(files['Pack.lua'], /format = 4,/);
-	assert.match(Object.entries(files).find(([k]) => k.endsWith('.toc'))[1], /## X-Polestar-Format: 4\n## X-Polestar-Needs: 0\.3\.0/);
+	assert.ok(Object.entries(files).find(([k]) => k.endsWith('.toc'))[1].includes(`## X-Polestar-Format: 4\n## X-Polestar-Needs: ${NEEDS[WHEN_FORMAT]}\n`));
 });

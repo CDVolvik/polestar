@@ -6,5 +6,5 @@ section: authors
   current step, "Along the way" in the guide window, until they are done, or
   with `along until <label>` until the route reaches the step carrying `label
   <label>`. Clicking one points the arrow at it. A pack using `along` or
-  `label` is written in pack format 4, which needs Polestar 0.3.0
+  `label` is written in pack format 4, which needs Polestar 0.2.6
   (GUIDE_FORMAT.md, "Along the way"; thanks petllama, #455, after #42).
