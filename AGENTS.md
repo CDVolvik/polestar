@@ -26,6 +26,11 @@ The rules that hold for every task:
 - Never claim a check passed that you did not run, and never invent quest
   ids, coordinates or names.
 - A human reads every comment before it is posted.
+- When you open a pull request, tick the AI-agent checkbox in the template
+  and fill in "Model and tool: <model name and version> via <app or CLI>"
+  (for example "Claude Sonnet 4.6 via Claude Code"). List every model that
+  helped if more than one did. Leaving it blank causes the work to be
+  re-verified as if the model is unknown.
 
 Claude Code reads this file only while there is no `CLAUDE.md`,
 `.claude/CLAUDE.md` or `CLAUDE.local.md` in the repository or a folder above
