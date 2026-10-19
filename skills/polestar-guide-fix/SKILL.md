@@ -17,6 +17,12 @@ nobody has checked it yet, run the polestar-triage skill
 (`skills/polestar-triage/SKILL.md`) first. A fix needs a verdict of
 "confirmed" or "partly right" and the evidence behind it.
 
+Then make sure no one is fixing it already: the issue's "Pull requests for
+this issue" comment (label `has-pr`), and
+`gh pr list --state open --search "<issue number>"`, then the quest id. An
+open pull request that covers it means you help on that one instead
+(polestar-contributing, "Before you start on an issue").
+
 ## 1. Pick the branch
 
 | The fix | Base branch |
@@ -137,6 +143,7 @@ Guides.lua to the maintainer.
   its evidence, and which checks ran and which did not.
 - Issues: write "closes #N" on `next`, or "fixes #N" on a `hotfix/` branch
   (GitHub does not close issues for those, so the maintainer does it when
-  the patch ships).
+  the patch ships), once for each issue the pattern fix covers. That is
+  what lists the pull request on each issue.
 - Say that an AI agent wrote or helped with it. The person running the
   agent reads the diff and the description before opening the pull request.

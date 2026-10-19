@@ -47,6 +47,8 @@ local UI, Theme, W, Anim = ns.UI, ns.Theme, ns.Widgets, ns.Anim
 local L = ns.L
 local floor, max, min, abs, type, ipairs = math.floor, math.max, math.min, math.abs, type, ipairs
 
+-- The window's sizes: the house style's here, a skin's from Theme.Metric
+-- (readMetrics, on build and on a skin change).
 local PAD = 14
 local TAB_H = 28
 local NAV_H = 34
@@ -58,6 +60,18 @@ local CHECK = 18
 local UP_ROW = 24
 local UP_TOGGLE = 30
 local COMBAT_ALPHA = 0.35
+
+local function readMetrics()
+	PAD = Theme.Metric("guidePad", 14)
+	TAB_H = Theme.Metric("guideTabs", 28)
+	NAV_H = Theme.Metric("guideNav", 34)
+	PROG_H = Theme.Metric("guideFoot", 26)
+	TEXT_X = PAD + ICON + Theme.Metric("guideIconGap", 10)
+	ROW_MIN = Theme.Metric("guideRow", 24)
+	CHECK = Theme.Metric("guideCheck", 18)
+	UP_ROW = Theme.Metric("guideUpRow", 24)
+	UP_TOGGLE = Theme.Metric("guideUpToggle", 30)
+end
 local TAB_MAX_W = 150
 
 local GF = {}
@@ -71,6 +85,8 @@ local focusGroup -- the group on screen
 local shownIndex, shownGuide, shownFocus -- what the card shows, to tell a change from an update
 local tipOpen = false
 local inCombat = false
+local inInstance, openInside = false, false -- in a dungeon or raid; opened there by the player
+local shownOnEntry = false -- ui.shown when this visit began
 local state = "none" -- "steps" | "noguides" | "noguide" | "notyet" | "complete"
 local texts = {} -- every string the window draws, for transparent-mode outlines
 local chrome = {} -- frames that hide in transparent mode until hovered
@@ -370,8 +386,11 @@ local function paintRow(r, goal, pop, sameStep, current, noParty, noMissing)
 	if skipped then
 		W.Color(r.Icon, "textMuted", 0.8)
 	else
-		W.Color(r.Icon, done and "success" or (current and "accent" or "textDim"))
+		local gold = Theme.GameSkin() and (goal.t == "accept" or goal.t == "turnin")
+		W.Color(r.Icon, done and "success" or ((current or gold) and "accent" or "textDim"))
 	end
+	-- The game's looks light the goal to do now with their own art.
+	Theme.KitRowLit(r, current and not done and not skipped and not transparent())
 	r.Text:SetText(UI.GoalLine(goal))
 	-- White while it is to be done; done and skipped goals step back.
 	W.Color(r.Text, (done or skipped) and "textMuted" or "text")
@@ -706,6 +725,7 @@ function GF.RenderTabs()
 		W.Color(b.Icon, b.psActive and "accent" or "textMuted")
 		b.Selected:SetShown(b.psActive)
 		b.Bar:SetShown(b.psActive)
+		GF.PaintTab(b)
 		local w = b.psActive and activeW or otherW
 		b:SetWidth(w)
 		layoutTab(b, b:IsMouseOver() and 20 or 8)
@@ -747,9 +767,17 @@ local function awayNotice(E, g)
 	return a
 end
 
+local function nearbyTrip()
+	local Nearby = ns.Nav and ns.Nav.nearby
+	return Nearby and Nearby.Trip and Nearby.Trip() or nil
+end
+
 local function bannerNotice()
 	local E = Engine()
 	local g = E and E.GetGuide and E.GetGuide()
+	-- On the way to a nearby service (Nav/Nearby.lua): the way back first.
+	local t = nearbyTrip()
+	if t then return "trip", t end
 	local k = notices.stepSkip
 	if k and g ~= nil and g.id == k.guideId and (not view or view.index ~= k.step) then return "stepSkip", k end
 	local s = notices.skipped
@@ -838,6 +866,11 @@ function GF.LayoutBanner(width)
 			placeLink(banner.Jump, string.format(L["Back to step %d"], n.live), 0, -4)
 		end
 		banner.Close:Show()
+	elseif kind == "trip" then
+		banner.Icon:SetTexture(Theme.Media("icon-goto"))
+		banner.Text:SetText(string.format(L["On the way to %s (%s)."], n.name or "", n.label or ""))
+		placeLink(banner.Jump, L["Back to the guide"], 0, -4)
+		banner.Close:Hide()
 	elseif kind == "outlevel" then
 		banner.Icon:SetTexture(Theme.Media("icon-level"))
 		banner.Text:SetText(L["You have outlevelled this guide."])
@@ -869,7 +902,9 @@ end
 function GF.TakeBanner()
 	local kind, n = bannerNotice()
 	local E = Engine()
-	if kind == "stepSkip" then
+	if kind == "trip" then
+		ns.Nav.nearby.EndTrip()
+	elseif kind == "stepSkip" then
 		notices.stepSkip = nil
 		if E and E.Unskip then E.Unskip(n.step) end
 	elseif kind == "away" then
@@ -898,7 +933,9 @@ end
 -- screen that is not the live one: until another step is).
 function GF.DismissBanner()
 	local kind, n = bannerNotice()
-	if kind == "away" then
+	if kind == "trip" then
+		ns.Nav.nearby.EndTrip()
+	elseif kind == "away" then
 		notices.away = n.guideId .. ":" .. n.index
 	elseif kind then
 		notices[kind] = nil
@@ -1052,7 +1089,8 @@ function GF.Layout()
 	nav.Title:SetShown((not showStrip or not steps) and nav.Title:GetText() ~= nil and nav.Title:GetText() ~= "")
 	local skipW = nav.Skip:IsShown() and nav.Skip:GetWidth() + 4 or 0
 	local reportW = nav.Report:IsShown() and nav.Report:GetWidth() or 0
-	nav.Title:SetWidth(max(40, width - PAD - (steps and nav.Steps:GetWidth() + 12 or 0) - 24 - 8 - 8 - skipW - reportW))
+	local nearbyW = nav.Nearby:IsShown() and nav.Nearby:GetWidth() or 0
+	nav.Title:SetWidth(max(40, width - PAD - (steps and nav.Steps:GetWidth() + 12 or 0) - 24 - 8 - 8 - skipW - reportW - nearbyW))
 	card:SetWidth(width)
 
 	local y = 0
@@ -1113,6 +1151,7 @@ function GF.PaintProgress(animate)
 	local w = F:GetWidth() - PAD * 2 - 44
 	foot.Line:SetWidth(max(1, w))
 	W.SetProgress(foot.Line, frac, w, animate)
+	GF.PaintStatus(frac, foot.Pct:GetText())
 	foot.psDone, foot.psTotal = done, total
 end
 
@@ -1247,6 +1286,13 @@ function GF.PaintSkip(shown, enabled)
 	W.Color(b.Label, "textDim", a)
 end
 
+-- Skip sits left of the Nearby services button, or of the bug when that
+-- button is off (nav.nearbyButton).
+local function anchorSkip()
+	nav.Skip:ClearAllPoints()
+	nav.Skip:SetPoint("RIGHT", nav.Nearby:IsShown() and nav.Nearby or nav.Report, "LEFT", -2, 0)
+end
+
 local function navigatorFor(guide, index)
 	local E = Engine()
 	local count = guide and E.GetStepCount and E.GetStepCount() or 0
@@ -1263,6 +1309,9 @@ local function navigatorFor(guide, index)
 	W.SetIconState(nav.Next, false, guide ~= nil and index ~= nil)
 	GF.PaintSkip(guide ~= nil, guide ~= nil and index ~= nil)
 	nav.Report:SetShown(guide ~= nil)
+	nav.Nearby:ClearAllPoints()
+	nav.Nearby:SetPoint("RIGHT", guide and nav.Report or nav.Menu, "LEFT", 0, 0)
+	anchorSkip()
 	-- No guide: no steps to walk; the navigator names the addon instead.
 	nav.Steps:SetShown(guide ~= nil)
 	nav.Title:ClearAllPoints()
@@ -1589,7 +1638,13 @@ function GF.ApplyStyle()
 	local clear = transparent()
 	F.psBare = clear
 	Theme.Repaint(F)
-	band:SetShown(not clear)
+	local skin = Theme.SkinKey()
+	band:SetShown(not clear and skin == "polestar")
+	nav.TitleBar:SetShown(not clear and skin == "hearth")
+	-- Blizzard's damage meter header bar under the tabs.
+	Theme.KitStrip(strip, not clear)
+	-- The quest tracker's header behind the focus (Forever, Blizzard).
+	Theme.KitHeader(person, not clear)
 	strip.Rule:SetShown(not clear)
 	nav.Rule:SetShown(not clear)
 	W.Painter(foot.Line.Track, paintTrack)
@@ -1615,10 +1670,29 @@ local function targetAlpha()
 	return a
 end
 
+-- With ui.instance "hide", the window waits out a dungeon or raid until the
+-- player opens it there. Like combat it never writes ui.shown, so leaving
+-- brings back what the player had.
+local function hiddenInside()
+	return inInstance and not openInside and ns.Get("ui.instance") == "hide"
+end
+
 function GF.ApplyVisibility()
 	if not F then return end
-	local show = ns.Get("ui.shown") and not (inCombat and ns.Get("ui.combat") == "hide")
+	local show = ns.Get("ui.shown") and not (inCombat and ns.Get("ui.combat") == "hide") and not hiddenInside()
 	F:SetShown(show and true or false)
+end
+
+-- The toggle (/polestar, the key binding, the minimap button) inside, with
+-- ui.instance "hide" and the window on, now and on the way in: opens or
+-- closes it for this visit, ui.shown untouched. -> true when it did. A
+-- window that was off on the way in toggles ui.shown as anywhere else, so
+-- closing it there keeps it off after leaving.
+function GF.ToggleInside()
+	if not (inInstance and shownOnEntry and ns.Get("ui.instance") == "hide" and ns.Get("ui.shown")) then return false end
+	openInside = not openInside
+	GF.ApplyVisibility()
+	return true
 end
 
 function GF.ApplyAlpha(animate)
@@ -1695,7 +1769,12 @@ function GF.ApplyScale()
 end
 
 local APPLY = {
-	["ui.shown"] = function() GF.ApplyVisibility() end,
+	-- Shown inside (a guide picked, /polestar show, the switch): open for the visit.
+	["ui.shown"] = function()
+		if inInstance and ns.Get("ui.shown") then openInside = true end
+		GF.ApplyVisibility()
+	end,
+	["ui.instance"] = function() GF.ApplyVisibility() end,
 	["ui.scale"] = function() GF.ApplyScale() end,
 	["ui.opacity"] = function() GF.ApplyAlpha(false) end,
 	["ui.bgOpacity"] = function() GF.ApplyStyle() end,
@@ -1712,9 +1791,215 @@ local APPLY = {
 	["ui.notesOpen"] = function() tipOpen = ns.Get("ui.notesOpen") and true or false; GF.Render() end,
 	["ui.combat"] = function() GF.ApplyVisibility(); GF.ApplyAlpha(false) end,
 	["ui.font"] = function() GF.Layout() end,
+	["nav.nearbyButton"] = function()
+		nav.Nearby:SetShown(ns.Get("nav.nearbyButton") ~= false)
+		anchorSkip()
+		GF.Layout()
+	end,
 }
 
+---------------------------------------------------------------------------
+-- Skins (Polestar.Theme, "Skins"): Halo and Blizzard take the handoff's
+-- sizes (DIRECTION_B_HALO.md §3) and their own parts: Halo's gold rule under
+-- the navigator, Blizzard's title bar, framed tabs and the game's status bar.
+---------------------------------------------------------------------------
+
+local skinShown
+
+-- Hearth's tab: framed, gold on the active one (DIRECTION_A_BLIZZARD.md §3);
+-- the game's looks: their kit's tab art.
+function GF.PaintTab(b)
+	local kit = Theme.KitTab(b, b.psActive)
+	local bliz = Theme.SkinKey() == "hearth"
+	local f = rawget(b, "psFrameTex")
+	if bliz and not f then
+		f = b:CreateTexture(nil, "BACKGROUND", nil, -7)
+		f:SetTexture(Theme.Media("white"))
+		b.psFrameTex = f
+	end
+	if f then
+		f:SetShown(bliz)
+		f:ClearAllPoints()
+		f:SetPoint("BOTTOMLEFT", b, "BOTTOMLEFT", 0, 0)
+		f:SetPoint("BOTTOMRIGHT", b, "BOTTOMRIGHT", 0, 0)
+		f:SetHeight(b.psActive and 24 or 21)
+		local top = b.psActive and { 0.231, 0.176, 0.078 } or { 0.122, 0.094, 0.047 }
+		local bottom = b.psActive and { 0.09, 0.067, 0.039 } or { 0.051, 0.039, 0.02 }
+		if f.SetGradient and CreateColor then
+			f:SetGradient("VERTICAL", CreateColor(bottom[1], bottom[2], bottom[3], 1), CreateColor(top[1], top[2], top[3], 1))
+		else
+			f:SetVertexColor(top[1], top[2], top[3], 1)
+		end
+	end
+	if bliz or kit then
+		b.Selected:Hide()
+		b.Bar:Hide()
+		W.Color(b.Label, b.psActive and "title" or "tabRest")
+	end
+end
+
+-- The progress bar: the house and Halo's slim line with its percent right of
+-- it, or Blizzard's game status bar (Interface\TargetingFrame\UI-StatusBar),
+-- 14 high, the percent centred in it.
+local STATUS_BAR = "Interface\\TargetingFrame\\UI-StatusBar"
+local function footBar()
+	local b = rawget(foot, "Status")
+	if b then return b end
+	b = CreateFrame("StatusBar", nil, foot)
+	b:SetStatusBarTexture(STATUS_BAR)
+	b:SetMinMaxValues(0, 1)
+	b.Bg = b:CreateTexture(nil, "BACKGROUND")
+	b.Bg:SetTexture(Theme.Media("white"))
+	b.Bg:SetAllPoints(b)
+	b.Bg:SetVertexColor(0, 0, 0, 0.75)
+	Theme.Border(b, 0.42, 0.329, 0.125, 1)
+	b.Pct = b:CreateFontString(nil, "OVERLAY")
+	Theme.Font(b.Pct, "small")
+	b.Pct:SetPoint("CENTER", b, "CENTER", 0, 0)
+	b.Pct:SetTextColor(1, 1, 1, 1)
+	foot.Status = b
+	return b
+end
+
+-- Fill Blizzard's bar (GF.Layout sets the house line; this follows it).
+function GF.PaintStatus(frac, pctText)
+	local b = rawget(foot, "Status")
+	if not b or not b:IsShown() then return end
+	b:SetValue(frac or 0)
+	local t = b:GetStatusBarTexture()
+	if Theme.Kit() then
+		-- The game's looks colour their own fill (Theme.KitStatus).
+	elseif t and t.SetGradient and CreateColor then
+		t:SetGradient("VERTICAL", CreateColor(0.478, 0.345, 0, 1), CreateColor(0.91, 0.722, 0, 1))
+	elseif t then
+		t:SetVertexColor(0.91, 0.722, 0, 1)
+	end
+	b.Pct:SetText(pctText or "")
+end
+
+function GF.ApplySkin()
+	if not F then return end
+	readMetrics()
+	local skin = Theme.SkinKey()
+	skinShown = skin
+	F.psGuide = true
+	Theme.Repaint(F)
+	strip:SetHeight(TAB_H)
+	nav:SetHeight(NAV_H)
+	foot:SetHeight(PROG_H)
+	-- The navigator: ‹ › and the icon buttons at the skin's sizes.
+	local nb, ni = Theme.Metric("guideNavBtn", 24), Theme.Metric("guideNavIcon", 14)
+	for _, b in ipairs({ nav.Prev, nav.Next }) do
+		b:SetSize(nb, nb)
+		b.Icon:SetSize(ni, ni)
+		W.SetFramed(b, "red")
+	end
+	-- Room between ‹ › and "28 / 36": Halo's 2, Blizzard's framed squares 4.
+	local gap = Theme.Metric("guideNavGap", 0)
+	nav.Steps.Count:SetPoint("LEFT", nav.Prev, "RIGHT", gap, 0)
+	nav.Next:SetPoint("LEFT", nav.Steps.Count, "RIGHT", gap, 0)
+	local iw, ih, ig = Theme.Metric("guideIconBtnW", 24), Theme.Metric("guideIconBtnH", 24), Theme.Metric("guideIcon", 14)
+	-- The icon buttons right of Skip: the bug, the menu and, where it is built,
+	-- the Nearby services button.
+	for _, key in ipairs({ "Menu", "Report", "Nearby" }) do
+		local b = rawget(nav, key)
+		if b then
+			b:SetSize(iw, ih)
+			b.Icon:SetSize(ig, ig)
+			W.SetFramed(b, "icon")
+		end
+	end
+	nav.Skip:SetHeight(nb)
+	nav.Steps:SetHeight(nb)
+	nav.Steps:SetPoint("LEFT", nav, "LEFT", PAD - 6, 0)
+	-- Rules: Halo's gold one under the navigator; Hearth's title bar line; the
+	-- game's looks their separator.
+	W.Painter(nav.Rule, function(t)
+		local k = Theme.SkinKey()
+		if k == "halo" then
+			t:SetVertexColor(Theme.Color("accentLine"))
+		elseif k == "hearth" then
+			t:SetVertexColor(Theme.Color("titleLine"))
+		elseif Theme.Kit() then
+			t:SetVertexColor(Theme.Color("separator"))
+		else
+			t:SetVertexColor(Theme.Wash("divider"))
+		end
+		t:SetHeight(Theme.Pixel(nav))
+	end)
+	-- Hearth: the person's name over a gold separator.
+	person.Rule:SetShown(skin == "hearth")
+	-- The focus parts at the skin's paddings.
+	person.Icon:SetPoint("TOPLEFT", person, "TOPLEFT", PAD - 1, -11)
+	person.Name:SetPoint("TOPLEFT", person, "TOPLEFT", TEXT_X, -10)
+	card.Tip.Text:SetPoint("TOPLEFT", card.Tip, "TOPLEFT", TEXT_X, -6)
+	card.Tip.Toggle:SetPoint("TOPLEFT", card.Tip, "TOPLEFT", PAD - 2, -3)
+	for _, part in ipairs({ after, upnext.Toggle, GF.xp }) do
+		part.Rule:SetPoint("TOPLEFT", part, "TOPLEFT", PAD, 0)
+		part.Rule:SetPoint("TOPRIGHT", part, "TOPRIGHT", -PAD, 0)
+	end
+	after.Text:SetPoint("LEFT", after, "LEFT", PAD, 0)
+	after.Count:SetPoint("RIGHT", after, "RIGHT", -PAD, 0)
+	upnext.Toggle:SetHeight(UP_TOGGLE)
+	upnext.Toggle.Label:SetPoint("LEFT", upnext.Toggle, "LEFT", PAD, 0)
+	upnext.Toggle.Icon:SetPoint("RIGHT", upnext.Toggle, "RIGHT", -PAD, 0)
+	GF.xp.Icon:SetPoint("LEFT", GF.xp, "LEFT", PAD, -1)
+	banner.Icon:SetPoint("TOPLEFT", banner, "TOPLEFT", PAD, -10)
+	banner.Text:SetPoint("TOPLEFT", banner, "TOPLEFT", PAD + 21, -9)
+	for _, r in ipairs(rows) do
+		r.Icon:SetPoint("CENTER", r, "TOPLEFT", PAD + ICON / 2, -12)
+		r.Text:SetPoint("TOPLEFT", r, "TOPLEFT", TEXT_X, -4)
+		r.Check:SetSize(CHECK, CHECK)
+		r.Check:SetPoint("TOPRIGHT", r, "TOPRIGHT", -PAD + 3, -3)
+		Theme.Repaint(r.Check)
+	end
+	-- The progress bar: the game's status bar in Hearth and the game's looks.
+	local bliz = Theme.GameSkin()
+	foot.Line:SetHeight(3)
+	foot.Line:SetPoint("LEFT", foot, "LEFT", PAD, 0)
+	foot.Pct:SetPoint("RIGHT", foot, "RIGHT", -PAD, 0)
+	foot.Line:SetShown(not bliz)
+	foot.Pct:SetShown(not bliz)
+	if bliz then
+		local b = footBar()
+		b:ClearAllPoints()
+		local inset = Theme.Kit() and 10 or 0
+		b:SetPoint("LEFT", foot, "LEFT", PAD + inset, 0)
+		b:SetPoint("RIGHT", foot, "RIGHT", -PAD - inset, 0)
+		b:SetHeight(Theme.Kit() and 12 or 14)
+		b:Show()
+		if Theme.KitStatus(b) then
+			b.psKitDrawn = true
+		elseif b.psKitDrawn then
+			-- Back from a game look: Hearth's bar as footBar made it.
+			b:SetStatusBarTexture(STATUS_BAR)
+			b:GetStatusBarTexture():SetTexCoord(0, 1, 0, 1)
+			b.Bg:SetTexture(Theme.Media("white"))
+			b.Bg:SetTexCoord(0, 1, 0, 1)
+			b.Bg:SetVertexColor(0, 0, 0, 0.75)
+			Theme.Border(b, 0.42, 0.329, 0.125, 1)
+			b.psKitDrawn = nil
+		end
+	elseif rawget(foot, "Status") then
+		foot.Status:Hide()
+	end
+	-- The tabs, painted again in the skin.
+	for _, b in ipairs(tabButtons) do
+		b:SetHeight(TAB_H)
+		GF.PaintTab(b)
+	end
+end
+
+-- A skin chosen while the window shows: its sizes, then a fresh layout.
+Theme.OnChanged(function()
+	if F and skinShown and skinShown ~= Theme.SkinKey() then
+		GF.ApplySkin()
+		GF.ApplyStyle()
+	end
+end)
+
 local function applyAll()
+	GF.ApplySkin()
 	F:SetScale(ns.Get("ui.scale") or 1)
 	GF.ApplyPosition()
 	GF.ApplyLock()
@@ -1800,6 +2085,59 @@ local function openMenu(button)
 	})
 end
 
+-- Nearby services (Nav/Nearby.lua): the nearest vendor, repair, inn, flight
+-- master or trainer, as the arrow's target. Looked up after combat only.
+local openNearby
+
+-- The weapon master's page of the menu: the weapons to learn, each to the
+-- nearest master who teaches it; a weapon already known, or not yet at this
+-- level, says so and is off. Back returns to the services.
+local function openWeapons(button, entry)
+	local Nearby = ns.Nav.nearby
+	local fight = InCombatLockdown and InCombatLockdown()
+	local items = {
+		{ text = L["Back"], icon = "chevron-left", onClick = function() openNearby(button) end },
+		{ separator = true },
+	}
+	for _, w in ipairs(entry.weapons) do
+		local text, off = w.label, fight
+		if w.known then
+			text, off = string.format(L["%s (known)"], w.label), true
+		elseif w.level then
+			text, off = string.format(L["%s (from level %d)"], w.label, w.level), true
+		end
+		local line = w.line
+		items[#items + 1] = { text = text, disabled = off, onClick = function() Nearby.Go("weapon", line) end }
+	end
+	W.ShowMenu(button, items)
+end
+
+function openNearby(button)
+	if W.MenuShown(button) then return W.HideMenu() end
+	local Nearby = ns.Nav and ns.Nav.nearby
+	if not (Nearby and Nearby.MenuItems) then return end
+	local fight = InCombatLockdown and InCombatLockdown()
+	local items = {}
+	if Nearby.Trip and Nearby.Trip() then
+		items[1] = { text = L["Back to the guide"], icon = "chevron-left", onClick = function() Nearby.EndTrip() end }
+		items[2] = { separator = true }
+	end
+	for _, e in ipairs(Nearby.MenuItems()) do
+		if e.separator then
+			items[#items + 1] = e
+		elseif e.weapons then
+			-- A page of its own: which weapon to learn.
+			items[#items + 1] = { text = e.label .. "  \226\128\186", icon = e.icon, disabled = fight,
+				onClick = function() openWeapons(button, e) end }
+		else
+			local key, line = e.key, e.line
+			items[#items + 1] = { text = e.label, icon = e.icon, disabled = fight,
+				onClick = function() Nearby.Go(key, line) end }
+		end
+	end
+	W.ShowMenu(button, items)
+end
+
 ---------------------------------------------------------------------------
 -- Build
 ---------------------------------------------------------------------------
@@ -1818,6 +2156,7 @@ local function draggable(frame)
 end
 
 local function build()
+	readMetrics()
 	F = CreateFrame("Frame", "PolestarGuideFrame", UIParent)
 	F:SetFrameStrata("MEDIUM")
 	F:SetClampedToScreen(true)
@@ -1858,6 +2197,20 @@ local function build()
 	nav.Rule = W.Divider(nav)
 	nav.Rule:SetPoint("BOTTOMLEFT", nav, "BOTTOMLEFT", 0, 0)
 	nav.Rule:SetPoint("BOTTOMRIGHT", nav, "BOTTOMRIGHT", 0, 0)
+	-- Blizzard's title bar: #2C200C to #150F06, 4 in from the frame.
+	nav.TitleBar = nav:CreateTexture(nil, "BACKGROUND", nil, -4)
+	nav.TitleBar:SetTexture(Theme.Media("white"))
+	nav.TitleBar:SetPoint("TOPLEFT", nav, "TOPLEFT", 4, 0)
+	nav.TitleBar:SetPoint("BOTTOMRIGHT", nav, "BOTTOMRIGHT", -4, 1)
+	W.Painter(nav.TitleBar, function(t)
+		local top, bottom = { Theme.Color("sky") }, { Theme.Color("skyBottom") }
+		if t.SetGradient and CreateColor then
+			t:SetGradient("VERTICAL", CreateColor(bottom[1], bottom[2], bottom[3], 1), CreateColor(top[1], top[2], top[3], 1))
+		else
+			t:SetVertexColor(top[1], top[2], top[3], 1)
+		end
+	end)
+	nav.TitleBar:Hide()
 	nav.Steps = CreateFrame("Frame", nil, nav)
 	nav.Steps:SetSize(100, 24)
 	nav.Steps:SetPoint("LEFT", nav, "LEFT", PAD - 6, 0)
@@ -1885,6 +2238,12 @@ local function build()
 	nav.Report.psTipLines = { L["Write what went wrong, copy the report and paste it on the Polestar Discord."] }
 	nav.Report:SetPoint("RIGHT", nav.Menu, "LEFT", 0, 0)
 	nav.Report:Hide()
+	-- Nearby services: left of the bug, right of Skip.
+	nav.Nearby = W.IconButton(nav, "icon-goto", 24, L["Nearby services"], openNearby)
+	nav.Nearby.psTipLines = { L["Points the arrow at the nearest vendor, repair, inn, flight master or trainer."] }
+	nav.Nearby:SetPoint("RIGHT", nav.Report, "LEFT", 0, 0)
+	nav.Nearby:SetShown(ns.Get("nav.nearbyButton") ~= false)
+	GF.nearbyButton = nav.Nearby
 	-- Skip: the 11px skip glyph and a Small label, a ghost button left of the
 	-- bug.
 	local skip = CreateFrame("Button", nil, nav)
@@ -1897,7 +2256,6 @@ local function build()
 	skip.Label:SetPoint("LEFT", skip.Icon, "RIGHT", 5, 0)
 	skip.Label:SetText(L["Skip"])
 	skip:SetWidth(floor(7 + 11 + 5 + skip.Label:GetStringWidth() + 8 + 0.5))
-	skip:SetPoint("RIGHT", nav.Report, "LEFT", -2, 0)
 	skip:SetScript("OnClick", function() GF.SkipStep() end)
 	skip:SetScript("OnEnter", function(self)
 		if self:IsEnabled() then
@@ -1913,6 +2271,7 @@ local function build()
 	end)
 	skip:Hide()
 	nav.Skip = skip
+	anchorSkip()
 	nav.Title = T(nav, "small", "textDim")
 	-- The step's own title and the guide's facts, on the step number.
 	local countHit = CreateFrame("Frame", nil, nav.Steps)
@@ -1926,11 +2285,11 @@ local function build()
 		GF.HoverIn()
 	end)
 	countHit:SetScript("OnLeave", function(self) W.HideTooltip(self) end)
-	for _, b in ipairs({ nav.Menu, nav.Report, nav.Next, nav.Prev, nav.Skip }) do hoverable(b) end
+	for _, b in ipairs({ nav.Menu, nav.Report, nav.Nearby, nav.Next, nav.Prev, nav.Skip }) do hoverable(b) end
 	-- Transparent chrome: the step number fades with its chevrons (nav.Steps
 	-- holds all three) and the title with them; a lone "3 / 8" over the world
 	-- would read as a stray number. Progress stays readable in the foot.
-	for _, c in ipairs({ nav.Menu, nav.Report, nav.Skip, nav.Steps, nav.Title }) do chrome[#chrome + 1] = c end
+	for _, c in ipairs({ nav.Menu, nav.Report, nav.Nearby, nav.Skip, nav.Steps, nav.Title }) do chrome[#chrome + 1] = c end
 
 	-- Body
 	body = CreateFrame("Frame", nil, F)
@@ -1956,10 +2315,18 @@ local function build()
 	person.Icon = person:CreateTexture(nil, "ARTWORK")
 	person.Icon:SetSize(ICON + 1, ICON + 1)
 	person.Icon:SetPoint("TOPLEFT", person, "TOPLEFT", PAD - 1, -11)
-	person.Name = T(person, "name", "npc")
+	person.Name = T(person, "name", "personName")
 	person.Name:SetPoint("TOPLEFT", person, "TOPLEFT", TEXT_X, -10)
 	person.Where = T(person, "small", "textDim")
 	person.Where:SetPoint("TOPLEFT", person.Name, "BOTTOMLEFT", 0, -3)
+	-- Blizzard: a gold separator under the person, above the goals.
+	person.Rule = person:CreateTexture(nil, "ARTWORK")
+	person.Rule:SetTexture(Theme.Media("white"))
+	person.Rule:SetHeight(1)
+	person.Rule:SetPoint("BOTTOMLEFT", person, "BOTTOMLEFT", PAD, 0)
+	person.Rule:SetPoint("BOTTOMRIGHT", person, "BOTTOMRIGHT", -PAD, 0)
+	W.Color(person.Rule, "separator")
+	person.Rule:Hide()
 	person:SetScript("OnClick", function(self) pointAt(self.psPlace, self.psLabel) end)
 	person:SetScript("OnEnter", personEnter)
 	person:SetScript("OnLeave", function(self) W.HideTooltip(self) end)
@@ -2267,6 +2634,11 @@ ns.On("CLASS_TRAINED", function()
 	if ns.IsLoggedIn() then GF.Layout() end
 end)
 
+-- A trip to a nearby service began or ended: its banner shows or goes.
+ns.On("NEARBY_TRIP", function()
+	if F and ns.IsLoggedIn() then GF.Layout() end
+end)
+
 ns.On("SETTING_CHANGED", function(path)
 	if not F then return end
 	local fn = APPLY[path]
@@ -2289,3 +2661,25 @@ ns.RegisterEvent("PLAYER_REGEN_ENABLED", function()
 	GF.ApplyVisibility()
 	GF.ApplyAlpha(true)
 end)
+
+-- Dungeons and raids only: not battlegrounds, arenas or scenarios.
+local function instanceNow()
+	local C = ns.Compat
+	if not (C and C.IsInInstance) then return false end
+	local ok, inside, kind = pcall(C.IsInInstance)
+	return (ok and inside and (kind == "party" or kind == "raid")) and true or false
+end
+
+-- Every way in or out passes a loading screen, a /reload included. Going in
+-- or out ends a visit, so the next one starts hidden again.
+local function checkInstance()
+	local now = instanceNow()
+	if now ~= inInstance then
+		openInside = false
+		shownOnEntry = ns.Get("ui.shown") and true or false
+	end
+	inInstance = now
+	GF.ApplyVisibility()
+end
+ns.RegisterEvent("PLAYER_ENTERING_WORLD", checkInstance)
+ns.RegisterEvent("ZONE_CHANGED_NEW_AREA", checkInstance)

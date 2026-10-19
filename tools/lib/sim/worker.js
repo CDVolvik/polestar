@@ -2,12 +2,15 @@
 // Worker thread: builds a run from the cached world and answers jobs.
 
 const fs = require('node:fs');
+const path = require('node:path');
 const { parentPort, workerData } = require('node:worker_threads');
 const { compileRun, makeTables } = require('./run');
 const { Evaluator } = require('./evaluate');
 const { runJob } = require('./search');
+const { attachWalks } = require('./walks');
 
 const world = JSON.parse(fs.readFileSync(workerData.worldFile, 'utf8'));
+if (workerData.walks) attachWalks(world, path.dirname(workerData.worldFile));
 const run = compileRun(world, workerData.runOpts);
 const ev = new Evaluator(run, makeTables(run, workerData.params));
 

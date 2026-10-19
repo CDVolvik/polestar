@@ -47,6 +47,17 @@ local SH = W.SHELL
 local WIN_W = 1120 + SH.rail -- the section rail, then the three panes
 local DETAIL_W = 372 -- the details pane, right
 local MID_W = WIN_W - SH.rail - SH.sidebar - 2 - DETAIL_W -- the list pane, middle
+
+local SIDE_W = SH.sidebar -- the sidebar, left of the list
+
+-- The skin's sizes (Theme.Metric; DIRECTION_B_HALO.md §3: 1100 x 640 beside the rail,
+-- a 230 sidebar, a 380 details pane), read as the window is built.
+local function readSizes()
+	WIN_W = Theme.Metric("pickerW", 1120) + SH.rail
+	DETAIL_W = Theme.Metric("pickerDetail", 372)
+	SIDE_W = Theme.Metric("pickerSidebar", SH.sidebar)
+	MID_W = WIN_W - SH.rail - SIDE_W - 2 - DETAIL_W
+end
 local ROW_X = 12 -- where list rows' grounds start in the middle pane
 local TEXT_X = SH.pad - ROW_X -- text inside a row, on the column's x=32 edge
 local ROW_H, FOLDER_H, CARD_H, CARD_GAP = 28, 32, 78, 10
@@ -1676,8 +1687,10 @@ local function onSearch(text)
 end
 
 local function build()
+	readSizes()
 	win = W.Shell("PolestarPicker", {
-		width = WIN_W, rail = true, title = L["Guides"], scalePath = "ui.menuScale", searchPlaceholder = HUB_SEARCH,
+		width = WIN_W, height = Theme.Metric("pickerH", SH.height), sidebar = SIDE_W,
+		rail = true, title = L["Guides"], scalePath = "ui.menuScale", searchPlaceholder = HUB_SEARCH,
 		onSearch = onSearch,
 	})
 	P.frame = win

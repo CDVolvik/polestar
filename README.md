@@ -17,15 +17,17 @@
 
 <p align="center">
   On <a href="https://www.curseforge.com/wow/addons/polestar-guides"><b>CurseForge</b></a>, or from the Releases page. Questions, feedback and bug reports: join the <a href="https://discord.gg/vMbee6F2e9"><b>Polestar Discord</b></a>.
+  Polestar is free; if it saves you a few hours, you can <a href="https://ko-fi.com/0xfitz"><b>buy me a coffee</b></a>.
 </p>
 
 <p align="center">
   <a href="LICENSE"><img alt="Licence: GPL-3.0" src="https://img.shields.io/badge/licence-GPL--3.0-e6ba66?style=flat-square&labelColor=232a3f"></a>
   <img alt="World of Warcraft: Forever, client 1.60.1" src="https://img.shields.io/badge/WoW-Forever_1.60.1-94c9ff?style=flat-square&labelColor=232a3f">
-  <img alt="Version 0.2.1, beta" src="https://img.shields.io/badge/version-0.2.1_beta-fabf4d?style=flat-square&labelColor=232a3f">
+  <img alt="Version 0.2.5, beta" src="https://img.shields.io/badge/version-0.2.5_beta-fabf4d?style=flat-square&labelColor=232a3f">
   <a href="https://github.com/fitzforge/polestar/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/fitzforge/polestar/actions/workflows/ci.yml/badge.svg"></a>
   <a href="https://discord.gg/vMbee6F2e9"><img alt="Discord: join the Polestar community" src="https://img.shields.io/badge/Discord-join_us-5865f2?style=flat-square&logo=discord&logoColor=white&labelColor=232a3f"></a>
   <a href="https://www.curseforge.com/wow/addons/polestar-guides"><img alt="CurseForge: Polestar Guides" src="https://img.shields.io/badge/CurseForge-Polestar_Guides-f16436?style=flat-square&logo=curseforge&logoColor=white&labelColor=232a3f"></a>
+  <a href="https://ko-fi.com/0xfitz"><img alt="Ko-fi: buy me a coffee" src="https://img.shields.io/badge/Ko--fi-buy_me_a_coffee-ff5e5b?style=flat-square&logo=kofi&logoColor=white&labelColor=232a3f"></a>
 </p>
 
 <p align="center">
@@ -105,8 +107,10 @@ arrow that walks real paths (on Polestar's walking maps, with a router that
 started from Shortest Path Forever's by Cillian Berragan) and a travel planner, quest
 markers on the map, an upgrade indicator on item tooltips, a search for where
 any item, mount or pet comes from, a dungeon quest journal, rare alerts and
-the quality-of-life helpers a long leveling session needs. Its interface is
-in English, French, German and Latin American Spanish.
+the quality-of-life helpers a long leveling session needs. Its interface and
+its guides read in English, German, French, Spanish (Spain and Latin
+America), Brazilian Portuguese, Russian, Korean and Chinese (simplified and
+traditional).
 
 The leveling routes are not hand-picked. A simulator models every quest
 Forever offers a faction, plays millions of complete 1-60 routes for each
@@ -189,8 +193,8 @@ Polestar 0.1.0 at its default settings. Click a picture for full size.
   </tr>
 </table>
 
-Lookup beyond the guides, Dungeons and Rares read a data pack that is built
-locally and not in the release yet ([Lookup, Dungeons and
+Lookup, Dungeons and Rares read the Codex, a data pack that ships in the
+release as `Polestar_Codex` ([Lookup, Dungeons and
 Rares](#lookup-dungeons-and-rares)). Not pictured yet: the rare alert, the
 upgrade marks on the quest reward panel and the quest markers on the world
 map. Renders of every window and state, drawn without the game, are in
@@ -243,8 +247,11 @@ map. Renders of every window and state, drawn without the game, are in
   takes you there, routed like any goal; Alt-click works over map icons.
   Click the spot again to let it go.
 - **Nearby services.** `/polestar near repair` (trainer, a profession,
-  class, reagents, vendor, innkeeper, bank, auction, flight, stable) points
-  the arrow at the quickest one to reach; the map's tracking menu lists them.
+  class, weapon, reagents, vendor, innkeeper, bank, auction, flight, stable)
+  points the arrow at the quickest one to reach; the map's tracking menu and
+  the guide window's Nearby services button list them, the button with a
+  page of the weapons a weapon master can teach you. Once you get there,
+  the arrow is back on the guide.
 - **Other addons' waypoints** (Options, Integrations, TomTom). Without TomTom, "Let other addons set
   waypoints" (off by default) lets addons that set TomTom waypoints point
   Polestar's arrow and makes `/way` work; addons that expect TomTom's own
@@ -322,6 +329,8 @@ guides you there instead.
 - **On the game's reward panel** every choice that is an upgrade gets a green
   arrow, the one to take is framed, and a coin marks the one that sells for
   most. Turn-in goals name the best reward.
+- **In your bags** every item that is an upgrade gets the same green arrow,
+  in the game's bags and in Baganator.
 
 ### Lookup, Dungeons and Rares
 

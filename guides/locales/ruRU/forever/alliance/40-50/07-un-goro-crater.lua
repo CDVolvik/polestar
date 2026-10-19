@@ -34,7 +34,6 @@ return {
 	-- Step 8: Marshal's Refuge
 	-- {area:541} Marshal's Refuge · {object:157936} Un'Goro Dirt Pile
 	["Ride north along the east side of the crater to {area:541}, the camp in the caves of the northern cliff. Give the elite devilsaurs and stegodons a wide berth. Pick up every Power Crystal and {object:157936} you pass from here on."] = "Езжайте на север по восточной стороне кратера: {area:541} – лагерь в пещерах северного утеса. Обходите элитных девизавров и стегодонов стороной. Отсюда и дальше подбирайте каждый кристалл силы и каждый объект {object:157936} по пути.",
-	["Gryfe"] = "Грайф",
 	-- {npc:9298} Donova Snowden · {zone:1452} Winterspring
 	["Ends with {npc:9298} in {zone:1452}: keep it"] = "Завершается у NPC {npc:9298} (зона {zone:1452}): сохраните",
 	-- {npc:9117} J.D. Collie
@@ -199,5 +198,6 @@ return {
 	["Xiggs waits in the {object:32359}."] = "Зиггс ждет здесь: {object:32359}.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Gryfe"] = "Грайф",
 	-- ["grind on {npc:5458} at {area:982}, {zone:1446}"] = "убивайте: {npc:5458} ({area:982}, {zone:1446})",
 }
