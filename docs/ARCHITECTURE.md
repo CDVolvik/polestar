@@ -2260,9 +2260,24 @@ on is searched first: player to the current walk leg's end, or to the target,
 with `Path.Find` on the player's continent (from the player's height,
 `Compat.GetPlayerUnitPosition`; a ghost with `waterWalking`). Until the answer, and
 whenever there is none, the arrow points straight as before. With a path,
-`Nav.Sample` aims at its next point (passed within 5 yd; the nearest
-segment among the next 12 decides how far along the player is) and reports
-the yards left along it; `Travel.Aim` returns those yards as a fifth value.
+`Nav.Sample` follows it with padding, so a road's little wiggles do not
+jerk the arrow: the next point is passed
+within 5 yd (the nearest segment among the next 12 decides how far along the
+player is), and from it the arrow aims at the furthest path point up to
+30 yd along the path (`AHEAD`) such that every path point on the way lies
+within 10 yd (`PAD`) of the straight line from the player to it, neither
+behind the player nor beyond it along that line. A real corner (a point
+more than 10 yd off the line) still turns the arrow, gradually from about
+30 yd out and fully at the corner; past the next point it aims at the
+middle of that point and the one before, so a zigzag of points either side
+of the road cancels out. It never aims past a point more than 6 yd
+(`FLOOR_STEP`) above or below the next one (another floor), past the path's
+end (the leg's goal: crossings, approach chains and guide gotos are legs of
+their own), or, on a piece of a split walk, past the last path point before
+its chokepoint (`Travel.Aim` passes `leg.seg`). The yards it reports are
+still the yards left along the path (to the next point, then along it),
+never to the aim point; `Travel.Aim` returns those yards as a fifth value.
+The arrow eases into each new direction (`Nav/Arrow.lua`'s `DAMPING`).
 A new goal (more than 1 yd away from the searched one) cancels the search
 in flight and drops the path; more than 25 yd off the path asks again (at
 most every 2 s, the old path kept meanwhile); a failed search (`nodata`,
@@ -4570,7 +4585,9 @@ built.
 quests.json   { "<id>": { id, title, level, minLevel, races, classes, start: { npc: [], object: [], item: [] },
                           end: { npc: [], object: [] }, pre: [ids], excl: [ids], next, objectives: [
                           { type: "kill"|"item"|"object"|"event", id, count, text } ], objectiveText, zone, xp,
-                          rewards?: { items: [ids], choices: [ids], money }, source: [] } }   (rewards: recorded only)
+                          rewards?: { items: [ids], choices: [ids], money }, source: [] } }   (rewards: recorded only;
+              count: the objective text's, else pfQuest's, else CMaNGOS classic-db quest_template's for the same id or the
+              quest's one objective of that kind, else null; tools/lib/data/questie-merge.js fillCounts)
 npcs.json     { "<id>": { id, name, level, levelMax?, rank?, faction, roles?, spawns: { "<uiMapID>": { f: "e"|"l", pts: [[x, y], ...],
                           more?: [[x, y], ...] } }, instances?: [instance map ids], encounter?: DungeonEncounter id, source: [] } }
 objects.json  { "<id>": { id, name, roles?, spawns: { ... same ... }, instances?: [instance map ids], source: [] } }
@@ -4986,6 +5003,13 @@ fileDataID from wago.tools into `data/sources/casc` (local, never shipped):
   ground and 60 yd into water; landing only on stable ground), swims and
   lifts (elevator objects of `data/forever` at their car's travel from the
   client's TransportAnimation); regions; a per-tile graph per movement class.
+  Reviewed openings (`geom/openings.json`): a WMO door narrower than about
+  three yards can lose to the columns when a jamb's moulding or reveal lies
+  on its column centre lines, so each listed portal (by WMO and MOPT index,
+  in every placement of that WMO) is cut out after rasterising: the columns
+  whose centre lies within its span and `depth` yards of its plane lose
+  their spans and walls from just above its bottom to its top (Brill's town
+  hall, whose only way in is a 2.9 yd door into its tower room, #366).
   Fatigue water is never swum: MH2O's deep quads (the server's fatigue; a
   chunk of ocean without attributes is deep throughout, `geom/mh2o.js`)
   give a blocked swim surface (`SWIM | BLOCKED`), so no route crosses open

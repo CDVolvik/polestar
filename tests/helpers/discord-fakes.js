@@ -136,6 +136,23 @@ function fakeGitHub(repo = 'fitzforge/polestar') {
 				.map((i) => structuredClone(i))
 				.reverse();
 		},
+		// GitHub's duplicate marker: the issue's duplicate_of field here.
+		async duplicateOf(n) {
+			return (issues[n - 1] && issues[n - 1].duplicate_of) || null;
+		},
+		// The search qualifiers the bot uses: is:closed, label:, reason:duplicate
+		// and a quoted phrase in a comment.
+		async searchIssues(q) {
+			const label = /label:(\S+)/.exec(q);
+			const phrase = /"([^"]+)"/.exec(q);
+			return issues
+				.filter((i) => (!q.includes('is:closed') || i.state === 'closed') &&
+					(!label || i.labels.some((l) => l.name === label[1])) &&
+					(!q.includes('reason:duplicate') || i.state_reason === 'duplicate') &&
+					(!phrase || (comments.get(i.number) || []).some((c) => c.body.toLowerCase().includes(phrase[1].toLowerCase()))))
+				.map((i) => structuredClone(i))
+				.reverse();
+		},
 		async releases() {
 			return releases;
 		},
