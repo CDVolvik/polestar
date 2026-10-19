@@ -326,13 +326,14 @@
 			"set": {
 				"start": {
 					"npc": [
+						6120,
 						6122
 					],
 					"object": [],
 					"item": []
 				}
 			},
-			"note": "Seeking Strahad: Forever's quest data (page snapshot 2026-10-17) starts with Gakin the Darkbinder (npc 6122); as its giver the merged data also listed Lago Blackwrench (npc 6120)."
+			"note": "Seeking Strahad: Forever's quest data (page snapshot 2026-10-17) starts with Gakin the Darkbinder (npc 6122) only, but the quest is for Human and Gnome Warlocks and Gakin is the Stormwind trainer: Lago Blackwrench (npc 6120, Ironforge's Forlorn Cavern) is the Gnome warlocks' giver, which QuestieDB's Forever store lists and forever/class/warlock/felhunter-alliance uses. Both give it; kept here so a sweep against that data does not drop Lago again."
 		},
 		"1818": {
 			"set": {
@@ -1162,6 +1163,7 @@
 			"set": {
 				"start": {
 					"npc": [
+						3041,
 						3354,
 						4593,
 						5113,
@@ -1172,7 +1174,7 @@
 					"item": []
 				}
 			},
-			"note": "A Troubled Spirit: Forever's quest data (page snapshot 2026-10-17) starts with Sorek (npc 3354), Christoph Walker (npc 4593), Kelv Sternhammer (npc 5113), Wu Shen (npc 5479) and Darnath Bladesinger (npc 7315); as its giver the merged data also listed Torm Ragetotem (npc 3041)."
+			"note": "A Troubled Spirit: Forever's quest data (page snapshot 2026-10-17) starts with Sorek (npc 3354), Christoph Walker (npc 4593), Kelv Sternhammer (npc 5113), Wu Shen (npc 5479) and Darnath Bladesinger (npc 7315), every capital's warrior trainer but Thunder Bluff's. Torm Ragetotem (npc 3041, Thunder Bluff) gives it too: QuestieDB's Forever store and the Classic data list him, and forever/class/warrior/voodoo-feathers sends Tauren warriors to him. Kept here so a sweep against that data does not drop him again."
 		},
 		"8792": {
 			"set": {
@@ -1928,12 +1930,13 @@
 			"set": {
 				"end": {
 					"npc": [
-						4722
+						4722,
+						259023
 					],
 					"object": []
 				}
 			},
-			"note": "Storm, Earth, and Fire: Forever's quest data (page snapshot 2026-10-17) ends with Rau Cliffrunner (npc 4722); as its ender the merged data also listed Veyric Thunderhame (npc 259023)."
+			"note": "Storm, Earth, and Fire is shared by the Horde and Alliance Shaman chains: Forever's quest data (page snapshot 2026-10-17) ends it only at the Horde's Rau Cliffrunner (npc 4722), while it starts at Veyric Thunderhame (npc 259023) in Arathi, its text asks for the totems 'for Veyric Thunderhame in Arathi Highlands', its progress text is Veyric's ('What've ye brought me?'), the sniffed server data has it as an Alliance quest, and forever/class/shaman/call-of-air-alliance hands it in to Veyric. Both end it; kept here so a sweep against that data does not drop Veyric again."
 		},
 		"79361": {
 			"set": {

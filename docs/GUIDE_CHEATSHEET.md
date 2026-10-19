@@ -49,6 +49,7 @@ Before the first `step`. `guide`, `title`, `levels` and `zone` are required.
 | `loop` | Inside a step: its `goto` points are the places to search, in order, for the step's kill, collect and interact goals without `@x,y` | `loop` |
 | `note <text>` | A line of information; never holds the player up | `note The camp is busy at night.` |
 | `level <N>` | Reach level N, grinding if need be | `level 2` |
+| `level <N>.<fraction>` / `level <N>+<XP>` | Reach a point inside level N: 12.5 is halfway through 12, 12+2500 is 2500 XP into it (to whole percent; needs Polestar 0.2.6) | `level 12.5` |
 | `# <text>` | A note for you and other authors; players never see it | `# check the patrol route` |
 | `<goal> -- <text>` | Shows the text under that goal | `accept 783 -- He stands at the abbey gate` |
 
@@ -148,7 +149,7 @@ the outcome stays.
 
 | Line | The step applies while | Example |
 |---|---|---|
-| `when level<N` (`<=`, `>`, `>=`) | the character's level compares so | `when level>=10` |
+| `when level<N` (`<=`, `>`, `>=`) | the character's level compares so; N may be a point inside a level (`12.5`, `12+2500`) | `when level>=10` |
 | `when onquest <quest>, ...` | any of the quests is in the log | `when onquest 783` |
 | `when complete <quest>` | the quest is ready to turn in | `when complete 7` |
 | `when turnedin <quest>` | the quest is handed in | `when !turnedin 9201` |

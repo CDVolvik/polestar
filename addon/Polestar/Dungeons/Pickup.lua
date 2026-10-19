@@ -8,12 +8,16 @@
 --       plan = { dungeon, take = { { quest, rec, giver, pre = { rec, ... } } }, carried = { quest, ... },
 --         done = n, later = n }
 --       take: quests that apply (faction, race, class), not done, not in the log,
+--       not closed for good (one of the page's `closedBy` done or in the log:
+--       a breadcrumb whose quest is taken, as Klockmort's Essentials once
+--       Essential Artificials is; counted in `done`),
 --       open now or by the dungeon's lowest level, picked up outside from a
 --       giver (not from an item, not inside), not a follow-up of another quest
 --       of this page; pre: the open prerequisites, in the order they are done
 --       (all of `pre`, one of `preAny`: Lookup.QuestChain).
 --       carried: the page's quests already in the log. giver: a point
---       { kind, id, name, map, x, y, f }.
+--       { kind, id, name, map, x, y, f }. Each accept carries the page's
+--       `closedBy`, so the Engine passes it once taken on the way.
 --   Dungeons.PickupGuide(key) -> def | nil, reason   -- "nothing" when there is nothing to take
 --   Dungeons.PickUp(key) -> guideId | nil, reason    -- builds, registers and opens it in a new tab
 --   Dungeons.GiverTarget(key, questId) -> point, label, firstTitle, turnIn | nil
@@ -59,6 +63,15 @@ local function LK() return ns.Lookup end
 
 local function done(id) return ns.Compat.IsQuestCompleted(id) and true or false end
 local function inLog(id) return ns.Compat.IsOnQuest(id) and true or false end
+
+-- Whether a page quest is closed for good: a quest its `closedBy` names (the
+-- one a breadcrumb leads to, one of its exclusive group) is done or in the log.
+local function closed(pq)
+	for _, by in ipairs(type(pq.closedBy) == "table" and pq.closedBy or {}) do
+		if done(by) or inLog(by) then return true end
+	end
+	return false
+end
 
 local function located(p)
 	return type(p) == "table" and p.map ~= nil and p.x ~= nil and p.y ~= nil
@@ -140,6 +153,8 @@ function Dungeons.PickupPlan(key)
 				plan.done = plan.done + 1
 			elseif inLog(pq.id) then
 				plan.carried[#plan.carried + 1] = pq
+			elseif closed(pq) then
+				plan.done = plan.done + 1
 			elseif ((rec and rec.minLevel) or pq.minLevel or 1) > reach then
 				plan.later = plan.later + 1
 			else
@@ -182,7 +197,8 @@ end
 
 local function acceptGoal(pq, rec, g)
 	local goal = { t = "accept", quest = pq.id, title = pq.title or (rec and rec.title),
-		map = g.map, x = g.x, y = g.y, f = g.f, minLevel = (rec and rec.minLevel) or pq.minLevel }
+		map = g.map, x = g.x, y = g.y, f = g.f, minLevel = (rec and rec.minLevel) or pq.minLevel,
+		closedBy = type(pq.closedBy) == "table" and pq.closedBy or nil }
 	if g.kind == "object" then
 		goal.object, goal.objName = g.id, g.name
 	else

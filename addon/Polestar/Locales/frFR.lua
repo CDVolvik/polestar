@@ -103,6 +103,7 @@ L["Kill %s for %s"] = "Tuer %s pour %s"
 L["Collect %s from %s"] = "Ramasser %s sur %s"
 L["Riding"] = "Monte"
 L["Grey, kept: opens %s"] = "Grise, conservée : débloque %s"
+-- L["level and share of it: %d (%d%%)"] = ""
 
 -- Core/Closes.lua
 L["Taking %s closes %s for good."] = "Prendre %s ferme %s pour de bon."
@@ -744,6 +745,11 @@ L["Start this session's XP per hour from zero."] = "Remet à zéro l'XP par heur
 -- L["Rare button"] = ""
 -- L["Shows a button that targets a rare Polestar spotted nearby, until it dies or is out of sight. Bindable."] = ""
 -- L["Scale of the quest item, Hearthstone, target and rare buttons. Drag one to move them all."] = ""
+L["Guide level on the XP bar"] = "Niveau du guide sur la barre d'XP"
+L["A mark at the end of the game's XP bar with the level the guide wants you to reach before it moves on, and how many levels away that is when it is more than one."] = "Une marque au bout de la barre d'XP du jeu avec le niveau que le guide veut vous voir atteindre avant de passer à la suite, et combien de niveaux il reste quand il y en a plus d'un."
+-- L["Hearthstone"] = ""
+-- L["Set your home at the guide's inn"] = ""
+-- L["When the step sets your home and you talk to its innkeeper, binds your Hearthstone there. Never at another inn. Hold Shift to skip."] = ""
 
 -- Lookup/Sources.lua
 L["Alliance only"] = "Alliance uniquement"
@@ -2257,6 +2263,14 @@ L["Guides someone shared with you, as an import string or a community addon."] =
 -- L["Subtle"] = ""
 -- L["Dazzling"] = ""
 -- L["Route line style"] = ""
+
+-- QoL/XPMark.lua
+L["Guide: %d"] = "Guide : %d"
+L["Guide: %d (%d levels)"] = "Guide : %d (%d niveaux)"
+
+-- QoL/Bind.lua
+-- L["Bound your Hearthstone to %s."] = ""
+-- L["Bound your Hearthstone."] = ""
 
 -- No longer in the code (its English changed or it went away): reuse or delete.
 -- L["Alliance"] = "Alliance"

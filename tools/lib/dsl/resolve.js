@@ -17,7 +17,7 @@ const { farmSpots } = require('./farmspots');
 const { applicable, raceSides, characterKeys, whoLabel } = require('./conditions');
 const { objectiveLabel } = require('./data');
 const { checkLocation } = require('./places');
-const { blockingPrereqs } = require('../data/prereqs');
+const { blockingPrereqs, closedByOf } = require('../data/prereqs');
 const { clusterPoints, scaleOf } = require('../questdb/cluster');
 const { groupOf, isElite, isRare, hostileTo } = require('./group');
 const { escortOf } = require('./escort');
@@ -850,18 +850,16 @@ function checkAlongGoals(steps, warn) {
 // What an accept of quest `id` (record `q`, or null) waits on, for the
 // engine: blocking prerequisites only (breadcrumbs dropped: `pre` = one of
 // them suffices, `preAll` = every one is needed), the quests that close it
-// for good once taken or done (the quest a breadcrumb leads to, and its
-// exclusive group: another race's or class's version of the same chain), and
-// their titles for the engine's "needs <quest> first" / "you took <quest>" text.
+// for good once taken or done (closedByOf: the quest a breadcrumb leads to,
+// also when only that quest's `breadcrumbs` name it, and its exclusive group:
+// another race's or class's version of the same chain), and their titles for
+// the engine's "needs <quest> first" / "you took <quest>" text.
 function acceptGate(q, id, data) {
 	const out = {};
 	const { all, any } = blockingPrereqs(q, (p) => data.quest(p));
 	if (any.length) out.pre = any;
 	if (all.length) out.preAll = all;
-	const closedBy = [];
-	for (const c of [Number(q && q.breadcrumbFor), ...((q && q.excl) || []).map(Number)]) {
-		if (Number.isInteger(c) && c > 0 && c !== id && !closedBy.includes(c)) closedBy.push(c);
-	}
+	const closedBy = closedByOf(id, data.quests || {});
 	if (closedBy.length) out.closedBy = closedBy;
 	const titles = {};
 	for (const p of [...all, ...any, ...closedBy]) {
@@ -891,6 +889,7 @@ function resolveWhen(list, zoneId, levels, data, warn) {
 			case 'level':
 				w.op = p.op;
 				w.n = p.n;
+				if (p.frac) w.frac = p.frac;
 				break;
 			case 'onquest':
 			case 'complete':
@@ -1399,6 +1398,7 @@ function resolveGoal(g, zoneMap, prev, data, err, warn, ctx = { sides: ['Allianc
 		}
 		case 'level':
 			goal.level = g.level;
+			if (g.frac) goal.frac = g.frac;
 			break;
 		case 'note':
 			break;

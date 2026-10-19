@@ -180,10 +180,11 @@ step Aldrassil
   turnin 3120 only Druid                      -- Mardant Strongoak, the druid trainer at Aldrassil
   train class
 
-# Shadowthread Cave: "The eggs are at 57,26 / The cave is at 57,32"
-# (https://www.wowhead.com/classic/quest=917, comments).
+# Shadowthread Cave's mouth: where the walk in from Aldrassil first steps
+# onto the cave's indoor floor in the client's geometry (the navigation grid,
+# z 1338.6). A Classic comment's 57,32 is 29 yards south-east of it (#328).
 step Shadowthread Cave
-  goto 57.0,32.0 "Shadowthread Cave"
+  goto 56.69,31.29 "Shadowthread Cave"
 
 step Webwood Egg and the antidote
   tip The Webwood Eggs lie at the back of Shadowthread Cave: take the central path, then left where it splits, up to the high ledge. Hyacinth Mushrooms drop from Grells, Moonpetal Lilies grow by the ponds north of Aldrassil.
@@ -296,11 +297,14 @@ step Dolanaar
 
 # ---------------------------------------------------------------- West: Fel Rock to Gnarlpine Hold
 
-# Fel Rock's mouth: "Cave entrance at 54,52", "The cave entrance is at:
-# 54,52; and he is inside the cave at: 51,50"
-# (https://www.wowhead.com/classic/quest=932, comments).
+# Fel Rock's mouth: the last outdoor ground before the walk in from Dolanaar
+# steps onto the cave's indoor floor in the client's geometry (the navigation
+# grid, z 1329); a goto has no height, and the walking maps reach this point
+# without one, not the indoor floor a step further. A Classic comment's 54,52
+# is 30 yards west, on the hill, where the walking maps reach nothing, so the
+# arrow went straight at the hillside (#328).
 step Fel Rock's mouth
-  goto 54.0,52.0 "Fel Rock"
+  goto 54.59,52.12 "Fel Rock"
 
 step Fel Rock
   tip Lord Melenas waits inside the cave, at the bottom or up on the ledge; keep to the right.

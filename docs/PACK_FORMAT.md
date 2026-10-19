@@ -224,8 +224,9 @@ has nothing for the character.
 ## Format 3
 
 The format the compiler writes for a pack whose steps have no `when`,
-`along` or `label` (format 4, below). Format 2 is format 1 with the two `group`
-keys (a guide's and a goal's) and a guide's `reward` and `why`, marked
+`along` or `label` and whose `level` goals have no `frac` (format 4, below).
+Format 2 is format 1 with the two `group` keys (a guide's and a goal's) and a
+guide's `reward` and `why`, marked
 "format 2" below; Polestar 0.2.4 and later read it. Format 3 is format 2
 with **name tokens** in the texts and a guide's `names`, marked "format 3"
 below; Polestar 0.2.5 and later read it. A format 1 or 2 pack is the same
@@ -248,12 +249,13 @@ texts"); an older Polestar would show them as written, hence the format.
 ## Format 4
 
 Format 3 with a step's **`when`**: the conditions checked during play
-(GUIDE_FORMAT.md, "Conditions checked during play"), and a step's
-**`along`** and **`label`** (GUIDE_FORMAT.md, "Along the way"). Polestar
-0.2.6 and later read it. The compiler writes a pack in format 4 only when a
-step of its guides has one of them; any other pack stays in format 3, so the
-Polestar it needs does not change. An older Polestar would show every
-conditional step to every character and stop the route at every along step
+(GUIDE_FORMAT.md, "Conditions checked during play"), a step's **`along`** and
+**`label`** (GUIDE_FORMAT.md, "Along the way"), and a `level` goal's
+**`frac`**: a point inside the level. Polestar 0.2.6 and later read it. The
+compiler writes a pack in format 4 only when its guides use one of them; any
+other pack stays in format 3, so the Polestar it needs does not change. An
+older Polestar would show every conditional step to every character, stop the
+route at every along step and count `level 12.5` done at level 12
 (it ignores keys it does not know), hence the format.
 
 `when` is a list of predicates, each a table with its kind `k`, `neg = true`
@@ -262,7 +264,7 @@ hold:
 
 | `k` | Keys | Holds when |
 |---|---|---|
-| `"level"` | `op` (`"<"`, `"<="`, `">"`, `">="`), `n` | the character's level compares so with `n` |
+| `"level"` | `op` (`"<"`, `"<="`, `">"`, `">="`), `n`; optional `frac` (0 < frac < 1) | the character's level compares so with `n`; with `frac`, the level plus the share of it done (XP / XPMax) compares so with `n + frac` |
 | `"onquest"` | `q`: a list of quest ids | any of them is in the log |
 | `"complete"` | `q` | the quest is in the log, ready to turn in |
 | `"turnedin"` | `q` | the quest is handed in |
@@ -294,6 +296,12 @@ the route reaches that labelled step.
 A `label` that is not a string or names a second step, or an `along` that
 is neither `true` nor the label of a later step, refuses the guide ("step N:
 bad label", "step N: duplicate label <name>", "step N: bad along").
+
+`frac` on a `level` goal (format 4) is the share of the level's XP the goal
+asks for, a number with 0 < frac < 1: `{ t = "level", level = 12, frac = 0.5 }`
+is done at level 12 with XP / XPMax >= 0.5, or at any later level. A goal's
+`frac` outside that refuses the guide ("bad frac"); a `level` predicate's,
+"bad when".
 
 ### `RegisterPack(meta)`
 
@@ -396,7 +404,7 @@ frame; absent: the live frame), `r` (arrival radius in yards), `spots`
 | `train` | — | `npc`, `npcName`, `class`, `skill`, `skillLine`, `rank`, `rankMax`, `candidates` |
 | `buy` | `item`, `itemName` | `count`, `npc`, `npcName`, `candidates` |
 | `vendor` | — | `npc`, `npcName`, `candidates` |
-| `level` | `level` | — |
+| `level` | `level` | `frac` (format 4) |
 | `note` | `text` | — |
 | `skill` | `skill`, `level` | `skillLine` |
 | `learn` | `spell`, `spellName` | `skillLine`, `npc`/`npcName`, `item`/`itemName`, `candidates` |
@@ -423,6 +431,7 @@ The fields:
 | `skill` | a profession name; `skillLine` its skill line id |
 | `rank`, `rankMax` | on `train`: the profession rank (1 Apprentice to 4 Artisan; Polestar also reads a rank name or a skill cap) and its skill cap (written by the compiler, not read by Polestar) |
 | `level` | on `level`: the level to reach; on `skill`: the skill to reach |
+| `frac` | on `level` (format 4): the share of the level's XP to reach, 0 < frac < 1 (above) |
 | `untilSkill` | on `craft`: craft until the profession reaches this skill |
 | `reagents` | `{ { item, itemName, count } }` |
 | `standing` | 1 Hated to 8 Exalted |
@@ -536,7 +545,7 @@ or nothing (equal or lower). Imported guides are listed in the guide menu as
   into the TOC as `X-Polestar-Needs`. Format 1 is read by Polestar 0.1.0 and
   later, format 2 (the `group`, `reward` and `why` keys) by 0.2.4 and later,
   format 3 (name tokens) by 0.2.5 and later, format 4 (a step's `when`,
-  `along` and `label`) by 0.2.6 and later.
+  `along` and `label`, a `level` goal's `frac`) by 0.2.6 and later.
 - A pack in a format this Polestar does not read registers nothing; the
   Community guides page shows it as `too-new` with "Needs Polestar <version> or
   newer." (rule 5).

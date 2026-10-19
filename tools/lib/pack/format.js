@@ -16,11 +16,15 @@ const NEEDS = { 1: '0.1.0', 2: '0.2.4', 3: '0.2.5', 4: '0.2.6' };
 // A step with `label` or `along` (an older Polestar would stop at an along step).
 const usesAlong = (s) => s.label !== undefined || s.along !== undefined;
 
+// A `level` goal with `frac` (a point inside the level) needs format 4 too:
+// an older Polestar would count it done at the start of the level.
+const usesLevelFrac = (g) => (g.steps || []).some((s) => (s.goals || []).some((goal) => goal.t === 'level' && goal.frac));
+
 // The format a pack's compiled guides need: WHEN_FORMAT when a step of
-// them has `when`, `label` or `along`, else FORMAT.
+// them has `when`, `label` or `along`, or a level goal has `frac`, else FORMAT.
 function formatFor(guides) {
 	const uses = (guides || []).some((g) => (g.steps || []).some((s) => (Array.isArray(s.when) && s.when.length) || usesAlong(s)));
-	return uses ? WHEN_FORMAT : FORMAT;
+	return uses || (guides || []).some(usesLevelFrac) ? WHEN_FORMAT : FORMAT;
 }
 
 const PACK_ID_RE = /^[a-z0-9][a-z0-9-]{1,31}$/;

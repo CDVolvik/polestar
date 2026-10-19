@@ -206,7 +206,7 @@ local REWARD_ITEM = rec({ item = N, itemName = S, quality = N })
 local GOAL = rec({
 	t = S, class = B, spell = N, spellName = S, faction = N, factionName = S, standing = N, achievement = N, achievementName = S, criteria = N,
 	quest = N, title = S, target = S, npc = N, npcName = S, object = N, objName = S, item = N, itemName = S, count = N, oi = N, skill = S, skillLine = N,
-	rank = NS, rankMax = N, level = N, untilSkill = N,
+	rank = NS, rankMax = N, level = N, frac = N, untilSkill = N,
 	reagents = list(rec({ item = N, itemName = S, count = N })),
 	location = S, minLevel = N, qlvl = NS, pre = LN, preAll = LN, closedBy = LN, preTitles = { idmap = S }, text = S, node = N, area = N,
 	map = N, x = N, y = N, z = N, f = S, r = N,
@@ -221,7 +221,7 @@ local GOAL = rec({
 	direct = B, escort = B,
 })
 -- A step's `when` predicates (format 4; Guides.Validate checks each kind's keys).
-local WHEN = rec({ k = S, neg = B, op = S, n = N, q = NL, item = N, name = S, area = N, minLevel = N, pre = LN, preAll = LN, closedBy = LN })
+local WHEN = rec({ k = S, neg = B, op = S, n = N, frac = N, q = NL, item = N, name = S, area = N, minLevel = N, pre = LN, preAll = LN, closedBy = LN })
 local STEP = rec({ title = S, note = S, label = S, only = ONLY, when = list(WHEN), along = BS, goals = list(GOAL) })
 local GUIDE = rec({
 	id = S, title = S, faction = S, races = LS, classes = LS, minLevel = N, maxLevel = N, category = S, folder = S, keywords = LS,

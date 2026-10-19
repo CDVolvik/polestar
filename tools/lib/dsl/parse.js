@@ -21,6 +21,7 @@
 const { lexLine } = require('./lexer');
 const { parseConditions, FACTIONS } = require('./conditions');
 const { parseWhen } = require('./when');
+const { levelPoint } = require('../game/xp');
 
 // Slash-separated segments, none empty (an empty one would make a hidden `.lua` file).
 const ID_RE = /^[a-z0-9_-]+(?:\/[a-z0-9_-]+)*$/;
@@ -636,8 +637,14 @@ function parsePositional(verb, goal, toks, line, lex, ln, err, spans) {
 			return i + 1;
 		}
 		case 'level': {
-			if (!t || t.quoted || !INT_RE.test(t.text) || Number(t.text) < 1) return err(ln, `malformed level "${t ? t.text : ''}"`), -1;
-			goal.level = Number(t.text);
+			// `level 12`, `level 12.5` (halfway through 12) or `level 12+2500`
+			// (2500 XP into 12): level, frac and the XP as written (levelXp).
+			const p = t && !t.quoted ? levelPoint(t.text) : null;
+			if (p && p.error) return err(ln, p.error), -1;
+			if (!p || p.level < 1) return err(ln, `malformed level "${t ? t.text : ''}"`), -1;
+			goal.level = p.level;
+			if (p.frac) goal.frac = p.frac;
+			if (p.xp !== undefined) goal.levelXp = p.xp;
 			return i + 1;
 		}
 		case 'note': {

@@ -89,7 +89,8 @@ local function Compat() return ns.Compat end
 
 local function refreshPlayer()
 	player = Compat().GetPlayerInfo()
-	if levelSeen > (player.level or 0) then player.level = levelSeen end
+	-- The client's XP is still the old level's until UnitLevel catches up.
+	if levelSeen > (player.level or 0) then player.level, player.xp = levelSeen, 0 end
 end
 
 -- A step is for this character (`only`) and, with `when`, its predicates
@@ -453,10 +454,26 @@ function Own.samePlace(text, p)
 	return same(text, area) or same(text, p.name)
 end
 
+-- Whether the character has reached `level`, and with `frac` (0-1) that
+-- share of its XP: a `level 12.5` goal is done at level 12 with half the
+-- level's XP, or at any later level.
+function Own.levelReached(level, frac)
+	local lvl = player.level or 1
+	if lvl ~= level or not frac then return lvl >= level end
+	local max = player.xpMax or 0
+	return max > 0 and (player.xp or 0) / max >= frac
+end
+
 function Own.predicateHolds(p)
 	local C, k, ok = Compat(), p.k, false
 	if k == "level" then
 		local level, n, op = player.level or 1, p.n, p.op
+		if p.frac then
+			-- A point inside a level: the level plus the share of it done.
+			local max = player.xpMax or 0
+			if max > 0 then level = level + (player.xp or 0) / max end
+			n = n + p.frac
+		end
 		return (op == "<" and level < n) or (op == "<=" and level <= n) or (op == ">" and level > n) or (op == ">=" and level >= n)
 	elseif k == "onquest" then
 		for _, q in ipairs(p.q) do
@@ -1141,6 +1158,18 @@ local function isCandidate(goal, npc)
 	return false
 end
 
+-- Whether `npc` is an innkeeper a `sethome` goal binds at: a located goal's
+-- inn's (goal.npc, else the innkeeper of the inn its location names, in
+-- Nav/Travel.lua's data); `sethome nearest`, one of its candidates. The
+-- latch below and QoL's bind helper both ask this.
+function Engine.IsSethomeInnkeeper(goal, npc)
+	if not (npc and type(goal) == "table" and goal.t == "sethome") then return false end
+	if not goal.location then return goal.candidates ~= nil and isCandidate(goal, npc) end
+	local nav = ns.Nav
+	local inn = nav and nav.FindInn and nav.FindInn(goal.npc, goal.location)
+	return npc == (inn and inn.npc or goal.npc)
+end
+
 -- Goals whose live condition can stop holding after the step is passed
 -- (leaving the zone, rebinding, selling the items, walking away). Their done
 -- state is stored once the route moves past them, so the guide never jumps
@@ -1484,7 +1513,7 @@ goalDone = function(s, g, goal)
 	elseif t == "getfp" then
 		return fpKnown(goal)
 	elseif t == "level" then
-		return (player.level or 1) >= goal.level
+		return Own.levelReached(goal.level, goal.frac)
 	elseif t == "skill" then
 		if isManual(goal) then return false end
 		return skillState(goal, goal.level)
@@ -2137,6 +2166,7 @@ local function describe(goal)
 		if npcName then return L["Sell and repair at"], npcName, "npc", nil end
 		return L["Sell and repair at"], L["a vendor"], "text", nil
 	elseif t == "level" then
+		if goal.frac then return L["Reach level"], ns.LC("level and share of it", "%d (%d%%)"):format(goal.level, math.floor(goal.frac * 100 + 0.5)), "level", nil end
 		return L["Reach level"], tostring(goal.level), "level", nil
 	elseif t == "skill" then
 		return L["Raise"], skillName(goal), "skill", fmt(L["to %d"], goal.level)
@@ -2969,10 +2999,8 @@ local function latch(kind, npc)
 						ok = goal.npc == npc
 					elseif kind == "sethome" then
 						-- `sethome nearest` on any bind; a located one at its inn's
-						-- innkeeper (goal.npc, else the one of the inn its location names).
-						local nav = goal.location and npc and ns.Nav
-						local inn = nav and nav.FindInn and nav.FindInn(goal.npc, goal.location)
-						ok = not goal.location or (npc ~= nil and npc == (inn and inn.npc or goal.npc))
+						-- innkeeper (Engine.IsSethomeInnkeeper).
+						ok = not goal.location or Engine.IsSethomeInnkeeper(goal, npc)
 					elseif kind == "train" and isProfessionTrain(goal) then
 						ok = false
 					elseif goal.candidates and npc then
@@ -3950,6 +3978,28 @@ end
 -- the guide is complete), whatever step the player is looking at.
 function Engine.GetLiveStep() return computed end
 
+-- The level the guide expects next (QoL/XPMark): the first `level N` goal at
+-- or after the step shown that is for this character (the step's `only` and
+-- `when`, the goal's `only`), neither skipped, with N above `level` (the
+-- caller's reading; the character's level by default). N, its step; or nil.
+function Engine.LevelTarget(level)
+	if not (guide and current) then return nil end
+	if not player then refreshPlayer() end
+	level = level or player.level or 1
+	local sk = skippedFor(guide.id)
+	for s = current, #guide.steps do
+		local step = guide.steps[s]
+		if not (sk and sk[s]) and stepApplies(step) then
+			for g, goal in ipairs(step.goals) do
+				if goal.t == "level" and (goal.level or 0) > level and not (sk and sk[Own.key(s, g)]) and goalApplies(goal) then
+					return goal.level, s
+				end
+			end
+		end
+	end
+	return nil
+end
+
 -- What a Class guide waits on before this character can start it
 -- (Own.startGate), for the guide window's notice and the guide menu's row:
 -- { level } or { pre, preTitle }, with who starts it (giver: the opening's
@@ -4207,6 +4257,8 @@ local function onUpdateEvent() requestUpdate() end
 for _, event in ipairs({
 	"QUEST_ACCEPTED", "QUEST_REMOVED", "QUEST_LOG_UPDATE", "QUEST_WATCH_UPDATE",
 	"BAG_UPDATE_DELAYED", "PLAYER_ENTERING_WORLD",
+	-- level (a point inside a level: `level 12.5`)
+	"PLAYER_XP_UPDATE",
 	-- skill / craft
 	"SKILL_LINES_CHANGED", "CHAT_MSG_SKILL", "TRADE_SKILL_SHOW", "TRADE_SKILL_LIST_UPDATE",
 	-- learn

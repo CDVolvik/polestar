@@ -106,6 +106,7 @@ L["Kill %s for %s"] = "Mata a %s para obtener %s"
 L["Collect %s from %s"] = "Consigue %s de %s"
 L["Riding"] = "Equitación"
 L["Grey, kept: opens %s"] = "Gris, se mantiene: abre %s"
+-- L["level and share of it: %d (%d%%)"] = ""
 
 -- Core/Guides.lua
 L["Needs Polestar %s or newer."] = "Requiere Polestar %s o posterior."
@@ -633,6 +634,11 @@ L["Learns every spell a class trainer offers that you can afford, and prints the
 -- L["Rare button"] = ""
 -- L["Shows a button that targets a rare Polestar spotted nearby, until it dies or is out of sight. Bindable."] = ""
 -- L["Scale of the quest item, Hearthstone, target and rare buttons. Drag one to move them all."] = ""
+L["Guide level on the XP bar"] = "Nivel de la guía en la barra de PE"
+L["A mark at the end of the game's XP bar with the level the guide wants you to reach before it moves on, and how many levels away that is when it is more than one."] = "Una marca al final de la barra de PE del juego con el nivel que la guía quiere que alcances antes de continuar, y cuántos niveles faltan cuando es más de uno."
+-- L["Hearthstone"] = ""
+-- L["Set your home at the guide's inn"] = ""
+-- L["When the step sets your home and you talk to its innkeeper, binds your Hearthstone there. Never at another inn. Hold Shift to skip."] = ""
 
 -- QoL/QoL.lua
 L["%dh %02dm"] = "%dh %02dm"
@@ -2255,6 +2261,14 @@ L["Guides someone shared with you, as an import string or a community addon."] =
 -- L["Subtle"] = ""
 -- L["Dazzling"] = ""
 -- L["Route line style"] = ""
+
+-- QoL/XPMark.lua
+L["Guide: %d"] = "Guía: %d"
+L["Guide: %d (%d levels)"] = "Guía: %d (%d niveles)"
+
+-- QoL/Bind.lua
+-- L["Bound your Hearthstone to %s."] = ""
+-- L["Bound your Hearthstone."] = ""
 
 -- No longer in the code (its English changed or it went away): reuse or delete.
 -- L["The arrow's target, the stops of its travel route, the step's other goals and the areas their mobs and objects spawn in."] = "El objetivo de la flecha, las paradas de su ruta de viaje, los demás objetivos del paso y las zonas donde aparecen sus monstruos y objetos."
