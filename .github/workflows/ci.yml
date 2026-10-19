@@ -8,9 +8,12 @@ on:
 permissions:
   contents: read
 
+# A pull request's newer push replaces its older run. Pushes to main, next
+# and hotfix branches all run to the end, so every merge commit gets a result
+# and a run of merges shows which one broke the branch.
 concurrency:
   group: ci-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   test:
