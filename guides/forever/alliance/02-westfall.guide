@@ -6,18 +6,26 @@ zone Westfall
 next forever/alliance/03-darkshore
 
 # Visit 2 of the simulator's consensus Alliance route (Human export,
-# 12.3 to 16.4; the 2026 refresh's consensus stays to 17.9): Elwynn ends at
-# the Sentinel Hill flight master, Westfall runs to about 17, then Stormwind
-# and the boat to Auberdine.
+# 12.3 to 16.4; the 2026 refresh's consensus stays to 17.9): every start
+# guide walks in down the road from Elwynn, Westfall runs to about 17, then
+# Stormwind and the boat to Auberdine.
 #
-# Flow: Sentinel Hill (hearth, every quest giver) -> Saldean's Farm -> the
-# Jansen Stead -> Saldean's -> one loop north: Molsen Farm, the Gold Coast
-# Quarry, Jangolode Mine, the north coast, the gnoll hills -> the Jansen
-# Stead -> Saldean's -> Sentinel Hill -> the western farms -> Sentinel Hill ->
-# Moonbrook and the Defias hills -> hearth -> Stormwind (training, Fishin'
-# Time at the harbor) -> boat.
+# Flow: the road in: the Jansen Stead -> Saldean's Farm -> Sentinel Hill
+# (hearth, flight path, every quest giver) -> one loop north: Molsen Farm,
+# the Gold Coast Quarry, Jangolode Mine, the north coast, the gnoll hills ->
+# the Jansen Stead -> Saldean's -> Sentinel Hill -> the western farms ->
+# Sentinel Hill -> Moonbrook and the Defias hills -> hearth -> Stormwind
+# (training, Fishin' Time at the harbor) -> boat.
 #
 # Deviations from the export:
+# - The walk in (#416): every race reaches Westfall on foot down the Elwynn
+#   road, past the Jansen Stead and Saldean's Farm, so their quests (36,
+#   151, 64; 9, 22, 92909, Westfall Stew handed in for 38) and Report to
+#   Gryan Stoutmantle (109: Deputy Rainer at the Westbrook Garrison for
+#   Humans, at the end of Elwynn; Farmer Furlbrow for the others) are taken
+#   on the way south, before Sentinel Hill. None of them needs the hill
+#   first. The Jansen Stead well sample (92742.1, Alba's quest from the
+#   hill) is filled on the return to the Jansen Stead after the north loop.
 # - The simulator took Sentinel Hill's quests (102, 12, 153, 92742, 92744,
 #   92745) only on its second pass at 14.8 and then walked the north a
 #   second time; here they are taken on arrival and the north is one loop,
@@ -32,6 +40,11 @@ next forever/alliance/03-darkshore
 #   in the middle of the loop instead +0.06 / +0.06 / +0.06 / +0.06.
 # - Harvesting the Harvesters (92910) starts from an item the Golems and
 #   Watchers drop: it is picked up on the farms rather than at Alexston.
+#   It is optional (#298): the Precessive Autocognition Assembly drops about
+#   once in 900 kills (Wowhead Forever item=255155: 161 of 187,474 Harvest
+#   Watchers, 54 of 46,307 Rusty Harvest Golems, checked 2026-10-17), so
+#   the farm step does not wait for it. The turn-in at Saldean's is plain:
+#   it holds only a player who took the quest.
 # - Left out: the second Harvesting the Harvesters (92911). Ozwin offers it
 #   only once 92910 is handed in (its text follows the assembly; #51, the
 #   quest data has no prerequisite for it), and the route does not come
@@ -63,6 +76,13 @@ next forever/alliance/03-darkshore
 # - Sentinel Hill: Humans hand Thor the Quartermaster's letter (6181) after
 #   Gryan and Danuvin, who stand beside Lewis at the top of the tower, so
 #   the hill is walked down once.
+# - Gnoll Paws (102, #385): hand-placed in the north hills (44.7,14.6, the
+#   densest Riverpaw Gnoll and Scout spawns, level 11-13). Unplaced, the
+#   arrow searched every Gnoll Paw dropper's camp in the zone, down to the
+#   level 16-19 Bandits, Taskmasters and Mystics in the south. The north
+#   coast's murloc gills and eyes (92744, 38) are placed the same way, on
+#   the level 11-12 Coastrunners north of the mine (43.5,9.2), not the
+#   15-18 murlocs down the west coast.
 #
 # Optional: Furlbrow's Deed (184), only with the Westfall Deed from Elwynn's
 # Defias.
@@ -97,45 +117,42 @@ next forever/alliance/03-darkshore
 # Its goals carry `only Dwarf,Gnome,NightElf,Skyborne`; the two mine steps,
 # which are only for 92745, carry it on the step.
 
-# ---------------------------------------------------------------- Sentinel Hill
-
-step Sentinel Hill
-  zone Westfall
-  tip Gryan Stoutmantle and Captain Danuvin stand at the top of the stone tower. Quartermaster Lewis is in the tower, Scout Galiaan on the south side of the hill, next to the inn and Thor the gryphon master.
-  accept 6181 only Human                      -- Quartermaster Lewis
-  sethome "Sentinel Hill"
-  getfp "Sentinel Hill"
-  turnin 98021 only Skyborne                  -- Gryan Stoutmantle
-  accept 12                                   -- Gryan Stoutmantle
-  accept 102                                  -- Captain Danuvin
-  turnin 6181 only Human                      -- Thor; skip the free flight it offers
-  accept 153                                  -- Scout Galiaan
-  accept 92742 only Dwarf,Gnome,NightElf,Skyborne -- Alba Fairmoon, beside Scout Galiaan
-  accept 92744 only Dwarf,Gnome,NightElf,Skyborne
-
-# ---------------------------------------------------------------- Saldean's and the Jansen Stead
-
-step Saldean's Farm
-  tip Follow the road north. Farmer Saldean stands outside, Salma in the house, Ozwin Ironsprocket in the barn to the west.
-  accept 109                                  -- Farmer Saldean
-  accept 9
-  accept 22                                   -- Salma Saldean
-  accept 92909                                -- Ozwin Ironsprocket
+# ---------------------------------------------------------------- The road in: the Jansen Stead and Saldean's
 
 step The Jansen Stead
-  tip Further north along the road. The Furlbrows sit by their burned farm. Collect the oats from the Sacks of Oats in the fields as you go.
+  zone Westfall
+  tip Follow the road from Elwynn into Westfall: the Furlbrows sit by their burned farm, the first one on the road. Collect the oats from the Sacks of Oats in the fields as you go.
+  accept 109 npc 237                          -- Farmer Furlbrow; Humans took it from Deputy Rainer in Elwynn
   accept 36                                   -- Verna Furlbrow
   accept 151
   accept 64                                   -- Farmer Furlbrow
   accept 184 optional                         -- Only if you looted a Westfall Deed in Elwynn: right-click it
   turnin 184 optional
-  collect 254546 quest 92742.1 @56.6,18.6 only Dwarf,Gnome,NightElf,Skyborne -- Fill the vial at the well
   collect 1528 quest 151                      -- Sacks of Oats
 
 step Saldean's Farm
-  tip Young Goretusks and Fleshrippers roam the fields around the farm: start on livers and the stew's meat on the way back.
+  tip South along the road, past the fork. Farmer Saldean stands outside, Salma in the house, Ozwin Ironsprocket in the barn to the west. Young Goretusks and Fleshrippers roam the fields around the farm: start on livers and the stew's meat on the way.
+  accept 9                                    -- Farmer Saldean
   turnin 36                                   -- Salma Saldean
+  accept 22
   accept 38
+  accept 92909                                -- Ozwin Ironsprocket
+
+# ---------------------------------------------------------------- Sentinel Hill
+
+step Sentinel Hill
+  tip Gryan Stoutmantle and Captain Danuvin stand at the top of the stone tower. Quartermaster Lewis is in the tower, Scout Galiaan on the south side of the hill, next to the inn and Thor the gryphon master.
+  accept 6181 only Human                      -- Quartermaster Lewis
+  sethome "Sentinel Hill"
+  getfp "Sentinel Hill"
+  turnin 98021 only Skyborne                  -- Gryan Stoutmantle
+  turnin 109
+  accept 12
+  accept 102                                  -- Captain Danuvin
+  turnin 6181 only Human                      -- Thor; skip the free flight it offers
+  accept 153                                  -- Scout Galiaan
+  accept 92742 only Dwarf,Gnome,NightElf,Skyborne -- Alba Fairmoon, beside Scout Galiaan
+  accept 92744 only Dwarf,Gnome,NightElf,Skyborne
 
 # ---------------------------------------------------------------- The north loop
 
@@ -146,8 +163,8 @@ step Molsen Farm
   collect 255007 quest 92909.1
   collect 255010 quest 92909.2
   collect 732 quest 38.4                      -- Okra
-  collect 255155                              -- Precessive Autocognition Assembly
-  accept 92910
+  collect 255155 optional                     -- Precessive Autocognition Assembly
+  accept 92910 optional
   collect 723 quest 22                        -- Goretusk Liver
   collect 731 quest 38.3                      -- Goretusk Snout
   collect 729 quest 38.1                      -- Stringy Vulture Meat: Fleshrippers
@@ -161,14 +178,15 @@ step Jangolode Mine
 
 step The north coast
   tip Murloc Coastrunners and Raiders line the beach north of the mine. They flee at low health: pull one at a time.
-  collect 254548 quest 92744 only Dwarf,Gnome,NightElf,Skyborne -- Longshore Murloc Gills
-  collect 730 quest 38.2                      -- Murloc Eye
+  collect 254548 quest 92744 @43.5,9.2 only Dwarf,Gnome,NightElf,Skyborne -- Longshore Murloc Gills
+  collect 730 quest 38.2 @43.5,9.2            -- Murloc Eye
 
 step The gnoll hills
-  tip Riverpaw Gnolls and Scouts roam the hills between the coast and the Jansen Stead.
-  collect 725 quest 102                       -- Gnoll Paws
+  tip Riverpaw Gnolls and Scouts (level 11-13) roam the hills south of the coast, from above Jangolode Mine east to the Jansen Stead. The gnolls further south and west are 13-19: stay in the north hills.
+  collect 725 quest 102 @44.7,14.6            -- Gnoll Paws
 
 step The Jansen Stead
+  collect 254546 quest 92742.1 @56.6,18.6 only Dwarf,Gnome,NightElf,Skyborne -- Fill the vial at the well
   turnin 64                                   -- Farmer Furlbrow
   turnin 151                                  -- Verna Furlbrow
 
@@ -180,8 +198,7 @@ step Saldean's Farm
   turnin 92910
 
 step Sentinel Hill
-  turnin 109                                  -- Gryan Stoutmantle
-  turnin 12
+  turnin 12                                   -- Gryan Stoutmantle
   accept 13
   turnin 102                                  -- Captain Danuvin
   turnin 92742 only Dwarf,Gnome,NightElf,Skyborne -- Alba Fairmoon
@@ -236,7 +253,7 @@ step Back to Sentinel Hill
 step Defensive Stance
   only Human,Warrior
   zone Stormwind City
-  tip Fly or ride to Stormwind. Ilsa Corbin trains warriors in Old Town; Harry Burlguard and Bartleby stand together by the Pig and Whistle Tavern there. Bartleby fights you for his mug.
+  tip Fly or walk to Stormwind. Ilsa Corbin trains warriors in Old Town; Harry Burlguard and Bartleby stand together by the Pig and Whistle Tavern there. Bartleby fights you for his mug.
   accept 1638 npc 5480                        -- Ilsa Corbin
   turnin 1638                                 -- Harry Burlguard
   accept 1639
@@ -250,19 +267,19 @@ step Defensive Stance
 step High Priestess Laurena
   only Human,Priest
   zone Stormwind City
-  tip Fly or ride to Stormwind. High Priestess Laurena is in the Cathedral of Light.
+  tip Fly or walk to Stormwind. High Priestess Laurena is in the Cathedral of Light.
   turnin 5635                                 -- Desperate Prayer
   turnin 94774                                -- Divine Grace
 
 step Shaman training
   only Shaman
   zone Ironforge
-  tip Ride to Stormwind. It has no shaman trainer: take the Deeprun Tram from the Dwarven District to Ironforge, train with Eldrun Stormbreaker, then ride the tram back for the boat.
+  tip Head to Stormwind. It has no shaman trainer: take the Deeprun Tram from the Dwarven District to Ironforge, train with Eldrun Stormbreaker, then ride the tram back for the boat.
   train class
 
 step Stormwind
   zone Stormwind City
-  tip Fly or ride to Stormwind. Trainers: Old Town (Warriors, Rogues), the Cathedral (Paladins, Priests), the Mage Quarter (Mages, Warlocks), the Park (Druids).
+  tip Fly or walk to Stormwind. Trainers: Old Town (Warriors, Rogues), the Cathedral (Paladins, Priests), the Mage Quarter (Mages, Warlocks), the Park (Druids).
   train class only Warrior,Paladin,Hunter,Rogue,Priest,Mage,Warlock,Druid -- Level 12, 14 and 16 spells
   buy 2449 x5 npc 1313 optional only NightElf,Druid -- Earthroot for Gathering the Cure (6123) in Darkshore: Maria Lumere, Alchemy Supplies; herbalists pick it there instead
   turnin 92748 only Dwarf,Gnome,NightElf,Skyborne -- Sprite Jumpsprocket, Dwarven District

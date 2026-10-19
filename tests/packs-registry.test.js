@@ -329,3 +329,38 @@ test('map frames of a refused pack are ignored, even under the holder\'s id', ()
 	`);
 	assert.deepEqual(out, [true, true, true]);
 });
+
+test('a step picture is a file in the pack\'s addon folder: its texture path comes from the addon that registered the pack', () => {
+	const [out] = run(`
+		pack("joe", "PolestarPack_Joe")
+		local ok = guide("joe/a", "joe", { steps = {
+			{ note = "The mouth is behind the farm.", image = { file = "media\\\\fargodeep-mine", w = 512, h = 256 }, goals = { { t = "level", level = 2 } } },
+			{ image = { file = "media/shots/gate.blp" }, goals = { { t = "level", level = 3 } } },
+			{ note = "No picture.", goals = { { t = "level", level = 4 } } },
+		} })
+		local s = G.Get("joe/a").steps
+		emit({ ok = ok[1], first = s[1].image, second = s[2].image.texture, third = s[3].image == nil })
+	`);
+	assert.equal(out.ok, true);
+	assert.deepEqual(out.first, { file: 'media\\fargodeep-mine', w: 512, h: 256, texture: 'Interface\\AddOns\\PolestarPack_Joe\\media\\fargodeep-mine' });
+	assert.equal(out.second, 'Interface\\AddOns\\PolestarPack_Joe\\media\\shots\\gate.blp');
+	assert.equal(out.third, true, 'a step without a picture gets none');
+});
+
+test('a step picture outside the pack\'s folder, of another kind or without a path refuses the guide', () => {
+	const [out] = run(`
+		pack("joe")
+		local out = {}
+		for i, image in ipairs({
+			"media\\\\cave", { w = 512, h = 256 }, { file = "" }, { file = "\\\\media\\\\cave" }, { file = "C:\\\\cave" }, { file = "..\\\\cave" },
+			{ file = "media\\\\..\\\\cave" }, { file = "media/cave.png" }, { file = "media\\\\my cave" }, { file = "media\\\\\\\\cave" },
+			{ file = "media\\\\cave", w = 0, h = 256 }, { file = "media\\\\cave", w = 512, h = "256" },
+		}) do
+			local r = guide("joe/bad" .. i, "joe", { steps = { { image = image, goals = { { t = "level", level = 2 } } } } })
+			out[i] = r[2] or "accepted"
+		end
+		out[#out + 1] = guide("joe/good", "joe", { steps = { { image = { file = "Media/Shots/Cave_1.TGA" }, goals = { { t = "level", level = 2 } } } } })[1]
+		emit(out)
+	`);
+	assert.deepEqual(out, [...Array(12).fill('step 1: bad image'), true]);
+});

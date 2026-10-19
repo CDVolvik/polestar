@@ -60,10 +60,11 @@ that breaks these rules, is a lint error; an unknown key is a warning; a `|`
 in a displayed value is a warning (it prints literally in game).
 
 The pack folder holds `pack.json`, the `.guide` files in any layout,
-`drafts/` (Recorder drafts, compiled only with `--include-drafts`) and `dist/`
-(build output). The compiler reads every `.guide` file under the folder
-except in `dist/`, `drafts/`, `node_modules/` and folders whose name starts
-with a dot.
+`drafts/` (Recorder drafts, compiled only with `--include-drafts`), `dist/`
+(build output) and the picture files its `image` lines name (`.tga` or
+`.blp`, at any path inside the folder, such as `media/`). The compiler reads
+every `.guide` file under the folder except in `dist/`, `drafts/`,
+`node_modules/` and folders whose name starts with a dot.
 
 ## The addon
 
@@ -77,6 +78,7 @@ PolestarPack_JoesRoutes/
   Guides.lua         one Polestar.RegisterGuide({ ... }) per guide
   LICENSE-DATA.txt   the reference data sources the guides draw on
   LICENSE.txt        the pack folder's LICENSE, copied as is (only when it has one)
+  media/cave.tga     each picture an `image` line names, at its path in the pack folder
 PolestarPack_JoesRoutes_deDE/   one texts addon per language the pack translates
   PolestarPack_JoesRoutes_deDE.toc
   Texts.lua          Polestar.RegisterGuideTexts("deDE", "joe-routes", { ... })
@@ -368,10 +370,14 @@ Guide keys (the compiler writes them in this order):
 | `written` | no | format 3: `{ ["Back to {npc:3649}"] = "Back to Dendrite", ... }`, a text whose names its tokens' English in `names` would spell otherwise, with the author's words an English client reads |
 | `steps` | yes | list of steps, at least one |
 
-Step keys: `title` (optional), `note` (optional, player-facing), `only`
-(optional: `{ classes = { ... }, races = { ... }, factions = { ... } }`, AND
-across keys, OR within; Polestar also reads an entry `"!X"` as "not X", but
-the compiler writes positive lists only), `when` (optional, format 4: the
+Step keys: `title` (optional), `note` (optional, player-facing), `image`
+(optional: `{ file = "media\\cave", w = 512, h = 256 }`, the step's picture:
+`file` its path in the pack's addon folder without the extension, `\`
+between folders, `w` and `h` its size in pixels; Polestar shows it under the
+step's tip, and an imported guide, which has no addon folder, shows none),
+`only` (optional: `{ classes = { ... }, races = { ... }, factions = { ... } }`,
+AND across keys, OR within; Polestar also reads an entry `"!X"` as "not X",
+but the compiler writes positive lists only), `when` (optional, format 4: the
 step's conditions checked during play, below) and `goals` (at least one).
 
 Goal keys common to every verb: `t` (the verb), `text` (display text),

@@ -12,7 +12,7 @@ const zlib = require('node:zlib');
 const { runAddon } = require('./helpers/lua');
 const { compile, fixtureData } = require('./helpers/dsl');
 const { importString, encodeImport, adler32, LIMITS } = require('../tools/lib/pack/importstring');
-const { emitGuides, guideData, GUIDE_KEYS, STEP_KEYS, WHEN_KEYS, GOAL_KEYS, ONLY_KEYS, LIST_KEYS } = require('../tools/lib/dsl/emit');
+const { emitGuides, guideData, GUIDE_KEYS, STEP_KEYS, IMAGE_KEYS, WHEN_KEYS, GOAL_KEYS, ONLY_KEYS, LIST_KEYS } = require('../tools/lib/dsl/emit');
 
 const CORE = { name: 'Polestar', files: ['Core/Core.xml'] };
 const ID = 'yendi/northshire';
@@ -116,7 +116,19 @@ test('the caps, the checksum and the key lists are the writer\'s', () => {
 	assert.deepEqual(out.keys.when, sorted(WHEN_KEYS));
 	assert.deepEqual(out.keys.goal, sorted(GOAL_KEYS));
 	assert.deepEqual(out.keys.only, sorted(ONLY_KEYS));
+	assert.deepEqual(out.keys.image, sorted(IMAGE_KEYS));
 	for (const k of ['reagents', 'candidates', 'fromNpcs', 'spots', 'items', 'reward']) assert.deepEqual(out.keys[k], sorted(LIST_KEYS[k]), k);
+});
+
+test('a step picture rides along in a string, but an imported guide has no addon folder holding the file, so it shows none', () => {
+	const p = payload();
+	p.guide.steps[0].image = { file: 'media\\cave', w: 512, h: 256 };
+	const [out] = run(`
+		save(${str(encodeImport(p))})
+		local s = G.Get(${str(ID)}).steps
+		emit({ image = s[1].image, second = s[2].image == nil })
+	`);
+	assert.deepEqual(out, { image: { file: 'media\\cave', w: 512, h: 256 }, second: true });
 });
 
 test('round trip: .guide -> string -> preview -> Import registers the guide a community addon registers', () => {

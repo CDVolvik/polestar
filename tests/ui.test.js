@@ -207,6 +207,72 @@ test('step tips start open by default; with Expand step tips off, on one line', 
 	assert.ok(out.h > out.closedH);
 });
 
+// A pack's picture on a sample step, as Guides.lua registers it.
+const PICTURE = (step, w, h) => `uistub.guides[uistub.elwynn].steps[${step}].image = { file = "media\\\\cave"${w ? `, w = ${w}, h = ${h}` : ''}, texture = "Interface\\\\AddOns\\\\PolestarPack_Joe\\\\media\\\\cave" }`;
+
+test('a step picture shows under the opened tip, as wide as the text column with its aspect kept, and folds away with the tip', () => {
+	const [out] = run(`
+		Polestar.Set("ui.width", 300)
+		uistub.setGuide(uistub.elwynn, 3)
+		local tip, img = GF.parts.tip, GF.parts.tip.Image
+		local plain = { shown = img:IsShown(), h = tip:GetHeight() }
+		${PICTURE(3, 512, 256)}
+		GF.Render()
+		local open = { shown = img:IsShown(), w = img:GetWidth(), h = img:GetHeight(), texture = img:GetTexture(), tipH = tip:GetHeight(), text = tip.Text:GetText() }
+		tip:Click()
+		local closed = { shown = img:IsShown(), tipH = tip:GetHeight() }
+		tip:Click()
+		emit({ plain = plain, open = open, closed = closed, again = img:IsShown() })`);
+	assert.equal(out.plain.shown, false, 'a step without a picture shows none');
+	assert.deepEqual(out.open, {
+		shown: true,
+		w: 300 - 39 - 14,
+		h: Math.floor((300 - 39 - 14) / 2 + 0.5),
+		texture: 'Interface\\AddOns\\PolestarPack_Joe\\media\\cave',
+		tipH: out.plain.h + Math.floor((300 - 39 - 14) / 2 + 0.5) + 6,
+		text: 'Kobolds wander the mine entrance. Pull them one at a time; the vermin hit softly but come in pairs.',
+	});
+	assert.equal(out.closed.shown, false, 'folded to one line, the tip hides its picture');
+	assert.ok(out.closed.tipH < out.plain.h);
+	assert.equal(out.again, true);
+});
+
+test('a tall picture stops at 160 high; one with no tip reads "Picture of this spot"; one without a size is drawn 2:1', () => {
+	const [out] = run(`
+		Polestar.Set("ui.width", 300)
+		${PICTURE(5, 256, 256)}
+		uistub.setGuide(uistub.elwynn, 5)
+		local tip, img = GF.parts.tip, GF.parts.tip.Image
+		local square = { tip = tip:IsShown(), text = tip.Text:GetText(), w = img:GetWidth(), h = img:GetHeight() }
+		${PICTURE(5)}
+		GF.Render()
+		emit({ square = square, unsized = { w = img:GetWidth(), h = img:GetHeight() } })`);
+	assert.deepEqual(out.square, { tip: true, text: 'Picture of this spot', w: 160, h: 160 });
+	assert.deepEqual(out.unsized, { w: 247, h: 124 });
+});
+
+test('a picture the client cannot load, or with step tips off, leaves the tip as it is without one', () => {
+	const [out] = run(`
+		Polestar.Set("ui.width", 300)
+		uistub.setGuide(uistub.elwynn, 3)
+		local tip, img = GF.parts.tip, GF.parts.tip.Image
+		local plainH = tip:GetHeight()
+		local set = img.SetTexture
+		img.SetTexture = function(self, path) set(self, path); return path == nil end
+		${PICTURE(3, 512, 256)}
+		${PICTURE(5, 512, 256)}
+		GF.Render()
+		local broken = { shown = img:IsShown(), h = tip:GetHeight() }
+		uistub.setStep(5)
+		local alone = tip:IsShown()
+		img.SetTexture = set
+		Polestar.Set("ui.showNotes", false)
+		emit({ plainH = plainH, broken = broken, alone = alone, off = { tip = tip:IsShown(), img = img:IsShown() } })`);
+	assert.deepEqual(out.broken, { shown: false, h: out.plainH });
+	assert.equal(out.alone, false, 'a step whose only tip is a picture that does not load shows no tip');
+	assert.deepEqual(out.off, { tip: false, img: false });
+});
+
 test('STEP_UPDATED refills the same rows in place, and a newly done goal pops', () => {
 	const [out] = run(`
 		uistub.setGuide(uistub.elwynn, 3)

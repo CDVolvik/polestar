@@ -298,8 +298,9 @@ polestar pack       # lints, builds and writes dist/<folder>-<version>.zip
 ```
 
 The zip holds the addon folder (the TOC, `Pack.lua`, `MapFrames.lua`,
-`Guides.lua` and `LICENSE-DATA.txt`), byte for byte reproducible, with the
-pack's `LICENSE` as `LICENSE.txt` when the pack folder has one.
+`Guides.lua`, `LICENSE-DATA.txt` and the picture file of every `image` line,
+GUIDE_FORMAT.md "Pictures"), byte for byte reproducible, with the pack's
+`LICENSE` as `LICENSE.txt` when the pack folder has one.
 
 The TOC places the community addon in the game's AddOns list for you:
 titled "Polestar Community: <title>" (your title as it is when it already

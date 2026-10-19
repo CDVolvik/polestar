@@ -49,6 +49,7 @@ every goal in it that is not `optional` is; its goals are open together.
 |---|---|
 | `step [title]` | Starts a step |
 | `tip <text>` | A note for the whole step |
+| `image <path> [<w>x<h>]` | A picture under the step's tip: a `.tga` or `.blp` at that path in the pack folder (`media/cave.tga`), which the addon folder ships; `<w>x<h>` sets its ratio, else the file's own size does |
 | `zone <Name>` / `zone map <uiMapID>` | The zone for coordinates from here on, in later steps too |
 | `only <condition>, ...` | The step is only for matching characters |
 | `when <predicate>` | The step is only for characters in that state when the route gets there; several lines must all hold (see Conditions) |

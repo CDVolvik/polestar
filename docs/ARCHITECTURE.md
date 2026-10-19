@@ -3677,8 +3677,11 @@ Reading flow: `docs/DESIGN.md` ("Intent" and "The Guide Window").
   after the goal text (in text, success once complete; the accent is kept
   for the current goal's glyph, the arrow's target mark, tabs, primary
   buttons and the progress fill), a "Then: <next
-  person>" line with "Person n of N", tips folded to one line, and the guide's
-  progress bar with percent. Up next is off by default (`ui.upcoming = 0`).
+  person>" line with "Person n of N", tips folded to one line (an opened tip
+  shows the step's `image` under it: the texture in its pack's addon folder,
+  as wide as the text column, its aspect kept, at most 160 high; none for a
+  pack without an addon folder, or a file the client cannot load), and the
+  guide's progress bar with percent. Up next is off by default (`ui.upcoming = 0`).
   Transparent mode fades the whole navigator (step number with its chevrons)
   until hovered and keeps the progress track as a faint ink line.
 - **Hub** (`UI/Picker.lua`, `UI.ShowPicker(opts)`; the window the guide menu

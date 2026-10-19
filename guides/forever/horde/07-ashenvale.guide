@@ -253,7 +253,7 @@ step Zoram'gar Outpost
 
 step Thunder Bluff
   zone Thunder Bluff
-  tip Fly to Thunder Bluff if you know the flight path. If not, fly to Camp Taurajo, ride west into Mulgore past Bloodhoof Village to Thunder Bluff and take its flight path from Tal on the central rise.
+  tip Fly to Thunder Bluff if you know the flight path. If not, fly to Camp Taurajo, head west into Mulgore past Bloodhoof Village to Thunder Bluff and take its flight path from Tal on the central rise.
   getfp "Thunder Bluff" npc 2995      -- Tal
   kill 3057 quest 93739.3 only Skyborne optional -- Speak with Cairne Bloodhoof, in Thunder Bluff: Exploring the Horde
 
@@ -270,7 +270,7 @@ step Gloomrise
   collect 273181 quest 96260.1        -- Crystalline Silk, from Gloomrise Spinners
   kill 264083 quest 96259.1
   kill 264079 quest 96259.2
-  collect 273658 @33.4,7.6            -- Bloody Parchment, from Broodmother Valraxx
+  collect 273658 @33.4,7.6 live       -- Bloody Parchment, from Broodmother Valraxx
   accept 96294 item 273658
 
 step The Earthen Ring

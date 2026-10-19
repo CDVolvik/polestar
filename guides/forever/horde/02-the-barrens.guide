@@ -83,7 +83,7 @@ step The Crossroads
 
 step Plainstriders and raptors
   tip Plainstriders and Sunscale raptors roam the plains all around the Crossroads, thickest to the north.
-  collect 5087 quest 844.1
+  collect 5087 quest 844.1 @53.0,23.7
   collect 5062 quest 869.1
 
 step The Crossroads
