@@ -14,7 +14,7 @@ return {
 
 	-- Step 2: Shady Rest Inn
 	-- {area:378} Camp Taurajo · {area:403} Shady Rest Inn
-	["Ride east from {area:378} along the road into the marsh. The burned-out {area:403} stands beside it just past the border; the shield, the badge and the hoofprints are in and beside the ruin."] = "Езжайте на восток от места {area:378} по дороге в болото. Сгоревшее здание ({area:403}) стоит у дороги сразу за границей; щит, бляха и следы копыт – в руинах и рядом с ними.",
+	["Head east from {area:378} along the road into the marsh. The burned-out {area:403} stands beside it just past the border; the shield, the badge and the hoofprints are in and beside the ruin."] = "",
 
 	-- Step 3: Brackenwall Village
 	["Take the road north at the fork to the ogre village of Brackenwall."] = "На развилке сверните на север к деревне огров Гиблотопь.",
@@ -28,7 +28,7 @@ return {
 	-- Step 5: Stinky Ignatz
 	["Stinky Ignatz"] = "«Вонючка» Игнац",
 	-- {area:502} Witch Hill
-	["Ride north to {area:502}. Stinky stands at the foot of the hill; escort him while he gathers Bogbean Leaves just south of it."] = "Езжайте на север сюда: {area:502}. Вонючка стоит у подножия холма; охраняйте его, пока он собирает листья чуть к югу.",
+	["Head north to {area:502}. Stinky stands at the foot of the hill; escort him while he gathers Bogbean Leaves just south of it."] = "",
 
 	-- Step 6: Mirefin murlocs
 	["Mirefin murlocs"] = "Мурлоки Болотного Плавника",
@@ -45,21 +45,21 @@ return {
 	-- Step 8: Darkfang spiders
 	["Darkfang spiders"] = "Пауки-темножвалы",
 	-- plural, as words: Darkfang Venomspitters = {npc:4414} Darkfang Venomspitter · Theramore Infiltrators = {npc:4834} Theramore Infiltrator
-	["Ride west back across the marsh. The Darkfang Venomspitters on the ridges north of Brackenwall drop the venom sacs. Theramore Infiltrators (35-36) sneak through the same woods: they are stealthed, so look closely."] = "Возвращайтесь на запад через болото. С ядоплюев-темножвалов на холмах к северу от Гиблотопи падают ядовитые железы. Тераморские секретные агенты (35-36) крадутся в тех же лесах: они незаметны, смотрите внимательно.",
+	["Head west back across the marsh. The Darkfang Venomspitters on the ridges north of Brackenwall drop the venom sacs. Theramore Infiltrators (35-36) sneak through the same woods: they are stealthed, so look closely."] = "",
 
 	-- Step 9: Darkmist Cavern
 	["The Darkmist spiders swarm the cavern mouth north-west of Brackenwall; every kind drops eyes."] = "Пауки Мглистой пещеры кишат у входа в пещеру к северо-западу от Гиблотопи; глаза падают со всех видов.",
 
 	-- Step 11: Swamp Eye Jarl
 	-- {area:497} Swamplight Manor
-	["Ride east back to the {area:497}."] = "Возвращайтесь на восток сюда: {area:497}.",
+	["Head east back to the {area:497}."] = "",
 	-- {item:3853} Moonsteel Broadsword · {skill:164} Blacksmithing
 	["only if you carry a {item:3853} ({skill:164} or the Auction House)"] = "только если у вас есть {item:3853} ({skill:164} или аукцион)",
 	-- {object:20985} Loose Dirt · {npc:4791} Nazeer Bloodpike
 	["{object:20985}, now that {npc:4791} has read the report"] = "{object:20985}, теперь, когда {npc:4791} прочел донесение",
 
 	-- Step 12: Brackenwall Village
-	["Ride back west to Brackenwall with the head."] = "Возвращайтесь с головой на запад в Гиблотопь.",
+	["Head back west to Brackenwall with the head."] = "",
 	-- {npc:2519} Kin'weelay · {object:3202} Grom'gol
 	["For {npc:2519} at {object:3202}, in the next guide"] = "Для персонажа {npc:2519} ({object:3202}), в следующем руководстве",
 
@@ -69,7 +69,7 @@ return {
 
 	-- Step 15: Melizza Brimbuzzle
 	-- {area:607} Valley of Spears · {npc:12277} Melizza Brimbuzzle
-	["Ride north-east to the {area:607}. {npc:12277} is held in the Maraudine centaur camp; free her and escort her out east of the valley."] = "Езжайте на северо-восток сюда: {area:607}. {npc:12277} в плену в лагере кентавров Мародин; освободите ее и выведите на восток из долины.",
+	["Head north-east to the {area:607}. {npc:12277} is held in the Maraudine centaur camp; free her and escort her out east of the valley."] = "",
 
 	-- Step 16: Kodo Graveyard
 	-- {npc:6019} Hornizz Brimbuzzle · {area:596} Kodo Graveyard
@@ -88,7 +88,7 @@ return {
 	["{npc:5395} and {npc:5412} stand in the post just west of {npc:11596}'s camp."] = "{npc:5395} и {npc:5412} стоят в лагере чуть к западу от лагеря {npc:11596}.",
 
 	-- Step 20: Kormek's Hut
-	["Ride north up the road to the hut by the road north of the graveyard."] = "Езжайте на север по дороге к хижине у дороги к северу от кладбища.",
+	["Head north up the road to the hut by the road north of the graveyard."] = "",
 
 	-- Step 21: Kodo bones and ghosts
 	["Kodo bones and ghosts"] = "Кости кодо и призраки",
@@ -101,7 +101,7 @@ return {
 
 	-- Step 25: Ethel Rethor
 	-- {npc:11863} Azore Aldamort · {area:2405} Ethel Rethor
-	["Ride west to {npc:11863}'s tower at {area:2405} on the north-west coast."] = "Езжайте на запад к башне ({npc:11863}, {area:2405}) на северо-западном побережье.",
+	["Head west to {npc:11863}'s tower at {area:2405} on the north-west coast."] = "",
 
 	-- Step 26: Slitherblade coast
 	["Slitherblade coast"] = "Берег Скользящего Плавника",
@@ -112,21 +112,35 @@ return {
 	["Maraudine totems"] = "Тотемы Мародин",
 	-- {area:2405} Ethel Rethor · {area:607} Valley of Spears · {quest:93225} Carved Centaur Totems
 	-- plural, as words: Maraudine Scouts = {npc:4654} Maraudine Scout
-	["Ride south from {area:2405} into the {area:607}. The Maraudine Scouts, Wranglers, Maulers, Windchasers and Marauders (36-39) drop the {quest:93225}."] = "Езжайте на юг от места {area:2405} сюда: {area:607}. С разведчиков, пастухов, извергов, ветроловок и мародеров из племени Мародин (36-39) падают тотемы ({quest:93225}).",
+	["Head south from {area:2405} into the {area:607}. The Maraudine Scouts, Wranglers, Maulers, Windchasers and Marauders (36-39) drop the {quest:93225}."] = "",
 
 	-- Step 29: Shadowprey Village
-	["Ride on south-west to Shadowprey."] = "Езжайте дальше на юго-запад к Деревне Ночных Охотников.",
+	["Head on south-west to Shadowprey."] = "",
 
 	-- Step 30: Portals of the Legion
 	-- {area:602} Mannoroc Coven
-	["Ride east to {area:602}. Use the Rod of Banishing by each demon portal to close six of them."] = "Езжайте на восток сюда: {area:602}. Используйте жезл изгнания у порталов демонов, чтобы закрыть шесть из них.",
+	["Head east to {area:602}. Use the Rod of Banishing by each demon portal to close six of them."] = "",
 
 	-- Step 31: Ghost Walker Post
 	-- {npc:5412} Gurda Wildmane · {area:597} Ghost Walker Post
-	["Ride north from the coven to {npc:5412} at {area:597}."] = "Езжайте на север от ковена к персонажу {npc:5412} ({area:597}).",
+	["Head north from the coven to {npc:5412} at {area:597}."] = "",
 
 	-- Step 32: Hearth to Shadowprey
 	["Hearth to Shadowprey"] = "Камень возвращения: Деревня Ночных Охотников",
 	-- {zone:1434} Stranglethorn Vale
 	["The next guide takes you back to {zone:1434}."] = "Следующее руководство вернет вас сюда: {zone:1434}.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Ride back west to Brackenwall with the head."] = "Возвращайтесь с головой на запад в Гиблотопь.",
+	-- ["Ride east back to the {area:497}."] = "Возвращайтесь на восток сюда: {area:497}.",
+	-- ["Ride east from {area:378} along the road into the marsh. The burned-out {area:403} stands beside it just past the border; the shield, the badge and the hoofprints are in and beside the ruin."] = "Езжайте на восток от места {area:378} по дороге в болото. Сгоревшее здание ({area:403}) стоит у дороги сразу за границей; щит, бляха и следы копыт – в руинах и рядом с ними.",
+	-- ["Ride east to {area:602}. Use the Rod of Banishing by each demon portal to close six of them."] = "Езжайте на восток сюда: {area:602}. Используйте жезл изгнания у порталов демонов, чтобы закрыть шесть из них.",
+	-- ["Ride north from the coven to {npc:5412} at {area:597}."] = "Езжайте на север от ковена к персонажу {npc:5412} ({area:597}).",
+	-- ["Ride north to {area:502}. Stinky stands at the foot of the hill; escort him while he gathers Bogbean Leaves just south of it."] = "Езжайте на север сюда: {area:502}. Вонючка стоит у подножия холма; охраняйте его, пока он собирает листья чуть к югу.",
+	-- ["Ride north up the road to the hut by the road north of the graveyard."] = "Езжайте на север по дороге к хижине у дороги к северу от кладбища.",
+	-- ["Ride north-east to the {area:607}. {npc:12277} is held in the Maraudine centaur camp; free her and escort her out east of the valley."] = "Езжайте на северо-восток сюда: {area:607}. {npc:12277} в плену в лагере кентавров Мародин; освободите ее и выведите на восток из долины.",
+	-- ["Ride on south-west to Shadowprey."] = "Езжайте дальше на юго-запад к Деревне Ночных Охотников.",
+	-- ["Ride south from {area:2405} into the {area:607}. The Maraudine Scouts, Wranglers, Maulers, Windchasers and Marauders (36-39) drop the {quest:93225}."] = "Езжайте на юг от места {area:2405} сюда: {area:607}. С разведчиков, пастухов, извергов, ветроловок и мародеров из племени Мародин (36-39) падают тотемы ({quest:93225}).",
+	-- ["Ride west back across the marsh. The Darkfang Venomspitters on the ridges north of Brackenwall drop the venom sacs. Theramore Infiltrators (35-36) sneak through the same woods: they are stealthed, so look closely."] = "Возвращайтесь на запад через болото. С ядоплюев-темножвалов на холмах к северу от Гиблотопи падают ядовитые железы. Тераморские секретные агенты (35-36) крадутся в тех же лесах: они незаметны, смотрите внимательно.",
+	-- ["Ride west to {npc:11863}'s tower at {area:2405} on the north-west coast."] = "Езжайте на запад к башне ({npc:11863}, {area:2405}) на северо-западном побережье.",
 }

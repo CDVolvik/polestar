@@ -22,7 +22,7 @@ return {
 
 	-- Step 2: Taskmaster Fizzule
 	-- {area:380} Crossroads · {area:382} Sludge Fen · {item:8051} Flare Gun · {npc:7233} Taskmaster Fizzule
-	["Fly to the {area:380} and ride north to the Venture Co. tower north of the {area:382}. In sight of the tower, fire the {item:8051} twice, then /salute {npc:7233} before he attacks you."] = "{area:380}(으)로 날아가 북쪽으로 {area:382} 북쪽의 투자개발회사 탑까지 가세요. 탑이 보이는 곳에서 {item:8051}을(를) 두 번 쏜 뒤, {npc:7233}이(가) 공격하기 전에 /경례를 하세요.",
+	["Fly to the {area:380} and head north to the Venture Co. tower north of the {area:382}. In sight of the tower, fire the {item:8051} twice, then /salute {npc:7233} before he attacks you."] = "",
 	-- {item:8051} Flare Gun
 	["{item:8051}, twice, in sight of the tower"] = "{item:8051}, 탑이 보이는 곳에서 두 번",
 
@@ -40,6 +40,10 @@ return {
 
 	-- Step 5: Serge Hinott
 	-- {zone:1454} Orgrimmar · {zone:1458} Undercity · {zone:1421} Silverpine Forest · {area:272} Tarren Mill · {area:287} Hillsbrad · {npc:2391} Serge Hinott
-	["Take the zeppelin from {zone:1454} to the {zone:1458} and ride south through {zone:1421} to {area:272} in {area:287}. {npc:2391} stands in {area:272}; wait beside him while he brews the cure."] = "{zone:1454}에서 비행선을 타고 {zone:1458}(으)로 간 뒤, 남쪽으로 {zone:1421}을(를) 지나 {area:287}의 {area:272}까지 가세요. {npc:2391}은(는) {area:272}에 서 있습니다. 그가 해독제를 만드는 동안 옆에서 기다리세요.",
+	["Take the zeppelin from {zone:1454} to the {zone:1458} and head south through {zone:1421} to {area:272} in {area:287}. {npc:2391} stands in {area:272}; wait beside him while he brews the cure."] = "",
 	["Wait for the cure"] = "해독제 기다리기",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Fly to the {area:380} and ride north to the Venture Co. tower north of the {area:382}. In sight of the tower, fire the {item:8051} twice, then /salute {npc:7233} before he attacks you."] = "{area:380}(으)로 날아가 북쪽으로 {area:382} 북쪽의 투자개발회사 탑까지 가세요. 탑이 보이는 곳에서 {item:8051}을(를) 두 번 쏜 뒤, {npc:7233}이(가) 공격하기 전에 /경례를 하세요.",
+	-- ["Take the zeppelin from {zone:1454} to the {zone:1458} and ride south through {zone:1421} to {area:272} in {area:287}. {npc:2391} stands in {area:272}; wait beside him while he brews the cure."] = "{zone:1454}에서 비행선을 타고 {zone:1458}(으)로 간 뒤, 남쪽으로 {zone:1421}을(를) 지나 {area:287}의 {area:272}까지 가세요. {npc:2391}은(는) {area:272}에 서 있습니다. 그가 해독제를 만드는 동안 옆에서 기다리세요.",
 }

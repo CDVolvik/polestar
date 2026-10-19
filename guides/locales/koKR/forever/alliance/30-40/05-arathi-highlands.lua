@@ -111,7 +111,7 @@ return {
 
 	-- Step 28: Quae
 	-- {area:320} Refuge Pointe · {npc:2712} Quae · {npc:2713} Kinelory · {area:314} Go'Shek Farm
-	["Ride back north-east past {area:320}; {npc:2712} and {npc:2713} camp in the hills north of {area:314}."] = "{area:320}을(를) 지나 북동쪽으로 돌아가세요. {npc:2712}와(과) {npc:2713}은(는) {area:314} 북쪽 언덕에 진을 치고 있습니다.",
+	["Head back north-east past {area:320}; {npc:2712} and {npc:2713} camp in the hills north of {area:314}."] = "",
 
 	-- Step 29: Forsaken Courier
 	-- {area:314} Go'Shek Farm
@@ -195,6 +195,7 @@ return {
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Follow the road north to the draenei of the {area:657}."] = "길을 따라 북쪽으로 {area:657}의 드레나이에게 가세요.",
+	-- ["Ride back north-east past {area:320}; {npc:2712} and {npc:2713} camp in the hills north of {area:314}."] = "{area:320}을(를) 지나 북동쪽으로 돌아가세요. {npc:2712}와(과) {npc:2713}은(는) {area:314} 북쪽 언덕에 진을 치고 있습니다.",
 	-- ["Summon Succubus"] = "서큐버스 소환",
 	-- ["{npc:252085}, in the City of Dalaran"] = "{npc:252085}, 달라란 도시 안",
 }

@@ -16,7 +16,7 @@ return {
 
 	-- Step 3: Heartswood
 	-- {area:415} Astranaar · {quest:1738} Heartswood · {area:413} Maestra's Post · {quest:65602} What Is Love? · {item:190309} Wooden Figurine · {area:1276} Talondeep Path
-	["From {area:415} ride north-west into the hills: the {quest:1738} is a glowing tree north of the road to {area:413}. If you took {quest:65602}, the {item:190309} lies in a house among the trees north of {area:413} (26.6,22.0). Then back past {area:415} to the {area:1276}."] = "{area:415}에서 북서쪽 언덕으로 가십시오. {quest:1738}은(는) {area:413}(으)로 가는 길 북쪽의 빛나는 나무입니다. {quest:65602}을(를) 수락했다면 {item:190309}은(는) {area:413} 북쪽 나무 사이의 집 안에 있습니다(26.6,22.0). 그다음 {area:415}을(를) 지나 {area:1276}(으)로 돌아가십시오.",
+	["From {area:415} head north-west into the hills: the {quest:1738} is a glowing tree north of the road to {area:413}. If you took {quest:65602}, the {item:190309} lies in a house among the trees north of {area:413} (26.6,22.0). Then back past {area:415} to the {area:1276}."] = "",
 	-- {item:190309} Wooden Figurine · {area:413} Maestra's Post
 	["{item:190309}, north of {area:413}"] = "{item:190309}, {area:413} 북쪽",
 
@@ -86,6 +86,7 @@ return {
 	["The Kolkar roam the plains around {area:609}; their ears are for {npc:5752}."] = "콜카르일족이 {area:609} 주변 평원을 돌아다닙니다. 귀는 {npc:5752}에게 가져가십시오.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["From {area:415} ride north-west into the hills: the {quest:1738} is a glowing tree north of the road to {area:413}. If you took {quest:65602}, the {item:190309} lies in a house among the trees north of {area:413} (26.6,22.0). Then back past {area:415} to the {area:1276}."] = "{area:415}에서 북서쪽 언덕으로 가십시오. {quest:1738}은(는) {area:413}(으)로 가는 길 북쪽의 빛나는 나무입니다. {quest:65602}을(를) 수락했다면 {item:190309}은(는) {area:413} 북쪽 나무 사이의 집 안에 있습니다(26.6,22.0). 그다음 {area:415}을(를) 지나 {area:1276}(으)로 돌아가십시오.",
 	-- ["Take the boat to {area:442} from Menethil's docks. {npc:3649} stands in {area:442}, north of the flight master."] = "메네실 항구의 부두에서 {area:442}행 배를 타십시오. {npc:3649}은(는) {area:442}의 비행 조련사 북쪽에 있습니다.",
 	-- ["The {area:1276}"] = "{area:1276}",
 	-- ["{npc:3649}: {item:279915}, from Sylessa in Menethil"] = "{npc:3649}: {item:279915}, 메네실 항구의 Sylessa에게서",

@@ -53,7 +53,7 @@ return {
 
 	-- Step 9: Abercrombie
 	-- {area:492} Raven Hill Cemetery
-	["Ride west along the road; the hermit's shack stands north-east of the {area:492}."] = "沿道路向西骑行；隐士的小屋在{area:492}东北方。",
+	["Head west along the road; the hermit's shack stands north-east of the {area:492}."] = "",
 
 	-- Step 10: Plague Spreaders
 	-- plural, as words: Plague Spreaders = {npc:604} Plague Spreader
@@ -83,7 +83,7 @@ return {
 
 	-- Step 15: Vul'Gol Ogre Mound
 	-- {object:119} Abercrombie's Crate
-	["Ride east to the ogre mound. {object:119} sits in the camp at its entrance; Splinter Fist ogres guard it."] = "向东骑行到沃古尔食人魔山。{object:119}在入口处的营地里；裂拳食人魔守卫着它。",
+	["Head east to the ogre mound. {object:119} sits in the camp at its entrance; Splinter Fist ogres guard it."] = "",
 	-- {npc:272273} Lost Watcher · {quest:96138} Merrick's Bow
 	["Only if a {npc:272273} dropped {quest:96138}: right-click it"] = "仅当{npc:272273}掉落了{quest:96138}时：右键点击它",
 
@@ -148,13 +148,13 @@ return {
 
 	-- Step 28: Captain Stoutfist
 	-- {area:150} Menethil Harbor
-	["Ride back west along the road to {area:150}."] = "沿道路向西骑回{area:150}。",
+	["Head back west along the road to {area:150}."] = "",
 	-- {quest:98221} From the Ashes · {quest:465} Nek'rosh's Gambit
 	["{quest:98221}: {quest:465} comes after it on Forever"] = "{quest:98221}：在Forever上，{quest:465}排在它之后",
 
 	-- Step 29: Angerfang Encampment
 	-- {area:1036} Angerfang Encampment · {npc:2091} Chieftain Nek'rosh
-	["Ride east again to the Dragonmaw camp. The four sets of Attack Plans lie in the {area:1036}; {npc:2091}, an elite, stands in the camp too."] = "再次向东骑到龙喉营地。四份攻击计划在{area:1036}；精英{npc:2091}也站在营地里。",
+	["Head east again to the Dragonmaw camp. The four sets of Attack Plans lie in the {area:1036}; {npc:2091}, an elite, stands in the camp too."] = "",
 
 	-- Step 30: To Theramore
 	["To Theramore"] = "前往塞拉摩",
@@ -200,7 +200,11 @@ return {
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Dragonmaw catapult"] = "龙喉投石车",
+	-- ["Ride back west along the road to {area:150}."] = "沿道路向西骑回{area:150}。",
+	-- ["Ride east again to the Dragonmaw camp. The four sets of Attack Plans lie in the {area:1036}; {npc:2091}, an elite, stands in the camp too."] = "再次向东骑到龙喉营地。四份攻击计划在{area:1036}；精英{npc:2091}也站在营地里。",
 	-- ["Ride east again; the catapult stands at the Dragonmaw camp south of the road."] = "再次向东骑行；投石车在道路南边的龙喉营地里。",
 	-- ["Ride east to the ogre mound. {item:1349} sits in the camp at its entrance; Splinter Fist ogres guard it."] = "向东骑行到沃古尔食人魔山。{item:1349}在入口处的营地里；裂拳食人魔守卫着它。",
+	-- ["Ride east to the ogre mound. {object:119} sits in the camp at its entrance; Splinter Fist ogres guard it."] = "向东骑行到沃古尔食人魔山。{object:119}在入口处的营地里；裂拳食人魔守卫着它。",
+	-- ["Ride west along the road; the hermit's shack stands north-east of the {area:492}."] = "沿道路向西骑行；隐士的小屋在{area:492}东北方。",
 	-- ["The next step, Defeat Nek'rosh, pits you against an elite chieftain: skip it."] = "下一步“击败纳克罗什”要你对抗一名精英酋长：跳过它。",
 }

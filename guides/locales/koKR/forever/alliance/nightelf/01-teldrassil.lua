@@ -279,49 +279,64 @@ return {
 	["{npc:11401}, in the Temple of the Moon: Starshards"] = "달의 신전의 {npc:11401}: 별조각",
 
 	-- Step 43: Rut'theran Village
-	-- {area:702} Rut'theran Village · {npc:10118} Nessa Shadowsong · {npc:3838} Vesprystus
-	["Take the portal down to {area:702}. {npc:10118} stands on the dock, {npc:3838} by the hippogryphs."] = "차원문을 타고 {area:702}(으)로 내려가세요. {npc:10118}은(는) 부두에, {npc:3838}은(는) 히포그리프 옆에 있습니다.",
+	-- {area:702} Rut'theran Village · {npc:10118} Nessa Shadowsong · {npc:3838} Vesprystus · {quest:6342} Flight to Auberdine · {area:442} Auberdine · {npc:4200} Laird
+	["Take the portal down to {area:702}. {npc:10118} stands on the dock, {npc:3838} by the hippogryphs. Once you have {quest:6342}, talk to {npc:3838} again and choose the flight to {area:442}: it is free and lands beside {npc:4200}. If the flight map opens instead, close it and talk to him again holding Shift."] = "",
+	-- {npc:3838} Vesprystus · {quest:6342} Flight to Auberdine
+	["talk to {npc:3838} again: free with {quest:6342}"] = "",
 
-	-- Step 45: Moonglade
-	-- {area:442} Auberdine · {spell:18960} Teleport: Moonglade · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {quest:5929} Great Bear Spirit · {area:493} Moonglade · {area:702} Rut'theran Village
-	["Learn the {area:442} flight path on the hill south of the inn, then cast {spell:18960}. {npc:11802} is in {area:2361}; the {quest:5929} sits in the woods to the north-west. Learn the {area:493} flight path in {area:2361} and fly to {area:702} (by way of {area:442})."] = "여관 남쪽 언덕에서 {area:442} 비행 경로를 배운 뒤 {spell:18960}을(를) 시전하세요. {npc:11802}은(는) {area:2361}에 있고, {quest:5929}은(는) 북서쪽 숲에 있습니다. {area:2361}에서 {area:493} 비행 경로를 배우고 ({area:442}을(를) 거쳐) {area:702}(으)로 날아가세요.",
+	-- Step 44: Auberdine
+	-- {npc:3841} Caylais Moonfeather · {npc:4200} Laird
+	["Learn the flight path from {npc:3841} where you land. {npc:4200}'s fish stall is just north of her, by the docks."] = "",
+
+	-- Step 45: Return to Nessa
+	-- {area:702} Rut'theran Village · {npc:3841} Caylais Moonfeather · {item:16263} Laird's Response · {npc:10118} Nessa Shadowsong · {area:442} Auberdine
+	["Fly back to {area:702} from {npc:3841}, hand {item:16263} to {npc:10118} on the dock, then fly back to {area:442} for the boat."] = "",
+
+	-- Step 46: Moonglade
+	-- {spell:18960} Teleport: Moonglade · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {quest:5929} Great Bear Spirit · {area:493} Moonglade · {area:702} Rut'theran Village · {area:442} Auberdine
+	["Cast {spell:18960}. {npc:11802} is in {area:2361}; the {quest:5929} sits in the woods to the north-west. Learn the {area:493} flight path in {area:2361} and fly to {area:702} (by way of {area:442})."] = "",
 	-- {quest:5929} Great Bear Spirit
 	["Speak with the {quest:5929}"] = "{quest:5929}와(과) 대화하세요",
 
-	-- Step 46: Back to Darnassus
-	-- {area:702} Rut'theran Village · {npc:4217} Mathrengyl Bearwalker · {area:1658} Cenarion Enclave
-	["Take the portal up from {area:702} to {npc:4217} in the {area:1658}."] = "{area:702}에서 차원문을 타고 올라가 {area:1658}의 {npc:4217}에게 가세요.",
+	-- Step 47: Back to Darnassus
+	-- {npc:10118} Nessa Shadowsong · {npc:4217} Mathrengyl Bearwalker · {area:1658} Cenarion Enclave
+	["{npc:10118} stands on the Rut'theran dock where you land. Then take the portal up to {npc:4217} in the {area:1658}."] = "",
 
-	-- Step 47: The Moonkin Stone
+	-- Step 48: The Moonkin Stone
 	-- {object:177525} Moonkin Stone
 	["The {object:177525}"] = "{object:177525}",
 	-- {area:702} Rut'theran Village · {area:442} Auberdine · {object:177525} Moonkin Stone · {item:15208} Cenarion Moondust · {npc:12144} Lunaclaw Spirit
 	["Go back down to {area:702} and fly to {area:442}. The {object:177525} stands in the hills just east of the village: use the {item:15208} there, defeat Lunaclaw and speak to the {npc:12144}."] = "{area:702}(으)로 다시 내려가 {area:442}(으)로 날아가세요. {object:177525}은(는) 마을 바로 동쪽 언덕에 있습니다. 그곳에서 {item:15208}을(를) 사용하고, 초승달발톱을 물리친 뒤 {npc:12144}와(과) 대화하세요.",
 
-	-- Step 48: Body and Heart
+	-- Step 49: Body and Heart
 	-- {area:702} Rut'theran Village · {npc:4217} Mathrengyl Bearwalker · {area:442} Auberdine
 	["Fly to {area:702} once more and take the portal up to {npc:4217}, then fly back to {area:442} for the boat."] = "한 번 더 {area:702}(으)로 날아가 차원문을 타고 {npc:4217}에게 간 뒤, 배를 타러 {area:442}(으)로 날아가세요.",
 
-	-- Step 49: Auberdine
-	-- {npc:4200} Laird · {zone:1453} Stormwind
-	["{npc:4200}'s fish stall is by the docks. Then take the boat to {zone:1453}."] = "{npc:4200}의 생선 가판대는 부두 옆에 있습니다. 그다음 배를 타고 {zone:1453}(으)로 가세요.",
+	-- Step 50: Boat to Stormwind
 	-- {zone:1453} Stormwind
 	["Boat to {zone:1453}"] = "배를 타고 {zone:1453}(으)로 가십시오",
+	-- {zone:1453} Stormwind · {area:442} Auberdine
+	["Take the boat to {zone:1453} from {area:442}'s docks."] = "",
 	-- {area:17203} Stormwind Harbor · {zone:1429} Elwynn Forest · {zone:1436} Westfall
-	["From {area:17203}, ride through the city gates into {zone:1429} and follow the road west to {zone:1436}."] = "{area:17203}에서 도시 성문을 지나 {zone:1429}(으)로 간 뒤 서쪽 길을 따라 {zone:1436}(으)로 가세요.",
+	["From {area:17203}, head through the city gates into {zone:1429} and follow the road west to {zone:1436}."] = "",
 
-	-- Step 50: Defensive Stance
+	-- Step 51: Defensive Stance
 	-- {object:2100} Old Town · {npc:5480} Ilsa Corbin · {npc:6089} Harry Burlguard · {npc:6090} Bartleby · {object:2152} Pig and Whistle Tavern
 	["From the harbour walk into {object:2100}. {npc:5480} trains warriors there; {npc:6089} and {npc:6090} stand together by the {object:2152}. {npc:6090} fights you for his mug."] = "항구에서 {object:2100}(으)로 걸어가세요. {npc:5480}이(가) 그곳에서 전사를 가르칩니다. {npc:6089}와(과) {npc:6090}은(는) {object:2152} 옆에 함께 서 있습니다. {npc:6090}은(는) 자기 머그잔을 걸고 당신과 싸웁니다.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Each of {npc:3601}'s quests hands you a {item:15908}: use it on the beast he names, then bring the rod back to him in {area:186}. Webwood Lurkers creep around the village, Nightsaber Stalkers and Strigid Screechers roam the woods south of it."] = "{npc:3601}의 퀘스트마다 {item:15908}을(를) 줍니다. 그가 말한 야수에게 사용한 뒤 {area:186}의 그에게 막대를 가져가세요. 나무그물 늑대거미는 마을 주변을 기어 다니고, 긴발톱 흑호와 {npc:1996}은(는) 마을 남쪽 숲을 돌아다닙니다.",
 	-- ["Follow the road south-west out of {area:188} to {area:186}."] = "{area:188}에서 남서쪽 길을 따라 {area:186}(으)로 가세요.",
+	-- ["From {area:17203}, ride through the city gates into {zone:1429} and follow the road west to {zone:1436}."] = "{area:17203}에서 도시 성문을 지나 {zone:1429}(으)로 간 뒤 서쪽 길을 따라 {zone:1436}(으)로 가세요.",
+	-- ["Learn the {area:442} flight path on the hill south of the inn, then cast {spell:18960}. {npc:11802} is in {area:2361}; the {quest:5929} sits in the woods to the north-west. Learn the {area:493} flight path in {area:2361} and fly to {area:702} (by way of {area:442})."] = "여관 남쪽 언덕에서 {area:442} 비행 경로를 배운 뒤 {spell:18960}을(를) 시전하세요. {npc:11802}은(는) {area:2361}에 있고, {quest:5929}은(는) 북서쪽 숲에 있습니다. {area:2361}에서 {area:493} 비행 경로를 배우고 ({area:442}을(를) 거쳐) {area:702}(으)로 날아가세요.",
 	-- ["Nightsabers, Strigid Owls and Webwood Lurkers live along the road east. The moonwell is at the west edge of {area:260}."] = "흑호, 스트리기드 올빼미, 나무그물 늑대거미가 동쪽 길을 따라 삽니다. 달샘은 {area:260} 서쪽 끝에 있습니다.",
+	-- ["Take the portal down to {area:702}. {npc:10118} stands on the dock, {npc:3838} by the hippogryphs."] = "차원문을 타고 {area:702}(으)로 내려가세요. {npc:10118}은(는) 부두에, {npc:3838}은(는) 히포그리프 옆에 있습니다.",
+	-- ["Take the portal up from {area:702} to {npc:4217} in the {area:1658}."] = "{area:702}에서 차원문을 타고 올라가 {area:1658}의 {npc:4217}에게 가세요.",
 	-- ["The {area:264}"] = "{area:264}",
 	-- ["{npc:11401}, in the Temple of the Moon: {spell:10797}"] = "달의 신전의 {npc:11401}: {spell:10797}",
 	-- ["{npc:2150} sits by the road just east of {area:186}, on the way to {area:260}."] = "{npc:2150}은(는) {area:260}(으)로 가는 길, {area:186} 바로 동쪽 길가에 앉아 있습니다.",
 	-- ["{npc:3595}, inside the tree"] = "나무 안의 {npc:3595}",
 	-- ["{npc:3595}, the priest trainer, inside the tree"] = "나무 안의 사제 상급자 {npc:3595}",
+	-- ["{npc:4200}'s fish stall is by the docks. Then take the boat to {zone:1453}."] = "{npc:4200}의 생선 가판대는 부두 옆에 있습니다. 그다음 배를 타고 {zone:1453}(으)로 가세요.",
 	-- ["{quest:97979}: cast {spell:1259799} and {spell:20580}, then hand it back to {npc:3595}"] = "{quest:97979}: {spell:1259799}와(과) {spell:20580}을(를) 시전한 뒤 {npc:3595}에게 완료하세요",
 }

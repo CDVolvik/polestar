@@ -38,7 +38,7 @@ return {
 
 	-- Step 7: Isaac Pearson
 	-- {npc:185334} Isaac Pearson · {area:392} Ratchet · {zone:1413} Barrens · {zone:1411} Durotar
-	["{npc:185334} works in {area:392}, on the {zone:1413} coast. Take the zeppelin to {zone:1411} and ride or fly on to {area:392}."] = "{npc:185334}在{zone:1413}海岸的{area:392}工作。搭飛艇前往{zone:1411}，再騎或飛往{area:392}。",
+	["{npc:185334} works in {area:392}, on the {zone:1413} coast. Take the zeppelin to {zone:1411} and walk or fly on to {area:392}."] = "",
 
 	-- Step 8: The Binding (Undercity)
 	-- {npc:5675} Carendin Halgar · {object:36082} Magic Quarter
@@ -48,5 +48,6 @@ return {
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Back to Carendin in the {object:36082}. Place the hearts at the summoning circle below him and defeat the incubus they call."] = "回到{object:36082}找卡蘭丁。把心臟放在他下方的召喚法陣，擊敗它們召喚出的夢魔。",
+	-- ["{npc:185334} works in {area:392}, on the {zone:1413} coast. Take the zeppelin to {zone:1411} and ride or fly on to {area:392}."] = "{npc:185334}在{zone:1413}海岸的{area:392}工作。搭飛艇前往{zone:1411}，再騎或飛往{area:392}。",
 	-- ["{object:1661}'s version, for warlocks who took {npc:5675}'s {quest:1472} instead of Gan'rul's. At 20 Carendin, in the {object:36082}, sends you to {npc:5693} in the Temple of the Damned, just north of him."] = "{object:1661}的版本，給接了{npc:5675}而非甘盧爾的{quest:1472}的術士。20級時，{object:36082}的卡蘭丁會派你去找就在他北邊神殿裡的{npc:5693}。",
 }

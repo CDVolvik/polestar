@@ -32,13 +32,13 @@ return {
 	-- {area:272} Tarren Mill
 	["Fly to {area:272}"] = "{area:272}(으)로 날아가기",
 	-- {zone:1458} Undercity · {area:272} Tarren Mill
-	["The zeppelin lands at the towers outside the {zone:1458}: ride down into the city and fly to {area:272}."] = "비행선은 {zone:1458} 밖의 탑에 도착합니다. 도시로 내려가 {area:272}(으)로 날아가세요.",
+	["The zeppelin lands at the towers outside the {zone:1458}: head down into the city and fly to {area:272}."] = "",
 
 	-- Step 6: Boulderfist camp
 	["Boulderfist camp"] = "돌주먹일족 야영지",
 	-- {area:272} Tarren Mill · {area:1857} Thoradin's Wall · {area:313} Northfold Manor
 	-- plural, as words: Boulderfist Ogres = {npc:2562} Boulderfist Ogre
-	["Ride east out of {area:272} through {area:1857} and follow the road east. The Boulderfist Ogres and Enforcers (32-34) camp south of the road, south-east of {area:313}."] = "{area:272}에서 동쪽으로 {area:1857}을(를) 지나 길을 따라 동쪽으로 가세요. 돌주먹 오우거와 집행자(32-34)는 {area:313} 남동쪽, 길 남쪽에 야영하고 있습니다.",
+	["Head east out of {area:272} through {area:1857} and follow the road east. The Boulderfist Ogres and Enforcers (32-34) camp south of the road, south-east of {area:313}."] = "",
 
 	-- Step 7: The Shards of Myzrael
 	-- {object:138492} Shards of Myzrael
@@ -80,7 +80,7 @@ return {
 
 	-- Step 16: Faldir's Cove
 	-- {npc:2766} Lolo the Lookout
-	["Ride south-west to the goblins' cove on the southern coast. {npc:2766} keeps watch on the cliff above it."] = "남서쪽으로 남부 해안의 고블린 만으로 가세요. {npc:2766}은(는) 그 위 절벽에서 망을 봅니다.",
+	["Head south-west to the goblins' cove on the southern coast. {npc:2766} keeps watch on the cliff above it."] = "",
 
 	-- Step 17: Professor Phizzlethorpe
 	["Escort the professor down to the shore. Two Daggerspine naga ambush him on the way: stay close."] = "학자를 해안까지 호위하세요. 가는 길에 비수가시일족 나가 둘이 습격합니다. 가까이 붙어 있으세요.",
@@ -97,7 +97,7 @@ return {
 	-- Step 21: The Stone of Outer Binding
 	-- {object:2690} Stone of Outer Binding
 	["The {object:2690}"] = "{object:2690}",
-	["Ride north; the outer circle stands in the middle of the highlands."] = "북쪽으로 가세요. 바깥 결속의 원은 고원 한가운데에 있습니다.",
+	["Head north; the outer circle stands in the middle of the highlands."] = "",
 
 	-- Step 22: Northfold Manor
 	-- plural, as words: Bloodstone Amulets = {item:4495} Bloodstone Amulet
@@ -107,7 +107,7 @@ return {
 	-- {object:2689} Stone of West Binding
 	["The {object:2689}"] = "{object:2689}",
 	-- {area:1857} Thoradin's Wall
-	["The western circle is near {area:1857}, where you rode in."] = "서쪽 결속의 원은 처음 들어온 {area:1857} 근처에 있습니다.",
+	["The western circle is near {area:1857}, where you came in."] = "",
 
 	-- Step 24: The Stone of Inner Binding
 	-- {object:2702} Stone of Inner Binding
@@ -132,7 +132,7 @@ return {
 	-- {zone:1418} Badlands
 	["Into the {zone:1418}"] = "{zone:1418}(으)로",
 	-- {area:880} Thandol Span · {zone:1437} Wetlands · {area:150} Menethil Harbor · {zone:1432} Loch Modan · {zone:1418} Badlands · {area:1877} Valley of Fangs
-	["Ride south-west out of Arathi over {area:880}, south through the {zone:1437} (keep clear of {area:150}) and east into {zone:1432}; the road leaves {zone:1432} to the south into the {zone:1418}. Follow it south to the goblin camp in the {area:1877}."] = "아라시 고원에서 남서쪽으로 {area:880}을(를) 건너, {zone:1437}을(를) 지나 남쪽으로 가고({area:150}은(는) 피하세요), 동쪽 {zone:1432}(으)로 들어가세요. 길은 {zone:1432}에서 남쪽 {zone:1418}(으)로 이어집니다. 길을 따라 남쪽의 {area:1877} 고블린 야영지로 가세요.",
+	["Head south-west out of Arathi over {area:880}, south through the {zone:1437} (keep clear of {area:150}) and east into {zone:1432}; the road leaves {zone:1432} to the south into the {zone:1418}. Follow it south to the goblin camp in the {area:1877}."] = "",
 
 	-- Step 29: Valley of Fangs
 	-- {quest:1106} Martek the Exiled · {area:439} Shimmering Flats
@@ -140,7 +140,7 @@ return {
 
 	-- Step 30: The Dustbowl
 	-- {npc:2921} Lotwil Veriatus · {area:1878} The Dustbowl · {area:340} Kargath
-	["Ride west along the road; {npc:2921}'s camp sits in the {area:1878} halfway to {area:340}."] = "길을 따라 서쪽으로 가세요. {npc:2921}의 야영지는 {area:340}(으)로 가는 중간쯤, {area:1878}에 있습니다.",
+	["Head west along the road; {npc:2921}'s camp sits in the {area:1878} halfway to {area:340}."] = "",
 
 	-- Step 31: Kargath
 	-- {area:340} Kargath
@@ -176,7 +176,7 @@ return {
 
 	-- Step 38: Kargath
 	-- {area:340} Kargath
-	["Ride north back to {area:340}."] = "북쪽의 {area:340}(으)로 돌아가세요.",
+	["Head north back to {area:340}."] = "",
 
 	-- Step 39: The Dustbowl
 	-- {npc:2920} Lucien Tosselwrench · {item:2868} Patterned Bronze Bracers · {skill:164} Blacksmithing
@@ -201,7 +201,7 @@ return {
 
 	-- Step 45: Agmond's End
 	-- {area:1877} Valley of Fangs
-	["Ride back south down the road, past the {area:1877}."] = "길을 따라 남쪽으로 {area:1877}을(를) 지나 돌아가세요.",
+	["Head back south down the road, past the {area:1877}."] = "",
 
 	-- Step 46: Hearth to Kargath
 	-- {area:340} Kargath
@@ -220,13 +220,13 @@ return {
 
 	-- Step 51: Regthar Deathgate
 	-- {area:380} Crossroads · {area:386} Forgotten Pools · {npc:3389} Regthar Deathgate
-	["Ride north up the road from the {area:380} to the {area:386}; {npc:3389} keeps watch on the rise above the water."] = "{area:380}에서 길을 따라 북쪽의 {area:386}(으)로 가세요. {npc:3389}은(는) 물 위쪽 언덕에서 망을 보고 있습니다.",
+	["Head north up the road from the {area:380} to the {area:386}; {npc:3389} keeps watch on the rise above the water."] = "",
 	-- {npc:5395} Felgur Twocuts · {zone:1443} Desolace
 	["for {npc:5395} in {zone:1443}, in the next guide"] = "다음 가이드에서 {zone:1443}의 {npc:5395}에게",
 
 	-- Step 52: Ratchet
 	-- {area:380} Crossroads · {area:392} Ratchet
-	["Ride back south to the {area:380} and fly to {area:392}."] = "남쪽의 {area:380}(으)로 돌아가 {area:392}(으)로 날아가세요.",
+	["Head back south to the {area:380} and fly to {area:392}."] = "",
 	-- {item:3713} Soothing Spices · {zone:1445} Dustwallow Marsh
 	["{item:3713}, for \"Swamp Eye\" Jarl in {zone:1445}"] = "{zone:1445}의 \"늪지눈알\" 자를에게 줄 {item:3713}",
 	-- {zone:1445} Dustwallow Marsh
@@ -234,11 +234,23 @@ return {
 
 	-- Step 53: The Affray
 	-- {area:392} Ratchet · {area:720} Fray Island · {npc:6236} Klannoc Macleod · {npc:6238} Big Will
-	["Ride south along the coast from {area:392} to {area:720}. {npc:6236} stands by the arena: step on the grate to start the fight; the challengers come one at a time, then {npc:6238} (33)."] = "{area:392}에서 해안을 따라 남쪽의 {area:720}(으)로 가세요. {npc:6236}은(는) 투기장 옆에 서 있습니다. 쇠창살을 밟으면 싸움이 시작됩니다. 도전자가 한 명씩 나온 뒤 {npc:6238}(33)이(가) 나옵니다.",
+	["Head south along the coast from {area:392} to {area:720}. {npc:6236} stands by the arena: step on the grate to start the fight; the challengers come one at a time, then {npc:6238} (33)."] = "",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Ride back south down the road, past the {area:1877}."] = "길을 따라 남쪽으로 {area:1877}을(를) 지나 돌아가세요.",
+	-- ["Ride back south to the {area:380} and fly to {area:392}."] = "남쪽의 {area:380}(으)로 돌아가 {area:392}(으)로 날아가세요.",
+	-- ["Ride east out of {area:272} through {area:1857} and follow the road east. The Boulderfist Ogres and Enforcers (32-34) camp south of the road, south-east of {area:313}."] = "{area:272}에서 동쪽으로 {area:1857}을(를) 지나 길을 따라 동쪽으로 가세요. 돌주먹 오우거와 집행자(32-34)는 {area:313} 남동쪽, 길 남쪽에 야영하고 있습니다.",
+	-- ["Ride north back to {area:340}."] = "북쪽의 {area:340}(으)로 돌아가세요.",
+	-- ["Ride north up the road from the {area:380} to the {area:386}; {npc:3389} keeps watch on the rise above the water."] = "{area:380}에서 길을 따라 북쪽의 {area:386}(으)로 가세요. {npc:3389}은(는) 물 위쪽 언덕에서 망을 보고 있습니다.",
+	-- ["Ride north; the outer circle stands in the middle of the highlands."] = "북쪽으로 가세요. 바깥 결속의 원은 고원 한가운데에 있습니다.",
+	-- ["Ride south along the coast from {area:392} to {area:720}. {npc:6236} stands by the arena: step on the grate to start the fight; the challengers come one at a time, then {npc:6238} (33)."] = "{area:392}에서 해안을 따라 남쪽의 {area:720}(으)로 가세요. {npc:6236}은(는) 투기장 옆에 서 있습니다. 쇠창살을 밟으면 싸움이 시작됩니다. 도전자가 한 명씩 나온 뒤 {npc:6238}(33)이(가) 나옵니다.",
+	-- ["Ride south-west out of Arathi over {area:880}, south through the {zone:1437} (keep clear of {area:150}) and east into {zone:1432}; the road leaves {zone:1432} to the south into the {zone:1418}. Follow it south to the goblin camp in the {area:1877}."] = "아라시 고원에서 남서쪽으로 {area:880}을(를) 건너, {zone:1437}을(를) 지나 남쪽으로 가고({area:150}은(는) 피하세요), 동쪽 {zone:1432}(으)로 들어가세요. 길은 {zone:1432}에서 남쪽 {zone:1418}(으)로 이어집니다. 길을 따라 남쪽의 {area:1877} 고블린 야영지로 가세요.",
+	-- ["Ride south-west to the goblins' cove on the southern coast. {npc:2766} keeps watch on the cliff above it."] = "남서쪽으로 남부 해안의 고블린 만으로 가세요. {npc:2766}은(는) 그 위 절벽에서 망을 봅니다.",
 	-- ["Ride west along the road; Lotwil's camp sits in the {area:1878} halfway to {area:340}."] = "길을 따라 서쪽으로 가세요. 로트윌의 야영지는 {area:340}(으)로 가는 중간쯤, {area:1878}에 있습니다.",
+	-- ["Ride west along the road; {npc:2921}'s camp sits in the {area:1878} halfway to {area:340}."] = "길을 따라 서쪽으로 가세요. {npc:2921}의 야영지는 {area:340}(으)로 가는 중간쯤, {area:1878}에 있습니다.",
 	-- ["The Elder Crag Coyotes and Giant Buzzards roam the basin south of the {area:1878}. Coyotes drop both the jawbones and the fangs; only the buzzards drop wings and gizzards."] = "덩치큰 바위산코요테와 거대한 대머리수리는 {area:1878} 남쪽 분지를 돌아다닙니다. 코요테는 턱뼈와 송곳니를 모두 떨어뜨리고, 날개와 모래주머니는 대머리수리만 떨어뜨립니다.",
 	-- ["The bigger Rock Elementals stand on the slopes north-west of the {area:1878}; each one drops a slab."] = "더 큰 바위 정령은 {area:1878} 북서쪽 비탈에 서 있습니다. 각각 석판을 떨어뜨립니다.",
+	-- ["The western circle is near {area:1857}, where you rode in."] = "서쪽 결속의 원은 처음 들어온 {area:1857} 근처에 있습니다.",
+	-- ["The zeppelin lands at the towers outside the {zone:1458}: ride down into the city and fly to {area:272}."] = "비행선은 {zone:1458} 밖의 탑에 도착합니다. 도시로 내려가 {area:272}(으)로 날아가세요.",
 	-- ["The {area:380}"] = "{area:380}",
 }

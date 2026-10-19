@@ -43,16 +43,15 @@ return {
 	-- {npc:1569} Shadow Priest Sarvis · {npc:244808} Aramis Hammerhand
 	["{npc:1569}: the scroll for {npc:244808}"] = "{npc:1569}：给{npc:244808}的卷轴",
 
-	-- Step 6: Rattlecages, scavengers and duskbats
+	-- Step 6: Injured Deathguard
+	-- {quest:90902} Rediscovering the Light · {npc:259377} Injured Deathguard · {spell:635} Holy Light
+	["{quest:90902}: the {npc:259377} lie around the church. Heal five of them with {spell:635}."] = "",
+
+	-- Step 7: Rattlecages, scavengers and duskbats
 	["Rattlecages, scavengers and duskbats"] = "骷髅、食腐狼和夜行蝙蝠",
 	-- {area:154} Deathknell
 	-- plural, as words: Rattlecage Skeletons = {npc:1890} Rattlecage Skeleton · Young Scavengers = {npc:1508} Young Scavenger · Duskbats = {npc:1512} Duskbat · Ragged Scavengers = {npc:1509} Ragged Scavenger · Mangy Duskbats = {npc:1513} Mangy Duskbat
 	["Rattlecage Skeletons wander the ruined houses in the north half of {area:154}. Young Scavengers and Duskbats roam all around the village; the Ragged Scavengers and Mangy Duskbats are on its east side."] = "{npc:1890}在{area:154}北半部的废弃房屋里游荡。{npc:1508}和夜行蝙蝠在村子周围游荡；{npc:1509}和{npc:1513}在村子东侧。",
-
-	-- Step 7: Rattlecage skulls
-	["Rattlecage skulls"] = "骷髅的头骨",
-	-- plural, as words: Rattlecage Skeletons = {npc:1890} Rattlecage Skeleton
-	["The Rattlecage Skeletons in the ruined houses drop the skulls."] = "废弃房屋里的{npc:1890}掉落头骨。",
 
 	-- Step 8: Back to the church
 	["Back to the church"] = "返回教堂",
@@ -113,10 +112,10 @@ return {
 	-- Step 21: Brill
 	-- {area:159} Brill · {npc:10665} Junior Apothecary Holland · {area:2119} Gallows' End Tavern · {npc:1515} Executor Zygand
 	["Follow the road east to {area:159}. {npc:10665} stands at the north-west edge of town; the {area:2119} is the big inn in the middle, with {npc:1515} in front of it."] = "沿道路向东到{area:159}。{npc:10665}站在镇子西北边缘；{area:2119}是镇中央的大旅店，{npc:1515}站在旅店前。",
-	-- {npc:246152} Shari Stilwell
-	["{npc:246152}, the Paladin trainer"] = "{npc:246152}，圣骑士训练师",
 	-- {npc:1496} Deathguard Dillinger
 	["Ask {npc:1496} for his report"] = "向{npc:1496}索取报告",
+	-- {npc:246152} Shari Stilwell
+	["{npc:246152}, the Paladin trainer"] = "{npc:246152}，圣骑士训练师",
 	-- {area:159} Brill
 	["The {area:159} trainers are in and around the inn"] = "{area:159}的训练师在旅店内外",
 
@@ -234,18 +233,13 @@ return {
 	["Vile Fin shore"] = "邪鳍海岸",
 	["More Vile Fin murlocs walk the shore just north of the outpost."] = "前哨北边的海岸上还有更多邪鳍鱼人。",
 
-	-- Step 43: Paladin: Whispering Forest
-	-- {area:16616} Whispering Forest
-	["Paladin: {area:16616}"] = "圣骑士：{area:16616}",
-	-- {area:16616} Whispering Forest · {npc:246389} Hilda the Breaker · {npc:259190} Ephram Barbaro
-	["Head west into the {area:16616}; {npc:246389} and {npc:259190} camp at its edge."] = "向西进入{area:16616}；{npc:246389}和{npc:259190}在森林边缘扎营。",
-
-	-- Step 44: Shadowvale
-	-- {area:16881} Shadowvale · {item:286269} Glowing Crystal Fragment
+	-- Step 43: Shadowvale
+	-- {area:16881} Shadowvale
 	-- plural, as words: Shadowvale Lurchers = {npc:260428} Shadowvale Lurcher
-	["{area:16881} is the hollow at the west edge of the glades. The Shadowvale Lurchers and Mystics drop the bones; the bottles lie on the ground among them, and the {item:286269} is at the south end."] = "{area:16881}是林地西缘的洼地。{npc:260428}和影谷秘法师掉落骨头；瓶子散落在它们中间的地上，{item:286269}在南端。",
+	["{area:16881} is the hollow at the west edge of the glades. Go down into the big basement under the ruined house (only a floor and a few pillars left, not the two-storey house): the bottles lie on its floor among the Shadowvale Lurchers and Mystics."] = "",
+	["the basement under the ruined house"] = "",
 
-	-- Step 47: Brill
+	-- Step 45: Brill
 	-- {npc:1560} Yvette Farthing
 	["{npc:1560}, in the inn"] = "{npc:1560}，在旅店里",
 	-- {npc:1931} Captured Scarlet Zealot
@@ -253,41 +247,41 @@ return {
 	-- {npc:2128} Cain Firesong · {npc:4568} Anastasia Hartwell · {zone:1458} Undercity
 	["{npc:2128}: {npc:4568} in the {zone:1458} takes it"] = "{npc:2128}：交给{zone:1458}的{npc:4568}",
 
-	-- Step 48: Ulag the Cleaver
+	-- Step 46: Ulag the Cleaver
 	-- {npc:1496} Deathguard Dillinger · {area:159} Brill · {npc:6390} Ulag the Cleaver
 	["{npc:1496} stands in {area:159}. {npc:6390} waits in the mausoleum on the hill just north of town: open the gate and fight him."] = "{npc:1496}站在{area:159}。{npc:6390}在镇子北边山丘上的陵墓里等候：打开大门与他战斗。",
 
-	-- Step 49: Carendin Halgar
+	-- Step 47: Carendin Halgar
 	-- {area:159} Brill · {area:153} Ruins of Lordaeron · {zone:1458} Undercity · {npc:5675} Carendin Halgar · {object:36082} Magic Quarter
 	["Walk south from {area:159} to the {area:153} and down into the {zone:1458}. {npc:5675} stands in the {object:36082}. The Scarlet camp is just west of the ruins."] = "从{area:159}向南走到{area:153}，再往下进入{zone:1458}。{npc:5675}站在{object:36082}。血色营地就在废墟西边。",
 
-	-- Step 50: Anastasia Hartwell
+	-- Step 48: Anastasia Hartwell
 	-- {area:159} Brill · {area:153} Ruins of Lordaeron · {zone:1458} Undercity · {npc:4568} Anastasia Hartwell · {object:36082} Magic Quarter
 	["Walk south from {area:159} to the {area:153} and down into the {zone:1458}. {npc:4568} stands in the {object:36082}. The Scarlet camp is just west of the ruins."] = "从{area:159}向南走到{area:153}，再往下进入{zone:1458}。{npc:4568}站在{object:36082}。血色营地就在废墟西边。",
 
-	-- Step 51: The Scarlet camp
+	-- Step 49: The Scarlet camp
 	["The Scarlet camp"] = "血色营地",
 	-- {area:159} Brill · {npc:1662} Captain Perrine
 	["Follow the road south-west from {area:159} to the Scarlet Crusade camp. {npc:1662} stands at its south end; every Scarlet there can drop a ring."] = "沿道路从{area:159}向西南到血色十字军营地。{npc:1662}站在营地南端；那里的每个血色十字军都可能掉落戒指。",
 
-	-- Step 52: Perrine's Chest
+	-- Step 50: Perrine's Chest
 	-- {object:37098} Perrine's Chest · {npc:1662} Captain Perrine
 	["{object:37098} stands beside {npc:1662} at the camp's south end."] = "{object:37098}在营地南端的{npc:1662}旁边。",
 
-	-- Step 54: Deathguard Terrence
+	-- Step 52: Deathguard Terrence
 	-- {area:159} Brill
 	["Take the road south-east out of {area:159}; Terrence stands on it short of the zeppelin towers."] = "沿东南方的道路离开{area:159}；亡灵卫兵特伦斯站在飞艇塔之前的路上。",
 
-	-- Step 55: Hadric Harlson
+	-- Step 53: Hadric Harlson
 	-- {npc:267009} Hadric Harlson · {npc:1495} Deathguard Linnea
 	["{npc:267009} stands at {npc:1495}'s camp."] = "{npc:267009}站在{npc:1495}的营地。",
 
-	-- Step 56: Balnir Farmstead
+	-- Step 54: Balnir Farmstead
 	-- {quest:96897} The Cult of the Damned
 	-- plural, as words: Necrotic Crystal Fragments = {item:275851} Necrotic Crystal Fragment
 	["{quest:96897} holds the farm just south-east of the camp. The Necrotic Crystal Fragments lie on the ground among the cultists, and the cultists carry some too."] = "{quest:96897}占据着营地东南方不远处的农场。{item:275851}散落在教徒中间的地上，教徒身上也带着一些。",
 
-	-- Step 57: Balnir graves
+	-- Step 55: Balnir graves
 	["Balnir graves"] = "巴尼尔墓地",
 	-- {quest:99142} Tomb Weed
 	-- plural, as words: Bleeding Horrors = {npc:1529} Bleeding Horror · Wandering Spirits = {npc:1532} Wandering Spirit
@@ -295,66 +289,83 @@ return {
 	-- {item:7227} Balnir Snapdragons
 	["{item:7227}, in the farmstead's garden"] = "{item:7227}，在农场的花园里",
 
-	-- Step 58: Captain Vachon
+	-- Step 56: Captain Vachon
 	-- {npc:1664} Captain Vachon
 	-- plural, as words: Scarlet Friars = {npc:1538} Scarlet Friar
 	["The Scarlet Friars camp just north-east of the graves; {npc:1664} stands among them."] = "{npc:1538}在墓地东北方不远处扎营；{npc:1664}站在他们中间。",
 
-	-- Step 59: Vicious Night Web Spiders
+	-- Step 57: Vicious Night Web Spiders
 	-- plural, as words: Vicious Night Web Spiders = {npc:1555} Vicious Night Web Spider
 	["Vicious Night Web Spiders"] = "{npc:1555}",
 	["The spiders lurk in the woods at the far east end of the glades."] = "蜘蛛潜伏在林地最东端的树林里。",
 
-	-- Step 60: Hides for the Forsaken
+	-- Step 58: Hides for the Forsaken
 	-- plural, as words: Duskbats = {npc:1512} Duskbat
 	["Duskbats and Darkhounds roam all along the road back west; finish the wings and hides on the way."] = "夜行蝙蝠和黑暗犬在向西返回的道路沿线游荡；顺路收集完翅膀和皮。",
 
-	-- Step 61: Deathguard Linnea's camp
+	-- Step 59: Deathguard Linnea's camp
 	-- {npc:1495} Deathguard Linnea
 	["{npc:1495}'s camp"] = "{npc:1495}的营地",
 
-	-- Step 62: Brill
+	-- Step 60: Brill
 	-- {npc:2211} Captured Mountaineer
 	["The {npc:2211}, in the town hall basement"] = "{npc:2211}，在城镇大厅的地下室",
 
-	-- Step 63: Captain Melrache
+	-- Step 61: Captain Melrache
 	-- {area:159} Brill · {area:162} Brightwater Lake · {npc:1665} Captain Melrache · {area:459} Scarlet Watch Post
 	-- plural, as words: Scarlet Bodyguards = {npc:1660} Scarlet Bodyguard
 	["Follow the road north-east from {area:159} past {area:162}. {npc:1665} and his two Scarlet Bodyguards hold the Scarlet watchtower on the north-east coast, north of the {area:459}: pull the bodyguards first."] = "沿道路从{area:159}向东北经过{area:162}。{npc:1665}和他的两名{npc:1660}占据着{area:459}北边、东北海岸上的血色瞭望塔：先拉保镖。",
 
-	-- Step 64: Executor Zygand
+	-- Step 62: Executor Zygand
 	-- {area:159} Brill
 	["Back to {area:159}."] = "返回{area:159}。",
 
-	-- Step 65: Leonid Barthalomew
+	-- Step 63: Leonid Barthalomew
 	-- {area:157} Agamand Mills · {area:16616} Whispering Forest · {npc:246389} Hilda the Breaker
 	["Follow the road west past {area:157} to the {area:16616}. Leonid stands just north of {npc:246389}'s camp."] = "沿道路向西经过{area:157}到{area:16616}。莱尼德·巴萨罗梅站在{npc:246389}营地北边不远处。",
 	-- {npc:246378} Danitha Morr
 	["Listen to Leonid and {npc:246378}, then talk to him again"] = "听莱尼德·巴萨罗梅和{npc:246378}说话，然后再次与他交谈",
 
-	-- Step 67: The Undercity
+	-- Step 64: Paladin: Whispering Forest
+	-- {area:16616} Whispering Forest
+	["Paladin: {area:16616}"] = "圣骑士：{area:16616}",
+	-- {npc:246389} Hilda the Breaker · {npc:259190} Ephram Barbaro
+	["{npc:246389} and {npc:259190} camp at the forest's edge, just south of Leonid. Their quests need level 10."] = "",
+
+	-- Step 65: Paladin: Shadowvale
+	-- {area:16881} Shadowvale
+	["Paladin: {area:16881}"] = "",
+	-- {area:16881} Shadowvale · {item:286269} Glowing Crystal Fragment
+	-- plural, as words: Shadowvale Lurchers = {npc:260428} Shadowvale Lurcher
+	["Back to {area:16881} and down into the basement under the ruined house: the Shadowvale Lurchers and Mystics there drop the bones, and the {item:286269} is at the basement's south end."] = "",
+
+	-- Step 68: The Undercity
 	-- {object:1661} The Undercity · {area:153} Ruins of Lordaeron · {npc:5675} Carendin Halgar · {object:36082} Magic Quarter · {item:6284} Runes of Summoning · {npc:4606} Aelthalyste · {object:36070} War Quarter · {npc:4568} Anastasia Hartwell
 	["{object:1661} is under the {area:153}, beside the zeppelin towers. {npc:5675} is in the {object:36082}: use the {item:6284} on the summoning circle beside him and defeat the voidwalker. {npc:4606} is in the {object:36070}. {npc:4568} is in the {object:36082} too."] = "{object:1661}在{area:153}下方，飞艇塔旁边。{npc:5675}在{object:36082}：在他旁边的召唤法阵上使用{item:6284}，击败虚空行者。{npc:4606}在{object:36070}。{npc:4568}也在{object:36082}。",
 
-	-- Step 68: Zeppelin to Durotar
+	-- Step 69: Zeppelin to Durotar
 	-- {zone:1411} Durotar
 	["Zeppelin to {zone:1411}"] = "乘飞艇前往{zone:1411}",
 	-- {area:159} Brill · {area:153} Ruins of Lordaeron · {zone:1454} Orgrimmar · {object:3202} Grom'gol
 	["Walk south-east from {area:159} to the zeppelin towers outside the {area:153} and board the zeppelin to {zone:1454} (the other one goes to {object:3202})."] = "从{area:159}向东南走到{area:153}外的飞艇塔，登上前往{zone:1454}的飞艇（另一艘前往{object:3202}）。",
 	["Zeppelin tower"] = "飞艇塔",
 
-	-- Step 69: The Crossroads
+	-- Step 70: The Crossroads
 	-- {zone:1454} Orgrimmar · {zone:1411} Durotar · {area:815} Southfury River · {area:379} Far Watch Post · {area:380} The Crossroads
 	["The zeppelin lands at the tower just north-east of {zone:1454}'s main gate. Follow the road south into {zone:1411}, cross the {area:815} bridge below {area:379} and follow the road west to the {area:380}."] = "飞艇停靠在{zone:1454}正门东北方的塔上。沿道路向南进入{zone:1411}，从{area:379}下方过{area:815}的桥，然后沿道路向西到{area:380}。",
 	-- {npc:3615} Devrak
 	["{npc:3615}, the wind rider master"] = "{npc:3615}，双足飞龙管理员",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Head west into the {area:16616}; {npc:246389} and {npc:259190} camp at its edge."] = "向西进入{area:16616}；{npc:246389}和{npc:259190}在森林边缘扎营。",
+	-- ["Rattlecage skulls"] = "骷髅的头骨",
+	-- ["The Rattlecage Skeletons in the ruined houses drop the skulls."] = "废弃房屋里的{npc:1890}掉落头骨。",
 	-- ["The pumpkins grow in the Scarlet-held fields north-west of Solliden."] = "南瓜生长在索利丹农场西北方、血色十字军占据的田里。",
 	-- ["The spiders lurk in the woods at the far east end of the glades. {npc:276020}, a rogue abomination, wanders just north-west of them. {npc:276020} is elite: grouping up is advised."] = "蜘蛛潜伏在林地最东端的树林里。{npc:276020}是一个失控的憎恶，在它们西北方不远处游荡。{npc:276020}是精英：建议组队。",
 	-- ["The zeppelin lands at the tower just north-east of {zone:1454}'s main gate. Follow the road south into {zone:1411}, cross the {area:815} bridge below {area:379} and follow the road west to the {area:380}."] = "飞艇停靠在{zone:1454}正门东北方的塔上。沿道路向南进入{zone:1411}，从{area:379}下方过{area:815}的桥，然后沿道路向西到{area:380}。",
 	-- ["Walk on west to {npc:6784} and talk to him: he wants a duel."] = "继续向西走到{npc:6784}处并与他交谈：他想和你决斗。",
 	-- ["Walk south-west to the {area:156}; Simmer stands at the farm."] = "向西南走到{area:156}；亡灵卫兵希米尔站在农场里。",
+	-- ["{area:16881} is the hollow at the west edge of the glades. The Shadowvale Lurchers and Mystics drop the bones; the bottles lie on the ground among them, and the {item:286269} is at the south end."] = "{area:16881}是林地西缘的洼地。{npc:260428}和影谷秘法师掉落骨头；瓶子散落在它们中间的地上，{item:286269}在南端。",
 	-- ["{item:286326}, from {npc:276020}"] = "{item:286326}，来自{npc:276020}",
 	-- ["{npc:1495}: {npc:276020}, an elite abomination in the east"] = "{npc:1495}：{npc:276020}，东边的一个精英憎恶",
 }

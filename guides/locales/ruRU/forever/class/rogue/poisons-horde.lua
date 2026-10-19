@@ -22,7 +22,7 @@ return {
 
 	-- Step 2: Taskmaster Fizzule
 	-- {area:380} Crossroads · {area:382} Sludge Fen · {item:8051} Flare Gun · {npc:7233} Taskmaster Fizzule
-	["Fly to the {area:380} and ride north to the Venture Co. tower north of the {area:382}. In sight of the tower, fire the {item:8051} twice, then /salute {npc:7233} before he attacks you."] = "Летите сюда: {area:380}. Скачите на север к башне Торговой компании севернее места {area:382}. В пределах видимости башни выстрелите из ракетницы ({item:8051}) дважды, затем выполните /salute для NPC {npc:7233}, пока он не напал на вас.",
+	["Fly to the {area:380} and head north to the Venture Co. tower north of the {area:382}. In sight of the tower, fire the {item:8051} twice, then /salute {npc:7233} before he attacks you."] = "",
 	-- {item:8051} Flare Gun
 	["{item:8051}, twice, in sight of the tower"] = "{item:8051}: дважды, в пределах видимости башни",
 
@@ -40,6 +40,10 @@ return {
 
 	-- Step 5: Serge Hinott
 	-- {zone:1454} Orgrimmar · {zone:1458} Undercity · {zone:1421} Silverpine Forest · {area:272} Tarren Mill · {area:287} Hillsbrad · {npc:2391} Serge Hinott
-	["Take the zeppelin from {zone:1454} to the {zone:1458} and ride south through {zone:1421} to {area:272} in {area:287}. {npc:2391} stands in {area:272}; wait beside him while he brews the cure."] = "Сядьте на дирижабль из города {zone:1454} в город {zone:1458} и скачите на юг через зону {zone:1421} сюда: {area:272} ({area:287}). {npc:2391} стоит здесь: {area:272}; подождите рядом, пока он варит лекарство.",
+	["Take the zeppelin from {zone:1454} to the {zone:1458} and head south through {zone:1421} to {area:272} in {area:287}. {npc:2391} stands in {area:272}; wait beside him while he brews the cure."] = "",
 	["Wait for the cure"] = "Дождитесь лекарства",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Fly to the {area:380} and ride north to the Venture Co. tower north of the {area:382}. In sight of the tower, fire the {item:8051} twice, then /salute {npc:7233} before he attacks you."] = "Летите сюда: {area:380}. Скачите на север к башне Торговой компании севернее места {area:382}. В пределах видимости башни выстрелите из ракетницы ({item:8051}) дважды, затем выполните /salute для NPC {npc:7233}, пока он не напал на вас.",
+	-- ["Take the zeppelin from {zone:1454} to the {zone:1458} and ride south through {zone:1421} to {area:272} in {area:287}. {npc:2391} stands in {area:272}; wait beside him while he brews the cure."] = "Сядьте на дирижабль из города {zone:1454} в город {zone:1458} и скачите на юг через зону {zone:1421} сюда: {area:272} ({area:287}). {npc:2391} стоит здесь: {area:272}; подождите рядом, пока он варит лекарство.",
 }

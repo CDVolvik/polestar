@@ -68,7 +68,7 @@ return {
 
 	-- Step 11: Watcher Dodds
 	-- {area:245} Yorgen Farmstead
-	["Ride back east along the road to the {area:245}."] = "길을 따라 동쪽 {area:245}(으)로 돌아가십시오.",
+	["Head back east along the road to the {area:245}."] = "",
 
 	-- Step 12: Yorgen Farmstead
 	["The mound of loose dirt lies south of the farmhouse, by the old stump."] = "대충 덮인 흙무더기는 농가 남쪽, 오래된 그루터기 옆에 있습니다.",
@@ -78,13 +78,13 @@ return {
 	["Her house stands on the hill south-east of {area:42}, above the {area:121}."] = "그녀의 집은 {area:42} 남동쪽 언덕 위, {area:121} 위쪽에 있습니다.",
 
 	-- Step 16: Abercrombie
-	["Ride west along the road once more."] = "다시 한 번 길을 따라 서쪽으로 가십시오.",
+	["Head west along the road once more."] = "",
 
 	-- Step 18: Back to Darkshire
 	-- {area:42} Darkshire
 	["Back to {area:42}"] = "{area:42}(으)로 돌아가기",
 	-- {area:42} Darkshire
-	["Ride back east to {area:42}."] = "동쪽 {area:42}(으)로 돌아가십시오.",
+	["Head back east to {area:42}."] = "",
 	-- {npc:267} Clerk Daltry
 	["{npc:267}, in the town hall"] = "{npc:267}, 마을 회관",
 	-- {npc:273} Tavernkeep Smitts
@@ -98,7 +98,7 @@ return {
 	["Skeletal Horrors walk the hillside between {area:42} and the {area:121}, south-east of town; they drop the Rot Blossoms."] = "{npc:202}은(는) {area:42}와(과) 마을 남동쪽 {area:121} 사이의 언덕을 돌아다니며, {item:1598}을(를) 떨어뜨립니다.",
 
 	-- Step 21: Abercrombie
-	["Ride west to the hermit once more."] = "다시 한 번 서쪽의 은둔자에게 가십시오.",
+	["Head west to the hermit once more."] = "",
 
 	-- Step 22: Ghoul Ribs
 	-- plural, as words: Ghoul Ribs = {item:884} Ghoul Rib
@@ -117,13 +117,13 @@ return {
 
 	-- Step 26: Agent Kearnen
 	-- {area:94} Raven Hill · {zone:1436} Westfall · {npc:7024} Agent Kearnen · {npc:7053} Klaven Mortwake · {npc:7051} Malformed Defias Drone
-	["Ride west along the road out of {area:94} into {zone:1436}. {npc:7024} watches {npc:7053}'s tower from the hills just inside the border. The {npc:7051} (level 23) guarding the tower carries its key; Klaven's journal is in the chest at the top."] = "길을 따라 서쪽으로 {area:94}을(를) 벗어나 {zone:1436}(으)로 가십시오. {npc:7024}은(는) 경계 바로 안쪽 언덕에서 {npc:7053}의 탑을 감시합니다. 탑을 지키는 {npc:7051}(레벨 23)이(가) 열쇠를 가지고 있으며, 클라벤의 일지는 꼭대기의 상자에 있습니다.",
+	["Head west along the road out of {area:94} into {zone:1436}. {npc:7024} watches {npc:7053}'s tower from the hills just inside the border. The {npc:7051} (level 23) guarding the tower carries its key; Klaven's journal is in the chest at the top."] = "",
 	-- {item:7908} Klaven Mortwake's Journal
 	["{item:7908}, in the chest"] = "상자 안의 {item:7908}",
 
 	-- Step 27: Master Mathias Shaw
 	-- {zone:1453} Stormwind · {object:2100} Old Town
-	["Ride north through Elwynn to {zone:1453}; Mathias Shaw is at SI:7 in {object:2100}."] = "엘윈 숲을 지나 북쪽 {zone:1453}(으)로 달려가십시오. 마티아스 쇼는 {object:2100}의 SI:7에 있습니다.",
+	["Head north through Elwynn to {zone:1453}; Mathias Shaw is at SI:7 in {object:2100}."] = "",
 	-- {npc:332} Master Mathias Shaw · {item:18160} Recipe: Thistle Tea
 	["{npc:332}: Poisons, and {item:18160}"] = "{npc:332}: 독, {item:18160}",
 	-- {quest:2607} The Touch of Zanzil · {npc:7207} Doc Mixilpixil
@@ -144,5 +144,11 @@ return {
 	["{zone:1453} has no shaman trainer: take the {area:2257} from the {object:28027} to {zone:1455}, train with {npc:258098}, then ride the tram back for the {area:442} boat."] = "{zone:1453}에는 주술사 상급자가 없습니다: {object:28027}에서 {area:2257}을(를) 타고 {zone:1455}(으)로 가서 {npc:258098}에게 수련한 뒤, 지하철로 돌아와 {area:442}행 배를 타십시오.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Ride back east along the road to the {area:245}."] = "길을 따라 동쪽 {area:245}(으)로 돌아가십시오.",
+	-- ["Ride back east to {area:42}."] = "동쪽 {area:42}(으)로 돌아가십시오.",
+	-- ["Ride north through Elwynn to {zone:1453}; Mathias Shaw is at SI:7 in {object:2100}."] = "엘윈 숲을 지나 북쪽 {zone:1453}(으)로 달려가십시오. 마티아스 쇼는 {object:2100}의 SI:7에 있습니다.",
+	-- ["Ride west along the road once more."] = "다시 한 번 길을 따라 서쪽으로 가십시오.",
+	-- ["Ride west along the road out of {area:94} into {zone:1436}. {npc:7024} watches {npc:7053}'s tower from the hills just inside the border. The {npc:7051} (level 23) guarding the tower carries its key; Klaven's journal is in the chest at the top."] = "길을 따라 서쪽으로 {area:94}을(를) 벗어나 {zone:1436}(으)로 가십시오. {npc:7024}은(는) 경계 바로 안쪽 언덕에서 {npc:7053}의 탑을 감시합니다. 탑을 지키는 {npc:7051}(레벨 23)이(가) 열쇠를 가지고 있으며, 클라벤의 일지는 꼭대기의 상자에 있습니다.",
+	-- ["Ride west to the hermit once more."] = "다시 한 번 서쪽의 은둔자에게 가십시오.",
 	-- ["{npc:332}: {spell:2842}, and {item:18160}"] = "{npc:332}: {spell:2842}, {item:18160}",
 }

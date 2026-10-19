@@ -101,7 +101,7 @@ return {
 
 	-- Step 23: Thunder Bluff
 	-- {area:1638} Thunder Bluff · {area:378} Camp Taurajo · {zone:1412} Mulgore · {area:222} Bloodhoof Village · {npc:2995} Tal
-	["Fly to {area:1638} if you know the flight path. If not, fly to {area:378}, ride west into {zone:1412} past {area:222} to {area:1638} and take its flight path from {npc:2995} on the central rise."] = "Flieg nach {area:1638}, wenn du die Flugroute kennst. Wenn nicht, flieg nach {area:378}, reite nach Westen nach {zone:1412} an {area:222} vorbei bis {area:1638} und hol dir die Flugroute bei {npc:2995} auf der mittleren Anhöhe.",
+	["Fly to {area:1638} if you know the flight path. If not, fly to {area:378}, head west into {zone:1412} past {area:222} to {area:1638} and take its flight path from {npc:2995} on the central rise."] = "",
 	-- {npc:3057} Cairne Bloodhoof · {area:1638} Thunder Bluff · {quest:93739} Exploring the Horde
 	["Speak with {npc:3057}, in {area:1638}: {quest:93739}"] = "Sprich mit {npc:3057} in {area:1638}: {quest:93739}",
 
@@ -216,6 +216,7 @@ return {
 	["The next guide flies on from here to {zone:1454}."] = "Der nächste Guide fliegt von hier weiter nach {zone:1454}.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Fly to {area:1638} if you know the flight path. If not, fly to {area:378}, ride west into {zone:1412} past {area:222} to {area:1638} and take its flight path from {npc:2995} on the central rise."] = "Flieg nach {area:1638}, wenn du die Flugroute kennst. Wenn nicht, flieg nach {area:378}, reite nach Westen nach {zone:1412} an {area:222} vorbei bis {area:1638} und hol dir die Flugroute bei {npc:2995} auf der mittleren Anhöhe.",
 	-- ["Shadumbra"] = "Schattumbra",
 	-- ["Sharptalon"] = "Scharfkralle",
 	-- ["The {area:1718}"] = "{area:1718}",

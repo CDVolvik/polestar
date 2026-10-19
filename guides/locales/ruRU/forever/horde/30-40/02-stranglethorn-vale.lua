@@ -22,7 +22,7 @@ return {
 
 	-- Step 4: Islen Waterseer
 	-- {zone:1454} Orgrimmar · {object:3202} Grom'gol · {area:392} Ratchet · {npc:5901} Islen Waterseer
-	["Take the {zone:1454} zeppelin from the tower on the west side of {object:3202} and fly to {area:392}. {npc:5901} camps on the coast a short ride south of it."] = "Летите на дирижабле ({zone:1454}) от башни на западной стороне места {object:3202} и летите в {area:392}. {npc:5901} стоит лагерем на побережье недалеко к югу.",
+	["Take the {zone:1454} zeppelin from the tower on the west side of {object:3202} and fly to {area:392}. {npc:5901} camps on the coast a short walk south of it."] = "",
 	-- {npc:5901} Islen Waterseer · {npc:3527} Healing Stream Totem · {item:5177} Water Totem
 	["{npc:5901}: {npc:3527} and your {item:5177}"] = "{npc:5901}: {npc:3527} и ваш {item:5177}",
 
@@ -105,7 +105,7 @@ return {
 	-- {area:35} Booty Bay
 	["Fly to {area:35}"] = "Летите: {area:35}",
 	-- {object:3202} Grom'gol · {area:35} Booty Bay
-	["Ride south down the coast to {object:3202} and fly to {area:35}."] = "Езжайте на юг вдоль побережья к месту {object:3202} и летите в {area:35}.",
+	["Head south down the coast to {object:3202} and fly to {area:35}."] = "",
 
 	-- Step 24: Fly to Grom'gol
 	-- {npc:2497} Nimboya
@@ -143,7 +143,7 @@ return {
 
 	-- Step 32: Grom'gol
 	-- {object:3202} Grom'gol
-	["Ride back south to {object:3202}."] = "Езжайте обратно на юг: {object:3202}.",
+	["Head back south to {object:3202}."] = "",
 
 	-- Step 33: Green Hills pages
 	["Green Hills pages"] = "Страницы «Зеленых холмов»",
@@ -181,7 +181,7 @@ return {
 	-- Step 43: Venture Co. camp
 	["Venture Co. camp"] = "Лагерь Торговой компании",
 	-- plural, as words: Venture Co. Geologists = {npc:1096} Venture Co. Geologist · Tumbled Crystals = {item:4106} Tumbled Crystal
-	["Ride north past Nesingwary's camp to the lake. The Venture Co. Geologists (34-36) work the camps along its western shore; they carry the Tumbled Crystals."] = "Езжайте на север мимо лагеря Эрнестуэя к озеру. Геологи Торговой компании (34-36) работают в лагерях вдоль его западного берега; у них упавшие кристаллы.",
+	["Head north past Nesingwary's camp to the lake. The Venture Co. Geologists (34-36) work the camps along its western shore; they carry the Tumbled Crystals."] = "",
 
 	-- Step 44: Hearth to Booty Bay
 	-- {area:35} Booty Bay
@@ -191,4 +191,8 @@ return {
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Follow the road north to the camp."] = "Идите по дороге на север к лагерю.",
+	-- ["Ride back south to {object:3202}."] = "Езжайте обратно на юг: {object:3202}.",
+	-- ["Ride north past Nesingwary's camp to the lake. The Venture Co. Geologists (34-36) work the camps along its western shore; they carry the Tumbled Crystals."] = "Езжайте на север мимо лагеря Эрнестуэя к озеру. Геологи Торговой компании (34-36) работают в лагерях вдоль его западного берега; у них упавшие кристаллы.",
+	-- ["Ride south down the coast to {object:3202} and fly to {area:35}."] = "Езжайте на юг вдоль побережья к месту {object:3202} и летите в {area:35}.",
+	-- ["Take the {zone:1454} zeppelin from the tower on the west side of {object:3202} and fly to {area:392}. {npc:5901} camps on the coast a short ride south of it."] = "Летите на дирижабле ({zone:1454}) от башни на западной стороне места {object:3202} и летите в {area:392}. {npc:5901} стоит лагерем на побережье недалеко к югу.",
 }

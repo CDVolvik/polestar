@@ -20,7 +20,7 @@ return {
 
 	-- Step 3: Cliffspring Falls
 	-- {area:442} Auberdine · {area:445} Cliffspring Falls · {item:15844} Empty Cliffspring Falls Sampler
-	["Ride north-east from {area:442} to {area:445} and fill the {item:15844} at the mouth of the cave by the falls."] = "Езжайте на северо-восток ({area:442} → {area:445}) и наполните {item:15844} у входа в пещеру у водопада.",
+	["Head north-east from {area:442} to {area:445} and fill the {item:15844} at the mouth of the cave by the falls."] = "",
 
 	-- Step 4: Alanndarian Nightsong
 	-- {area:442} Auberdine
@@ -53,7 +53,7 @@ return {
 
 	-- Step 12: Dreadmist Peak
 	-- {area:380} Crossroads · {area:384} Dreadmist Peak · {item:15842} Empty Dreadmist Peak Sampler · {object:19464} Dreadmist Peak Pool
-	["From the {area:380} ride north to {area:384} and fill the {item:15842} at the {object:19464}."] = "Из места {area:380} езжайте на север: {area:384} – и наполните {item:15842} здесь: {object:19464}.",
+	["From the {area:380} head north to {area:384} and fill the {item:15842} at the {object:19464}."] = "",
 
 	-- Step 13: Tonga Runetotem
 	-- {npc:3448} Tonga Runetotem · {area:380} Crossroads · {skill:182} Herbalism · {npc:3490} Hula'mahi · {item:2449} Earthroot
@@ -81,4 +81,8 @@ return {
 	-- Step 17: Curing the Sick
 	-- {spell:18960} Teleport: Moonglade · {npc:11802} Dendrite Starblaze · {npc:11798} Bunthen Plainswind · {area:1638} Thunder Bluff
 	["Cast {spell:18960} and see {npc:11802}, then take {npc:11798}'s flight to {area:1638}."] = "Примените {spell:18960} и поговорите: {npc:11802}. Затем летите с помощью персонажа {npc:11798} сюда: {area:1638}.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["From the {area:380} ride north to {area:384} and fill the {item:15842} at the {object:19464}."] = "Из места {area:380} езжайте на север: {area:384} – и наполните {item:15842} здесь: {object:19464}.",
+	-- ["Ride north-east from {area:442} to {area:445} and fill the {item:15844} at the mouth of the cave by the falls."] = "Езжайте на северо-восток ({area:442} → {area:445}) и наполните {item:15844} у входа в пещеру у водопада.",
 }

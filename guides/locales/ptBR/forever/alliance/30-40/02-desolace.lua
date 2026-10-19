@@ -16,7 +16,7 @@ return {
 
 	-- Step 3: Heartswood
 	-- {area:415} Astranaar · {quest:1738} Heartswood · {area:413} Maestra's Post · {quest:65602} What Is Love? · {item:190309} Wooden Figurine · {area:1276} Talondeep Path
-	["From {area:415} ride north-west into the hills: the {quest:1738} is a glowing tree north of the road to {area:413}. If you took {quest:65602}, the {item:190309} lies in a house among the trees north of {area:413} (26.6,22.0). Then back past {area:415} to the {area:1276}."] = "De {area:415}, cavalgue para o noroeste até as colinas: {quest:1738} é uma árvore brilhante ao norte da estrada para {area:413}. Se você pegou {quest:65602}, {item:190309} está numa casa entre as árvores ao norte de {area:413} (26.6,22.0). Depois volte, passando por {area:415}, até {area:1276}.",
+	["From {area:415} head north-west into the hills: the {quest:1738} is a glowing tree north of the road to {area:413}. If you took {quest:65602}, the {item:190309} lies in a house among the trees north of {area:413} (26.6,22.0). Then back past {area:415} to the {area:1276}."] = "",
 	-- {item:190309} Wooden Figurine · {area:413} Maestra's Post
 	["{item:190309}, north of {area:413}"] = "{item:190309}, ao norte de {area:413}",
 
@@ -86,6 +86,7 @@ return {
 	["The Kolkar roam the plains around {area:609}; their ears are for {npc:5752}."] = "Os Kolkar vagam pelas planícies ao redor de {area:609}; as orelhas deles são para {npc:5752}.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["From {area:415} ride north-west into the hills: the {quest:1738} is a glowing tree north of the road to {area:413}. If you took {quest:65602}, the {item:190309} lies in a house among the trees north of {area:413} (26.6,22.0). Then back past {area:415} to the {area:1276}."] = "De {area:415}, cavalgue para o noroeste até as colinas: {quest:1738} é uma árvore brilhante ao norte da estrada para {area:413}. Se você pegou {quest:65602}, {item:190309} está numa casa entre as árvores ao norte de {area:413} (26.6,22.0). Depois volte, passando por {area:415}, até {area:1276}.",
 	-- ["Take the boat to {area:442} from Menethil's docks. {npc:3649} stands in {area:442}, north of the flight master."] = "Pegue o barco para {area:442} nas docas do Porto de Menethil. {npc:3649} fica em {area:442}, ao norte do mestre de voo.",
 	-- ["The {area:1276}"] = "{area:1276}",
 	-- ["{npc:3649}: {item:279915}, from Sylessa in Menethil"] = "{npc:3649}: {item:279915}, de Sylessa, no Porto de Menethil",

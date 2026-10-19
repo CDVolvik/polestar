@@ -52,7 +52,7 @@ return {
 
 	-- Step 10: Dreadmist Peak
 	-- {area:380} Crossroads · {area:384} Dreadmist Peak · {item:15842} Empty Dreadmist Peak Sampler · {object:19464} Dreadmist Peak Pool (no name in this language: may be words) · {npc:3448} Tonga Runetotem · {skill:182} Herbalism · {npc:3490} Hula'mahi · {item:2449} Earthroot
-	["Ride north from the {area:380} to {area:384} and fill the {item:15842} at the {object:19464}, then back to {npc:3448} in the {area:380}. No {skill:182}? {npc:3490} beside him sells {item:2449}, three at a time until he restocks."] = "Cabalga hacia el norte desde {area:380} hasta {area:384} y llena {item:15842} en {object:19464}; luego regresa con {npc:3448} en {area:380}. ¿Sin {skill:182}? {npc:3490}, a su lado, vende {item:2449}, de tres en tres hasta que reabastece.",
+	["Head north from the {area:380} to {area:384} and fill the {item:15842} at the {object:19464}, then back to {npc:3448} in the {area:380}. No {skill:182}? {npc:3490} beside him sells {item:2449}, three at a time until he restocks."] = "",
 	-- {item:2449} Earthroot · {npc:3490} Hula'mahi
 	["{item:2449} from {npc:3490}; herbalists pick it on the plains"] = "{item:2449} de {npc:3490}; los herboristas la recogen en las llanuras",
 
@@ -281,7 +281,7 @@ return {
 
 	-- Step 68: Thunder Bluff
 	-- {npc:246344} Alodan the Hopeful · {area:1638} Thunder Bluff · {area:378} Camp Taurajo · {zone:1412} Mulgore · {npc:2995} Tal
-	["{npc:246344} teaches Paladins in {area:1638}. You have no flight path there yet: fly to {area:378}, ride west through {zone:1412} and up a lift, and take the flight path from {npc:2995} on the central rise."] = "{npc:246344} instruye a los paladines en {area:1638}. Aún no tienes ruta de vuelo ahí: vuela a {area:378}, cabalga hacia el oeste por {zone:1412}, sube por un elevador y consigue la ruta de vuelo de {npc:2995} en la meseta central.",
+	["{npc:246344} teaches Paladins in {area:1638}. You have no flight path there yet: fly to {area:378}, head west through {zone:1412} and up a lift, and take the flight path from {npc:2995} on the central rise."] = "",
 
 	-- Step 69: The Binding
 	-- {npc:5875} Gan'rul Bloodeye · {object:172960} Cleft of Shadow · {item:6626} Dogran's Pendant
@@ -319,10 +319,12 @@ return {
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Bruuz"] = "Bruuz",
+	-- ["Ride north from the {area:380} to {area:384} and fill the {item:15842} at the {object:19464}, then back to {npc:3448} in the {area:380}. No {skill:182}? {npc:3490} beside him sells {item:2449}, three at a time until he restocks."] = "Cabalga hacia el norte desde {area:380} hasta {area:384} y llena {item:15842} en {object:19464}; luego regresa con {npc:3448} en {area:380}. ¿Sin {skill:182}? {npc:3490}, a su lado, vende {item:2449}, de tres en tres hasta que reabastece.",
 	-- ["The {area:380}"] = "{area:380}",
 	-- ["The {area:383}"] = "{area:383}",
 	-- ["The {object:177790} lies at the north edge of the {area:382}, by the Venture Co. tower. It holds the {item:15883} for {quest:30}."] = "{object:177790} está en el borde norte de {area:382}, junto a la torre de Ventura y Cía. Contiene {item:15883} para {quest:30}.",
 	-- ["{npc:2391} in {area:272} teaches {spell:2842}: keep it"] = "{npc:2391}, en {area:272}, enseña {spell:2842}: guárdala",
+	-- ["{npc:246344} teaches Paladins in {area:1638}. You have no flight path there yet: fly to {area:378}, ride west through {zone:1412} and up a lift, and take the flight path from {npc:2995} on the central rise."] = "{npc:246344} instruye a los paladines en {area:1638}. Aún no tienes ruta de vuelo ahí: vuela a {area:378}, cabalga hacia el oeste por {zone:1412}, sube por un elevador y consigue la ruta de vuelo de {npc:2995} en la meseta central.",
 	-- ["{npc:3033}: Cat Form"] = "{npc:3033}: Cat Form",
 	-- ["{npc:3033}: Cure Poison"] = "{npc:3033}: Cure Poison",
 }

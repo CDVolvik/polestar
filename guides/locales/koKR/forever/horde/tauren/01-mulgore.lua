@@ -225,11 +225,11 @@ return {
 
 	-- Step 55: Back to Thunder Bluff
 	-- {area:222} Bloodhoof Village · {area:1639} Elder Rise
-	["Hearth to {area:222} and ride north to {area:1639}."] = "귀환석으로 {area:222}에 간 뒤 북쪽의 {area:1639}(으)로 가세요.",
+	["Hearth to {area:222} and head north to {area:1639}."] = "",
 
 	-- Step 56: Yaw Sharpmane
 	-- {area:222} Bloodhoof Village · {item:15908} Taming Rod · {npc:2956} Adult Plainstrider · {npc:2959} Prairie Stalker
-	["Ride down to {area:222} and tame with the {item:15908}: an {npc:2956} on the plains, a {npc:2959} north of the village, a Swoop to the north-west."] = "{area:222}(으)로 내려가 {item:15908}(으)로 길들이세요: 평원의 {npc:2956}, 마을 북쪽의 {npc:2959}, 북서쪽의 검독수리.",
+	["Head down to {area:222} and tame with the {item:15908}: an {npc:2956} on the plains, a {npc:2959} north of the village, a Swoop to the north-west."] = "",
 	-- {item:15908} Taming Rod
 	["Tame it with the {item:15908}"] = "{item:15908}(으)로 길들이기",
 
@@ -251,6 +251,8 @@ return {
 	-- ["Battleboars graze north of the shrine; the Bristleback quilboar hold the ravine to the north-east. {npc:8554} stands at its eastern end, and the {item:4851} lies on the ground in the camp."] = "전투멧돼지는 제단 북쪽에서 풀을 뜯고, 뾰족털 가시멧돼지는 북동쪽 협곡을 차지하고 있습니다. {npc:8554}은(는) 협곡 동쪽 끝에 서 있고, {item:4851}은(는) 야영지 바닥에 있습니다.",
 	-- ["Flatland Prowlers roam the plains around {area:225}"] = "굶주린 평원퓨마는 {area:225} 주변 평원을 돌아다닙니다",
 	-- ["Galak centaurs and Prairie Wolf Alphas"] = "갈라크일족 켄타우로스와 우두머리 초원늑대",
+	-- ["Hearth to {area:222} and ride north to {area:1639}."] = "귀환석으로 {area:222}에 간 뒤 북쪽의 {area:1639}(으)로 가세요.",
+	-- ["Ride down to {area:222} and tame with the {item:15908}: an {npc:2956} on the plains, a {npc:2959} north of the village, a Swoop to the north-west."] = "{area:222}(으)로 내려가 {item:15908}(으)로 길들이세요: 평원의 {npc:2956}, 마을 북쪽의 {npc:2959}, 북서쪽의 검독수리.",
 	-- ["The Galak centaurs camp on the plains north of the {area:821}; Herak leads them. Prairie Wolf Alphas roam among the wolves."] = "갈라크일족 켄타우로스는 {area:821} 북쪽 평원에 야영하고 있으며, 헤라크가 그들을 이끕니다. 우두머리 초원늑대는 늑대들 사이를 돌아다닙니다.",
 	-- ["The dwarves of the {area:404} carry the Prospector's Picks. Smash them at the forge in {area:222}."] = "{area:404}의 드워프들이 발굴조사단장의 곡괭이를 지니고 있습니다. {area:222}의 대장간에서 부수세요.",
 	-- ["The well lies north of the village. Well Stones sit around the well, {item:4809} lies under the trees nearby. Kill wolves, cougars, plainstriders and swoops on the way for {quest:766} and {quest:761}."] = "우물은 마을 북쪽에 있습니다. 우물돌은 우물 주변에, {item:4809}은(는) 근처 나무 아래에 있습니다. 가는 길에 {quest:766}와(과) {quest:761}을(를) 위해 늑대, 퓨마, 초원타조, 검독수리를 처치하세요.",

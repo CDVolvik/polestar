@@ -52,7 +52,7 @@ return {
 
 	-- Step 10: Dreadmist Peak
 	-- {area:380} Crossroads · {area:384} Dreadmist Peak · {item:15842} Empty Dreadmist Peak Sampler · {object:19464} Dreadmist Peak Pool · {npc:3448} Tonga Runetotem · {skill:182} Herbalism · {npc:3490} Hula'mahi · {item:2449} Earthroot
-	["Ride north from the {area:380} to {area:384} and fill the {item:15842} at the {object:19464}, then back to {npc:3448} in the {area:380}. No {skill:182}? {npc:3490} beside him sells {item:2449}, three at a time until he restocks."] = "從{area:380}向北騎到{area:384}，在{object:19464}裝滿{item:15842}，然後回{area:380}找{npc:3448}。沒有{skill:182}？他旁邊的{npc:3490}出售{item:2449}，每次三個，賣完要等補貨。",
+	["Head north from the {area:380} to {area:384} and fill the {item:15842} at the {object:19464}, then back to {npc:3448} in the {area:380}. No {skill:182}? {npc:3490} beside him sells {item:2449}, three at a time until he restocks."] = "",
 	-- {item:2449} Earthroot · {npc:3490} Hula'mahi
 	["{item:2449} from {npc:3490}; herbalists pick it on the plains"] = "向{npc:3490}購買{item:2449}；草藥學家可在平原上採集",
 
@@ -281,7 +281,7 @@ return {
 
 	-- Step 68: Thunder Bluff
 	-- {npc:246344} Alodan the Hopeful · {area:1638} Thunder Bluff · {area:378} Camp Taurajo · {zone:1412} Mulgore · {npc:2995} Tal
-	["{npc:246344} teaches Paladins in {area:1638}. You have no flight path there yet: fly to {area:378}, ride west through {zone:1412} and up a lift, and take the flight path from {npc:2995} on the central rise."] = "{npc:246344}在{area:1638}訓練聖騎士。你還沒有那裡的飛行路線：飛往{area:378}，向西騎過{zone:1412}並搭升降梯上去，在中央高台向{npc:2995}學習飛行路線。",
+	["{npc:246344} teaches Paladins in {area:1638}. You have no flight path there yet: fly to {area:378}, head west through {zone:1412} and up a lift, and take the flight path from {npc:2995} on the central rise."] = "",
 
 	-- Step 69: The Binding
 	-- {npc:5875} Gan'rul Bloodeye · {object:172960} Cleft of Shadow · {item:6626} Dogran's Pendant
@@ -319,8 +319,10 @@ return {
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Bruuz"] = "布魯茲",
+	-- ["Ride north from the {area:380} to {area:384} and fill the {item:15842} at the {object:19464}, then back to {npc:3448} in the {area:380}. No {skill:182}? {npc:3490} beside him sells {item:2449}, three at a time until he restocks."] = "從{area:380}向北騎到{area:384}，在{object:19464}裝滿{item:15842}，然後回{area:380}找{npc:3448}。沒有{skill:182}？他旁邊的{npc:3490}出售{item:2449}，每次三個，賣完要等補貨。",
 	-- ["The {area:380}"] = "{area:380}",
 	-- ["The {area:383}"] = "{area:383}",
 	-- ["The {object:177790} lies at the north edge of the {area:382}, by the Venture Co. tower. It holds the {item:15883} for {quest:30}."] = "{object:177790}在{area:382}北緣，風險投資公司的塔旁。裡面有{quest:30}所需的{item:15883}。",
 	-- ["{npc:2391} in {area:272} teaches {spell:2842}: keep it"] = "{area:272}的{npc:2391}教授{spell:2842}：先留著",
+	-- ["{npc:246344} teaches Paladins in {area:1638}. You have no flight path there yet: fly to {area:378}, ride west through {zone:1412} and up a lift, and take the flight path from {npc:2995} on the central rise."] = "{npc:246344}在{area:1638}訓練聖騎士。你還沒有那裡的飛行路線：飛往{area:378}，向西騎過{zone:1412}並搭升降梯上去，在中央高台向{npc:2995}學習飛行路線。",
 }

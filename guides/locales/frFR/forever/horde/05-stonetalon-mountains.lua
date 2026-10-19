@@ -9,6 +9,8 @@ return {
 	-- Step 1: Kadrak
 	-- {area:380} Crossroads · {npc:8582} Kadrak · {area:1703} Mor'shan Rampart · {zone:1440} Ashenvale · {item:16783} Bundle of Reports
 	["From the {area:380} follow the road north. {npc:8582} stands on the watch tower of the {area:1703} where the road enters {zone:1440}. Open the {item:16783} he gives you."] = "Depuis {area:380}, suivez la route vers le nord. {npc:8582} se tient sur la tour de guet du {area:1703}, là où la route entre en {zone:1440}. Ouvrez {item:16783} qu'il vous donne.",
+	-- {item:16746} Warsong Report · {item:16783} Bundle of Reports
+	["{item:16746}, from the {item:16783}"] = "",
 
 	-- Step 2: Warsong Scout
 	-- {npc:12862} Warsong Scout
@@ -31,7 +33,7 @@ return {
 	-- Step 6: Va'xug Firefure
 	-- {npc:267214} Va'xug Firefure · {area:415} Astranaar
 	-- plural, as words: Shadowhorn Stags = {npc:3817} Shadowhorn Stag · Ashenvale Bears = {npc:3809} Ashenvale Bear
-	["On the ride west, {npc:267214} is stuck in a ravine south of the main road, south-east of {area:415}. Shadowhorn Stags and Ashenvale Bears roam the woods all around it."] = "En chevauchant vers l'ouest, {npc:267214} est coincé dans un ravin au sud de la route principale, au sud-est d'{area:415}. Des Cerfs à corne noire ({npc:3817}) et des Ours d’Ashenvale ({npc:3809}) parcourent les bois tout autour.",
+	["On the way west, {npc:267214} is stuck in a ravine south of the main road, south-east of {area:415}. Shadowhorn Stags and Ashenvale Bears roam the woods all around it."] = "",
 
 	-- Step 7: A Void Path
 	-- {npc:267214} Va'xug Firefure · {npc:271181} Eye of Kilrogg
@@ -41,7 +43,7 @@ return {
 
 	-- Step 8: Zoram'gar Outpost
 	-- {zone:1440} Ashenvale · {area:415} Astranaar · {area:2897} Zoram'gar Outpost · {area:414} Zoram Strand
-	["Ride west along the main road across {zone:1440}, past {area:415} (Alliance: keep to the road), to the coast. {area:2897} is on the {area:414} in the north-west. Its other quests are for the next visit, at 27."] = "Chevauchez vers l'ouest sur la route principale à travers {zone:1440}, en passant {area:415} (Alliance : restez sur la route), jusqu'à la côte. {area:2897} se trouve sur {area:414} au nord-ouest. Ses autres quêtes sont pour la prochaine visite, au niveau 27.",
+	["Head west along the main road across {zone:1440}, past {area:415} (Alliance: keep to the road), to the coast. {area:2897} is on the {area:414} in the north-west. Its other quests are for the next visit, at 27."] = "",
 
 	-- Step 9: Naga heads
 	["Naga heads"] = "Têtes de nagas",
@@ -51,11 +53,11 @@ return {
 	-- {npc:8582} Kadrak
 	["Back to {npc:8582}"] = "Retour à {npc:8582}",
 	-- {area:431} Splintertree Post · {area:1703} Mor'shan Rampart
-	["Fly to {area:431} and ride south down the road to the {area:1703}."] = "Volez jusqu'au {area:431} et descendez la route vers le sud jusqu'au {area:1703}.",
+	["Fly to {area:431} and head south down the road to the {area:1703}."] = "",
 
 	-- Step 12: Malaka'jin
 	-- {area:380} Crossroads · {zone:1413} Barrens · {area:2539} Malaka'jin
-	["Ride south to the {area:380}, then west along the road out of the {zone:1413} into Stonetalon. The troll village of {area:2539} sits at the entrance of the canyon."] = "Chevauchez vers le sud jusqu'à {area:380}, puis vers l'ouest sur la route pour quitter {zone:1413} et entrer dans les Serres-Rocheuses. Le village troll de {area:2539} se trouve à l'entrée du canyon.",
+	["Head south to the {area:380}, then west along the road out of the {zone:1413} into Stonetalon. The troll village of {area:2539} sits at the entrance of the canyon."] = "",
 
 	-- Step 13: Ziz Fizziks
 	-- {area:1076} Webwinder Path · {quest:1483} Ziz Fizziks · {area:461} Windshear Crag
@@ -115,13 +117,13 @@ return {
 
 	-- Step 22: Malaka'jin
 	-- {area:1076} Webwinder Path · {area:2539} Malaka'jin
-	["Ride back down the {area:1076} to {area:2539}."] = "Redescendez {area:1076} jusqu'à {area:2539}.",
+	["Head back down the {area:1076} to {area:2539}."] = "",
 
 	-- Step 23: To the Undercity
 	-- {area:1497} Undercity
 	["To the {area:1497}"] = "Vers {area:1497}",
 	-- {area:380} Crossroads · {zone:1454} Orgrimmar · {zone:1420} Tirisfal Glades · {area:1497} Undercity · {area:153} Ruins of Lordaeron · {object:36078} Trade Quarter
-	["Ride east to the {area:380} and fly to {zone:1454}. Take the zeppelin from the towers outside {zone:1454} to {zone:1420}; the {area:1497} lies below the {area:153}. The bat handler is in the {object:36078}."] = "Chevauchez vers l'est jusqu'à {area:380} et volez jusqu'à {zone:1454}. Prenez le zeppelin aux tours devant {zone:1454} pour {zone:1420} ; {area:1497} se trouve sous les {area:153}. Le maître des chauves-souris est dans {object:36078}.",
+	["Head east to the {area:380} and fly to {zone:1454}. Take the zeppelin from the towers outside {zone:1454} to {zone:1420}; the {area:1497} lies below the {area:153}. The bat handler is in the {object:36078}."] = "",
 	-- {npc:10181} Lady Sylvanas Windrunner · {object:36126} Royal Quarter · {quest:93739} Exploring the Horde
 	["Speak with {npc:10181}, in the {object:36126}: {quest:93739}"] = "Parlez à {npc:10181}, dans {object:36126} : {quest:93739}",
 
@@ -131,7 +133,7 @@ return {
 
 	-- Step 25: Beren's Peril
 	-- {area:272} Tarren Mill · {zone:1458} Undercity · {area:228} Sepulcher · {area:231} Beren's Peril · {npc:1973} Ravenclaw Guardian · {item:271343} Note Scrap · {object:645153} Offering Stone
-	["If you already know the {area:272} flight path, fly there and skip to {area:272}. Otherwise fly from the {zone:1458} to the {area:228} and ride south down the road past Pyrewood. The Ravenclaw undead haunt the ruins of {area:231} east of the road in the south-east of the forest; a {npc:1973} drops the {item:271343} that leads to the {object:645153}."] = "Si vous connaissez déjà le trajet aérien de {area:272}, volez-y et passez directement à {area:272}. Sinon, volez de {zone:1458} au {area:228} et descendez la route vers le sud en passant Bois-du-Bûcher. Les morts-vivants Ravenclaw hantent les ruines de {area:231} à l'est de la route, au sud-est de la forêt ; un {npc:1973} lâche {item:271343} qui mène à {object:645153}.",
+	["If you already know the {area:272} flight path, fly there and skip to {area:272}. Otherwise fly from the {zone:1458} to the {area:228} and head south down the road past Pyrewood. The Ravenclaw undead haunt the ruins of {area:231} east of the road in the south-east of the forest; a {npc:1973} drops the {item:271343} that leads to the {object:645153}."] = "",
 	-- {item:271343} Note Scrap · {npc:1973} Ravenclaw Guardian
 	["{item:271343}, from a {npc:1973}"] = "{item:271343}, sur un {npc:1973}",
 	-- {item:271350} Tortured Soul
@@ -153,5 +155,12 @@ return {
 	["Follow the road east along the river, then north-east up into the hills to {area:272}."] = "Suivez la route vers l'est le long de la rivière, puis montez vers le nord-est dans les collines jusqu'à {area:272}.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Fly to {area:431} and ride south down the road to the {area:1703}."] = "Volez jusqu'au {area:431} et descendez la route vers le sud jusqu'au {area:1703}.",
+	-- ["If you already know the {area:272} flight path, fly there and skip to {area:272}. Otherwise fly from the {zone:1458} to the {area:228} and ride south down the road past Pyrewood. The Ravenclaw undead haunt the ruins of {area:231} east of the road in the south-east of the forest; a {npc:1973} drops the {item:271343} that leads to the {object:645153}."] = "Si vous connaissez déjà le trajet aérien de {area:272}, volez-y et passez directement à {area:272}. Sinon, volez de {zone:1458} au {area:228} et descendez la route vers le sud en passant Bois-du-Bûcher. Les morts-vivants Ravenclaw hantent les ruines de {area:231} à l'est de la route, au sud-est de la forêt ; un {npc:1973} lâche {item:271343} qui mène à {object:645153}.",
+	-- ["On the ride west, {npc:267214} is stuck in a ravine south of the main road, south-east of {area:415}. Shadowhorn Stags and Ashenvale Bears roam the woods all around it."] = "En chevauchant vers l'ouest, {npc:267214} est coincé dans un ravin au sud de la route principale, au sud-est d'{area:415}. Des Cerfs à corne noire ({npc:3817}) et des Ours d’Ashenvale ({npc:3809}) parcourent les bois tout autour.",
+	-- ["Ride back down the {area:1076} to {area:2539}."] = "Redescendez {area:1076} jusqu'à {area:2539}.",
+	-- ["Ride east to the {area:380} and fly to {zone:1454}. Take the zeppelin from the towers outside {zone:1454} to {zone:1420}; the {area:1497} lies below the {area:153}. The bat handler is in the {object:36078}."] = "Chevauchez vers l'est jusqu'à {area:380} et volez jusqu'à {zone:1454}. Prenez le zeppelin aux tours devant {zone:1454} pour {zone:1420} ; {area:1497} se trouve sous les {area:153}. Le maître des chauves-souris est dans {object:36078}.",
+	-- ["Ride south to the {area:380}, then west along the road out of the {zone:1413} into Stonetalon. The troll village of {area:2539} sits at the entrance of the canyon."] = "Chevauchez vers le sud jusqu'à {area:380}, puis vers l'ouest sur la route pour quitter {zone:1413} et entrer dans les Serres-Rocheuses. Le village troll de {area:2539} se trouve à l'entrée du canyon.",
+	-- ["Ride west along the main road across {zone:1440}, past {area:415} (Alliance: keep to the road), to the coast. {area:2897} is on the {area:414} in the north-west. Its other quests are for the next visit, at 27."] = "Chevauchez vers l'ouest sur la route principale à travers {zone:1440}, en passant {area:415} (Alliance : restez sur la route), jusqu'à la côte. {area:2897} se trouve sur {area:414} au nord-ouest. Ses autres quêtes sont pour la prochaine visite, au niveau 27.",
 	-- ["South-west of Sun Rock lies the burned {area:465}. Plant the Gaea Seeds in the dirt mounds on the valley floor; the fire elementals drop {item:16312}. Bloodfury Harpies and Ambushers nest on the north side, Slayers and Roguefeathers to the south."] = "Au sud-ouest de Roche-Soleil s'étend {area:465} calciné. Plantez les Graines de Gaea ({item:16205}) dans les monticules de terre au fond de la vallée ; les élémentaires de feu lâchent {item:16312}. Harpies et Embusquées Rougefurie nichent au nord, Tueuses et Volplumes au sud.",
 }

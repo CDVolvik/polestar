@@ -16,7 +16,7 @@ return {
 
 	-- Step 3: Heartswood
 	-- {area:415} Astranaar · {quest:1738} Heartswood · {area:413} Maestra's Post · {quest:65602} What Is Love? · {item:190309} Wooden Figurine · {area:1276} Talondeep Path
-	["From {area:415} ride north-west into the hills: the {quest:1738} is a glowing tree north of the road to {area:413}. If you took {quest:65602}, the {item:190309} lies in a house among the trees north of {area:413} (26.6,22.0). Then back past {area:415} to the {area:1276}."] = "從{area:415}向西北騎進山丘：{quest:1738}是前往{area:413}道路北邊一棵發光的樹。如果你接了{quest:65602}，{item:190309}在{area:413}北邊樹林中的一間房子裡（26.6,22.0）。然後經過{area:415}回到{area:1276}。",
+	["From {area:415} head north-west into the hills: the {quest:1738} is a glowing tree north of the road to {area:413}. If you took {quest:65602}, the {item:190309} lies in a house among the trees north of {area:413} (26.6,22.0). Then back past {area:415} to the {area:1276}."] = "",
 	-- {item:190309} Wooden Figurine · {area:413} Maestra's Post
 	["{item:190309}, north of {area:413}"] = "{item:190309}，在{area:413}北邊",
 
@@ -86,6 +86,7 @@ return {
 	["The Kolkar roam the plains around {area:609}; their ears are for {npc:5752}."] = "科卡爾半人馬在{area:609}周圍的平原上遊蕩；牠們的耳朵是給{npc:5752}的。",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["From {area:415} ride north-west into the hills: the {quest:1738} is a glowing tree north of the road to {area:413}. If you took {quest:65602}, the {item:190309} lies in a house among the trees north of {area:413} (26.6,22.0). Then back past {area:415} to the {area:1276}."] = "從{area:415}向西北騎進山丘：{quest:1738}是前往{area:413}道路北邊一棵發光的樹。如果你接了{quest:65602}，{item:190309}在{area:413}北邊樹林中的一間房子裡（26.6,22.0）。然後經過{area:415}回到{area:1276}。",
 	-- ["Take the boat to {area:442} from Menethil's docks. {npc:3649} stands in {area:442}, north of the flight master."] = "在米奈希爾的碼頭搭船前往{area:442}。{npc:3649}站在{area:442}飛行管理員的北邊。",
 	-- ["The {area:1276}"] = "{area:1276}",
 	-- ["{npc:3649}: {item:279915}, from Sylessa in Menethil"] = "{npc:3649}：{item:279915}，來自米奈希爾",

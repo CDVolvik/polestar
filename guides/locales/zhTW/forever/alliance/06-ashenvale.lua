@@ -22,9 +22,9 @@ return {
 
 	-- Step 4: Boat to Auberdine
 	-- {area:17203} Stormwind Harbor · {area:442} Auberdine · {npc:3649} Thundris Windweaver · {zone:1439} Darkshore
-	["From {area:17203} take the boat to {area:442}; {npc:3649} stands at the north end of the village. Then ride south along the road through {zone:1439}."] = "從{area:17203}搭船到{area:442}；{npc:3649}站在村子北端。然後沿道路向南騎過{zone:1439}。",
-	-- {npc:3649} Thundris Windweaver
-	["{npc:3649}: Alexston's reply"] = "{npc:3649}：巴洛斯·艾力克斯頓的回信",
+	["From {area:17203} take the boat to {area:442}; {npc:3649} stands at the north end of the village. Then head south along the road through {zone:1439}."] = "",
+	-- {npc:3649} Thundris Windweaver · {zone:1453} Stormwind
+	["{npc:3649}: Alexston's reply, if you took it in {zone:1453}"] = "",
 
 	-- Step 5: Kerlonian Evershade
 	-- {area:448} Grove of the Ancients · {zone:1439} Darkshore · {item:13536} Horn of Awakening · {zone:1440} Ashenvale · {npc:11219} Liladris Moonriver · {area:413} Maestra's Post
@@ -46,7 +46,7 @@ return {
 
 	-- Step 10: Teronis' Corpse
 	-- {area:441} Lake Falathim · {item:5463} Glowing Gem
-	["Ride west to the shore of {area:441}. Teronis lies among the Saltspittle murlocs; any murloc can drop the {item:5463}."] = "向西騎到{area:441}的岸邊。泰洛尼斯的屍體躺在鹽沫魚人之間；任何魚人都可能掉落{item:5463}。",
+	["Head west to the shore of {area:441}. Teronis lies among the Saltspittle murlocs; any murloc can drop the {item:5463}."] = "",
 
 	-- Step 11: Shrine of Aessina
 	-- {npc:3585} Therysil · {area:416} Shrine of Aessina
@@ -100,7 +100,7 @@ return {
 
 	-- Step 28: Windshear Crag
 	-- {area:421} Mystral Lake · {area:1276} Talondeep Path · {area:461} Windshear Crag · {npc:4080} Kaela Shadowspear · {npc:4077} Gaxim Rustfizzle · {area:1076} Webwinder Path
-	["Ride south past {area:421} into the {area:1276} tunnel; it comes out in Stonetalon's {area:461}. {npc:4080} and {npc:4077} camp on the {area:1076} south-west of the crag."] = "向南騎過{area:421}進入{area:1276}隧道；出口在石爪山脈的{area:461}。{npc:4080}和{npc:4077}在峭壁西南方的{area:1076}紮營。",
+	["Head south past {area:421} into the {area:1276} tunnel; it comes out in Stonetalon's {area:461}. {npc:4080} and {npc:4077} camp on the {area:1076} south-west of the crag."] = "",
 	-- {npc:4201} Ziz Fizziks
 	["{npc:4201}, in the hut north of them"] = "{npc:4201}，在他們北邊的小屋裡",
 
@@ -117,7 +117,7 @@ return {
 	-- {area:150} Menethil Harbor
 	["To {area:150}"] = "前往{area:150}",
 	-- {area:1276} Talondeep Path
-	["Hearthstone on cooldown? Ride back north through the {area:1276}."] = "爐石在冷卻中？向北騎回去穿過{area:1276}。",
+	["Hearthstone on cooldown? Head back north through the {area:1276}."] = "",
 	-- {area:150} Menethil Harbor
 	["Boat to {area:150}"] = "搭船前往{area:150}",
 
@@ -227,7 +227,7 @@ return {
 
 	-- Step 59: Ironforge
 	-- {zone:1437} Wetlands · {area:836} Dun Algaz · {zone:1432} Loch Modan · {zone:1426} Dun Morogh · {area:1537} Ironforge
-	["Ride east along the {zone:1437} road, south through {area:836} into {zone:1432} and west through the tunnel into {zone:1426} to {area:1537}."] = "沿{zone:1437}的道路向東騎，向南穿過{area:836}進入{zone:1432}，再向西穿過隧道進入{zone:1426}，前往{area:1537}。",
+	["Head east along the {zone:1437} road, south through {area:836} into {zone:1432} and west through the tunnel into {zone:1426} to {area:1537}."] = "",
 	-- {npc:1573} Gryth Thurden · {object:32372} Great Forge
 	["{npc:1573}, in the {object:32372}"] = "{npc:1573}，在{object:32372}",
 	-- {item:5352} Book: The Powers Below · {zone:1439} Darkshore · {npc:2786} Gerrig Bonegrip · {object:32383} Forlorn Cavern
@@ -276,6 +276,12 @@ return {
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Follow the coast north to the {area:414}. {npc:3846} camps on the beach; Wrathtail nagas fill the shore."] = "沿海岸向北前往{area:414}。{npc:3846}在海灘上紮營；怒尾納迦遍布海岸。",
+	-- ["From {area:17203} take the boat to {area:442}; {npc:3649} stands at the north end of the village. Then ride south along the road through {zone:1439}."] = "從{area:17203}搭船到{area:442}；{npc:3649}站在村子北端。然後沿道路向南騎過{zone:1439}。",
+	-- ["Hearthstone on cooldown? Ride back north through the {area:1276}."] = "爐石在冷卻中？向北騎回去穿過{area:1276}。",
+	-- ["Ride east along the {zone:1437} road, south through {area:836} into {zone:1432} and west through the tunnel into {zone:1426} to {area:1537}."] = "沿{zone:1437}的道路向東騎，向南穿過{area:836}進入{zone:1432}，再向西穿過隧道進入{zone:1426}，前往{area:1537}。",
+	-- ["Ride south past {area:421} into the {area:1276} tunnel; it comes out in Stonetalon's {area:461}. {npc:4080} and {npc:4077} camp on the {area:1076} south-west of the crag."] = "向南騎過{area:421}進入{area:1276}隧道；出口在石爪山脈的{area:461}。{npc:4080}和{npc:4077}在峭壁西南方的{area:1076}紮營。",
+	-- ["Ride west to the shore of {area:441}. Teronis lies among the Saltspittle murlocs; any murloc can drop the {item:5463}."] = "向西騎到{area:441}的岸邊。泰洛尼斯的屍體躺在鹽沫魚人之間；任何魚人都可能掉落{item:5463}。",
 	-- ["The {area:1025}"] = "{area:1025}",
+	-- ["{npc:3649}: Alexston's reply"] = "{npc:3649}：巴洛斯·艾力克斯頓的回信",
 	-- ["{quest:1009} walks the northern tip of the {area:414} with Wrathtail guards."] = "{quest:1009}帶著怒尾守衛在{area:414}的北端走動。",
 }

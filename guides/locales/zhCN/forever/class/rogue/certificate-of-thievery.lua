@@ -28,7 +28,7 @@ return {
 
 	-- Step 7: Lucius
 	-- {zone:1429} Elwynn Forest · {area:69} Lakeshire · {npc:6966} Lucius · {item:5060} Thieves' Tools
-	["Ride east through {zone:1429} into Redridge, or fly to {area:69}. {npc:6966} waits on the west side of {area:69} and gives you {item:5060}."] = "向东穿过{zone:1429}进入赤脊山，或飞往{area:69}。{npc:6966}在{area:69}西侧等候，会给你{item:5060}。",
+	["Head east through {zone:1429} into Redridge, or fly to {area:69}. {npc:6966} waits on the west side of {area:69} and gives you {item:5060}."] = "",
 
 	-- Step 8: Alther's Mill
 	-- {quest:2282} Alther's Mill · {area:69} Lakeshire · {object:121264} Lucius's Lockbox
@@ -39,5 +39,6 @@ return {
 	["Back to {npc:6966}"] = "回到{npc:6966}那里",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Ride east through {zone:1429} into Redridge, or fly to {area:69}. {npc:6966} waits on the west side of {area:69} and gives you {item:5060}."] = "向东穿过{zone:1429}进入赤脊山，或飞往{area:69}。{npc:6966}在{area:69}西侧等候，会给你{item:5060}。",
 	-- ["{quest:2282} stands east of {area:69}, up off the road. Open {item:7869} there."] = "{quest:2282}位于{area:69}东边，道路上方。在那里打开{item:7869}。",
 }

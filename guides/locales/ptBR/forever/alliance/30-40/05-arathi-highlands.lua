@@ -111,7 +111,7 @@ return {
 
 	-- Step 28: Quae
 	-- {area:320} Refuge Pointe · {npc:2712} Quae · {npc:2713} Kinelory · {area:314} Go'Shek Farm
-	["Ride back north-east past {area:320}; {npc:2712} and {npc:2713} camp in the hills north of {area:314}."] = "Cavalgue de volta para nordeste, passando o {area:320}; {npc:2712} e {npc:2713} acampam nas colinas ao norte da {area:314}.",
+	["Head back north-east past {area:320}; {npc:2712} and {npc:2713} camp in the hills north of {area:314}."] = "",
 
 	-- Step 29: Forsaken Courier
 	-- {area:314} Go'Shek Farm
@@ -194,5 +194,6 @@ return {
 	["South-east along the loch to the dig site."] = "Para sudeste ao longo do lago até o sítio de escavação.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Ride back north-east past {area:320}; {npc:2712} and {npc:2713} camp in the hills north of {area:314}."] = "Cavalgue de volta para nordeste, passando o {area:320}; {npc:2712} e {npc:2713} acampam nas colinas ao norte da {area:314}.",
 	-- ["{npc:252085}, in the City of Dalaran"] = "{npc:252085}, na Cidade de Dalaran",
 }

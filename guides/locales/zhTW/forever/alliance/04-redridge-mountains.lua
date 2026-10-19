@@ -12,8 +12,8 @@ return {
 	["Level 18 and 20 spells"] = "18級和20級法術",
 	-- {npc:1646} Baros Alexston · {area:442} Auberdine
 	["{npc:1646}: Thundris' letter from {area:442}"] = "{npc:1646}：來自{area:442}的桑迪斯的信",
-	-- {npc:3649} Thundris Windweaver · {area:442} Auberdine
-	["For {npc:3649}, on the return to {area:442} (06-ashenvale)"] = "給{npc:3649}，在回到{area:442}時（06-ashenvale）",
+	-- {quest:97914} Expanding Horizons · {npc:3649} Thundris Windweaver · {area:442} Auberdine
+	["Only once {quest:97914} is handed in: for {npc:3649}, back in {area:442} (06-ashenvale)"] = "",
 
 	-- Step 2: Shaman training
 	["Shaman training"] = "薩滿訓練",
@@ -38,7 +38,7 @@ return {
 
 	-- Step 4: Half Pendant of Aquatic Endurance
 	-- {area:108} Sentinel Hill · {object:177790} Strange Lockbox
-	["Fly to {area:108} and ride north-west to the coast: the {object:177790} lies on the sea floor off the shore. Then ride east along the road through Elwynn to Redridge."] = "飛往{area:108}，向西北騎往海岸：{object:177790}在岸外的海底。然後沿著道路向東穿過艾爾文森林前往赤脊山。",
+	["Fly to {area:108} and head north-west to the coast: the {object:177790} lies on the sea floor off the shore. Then head east along the road through Elwynn to Redridge."] = "",
 	-- {item:15882} Half Pendant of Aquatic Endurance · {object:177790} Strange Lockbox
 	["{item:15882}: the {object:177790}"] = "{item:15882}：{object:177790}",
 
@@ -87,11 +87,8 @@ return {
 	["Murloc Flesheaters and Tidecallers line the south shore east of the bridge. Any of them can carry a {item:1467} or a fin."] = "魚人食腐者和魚人招潮者分布在橋東邊的南岸。他們每一個都可能帶著{item:1467}或魚鰭。",
 
 	-- Step 14: Alther's Mill
-	-- plural, as words: Greater Tarantulas = {npc:505} Greater Tarantula · Blackrock Renegades = {npc:437} Blackrock Renegade
-	["Greater Tarantulas crawl on the slopes around the mill north-east of the lake; Blackrock Renegades hold the mill itself."] = "巨型狼蛛在湖東北方伐木場周圍的山坡上爬行；黑石叛節者佔據伐木場本身。",
-	-- {item:3014} Battleworn Axe
-	-- plural, as words: Blackrock Renegades = {npc:437} Blackrock Renegade
-	["{item:3014}: the Blackrock Renegades at the mill"] = "{item:3014}：磨坊的黑石叛節者",
+	-- plural, as words: Greater Tarantulas = {npc:505} Greater Tarantula
+	["Greater Tarantulas crawl on the slopes around the mill north-east of the lake."] = "",
 
 	-- Step 15: Galardell Valley
 	-- {npc:703} Lieutenant Fangore · {area:2099} Stonewatch Keep
@@ -99,22 +96,27 @@ return {
 	-- {item:1075} Shadowhide Pendant
 	["{item:1075}: any Shadowhide gnoll"] = "{item:1075}：任何暗皮豺狼人",
 
-	-- Step 16: Back to Lakeshire
+	-- Step 16: Blackrock camps
+	["Blackrock camps"] = "",
+	-- {area:2099} Stonewatch Keep
+	["South down the valley's east side to the Blackrock camps east of {area:2099}. Renegades, Grunts and Outrunners fill them; keep east of the keep, whose orcs are elite."] = "",
+
+	-- Step 17: Back to Lakeshire
 	-- {area:69} Lakeshire
 	["Back to {area:69}"] = "返回{area:69}",
 	-- {npc:344} Magistrate Solomon
 	["{npc:344}, in the town hall"] = "{npc:344}，在市政廳",
 
-	-- Step 17: Render's Valley
+	-- Step 18: Render's Valley
 	-- {area:69} Lakeshire · {area:95} Redridge Canyons · {area:997} Render's Valley
 	-- plural, as words: Blackrock Champions = {npc:435} Blackrock Champion
 	["Head north out of {area:69} up the {area:95} to {area:997}. Blackrock Champions camp in the valley."] = "向北離開{area:69}，沿著{area:95}前往{area:997}。黑石勇士在山谷中紮營。",
 
-	-- Step 18: Corporal Keeshan
+	-- Step 19: Corporal Keeshan
 	-- {zone:1428} Burning Steppes · {area:69} Lakeshire
 	["Keeshan hides at the very north end of the valley, by the {zone:1428} border. Escort him down to {area:69}; Blackrock orcs ambush you on the way."] = "基沙恩躲在山谷最北端、{zone:1428}邊界旁。護送他下到{area:69}；途中黑石獸人會伏擊你。",
 
-	-- Step 19: Lakeshire
+	-- Step 20: Lakeshire
 	-- {npc:903} Guard Howe
 	["{npc:903}, by the gryphons south of the bridge"] = "{npc:903}，在橋南邊的獅鷲旁",
 	-- {zone:1431} Duskwood · {area:1002} Three Corners · {area:42} Darkshire
@@ -122,6 +124,10 @@ return {
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Bellygrub"] = "貝利格拉布",
+	-- ["Fly to {area:108} and ride north-west to the coast: the {object:177790} lies on the sea floor off the shore. Then ride east along the road through Elwynn to Redridge."] = "飛往{area:108}，向西北騎往海岸：{object:177790}在岸外的海底。然後沿著道路向東穿過艾爾文森林前往赤脊山。",
+	-- ["For {npc:3649}, on the return to {area:442} (06-ashenvale)"] = "給{npc:3649}，在回到{area:442}時（06-ashenvale）",
+	-- ["Greater Tarantulas crawl on the slopes around the mill north-east of the lake; Blackrock Renegades hold the mill itself."] = "巨型狼蛛在湖東北方伐木場周圍的山坡上爬行；黑石叛節者佔據伐木場本身。",
 	-- ["Redridge Mongrels and other gnolls hold the hills east of {area:1002}, north of the road; Redridge Thrashers prowl among them, Poachers camp south of the road. Dire Condors and Great Goretusks roam the same hills."] = "混血赤脊山豺狼人和其他豺狼人佔據{area:1002}東邊、道路北側的山丘；赤脊山鞭笞者在牠們之間徘徊，赤脊山偷獵者在道路南側紮營。恐鷲和巨型血牙野豬在同樣的山丘上遊蕩。",
 	-- ["{item:3014}: any Blackrock orc"] = "{item:3014}：任何黑石獸人",
+	-- ["{item:3014}: the Blackrock Renegades at the mill"] = "{item:3014}：磨坊的黑石叛節者",
 }

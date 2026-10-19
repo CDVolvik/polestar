@@ -26,7 +26,7 @@ return {
 
 	-- Step 4: Wrenix the Wretched
 	-- {area:392} Ratchet · {zone:1413} Barrens · {npc:7161} Wrenix the Wretched · {item:7970} E.C.A.C. · {item:5060} Thieves' Tools
-	["Fly or ride to {area:392} on the {zone:1413} coast. {npc:7161} stands in town with his Gizmotronic Apparatus: buy an {item:7970} and {item:5060} from the apparatus before you go."] = "飞往或骑行到{zone:1413}海岸的{area:392}。{npc:7161}和他的机械设备站在镇上：出发前从设备处购买一个{item:7970}和{item:5060}。",
+	["Fly or walk to {area:392} on the {zone:1413} coast. {npc:7161} stands in town with his Gizmotronic Apparatus: buy an {item:7970} and {item:5060} from the apparatus before you go."] = "",
 
 	-- Step 5: Southsea Treasure
 	-- {area:392} Ratchet · {item:7970} E.C.A.C.
@@ -40,7 +40,7 @@ return {
 
 	-- Step 7: Fenwick Thatros
 	-- {zone:1454} Orgrimmar · {zone:1458} Undercity · {quest:1998} Fenwick Thatros · {area:228} Sepulcher
-	["Take the zeppelin from {zone:1454} to the {zone:1458} and ride south into Silverpine. {quest:1998} stands north-east of the {area:228}."] = "从{zone:1454}乘飞艇前往{zone:1458}，然后向南骑行进入银松森林。{quest:1998}站在{area:228}东北边。",
+	["Take the zeppelin from {zone:1454} to the {zone:1458} and head south into Silverpine. {quest:1998} stands north-east of the {area:228}."] = "",
 
 	-- Step 9: Ambermill
 	-- {area:233} Ambermill · {object:103815} Ambermill Strongbox
@@ -49,4 +49,8 @@ return {
 	-- Step 10: Back to Mennet Carkad
 	-- {npc:6467} Mennet Carkad
 	["Back to {npc:6467}"] = "回到{npc:6467}处",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Fly or ride to {area:392} on the {zone:1413} coast. {npc:7161} stands in town with his Gizmotronic Apparatus: buy an {item:7970} and {item:5060} from the apparatus before you go."] = "飞往或骑行到{zone:1413}海岸的{area:392}。{npc:7161}和他的机械设备站在镇上：出发前从设备处购买一个{item:7970}和{item:5060}。",
+	-- ["Take the zeppelin from {zone:1454} to the {zone:1458} and ride south into Silverpine. {quest:1998} stands north-east of the {area:228}."] = "从{zone:1454}乘飞艇前往{zone:1458}，然后向南骑行进入银松森林。{quest:1998}站在{area:228}东北边。",
 }

@@ -8,7 +8,7 @@
 return {
 	-- Step 1: Hammertoe's Digsite
 	-- {zone:1432} Loch Modan · {zone:1418} Badlands · {npc:2910} Prospector Ryedol · {npc:2860} Sigrun Ironhew
-	["Ride back west to the road and follow it south out of {zone:1432} through the pass into the {zone:1418}. {npc:2910} and {npc:2860} camp side by side at the dig."] = "서쪽 길로 돌아가 남쪽으로 따라가 고개를 지나 {zone:1432}에서 {zone:1418}(으)로 가십시오. {npc:2910}와(과) {npc:2860}은(는) 발굴 현장에 나란히 야영하고 있습니다.",
+	["Head back west to the road and follow it south out of {zone:1432} through the pass into the {zone:1418}. {npc:2910} and {npc:2860} camp side by side at the dig."] = "",
 
 	-- Step 2: Shadowforge camp
 	["Shadowforge camp"] = "어둠괴철로단 야영지",
@@ -17,7 +17,7 @@ return {
 
 	-- Step 3: The excavation crate
 	["The excavation crate"] = "발굴 상자",
-	["Ride north-east to the abandoned dig; the supply crate lies there among the Dustbelcher ogres."] = "북동쪽 버려진 발굴 현장으로 가십시오. 보급품 상자는 먼지목도리 오우거들 사이에 있습니다.",
+	["Head north-east to the abandoned dig; the supply crate lies there among the Dustbelcher ogres."] = "",
 
 	-- Step 4: Hammertoe's Digsite
 	-- {area:1517} Uldaman
@@ -43,7 +43,7 @@ return {
 
 	-- Step 9: Lotwil Veriatus
 	-- {area:1878} Dustbowl · {npc:2921} Lotwil Veriatus
-	["Ride west into the {area:1878}; {npc:2921} works by his machines in the middle of it."] = "서쪽 {area:1878}(으)로 가십시오. {npc:2921}은(는) 그 한가운데 기계 옆에서 일합니다.",
+	["Head west into the {area:1878}; {npc:2921} works by his machines in the middle of it."] = "",
 
 	-- Step 10: Lesser Rock Elementals
 	-- plural, as words: Lesser Rock Elementals = {npc:2735} Lesser Rock Elemental
@@ -78,11 +78,11 @@ return {
 	-- {object:126260} Ancient Chest
 	["The {object:126260}"] = "{object:126260}",
 	-- {zone:1418} Badlands · {npc:2745} Ambassador Infernus
-	["Ride north-east to the dwarven ruins in the north of the {zone:1418}; the chest sits among the Shadowforge dwarves. {npc:2745} nearby is elite: give him room."] = "북동쪽 {zone:1418} 북부의 드워프 폐허로 가십시오. 궤짝은 어둠괴철로단 드워프들 사이에 있습니다. 근처의 {npc:2745}은(는) 정예이니 거리를 두십시오.",
+	["Head north-east to the dwarven ruins in the north of the {zone:1418}; the chest sits among the Shadowforge dwarves. {npc:2745} nearby is elite: give him room."] = "",
 
 	-- Step 18: Theldurin the Lost
 	-- {area:345} Agmond's End
-	["Ride south to {area:345}."] = "남쪽 {area:345}(으)로 가십시오.",
+	["Head south to {area:345}."] = "",
 	-- {npc:2786} Gerrig Bonegrip · {zone:1455} Ironforge
 	["for {npc:2786} in {zone:1455}: keep it"] = "{zone:1455}의 {npc:2786}에게: 보관하십시오",
 
@@ -166,5 +166,10 @@ return {
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Follow the road west across the north of {zone:1443} to the ruins of {area:2405}; the wrecked ship's chest lies on the shore just west of them."] = "길을 따라 {zone:1443} 북부를 가로질러 서쪽 {area:2405} 폐허로 가십시오. 난파선의 궤짝은 그 바로 서쪽 해안에 있습니다.",
+	-- ["Ride back west to the road and follow it south out of {zone:1432} through the pass into the {zone:1418}. {npc:2910} and {npc:2860} camp side by side at the dig."] = "서쪽 길로 돌아가 남쪽으로 따라가 고개를 지나 {zone:1432}에서 {zone:1418}(으)로 가십시오. {npc:2910}와(과) {npc:2860}은(는) 발굴 현장에 나란히 야영하고 있습니다.",
+	-- ["Ride north-east to the abandoned dig; the supply crate lies there among the Dustbelcher ogres."] = "북동쪽 버려진 발굴 현장으로 가십시오. 보급품 상자는 먼지목도리 오우거들 사이에 있습니다.",
+	-- ["Ride north-east to the dwarven ruins in the north of the {zone:1418}; the chest sits among the Shadowforge dwarves. {npc:2745} nearby is elite: give him room."] = "북동쪽 {zone:1418} 북부의 드워프 폐허로 가십시오. 궤짝은 어둠괴철로단 드워프들 사이에 있습니다. 근처의 {npc:2745}은(는) 정예이니 거리를 두십시오.",
+	-- ["Ride south to {area:345}."] = "남쪽 {area:345}(으)로 가십시오.",
+	-- ["Ride west into the {area:1878}; {npc:2921} works by his machines in the middle of it."] = "서쪽 {area:1878}(으)로 가십시오. {npc:2921}은(는) 그 한가운데 기계 옆에서 일합니다.",
 	-- ["{npc:11863}'s tower stands on the hill east of the wreck."] = "{npc:11863}의 탑은 난파선 동쪽 언덕에 있습니다.",
 }

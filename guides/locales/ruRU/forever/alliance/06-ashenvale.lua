@@ -22,9 +22,9 @@ return {
 
 	-- Step 4: Boat to Auberdine
 	-- {area:17203} Stormwind Harbor · {area:442} Auberdine · {npc:3649} Thundris Windweaver · {zone:1439} Darkshore
-	["From {area:17203} take the boat to {area:442}; {npc:3649} stands at the north end of the village. Then ride south along the road through {zone:1439}."] = "Из места {area:17203} плывите на корабле сюда: {area:442}; {npc:3649} стоит в северной части деревни. Затем скачите на юг по дороге через зону {zone:1439}.",
-	-- {npc:3649} Thundris Windweaver
-	["{npc:3649}: Alexston's reply"] = "{npc:3649}: ответ Алекстона",
+	["From {area:17203} take the boat to {area:442}; {npc:3649} stands at the north end of the village. Then head south along the road through {zone:1439}."] = "",
+	-- {npc:3649} Thundris Windweaver · {zone:1453} Stormwind
+	["{npc:3649}: Alexston's reply, if you took it in {zone:1453}"] = "",
 
 	-- Step 5: Kerlonian Evershade
 	-- {area:448} Grove of the Ancients · {zone:1439} Darkshore · {item:13536} Horn of Awakening · {zone:1440} Ashenvale · {npc:11219} Liladris Moonriver · {area:413} Maestra's Post
@@ -46,7 +46,7 @@ return {
 
 	-- Step 10: Teronis' Corpse
 	-- {area:441} Lake Falathim · {item:5463} Glowing Gem
-	["Ride west to the shore of {area:441}. Teronis lies among the Saltspittle murlocs; any murloc can drop the {item:5463}."] = "Скачите на запад к берегу озера ({area:441}). Труп Терониса лежит среди мурлоков из племени Соленой Слюны; с любого мурлока может выпасть {item:5463}.",
+	["Head west to the shore of {area:441}. Teronis lies among the Saltspittle murlocs; any murloc can drop the {item:5463}."] = "",
 
 	-- Step 11: Shrine of Aessina
 	-- {npc:3585} Therysil · {area:416} Shrine of Aessina
@@ -100,7 +100,7 @@ return {
 
 	-- Step 28: Windshear Crag
 	-- {area:421} Mystral Lake · {area:1276} Talondeep Path · {area:461} Windshear Crag · {npc:4080} Kaela Shadowspear · {npc:4077} Gaxim Rustfizzle · {area:1076} Webwinder Path
-	["Ride south past {area:421} into the {area:1276} tunnel; it comes out in Stonetalon's {area:461}. {npc:4080} and {npc:4077} camp on the {area:1076} south-west of the crag."] = "Скачите на юг мимо места {area:421} в туннель ({area:1276}); он выходит здесь: {area:461} (Когтистые горы). {npc:4080} и {npc:4077} стоят лагерем здесь: {area:1076}, к юго-западу от утеса.",
+	["Head south past {area:421} into the {area:1276} tunnel; it comes out in Stonetalon's {area:461}. {npc:4080} and {npc:4077} camp on the {area:1076} south-west of the crag."] = "",
 	-- {npc:4201} Ziz Fizziks
 	["{npc:4201}, in the hut north of them"] = "{npc:4201}, в хижине к северу от них",
 
@@ -117,7 +117,7 @@ return {
 	-- {area:150} Menethil Harbor
 	["To {area:150}"] = "В место {area:150}",
 	-- {area:1276} Talondeep Path
-	["Hearthstone on cooldown? Ride back north through the {area:1276}."] = "Камень возвращения еще не готов? Скачите обратно на север через {area:1276}.",
+	["Hearthstone on cooldown? Head back north through the {area:1276}."] = "",
 	-- {area:150} Menethil Harbor
 	["Boat to {area:150}"] = "Корабль: {area:150}",
 
@@ -227,7 +227,7 @@ return {
 
 	-- Step 59: Ironforge
 	-- {zone:1437} Wetlands · {area:836} Dun Algaz · {zone:1432} Loch Modan · {zone:1426} Dun Morogh · {area:1537} Ironforge
-	["Ride east along the {zone:1437} road, south through {area:836} into {zone:1432} and west through the tunnel into {zone:1426} to {area:1537}."] = "Скачите на восток по дороге ({zone:1437}), на юг через {area:836} в зону {zone:1432} и на запад через туннель в зону {zone:1426} сюда: {area:1537}.",
+	["Head east along the {zone:1437} road, south through {area:836} into {zone:1432} and west through the tunnel into {zone:1426} to {area:1537}."] = "",
 	-- {npc:1573} Gryth Thurden · {object:32372} Great Forge
 	["{npc:1573}, in the {object:32372}"] = "{npc:1573}, {object:32372}",
 	-- {item:5352} Book: The Powers Below · {zone:1439} Darkshore · {npc:2786} Gerrig Bonegrip · {object:32383} Forlorn Cavern
@@ -276,6 +276,12 @@ return {
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Follow the coast north to the {area:414}. {npc:3846} camps on the beach; Wrathtail nagas fill the shore."] = "Идите вдоль побережья на север сюда: {area:414}. {npc:3846} стоит лагерем на пляже; берег кишит нагами из клана Зловещего Хвоста.",
+	-- ["From {area:17203} take the boat to {area:442}; {npc:3649} stands at the north end of the village. Then ride south along the road through {zone:1439}."] = "Из места {area:17203} плывите на корабле сюда: {area:442}; {npc:3649} стоит в северной части деревни. Затем скачите на юг по дороге через зону {zone:1439}.",
+	-- ["Hearthstone on cooldown? Ride back north through the {area:1276}."] = "Камень возвращения еще не готов? Скачите обратно на север через {area:1276}.",
+	-- ["Ride east along the {zone:1437} road, south through {area:836} into {zone:1432} and west through the tunnel into {zone:1426} to {area:1537}."] = "Скачите на восток по дороге ({zone:1437}), на юг через {area:836} в зону {zone:1432} и на запад через туннель в зону {zone:1426} сюда: {area:1537}.",
+	-- ["Ride south past {area:421} into the {area:1276} tunnel; it comes out in Stonetalon's {area:461}. {npc:4080} and {npc:4077} camp on the {area:1076} south-west of the crag."] = "Скачите на юг мимо места {area:421} в туннель ({area:1276}); он выходит здесь: {area:461} (Когтистые горы). {npc:4080} и {npc:4077} стоят лагерем здесь: {area:1076}, к юго-западу от утеса.",
+	-- ["Ride west to the shore of {area:441}. Teronis lies among the Saltspittle murlocs; any murloc can drop the {item:5463}."] = "Скачите на запад к берегу озера ({area:441}). Труп Терониса лежит среди мурлоков из племени Соленой Слюны; с любого мурлока может выпасть {item:5463}.",
 	-- ["The {area:1025}"] = "{area:1025}",
+	-- ["{npc:3649}: Alexston's reply"] = "{npc:3649}: ответ Алекстона",
 	-- ["{quest:1009} walks the northern tip of the {area:414} with Wrathtail guards."] = "{quest:1009} ходит по северной оконечности места {area:414} со стражами из клана Зловещего Хвоста.",
 }

@@ -20,7 +20,7 @@ return {
 
 	-- Step 3: Cliffspring Falls
 	-- {area:442} Auberdine · {area:445} Cliffspring Falls · {item:15844} Empty Cliffspring Falls Sampler
-	["Ride north-east from {area:442} to {area:445} and fill the {item:15844} at the mouth of the cave by the falls."] = "Chevauchez vers le nord-est depuis {area:442} jusqu'à {area:445} et remplissez l'{item:15844} à l'entrée de la grotte près des chutes.",
+	["Head north-east from {area:442} to {area:445} and fill the {item:15844} at the mouth of the cave by the falls."] = "",
 
 	-- Step 4: Alanndarian Nightsong
 	-- {area:442} Auberdine
@@ -53,7 +53,7 @@ return {
 
 	-- Step 12: Dreadmist Peak
 	-- {area:380} Crossroads · {area:384} Dreadmist Peak · {item:15842} Empty Dreadmist Peak Sampler · {object:19464} Dreadmist Peak Pool (no name in this language: may be words)
-	["From the {area:380} ride north to {area:384} and fill the {item:15842} at the {object:19464}."] = "Depuis {area:380}, chevauchez vers le nord jusqu'à {area:384} et remplissez l'{item:15842} au {object:19464}.",
+	["From the {area:380} head north to {area:384} and fill the {item:15842} at the {object:19464}."] = "",
 
 	-- Step 13: Tonga Runetotem
 	-- {npc:3448} Tonga Runetotem · {area:380} Crossroads · {skill:182} Herbalism · {npc:3490} Hula'mahi · {item:2449} Earthroot
@@ -87,5 +87,7 @@ return {
 	-- ["Cast Teleport: {zone:1450} and see {npc:11802}, then take {npc:11798}'s flight to {area:1638}."] = "Lancez Téléportation : {zone:1450} et parlez à {npc:11802}, puis prenez le vol de {npc:11798} pour {area:1638}.",
 	-- ["Cast Teleport: {zone:1450}. {npc:11802} is in {area:2361}. Then fly to {area:442}."] = "Lancez Téléportation : {zone:1450}. {npc:11802} se trouve à {area:2361}. Prenez ensuite un vol pour {area:442}.",
 	-- ["Cast Teleport: {zone:1450}. {npc:11802} is in {area:2361}. {npc:11798} flies druids to {area:1638}; fly on to the {area:380} from there."] = "Lancez Téléportation : {zone:1450}. {npc:11802} se trouve à {area:2361}. {npc:11798} emmène les druides à {area:1638} ; de là, prenez un vol pour {area:380}.",
+	-- ["From the {area:380} ride north to {area:384} and fill the {item:15842} at the {object:19464}."] = "Depuis {area:380}, chevauchez vers le nord jusqu'à {area:384} et remplissez l'{item:15842} au {object:19464}.",
+	-- ["Ride north-east from {area:442} to {area:445} and fill the {item:15844} at the mouth of the cave by the falls."] = "Chevauchez vers le nord-est depuis {area:442} jusqu'à {area:445} et remplissez l'{item:15844} à l'entrée de la grotte près des chutes.",
 	-- ["The Lunar Fungal Blooms grow in the moonkin caves in the hills just east of {area:442}; the moonkin there are irritable. {item:2449} needs {skill:182}: herbalists pick it all over {zone:1439}, anyone else buys it from {npc:1313} ({skill:171} Supplies) in {zone:1453} or on the Auction House."] = "Les Floraisons fongiques lunaires poussent dans les grottes des séléniens dans les collines juste à l'est de {area:442} ; les séléniens y sont irritables. {item:2449} demande {skill:182} : les herboristes en cueillent partout en {zone:1439}, les autres l'achètent à {npc:1313} (fournitures d'{skill:171}) à {zone:1453} ou à l'hôtel des ventes.",
 }

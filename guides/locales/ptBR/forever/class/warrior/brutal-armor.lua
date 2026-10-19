@@ -51,7 +51,7 @@ return {
 	["Hillsbrad Miners"] = "Mineradores de Eira dos Montes",
 	-- {zone:1424} Hillsbrad Foothills · {item:7127} Powdered Azurite · {zone:1454} Orgrimmar · {zone:1420} Tirisfal Glades · {zone:1421} Silverpine Forest
 	-- plural, as words: Hillsbrad Miners = {npc:2269} Hillsbrad Miner
-	["The Hillsbrad Miners work the mine in the west of {zone:1424}; they drop the {item:7127}. Take the zeppelin from {zone:1454} to {zone:1420} and ride south through {zone:1421}."] = "Os Mineradores de Eira dos Montes trabalham na mina no oeste de {zone:1424}; eles deixam cair a {item:7127}. Pegue o zepelim de {zone:1454} até {zone:1420} e cavalgue para o sul por {zone:1421}.",
+	["The Hillsbrad Miners work the mine in the west of {zone:1424}; they drop the {item:7127}. Take the zeppelin from {zone:1454} to {zone:1420} and head south through {zone:1421}."] = "",
 	-- {item:7127} Powdered Azurite
 	-- plural, as words: Hillsbrad Miners = {npc:2269} Hillsbrad Miner
 	["{item:7127} from the Hillsbrad Miners"] = "{item:7127} dos Mineradores de Eira dos Montes",
@@ -97,4 +97,7 @@ return {
 	["The Dragonmaw orcs camp in the middle of the {zone:1437}, south of the road; Raiders, Swamprunners, Centurions, Shadowwarders and Bonewarders all drop the Sturdy Dragonmaw Shinbones."] = "Os orcs Presa do Dragão acampam no meio de {zone:1437}, ao sul da estrada; Saqueadores, Corre-brejos, Centuriões, Guarda-sombras e Guarda-ossos deixam cair Tíbias Firmes de Presa do Dragão.",
 	-- plural, as words: Sturdy Dragonmaw Shinbones = {item:7134} Sturdy Dragonmaw Shinbone
 	["Sturdy Dragonmaw Shinbones"] = "Tíbias Firmes de Presa do Dragão",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["The Hillsbrad Miners work the mine in the west of {zone:1424}; they drop the {item:7127}. Take the zeppelin from {zone:1454} to {zone:1420} and ride south through {zone:1421}."] = "Os Mineradores de Eira dos Montes trabalham na mina no oeste de {zone:1424}; eles deixam cair a {item:7127}. Pegue o zepelim de {zone:1454} até {zone:1420} e cavalgue para o sul por {zone:1421}.",
 }

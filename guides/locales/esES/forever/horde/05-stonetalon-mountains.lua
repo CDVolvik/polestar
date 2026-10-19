@@ -9,6 +9,8 @@ return {
 	-- Step 1: Kadrak
 	-- {area:380} Crossroads · {npc:8582} Kadrak · {area:1703} Mor'shan Rampart · {zone:1440} Ashenvale · {item:16783} Bundle of Reports
 	["From the {area:380} follow the road north. {npc:8582} stands on the watch tower of the {area:1703} where the road enters {zone:1440}. Open the {item:16783} he gives you."] = "Desde {area:380}, sigue el camino al norte. {npc:8582} está en la torre de vigilancia de {area:1703}, donde el camino entra en {zone:1440}. Abre {item:16783} que te da.",
+	-- {item:16746} Warsong Report · {item:16783} Bundle of Reports
+	["{item:16746}, from the {item:16783}"] = "",
 
 	-- Step 2: Warsong Scout
 	-- {npc:12862} Warsong Scout
@@ -31,7 +33,7 @@ return {
 	-- Step 6: Va'xug Firefure
 	-- {npc:267214} Va'xug Firefure · {area:415} Astranaar
 	-- plural, as words: Shadowhorn Stags = {npc:3817} Shadowhorn Stag · Ashenvale Bears = {npc:3809} Ashenvale Bear
-	["On the ride west, {npc:267214} is stuck in a ravine south of the main road, south-east of {area:415}. Shadowhorn Stags and Ashenvale Bears roam the woods all around it."] = "De camino al oeste, {npc:267214} está atrapado en un barranco al sur del camino principal, al sureste de {area:415}. Los Venados Necraste y los Osos de Vallefresno recorren los bosques a su alrededor.",
+	["On the way west, {npc:267214} is stuck in a ravine south of the main road, south-east of {area:415}. Shadowhorn Stags and Ashenvale Bears roam the woods all around it."] = "",
 
 	-- Step 7: A Void Path
 	-- {npc:267214} Va'xug Firefure · {npc:271181} Eye of Kilrogg
@@ -41,7 +43,7 @@ return {
 
 	-- Step 8: Zoram'gar Outpost
 	-- {zone:1440} Ashenvale · {area:415} Astranaar · {area:2897} Zoram'gar Outpost · {area:414} Zoram Strand
-	["Ride west along the main road across {zone:1440}, past {area:415} (Alliance: keep to the road), to the coast. {area:2897} is on the {area:414} in the north-west. Its other quests are for the next visit, at 27."] = "Cabalga al oeste por el camino principal a través de {zone:1440}, pasando {area:415} (Alianza: no te salgas del camino), hasta la costa. {area:2897} está en {area:414}, en el noroeste. Sus otras misiones son para la próxima visita, a nivel 27.",
+	["Head west along the main road across {zone:1440}, past {area:415} (Alliance: keep to the road), to the coast. {area:2897} is on the {area:414} in the north-west. Its other quests are for the next visit, at 27."] = "",
 
 	-- Step 9: Naga heads
 	["Naga heads"] = "Cabezas de naga",
@@ -51,11 +53,11 @@ return {
 	-- {npc:8582} Kadrak
 	["Back to {npc:8582}"] = "Vuelve con {npc:8582}",
 	-- {area:431} Splintertree Post · {area:1703} Mor'shan Rampart
-	["Fly to {area:431} and ride south down the road to the {area:1703}."] = "Vuela a {area:431} y cabalga al sur por el camino hasta {area:1703}.",
+	["Fly to {area:431} and head south down the road to the {area:1703}."] = "",
 
 	-- Step 12: Malaka'jin
 	-- {area:380} Crossroads · {zone:1413} Barrens · {area:2539} Malaka'jin
-	["Ride south to the {area:380}, then west along the road out of the {zone:1413} into Stonetalon. The troll village of {area:2539} sits at the entrance of the canyon."] = "Cabalga al sur hasta {area:380} y luego al oeste por el camino, saliendo de {zone:1413} hacia Sierra Espolón. La aldea trol de {area:2539} está en la entrada del cañón.",
+	["Head south to the {area:380}, then west along the road out of the {zone:1413} into Stonetalon. The troll village of {area:2539} sits at the entrance of the canyon."] = "",
 
 	-- Step 13: Ziz Fizziks
 	-- {area:1076} Webwinder Path · {quest:1483} Ziz Fizziks · {area:461} Windshear Crag
@@ -115,13 +117,13 @@ return {
 
 	-- Step 22: Malaka'jin
 	-- {area:1076} Webwinder Path · {area:2539} Malaka'jin
-	["Ride back down the {area:1076} to {area:2539}."] = "Vuelve a bajar por {area:1076} hasta {area:2539}.",
+	["Head back down the {area:1076} to {area:2539}."] = "",
 
 	-- Step 23: To the Undercity
 	-- {area:1497} Undercity
 	["To the {area:1497}"] = "A {area:1497}",
 	-- {area:380} Crossroads · {zone:1454} Orgrimmar · {zone:1420} Tirisfal Glades · {area:1497} Undercity · {area:153} Ruins of Lordaeron · {object:36078} Trade Quarter
-	["Ride east to the {area:380} and fly to {zone:1454}. Take the zeppelin from the towers outside {zone:1454} to {zone:1420}; the {area:1497} lies below the {area:153}. The bat handler is in the {object:36078}."] = "Cabalga al este hasta {area:380} y vuela a {zone:1454}. Toma el zepelín en las torres de fuera de {zone:1454} hacia {zone:1420}; {area:1497} está bajo {area:153}. El cuidador de murciélagos está en {object:36078}.",
+	["Head east to the {area:380} and fly to {zone:1454}. Take the zeppelin from the towers outside {zone:1454} to {zone:1420}; the {area:1497} lies below the {area:153}. The bat handler is in the {object:36078}."] = "",
 	-- {npc:10181} Lady Sylvanas Windrunner · {object:36126} Royal Quarter · {quest:93739} Exploring the Horde
 	["Speak with {npc:10181}, in the {object:36126}: {quest:93739}"] = "Habla con {npc:10181}, en {object:36126}: {quest:93739}",
 
@@ -131,7 +133,7 @@ return {
 
 	-- Step 25: Beren's Peril
 	-- {area:272} Tarren Mill · {zone:1458} Undercity · {area:228} Sepulcher · {area:231} Beren's Peril · {npc:1973} Ravenclaw Guardian · {item:271343} Note Scrap · {object:645153} Offering Stone
-	["If you already know the {area:272} flight path, fly there and skip to {area:272}. Otherwise fly from the {zone:1458} to the {area:228} and ride south down the road past Pyrewood. The Ravenclaw undead haunt the ruins of {area:231} east of the road in the south-east of the forest; a {npc:1973} drops the {item:271343} that leads to the {object:645153}."] = "Si ya conoces la ruta de vuelo de {area:272}, vuela allí y salta a {area:272}. Si no, vuela de {zone:1458} a {area:228} y cabalga al sur por el camino pasando la Aldea Piroleña. Los no-muertos Corvozarpa rondan las ruinas de {area:231}, al este del camino en el sureste del bosque; un {npc:1973} suelta {item:271343}, que lleva a {object:645153}.",
+	["If you already know the {area:272} flight path, fly there and skip to {area:272}. Otherwise fly from the {zone:1458} to the {area:228} and head south down the road past Pyrewood. The Ravenclaw undead haunt the ruins of {area:231} east of the road in the south-east of the forest; a {npc:1973} drops the {item:271343} that leads to the {object:645153}."] = "",
 	-- {item:271343} Note Scrap · {npc:1973} Ravenclaw Guardian
 	["{item:271343}, from a {npc:1973}"] = "{item:271343}, de un {npc:1973}",
 	-- {item:271350} Tortured Soul
@@ -153,5 +155,12 @@ return {
 	["Follow the road east along the river, then north-east up into the hills to {area:272}."] = "Sigue el camino al este junto al río y luego sube al noreste por las colinas hasta {area:272}.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Fly to {area:431} and ride south down the road to the {area:1703}."] = "Vuela a {area:431} y cabalga al sur por el camino hasta {area:1703}.",
+	-- ["If you already know the {area:272} flight path, fly there and skip to {area:272}. Otherwise fly from the {zone:1458} to the {area:228} and ride south down the road past Pyrewood. The Ravenclaw undead haunt the ruins of {area:231} east of the road in the south-east of the forest; a {npc:1973} drops the {item:271343} that leads to the {object:645153}."] = "Si ya conoces la ruta de vuelo de {area:272}, vuela allí y salta a {area:272}. Si no, vuela de {zone:1458} a {area:228} y cabalga al sur por el camino pasando la Aldea Piroleña. Los no-muertos Corvozarpa rondan las ruinas de {area:231}, al este del camino en el sureste del bosque; un {npc:1973} suelta {item:271343}, que lleva a {object:645153}.",
+	-- ["On the ride west, {npc:267214} is stuck in a ravine south of the main road, south-east of {area:415}. Shadowhorn Stags and Ashenvale Bears roam the woods all around it."] = "De camino al oeste, {npc:267214} está atrapado en un barranco al sur del camino principal, al sureste de {area:415}. Los Venados Necraste y los Osos de Vallefresno recorren los bosques a su alrededor.",
+	-- ["Ride back down the {area:1076} to {area:2539}."] = "Vuelve a bajar por {area:1076} hasta {area:2539}.",
+	-- ["Ride east to the {area:380} and fly to {zone:1454}. Take the zeppelin from the towers outside {zone:1454} to {zone:1420}; the {area:1497} lies below the {area:153}. The bat handler is in the {object:36078}."] = "Cabalga al este hasta {area:380} y vuela a {zone:1454}. Toma el zepelín en las torres de fuera de {zone:1454} hacia {zone:1420}; {area:1497} está bajo {area:153}. El cuidador de murciélagos está en {object:36078}.",
+	-- ["Ride south to the {area:380}, then west along the road out of the {zone:1413} into Stonetalon. The troll village of {area:2539} sits at the entrance of the canyon."] = "Cabalga al sur hasta {area:380} y luego al oeste por el camino, saliendo de {zone:1413} hacia Sierra Espolón. La aldea trol de {area:2539} está en la entrada del cañón.",
+	-- ["Ride west along the main road across {zone:1440}, past {area:415} (Alliance: keep to the road), to the coast. {area:2897} is on the {area:414} in the north-west. Its other quests are for the next visit, at 27."] = "Cabalga al oeste por el camino principal a través de {zone:1440}, pasando {area:415} (Alianza: no te salgas del camino), hasta la costa. {area:2897} está en {area:414}, en el noroeste. Sus otras misiones son para la próxima visita, a nivel 27.",
 	-- ["South-west of Sun Rock lies the burned {area:465}. Plant the Gaea Seeds in the dirt mounds on the valley floor; the fire elementals drop {item:16312}. Bloodfury Harpies and Ambushers nest on the north side, Slayers and Roguefeathers to the south."] = "Al suroeste del Refugio Roca del Sol está {area:465}, quemado. Planta las Semillas de Gaia en los túmulos de tierra del fondo del valle; los elementales de fuego sueltan {item:16312}. Las arpías Furia Sangrienta y las emboscadoras anidan en el lado norte; las destripadoras y las plumabribonas, al sur.",
 }

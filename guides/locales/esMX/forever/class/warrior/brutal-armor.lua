@@ -51,7 +51,7 @@ return {
 	["Hillsbrad Miners"] = "Mineros de Trabalomas ({npc:2269})",
 	-- {zone:1424} Hillsbrad Foothills · {item:7127} Powdered Azurite · {zone:1454} Orgrimmar · {zone:1420} Tirisfal Glades · {zone:1421} Silverpine Forest
 	-- plural, as words: Hillsbrad Miners = {npc:2269} Hillsbrad Miner
-	["The Hillsbrad Miners work the mine in the west of {zone:1424}; they drop the {item:7127}. Take the zeppelin from {zone:1454} to {zone:1420} and ride south through {zone:1421}."] = "Los Mineros de Trabalomas ({npc:2269}) trabajan en la mina del oeste de {zone:1424}; sueltan la {item:7127}. Toma el zepelín de {zone:1454} a {zone:1420} y cabalga al sur por {zone:1421}.",
+	["The Hillsbrad Miners work the mine in the west of {zone:1424}; they drop the {item:7127}. Take the zeppelin from {zone:1454} to {zone:1420} and head south through {zone:1421}."] = "",
 	-- {item:7127} Powdered Azurite
 	-- plural, as words: Hillsbrad Miners = {npc:2269} Hillsbrad Miner
 	["{item:7127} from the Hillsbrad Miners"] = "{item:7127} de los Mineros de Trabalomas ({npc:2269})",
@@ -97,4 +97,7 @@ return {
 	["The Dragonmaw orcs camp in the middle of the {zone:1437}, south of the road; Raiders, Swamprunners, Centurions, Shadowwarders and Bonewarders all drop the Sturdy Dragonmaw Shinbones."] = "Los orcos Faucedraco acampan en medio de {zone:1437}, al sur del camino; Asaltantes, Correpantanos, Centuriones, Depositarios de sombras y Guardahuesos sueltan las Tibias de Faucedraco robustas ({item:7134}).",
 	-- plural, as words: Sturdy Dragonmaw Shinbones = {item:7134} Sturdy Dragonmaw Shinbone
 	["Sturdy Dragonmaw Shinbones"] = "Tibias de Faucedraco robustas ({item:7134})",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["The Hillsbrad Miners work the mine in the west of {zone:1424}; they drop the {item:7127}. Take the zeppelin from {zone:1454} to {zone:1420} and ride south through {zone:1421}."] = "Los Mineros de Trabalomas ({npc:2269}) trabajan en la mina del oeste de {zone:1424}; sueltan la {item:7127}. Toma el zepelín de {zone:1454} a {zone:1420} y cabalga al sur por {zone:1421}.",
 }

@@ -225,11 +225,11 @@ return {
 
 	-- Step 55: Back to Thunder Bluff
 	-- {area:222} Bloodhoof Village · {area:1639} Elder Rise
-	["Hearth to {area:222} and ride north to {area:1639}."] = "Use a Pedra de Regresso para ir à {area:222} e siga para o norte até o {area:1639}.",
+	["Hearth to {area:222} and head north to {area:1639}."] = "",
 
 	-- Step 56: Yaw Sharpmane
 	-- {area:222} Bloodhoof Village · {item:15908} Taming Rod · {npc:2956} Adult Plainstrider · {npc:2959} Prairie Stalker
-	["Ride down to {area:222} and tame with the {item:15908}: an {npc:2956} on the plains, a {npc:2959} north of the village, a Swoop to the north-west."] = "Desça até a {area:222} e domestique com a {item:15908}: um {npc:2956} nas planícies, um {npc:2959} ao norte da aldeia e um Rapineiro a noroeste.",
+	["Head down to {area:222} and tame with the {item:15908}: an {npc:2956} on the plains, a {npc:2959} north of the village, a Swoop to the north-west."] = "",
 	-- {item:15908} Taming Rod
 	["Tame it with the {item:15908}"] = "Domestique-o com a {item:15908}",
 
@@ -250,6 +250,8 @@ return {
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Flatland Prowlers roam the plains around {area:225}"] = "Predadores das Estepes vagam pelas planícies em volta do {area:225}",
 	-- ["Galak centaurs and Prairie Wolf Alphas"] = "Centauros Galath e Lobos-da-pradaria Alfa",
+	-- ["Hearth to {area:222} and ride north to {area:1639}."] = "Use a Pedra de Regresso para ir à {area:222} e siga para o norte até o {area:1639}.",
+	-- ["Ride down to {area:222} and tame with the {item:15908}: an {npc:2956} on the plains, a {npc:2959} north of the village, a Swoop to the north-west."] = "Desça até a {area:222} e domestique com a {item:15908}: um {npc:2956} nas planícies, um {npc:2959} ao norte da aldeia e um Rapineiro a noroeste.",
 	-- ["The Galak centaurs camp on the plains north of the {area:821}; Herak leads them. Prairie Wolf Alphas roam among the wolves."] = "Os centauros Galath acampam nas planícies ao norte de {area:821}; Herak os lidera. Os Lobos-da-pradaria Alfa vagam entre os lobos.",
 	-- ["The dwarves of the {area:404} carry the Prospector's Picks. Smash them at the forge in {area:222}."] = "Os anões do {area:404} carregam as Picaretas do Prospector. Destrua-as na forja da {area:222}.",
 	-- ["The well lies north of the village. Well Stones sit around the well, {item:4809} lies under the trees nearby. Kill wolves, cougars, plainstriders and swoops on the way for {quest:766} and {quest:761}."] = "O poço fica ao norte da aldeia. Pedras de Poço ficam em volta do poço, e {item:4809} fica sob as árvores próximas. Mate lobos, pumas, pinotes e rapineiros no caminho para {quest:766} e {quest:761}.",

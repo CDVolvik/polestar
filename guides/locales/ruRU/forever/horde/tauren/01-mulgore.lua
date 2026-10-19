@@ -225,11 +225,11 @@ return {
 
 	-- Step 55: Back to Thunder Bluff
 	-- {area:222} Bloodhoof Village · {area:1639} Elder Rise
-	["Hearth to {area:222} and ride north to {area:1639}."] = "Камень возвращения: {area:222}, затем езжайте на север сюда: {area:1639}.",
+	["Hearth to {area:222} and head north to {area:1639}."] = "",
 
 	-- Step 56: Yaw Sharpmane
 	-- {area:222} Bloodhoof Village · {item:15908} Taming Rod · {npc:2956} Adult Plainstrider · {npc:2959} Prairie Stalker
-	["Ride down to {area:222} and tame with the {item:15908}: an {npc:2956} on the plains, a {npc:2959} north of the village, a Swoop to the north-west."] = "Спуститесь сюда: {area:222} и приручите предметом {item:15908}: монстра {npc:2956} на равнинах, монстра {npc:2959} к северу от деревни и перепелятника к северо-западу.",
+	["Head down to {area:222} and tame with the {item:15908}: an {npc:2956} on the plains, a {npc:2959} north of the village, a Swoop to the north-west."] = "",
 	-- {item:15908} Taming Rod
 	["Tame it with the {item:15908}"] = "Приручите его предметом {item:15908}",
 
@@ -251,6 +251,8 @@ return {
 	-- ["Battleboars graze north of the shrine; the Bristleback quilboar hold the ravine to the north-east. {npc:8554} stands at its eastern end, and the {item:4851} lies on the ground in the camp."] = "К северу от святилища пасутся боевые вепри; дыбогривые свинобразы занимают ущелье к северо-востоку. {npc:8554} стоит в его восточной части, а {item:4851} лежит на земле в лагере.",
 	-- ["Flatland Prowlers roam the plains around {area:225}"] = "Хищники плоскогорья бродят по равнинам вокруг места {area:225}",
 	-- ["Galak centaurs and Prairie Wolf Alphas"] = "Кентавры Галак и могучие волки прерий",
+	-- ["Hearth to {area:222} and ride north to {area:1639}."] = "Камень возвращения: {area:222}, затем езжайте на север сюда: {area:1639}.",
+	-- ["Ride down to {area:222} and tame with the {item:15908}: an {npc:2956} on the plains, a {npc:2959} north of the village, a Swoop to the north-west."] = "Спуститесь сюда: {area:222} и приручите предметом {item:15908}: монстра {npc:2956} на равнинах, монстра {npc:2959} к северу от деревни и перепелятника к северо-западу.",
 	-- ["The Galak centaurs camp on the plains north of the {area:821}; Herak leads them. Prairie Wolf Alphas roam among the wolves."] = "Кентавры племени Галак стоят лагерем на равнинах к северу от места {area:821}; их ведет Херак. Среди волков бродят могучие волки прерий.",
 	-- ["The dwarves of the {area:404} carry the Prospector's Picks. Smash them at the forge in {area:222}."] = "Кирки геолога – у дворфов ({area:404}). Разбейте их в кузнице ({area:222}).",
 	-- ["The well lies north of the village. Well Stones sit around the well, {item:4809} lies under the trees nearby. Kill wolves, cougars, plainstriders and swoops on the way for {quest:766} and {quest:761}."] = "Колодец – к северу от деревни. Камни колодца ({item:4808}) лежат вокруг него, {item:4809} – под деревьями рядом. По пути убивайте волков, пум, долгоногов и перепелятников для заданий {quest:766} и {quest:761}.",

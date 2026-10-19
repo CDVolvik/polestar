@@ -51,7 +51,7 @@ return {
 	["Hillsbrad Miners"] = "Хилсбрадские шахтеры",
 	-- {zone:1424} Hillsbrad Foothills · {item:7127} Powdered Azurite · {zone:1454} Orgrimmar · {zone:1420} Tirisfal Glades · {zone:1421} Silverpine Forest
 	-- plural, as words: Hillsbrad Miners = {npc:2269} Hillsbrad Miner
-	["The Hillsbrad Miners work the mine in the west of {zone:1424}; they drop the {item:7127}. Take the zeppelin from {zone:1454} to {zone:1420} and ride south through {zone:1421}."] = "Хилсбрадские шахтеры работают в шахте на западе зоны {zone:1424}; с них падает {item:7127}. Летите на дирижабле: {zone:1454} → {zone:1420}, затем езжайте на юг через зону {zone:1421}.",
+	["The Hillsbrad Miners work the mine in the west of {zone:1424}; they drop the {item:7127}. Take the zeppelin from {zone:1454} to {zone:1420} and head south through {zone:1421}."] = "",
 	-- {item:7127} Powdered Azurite
 	-- plural, as words: Hillsbrad Miners = {npc:2269} Hillsbrad Miner
 	["{item:7127} from the Hillsbrad Miners"] = "{item:7127} с хилсбрадских шахтеров",
@@ -97,4 +97,7 @@ return {
 	["The Dragonmaw orcs camp in the middle of the {zone:1437}, south of the road; Raiders, Swamprunners, Centurions, Shadowwarders and Bonewarders all drop the Sturdy Dragonmaw Shinbones."] = "Орки клана Драконьей Пасти стоят лагерем в центре зоны {zone:1437}, к югу от дороги; с налетчиков, болотных бегунов, центурионов, хранителей теней и костостражей падают прочные берцовые кости Драконьей Пасти.",
 	-- plural, as words: Sturdy Dragonmaw Shinbones = {item:7134} Sturdy Dragonmaw Shinbone
 	["Sturdy Dragonmaw Shinbones"] = "Прочные берцовые кости Драконьей Пасти",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["The Hillsbrad Miners work the mine in the west of {zone:1424}; they drop the {item:7127}. Take the zeppelin from {zone:1454} to {zone:1420} and ride south through {zone:1421}."] = "Хилсбрадские шахтеры работают в шахте на западе зоны {zone:1424}; с них падает {item:7127}. Летите на дирижабле: {zone:1454} → {zone:1420}, затем езжайте на юг через зону {zone:1421}.",
 }

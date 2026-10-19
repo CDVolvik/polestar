@@ -101,7 +101,7 @@ return {
 
 	-- Step 23: Thunder Bluff
 	-- {area:1638} Thunder Bluff · {area:378} Camp Taurajo · {zone:1412} Mulgore · {area:222} Bloodhoof Village · {npc:2995} Tal
-	["Fly to {area:1638} if you know the flight path. If not, fly to {area:378}, ride west into {zone:1412} past {area:222} to {area:1638} and take its flight path from {npc:2995} on the central rise."] = "비행 경로를 안다면 {area:1638}(으)로 날아가세요. 모른다면 {area:378}(으)로 날아가 서쪽 {zone:1412}(으)로 {area:222}을(를) 지나 {area:1638}까지 간 뒤, 중앙 고지의 {npc:2995}에게서 비행 경로를 얻으세요.",
+	["Fly to {area:1638} if you know the flight path. If not, fly to {area:378}, head west into {zone:1412} past {area:222} to {area:1638} and take its flight path from {npc:2995} on the central rise."] = "",
 	-- {npc:3057} Cairne Bloodhoof · {area:1638} Thunder Bluff · {quest:93739} Exploring the Horde
 	["Speak with {npc:3057}, in {area:1638}: {quest:93739}"] = "{area:1638}의 {npc:3057}와(과) 대화하세요: {quest:93739}",
 
@@ -216,6 +216,7 @@ return {
 	["The next guide flies on from here to {zone:1454}."] = "다음 가이드는 여기서 {zone:1454}(으)로 날아갑니다.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Fly to {area:1638} if you know the flight path. If not, fly to {area:378}, ride west into {zone:1412} past {area:222} to {area:1638} and take its flight path from {npc:2995} on the central rise."] = "비행 경로를 안다면 {area:1638}(으)로 날아가세요. 모른다면 {area:378}(으)로 날아가 서쪽 {zone:1412}(으)로 {area:222}을(를) 지나 {area:1638}까지 간 뒤, 중앙 고지의 {npc:2995}에게서 비행 경로를 얻으세요.",
 	-- ["Shadumbra"] = "샤둠브라",
 	-- ["Sharptalon"] = "뾰족발톱",
 	-- ["The {area:1718}"] = "{area:1718}",

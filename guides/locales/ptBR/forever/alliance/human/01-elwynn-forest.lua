@@ -328,7 +328,7 @@ return {
 
 	-- Step 68: Surena Caledon
 	-- {area:87} Goldshire · {area:62} Brackwell Pumpkin Patch · {npc:881} Surena Caledon
-	["Ride back out through {area:87} and east along the road to the {area:62}. {npc:881} (level 9) stands by its farmhouse."] = "Saia de novo passando por {area:87} e siga a estrada para o leste até {area:62}. {npc:881} (nível 9) fica junto à casa da fazenda.",
+	["Head back out through {area:87} and east along the road to the {area:62}. {npc:881} (level 9) stands by its farmhouse."] = "Volte por {area:87} e siga para leste pela estrada até {area:62}. {npc:881} (nível 9) fica perto da casa da fazenda.",
 
 	-- Step 69: The Binding
 	-- {npc:6122} Gakin the Darkbinder · {item:6928} Bloodstone Choker · {object:2164} Slaughtered Lamb
@@ -344,7 +344,7 @@ return {
 	-- Step 71: Henze Faulk
 	-- {area:87} Goldshire · {area:86} Stone Cairn Lake · {npc:6172} Henze Faulk · {item:6866} Symbol of Life · {item:6846} Defias Script
 	-- plural, as words: Defias Rogue Wizards = {npc:474} Defias Rogue Wizard
-	["Ride back out through {area:87} and east to {area:86}. {npc:6172} lies south of the lake: use the {item:6866} on him. The Defias Rogue Wizards around him carry the {item:6846}."] = "Saia de novo passando por {area:87} e siga para o leste até {area:86}. {npc:6172} está caído ao sul do lago: use o {item:6866} nele. Os Teurgos Proscritos Défias ao redor dele carregam o {item:6846}.",
+	["Head back out through {area:87} and east to {area:86}. {npc:6172} lies south of the lake: use the {item:6866} on him. The Defias Rogue Wizards around him carry the {item:6846}."] = "Volte por {area:87} e siga para leste até {area:86}. {npc:6172} está ao sul do lago: use o {item:6866} nele. Os Magos Desonestos Defias ao redor carregam o {item:6846}.",
 	-- {item:6866} Symbol of Life · {npc:6172} Henze Faulk
 	["Use the {item:6866} on {npc:6172}"] = "Use o {item:6866} em {npc:6172}",
 	-- {item:6846} Defias Script
@@ -356,12 +356,17 @@ return {
 	-- {npc:6171} Duthorian Rall
 	["{npc:6171}: Redemption"] = "{npc:6171}: Redenção",
 
-	-- Step 73: Sentinel Hill
-	-- {zone:1436} Westfall · {area:108} Sentinel Hill · {npc:523} Thor
-	["Follow the road west past Westbrook into {zone:1436}, then south along it to {area:108}. {npc:523}, the gryphon master, stands on the hill."] = "Siga a estrada para o oeste, passando pela Ribeira d'Oeste, até {zone:1436}; depois, para o sul por ela até {area:108}. {npc:523}, o mestre de grifos, fica no morro.",
+	-- Step 73: Westbrook Garrison
+	-- {area:120} Westbrook Garrison · {zone:1436} Westfall · {npc:963} Deputy Rainer
+	["Follow the road west to the {area:120}, on the way into {zone:1436}. {npc:963} stands outside the barracks."] = "Siga a estrada para oeste até o {area:120}, no caminho para {zone:1436}. {npc:963} fica do lado de fora do quartel.",
+	-- {npc:963} Deputy Rainer · {npc:234} Gryan Stoutmantle · {area:108} Sentinel Hill
+	["{npc:963}: for {npc:234} at {area:108}"] = "{npc:963}: para {npc:234} em {area:108}",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Follow the road west past Westbrook into {zone:1436}, then south along it to {area:108}. {npc:523}, the gryphon master, stands on the hill."] = "Siga a estrada para o oeste, passando pela Ribeira d'Oeste, até {zone:1436}; depois, para o sul por ela até {area:108}. {npc:523}, o mestre de grifos, fica no morro.",
 	-- ["Murloc Foragers and Lurkers line the river south of the bridge. {npc:473}, a Defias, walks the {area:62} west of it. Finish the Prowlers and Young Forest Bears on the way."] = "Murlocs Colhedores e Murlocs Tocaieiros ocupam o rio ao sul da ponte. {npc:473}, um Défias, anda por {area:62}, a oeste dele. Termine os Predadores e Jovens Ursos da Floresta no caminho.",
+	-- ["Ride back out through {area:87} and east along the road to the {area:62}. {npc:881} (level 9) stands by its farmhouse."] = "Saia de novo passando por {area:87} e siga a estrada para o leste até {area:62}. {npc:881} (nível 9) fica junto à casa da fazenda.",
+	-- ["Ride back out through {area:87} and east to {area:86}. {npc:6172} lies south of the lake: use the {item:6866} on him. The Defias Rogue Wizards around him carry the {item:6846}."] = "Saia de novo passando por {area:87} e siga para o leste até {area:86}. {npc:6172} está caído ao sul do lago: use o {item:6866} nele. Os Teurgos Proscritos Défias ao redor dele carregam o {item:6846}.",
 	-- ["{area:57}'s mouth"] = "Boca de {area:57}",
 	-- ["{item:1006}: Princess"] = "{item:1006}: Princesa",
 }

@@ -28,7 +28,7 @@ return {
 
 	-- Step 4: Half Pendant of Aquatic Endurance
 	-- {area:442} Auberdine · {zone:1453} Stormwind · {area:108} Sentinel Hill · {object:177790} Strange Lockbox
-	["Take the boat from {area:442} to {zone:1453} and fly to {area:108}. Ride north-west to the coast: the {object:177790} lies on the sea floor off the shore."] = "{area:442}에서 배를 타고 {zone:1453}(으)로 간 뒤 {area:108}(으)로 날아가세요. 북서쪽 해안으로 가면 {object:177790}이(가) 해안 앞바다 바닥에 있습니다.",
+	["Take the boat from {area:442} to {zone:1453} and fly to {area:108}. Head north-west to the coast: the {object:177790} lies on the sea floor off the shore."] = "",
 
 	-- Step 5: Pendant of the Sea Lion
 	-- {spell:18960} Teleport: Moonglade · {item:15885} Pendant of the Sea Lion · {area:2362} Shrine of Remulos · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {area:702} Rut'theran Village
@@ -60,4 +60,7 @@ return {
 	-- Step 11: Pendant of the Sea Lion
 	-- {spell:18960} Teleport: Moonglade · {item:15885} Pendant of the Sea Lion · {area:2362} Shrine of Remulos · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {npc:11798} Bunthen Plainswind · {area:1638} Thunder Bluff
 	["Cast {spell:18960}. Join the two halves into the {item:15885} near the {area:2362}, on the north-west shore of the lake, then see {npc:11802} in {area:2361}. {npc:11798} flies druids to {area:1638}."] = "{spell:18960}을(를) 시전하세요. 호수 북서쪽 기슭의 {area:2362} 근처에서 반쪽 두 개를 합쳐 {item:15885}을(를) 만든 뒤, {area:2361}의 {npc:11802}을(를) 만나세요. {npc:11798}이(가) 드루이드를 {area:1638}(으)로 태워 줍니다.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Take the boat from {area:442} to {zone:1453} and fly to {area:108}. Ride north-west to the coast: the {object:177790} lies on the sea floor off the shore."] = "{area:442}에서 배를 타고 {zone:1453}(으)로 간 뒤 {area:108}(으)로 날아가세요. 북서쪽 해안으로 가면 {object:177790}이(가) 해안 앞바다 바닥에 있습니다.",
 }

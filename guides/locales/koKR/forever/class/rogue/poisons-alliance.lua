@@ -24,7 +24,7 @@ return {
 
 	-- Step 3: Master Mathias Shaw
 	-- {zone:1453} Stormwind · {object:2100} Old Town
-	["Ride north through Elwynn to {zone:1453}; Mathias Shaw is at SI:7 in {object:2100}."] = "엘윈 숲을 지나 북쪽 {zone:1453}(으)로 달려가십시오. 마티아스 쇼는 {object:2100}의 SI:7에 있습니다.",
+	["Head north through Elwynn to {zone:1453}; Mathias Shaw is at SI:7 in {object:2100}."] = "",
 
 	-- Step 4: Doc Mixilpixil
 	-- {npc:7207} Doc Mixilpixil
@@ -39,4 +39,7 @@ return {
 	-- Step 6: Back to Doc Mixilpixil
 	-- {npc:7207} Doc Mixilpixil
 	["Back to {npc:7207}"] = "{npc:7207}에게 돌아가기",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Ride north through Elwynn to {zone:1453}; Mathias Shaw is at SI:7 in {object:2100}."] = "엘윈 숲을 지나 북쪽 {zone:1453}(으)로 달려가십시오. 마티아스 쇼는 {object:2100}의 SI:7에 있습니다.",
 }

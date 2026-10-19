@@ -28,7 +28,7 @@ return {
 
 	-- Step 7: Lucius
 	-- {zone:1429} Elwynn Forest · {area:69} Lakeshire · {npc:6966} Lucius · {item:5060} Thieves' Tools
-	["Ride east through {zone:1429} into Redridge, or fly to {area:69}. {npc:6966} waits on the west side of {area:69} and gives you {item:5060}."] = "{zone:1429}을(를) 지나 동쪽의 붉은마루 산맥으로 가거나 {area:69}(으)로 날아가십시오. {npc:6966}은(는) {area:69} 서쪽에서 기다리며 {item:5060}을(를) 줍니다.",
+	["Head east through {zone:1429} into Redridge, or fly to {area:69}. {npc:6966} waits on the west side of {area:69} and gives you {item:5060}."] = "",
 
 	-- Step 8: Alther's Mill
 	-- {quest:2282} Alther's Mill · {area:69} Lakeshire · {object:121264} Lucius's Lockbox
@@ -39,5 +39,6 @@ return {
 	["Back to {npc:6966}"] = "{npc:6966}에게 돌아가기",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Ride east through {zone:1429} into Redridge, or fly to {area:69}. {npc:6966} waits on the west side of {area:69} and gives you {item:5060}."] = "{zone:1429}을(를) 지나 동쪽의 붉은마루 산맥으로 가거나 {area:69}(으)로 날아가십시오. {npc:6966}은(는) {area:69} 서쪽에서 기다리며 {item:5060}을(를) 줍니다.",
 	-- ["{quest:2282} stands east of {area:69}, up off the road. Open {item:7869} there."] = "{quest:2282}은(는) {area:69} 동쪽, 길에서 벗어난 언덕 위에 있습니다. 그곳에서 {item:7869}을(를) 여십시오.",
 }

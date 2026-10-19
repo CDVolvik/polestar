@@ -225,11 +225,11 @@ return {
 
 	-- Step 55: Back to Thunder Bluff
 	-- {area:222} Bloodhoof Village · {area:1639} Elder Rise
-	["Hearth to {area:222} and ride north to {area:1639}."] = "Ruhestein nach {area:222} und reite nach Norden zur {area:1639}.",
+	["Hearth to {area:222} and head north to {area:1639}."] = "",
 
 	-- Step 56: Yaw Sharpmane
 	-- {area:222} Bloodhoof Village · {item:15908} Taming Rod · {npc:2956} Adult Plainstrider · {npc:2959} Prairie Stalker
-	["Ride down to {area:222} and tame with the {item:15908}: an {npc:2956} on the plains, a {npc:2959} north of the village, a Swoop to the north-west."] = "Reite hinunter nach {area:222} und zähm mit {item:15908}: einen {npc:2956} auf den Ebenen, einen {npc:2959} nördlich des Dorfs und einen Sturzflieger im Nordwesten.",
+	["Head down to {area:222} and tame with the {item:15908}: an {npc:2956} on the plains, a {npc:2959} north of the village, a Swoop to the north-west."] = "",
 	-- {item:15908} Taming Rod
 	["Tame it with the {item:15908}"] = "Zähm ihn mit {item:15908}",
 
@@ -251,6 +251,8 @@ return {
 	-- ["Battleboars graze north of the shrine; the Bristleback quilboar hold the ravine to the north-east. {npc:8554} stands at its eastern end, and the {item:4851} lies on the ground in the camp."] = "Kampfeber grasen nördlich des Schreins; die Stacheleber der Borstennacken halten die Schlucht im Nordosten. {npc:8554} steht an ihrem östlichen Ende, und {item:4851} liegt im Lager auf dem Boden.",
 	-- ["Flatland Prowlers roam the plains around {area:225}"] = "Flachlandstreuner streifen über die Ebenen um {area:225}",
 	-- ["Galak centaurs and Prairie Wolf Alphas"] = "Zentauren der Galak und Präriewolfalphas",
+	-- ["Hearth to {area:222} and ride north to {area:1639}."] = "Ruhestein nach {area:222} und reite nach Norden zur {area:1639}.",
+	-- ["Ride down to {area:222} and tame with the {item:15908}: an {npc:2956} on the plains, a {npc:2959} north of the village, a Swoop to the north-west."] = "Reite hinunter nach {area:222} und zähm mit {item:15908}: einen {npc:2956} auf den Ebenen, einen {npc:2959} nördlich des Dorfs und einen Sturzflieger im Nordwesten.",
 	-- ["The Galak centaurs camp on the plains north of the {area:821}; Herak leads them. Prairie Wolf Alphas roam among the wolves."] = "Die Zentauren der Galak lagern auf den Ebenen nördlich der {area:821}; Herak führt sie an. Präriewolfalphas streifen zwischen den Wölfen umher.",
 	-- ["The dwarves of the {area:404} carry the Prospector's Picks. Smash them at the forge in {area:222}."] = "Die Zwerge der {area:404} tragen die Ausgrabungsleiterhacken. Zerschlag sie an der Schmiede in {area:222}.",
 	-- ["The well lies north of the village. Well Stones sit around the well, {item:4809} lies under the trees nearby. Kill wolves, cougars, plainstriders and swoops on the way for {quest:766} and {quest:761}."] = "Der Brunnen liegt nördlich des Dorfs. Quellsteine liegen um den Brunnen, {item:4809} unter den Bäumen in der Nähe. Töte unterwegs Wölfe, Pumas, Ebenenschreiter und Sturzflieger für {quest:766} und {quest:761}.",

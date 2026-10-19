@@ -225,11 +225,11 @@ return {
 
 	-- Step 55: Back to Thunder Bluff
 	-- {area:222} Bloodhoof Village · {area:1639} Elder Rise
-	["Hearth to {area:222} and ride north to {area:1639}."] = "Usa tu piedra de hogar para ir a {area:222} y cabalga al norte hasta {area:1639}.",
+	["Hearth to {area:222} and head north to {area:1639}."] = "",
 
 	-- Step 56: Yaw Sharpmane
 	-- {area:222} Bloodhoof Village · {item:15908} Taming Rod · {npc:2956} Adult Plainstrider · {npc:2959} Prairie Stalker
-	["Ride down to {area:222} and tame with the {item:15908}: an {npc:2956} on the plains, a {npc:2959} north of the village, a Swoop to the north-west."] = "Baja cabalgando a {area:222} y domestica con {item:15908}: un {npc:2956} en las llanuras, un {npc:2959} al norte del poblado y un aguilón al noroeste.",
+	["Head down to {area:222} and tame with the {item:15908}: an {npc:2956} on the plains, a {npc:2959} north of the village, a Swoop to the north-west."] = "",
 	-- {item:15908} Taming Rod
 	["Tame it with the {item:15908}"] = "Domestícalo con {item:15908}",
 
@@ -251,6 +251,8 @@ return {
 	-- ["Battleboars graze north of the shrine; the Bristleback quilboar hold the ravine to the north-east. {npc:8554} stands at its eastern end, and the {item:4851} lies on the ground in the camp."] = "Los jabaguerreros pastan al norte del santuario; los jabaespines Erizapúas ocupan el barranco al noreste. {npc:8554} está en su extremo este y {item:4851} está en el suelo del campamento.",
 	-- ["Flatland Prowlers roam the plains around {area:225}"] = "Merodeadores de las estepas ({npc:3566}) recorren las llanuras alrededor de {area:225}",
 	-- ["Galak centaurs and Prairie Wolf Alphas"] = "Centauros Galak y Lobos alfa de pradera ({npc:2960})",
+	-- ["Hearth to {area:222} and ride north to {area:1639}."] = "Usa tu piedra de hogar para ir a {area:222} y cabalga al norte hasta {area:1639}.",
+	-- ["Ride down to {area:222} and tame with the {item:15908}: an {npc:2956} on the plains, a {npc:2959} north of the village, a Swoop to the north-west."] = "Baja cabalgando a {area:222} y domestica con {item:15908}: un {npc:2956} en las llanuras, un {npc:2959} al norte del poblado y un aguilón al noroeste.",
 	-- ["The Galak centaurs camp on the plains north of the {area:821}; Herak leads them. Prairie Wolf Alphas roam among the wolves."] = "Los centauros Galak acampan en las llanuras al norte de {area:821}; Herak los dirige. Los Lobos alfa de pradera ({npc:2960}) recorren la zona entre los lobos.",
 	-- ["The dwarves of the {area:404} carry the Prospector's Picks. Smash them at the forge in {area:222}."] = "Los enanos de {area:404} llevan los Picos de prospector ({item:4702}). Destrúyelos en la forja de {area:222}.",
 	-- ["The well lies north of the village. Well Stones sit around the well, {item:4809} lies under the trees nearby. Kill wolves, cougars, plainstriders and swoops on the way for {quest:766} and {quest:761}."] = "El pozo está al norte del poblado. Las Piedras de pozo ({item:4808}) están alrededor del pozo y {item:4809} está bajo los árboles cercanos. Mata lobos, pumas, zancudos y aguilones en el camino para {quest:766} y {quest:761}.",

@@ -22,9 +22,9 @@ return {
 
 	-- Step 4: Boat to Auberdine
 	-- {area:17203} Stormwind Harbor · {area:442} Auberdine · {npc:3649} Thundris Windweaver · {zone:1439} Darkshore
-	["From {area:17203} take the boat to {area:442}; {npc:3649} stands at the north end of the village. Then ride south along the road through {zone:1439}."] = "{area:17203}에서 배를 타고 {area:442}(으)로 가세요. {npc:3649}은(는) 마을 북쪽 끝에 서 있습니다. 그런 다음 길을 따라 남쪽으로 {zone:1439}을(를) 지나가세요.",
-	-- {npc:3649} Thundris Windweaver
-	["{npc:3649}: Alexston's reply"] = "{npc:3649}: 알렉스톤의 답장",
+	["From {area:17203} take the boat to {area:442}; {npc:3649} stands at the north end of the village. Then head south along the road through {zone:1439}."] = "",
+	-- {npc:3649} Thundris Windweaver · {zone:1453} Stormwind
+	["{npc:3649}: Alexston's reply, if you took it in {zone:1453}"] = "",
 
 	-- Step 5: Kerlonian Evershade
 	-- {area:448} Grove of the Ancients · {zone:1439} Darkshore · {item:13536} Horn of Awakening · {zone:1440} Ashenvale · {npc:11219} Liladris Moonriver · {area:413} Maestra's Post
@@ -46,7 +46,7 @@ return {
 
 	-- Step 10: Teronis' Corpse
 	-- {area:441} Lake Falathim · {item:5463} Glowing Gem
-	["Ride west to the shore of {area:441}. Teronis lies among the Saltspittle murlocs; any murloc can drop the {item:5463}."] = "서쪽으로 {area:441} 기슭까지 가세요. 테로니스는 소금거품멀록들 사이에 쓰러져 있습니다. 어느 멀록이든 {item:5463}을(를) 떨어뜨릴 수 있습니다.",
+	["Head west to the shore of {area:441}. Teronis lies among the Saltspittle murlocs; any murloc can drop the {item:5463}."] = "",
 
 	-- Step 11: Shrine of Aessina
 	-- {npc:3585} Therysil · {area:416} Shrine of Aessina
@@ -100,7 +100,7 @@ return {
 
 	-- Step 28: Windshear Crag
 	-- {area:421} Mystral Lake · {area:1276} Talondeep Path · {area:461} Windshear Crag · {npc:4080} Kaela Shadowspear · {npc:4077} Gaxim Rustfizzle · {area:1076} Webwinder Path
-	["Ride south past {area:421} into the {area:1276} tunnel; it comes out in Stonetalon's {area:461}. {npc:4080} and {npc:4077} camp on the {area:1076} south-west of the crag."] = "{area:421}을(를) 지나 남쪽으로 {area:1276} 굴에 들어가세요. 굴은 돌발톱 산맥의 {area:461}(으)로 이어집니다. {npc:4080}와(과) {npc:4077}은(는) 바위산 남서쪽 {area:1076}에 진을 치고 있습니다.",
+	["Head south past {area:421} into the {area:1276} tunnel; it comes out in Stonetalon's {area:461}. {npc:4080} and {npc:4077} camp on the {area:1076} south-west of the crag."] = "",
 	-- {npc:4201} Ziz Fizziks
 	["{npc:4201}, in the hut north of them"] = "{npc:4201}, 그들 북쪽의 오두막 안",
 
@@ -117,7 +117,7 @@ return {
 	-- {area:150} Menethil Harbor
 	["To {area:150}"] = "{area:150}(으)로",
 	-- {area:1276} Talondeep Path
-	["Hearthstone on cooldown? Ride back north through the {area:1276}."] = "귀환석이 재사용 대기 중인가요? {area:1276}을(를) 지나 북쪽으로 돌아가세요.",
+	["Hearthstone on cooldown? Head back north through the {area:1276}."] = "",
 	-- {area:150} Menethil Harbor
 	["Boat to {area:150}"] = "배를 타고 {area:150}(으)로",
 
@@ -227,7 +227,7 @@ return {
 
 	-- Step 59: Ironforge
 	-- {zone:1437} Wetlands · {area:836} Dun Algaz · {zone:1432} Loch Modan · {zone:1426} Dun Morogh · {area:1537} Ironforge
-	["Ride east along the {zone:1437} road, south through {area:836} into {zone:1432} and west through the tunnel into {zone:1426} to {area:1537}."] = "{zone:1437} 길을 따라 동쪽으로 가서 남쪽으로 {area:836}을(를) 지나 {zone:1432}에 들어간 뒤, 서쪽 굴을 지나 {zone:1426}의 {area:1537}(으)로 가세요.",
+	["Head east along the {zone:1437} road, south through {area:836} into {zone:1432} and west through the tunnel into {zone:1426} to {area:1537}."] = "",
 	-- {npc:1573} Gryth Thurden · {object:32372} Great Forge (no name in this language: may be words)
 	["{npc:1573}, in the {object:32372}"] = "{npc:1573}, {object:32372} 안",
 	-- {item:5352} Book: The Powers Below · {zone:1439} Darkshore · {npc:2786} Gerrig Bonegrip · {object:32383} Forlorn Cavern
@@ -276,6 +276,12 @@ return {
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Follow the coast north to the {area:414}. {npc:3846} camps on the beach; Wrathtail nagas fill the shore."] = "해안을 따라 북쪽으로 {area:414}까지 가세요. {npc:3846}은(는) 해변에 진을 치고 있고, 해안에는 성난지느러미일족 나가가 가득합니다.",
+	-- ["From {area:17203} take the boat to {area:442}; {npc:3649} stands at the north end of the village. Then ride south along the road through {zone:1439}."] = "{area:17203}에서 배를 타고 {area:442}(으)로 가세요. {npc:3649}은(는) 마을 북쪽 끝에 서 있습니다. 그런 다음 길을 따라 남쪽으로 {zone:1439}을(를) 지나가세요.",
+	-- ["Hearthstone on cooldown? Ride back north through the {area:1276}."] = "귀환석이 재사용 대기 중인가요? {area:1276}을(를) 지나 북쪽으로 돌아가세요.",
+	-- ["Ride east along the {zone:1437} road, south through {area:836} into {zone:1432} and west through the tunnel into {zone:1426} to {area:1537}."] = "{zone:1437} 길을 따라 동쪽으로 가서 남쪽으로 {area:836}을(를) 지나 {zone:1432}에 들어간 뒤, 서쪽 굴을 지나 {zone:1426}의 {area:1537}(으)로 가세요.",
+	-- ["Ride south past {area:421} into the {area:1276} tunnel; it comes out in Stonetalon's {area:461}. {npc:4080} and {npc:4077} camp on the {area:1076} south-west of the crag."] = "{area:421}을(를) 지나 남쪽으로 {area:1276} 굴에 들어가세요. 굴은 돌발톱 산맥의 {area:461}(으)로 이어집니다. {npc:4080}와(과) {npc:4077}은(는) 바위산 남서쪽 {area:1076}에 진을 치고 있습니다.",
+	-- ["Ride west to the shore of {area:441}. Teronis lies among the Saltspittle murlocs; any murloc can drop the {item:5463}."] = "서쪽으로 {area:441} 기슭까지 가세요. 테로니스는 소금거품멀록들 사이에 쓰러져 있습니다. 어느 멀록이든 {item:5463}을(를) 떨어뜨릴 수 있습니다.",
 	-- ["The {area:1025}"] = "{area:1025}",
+	-- ["{npc:3649}: Alexston's reply"] = "{npc:3649}: 알렉스톤의 답장",
 	-- ["{quest:1009} walks the northern tip of the {area:414} with Wrathtail guards."] = "{quest:1009}은(는) 성난지느러미일족 경비병과 함께 {area:414}의 북쪽 끝을 돌아다닙니다.",
 }

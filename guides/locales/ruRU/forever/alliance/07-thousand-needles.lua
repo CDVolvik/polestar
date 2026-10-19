@@ -53,7 +53,7 @@ return {
 
 	-- Step 9: Abercrombie
 	-- {area:492} Raven Hill Cemetery
-	["Ride west along the road; the hermit's shack stands north-east of the {area:492}."] = "Езжайте по дороге на запад; хижина отшельника стоит к северо-востоку от кладбища (ориентир: {area:492}).",
+	["Head west along the road; the hermit's shack stands north-east of the {area:492}."] = "",
 
 	-- Step 10: Plague Spreaders
 	-- plural, as words: Plague Spreaders = {npc:604} Plague Spreader
@@ -83,7 +83,7 @@ return {
 
 	-- Step 15: Vul'Gol Ogre Mound
 	-- {object:119} Abercrombie's Crate
-	["Ride east to the ogre mound. {object:119} sits in the camp at its entrance; Splinter Fist ogres guard it."] = "Езжайте на восток к кургану огров. {object:119} лежит в лагере у входа; его охраняют огры из клана Дробящего Кулака.",
+	["Head east to the ogre mound. {object:119} sits in the camp at its entrance; Splinter Fist ogres guard it."] = "",
 	-- {npc:272273} Lost Watcher · {quest:96138} Merrick's Bow
 	["Only if a {npc:272273} dropped {quest:96138}: right-click it"] = "Только если с противника {npc:272273} выпал предмет «{quest:96138}»: щелкните по нему правой кнопкой",
 
@@ -148,13 +148,13 @@ return {
 
 	-- Step 28: Captain Stoutfist
 	-- {area:150} Menethil Harbor
-	["Ride back west along the road to {area:150}."] = "Езжайте по дороге назад на запад: {area:150}.",
+	["Head back west along the road to {area:150}."] = "",
 	-- {quest:98221} From the Ashes · {quest:465} Nek'rosh's Gambit
 	["{quest:98221}: {quest:465} comes after it on Forever"] = "{quest:98221}: в Forever задание {quest:465} идет после него",
 
 	-- Step 29: Angerfang Encampment
 	-- {area:1036} Angerfang Encampment · {npc:2091} Chieftain Nek'rosh
-	["Ride east again to the Dragonmaw camp. The four sets of Attack Plans lie in the {area:1036}; {npc:2091}, an elite, stands in the camp too."] = "Снова езжайте на восток к лагерю клана Драконьей Пасти. Четыре комплекта планов атаки лежат здесь: {area:1036}; {npc:2091}, элитный противник, тоже стоит в лагере.",
+	["Head east again to the Dragonmaw camp. The four sets of Attack Plans lie in the {area:1036}; {npc:2091}, an elite, stands in the camp too."] = "",
 
 	-- Step 30: To Theramore
 	["To Theramore"] = "На остров Терамор",
@@ -200,7 +200,11 @@ return {
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Dragonmaw catapult"] = "Катапульта клана Драконьей Пасти",
+	-- ["Ride back west along the road to {area:150}."] = "Езжайте по дороге назад на запад: {area:150}.",
+	-- ["Ride east again to the Dragonmaw camp. The four sets of Attack Plans lie in the {area:1036}; {npc:2091}, an elite, stands in the camp too."] = "Снова езжайте на восток к лагерю клана Драконьей Пасти. Четыре комплекта планов атаки лежат здесь: {area:1036}; {npc:2091}, элитный противник, тоже стоит в лагере.",
 	-- ["Ride east again; the catapult stands at the Dragonmaw camp south of the road."] = "Снова езжайте на восток; катапульта стоит в лагере клана Драконьей Пасти к югу от дороги.",
 	-- ["Ride east to the ogre mound. {item:1349} sits in the camp at its entrance; Splinter Fist ogres guard it."] = "Езжайте на восток к кургану огров. {item:1349} лежит в лагере у входа; его охраняют огры из клана Дробящего Кулака.",
+	-- ["Ride east to the ogre mound. {object:119} sits in the camp at its entrance; Splinter Fist ogres guard it."] = "Езжайте на восток к кургану огров. {object:119} лежит в лагере у входа; его охраняют огры из клана Дробящего Кулака.",
+	-- ["Ride west along the road; the hermit's shack stands north-east of the {area:492}."] = "Езжайте по дороге на запад; хижина отшельника стоит к северо-востоку от кладбища (ориентир: {area:492}).",
 	-- ["The next step, Defeat Nek'rosh, pits you against an elite chieftain: skip it."] = "Следующий шаг, «Убить Нек'роша», сталкивает вас с элитным вождем: пропустите его.",
 }

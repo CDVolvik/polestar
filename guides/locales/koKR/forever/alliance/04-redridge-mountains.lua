@@ -12,8 +12,8 @@ return {
 	["Level 18 and 20 spells"] = "18레벨과 20레벨 주문",
 	-- {npc:1646} Baros Alexston · {area:442} Auberdine
 	["{npc:1646}: Thundris' letter from {area:442}"] = "{npc:1646}: {area:442}에서 온 툰드리스의 편지",
-	-- {npc:3649} Thundris Windweaver · {area:442} Auberdine
-	["For {npc:3649}, on the return to {area:442} (06-ashenvale)"] = "{npc:3649}에게, {area:442}로 돌아갈 때 (06-ashenvale)",
+	-- {quest:97914} Expanding Horizons · {npc:3649} Thundris Windweaver · {area:442} Auberdine
+	["Only once {quest:97914} is handed in: for {npc:3649}, back in {area:442} (06-ashenvale)"] = "",
 
 	-- Step 2: Shaman training
 	["Shaman training"] = "주술사 훈련",
@@ -38,7 +38,7 @@ return {
 
 	-- Step 4: Half Pendant of Aquatic Endurance
 	-- {area:108} Sentinel Hill · {object:177790} Strange Lockbox
-	["Fly to {area:108} and ride north-west to the coast: the {object:177790} lies on the sea floor off the shore. Then ride east along the road through Elwynn to Redridge."] = "{area:108}(으)로 날아가 북서쪽 해안으로 가세요. {object:177790}은(는) 해안 앞바다의 바닥에 있습니다. 그런 다음 길을 따라 동쪽으로 엘윈 숲을 지나 붉은마루 산맥으로 가세요.",
+	["Fly to {area:108} and head north-west to the coast: the {object:177790} lies on the sea floor off the shore. Then head east along the road through Elwynn to Redridge."] = "",
 	-- {item:15882} Half Pendant of Aquatic Endurance · {object:177790} Strange Lockbox
 	["{item:15882}: the {object:177790}"] = "{item:15882}: {object:177790}",
 
@@ -87,11 +87,8 @@ return {
 	["Murloc Flesheaters and Tidecallers line the south shore east of the bridge. Any of them can carry a {item:1467} or a fin."] = "멀록 청소부와 파도술사는 다리 동쪽 남쪽 기슭에 늘어서 있습니다. 누구든 {item:1467}이나 지느러미를 지니고 있을 수 있습니다.",
 
 	-- Step 14: Alther's Mill
-	-- plural, as words: Greater Tarantulas = {npc:505} Greater Tarantula · Blackrock Renegades = {npc:437} Blackrock Renegade
-	["Greater Tarantulas crawl on the slopes around the mill north-east of the lake; Blackrock Renegades hold the mill itself."] = "거대한 타란툴라는 호수 북동쪽 방앗간 주변 비탈을 기어다니고, 검은바위부족 보초병은 방앗간 자체를 차지하고 있습니다.",
-	-- {item:3014} Battleworn Axe
-	-- plural, as words: Blackrock Renegades = {npc:437} Blackrock Renegade
-	["{item:3014}: the Blackrock Renegades at the mill"] = "{item:3014}: 방앗간의 검은바위부족 보초병",
+	-- plural, as words: Greater Tarantulas = {npc:505} Greater Tarantula
+	["Greater Tarantulas crawl on the slopes around the mill north-east of the lake."] = "",
 
 	-- Step 15: Galardell Valley
 	-- {npc:703} Lieutenant Fangore · {area:2099} Stonewatch Keep
@@ -99,22 +96,27 @@ return {
 	-- {item:1075} Shadowhide Pendant
 	["{item:1075}: any Shadowhide gnoll"] = "{item:1075}: 아무 잿빛가죽 놀",
 
-	-- Step 16: Back to Lakeshire
+	-- Step 16: Blackrock camps
+	["Blackrock camps"] = "",
+	-- {area:2099} Stonewatch Keep
+	["South down the valley's east side to the Blackrock camps east of {area:2099}. Renegades, Grunts and Outrunners fill them; keep east of the keep, whose orcs are elite."] = "",
+
+	-- Step 17: Back to Lakeshire
 	-- {area:69} Lakeshire
 	["Back to {area:69}"] = "{area:69}(으)로 돌아가기",
 	-- {npc:344} Magistrate Solomon
 	["{npc:344}, in the town hall"] = "{npc:344}, 마을 회관 안",
 
-	-- Step 17: Render's Valley
+	-- Step 18: Render's Valley
 	-- {area:69} Lakeshire · {area:95} Redridge Canyons · {area:997} Render's Valley
 	-- plural, as words: Blackrock Champions = {npc:435} Blackrock Champion
 	["Head north out of {area:69} up the {area:95} to {area:997}. Blackrock Champions camp in the valley."] = "{area:69}에서 북쪽으로 나가 {area:95}을(를) 올라 {area:997}(으)로 가세요. 검은바위부족 용사가 계곡에 진을 치고 있습니다.",
 
-	-- Step 18: Corporal Keeshan
+	-- Step 19: Corporal Keeshan
 	-- {zone:1428} Burning Steppes · {area:69} Lakeshire
 	["Keeshan hides at the very north end of the valley, by the {zone:1428} border. Escort him down to {area:69}; Blackrock orcs ambush you on the way."] = "키샨은 계곡 맨 북쪽 끝, {zone:1428} 경계 근처에 숨어 있습니다. 그를 호위하여 {area:69}까지 내려가세요. 가는 길에 검은바위부족 오크가 습격합니다.",
 
-	-- Step 19: Lakeshire
+	-- Step 20: Lakeshire
 	-- {npc:903} Guard Howe
 	["{npc:903}, by the gryphons south of the bridge"] = "{npc:903}, 다리 남쪽 그리폰 옆",
 	-- {zone:1431} Duskwood · {area:1002} Three Corners · {area:42} Darkshire
@@ -122,6 +124,10 @@ return {
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Bellygrub"] = "서리먹보",
+	-- ["Fly to {area:108} and ride north-west to the coast: the {object:177790} lies on the sea floor off the shore. Then ride east along the road through Elwynn to Redridge."] = "{area:108}(으)로 날아가 북서쪽 해안으로 가세요. {object:177790}은(는) 해안 앞바다의 바닥에 있습니다. 그런 다음 길을 따라 동쪽으로 엘윈 숲을 지나 붉은마루 산맥으로 가세요.",
+	-- ["For {npc:3649}, on the return to {area:442} (06-ashenvale)"] = "{npc:3649}에게, {area:442}로 돌아갈 때 (06-ashenvale)",
+	-- ["Greater Tarantulas crawl on the slopes around the mill north-east of the lake; Blackrock Renegades hold the mill itself."] = "거대한 타란툴라는 호수 북동쪽 방앗간 주변 비탈을 기어다니고, 검은바위부족 보초병은 방앗간 자체를 차지하고 있습니다.",
 	-- ["Redridge Mongrels and other gnolls hold the hills east of {area:1002}, north of the road; Redridge Thrashers prowl among them, Poachers camp south of the road. Dire Condors and Great Goretusks roam the same hills."] = "붉은마루일족 싸움꾼과 다른 놀들은 {area:1002} 동쪽, 길 북쪽의 언덕을 차지하고 있습니다. 붉은마루일족 약탈자가 그 사이를 배회하고, 밀렵꾼은 길 남쪽에 진을 치고 있습니다. 광포한 대머리수리와 큰 뿔엄니멧돼지도 같은 언덕을 돌아다닙니다.",
 	-- ["{item:3014}: any Blackrock orc"] = "{item:3014}: 아무 검은바위부족 오크",
+	-- ["{item:3014}: the Blackrock Renegades at the mill"] = "{item:3014}: 방앗간의 검은바위부족 보초병",
 }

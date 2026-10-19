@@ -20,7 +20,7 @@ return {
 
 	-- Step 2: The Sepulcher
 	-- {zone:1421} Silverpine Forest · {area:228} The Sepulcher · {npc:248840} Trevan Rol · {npc:259611} Deathguard Baldren
-	["Ride south through {zone:1421} to the {area:228}. {npc:248840} stands in the town; {npc:259611} keeps watch near its entrance."] = "Allez vers le sud à travers {zone:1421} jusqu'au {area:228}. {npc:248840} se trouve dans le bourg ; {npc:259611} monte la garde près de l'entrée.",
+	["Head south through {zone:1421} to the {area:228}. {npc:248840} stands in the town; {npc:259611} keeps watch near its entrance."] = "",
 
 	-- Step 3: The pyre on Fenris Isle
 	-- {area:172} Fenris Isle

@@ -51,7 +51,7 @@ return {
 	["Hillsbrad Miners"] = "Minenarbeiter von Hillsbrad",
 	-- {zone:1424} Hillsbrad Foothills · {item:7127} Powdered Azurite · {zone:1454} Orgrimmar · {zone:1420} Tirisfal Glades · {zone:1421} Silverpine Forest
 	-- plural, as words: Hillsbrad Miners = {npc:2269} Hillsbrad Miner
-	["The Hillsbrad Miners work the mine in the west of {zone:1424}; they drop the {item:7127}. Take the zeppelin from {zone:1454} to {zone:1420} and ride south through {zone:1421}."] = "Die Minenarbeiter von Hillsbrad arbeiten in der Mine im Westen von {zone:1424}; sie lassen {item:7127} fallen. Nimm den Zeppelin von {zone:1454} nach {zone:1420} und reite nach Süden durch {zone:1421}.",
+	["The Hillsbrad Miners work the mine in the west of {zone:1424}; they drop the {item:7127}. Take the zeppelin from {zone:1454} to {zone:1420} and head south through {zone:1421}."] = "",
 	-- {item:7127} Powdered Azurite
 	-- plural, as words: Hillsbrad Miners = {npc:2269} Hillsbrad Miner
 	["{item:7127} from the Hillsbrad Miners"] = "{item:7127} von den Minenarbeitern von Hillsbrad",
@@ -97,4 +97,7 @@ return {
 	["The Dragonmaw orcs camp in the middle of the {zone:1437}, south of the road; Raiders, Swamprunners, Centurions, Shadowwarders and Bonewarders all drop the Sturdy Dragonmaw Shinbones."] = "Die Orcs der Dragonmaw lagern in der Mitte des {zone:1437}, südlich der Straße; Räuber, Sumpfläufer, Zenturios, Schattenwärter und Knochenwärter lassen alle die Stabilen Schienbeinknochen ({item:7134}) fallen.",
 	-- plural, as words: Sturdy Dragonmaw Shinbones = {item:7134} Sturdy Dragonmaw Shinbone
 	["Sturdy Dragonmaw Shinbones"] = "Stabile Schienbeinknochen ({item:7134})",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["The Hillsbrad Miners work the mine in the west of {zone:1424}; they drop the {item:7127}. Take the zeppelin from {zone:1454} to {zone:1420} and ride south through {zone:1421}."] = "Die Minenarbeiter von Hillsbrad arbeiten in der Mine im Westen von {zone:1424}; sie lassen {item:7127} fallen. Nimm den Zeppelin von {zone:1454} nach {zone:1420} und reite nach Süden durch {zone:1421}.",
 }

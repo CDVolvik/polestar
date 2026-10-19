@@ -20,7 +20,7 @@ return {
 
 	-- Step 3: Cliffspring Falls
 	-- {area:442} Auberdine · {area:445} Cliffspring Falls · {item:15844} Empty Cliffspring Falls Sampler
-	["Ride north-east from {area:442} to {area:445} and fill the {item:15844} at the mouth of the cave by the falls."] = "從{area:442}向東北騎往{area:445}，在瀑布旁的洞口裝滿{item:15844}。",
+	["Head north-east from {area:442} to {area:445} and fill the {item:15844} at the mouth of the cave by the falls."] = "",
 
 	-- Step 4: Alanndarian Nightsong
 	-- {area:442} Auberdine
@@ -53,7 +53,7 @@ return {
 
 	-- Step 12: Dreadmist Peak
 	-- {area:380} Crossroads · {area:384} Dreadmist Peak · {item:15842} Empty Dreadmist Peak Sampler · {object:19464} Dreadmist Peak Pool
-	["From the {area:380} ride north to {area:384} and fill the {item:15842} at the {object:19464}."] = "從{area:380}向北騎往{area:384}，在{object:19464}裝滿{item:15842}。",
+	["From the {area:380} head north to {area:384} and fill the {item:15842} at the {object:19464}."] = "",
 
 	-- Step 13: Tonga Runetotem
 	-- {npc:3448} Tonga Runetotem · {area:380} Crossroads · {skill:182} Herbalism · {npc:3490} Hula'mahi · {item:2449} Earthroot
@@ -81,4 +81,8 @@ return {
 	-- Step 17: Curing the Sick
 	-- {spell:18960} Teleport: Moonglade · {npc:11802} Dendrite Starblaze · {npc:11798} Bunthen Plainswind · {area:1638} Thunder Bluff
 	["Cast {spell:18960} and see {npc:11802}, then take {npc:11798}'s flight to {area:1638}."] = "施放{spell:18960}並找{npc:11802}，然後搭乘{npc:11798}的飛行路線前往{area:1638}。",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["From the {area:380} ride north to {area:384} and fill the {item:15842} at the {object:19464}."] = "從{area:380}向北騎往{area:384}，在{object:19464}裝滿{item:15842}。",
+	-- ["Ride north-east from {area:442} to {area:445} and fill the {item:15844} at the mouth of the cave by the falls."] = "從{area:442}向東北騎往{area:445}，在瀑布旁的洞口裝滿{item:15844}。",
 }

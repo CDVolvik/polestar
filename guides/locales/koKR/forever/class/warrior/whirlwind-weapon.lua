@@ -32,7 +32,7 @@ return {
 
 	-- Step 6: The Affray
 	-- {area:392} Ratchet · {area:720} Fray Island · {npc:6236} Klannoc Macleod · {npc:6238} Big Will
-	["Ride south along the coast from {area:392} to {area:720}. {npc:6236} stands by the arena: step on the grate to start the fight; the challengers come one at a time, then {npc:6238} (33)."] = "{area:392}에서 해안을 따라 남쪽으로 {area:720}까지 가십시오. {npc:6236}은(는) 투기장 옆에 있습니다. 쇠창살을 밟으면 싸움이 시작됩니다. 도전자가 한 명씩 나온 뒤 {npc:6238}(33)이(가) 나옵니다.",
+	["Head south along the coast from {area:392} to {area:720}. {npc:6236} stands by the arena: step on the grate to start the fight; the challengers come one at a time, then {npc:6238} (33)."] = "",
 	-- {npc:6238} Big Will
 	["Defeat the challengers and {npc:6238}"] = "도전자들과 {npc:6238} 물리치기",
 
@@ -68,4 +68,7 @@ return {
 	["{quest:1712} waits just north of {npc:6176}'s camp and carries the {item:6894}. {quest:1712} is elite: grouping up is advised."] = "{quest:1712}은(는) {npc:6176}의 야영지 바로 북쪽에서 기다리며 {item:6894}을(를) 가지고 있습니다. {quest:1712}은(는) 정예입니다. 파티를 권장합니다.",
 	-- {item:6894} Whirlwind Heart · {quest:1712} Cyclonian
 	["{item:6894} from {quest:1712}"] = "{item:6894}, {quest:1712}에게서",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Ride south along the coast from {area:392} to {area:720}. {npc:6236} stands by the arena: step on the grate to start the fight; the challengers come one at a time, then {npc:6238} (33)."] = "{area:392}에서 해안을 따라 남쪽으로 {area:720}까지 가십시오. {npc:6236}은(는) 투기장 옆에 있습니다. 쇠창살을 밟으면 싸움이 시작됩니다. 도전자가 한 명씩 나온 뒤 {npc:6238}(33)이(가) 나옵니다.",
 }

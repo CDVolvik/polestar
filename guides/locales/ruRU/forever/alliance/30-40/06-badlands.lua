@@ -8,7 +8,7 @@
 return {
 	-- Step 1: Hammertoe's Digsite
 	-- {zone:1432} Loch Modan · {zone:1418} Badlands · {npc:2910} Prospector Ryedol · {npc:2860} Sigrun Ironhew
-	["Ride back west to the road and follow it south out of {zone:1432} through the pass into the {zone:1418}. {npc:2910} and {npc:2860} camp side by side at the dig."] = "Вернитесь на запад к дороге и идите по ней на юг из зоны {zone:1432} через перевал в зону {zone:1418}. {npc:2910} и {npc:2860} стоят лагерем бок о бок у раскопок.",
+	["Head back west to the road and follow it south out of {zone:1432} through the pass into the {zone:1418}. {npc:2910} and {npc:2860} camp side by side at the dig."] = "",
 
 	-- Step 2: Shadowforge camp
 	["Shadowforge camp"] = "Лагерь Тенегорна",
@@ -17,7 +17,7 @@ return {
 
 	-- Step 3: The excavation crate
 	["The excavation crate"] = "Ящик с раскопок",
-	["Ride north-east to the abandoned dig; the supply crate lies there among the Dustbelcher ogres."] = "Езжайте на северо-восток к заброшенным раскопкам; ящик с припасами лежит там среди огров из клана Гнилобрюхов.",
+	["Head north-east to the abandoned dig; the supply crate lies there among the Dustbelcher ogres."] = "",
 
 	-- Step 4: Hammertoe's Digsite
 	-- {area:1517} Uldaman
@@ -43,7 +43,7 @@ return {
 
 	-- Step 9: Lotwil Veriatus
 	-- {area:1878} Dustbowl · {npc:2921} Lotwil Veriatus
-	["Ride west into the {area:1878}; {npc:2921} works by his machines in the middle of it."] = "Езжайте на запад. Цель: {area:1878}; в ее центре у своих машин работает {npc:2921}.",
+	["Head west into the {area:1878}; {npc:2921} works by his machines in the middle of it."] = "",
 
 	-- Step 10: Lesser Rock Elementals
 	-- plural, as words: Lesser Rock Elementals = {npc:2735} Lesser Rock Elemental
@@ -78,11 +78,11 @@ return {
 	-- {object:126260} Ancient Chest
 	["The {object:126260}"] = "{object:126260}",
 	-- {zone:1418} Badlands · {npc:2745} Ambassador Infernus
-	["Ride north-east to the dwarven ruins in the north of the {zone:1418}; the chest sits among the Shadowforge dwarves. {npc:2745} nearby is elite: give him room."] = "Езжайте на северо-восток к руинам дворфов на севере зоны {zone:1418}; сундук стоит среди дворфов Тенегорна. {npc:2745} поблизости – элита: держитесь от него подальше.",
+	["Head north-east to the dwarven ruins in the north of the {zone:1418}; the chest sits among the Shadowforge dwarves. {npc:2745} nearby is elite: give him room."] = "",
 
 	-- Step 18: Theldurin the Lost
 	-- {area:345} Agmond's End
-	["Ride south to {area:345}."] = "Езжайте на юг. Цель: {area:345}.",
+	["Head south to {area:345}."] = "",
 	-- {npc:2786} Gerrig Bonegrip · {zone:1455} Ironforge
 	["for {npc:2786} in {zone:1455}: keep it"] = "для NPC {npc:2786} ({zone:1455}): сохраните задание",
 
@@ -166,5 +166,10 @@ return {
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Follow the road west across the north of {zone:1443} to the ruins of {area:2405}; the wrecked ship's chest lies on the shore just west of them."] = "Идите по дороге на запад через север зоны {zone:1443} к руинам ({area:2405}); сундук с разбитого корабля лежит на берегу чуть западнее.",
+	-- ["Ride back west to the road and follow it south out of {zone:1432} through the pass into the {zone:1418}. {npc:2910} and {npc:2860} camp side by side at the dig."] = "Вернитесь на запад к дороге и идите по ней на юг из зоны {zone:1432} через перевал в зону {zone:1418}. {npc:2910} и {npc:2860} стоят лагерем бок о бок у раскопок.",
+	-- ["Ride north-east to the abandoned dig; the supply crate lies there among the Dustbelcher ogres."] = "Езжайте на северо-восток к заброшенным раскопкам; ящик с припасами лежит там среди огров из клана Гнилобрюхов.",
+	-- ["Ride north-east to the dwarven ruins in the north of the {zone:1418}; the chest sits among the Shadowforge dwarves. {npc:2745} nearby is elite: give him room."] = "Езжайте на северо-восток к руинам дворфов на севере зоны {zone:1418}; сундук стоит среди дворфов Тенегорна. {npc:2745} поблизости – элита: держитесь от него подальше.",
+	-- ["Ride south to {area:345}."] = "Езжайте на юг. Цель: {area:345}.",
+	-- ["Ride west into the {area:1878}; {npc:2921} works by his machines in the middle of it."] = "Езжайте на запад. Цель: {area:1878}; в ее центре у своих машин работает {npc:2921}.",
 	-- ["{npc:11863}'s tower stands on the hill east of the wreck."] = "Башня {npc:11863} стоит на холме к востоку от обломков корабля.",
 }

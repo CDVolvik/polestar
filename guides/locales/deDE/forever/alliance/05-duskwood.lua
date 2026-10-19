@@ -68,7 +68,7 @@ return {
 
 	-- Step 11: Watcher Dodds
 	-- {area:245} Yorgen Farmstead
-	["Ride back east along the road to the {area:245}."] = "Reite die Straße zurück nach Osten zum {area:245}.",
+	["Head back east along the road to the {area:245}."] = "",
 
 	-- Step 12: Yorgen Farmstead
 	["The mound of loose dirt lies south of the farmhouse, by the old stump."] = "Der Haufen lockerer Erde liegt südlich des Bauernhauses, beim alten Baumstumpf.",
@@ -78,13 +78,13 @@ return {
 	["Her house stands on the hill south-east of {area:42}, above the {area:121}."] = "Ihr Haus steht auf dem Hügel südöstlich von {area:42}, oberhalb des {area:121}.",
 
 	-- Step 16: Abercrombie
-	["Ride west along the road once more."] = "Reite noch einmal die Straße nach Westen.",
+	["Head west along the road once more."] = "",
 
 	-- Step 18: Back to Darkshire
 	-- {area:42} Darkshire
 	["Back to {area:42}"] = "Zurück nach {area:42}",
 	-- {area:42} Darkshire
-	["Ride back east to {area:42}."] = "Reite zurück nach Osten nach {area:42}.",
+	["Head back east to {area:42}."] = "",
 	-- {npc:267} Clerk Daltry
 	["{npc:267}, in the town hall"] = "{npc:267}, im Rathaus",
 	-- {npc:273} Tavernkeep Smitts
@@ -98,7 +98,7 @@ return {
 	["Skeletal Horrors walk the hillside between {area:42} and the {area:121}, south-east of town; they drop the Rot Blossoms."] = "Skelettschrecken wandeln am Hang zwischen {area:42} und dem {area:121}, südöstlich des Orts; sie lassen die Fäulnisblüten fallen.",
 
 	-- Step 21: Abercrombie
-	["Ride west to the hermit once more."] = "Reite noch einmal nach Westen zum Einsiedler.",
+	["Head west to the hermit once more."] = "",
 
 	-- Step 22: Ghoul Ribs
 	-- plural, as words: Ghoul Ribs = {item:884} Ghoul Rib
@@ -117,13 +117,13 @@ return {
 
 	-- Step 26: Agent Kearnen
 	-- {area:94} Raven Hill · {zone:1436} Westfall · {npc:7024} Agent Kearnen · {npc:7053} Klaven Mortwake · {npc:7051} Malformed Defias Drone
-	["Ride west along the road out of {area:94} into {zone:1436}. {npc:7024} watches {npc:7053}'s tower from the hills just inside the border. The {npc:7051} (level 23) guarding the tower carries its key; Klaven's journal is in the chest at the top."] = "Reite die Straße nach Westen aus {area:94} hinaus nach {zone:1436}. {npc:7024} beobachtet den Turm von {npc:7053} von den Hügeln gleich hinter der Grenze. Die {npc:7051} (Stufe 23), die den Turm bewacht, trägt den Schlüssel; Klavens Tagebuch liegt in der Truhe ganz oben.",
+	["Head west along the road out of {area:94} into {zone:1436}. {npc:7024} watches {npc:7053}'s tower from the hills just inside the border. The {npc:7051} (level 23) guarding the tower carries its key; Klaven's journal is in the chest at the top."] = "",
 	-- {item:7908} Klaven Mortwake's Journal
 	["{item:7908}, in the chest"] = "{item:7908}, in der Truhe",
 
 	-- Step 27: Master Mathias Shaw
 	-- {zone:1453} Stormwind · {object:2100} Old Town
-	["Ride north through Elwynn to {zone:1453}; Mathias Shaw is at SI:7 in {object:2100}."] = "Reite nach Norden durch den Wald von Elwynn nach {zone:1453}; Mathias Shaw ist bei SI:7 in {object:2100}.",
+	["Head north through Elwynn to {zone:1453}; Mathias Shaw is at SI:7 in {object:2100}."] = "",
 	-- {npc:332} Master Mathias Shaw · {item:18160} Recipe: Thistle Tea
 	["{npc:332}: Poisons, and {item:18160}"] = "{npc:332}: Gifte und {item:18160}",
 	-- {quest:2607} The Touch of Zanzil · {npc:7207} Doc Mixilpixil
@@ -144,5 +144,11 @@ return {
 	["{zone:1453} has no shaman trainer: take the {area:2257} from the {object:28027} to {zone:1455}, train with {npc:258098}, then ride the tram back for the {area:442} boat."] = "{zone:1453} hat keinen Schamanenlehrer: Nimm die {area:2257} vom {object:28027} nach {zone:1455}, trainiere bei {npc:258098} und fahr dann mit der Bahn zurück zum Boot nach {area:442}.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Ride back east along the road to the {area:245}."] = "Reite die Straße zurück nach Osten zum {area:245}.",
+	-- ["Ride back east to {area:42}."] = "Reite zurück nach Osten nach {area:42}.",
+	-- ["Ride north through Elwynn to {zone:1453}; Mathias Shaw is at SI:7 in {object:2100}."] = "Reite nach Norden durch den Wald von Elwynn nach {zone:1453}; Mathias Shaw ist bei SI:7 in {object:2100}.",
+	-- ["Ride west along the road once more."] = "Reite noch einmal die Straße nach Westen.",
+	-- ["Ride west along the road out of {area:94} into {zone:1436}. {npc:7024} watches {npc:7053}'s tower from the hills just inside the border. The {npc:7051} (level 23) guarding the tower carries its key; Klaven's journal is in the chest at the top."] = "Reite die Straße nach Westen aus {area:94} hinaus nach {zone:1436}. {npc:7024} beobachtet den Turm von {npc:7053} von den Hügeln gleich hinter der Grenze. Die {npc:7051} (Stufe 23), die den Turm bewacht, trägt den Schlüssel; Klavens Tagebuch liegt in der Truhe ganz oben.",
+	-- ["Ride west to the hermit once more."] = "Reite noch einmal nach Westen zum Einsiedler.",
 	-- ["{npc:332}: {spell:2842}, and {item:18160}"] = "{npc:332}: {spell:2842} und {item:18160}",
 }

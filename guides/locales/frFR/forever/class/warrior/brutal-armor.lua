@@ -51,7 +51,7 @@ return {
 	["Hillsbrad Miners"] = "Mineurs d'Hillsbrad ({npc:2269})",
 	-- {zone:1424} Hillsbrad Foothills · {item:7127} Powdered Azurite · {zone:1454} Orgrimmar · {zone:1420} Tirisfal Glades · {zone:1421} Silverpine Forest
 	-- plural, as words: Hillsbrad Miners = {npc:2269} Hillsbrad Miner
-	["The Hillsbrad Miners work the mine in the west of {zone:1424}; they drop the {item:7127}. Take the zeppelin from {zone:1454} to {zone:1420} and ride south through {zone:1421}."] = "Les Mineurs d'Hillsbrad ({npc:2269}) travaillent dans la mine de l'ouest de {zone:1424} ; ils lâchent {item:7127}. Prenez le zeppelin d'{zone:1454} à {zone:1420} et chevauchez vers le sud à travers {zone:1421}.",
+	["The Hillsbrad Miners work the mine in the west of {zone:1424}; they drop the {item:7127}. Take the zeppelin from {zone:1454} to {zone:1420} and head south through {zone:1421}."] = "",
 	-- {item:7127} Powdered Azurite
 	-- plural, as words: Hillsbrad Miners = {npc:2269} Hillsbrad Miner
 	["{item:7127} from the Hillsbrad Miners"] = "{item:7127} sur les Mineurs d'Hillsbrad ({npc:2269})",
@@ -99,6 +99,7 @@ return {
 	["Sturdy Dragonmaw Shinbones"] = "Solides tibias de Dragonmaw ({item:7134})",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["The Hillsbrad Miners work the mine in the west of {zone:1424}; they drop the {item:7127}. Take the zeppelin from {zone:1454} to {zone:1420} and ride south through {zone:1421}."] = "Les Mineurs d'Hillsbrad ({npc:2269}) travaillent dans la mine de l'ouest de {zone:1424} ; ils lâchent {item:7127}. Prenez le zeppelin d'{zone:1454} à {zone:1420} et chevauchez vers le sud à travers {zone:1421}.",
 	-- ["The {area:287} Miners work the mine in the west of {zone:1424}; they drop the {item:7127}. Take the zeppelin from {zone:1454} to {zone:1420} and ride south through {zone:1421}."] = "Les Mineurs d'{area:287} travaillent dans la mine à l'ouest de {zone:1424} ; ils lâchent l'{item:7127}. Prenez le zeppelin d'{zone:1454} pour {zone:1420} et chevauchez vers le sud à travers {zone:1421}.",
 	-- ["{area:287} Miners"] = "Mineurs d'{area:287}",
 	-- ["{item:7127} from the {area:287} Miners"] = "{item:7127} sur les Mineurs d'{area:287}",

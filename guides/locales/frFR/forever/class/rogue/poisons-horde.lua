@@ -22,7 +22,7 @@ return {
 
 	-- Step 2: Taskmaster Fizzule
 	-- {area:380} Crossroads · {area:382} Sludge Fen · {item:8051} Flare Gun · {npc:7233} Taskmaster Fizzule
-	["Fly to the {area:380} and ride north to the Venture Co. tower north of the {area:382}. In sight of the tower, fire the {item:8051} twice, then /salute {npc:7233} before he attacks you."] = "Volez jusqu'à {area:380} et allez vers le nord jusqu'à la tour de la KapitalRisk, au nord de {area:382}. En vue de la tour, tirez deux fois avec {item:8051}, puis faites /saluer à {npc:7233} avant qu'il ne vous attaque.",
+	["Fly to the {area:380} and head north to the Venture Co. tower north of the {area:382}. In sight of the tower, fire the {item:8051} twice, then /salute {npc:7233} before he attacks you."] = "",
 	-- {item:8051} Flare Gun
 	["{item:8051}, twice, in sight of the tower"] = "{item:8051}, deux fois, en vue de la tour",
 
@@ -40,6 +40,10 @@ return {
 
 	-- Step 5: Serge Hinott
 	-- {zone:1454} Orgrimmar · {zone:1458} Undercity · {zone:1421} Silverpine Forest · {area:272} Tarren Mill · {area:287} Hillsbrad · {npc:2391} Serge Hinott
-	["Take the zeppelin from {zone:1454} to the {zone:1458} and ride south through {zone:1421} to {area:272} in {area:287}. {npc:2391} stands in {area:272}; wait beside him while he brews the cure."] = "Prenez le zeppelin d'{zone:1454} à {zone:1458} et descendez vers le sud à travers {zone:1421} jusqu'à {area:272}, à {area:287}. {npc:2391} se tient à {area:272} ; attendez à côté de lui pendant qu'il prépare le remède.",
+	["Take the zeppelin from {zone:1454} to the {zone:1458} and head south through {zone:1421} to {area:272} in {area:287}. {npc:2391} stands in {area:272}; wait beside him while he brews the cure."] = "",
 	["Wait for the cure"] = "Attendez le remède",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Fly to the {area:380} and ride north to the Venture Co. tower north of the {area:382}. In sight of the tower, fire the {item:8051} twice, then /salute {npc:7233} before he attacks you."] = "Volez jusqu'à {area:380} et allez vers le nord jusqu'à la tour de la KapitalRisk, au nord de {area:382}. En vue de la tour, tirez deux fois avec {item:8051}, puis faites /saluer à {npc:7233} avant qu'il ne vous attaque.",
+	-- ["Take the zeppelin from {zone:1454} to the {zone:1458} and ride south through {zone:1421} to {area:272} in {area:287}. {npc:2391} stands in {area:272}; wait beside him while he brews the cure."] = "Prenez le zeppelin d'{zone:1454} à {zone:1458} et descendez vers le sud à travers {zone:1421} jusqu'à {area:272}, à {area:287}. {npc:2391} se tient à {area:272} ; attendez à côté de lui pendant qu'il prépare le remède.",
 }

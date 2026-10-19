@@ -28,7 +28,7 @@ return {
 
 	-- Step 7: Lucius
 	-- {zone:1429} Elwynn Forest · {area:69} Lakeshire · {npc:6966} Lucius · {item:5060} Thieves' Tools
-	["Ride east through {zone:1429} into Redridge, or fly to {area:69}. {npc:6966} waits on the west side of {area:69} and gives you {item:5060}."] = "Siga para o leste por {zone:1429} até as Montanhas Cristarrubra, ou voe até {area:69}. {npc:6966} espera no lado oeste de {area:69} e dá a você {item:5060}.",
+	["Head east through {zone:1429} into Redridge, or fly to {area:69}. {npc:6966} waits on the west side of {area:69} and gives you {item:5060}."] = "",
 
 	-- Step 8: Alther's Mill
 	-- {quest:2282} Alther's Mill · {area:69} Lakeshire · {object:121264} Lucius's Lockbox
@@ -37,4 +37,7 @@ return {
 	-- Step 9: Back to Lucius
 	-- {npc:6966} Lucius
 	["Back to {npc:6966}"] = "De volta a {npc:6966}",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Ride east through {zone:1429} into Redridge, or fly to {area:69}. {npc:6966} waits on the west side of {area:69} and gives you {item:5060}."] = "Siga para o leste por {zone:1429} até as Montanhas Cristarrubra, ou voe até {area:69}. {npc:6966} espera no lado oeste de {area:69} e dá a você {item:5060}.",
 }

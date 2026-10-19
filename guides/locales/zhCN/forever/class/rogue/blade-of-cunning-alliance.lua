@@ -17,7 +17,7 @@ return {
 
 	-- Step 2: Master Mathias Shaw
 	-- {zone:1453} Stormwind · {object:2100} Old Town
-	["Ride north to {zone:1453}; Mathias Shaw is at SI:7 in {object:2100}."] = "向北骑行到{zone:1453}；马迪亚斯·肖尔在{object:2100}的军情七处。",
+	["Head north to {zone:1453}; Mathias Shaw is at SI:7 in {object:2100}."] = "",
 
 	-- Step 3: Defias Dockmaster
 	-- {npc:6846} Defias Dockmaster · {area:87} Goldshire
@@ -50,7 +50,7 @@ return {
 
 	-- Step 10: Syurna
 	-- {zone:1457} Darnassus · {npc:4163} Syurna
-	["Ride west to {zone:1457}. {npc:4163} stands in the north-west of the city."] = "向西骑行到{zone:1457}。{npc:4163}站在城市西北部。",
+	["Head west to {zone:1457}. {npc:4163} stands in the north-west of the city."] = "",
 
 	-- Step 11: Sethir the Ancient
 	-- {npc:6909} Sethir the Ancient · {zone:1438} Teldrassil · {zone:1457} Darnassus
@@ -59,4 +59,8 @@ return {
 	-- Step 12: Back to Syurna
 	-- {npc:4163} Syurna
 	["Back to {npc:4163}"] = "回到{npc:4163}处",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Ride north to {zone:1453}; Mathias Shaw is at SI:7 in {object:2100}."] = "向北骑行到{zone:1453}；马迪亚斯·肖尔在{object:2100}的军情七处。",
+	-- ["Ride west to {zone:1457}. {npc:4163} stands in the north-west of the city."] = "向西骑行到{zone:1457}。{npc:4163}站在城市西北部。",
 }

@@ -34,7 +34,7 @@ return {
 
 	-- Step 6: Ratchet
 	-- {area:392} Ratchet · {npc:5901} Islen Waterseer
-	["Fly to {area:392}. {npc:5901} camps on the coast a short ride south of the town."] = "Vuela a {area:392}. {npc:5901} acampa en la costa, a poca distancia al sur del pueblo.",
+	["Fly to {area:392}. {npc:5901} camps on the coast a short walk south of the town."] = "",
 
 	-- Step 7: Prate Cloudseer
 	-- {area:484} Freewind Post · {npc:5905} Prate Cloudseer
@@ -51,7 +51,7 @@ return {
 	-- Step 9: Gizelton caravan
 	["Gizelton caravan"] = "Caravana de Gizelton",
 	-- {zone:1443} Desolace · {area:608} Nijel's Point · {npc:11625} Cork Gizelton · {area:609} Kolkar Village
-	["Follow the road south-west out of Sun Rock into {zone:1443} and on south past {area:608}. {npc:11625}'s kodo caravan waits by the road north of {area:609}; if it has already left, ride on."] = "Sigue el camino al suroeste desde Refugio Roca del Sol hacia {zone:1443} y continúa al sur pasando {area:608}. La caravana de kodos de {npc:11625} espera junto al camino al norte de {area:609}; si ya se fue, sigue adelante.",
+	["Follow the road south-west out of Sun Rock into {zone:1443} and on south past {area:608}. {npc:11625}'s kodo caravan waits by the road north of {area:609}; if it has already left, head on."] = "",
 
 	-- Step 10: Bodyguard for Hire
 	-- {area:609} Kolkar Village · {npc:11625} Cork Gizelton · {area:2617} Scrabblescrew's Camp · {area:597} Ghost Walker Post
@@ -67,7 +67,7 @@ return {
 
 	-- Step 14: Khan Dez'hepah
 	-- {area:609} Kolkar Village · {quest:1365} Khan Dez'hepah
-	["Ride north-east to {area:609}. {quest:1365} (35) walks among the tents on the east side with a Battle Lord or two (32-33): clear around him, then pull him alone at full health."] = "Cabalga al noreste hasta {area:609}. {quest:1365} (35) camina entre las tiendas del lado este con uno o dos Señores de batalla (32-33): limpia a su alrededor y luego atráelo solo, con la salud completa.",
+	["Head north-east to {area:609}. {quest:1365} (35) walks among the tents on the east side with a Battle Lord or two (32-33): clear around him, then pull him alone at full health."] = "",
 
 	-- Step 15: Sargeron
 	-- {area:603} Sargeron
@@ -75,10 +75,10 @@ return {
 
 	-- Step 16: Thunder Axe Fortress
 	-- {area:599} Thunder Axe Fortress · {item:6436} Burning Gem · {item:6435} Infused Burning Gem · {item:20310} Flayed Demon Skin
-	["Ride west to {area:599}. Beat a Burning Blade cultist down, then use the {item:6436} on it before it dies to fill one {item:6435}. They also drop a {item:20310} now and then (1-5%); if one drops, read it."] = "Cabalga al oeste hasta {area:599}. Debilita a un sectario de Filo Ardiente y usa {item:6436} sobre él antes de que muera para llenar una {item:6435}. A veces también sueltan {item:20310} (1-5%); si cae una, léela.",
+	["Head west to {area:599}. Beat a Burning Blade cultist down, then use the {item:6436} on it before it dies to fill one {item:6435}. They also drop a {item:20310} now and then (1-5%); if one drops, read it."] = "",
 
 	-- Step 17: Ghost Walker Post
-	["Ride back south to the post."] = "Regresa cabalgando al sur al poblado.",
+	["Head back south to the post."] = "",
 	-- {npc:5641} Takata Steelblade · {quest:1431} Alliance Relations · {zone:1454} Orgrimmar
 	["{npc:5641}'s next {quest:1431} sends you back to {zone:1454} for nothing: leave it."] = "La siguiente misión de {npc:5641}, {quest:1431}, te manda de vuelta a {zone:1454} para nada: déjala.",
 
@@ -95,14 +95,14 @@ return {
 
 	-- Step 21: Shadowprey Village
 	-- {area:606} Gelkis Village
-	["Ride south-west to the troll village on the coast, keeping clear of the {area:606} on the way."] = "Cabalga al suroeste hasta el poblado trol de la costa, manteniéndote lejos de {area:606} en el camino.",
+	["Head south-west to the troll village on the coast, keeping clear of the {area:606} on the way."] = "",
 	-- {npc:11877} Roon Wildmane · {npc:715} Hemet Nesingwary
 	["{npc:11877}: for {npc:715} in Stranglethorn"] = "{npc:11877}: para {npc:715} en Vega de Tuercespina",
 
 	-- Step 22: Clam beds
 	["Clam beds"] = "Bancos de almejas",
 	-- plural, as words: Giant Softshell Clams = {object:177784} Giant Softshell Clam · Enraged Reef Crawlers = {npc:12347} Enraged Reef Crawler
-	["Ride north up the coast. Giant Softshell Clams lie in the shallows and the Enraged Reef Crawlers walk the beach; open each clam in your bags for its meat."] = "Cabalga al norte por la costa. Las Almejas gigantes de concha blanda ({object:177784}) están en las aguas poco profundas y los Reptadores Correarrecifes iracundos ({npc:12347}) caminan por la playa; abre cada almeja en tus bolsas para obtener su carne.",
+	["Head north up the coast. Giant Softshell Clams lie in the shallows and the Enraged Reef Crawlers walk the beach; open each clam in your bags for its meat."] = "",
 
 	-- Step 23: Slitherblade Oracles
 	-- plural, as words: Slitherblade Oracles = {npc:4718} Slitherblade Oracle
@@ -122,12 +122,12 @@ return {
 	["His next errand is not on this route."] = "Su siguiente encargo no está en esta ruta.",
 
 	-- Step 27: Ghost Walker Post
-	["Ride south-east to the post."] = "Cabalga al sureste hasta el poblado.",
+	["Head south-east to the post."] = "",
 	-- {npc:5641} Takata Steelblade
 	["{npc:5641}'s next errand sends you after a demon lord with an elite guard: skip it."] = "El siguiente encargo de {npc:5641} te manda tras un señor demonio con una guardia élite: omítelo.",
 
 	-- Step 28: Gelkis Village
-	["Ride south-west towards Shadowprey. The Gelkis centaurs (32-35) around their village are a good camp; fight them until level 32."] = "Cabalga al suroeste hacia Aldea Cazasombras. Los centauros Gelkis (32-35) alrededor de su poblado son un buen lugar para farmear; pelea con ellos hasta el nivel 32.",
+	["Head south-west towards Shadowprey. The Gelkis centaurs (32-35) around their village are a good camp; fight them until level 32."] = "",
 	-- {area:606} Gelkis Village · {zone:1443} Desolace
 	-- plural, as words: Gelkis Stampers = {npc:4648} Gelkis Stamper
 	["grind on Gelkis Stampers and Windchasers at the {area:606}, {zone:1443}"] = "farmea Coceadores Gelkis ({npc:4648}) y Cazavientos en {area:606}, {zone:1443}",
@@ -176,7 +176,7 @@ return {
 	-- Step 37: Daggerspine naga
 	["Daggerspine naga"] = "Nagas Espinadaga",
 	-- {area:271} Southshore
-	["Ride south, east of {area:271}, down to the coast. The Daggerspine naga line the shore south-east of the town."] = "Cabalga al sur, al este de {area:271}, hasta la costa. Las nagas Espinadaga se alinean en la orilla al sureste del pueblo.",
+	["Head south, east of {area:271}, down to the coast. The Daggerspine naga line the shore south-east of the town."] = "",
 	["Daggerspine shore"] = "Costa Espinadaga",
 
 	-- Step 38: Torn Fin murlocs
@@ -187,7 +187,7 @@ return {
 
 	-- Step 39: Apothecary Lydon
 	-- {area:272} Tarren Mill · {area:271} Southshore
-	["Ride back north to {area:272}, keeping west of {area:271}."] = "Regresa cabalgando al norte a {area:272}, manteniéndote al oeste de {area:271}.",
+	["Head back north to {area:272}, keeping west of {area:271}."] = "",
 
 	-- Step 40: Shindigger keg
 	["Shindigger keg"] = "Barril Machacacanillas",
@@ -197,7 +197,7 @@ return {
 	-- Step 41: Back to Tarren Mill
 	-- {area:272} Tarren Mill
 	["Back to {area:272}"] = "De vuelta a {area:272}",
-	["Hearth back (or ride north if it is on cooldown)."] = "Usa tu piedra de hogar para volver (o cabalga al norte si está en tiempo de reutilización).",
+	["Hearth back (or head north if it is on cooldown)."] = "",
 	-- {object:1729} Tainted Keg · {object:1728} Dusty Rug
 	["Place the {object:1729} on the {object:1728} beside the inn"] = "Coloca {object:1729} sobre {object:1728}, junto a la posada",
 
@@ -224,21 +224,38 @@ return {
 
 	-- Step 46: Tarren Mill
 	-- {area:272} Tarren Mill
-	["Ride back east to {area:272}."] = "Regresa cabalgando al este a {area:272}.",
+	["Head back east to {area:272}."] = "",
 	-- {area:271} Southshore
 	["Thaivand's next task ends at {area:271}'s graveyard and the magus offers a dungeon errand: leave both."] = "La siguiente tarea de Thaivand termina en el cementerio de {area:271}, y el magus ofrece un encargo de calabozo: deja ambas.",
 
 	-- Step 47: Gol'dir
 	-- {quest:535} Valik · {area:280} Strahnbrad · {npc:2431} Jailor Borhuin · {item:3704} Rusted Iron Key · {quest:503} Gol'dir
-	["Ride north past {quest:535}'s camp to {area:280}, the Syndicate-held village (35-37). {npc:2431} carries the {item:3704}; {quest:503} sits in a cage in the house on the north side."] = "Cabalga al norte pasando el campamento de {quest:535} hasta {area:280}, la aldea tomada por la Hermandad (35-37). {npc:2431} lleva la {item:3704}; {quest:503} está en una jaula en la casa del lado norte.",
+	["Head north past {quest:535}'s camp to {area:280}, the Syndicate-held village (35-37). {npc:2431} carries the {item:3704}; {quest:503} sits in a cage in the house on the north side."] = "",
 
 	-- Step 48: Tarren Mill
 	-- {area:272} Tarren Mill
-	["Ride back south to {area:272}."] = "Regresa cabalgando al sur a {area:272}.",
+	["Head back south to {area:272}."] = "",
 
 	-- Step 49: Fly to the Undercity
 	-- {area:1497} Undercity
 	["Fly to the {area:1497}"] = "Vuela a {area:1497}",
 	-- {area:1497} Undercity · {object:3202} Grom'gol (no name in this language: may be words)
 	["The next guide starts in the {area:1497}, at the {object:3202} zeppelin."] = "La siguiente guía empieza en {area:1497}, en el zepelín a {object:3202}.",
+
+	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["Fly to {area:392}. {npc:5901} camps on the coast a short ride south of the town."] = "Vuela a {area:392}. {npc:5901} acampa en la costa, a poca distancia al sur del pueblo.",
+	-- ["Follow the road south-west out of Sun Rock into {zone:1443} and on south past {area:608}. {npc:11625}'s kodo caravan waits by the road north of {area:609}; if it has already left, ride on."] = "Sigue el camino al suroeste desde Refugio Roca del Sol hacia {zone:1443} y continúa al sur pasando {area:608}. La caravana de kodos de {npc:11625} espera junto al camino al norte de {area:609}; si ya se fue, sigue adelante.",
+	-- ["Hearth back (or ride north if it is on cooldown)."] = "Usa tu piedra de hogar para volver (o cabalga al norte si está en tiempo de reutilización).",
+	-- ["Ride back east to {area:272}."] = "Regresa cabalgando al este a {area:272}.",
+	-- ["Ride back north to {area:272}, keeping west of {area:271}."] = "Regresa cabalgando al norte a {area:272}, manteniéndote al oeste de {area:271}.",
+	-- ["Ride back south to the post."] = "Regresa cabalgando al sur al poblado.",
+	-- ["Ride back south to {area:272}."] = "Regresa cabalgando al sur a {area:272}.",
+	-- ["Ride north past {quest:535}'s camp to {area:280}, the Syndicate-held village (35-37). {npc:2431} carries the {item:3704}; {quest:503} sits in a cage in the house on the north side."] = "Cabalga al norte pasando el campamento de {quest:535} hasta {area:280}, la aldea tomada por la Hermandad (35-37). {npc:2431} lleva la {item:3704}; {quest:503} está en una jaula en la casa del lado norte.",
+	-- ["Ride north up the coast. Giant Softshell Clams lie in the shallows and the Enraged Reef Crawlers walk the beach; open each clam in your bags for its meat."] = "Cabalga al norte por la costa. Las Almejas gigantes de concha blanda ({object:177784}) están en las aguas poco profundas y los Reptadores Correarrecifes iracundos ({npc:12347}) caminan por la playa; abre cada almeja en tus bolsas para obtener su carne.",
+	-- ["Ride north-east to {area:609}. {quest:1365} (35) walks among the tents on the east side with a Battle Lord or two (32-33): clear around him, then pull him alone at full health."] = "Cabalga al noreste hasta {area:609}. {quest:1365} (35) camina entre las tiendas del lado este con uno o dos Señores de batalla (32-33): limpia a su alrededor y luego atráelo solo, con la salud completa.",
+	-- ["Ride south, east of {area:271}, down to the coast. The Daggerspine naga line the shore south-east of the town."] = "Cabalga al sur, al este de {area:271}, hasta la costa. Las nagas Espinadaga se alinean en la orilla al sureste del pueblo.",
+	-- ["Ride south-east to the post."] = "Cabalga al sureste hasta el poblado.",
+	-- ["Ride south-west to the troll village on the coast, keeping clear of the {area:606} on the way."] = "Cabalga al suroeste hasta el poblado trol de la costa, manteniéndote lejos de {area:606} en el camino.",
+	-- ["Ride south-west towards Shadowprey. The Gelkis centaurs (32-35) around their village are a good camp; fight them until level 32."] = "Cabalga al suroeste hacia Aldea Cazasombras. Los centauros Gelkis (32-35) alrededor de su poblado son un buen lugar para farmear; pelea con ellos hasta el nivel 32.",
+	-- ["Ride west to {area:599}. Beat a Burning Blade cultist down, then use the {item:6436} on it before it dies to fill one {item:6435}. They also drop a {item:20310} now and then (1-5%); if one drops, read it."] = "Cabalga al oeste hasta {area:599}. Debilita a un sectario de Filo Ardiente y usa {item:6436} sobre él antes de que muera para llenar una {item:6435}. A veces también sueltan {item:20310} (1-5%); si cae una, léela.",
 }

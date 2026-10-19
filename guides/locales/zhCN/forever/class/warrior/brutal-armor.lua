@@ -51,7 +51,7 @@ return {
 	["Hillsbrad Miners"] = "{npc:2269}",
 	-- {zone:1424} Hillsbrad Foothills · {item:7127} Powdered Azurite · {zone:1454} Orgrimmar · {zone:1420} Tirisfal Glades · {zone:1421} Silverpine Forest
 	-- plural, as words: Hillsbrad Miners = {npc:2269} Hillsbrad Miner
-	["The Hillsbrad Miners work the mine in the west of {zone:1424}; they drop the {item:7127}. Take the zeppelin from {zone:1454} to {zone:1420} and ride south through {zone:1421}."] = "{npc:2269}在{zone:1424}西部的矿洞里工作；他们掉落{item:7127}。从{zone:1454}乘飞艇前往{zone:1420}，然后向南穿过{zone:1421}。",
+	["The Hillsbrad Miners work the mine in the west of {zone:1424}; they drop the {item:7127}. Take the zeppelin from {zone:1454} to {zone:1420} and head south through {zone:1421}."] = "",
 	-- {item:7127} Powdered Azurite
 	-- plural, as words: Hillsbrad Miners = {npc:2269} Hillsbrad Miner
 	["{item:7127} from the Hillsbrad Miners"] = "{item:7127}，来自{npc:2269}",
@@ -99,6 +99,7 @@ return {
 	["Sturdy Dragonmaw Shinbones"] = "{item:7134}",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["The Hillsbrad Miners work the mine in the west of {zone:1424}; they drop the {item:7127}. Take the zeppelin from {zone:1454} to {zone:1420} and ride south through {zone:1421}."] = "{npc:2269}在{zone:1424}西部的矿洞里工作；他们掉落{item:7127}。从{zone:1454}乘飞艇前往{zone:1420}，然后向南穿过{zone:1421}。",
 	-- ["The {area:287} Miners work the mine in the west of {zone:1424}; they drop the {item:7127}. Take the zeppelin from {zone:1454} to {zone:1420} and ride south through {zone:1421}."] = "希尔斯布莱德矿工（{area:287}）在{zone:1424}西部的矿洞里干活；他们掉落{item:7127}。从{zone:1454}乘飞艇前往{zone:1420}，再向南骑行穿过{zone:1421}。",
 	-- ["{area:287} Miners"] = "希尔斯布莱德矿工（{area:287}）",
 	-- ["{item:7127} from the {area:287} Miners"] = "从希尔斯布莱德矿工（{area:287}）身上获得{item:7127}",
