@@ -760,6 +760,7 @@ Polestar.RegisterGuide({
       title = "Deputy Willem",     -- optional
       note = "...",                -- optional, player-facing
       only = { classes = { "WARRIOR" }, races = { "Human" }, factions = { "Alliance" } },  -- optional, AND across keys, OR within
+      when = { { k = "level", op = "<", n = 6 }, { k = "onquest", q = { 788 } } },  -- optional (format 4): conditions checked during play, all must hold
       goals = { goal, ... },       -- at least one
     },
   },
@@ -877,7 +878,7 @@ implements them:
   until that addon's `ADDON_LOADED`; guides registered before their pack are
   refused, their ids kept in a per-pack list and listed as `guide-refused`
   problems when it comes.
-- Format: `Guides.FORMATS` (the formats this Polestar reads, `1` and `2`);
+- Format: `Guides.FORMATS` (the formats this Polestar reads, `1` to `4`);
   `Guides.Validate` checks each guide against the `REQUIRED` verb table
   (`Guides.VERBS`).
 - Problems: each refusal goes on the pack's record,
@@ -1022,6 +1023,28 @@ Polestar.Engine.GetProgress() -> doneSteps, totalSteps
   `train` goal (an npc in the registry or `train class`). The UI shows a slim
   banner with Show (temporary `Nav.SetTarget`) and Later, cleared by
   `CLASS_TRAINED`; Options → Guide → Automation → "Trainer reminders".
+- **Conditions checked during play.** A step with `when` (format 4;
+  GUIDE_FORMAT, "Conditions checked during play") applies only while every
+  predicate holds (`Own.whenFails`, `Own.predicateHolds`): the level, quests
+  in the log, ready to turn in, handed in or available (an accept's own
+  test: level, `pre`/`preAll` through `missingPre`, `closedBy`), an item
+  count in the bags, the zone or subzone text, the bind location (place
+  names as the area's name in the client's language, `Compat.GetAreaName`,
+  else as written). `stepApplies` reads them, so such a step counts as one
+  for other characters while they fail, and a turn-in whose only accept sits
+  there goes with it (`orphaned`). When the route moves past a step
+  (`latchPassed`), its outcome is stored per character (`Own.latchWhen`): a
+  `when` that held in `CharState().when[guideId][step]`, one that failed as
+  a skip in `CharState().skipped`, read from then on (`Own.whenHolds`): a
+  step passed because its condition failed never comes back when the
+  condition changes, one that applied stays applied, and `Unskip` brings a
+  wrongly stored step back (storing it as held). Nothing is stored before
+  `QUEST_LOG_UPDATE` (`logReady`; the log lags `PLAYER_LOGIN`):
+  `Own.latchCaughtUp` stores the steps passed meanwhile once it can.
+  `ResetProgress` forgets them; a pack update moves them with the steps
+  (`Own.remap`). The live state they read already re-evaluates the guide
+  (quest log, `BAG_UPDATE_DELAYED`, zone changes, `PLAYER_LEVEL_UP`,
+  `HEARTHSTONE_BOUND`).
 - **Unavailable quests.** An `accept` whose `closedBy` names a quest that is
   in the log or done is unavailable before any visit (reason `"closed"`,
   "No longer offered: you took <quest>"): a breadcrumb whose follow-up is
@@ -1290,8 +1313,8 @@ Step view (render-ready; the UI never re-derives status):
 }
 ```
 
-Current step = first step, in order, that is applicable (`only` matches),
-not skipped, and not done. A step is done when every applicable,
+Current step = first step, in order, that is applicable (`only` matches
+and, with `when`, its predicates hold), not skipped, and not done. A step is done when every applicable,
 non-optional goal is done; a step of only notes/optional goals is done at
 once. Step views for indices before the current step report `done`,
 `skipped` or `na`; after it, `upcoming` or `na`.
