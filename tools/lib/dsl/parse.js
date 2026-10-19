@@ -5,9 +5,10 @@
 // parseGuide(text, file, diag) -> guide | null
 //   guide = { file, id, line, header: { ... }, lines: { <headerKey>: line, pros: [line], cons: [line], rewards: [line], nextOf: { <id>: line } }, steps: [step] }
 //   (header.next: the `next` guide ids in order; header.nextWhen: { <id>: predicate with its line } for `next <id> when ...`)
-//   step  = { line, title, only, tip, image?, when?: [predicate], goals: [goal] }
+//   step  = { line, title, only, tip, image?, when?: [predicate], label?, along?, goals: [goal] }
 //   (image: { path, ext, w, h, line }, images.js parseImagePath; w/h null unless written)
-//   (when: tools/lib/dsl/when.js predicates, each with its line; only on a step that has one)
+//   (when: tools/lib/dsl/when.js predicates, each with its line; only on a step that has one;
+//   label: the step's name; along: true, or the label `along until` names; labelLine/alongLine: their lines)
 //   goal  = { line, verb, zone, note, ...positional/modifier fields }
 // `zone` on a goal is the zone spec in effect ({ name } | { map }, with line),
 // shared by every goal under the same header/step `zone` line.
@@ -30,12 +31,14 @@ const ID_RE = /^[a-z0-9_-]+(?:\/[a-z0-9_-]+)*$/;
 const INT_RE = /^\d+$/;
 const NUM_RE = /^-?\d+(?:\.\d+)?$/;
 const COORD_RE = /^(-?\d+(?:\.\d+)?),(-?\d+(?:\.\d+)?)$/;
+// A step label (`label camp`, `along until camp`): letters, digits, `-` and `_`, as written.
+const LABEL_RE = /^[A-Za-z0-9_-]+$/;
 
 const HEADER_KEYS = ['guide', 'title', 'levels', 'zone', 'faction', 'race', 'class', 'next', 'category', 'folder', 'keywords', 'collects', 'reward', 'why', 'author', 'version', 'coords', 'pitch', 'pro', 'con'];
 // Lines inside a step that are not goals.
 // `loop`: the step's `goto` points are the spawn areas of its kill, collect
 // and interact goals (resolve.js, applyLoop).
-const STEP_KEYS = ['zone', 'only', 'tip', 'image', 'when', 'loop'];
+const STEP_KEYS = ['zone', 'only', 'tip', 'image', 'when', 'label', 'along', 'loop'];
 
 // `group [N]`: the goal needs a group (of N players), shown in the guide window.
 const COMMON = ['text', 'optional', 'only', 'group'];
@@ -289,6 +292,35 @@ function parseGuide(text, file, diag) {
 				const w = parseWhen(line.slice(toks[1] ? toks[1].start : lex.end, lex.end));
 				if (w.error) err(ln, w.error, w.hint);
 				else (step.when ||= []).push({ ...w.value, line: ln });
+			} else if (kw === 'label') {
+				if (step.label) {
+					err(ln, 'duplicate `label` in step');
+					continue;
+				}
+				if (toks.length !== 2 || toks[1].quoted) {
+					err(ln, '`label` needs a name: label <name>');
+					continue;
+				}
+				if (!LABEL_RE.test(toks[1].text)) {
+					err(ln, `malformed label "${toks[1].text}" (letters, digits, - and _)`);
+					continue;
+				}
+				step.label = toks[1].text;
+				step.labelLine = ln;
+			} else if (kw === 'along') {
+				if (step.along !== undefined) {
+					err(ln, 'duplicate `along` in step');
+					continue;
+				}
+				if (toks.length === 1) {
+					step.along = true;
+				} else if (toks.length === 3 && !toks[1].quoted && toks[1].text.toLowerCase() === 'until' && !toks[2].quoted && LABEL_RE.test(toks[2].text)) {
+					step.along = toks[2].text;
+				} else {
+					err(ln, '`along` takes nothing or `until <label>`');
+					continue;
+				}
+				step.alongLine = ln;
 			} else if (kw === 'image') {
 				parseImage(step, toks, ln, err);
 			} else if (kw === 'loop') {

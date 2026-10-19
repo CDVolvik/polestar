@@ -81,9 +81,9 @@ local TAB_MAX_W = 150
 local GF = {}
 UI.GuideFrame = GF
 
-local F, strip, nav, body, card, person, after, upnext, empty, grip, band, banner, foot
-local rows, upRows, tabButtons = {}, {}, {}
-GF.rows, GF.upRows, GF.tabs = rows, upRows, tabButtons -- the pools, for inspection (tests, preview)
+local F, strip, nav, body, card, person, after, along, upnext, empty, grip, band, banner, foot
+local rows, upRows, alongRows, tabButtons = {}, {}, {}, {}
+GF.rows, GF.upRows, GF.alongRows, GF.tabs = rows, upRows, alongRows, tabButtons -- the pools, for inspection (tests, preview)
 local view -- the step view on screen
 local focusGroup -- the group on screen
 local shownIndex, shownGuide, shownFocus -- what the card shows, to tell a change from an update
@@ -590,6 +590,40 @@ end
 local function upcomingOpen() return ns.Get("ui.upcomingOpen") and true or false end
 
 ---------------------------------------------------------------------------
+-- Along the way: open goals of `along` steps the route has passed
+-- (Engine.GetAlong), under the card until they are done
+---------------------------------------------------------------------------
+
+local ALONG_MAX = 6
+
+local function alongRow(i)
+	local r = alongRows[i]
+	if r then return r end
+	r = CreateFrame("Button", nil, along)
+	r:SetHeight(UP_ROW)
+	W.Hover(r)
+	r.Icon = r:CreateTexture(nil, "ARTWORK")
+	r.Icon:SetSize(13, 13)
+	r.Icon:SetPoint("LEFT", r, "LEFT", TEXT_X - 2, 0)
+	W.Color(r.Icon, "textMuted")
+	r.Text = T(r, "label", "textDim")
+	r.Text:SetPoint("LEFT", r.Icon, "RIGHT", 9, 0)
+	r:SetScript("OnClick", function(self)
+		local E = Engine()
+		if E and E.AimAlong and self.psStep then E.AimAlong(self.psStep, self.psGoal) end
+	end)
+	r:SetScript("OnEnter", function(self)
+		local lines = {}
+		if self.psPlace then lines[1] = { L["Click to point the arrow here"], Theme.Accent() } end
+		W.Tooltip(self, tooltipAnchor(), self.psTitle or "", lines)
+		GF.HoverIn()
+	end)
+	r:SetScript("OnLeave", function(self) W.HideTooltip(self) end)
+	alongRows[i] = r
+	return r
+end
+
+---------------------------------------------------------------------------
 -- Tab strip
 ---------------------------------------------------------------------------
 
@@ -1056,6 +1090,23 @@ local function layoutUpnext(width)
 	return -y
 end
 
+local function layoutAlong(width)
+	local y = -UP_TOGGLE
+	for i = 1, #alongRows do
+		local r = alongRows[i]
+		if r:IsShown() then
+			r.Text:SetWidth(width - TEXT_X - 14 - PAD)
+			r:ClearAllPoints()
+			r:SetPoint("TOPLEFT", along, "TOPLEFT", 0, y)
+			r:SetPoint("TOPRIGHT", along, "TOPRIGHT", 0, y)
+			y = y - UP_ROW
+		end
+	end
+	y = y - 6
+	along:SetHeight(-y)
+	return -y
+end
+
 local function layoutEmpty(width)
 	local cw = width - PAD * 4
 	local y = -26
@@ -1185,6 +1236,7 @@ function GF.Layout()
 		y = y + h
 		y = stackJourney(y, width)
 		if after:IsShown() then y = stack(after, y, layoutAfter(width)) end
+		if along:IsShown() then y = stack(along, y, layoutAlong(width)) end
 		if upnext:IsShown() then y = stack(upnext, y, layoutUpnext(width)) end
 	else
 		y = stack(empty, y, layoutEmpty(width))
@@ -1417,7 +1469,7 @@ local function fillUpcoming(E, index)
 	local i = index + 1
 	while n < want and i <= count do
 		local v = E.GetStepView(i)
-		if v and v.status ~= "na" then
+		if v and v.status ~= "na" and not v.along then
 			n = n + 1
 			local r = upRow(n)
 			r.psIndex = i
@@ -1446,7 +1498,8 @@ local function nextOf(E, index, groups, focus)
 	local count = E.GetStepCount and E.GetStepCount() or 0
 	for s = index + 1, count do
 		local v = E.GetStepView(s)
-		if v and v.status ~= "na" then
+		-- An along step never holds the route: "Then:" names the next step that does.
+		if v and v.status ~= "na" and not v.along then
 			local gs, f = UI.StepGroups(v)
 			local g = gs[f or 1] or gs[1]
 			if g then return UI.GroupName(v, g), g.kind end
@@ -1454,6 +1507,32 @@ local function nextOf(E, index, groups, focus)
 		end
 	end
 	return nil
+end
+
+-- The open goals of along steps behind the live step (Engine.GetAlong), up to
+-- ALONG_MAX rows, hidden in the compact window.
+local function fillAlong(E)
+	for i = 1, #alongRows do alongRows[i]:Hide() end
+	if compact() or not E.GetAlong then
+		along:Hide()
+		return
+	end
+	local n = 0
+	for _, s in ipairs(E.GetAlong()) do
+		for _, gv in ipairs(s.goals) do
+			if n < ALONG_MAX then
+				n = n + 1
+				local r = alongRow(n)
+				r.psStep, r.psGoal, r.psTitle = s.index, gv.index, s.title or UI.GoalLine(gv)
+				r.psPlace = gv.map and gv.x and gv.y and true or nil
+				r.Icon:SetTexture(Theme.VerbIcon(gv.t))
+				r.Text:SetText(UI.GoalLine(gv))
+				r:Show()
+			end
+		end
+	end
+	along.Label:SetText(L["Along the way"])
+	along:SetShown(n > 0)
 end
 
 -- "Then: Gazrog" and "Person 2 of 8".
@@ -1574,6 +1653,7 @@ end
 local function showSteps(show)
 	card:SetShown(show)
 	after:SetShown(show and after:IsShown())
+	along:SetShown(show and along:IsShown())
 	upnext:SetShown(show and upnext:IsShown())
 	empty:SetShown(not show)
 end
@@ -1627,6 +1707,7 @@ function GF.Render()
 	local focusChanged = stepChanged or shownFocus ~= f0
 	local groups, focus = fillCard(not focusChanged)
 	fillAfter(E, index, groups, focus)
+	fillAlong(E)
 	fillUpcoming(E, index)
 	showSteps(true)
 	GF.Layout()
@@ -1662,6 +1743,7 @@ function GF.Update()
 	view = v
 	fillCard(true)
 	fillAfter(E, index, groups, focus)
+	fillAlong(E)
 	GF.Layout()
 	GF.PaintProgress(true)
 end
@@ -2464,6 +2546,16 @@ local function build()
 	after.Count:SetJustifyH("RIGHT")
 	after.Count:SetPoint("RIGHT", after, "RIGHT", -PAD, 0)
 
+	-- Along the way: goals of along steps the route has passed. Shown only
+	-- while one is open (fillAlong).
+	along = CreateFrame("Frame", nil, body)
+	along.Rule = W.Divider(along)
+	along.Rule:SetPoint("TOPLEFT", along, "TOPLEFT", PAD, 0)
+	along.Rule:SetPoint("TOPRIGHT", along, "TOPRIGHT", -PAD, 0)
+	along.Label = T(along, "small", "textMuted")
+	along.Label:SetPoint("LEFT", along, "TOPLEFT", PAD, -UP_TOGGLE / 2)
+	along:Hide()
+
 	upnext = CreateFrame("Frame", nil, body)
 	local toggle = CreateFrame("Button", nil, upnext)
 	toggle:SetHeight(UP_TOGGLE)
@@ -2598,7 +2690,7 @@ local function build()
 
 	GF.parts = {
 		strip = strip, nav = nav, body = body, card = card, person = person, tip = tip, after = after,
-		upnext = upnext, empty = empty, band = band, banner = banner, foot = foot, line = foot.Line,
+		along = along, upnext = upnext, empty = empty, band = band, banner = banner, foot = foot, line = foot.Line,
 	}
 	GF.chrome = chrome
 

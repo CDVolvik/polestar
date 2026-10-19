@@ -53,6 +53,8 @@ every goal in it that is not `optional` is; its goals are open together.
 | `zone <Name>` / `zone map <uiMapID>` | The zone for coordinates from here on, in later steps too |
 | `only <condition>, ...` | The step is only for matching characters |
 | `when <predicate>` | The step is only for characters in that state when the route gets there; several lines must all hold (see Conditions) |
+| `along [until <label>]` | The route never stops at the step: its goals (quest objectives, bag counts) are done along the way, listed under the next steps until done, or until the step with that label |
+| `label <name>` | Names the step for an `along until` before it (letters, digits, `-`, `_`; once per guide) |
 | `loop` | The step's `goto` points, in order, are the places to search for its kill, collect and interact goals without `@x,y` (at least two, one map) |
 
 ## Goals
@@ -135,7 +137,7 @@ Warrior or Paladin).
 `turnedin <quest>`, `available <quest>`, `has <item> [xN]`, `zone "<Name>"`,
 `subzone "<Name>"`, `bound "<Location>"`; `!` in front of any but `level`
 turns it around. Once the route has passed the step, the outcome stays. A
-pack with `when` (on a step or a `next` line) needs Polestar 0.2.6 or newer.
+pack with `when` (on a step or a `next` line), `along` or `label` needs Polestar 0.2.6 or newer.
 
 ## Lint errors that come up most
 

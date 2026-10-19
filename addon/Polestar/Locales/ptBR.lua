@@ -1016,6 +1016,7 @@ L["%s (known)"] = "%s (você já tem)"
 L["%s (from level %d)"] = "%s (a partir do nível %d)"
 L["Points the arrow at the nearest vendor, repair, inn, flight master or trainer."] = "Aponta a seta para o vendedor, o reparo, a estalagem, o mestre de voo ou o instrutor mais próximo."
 -- L["Picture of this spot"] = ""
+-- L["Along the way"] = ""
 
 -- UI/JourneyPanel.lua
 L["Lift to %s"] = "Elevador para %s"

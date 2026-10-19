@@ -765,6 +765,8 @@ Polestar.RegisterGuide({
       note = "...",                -- optional, player-facing
       only = { classes = { "WARRIOR" }, races = { "Human" }, factions = { "Alliance" } },  -- optional, AND across keys, OR within
       when = { { k = "level", op = "<", n = 6 }, { k = "onquest", q = { 788 } } },  -- optional (format 4): conditions checked during play, all must hold
+      along = "camp",              -- optional (format 4): true or a later step's label; the route passes over the step
+      label = "camp",              -- optional (format 4): the step's name, unique in the guide
       goals = { goal, ... },       -- at least one
     },
   },
@@ -986,6 +988,8 @@ Polestar.Engine.StartGate(id) -> gate | nil -- a Class guide this character cann
 Polestar.Engine.ToggleGoal(stepIndex, goalIndex) -> bool   -- tick any goal but a note done, or clear its check-off
 Polestar.Engine.SkipGoal(stepIndex, goalIndex) -> bool     -- skip an optional goal, or bring it back
 Polestar.Engine.AimGoal(stepIndex, goalIndex) -> bool      -- lead the arrow to a goal of the current step (row click)
+Polestar.Engine.GetAlong() -> { { index, title, goals = { goal view, ... } }, ... }  -- open goals of along steps behind the live step
+Polestar.Engine.AimAlong(stepIndex, goalIndex) -> bool     -- lead the arrow to one of them (row click); holds while it is listed
 Polestar.Engine.GetWaypoint() -> waypoint | nil
 Polestar.Engine.GetProgress() -> doneSteps, totalSteps
 ```
@@ -1101,6 +1105,19 @@ Polestar.Engine.GetProgress() -> doneSteps, totalSteps
   `PLAYER_XP_UPDATE`, `HEARTHSTONE_BOUND`). A `level` predicate with `frac`
   (`when level>=12.5`) compares the level plus the share of it done
   (XP / XPMax) with `n + frac`.
+- **Along the way.** A step with `along` (format 4; GUIDE_FORMAT, "Along
+  the way") counts as done (`stepDone`), so the route passes over it and
+  latches it like any passed step (a `when` on it is stored then). While the
+  live step is past it, it applies and was not skipped, `Own.alongListed`
+  holds and `Engine.GetAlong` lists its open goals (status `active`), until
+  they are done or, with `along = "<label>"`, until the live step reaches
+  the step labelled so (`Own.marksOf`: labels and along steps per guide).
+  Their statuses are in the step signature, so progress fires
+  `STEP_UPDATED`. `Engine.AimAlong` sets `aim` to such a goal: `findWaypoint`
+  leads there (`waypointOf` with the goal's own step) while it is listed and
+  open, and a step change keeps it. The guide window lists them under "Then:"
+  ("Along the way", `fillAlong`, at most six rows, not in compact mode);
+  "Then:" and Up next skip along steps (`GetStepView(i).along`).
 - **Unavailable quests.** An `accept` whose `closedBy` names a quest that is
   in the log or done is unavailable before any visit (reason `"closed"`,
   "No longer offered: you took <quest>"): a breadcrumb whose follow-up is
@@ -1388,8 +1405,9 @@ Step view (render-ready; the UI never re-derives status):
 Current step = first step, in order, that is applicable (`only` matches
 and, with `when`, its predicates hold), not skipped, and not done. A step is done when every applicable,
 non-optional goal is done; a step of only notes/optional goals is done at
-once. Step views for indices before the current step report `done`,
-`skipped` or `na`; after it, `upcoming` or `na`.
+once, and so is an `along` step. Step views for indices before the current step report `done`,
+`skipped` or `na`; after it, `upcoming` or `na`. A view carries the step's
+`along` and `label`.
 
 The reading flow shows one line per thing to do; the view flags what folds,
 statuses and verbs unchanged (the Engine and every other reader still see
