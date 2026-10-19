@@ -11,7 +11,7 @@ const { header } = require('../generated');
 // 0.2.5.
 const FORMAT = 3;
 const WHEN_FORMAT = 4;
-const NEEDS = { 1: '0.1.0', 2: '0.2.4', 3: '0.2.5', 4: '0.3.0' };
+const NEEDS = { 1: '0.1.0', 2: '0.2.4', 3: '0.2.5', 4: '0.2.6' };
 
 // A step with `label` or `along` (an older Polestar would stop at an along step).
 const usesAlong = (s) => s.label !== undefined || s.along !== undefined;

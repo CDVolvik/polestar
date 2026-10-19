@@ -1186,6 +1186,31 @@ test('buying: goods sold in stacks are bought in whole stacks within the stack l
 	assert.equal(out[5], true);
 });
 
+test('buying: reads the merchant through C_MerchantFrame.GetItemInfo or GetMerchantItemInfo, whichever the client has, alike', () => {
+	// Forever has both; retail has only the table (RamosJoaquim, #153).
+	const visit = (client) => run(`${GOODS}
+		${client}
+		set("buyGoals", true)
+		q.money = 1000
+		q.goods[1].numAvailable = 6       -- stack size and stock
+		q.goods[2].extendedCost = true    -- another currency: left alone
+		q.step({
+			{ t = "buy", item = 22, count = 12 },
+			{ t = "buy", item = 20, count = 1 },
+			{ t = "buy", item = 23, count = 1 },  -- no itemName: the merchant's name
+		})
+		q.openMerchant()
+		stub.advance(1)
+		emit(bought())
+		emit(q.money)
+		emit(printed("Bought 1 Flagon of Mead for 80c"))
+	`);
+	const both = visit('');
+	assert.deepEqual(both, [['1x5', '3x1'], 895, true]);
+	assert.deepEqual(visit('GetMerchantItemInfo = nil'), both, 'retail: the table only');
+	assert.deepEqual(visit('C_MerchantFrame = nil'), both, 'without the table: GetMerchantItemInfo');
+});
+
 test('buying: selling greys pays for it first; goods for other currencies, Shift and the setting off buy nothing', () => {
 	const out = run(`${BAGS}${GOODS}
 		set("buyGoals", true)

@@ -538,6 +538,43 @@ function handSpots(data, sources, map, f, x, y, near) {
 	return [own, ...alts.map(({ d, ...s }) => s)];
 }
 
+// A `loop` step (docs/GUIDE_FORMAT.md, "Spawn areas"): its `goto` points, in
+// order, are the places to search. Each kill, collect or interact goal the
+// author did not place (`@x,y`) and that picks no place at runtime gets them
+// as its spawn areas, searched one after another (`spread`), its point at the
+// first; the gotos leave the step. A spot's radius is its goto's `r`, else
+// LOOP_RADIUS yards.
+const LOOP_RADIUS = 30;
+const LOOP_VERBS = new Set(['kill', 'collect', 'interact']);
+function applyLoop(step, s, data, err) {
+	const ln = s.loop;
+	const gotos = step.goals.filter((g) => g.t === 'goto');
+	if (gotos.some((g) => g.x === undefined)) return; // its coordinates' error is reported
+	if (gotos.length < 2) return err(ln, '`loop` needs at least two `goto` points in its step', 'list the places to search as `goto x,y` lines, in the order to walk them');
+	const first = gotos[0];
+	if (gotos.some((g) => g.map !== first.map)) return err(ln, '`loop` points must all be on one map', 'split the search into a step per map');
+	if (gotos.some((g) => g.f !== first.f)) return err(ln, '`loop` points must all be in one map frame: all Era, or all `live`');
+	const own = gotos.find((g) => g.only || g.optional);
+	if (own) return err(own._line, 'a `loop` point cannot be `optional` or have `only`: every goal of the loop searches it');
+	const targets = step.goals.filter((g, i) => LOOP_VERBS.has(g.t) && !s.goals[i].explicitCoords && !g.candidates);
+	if (!targets.length) {
+		return err(ln, '`loop` needs a kill, collect or interact goal without its own `@x,y`', 'a goal placed with `@x,y` keeps its point; drop `loop` to walk the gotos as a path');
+	}
+	for (const goal of targets) {
+		goal.map = first.map;
+		goal.x = first.x;
+		goal.y = first.y;
+		if (first.f) goal.f = first.f;
+		else delete goal.f;
+		goal.spots = gotos.map((g) => ({ x: g.x, y: g.y, r: g.r !== undefined ? g.r : LOOP_RADIUS }));
+		goal.spread = true;
+		delete goal.z;
+		setIf(goal, 'z', goalHeight(data, goal));
+		for (const p of goal.spots) setIf(p, 'z', spotHeight(data, goal, p));
+	}
+	step.goals = step.goals.filter((g) => g.t !== 'goto');
+}
+
 function onlyOf(c) {
 	if (!c) return undefined;
 	const o = {};
@@ -711,6 +748,7 @@ function resolveGuide(ast, data, diag, opts = {}) {
 				layers: [{ factions: h.faction ? [h.faction] : null, races: h.races || null, classes: h.classes || null }, s.only, g.only],
 				prof: profProgress,
 				zoneId,
+				loop: !!s.loop,
 			};
 			const goal = resolveGoal(g, zoneId, prev, data, err, warn, ctx);
 			hidden(goal, '_line', g.line);
@@ -755,6 +793,11 @@ function resolveGuide(ast, data, diag, opts = {}) {
 				prev = { map: goal.map, x: goal.x, y: goal.y };
 				use(goal.map);
 			}
+		}
+		if (s.loop) {
+			applyLoop(step, s, data, err);
+			const last = step.goals.findLast((goal) => goal.x !== undefined);
+			if (last) prev = { map: last.map, x: last.x, y: last.y };
 		}
 		guide.steps.push(step);
 	}
@@ -1666,7 +1709,8 @@ function resolveGoal(g, zoneMap, prev, data, err, warn, ctx = { sides: ['Allianc
 	setIf(goal, 'area', goalArea(data, goal));
 	setIf(goal, 'node', goalNode(data, goal, smartSides(ctx.sides, applicable(ctx.layers || []))));
 
-	if ((v === 'kill' || v === 'collect' || v === 'interact' || v === 'use') && goal.x === undefined && !goal.candidates && !g.nearest) {
+	// A `loop` step's gotos place its kill, collect and interact goals (applyLoop).
+	if ((v === 'kill' || v === 'collect' || v === 'interact' || v === 'use') && goal.x === undefined && !goal.candidates && !g.nearest && !(ctx.loop && LOOP_VERBS.has(v))) {
 		warn(ln, `\`${v}\` has no coordinates (no known spawns; add @x,y)`, 'add @x,y where the player finds the target (the map coordinates the game shows), so the arrow can lead there');
 	}
 	return goal;

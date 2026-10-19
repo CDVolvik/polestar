@@ -54,6 +54,7 @@ every goal in it that is not `optional` is; its goals are open together.
 | `when <predicate>` | The step is only for characters in that state when the route gets there; several lines must all hold (see Conditions) |
 | `along [until <label>]` | The route never stops at the step: its goals (quest objectives, bag counts) are done along the way, listed under the next steps until done, or until the step with that label |
 | `label <name>` | Names the step for an `along until` before it (letters, digits, `-`, `_`; once per guide) |
+| `loop` | The step's `goto` points, in order, are the places to search for its kill, collect and interact goals without `@x,y` (at least two, one map) |
 
 ## Goals
 
