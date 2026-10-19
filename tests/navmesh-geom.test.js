@@ -9,7 +9,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const { tmpdir } = require('./helpers/tmp');
-const { tileGeometry, continentTiles } = require('../tools/lib/nav/geom');
+const { tileGeometry, continentTiles, openingCut, OPENINGS } = require('../tools/lib/nav/geom');
 const { chunks } = require('../tools/lib/nav/geom/adt');
 const { parsePlacements, placementMatrix, transformBox } = require('../tools/lib/nav/geom/place');
 const { parseRoot: parseWmoRoot } = require('../tools/lib/nav/geom/wmo');
@@ -516,4 +516,42 @@ test('transform: WMO bounding boxes land on their MODF extents within 1 yd (real
 		}
 	}
 	assert.ok(checked >= 40);
+});
+
+test('openings: a portal becomes its span along the wall, depth yards to each side, floor to top', () => {
+	// Brill town hall's portal 2 (entry02 to tower) in model space: upright, in the plane y = -7.1.
+	const v = Float32Array.of(-34.6, -7.1, 5, -34.6, -7.1, 1, -37.8, -7.1, 1, -37.8, -7.1, 5);
+	const cut = openingCut(v, 1.5);
+	assert.equal(cut.zlo, 1);
+	assert.equal(cut.zhi, 5);
+	const xs = cut.pts.map((p) => p[0]);
+	const ys = cut.pts.map((p) => p[1]);
+	assert.ok(Math.abs(Math.min(...xs) + 37.8) < 1e-4 && Math.abs(Math.max(...xs) + 34.6) < 1e-4, 'its span along the wall');
+	assert.ok(Math.abs(Math.min(...ys) + 8.6) < 1e-4 && Math.abs(Math.max(...ys) + 5.6) < 1e-4, '1.5 yd to each side');
+	assert.equal(openingCut(Float32Array.of(0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0), 1), null, 'a floor hole is no door');
+	assert.ok(OPENINGS.some((o) => o.id === 'brill-town-hall-tower-door' && o.wmo === 106787 && o.portal === 2), 'Brill town hall is listed');
+});
+
+test('openings: Brill town hall\'s tower door is cut on its tile, floor to lintel (real tile, #366)', async (t) => {
+	let casc;
+	try {
+		casc = await openCasc({ sourcesDir: SOURCES, offline: true });
+	} catch (err) {
+		return t.skip(`no CASC cache: ${err.message}`);
+	}
+	if (![777722, 777723, 106787].every((f) => casc.has(f))) return t.skip(`CASC cache ${casc.build} lacks Azeroth 31_27 (node tools/polestar.js nav build)`);
+	let g;
+	try {
+		g = await tileGeometry(casc, { c: 0, col: 31, row: 27, root: 777722, obj0: 777723 });
+	} catch (err) {
+		return t.skip(`CASC cache ${casc.build} lacks a file of 31_27: ${err.message}`);
+	}
+	const cuts = g.openings.filter((o) => o.id === 'brill-town-hall-tower-door');
+	assert.equal(cuts.length, 1);
+	const [cut] = cuts;
+	assert.ok(Math.abs(cut.zlo - 37.31) < 0.05 && Math.abs(cut.zhi - 41.34) < 0.05, `floor to lintel: ${cut.zlo}..${cut.zhi}`);
+	// Its footprint holds the doorway between the corridor and the tower (world 2298.0, 284.0).
+	const cx = cut.pts.reduce((a, p) => a + p[0], 0) / 4;
+	const cy = cut.pts.reduce((a, p) => a + p[1], 0) / 4;
+	assert.ok(Math.hypot(cx - 2298.0, cy - 284.0) < 0.5, `centred on the doorway: ${cx.toFixed(1)}, ${cy.toFixed(1)}`);
 });

@@ -10,9 +10,11 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const zlib = require('node:zlib');
+const crypto = require('node:crypto');
 
 const { decodeCbor, storedValue, readQuestie, dropRate, questieDbDir } = require('../tools/lib/data/questie');
 const { raceMask } = require('../tools/lib/data/questie-merge');
+const { extractQuestCounts, DB_REV } = require('../tools/lib/travel/cmangos');
 const { buildData } = require('../tools/lib/data/build');
 const { tmpdir } = require('./helpers/tmp');
 
@@ -406,6 +408,32 @@ describe('QuestieDB merge', () => {
 		assert.deepEqual(read('npcs')[1].spawns, { 1429: { f: 'l', pts: [[47.5, 40.25]] } });
 	});
 
+	// MgM's report (#462): QuestieDB's Forever store gives Deviate Hides (1486)
+	// an Orgrimmar Mailbox and Poor Old Blanchy (151) a Stormwind one as a
+	// second giver, so the Wailing Caverns pick-up page sent a player from
+	// Tirisfal to the Orgrimmar mailbox. Forever's quest data has only the NPC;
+	// corrections.json sets it after the merge.
+	test("MgM's report: corrections.json leaves Nalpak and Verna Furlbrow as the only givers, not the mailboxes", async () => {
+		const { read } = await build({}, {
+			quests: {
+				1486: { name: 'Deviate Hides', questLevel: 17, requiredLevel: 13, startedBy: [[5767], [659159]], finishedBy: [[5767]] },
+				151: { name: 'Poor Old Blanchy', questLevel: 10, requiredLevel: 7, startedBy: [[238], [696264]], finishedBy: [[238]] },
+			},
+			npcs: {
+				5767: { name: 'Nalpak', minLevel: 22, maxLevel: 22, spawns: { 17: [[46, 35.7]] }, friendlyToFaction: 'AH', npcFlags: 2, questStarts: [1486] },
+				238: { name: 'Verna Furlbrow', minLevel: 14, maxLevel: 14, spawns: { 40: [[59.9, 19.4]] }, friendlyToFaction: 'A', npcFlags: 2, questStarts: [151] },
+			},
+			objects: {
+				659159: { name: 'Mailbox', spawns: { 1637: [[50.9, 70.4]] }, questStarts: [1486] },
+				696264: { name: 'Mailbox', spawns: { 1519: [[61.7, 70.7]] }, questStarts: [151] },
+			},
+		});
+		const q = read('quests');
+		assert.deepEqual(q[1486].start, { npc: [5767], object: [], item: [] });
+		assert.deepEqual(q[151].start, { npc: [238], object: [], item: [] });
+		assert.ok(q[1486].source.includes('polestar-correction'));
+	});
+
 	test("objectives come in the game's order: creatures, objects, items, kill credits, the trigger", async () => {
 		const { read } = await build({}, {
 			quests: {
@@ -445,6 +473,83 @@ describe('QuestieDB merge', () => {
 		const order = (id) => q[id].objectives.map((o) => `${o.type} ${o.id}`);
 		assert.deepEqual(order(111), ['item 50', 'kill 3']);
 		for (const id of [112, 113, 114]) assert.deepEqual(order(id), ['kill 3', 'item 50'], `quest ${id}`);
+	});
+
+	// CMaNGOS classic-db quest_template (tools/lib/travel/cmangos.js
+	// loadQuestCounts) fills the counts QuestieDB's store and pfQuest lack.
+	describe('objective counts from classic-db', () => {
+		const COLS = ['entry', 'Title', ...[1, 2, 3, 4].map((i) => `ReqItemId${i}`), ...[1, 2, 3, 4].map((i) => `ReqItemCount${i}`), ...[1, 2, 3, 4].map((i) => `ReqCreatureOrGOId${i}`), ...[1, 2, 3, 4].map((i) => `ReqCreatureOrGOCount${i}`)];
+		// One quest_template row: items and creatures/objects as [id, count] (a negative id is a gameobject).
+		const row = (entry, items = [], kills = []) => {
+			const pad = (list) => [0, 1, 2, 3].map((i) => list[i] || [0, 0]);
+			const it = pad(items);
+			const kl = pad(kills);
+			return `(${[entry, "'Fixture\\'s quest'", ...it.map((e) => e[0]), ...it.map((e) => e[1]), ...kl.map((e) => e[0]), ...kl.map((e) => e[1])].join(',')})`;
+		};
+		const DUMP = [
+			'CREATE TABLE `quest_template` (',
+			...COLS.map((c) => `  \`${c}\` mediumint NOT NULL DEFAULT '0',`),
+			'  PRIMARY KEY (`entry`)',
+			') ENGINE=MyISAM;',
+			`INSERT INTO \`quest_template\` VALUES ${[
+				row(120, [[50, 6]], [[3, 8]]), // the same ids: their counts
+				row(121, [], [[999, 7]]), // one kill each side, ids differ (Forever changed it): paired
+				row(122, [], [[3, 5], [3, 9]]), // two different counts for kill 3: left null
+				row(123, [[50, 2]], [[4, 10]]), // the text gives 4 wolves: kept
+				row(124, [], [[-500, 2], [3, 1]]), // the altar is an object (negative id)
+				row(125, [], [[999, 1]]), // the trigger is the quest's one kill-group objective
+				row(126, [[0, 0]], []), // nothing to count: not kept
+			].join(',')};`,
+		];
+
+		test('extractQuestCounts reads kill, object and item counts by column name', async () => {
+			const t = await extractQuestCounts(DUMP);
+			assert.deepEqual(t[120], { kill: [[3, 8]], object: [], item: [[50, 6]] });
+			assert.deepEqual(t[124], { kill: [[3, 1]], object: [[500, 2]], item: [] });
+			assert.equal(t[126], undefined);
+		});
+
+		test('a count QuestieDB lacks comes from classic-db: same id, or the one objective of its kind on each side', async () => {
+			const sourcesDir = tmpdir('polestar-questie-');
+			fs.cpSync(path.join(FIX, 'sources'), sourcesDir, { recursive: true });
+			const gz = zlib.gzipSync(Buffer.from(DUMP.join('\n')));
+			const cache = path.join(sourcesDir, 'cmangos', DB_REV.slice(0, 12));
+			fs.mkdirSync(cache, { recursive: true });
+			fs.writeFileSync(path.join(cache, 'classicdb.sql.gz'), gz);
+			const quest = (name, objectives, extra = {}) => ({ name, questLevel: 3, requiredLevel: 1, startedBy: [[2]], finishedBy: [[2]], objectivesText: ['Help the camp.'], objectives, ...extra });
+			const { read, result } = await build({ sourcesDir, classicDb: { hash: crypto.createHash('sha256').update(gz).digest('hex') } }, {
+				quests: {
+					120: quest('Fixture Same Ids', [[{ 1: 3 }], [], [{ 1: 50 }]]),
+					121: quest('Fixture Changed Id', [[{ 1: 4 }]]),
+					122: quest('Fixture Conflict', [[{ 1: 3 }]]),
+					123: quest('Fixture Text Count', [[{ 1: 4 }], [], [{ 1: 50 }]], { objectivesText: ['Kill 4 Fixture Wolf Alphas.'] }),
+					124: quest('Fixture Altar', [[{ 1: 3 }], [{ 1: 500 }]]),
+					125: quest('Fixture Trigger', [], { triggerEnd: ['Scout the ridge', { 12: [[50, 50]] }] }),
+					127: quest('Fixture Not In Classic', [[{ 1: 3 }]]),
+				},
+			});
+			const q = read('quests');
+			const counts = (id) => q[id].objectives.map((o) => `${o.type} ${o.id} ${o.count}`);
+			assert.deepEqual(counts(120), ['kill 3 8', 'item 50 6']);
+			assert.deepEqual(counts(121), ['kill 4 7']);
+			assert.deepEqual(counts(122), ['kill 3 null'], 'two different counts leave null');
+			assert.deepEqual(counts(123), ['kill 4 4', 'item 50 2'], "the text's count is never overwritten");
+			assert.deepEqual(counts(124), ['kill 3 1', 'object 500 2']);
+			assert.deepEqual(counts(125), ['event null 1']);
+			assert.deepEqual(counts(127), ['kill 3 null']);
+			assert.ok(fs.existsSync(path.join(cache, 'quest_counts.json')), 'the extract is cached beside the dump');
+			assert.equal(result.meta.counts.objectiveCountsFromClassicDb, 7);
+			const credit = result.meta.sources.find((s) => /quest objective counts/.test(s.name));
+			assert.equal(credit.revision, DB_REV);
+			assert.match(credit.license, /^GPL-3\.0/);
+		});
+
+		test('without the dump: counts stay null, one warning', async () => {
+			const { read, result } = await build({}, { quests: { 121: { name: 'Fixture Changed Id', questLevel: 3, requiredLevel: 1, startedBy: [[2]], finishedBy: [[2]], objectives: [[{ 1: 4 }]] } } });
+			assert.equal(read('quests')[121].objectives[0].count, null);
+			assert.equal(result.meta.warnings.filter((w) => /objective counts unavailable/.test(w)).length, 1);
+			assert.equal(result.meta.sources.some((s) => /quest objective counts/.test(s.name)), false);
+		});
 	});
 });
 
