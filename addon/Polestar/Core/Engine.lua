@@ -3872,6 +3872,28 @@ end
 -- the guide is complete), whatever step the player is looking at.
 function Engine.GetLiveStep() return computed end
 
+-- The level the guide expects next (QoL/XPMark): the first `level N` goal at
+-- or after the step shown that is for this character (the step's `only` and
+-- `when`, the goal's `only`), neither skipped, with N above `level` (the
+-- caller's reading; the character's level by default). N, its step; or nil.
+function Engine.LevelTarget(level)
+	if not (guide and current) then return nil end
+	if not player then refreshPlayer() end
+	level = level or player.level or 1
+	local sk = skippedFor(guide.id)
+	for s = current, #guide.steps do
+		local step = guide.steps[s]
+		if not (sk and sk[s]) and stepApplies(step) then
+			for g, goal in ipairs(step.goals) do
+				if goal.t == "level" and (goal.level or 0) > level and not (sk and sk[Own.key(s, g)]) and goalApplies(goal) then
+					return goal.level, s
+				end
+			end
+		end
+	end
+	return nil
+end
+
 -- What a Class guide waits on before this character can start it
 -- (Own.startGate), for the guide window's notice and the guide menu's row:
 -- { level } or { pre, preTitle }, with who starts it (giver: the opening's

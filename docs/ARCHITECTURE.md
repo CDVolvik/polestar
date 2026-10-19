@@ -266,15 +266,15 @@ the next gamepad action there is blocked ("An action was blocked because of
 taint from Polestar"; seen in game as a quest reward was taken, then on every
 panel after it). `SetParent` is not hooked. So every frame of Polestar's
 whose parent is a game frame, or is under one (the map canvases, the
-minimap, the quest reward and talent buttons, and the frames under those),
-is made through `CreateFrameUnder`; frames under Polestar's own windows,
-which hang off `UIParent`, are made with `CreateFrame`. No `CreateFramePool`
-with a game frame either: it calls `CreateFrame` with its parent.
-`tests/lua/wow_stub.lua`'s `CreateFrame` raises on a call from addon code
-whose parent is, or is under, a frame addon code did not make
+minimap, the quest reward and talent buttons, the XP bar, and the frames
+under those), is made through `CreateFrameUnder`; frames under Polestar's
+own windows, which hang off `UIParent`, are made with `CreateFrame`. No
+`CreateFramePool` with a game frame either: it calls `CreateFrame` with its
+parent. `tests/lua/wow_stub.lua`'s `CreateFrame` raises on a call from addon
+code whose parent is, or is under, a frame addon code did not make
 (`stub.underGameFrames`), and `tests/nav-mapcanvas.test.js`,
-`tests/qol.test.js` (the reward marks) and `tests/talents.test.js` (the
-talent marks) check that none was made.
+`tests/qol.test.js` (the reward marks, the XP bar mark) and
+`tests/talents.test.js` (the talent marks) check that none was made.
 
 ### Gamepad interface
 
@@ -981,6 +981,7 @@ Polestar.Engine.Next() / Prev() / Goto(i)    -- look at another step; changes no
 Polestar.Engine.Skip() -> stepIndex         -- skip the step shown, saved; fires PLAYER_SKIPPED_STEP
 Polestar.Engine.Unskip(i) -> bool           -- undo a skip
 Polestar.Engine.GetLiveStep() -> i | nil    -- the first open step, whatever step is shown
+Polestar.Engine.LevelTarget(level?) -> N, stepIndex | nil   -- the first `level N` goal from the step shown for this character (step `only`/`when`, goal `only`; skips left out) with N above `level` (default: the character's); QoL's XP bar mark
 Polestar.Engine.StartGate(id) -> gate | nil -- a Class guide this character cannot start yet: { level } or { pre, preTitle }, with giver, map (see "Not yet available")
 Polestar.Engine.ToggleGoal(stepIndex, goalIndex) -> bool   -- tick any goal but a note done, or clear its check-off
 Polestar.Engine.SkipGoal(stepIndex, goalIndex) -> bool     -- skip an optional goal, or bring it back
@@ -3309,6 +3310,38 @@ Polestar.QoL.Bind.OnGossip() -> bool         -- GOSSIP_SHOW (Toggles.lua: after 
   Engine completes the goal from the bind as it does for one by hand
   (`HEARTHSTONE_BOUND`).
 
+### Guide level on the XP bar — QoL/XPMark
+
+```lua
+Polestar.QoL.XPMark.Label(level, target) -> text | nil   -- pure: "Guide: 11" (the next level), "Guide: 14 (4 levels)"; nil when target <= level
+Polestar.QoL.XPMark.Refresh()                            -- show, move or hide the mark now
+Polestar.QoL.XPMark.frame                                -- the mark, once made
+```
+
+- **Target** (`qol.xpTargetMark`, on by default; Quality of Life >
+  Trackers > Experience): `Engine.LevelTarget(level)`, the level the guide
+  holds you to before it moves on. Guide levels are whole levels (the
+  compiler takes no fractions), so the mark is always the end of this
+  level's bar: a 2px accent tick at the bar's right edge, standing 2px above
+  and below it, with the label left of it in the accent colour (outlined
+  `small` text). Nothing when the option is off, no guide is open, no `level`
+  goal lies ahead above your level, or you are at the maximum level.
+- **The game's bar is only read.** The experience bar is the one of
+  `StatusTrackingBarManager.barContainers` whose
+  `bars[StatusTrackingBarInfo.BarsEnum.Experience]` is shown
+  (Blizzard_StatusTrackingBar). The mark is Polestar's own frame made under
+  that bar through `CreateFrameUnder`, spanning its `StatusBar` one level
+  above its `OverlayFrame` (MEDIUM strata, like the bar's own text), so it
+  fades, hides and resizes with the bar and its gamepad width. It takes no
+  mouse: the bar's tooltip stays. No scripts, methods or hooks on the bar;
+  no bar shown (another addon replaced or hid it, the maximum level): no
+  mark, and no error.
+- **Updates**, coalesced to the next frame (after the game's bar and the
+  engine took the same event): `PLAYER_XP_UPDATE` and
+  `PLAYER_ENTERING_WORLD` while the option is on (`QoL.WhileOn`),
+  `PLAYER_LEVEL_UP` (its level: `UnitLevel` can lag the event), step
+  changes (`QoL.OnStep`), the setting, and the theme's accent.
+
 ## Lookup — Codex, sources, generated guides, mount spotting
 
 `addon/Polestar/Lookup/` (`Lookup.xml`: Codex, Sources, Guide, Spotter,
@@ -3443,8 +3476,11 @@ guides.
 The pick-up guide is built in game (`addon/Polestar/Dungeons/Pickup.lua`):
 `Dungeons.PickupPlan(key)` takes the page's quests that apply to the character
 (faction, race and class masks through `Lookup.QuestBlock`, the page's class
-list), not done, not in the log (those are `carried`), open by
-max(level, the dungeon's lowest level), picked up outside from an NPC or object
+list), not done, not in the log (those are `carried`), not closed for good (a
+quest of the page's `closedBy` done or in the log: a breadcrumb whose quest is
+taken, such as Klockmort's Essentials once Essential Artificials is; each
+accept carries `closedBy` too, so the Engine passes it once taken on the way),
+open by max(level, the dungeon's lowest level), picked up outside from an NPC or object
 (not from an item, not inside), and not a follow-up of another quest of the
 page; each with its open prerequisites (`Lookup.QuestChain`: all of `pre`, one
 of `preAny` this character can take, in the order they are done). The giver

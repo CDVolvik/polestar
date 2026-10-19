@@ -382,6 +382,7 @@ and each section says what is missing.
 ### Quality of life
 
 Quest item, target and Hearthstone buttons; XP per hour and time to level;
+the level the guide wants you to reach, marked on the game's XP bar;
 selling greys and repairing (optionally from the guild bank first); buying
 what a step asks you to buy; learning new spells at class trainers; taking
 the best quest reward and wearing rewards that are upgrades; instant quest

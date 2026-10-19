@@ -898,6 +898,107 @@ test('xp: tracker off returns nil and prints nothing', () => {
 	assert.equal(cmd, true);
 });
 
+// The guide's level on the game's XP bar (QoL/XPMark.lua).
+const XPMARK = `
+local function mark(bar)
+	local f = QoL.XPMark.frame
+	if not (f and f:IsShown()) then return { shown = false } end
+	local point, rel, relPoint = f:GetPoint(1)
+	local tick, tickRel, tickRelPoint = f.Tick:GetPoint(1)
+	local r, g, b = f.Tick:GetVertexColor()
+	local ar, ag, ab = Polestar.Theme.Accent()
+	return {
+		shown = true, text = f.Label:GetText(), underBar = f:GetParent() == bar,
+		spans = point == "TOPLEFT" and rel == bar.StatusBar and f:GetNumPoints() == 2,
+		tick = tick .. ">" .. tickRelPoint, tickOnMark = tickRel == f,
+		accent = r == ar and g == ag and b == ab, aboveText = f:GetFrameLevel() > bar.OverlayFrame:GetFrameLevel(),
+	}
+end
+`;
+
+test('xp mark: the label reads the next level, or the target and how many levels away it is', () => {
+	const [labels] = run(`
+		local M = QoL.XPMark
+		emit({ next = M.Label(10, 11), far = M.Label(10, 14), same = M.Label(10, 10) or "nil", below = M.Label(10, 8) or "nil",
+			none = M.Label(10, nil) or "nil" })
+	`);
+	assert.deepEqual(labels, { next: 'Guide: 11', far: 'Guide: 14 (4 levels)', same: 'nil', below: 'nil', none: 'nil' });
+});
+
+test('xp mark: a tick at the right end of the shown XP bar, labelled with the guide\'s next level target, made through CreateFrameUnder', () => {
+	const [next, far, levelled, under] = run(XPMARK + `
+		local bar = q.xpBar()
+		q.engine.levelTarget = 11
+		q.step({ { t = "level", level = 11 } })
+		emit(mark(bar))
+		q.engine.levelTarget = 14
+		q.step({ { t = "kill", target = "Wolf", quest = 5, oi = 1 } })
+		emit(mark(bar))
+		-- a level-up moves the count down without a step change
+		stub.fire("PLAYER_LEVEL_UP", 11)
+		q.level = 11
+		stub.runTimers()
+		emit(mark(bar))
+		emit(table.concat(stub.underGameFrames, "; "))
+	`);
+	assert.deepEqual(next, {
+		shown: true, text: 'Guide: 11', underBar: true, spans: true, tick: 'TOPRIGHT>TOPRIGHT', tickOnMark: true,
+		accent: true, aboveText: true,
+	});
+	assert.equal(far.text, 'Guide: 14 (4 levels)');
+	assert.equal(far.shown, true);
+	assert.equal(levelled.text, 'Guide: 14 (3 levels)');
+	assert.equal(under, '', 'no frame created with a game frame as its parent');
+});
+
+test('xp mark: hidden with the option off, without a target, without the XP bar or at the maximum level', () => {
+	const [on, off, back, none, noBar, hiddenBar, maxed] = run(XPMARK + `
+		local bar = q.xpBar()
+		q.engine.levelTarget = 12
+		q.step({ { t = "level", level = 12 } })
+		emit(mark(bar).shown)
+		set("xpTargetMark", false)
+		emit(mark(bar).shown)
+		set("xpTargetMark", true)
+		emit(mark(bar).shown)
+		q.engine.levelTarget = nil
+		q.step({ { t = "kill", target = "Wolf", quest = 5, oi = 1 } })
+		emit(mark(bar).shown)
+
+		-- no XP bar at all (another addon's, or none)
+		q.engine.levelTarget = 12
+		StatusTrackingBarManager, StatusTrackingBarInfo = nil, nil
+		q.step({ { t = "level", level = 12 } })
+		emit(mark(bar).shown)
+		-- the game's bar there, but the experience bar not shown
+		local hidden = q.xpBar(false)
+		q.step({ { t = "level", level = 12 } })
+		emit(mark(hidden).shown)
+		-- the maximum level
+		hidden:Show()
+		q.level, q.maxLevel, q.engine.levelTarget = 60, 60, 61
+		q.gainXP(0)
+		stub.runTimers()
+		emit(mark(hidden).shown)
+	`);
+	assert.deepEqual({ on, off, back, none, noBar, hiddenBar, maxed }, {
+		on: true, off: false, back: true, none: false, noBar: false, hiddenBar: false, maxed: false,
+	});
+});
+
+test('xp mark: on by default, on Quality of Life, Trackers, Experience', () => {
+	const [out] = run(`
+		local found
+		for _, spec in ipairs(Polestar.Widgets.OptionsRegistry) do
+			for _, c in ipairs(spec.controls) do
+				if c.key == "qol.xpTargetMark" then found = { page = spec.page, tab = spec.tab, section = spec.section } end
+			end
+		end
+		emit({ default = Polestar.GetDefault("qol.xpTargetMark"), where = found or "none" })
+	`);
+	assert.deepEqual(out, { default: true, where: { page: 'Quality of Life', tab: 'Trackers', section: 'Experience' } });
+});
+
 // ---------------------------------------------------------------------------
 // Merchant
 // ---------------------------------------------------------------------------

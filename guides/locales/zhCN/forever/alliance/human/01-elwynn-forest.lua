@@ -69,6 +69,8 @@ return {
 	-- Step 13: Kelsey Fargo
 	-- {npc:248362} Shinyfinder Narf
 	["She stands outside the mine entrance. {npc:248362}, inside, is elite: grouping up is advised."] = "她站在矿洞入口外。里面的{npc:248362}是精英：建议组队。",
+	-- {quest:91745} Mining Consultant · {npc:951} Brother Paxton · {skill:186} Mining
+	["{quest:91745} is a quest of {npc:951}'s book chain, not the {skill:186} profession: any class hands it in here, no {skill:186} needed"] = "",
 
 	-- Step 14: Inside Echo Ridge Mine
 	-- {area:34} Echo Ridge Mine

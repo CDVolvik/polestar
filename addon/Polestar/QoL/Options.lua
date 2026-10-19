@@ -135,6 +135,8 @@ register(QOL, L["Vendors"], L["Trainers"], {
 register(QOL, L["Trackers"], L["Experience"], {
 	{ kind = "toggle", key = "qol.xpTracker", label = L["XP tracker"],
 		help = L["XP per hour, time, kills and quests to level, and level splits (/pole xp)."] },
+	{ kind = "toggle", key = "qol.xpTargetMark", label = L["Guide level on the XP bar"],
+		help = L["A mark at the end of the game's XP bar with the level the guide wants you to reach before it moves on, and how many levels away that is when it is more than one."] },
 	{ kind = "button", label = L["Reset session"], help = L["Start this session's XP per hour from zero."],
 		onClick = function() if QoL.XP then QoL.XP.ResetSession() end end },
 })

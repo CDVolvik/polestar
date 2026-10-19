@@ -233,11 +233,13 @@ test('prerequisites: breadcrumbs never block; preAll needs every one, preAny one
 
 test('an accept compiles `closedBy`: the quest its breadcrumb leads to and its exclusive group, titled for the reason text', () => {
 	const data = prereqData();
-	const r = compile(guideText(['step S', '  accept 9301', '  accept 9360', '  accept 9311']), data);
-	const [crumb, exclusive, plain] = r.guides[0].steps[0].goals;
+	const r = compile(guideText(['step S', '  accept 9301', '  accept 9360', '  accept 9311', '  accept 9332']), data);
+	const [crumb, exclusive, plain, named] = r.guides[0].steps[0].goals;
 	assert.deepEqual([crumb.closedBy, crumb.preTitles], [[9300], { 9300: 'Quest 9300' }]);
 	assert.deepEqual([exclusive.closedBy, exclusive.preTitles], [[9361], { 9361: 'Quest 9361' }]);
 	assert.equal(plain.closedBy, undefined);
+	// #368: a breadcrumb only its quest's `breadcrumbs` names (no breadcrumbFor of its own).
+	assert.deepEqual([named.closedBy, named.preTitles], [[9330], { 9330: 'Quest 9330' }]);
 });
 
 test('coordinates outside 0-100 are errors', () => {
