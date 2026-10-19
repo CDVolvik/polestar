@@ -971,6 +971,10 @@ local function paintFont(fs, role)
 	scripted[fs] = script or false
 	if script then path = script end
 	if outlined[fs] then flags = "OUTLINE" end
+	-- Dark ink on an accent fill takes no outline either: a font that follows
+	-- EllesmereUI's brings its OUTLINE, and black round dark glyphs on a
+	-- bright accent smears them (#521). MONOCHROME and the like stay.
+	if flat[fs] and flags then flags = flags:gsub("THICKOUTLINE", ""):gsub("OUTLINE", ""):gsub("^,+", ""):gsub(",+$", ""):gsub(",,+", ",") end
 	if not fs:SetFont(path, size, flags) then
 		fs:SetFont(STANDARD_TEXT_FONT or "Fonts\\FRIZQT__.TTF", size, flags)
 	end
@@ -1005,10 +1009,12 @@ function Theme.SetOutline(fs, on)
 end
 
 -- Dark ink on an accent fill (a primary button's label) takes no drop
--- shadow: under dark glyphs on a light ground it reads as a smear.
+-- shadow and no outline: under dark glyphs on a light ground they read as a
+-- smear.
 function Theme.SetShadow(fs, on)
+	local was = flat[fs]
 	flat[fs] = (not on) or nil
-	paintShadow(fs)
+	if fonted[fs] and was ~= flat[fs] then paintFont(fs, fonted[fs]) else paintShadow(fs) end
 end
 
 ---------------------------------------------------------------------------
