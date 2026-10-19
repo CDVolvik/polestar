@@ -1613,6 +1613,10 @@ local function areaFrame()
 	mmArea = ns.CreateFrameUnder("Frame", nil, Minimap)
 	mmArea:SetAllPoints(Minimap)
 	mmArea:SetFrameLevel((Minimap:GetFrameLevel() or 1) + 3)
+	-- SetClipsChildren clips all child textures to the frame boundary, so hulls
+	-- that extend past the minimap edge are cut there. On a square minimap this
+	-- gives exact clipping; on a round one the mask (below) does the round clip.
+	if mmArea.SetClipsChildren then mmArea:SetClipsChildren(true) end
 	if mmArea.CreateMaskTexture then
 		mmMask = mmArea:CreateMaskTexture()
 		mmMask:SetPoint("CENTER", mmArea, "CENTER", 0, 0)
