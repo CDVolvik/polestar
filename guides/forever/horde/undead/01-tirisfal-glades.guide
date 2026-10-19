@@ -140,13 +140,12 @@ step Mindless Zombies
 step Shadow Priest Sarvis
   turnin 364
   accept 3901
-  accept 376                          -- Novice Elreth, beside the church
-  accept 98389                        -- Aramis Hammerhand
   accept 3095 only Warrior            -- Shadow Priest Sarvis: Simple Scroll
   accept 3096 only Rogue              -- Shadow Priest Sarvis: Encrypted Scroll
   accept 3097 only Priest             -- Shadow Priest Sarvis: Hallowed Scroll
   accept 3098 only Mage               -- Shadow Priest Sarvis: Glyphic Scroll
   accept 3099 only Warlock            -- Shadow Priest Sarvis: Tainted Scroll
+  accept 376                          -- Novice Elreth, beside the church
   turnin 3095 only Warrior            -- Dannal Stern, the warrior trainer
   turnin 3096 only Rogue              -- David Trias, the rogue trainer
   turnin 3097 only Priest             -- Dark Cleric Duesten, the priest trainer in the church
@@ -162,16 +161,18 @@ step Aramis and Venya
   accept 90902 only Paladin
   accept 1470 only Warlock            -- Venya Marthand
 
+step Injured Deathguard
+  only Paladin
+  tip Rediscovering the Light: the Injured Deathguard lie around the church. Heal five of them with Holy Light.
+  goto 31.8,63.9 "Injured Deathguard"
+  complete 90902
+
 step Rattlecages, scavengers and duskbats
   tip Rattlecage Skeletons wander the ruined houses in the north half of Deathknell. Young Scavengers and Duskbats roam all around the village; the Ragged Scavengers and Mangy Duskbats are on its east side.
   kill 1890 quest 3901.1
   collect 3265 quest 376.1
   collect 3264 quest 376.2
-
-step Rattlecage skulls
-  only Warlock
-  tip The Rattlecage Skeletons in the ruined houses drop the skulls.
-  collect 6281 quest 1470.1
+  collect 6281 quest 1470.1 only Warlock
 
 step Back to the church
   turnin 3901                         -- Shadow Priest Sarvis
@@ -181,9 +182,9 @@ step Back to the church
   train class
 
 step Aramis and Venya
-  only Paladin,Warlock
   tip Paladins: Rediscovering the Light is done once you have healed five Injured Deathguard around the church with Holy Light.
   turnin 90902 only Paladin           -- Aramis Hammerhand: Holy Light
+  accept 98389                        -- Aramis Hammerhand
   turnin 1470 only Warlock            -- Venya Marthand: Summon Imp
 
 step Scavenging Deathknell
@@ -225,9 +226,9 @@ step Marla's Grave
 step Executor Arren
   turnin 6395                         -- Novice Elreth
   turnin 381                          -- Executor Arren
+  accept 382
   turnin 91208 only Paladin           -- Aramis Hammerhand
   accept 91209 only Paladin
-  accept 382
 
 step Meven Korgal
   tip Meven Korgal stands at the south end of the Scarlet farm.
@@ -256,13 +257,13 @@ step Brill
   sethome "Gallows' End Tavern" npc 5688 -- Innkeeper Renee
   turnin 8                            -- Innkeeper Renee
   turnin 383                          -- Executor Zygand
-  turnin 91209 only Paladin           -- Shari Stilwell, the Paladin trainer
   accept 427
   accept 99134
   accept 99141
   accept 404                          -- Deathguard Dillinger
   collect 286200 quest 99141.1 @58.2,51.5 -- Ask Deathguard Dillinger for his report
   accept 86784                        -- Deathguard Bartholomew
+  turnin 91209 only Paladin           -- Shari Stilwell, the Paladin trainer
   train class                         -- The Brill trainers are in and around the inn
 
 step Discipline
@@ -346,6 +347,7 @@ step Vile Fin murlocs
 
 step Brill
   tip Follow the road south back to Brill.
+  buy 2320 npc 2118                   -- Coarse Thread from Abigail Shiel, for Gretchen
   turnin 375                          -- Gretchen Dedmar
   turnin 358                          -- Magistrate Sevren
   accept 359
