@@ -61,6 +61,25 @@ A feature release may go out first as release candidates, `0.3.0-rc.1`,
 CONTRIBUTING.md ("Branches") tells contributors which branch a pull
 request goes to.
 
+## After merging contributor PRs
+
+Contributors edit source files and run only the tests for what they changed.
+They do not compile `Guides.lua`, regenerate the UI previews, sync locale
+files or rebuild the textures. After merging a PR that touches any of those
+sources, run:
+
+```sh
+node tools/polestar.js regen
+```
+
+This runs `compile + i18n sync + preview + media` in order. Pass
+`--no-<step>` to skip one you know is unaffected. `compile` needs the
+reference data (`data/forever`); the other three do not.
+
+Run `regen` once per merge or batch, then push the regenerated files on
+`next`. You do not need to run it before every commit, only before pushing
+a batch to `next` or starting the release steps below.
+
 ## Steps
 
 These are the steps of a feature release. Replace `0.2.0` with the new

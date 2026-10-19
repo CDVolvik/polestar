@@ -16,8 +16,10 @@
 
 ## Checks
 
-- [ ] `npm test`
-- [ ] `node tools/polestar.js lint` and `playtest --filter <guide>` (guide changes)
+<!-- Run only what you changed; see CONTRIBUTING.md "Checks" for the table. -->
+
+- [ ] `npm test` (or the specific tests for what I changed)
+- [ ] `node tools/polestar.js lint` and `playtest --filter <guide>` (guide changes; skipped if no reference data — say so)
 - [ ] Not run, and why:
 - [ ] A changelog fragment in `changes/` (`node tools/polestar.js changelog add`), crediting the reporter
 - [ ] An AI agent wrote or helped with this
