@@ -783,7 +783,9 @@ they cover every spawn of the target on that map. Camps nearest to the goal's
 place it spawns); with `spread = true` (an area objective, or a few places far
 apart) up to 12 spread over the whole area, as a walk from `x`/`y`. The other
 places follow with `alt = true`; a hand-placed point is the first spot, the
-data's places its alternatives (GUIDE_FORMAT, "Spawn areas"). `x`/`y` stay the
+data's places its alternatives (GUIDE_FORMAT, "Spawn areas"). A `loop` step's
+goals carry its `goto` points instead, in order, with `spread = true` and no
+`n` or alternatives (compile-time: `resolve.js` applyLoop). `x`/`y` stay the
 default point. `z` (optional, 0.2.4) is the height of the NPC or object the
 goal's `x`/`y` stands for (the compiler's, from `spawnz.json`: GUIDE_FORMAT,
 "Heights"); a spot and a smart target's candidate may carry their own `z`
@@ -1511,6 +1513,20 @@ steps (a `direct` one is picked from the gossip or greeting list of offered
 quests, and only while its goal is not done: the giver of a repeatable keeps
 offering it); never choose among multiple rewards; with `behavior.warnClosing` on,
 never accept a quest that closes another for good (Missable quests).
+
+After its own accept or turn-in, the game often opens the NPC's next window
+by itself: the follow-up of the quest just handed in, or the NPC's other
+quests (#360). With `behavior.closeSkipped` (default on) Automation closes
+that window (`CloseQuest`, `C_GossipInfo.CloseGossip`) on the next frame when
+it shows nothing the guide takes: no `accept` goal not yet taken, no quest in
+the log with a `turnin` goal, no `direct` goal, in the current or next two
+steps, whatever the automation settings. Only the first quest or gossip
+window at the same NPC within 2 seconds of Polestar's accept or turn-in
+counts; a later window, one at another NPC or one the player opens from a
+list stays. Never in combat, with Shift held, on a progress or reward
+window, or on a gossip window with options of its own (a vendor, trainer or
+innkeeper). A quest the guide still wants at that NPC is taken on the next
+talk.
 
 ## Theme — used by UI and Nav
 
@@ -2260,9 +2276,24 @@ on is searched first: player to the current walk leg's end, or to the target,
 with `Path.Find` on the player's continent (from the player's height,
 `Compat.GetPlayerUnitPosition`; a ghost with `waterWalking`). Until the answer, and
 whenever there is none, the arrow points straight as before. With a path,
-`Nav.Sample` aims at its next point (passed within 5 yd; the nearest
-segment among the next 12 decides how far along the player is) and reports
-the yards left along it; `Travel.Aim` returns those yards as a fifth value.
+`Nav.Sample` follows it with padding, so a road's little wiggles do not
+jerk the arrow: the next point is passed
+within 5 yd (the nearest segment among the next 12 decides how far along the
+player is), and from it the arrow aims at the furthest path point up to
+30 yd along the path (`AHEAD`) such that every path point on the way lies
+within 10 yd (`PAD`) of the straight line from the player to it, neither
+behind the player nor beyond it along that line. A real corner (a point
+more than 10 yd off the line) still turns the arrow, gradually from about
+30 yd out and fully at the corner; past the next point it aims at the
+middle of that point and the one before, so a zigzag of points either side
+of the road cancels out. It never aims past a point more than 6 yd
+(`FLOOR_STEP`) above or below the next one (another floor), past the path's
+end (the leg's goal: crossings, approach chains and guide gotos are legs of
+their own), or, on a piece of a split walk, past the last path point before
+its chokepoint (`Travel.Aim` passes `leg.seg`). The yards it reports are
+still the yards left along the path (to the next point, then along it),
+never to the aim point; `Travel.Aim` returns those yards as a fifth value.
+The arrow eases into each new direction (`Nav/Arrow.lua`'s `DAMPING`).
 A new goal (more than 1 yd away from the searched one) cancels the search
 in flight and drops the path; more than 25 yd off the path asks again (at
 most every 2 s, the old path kept meanwhile); a failed search (`nodata`,
@@ -4127,7 +4158,9 @@ Polestar.Talents.Show()                                     -- SHOW_TALENTS; /po
   `PLAYER_TALENT_UPDATE` and Gear's spec changes; `TALENTS_UPDATED` follows.
 - **Classes.** One plan file per class (`talents/forever/<class>.json`);
   `talents build` writes them all into `Builds.lua`, one `T.Register` per
-  class, sorted by class. The tool finds each class's tree by its class skill
+  class, sorted by class. `T.Register` keeps only the player's class
+  (`UnitClass("player")`): the other classes' plans are dropped unexpanded,
+  so a character holds one class's plans, not all nine. The tool finds each class's tree by its class skill
   line (`CLASSES` in `tools/lib/talents/build.js`) and leaves out a stray
   copy of a talent far off the grid (1.60.1.70374 and 1.60.1.70450: Hunter node 104982,
   Lightning Reflexes again; Priest node 105865, Holy Specialization again).
@@ -4538,7 +4571,9 @@ built.
 quests.json   { "<id>": { id, title, level, minLevel, races, classes, start: { npc: [], object: [], item: [] },
                           end: { npc: [], object: [] }, pre: [ids], excl: [ids], next, objectives: [
                           { type: "kill"|"item"|"object"|"event", id, count, text } ], objectiveText, zone, xp,
-                          rewards?: { items: [ids], choices: [ids], money }, source: [] } }   (rewards: recorded only)
+                          rewards?: { items: [ids], choices: [ids], money }, source: [] } }   (rewards: recorded only;
+              count: the objective text's, else pfQuest's, else CMaNGOS classic-db quest_template's for the same id or the
+              quest's one objective of that kind, else null; tools/lib/data/questie-merge.js fillCounts)
 npcs.json     { "<id>": { id, name, level, levelMax?, rank?, faction, roles?, spawns: { "<uiMapID>": { f: "e"|"l", pts: [[x, y], ...],
                           more?: [[x, y], ...] } }, instances?: [instance map ids], encounter?: DungeonEncounter id, source: [] } }
 objects.json  { "<id>": { id, name, roles?, spawns: { ... same ... }, instances?: [instance map ids], source: [] } }
@@ -4750,7 +4785,16 @@ above the quest, since Classic reduces XP beyond that, so an over-levelled
 observation never overwrites a full one; `source` names `recorder:xp-base`,
 `recorder:xp-log` or `recorder:xp-turnin`). Then QuestieDB's QuestXP, with
 Wowhead's "Experience X instead of Y" notes applied where it still has the old
-value (above). Then, for quests still without XP, the Forever web databases
+value (above). corrections.json `xp` replaces both: Forever about doubled the
+XP of many dungeon quests, and QuestXP still has the Classic value for some
+(issue #394), so those take the XP shown by in-game evidence dated after the
+1 October 2026 change that halved dungeon quests' extra XP (build 70170; a
+client's quest cache gives difficulty and multiplier, its XP is QuestXP ×
+multiplier, while web databases built from the DB2s give only the Classic
+base), or an undated capture at the dated post-change rate (XP / base) of a
+quest in the same dungeon: the extra XP was twice as much before the change,
+so such a value can't be a pre-change one. Then, for quests
+still without XP, the Forever web databases
 (`--no-web-xp` skips them; results are cached in
 `data/sources/webxp/quest-xp.json`): wowforevertalents.com (Forever beta client
 cache, tag `wowforevertalents:xp`), else foreverchanges.pro (Wowhead's Forever
@@ -4954,6 +4998,13 @@ fileDataID from wago.tools into `data/sources/casc` (local, never shipped):
   ground and 60 yd into water; landing only on stable ground), swims and
   lifts (elevator objects of `data/forever` at their car's travel from the
   client's TransportAnimation); regions; a per-tile graph per movement class.
+  Reviewed openings (`geom/openings.json`): a WMO door narrower than about
+  three yards can lose to the columns when a jamb's moulding or reveal lies
+  on its column centre lines, so each listed portal (by WMO and MOPT index,
+  in every placement of that WMO) is cut out after rasterising: the columns
+  whose centre lies within its span and `depth` yards of its plane lose
+  their spans and walls from just above its bottom to its top (Brill's town
+  hall, whose only way in is a 2.9 yd door into its tower room, #366).
   Fatigue water is never swum: MH2O's deep quads (the server's fatigue; a
   chunk of ocean without attributes is deep throughout, `geom/mh2o.js`)
   give a blocked swim surface (`SWIM | BLOCKED`), so no route crosses open

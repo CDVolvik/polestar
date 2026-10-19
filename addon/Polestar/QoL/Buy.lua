@@ -14,8 +14,8 @@
 -- once it lands in the bags (a refused purchase never is), and what money
 -- was short for.
 --
--- Client: GetMerchantNumItems, GetMerchantItemID, GetMerchantItemInfo,
--- GetMerchantItemMaxStack, BuyMerchantItem (Forever Vanilla MerchantFrame.lua:
+-- Client: GetMerchantNumItems, GetMerchantItemID, C_MerchantFrame.GetItemInfo
+-- (else GetMerchantItemInfo), GetMerchantItemMaxStack, BuyMerchantItem (Forever Vanilla MerchantFrame.lua:
 -- a split buys whole stacks, BuyMerchantItem(index, items)).
 
 local ADDON, ns = ...
@@ -80,6 +80,21 @@ function Buy.Plan(need, price, perStack, numAvailable, money)
 	return stacks * perStack, stacks * price, short * perStack, short * price
 end
 
+-- name, price, perStack, numAvailable, hasExtendedCost of merchant slot i:
+-- C_MerchantFrame.GetItemInfo (MerchantItemInfo) where the client has it,
+-- as retail does since 11.0.5 and Forever does; GetMerchantItemInfo is
+-- the fallback for a client without it.
+local function itemInfo(i)
+	local M = C_MerchantFrame
+	if M and M.GetItemInfo then
+		local info = M.GetItemInfo(i)
+		if not info then return nil end
+		return info.name, info.price, info.stackCount, info.numAvailable, info.hasExtendedCost
+	end
+	local name, _, price, perStack, numAvailable, _, _, extendedCost = GetMerchantItemInfo(i)
+	return name, price, perStack, numAvailable, extendedCost
+end
+
 function Buy.Run()
 	if not QoL.On("buyGoals") then return end
 	local want = wanted()
@@ -91,7 +106,7 @@ function Buy.Run()
 		local w = id and want[id]
 		if w then
 			want[id] = nil
-			local name, _, price, perStack, numAvailable, _, _, extendedCost = GetMerchantItemInfo(i)
+			local name, price, perStack, numAvailable, extendedCost = itemInfo(i)
 			name = w.name or name or ("item " .. id)
 			local need = w.count - Client.ItemCount(id) - onTheWay(id)
 			if need > 0 and not extendedCost and (price or 0) > 0 then

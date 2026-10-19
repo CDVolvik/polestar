@@ -3,7 +3,8 @@ name: Discord release notes
 # A release is published: every issue filed from the Discord #bugs forum and
 # closed as completed since the full release before it gets "the fix is out
 # in <release>" in its thread and the label released:<tag>, so a re-run never
-# tells a thread twice. A prerelease (v0.3.0-rc.1) tells no thread: it pings
+# tells a thread twice; so does each one from Discord closed as a duplicate
+# of an issue the release ships. A prerelease (v0.3.0-rc.1) tells no thread: it
 # the tester role in the testers channel once, with the player entries from
 # the tag's changes/. tools/discord-bot/README.md has the setup.
 

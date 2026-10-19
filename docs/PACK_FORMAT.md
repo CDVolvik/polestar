@@ -248,7 +248,7 @@ texts"); an older Polestar would show them as written, hence the format.
 ## Format 4
 
 Format 3 with a step's **`when`**: the conditions checked during play
-(GUIDE_FORMAT.md, "Conditions checked during play"). Polestar 0.3.0 and later
+(GUIDE_FORMAT.md, "Conditions checked during play"). Polestar 0.2.6 and later
 read it. The compiler writes a pack in format 4 only when a step of its
 guides has `when`; any other pack stays in format 3, so the Polestar it needs
 does not change. An older Polestar would show every conditional step to
@@ -519,7 +519,7 @@ or nothing (equal or lower). Imported guides are listed in the guide menu as
   into the TOC as `X-Polestar-Needs`. Format 1 is read by Polestar 0.1.0 and
   later, format 2 (the `group`, `reward` and `why` keys) by 0.2.4 and later,
   format 3 (name tokens) by 0.2.5 and later, format 4 (a step's `when`) by
-  0.3.0 and later.
+  0.2.6 and later.
 - A pack in a format this Polestar does not read registers nothing; the
   Community guides page shows it as `too-new` with "Needs Polestar <version> or
   newer." (rule 5).

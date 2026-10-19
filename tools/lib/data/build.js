@@ -20,7 +20,7 @@ const { readQuestie, REPO: QUESTIEDB_REPO, QUESTIE_REPO } = require('./questie')
 const { applyQuestie } = require('./questie-merge');
 const { loadWebXp, WFT, FC } = require('./webxp');
 const { loadZoneQuests, applyChangeNotes, fillWowheadXp, applyWowheadFacts, BASE: WOWHEAD } = require('./wowhead');
-const { loadSpawnHeights, HEIGHTS_SOURCE } = require('../travel/cmangos');
+const { loadSpawnHeights, loadQuestCounts, HEIGHTS_SOURCE, COUNTS_SOURCE } = require('../travel/cmangos');
 const CORRECTIONS = require('./corrections.json');
 
 // tools/lib/data/corrections.json: quests `set` fields; items `removeDrops`/`removeVendors`; npcs/objects `set`
@@ -199,7 +199,15 @@ async function buildData(options = {}) {
 	}
 	const live = liveMapsFrom(maps.frames, fmaps && fmaps.frames, qz);
 	let qstats = null;
+	let questCounts = null;
 	if (qz) {
+		// Objective counts QuestieDB and pfQuest lack, from CMaNGOS classic-db's
+		// quest_template (cached like spawnz.json below); without it they stay null.
+		try {
+			questCounts = await loadQuestCounts({ sourcesDir, offline, fetchImpl: options.fetchImpl, log, ...(options.classicDb || {}) });
+		} catch (err) {
+			warnings.push(`CMaNGOS classic-db objective counts unavailable (${err.message}); counts QuestieDB and pfQuest lack stay null`);
+		}
 		const areaToUiMap = (area) => {
 			if (qz.areaToUiMap.has(area)) return qz.areaToUiMap.get(area) > 0 ? qz.areaToUiMap.get(area) : null;
 			return (fmaps && fmaps.resolveArea(area)) || maps.resolveArea(area);
@@ -210,7 +218,7 @@ async function buildData(options = {}) {
 			return fr ? { c: fr.c, wx: fr.top + ((fr.bottom - fr.top) * y) / 100, wy: fr.left + ((fr.right - fr.left) * x) / 100 } : null;
 		};
 		const instanceOfArea = instanceAreas((fwago && fwago.tables.AreaTable) || wago.tables.AreaTable, fwago && fwago.tables.Map, areaToUiMap);
-		qstats = applyQuestie(norm, qz, { areaToUiMap, liveMaps: live, spawnOptions, toWorld, instanceOfArea });
+		qstats = applyQuestie(norm, qz, { areaToUiMap, liveMaps: live, spawnOptions, toWorld, instanceOfArea, questCounts: questCounts && questCounts.counts });
 	}
 
 	// Wowhead Forever's change notes (the cached zone lists), before our own corrections.
@@ -331,6 +339,7 @@ async function buildData(options = {}) {
 		});
 	}
 	if (heights) sources.push({ ...HEIGHTS_SOURCE });
+	if (qstats && qstats.objectiveCountsFromClassicDb) sources.push({ ...COUNTS_SOURCE });
 
 	const out = {
 		quests: serializeTable(norm.quests),
@@ -401,6 +410,7 @@ async function buildData(options = {}) {
 						itemsRegainedEntries: qstats.itemsRegainedEntries,
 						npcsRegainedRoles: qstats.npcsRegainedRoles,
 						questsRegainedGivers: qstats.questsRegainedGivers,
+						objectiveCountsFromClassicDb: qstats.objectiveCountsFromClassicDb,
 						corrections: qstats.corrections,
 					}
 				: {}),
