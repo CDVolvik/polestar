@@ -1,0 +1,14 @@
+# Fixture: a conditional hand-off into ours (tests/playtest.test.js): the
+# option whose `when` does not hold is not offered, so the engine goes on to
+# the other one, though it would recommend the first.
+guide handover/conditional
+title Conditional Hand-off
+faction Horde
+race Undead
+levels 11-12
+zone Tirisfal Glades
+next forever/horde/03-silverpine-forest when level>=40
+next forever/horde/02-the-barrens
+
+step Brill
+  goto 38.0,50.0 "Brill"

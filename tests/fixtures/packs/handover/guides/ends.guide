@@ -1,0 +1,12 @@
+# Fixture: a hand-off whose only option has a `when` that does not hold
+# (tests/playtest.test.js): the guide ends there, which is no stuck hand-over.
+guide handover/ends
+title Hand-off Not Offered
+faction Horde
+race Undead
+levels 11-12
+zone Tirisfal Glades
+next forever/horde/02-the-barrens when level>=40
+
+step Brill
+  goto 38.0,50.0 "Brill"
