@@ -1556,6 +1556,38 @@ test('forever/horde/05-stonetalon-mountains.guide: Hotline\'s report (#278): the
 	for (const update of [16764, 16765, 16763]) assert.ok(reports < at(list, `update ${update}`, (g) => g.t === 'collect' && g.item === update), `a report is in the bags before update ${update}`);
 });
 
+// --- The Broken Construct (𝔄𝔫𝔫𝔦𝔢, #285): the Horde Zephras Isle guide sent
+// you for the Air Construct Core and the Crystallized Lightning, but never for
+// the Enchanted Gyrozephyr (93737.3), which lies only south-west of Windsong
+// Lake: one objective was lost when the route's `complete` was split into a
+// goal per objective. Every objective of a quest handed in on Zephras Isle has
+// its goal (or a `complete` for the whole quest) before the turn-in.
+// Traditions of the Bluff's Prepared Incense is made from the four parts
+// bought just before and used up on Hunter Rise, so it is never in the bags
+// at the turn-in.
+const COVERED_ELSEWHERE = new Set(['97485.1']);
+
+test(`𝔄𝔫𝔫𝔦𝔢's report (#285): on Zephras Isle, every objective of a quest is sent for before its turn-in; the Enchanted Gyrozephyr at its spawns`, { skip }, () => {
+	data = data || loadData(DATA);
+	for (const guide of [ZEPHRAS_ALLIANCE, ZEPHRAS_HORDE]) {
+		const list = goals(guide);
+		list.forEach(({ goal }, i) => {
+			if (goal.t !== 'turnin') return;
+			const q = data.quest(goal.quest);
+			if (!q || !q.objectives || !q.objectives.length) return;
+			const before = list.slice(0, i).filter(({ goal: g }) => g.quest === goal.quest && g.t !== 'accept' && g.t !== 'turnin');
+			if (before.some(({ goal: g }) => g.t === 'complete' && !g.oi)) return;
+			const missing = q.objectives.map((_, k) => k + 1).filter((oi) => !COVERED_ELSEWHERE.has(`${goal.quest}.${oi}`) && !before.some(({ goal: g }) => g.oi === oi));
+			assert.deepEqual(missing, [], `${guide}: ${goal.quest} (${q.title}) is handed in with objectives never sent for`);
+		});
+	}
+	const list = goals(ZEPHRAS_HORDE);
+	const gyro = at(list, 'collect 260883', (g) => g.t === 'collect' && g.item === 260883 && g.quest === 93737);
+	assert.ok(gyro < at(list, 'turnin 93737', is('turnin', 93737)), 'before Riaani takes the quest');
+	const spawns = data.spawns('object', 616466).find((x) => x.map === 2521).pts;
+	assert.ok(spawns.some(([x, y]) => close(list[gyro].goal, { map: 2521, x, y }, 1)), `the arrow's point ${list[gyro].goal.x},${list[gyro].goal.y} is at a gyrozephyr`);
+});
+
 // --- The Wounds of Betrayal (Phear, #395): the Alliance Zephras Isle guide
 // wrote it as a bare `complete`, which has no place, so the step had no arrow
 // into the Nightfang Den; the Horde guide points at the druids and Jorel.
