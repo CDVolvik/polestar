@@ -9,7 +9,7 @@
 const { mobXp } = require('../game/xp');
 const { CLASSES, ALL_CLASSES, RACE_BY_FILE, FACTION_RACES, SKYBORNE_BIT, hasBit, raceLabel, classLabel } = require('../game/races');
 const { planOrder } = require('./tour');
-const { ISLE_MAPS, ISLANDS } = require('./world');
+const { ISLE_MAPS, ISLANDS, MAX_OPEN } = require('./world');
 
 // Mask bits by the names runs use ("Undead", "Warrior"): the Era races, every class.
 const RACE_BITS = {};
@@ -18,6 +18,10 @@ for (const r of Object.values(RACE_BY_FILE)) {
 	if (bits.length === 1 && bits[0] < 2 ** 32) RACE_BITS[raceLabel(r.file)] = bits[0];
 }
 const CLASS_BITS = Object.fromEntries(Object.values(CLASSES).map((c) => [classLabel(c.file), c.bit]));
+
+// Routed yards / straight yards over the walks the guides use (sim walks, 2026-10-17): the
+// order of a package's steps prices a pair without a routed walk with it.
+const ROUTED_AVG = 1.3;
 
 const K_ACCEPT = 0;
 const K_TASK = 1;
@@ -35,6 +39,8 @@ const WORK_KIND = { kill: W_KILL, use: W_USE, escort: W_ESCORT, buy: W_BUY, visi
 
 const NEAR_K = 3; // transport nodes considered at each end of a leg
 const NEAR_HUB = 200; // a flight master / inn this close is learned / bound
+const SHARE_R = 100; // yards: kills of one mob credit another quest's work on it this close
+const SPOT_CELL = 250; // yards: side of a spot cell (spot returns, evaluate.js)
 
 const MOBL = 64; // mob level stride in the kill tables
 
@@ -85,6 +91,20 @@ function onIsle(world, q) {
 // Level below which a character stays on its home continent (and off other
 // races' starting islands); see docs/SIMULATION.md "Starts".
 const HOME_LEVEL = 10;
+
+// Quests by level for the evaluator's full-log abandon (abandonable):
+// qLv (level clamped to 0..63), qByLevel (quest indices by level, then
+// index) and qLvStart (each clamped level's first entry, 65 bounds).
+function questsByLevel(qLevel) {
+	const n = qLevel.length;
+	const qLv = new Uint8Array(n);
+	for (let i = 0; i < n; i++) qLv[i] = Math.max(0, Math.min(63, qLevel[i]));
+	const qByLevel = Int32Array.from({ length: n }, (_, i) => i).sort((a, b) => qLevel[a] - qLevel[b] || a - b);
+	const qLvStart = new Int32Array(65);
+	for (let i = 0; i < n; i++) qLvStart[qLv[i] + 1]++;
+	for (let L = 0; L < 64; L++) qLvStart[L + 1] += qLvStart[L];
+	return { qLv, qByLevel, qLvStart };
+}
 
 // family: 'solo' (no dungeons) or 'dungeons' (dungeon packages and their quests allowed).
 function compileRun(world, { race, cls = null, raceBits = {}, family = 'solo' } = {}) {
@@ -166,6 +186,8 @@ function compileRun(world, { race, cls = null, raceBits = {}, family = 'solo' } 
 	const wElite = [];
 	const wSpacing = [];
 	const wDrop = [];
+	const wMob = []; // npc id of a kill item (0: none known)
+	const wTask = [];
 	const addTask = (t) => {
 		const ti = taskPt.length;
 		taskPt.push(usePt(t.pt));
@@ -179,6 +201,8 @@ function compileRun(world, { race, cls = null, raceBits = {}, family = 'solo' } 
 			wSpacing.push(k === W_KILL ? w[4] || 0 : 0);
 			// Fractional counts come from drop chances (scaled by dropMul).
 			wDrop.push(k === W_KILL && !Number.isInteger(w[2]) ? 1 : k === W_USE && !Number.isInteger(w[1]) ? 1 : 0);
+			wMob.push(k === W_KILL ? w[5] || 0 : 0);
+			wTask.push(ti);
 		}
 		taskW1.push(wKind.length);
 		return ti;
@@ -192,6 +216,10 @@ function compileRun(world, { race, cls = null, raceBits = {}, family = 'solo' } 
 	const qXp = new Float64Array(Q); // recorded full reward, 0 = estimate, -1 = none (repeatable)
 	const qGiver = new Int32Array(Q);
 	const qEnder = new Int32Array(Q);
+	// Every giver and ender of a quest that has several (world gAlt/eAlt): qi -> Map('npc:<id>' -> point).
+	const qGiverAlt = new Map();
+	const qEnderAlt = new Map();
+	const altPts = (alt) => new Map(Object.entries(alt).map(([k, p]) => [k, usePt(p)]));
 	const qAccept = new Int32Array(Q).fill(-1);
 	const qTask0 = new Int32Array(Q);
 	const qTask1 = new Int32Array(Q);
@@ -231,6 +259,37 @@ function compileRun(world, { race, cls = null, raceBits = {}, family = 'solo' } 
 		for (const c of q.after || []) if (qIndex.has(c)) afterList.push(qIndex.get(c));
 		qAfter1[i] = afterList.length;
 	});
+	const tQuest = new Int32Array(taskPt.length).fill(-1); // objective tasks only (not accept items)
+	for (let i = 0; i < Q; i++) for (let t = qTask0[i]; t < qTask1[i]; t++) tQuest[t] = i;
+
+	// Shared kill credit (evaluate.js doWork): for each kill item, the other
+	// objective kill items (other quests', or another objective of its own)
+	// on the same mob whose site is within SHARE_R.
+	const shareOf = wKind.map(() => []);
+	const byMob = new Map();
+	wKind.forEach((k, w) => {
+		if (k !== W_KILL || !wMob[w]) return;
+		if (!byMob.has(wMob[w])) byMob.set(wMob[w], []);
+		byMob.get(wMob[w]).push(w);
+	});
+	for (const list of byMob.values()) {
+		for (const a of list) {
+			const pa = world.points[ptList[taskPt[wTask[a]]]];
+			for (const b of list) {
+				if (a === b || tQuest[wTask[b]] < 0) continue;
+				const pb = world.points[ptList[taskPt[wTask[b]]]];
+				if (pa[1] === pb[1] && Math.hypot(pa[2] - pb[2], pa[3] - pb[3]) <= SHARE_R) shareOf[a].push(b);
+			}
+		}
+	}
+	const wShare0 = new Int32Array(wKind.length);
+	const wShare1 = new Int32Array(wKind.length);
+	const shareList = [];
+	shareOf.forEach((l, w) => {
+		wShare0[w] = shareList.length;
+		for (const b of l) shareList.push(b);
+		wShare1[w] = shareList.length;
+	});
 
 	// ---- package steps ----
 	const packages = [];
@@ -241,7 +300,17 @@ function compileRun(world, { race, cls = null, raceBits = {}, family = 'solo' } 
 	const pkgStart = [];
 	const pkgEnd = [];
 	const W = world.points;
-	const wdist = (a, b) => (W[a][1] !== W[b][1] ? Infinity : Math.hypot(W[a][2] - W[b][2], W[a][3] - W[b][3]));
+	// The order of a package's steps: by routed walks where `sim walks` has them
+	// (the straight line × an average detour for the rest), else the straight line.
+	const walks = world.walks || null;
+	const NW = W.length;
+	const straight = (a, b) => Math.hypot(W[a][2] - W[b][2], W[a][3] - W[b][3]);
+	const wdist = (a, b) => {
+		if (W[a][1] !== W[b][1]) return Infinity;
+		if (!walks) return straight(a, b);
+		const r = walks.get(a * NW + b);
+		return r !== undefined ? r : straight(a, b) * ROUTED_AVG;
+	};
 	const KIND = ['accept', 'task', 'turnin'];
 	const dungeons = withDungeons ? world.dungeons || [] : [];
 	const dQuests = dungeons.map(() => []);
@@ -317,6 +386,25 @@ function compileRun(world, { race, cls = null, raceBits = {}, family = 'solo' } 
 	for (const d of dungeons) usePt(d.pt);
 	const startPt = usePt(start.pt);
 	const innRunPt = world.inns.map((n) => usePt(n.pt));
+	// Other givers and enders last, so every other point keeps its index.
+	quests.forEach((q, i) => {
+		if (q.gAlt) qGiverAlt.set(i, altPts(q.gAlt));
+		if (q.eAlt) qEnderAlt.set(i, altPts(q.eAlt));
+	});
+
+	// Routed walks between the run's points (world.walks, sim walks) as one
+	// NP x NP table, -1 where there is none: Travel.leg reads it on every walk.
+	let walkRun = null;
+	if (walks) {
+		const NPw = ptList.length;
+		walkRun = new Float32Array(NPw * NPw).fill(-1);
+		for (const [key, yd] of walks) {
+			const a = ptIndex.get(Math.floor(key / NW));
+			if (a === undefined) continue;
+			const b = ptIndex.get(key % NW);
+			if (b !== undefined) walkRun[a * NPw + b] = yd;
+		}
+	}
 
 	// ---- point geometry, flight masters and inns at points ----
 	const N = world.nodes.length;
@@ -368,6 +456,19 @@ function compileRun(world, { race, cls = null, raceBits = {}, family = 'solo' } 
 			}
 		});
 	}
+	// Smoothness counters (evaluate.js): a dense zone index and a spot cell
+	// (SPOT_CELL yd squares per region) per point.
+	const pZone = new Int32Array(NP);
+	const pCell = new Int32Array(NP);
+	const zoneIdx = new Map();
+	const cellIdx = new Map();
+	for (let i = 0; i < NP; i++) {
+		if (!zoneIdx.has(pMap[i])) zoneIdx.set(pMap[i], zoneIdx.size);
+		pZone[i] = zoneIdx.get(pMap[i]);
+		const ck = `${pR[i]}:${Math.floor(pX[i] / SPOT_CELL)}:${Math.floor(pY[i] / SPOT_CELL)}`;
+		if (!cellIdx.has(ck)) cellIdx.set(ck, cellIdx.size);
+		pCell[i] = cellIdx.get(ck);
+	}
 	// Travel safety grid: per region, the zone of each cell and the zones'
 	// minimum levels (world.danger / world.zoneMin).
 	const zoneMin = new Map(Object.entries(world.zoneMin || {}).map(([m, l]) => [Number(m), l]));
@@ -376,19 +477,24 @@ function compileRun(world, { race, cls = null, raceBits = {}, family = 'solo' } 
 
 	return {
 		faction, race, cls, world,
+		walks, walkRun, nodeW: Int32Array.from(world.nodes.map((n) => n.pt)),
 		start: { pt: startPt, zone: start.zone, quest: start.quest },
 		quests, qIndex, Q,
-		qLevel, qMinLevel, qExcl0, qExcl1, exclList: Int32Array.from(exclList), qTier, qXp, qGiver, qEnder, qAccept, qTask0, qTask1, qPre0, qPre1, qAll0, qAll1, allList: Int32Array.from(allList),
+		qLevel, qMinLevel, qExcl0, qExcl1, exclList: Int32Array.from(exclList), qTier, qXp, qGiver, qEnder, qGiverAlt, qEnderAlt, qAccept, qTask0, qTask1, qPre0, qPre1, qAll0, qAll1, allList: Int32Array.from(allList),
 		qParent, qAfter0, qAfter1, afterList: Int32Array.from(afterList),
+		...questsByLevel(qLevel),
 		preList: Int32Array.from(preList),
 		taskPt: Int32Array.from(taskPt), taskW0: Int32Array.from(taskW0), taskW1: Int32Array.from(taskW1),
 		wKind: Int32Array.from(wKind), wLevel: Int32Array.from(wLevel), wCount: Float64Array.from(wCount),
 		wElite: Int32Array.from(wElite), wSpacing: Float64Array.from(wSpacing), wDrop: Int32Array.from(wDrop),
+		wMob: Int32Array.from(wMob), wTask: Int32Array.from(wTask), tQuest, wShare0, wShare1, shareList: Int32Array.from(shareList),
 		packages, P: packages.length,
 		pkgStart: Int32Array.from(pkgStart), pkgEnd: Int32Array.from(pkgEnd),
 		sKind: Int32Array.from(sKind), sQuest: Int32Array.from(sQuest), sTask: Int32Array.from(sTask), sPt: Int32Array.from(sPt),
 		ptList, ptIndex, pC, pR, pX, pY, pMap, pFp, pInn, pNear, pNearD,
+		pZone, pCell, zoneCount: zoneIdx.size, cellCount: cellIdx.size,
 		pkgHome, pkgAway, homeCount, homeLevel: HOME_LEVEL, zoneMin, danger,
+		logCap: world.maxOpen || MAX_OPEN, // quest log size (evaluate.js: accepts wait for a free slot)
 		innPt: Int32Array.from(innRunPt),
 		N, fpBit, fpCount,
 		nodes: world.nodes, nodeR: Int32Array.from(nodePt.map((p) => p[1])), nodeC: Int32Array.from(nodePt.map((p) => p[0])),
@@ -443,5 +549,5 @@ function makeTables(run, p) {
 }
 
 module.exports = {
-	compileRun, makeTables, K_ACCEPT, K_TASK, K_TURNIN, K_GRIND, K_DUNGEON, W_KILL, W_USE, W_ESCORT, W_BUY, NEAR_K, MOBL,
+	compileRun, makeTables, K_ACCEPT, K_TASK, K_TURNIN, K_GRIND, K_DUNGEON, W_KILL, W_USE, W_ESCORT, W_BUY, NEAR_K, MOBL, SHARE_R,
 };
