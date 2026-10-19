@@ -44,6 +44,8 @@ Before the first `step`. `guide`, `title`, `levels` and `zone` are required.
 | `zone <Name>` / `zone map <uiMapID>` | Inside a step: the zone for coordinates from here on, also for the steps after it (after a step with `only` that sets one, name the zone again) | `zone Elwynn Forest` |
 | `only <condition>, ...` | Inside a step: the step is only for matching characters | `only Hunter` |
 | `when <predicate>` | Inside a step: the step is only for characters in that state when the route gets there (see Conditions checked during play) | `when level<6` |
+| `along [until <label>]` | Inside a step: the route never stops there; its goals are done along the way, listed under the next steps until done (or until the labelled step) | `along until camp` |
+| `label <name>` | Inside a step: names it for an `along until` before it | `label camp` |
 | `note <text>` | A line of information; never holds the player up | `note The camp is busy at night.` |
 | `level <N>` | Reach level N, grinding if need be | `level 2` |
 | `# <text>` | A note for you and other authors; players never see it | `# check the patrol route` |

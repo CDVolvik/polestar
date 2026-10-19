@@ -363,14 +363,28 @@ local function validate(def)
 			end
 		end
 	end
+	-- A step's `label` (format 4) names it, once per guide; `along` is true or
+	-- the label of a later step (docs/PACK_FORMAT.md, "Format 4").
+	local labelAt = {}
 	for s, step in ipairs(def.steps) do
 		if type(step) ~= "table" then return ("step %d is not a table"):format(s) end
 		if type(step.goals) ~= "table" or #step.goals == 0 then return ("step %d has no goals"):format(s) end
 		if not checkOnly(step.only) then return ("step %d: bad only"):format(s) end
 		if not checkWhen(step.when) then return ("step %d: bad when"):format(s) end
+		if step.label ~= nil then
+			if not isStr(step.label) then return ("step %d: bad label"):format(s) end
+			if labelAt[step.label] then return ("step %d: duplicate label %s"):format(s, step.label) end
+			labelAt[step.label] = s
+		end
 		for g, goal in ipairs(step.goals) do
 			local err = checkGoal(goal)
 			if err then return ("step %d goal %d: %s"):format(s, g, err) end
+		end
+	end
+	for s, step in ipairs(def.steps) do
+		local along = step.along
+		if along ~= nil and along ~= true and not (isStr(along) and (labelAt[along] or 0) > s) then
+			return ("step %d: bad along"):format(s)
 		end
 	end
 	return nil

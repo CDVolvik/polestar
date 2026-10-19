@@ -6,16 +6,20 @@ const { header } = require('../generated');
 // The pack format the compiler writes, and the first Polestar version that
 // reads each format (written into the TOC as X-Polestar-Needs). Format 2
 // adds `group` (docs/PACK_FORMAT.md, "Format 2"); format 4 adds a step's
-// `when`, so a pack is written in it only when one of its steps has one
-// (formatFor): a pack without stays readable by Polestar 0.2.5.
+// `when`, `label` and `along`, so a pack is written in it only when one of
+// its steps has one (formatFor): a pack without stays readable by Polestar
+// 0.2.5.
 const FORMAT = 3;
 const WHEN_FORMAT = 4;
 const NEEDS = { 1: '0.1.0', 2: '0.2.4', 3: '0.2.5', 4: '0.3.0' };
 
+// A step with `label` or `along` (an older Polestar would stop at an along step).
+const usesAlong = (s) => s.label !== undefined || s.along !== undefined;
+
 // The format a pack's compiled guides need: WHEN_FORMAT when a step of
-// them has `when`, else FORMAT.
+// them has `when`, `label` or `along`, else FORMAT.
 function formatFor(guides) {
-	const uses = (guides || []).some((g) => (g.steps || []).some((s) => Array.isArray(s.when) && s.when.length));
+	const uses = (guides || []).some((g) => (g.steps || []).some((s) => (Array.isArray(s.when) && s.when.length) || usesAlong(s)));
 	return uses ? WHEN_FORMAT : FORMAT;
 }
 

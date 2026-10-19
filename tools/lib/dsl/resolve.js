@@ -657,6 +657,8 @@ function resolveGuide(ast, data, diag, opts = {}) {
 		setIf(step, 'only', onlyOf(s.only));
 		const stepZone = resolveZone(s.zone || (s.goals[0] && s.goals[0].zone));
 		setIf(step, 'when', resolveWhen(s.when, stepZone ? stepZone.id : null, h.levels ? [h.levels.min, h.levels.max] : null, data, warn));
+		setIf(step, 'label', s.label);
+		setIf(step, 'along', s.along);
 		step.goals = [];
 		hidden(step, '_line', s.line);
 		hidden(step, '_only', s.only);
@@ -719,7 +721,48 @@ function resolveGuide(ast, data, diag, opts = {}) {
 	}
 	// The guide menu's "Group" chip: some goal of the route needs a group.
 	if (guide.steps.some((s) => s.goals.some((goal) => goal.group && !goal.optional))) guide.group = true;
+	checkLabels(ast.steps, err);
+	checkAlongGoals(guide.steps, warn);
 	return guide;
+}
+
+// Step labels are guide-wide: each names one step, and `along until <label>`
+// names a step after its own (ast.steps and the compiled steps share their
+// indexes).
+function checkLabels(steps, err) {
+	const labels = new Map(); // name -> { index, line }
+	steps.forEach((s, i) => {
+		if (!s.label) return;
+		if (labels.has(s.label)) err(s.labelLine, `duplicate label "${s.label}" (first at line ${labels.get(s.label).line})`);
+		else labels.set(s.label, { index: i, line: s.labelLine });
+	});
+	steps.forEach((s, i) => {
+		if (typeof s.along !== 'string') return;
+		const t = labels.get(s.along);
+		if (!t) err(s.alongLine, `unknown label "${s.along}"`, 'name it on a later step with `label <name>`');
+		else if (t.index <= i) err(s.alongLine, `\`along until ${s.along}\` must name a later step (the label is on line ${t.line})`);
+	});
+}
+
+// Goals Polestar checks off only on the step the route is on: arrivals, NPC
+// visits, flights, hearths, and kills, clicks and uses without a quest (the
+// player ticks those). In an along step they never check off.
+const ON_STEP_ONLY = new Set(['goto', 'talk', 'hearth', 'getfp', 'fly', 'vendor']);
+function onStepOnly(goal) {
+	if (ON_STEP_ONLY.has(goal.t)) return true;
+	if (goal.t === 'train') return goal.skillLine === undefined;
+	return (goal.t === 'kill' || goal.t === 'interact' || goal.t === 'use') && goal.quest === undefined;
+}
+
+function checkAlongGoals(steps, warn) {
+	for (const step of steps) {
+		if (!step.along) continue;
+		for (const goal of step.goals) {
+			if (!onStepOnly(goal)) continue;
+			const what = goal.quest === undefined && ['kill', 'interact', 'use'].includes(goal.t) ? `\`${goal.t}\` without \`quest\`` : `\`${goal.t}\``;
+			warn(goal._line, `${what} in an \`along\` step never checks off: Polestar checks it only on the step the route is on, so it stays listed${typeof step.along === 'string' ? ` until the step labelled ${step.along}` : ''}`, 'put it in a step of its own, or track something the game counts (a quest objective, a bag count)');
+		}
+	}
 }
 
 // What an accept of quest `id` (record `q`, or null) waits on, for the

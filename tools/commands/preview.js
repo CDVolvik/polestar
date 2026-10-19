@@ -873,6 +873,14 @@ uistub.update()`,
 		],
 	},
 	{
+		file: 'guide-along.svg',
+		title: 'Along the way: the kobolds and wolf meat of an `along` step under the steps after it; with Up next open',
+		panels: [
+			{ roots: GUIDE, script: `${TABS}; uistub.along = { { 3, { 3, 4 } } }; uistub.setStep(5)` },
+			{ roots: GUIDE, script: `Polestar.Set("ui.upcoming", 3); Polestar.Set("ui.upcomingOpen", true); ${TABS}; uistub.along = { { 3, { 3, 4 } } }; uistub.setStep(4)` },
+		],
+	},
+	{
 		file: 'journey.svg',
 		title: 'The journey under the focus: walking to the Great Lift (36:48, 8.0k yd, the lift untimed); on the lift, timed; collapsed to its totals',
 		panels: [

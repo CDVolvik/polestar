@@ -223,8 +223,8 @@ has nothing for the character.
 
 ## Format 3
 
-The format the compiler writes for a pack whose steps have no `when`
-(format 4, below). Format 2 is format 1 with the two `group`
+The format the compiler writes for a pack whose steps have no `when`,
+`along` or `label` (format 4, below). Format 2 is format 1 with the two `group`
 keys (a guide's and a goal's) and a guide's `reward` and `why`, marked
 "format 2" below; Polestar 0.2.4 and later read it. Format 3 is format 2
 with **name tokens** in the texts and a guide's `names`, marked "format 3"
@@ -248,11 +248,13 @@ texts"); an older Polestar would show them as written, hence the format.
 ## Format 4
 
 Format 3 with a step's **`when`**: the conditions checked during play
-(GUIDE_FORMAT.md, "Conditions checked during play"). Polestar 0.3.0 and later
-read it. The compiler writes a pack in format 4 only when a step of its
-guides has `when`; any other pack stays in format 3, so the Polestar it needs
-does not change. An older Polestar would show every conditional step to
-every character (it ignores keys it does not know), hence the format.
+(GUIDE_FORMAT.md, "Conditions checked during play"), and a step's
+**`along`** and **`label`** (GUIDE_FORMAT.md, "Along the way"). Polestar
+0.3.0 and later read it. The compiler writes a pack in format 4 only when a
+step of its guides has one of them; any other pack stays in format 3, so the
+Polestar it needs does not change. An older Polestar would show every
+conditional step to every character and stop the route at every along step
+(it ignores keys it does not know), hence the format.
 
 `when` is a list of predicates, each a table with its kind `k`, `neg = true`
 to turn it around, and the kind's keys; a step applies while all of them
@@ -277,6 +279,21 @@ A `when` that is not a non-empty list, or a predicate of another kind or
 without its keys, refuses the guide. Once the route has moved past a step,
 Polestar stores whether its `when` held (per character, guide and step) and
 reads that from then on.
+
+`label` is a string, the step's name, unique in the guide. `along` is
+`true`, or the `label` of a later step: the route passes over the step, and
+its open goals are listed under the steps after it until they are done or
+the route reaches that labelled step.
+
+```lua
+{ title = "Boars on the way", along = "camp", goals = { ... } },
+{ title = "Goldshire", goals = { ... } },
+{ title = "Back at the camp", label = "camp", goals = { ... } },
+```
+
+A `label` that is not a string or names a second step, or an `along` that
+is neither `true` nor the label of a later step, refuses the guide ("step N:
+bad label", "step N: duplicate label <name>", "step N: bad along").
 
 ### `RegisterPack(meta)`
 
@@ -518,8 +535,8 @@ or nothing (equal or lower). Imported guides are listed in the guide menu as
 - The compiler writes the first Polestar version that reads the pack's format
   into the TOC as `X-Polestar-Needs`. Format 1 is read by Polestar 0.1.0 and
   later, format 2 (the `group`, `reward` and `why` keys) by 0.2.4 and later,
-  format 3 (name tokens) by 0.2.5 and later, format 4 (a step's `when`) by
-  0.3.0 and later.
+  format 3 (name tokens) by 0.2.5 and later, format 4 (a step's `when`,
+  `along` and `label`) by 0.3.0 and later.
 - A pack in a format this Polestar does not read registers nothing; the
   Community guides page shows it as `too-new` with "Needs Polestar <version> or
   newer." (rule 5).

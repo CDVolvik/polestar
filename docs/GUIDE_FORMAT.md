@@ -110,6 +110,8 @@ Step directives:
 | `zone <Name>` / `zone map <uiMapID>` | Current zone for coordinates from here on (sticky across later steps, also when its step has `only`: after a class trip, the next step everyone sees names its zone again). |
 | `only <cond>[,<cond>...]` | The step applies only to matching characters. |
 | `when <predicate>` | The step applies only while the predicate holds when the route reaches it; several `when` lines must all hold. See "Conditions checked during play". |
+| `along [until <label>]` | The route never stops at the step: its goals are done along the way, listed under the steps after it. See "Along the way". |
+| `label <name>` | Names the step, for an `along until` before it. |
 | `tip <text>` | Player-facing step note (compiled to `step.note`). |
 
 A step must contain at least one goal.
@@ -259,6 +261,55 @@ wrote.
 A pack with a `when` anywhere is written in pack format 4, which Polestar
 0.3.0 and later read (docs/PACK_FORMAT.md); a pack without stays readable by
 older versions.
+
+## Along the way
+
+`along` marks a step whose goals the player does on the way, without
+stopping the route: "kill 8 boars on your way to Goldshire and back". The
+route passes over the step at once. From then on its open goals are listed
+in the guide window under the current step, "Along the way" (up to six,
+with their progress; not in the compact window), until they are done.
+Clicking one points the arrow at it, if it has a place, until it is done.
+"Then:" and Up next leave along steps out.
+
+With `along until <label>`, the list ends when the route reaches the step
+carrying `label <label>`, done or not. The label must be on a later step of
+the same guide.
+
+```
+step Boars on the way
+  along until camp
+  kill 113 x8 quest 33.1
+
+step Goldshire
+  goto 42.1,65.9 "Goldshire"
+
+step Back at the camp
+  label camp
+  turnin 33
+```
+
+The route goes straight from "Boars on the way" to "Goldshire", and the
+boar count shows under the steps until "Back at the camp". If the boars are
+needed before going on, hand the quest in at the labelled step, as here: the
+turn-in waits for the kills.
+
+Along suits goals the game counts wherever the player is: quest objectives
+(`kill`, `collect`, `interact`, `use` with `quest`), quests taken or handed
+in, bag counts (`collect`, `buy`), `level`, `skill`, `explore`. A goal
+Polestar checks off only on the step the route is on (`goto`, `talk`,
+`hearth`, `getfp`, `fly`, `vendor`, `train` but a profession's, and `kill`,
+`interact` or `use` without `quest`) never checks off in an along step and
+warns.
+
+An along step can have `only` and `when` like any step: one that does not
+apply when the route passes it is never listed, nor is one the player
+skipped.
+
+A label names one step: letters, digits, `-` and `_`, in the case written
+(`label Camp` is not `camp`), once per guide.
+
+A pack with `along` or `label` is written in pack format 4, like `when`.
 
 ## What the compiler fills in
 
@@ -517,6 +568,8 @@ Errors:
   `achieve` always needs its quoted name
 - `rep` standing outside 1–8 / Hated–Exalted; `craft` with both `xN` and `until`
 - empty quoted strings (names, titles, labels, notes)
+- a step label used twice in a guide, an `along until` naming no label, or a
+  label on its own step or an earlier one
 - `era`/`live` on a goal without typed coordinates
 - `choose`/`reward` without item ids, an item listed twice, a reward item missing from `items.json` without a name; malformed `money` or `xp`; a `group` size that is not a whole number from 2 to 40
 - a smart target (`nearest`, `train <Profession>`, `train class`, `collect … nearest`) with no candidate
@@ -546,6 +599,8 @@ Warnings:
   area; a step whose `when level` leaves none of the guide's levels, or that
   asks for one predicate both ways (`onquest 7` and `!onquest 7`): no
   character sees it
+- a goal in an `along` step that Polestar checks off only on the step the
+  route is on (see "Along the way"): it never checks off there
 - an `accept` whose prerequisites (`pre`, any one suffices) are none of them turned in earlier in the chain
 - an `accept` above the level the route plausibly reaches (when XP data exists)
 - an `accept` of a quest whose `excl` (exclusive) quest is accepted or turned in

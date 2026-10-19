@@ -7,7 +7,7 @@ const { FORMAT, NEEDS, TOC_MARKER, TOC_TITLE_PREFIX, LEGACY_TOC_TITLE_PREFIX } =
 const { header } = require('../generated');
 
 const GUIDE_KEYS = ['id', 'pack', 'title', 'faction', 'races', 'classes', 'minLevel', 'maxLevel', 'category', 'folder', 'keywords', 'collects', 'reward', 'why', 'zone', 'zoneName', 'next', 'nextChoices', 'pitch', 'pros', 'cons', 'author', 'version', 'group', 'names', 'written', 'steps'];
-const STEP_KEYS = ['title', 'note', 'only', 'when', 'goals'];
+const STEP_KEYS = ['title', 'note', 'label', 'only', 'when', 'along', 'goals'];
 // A step's `when` predicates (format 4), in this key order.
 const WHEN_KEYS = ['k', 'neg', 'op', 'n', 'q', 'item', 'name', 'area', 'minLevel', 'pre', 'preAll', 'closedBy'];
 // Keys only the profession/reputation/exploration/achievement verbs use sit

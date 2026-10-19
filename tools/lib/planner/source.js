@@ -5,7 +5,7 @@
 // model(text, file) -> { ok, diagnostics, coords: 'era'|'live', header: { <key>: { line, raw, value } }
 //                        (pro/con: arrays of those), steps: [Step] }
 //   Step = { index, line, end, lead, title, tip, only, zone /* in effect at the step's start: { name } | { map } | null */,
-//            directives: [{ kind: 'zone'|'only'|'tip'|'when', line, raw, value }], goals: [{ line, verb, raw, fields, spans }] }
+//            directives: [{ kind: 'zone'|'only'|'tip'|'when'|'label'|'along', line, raw, value }], goals: [{ line, verb, raw, fields, spans }] }
 //   `raw` is the whole line as in the file (spans index into it); `value` the text after the keyword;
 //   `lead` the first of the comment lines directly above the step line (= `line` without);
 //   `end` the step's last line that is not blank and not a column-0 comment.

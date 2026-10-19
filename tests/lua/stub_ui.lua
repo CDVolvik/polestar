@@ -13,6 +13,8 @@
 --   uistub.guides             the sample guides, by id
 --   uistub.instance           the instance type the player is in ("party", "raid", ...); nil outside
 --   uistub.install({ noNav = true, noTabs = true })  leave Nav / the tabs API out
+--   uistub.along              { { step, { goal, ... } }, ... }: the goals of the active
+--                             guide's steps Engine.GetAlong lists ("Along the way")
 
 uistub = { calls = {}, guides = {}, order = {} }
 
@@ -463,6 +465,18 @@ function Engine.GetStepCount() return guide and #guide.steps or 0 end
 function Engine.GetStepView(i)
 	if not guide or not guide.steps[i] then return nil end
 	return view(i)
+end
+function Engine.GetAlong()
+	local out = {}
+	for _, a in ipairs(uistub.along or {}) do
+		local v = guide and guide.steps[a[1]] and view(a[1])
+		if v then
+			local goals = {}
+			for _, g in ipairs(a[2]) do goals[#goals + 1] = v.goals[g] end
+			out[#out + 1] = { index = a[1], title = v.title, goals = goals }
+		end
+	end
+	return out
 end
 local function move(i)
 	current = i
