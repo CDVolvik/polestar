@@ -33435,7 +33435,7 @@ do
 					title = "{npc:1738}",
 					note = "Take the road south-east out of {area:159}; Terrence stands on it short of the zeppelin towers.",
 					goals = {
-						{ t = "accept", quest = 96895, title = "The Argent Emissary", npc = 1738, npcName = "Deathguard Terrence", minLevel = 10, qlvl = 13, map = 1420, x = 61.4, y = 53.4, f = "e" },
+						{ t = "accept", quest = 96895, title = "The Argent Emissary", npc = 1738, npcName = "Deathguard Terrence", minLevel = 10, qlvl = 13, map = 1420, x = 63.47, y = 56.55, z = 38, f = "e" },
 					},
 				},
 				{
