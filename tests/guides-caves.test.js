@@ -47,6 +47,13 @@ const CASES = [
 		mouth: { map: 1420, x: 12.9, y: 65.7 }, // players' notes on quest 95314 in Forever's quest data: "entrance to the basement at 12.9, 65.7"
 		tip: /basement under the ruined house/,
 	},
+	{
+		// The same basement: a Paladin's Faintly Glowing Bones drop from its Lurchers and Mystics.
+		guide: 'forever/horde/undead/01-tirisfal-glades.guide',
+		target: (g) => g.t === 'collect' && g.item === 286259, // Faintly Glowing Bone
+		mouth: { map: 1420, x: 12.9, y: 65.7 }, // players' notes on quest 99152: "entrance is in a burned house at 13,65", "these NPCs can be found underground"
+		tip: /basement under the ruined house/,
+	},
 ];
 
 let data;

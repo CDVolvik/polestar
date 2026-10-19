@@ -206,6 +206,19 @@ test(`${TIRISFAL}: Mike_'s report: only Paladins are sent to Hilda the Breaker a
 	}
 });
 
+// MadReign_Ltd (CurseForge, Paladin 12, 0.2.5): Hilda and Ephram did not offer their quests at the guide's
+// step (a Paladin about level 9 there; both need level 10), and did after A Righteous Cause, at 12.
+test(`${TIRISFAL}: MadReign_Ltd's report: a Paladin takes Hilda's and Ephram's quests after A Righteous Cause is handed in`, { skip }, () => {
+	const paladin = goals(TIRISFAL).filter(forClass('PALADIN'));
+	const cause = at(paladin, 'turnin 96896 (A Righteous Cause)', is('turnin', 96896));
+	for (const q of [99152, 99153]) {
+		const take = at(paladin, `accept ${q}`, is('accept', q));
+		assert.ok(cause < take, `${q} is taken after A Righteous Cause is handed in`);
+		const work = at(paladin, `the objective of ${q}`, (g) => g.t === 'collect' && g.quest === q);
+		assert.ok(take < work && work < at(paladin, `turnin ${q}`, is('turnin', q)), `${q}: accept, objective, turn-in`);
+	}
+});
+
 test(`${TIRISFAL}: an3vilmonk3y's report (#345): the class letter is taken at Sarvis with Rattling the Rattlecages, and a Warlock's skulls are collected in the Rattlecage step`, { skip }, () => {
 	const SARVIS = 1569;
 	const letters = { WARRIOR: 3095, ROGUE: 3096, PRIEST: 3097, MAGE: 3098, WARLOCK: 3099 };
