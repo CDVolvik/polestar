@@ -434,6 +434,28 @@ describe('QuestieDB merge', () => {
 		assert.ok(q[1486].source.includes('polestar-correction'));
 	});
 
+	// The fields #471 left alone: the client gives Nat's Measuring Tape no
+	// StartQuestID (only the Battered Tackle Box starts 8227), and A Sealed Crate
+	// (91901) starts at both factions' trade representatives.
+	test('corrections.json: Nat\'s Measuring Tape starts only at the tackle box; Dokimi and Marcy Baker both give A Sealed Crate', async () => {
+		const { read } = await build({}, {
+			quests: {
+				8227: { name: "Nat's Measuring Tape", questLevel: 60, requiredLevel: 58, startedBy: [[], [180366], [19973]], finishedBy: [[12919]] },
+				91901: { name: 'A Sealed Crate', questLevel: 60, requiredLevel: 1, startedBy: [[256386]], finishedBy: [[256386]] },
+			},
+			npcs: {
+				12919: { name: 'Nat Pagle', minLevel: 45, maxLevel: 45, spawns: { 15: [[58.6, 60.1]] }, friendlyToFaction: 'AH', npcFlags: 2, questEnds: [8227] },
+				256386: { name: 'Dokimi', minLevel: 30, maxLevel: 30, spawns: { 17: [[50.15, 29.35]] }, friendlyToFaction: 'H', npcFlags: 2, questStarts: [91901], questEnds: [91901] },
+			},
+			objects: {
+				180366: { name: 'Battered Tackle Box', spawns: {}, questStarts: [8227] },
+			},
+		});
+		const q = read('quests');
+		assert.deepEqual(q[8227].start, { npc: [], object: [180366], item: [] });
+		assert.deepEqual(q[91901].start, { npc: [256386, 256390], object: [], item: [] });
+	});
+
 	test("objectives come in the game's order: creatures, objects, items, kill credits, the trigger", async () => {
 		const { read } = await build({}, {
 			quests: {
