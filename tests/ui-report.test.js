@@ -542,13 +542,13 @@ test('the Discord bot reads the report the window gives: the details from the co
 	assert.equal(ru.details.step, 3);
 	assert.equal(ru.details.errors.length, 1);
 	assert.match(ru.description, /^The vermin were all by the tents\.\n\*\*[^*\n]+\*\* zone map 1429 · goto 51\.23,40\.50 live\n\*\*[^*\n]+\*\* Questie, TomTom$/);
-	// zhCN's labels end in full-width colons and brackets, which the bot's
-	// patterns do not match (its guide and step, its lead-in): only the block
-	// and the lines above it are checked here.
+	// zhCN's labels end in full-width colons and brackets, which the bot reads too.
 	const zh = parseReport(pasted('zhCN'));
 	assert.equal(zh.details.locale, 'zhCN');
+	assert.equal(zh.details.guideId, 'forever/alliance/human/01-elwynn-forest');
+	assert.equal(zh.details.step, 3);
 	assert.equal(zh.details.errors.length, 1);
-	assert.match(zh.description, /The vermin were all by the tents\.\n\*\*[^*\n]+\*\* zone map 1429 · goto 51\.23,40\.50 live\n\*\*[^*\n]+\*\* Questie, TomTom$/);
+	assert.match(zh.description, /^The vermin were all by the tents\.\n\*\*[^*\n]+\*\* zone map 1429 · goto 51\.23,40\.50 live\n\*\*[^*\n]+\*\* Questie, TomTom$/);
 });
 
 test('the Discord steps say to press Ctrl+C after Copy report: the button selects the report, the game copies nothing itself', () => {
