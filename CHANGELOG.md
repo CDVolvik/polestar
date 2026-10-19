@@ -1,5 +1,672 @@
 # Changelog
 
+## 0.2.6 (2026-10-19)
+
+### For players
+
+- On a quest's "Complete" line with no place of its own, the arrow no longer
+  goes blank: it stays on the spot the step sent you to, or on the quest's
+  giver, until the quest is done (#256).
+- The arrow no longer jerks left and right at every little bend of a road: it
+  looks up to 30 yards ahead along the path and only turns for corners that
+  leave a 10 yard corridor, still turning at real corners and never past a
+  floor change or a lift (thanks AURUM and Hotline from the Polestar Discord)
+- Ashenvale: Alonso's Dragonslayer quests at Mystral Lake no longer hold a
+  character he does not offer them to. Both guides lead everyone to him; take
+  the quests if he offers them, else carry on (thanks Zerkness and Ioney;
+  first fix by c0njure).
+- Ashenvale (Alliance): Elemental Bracers counts the five Intact Elemental
+  Bracers before the Divined Scroll, so the target button finds the Befouled
+  Water Elementals (thanks Tazul, #391).
+- Items in your bags that are an upgrade for your spec now carry the same
+  green arrow as quest rewards, in the game's bags and in Baganator (Options,
+  Questing, Rewards & gear: Upgrade arrows in bags). The tooltip already said
+  so; now the bag shows it at a glance (thanks Leducia).
+- Guide window: a new "Bar at the bottom" option puts the tabs and the step
+  bar at the bottom edge when the window grows upward, next to where it is
+  pinned, so they stay in one place as steps get longer. Off by default
+  (thanks thmastin, and the player on Discord who asked for it, #386).
+- The Barrens: the Savannah Lion Hide arrow stays in the Dry Hills, where the
+  Sprung Traps of the same step are, instead of wandering off to the
+  Matriarchs by Ratchet (thanks Fitz; fix by thmastin).
+- With "Skip grey quests" on (Options), a guide opened on a character who
+  already did part of the route catches up: the guide window goes over every
+  step already done, faster and faster, while the arrow turns an hourglass
+  over, and stops where you are. Green quests behind your progress that you
+  have not taken are left out too, unless a later quest needs them. With no
+  guide open, or from Start guide, a guide you are past hands over to the
+  next one; the first time, the guides go by from your race's first one. A
+  guide you open yourself stays open where you are. Item, mount, reputation,
+  profession and class guides do every step.
+- Chinese and Russian clients now translate missing transport-wait and option
+  labels and the Library Books guide title (thanks HershelW).
+- A dungeon's pick-up and hand-in guides route to a quest giver standing in
+  a capital without walking you out of the city and back in. Argent Guard
+  Manados, Mathiel and Varimathras are each recorded both in their city and
+  on the zone map around it, and the page named the zone, so the journey
+  planned its way out and back for an NPC a few yards away (thanks Visur,
+  Rawbowke and Annie, #382, #368, #350).
+- Names in Chinese or Korean (yours on the welcome page, other players') show
+  in the game's font for that script instead of empty boxes when the game is
+  set to another language (thanks Alx)
+- After Polestar accepts or turns in a quest, the quest window the game opens
+  next at that NPC (the next quest in the chain, or the NPC's other quests)
+  closes by itself when the guide skips those quests, so it no longer looks as
+  if something went wrong. A window you open yourself, or one with a quest the
+  guide wants, stays open; hold Shift to keep it, or turn it off in Options,
+  Guide, Automation ("Close offers the guide skips") (thanks AurumTitanos).
+- Darkshore: The Blackwood Corrupted fills the Empty Cleansing Bowl at the
+  Auberdine Moonwell, then gathers the Blackwood Nut, Fruit and Grain Samples
+  at the northern Blackwood camp and uses the bowl by the bonfire to summon
+  Xabraxxis, so the Talisman of Corruption can be had; the guide used to send
+  you to the Demon Bag with nothing to summon him (#302, thanks XooVe).
+- When your ghost starts at a graveyard in another zone, the arrow now leads
+  to your corpse in the zone it lies in, instead of routing you through the
+  graveyard's zone (thanks Gets, #270).
+- Dun Morogh from Coldridge Valley to Brewnall Village follows recorded runs
+  on Forever: Sten's, Balir's and the class letter before going into Anvilmar
+  once, Bring Back the Mug before Felix, Kharanos done outside first with
+  class training last in the distillery, Camping 101: Cooking and its lesson
+  on the return with the ribs, when the copper is there for it, Rumbleshot's
+  Ammo beside Beldin and looted by Gretchen's camp before the walk back,
+  Gretchen first and one trip through the Grizzled Den, Frosthowl from Gretta
+  on the dock first, Brewnall's quests before Frostmane Hold so the bears,
+  boars and leopards on the way count for Rejold, and the arrow at the mouths
+  of the Grizzled Den and Frostmane Hold before the caves.
+- Dun Morogh from Brewnall Village to the tram follows a recorded run on
+  Forever: The Reports taken from Senir and handed to Senator Barin Redstone
+  on the way to the tram, Evershine's and Rime's Wrath's kills counted on the
+  way, with Rime's Wrath finished at the small lake west of the refuge,
+  Rejold's New Brew dropped as Shimmer Stout closes it, Farsen's and Mehr's
+  quests taken on the walk east to the South Gate, a tip for slipping past
+  Old Icebeard, and for Paladins the stairs to Tiza and Muiredon and a flight
+  back to Ironforge from Thelsamar with Honor Students.
+- Dungeons: a chip beside a dungeon's name says how far its quests take you,
+  or the level recommended for its quests; hovering it shows the XP, a bar of the
+  levels it spans and which quests were counted (thanks Max).
+- 18 dungeon quests count the XP Forever gives, not the old Classic amount:
+  Wailing Caverns (Deviate Hides 3,100, Trouble at the Docks, Smart Drinks,
+  Deviate Eradication and three more), Shadowfang Keep, The Stockade and
+  Gnomeregan, each checked against the game after the 1 October change to
+  dungeon quest XP (thanks MgM and mcclaskiem, #394).
+- Dungeons: "Pick up the quests" no longer sends you to a lead-in quest
+  (Klockmort's Essentials, Castpipe's Task and the other breadcrumbs on the
+  dungeon pages) once you have turned in the quest it leads to or have it in
+  your log, since the giver no longer offers it. The Hillsbrad Foothills guide
+  likewise skips An Alarming Request once Heart of Disruption is taken (thanks
+  Rawbowke).
+- Durotar: at Tiragarde Keep, a player who already took The Admiral's Orders
+  is no longer sent to kill Lieutenant Benedict again for his key; the step
+  lets go once the quest is in the log (thanks defect).
+- Durotar: Encroachment (the Razormane quilboar) is now taken after Tiragarde
+  Keep and the Sen'jin and Echo Isles loop and done on the way to Fizzle
+  Darkstorm, at about level 11 instead of 7 (thanks tor).
+- Durotar: the arrow for the Raider's Bow (For Honor) leads to where the bow
+  lies at Tiragarde Keep, not 120 yards south-west of it (thanks Lyngtoft).
+- Durotar: Rezlak and Thunder Ridge, Securing the Lines among them, come
+  after Sen'jin, the Echo Isles and Kolkar Crag, on the way to Fizzle
+  Darkstorm on the same ridge, so a level 11 quest is no longer handed out at
+  8 while the south's level 8 quests wait until 11 (thanks tor, #352).
+- Guide window: with Match EllesmereUI font on, the step's name, its place and
+  the Then: line are no longer blank after logging in; a reload was needed to
+  show them (thanks thmastin, #448).
+- Elwynn Forest: An Enticing Offer counts the Duskweed Petals and the Vials of
+  Animal Blood on their own lines, no longer each other's (thanks Bashidian
+  Twotao).
+- Escort quests say so in the guide window: under the quest's accept, and then
+  under the goal to complete it, a line reads "Escort: if the NPC is not
+  there, wait for it to respawn", so an empty spot means someone else is on
+  the escort, not a wrong place. It covers the 39 escorts the guides route
+  (thanks Gray).
+- A flight or hearth you landed stays done when you walk out of the town you
+  landed in, or through Rut'theran Village's portal into Darnassus, and across
+  a reload, so the arrow no longer sends you back to the flight master while
+  the rest of the step is open (thanks AurumTitanos).
+- Flight map: the destination the guide flies to is easier to spot. A bobbing
+  arrow points at the node with its name above it, and a ring on the node
+  sends out a slow ripple, each with a dark rim so the gold reads on the
+  parchment. With Reduce motion on, the mark stands still.
+- A follow-up is taken from the giver you just handed its quest to, before the
+  guide sends you to someone else and back: Skirmish at Echo Ridge, Report to
+  Goldshire and The Adventurer from Marshal McBride in Northshire (#310),
+  Coldridge Valley Mail Delivery from Sten Stoutarm and Bring Back the Mug
+  from Durnan Furcutter in Coldridge Valley, The Red Messenger from Executor
+  Arren in Deathknell, At War With The Scarlet Crusade from Executor Zygand in
+  Brill, Reagents for Reclaimers Inc. at Nijel's Point and Further Mysteries
+  from Prospector Stormpike in Ironforge. Paladins hand Continue Your Training
+  to Shari Stilwell when they train in Brill (thanks Zepheriel).
+- WoW Forever skin: the guide window's active tab is lit like the selected row
+  in the game's Settings, instead of a lone line where the tab's outline ran
+  into the window's edge (thanks Smuve and imp)
+- WoW Forever skin: guide window bronze border no longer has an inner glow
+  over the content; progress bar fill now visible; hover art no longer blanks
+  button icons (thanks imp and Fitz's testing)
+- The WoW Forever skin is hidden for now while we fix its border and progress
+  bar; players who chose it see the default skin until it returns.
+- German: the newest strings and the Recorder read in natural German, reviewed
+  by a German player, with the German client's names for the Paladin talents
+  and the Blackrock dungeons (thanks thecodingcortex).
+- Getting a flight path now points the arrow at the flight master: "get the
+  flight path" steps that named only their town, such as Ratchet in the Orc
+  and Troll Barrens guide, Sentinel Hill, Auberdine or Lakeshire, now lead to
+  the flight master of your faction there (thanks defect). One Moonglade step
+  in the druids' Bear Form guide, with a flight master per faction, still has
+  no arrow.
+- Lookup: Nat's Measuring Tape (Zul'Gurub) starts at the Battered Tackle Box,
+  not from the tape itself, and Dokimi and Marcy Baker both give A Sealed
+  Crate (91901), as they already did the other crate quests.
+- Guide menu: a leveling guide's details say how far it takes you from your
+  level, counting its quests and an estimate of the kills it asks for; below
+  the guide's level the chip shows its recommended level. Hovering the
+  chip shows the XP, a bar of the levels it spans and what was counted, in
+  your chosen font, skin and colours (thanks Max).
+- With Shortest Path Forever guiding, Polestar no longer draws its own line to
+  a target on the same continent on the map and minimap, so only one route
+  shows (thanks Rawbowke, #398).
+- The guide window can hide in dungeons and raids and come back when you leave
+  (Options, Guide, Window, In dungeons; off by default). /polestar, the key
+  binding or the minimap button still opens it there until you leave (thanks
+  InfinityYoel).
+- Import strings: hardened against fill blow-up, route-planner blow-up, direct
+  turn-in abuse, control characters, bad frames and coordinates; added
+  /polestar import clear and /polestar import delete.
+- Import strings: a small guide someone shares as one line of text (a quest
+  chain, an item, a mount, an errand) now goes in without installing anything.
+  Paste it on the new Import page, at the foot of the hub's left rail above
+  Options (/polestar import): Polestar shows what the guide is before saving
+  it, says why when it refuses a string, offers Update for a newer version and
+  keeps your progress, and lists your imported guides with Delete. They appear
+  in the guide menu under Community guides, Imported, credited to their
+  author, and are never suggested on their own. Strings are read as data only.
+  (#261, thanks Yendi)
+- New option, Quality of Life > Travel > Hearthstone: "Set your home at the
+  guide's inn". When the step sets your home and you talk to the innkeeper it
+  names, Polestar picks the bind option and confirms it; never at another inn.
+  Off by default; hold Shift to skip it once (thanks CDVolvik)
+- A quest that starts from an item no longer holds its step once you have
+  taken it: accepting uses the item up, so a player who met Ursangous
+  (Ashenvale, Horde) before the guide got there was told to kill him again for
+  a paw already used (thanks Bill, #309).
+- Hillsbrad Foothills (Alliance) and Azshara (Horde): Greater Friend of the
+  Library and The Apothecary's Metaphysical Primer are optional, as the
+  librarian offers them only for library books, which the leveling route does
+  not collect (thanks b7216309-jpg, #307).
+- Lock arrow and buttons (Options, Guide, Window; off by default): a stray
+  drag no longer moves the arrow, the quest item, target and Hearthstone
+  buttons or the flight and instance timers. Shift-drag still moves them
+  (thanks Severd8 and fur).
+- Guides played before level 40 no longer tell you to ride somewhere before
+  you can have a mount: their tips say head, walk or fly instead (riding a
+  boat, zeppelin, tram or lift is unchanged) (thanks Pynte).
+- An option under Questing > Buttons, Mark what they target, off by default:
+  the target button and the step key put a raid icon on the mob and the NPC
+  they target, a skull and a star unless you pick others, and leave an icon
+  alone that is already there. Either can be "A new one each press", so the
+  last few NPCs keep theirs. Out of combat, a press that finds neither clears
+  your target, so nothing else gets the icon. Your party sees the icons; in a raid only the
+  leader and assistants can set them (thanks Turesh and Petllama).
+- New Miscellaneous category in the guide menu, for side chains that fit
+  nowhere else. Its first guide is the Cozy Sleeping Bag: the six hidden notes
+  from Westfall or the Barrens through Stonetalon, Loch Modan and Thoradin's
+  Wall, with the 12-slot Old Toolbox on the way (level 14 and up, both
+  factions).
+- Miscellaneous: a Library Books guide. It visits every lost book your faction
+  can find (27 for the Alliance, 25 for the Horde), from Elwynn and Westfall
+  to Tanaris and the Blasted Lands, then hands them in one by one to Garion
+  Wendell in Stormwind or Owen Thadd in the Undercity, with the Friend of the
+  Library rewards when they are offered. The Mo'grosh ogres guarding Runes of
+  the Sorcerer-Kings are marked as elite (thanks b7216309-jpg, #307).
+- Nameplate icons show your progress beside the quest icon: "3/10" over a
+  Kobold Vermin you still have to kill, "3/10 · 1/8" when the mob counts for
+  two quests (killed for one, dropping an item for the other). The count
+  moves as you kill or loot, a finished objective drops out, and the icon
+  and its count go once the mob is no longer needed. A one-kill or one-item
+  objective keeps the icon alone. It comes with the Nameplate icons option
+  (Questing → Quests, off by default).
+- Walking routes now go into Brill's town hall through its side door to
+  Magistrate Sevren, instead of stopping outside the wall, and a walk from
+  inside the hall no longer leads you out first (thanks Onrevax).
+- The guide window's header has a Nearby services button, between Skip and
+  the menu: it lists the vendor, repair, innkeeper, flight master, class
+  trainer, a trainer for each of your professions, a weapon master (pick
+  the weapon to learn: the ones your class can use, those you already have
+  and polearms before level 20 said and off), reagents, bank, auction
+  house and stable master, and a click points the arrow at the nearest one,
+  as `/polestar near` does. Once you get there, the arrow is back on the
+  guide's step; on the way, a banner in the guide window and the top of the
+  button's list offer Back to the guide. Off in combat; Options, Guide,
+  Arrow & routes hides it.
+- About 80 kill and collect steps that did not say how many you need now do
+  ("Collect 10 ..."), and their farming time counts that many.
+- A kill or collect goal counts and ticks the objective it names, even when
+  the game lists the quest's objectives in another order than the guide: in
+  Slimy Menace, killing Murlocs no longer counts up the Murloc Streamrunner
+  line, and An Enticing Offer's Duskweed Petals no longer show the Vials of
+  Animal Blood's count (#223, #279, #335, #410, thanks Syfin, Bashidian Twotao,
+  poundofhash and zeike). Party members' counts follow too.
+- On OpenMap's seamless world map, the trail dots carry on across zone borders
+  and show on the whole-world view, and OpenMap's menu has a Polestar trail
+  dots switch.
+- Options > Questing > Buttons has a Target name position setting: the target
+  button's name can sit to the right of the button (as before), to the left,
+  above or below (thanks @inversedad, #330).
+- The Wailing Caverns pick-up page sends you to Nalpak for Deviate Hides
+  instead of a mailbox in Orgrimmar, and Poor Old Blanchy no longer lists a
+  Stormwind mailbox as a giver. 124 quests now start and end where Forever's
+  quest data says, without the extra or wrong givers our data had (thanks MgM,
+  and mcclaskiem for spotting Questie shows the same mailbox).
+- The target button and the step key work on a step where an NPC hands you the
+  item: the three Patience reports in Tirisfal Glades target Deathguard
+  Dillinger, Deathguard Kristof and Gordo, and the Warsong updates in
+  Ashenvale the scout, runner and outrider who give them (thanks Onrevax;
+  fix by XrayAlpha, #337).
+- Portuguese (Brazil): the Spirit Healer, your corpse, Release Spirit,
+  summons, raid lockouts, World drop and Shift-click read as the Brazilian
+  client writes them (Anjo da Cura, cadáver, Libertar, evocação, vínculos,
+  Espólio do Mundo, Shift+clique).
+- Portuguese (Brazil): a setting that is on or off reads ativado or
+  desativado, as in the client's own options, in Polestar and the Recorder.
+- Alchemy, Enchanting, Engineering, Leatherworking and Tailoring: a recipe a
+  vendor sells in limited stock no longer sends you to the Auction House when
+  it binds when picked up on Forever, as Recipe: Holy Protection Potion does
+  (thanks Conjure).
+- Quest objective markers: mobs to kill or loot now show the game's skull
+  icon; items picked up from objects or the ground show the gear icon.
+  Nameplate quest icons also use the skull and no longer show a duplicate
+  progress count beside the icon (thanks Fitz).
+- Questie captions: a planned turn-in caption that Questie's tracker skipped
+  because it had just redrawn is drawn again a moment later, once, and still
+  waits for the end of combat (thanks AurumTitanos)
+- A Rare button comes up under the Target button when Polestar spots a rare
+  nearby, and targets it by name (several rares: each click moves to the
+  next). It goes when the rare dies or is out of sight. Options > Questing >
+  Buttons > Rare button turns it off, and it is bindable under Key Bindings >
+  AddOns (thanks Tazul, #333).
+- Redridge Mountains: the Battleworn Axes are collected in the Blackrock
+  camps at the south end of Galardell Valley, east of Stonewatch Keep, about
+  forty orcs with no elites among them, instead of the handful east of
+  Alther's Mill (thanks Tazul | Robin).
+- Redridge Mountains: the arrow for the Battleworn Axes (Blackrock Menace)
+  leads to the Blackrock orcs on the east side of Alther's Mill, not into the
+  tarantulas 70 yards west of them (thanks Tazul). The same slip is fixed for
+  the Spool of Light Chartreuse Silk Thread in Stormwind (Duskwood guide) and
+  Broodmother Valraxx's Bloody Parchment at Gloomrise (Horde Ashenvale guide).
+- Redridge Mountains: Iron Pike and Iron Rivet lead to the Redridge Brutes and
+  the other gnolls in the northern hills that drop them, not to the Mongrels'
+  camp where the rare Ribchaser stands, and the Dire Condor and Great Goretusk
+  goals after them follow from there (thanks Avtom).
+- Redridge Mountains: Making Do is optional at the Stormwind stop. Baros
+  Alexston offers it only to players who brought him Expanding Horizons from
+  Darkshore, so nobody else is held there or at its Auberdine turn-in
+  (thanks Nittepitte).
+- The report window shows how to report in the Polestar Discord: "Copy
+  report", then post it in #bugs, where a bot files it for the developers
+  and tells you in your thread when it's fixed. "Get the invite" is there if
+  you're not in the Discord yet. The report now lists your other addons too,
+  and waits until you say what went wrong.
+  Have a GitHub account? "Open on GitHub" gives a link that opens a new
+  issue with your report, its title, your Polestar version and your other
+  addons already filled in.
+- "Mark the right spot" in the report window: walk to where the step should
+  have sent you and press Mark here, and the spot goes in your report, at
+  the top where it is seen first, and in the GitHub issue's "The right spot"
+  field. Your report is kept while you walk, and "Clear mark" takes the
+  spot back out.
+- Death helper: resurrection sickness is the ten minutes Forever gives from
+  level 11, or the length the game last gave you at your level, so it no
+  longer sends you to the Spirit Healer when running back is quicker (thanks
+  Gee)
+- On a Russian client the separators between fields no longer show as empty
+  boxes: Polestar uses Fira Sans there instead of the game font, which has no
+  middle dot. If you pick "the game's" font in Options, you still get it.
+  Thanks to XooVe (#296).
+- Spanish (Spain): Skip, Reload UI, Hardcore and Companion read as the Spanish
+  client writes them (Saltar, Reiniciar IU, Hardcore, Mascota).
+- Spanish (Spain): guide tips that tell you to skip a step say Sáltate, the
+  same verb as the Skip button.
+- Route lines can sparkle: the gear beside Route lines (Options, Guide, Arrow
+  & routes) picks dots or loot-gold sparkles that drift toward the goal on the
+  minimap and world map, OpenMap's too, with intensity, density, subtlety,
+  size, flow, colour and presets.
+- With Shortest Path Forever installed and TomTom not, the arrow and pins no
+  longer flicker and the game no longer slows down: Polestar stopped putting
+  its waypoint into Shortest Path Forever's TomTom stand-in, which started a
+  journey Polestar then stepped aside for, over and over (#306, thanks imp).
+- Stonetalon Mountains & Ashenvale (Horde): the Kadrak step waits until a
+  Warsong Report is in your bags, so you open the Bundle of Reports before
+  setting off: the Warsong Scout, Runner and Outrider each give their update
+  for one (thanks Hotline, and PRDesrochers for the idea).
+- Talent plans keep only your own class's plans once loaded, so the other
+  classes' plans take up no memory while you play (thanks jnickles85-bit).
+- Talent plans for Druids: Balance, Feral Combat and Restoration, from level
+  10 to 60, following ForeverDB's leveling builds to level 30 and checked
+  against Forever's tree (thanks jnickles85-bit).
+- Talent plans for Hunters: Beast Mastery, Marksmanship and Survival, from
+  level 10 to 60. Beast Mastery and Marksmanship follow ForeverDB's builds to
+  level 20; after that, and for Survival throughout, they are written for
+  Polestar on Forever's tree, built around its new talents (Careful Aim,
+  Sniper Shot, Lacerating Strikes) and checked against it. Every class now has
+  talent plans (thanks jnickles85-bit).
+- Talent plans for Mages: Arcane, Fire and Frost, from level 10 to 60.
+  ForeverDB has no Mage builds yet, so these are written for Polestar on
+  Forever's tree, built around its changed talents and checked against it
+  (thanks jnickles85-bit).
+- Talent plans for Priests: Discipline, Holy and Shadow, from level 10 to 60.
+  ForeverDB has no Priest builds yet, so these are written for Polestar on
+  Forever's tree, built around its new talents (Penance, Mind Flay's upgrade,
+  Prayer of Mending) and checked against it (thanks jnickles85-bit).
+- Talent plans for Rogues: Assassination, Combat and Subtlety, each an ordered
+  list of picks from level 10 to 60 with short notes, the same marks on the
+  talent frame as the Paladin plans, and nothing spent for you. Picks are
+  adapted from ForeverDB's leveling builds to level 30 and checked against
+  Forever's own talent trees (thanks jnickles85-bit).
+- Talent plans for Shamans: Elemental, Enhancement and Restoration, from level
+  10 to 60. ForeverDB has no Shaman builds yet, so these are written for
+  Polestar on Forever's tree, built around its new talents (Mental Dexterity,
+  Maelstrom Weapon, Lava Burst) and checked against it (thanks
+  jnickles85-bit).
+- Talent plans for Warlocks: Affliction, Demonology and Destruction, from
+  level 10 to 60, following ForeverDB's leveling builds to level 30 and
+  checked against Forever's tree (thanks jnickles85-bit).
+- Talent plans for Warriors: Arms, Fury and Protection, each an ordered list
+  of picks from level 10 to 60 with short notes, the same marks on the talent
+  frame as the Paladin plans, and nothing spent for you. Picks are adapted
+  from ForeverDB's leveling builds to level 30 and checked against Forever's
+  own talent trees (thanks jnickles85-bit).
+- The target button and the step key pass over corpses: a dead mob nearer
+  than a living one no longer stays selected, and the next name is tried
+  instead. Out of combat a press starts from nothing, so whatever you had
+  selected -- a quest giver, a mob you clicked -- no longer stops it; in a
+  fight your target is left alone, so your swings are not cut
+  (thanks AurumTitanos, #355).
+- The target button names the creatures the arrow leads to for a `collect`
+  goal, rather than the item's best droppers anywhere in the world:
+  collecting Small Spider Leg in Teldrassil offered Mother Fang, two Loch
+  Modan lurkers and two Silverpine spiders, and never the Webwood Lurkers
+  the guide sends you to (thanks AurumTitanos, #356).
+- Teldrassil: the arrow now leads to the real mouths of Fel Rock and the
+  Shadowthread Cave, not into the hillside beside them (thanks Pynte).
+- Teldrassil: Escaping Ban'ethil is taken once the relics and The Sleeping
+  Druid's chain are done, so Lynessa no longer sets off before the rest of
+  Ban'ethil Barrow Den (thanks Pynte, #334).
+- Teldrassil: Flight to Auberdine now takes Vesprystus' free flight to
+  Auberdine instead of the boat, learns the Auberdine flight path on landing,
+  and adds Return to Nessa (1050 XP) on a short flight back to Rut'theran
+  (Druids hand it in on their Bear Form trip) (thanks Pynte).
+- Fixed a lift detour when walking to the nearby Thunder Bluff flight master
+  (thanks risco).
+- Timberling Seeds leads to the Timberlings round Denalan, not the Elder
+  Timberlings across Teldrassil: a collect no longer follows mobs 3 or more
+  levels above its quest that drop the item more often when mobs near the
+  quest's level drop it too. The same moves Bloodpetal Poison's Gorishi Stings
+  off the Hive Queen onto the Gorishi round the hive, adds the rest of
+  Hillsbrad's townsfolk to Souvenirs of Death, and keeps three Green Hills
+  pages at the Venture Co. camp you are already in instead of sending you
+  after Lord Sakrasis and Garr Salthoof. Pirate Hats Ahoy! counts every
+  Southsea pirate instead of the Southsea Kidnapper, who does not drop the
+  hats (thanks Pynte, #327; diagnosis and tests by XrayAlpha).
+- The Argent Emissary now points to Deathguard Terrence's correct location
+  (thanks Pledge-Resupply).
+- Tirisfal Glades: every class takes its class letter from Sarvis together
+  with Rattling the Rattlecages, so Warlocks no longer miss Tainted Scroll and
+  Piercing the Veil. A Warlock's Rattlecage Skulls now show in the Rattlecage
+  step. A Light in the Darkness is taken from Aramis once The Damned is handed
+  in, and no longer holds the guide at him before then (thanks an3vilmonk3y
+  and Onrevax).
+- Tirisfal Glades: back in Brill for The Chill of Death, the guide sends you
+  to Abigail Shiel for the Coarse Thread first if you have none, instead of
+  straight to Gretchen Dedmar (thanks Onrevax).
+- Tirisfal Glades: Paladins take As Above, So Below and The One That Got
+  Away after handing A Righteous Cause to Leonid, when they are level 10 and
+  Hilda and Ephram offer them, instead of on an earlier visit where they
+  don't (thanks MadReign_Ltd).
+- Tirisfal Glades (Paladins): Rediscovering the Light now has a step to heal
+  five Injured Deathguard around the church with Holy Light, instead of going
+  straight to the turn-in (thanks Hotline, #408).
+- Tirisfal Glades: That Shadowvale Green Elixir, and the Paladins' bones and
+  crystal, lead to the way down into the basement under Shadowvale's ruined
+  house first, and the tips say the bottles, Lurchers and Mystics are down
+  there, not on the ground above (thanks Onrevax).
+- Showing item source tooltips no longer causes a hitch (#346, #354, thanks
+  Stout and poundofhash).
+- Translations: German, Latin American Spanish, Spanish, French, Korean,
+  Brazilian Portuguese, Russian, Simplified Chinese and Traditional Chinese
+  now have the Along the way label, the hearthstone bind and quest-window
+  close options, talent plan descriptions for all classes, and the updated
+  Elwynn Forest and Westfall guide tips. AI-generated; a review by native
+  speakers is welcome.
+- Boats, zeppelins, the tram and lifts nobody has timed yet show their average
+  wait ("Boat: average wait 2:14", "average wait 2:14 · ride 1:08" in the
+  journey) instead of a "Next boat in about 2:14" that looked like a countdown
+  stuck in place; "Next boat in" and "leaves in" now only count down a
+  departure Polestar has timed (#364, thanks AurumTitanos)
+- "Up next" on a finished guide names where Polestar would go on: the route
+  you chose or the only one that fits you, instead of always the guide's first
+  option.
+- Walks between Duskwood and Westfall or Elwynn Forest no longer go round by a
+  far road crossing: from Sven's camp the route swims the river to Sentinel
+  Hill instead of using your Hearthstone, and walks from Eastvale to Darkshire
+  cross straight into Duskwood instead of going round through Redridge
+  Mountains (#371, #421, thanks Ioney).
+- The walk to the Deeprun Tram ends at the tram's entrance instead of on the
+  roof above it, and the walks to the zeppelin towers at Orgrimmar and
+  Grom'gol end on top of the tower instead of at its foot (thanks Tazul).
+- Walks inside the Undercity reach the Royal Quarter (Varimathras, Sylvanas,
+  Sharlindra) through the city instead of climbing out to the ruins and ending
+  in a straight line (thanks Annie).
+- Horde Warlock incubus: Hearts of the Lovers tracks Avelina's Heart and
+  Isaac's Heart on their own lines, so the guide no longer skips the Ratchet
+  step once you have the Silverpine heart (thanks Phyz).
+- Westfall: the Gnoll Paws arrow now leads to the level 11-13 gnolls in the
+  northern hills instead of searching every gnoll camp down to the level
+  16-19 ones in the south. Quest drops elsewhere that also come from
+  higher-level mobs now point at the low ones the step means: Westfall's
+  north coast murlocs, Darkshore's crawlers and threshers below Auberdine,
+  the Barrens' plainstriders by the Crossroads, Silverpine's worgs and
+  murlocs by the Yoricks' house, and Hillsbrad's bears and lions west of
+  Tarren Mill (thanks Bashidian Twotao).
+- Westfall: the Molsen Farm step no longer waits for a Precessive
+  Autocognition Assembly. It drops about once in 900 kills, so Harvesting the
+  Harvesters is optional: take it if one drops, and hand it in to Ozwin at
+  Saldean's Farm (thanks Smuve).
+- Westfall: you now take the Furlbrows' and Saldeans' quests and Report to
+  Gryan Stoutmantle on the walk in from Elwynn, then reach Sentinel Hill with
+  them, instead of going to the hill first and back north. Elwynn ends at
+  Deputy Rainer on the Westfall road (thanks Pynte).
+- The game's XP bar now marks the level the guide wants you to reach before it
+  moves on: a small tick at the end of the bar with "Guide: 12", or "Guide: 14
+  (4 levels)" when it is further away (Options, Quality of Life, Trackers:
+  Guide level on the XP bar) (thanks CDVolvik).
+- The XP tracker tooltip no longer shows a quests-to-level count: the figure
+  divided remaining XP by the average of the last ten quests this session, so
+  one or two quests in it was rarely meaningful (thanks MgM).
+- Zephras Isle (Horde): The Broken Construct now sends you for the Enchanted
+  Gyrozephyr, south-west of Windsong Lake, before you hand it in to Riaani
+  (thanks 𝔄𝔫𝔫𝔦𝔢).
+- Zephras Isle: at the start you climb the watchtower first for The Anchors of
+  Zephras and Falling With Style, then glide down with Walk on Air and hand
+  Harmony in Balance and Falling With Style to Rorian on one visit (thanks
+  Alx-Ryan).
+- Zephras Isle (Alliance): The Wounds of Betrayal now has an arrow into the
+  Nightfang Den, to the injured druids and Jorel Windsinger, and Standing Our
+  Ground points at Aamelia and Ferauu the Bludgeon (thanks Phear).
+- On Zephras Isle, "Train" steps and the class training reminder send you to
+  the nearest trainer of your class, in Shen'dar or Valanaar too, not always
+  back to the starting village: the isle's other trainers, and its other
+  vendors and innkeepers for "nearest" steps, were left out (#299, #281, #367,
+  thanks MrBackus, Phear and Feverish). On the isle, the Galestrider mount
+  guides and the other maps Forever added, the shaded spawn areas and quest
+  markers now cover the whole camp: they were measured as if the map were half
+  its size, so they were drawn too small and far-apart camps ran together.
+
+### For guide authors
+
+- `category Miscellaneous` is a documented guide category.
+- `collect <item> npc <id>` names the NPC who hands an item over, for an item
+  nothing drops and no data links to anyone, so the target button has someone
+  to target (docs/GUIDE_FORMAT.md, `collect`; thanks XrayAlpha, #337).
+- On the maps Forever added (Zephras Isle, Riverglades, Mount Hyjal,
+  Shen'dralas), route drafts measure distances in the map's own yards instead
+  of a 1000-yard square, and `collect <item> xN nearest` finds farm spots on
+  Riverglades, Mount Hyjal and Shen'dralas as contested zones, clustered in
+  their own yards (#422).
+- Guides: a `loop` line in a step makes its `goto` points the places to
+  search, in order, for the step's kill, collect and interact goals, instead
+  of a path to walk (docs/GUIDE_FORMAT.md, "Spawn areas"). (thanks petllama,
+  #455; after #46)
+- polestar export <file.guide> prints one guide of your pack as an import
+  string, after linting it: one guide of at most 60 steps, with your pack's
+  licence; the guide's version decides Import or Update in game. The
+  playground's Copy import string gives the same. docs/GUIDE_PACKS.md, "Import
+  strings", and docs/PACK_FORMAT.md describe it; LICENSE-EXCEPTION.md now
+  covers strings too. (#261, thanks Yendi)
+- A `level` goal can stop inside a level: `level 12.5` is halfway through
+  level 12 and `level 12+2500` is 2500 XP into it (to whole percent). The
+  guide window reads "Reach level 12 (50%)" and the goal is done once the XP
+  bar gets there. `when level` takes the same form (`when level<12.5`). A pack
+  using either needs Polestar 0.2.6 (pack format 4) (thanks petllama, #455;
+  after #45).
+- Lint warns on a turn-in whose quest needs an item (a drop, an object, a
+  vendor buy) that no earlier goal gets, and on a `complete` with no place of
+  its own on a quest whose objectives have places, where the arrow has nowhere
+  to point (#424).
+- A guide can hand over depending on the character: `next <id> when
+  <predicate>` offers that guide only while the predicate (any of a step's
+  `when` predicates) holds when the guide ends, and `next` lines now add up.
+  An option whose condition fails is left out of "Choose your path", the guide
+  menu's "Next" line and `/polestar path`; with one option left Polestar goes
+  on to it without asking, with none the guide ends there. A pack using it is
+  written in pack format 4 (GUIDE_FORMAT.md, "Conditional hand-offs") (thanks
+  petllama, #455; after #44).
+- A step can be done along the way: `along` lets the route go straight on, and
+  its goals ("kill 8 boars", "collect 5 candles") stay listed under the
+  current step, "Along the way" in the guide window, until they are done, or
+  with `along until <label>` until the route reaches the step carrying `label
+  <label>`. Clicking one points the arrow at it. A pack using `along` or
+  `label` is written in pack format 4, which needs Polestar 0.2.6
+  (GUIDE_FORMAT.md, "Along the way"; thanks petllama, #455, after #42).
+- A step can show a picture under its tip with the new `image <path>
+  [<w>x<h>]` line, for a spot that is hard to find such as a cave mouth: a
+  .tga or .blp file in the pack folder, copied into the addon by `compile`
+  (thanks CDVolvik).
+- A step can depend on the character's state when the route reaches it: `when
+  level<6`, `when onquest 788`, `when !has 159 x5`, `when zone "Durotar"` and
+  more (GUIDE_FORMAT.md, "Conditions checked during play"). Once the route has
+  passed the step the outcome stays; a step passed because its condition
+  failed counts as skipped, so the player can unskip it. A `when onquest`
+  step can hand in a quest picked up elsewhere. A pack using `when` is written
+  in pack format 4, which needs Polestar 0.2.6 (thanks jfuglas, #376; the
+  login and hand-in guards after petllama's #47).
+
+### For contributors
+
+- The pull request template now asks AI-assisted contributors to name the
+  exact model and version and the tool they used; the review rubric notes
+  that work from smaller or unnamed models is re-verified before merge.
+- Closing a Discord report as a duplicate now tells the reporter where the
+  earlier issue stands (fixed, released, not planned, or still open, with any
+  fix in progress) and quotes the maintainer's explanation, also when it was
+  closed as not planned with a "Duplicate of #M" comment. When a release ships
+  the earlier issue's fix, the duplicate's thread hears it too, once. The
+  triage skill closes duplicates with gh issue close --duplicate-of and labels
+  not-planned closes with their resolution.
+- The Discord bug bot reads Chinese reports: their full-width colons and
+  brackets no longer lose the guide, step, client build and place from the
+  issue, or leave the bold lead-in in the title.
+- The bug bot copies every player's message in a tracked #bugs thread to its
+  issue, not only the reporter's: another player's confirmation, fix or
+  screenshot is context for whoever triages it. The reporter's comments say
+  "(the reporter)", and the bot's "Tracked as" reply says that replies in the
+  thread go to the issue.
+- English-on-screen checks recognize exact author-credit names while
+  continuing to check their label and surrounding prose, recognize the
+  Baganator product name, and retire a stale Chinese NPC baseline entry
+  (thanks HershelW).
+- CI no longer cancels a run on next, main or a hotfix branch when another
+  merge lands, so every merge commit gets a test result; a pull request's
+  newer push still replaces its older run.
+- Small changes are small: edit the source, run its tests, open a PR; the
+  maintainers regenerate compiled files.
+- `data build` no longer hangs when a quest XP site stops answering: each
+  lookup gives up after 30 seconds and is listed as a warning, and the next
+  build retries it.
+- The guide pack's memory test loads the pack by its TOC, like the other pack
+  tests, so a file added to the pack is measured; chainNeeds names a goal's
+  pre and preAll instead of walking a table literal per accept of every guide
+  down the chain.
+- Contributing is lighter: run the tests for what you changed; CI runs the
+  rest.
+- On Windows, whole numbers above 2^31 (step hashes, for one) come through
+  intact from Lua 5.1 in the tools, the test client and the playtest driver:
+  Lua 5.1 there formats `%d` through a 32-bit long. A pack update test and the
+  Ashenvale walk test failed on Windows because of it, and a playtest after a
+  guide recompile could lose its check-offs.
+- `data build` works with LuaJIT, the Lua the setup steps suggest on Windows
+  and macOS: LuaJIT allows one function 65536 constants, fewer than pfQuest's
+  `db/units.lua` holds, and the loader now splits such a file so it loads.
+  When a file still cannot load, the error says to set `LUA` to a Lua 5.1
+  interpreter, as it does for a file the split would cut inside a long
+  string (thanks b7216309-jpg for that guard).
+- Buying for buy goals reads the merchant's goods through
+  `C_MerchantFrame.GetItemInfo` where the client has it, with
+  `GetMerchantItemInfo` as the fallback. Forever has both today, but the old
+  call is missing from the client's API lists and was the one client call
+  Polestar made without a check (thanks RamosJoaquim, who found it while
+  testing Polestar on another client, #153).
+- Every pull request now goes to next, guide fixes included. A fix players
+  need in the coming patch gets the backport label after it merges, and its
+  patch pull request opens on its own; the Base branch check turns away other
+  pull requests into a hotfix branch.
+- `data build` fills the quest objective counts QuestieDB and pfQuest lack
+  from CMaNGOS classic-db quest_template (cached as quest_counts.json beside
+  the dump), so about 1,100 more quests have every count known.
+- Performance checks account for the Lua clock's measured resolution, capped at one millisecond, and use a longer calibration sample so whole-millisecond Windows clocks do not falsely reject sub-millisecond frames.
+- Every issue now shows which pull requests are fixing it: one comment, kept
+  up to date, and the label has-pr (fix-merged once a fix is merged and waits
+  for its release). A pull request whose issue already has another open one
+  gets the label overlap and a comment naming it. A Discord reporter is told
+  in their thread when the first fix for their report opens, and is asked the
+  maintainer's question there when the issue is labelled needs-info.
+  CONTRIBUTING.md has a new section, "Before you start", and the agent skills
+  check for open pull requests before starting a fix.
+- The quest-giver sweep from Forever's quest data keeps the NPCs that data
+  leaves out on shared or multi-trainer quests: Veyric Thunderhame ends Storm,
+  Earth, and Fire next to Rau Cliffrunner, Lago Blackwrench gives Seeking
+  Strahad and Torm Ragetotem gives A Troubled Spirit.
+- The simulator scores a guide at the quest giver and turn-in it names when a
+  quest has several (`sim compare`, `sim bench`): the world kept only the
+  first one the data lists, so Horde guides were charged a walk to the
+  Steamwheedle Port poster for the two Tanaris wanted quests they take in
+  Gadgetzan, and class guides a trip to another city's trainer. About 0.1 h
+  to 60 for most starts, up to 0.9 h for Horde Warriors; the route search is
+  unchanged.
+- Simulator: `--param key=value` (repeatable) sets any model parameter for sim
+  run/robust/compare/consensus after the objective's preset, and `--tag
+  <name>` gives such a variant its own result files
+  (horde-orc-any-smooth-g6.json).
+- Simulator: `sim run/robust/compare/consensus --objective smooth` searches
+  for smoother routes (fewer zone switches, returns into zones left earlier
+  and returns to spots already worked; results in their own `-smooth` files)
+  while reported times stay real; kills now count for every active quest on
+  the same mob camp, the quest log holds 40 as in Forever's client across
+  the whole route (a full log waits for a turn-in or gives up a quest 6+
+  levels below the character), and results report zone changes, zone and
+  spot returns, shared kills, the quest log peak and the quests accepted but
+  never turned in.
+- `sim walks` routes the simulator's walks with the walking router the arrow
+  uses, into `data/sim/walks-<faction>.json` (about 10 minutes per faction),
+  and `sim run`, `robust`, `compare`, `bench` and `consensus` then walk round
+  cliffs, mountains and water instead of the straight line × detour, which
+  priced Silithus to Feralas at 1,785 yd for a 13,807 yd walk. Guides score
+  0.4-1.0 h slower to 60, and the search finds routes 0.9-2.8 h faster on
+  real walking (Orc, Human; give it `--paths 3000000`). Without the file, or
+  with `--no-walks`, nothing changes.
+- Talent plans are now checked against Forever's client build 1.60.1.70450
+  (was 1.60.1.70374). Forever changed the Mage, Priest, Shaman and Warlock
+  trees in that build; plans for those classes need to be checked against it.
+- Addon tests can load temporary fixture files on another Windows drive
+  (thanks HershelW).
+
 ## 0.2.5 (2026-10-17)
 
 ### For players

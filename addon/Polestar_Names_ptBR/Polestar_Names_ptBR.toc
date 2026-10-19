@@ -21,7 +21,7 @@
 ## Notes-zhTW: Polestar 使用的遊戲名稱（任務、NPC、物件、物品、副本等）。語言：葡萄牙語（巴西）。僅在該語言的用戶端中按需載入。
 ## Author: Polestar
 ## X-License: GPL-3.0-only
-## Version: 0.2.5
+## Version: 0.2.6
 ## Category: Quests
 ## LoadOnDemand: 1
 ## Dependencies: Polestar

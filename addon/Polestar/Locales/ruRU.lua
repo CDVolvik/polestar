@@ -170,7 +170,6 @@ L["Night"] = "Ночь"
 L["Graphite"] = "Графит"
 L["Halo"] = "Ореол"
 L["Hearth"] = "Очаг"
-L["WoW Forever"] = "WoW Forever"
 L["Blizzard"] = "Blizzard"
 L["Classic"] = "Classic"
 
@@ -2330,3 +2329,4 @@ L["Bound your Hearthstone."] = "Камень возвращения привяз
 -- L["Scale of the quest item, Hearthstone and target buttons. Drag one to move them all."] = "Масштаб кнопок предмета задания, камня возвращения и цели. Перетащите одну, чтобы сдвинуть все."
 -- L["Route"] = "Маршрут"
 -- L["Open the Import page: guides shared as text"] = "Открыть страницу «Импорт»: гайды, которыми поделились текстом"
+-- L["WoW Forever"] = "WoW Forever"
