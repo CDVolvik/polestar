@@ -161,6 +161,7 @@ L["Browse the guide with the gamepad"] = "Parcourir le guide à la manette"
 L["Open the guide menu"] = "Ouvrir le menu du guide"
 L["Open Polestar options"] = "Ouvrir les options de Polestar"
 L["Open the Gamepad page: button names and bindings"] = "Ouvrir la page Manette : noms des boutons et raccourcis"
+-- L["Target rare"] = ""
 
 -- Theme/Theme.lua
 L["Dusk"] = "Crépuscule"
@@ -668,7 +669,6 @@ L["Targets the current step's mobs by name; each click moves to the next name. B
 L["Hearthstone button"] = "Bouton de pierre de foyer"
 L["Shows your Hearthstone while the guide says to hearth. Bindable."] = "Affiche votre pierre de foyer quand le guide demande de l'utiliser. Raccourci possible."
 L["Button size"] = "Taille des boutons"
-L["Scale of the quest item, Hearthstone and target buttons. Drag one to move them all."] = "Échelle des boutons d'objet de quête, de pierre de foyer et de ciblage. Faites-en glisser un pour tous les déplacer."
 L["Target name position"] = "Position du nom de la cible"
 L["Where the target's name shows around the target button: right, left, above or below."] = "Où le nom de la cible s'affiche autour du bouton de ciblage : à droite, à gauche, au-dessus ou en dessous."
 L["Right"] = "Droite"
@@ -741,6 +741,9 @@ L["Start this session's XP per hour from zero."] = "Remet à zéro l'XP par heur
 -- L["Icon on NPCs"] = ""
 -- L["The target button and the step key put a raid icon on the mob and the NPC they target; out of combat, a press that finds neither clears your target. Your party sees the icons; in a raid only the leader and assistants can set them."] = ""
 -- L["A new one each press, so the last few NPCs keep theirs. Every press counts, even one that marks nothing."] = ""
+-- L["Rare button"] = ""
+-- L["Shows a button that targets a rare Polestar spotted nearby, until it dies or is out of sight. Bindable."] = ""
+-- L["Scale of the quest item, Hearthstone, target and rare buttons. Drag one to move them all."] = ""
 
 -- Lookup/Sources.lua
 L["Alliance only"] = "Alliance uniquement"
@@ -2055,3 +2058,4 @@ L["Shortest Path Forever's arrow, route and journey take you to each goal. Poles
 -- L["Next tram in about %s"] = "Prochain tram dans environ %s"
 -- L["Next lift in about %s"] = "Prochain ascenseur dans environ %s"
 -- L["leaves in about %s"] = "départ dans environ %s"
+-- L["Scale of the quest item, Hearthstone and target buttons. Drag one to move them all."] = "Échelle des boutons d'objet de quête, de pierre de foyer et de ciblage. Faites-en glisser un pour tous les déplacer."
