@@ -331,6 +331,7 @@ test("the skins' darts: the skin's arrow by default, accent far and arrival gree
 		out.flat = A.GetStyle()
 		Polestar.Set("nav.arrowStyle", "skin")
 		out.looks = {}
+		Polestar.Theme._testShowHidden = true
 		for _, k in ipairs({ "forever", "blizzard", "classic" }) do
 			Polestar.Set("ui.skin", k)
 			out.looks[#out.looks + 1] = A.GetStyle()
