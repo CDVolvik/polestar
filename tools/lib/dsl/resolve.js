@@ -19,7 +19,7 @@ const { objectiveLabel } = require('./data');
 const { checkLocation } = require('./places');
 const { blockingPrereqs } = require('../data/prereqs');
 const { clusterPoints, scaleOf } = require('../questdb/cluster');
-const { groupOf, isElite, hostileTo } = require('./group');
+const { groupOf, isElite, isRare, hostileTo } = require('./group');
 const { goalHeight, spotHeight } = require('./heights');
 const { goalArea, goalNode, goalInnkeeper, goalFlightMaster } = require('./places');
 
@@ -94,7 +94,7 @@ function pickSpawn(data, candidates, zoneMap, prev, opts = {}) {
 	if (zoneMap != null) maps.push(zoneMap);
 	for (const m of opts.usedMaps || []) if (!maps.includes(m)) maps.push(m);
 	for (const m of maps) {
-		const { on, elites } = onMap(data, all, m, opts.sides);
+		const { on, elites } = onMap(data, all, m, opts.sides, opts.rares);
 		if (!on.length) continue;
 		const found = { sources: on.map((o) => o.cand), elites: elites.map((o) => o.cand) };
 		if (prev && prev.map === m) {
@@ -126,11 +126,12 @@ function pickSpawn(data, candidates, zoneMap, prev, opts = {}) {
 // at 1%), only the normal ones count, at any chance the elites have: a
 // player farms the normal mobs, not the elite camp beside them. The elites
 // passed over are `elites` (spawnSpots keeps the arrow out of their camps).
-// An item only elites drop here keeps them.
+// An item only elites drop here keeps them. With `rares` (see rareLeads) a
+// rare (isRare) is passed over the same way.
 //
 // Sources with a drop chance: only the likely ones count (at least half the
 // best chance here; sub-1% drops only when nothing better drops here).
-function onMap(data, all, map, sides) {
+function onMap(data, all, map, sides, rares = false) {
 	let on = [];
 	let elites = [];
 	for (const { cand, spawns } of all) {
@@ -138,7 +139,7 @@ function onMap(data, all, map, sides) {
 		if (s) on.push({ cand, s });
 	}
 	const chanceOf = (o) => o.cand.chance || 0;
-	const split = sides ? eliteSplit(data, on.map((o) => o.cand), sides) : null;
+	const split = sides ? eliteSplit(data, on.map((o) => o.cand), sides, rares) : null;
 	if (split) {
 		elites = on.filter((o) => split.elites.includes(o.cand));
 		on = on.filter((o) => split.normal.includes(o.cand));
@@ -191,28 +192,41 @@ function pointSources(data, sources, map, f, x, y, near) {
 	return out.map((o) => o.src);
 }
 
-// Sources ([{ kind, id, chance? }]) that elites (group.js isElite) and normal
-// sources (a non-elite npc hostile to one of `sides`, or an object) both drop
-// at 1% or more (any chance when none drops it at 1%, or none has a chance).
+// Sources ([{ kind, id, chance? }]) that elites (group.js isElite, and rares
+// with `rares`) and normal sources (a non-elite npc hostile to one of
+// `sides`, or an object) both drop at 1% or more (any chance when none drops
+// it at 1%, or none has a chance).
 // -> { normal, elites } | null (not both)
-function eliteSplit(data, cands, sides) {
+function eliteSplit(data, cands, sides, rares = false) {
 	const chances = cands.some((c) => typeof c.chance === 'number');
 	const best = Math.max(0, ...cands.map((c) => c.chance || 0));
 	const real = cands.filter((c) => !chances || (c.chance || 0) >= 1 || best < 1);
-	const elites = real.filter((c) => eliteSource(data, c, sides));
-	const normal = real.filter((c) => normalSource(data, c, sides));
+	const elites = real.filter((c) => eliteSource(data, c, sides, rares));
+	const normal = real.filter((c) => normalSource(data, c, sides, rares));
 	return elites.length && normal.length ? { normal, elites } : null;
 }
 
-function eliteSource(data, cand, sides) {
-	const n = cand.kind === 'npc' ? data.npc(cand.id) : null;
-	return !!(n && isElite(n.rank, n.faction, sides));
+// Whether a rare drops the item at the highest chance while normal sources
+// drop it at 50% or more (the `fromAlso` bar): the goal would read "Kill
+// <rare> or <normal>", and the arrow would lead to the rare's spawns, which
+// are the camps of other mobs (Ribchaser stands among the Redridge Mongrels,
+// who drop nothing). Not for an item that drops all over the world.
+function rareLeads(data, cands, sides) {
+	const top = cands.reduce((a, b) => (b.chance > a.chance ? b : a), cands[0] || { chance: 0 });
+	const n = top.kind === 'npc' ? data.npc(top.id) : null;
+	if (!n || !isRare(n.rank, n.faction, sides)) return false;
+	return cands.some((c) => c.chance >= 50 && normalSource(data, c, sides, true));
 }
 
-function normalSource(data, cand, sides) {
+function eliteSource(data, cand, sides, rares) {
+	const n = cand.kind === 'npc' ? data.npc(cand.id) : null;
+	return !!(n && (isElite(n.rank, n.faction, sides) || (rares && isRare(n.rank, n.faction, sides))));
+}
+
+function normalSource(data, cand, sides, rares) {
 	if (cand.kind !== 'npc') return true;
 	const n = data.npc(cand.id);
-	return !!(n && hostileTo(n.faction, sides) && !isElite(n.rank, n.faction, sides));
+	return !!(n && hostileTo(n.faction, sides) && !isElite(n.rank, n.faction, sides) && !(rares && isRare(n.rank, n.faction, sides)));
 }
 
 function point(cand, map, x, y, f) {
@@ -709,7 +723,7 @@ function objectiveFor(q, kind, id) {
 	return idx < 0 ? null : idx + 1;
 }
 
-const CATEGORIES = ['Leveling', 'Class', 'Professions', 'Reputation', 'Legacy', 'Exploration', 'Collectibles', 'Dungeons'];
+const CATEGORIES = ['Leveling', 'Class', 'Professions', 'Reputation', 'Legacy', 'Exploration', 'Collectibles', 'Miscellaneous', 'Dungeons'];
 
 // Documented categories are matched case-insensitively; others pass through with a warning.
 function canonicalCategory(raw, ast, warn) {
@@ -811,6 +825,7 @@ function resolveGoal(g, zoneMap, prev, data, err, warn, ctx = { sides: ['Allianc
 	let candidates = []; // entities whose spawns give coordinates
 	let checkKinds = null; // entities for the explicit-coordinates check
 	let questFields = false;
+	let passRares = false; // a collect whose rare tops its few droppers: the common ones lead (see onMap)
 
 	const requireName = (kind, id, explicit, label) => {
 		const name = explicit || nameOf(data, kind, id);
@@ -1000,9 +1015,11 @@ function resolveGoal(g, zoneMap, prev, data, err, warn, ctx = { sides: ['Allianc
 			// says nothing about where to farm it). `fromFaction` lets the
 			// engine tell an enemy from a friend of the character's faction.
 			// Where normal droppers and elites both drop it, only the normal
-			// ones are named, as the arrow leads to them (onMap).
+			// ones are named, as the arrow leads to them (onMap); so are they
+			// where a rare tops the droppers (rareLeads).
 			const widespread = candidates.filter((s) => s.chance >= 2).length > MAX_NAMED_SOURCES;
-			const split = eliteSplit(data, candidates, ctx.sides);
+			passRares = !widespread && rareLeads(data, candidates, ctx.sides);
+			const split = eliteSplit(data, candidates, ctx.sides, passRares);
 			const named = split ? split.normal : candidates;
 			if (!widespread && named.length && (candidates.length === 1 || named[0].chance >= 50)) {
 				const top = named[0];
@@ -1348,7 +1365,7 @@ function resolveGoal(g, zoneMap, prev, data, err, warn, ctx = { sides: ['Allianc
 	}
 	// A collect's droppers: the normal ones over elites beside them (onMap).
 	const dropSides = v === 'collect' ? ctx.sides : undefined;
-	const picked = pickSpawn(data, candidates, map, prev, { usedMaps: ctx.usedMaps, sides: dropSides });
+	const picked = pickSpawn(data, candidates, map, prev, { usedMaps: ctx.usedMaps, sides: dropSides, rares: passRares });
 	if (picked) {
 		const c = picked.cand;
 		if (v === 'accept' || v === 'turnin') {
@@ -1400,7 +1417,7 @@ function resolveGoal(g, zoneMap, prev, data, err, warn, ctx = { sides: ['Allianc
 			// point anywhere in it lists every node place.
 			const known = area ? candidates.filter((s) => s.chance === undefined || s.chance > 0 || gatherNode(data, s)) : [c];
 			const all = known.map((cand) => ({ cand, spawns: data.spawns(cand.kind, cand.id) }));
-			const sources = onMap(data, all, goal.map, dropSides).on.map((o) => o.cand);
+			const sources = onMap(data, all, goal.map, dropSides, passRares).on.map((o) => o.cand);
 			const near = !area ? SPAWN_CHECK_YARDS : sources.length && sources.every((s) => gatherNode(data, s)) ? Infinity : SPREAD_YARDS;
 			setIf(goal, 'spots', handSpots(data, sources, goal.map, goal.f, goal.x, goal.y, near));
 			if (v === 'collect') {

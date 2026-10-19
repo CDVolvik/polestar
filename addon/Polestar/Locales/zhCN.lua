@@ -635,7 +635,6 @@ L["Wearing %s (%s)."] = "已装备%s（%s）。"
 L["Wearing %s."] = "已装备%s。"
 
 -- QoL/Flight.lua
-L["Route"] = "路线"
 L["Route: fly to %s."] = "路线：飞往%s。"
 
 -- QoL/Death.lua
@@ -1101,6 +1100,7 @@ L["Legacy"] = "传承"
 L["Collectibles"] = "收藏品"
 L["Sections"] = "分区"
 L["guide status: Completed"] = "已完成"
+L["Miscellaneous"] = "其它"
 
 -- UI/Lookup.lua
 L["Companion"] = "小伙伴"
@@ -2058,6 +2058,9 @@ L["Your imported guides"] = "你导入的指南"
 L["version %s"] = "版本 %s"
 L["Guides someone shared with you, as an import string or a community addon."] = "他人以导入字符串或社区插件分享给你的指南。"
 
+-- Nav/Pins.lua
+-- L["Polestar trail dots"] = ""
+
 -- No longer in the code (its English changed or it went away): reuse or delete.
 -- L["Shortest Path Forever is guiding. Turn off \"Guide with Shortest Path Forever when it's installed\" (Options, Arrow & routes) to use Polestar's arrow."] = "Shortest Path Forever 正在导航。要使用 Polestar 的箭头，请关闭“安装 Shortest Path Forever 时由其导航”（选项 > 箭头与路线）。"
 -- L["Shortest Path Forever is guiding. Turn off \"Guide with Shortest Path Forever when it's installed\" (Options, Integrations) to use Polestar's arrow."] = "Shortest Path Forever 正在导航。要使用 Polestar 的箭头，请关闭\"安装 Shortest Path Forever 时由其导航\"（选项，整合）。"
@@ -2074,3 +2077,4 @@ L["Guides someone shared with you, as an import string or a community addon."] =
 -- L["Next lift in about %s"] = "下次升降梯约 %s后到"
 -- L["leaves in about %s"] = "约%s后出发"
 -- L["Scale of the quest item, Hearthstone and target buttons. Drag one to move them all."] = "任务物品、炉石和目标按钮的缩放。拖动任意一个可整体移动。"
+-- L["Route"] = "路线"

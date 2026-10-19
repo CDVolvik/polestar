@@ -635,7 +635,6 @@ L["Wearing %s (%s)."] = "Equipado: %s (%s)."
 L["Wearing %s."] = "Equipado: %s."
 
 -- QoL/Flight.lua
-L["Route"] = "Ruta"
 L["Route: fly to %s."] = "Ruta: vuela a %s."
 
 -- QoL/Death.lua
@@ -1101,6 +1100,7 @@ L["Legacy"] = "Legado"
 L["Collectibles"] = "Coleccionables"
 L["Sections"] = "Secciones"
 L["guide status: Completed"] = "Completada"
+L["Miscellaneous"] = "Miscelánea"
 
 -- UI/Lookup.lua
 L["Companion"] = "Mascota de compañía"
@@ -2058,6 +2058,9 @@ L["Your imported guides"] = "Tus guías importadas"
 L["version %s"] = "versión %s"
 L["Guides someone shared with you, as an import string or a community addon."] = "Guías que alguien ha compartido contigo, como texto de importación o como addon de la comunidad."
 
+-- Nav/Pins.lua
+-- L["Polestar trail dots"] = ""
+
 -- No longer in the code (its English changed or it went away): reuse or delete.
 -- L["Shortest Path Forever is guiding. Turn off \"Guide with Shortest Path Forever when it's installed\" (Options, Arrow & routes) to use Polestar's arrow."] = "Shortest Path Forever está guiando. Desactiva \"Guiar con Shortest Path Forever si está instalado\" (Opciones, Flecha y rutas) para usar la flecha de Polestar."
 -- L["Shortest Path Forever is guiding. Turn off \"Guide with Shortest Path Forever when it's installed\" (Options, Integrations) to use Polestar's arrow."] = "Shortest Path Forever está guiando. Desactiva \"Guiar con Shortest Path Forever si está instalado\" (Opciones, Integraciones) para usar la flecha de Polestar."
@@ -2074,3 +2077,4 @@ L["Guides someone shared with you, as an import string or a community addon."] =
 -- L["Next lift in about %s"] = "Próximo ascensor en unos %s"
 -- L["leaves in about %s"] = "sale en unos %s"
 -- L["Scale of the quest item, Hearthstone and target buttons. Drag one to move them all."] = "Escala de los botones de objeto de misión, piedra de hogar y objetivo. Arrastra uno para moverlos todos."
+-- L["Route"] = "Ruta"

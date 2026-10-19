@@ -544,7 +544,6 @@ L["Wearing %s (%s)."] = "Equipado: %s (%s)."
 L["Wearing %s."] = "Equipado: %s."
 
 -- QoL/Flight.lua
-L["Route"] = "Ruta"
 L["Route: fly to %s."] = "Ruta: vuela a %s."
 
 -- QoL/Options.lua
@@ -1524,6 +1523,7 @@ L["Collectibles"] = "Coleccionables"
 L["Why"] = "Por qué"
 L["Sections"] = "Secciones"
 L["guide status: Completed"] = "Completada"
+L["Miscellaneous"] = "Miscelánea"
 
 -- UI/Report.lua
 L["Polestar %s"] = "Polestar %s"
@@ -2057,6 +2057,9 @@ L["Your imported guides"] = "Tus guías importadas"
 L["version %s"] = "versión %s"
 L["Guides someone shared with you, as an import string or a community addon."] = "Guías que alguien compartió contigo, como texto de importación o como AddOn de la comunidad."
 
+-- Nav/Pins.lua
+-- L["Polestar trail dots"] = ""
+
 -- No longer in the code (its English changed or it went away): reuse or delete.
 -- L["The arrow's target, the stops of its travel route, the step's other goals and the areas their mobs and objects spawn in."] = "El objetivo de la flecha, las paradas de su ruta de viaje, los demás objetivos del paso y las zonas donde aparecen sus monstruos y objetos."
 -- L["The arrow's target and the areas it spawns in."] = "El objetivo de la flecha y las zonas donde aparece."
@@ -2107,3 +2110,4 @@ L["Guides someone shared with you, as an import string or a community addon."] =
 -- L["Next lift in about %s"] = "Próximo ascensor en unos %s"
 -- L["leaves in about %s"] = "sale en unos %s"
 -- L["Scale of the quest item, Hearthstone and target buttons. Drag one to move them all."] = "Escala de los botones de objeto de misión, piedra de hogar y objetivo. Arrastra uno para moverlos todos."
+-- L["Route"] = "Ruta"

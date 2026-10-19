@@ -636,7 +636,6 @@ L["Wearing %s (%s)."] = "%s équipé (%s)."
 L["Wearing %s."] = "%s équipé."
 
 -- QoL/Flight.lua
-L["Route"] = "Itinéraire"
 L["Route: fly to %s."] = "Itinéraire : prenez un vol pour %s."
 
 -- QoL/Death.lua
@@ -1102,6 +1101,7 @@ L["Legacy"] = "Héritage"
 L["Collectibles"] = "Objets de collection"
 L["Sections"] = "Sections"
 L["guide status: Completed"] = "Terminé"
+L["Miscellaneous"] = "Divers"
 
 -- UI/Lookup.lua
 L["Companion"] = "Mascotte"
@@ -2059,6 +2059,9 @@ L["Your imported guides"] = "Vos guides importés"
 L["version %s"] = "version %s"
 L["Guides someone shared with you, as an import string or a community addon."] = "Les guides que quelqu'un partage avec vous, en texte d'import ou en addon communautaire."
 
+-- Nav/Pins.lua
+-- L["Polestar trail dots"] = ""
+
 -- No longer in the code (its English changed or it went away): reuse or delete.
 -- L["Alliance"] = "Alliance"
 -- L["Blood Elf"] = "Elfe de sang"
@@ -2114,3 +2117,4 @@ L["Guides someone shared with you, as an import string or a community addon."] =
 -- L["Next lift in about %s"] = "Prochain ascenseur dans environ %s"
 -- L["leaves in about %s"] = "départ dans environ %s"
 -- L["Scale of the quest item, Hearthstone and target buttons. Drag one to move them all."] = "Échelle des boutons d'objet de quête, de pierre de foyer et de ciblage. Faites-en glisser un pour tous les déplacer."
+-- L["Route"] = "Itinéraire"

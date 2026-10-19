@@ -635,7 +635,6 @@ L["Wearing %s (%s)."] = "%s 착용 (%s)."
 L["Wearing %s."] = "%s 착용."
 
 -- QoL/Flight.lua
-L["Route"] = "경로"
 L["Route: fly to %s."] = "경로: %s까지 비행."
 
 -- QoL/Death.lua
@@ -1101,6 +1100,7 @@ L["Legacy"] = "유산"
 L["Collectibles"] = "수집품"
 L["Sections"] = "섹션"
 L["guide status: Completed"] = "완료됨"
+L["Miscellaneous"] = "기타"
 
 -- UI/Lookup.lua
 L["Companion"] = "애완동물"
@@ -2058,6 +2058,9 @@ L["Your imported guides"] = "가져온 가이드"
 L["version %s"] = "버전 %s"
 L["Guides someone shared with you, as an import string or a community addon."] = "누군가 가져오기 문자열이나 커뮤니티 애드온으로 공유한 가이드."
 
+-- Nav/Pins.lua
+-- L["Polestar trail dots"] = ""
+
 -- No longer in the code (its English changed or it went away): reuse or delete.
 -- L["Shortest Path Forever is guiding. Turn off \"Guide with Shortest Path Forever when it's installed\" (Options, Arrow & routes) to use Polestar's arrow."] = "Shortest Path Forever가 가이드 중입니다. Polestar 화살표를 쓰려면 \"설치 시 Shortest Path Forever로 가이드\"를 끄십시오(설정, 화살표 및 경로)."
 -- L["Shortest Path Forever is guiding. Turn off \"Guide with Shortest Path Forever when it's installed\" (Options, Integrations) to use Polestar's arrow."] = "Shortest Path Forever가 안내 중입니다. Polestar의 화살표를 사용하려면 \"설치 시 Shortest Path Forever로 가이드\"(옵션, 연동)를 끄세요."
@@ -2074,3 +2077,4 @@ L["Guides someone shared with you, as an import string or a community addon."] =
 -- L["Next lift in about %s"] = "다음 승강기 약 %s 후"
 -- L["leaves in about %s"] = "약 %s 후 출발"
 -- L["Scale of the quest item, Hearthstone and target buttons. Drag one to move them all."] = "퀘스트 아이템, 귀환석, 대상 버튼의 크기. 하나를 끌면 모두 이동합니다."
+-- L["Route"] = "경로"

@@ -421,6 +421,7 @@ L["Guides you load show up here."] = "Geladene Guides erscheinen hier."
 L["All"] = "Alle"
 L["Sections"] = "Abschnitte"
 L["guide status: Completed"] = "Abgeschlossen"
+L["Miscellaneous"] = "Verschiedenes"
 
 -- UI/Report.lua
 L["skipped"] = "übersprungen"
@@ -1567,7 +1568,6 @@ L["Resurrect at the Spirit Healer (%s): your corpse is %s away, longer than %s o
 L["Resurrect at the Spirit Healer (%s)."] = "Lass dich beim Geistheiler wiederbeleben (%s)."
 L["Your corpse"] = "Deine Leiche"
 L["Spirit Healer"] = "Geistheiler"
-L["Route"] = "Route"
 L["Route: fly to %s."] = "Route: Flieg nach %s."
 L["%dh %02dm"] = "%d Std. %02d Min."
 L["%dm"] = "%d Min."
@@ -2031,6 +2031,9 @@ L["Your imported guides"] = "Deine importierten Guides"
 L["version %s"] = "Version %s"
 L["Guides someone shared with you, as an import string or a community addon."] = "Guides, die jemand mit dir teilt, als Importtext oder als Community-Addon."
 
+-- Nav/Pins.lua
+-- L["Polestar trail dots"] = ""
+
 -- No longer in the code (its English changed or it went away): reuse or delete.
 -- L["The arrow's target and the areas it spawns in."] = "Das Ziel des Pfeils und die Gebiete, in denen es spawnt."
 -- L["The arrow's target, the stops of its travel route, the step's other goals and the areas their mobs and objects spawn in."] = "Das Ziel des Pfeils, die Stationen seiner Reiseroute, die anderen Ziele des Schritts und die Gebiete, in denen ihre Mobs und Objekte spawnen."
@@ -2082,3 +2085,4 @@ L["Guides someone shared with you, as an import string or a community addon."] =
 -- L["Next lift in about %s"] = "Nächster Aufzug in etwa %s"
 -- L["leaves in about %s"] = "fährt ab in etwa %s"
 -- L["Scale of the quest item, Hearthstone and target buttons. Drag one to move them all."] = "Größe von Questgegenstand-, Ruhestein- und Ziel-Button. Zieh einen, um alle zu verschieben."
+-- L["Route"] = "Route"

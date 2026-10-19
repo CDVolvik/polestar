@@ -23,7 +23,7 @@ Before the first `step`. `guide`, `title`, `levels` and `zone` are required.
 | `faction <Faction>` | Only for `Alliance` or `Horde` characters | `faction Alliance` |
 | `race <Race>, ...` | Only for these races (see Conditions) | `race Human, Dwarf` |
 | `class <Class>, ...` | Only for these classes | `class Warrior, Paladin` |
-| `category <Category>` | The guide menu category: `Leveling` (default), `Class`, `Professions`, `Reputation`, `Legacy`, `Exploration`, `Collectibles` or `Dungeons` | `category Professions` |
+| `category <Category>` | The guide menu category: `Leveling` (default), `Class`, `Professions`, `Reputation`, `Legacy`, `Exploration`, `Collectibles`, `Miscellaneous` or `Dungeons` | `category Professions` |
 | `folder <text>` | The guide menu folder to list it under | `folder Mounts · Level 40` |
 | `keywords <word>, ...` | Extra words the guide menu search finds it by | `keywords wolf, meat` |
 | `collects <item>, ...` | Items the guide obtains; Lookup opens this guide for them | `collects 750` |
@@ -74,7 +74,7 @@ Before the first `step`. `guide`, `title`, `levels` and `zone` are required.
 | `accept <quest> ["Title"]` | Take a quest; the giver and title come from the data | `accept 783` |
 | `turnin <quest> ["Title"]` | Hand a quest in | `turnin 783` |
 | `lvl <N>` | On `accept`: the level the quest needs, shown beside it | `accept 7 lvl 2` |
-| `complete <quest> ["Title"]` | Finish every objective of a quest | `complete 7` |
+| `complete <quest> ["Title"]` | Finish every objective of a quest; give it a place (`@x,y`, or a `goto` before it) when its objectives have one, or the arrow has nowhere to point | `complete 7 @48.5,31.0` |
 | `npc <id>` | Which NPC gives or takes the quest, when the data knows several | `accept 5261 npc 196` |
 | `object <id>` / `item <id>` | The same for a quest started or ended at an object, or started by an item | `accept 9400 object 1617` |
 | `"<text>"` | Right after an id: the quest title, or the name of the NPC, object or item, for content missing from the data; after the modifiers: the text players see instead of the generated one | `accept 9201 "The First Step"` |

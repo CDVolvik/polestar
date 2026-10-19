@@ -635,7 +635,6 @@ L["Wearing %s (%s)."] = "Надето: %s (%s)."
 L["Wearing %s."] = "Надето: %s."
 
 -- QoL/Flight.lua
-L["Route"] = "Маршрут"
 L["Route: fly to %s."] = "Маршрут: лететь в %s."
 
 -- QoL/Death.lua
@@ -1101,6 +1100,7 @@ L["Legacy"] = "Наследие"
 L["Collectibles"] = "Коллекции"
 L["Sections"] = "Разделы"
 L["guide status: Completed"] = "Завершён"
+L["Miscellaneous"] = "Разное"
 
 -- UI/Lookup.lua
 L["Companion"] = "Питомец"
@@ -2058,6 +2058,9 @@ L["Your imported guides"] = "Ваши импортированные гайды"
 L["version %s"] = "версия %s"
 L["Guides someone shared with you, as an import string or a community addon."] = "Гайды, которыми с вами поделились: строкой импорта или аддоном сообщества."
 
+-- Nav/Pins.lua
+-- L["Polestar trail dots"] = ""
+
 -- No longer in the code (its English changed or it went away): reuse or delete.
 -- L["Shortest Path Forever is guiding. Turn off \"Guide with Shortest Path Forever when it's installed\" (Options, Arrow & routes) to use Polestar's arrow."] = "Ведет Shortest Path Forever. Отключите «Вести через Shortest Path Forever, если он установлен» (Настройки, Стрелка и маршруты), чтобы использовать стрелку Polestar."
 -- L["Shortest Path Forever is guiding. Turn off \"Guide with Shortest Path Forever when it's installed\" (Options, Integrations) to use Polestar's arrow."] = "Сейчас ведет Shortest Path Forever. Чтобы использовать стрелку Polestar, отключите \"Вести через Shortest Path Forever, если он установлен\" (Настройки, Интеграции)."
@@ -2074,3 +2077,4 @@ L["Guides someone shared with you, as an import string or a community addon."] =
 -- L["Next lift in about %s"] = "Следующий подъемник примерно через %s"
 -- L["leaves in about %s"] = "отправление через ~%s"
 -- L["Scale of the quest item, Hearthstone and target buttons. Drag one to move them all."] = "Масштаб кнопок предмета задания, камня возвращения и цели. Перетащите одну, чтобы сдвинуть все."
+-- L["Route"] = "Маршрут"
