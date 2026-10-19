@@ -3380,8 +3380,11 @@ guides.
 The pick-up guide is built in game (`addon/Polestar/Dungeons/Pickup.lua`):
 `Dungeons.PickupPlan(key)` takes the page's quests that apply to the character
 (faction, race and class masks through `Lookup.QuestBlock`, the page's class
-list), not done, not in the log (those are `carried`), open by
-max(level, the dungeon's lowest level), picked up outside from an NPC or object
+list), not done, not in the log (those are `carried`), not closed for good (a
+quest of the page's `closedBy` done or in the log: a breadcrumb whose quest is
+taken, such as Klockmort's Essentials once Essential Artificials is; each
+accept carries `closedBy` too, so the Engine passes it once taken on the way),
+open by max(level, the dungeon's lowest level), picked up outside from an NPC or object
 (not from an item, not inside), and not a follow-up of another quest of the
 page; each with its open prerequisites (`Lookup.QuestChain`: all of `pre`, one
 of `preAny` this character can take, in the order they are done). The giver

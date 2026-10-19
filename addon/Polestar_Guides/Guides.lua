@@ -2332,7 +2332,7 @@ do
 						{ t = "accept", quest = 555, title = "Soothing Turtle Bisque", npc = 2430, npcName = "Chef Jessen", minLevel = 28, qlvl = 31, map = 1424, x = 51.89, y = 58.68, z = 11.7, f = "e" },
 						{ t = "accept", quest = 659, title = "Hints of a New Plague?", npc = 2711, npcName = "Phin Odelic", minLevel = 30, qlvl = 33, map = 1424, x = 50.35, y = 59.05, z = 10.1, f = "e", note = "{npc:2711}: his trail leads to Arathi" },
 						{ t = "accept", quest = 505, title = "Syndicate Assassins", npc = 2276, npcName = "Magistrate Henry Maleb", minLevel = 26, qlvl = 33, map = 1424, x = 48.14, y = 59.11, z = 13.4, f = "e" },
-						{ t = "accept", quest = 92432, title = "An Alarming Request", npc = 247264, npcName = "Emissary Jacques", minLevel = 30, qlvl = 33, map = 1424, x = 48.32, y = 60, f = "e" },
+						{ t = "accept", quest = 92432, title = "An Alarming Request", npc = 247264, npcName = "Emissary Jacques", minLevel = 30, qlvl = 33, closedBy = { 92458 }, preTitles = { [92458] = "Heart of Disruption" }, map = 1424, x = 48.32, y = 60, f = "e" },
 					},
 				},
 				{

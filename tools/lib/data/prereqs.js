@@ -54,4 +54,37 @@ function blockingPrereqs(quest, questOf = () => null) {
 	return { all, any };
 }
 
-module.exports = { blockingPrereqs };
+// The quests that close quest `id` for good once taken or done: the quest a
+// breadcrumb leads to and its exclusive group (`excl`: another race's or
+// class's version of the same chain). A breadcrumb leads to its own
+// `breadcrumbFor`, and to every quest listing it in `breadcrumbs`
+// (corrections.json gives 92458 Heart of Disruption its breadcrumb 92432 An
+// Alarming Request, which names no `breadcrumbFor`). quests: id -> record
+// (quests.json). -> [ids], without the quest itself.
+const leadsToIndex = new WeakMap();
+function leadsTo(quests, id) {
+	let index = leadsToIndex.get(quests);
+	if (!index) {
+		index = new Map();
+		for (const [tid, t] of Object.entries(quests)) {
+			for (const c of ids(t && t.breadcrumbs)) {
+				if (!index.has(c)) index.set(c, []);
+				index.get(c).push(Number(tid));
+			}
+		}
+		leadsToIndex.set(quests, index);
+	}
+	return index.get(id) || [];
+}
+
+function closedByOf(id, quests = {}) {
+	id = Number(id);
+	const quest = quests[id] || {};
+	const out = [];
+	for (const c of [Number(quest.breadcrumbFor), ...leadsTo(quests, id), ...ids(quest.excl)]) {
+		if (Number.isInteger(c) && c > 0 && c !== id && !out.includes(c)) out.push(c);
+	}
+	return out;
+}
+
+module.exports = { blockingPrereqs, closedByOf };
